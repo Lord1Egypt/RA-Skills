@@ -1,45 +1,60 @@
-## Description: <br>
-Query and export device/site data via the iammeter API (based on https://www.iammeter.com/swaggerui/swagger.json). Triggers: list sites/devices, get real-time or historical energy data, export CSV, run power or offline analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and export IAMMETER device and site data, including real-time meter readings, historical energy data, CSV exports, power analysis, and offline analysis.
 
-## Publisher: <br>
-[IAMMETER](https://clawhub.ai/user/IAMMETER) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iammeter](https://clawhub.ai/user/iammeter)
 
-## Use Case: <br>
-Developers and energy-monitoring operators use this skill to query IAMMETER sites and devices, retrieve real-time or historical energy data, export CSV history, and run power or offline analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an IAMMETER token that grants access to user energy-monitoring data. <br>
-Mitigation: Use a dedicated token, store it only in IAMMETER_TOKEN or the OpenClaw skill configuration, and keep it out of public files. <br>
-Risk: CSV export can overwrite the output path supplied by the user. <br>
-Mitigation: Choose CSV output paths deliberately and review paths before running export commands. <br>
-Risk: The skill depends on short JavaScript files and npm packages for API access. <br>
-Mitigation: Review the JavaScript files and dependencies before deployment when higher assurance is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [IAMMETER API Reference](references/api.md) <br>
-- [IAMMETER Swagger Specification](https://www.iammeter.com/swaggerui/swagger.json) <br>
-- [IAMMETER Cloud API Documentation](https://www.iammeter.com/docs/system-api) <br>
-- [IAMMETER Device Communication Protocols](https://www.iammeter.com/newsshow/blog-fw-features) <br>
-- [ClawHub Skill Page](https://clawhub.ai/IAMMETER/iammeter-openclaw) <br>
+## Use Case:
 
+Developers, energy operators, and OpenClaw users can use this skill to inspect IAMMETER sites and devices, retrieve energy readings, export history, and run meter analysis from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, code] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON or CSV command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an IAMMETER token supplied by IAMMETER_TOKEN or the OpenClaw skill configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: evidence.json release.version and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill needs an IAMMETER API token and sends it to IAMMETER over the network for intended API calls.
+
+Mitigation: Use a revocable token, store it only in the documented Skills UI or environment variable, and rotate it if exposed.
+
+Risk: Generated CSV exports may be unsafe to open directly in spreadsheet software if upstream data contains formula-like values.
+
+Mitigation: Review or sanitize CSV files before opening them in spreadsheet applications.
+
+Risk: The package uses semver ranges for dependencies rather than exact pinned versions.
+
+Mitigation: Pin and audit dependencies before deployment in controlled environments.
+
+## Reference(s):
+
+- [IAMMETER API Reference](references/api.md)
+- [IAMMETER Swagger API](https://www.iammeter.com/swaggerui/swagger.json)
+- [IAMMETER Cloud API](https://www.iammeter.com/docs/system-api)
+- [IAMMETER Device Communication Protocols](https://www.iammeter.com/newsshow/blog-fw-features)
+- [IAMMETER ClawHub Skill Page](https://clawhub.ai/iammeter/skills/iammeter-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON API responses, CSV files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an IAMMETER API token and network access to IAMMETER endpoints.]
+
+## Skill Version(s):
+
+0.2.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

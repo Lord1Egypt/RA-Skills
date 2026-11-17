@@ -1,50 +1,64 @@
-## Description: <br>
-Creates, optimizes, deploys, manages, and analyzes AI-Shifu courses by converting course material into MarkdownFlow Teaching Prompts and Course Prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, review, publish, manage, or analyze AI-Shifu (AI师傅) courses and their Teaching Prompts and Course Prompts in MarkdownFlow (MDF). Use for course materials, lesson design, interactions, course memory, images, deployment, platform administration, learner progress, learner profile distributions, orders, revenue, and credit-consumption questions.
 
-## Publisher: <br>
-[heshaofu2](https://clawhub.ai/user/heshaofu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heshaofu2](https://clawhub.ai/user/heshaofu2)
 
-## Use Case: <br>
-Course creators, developers, and course operators use this skill to transform raw course material into AI-Shifu MarkdownFlow lessons and course prompts, deploy or manage live courses, and query learner and course analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, overwrite, delete, reorder, archive, and import live AI-Shifu course content. <br>
-Mitigation: Confirm the target course ID or title before production operations, and request a preview or export before publish, import to an existing course, delete, reorder, or archive actions. <br>
-Risk: Deployment and analytics commands rely on a saved AI-Shifu token. <br>
-Mitigation: Keep the .env token private, exclude it from version control, and rotate or re-login if the token may have been exposed. <br>
-Risk: Analytics queries can expose sensitive learner or course data if raw identifiers, codes, or learner input are presented directly. <br>
-Mitigation: Use the documented CLI analytics workflow, apply the privacy and presentation rules before reporting results, and avoid exposing raw user identifiers or restricted learner fields. <br>
+## Use Case:
 
+Course creators, instructional designers, and platform administrators use this skill to design and review course materials, express lessons and course behavior in MarkdownFlow, and manage or analyze AI-Shifu courses. It can produce course drafts, lesson prompts, import files, platform updates, and readable course analytics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heshaofu2/ai-shifu-course-creator) <br>
-- [AI-Shifu platform](https://app.ai-shifu.cn) <br>
-- [MarkdownFlow reference](references/markdownflow.md) <br>
-- [Pedagogy reference](references/pedagogy.md) <br>
-- [Data contracts](references/data-contracts.md) <br>
-- [Course prompt reference](references/course-prompt.md) <br>
-- [CLI reference](references/cli/cli-reference.md) <br>
-- [Analytics overview](references/analytics/overview.md) <br>
-- [Analytics privacy and presentation](references/analytics/privacy-and-presentation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON schemas, shell commands, and generated course files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AI-Shifu course directories, MarkdownFlow lesson files, course prompts, import JSON, deployment reports, and analytics summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Course import may delete existing course content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target and review the import payload first; keep a recoverable copy of course content and verify the result.
+
+Risk: Lesson access settings may be lost during some course operations.
+
+Mitigation: Record current lesson access settings before changes, then check and reapply them afterward.
+
+Risk: The security review is incomplete: it covered 36 of 37 components and some static checks were degraded.
+
+Mitigation: Treat the scan as incomplete and review the package and required permissions before installation or use.
+
+## Reference(s):
+
+- [Course design choices](references/course-design-choices.md)
+- [Teaching design](references/teaching-design.md)
+- [Teaching Prompts](references/teaching-prompt.md)
+- [MarkdownFlow syntax](references/markdownflow-syntax.md)
+- [Build and import](references/build-and-import.md)
+- [Course synchronization](references/course-sync.md)
+- [CLI reference](references/cli/cli-reference.md)
+- [Analytics guide](references/analytics/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown course materials and Prompts, JSON import payloads, and CLI command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Varies by task and may include local course files or platform updates.]
+
+## Skill Version(s):
+
+2.3.1 (source: skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

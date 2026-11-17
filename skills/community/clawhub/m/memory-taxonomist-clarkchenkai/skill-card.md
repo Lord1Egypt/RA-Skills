@@ -1,42 +1,55 @@
-## Description: <br>
-Memory Taxonomist turns raw notes into typed, retrievable memory by classifying facts, preferences, procedures, unresolved questions, exceptions, and recommended storage actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Taxonomist turns raw notes into typed, retrievable memory by classifying facts, preferences, procedures, unresolved questions, and exceptions.
 
-## Publisher: <br>
-[clarkchenkai](https://clawhub.ai/user/clarkchenkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarkchenkai](https://clawhub.ai/user/clarkchenkai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn mixed notes, transcripts, meeting outputs, and memory cleanup inputs into stable memory categories with clear storage recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend storing sensitive personal, business, or account information as memory. <br>
-Mitigation: Review recommended storage actions before saving sensitive information, and hold or omit information that should remain ephemeral. <br>
-Risk: Uncertain or conflicting notes could be treated as durable truth if reviewed too quickly. <br>
-Mitigation: Use the unresolved question, exception, update, deprecate, and hold categories to keep provisional or contradictory information separate from stable memory. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn raw notes, transcripts, and memory cleanup inputs into classified knowledge items with recommended storage actions.
 
-## Reference(s): <br>
-- [Conflict Signals](references/conflict-signals.md) <br>
-- [Storage Rules](references/storage-rules.md) <br>
-- [Memory Taxonomy](references/taxonomy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with six fixed sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Classifies input into facts, preferences, procedures, unresolved questions, exceptions, and recommended storage action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Users may unintentionally choose to persist secrets or sensitive personal data while acting on storage recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every recommended storage action and avoid saving secrets or sensitive personal data unless that persistence is explicitly intended.
+
+Risk: Provisional, contradicted, or context-specific information may be stored as durable memory.
+
+Mitigation: Use the skill's hold, update, deprecate, conflict, and exception checks before accepting a memory item as stable.
+
+## Reference(s):
+
+- [Memory Taxonomy](references/taxonomy.md)
+- [Storage Rules](references/storage-rules.md)
+- [Conflict Signals](references/conflict-signals.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with six fixed sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; includes recommended storage actions for classified memory items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

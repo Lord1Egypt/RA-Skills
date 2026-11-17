@@ -1,46 +1,62 @@
-## Description: <br>
-RSAD Copilot helps IBM RSAD/RSA practitioners design IBM FTM interfaces by producing UML, FSM, Service Participant, Channel, mapping, and DB2 SQL export guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for IBM Rational Software Architect Designer (RSAD/RSA) use in IBM Financial Transaction Manager development, including UML and FSM modeling, Service Participant and Channel design, mapping design, and SQL export planning.
 
-## Publisher: <br>
-[shoaibkhan](https://clawhub.ai/user/shoaibkhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shoaibkhan](https://clawhub.ai/user/shoaibkhan)
 
-## Use Case: <br>
-Developers and engineers working on IBM FTM use this skill to plan RSAD design tasks, choose FTM patterns and mapping approaches, model Service Participants, Channels, and FSMs, and prepare design artifacts for ACE handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording could make the skill appear for unrelated payment, database, or operational work. <br>
-Mitigation: Use it only for IBM RSAD/RSA and IBM FTM design tasks, and ignore it for unrelated workflows. <br>
-Risk: Generated DB2 SQL, UML, FSM, and design guidance may be incomplete or incorrect for a specific enterprise environment. <br>
-Mitigation: Review all proposed design changes and SQL exports through normal architecture, database, and change-control processes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to design IBM FTM interfaces in RSAD, including UML diagrams, finite state machines, Service Participant and Channel models, mapping decisions, and SQL configuration exports. It is intended for RSAD/RSA design-time workflows before ACE build, deployment, and operational handoff.
 
-## Reference(s): <br>
-- [UML Modeling](references/uml-modeling.md) <br>
-- [FTM Design Workflow](references/ftm-design-workflow.md) <br>
-- [FSM Design](references/fsm-design.md) <br>
-- [Mapping Design](references/mapping-design.md) <br>
-- [Patterns & Artifacts](references/patterns-artifacts.md) <br>
-- [ClawHub release page](https://clawhub.ai/shoaibkhan/rsad-copilot) <br>
-- [Author GitHub profile](https://github.com/ShoaibKhan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with UML, FSM, mapping tables, SQL and ESQL examples, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no tool calls, file writes, or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md metadata) <br>
+Risk: Generated RSAD, UML, FSM, or SQL export guidance could be incorrect for a specific IBM FTM environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require normal human review and validate exported SQL against the DB2 schema before applying changes.
+
+Risk: The broad trigger phrase may activate the skill outside RSAD and FTM design tasks.
+
+Mitigation: Keep use limited to RSAD, UML, FSM, FTM interface design, and related SQL export planning.
+
+Risk: Design recommendations may affect downstream ACE implementation work or version-control pull requests.
+
+Mitigation: Review proposed design artifacts and PR content with the project team before committing or merging.
+
+## Reference(s):
+
+- [UML Modeling in RSAD](references/uml-modeling.md)
+- [FTM Design Workflow in RSAD](references/ftm-design-workflow.md)
+- [FSM Design in RSAD](references/fsm-design.md)
+- [Mapping Design in RSAD](references/mapping-design.md)
+- [FTM Patterns and RSAD Artifacts](references/patterns-artifacts.md)
+- [Author GitHub profile](https://github.com/ShoaibKhan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with tables, checklists, command or code snippets, UML/FSM design guidance, and SQL/configuration planning notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; generated SQL and design changes should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

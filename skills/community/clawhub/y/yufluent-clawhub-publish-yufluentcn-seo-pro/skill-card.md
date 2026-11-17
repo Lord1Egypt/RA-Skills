@@ -1,44 +1,65 @@
-## Description: <br>
-Generates structured ecommerce SEO keyword placement reports for Amazon, Shopify, and TikTok Shop from product, seed keyword, competitor keyword, market, and language inputs via Yufluent's cloud service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cloud-backed cross-border ecommerce SEO keyword research and structured placement reports for Amazon, Shopify, and TikTok Shop from user-supplied product, seed keyword, competitor keyword, market, and language inputs.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External ecommerce sellers, SEO operators, and agent workflows use this skill to generate keyword research and placement guidance for Amazon A9/backend terms, Shopify on-page and meta fields, and TikTok Shop search and hashtag planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends product, seed keyword, competitor keyword, market, language, and TOKENAPI_KEY data to a configured cloud endpoint. <br>
-Mitigation: Use the skill only with data approved for Yufluent cloud processing, keep TOKENAPI_KEY private, and set TOKENAPI_BASE_URL only to trusted endpoints. <br>
-Risk: Generated SEO keyword reports can be incomplete, incorrect, or unsuitable for a target marketplace or listing. <br>
-Mitigation: Review outputs against seller-console data, advertising search terms, platform policies, and product facts before publishing listing changes. <br>
+## Use Case:
 
+External ecommerce sellers, marketers, and agent workflows use this skill to generate keyword expansion and SEO placement reports for Amazon, Shopify, and TikTok Shop listings. The reports help plan title, bullet, backend keyword, meta, collection tag, hashtag, and video hook usage before human review and platform publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluent-clawhub-publish-yufluentcn-seo-pro) <br>
-- [Yufluent console](https://claw.changzhiai.com) <br>
-- [Yufluent OpenClaw](https://claw.changzhiai.com/app/openclaw) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, guidance] <br>
-**Output Format:** [JSON report, optionally written to a file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Platform-specific keyword structures for Amazon, Shopify, and TikTok Shop; results require human review before use in live listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release and frontmatter) <br>
+Risk: TOKENAPI_BASE_URL can redirect the bearer token and business inputs to an endpoint outside the expected Yufluent service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TOKENAPI_BASE_URL unset for normal use, or set it only to a trusted HTTPS Yufluent endpoint or a local development server.
+
+Risk: TOKENAPI_KEY grants access to a cloud service and may expose account value if leaked.
+
+Mitigation: Store TOKENAPI_KEY as a secret, avoid committing it, and rotate it if it is exposed.
+
+Risk: SEO reports are generated from supplied inputs and cloud service rules, not live marketplace ranking or search-volume APIs.
+
+Mitigation: Review recommendations against seller analytics, advertising search terms, platform policies, and product facts before publishing listing content.
+
+Risk: Competitive keywords and product strategy are sent to a third-party cloud service.
+
+Mitigation: Avoid submitting highly sensitive competitive data unless the Yufluent service terms and internal data handling requirements are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluent-clawhub-publish-yufluentcn-seo-pro)
+- [Yufluent service homepage](https://claw.changzhiai.com)
+- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON report or formatted text printed by the CLI, with optional JSON file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY and the requests dependency; TOKENAPI_BASE_URL is optional and should point only to a trusted endpoint.]
+
+## Skill Version(s):
+
+1.1.2 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

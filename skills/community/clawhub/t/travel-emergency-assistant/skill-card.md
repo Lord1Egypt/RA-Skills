@@ -1,41 +1,53 @@
-## Description: <br>
-Travel Emergency Assistant helps agents respond to disrupted trips by producing three-option emergency plans for canceled flights, overbooked hotels, closed attractions, and weather-related changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates three-option emergency travel plans for flight cancellations, hotel overbooking, attraction closures, and weather disruptions using live FlyAI search data.
 
-## Publisher: <br>
-[uasnu1111](https://clawhub.ai/user/uasnu1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uasnu1111](https://clawhub.ai/user/uasnu1111)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill during urgent trip disruptions to identify the scenario, request live flight, hotel, or attraction options through FlyAI CLI, and return a concise three-choice decision card with prices, booking links, trade-offs, and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to FlyAI and booking-link coverage. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to install and run a third-party global npm CLI before travel searches can work. <br>
-Mitigation: Install and vet @fly-ai/flyai-cli in a contained environment before use, avoid sudo when possible, and only proceed if the operator accepts the persistent CLI dependency. <br>
-Risk: Travel prices, availability, and booking links can change quickly or be incorrect if the live search data is stale. <br>
-Mitigation: Verify prices, seat or room availability, and booking terms on the linked booking page before purchasing or changing travel plans. <br>
+## Use Case:
 
+Travelers and travel support agents use this skill during active trip disruptions to compare three actionable alternatives with pricing, booking links, tradeoffs, and timing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uasnu1111/travel-emergency-assistant) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown decision card with booking links and optional shell commands for FlyAI CLI setup or execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live travel search results when FlyAI CLI is available; prices and availability should be verified on the booking page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact metadata reports 1.0.0) <br>
+Risk: The skill asks agents or users to install and run a global FlyAI CLI, with artifact guidance that may suggest elevated privileges or global npm configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when FlyAI CLI is provisioned by a trusted administrator or installed in a contained, non-root environment; avoid sudo global installs and avoid changing global npm registry settings for this skill.
+
+Risk: Travel prices, availability, and booking links come from live external services and may change quickly.
+
+Mitigation: Verify prices, availability, refund rules, and booking terms on the final booking page before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uasnu1111/skills/travel-emergency-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown decision card with booking links, prices, tradeoffs, risk notes, and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live external travel data and instructs users to verify price, availability, and booking terms on the booking page.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

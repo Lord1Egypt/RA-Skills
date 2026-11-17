@@ -1,0 +1,69 @@
+# ChangSheng — example configuration (0.4)
+# Copy to config.yaml and adjust. Three modes:
+#   auto     (default) — roles auto-discovered from common file conventions.
+#            A fresh install works with NO config at all: just run
+#            `python scripts/memory_index.py` (cold start discovers + indexes).
+#   manual   — roles come only from the explicit `roles:` paths below
+#            (0.2.x-style full control).
+#   internal — fixed-layout mode for the maintainers' own vault; roles come
+#            from config, no discovery.
+#
+# YAML-less environments (no PyYAML installed): the built-in fallback parser
+# reads this exact file shape — mode, nested `roles:` (inline `[a, b]` lists or
+# indented block lists) and the extra sections below. Flat role_* keys also work
+# as an alternative (`role_rules: CLAUDE.md, AGENTS.md`). If roles are declared
+# but nothing resolves, the script errors out instead of writing an empty index.
+mode: auto
+
+# Semantic roles → real files. Each role may hold several paths; order = read order.
+# A path may be a FILE (read it) or a DIRECTORY (newest YYYY-MM-DD.* file inside wins).
+# In auto mode, roles found by discovery are written to .changsheng/discovery.json —
+# you can edit that file to override, and `--list` shows what discovery would pick.
+roles:
+  rules: []        # e.g. ["CLAUDE.md", "AGENTS.md", ".cursor/rules"]
+  identity: []     # optional; hosts that inject identity (Hermes/OpenClaw) skip this
+  todos: []        # e.g. ["docs/TODO.md", "~/todo.txt"]
+  journal: []      # e.g. ["journal"]   (directory → newest dated file)
+  profile: []      # optional user-profile file
+
+# Extra L3 files read at the START of EVERY session (beyond roles).
+must_read_extra:
+  - path: README.md
+    name: Project readme
+    desc: project context
+
+# Extra L2 files: re-read ONLY when the index flags a change (token savings live here).
+tracked_files_extra:
+  - path: docs/decisions/
+    name: Decisions
+    desc: architecture decisions
+
+# Legacy 0.2.x keys (must_read / tracked_files) are migrated automatically:
+#   must_read      -> must_read_extra   (stays L3 — read every session)
+#   tracked_files  -> tracked_files_extra (stays L2 — change-indexed)
+
+# Where the generated index + state file are written (default: next to the config).
+output_index: memory_index.md
+output_state: memory_index_state.json
+# output_dir: .   # where the index + state are written (default: next to the config)
+
+# Display language of the generated index: en (default when absent) | zh.
+lang: en
+
+# ── Review ledger (optional) ────────────────────────────────────────────────
+# The always-read layer is a budget, not a wish list. `memory_ledger.py` keeps
+# one row per entry in `.changsheng/ledger.json` with:
+#   why · review_by (YYYY-MM-DD) · max_age_days · action_on_expiry
+# and reports missing files, incomplete rows, overdue reviews, stale rows and
+# budget overruns (exit code 1 on any issue).
+#   python scripts/memory_ledger.py --init     # create the ledger from discovery
+#   python scripts/memory_ledger.py --check    # check it
+# Budgets live in the ledger file itself (budget_bytes / target_bytes), not
+# here — the ledger is the table that owns its own limits.
+
+# Context-switch nudge thresholds (optional, percentages, ascending). The agent
+# checks context usage and nudges you to start a fresh session as usage climbs —
+# before any nudge it refreshes .changsheng/handover.md so switching loses nothing.
+# Default when absent: [30, 50, 70]. More headroom? Raise them (e.g. [35, 55, 75]).
+# A pre-nudge band sits 5 points below each line. Tune to your own comfort.
+nudge_thresholds: [30, 50, 70]

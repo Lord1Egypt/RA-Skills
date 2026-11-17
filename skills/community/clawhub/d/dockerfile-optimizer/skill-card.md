@@ -1,41 +1,54 @@
-## Description: <br>
-Review and optimize Dockerfiles to reduce layer count, minimize image size, and improve build times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review and optimize Dockerfiles to reduce layer count, minimize image size, and improve build times.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to review Dockerfiles, produce optimized Dockerfile examples, and explain changes that reduce image size, improve build caching, and address container security best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested Dockerfile rewrites can change application behavior when base images, Alpine/musl, non-root users, or multi-stage builds are introduced. <br>
-Mitigation: Review and test generated Dockerfiles before use, and verify base image and user changes against application runtime requirements. <br>
-Risk: Dockerfiles or related snippets may expose secrets or sensitive project files. <br>
-Mitigation: Avoid pasting secrets into Dockerfiles or manifests, and use a .dockerignore file to keep credentials and unnecessary files out of images. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to review Dockerfiles, receive an optimized Dockerfile, and understand changes that reduce image size, improve build caching, and strengthen container best practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunny0826/dockerfile-optimizer) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown report with Dockerfile code blocks and explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts the report language to Chinese or English based on the user's prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Dockerfile recommendations may not match the application's base-image, operating-system, or dependency requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested base-image changes, package-manager commands, and dependency assumptions before applying the optimized Dockerfile.
+
+Risk: The skill may propose Dockerfile commands or configuration changes that need project-specific validation.
+
+Mitigation: Test the resulting image build and runtime behavior in the target environment before release.
+
+## Reference(s):
+
+- [Dockerfile Optimizer on ClawHub](https://clawhub.ai/sunny0826/skills/dockerfile-optimizer)
+- [Publisher profile](https://clawhub.ai/user/sunny0826)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration guidance]
+
+**Output Format:** [Markdown report with Dockerfile code blocks and explanatory sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in Chinese or English based on the user's prompt language.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

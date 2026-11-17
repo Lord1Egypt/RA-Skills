@@ -1,45 +1,56 @@
-## Description: <br>
-Build and scale a Fiverr freelancing business with gig optimization, buyer communication, and seller level progression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and scale a Fiverr freelancing business with gig optimization, buyer communication, and seller level progression.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External freelancers and marketplace operators use this skill for Fiverr gig setup, pricing, buyer communication, seller-level progression, and order-scaling workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contains non-authoritative business, platform-policy, and legal guidance that may become outdated or vary by jurisdiction. <br>
-Mitigation: Verify current Fiverr rules, applicable law, and client-specific obligations before acting on the guidance. <br>
-Risk: Advice about response timing and message variation could be used to disguise automation patterns. <br>
-Mitigation: Use templates only with human review, do not automate platform actions, and do not use timing or wording tactics to evade Fiverr detection. <br>
-Risk: AI-assisted work and VA handoffs can create disclosure, confidentiality, intellectual-property, or client-consent issues. <br>
-Mitigation: Disclose AI use whenever required or when a client could reasonably be misled, verify AI tool terms, and share client materials only with permission and confidentiality safeguards. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/fiverr) <br>
-- [Getting Started on Fiverr](artifact/getting-started.md) <br>
-- [Legal Considerations for AI-Assisted Fiverr Work](artifact/legal.md) <br>
-- [Red Flags: Protecting Your Fiverr Account](artifact/red-flags.md) <br>
-- [Scaling Fiverr Operations](artifact/scaling.md) <br>
+## Use Case:
 
+External freelancers and business operators use this skill to plan Fiverr gigs, communicate with buyers, identify risky requests, and scale order workflows while staying aware of platform and AI-use obligations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no shell commands, API calls, or credential use detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes guidance about making automated activity or repeated responses appear less detectable.
+
+Mitigation: Use only transparent, human-approved workflows that comply with current Fiverr policy; do not use evasion tactics.
+
+Risk: The skill gives ambiguous account-scaling advice, including references to multiple accounts.
+
+Mitigation: Confirm platform policy and obtain written authorization before operating multiple accounts or delegated account workflows.
+
+## Reference(s):
+
+- [Fiverr skill page](https://clawhub.ai/ivangdavila/skills/fiverr)
+- [Getting Started on Fiverr: Zero to First $100](artifact/getting-started.md)
+- [Legal Considerations for AI-Assisted Fiverr Work](artifact/legal.md)
+- [Red Flags: Protecting Your Fiverr Account](artifact/red-flags.md)
+- [Scaling Fiverr Operations: 20+ Orders/Month](artifact/scaling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, and response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls are produced by the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

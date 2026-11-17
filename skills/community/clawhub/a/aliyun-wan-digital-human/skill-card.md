@@ -1,41 +1,59 @@
-## Description: <br>
-Use when generating talking, singing, or presentation videos from a single character image and audio with Alibaba Cloud Model Studio digital-human model `wan2.2-s2v`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating talking, singing, or presentation videos from a single character image and audio with Alibaba Cloud Model Studio digital-human model `wan2.2-s2v`.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and content teams use this skill to prepare Alibaba Cloud Model Studio digital-human detection and video generation requests for narrated avatars, singing portraits, and presentation-style talking-head clips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Beijing) region <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends image and audio URLs to Alibaba Cloud for digital-human generation, which can expose personal images or voice recordings. <br>
-Mitigation: Use time-limited or access-controlled media URLs where possible and delete local request and evidence files when no longer needed. <br>
-Risk: DashScope credentials are required and could be exposed if committed or reused too broadly. <br>
-Mitigation: Use a dedicated restricted DashScope key and keep credentials in environment variables or local credential storage, not in source files. <br>
+## Use Case:
 
+Developers and automation agents use this skill to prepare Alibaba Cloud Model Studio requests for image-and-audio driven digital-human video generation, including detection and generation payloads for talking, singing, or presentation clips.
 
-## Reference(s): <br>
-- [Aliyun Model Studio video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [Aliyun wan2.2-s2v video generation API reference](https://help.aliyun.com/zh/model-studio/wan-s2v-api) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing region)
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request payloads and task evidence under output/aliyun-wan-digital-human/ by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Public image and audio URLs may expose source media to Alibaba Cloud provider processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media you are authorized to submit, avoid sensitive inputs, and confirm provider data-handling requirements before running the workflow.
+
+Risk: The skill requires DASHSCOPE_API_KEY or Alibaba Cloud credentials for provider use.
+
+Mitigation: Store credentials outside the skill files, scope access appropriately, and avoid committing generated request evidence that includes secrets.
+
+Risk: Generated digital-human videos can misrepresent a person if the source image or audio is unauthorized.
+
+Mitigation: Use consented image and audio inputs and review generated video before publication or distribution.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation)
+- [Alibaba Cloud wan2.2-s2v video generation API reference](https://help.aliyun.com/zh/model-studio/wan-s2v-api)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-wan-digital-human)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes normalized request payloads under output/aliyun-wan-digital-human/ by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

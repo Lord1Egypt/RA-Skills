@@ -1,41 +1,58 @@
-## Description: <br>
-This skill helps agents configure and use local Qwen3-based text-to-speech and voice cloning workflows on Apple Silicon macOS systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local text-to-speech and voice-cloning skill that guides agents through installing dependencies, using Qwen3-TTS with MLX Audio, and generating speech or cloned-voice audio on Apple Silicon macOS systems.
 
-## Publisher: <br>
-[dsalfkjaklsdfjqw](https://clawhub.ai/user/dsalfkjaklsdfjqw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dsalfkjaklsdfjqw](https://clawhub.ai/user/dsalfkjaklsdfjqw)
 
-## Use Case: <br>
-Developers, creators, and accessibility teams use this skill to set up local speech synthesis, voice cloning, and batch audio generation for audiobooks, narration, character voices, and assistive applications. Voice cloning use requires consent for the source voice and appropriate disclosure of synthetic audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script may download Homebrew, Python packages, and a large model from external sources. <br>
-Mitigation: Review the install script before execution, run it in an appropriate local environment, and confirm external downloads are acceptable for the deployment. <br>
-Risk: Voice cloning can be misused to imitate people without consent or to create misleading audio. <br>
-Mitigation: Clone only voices the user owns or has explicit permission to use, and disclose synthetic audio where appropriate. <br>
+## Use Case:
 
+External developers and creators use this skill to set up local TTS and voice-cloning workflows for audiobooks, character voices, voice assistants, accessibility applications, video narration, and multilingual dubbing. The skill is intended for users who can review and run macOS shell commands and Python examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dsalfkjaklsdfjqw/qwen3-free-tts) <br>
-- [OpenClaw voice cloning documentation](https://docs.openclaw.ai/skills/voice-cloning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of local WAV audio files when the user runs the provided demo or API examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, _meta.json, and package.json) <br>
+Risk: First-time setup may run remote installer code and fetch unpinned packages or models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual, reviewed installation steps; pin dependency and model versions where possible before deployment.
+
+Risk: The skill presents itself as local and offline, but initial installation and model acquisition may require network access.
+
+Mitigation: Plan for a reviewed online setup phase, then verify local operation before using sensitive audio or text.
+
+Risk: Voice cloning can be misused to impersonate people or process voice data without consent.
+
+Mitigation: Clone only voices the user owns or has explicit permission to use, and review generated audio for lawful and non-deceptive use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dsalfkjaklsdfjqw/skills/qwen3-free-tts)
+- [OpenClaw voice cloning documentation](https://docs.openclaw.ai/skills/voice-cloning)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included demo script can produce WAV audio files when run in a prepared local environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

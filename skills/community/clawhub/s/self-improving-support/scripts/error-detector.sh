@@ -1,5 +1,6 @@
 #!/bin/bash
 # Support Self-Improvement Issue Detector Hook
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Triggers on PostToolUse for Bash to detect SLA breaches, escalation failures, and churn signals
 # Reads CLAUDE_TOOL_OUTPUT environment variable
 

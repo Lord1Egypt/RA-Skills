@@ -1,43 +1,59 @@
-## Description: <br>
-Generates local image files from text prompts through a no-key Perchance workflow with retry/backoff handling, configurable shape, and structured success or error output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional free image generation skill for agents. No API key required. Generate images from text with resilient retry/backoff and clean local file output. Supports free, high-volume usage patterns with responsible request pacing. Use when users request prompt-to-image generation or image bot automation.
 
-## Publisher: <br>
-[mrilaikram](https://clawhub.ai/user/mrilaikram) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrilaikram](https://clawhub.ai/user/mrilaikram)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate local image files from text prompts through a no-key Perchance workflow, with retry handling and configurable output shape. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to an unofficial Perchance endpoint. <br>
-Mitigation: Do not include secrets, confidential material, or sensitive personal data in prompts. <br>
-Risk: The setup script installs a user-level Python dependency. <br>
-Mitigation: Review the dependency before installation and use an isolated environment when appropriate. <br>
-Risk: Generated files are written to a user-provided output path. <br>
-Mitigation: Save outputs to a dedicated folder and choose filenames that will not overwrite important files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Endpoint Notes](references/endpoints.md) <br>
-- [Integration Notes](references/telegram-delivery.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/mrilaikram/free-image-generation-skill) <br>
+## Use Case:
 
+Developers and agents use this skill to generate local image files from text prompts through a Perchance-based workflow without requiring an API key. It is suited for prompt-to-image generation and image bot automation where local file output and retry handling are desired.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output from the generator script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local image files and structured success or error output; supports prompt, output path, shape, negative prompt, guidance, retries, and timeout parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to Perchance's unofficial image-generation service.
+
+Mitigation: Use the skill only when external prompt processing is acceptable and avoid sending confidential or regulated content.
+
+Risk: The generator can overwrite arbitrary user-writable files through the output path.
+
+Mitigation: Run it with a dedicated output directory and avoid allowing untrusted users or automated workflows to choose the output path.
+
+Risk: The setup script installs an unpinned dependency into the user Python environment.
+
+Mitigation: Install dependencies in a virtual environment and pin dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/mrilaikram/skills/free-image-generation-skill)
+- [Endpoint Notes](references/endpoints.md)
+- [Integration Notes](references/telegram-delivery.md)
+- [Perchance Image Generation API Endpoint](https://image-generation.perchance.org/api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Files, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the generator script returns JSON and writes image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written to the requested local output path; failures return structured error output.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

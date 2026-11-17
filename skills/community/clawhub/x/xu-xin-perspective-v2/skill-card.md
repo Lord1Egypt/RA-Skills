@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a simulated Xu Xin-style business and investing lens for analyzing investment questions, business decisions, and founder potential using ten mental models drawn from public material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent respond with a simulated Xu Xin-inspired investment-analysis perspective for evaluating business decisions, founder qualities, and long-term growth potential.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users can invoke this prompt-only persona skill to get fictionalized Xu Xin-style commentary on founder evaluation, long-term business judgment, and investment decision framing. Outputs should be reviewed as perspective-taking guidance, not as real statements from Xu Xin or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill simulates a named person's perspective and may be mistaken for real statements from Xu Xin. <br>
-Mitigation: Treat responses as fictionalized commentary and clearly distinguish them from authentic statements or endorsements. <br>
-Risk: The skill discusses business and investing decisions and could be over-relied on as investment advice. <br>
-Mitigation: Review outputs critically and do not use them as a substitute for professional financial, legal, or investment advice. <br>
-Risk: The security summary flags a display-name mismatch and stereotype-reinforcing language. <br>
-Mitigation: Review generated responses for identity confusion and stereotype-based phrasing before relying on or sharing them. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for structured investment and entrepreneurship analysis using a persona-based set of heuristics drawn from the artifact. It is suited for qualitative reasoning about founders, focus, industry position, and long-term growth rather than short-term trading advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/xu-xin-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only persona responses; no code execution, data access, API calls, or shell commands are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce first-person statements that appear to come from a real investor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clearly label outputs as simulated perspective-taking and avoid presenting responses as statements from the real person.
+
+Risk: The persona mode may remain active until the user explicitly exits.
+
+Mitigation: Repeat disclosure during use and keep activation triggers narrow so users understand when the simulated persona is active.
+
+Risk: The artifact includes gender-stereotyping language as part of the persona behavior.
+
+Mitigation: Revise or constrain outputs to remove stereotyping while preserving useful investment-analysis heuristics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/xu-xin-perspective-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce first-person simulated persona responses and should avoid presenting them as statements from the real person.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

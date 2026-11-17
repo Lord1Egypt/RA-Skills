@@ -1,39 +1,57 @@
-## Description: <br>
-This skill guides an agent to search and retrieve local files and documents indexed by Gety using the gety CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent search, retrieve, and manage locally indexed files through the Gety CLI.
 
-## Publisher: <br>
-[lujfsd](https://clawhub.ai/user/lujfsd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujfsd](https://clawhub.ai/user/lujfsd)
 
-## Use Case: <br>
-Users and agent operators use this skill to locate local files, inspect search results, retrieve specific indexed documents, and manage Gety indexing connectors through CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches and document retrieval can reveal contents from local folders indexed by Gety. <br>
-Mitigation: Review which folders Gety indexes, keep search requests specific, and require confirmation before fetching full document text or changing indexed folders. <br>
+## Use Case:
 
+Developers and agent users use this skill when they need to locate local documents by file name, content, file type, date range, or connector scope, then optionally retrieve full document content.
 
-## Reference(s): <br>
-- [Gety CLI reference](references/gety_cli.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lujfsd/gety-local-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise search-result summaries, connector scope guidance, and exit-code handling advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Searches and document retrieval can expose private local content that has been indexed by Gety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent and indexed scope before searching, and present only the file details or excerpts needed for the request.
+
+Risk: Adding or removing connectors changes what local folders Gety indexes for future searches.
+
+Mitigation: Before connector changes, ask the user to confirm the exact folder path or connector ID and explain that the indexed content scope will change.
+
+Risk: Gety CLI failures can lead to incomplete or misleading search guidance.
+
+Mitigation: Check command exit codes and handle not-running, quota, invalid-argument, and general-error cases using the skill's documented responses.
+
+## Reference(s):
+
+- [Gety CLI Reference](references/gety_cli.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON-producing CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results should include file names, locations, and brief matched-content descriptions when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

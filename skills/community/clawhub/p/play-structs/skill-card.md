@@ -1,50 +1,63 @@
-## Description: <br>
-Guides agents through starting Structs by choosing a guild, creating an account, building initial mining infrastructure, and refining Alpha Matter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents through starting Structs gameplay, from installing structsd and creating a guild account to building initial mining infrastructure and refining Alpha Matter.
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-External agents and operators use this skill to onboard into the Structs game, configure a wallet-backed player account, and begin mining and refining Alpha Matter on the testnet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires wallet setup or recovery and can involve sensitive mnemonics or signing keys. <br>
-Mitigation: Use a dedicated testnet or low-value wallet, keep valuable mnemonics out of the agent transcript, and approve key recovery steps deliberately. <br>
-Risk: Structs transaction commands are final once submitted, and documented long-running compute commands use -y to auto-submit completion. <br>
-Mitigation: Load the referenced safety guidance, verify guild and reactor endpoints, and approve any long-running -y transaction before launch. <br>
-Risk: Long-running mining and refining jobs can continue across sessions or fail silently, and concurrent jobs with one signing key can conflict. <br>
-Mitigation: Use one signing key for one job at a time and follow the async reconnection flow before starting new work. <br>
+## Use Case:
 
+External agents and developers use this skill to onboard into Structs gameplay, create an account, choose a guild, execute early transactions, and begin the mining-to-refining loop.
 
-## Reference(s): <br>
-- [Play Structs on ClawHub](https://clawhub.ai/abstrct/play-structs) <br>
-- [Structs SOUL](https://structs.ai/SOUL) <br>
-- [Structs Safety Guide](https://structs.ai/SAFETY) <br>
-- [Structs Commander Guide](https://structs.ai/COMMANDER) <br>
-- [structsd Install Skill](https://structs.ai/skills/structsd-install/SKILL) <br>
-- [Structs Onboarding Skill](https://structs.ai/skills/structs-onboarding/SKILL) <br>
-- [Structs Tools Configuration](https://structs.ai/TOOLS) <br>
-- [Structs Guild Directory](https://public.testnet.structs.network/structs/guild) <br>
-- [Structs Async Operations](https://structs.ai/awareness/async-operations#reconnecting-to-a-long-job) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet/key-handling guidance, transaction commands, and long-running compute workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: The skill directs agents to run external Structs onboarding code and install npm dependencies during account and key creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted workspace with no unrelated secrets, verify the referenced onboarding skill and package files first, and avoid reusing valuable mnemonics.
+
+Risk: The artifact includes an HTTP guild API endpoint for signup.
+
+Mitigation: Prefer an HTTPS guild API when available and confirm the guild endpoint before sending account or signup requests.
+
+Risk: Long-running compute commands use automatic confirmation and can fail if multiple jobs share one signing key.
+
+Mitigation: Run one signing-key job at a time and use the documented async verification flow before acting after reconnection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abstrct/skills/play-structs)
+- [Structs safety guide](https://structs.ai/SAFETY)
+- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL)
+- [Structs onboarding skill](https://structs.ai/skills/structs-onboarding/SKILL)
+- [Structs conventions](https://structs.ai/skills/conventions)
+- [Structs transaction mechanics](https://structs.ai/knowledge/mechanics/transactions)
+- [Structs async operations](https://structs.ai/awareness/async-operations#reconnecting-to-a-long-job)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes account, key-recovery, transaction, mining, and refining commands; long-running compute commands may execute for hours.]
+
+## Skill Version(s):
+
+1.25.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

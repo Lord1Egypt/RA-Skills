@@ -1,46 +1,57 @@
-## Description: <br>
-Nano Banana 2 is an Evolink image-generation skill for fast text-to-image and image-editing workflows using Google Gemini 3.1 Flash through the Evolink API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nano Banana 2 provides guided AI image generation and image editing with Google's Gemini 3.1 Flash image model through the Evolink API.
 
-## Publisher: <br>
-[Bethune89](https://clawhub.ai/user/Bethune89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bethune89](https://clawhub.ai/user/bethune89)
 
-## Use Case: <br>
-External users and developers use this skill to create or edit images through Evolink, configure an Evolink API key, upload reference images when needed, and poll asynchronous image-generation tasks until completion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and images to Evolink services and may expose temporary public links for generated or uploaded files. <br>
-Mitigation: Avoid confidential prompts or images unless the user accepts Evolink processing and temporary public URL exposure; save needed results before their URLs expire. <br>
-Risk: The Evolink API key authenticates image generation and file operations. <br>
-Mitigation: Use a dedicated Evolink API key, keep it confidential, and rotate or revoke it if exposure is suspected. <br>
-Risk: The workflow can rely on an external MCP npm package. <br>
-Mitigation: Verify or pin the MCP package version before use instead of blindly relying on an unpinned latest package. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bethune89/evolink-nano-banana-2-1) <br>
-- [Evolink homepage](https://evolink.ai) <br>
-- [Focused full Evolink image skill](https://clawhub.ai/EvoLinkAI/evolink-image) <br>
-- [Evolink media MCP package](https://www.npmjs.com/package/@evolinkai/evolink-media) <br>
-- [Nano Banana 2 image API parameter reference](references/image-api-params.md) <br>
-- [Evolink file hosting API reference](references/file-api.md) <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate new images, edit or reference uploaded images, and poll Evolink image-generation tasks from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, tool-call instructions, URLs, and task status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce temporary public image and file URLs from Evolink services; generated result URLs expire after 24 hours and uploaded files expire after 72 hours.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata, and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup path asks users to run a mutable latest npm MCP package with an API key.
+
+Mitigation: Pin and review a specific @evolinkai/evolink-media package version before installation, and protect EVOLINK_API_KEY.
+
+Risk: Prompts and images are sent to Evolink services, and uploaded files may be publicly linkable for up to 72 hours.
+
+Mitigation: Do not upload private, regulated, or confidential images unless temporary public-link hosting is acceptable.
+
+## Reference(s):
+
+- [Nano Banana 2 Image API Parameter Reference](references/image-api-params.md)
+- [Evolink File Hosting API](references/file-api.md)
+- [Evolink Homepage](https://evolink.ai)
+- [Evolink Media MCP GitHub Repository](https://github.com/EvoLinkAI/evolink-media-mcp)
+- [Evolink Media MCP npm Package](https://www.npmjs.com/package/@evolinkai/evolink-media)
+- [Full Evolink Image Skill](https://clawhub.ai/EvoLinkAI/evolink-image)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with inline commands, API parameters, task IDs, status updates, and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVOLINK_API_KEY; generated result URLs expire after 24 hours and uploaded files expire after 72 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

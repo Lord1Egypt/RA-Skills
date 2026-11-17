@@ -1,0 +1,12 @@
+name: douyin-tech-content-planner
+slug: douyin-tech-content-planner
+display_name: 抖音科技内容策划
+description: 将科技或 AI 工具主题及来源事实整理为受众明确、证据顺序清楚的短视频或图文策划；不虚构事实或平台规则。
+version: 1.0.0
+license: MIT-0
+tags:
+  - douyin
+  - content-planning
+  - technology
+  - chinese
+self_test: python3 scripts/self_test.py

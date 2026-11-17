@@ -1,43 +1,59 @@
-## Description: <br>
-Automate Microsoft Forms daily submissions with M365 MFA support and dual-calendar integration to auto-fill training, content development, and learning hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Microsoft Forms submission with dual-calendar integration and M365 MFA support.
 
-## Publisher: <br>
-[ClaireAICodes](https://clawhub.ai/user/ClaireAICodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claireaicodes](https://clawhub.ai/user/claireaicodes)
 
-## Use Case: <br>
-Employees and automation-focused developers use this skill to prepare and submit recurring Microsoft Forms productivity logs from calendar-derived training, content development, and learning hour data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires high-trust Microsoft 365 credential, session cookie, calendar feed URL, and form data access. <br>
-Mitigation: Install only when that access is acceptable, prefer a dedicated or least-privilege account, and protect or remove generated config, session, and screenshot files. <br>
-Risk: The skill can submit real Microsoft Forms records with limited safeguards. <br>
-Mitigation: Verify the hard-coded form URL and run dry runs or manual tests before enabling regular submissions. <br>
-Risk: Scheduled automation can continue submitting forms after it is no longer needed. <br>
-Mitigation: Disable any cron or scheduled job when the workflow is paused, retired, or no longer authorized. <br>
+## Use Case:
 
+Employees and operations teams use this skill to prepare and submit recurring Microsoft Forms activity logs using calendar-derived training, content development, and learning-hour entries. Developers and automation maintainers can use it to configure Playwright-based submission flows for Microsoft 365 accounts that may require MFA.
 
-## Reference(s): <br>
-- [Authentication Workflow Fix - Testing & Verification](references/TESTING_AUTH_WORKFLOW.md) <br>
-- [ClawHub release page](https://clawhub.ai/ClaireAICodes/ms-forms-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration or form-entry data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local credential, browser session, calendar, and daily-entry files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores and reuses Microsoft 365 passwords, browser session state, calendar URLs, and organizational form data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restrictive file permissions, add explicit gitignore rules for generated secrets and session artifacts, and prefer OAuth or a secure credential store where possible.
+
+Risk: Passing MFA codes on the command line can expose short-lived authentication material through shell history or process listings.
+
+Mitigation: Enter MFA codes interactively or through a protected secret handoff instead of command-line arguments.
+
+Risk: Debug and audit workflows can save screenshots or HTML that may contain form content or account context.
+
+Mitigation: Disable capture in routine use, store generated captures in protected locations, and delete them after review.
+
+## Reference(s):
+
+- [Authentication Workflow Testing](references/TESTING_AUTH_WORKFLOW.md)
+- [Configured Microsoft Forms Endpoint](https://forms.cloud.microsoft/r/LsxLaEv13i)
+- [ClawHub Skill Page](https://clawhub.ai/claireaicodes/skills/ms-forms-auto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local credential, session-state, daily-entry, screenshot, HTML, and audit files during setup, testing, and submission workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

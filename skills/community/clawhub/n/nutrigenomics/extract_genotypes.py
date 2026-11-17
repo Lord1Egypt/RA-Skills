@@ -69,8 +69,18 @@ def extract_snp_genotypes(genotype_table: dict, snp_panel: list) -> dict:
 
         # Try direct match first
         norm = raw_geno
-        if risk_allele not in raw_geno:
-            # Try strand flip
+        ambiguous = is_ambiguous(ref_allele, risk_allele)
+        if risk_allele not in raw_geno and not ambiguous:
+            # Try strand flip.
+            #
+            # Never do this for a palindromic (A/T or C/G) SNP. Flipping such a
+            # genotype produces the other allele of the same pair, so the flip
+            # always "succeeds" and silently converts homozygous reference into
+            # homozygous risk: at rs9939609 (FTO, T/A) a TT call - no risk
+            # alleles - became AA and scored 2. Strand cannot be resolved from
+            # the genotype alone for these SNPs; without allele-frequency
+            # context the only safe convention is to trust the alleles as
+            # reported, which is what skipping the flip does.
             flipped = flip_genotype(raw_geno)
             if risk_allele in flipped:
                 norm = flipped
@@ -80,6 +90,7 @@ def extract_snp_genotypes(genotype_table: dict, snp_panel: list) -> dict:
         results[rsid] = {
             "rsid": rsid,
             "gene": snp["gene"],
+            "strand_ambiguous": ambiguous,
             "status": "found",
             "genotype": raw_geno,
             "normalised": norm,

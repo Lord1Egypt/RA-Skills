@@ -1,56 +1,71 @@
-## Description: <br>
-Visualize and govern your cloud architectures. Get architecture assessments, risk heatmaps, and compliance dashboards in one place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize and govern your cloud architectures. Get architecture assessments, risk heatmaps, and compliance dashboards in one place.
 
-## Publisher: <br>
-[stinggit](https://clawhub.ai/user/stinggit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stinggit](https://clawhub.ai/user/stinggit)
 
-## Use Case: <br>
-Cloud operators and architecture reviewers use this skill to query Tencent Cloud Smart Advisor for architecture directories, architecture details, Well-Architected assessment results, risk evaluation items, and console links for the current Tencent Cloud account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can request broad Tencent Cloud authority, create or delete CAM roles, attach role policies, and open Smart Advisor authorization. <br>
-Mitigation: Use a least-privilege Tencent Cloud subaccount or temporary credentials, review any proposed role or policy before creation, and require explicit user consent before write operations. <br>
-Risk: Generated Tencent Cloud console login links can grant direct console access for their validity period. <br>
-Mitigation: Do not share generated login links, keep credential duration short, and regenerate links only when the user needs them. <br>
-Risk: Fallback TLS handling can disable certificate verification in some network environments. <br>
-Mitigation: Run only in environments with working certificate validation and do not use the skill where TLS verification may be disabled. <br>
-Risk: The artifact includes unrelated bulk-publishing guidance for avoiding ClawHub anti-spam controls. <br>
-Mitigation: Ignore or remove the unrelated publishing guide before installation and review the cloud automation files that are relevant to Smart Advisor. <br>
-Risk: Long-lived Tencent Cloud AK/SK values in shell startup files increase credential exposure. <br>
-Mitigation: Prefer temporary credentials or a least-privilege subaccount and avoid storing long-lived credentials in persistent shell configuration. <br>
+## Use Case:
 
+Developers, cloud architects, and operations teams use this skill to query Tencent Cloud Smart Advisor data, review architecture diagrams, inspect Well-Architected evaluations, and surface governance recommendations for the currently authenticated Tencent Cloud account.
 
-## Reference(s): <br>
-- [Tencent Cloud API domain](https://cloud.tencent.com) <br>
-- [Tencent Cloud API key management](https://console.cloud.tencent.com/cam/capi) <br>
-- [Tencent Cloud CAM roles](https://console.cloud.tencent.com/cam/role) <br>
-- [Tencent Cloud Smart Advisor console](https://console.cloud.tencent.com/advisor) <br>
-- [DescribeArch API reference](references/api/DescribeArch.md) <br>
-- [DescribeArchList API reference](references/api/DescribeArchList.md) <br>
-- [DescribeLastEvaluation API reference](references/api/DescribeLastEvaluation.md) <br>
-- [DescribeStrategies API reference](references/api/DescribeStrategies.md) <br>
-- [ListDirectoryV2 API reference](references/api/ListDirectoryV2.md) <br>
-- [ListUnorganizedDirectory API reference](references/api/ListUnorganizedDirectory.md) <br>
-- [CreateAdvisorAuthorization API reference](references/api/CreateAdvisorAuthorization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown responses with shell command snippets, JSON API results, and Markdown console links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Tencent Cloud credentials; generated console login links are time-limited and should not be shared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill requires Tencent Cloud AK/SK credentials and may operate with broad cloud authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Tencent Cloud sub-account and avoid storing long-lived credentials in shell profiles.
+
+Risk: IAM actions can create, attach policies to, or delete a CAM role.
+
+Mitigation: Require explicit user confirmation before IAM-changing actions, review the role policy scope, and remove the role when it is no longer needed.
+
+Risk: Generated console login links can function as temporary access material.
+
+Mitigation: Generate links only when needed, share them only with authorized users, and avoid exposing full login URLs in logs or transcripts.
+
+Risk: The API wrapper can call Tencent Cloud endpoints using configured credentials.
+
+Mitigation: Review or restrict usage to the Tencent Cloud Advisor endpoints and actions needed for architecture assessment workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stinggit/skills/architecture-visualization-governance)
+- [Tencent Cloud Advisor console](https://console.cloud.tencent.com/advisor)
+- [Tencent Cloud API key management](https://console.cloud.tencent.com/cam/capi)
+- [Tencent Cloud CAM roles](https://console.cloud.tencent.com/cam/role)
+- [DescribeArch API reference](artifact/references/api/DescribeArch.md)
+- [DescribeArchList API reference](artifact/references/api/DescribeArchList.md)
+- [DescribeLastEvaluation API reference](artifact/references/api/DescribeLastEvaluation.md)
+- [DescribeStrategies API reference](artifact/references/api/DescribeStrategies.md)
+- [CreateAdvisorAuthorization API reference](artifact/references/api/CreateAdvisorAuthorization.md)
+- [ListDirectoryV2 API reference](artifact/references/api/ListDirectoryV2.md)
+- [ListUnorganizedDirectory API reference](artifact/references/api/ListUnorganizedDirectory.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command outputs and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tencent Cloud console links and generated temporary login links when the user has configured role access.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

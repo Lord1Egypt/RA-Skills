@@ -1,43 +1,54 @@
-## Description: <br>
-Validates vague product requirements and user stories against five closure rules, returning follow-up questions when incomplete or FileEditor-ready JSON tasks when ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates vague product requirements and user stories against five closure rules and returns follow-up questions when incomplete or JSON tasks when the story is ready.
 
-## Publisher: <br>
-[zhaoelaine80-boop](https://clawhub.ai/user/zhaoelaine80-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoelaine80-boop](https://clawhub.ai/user/zhaoelaine80-boop)
 
-## Use Case: <br>
-Non-technical builders, product collaborators, and coding-agent users use this skill to turn vague product ideas or user stories into closed requirements before implementation. It can ask bilingual follow-up questions or produce a structured task brief for downstream file-editing agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated task briefs may include private product details or user-provided sensitive information. <br>
-Mitigation: Avoid entering secrets or private business details unless they are intended to appear in the generated brief. <br>
-Risk: Downstream file-editing tasks may be applied without sufficient review. <br>
-Mitigation: Review any generated FileEditor task before allowing another agent to write or modify files. <br>
-Risk: The requirement checker is heuristic and may reject concise but valid requirements. <br>
-Mitigation: Treat follow-up questions as review guidance and tune the regex checks for the target domain when needed. <br>
+## Use Case:
 
+External builders and developers use this skill to turn rough product ideas, PRDs, user stories, or feature specs into reviewable requirement checks before delegating implementation to an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoelaine80-boop/logic-bridge-protocol) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhaoelaine80-boop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON with status, message, follow-up questions, or FileEditor task instructions for a Markdown brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bilingual English/Chinese follow-up questions and a sha256 digest of accepted input for traceability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated FileEditor tasks could direct an agent to write files based on incomplete or misunderstood requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the returned task instructions and target path before allowing downstream file edits.
+
+Risk: The skill depends on Pydantic from a package index.
+
+Mitigation: Install dependencies from a trusted index and pin or lock Pydantic in production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoelaine80-boop/skills/logic-bridge-protocol)
+- [Publisher profile](https://clawhub.ai/user/zhaoelaine80-boop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON with natural-language messages, follow-up questions, and FileEditor-ready task instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Success output includes a stable sha256 digest of the normalized input for traceability.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-China Visa Helper provides conversational China visa planning guidance, including personalized visa recommendations, appointment guidance, document tips, application tracking suggestions, policy alerts, and multi-language support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent China visa assistant that provides personalized visa recommendations, appointment booking guidance, application tracking tips, and real-time policy alerts.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External travelers and assisting agents use this skill to collect trip and applicant details, identify likely China visa or transit options, prepare document checklists, plan appointments, and understand common application follow-up steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa categories, fees, transit eligibility, appointment rules, and processing times may change or vary by application location. <br>
-Mitigation: Confirm current requirements with the relevant Chinese embassy, consulate, or CVASC before booking travel or submitting an application. <br>
-Risk: Users may overshare sensitive personal or financial information while asking for visa guidance. <br>
-Mitigation: Share only coarse planning details, such as passport country, trip purpose, approximate stay length, and application city or country; avoid passport numbers, full addresses, document images, and financial records unless there is a separate trusted reason. <br>
+## Use Case:
 
+External travelers, visa applicants, and travel-support agents use this skill to collect trip details and receive conversational guidance on China visa categories, document preparation, appointment planning, processing timelines, and application status questions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance with checklists, timelines, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or privileged access; guidance should be verified against official visa sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Visa guidance can become outdated or differ by nationality, consulate, route, or application location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat answers as general assistance and verify requirements against official embassy, consulate, visa center, or immigration sources before applying.
+
+Risk: Users may disclose sensitive personal or travel-document information while seeking tailored visa help.
+
+Mitigation: Ask only for coarse location and trip details needed for guidance, and avoid collecting passport numbers, full financial records, application IDs, or sensitive document contents unless the user intentionally provides them in the chat environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-visa-helper)
+- [Publisher profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown with checklists, tables, and short templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized visa recommendations, document lists, appointment guidance, status guidance, policy reminders, and multilingual responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

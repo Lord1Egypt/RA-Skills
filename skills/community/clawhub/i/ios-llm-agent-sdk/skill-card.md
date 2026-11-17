@@ -1,54 +1,62 @@
-## Description: <br>
-Map Agent - iOS LLM Agent SDK guides AI coding tools through AMap MALLMKit integration for natural-language map queries, route planning, POI search, navigation control, and IPC communication with the AMap app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map Agent is an AMap MALLMKit SDK integration skill for iOS that helps agents generate code and guidance for natural-language map queries, route planning, POI search, navigation control, and IPC with the AMap app.
 
-## Publisher: <br>
-[lbs-amap](https://clawhub.ai/user/lbs-amap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbs-amap](https://clawhub.ai/user/lbs-amap)
 
-## Use Case: <br>
-Developers building iOS map experiences use this skill to integrate AMap MALLMKit Agent SDK and Link SDK behavior. It helps generate code and guidance for natural-language map queries, route and POI handling, navigation controls, authorization, IPC connection management, data transfer, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated iOS code may include AMap SDK credentials or custom backend URLs. <br>
-Mitigation: Review credential handling before release, keep secrets out of client-visible logs and source control, and verify custom backend URLs against the app's production configuration. <br>
-Risk: Map, navigation, and IPC flows may process location data or change navigation state. <br>
-Mitigation: Use clear location permission prompts and require user confirmation before actions that start navigation, change destinations, add waypoints, or alter route behavior. <br>
-Risk: IPC authorization, callback URLs, and reconnect behavior can be fragile if copied without validation. <br>
-Mitigation: Validate callback URLs and authorization state, test reconnect and disconnect handling, and persist only the minimum authorization state needed by the app. <br>
-Risk: SDK or IPC logs may expose sensitive route, POI, location, or authorization details. <br>
-Mitigation: Redact logs before sharing or storing them and avoid copying production logs to the clipboard without user intent. <br>
+## Use Case:
 
+Developers use this skill to integrate AMap MALLMKit into iOS applications, including Agent SDK setup, natural-language map interactions, navigation lifecycle handling, and Link SDK communication with the AMap app.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lbs-amap/ios-llm-agent-sdk) <br>
-- [Publisher profile](https://clawhub.ai/user/lbs-amap) <br>
-- [AMap Open Platform Console](https://console.amap.com/) <br>
-- [Agent SDK quick start](artifact/api/quick-start.md) <br>
-- [Integrate Agent](artifact/api/integrate-agent.md) <br>
-- [Link SDK quick start](artifact/api/link-quick-start.md) <br>
-- [Agent core classes](artifact/references/core-classes.md) <br>
-- [Link core classes](artifact/references/link-core-classes.md) <br>
-- [Link error codes](artifact/references/link-error-codes.md) <br>
-- [Troubleshooting](artifact/references/troubleshooting.md) <br>
-- [Voice commands](artifact/references/voice-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Objective-C, plist, JSON command, text prompt, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces iOS SDK integration guidance and example code for Agent SDK queries, Link SDK authorization and IPC, navigation command handling, logging, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill handles location, navigation, IPC, and logs, which can expose privacy and safety risks if generated code is adopted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before deployment, add explicit user consent for location use and route-changing commands, and redact or disable raw logs in production.
+
+Risk: Custom Agent URLs and persisted IPC authorization state can weaken integration safety if used without validation.
+
+Mitigation: Avoid untrusted custom Agent URLs and revalidate IPC authorization instead of relying only on NSUserDefaults.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lbs-amap/skills/ios-llm-agent-sdk)
+- [AMap Open Platform Console](https://console.amap.com/)
+- [Quick Start](api/quick-start.md)
+- [Integrate Agent](api/integrate-agent.md)
+- [Link Quick Start](api/link-quick-start.md)
+- [Agent Core Classes Reference](references/core-classes.md)
+- [Link Core Classes Reference](references/link-core-classes.md)
+- [Link Error Codes Reference](references/link-error-codes.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Voice Commands Reference](references/voice-commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Objective-C code examples, shell commands, configuration snippets, and integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are sample integration material for iOS projects and should be reviewed before use in production apps.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

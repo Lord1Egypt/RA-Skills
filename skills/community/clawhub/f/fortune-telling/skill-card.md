@@ -1,40 +1,59 @@
-## Description: <br>
-Generates bilingual entertainment fortune readings from a user's birth date, requested time range, and optional question using I Ching and five-elements framing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English entertainment-style fortune readings for today, this week, or this month using birth-date inputs, I Ching concepts, and five-elements framing.
 
-## Publisher: <br>
-[whx405831799](https://clawhub.ai/user/whx405831799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[whx405831799](https://clawhub.ai/user/whx405831799)
 
-## Use Case: <br>
-External users use this skill to request Chinese or English entertainment fortune readings for today, this week, or this month. The skill formats results across overall, career, wealth, love, and health categories with suggested lucky attributes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated health, financial, career, or relationship predictions could be mistaken for real-world advice. <br>
-Mitigation: Treat readings as entertainment only and do not rely on them for important decisions. <br>
-Risk: Users may share birth-date information while requesting a reading. <br>
-Mitigation: Share only birth-date information the user is comfortable using for entertainment. <br>
+## Use Case:
 
+External users invoke this skill for bilingual entertainment fortune readings based on a birth date, selected time range, and optional question. The agent returns structured readings across overall, career, wealth, love, and health categories with non-advisory recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whx405831799/fortune-telling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown fortune report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese or English output selected from the user's input language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, frontmatter, package.json) <br>
+Risk: The skill asks users to share a birth date for entertainment-style readings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it intentionally and avoid sharing birth-date information unless the user is comfortable doing so.
+
+Risk: Fortune outputs may touch money, health, relationships, or major life decisions.
+
+Mitigation: Treat the output as non-advisory entertainment and consult qualified professionals for consequential decisions.
+
+Risk: Some trigger phrases are broad and may activate the skill during general fortune-related requests.
+
+Mitigation: Confirm the user wants a fortune reading before requesting birth-date details or generating a report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whx405831799/skills/fortune-telling)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown fortune-reading report in Chinese or English]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes fortune scores, category readings, suggested actions, lucky colors, and lucky numbers; outputs should be treated as entertainment, not advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

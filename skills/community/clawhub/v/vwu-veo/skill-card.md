@@ -1,44 +1,59 @@
-## Description: <br>
-Calls vwu.ai Veo family models through an OpenAI-compatible chat completions API after VWU_API_KEY is configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls vwu.ai Veo model identifiers through an OpenAI-compatible chat completions interface.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agents use this skill to call one of five vwu.ai Veo models from shell workflows by supplying a model name and prompt. It is useful when an agent needs output from a remote vwu.ai model endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and model requests are sent to the remote vwu.ai provider. <br>
-Mitigation: Use the skill only with data appropriate for that provider and avoid sending secrets or sensitive private content unless the provider is trusted for that use. <br>
-Risk: Changing VWU_BASE_URL can redirect prompts and the API key to another endpoint. <br>
-Mitigation: Leave VWU_BASE_URL unset or set it only to a trusted endpoint. <br>
-Risk: The skill requires an API key for remote access. <br>
-Mitigation: Use a dedicated VWU_API_KEY where possible and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to invoke vwu.ai Veo models after configuring a VWU_API_KEY. It is useful for sending prompts to the listed model IDs through a simple command-line helper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3273283/vwu-veo) <br>
-- [vwu.ai](https://vwu.ai) <br>
-- [Publisher profile](https://clawhub.ai/user/a3273283) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text from the remote API, with Markdown usage guidance and shell commands in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY and optionally accepts VWU_BASE_URL; sends prompts to a remote vwu.ai endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper can send the user's API key and prompt to an endpoint controlled by the VWU_BASE_URL environment variable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where VWU_BASE_URL cannot be set by untrusted shell profiles, wrappers, CI variables, or other users; prefer a pinned HTTPS API host.
+
+Risk: Sensitive prompts may be transmitted to the configured vwu.ai-compatible endpoint.
+
+Mitigation: Avoid sending secrets or sensitive data unless the destination and account controls are trusted.
+
+Risk: The helper builds JSON request bodies in shell, which can be fragile for prompts containing special characters.
+
+Mitigation: Review generated commands before use and prefer a proper JSON encoder such as jq when maintaining or extending the script.
+
+## Reference(s):
+
+- [vwu.ai](https://vwu.ai)
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-veo)
+- [Publisher profile](https://clawhub.ai/user/a3273283)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text model responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; accepts a model identifier and prompt; depends on curl and jq in the provided helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

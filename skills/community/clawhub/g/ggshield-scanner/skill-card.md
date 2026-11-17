@@ -1,47 +1,61 @@
-## Description: <br>
-Detect 500+ types of hardcoded secrets, including API keys, credentials, and tokens, before they leak into git by wrapping GitGuardian's ggshield CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect 500+ types of hardcoded secrets (API keys, credentials, tokens) before they leak into git. Wraps GitGuardian's ggshield CLI.
 
-## Publisher: <br>
-[amascia-gg](https://clawhub.ai/user/amascia-gg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amascia-gg](https://clawhub.ai/user/amascia-gg)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to ask an agent to scan repositories, files, staged changes, and Docker images for hardcoded secrets before code is committed or released. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected code or Docker image content through a third-party scanner and the security summary says its privacy guarantees are overstated. <br>
-Mitigation: Use it only for repositories whose contents and paths may be shared with GitGuardian, and verify data handling expectations against GitGuardian documentation before scanning sensitive code. <br>
-Risk: The skill requires a GitGuardian API key for scanning. <br>
-Mitigation: Use a revocable API key with the minimum needed scope and rotate or revoke it if it is exposed. <br>
-Risk: The skill depends on the local ggshield binary and package source. <br>
-Mitigation: Install ggshield from a trusted source and verify the binary or package before granting it access to repositories or Docker images. <br>
-Risk: The skill can install git hooks that affect future commit or push workflows. <br>
-Mitigation: Require explicit approval before installing pre-commit or pre-push hooks, and review the resulting hook configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an AI agent run ggshield secret scans on repositories, individual files, staged changes, and Docker images before code is committed or shipped.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amascia-gg/ggshield-scanner) <br>
-- [ggshield documentation](https://docs.gitguardian.com/ggshield-docs/) <br>
-- [GitGuardian dashboard](https://dashboard.gitguardian.com) <br>
-- [OWASP Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like status messages with command guidance and ggshield scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ggshield binary and GITGUARDIAN_API_KEY environment variable; Docker image scanning also depends on local Docker availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The release evidence flags unsafe installer guidance in the documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, verified installation path for dependencies and agent tooling.
+
+Risk: The release evidence flags overconfident privacy claims for a cloud-backed secret scanner.
+
+Mitigation: Confirm GitGuardian and ggshield data handling requirements for the deployment before scanning sensitive private repositories or files.
+
+Risk: The skill can install ggshield git hooks that block commits or pushes when secrets are detected.
+
+Mitigation: Only ask the agent to install hooks when pre-commit or pre-push enforcement is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amascia-gg/skills/ggshield-scanner)
+- [ggshield documentation](https://docs.gitguardian.com/ggshield-docs/)
+- [ggshield project](https://github.com/GitGuardian/ggshield)
+- [GitGuardian dashboard](https://dashboard.gitguardian.com)
+- [OWASP Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with command output summaries and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ggshield CLI and GITGUARDIAN_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

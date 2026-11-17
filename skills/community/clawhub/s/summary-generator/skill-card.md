@@ -1,41 +1,57 @@
-## Description: <br>
-Generate daily or range-based lead summaries from read-only lead data for broker inventory counts, locality trends, and priority bucket breakdowns without ingestion, storage writes, or outbound communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily or range-based lead summaries from read-only lead data, including broker inventory counts, locality trends, and priority bucket breakdowns for human review.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-External operators and review workflows use this skill to produce concise, date-range lead summaries from read-only lead records. It supports human review of broker inventory, buyer requirements, trends, localities, urgency, and priority counts before any downstream action suggestion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may summarize lead data outside the intended dataset or date range if deployed with overly broad read access. <br>
-Mitigation: Limit runtime permissions to read-only, date-scoped access for the intended lead dataset. <br>
-Risk: Downstream chained skills may turn summaries into action suggestions or external communications beyond this skill's boundaries. <br>
-Mitigation: Review downstream chained skills separately before allowing them to suggest or perform actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vishalgojha/summary-generator) <br>
-- [summary-input.schema.json](references/summary-input.schema.json) <br>
-- [summary-output.schema.json](references/summary-output.schema.json) <br>
+## Use Case:
 
+Brokerage and operations teams use this skill to summarize read-only lead records across date ranges, locations, record types, urgency levels, and priority buckets. It supports human review and downstream action planning without ingesting new messages or modifying storage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Validated JSON summary object described by summary-output.schema.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only aggregate summary with zero-valued metrics when no leads exist and explicit failure reasons for query or validation errors.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill could expose or summarize unintended lead records if granted broad data access.
+
+Mitigation: Grant only read-only access to the intended lead data source and constrain requests by date range and permitted record types.
+
+Risk: Users may treat summary output as an executed workflow or outbound report.
+
+Mitigation: Keep the skill limited to validated summary objects; route follow-up actions and external communications to separate reviewed tools.
+
+Risk: Missing read permissions or invalid request shapes could produce incomplete summaries.
+
+Mitigation: Validate requests and outputs against the bundled schemas, return explicit failure reasons, and fail closed when read permissions are absent.
+
+## Reference(s):
+
+- [Summary input schema](references/summary-input.schema.json)
+- [Summary output schema](references/summary-output.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Validated JSON summary object with concise human-facing error text when validation or permissions fail]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only lead summaries include counts, trends, record type breakdowns, priority breakdowns, urgency breakdowns, top localities, and dataset mode when available.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

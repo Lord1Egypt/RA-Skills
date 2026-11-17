@@ -1,39 +1,50 @@
-## Description: <br>
-Build, debug, and optimize CesiumJS 3D globe apps, including viewer setup, terrain/imagery, 3D Tiles, GeoJSON/CZML loading, camera control, picking, entity styling, and performance tuning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, debug, and optimize CesiumJS 3D globe apps, including viewer setup, terrain/imagery, 3D Tiles, GeoJSON/CZML loading, camera control, picking, entity styling, and performance tuning.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, debug, migrate, and optimize CesiumJS web applications with practical guidance for viewer setup, data layers, camera control, picking, styling, and performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cesium Ion access tokens could be exposed if generated code hardcodes them or commits them to source control. <br>
-Mitigation: Keep tokens in environment variables or project configuration, avoid committing them, and rotate or scope them according to Cesium account needs. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, and optimize CesiumJS web applications with practical guidance for viewer setup, geospatial data layers, camera control, picking, and performance tuning.
 
-## Reference(s): <br>
-- [CesiumJS](https://cesium.com/platform/cesiumjs/) <br>
-- [Cesium Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CesiumJS setup guidance, debugging steps, performance recommendations, and token-handling advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Cesium projects may depend on external map or terrain services and access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep real Cesium Ion tokens and other service credentials in environment variables or local secrets, not committed source files.
+
+## Reference(s):
+
+- [Cesium Patterns](references/patterns.md)
+- [CesiumJS](https://cesium.com/platform/cesiumjs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

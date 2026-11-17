@@ -1,44 +1,60 @@
-## Description: <br>
-Local arXiv paper manager with semantic search that crawls arXiv categories, downloads PDFs, chunks content, and indexes with FAISS and Ollama embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local arXiv paper manager with semantic search that crawls arXiv categories, downloads PDFs, chunks content, and indexes results with FAISS and Ollama embeddings.
 
-## Publisher: <br>
-[camopel](https://clawhub.ai/user/camopel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[camopel](https://clawhub.ai/user/camopel)
 
-## Use Case: <br>
-Developers, researchers, and technical users use this skill to build and query a local arXiv knowledge base by category, with PDF ingestion, chunking, embeddings, semantic search, paper lookup, statistics, and cleanup commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer changes the local Python environment by installing packages and pulling an Ollama embedding model. <br>
-Mitigation: Install in an isolated environment when possible, review package installation behavior first, and confirm Ollama model downloads are acceptable. <br>
-Risk: The installer may create a recurring daily ingest job through a user systemd timer on Linux or launchd plist on macOS. <br>
-Mitigation: Inspect, disable, or remove the scheduled job after installation if manual-only operation is desired. <br>
-Risk: The skill stores arXiv PDFs, extracted text, SQLite data, and FAISS indexes locally. <br>
-Mitigation: Confirm the configured data directory before ingesting papers or running cleanup commands, and monitor disk usage for larger category sets. <br>
+## Use Case:
 
+Developers, researchers, and technical teams use this skill to build and query a local arXiv paper collection with category-based ingestion, PDF chunking, semantic search, and local embeddings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/camopel/arxivkb) <br>
-- [Ollama](https://ollama.ai) <br>
-- [arXiv category taxonomy](https://arxiv.org/category_taxonomy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local SQLite, FAISS, PDF, configuration, and background scheduler files when the installer or CLI commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installation can create persistent daily ingestion jobs and change the local Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.py before use, run it in a dedicated virtual environment, and disable systemd or launchd scheduling unless daily ingestion is intended.
+
+Risk: Expiry commands can permanently delete stored papers, PDFs, and indexed chunks.
+
+Mitigation: Run expiry with explicit day ranges and avoid the -y option unless deletion is intended.
+
+Risk: Local paper downloads and embeddings can consume disk, memory, and background compute resources.
+
+Mitigation: Limit enabled categories, use dry-run before ingestion, and monitor the configured data directory.
+
+## Reference(s):
+
+- [ClawHub arxivkb skill page](https://clawhub.ai/camopel/skills/arxivkb)
+- [PrivateApp project](https://github.com/camopel/PrivateApp)
+- [Ollama](https://ollama.ai)
+- [arXiv category taxonomy](https://arxiv.org/category_taxonomy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command-line oriented text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, Ollama, local disk storage, and the nomic-embed-text embedding model.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

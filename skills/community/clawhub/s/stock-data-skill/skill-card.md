@@ -1,46 +1,55 @@
-## Description: <br>
-Fetch comprehensive stock data from Simplywall.st for stock prices, valuation, financials, dividend, and investment analysis across supported global exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch comprehensive stock data from Simplywall.st. Use when user asks about stock prices, valuation, financials, dividend, or investment analysis for any global stock.
 
-## Publisher: <br>
-[raufimusaddiq](https://clawhub.ai/user/raufimusaddiq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raufimusaddiq](https://clawhub.ai/user/raufimusaddiq)
 
-## Use Case: <br>
-External users and agents use this skill to fetch SimplyWall.st stock data for supported global exchanges when analyzing prices, valuation, financials, dividends, forecasts, and insider activity. Users should verify returned financial data independently before making investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker and exchange lookups are sent to SimplyWall.st. <br>
-Mitigation: Use the skill only when sharing the requested ticker and exchange with SimplyWall.st is acceptable. <br>
-Risk: Returned stock and financial data comes from a third-party source and may be incomplete, stale, or unsuitable as investment advice. <br>
-Mitigation: Verify results against independent financial sources before making investment decisions. <br>
-Risk: The skill requires aiohttp at runtime. <br>
-Mitigation: Install aiohttp from a trusted package source when the runtime does not already provide it. <br>
-Risk: Unsupported or omitted exchange input falls back to the IDX URL pattern. <br>
-Mitigation: Provide an explicit supported exchange such as IDX, NASDAQ, NYSE, ASX, LSE, TSX, SGX, TSE, HKSE, or KRX. <br>
+## Use Case:
 
+External users and agents use this skill to fetch public SimplyWall.st stock data for ticker-level price, valuation, financial, dividend, forecast, insider activity, and investment-analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raufimusaddiq/stock-data-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/raufimusaddiq) <br>
-- [SimplyWall.st](https://simplywall.st) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON stock data returned by the Python skill, with markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ticker input and accepts an optional exchange; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Ticker and exchange lookups are sent to SimplyWall.st.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending those lookup terms to SimplyWall.st is acceptable.
+
+Risk: Returned stock data is third-party financial data and may be incomplete, delayed, or unsuitable as investment advice.
+
+Mitigation: Treat results as informational context and verify material decisions against authoritative market data, filings, or qualified financial review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raufimusaddiq/skills/stock-data-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/raufimusaddiq)
+- [SimplyWall.st](https://simplywall.st)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text]
+
+**Output Format:** [Structured JSON object with success status, stock data fields, source URL, and error text when retrieval fails.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ticker parameter; exchange is optional and defaults to IDX. Data is fetched from public SimplyWall.st pages.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md metadata.openclaw.version, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Provides executive-level strategy and leadership guidance for strategic planning, decisions under uncertainty, change management, crisis leadership, governance, succession planning, stakeholder management, and long-term value creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leadership & Strategy Playbook helps agents provide executive-level strategy and leadership guidance for planning, uncertainty, change, crises, stakeholders, governance, succession, and long-term value creation.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Executives, founders, managers, and advisors use this skill to turn strategy and leadership questions into operating plans, governance cadences, KPI dashboards, and risk mitigations. It is intended as educational business guidance, not legal, financial, or regulatory advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad activation wording and may be applied to general management questions where organizational context is incomplete. <br>
-Mitigation: Ask for the organization's stage, sector, strategy, top risks, decision rights, governance constraints, and succession context before giving high-stakes recommendations. <br>
-Risk: Leadership and governance guidance may be mistaken for legal, financial, or regulatory advice. <br>
-Mitigation: Treat outputs as educational planning guidance and have qualified professionals review decisions with legal, financial, or regulatory impact. <br>
-Risk: Strategic recommendations can be misleading if assumptions, trade-offs, or ownership are unclear. <br>
-Mitigation: Document assumptions, confidence levels, owners, KPIs, and review cadences; revisit major decisions through premortems and after-action reviews. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Leadership & Strategy Playbook - Full Reference](references/full-playbook.md) <br>
+## Use Case:
 
+Executives, operators, advisors, and strategy teams use this skill to structure leadership decisions, strategy execution, governance routines, crisis response, stakeholder engagement, and succession planning into practical operating plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured responses commonly include a recommended executive approach, 30/60/90 operating plan, governance cadence and owners, KPI dashboard, and key risks and mitigations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may steer broad business-leadership prompts into a structured executive framework even when a narrower strategy, governance, or crisis workflow would be better.
+
+Mitigation: Use explicit task constraints or a more specialized skill when the user needs a narrower leadership workflow.
+
+Risk: Strategic, governance, crisis, or succession guidance can be incomplete without organization-specific context.
+
+Mitigation: Ask for organization stage, sector, current strategy, top risks, decision rights, board constraints, and talent bench before giving detailed recommendations.
+
+## Reference(s):
+
+- [Leadership & Strategy Playbook - Full Reference](references/full-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Executive approach, 30/60/90 operating plan, governance cadence and owners, KPI dashboard, and key risks with mitigations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

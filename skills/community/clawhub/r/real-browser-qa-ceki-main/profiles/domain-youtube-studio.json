@@ -1,0 +1,66 @@
+{
+  "id": "domain-youtube-studio",
+  "label": "YouTube Studio — Content Manager",
+  "emoji": "🎬",
+  "domain": "studio.youtube.com",
+  "description": "YouTube Studio dashboard for creators — video upload, analytics, comments moderation, content management. Material Design. Requires Google login.",
+  "source_patterns": [
+    "Dashboard sidebar navigation: Content, Analytics, Comments, Customization",
+    "Upload flow: select file → wait for processing → add title/description/thumbnail → set visibility → publish",
+    "Comments moderation: skim comments → reply/remove/hide",
+    "Realtime analytics: numbers update every few seconds",
+    "Video list management: scroll through content list, edit metadata"
+  ],
+  "active_hours": {
+    "description": "Business hours, content creators evening/weekend peaks",
+    "peak": [9, 11, 14, 16, 20, 22],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 65, "max": 100 },
+    "profile": "deliberate",
+    "think_prob": 0.04,
+    "think_ms": [800, 3000],
+    "backspace_freq": 0.04,
+    "title_description_wpm": { "min": 50, "max": 85 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Content list vertical scroll — scanning video rows, moderate passes. Source: YouTube Studio Material Design",
+    "speed_px_per_ms": { "min": 20, "max": 50 },
+    "pause_between_passes_ms": { "min": 1000, "max": 3000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.5 },
+    "infinite_scroll_detection": "ytcp-ve\\:has(#content-items) > wait for load-more trigger"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 3000, "max": 5000 },
+    "pre_click_pause_ms": { "min": 300, "max": 800 },
+    "inter_action_pause_ms": { "min": 500, "max": 1500 },
+    "post_upload_pause_ms": { "min": 10000, "max": 30000 }
+  },
+  "mouse": {
+    "speed": 0.85,
+    "curvature": 0.2,
+    "jitter": 0.25,
+    "description": "Deliberate, moderate speed — content management workflows"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "left_nav_item": "ytcp-ve#left-nav paper-item",
+      "upload_button": "ytcp-button#upload-icon, #upload-button",
+      "title_input": "#title-textarea, #textbox",
+      "description_input": "#description-textarea",
+      "visibility_dropdown": "ytcp-select#visibility-select",
+      "publish_button": "#done-button, ytcp-button#done-button",
+      "comments_list": "#comments, #comment-list",
+      "analytics_card": "ytcp-analytics-card, #analytics-dashboard"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 500, "max": 1200 },
+      "post_login_wait_ms": { "min": 5000, "max": 10000 }
+    },
+    "sequence_hint": "navigate studio.youtube.com → wait for dashboard → click Upload → select file → wait for processing → fill title+description → set thumbnail → set visibility → publish → verify"
+  }
+}

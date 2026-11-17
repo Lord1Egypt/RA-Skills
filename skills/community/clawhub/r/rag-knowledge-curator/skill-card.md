@@ -1,44 +1,54 @@
-## Description: <br>
-Curates enterprise documents for RAG pipelines by cleaning noisy text, chunking content, extracting metadata, scoring quality, and producing versioned ingestion recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates enterprise knowledge-base content for RAG by cleaning text, deduplicating passages, applying tags, scoring quality, and producing versioned Markdown governance reports.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-Developers and knowledge engineers use this skill to prepare raw enterprise documents, web excerpts, and manuals for RAG ingestion by producing cleaner chunks, metadata, quality scores, and review recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted enterprise documents may contain sensitive information. <br>
-Mitigation: Treat pasted documents as sensitive and review generated chunks before sending them to embedding or vector database pipelines. <br>
-Risk: Generated chunks, metadata, quality scores, or ingestion recommendations may be incomplete or misleading if accepted without review. <br>
-Mitigation: Review generated chunks and governance recommendations before ingestion. <br>
-Risk: Credentials could be exposed if included in source documents or prompts. <br>
-Mitigation: Keep credentials only in the external tools that perform ingestion. <br>
+## Use Case:
 
+Developers, knowledge-base maintainers, and RAG operations teams use this skill to prepare user-provided documents for retrieval pipelines by cleaning, chunking, tagging, scoring, and summarizing ingestion readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boboy-j/rag-knowledge-curator) <br>
-- [README](artifact/README.md) <br>
-- [Input schema](artifact/schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown governance report with summary tables, chunk previews, metadata, quality scores, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes user-provided text inputs; the README recommends inputs of 5000 characters or less per batch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Generated chunking, tags, quality scores, or ingestion recommendations may be incorrect or incomplete for sensitive enterprise knowledge bases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated governance report and recommendations before connecting outputs to a production vector database pipeline.
+
+Risk: Source documents may contain sensitive enterprise material.
+
+Mitigation: Apply the organization's data handling controls before providing documents to the skill or downstream retrieval systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/rag-knowledge-curator)
+- [Publisher profile](https://clawhub.ai/user/boboy-j)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown governance report with summary tables, chunk previews, metadata, quality scores, and optimization recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses raw_documents, chunk_strategy, and domain inputs; schema recommends limiting a single input to 5000 characters for quality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

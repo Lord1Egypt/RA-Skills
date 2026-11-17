@@ -1,39 +1,54 @@
-## Description: <br>
-Motie CLI helps agents discover Motie marketplace APIs, inspect API documentation, and call documented routes with the motie CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and explore APIs on the Motie marketplace using the motie CLI.
 
-## Publisher: <br>
-[saucedocs](https://clawhub.ai/user/saucedocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saucedocs](https://clawhub.ai/user/saucedocs)
 
-## Use Case: <br>
-Developers and agent users use this skill to find suitable Motie marketplace APIs, inspect their route documentation, and form CLI calls for external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to discover and call third-party APIs with a Motie API key, including calls that may cost money, change account or real-world state, post content, scrape sensitive sites, or send personal information. <br>
-Mitigation: Verify the npm package and publisher, use a scoped or easily revocable Motie API key, avoid passing secrets or unnecessary personal data, and require explicit approval before sensitive or costly API calls. <br>
+## Use Case:
 
+Developers and agents use this skill to discover Motie marketplace APIs, fetch route documentation, and invoke selected API routes with the Motie CLI.
 
-## Reference(s): <br>
-- [Motie beta portal](https://beta.motie.dev) <br>
-- [ClawHub skill listing](https://clawhub.ai/saucedocs/motie-cle-beta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide API discovery, documentation lookup, and motie call command construction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill uses a broad third-party API CLI that may send searches, parameters, or request data to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit Motie or API-marketplace tasks, and avoid private or sensitive data unless the user has consented.
+
+Risk: The Motie CLI requires an API key and can be installed globally through npm.
+
+Mitigation: Prefer the MOTIE_API_KEY environment variable, avoid exposing credentials in command history, and pin or verify the CLI package before global installation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/saucedocs/skills/motie-cle-beta)
+- [Motie beta portal](https://beta.motie.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API calls through a third-party CLI that requires a Motie API key.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

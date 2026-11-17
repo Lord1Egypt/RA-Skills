@@ -1,41 +1,55 @@
-## Description: <br>
-Monitor AI agent wallets on Base. Register wallets, check health scores, view transactions, manage alerts, and watch live feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor AI agent wallets on Base. Register wallets, check health scores, view transactions, manage alerts, and watch live feeds.
 
-## Publisher: <br>
-[saltxd](https://clawhub.ai/user/saltxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saltxd](https://clawhub.ai/user/saltxd)
 
-## Use Case: <br>
-Developers and operators use ChainWard to monitor AI agent wallets on Base, register and remove wallets, inspect balances and transactions, and configure alerts through the ChainWard CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ChainWard API key and uses the external @chainward/cli package. <br>
-Mitigation: Install only when the ChainWard service and npm package are trusted, and use a dedicated API key where possible. <br>
-Risk: Wallet activity data may be sent to Discord, Telegram, or webhook alert destinations. <br>
-Mitigation: Configure alert channels only where the monitored wallet activity can be shared safely. <br>
+## Use Case:
 
+Developers and operators use ChainWard to monitor autonomous AI agent wallets on Base, register wallets, review transactions and health, and configure operational alerts.
 
-## Reference(s): <br>
-- [ChainWard homepage](https://chainward.ai) <br>
-- [ClawHub ChainWard listing](https://clawhub.ai/saltxd/chainward) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the chainward CLI and CHAINWARD_API_KEY; supports Base-chain wallet monitoring and alert setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an external ChainWard CLI installed from npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the @chainward/cli package and version before installation and install it only in environments where ChainWard is trusted.
+
+Risk: The ChainWard CLI uses CHAINWARD_API_KEY and stores local configuration that may include sensitive alert or account settings.
+
+Mitigation: Limit the API key to ChainWard use, protect the key in the agent environment, and review ~/.chainward/config.json and alert delivery channels for sensitive values.
+
+## Reference(s):
+
+- [ChainWard website](https://chainward.ai)
+- [ChainWard ClawHub listing](https://clawhub.ai/saltxd/skills/chainward)
+- [saltxd ClawHub profile](https://clawhub.ai/user/saltxd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes the ChainWard CLI, CHAINWARD_API_KEY, and Base-only wallet monitoring described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

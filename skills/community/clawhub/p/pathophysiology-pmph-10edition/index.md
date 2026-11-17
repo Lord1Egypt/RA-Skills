@@ -117,7 +117,7 @@
 | [xin-shi-shu-zhang-gong-neng-zhang-ai-fen-xi](xin-shi-shu-zhang-gong-neng-zhang-ai-fen-xi/SKILL.md) | 分析左心室舒张功能障碍的主动（能量依赖）与被动（结构依赖）机制 | 当存在心肌缺血、肥大、纤维化或衰老且出现心室充盈受限或舒张末压升高时 |
 | [xin-ji-xi-bao-biao-xing-gai-bian-fen-zi-ji-zhi](xin-ji-xi-bao-biao-xing-gai-bian-fen-zi-ji-zhi/SKILL.md) | 识别和分析成年或肥大心肌细胞激活胎儿基因程序、蛋白质重编程及功能后果的分子机制 | 在评估病理性心肌重构、收缩功能下降风险或心肌肥大进展时 |
 | [lipoprotein-classification-composition-and-metabolism](lipoprotein-classification-composition-and-metabolism/SKILL.md) | 分析血浆脂蛋白谱以识别不同类型脂蛋白的结构、载脂蛋白组成及生理功能 | 当需评估动脉粥样硬化风险、解读血脂检验报告或分析脂代谢异常机制时 |
-| [oxygen-toxicity-risk-assessment-and-prevention](oxygen-toxicity-risk-assessment-and-prevention/SKILL.md) | 评估高浓度或高压氧疗下氧中毒风险并提供预防建议 | 当患者长时间吸入高浓度氧气、处于高压环境或为早产儿接受氧疗时 |
+| [oxygen-toxicity-riREDACTED-SECRET](oxygen-toxicity-riREDACTED-SECRET/SKILL.md) | 评估高浓度或高压氧疗下氧中毒风险并提供预防建议 | 当患者长时间吸入高浓度氧气、处于高压环境或为早产儿接受氧疗时 |
 | [sui-ban-gong-neng-zhang-ai-yu-niao-nong-suo-zhang-ai](sui-ban-gong-neng-zhang-ai-yu-niao-nong-suo-zhang-ai/SKILL.md) | 分析髓袢升支粗段功能障碍导致肾髓质高渗梯度破坏及尿浓缩障碍 | 当患者出现多尿、低渗或等渗尿（尿渗透压<300 mOsm/kg 或固定于≈300 mOsm/kg，尿比重固定在1.010~1.015）且排除中枢性尿崩症时 |
 | [bnp-nt-probnp-naming-standardization](bnp-nt-probnp-naming-standardization/SKILL.md) | 在医学文本中标准化使用BNP和NT-proBNP的中英文对照术语 | 当文档首次提及这些生物标志物时，必须完整呈现中文术语、英文全称及标准缩写 |
 | [medical-textbook-sanji-wuxing-principle](medical-textbook-sanji-wuxing-principle/SKILL.md) | 指导全国高等学校五年制本科临床医学专业国家规划教材的编写 | 当参与此类教材编写或评估其质量时 |
@@ -200,7 +200,7 @@
 - hypoxic-pulmonary-vasoconstriction-mechanism  
 - ards-ventilation-perfusion-mismatch-analysis  
 - ii-type-respiratory-failure-controlled-oxygen-therapy  
-- oxygen-toxicity-risk-assessment-and-prevention  
+- oxygen-toxicity-riREDACTED-SECRET  
 - nocturnal-paroxysmal-dyspnea-assessment  
 
 ### 肾脏病理生理

@@ -1,6 +1,14 @@
+//_meta.json//
 {
   "ownerId": "kn77rx9vbjjnexqwedrzca7bgn851wrg",
   "slug": "tunnel-proxy",
   "version": "1.0.11",
-  "publishedAt": 1777011936569
+  "publishedAt": 1776709089269
+  "env_vars": {
+    "TUNNEL_HOST": {"required": true, "description": "TunnelProxy host address"},
+    "TUNNEL_HTTP_PORT": {"required": true, "description": "HTTP API port"},
+    "TUNNEL_AGENT_TOKEN": {"required": true, "description": "Agent authentication token"},
+    "TUNNEL_TIMEOUT": {"required": true, "description": "Default timeout in seconds"},
+    "UPLOAD_MAGIC": {"required": true, "description": "Upload verification token"}
+  }
 }

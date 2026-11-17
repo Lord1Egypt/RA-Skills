@@ -1,0 +1,10 @@
+{
+  "name": "retry-optimizer",
+  "version": "1.0.0",
+  "description": "Optimize retry patterns: replace fixed-interval retries with exponential backoff, jitter, circuit breaker, and max-retry guards.",
+  "main": "index.js",
+  "scripts": {
+    "optimize": "node scripts/optimize.js",
+    "test": "node -e \"require('./index.js')\""
+  }
+}

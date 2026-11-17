@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="html-collab/0.1">
+  <meta name="generator" content="html-collab/0.3.0">
   <title>html-collab document</title>
   <!-- collab:llm-skip:start — engine styles, not document content -->
   <style id="collab-styles">
@@ -78,7 +78,12 @@ body {
   border-left: 1px solid #e0e0e0;
   background: #fafaf8;
   padding: 16px 12px;
-  overflow-y: auto;
+  overflow: visible;
+}
+
+#collab-comments-list {
+  position: relative;
+  min-height: 100%;
 }
 
 /* --- Article content --- */
@@ -170,11 +175,14 @@ body {
 
 /* --- Comment panel (in sidebar) --- */
 #collab-comment-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 #collab-comment-text {
   width: 100%;
@@ -223,17 +231,20 @@ body {
 
 /* --- Comment bubbles in sidebar --- */
 .collab-comment-bubble {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 10px 12px;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   font-size: 13px;
   cursor: pointer;
 }
 .collab-comment-bubble:hover { border-color: #2a6f4f; }
 .collab-comment-bubble.active { border-color: #2a6f4f; box-shadow: 0 0 0 2px #e8f4ee; }
+.collab-comment-bubble.editing { cursor: default; border-color: #2a6f4f; box-shadow: 0 0 0 2px #e8f4ee; }
 .collab-comment-quote {
   font-size: 11px;
   color: #888;
@@ -244,6 +255,30 @@ body {
 }
 .collab-comment-body { color: #333; }
 .collab-comment-meta { font-size: 11px; color: #aaa; margin-top: 6px; }
+.collab-comment-edit-text {
+  width: 100%;
+  min-height: 82px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 13px;
+  resize: vertical;
+  font-family: inherit;
+}
+.collab-comment-edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.collab-comment-edit-actions button {
+  padding: 5px 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 12px;
+}
+.collab-comment-update { background: #2a6f4f; color: #fff; border-color: #2a6f4f; }
 
 /* Delete button on comment bubbles */
 .collab-comment-delete {
@@ -334,6 +369,7 @@ body {
   },
   "meta": {
     "title": "",
+    "engineVersion": "0.3.0",
     "originalCreated": "",
     "lastRevised": "",
     "model": "",
@@ -444,6 +480,11 @@ function extractLLMContext(data) {
   return lines.join('\n');
 }
 
+/**
+ * Format a Date object to yyyymmddhhmm string using LOCAL time.
+ * @param {Date} date - Date object (defaults to now if omitted)
+ * @returns {string} - formatted timestamp in yyyymmddhhmm format
+ */
 function formatTimestamp(date) {
   const d = date instanceof Date ? date : new Date();
   if (isNaN(d.getTime())) throw new RangeError('formatTimestamp: invalid Date');
@@ -454,6 +495,12 @@ function formatTimestamp(date) {
     + String(d.getMinutes()).padStart(2, '0');
 }
 
+/**
+ * Generate a safe HTML filename from a title and optional date.
+ * @param {string} title - document title (sanitized to replace filesystem-unsafe chars)
+ * @param {Date} date - Date object (defaults to now if omitted)
+ * @returns {string} - filename in format '<safe-title>-<yyyymmddhhmm>.html'
+ */
 function suggestSaveFilename(title, date) {
   const safe = (title || '').replace(/[/\\:*?"<>|]+/g, '-').replace(/^-+|-+$/g, '').trim() || 'document';
   return safe + '-' + formatTimestamp(date) + '.html';
@@ -475,6 +522,7 @@ if (typeof module !== 'undefined' && module.exports) {
   let isDirty = false;
   let pendingCommentRange = null;   // Selection range when comment toolbar clicked
   let pendingCommentTarget = null;  // data-cid of targeted block
+  let commentLayoutFrame = null;
 
   // ── Auto-save ──────────────────────────────────────────────
   let autoSaveTimer = null;
@@ -514,10 +562,15 @@ if (typeof module !== 'undefined' && module.exports) {
     });
 
     document.addEventListener('selectionchange', onSelectionChange);
+    window.addEventListener('resize', scheduleCommentLayout);
   }
 
   // ── File access ────────────────────────────────────────────
 
+  /**
+   * djb2-style hash of article text content (8-char hex).
+   * Used to detect whether the document has changed since last save.
+   */
   function computeVersionHash() {
     const article = $('collab-content');
     if (!article) return '';
@@ -529,9 +582,16 @@ if (typeof module !== 'undefined' && module.exports) {
     return hash.toString(16).padStart(8, '0');
   }
 
+  /**
+   * Compact structural index of the document for LLM orientation.
+   * Written to meta.summary on every save so LLMs can skip full parsing.
+   * Format: "sections:sec-001(Title); blocks:8p,6h; comments:2(p-001,p-003); edits:1(p-005)"
+   */
   function generateSummary() {
     const article = $('collab-content');
     if (!article) return '';
+
+    // Count named CID blocks by type prefix
     const counts = {};
     article.querySelectorAll('[data-cid]').forEach(el => {
       const cid = el.dataset.cid || '';
@@ -539,21 +599,26 @@ if (typeof module !== 'undefined' && module.exports) {
       const type = cid.split('-')[0];
       counts[type] = (counts[type] || 0) + 1;
     });
+
+    // List sections with heading label
     const sections = [];
     article.querySelectorAll('[data-cid^="sec-"]').forEach(sec => {
       const h = sec.querySelector('h1,h2,h3,h4,h5,h6');
       const label = h ? h.textContent.trim().slice(0, 20) : '';
       sections.push(label ? sec.dataset.cid + '(' + label + ')' : sec.dataset.cid);
     });
+
     const blockStr = Object.entries(counts)
       .sort(([a], [b]) => (a < b ? -1 : 1))
       .map(([k, v]) => v + k)
       .join(',');
+
     const data = getCollabData(document);
     const cCount = (data?.comments || []).length;
     const eCount = (data?.edits || []).length;
     const cTargets = (data?.comments || []).map(c => c.target).filter(Boolean).join(',');
     const eTargets = (data?.edits || []).map(e => e.target).filter(Boolean).join(',');
+
     const parts = [];
     if (sections.length > 0) parts.push('sections:' + sections.join(','));
     if (blockStr) parts.push('blocks:' + blockStr);
@@ -612,8 +677,6 @@ if (typeof module !== 'undefined' && module.exports) {
     else el.textContent = '';
   }
 
-  // ── Placeholders for functions added in Tasks 8-11 ────────
-  // Must exist here so init() can call them during Tasks 7-10.
   // ── Render saved state on file load ───────────────────────
   function renderState() {
     const data = getCollabData(document);
@@ -637,26 +700,31 @@ if (typeof module !== 'undefined' && module.exports) {
     for (const comment of data.comments) {
       renderCommentBubble(comment);
     }
+    layoutCommentRail();
   }
 
   // ── Inline edit ────────────────────────────────────────────
   function attachEditButtons() {
     const content = $('collab-content');
-    content.querySelectorAll('[data-cid]').forEach(attachEditButton);
 
-    // Also handle auto-CID for blocks without data-cid
+    // Assign auto-CIDs first, so the container check in attachEditButton
+    // sees the complete CID structure
     let autoIdx = 0;
     const BLOCK_TAGS = ['P','SECTION','H1','H2','H3','H4','H5','H6','LI','BLOCKQUOTE','PRE','TABLE'];
     content.querySelectorAll(BLOCK_TAGS.join(',')).forEach(el => {
       if (!el.dataset.cid) {
         el.dataset.cid = 'auto-' + (++autoIdx);
         console.warn('[html-collab] auto-assigned CID:', el.dataset.cid, el);
-        attachEditButton(el);
       }
     });
+
+    content.querySelectorAll('[data-cid]').forEach(attachEditButton);
   }
 
   function attachEditButton(el) {
+    // Container blocks (e.g. a section holding paragraphs) are not editable:
+    // rewriting their innerHTML would destroy the child blocks' CIDs
+    if (el.querySelector('[data-cid]')) return;
     if (el.querySelector('.collab-edit-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'collab-edit-btn';
@@ -666,6 +734,10 @@ if (typeof module !== 'undefined' && module.exports) {
   }
 
   function startEdit(el) {
+    // Remove the edit button while editing — it must not pollute the captured
+    // text and must not be deletable inside the contentEditable block
+    el.querySelector('.collab-edit-btn')?.remove();
+
     // Dim all other blocks, but not ancestors of el (they contain el and the bar)
     $('collab-content').querySelectorAll('[data-cid]').forEach(b => {
       b.classList.toggle('dimmed', b !== el && !b.contains(el));
@@ -673,6 +745,15 @@ if (typeof module !== 'undefined' && module.exports) {
     el.classList.add('editing');
     el.contentEditable = 'true';
     el.focus();
+
+    // Snapshot the pre-edit markup so Cancel can restore it exactly
+    el.dataset.editHtml = el.innerHTML;
+
+    // If the block shows diff markup from a previous edit, collapse it to just
+    // the revised text — otherwise the strikethrough original and the "edited"
+    // badge would be captured as part of the new text
+    const revisedSpan = el.querySelector('.collab-revised');
+    if (revisedSpan) el.textContent = revisedSpan.textContent;
 
     // Store original text (from LLM version, not a previous human edit)
     const data = getCollabData(document);
@@ -732,12 +813,12 @@ if (typeof module !== 'undefined' && module.exports) {
     el.classList.remove('editing');
     el.innerHTML = `<span class="collab-original">${escapeHtml(original)}</span> <span class="collab-revised">${escapeHtml(revised)}</span><span class="collab-edited-badge">edited</span>`;
 
-    // Refresh edit button (innerHTML wiped the old one)
-    el.querySelector('.collab-edit-btn')?.remove();
+    // Re-attach edit button (removed at startEdit)
     attachEditButton(el);
 
     el.removeEventListener('keydown', el._editKeyHandler);
     delete el._editKeyHandler;
+    delete el.dataset.editHtml;
     bar.remove();
     undimAll();
   }
@@ -745,6 +826,13 @@ if (typeof module !== 'undefined' && module.exports) {
   function cancelEdit(el, bar) {
     el.contentEditable = 'false';
     el.classList.remove('editing');
+    // Restore pre-edit content — otherwise abandoned typing would silently
+    // persist in the article and be serialised on the next save
+    if (el.dataset.editHtml !== undefined) {
+      el.innerHTML = el.dataset.editHtml;
+      delete el.dataset.editHtml;
+    }
+    attachEditButton(el);
     el.removeEventListener('keydown', el._editKeyHandler);
     delete el._editKeyHandler;
     delete el.dataset.editOriginal;
@@ -795,6 +883,78 @@ if (typeof module !== 'undefined' && module.exports) {
     return null;
   }
 
+  function findCidElement(cid) {
+    if (!cid) return null;
+    return Array.from($('collab-content').querySelectorAll('[data-cid]'))
+      .find(el => el.dataset.cid === cid) || null;
+  }
+
+  function findCommentAnchor(comment) {
+    const mark = $('collab-content')
+      .querySelector(`.collab-highlight[data-comment-id="${comment.id}"]`);
+    return mark || findCidElement(comment.target);
+  }
+
+  function desiredCommentTop(anchor) {
+    const list = $('collab-comments-list');
+    if (!anchor || !list) return 0;
+    const listTop = list.getBoundingClientRect().top + window.scrollY;
+    const anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
+    return Math.max(0, anchorTop - listTop);
+  }
+
+  function measuredHeight(el) {
+    return el.getBoundingClientRect().height || el.offsetHeight || 96;
+  }
+
+  function scheduleCommentLayout() {
+    if (commentLayoutFrame !== null) return;
+    commentLayoutFrame = window.requestAnimationFrame(() => {
+      commentLayoutFrame = null;
+      layoutCommentRail();
+    });
+  }
+
+  function layoutCommentRail() {
+    const list = $('collab-comments-list');
+    const content = $('collab-content');
+    const data = getCollabData(document);
+    if (!list || !content || !data) return;
+
+    const commentById = new Map(data.comments.map(comment => [comment.id, comment]));
+    const railItems = Array.from(list.children)
+      .filter(el => el.classList.contains('collab-comment-bubble') || el.id === 'collab-comment-panel')
+      .filter(el => el.id !== 'collab-comment-panel' || el.style.display !== 'none')
+      .map((el, index) => {
+        const comment = commentById.get(el.dataset.commentId);
+        const anchor = el.id === 'collab-comment-panel'
+          ? findCidElement(pendingCommentTarget)
+          : comment && findCommentAnchor(comment);
+        return { el, index, desiredTop: desiredCommentTop(anchor) };
+      })
+      .sort((a, b) => a.desiredTop - b.desiredTop || a.index - b.index);
+
+    let nextTop = 0;
+    for (const item of railItems) {
+      const top = Math.max(item.desiredTop, nextTop);
+      item.el.style.top = top + 'px';
+      nextTop = top + measuredHeight(item.el) + 10;
+    }
+
+    const contentBottom = content.getBoundingClientRect().bottom + window.scrollY;
+    const listTop = list.getBoundingClientRect().top + window.scrollY;
+    const contentHeight = Math.max(0, contentBottom - listTop);
+    list.style.minHeight = Math.max(contentHeight, nextTop, window.innerHeight - 76) + 'px';
+  }
+
+  function focusWithoutScrolling(el) {
+    try {
+      el.focus({ preventScroll: true });
+    } catch {
+      el.focus();
+    }
+  }
+
   // ── Comment panel ──────────────────────────────────────────
   function openCommentPanel() {
     const panel = $('collab-comment-panel');
@@ -802,8 +962,9 @@ if (typeof module !== 'undefined' && module.exports) {
     $('collab-comment-images').innerHTML = '';
     $('collab-comment-warning').style.display = 'none';
     panel.style.display = 'block';
-    $('collab-comments-list').prepend(panel);
-    $('collab-comment-text').focus();
+    $('collab-comments-list').appendChild(panel);
+    layoutCommentRail();
+    focusWithoutScrolling($('collab-comment-text'));
 
     panel._images = [];   // staged images for current comment
 
@@ -813,6 +974,7 @@ if (typeof module !== 'undefined' && module.exports) {
       panel.style.display = 'none';
       pendingCommentRange = null;
       pendingCommentTarget = null;
+      layoutCommentRail();
     };
   }
 
@@ -857,6 +1019,7 @@ if (typeof module !== 'undefined' && module.exports) {
     pendingCommentRange = null;
     pendingCommentTarget = null;
     renderCommentBubble(comment);
+    layoutCommentRail();
   }
 
   function renderCommentBubble(comment) {
@@ -864,21 +1027,99 @@ if (typeof module !== 'undefined' && module.exports) {
     const bubble = document.createElement('div');
     bubble.className = 'collab-comment-bubble';
     bubble.dataset.commentId = comment.id;
+    renderCommentBubbleContent(bubble, comment);
+    bubble.addEventListener('click', (e) => {
+      if (e.target.closest('button, textarea, input, a')) return;
+      startCommentEdit(comment.id);
+    });
+    list.appendChild(bubble);
+    layoutCommentRail();
+  }
+
+  function renderCommentBubbleContent(bubble, comment) {
+    const editedText = comment.editedAt
+      ? ` · edited ${new Date(comment.editedAt).toLocaleString()}`
+      : '';
+    const images = comment.images || [];
+    bubble.classList.remove('editing');
     bubble.innerHTML = `
       <button class="collab-comment-delete" aria-label="Delete comment" title="Delete comment">×</button>
       <div class="collab-comment-quote">${escapeHtml(comment.quote)}</div>
       <div class="collab-comment-body">${escapeHtml(comment.text)}</div>
-      ${comment.images.map(img =>
-        img.type === 'base64'
-          ? `<img src="${img.data}" alt="screenshot">`
-          : `<img src="${img.url}" alt="screenshot">`
+      ${images.map(img =>
+        `<img src="${escapeHtml(img.type === 'base64' ? img.data : img.url)}" alt="screenshot">`
       ).join('')}
-      <div class="collab-comment-meta">${new Date(comment.timestamp).toLocaleString()}</div>
+      <div class="collab-comment-meta">${new Date(comment.timestamp).toLocaleString()}${editedText}</div>
     `;
-    // Wire delete button imperatively after innerHTML (avoids inline onclick)
     bubble.querySelector('.collab-comment-delete')
       .addEventListener('click', (e) => { e.stopPropagation(); deleteComment(comment.id); });
-    list.appendChild(bubble);
+  }
+
+  function startCommentEdit(id) {
+    const data = getCollabData(document);
+    const comment = data.comments.find(c => c.id === id);
+    const bubble = $('collab-comments-list')
+      .querySelector(`.collab-comment-bubble[data-comment-id="${id}"]`);
+    if (!comment || !bubble || bubble.classList.contains('editing')) return;
+
+    const images = comment.images || [];
+    bubble.classList.add('editing');
+    bubble.innerHTML = `
+      <div class="collab-comment-quote">${escapeHtml(comment.quote)}</div>
+      <textarea class="collab-comment-edit-text">${escapeHtml(comment.text)}</textarea>
+      ${images.map(img =>
+        `<img src="${escapeHtml(img.type === 'base64' ? img.data : img.url)}" alt="screenshot">`
+      ).join('')}
+      <div class="collab-comment-edit-actions">
+        <button class="collab-comment-update">Update</button>
+        <button class="collab-comment-cancel-edit">Cancel</button>
+      </div>
+      <div class="collab-comment-meta">${new Date(comment.timestamp).toLocaleString()}</div>
+    `;
+
+    const textarea = bubble.querySelector('.collab-comment-edit-text');
+    const update = bubble.querySelector('.collab-comment-update');
+    const cancel = bubble.querySelector('.collab-comment-cancel-edit');
+
+    update.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateComment(id, textarea.value.trim());
+    });
+    cancel.addEventListener('click', (e) => {
+      e.stopPropagation();
+      renderCommentBubbleContent(bubble, comment);
+      layoutCommentRail();
+    });
+    textarea.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        updateComment(id, textarea.value.trim());
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        renderCommentBubbleContent(bubble, comment);
+        layoutCommentRail();
+      }
+    });
+
+    focusWithoutScrolling(textarea);
+    textarea.select();
+    layoutCommentRail();
+  }
+
+  function updateComment(id, text) {
+    const data = getCollabData(document);
+    const comment = data.comments.find(c => c.id === id);
+    const bubble = $('collab-comments-list')
+      .querySelector(`.collab-comment-bubble[data-comment-id="${id}"]`);
+    if (!comment || !bubble) return;
+
+    comment.text = text;
+    comment.editedAt = new Date().toISOString();
+    setCollabData(document, data);
+    renderCommentBubbleContent(bubble, comment);
+    markDirty();
+    layoutCommentRail();
   }
 
   function deleteComment(id) {
@@ -905,6 +1146,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
     // 4. Mark document dirty
     markDirty();
+    layoutCommentRail();
   }
 
   function escapeHtml(str) {

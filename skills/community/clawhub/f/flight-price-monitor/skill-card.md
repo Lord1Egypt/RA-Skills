@@ -1,51 +1,64 @@
-## Description: <br>
-Flight Price Monitor helps agents search FlyAI/Fliggy airfare prices, set threshold alerts, schedule recurring checks, and maintain local price history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Fliggy flight prices for one-way and round-trip itineraries, supports fare alerts, tracks price history, and guides scheduled searches through FlyAI CLI.
 
-## Publisher: <br>
-[zuckonit](https://clawhub.ai/user/zuckonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuckonit](https://clawhub.ai/user/zuckonit)
 
-## Use Case: <br>
-Travelers and assistants use this skill to look up one-way or round-trip flight prices, monitor routes against a budget threshold, and summarize fare trends from repeated checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fare prices and availability can change between lookup and booking. <br>
-Mitigation: Tell users that quotes are current at lookup time and that the booking page remains authoritative. <br>
-Risk: Configured monitoring can over-poll third-party services or continue longer than intended. <br>
-Mitigation: Use reasonable schedules, define stop conditions, and document how to pause or remove scheduled tasks. <br>
-Risk: Optional API credentials may be configured for the external flight-search service. <br>
-Mitigation: Use a limited API key when available and verify the npm package source before installation. <br>
-Risk: Local price-history files can retain route and travel-date preferences. <br>
-Mitigation: Store histories under the documented path and delete them when monitoring is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to query current flight fares, monitor selected routes against a price threshold, record price history, and summarize fare trends for travel planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zuckonit/flight-price-monitor) <br>
-- [FlyAI](https://open.fly.ai/) <br>
-- [Fliggy Flights](https://www.fliggy.com/jipiao/) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [search-flight Parameters](references/search-flight-params.md) <br>
-- [Price History Template](references/price-history-template.md) <br>
-- [Cron Payload Examples](references/cron-payload-examples.md) <br>
-- [Airport Codes](references/airport-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with fare tables, alert summaries, optional booking links, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append price records to local Markdown history files when monitoring is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: The skill relies on an unpinned global FlyAI CLI installation, so behavior can change when the CLI package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and audit the CLI version before deployment, and run `flyai search-flight --help` in the target environment to confirm supported flags.
+
+Risk: Scheduled monitoring can persist travel routes, dates, thresholds, and fare history under `memory/flight-monitor/`.
+
+Mitigation: Confirm where scheduled task data and history files are stored, limit retained travel details, and document how users can delete monitoring history.
+
+Risk: The optional FlyAI API key could be exposed or over-scoped if configured casually.
+
+Mitigation: Keep any API key scoped to the minimum required access, store it in the runtime's secret mechanism, and avoid printing it in logs or shared history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuckonit/skills/flight-price-monitor)
+- [Fliggy flights](https://www.fliggy.com/jipiao/)
+- [FlyAI](https://open.fly.ai/)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Airport codes reference](references/airport-codes.md)
+- [Cron payload examples](references/cron-payload-examples.md)
+- [Price history template](references/price-history-template.md)
+- [Search flight parameters](references/search-flight-params.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with flight result tables, alert summaries, command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include booking links and persistent Markdown price-history entries when monitoring is configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

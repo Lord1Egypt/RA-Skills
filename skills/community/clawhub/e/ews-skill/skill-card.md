@@ -1,42 +1,60 @@
-## Description: <br>
-Extract calendar events from Microsoft Exchange via EWS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract calendar events from Microsoft Exchange via EWS API.
 
-## Publisher: <br>
-[basuev](https://clawhub.ai/user/basuev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[basuev](https://clawhub.ai/user/basuev)
 
-## Use Case: <br>
-Employees and developers use this skill to retrieve Microsoft Exchange calendar events for a requested date and return subjects, times, locations, organizers, body text, and links as structured JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar bodies, locations, organizers, and extracted links can contain sensitive personal or business information. <br>
-Mitigation: Run the skill only against trusted Exchange endpoints and keep JSON output or debug XML out of shared, synced, or source-controlled locations. <br>
-Risk: Exchange credentials are required and standalone use can rely on environment variables or a .env file. <br>
-Mitigation: Use the keyring wrapper for normal operation, avoid command-line passwords and plaintext .env files, and rotate or delete stored credentials when access changes. <br>
-Risk: Debug XML may include raw Exchange response content. <br>
-Mitigation: Enable debug XML only for troubleshooting and delete debug files after use. <br>
+## Use Case:
 
+Employees and developers use this skill to retrieve Microsoft Exchange calendar events for today, tomorrow, or a specific date as structured JSON for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub EWS Skill release](https://clawhub.ai/basuev/ews-skill) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON array of calendar event objects, with optional file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EWS_URL and EWS_USER configuration, curl and xmllint, and macOS Keychain or Linux libsecret for password retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Exchange credentials and sensitive meeting data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OS keyring setup with interactive password entry, protect the local machine, and avoid plaintext .env files or command-line password arguments.
+
+Risk: A misconfigured or untrusted Exchange endpoint could expose credentials or calendar contents.
+
+Mitigation: Configure only trusted HTTPS EWS endpoints and review the EWS_URL before installation or execution.
+
+Risk: Debug XML and output files can contain sensitive meeting details.
+
+Mitigation: Write debug XML and calendar output only to private directories, and delete those files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/basuev/skills/ews-skill)
+- [Publisher profile](https://clawhub.ai/user/basuev)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, configuration]
+
+**Output Format:** [JSON array of calendar event objects, returned on stdout or written to an output file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Events include subject, start and end times, location, organizer, body text, and extracted links; no events are returned as an empty array.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

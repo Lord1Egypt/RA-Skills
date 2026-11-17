@@ -1,42 +1,54 @@
-## Description: <br>
-Sales Lead Research Assistant identifies and qualifies potential sales leads by analyzing a product or service, matching target companies, ranking lead fit, and suggesting contact strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents identify and qualify sales leads by analyzing a user's product, target customer profile, company fit signals, and outreach strategy.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Sales, business development, and founder teams use this skill to identify target accounts, qualify leads, and prepare personalized outreach strategies based on company fit and market signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional repository analysis can expose private project details to the agent. <br>
-Mitigation: Run the skill only in repositories that have been cleared of secrets, credentials, customer data, and unrelated private files. <br>
-Risk: Lead research may surface sensitive personal or third-party data for sales outreach. <br>
-Mitigation: Use only appropriate business contact data and do not rely on leaked secrets or sensitive personal data as sales material. <br>
+## Use Case:
 
+Sales, business development, and partnerships teams use this skill to identify companies matching an ideal customer profile, prioritize them, and plan personalized outreach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/lead-research-assistant-cn) <br>
-- [OpenClaw fork-of metadata](https://github.com/anthropics/skills) <br>
-- [Skill homepage metadata](https://clawhub.com/skills/lead-research-assistant-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lead research report with ranked companies, fit scores, decision-maker roles, value propositions, and outreach strategies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include company websites, LinkedIn URLs when available, and suggested next steps such as CSV export or outreach drafting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Repository-based lead research may unnecessarily expose secrets, private customer data, or sensitive business files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository scope before use and provide product descriptions instead of raw repository access when sensitive materials are not needed.
+
+Risk: Lead scores, company details, and outreach strategies may be incomplete or stale if the underlying research context is limited.
+
+Mitigation: Validate high-priority leads and contact details before outreach or CRM import.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/lead-research-assistant-cn)
+- [ClawHub metadata homepage](https://clawhub.com/skills/lead-research-assistant-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown lead research reports with scored company entries and outreach recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include company names, websites, fit scores, decision-maker roles, outreach strategies, and optional CSV drafting guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

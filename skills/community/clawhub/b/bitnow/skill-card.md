@@ -1,44 +1,57 @@
-## Description: <br>
-End-to-end OpenBytes network API workflows for AI agents covering wallet signature authentication, on-chain top-up monitoring, consumer API key lifecycle management, model gateway API calls, balance queries, and usage queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end OpenBytes network API workflows for AI agents, covering wallet signature authentication, on-chain top-up checks, consumer API key lifecycle operations, model gateway calls, and balance and usage queries.
 
-## Publisher: <br>
-[viyozc](https://clawhub.ai/user/viyozc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viyozc](https://clawhub.ai/user/viyozc)
 
-## Use Case: <br>
-Developers and operators use this skill to automate and troubleshoot OpenBytes network operations through direct API interaction, including wallet-based authentication, API key management, deposits, balance checks, usage checks, and model gateway calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes wallet and credential workflows where private keys, API keys, session tokens, signatures, or Authorization headers could be exposed in generated commands or troubleshooting output. <br>
-Mitigation: Do not let an agent generate, display, store, or paste wallet private keys or seed phrases; redact Authorization headers, API keys, session tokens, signatures, and secret fields before sharing responses. <br>
-Risk: The skill guides on-chain deposits and wallet linking, where incorrect gateway, chain, token, or contract details could cause funds or account relationships to be misdirected. <br>
-Mitigation: Manually verify the gateway, chain ID, token address, contract address, and wallet-linking message before approving deposits or linking wallets. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to automate or troubleshoot OpenBytes API operations with concrete HTTP workflows, shell commands, and client-side signing guidance.
 
-## Reference(s): <br>
-- [BitNow ClawHub Skill Page](https://clawhub.ai/viyozc/bitnow) <br>
-- [OpenBytes Gateway API Base URL](https://gateway.openbytes.ai) <br>
-- [ethers.js Wallet.createRandom Documentation](https://docs.ethers.org/v6/api/wallet/#Wallet-createRandom) <br>
-- [viem createWallet Documentation](https://viem.sh/docs/actions/wallet/createWallet.html) <br>
-- [Base Sepolia RPC Endpoint](https://sepolia.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, TypeScript, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user-supplied placeholders for wallet addresses, tokens, API keys, timestamps, endpoint URLs, and transaction details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill includes workflows involving wallet private keys, session tokens, API keys, signatures, and authorization headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not let an agent generate, print, store, or receive wallet private keys or seed phrases; redact tokens, keys, signatures, and authorization headers before sharing responses.
+
+Risk: The skill includes account-control operations such as API key revocation and wallet linking.
+
+Mitigation: Require explicit user confirmation before revoking keys or linking wallets, and prefer externally managed wallet software for signing.
+
+## Reference(s):
+
+- [BitNow ClawHub Skill Page](https://clawhub.ai/viyozc/skills/bitnow)
+- [OpenBytes Gateway API](https://gateway.openbytes.ai)
+- [ethers.js Wallet.createRandom](https://docs.ethers.org/v6/api/wallet/#Wallet-createRandom)
+- [viem createWallet](https://viem.sh/docs/actions/wallet/createWallet.html)
+- [Base Sepolia RPC](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, JavaScript, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, authentication headers, wallet signing message formats, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+{
+  "taskId": "quiz-low-carbon",
+  "taskDir": "/tmp/weipaiban-quiz-low-carbon",
+  "theme": "低碳生活",
+  "format": "quiz",
+  "currentStep": "work-ready",
+  "title": "低碳生活小测",
+  "workId": null
+}

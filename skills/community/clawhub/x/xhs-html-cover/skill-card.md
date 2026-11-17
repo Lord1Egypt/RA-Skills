@@ -1,41 +1,55 @@
-## Description: <br>
-Generates PNG cover, poster, social media, and illustration images from a user-provided topic by filling local HTML templates and rendering them with Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates PNG cover images, posters, and social-media graphics from a user-supplied topic by filling HTML templates and rendering them locally with Playwright.
 
-## Publisher: <br>
-[luoyuhyy](https://clawhub.ai/user/luoyuhyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoyuhyy](https://clawhub.ai/user/luoyuhyy)
 
-## Use Case: <br>
-External users and creators use this skill to generate local PNG image assets for covers, posters, social media posts, and visual materials from short topic prompts with selectable styles and sizes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local browser renderer and writes PNG files to local storage. <br>
-Mitigation: Install only when local Playwright rendering and local file output are acceptable for the workspace. <br>
-Risk: Untrusted HTML or JavaScript inserted into template placeholders could change rendered output or browser behavior. <br>
-Mitigation: Treat image fields as plain text, avoid pasting untrusted HTML or JavaScript into placeholders, and review template changes before use. <br>
+## Use Case:
 
+External creators and developers use this skill to generate local PNG image assets for covers, posters, social posts, greetings, horoscope content, and other promotional or visual materials without a paid image-generation API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoyuhyy/xhs-html-cover) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files with Markdown usage guidance and Playwright screenshot commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multiple visual styles and aspect ratios; generated images are written locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: User-provided text may be rendered into local HTML templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape HTML-sensitive characters, set content length limits, and avoid untrusted raw HTML input before rendering.
+
+Risk: Browser rendering can load or execute active content if templates or inputs are expanded unsafely.
+
+Mitigation: Render with JavaScript disabled where practical and block network requests when processing arbitrary third-party content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoyuhyy/skills/xhs-html-cover)
+- [Publisher profile](https://clawhub.ai/user/luoyuhyy)
+- [Playwright documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML template variables and Playwright screenshot commands that produce PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated image assets are PNG files; artifact documentation describes 1x1, 4x5, 9x16, 16x9, and 4x3 sizes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

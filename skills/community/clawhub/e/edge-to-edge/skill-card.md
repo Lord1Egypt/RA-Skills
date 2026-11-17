@@ -1,43 +1,50 @@
-## Description: <br>
-Use this skill to migrate your Jetpack Compose app to add adaptive edge-to-edge support and troubleshoot common issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to migrate Jetpack Compose apps to adaptive edge-to-edge support, fix UI components obscured by system bars or IME insets, and improve system bar legibility.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Android developers and engineers use this skill to update Jetpack Compose apps for SDK 35 edge-to-edge behavior, apply safe system and IME insets, and troubleshoot overlapping UI around status and navigation bars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying the skill may lead an agent to change Android Activity code, SDK targets, and AndroidManifest settings, which can introduce build or UI regressions. <br>
-Mitigation: Apply changes on a branch, review source and manifest diffs carefully, and run the Android build and tests afterward. <br>
-Risk: Incorrect inset handling can cause double padding, obscured input fields, or system bar legibility issues in Jetpack Compose screens. <br>
-Mitigation: Follow one inset strategy per component, check IME behavior on affected screens, and manually verify status and navigation bar layouts. <br>
-Risk: The artifact metadata names Google LLC as author, but server-resolved provenance is unavailable. <br>
-Mitigation: Do not treat the metadata author claim as independently verified provenance; rely on the server-resolved publisher handle for ownership. <br>
+## Use Case:
 
+Developers and engineers use this skill to update Android Jetpack Compose apps for edge-to-edge behavior across Activities, lists, FABs, dialogs, system bars, and soft keyboard insets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/edge-to-edge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ntriq-gh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with Kotlin and AndroidManifest XML code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance for Android Jetpack Compose projects; users should review proposed source and manifest changes before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can lead an agent to change Android target SDK, Activity setup, manifest soft-input behavior, and Compose inset handling, which may affect layout or runtime behavior across devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated AndroidManifest.xml, Activity, Gradle, and Compose layout changes before merging, and run the app build and UI checks on representative devices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/edge-to-edge)
+- [ClawHub publisher profile](https://clawhub.ai/user/ntriq-gh)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Kotlin code blocks and checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to Android Activity code, AndroidManifest.xml, Compose layout modifiers, and Gradle target SDK configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

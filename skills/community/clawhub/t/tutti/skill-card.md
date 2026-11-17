@@ -1,40 +1,54 @@
-## Description: <br>
-Orchestrate multiple AI coding agents (Claude Code, Codex, Aider) from a single config - launch teams, run workflows, track capacity, and manage handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate multiple AI coding agents (Claude Code, Codex, Aider) from a single config to launch teams, run workflows, track capacity, and manage handoffs.
 
-## Publisher: <br>
-[nutt-adam](https://clawhub.ai/user/nutt-adam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nutt-adam](https://clawhub.ai/user/nutt-adam)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate multi-agent coding workflows, including launching agents, sending prompts, running verification workflows, managing handoffs, and landing agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate agents, copy context between workspaces, and run git-changing actions such as landing branches. <br>
-Mitigation: Run preflight checks, review generated handoffs and branch-landing commands before use, and perform work in repositories where unintended merges, pushes, or file changes can be reviewed and reverted. <br>
-Risk: Context handoff and output capture workflows may include sensitive repository or user information. <br>
-Mitigation: Avoid secrets in captured context and inspect handoff packets before applying or sharing them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multiple AI coding agents, run configured workflows, monitor agent status, and manage handoffs or landing work in a repository.
 
-## Reference(s): <br>
-- [Tutti homepage](https://github.com/nutthouse/tutti) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command envelopes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions return JSON envelopes with command, exit code, data, stdout, stderr, and optional parse or status notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, changelog, action contract, release evidence) <br>
+Risk: The skill can start agents, run workflows, land branches, open PRs, and execute configured shell-command workflow steps in the active repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted repositories, review tutti.toml first, run preflight checks, and require explicit human approval before run_workflow, land_agent --force, land_agent --pr, or workflows that run shell commands or push code.
+
+Risk: Handoff packets and captured agent outputs can contain sensitive project context.
+
+Mitigation: Treat handoff packets as sensitive artifacts and review the target agent and packet path before apply_handoff.
+
+## Reference(s):
+
+- [Tutti homepage](https://github.com/nutthouse/tutti)
+- [ClawHub skill page](https://clawhub.ai/nutt-adam/skills/tutti)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON action envelopes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Wrapper actions return status, command, stdout, stderr, and parsed data when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, action contract, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

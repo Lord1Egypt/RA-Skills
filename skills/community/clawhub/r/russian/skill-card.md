@@ -1,39 +1,49 @@
-## Description: <br>
-Write Russian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Russian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and content authors use this skill to ask an agent to produce casual, internet-native Russian that avoids overly formal or robotic phrasing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Casual or internet-native Russian may be inappropriate for formal, professional, or carefully neutral contexts. <br>
-Mitigation: Use this skill only when informal Russian is appropriate; choose a formal Russian style guide or human review for professional contexts. <br>
-Risk: The skill encourages slang, diminutives, internet markers, and mild expletives that may not fit every audience. <br>
-Mitigation: Review generated Russian for audience, brand, and publication context before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/russian) <br>
+## Use Case:
 
+Writers, translators, and agents use this skill to produce casual, natural-sounding Russian text for informal conversations, internet posts, reactions, and short messages.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to casual Russian and may produce slang, informal address, contractions, or mild expletives that are inappropriate for formal, professional, or sensitive contexts.
+
+Mitigation: Ask the agent to use formal Russian, professional tone, and avoid slang, casual contractions, and informal address when the context requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/russian)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Russian text or writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to a casual register unless the user explicitly asks for formal Russian.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

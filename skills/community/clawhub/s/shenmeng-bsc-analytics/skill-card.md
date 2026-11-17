@@ -1,45 +1,57 @@
-## Description: <br>
-BSC Analytics helps agents analyze BNB Chain DeFi protocols, evaluate projects, calculate yield scenarios, and surface BSC ecosystem risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides BSC/BNB Chain ecosystem analysis for DeFi protocols, on-chain monitoring, project evaluation, yield opportunities, and risk alerts.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers, analysts, and crypto users can use this skill for BNB Chain ecosystem research, protocol and project evaluation, and yield scenario calculations. Its analytics should be reviewed as static sample research, not live BSC monitoring or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics and yield outputs may be static sample research rather than live BSC monitoring or financial advice. <br>
-Mitigation: Review outputs against current market and on-chain data before acting, and treat recommendations as research support only. <br>
-Risk: The skill includes an under-disclosed paid verification flow that may ask for a wallet address and contact an external SkillPay service. <br>
-Mitigation: Avoid providing a wallet address unless intentionally using the paid flow; the publisher should disclose the external payment data flow. <br>
-Risk: The security evidence reports an exposed payment API key and recommends changing how payment verification is handled. <br>
-Mitigation: The publisher should rotate the exposed key and move payment verification server-side or into secure configuration. <br>
-Risk: The security evidence says the skill overstates live monitoring capabilities. <br>
-Mitigation: Confirm which monitoring features are actually implemented before relying on the skill for operational monitoring. <br>
+## Use Case:
 
+External analysts, developers, and crypto researchers use this skill to summarize BSC ecosystem metrics, compare protocols, evaluate projects with the BISCUIT rubric, and estimate yield scenarios. Treat investment-oriented outputs as decision support, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-bsc-analytics) <br>
-- [Publisher profile](https://clawhub.ai/user/shenmeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks, command examples, and script-generated JSON-style analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes BSC ecosystem summaries, protocol/project evaluations, yield calculations, and risk notes; some script outputs use static sample data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The package includes a hardcoded SkillPay API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the key before release, remove secrets from the package, and load payment credentials from a runtime secret store or environment variable.
+
+Risk: Payment verification can send a wallet address to an external SkillPay service without clear user-facing disclosure.
+
+Mitigation: Disclose the data transfer before use and avoid providing a wallet address unless the user accepts that transfer.
+
+Risk: Analytics outputs are static examples or heuristics unless live data sources and provenance are added.
+
+Mitigation: Label outputs as estimates, verify figures against live trusted sources, and avoid treating generated yield or investment analysis as financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/shenmeng-bsc-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text reports with optional JSON files and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce static heuristic analytics and temporary JSON report files when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

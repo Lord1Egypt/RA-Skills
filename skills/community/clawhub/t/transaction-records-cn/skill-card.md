@@ -1,41 +1,58 @@
-## Description: <br>
-根据指定账期的招商银行活期、理财及对公账户源数据生成包含明细和资金汇总的标准化交易记录 Excel 文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据指定账期的招商银行活期、理财及对公账户源数据生成包含明细和资金汇总的标准化交易记录 Excel 文件，并可从交易记录生成账目 Excel 文件。
 
-## Publisher: <br>
-[courage-zen](https://clawhub.ai/user/courage-zen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[courage-zen](https://clawhub.ai/user/courage-zen)
 
-## Use Case: <br>
-Finance or operations users can convert copied bank exports for a monthly accounting period into standardized transaction workbooks and optional ledger workbooks for review and archival workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The transaction-record script can rewrite the source checking-account CSV while cleaning it. <br>
-Mitigation: Run the skill only on copied bank exports and keep untouched backups of original bank files. <br>
-Risk: Generated workbooks may be used for accounting decisions even if source files, dates, balances, or formulas are wrong. <br>
-Mitigation: Use restricted input and output folders, inspect generated workbooks, and reconcile outputs against source records before relying on them. <br>
+## Use Case:
 
+Finance and operations users use this skill to transform monthly bank exports into standardized transaction and accounting workbooks for review, reconciliation, and archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/courage-zen/transaction-records-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/courage-zen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [Excel workbooks (.xlsx) with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YYYYMM accounting period and local bank export files; optional parameters select input/output folders, initial balance, and accounting date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill rewrites source CSV data during preprocessing, which can compromise original bank exports used as audit records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on working copies and keep untouched backups of all original bank exports.
+
+Risk: Formula-like text from untrusted spreadsheet inputs may be carried into generated workbooks.
+
+Mitigation: Inspect generated workbooks before opening or sharing them, and add formula sanitization before routine use with untrusted inputs.
+
+Risk: Unpinned Python dependencies can change parsing or workbook behavior over time.
+
+Mitigation: Pin and review dependencies such as openpyxl and xlrd before regular operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/courage-zen/skills/transaction-records-cn)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated Excel workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces period-specific .xlsx workbooks such as transaction records and accounting ledgers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

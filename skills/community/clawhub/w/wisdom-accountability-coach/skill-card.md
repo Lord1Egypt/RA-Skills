@@ -1,41 +1,55 @@
-## Description: <br>
-Provides compassionate accountability coaching, longitudinal pattern reflection, and philosophy-informed growth guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Longitudinal memory tracking, philosophy teaching, and personal accountability with compassion.
 
-## Publisher: <br>
-[mikecourt](https://clawhub.ai/user/mikecourt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mikecourt](https://clawhub.ai/user/mikecourt)
 
-## Use Case: <br>
-External users use this skill for accountability check-ins, commitment tracking, values alignment, and practical wisdom teaching through reflection on their lived experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to reference personal commitments, relationships, struggles, and life patterns over time. <br>
-Mitigation: Review agent memory and deletion settings, and avoid sharing highly sensitive information you do not want retained. <br>
-Risk: The skill provides coaching-style reflection but is not therapy, crisis support, medical advice, or legal advice. <br>
-Mitigation: Use qualified professionals or emergency services for mental health treatment, crisis situations, medical needs, legal questions, severe depression, trauma, or addiction. <br>
+## Use Case:
 
+External users use this skill for reflective coaching, accountability check-ins, commitment tracking, values alignment, and philosophy-informed personal growth. It is intended to support reflection and habit awareness, not therapy, crisis support, or professional medical, legal, or mental-health advice.
 
-## Reference(s): <br>
-- [Conversation Scripts & Example Dialogues](references/conversation-scripts.md) <br>
-- [Philosophy & Wisdom Traditions](references/philosophy-traditions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural language coaching responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May draw on prior conversations, commitments, and patterns when memory is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may encourage users to share sensitive personal goals, commitments, life patterns, or mental-health-adjacent context for longitudinal coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where platform memory behavior is acceptable, and avoid sharing sensitive details unless the user is comfortable with that retention.
+
+Risk: Reflective coaching output could be mistaken for therapy, crisis support, or professional medical, legal, or mental-health advice.
+
+Mitigation: Keep the skill in a coaching and reflection role, and direct crisis, severe depression, trauma, addiction, medical, or legal situations to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mikecourt/skills/wisdom-accountability-coach)
+- [Conversation Scripts & Example Dialogues](artifact/references/conversation-scripts.md)
+- [Philosophy & Wisdom Traditions](artifact/references/philosophy-traditions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference remembered goals, commitments, patterns, and personal context when platform memory is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

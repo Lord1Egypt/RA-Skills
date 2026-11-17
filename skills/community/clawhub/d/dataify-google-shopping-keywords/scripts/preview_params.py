@@ -29,7 +29,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Preview Dataify Google Shopping keyword parameters.")
     parser.add_argument("--parameters-json", help="JSON object or array for spider_parameters.")
     parser.add_argument("--keyword")
-    parser.add_argument("--file-name", default=DEFAULT_FILE_NAME)
+    parser.add_argument("--file-name")
     parser.add_argument("--spider-id", default=SPIDER_ID)
     return parser.parse_args()
 
@@ -79,7 +79,7 @@ def print_preview(args: argparse.Namespace) -> None:
         current_parameters = json.dumps(parameter_sets, ensure_ascii=False, separators=(",", ":"))
         current_keyword = "Provided in spider_parameters"
     else:
-        current_keyword = args.keyword or DEFAULT_KEYWORD
+        current_keyword = args.keyword
         current_parameters = json.dumps(
             [{"keyword": current_keyword}],
             ensure_ascii=False,

@@ -1,41 +1,54 @@
-## Description: <br>
-Manage Ravi contacts by listing, searching, creating, updating, deleting, and resolving names to email addresses or phone numbers before sending messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage contacts associated with your identity: list, search, create, update, and delete contacts, and resolve names to email or phone details before messaging.
 
-## Publisher: <br>
-[raunaksingwi](https://clawhub.ai/user/raunaksingwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raunaksingwi](https://clawhub.ai/user/raunaksingwi)
 
-## Use Case: <br>
-External users and agents use this skill to manage Ravi contact records and resolve a recipient's name to an email address or phone number before email or SMS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contacts are stored in plaintext, so contact fields may expose sensitive notes, credentials, API keys, or other secrets if misused. <br>
-Mitigation: Store only contact information in contact fields; use dedicated password or secret storage for credentials and API keys. <br>
-Risk: Creating, updating, deleting, or marking contacts as trusted can affect downstream email and SMS routing. <br>
-Mitigation: Review contact changes and trusted-contact flag updates before applying them. <br>
+## Use Case:
 
+External users and agents use this skill to maintain Ravi contacts and resolve a person's name to an email address or phone number before sending email or SMS.
 
-## Reference(s): <br>
-- [Contacts API Reference](https://ravi.id/docs/schema/contacts.json) <br>
-- [ClawHub skill page](https://clawhub.ai/raunaksingwi/ravi-contacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference contact fields including email address, phone number, display name, nickname, and trusted-contact status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Contacts are stored in plaintext, so sensitive secrets or credentials could be exposed if entered into contact fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only for contact details, and use dedicated password or secret-management skills for credentials and API keys.
+
+Risk: Recipient lookup can return multiple contacts or no matching contact, which could lead to sending a message to the wrong person if unresolved.
+
+Mitigation: Confirm the intended recipient when multiple matches are found, and ask the user for the email address or phone number when no match exists.
+
+## Reference(s):
+
+- [Contacts API Reference](https://ravi.id/docs/schema/contacts.json)
+- [ClawHub Skill Page](https://clawhub.ai/raunaksingwi/skills/ravi-contacts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Ravi CLI contact records and asks the user to disambiguate when contact search returns multiple matches.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

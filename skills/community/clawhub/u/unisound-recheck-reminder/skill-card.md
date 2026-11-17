@@ -1,44 +1,59 @@
-## Description: <br>
-Extracts health-exam findings that need recheck, grades urgency, and produces structured follow-up items plus patient-facing reminder text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured recheck reminder from a health exam report by identifying follow-up items, urgency windows, recommended exams, departments, venues, and preparation notes.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Health exam centers and health management teams use this skill to convert exam report text into a recheck checklist with urgency windows, departments, venues, preparation steps, and a concise reminder for the examinee. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health exam report text may be sent to a configured remote model endpoint and can contain sensitive medical or identifying information. <br>
-Mitigation: Use only with organizational approval for the endpoint, remove names, IDs, phone numbers, and other identifiers before running, and verify endpoint retention terms. <br>
-Risk: The release claims de-identification, but the security evidence says the code does not perform that de-identification itself. <br>
-Mitigation: Perform de-identification before invoking the skill and do not rely on the skill as the privacy control. <br>
-Risk: Saved output files may contain sensitive health follow-up details. <br>
-Mitigation: Choose approved storage locations for --output files, apply access controls, and delete outputs according to organizational retention policy. <br>
-Risk: The default timeout can wait indefinitely for the remote model call. <br>
-Mitigation: Set a finite --timeout value that matches operational requirements. <br>
+## Use Case:
 
+Health exam centers and health management organizations use this skill to turn report findings into a follow-up checklist and recipient-facing reminder. It supports post-exam recheck coordination, while final medical decisions remain with the receiving clinician.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unisound-llm/unisound-recheck-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [JSON followed by a plain-language recheck reminder; optionally written to a UTF-8 output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured remote medical model endpoint and can print to stdout or save to an --output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Health exam report contents are sent to a remote model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove names, IDs, phone numbers, addresses, and other direct identifiers before use, and only process reports whose disclosure to the configured service is approved.
+
+Risk: The documented de-identification posture is stronger than the artifact behavior.
+
+Mitigation: Add or require local redaction before invoking the model, then verify the redaction path with representative reports before deployment.
+
+Risk: The API base URL can be changed at runtime.
+
+Mitigation: Restrict --base to an approved HTTPS endpoint for the exact app key and environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-recheck-reminder)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Configured medical model endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, guidance]
+
+**Output Format:** [JSON followed by plain-language reminder text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write the combined output to a user-specified file path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

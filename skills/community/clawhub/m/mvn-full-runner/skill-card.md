@@ -1,42 +1,58 @@
-## Description: <br>
-Run Maven commands with full argument passthrough, optionally specifying the working directory through a Node.js wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Maven commands with full argument passthrough, optionally specifying the working directory, using a Node.js wrapper for safer execution.
 
-## Publisher: <br>
-[yuanyongm](https://clawhub.ai/user/yuanyongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yuanyongm](https://clawhub.ai/user/yuanyongm)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent run Maven goals, plugins, profiles, and flags in a selected project directory while preserving Maven's normal command behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Maven goals, plugins, profiles, and -D options can run build logic with the same effects as a direct mvn command. <br>
-Mitigation: Review requested Maven arguments before execution, especially for sensitive or untrusted projects. <br>
-Risk: The optional --dir argument changes the project directory where Maven runs. <br>
-Mitigation: Confirm the target directory is the intended project before running the wrapper. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyongm/mvn-full-runner) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+## Use Case:
 
+Developers and build engineers use this skill to have an agent run Maven goals, plugin goals, flags, and Maven information commands against Java projects, with an optional explicit working directory.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and Maven console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and Maven in PATH; forwards all non-wrapper arguments directly to mvn.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Maven goals, plugins, and POM-defined build steps can execute project-controlled code.
+
+Mitigation: Use trusted repositories and review unusual plugin goals before running them.
+
+Risk: Secrets passed on the command line can be exposed through shell history, logs, or build output.
+
+Mitigation: Avoid passing secrets as Maven command-line arguments and prefer safer secret-handling mechanisms.
+
+Risk: Running the wrapper in an unintended directory can execute the wrong project's build logic.
+
+Mitigation: Prefer explicit --dir paths and confirm the target project before execution.
+
+## Reference(s):
+
+- [Maven Full Runner on ClawHub](https://clawhub.ai/yuanyongm/skills/mvn-full-runner)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Terminal output and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Executes Maven with full argument passthrough; Maven goals, plugins, and project POMs determine build-side behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

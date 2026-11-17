@@ -1,41 +1,58 @@
-## Description: <br>
-Schedule and manage social media posts through the Postiz API, including multi-platform posting, scheduling, media upload, duplicate checks, and thread creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and manage social media posts via the Postiz API for self-hosted or cloud deployments.
 
-## Publisher: <br>
-[coolmanns](https://clawhub.ai/user/coolmanns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coolmanns](https://clawhub.ai/user/coolmanns)
 
-## Use Case: <br>
-External users and automation developers use this skill to plan, validate, schedule, publish, update, delete, and de-duplicate social posts across Postiz-connected channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill ships a fixed Postiz account password that can be used to publish, upload, list, update, and delete posts. <br>
-Mitigation: Rotate the exposed password before use, remove hardcoded credentials, and use per-user or environment-provided authentication with the minimum required permissions. <br>
-Risk: The helper scripts persist authenticated session cookies on disk. <br>
-Mitigation: Store session material securely or avoid persistent cookies; restrict local file permissions and remove session files after use. <br>
-Risk: Actions performed through the configured Postiz instance can affect connected social channels. <br>
-Mitigation: Use the skill only with Postiz instances and social channels you control, and review scheduled or draft posts before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/coolmanns/postiz-ext) <br>
+## Use Case:
 
+Content creators, social media operators, and automation-focused developers use this skill to schedule, draft, publish, query, update, delete, and deduplicate posts across Postiz-connected social channels.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API payloads; helper scripts may print plain-text status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create, schedule, list, update, delete, and validate social posts through an authenticated Postiz session.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release includes real-looking Postiz account credentials.
+
+Mitigation: Do not use the embedded credentials; rotate the password, revoke active sessions, remove the secrets from the skill and history, and require user-supplied credentials or tokens.
+
+Risk: Reusable Postiz session cookies are stored in an insecure temporary location.
+
+Mitigation: Store session material only in memory or a private protected location with restrictive permissions, and clear it when no longer needed.
+
+Risk: The skill can immediately publish or delete social posts.
+
+Mitigation: Require explicit confirmation for immediate publish and delete actions, and prefer draft or scheduled workflows when review is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coolmanns/skills/postiz-ext)
+- [Publisher Profile](https://clawhub.ai/user/coolmanns)
+- [Postiz Dashboard](https://postiz.home.mykuhlmann.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include platform-specific character validation, scheduling decisions, media upload steps, duplicate checks, and direct Postiz API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

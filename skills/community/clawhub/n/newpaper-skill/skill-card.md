@@ -1,46 +1,66 @@
-## Description: <br>
-Converts academic paper PDFs into editable PowerPoint posters and HTML files using OpenAI-compatible APIs such as UniAPI or MiniMax. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts academic paper PDFs into PowerPoint posters and HTML files using OpenAI-compatible model APIs.
 
-## Publisher: <br>
-[caoxinran102-sys](https://clawhub.ai/user/caoxinran102-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caoxinran102-sys](https://clawhub.ai/user/caoxinran102-sys)
 
-## Use Case: <br>
-Developers, researchers, and students use this skill to set up Paper2Poster, configure API credentials, and generate academic poster files from a supplied paper PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs external Paper2Poster code. <br>
-Mitigation: Use a disposable directory or container, review or pin the repository before execution, and confirm before cloning, installing, or running code. <br>
-Risk: The skill stores API credentials locally in a .env file. <br>
-Mitigation: Use a dedicated low-limit API key and keep .env out of version control. <br>
-Risk: Paper content may be sent to configured API or search providers. <br>
-Mitigation: Avoid confidential or unpublished papers unless the configured providers are trusted for that data. <br>
+## Use Case:
 
+Developers and researchers use this skill to turn a paper PDF, and optionally a logo, into editable poster outputs while the agent handles setup, configuration, and generation commands.
 
-## Reference(s): <br>
-- [Paper2Poster project page](https://paper2poster.github.io/) <br>
-- [Paper2Poster arXiv paper](https://arxiv.org/abs/2505.21497) <br>
-- [Paper2Poster dataset](https://huggingface.co/datasets/Paper2Poster/Paper2Poster) <br>
-- [Paper2Poster Hugging Face paper page](https://huggingface.co/papers/2505.21497) <br>
-- [Paper2Poster Hugging Face Spaces demo](https://huggingface.co/spaces/camel-ai/Paper2Poster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and generated PPTX/HTML file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided paper PDF path, OpenAI-compatible API credentials, and an optional logo path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill downloads and runs mutable external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable workspace or sandbox, inspect the repository before execution, and pin a reviewed revision when possible.
+
+Risk: The workflow installs packages into a Conda environment.
+
+Mitigation: Review dependency changes before installation and avoid running the setup in sensitive host environments.
+
+Risk: Paper contents are sent to the configured model provider.
+
+Mitigation: Avoid sensitive unpublished papers unless the configured provider is trusted for that data.
+
+Risk: The skill stores API credentials in a plaintext .env file.
+
+Mitigation: Prefer environment-injected or temporary credentials and remove plaintext secrets after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caoxinran102-sys/skills/newpaper-skill)
+- [Paper2Poster arXiv paper](https://arxiv.org/abs/2505.21497)
+- [Paper2Poster project page](https://paper2poster.github.io/)
+- [Paper2Poster dataset](https://huggingface.co/datasets/Paper2Poster/Paper2Poster)
+- [Paper2Poster demo](https://huggingface.co/spaces/camel-ai/Paper2Poster)
+- [External repository specified by the skill](https://github.com/caoxinran102-sys/Paper2Poster.git)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands that generate PPTX and HTML poster files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the supplied paper PDF path and optional logo path; generated files are written under a generated_posters directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Track sobriety with alcohol-free streaks, craving management, and recovery milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track sobriety with alcohol-free streaks, craving management, and recovery milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill as a sobriety support companion to track alcohol-free time, manage cravings, review triggers, calculate money saved, and find support resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sobriety dates, cravings, triggers, reasons for quitting, and meeting-location searches can be sensitive recovery information. <br>
-Mitigation: Check how the agent environment stores chat history or memory before relying on confidentiality claims, and avoid entering information that should not be retained. <br>
-Risk: Alcohol withdrawal can be dangerous and may require professional medical support. <br>
-Mitigation: Use the skill for support and tracking only; consult a healthcare provider for medical withdrawal concerns or severe withdrawal symptoms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jhillin8/quit-alcohol) <br>
+## Use Case:
+
+External users can use this skill to track alcohol-free streaks, log cravings and triggers, calculate money saved, and access recovery support resources.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sobriety streaks, cravings, triggers, and recovery notes are sensitive personal information.
+
+Mitigation: Use the skill only in contexts where local recovery information can be stored, and avoid sharing or exporting transcripts that contain this data.
+
+Risk: Finding nearby recovery meetings may expose precise location information.
+
+Mitigation: Provide a coarse city or ZIP code instead of an exact address when requesting nearby support resources.
+
+Risk: Alcohol withdrawal symptoms can require professional medical care.
+
+Mitigation: Use the skill for tracking and support, and consult a healthcare provider or emergency services for severe withdrawal symptoms or medical concerns.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and plain-language conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sobriety streak summaries, craving coping suggestions, milestone status, progress dashboards, savings estimates, and support resource guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and plain-language responses with progress summaries, coping suggestions, support-resource links, and local tracking prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Handles sensitive sobriety, craving, trigger, and coarse location information supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

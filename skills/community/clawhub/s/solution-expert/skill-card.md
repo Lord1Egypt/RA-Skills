@@ -1,40 +1,57 @@
-## Description: <br>
-Turns customer background, problems, and target requirements into consulting-grade solution narratives and PPT-ready JSON outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn customer background, current problems, and target requirements into a consulting-grade solution narrative and PPT-ready JSON outline.
 
-## Publisher: <br>
-[renqiukai](https://clawhub.ai/user/renqiukai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renqiukai](https://clawhub.ai/user/renqiukai)
 
-## Use Case: <br>
-Employees, external consultants, and developers use this skill to convert customer context, current problems, target requirements, and constraints into structured solution narratives or PPT-ready JSON for proposals, pre-sales materials, and project reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerPoint export depends on local converter and template files that are referenced by the skill but not included in the package. <br>
-Mitigation: Verify that the local Python generator and PowerPoint template are trusted before running PPT export. <br>
-Risk: Generated proposal content can include inferred assumptions or business judgments that may be incomplete or misleading. <br>
-Mitigation: Review the generated JSON, assumptions, and conclusions against source materials before sharing or converting to slides. <br>
+## Use Case:
 
+Developers, consultants, and pre-sales teams use this skill to turn customer background, current problems, target requirements, and constraints into a structured solution narrative and PPT-ready JSON outline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renqiukai/solution-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON object matching the skill's PPT outline schema; optional PPTX file generation through local workspace tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs JSON only for deck outlines; may write aligned .json and .pptx files when the user asks for PowerPoint generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated decks may carry an inaccurate hardcoded author value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or confirm the cover author before using the JSON or generated PPTX.
+
+Risk: The skill processes local business files and can trigger PPT conversion commands that write local outputs.
+
+Mitigation: Use explicit input files, avoid sensitive documents unless intended, and approve the conversion command and output path before execution.
+
+Risk: Incomplete customer inputs can lead to assumptions or misleading consulting guidance.
+
+Mitigation: Review the generated assumptions, facts, and recommendations before sharing with stakeholders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renqiukai/skills/solution-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON for a consulting-style presentation outline; optional PPTX file generation when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs must use the skill's fixed JSON schema and may include local file names for generated JSON and PPTX artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

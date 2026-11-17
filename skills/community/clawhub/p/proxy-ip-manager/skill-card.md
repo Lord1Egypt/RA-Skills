@@ -1,40 +1,56 @@
-## Description: <br>
-Kuaidaili Proxy IP Manager helps Kuaidaili users configure API credentials, retrieve proxy IPs, inspect order status, check expiry, evaluate IP health, tune concurrency, and review usage statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Kuaidaili proxy IP service credentials, order lookups, IP retrieval, expiry checks, health checks, concurrency recommendations, and usage statistics for agents working with Kuaidaili accounts.
 
-## Publisher: <br>
-[kuaidaili-ai](https://clawhub.ai/user/kuaidaili-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuaidaili-ai](https://clawhub.ai/user/kuaidaili-ai)
 
-## Use Case: <br>
-External Kuaidaili customers and developers use this skill to manage proxy account configuration, obtain proxy endpoints, monitor expiry and health, and choose safer concurrency settings for proxy workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Kuaidaili API secrets and proxy credentials, and terminal output from proxy retrieval may contain usable proxy usernames and passwords. <br>
-Mitigation: Install only when the publisher and Kuaidaili account workflow are trusted, protect or remove the local configuration file, and treat proxy retrieval output as secret. <br>
+## Use Case:
 
+Developers and operations users with Kuaidaili proxy accounts use this skill to configure local API credentials, retrieve proxy endpoints, inspect order state, monitor expiry and proxy health, and tune request concurrency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kuaidaili-ai/proxy-ip-manager) <br>
-- [Kuaidaili API response reference](references/api_response.md) <br>
-- [Proxy health scoring rules](references/scoring_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include proxy endpoints, usernames, passwords, account status, expiry data, health scores, and usage statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores Kuaidaili API secrets locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private environment, restrict permissions on the config file, avoid shared machines, and rotate credentials after testing.
+
+Risk: Proxy credentials or usable proxy addresses may appear in output or logs.
+
+Mitigation: Avoid pasting real secrets into shell commands or shared chats, review transcripts and logs, and remove or rotate exposed credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kuaidaili-ai/skills/proxy-ip-manager)
+- [Kuaidaili API response reference](references/api_response.md)
+- [IP scoring and concurrency rules](references/scoring_rules.md)
+- [Kuaidaili user center](https://www.kuaidaili.com/uc/overview/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, terminal text, and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include masked Kuaidaili API credentials, proxy connection strings, order status, expiry notifications, health scores, and concurrency recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

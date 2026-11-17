@@ -1,51 +1,62 @@
-## Description: <br>
-Use Terraform/IaC for Volcengine resources only when the user explicitly chooses Terraform/IaC, already has a Terraform workflow/state, or confirms they need plan/diff/drift/destroy safety for VKE, managed databases/cache/storage, load balancers, domains/certificates, logging/monitoring, or team-managed infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Terraform/IaC for Volcengine resources when the user explicitly chooses Terraform/IaC, already has a Terraform workflow or state, or needs plan, diff, drift, or destroy safety for managed infrastructure.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to generate, review, apply, export, destroy, and drift-check Terraform-based Volcengine infrastructure when IaC is the chosen workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent make real Volcengine infrastructure changes through Terraform. <br>
-Mitigation: Use least-privilege or temporary credentials, review every Terraform plan, and require explicit approval before apply or destroy. <br>
-Risk: Terraform state, kubeconfig, cloud outputs, and generated files may contain sensitive infrastructure data or credentials. <br>
-Mitigation: Keep Terraform state and .volcengine/iac-outputs.json out of git, logs, shared workspaces, and backups; use restrictive file permissions for sensitive outputs. <br>
-Risk: Destructive Terraform operations can delete stateful resources such as databases, caches, or object storage. <br>
-Mitigation: Reject auto-approve for apply and destroy, inspect plan summaries for deletes or replacements, and use an extra confirmation for production destroys. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to generate, validate, plan, apply, inspect, and destroy Terraform-managed Volcengine infrastructure when IaC is the chosen workflow.
 
-## Reference(s): <br>
-- [TOS S3-Compatible Backend](references/backend-tos.md) <br>
-- [Reusable Module Reference](references/modules.md) <br>
-- [Provider Versions](references/provider-versions.md) <br>
-- [Blocked Volcengine Cloud Control Resources](references/volcenginecc-blocked.md) <br>
-- [Volcengine Cloud Control Network](references/volcenginecc-network.md) <br>
-- [Volcengine Cloud Control ECS](references/volcenginecc-ecs.md) <br>
-- [Volcengine Cloud Control VKE](references/volcenginecc-vke.md) <br>
-- [Volcengine Cloud Control RDS MySQL](references/volcenginecc-rdsmysql.md) <br>
-- [Volcengine Cloud Control Redis](references/volcenginecc-redis.md) <br>
-- [Volcengine Cloud Control TOS](references/volcenginecc-tos.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Terraform configuration guidance, generated tfvars files, and JSON summaries from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write Terraform working files under .volcengine/terraform/ and downstream output JSON at .volcengine/iac-outputs.json when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can operate Terraform against a Volcengine account and may create, change, replace, or destroy cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every Terraform plan before apply or destroy, require explicit user confirmation, and avoid auto-approve workflows in real environments.
+
+Risk: Terraform state, kubeconfig, credentials, and .volcengine/iac-outputs.json can contain sensitive infrastructure data.
+
+Mitigation: Keep state and output files out of version control, restrict file permissions, and prefer encrypted remote state with strict access controls for shared or production use.
+
+Risk: Volcengine TOS used through Terraform's S3 backend does not provide state locking.
+
+Mitigation: Coordinate applies manually, use a single CI runner, or use a backend with locking for team-managed and production environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volc-sdk-team/skills/volcengine-iac)
+- [TOS S3-Compatible Backend](references/backend-tos.md)
+- [Module Reference](references/modules.md)
+- [Provider Versions](references/provider-versions.md)
+- [VolcengineCC Blocked Resources](references/volcenginecc-blocked.md)
+- [VKE Private CR Nginx Run](references/volcengine-vke-cr-nginx.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Terraform, shell, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate Terraform working files, tfvars, backend configuration, plan summaries, drift reports, and infrastructure output files when the user chooses IaC.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

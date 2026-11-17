@@ -1,40 +1,53 @@
-## Description: <br>
-Generates professional PowerPoint presentations from Markdown, including themed layouts, lists, quotes, code blocks, tables, chart conversion, and automatic closing slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PPT Generator converts Markdown into styled PPTX presentations with automatic chart generation, themes, lists, quotes, code blocks, tables, and ending-slide detection.
 
-## Publisher: <br>
-[agilight](https://clawhub.ai/user/agilight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agilight](https://clawhub.ai/user/agilight)
 
-## Use Case: <br>
-Agents use this skill to turn structured Markdown or presentation prompts into PowerPoint decks for reports, business summaries, technical briefings, and similar slide-based communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running a local Node.js helper and dependency can execute code on the user's machine. <br>
-Mitigation: Install and run the skill only in environments where local Node.js execution and the pptxgenjs dependency are acceptable. <br>
-Risk: User-selected input and output paths could read unintended Markdown files or overwrite an unexpected PPTX path. <br>
-Mitigation: Choose input Markdown files and output destinations deliberately before running the helper. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn structured Markdown outlines into PPTX slide decks for reports and presentations, especially when tables should become charts automatically.
 
-## Reference(s): <br>
-- [AI PPT Generator on ClawHub](https://clawhub.ai/agilight/ppt-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PPTX file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Node.js helper with pptxgenjs to create PPTX files from user-selected Markdown input and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Untrusted Markdown or stale npm dependencies could affect local PPT generation reliability or safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on Markdown files you choose, keep npm dependencies updated, and review generated slide decks before sharing.
+
+Risk: Documented command-line examples may not work as shown because the scanner notes that a CLI wrapper is missing or needs repair.
+
+Mitigation: Verify the local invocation path before relying on the skill in an automated workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agilight/skills/ppt-maker)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance and shell commands that produce PPTX presentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local PPTX output from user-selected Markdown input and theme settings.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

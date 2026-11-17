@@ -1,41 +1,50 @@
-## Description: <br>
-Public web retrieval and clean extraction engine for public URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch is a public web retrieval and clean extraction skill for fetching public URLs, extracting title, text, and links, saving raw and cleaned output locally, and keeping job history.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public web pages, extract readable text and links, save raw and cleaned copies locally, and inspect previous fetch jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches URLs supplied by the user or agent, which can unintentionally include internal, private, or credential-bearing URLs. <br>
-Mitigation: Use it only with deliberate public http/https URLs and avoid URLs that contain credentials or point to internal systems. <br>
-Risk: Fetched pages are saved locally and may retain sensitive content if sensitive pages are fetched by mistake. <br>
-Mitigation: Periodically review or clear the saved history and page files under ~/.openclaw/workspace/memory/fetch. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve public web pages, extract readable text and links, save raw and cleaned results locally, and inspect prior fetch jobs.
 
-## Reference(s): <br>
-- [Fetch Philosophy](references/philosophy.md) <br>
-- [Fetch ClawHub Listing](https://clawhub.ai/AGIstack/fetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Command-line text output and local raw HTML or clean text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores fetched page content and job history under ~/.openclaw/workspace/memory/fetch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The advertised public-only boundary is not fully enforced by URL validation, so a provided URL or redirect could cause the agent host to fetch localhost, private-network, or cloud metadata addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only clearly public HTTP/HTTPS pages and require strict public-destination plus redirect validation before treating the skill as a low-risk fetch utility.
+
+## Reference(s):
+
+- [Fetch Philosophy](references/philosophy.md)
+- [Fetch on ClawHub](https://clawhub.ai/agistack/skills/fetch)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output, local raw HTML and cleaned text files, JSON job metadata, and Markdown usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetched data is stored locally under the OpenClaw workspace memory path; no credentials, browser automation, cloud sync, or external uploads are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

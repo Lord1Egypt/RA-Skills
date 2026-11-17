@@ -1,48 +1,61 @@
-## Description: <br>
-Transform YouTube videos into beautifully formatted ebook articles with transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform YouTube videos into beautifully formatted ebook articles with transcripts.
 
-## Publisher: <br>
-[cclam5](https://clawhub.ai/user/cclam5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cclam5](https://clawhub.ai/user/cclam5)
 
-## Use Case: <br>
-Developers, creators, and content teams use this skill to set up a local workflow that fetches YouTube channel videos, extracts transcripts, rewrites them into articles, and packages them as EPUB ebooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses API keys and sends video URLs, transcripts, and metadata to external services. <br>
-Mitigation: Use a virtual environment, keep .env out of version control, prefer dedicated API keys, and review what data is sent before running the workflow. <br>
-Risk: Optional Gmail delivery can email generated content and depends on stored Gmail credentials. <br>
-Mitigation: Use a Gmail app password, confirm the recipient configuration, and enable email delivery only when the account and destination are intended. <br>
-Risk: Optional macOS launchd automation can run the workflow on a schedule. <br>
-Mitigation: Review the LaunchAgent plist path, command, and schedule before loading it. <br>
-Risk: Dependencies are declared without pinned versions. <br>
-Mitigation: Consider pinning dependencies and reviewing updates before using the workflow in a production environment. <br>
+## Use Case:
 
+Content creators, researchers, and individual readers use this skill to fetch recent long-form YouTube videos from selected channels, extract transcripts, turn them into readable articles, and package the results as an EPUB digest.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cclam5/youtube-to-ebook) <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [Anthropic Console](https://console.anthropic.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python code references, and local configuration steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of a local .env file, channel list, EPUB output, optional Streamlit dashboard, optional Gmail delivery, and optional macOS launchd automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stored API keys and optional Gmail app passwords can expose external service credentials if local configuration or logs are shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .env private, use least-privileged keys or app passwords, rotate credentials after testing, and run the skill in an isolated environment.
+
+Risk: Optional local scheduling can run the pipeline automatically with network and email access.
+
+Mitigation: Review or disable scheduled automation and confirm project paths, recipients, and logging before enabling recurring runs.
+
+Risk: Generated articles and emailed HTML or EPUB output may contain transcript errors or model-generated inaccuracies.
+
+Mitigation: Inspect generated newsletters before relying on them or sharing them with others.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cclam5/skills/youtube-to-ebook)
+- [Publisher profile](https://clawhub.ai/user/cclam5)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Anthropic Console](https://console.anthropic.com/)
+- [Supadata transcript endpoint](https://api.supadata.ai/v1/transcript)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated content may include Markdown articles, HTML newsletters, and EPUB files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided API keys for YouTube, Supadata, and Anthropic; optional Gmail credentials enable email delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

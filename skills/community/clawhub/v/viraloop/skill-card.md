@@ -1,48 +1,65 @@
-## Description: <br>
-Viraloop is an OpenClaw agent skill that analyzes a website, generates TikTok and Instagram carousel slides, publishes them through Upload-Post, and uses analytics feedback to improve future posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw AI agent skill for automated TikTok and Instagram carousel growth that analyzes a website URL, extracts brand and positioning details, generates carousel slides, publishes through Upload-Post, and uses analytics feedback for later posts.
 
-## Publisher: <br>
-[mutonby](https://clawhub.ai/user/mutonby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mutonby](https://clawhub.ai/user/mutonby)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn a public product website into a daily TikTok and Instagram carousel workflow with generated slides, publishing, analytics collection, and iterative content recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public TikTok and Instagram posts without human review. <br>
-Mitigation: Add a human approval step before publishing or use test accounts until content and account controls are reviewed. <br>
-Risk: The skill is designed to continue optimizing future automated runs. <br>
-Mitigation: Disable or tightly control cron and self-scheduling behavior so posting cadence remains operator-approved. <br>
-Risk: Upload-Post credentials can enable publishing and analytics access for connected social accounts. <br>
-Mitigation: Scope, rotate, and store the Upload-Post token only in the execution environment. <br>
-Risk: Website analysis and generated analytics artifacts may include business or campaign information. <br>
-Mitigation: Analyze only public, non-sensitive websites and store generated content and analytics in a private directory with deletion rules. <br>
+## Use Case:
 
+External creators, marketers, and developers use Viraloop to turn a public website into a six-slide TikTok and Instagram carousel, publish it through Upload-Post, and use analytics feedback to improve later posts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mutonby/viraloop) <br>
-- [Google AI Studio API Keys](https://aistudio.google.com/app/apikey) <br>
-- [Upload-Post](https://upload-post.com) <br>
-- [Upload-Post Upload Photo API](https://docs.upload-post.com/api/upload-photo) <br>
-- [Upload-Post Analytics API](https://docs.upload-post.com/api/get-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated JSON, JPG, caption, analytics, and learning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a six-slide vertical carousel, caption text, local analysis and learning files, and post metadata for TikTok and Instagram publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can publish generated content directly to public TikTok and Instagram feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege Upload-Post tokens and require human review or a dry-run gate before running the publish step.
+
+Risk: The documented autonomous loop may alter posting schedules based on analytics without explicit operator approval.
+
+Mitigation: Keep schedule changes outside the skill's automatic execution path and review any cron or automation updates before applying them.
+
+Risk: Website analysis accepts arbitrary public URLs and sends derived prompts to external image-generation services.
+
+Mitigation: Analyze only public sites the operator trusts or controls, and avoid entering private, authenticated, or sensitive URLs.
+
+Risk: The bundled publisher script builds a curl command string and executes it with eval.
+
+Mitigation: Treat captions, usernames, and generated metadata as untrusted input and inspect the publish command path before use.
+
+## Reference(s):
+
+- [Viraloop ClawHub listing](https://clawhub.ai/mutonby/skills/viraloop)
+- [Upload-Post photo upload API](https://docs.upload-post.com/api/upload-photo)
+- [Upload-Post analytics API](https://docs.upload-post.com/api/get-analytics)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+- [Upload-Post](https://upload-post.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, generated JSON, JPG carousel images, captions, and local analytics files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under /tmp/carousel and may publish public TikTok and Instagram posts when configured with Upload-Post credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

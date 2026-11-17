@@ -1,42 +1,58 @@
-## Description: <br>
-cc-sticky-notify installs and helps configure a macOS sticky-note notification system for Claude Code events using local shell hooks and a native Swift floating window. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, configures, and troubleshoots cc-sticky-notify, a macOS notification skill that shows persistent sticky-note and system notifications for Claude Code completion, permission, idle, and failed-command events.
 
-## Publisher: <br>
-[bucleliu](https://clawhub.ai/user/bucleliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bucleliu](https://clawhub.ai/user/bucleliu)
 
-## Use Case: <br>
-Developers using Claude Code on macOS use this skill to install, configure, test, or troubleshoot sticky desktop notifications for completed tasks, permission prompts, idle prompts, and failed Bash commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent Claude Code hooks can run the notifier automatically on task completion, permission prompts, idle prompts, and failed Bash commands. <br>
-Mitigation: Review the hook commands in ~/.claude/settings.json before enabling them and remove the entries when the notifier is no longer needed. <br>
-Risk: The notifier reads local application and window context to support source display and click-to-focus behavior. <br>
-Mitigation: Grant macOS automation or accessibility permissions only after reviewing the prompts and use the skill only on trusted local Macs. <br>
-Risk: The installer compiles and signs a local Swift app bundle for the floating sticky window. <br>
-Mitigation: Run install.sh only from the reviewed release artifact and inspect the script before installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or repair local macOS Claude Code notification hooks so important completion, approval, idle, and command-failure events remain visible while they work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bucleliu/cc-sticky-notify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill adds persistent Claude Code hook execution for local notification events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact settings.json hook entries before installation and remove or disable hooks that are not needed.
+
+Risk: The notification behavior can inspect local macOS GUI context to identify and restore the source application or window.
+
+Mitigation: Install only where that local GUI context access is acceptable, and consider disabling focus-restoration or window-inspection behavior if it is not required.
+
+Risk: The skill stores notification state under /tmp, which the security guidance flags as unsafe temporary state handling.
+
+Mitigation: Avoid installing on shared machines until the temporary state handling is hardened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bucleliu/skills/cc-sticky-notify)
+- [Publisher profile](https://clawhub.ai/user/bucleliu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON hook snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output may include install, verification, and troubleshooting steps for local macOS Claude Code hook configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

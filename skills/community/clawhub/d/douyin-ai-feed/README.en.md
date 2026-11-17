@@ -37,7 +37,7 @@ Daily auto-scan of AI-related Douyin content, filtering the hottest posts by eng
 
 - This skill requires the environment variable: `REDFOX_API_KEY`.
 - `REDFOX_API_KEY` is provided by [RedFoxHub](https://redfox.hk/settings/api-keys?source=clawhub) (`https://redfox.hk`).
-- Visit [RedFoxHub](https://redfox.hk?source=github) to register and get your `REDFOX_API_KEY`.
+- Visit [RedFoxHub](https://redfox.hk?source=clawhub) to register and get your `REDFOX_API_KEY`.
 - Configure the `REDFOX_API_KEY` environment variable on your device before using this skill.
 - Before providing your key, verify the source, scope, validity period, and whether it supports reset/revocation.
 - Never hardcode or expose your key in code, prompts, logs, or output files.

@@ -1,42 +1,50 @@
-## Description: <br>
-Local-first memory and continuity for OpenClaw, with recall, resumption briefs, correction-aware memory, open-loop tracking, and provenance-backed context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first memory and continuity for OpenClaw - better recall, resumption, correction-aware memory, open-loop tracking, and provenance-backed context.
 
-## Publisher: <br>
-[samrusani](https://clawhub.ai/user/samrusani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samrusani](https://clawhub.ai/user/samrusani)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill to add Alice as a continuity layer for importing memory, resuming interrupted work, tracking open loops, and explaining why remembered context is present. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alice may process the OpenClaw workspace or memory directory selected by the user, which can contain sensitive conversations, credentials, or private project data. <br>
-Mitigation: Review the selected workspace or memory directory before import and exclude sensitive content that should not be processed. <br>
-Risk: External AliceBot code is referenced by the artifact but is not established by server-resolved provenance for this release. <br>
-Mitigation: Verify any external AliceBot code independently before running it. <br>
+## Use Case:
 
+OpenClaw users and agent developers use this skill to add Alice as a local-first continuity layer for memory import, recall, resumption briefs, correction-aware memory, open-loop tracking, and provenance-backed explanations.
 
-## Reference(s): <br>
-- [Alice Continuity for OpenClaw ClawHub page](https://clawhub.ai/samrusani/alice-continuity) <br>
-- [samrusani ClawHub profile](https://clawhub.ai/user/samrusani) <br>
-- [AliceBot project](https://github.com/samrusani/AliceBot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with workflow steps, command-oriented instructions, and integration notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for choosing an OpenClaw workspace or memory directory, importing memory, using recall and resumption workflows, and reviewing provenance or corrections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Imported OpenClaw memory or workflow history may contain sensitive project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the workspace or memory directory deliberately and import only the memory you intend Alice to process.
+
+## Reference(s):
+
+- [Alice Continuity for OpenClaw on ClawHub](https://clawhub.ai/samrusani/skills/alice-continuity)
+- [AliceBot project](https://github.com/samrusani/AliceBot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with workflow steps and example prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden execution or external transfer behavior reported by security evidence.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

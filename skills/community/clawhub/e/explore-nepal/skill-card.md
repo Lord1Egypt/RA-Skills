@@ -1,44 +1,61 @@
-## Description: <br>
-Book flights to Nepal, including Kathmandu and Pokhara, using flyai CLI flight-search results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to Nepal including Kathmandu and Pokhara, with support for related travel planning tasks powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to search Nepal-related flights, compare recommended, cheapest, fastest, direct, and flexible-date options, and return Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run an unpinned global FlyAI CLI package. <br>
-Mitigation: Install only after user approval, prefer a sandboxed environment, and verify the CLI before any flight search. <br>
-Risk: Flight results and booking links depend on external flyai CLI output. <br>
-Mitigation: Treat results as flight-search assistance, verify prices and booking details before purchase, and do not fabricate missing results. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search Nepal-related flight options, compare routes by price, duration, or directness, and present provider booking links from flyai CLI results.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/dingtom336-gif/explore-nepal) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for flight data and should not produce raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server evidence and frontmatter) <br>
+Risk: The skill may install an unpinned global npm CLI before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before installation and review or pin the CLI package version in controlled environments.
+
+Risk: The skill runs shell commands using user-derived travel parameters.
+
+Mitigation: Validate origin, destination, and date fields before execution, and reject unusual punctuation or shell-like text.
+
+Risk: Travel searches are sent to the flyai/Fliggy service and results include provider booking links.
+
+Mitigation: Disclose the external provider flow to users and ask them to verify prices, terms, and booking destinations before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/explore-nepal)
+- [Parameter Collection and Output Templates](artifact/references/templates.md)
+- [Scenario Playbooks](artifact/references/playbooks.md)
+- [Failure Recovery](artifact/references/fallbacks.md)
+- [Execution Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown flight-search summaries with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel data and should not emit raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

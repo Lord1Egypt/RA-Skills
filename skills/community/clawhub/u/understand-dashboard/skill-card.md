@@ -1,39 +1,57 @@
-## Description: <br>
-Launch the interactive web dashboard to visualize a codebase's knowledge graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch the interactive web dashboard to visualize a codebase's knowledge graph.
 
-## Publisher: <br>
-[Lum1104](https://clawhub.ai/user/Lum1104) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lum1104](https://clawhub.ai/user/lum1104)
 
-## Use Case: <br>
-Developers and engineers use this skill to open a local dashboard for exploring an existing Understand Anything knowledge graph for a project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs Node dependencies and runs dashboard code that was not included in the reviewed artifact. <br>
-Mitigation: Use it only from a trusted source, inspect the dashboard directory and lockfile before installation, and run it in a controlled project workspace. <br>
-Risk: The dashboard reads the selected project's knowledge graph and opens a local browser session. <br>
-Mitigation: Confirm the selected project path before launch and avoid using it on sensitive projects unless the local dashboard environment is approved. <br>
+## Use Case:
 
+Developers and engineers use this skill to start a local dashboard for inspecting an existing Understand Anything knowledge graph for a project.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts a background local Vite dashboard for the selected project when dependencies and graph files are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can install dependencies and execute JavaScript tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency installation before running, prefer frozen lockfile behavior that fails closed, and use pinned local tooling such as pnpm exec or a pinned Vite binary.
+
+Risk: The skill can start a background local server and open a browser.
+
+Mitigation: Ask before launching the browser or background server, confirm the selected project path, and stop the server when dashboard use is complete.
+
+Risk: Unsafe path handling could affect which directory or graph is used.
+
+Mitigation: Quote paths safely and verify the resolved project directory and knowledge graph path before starting the dashboard.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lum1104/skills/understand-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a local Vite dashboard for the selected project when prerequisites are present.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-When the user wants to plan website structure, decide which pages to build, or prioritize pages for a new or existing site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to plan website structure, decide which pages to build, or prioritize pages for a new or existing site.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External website builders, product teams, and developers use this skill to plan site architecture, page priorities, URL structure, and growth-oriented page coverage for new or existing websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to read narrow project context files that could contain sensitive workspace information. <br>
-Mitigation: Check .claude/project-context.md and .cursor/project-context.md for secrets before using the skill. <br>
-Risk: Skill metadata includes crypto and purchase capability tags that are not supported by the actual skill text. <br>
-Mitigation: Treat the skill as instruction-only website structure planning guidance, not as a purchasing or crypto execution tool. <br>
+## Use Case:
 
+Developers, site owners, and growth teams use this skill to plan website page hierarchy, page priority, URL paths, and growth-oriented site sections for new or existing websites.
 
-## Reference(s): <br>
-- [Website structure SEO guide](https://alignify.co/zh/seo/website-structure) <br>
-- [website-structure ClawHub page](https://clawhub.ai/kostja94/website-structure) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces page priority lists, URL structure recommendations, website-type fit notes, growth mapping, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can shape website planning recommendations that may be incomplete or misaligned with the user's actual business goals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated page priorities, URL paths, and growth mappings against the intended audience, markets, budget, and content strategy before implementation.
+
+Risk: The skill may read project-context files if present, and those files can contain private business details.
+
+Mitigation: Review project-context files for sensitive information before use and provide only the market, language, and business context needed for planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/website-structure)
+- [Website structure SEO guide](https://alignify.co/zh/seo/website-structure)
+- [skills-reference §2 Page Taxonomy](../../../docs/skills-reference.md#2-page-taxonomy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with structured page lists, URL paths, priority labels, growth mappings, and next-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May refer to local project context files when present; no code execution or credential access is described in the security evidence.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

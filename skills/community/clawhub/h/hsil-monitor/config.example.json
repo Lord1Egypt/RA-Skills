@@ -1,0 +1,15 @@
+{
+  "timezone": "Asia/Hong_Kong",
+  "schedule_time": "08:30",
+  "languages": ["en", "zh"],
+  "indexes": ["HSI", "HSCEI", "HSTECH"],
+  "extra_keywords": [],
+  "backfill_days": 30,
+  "deep_read": false,
+  "sources": [
+    {"type": "Press release", "page": "https://www.hsi.com.hk/en-hk/media-room/#press-releases",           "tab_title": "Press Releases"},
+    {"type": "Notice",        "page": "https://www.hsi.com.hk/en-hk/media-room/#index-other-notices",       "tab_title": "Index / Other Notices"},
+    {"type": "Insight",       "page": "https://www.hsi.com.hk/en-hk/insights-and-reports/#insights",         "tab_title": "Insights"},
+    {"type": "Report",        "page": "https://www.hsi.com.hk/en-hk/insights-and-reports/#reports",          "tab_title": "Reports"}
+  ]
+}

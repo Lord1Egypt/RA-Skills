@@ -1,42 +1,56 @@
-## Description: <br>
-通用网页数据抓取工具 — 支持CSS选择器抓取链接、表格数据提取，输出CSV/JSON格式。无需配置，开箱即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通用网页数据抓取工具，支持使用 CSS 选择器抓取链接、提取 HTML 表格数据，并导出 CSV 或 JSON 文件。
 
-## Publisher: <br>
-[wuxiangfacai](https://clawhub.ai/user/wuxiangfacai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wuxiangfacai](https://clawhub.ai/user/wuxiangfacai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to collect public web page links or table data for research, market monitoring, competitor tracking, and content aggregation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The scraper can fetch any URL reachable from the host, including localhost, private network addresses, or cloud metadata endpoints.
+
+Mitigation: Run it in a network-restricted environment and use URL allowlisting before production use.
+
+Risk: Scraped data is saved locally and may include sensitive content if the target URL exposes it.
+
+Mitigation: Use a dedicated working directory, review generated CSV or JSON files, and avoid scraping untrusted or sensitive internal pages.
+
+Risk: The artifact documents dependency installation without pinned versions.
+
+Mitigation: Pin and review requests and beautifulsoup4 versions before deploying in repeatable or production workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to collect links or HTML table data from authorized webpages with CSS selectors, then export the results as CSV or JSON for research, monitoring, or content aggregation workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, files, JSON, CSV]
 
-## Known Risks and Mitigations: <br>
-Risk: Collecting data from websites or pages without authorization. <br>
-Mitigation: Confirm permission to collect from each configured source before running the scraper. <br>
-Risk: Exported CSV or JSON files may contain private, sensitive, or regulated data. <br>
-Mitigation: Review collected data before sharing it and store exports in a controlled location. <br>
-Risk: Scheduled or repeated scraping can run beyond the intended scope. <br>
-Mitigation: Review automation settings so the skill only runs against expected sources and at expected times. <br>
+**Output Format:** [Terminal text plus generated CSV or JSON files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxiangfacai/general-web-scraper) <br>
+**Other Properties Related to Output:** [The scraper writes output.csv by default or output.json when JSON output is requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text] <br>
-**Output Format:** [CSV or JSON files with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output.csv by default or output.json when JSON export is requested; accepts a target URL, optional CSS selector, and table mode.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

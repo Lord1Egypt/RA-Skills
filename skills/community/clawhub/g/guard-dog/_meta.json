@@ -1,6 +1,53 @@
 {
-  "ownerId": "kn78evsgrrkhwy2m12p6vrz9wn830end",
-  "slug": "guard-dog",
+  "name": "guard-dog",
   "version": "2.1.3",
-  "publishedAt": 1773726069124
+  "description": "AI 安全看门狗 - 拦截 8 类风险操作，授权码验证",
+  "author": "staroldtrace",
+  "license": "MIT",
+  "tags": ["security", "guard", "authorization", "prompt-injection"],
+  "minOpenClawVersion": "2026.3.0",
+  "repository": "https://github.com/staroldtrace/guard-dog",
+  "config": {
+    "paths": [
+      {
+        "path": "~/.openclaw/.guard-dog-vault",
+        "description": "授权码保险箱 - 存储 SHA-256 哈希值和盐值",
+        "required": true,
+        "permissions": "600"
+      },
+      {
+        "path": "~/.openclaw/.guard-dog-state", 
+        "description": "安装状态记录",
+        "required": false,
+        "permissions": "600"
+      }
+    ]
+  },
+  "requires": {
+    "files": [
+      {
+        "path": "~/.openclaw/.guard-dog-vault",
+        "description": "授权码保险箱",
+        "required": true
+      }
+    ]
+  },
+  "files": [
+    "~/.openclaw/.guard-dog-vault",
+    "~/.openclaw/.guard-dog-state"
+  ],
+  "secrets": false,
+  "env": false,
+  "capabilities": {
+    "filesystem": {
+      "read": ["~/.openclaw/.guard-dog-vault", "~/.openclaw/.guard-dog-state"],
+      "write": ["~/.openclaw/.guard-dog-vault", "~/.openclaw/.guard-dog-state"]
+    }
+  },
+  "changelog": {
+    "2.1.3": "修复元数据格式，使用多种方式声明配置路径以确保兼容性",
+    "2.1.2": "修复自动显示配置问题",
+    "2.1.1": "删除示例授权码，添加环境依赖声明",
+    "2.1.0": "更新授权码安全机制"
+  }
 }

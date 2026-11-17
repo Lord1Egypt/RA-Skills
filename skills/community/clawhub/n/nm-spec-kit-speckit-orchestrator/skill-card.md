@@ -1,45 +1,49 @@
-## Description: <br>
-Orchestrates Spec Driven Development by coordinating spec, plan, and task skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates Spec Driven Development by coordinating spec, plan, and task skills
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate Speckit-style specification, planning, task generation, implementation, and verification workflows across `/speckit-*` command phases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may cause the skill to activate during general planning requests. <br>
-Mitigation: Invoke or enable it around explicit `/speckit-*` workflows and confirm the current task is Spec Driven Development before following its coordination guidance. <br>
-Risk: Workflow guidance can produce or update specification, plan, task, and checklist artifacts that later steer implementation. <br>
-Mitigation: Review generated artifacts for project fit, consistency, and unresolved blockers before using them to guide code changes. <br>
+## Use Case:
 
+Developers working in Spec-kit-enabled repositories use it to coordinate specification, planning, task generation, implementation, and verification across related skills while tracking workflow artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-spec-kit-speckit-orchestrator) <br>
-- [Project homepage from release metadata](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit) <br>
-- [Command-skill matrix](modules/command-skill-matrix.md) <br>
-- [Artifact structure](modules/artifact-structure.md) <br>
-- [Progress tracking](modules/progress-tracking.md) <br>
-- [Writing-plans extensions](modules/writing-plans-extensions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command mappings, progress checklists, artifact structure, and configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; release security evidence reports no executable code, credential handling, or hidden data movement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Security coverage is incomplete because some referenced local files were unavailable during scanning, and a benign verdict is not a guarantee of safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the skill's instructions and referenced local files are available and suitable for your workflow before use.
+
+## Reference(s):
+
+- [Spec-kit plugin](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown workflow artifacts and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include specifications, plans, task lists, checklists, and supporting design artifacts.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

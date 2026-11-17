@@ -1,43 +1,57 @@
-## Description: <br>
-Deploy (import) an Appian package ZIP into an Appian environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys an Appian package ZIP into an Appian environment via Appian's Deployment Management API.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy a selected Appian package ZIP to a configured Appian environment and monitor the deployment until a terminal status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can deploy packages to the configured Appian environment using sensitive credentials. <br>
-Mitigation: Use a least-privilege Appian API key, verify APPIAN_BASE_URL before running, and rely on Appian approval or review controls for production deployments. <br>
-Risk: An unintended package or customization file could be uploaded if the local inputs are wrong. <br>
-Mitigation: Inspect the ZIP first, confirm any customization file path, and validate packages before deployment. <br>
-Risk: If environment variables are not injected, nearby appian.json files can supply credentials. <br>
-Mitigation: Check the working directory and parent directories for appian.json before running in sensitive environments. <br>
+## Use Case:
 
+Developers and release engineers use this skill to import Appian package ZIP files into a configured Appian environment and monitor the deployment until it reaches a terminal status.
 
-## Reference(s): <br>
-- [Appian v2 Deployment Management API](https://docs.appian.com/suite/help/25.4/Deploy_Package_API.html) <br>
-- [ClawHub Appian Deploy skill page](https://clawhub.ai/solarspiker/appian-deploy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text status logs and deployment summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY; accepts a ZIP path, deployment name, optional description, and optional customization file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata and script @version) <br>
+Risk: API keys and deployment files can be sent to an unintended or unvalidated endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set APPIAN_BASE_URL and APPIAN_API_KEY explicitly, verify that the base URL is the intended HTTPS Appian environment, and run only from trusted workspaces.
+
+Risk: Credential configuration can fall back to an appian.json file in the current or parent workspace.
+
+Mitigation: Avoid relying on appian.json fallback for production use and rotate the API key if the skill was run from an untrusted workspace.
+
+Risk: A deployment import can modify the target Appian environment and may require review or approval.
+
+Mitigation: Inspect the package before deployment, use the intended target environment, and review Appian deployment status or approval queues after execution.
+
+## Reference(s):
+
+- [Appian Deploy Package API](https://docs.appian.com/suite/help/25.4/Deploy_Package_API.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [Plain text deployment status output with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY; uploads the selected package ZIP and optional customization file to the configured Appian endpoint.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

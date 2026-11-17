@@ -18,8 +18,8 @@ Contact Serviceplan at sumike.ai to request access and receive your API keys.
 ### 2. Configure
 
 ```bash
-export HANNAH_API_KEY=sk-sumike-your-hannah-key
-export ELENA_API_KEY=sk-sumike-your-elena-key
+export HANNAH_API_KEY=REDACTED-SECRET
+export ELENA_API_KEY=REDACTED-SECRET
 ```
 
 ### 3. Use

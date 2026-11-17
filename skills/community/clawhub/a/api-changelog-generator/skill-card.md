@@ -1,41 +1,53 @@
-## Description: <br>
-Generate and maintain API changelogs from OpenAPI/Swagger specs - track endpoints added, removed, deprecated, or modified between versions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and maintain API changelogs from OpenAPI/Swagger specs - track endpoints added, removed, deprecated, or modified between versions.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and API documentation teams use this skill to compare OpenAPI or Swagger specifications, identify breaking and non-breaking API changes, and produce changelogs, migration guides, release notes, and consumer impact summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changelogs or migration guidance may be inaccurate if the supplied API specifications are stale, incomplete, or untrusted. <br>
-Mitigation: Review generated output against trusted source specifications before publishing release notes or migration instructions. <br>
-Risk: YAML parsing requires PyYAML when YAML OpenAPI specs are used. <br>
-Mitigation: Install PyYAML only from a trusted package source and use JSON specs when YAML support is not needed. <br>
-Risk: The skill reads user-chosen local spec paths. <br>
-Mitigation: Use trusted spec paths and review commands before running them. <br>
+## Use Case:
 
+Developers and API documentation teams use this skill to compare OpenAPI or Swagger specifications, identify breaking and non-breaking changes, and draft consumer-facing changelogs, release notes, and migration guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Human-readable text, Markdown changelogs and migration guides, JSON summaries, RSS/Atom feed format, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected local OpenAPI or Swagger spec files; YAML support depends on PyYAML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The diff command can run unintended local code when given a crafted file path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the diff command to pass file paths through argv or another data-only channel before using it with untrusted filenames or specifications.
+
+Risk: Breaking-change output may be incomplete for authentication changes, nested schemas, and $ref-heavy specifications.
+
+Mitigation: Treat the output as a review aid and verify important API compatibility decisions against the source specifications and client impact analysis.
+
+## Reference(s):
+
+- [API Changelog Generator on ClawHub](https://clawhub.ai/charlie-morrison/skills/api-changelog-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, text, JSON, RSS or Atom snippets, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update API-CHANGELOG.md and may scan local source files for affected API calls when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

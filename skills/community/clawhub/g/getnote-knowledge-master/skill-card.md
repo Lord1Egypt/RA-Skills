@@ -1,44 +1,63 @@
-## Description: <br>
-Get笔记·六步抄作业版 helps an agent run a six-step Get笔记 knowledge-management workflow for creating knowledge bases, saving content, organizing notes, searching, saving analyses, and producing health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get笔记·六步抄作业版 helps agents run a six-step Getnote knowledge-management workflow for creating knowledge bases, saving content, organizing notes, searching, preserving analysis, and generating health reports.
 
-## Publisher: <br>
-[binhuatochina](https://clawhub.ai/user/binhuatochina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binhuatochina](https://clawhub.ai/user/binhuatochina)
 
-## Use Case: <br>
-External users and developers use this skill to operate Get笔记 through CLI-first knowledge workflows: creating libraries, saving links or text, organizing notes, searching semantically, preserving analysis results, and reviewing knowledge-base coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Get笔记 credentials and can access large portions of a user's private notes. <br>
-Mitigation: Install only when that access is intended, scope credentials where possible, and confirm the target knowledge base before broad reads or writes. <br>
-Risk: The workflow can save, tag, or delete note content and may publish summaries to Feishu destinations. <br>
-Mitigation: Require explicit confirmation for every write, duplicate deletion, Feishu destination, and publication step. <br>
-Risk: The Cron workflow can run recurring broad scans, create local archives, save reports to Get笔记, and send Feishu notifications. <br>
-Mitigation: Enable Cron behavior only when recurring scans and publication are intentional, and review its configured destinations before use. <br>
+## Use Case:
 
+External users and knowledge workers use this skill to turn natural-language requests into Getnote workflows for collecting, organizing, searching, and re-saving knowledge artifacts. It is especially oriented toward repeated knowledge-management routines that combine note retrieval, summarization, tagging, and report creation.
 
-## Reference(s): <br>
-- [卡帕西六步抄作业法 · Get笔记落地手册](references/6steps.md) <br>
-- [Get笔记 OpenAPI endpoint](https://openapi.biji.com) <br>
-- [ClawHub skill page](https://clawhub.ai/binhuatochina/getnote-knowledge-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute Get笔记 CLI/API operations that read, write, tag, or summarize notes when credentials and user confirmation are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Broad note collection can include all Getnote knowledge bases and local memory during the Cron workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the Cron workflow only when that scope is intended, and confirm the selected knowledge bases and local memory sources before running it.
+
+Risk: Write actions can save reports or summaries to Getnote, local files, Feishu documents, or Feishu knowledge bases.
+
+Mitigation: Require a preview and explicit destination confirmation before any write or external sharing action.
+
+Risk: Duplicate cleanup guidance can delete notes if applied without enough review.
+
+Mitigation: Require a deletion preview that lists affected note IDs and preserve the most complete copy only after user approval.
+
+Risk: Credentialed Getnote and Feishu operations increase impact if credentials are over-scoped.
+
+Mitigation: Install with tightly scoped Getnote and Feishu credentials and review the skill before deployment.
+
+## Reference(s):
+
+- [Getnote six-step implementation guide](references/6steps.md)
+- [Getnote OpenAPI base endpoint](https://openapi.biji.com)
+- [ClawHub skill release page](https://clawhub.ai/binhuatochina/skills/getnote-knowledge-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue Getnote CLI commands, produce reports, suggest tags, and save generated summaries when credentials and user confirmation allow.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

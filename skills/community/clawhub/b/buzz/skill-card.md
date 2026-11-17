@@ -1,44 +1,58 @@
-## Description: <br>
-Real-time news aggregator with Discord & Telegram push. Manage Jin10, BlockBeats, RSS, X KOLs, Polymarket, OpenNews via REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buzz helps agents install, run, and manage a real-time news aggregator with Discord and Telegram push notifications for Jin10, BlockBeats, RSS, X KOLs, Polymarket, and OpenNews sources via REST API.
 
-## Publisher: <br>
-[zxcnny930](https://clawhub.ai/user/zxcnny930) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zxcnny930](https://clawhub.ai/user/zxcnny930)
 
-## Use Case: <br>
-Developers and operators use Buzz to install and manage a local news-alert service that aggregates market, crypto, RSS, X KOL, and Polymarket updates and pushes notifications to Discord or Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The REST API may be unauthenticated if dashboard.password is empty. <br>
-Mitigation: Set dashboard.password before exposing the service beyond localhost and include the password parameter on API calls. <br>
-Risk: The server can bind to all network interfaces and expose configuration-changing endpoints. <br>
-Mitigation: Restrict port 3848 to localhost or a trusted network with firewall rules or a reverse proxy. <br>
-Risk: config.json may contain bot tokens, webhook URLs, and API keys. <br>
-Mitigation: Keep config.json out of version control and protect access to the host and working directory. <br>
+## Use Case:
 
+Developers and operators use Buzz to configure and operate a local real-time news-alert service that aggregates market, crypto, RSS, X KOL, and AI-filtered news sources and pushes alerts to Discord or Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxcnny930/buzz) <br>
-- [Publisher profile](https://clawhub.ai/user/zxcnny930) <br>
-- [Buzz source repository referenced by artifact](https://github.com/zxcnny930/buzz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, curl examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST API examples for local configuration and operational checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The release relies on mutable remote code and should be reviewed before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream project before running the setup commands and install only if that review is acceptable.
+
+Risk: An unauthenticated or broadly exposed dashboard can expose stored tokens and configuration control.
+
+Mitigation: Set dashboard.password before startup and keep port 3848 bound or firewalled to localhost or private trusted hosts.
+
+Risk: config.json can contain Discord, Telegram, AI, and 6551 credentials.
+
+Mitigation: Treat config.json as sensitive, keep it out of version control, and avoid placing credentials in shared logs or shell history.
+
+## Reference(s):
+
+- [Buzz ClawHub skill page](https://clawhub.ai/zxcnny930/skills/buzz)
+- [zxcnny930 publisher profile](https://clawhub.ai/user/zxcnny930)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST API examples, configuration update guidance, and local service management steps.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""实战 59 支付系统 (2026-06-16)
+"""v20.59 支付系统 (2026-06-16)
 - 订单管理: 创建/查询/取消
-- 支付宝: 沙箱/真接 (待犀牛提供 APPID 后切换)
+- 支付宝: 沙箱/真接 (待<owner>提供 APPID 后切换)
 - 端点: /v1/pay/{create,query,cancel,callback,orders}
 - 状态机: pending -> paid -> active / cancelled / refunded
 """
@@ -14,15 +14,15 @@ from typing import Optional, Dict, List
 
 ORDERS_FILE = Path('/home/ubuntu/star-search/orders.json')
 
-# 支付宝配置 (实战 59 阶段: 沙箱模式, 实际付款二维码 mock)
+# 支付宝配置 (v20.59 阶段: 沙箱模式, 实际付款二维码 mock)
 ALIPAY_CONFIG = {
     'app_id': os.environ.get('ALIPAY_APP_ID', 'SANDBOX_PENDING'),
     'private_key': os.environ.get('ALIPAY_PRIVATE_KEY', ''),
     'public_key': os.environ.get('ALIPAY_PUBLIC_KEY', ''),
     'sign_type': 'RSA2',
     'gateway': 'https://openapi.alipaydev.com/gateway.do',  # 沙箱
-    'notify_url': 'https://search.token-star.cn/v1/pay/callback',
-    'return_url': 'https://search.token-star.cn/pricing.html?status=success',
+    'notify_url': 'https://search.<service-domain>/v1/pay/callback',
+    'return_url': 'https://search.<service-domain>/pricing.html?status=success',
 }
 
 # 套餐定义
@@ -61,7 +61,7 @@ def _save_orders(data: Dict):
 
 
 def create_order(user_id: str, tier: str, amount: int) -> Dict:
-    """实战 59: 创建订单
+    """v20.59: 创建订单
     - 验证 tier
     - 生成 order_id
     - 返回支付 URL (沙箱模式返 mock URL)
@@ -89,10 +89,10 @@ def create_order(user_id: str, tier: str, amount: int) -> Dict:
     data['orders'][order_id] = order
     _save_orders(data)
 
-    # 实战 59: 沙箱模式 - 返 mock pay_url (待接真支付宝后改)
+    # v20.59: 沙箱模式 - 返 mock pay_url (待接真支付宝后改)
     if ALIPAY_CONFIG['app_id'] == 'SANDBOX_PENDING':
         # 沙箱模式: 返本地 callback URL (让用户直接点 "我已支付" 模拟)
-        pay_url = f'https://search.token-star.cn/pricing.html?order_id={order_id}&status=mock'
+        pay_url = f'https://search.<service-domain>/pricing.html?order_id={order_id}&status=mock'
     else:
         # 真接支付宝 (待实现)
         pay_url = f'{ALIPAY_CONFIG["gateway"]}?out_trade_no={order_id}&total={amount}'
@@ -141,7 +141,7 @@ def list_orders(user_id: str, limit: int = 20) -> List[Dict]:
 
 
 def mark_paid(order_id: str, trade_no: str = '') -> Dict:
-    """实战 59: 标记订单已支付 (沙箱模式: 用户手动触发)
+    """v20.59: 标记订单已支付 (沙箱模式: 用户手动触发)
     真接后: 由支付宝回调触发
     """
     data = _load_orders()
@@ -186,7 +186,7 @@ def mark_paid(order_id: str, trade_no: str = '') -> Dict:
 
 
 def alipay_callback(params: Dict) -> Dict:
-    """实战 59: 支付宝异步回调
+    """v20.59: 支付宝异步回调
     沙箱模式: 直接 trust params
     真接: 验证 sign + verify via alipay SDK
     """

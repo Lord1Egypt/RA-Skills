@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn71e4ms64ce3ebhj06gyz16kx802ft6",
-  "slug": "wh-x-post",
+  "id": "twitter-post",
+  "name": "Twitter Post",
+  "description": "发送推文到 Twitter/X，支持文本、图片、回复和引用转发操作",
   "version": "1.0.0",
-  "publishedAt": 1775614757577
+  "author": "ZLClaw",
+  "isOfficial": false,
+  "platform": "twitter",
+  "dependencies": [
+    "twitter-cli (pip install twitter-cli)"
+  ]
 }

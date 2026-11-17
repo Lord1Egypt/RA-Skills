@@ -1,47 +1,65 @@
-## Description: <br>
-Analyzes raw consumer DNA and VCF files locally to produce health, pharmacogenomics, ancestry, trait, and report outputs for agent-assisted review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes consumer DNA and VCF files locally to summarize pharmacogenomics, disease risk, carrier status, ancestry, traits, and related genomics findings for AI agents.
 
-## Publisher: <br>
-[wkyleg](https://clawhub.ai/user/wkyleg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wkyleg](https://clawhub.ai/user/wkyleg)
 
-## Use Case: <br>
-External users and agent developers use this skill to analyze personal genomics files locally and generate prioritized summaries, reports, dashboards, and exports. It is intended for informational interpretation workflows, not clinical diagnosis or treatment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Raw DNA files and generated health, ancestry, PDF, HTML, and clinical exports contain highly sensitive personal and familial information. <br>
-Mitigation: Process files locally, keep outputs out of synced or shared folders, restrict access to generated reports, and delete reports when no longer needed. <br>
-Risk: Cancer, medication, APOE, polygenic risk, carrier, and other health outputs may be misread as clinical findings. <br>
-Mitigation: Treat results as informational and confirm important findings with qualified medical or genetic professionals before making health decisions. <br>
-Risk: The provided security assessment classifies the release as suspicious because of material privacy and medical-interpretation risks. <br>
-Mitigation: Install only after reviewing the security guidance and confirming that local processing of raw DNA data is appropriate for the intended environment. <br>
+## Use Case:
 
+Developers, AI-agent users, and genomics hobbyists use this skill to run local analysis of raw DNA exports and produce prioritized genetic findings, reports, and dashboard-ready summaries. Results are informational and should be reviewed with qualified healthcare professionals before medical decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wkyleg/personal-genomics) <br>
-- [Interpretation Guide](references/INTERPRETATION_GUIDE.md) <br>
-- [Privacy Guide](references/PRIVACY_GUIDE.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, plus generated JSON, text, HTML dashboard, PDF, and clinical export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and writes analysis reports under the configured reports directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release and CHANGELOG, released 2026-02-07) <br>
+Risk: The skill reads highly sensitive DNA files and writes derived genetic and medical reports to local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store input files and generated reports in an encrypted, private directory and avoid committing or sharing them.
+
+Risk: Medication, cancer, carrier, and disease findings may be mistaken for clinical advice or diagnosis.
+
+Mitigation: Treat outputs as informational and confirm significant findings with qualified clinicians or genetic counselors before making health or medication decisions.
+
+Risk: Dashboard import of untrusted report files could expose users to unsafe or misleading content.
+
+Mitigation: Load only reports generated from trusted local analyses and avoid importing reports from unknown sources.
+
+Risk: Consumer DNA arrays and population-specific marker evidence can miss variants or produce uncertain risk estimates.
+
+Mitigation: Communicate uncertainty, note population and chip-coverage limitations, and use clinical-grade testing for confirmation when results matter.
+
+## Reference(s):
+
+- [README](README.md)
+- [Security Policy](SECURITY.md)
+- [Genetic Results Interpretation Guide](references/INTERPRETATION_GUIDE.md)
+- [DNA Testing Privacy Guide](references/PRIVACY_GUIDE.md)
+- [Dashboard README](dashboard/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and descriptions of generated JSON, text, PDF, and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying analysis writes local reports such as agent_summary.json, full_analysis.json, report.txt, genetic_report.pdf, and dashboard.html.]
+
+## Skill Version(s):
+
+4.2.0 (source: server release metadata and CHANGELOG.md, released 2026-02-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

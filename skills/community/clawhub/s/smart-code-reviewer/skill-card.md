@@ -1,40 +1,54 @@
-## Description: <br>
-代码审查助手会分析代码结构和风格，提供审查意见、性能优化建议、安全漏洞检测，并生成详细的代码审查报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A code review assistant that analyzes code, provides review comments, suggests performance improvements, detects possible security issues, and generates detailed review reports across multiple programming languages.
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Developers use this skill to request automated review of individual files or project directories, with findings on code quality, performance, and potential security issues. It is intended to produce a review report that can guide follow-up fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package is documentation-only and references node scripts/review.mjs without including that tool. <br>
-Mitigation: Before running the command, confirm scripts/review.mjs comes from a trusted intended source in the target project. <br>
+## Use Case:
 
+Developers and engineers use this skill to review individual files or project directories, identify code quality issues, performance concerns, and potential security vulnerabilities, and produce a Markdown review report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/smart-code-reviewer) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node; reviewed package does not include the referenced review script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact references a Node review script that is not included in the submitted files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the actual installed script before running it, especially on private or proprietary code.
+
+Risk: The documentation is Chinese-only, which may make review harder for teams that do not read Chinese.
+
+Mitigation: Translate or review the instructions with a Chinese-reading reviewer before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/skills/smart-code-reviewer)
+- [Skill-declared homepage](https://github.com/openclaw/code-review-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown review reports with issue summaries, severity levels, and remediation suggestions; shell commands are shown for invoking the reviewer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documented Node review script is referenced by the artifact but is not included in the submitted files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

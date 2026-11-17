@@ -1,42 +1,52 @@
-## Description: <br>
-Send images, files, audio, video and other media to Feishu users or chats via Feishu direct message or group chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send images, files, audio, video, and other media to Feishu users or chats via direct message or group chat.
 
-## Publisher: <br>
-[yaqiangsun](https://clawhub.ai/user/yaqiangsun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yaqiangsun](https://clawhub.ai/user/yaqiangsun)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to send local media files to Feishu users or group chats, including path-based attachments and base64 inline images.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Media may be sent or uploaded to Feishu Drive without a clear confirmation step.
+
+Mitigation: Require explicit user confirmation of recipient, file path, and upload method before sending or using the Drive fallback.
+
+Risk: Suggested permission changes can broaden local file readability.
+
+Mitigation: Avoid changing permissions unless necessary, confirm before running permission changes, and clean up workspace copies after sending.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill to send local images, documents, audio, video, and other media to Feishu users or group chats. It is suited for workflows where a user explicitly asks to share a selected file through Feishu. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected local files through Feishu, including sensitive content if the wrong path or recipient is used. <br>
-Mitigation: Confirm the exact file path and Feishu recipient before each send. <br>
-Risk: Fallback behavior can convert images to base64 or upload files to Feishu Drive after a failed send. <br>
-Mitigation: Allow Feishu Drive fallback only when cloud storage and link sharing are explicitly intended. <br>
-Risk: Workspace copies may remain after sensitive transfers. <br>
-Mitigation: Delete staged workspace copies after sending sensitive files. <br>
+**Output Format:** [Markdown with inline bash and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yaqiangsun/feishu-send-media) <br>
+**Other Properties Related to Output:** [Includes path-based send instructions, base64 image fallback, Feishu Drive fallback, and verification checklist.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to stage a local file, validate its path, send it through Feishu, and apply fallback transfer methods when needed.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

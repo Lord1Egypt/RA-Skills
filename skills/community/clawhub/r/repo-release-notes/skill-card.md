@@ -1,42 +1,58 @@
-## Description: <br>
-Draft release notes and changelog entries from a local Git repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts release notes and changelog entries from local Git history for commit summaries, ref comparisons, version notes, and user-facing changelogs.
 
-## Publisher: <br>
-[aboxhq](https://clawhub.ai/user/aboxhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aboxhq](https://clawhub.ai/user/aboxhq)
 
-## Use Case: <br>
-Developers and maintainers use this skill to inspect local Git history, compare refs or tags, and turn repository changes into concise release notes or changelog entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release notes may expose private filenames, internal work details, or security-related changes from repository history and diffs. <br>
-Mitigation: Review generated notes before sharing and remove sensitive repository details that are not intended for the audience. <br>
-Risk: Generated release summaries can overstate impact when commit messages or diffs are ambiguous. <br>
-Mitigation: Compare the draft against the selected Git range and keep only claims supported by commits, diffs, or files. <br>
+## Use Case:
 
+Developers and release engineers use this skill to inspect local Git history, compare refs or tags, and draft concise release notes or changelog entries grouped by user impact.
 
-## Reference(s): <br>
-- [Release Note Style](references/release-note-style.md) <br>
-- [Repo Release Notes on ClawHub](https://clawhub.ai/aboxhq/repo-release-notes) <br>
-- [aboxhq Publisher Profile](https://clawhub.ai/user/aboxhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown release note draft with categorized sections and concise assumptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include release range, date, highlights, categorized changes, upgrade notes, and omitted-change assumptions when supported by Git evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local Git history may contain sensitive commit messages, file names, or unreleased product details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in repositories whose history is acceptable for the agent to read.
+
+Risk: Generated release notes may overstate impact or omit important breaking, migration, or security details.
+
+Mitigation: Review generated release notes before publishing and confirm claims against commits, diffs, and release requirements.
+
+Risk: Untrusted refs, branch names, or paths could lead to unsafe command construction if handled carelessly.
+
+Mitigation: Treat user-provided refs and paths as data and prefer read-only Git commands.
+
+## Reference(s):
+
+- [Repo Release Notes on ClawHub](https://clawhub.ai/aboxhq/skills/repo-release-notes)
+- [Release Note Style](artifact/references/release-note-style.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown release-note draft with optional inline Git command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries include release range and date when known, categorized changes, upgrade notes when applicable, and assumptions about tags or uncommitted changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

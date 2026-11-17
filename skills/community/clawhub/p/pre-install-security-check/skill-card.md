@@ -1,47 +1,65 @@
-## Description: <br>
-Security Check helps agents assess GitHub repositories, npm packages, PyPI libraries, and remote shell scripts before installation by surfacing advisory risk labels and recommended next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Check helps agents assess GitHub repositories, npm packages, PyPI packages, and downloaded shell scripts before installation by checking metadata, vulnerability sources, and heuristic risk signals.
 
-## Publisher: <br>
-[gawezepobi09-debug](https://clawhub.ai/user/gawezepobi09-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gawezepobi09-debug](https://clawhub.ai/user/gawezepobi09-debug)
 
-## Use Case: <br>
-Developers and engineers use this skill before cloning repositories, installing npm or PyPI packages, or executing remote shell scripts so an agent can summarize trust signals, known vulnerabilities, and whether user confirmation is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Risk labels are advisory and can be incomplete or outdated. <br>
-Mitigation: Treat summaries as decision support, review flagged packages manually, and confirm important findings against authoritative vulnerability sources before installing. <br>
-Risk: Checking private dependencies against external vulnerability services can disclose package names or dependency details. <br>
-Mitigation: Avoid sending private dependency details to external services unless that disclosure is acceptable for the project. <br>
-Risk: Remote scripts and package installs can execute untrusted code. <br>
-Mitigation: Require explicit user confirmation before installing packages or running remote scripts, especially when the skill marks an item for review or as dangerous. <br>
+## Use Case:
 
+Developers and engineers use this skill to review external repositories, packages, and install scripts before an agent proceeds with commands such as git clone, pip install, npm install, or curl-piped shell execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gawezepobi09-debug/pre-install-security-check) <br>
-- [Skantek approach](references/skantek-approach.md) <br>
-- [Vulnerability databases](references/vulnerability-databases.md) <br>
-- [Snyk vulnerability database](https://security.snyk.io) <br>
-- [GitHub Advisory Database](https://github.com/advisories) <br>
-- [Safety DB](https://github.com/pyupio/safety-db) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with concise risk summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports advisory safe, review, or dangerous labels and may recommend confirmation or safer package versions before proceeding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can influence whether an agent installs packages, clones repositories, or executes downloaded scripts based on heuristic signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation before any install, clone, or curl-piped script, and treat a Safe label as advisory rather than permission to execute.
+
+Risk: Mutable versions, unknown maintainers, and commands that execute downloaded code can remain risky even when metadata looks favorable.
+
+Mitigation: Pin versions where possible, review maintainers and source changes, and require explicit approval for mutable or unfamiliar sources.
+
+Risk: External vulnerability and package metadata sources may be incomplete, stale, unavailable, or rate limited.
+
+Mitigation: Use multiple vulnerability sources, cache with a short freshness window, and fall back to manual review when security data cannot be retrieved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gawezepobi09-debug/skills/pre-install-security-check)
+- [Skantek Approach](references/skantek-approach.md)
+- [Vulnerability Databases](references/vulnerability-databases.md)
+- [Adyen Skantek](https://www.adyen.com/blog/skantek)
+- [Snyk Vulnerability Database](https://security.snyk.io)
+- [GitHub Advisory Database](https://github.com/advisories)
+- [Safety DB](https://github.com/pyupio/safety-db)
+- [OSV Documentation](https://osv.dev/docs/)
+- [npm Audit](https://docs.npmjs.com/cli/audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style risk summaries with command examples, risk labels, recommendations, and confirmation prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may classify targets as safe, review, or dangerous based on heuristic package, repository, and vulnerability signals.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

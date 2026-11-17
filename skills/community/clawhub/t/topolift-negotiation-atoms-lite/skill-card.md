@@ -1,47 +1,62 @@
-## Description: <br>
-TopoLift's negotiation dialect for AI agents teaches a public closed vocabulary for interpreting live negotiation reasoning API responses and calling the service through MCP, Bearer key, or x402 micropayment flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TopoLift's negotiation dialect for AI agents teaches the public closed vocabulary for regimes, strategies, signal keys, citation grammar, and the supported live API access paths.
 
-## Publisher: <br>
-[jgeraci](https://clawhub.ai/user/jgeraci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jgeraci](https://clawhub.ai/user/jgeraci)
 
-## Use Case: <br>
-Developers and external agent builders use this skill to teach agents how to interpret TopoLift negotiation topology, citation tokens, and strategy vocabulary, then call the TopoLift service through MCP, direct API authentication, or x402 payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Negotiation scenarios and pricing strategy may be sent to TopoLift's third-party service. <br>
-Mitigation: Use the skill only when sharing that information with TopoLift is acceptable, and avoid sending confidential negotiation details unless approved. <br>
-Risk: Autonomous x402 payments can spend crypto funds if enabled without controls. <br>
-Mitigation: Require per-call approval, enforce a strict spend cap, and use a limited-balance wallet. <br>
-Risk: The MCP path runs an external topolift-mcp package with an API key. <br>
-Mitigation: Verify the package before running it and scope the API key to the minimum needed access. <br>
+## Use Case:
 
+Developers and agents use this skill to understand TopoLift's negotiation response dialect and call the live reasoning API through MCP, Bearer-key API requests, or x402 micropayments.
 
-## Reference(s): <br>
-- [TopoLift homepage](https://topolift.ai) <br>
-- [Live dialect endpoint](https://api.topolift.ai/v1/dialect) <br>
-- [TopoLift API](https://api.topolift.ai) <br>
-- [TopoLift MCP server source](https://github.com/TopoLift/topolift-mcp) <br>
-- [topolift-mcp on PyPI](https://pypi.org/project/topolift-mcp/) <br>
-- [Official MCP registry search](https://registry.modelcontextprotocol.io/v0/servers?search=topolift) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to send negotiation scenarios to a third-party API, use sensitive API credentials, or initiate x402 payments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Negotiation scenarios may include sensitive counterpart details, business goals, reservation prices, or confidential strategy sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with negotiation details that are approved for TopoLift processing, and redact counterpart identities and confidential strategy where possible.
+
+Risk: The MCP install path uses an unpinned package that receives a TopoLift API key.
+
+Mitigation: Pin and verify the MCP package version, and use a narrow, revocable API key.
+
+Risk: x402 pay-per-call usage can trigger paid transactions from autonomous agents.
+
+Mitigation: Require explicit approval or wallet limits before x402 paid calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jgeraci/skills/topolift-negotiation-atoms-lite)
+- [TopoLift homepage](https://topolift.ai)
+- [Live dialect endpoint](https://api.topolift.ai/v1/dialect)
+- [TopoLift API](https://api.topolift.ai)
+- [TopoLift MCP package](https://pypi.org/project/topolift-mcp/)
+- [Official MCP registry search](https://registry.modelcontextprotocol.io/v0/servers?search=topolift)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to call a third-party API using MCP, Bearer authentication, or x402 payment.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

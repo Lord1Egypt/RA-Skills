@@ -1,44 +1,57 @@
-## Description: <br>
-OpenClaw Agent Templates system reference and workflow guide for creating, editing, reviewing, debugging, or extending template-backed agent creation, storage, UI, workspace seeding, identity defaults, and create-from-template flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Agent Templates system reference and workflow guide for creating, editing, reviewing, debugging, and extending template-backed agent creation workflows.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and technical operators use this skill when working on OpenClaw's Agent Templates feature: reusable agent blueprints, template CRUD, SQLite-backed storage, UI editing, and materializing agents from templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Template materialization can create or overwrite workspace files, seed memory, merge skills, and update agent configuration when the documented OpenClaw feature is used. <br>
-Mitigation: Review each template JSON definition before use, especially workspace.files, memorySeeds, overwrite modes, workspace path overrides, and clawhubUrl skill references. <br>
-Risk: Raw JSON editing can produce invalid or unintended template definitions for non-technical users. <br>
-Mitigation: Validate template JSON and review the resulting workspace files, memory seed targets, identity defaults, and merged skill list before creating an agent. <br>
+## Use Case:
 
+Developers and engineers use this skill when working on OpenClaw's Agent Templates feature, including template storage, UI editing, gateway handlers, workspace file seeding, identity defaults, and create-from-template flows.
 
-## Reference(s): <br>
-- [Agent Templates Implementation](references/implementation.md) <br>
-- [Agent Template Schema Notes](references/template-schema.md) <br>
-- [Agent Templates UI Design](references/ui-design.md) <br>
-- [Example Agent Template Definition](assets/examples/agent-template-definition.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/agent-templates-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JSON schema examples and implementation references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; it does not install or run code itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Template definitions can create or overwrite agent workspace content through workspace files and memory seeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review template definitions before using create-from-template, especially included skills, workspace file modes, and memory seed targets.
+
+Risk: Included skills and partial configuration can change the behavior of agents created from a template.
+
+Mitigation: Inspect included skills, ClawHub URLs, and merged configuration before materializing a template into a real agent.
+
+## Reference(s):
+
+- [Agent Templates Implementation](artifact/references/implementation.md)
+- [Agent Template Schema Notes](artifact/references/template-schema.md)
+- [Agent Templates UI Design](artifact/references/ui-design.md)
+- [Example Agent Template Definition](artifact/assets/examples/agent-template-definition.json)
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/agent-templates-system)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and code reference paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; outputs are intended to guide agent work on OpenClaw template behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Publish OpenClaw skills or plugins to npm and ClawHub with a guarded workflow for release checks, sanitized publish directories, scanner review, and explicit publishing steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish OpenClaw skills or plugins to npm and ClawHub with a guarded workflow for release metadata, local-only account configuration, temporary release directories, and suspicious-scan review.
 
-## Publisher: <br>
-[humanlike2026](https://clawhub.ai/user/humanlike2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[humanlike2026](https://clawhub.ai/user/humanlike2026)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to prepare and verify npm and ClawHub releases for OpenClaw skills or plugins. It helps check local release configuration, prepare a sanitized release directory, run release-guard checks, publish intentionally, and confirm ClawHub scanner status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports real npm and ClawHub publishing workflows that can change public package or registry state. <br>
-Mitigation: Run npm publish and clawhub publish only with explicit user intent, confirm accounts with whoami commands, and review the generated release directory before publishing. <br>
-Risk: Publishing from a repository root can unintentionally include local files such as credentials, environment files, or package archives. <br>
-Mitigation: Use a disposable sanitized output path such as /tmp/publish-release and inspect the copied files before release. <br>
-Risk: The workflow depends on sensitive local publishing account configuration. <br>
-Mitigation: Keep config/publish.accounts.local.json gitignored, ensure it is not tracked, and avoid uploading local account configuration. <br>
+## Use Case:
 
+Developers and release maintainers use this skill to publish OpenClaw skills or plugins through npm and ClawHub, validate release metadata, prepare a sanitized release directory, and review ClawHub suspicious or flagged scan results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/humanlike2026/publish-npm-clawhub) <br>
-- [Release Workflow](references/workflow.md) <br>
-- [Scanner Review Playbook](references/scanner-playbook.md) <br>
-- [Publisher Profile](https://clawhub.ai/user/humanlike2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and release status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include release-guard findings, npm and ClawHub verification commands, scanner status interpretation, and concrete remediation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata, skill.json, and SKILL.md) <br>
+Risk: The release-staging script may delete an existing directory supplied through --prepare-release-dir.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a fresh, disposable staging path and avoid sensitive or existing directories until path containment and deletion safeguards are fixed.
+
+Risk: Publishing directly from a repository root can include local configuration, tokens, package archives, or editor files.
+
+Mitigation: Publish from a sanitized temporary release directory built from an explicit allowlist and review the staged files before publishing.
+
+Risk: npm or ClawHub commands can publish artifacts externally.
+
+Mitigation: Require explicit final approval before running publish commands and verify account, slug, package, version, and scan status before and after release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/humanlike2026/skills/publish-npm-clawhub)
+- [Publisher profile](https://clawhub.ai/user/humanlike2026)
+- [Source homepage](https://gitlab.ttyuyin.com/personalization_group/publish_npm_clawhub_skill)
+- [Publishing workflow](references/workflow.md)
+- [Scanner review playbook](references/scanner-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may propose local command sequences for npm and ClawHub publishing and expects explicit user approval before release commands are run.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata, skill.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-本质分析技能用于在用户明确要求分析事物、现象或概念的本质时，通过十维假设、权重排序、深度追问、正反推收敛验证和反例攻击，帮助识别核心变量、内在悖论和深层规律。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+benzhi is a Chinese-language analysis skill that helps an agent examine the essence of a phenomenon or concept using quick and deep modes with weighted hypotheses, iterative questioning, forward and reverse validation, counterexamples, paradox checks, boundary checks, and meta-inquiry.
 
-## Publisher: <br>
-[zhangqi-xi](https://clawhub.ai/user/zhangqi-xi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangqi-xi](https://clawhub.ai/user/zhangqi-xi)
 
-## Use Case: <br>
-External users and developers use this skill as a structured reasoning aid for quick or deep analysis of why-questions and questions about the essence of a phenomenon, concept, or behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording can steer general why-questions into the skill's structured deep-analysis format. <br>
-Mitigation: Narrow or disable the trigger if it interrupts ordinary fact queries, operational guidance, or casual conversation. <br>
-Risk: The self-learning notes can imply saving analysis logs or derived insights when long-term memory is enabled. <br>
-Mitigation: Require explicit user confirmation before storing analysis outputs, framework updates, or derived insights. <br>
+## Use Case:
 
+External users and agent builders use this skill when they want structured essence analysis for a phenomenon, behavior, concept, or question. It guides the agent to produce either a brief insight or a deeper Markdown analysis with hypotheses, validation, counterexamples, limits, and meta-level findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangqi-xi/benzhi) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangqi-xi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown analysis with headings, tables, and concise conclusions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports quick three-part insight output and deeper multi-section analysis with counterexamples, boundary checks, confidence, and meta-level findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks the agent to retain and reuse user analysis history without clear limits or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust the skill before installation so analysis history is stored or reused only with explicit user opt-in and clear retention limits.
+
+## Reference(s):
+
+- [ClawHub skill page for benzhi](https://clawhub.ai/zhangqi-xi/skills/benzhi)
+- [ClawHub publisher profile for zhangqi-xi](https://clawhub.ai/user/zhangqi-xi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quick mode returns a compact insight; deep mode includes hypotheses, validation, counterexamples, boundaries, confidence, and meta-inquiry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

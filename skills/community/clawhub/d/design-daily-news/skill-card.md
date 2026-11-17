@@ -1,46 +1,61 @@
-## Description: <br>
-每日设计与科技资讯聚合 - 从优设读报、36氪、虎嗅自动抓取并筛选最新的设计、AI、产品等行业动态。使用此技能获取最新的设计行业新闻、AI 趋势或每日新闻摘要。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日设计与科技资讯聚合 - 从优设读报、36氪、虎嗅自动抓取并筛选最新的设计、AI、产品等行业动态。使用此技能获取最新的设计行业新闻、AI 趋势或每日新闻摘要。
 
-## Publisher: <br>
-[tianyuvision-max](https://clawhub.ai/user/tianyuvision-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyuvision-max](https://clawhub.ai/user/tianyuvision-max)
 
-## Use Case: <br>
-External users and agents use this skill to generate a daily Chinese-language design and technology news digest from 优设读报, 36氪, and 虎嗅. It is suited for summarizing recent design, AI, product, and technology headlines into a concise Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and Bash scripts and makes outbound web requests to disclosed news sites. <br>
-Mitigation: Review the scripts before installation and run only in an environment where these web requests are acceptable. <br>
-Risk: The skill writes small cache, log, and archive files during normal operation. <br>
-Mitigation: Confirm the configured local paths are appropriate and monitor cache or log retention if scheduled. <br>
-Risk: The optional auto-fetch helper calls a local workspace script outside this package. <br>
-Mitigation: Inspect and approve that external workspace script before adding the helper to cron or another scheduler. <br>
+## Use Case:
 
+External users and automation agents use this skill to collect daily design, AI, product, and technology news from 优设读报, 36氪, and 虎嗅 and format it as a concise digest suitable for WeChat delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianyuvision-max/design-daily-news) <br>
-- [优设读报](https://www.uisdc.com/news) <br>
-- [36氪](https://36kr.com) <br>
-- [36氪 RSS feed](https://36kr.com/feed) <br>
-- [虎嗅](https://www.huxiu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown daily digest with linked headlines, source labels, summaries, and item counts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily report is capped at 15 items and may use local cache files for fetched source data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can automatically publish scraped external content to WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm scheduled delivery is opt-in and review generated digests before sending to shared channels.
+
+Risk: External titles, summaries, and URLs are formatted into Markdown links without documented sanitization.
+
+Mitigation: Sanitize URLs and Markdown text before delivery, especially when reports are sent to other people.
+
+Risk: The archive helper deletes local news files older than 30 days.
+
+Mitigation: Document the retention behavior or disable cleanup unless users expect local archive deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianyuvision-max/skills/design-daily-news)
+- [优设读报](https://www.uisdc.com/news)
+- [36氪](https://36kr.com)
+- [36氪 RSS feed](https://36kr.com/feed)
+- [虎嗅](https://www.huxiu.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown news digest with numbered items and optional clickable source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily report output is capped at 15 total items, with all current 优设读报 items included first and remaining slots filled from 36氪 and 虎嗅.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

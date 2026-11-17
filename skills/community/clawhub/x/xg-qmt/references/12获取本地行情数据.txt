@@ -1,0 +1,94 @@
+'''
+12获取本地行情数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.get_local_data - 获取本地行情数据【不推荐】
+注意
+
+本函数用于仅用于获取本地历史行情数据，使用前请确保已通过download_history_data下载过历史行情数据
+
+原型
+
+内置python
+
+ContextInfo.get_local_data(
+    stock_code,
+    start_time='',
+    end_time='',
+    period='1d',
+    divid_type='none',
+    count=-1)
+释义
+
+获取本地行情数据
+
+参数
+
+字段名	数据类型	解释
+stock_code	string	默认参数，合约代码格式为 code.market，不指定时为当前图合约
+start_time	string	默认参数，开始时间，格式为 '20171209' 或 '20171209010101'
+end_time	string	默认参数，结束时间，格式同 start_time
+period	string	默认参数，K线类型，可选值包括：
+'tick'：分笔线（只用于获取'quoter'字段数据）、'realtime': 实时线、'1d'：日线
+'md'：多日线、'1m'：1分钟线、'3m'：3分钟线
+'5m'：5分钟线、'15m'：15分钟线、'30m'：30分钟线
+'mm'：多分钟线、'1h'：小时线、'mh'：多小时线
+'1w'：周线、'1mon'：月线、'1q'：季线
+'1hy'：半年线、'1y'：年线
+dividend_type	string	除复权种类，可选值：
+'none'：不复权
+'front'：向前复权
+'back'：向后复权
+'front_ratio'：等比向前复权
+'back_ratio'：等比向后复权
+count	int	当 count 大于等于0时：
+如果指定了 start_time 和 end_time，则以 end_time 为基准向前取 count 条数据；
+如果 start_time 和 end_time 缺省，则默认取本地数据最新的 count 条数据；
+如果 start_time、end_time 和 count 都缺省时，则默认取本地全部数据。
+返回值
+
+返回一个dict，键值为timetag，value为另一个dict(valuedict)
+
+period='tick'时函数获取分笔数据，valuedict字典数据key值有：
+字段	数据类型	含义
+lastPrice	float	最新价
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+lastClose	float	前收盘价
+amount	float	成交额
+volume	float	成交量
+pvolume	float	原始成交量
+stockStatus	int	作废 参考openInt
+openInt	float	若是股票，则openInt含义为股票状态，非股票则是持仓量openInt字段说明
+lastSettlementPrice	float	昨结算价
+askPrice	list	委卖价
+bidPrice	list	委买价
+askVol	list	委卖量
+bidVol	list	委买量
+settlementPrice	float	今结算价
+period为其他值时，valuedict字典数据key值有：
+字段名	数据类型	解释
+amount	float	成交额
+volume	float	成交量
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+close	float	收盘价
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_local_data(stock_code='600000.SH',start_time='20220101',end_time='20220131',period='1d',divid_type='none')
+	print(data)
+'''
+运行结果
+{1641225600000: {'open': 8.54, 'high': 8.58, 'low': 8.52, 'close': 8.57, 'volume': 377076, 'amount': 322145532.0}, 1641312000000: {'open': 8.57, 'high': 8.68, 'low': 8.56, 'close': 8.64, 'volume': 554591, 'amount': 478834470.0}, 1641398400000: {'open': 8.66, 'high': 8.66, 'low': 8.56, 'close': 8.57, 'volume': 410311, 'amount': 352720656.0}, 1641484800000: {'open': 8.57, 'high': 8.73, 'low': 8.57, 'close': 8.71, 'volume': 630183, 'amount': 546456194.0}, 1641744000000: {'open': 8.72, 'high': 8.78, 'low': 8.66, 'close': 8.72, 'volume': 340553, 'amount': 296601230.0}, 1641830400000: {'open': 8.74, 'high': 8.78, 'low': 8.69, 'close': 8.73, 'volume': 426461, 'amount': 373093384.0}, 1641916800000: {'open': 8.75, 'high': 8.75, 'low': 8.63, 'close': 8.69, 'volume': 412407, 'amount': 358535694.0}, 1642003200000: {'open': 8.73, 'high': 8.85, 'low': 8.69, 'close': 8.72, 'volume': 489237, 'amount': 429003208.0}, 1642089600000: {'open': 8.72, 'high': 8.72, 'low': 8.57, 'close': 8.59, 'volume': 510607, 'amount': 440215953.0}, 1642348800000: {'open': 8.57, 'high': 8.63, 'low': 8.57, 'close': 8.57, 'volume': 221780, 'amount': 190459847.0}, 1642435200000: {'open': 8.58, 'high': 8.66, 'low': 8.55, 'close': 8.63, 'volume': 399952, 'amount': 344181260.0}, 1642521600000: {'open': 8.63, 'high': 8.66, 'low': 8.61, 'close': 8.64, 'volume': 262577, 'amount': 226931297.0}, 1642608000000: {'open': 8.66, 'high': 8.82, 'low': 8.64, 'close': 8.8, 'volume': 828420, 'amount': 724160483.0}, 1642694400000: {'open': 8.78, 'high': 8.8, 'low': 8.72, 'close': 8.76, 'volume': 475725, 'amount': 416684184.0}, 1642953600000: {'open': 8.79, 'high': 8.79, 'low': 8.66, 'close': 8.69, 'volume': 324897, 'amount': 282465419.0}, 1643040000000: {'open': 8.68, 'high': 8.68, 'low': 8.56, 'close': 8.56, 'volume': 433124, 'amount': 372488759.0}, 1643126400000: {'open': 8.57, 'high': 8.59, 'low': 8.54, 'close': 8.57, 'volume': 234820, 'amount': 201130974.0}, 1643212800000: {'open': 8.55, 'high': 8.56, 'low': 8.45, 'close': 8.45, 'volume': 562810, 'amount': 477716811.0}, 1643299200000: {'open': 8.48, 'high': 8.51, 'low': 8.41, 'close': 8.41, 'volume': 439938, 'amount': 372256637.0}}
+
+
+'''

@@ -1,41 +1,58 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Weathernow concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use Weathernow as a static devtools reference for quick guidance on concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions that request API keys, credentials, network access, account access, file access, or elevated permissions would materially change the risk profile. <br>
-Mitigation: Review the security evidence and scanner findings before deployment; keep this release limited to static reference output. <br>
-Risk: Static reference guidance can be generic or stale for a user's exact devtools environment. <br>
-Mitigation: Treat the output as reference guidance and verify operational or security recommendations against current project requirements before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill for quick Weathernow reference material, including introductory concepts, quickstart guidance, implementation patterns, debugging, performance, security, migration, and cheatsheet content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/weathernow) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static command output; no API keys, credentials, network access, or elevated permissions required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Reference text may be mistaken for authoritative implementation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as generic documentation and verify details against project-specific requirements before applying it.
+
+Risk: Credential-related wording in the reference text may create false alarms or confusion.
+
+Mitigation: Confirm the skill does not request or access credentials; revise vague credential wording before publication when possible.
+
+Risk: The artifact script reports version 2.0.1 while server release evidence and skill frontmatter report 2.0.2.
+
+Mitigation: Align the script VERSION value with the release version before depending on command-line version output.
+
+## Reference(s):
+
+- [Weathernow skill page](https://clawhub.ai/ckchzh/skills/weathernow)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc reference output; no external API calls, credentials, or network access described.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

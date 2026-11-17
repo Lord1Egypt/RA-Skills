@@ -1,0 +1,98 @@
+{
+ "artifact": "meddocs_20261014",
+ "purpose": "隔壁产线（免疫深读/医学科普视频/患教会）真实医学文档的 ppp 检测摸底——v5.6.0 开发重点的证据基座。10 篇/约 15 万字。",
+ "date": "2026-10-14",
+ "engine": "5.5.0 (fp 2631df3d388b)",
+ "findings_summary": [
+  "被判废的 IEI 总论在 ppp 下仅 8.9/low——L1 隐喻滥用词（对齐/讲透/闭环等 3 类 10 处）+L2 语气词完全漏网",
+  "10 篇中 6 篇携带 L1 黑名单词（失守×3/命运×2/对齐×2/面孔×2/叙事×2/零件×2…），最高单篇 8 词",
+  "短剧脚本（口语剧本）7.6/low——口语剧本语域在学术校准域外",
+  "L1 词表留出集 lift 仅 2.3x（人类侧含文学词），L2 lift 4.7x——计入引擎会抬人类 FPR@med +1.5pt、gen2026 AUROC -1pt",
+  "结论：计分回退（负结果入档），写作侧以 style_norm 第 7 查（三层词表+判例库对照）交付"
+ ],
+ "docs": [
+  {
+   "name": "iei_overview",
+   "chars": 7418,
+   "score_55": 8.9,
+   "risk_55": "low",
+   "l1_words": [
+    "对齐",
+    "讲透",
+    "闭环"
+   ],
+   "l2_count": 3,
+   "note": "2026-08-31 被用户判废的重写对象"
+  },
+  {
+   "name": "stat3_hige",
+   "chars": 17242,
+   "score_55": 17.2,
+   "risk_55": "low",
+   "l1_words": [
+    "命运",
+    "塌方",
+    "失守",
+    "面孔"
+   ]
+  },
+  {
+   "name": "tuitui_script",
+   "chars": 6315,
+   "score_55": 7.6,
+   "risk_55": "low",
+   "l1_words": [
+    "剧本",
+    "叙事",
+    "带走",
+    "底座",
+    "落地",
+    "零件"
+   ],
+   "note": "口语剧本，语域外"
+  },
+  {
+   "name": "nlrp3_ln",
+   "chars": 32340,
+   "score_55": 41.7,
+   "risk_55": "medium",
+   "l1_words": [
+    "串成",
+    "叙事",
+    "失守",
+    "点燃",
+    "窗口前移",
+    "编织"
+   ]
+  },
+  {
+   "name": "alps",
+   "chars": 15833,
+   "score_55": 89.8,
+   "risk_55": "high",
+   "l1_words": [
+    "主角",
+    "命运",
+    "失灵",
+    "对齐",
+    "面孔"
+   ]
+  },
+  {
+   "name": "vte_education",
+   "chars": 6396,
+   "score_55": 91.4,
+   "risk_55": "high",
+   "l1_words": [
+    "读懂"
+   ]
+  }
+ ],
+ "negative_result": {
+  "trial": "L14 比喻叙事 AI 腔层计分（多信号门控+封顶 20）",
+  "result": "人类 FPR@med 15.3%→16.8% (+1.5pt)、gen2026 AUROC 0.7149→0.7050 (-1pt)、oldgen 持平",
+  "decision": "回退计分、保留命中披露（jargon_hits 字段+报告提示行）；负结果入档勿直接重试",
+  "retry_condition": "calib 半重定门槛+test 半复核"
+ },
+ "credit": "三层词表与判例库原权：免疫深读/ImmunoLens 产线（paper-to-story style_guard，2026-08-31 判废复盘）"
+}

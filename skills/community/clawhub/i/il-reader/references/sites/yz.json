@@ -1,0 +1,398 @@
+{
+  "version": "2.4.0",
+  "source_id": "yz",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:00:53.893Z",
+  "entry": {
+    "url": "https://yz.chsi.com.cn/",
+    "final_url": "https://yzst.chsi.com.cn/index2.html",
+    "title": "中国研究生招生信息网",
+    "status": "redirect_identity_pending",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:53.893Z",
+    "identity": {
+      "declared_name": "中国研究生招生信息网（研招网）",
+      "hostname": "yzst.chsi.com.cn",
+      "domain_matches": false
+    },
+    "links": [
+      {
+        "text": "帮助中心",
+        "href": "https://yz.chsi.com.cn/help/",
+        "target": "_blank"
+      },
+      {
+        "text": "专业库",
+        "href": "https://yz.chsi.com.cn/zyk/",
+        "target": ""
+      },
+      {
+        "text": "专业学位",
+        "href": "https://yz.chsi.com.cn/kyzx/zt/zsxz.shtml",
+        "target": ""
+      },
+      {
+        "text": "硕士专业目录",
+        "href": "https://yz.chsi.com.cn/zsml/",
+        "target": ""
+      },
+      {
+        "text": "博士专业目录",
+        "href": "https://yz.chsi.com.cn/bsmlcx/",
+        "target": ""
+      },
+      {
+        "text": "关于公布通过2025年质量监测的农业专业学位研究生培养单位和科技...",
+        "href": "https://yz.chsi.com.cn/kyzx/zcdh/202602/20260205/2293447363.html",
+        "target": "_blank"
+      },
+      {
+        "text": "中央教育工作领导小组印发《高等教育学科专业设置调整优化行动方...",
+        "href": "https://yz.chsi.com.cn/kyzx/zcdh/202508/20250828/2293396824.html",
+        "target": "_blank"
+      },
+      {
+        "text": "浙江理工大学2027年硕士研究生招生专业目录及自命题科目考试大纲",
+        "href": "https://gradadmission.zstu.edu.cn/info/1011/3393.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "【访谈】河南理工大学：部分专业由按类别招...",
+        "href": "https://yz.chsi.com.cn/kyzx/kyft/zxft/202511/20251118/2293443675.html",
+        "target": "_blank"
+      },
+      {
+        "text": "【访谈】喀什大学：2026年部分专业考试科目...",
+        "href": "https://yz.chsi.com.cn/kyzx/kyft/zxft/202511/20251118/2293441996.html",
+        "target": "_blank"
+      },
+      {
+        "text": "【专硕巡展】建设美丽绿色中国，资源与环境...",
+        "href": "https://yz.chsi.com.cn/kyzx/zsxz/202404/20240410/2293287517.html",
+        "target": "_blank"
+      },
+      {
+        "text": "【专硕巡展】生物与医药：年轻专业助力生物...",
+        "href": "https://yz.chsi.com.cn/kyzx/zsxz/202403/20240329/2293277143.html",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助中心",
+        "href": "https://yz.chsi.com.cn/help/",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://t4.chei.com.cn/axv/4057127180.html",
+        "id": "chsi_slot_iframe_4057127180",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4061249097.html",
+        "id": "chsi_slot_iframe_4061249097",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4061059002.html",
+        "id": "chsi_slot_iframe_4061059002",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4065831377.html",
+        "id": "chsi_slot_iframe_4065831377",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/1867480245.html",
+        "id": "chsi_slot_iframe_1867480245",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/1867454457.html",
+        "id": "chsi_slot_iframe_1867454457",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/2779197862.html",
+        "id": "chsi_slot_iframe_2779197862",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4061199167.html",
+        "id": "chsi_slot_iframe_4061199167",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/531997652.html",
+        "id": "chsi_slot_iframe_531997652",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/531996285.html",
+        "id": "chsi_slot_iframe_531996285",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/1867460038.html",
+        "id": "chsi_slot_iframe_1867460038",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/890981968.html",
+        "id": "chsi_slot_iframe_890981968",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4061066529.html",
+        "id": "chsi_slot_iframe_4061066529",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4064853356.html",
+        "id": "chsi_slot_iframe_4064853356",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/4061272215.html",
+        "id": "chsi_slot_iframe_4061272215",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t2.chei.com.cn/axv/534729923.html",
+        "id": "chsi_slot_iframe_534729923",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t1.chei.com.cn/axv/534733763.html",
+        "id": "chsi_slot_iframe_534733763",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "query",
+      "id": "top-nav-search-input",
+      "css": "#top-nav-search-input",
+      "role": null,
+      "form_action": "https://cn.bing.com/search",
+      "locator": {
+        "css": "#top-nav-search-input"
+      },
+      "observed_url": "https://yzst.chsi.com.cn/index2.html",
+      "observed_at": "2026-10-09T09:00:53.441Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://cn.bing.com/search",
+      "locator": null,
+      "observed_url": "https://yzst.chsi.com.cn/index2.html",
+      "observed_at": "2026-10-09T09:00:53.441Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "yz:record-lookup",
+      "source_id": "yz",
+      "task_kind": "record-lookup",
+      "status": "blocked",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://yz.chsi.com.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "query",
+          "id": "top-nav-search-input",
+          "css": "#top-nav-search-input",
+          "role": null,
+          "form_action": "https://cn.bing.com/search",
+          "locator": {
+            "css": "#top-nav-search-input"
+          },
+          "observed_url": "https://yzst.chsi.com.cn/index2.html",
+          "observed_at": "2026-10-09T09:00:53.441Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "yz:official-guidance",
+      "source_id": "yz",
+      "task_kind": "official-guidance",
+      "status": "blocked",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://yz.chsi.com.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "query",
+          "id": "top-nav-search-input",
+          "css": "#top-nav-search-input",
+          "role": null,
+          "form_action": "https://cn.bing.com/search",
+          "locator": {
+            "css": "#top-nav-search-input"
+          },
+          "observed_url": "https://yzst.chsi.com.cn/index2.html",
+          "observed_at": "2026-10-09T09:00:53.441Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "redirect_identity_pending",
+      "detail": "入口重定向到目录声明范围外，需根据发布机构核对新身份，未自动授予权威来源身份。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "yz",
+    "quiz_entries": [
+      "quiz-entry-054"
+    ],
+    "example_ids": [
+      "2025-M15-Q1",
+      "2026-M15-Q1",
+      "KH-Q020",
+      "KH-Q076"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:53.893Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/yz-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/yz-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

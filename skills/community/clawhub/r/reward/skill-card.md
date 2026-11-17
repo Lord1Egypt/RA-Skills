@@ -1,41 +1,50 @@
-## Description: <br>
-Reward system design reference -- behavioral reinforcement, loyalty programs, gamification, incentive structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reward system design reference - behavioral reinforcement, loyalty programs, gamification, incentive structures.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Product, growth, workplace, and program-design teams use this skill as a reference for reward programs, loyalty systems, gamification, workplace incentives, and behavioral reinforcement tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reward-design guidance involving variable rewards, streaks, scarcity, or habit-forming mechanics can encourage compulsive behavior or pressure vulnerable users. <br>
-Mitigation: Review intended reward mechanics for user welfare, avoid manipulative patterns in sensitive contexts, and apply the guidance ethically. <br>
-Risk: Static reward-design guidance can be applied out of context and produce ineffective or unfair incentive structures. <br>
-Mitigation: Validate program designs with domain experts, balanced metrics, qualitative review, and monitoring for unintended behavior. <br>
+## Use Case:
 
+Product teams, program designers, and agents use this skill to generate concise reference guidance for loyalty programs, gamification systems, workplace incentives, reinforcement schedules, and reward effectiveness metrics.
 
-## Reference(s): <br>
-- [Reward on ClawHub](https://clawhub.ai/bytesagain3/reward) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reference guidance from shell-command topics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference content; no API keys, external tools, or MCP servers detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Reward-system guidance includes variable rewards and habit-formation patterns that can be manipulative or harmful if applied without attention to user well-being.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the guidance with ethical review, transparency, proportional incentives, and safeguards against addictive or coercive engagement patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/reward)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected local reference content; no external services, credentials, or persistent storage are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

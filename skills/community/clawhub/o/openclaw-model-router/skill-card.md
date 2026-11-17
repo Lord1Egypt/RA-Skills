@@ -1,39 +1,53 @@
-## Description: <br>
-Intelligent cost-aware model routing that classifies task complexity and selects the optimal AI model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies OpenClaw tasks by complexity and routes them to cost-aware model tiers with progressive escalation guidance.
 
-## Publisher: <br>
-[jsgoecke](https://clawhub.ai/user/jsgoecke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jsgoecke](https://clawhub.ai/user/jsgoecke)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify tasks by complexity and choose cost-aware model tiers, routing simple work to cheaper models and complex or reasoning-heavy work to stronger models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Routing may send private prompts through a provider or model gateway the user does not trust. <br>
-Mitigation: Define trusted providers in advance and require approval before routing sensitive work through premium or gateway models. <br>
-Risk: Cost-aware routing can still escalate to premium models and increase spend. <br>
-Mitigation: Set a maximum spend or preferred model tier and require approval before premium escalation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jsgoecke/openclaw-model-router) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to classify user requests and choose model tiers that balance cost, quality, and task complexity before delegation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only routing guidance; model pricing and availability should be checked before relying on a recommendation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages delegating user tasks to external model providers, which can expose private documents, code, calendar data, logs, secrets, or regulated data.
+
+Mitigation: Use explicit provider allowlists, require user confirmation before external delegation, and redact secrets or sensitive content before routing.
+
+Risk: Model prices and availability can change, making routing recommendations stale.
+
+Mitigation: Review current provider pricing and availability before relying on cost-sensitive routing decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jsgoecke/skills/openclaw-model-router)
+- [OpenRouter Free Models](https://openrouter.ai/collections/free-models)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with routing tables and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model tier recommendations, optimization modes, progressive escalation steps, and provider pricing notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

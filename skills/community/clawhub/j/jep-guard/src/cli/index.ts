@@ -15,7 +15,7 @@ const program = new Command();
 
 program
   .name('jep-guard')
-  .description('JEP Guard v2.0.4 — Causal Operating System for OpenClaw Skills')
+  .description('JEP Guard v3.0.0 — Causal Operating System for OpenClaw Skills')
   .version('2.0.4');
 
 program.addCommand(initCommand);

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-pi-query",
   "version": "1.0.0",
-  "publishedAt": 1778289718190
+  "title": "圆周率查询 - 即刻数据",
+  "description": "支持查找圆周率指定位置开始的数字，也支持查找指定数字在圆周率中的位置。",
+  "env": "JIKE_PI_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/pi/find_number",
+  "homepage": "https://www.jikeapi.cn/"
 }

@@ -1,8 +1,9 @@
 # lib-code.edn
 
-Generated from `src/snlib/lib-code.edn`.
+Generated from `impl/clj/src/snlib/lib-code.edn`.
 
 ```edn
+;; Library code data for the Clojure implementation.
 {"141623" "복정도서관",
  "141229" "정자청소년작은도서관",
  "141256" "한솔작은도서관",

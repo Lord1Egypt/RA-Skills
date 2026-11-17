@@ -1,49 +1,70 @@
-## Description: <br>
-Call EngageLab OTP REST APIs to send one-time passwords, verify codes, send custom messages, manage OTP templates, configure callback webhooks, and support SMPP integration across SMS, WhatsApp, Email, and Voice channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call EngageLab OTP REST APIs to send one-time passwords, verify codes, send custom template messages, manage OTP templates, configure callback webhooks, and support SMPP integration across SMS, WhatsApp, Email, and Voice channels.
 
-## Publisher: <br>
-[devengagelab](https://clawhub.ai/user/devengagelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devengagelab](https://clawhub.ai/user/devengagelab)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate EngageLab OTP delivery, verification, template management, callback validation, and SMPP reference workflows into applications. It helps agents produce API calls, code examples, configuration guidance, and webhook verification support for OTP operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help send real OTP or custom messages and may incur delivery costs or contact unintended recipients. <br>
-Mitigation: Use test or least-privilege EngageLab credentials where possible, confirm recipients and expected costs before sending, and keep placeholder credentials until the user intentionally supplies real values. <br>
-Risk: Template management guidance can create, modify workflow assumptions, or delete OTP templates that production delivery depends on. <br>
-Mitigation: Verify template IDs, channel strategy, language settings, and deletion intent before executing template operations. <br>
-Risk: Callback endpoints can expose delivery and verification events if they are not protected. <br>
-Mitigation: Use HTTPS and validate callbacks with the documented HMAC signature or an authorization mechanism before accepting event payloads. <br>
-Risk: EngageLab API credentials grant access to OTP operations through HTTP Basic Authentication. <br>
-Mitigation: Protect dev_key and dev_secret values, avoid logging Authorization headers, and rotate credentials if they are exposed. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate API calls, code examples, shell commands, callback verification guidance, and configuration help for EngageLab OTP integrations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/devengagelab/engagelab-otp) <br>
-- [OTP Template API Reference](references/template-api.md) <br>
-- [OTP Callback Configuration Reference](references/callback-config.md) <br>
-- [EngageLab OTP API Error Codes](references/error-codes.md) <br>
-- [OTP SMPP Integration Guide](references/smpp-guide.md) <br>
-- [EngageLab OTP API base URL](https://otp.api.engagelab.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples, code snippets, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request payloads, callback verification logic, template configuration examples, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can use long-lived EngageLab API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store dev_key and dev_secret in environment variables or a secret manager, and do not paste dev_secret into chat.
+
+Risk: Generated requests may send OTP or custom messages to real recipients.
+
+Mitigation: Require explicit user confirmation before sending messages to production recipients.
+
+Risk: Template management includes destructive delete actions.
+
+Mitigation: Require explicit confirmation before deleting templates and verify the target template ID.
+
+Risk: Callback payloads may contain recipient and delivery-status data.
+
+Mitigation: Avoid logging callback payloads unless logs are redacted and access controlled.
+
+Risk: Changing the API host could route credentials or recipient data to an unintended endpoint.
+
+Mitigation: Restrict the API host to EngageLab's expected endpoint unless a trusted operator explicitly approves another host.
+
+## Reference(s):
+
+- [EngageLab OTP skill page](https://clawhub.ai/devengagelab/skills/engagelab-otp)
+- [EngageLab OTP API endpoint](https://otp.api.engagelab.cc)
+- [OTP Template API Reference](references/template-api.md)
+- [OTP Callback Configuration Reference](references/callback-config.md)
+- [EngageLab OTP API Error Codes](references/error-codes.md)
+- [OTP SMPP Integration Guide](references/smpp-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, JSON examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, authentication placeholders, template payloads, callback validation snippets, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

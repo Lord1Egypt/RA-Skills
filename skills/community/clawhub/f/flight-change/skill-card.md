@@ -1,44 +1,61 @@
-## Description: <br>
-Search for flight change options including rebooking and date modification, powered by Fliggy through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for flight change options, including rebooking and date modification, and can route related travel searches through Fliggy-powered flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to search for flight-change, rebooking, date-modification, and related travel options from live flyai CLI results. It helps collect route and date parameters, execute the appropriate flight search, and present bookable options in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt installation of an unpinned global flyai CLI package. <br>
-Mitigation: Install only if the flyai CLI provider is trusted; prefer a sandbox or manual local install before allowing global package installation. <br>
-Risk: Flight searches send travel details to an external travel service. <br>
-Mitigation: Review the exact command before execution and avoid entering sensitive travel details unless sharing them with the external service is acceptable. <br>
+## Use Case:
 
+External travelers and travel support agents use this skill to collect route and date inputs, run flyai CLI flight-search commands, and format flight-change options with booking links and change-policy reminders.
 
-## Reference(s): <br>
-- [Flight Change Skill Page](https://clawhub.ai/xiejinsong/flight-change) <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, concise guidance, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the required data source and requires each listed result to include a Book link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may install and execute an unpinned third-party flyai CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit and install the CLI yourself, pin an approved version where possible, and require approval before execution.
+
+Risk: Flight results and booking links depend on a third-party CLI and may direct users to mandatory booking links.
+
+Mitigation: Verify prices, terms, and change policies directly with the airline or booking provider before acting.
+
+Risk: The skill searches replacement flight options but does not prove that an existing ticket can be changed.
+
+Mitigation: Treat output as search guidance and confirm any ticket modification through the airline or booking provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/flight-change)
+- [Parameter collection and output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Failure recovery](references/fallbacks.md)
+- [Execution runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, comparison tables, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results must be sourced from flyai CLI output and include Book links when flight options are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

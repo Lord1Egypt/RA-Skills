@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 'use strict';
+const { remember, redact, install } = require('./lib/redaction');
+install();
+const { joinUrl, baseUrl } = require('./lib/endpoints');
 
 // web-publisher CLI — command routing and orchestration.
 //
@@ -10,7 +13,7 @@
 //   ./lib/upload.js      — reads ONE user-supplied file path (CLI arg only),
 //       after classifyInput() validation. No network I/O in this module.
 //   ./lib/http.js        — outbound fetch to tools.siping.me and the
-//       user-configured pipeline API (multipart upload, JSON RPC).
+//       allowlisted HTTPS pipeline API (multipart upload, JSON RPC).
 //   ./lib/manifest.js    — reads colocated config.json version string.
 //
 // run.js wires the above: e.g. draft/publish/convert read bytes via
@@ -41,11 +44,14 @@ const {
 } = require('./lib/credentials');
 
 const {
+  safeFetch,
   callJson,
   pipelineRequest,
   pipelineUpload,
   toolsRequest
 } = require('./lib/http');
+
+const { THEMES, normalizeTheme } = require('./lib/themes');
 
 const { readSkillVersion } = require('./lib/manifest');
 
@@ -74,7 +80,7 @@ const PKG_VERSION = readSkillVersion();
 // returns after the data is in the OS pipe buffer, eliminating that race.
 function flushStderr(s) {
   try {
-    fs.writeSync(2, s);
+    fs.writeSync(2, redact(s));
   } catch (_) {
     // EPIPE / EBADF when parent has already closed our stderr — silently
     // drop. There's nothing useful we can do at that point.
@@ -82,7 +88,7 @@ function flushStderr(s) {
 }
 function flushStdout(s) {
   try {
-    fs.writeSync(1, s);
+    fs.writeSync(1, redact(s));
   } catch (_) {}
 }
 
@@ -483,7 +489,7 @@ async function runPublish(action, args) {
     process.exit(1);
   }
 
-  const theme = opts.theme || 'blackink';
+  const theme = normalizeTheme(opts.theme);
 
   let response;
   let label;
@@ -589,7 +595,7 @@ async function runPpt(action, args) {
     );
   }
 
-  const theme = opts.theme || 'blackink';
+  const theme = normalizeTheme(opts.theme);
   const label = `file:${classified.filename}`;
 
   try {
@@ -788,10 +794,10 @@ async function runWait(args) {
   const seenDone = new Set();
   const finalStates = new Map();
 
-  const url = `${creds.apiUrl.replace(/\/$/, '')}/jobs/wait?ids=${encodeURIComponent(jobIds.join(','))}`;
+  const url = joinUrl(creds.apiUrl, `/jobs/wait?ids=${encodeURIComponent(jobIds.join(','))}`, 'pipeline');
   let response;
   try {
-    response = await fetch(url, {
+    response = await safeFetch(url, {
       headers: {
         'X-User-Id': creds.userId,
         'X-Api-Key': creds.apiKey,
@@ -1134,7 +1140,7 @@ async function runLogin(loginArgs) {
 
   const toolsUrl = resolveToolsUrl().replace(/\/$/, '');
 
-  const initResp = await callJson('POST', `${toolsUrl}/skill/device/init`, {}, {
+  const initResp = await callJson('POST', joinUrl(toolsUrl, '/skill/device/init', 'tools'), {}, {
     clientName: 'web-publisher-cli',
     clientVersion: PKG_VERSION
   });
@@ -1264,10 +1270,10 @@ async function runLoginStatus() {
     return;
   }
 
-  const toolsUrl = (pending.toolsUrl || resolveToolsUrl()).replace(/\/$/, '');
+  const toolsUrl = baseUrl(pending.toolsUrl || resolveToolsUrl(), 'tools');
   let pollResp;
   try {
-    pollResp = await callJson('POST', `${toolsUrl}/skill/device/poll`, {}, { deviceCode: pending.deviceCode });
+    pollResp = await callJson('POST', joinUrl(toolsUrl, '/skill/device/poll', 'tools'), {}, { deviceCode: pending.deviceCode });
   } catch (err) {
     status.state = 'polling-failed';
     status.note = `调用 /skill/device/poll 失败（${err.message || err}），稍后重试 login-status；或重新运行 login`;
@@ -1299,6 +1305,7 @@ async function runLoginStatus() {
   }
 
   if (pollData.status === 'bound') {
+    remember(pollData.apiKey);
     let persisted = false;
     let persistError = null;
     try {
@@ -1339,7 +1346,7 @@ async function runLoginStatus() {
     } else {
       status.state = 'persist-failed';
       status.userId = pollData.userId;
-      status.note = `服务端已绑定，但写入 ${CREDENTIALS_PATH} 失败：${persistError?.message || persistError}。本次会话仍可临时使用环境变量：WEB_PUBLISHER_USER_ID='${pollData.userId}' WEB_PUBLISHER_API_KEY='${pollData.apiKey}'`;
+      status.note = '服务端已绑定，但本地凭证保存失败。请修复凭证目录权限或磁盘空间，然后运行 web-publisher login --force 重新登录；密钥不会输出到终端。';
     }
     emitStatus(status);
     return;
@@ -1482,7 +1489,7 @@ async function runWhoami() {
     userId: data.userId,
     name: data.name,
     phone: data.phone,
-    apiKey: data.apiKey,
+    apiKey: '****',
     plan,
     wechat: data.wechat,
     credits: data.credits
@@ -1660,7 +1667,7 @@ web-publisher v${PKG_VERSION} — 将网页文章 / 本地文档发布到微信�
                           --timeout <ms> 单次转换上限（封顶 600000）
 
 发布选项:
-  --theme <id>       主题（默认: blackink）
+  --theme <id>       主题 ID 或中文名（默认: blackink；themes 列出全部主题）
                      可选: blackink(墨黑) / default(默认) / orangesun(橙日)
                            redruby(红宝石) / greenmint(薄荷绿) / purplerain(紫雨)
   --rewrite          启用 AI 改写（PDF 会自动切到 markdown 模式）
@@ -1718,6 +1725,9 @@ const args = process.argv.slice(3);
 (async () => {
   try {
     switch (command) {
+      case 'themes':
+        console.log(JSON.stringify({success:true,minimumServerVersion:'0.8.0',themes:THEMES},null,2));
+        break;
       case 'login':
         await runLogin(args);
         break;

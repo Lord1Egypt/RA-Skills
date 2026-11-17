@@ -1,46 +1,61 @@
-## Description: <br>
-Tamper-evident audit logger that pairs with Guardian safety skill and captures safety decisions, approvals, halts, escalations, and execution outcomes in an append-only, hash-chained log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guardian Audit records safety decisions, approvals, escalations, and execution outcomes in an append-only, hash-chained audit log.
 
-## Publisher: <br>
-[tooled-app](https://clawhub.ai/user/tooled-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tooled-app](https://clawhub.ai/user/tooled-app)
 
-## Use Case: <br>
-Developers and operators use this skill to record safety-gate decisions and compliance-relevant agent actions for later review, incident reconstruction, and audit reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit logs can contain sensitive paths, commands, reasoning, approval context, personal data, or business data. <br>
-Mitigation: Define log storage, access control, retention, redaction, and encryption requirements before installation. <br>
-Risk: Integrity and compliance claims may be overstated if the logger is treated as complete proof of all agent activity. <br>
-Mitigation: Run the dedicated chain verifier before trusting log integrity and use the audit trail as one control among broader monitoring and compliance processes. <br>
-Risk: The skill records decisions after they occur and does not itself block unsafe actions. <br>
-Mitigation: Pair it with an appropriate safety gatekeeper and periodically test that expected safety decisions are actually captured. <br>
+## Use Case:
 
+Developers, operators, and compliance reviewers use Guardian Audit to capture safety-gate decisions and review audit trails for incident analysis or compliance evidence.
 
-## Reference(s): <br>
-- [Guardian Audit ClawHub release](https://clawhub.ai/tooled-app/data-guardian-audit) <br>
-- [Guardian project](https://github.com/openclaw/guardian) <br>
-- [Log Schema](LOG-SCHEMA.md) <br>
-- [Compliance Mapping](COMPLIANCE-MAPPING.md) <br>
-- [Replay and Analysis](REPLAY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON log records and Python or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces append-only NDJSON audit entries, chain verification output, and Markdown compliance reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: Users may treat generated reports as verified compliance proof.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reports as local audit notes unless authenticated approvals, protected append-only storage, real chain verification, restrictive file permissions, and documented event coverage are in place.
+
+Risk: Audit logs can contain sensitive operational details, personal or business data, security decisions, and agent reasoning.
+
+Mitigation: Restrict log access, avoid logging secrets, redact logs before sharing, configure retention, and consider encryption for shared or cloud-backed storage.
+
+Risk: The report generator summarizes chain integrity but does not itself perform detailed verification.
+
+Mitigation: Run the chain verification script against the audit log and correlate report outputs with the original safety-gate records before relying on them.
+
+## Reference(s):
+
+- [Guardian Audit Log Schema](artifact/LOG-SCHEMA.md)
+- [Guardian Audit Compliance Mapping](artifact/COMPLIANCE-MAPPING.md)
+- [Guardian Audit Replay and Analysis](artifact/REPLAY.md)
+- [Guardian project](https://github.com/openclaw/guardian)
+- [ClawHub skill page](https://clawhub.ai/tooled-app/skills/data-guardian-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, NDJSON audit entries, JSON status output, and optional Markdown or JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit entries may include operational details such as file paths, commands, approval context, and agent reasoning.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Aggregate, classify, summarize, and analyze market news from Chinese financial portals (Sina Finance, EastMoney, Hexun, Jin10). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates, classifies, summarizes, and analyzes market news from Chinese financial portals for pre-market briefings, intraday alerts, and end-of-day reviews with sector classification, sentiment tagging, keyword extraction, and importance ranking.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-Market analysts, traders, and financial-news reviewers use this skill to collect Chinese market news, identify sector relevance, summarize key items, tag sentiment, and rank market-moving importance across pre-market, intraday, and end-of-day workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-news summaries may be mistaken for investment advice or forward-looking recommendations. <br>
-Mitigation: Present outputs as news analysis, retain source attribution, and require user review before making trading or investment decisions. <br>
-Risk: Repeated automated fetching of financial-news sites can create unnecessary load or violate site expectations. <br>
-Mitigation: Use moderate intervals, one fetch per source per scenario, reasonable character limits, and respect robots.txt as described in the artifact. <br>
+## Use Case:
 
+External users and market analysts use this skill to collect public Chinese financial news, classify it by market sector, and produce concise pre-market, intraday, or end-of-day briefs with source attribution, keywords, sentiment, and importance ranking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/market-news-aggregator) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
-- [EastMoney](https://www.eastmoney.com/) <br>
-- [Hexun](https://www.hexun.com/) <br>
-- [Jin10](https://www.jin10.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown market briefing with ranked news items, source attribution, summaries, keywords, sentiment tags, and sector rollups; may include example shell commands for optional batch fetching.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses moderate public-web fetches with source attribution; does not request credentials or persistent access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market-news summaries may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational summaries and require users to make their own trading or investment decisions.
+
+Risk: Fetched public news pages may be incomplete, stale, or formatted differently than expected.
+
+Mitigation: Include source attribution and timestamps when available, and ask users to request exact source verification for high-impact items.
+
+Risk: Chinese-formatted output may not meet every user's language needs.
+
+Mitigation: Ask users to specify another output language or format when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/skills/market-news-aggregator)
+- [Sina Finance](https://finance.sina.com.cn/)
+- [Sina Finance Futures](https://finance.sina.com.cn/futures/)
+- [EastMoney](https://www.eastmoney.com/)
+- [Hexun](https://www.hexun.com/)
+- [Jin10](https://www.jin10.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market-news brief with source labels, one-line summaries, keywords, sentiment tags, importance ranking, and sector totals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-formatted output by default; includes timestamps when available and should not be treated as investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

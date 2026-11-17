@@ -1,44 +1,64 @@
-## Description: <br>
-Helps users install, configure, use, and troubleshoot the trends-skill-tool CLI for token management, trading, wallet queries, rewards, and related errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users install, configure, use, and troubleshoot the trends-skill-tool CLI for token management, trading, wallet queries, creator rewards, and error recovery.
 
-## Publisher: <br>
-[milesxyz](https://clawhub.ai/user/milesxyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[milesxyz](https://clawhub.ai/user/milesxyz)
 
-## Use Case: <br>
-Developers and end users use this skill to operate the global npm trends-skill-tool CLI, including installation, wallet setup, read-only account checks, token creation, buy/sell quote flows, reward status, reward claims, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact wallet transactions, including token creation, buys, sells, and reward claims. <br>
-Mitigation: Use a dedicated low-balance wallet, keep per-transaction confirmations enabled, and verify quotes, parameters, and wallet address before any write action. <br>
-Risk: Wallet initialization or force overwrite can replace key material the user may still need. <br>
-Mitigation: Avoid wallet init --force unless overwrite is intentional, and verify only wallet addresses rather than reading or printing private key files. <br>
-Risk: The release depends on an unreviewed global npm CLI for crypto trading workflows. <br>
-Mitigation: Review the package before installing or upgrading, install from the documented package name only, and run version/help checks before using trading commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/milesxyz/trends) <br>
-- [Install and setup guide](artifact/references/install-and-setup.md) <br>
-- [Command recipes](artifact/references/command-recipes.md) <br>
-- [Error playbook](artifact/references/error-playbook.md) <br>
+## Use Case:
 
+External users and developers use this skill to get operational guidance for the trends-skill-tool CLI, including setup, wallet configuration, read-only account queries, quote-first trades, token creation, reward claims, and deterministic troubleshooting.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with command blocks and concise operational steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confirmation gates for write actions and safe handling guidance for wallet credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides financial write actions for token creation, buying, selling, and reward claims, and the security summary notes confirmation bypasses.
+
+Mitigation: Use quote-first or status-first preflights, require explicit confirmation for writes by default, avoid session-level bypass, and verify transaction parameters before execution.
+
+Risk: The skill installs and operates a wallet-enabled CLI from a global npm package that is not pinned in the provided evidence.
+
+Mitigation: Install only in environments where this dependency posture is acceptable, verify the installed CLI version and help output, and prefer a dedicated low-value wallet.
+
+Risk: The wallet initialization workflow can overwrite an existing keypair with --force.
+
+Mitigation: Do not use wallet init --force unless the previous keypair is backed up and the user understands that overwriting it can permanently remove access to assets.
+
+Risk: Private keys, seed phrases, secretKey arrays, or raw keypair file contents may be exposed if a user asks for backup or debugging help.
+
+Mitigation: Refuse to handle or echo key material, avoid commands that print key files, and continue only with address-level verification such as wallet address.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/milesxyz/skills/trends)
+- [Publisher profile](https://clawhub.ai/user/milesxyz)
+- [Install and Setup](references/install-and-setup.md)
+- [Command Recipes](references/command-recipes.md)
+- [Error Playbook](references/error-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation-gated write guidance, quote-first trade preflights, wallet-safety handling, and deterministic error-to-fix mappings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

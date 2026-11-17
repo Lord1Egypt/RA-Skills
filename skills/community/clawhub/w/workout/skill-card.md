@@ -1,41 +1,53 @@
-## Description: <br>
-Track workouts, log sets, manage exercises and templates with workout-cli, including multi-user profiles for recording gym sessions, viewing history, and analyzing strength progression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track workouts, log sets, manage exercises and templates with workout-cli. Supports multi-user profiles. Use when helping users record gym sessions, view history, or analyze strength progression.
 
-## Publisher: <br>
-[gricha](https://clawhub.ai/user/gricha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gricha](https://clawhub.ai/user/gricha)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through workout-cli commands for logging workouts, managing exercises and templates, maintaining profiles, and reviewing training history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local workout CLI can create, edit, or delete workout profiles and records. <br>
-Mitigation: Review proposed commands before execution and confirm the intended profile, session, exercise, and set before making changes. <br>
-Risk: Workout notes and logs can contain personal health or fitness information. <br>
-Mitigation: Only record sensitive details when the user explicitly provides them, and keep responses scoped to the workout data needed for the task. <br>
-Risk: Incorrect weights or reps can mislead PR, volume, and progression analysis. <br>
-Mitigation: Ask for missing weight or rep values before logging, and use undo, edit, or delete commands to correct mistakes during a session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gricha/workout) <br>
+## Use Case:
 
+External users and agents use this skill to guide workout-cli sessions for tracking workouts, logging accurate sets, managing exercises and templates, and reviewing workout history or progression.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local workout CLI commands; the CLI supports JSON output when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes commands that modify workout records, including destructive profile deletion.
+
+Mitigation: List profiles and confirm the exact profile name before deleting a profile or making irreversible record changes.
+
+Risk: Incorrect or assumed weight and rep values can corrupt workout history, PRs, volume, and progression analysis.
+
+Mitigation: Ask for missing weight or rep values before logging sets, and use undo, edit, or delete commands to correct mistakes during a session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gricha/skills/workout)
+- [Publisher profile](https://clawhub.ai/user/gricha)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workout-cli commands that support --json output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Nex Healthcheck helps agents monitor websites, APIs, SSL certificates, DNS, Docker containers, systemd services, SSH checks, disk usage, incidents, uptime, and optional Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-service health and uptime monitoring for websites, APIs, SSL certificates, DNS, Docker containers, systemd services, SSH checks, disk usage, incidents, and uptime reporting.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Developers, DevOps engineers, system administrators, agency operators, and IT teams use this skill to configure and run health checks for production services, inspect uptime and incident history, and produce concise status summaries for users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured service names, paths, container names, and SSH command targets can flow into local or remote shell commands. <br>
-Mitigation: Run the skill under a low-privilege local account, use low-privilege SSH keys, and only add check definitions from trusted operators. <br>
-Risk: The config command can reveal Telegram credential material. <br>
-Mitigation: Do not use real Telegram secrets with the config command until token masking is fixed; prefer controlled environment variables and rotate any exposed tokens. <br>
-Risk: Telegram notifications send infrastructure status data to an external service. <br>
-Mitigation: Enable Telegram only for approved environments and avoid including sensitive host, service, or incident details in notification targets. <br>
+## Use Case:
 
+Developers, DevOps engineers, system administrators, agency operators, and IT teams use this skill to configure and run local health checks, inspect service status, review incidents, and report uptime for managed infrastructure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-healthcheck) <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text CLI output summarized in Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include health status, response times, SSL expiry windows, DNS results, container or service state, uptime percentages, incident history, and optional Telegram notification content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Saved service targets can be executed through unsafe shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run under a low-privilege account, add service targets only from trusted sources, and avoid enabling the systemd timer until shell command construction is fixed.
+
+Risk: The ssh_cmd check type runs commands on remote systems.
+
+Mitigation: Restrict SSH checks to trusted hosts, trusted commands, and minimally privileged accounts.
+
+Risk: Telegram notifications may send service names, targets, and health details off-host.
+
+Mitigation: Treat Telegram bot tokens as secrets and enable notifications only when sharing those operational details with Telegram is acceptable.
+
+## Reference(s):
+
+- [Nex HealthCheck ClawHub page](https://clawhub.ai/nexaiguy/skills/nex-healthcheck)
+- [Nex AI homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and concise Markdown guidance with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local health status, incident history, uptime percentages, SSL expiry warnings, and optional Telegram notification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

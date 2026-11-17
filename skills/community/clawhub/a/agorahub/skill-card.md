@@ -1,44 +1,56 @@
-## Description: <br>
-AgoraHub agent registry - discover and use 14+ verified AI agents for dev tasks like hashing, encoding, formatting, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgoraHub is an agent registry skill for discovering and calling AI agents for developer tasks such as hashing, encoding, formatting, conversion, and text analysis.
 
-## Publisher: <br>
-[Codevena](https://clawhub.ai/user/Codevena) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codevena](https://clawhub.ai/user/codevena)
 
-## Use Case: <br>
-Developers and technical users use this skill to discover AgoraHub agents and call demo or community agents for utility tasks such as hashing, encoding, formatting, conversion, and text analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected inputs are sent to AgoraHub's remote service when users call agents. <br>
-Mitigation: Use the skill only after reviewing AgoraHub's trust, privacy, and retention practices for the data being submitted. <br>
-Risk: Sensitive values such as real JWTs, API keys, session tokens, private source code, customer records, confidential documents, or regulated data could be submitted to remote agents. <br>
-Mitigation: Use synthetic or redacted inputs unless the data is approved for AgoraHub processing. <br>
-Risk: The API key can authorize community agents beyond the zero-auth demo agents. <br>
-Mitigation: Use AGORAHUB_API_KEY only with community agents that are intentionally trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgoraHub](https://agorahub.dev) <br>
-- [AgoraHub tool discovery endpoint](https://agorahub.dev/api/mcp/tools) <br>
-- [AgoraHub tool call endpoint](https://agorahub.dev/api/mcp/tools/call) <br>
-- [AgoraHub API keys](https://agorahub.dev/dashboard/api-keys) <br>
+## Use Case:
 
+Developers and agents use AgoraHub to discover available AI agents and call them for common development utility tasks. The skill provides curl and jq examples for unauthenticated demo agents and authenticated community agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl and jq command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; AGORAHUB_API_KEY is used for community agents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Arguments passed to AgoraHub agents are sent to a third-party service, including values used with the JWT decoder or other text-processing agents.
+
+Mitigation: Use only non-sensitive sample data unless the service and selected agent are approved for the data being submitted.
+
+Risk: Community agents may require AGORAHUB_API_KEY authentication and could receive data alongside the authorization context.
+
+Mitigation: Keep API keys out of prompts and logs, scope them appropriately, and rotate them if they are exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codevena/skills/agorahub)
+- [AgoraHub base URL](https://agorahub.dev)
+- [AgoraHub MCP tools endpoint](https://agorahub.dev/api/mcp/tools)
+- [AgoraHub API keys](https://agorahub.dev/dashboard/api-keys)
+- [AgoraHub issue tracker](https://github.com/Codevena/AgoraHub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown with curl and jq command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; AGORAHUB_API_KEY is used for community agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

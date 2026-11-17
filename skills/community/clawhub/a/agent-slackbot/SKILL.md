@@ -22,10 +22,10 @@ A TypeScript CLI tool that enables AI agents and humans to interact with Slack w
 
 ```bash
 # Set your bot token
-agent-slackbot auth set xoxb-your-bot-token
+agent-slackbot auth set REDACTED-SECRET
 
 # Or set with a custom bot identifier for multi-bot setups
-agent-slackbot auth set xoxb-your-bot-token --bot deploy --name "Deploy Bot"
+agent-slackbot auth set REDACTED-SECRET --bot deploy --name "Deploy Bot"
 
 # Verify authentication
 agent-slackbot auth status
@@ -45,10 +45,10 @@ agent-slackbot uses Slack Bot tokens (xoxb-) which you get from the Slack App co
 
 ```bash
 # Set bot token (validates against Slack API before saving)
-agent-slackbot auth set xoxb-your-bot-token
+agent-slackbot auth set REDACTED-SECRET
 
 # Set with a custom bot identifier
-agent-slackbot auth set xoxb-your-bot-token --bot deploy --name "Deploy Bot"
+agent-slackbot auth set REDACTED-SECRET --bot deploy --name "Deploy Bot"
 
 # Check auth status
 agent-slackbot auth status
@@ -63,8 +63,8 @@ Store multiple bot tokens and switch between them:
 
 ```bash
 # Add multiple bots
-agent-slackbot auth set xoxb-deploy-token --bot deploy --name "Deploy Bot"
-agent-slackbot auth set xoxb-alert-token --bot alert --name "Alert Bot"
+agent-slackbot auth set REDACTED-SECRET --bot deploy --name "Deploy Bot"
+agent-slackbot auth set REDACTED-SECRET --bot alert --name "Alert Bot"
 
 # List all stored bots
 agent-slackbot auth list
@@ -113,7 +113,7 @@ The `--bot <id>` flag is available on all commands to override the active bot fo
 For CI/CD pipelines, set these environment variables instead of using `auth set`:
 
 ```bash
-export E2E_SLACKBOT_TOKEN=xoxb-your-bot-token
+export E2E_SLACKBOT_TOKEN=REDACTED-SECRET
 export E2E_SLACKBOT_WORKSPACE_ID=T123456
 export E2E_SLACKBOT_WORKSPACE_NAME="My Workspace"
 ```

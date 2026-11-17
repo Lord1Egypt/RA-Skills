@@ -1,50 +1,63 @@
-## Description: <br>
-Configure AIsa as an OpenAI-compatible provider endpoint for OpenClaw and compatible runtimes, including API key setup, endpoint configuration, model selection, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure AIsa as an OpenAI-compatible provider endpoint for OpenClaw and related runtimes.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure AIsa as a model provider, set AISA_API_KEY, point compatible runtimes at the AIsa API endpoint, choose model IDs, and troubleshoot provider behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive AIsa API key. <br>
-Mitigation: Use a dedicated, revocable key and avoid exposing real secrets in shell history, logs, screenshots, or shared configuration. <br>
-Risk: Model requests are routed to an external provider endpoint. <br>
-Mitigation: Confirm AIsa's current privacy, retention, routing, and downstream-provider terms before sending sensitive or regulated data. <br>
-Risk: Pricing, model availability, quotas, and model-specific constraints can change. <br>
-Mitigation: Re-check AIsa's current pricing page, model catalog, account limits, and model-specific settings before production use. <br>
-Risk: Runtime defaults or fallback chains could route traffic through unintended models. <br>
-Mitigation: Review the final provider configuration, default model, and fallback settings after setup. <br>
+## Use Case:
 
+Developers and operators use this skill to configure an AIsa OpenAI-compatible provider endpoint, set AISA_API_KEY, select model IDs, and troubleshoot routing for OpenClaw-compatible runtimes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aisadocs/aisa-provider-slot3) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa API reference](https://aisa.one/docs/api-reference) <br>
-- [AIsa pricing](https://marketplace.aisa.one/pricing) <br>
-- [AIsa Provider Configuration Examples](references/config-examples.md) <br>
-- [AIsa Pricing Notes](references/pricing.md) <br>
-- [AIsa Chinese Guide](references/guide-zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided AISA_API_KEY and routes model requests to the AIsa OpenAI-compatible API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill routes model requests and potentially sensitive data to the external AIsa gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in AIsa and verify current retention, routing, privacy, and provider terms before sending sensitive or regulated data.
+
+Risk: AISA_API_KEY is a sensitive credential that could be exposed through shell history, logs, or shared configuration.
+
+Mitigation: Use a dedicated revocable API key, prefer environment variables or interactive onboarding, and avoid printing or pasting the real secret in shared output.
+
+Risk: Model availability, pricing, account limits, and model-specific constraints can change over time.
+
+Mitigation: Check the current AIsa model catalog, pricing page, and API documentation before production use or purchasing decisions.
+
+## Reference(s):
+
+- [AIsa Provider on ClawHub](https://clawhub.ai/aisadocs/skills/aisa-provider-slot3)
+- [AIsa](https://aisa.one)
+- [AIsa API Reference](https://aisa.one/docs/api-reference)
+- [AIsa Pricing](https://marketplace.aisa.one/pricing)
+- [AIsa Provider Configuration Examples](references/config-examples.md)
+- [AIsa Provider Chinese Guide](references/guide-zh-CN.md)
+- [AIsa Pricing Notes](references/pricing.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and routes configured model requests to the external AIsa OpenAI-compatible endpoint.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

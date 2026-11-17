@@ -1,41 +1,55 @@
-## Description: <br>
-Provides agent workflows and scripts for batch image analysis, structured JSON output, screenshot and UI understanding, and resilient fallback vision processing backed by GMNCODE. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced local vision infrastructure for agents when built-in image tools are unavailable or unreliable, supporting batch image analysis, structured JSON output, screenshot and UI understanding, character and style classification, retryable workflows, and resilient image-processing pipelines backed by GMNCODE.
 
-## Publisher: <br>
-[io2077](https://clawhub.ai/user/io2077) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[io2077](https://clawhub.ai/user/io2077)
 
-## Use Case: <br>
-Developers and agent operators use this skill when built-in image tools are unavailable or when workflows need batch image analysis, screenshot or UI understanding, and machine-readable vision results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected local images or screenshots to an external GMNCODE API, which can expose sensitive screenshots, documents, credentials, customer data, or internal UI captures. <br>
-Mitigation: Use only with approved images and a trusted GMNCODE_API_KEY; redact sensitive content before analysis and avoid private or regulated data unless explicit approval is in place. <br>
-Risk: The security review found insufficient user-facing disclosure and consent controls around external image uploads. <br>
-Mitigation: Add clear upload warnings, an explicit opt-in step, file and path limits, and handling guidance before deploying this skill in shared or production environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep image-analysis workflows functional when a built-in image tool is unavailable or needs more control. It supports batch processing, structured JSON vision results, screenshot and UI analysis, and reusable fallback workflows for team agent systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/io2077/local-gmncode-vision-pro) <br>
-- [GMNCODE Responses API endpoint](https://gmncode.cn/v1/responses) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON results from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured results can include summary, detected_entities, style, confidence, and uncertainty_notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence reports that the skill is marketed as local while uploading complete user-supplied images to an external GMNCODE endpoint without clear consent or privacy disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, confirm that each image is acceptable to send to GMNCODE, especially screenshots, documents, internal tools, credentials, or personal data; prefer an explicitly consent-gated or local-only workflow for sensitive use cases.
+
+Risk: The skill depends on a GMNCODE_API_KEY and external API availability for vision analysis.
+
+Mitigation: Configure credentials through the runtime environment, restrict access to the key, and document fallback behavior for API failures or unavailable routes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/io2077/skills/local-gmncode-vision-pro)
+- [Go-to-market notes](references-go-to-market.md)
+- [GMNCODE Responses API endpoint](https://gmncode.cn/v1/responses)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance and strict JSON vision-analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured JSON results include summary, detected_entities, style, confidence, and uncertainty_notes; batch mode returns one result object per image.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Controls DuoPlus Android cloud phones through ADB broadcast commands for tapping, swiping, typing, screenshots, and UI inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Android cloud phones via ADB broadcast commands for tapping, swiping, typing, screenshots, and UI element inspection.
 
-## Publisher: <br>
-[duoplusofficial](https://clawhub.ai/user/duoplusofficial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duoplusofficial](https://clawhub.ai/user/duoplusofficial)
 
-## Use Case: <br>
-Developers and automation operators use this skill to connect OpenClaw to a DuoPlus or Android cloud phone, inspect the current UI, and issue controlled device actions through ADB. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a connected DuoPlus or Android device and may act inside real logged-in apps. <br>
-Mitigation: Use explicit device IDs, keep sensitive sessions supervised, and confirm each action with a screenshot or UI dump before continuing. <br>
-Risk: Screenshots and UI hierarchy dumps may contain sensitive app or account information. <br>
-Mitigation: Store local screenshots and UI dump files only as long as needed for analysis, then delete them. <br>
+## Use Case:
 
+Developers and automation operators use this skill to connect to authorized DuoPlus Android cloud phones and perform UI automation tasks such as launching apps, entering text, navigating screens, and capturing screenshots.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/duoplusofficial/duoplus-agent) <br>
-- [DuoPlus Official Website](https://www.duoplus.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires adb and optionally cwebp; action commands are fire-and-forget and should be verified with screenshots or UI dumps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: The skill can control an Android cloud phone through ADB, including taps, swipes, text input, and navigation that may change device state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on devices you own or are authorized to operate, and verify actions with screenshots or UI dumps before continuing.
+
+Risk: Screenshots and UI hierarchy dumps may capture passwords, one-time codes, private messages, financial data, or account settings.
+
+Mitigation: Avoid running it on sensitive screens unless necessary, and handle captured screenshots or dumps as sensitive data.
+
+Risk: ADB action commands are fire-and-forget and may not report whether the intended UI state changed.
+
+Mitigation: Take a screenshot or dump the UI hierarchy after each action before issuing the next command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duoplusofficial/skills/duoplus-agent)
+- [DuoPlus Official Website](https://www.duoplus.net/)
+- [Publisher Profile](https://clawhub.ai/user/duoplusofficial)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires adb, cwebp, and an authorized Android device running the DuoPlus CloudPhone service.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

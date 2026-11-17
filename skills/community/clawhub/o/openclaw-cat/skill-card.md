@@ -1,40 +1,58 @@
-## Description: <br>
-Openclaw Cat lets OpenClaw users trigger a cat-status roleplay response from a configured LLM with a persistent randomly generated cat persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cat Life Status Query Skill. Triggers when you send /cat command or ask about your cat. The skill calls the underlying LLM model to interact with you as a sassy and funny cat, telling you what the cat is doing and thinking. For OpenClaw deployment environments.
 
-## Publisher: <br>
-[tony888880lang](https://clawhub.ai/user/tony888880lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tony888880lang](https://clawhub.ai/user/tony888880lang)
 
-## Use Case: <br>
-OpenClaw users configure a cat name and model API key, then use `/cat` or cat-status questions to receive a playful in-character response about what the cat is doing and thinking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an LLM API key and sends generated cat prompts, cat name, and cat profile details to the configured provider. <br>
-Mitigation: Use a dedicated API key with spending limits and configure only providers you trust. <br>
-Risk: A custom `base_url` can route requests to a non-default endpoint. <br>
-Mitigation: Leave `base_url` empty unless the endpoint is trusted and expected for the selected model provider. <br>
+## Use Case:
 
+External OpenClaw users use this skill to ask for a short, humorous status update from a configured virtual cat persona. The skill builds a cat-character prompt, calls the selected LLM provider, and returns the cat's current activity, thoughts, and mood.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tony888880lang/openclaw-cat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text roleplay response with setup guidance in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are generated through the user-configured LLM provider using the configured cat profile and current time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: A custom API endpoint can receive the configured LLM API key and prompt data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave base_url empty unless the endpoint is trusted and expected to receive both credentials and prompts.
+
+Risk: Provider API keys are required for normal use.
+
+Mitigation: Use scoped or low-quota API keys and review the selected provider configuration before running the skill.
+
+Risk: The skill creates a local cat-profile cache file.
+
+Mitigation: Account for the local .cat_cache.json file when reviewing workspace persistence or cleanup requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tony888880lang/skills/openclaw-cat)
+- [OpenAI-compatible API base URL example](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text response with console status lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are generated through the configured LLM provider and are intended to be short, humorous cat-persona status updates.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

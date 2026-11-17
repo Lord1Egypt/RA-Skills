@@ -1,42 +1,56 @@
-## Description: <br>
-Query Uniqlo discounted products for men, women, kids, and baby clothing, generating a Markdown file with product images, prices, discount rates, and purchase links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Uniqlo discounted products for men, women, kids, and baby clothing and generates a Markdown report with product images, prices, discount rates, and purchase links.
 
-## Publisher: <br>
-[gpyangyoujun](https://clawhub.ai/user/gpyangyoujun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gpyangyoujun](https://clawhub.ai/user/gpyangyoujun)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to find discounted Uniqlo China products by category and optional size, then review a generated Markdown product report with images, prices, discount rates, and purchase links.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Uniqlo China's API during normal use.
+
+Mitigation: Run it in an environment where external network access to Uniqlo China is expected and allowed.
+
+Risk: The skill creates timestamped Markdown files in a unique/ folder under the current working directory.
+
+Mitigation: Run it from an intended working directory and review generated files before sharing them.
+
+Risk: The only declared dependency is unpinned.
+
+Mitigation: Install in an isolated environment and pin dependencies for reproducible or security-reviewed deployments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to find Uniqlo China discounted products by clothing category and optional size. It is intended for sale, discount, promotion, or special-price queries and produces a local Markdown shopping report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, API Calls]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to Uniqlo China to retrieve sale data. <br>
-Mitigation: Install and run it only in environments where those outbound requests are acceptable. <br>
-Risk: The skill creates Markdown reports in a local unique/ folder under the current working directory. <br>
-Mitigation: Run it from an appropriate workspace or adjust the output location before use in shared or clutter-sensitive directories. <br>
+**Output Format:** [Plain-text response plus a timestamped Markdown file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gpyangyoujun/uniqlo-product-query) <br>
-- [Publisher profile](https://clawhub.ai/user/gpyangyoujun) <br>
-- [Uniqlo China product detail pages](https://www.uniqlo.cn/product-detail.html) <br>
+**Other Properties Related to Output:** [Creates files in a unique/ directory under the current working directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, API calls] <br>
-**Output Format:** [Plain-text response plus a timestamped Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports to a local unique/ directory; entries include images, prices, discount rates, and product links.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

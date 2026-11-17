@@ -1,42 +1,59 @@
-## Description: <br>
-Weiliaozi Skill guides an agent to produce structured strategic analysis using the Wei Liaozi five-lens framework: essence, conditions, gains-losses, sequence, and opponent response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weiliaozi Skill helps agents produce disciplined strategic and scenario analysis with a five-lens framework: Essence, Conditions, Gains-Losses, Sequence, and Opponent.
 
-## Publisher: <br>
-[phoenixlucky](https://clawhub.ai/user/phoenixlucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[phoenixlucky](https://clawhub.ai/user/phoenixlucky)
 
-## Use Case: <br>
-External users and teams use this skill to analyze business, organizational, policy, negotiation, and historical-strategic questions with a disciplined five-lens structure, explicit assumptions, and conditional trade-off guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and search files when the user gives it relevant context, and it may use web search for current information. <br>
-Mitigation: Limit workspace/file access to material needed for the analysis, avoid providing sensitive files unless required, and review web-sourced claims for currentness. <br>
-Risk: Strategic or adversarial analysis could be misapplied as operational guidance for harmful conduct. <br>
-Mitigation: Keep outputs analytical and non-directive, preserve uncertainty labels, and require human review before applying conclusions in high-impact contexts. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to structure complex business, organizational, policy, negotiation, competitive, economic, military, or historical questions into ordered analysis and decision guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phoenixlucky/weiliaozi-skill) <br>
-- [Examples](references/examples.md) <br>
-- [Tone guide](references/tone-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured as five-lens analysis with trade-off summary, reference directions, information gaps, and assumptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers follow the user's language and should mark uncertainty, assumptions, and evidence boundaries when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter, CHANGELOG, package.json) <br>
+Risk: Sensitive business, political, military, or competitive analysis may be mistaken for authoritative advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as structured analysis, verify important facts independently, and apply human review before consequential decisions.
+
+Risk: Adversarial or high-conflict scenarios could be framed in ways that encourage escalation or operational misuse.
+
+Mitigation: Keep outputs at scenario-analysis level, compare cooperation, resilience, and escalation risks, and avoid actionable steps for deception, sabotage, coercion, or targeting vulnerabilities.
+
+Risk: Web lookup or stale context can produce incomplete or outdated conclusions.
+
+Mitigation: Mark uncertainty, state information gaps, and verify time-sensitive facts with current authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phoenixlucky/skills/weiliaozi-skill)
+- [Examples](references/examples.md)
+- [Output Guide](references/tone-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured analysis in the user's language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only analysis helper; may use provided files or web lookup for context.]
+
+## Skill Version(s):
+
+2.2.1 (source: frontmatter, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

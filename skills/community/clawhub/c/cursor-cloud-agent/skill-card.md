@@ -1,46 +1,59 @@
-## Description: <br>
-Launch and manage Cursor Cloud Agents via the official API v0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch and manage Cursor Cloud Agents via the official API v0 for delegated coding tasks, automatic PR creation, and progress tracking.
 
-## Publisher: <br>
-[siaslfs](https://clawhub.ai/user/siaslfs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[siaslfs](https://clawhub.ai/user/siaslfs)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to delegate coding tasks to Cursor Cloud Agents, monitor progress, send follow-up instructions, and collect PR or status output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Cursor API key that can operate on repositories authorized for the Cursor account. <br>
-Mitigation: Use the least-privileged Cursor and repository access available, store the key with restricted file permissions, and rotate it if exposed. <br>
-Risk: The create command may launch paid Cursor Cloud Agent work and can request automatic PR creation. <br>
-Mitigation: Confirm the repository, branch or ref, task prompt, and auto-PR setting before running create; use --no-direct for tasks that need human review before code changes. <br>
-Risk: Configured Feishu notifications can send task details, status, and possible conversation excerpts outside the local environment. <br>
-Mitigation: Leave CURSOR_NOTIFY_TARGET and --notify unset unless that disclosure path is intended and approved. <br>
-Risk: The background watcher embeds the Cursor API key in a spawned process while it polls. <br>
-Mitigation: Avoid shared machines for long-running watchers, limit local process inspection access, and prefer short polling windows when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cursor Cloud Agent API documentation](https://cursor.com/docs/cloud-agent/api/endpoints) <br>
-- [Cursor Dashboard](https://cursor.com/dashboard) <br>
-- [How to Get Your Cursor Cloud Agent API Key](references/get-token.md) <br>
-- [ClawHub release page](https://clawhub.ai/siaslfs/cursor-cloud-agent) <br>
+## Use Case:
 
+Developers and engineers use this skill to launch Cursor Cloud Agents against authorized repositories, monitor their progress, send follow-up instructions, and collect PR or status results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Markdown guidance, and JSON responses from Cursor API commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may call Cursor API v0, open agent URLs, poll agent status, and print summaries or fallback PR commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Cursor API key and can start a detached watcher that continues using that key after the visible command returns.
+
+Mitigation: Use the minimum required repository access, avoid passing the key with --api-key, prefer a tightly permissioned key file or secure credential store, and rotate or revoke keys when access is no longer needed.
+
+Risk: Feishu notifications can expose task status or conversation excerpts for sensitive work.
+
+Mitigation: Leave Feishu notifications disabled for sensitive repositories or prompts, and avoid setting CURSOR_NOTIFY_TARGET or --notify unless the destination is approved.
+
+Risk: Creating agents can make repository changes, create PRs, and incur Cursor API usage costs.
+
+Mitigation: Confirm the repository, branch, task prompt, and PR intent before launch; keep pre-flight checks enabled; review generated PRs before merge.
+
+## Reference(s):
+
+- [Cursor Cloud Agent API documentation](https://cursor.com/docs/cloud-agent/api/endpoints)
+- [How to Get Your Cursor Cloud Agent API Key](references/get-token.md)
+- [Cursor dashboard](https://cursor.com/dashboard)
+- [ClawHub skill page](https://clawhub.ai/siaslfs/skills/cursor-cloud-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal text with inline shell commands and API-derived status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Cursor agent IDs, branch names, PR URLs, final status, and truncated conversation summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

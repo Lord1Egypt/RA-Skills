@@ -1,42 +1,54 @@
-## Description: <br>
-Free multi-engine web search via ddgs CLI (DuckDuckGo, Google, Bing, Brave, Yandex, Yahoo, Wikipedia) and arXiv API search with no API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free multi-engine web search via ddgs CLI (DuckDuckGo, Google, Bing, Brave, Yandex, Yahoo, Wikipedia) + arXiv API search.
 
-## Publisher: <br>
-[camopel](https://clawhub.ai/user/camopel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[camopel](https://clawhub.ai/user/camopel)
 
-## Use Case: <br>
-Developers, researchers, and agent builders use this skill to run web searches across multiple engines, discover arXiv papers, and provide a JSON search backend for OpenClaw-compatible workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to external search providers and arXiv. <br>
-Mitigation: Avoid confidential or sensitive queries unless the user is comfortable with those third-party services receiving the query text. <br>
-Risk: Installation may install the ddgs Python package and add a local command wrapper under ~/.local/bin. <br>
-Mitigation: Review installation changes before running the installer and confirm the local PATH impact in managed environments. <br>
+## Use Case:
 
+Developers and agents use this skill to run no-key web searches across supported search providers and to discover arXiv papers. It can also serve as a search backend for workflows that expect web-search-plus compatible JSON.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/camopel/ddgs-search) <br>
-- [OpenClaw project](https://github.com/camopel/openclaw) <br>
-- [arXiv API endpoint](https://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON search results plus Markdown command and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Web search results include title, URL, snippet, and date fields; arXiv results can include authors, categories, abstracts, and publication dates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: Search queries are sent to third-party search providers and arXiv.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, proprietary text, personal data, or other sensitive queries through this skill.
+
+Risk: Installation performs user-level Python package installation for the ddgs dependency.
+
+Mitigation: Use a reviewed and pinned ddgs version when reproducible or controlled deployments are required.
+
+## Reference(s):
+
+- [ddgs-search ClawHub release](https://clawhub.ai/camopel/skills/ddgs-search)
+- [arXiv API endpoint](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include provider metadata plus titles, URLs, snippets, publication dates, and arXiv-specific paper fields when available.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Transforms PRD documents into SwiftUI iOS application projects with MVVM structure, UI components, data models, services, and build guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Dev Skill transforms PRD documents into SwiftUI iOS application projects with MVVM structure, generated models, views, services, build instructions, and QA handoff.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert product requirements into starter SwiftUI iOS projects, including models, view models, views, services, tests, and next-step instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project files may include incorrect or unsuitable implementation choices for the supplied PRD. <br>
-Mitigation: Review the generated project under dev-output/ before opening it in Xcode or using it as production code. <br>
-Risk: PRDs that request networking, iCloud, notifications, sharing, or other integrations may produce code that touches real services or user data. <br>
-Mitigation: Inspect and test those integrations with non-production credentials and sample data before connecting real services. <br>
-Risk: The generated code is passed to qa-skill after project generation. <br>
-Mitigation: Install only when this follow-on QA handoff is acceptable for the project contents. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn product requirements documents into generated SwiftUI iOS projects, including MVVM code structure, persistence and networking components, validation expectations, and follow-up QA review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-dev-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated Swift code, Xcode project files, and build instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated project files under dev-output/ and passes generated code to qa-skill when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PRDs may contain confidential product plans or user data that would be included in generated code or shared with the QA handoff workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive PRD content before use, and only run the skill when the dev-output generation and qa-skill review flow is acceptable.
+
+Risk: Generated SwiftUI projects may require manual correction before they compile or meet product, accessibility, privacy, and App Store expectations.
+
+Mitigation: Build and test the generated Xcode project locally, review the generated code, and treat qa-skill output as review input rather than final approval.
+
+Risk: The skill creates project files under dev-output, which can affect existing generated work in that location.
+
+Mitigation: Run the skill in a clean workspace or inspect dev-output before generation so important local files are preserved.
+
+## Reference(s):
+
+- [Super Dev Skill on ClawHub](https://clawhub.ai/subaru0573/skills/super-dev-skill)
+- [Publisher profile: subaru0573](https://clawhub.ai/user/subaru0573)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated Swift, SwiftUI project files, Xcode build instructions, and QA handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated projects are described as being created under dev-output and passed to qa-skill for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

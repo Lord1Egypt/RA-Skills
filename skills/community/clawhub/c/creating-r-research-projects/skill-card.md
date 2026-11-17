@@ -1,39 +1,55 @@
-## Description: <br>
-Set up a reproducible R research workspace, install required packages, run statistical or bioinformatics analysis, and generate publication-ready reports and visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a reproducible R research workspace, install required packages, run statistical or bioinformatics analysis, and generate publication-ready reports and visualizations.
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-External users, researchers, data scientists, and developers use this skill to scaffold reproducible R research projects, install dependencies, generate analysis scripts, and create publication-ready reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing R packages can introduce untrusted or unexpected dependencies. <br>
-Mitigation: Approve package installation only from trusted CRAN or Bioconductor repositories and capture package state with renv. <br>
-Risk: Generated R scripts and reports may be unsuitable for private, regulated, or method-sensitive datasets without review. <br>
-Mitigation: Review generated scripts, analysis choices, and reports before running them on sensitive data or relying on their conclusions. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to create reproducible R research projects for statistical analysis, bioinformatics workflows, visualization, and publication-ready reporting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline R, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local project files, analysis scripts, reports, figures, and renv configuration when the agent executes the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may install CRAN or Bioconductor package dependencies in the selected R project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target project directory and package list before installation, especially for large or specialized dependency sets.
+
+Risk: Generated analysis scripts and reports are templates that may not be appropriate for sensitive data or final research conclusions without review.
+
+Mitigation: Inspect generated code, reports, methods, and outputs before running them on sensitive or important data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackkuo666/skills/creating-r-research-projects)
+- [Artifact README](artifact/README.md)
+- [Example: Demo Statistical Analysis](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown responses with R, Bash, Quarto, and configuration snippets; generated project files and templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project folders, analysis scripts, report templates, dependency lockfiles, figures, tables, and model outputs when applied by an agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

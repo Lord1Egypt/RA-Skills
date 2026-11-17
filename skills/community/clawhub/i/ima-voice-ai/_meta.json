@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-voice-ai",
-  "version": "1.0.14",
-  "publishedAt": 1774853754148
+  "name": "IMA Music Generator",
+  "description": "Generate voiceovers, narration, and spoken audio for videos, explainers, ads, and social content.",
+  "version": "1.2.2",
+  "publishedAt": 1741277713337
 }

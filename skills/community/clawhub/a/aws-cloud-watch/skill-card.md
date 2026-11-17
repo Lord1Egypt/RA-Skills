@@ -1,40 +1,56 @@
-## Description: <br>
-Query AWS CloudWatch metrics for ECS, EC2, and RDS resources and return text summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries AWS CloudWatch metrics for ECS, EC2, and RDS resources and returns text summaries.
 
-## Publisher: <br>
-[delbertheihei](https://clawhub.ai/user/delbertheihei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[delbertheihei](https://clawhub.ai/user/delbertheihei)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect recent AWS CloudWatch metrics for ECS clusters, EC2 instances, and RDS databases from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence marks this release as suspicious and calls for review before installation. <br>
-Mitigation: Review the skill code before installing or running it, especially on Windows. <br>
-Risk: The skill requires AWS credentials to query CloudWatch metrics. <br>
-Mitigation: Use narrowly scoped CloudWatch read-only permissions, prefer short-lived credentials or an IAM role, and avoid pasting AWS secrets into prompts. <br>
-Risk: Broad AWS or local system privileges would increase the impact of misuse or accidental execution. <br>
-Mitigation: Run the skill with the minimum AWS and local permissions needed for metric lookup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to query recent AWS CloudWatch metrics for ECS clusters, EC2 instances, and RDS databases and receive concise min, max, and average summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text summaries to stdout with min, max, and average values.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY; supports AWS_REGION, metric aliases, period, and time-window configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The wrapper can execute the wrong local script or enable shell execution on Windows around AWS credentials.
+
+Mitigation: Review before installing, run only from a trusted skill directory, and avoid the Windows wrapper path until shell execution and path resolution are fixed.
+
+Risk: The skill requires AWS credentials to query CloudWatch.
+
+Mitigation: Use short-lived or role-based AWS credentials with read-only CloudWatch permissions.
+
+Risk: Users may expect rendered charts from the skill metadata, but the release evidence and security guidance indicate text-only output.
+
+Mitigation: Treat the skill output as text summaries only and do not rely on chart rendering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/delbertheihei/skills/aws-cloud-watch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text summaries to stdout with command-line usage and optional JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports min, max, and average values for the requested metric; no chart rendering.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

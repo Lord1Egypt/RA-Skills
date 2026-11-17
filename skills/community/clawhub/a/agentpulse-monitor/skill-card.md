@@ -1,44 +1,54 @@
-## Description: <br>
-AI-powered infrastructure monitoring - thin agent, smart cloud. One-command install, real-time alerts, baseline learning, auto-remediation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered infrastructure monitoring - thin agent, smart cloud, one-command install, real-time alerts, baseline learning, and auto-remediation.
 
-## Publisher: <br>
-[strouddustinn-bot](https://clawhub.ai/user/strouddustinn-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[strouddustinn-bot](https://clawhub.ai/user/strouddustinn-bot)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to install and operate a Linux monitoring agent that reports service, resource, process, port, and uptime data to AgentPulse for alerting and dashboard review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review identifies deployment and transport-security risks before use on real servers. <br>
-Mitigation: Review the agent carefully before installation and do not use it on production or sensitive hosts until TLS verification is enabled. <br>
-Risk: The install flow includes a pipe-to-bash installer and cron entry setup. <br>
-Mitigation: Inspect and verify the downloaded installer independently, and review cron entries before installing or enabling scheduled reports. <br>
-Risk: The agent requires API credentials and reports host telemetry to a cloud service. <br>
-Mitigation: Protect the API key configuration and confirm what telemetry AgentPulse stores, how long it is retained, and who can access it. <br>
+## Use Case:
 
+Developers and operations teams use this skill to install and operate a Linux infrastructure monitoring agent that reports server health, service status, resource usage, and alert data to AgentPulse.
 
-## Reference(s): <br>
-- [AgentPulse documentation](https://agentpulse.io/docs) <br>
-- [AgentPulse dashboard](https://agentpulse.io/dashboard) <br>
-- [ClawHub skill page](https://clawhub.ai/strouddustinn-bot/agentpulse-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, cron scheduling, API usage, and monitoring configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Installer and persistence controls are too risky for automatic trust on production servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a verified release or package, avoid curl-to-bash installation, review cron entries before enabling them, and provide a clear uninstall path.
+
+Risk: Credential handling and transport security need review before the agent is trusted.
+
+Mitigation: Protect and rotate API credentials, avoid storing secrets in broadly readable configuration files, and restore normal TLS certificate validation before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/strouddustinn-bot/skills/agentpulse-monitor)
+- [AgentPulse Documentation](https://agentpulse.io/docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, API examples, and Python agent code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux, Python 3.8+, curl or wget, cron, an AgentPulse server ID, and an API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

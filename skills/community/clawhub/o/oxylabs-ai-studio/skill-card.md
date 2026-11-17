@@ -1,44 +1,54 @@
-## Description: <br>
-Web scraping, crawling, searching, and browser automation using Oxylabs AI Studio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping, crawling, searching, and browser automation using Oxylabs AI Studio.
 
-## Publisher: <br>
-[DrFIRASS](https://clawhub.ai/user/DrFIRASS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drfirass](https://clawhub.ai/user/drfirass)
 
-## Use Case: <br>
-Developers and automation users use this skill to scrape pages, search the web, crawl domains, map site URLs, and run browser-agent tasks through Oxylabs AI Studio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Oxylabs API key for scraping and browser automation. <br>
-Mitigation: Store OXYLABS_API_KEY in a protected environment or secret manager, and do not paste it into chat or commit it. <br>
-Risk: Scraping, crawling, mapping, and browser-agent actions operate on user-supplied targets. <br>
-Mitigation: Confirm the target URL or domain before running the action and use the skill only for sites and data you are authorized to access. <br>
-Risk: The setup script installs the Oxylabs AI Studio Python SDK when the native Oxylabs plugin is not detected. <br>
-Mitigation: Install only if you intend to use Oxylabs for scraping or browser automation, and review the setup output before continuing. <br>
+## Use Case:
 
+External users, developers, and automation engineers use this skill to scrape pages, search the web, crawl domains, map site URLs, and run browser-navigation tasks through Oxylabs AI Studio.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/DrFIRASS/oxylabs-ai-studio) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/DrFIRASS) <br>
-- [Oxylabs AI Studio](https://aistudio.oxylabs.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text results from Oxylabs AI Studio scripts, with setup and environment configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OXYLABS_API_KEY. Results may include scraped page content, search results, crawl output, site maps, or browser-agent findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence.json release.version) <br>
+Risk: The setup flow can modify the system Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup.sh before running it, install the Oxylabs SDK in a virtual environment with a pinned version, and do not run setup as root.
+
+Risk: URLs, prompts, and extracted page content may be sent to Oxylabs AI Studio during scraping, crawling, search, mapping, and browser tasks.
+
+Mitigation: Avoid internal URLs, private pages, secret query strings, and regulated data unless that data sharing is explicitly approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/drfirass/skills/oxylabs-ai-studio)
+- [Oxylabs AI Studio](https://aistudio.oxylabs.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown text printed to stdout by wrapper scripts, with setup and environment configuration instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OXYLABS_API_KEY and sends requested URLs, prompts, and extracted web data to Oxylabs AI Studio.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

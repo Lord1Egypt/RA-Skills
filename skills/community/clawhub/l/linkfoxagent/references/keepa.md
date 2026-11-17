@@ -92,7 +92,7 @@
 **参数约束：**
 
 - **亚马逊域名ID**: 必填, `1`=Amazon.com (美国), `2`=Amazon.co.uk (英国), `3`=Amazon.de (德国), `4`=Amazon.fr (法国), `5`=Amazon.co.jp (日本), `6`=Amazon.ca (加拿大), `8`=Amazon.it (意大利), `9`=Amazon.es (西班牙), `10`=Amazon.in (印度), `11`=Amazon.com.mx (墨西哥), `12`=Amazon.com.br (巴西)
-- **亚马逊标准识别号(ASIN)，多个ASIN，用英文逗号分隔，最多100个**: 必填, `B0088PUEPK`=单个ASIN, `B0088PUEPK,B00U26V4VQ,B07M68S376`=多个ASIN，用英文逗号分隔，最多100个
+- **亚马逊标准识别号(ASIN)，多个ASIN，用英文逗号分隔，最多5个**: 必填, `B0088PUEPK`=单个ASIN, `B0088PUEPK,B00U26V4VQ,B07M68S376`=多个ASIN，用英文逗号分隔，最多5个
 - **返回值是否包含历史数据,历史销量**: `1`=包含价格历史、销售排名、历史销量等时间序列数据（前几个月的销量）, `0`=仅返回基本商品信息
 
 ---

@@ -1,40 +1,61 @@
-## Description: <br>
-AI-powered scientific writing tool. Generate publication-ready papers, grant proposals, posters, and more with real-time research and verified citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered scientific writing tool. Generate publication-ready papers, grant proposals, posters, and more with real-time research and verified citations.
 
-## Publisher: <br>
-[Josephyb97](https://clawhub.ai/user/Josephyb97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[josephyb97](https://clawhub.ai/user/josephyb97)
 
-## Use Case: <br>
-Researchers, academic writers, and technical teams use this skill to generate scientific papers, grant proposals, conference posters, literature reviews, and clinical reports from prompts and optional data files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys are required for operation and may be exposed if handled carelessly. <br>
-Mitigation: Use dedicated API keys, avoid committing .env files, and rotate credentials if exposure is suspected. <br>
-Risk: Scientific, proprietary, or patient-identifiable content may be sent to external providers. <br>
-Mitigation: Avoid submitting confidential research, proprietary data, or patient-identifiable content unless provider terms and privacy controls are acceptable. <br>
-Risk: Generated scientific writing and citations may need verification before use. <br>
-Mitigation: Review generated manuscripts, claims, citations, and file outputs before publication, submission, or operational use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users, developers, and research teams use this skill to generate scientific manuscripts, grant proposals, posters, literature reviews, and clinical reports from prompts and optional data files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples; generated writing artifacts are saved as files by the underlying package.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10-3.12, python3, pip, and ANTHROPIC_API_KEY; OPENROUTER_API_KEY is optional for research lookup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install mutable external Python code.
+
+Mitigation: Install in an isolated virtual environment, pin and verify the package where possible, and review the package before production use.
+
+Risk: The skill requires API credentials and may encourage storing them in environment files.
+
+Mitigation: Use a keychain or securely permissioned environment variables, avoid production credentials, and keep any .env file out of version control.
+
+Risk: Prompts and selected data files may be sent to Anthropic, OpenRouter, or other research services.
+
+Mitigation: Do not use sensitive clinical, proprietary, or unpublished data unless those providers are approved for that data.
+
+Risk: Generated scientific content, citations, and clinical-style reports may be incomplete or misleading.
+
+Mitigation: Have qualified reviewers verify claims, citations, and domain-specific conclusions before publication or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephyb97/skills/cluade-scientific-writer-wrapper)
+- [Package source link from artifact metadata](https://github.com/K-Dense-AI/claude-scientific-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code examples, plus generated scientific writing files from the installed package]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes outputs saved under writing_outputs/ and may produce papers, proposals, posters, literature reviews, and clinical reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

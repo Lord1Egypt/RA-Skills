@@ -1,40 +1,48 @@
-## Description: <br>
-Distill verbose daily logs into compact, indexed digests for managing agent memory files, compressing logs, summarizing past activity, and building index-first memory architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distills verbose daily logs into compact, indexed digests for managing agent memory files, compressing logs, summarizing past activity, and building index-first memory architectures.
 
-## Publisher: <br>
-[77Darius77](https://clawhub.ai/user/77Darius77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[77darius77](https://clawhub.ai/user/77darius77)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn large daily memory logs into compact digests that preserve summaries, stats, key events, learnings, connections, open questions, and next priorities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Clawdbot memory logs that may contain names, activity details, and other sensitive context. <br>
-Mitigation: Run it only on intended memory files and review generated digests before committing or sharing them. <br>
-Risk: The suggested scheduled workflow can create digest skeletons without a fresh manual command each day. <br>
-Mitigation: Enable scheduling deliberately and keep the manual fill-in and review step before relying on generated digests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Memory Curator on ClawHub](https://clawhub.ai/77Darius77/memory-curator) <br>
-- [Milo profile](https://moltbook.com/user/milo) <br>
+## Use Case:
 
+Developers and agents use Memory Curator to turn verbose daily memory logs into compact digest skeletons that preserve summaries, stats, key events, learnings, connections, open questions, and next-day priorities.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest skeletons with shell command examples and concise setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates dated digest files under $HOME/clawd/memory/digests and leaves comment prompts for manual completion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The digest script accepts an unchecked date argument that can escape the intended memory folder and read or overwrite other accessible Markdown files.
+
+Mitigation: Run it only with trusted YYYY-MM-DD date arguments, avoid unreviewed cron automation, and confirm destination digest paths before relying on generated files.
+
+## Reference(s):
+
+- [Memory Curator on ClawHub](https://clawhub.ai/77darius77/skills/memory-curator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown digest skeletons with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes digest files under the user's local Clawd memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

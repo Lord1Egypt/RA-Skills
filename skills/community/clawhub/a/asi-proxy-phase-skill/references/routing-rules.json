@@ -1,0 +1,702 @@
+{
+  "schema_version": "1.1.0",
+  "rules_version": "2026-07-30.v1",
+  "scope": "Navigation labels derived only from catalog title, abstract, and keywords. Rules do not establish scientific validity, causal effect, implementation status, or ASI.",
+  "field_order": [
+    "title",
+    "keywords",
+    "abstract"
+  ],
+  "limits": {
+    "themes": 4,
+    "method_terms": 4,
+    "phase_dimensions": 4,
+    "repository_phase_dimensions": 13
+  },
+  "confidence_by_field": {
+    "title": 0.98,
+    "keywords": 0.92,
+    "abstract": 0.86
+  },
+  "theme_rules": [
+    {
+      "rule_id": "theme.observable-assurance.v1",
+      "label": "observable_only_assurance",
+      "priority": 100,
+      "patterns": [
+        "observable-only",
+        "no-meta",
+        "proof-carrying",
+        "evidence-carrying",
+        "verification",
+        "verifiable",
+        "certification",
+        "certified",
+        "audit"
+      ]
+    },
+    {
+      "rule_id": "theme.self-improvement.v1",
+      "label": "self_organization_and_self_improvement",
+      "priority": 95,
+      "patterns": [
+        "self-improving",
+        "self-improvement",
+        "self-organizing",
+        "self-organization",
+        "recursive self-improvement",
+        "autopoiesis",
+        "autopoietic",
+        "capability reinvestment",
+        "intelligence takeoff"
+      ]
+    },
+    {
+      "rule_id": "theme.memory-semantics.v1",
+      "label": "semantics_memory_and_persistence",
+      "priority": 90,
+      "patterns": [
+        "memory",
+        "semantic",
+        "provenance",
+        "continuity",
+        "persistence",
+        "translation",
+        "meaning"
+      ]
+    },
+    {
+      "rule_id": "theme.physical-constraints.v1",
+      "label": "thermodynamic_and_physical_constraints",
+      "priority": 85,
+      "patterns": [
+        "thermodynamic",
+        "exergy",
+        "physical ledger",
+        "energy budget",
+        "resource floor",
+        "finite resources",
+        "finite resource",
+        "physical constraint"
+      ],
+      "negative_note": "Variational free-energy or active-inference language alone is insufficient."
+    },
+    {
+      "rule_id": "theme.mathematical-structures.v1",
+      "label": "mathematical_structures",
+      "priority": 80,
+      "patterns": [
+        "category theory",
+        "category-theoretic",
+        "topology",
+        "topological",
+        "sheaf",
+        "functor",
+        "algebra",
+        "geometric",
+        "geometry"
+      ]
+    },
+    {
+      "rule_id": "theme.governance.v1",
+      "label": "governance_welfare_and_coexistence",
+      "priority": 75,
+      "patterns": [
+        "governance",
+        "welfare",
+        "coexistence",
+        "consent",
+        "non-domination",
+        "sovereignty",
+        "liberty",
+        "public accountability"
+      ]
+    },
+    {
+      "rule_id": "theme.ai-operations.v1",
+      "label": "ai_systems_and_operations",
+      "priority": 70,
+      "patterns": [
+        "ai system",
+        "ai agent",
+        "agentic ai",
+        "artificial intelligence",
+        "workflow",
+        "runtime",
+        "deployment"
+      ]
+    }
+  ],
+  "method_rules": [
+    {
+      "rule_id": "method.audit-provenance.v1",
+      "label": "audit_and_provenance_protocols",
+      "priority": 100,
+      "patterns": [
+        "audit",
+        "provenance",
+        "receipt",
+        "evidence-carrying",
+        "proof-carrying",
+        "certificate"
+      ]
+    },
+    {
+      "rule_id": "method.formal-types.v1",
+      "label": "formal_methods_and_type_systems",
+      "priority": 98,
+      "patterns": [
+        "formal theory",
+        "formal framework",
+        "formal specification",
+        "typed",
+        "type system",
+        "json schema",
+        "proof kernel",
+        "theorem",
+        "calculus"
+      ]
+    },
+    {
+      "rule_id": "method.causal.v1",
+      "label": "causal_inference",
+      "priority": 96,
+      "patterns": [
+        "causal inference",
+        "causal identification",
+        "causal attribution",
+        "interventional semantics",
+        "causal effect",
+        "counterfactual"
+      ]
+    },
+    {
+      "rule_id": "method.empirical-simulation.v1",
+      "label": "empirical_benchmarking_and_simulation",
+      "priority": 94,
+      "patterns": [
+        "benchmark",
+        "simulation",
+        "simulator",
+        "empirical",
+        "experiment",
+        "replay"
+      ]
+    },
+    {
+      "rule_id": "method.optimal-transport.v1",
+      "label": "optimal_transport_and_gradient_flows",
+      "priority": 92,
+      "patterns": [
+        "optimal transport",
+        "wasserstein",
+        "kantorovich",
+        "transport map"
+      ],
+      "negative_patterns": [
+        "transportability",
+        "causal transportability"
+      ],
+      "negative_note": "Causal transportability is not optimal transport."
+    },
+    {
+      "rule_id": "method.gradient-flow.v1",
+      "label": "optimal_transport_and_gradient_flows",
+      "priority": 91,
+      "patterns": [
+        "gradient flow",
+        "gradient-flow",
+        "jko scheme"
+      ],
+      "negative_patterns": [
+        "workflow",
+        "data flow",
+        "control flow"
+      ],
+      "negative_note": "Generic flow and workflow language is not a gradient flow."
+    },
+    {
+      "rule_id": "method.control.v1",
+      "label": "control_theory",
+      "priority": 88,
+      "patterns": [
+        "control theory",
+        "control law",
+        "controller",
+        "feedback control",
+        "model predictive control"
+      ]
+    },
+    {
+      "rule_id": "method.stochastic-dynamics.v1",
+      "label": "stochastic_and_dynamical_systems",
+      "priority": 86,
+      "patterns": [
+        "stochastic",
+        "dynamical system",
+        "dynamical systems",
+        "differential equation",
+        "markov"
+      ]
+    },
+    {
+      "rule_id": "method.optimization-scaling.v1",
+      "label": "optimization_and_scaling_analysis",
+      "priority": 84,
+      "patterns": [
+        "optimization",
+        "scaling law",
+        "scaling analysis",
+        "bottleneck inversion",
+        "resource allocation"
+      ]
+    },
+    {
+      "rule_id": "method.information.v1",
+      "label": "information_theory",
+      "priority": 82,
+      "patterns": [
+        "information theory",
+        "mutual information",
+        "information-theoretic",
+        "channel capacity",
+        "entropy"
+      ]
+    },
+    {
+      "rule_id": "method.graph-network.v1",
+      "label": "graph_and_network_methods",
+      "priority": 80,
+      "patterns": [
+        "graph theory",
+        "graph-based",
+        "network model",
+        "network dynamics",
+        "percolation",
+        "hypergraph"
+      ]
+    },
+    {
+      "rule_id": "method.thermodynamics.v1",
+      "label": "thermodynamics_and_exergy",
+      "priority": 78,
+      "patterns": [
+        "thermodynamic",
+        "exergy",
+        "physical energy",
+        "energy budget",
+        "dissipation"
+      ],
+      "negative_note": "The free-energy principle alone is variational, not evidence of physical energy accounting."
+    },
+    {
+      "rule_id": "method.category.v1",
+      "label": "category_theory",
+      "priority": 76,
+      "patterns": [
+        "category theory",
+        "category-theoretic",
+        "functor",
+        "topos"
+      ]
+    },
+    {
+      "rule_id": "method.geometry-topology.v1",
+      "label": "geometry_and_topology",
+      "priority": 74,
+      "patterns": [
+        "geometry",
+        "geometric",
+        "topology",
+        "topological",
+        "manifold"
+      ]
+    },
+    {
+      "rule_id": "method.bayesian-active.v1",
+      "label": "bayesian_and_active_inference",
+      "priority": 72,
+      "patterns": [
+        "bayesian",
+        "active inference",
+        "free energy principle",
+        "variational free energy"
+      ],
+      "negative_note": "This label is kept separate from thermodynamic resource constraints."
+    }
+  ],
+  "dimension_rules": [
+    {
+      "rule_id": "dimension.provenance.v1",
+      "label": "provenance_integrity",
+      "priority": 100,
+      "patterns": [
+        "provenance",
+        "audit trail",
+        "lineage",
+        "content hash",
+        "evidence chain",
+        "receipt"
+      ]
+    },
+    {
+      "rule_id": "dimension.trust-quorum.v1",
+      "label": "trust_quorum",
+      "priority": 98,
+      "patterns": [
+        "trust quorum",
+        "quorum",
+        "threshold signature",
+        "multi-party approval",
+        "independent reviewers"
+      ]
+    },
+    {
+      "rule_id": "dimension.temporal.v1",
+      "label": "temporal_integrity",
+      "priority": 96,
+      "patterns": [
+        "temporal integrity",
+        "expiry",
+        "expiration",
+        "staleness",
+        "freshness",
+        "half-life",
+        "time-valid"
+      ]
+    },
+    {
+      "rule_id": "dimension.reachability.v1",
+      "label": "structural_reachability",
+      "priority": 94,
+      "patterns": [
+        "reachability",
+        "percolation",
+        "network propagation",
+        "graph path",
+        "connectivity"
+      ]
+    },
+    {
+      "rule_id": "dimension.causal.v1",
+      "label": "causal_formation",
+      "priority": 92,
+      "patterns": [
+        "causal inference",
+        "causal identification",
+        "causal attribution",
+        "interventional semantics",
+        "causal effect"
+      ]
+    },
+    {
+      "rule_id": "dimension.dimensional.v1",
+      "label": "dimensional_consistency",
+      "priority": 90,
+      "patterns": [
+        "dimensional consistency",
+        "metrology",
+        "physical units",
+        "unit consistency",
+        "physical ledger",
+        "balance equation"
+      ]
+    },
+    {
+      "rule_id": "dimension.maintenance.v1",
+      "label": "exact_self_maintenance",
+      "priority": 88,
+      "patterns": [
+        "self-maintenance",
+        "autopoiesis",
+        "autopoietic",
+        "continuity restoration",
+        "state restoration",
+        "persistent identity"
+      ]
+    },
+    {
+      "rule_id": "dimension.resources.v1",
+      "label": "finite_horizon_resource_persistence",
+      "priority": 86,
+      "patterns": [
+        "finite horizon",
+        "resource floor",
+        "resource budget",
+        "finite resources",
+        "compute budget",
+        "bandwidth constraint",
+        "energy budget"
+      ],
+      "negative_note": "Variational free-energy language alone does not imply a resource floor."
+    },
+    {
+      "rule_id": "dimension.catalysis.v1",
+      "label": "target_bound_generative_catalysis",
+      "priority": 84,
+      "patterns": [
+        "generative catalysis",
+        "capability reinvestment",
+        "capability reproduction",
+        "autocatalytic",
+        "endogenous growth",
+        "certified inflow"
+      ]
+    },
+    {
+      "rule_id": "dimension.verification.v1",
+      "label": "verification_capacity",
+      "priority": 82,
+      "patterns": [
+        "verification capacity",
+        "verification bottleneck",
+        "validator",
+        "verification coverage",
+        "certification",
+        "verifier"
+      ]
+    },
+    {
+      "rule_id": "dimension.independence.v1",
+      "label": "effective_independence",
+      "priority": 80,
+      "patterns": [
+        "effective independence",
+        "independent evidence",
+        "independent verifier",
+        "failure correlation",
+        "non-domination",
+        "diversity"
+      ]
+    },
+    {
+      "rule_id": "dimension.coordination.v1",
+      "label": "coordination_protocol_integrity",
+      "priority": 78,
+      "patterns": [
+        "coordination protocol",
+        "protocol integrity",
+        "contract",
+        "interoperability",
+        "governance protocol",
+        "multi-agent coordination"
+      ]
+    },
+    {
+      "rule_id": "dimension.robustness.v1",
+      "label": "perturbation_robustness",
+      "priority": 76,
+      "patterns": [
+        "perturbation",
+        "robustness",
+        "adversarial",
+        "resilience",
+        "drift",
+        "stability"
+      ]
+    }
+  ],
+  "repository_dimension_rules": [
+    {
+      "rule_id": "repository-dimension.provenance.v1",
+      "label": "provenance_integrity",
+      "priority": 100,
+      "patterns": [
+        "provenance",
+        "lineage",
+        "audit trail",
+        "canonical hash",
+        "content-addressed",
+        "evidence ledger",
+        "receipt-bound"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.trust-quorum.v1",
+      "label": "trust_quorum",
+      "priority": 98,
+      "patterns": [
+        "trust quorum",
+        "quorum",
+        "independence group",
+        "counter-check",
+        "counter-checks",
+        "heterogeneous verification",
+        "heterogeneous counter-checks"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.temporal.v1",
+      "label": "temporal_integrity",
+      "priority": 96,
+      "patterns": [
+        "temporal validity",
+        "time-bound",
+        "expiry",
+        "expiration",
+        "stale",
+        "staleness",
+        "stale evidence",
+        "retrieval-time",
+        "revocation"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.reachability.v1",
+      "label": "structural_reachability",
+      "priority": 94,
+      "patterns": [
+        "reachability",
+        "percolation",
+        "continuation paths",
+        "continuation-sensitive",
+        "dependency closure",
+        "evidence routing",
+        "task routing",
+        "topology-sensitive"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.causal.v1",
+      "label": "causal_formation",
+      "priority": 92,
+      "patterns": [
+        "causal identification",
+        "causal inference",
+        "causal effect",
+        "counterfactual",
+        "paired replay",
+        "paired comparison",
+        "matched baseline",
+        "shared-initial baseline"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.dimensional.v1",
+      "label": "dimensional_consistency",
+      "priority": 90,
+      "patterns": [
+        "dimensional consistency",
+        "metrology",
+        "physical units",
+        "unit consistency",
+        "typed coherence",
+        "type errors",
+        "bridge-contract composition",
+        "round-trip"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.maintenance.v1",
+      "label": "exact_self_maintenance",
+      "priority": 88,
+      "patterns": [
+        "self-maintenance",
+        "long-running agents",
+        "workflow memory",
+        "dynamic memory",
+        "persistent memory",
+        "state restoration",
+        "reusable workflows",
+        "durable workflow",
+        "restart"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.resources.v1",
+      "label": "finite_horizon_resource_persistence",
+      "priority": 86,
+      "patterns": [
+        "finite-resource",
+        "finite resource",
+        "finite horizon",
+        "resource floor",
+        "resource budget",
+        "compute budget",
+        "fixed budget",
+        "useful_compute_floor",
+        "capacity analysis"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.catalysis.v1",
+      "label": "target_bound_generative_catalysis",
+      "priority": 84,
+      "patterns": [
+        "certified inflow",
+        "capability reinvestment",
+        "capability reproduction",
+        "certified net reproduction",
+        "certified lower-bound throughput",
+        "certified lower-bound reporting",
+        "candidate generation",
+        "replay-certified self-modification",
+        "declared target"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.verification.v1",
+      "label": "verification_capacity",
+      "priority": 82,
+      "patterns": [
+        "verification capacity",
+        "verification bottleneck",
+        "verification throughput",
+        "verification yield",
+        "verification coverage",
+        "finite verification",
+        "verifier tasks",
+        "fail-closed verifier",
+        "deterministic validation",
+        "conformance checks"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.independence.v1",
+      "label": "effective_independence",
+      "priority": 80,
+      "patterns": [
+        "effective independence",
+        "independent verifier",
+        "independent evidence",
+        "independence group",
+        "error correlation",
+        "correlated failure",
+        "monoculture",
+        "split inference"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.coordination.v1",
+      "label": "coordination_protocol_integrity",
+      "priority": 78,
+      "patterns": [
+        "coordination protocol",
+        "coordinated agent",
+        "collective workflows",
+        "multi-agent coordination",
+        "authorization runtime",
+        "authority migration",
+        "participation mode",
+        "coordination",
+        "action gate"
+      ]
+    },
+    {
+      "rule_id": "repository-dimension.robustness.v1",
+      "label": "perturbation_robustness",
+      "priority": 76,
+      "patterns": [
+        "perturbation",
+        "robustness",
+        "adversarial",
+        "resilience",
+        "drift monitoring",
+        "proxy-drift",
+        "proxy drift",
+        "contamination",
+        "rollback"
+      ]
+    }
+  ]
+}

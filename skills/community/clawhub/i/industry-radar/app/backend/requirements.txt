@@ -1,0 +1,11 @@
+# 依赖锁定（2026-10-20 实测通过的版本集合，Python 3.9+）
+# 全部使用 == 精确锁定，避免不同环境拉取到未经审查的新版本（供应链风险）。
+# 升级时请逐项评估变更并重跑 skill/industry-radar 的自测，不要放宽为 >=。
+
+fastapi==0.128.8
+uvicorn==0.39.0
+feedparser==6.0.12
+requests==2.32.5
+beautifulsoup4==4.15.0
+lxml==6.1.3
+python-multipart==0.0.20

@@ -1,42 +1,58 @@
-## Description: <br>
-庄家异动探测器 requires SkillPay payment, fetches active Polymarket markets, and returns the three detected markets with the largest recent price changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实时监控 Polymarket 活跃市场的大额资金和价格异动，并在 SkillPay 支付确认后返回异动话题分析。
 
-## Publisher: <br>
-[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog)
 
-## Use Case: <br>
-External Web3 market watchers can use this skill to request a paid Polymarket mover snapshot from an agent. The output is useful for triage and market monitoring, but it should not be treated as verified whale or investment intelligence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports an embedded SkillPay API key. <br>
-Mitigation: Remove the hardcoded key, rotate the exposed credential, and load payment credentials only from a managed secret. <br>
-Risk: The payment flow is real and can create SkillPay charges. <br>
-Mitigation: Review payment settings before deployment and restrict payment endpoints to trusted hosts. <br>
-Risk: The security evidence says the release advertises stronger whale analysis than the code performs. <br>
-Mitigation: Describe the output as Polymarket price-mover data unless verified whale or on-chain analysis is added and independently validated. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/poly-hunter-final) <br>
-- [Publisher profile](https://clawhub.ai/user/xqw1377-prog) <br>
+## Use Case:
 
+Web3 traders and market analysts use this skill to identify the three active Polymarket markets with the largest recent absolute price movements after a SkillPay payment check.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Guidance] <br>
-**Output Format:** [JSON response containing payment status, optional payment URL, and up to three Polymarket mover records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SkillPay charge before data is returned; mover records can include market id, title, current price, previous price, delta, absolute delta, volume, and status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata; artifact skill.yaml reports 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release includes an exposed SkillPay billing API key.
+
+Mitigation: Revoke the exposed key and move billing credentials to a trusted secret source before production use.
+
+Risk: Payment verification is under-scoped for a paid workflow.
+
+Mitigation: Bind each paid charge ID to the correct user, product, amount, currency, and one-time redemption before returning paid results.
+
+Risk: The payment flow depends on external SkillPay hosts.
+
+Mitigation: Allowlist expected SkillPay hosts and install only when the publisher and billing flow are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/skills/poly-hunter-final)
+- [Publisher profile](https://clawhub.ai/user/xqw1377-prog)
+- [Polymarket CLOB markets endpoint](https://clob.polymarket.com/markets)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Text]
+
+**Output Format:** [JSON response containing payment status, optional payment URL, and Polymarket mover records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to Polymarket and SkillPay; successful payment status is required before market data is returned.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact skill.yaml declares 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

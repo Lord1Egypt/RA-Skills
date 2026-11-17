@@ -8,7 +8,7 @@ provider: openai
 # Provider configurations
 providers:
   openai:
-    api_key: "sk-9Ld6xm13fTFHmfQYigDyStTcVrXEjxerlLxizlu6nRs"
+    api_key: "REDACTED-SECRET"
     base_url: "https://api.cloubic.com/v1"
     model: "gemini-3.1-pro-preview"
 

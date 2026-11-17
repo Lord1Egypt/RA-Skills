@@ -1,39 +1,53 @@
-## Description: <br>
-Processes videos by converting formats, compressing files, trimming clips, adding subtitles, and extracting covers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Processor helps agents assist with video format conversion, compression, simple trimming, subtitle addition, and cover extraction.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare video assets by converting common formats, reducing file size, clipping content, adding subtitles, and extracting cover images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local video processing may require enough temporary disk space for large input files. <br>
-Mitigation: Confirm available storage before running long or large processing jobs and clean temporary files after use. <br>
-Risk: The skill depends on local video-processing tools and includes an unexplained curl dependency. <br>
-Mitigation: Confirm the package source is trusted and review expected dependency use before installing or processing private videos. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or follow video-processing commands for common tasks such as format conversion, compression, simple edits, subtitle insertion, and cover extraction.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local video-processing dependencies such as ffmpeg and temporary disk storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The install instructions execute a mutable latest-version npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install command before use, prefer a pinned and verified ClawHub installer version, and avoid elevated privileges.
+
+Risk: Large video files may process slowly and consume temporary storage.
+
+Mitigation: Check available storage before processing large files and set practical file-size or runtime limits for automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-video-processor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local video-processing tooling such as ffmpeg; large files may need adequate temporary storage.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Generate, validate, render, and export Mermaid diagrams (.mmd) for flowcharts, sequence diagrams, class diagrams, ER diagrams, state machines, architecture visuals, timelines, git graphs, mind maps, C4 diagrams, pie charts, and user journeys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, validate, render, and export Mermaid diagrams as .mmd source plus SVG, ASCII, PNG, or PDF outputs using local or Kroki-backed rendering workflows.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Developers and technical writers use this skill to turn system flows, data models, architecture descriptions, and process narratives into Mermaid source files and rendered diagram outputs for documentation and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram contents may include private architectures, schemas, or auth flows and can be sent to the external Kroki service when that backend is used. <br>
-Mitigation: Prefer local rendering for sensitive diagrams and use Kroki only when external processing is approved. <br>
-Risk: The bundled rendering scripts may invoke npm automatically and mutate the skill folder during dependency installation. <br>
-Mitigation: Review the scripts before running them and execute them in an environment where npm installs and local file changes are acceptable. <br>
+## Use Case:
 
+Developers and technical writers use this skill to create diagrams-as-code for architecture, API flows, class hierarchies, database schemas, state machines, timelines, and other Mermaid-supported visuals, then validate and render them for documentation or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/mermaid-maker) <br>
-- [Rendering and export backends](reference/RENDERING.md) <br>
-- [Flowchart syntax](reference/FLOWCHART.md) <br>
-- [Sequence diagram syntax](reference/SEQUENCE.md) <br>
-- [Class and ER diagram syntax](reference/CLASS-ER.md) <br>
-- [Theme catalog](reference/THEMES.md) <br>
-- [Kroki Mermaid API](https://kroki.io/mermaid/svg) <br>
-- [Mermaid Live Editor](https://mermaid.live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Mermaid code blocks, file paths, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce Mermaid source files and guide SVG, ASCII, PNG, or PDF rendering depending on the selected backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagram contents may be uploaded to a third-party service when the Kroki rendering path is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local beautiful-mermaid or mmdc rendering for confidential diagrams, and use Kroki only after explicit approval for content upload.
+
+Risk: The bundled Node rendering scripts can automatically install npm dependencies when beautiful-mermaid is missing.
+
+Mitigation: Review or pin npm dependencies before running bundled scripts, or install dependencies through a controlled package workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/mermaid-maker)
+- [Skill Homepage](https://github.com/Agents365-ai/creating-mermaid-diagrams)
+- [Rendering and Export Backends](artifact/reference/RENDERING.md)
+- [Mermaid Themes](artifact/reference/THEMES.md)
+- [Flowchart Syntax](artifact/reference/FLOWCHART.md)
+- [Sequence Diagram Syntax](artifact/reference/SEQUENCE.md)
+- [Class and ER Diagram Syntax](artifact/reference/CLASS-ER.md)
+- [Other Mermaid Diagram Types](artifact/reference/OTHER-TYPES.md)
+- [Mermaid Live Editor](https://mermaid.live)
+- [Kroki Mermaid SVG Endpoint](https://kroki.io/mermaid/svg)
+- [Kroki Mermaid PNG Endpoint](https://kroki.io/mermaid/png)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Mermaid code blocks and optional .mmd, SVG, ASCII text, PNG, or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rendering can use local Node scripts, mermaid-cli, or Kroki; confidentiality depends on backend selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

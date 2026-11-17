@@ -1,39 +1,48 @@
-## Description: <br>
-Monitors research topics for new papers, conferences, and journals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors research topics for new papers, conferences, and journals.
 
-## Publisher: <br>
-[eksubin](https://clawhub.ai/user/eksubin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eksubin](https://clawhub.ai/user/eksubin)
 
-## Use Case: <br>
-External researchers and teams use ResearchMonitor to track configured research topics, search for new papers, conference announcements, and journal updates, and receive concise reports only when materially new items are found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research topics, timestamps, and seen-item history are stored locally and may be sensitive. <br>
-Mitigation: Review or clear research_config.json before installing, sharing, or running the skill in a sensitive workspace. <br>
-Risk: Configured research topics are used in web searches. <br>
-Mitigation: Avoid adding confidential research topics or private project names unless web-search disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ResearchMonitor ClawHub skill page](https://clawhub.ai/eksubin/researchassistant) <br>
+## Use Case:
 
+Researchers, developers, and technical teams use this skill to monitor configured research topics and receive concise updates about new papers, conference announcements, and journal publications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with supporting text, shell commands, and local JSON configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local topic, last-checked, and seen-item state in research_config.json] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local configuration stores research topics, seen-item identifiers, and the last checked date, which may reveal confidential projects or strategic interests.
+
+Mitigation: Review, restrict access to, or delete research_config.json when the configured topics or tracked items are sensitive.
+
+## Reference(s):
+
+- [ResearchMonitor ClawHub page](https://clawhub.ai/eksubin/skills/researchassistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with inline shell commands and local JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured topics, last-checked date, and seen-item identifiers to reduce repeat reports.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

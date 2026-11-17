@@ -1,0 +1,74 @@
+{
+  "schema_version": "itp.agent_doc.v1",
+  "role": "buyer",
+  "product_scope": "itpay is the single public CLI entry point, and $itpay is its user-facing Skill invocation. Under that one product entry point, the two top-level commerce actions are buy and sell: Buyer workflows are available now; Seller workflows will use the same entry point and are not implemented yet.",
+  "topic": "install-and-setup",
+  "title": "Install And Identify The ItPay Agent Runtime",
+  "purpose": "Load the complete ItPay Skill and select one stable Agent Type without confusing distribution, identity, Backend, Host, target, or chat window.",
+  "when_to_use": [
+    "The CLI is being installed or upgraded.",
+    "The agent needs to confirm its stable runtime identity and default output Host."
+  ],
+  "commands": [
+    {
+      "intent": "verify the API and enter packaged onboarding",
+      "command": "itpay readyz --json",
+      "success_signal": "status is ready and next points to skill show itpay"
+    },
+    {
+      "intent": "read the complete packaged operating contract",
+      "command": "itpay skill show itpay --json",
+      "success_signal": "status is shown, result.content contains the complete Skill, and next selects Agent Type or Catalog"
+    },
+    {
+      "intent": "list supported Agent Types",
+      "command": "itpay install --json",
+      "success_signal": "status is install_targets and exactly seven supported Agent Type definitions are returned"
+    },
+    {
+      "intent": "read setup for the real runtime",
+      "command": "itpay install <agent_type> --json",
+      "success_signal": "status is instructions_ready and next is a readyz command using that exact Agent Type"
+    }
+  ],
+  "agent_rules": [
+    "Use the CLI distribution already provided by the current npm package, Skill, or plugin; install only through that distribution's own instructions.",
+    "Production defaults to https://app.itpay.ai. Testing may set ITPAY_BACKEND_URL to the exact official URL https://dev.itpay.ai; no other Backend is allowed.",
+    "If backend_contract_incompatible includes result.required_cli_version, stop all ItPay business commands and use only the exact distribution-specific update recovery returned by the CLI; never replace its version with latest.",
+    "After upgrading, require itpay --version to equal result.required_cli_version before running readyz again; never change Agent Type or Device identity to recover compatibility.",
+    "Use one exact type: codex-desktop, codex-cli, claude-code-desktop, claude-code-cli, workbuddy, kimi-code, or openclaw.",
+    "For compatibility, a global --agent-type codex declaration is normalized immediately to codex-desktop; all registration, output, and returned commands use codex-desktop. Never generate the alias, and do not use codex as an install target.",
+    "One local private key is reused, while Device registrations and quota lineage remain separate for app.itpay.ai and dev.itpay.ai.",
+    "Within each official Backend registration, each Agent Type has one Agent Instance; all windows and chats of the same type reuse it.",
+    "Agent Type identifies the runtime. Host controls rendering and target only identifies a presentation destination. OpenClaw requires an explicit Host and IM target; Kimi Code uses the standard terminal CLI contract.",
+    "Keep the exact Agent Type in every next or recovery command; do not fall back to a type previously used by another runtime.",
+    "Do not change Agent Type or rotate local identity to reset quota or recover a failed command."
+  ],
+  "forbidden": [
+    "Do not use terminal, claude-code, or plain-chat as Agent Types. Do not generate codex as an Agent Type; it is accepted only as a legacy global declaration and becomes codex-desktop before any request.",
+    "Do not set or suggest any Backend except the default https://app.itpay.ai or the exact test override https://dev.itpay.ai.",
+    "Do not claim that install writes host configuration or registers a device; it only prints instructions.",
+    "Do not create a new identity for a different window, task, chat, or process of the same Agent Type."
+  ],
+  "next_docs": [
+    {
+      "condition": "Installation is verified",
+      "topic": "quickstart"
+    }
+  ],
+  "search_terms": [
+    "install",
+    "agent type",
+    "host",
+    "target",
+    "device",
+    "session",
+    "identity",
+    "backend",
+    "codex",
+    "claude code",
+    "workbuddy",
+    "kimi code",
+    "openclaw"
+  ]
+}

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Diagnose a rejected e-invoice"
+  short_description: "Explain conformance rejects"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-einvoice-check"
+      description: "E-Invoice Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/einvoice-check/mcp"

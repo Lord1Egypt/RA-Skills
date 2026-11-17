@@ -1,45 +1,63 @@
-## Description: <br>
-Generate platform-optimized social media posts, hashtags, and repurposed content for Twitter/X, LinkedIn, Instagram, Facebook, and similar platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate platform-specific social media drafts with tone customization, hashtag suggestions, content repurposing, and formatting for Twitter/X, LinkedIn, Instagram, Facebook, and related channels.
 
-## Publisher: <br>
-[954215110](https://clawhub.ai/user/954215110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[954215110](https://clawhub.ai/user/954215110)
 
-## Use Case: <br>
-External users, marketers, creators, and teams use this skill to draft social posts, adapt content across platforms, generate hashtags, and refine tone before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social copy may be inaccurate, off-brand, or unsuitable for a platform or audience if published without review. <br>
-Mitigation: Review and edit generated posts, hashtags, claims, links, and calls to action before publishing them externally. <br>
-Risk: Broad requests for posts, hashtags, or viral content may route to this skill even when the user needs a more specialized workflow. <br>
-Mitigation: Confirm the target platform, topic, audience, and tone before relying on the draft output. <br>
+## Use Case:
 
+External users, marketers, and content teams use this skill to draft and adapt social posts, hashtags, emoji suggestions, and platform-specific copy for campaigns, launches, announcements, and repurposed content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/954215110/social-post-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/954215110) <br>
-- [Hashtag Research Guide](references/hashtags.md) <br>
-- [Content Repurposing Templates](references/repurposing.md) <br>
-- [Emoji Guide for Social Media](assets/emoji-guide.md) <br>
-- [Social Post Templates](assets/templates/post-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text social post drafts with hashtags, platform notes, and optional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Generated posts may be inaccurate, misleading, off-brand, or inappropriate for the target platform or audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit all generated social posts before publishing.
+
+Risk: Broad trigger phrases may activate the skill for generic social-writing requests.
+
+Mitigation: Confirm the topic, platform, audience, and tone before drafting.
+
+Risk: The hashtag script documentation implies current internet or API access that the implementation does not provide.
+
+Mitigation: Treat script hashtag output as static local suggestions unless live data access is separately added and reviewed.
+
+## Reference(s):
+
+- [Social Post Generator Skill Page](https://clawhub.ai/954215110/skills/social-post-generator)
+- [Publisher Profile](https://clawhub.ai/user/954215110)
+- [Author Homepage](https://clawhub.ai/users/954215110)
+- [Hashtag Research Guide](references/hashtags.md)
+- [Content Repurposing Templates](references/repurposing.md)
+- [Emoji Guide for Social Media](assets/emoji-guide.md)
+- [Social Post Templates](assets/templates/post-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown social post drafts with optional hashtag lists, emoji suggestions, content templates, and shell command examples for local hashtag generation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafting aid only; generated content should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "task_id": "taREDACTED-SECRET",
+  "status": "COMPLETED",
+  "result": {
+    "file_url": "https://example.com/speech.mp3",
+    "audio_info": { "format": "mp3", "sample_rate": 44100 },
+    "transcripts": [{
+      "channel_id": 0,
+      "text": "Hello Vibbit. Price is 19.99.",
+      "sentences": [
+        {
+          "sentence_id": 0, "text": "Hello Vibbit.", "language": "en",
+          "begin_time": 0, "end_time": 1000,
+          "words": [
+            { "text": "Hello ", "punctuation": "", "begin_time": 0, "end_time": 320 },
+            { "text": "Vibbit", "punctuation": ".", "begin_time": 400, "end_time": 960 }
+          ]
+        },
+        {
+          "sentence_id": 1, "text": "Price is 19.99.", "language": "en",
+          "begin_time": 1200, "end_time": 3000,
+          "words": [
+            { "text": "Price ", "punctuation": "", "begin_time": 1200, "end_time": 1700 },
+            { "text": "is ", "punctuation": "", "begin_time": 1720, "end_time": 1850 },
+            { "text": "19.99", "punctuation": ".", "begin_time": 1900, "end_time": 2900 }
+          ]
+        }
+      ]
+    }]
+  }
+}

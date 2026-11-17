@@ -1,0 +1,41 @@
+{
+  "contract": {
+    "schema": "cad-file-reader/v0",
+    "source": "",
+    "origin_schema": "qto-placeholder",
+    "summary": {
+      "total": 0,
+      "confirmed_evidence": 0,
+      "inferred_candidate": 0,
+      "review_required": 0,
+      "candidate_count": 0,
+      "duplicate_candidate": 0
+    },
+    "review_reasons": [],
+    "candidates": [],
+    "review_candidates": [],
+    "boundary": "占位：专业未安装或 P1 未接入，不参与汇总主线。"
+  },
+  "qto_spec": "qto-project/v1",
+  "qto_version": "0.1.0",
+  "project_key": {
+    "project": "自绘样例",
+    "building": "示例楼",
+    "floor": "",
+    "zone": "",
+    "room": "",
+    "specialty": "zhuangshi-suanliang",
+    "source": "file",
+    "review_required": true
+  },
+  "specialty": "zhuangshi-suanliang",
+  "draft_type": "draft_type_pending",
+  "placeholder": {
+    "kind": "not_installed",
+    "note": "自绘样例占位：P1 未接入"
+  },
+  "producer": {
+    "skill": "cad-file-reader",
+    "role": "recognition"
+  }
+}

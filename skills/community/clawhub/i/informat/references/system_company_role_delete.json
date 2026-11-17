@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_role_delete",
+    "description": "Delete an existing role in the company. (Dangerous operation, only allowed when the user explicitly requests to delete a specific role)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role ID (must exist)."
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

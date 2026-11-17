@@ -1,9 +1,9 @@
 {
   "name": "bring-list",
-  "version": "1.2.7",
-  "description": "Manage Bring! shopping lists — add, remove, complete, and view items. Privacy-conscious setup: enter credentials in your own terminal (recommended) or in chat. Talks only to api.getbring.com. Requires curl + jq.",
+  "version": "1.3.0",
+  "description": "Manage Bring! shopping lists — add, smart-add, preview, remove, complete, and view items. Passwords are entered only in the user's terminal, never accepted in chat or stored on disk. Requires curl + jq.",
   "author": "OpenClaw Community",
-  "license": "MIT",
+  "license": "MIT-0",
   "keywords": [
     "bring",
     "shopping-list",

@@ -1,0 +1,39 @@
+{
+  "name": "ptjourney-listing",
+  "version": "0.2.0",
+  "description": "PTJourney 跨境电商 AI 批量上架助手，支持 Ozon ERP、Wildberries（WB）ERP、TEMU ERP 工作流。整理 1688 商品、预检上架数据、管理已授权任务，通过已登录 Windows 客户端的本机 MCP 操作。Use for marketplace product listing and task management.",
+  "author": {
+    "name": "企雀AI助手"
+  },
+  "homepage": "https://ptjourney.qique.cn/",
+  "repository": "https://github.com/Edmon/ptjourney-listing",
+  "keywords": [
+    "ptjourney",
+    "ozon",
+    "ozon erp",
+    "wildberries",
+    "wb erp",
+    "temu",
+    "temu erp",
+    "1688",
+    "跨境电商",
+    "批量上架",
+    "product listing",
+    "mcp",
+    "agent skills"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "PTJOURNEY_RUNTIME_DIR": {
+        "type": "string",
+        "title": "PTJourney 上架助手 official runtime directory",
+        "description": "Absolute local path to the separately installed official package root. No credentials."
+      }
+    },
+    "required": [
+      "PTJOURNEY_RUNTIME_DIR"
+    ]
+  },
+  "license": "MIT-0"
+}

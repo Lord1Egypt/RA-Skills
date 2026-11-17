@@ -1,0 +1,38 @@
+# Secrets - NEVER commit
+.env
+.env.local
+.env*.local
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+.venv-test/
+venv/
+
+# Dependency lock files - regenerate on build
+uv.lock
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local data
+data/
+*.db
+*.sqlite
+.continue/
+
+# OS
+Thumbs.db
+.DS_Store
+report.json

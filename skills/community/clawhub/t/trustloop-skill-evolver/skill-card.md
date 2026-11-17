@@ -1,46 +1,61 @@
-## Description: <br>
-Let OpenClaw capture reusable workflows as managed skill candidates, support review or revision, and evolve safely through manual, assisted, or autonomous modes inside the current workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let OpenClaw capture reusable workflows as managed skill candidates, support review or revision, and evolve safely through manual, assisted, or autonomous modes inside the current workspace.
 
-## Publisher: <br>
-[haocheng0126](https://clawhub.ai/user/haocheng0126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haocheng0126](https://clawhub.ai/user/haocheng0126)
 
-## Use Case: <br>
-Developers and teams use this skill to let OpenClaw identify reusable workspace workflows, draft managed skill candidates, and route them through review, approval, publish, or rollback flows. It is aimed at review-first skill evolution with manual, assisted, and autonomous modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous mode can change learned skills without per-change approval. <br>
-Mitigation: Start in manual mode and enable assisted or autonomous mode only after confirming that low-risk auto-promotion boundaries match the workspace's expectations. <br>
-Risk: Managed skill candidates may accidentally capture sensitive project details from the current workspace. <br>
-Mitigation: Review candidate diffs before publishing and avoid letting the skill encode secrets, private file contents, or sensitive project context into reusable instructions. <br>
-Risk: The optional TrustLoop plugin changes lifecycle behavior by adding a native managed-skill tool. <br>
-Mitigation: Review the plugin separately before installation and before relying on plugin-backed publish, rollback, or mode-change operations. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to capture repeatable workspace workflows as reviewed managed skill candidates, publish approved learned skills, and roll back changes while controlling autonomy level.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/haocheng0126/trustloop-skill-evolver) <br>
-- [README](README.md) <br>
-- [Evolution Rules](references/evolution-rules.md) <br>
-- [Review Policy](references/review-policy.md) <br>
-- [Managed Skill Tool Interface](references/skill-manage-managed-tool.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, generated skill drafts, candidate records, registry entries, and audit records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workspace-local state is written under .skill-evolver and published managed skills are constrained to skills/learned-* paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill can persist workflow records and change future agent behavior through managed learned skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in manual mode for normal use and require human review before publishing learned skills.
+
+Risk: Autonomous mode can publish low-risk changes without per-change review.
+
+Mitigation: Enable autonomous mode only in workspaces where automatic changes to learned skills are acceptable.
+
+Risk: Candidate or audit files may capture details from repeated workflows.
+
+Mitigation: Review ./.skill-evolver candidate and audit files before publishing or sharing the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haocheng0126/skills/trustloop-skill-evolver)
+- [README](artifact/README.md)
+- [Evolution Rules](artifact/references/evolution-rules.md)
+- [Review Policy](artifact/references/review-policy.md)
+- [Managed Skill Tool Interface](artifact/references/skill-manage-managed-tool.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses, managed skill drafts, candidate records, JSON audit entries, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are workspace-scoped and may include review prompts, rollback guidance, and mode-specific publish behavior.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "LP Analysis"
+  short_description: "Assess LP pools, yield quality, and exit risk"
+  default_prompt: "Use $lp-analyze to compare these liquidity pools with current evidence and hard risk gates."
+policy:
+  allow_implicit_invocation: true

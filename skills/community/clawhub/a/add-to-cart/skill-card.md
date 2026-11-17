@@ -1,43 +1,60 @@
-## Description: <br>
-Automates product search and add-to-cart, favorite, or interest-marker actions across Taobao, JD, Pinduoduo, and Xianyu through Brave Browser CDP, stopping before checkout or payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform e-commerce automation that uses Brave Browser CDP to search products and add them to cart on Taobao and JD, favorite them on Pinduoduo, or mark them as wanted on Xianyu, stopping before checkout or payment.
 
-## Publisher: <br>
-[mayf3](https://clawhub.ai/user/mayf3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayf3](https://clawhub.ai/user/mayf3)
 
-## Use Case: <br>
-External users and developers use this skill to automate logged-in shopping-site browsing tasks that place items in carts, save favorites, or mark interest while leaving purchase decisions and payment to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify live carts, favorites, interest markers, and possibly chats in logged-in third-party accounts. <br>
-Mitigation: Use only with accounts where those changes are acceptable, require confirmation before each live action, and prefer a dry-run or manual review step before changing an account. <br>
-Risk: Browser automation against logged-in shopping sessions may expose session tokens or account state in command output, screenshots, or logs. <br>
-Mitigation: Avoid sharing or logging session tokens, keep screenshots and page text captures limited to what is needed for verification, and review outputs before retaining or sharing them. <br>
+## Use Case:
 
+Developers and shopping-assistant agents use this skill to navigate supported e-commerce sites, inspect search results, open product detail pages, and perform cart, favorite, or wanted actions with user oversight. It is not intended for price comparison, checkout, payment, product recommendation, or order management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mayf3/add-to-cart) <br>
-- [Platform guides](references/platform-guides.md) <br>
-- [Platform selectors](references/platform-selectors.md) <br>
-- [Experience log](references/experience-log.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and browser automation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running Brave Browser CDP session and a compatible brave-browser-agent skill; outputs should be reviewed before live account changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automates actions in logged-in shopping accounts, including cart, favorite, wanted, and possible chat flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Brave profile or tab with accounts approved for automation, and require explicit user confirmation before any account-changing action.
+
+Risk: Search terms and detail URLs can influence browser navigation and page actions.
+
+Mitigation: Avoid attacker-supplied search terms or detail URLs, and inspect the destination page with screenshots and page text before acting.
+
+Risk: The Taobao flow relies on a token-based API call and security evidence flags unsafe interpolation patterns.
+
+Mitigation: Fix the token handling and interpolation patterns before normal use, and review generated commands before execution.
+
+## Reference(s):
+
+- [Platform Guides](references/platform-guides.md)
+- [Platform Selectors](references/platform-selectors.md)
+- [Experience Log](references/experience-log.md)
+- [ClawHub Skill Page](https://clawhub.ai/mayf3/skills/add-to-cart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline bash and JavaScript snippets; shell script output is terminal text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill depends on a running Brave Browser remote debugging session and the brave-browser-agent CDP helper.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

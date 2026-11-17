@@ -1,0 +1,29 @@
+{
+  "background_asset": {
+    "asset_id": "bg-generated-quiet-window",
+    "url": "../data/quiet-window-placeholder.svg",
+    "object_position": "center",
+    "caption": "Generated local placeholder background"
+  },
+  "kicker": "深度随笔",
+  "title": "把生活重新打开",
+  "subtitle": "一篇关于停顿、秩序与重新出发的文章",
+  "asset_source_record": [
+    {
+      "asset_id": "bg-generated-quiet-window",
+      "role": "background",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "color_overlay",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Local generated placeholder used to exercise background asset plumbing."
+    }
+  ]
+}

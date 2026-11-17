@@ -1,0 +1,24 @@
+# 临时文件 / Temp files
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+
+# 日志 / Logs
+*.log
+
+# 中间产物 / Intermediate artifacts
+raw/
+*.pdf
+*.epub
+*.docx
+*.tmp
+
+# 内部文档与任务痕迹 / Internal docs & task traces (do not publish)
+docs/
+TASK.md
+tasks/
+*.md.bak
+
+# 本地工具状态 / Local tooling state
+.local/

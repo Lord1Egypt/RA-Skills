@@ -1,42 +1,56 @@
-## Description: <br>
-macOS Keychain helpers (list/get/set/delete) via the security CLI. Trigger this skill when the user needs to inspect, store, update, or remove generic passwords from the Keychain with explicit confirmation on destructive ops and guarded secret disclosure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keychain Access provides macOS Keychain helpers for listing, reading, storing, updating, and deleting generic passwords through the security CLI.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers and automation agents use this skill to list, retrieve, create, update, or delete macOS Keychain generic passwords with explicit service/account filters, dry-run previews, and confirmation controls for credential changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive macOS Keychain credentials, and raw password output can place secrets in the conversation or logs. <br>
-Mitigation: Use raw output only after explicit user authorization, prefer masked reads, and avoid copying secrets into persistent logs or chat history. <br>
-Risk: Credential updates and deletions can alter or remove local secrets. <br>
-Mitigation: Use dry-run previews, explicit service/account filters, a specific keychain path when practical, and confirmation prompts; use --yes only after the user has authorized the change. <br>
-Risk: Server security evidence says the helper overstates how safely password-stdin and password-env keep stored passwords out of process arguments. <br>
-Mitigation: Do not rely on stdin or environment input to fully prevent process-argument exposure until the helper is fixed or accurately documented; avoid exposing command lines and run only in trusted local contexts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/openclaw-skill-keychain-access) <br>
-- [README.md](artifact/README.md) <br>
+## Use Case:
 
+Developers, operators, and agents on macOS use this skill to inspect, store, update, and remove generic Keychain passwords with explicit service/account filters and confirmation controls.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include masked credential metadata by default; plaintext secrets are only produced when the user explicitly requests raw output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can reveal Keychain secrets when raw output is explicitly requested.
+
+Mitigation: Default to masked get output and allow raw secret disclosure only after the requester explicitly approves it.
+
+Risk: Credential updates or deletions can change local Keychain entries.
+
+Mitigation: Use service/account filters, dry-run previews, and confirmation prompts; reserve confirmation bypasses for explicitly approved operations.
+
+Risk: Broad list operations on the default search list can expose credential metadata.
+
+Mitigation: Prefer specific service/account filters and a specific keychain path where practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppopen/skills/openclaw-skill-keychain-access)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS with the security CLI; secret values are masked by default unless raw output is explicitly approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

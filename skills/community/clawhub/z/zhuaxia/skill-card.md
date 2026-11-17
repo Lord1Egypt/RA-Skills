@@ -1,42 +1,57 @@
-## Description: <br>
-Zhuaxia exports and imports OpenClaw instances as portable .claw packages for backup, sharing, migration, and restoration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export and import OpenClaw instances as portable .claw packages for backup, sharing, and migration.
 
-## Publisher: <br>
-[Lovelcp](https://clawhub.ai/user/Lovelcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovelcp](https://clawhub.ai/user/lovelcp)
 
-## Use Case: <br>
-Developers and OpenClaw users use Zhuaxia to back up, transfer, import, or roll back OpenClaw workspace and configuration state, including bundled skills, while reviewing credentials and installation effects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: .claw imports can install active skills, overwrite workspace files, and introduce imported configuration. <br>
-Mitigation: Run a dry-run first, review bundled skills, overwritten files, required credentials, and imported configuration before loading. <br>
-Risk: Rollback may not fully remove all changes from an import. <br>
-Mitigation: Keep the generated backup ID and manually check for new workspace files, installed skills, and imported configuration that should be removed. <br>
-Risk: .claw files or URLs can alter an OpenClaw instance. <br>
-Mitigation: Treat .claw packages like installable software and load only packages from trusted sources. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up, share, migrate, restore, and roll back OpenClaw setups as portable .claw packages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lovelcp/zhuaxia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node; produces and loads .claw package files through the bundled CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release evidence) <br>
+Risk: The skill handles sensitive local OpenClaw files and generated export archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .claw packages and exported contents before sharing, and do not rely solely on automatic credential stripping.
+
+Risk: Imported .claw archives can write workspace, configuration, and skill files.
+
+Mitigation: Use dry-run first, import only from trusted senders, and create a separate backup before allowing writes.
+
+Risk: Archives or URLs from untrusted sources may contain unwanted configuration or skill changes.
+
+Mitigation: Avoid importing from arbitrary URLs or unknown senders, and inspect the preview for file changes, skill requirements, and credential placeholders.
+
+## Reference(s):
+
+- [Zhuaxia ClawHub skill page](https://clawhub.ai/lovelcp/skills/zhuaxia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to inspect local OpenClaw state, create or load .claw archive files, manage backups, and report required credential placeholders.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

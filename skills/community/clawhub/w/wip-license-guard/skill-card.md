@@ -1,41 +1,54 @@
-## Description: <br>
-License compliance for your own repos. Ensures correct copyright headers, dual-license blocks, and LICENSE files across all source files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wip License Guard enforces repository license compliance by checking copyright headers, dual-license blocks, LICENSE files, CLA files, and README license sections.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and release engineers use this skill to audit local repositories for expected license files, copyright lines, CLA files, and README license sections. It can also guide or run fix workflows when repository license metadata needs to be standardized before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fix modes can rewrite LICENSE, CLA, and README files in local repositories. <br>
-Mitigation: Run audit or --dry-run first, use --fix only on a clean branch, and review git diffs before committing. <br>
-Risk: The readme-license --fix workflow can affect every detected repository when pointed at a broad parent directory. <br>
-Mitigation: Run it against a specific repository or carefully scoped directory unless broad README license updates are intended. <br>
+## Use Case:
 
+Developers and release engineers use this skill to audit repository license requirements before release and to generate or repair license files, CLA files, and README license sections when configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/wip-license-guard) <br>
-- [Project Homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose audit, dry-run, or fix commands for local repository license compliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: ClawHub release metadata) <br>
+Risk: The tool can create or rewrite legal/license files and README sections across multiple repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run audit or --dry-run first, avoid broad parent directories with --fix, and review generated LICENSE, CLA.md, .license-guard.json, and README diffs before committing.
+
+Risk: The tool applies WIP Computer-style license governance, which may not match every repository's intended license policy.
+
+Mitigation: Install and run it only for repositories that intentionally use this governance model, and confirm configuration values before applying fixes.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/parkertoddbrooks/skills/wip-license-guard)
+- [AI DevOps Toolbox repository](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown and CLI-oriented text with optional generated configuration and license files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write .license-guard.json, LICENSE, CLA.md, and README license sections when init or fix modes are used.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata; artifact package.json reports 1.9.68)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

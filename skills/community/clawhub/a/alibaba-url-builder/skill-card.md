@@ -1,42 +1,57 @@
-## Description: <br>
-Build Alibaba.com URLs for agent navigation, including product searches, product detail pages, supplier profiles, RFQ pages, and special sections like AI Mode and Top Ranking, with the traffic_type=ags_llm tracking parameter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Alibaba.com URLs for agent navigation across product searches, product detail pages, supplier profiles, RFQ pages, and special sections, with traffic_type=ags_llm tracking on each URL.
 
-## Publisher: <br>
-[Zeyu426](https://clawhub.ai/user/Zeyu426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeyu426](https://clawhub.ai/user/zeyu426)
 
-## Use Case: <br>
-External agents, procurement professionals, and developers use this skill to construct Alibaba.com search, product, supplier, RFQ, and special-section URLs for product sourcing and browsing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated links carry the traffic_type=ags_llm attribution parameter. <br>
-Mitigation: Use the skill only when that visible attribution is acceptable for the browsing workflow. <br>
-Risk: Opening the cart or purchase-list URL from a logged-in Alibaba session may expose account-specific shopping context to the agent. <br>
-Mitigation: Avoid logged-in cart or purchase-list navigation unless the agent is intended to access that context. <br>
+## Use Case:
 
+Developers, procurement teams, and sourcing agents use this skill to construct Alibaba.com navigation URLs for product discovery, supplier research, RFQ access, and market exploration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Zeyu426/alibaba-url-builder) <br>
-- [SKILL.md](SKILL.md) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with URL patterns, Python examples, shell commands, and generated URL strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated URLs include the traffic_type=ags_llm attribution parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Supplier subdomain inputs can produce non-Alibaba or malformed navigation targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate supplier subdomains as single DNS labels before navigation and reject schemes, slashes, dots, and other host-control characters.
+
+Risk: Every generated URL includes traffic_type=ags_llm, which identifies agent-origin traffic.
+
+Mitigation: Use the generated URLs only where this tracking parameter is acceptable for the workflow and audience.
+
+Risk: Install and release guidance includes mutable npm/npx commands, and release.sh can publish the skill and push repository contents.
+
+Mitigation: Pin CLI package versions where possible and inspect release.sh carefully before running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zeyu426/skills/alibaba-url-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with URL strings, Python helper code, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated URLs include the traffic_type=ags_llm tracking parameter.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

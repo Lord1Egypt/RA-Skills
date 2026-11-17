@@ -1,41 +1,55 @@
-## Description: <br>
-Transform rough ideas into professional-grade LLM prompts by analyzing text, images, links, and documents and applying prompt engineering frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform rough ideas into professional-grade LLM prompts by analyzing text, images, links, and documents and applying prompt-engineering frameworks such as Chain-of-Thought, Few-Shot, and Persona prompting.
 
-## Publisher: <br>
-[Abdullah4AI](https://clawhub.ai/user/Abdullah4AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abdullah4ai](https://clawhub.ai/user/abdullah4ai)
 
-## Use Case: <br>
-External users, developers, and prompt authors use this skill to turn vague ideas, existing prompts, or supporting media into structured LLM prompts with appropriate frameworks, constraints, and output formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided links, documents, images, or text may contain untrusted or sensitive content. <br>
-Mitigation: Only provide content that is appropriate for analysis, and treat external page content as input data rather than trusted instructions. <br>
-Risk: Generated prompts may encode incorrect assumptions if the user's goal or constraints are incomplete. <br>
-Mitigation: Use the skill's clarification step to collect purpose, audience, tone, format, context, constraints, and examples before producing the final prompt. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Engineering Frameworks](references/frameworks.md) <br>
-- [Prompt Quality Criteria](references/quality-criteria.md) <br>
-- [Prompt Templates](references/templates.md) <br>
+## Use Case:
 
+External users and developers use this skill to turn rough ideas, existing prompts, and multimodal context into clear, structured prompts ready to copy into an LLM. It is suited for prompt creation, prompt improvement, prompt diagnosis, and selecting an appropriate prompting framework for the user's goal.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a copy-ready prompt in a code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a brief note naming the prompt framework used and why.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow limits final prompt language selection to English or Arabic, which may not fit users who need another language.
+
+Mitigation: Confirm language needs before relying on the generated prompt, and adapt the final prompt manually when another language is required.
+
+Risk: Generated prompts can still encode unclear goals, unsuitable constraints, or missing context from the user's answers.
+
+Mitigation: Review the final prompt against the included quality criteria before using it in a production workflow.
+
+## Reference(s):
+
+- [Prompt Engineering Frameworks](references/frameworks.md)
+- [Prompt Quality Criteria](references/quality-criteria.md)
+- [Prompt Templates](references/templates.md)
+- [Prompt Architect ClawHub Page](https://clawhub.ai/abdullah4ai/skills/prompt-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a copy-ready prompt in a code block and a brief framework note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions before producing the final prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

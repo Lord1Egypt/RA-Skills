@@ -1,44 +1,57 @@
-## Description: <br>
-ClawLine Setup helps an OpenClaw agent install the ClawLine channel plugin, bind a phone UUID, check connection status, and disconnect an existing pairing through conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawLine Setup helps an OpenClaw agent install the ClawLine Channel Plugin, bind a phone UUID, check connection status, and clear pairing through conversational prompts.
 
-## Publisher: <br>
-[qtx0213](https://clawhub.ai/user/qtx0213) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qtx0213](https://clawhub.ai/user/qtx0213)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure ClawLine mobile app connectivity without manually running setup commands. It supports plugin installation, phone UUID pairing, status checks, and disconnection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may install executable plugin code from the ClawLine package. <br>
-Mitigation: Install only when the user trusts the ClawLine project and the @openclawline/clawline-setup package. <br>
-Risk: Updating the phone UUID may replace an existing pairing or disconnect a previously connected device. <br>
-Mitigation: Confirm the intended device UUID and current pairing before updating or clearing connection settings. <br>
-Risk: Restarting the OpenClaw gateway can interrupt active OpenClaw service. <br>
-Mitigation: Run setup or rebinding when a brief gateway restart is acceptable. <br>
+## Use Case:
 
+OpenClaw users use this skill to set up and manage ClawLine mobile app pairing without running command-line steps. It supports conversational installation, UUID binding or replacement, status checks, and disconnecting an existing pairing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qtx0213/clawline-setup) <br>
-- [ClawLine App](https://openclawline.com) <br>
-- [npm package @openclawline/clawline-setup](https://www.npmjs.com/package/@openclawline/clawline-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with conversational setup guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install plugin code, update or clear phone UUID pairing, restart the OpenClaw gateway, and report connection status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: Installation depends on the current external npm package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed package version before installing in sensitive environments.
+
+Risk: Normal use can replace an existing phone UUID, clear pairing data, and restart the OpenClaw gateway.
+
+Mitigation: Confirm manually before changing an existing UUID, disconnecting ClawLine, or restarting the gateway.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/qtx0213/skills/clawline-setup)
+- [Publisher Profile](https://clawhub.ai/user/qtx0213)
+- [ClawLine GitHub Repository](https://github.com/qtx0213/clawline)
+- [ClawLine App](https://openclawline.com)
+- [npm Package](https://www.npmjs.com/package/@openclawline/clawline-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational Markdown with setup status, command references, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation of an OpenClaw plugin, phone UUID binding, gateway restart, status checks, and clearing pairing data.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bzjrrym1yykyb2z4tacpz8d82vs4h",
-  "slug": "memory-assistant",
-  "version": "1.0.1",
-  "publishedAt": 1774089271247
+  "name": "memory-assistant",
+  "version": "1.0.0",
+  "description": "帮记助手：随手记物品位置与定时语音提醒，集成 SenseAudio TTS",
+  "author": "CSkills",
+  "triggers": ["记一下", "记一下", "提醒我", "放哪儿", "放在哪", "备用钥匙", "护照", "保修卡", "几点开会", "提前提醒"]
 }

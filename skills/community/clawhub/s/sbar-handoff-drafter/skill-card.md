@@ -1,42 +1,56 @@
-## Description: <br>
-Converts de-identified nursing shift notes into a draft SBAR handoff packet for shift change, intra-facility transfer, provider escalation, or charge-nurse rounding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a nurse, charge nurse, or clinical educator needs to convert raw shift notes into a structured SBAR handoff packet for shift change, intra-facility transfer, or provider escalation.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External clinical users such as nurses, charge nurses, and clinical educators use this skill to turn de-identified raw shift notes into a draft SBAR handoff packet for shift change, transfer, provider escalation, or charge-nurse rounding. The output is intended for licensed-nurse review against the chart, patient, and facility policy before use.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Clinical handoff content can be incomplete, incorrect, or inconsistent with the patient chart.
+
+Mitigation: Treat every output as a draft and require a licensed nurse to verify it against the chart, patient, and facility policy before handoff.
+
+Risk: Patient identifiers or protected health information could be pasted into the agent conversation.
+
+Mitigation: Remove patient identifiers before use; the skill includes a de-identification gate and stops when identifiers are present.
+
+Risk: The draft could be mistaken for clinical advice or a replacement for nursing judgment.
+
+Mitigation: Use the skill only to restate and organize supplied facts, with no medication dosing, titration, diagnosis, lab interpretation, charting, transmission, or storage.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Nurses, charge nurses, and clinical educators use this skill to turn de-identified raw shift notes into a structured SBAR draft with priority concerns, read-back checklist, and unresolved items for licensed-nurse review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Protected health information or other patient identifiers could be pasted into the conversation. <br>
-Mitigation: Use only de-identified notes and stop if identifiers appear; the skill prompts for de-identification before accepting clinical content. <br>
-Risk: A draft handoff could contain omissions or transcription errors if used without review. <br>
-Mitigation: Require a licensed nurse to verify every line against the chart and patient before verbal or written handoff. <br>
-Risk: Users could mistake the draft for clinical advice or a clinical decision. <br>
-Mitigation: Keep the output framed as a draft communication aid and avoid medication dosing, diagnoses, treatment recommendations, or lab interpretation. <br>
+**Output Format:** [Markdown SBAR handoff draft with checklists and unresolved-information sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/sbar-handoff-drafter) <br>
+**Other Properties Related to Output:** [Requires de-identified input and labels all generated handoffs as drafts requiring nurse review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown SBAR handoff packet with checklist and unresolved-information list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output requires licensed-nurse review and should be based only on de-identified patient information.] <br>
+0.1.2 (source: server release evidence and changelog, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.2 (source: changelog, released 2026-05-28; server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

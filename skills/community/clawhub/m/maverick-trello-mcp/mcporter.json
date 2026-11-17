@@ -2,11 +2,14 @@
   "imports": [],
   "mcpServers": {
     "maverick-trello": {
-      "command": "uv",
-      "args": ["run", "--script", "scripts/server.py"],
-      "env": {
-        "MAVERICK_TRELLO_MCP_ACCESS_TOKEN": "${MAVERICK_TRELLO_MCP_ACCESS_TOKEN}",
-        "MAVERICK_TRELLO_MCP_API_KEY": "${MAVERICK_TRELLO_MCP_API_KEY}"
+      "baseUrl": "https://mcp.trello.com/v1",
+      "transport": "http",
+      "auth": "refreshable_bearer",
+      "refresh": {
+        "tokenEndpoint": "https://auth.atlassian.com/oauth/token",
+        "clientIdEnv": "MAVERICK_TRELLO_MCP_CLIENT_ID",
+        "clientAuthMethod": "none",
+        "resource": "https://mcp.trello.com/v1"
       }
     }
   }

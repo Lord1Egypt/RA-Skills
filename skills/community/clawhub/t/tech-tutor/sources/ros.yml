@@ -1,0 +1,149 @@
+name: ros
+description: Robot Operating System (ROS) authoritative sources
+
+categories:
+  official_docs:
+    - name: ROS 2 Documentation
+      url: https://docs.ros.org/en/rolling/
+      type: official-docs
+      description: ROS 2 official documentation
+
+    - name: ROS 1 Documentation
+      url: http://wiki.ros.org/
+      type: official-docs
+      description: ROS 1 wiki
+
+    - name: ROS 2 Tutorials
+      url: https://docs.ros.org/en/rolling/Tutorials.html
+      type: official-docs
+      description: ROS 2 step-by-step tutorials
+
+    - name: ROS 2 Concepts
+      url: https://docs.ros.org/en/rolling/Concepts.html
+      type: official-docs
+      description: ROS 2 core concepts
+
+    - name: Colcon Docs
+      url: https://colcon.readthedocs.io/en/released/
+      type: official-docs
+      description: ROS 2 build tool
+
+    - name: RCL Docs
+      url: https://docs.ros.org/en/rolling/Concepts/About-ROS-Interfaces.html
+      type: official-docs
+      description: ROS Client Libraries
+
+    - name: Gazebo Docs
+      url: https://gazebosim.org/docs
+      type: official-docs
+      description: Simulation environment
+
+    - name: MoveIt Docs
+      url: https://moveit.picknik.ai/
+      type: official-docs
+      description: Motion planning framework
+
+    - name: Nav2 Docs
+      url: https://navigation.ros.org/
+      type: official-docs
+      description: Navigation stack
+
+    - name: TF2 Docs
+      url: https://docs.ros.org/en/rolling/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html
+      type: official-docs
+      description: Transform library
+
+  official_blogs:
+    - name: ROS Discourse
+      url: https://discourse.ros.org/
+      type: official-blog
+      description: ROS community discussions
+
+    - name: Open Robotics Blog
+      url: https://www.openrobotics.org/blog
+      type: official-blog
+      description: Open Robotics updates
+
+    - name: ROS Industrial Blog
+      url: https://rosindustrial.org/blog
+      type: official-blog
+      description: Industrial robotics
+
+    - name: NVIDIA Robotics Blog
+      url: https://developer.nvidia.com/blog/category/robotics/
+      type: official-blog
+      description: GPU-accelerated robotics
+
+    - name: Boston Dynamics Tech Blog
+      url: https://www.bostondynamics.com/blog
+      type: official-blog
+      description: Robotics research
+
+  conferences:
+    - name: ROSCon
+      url: https://roscon.ros.org/
+      type: conference
+      description: ROS Community Conference
+
+    - name: ICRA
+      url: https://www.icra2025.org/
+      type: top-conference
+      description: International Conference on Robotics and Automation
+
+    - name: IROS
+      url: https://iros2025.org/
+      type: top-conference
+      description: IEEE/RSJ International Conference on Intelligent Robots
+
+    - name: RSS
+      url: https://roboticsconference.org/
+      type: top-conference
+      description: Robotics: Science and Systems
+
+    - name: CoRL
+      url: https://www.corl2024.org/
+      type: top-conference
+      description: Conference on Robot Learning
+
+  papers:
+    - name: arXiv cs.RO
+      url: https://arxiv.org/list/cs.RO/recent
+      type: preprint
+      description: Robotics papers
+
+    - name: arXiv cs.AI
+      url: https://arxiv.org/list/cs.AI/recent
+      type: preprint
+      description: AI papers relevant to robotics
+
+    - name: arXiv cs.LG
+      url: https://arxiv.org/list/cs.LG/recent
+      type: preprint
+      description: Machine Learning for robotics
+
+  courses:
+    - name: ROS 2 Tutorials
+      url: https://docs.ros.org/en/rolling/Tutorials.html
+      type: official
+      description: Official ROS 2 tutorials
+
+    - name: Udemy ROS 2 Course
+      url: https://www.udemy.com/course/ros2-for-beginners/
+      type: online
+      description: ROS 2 for beginners
+
+    - name: ROS Industrial Training
+      url: https://rosindustrial.org/training
+      type: official
+      description: Industrial robotics training
+
+  communities:
+    - name: ROS Answers
+      url: https://answers.ros.org/
+      type: community
+      description: Q&A for ROS developers
+
+    - name: r/ROS
+      url: https://www.reddit.com/r/ROS/
+      type: community
+      description: Reddit ROS community

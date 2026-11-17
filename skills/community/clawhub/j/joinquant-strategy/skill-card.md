@@ -1,45 +1,59 @@
-## Description: <br>
-帮助使用者在 Cursor 中编写聚宽（JoinQuant）量化策略，提供策略模板、代码片段、API 参考和风险管理示例。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides JoinQuant quantitative strategy templates, code snippets, and API references to help agents draft strategy code and risk-management guidance.
 
-## Publisher: <br>
-[daidaotian](https://clawhub.ai/user/daidaotian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daidaotian](https://clawhub.ai/user/daidaotian)
 
-## Use Case: <br>
-Developers and quantitative strategy authors use this skill to draft JoinQuant strategy templates, look up common data and order APIs, and adapt reusable snippets for backtesting or platform-specific strategy development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy-pastable examples may place orders, cancel orders, rebalance portfolios, or liquidate holdings when adapted or run in a live JoinQuant environment. <br>
-Mitigation: Backtest or paper trade first, add account-mode checks, position limits, and explicit confirmation gates before live deployment. <br>
-Risk: Strategy templates and snippets are reference material and may need adjustment for a user's portfolio, market assumptions, and platform rules. <br>
-Mitigation: Review the generated strategy logic, validate it against JoinQuant platform requirements, and tune risk controls before using real capital. <br>
+## Use Case:
 
+Developers and strategy authors use this skill to create JoinQuant trading strategies with reusable Python templates, API references, data-fetching snippets, order-handling examples, and risk-control patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daidaotian/joinquant-strategy) <br>
-- [README](artifact/README.md) <br>
-- [Core API reference](artifact/api_reference/core_functions.md) <br>
-- [Data API reference](artifact/api_reference/data_functions.md) <br>
-- [Order API reference](artifact/api_reference/order_functions.md) <br>
-- [Risk control snippets](artifact/snippets/risk_control.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with Python strategy templates and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include JoinQuant order, cancellation, rebalancing, liquidation, and risk-control code that should be reviewed before live use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact README) <br>
+Risk: Examples can automate real stock orders and liquidation without prominent live-trading safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the templates first in JoinQuant backtesting or paper-trading mode and review each order, liquidation, and scheduled trading path before any live use.
+
+Risk: Generated strategy code may place orders with portfolio cash or rebalance holdings based on template logic.
+
+Mitigation: Add explicit live-trading confirmations, position limits, dry-run controls, and account-specific constraints before connecting code to a real account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daidaotian/skills/joinquant-strategy)
+- [README](artifact/README.md)
+- [Core API reference](artifact/api_reference/core_functions.md)
+- [Data API reference](artifact/api_reference/data_functions.md)
+- [Order API reference](artifact/api_reference/order_functions.md)
+- [Risk-control snippets](artifact/snippets/risk_control.md)
+- [Momentum ETF strategy example](artifact/examples/momentum_etf_strategy.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code templates and snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces JoinQuant-focused strategy scaffolds, API usage examples, order examples, and risk-control guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,50 @@
-## Description: <br>
-Time-blind friendly planning, executive function support, and daily structure for ADHD brains, specializing in realistic time estimation, dopamine-aware task design, and systems that work for neurodivergent minds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time-blind friendly planning, executive function support, and daily structure for ADHD brains. Specializes in realistic time estimation, dopamine-aware task design, and building systems that actually work for neurodivergent minds.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-External users use this skill as a planning aid for daily structure, time estimation, task initiation, prioritization, and executive function support. It helps an agent provide ADHD-aware planning frameworks, templates, and guidance without presenting the content as medical care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could treat ADHD planning or medication-related templates as medical advice. <br>
-Mitigation: Present the skill as an educational planning aid only, and use medication sections only for logging reminders, symptoms, and questions for a doctor, pharmacist, or prescriber. <br>
-Risk: Planning guidance may be too broad or unsuitable for an individual user's health, work, or accessibility needs. <br>
-Mitigation: Encourage users to adapt templates to their situation and consult appropriate professionals for medical, therapeutic, or workplace accommodation decisions. <br>
+## Use Case:
 
+External users and agents use this skill to create ADHD-aware daily plans, time estimates, task-starting supports, dopamine-aware rewards, and low-shame routines for managing executive function.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/modesty-adhd-daily-planner) <br>
-- [Dopamine Menu](references/dopamine-menu.md) <br>
-- [Executive Function Toolkit](references/executive-function-toolkit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and structured planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable planning templates and recommendations; medication-related sections should be used only for reminders, symptom logs, and questions for qualified clinicians.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Medication tracking prompts could be read as guidance to adjust ADHD medication without clinician oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the medication section before deployment; keep medication content limited to tracking for discussion with a licensed clinician and avoid start, stop, skip, split, or dose-adjustment instructions.
+
+## Reference(s):
+
+- [The Dopamine Menu](references/dopamine-menu.md)
+- [Executive Function Toolkit](references/executive-function-toolkit.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include checklists, time blocks, decision trees, routine templates, and task breakdowns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

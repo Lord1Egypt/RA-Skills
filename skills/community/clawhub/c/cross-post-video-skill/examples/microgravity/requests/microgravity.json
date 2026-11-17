@@ -1,0 +1,69 @@
+{
+ "content": [
+  {
+   "text": "Why astronauts work out for hours every day\nWithout gravity, bone and muscle waste away. The treadmill, the bike and the weights are how they keep both.\nFootage: NASA.\n#astronaut #spacestation #nasa",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId of clips/microgravity.mp4>"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2027-01-12T23:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-tiktok-account-id",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "PUBLIC_TO_EVERYONE",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": false,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "isAiGeneratedContent": false,
+   "cover": {
+    "type": "MEDIA_LIBRARY",
+    "mediaId": "<mediaId of covers/microgravity.jpg>"
+   },
+   "contentOverride": [
+    {
+     "text": "Why astronauts work out for hours every day\nWithout gravity, bone and muscle waste away. The treadmill, the bike and the weights are how they keep both.\nFootage: NASA.\n#astronaut #spacestation #nasa",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "<mediaId of clips/microgravity.mp4>"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-instagram-account-id",
+   "postType": "REEL",
+   "isAiGeneratedContent": false,
+   "cover": {
+    "type": "MEDIA_LIBRARY",
+    "mediaId": "<mediaId of covers/microgravity.jpg>"
+   },
+   "contentOverride": [
+    {
+     "text": "Astronauts on the space station exercise for hours every day.\n\nIn microgravity the body stops carrying its own weight, and bone and muscle are lost. A treadmill with a harness, a bike and a resistance machine are how crews hold on to both until they are back on Earth.\n\nFootage: NASA.\n#spacestation #nasa #microgravity #astronaut",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "<mediaId of clips/microgravity.mp4>"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

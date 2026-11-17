@@ -1,39 +1,49 @@
-## Description: <br>
-Implement API Usage Metrics using OrbCafe UI (CStandardPage). Enterprise-grade React component with built-in best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement API Usage Metrics using OrbCafe UI (CStandardPage). Enterprise-grade React component with built-in best practices.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers use this skill to add an API usage metrics page to a React or Next.js application with OrbCafe UI's CStandardPage component. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing orbcafe-ui adds an external npm dependency to the user's project. <br>
-Mitigation: Confirm that orbcafe-ui is the intended dependency, consider pinning the package version for production use, and follow normal dependency review. <br>
+## Use Case:
 
+Developers use this skill to add an API Usage Metrics page to a React or Next.js app with OrbCafe UI's CStandardPage component.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SHENRUIYANG/api-usage-metrics) <br>
-- [orbcafe-ui npm package](https://www.npmjs.com/package/orbcafe-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with npm or pnpm installation commands and a TypeScript React example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Installing an unreviewed or floating npm dependency can introduce supply-chain or environment-specific risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that orbcafe-ui is the intended package, pin a reviewed version, commit the lockfile, and review the package documentation and dependency tree before deployment.
+
+## Reference(s):
+
+- [orbcafe-ui npm package](https://www.npmjs.com/package/orbcafe-ui)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with bash and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides package installation commands and a minimal React component usage example.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -102,11 +102,13 @@ startFunding:
     - POOL_HAS_NO_UNITS
 
 stopFunding:
-  # Stops funding by deleting the treasury flow and subsidy flow.
-  # Compensates for unused funds by transferring remaining amounts back.
-  # Anyone can call this — no access restriction.
+  # Stops the program pool flow and reduces treasury and subsidy flows.
+  # Early termination distributes remaining scheduled funding to the program
+  # pool and remaining subsidy to TAX_DISTRIBUTION_POOL as lump sums.
+  # Anyone can call this; no access restriction.
   notes:
-    - "Gotcha: Can only be called within the EARLY_PROGRAM_END window before the end date."
+    - "Gotcha: Callable from endDate minus EARLY_PROGRAM_END (3 days) onward, including after endDate."
+    - "Gotcha: The scheduled end date does not stop streams automatically; stopping requires a transaction. Early-end compensation goes to the pools, not back to the treasury."
   mutability: nonpayable
   access: anyone
   inputs:
@@ -117,8 +119,9 @@ stopFunding:
     - TOO_EARLY_TO_END_PROGRAM
 
 cancelProgram:
-  # Cancels a program, returning the deposit. Differs from stopFunding —
-  # cancel returns the full deposit; stop compensates for unused funds.
+  # Cancels a program at any time and returns the initial deposit
+  # (buffer + EARLY_PROGRAM_END of flow) to the treasury.
+  # Unlike stopFunding, it does not distribute early-end compensation to pools.
   mutability: nonpayable
   access: owner
   inputs:
@@ -468,7 +471,7 @@ events:
       - endDate: uint256
 
   ProgramStopped:
-    # Emitted when funding is stopped (within the EARLY_PROGRAM_END window).
+    # Emitted when funding is stopped. Compensation amounts are 0 if stopped after endDate.
     indexed:
       - programId: uint256
       - fundingCompensationAmount: uint256

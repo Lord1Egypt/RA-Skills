@@ -1,6 +1,6 @@
 ---
 name: batna-zopa
-description: "Activate when: user says 'walk-away point', 'reservation price', 'should I take this deal', 'what's my leverage', 'they won't budge', or any salary/term-sheet/vendor/M&A negotiation where stakes are non-trivial. Do NOT activate when: the situation is a purely emotional relationship dispute with no transactional dimension; cultural context makes explicit BATNA discussion taboo."
+description: "Activate when: user says 'walk-away point', 'reservation price', 'should I take this deal', 'what's my leverage', 'they won't budge', or any salary/term-sheet/vendor/M&A negotiation where stakes are non-trivial. Do NOT activate when: the situation is a purely emotional relationship dispute with no transactional dimension; cultural context makes explicit BATNA discussion taboo. More: deciqai.com/c/batna-zopa"
 ---
 
 # BATNA & ZOPA
@@ -11,13 +11,14 @@ description: "Activate when: user says 'walk-away point', 'reservation price', '
 
 **ZOPA** (Zone of Possible Agreement) is the overlap between what each side will accept. If it exists, a deal is possible; if not, the question is structural change — not harder negotiating.
 
-Composes with [`anchoring`](../anchoring/SKILL.md), [`signaling-games`](../signaling-games/SKILL.md), [`repeated-games-reputation`](../repeated-games-reputation/SKILL.md), and [`prisoners-dilemma`](../prisoners-dilemma/SKILL.md).
+Composes with `anchoring`, `signaling-games`, `repeated-games-reputation`, and `prisoners-dilemma`.
 
 ## When to Use
 
 - Any non-trivial negotiation: term sheets, salary, partnership, M&A, vendor contracts, customer pricing
 - You feel pressure to take a deal that "feels bad" — usually a sign your BATNA is weak or not modeled
 - Assess whether a deal *can* happen before investing time in tactics
+- Raising in the 2024–2026 AI market (term sheets, SAFEs) or committing to a GPU-cloud / compute contract, where FOMO and "capacity is scarce" pressure obscure your real alternative
 
 **Not when:** purely emotional/non-transactional disputes; cultures where direct BATNA discussion is taboo.
 
@@ -47,7 +48,7 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 **Step 4 — Find the ZOPA:** Overlap of reservation prices. If none exists → structural move (add issues, extend time, find new counterparty). Not "negotiate harder."
 
-**Step 5 — Distribute within ZOPA:** Open at your favorable boundary ([`anchoring`](../anchoring/SKILL.md)). Make small concessions — don't split. Trade variables when single-issue stalls. Walk at reservation, not earlier or later.
+**Step 5 — Distribute within ZOPA:** Open at your favorable boundary (`anchoring`). Make small concessions — don't split. Trade variables when single-issue stalls. Walk at reservation, not earlier or later.
 
 ## Output: BATNA & ZOPA Analysis
 
@@ -61,7 +62,8 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 ## Falsifier: observation that would tell me my estimates are wrong: __
 ```
 
-*→ Method in Action: [Fisher and Ury, 1981 — The Harvard Negotiation Project](examples/fisher-and-ury-1981-the-harvard-negotiation-project.md)*
+*→ Method in Action: [Fisher and Ury, 1981 — The Harvard Negotiation Project](examples/fisher-and-ury-1981-the-harvard-negotiation-project.md) · [Camp David Accords, 1978](examples/camp-david-accords-sinai-1978.md)*
+*→ 2026 lens: [An AI startup's term sheet & compute contract (2024–2026)](examples/ai-startup-term-sheet-and-compute-negotiation-2024-2026.md) — build your BATNA before you negotiate the raise.*
 
 ## Pack: BATNA & ZOPA Patterns
 
@@ -111,4 +113,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/batna-zopa** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/batna-zopa.json*

@@ -1,40 +1,53 @@
-## Description: <br>
-lhx1 helps agents create, edit, analyze, and validate spreadsheets with formulas, formatting, data analysis, visualization, and LibreOffice-based recalculation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, visualization, and formula recalculation for .xlsx, .xlsm, .csv, and .tsv workflows.
 
-## Publisher: <br>
-[goulonghui](https://clawhub.ai/user/goulonghui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[goulonghui](https://clawhub.ai/user/goulonghui)
 
-## Use Case: <br>
-Developers and other spreadsheet users can use this skill to guide agents through spreadsheet creation, editing, analysis, formula construction, formatting, visualization, and recalculation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Formula recalculation writes a persistent LibreOffice macro into the user's application profile. <br>
-Mitigation: Review the skill before installing, use it only with trusted spreadsheet files, and understand that recalculation configures LibreOffice locally. <br>
-Risk: Spreadsheet edits can overwrite existing files or preserve incorrect formulas if changes are not reviewed. <br>
-Mitigation: Save modified workbooks as copies, keep backups, and require formula error checks before treating outputs as final. <br>
+## Use Case:
 
+Developers, analysts, and spreadsheet-heavy business users use this skill to create, edit, analyze, format, and validate spreadsheet files while preserving formulas and workbook conventions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goulonghui/lhx1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, and JSON recalculation summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or modification of .xlsx, .xlsm, .csv, and .tsv files; formula recalculation reports spreadsheet error locations and counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled formula recalculation script can make persistent LibreOffice macro changes in the user's normal office profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer an isolated LibreOffice profile or a patched version that asks before changing local office configuration.
+
+Risk: Formula recalculation can save changes back to the workbook in place.
+
+Mitigation: Run recalculation on copies or backed-up workbooks and review JSON diagnostics before using important spreadsheet outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goulonghui/skills/lhx1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets, plus generated or modified spreadsheet files and JSON recalculation diagnostics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spreadsheet outputs may include formulas, formatting, charts, workbook edits, and recalculated formula values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-AI会议纪要生成器Pro turns meeting recordings or transcripts into structured minutes with summaries, decisions, key conclusions, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI会议纪要生成器Pro turns meeting audio or transcripts into structured meeting minutes with summaries, action items, decisions, and key conclusions.
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Employees, meeting organizers, and team leads use this skill to convert recordings or written transcripts into professional meeting minutes with decisions and follow-up tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting recordings and transcripts may contain confidential, regulated, or private information and may be sent to configured transcription and GPT providers. <br>
-Mitigation: Use the skill only with participant and organizational approval, and avoid confidential or regulated content unless the configured providers are approved for that data. <br>
-Risk: Generated minutes, decisions, and action items can omit context or misstate what was agreed in a meeting. <br>
-Mitigation: Have a meeting owner review the generated minutes before sharing, assigning tasks, or using the output as an official record. <br>
-Risk: The artifact documents Node commands but the release evidence advises reviewing or trusting a separately referenced Node implementation. <br>
-Mitigation: Review the installed Node implementation and run it in an environment appropriate for the sensitivity of the meeting content. <br>
+## Use Case:
 
+Employees, external collaborators, and developers can use this skill to generate professional meeting records from text transcripts or audio recordings and extract follow-up work from discussions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/ai-meeting-minutes-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Structured meeting minutes in Markdown; artifact documentation also describes Word and PDF output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include meeting metadata, summary, decisions, key conclusions, action items, and detailed notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting audio and transcripts can contain confidential, regulated, or personal information and may be sent to external AI providers named by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with participant consent and an approved data-handling process; avoid regulated or confidential meetings unless the provider path has been reviewed.
+
+Risk: The submitted package references a Node script that was not included in the inspected artifact.
+
+Mitigation: Verify the installed package contents and script behavior before using the skill in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryan-wuxl/skills/ai-meeting-minutes-pro)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ryan-wuxl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown meeting minutes with structured sections for meeting information, summaries, decisions, action items, and detailed notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node. The inspected package references a Node minutes script that was not included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -149,11 +149,9 @@ class ConflictResolver:
                         MemoryConflict(
                             conflict_id=f"conf_{uuid.uuid4().hex[:8]}",
                             conflict_type=ConflictType.DATA_INCONSISTENCY,
-                            severity=ConflictSeverity.MEDIUM,
-                            involved_memories=[id1, id2],
+                            memory_ids=[id1, id2],
                             description=f"数值矛盾: {val1:.2f} vs {val2:.2f}",
                             detected_at=datetime.now(),
-                            resolution_mode=ResolutionMode.RECENCY,
                         )
                     )
 
@@ -193,11 +191,9 @@ class ConflictResolver:
                                 MemoryConflict(
                                     conflict_id=f"conf_{uuid.uuid4().hex[:8]}",
                                     conflict_type=ConflictType.CONCEPT_AMBIGUITY,
-                                    severity=ConflictSeverity.LOW,
-                                    involved_memories=[],
+                                    memory_ids=[],
                                     description=f"概念冲突: {pair[0]} vs {pair[1]}",
                                     detected_at=datetime.now(),
-                                    resolution_mode=ResolutionMode.CONTEXTUAL,
                                 )
                             )
 
@@ -227,11 +223,9 @@ class ConflictResolver:
                         MemoryConflict(
                             conflict_id=f"conf_{uuid.uuid4().hex[:8]}",
                             conflict_type=ConflictType.STRATEGY_CONFLICT,
-                            severity=ConflictSeverity.HIGH,
-                            involved_memories=[id1, id2],
+                            memory_ids=[id1, id2],
                             description="策略方向冲突: 触发维度完全不重叠",
                             detected_at=datetime.now(),
-                            resolution_mode=ResolutionMode.USER_CONFIRMATION,
                         )
                     )
 
@@ -272,11 +266,9 @@ class ConflictResolver:
                 MemoryConflict(
                     conflict_id=f"conf_{uuid.uuid4().hex[:8]}",
                     conflict_type=ConflictType.EMOTIONAL_INCONSISTENCY,
-                    severity=ConflictSeverity.LOW,
-                    involved_memories=positive_ids + negative_ids,
+                    memory_ids=positive_ids + negative_ids,
                     description="情感状态矛盾: 同时存在积极和消极情绪",
                     detected_at=datetime.now(),
-                    resolution_mode=ResolutionMode.RECENCY,
                 )
             )
 
@@ -304,11 +296,9 @@ class ConflictResolver:
                 MemoryConflict(
                     conflict_id=f"conf_{uuid.uuid4().hex[:8]}",
                     conflict_type=ConflictType.TEMPORAL_INVALIDATION,
-                    severity=ConflictSeverity.MEDIUM,
-                    involved_memories=hot_memories[:1] + cold_memories[:1],
+                    memory_ids=hot_memories[:1] + cold_memories[:1],
                     description="时效冲突: 新旧记忆并存",
                     detected_at=datetime.now(),
-                    resolution_mode=ResolutionMode.RECENCY,
                 )
             )
 
@@ -319,6 +309,7 @@ class ConflictResolver:
         conflict: MemoryConflict,
         memories: list[ActivatedMemory],
         long_term_memory: LongTermMemoryContainer,
+        mode: ResolutionMode | None = None,
     ) -> ResolutionResult:
         """
         解决冲突
@@ -327,11 +318,12 @@ class ConflictResolver:
             conflict: 冲突对象
             memories: 激活的记忆列表
             long_term_memory: 长期记忆容器
+            mode: 解决模式（可选，默认 RECENCY）
 
         Returns:
             解决结果
         """
-        mode: ResolutionMode = conflict.resolution_mode
+        mode: ResolutionMode = mode or ResolutionMode.RECENCY
 
         # 根据解决模式选择策略
         if mode == ResolutionMode.RECENCY:
@@ -351,29 +343,27 @@ class ConflictResolver:
         self, conflict: MemoryConflict, memories: list[ActivatedMemory]
     ) -> ResolutionResult:
         """基于新近性解决"""
-        involved_ids: set[str] = set(conflict.involved_memories)
+        involved_ids: set[str] = set(conflict.memory_ids)
 
-        # 找出最新的记忆
-        winning_memory: str = ""
-        latest_time: datetime = datetime.min
-
-        for mem in memories:
-            if mem.memory_id in involved_ids:
-                # 使用相关性作为新近性的代理指标
-                if mem.relevance_score > 0.5:
-                    winning_memory = mem.memory_id
-                    break
-
-        if not winning_memory and conflict.involved_memories:
-            winning_memory = conflict.involved_memories[0]
+        # 在涉及的记忆中，选取相关性最高的（>0.5 阈值的）作为新近代理
+        candidates = [
+            mem
+            for mem in memories
+            if mem.memory_id in involved_ids and mem.relevance_score > 0.5
+        ]
+        winning_memory = (
+            max(candidates, key=lambda m: m.relevance_score).memory_id
+            if candidates
+            else (conflict.memory_ids[0] if conflict.memory_ids else "")
+        )
 
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
-            resolution_mode=ResolutionMode.RECENCY,
             winning_memory=winning_memory,
             losing_memories=[mid for mid in involved_ids if mid != winning_memory],
             confidence=0.7,
             rationale="选择最新激活的记忆",
+            resolution_mode=ResolutionMode.RECENCY,
             user_required=False,
         )
 
@@ -384,7 +374,7 @@ class ConflictResolver:
         long_term_memory: LongTermMemoryContainer,
     ) -> ResolutionResult:
         """基于频率解决"""
-        involved_ids: set[str] = set(conflict.involved_memories)
+        involved_ids: set[str] = set(conflict.memory_ids)
 
         # 统计访问频率
         frequencies: dict[str, int] = {}
@@ -399,16 +389,16 @@ class ConflictResolver:
 
         # 选择频率最高的
         winning_memory: str = max(
-            frequencies, key=frequencies.get, default=conflict.involved_memories[0] if conflict.involved_memories else ""
+            frequencies, key=frequencies.get, default=conflict.memory_ids[0] if conflict.memory_ids else ""
         )
 
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
-            resolution_mode=ResolutionMode.FREQUENCY,
             winning_memory=winning_memory,
             losing_memories=[mid for mid in involved_ids if mid != winning_memory],
             confidence=0.65,
             rationale="选择使用频率最高的记忆",
+            resolution_mode=ResolutionMode.FREQUENCY,
             user_required=False,
         )
 
@@ -418,20 +408,20 @@ class ConflictResolver:
         """需要用户确认"""
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
-            resolution_mode=ResolutionMode.USER_CONFIRMATION,
             winning_memory="",
             losing_memories=[],
             confidence=0.0,
             rationale="冲突需要用户确认",
+            resolution_mode=ResolutionMode.USER_CONFIRMATION,
             user_required=True,
-            alternatives=conflict.involved_memories,
+            alternatives=conflict.memory_ids,
         )
 
     def _resolve_by_trust(
         self, conflict: MemoryConflict, memories: list[ActivatedMemory]
     ) -> ResolutionResult:
         """基于可信度解决"""
-        involved_ids: set[str] = set(conflict.involved_memories)
+        involved_ids: set[str] = set(conflict.memory_ids)
 
         # 计算可信度分数
         trust_scores: dict[str, float] = {}
@@ -444,23 +434,22 @@ class ConflictResolver:
                     trust += 0.2
                 elif mem.heat_level.value == "warm":
                     trust += 0.1
-
-                trust_scores[mem.memory_id] = trust
+                trust_scores[mem.memory_id] = min(1.0, trust)
 
         # 选择可信度最高的
         winning_memory: str = max(
             trust_scores,
             key=trust_scores.get,
-            default=conflict.involved_memories[0] if conflict.involved_memories else "",
+            default=conflict.memory_ids[0] if conflict.memory_ids else "",
         )
 
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
-            resolution_mode=ResolutionMode.SOURCE_TRUST,
             winning_memory=winning_memory,
             losing_memories=[mid for mid in involved_ids if mid != winning_memory],
             confidence=trust_scores.get(winning_memory, 0.5),
             rationale="选择可信度最高的记忆",
+            resolution_mode=ResolutionMode.SOURCE_TRUST,
             user_required=False,
         )
 
@@ -468,7 +457,7 @@ class ConflictResolver:
         self, conflict: MemoryConflict, memories: list[ActivatedMemory]
     ) -> ResolutionResult:
         """基于上下文相关性解决"""
-        involved_ids: set[str] = set(conflict.involved_memories)
+        involved_ids: set[str] = set(conflict.memory_ids)
 
         # 选择与当前上下文最相关的记忆
         relevance_scores: dict[str, float] = {}
@@ -480,16 +469,16 @@ class ConflictResolver:
         winning_memory: str = max(
             relevance_scores,
             key=relevance_scores.get,
-            default=conflict.involved_memories[0] if conflict.involved_memories else "",
+            default=conflict.memory_ids[0] if conflict.memory_ids else "",
         )
 
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
-            resolution_mode=ResolutionMode.CONTEXTUAL,
             winning_memory=winning_memory,
             losing_memories=[mid for mid in involved_ids if mid != winning_memory],
             confidence=relevance_scores.get(winning_memory, 0.5),
             rationale="选择与当前上下文最相关的记忆",
+            resolution_mode=ResolutionMode.CONTEXTUAL,
             user_required=False,
         )
 

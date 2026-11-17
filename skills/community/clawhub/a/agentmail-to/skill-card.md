@@ -1,45 +1,60 @@
-## Description: <br>
-Agentmail To helps agents create, read, send, and manage temporary AgentMail email inboxes through the AgentMail API or web console. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, reading, replying to, and deleting temporary AgentMail inboxes through API calls, shell commands, Python snippets, and the AgentMail web console.
 
-## Publisher: <br>
-[pjotrglushkov-byte](https://clawhub.ai/user/pjotrglushkov-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pjotrglushkov-byte](https://clawhub.ai/user/pjotrglushkov-byte)
 
-## Use Case: <br>
-Developers and automation agents use this skill to provision temporary email addresses, inspect incoming messages, reply through AgentMail, and clean up test inboxes during workflows that require email verification or mailbox automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags published AgentMail credential material and a shared inbox. <br>
-Mitigation: Use your own AgentMail credentials, rotate the embedded key if it belongs to you, and avoid reusing the shared inbox. <br>
-Risk: The release evidence says the skill points agents at unreviewed local scripts for sensitive mail actions. <br>
-Mitigation: Inspect any referenced local scripts before running them and require explicit confirmation before sending mail, reading verification codes, or deleting inboxes. <br>
-Risk: Temporary inbox workflows can expose sensitive or account-recovery messages. <br>
-Mitigation: Do not use temporary inboxes for confidential data or long-lived accounts; delete unused inboxes when workflows finish. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate workflows that need temporary email inboxes, including account verification, inbox polling, message review, replies, and cleanup through AgentMail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pjotrglushkov-byte/agentmail-to) <br>
-- [AgentMail](https://agentmail.to) <br>
-- [AgentMail quickstart](https://docs.agentmail.to/quickstart) <br>
-- [AgentMail documentation](https://agentmail.to/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, curl, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment-variable configuration guidance and API-oriented mailbox commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact contains a live-looking AgentMail API key and related email configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the key as compromised, rotate it before use, and replace packaged secrets with environment-variable or secret-manager instructions.
+
+Risk: The skill references Python scripts outside the package that were not included for review.
+
+Mitigation: Include the scripts in the package or pin them by verified hashes before users run the commands.
+
+Risk: Email automation can expose sensitive message content.
+
+Mitigation: Use an isolated environment and avoid sensitive email content until the security issues identified by evidence.security are fixed.
+
+## Reference(s):
+
+- [AgentMail quickstart documentation](https://docs.agentmail.to/quickstart)
+- [AgentMail documentation](https://agentmail.to/docs)
+- [AgentMail web console](https://console.agentmail.to)
+- [ClawHub skill page](https://clawhub.ai/pjotrglushkov-byte/skills/agentmail-to)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with bash, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AgentMail API requests, browser-use commands, and environment variable setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

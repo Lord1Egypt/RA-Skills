@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 轮廓图（Profile Diagram）模板
+    展示构造型(stereotype)+元类扩展+约束
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow-ext" markerWidth="14" markerHeight="10" refX="14" refY="5" orient="auto">
+      <polygon points="0 0, 14 5, 0 10" fill="{{BG_COLOR}}" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-dep" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- Profile 包框 -->
+  <rect x="40" y="50" width="820" height="180" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="50" width="120" height="22" rx="4"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="100" y="66" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«profile»</text>
+  <text x="450" y="85" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" font-weight="bold" fill="{{TEXT_COLOR}}">{{PROFILE_NAME}}</text>
+
+  <!-- 构造型1: «Entity» extends Class -->
+  <rect x="70" y="105" width="200" height="105" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <text x="170" y="125" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«stereotype»</text>
+  <text x="170" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEREO_1}}</text>
+  <line x1="70" y1="153" x2="270" y2="153" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="85" y="170" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">tableName: String</text>
+  <text x="85" y="188" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">schema: String</text>
+
+  <!-- 构造型2: «Repository» extends Class -->
+  <rect x="350" y="105" width="200" height="105" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <text x="450" y="125" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT2_COLOR}}">«stereotype»</text>
+  <text x="450" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEREO_2}}</text>
+  <line x1="350" y1="153" x2="550" y2="153" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="365" y="170" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">dataSource: String</text>
+  <text x="365" y="188" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">cacheable: Boolean</text>
+
+  <!-- 构造型3: «Service» extends Class -->
+  <rect x="630" y="105" width="200" height="80" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2"/>
+  <text x="730" y="125" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT3_COLOR}}">«stereotype»</text>
+  <text x="730" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEREO_3}}</text>
+  <line x1="630" y1="153" x2="830" y2="153" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="645" y="170" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">transactional: Boolean</text>
+
+  <!-- 元类区域 -->
+  <text x="450" y="270" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{SUBTITLE_COLOR}}">UML Metaclasses</text>
+
+  <!-- 元类1: Class -->
+  <rect x="150" y="290" width="180" height="55" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="240" y="314" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">«metaclass»</text>
+  <text x="240" y="334" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">Class</text>
+
+  <!-- 元类2: Interface -->
+  <rect x="570" y="290" width="180" height="55" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="660" y="314" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">«metaclass»</text>
+  <text x="660" y="334" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">Interface</text>
+
+  <!-- Extension 关系: Entity → Class -->
+  <line x1="170" y1="210" x2="220" y2="288" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-ext)"/>
+  <text x="175" y="255" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">«extension»</text>
+
+  <!-- Extension 关系: Repository → Class -->
+  <line x1="400" y1="210" x2="280" y2="288" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-ext)"/>
+
+  <!-- Extension 关系: Service → Interface -->
+  <line x1="730" y1="185" x2="680" y2="288" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-ext)"/>
+  <text x="720" y="245" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">«extension»</text>
+
+  <!-- 应用示例 -->
+  <text x="450" y="385" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{SUBTITLE_COLOR}}">应用示例 Applied Example</text>
+
+  <rect x="150" y="400" width="180" height="50" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="240" y="420" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«Entity»</text>
+  <text x="240" y="438" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">User</text>
+
+  <rect x="570" y="400" width="180" height="50" rx="4"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="660" y="420" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT2_COLOR}}">«Repository»</text>
+  <text x="660" y="438" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">UserRepository</text>
+
+  <!-- 依赖 -->
+  <line x1="570" y1="425" x2="332" y2="425" stroke="{{ARROW_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="6,4" marker-end="url(#arrow-dep)"/>
+
+  <!-- 图例 -->
+  <rect x="20" y="395" width="110" height="95" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="413" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例</text>
+  <line x1="35" y1="428" x2="65" y2="428" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        marker-end="url(#arrow-ext)"/>
+  <text x="75" y="432" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">扩展</text>
+  <line x1="35" y1="448" x2="65" y2="448" stroke="{{ARROW_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="6,4" marker-end="url(#arrow-dep)"/>
+  <text x="75" y="452" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">依赖</text>
+  <rect x="35" y="462" width="20" height="12" rx="2" fill="{{BG_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="65" y="473" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">构造型</text>
+</svg>

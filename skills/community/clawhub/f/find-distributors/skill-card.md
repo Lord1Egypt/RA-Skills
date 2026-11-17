@@ -1,40 +1,50 @@
-## Description: <br>
-Finds regional distributors, wholesale channel partners, importers, and in-market distribution options for ecommerce and cross-border products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find regional distributors, wholesale channel partners, importers, and in-market distribution options for ecommerce and cross-border products.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External business, ecommerce, and cross-border trade users use this skill to identify and prioritize distributors, importers, or channel partners for a product category and target market. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Distributor fit, contact angles, and market conclusions may be incomplete or unsuitable for commercial outreach if public signals are stale or weak. <br>
-Mitigation: Treat the shortlist as leads and verify fit, contact details, market claims, and authorization before outreach or commercial decisions. <br>
-Risk: Retailers, service providers, or weak-fit companies may be mistaken for distributors when public channel evidence is ambiguous. <br>
-Mitigation: Check each candidate's channel role, category coverage, geography, and supporting signals before prioritizing them. <br>
+## Use Case:
 
+External users and business operators use this skill to identify, compare, and prioritize distributor, importer, and channel partner candidates for a product category and target market.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown shortlist with reasoning, evidence signals, risks or unknowns, and suggested contact angles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied product or category, target market, and channel preferences when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Distributor claims, channel reach, or contact details may be outdated or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify distributor claims, channel reach, and contact details before outreach.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/find-distributors)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shortlist with reasoning, supporting signals, risks or unknowns, and suggested contact angles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks the agent to be explicit about missing evidence and verification needs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

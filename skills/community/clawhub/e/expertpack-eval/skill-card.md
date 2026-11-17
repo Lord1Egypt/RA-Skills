@@ -1,42 +1,59 @@
-## Description: <br>
-ExpertPack Eval measures ExpertPack EK ratio and runs automated quality evaluations for pack-powered agents using blind probing and LLM-as-judge scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measure ExpertPack EK (Esoteric Knowledge) ratio and run automated quality evaluations against pack-powered agents.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and ExpertPack maintainers use this skill to measure how much of a pack contains esoteric knowledge and to compare pack-powered agent responses against an evaluation set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pack propositions, eval questions, expected answers, required facts, and agent responses may be sent to OpenRouter or to configured evaluation endpoints. <br>
-Mitigation: Review eval data for secrets before running, use a limited OpenRouter key, and target only trusted endpoints. <br>
-Risk: Automated LLM-as-judge scores can be incomplete or wrong. <br>
-Mitigation: Treat judge scores as advisory and review YAML results before using them for release or quality decisions. <br>
+## Use Case:
 
+Developers and evaluators use this skill to measure how much ExpertPack content is esoteric to frontier models and to score pack-powered agent answers with LLM-as-judge workflows.
 
-## Reference(s): <br>
-- [ExpertPack Homepage](https://expertpack.ai) <br>
-- [ExpertPack Eval on ClawHub](https://clawhub.ai/brianhearn/expertpack-eval) <br>
-- [Companion ExpertPack Skill](https://clawhub.ai/skills/expertpack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python shell commands and YAML result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scripts produce EK ratio summaries, per-proposition scores, aggregate quality metrics, latency data, token counts, and optional manifest/frontmatter values for ExpertPack workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Pack propositions, eval questions, expected answers, and agent responses may be sent to OpenRouter or to a configured evaluation endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local or trusted endpoint for sensitive packs and run the skill only when sharing those evaluation inputs with OpenRouter is acceptable.
+
+Risk: Credential discovery can use OPENROUTER_API_KEY and OpenClaw configuration files.
+
+Mitigation: Provide credentials intentionally in an isolated environment and review which API key source will be used before running evaluations.
+
+Risk: External dependencies and network calls are required for full evaluation behavior.
+
+Mitigation: Prefer an isolated virtual environment with pinned dependencies and review generated YAML outputs before using scores for release decisions.
+
+## Reference(s):
+
+- [ExpertPack homepage](https://expertpack.ai)
+- [Companion ExpertPack skill](https://clawhub.ai/skills/expertpack)
+- [ExpertPack GitHub project](https://github.com/brianhearn/ExpertPack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, YAML]
+
+**Output Format:** [Markdown guidance with shell commands and YAML evaluation result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces EK ratio summaries, per-proposition classifications, quality scores, latency metrics, and LLM-as-judge token usage when evaluations are run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

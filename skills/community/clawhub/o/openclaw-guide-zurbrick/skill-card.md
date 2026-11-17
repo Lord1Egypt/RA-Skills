@@ -1,42 +1,54 @@
-## Description: <br>
-Guide for OpenClaw setup, configuration, commands, routing, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for OpenClaw setup, config, commands, routing, and troubleshooting.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and operators use this skill to answer OpenClaw-specific setup, configuration, routing, command, runtime health, session, agent, and troubleshooting questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest OpenClaw configuration changes or restarts that affect active gateway, channel, session, agent, or command behavior. <br>
-Mitigation: Inspect only the relevant config subtree, prefer minimal changes, run the pre-restart validator when relevant, and verify after restart. <br>
-Risk: Troubleshooting can misattribute a failure if ingress, routing, authorization, runtime/provider, and delivery layers are collapsed into one diagnosis. <br>
-Mitigation: Use the triage sequence to identify the failing layer and separate verified facts from inferred causes and remaining tests. <br>
+## Use Case:
 
+Developers and operators use this skill to answer OpenClaw setup, configuration, command, routing, session, gateway health, and troubleshooting questions. It guides agents to inspect local OpenClaw docs and the relevant config subtree before suggesting minimal changes.
 
-## Reference(s): <br>
-- [OpenClaw Triage Checklist](references/triage-checklist.md) <br>
-- [Skill Design Notes for OpenClaw](references/skill-design-notes.md) <br>
-- [OpenClaw Guide Release Page](https://clawhub.ai/zurbrick/openclaw-guide-zurbrick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with concise diagnostic steps, config paths, commands, and pass/fail/warn status when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Distinguishes verified facts, inferred causes, and remaining tests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents toward persistent OpenClaw workspace memory, which may contain private or unrelated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only allow the agent to read MEMORY.md when the request explicitly concerns memory behavior and the user approves that access.
+
+Risk: Troubleshooting guidance could lead to incorrect configuration changes if stale sessions or broad config areas are consulted.
+
+Mitigation: Inspect the relevant config subtree and live evidence for the specific failure layer before proposing a minimal change.
+
+## Reference(s):
+
+- [Skill Design Notes for OpenClaw](references/skill-design-notes.md)
+- [OpenClaw Triage Checklist](references/triage-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline paths, commands, diagnoses, and concise configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May distinguish verified facts from inferences and call out follow-up tests after configuration or runtime changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

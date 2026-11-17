@@ -1,39 +1,56 @@
-## Description: <br>
-Delegates repository coding tasks to the local OpenCode CLI for planning and implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+opencode can do all the things related to code
 
-## Publisher: <br>
-[deciding](https://clawhub.ai/user/deciding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deciding](https://clawhub.ai/user/deciding)
 
-## Use Case: <br>
-Developers and engineers use this skill to route repository coding tasks through OpenCode, first asking its plan agent for a plan and then using its build agent to implement approved work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates broad repository planning and implementation work to a local OpenCode CLI. <br>
-Mitigation: Install only when the local opencode CLI is trusted, review the plan before build steps, and inspect file changes before accepting them. <br>
-Risk: The documented command pattern places user instructions inside a shell command. <br>
-Mitigation: Avoid pasting untrusted text directly into the command; use safer argument passing or prompt files where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciding/easy-opencode) <br>
+## Use Case:
 
+Developers and engineers use this skill to route repository coding tasks through Opencode, review its plan, and delegate implementation after the plan is approved.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local opencode binary and a selected repository working directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill delegates broad repository coding tasks to an external coding tool with wide repository authority.
+
+Mitigation: Use it only on trusted repositories and review Opencode plans and changes before applying them.
+
+Risk: The artifact shows shell command templates that may be unsafe when copied with raw paths or user text.
+
+Mitigation: Prefer safe process invocation and carefully quote or validate paths and instructions before execution.
+
+Risk: The security evidence recommends avoiding sensitive or production-impacting tasks without explicit review.
+
+Mitigation: Require human approval for sensitive files, credentials, deployment changes, and production-impacting modifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deciding/skills/easy-opencode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and coding guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegates planning and build work to the opencode CLI when available.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

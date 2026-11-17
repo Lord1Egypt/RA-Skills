@@ -1,44 +1,59 @@
-## Description: <br>
-Ban LLM em-dashes and en-dashes before delivery, rewrite via embedded LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ban LLM em-dashes and en-dashes before delivery, rewrite via embedded LLM.
 
-## Publisher: <br>
-[shawnpetros](https://clawhub.ai/user/shawnpetros) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnpetros](https://clawhub.ai/user/shawnpetros)
 
-## Use Case: <br>
-External users and developers use this OpenClaw plugin to automatically detect en dashes and em dashes in assistant replies and rewrite affected prose before delivery while preserving code formatting and normal hyphen-minus usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assistant replies may pass through an additional configured model rewrite step, which can be inappropriate for exact wording, legal or compliance text, secrets, or highly sensitive content. <br>
-Mitigation: Avoid or disable the plugin for conversations where exact wording must be preserved or where sensitive content should not enter an additional model rewrite step. <br>
-Risk: A rewrite can fail, return empty text, still contain banned dash characters, or drift too far from the original reply. <br>
-Mitigation: The plugin rejects empty rewrites, rewrites that still contain banned dashes, and rewrites with excessive word-count or length drift, then delivers the original reply unchanged. <br>
-Risk: The embedded rewrite uses temporary local session storage during processing. <br>
-Mitigation: Temporary rewrite session files are removed immediately after the rewrite run, and the embedded rewrite disables tools and message sending. <br>
+## Use Case:
 
+External users and developers use deaiify to rewrite assistant replies before delivery when Unicode en dash or em dash characters appear outside code. It is intended for OpenClaw sessions where preserving the meaning and tone of the assistant response is more important than simple character replacement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawnpetros/deaiify) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text assistant replies rewritten when banned Unicode dash characters are detected] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the active session model for rewrites, ignores code spans and fenced code blocks for detection, and fails open to the original reply when rewriting or validation does not succeed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: server release metadata and package.json) <br>
+Risk: Assistant output containing sensitive text may be resent through an embedded model run for rewriting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in sessions where this automatic rewrite behavior is acceptable, and avoid contexts where assistant output should not be submitted to the active model provider again.
+
+Risk: A rewrite can alter meaning, omit detail, or fail to remove all target dash characters.
+
+Mitigation: The skill verifies word-count drift, length expansion, and remaining banned dash characters, then fails open by delivering the original response when verification fails.
+
+Risk: The dev dependency lockfile needs a publisher refresh according to the security guidance.
+
+Mitigation: Prefer an updated release once the publisher refreshes the dev dependency lockfile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawnpetros/skills/deaiify)
+- [Publisher profile](https://clawhub.ai/user/shawnpetros)
+- [Project homepage](https://github.com/shawnpetros/deaiify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Rewritten assistant reply text, preserving Markdown and code blocks where applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the active session model for rewrites, applies a configurable timeout, and fails open by delivering the original reply if rewriting or verification fails.]
+
+## Skill Version(s):
+
+3.4.1 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Optimizes OpenClaw memory entries with scoring, semantic deduplication, fact tagging, persistent commits, and traceable REM summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes OpenClaw memory entries by scoring, deduplicating, tagging, and writing consolidated results to persistent local memory.
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to consolidate daily memory notes by scoring, deduplicating, tagging, committing, archiving, and summarizing entries for long-term memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes and persists long-term memory text that may contain sensitive or private information. <br>
-Mitigation: Avoid storing secrets or highly private text in memory notes, and review committed entries, previews, archives, and summaries before regular use. <br>
-Risk: The skill can modify local OpenClaw memory storage and archive files. <br>
-Mitigation: Back up important memory data before enabling routine optimization cycles. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to curate daily memory notes into higher-value long-term memory by prioritizing important entries, reducing duplicates, assigning fact/opinion/preference/context tags, and producing traceable consolidation summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chongjie-ran/dreaming-optimizer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [DESIGN.md](artifact/DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON summaries, Markdown summaries, and local SQLite memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes optimized memory entries, archives lower-scoring entries, and produces traceable dreaming summaries in the local OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: The skill reads OpenClaw memory notes and writes selected content into long-term local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this memory access is acceptable, and keep a process for inspecting and deleting committed memories, archives, and summaries.
+
+Risk: Persistent local memory storage has limited controls and local storage safety concerns.
+
+Mitigation: Review storage permissions, restrict agent names, and confirm where SQLite memory, archives, and summaries are written before using the skill with sensitive notes.
+
+Risk: Automated scoring and deduplication can archive, merge, or discard entries that a user may still consider useful.
+
+Mitigation: Review generated summaries and archive output after optimization cycles, especially before relying on the consolidated memory for important work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chongjie-ran/skills/dreaming-optimizer)
+- [Skill documentation](artifact/SKILL.md)
+- [Technical design](artifact/DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, JSON, Markdown, Guidance]
+
+**Output Format:** [Shell execution with local SQLite memory writes, archived Markdown files, and JSON or Markdown summary files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable score and deduplication thresholds; writes to OpenClaw memory, archive, and dreaming-summary paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, skill documentation, and config/default_threshold.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

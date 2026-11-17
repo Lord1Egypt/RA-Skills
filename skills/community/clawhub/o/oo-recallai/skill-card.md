@@ -1,41 +1,60 @@
-## Description: <br>
-Recall.ai (recall.ai). Use this skill for ANY Recall.ai request - reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recall.ai (recall.ai). Use this skill for ANY Recall.ai request — reading, creating, updating, and deleting data. Whenever a task involves Recall.ai, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Recall.ai meeting bots through an OOMOL-connected account, including bot creation, retrieval, listing, removal from active calls, and deletion of completed bot media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a user's Recall.ai account through OOMOL and may create bots, remove bots from calls, or delete bot media. <br>
-Mitigation: Install only when that account access is intended, review prompts carefully, and require explicit approval before write or destructive actions. <br>
-Risk: First-time setup may require installing the oo CLI. <br>
-Mitigation: Verify the oo CLI installer source before running setup commands. <br>
+## Use Case:
 
+Developers and meeting automation users use this skill to inspect Recall.ai bots, create meeting bots, and manage active bots or completed media through an OOMOL-connected Recall.ai account.
 
-## Reference(s): <br>
-- [Recall.ai homepage](https://www.recall.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup may execute changing remote code and introduce broader agent-skill changes; the remote installers and hosted connector implementation were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI installation separately and use a verified release. Before running it, consider setting OO_SKILLS_SYNC_DISABLED=1 to prevent automatic agent-skill changes.
+
+Risk: Connecting Recall.ai authorizes OOMOL to handle Recall.ai requests and credentials.
+
+Mitigation: Connect only the intended Recall.ai account and review its authorization before using the skill.
+
+Risk: Creating bots, removing a bot from a call, or deleting bot media changes or removes data.
+
+Mitigation: Inspect the live action schema, then confirm the exact payload and effect with the user before write or destructive actions.
+
+## Reference(s):
+
+- [Recall.ai API documentation](https://docs.recall.ai/)
+- [Recall.ai](https://www.recall.ai)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON command payloads and API responses, with Markdown guidance and inline shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action payloads follow the live connector schema; responses include data and an execution ID.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

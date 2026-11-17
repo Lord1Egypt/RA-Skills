@@ -1,46 +1,62 @@
-## Description: <br>
-Review GitHub repositories, group issues and pull requests by urgency, and take safe triage actions after confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review GitHub repositories, group issues and pull requests by urgency, and propose or apply safe triage actions after confirmation.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and maintainers use this skill to review GitHub issues and pull requests, group repository work by urgency, and prepare or apply triage actions after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can work through authenticated GitHub access and may propose repository-changing actions such as labels, comments, assignments, issue creation, and issue status updates. <br>
-Mitigation: Use read-only inspection first, preview intended writes when available, and require explicit user confirmation before any GitHub write action. <br>
-Risk: Triage recommendations may misclassify urgency or suggest action that does not match repository norms. <br>
-Mitigation: Group items with supporting evidence, keep initial reports concise, and prefer draft comments or proposed actions when uncertainty remains. <br>
-Risk: The release requires OAuth-connected GitHub access and sensitive credentials through ClawLink. <br>
-Mitigation: Install only for expected GitHub triage workflows, verify the GitHub integration is connected, and review commands before approving them. <br>
+## Use Case:
 
+External developers and repository maintainers use this skill to review GitHub issues and pull requests, identify urgent or stale work, draft recommended labels or comments, and perform write actions only after confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/github-triage-workflow) <br>
-- [GitHub REST API](https://docs.github.com/en/rest) <br>
-- [GitHub GraphQL API](https://docs.github.com/en/graphql) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose authenticated GitHub write actions, but the artifact requires preview and confirmation before comments, labels, closure, reopening, or metadata edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill asks users to install and globally enable an external ClawLink plugin that handles GitHub OAuth-backed actions without artifact evidence of exact OAuth scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if ClawLink is trusted, review OAuth scopes before connecting GitHub, limit repository access where GitHub permits it, and know how to revoke the grant and remove the plugin.
+
+Risk: GitHub write actions can comment, relabel, assign, create, close, reopen, or edit issue metadata.
+
+Mitigation: Use the skill's read-first workflow, preview intended changes where available, and require explicit user confirmation before any write operation.
+
+Risk: Live ClawLink tool names and schemas may differ from examples in the artifact.
+
+Mitigation: List, search, and describe live GitHub tools in the current turn, then treat the returned schema and guidance as the source of truth.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/github-triage-workflow)
+- [GitHub REST API](https://docs.github.com/en/rest)
+- [GitHub GraphQL API](https://docs.github.com/en/graphql)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=github-triage-workflow)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured triage summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub issue and pull request recommendations, draft comments, label proposals, and confirmation-gated tool actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

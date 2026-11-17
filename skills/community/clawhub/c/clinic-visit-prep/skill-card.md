@@ -1,43 +1,58 @@
-## Description: <br>
-Helps patients organize pre-visit questions, prior records, checklists, and timelines before clinic visits without providing diagnoses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clinic Visit Prep helps patients organize pre-visit questions, prior records, checklists, and timelines without providing diagnoses.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Patients, caregivers, and clinic support users use this skill to turn symptoms, prior tests, records, and questions into a structured pre-visit preparation draft for review with a clinician. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat organized visit-prep text as medical advice or a diagnosis. <br>
-Mitigation: Use the output only as an editable preparation draft and review clinical decisions with a qualified clinician. <br>
-Risk: User notes may contain sensitive health or personal information. <br>
-Mitigation: Use only intentionally selected local files, de-identify details when possible, and review the output before sharing it. <br>
-Risk: Pointing the local script at broad or unrelated folders may expose more local content than intended. <br>
-Mitigation: Run it on the specific input file or folder needed for clinic-visit preparation and avoid changing bundled resources to inspect unrelated locations. <br>
+## Use Case:
 
+External users and care-support workflows use this skill to prepare for clinic visits by turning symptoms, prior tests, planned questions, and missing information into a structured review draft.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/clinic-visit-prep) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Structured Markdown or JSON generated from user-provided notes and local templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include visit goals, timelines, documents to bring, suggested questions, medication or testing reminders, post-visit note slots, and items to confirm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The release security summary flags extra local file-auditing and secret-scanning code beyond the clinic-visit preparation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it only on files intentionally provided for the visit-prep workflow, and avoid pointing it at private directories or source repositories.
+
+Risk: Inputs may contain personal health information or other sensitive material.
+
+Mitigation: Use explicit input and output paths, keep processing local, and remove or minimize sensitive details that are not needed for the clinic preparation draft.
+
+Risk: Users may mistake organized visit-prep notes for clinical advice.
+
+Mitigation: Use the output only to prepare questions and records for discussion with a clinician; do not rely on it for diagnosis or as a substitute for medical advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/clinic-visit-prep)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown or JSON, with optional shell command usage for the bundled local runner.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize review drafts, missing-information lists, clinic questions, document reminders, and post-visit note slots.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

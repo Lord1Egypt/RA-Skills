@@ -1,44 +1,58 @@
-## Description: <br>
-Polishes response letters by transforming defensive or harsh language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polishes response letters by transforming defensive or harsh language.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, authors, and academic writing assistants use this skill to convert defensive or harsh draft responses to peer reviewers into professional academic language while preserving the author's scientific position. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill does not verify scientific accuracy and may soften language in ways that affect the author's intended position. <br>
-Mitigation: Manually review the polished response for scientific correctness, scope, and position preservation before using it in a submission. <br>
-Risk: Input files or pasted text may contain unpublished manuscript content or reviewer correspondence. <br>
-Mitigation: Only provide files or text intended for local processing, and keep outputs in an appropriate workspace. <br>
-Risk: Installing dependencies globally can add unnecessary packages, including standard-library-style entries listed in requirements. <br>
-Mitigation: Use a virtual environment and consider skipping global installation of the listed standard-library-style dependencies. <br>
+## Use Case:
 
+Researchers, academic authors, and writing-support agents use this skill to turn defensive or harsh draft responses to peer reviewers into courteous academic prose while preserving the author's scientific position.
 
-## Reference(s): <br>
-- [Response Tone Polisher ClawHub page](https://clawhub.ai/aipoch-ai/response-tone-polisher-1) <br>
-- [Polite Expressions Library](references/polite_expressions.json) <br>
-- [Tone Transformation Patterns](references/tone_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, shell commands] <br>
-**Output Format:** [Plain text or JSON, with Markdown guidance for manual workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a polished response, tone scores, phrase-level improvements, suggestions, and optionally a local output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can read local input files and write or overwrite output files in file-based and interactive modes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandboxed workspace and provide only intended workspace-local input and output paths.
+
+Risk: The packaged dependency install step names unnecessary unpinned packages.
+
+Mitigation: Avoid running the pip install step unless dependencies are removed, pinned, or reviewed in a controlled environment.
+
+Risk: Polished responses may over-soften or alter the apparent strength of the author's position.
+
+Mitigation: Have the author review the final response for scientific accuracy, scope, and preservation of the intended position.
+
+## Reference(s):
+
+- [Polite Expressions Library](references/polite_expressions.json)
+- [Tone Transformation Patterns](references/tone_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain text or JSON containing a polished response, tone scores, improvements, and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports reviewer comment, draft response, response type, polish level, and optional file output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

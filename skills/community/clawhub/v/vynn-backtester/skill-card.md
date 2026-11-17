@@ -1,41 +1,53 @@
-## Description: <br>
-Run trading strategy backtests with natural language, powered by Vynn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run trading strategy backtests with natural language -- powered by Vynn.
 
-## Publisher: <br>
-[beee003](https://clawhub.ai/user/beee003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[beee003](https://clawhub.ai/user/beee003)
 
-## Use Case: <br>
-External users and developers use this skill to submit natural language or structured trading strategies to Vynn and receive backtest metrics such as Sharpe ratio, return, drawdown, win rate, trade count, and equity curve information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Strategy descriptions, ticker lists, and lookback settings are sent to Vynn for backtest execution. <br>
-Mitigation: Avoid including sensitive portfolio, account, or personal financial details in prompts and review inputs before running a backtest. <br>
-Risk: The skill requires a VYNN_API_KEY and supports overriding VYNN_BASE_URL. <br>
-Mitigation: Use a dedicated API key and verify any VYNN_BASE_URL override before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vynn homepage](https://the-vynn.com) <br>
-- [Vynn backtest endpoint](https://the-vynn.com/v1/backtest) <br>
-- [ClawHub release page](https://clawhub.ai/beee003/vynn-backtester) <br>
+## Use Case:
 
+External users, developers, and trading strategy builders use this skill to run and compare strategy backtests from natural language or structured entry and exit rules. It returns performance metrics such as Sharpe ratio, total return, drawdown, win rate, trade count, and equity-curve related results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown examples and structured backtest result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VYNN_API_KEY and sends strategy inputs to the configured Vynn API endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends strategy descriptions, ticker lists, lookback periods, and the Vynn API key to the configured Vynn endpoint.
+
+Mitigation: Use a dedicated Vynn API key and avoid submitting confidential trading logic or sensitive portfolio information unless the Vynn service and its retention claims are trusted.
+
+Risk: Changing VYNN_BASE_URL can send authenticated requests to a non-default endpoint.
+
+Mitigation: Set VYNN_BASE_URL only to a trusted endpoint before running backtests.
+
+## Reference(s):
+
+- [Vynn Backtester on ClawHub](https://clawhub.ai/beee003/skills/vynn-backtester)
+- [Vynn](https://the-vynn.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown or plain text summaries with structured backtest metrics and optional Python usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VYNN_API_KEY; optional VYNN_BASE_URL can redirect requests to a trusted self-hosted endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,67 @@
-## Description: <br>
-Changshu Dev Assistant helps developers migrate SQL Server SQL to Dameng, scan code for security and quality issues, search local knowledge bases, and manage prompt and model-usage workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Changshu Dev Assistant supports Dameng database development, SQL Server-to-Dameng migration, code security and quality scanning, local knowledge search, LLM chat, model monitoring, and prompt template management.
 
-## Publisher: <br>
-[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer)
 
-## Use Case: <br>
-Developers and engineers use this skill for Dameng database migration work, SQL analysis and formatting, code security and quality review, local knowledge-base lookup, and LLM-backed development assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad local developer-assistant access and can read or process local project and knowledge-base files. <br>
-Mitigation: Review the code before installation and restrict WIKI_PATH or other search targets to non-sensitive folders. <br>
-Risk: External LLM settings can transmit prompts or code to configured model providers. <br>
-Mitigation: Enable external LLM configuration only for projects where sending prompts to that provider is intended and approved. <br>
-Risk: Command-line arguments and configuration can expose secrets if API keys or passwords are passed directly. <br>
-Mitigation: Use environment variables for LLM credentials and avoid passing secrets on the command line. <br>
-Risk: Run and conversion features may execute or import code from other local Hermes skill locations. <br>
-Mitigation: Use run and convert commands only with trusted local skill directories and review imported tools before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze, optimize, format, and convert SQL for Dameng database workflows, scan source code for security and quality issues, search local knowledge bases, and manage LLM prompts and usage.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fish1981bimmer/changshu-dev-assistant) <br>
-- [Quickstart Guide](templates/QUICKSTART.md) <br>
-- [Dameng Database Guide](references/dameng_database_guide.md) <br>
-- [Script Audit Report](references/audit-2026-06-06.md) <br>
-- [Hardcoding Audit and Fix](references/hardcoding-audit-2026-06-20.md) <br>
-- [Optimization Suggestions](references/optimization-suggestions.md) <br>
-- [Test Automation Guide](references/test_automation_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, terminal text, generated code snippets, JSON reports, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include SQL conversion results, scan findings, knowledge-base matches, prompt templates, model statistics, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata) <br>
+Risk: Configured LLM integrations may transmit SQL, source code, or chat content outside the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved HTTPS LLM endpoints and avoid submitting sensitive content unless that data transfer is approved.
+
+Risk: Database credentials can be supplied on command lines for connection testing, which may expose secrets in shell history or process listings.
+
+Mitigation: Avoid placing database passwords on the command line; use controlled secret handling before running database connection workflows.
+
+Risk: SQL conversion and diagnostics can depend on an external dm_converter path outside this skill.
+
+Mitigation: Review or remove the dm_converter dependency path before using SQL conversion or diagnostics.
+
+Risk: High-impact external integrations are under-scoped for an unreviewed installation.
+
+Mitigation: Review and control external integrations before installing or running the skill.
+
+## Reference(s):
+
+- [Changshu Dev Assistant on ClawHub](https://clawhub.ai/fish1981bimmer/skills/changshu-dev-assistant)
+- [fish1981bimmer Publisher Profile](https://clawhub.ai/user/fish1981bimmer)
+- [Dameng Database Guide](references/dameng_database_guide.md)
+- [Hardcoding Audit & Fix - 2026-06-20](references/hardcoding-audit-2026-06-20.md)
+- [Script Audit Report - 2026-06-06](references/audit-2026-06-06.md)
+- [Optimization Suggestions](references/optimization-suggestions.md)
+- [Test Automation Guide](references/test_automation_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SQL conversion guidance, scan reports, prompt templates, model usage summaries, and configuration instructions.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

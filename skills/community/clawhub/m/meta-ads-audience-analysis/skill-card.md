@@ -1,41 +1,58 @@
-## Description: <br>
-[Didoo AI] Analyzes Meta Ads audience efficiency across audience types, overlap, demographics, and budget allocation. Use when reviewing targeting strategy, planning audience expansion or narrowing, or auditing budget distribution across audience segments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Analyzes Meta Ads audience efficiency across audience types, overlap, demographics, and budget allocation. Use when reviewing targeting strategy, planning audience expansion or narrowing, or auditing budget distribution across audience segments.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing teams and agent users use this skill to analyze Meta Ads audience efficiency before launches, during planning, or when audience mismatch may be driving underperformance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Meta Ads credentials and read-only ad account access. <br>
-Mitigation: Use the narrow ads_read scope, avoid broad or long-lived tokens when possible, and install only for intended ad accounts. <br>
-Risk: Audience and budget findings may influence later recommendation workflows. <br>
-Mitigation: Review downstream recommendation output before letting an agent act on stored audience and budget findings. <br>
+## Use Case:
 
+Marketing operators and analysts use this skill to review Meta Ads audience efficiency, overlap, demographic performance, placement results, and budget allocation before campaign planning or troubleshooting.
 
-## Reference(s): <br>
-- [Meta Ads Audience Analysis on ClawHub](https://clawhub.ai/elias-didoo/meta-ads-audience-analysis) <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured sections and session context findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores budget_reallocation_plan and audience_issues for a related recommendation workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: A Meta access token with broader permissions than needed could expose campaign data beyond the skill's read-only analysis use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token limited to the read-only ads_read scope before running the skill.
+
+Risk: Campaign-derived audience and budget findings are written to session context for use by the related recommendation skill.
+
+Mitigation: Run the skill only when that session-context handoff is acceptable for the account and campaign data being analyzed.
+
+Risk: Audience segment conclusions can be misleading when based on too little data.
+
+Mitigation: Follow the skill's minimum of 50 results per segment before drawing conclusions on an audience slice.
+
+## Reference(s):
+
+- [Didoo AI Blog](https://didoo.ai/blog)
+- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/skills/meta-ads-audience-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured sections and session-context findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audience issues and budget reallocation findings to session context for the related recommendation skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Build, review, and troubleshoot DimOS robotics applications, especially DimOS @skill methods, Module classes, Blueprints, MCP wiring, CLI runs, replay/simulation testing, and safe robot-control scaffolds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, review, and troubleshoot DimOS robotics applications, especially DimOS @skill methods, Module classes, Blueprints, MCP wiring, CLI runs, replay/simulation testing, and safe robot-control scaffolds.
 
-## Publisher: <br>
-[yichulau](https://clawhub.ai/user/yichulau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yichulau](https://clawhub.ai/user/yichulau)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to build, review, and troubleshoot DimOS Modules, @skill methods, MCP-enabled Blueprints, and simulation-first robot-control workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yichulau/dimos-robotics-skill) <br>
-- [DimOS Quick Reference](resources/dimos_reference.md) <br>
-- [Safety and Testing Notes for DimOS Skills](resources/safety_and_testing.md) <br>
+Developers and robotics engineers use this skill to create, review, wire, and test DimOS robotics skills, modules, blueprints, MCP tools, and simulation or replay workflows.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with code snippets, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated robotics code and commands should be reviewed before use, tested in replay or simulation first, and explicitly confirmed before file changes, shell commands, deployment, or live robot operation.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Robot-facing movement templates omit finite-number checks, so NaN or infinite numeric inputs could undermine movement limits.
+
+Mitigation: Reject non-finite numeric values before range checks or state updates, and test generated movement skills in replay or simulation before exposing them through MCP or using real hardware.
+
+Risk: Generated robot-control code can affect physical hardware if used outside simulation.
+
+Mitigation: Require local supervision, a clear operating area, an accessible stop mechanism, and confirmed downstream controller safety checks before real-hardware use.
+
+## Reference(s):
+
+- [DimOS Quick Reference](resources/dimos_reference.md)
+- [Safety and Testing Notes for DimOS Skills](resources/safety_and_testing.md)
+- [ClawHub Skill Page](https://clawhub.ai/yichulau/skills/dimos-robotics-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scaffolded DimOS skill-container files when the bundled helper script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

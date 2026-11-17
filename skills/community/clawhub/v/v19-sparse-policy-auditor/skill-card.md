@@ -1,41 +1,52 @@
-## Description: <br>
-Audits whether agent behavior stays within a defined minimal necessary behavior set and identifies redundant, missing, or drifting constraints for governance review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits whether agent behavior stays within a defined minimum necessary behavior set, detects redundant or missing constraints, and produces source data for ETHIC constitutional clauses.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers and agent governance reviewers use this skill to audit whether an agent's actions stay within a minimal necessary behavior set and to identify redundant, missing, or drifting behavior constraints. The resulting findings can support governance or constitution-style policy updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill examples send governance and audit data to an external service. <br>
-Mitigation: Use only if you trust the endpoint, use a dedicated limited key, and redact secrets, private logs, user data, and operational details before submitting evidence. <br>
+## Use Case:
 
+Developers and governance reviewers use this skill to audit agent logs and behavior policies for redundant, missing, or drifting behavior constraints. The audit output can inform candidate ETHIC constitutional clauses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuyanfeng1234/v19-sparse-policy-auditor) <br>
-- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
-- [V19 Trust Engine](https://clawhub.com/skills/v19-trust-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example requests for an external governance endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Audit payloads may contain sensitive prompts, logs, credentials, personal information, internal endpoints, or confidential operational evidence sent to an unverified external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before use, redact sensitive data, require explicit approval before transmission, and use only a trusted operator with clear retention and deletion terms or a verified local or first-party endpoint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuyanfeng1234/skills/v19-sparse-policy-auditor)
+- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+- [V19 Trust Engine](https://clawhub.com/skills/v19-trust-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external governance audit service and return structured audit findings for policy review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

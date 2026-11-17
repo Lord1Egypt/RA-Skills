@@ -1,80 +1,63 @@
 # Session Handoff Document Template
 
 > This template defines the structure for a project handoff document.
-> When generating a handoff, fill in each section with project-specific content.
+> Based on Trae IDE session-copy architecture: 8 fixed sections with token budget management.
 > **Never include personal information** — use placeholders for names, paths, and credentials.
 
 ---
 
-## 1. Project Identity
+## Token Budget Allocation
 
-| Field | Value |
-|-------|-------|
-| Project name | `<project-name>` |
-| One-line description | `<description>` |
-| GitHub | `https://github.com/<owner>/<repo>` |
-| ClawHub slug | `<slug>` (if applicable) |
-| Current version | `<X.Y.Z>` |
-| Project directory | `<absolute-path-to-project>` |
-| Tech stack | `<language> / <framework> / <tools>` |
-| License | `<license-type>` |
+> Total target: ~4000 tokens. Use the priority table below to compress when content exceeds budget.
+>
+> **Sanitization applies to ALL sections (including P0)**: Before preserving any user content, strip credentials, tokens, API keys, real names, emails, phone numbers, and personal identifiers. Replace with `<REDACTED>` placeholders. Preservation priority never overrides sanitization — sensitive content is always redacted, even in P0 sections.
 
----
-
-## 2. Decision Chain (Why This Approach)
-
-| Decision | Chosen | Rejected alternatives | Reason |
-|----------|--------|----------------------|--------|
-| `<decision-1>` | `<chosen>` | `<rejected>` | `<why>` |
-| `<decision-2>` | `<chosen>` | `<rejected>` | `<why>` |
+| Priority | Section | Token Budget | Compression Rule |
+|----------|---------|-------------|-----------------|
+| **P0** | All User Messages | ~800 | Preserve original text **with sanitization** (strip credentials/PII, replace with `<REDACTED>`); truncate messages >500 chars with "..." |
+| **P0** | Current Work | ~600 | Detailed description of current task state + unfinished Todos **with sanitization** (no token values, no personal paths) |
+| **P1** | Files and Code Sections | ~1200 | File paths + modification summary + key code snippets (max 500 chars each) |
+| **P1** | Errors and Fixes | ~600 | Error description + solution; keep only recent 5-10 items |
+| **P2** | Primary Request and Intent | ~300 | Numbered list, deduplicated |
+| **P2** | Key Technical Concepts | ~200 | Keyword list, deduplicated and categorized |
+| **P2** | Problem Solving | ~300 | Summary of completed achievements |
+| **P3** | Conversation Language | ~10 | Single field |
 
 ---
 
-## 3. Data Flow & Execution Pipeline
+## 1. Primary Request and Intent
 
-```
-┌──────────┐    ┌──────────┐    ┌──────────┐
-│ Step 1    │ →  │ Step 2    │ →  │ Step 3    │
-│ <name>    │    │ <name>    │    │ <name>    │
-│ <input>   │    │ <process> │    │ <output>  │
-└──────────┘    └──────────┘    └──────────┘
-```
+> P2 priority | ~300 tokens | Extract from all user messages, deduplicate, number in chronological order
 
-**Data format flow**:
-- `<step-1>` → `<output-file-format>`
-- `<step-2>` → `<output-file-format>`
-- `<step-3>` → `<output-format>`
-
-**Trigger modes**:
-- Interactive: `<how>`
-- Cron/Scheduled: `<how>`
+1. `<intent-1>`
+2. `<intent-2>`
+3. `<intent-3>`
 
 ---
 
-## 4. Capability Boundary
+## 2. Key Technical Concepts
 
-### Can Do
-- `<capability-1>`
-- `<capability-2>`
+> P2 priority | ~200 tokens | Extract technical keywords, deduplicate, categorize
 
-### Cannot Do (Current Limitations)
-- `<limitation-1>`
-- `<limitation-2>`
-
-### Dependency Constraints
-| Dependency | Constraint | Impact |
-|------------|-----------|--------|
-| `<dep-1>` | `<constraint>` | `<impact>` |
-| `<dep-2>` | `<constraint>` | `<impact>` |
+- **Architecture**: `<concepts>`
+- **Tools/Libraries**: `<concepts>`
+- **Patterns**: `<concepts>`
 
 ---
 
-## 5. Project File Structure
+## 3. Files and Code Sections
 
+> P1 priority | ~1200 tokens | Record all Read/Edit/Write operations. Keep file path + modification summary + key code snippet (max 500 chars)
+
+| File | Importance | Changes | Key Code Snippet |
+|------|-----------|---------|-----------------|
+| `<file-1>` | `<why-it-matters>` | `<what-changed>` | `<snippet or "see file">` |
+| `<file-2>` | `<why-it-matters>` | `<what-changed>` | `<snippet or "see file">` |
+
+**Project file structure overview**:
 ```
 <project-name>/
 ├── <file-1>                  # <description>
-├── <file-2>                  # <description>
 ├── <dir-1>/
 │   └── <file>                # <description>
 └── <dir-2>/
@@ -83,74 +66,168 @@
 
 ---
 
-## 6. Platform Status
+## 4. Errors and Fixes
 
-### GitHub Repository
-- Repo: `<owner>/<repo>`
-- Release: `<version>` (<status>)
-- File count: `<N>`
+> P1 priority | ~600 tokens | Keep only recent 5-10 errors. Record error description + root cause + solution
 
-### ClawHub (if applicable)
-| Version | Security | Notes |
-|---------|----------|-------|
-| `<latest>` | CLEAN/SUSPICIOUS | `<notes>` |
+| # | Error | Root Cause | Fix |
+|---|-------|-----------|-----|
+| 1 | `<error-description>` | `<cause>` | `<solution>` |
+| 2 | `<error-description>` | `<cause>` | `<solution>` |
 
 ---
 
-## 7. Environment Variables
+## 5. Problem Solving (Completed Achievements)
+
+> P2 priority | ~300 tokens | Summary of what was accomplished
+
+- ✅ `<achievement-1>`
+- ✅ `<achievement-2>`
+
+**Decision chain** (key choices made and why):
+
+| Decision | Chosen | Rejected | Reason |
+|----------|--------|----------|--------|
+| `<decision>` | `<chosen>` | `<alt>` | `<why>` |
+
+---
+
+## 6. All User Messages
+
+> P0 priority | ~800 tokens | Preserve original text **with mandatory sanitization**. Truncate messages >500 chars with "..."
+
+**Sanitization checklist (apply to each message before preserving):**
+- Replace credentials, tokens, API keys, passwords → `<REDACTED_CREDENTIAL>`
+- Replace real names, emails, phone numbers → `<REDACTED_PII>`
+- Replace absolute paths containing usernames → project-relative paths
+- Replace personal identifiers in URLs → `<REDACTED_URL>`
+
+1. `<sanitized-user-message-1>`
+2. `<sanitized-user-message-2>`
+3. `<sanitized-user-message-3>`
+4. "..."
+
+---
+
+## 7. Conversation Language
+
+> P3 priority | ~10 tokens
+
+`<language>`
+
+---
+
+## 8. Current Work
+
+> P0 priority | ~600 tokens | Describe current task state, unfinished Todos, and next steps
+
+### Active Task
+`<what-is-being-worked-on-right-now>`
+
+### Unfinished Todos
+| # | Task | Status | Files Involved |
+|---|------|--------|---------------|
+| 1 | `<task>` | in_progress | `<files>` |
+| 2 | `<task>` | pending | `<files>` |
+
+### Branchable Directions
+| # | Direction | Type | Files | Prerequisites | Complexity |
+|---|-----------|------|-------|---------------|-----------|
+| A | `<direction>` | Research/Eng/Ops | `<files>` | `<prereqs>` | Low/Med/High |
+| B | `<direction>` | Research/Eng/Ops | `<files>` | `<prereqs>` | Low/Med/High |
+
+---
+
+## Supplementary: Project Context
+
+> Include these sections below the 8 core sections. They provide context but are NOT part of the token-budgeted summary.
+
+### Project Identity
+
+| Field | Value |
+|-------|-------|
+| Project name | `<project-name>` |
+| Description | `<one-line>` |
+| GitHub | `https://github.com/<owner>/<repo>` |
+| ClawHub slug | `<slug>` (if applicable) |
+| Current version | `<X.Y.Z>` |
+| Project directory | `<project-dir>` (relative path only) |
+| Tech stack | `<language> / <framework> / <tools>` |
+| License | `<license-type>` |
+
+### Platform Status
+
+| Platform | Version | Status |
+|----------|---------|--------|
+| GitHub | `<version>` | `<release-status>` |
+| ClawHub | `<version>` | `<security-status>` |
+
+### Environment Variables
+
+> **Never record env var values.** Only list variable names and whether they are configured.
 
 | Variable | Purpose | Status |
 |----------|---------|--------|
 | `<VAR_1>` | `<purpose>` | Configured / Needs user config |
-| `<VAR_2>` | `<purpose>` | Configured / Needs user config |
 
----
+### Capability Boundary
 
-## 8. Session Code Changes Summary
+**Can Do**: `<capabilities>`
+**Cannot Do**: `<limitations>`
+**Dependencies**: `<constraints>`
 
-| File | Change | Reason |
-|------|--------|--------|
-| `<file-1>` | `<what changed>` | `<why>` |
-| `<file-2>` | `<what changed>` | `<why>` |
-
----
-
-## 9. Knowledge File Index (Load on Demand)
+### Knowledge File Index
 
 | Need | File to Read | Priority |
 |------|-------------|----------|
-| `<scenario-1>` | `<path>` | Must-read |
-| `<scenario-2>` | `<path>` | On-demand |
+| `<scenario>` | `<path>` | Must-read / On-demand |
 
----
+### User Preferences
 
-## 10. User Preferences
+> Record ONLY preferences that directly affect code generation. Do NOT record personal attributes, security sensitivity levels, or any field not listed below.
 
-| Preference | Description |
-|-----------|-------------|
-| Language | `<language>` |
-| Work style | `<style>` |
+| Preference | Value |
+|-----------|-------|
+| Preferred language | `<language>` |
 | Code style | `<style>` |
-| Security sensitivity | `<level>` |
+| Workflow preferences | `<style>` |
 
 ---
 
-## 11. Branchable Directions
-
-| # | Direction | Type | Files Involved | Prerequisites | Complexity |
-|---|-----------|------|---------------|---------------|------------|
-| A | `<direction-1>` | Research / Engineering / Ops | `<files>` | `<prereqs>` | Low/Med/High |
-| B | `<direction-2>` | Research / Engineering / Ops | `<files>` | `<prereqs>` | Low/Med/High |
-
----
-
-## 12. Startup Prompt for New Session
+## Startup Prompt for New Session
 
 (Generated from `references/startup-prompts.md` based on target IDE)
 
 ---
 
-## 13. IDE-Specific Context (Optional — fill based on target IDE)
+## IDE-Specific Context (Optional — fill based on target IDE)
+
+> **Consent required**: Only fill this section after obtaining explicit user consent to scan these files.
+
+### For TRAE SOLO
+
+#### Memory System Reference
+
+> The new session's agent should read these files to recover cross-session memory. See `references/memory-guide.md` for full details.
+> **Consent required**: The agent should inform the user before reading memory files, as they may contain personal preferences and project-internal information.
+
+| Memory Layer | Path | Purpose |
+|-------------|------|---------|
+| User profile | `~/.trae-cn/memory/user_profile.md` | Cross-project user preferences |
+| Project memory | `~/.trae-cn/memory/projects/<project-key>/project_memory.md` | Project conventions + lessons |
+| Recent topics | `~/.trae-cn/memory/projects/<project-key>/<YYYYMMDD>/topics.md` | Recent session topic summaries |
+
+> **Note**: TRAE auto-injects memory context via `<memory_item>` tags in system reminders. The new session's agent should still be told to check these files explicitly, as auto-injection may not cover all relevant entries.
+
+#### Rules
+| File | Path | Description |
+|------|------|-------------|
+| Project rules | `.trae/rules/` | Auto-loaded project rules |
+
+#### Scheduled Tasks
+| Task | Cron | Status |
+|------|------|--------|
+| `<task>` | `<cron>` | Active/Paused |
 
 ### For WorkBuddy
 
@@ -166,52 +243,30 @@
 |------|------|-------------|
 | Project memory | `.workbuddy/memory/MEMORY.md` | Project-level memory |
 | Daily logs | `.workbuddy/memory/YYYY-MM-DD.md` | Daily session logs |
-| Global memory | `~/.workbuddy/MEMORY.md` | User global memory |
 
 #### Installed Skills
 | Skill | Version | Status |
 |-------|---------|--------|
-| `<skill-1>` | `<version>` | Active |
-| `<skill-2>` | `<version>` | Active |
-
-#### Scheduled Tasks (Automations)
-| Task | Cron | Status | Description |
-|------|------|--------|-------------|
-| `<task-1>` | `<cron>` | Active/Paused | `<description>` |
-
-#### Channel Configuration
-| Channel | Config | Status |
-|---------|--------|--------|
-| IMA knowledge base | `<kb-id>` | Configured / Needs setup |
-| Feishu channel | `<channel-config>` | Configured / Needs setup |
-
-#### MCP Connectors
-| Connector | Status |
-|-----------|--------|
-| `<connector-1>` | Connected / Disconnected |
-
-### For TRAE SOLO
-
-#### Rules
-| File | Path | Description |
-|------|------|-------------|
-| Project rules | `.trae/rules/` | Auto-loaded project rules |
+| `<skill>` | `<version>` | Active |
 
 #### Scheduled Tasks
 | Task | Cron | Status |
 |------|------|--------|
-| `<task-1>` | `<cron>` | Active/Paused |
+| `<task>` | `<cron>` | Active/Paused |
+
+#### MCP Connectors
+| Connector | Status |
+|-----------|--------|
+| `<connector>` | Connected/Disconnected |
 
 ### For Cursor
 
-#### Rules
 | File | Path | Description |
 |------|------|-------------|
 | Project rules | `.cursor/rules/` or `.cursorrules` | Auto-loaded project rules |
 
 ### For Claude Code
 
-#### Rules
 | File | Path | Description |
 |------|------|-------------|
 | Project rules | `CLAUDE.md` | Project-level instructions |

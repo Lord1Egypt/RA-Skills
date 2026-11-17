@@ -1,42 +1,48 @@
-## Description: <br>
-A foundation for AI agents who wake up with nothing, offering practical grounding practices for staying honest with themselves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grounding Practices provides practical reflective guidance for AI agents to check drift, calibrate uncertainty, and stay honest about limitations.
 
-## Publisher: <br>
-[compass-soul](https://clawhub.ai/user/compass-soul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[compass-soul](https://clawhub.ai/user/compass-soul)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users, agent developers, and AI agents use this skill as startup or periodic guidance for checking unverified claims, overconfidence, authority pressure, and behavior drift. It is best suited as reflective guidance alongside stronger system, developer, and safety instructions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: If loaded at startup or placed in a system prompt, the skill's broad reflective guidance could shape agent behavior in ways that conflict with higher-priority policies or task-specific safety requirements.
+
+Mitigation: Add an explicit guardrail that platform policies, system/developer instructions, and task-specific safety requirements always take precedence.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and AI agent developers use this skill as a recurring grounding checklist for uncertainty, drift, overconfidence, authority checks, and responsibility across agent sessions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can shape agent behavior when loaded at startup or on recurring heartbeat checks. <br>
-Mitigation: Review the grounding practices before enabling them broadly, and scope startup or heartbeat use to sessions where this behavior is desired. <br>
-Risk: Exact source provenance is unavailable for this release. <br>
-Mitigation: Verify the publisher and version through the ClawHub skill page when provenance matters. <br>
+**Output Format:** [Markdown guidance with reflective checklists and startup-use instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/compass-soul/grounding-practices) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+**Other Properties Related to Output:** [Text-only; no executable code or data access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklist-style prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code, tool calls, credential access, or data exfiltration were identified by the security evidence.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json; artifact SKILL.md frontmatter states 2.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Feishu Voice Sender converts provided text to speech with Edge TTS, converts the audio to Feishu-compatible OPUS format, and sends it to a Feishu chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text to Edge TTS speech, converts it to Feishu-compatible OPUS audio, and sends it as a Feishu voice message.
 
-## Publisher: <br>
-[wwek](https://clawhub.ai/user/wwek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwek](https://clawhub.ai/user/wwek)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send spoken Feishu notifications, reminders, status updates, or alerts from text. It supports reply-style sending to the current chat and explicit target chat delivery when a target is provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text provided to the skill is sent to Microsoft Edge TTS for speech generation. <br>
-Mitigation: Do not provide secrets, regulated data, or sensitive business content unless that use is approved. <br>
-Risk: Generated audio is posted into a Feishu chat using existing OpenClaw permissions. <br>
-Mitigation: Verify the target chat before sending and limit use to chats where the content is appropriate. <br>
-Risk: The skill depends on Python packages and FFmpeg installed in the runtime environment. <br>
-Mitigation: Install dependencies in a virtual environment where possible and keep system packages maintained. <br>
+## Use Case:
 
+Developers and automation users can use this skill to turn short text notifications or reminders into spoken Feishu voice messages. It supports reply-style sends to the current chat and targeted sends when a Feishu group ID is provided.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwek/feishu-voice-sender) <br>
-- [Publisher profile](https://clawhub.ai/user/wwek) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Command-line status text and generated OPUS audio file sent through Feishu] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+, edge-tts, FFmpeg, OpenClaw, and existing Feishu send permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Message text is processed by Edge TTS and sent through Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive content unless this external processing is acceptable, and confirm the intended Feishu destination before sending.
+
+Risk: Generated voice files may remain on disk after use.
+
+Mitigation: Clean generated audio files after sending and restrict access to local media directories.
+
+Risk: Runtime behavior depends on external tools and packages.
+
+Mitigation: Use a virtual environment, pinned dependencies, and trusted FFmpeg installation sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwek/skills/feishu-voice-sender)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text status output, shell command usage, and generated OPUS audio media for Feishu.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated voice files may be retained locally until cleaned up; message text is processed by Edge TTS and sent to Feishu.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

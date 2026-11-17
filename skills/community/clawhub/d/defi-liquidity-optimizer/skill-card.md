@@ -1,39 +1,53 @@
-## Description: <br>
-Automated liquidity provision optimizer for CLMM DEXs on Solana and Ethereum that compares APR yields, estimates impermanent loss risk, scores pool safety by TVL, and recommends rebalancing for out-of-range positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated liquidity provision optimizer for CLMM DEXs on Solana and Ethereum that compares APR yields, estimates impermanent loss scenarios, scores pool safety by TVL, and recommends rebalancing when positions move out of range.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Developers and DeFi analysts can use this skill to compare concentrated liquidity pools, estimate impermanent loss scenarios, and generate risk-adjusted liquidity provision guidance across Solana and Ethereum protocols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses mock pool data and may produce misleading yield comparisons if treated as live market data. <br>
-Mitigation: Use it only for local inspection until mock data is replaced with verified live market data from trusted pool APIs. <br>
-Risk: Security guidance flags reliability flaws in the impermanent loss calculation and TVL display that can affect allocation decisions. <br>
-Mitigation: Fix and validate those calculations before relying on recommendations for real DeFi allocation decisions. <br>
+## Use Case:
 
+External developers and DeFi operators use this skill to compare concentrated liquidity pools, estimate impermanent loss exposure, and generate text-based rebalancing guidance for LP positions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and plain-text CLI reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mock pool data unless integrated with verified live pool APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: DeFi reports may materially misstate financial risk or overstate optimization quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify calculations, formulas, pool data, and assumptions before using outputs for investment, liquidity allocation, or rebalancing decisions.
+
+Risk: The artifact uses mock pool data structures while describing production integrations.
+
+Mitigation: Connect only reviewed and trusted live data sources, and clearly label generated reports with the data source and timestamp before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/defi-liquidity-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces comparative pool analysis, APR rankings, impermanent loss estimates, and rebalancing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

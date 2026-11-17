@@ -1,46 +1,59 @@
-## Description: <br>
-Plan Indonesia trips with island-routing logic, verified entry guidance, weather-aware logistics, and practical local execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Indonesia trips with island-routing logic, verified entry guidance, weather-aware logistics, and practical local execution.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users planning Indonesia trips use this skill to choose island clusters, design realistic routes, check entry and arrival logistics, and produce season-aware itineraries with safety, payment, and mobility notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; travel guidance is specific to Indonesia. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local trip memory can retain travel preferences and itinerary details under ~/indonesia/. <br>
-Mitigation: Use one-off mode when continuity is not needed, and review or delete ~/indonesia/memory.md when trip details should no longer be retained. <br>
-Risk: Entry rules, levies, park permits, weather, volcano status, and sea conditions can change after guidance is written. <br>
-Mitigation: Re-check the official source map before buying non-refundable travel, booking boat days, or committing to volcano, diving, or park plans. <br>
-Risk: Indonesia route advice can become unsafe or impractical if boats, scooters, heat, rough roads, stairs, or clinic access are understated. <br>
-Mitigation: Include transfer buffers, mobility notes, safety tradeoffs, and fallbacks for high-friction routes, especially for families, older travelers, and low-mobility users. <br>
+## Use Case:
 
+External travelers and planning assistants use this skill to build realistic Indonesia itineraries, choose island clusters, check entry assumptions, and account for weather, transport, budget, safety, mobility, and local logistics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/indonesia) <br>
-- [Skill homepage](https://clawic.com/skills/indonesia) <br>
-- [Official source map](artifact/sources.md) <br>
-- [Entry and documents guidance](artifact/entry-and-documents.md) <br>
-- [Safety and emergencies guidance](artifact/safety-and-emergencies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with optional local Markdown trip notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May keep lightweight local trip context under ~/indonesia/ when continuity is useful; users can request one-off answers without memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can keep local trip-planning notes that may include travel preferences, budget assumptions, mobility constraints, and itinerary details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use or install it only when local note persistence is acceptable, and review or delete ~/indonesia/ when those details should not remain on disk.
+
+Risk: Fast-changing entry, visa, weather, sea, volcano, park, and transport conditions can make stale travel guidance unsafe or costly.
+
+Mitigation: Re-check current official sources before bookings, border decisions, boat crossings, volcano starts, and park visits.
+
+Risk: Indonesia routes can involve scooters, boats, heat, rough roads, stairs, remote areas, and weaker medical backup.
+
+Mitigation: Prefer conservative transport plans, explicit mobility and safety checks, weather or sea-condition fallbacks, and realistic buffers for risky route segments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/indonesia)
+- [Skill homepage](https://clawic.com/skills/indonesia)
+- [Official source map](artifact/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown travel-planning guidance with concise checklists, route logic, and operational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local trip-planning notes under ~/indonesia/ when continuity is helpful and the user is planning beyond a one-off answer.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

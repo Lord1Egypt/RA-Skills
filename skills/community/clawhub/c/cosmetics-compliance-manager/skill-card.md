@@ -1,48 +1,61 @@
-## Description: <br>
-A Chinese-language cosmetics compliance assistant for querying regulations, filing and registration requirements, ingredient catalogs, labeling rules, safety assessment topics, regulatory updates, and international cosmetics regulation comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cosmetics compliance support for querying regulations, filing and registration requirements, ingredient catalogs, labeling rules, safety assessment topics, regulatory updates, international comparisons, and compliance risk analysis.
 
-## Publisher: <br>
-[mxp0125-rgb](https://clawhub.ai/user/mxp0125-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mxp0125-rgb](https://clawhub.ai/user/mxp0125-rgb)
 
-## Use Case: <br>
-External users and compliance practitioners use this skill to draft cosmetics regulatory guidance, identify applicable filing or registration considerations, review labeling and ingredient concerns, and compare selected international requirements. Its outputs should be treated as guidance and checked against current regulator sources before business or legal reliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cosmetics laws, filing statuses, ingredient restrictions, and enforcement notices can change after the skill text was published. <br>
-Mitigation: Verify current requirements against official regulator sources such as NMPA and NIFDC before business, legal, or product decisions. <br>
-Risk: The artifact mentions automatic website monitoring, but server security guidance says that monitoring is not implemented by this artifact. <br>
-Mitigation: Do not rely on this skill for real-time regulatory monitoring; use it as a reference assistant and independently check current sources. <br>
+## Use Case:
 
+External users and compliance practitioners use this skill to look up cosmetics regulatory requirements, review product filing or registration questions, compare international rules, and identify compliance risks. It is intended as guidance that should be checked against current authoritative sources before operational decisions.
 
-## Reference(s): <br>
-- [Cosmetics Compliance Manager on ClawHub](https://clawhub.ai/mxp0125-rgb/cosmetics-compliance-manager) <br>
-- [Monitored Cosmetics Compliance Websites](references/monitored_websites.md) <br>
-- [National Medical Products Administration](https://www.nmpa.gov.cn) <br>
-- [NMPA Domestic General Cosmetics Filing Search](https://hzpba.nmpa.gov.cn/gccx/) <br>
-- [NMPA Imported General Cosmetics Filing Search](https://hzpba.nmpa.gov.cn/jkcx/) <br>
-- [National Institutes for Food and Drug Control](https://www.nifdc.org.cn) <br>
-- [EU CosIng Cosmetics Ingredients Database](https://ec.europa.eu/growth/tools-databases/cosing/) <br>
-- [Cosmetic Ingredient Review Reports](https://cir-reports.cir-safety.org/) <br>
-- [OECD Test Guidelines for Chemicals](https://www.oecd.org/chemicalsafety/testing/oecdguidelinesforthetestingofchemicals.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text regulatory guidance with reference links when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language compliance guidance; no executable code, credential use, persistence, or hidden data movement was found in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill text) <br>
+Risk: The security summary reports that the skill documents automatic remote updates into skill text without review or validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review updates before installation; source updates from trusted HTTPS endpoints and keep monitored website content separate from executable agent instructions.
+
+Risk: The security guidance flags the skill for review when it is used for compliance decisions.
+
+Mitigation: Verify recommendations against authoritative regulator sources and current product-specific requirements before making filing, labeling, ingredient, or market-access decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mxp0125-rgb/skills/cosmetics-compliance-manager)
+- [Monitored Cosmetics Compliance Websites](references/monitored_websites.md)
+- [National Medical Products Administration](https://www.nmpa.gov.cn)
+- [NMPA Domestic Ordinary Cosmetics Filing Query](https://hzpba.nmpa.gov.cn/gccx/)
+- [NMPA Imported Ordinary Cosmetics Filing Query](https://hzpba.nmpa.gov.cn/jkcx/)
+- [NIFDC Cosmetics Notices](https://www.nifdc.org.cn/nifdc/bshff/hzhpjssp/hzpsptzgg/index.html)
+- [EU CosIng Database](https://ec.europa.eu/growth/tools-databases/cosing/)
+- [Cosmetic Ingredient Review Reports](https://cir-reports.cir-safety.org/)
+- [OECD Test Guidelines](https://www.oecd.org/chemicalsafety/testing/oecdguidelinesforthetestingofchemicals.htm)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include regulatory summaries, compliance checklists, risk notes, source links, and product- or ingredient-specific guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence and skill text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

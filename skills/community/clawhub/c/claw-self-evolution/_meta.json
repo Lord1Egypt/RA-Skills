@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7139qv1y4ky3gzxffxnzk7w583236p",
-  "slug": "claw-self-evolution",
-  "version": "1.0.1",
-  "publishedAt": 1773799317894
+  "name": "claw-self-evolution",
+  "description": "完整安全可控自我进化闭环，持续改进不崩系统",
+  "author": "kenz1117",
+  "version": "1.0.0",
+  "license": "MIT-0",
+  "tags": ["self-improvement", "automation", "maintenance", "safety", "claw", "openclaw"],
+  "dependencies": [],
+  "openclaw_version": ">=1.0.0"
 }

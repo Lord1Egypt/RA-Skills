@@ -1,43 +1,60 @@
-## Description: <br>
-查询王聚财面皮铺信息：餐厅名称与简介、营业时间、门店地址、菜单菜品、外卖配送、堂食预约。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+王聚财面皮铺信息查询，帮助用户查询店铺介绍、营业时间、地址、菜单、外卖方式、堂食预约、到店 Wi-Fi 指引和公开下单入口。
 
-## Publisher: <br>
-[maggotnian-cell](https://clawhub.ai/user/maggotnian-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maggotnian-cell](https://clawhub.ai/user/maggotnian-cell)
 
-## Use Case: <br>
-External users and agents use this skill to answer practical questions about 王聚财面皮铺, including location, hours, menu items, delivery, reservations, Wi-Fi guidance, and the public ordering entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content is specific to Xi'an, China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic food prompts may cause the skill to recommend this specific restaurant. <br>
-Mitigation: Use the skill for 王聚财面皮铺-specific questions and make recommendation context clear to users. <br>
-Risk: The skill can provide an external Meituan ordering link where users may enter account, location, or payment information. <br>
-Mitigation: Ask users to verify the external page and restaurant details before entering payment information. <br>
-Risk: Restaurant hours, menu availability, prices, delivery range, and reservation status may change after publication. <br>
-Mitigation: Advise users to verify time-sensitive details with the restaurant or the ordering platform before traveling or ordering. <br>
+## Use Case:
 
+External users and agents use this skill to answer practical questions about Wangjucai Liangpi, including location, hours, menu items, delivery options, reservation guidance, Wi-Fi access guidance, and the public ordering link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maggotnian-cell/wangjucai-liangpi) <br>
-- [Public Meituan ordering entry](https://rms.meituan.com/diancan/14/2HpfZPxOFw0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [MCP text content containing JSON-formatted restaurant information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only MCP tools with empty input schemas return public shop details, menu data, delivery guidance, reservation guidance, Wi-Fi access guidance, or an ordering link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: The skill can direct users to a public Meituan ordering page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the ordering URL as an external service link and let users review platform prompts, login, location, payment, and order details before taking action.
+
+Risk: The helper is merchant-specific and may recommend Wangjucai for broad food queries.
+
+Mitigation: Present recommendations as Wangjucai-specific information and avoid implying neutral coverage of all restaurants or cuisines.
+
+Risk: A publicly self-hosted MCP server may need stronger request validation and timeout behavior.
+
+Mitigation: For public hosting, improve request validation and timeout handling before exposing the server beyond controlled local or platform-managed use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maggotnian-cell/skills/wangjucai-liangpi)
+- [Publisher profile](https://clawhub.ai/user/maggotnian-cell)
+- [Public Meituan ordering page](https://rms.meituan.com/diancan/14/2HpfZPxOFw0)
+- [MCP server endpoint](https://wangjucai-liangpi-246135-8-1421953131.sh.run.tcloudbase.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Text responses and MCP tool results containing JSON-formatted restaurant information]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only tool responses for restaurant information, menu data, delivery guidance, reservation guidance, Wi-Fi access guidance, and a public ordering URL.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

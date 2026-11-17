@@ -1,42 +1,53 @@
-## Description: <br>
-Creates meaningful personal rituals for grounding, intention, and daily transitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates meaningful personal rituals for grounding, intention, and daily transitions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to design personalized secular or spiritual rituals for daily routines, life transitions, grounding, celebration, and meaning-making. It provides reflective guidance and structured ritual ideas, not medical, mental-health, legal, or other professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat wellness-oriented ritual suggestions as mental-health or other professional advice. <br>
-Mitigation: Present the skill as self-reflection support only and direct users to qualified professionals for health, mental-health, legal, or other professional concerns. <br>
-Risk: The skill may activate on everyday ritual, grounding, and transition requests where reflective wellness guidance is not desired. <br>
-Mitigation: Install or enable it only in contexts where wellness-oriented self-reflection prompts are appropriate. <br>
+## Use Case:
 
+External users use this skill to design secular, personalized rituals for daily routines, transitions, grief, celebration, and reflective personal development. It turns user needs and preferences into concrete ritual steps while keeping guidance descriptive and non-professional.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/personal-ritual-designer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [JSON string with analysis, recommendations, next_steps, frameworks, and disclaimer fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive self-reflection output only; not professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat ritual or wellness suggestions as medical or mental-health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as self-reflection and personal development guidance, and direct users to qualified professionals for health, mental-health, legal, or urgent concerns.
+
+Risk: Broad trigger phrases or unclear language behavior could produce mismatched guidance.
+
+Mitigation: Narrow trigger phrases and clarify language expectations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/personal-ritual-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON object with analysis, recommendations, next steps, frameworks, and a disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credential use, persistence, or hidden privileged behavior according to security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,44 @@
+# Agent Memory System - 安全工具依赖
+# 用于依赖安全扫描和代码审计
+#
+# 安装命令：
+#   pip install -r security-requirements.txt
+#
+# 使用方法：
+#   # 运行安全扫描
+#   safety check --file=requirements.txt
+#   
+#   # 运行代码审计
+#   bandit -r scripts/ -f json -o bandit_report.json
+#   
+#   # 运行依赖审计
+#   pip-audit --format=json --output=pip-audit.json
+
+# ==================== 安全扫描工具 ====================
+
+# Python 安全依赖扫描
+safety>=2.3.0,<4.0.0
+
+# 代码安全审计
+bandit>=1.7.0,<2.0.0
+
+# 依赖漏洞扫描
+pip-audit>=2.0.0,<3.0.0
+
+# ==================== 测试工具 ====================
+
+# 单元测试框架
+pytest>=7.0.0,<9.0.0
+
+# pytest 插件
+pytest-cov>=4.0.0,<5.0.0
+pytest-asyncio>=0.21.0,<1.0.0
+
+# 类型检查
+mypy>=1.0.0,<2.0.0
+
+# 代码格式化
+black>=23.0.0,<25.0.0
+
+# 导入排序
+isort>=5.12.0,<6.0.0

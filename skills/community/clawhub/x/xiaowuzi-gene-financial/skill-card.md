@@ -1,40 +1,53 @@
-## Description: <br>
-小五子 - 理财分析 helps agents monitor gold, bonds, and macro stagflation signals, analyze financial conditions, and prepare Feishu alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors gold, bonds, and other core assets to analyze macroeconomic conditions, detect stagflation signals, and prepare alert-ready findings for Feishu.
 
-## Publisher: <br>
-[tonicpopo](https://clawhub.ai/user/tonicpopo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonicpopo](https://clawhub.ai/user/tonicpopo)
 
-## Use Case: <br>
-Financial analysts and agent users can use this skill to track macro market signals across assets such as gold and bonds, identify possible stagflation indicators, and draft alert content for Feishu workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis can be incomplete, stale, or unsuitable for a user's risk tolerance. <br>
-Mitigation: Treat outputs as analysis support, not financial advice or trading authorization, and require human review before acting. <br>
-Risk: Feishu alerts can send financial details to an unintended or untrusted destination. <br>
-Mitigation: Confirm the Feishu destination is trusted and intended, and avoid including private financial details unless deliberate. <br>
+## Use Case:
 
+External users and agents use this Chinese-language skill to monitor macro market signals across assets such as gold and bonds and receive alert-ready financial analysis for decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonicpopo/xiaowuzi-gene-financial) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text financial analysis and alert content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides analysis support and alert drafting; it does not execute trades or install code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Financial signals and automated analysis may be incomplete, stale, or unsuitable for a user's investment context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against current market data and qualified financial judgment before making investment or trading decisions.
+
+Risk: Alert delivery to Feishu or another notification platform may expose financial signals or strategy details to unintended recipients.
+
+Mitigation: Confirm notification destinations and access controls before enabling alert pushes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tonicpopo/skills/xiaowuzi-gene-financial)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text financial analysis and alert summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu-ready alert content when notification delivery is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

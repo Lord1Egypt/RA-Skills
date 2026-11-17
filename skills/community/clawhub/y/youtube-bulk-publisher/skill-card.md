@@ -1,43 +1,53 @@
-## Description: <br>
-YouTube 批量视频发布工具，支持自动上传、元数据设置、缩略图上传等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads videos to YouTube with configurable titles, descriptions, tags, categories, privacy settings, optional thumbnails, progress reporting, and status checks.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-Developers and content operations teams use this skill to automate YouTube video uploads with titles, descriptions, tags, categories, privacy settings, thumbnails, progress reporting, and status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish videos to the selected YouTube account. <br>
-Mitigation: Install and run it only for accounts where uploads are intended, and verify the target account, title, metadata, category, and privacy setting before each upload. <br>
-Risk: The skill stores a reusable local OAuth token after authorization. <br>
-Mitigation: Protect or delete credentials/token.pickle after use, and revoke Google app access when the tool is no longer needed. <br>
-Risk: The bundled OAuth credentials file is a placeholder and must not be treated as production credentials. <br>
-Mitigation: Replace it with a Google Cloud OAuth client controlled by the operator before use. <br>
+## Use Case:
 
+Creators, operators, and developers use this skill to automate YouTube video publishing through a command-line tool or Python interface. It supports OAuth setup, upload metadata, privacy selection, optional thumbnail upload, and uploaded-video status checks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/fly3094/youtube-bulk-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/fly3094) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, Python snippets, and JSON-style upload results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses YouTube OAuth credentials and can return video IDs, video URLs, upload status, and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: OAuth token storage is unsafe because the skill stores and loads account tokens from a pickle file in the skill credentials directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only from a trusted private directory, use a test or intended YouTube account, and replace token storage with a non-executable private-permission format before broader use.
+
+Risk: The skill can publish videos with user-provided metadata and privacy settings to a YouTube account.
+
+Mitigation: Verify every video, thumbnail, title, description, tag list, category, and privacy setting before upload; use private or unlisted visibility until publication details are confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/youtube-bulk-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown guidance with command-line examples, Python snippets, console progress text, and structured upload result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate YouTube Data API uploads and OAuth authorization when executed by an agent in a configured environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

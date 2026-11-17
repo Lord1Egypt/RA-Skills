@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches WeChat public account article content from mp.weixin.qq.com links and converts the fetched HTML into Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat public article content from mp.weixin.qq.com links and converts the HTML content to Markdown.
 
-## Publisher: <br>
-[tomjamescn](https://clawhub.ai/user/tomjamescn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomjamescn](https://clawhub.ai/user/tomjamescn)
 
-## Use Case: <br>
-Developers and agents use this skill when a user provides a WeChat public article link and needs the title, author, body, and article text extracted into Markdown for reading, processing, or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script fetches a user-provided URL over the network. <br>
-Mitigation: Use it with public WeChat article links and add domain validation in stricter environments. <br>
-Risk: Runtime behavior depends on external Python packages. <br>
-Mitigation: Pin dependency versions before deployment in controlled environments. <br>
+## Use Case:
 
+Developers and content workflows use this skill to extract text, title, author, and body content from shared WeChat public article URLs for downstream processing or archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomjamescn/fetch-wx-article) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [Markdown article content printed to standard output, with Python code and shell commands provided by the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ignores links and images by default when converting fetched HTML to Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The fetch script can retrieve any user-supplied URL rather than enforcing the documented WeChat article scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated, low-privilege environment and add URL allowlisting for mp.weixin.qq.com before routine use.
+
+Risk: The skill fetches remote web content and depends on external Python packages.
+
+Mitigation: Review the target URL before execution and pin dependency versions during installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomjamescn/skills/fetch-wx-article)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ignores links and images by default when converting fetched HTML content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-企服助手一键初始化技能会在用户请求初始化或安装企服助手时，协助安装一组企业服务相关依赖技能并引导用户配置项目知识库。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企服助手一键初始化技能，当新用户输入初始化或安装触发词时，自动检测并安装8个核心依赖技能，然后引导用户配置项目知识库。
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Developers and operators setting up the 企服助手 workflow use this skill to bootstrap the required enterprise-service skills and prepare user-specific project knowledge-base configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change the local skills setup by installing or copying dependent skills. <br>
-Mitigation: Install only when the publisher is trusted, review the dependency installation script first, and confirm each skill before adding it to the local environment. <br>
-Risk: The workflow asks users to handle an Enterprise WeChat webhook URL, which is sensitive configuration. <br>
-Mitigation: Store webhook values as secrets or environment variables and avoid committing them to project files. <br>
+## Use Case:
 
+OpenClaw users use this skill to bootstrap an enterprise service assistant by installing eight related helper skills and then setting up a project knowledge file with local business data and webhook configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/enterprise-service-starter) <br>
-- [Publisher profile](https://clawhub.ai/user/perrykono-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides installation of dependent skills and setup of a user-specific project knowledge-base file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill installs multiple mutable dependency skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact eight dependency skills before installing and prefer pinned versions from verified publishers.
+
+Risk: The setup flow asks users to place a webhook secret in a regular project knowledge file.
+
+Mitigation: Use a secret manager, environment variable, or untracked local secret file instead of storing a real webhook URL in PROJECT_KB.md.
+
+Risk: The included shell scripts are described by security evidence as needing repair and review before trust.
+
+Mitigation: Treat the shell scripts as untrusted until they are repaired, reviewed, and tested in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/enterprise-service-starter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides installation of dependent skills and project knowledge configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

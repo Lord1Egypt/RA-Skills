@@ -1,44 +1,62 @@
-## Description: <br>
-Search, rewrite, and generate Seedance 2.0 video prompts with cinematic variants and bilingual output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, rewrite, and generate Seedance 2.0 video prompts with cinematic variants and bilingual output.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Prompt writers, video creators, and agents use this skill to find relevant Seedance prompt examples, rewrite rough ideas into stronger cinematic prompts, and produce concise prompt packs with optional Chinese and English versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional helper retrieves public prompt examples from GitHub raw URLs. <br>
-Mitigation: Use live search only where public network access is appropriate, and rely on the bounded prompt-writing workflow when network access is restricted. <br>
-Risk: Adapted prompt examples can raise attribution, licensing, or IP concerns if reused too directly. <br>
-Mitigation: Prefer transformed prompt synthesis, keep required upstream attribution when quoting or prominently adapting examples, and review outputs before publishing derived work. <br>
+## Use Case:
 
+External creators, developers, and agent users use this skill to find, adapt, translate, and generate concise Seedance-ready video prompts from a curated prompt-library workflow.
 
-## Reference(s): <br>
-- [Source attribution](references/source-attribution.md) <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Upstream Seedance prompt collection](https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts) <br>
-- [English upstream README](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-seedance-2-prompts/main/README.md) <br>
-- [Chinese upstream README](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-seedance-2-prompts/main/README_zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt shortlists, rewrites, prompt packs, bilingual prompt pairs, and concise rationale notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include safe, stylized, and experimental variants plus optional negative or avoid notes when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The optional helper script contacts GitHub raw README URLs to search upstream prompt entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation or use the skill without the optional helper script in restricted environments.
+
+Risk: The skill may return both Chinese and English prompt variants when bilingual output is useful.
+
+Mitigation: Ask for a single output language when only one language should be produced.
+
+Risk: Some prompt material is adapted from an upstream CC BY 4.0 collection and may require attribution when reused or redistributed.
+
+Mitigation: Keep attribution to the upstream YouMind-OpenLab Seedance prompt collection when quoting, bundling, or prominently adapting source prompts.
+
+## Reference(s):
+
+- [OpenClaw Seedance Prompt Library](https://clawhub.ai/x-rayluan/skills/openclaw-seedance-prompt-library)
+- [Source Attribution](references/source-attribution.md)
+- [Usage Patterns](references/usage-patterns.md)
+- [Upstream Seedance prompt collection](https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts)
+- [Upstream English README](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-seedance-2-prompts/main/README.md)
+- [Upstream Chinese README](https://raw.githubusercontent.com/YouMind-OpenLab/awesome-seedance-2-prompts/main/README_zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with curated prompt examples, rewritten prompts, bilingual prompt variants, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intentionally small and curated, typically returning 3-8 examples or safe, stylized, and experimental prompt variants.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

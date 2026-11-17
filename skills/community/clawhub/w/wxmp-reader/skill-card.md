@@ -1,41 +1,63 @@
-## Description: <br>
-Reads and summarizes WeChat Official Account articles from mp.weixin.qq.com URLs, extracting article text and optionally capturing a full-page screenshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and summarize WeChat Official Account articles by URL, extracting title, author, date, article text, and optional screenshots through local browser automation.
 
-## Publisher: <br>
-[reedchan7](https://clawhub.ai/user/reedchan7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reedchan7](https://clawhub.ai/user/reedchan7)
 
-## Use Case: <br>
-External users and agents use this skill to read, summarize, analyze, or screenshot WeChat Official Account articles when standard fetching methods cannot access the content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses browser automation and anti-bot evasion to access WeChat articles. <br>
-Mitigation: Restrict use to expected mp.weixin.qq.com article URLs and review the skill before deployment. <br>
-Risk: The skill can automatically create and share full-page screenshots that may include private, paid, or sensitive article content. <br>
-Mitigation: Make screenshot sharing opt-in or review screenshots before sending them in sensitive channels. <br>
+## Use Case:
 
+External users and agents use this skill to read, summarize, analyze, or screenshot WeChat Official Account article links when standard web fetching cannot retrieve the content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reedchan7/wxmp-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/reedchan7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown summary with optional JSON article extraction and PNG screenshot file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should match the user's language and avoid reproducing the full article.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can load arbitrary HTTP URLs in local browser automation if URL validation is not enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate that inputs are WeChat article URLs on mp.weixin.qq.com before running browser scripts.
+
+Risk: The browser automation can run Chrome with sandboxing disabled.
+
+Mitigation: Run only in isolated environments or revise the scripts to keep Chrome sandboxing enabled where supported.
+
+Risk: The documented workflow can send article screenshots automatically, including when the user only requested a summary.
+
+Mitigation: Make screenshot sending opt-in or confirm before sending, then write screenshots only to a private temporary path and delete them after use.
+
+Risk: The skill may depend on global or system package discovery for Chrome and playwright-core.
+
+Mitigation: Prefer pinned local dependencies and verified Chrome paths for reproducible execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/reedchan7/skills/wxmp-reader)
+- [Google Chrome Linux Signing Key](https://dl.google.com/linux/linux_signing_key.pub)
+- [Google Chrome Linux Repository](http://dl.google.com/linux/chrome/deb/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown summary with optional JSON article metadata and PNG screenshot file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a temporary PNG screenshot that should be sent only when appropriate and deleted after use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

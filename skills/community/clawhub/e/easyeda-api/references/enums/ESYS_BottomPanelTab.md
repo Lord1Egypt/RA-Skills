@@ -1,11 +1,11 @@
 # ESYS\_BottomPanelTab enum
 
-底部面板标签页
+Bottom panel tab
 
 ## Signature
 
 ```typescript
-declare enum ESYS_BottomPanelTab 
+enum ESYS_BottomPanelTab
 ```
 
 ## Enumeration Members
@@ -14,96 +14,68 @@ declare enum ESYS_BottomPanelTab
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 FIND
 
-
 </td><td>
 
-`"findResult"`
-
+`'findResult'`
 
 </td><td>
-
-查找结果
-
 
 </td></tr>
 <tr><td>
 
 LIBRARY
 
-
 </td><td>
 
-`"library"`
-
+`'library'`
 
 </td><td>
-
-库
-
 
 </td></tr>
 <tr><td>
 
 LOG
 
-
 </td><td>
 
-`"log"`
-
+`'log'`
 
 </td><td>
-
-日志
-
 
 </td></tr>
 <tr><td>
 
 PCB\_DRC
 
-
 </td><td>
 
-`"drcResult"`
-
+`'drcResult'`
 
 </td><td>
-
-PCB：DRC
-
 
 </td></tr>
 <tr><td>
 
 SCHEMATIC\_DRC
 
-
 </td><td>
 
-`"schDrcResult"`
-
+`'schDrcResult'`
 
 </td><td>
-
-原理图：DRC
-
 
 </td></tr>
 </tbody></table>

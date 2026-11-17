@@ -1,0 +1,13 @@
+{
+  "name": "@starsail/qimiao-productivity-skill",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "license": "MIT-0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.4.0"
+  }
+}

@@ -1,0 +1,19 @@
+name: multi-platform-content-check
+displayName: 多平台内容检测&安全改写
+version: 1.1.0
+description: 对任意中文文本执行三维一体检查：广告法合规（绝对化用语、虚假宣传、特殊品类限制等）、主流平台内容规范（微信公众号、小红书、抖音、快手、知乎、B站、微博、百家号、头条号、搜狐号）、去AI化（基于Wikipedia完整模式清单的30+种AI写作特征检测）。每次检查前强制执行实时联网搜索，获取最新的广告法动态、平台政策变更、新增敏感词和监管执法案例。检查完成后输出可直接复制发布的合规版本，已按目标平台格式适配。本技能不读取用户本地文件，不向第三方发送用户内容；联网搜索仅用于获取最新政策信息。
+slug: multi-platform-content-check
+category: productivity-tools
+author: 葛伊娜
+tags:
+  - 内容合规
+  - 广告法
+  - 去AI化
+  - 文案检查
+  - 平台规范
+  - 敏感词
+triggers:
+  - 内容检查
+  - 广告法检查
+  - 去AI化
+requiresApiKeys: false

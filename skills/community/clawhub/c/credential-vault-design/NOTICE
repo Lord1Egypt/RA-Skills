@@ -1,0 +1,12 @@
+NOTICE
+
+本技能包（credential-vault-design，统一凭据保险库）以 MIT 许可发布；该许可仅覆盖 SynomosAI 自有代码。
+
+运行期可选依赖 pykeepass（GPL-3.0，含 .kdbx 文件解析能力）受 GNU General Public
+License v3.0 约束，其版权归 pykeepass 上游作者所有，与 SynomosAI 无关。
+
+使用本技能包即表示你已知悉并理解：若你在分发本技能包或其衍生作品时一并包含或
+链接 pykeepass 等 GPL-3.0 组件，则相关的 GPLv3 义务（包括但不限于对应源码提供义务）
+将随之适用。SynomosAI 不对任何第三方依赖的许可合规承担责任。
+
+— SynomosAI

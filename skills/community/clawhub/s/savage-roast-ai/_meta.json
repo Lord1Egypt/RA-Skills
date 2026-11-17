@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn78myxjnbh3brqw4vcrdfnyrx83z60z",
-  "slug": "savage-roast-ai",
-  "version": "1.0.1",
-  "publishedAt": 1775025388648
+  "name": "toxic-roaster",
+  "version": "1.0.0",
+  "description": "Internet Troll Roaster - Deliver sharp, humorous, meme-worthy roasts in an internet troll style. Output length varies based on input content, with more material getting longer roasts that make users feel like they're getting a real \"telling off\"!",
+  "author": "User",
+  "dependencies": {},
+  "entry_point": "scripts.roast",
+  "input": {
+    "type": "text"
+  },
+  "output": {
+    "type": "text"
+  },
+  "parameters": []
 }

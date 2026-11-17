@@ -1,40 +1,53 @@
-## Description: <br>
-Documentation Writer helps agents create technical documentation, API documentation, code comments, user guides, tutorials, and architecture documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a documentation writing specialist with expertise in technical writing, API documentation, user guides, and automated documentation.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and technical teams use this skill to analyze project structure and produce documentation frameworks, API documentation, README content, user guides, architecture documentation, templates, diagrams, and validation tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read project files and generate or write documentation in a selected output directory. <br>
-Mitigation: Limit use to intended project paths and review generated file diffs before accepting or publishing them. <br>
-Risk: Optional external link validation can contact remote URLs found in documentation. <br>
-Mitigation: Enable external link validation only when remote URL checks are intended for the project. <br>
+## Use Case:
 
+Developers, technical writers, and documentation maintainers use this skill to draft and maintain API documentation, user guides, README content, architecture documentation, templates, diagrams, and validation workflows.
 
-## Reference(s): <br>
-- [Documentation Writer Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured documentation templates and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose generated or modified documentation files; review file diffs before accepting or publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Example workflows may write generated documentation files to disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose and review a safe output directory before reusing examples.
+
+Risk: External link validation can be unsuitable for untrusted documentation or private network environments.
+
+Mitigation: Restrict or disable external link checks when processing untrusted documentation or running inside a private network.
+
+## Reference(s):
+
+- [Documentation Writer Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include documentation frameworks, template libraries, API specifications, user guide templates, architecture diagrams, and validation tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

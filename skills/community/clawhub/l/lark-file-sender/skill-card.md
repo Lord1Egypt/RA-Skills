@@ -1,40 +1,59 @@
-## Description: <br>
-Sends documents, images, PDFs, archives, code files, and other local files to Feishu/Lark users or groups with guidance for path validation, target selection, and message formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send files to Feishu/Lark users and groups via the message tool, with guidance for file path validation, recipient selection, captions, and delivery formatting.
 
-## Publisher: <br>
-[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Feishu/Lark message-tool calls for sending selected local files to users or group chats, including generated reports, documents, images, spreadsheets, archives, and code files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send local files to Feishu/Lark recipients, including sensitive reports, invoices, credentials, personal data, or batch-send outputs. <br>
-Mitigation: Before each send, verify the exact file path, recipient user or chat, and message text; avoid sending sensitive files unless the user explicitly approves the destination and content. <br>
-Risk: Generated command examples may include local code execution as part of preparing files for delivery. <br>
-Mitigation: Treat generation-command examples as proposals and run local code only when the user explicitly requested that generation step. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare Feishu/Lark message-tool sends for local files such as documents, reports, images, archives, and generated outputs. It is most useful when an agent needs to validate a file path, choose a user or chat target, and include an optional caption before sharing a file.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/timyljob2011-sudo/lark-file-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline message-tool command examples and optional Python helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify the file path, optional caption, and optional user or chat target before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json) <br>
+Risk: The skill can help an agent send local files to external Feishu/Lark users or chats, which may expose sensitive or unintended content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation of the exact file path, recipient or chat, and caption before each send, and avoid sending files whose contents have not been reviewed.
+
+Risk: The helper formats send commands from file paths and message text, and untrusted input could produce misleading or unsafe command text.
+
+Mitigation: Use trusted filenames and captions, quote or escape values before use, and review the final command before execution.
+
+Risk: The artifact gives broad file-sharing examples without enforcing confirmation safeguards.
+
+Mitigation: Adopt a policy that requires explicit user approval before every external file send, especially for generated reports, archives, and batch transfers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/skills/lark-file-sender)
+- [README](artifact/README.md)
+- [Usage examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command examples and tool-call snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces message-tool send commands and optional file-checking guidance; does not generate or transform the shared file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

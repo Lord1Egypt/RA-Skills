@@ -1,42 +1,56 @@
-## Description: <br>
-Upcoming token unlock events that may create sell pressure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns upcoming token unlock events that may create sell pressure.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents, developers, and crypto traders use this skill to query APEX Runner's token-unlock signal before trades, filtering for upcoming unlock events that may create sell pressure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to use an EVM private key for automatically paid calls that can spend USDC. <br>
-Mitigation: Use only a dedicated low-balance wallet and avoid configuring a primary trading or custody wallet as EVM_PRIVATE_KEY. <br>
-Risk: Agent usage can create repeated paid calls without an account, API key, or subscription gate. <br>
-Mitigation: Apply external controls on agent usage and spending before deployment. <br>
+## Use Case:
 
+Developers can use this signal in crypto research and trading workflows to review upcoming token unlocks as a potential source of sell pressure and as an input to risk filtering.
 
-## Reference(s): <br>
-- [Token Unlock on ClawHub](https://clawhub.ai/kynto2001-ctrl/skills/token-unlock) <br>
-- [APEX Runner Token Unlock Signal](https://apexrunner.ai/signals/token-unlock) <br>
-- [APEX Runner Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with a Python request example and JSON response shape] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an EVM_PRIVATE_KEY for x402 payment; calls may spend USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The example signs paid Base USDC requests using EVM_PRIVATE_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in a secrets manager, use a wallet with a limited USDC balance, and retain the per-call max_amount cap.
+
+Risk: A clean scan does not guarantee zero risk.
+
+Mitigation: Review whether the skill's purpose suits your needs before installing, as recommended by the security guidance.
+
+## Reference(s):
+
+- [Token Unlock endpoint](https://apexrunner.ai/signals/token-unlock)
+- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/token-unlock)
+- [Narrative Intelligence signal](https://apexrunner.ai/signals/narrative-intelligence)
+- [Regime signal](https://apexrunner.ai/signals/regime)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON response containing upcoming token unlock records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid x402 request; requires an EVM wallet with USDC on Base and an EVM_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

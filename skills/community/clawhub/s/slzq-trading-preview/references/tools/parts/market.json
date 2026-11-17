@@ -1,0 +1,103 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_market_snapshot",
+      "description": "获取单个期货合约的实时行情快照（来自 Redis 缓存）。返回最新价、买卖一档价量、最高最低价、结算价、持仓量及合约乘数（volumeMultiple）。volumeMultiple 是计算盈亏的必要参数。注意：仅读取缓存，缓存缺失时字段可能为 null。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "description": "要查询的合约代码，如 'au2606'、'cu2506'。"
+          }
+        },
+        "required": [
+          "instrumentId"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_market_snapshots",
+      "description": "批量获取多个期货合约的实时行情快照。返回数组，顺序与请求中 instrumentIds 一致。每条结构与 get_market_snapshot 相同。建议最多 20 个合约。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "instrumentIds": {
+            "type": "string",
+            "description": "逗号分隔的合约代码，如 'au2606,ag2612,cu2506'。建议最多 20 个。"
+          }
+        },
+        "required": [
+          "instrumentIds"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_tick_data",
+      "description": "获取期货合约今日分时图数据（每分钟一条 tick），包含价格、成交量、持仓量、成交额。用于盘中价格走势分析。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "exchangeId": {
+            "type": "string",
+            "description": "交易所代码，如 'SHFE'、'DCE'、'CZCE'、'INE'、'CFFEX'。"
+          },
+          "instrumentId": {
+            "type": "string",
+            "description": "合约代码，如 'au2606'、'cu2506'。"
+          }
+        },
+        "required": [
+          "exchangeId",
+          "instrumentId"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_kline_data",
+      "description": "获取期货合约 K 线（蜡烛图/OHLC）数据，用于技术分析。返回开高低收、成交量、成交额、持仓量、结算价（仅日K线）。数组从旧到新排列。下单前可调用此接口分析趋势。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "exchangeId": {
+            "type": "string",
+            "description": "交易所代码，如 'SHFE'、'DCE'、'CZCE'、'INE'、'CFFEX'。"
+          },
+          "instrumentId": {
+            "type": "string",
+            "description": "合约代码，如 'au2606'、'cu2506'。"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "10",
+              "2",
+              "3",
+              "4",
+              "9",
+              "5",
+              "6",
+              "7"
+            ],
+            "description": "K 线周期。10=1分钟，2=5分钟，3=15分钟，4=30分钟，5=1小时，9=4小时，6=日线，7=周线。"
+          }
+        },
+        "required": [
+          "exchangeId",
+          "instrumentId",
+          "type"
+        ]
+      }
+    }
+  }
+]

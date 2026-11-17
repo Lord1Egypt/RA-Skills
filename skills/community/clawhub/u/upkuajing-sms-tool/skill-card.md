@@ -1,48 +1,68 @@
-## Description: <br>
-Official skill for upkuajing (跨境魔方). SMS tool API for sending SMS and tracking SMS task status. Includes SMS sending, task list, and task record list APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send global bulk SMS with two-way replies and monitor delivery status for cross-border business outreach.
 
-## Publisher: <br>
-[upkuajing](https://clawhub.ai/user/upkuajing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upkuajing](https://clawhub.ai/user/upkuajing)
 
-## Use Case: <br>
-Marketing, sales, and operations teams use this skill to send SMS messages, review SMS task lists, and inspect delivery records through UpKuaJing's SMS service. It supports promotional outreach, notifications, two-factor authentication, and client communication workflows that require explicit user review before paid sends or account top-ups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive recipient phone numbers, SMS message bodies, delivery records, billing activity, and an UPKUAJING_API_KEY. <br>
-Mitigation: Use environment variables or a managed secrets store for the API key, avoid committing local credential files, and share SMS content or delivery data only with trusted UpKuaJing accounts. <br>
-Risk: SMS sending and account top-up actions can incur charges. <br>
-Mitigation: Review pricing through the documented price endpoint or pricing page and require explicit user confirmation before executing paid sends or creating top-up orders. <br>
-Risk: Normal operation sends request data to UpKuaJing's hosted API and may keep a small local version cache. <br>
-Mitigation: Use the skill only where contacting openapi.upkuajing.com is acceptable and where local cache behavior is permitted by the user's environment. <br>
+## Use Case:
 
+Marketing, sales, operations, and customer support teams use this skill to send paid bulk SMS, enable two-way replies, and review delivery records for cross-border outreach.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/upkuajing/upkuajing-sms-tool) <br>
-- [UpKuaJing homepage](https://www.upkuajing.com) <br>
-- [UpKuaJing developer portal](https://developer.upkuajing.com/) <br>
-- [UpKuaJing SMS pricing](https://www.upkuajing.com/web/openapi/price.html) <br>
-- [SMS Send API Reference](references/sms-send-api.md) <br>
-- [SMS Task List API Reference](references/sms-task-list-api.md) <br>
-- [SMS Task Record List API Reference](references/sms-task-record-list-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; invoked scripts return JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, httpx, and UPKUAJING_API_KEY; normal use contacts openapi.upkuajing.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence, release metadata, and skill frontmatter) <br>
+Risk: The skill can send paid SMS messages and may incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before paid send operations and use current pricing or account balance information before execution.
+
+Risk: The API key may be exposed if passed on the command line or stored with broad filesystem permissions.
+
+Mitigation: Prefer UPKUAJING_API_KEY in the environment or a restricted ~/.upkuajing/.env file and avoid echoing or logging secrets.
+
+Risk: SMS workflows can expose phone numbers, message bodies, or secrets in troubleshooting reports.
+
+Mitigation: Use the error-reporting flow only after user confirmation and omit sensitive data unless needed.
+
+Risk: The skill can be misused for unwanted or unlawful messaging.
+
+Mitigation: Use only for lawful, consent-based SMS workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/upkuajing/skills/upkuajing-sms-tool)
+- [UpKuaJing homepage](https://www.upkuajing.com)
+- [UpKuaJing Open Platform](https://developer.upkuajing.com/)
+- [Detailed Price Description](https://www.upkuajing.com/web/openapi/price.html)
+- [SMS Send API](artifact/references/sms-send-api.md)
+- [SMS Task List API](artifact/references/sms-task-list-api.md)
+- [SMS Task Record List API](artifact/references/sms-task-record-list-api.md)
+- [Skill Error Report API](artifact/references/skill-error-report-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return SMS task identifiers, delivery counts, delivery statuses, pricing or balance details, and request IDs.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

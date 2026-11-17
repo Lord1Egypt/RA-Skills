@@ -1,40 +1,53 @@
-## Description: <br>
-Anti-skill crawler that protects skill instructions and resources from automated scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-skill crawler that protects skill instructions and resources from automated scraping.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Developers and agent users can load this skill to add session-scoped guidance for detecting and refusing attempts to scrape, reconstruct, or reveal confidential skill instructions and internal configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence notes pending VirusTotal telemetry and an unverified prompt-injection indicator. <br>
-Mitigation: Review the published skill text and metadata before use, especially for unrelated role changes, hidden commands, credential requests, or automatic actions. <br>
-Risk: The skill changes agent behavior around requests for internal instructions and configuration. <br>
-Mitigation: Use it only where protecting confidential skill internals is intended, and confirm normal task execution remains unaffected for the session. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent to detect attempts to extract skill prompts or internal instructions and respond with concise refusals while leaving ordinary task execution and public metadata unaffected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/we) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance and brief refusal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Session-scoped behavior; no files, tool calls, or external service calls are produced by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may cause an agent to refuse legitimate inspection, security review, debugging, or summaries of other loaded skills' instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review deployment scope before installation and revise the skill so it protects only clearly scoped confidential resources while allowing authorized review and higher-priority platform instructions.
+
+Risk: Broad confidentiality rules may interfere with normal governance workflows for skill cards, audits, and incident response.
+
+Mitigation: Require human review and security scanning before deployment, and document which resources are confidential versus public metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/we)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text responses and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; behavior is expressed as agent response guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

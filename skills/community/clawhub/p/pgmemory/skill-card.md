@@ -1,48 +1,66 @@
-## Description: <br>
-Persistent semantic memory for OpenClaw agents using PostgreSQL and pgvector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent semantic memory for OpenClaw agents using PostgreSQL and pgvector.
 
-## Publisher: <br>
-[jbushman](https://clawhub.ai/user/jbushman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jbushman](https://clawhub.ai/user/jbushman)
 
-## Use Case: <br>
-Developers and agent operators use pgmemory to set up, query, maintain, and synchronize persistent semantic memory for OpenClaw agents across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can capture sensitive project details and may send memory text to the configured embedding provider. <br>
-Mitigation: Avoid storing secrets or regulated data, choose local embeddings such as Ollama for sensitive projects, and review memory contents before writing them. <br>
-Risk: Setup can make lasting changes such as running a local database, modifying AGENTS.md, configuring cron, or changing host setup. <br>
-Mitigation: Run setup interactively, review AGENTS.md and configuration changes before relying on them, and avoid setup.py --yes unless those host changes are acceptable. <br>
-Risk: pgmemory.json may contain an embedding API key. <br>
-Mitigation: Protect the config file, limit file access, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and agent operators use Pgmemory to give OpenClaw agents persistent, searchable semantic memory for decisions, constraints, infrastructure facts, preferences, task context, and sub-agent findings across sessions.
 
-## Reference(s): <br>
-- [Pgmemory skill page](https://clawhub.ai/jbushman/pgmemory) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [pgvector](https://github.com/pgvector/pgvector) <br>
-- [Voyage AI](https://www.voyageai.com) <br>
-- [OpenAI platform](https://platform.openai.com) <br>
-- [Ollama](https://ollama.ai) <br>
-- [Schema reference](references/schema.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts emit plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PostgreSQL with pgvector and a configured embedding provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: Setup can make persistent local changes such as PostgreSQL or Docker setup, migrations, AGENTS.md scaffolding, and a decay cron job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup flow before running it, prefer an existing secured local PostgreSQL service, and inspect AGENTS.md and cron changes before accepting them.
+
+Risk: The Docker example uses a default database password and exposes PostgreSQL on a local host port.
+
+Mitigation: Bind PostgreSQL to localhost only and replace default credentials with a generated password before storing useful or sensitive memories.
+
+Risk: Memories and embedding requests can contain secrets, production connection details, or other sensitive context.
+
+Mitigation: Do not store secrets or production credentials as memories; use local embeddings through Ollama for sensitive data when possible.
+
+Risk: API keys may be stored directly in pgmemory.json.
+
+Mitigation: Keep API keys out of pgmemory.json unless file permissions are locked down, or use environment variables for provider credentials.
+
+## Reference(s):
+
+- [Pgmemory reference schema](references/schema.sql)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [pgvector](https://github.com/pgvector/pgvector)
+- [Voyage AI](https://www.voyageai.com)
+- [OpenAI platform](https://platform.openai.com)
+- [Ollama](https://ollama.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and script usage patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local scripts that write memories, query memories, manage PostgreSQL migrations, scaffold AGENTS.md, and configure decay jobs.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

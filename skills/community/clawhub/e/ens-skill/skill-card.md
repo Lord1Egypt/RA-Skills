@@ -1,45 +1,63 @@
-## Description: <br>
-Resolve ENS names (.eth) to Ethereum addresses and vice versa, look up ENS profiles, and help users register, renew, or manage .eth names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve ENS names (.eth) to Ethereum addresses and vice versa, including ENS profile lookup and guidance for registering, renewing, or managing .eth names.
 
-## Publisher: <br>
-[fabriziogianni7](https://clawhub.ai/user/fabriziogianni7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fabriziogianni7](https://clawhub.ai/user/fabriziogianni7)
 
-## Use Case: <br>
-External users and agents use this skill to resolve ENS names and wallet addresses, inspect ENS profile records, and guide .eth registration, renewal, and record-management workflows on Ethereum mainnet. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ENS names and wallet addresses may be queried through third-party services during resolution and profile lookup. <br>
-Mitigation: Use the minimum lookup needed for the task, cache results only within the active session, and make users aware when third-party services are involved. <br>
-Risk: ENS records can change, and an incorrect or stale resolution could route funds or updates to the wrong address. <br>
-Mitigation: Before any transaction, show the resolved 0x address, chain, cost, and wallet prompt, and require explicit user confirmation. <br>
-Risk: .eth registration, renewal, and record-management actions require Ethereum mainnet gas, fees, and contract interactions. <br>
-Mitigation: Present the chain, estimated cost, and operation steps before approval, and direct first-time or complex workflows to the ENS Manager App. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fabriziogianni7/ens-skill) <br>
-- [ENS documentation](https://docs.ens.domains/) <br>
-- [ENS Manager App](https://ens.app/myname.eth) <br>
-- [web3.bio profile API example](https://api.web3.bio/profile/vitalik.eth) <br>
-- [ENS avatar metadata endpoint](https://metadata.ens.domains/mainnet/avatar/{name}) <br>
+## Use Case:
 
+External users and developers use this skill to resolve ENS names and Ethereum addresses, inspect ENS profile records, and receive guided steps for registering, renewing, or managing .eth names on Ethereum mainnet.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference third-party ENS, web3.bio, The Graph, and Ethereum RPC services; registration, renewal, record updates, and transfers require user confirmation before wallet execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ENS name and wallet lookups may disclose user activity to third-party services.
+
+Mitigation: Review third-party lookup use before installation and disclose or restrict lookup behavior where privacy expectations require it.
+
+Risk: Stored ENS identity data may persist in user strategy or memory.
+
+Mitigation: Require explicit approval before storing ENS names, preferences, profile details, or transaction narratives.
+
+Risk: The raw Node.js fallback command can be unsafe with untrusted ENS names.
+
+Mitigation: Use a fixed script or argument-based resolver instead of interpolating untrusted names into a node -e command.
+
+Risk: ENS-changing transactions can affect ownership, renewals, or profile records.
+
+Mitigation: Require explicit user approval and show the resolved address, chain, contract action, cost, and target name before any transaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fabriziogianni7/skills/ens-skill)
+- [ENS documentation](https://docs.ens.domains/)
+- [ENS Manager App](https://ens.app/myname.eth)
+- [web3.bio profile API](https://api.web3.bio/profile/vitalik.eth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and transaction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ENS names, Ethereum addresses, profile fields, contract addresses, registration or renewal steps, and user-specific storage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

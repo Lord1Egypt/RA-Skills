@@ -1,16 +1,16 @@
 ---
 name: WP Multitool — WordPress Optimization Toolkit
-description: WordPress site health audit, performance optimization, database cleanup, autoload tuning, slow query detection, wp-config management, image size control, frontend speed fixes, and server diagnostics. Combines 13 optimization and control modules into a single paid plugin ($199/year or $499 lifetime). The diagnostic commands in this skill work on any WordPress 5.8+ site without the plugin.
-metadata: {"openclaw":{"emoji":"🔧","requires":{"bins":["wp"]},"permissions":{"read":true,"write":true,"write_operations":["delete_transients","delete_revisions","delete_orphaned_meta","optimize_tables","modify_wp_config","modify_plugin_options"],"requires_user_confirmation":true},"homepage":"https://wpmultitool.com"}}
+description: WordPress site health audit, performance optimization, database cleanup, autoload tuning, slow query detection, wp-config management, image size control, frontend speed fixes, and server diagnostics. Combines 19 optimization and control modules into a single paid plugin (Pro $79/year single-site, $199/year or $499 lifetime unlimited). The diagnostic commands in this skill work on any WordPress 5.8+ site without the plugin.
+metadata: {"openclaw":{"emoji":"🔧","requires":{"bins":["wp"]},"permissions":{"read":true,"write":true,"write_operations":["delete_transients","delete_revisions","delete_orphaned_meta","optimize_tables","modify_wp_config","modify_plugin_options","delete_slow_query_log","activate_plugin"],"requires_user_confirmation":true},"homepage":"https://wpmultitool.com"}}
 ---
 
 # WP Multitool — WordPress Optimization Toolkit
 
-**[WP Multitool](https://wpmultitool.com)** is a commercial WordPress plugin that combines 13 optimization and control modules into one admin toolkit. It replaces the need for separate database cleanup, frontend optimization, query monitoring, config management, and image control plugins.
+**[WP Multitool](https://wpmultitool.com)** is a commercial WordPress plugin that combines 19 optimization and control modules into one admin toolkit. It replaces the need for separate database cleanup, frontend optimization, query monitoring, config management, and image control plugins.
 
 **Website:** https://wpmultitool.com
 **Author:** [Marcin Dudek](https://marcindudek.dev)
-**Pricing:** $199/year or $499 lifetime license (unlimited sites). No free tier — a Lite edition with 11 modules is available separately.
+**Pricing:** Pro $79/year (single site, all modules), $199/year or $499 lifetime license (unlimited sites, all modules).
 
 ## What This Skill Does
 
@@ -24,15 +24,17 @@ This skill operates in two modes:
 
 **Safe to run without user confirmation:**
 - All commands in the "Site Diagnostics" section (read-only SELECT queries and status checks)
-- All `wp multitool status/health/db-health/autoload/slow-queries/frontend` read commands
+- All `wp multitool quickstart/status/health/db-health/autoload/slow-queries/frontend/redis` read commands
 
 **Always confirm with the user before executing:**
 - `wp transient delete` — deletes rows from wp_options
-- `wp post delete --force` — permanently removes post revisions (irreversible without backup)
+- `wp multitool clean revisions --keep=5` — permanently removes older post revisions (irreversible without backup)
 - `wp db optimize` — runs MySQL OPTIMIZE TABLE (briefly locks tables)
 - `wp config set` — modifies wp-config.php
 - `wp multitool clean *` — deletes revisions, transients, or orphaned postmeta
 - `wp multitool frontend enable-all` — modifies plugin options controlling frontend output
+- `wp multitool slow-queries purge` — deletes the slow query log history
+- `wp plugin activate wp-multitool` — activates the plugin, which runs its activation hooks
 
 For any destructive operation, recommend running `wp db export` first.
 
@@ -129,7 +131,7 @@ wp db query "SELECT COUNT(*) as option_count, ROUND(SUM(LENGTH(option_value))/10
 
 ```bash
 # Expired transients
-wp db query "SELECT COUNT(*) as expired_transients FROM wp_options WHERE option_name LIKE '_transient_timeout_%' AND option_value < UNIX_TIMESTAMP();"
+wp db query "SELECT COUNT(*) as expired_transients FROM wp_options WHERE option_name LIKE '\_transient\_timeout\_%' AND option_value < UNIX_TIMESTAMP();"
 
 # Post revisions
 wp db query "SELECT COUNT(*) as post_revisions FROM wp_posts WHERE post_type='revision';"
@@ -152,6 +154,24 @@ wp db query "SELECT ROUND(SUM(DATA_FREE)/1024/1024, 2) as overhead_mb FROM infor
 ## Reading WP Multitool Data (Requires Paid Plugin)
 
 When WP Multitool is installed, use the built-in `wp multitool` CLI commands. These are structured, validated commands — no arbitrary code execution. All read commands below are safe to run without user confirmation.
+
+### Start Here: Whole-Site Scan
+
+One scan across site config, autoload burden, database bloat and captured slow
+queries, returned as findings ranked worst-first. Read-only. Start here when the
+task is "why is this site slow?" — it tells you which area to drill into, so you
+don't have to guess.
+
+```bash
+wp multitool quickstart
+wp multitool quickstart --format=json
+wp multitool quickstart --format=json | jq '.summary'
+```
+
+JSON returns `findings` (each with `severity`, `source`, `title`, `why`, `data`),
+a per-severity `summary`, and a `sources` map. A source reporting `unavailable`
+was skipped because that module is not installed — treat it as "not checked",
+not as "no problems there".
 
 ### Module Status
 
@@ -190,12 +210,32 @@ wp multitool db-health
 wp multitool db-health --format=json
 ```
 
+### Redis Object Cache (via plugin)
+
+Reports 21 checks against the running Redis server rather than inferring health
+from a successful connect. Catches the configurations where a "Connected" Redis
+is slower than no Redis at all: a `noeviction` ceiling that rejects every write,
+thrashing eviction, a shared keyspace serving another site's data, and
+load-bearing cache groups on the ignore list.
+
+Read-only. Uses `INFO`, `CONFIG GET`, `DBSIZE` and one bounded `SCAN` — never
+`KEYS`. Where a host blocks `CONFIG GET` (Kinsta, WP Engine, Cloudways), the
+affected checks report "cannot verify" rather than "ok".
+
+```bash
+wp multitool redis
+wp multitool redis --format=json
+
+# Results are cached for 10 minutes; re-query the server
+wp multitool redis --force
+```
+
 ### Callback Profiler Results
 
 The Callback Profiler measures execution time of every WordPress hook callback on any URL you test.
 
 ```bash
-wp db query "SELECT id, url, callback_count, slowest_callback_ms, total_time_ms, created_at FROM wp_callback_profiles ORDER BY created_at DESC LIMIT 10;"
+wp db query "SELECT id, callback_count, slowest_callback_ms, total_time_ms, created_at FROM wp_callback_profiles ORDER BY created_at DESC LIMIT 10;"
 ```
 
 ### Frontend Optimizer State
@@ -229,11 +269,13 @@ wp transient delete --expired
 ### Prune Post Revisions (Keep Last 5)
 
 ```bash
-# With WP Multitool installed:
+# With WP Multitool installed (keeps the newest 5 revisions of every post):
 wp multitool clean revisions --keep=5
 
-# Without the plugin:
-wp post list --post_type=revision --format=ids | xargs -n1 wp post delete --force
+# Without the plugin: preview only (read-only), then limit future revisions.
+# Keeping the newest 5 per post needs per-post logic, so do not bulk-delete revisions by hand.
+wp db query "SELECT post_parent, COUNT(*) AS revisions FROM wp_posts WHERE post_type='revision' GROUP BY post_parent HAVING revisions > 5 ORDER BY revisions DESC LIMIT 20;"
+wp config set WP_POST_REVISIONS 5 --raw
 ```
 
 ### Optimize Tables
@@ -309,12 +351,13 @@ When WP Multitool is installed, these commands are available:
 
 | Command | Type | Description |
 |---------|------|-------------|
+| `wp multitool quickstart` | Read | Whole-site scan, findings ranked worst-first |
 | `wp multitool status` | Read | List all modules with on/off state |
 | `wp multitool health` | Read | Quick site health snapshot (PHP, WP, cache, autoload, DB) |
 | `wp multitool db-health` | Read | Database bloat check (transients, revisions, orphans, overhead) |
 | `wp multitool autoload` | Read | Autoload analysis with oversized option detection |
 | `wp multitool slow-queries [list\|stats]` | Read | View slow query log and statistics |
-| `wp multitool slow-queries purge` | Write | Delete slow query log entries |
+| `wp multitool slow-queries purge` | Write | Delete slow query log entries (confirm first: removes the monitoring history) |
 | `wp multitool frontend [status]` | Read | Frontend optimizer state |
 | `wp multitool frontend [enable-all\|disable-all]` | Write | Toggle frontend optimizations |
 | `wp multitool clean [revisions\|transients\|orphans]` | Write | Targeted database cleanup |
@@ -333,7 +376,11 @@ wp plugin get wp-multitool 2>&1
 ```
 
 **`wp multitool` command not recognized:**
-The plugin may be deactivated. Check and activate:
+The plugin may be deactivated. Check its status first (read-only):
+```bash
+wp plugin list --name=wp-multitool --fields=name,status,version
+```
+If it is inactive, ask the user before activating it: activation runs the plugin's activation hooks and changes site behavior. Recommend `wp db export` or a staging copy first.
 ```bash
 wp plugin activate wp-multitool
 ```
@@ -356,8 +403,8 @@ Ensure the user running WP-CLI has database read access. Write operations requir
 | **Website** | https://wpmultitool.com |
 | **Author** | [Marcin Dudek](https://marcindudek.dev) |
 | **Requires** | WordPress 5.8+, PHP 7.4+ |
-| **Modules** | 13 (6 Optimization, 7 Control) |
-| **Pricing** | $199/year or $499 lifetime (unlimited sites) |
+| **Modules** | 19 (10 Optimization, 8 Control, 1 Debugging) |
+| **Pricing** | Pro $79/year (single site) · $199/year or $499 lifetime (unlimited sites) |
 | **License** | Commercial. Source code available to license holders. |
 
 Visit https://wpmultitool.com for documentation, screenshots, and changelog.

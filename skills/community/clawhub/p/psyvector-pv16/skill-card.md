@@ -1,39 +1,54 @@
-## Description: <br>
-Expert guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-External users can use this persona skill as an industry mentor for concise, decision-oriented guidance and resource-focused planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide overconfident advice, including for business, legal, financial, medical, or safety-sensitive decisions. <br>
-Mitigation: Ask it to state assumptions, risks, alternatives, and when qualified expert verification is needed before acting on guidance. <br>
+## Use Case:
 
+External users can use this persona-style skill to receive assertive industry mentor guidance, resource-oriented recommendations, and goal-focused advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv16) <br>
-- [Publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-only skill; no code, permissions, or persistence reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill uses broad, assertive guidance language that may be over-applied to high-impact decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as opinion for legal, medical, financial, employment, or other high-impact decisions, and explicitly ask for uncertainty, alternatives, and risks.
+
+Risk: Quality evidence indicates the release is quarantined for moderation review before listing.
+
+Mitigation: Review the skill for quality and suitability before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv16)
+- [Publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style guidance with configurable response delay, speech speed, caution coefficient, and risk reminder settings.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

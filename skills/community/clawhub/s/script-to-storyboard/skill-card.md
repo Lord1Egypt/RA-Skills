@@ -1,41 +1,55 @@
-## Description: <br>
-Converts film or video scripts into structured storyboard tables with shot numbers, camera framing and angles, visual content, characters, scenes, and sound notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts film or video scripts into structured storyboard tables with shot numbers, shot type and camera angle, visual content, characters, scene, and sound.
 
-## Publisher: <br>
-[Eita19](https://clawhub.ai/user/Eita19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eita19](https://clawhub.ai/user/eita19)
 
-## Use Case: <br>
-Creators, editors, and production teams use this skill to turn script text into storyboard planning tables. It supports both manual conversion guidance and a local helper script that parses shot cues and writes a CSV storyboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper reads script content from the selected input file and writes a CSV file to the selected output path. <br>
-Mitigation: Process only scripts suitable for the local agent workflow, and choose a non-critical output filename to avoid overwriting important files. <br>
+## Use Case:
 
+Creators, video teams, and developers use this skill to convert screenplay text into storyboard planning artifacts and CSV-ready shot lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Eita19/script-to-storyboard) <br>
-- [Publisher profile](https://clawhub.ai/user/Eita19) <br>
-- [Example storyboard](references/示例分镜.md) <br>
-- [Example script](references/示例剧本.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance, shell command examples, console table text, and CSV storyboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper reads a user-selected input script file and writes a CSV file to the chosen output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated CSV cells may contain formula-like text that spreadsheet tools interpret when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat screenplay input as untrusted and review or sanitize CSV contents before opening them in spreadsheet applications.
+
+Risk: The bundled examples may need review for respectful cultural representation in some workflows.
+
+Mitigation: Review and revise example content before using it as a creative or production reference.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eita19/skills/script-to-storyboard)
+- [Example screenplay](references/示例剧本.md)
+- [Example storyboard](references/示例分镜.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown storyboard table, console text, and CSV file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The converter writes UTF-8 CSV with a byte order mark for spreadsheet compatibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

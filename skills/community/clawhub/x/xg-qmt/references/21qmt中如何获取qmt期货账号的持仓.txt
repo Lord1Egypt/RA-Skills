@@ -1,0 +1,18 @@
+#coding:gbk
+
+
+
+def init(ContextInfo):
+        print(get_future_positions(ContextInfo, '079383'))
+
+
+def get_future_positions(ContextInfo,accountid):
+        positions = get_trade_detail_data(accountid, 'FUTURE', 'POSITION')
+        hold_dict = {}
+        for p in positions:
+                code = p.m_strInstrumentID +'.'+p.m_strExchangeID
+                direction = p.m_nDirection
+                volume = p.m_nVolume
+                key = (code, direction)
+                hold_dict[key] = hold_dict.get(key, 0)+volume
+        return hold_dict

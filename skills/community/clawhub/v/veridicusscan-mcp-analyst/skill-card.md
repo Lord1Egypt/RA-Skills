@@ -1,44 +1,61 @@
-## Description: <br>
-Guides agents through VeridicusScan MCP scans of prompts, local files, public HTTPS URLs, and runtime-defense workflows such as memory ingestion, selective disclosure, tool scoping, plan guarding, and action gating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to inspect a prompt, local file, or public HTTPS URL with VeridicusScan through its MCP bridge, triage prompt-injection or hidden-instruction findings, explain coverage or redaction limits, export reports, or run runtime-defense workflows such as memory ingestion, selective disclosure, tool scoping, plan guarding, and action gating.
 
-## Publisher: <br>
-[sabaaziz991-hash](https://clawhub.ai/user/sabaaziz991-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sabaaziz991-hash](https://clawhub.ai/user/sabaaziz991-hash)
 
-## Use Case: <br>
-Security, IT, recruiting, compliance, and developer users can use this skill to scan selected prompts, files, websites, and agent-runtime flows through a trusted VeridicusScan MCP bridge. The skill helps summarize risk bands, findings, coverage limits, redaction behavior, and runtime-defense decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-selected URLs, files, prompts, or runtime data to a VeridicusScan MCP bridge for analysis. <br>
-Mitigation: Connect only a trusted bridge and scan only the specific inputs the user intends to share. <br>
-Risk: Memory ingestion and selective-disclosure test inputs may contain sensitive information. <br>
-Mitigation: Treat memory and disclosure inputs as sensitive, and summarize redaction or sanitized-only behavior when it appears in results. <br>
-Risk: Public URL scans are intentionally limited to public HTTPS destinations and can reject private, loopback, local, or internally resolved targets. <br>
-Mitigation: Report exact MCP error codes such as non_public_network_url and explain that these blocks are intentional network boundaries. <br>
+## Use Case:
 
+Security, IT, recruiting, compliance, and developer teams use this skill to route selected URLs, local files, prompts, and agent-runtime workflows through the VeridicusScan MCP bridge and summarize scanner risk, coverage, redaction limits, and relevant findings.
 
-## Reference(s): <br>
-- [VeridicusScan MCP methods](references/mcp-methods.md) <br>
-- [AI job application screening](https://veridicuscan.app/ai-job-application-screening) <br>
-- [Local MCP automation for AI agents](https://veridicuscan.app/mcp-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, API Calls] <br>
-**Output Format:** [Markdown summaries with MCP method names, risk fields, findings, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exact MCP error codes, redaction notes, coverage limits, and exported report guidance when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: release evidence) <br>
+Risk: The skill submits user-selected URLs, files, prompts, and runtime-defense workflow data to a VeridicusScan MCP bridge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact URL, file, prompt, or workflow before scanning and use this skill only when the VeridicusScan MCP bridge is intentionally connected.
+
+Risk: Runtime-defense methods such as memory ingestion, tool scoping, plan guarding, and action gating can influence later agent decisions.
+
+Mitigation: Run these workflows deliberately, preserve authoritative tool-scope values returned by the bridge, and avoid inventing or forging scope values.
+
+Risk: Scan reports may be partial or redacted, including sanitized-only file contexts.
+
+Mitigation: State coverage limits and redaction status explicitly, and prefer safe_context for downstream use when VeridicusScan returns sanitized_only.
+
+## Reference(s):
+
+- [MCP methods](references/mcp-methods.md)
+- [AI job application screening](https://veridicuscan.app/ai-job-application-screening)
+- [Local MCP automation for AI agents](https://veridicuscan.app/mcp-automation)
+- [ClawHub skill page](https://clawhub.ai/sabaaziz991-hash/skills/veridicusscan-mcp-analyst)
+- [Publisher profile](https://clawhub.ai/user/sabaaziz991-hash)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise operational Markdown summaries with method names, risk bands, scores, findings, coverage notes, and redaction notes when applicable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exact MCP error codes, report-export guidance, and sanitized context recommendations when returned by VeridicusScan.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Intelligent memory management for OpenClaw agents that reviews daily notes, suggests MEMORY.md updates, maintains directory health, and auto-cleans old files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent memory management for OpenClaw agents. Reviews daily notes, suggests MEMORY.md updates, maintains directory health, and auto-cleans old files. Recommended for agents with growing memory footprints.
 
-## Publisher: <br>
-[MaxLaurieHutchinson](https://clawhub.ai/user/MaxLaurieHutchinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maxlauriehutchinson](https://clawhub.ai/user/maxlauriehutchinson)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep agent memory files organized, review recent daily notes, and generate human-reviewed suggestions for long-term MEMORY.md updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The review workflow can send memory files, USER.md, MEMORY.md, daily notes, and environment-derived context to Gemini. <br>
-Mitigation: Install only when this data can be shared with Gemini, and review the workspace .env file so unrelated secrets are not exposed. <br>
-Risk: The install workflow can add a recurring daily cron job. <br>
-Mitigation: Review the scheduled job during installation and disable scheduling if recurring automated review is not desired. <br>
-Risk: Apply and cleanup workflows can move, archive, or trash memory files based on generated review JSON. <br>
-Mitigation: Inspect generated JSON before applying changes, prefer dry-run or safe mode first, and confirm that trash or archive retention meets recovery needs. <br>
+## Use Case:
 
+OpenClaw users and agent maintainers use this skill to review daily memory notes, generate MEMORY.md update suggestions, check memory directory health, and manage archival or cleanup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MaxLaurieHutchinson/memory-maintenance) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, structured JSON review files, shell command guidance, and configuration settings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gemini CLI, jq, and GEMINI_API_KEY; generated review JSON should be treated as untrusted until reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: OpenClaw memory notes, MEMORY.md, and USER.md content may be sent to Gemini for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data sharing is acceptable; add redaction or explicit opt-in before remote analysis.
+
+Risk: Automated maintenance can move or delete memory-related files.
+
+Mitigation: Inspect or disable the daily cron cleanup, use dry-run or safe modes first, and validate model-generated file paths before applying changes.
+
+Risk: Scripts may source .env files and expose broader environment secrets than intended.
+
+Mitigation: Review or patch scripts before installation to avoid sourcing .env files or to limit loaded variables to the required Gemini credential.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxlauriehutchinson/skills/memory-maintenance)
+- [Publisher profile](https://clawhub.ai/user/maxlauriehutchinson)
+- [Skill homepage from artifact metadata](https://github.com/MaxLaurieHutchinson/memory-maintenance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON review data, Markdown reports, shell command output, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review files under agents/memory and supports dry-run, safe, cleanup, and status workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

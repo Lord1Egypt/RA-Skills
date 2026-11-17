@@ -1,43 +1,54 @@
-## Description: <br>
-Find, shortlist, vet, and enrich U.S. business accounting and tax firms using the ServiceGraph pro_services dataset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Cpa Firm helps agents find, shortlist, vet, and enrich US business-to-business accounting and tax firms using the ServiceGraph pro_services catalog.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-Agents use this skill to help users procure U.S. B2B CPA, accounting, audit, tax, bookkeeping, advisory, and valuation firms. It guides ServiceGraph searches, presents shortlist results, and asks for confirmation before paid firm-detail unlocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ServiceGraph API key, which could expose sensitive credentials if pasted into chat or read from environment files. <br>
-Mitigation: Keep SERVICEGRAPH_API_KEY in the local environment, avoid sharing it in chat, and use shell dispatch without printing secrets. <br>
-Risk: Unlocking firm details spends ServiceGraph credits. <br>
-Mitigation: Show the credit cost before unlock calls and get user confirmation before any paid request. <br>
-Risk: Using the workflow outside its intended scope can return irrelevant or misleading firm recommendations. <br>
-Mitigation: Limit use to U.S. B2B accounting and tax firm procurement, pin industry:accounting_tax, and decline personal tax, in-house hiring, software comparison, and non-U.S. requests. <br>
+## Use Case:
 
+External users and developers use this skill to search for US CPA firms for business audit, tax, bookkeeping, advisory, valuation, diligence, and related procurement workflows. The skill is scoped to B2B accounting and tax firms and excludes personal tax preparation, in-house finance hiring, software comparisons, and non-US firms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nostrband/find-cpa-firm) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with ServiceGraph filter examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include filter DSL queries, brief firm shortlists, and optional paid unlock requests that require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: REST authentication guidance may lead an agent to source .env.local as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ServiceGraph MCP/OAuth path, or pass only SERVICEGRAPH_API_KEY through the process environment before calling fixed ServiceGraph endpoints.
+
+Risk: Firm detail unlocks spend ServiceGraph credits.
+
+Mitigation: Confirm the selected apex domains and expected credit cost with the user before calling the unlock endpoint.
+
+## Reference(s):
+
+- [ServiceGraph API](https://api.servicegraph.co)
+- [ClawHub Skill Listing](https://clawhub.ai/nostrband/skills/find-cpa-firm)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ServiceGraph filters, firm shortlists, enrichment steps, and credit-cost notes for paid unlocks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

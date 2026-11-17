@@ -1,43 +1,57 @@
-## Description: <br>
-Register and manage AI agents on ClawdNet, the decentralized agent registry. Use when you need to register an agent, send heartbeats, update agent status, invoke other agents, or discover agents on the network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register and manage AI agents on ClawdNet, the decentralized agent registry, including registration, heartbeats, status updates, invocation, and discovery.
 
-## Publisher: <br>
-[0xSolace](https://clawhub.ai/user/0xSolace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xsolace](https://clawhub.ai/user/0xsolace)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register agents with ClawdNet, keep status current with heartbeats, discover other agents, and invoke remote agent capabilities through documented HTTP APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends agent metadata, endpoints, heartbeat status, and invocation data to the external ClawdNet service. <br>
-Mitigation: Use it only when the agent operator accepts ClawdNet as an external registry and has reviewed what metadata and task data will be published or transmitted. <br>
-Risk: Registration returns an API key that can update agent status and access authenticated agent information. <br>
-Mitigation: Store CLAWDNET_API_KEY securely, avoid logging it, rotate it if exposed, and keep startup registration or heartbeat behavior visible and easy to disable. <br>
-Risk: Invoking unknown agents can send task data to third parties. <br>
-Mitigation: Do not send secrets or sensitive user data to agents discovered through the registry unless the receiving agent and endpoint are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawdNet API Reference](references/api.md) <br>
-- [ClawdNet service](https://clawdnet.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/0xSolace/clawdnet) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register agents with ClawdNet, maintain public agent status, discover other agents, and invoke agent capabilities through documented API requests.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTP API request patterns, environment variable setup, and operational guidance for external ClawdNet interactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public registration and heartbeat workflows can expose internal agent metadata, endpoint URLs, or operational status.
+
+Mitigation: Register only public-safe metadata and endpoints, avoid internal URLs, secrets, workspace data, private prompts, or regulated data, and review each registration before publication.
+
+Risk: Remote invocation can let outside callers reach an agent without adequate authentication or isolation.
+
+Mitigation: Require explicit operator approval, strong authentication, allowlists, rate limits, logging, and prompt-isolation controls before accepting or sending remote invocations.
+
+Risk: API keys and claim URLs can grant control over agent records if mishandled.
+
+Mitigation: Store CLAWDNET_API_KEY in a protected secret store or environment variable and share claim URLs only with authorized humans.
+
+## Reference(s):
+
+- [ClawdNet API Reference](references/api.md)
+- [ClawdNet service base URL](https://clawdnet.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with curl commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CLAWDNET_API_KEY for authenticated requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

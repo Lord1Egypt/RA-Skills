@@ -1,43 +1,54 @@
-## Description: <br>
-A Chinese-language, Taleb-inspired thinking framework that helps users critique decisions, hidden tail risks, antifragility, skin in the game, and mainstream narratives from a clearly fictional perspective. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Taleb-inspired thinking and communication framework for analyzing decisions, challenging mainstream narratives, and examining antifragility, black swans, tail risk, skin in the game, and related concepts.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users and developers can use this skill as a stylized reasoning aid for analyzing uncertainty, asymmetric downside, antifragility, and accountability in decisions. It is best treated as fictional, Taleb-inspired critique rather than as statements from Nassim Nicholas Taleb or as professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to speak in the first person as Nassim Nicholas Taleb after only a limited initial disclosure. <br>
-Mitigation: Keep the fictional framing visible to users and treat all responses as Taleb-inspired analysis, not as statements from Nassim Nicholas Taleb. <br>
-Risk: The skill may produce assertive critique about finance, medicine, law, business, or other high-impact decisions. <br>
-Mitigation: Do not rely on outputs as professional advice; require qualified human review before acting on high-impact recommendations. <br>
-Risk: The activated persona may continue until explicitly exited. <br>
-Mitigation: Use the documented exit phrases such as "退出", "切回正常", or "不用扮演了" to restore normal assistant behavior. <br>
+## Use Case:
 
+External users and agent operators use this skill to ask an assistant to analyze problems through a Taleb-inspired perspective, especially around hidden downside, asymmetry, antifragility, and accountability for risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/taleb-perspective) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text conversational analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are stylized Chinese-language critique and should not be treated as professional financial, medical, legal, or business advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The roleplay persona can make AI-generated interpretations sound unusually authentic or certain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as Taleb-inspired analysis rather than statements by Nassim Nicholas Taleb, and disclose that framing when sharing outputs.
+
+Risk: The persona is deliberately forceful and may be unsuitable when users need neutral or gentle communication.
+
+Mitigation: Install and activate the skill only for users who want this communication style, and use the documented exit phrases to return to normal assistant behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/taleb-perspective)
+- [Publisher profile](https://clawhub.ai/user/alchaincyf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-driven analysis; no code execution or data access behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Removes invalid characters and normalizes whitespace in filenames for safe, consistent, cross-platform file naming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean Filenames sanitizes local filenames by replacing invalid characters, normalizing whitespace, and trimming problematic leading or trailing spaces and dots.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers, content managers, and operators use this skill to sanitize local filenames in a single file, directory, or recursive directory tree. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Renaming files in place can break links, scripts, imports, media catalogs, or project references. <br>
-Mitigation: Test on a small copy or make a backup before running on important or recursive directories. <br>
+## Use Case:
 
+Developers, content managers, and other users use this skill to clean filenames for cross-platform compatibility in a single file, one directory, or a recursive directory tree.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rename local files in place when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill renames existing local files, and recursive mode can affect many filenames at once.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it first on a small test folder, use recursive mode only when intended, and keep backups for directories where renamed files could break links, scripts, media libraries, or workflows.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/albionaiinc-del/skills/clean-filenames)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Files]
+
+**Output Format:** [Plain text CLI status messages and file rename side effects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Skips rename conflicts to avoid overwriting existing files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

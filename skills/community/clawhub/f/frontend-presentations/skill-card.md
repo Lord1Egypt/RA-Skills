@@ -1,43 +1,67 @@
-## Description: <br>
-Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create animation-rich, self-contained HTML presentations from scratch, from PowerPoint files, or by enhancing existing decks.
 
-## Publisher: <br>
-[zarazhangrui](https://clawhub.ai/user/zarazhangrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zarazhangrui](https://clawhub.ai/user/zarazhangrui)
 
-## Use Case: <br>
-Developers, presenters, and non-designers use this skill to create distinctive browser-based slide decks, convert PowerPoint files to web presentations, and enhance existing HTML presentations with responsive layout, motion, and style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks and extracted PPTX assets may persist confidential presentation content in local files or browser localStorage when inline editing is enabled. <br>
-Mitigation: For confidential presentations, skip inline editing when possible and deliberately preserve or delete generated files, extracted assets, and local browser data after use. <br>
-Risk: Generated presentations may load remote font resources, which can disclose network activity and may be unsuitable for restricted environments. <br>
-Mitigation: Ask the agent to avoid remote font links or replace them with approved local fonts before opening or distributing the deck. <br>
-Risk: Opening generated HTML from untrusted source content can expose users to unwanted browser behavior. <br>
-Mitigation: Review generated HTML before opening it when the source content is untrusted. <br>
+## Use Case:
 
+Developers, presenters, and non-designers use this skill to plan, style, generate, convert, and refine web-based slide decks with responsive viewport fitting and animation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zarazhangrui/frontend-presentations) <br>
-- [Publisher profile](https://clawhub.ai/user/zarazhangrui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, JSON extraction data, and shell commands as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces zero-dependency, self-contained HTML slide files and may extract PPTX assets into local files during conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated presentations and PowerPoint conversion can create local HTML files and extracted asset folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files and output locations before sharing or publishing decks.
+
+Risk: Optional browser editing can store deck text in localStorage.
+
+Mitigation: Avoid enabling inline editing for sensitive content, or clear browser storage after editing.
+
+Risk: Remote fonts can load resources from external font providers.
+
+Mitigation: Use local or approved fonts for offline, private, or policy-restricted presentations.
+
+Risk: PowerPoint conversion may require installing Python packages such as python-pptx.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions instead of a shared Python environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zarazhangrui/skills/frontend-presentations)
+- [README](artifact/README.md)
+- [HTML Presentation Template](artifact/html-template.md)
+- [Viewport Base CSS](artifact/viewport-base.css)
+- [Style Presets Reference](artifact/STYLE_PRESETS.md)
+- [Animation Patterns Reference](artifact/animation-patterns.md)
+- [PowerPoint Extraction Script](artifact/scripts/extract-pptx.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets; generated artifacts are self-contained HTML files and optional extracted assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local HTML/assets, optional browser localStorage edits, and PowerPoint extraction outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

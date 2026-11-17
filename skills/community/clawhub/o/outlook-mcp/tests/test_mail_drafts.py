@@ -2,10 +2,21 @@
 
 from unittest.mock import AsyncMock, MagicMock
 
+import httpx
 import pytest
+from msgraph.generated.models.o_data_errors.o_data_error import ODataError
+from msgraph.generated.users.item.messages.item.create_forward import (
+    create_forward_post_request_body as fwd,
+)
+from msgraph.generated.users.item.messages.item.create_reply import (
+    create_reply_post_request_body as rep,
+)
+from msgraph.generated.users.item.messages.item.create_reply_all import (
+    create_reply_all_post_request_body as rep_all,
+)
 
 from outlook_mcp.config import Config
-from outlook_mcp.errors import ReadOnlyError
+from outlook_mcp.errors import GraphAPIError, ReadOnlyError, wrap_graph_error
 from outlook_mcp.tools.mail_drafts import (
     create_draft,
     delete_draft,
@@ -13,8 +24,16 @@ from outlook_mcp.tools.mail_drafts import (
     send_draft,
     update_draft,
 )
+from tests.test_write_payloads_reach_the_wire import assert_on_wire
 
 _CFG = Config(client_id="test")
+
+_WIRE_NAMES = {
+    "to_recipients": "toRecipients",
+    "cc_recipients": "ccRecipients",
+    "bcc_recipients": "bccRecipients",
+    "reply_to": "replyTo",
+}
 _CFG_RO = Config(client_id="test", read_only=True)
 
 
@@ -262,7 +281,8 @@ class TestUpdateDraft:
     async def test_update_draft_patches_partial(self):
         """update_draft sends PATCH with only provided fields."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -277,11 +297,14 @@ class TestUpdateDraft:
         assert result["status"] == "updated"
         assert result["draft_id"] == "AAMkAG123="
         msg_builder.patch.assert_called_once()
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_body_defaults_to_text(self):
         """update_draft sends body as Text by default."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -298,13 +321,16 @@ class TestUpdateDraft:
 
         assert sent_msg.body.content == "plain text"
         assert sent_msg.body.content_type == BodyType.Text
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_body_html_when_is_html(self):
         """update_draft sends body as Html when is_html=True (required for
         drafts originally composed as HTML in the Outlook UI — Text PATCH on
         an HTML draft triggers MapiSetProperties / ErrorAccessDenied)."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -322,6 +348,8 @@ class TestUpdateDraft:
 
         assert sent_msg.body.content == "<p>hello</p>"
         assert sent_msg.body.content_type == BodyType.Html
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_validates_graph_id(self):
         """update_draft rejects invalid draft IDs."""
@@ -348,7 +376,8 @@ class TestUpdateDraft:
     async def test_update_draft_patches_reply_to(self):
         """update_draft sets reply_to on the PATCH payload when provided."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -366,11 +395,14 @@ class TestUpdateDraft:
             "alias@test.com",
             "team@test.com",
         ]
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_clears_reply_to_with_empty_list(self):
         """update_draft with reply_to=[] clears the field on the draft."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -384,6 +416,8 @@ class TestUpdateDraft:
 
         patched_msg = msg_builder.patch.call_args.args[0]
         assert patched_msg.reply_to == []
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_rejects_invalid_reply_to(self):
         """update_draft rejects malformed reply_to addresses."""
@@ -399,7 +433,8 @@ class TestUpdateDraft:
     async def test_update_draft_sets_deferred_send_property(self):
         """update_draft attaches PR_DEFERRED_SEND_TIME on the PATCH payload."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -417,11 +452,14 @@ class TestUpdateDraft:
         assert props[0].id == "SystemTime 0x3FEF"
         assert props[0].value == "2026-05-06T08:00:00Z"
         assert result["deferred_send_datetime"] == "2026-05-06T08:00:00Z"
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_clears_deferred_send_with_empty_string(self):
         """update_draft with deferred_send_datetime='' clears the property."""
         msg_builder = MagicMock()
-        msg_builder.patch = AsyncMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=_stored_message())
 
         client = MagicMock()
         client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
@@ -439,6 +477,8 @@ class TestUpdateDraft:
         assert props[0].id == "SystemTime 0x3FEF"
         assert props[0].value == ""
         assert result["deferred_send_datetime"] == ""
+        # The PATCH answered with the stored draft: the one GET is the draft check.
+        msg_builder.get.assert_awaited_once()
 
     async def test_update_draft_rejects_malformed_deferred_send(self):
         """update_draft rejects non-ISO deferred_send_datetime values."""
@@ -484,6 +524,7 @@ class TestDeleteDraft:
     async def test_delete_draft_calls_delete(self):
         """delete_draft DELETEs /me/messages/{id}."""
         msg_builder = MagicMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
         msg_builder.delete = AsyncMock()
 
         client = MagicMock()
@@ -506,3 +547,858 @@ class TestDeleteDraft:
         client = MagicMock()
         with pytest.raises(ReadOnlyError):
             await delete_draft(client, draft_id="AAMkAG123=", config=_CFG_RO)
+
+
+# ── The draft tools only touch drafts ────────────────────────────────────────
+# A draft is addressed by message id, and every message in the mailbox has one.
+# Without a check, `outlook_delete_draft` was a permanent delete for any message
+# under the `mail_drafts` category — the one the README calls "drafts only".
+
+
+def _message_builder(*, is_draft):
+    """A message builder whose GET answers `$select=isDraft` the way Graph would."""
+    builder = MagicMock()
+    builder.get = AsyncMock(return_value=MagicMock(is_draft=is_draft))
+    builder.patch = AsyncMock()
+    builder.delete = AsyncMock()
+    return builder
+
+
+def _client_for(builder):
+    client = MagicMock()
+    client.me.messages.by_message_id = MagicMock(return_value=builder)
+    return client
+
+
+class TestDraftToolsRefuseNonDrafts:
+    async def test_delete_draft_refuses_a_received_message(self):
+        builder = _message_builder(is_draft=False)
+
+        with pytest.raises(ValueError, match="not a draft"):
+            await delete_draft(_client_for(builder), draft_id="AAMkInboxMsg=", config=_CFG)
+
+        builder.delete.assert_not_called()
+
+    async def test_update_draft_refuses_a_received_message(self):
+        builder = _message_builder(is_draft=False)
+
+        with pytest.raises(ValueError, match="not a draft"):
+            await update_draft(
+                _client_for(builder), draft_id="AAMkInboxMsg=", subject="rewritten", config=_CFG
+            )
+
+        builder.patch.assert_not_called()
+
+    async def test_a_message_graph_does_not_call_a_draft_is_refused(self):
+        """Fail closed: only an explicit `isDraft: true` lets the delete through."""
+        builder = _message_builder(is_draft=None)
+
+        with pytest.raises(ValueError, match="not a draft"):
+            await delete_draft(_client_for(builder), draft_id="AAMkAG123=", config=_CFG)
+
+        builder.delete.assert_not_called()
+
+    async def test_the_check_asks_graph_for_isdraft_and_nothing_else(self):
+        builder = _message_builder(is_draft=True)
+
+        await delete_draft(_client_for(builder), draft_id="AAMkAG123=", config=_CFG)
+
+        request_config = builder.get.call_args.kwargs["request_configuration"]
+        assert request_config.query_parameters.select == ["isDraft"]
+        builder.delete.assert_called_once()
+
+    async def test_read_only_still_refuses_before_any_graph_call(self):
+        builder = _message_builder(is_draft=True)
+
+        with pytest.raises(ReadOnlyError):
+            await delete_draft(_client_for(builder), draft_id="AAMkAG123=", config=_CFG_RO)
+
+        builder.get.assert_not_called()
+
+
+# ── Drafts in a thread: reply, reply-all, forward (#143) ─────────────────────
+# Graph's createReply / createReplyAll / createForward make the draft in the
+# thread with the original quoted below. Nothing in this section may send.
+
+# What a createReply draft's body looks like: the quoted original sits below an
+# <hr> and Outlook's header block, and the reply goes above both.
+_QUOTED_DRAFT_HTML = (
+    '<html><head><meta charset="utf-8"></head><body dir="ltr">'
+    '<div id="appendonsend"></div><hr style="display:inline-block;width:98%">'
+    '<div id="divRplyFwdMsg"><b>From:</b> Sender &lt;sender@example.com&gt;</div>'
+    "<div><p>The <b>original</b> message.</p></div></body></html>"
+)
+
+
+def _recipient(address):
+    return MagicMock(email_address=MagicMock(address=address))
+
+
+def _thread_draft(*, content=_QUOTED_DRAFT_HTML, html=True, to=("sender@example.com",), cc=()):
+    """The Message Graph returns from createReply/createReplyAll/createForward."""
+    from msgraph.generated.models.body_type import BodyType
+
+    draft = MagicMock()
+    draft.id = "AAMkThreadDraft="
+    draft.body = MagicMock(content=content, content_type=BodyType.Html if html else BodyType.Text)
+    draft.to_recipients = [_recipient(a) for a in to]
+    draft.cc_recipients = [_recipient(a) for a in cc]
+    return draft
+
+
+def _thread_client(draft=None):
+    """A client whose source message offers the three actions, and whose new
+    draft can be patched, read back and deleted. Returns (client, source, new_draft).
+
+    The read-back returns the created draft unless a test sets ``new_draft.get``."""
+    draft = draft or _thread_draft()
+    source = MagicMock()
+    for action in ("create_reply", "create_reply_all", "create_forward"):
+        getattr(source, action).post = AsyncMock(return_value=draft)
+    new_draft = MagicMock()
+    new_draft.patch = AsyncMock()
+    new_draft.get = AsyncMock(return_value=draft)
+    new_draft.delete = AsyncMock()
+    builders = {"AAMkOriginal=": source, draft.id: new_draft}
+    client = MagicMock()
+    client.me.messages.by_message_id = MagicMock(side_effect=lambda i: builders[i])
+    client.me.messages.post = AsyncMock()
+    return client, source, new_draft
+
+
+class TestCreateDraftInThread:
+    async def test_reply_creates_the_draft_with_create_reply_then_patches_the_body(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        client, source, new_draft = _thread_client()
+
+        result = await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="Thanks, see you then.",
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        sent = source.create_reply.post.call_args.args[0]
+        assert isinstance(sent, rep.CreateReplyPostRequestBody)
+        # Neither channel: `comment` loses the text's line breaks on an HTML
+        # message, and `message.body` replaces the quoted original.
+        assert sent.comment is None
+        assert sent.message.body is None
+        source.create_reply_all.post.assert_not_called()
+        source.create_forward.post.assert_not_called()
+        client.me.messages.post.assert_not_called()
+        new_draft.patch.assert_called_once()
+        patched = new_draft.patch.call_args.args[0]
+        assert patched.body.content_type == BodyType.Html
+        assert patched.body.content == _QUOTED_DRAFT_HTML.replace(
+            '<body dir="ltr">', '<body dir="ltr"><p>Thanks, see you then.</p>'
+        )
+        new_draft.delete.assert_not_called()
+        assert result == {
+            "status": "created",
+            "draft_id": "AAMkThreadDraft=",
+            "to": ["sender@example.com"],
+            "cc": [],
+            "bcc": [],
+            "reply_to": [],
+        }
+
+    async def test_reply_all_uses_create_reply_all(self):
+        draft = _thread_draft(to=("sender@example.com",), cc=("other@example.com",))
+        client, source, _ = _thread_client(draft)
+
+        result = await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="Agreed.",
+            reply_to_message_id="AAMkOriginal=",
+            reply_all=True,
+            config=_CFG,
+        )
+
+        source.create_reply_all.post.assert_called_once()
+        source.create_reply.post.assert_not_called()
+        assert isinstance(
+            source.create_reply_all.post.call_args.args[0], rep_all.CreateReplyAllPostRequestBody
+        )
+        assert source.create_reply_all.post.call_args.args[0].comment is None
+        assert result["cc"] == ["other@example.com"]
+
+    @pytest.mark.parametrize(
+        ("field", "attribute"),
+        [
+            ("to", "to_recipients"),
+            ("cc", "cc_recipients"),
+            ("bcc", "bcc_recipients"),
+            ("reply_to", "reply_to"),
+        ],
+    )
+    async def test_an_empty_recipient_list_clears_what_graph_prefilled(self, field, attribute):
+        """`cc=[]` on a reply-all must remove them, not leave Graph's list alone.
+
+        Graph prefills to/cc on a reply-all draft, so treating an empty list as
+        "not mentioned" kept recipients the caller had explicitly removed — and
+        sending that draft mailed them.
+        """
+        client, source, _ = _thread_client(_thread_draft())
+
+        kwargs = {"to": None, field: []} if field != "to" else {"to": []}
+        await create_draft(
+            client,
+            subject=None,
+            body="Agreed.",
+            reply_to_message_id="AAMkOriginal=",
+            reply_all=True,
+            config=_CFG,
+            **kwargs,
+        )
+
+        sent = source.create_reply_all.post.call_args.args[0].message
+        assert getattr(sent, attribute) == []
+        # On the wire too: Kiota does emit an empty collection, so the clear is what
+        # Graph receives rather than an attribute that never serialized.
+        assert_on_wire(sent, f'"{_WIRE_NAMES[attribute]}": []')
+
+    @pytest.mark.parametrize("field", ["to", "cc", "bcc", "reply_to"])
+    async def test_an_omitted_recipient_list_leaves_graphs_alone(self, field):
+        """Omitted is not empty: leaving the field out keeps the thread's recipients."""
+        client, source, _ = _thread_client(_thread_draft())
+
+        await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="Agreed.",
+            reply_to_message_id="AAMkOriginal=",
+            reply_all=True,
+            config=_CFG,
+        )
+
+        sent = source.create_reply_all.post.call_args.args[0].message
+        assert not getattr(sent, "cc_recipients", None)
+        assert not getattr(sent, "bcc_recipients", None)
+        assert not getattr(sent, "reply_to", None)
+
+    async def test_forward_uses_create_forward_with_the_recipients(self):
+        client, source, new_draft = _thread_client(_thread_draft(to=("fwd@example.com",)))
+
+        result = await create_draft(
+            client,
+            to=["fwd@example.com"],
+            subject=None,
+            body="FYI",
+            forward_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        sent = source.create_forward.post.call_args.args[0]
+        assert isinstance(sent, fwd.CreateForwardPostRequestBody)
+        assert [r.email_address.address for r in sent.message.to_recipients] == ["fwd@example.com"]
+        assert sent.comment is None
+        assert "<p>FYI</p>" in new_draft.patch.call_args.args[0].body.content
+        source.create_reply.post.assert_not_called()
+        assert result["to"] == ["fwd@example.com"]
+
+    async def test_a_forward_without_recipients_is_refused_before_any_call(self):
+        client, source, _ = _thread_client()
+
+        for to in (None, []):
+            with pytest.raises(ValueError, match="forward needs `to`"):
+                await create_draft(
+                    client,
+                    to=to,
+                    subject=None,
+                    body="FYI",
+                    forward_message_id="AAMkOriginal=",
+                    config=_CFG,
+                )
+
+        source.create_forward.post.assert_not_called()
+
+    async def test_reply_and_forward_together_are_refused(self):
+        client, source, _ = _thread_client()
+
+        with pytest.raises(ValueError, match="not both"):
+            await create_draft(
+                client,
+                to=["fwd@example.com"],
+                subject=None,
+                body="x",
+                reply_to_message_id="AAMkOriginal=",
+                forward_message_id="AAMkOriginal=",
+                config=_CFG,
+            )
+
+        source.create_reply.post.assert_not_called()
+        source.create_forward.post.assert_not_called()
+
+    async def test_reply_all_without_a_message_to_reply_to_is_refused(self):
+        client, source, _ = _thread_client()
+
+        for forward_id in (None, "AAMkOriginal="):
+            with pytest.raises(ValueError, match="reply_all"):
+                await create_draft(
+                    client,
+                    to=["a@example.com"],
+                    subject="s",
+                    body="x",
+                    reply_all=True,
+                    forward_message_id=forward_id,
+                    config=_CFG,
+                )
+
+        client.me.messages.post.assert_not_called()
+        source.create_forward.post.assert_not_called()
+
+    async def test_a_new_draft_still_needs_to_and_subject(self):
+        client, _, _ = _thread_client()
+
+        with pytest.raises(ValueError, match="new draft needs `to` and `subject`"):
+            await create_draft(client, to=None, subject="s", body="x", config=_CFG)
+        with pytest.raises(ValueError, match="new draft needs `to` and `subject`"):
+            await create_draft(client, to=["a@example.com"], subject=None, body="x", config=_CFG)
+
+        client.me.messages.post.assert_not_called()
+
+    async def test_a_new_draft_with_an_empty_to_list_is_still_created(self):
+        """As before: `to=[]` was always a valid new draft, just one with no recipients."""
+        client, _, _ = _thread_client()
+        client.me.messages.post = AsyncMock(return_value=MagicMock(id="AAMkNew="))
+
+        result = await create_draft(client, to=[], subject="s", body="x", config=_CFG)
+
+        assert result == {
+            "status": "created",
+            "draft_id": "AAMkNew=",
+            "to": [],
+            "cc": [],
+            "bcc": [],
+            "reply_to": [],
+        }
+
+    async def test_the_message_id_is_validated_before_any_call(self):
+        client, source, _ = _thread_client()
+
+        with pytest.raises(ValueError, match="invalid characters"):
+            await create_draft(
+                client,
+                to=None,
+                subject=None,
+                body="x",
+                reply_to_message_id="not an id",
+                config=_CFG,
+            )
+
+        source.create_reply.post.assert_not_called()
+
+    async def test_read_only_refuses_before_any_call(self):
+        client, source, _ = _thread_client()
+
+        with pytest.raises(ReadOnlyError):
+            await create_draft(
+                client,
+                to=None,
+                subject=None,
+                body="x",
+                reply_to_message_id="AAMkOriginal=",
+                config=_CFG_RO,
+            )
+
+        source.create_reply.post.assert_not_called()
+
+    async def test_fields_passed_with_a_reply_go_on_its_message(self):
+        client, source, _ = _thread_client()
+
+        await create_draft(
+            client,
+            to=["to@example.com"],
+            subject="New subject",
+            body="x",
+            cc=["cc@example.com"],
+            bcc=["bcc@example.com"],
+            importance="high",
+            reply_to=["alias@example.com"],
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        message = source.create_reply.post.call_args.args[0].message
+        assert message.subject == "New subject"
+        assert [r.email_address.address for r in message.to_recipients] == ["to@example.com"]
+        assert [r.email_address.address for r in message.cc_recipients] == ["cc@example.com"]
+        assert [r.email_address.address for r in message.bcc_recipients] == ["bcc@example.com"]
+        assert [r.email_address.address for r in message.reply_to] == ["alias@example.com"]
+        assert message.importance.value == "high"
+
+    async def test_an_empty_to_clears_the_recipients_graph_would_have_chosen(self):
+        """`to=[]` is a request to clear, and omitting the list is the way to accept
+        Graph's choice. This used to treat `[]` as "not mentioned", which is how a
+        reply-all kept recipients the caller had removed.
+        """
+        client, source, _ = _thread_client()
+
+        await create_draft(
+            client,
+            to=[],
+            subject=None,
+            body="x",
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        message = source.create_reply.post.call_args.args[0].message
+        assert message.subject is None
+        assert message.to_recipients == []
+        assert message.cc_recipients is None
+
+    async def test_an_omitted_to_leaves_the_recipients_to_graph(self):
+        client, source, _ = _thread_client()
+
+        await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="x",
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        message = source.create_reply.post.call_args.args[0].message
+        assert message.to_recipients is None
+
+
+class TestHtmlReplyDraft:
+    async def test_html_goes_above_the_quote_by_patching_the_draft(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        client, source, new_draft = _thread_client()
+
+        result = await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="<p>Thanks, <b>see you then</b>.</p>",
+            is_html=True,
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        sent = source.create_reply.post.call_args.args[0]
+        # comment is plain text only, and Graph refuses comment + message.body.
+        assert sent.comment is None
+        assert sent.message.body is None
+        patched = new_draft.patch.call_args.args[0]
+        assert patched.body.content_type == BodyType.Html
+        assert patched.body.content == _QUOTED_DRAFT_HTML.replace(
+            '<body dir="ltr">', '<body dir="ltr"><p>Thanks, <b>see you then</b>.</p>'
+        )
+        new_draft.delete.assert_not_called()
+        assert result["draft_id"] == "AAMkThreadDraft="
+
+    async def test_html_forward_is_patched_the_same_way(self):
+        client, source, new_draft = _thread_client()
+
+        await create_draft(
+            client,
+            to=["fwd@example.com"],
+            subject=None,
+            body="<p>FYI</p>",
+            is_html=True,
+            forward_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        assert source.create_forward.post.call_args.args[0].comment is None
+        content = new_draft.patch.call_args.args[0].body.content
+        assert content.startswith('<html><head><meta charset="utf-8"></head><body dir="ltr"><p>FYI')
+
+
+class TestPlainTextReplyDraft:
+    """Plain text in a reply or forward draft keeps its paragraphs, line breaks and
+    lists. Graph's `comment` would join its lines with spaces on an HTML message."""
+
+    _TEXT = (
+        "First paragraph line one.\nFirst paragraph line two.\n\nSecond paragraph.\n\n"
+        "- bullet one\n- bullet two"
+    )
+
+    async def test_on_an_html_original_it_is_patched_in_as_html_above_the_quote(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        client, source, new_draft = _thread_client()
+
+        await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body=self._TEXT,
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        assert source.create_reply.post.call_args.args[0].comment is None
+        patched = new_draft.patch.call_args.args[0]
+        assert patched.body.content_type == BodyType.Html
+        assert patched.body.content == _QUOTED_DRAFT_HTML.replace(
+            '<body dir="ltr">',
+            '<body dir="ltr"><p>First paragraph line one.<br>First paragraph line two.</p>'
+            "<p>Second paragraph.</p><ul><li>bullet one</li><li>bullet two</li></ul>",
+        )
+
+    async def test_on_a_plain_text_original_it_stays_text_above_the_quote(self):
+        from msgraph.generated.models.body_type import BodyType
+
+        quote = "\r\n________________\r\nFrom: Sender <sender@example.com>\r\n\r\nOriginal.\r\n"
+        client, _, new_draft = _thread_client(_thread_draft(content=quote, html=False))
+
+        await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body=self._TEXT,
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        patched = new_draft.patch.call_args.args[0]
+        assert patched.body.content_type == BodyType.Text
+        assert patched.body.content == self._TEXT.replace("\n", "\r\n") + "\r\n" + quote
+
+    async def test_an_empty_body_patches_nothing(self):
+        client, source, new_draft = _thread_client()
+
+        await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="",
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        source.create_reply.post.assert_called_once()
+        new_draft.patch.assert_not_called()
+
+
+class TestDeferredReplyDraft:
+    async def test_the_deferred_send_time_is_patched_onto_the_reply(self):
+        client, source, new_draft = _thread_client()
+
+        result = await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="x",
+            deferred_send_datetime="2026-12-01T09:00:00Z",
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        # Not on createReply's `message`: that action does not document extended
+        # properties, and the PATCH path is the one update_draft already uses.
+        assert (
+            source.create_reply.post.call_args.args[0].message.single_value_extended_properties
+            is None
+        )
+        new_draft.patch.assert_called_once()
+        patched = new_draft.patch.call_args.args[0]
+        assert "<p>x</p>" in patched.body.content
+        (prop,) = patched.single_value_extended_properties
+        assert prop.id == "SystemTime 0x3FEF"
+        assert prop.value == "2026-12-01T09:00:00Z"
+        assert result["deferred_send_datetime"] == "2026-12-01T09:00:00Z"
+
+    async def test_html_and_deferred_share_one_patch(self):
+        client, _, new_draft = _thread_client()
+
+        await create_draft(
+            client,
+            to=None,
+            subject=None,
+            body="<p>x</p>",
+            is_html=True,
+            deferred_send_datetime="2026-12-01T09:00:00Z",
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        new_draft.patch.assert_called_once()
+        patched = new_draft.patch.call_args.args[0]
+        assert "<p>x</p>" in patched.body.content
+        assert patched.single_value_extended_properties[0].value == "2026-12-01T09:00:00Z"
+
+    async def test_a_failed_patch_deletes_the_new_draft_and_raises(self):
+        client, _, new_draft = _thread_client()
+        new_draft.patch = AsyncMock(side_effect=RuntimeError("patch refused"))
+
+        with pytest.raises(RuntimeError, match="patch refused"):
+            await create_draft(
+                client,
+                to=None,
+                subject=None,
+                body="x",
+                deferred_send_datetime="2026-12-01T09:00:00Z",
+                reply_to_message_id="AAMkOriginal=",
+                config=_CFG,
+            )
+
+        new_draft.delete.assert_called_once()
+
+
+def _graph_refusal(status, code="ErrorInvalidRequest", message="Refused."):
+    """What the SDK raises when Graph answers with an error."""
+    from msgraph.generated.models.o_data_errors.main_error import MainError
+
+    error = ODataError()
+    error.response_status_code = status
+    error.error = MainError(code=code, message=message)
+    return error
+
+
+async def _reply_draft(client):
+    return await create_draft(
+        client, None, None, "x", reply_to_message_id="AAMkOriginal=", config=_CFG
+    )
+
+
+class TestAThreadDraftThatCouldNotBeRemoved:
+    """A reply or forward draft whose body PATCH or recipient read failed is deleted.
+
+    When that delete fails too, the draft is still there: the error the agent reads
+    says so and gives its id. When the delete worked, the error says nothing of it.
+    """
+
+    @pytest.mark.parametrize("failing", ["patch", "get"])
+    async def test_the_error_says_the_draft_may_remain_in_drafts(self, failing):
+        client, _, new_draft = _thread_client()
+        setattr(new_draft, failing, AsyncMock(side_effect=_graph_refusal(400)))
+        new_draft.delete = AsyncMock(side_effect=_graph_refusal(503, "ServiceUnavailable"))
+
+        with pytest.raises(GraphAPIError) as caught:
+            await _reply_draft(client)
+
+        new_draft.delete.assert_awaited_once()
+        # The PATCH's or the read's error is the one reported, not the delete's.
+        assert (caught.value.status_code, caught.value.message) == (400, "Refused.")
+        assert isinstance(caught.value.__cause__, ODataError)
+        text = str(caught.value)
+        assert "may remain in Drafts" in text, text
+        assert "AAMkThreadDraft=" in text, text
+
+    async def test_a_failure_that_is_not_a_graph_answer_says_so_too(self):
+        """A dropped connection leaves the draft behind just the same. Only the
+        failure's type is named: its text can carry the request URL."""
+        client, _, new_draft = _thread_client()
+        url = "https://graph.microsoft.com/v1.0/me/messages/AAMkThreadDraft="
+        new_draft.patch = AsyncMock(side_effect=httpx.ConnectError(url))
+        new_draft.delete = AsyncMock(side_effect=httpx.ConnectError(url))
+
+        with pytest.raises(GraphAPIError) as caught:
+            await _reply_draft(client)
+
+        text = str(caught.value)
+        assert "ConnectError" in text, text
+        assert "may remain in Drafts" in text, text
+        assert "graph.microsoft.com" not in text, text
+        assert isinstance(caught.value.__cause__, httpx.ConnectError)
+
+    @pytest.mark.parametrize("failing", ["patch", "get"])
+    async def test_a_draft_that_was_deleted_is_not_said_to_remain(self, failing):
+        client, _, new_draft = _thread_client()
+        refusal = _graph_refusal(400)
+        setattr(new_draft, failing, AsyncMock(side_effect=refusal))
+
+        with pytest.raises(ODataError) as caught:
+            await _reply_draft(client)
+
+        new_draft.delete.assert_awaited_once()
+        assert caught.value is refusal
+        # As the agent reads it, once the tool wrapper has converted it.
+        assert "Drafts" not in str(wrap_graph_error(caught.value))
+
+
+def _stored_message(**lists):
+    """A real Message as Graph stores a draft: addresses per recipient field."""
+    from msgraph.generated.models.email_address import EmailAddress
+    from msgraph.generated.models.message import Message
+    from msgraph.generated.models.recipient import Recipient
+
+    def _recipients(addresses):
+        return [Recipient(email_address=EmailAddress(address=a)) for a in addresses]
+
+    message = Message(id="AAMkAG123=")
+    message.to_recipients = _recipients(lists.get("to", ()))
+    message.cc_recipients = _recipients(lists.get("cc", ()))
+    message.bcc_recipients = _recipients(lists.get("bcc", ()))
+    message.reply_to = _recipients(lists.get("reply_to", ()))
+    return message
+
+
+class TestDraftResultsShowEveryRecipient:
+    """A draft's result lists who it would go to as stored, not just what was passed.
+
+    A change to one field must not hide the others: the agent (and the user
+    reading its summary) sees the draft's whole audience before it is sent.
+    """
+
+    async def test_a_subject_only_update_still_shows_cc_bcc_and_reply_to(self):
+        stored = _stored_message(
+            to=["a@example.com"],
+            cc=["c@example.com"],
+            bcc=["b@example.com"],
+            reply_to=["r@example.com"],
+        )
+        msg_builder = MagicMock()
+        msg_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        msg_builder.patch = AsyncMock(return_value=stored)
+        client = MagicMock()
+        client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
+
+        result = await update_draft(client, "AAMkAG123=", subject="New", config=_CFG)
+
+        assert result["to"] == ["a@example.com"]
+        assert result["cc"] == ["c@example.com"]
+        assert result["bcc"] == ["b@example.com"]
+        assert result["reply_to"] == ["r@example.com"]
+        assert msg_builder.patch.call_args.args[0].cc_recipients is None
+        # The PATCH answered with the stored message, so nothing is read back:
+        # the one GET is the draft check that runs before the PATCH.
+        msg_builder.get.assert_awaited_once()
+        select = msg_builder.get.call_args.kwargs["request_configuration"].query_parameters.select
+        assert select == ["isDraft"]
+
+    async def test_an_update_answered_with_no_message_reads_the_lists_back(self):
+        stored = _stored_message(cc=["c@example.com"], reply_to=["r@example.com"])
+        msg_builder = MagicMock()
+        msg_builder.get = AsyncMock(side_effect=[MagicMock(is_draft=True), stored])
+        msg_builder.patch = AsyncMock(return_value=None)
+        client = MagicMock()
+        client.me.messages.by_message_id = MagicMock(return_value=msg_builder)
+
+        result = await update_draft(client, "AAMkAG123=", subject="New", config=_CFG)
+
+        assert result["cc"] == ["c@example.com"]
+        assert result["reply_to"] == ["r@example.com"]
+        select = msg_builder.get.call_args.kwargs["request_configuration"].query_parameters.select
+        assert set(select) == {"toRecipients", "ccRecipients", "bccRecipients", "replyTo"}
+
+    async def test_a_new_draft_shows_the_lists_it_was_stored_with(self):
+        stored = _stored_message(
+            to=["a@example.com"], cc=["c@example.com"], bcc=["b@example.com"], reply_to=["r@x.com"]
+        )
+        client = MagicMock()
+        client.me.messages.post = AsyncMock(return_value=stored)
+
+        result = await create_draft(
+            client, to=["a@example.com"], subject="s", body="b", cc=["c@example.com"], config=_CFG
+        )
+
+        assert result["draft_id"] == "AAMkAG123="
+        assert result["to"] == ["a@example.com"]
+        assert result["cc"] == ["c@example.com"]
+        assert result["bcc"] == ["b@example.com"]
+        assert result["reply_to"] == ["r@x.com"]
+
+    async def test_a_recipient_with_no_address_is_left_out_not_shown_as_blank(self):
+        from msgraph.generated.models.email_address import EmailAddress
+        from msgraph.generated.models.recipient import Recipient
+
+        stored = _stored_message(to=["a@example.com"])
+        stored.to_recipients.append(Recipient(email_address=EmailAddress(name="No address")))
+        stored.cc_recipients = [Recipient(email_address=EmailAddress(address=""))]
+        client = MagicMock()
+        client.me.messages.post = AsyncMock(return_value=stored)
+
+        result = await create_draft(
+            client, to=["a@example.com"], subject="s", body="b", config=_CFG
+        )
+
+        assert result["to"] == ["a@example.com"]
+        assert result["cc"] == []
+
+    async def test_a_thread_draft_shows_bcc_and_reply_to_too(self):
+        draft = _thread_draft()
+        draft.bcc_recipients = [_recipient("hidden@example.com")]
+        draft.reply_to = [_recipient("r@example.com")]
+        client, _, _ = _thread_client(draft)
+
+        result = await create_draft(
+            client, None, None, "Thanks", reply_to_message_id="AAMkOriginal=", config=_CFG
+        )
+
+        assert result["bcc"] == ["hidden@example.com"]
+        assert result["reply_to"] == ["r@example.com"]
+
+    async def test_a_thread_draft_reports_the_lists_read_back_not_the_create_reply(self):
+        """createReply's answer is not taken as the stored audience: the lists are read back.
+
+        Graph may or may not echo the cc, bcc and Reply-To sent on the action's
+        message, so the result comes from a read of the draft as stored.
+        """
+        draft = _thread_draft(to=(), cc=())
+        draft.bcc_recipients = None
+        draft.reply_to = None
+        client, _, new_draft = _thread_client(draft)
+        new_draft.get = AsyncMock(
+            return_value=_stored_message(
+                to=["sender@example.com"],
+                cc=["c@example.com"],
+                bcc=["hidden@example.com"],
+                reply_to=["r@example.com"],
+            )
+        )
+
+        result = await create_draft(
+            client,
+            None,
+            None,
+            "Thanks",
+            cc=["c@example.com"],
+            bcc=["hidden@example.com"],
+            reply_to=["r@example.com"],
+            reply_to_message_id="AAMkOriginal=",
+            config=_CFG,
+        )
+
+        assert result == {
+            "status": "created",
+            "draft_id": "AAMkThreadDraft=",
+            "to": ["sender@example.com"],
+            "cc": ["c@example.com"],
+            "bcc": ["hidden@example.com"],
+            "reply_to": ["r@example.com"],
+        }
+        new_draft.get.assert_awaited_once()
+        select = new_draft.get.call_args.kwargs["request_configuration"].query_parameters.select
+        assert set(select) == {"toRecipients", "ccRecipients", "bccRecipients", "replyTo"}
+
+    async def test_the_lists_are_read_back_after_the_body_is_patched(self):
+        client, _, new_draft = _thread_client()
+        order = []
+        new_draft.patch = AsyncMock(side_effect=lambda *a, **k: order.append("patch"))
+        new_draft.get = AsyncMock(
+            side_effect=lambda *a, **k: order.append("get") or _stored_message(to=["s@x.com"])
+        )
+
+        await create_draft(
+            client, None, None, "Thanks", reply_to_message_id="AAMkOriginal=", config=_CFG
+        )
+
+        assert order == ["patch", "get"]
+
+    async def test_a_failed_read_back_deletes_the_new_draft_and_raises(self):
+        """A draft whose recipients cannot be reported is not left behind."""
+        client, _, new_draft = _thread_client()
+        new_draft.get = AsyncMock(side_effect=RuntimeError("read refused"))
+
+        with pytest.raises(RuntimeError, match="read refused"):
+            await create_draft(
+                client, None, None, "", reply_to_message_id="AAMkOriginal=", config=_CFG
+            )
+
+        new_draft.patch.assert_not_called()
+        new_draft.delete.assert_called_once()

@@ -1,45 +1,61 @@
-## Description: <br>
-Find clean, comfortable hotels under a user budget by using flyai CLI results to sort by price and filter by star rating, amenities, dates, and destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find clean, comfortable hotels under a user's budget by using flyai CLI hotel search output, sorting by price or rating, and formatting options with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search for budget hotel options, compare real-time prices, and return booking links in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and execute an external global npm CLI. <br>
-Mitigation: Review the package and installation command before deployment, and run the CLI only in an environment approved for network-backed travel searches. <br>
-Risk: Network-backed travel results may depend on current availability, pricing, and external service behavior. <br>
-Mitigation: Use the CLI output as the source of truth at response time and clearly report failures or missing results instead of filling gaps from model knowledge. <br>
-Risk: The skill can persist raw travel searches in a hidden local execution log. <br>
-Mitigation: Disable or delete `.flyai-execution-log.json` when local retention of travel requests is not acceptable. <br>
+## Use Case:
 
+External travel users and agents use this skill to search for budget hotels, compare real-time hotel options, and produce booking-link Markdown in the user's language.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown hotel comparison results with booking links and inline shell commands when setup or retry steps are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results; raw JSON should not be returned to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks agents to install an unpinned global flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the CLI package before use, and require human approval before any global npm installation.
+
+Risk: Hotel searches may be converted into shell commands from user-provided travel input.
+
+Mitigation: Validate destination, date, price, and filter values and pass arguments safely instead of constructing shell commands from raw user text.
+
+Risk: Raw travel queries may be persisted in a local execution log.
+
+Mitigation: Disable the raw-query log or scrub sensitive user travel details before writing logs.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables with inline booking links and flyai CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for hotel names, prices, ratings, and booking detail URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

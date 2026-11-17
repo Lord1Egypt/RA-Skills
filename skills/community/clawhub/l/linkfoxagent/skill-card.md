@@ -1,62 +1,67 @@
-## Description: <br>
-LinkFoxAgent helps agents perform cross-border e-commerce research, marketplace analysis, product and keyword discovery, review mining, patent checks, image and PDF analysis, web search, and optional Lingxing ERP data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkFoxAgent helps agents run cross-border e-commerce research workflows for product discovery, marketplace analysis, keyword and review insights, patent research, sourcing, trend tracking, image and PDF analysis, and report generation across Amazon, TikTok, eBay, Walmart, Shopee, Ozon, 1688, and related data sources.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External e-commerce operators, analysts, and developers use this skill to submit product research, competitor analysis, sourcing, trend, review, listing, patent, and marketplace data tasks to LinkFoxAgent and related tools. Users with Lingxing ERP credentials can also retrieve ERP-side ads, order, listing, inventory, finance, and FBA data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: E-commerce prompts and artifacts are sent to LinkFox and related third-party services. <br>
-Mitigation: Do not include secrets, private customer data, internal URLs, confidential strategy, or regulated personal data in prompts or uploaded files. <br>
-Risk: Successful runs can produce public share links containing the execution trace and downloadable artifacts. <br>
-Mitigation: Review task inputs and generated artifacts before sharing links, and avoid submitting information that should not become public. <br>
-Risk: Lingxing ERP workflows use separate ERP credentials and may reach write-capable endpoints. <br>
-Mitigation: Use least-privilege Lingxing credentials, confirm intended endpoint behavior before execution, and avoid mutating endpoints unless explicitly intended. <br>
+## Use Case:
 
+External users and developers use this skill to delegate cross-border e-commerce market research, product selection, competitor analysis, sourcing checks, patent research, image/PDF analysis, and report-generation tasks to LinkFoxAgent-backed tools. It is most relevant when the user has a LinkFoxAgent API key and, for ERP workflows, appropriate Lingxing OpenAPI credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfoxagent) <br>
-- [LinkFoxAgent Homepage](https://agent.linkfox.com/) <br>
-- [Keepa Tool Reference](references/keepa.md) <br>
-- [Amazon Frontend Tool Reference](references/amazon-frontend.md) <br>
-- [Amazon Data Insight Tool Reference](references/amazon-data-insight.md) <br>
-- [Seller Sprite Tool Reference](references/seller-sprite.md) <br>
-- [Sorftime Tool Reference](references/sorftime.md) <br>
-- [Sif Data Analysis Tool Reference](references/sif.md) <br>
-- [Jimu Tool Reference](references/jimu.md) <br>
-- [Google Trends Tool Reference](references/google-trends.md) <br>
-- [Web Search Tool Reference](references/web-search.md) <br>
-- [TikTok E-commerce Tool Reference](references/tiktok.md) <br>
-- [Walmart Tool Reference](references/walmart.md) <br>
-- [eBay Tool Reference](references/ebay.md) <br>
-- [Shopee Tool Reference](references/youying.md) <br>
-- [1688 Tool Reference](references/1688.md) <br>
-- [Ozon Tool Reference](references/mpstats-ozon.md) <br>
-- [Patent Tool Reference](references/patent.md) <br>
-- [AI Tools Reference](references/ai-tools.md) <br>
-- [Sandbox Tool Reference](references/sandbox.md) <br>
-- [Lingxing ERP OpenAPI Reference](references/lingxing-erp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, status text, public share URLs, local JSON and CSV result files, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY for LinkFoxAgent calls; Lingxing ERP workflows require separate Lingxing credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence; artifact _meta.json reports 1.1.2) <br>
+Risk: Prompts, outputs, and generated artifacts may be sent to external services and surfaced through public links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use secrets, unreleased product plans, confidential ERP exports, sensitive personal data, or private images unless public sharing and external processing are acceptable.
+
+Risk: Lingxing ERP workflows can access broad business data and may support write-capable operations.
+
+Mitigation: Use least-privilege Lingxing credentials, prefer read-only access where possible, and avoid write-capable ERP applications unless the workflow explicitly requires them.
+
+Risk: Local task outputs, token state, or cached artifacts may retain sensitive business context after execution.
+
+Mitigation: Clear local output and token caches after sensitive work and review generated file paths before sharing results.
+
+## Reference(s):
+
+- [LinkFoxAgent homepage](https://agent.linkfox.com/)
+- [ClawHub skill listing](https://clawhub.ai/linkfox-ai/skills/linkfoxagent)
+- [Amazon frontend reference](references/amazon-frontend.md)
+- [Amazon data insight reference](references/amazon-data-insight.md)
+- [Keepa reference](references/keepa.md)
+- [SellerSprite reference](references/seller-sprite.md)
+- [Lingxing ERP reference](references/lingxing-erp.md)
+- [Patent research reference](references/patent.md)
+- [Sandbox and PDF reference](references/sandbox.md)
+- [AI tools reference](references/ai-tools.md)
+- [Web search reference](references/web-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with links, local file paths, inline shell commands, and generated artifact references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful runs may return a public ShareURL and may generate downloadable CSV, Excel, image, HTML, or attachment artifacts.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

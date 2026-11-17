@@ -1,45 +1,61 @@
-## Description: <br>
-Generates 16:9 presentation decks from Markdown or JSON outlines using OpenAI gpt-image-2, with curated visual styles, template-clone mode, an HTML viewer, and PPTX output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates visually styled presentation decks with OpenAI gpt-image-2 from slide outlines or reference PPTX templates, including built-in styles, an HTML viewer, and a 16:9 PPTX.
 
-## Publisher: <br>
-[juneyaooo](https://clawhub.ai/user/juneyaooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juneyaooo](https://clawhub.ai/user/juneyaooo)
 
-## Use Case: <br>
-Developers, creators, and business users use this skill through an agent to turn an outline or reference deck into presentation assets: generated slide images, a keyboard-navigable HTML viewer, and a PPTX deck. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide outlines, templates, and generated prompts may be sent to remote AI endpoints. <br>
-Mitigation: Avoid confidential decks unless the endpoint and credential handling are approved for that content. <br>
-Risk: The skill requires sensitive credentials for direct API use. <br>
-Mitigation: Store API keys only in the documented scoped environment file or an explicitly chosen credentials path, and review permissions before installation. <br>
-Risk: Optional workflows can run local conversion tools, Docker, LibreOffice, or broad agent execution through a Codex backend. <br>
-Mitigation: Use a controlled workspace, review templates before conversion, and disable or avoid the Codex backend when broad automated execution is not acceptable. <br>
+## Use Case:
 
+Developers, creators, and presentation authors use this skill to turn a slide outline or reference PPTX template into image-backed decks for pitches, reports, lectures, and marketing presentations.
 
-## Reference(s): <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [English User Documentation](artifact/docs/README.en.md) <br>
-- [Installation Guide](artifact/docs/install.md) <br>
-- [OpenAI Images API Documentation](https://platform.openai.com/docs/guides/images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance plus generated PNG images, an HTML viewer, JSON prompt records, and a 16:9 PPTX file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use sensitive API credentials, remote image or vision endpoints, and local presentation conversion tools depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: The optional Codex backend can delegate untrusted slide text to a full-auto Codex subprocess with broad local authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default direct API or native image path when possible, and enable the Codex backend only after reviewing the slide content and local execution context.
+
+Risk: Configured API endpoints can route image generation or vision analysis through unexpected services.
+
+Mitigation: Review `OPENAI_BASE_URL` and `VISION_BASE_URL` before use, and keep credentials in a scoped `.env` rather than a project-wide environment file.
+
+Risk: The legacy root `generate_ppt.py` contradicts the stated credential-scoping behavior.
+
+Mitigation: Use `scripts/generate_ppt.py` as the active entry point and do not run the legacy root script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juneyaooo/skills/gpt-image2-ppt)
+- [Artifact README](artifact/README.md)
+- [English README](artifact/docs/README.en.md)
+- [Install guide](artifact/docs/install.md)
+- [OpenAI Images API guide](https://platform.openai.com/docs/guides/images)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts include PNG images, JSON prompts, an HTML viewer, and a 16:9 PPTX.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports curated style selection, template-clone workflows, optional single-slide smoke tests, and output directories under the caller workspace.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

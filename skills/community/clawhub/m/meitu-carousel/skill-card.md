@@ -1,44 +1,55 @@
-## Description: <br>
-Generates a coordinated carousel set with a cover poster and matching inner pages for social posts, knowledge cards, and product introductions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a unified carousel image set with a cover and interior pages for Xiaohongshu-style posts, knowledge-card carousels, and product-introduction visuals.
 
-## Publisher: <br>
-[meitu](https://clawhub.ai/user/meitu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meitu](https://clawhub.ai/user/meitu)
 
-## Use Case: <br>
-Content creators, marketers, and operators use this skill to turn a topic or supplied copy into a consistent multi-image carousel, including cover copy, page copy, image-generation prompts, refinement guidance, and saved poster files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, draft copy, and reference images may be processed by Meitu during image generation. <br>
-Mitigation: Use the skill only with content approved for Meitu processing, and avoid confidential images or proprietary campaign text unless that sharing is authorized. <br>
-Risk: Project mode can read and persist style preferences across visual workspace memory files. <br>
-Mitigation: Review the configured visual workspace before use, inspect or delete stored memory files when needed, and use one-off mode when preferences should not be retained. <br>
-Risk: The skill depends on Meitu CLI credentials and writes generated image files to local output paths. <br>
-Mitigation: Keep Meitu API credentials scoped and protected, verify the resolved output directory before generation, and review generated files before publishing. <br>
+## Use Case:
 
+External creators, marketing teams, and agents use this skill to produce coordinated carousel poster sets from user-provided or generated copy. It handles preflight checks, prompt preparation, Meitu CLI image generation, refinement, delivery naming, and optional project preference recording.
 
-## Reference(s): <br>
-- [Meitu Carousel on ClawHub](https://clawhub.ai/meitu/meitu-carousel) <br>
-- [Xiaohongshu cover reference](references/xiaohongshu-cover.md) <br>
-- [Memory protocol](references/memory-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JPEG poster files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Meitu CLI credentials and can save cover and inner-page images to a project or visual workspace output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: Shell-style Meitu CLI command templates can create local command-execution risk when prompts or paths come from untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted workspaces, review command arguments before execution, avoid untrusted paths or prompt fragments, and prefer a pinned local Meitu CLI installation.
+
+Risk: Project mode can read and write visual workspace preferences and observation memory.
+
+Mitigation: Confirm the intended workspace paths before enabling memory writes and review stored preferences during project use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meitu/skills/meitu-carousel)
+- [Xiaohongshu cover prompt reference](artifact/references/xiaohongshu-cover.md)
+- [Memory protocol reference](artifact/references/memory-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated prompt text, JSON command responses, and JPEG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Meitu CLI and MEITU_OPENAPI_ACCESS_KEY / MEITU_OPENAPI_SECRET_KEY credentials; image files are named by date and page type.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

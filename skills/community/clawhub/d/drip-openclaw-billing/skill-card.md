@@ -1,41 +1,59 @@
-## Description: <br>
-Add usage metering and billing telemetry to OpenClaw agents using Drip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add usage metering and billing telemetry to OpenClaw agents using Drip for per-run cost attribution, tool-call usage tracking, and customer-level billing visibility.
 
-## Publisher: <br>
-[lucas-309](https://clawhub.ai/user/lucas-309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucas-309](https://clawhub.ai/user/lucas-309)
 
-## Use Case: <br>
-Developers and engineers use this skill to instrument OpenClaw agents with Drip run timelines, tool-call usage metering, and customer-level billing attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telemetry metadata may expose sensitive prompts, outputs, credentials, personal data, or raw request data if integration code sends unsanitized fields. <br>
-Mitigation: Use least-privilege telemetry keys and send only sanitized metadata; avoid raw prompts, model outputs, credentials, personal data, and raw request or response bodies. <br>
-Risk: Billing records may duplicate or misstate usage under retries or incorrect meter configuration. <br>
-Mitigation: Use stable idempotency keys and validate meters, run lifecycle events, and retry behavior in staging before production. <br>
+## Use Case:
 
+Developers and engineers use this skill to instrument OpenClaw agents with Drip billing telemetry, including run lifecycle events, tool-call usage metering, and customer-level cost attribution.
 
-## Reference(s): <br>
-- [Drip OpenClaw Billing API Reference](references/API.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lucas-309/drip-openclaw-billing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, TypeScript, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance focuses on Drip telemetry setup, environment variables, API usage, idempotency, and privacy-safe metadata handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Billing telemetry could expose sensitive prompts, outputs, credentials, PII, or raw request bodies if callers send unsanitized data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send sanitized metadata only, keep the documented restriction against raw prompts, raw outputs, credentials, PII, and raw request bodies, and hash content fields such as query fingerprints when needed.
+
+Risk: Incorrect telemetry endpoint or credential scope could route billing data to the wrong Drip environment or over-privileged key.
+
+Mitigation: Use scoped telemetry keys, verify DRIP_BASE_URL before production, and prefer the documented DRIP_API_KEY path for complete run, event, and usage telemetry.
+
+Risk: Retries can duplicate billable usage events if writes are not idempotent.
+
+Mitigation: Emit stable idempotency keys for writes and verify in staging that retries do not create duplicate usage records.
+
+## Reference(s):
+
+- [Drip OpenClaw Billing API Reference](artifact/references/API.md)
+- [ClawHub skill page](https://clawhub.ai/lucas-309/skills/drip-openclaw-billing)
+- [ClawHub publisher profile](https://clawhub.ai/user/lucas-309)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, Python, and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes sanitized telemetry metadata, scoped credentials, idempotency keys, and fail-open billing writes.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

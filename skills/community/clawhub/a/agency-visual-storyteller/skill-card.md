@@ -1,41 +1,54 @@
-## Description: <br>
-Visual Storyteller helps agents plan visual narratives, multimedia concepts, data visualizations, and cross-platform brand storytelling assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual Storyteller helps create visual narratives, storyboards, multimedia content plans, data visualizations, and cross-platform brand storytelling guidance.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Employees, external creators, and brand teams use this agent to plan visual narratives, storyboards, multimedia concepts, data visualizations, and cross-platform brand storytelling assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect brand, audience, and visual asset files when asked to do creative strategy work. <br>
-Mitigation: Use the skill only in workspaces where those project files are appropriate for the agent to read. <br>
-Risk: Visual narrative, accessibility, or cultural-sensitivity recommendations may still need human review before publication. <br>
-Mitigation: Review generated concepts against brand guidelines, accessibility requirements, and audience context before deployment. <br>
+## Use Case:
 
+Designers, marketers, content teams, and agents use this skill to develop visual storytelling campaigns, storyboards, multimedia content specifications, data visualization narratives, and platform-specific visual strategy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhouqkt/agency-visual-storyteller) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown guidance with occasional inline shell commands for inspecting project assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No install steps, executables, network behavior, or hidden privileged actions were identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation phrasing could cause this skill to be invoked when an environment contains many similar creative or design agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use exact-name invocation or tighten activation phrasing when deterministic routing is important.
+
+Risk: Brand guidelines, audience research, and project visual assets may contain sensitive context used during storytelling work.
+
+Mitigation: Review project files before sharing them with the agent and avoid exposing confidential brand or audience material unnecessarily.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouqkt/skills/agency-visual-storyteller)
+- [Publisher Profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown or structured prose with occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No install actions, executables, network behavior, credential handling, or hidden persistence are reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

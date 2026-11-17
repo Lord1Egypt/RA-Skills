@@ -1,39 +1,83 @@
 # Built-in Templates Reference
 
-vmware-pilot ships with 14 built-in workflow templates. Each template is a Python function
+vmware-pilot ships with 15 built-in workflow templates. Each template is a Python function
 that generates a `Workflow` with pre-configured steps, approval gates, and rollback mappings.
+
+Steps (and rollback steps) that call a companion tool which previews by default pass
+`confirm=True`. In every built-in template such a step comes after an approval gate — Pilot's
+`approve`, which is the human decision; a test fails any template that sends `confirm=True`
+before its first gate. Read-only checks may come first.
 
 ---
 
 ## 1. clone_and_test
 
-**Purpose**: Clone a VM, apply changes in staging, monitor, then await approval before applying to production. The safest way to test changes.
+**Purpose**: Clone a VM from a snapshot, apply a change in staging, then await approval before applying to production.
 
-**Steps** (6):
+**Steps** (7 for a resize, 8 for a guest command):
 
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
-| 0 | Clone VM to staging | aiops | `deploy_linked_clone` | `vm_power_off` (staging) |
-| 1 | Apply changes to staging | aiops | `vm_reconfigure` or `vm_guest_exec` | -- |
-| 2 | Monitor staging health | monitor | `get_alarms` | -- |
-| 3 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 4 | Apply changes to production | aiops | `vm_reconfigure` or `vm_guest_exec` | -- |
-| 5 | Cleanup staging VM | aiops | `vm_power_off` | -- |
+| 0 | Linked-clone VM @ `snapshot_name` → staging, **powered off** | aiops | `deploy_linked_clone` | none — the clone stays (see below) |
+| 1 | Resize staging while it is off | aiops | `reconfigure_vm` | -- |
+| 2 | Power staging on | aiops | `power_on_vm` | `power_off_vm` (staging) |
+| 3 | Check staging (its alarms and events) | monitor | `investigate_vm` | -- |
+| 4 | **APPROVAL GATE** | pilot | `approve` | -- |
+| 5 | Apply the change to production | aiops | `reconfigure_vm` or `run_vm_guest_command` | none — not reversible |
+| 6 | Power off staging VM | aiops | `power_off_vm` | -- |
+
+With a guest command the order after the clone is: power on → **APPROVAL GATE**
+(run it in staging?) → `run_vm_guest_command` in staging → check → gate → production
+→ cleanup. A guest command needs a running guest with VMware Tools up; if Tools is not
+ready yet the step fails and the workflow stops. `run_vm_guest_command` is destructive
+(vmware-aiops publishes it with `destructiveHint: true`), so it gets its own gate.
+
+Why this order (first real-vSphere run, 2026-10-17): the template used to clone from a
+snapshot literally named `current`, power the clone on, and then resize it — vCenter
+refuses that with `MemoryHotPlugNotSupported` on any VM without hot-add. Staging is now
+resized while off. **Production is still resized while it runs**: that needs CPU/memory
+hot-add enabled on the production VM, and the approval message says so.
+
+What Pilot does not do: it does not wait `monitor_minutes` (the check is one call right
+after power-on; the gate asks the approver to give staging that long), it does not delete
+the staging clone (rollback and cleanup only power it off — delete it by hand when done),
+and it does not reverse the production change.
 
 **Parameters**:
 
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
 | `target_vm` | str | Yes | Production VM name to clone |
-| `change_spec` | dict | Yes | Changes to apply (e.g. `{memory_mb: 32768, cpu: 4}`) |
-| `monitor_minutes` | int | No | How long to monitor staging (default: 5) |
+| `change_spec` | dict | Yes | What to apply — see below |
+| `snapshot_name` | str | Yes | Snapshot of `target_vm` to clone from — vmware-monitor `list_vm_snapshots` lists them. No default |
+| `monitor_minutes` | int | No | How long the approver should let staging run before approving (default: 5); Pilot does not wait |
 | `target` | str | No | vCenter target name |
+
+`change_spec` is one of two shapes, and anything the aiops tool would reject is
+refused when the plan is made — before the staging clone exists:
+
+- **Resize** → aiops `reconfigure_vm`: `cpu` and/or `memory_mb`. `memory_gb` is
+  accepted and converted to `memory_mb` (it must come out a whole number of MB;
+  do not pass both). No other keys.
+- **Guest command** → aiops `run_vm_guest_command`: `command` (full path of the
+  program), `username` (**required** — the guest account to run as; there is no
+  default, and pilot never assumes root), `password`, and optionally
+  `arguments`, `working_directory`. No other keys.
 
 **Example**:
 ```
-plan_workflow("clone_and_test", {
+create_workflow_from_template("clone_and_test", {
     target_vm: "db01",
     change_spec: {memory_mb: 32768},
+    snapshot_name: "pre-change",
+    target: "vcenter-prod"
+})
+
+create_workflow_from_template("clone_and_test", {
+    target_vm: "web01",
+    change_spec: {command: "/usr/bin/apt-get", arguments: "-y upgrade",
+                  username: "ops", password: "..."},
+    snapshot_name: "pre-change",
     target: "vcenter-prod"
 })
 ```
@@ -63,7 +107,7 @@ plan_workflow("clone_and_test", {
 
 **Example**:
 ```
-plan_workflow("incident_response", {
+create_workflow_from_template("incident_response", {
     alert_entity: "esxi-host-03",
     alert_name: "Host memory usage",
     target: "vcenter-prod"
@@ -80,23 +124,23 @@ plan_workflow("incident_response", {
 
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
-| 0 | Create batch plan | aiops | `vm_create_plan` | -- |
+| 0 | Create batch plan | aiops | `create_vm_plan` | -- |
 | 1 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 2 | Apply batch plan | aiops | `vm_apply_plan` | `vm_rollback_plan` |
+| 2 | Apply batch plan | aiops | `apply_vm_plan` | `rollback_vm_plan` |
 
 **Parameters**:
 
 | Param | Type | Required | Description |
 |-------|------|----------|-------------|
-| `operations` | list[dict] | Yes | List of operations for vm_create_plan |
+| `operations` | list[dict] | Yes | List of operations for create_vm_plan |
 | `target` | str | No | vCenter target name |
 | `description` | str | No | Human-readable description |
 
-**Supported operations**: `power_on`, `power_off`, `reset`, `clone`, `deploy_ova`, `deploy_template`, `linked_clone`, `create_snapshot`, `delete_snapshot`, `revert_snapshot`.
+**Supported operations** (values of the step's `operation` field, not MCP tool names): power_on, power_off, reset, clone, deploy_ova, deploy_template, linked_clone, create_snapshot, delete_snapshot, revert_snapshot.
 
 **Example**:
 ```
-plan_workflow("plan_and_approve", {
+create_workflow_from_template("plan_and_approve", {
     operations: [
         {action: "power_off", vm_name: "db01"},
         {action: "revert_snapshot", vm_name: "db01", snapshot_name: "baseline"},
@@ -117,8 +161,10 @@ plan_workflow("plan_and_approve", {
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
 | 0 | Check active alarms | monitor | `get_alarms` | -- |
-| 1 | Check capacity remaining | aria | `get_capacity_overview` | -- |
+| 1 | Check capacity | aria / monitor | `get_capacity_overview` (with `cluster_id`) / `get_cluster_health_summary` (without) | -- |
 | 2 | Check anomalies | aria | `list_anomalies` | -- |
+
+Aria's `get_capacity_overview` requires a cluster id. Without one, the capacity step reads vmware-monitor's per-cluster CPU/memory rollup instead.
 
 **Parameters**:
 
@@ -127,10 +173,11 @@ plan_workflow("plan_and_approve", {
 | `target` | str | No | vCenter/Aria target name |
 | `check_alarms` | bool | No | Include alarm check (default: True) |
 | `check_capacity` | bool | No | Include capacity check (default: True) |
+| `cluster_id` | str | No | Aria resource id of a cluster, for Aria's capacity overview |
 
 **Example**:
 ```
-plan_workflow("compliance_scan", {target: "vcenter-prod"})
+create_workflow_from_template("compliance_scan", {target: "vcenter-prod"})
 ```
 
 ---
@@ -167,7 +214,7 @@ plan_workflow("compliance_scan", {target: "vcenter-prod"})
 
 **Example**:
 ```
-plan_workflow("network_segment_setup", {
+create_workflow_from_template("network_segment_setup", {
     segment_id: "app-frontend",
     display_name: "App Frontend Network",
     subnet: "10.10.1.0/24",
@@ -182,16 +229,23 @@ plan_workflow("network_segment_setup", {
 
 ## 6. vks_cluster_deploy
 
-**Purpose**: Deploy a complete VKS (vSphere with Tanzu) environment: create namespace, then deploy TKC cluster with approval gate.
+Available from Pilot 2.5.0: optional `cluster_class` and `cluster_class_namespace` are
+forwarded to VKS cluster creation when supplied. They require the companion VKS
+ClusterClass adaptation in VKS skill 3.7.0 or newer (not VKS 3.6.1). Omitted values keep
+legacy workflow parameters unchanged. VKS still owns preview/admission and execution
+checks; Pilot approval remains the documented attestation, not an execution gateway.
 
-**Steps** (4):
+**Purpose**: Deploy a complete VKS (vSphere with Tanzu) environment: create namespace, then deploy TKC cluster, each behind its own approval gate.
+
+**Steps** (5):
 
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
-| 0 | Create vSphere Namespace | vks | `create_namespace` | `delete_namespace` |
-| 1 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 2 | Create TKC cluster | vks | `create_tkc_cluster` | `delete_tkc_cluster` |
-| 3 | Verify cluster health | vks | `get_tkc_cluster` | -- |
+| 0 | **APPROVAL GATE** — create the namespace? | pilot | `approve` | -- |
+| 1 | Create vSphere Namespace | vks | `create_namespace` | `delete_namespace` |
+| 2 | **APPROVAL GATE** — deploy the TKC cluster? | pilot | `approve` | -- |
+| 3 | Create TKC cluster | vks | `create_tkc_cluster` | `delete_tkc_cluster` |
+| 4 | Verify cluster health | vks | `get_tkc_cluster` | -- |
 
 **Parameters**:
 
@@ -208,7 +262,7 @@ plan_workflow("network_segment_setup", {
 
 **Example**:
 ```
-plan_workflow("vks_cluster_deploy", {
+create_workflow_from_template("vks_cluster_deploy", {
     namespace_name: "dev-team-a",
     cluster_id: "domain-c8",
     storage_policy: "vsan-default",
@@ -230,8 +284,8 @@ plan_workflow("vks_cluster_deploy", {
 |---|--------|-------|------|----------|
 | 0 | Pre-check health | monitor | `get_alarms` | -- |
 | 1 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 2 | Power off VM_1 | aiops | `vm_power_off` | `vm_power_on` |
-| 3 | Power on VM_1 | aiops | `vm_power_on` | -- |
+| 2 | Power off VM_1 | aiops | `power_off_vm` | `power_on_vm` |
+| 3 | Power on VM_1 | aiops | `power_on_vm` | -- |
 | 4 | Health check VM_1 | monitor | `get_alarms` | -- |
 | ... | (repeat for each VM) | | | |
 
@@ -244,7 +298,7 @@ plan_workflow("vks_cluster_deploy", {
 
 **Example**:
 ```
-plan_workflow("rolling_restart", {
+create_workflow_from_template("rolling_restart", {
     vm_names: ["web01", "web02", "web03"],
     target: "vcenter-prod"
 })
@@ -263,7 +317,7 @@ plan_workflow("rolling_restart", {
 | 0 | Check remaining capacity | aria | `get_remaining_capacity` | -- |
 | 1 | Check rightsizing recommendations | aria | `list_rightsizing_recommendations` | -- |
 | 2 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 3 | Apply reconfiguration | aiops | `vm_create_plan` | -- |
+| 3 | Apply reconfiguration | aiops | `create_vm_plan` | -- |
 | 4 | Verify health | monitor | `get_alarms` | -- |
 
 **Parameters**:
@@ -279,7 +333,7 @@ At least one of `cpu` or `memory_mb` must be provided.
 
 **Example**:
 ```
-plan_workflow("capacity_expansion", {
+create_workflow_from_template("capacity_expansion", {
     vm_name: "db01",
     cpu: 8,
     memory_mb: 65536,
@@ -298,8 +352,8 @@ plan_workflow("capacity_expansion", {
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
 | 0 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 1 | Revert VM to snapshot | aiops | `vm_clean_slate` | -- |
-| 2 | Verify VM is running | monitor | `vm_info` | -- |
+| 1 | Revert VM to snapshot | aiops | `restore_vm_clean_slate` | -- |
+| 2 | Verify VM is running | monitor | `get_vm_info` | -- |
 | 3 | Verify network segments | nsx | `list_segments` | -- |
 | 4 | Verify health (no new alarms) | monitor | `get_alarms` | -- |
 
@@ -313,7 +367,7 @@ plan_workflow("capacity_expansion", {
 
 **Example**:
 ```
-plan_workflow("disaster_recovery", {
+create_workflow_from_template("disaster_recovery", {
     vm_name: "app-server-01",
     snapshot_name: "pre-upgrade",
     target: "vcenter-prod"
@@ -331,8 +385,8 @@ plan_workflow("disaster_recovery", {
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
 | 0 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 1 | Upload patch to VM_1 | aiops | `vm_guest_upload` | -- |
-| 2 | Install patch on VM_1 | aiops | `vm_guest_exec_output` | -- |
+| 1 | Upload patch to VM_1 | aiops | `upload_vm_guest_file` | -- |
+| 2 | Install patch on VM_1 | aiops | `run_vm_guest_command_with_output` | -- |
 | 3 | Verify health VM_1 | monitor | `get_alarms` | -- |
 | ... | (repeat for each VM) | | | |
 
@@ -344,18 +398,18 @@ plan_workflow("disaster_recovery", {
 | `patch_local_path` | str | Yes | Local path to patch file |
 | `patch_guest_path` | str | Yes | Destination path inside guest OS |
 | `install_command` | str | Yes | Command to run after upload (e.g. "rpm -Uvh /tmp/patch.rpm") |
-| `username` | str | No | Guest OS username (default: "root") |
+| `username` | str | Yes | Guest OS account the upload and install run as. No default — vmware-aiops removed its root default, and pilot will not assume one |
 | `password` | str | No | Guest OS password |
 | `target` | str | No | vCenter target name |
 
 **Example**:
 ```
-plan_workflow("patch_deployment", {
+create_workflow_from_template("patch_deployment", {
     vm_names: ["web01", "web02"],
     patch_local_path: "/tmp/security-patch-2026q1.rpm",
     patch_guest_path: "/tmp/security-patch-2026q1.rpm",
     install_command: "rpm -Uvh /tmp/security-patch-2026q1.rpm",
-    username: "root",
+    username: "patchadmin",
     password: "...",
     target: "vcenter-prod"
 })
@@ -371,11 +425,11 @@ plan_workflow("patch_deployment", {
 
 | # | Action | Skill | Tool | Rollback |
 |---|--------|-------|------|----------|
-| 0 | Check iSCSI status | storage | `storage_iscsi_status` | -- |
-| 1 | Enable iSCSI adapter | storage | `storage_iscsi_enable` | -- |
-| 2 | **APPROVAL GATE** | pilot | `approve` | -- |
-| 3 | Add iSCSI target | storage | `storage_iscsi_add_target` | `storage_iscsi_remove_target` |
-| 4 | Rescan storage | storage | `storage_rescan` | -- |
+| 0 | Check iSCSI status (read-only) | storage | `get_iscsi_status` | -- |
+| 1 | **APPROVAL GATE** — enable the adapter and add the target? | pilot | `approve` | -- |
+| 2 | Enable iSCSI adapter | storage | `enable_iscsi` | -- |
+| 3 | Add iSCSI target | storage | `add_iscsi_target` | `remove_iscsi_target` |
+| 4 | Rescan storage | storage | `rescan_storage` | -- |
 | 5 | Verify new datastores | storage | `list_all_datastores` | -- |
 
 **Parameters**:
@@ -389,7 +443,7 @@ plan_workflow("patch_deployment", {
 
 **Example**:
 ```
-plan_workflow("storage_expansion", {
+create_workflow_from_template("storage_expansion", {
     host_name: "esxi-04",
     iscsi_address: "10.0.1.100",
     iscsi_port: 3260,
@@ -427,11 +481,17 @@ All steps are read-only. No approval gate.
 | `include_alarms` | bool | No | Capture alarms (default: True) |
 | `baseline_name` | str | No | Name for baseline (default: auto-generated timestamp) |
 
-Baselines are saved to `~/.vmware/baselines/{name}.json`.
+**Pilot does not write the baseline file.** The plan carries a suggested
+`baseline_path` (`~/.vmware/baselines/{name}.json`); the calling agent saves the
+collected step results there if you want to keep them. **That file is sensitive**:
+it is an inventory of your VMs, ESXi hosts, NSX segments, datastores and active
+alarms — the map an attacker would want. Keep it owner-only (`chmod 700
+~/.vmware/baselines`, `chmod 600` each file), do not paste it into chat, tickets
+or shared drives, and delete baselines you no longer need.
 
 **Example**:
 ```
-plan_workflow("baseline_capture", {
+create_workflow_from_template("baseline_capture", {
     target: "vcenter-prod",
     baseline_name: "pre-maintenance-2026q1"
 })
@@ -442,6 +502,8 @@ plan_workflow("baseline_capture", {
 ## 13. baseline_audit
 
 **Purpose**: Compare current infrastructure state against a saved baseline to detect configuration drift.
+Pilot collects the current state; the calling agent does the comparison against
+the file it saved (pilot does not read it, and `diff_report` stays empty).
 
 **Steps** (up to 5):
 
@@ -468,7 +530,7 @@ All steps are read-only. No approval gate.
 
 **Example**:
 ```
-plan_workflow("baseline_audit", {
+create_workflow_from_template("baseline_audit", {
     baseline_name: "pre-maintenance-2026q1",
     target: "vcenter-prod"
 })
@@ -510,13 +572,13 @@ Each drift item dict:
 
 **Example**:
 ```
-plan_workflow("baseline_remediate", {
+create_workflow_from_template("baseline_remediate", {
     drift_items: [
         {
             resource: "web01",
             action: "fix_cpu",
             skill: "aiops",
-            tool: "vm_create_plan",
+            tool: "create_vm_plan",
             params: {operations: [{action: "reconfigure", vm_name: "web01", cpu: 4}]},
         },
         {
@@ -535,21 +597,64 @@ plan_workflow("baseline_remediate", {
 
 ---
 
+## 15. investigate_alert
+
+**Purpose**: Causal-chain root-cause investigation of an alert. Gathers evidence in parallel, then stops at a checkpoint where the agent applies the four criteria (falsifiability, sufficiency, necessity, mechanism) from `investigation-protocol.md`. All gathering steps are reads; the approvals are synthesis checkpoints, not permission for a change.
+
+**Steps** (4, or 8 with `deep_dive`):
+
+| # | Action | Skill | Tool | Parallel group |
+|---|--------|-------|------|----------------|
+| 0 | Gather active alarms | monitor | `get_alarms` | round1-gather |
+| 1 | Gather events, last 2 h | monitor | `get_events` (`hours: 2`) | round1-gather |
+| 2 | Gather active Aria alerts | aria | `list_alerts` (`active_only: true`) | round1-gather |
+| 3 | **CHECKPOINT** — four criteria | pilot | `approve` | -- |
+| 4 | Gather anomalies | aria | `list_anomalies` | round2-gather |
+| 5 | Gather per-cluster capacity | monitor | `get_cluster_health_summary` | round2-gather |
+| 6 | Gather Aria alerts incl. cancelled | aria | `list_alerts` (`active_only: false`) | round2-gather |
+| 7 | **CHECKPOINT** — four criteria again | pilot | `approve` | -- |
+
+Steps 4–7 exist only with `deep_dive: true`. None of these tools filters by object, so keep the rows that concern `alert_entity` — alarms and alerts carry the object's name. The checkpoint message says so.
+
+**Parameters**:
+
+| Param | Type | Required | Description |
+|-------|------|----------|-------------|
+| `alert_entity` | str | Yes | Object the alert is on (VM, host, cluster) |
+| `alert_name` | str | No | Alert label shown in the checkpoint messages |
+| `deep_dive` | bool | No | Add the second gathering round and checkpoint (default: False) |
+| `target` | str | No | vCenter target for the monitor steps; also the Aria target unless `aria_target` is set |
+| `aria_target` | str | No | Aria target for the aria steps, when it is named differently from the vCenter one |
+
+**Example**:
+```
+create_workflow_from_template("investigate_alert", {
+    alert_entity: "192.168.60.15",
+    alert_name: "Host connection and power state",
+    target: "home-vcenter",
+    aria_target: "home-aria",
+    deep_dive: true
+})
+```
+
+---
+
 ## Template Summary
 
 | Template | Steps | Approval | Skills Used | Risk Level |
 |----------|-------|----------|-------------|------------|
-| `clone_and_test` | 6 | Yes | aiops, monitor | Medium |
+| `clone_and_test` | 7-8 | Yes | aiops, monitor | Medium |
 | `incident_response` | 4 | Yes | monitor, aiops | Medium |
 | `plan_and_approve` | 3 | Yes | aiops | High |
-| `compliance_scan` | 3 | No | monitor, aria | Low |
-| `network_segment_setup` | 2-6 | Yes | nsx, nsx-security | Medium |
-| `vks_cluster_deploy` | 4 | Yes | vks | Medium |
+| `compliance_scan` | 1-3 | No | monitor, aria | Low |
+| `network_segment_setup` | 3-6 | Yes | nsx, nsx-security | Medium |
+| `vks_cluster_deploy` | 5 | Yes | vks | Medium |
 | `rolling_restart` | 2+3n | Yes | aiops, monitor | Medium |
 | `capacity_expansion` | 5 | Yes | aria, aiops, monitor | Medium |
 | `disaster_recovery` | 5 | Yes | aiops, monitor, nsx | High |
 | `patch_deployment` | 1+3n | Yes | aiops, monitor | Medium |
 | `storage_expansion` | 6 | Yes | storage | Medium |
 | `baseline_capture` | 1-5 | No | monitor, nsx, storage | Low |
-| `baseline_audit` | 2-5 | No | monitor, nsx, storage, aria | Low |
+| `baseline_audit` | 1-5 | No | monitor, nsx, storage, aria | Low |
 | `baseline_remediate` | 3+n | Yes | varies | High |
+| `investigate_alert` | 4 (8 with `deep_dive`) | Yes (synthesis checkpoints) | monitor, aria | Low |

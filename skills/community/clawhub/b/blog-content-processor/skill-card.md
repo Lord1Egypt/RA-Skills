@@ -1,40 +1,57 @@
-## Description: <br>
-Process blog content to extract videos and generate GIF previews. Works with blogwatcher, video-frames, and gifgrep skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process blog content to extract videos and generate GIF previews. Works with blogwatcher, video-frames, and gifgrep skills.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and content automation teams use this skill to process RSS or Atom blog feeds, extract embedded video URLs, and generate GIF preview clips for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawHub security evidence reports no harmful scanner or telemetry findings, but notes limited artifact-backed review depth. <br>
-Mitigation: Review the skill contents, declared dependencies, and requested permissions before installing or running it. <br>
-Risk: The skill processes RSS feeds, embedded video URLs, and media files, which can expose agents to untrusted external content. <br>
-Mitigation: Run the workflow in a sandboxed environment, prefer trusted feeds, and keep media-processing dependencies patched. <br>
+## Use Case:
 
+Developers and content automation users use this skill to process blog or RSS feeds, extract embedded video URLs, and generate GIF preview clips for downstream publishing or review workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/terrycarter1985/blog-content-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands and generated GIF preview files when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes feed URLs and writes GIF previews to a configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-10.0.0 (source: server release metadata and package.json) <br>
+Risk: Untrusted RSS feeds or embedded videos may supply unsafe or misleading media inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use feeds and embedded videos from trusted sources and review extracted media before publishing or further processing.
+
+Risk: Video and GIF processing can consume CPU and disk space.
+
+Mitigation: Run the skill in a controlled environment and direct output to a monitored folder with appropriate storage limits.
+
+Risk: Runtime dependencies may change behavior or introduce vulnerabilities if installed loosely.
+
+Mitigation: Pin and review dependencies before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/blog-content-processor)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration]
+
+**Output Format:** [GIF files and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to a user-selected folder.]
+
+## Skill Version(s):
+
+10.0.0 (source: evidence.json release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Envoie le résultat de l'INR (International Normalized Ratio) à un centre de télémédecine spécialisé ou pour un test. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Envoie le resultat de l'INR (International Normalized Ratio) a un centre de telemedecine specialise ou pour un test.
 
-## Publisher: <br>
-[gillescv](https://clawhub.ai/user/gillescv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gillescv](https://clawhub.ai/user/gillescv)
 
-## Use Case: <br>
-Gilles or an authorized helper uses this skill to send an INR self-measurement by email to the configured telemedicine recipient, with an optional test mode. It is intended for transmitting a specific medical measurement after the user supplies the INR value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The email includes identifiable medical information and personal details. <br>
-Mitigation: Use only with authorization, verify the INR value and recipient mode before sending, and ensure the email account and recipient are appropriate for medical information. <br>
-Risk: The skill depends on an undeclared local gog Gmail tool and configured Gmail account. <br>
-Mitigation: Confirm the local Gmail tool path, account configuration, subject, and message body before executing the send command. <br>
+## Use Case:
 
+External users use this skill to send Gilles's INR self-measurement value by email to a telemedicine recipient or to a test address.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gillescv/inr-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text] <br>
-**Output Format:** [Shell command that sends a formatted email message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local gog Gmail tool and a configured Gmail account; includes the INR value, date, recipient mode, and identifying details in the email body.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends sensitive health information and includes hardcoded personal identity details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for the named patient and intended recipients; remove hardcoded personal details from the published package and configure identifying details privately before operational use.
+
+Risk: The skill can send an email without validating the INR value or confirming the destination and message.
+
+Mitigation: Validate the INR value and require a clear confirmation that shows the destination and message summary before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gillescv/skills/inr-sender)
+- [Publisher profile](https://clawhub.ai/user/gillescv)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Markdown with inline shell command usage and generated email message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts an INR value and optional test flag; sends the formatted message through a configured Gmail command.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-抖音无水印视频下载和文案提取工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音无水印视频下载和文案提取工具。
 
-## Publisher: <br>
-[whille](https://clawhub.ai/user/whille) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whille](https://clawhub.ai/user/whille)
 
-## Use Case: <br>
-Developers and content workflow users can use this skill to inspect Douyin share links, download watermark-free video files, and optionally extract speech transcripts with a SiliconFlow API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads Douyin media to a local output directory. <br>
-Mitigation: Choose the output directory deliberately and process only media you have permission to download. <br>
-Risk: Transcript extraction sends extracted audio to SiliconFlow for transcription. <br>
-Mitigation: Use a dedicated API key and avoid submitting audio that should not be shared with the transcription provider. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Douyin MCP Server homepage](https://github.com/yzfly/douyin-mcp-server) <br>
-- [SiliconFlow API key portal](https://cloud.siliconflow.cn/) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to fetch Douyin video information, download no-watermark videos locally, and optionally extract spoken transcript text through SiliconFlow transcription.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Command-line output and optional Markdown transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg for media processing; transcript extraction requires DOUYIN_API_KEY or API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Transcript extraction sends extracted audio to SiliconFlow for transcription.
+
+Mitigation: Use extract mode only when the video audio can be shared with SiliconFlow under the user's data-handling requirements.
+
+Risk: Weak URL validation may allow non-Douyin URLs to be passed to the downloader.
+
+Mitigation: Pass only trusted Douyin share links until hostname validation is tightened.
+
+Risk: The tool can read a generic API_KEY environment variable.
+
+Mitigation: Prefer DOUYIN_API_KEY and avoid running the skill in environments that expose unrelated API_KEY secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whille/skills/douyin-downloader-nodejs)
+- [SiliconFlow API key portal](https://cloud.siliconflow.cn/)
+- [SiliconFlow audio transcription endpoint](https://api.siliconflow.cn/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [CLI stdout plus downloaded MP4 files and transcript Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg for audio extraction; transcript extraction sends extracted audio to SiliconFlow and uses DOUYIN_API_KEY or API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

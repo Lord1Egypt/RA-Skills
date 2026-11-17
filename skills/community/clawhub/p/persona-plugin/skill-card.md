@@ -1,43 +1,60 @@
-## Description: <br>
-Provides persona tools for retrieving persistent caller context, logging completed calls, and updating caller identity, communication style, and memory records through a Persona API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages persistent caller memory by retrieving caller context at call start and saving call summaries, identity facts, communication style, and memories after calls.
 
-## Publisher: <br>
-[noahvandal](https://clawhub.ai/user/noahvandal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noahvandal](https://clawhub.ai/user/noahvandal)
 
-## Use Case: <br>
-Agents handling ClawdTalk calls use this plugin to load caller context before outreach, log call metadata after conversations, and persist new caller facts or memories for future personalization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent caller profiling can store sensitive caller identity, personality, memory, and call-summary information. <br>
-Mitigation: Deploy only when persistent caller memory is intentional, callers receive appropriate notice and consent, and retention plus review, correction, and deletion processes are defined. <br>
-Risk: Providing a call ID may allow full transcript ingestion by the Persona API server. <br>
-Mitigation: Pass call IDs only when full transcript ingestion is acceptable for the use case and the configured Persona API server is trusted. <br>
-Risk: The plugin depends on an external Persona API server and API key. <br>
-Mitigation: Protect the API key, configure a trusted server endpoint, and allow calls to proceed without persona context when the API is unreachable. <br>
+## Use Case:
 
+Developers and operators building ClawdTalk or OpenClaw calling agents use this plugin to load caller context before a call and persist useful caller memory after the call ends.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/noahvandal/persona-plugin) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, configuration, guidance] <br>
-**Output Format:** [JSON tool results and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Persona API key and server URL; tools may return caller profiles, prompt context, recent call history, call records, and persona document version metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill stores and reuses sensitive caller memory, including call summaries, identity facts, and persona observations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with caller notice or consent, clear retention and deletion rules, and limits on what transcript-derived details are stored.
+
+Risk: A misconfigured or untrusted Persona API endpoint could expose caller memory or API credentials.
+
+Mitigation: Use a trusted endpoint, prefer HTTPS for non-local servers, restrict who can configure the endpoint, and protect the API key as sensitive configuration.
+
+Risk: Persistent persona updates can accumulate incorrect, stale, or overly sensitive information.
+
+Mitigation: Review saved summaries and persona updates, avoid unnecessary sensitive details, and provide a process to correct or delete caller records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noahvandal/skills/persona-plugin)
+- [Publisher profile](https://clawhub.ai/user/noahvandal)
+- [Skill instructions](artifact/SKILL.md)
+- [Plugin manifest](artifact/openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON-formatted text from Persona API tool calls, with caller-context guidance for the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Persona API key, a configured Persona API endpoint, and E.164 caller phone numbers.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

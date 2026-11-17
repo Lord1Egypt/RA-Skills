@@ -13,6 +13,14 @@ metadata:
 
 # Parse Payment QR Code
 
+## Runtime
+
+All `node scripts/dist/*.js` commands below MUST run from the **plugin root**
+(the directory containing `.claude-plugin/plugin.json`), not from this
+skill's directory. When installed as a Claude Code plugin, the plugin root
+is `${CLAUDE_PLUGIN_ROOT}`. If that env var isn't set, `cd` to the directory
+that contains `scripts/dist/`, `skills/`, and `.claude-plugin/`.
+
 ## Instructions
 
 Parse QR code content from screenshots or pasted URIs into structured payment data.
@@ -72,3 +80,13 @@ Parsed: Stellar G-wallet, 100 USDC
 QR content: `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6`
 
 Parsed: EVM address (chain unknown — ask user)
+
+
+## Verify before paying
+
+A QR code or payment URI is attacker-controllable input: codes get swapped on
+stickers, screenshots get doctored, and a URI's display name proves nothing.
+After decoding, ALWAYS show the user the decoded recipient address, chain,
+token and amount, and have them confirm those against the source they trust
+(the merchant's screen, the invoice) BEFORE any payment flow starts. Never
+treat a successful parse as authorisation to pay.

@@ -1,0 +1,30 @@
+{
+  "name": "server-maintenance-skill",
+  "version": "1.0.0",
+  "description": "Automated server maintenance for OpenClaw. Memory distillation demo: 17K→2K tokens (88% reduction)",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "server-maintenance",
+    "disk-cleanup",
+    "memory-distillation",
+    "automation",
+    "devops"
+  ],
+  "author": "2233admin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2233admin/server-maintenance-skill"
+  },
+  "openclaw": {
+    "skill": true,
+    "triggers": [
+      "服务器维护",
+      "清理磁盘",
+      "检查磁盘",
+      "server maintenance",
+      "disk cleanup"
+    ]
+  }
+}

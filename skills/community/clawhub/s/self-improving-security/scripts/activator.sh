@@ -20,6 +20,6 @@ Always use REDACTED_* placeholders.
 If yes: Log to .learnings/ using the security self-improvement format.
   - Vulnerabilities/incidents → SECURITY_INCIDENTS.md [SEC-YYYYMMDD-XXX]
   - Misconfigs/compliance/intel → LEARNINGS.md [LRN-YYYYMMDD-XXX]
-If high-value (recurring, broadly applicable): Promote to hardening checklist or playbook.
+If high-value (recurring, broadly applicable): propose promotion to hardening checklist or playbook.; apply only after explicit user approval.
 </security-improvement-reminder>
 EOF

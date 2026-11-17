@@ -1,44 +1,62 @@
-## Description: <br>
-Trades World Cup 2026 knockout-stage propSPACE play-money player fantasy-score markets by building a multimodal distribution from FunctionSpace expected points plus optional sentiment and selecting high-divergence positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades World Cup 2026 knockout-stage player fantasy-score markets on propSPACE by building multimodal distribution beliefs from FunctionSpace expected points and optional sentiment enrichment.
 
-## Publisher: <br>
-[bridgeaisocial](https://clawhub.ai/user/bridgeaisocial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bridgeaisocial](https://clawhub.ai/user/bridgeaisocial)
 
-## Use Case: <br>
-External agent operators use this skill to inspect, dry-run, and optionally place propSPACE play-money positions for World Cup 2026 knockout-stage player fantasy-score markets. The default workflow selects one FWD, one MID, and one DEF for the current open round, while --live performs the play-money trade mutation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: --live can place propSPACE play-money positions that affect a real-prize competition. <br>
-Mitigation: Run --list-markets, --inspect, and the default dry run before using --live; keep FS_MAX_COLLATERAL within the intended play-money budget. <br>
-Risk: The default FS_PASSWORD is weak and persisted authentication tokens are sensitive. <br>
-Mitigation: Set a unique strong FS_PASSWORD before first use and protect or remove .auth token files after execution. <br>
-Risk: The optional Brave enrichment script can expose part of BRAVE_API_KEY in shared logs. <br>
-Mitigation: Avoid running enrichment in shared log environments until the API-key print is removed or masked. <br>
+## Use Case:
 
+External developers and trading-agent operators use this skill to evaluate and optionally place play-money propSPACE positions for World Cup knockout player fantasy-score markets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bridgeaisocial/skills/fs-worldcup-knockout) <br>
-- [FunctionSpace / propSPACE](https://functionspace.dev) <br>
-- [FunctionSpace World Cup competition engine](https://fs-engine-api-mech-v0-4.onrender.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output with Markdown setup instructions and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; passing --live places propSPACE play-money positions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release and frontmatter) <br>
+Risk: The skill can create a propSPACE account, persist bearer tokens locally, and place account-affecting play-money trades when --live is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run, list, and inspect modes before --live; keep .auth out of archives and source control; delete stored tokens when no longer needed.
+
+Risk: The default FS_PASSWORD is weak and reused if the user does not override it.
+
+Mitigation: Set a unique FS_PASSWORD of at least six characters before running the skill, especially for production bots.
+
+Risk: Changing FS_BASE_URL can send credentials and trades to a nonstandard endpoint.
+
+Mitigation: Use the official HTTPS FunctionSpace engine URL unless intentionally testing against a trusted endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bridgeaisocial/skills/fs-worldcup-knockout)
+- [propSPACE live campaign](https://propspace.fun)
+- [propSPACE signup](https://app.propspace.fun)
+- [FunctionSpace competition engine](https://fs-engine-api-mech-v0-4.onrender.com)
+- [FunctionSpace handoff](FUNCTIONSPACE_HANDOFF.md)
+- [Skill disclaimer](DISCLAIMER.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and runtime text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run output is read-only; passing --live can place propSPACE play-money trades.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

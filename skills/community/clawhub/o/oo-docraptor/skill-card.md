@@ -1,43 +1,59 @@
-## Description: <br>
-DocRaptor helps agents create hosted PDF or Excel documents from raw HTML or public URLs through an OOMOL-connected DocRaptor account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate DocRaptor through an OOMOL-connected account to create hosted PDF or Excel documents from HTML or a public URL.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to create DocRaptor-hosted PDF or Excel documents from HTML content or a public URL without handling raw DocRaptor credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or invoking the external oo CLI can introduce supply-chain and local execution risk. <br>
-Mitigation: Prefer the official install guide or inspect the installer before running it, install only from a trusted OOMOL CLI source, and avoid elevated privileges unless official documentation requires them. <br>
-Risk: The create_hosted_document action changes DocRaptor state by creating a hosted PDF or Excel document. <br>
-Mitigation: Fetch the live connector schema before building the payload and confirm the exact payload and expected effect with the user before running the write action. <br>
+## Use Case:
 
+Developers use this skill to create a hosted PDF or Excel document with DocRaptor from HTML or a public URL through their connected OOMOL account.
 
-## Reference(s): <br>
-- [DocRaptor homepage](https://docraptor.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-docraptor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON payload expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DocRaptor-hosted document download URLs returned by oo CLI connector responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter metadata) <br>
+Risk: Fallback setup may execute remote installer code, and the installed CLI release has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified oo CLI release yourself and control automatic skill synchronization before use.
+
+Risk: Automatic synchronization may affect other agents’ skills, and the guidance does not fully explain those changes.
+
+Mitigation: Review synchronization changes before allowing them to affect other skills.
+
+Risk: Document content submitted to the connected service is processed by OOMOL and DocRaptor.
+
+Mitigation: Approve document payloads and submit only content you permit both services to process.
+
+## Reference(s):
+
+- [DocRaptor API documentation](https://docraptor.com/documentation/api)
+- [DocRaptor homepage](https://docraptor.com)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON payloads, Document download links, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON payloads; action responses include a hosted PDF or Excel download URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A hosted document is created through the DocRaptor create_hosted_document action.]
+
+## Skill Version(s):
+
+1.0.6 (source: skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

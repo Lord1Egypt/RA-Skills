@@ -1,43 +1,54 @@
-## Description: <br>
-Provides Baidu Netdisk file listing, search, share extraction, share transfer, directory creation, and file management actions for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Netdisk helps agents list, search, extract shared links, transfer shared files, create directories, and manage files in a Baidu Netdisk account.
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect and manage a Baidu Netdisk account, including searching files, extracting share links, transferring shared files, creating folders, and performing file management operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses full-access Baidu Netdisk session cookies and can act on the user's cloud storage account. <br>
-Mitigation: Use a test or low-risk account where possible and store BDUSS/STOKEN only as secrets or environment variables. <br>
-Risk: File management operations can delete, move, rename, or transfer cloud files. <br>
-Mitigation: Manually confirm delete, move, rename, and transfer requests before allowing the skill to run. <br>
-Risk: Credential disclosure could expose the Baidu Netdisk account. <br>
-Mitigation: Avoid pasting BDUSS/STOKEN into chats or files and run the skill only in trusted environments. <br>
+## Use Case:
 
+Developers and agent users can use this skill to let an OpenClaw agent operate Baidu Netdisk content, including browsing files, searching storage, extracting share links, transferring shared files, creating directories, and performing reviewed file-management actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilei0311/baidunetdisk-skill) <br>
-- [Baidu Netdisk web application](https://pan.baidu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BDUSS and STOKEN credentials supplied through secrets, environment variables, or local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses BDUSS and STOKEN session credentials that can provide broad access to a Baidu Netdisk account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, prefer a dedicated test account, treat the credentials like account passwords, avoid committing config.json, and restrict file permissions.
+
+Risk: The skill can modify cloud files through delete, rename, move, transfer, and directory creation operations.
+
+Mitigation: Review the exact path and action before allowing an agent to invoke file-changing commands, especially delete, rename, move, and transfer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilei0311/skills/baidunetdisk-skill)
+- [Baidu Netdisk](https://pan.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command results and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BDUSS and STOKEN credentials supplied through config.json or environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

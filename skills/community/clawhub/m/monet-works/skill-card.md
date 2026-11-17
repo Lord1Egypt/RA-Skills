@@ -1,37 +1,54 @@
-## Description: <br>
-Content quality and compliance tools for financial writing that detect and fix banned phrases, missing disclaimers, missing CTAs, and excessive length. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content pack for financial writing QA that helps remediate compliance issues and humanize AI-generated prose.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-Financial content creators, newsletter writers, and marketing teams use this pack to QA investment-adjacent drafts, add missing disclaimers and CTAs, trim length, and make AI-assisted writing sound more human before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content edits may change financial claims, disclaimers, or compliance-sensitive wording in ways that are incomplete or unsuitable for publication. <br>
-Mitigation: Treat output as suggestions, review change reports carefully, and have a qualified reviewer verify financial claims, disclaimers, and compliance-sensitive edits before publishing. <br>
+## Use Case:
 
+Financial content creators, newsletter writers, and marketing teams use this pack to install a content QA remediation workflow and a humanizer workflow before publishing investment-adjacent content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Edited draft text with structured change-report JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API keys required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The pack installs two referenced skills whose permissions and behavior are not shown in this descriptor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, verify that monet-works-content-qa-dv and ogilvy-humanizer-dv come from the expected publisher and review each skill's permissions and behavior.
+
+Risk: Financial-content remediation may create or preserve inaccurate, incomplete, or non-compliant language.
+
+Mitigation: Use the pack as a pre-publish quality aid and keep human compliance review in the publication workflow.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/monet-works)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands; referenced skills may produce revised content and structured change-report JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API keys are required by the pack descriptor; users should review the separately installed skills before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

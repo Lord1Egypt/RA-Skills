@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "connectivity": {
+    "schemaVersion": "1.4",
+    "projectId": "eval-project",
+    "documentId": "eval-page",
+    "components": [
+      {
+        "id": "cmp-C1",
+        "ref": "C1",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "87bb635d0b2f489a9f60e7cd225beb3c",
+          "name": "CL05B104KO5NNNC"
+        },
+        "pins": [
+          {
+            "number": "1",
+            "name": "1"
+          },
+          {
+            "number": "2",
+            "name": "2"
+          }
+        ],
+        "pageId": "eval-page"
+      },
+      {
+        "id": "cmp-C2",
+        "ref": "C2",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "6e5726223dd84f70bc3b626fc7d1f72c",
+          "name": "GRM21BR61H106KE43L"
+        },
+        "pins": [
+          {
+            "number": "1",
+            "name": "1"
+          },
+          {
+            "number": "2",
+            "name": "2"
+          }
+        ],
+        "pageId": "eval-page"
+      },
+      {
+        "id": "cmp-C3",
+        "ref": "C3",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "pins": [
+          {
+            "number": "1",
+            "name": "1"
+          },
+          {
+            "number": "2",
+            "name": "2"
+          }
+        ],
+        "pageId": "eval-page"
+      },
+      {
+        "id": "cmp-U1",
+        "ref": "U1",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "9f9c6cb41c7449fd8acf96aceed2661a",
+          "name": "AMS1117-3.3"
+        },
+        "pins": [
+          {
+            "number": "1",
+            "name": "GND"
+          },
+          {
+            "number": "2",
+            "name": "VOUT"
+          },
+          {
+            "number": "3",
+            "name": "VIN"
+          },
+          {
+            "number": "4",
+            "name": "VOUT"
+          }
+        ],
+        "pageId": "eval-page"
+      }
+    ],
+    "nets": [
+      {
+        "id": "net-436512e5babfbe83cb49b2bec450620750c3f161cceb6d26d9b9cc806a4f19c1",
+        "name": "+5V"
+      },
+      {
+        "id": "net-7e78ea734d524af3e40d173d91899c6bc066d240275c2c81ce50192b2de6f0b0",
+        "name": "+3V3"
+      },
+      {
+        "id": "net-ccdd8d41edbac58e6d53310d1fccffd0f92fee7ae510446f885743c5226f1b30",
+        "name": "GND"
+      }
+    ],
+    "connections": [
+      {
+        "componentId": "cmp-C1",
+        "pinNumber": "1",
+        "netId": "net-7e78ea734d524af3e40d173d91899c6bc066d240275c2c81ce50192b2de6f0b0",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-C1",
+        "pinNumber": "2",
+        "netId": "net-ccdd8d41edbac58e6d53310d1fccffd0f92fee7ae510446f885743c5226f1b30",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-C2",
+        "pinNumber": "1",
+        "netId": "net-436512e5babfbe83cb49b2bec450620750c3f161cceb6d26d9b9cc806a4f19c1",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-C2",
+        "pinNumber": "2",
+        "netId": "net-ccdd8d41edbac58e6d53310d1fccffd0f92fee7ae510446f885743c5226f1b30",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-C3",
+        "pinNumber": "1",
+        "netId": "net-7e78ea734d524af3e40d173d91899c6bc066d240275c2c81ce50192b2de6f0b0",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-C3",
+        "pinNumber": "2",
+        "netId": "net-ccdd8d41edbac58e6d53310d1fccffd0f92fee7ae510446f885743c5226f1b30",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-U1",
+        "pinNumber": "1",
+        "netId": "net-ccdd8d41edbac58e6d53310d1fccffd0f92fee7ae510446f885743c5226f1b30",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-U1",
+        "pinNumber": "2",
+        "netId": "net-7e78ea734d524af3e40d173d91899c6bc066d240275c2c81ce50192b2de6f0b0",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-U1",
+        "pinNumber": "3",
+        "netId": "net-436512e5babfbe83cb49b2bec450620750c3f161cceb6d26d9b9cc806a4f19c1",
+        "kind": "pin_net"
+      },
+      {
+        "componentId": "cmp-U1",
+        "pinNumber": "4",
+        "netId": "net-7e78ea734d524af3e40d173d91899c6bc066d240275c2c81ce50192b2de6f0b0",
+        "kind": "pin_net"
+      }
+    ],
+    "modules": [
+      {
+        "id": "POWER",
+        "name": "POWER / AMS1117-3.3",
+        "coreComponents": [
+          "cmp-U1"
+        ],
+        "peripheralComponents": [
+          "cmp-C2",
+          "cmp-C1",
+          "cmp-C3"
+        ]
+      }
+    ]
+  },
+  "sheet": {
+    "minX": 0,
+    "minY": 0,
+    "maxX": 1170,
+    "maxY": 825
+  },
+  "keepouts": [
+    {
+      "minX": 468,
+      "minY": 0,
+      "maxX": 1170,
+      "maxY": 198
+    }
+  ],
+  "measurements": [
+    {
+      "designator": "U1",
+      "x": 300,
+      "y": 650,
+      "rotation": 180,
+      "mirror": true,
+      "bbox": {
+        "minX": 264.50000000000006,
+        "minY": 629.5,
+        "maxX": 335.50000000000006,
+        "maxY": 670.5
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "GND",
+          "net": "GND",
+          "x": 255,
+          "y": 640
+        },
+        {
+          "number": "2",
+          "name": "VOUT",
+          "net": "+3V3",
+          "x": 255,
+          "y": 650
+        },
+        {
+          "number": "3",
+          "name": "VIN",
+          "net": "+5V",
+          "x": 255,
+          "y": 660
+        },
+        {
+          "number": "4",
+          "name": "VOUT",
+          "net": "+3V3",
+          "x": 345,
+          "y": 650
+        }
+      ]
+    },
+    {
+      "designator": "C2",
+      "value": "10uF",
+      "x": 145,
+      "y": 640,
+      "rotation": 270,
+      "mirror": false,
+      "bbox": {
+        "minX": 136.5,
+        "minY": 629.5,
+        "maxX": 153.5,
+        "maxY": 650.5
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+5V",
+          "x": 145,
+          "y": 660
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "x": 145,
+          "y": 620
+        }
+      ]
+    },
+    {
+      "designator": "C1",
+      "value": "100nF",
+      "x": 405,
+      "y": 630,
+      "rotation": 270,
+      "mirror": false,
+      "bbox": {
+        "minX": 396.5,
+        "minY": 619.4999999999999,
+        "maxX": 413.5,
+        "maxY": 640.4999999999999
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "x": 405,
+          "y": 650
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "x": 405,
+          "y": 610
+        }
+      ]
+    },
+    {
+      "designator": "C3",
+      "value": "22uF",
+      "x": 490,
+      "y": 630,
+      "rotation": 270,
+      "mirror": false,
+      "bbox": {
+        "minX": 481.5,
+        "minY": 619.4999999999999,
+        "maxX": 498.5,
+        "maxY": 640.4999999999999
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "1",
+          "net": "+3V3",
+          "x": 490,
+          "y": 650
+        },
+        {
+          "number": "2",
+          "name": "2",
+          "net": "GND",
+          "x": 490,
+          "y": 610
+        }
+      ]
+    }
+  ],
+  "layoutModules": [
+    {
+      "id": "POWER",
+      "title": "POWER / AMS1117-3.3",
+      "coreComponentId": "cmp-U1",
+      "netPolicies": {
+        "net-436512e5babfbe83cb49b2bec450620750c3f161cceb6d26d9b9cc806a4f19c1": "local_power",
+        "net-7e78ea734d524af3e40d173d91899c6bc066d240275c2c81ce50192b2de6f0b0": "local_power",
+        "net-ccdd8d41edbac58e6d53310d1fccffd0f92fee7ae510446f885743c5226f1b30": "local_ground"
+      },
+      "peripherals": [
+        {
+          "componentId": "cmp-C2",
+          "attachTo": {
+            "componentId": "cmp-U1",
+            "pinNumber": "3"
+          }
+        },
+        {
+          "componentId": "cmp-C1",
+          "attachTo": {
+            "componentId": "cmp-U1",
+            "pinNumber": "4"
+          }
+        },
+        {
+          "componentId": "cmp-C3",
+          "attachTo": {
+            "componentId": "cmp-U1",
+            "pinNumber": "4"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+# No runtime dependencies. PyYAML is optional: the audit has a bounded stdlib fallback.

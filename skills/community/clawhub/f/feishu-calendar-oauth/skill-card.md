@@ -1,46 +1,60 @@
-## Description: <br>
-飞书日历管理技能，支持查询日程、创建、更新、删除事件和设置重复规则。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a user's Feishu calendar by helping query, create, update, delete, repeat, and set reminders for calendar events.
 
-## Publisher: <br>
-[thinkingmanyangyang](https://clawhub.ai/user/thinkingmanyangyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thinkingmanyangyang](https://clawhub.ai/user/thinkingmanyangyang)
 
-## Use Case: <br>
-Employees and external users use this skill to let an agent manage a personal Feishu calendar through OAuth, including schedule lookup, event creation, updates, deletion, recurrence, reminders, and busy/free checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete live Feishu calendar events. <br>
-Mitigation: Require confirmation of the event title, time, and event ID before updates or deletions. <br>
-Risk: Feishu OAuth credentials are stored in a local plaintext .user_token.json file. <br>
-Mitigation: Protect the token file from sharing, backups, logs, and commits. <br>
-Risk: Write-level calendar permissions may be broader than needed for lookup-only use. <br>
-Mitigation: Prefer read-only calendar permissions when the intended use is only schedule lookup. <br>
+## Use Case:
 
+External users and developers use this skill to operate personal Feishu calendars through natural-language requests, with PowerShell examples for OAuth setup and calendar API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thinkingmanyangyang/feishu-calendar-oauth) <br>
-- [OAuth 配置指南](references/oauth-setup.md) <br>
-- [API 使用指南](references/api-guide.md) <br>
-- [Feishu Open Platform application console](https://open.feishu.cn/app) <br>
-- [Feishu OAuth authorization endpoint](https://accounts.feishu.cn/open-apis/authen/v1/authorize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with PowerShell command blocks and Feishu API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write Feishu calendar events through OAuth-protected API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata) <br>
+Risk: The skill documents storing reusable Feishu OAuth credentials in a plaintext token file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure credential store or strict user-only file permissions, and rotate Feishu app credentials if the token file may have been exposed.
+
+Risk: The requested Feishu calendar permissions can allow reading, writing, updating, and deleting calendar data.
+
+Mitigation: Grant only the scopes needed for the intended workflow, and use read-only permissions when users only need schedule lookup.
+
+Risk: Calendar update and delete examples can modify or remove user events without documented confirmation guardrails.
+
+Mitigation: Confirm the target event details before updates or deletions and require explicit user approval for destructive calendar actions.
+
+## Reference(s):
+
+- [OAuth 配置指南](references/oauth-setup.md)
+- [API 使用指南](references/api-guide.md)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+- [ClawHub Skill Page](https://clawhub.ai/thinkingmanyangyang/skills/feishu-calendar-oauth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with PowerShell code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu OAuth setup steps and calendar API request examples.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

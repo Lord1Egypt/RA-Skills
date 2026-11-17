@@ -1,4 +1,6 @@
 const {
+    printShareOneScriptError,
+    emitError,
     CREDENTIAL_MODE_SUDOWORK_PROXY,
     detectCredentialMode,
     isSudowork,
@@ -7,6 +9,15 @@ const {
     saveSudoworkApiKey,
 } = require('./shareone_client');
 
+let noSave = false;
+for (const arg of process.argv.slice(2)) {
+    if (arg === '--no-save') {
+        noSave = true;
+    } else {
+        emitError(`ERROR:UNKNOWN_ARGUMENT:${arg}`, ['Usage: node create_guest_key.js [--no-save]'].join('\n'));
+    }
+}
+
 async function createGuestKey() {
     try {
         const credentialMode = await detectCredentialMode({ refresh: true });
@@ -14,37 +25,57 @@ async function createGuestKey() {
             method: 'POST',
             authRequired: false,
         });
-        if (result.api_key) {
-            if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY) {
-                try {
-                    await saveSudoworkApiKey(result.api_key);
-                } catch (error) {
-                    saveLocalApiKey(result.api_key);
-                    console.log(`GUEST_KEY_CREATED:${result.api_key}`);
-                    console.log("SUDOWORK_FALLBACK_KEY_SAVED");
-                    console.log("Auth Proxy 设置 ShareOne API Key 失败，已暂时保存到 ShareOne 本地 fallback 凭证。");
-                    if (error && error.message) {
-                        console.log(`DETAIL:${error.message}`);
-                    }
-                    return;
-                }
-            } else {
-                saveLocalApiKey(result.api_key);
-            }
+        if (!result.api_key) {
+            emitError('INVALID_RESPONSE', 'The guest credential response contains no key.');
+        }
+
+        if (noSave) {
             console.log(`GUEST_KEY_CREATED:${result.api_key}`);
-            if (isSudowork() && credentialMode.mode !== CREDENTIAL_MODE_SUDOWORK_PROXY) {
-                console.log("SUDOWORK_FALLBACK_KEY_SAVED");
-                console.log("Sudowork Auth Proxy 当前不可用，已保存到 ShareOne 本地 fallback 凭证。");
-            }
+            console.log("NOTE:NOT_SAVED");
             return;
         }
-        console.log("ERROR:INVALID_RESPONSE");
-    } catch (error) {
-        if (error.statusCode === 429) {
-            console.log("ERROR:RATE_LIMIT_EXCEEDED");
+
+        if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY) {
+            try {
+                await saveSudoworkApiKey(result.api_key);
+            } catch (error) {
+                try {
+                    saveLocalApiKey(result.api_key);
+                } catch (saveError) {
+                    if (saveError.code === 'EXISTING_KEY_CONFLICT') {
+                        console.log(`GUEST_KEY_CREATED:${result.api_key}`);
+                        console.log(`NOTE:EXISTING_KEY_KEPT:${saveError.existingKeyHint}`);
+                        return;
+                    }
+                    throw saveError;
+                }
+                console.log(`GUEST_KEY_CREATED:${result.api_key}`);
+                console.log("SUDOWORK_FALLBACK_KEY_SAVED");
+                console.log("Auth Proxy 设置 ShareOne API Key 失败，已暂时保存到 ShareOne 本地 fallback 凭证。");
+                if (error && error.message) {
+                    console.log(`DETAIL:${error.message}`);
+                }
+                return;
+            }
         } else {
-            console.log(`ERROR:${error.message}`);
+            try {
+                saveLocalApiKey(result.api_key);
+            } catch (saveError) {
+                if (saveError.code === 'EXISTING_KEY_CONFLICT') {
+                    console.log(`GUEST_KEY_CREATED:${result.api_key}`);
+                    console.log(`NOTE:EXISTING_KEY_KEPT:${saveError.existingKeyHint}`);
+                    return;
+                }
+                throw saveError;
+            }
         }
+        console.log(`GUEST_KEY_CREATED:${result.api_key}`);
+        if (isSudowork() && credentialMode.mode !== CREDENTIAL_MODE_SUDOWORK_PROXY) {
+            console.log("SUDOWORK_FALLBACK_KEY_SAVED");
+            console.log("Sudowork Auth Proxy 当前不可用，已保存到 ShareOne 本地 fallback 凭证。");
+        }
+    } catch (error) {
+        process.exit(printShareOneScriptError(error));
     }
 }
 

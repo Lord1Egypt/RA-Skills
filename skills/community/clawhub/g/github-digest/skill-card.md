@@ -1,37 +1,52 @@
-## Description: <br>
-Generate a structured GitHub repository digest with a briefing summary, categorized changes, community discussions, and clickable source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured GitHub repository digests with briefing summaries, categorized changes, community discussions, and clickable source links.
 
-## Publisher: <br>
-[RoggeOhta](https://clawhub.ai/user/RoggeOhta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[roggeohta](https://clawhub.ai/user/roggeohta)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to brief themselves on recent GitHub repository releases, merged pull requests, open issues, and community discussion trends. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: For private repositories, the digest can include private issues, pull requests, releases, labels, author details, and other repository information visible to the authenticated GitHub CLI account. <br>
-Mitigation: Run the skill only against intended repositories, review the generated digest before sharing it, and treat private-repository digests as confidential. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GitHub Digest on ClawHub](https://clawhub.ai/RoggeOhta/github-digest) <br>
+## Use Case:
 
+External users and developers use this skill to summarize recent activity in GitHub repositories, including releases, merged pull requests, open issues, breaking changes, and community discussion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown digest with clickable source links and optional shell commands for GitHub CLI data gathering] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the user's language and omits empty digest sections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read private repository activity through the user's authenticated GitHub CLI session.
+
+Mitigation: Use it only with repositories whose release, pull request, and issue activity is intended to be summarized.
+
+Risk: Generated digests may include private or sensitive repository details.
+
+Mitigation: Review the digest before sharing it outside the audience authorized to see the source repository activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roggeohta/skills/github-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Analysis]
+
+**Output Format:** [Markdown digest with clickable GitHub source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the authenticated GitHub CLI to read requested repository releases, pull requests, and issues.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a beginner-oriented OpenClaw guide with large-model concepts, FAQ answers, command references, optimization tips, and a local web interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language OpenClaw beginner guide with large-model background, FAQs, command references, and optimization guidance, launched through a local web interface on port 34567.
 
-## Publisher: <br>
-[kunyashaw](https://clawhub.ai/user/kunyashaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kunyashaw](https://clawhub.ai/user/kunyashaw)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to launch a local beginner guide for onboarding, troubleshooting, command lookup, and performance-tuning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Invoking the skill can start a background local Node.js web server with unclear exposure and stop controls. <br>
-Mitigation: Install only when a local FAQ server is intended, confirm the bind address and port 34567 availability, and stop the node process manually if needed. <br>
-Risk: Broad trigger phrases such as help requests may accidentally launch the local guide server. <br>
-Mitigation: Review trigger phrases before deployment and use explicit launch wording when interacting with the agent. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to start a local beginner-help web guide and quickly find onboarding material, common troubleshooting answers, command examples, and basic optimization advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kunyashaw/openclaw-newbie-faq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Local web guide and Markdown-style instructional content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts or references a local Node.js web server on port 34567 for the guide interface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.44 (source: server release evidence and skill.json; SKILL.md and package.json list 1.0.43) <br>
+Risk: The skill can start a local web guide service on port 34567 that may continue running outside normal activation control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted ClawHub release, confirm the service binds only where expected, and be prepared to manually stop the Node.js process after use.
+
+Risk: The included guidance mentions elevated npm installation patterns that may be risky for users who do not understand permission changes.
+
+Mitigation: Prefer a pinned or trusted ClawHub installer and avoid sudo npm commands unless the operational risk is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kunyashaw/skills/openclaw-newbie-faq)
+- [Publisher profile](https://clawhub.ai/user/kunyashaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Local HTML guide with embedded text, command examples, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a Node.js local web service on port 34567 when activated.]
+
+## Skill Version(s):
+
+1.0.44 (source: ClawHub release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f59rjdw92g48qp4r345de3n80xe7k",
-  "slug": "aoi-sandbox-shield-lite",
+  "name": "aoi-sandbox-shield-lite",
   "version": "0.1.2",
-  "publishedAt": 1771138673316
+  "description": "AOI Sandbox Shield (Lite): snapshot + validate pipeline helpers (no apply/restart).",
+  "author": "Aoineco & Co.",
+  "license": "MIT",
+  "tags": ["security", "ops", "audit", "snapshot"],
+  "sdna": "AOI-2026-0215-SDNA-SS02"
 }

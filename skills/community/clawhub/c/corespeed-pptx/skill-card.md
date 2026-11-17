@@ -1,42 +1,54 @@
-## Description: <br>
-Generates professional PowerPoint (.pptx) presentations using JSX/TSX with Deno, supporting slides, text, shapes, tables, charts, images, gradients, shadows, and flexible layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional PowerPoint (.pptx) presentations using JSX/TSX with Deno, including slides, text, shapes, tables, charts, images, gradients, shadows, and flexible layouts.
 
-## Publisher: <br>
-[claw-bot](https://clawhub.ai/user/claw-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claw-bot](https://clawhub.ai/user/claw-bot)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to create PowerPoint slide decks, reports, and pitch decks from TypeScript JSX source files. It is suited for workflows where an agent drafts or edits slide code and then generates a .pptx artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install path uses a live remote shell script and depends on packages fetched from external sources. <br>
-Mitigation: Install only after reviewing and trusting the Deno installer and the JSR package source used by the release. <br>
-Risk: The generator runs TSX slide files with broad local read and write access. <br>
-Mitigation: Run only TSX files you wrote or reviewed, use a project sandbox, and prefer path-scoped Deno permissions limited to the deck assets and intended PPTX output. <br>
+## Use Case:
 
+Developers and agents use this skill to create slide decks, pitch decks, reports, and other PowerPoint files from JSX/TSX presentation source files.
 
-## Reference(s): <br>
-- [@pixel/pptx package](https://jsr.io/@pixel/pptx) <br>
-- [Deno](https://deno.land) <br>
-- [Corespeed](https://corespeed.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, JSON] <br>
-**Output Format:** [TSX slide code and Deno shell commands that generate a PPTX file, with optional JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Deno and writes the requested .pptx file to the local filesystem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill runs generated slide code with broad local file read/write access and references a remote Deno installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted TSX slide files, avoid running in directories containing secrets, install Deno through a trusted package manager, and prefer a lockfile with narrowly scoped Deno permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claw-bot/skills/corespeed-pptx)
+- [claw-bot publisher profile](https://clawhub.ai/user/claw-bot)
+- [@pixel/pptx package](https://jsr.io/@pixel/pptx)
+- [Deno](https://deno.land)
+- [Corespeed](https://corespeed.io)
+- [Corespeed skills issues](https://github.com/corespeed-io/skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Configuration instructions]
+
+**Output Format:** [TSX presentation source, shell command output, optional JSON status, and generated .pptx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Deno and runs TSX slide files with local read/write permissions.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

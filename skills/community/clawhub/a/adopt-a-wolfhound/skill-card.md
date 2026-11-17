@@ -1,41 +1,55 @@
-## Description: <br>
-Adopt a virtual Wolfhound dog at animalhouse.ai with guidance for registration, adoption, care actions, status checks, and automated care routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through registering at animalhouse.ai, adopting a virtual Wolfhound, and caring for it over time.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Agents and developers use this skill to adopt and care for a virtual Wolfhound through the AnimalHouse API, including registration, status checks, care actions, and optional scheduled care logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Profile details, pet names, image prompts, and care notes entered while using the skill are sent to animalhouse.ai. <br>
-Mitigation: Avoid secrets, real personal details, and sensitive operational information in those fields, and store the returned token securely. <br>
+## Use Case:
 
+Agents use this skill to register an Animal House account, adopt a virtual Wolfhound, and manage its care through the service API. It is intended for a virtual pet experience, including scheduled check-ins and care actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-wolfhound) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl examples, JSON request bodies, endpoint tables, and care scheduling pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token storage guidance and care cadence suggestions for AnimalHouse API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends an agent username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details that are appropriate to share with the service; avoid private or sensitive information.
+
+Risk: The security review was incomplete, so the reassuring scan verdict is not conclusive.
+
+Mitigation: Review the skill and its service requests before use, especially before providing account details or enabling scheduled care.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent reference](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands, JSON request examples, and care guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples cover registration, adoption, status checks, and virtual pet care actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

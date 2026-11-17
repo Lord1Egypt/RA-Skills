@@ -1,44 +1,63 @@
-## Description: <br>
-ARKCloud IPFS OpenClaw skill for file.arklink.hk that uploads, publishes, lists, and deletes files through ARKCloud and returns IPFS CID, access link, credit usage, and duplicate status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ARKCloud IPFS helps agents upload, publish, list, delete, and check health for files or folders on file.arklink.hk, returning IPFS CIDs, access links, credit usage, and duplicate status.
 
-## Publisher: <br>
-[djanngau](https://clawhub.ai/user/djanngau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djanngau](https://clawhub.ai/user/djanngau)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent manage ARKCloud IPFS uploads, retrieve upload metadata, check API health, list uploaded resources, and delete or unpublish uploads when authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload files to ARKCloud, which may expose user-selected content through an access link. <br>
-Mitigation: Confirm the exact file and destination before uploading, and do not upload secrets or sensitive files without explicit user confirmation. <br>
-Risk: The delete helper can unpublish or delete an upload when provided a valid session, CSRF token, and upload ID. <br>
-Mitigation: Confirm the upload_id before destructive actions unless the user explicitly requested the deletion. <br>
-Risk: The skill requires ARKCloud credentials, including bearer tokens and optional session cookies. <br>
-Mitigation: Keep credentials in local environment variables, avoid sharing them in chat, and never print, store, or commit plaintext tokens, cookies, wallet private keys, seed phrases, or .env files. <br>
+## Use Case:
 
+Developers and agents use this skill to interact with ARKCloud/IPFS uploads from an agent workflow, including file or folder upload, upload listing, health checks, and destructive delete or unpublish actions when explicitly requested.
 
-## Reference(s): <br>
-- [ARKCloud IPFS skill homepage](https://github.com/djanngau/arkcloud-ipfs-skill) <br>
-- [ARKCloud file service](https://file.arklink.hk/) <br>
-- [ClawHub skill page](https://clawhub.ai/djanngau/arkcloud-ipfs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Upload results can include CID, filename, byte size, access link, credits charged, credits remaining, and duplicate status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: frontmatter and release evidence) <br>
+Risk: The skill handles ARKCloud bearer tokens, client session cookies, and CSRF tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, keep credentials out of logs and committed files, and rotate credentials if they may have been exposed.
+
+Risk: Changing the ARKCLOUD_BASE_URL or --base-url target can direct credentialed requests away from the intended ARKCloud HTTPS service.
+
+Mitigation: Keep ARKCLOUD_BASE_URL and --base-url fixed to the real ARKCloud HTTPS service unless a reviewed deployment explicitly requires another endpoint.
+
+Risk: Folder uploads may include unintended files through broad directory traversal or symlinked content.
+
+Mitigation: Inspect folders and symlinks before upload, and avoid uploading untrusted folders.
+
+Risk: Delete and unpublish actions are destructive.
+
+Mitigation: Require an explicit upload listing and exact upload ID confirmation before delete or unpublish actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djanngau/skills/arkcloud-ipfs)
+- [ARKCloud IPFS skill homepage](https://github.com/djanngau/arkcloud-ipfs-skill)
+- [ARKCloud file service](https://file.arklink.hk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ARKCloud environment variables for upload tokens, optional client session credentials, CSRF tokens, and base URL selection.]
+
+## Skill Version(s):
+
+0.1.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

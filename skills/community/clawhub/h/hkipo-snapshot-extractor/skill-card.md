@@ -1,47 +1,70 @@
-## Description: <br>
-Extracts a structured Hong Kong IPO snapshot with company fields, offer mechanics, timing, source provenance, and field-level quality signals for one IPO symbol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract a structured Hong Kong IPO snapshot with company fields, offer mechanics, timing, source provenance, and field-level quality signals.
 
-## Publisher: <br>
-[hackstoic](https://clawhub.ai/user/hackstoic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackstoic](https://clawhub.ai/user/hackstoic)
 
-## Use Case: <br>
-External users and agents use this skill to fetch normalized facts for a single Hong Kong IPO symbol before analysis, scoring, or a human summary. It is most useful when machine-readable IPO data and field-level quality cues are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as read-only snapshot extraction, but the bundled runtime also includes scoring, decision workflows, profile and watchlist management, and persistent local state. <br>
-Mitigation: Review commands before execution, run only the snapshot command for read-only use, and set HKIPO_HOME to an isolated directory if using stateful features. <br>
-Risk: Decision-support and scoring outputs could be mistaken for investment advice. <br>
-Mitigation: Treat generated scores or participation recommendations as analytical inputs only; require human review and independent source checks before acting. <br>
-Risk: IPO source data may be partial, degraded, stale, or conflicting. <br>
-Mitigation: Check issues, field_sources, quality.missing_fields, quality.conflicts, and quality.overall_confidence before making strong claims. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to extract normalized single-symbol Hong Kong IPO facts before summarizing, scoring, or making downstream comparisons. It is intended for read-only snapshot extraction, with quality fields that help users treat partial or conflicting source data cautiously.
 
-## Reference(s): <br>
-- [HK IPO Snapshot Extractor on ClawHub](https://clawhub.ai/hackstoic/hkipo-snapshot-extractor) <br>
-- [AiPO API Documentation](runtime/hkipo-next/references/aipo-api.md) <br>
-- [API Guide](runtime/hkipo-next/references/api-guide.md) <br>
-- [Analysis Guide](runtime/hkipo-next/references/analysis-guide.md) <br>
-- [IPO Mechanism Reference](runtime/hkipo-next/references/ipo-mechanism.md) <br>
-- [Risk Preferences Reference](runtime/hkipo-next/references/risk-preferences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON, Markdown, or plain text snapshot output; optional exported Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes field_sources, issues, quality.missing_fields, quality.conflicts, quality.overall_confidence, and degraded or partial data status indicators when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, pyproject.toml, server release metadata) <br>
+Risk: The bundled runtime includes broader stateful financial workflows beyond snapshot extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented snapshot command for read-only extraction and review any score, decision-card, review, or apply-suggestions workflow before relying on it.
+
+Risk: The runtime may write local profile, watchlist, review, or suggestion state.
+
+Mitigation: Set HKIPO_HOME to an isolated directory before running the bundled CLI.
+
+Risk: IPO source data may be partial, degraded, or conflicting.
+
+Mitigation: Check issues, quality.missing_fields, quality.conflicts, quality.overall_confidence, and meta.data_status before making strong claims.
+
+Risk: Financial scoring or decision outputs can be mistaken for investment advice.
+
+Mitigation: Treat score and decision-card outputs as review aids and verify conclusions with independent financial analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hackstoic/skills/hkipo-snapshot-extractor)
+- [Skill Instructions](artifact/SKILL.md)
+- [hkipo-next README](artifact/runtime/hkipo-next/README.md)
+- [AiPO API Documentation](artifact/runtime/hkipo-next/references/aipo-api.md)
+- [IPO Analysis Guide](artifact/runtime/hkipo-next/references/analysis-guide.md)
+- [API Guide](artifact/runtime/hkipo-next/references/api-guide.md)
+- [Hong Kong IPO Mechanism Guide](artifact/runtime/hkipo-next/references/ipo-mechanism.md)
+- [Risk Preference Types](artifact/runtime/hkipo-next/references/risk-preferences.md)
+- [AiPO Data Source](https://aipo.myiqdii.com)
+- [AASTOCKS IPO Data Source](https://www.aastocks.com/tc/stocks/market/ipo/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON, Markdown, or text generated from CLI-backed IPO snapshot data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Snapshot outputs include field sources, missing fields, conflicts, confidence signals, and degraded or partial data status where applicable.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, pyproject.toml, and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

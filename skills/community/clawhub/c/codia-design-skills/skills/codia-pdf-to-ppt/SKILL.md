@@ -58,11 +58,11 @@ When `--pdf` is a local file, the CLI first uploads it to `POST /v2/open/uploads
 Equivalent raw API flow:
 
 ```bash
-curl 'https://api.codia.ai/v2/open/uploads' \
+curl 'https://openapi.codia.ai/v2/open/uploads' \
   -H 'Authorization: Bearer <CODIA_API_KEY>' \
   -F 'file=@./deck.pdf'
 
-curl 'https://api.codia.ai/v2/open/tasks' \
+curl 'https://openapi.codia.ai/v2/open/tasks' \
   -H 'Authorization: Bearer <CODIA_API_KEY>' \
   -H 'Content-Type: application/json' \
   -H 'Idempotency-Key: pdf-to-ppt-001' \

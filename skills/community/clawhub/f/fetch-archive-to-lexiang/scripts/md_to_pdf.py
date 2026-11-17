@@ -5,11 +5,11 @@
 使用 PyMuPDF (pymupdf) 的 TextWriter + Font 对象实现中文渲染。
 
 用法:
-    python md_to_pdf.py <article.md路径> [--output <输出PDF路径>]
+    python md_to_pdf.py <Markdown路径> [--output <输出PDF路径>]
 
 示例:
-    python md_to_pdf.py cursor-third-era/article.md
-    python md_to_pdf.py cursor-third-era/article.md --output cursor-third-era/article.pdf
+    python md_to_pdf.py cursor-third-era/source.md
+    python md_to_pdf.py cursor-third-era/source.md --output cursor-third-era/article.pdf
 """
 
 import argparse
@@ -294,10 +294,10 @@ def md_to_pdf(md_path: str, output_path: str = None) -> str:
     # 检查 blocks 中是否有有效的 h1 标题
     has_h1 = any(b['type'] == 'h1' and b.get('text', '').strip() for b in blocks)
 
-    # 如果没有 h1 标题，尝试从 article_meta.json 获取
+    # 如果没有 h1 标题，尝试从标准 meta.json 获取
     fallback_title = None
     if not has_h1:
-        meta_path = os.path.join(md_dir, 'article_meta.json')
+        meta_path = os.path.join(md_dir, 'meta.json')
         if os.path.isfile(meta_path):
             try:
                 import json
@@ -305,7 +305,7 @@ def md_to_pdf(md_path: str, output_path: str = None) -> str:
                     meta = json.load(f)
                 fallback_title = meta.get('title', '').strip()
                 if fallback_title:
-                    print(f"  ℹ️  MD 中无有效标题，从 article_meta.json 补充: {fallback_title}")
+                    print(f"  ℹ️  MD 中无有效标题，从 meta.json 补充: {fallback_title}")
             except Exception:
                 pass
 

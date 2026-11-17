@@ -1,0 +1,204 @@
+{
+  "version": "1.0",
+  "updated": "2026-07-30",
+  "description": "Infoseek 可信资源知识库 — web search 的补充与兜底",
+  "sources": [
+    {
+      "domain": "ccia.xin",
+      "name": "中国复合材料工业协会",
+      "topics": [
+        "复合材料",
+        "碳纤维",
+        "预浸料",
+        "玻璃纤维",
+        "芳纶"
+      ],
+      "credibility": 95,
+      "type": "行业协会",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "bjhgyjs.cn",
+      "name": "北京中科光析检测技术研究所",
+      "topics": [
+        "材料检测",
+        "预浸料",
+        "复合材料",
+        "碳纤维",
+        "检测标准"
+      ],
+      "credibility": 85,
+      "type": "检测机构",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "jssea.cn",
+      "name": "江苏省表面工程行业协会",
+      "topics": [
+        "表面处理",
+        "电镀",
+        "镀镍",
+        "镀锌",
+        "可焊性"
+      ],
+      "credibility": 80,
+      "type": "行业协会",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "998pcb.com",
+      "name": "998电路集团-PCB技术站",
+      "topics": [
+        "PCB",
+        "电路板",
+        "沉镍金",
+        "ENIG",
+        "焊接",
+        "表面处理"
+      ],
+      "credibility": 75,
+      "type": "行业技术门户",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "jiepei.com",
+      "name": "捷配PCB智造",
+      "topics": [
+        "PCB",
+        "焊接",
+        "SMT",
+        "失效分析",
+        "可焊性"
+      ],
+      "credibility": 80,
+      "type": "企业技术博客",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "eepw.com.cn",
+      "name": "电子工程世界",
+      "topics": [
+        "电子工程",
+        "焊接",
+        "PCB",
+        "半导体",
+        "封装"
+      ],
+      "credibility": 80,
+      "type": "专业媒体",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "antpedia.com",
+      "name": "分析测试百科网",
+      "topics": [
+        "标准",
+        "检测",
+        "GB",
+        "ASTM",
+        "ISO",
+        "分析测试",
+        "实验室"
+      ],
+      "credibility": 80,
+      "type": "行业门户",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "zoomlion.com",
+      "name": "中联重科官网",
+      "topics": [
+        "工程机械",
+        "起重机械",
+        "混凝土机械",
+        "矿山机械",
+        "农业机械",
+        "人形机器人"
+      ],
+      "credibility": 85,
+      "type": "企业官网",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "cncma.org",
+      "name": "中国工程机械工业协会",
+      "topics": [
+        "工程机械",
+        "行业数据",
+        "政策",
+        "标准"
+      ],
+      "credibility": 95,
+      "type": "行业协会",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "kinghelm.com.cn",
+      "name": "金航标电子",
+      "topics": [
+        "连接器",
+        "排针",
+        "排母",
+        "PIN针",
+        "接插件"
+      ],
+      "credibility": 75,
+      "type": "企业官网",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "hbtgcarbon.com",
+      "name": "河北碳谷碳纤维",
+      "topics": [
+        "碳纤维",
+        "预浸料",
+        "复合材料",
+        "检测标准"
+      ],
+      "credibility": 80,
+      "type": "企业官网",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "bjytest.com",
+      "name": "北检检测技术研究院",
+      "topics": [
+        "检测",
+        "碳纤维",
+        "挥发份",
+        "树脂含量",
+        "材料测试"
+      ],
+      "credibility": 80,
+      "type": "检测机构",
+      "access": "web",
+      "verified": true
+    },
+    {
+      "domain": "reyaguan66.com",
+      "name": "山东鑫泰鑫-热压罐",
+      "topics": [
+        "热压罐",
+        "复合材料",
+        "碳纤维",
+        "固化",
+        "成型工艺"
+      ],
+      "credibility": 80,
+      "type": "设备厂商",
+      "access": "web",
+      "verified": true
+    }
+  ]
+}

@@ -26,7 +26,9 @@ rewritten mandate as --query with no --template-id.
 Usage:
     python3 research_run.py --query "<question or rewritten mandate>" \
         [--template-id ID] [--conversation-id ID] \
-        --output ~/cue-reports/2026-06-08-foo.md [--timeout 3600]
+        --output <root>/reports/foo.md [--log <root>/logs/cue-run-<conv_id>.log] [--timeout 3600]
+    (<root> = `python3 ../cue-buddy/scripts/cue_api.py root`; default ~/.cue.
+     --output/--log may be omitted - runner defaults to <root>/reports|logs/.)
 
 Exit codes: 0 = report retrieved + saved; 1 = empty/failed (diagnosis printed).
 """
@@ -34,6 +36,7 @@ Exit codes: 0 = report retrieved + saved; 1 = empty/failed (diagnosis printed).
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 import time
 from pathlib import Path
@@ -50,11 +53,60 @@ from cue_api import (  # noqa: E402
     load_config,
     replay,
     upload_file,
+    upload_material,
 )
+try:  # noqa: E402 — cue-buddy v0.2.2+ exposes these; fall back for older siblings
+    from cue_api import normalize_template_id, validate_template_id
+except ImportError:
+    def normalize_template_id(template_id: str | None) -> str | None:
+        if template_id and not template_id.startswith("template_"):
+            return "template_" + template_id
+        return template_id
+    def validate_template_id(template_id: str | None) -> str | None:
+        if not template_id:
+            return None
+        suffix = template_id[len("template_"):] if template_id.startswith("template_") else template_id
+        if suffix.isdigit():
+            return f"template_id={template_id}: 纯数字后缀不是 Cue id (用 template_id 字段,非数字 id)"
+        return None
 from sse_report import (  # noqa: E402
+    _agent_name,
+    _event_data,
     extract_reporter_content,
+    extract_sources,
     diagnose_empty_report,
 )
+from paths import cue_root, cue_subdir, probe_writable, CueNoWritableRootError  # noqa: E402 - sibling of cue_api
+
+
+class _Tee:
+    """Write to several streams at once (stdout + a log file).
+
+    Used so the runner can keep its own log at a stable, resolver-chosen path
+    (default <root>/logs/cue-run-<conv_id>.log, unique per run) instead of relying on the agent's shell
+    ``>`` redirect - which was fragile because two separate Bash calls (run +
+    completion-tail) had to agree on the same hardcoded path. With --log the
+    runner owns the path; the agent tails that one file.
+    """
+
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, data):
+        for s in self.streams:
+            try:
+                s.write(data)
+                s.flush()
+            except Exception:
+                pass  # one dead stream (e.g. closed stdout) must not kill the run
+        return len(data) if data else 0
+
+    def flush(self):
+        for s in self.streams:
+            try:
+                s.flush()
+            except Exception:
+                pass
 
 
 # Empty-live-report diagnoses where the report may still exist in the DB, so a
@@ -64,19 +116,106 @@ REPLAYABLE_EMPTY_KINDS = frozenset(
     {"stream_cut_before_reporter", "reporter_started_no_text"}
 )
 
+# Events _emit_progress renders a line for. Gate before json.loads so the
+# thousands of message/tool_chunk/start_of_llm deltas per run are skipped
+# without parsing.
+_PROGRESS_EVENTS = frozenset({"start_of_agent", "tool_call", "report_finalized"})
 
-def normalize_template_id(template_id: str | None) -> str | None:
-    """Cue playbook ids are `template_<id>` (see /api/playbook buddies[].template_id).
 
-    Both humans and agents routinely copy just the bare `<id>` suffix from chat
-    or notes and the backend then 404s "模板不存在". Prepend the prefix when it's
-    missing so a bare suffix still resolves. Conservative: only ever prepends —
-    never strips — so an already-correct id is untouched. None (free-form run)
-    passes through.
+def _emit_progress(event: str, data: str) -> None:
+    """Print a flushed progress line for key SSE events.
+
+    Lets the agent (and user, if reading the backgrounded stdout) see research
+    steps as they happen: which agent phase is running (with its
+    task_requirement), each tool call, and report finalization. Other event
+    types (message / start_of_llm / tool_chunk / ...) are too noisy or are
+    report content, so skipped. Lines share the `[cue-research]` prefix and go
+    to stdout so the full stream (start → progress → RESULT) reads
+    top-to-bottom in one file.
     """
-    if template_id and not template_id.startswith("template_"):
-        return "template_" + template_id
-    return template_id
+    if event not in _PROGRESS_EVENTS:
+        return
+    if not data:
+        return
+    try:
+        payload = json.loads(data)
+    except json.JSONDecodeError:
+        return
+    if not isinstance(payload, dict):
+        return
+    ed = _event_data(payload)
+    if event == "start_of_agent":
+        ag = _agent_name(payload) or "?"
+        tr = ed.get("task_requirement")
+        if tr:
+            print(f"[cue-research] ▶ agent={ag} task={tr}", flush=True)
+        else:
+            print(f"[cue-research] ▶ agent={ag}", flush=True)
+    elif event == "tool_call":
+        name = ed.get("tool_name") or "?"
+        title = ed.get("tool_title") or ""
+        if title:
+            print(f"[cue-research] 🔧 tool={name} ({title})", flush=True)
+        else:
+            print(f"[cue-research] 🔧 tool={name}", flush=True)
+    elif event == "report_finalized":
+        print("[cue-research] ✓ report finalized", flush=True)
+
+
+def inline_citations(report: str, sources: list[dict]) -> str:
+    """Replace 【N-M】 in the report with concise markdown links.
+
+    Link text = website short name (domain) or tool name — short, readable,
+    no long title text, no hover title attr. Consecutive citations are
+    space-separated. Drops the tail list.
+
+    - search_snippet/url class: 【N-M】→ [domain](data.url)
+    - scan class: 【N-M】→ [domain](rows[M].pdf_url)
+    - mcp class (no url/rows): 【N-M】→ （tool_title）lightweight parenthetical
+    """
+    import re
+    from urllib.parse import urlparse
+    by_index = {s["index"]: s for s in sources}
+
+    _TLDS = {"com", "cn", "net", "org", "edu", "gov", "co", "uk", "io", "info", "biz"}
+    def domain_short(url: str) -> str:
+        try:
+            netloc = urlparse(url).netloc.replace("www.", "")
+            parts = netloc.split(".")
+            while parts and parts[-1] in _TLDS:
+                parts.pop()
+            return parts[-1] if parts else netloc
+        except Exception:
+            return url
+
+    def repl(m):
+        n, mi = int(m.group(1)), int(m.group(2))
+        s = by_index.get(n)
+        if not s:
+            return m.group(0)
+        url = s.get("url") or ""
+        if not url:
+            rows = s.get("rows") or []
+            if mi < len(rows):
+                url = rows[mi].get("pdf_url") or ""
+        if not url:
+            # MCP tool (no URL / rows): parenthetical — lightweight inline
+            # citation for non-verifiable sources. Linked [domain](url) are
+            # for independently-verifiable web sources and carry more weight;
+            # MCP工具名（数据终端/API）不可供读者点击验证,用弱括号注记。
+            tt = s.get("tool_title") or s.get("tool_name") or ""
+            if tt:
+                return f"*（{tt}）*"
+            # Truly no label — keep original marker so the reader at least sees
+            # something that looks like a citation reference.
+            return m.group(0)
+        return f"[{domain_short(url)}](<{url}>)"
+
+    # space-separate consecutive 【N-M】 markers BEFORE rendering (escaping-proof —
+    # operates on 】【 adjacency, not on rendered link internals which may contain )
+    # in urls like Wikipedia Foo_(bar), breaking the old ]([^)]*)[ regex).
+    report = re.sub(r"(】)(?=【)", r"\1 ", report)
+    return re.sub(r"【(\d+)-(\d+)】", repl, report)
 
 
 def build_payload(
@@ -84,6 +223,7 @@ def build_payload(
     template_id: str | None,
     conversation_id: str,
     mimic: dict | None = None,
+    conversation_file_ids: list[str] | None = None,
 ) -> dict:
     """Minimal /api/chat/stream payload.
 
@@ -94,6 +234,9 @@ def build_payload(
     template-review round-trip (which would break background execution).
     Buddy run → include template_id. Free-form → omit it (deepresearch_team).
     mimic → {"url": ...} or {"file_hash": ...} (free-form only; see main()).
+    conversation_file_ids → 素材接地: file_ids from upload_material; the 研究
+    agent retrieves their full content via file_retrieval. Orthogonal to
+    template_id and mimic — works on both buddy and free-form runs.
     """
     payload: dict = {
         "messages": [{"role": "user", "content": query}],
@@ -108,6 +251,8 @@ def build_payload(
         payload["template_id"] = template_id
     if mimic:
         payload["mimic"] = mimic
+    if conversation_file_ids:
+        payload["conversation_file_ids"] = conversation_file_ids
     return payload
 
 
@@ -117,35 +262,53 @@ def run(
     conversation_id: str,
     timeout: float,
     mimic: dict | None = None,
+    conversation_file_ids: list[str] | None = None,
 ) -> tuple[str, str]:
     """Run one chat_stream; on empty live report fall back to replay.
 
     Returns (report, conv_id). report == "" means retrieval failed (the
     caller prints the diagnosis and exits non-zero).
     """
-    payload = build_payload(query, template_id, conversation_id, mimic)
+    payload = build_payload(
+        query, template_id, conversation_id, mimic, conversation_file_ids
+    )
     conv_id = payload["conversation_id"]
     print(f"[cue-research] conv_id={conv_id}, posting chat...", flush=True)
 
     t0 = time.time()
     events: list[tuple[str, str]] = []
+    started = False
     try:
         for event, data in chat_stream(payload, max_seconds=timeout):
+            if not started:
+                started = True
+                print(f"[cue-research] STARTED conv_id={conv_id}", flush=True)
             events.append((event, data))
+            _emit_progress(event, data)
+            if event == "report_finalized":
+                # Report is done; the live stream often stays open after this,
+                # which would hold the run until the 60min timeout (agent stuck
+                # at "已开跑" with the report already in the DB). Break and
+                # extract now — reporter's message events are all in `events`
+                # by this point, so extract_reporter_content below resolves.
+                break
             if time.time() - t0 > timeout:
-                sys.stderr.write("[cue-research] timeout watching SSE\n")
+                print("[cue-research] timeout watching SSE", flush=True)
                 break
     except CueAPIError as e:
         # 4xx/5xx (auth / template_id) — replay can't save these.
-        sys.stderr.write(f"[cue-research] chat_stream failed: {e}\n")
-        sys.stderr.write(f"        → {e.user_hint()}\n")
-        return "", conv_id
+        # Print to stdout so the agent's stdout-only capture sees the failure
+        # (SKILL.md tells it to watch stdout for chat_stream failed).
+        print(f"[cue-research] chat_stream failed: {e}", flush=True)
+        print(f"[cue-research] → {e.user_hint()}", flush=True)
+        return "", [], conv_id
     except (OSError, ValueError) as e:
         # Network blip / SSE parse error: keep the partial events and let the
         # diagnose+replay path below still try to recover.
-        sys.stderr.write(
+        print(
             f"[cue-research] stream raised {type(e).__name__}: {e}; "
-            f"events so far={len(events)}, will try replay fallback\n"
+            f"events so far={len(events)}, will try replay fallback",
+            flush=True,
         )
 
     elapsed = time.time() - t0
@@ -153,7 +316,7 @@ def run(
 
     report = extract_reporter_content(events)
     if report:
-        return report, conv_id
+        return report, extract_sources(events), conv_id
 
     # Empty live report — the long-run NORM. Diagnose, then replay-primary.
     diag = diagnose_empty_report(events, elapsed, timeout)
@@ -172,30 +335,41 @@ def run(
         try:
             replay_events = [(ev, d) for ev, d in replay(conv_id, max_seconds=timeout)]
         except CueAPIError as e:
-            sys.stderr.write(
+            print(
                 f"[cue-research] replay failed: {e}\n"
-                f"        → server may not have finished; wait a bit and run: "
-                f"cue_api.py replay {conv_id}\n"
+                f"[cue-research] → server may not have finished; wait a bit and run: "
+                f"cue_api.py replay {conv_id}",
+                flush=True,
             )
-            return "", conv_id
+            return "", [], conv_id
         report = extract_reporter_content(replay_events)
         if report:
             print(f"[cue-research] ✓ recovered via replay: {len(report)} chars", flush=True)
-            return report, conv_id
-        sys.stderr.write(
+            return report, extract_sources(replay_events), conv_id
+        print(
             "[cue-research] replay also empty — server-side reporter likely "
             "failed (started but persisted no text). Check cuecue.cn web for "
-            "this conversation_id; re-run if it was a transient model failure.\n"
+            "this conversation_id; re-run if it was a transient model failure.",
+            flush=True,
         )
     elif diag["kind"] == "no_agent_events":
-        sys.stderr.write(
+        print(
             "[cue-research] no agent events — likely API auth / template_id "
-            "problem (not a long-stream issue). Check args + key.\n"
+            "problem (not a long-stream issue). Check args + key.",
+            flush=True,
         )
-    return "", conv_id
+    return "", [], conv_id
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Tolerate legacy-encoding stdout (e.g. Windows consoles) so the emoji
+    # progress markers (▶/🔧/✓) don't UnicodeEncodeError — which would be
+    # caught as ValueError and misdiagnosed as a network blip.
+    try:
+        sys.stdout.reconfigure(errors="replace")
+        sys.stderr.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--query", required=True, help="问题原文,或自由式已 rewrite 的 mandate")
     p.add_argument("--template-id", default=None, help="搭子模板 id;留空=自由式深研")
@@ -207,7 +381,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument(
         "--output",
         default=None,
-        help="报告落盘路径(Markdown)。留空默认 ~/cue-reports/<date>-<slug>.md",
+        help="报告落盘路径(Markdown)。留空默认 <root>/reports/<date>-<slug>.md"
+        "(<root> 由 cue_api.py root 解析,默认 ~/.cue)",
+    )
+    p.add_argument(
+        "--log",
+        default=None,
+        help="进度日志路径(tee stdout+stderr)。留空默认 <root>/logs/cue-run-<conv_id>.log(每 run 唯一,防 stale/miss RESULT 竞态)。"
+        "agent 用 cue_api.py root 取根后,两端(Bash 跑 + Bash tail RESULT)用同一"
+        "<root>/logs/cue-run-<conv_id>.log(每 run 唯一),不再依赖 shell 重定向。",
     )
     p.add_argument(
         "--timeout",
@@ -225,21 +407,94 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="仿写:模仿本地样本文档的写作风格,先上传换 file_hash(仅自由式,与 --template-id / --mimic-url 互斥)",
     )
+    p.add_argument(
+        "--material",
+        action="append",
+        default=None,
+        metavar="PATH",
+        help="文档接地:把本地文档作为调研素材(可重复多个);研究 agent 经 file_retrieval "
+        "全文检索其内容。与 --template-id / --mimic-* 正交,搭子与自由式均可用。",
+    )
     args = p.parse_args(argv)
     # Tolerate a bare `<id>` for --template-id (prepend `template_` if missing),
     # so logs, payload, and the empty-run stub all use the resolved id.
     args.template_id = normalize_template_id(args.template_id)
+    # Fail fast on a pure-digit suffix (e.g. `142` → `template_142`): the agent
+    # grabbed the buddy's numeric DB `id` or a list index, not the template_id
+    # string. Cue suffixes are base62 — never pure digits — so this is a
+    # guaranteed 404. Don't burn credits on it.
+    _bad_id = validate_template_id(args.template_id)
+    if _bad_id:
+        print(f"[cue-research] ✗ {_bad_id}", flush=True)
+        return 2
+
+    # Resolve conversation id early (before log setup) so the per-run log
+    # file name can embed it. A UNIQUE log per run kills both the stale-
+    # RESULT race (new file has no old content) and the miss race (tail -F
+    # reads the new file's content even if RESULT was written before the
+    # watcher attached; `tail -n 0` would miss a fast RESULT).
+    if args.conversation_id:
+        conv_id = args.conversation_id
+    else:
+        import uuid
+        conv_id = f"cue-research-{uuid.uuid4().hex[:12]}"
+
+    # Set up the progress log EARLY so config/credential/upload errors get
+    # captured too. Default path is <root>/logs/cue-run-<conv_id>.log (unique per run)
+    # (created by cue_subdir); --log overrides. Tee stdout+stderr to it so the
+    # agent can tail one stable file for the RESULT line instead of relying on
+    # a shell `>` redirect whose path had to match across two Bash calls (the
+    # old ./cue-run.log fragility). Truncate per run so `grep -m1 RESULT` never
+    # matches a stale line from a previous run.
+    explicit_log = bool(args.log)
+    _log_fh = None
+    try:
+        if args.log:
+            log_path = Path(args.log).expanduser()
+            log_path.parent.mkdir(parents=True, exist_ok=True)
+        else:
+            log_path = cue_subdir("logs") / f"cue-run-{conv_id}.log"  # unique per run; raises if no writable root
+        _log_fh = log_path.open("w", encoding="utf-8")
+        sys.stdout = _Tee(sys.__stdout__, _log_fh)
+        sys.stderr = _Tee(sys.__stderr__, _log_fh)
+        # Close the log handle at exit so long-lived test processes don't leak
+        # it (and so the final RESULT line is flushed before the process ends).
+        import atexit
+        atexit.register(lambda fh=_log_fh: fh.close() if fh and not fh.closed else None)
+    except CueNoWritableRootError as e:
+        # No writable root at all -> can't write the report either. Fail fast
+        # before burning credits.
+        print(f"[cue-research] ✗ {e}", flush=True)
+        return 2
+    except OSError as e:
+        if explicit_log:
+            # Explicit --log that can't be opened = user asked for a dead path.
+            # Fail fast BEFORE burning credits; the watcher would otherwise tail
+            # a non-existent file for the full 61min timeout.
+            print(
+                f"[cue-research] ✗ 指定的 --log 不可写 {log_path} ({e});"
+                f"换可写路径或设 CUE_HOME。",
+                flush=True,
+            )
+            return 2
+        # Default log unwritable (shouldn't happen - cue_subdir just probed).
+        # Degrade to stdout-only so the run can still proceed + print RESULT.
+        sys.stderr.write(
+            f"[cue-research] ⚠️ 日志不可写 {log_path} ({e}); 仅 stdout,不落日志\n"
+        )
+    print(f"[cue-research] log={log_path}", flush=True)
 
     # Mimic constraints (Phase 1 scope): one-shot, free-form only.
     if args.mimic_url and args.mimic_file:
-        sys.stderr.write("[cue-research] --mimic-url 与 --mimic-file 互斥,二选一\n")
+        print("[cue-research] --mimic-url 与 --mimic-file 互斥,二选一", flush=True)
         return 2
     if (args.mimic_url or args.mimic_file) and args.template_id:
         # Backend prioritizes template_id over mimic, so mimic would silently
         # no-op. Refuse rather than mislead. mimic = free-form styling only.
-        sys.stderr.write(
+        print(
             "[cue-research] 仿写仅用于自由式(不带 --template-id):"
-            "搭子已有 report_format,与仿写冲突\n"
+            "搭子已有 report_format,与仿写冲突",
+            flush=True,
         )
         return 2
 
@@ -256,31 +511,64 @@ def main(argv: list[str] | None = None) -> int:
             print(f"[cue-research] 上传仿写样本 {args.mimic_file} …", flush=True)
             file_hash = upload_file(args.mimic_file)
         except CueAPIError as e:
-            sys.stderr.write(f"[cue-research] 样本上传失败: {e}\n        → {e.user_hint()}\n")
+            print(f"[cue-research] 样本上传失败: {e}\n[cue-research] → {e.user_hint()}", flush=True)
             return 1
         except SystemExit:
             return 2
         mimic = {"file_hash": file_hash}
         print(f"[cue-research] ✓ 样本已上传 file_hash={file_hash[:12]}…", flush=True)
 
-    if args.conversation_id:
-        conv_id = args.conversation_id
-    else:
-        import uuid
+    # 素材接地: upload each --material doc to file_id (single-use, fail-fast).
+    # Orthogonal to mimic/template — uploaded before the run; bound at chat time
+    # via conversation_file_ids so the 研究 agent can file_retrieval the full doc.
+    material_file_ids: list[str] = []
+    if args.material:
+        for mpath in args.material:
+            try:
+                print(f"[cue-research] 上传素材 {mpath} …", flush=True)
+                fid = upload_material(mpath)
+            except CueAPIError as e:
+                print(
+                    f"[cue-research] 素材上传失败 ({mpath}): {e}\n"
+                    f"[cue-research] → {e.user_hint()}",
+                    flush=True,
+                )
+                return 1
+            except SystemExit:
+                return 2
+            material_file_ids.append(fid)
+            print(f"[cue-research] ✓ 素材已就绪 file_id={fid}", flush=True)
 
-        conv_id = f"cue-research-{uuid.uuid4().hex[:12]}"
-
-    # Resolve --output (date-stamped default under ~/cue-reports/).
+    # Resolve --output (date-stamped default under <root>/reports/).
     if args.output:
         out_path = Path(args.output).expanduser()
+        out_dir = out_path.parent
     else:
         slug = "".join(
             ch for ch in args.query[:24] if ch.isalnum() or ch in " -_一-鿿"
         ).strip().replace(" ", "-") or "research"
-        out_path = Path.home() / "cue-reports" / f"{time.strftime('%Y-%m-%d-%H%M')}-{slug}.md"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path = cue_subdir("reports") / f"{time.strftime('%Y-%m-%d-%H%M')}-{slug}.md"
+        out_dir = out_path.parent  # already created + probed by cue_subdir
+    # Ensure the output dir is writable. The default is already probed via
+    # cue_subdir; a user-supplied --output may point anywhere, so re-check
+    # (mkdir + write + unlink). Fail fast before burning credits.
+    if not probe_writable(out_dir):
+        print(
+            f"[cue-research] ✗ 输出路径不可写: {out_dir}。\n"
+            f"[cue-research]   换可写目录(--output <path>),或设 CUE_HOME 指向可写根"
+            f"(当前根见 cue_api.py root)。",
+            flush=True,
+        )
+        return 2
 
-    report, conv_id = run(args.query, args.template_id, conv_id, args.timeout, mimic)
+    report, sources, conv_id = run(
+        args.query,
+        args.template_id,
+        conv_id,
+        args.timeout,
+        mimic,
+        material_file_ids or None,
+    )
     if not report:
         # Persist a stub so a backgrounded run always leaves a readable trace.
         out_path.write_text(
@@ -296,12 +584,15 @@ def main(argv: list[str] | None = None) -> int:
     mimic_note = ""
     if mimic:
         mimic_note = " | mimic=" + ("url" if mimic.get("url") else "file")
+    material_note = ""
+    if material_file_ids:
+        material_note = f" | materials={len(material_file_ids)}"
     header = (
         f"<!-- cue-research run | conv_id={conv_id} | "
         f"{'template=' + args.template_id if args.template_id else 'free-form'}"
-        f"{mimic_note} | {time.strftime('%Y-%m-%d %H:%M')} -->\n\n"
+        f"{mimic_note}{material_note} | {time.strftime('%Y-%m-%d %H:%M')} -->\n\n"
     )
-    out_path.write_text(header + report, encoding="utf-8")
+    out_path.write_text(header + inline_citations(report, sources), encoding="utf-8")
     print(
         f"[cue-research] ✓ report {len(report)} chars → {out_path}", flush=True
     )

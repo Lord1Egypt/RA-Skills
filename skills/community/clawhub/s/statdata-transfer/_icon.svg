@@ -1,0 +1,90 @@
+<svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#534AB7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1D9E75;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F8F7FC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EDEAF6;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect x="0" y="0" width="680" height="680" fill="url(#bgGrad)"/>
+  
+  <!-- Central hub -->
+  <g transform="translate(340,340)">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="180" fill="#FFFFFF" stroke="#534AB7" stroke-width="6" opacity="0.9"/>
+    <circle cx="0" cy="0" r="150" fill="#FFFFFF" stroke="none" opacity="0.5"/>
+    
+    <!-- Conversion arrows (circular) -->
+    <g opacity="0.85">
+      <!-- Clockwise arrow (purple) -->
+      <path d="M-80,0 C-80,-50 -50,-80 0,-80 C35,-80 60,-60 70,-35" 
+            fill="none" stroke="#534AB7" stroke-width="14" stroke-linecap="round"/>
+      <path d="M55,-55 L75,-30 L85,-50" fill="none" stroke="#534AB7" stroke-width="14" 
+            stroke-linecap="round" stroke-linejoin="round"/>
+      
+      <!-- Counter-clockwise arrow (teal) -->
+      <path d="M80,0 C80,50 50,80 0,80 C-35,80 -60,60 -70,35" 
+            fill="none" stroke="#1D9E75" stroke-width="14" stroke-linecap="round"/>
+      <path d="M-55,55 L-75,30 L-85,50" fill="none" stroke="#1D9E75" stroke-width="14" 
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    
+    <!-- Center point -->
+    <circle cx="0" cy="0" r="20" fill="url(#grad1)"/>
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF" stroke="#534AB7" stroke-width="2"/>
+    
+    <!-- Orbital format nodes -->
+    <!-- SPSS - top -->
+    <g transform="translate(0,-180)">
+      <circle cx="0" cy="0" r="32" fill="#534AB7"/>
+      <text x="0" y="6" text-anchor="middle" fill="white" font-size="26" font-weight="bold">S</text>
+    </g>
+    
+    <!-- Stata - right-top -->
+    <g transform="translate(156,-90)">
+      <circle cx="0" cy="0" r="32" fill="#1D9E75"/>
+      <text x="0" y="6" text-anchor="middle" fill="white" font-size="26" font-weight="bold">D</text>
+    </g>
+    
+    <!-- SAS - right-bottom -->
+    <g transform="translate(156,90)">
+      <circle cx="0" cy="0" r="32" fill="#378ADD"/>
+      <text x="0" y="6" text-anchor="middle" fill="white" font-size="26" font-weight="bold">X</text>
+    </g>
+    
+    <!-- R - bottom -->
+    <g transform="translate(0,180)">
+      <circle cx="0" cy="0" r="32" fill="#BA7517"/>
+      <text x="0" y="6" text-anchor="middle" fill="white" font-size="26" font-weight="bold">R</text>
+    </g>
+    
+    <!-- Excel - left-bottom -->
+    <g transform="translate(-156,90)">
+      <circle cx="0" cy="0" r="32" fill="#5F5E5A"/>
+      <text x="0" y="6" text-anchor="middle" fill="white" font-size="26" font-weight="bold">E</text>
+    </g>
+    
+    <!-- Parquet - left-top -->
+    <g transform="translate(-156,-90)">
+      <circle cx="0" cy="0" r="32" fill="#D85A30"/>
+      <text x="0" y="6" text-anchor="middle" fill="white" font-size="26" font-weight="bold">P</text>
+    </g>
+    
+    <!-- Connecting lines -->
+    <g stroke="#B4B2A9" stroke-width="1.5" fill="none" stroke-dasharray="6,4" opacity="0.5">
+      <line x1="0" y1="-148" x2="124" y2="-58"/>
+      <line x1="124" y1="-58" x2="124" y2="58"/>
+      <line x1="124" y1="58" x2="0" y2="148"/>
+      <line x1="0" y1="148" x2="-124" y2="58"/>
+      <line x1="-124" y1="58" x2="-124" y2="-58"/>
+      <line x1="-124" y1="-58" x2="0" y2="-148"/>
+    </g>
+  </g>
+  
+  <!-- Title -->
+</svg>

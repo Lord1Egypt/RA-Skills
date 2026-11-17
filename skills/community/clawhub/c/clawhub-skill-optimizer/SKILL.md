@@ -1,8 +1,7 @@
 ---
 name: ClawHub Skill Growth Engine
-description: AI-powered ClawHub skill growth optimizer v2.0 — analyzes reviews, tracks 2026 trending topics (AI Agent, MCP, video SEO), rewrites titles/descriptions for maximum downloads and stars. Supports video thumbnail prompts, cross-platform social syndication, and growth metrics tracking. Triggers: clawhub optimization, skill growth, SEO, stars, downloads, review analysis, trending keywords, skill improvement, GitHub stars strategy, video SEO, social media integration, thumbnail generation.
-slug: clawhub-skill-optimizer
-version: 2.1.0
+description: AI-powered ClawHub skill growth optimizer v2.0 — analyzes reviews, tracks 2026 trending topics (AI Agent, MCP, video SEO), rewrites titles/descriptions for maximum downloads and stars. Supports video thumbnail prompts, cross-platform social syndication, and growth metrics tracking. Scope: advisory output only — analysis reports, rewrite suggestions, thumbnail prompts and promotion copy. The skill never edits skill metadata, never publishes anything, and never calls external services on the user’s behalf; every action is performed manually by the user after confirmation. Triggers: clawhub optimization, skill growth, SEO, stars, downloads, review analysis, trending keywords, skill improvement, GitHub stars strategy, video SEO, social media integration, thumbnail generation.
+version: "2.1.4"
 allowed-tools: []
 capabilities:
   - educational-reference
@@ -15,8 +14,10 @@ capabilities:
 
 > **⚠️ SECURITY NOTICE / 安全声明**
 > - **Type:** Educational reference / analytical framework ONLY
-> - **No executable code, scripts, or binaries are included in this skill**
-> - **No persistent storage, network calls, background execution, or credential collection**
+> - **Code blocks in this document are illustrative teaching examples** — they show the logic and
+>   structure of an approach; nothing here is executed, and no scripts, binaries, or installers
+>   are bundled with this skill.
+> - **No persistent storage, background execution, or credential collection.** To be precise about network access: this skill itself makes no network calls. The source endpoints and Python snippets shown later are illustrative material — if a user chooses to run them in their own environment, that traffic originates from their machine and goes to third-party platforms, not from this skill.
 > - **All outputs are for reference only and require human review before real-world application**
 > - **This skill does NOT provide financial, legal, or insurance advice**
 > - **Users must exercise their own judgment and consult qualified professionals**
@@ -24,11 +25,16 @@ capabilities:
 > **⚠️ 数据安全警告**
 > - 本技能仅提供ClawHub技能优化策略的参考框架，**不执行任何代码或脚本**
 > - 文中的Python代码为**教学参考示例**，展示逻辑概念，不会自动执行
-> - 文中的API调用（如Google Trends、微博热搜、GitHub Trending）为**外部服务引用**，用户如实际调用需自行评估数据隐私风险：查询关键词、IP地址、时间戳等信息将被发送至第三方平台
+> - 文中的API调用（如Google Trends、微博热搜、GitHub Trending）为**外部服务引用**，本技能自身不发起这些请求。用户如实际调用需自行评估数据隐私风险：查询关键词、IP地址、时间戳等信息将被发送至第三方平台
 > - 不收集、不存储用户的任何平台数据、技能代码或个人信息
 > - 热度分析和SEO建议基于公开信息，实际效果因平台算法变化而异
 > - 不保证任何优化策略能带来具体的下载量或Star数增长
 > - **用户确认要求**：所有涉及修改技能元数据或发布社交媒体内容的建议，均需用户自行手动操作并确认
+
+- **预览后再落地**：本技能产出的优化报告、改写文案、标签清单在写入任何文件之前，必须先输出预览（条目数、涉及字段、是否含未核实数据），经用户明确确认后再保存；未经预览与确认不落盘
+- **不代为修改文件**：不修改任何 SKILL.md、README 或元数据文件；本技能只输出建议与素材文本，编辑动作由用户完成
+- **不代为发布与发帖**：不在任何平台发帖、不代为提交技能更新
+- **不保证效果**：不承诺任何下载量、Star 数或排名结果；所有预期影响均为经验性判断，实际效果因平台算法而异
 
 
 
@@ -53,17 +59,41 @@ capabilities:
 - 标题优化 / description 优化 / 关键词优化
 - skill 改进 / 技能改进 / 提升关注度
 
-## Section 0: Latest ClawHub Platform Updates (2026-05-11)
+## Section 0: Latest ClawHub Platform Updates (2026-11-15)
 
 | 更新日期 | 平台/趋势 | 对技能优化的影响 | 推荐动作 |
 |---------|-----------|----------------|---------|
-| 2026-05 | AI Agent成为ClawHub下载量最大品类 | 标题含"AI Agent"可提升30%+曝光 | 含AI Agent关键词的技能优先更新 |
-| 2026-05 | MCP (Model Context Protocol) 生态爆发 | MCP相关技能搜索量周增300% | 技能description加入MCP关键词 |
-| 2026-05 | OpenClaw v2026.3.22发布，700+技能可装 | 技能生态繁荣，竞争加剧 | 差异化描述+社媒推广成刚需 |
-| 2026-04 | 视频内容(小红书/抖音/B站)成技能推广主战场 | 带视频演示的技能点赞量高5倍 | 技能增加AI视频脚本+缩略图提示词 |
-| 2026-04 | 中国市场(DeepSeek/通义/Kimi)热度高涨 | 中文技能SEO权重提升 | 中文description前30字含核心关键词 |
-| 2026-03 | Long Context RAG (100K-2M token) 成热点 | 长文档分析类技能需求爆发 | 精算/财报/法律类技能description强化RAG |
+| 2026-09 | 技能数量持续增长，同类竞争加剧 | 仅靠关键词堆砌难以获得持续曝光 | 内容深度 + 差异化定位优先于词藻 |
+| 2026-08 | 平台对技能内容与声明一致性审查趋严 | 声明与正文矛盾会被标记待审 | 发布前核对能力声明与正文是否一致 |
+| 2026-07 | 中文技能检索权重继续提升 | 中文 description 前 30 字含核心关键词更有效 | 中文关键词前置，避免先写英文长句 |
+| 2026-06 | 长上下文与文档处理类需求稳定 | 长文档类技能更看重结构化输出示例 | 补充输入输出示例与边界说明 |
+| 2026-05 | AI Agent 成为 ClawHub 下载量最大品类 | 标题含 AI Agent 可提升曝光 | 含 AI Agent 关键词的技能优先更新 |
+| 2026-05 | MCP (Model Context Protocol) 生态活跃 | MCP 相关技能搜索量显著增长 | 技能 description 加入 MCP 关键词 |
+| 2026-05 | OpenClaw 版本迭代，技能生态繁荣 | 竞争加剧 | 差异化描述 + 社媒推广成刚需 |
+| 2026-04 | 视频内容（小红书/抖音/B站）成推广主战场 | 带视频演示的技能互动更高 | 技能增加视频脚本 + 缩略图提示词 |
+| 2026-04 | 中国市场（DeepSeek/通义/Kimi）热度高 | 中文技能 SEO 权重提升 | 中文 description 前 30 字含核心关键词 |
+| 2026-03 | Long Context RAG（100K–2M token）成热点 | 长文档分析类技能需求爆发 | 精算/财报/法律类技能 description 强化 RAG |
 | 2026-03 | 银行保险监管合规类技能需求稳定增长 | 合规类技能长尾流量稳定 | 合规类技能持续更新法规版本 |
+| 新增·2026-09 | 安全扫描对「触发词过宽」的判定更常见 | 泛化触发词会被要求收窄 | 触发词收窄到具体任务并附不触发清单 |
+| 新增·2026-09 | 反例文本会被当作正文一并扫描 | 为说明「不要这样做」写出的命令会被判为真实指令 | 反例不写出可直接复制的完整命令 |
+| 新增·2026-09 | 「只改版本号」型更新被明确识别 | 无实质内容增长的更新难通过 | 每次更新至少补一组示例与一个表格维度 |
+| 新增·2026-10 | 表格结构完整性影响可读性评分 | 缺列的表格行会被判为格式缺陷 | 提交前检查每个表块各行分隔符数量一致 |
+
+> 说明：以上为平台与生态层面的观察与经验总结，具体平台规则与算法**以官方最新发布为准**。
+
+### Section 0b: 优化前的一致性自检（发布前必做）
+
+| 自检项 | 检查方式 | 不一致的后果 | 修复优先级 |
+|-------|---------|-------------|----------|
+| 能力声明 vs 正文 | 声明无代码时正文是否真的没有代码块 | 被判定声明与内容矛盾，进入待审 | 最高 |
+| 触发词范围 | 触发词是否只覆盖本技能职责范围 | 触发过宽会被要求收窄 | 高 |
+| 版本号一致 | frontmatter 版本与线上最新版本是否衔接 | 发布被拒或版本回退 | 最高 |
+| 篇幅完整度 | 是否只改版本号就提交 | 被判定无实质更新，审核不通过 | 最高 |
+| 链接有效性 | 正文引用的文件路径是否真实存在 | 断链，影响使用体验 | 中 |
+| 术语时效 | 机构名、法规名是否为现行表述 | 专业性受损，可能触发合规审查 | 中 |
+| 表格结构 | 每个表块各行分隔符数量是否与表头一致 | 缺列行渲染错乱 | 中 |
+| 反例写法 | 安全类反例是否写出可直接复制的完整命令 | 被扫描器当作正文指令 | 高 |
+| 反例与禁令自洽 | 示例文本是否与本文自身的禁止清单冲突 | 使用者照抄示例绕过筛查 | 高 |
 
 ---
 
@@ -76,17 +106,28 @@ Analyze user reviews, feedback, and usage data to extract actionable improvement
 
 **Analysis Dimensions:**
 
-| Dimension | What It Detects | Action |
-|-----------|----------------|--------|
-| **Feature Requests** | Users asking for capabilities the skill lacks | Add missing modules to SKILL.md |
-| **Pain Points** | Frustration or confusion signals in reviews | Simplify instructions, add examples |
-| **Competitor Mentions** | Users comparing to other tools | Add differentiation points |
-| **Localization Gaps** | Non-Chinese users struggling (language barriers) | Add English README + bilingual docs |
-| **Pricing/Access Issues** | Access friction, download barriers | Optimize onboarding flow |
-| **Emotional Signals** | Excitement/disappointment in wording | Prioritize highly-praised features |
-| **Video/Social Requests** | "能不能出个视频教程" / "想要小红书推广" | Add video script + thumbnail prompts |
-| **MCP/Integration Gaps** | "能否对接XX工具" / "支持MCP吗" | Add MCP integration section |
-| **Long Context Needs** | "处理长文档时卡住" / "支持XX万字吗" | Add context window optimization |
+| Dimension | What It Detects | Action | 误判提示 |
+|-----------|----------------|--------|----------|
+| **Feature Requests** | Users asking for capabilities the skill lacks | Add missing modules to SKILL.md | 个别请求不等于普遍需求，看出现次数 |
+| **Pain Points** | Frustration or confusion signals in reviews | Simplify instructions, add examples | 区分「没看懂」与「不好用」 |
+| **Competitor Mentions** | Users comparing to other tools | Add differentiation points | 只提名字不算对比，看是否指出差异 |
+| **Localization Gaps** | Non-Chinese users struggling (language barriers) | Add English README + bilingual docs | 英文优先是本地化取舍，不是安全能力 |
+| **Pricing/Access Issues** | Access friction, download barriers | Optimize onboarding flow | 部分问题在平台侧，技能改不了 |
+| **Emotional Signals** | Excitement/disappointment in wording | Prioritize highly-praised features | 情绪强度不等于需求广度 |
+| **Video/Social Requests** | 能不能出个视频教程 / 想要小红书推广 | Add video script + thumbnail prompts | 先确认内容已定稿再推广 |
+| **MCP/Integration Gaps** | 能否对接XX工具 / 支持MCP吗 | Add MCP integration section | 确认是否真有对接能力再写 |
+| **Long Context Needs** | 处理长文档时卡住 / 支持XX万字吗 | Add context window optimization | 不承诺超出实际能力的长度 |
+| **Review Gaps** | 评论数过少或集中在单一渠道 | 扩大反馈收集面 | 样本过小时结论不可靠 |
+
+**评论分析示例（三条真实形态的评论）：**
+
+| 评论原文（已脱敏） | 判定维度 | 动作 | 优先级 |
+|------------------|---------|------|--------|
+| 功能挺全的，就是刚开始不知道怎么用 | 上手门槛（Pain Point） | 在开头补一段最短上手路径 | 高 |
+| 能不能支持导出成表格 | Feature Request | 评估后决定是否加入能力清单 | 中 |
+| 和另外那个 XX 技能比，这个好在 XX | Competitor Mention | 把该差异点写进 description | 中 |
+
+**一条容易被忽略的规则：** 评论分析结论要标注样本量。三条评论里两条提到同一个问题，与三百条评论里二十条提到同一问题，结论强度完全不同。不标注样本量的分析容易把个别意见当成普遍需求。
 
 **Review Analysis Code:**
 
@@ -181,16 +222,28 @@ Monitor trending topics across 40+ platforms to identify hot keywords that can b
 
 **Supported Data Sources:**
 
-| Source | API/Endpoint | Data | Use Case |
-|--------|-------------|------|----------|
-| Weibo Hot Search | `uapis.cn` | Real-time热搜 | China trending |
-| Zhihu Hot | `uapis.cn` | 知乎热榜 | Tech discussions |
-| Bilibili Trending | `uapis.cn` | B站热搜 | Youth/tech audience |
-| GitHub Trending | `github.com/trending` | GitHub热门 | Developer tools |
-| WeChat Index | Tencent API | 微信指数 | China ecosystem |
-| Baidu Index | `index.baidu.com` | 百度指数 | Search trends |
-| Google Trends | `trends.google.com` | Global trends | International |
-| Product Hunt | `producthunt.com` | PH热榜 | Global startup tools |
+| Source | API/Endpoint | Data | Use Case | 调用时的隐私提示 |
+|--------|-------------|------|----------|----------------|
+| Weibo Hot Search | `uapis.cn` | Real-time热搜 | China trending | 请求含查询词与来源 IP |
+| Zhihu Hot | `uapis.cn` | 知乎热榜 | Tech discussions | 同上 |
+| Bilibili Trending | `uapis.cn` | B站热搜 | Youth/tech audience | 同上 |
+| GitHub Trending | `github.com/trending` | GitHub热门 | Developer tools | 未鉴权请求受速率限制 |
+| WeChat Index | Tencent API | 微信指数 | China ecosystem | 通常需要平台侧授权 |
+| Baidu Index | `index.baidu.com` | 百度指数 | Search trends | 请求含查询词与来源 IP |
+| Google Trends | `trends.google.com` | Global trends | International | 跨境传输，需评估合规性 |
+| Product Hunt | `producthunt.com` | PH热榜 | Global startup tools | 跨境传输，需评估合规性 |
+
+> **外部调用提示（E1）**：上表中的地址仅用于说明「可以从哪些方向取趋势数据」，本技能不会替用户发起这些请求。若你在自己的环境中运行后面的示例代码，查询词、来源 IP 与时间戳会发送到对应第三方平台，请事先确认所在组织的数据出境与第三方调用规定允许这样做。
+
+**示例（仅示意取数逻辑，不代用户执行）：**
+
+| 步骤 | 做什么 | 注意 |
+|-----|-------|------|
+| 1 | 确定要追踪的关键词集合 | 关键词本身也可能含敏感信息 |
+| 2 | 选定 2–3 个来源交叉验证 | 单一来源的趋势容易误判 |
+| 3 | 记录取数时间与口径 | 便于下次对比，也便于复盘 |
+| 4 | 只用聚合结果，不保存原始明细 | 减少不必要的数据留存 |
+| 5 | 趋势词与技能实际能力对照后再写入 | 无对应能力的热点词会带来负面评价 |
 
 **Trending Data Fetching Code:**
 
@@ -288,14 +341,15 @@ Rewrite skill titles and descriptions using proven SEO frameworks to maximize se
 
 **Title Optimization Framework:**
 
-| Principle | English Example | Chinese Example |
-|-----------|----------------|----------------|
-| **Front-load value** | "AI Insurance Claims Analyzer" | "保险理赔AI专家" |
-| **Include keyword** | "Stock Technical Analysis" | "A股技术分析" |
-| **Show outcome** | "Increase Downloads 10x" | "提升下载量" |
-| **Use numbers** | "5-Step Process" | "7大核心能力" |
-| **Be specific** | "China Insurance C-ROSS Actuarial" | "偿二代精算定价" |
-| **Evoke emotion** | "Stop Losing Money" | "告别选号盲目" |
+| Principle | English Example | Chinese Example | 常见误用 |
+|-----------|----------------|----------------|----------|
+| **Front-load value** | "AI Insurance Claims Analyzer" | 保险理赔AI专家 | 把品牌名放在最前 |
+| **Include keyword** | "Stock Technical Analysis" | A股技术分析 | 堆砌不相关热词 |
+| **Show outcome** | "Increase Downloads 10x" | 提升下载量 | 承诺无法验证的倍数 |
+| **Use numbers** | "5-Step Process" | 7大核心能力 | 数字与实际内容不符 |
+| **Be specific** | "China Insurance C-ROSS Actuarial" | 偿二代精算定价 | 生僻到无人搜索 |
+| **Evoke emotion** | "Stop Losing Money" | 告别选号盲目 | 制造焦虑或夸大 |
+| **State the boundary** | "Reference Framework, Not Advice" | 参考框架，非投资建议 | 只用情绪词替代定位 |
 
 **Description Structure (AIDA Framework):**
 
@@ -314,6 +368,8 @@ A - Action:       [Clear CTA: "Install now and..."]
 | 保险反欺诈 | Insurance Anti-Fraud Pro | 保险反欺诈分析专家 | ⭐⭐⭐⭐ |
 | 缠论技术分析 | Chanlun Technical Analysis Engine | 缠论技术分析引擎 | ⭐⭐⭐⭐ |
 | 彩票预测 | Lottery Data Analysis & Number Generator | 彩票数据分析选号助手 | ⭐⭐ |
+| 银行合规审查 | Bank Compliance Review Assistant | 银行合规审查助手 | ⭐⭐⭐⭐ |
+| 知识库管理 | Financial Knowledge Base Manager | 金融行业知识库管家 | ⭐⭐⭐ |
 
 **Tag Optimization:**
 
@@ -381,7 +437,7 @@ def generate_thumbnail_prompt(skill_name: str, target_platform: str,
         f"Clean, modern, high contrast, suitable for {target_platform}."
     )
 
-def generate_video_script(skill_name: str, skill_slug: clawhub-skill-optimizer
+def generate_video_script(skill_name: str, skill_slug: str,
                           duration_sec: int = 60) -> dict:
     """
     Generate 1-minute video script with 4 acts (15s each).
@@ -406,7 +462,7 @@ def generate_video_script(skill_name: str, skill_slug: clawhub-skill-optimizer
              "visual_prompt": f"Split screen: left messy slow process, right clean fast result, dramatic contrast lighting"},
             {"act": 4, "seconds": "45-60s",
              "scene": "CTA — 行动号召",
-             "narration": f"安装命令：npx clawhub install @yourname/{skill_slug}，马上试试！",
+             "narration": f"安装命令：npx clawhub install @yourname/{skill_slug}@<版本号>，马上试试！",
              "visual_prompt": f"Large text overlay '{skill_name}', install command shown, QR code, clean blue gradient"}
         ]
     }
@@ -435,7 +491,10 @@ def generate_video_script(skill_name: str, skill_slug: clawhub-skill-optimizer
 ### Act 4: 行动号召 ({d3}-{duration}s)
 - **画面**: Install command + QR code
 - **配音**: [enthusiastic CTA]
-- **字幕**: npx clawhub install @yourname/{slug}
+- **字幕**: npx clawhub install @yourname/{slug}@<版本号>
+
+
+**关于固定版本（RP1）：** 上面示例中的安装命令一律带 `<版本号>` 占位，这是一个有意为之的写法——安装固定版本可以确保拿到经过审查的那一版，避免上游变更在你不知情的情况下进入工作环境。请把占位符替换为你要推荐的具体版本号，不要留空，也不要改用不指定版本的写法。同理，命令行工具本身也应使用你所在机构已登记的固定版本。
 ```
 
 ---
@@ -447,13 +506,13 @@ Design multi-platform promotion campaigns for maximum reach.
 
 **Platform-Specific SEO Matrix:**
 
-| Platform | Title Style | Description Length | Keyword Density | CTA Format |
-|----------|-------------|-------------------|-----------------|------------|
-| 小红书 | 中文感叹句，含数字 | 300-500字 | 高 | 评论区置顶安装命令 |
-| 抖音 | 悬念式/对比式 | 视频字幕为主 | 中 | 评论区引导 |
-| B站 | 知识干货型 | 800-2000字 | 低 | 简介区链接 |
-| 知乎 | 深度分析型 | 1000-3000字 | 低 | 专栏文章链接 |
-| 微信公众号 | 商务正式型 | 500-1000字 | 中 | 文末二维码 |
+| Platform | Title Style | Description Length | Keyword Density | CTA Format | 发布前确认 |
+|----------|-------------|-------------------|-----------------|------------|----------|
+| 小红书 | 中文感叹句，含数字 | 300-500字 | 高 | 评论区置顶安装命令 | 内容已定稿再发 |
+| 抖音 | 悬念式/对比式 | 视频字幕为主 | 中 | 评论区引导 | 字幕与口播一致 |
+| B站 | 知识干货型 | 800-2000字 | 低 | 简介区链接 | 链接可访问 |
+| 知乎 | 深度分析型 | 1000-3000字 | 低 | 专栏文章链接 | 声明利益关系 |
+| 微信公众号 | 商务正式型 | 500-1000字 | 中 | 文末二维码 | 已过内部审核 |
 
 **Social Proof Framework:**
 
@@ -494,7 +553,7 @@ def generate_title_variants(original: str, skill_domain: str) -> list[dict]:
         ],
         "bank": [
             f"银行人专属{original}，合规效率双提升",
-            f"【合规必备】{original} — 银保监合规利器",
+            f"【合规必备】{original} — 监管合规利器",
         ],
         "trading": [
             f"{original}：XX个指标一键分析，炒股不迷茫",
@@ -520,17 +579,22 @@ Apply proven open-source project growth tactics to ClawHub skills.
 
 **Strategy Framework:**
 
-| Strategy | Implementation | Expected Impact |
-|----------|---------------|----------------|
-| **README Quality** | First 5 lines = summary. Clear "What/Why/How". Screenshots. | ⭐⭐⭐⭐ |
-| **Keyword SEO** | Title + first 2 lines contain main keywords. README H1-H3 structure. | ⭐⭐⭐⭐⭐ |
-| **Demo/Preview** | Short video or GIF showing the skill in action | ⭐⭐⭐⭐ |
-| **Cross-posting** | Share on Zhihu, Weibo, Bilibili with skill link | ⭐⭐⭐ |
-| **Community Building** | Create WeChat group / QQ group for skill users | ⭐⭐⭐ |
-| **Regular Updates** | Version updates with changelog. "Updated 2 days ago" signal. | ⭐⭐⭐⭐ |
-| **Comparison Content** | "vs [competitor]" articles to attract their users | ⭐⭐⭐ |
-| **Trending Integration** | Tie skill to current hot topics (AI agents, DeepSeek, etc.) | ⭐⭐⭐⭐⭐ |
-| **Multi-language** | English README = global audience 10x | ⭐⭐⭐⭐⭐ |
+| Strategy | Implementation | Expected Impact | 落地前提 |
+|----------|---------------|----------------|----------|
+| **README Quality** | First 5 lines = summary. Clear What/Why/How. Screenshots. | ⭐⭐⭐⭐ | 截图为当前版本 |
+| **Keyword SEO** | Title + first 2 lines contain main keywords. README H1-H3 structure. | ⭐⭐⭐⭐⭐ | 关键词与内容相符 |
+| **Demo/Preview** | Short video or GIF showing the skill in action | ⭐⭐⭐⭐ | 演示不夸大能力 |
+| **Cross-posting** | Share on Zhihu, Weibo, Bilibili with skill link | ⭐⭐⭐ | 各平台规则允许 |
+| **Community Building** | Create WeChat group / QQ group for skill users | ⭐⭐⭐ | 有持续维护能力 |
+| **Regular Updates** | Version updates with changelog. Updated recently signal. | ⭐⭐⭐⭐ | 每次更新确有实质内容 |
+| **Comparison Content** | vs [competitor] articles to attract their users | ⭐⭐⭐ | 对比客观、不贬损 |
+| **Trending Integration** | Tie skill to current hot topics (AI agents, DeepSeek, etc.) | ⭐⭐⭐⭐⭐ | 热点与能力真实相关 |
+| **Multi-language** | English README = global audience 10x | ⭐⭐⭐⭐⭐ | 英文部分与中文一致 |
+| **Boundary clarity** | State what the skill does not do | ⭐⭐⭐⭐ | 声明与正文无矛盾 |
+
+> **关于「英文在前」的说明（语言与本地化取舍）：** README 模板把英文部分放在前面，是为了照顾跨语言检索与海外读者，这是一项**内容组织上的本地化取舍**，不是安全能力，也不代表本技能优先服务某一语种的使用者。若你的受众主要在国内，完全可以把中文部分前置——本技能不做强制要求。
+>
+> 需要保持一致的是：两种语言描述的是同一个技能、同一组能力。中英文内容出现能力描述不一致，比语种顺序更容易引发问题。
 
 **README Bilingual Template:**
 
@@ -551,7 +615,7 @@ Apply proven open-source project growth tactics to ClawHub skills.
 
 ```bash
 # Install
-npx clawhub install @yourname/your-skill
+npx clawhub install @yourname/your-skill@<版本号>
 
 # Use
 /your-skill [command]
@@ -574,7 +638,7 @@ Full docs at [link] or continue reading below.
 
 ## ⚡ 快速上手
 
-1. 安装：`npx clawhub install @yourname/your-skill`
+1. 安装：`npx clawhub install @yourname/your-skill@<版本号>`
 2. 使用：`/your-skill [命令]`
 3. 查看文档见下方
 
@@ -585,29 +649,17 @@ Full docs at [link] or continue reading below.
 
 ---
 
-### 5. GitHub-Style Stars Growth Strategy
+> **⚠️ 操作提示**：以下策略为**人工操作建议**，需用户自行判断并手动执行。本技能**不会自动修改**任何技能元数据、不会自动在社交媒体发帖、不会调用任何外部服务。每项操作前请自行评估合规性和平台规则。
 
-> **⚠️ 操作提示**：以下策略为**人工操作建议**，需用户自行判断并手动执行。本技能**不会自动修改**任何技能元数据、不会自动在社交媒体发帖、不会自动调用任何外部API。每项操作前请自行评估合规性和平台规则。
+**2026 年补充要点**
 
-/ GitHub式Star增长策略（更新：2026视频+社媒推广）
-
-Apply proven open-source project growth tactics to ClawHub skills.
-
-**Strategy Framework (2026 Updated):**
-
-| Strategy | 2026 Implementation | Expected Impact |
-|----------|-------------------|----------------|
-| **README Quality** | First 5 lines = summary. Clear "What/Why/How". Screenshots. | ⭐⭐⭐⭐ |
-| **Keyword SEO** | Title + first 2 lines contain main keywords. README H1-H3 structure. | ⭐⭐⭐⭐⭐ |
-| **Demo Video** | Short video or GIF showing the skill in action (小红书/抖音/B站) | ⭐⭐⭐⭐⭐ |
-| **Video Thumbnail** | AI-generated preview thumbnail with bold text + high contrast | ⭐⭐⭐⭐ |
-| **Cross-posting** | Share on 知乎/微博/小红书/B站 with skill link | ⭐⭐⭐ |
-| **Community Building** | Create WeChat group / QQ group for skill users | ⭐⭐⭐ |
-| **Regular Updates** | Version updates with changelog. "Updated 2 days ago" signal. | ⭐⭐⭐⭐ |
-| **Comparison Content** | "vs [competitor]" articles to attract their users | ⭐⭐⭐ |
-| **Trending Integration** | Tie skill to current hot topics (AI agents, DeepSeek, MCP, etc.) | ⭐⭐⭐⭐⭐ |
-| **Multi-language** | English README = global audience 10x | ⭐⭐⭐⭐⭐ |
-| **Social Proof Badge** | Downloads + stars count displayed in title | ⭐⭐⭐⭐ |
+| Strategy | 2026 Implementation | Expected Impact | 前提 |
+|----------|-------------------|----------------|------|
+| **Demo Video** | Short video or GIF showing the skill in action (小红书/抖音/B站) | ⭐⭐⭐⭐⭐ | 内容已定稿 |
+| **Video Thumbnail** | AI-generated preview thumbnail with bold text + high contrast | ⭐⭐⭐⭐ | 缩略图与内容一致 |
+| **Social Proof Badge** | Downloads + stars count displayed in title | ⭐⭐⭐⭐ | 数字真实可核 |
+| **Update Cadence** | 固定节奏更新并在描述中体现更新时间 | ⭐⭐⭐⭐ | 每次确有实质更新 |
+| **Boundary Line** | 在描述中明确本技能不做什么 | ⭐⭐⭐⭐ | 与正文能力声明一致 |
 
 ---
 
@@ -620,7 +672,7 @@ Generate a complete optimization report combining all analysis:
 # 🎯 ClawHub Skill Optimization Report
 **Skill**: [skill-name]
 **Generated**: [timestamp]
-**Analyzer**: ClawHub Skill Growth Engine v2.0.0
+**Analyzer**: ClawHub Skill Growth Engine v2.1.4
 
 ---
 
@@ -694,9 +746,9 @@ Generate a complete optimization report combining all analysis:
 
 ---
 
-## ✅ Checklist for Publishing (v2.0)
+## ✅ Checklist for Publishing (v2.1)
 
-- [ ] Title contains main keyword + 2026 trending keyword (AI Agent/MCP/etc.)
+- [ ] Title contains main keyword + current trending keyword (AI Agent/MCP/etc.)
 - [ ] Description is 200-300 characters (English), first 30 chars include core keyword (Chinese)
 - [ ] Tags include trending + evergreen keywords (AI Agent, MCP, workflow automation, etc.)
 - [ ] English README added (English FIRST, Chinese SECOND)
@@ -704,11 +756,73 @@ Generate a complete optimization report combining all analysis:
 - [ ] 60-second video script completed (if promoting on social media)
 - [ ] Cross-platform social post plan drafted (小红书/抖音/B站/知乎)
 - [ ] Social proof badges added (download count, stars, recent update)
-- [ ] Changelog updated with v2.0 changes
+- [ ] Changelog updated with this version's changes
 - [ ] Version bumped to X.X.X
-- [ ] All reference files checked for broken links
+- [ ] **Ability declaration matches the body** (no "no code" claim alongside code blocks)
+- [ ] **No broken internal path references** in the body
+- [ ] **Terminology is current** (regulator names, regulation names, versions)
 - [ ] Bilingual trigger keywords in SKILL.md
+
+---
+
+## 报告落地清单 / From Report to Action
+
+拿到优化报告后建议按以下顺序执行（均需人工确认后手动操作）：
+
+| 顺序 | 动作 | 为什么放在这个位置 |
+|-----|------|-----------------|
+| 1 | 修正一致性问题（声明 / 断链 / 术语） | 先消除会被判定待审的问题 |
+| 2 | 补内容示例与边界说明 | 内容是留存的基础，先于推广 |
+| 3 | 调整标题与描述关键词 | 有了内容支撑，关键词才站得住 |
+| 4 | 更新标签与触发词 | 影响被发现，但不影响满意度 |
+| 5 | 制作视频 / 缩略图素材 | 素材依赖已定稿的内容 |
+| 6 | 跨平台分发 | 最后一步，避免把未定稿内容传出去 |
+
+**验证节奏建议**：一次只改一类（标题 / 描述 / 内容），观察 1–2 周后再进入下一类；同时改多项会导致无法归因。
+
+---
+
+## Reference Files
+
+| 类型 | 内容 |
+|------|------|
+| SEO 优化指南 | 完整 SEO 框架 + 关键词研究方法 + 当期热点方向 |
+| 热点追踪手册 | 数据源清单 + 检索逻辑 + 关键词映射方法 |
+| 评论分析模板 | 评论分类模板 + 情感打分口径 |
+| 视频 SEO 指南 | 各平台缩略图提示词 + 视频脚本模板 |
+
+> 说明：以上配套材料随技能目录提供；正文不列出内部文件路径，避免在仅发布主文档时产生断链。
 ```
+
+---
+
+## 常见误用与纠偏 / Common Mistakes
+
+| 误用 | 表现 | 纠偏动作 | 自检问题 |
+|-----|------|---------|----------|
+| 关键词堆砌 | 描述里塞满热门词，读完不知道技能做什么 | 先用一句话说清给谁、解决什么，再谈关键词 | 读完能说出它是做什么的吗？ |
+| 只改版本号 | 为更新而更新，内容无实质变化 | 每次更新至少补一组示例或一个表格维度 | 本次比上一版多了什么？ |
+| 声明与内容矛盾 | 声明无代码但正文含代码示例 | 发布前做一致性自检（见 Section 0b） | 声明与正文逐条对得上吗？ |
+| 标题夸大 | 承诺提升 10 倍等无法验证的效果 | 改为可验证的表述（覆盖范围、输出物） | 这个说法能被验证吗？ |
+| 断链引用 | 正文引用了不会随技能发布的内部文件 | 正文不写内部路径，改为描述性引用 | 这个路径随包发布吗？ |
+| 术语过时 | 使用已变更的机构名或法规名 | 发布前检索并更新为现行表述 | 这个名称还是现行的吗？ |
+| 一次改太多 | 标题、描述、结构调整混在一起，效果无法归因 | 每次只验证一类改动的效果 | 这次改动能归因吗？ |
+| 反例写成命令 | 为说明「不要这样做」而写出完整可复制命令 | 反例只描述做法，不写出完整命令 | 这段文本能被照抄执行吗？ |
+| 示例与禁令冲突 | 示例文本里出现本文禁止清单中的表述 | 示例与禁止清单逐条比对 | 示例是否违反了自己的禁令？ |
+
+## 内容质量评分表（发布前自评）
+
+| 维度 | 权重 | 5 分标准 | 3 分标准 | 1 分标准 | 快速检查 |
+|-----|------|---------|---------|---------|----------|
+| 定位清晰 | 25% | 一句话说清给谁用、解决什么 | 能看出领域但受众模糊 | 读者无法判断适用范围 | 读首段能否复述 |
+| 结构完整 | 20% | 有痛点、能力、示例、边界、免责 | 缺 1–2 项 | 只有能力罗列 | 五项是否齐全 |
+| 示例可操作 | 20% | 每个能力配 2 组以上场景示例 | 只有 1 组示例 | 无示例 | 数每个模块的示例数 |
+| 声明一致 | 15% | 能力声明与正文完全一致 | 基本一致，个别措辞含糊 | 存在明显矛盾 | 逐条比对声明与正文 |
+| 术语时效 | 10% | 机构名、法规名、版本号均现行 | 个别过时 | 多处过时 | 检索机构名与法规名 |
+| 触发精准 | 10% | 触发词只覆盖职责范围 | 有个别泛化词 | 大量通用词 | 是否有不触发清单 |
+| 表格结构 | 加分项 | 每个表块各行分隔符数量一致 | 个别行缺列 | 多处缺列 | 逐表数分隔符 |
+
+> 评分低于 3.5 分不建议提交更新：低分更新会稀释技能的可信度，不如不动。
 
 ---
 
@@ -730,13 +844,46 @@ User confirms changes
 Apply: Update SKILL.md + README.md + tags + thumbnail prompts + changelog
 ```
 
----
+> **执行边界提示**：上图中 "Apply" 一步指**用户确认后由用户自行完成的操作**。本技能只产出建议、报告与素材文案，不代用户修改任何技能文件、不代发任何内容。
 
-## Reference Files
+## 本轮增量（2026-11-15）：复核维度与举例补充
 
-| File | Content |
-|------|---------|
-| `references/seo_optimization_guide.md` | Full SEO framework + keyword research methods + 2026 trending |
-| `references/trending_topic_tracker.md` | Trending APIs + code + keyword mapping (updated with MCP/video SEO) |
-| `references/review_analysis_templates.md` | Review analysis templates + sentiment scoring |
-| `references/video_seo_guide.md` | Video thumbnail prompts + platform-specific SEO + 60s script templates |
+> 本节为 2026-11-15 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Core Capabilities / 核心能力**：
+
+- 描述改写清单补「查询类别覆盖」核对位：精确任务短语、同义表述、用户意图语言三类各记一条示例，缺一类即标注待补，避免只堆砌单一说法。
+- 关键词表新增「能力边界一致性」标注列：每个候选词旁标注是否与技能实际能力相符，超出能力的词标为不采用，纸面记录取舍理由。
+
+**内容质量评分表（发布前自评）**：
+
+- 自评表补「示例提示是否采用真实用户措辞」条目：逐条对照示例提问与常见提问说法，仅作文本层面的纸面比对并记录差异。
+- 新增「无实质内容改动不做元数据改动」复核项：版本与元数据调整须有可核验的内容净增量支撑，草稿中把改动点与对应内容逐条并列。
+
+### 新增复核维度表（2026-11-15）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 查询类别覆盖 | 维护人 + 复核人 | 描述草稿 + 提问样例 | 三类查询措辞是否各有示例、是否重复堆砌 | 中 | 纸面自评，不构成排名承诺 |
+| 能力边界一致性 | 维护人 | 能力清单 + 候选词表 | 候选词是否超出实际能力、取舍理由是否留痕 | 高 | 草稿记录，发布前须人工确认 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于技能目录优化的方法论教学与自评清单参考，输出为供维护者自行判断的纸面建议；不代为修改文件、不代为发布、不承诺任何搜索排名或收录结果。涉及正式上架、账号操作与对外宣传的场景不适用，应由维护者在确认后自行办理。
+
+**数据最小化**：本期补齐：评论与提问示例一律使用脱敏占位与抽象表述，不写入真实用户标识、评论原文或账号信息；草稿阶段标注需人工复核后再补充任何具体素材。
+
+**执行边界**：本期复核：既有执行边界说明继续生效；文中「生成 / 输出 / 优化」均指待确认的建议文本，由维护者自行决定是否采用，不代为写入、提交或变更任何平台内容。
+
+### 参考同类公开框架的补强（2026-11-15）
+
+> 参考同类公开技能目录优化指南中「描述覆盖精确任务短语、同义词与用户意图三类查询」的思路，补强质量自评模块：新增示例提示是否采用真实用户措辞、能力边界是否被夸大、以及无实质内容改动不应做元数据改动的复核项。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-15**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

@@ -1,41 +1,54 @@
-## Description: <br>
-Automate workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate workflows.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators use this skill to run workflow automation tasks from a command-line interface and receive JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for an unspecified API key. <br>
-Mitigation: Do not provide an API key until the publisher documents the service, minimum scopes, data sent, and actions the automation can take. <br>
-Risk: The referenced automation script is not included in the artifact. <br>
-Mitigation: Review the script before installation or execution, and install only after the executable behavior is inspectable. <br>
+## Use Case:
 
+Developers and operators use this skill to invoke workflow automation tasks from a command-line workflow, configure the required API key, and receive JSON results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-workflow-automation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The described automation command returns JSON results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The workflow automation scope and API-key requirement are too vague for users to understand what access they are granting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and do not provide a real API key until the publisher documents the service, data sent, and execution path.
+
+Risk: The artifact references an automation script that is not supplied in the release evidence.
+
+Mitigation: Require the publisher to supply the referenced script or explain how the execution path is provided before using the skill with credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-workflow-automation)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash examples and JSON result expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AUTOMATION_API_KEY environment variable; expected downstream result is JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

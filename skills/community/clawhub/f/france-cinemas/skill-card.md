@@ -1,38 +1,49 @@
-## Description: <br>
-Search French cinema establishments using the open data.culture.gouv.fr API by city, region, proximity, screen count, Art et Essai label, and multiplex status without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search French cinema establishments using the open data.culture.gouv.fr API by city, region, proximity, screen count, Art et Essai label, and multiplex status with no API key required.
 
-## Publisher: <br>
-[deiu](https://clawhub.ai/user/deiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deiu](https://clawhub.ai/user/deiu)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to construct searches against the French Ministry of Culture cinema establishments dataset. It helps find cinemas by place, name, proximity, venue type, capacity, attendance, and regional aggregates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Exact coordinates used in nearby-cinema examples are sent to the public data API. <br>
-Mitigation: Use city names or approximate coordinates when location privacy matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deiu/france-cinemas) <br>
-- [French Ministry of Culture cinema establishments API](https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/etablissements-cinematographiques/records) <br>
+## Use Case:
 
+External users and developers use this skill to construct queries against the French Ministry of Culture cinema establishments dataset and interpret returned cinema records, including locations, screen counts, attendance, Art et Essai status, and multiplex status.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API query URLs, JSON] <br>
-**Output Format:** [Markdown guidance with API query examples and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key required; public API responses are paginated with a maximum limit of 100 records per request.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Location-based searches can send coordinates or other location hints to data.culture.gouv.fr.
+
+Mitigation: Avoid using sensitive personal locations unless the user is comfortable sharing them with the public data API.
+
+## Reference(s):
+
+- [French Ministry of Culture cinema establishments API](https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/etablissements-cinematographiques/records)
+- [ClawHub skill page](https://clawhub.ai/deiu/skills/france-cinemas)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API query examples]
+
+**Output Format:** [Markdown with URL query examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required; generated queries may include city names, cinema names, filters, or geographic coordinates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

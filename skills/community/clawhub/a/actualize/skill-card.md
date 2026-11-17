@@ -1,40 +1,52 @@
-## Description: <br>
-Reconcile the project's FPF state with recent repository changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconcile the project's FPF state with recent repository changes.
 
-## Publisher: <br>
-[hahamumu08](https://clawhub.ai/user/hahamumu08) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hahamumu08](https://clawhub.ai/user/hahamumu08)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to audit recent repository changes against an FPF knowledge base, identify context drift, stale evidence, and decisions that may need review, and record a new actualization baseline.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects repository diffs and FPF knowledge-base files as part of its maintenance audit.
+
+Mitigation: Install and run it only in repositories where this inspection is intended and review the generated actualization findings before acting on them.
+
+Risk: The skill may update .fpf/.baseline when recording a new actualization point.
+
+Mitigation: Review .fpf/.baseline before committing if repository cleanliness or baseline provenance matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to audit recent repository changes against an FPF knowledge base, identify context drift, stale evidence, and decisions that may need review, then update the FPF baseline. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository and .fpf files to assess freshness, which may surface project context or assurance-case details in the agent session. <br>
-Mitigation: Run it only in repositories where the agent is allowed to inspect project and .fpf content. <br>
-Risk: The skill can update .fpf/.baseline, which changes the recorded actualization point. <br>
-Mitigation: Review the baseline update and any proposed context changes before committing them. <br>
+**Output Format:** [Markdown report with inline shell commands and baseline configuration content.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Actualize on ClawHub](https://clawhub.ai/hahamumu08/actualize) <br>
+**Other Properties Related to Output:** [May propose updates to .fpf/context.md and writes or updates .fpf/.baseline when recording a new actualization point.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report with git command guidance and baseline configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update .fpf/.baseline after reporting findings.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

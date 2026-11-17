@@ -1,46 +1,66 @@
-## Description: <br>
-Unified 3D workflow: create models (AI), search (Thingiverse), slice, print. Modular-enable only what you need. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified 3D workflow: create models with AI, search Thingiverse, slice, and print; enable only the modules needed.
 
-## Publisher: <br>
-[makermate](https://clawhub.ai/user/makermate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makermate](https://clawhub.ai/user/makermate)
 
-## Use Case: <br>
-Developers and 3D-printing operators use this skill to guide an agent through model creation or search, previewing, slicing, and printer control with the claw3d CLI. The skill supports modular workflows for AI generation, Thingiverse search, CuraEngine slicing, and Moonraker or PrusaLink printing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to control physical 3D printers and issue print, start, preheat, home, cancel, or emergency-stop commands. <br>
-Mitigation: Use only in an environment where the operator trusts the agent with printer control, and require manual confirmation before any printer-control action. <br>
-Risk: The skill includes guidance for persistent OpenClaw configuration changes, including increasing Telegram media limits. <br>
-Mitigation: Apply persistent configuration changes only with administrator approval and after reviewing the impact on the deployment. <br>
-Risk: Generated or downloaded models may be unsuitable for a printer, build volume, or intended physical use. <br>
-Mitigation: Review previews, dimensions, slicing estimates, and printer profile settings before printing. <br>
+## Use Case:
 
+External users, developers, and makers use claw3d to guide an agent through creating or finding 3D models, previewing them, slicing them to G-code, and optionally sending print jobs to configured printers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/makermate/claw3d) <br>
-- [OpenClaw 3D homepage](https://github.com/makermate/openclaw-3d) <br>
-- [Thingiverse app token setup](https://www.thingiverse.com/apps/create) <br>
-- [FAL API key dashboard](https://fal.ai/dashboard/keys) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/app/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands, file paths, and generated 3D workflow artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference GLB, STL, G-code, preview video, configuration, and printer-control outputs through the claw3d CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json) <br>
+Risk: The skill can guide an agent to control printers and local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in trusted OpenClaw environments, require clear human confirmation before physical printer actions, and restrict access to printer endpoints.
+
+Risk: The workflow depends on external providers and API keys.
+
+Mitigation: Use least-privilege key access, audit and pin the configured claw3d package, and keep provider credentials out of shared logs or workspaces.
+
+Risk: Shared media directories can mix attachments or model outputs between users.
+
+Mitigation: Use per-user or per-session storage where possible, enforce attachment ownership, and keep unique output names for generated files.
+
+Risk: Generated or downloaded models may be unsafe or unsuitable for a specific printer.
+
+Mitigation: Review previews, printer profiles, slicing settings, and G-code before starting a print.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/makermate/skills/claw3d)
+- [Publisher profile: makermate](https://clawhub.ai/user/makermate)
+- [OpenClaw 3D homepage](https://github.com/makermate/openclaw-3d)
+- [FAL API keys](https://fal.ai/dashboard/keys)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+- [Thingiverse app access](https://www.thingiverse.com/apps/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to produce or handle GLB, STL, G-code, preview media, and local configuration files through the claw3d CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,188 @@
+# Infoseek 外部依赖注册表（deps/registry.yaml）
+# =============================================================================
+# 分层定位（S1 · 方向②阶段A「建表只读」）
+# -----------------------------------------------------------------------------
+#   dep_registry（本表 + core/dep_registry.py）        ← 下层：事实层
+#       管「装没装 / 能不能 import / 什么版本」          无授权、无降级策略
+#   capability_registry（capabilities/registry.yaml）  ← 上层：策略层
+#       管「开不开 / 需不需授权 / 失败降级到谁」         weight / consent / degrade_to
+# 单向依赖：cap 层可查询 dep 层取「是否可用」；dep 层**绝不**反向依赖 cap 层。
+#
+# 阶段约定：本表与 core/dep_registry.py 为 S1 纯新增，**不接线任何现有消费点**
+#           （零行为改动、零回归；不 bump 对外版本）。
+# =============================================================================
+#
+# 字段说明
+#   name          显示名（唯一键）
+#   kind          python_pkg | cli_binary | browser_binary
+#   import        python import 名（kind=python_pkg）
+#   pip           pip 分发名（与 import 名不同时必填，如 PyYAML→yaml、sherlock-project→cli）
+#   cli           CLI 命令名（kind=cli_binary）
+#   probe         声明式探测项（kind≠python_pkg）：
+#                   import:<mod> | path:<展开路径> | env:<VAR> | which:<cmd>
+#   probe_mode    any（默认）| all —— 多项探测的组合语义
+#   delegate      委托现有桥（module:attr）；调用该属性，返回非 None 即视为可用。
+#                 用于避免与既有桥双轨重造（jieba/pypinyin → core/jieba_bridge）
+#   version_floor 版本下限（仅诊断）
+#   required      true=核心（缺失即相关功能不可用）；false=可选降级
+#   degrade       缺失时降级行为（人读）
+#   install_hint  安装提示（require() 抛错时携带）
+#   consumers     消费点血缘（信息性）
+version: 1
+deps:
+  # ── 核心（直接 import，缺失即相关功能不可用）──────────────────────────
+  - name: PyYAML
+    kind: python_pkg
+    pip: PyYAML
+    import: yaml
+    version_floor: "6.0"
+    required: true
+    degrade: "回退内嵌默认注册表（capability_registry._DEFAULT_REGISTRY / dep_registry 内嵌）"
+    install_hint: "pip install PyYAML>=6.0"
+    consumers: [core/capability_registry.py, core/dep_registry.py, scripts/domain_router.py, scripts/exporter.py]
+  - name: Jinja2
+    kind: python_pkg
+    pip: Jinja2
+    import: jinja2
+    version_floor: "3.1"
+    required: true
+    degrade: "报告模板渲染降级为纯文本拼接"
+    install_hint: "pip install jinja2>=3.1"
+    consumers: [scripts/domain_orchestrator.py]
+  - name: httpx
+    kind: python_pkg
+    import: httpx
+    version_floor: "0.27"
+    required: true
+    degrade: "降级 urllib 同步请求"
+    install_hint: "pip install httpx>=0.27"
+    consumers: [core/wikidata_sync.py]
+  # ── 文本分析（懒加载，缺失自动降级）──────────────────────────────────
+  - name: jieba
+    kind: python_pkg
+    import: jieba
+    version_floor: "0.42.1"
+    required: false
+    delegate: "jieba_bridge:get_jieba"
+    degrade: "中文分词/TextRank 降级：summa → 零依赖规则切分"
+    install_hint: "pip install jieba"
+    consumers: [scripts/text_tokenizer.py, core/entity_aliases.py, core/entity_profile.py, scripts/infoseek_zerodep_nlp.py, scripts/summarize_adapter.py]
+  - name: pypinyin
+    kind: python_pkg
+    import: pypinyin
+    version_floor: "0.55"
+    required: false
+    delegate: "jieba_bridge:get_pypinyin"
+    degrade: "人名拼音别名降级为空集（不阻断）"
+    install_hint: "pip install pypinyin"
+    consumers: [core/person_ner.py, core/entity_aliases.py]
+  - name: summa
+    kind: python_pkg
+    import: summa
+    version_floor: "1.2.0"
+    required: false
+    degrade: "抽取式摘要降级首句截取 / 零依赖 ngram 共识"
+    install_hint: "pip install summa"
+    consumers: [scripts/anchor_adapter.py, scripts/summarize_adapter.py, scripts/infoseek_zerodep_nlp.py]
+  # ── 观测 / 安全 / 调度（懒加载）──────────────────────────────────────
+  - name: opentelemetry
+    kind: python_pkg
+    import: opentelemetry
+    required: false
+    degrade: "QCM tracing 关闭，链路仅本地日志"
+    install_hint: "pip install opentelemetry-api opentelemetry-sdk"
+    consumers: [extensions/qcm/tracing.py]
+  - name: cryptography
+    kind: python_pkg
+    import: cryptography
+    required: false
+    degrade: "key_manager 加密落盘不可用 → 抛 KeyManagementError（拒绝明文落盘）"
+    install_hint: "pip install cryptography"
+    consumers: [core/key_manager.py]
+  - name: keyring
+    kind: python_pkg
+    import: keyring
+    required: false
+    degrade: "回退加密文件落盘（~/.infoseek/keys.json）"
+    install_hint: "pip install keyring"
+    consumers: [core/key_manager.py]
+  - name: schedule
+    kind: python_pkg
+    import: schedule
+    required: false
+    degrade: "仅 freshness_cron daemon 受影响；full-scan/decay 正常"
+    install_hint: "pip install schedule"
+    consumers: [core/freshness_cron.py]
+  - name: openai-whisper
+    kind: python_pkg
+    pip: openai-whisper
+    import: whisper
+    required: false
+    degrade: "L4 多媒体转录 → transcript_available=False（仅返回元信息）"
+    install_hint: "pip install openai-whisper"
+    consumers: [scripts/mcp_tools_search.py]
+  # ── 浏览器引擎（Python 侧 + 浏览器二进制）────────────────────────────
+  - name: playwright
+    kind: python_pkg
+    import: playwright
+    version_floor: "1.44"
+    required: false
+    degrade: "L2/L3 浏览器渲染降级为 L1 静态抓取"
+    install_hint: "pip install playwright（requirements-extra.txt）"
+    consumers: [scripts/mcp_tools_search.py, scripts/l2_renderer.py]
+  - name: playwright-stealth
+    kind: python_pkg
+    pip: playwright-stealth
+    import: playwright_stealth
+    required: false
+    degrade: "stealth 注入关闭（裸 playwright，易被反爬识别）"
+    install_hint: "pip install playwright-stealth"
+    consumers: [scripts/l2_renderer.py]
+  - name: patchright
+    kind: python_pkg
+    import: patchright
+    required: false
+    degrade: "patchright 引擎让位 system chromium 引擎（无 stealth 时退化为裸奔）"
+    install_hint: "pip install patchright"
+    consumers: [scripts/l2_renderer.py]
+  - name: camoufox
+    kind: browser_binary
+    probe: ["import:camoufox", "path:~/.cache/camoufox/browsers/official"]
+    probe_mode: all
+    required: false
+    degrade: "camoufox 引擎让位 obscura / chromium"
+    install_hint: "pip install camoufox && python -m camoufox fetch"
+    consumers: [scripts/l2_renderer.py]
+  - name: obscura
+    kind: browser_binary
+    probe: ["which:obscura", "env:INFOSEEK_OBSCURA_PATH", "path:~/.infoseek/bin/obscura"]
+    probe_mode: any
+    required: false
+    degrade: "obscura 引擎让位 camoufox / chromium"
+    install_hint: "安装 obscura 二进制并置于 PATH（或设 INFOSEEK_OBSCURA_PATH）"
+    consumers: [scripts/l2_renderer.py]
+  - name: chromium
+    kind: browser_binary
+    probe: ["env:CHROMIUM_PATH", "which:chromium", "path:/usr/bin/chromium", "path:/usr/lib/chromium/chromium"]
+    probe_mode: any
+    required: false
+    degrade: "system chromium 引擎让位其它引擎；反爬穿透力下降"
+    install_hint: "apt-get install chromium（或设置 CHROMIUM_PATH）"
+    consumers: [scripts/l2_renderer.py]
+  # ── CLI 二进制（隔离 subprocess 调用，不 import 进主进程）──────────────
+  - name: maigret
+    kind: cli_binary
+    cli: maigret
+    pip: maigret
+    required: false
+    degrade: "身份归因降级：Sherlock → manual_review"
+    install_hint: "pip install maigret（隔离 venv 推荐）"
+    consumers: [scripts/maigret_client.py]
+  - name: sherlock
+    kind: cli_binary
+    cli: sherlock
+    pip: sherlock-project
+    required: false
+    degrade: "身份归因降级：manual_review"
+    install_hint: "pip install sherlock-project（隔离 venv 推荐）"
+    consumers: [scripts/sherlock_client.py]

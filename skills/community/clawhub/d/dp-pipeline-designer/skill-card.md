@@ -1,42 +1,58 @@
-## Description: <br>
-Designs DP Data Processing Platform pipelines from natural-language requirements, generating StreamJob XML and guiding submission, execution, monitoring, and troubleshooting through the DP REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, generates, submits, and monitors DP Data Processing Platform pipelines from natural-language requirements.
 
-## Publisher: <br>
-[hxp365](https://clawhub.ai/user/hxp365) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hxp365](https://clawhub.ai/user/hxp365)
 
-## Use Case: <br>
-Developers and data engineers use this skill to translate data source, transformation, and output requirements into DP platform pipeline designs, StreamJob XML, and operational guidance for Flink-based data-processing jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an API key to submit and start live DP data-processing jobs. <br>
-Mitigation: Require explicit user approval before any submit or start action, and show the target server, StreamJob XML, inputs, outputs, quota impact, and stop plan first. <br>
-Risk: A misconfigured or untrusted DP server could expose sensitive pipeline metadata or execute unintended workloads. <br>
-Mitigation: Use only a trusted HTTPS DP server and a scoped API key with the minimum permissions needed for the intended job. <br>
-Risk: Generated pipeline XML or troubleshooting guidance may be incorrect for the user's available resources and operators. <br>
-Mitigation: Review the pipeline design, resource references, and operator choices before execution, and limit generated pipelines to documented DP operators. <br>
+## Use Case:
 
+Developers and data engineers use this skill to translate pipeline requirements into DP Platform and Apache Flink job designs, StreamJob XML configuration, REST API submissions, and job status guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hxp365/dp-pipeline-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with XML configuration, REST API curl commands, status summaries, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include StreamJob XML, DP REST API requests, quota-impact notes, and job stop or monitoring plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill handles DP_API_KEY and includes a documented HTTP server example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure DP_SERVER_URL with HTTPS, use only trusted DP Platform endpoints, and avoid sending real API keys to unencrypted HTTP URLs.
+
+Risk: The skill can submit and start DP Platform jobs.
+
+Mitigation: Review generated pipeline designs before execution and confirm submitted jobs cannot affect production data unless that is intended.
+
+Risk: API keys could be exposed in logs or user-visible output.
+
+Mitigation: Do not print or store any part of DP_API_KEY in logs, generated files, or troubleshooting output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hxp365/skills/dp-pipeline-designer)
+- [Publisher Profile](https://clawhub.ai/user/hxp365)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with StreamJob XML, curl commands, status summaries, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit and start DP Platform jobs through REST API calls when the required server URL and API key are configured.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,55 @@
-## Description: <br>
-Run TikTok advertising campaigns with guidance on creative strategy, campaign structure, audience targeting, bidding, and optimization for B2B SaaS, apps, and consumer brands targeting younger and mobile-first audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, and report on TikTok ads from an AI agent through the AdKit MCP connector: campaigns, ad groups, video ads, Spark Ads, media upload, and results.
 
-## Publisher: <br>
-[jeannen](https://clawhub.ai/user/jeannen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeannen](https://clawhub.ai/user/jeannen)
 
-## Use Case: <br>
-External advertisers, growth teams, and marketing operators use this skill to plan and optimize TikTok ad campaigns, with emphasis on creative testing, ad formats, targeting, bidding, and execution paths through TikTok Ads Manager or AdKit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional AdKit CLI use can create, edit, upload audiences to, or spend from real ad campaigns. <br>
-Mitigation: Verify the active AdKit and TikTok account, then require explicit user approval before running commands that change campaigns, audiences, uploads, or spend. <br>
+## Use Case:
 
+Advertisers and marketing operators use this skill to create and manage TikTok campaigns, ad groups, video ads, and Spark Ads through AdKit, then review performance results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeannen/tiktok-ads-strategy) <br>
-- [AdKit](https://adkit.so) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only ads strategy output; optional AdKit CLI commands may affect real ad accounts and should be explicitly approved before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected local videos are transferred through AdKit to TikTok.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the transfer and get the user's approval for each selected file before uploading.
+
+Risk: Publishing ad changes can put campaign content live.
+
+Mitigation: Show the saved draft and wait for the user's approval before publishing it.
+
+## Reference(s):
+
+- [AdKit TikTok Ads setup and product documentation](https://adkit.so/features/ads-mcp/tiktok)
+- [TikTok Marketing API v1.3 campaign management reference](https://business-api.tiktok.com/portal/docs/campaign-management-api-reference/v1.3)
+- [ClawHub skill release](https://clawhub.ai/jeannen/skills/tiktok-ads)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Reports]
+
+**Output Format:** [AdKit MCP calls with concise text summaries and performance reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ad changes are prepared as drafts for user review and approval before publication.]
+
+## Skill Version(s):
+
+2.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

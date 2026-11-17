@@ -1,5 +1,6 @@
-# setup_jmp.ps1 — JMP 检测与配置脚本
-# 用法: powershell -ExecutionPolicy Bypass -File setup_jmp.ps1
+﻿# setup_jmp.ps1 — JMP detection and configuration script
+# Usage: powershell -ExecutionPolicy Bypass -File setup_jmp.ps1
+# ⚠️ SETUP tool: DETECTION-ONLY. Detects installed software and prints manual configuration guidance. It does NOT write config.json or user environment variables.
 
 # ============================================================
 # Language Detection
@@ -16,17 +17,21 @@ function Write-Lang {
     if ($script:isZH) { Write-Host $CN -ForegroundColor $Color }
     else { Write-Host $EN -ForegroundColor $Color }
 }
+function Test-StatSoftReveal {
+    return ($env:STATSOFT_REVEAL -eq '1')
+}
+function Test-StatSoftVerify {
+    return ($env:STATSOFT_VERIFY -eq '1')
+}
 
+Write-Lang "=== JMP 检测与配置 ===" "=== JMP Detection & Configuration ===" -Color Cyan
 
-
-    Write-Lang "=== JMP 检测与配置 ===" "=== JMP Detection & Configuration ===" -Color Cyan
-
-# 1. 检测 JMP 安装
+# 1. Detect JMP installation
 $jmpInstalled = $false
 $jmpPath = ""
 $jmpVersion = ""
 
-# 典型安装路径
+# Typical installation paths
 $commonPaths = @(
     "C:\Program Files\JMP\16",
     "C:\Program Files\JMP\15",
@@ -41,22 +46,22 @@ foreach ($dir in $commonPaths) {
         $jmpInstalled = $true
         $jmpPath = $exe
         $jmpVersion = $dir -replace ".*JMP\\", ''
-        Write-Lang "[OK] [CN] 检测到 JMP $jmpVersion : $jmpPath" "[OK] [CN] 检测到 JMP $jmpVersion : $jmpPath" -ForegroundColor Green
-        Write-Lang "[OK] [EN] JMP $jmpVersion detected: $jmpPath" "[OK] [EN] JMP $jmpVersion detected: $jmpPath" -ForegroundColor Green
+        if (Test-StatSoftReveal) {
+            Write-Lang "检测到 JMP $jmpVersion : $jmpPath" "Detected JMP $jmpVersion : $jmpPath" -ForegroundColor Green
+        } else {
+            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+        }
         break
     }
 }
 
-# 2. 如果未找到，尝试注册表
+# 2. If not found, try the registry
 if (-not $jmpInstalled) {
-    Write-Lang "[!] [CN] 在常见路径未找到 JMP，尝试注册表..." "[!] [CN] 在常见路径未找到 JMP，尝试注册表..." -ForegroundColor Yellow
-    Write-Lang "[!] [EN] JMP not found in common paths, trying registry..." "[!] [EN] JMP not found in common paths, trying registry..." -ForegroundColor Yellow
-    
+    Write-Lang "常见路径未找到 JMP，尝试注册表..." "JMP not found in common paths, trying registry..." -ForegroundColor Yellow
     $regPaths = @(
         "HKLM:\SOFTWARE\JMP",
         "HKLM:\SOFTWARE\Wow6432Node\JMP"
     )
-    
     foreach ($regPath in $regPaths) {
         if (Test-Path $regPath) {
             $jmpKey = Get-ChildItem $regPath -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -68,8 +73,11 @@ if (-not $jmpInstalled) {
                         $jmpInstalled = $true
                         $jmpPath = $exe
                         $jmpVersion = $installDir -replace ".*JMP\\", ''
-                        Write-Lang "[OK] [CN] 从注册表找到 JMP : $jmpPath" "[OK] [CN] 从注册表找到 JMP : $jmpPath" -ForegroundColor Green
-                        Write-Lang "[OK] [EN] Found JMP from registry: $jmpPath" "[OK] [EN] Found JMP from registry: $jmpPath" -ForegroundColor Green
+                        if (Test-StatSoftReveal) {
+                            Write-Lang "从注册表找到 JMP : $jmpPath" "Found JMP from registry: $jmpPath" -ForegroundColor Green
+                        } else {
+                            Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+                        }
                         break
                     }
                 }
@@ -78,20 +86,19 @@ if (-not $jmpInstalled) {
     }
 }
 
-# 3. 如果仍未找到，提示用户（支持非交互回退）
+# 3. If still not found, prompt the user (supports non-interactive fallback)
 if (-not $jmpInstalled) {
-    Write-Lang "[!] [CN] 未检测到 JMP" "[!] [CN] 未检测到 JMP" -ForegroundColor Yellow
-    Write-Lang "[!] [EN] JMP not detected" "[!] [EN] JMP not detected" -ForegroundColor Yellow
+    Write-Lang "未检测到 JMP" "JMP not detected" -ForegroundColor Yellow
     Write-Lang "请确认以下信息:" "Please confirm the following:" -Color Yellow
-  Write-Lang "1. [CN] JMP 是否已安装？" "[EN] Is JMP installed?" -Color White
-  Write-Lang "2. [CN] 安装路径是什么？" "[EN] What is the installation path?" -Color White
+    Write-Lang "1. JMP 是否已安装？" "1. Is JMP installed?" -Color White
+    Write-Lang "2. 安装路径是什么？" "2. What is the installation path?" -Color White
 
-    # L-5: 非交互回退 — Read-Host 带超时
+    # Non-interactive fallback — Read-Host wrapped in try/catch
     $manualPath = $null
     try {
-        $manualPath = Read-Host -Prompt "`n[CN] 请输入 JMP 安装路径（例如 C:\Program Files\JMP\16）/ [EN] Enter JMP installation path (e.g. C:\Program Files\JMP\16)"
+        $manualPath = Read-Host -Prompt (if ($script:isZH){"`n请输入 JMP 安装路径（例如 C:\Program Files\JMP\16）"}else{"`nEnter JMP installation path (e.g. C:\Program Files\JMP\16)"})
     } catch {
-  Write-Lang "[!] [CN] 非交互模式，跳过手动输入" "[EN] Non-interactive mode, skipping manual input" -Color Yellow
+        Write-Lang "非交互模式，跳过手动输入" "Non-interactive mode, skipping manual input" -Color Yellow
     }
 
     if ($manualPath -and (Test-Path $manualPath)) {
@@ -100,50 +107,56 @@ if (-not $jmpInstalled) {
             $jmpInstalled = $true
             $jmpPath = $exe
             $jmpVersion = $manualPath -replace ".*JMP\\", ''
-            Write-Lang "[OK] [CN] 已确认 JMP 路径: $jmpPath" "[OK] [CN] 已确认 JMP 路径: $jmpPath" -ForegroundColor Green
-            Write-Lang "[OK] [EN] JMP path confirmed: $jmpPath" "[OK] [EN] JMP path confirmed: $jmpPath" -ForegroundColor Green
+            if (Test-StatSoftReveal) {
+                Write-Lang "已确认 JMP 路径: $jmpPath" "JMP path confirmed: $jmpPath" -ForegroundColor Green
+            } else {
+                Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+            }
         }
     }
 }
 
-# 4. 输出配置结果
+# 4. Output configuration result
 if ($jmpInstalled) {
-    Write-Host "`n[CN] === 配置结果 ===" -ForegroundColor Cyan
-    Write-Host "[EN] === Configuration Result ===" -ForegroundColor Cyan
-    Write-Lang "JMP 路径: $jmpPath" "JMP path: $jmpPath" -Color White
-    Write-Lang "版本: $jmpVersion" "Version: $jmpVersion" -Color White
-    
-    # 请求用户确认后再修改环境变量
-    Write-Lang "`n[CN] 即将设置用户环境变量:" "`n[CN] 即将设置用户环境变量:" -ForegroundColor Yellow
-    Write-Lang "[EN] About to set environment variables:" "[EN] About to set environment variables:" -ForegroundColor Yellow
-    Write-Host "  STATSOFT_JMP_PATH=$jmpPath" -ForegroundColor Gray
-
-    # L-5: 非交互回退
-    $confirm = "Y"
-    try {
-        $confirm = Read-Host "[CN] 确认设置环境变量? (y/N) / [EN] Confirm setting env vars? (y/N)"
-    } catch {
-  Write-Lang "[!] [CN] 非交互模式，自动应用" "[EN] Non-interactive mode, auto-applying" -Color Yellow
-    }
-
-    if ($confirm -eq 'y' -or $confirm -eq 'Y') {
-        [System.Environment]::SetEnvironmentVariable("STATSOFT_JMP_PATH", $jmpPath, "User")
-  Write-Lang "[OK] [CN] 环境变量已设置" "[EN] Environment variable set" -Color Green
+    Write-Lang "`n=== 配置结果 ===" "`n=== Configuration Result ===" -ForegroundColor Cyan
+    if (Test-StatSoftReveal) {
+        Write-Lang "JMP 路径: $jmpPath" "JMP path: $jmpPath" -Color White
     } else {
-  Write-Lang "[!] [CN] 跳过环境变量设置" "[EN] Skipping env var setup" -Color Yellow
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
     }
-    
-    # 显示调用示例
-    Write-Host "`n[CN] === 调用示例 ===" -ForegroundColor Cyan
-    Write-Host "[EN] === Usage Examples ===" -ForegroundColor Cyan
+    if (Test-StatSoftReveal) {
+        Write-Lang "版本: $jmpVersion" "Version: $jmpVersion" -Color White
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
+
+    # This setup script is DETECTION-ONLY: it reports the detected path and
+    # prints manual configuration guidance. It does NOT modify any persistent
+    # state (no env-var writes, no config.json writes) — the runner
+    # statsoft-jmp.ps1 auto-detects JMP from the common paths above.
+    # This setup script is DETECTION-ONLY: it does NOT write env vars or
+    # config.json. The runner statsoft-jmp.ps1 auto-detects JMP from the common
+    # paths above by default; if a custom path must be pinned, persist it to
+    # config.json with explicit opt-in (STATSOFT_AUTO_WRITE=1 / STATSOFT_CONFIRM=1)
+    # — NOT a shell environment variable.
+    Write-Lang "`n本脚本仅做检测，不写入任何配置（环境变量或 config.json）。" "`nDetection-only: no configuration is written (neither env vars nor config.json)." -ForegroundColor Yellow
+    Write-Lang "运行器默认按上述路径自动检测，无需手动设置环境变量。" "  The runner auto-detects these paths by default — no manual env var needed." -Color Gray
+    Write-Lang "如需固定自定义路径，请以 opt-in 写入 config.json（STATSOFT_AUTO_WRITE=1 / STATSOFT_CONFIRM=1）。" "  To pin a custom path, persist it to config.json with opt-in (STATSOFT_AUTO_WRITE=1 / STATSOFT_CONFIRM=1)." -Color Gray
+
+    # Show usage examples
+    Write-Lang "`n=== 调用示例 ===" "`n=== Usage Examples ===" -ForegroundColor Cyan
     Write-Lang "运行 JSL 脚本:" "Run JSL script:" -Color White
-  Write-Lang "`"$jmpPath`"" "R `" -Color White
+    if (Test-StatSoftReveal) {
+        Write-Host "  `"$jmpPath`" script.jsl"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
     Write-Lang "" ""
     Write-Lang "静默模式:" "Silent mode:" -Color White
-  Write-Lang "`"$jmpPath`"" "S /R `" -Color White
+    if (Test-StatSoftReveal) {
+        Write-Host "  `"$jmpPath`" -jsl script.jsl"
+    } else {
+        Write-Lang "检测到软件（路径/版本已隐藏；设置 STATSOFT_REVEAL=1 可显示）" "Software detected (paths/versions hidden; set STATSOFT_REVEAL=1 to reveal)."
+    }
     Write-Lang "" ""
-    Write-Lang "COM 自动化 (PowerShell):" "COM automation (PowerShell):" -Color White
-    Write-Host '  $jmp = New-Object -ComObject JMP.Application'
-    Write-Host '  $jmp.RunScriptFile("C:\path\to\script.jsl")'
-    Write-Host '  $jmp.Quit()'
 }

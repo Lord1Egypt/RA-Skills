@@ -1,44 +1,58 @@
-## Description: <br>
-Gstack Openclaw Skills adapts the gstack development workflow into OpenClaw and WorkBuddy skills covering product ideation, code review, QA, documentation, and release workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gstack Openclaw Skills provides 15 WorkBuddy/OpenClaw agent workflows for product ideation, planning review, code review, debugging, QA, documentation, and release work.
 
-## Publisher: <br>
-[dsg12te-del](https://clawhub.ai/user/dsg12te-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dsg12te-del](https://clawhub.ai/user/dsg12te-del)
 
-## Use Case: <br>
-Developers and engineering teams use this skill bundle to route agent workflows for product ideation, planning review, code review, QA, documentation, and release preparation. It is intended for OpenClaw or WorkBuddy agent sessions where users want structured development guidance and automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill bundle can guide an agent to modify repositories from broad prompts. <br>
-Mitigation: Use explicit commands, prefer dry-run or report-only modes, and inspect diffs before applying fixes. <br>
-Risk: Release workflows may lead to commits, pushes, pull requests, or production deployment without consistent approval boundaries. <br>
-Mitigation: Require separate confirmation before commits, pushes, pull request creation, or production deployment. <br>
+## Use Case:
 
+Developers and engineering teams use this skill pack to route agent work through specialized workflows for ideation, planning review, code review, debugging, QA, documentation, and release preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dsg12te-del/gstack-openclaw-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/dsg12te-del) <br>
-- [Original gstack project referenced by the artifact](https://github.com/garrytan/gstack) <br>
-- [Artifact README](README.md) <br>
-- [Artifact installation guide](INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, code review notes, QA reports, release notes, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository edits, git operations, PR creation, or deployment steps depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, top-level SKILL.md frontmatter) <br>
+Risk: The skill pack can automatically change code, install dependencies, push to remotes, create PRs, and deploy without clear final approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege repository credentials and require explicit confirmation before dependency installs, commits, pushes, PR creation, or production deployment.
+
+Risk: Broad natural-language release triggers may route an agent into release or deployment work unintentionally.
+
+Mitigation: Require an explicit user confirmation step before release actions and avoid ambiguous deployment requests.
+
+Risk: The workflow state helper should not be used with untrusted workflow IDs until the path validation issue is fixed.
+
+Mitigation: Do not pass untrusted workflow IDs to the state helper; restrict workflow IDs to trusted agent-created values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dsg12te-del/skills/gstack-openclaw-skills)
+- [Original gstack project](https://github.com/garrytan/gstack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with command examples, code review findings, test reports, PR or release summaries, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform or propose repository mutations, dependency installs, commits, pushes, PR creation, and deployment when the host agent grants tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

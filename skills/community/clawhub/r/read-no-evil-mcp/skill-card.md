@@ -1,44 +1,64 @@
-## Description: <br>
-Secure email access via read-no-evil-mcp. Protects against prompt injection attacks in emails. Use for reading, sending, deleting, and moving emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure email access via read-no-evil-mcp with prompt injection scanning for reading, sending, deleting, and moving emails.
 
-## Publisher: <br>
-[thekie](https://clawhub.ai/user/thekie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[thekie](https://clawhub.ai/user/thekie)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an agent list, read, send, move, and delete email through a read-no-evil-mcp server that scans messages for prompt injection before content reaches the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to send, move, or delete email. <br>
-Mitigation: Use read-only or tightly scoped account permissions where possible and require explicit user approval before any send, move, or delete action. <br>
-Risk: Email accounts and folders may expose sensitive content to an agent. <br>
-Mitigation: Configure only accounts and folders the user is comfortable exposing, and prefer restricted credentials for agent access. <br>
-Risk: Remote HTTP server connections can expose email traffic if used outside localhost. <br>
-Mitigation: Use HTTPS for non-localhost server connections, as the skill documentation recommends. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an agent to a read-no-evil-mcp server for mailbox listing, reading, sending, moving, and deletion with server-side prompt injection scanning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/thekie/read-no-evil-mcp) <br>
-- [read-no-evil-mcp server](https://github.com/thekie/read-no-evil-mcp) <br>
-- [ProtectAI DeBERTa prompt-injection model](https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Email content and actions are mediated by a configured read-no-evil-mcp server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and changelog, released 2026-02-17) <br>
+Risk: Mailbox access can include send, delete, and move operations when those permissions are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer read-only mailbox permissions and enable send, delete, or move only for accounts and folders that require those actions.
+
+Risk: Docker and HTTP server setup can expose mailbox access too broadly if bound or routed incorrectly.
+
+Mitigation: Use a trusted server, bind local deployments to localhost or firewall the port, and require HTTPS plus authentication for remote servers.
+
+Risk: The .env file contains mailbox password material used by the server container.
+
+Mitigation: Keep the .env file secret, avoid sharing it with the agent, and do not display full configuration contents during troubleshooting.
+
+Risk: The setup script pulls a container image before passing it mailbox credentials.
+
+Mitigation: Pin or independently verify the Docker image before providing credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thekie/skills/read-no-evil-mcp)
+- [read-no-evil-mcp server](https://github.com/thekie/read-no-evil-mcp)
+- [ProtectAI DeBERTa prompt injection model](https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a configured read-no-evil-mcp server; mailbox permissions are controlled by server configuration.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata and changelog, released 2026-02-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

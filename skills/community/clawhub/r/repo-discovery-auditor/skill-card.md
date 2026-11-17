@@ -1,41 +1,54 @@
-## Description: <br>
-Repo Discovery Auditor helps an agent audit an unfamiliar codebase, map its architecture and user-facing features, assess maturity, surface risks, and prepare a practical coding brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit an unfamiliar codebase and map architecture, user-facing features, maturity, and risks.
 
-## Publisher: <br>
-[nalendrax8](https://clawhub.ai/user/nalendrax8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nalendrax8](https://clawhub.ai/user/nalendrax8)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to inspect unfamiliar repositories before planning, refactoring, or implementation work. It produces an evidence-based architecture summary, feature map, maturity assessment, risk list, and implementation handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to read repository contents, which may expose secrets or sensitive files to the agent. <br>
-Mitigation: Use it only on repositories the user is comfortable exposing to the agent, and avoid repos containing unredacted secrets or highly sensitive data. <br>
-Risk: Static repository inspection can produce incorrect assumptions about runtime behavior. <br>
-Mitigation: Tie claims to inspected files or patterns, and label any runtime behavior that was not directly verified. <br>
+## Use Case:
 
+Developers and coding agents use this skill to inspect unfamiliar repositories, map architecture and user-facing features, assess maturity, surface risks, and prepare practical implementation handoffs.
 
-## Reference(s): <br>
-- [Repo Discovery Auditor release page](https://clawhub.ai/nalendrax8/repo-discovery-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/nalendrax8) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with structured audit sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file references, maturity labels, risk notes, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can prompt an agent to inspect repository files during broad repository-analysis tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories whose files you are comfortable having the agent read.
+
+Risk: Static repository audits can produce misleading conclusions if claims are not tied to inspected files or verified behavior.
+
+Mitigation: Require claims to cite inspected files or patterns, and label static-code inferences instead of presenting them as verified runtime behavior.
+
+## Reference(s):
+
+- [Repo Discovery Auditor README](artifact/README.md)
+- [Repo Discovery Auditor Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-based findings tied to inspected files and patterns; no fixed token cap is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

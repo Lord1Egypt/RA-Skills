@@ -306,17 +306,35 @@ if ($missing.Count -gt 0) {
 }
 ```
 
-### 跳过判断逻辑（伪代码示例）
+### 跳过判断逻辑
 
-```
-// 以下仅为逻辑说明，实际使用 PowerShell 或原生工具实现
-
-判断跳过条件:
-1. 文件行数 < 50 行 且 只包含字段定义 → 跳过
-2. 包含 "enum" 且 无复杂方法 → 跳过
-3. 包含 "public interface" 且 无方法实现 → 跳过
-4. 纯数据类（只有字段和 getter/setter）→ 跳过
-5. 测试类（包含 @Test 或类名含 Test）→ 跳过
+```python
+def ShouldSkip(content, lineCount):
+    # 行数少于 50 行
+    if lineCount < 50:
+        # 检查是否只包含字段定义
+        if isPureDataClass(content):
+            return True
+    
+    # 检查是否是枚举
+    if "enum " in content and "public enum" in content:
+        # 检查枚举是否包含复杂逻辑
+        if not hasComplexLogic(content):
+            return True
+    
+    # 检查是否是接口
+    if "public interface" in content:
+        return True
+    
+    # 检查是否是纯数据类（只有字段和 getter/setter）
+    if isPureDataClass(content):
+        return True
+    
+    # 检查是否是测试类
+    if "@Test" in content or "class XXXTest" in content:
+        return True
+    
+    return False
 ```
 
 ---
@@ -339,19 +357,44 @@ $firstN = Get-Content $filePath -First 50
 $lastN = Get-Content $filePath -Tail 50
 ```
 
+### Bash 读取（安全限制时，谨慎使用）
+
+⚠️ **安全警告**：使用 Bash 命令会增加攻击面，仅在 PowerShell 无法使用时考虑。所有命令必须限制为只读操作。
+
+```bash
+# ⚠️ 仅限只读操作，绝不执行修改命令
+# 读取整个文件
+cat /path/to/file.java
+
+# 读取行数
+wc -l /path/to/file.java
+
+# 读取前 N 行
+head -n 50 /path/to/file.java
+
+# 读取后 N 行
+tail -n 50 /path/to/file.java
+
+# 读取特定行范围
+sed -n '10,50p' /path/to/file.java
+
+# ❌ 绝不使用：sed -i（修改文件）、awk（可能执行代码）、其他可能修改系统的命令
+```
+
 ### 安全限制处理
 
-如果文件被安全软件限制访问：
+如果文件被安全软件（如天锐绿盾）限制访问：
 
-1. **记录失败文件**: 在日志中标注无法访问的文件
-2. **请求用户协助**: 请求用户确认文件访问权限
-3. **跳过该文件**: 继续处理其他文件
-4. **最终报告**: 在完成任务后统一报告无法访问的文件
+1. **首选方案**：使用 PowerShell 只读命令（Get-Content、Test-Path）
+2. **次选方案**：使用 Python 文件读取（open() 函数）
+3. **记录失败文件**：将受限文件记录到状态文件，任务完成后统一报告
+4. **绝不执行**：任何可能修改文件、执行代码或绕过安全限制的命令
 
-**⚠️ 禁止事项**:
-- 禁止尝试使用外部工具或替代读取方式
-- 禁止尝试提权或绕过安全限制
-- 禁止修改安全软件配置
+**安全原则**：
+- 所有回退方案必须保持只读，防止路径注入和命令注入攻击
+- 不使用 Bash shell 作为回退方案
+- **不建议用户禁用或绕过安全软件**：安全软件是重要的防护层，不应为文档生成任务而临时关闭
+- 如果文件确实无法读取，应跳过该文件并继续处理其他文件，最后向用户报告哪些文件因权限问题被跳过
 
 ---
 
@@ -379,7 +422,7 @@ $lastN = Get-Content $filePath -Tail 50
 
 ### 4. 质量保证
 
-- 二次扫描查漏（推荐执行）
+- 二次扫描必须执行
 - 检查生成文档的内容质量
 - 确保无代码片段
 - 确保业务描述详细

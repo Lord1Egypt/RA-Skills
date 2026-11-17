@@ -1,43 +1,57 @@
-## Description: <br>
-Mac Cleaner is an automated macOS disk cleanup agent that removes caches, old logs, Trash contents, npm and Homebrew cache, stale build artifacts, and optional Mission Control cleanup state without requiring API keys or external services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mac Cleaner installs a local macOS cleanup agent that removes selected caches, logs, Trash items, npm/Homebrew cache, and stale build artifacts, with a Mission Control dashboard and optional weekly scheduling.
 
-## Publisher: <br>
-[josephtandle](https://clawhub.ai/user/josephtandle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephtandle](https://clawhub.ai/user/josephtandle)
 
-## Use Case: <br>
-Mac users and support engineers use this skill to install and operate a local cleanup agent that previews and removes common macOS disk clutter. It is intended for routine disk-space recovery, with user confirmation before installation, scheduling, and real cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented dry-run preview may still perform real deletions. <br>
-Mitigation: Review and correct dry-run behavior before installation or execution, and require a successful preview plus explicit user confirmation before any real cleanup. <br>
-Risk: The Mission Control dashboard can trigger cleanup actions. <br>
-Mitigation: Expose the dashboard only in a trusted local environment and restrict use to trusted operators. <br>
-Risk: A weekly cron job can run cleanup unattended. <br>
-Mitigation: Keep scheduling disabled unless the user explicitly wants unattended weekly cleanup, and confirm the schedule before enabling it. <br>
+## Use Case:
 
+External macOS users and developers use this skill to install and operate a local disk-cleanup agent for freeing storage and reviewing cleanup results in Mission Control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josephtandle/macos-mac-cleaner) <br>
-- [Publisher profile](https://clawhub.ai/user/josephtandle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JavaScript, TypeScript, JSON, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup steps, cleanup scripts, Mission Control dashboard files, cron configuration guidance, dry-run review guidance, and cleanup result summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The security summary reports that the documented dry-run preview can delete files immediately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the preview or cleanup path until the dry-run behavior is fixed and verified with non-destructive tests.
+
+Risk: The skill adds persistent and manual ways to trigger cleanup through a cron job and dashboard Run Now endpoint.
+
+Mitigation: Keep scheduling disabled unless explicitly approved, and review authentication, authorization, and operator confirmation before enabling dashboard-triggered cleanup.
+
+Risk: Cleanup removes filesystem content from cache, log, Trash, npm, Homebrew, and build-artifact locations.
+
+Mitigation: Review the exact target paths before use, preserve the explicit path allowlist and symlink checks, and keep backups for data that should not be deleted.
+
+## Reference(s):
+
+- [Mac Cleaner on ClawHub](https://clawhub.ai/josephtandle/skills/macos-mac-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash, JavaScript, TypeScript, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local cleanup scripts and configuration that run with the current user's macOS permissions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

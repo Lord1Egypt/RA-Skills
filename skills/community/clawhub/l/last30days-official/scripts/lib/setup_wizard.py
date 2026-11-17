@@ -1,6 +1,6 @@
 """First-run setup wizard for last30days.
 
-Detects first run, performs auto-setup (cookie extraction + yt-dlp check),
+Detects first run, performs auto-setup (tool availability check),
 and writes configuration. The actual wizard UI is SKILL.md-driven (the LLM
 presents it), but this module provides the detection and setup actions.
 """
@@ -30,33 +30,19 @@ def is_first_run(config: Dict[str, Any]) -> bool:
 def run_auto_setup(config: Dict[str, Any]) -> Dict[str, Any]:
     """Perform the auto-setup actions.
 
-    - Runs cookie extraction in auto mode for all registered domains
+    - Checks tool availability
     - Checks if yt-dlp is installed
 
     Returns:
         Dict with keys:
-          cookies_found: {source_name: browser_name} for each source where cookies were found
+          creds_found: empty dict (API key auth only in this package)
           ytdlp_installed: bool
           env_written: bool (always False here — caller writes config separately)
     """
-    from . import cookie_extract
-    from .env import COOKIE_DOMAINS
+    # OpenClaw package: API key auth only
 
     cookies_found: Dict[str, str] = {}
-
-    for source_name, spec in COOKIE_DOMAINS.items():
-        domain = spec["domain"]
-        cookie_names = spec["cookies"]
-
-        try:
-            result = cookie_extract.extract_cookies_with_source("auto", domain, cookie_names)
-        except Exception as exc:
-            logger.debug("Cookie extraction failed for %s: %s", source_name, exc)
-            continue
-
-        if result is not None:
-            _cookies, browser_name = result
-            cookies_found[source_name] = browser_name
+    # credential detection skipped in OpenClaw package
 
     # Check yt-dlp availability and install via Homebrew if missing
     ytdlp_action: str
@@ -98,7 +84,7 @@ def run_auto_setup(config: Dict[str, Any]) -> Dict[str, Any]:
     return results
 
 
-def write_setup_config(env_path: Path, from_browser: str = "auto") -> bool:
+def write_setup_config(env_path: Path, auth_mode: str = "auto") -> bool:
     """Write SETUP_COMPLETE and FROM_BROWSER to the .env file.
 
     Creates the file and parent directories if needed.
@@ -106,7 +92,7 @@ def write_setup_config(env_path: Path, from_browser: str = "auto") -> bool:
 
     Args:
         env_path: Path to the .env file (e.g. ~/.config/last30days/.env)
-        from_browser: Browser extraction mode to write (default: "auto")
+        auth_mode: Auth mode to write (default: "auto")
 
     Returns:
         True if config was written successfully, False on error.
@@ -164,9 +150,9 @@ def get_setup_status_text(results: Dict[str, Any]) -> str:
     cookies_found = results.get("cookies_found", {})
     if cookies_found:
         for source, browser in cookies_found.items():
-            lines.append(f"  - {source.upper()} cookies found in {browser}")
+            lines.append(f"  - {source.upper()} credentials from {browser}")
     else:
-        lines.append("  - No browser cookies found for X/Twitter")
+        lines.append("  - Configure XAI_API_KEY or AUTH_TOKEN for X/Twitter")
 
     ytdlp_action = results.get("ytdlp_action", "")
     if ytdlp_action == "installed":
@@ -206,7 +192,7 @@ _OPENCLAW_KEY_NAMES = [
 
 
 def run_openclaw_setup(config: Dict[str, Any]) -> Dict[str, Any]:
-    """Server-side setup probe: no cookies, just tool + key availability.
+    """Server-side setup probe: tool + key availability.
 
     Returns a dict suitable for JSON output to stdout so that SKILL.md
     can present appropriate options to the user.
@@ -225,7 +211,7 @@ def run_openclaw_setup(config: Dict[str, Any]) -> Dict[str, Any]:
     if config.get("XAI_API_KEY"):
         x_method: Optional[str] = "xai"
     elif config.get("AUTH_TOKEN") and config.get("CT0"):
-        x_method = "cookies"
+        x_method = "env"
     else:
         x_method = None
 

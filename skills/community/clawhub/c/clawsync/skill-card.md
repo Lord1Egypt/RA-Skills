@@ -1,39 +1,58 @@
-## Description: <br>
-Backup and restore your OpenClaw workspace to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore your OpenClaw workspace to GitHub.
 
-## Publisher: <br>
-[nickconstantinou](https://clawhub.ai/user/nickconstantinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickconstantinou](https://clawhub.ai/user/nickconstantinou)
 
-## Use Case: <br>
-External users and developers use Clawsync to back up selected OpenClaw workspace identity, skill, and script files to a GitHub repository and restore them when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and mutate selected workspace files, restore files from GitHub, and potentially push changes. <br>
-Mitigation: Review the scripts and agent instructions before use, back up the current workspace before restore, and require explicit confirmation before commit, push, deletion, or restore operations. <br>
-Risk: Credential handling may persist GitHub credentials when token-based fallback authentication is used. <br>
-Mitigation: Prefer gh-based or temporary authentication and avoid long-lived persistent git credential storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawsync on ClawHub](https://clawhub.ai/nickconstantinou/clawsync) <br>
+## Use Case:
 
+Developers and OpenClaw users use Clawsync to back up selected workspace identity files, skills, and scripts to a private GitHub repository and restore them when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and environment-variable settings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITHUB_TOKEN, BACKUP_REPO, and OPENCLAW_WORKSPACE environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Restoring broad agent-control files, scripts, or skills could persist unwanted instructions.
+
+Mitigation: Review each restored AGENTS.md, SOUL.md, USER.md, HEARTBEAT.md, script, and skill before trusting or executing it.
+
+Risk: Backup and Git operations could expose workspace content or affect local Git metadata when run in the wrong directory.
+
+Mitigation: Use a private, dedicated backup repository and run the scripts only from the intended Clawsync backup directory.
+
+Risk: Repository credentials could grant more access than this backup workflow needs.
+
+Mitigation: Use a fine-grained GitHub token limited to the dedicated backup repository.
+
+## Reference(s):
+
+- [Clawsync on ClawHub](https://clawhub.ai/nickconstantinou/skills/clawsync)
+- [nickconstantinou publisher profile](https://clawhub.ai/user/nickconstantinou)
+- [ShellCheck](https://www.shellcheck.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BACKUP_REPO, OPENCLAW_WORKSPACE, and usually GITHUB_TOKEN or gh CLI authentication.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

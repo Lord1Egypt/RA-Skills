@@ -1,39 +1,49 @@
-## Description: <br>
-Provides detailed, auditable multi-step reasoning traces for complex questions requiring 3+ logical steps, tradeoff analysis, or explicit explanation requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides detailed, auditable multi-step reasoning traces for complex questions requiring several logical steps, tradeoff analysis, or explicit explanations.
 
-## Publisher: <br>
-[ariffazil](https://clawhub.ai/user/ariffazil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariffazil](https://clawhub.ai/user/ariffazil)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to structure complex answers with numbered reasoning steps, explicit constraints, alternatives, uncertainty, and verdicts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation could cause the agent to expose hidden deliberation, policy reasoning, or sensitive intermediate analysis in user-visible output or logs. <br>
-Mitigation: Narrow activation to explicit user requests or clearly complex tasks, and avoid using the skill where sensitive intermediate reasoning should remain hidden. <br>
+## Use Case:
 
+External users and developers use Chain Reason to have an agent produce structured reasoning, tradeoff, or evidence-chain explanations for complex questions and multi-constraint decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariffazil/chain-reason) <br>
-- [Publisher profile](https://clawhub.ai/user/ariffazil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured reasoning summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include numbered reasoning steps, constraint checks, alternatives, uncertainty notes, risk mitigation, and verdict labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Broad activation wording can trigger on common prompts asking how or why, making responses longer or more procedural than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or enable this skill only when frequent structured reasoning formats are desired, and ask the agent for concise traces when brevity matters.
+
+## Reference(s):
+
+- [Chain Reason ClawHub Skill Page](https://clawhub.ai/ariffazil/skills/chain-reason)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured traces and concise prose templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces numbered reasoning, constraint checks, alternatives, uncertainty notes, tradeoff analysis, evidence chains, confidence labels, and verdicts.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

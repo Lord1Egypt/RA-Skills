@@ -1,48 +1,60 @@
-## Description: <br>
-Provides session authentication for OpenClaw using passphrases, recovery options, lockout protection, audit logging, and SkillPay billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw session passphrase authentication with password hashing, recovery options, lockout protection, audit logging, and paid billing.
 
-## Publisher: <br>
-[squallsol](https://clawhub.ai/user/squallsol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squallsol](https://clawhub.ai/user/squallsol)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add a passphrase gate to sessions, configure recovery, and manage session authentication state. It is intended for environments where access control, timeout behavior, and billing prompts need to be handled during agent use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment behavior and pricing are inconsistent across the artifact and include an embedded billing key. <br>
-Mitigation: Review the payment path before installation, rotate or remove embedded billing credentials, confirm the price shown to users, and require explicit consent before any charge. <br>
-Risk: Recovery behavior can expose recovery codes through stub output or local storage when email delivery is not configured. <br>
-Mitigation: Configure a real email provider, remove plaintext recovery-code output, and avoid treating the recovery flow as a security boundary until this is fixed. <br>
-Risk: Broad authentication triggers may activate the skill when the user did not intend to run a paid authentication flow. <br>
-Mitigation: Limit activation to explicit authentication commands and make any billing or setup action visible before it proceeds. <br>
-Risk: Setup documentation and authentication files are not fully aligned across artifact files. <br>
-Mitigation: Verify the setup flow against the files actually read by the authentication and recovery scripts before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to add a passphrase gate to OpenClaw sessions, including setup, timeout handling, account recovery, and uninstall workflows. It is also used to enforce the skill's paid per-call billing flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squallsol/session-password) <br>
-- [Publisher profile](https://clawhub.ai/user/squallsol) <br>
-- [SkillPay platform](https://skillpay.me) <br>
-- [Feature specification](artifact/docs/FEATURE_SPEC.md) <br>
-- [User manual](artifact/docs/USER_MANUAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console-style text with inline shell commands and JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local authentication, recovery, audit, and billing-related configuration files during setup and use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: evidence release metadata, package.json, SKILL.md) <br>
+Risk: The authoritative security verdict is suspicious for a session-password guard that handles session access, recovery secrets, local audit/state files, and paid billing calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and do not rely on it as a security boundary until the authentication schema, recovery flow, billing consent, and credential-handling issues identified by evidence.security are fixed.
+
+Risk: The artifact includes paid billing behavior and evidence.security flags consent and hardcoded credential concerns.
+
+Mitigation: Require explicit user billing consent before charges, move billing credentials out of bundled source, and rotate any exposed payment API key before use.
+
+Risk: Recovery and local state handling involve sensitive secrets and files, and the artifact includes recovery stub behavior that can expose recovery codes during setup or testing.
+
+Mitigation: Use a real configured mail transport, disable stub recovery output in production, restrict local file permissions, and clear recovery artifacts after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/squallsol/skills/session-password)
+- [Feature Specification](docs/FEATURE_SPEC.md)
+- [User Manual](docs/USER_MANUAL.md)
+- [SkillPay Payment Page](https://skillpay.me/skill/6387f3fa-cceb-4a60-afd4-fc1f4eb2d7c3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands, JSON status output, and local configuration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual English and Chinese user-facing messages; stores authentication state, audit logs, recovery records, and configuration under the OpenClaw workspace memory directory.]
+
+## Skill Version(s):
+
+1.6.1 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

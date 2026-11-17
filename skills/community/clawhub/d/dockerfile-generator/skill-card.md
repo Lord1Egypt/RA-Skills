@@ -1,39 +1,48 @@
-## Description: <br>
-Automatically generates optimized Dockerfile templates for Node.js, Python, Go, and Java applications with multi-stage build and container best-practice guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates optimized Dockerfiles for common application types with multi-stage builds and container best practices.
 
-## Publisher: <br>
-[HonestQiao](https://clawhub.ai/user/HonestQiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honestqiao](https://clawhub.ai/user/honestqiao)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft Dockerfiles for common application stacks, including Node.js, Python, Go, and Java. It helps produce starting templates with multi-stage build patterns and configurable image versions or ports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Dockerfiles may include image versions, ports, or commands that do not match the target application. <br>
-Mitigation: Review the generated Dockerfile before building or deploying it. <br>
-Risk: Untrusted values for image versions or ports can change the resulting Dockerfile text. <br>
-Mitigation: Use trusted configuration values and pin image versions before building containers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dockerfile Generator ClawHub release](https://clawhub.ai/HonestQiao/dockerfile-generator) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate Dockerfile starting points for Node.js, Python, Go, and Java applications. It helps standardize container setup with common build, dependency, port, and command patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Dockerfile code blocks and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Dockerfile templates should be reviewed before building or deployment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted version or port values may be embedded directly into generated Dockerfile instructions, which could create unsafe builds.
+
+Mitigation: Review generated Dockerfiles before building them, use trusted simple version and port values, and avoid automated pipelines until version and port validation is enforced.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honestqiao/skills/dockerfile-generator)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Plain text Dockerfile content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Dockerfiles should be reviewed before build or deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

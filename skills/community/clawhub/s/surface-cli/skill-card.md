@@ -1,43 +1,62 @@
-## Description: <br>
-Use the Surface mail CLI to read and act on Gmail, Outlook, and generic IMAP/SMTP mail through one JSON-first contract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read, search, draft, and manage Gmail, Outlook, and IMAP/SMTP mail using the Surface CLI.
 
-## Publisher: <br>
-[vishalj99](https://clawhub.ai/user/vishalj99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vishalj99](https://clawhub.ai/user/vishalj99)
 
-## Use Case: <br>
-Employees, external users, developers, and engineers use this skill to let an agent inspect, search, triage, draft, send, and manage Gmail, Outlook, or generic IMAP/SMTP mail through Surface CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables agents to access sensitive mailbox contents through a local mail CLI. <br>
-Mitigation: Install and configure it only when agent mailbox access is intended, and review account auth status and local Surface configuration before use. <br>
-Risk: Mail send, reply, archive, mark-read, and mark-unread actions can mutate a user's mailbox. <br>
-Mitigation: Respect Surface write-safety settings, prefer draft workflows for compose tasks, and use configured safe recipients for live-send testing. <br>
-Risk: Mailbox passwords, provider tokens, or email content can be exposed through chat, shell history, repository files, or external summarization. <br>
-Mitigation: Avoid pasting mailbox passwords into chat or repos, prefer password environment/file/command mechanisms, and confirm the user accepts any external summarizer privacy tradeoff before enabling it. <br>
+## Use Case:
 
+People and agents managing Gmail, Outlook, or IMAP mail use this skill to find and read messages, monitor threads, prepare replies, and perform requested mailbox actions.
 
-## Reference(s): <br>
-- [Surface CLI homepage](https://github.com/VishalJ99/surface-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/vishalj99/surface-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to parse Surface CLI JSON output and use stable message and thread refs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: server-resolved release evidence) <br>
+Risk: The skill can access sensitive mailbox contents and attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for mail the user has authorized the agent to access, and read only messages needed for the task.
+
+Risk: Sending or changing mail can have unintended effects.
+
+Mitigation: Respect local write-safety settings, prefer drafts, and use configured test recipients for live send tests.
+
+Risk: Direct password flags can expose mailbox credentials.
+
+Mitigation: Avoid direct password flags; use supported environment, file, or command-based password options.
+
+Risk: An external summarizer may receive email content when enabled.
+
+Mitigation: Confirm the privacy tradeoff with the user before enabling or changing an external summarizer.
+
+## Reference(s):
+
+- [Surface CLI project homepage (listed in skill metadata)](https://github.com/VishalJ99/surface-cli)
+- [Surface CLI ClawHub release](https://clawhub.ai/vishalj99/skills/surface-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Surface CLI returns JSON for mailbox operations.]
+
+## Skill Version(s):
+
+0.4.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

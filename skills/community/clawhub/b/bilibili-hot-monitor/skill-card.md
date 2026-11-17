@@ -1,44 +1,62 @@
-## Description: <br>
-生成 B站热门视频日报，使用字幕和可选 LLM 总结内容，并可通过邮件发送报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and emails daily Bilibili popular-video reports with subtitle-based AI summaries and content-performance analysis.
 
-## Publisher: <br>
-[Jacobzwj](https://clawhub.ai/user/Jacobzwj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[jacobzwj](https://clawhub.ai/user/jacobzwj)
 
-## Use Case: <br>
-External users and developers use this skill to collect popular Bilibili videos, generate a structured daily Markdown report with optional AI summaries and commentary, and send the report by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for a live Bilibili session cookie, an OpenRouter API key, and SMTP credentials, and may store them in a local plaintext config file. <br>
-Mitigation: Prefer environment variables or dedicated low-risk accounts, avoid command-line secrets, restrict access to bilibili-monitor.json, and delete the file after use when possible. <br>
-Risk: The skill can send generated report content to configured email recipients. <br>
-Mitigation: Confirm the recipient list and report content before sending email. <br>
+## Use Case:
 
+External users and content operators use this skill to monitor Bilibili trending videos, generate a structured daily Markdown report, optionally enrich it with OpenRouter-based analysis, and email the result to configured recipients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jacobzwj/bilibili-hot-monitor) <br>
-- [Bilibili API WBI signature reference](https://socialsisteryi.github.io/bilibili-API-collect/docs/misc/sign/wbi.html) <br>
-- [Bilibili video summary API reference](https://socialsisteryi.github.io/bilibili-API-collect/docs/video/summary.html) <br>
-- [OpenRouter API keys](https://openrouter.ai/keys) <br>
-- [Google app passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report, optional HTML email, and inline shell commands or configuration prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3; report length depends on the configured number of videos and whether AI summaries are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: server release metadata) <br>
+Risk: The skill may store reusable Bilibili cookies, an OpenRouter API key, and SMTP credentials in plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a secret manager, keep generated configuration local, and avoid passing secrets on the command line.
+
+Risk: SMTP credentials allow the skill to send email to configured recipients.
+
+Mitigation: Use an app-specific email password and review recipient addresses before running the send step.
+
+Risk: Video titles, metadata, subtitles, summaries, and generated reports may be shared with OpenRouter or email recipients.
+
+Mitigation: Disable AI enrichment when content should not be sent to OpenRouter and verify report contents before emailing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacobzwj/skills/bilibili-hot-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/jacobzwj)
+- [Bilibili API WBI signature reference](https://socialsisteryi.github.io/bilibili-API-collect/docs/misc/sign/wbi.html)
+- [Bilibili video summary API reference](https://socialsisteryi.github.io/bilibili-API-collect/docs/video/summary.html)
+- [OpenRouter API keys](https://openrouter.ai/keys)
+- [Google app passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report, optional HTML email, and command-line setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local JSON configuration file, write a report file, call Bilibili and OpenRouter over HTTPS, and send email through SMTP.]
+
+## Skill Version(s):
+
+1.0.21 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

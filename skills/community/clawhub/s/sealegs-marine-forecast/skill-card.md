@@ -1,45 +1,60 @@
-## Description: <br>
-Get AI-powered marine weather forecasts for any location worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get AI-powered marine weather forecasts for any location worldwide.
 
-## Publisher: <br>
-[sealegs-ai-coder](https://clawhub.ai/user/sealegs-ai-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sealegs-ai-coder](https://clawhub.ai/user/sealegs-ai-coder)
 
-## Use Case: <br>
-Developers, agents, and boating-focused users use this skill to request SeaLegs SpotCast marine forecasts, poll forecast status, retrieve AI weather analysis, and present boating condition guidance for specified coordinates and vessels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Forecast requests send locations, dates, vessel details, and optional metadata to SeaLegs using the configured API key. <br>
-Mitigation: Only send information the user is comfortable sharing, and avoid secrets or sensitive personal data in metadata or webhook payloads. <br>
-Risk: Creating or refreshing forecasts consumes SeaLegs credits. <br>
-Mitigation: Ask for user confirmation before creating or refreshing forecasts. <br>
-Risk: GO, CAUTION, and NO-GO labels can be incomplete or unsuitable as the sole basis for boating decisions. <br>
-Mitigation: Present the labels as forecast guidance and advise users to verify conditions and apply local boating judgment before departure. <br>
+## Use Case:
 
+External users, developers, and marine operators use this skill to request SeaLegs SpotCast forecasts for specific coordinates, dates, vessels, and trip details. The skill helps agents present wind, wave, visibility, precipitation, and GO/CAUTION/NO-GO safety classifications from the SeaLegs API.
 
-## Reference(s): <br>
-- [SeaLegs Developer Portal](https://developer.sealegs.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/sealegs-ai-coder/sealegs-marine-forecast) <br>
-- [Publisher profile](https://clawhub.ai/user/sealegs-ai-coder) <br>
-- [SpotCast API endpoint](https://api.sealegs.ai/v3/spotcast) <br>
-- [spotcast-workflow.md](artifact/spotcast-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON examples, bash curl commands, and Python workflow code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEALEGS_API_KEY and curl for documented command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Python workflow can send SEALEGS_API_KEY to an API base URL supplied through the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave SEALEGS_API_BASE_URL unset for normal use, or set it only to a destination you fully trust.
+
+Risk: The API key may be exposed if stored in shared .env files or copied into shared configuration.
+
+Mitigation: Store SEALEGS_API_KEY in a private environment or secret manager and avoid committing or sharing local credential files.
+
+Risk: Forecast metadata and webhook-bound fields may contain sensitive trip or personal details.
+
+Mitigation: Keep metadata minimal and avoid personal, private, or sensitive operational details in API requests and webhook payloads.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sealegs-ai-coder/skills/sealegs-marine-forecast)
+- [SeaLegs Developer Portal](https://developer.sealegs.ai)
+- [SeaLegs API Documentation](https://developer.sealegs.ai/docs/)
+- [SpotCast Workflow Example](artifact/spotcast-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SEALEGS_API_KEY and curl; the included workflow may poll asynchronous forecast endpoints before presenting results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

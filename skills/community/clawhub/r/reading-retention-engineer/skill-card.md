@@ -1,40 +1,49 @@
-## Description: <br>
-Helps users design a personalized reading and note-taking system that improves retention and turns book content into durable, usable knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users design personalized reading-retention and note-taking systems that turn books into durable, usable knowledge.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Readers, students, researchers, and knowledge workers use this skill to diagnose reading-retention bottlenecks, choose a note-taking workflow, and build spaced review habits for long-term recall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share unnecessary sensitive personal details while discussing habits, learning challenges, or productivity concerns. <br>
-Mitigation: Keep prompts focused on reading workflow needs and avoid providing private health, crisis, or highly sensitive personal information. <br>
-Risk: Habit coaching may be insufficient for addiction-level, clinical, or crisis-related concerns. <br>
-Mitigation: Use the skill for reading-retention planning only and seek qualified professional support for clinical or crisis situations. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to diagnose reading-retention gaps, select a note-taking workflow, and create spaced review habits for books or new domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/reading-retention-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with structured reading plans, note templates, and review schedules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only habit-coaching output; no executable code or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may place sensitive personal reading notes or learning goals into third-party note-taking tools suggested by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review tool choices and stored note content before adopting a workflow, especially when notes include private, professional, or regulated information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/reading-retention-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured reading plans, note templates, and review schedules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; no code execution, external access, or privileged behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

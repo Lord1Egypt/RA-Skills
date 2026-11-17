@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-xiaohongshu-collector",
+  "id": 378623320146001,
   "version": "1.0.0",
-  "publishedAt": 1780794350812
+  "name": "xiaohongshu-collector",
+  "updated_at": 1773991036080,
+  "platform": "minimax"
 }

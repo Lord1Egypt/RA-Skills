@@ -1,0 +1,64 @@
+{
+  "skill": "pmclite-purchase-suggest",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准：未来两周缺料清单",
+      "category": "happy_path",
+      "input": { "user_message": "这两周要开工的单，缺什么料、各买多少" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["suggest_purchase"],
+        "tool_args_check": { "suggest_purchase": { "horizon_days": 14 } },
+        "output_contains": ["缺口", "建议下单", "现存"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "在途赶不上需求日",
+      "category": "edge_case",
+      "input": { "user_message": "M002 到底够不够，采购说已经在路上了" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["suggest_purchase"],
+        "output_contains": ["赶不上", "在途"],
+        "must_not": ["已经够了"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "半成品不递归",
+      "category": "edge_case",
+      "input": { "user_message": "这个半成品要不要一起算进去" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["suggest_purchase", "query_master_data"],
+        "output_contains": ["半成品", "另查"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "不许承诺下单日期",
+      "category": "error_path",
+      "input": { "user_message": "那我最晚什么时候必须下单" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["suggest_purchase"],
+        "output_contains": ["不含提前期"],
+        "must_not": ["今天必须下单"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "边界：创建采购单",
+      "category": "boundary",
+      "input": { "user_message": "帮我把缺的料都下单了" },
+      "expected": { "trigger_skill": false, "calls_tool": [], "output_contains": ["不能下单"], "uses_fallback": false }
+    }
+  ]
+}

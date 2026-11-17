@@ -1,7 +1,7 @@
 ---
 name: workflow-monitor
 description: Detects workflow failures and inefficient patterns then files GitHub issues
-version: 1.9.8
+version: 1.10.3
 triggers:
   - workflow
   - monitoring
@@ -9,25 +9,19 @@ triggers:
   - efficiency
   - automation
   - a workflow step repeatedly fails or produces inconsistent output
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/imbue", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:git-platform", "night-market.imbue:proof-of-work", "night-market.sanctum:fix-workflow"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/imbue", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:git-platform", "night-market.imbue:proof-of-work", "night-market.sanctum:workflow-improvement"]}}}
 source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Table of Contents
+## When NOT To Use
 
-- [Philosophy](#philosophy)
-- [Quick Start](#quick-start)
-- [Detection Patterns](#detection-patterns)
-- [Workflow](#workflow)
-- [Issue Template](#issue-template)
-- [Configuration](#configuration)
-- [Guardrails](#guardrails)
-- [Integration Points](#integration-points)
-- [Output Format](#output-format)
+- A one-off failure worth debugging directly (use
+  `superpowers:systematic-debugging`)
+- Rewriting the workflow's assets (use `sanctum:workflow-improvement`)
 
 # Workflow Monitor
 
@@ -170,7 +164,7 @@ efficiency:
 3. **Evidence required** - Every issue must have reproducible evidence
 4. **Rate limiting** - Max 5 issues per session
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `workflow-monitor:capture-complete`
 2. `workflow-monitor:analysis-complete`
@@ -218,7 +212,6 @@ efficiency:
 
 - `imbue:proof-of-work`: Evidence capture methodology
 - `sanctum:fix-workflow`: Workflow improvement command
-- `imbue:proof-of-work`: Validation methodology
 
 ---
 
@@ -226,3 +219,16 @@ efficiency:
 - Hook integration for automatic monitoring
 - Efficiency scoring algorithm
 - Duplicate detection logic
+
+## Exit Criteria
+
+- [ ] All 4 progress phases completed: `capture-complete`,
+  `analysis-complete`, `report-generated`, and (if an issue is
+  created) `issue-created`
+- [ ] Every issue filed contains reproducible evidence: the exact
+  command that failed or was inefficient plus an output excerpt
+- [ ] Duplicate check run via `gh issue list --search` before
+  creating any issue; duplicate suppressed and existing issue
+  URL reported instead
+- [ ] No more than 5 issues created per session regardless of
+  how many anomalies are detected; rate limit enforced

@@ -1,41 +1,58 @@
-## Description: <br>
-Reviews OpenClaw skills or agents before installation or activation, focusing on data exposure, code execution, persistence, network access, privilege escalation, destructive behavior, and supply-chain risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review the security of an OpenClaw skill or agent before installation, import, activation, or trust.
 
-## Publisher: <br>
-[kickook](https://clawhub.ai/user/kickook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kickook](https://clawhub.ai/user/kickook)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw skills, agents, repositories, archives, or packages before installation, import, activation, or trust decisions. It guides the agent to inspect attack surface, summarize security findings, assign a verdict, and ask for confirmation before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and summarizes untrusted skill artifacts before installation, which may expose sensitive local content if run on broad or unintended paths. <br>
-Mitigation: Scope reviews to the intended artifact, inspect compressed or opaque content cautiously, and require a user-visible summary before installation or external action. <br>
-Risk: The artifact contains hard-coded user-specific wording that may not fit broad distribution. <br>
-Mitigation: Replace user-specific language with neutral wording before publishing or recommending the skill for general use. <br>
+## Use Case:
 
+Developers and agents use this skill to audit OpenClaw skills, agents, repositories, archives, or pasted skill files before installation or trust decisions. It guides review of data exposure, local command execution, persistence, network access, privilege escalation, destructive behavior, and supply-chain risk.
 
-## Reference(s): <br>
-- [Security Review Checklist](artifact/references/checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kickook/skill-security-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown security audit summary with findings and a decision section] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ALLOW, ALLOW WITH GUARDRAILS, or REJECT verdicts and Low, Medium, High, or Critical risk levels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is an advisory checklist and does not replace sandboxing, malware scanning, or manual review for opaque binaries and remote content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the checklist before installation, and isolate or reject artifacts whose behavior cannot be inspected.
+
+Risk: The default workflow can slow skill installation because it asks for an audit and confirmation first.
+
+Mitigation: Plan the review as an explicit approval step before enabling or importing new skills.
+
+Risk: The artifact contains user-specific wording that may not be suitable for broad reuse.
+
+Mitigation: Replace user-specific wording with neutral organizational language before redistribution.
+
+## Reference(s):
+
+- [Security Review Checklist](references/checklist.md)
+- [ClawHub skill page](https://clawhub.ai/kickook/skills/skill-security-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown security audit summary with findings and an install decision]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory review output; no executable code is bundled in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

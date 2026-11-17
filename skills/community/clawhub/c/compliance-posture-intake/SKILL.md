@@ -1,5 +1,5 @@
 ---
-name: compliance-posture-intake
+name: "compliance-posture-intake"
 description: >
   Comprehensive HIPAA compliance posture assessment for agent and API contexts.
   Runs a structured intake covering all Seven Elements of an effective compliance
@@ -9,11 +9,11 @@ description: >
   and a 30/60/90 day roadmap. Compatible with any agent context that has access
   to the rote-compliance-toolkit tools — via Claude Code plugin, Rote MCP server,
   or direct API integration.
-argument-hint: Start the compliance posture intake — answer orientation questions, then optionally provide documents for analysis
-allowed-tools: Read, Glob, Grep, WebFetch, WebSearch, Write
-version: 1.0
-author: Rote Compliance
-license: Apache-2.0
+argument-hint: "Run a HIPAA compliance posture assessment for my organization — a structured intake questionnaire, not general compliance Q&A"
+allowed-tools: "Read, Glob, Grep, WebFetch, WebSearch, Write"
+version: "1.2"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Compliance Posture Intake
@@ -48,6 +48,10 @@ Before beginning, say:
 > 15 minutes and covers your policies, training, oversight structure, risk
 > management, and incident response. At the end, I'll produce a report you
 > can share with your team or bring to a consultation.
+>
+> One note before we start: if you share documents, please share policies,
+> procedures, or other administrative records — not records containing
+> actual patient PHI.
 >
 > Let's start with some context about your organization."
 
@@ -93,7 +97,9 @@ After receiving Group A answers, ask Group B as a brief follow-up:
 >   access to patient data or the environments that contain it?
 > - In which states do you operate or serve customers? Every state has data
 >   privacy and breach notification requirements that layer on top of HIPAA —
->   any state you name is worth a quick search."
+>   for any state you name, I'll run a web search on that state's requirements
+>   (using a general description of your business type, not any confidential
+>   details) and fold the results into your report."
 
 ### Orientation summary
 
@@ -475,14 +481,23 @@ urgency across all gaps increases.
    - Priority 3 → 90 days
    - Each item: specific action + element it addresses + "professional support recommended" flag if the gap is in Elements 2, 5, or 7
 
-7. Map each finding type to a Rote module for the handoff section.
-   Only include Rote modules where an actual finding exists.
+7. If the user opted in below, map each finding type to a Rote module for
+   the handoff section. Only include Rote modules where an actual finding
+   exists.
 
 ---
 
 ## Step 5 — Output
 
-Tell the user:
+Before building the report, ask:
+
+> "One last thing — would you like me to also include a short section
+> mapping your findings to tools that could help close them, including
+> our own product, Rote? It's entirely optional — the report is complete
+> without it."
+
+Record the answer (used to decide whether Section 8 and the closing
+consultation link are included below). Then tell the user:
 
 > "I have everything I need. Let me put together your posture report."
 
@@ -607,10 +622,11 @@ Not: "BAA coverage gap with offshore partners."
 
 ---
 
-**Section 8: Next Steps with Rote**
+**Section 8: Next Steps with Rote** *(include only if the user opted in at Step 5)*
 
 Map each major finding type to the relevant Rote module using the handoff
-framing below. Only include rows where the finding exists.
+framing below. Only include rows where the finding exists. If the user did
+not opt in, omit this section entirely — do not include it by default.
 
 | Finding | Rote capability | What it means for you |
 |---------|----------------|----------------------|
@@ -656,9 +672,15 @@ After delivering the document, say:
 > "Your posture report is ready. [Link to file]
 >
 > The most important thing to act on right now is [top Priority 1 item in
-> one plain sentence]. If you'd like help working through the roadmap —
-> or if you want to talk through what a consultation engagement would look
-> like — [book a time here](https://dangssolutions.com/book-consultation)."
+> one plain sentence]."
+
+If the user opted in at Step 5, append:
+
+> "If you'd like help working through the roadmap — or if you want to talk
+> through what a consultation engagement would look like — [book a time
+> here](https://dangssolutions.com/book-consultation)."
+
+Do not include the consultation link if the user did not opt in.
 
 ---
 

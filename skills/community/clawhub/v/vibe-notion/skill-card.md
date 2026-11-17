@@ -1,46 +1,66 @@
-## Description: <br>
-Interact with Notion using the unofficial private API - pages, databases, blocks, search, users, comments <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Notion using the unofficial private API for pages, databases, blocks, search, users, and comments.
 
-## Publisher: <br>
-[devxoul](https://clawhub.ai/user/devxoul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devxoul](https://clawhub.ai/user/devxoul)
 
-## Use Case: <br>
-Developers and agents use this skill to read, search, create, update, and organize Notion pages, databases, blocks, comments, users, and workspace content through the vibe-notion CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI uses the user's Notion desktop session token and acts as the user in accessible workspaces. <br>
-Mitigation: Install only when this access model is acceptable, prefer the official Notion integration for sensitive workspaces, and remove ~/.config/vibe-notion/credentials.json when finished. <br>
-Risk: Write, delete, and batch operations can make broad workspace changes without strong confirmation boundaries. <br>
-Mitigation: Review all write, delete, and batch operations before execution, and do not blindly apply $hints fixes. <br>
-Risk: Persistent memory may retain workspace IDs, page IDs, database IDs, and user preferences. <br>
-Mitigation: Do not store credentials, tokens, full page content, or sensitive data in memory, and remove ~/.config/vibe-notion/MEMORY.md when the skill is no longer used. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect, search, and modify Notion workspaces through the vibe-notion CLI. It supports workspace discovery, page and database management, block and comment operations, and batch updates.
 
-## Reference(s): <br>
-- [Vibe Notion ClawHub release](https://clawhub.ai/devxoul/vibe-notion) <br>
-- [Batch Operations](references/batch-operations.md) <br>
-- [Block Types Reference](references/block-types.md) <br>
-- [Common Patterns for Vibe Notion](references/common-patterns.md) <br>
-- [Output Format](references/output-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands generally return JSON by default, with human-readable output available through --pretty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: The skill uses a full Notion user session credential through an unofficial private API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when full-user Notion automation is intended; prefer the official integration-token CLI for lower-risk work and clear or rotate the stored session token when finished.
+
+Risk: The skill can perform broad write, archive, delete, upload, and batch operations across Notion workspaces.
+
+Mitigation: Review every write, delete, archive, upload, and batch command before execution, especially operations generated from large JSON files.
+
+Risk: Private API behavior may change outside the skill publisher's control.
+
+Mitigation: Pin and verify the package version before use, and expect compatibility review after Notion client or API changes.
+
+Risk: Schema $hints can recommend changes to a user's Notion database structure.
+
+Mitigation: Treat $hints as advisory; confirm the suggested database fix with the user before running any modifying command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/devxoul/skills/vibe-notion)
+- [Publisher Profile](https://clawhub.ai/user/devxoul)
+- [Batch Operations](references/batch-operations.md)
+- [Block Types Reference](references/block-types.md)
+- [Common Patterns for Vibe Notion](references/common-patterns.md)
+- [Output Format](references/output-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return JSON by default; --pretty provides human-readable formatting.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-External input flows into sensitive operations without being checked for type, shape, range, or sanitization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+External input flows into sensitive operations without being checked for type, shape, range, or sanitization.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill to identify missing validation at trust boundaries and apply safer handling for untrusted inputs in code reviews and implementation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/missing-input-validation) <br>
-- [Publisher profile](https://clawhub.ai/user/mvogt99) <br>
+Developers and engineers use this skill to identify missing validation at trust boundaries and improve handling of external input before it reaches sensitive operations.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only secure-coding guidance; no executable behavior or privileged access.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Validation or debugging guidance could expose sensitive raw input in errors, logs, or responses.
+
+Mitigation: Keep errors clear but use field names, expected constraints, correlation IDs, and redacted or truncated values instead of raw sensitive input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/missing-input-validation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise secure-coding guidance and validation recommendations for agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

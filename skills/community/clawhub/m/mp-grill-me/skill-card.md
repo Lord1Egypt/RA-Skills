@@ -1,40 +1,53 @@
-## Description: <br>
-Interviews the user about a plan or design through persistent, step-by-step questions until there is shared understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mp Grill Me helps an agent pressure-test a plan or design by asking one focused question at a time, recommending answers, and inspecting the codebase when useful.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers, designers, and planning teams use this skill to pressure-test a plan or design by answering one focused question at a time. The skill can inspect relevant workspace files when local context can answer a review question. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask many follow-up questions during a plan or design review. <br>
-Mitigation: Use it when an intensive review is desired, and pause or stop the session once the review depth is sufficient. <br>
-Risk: The skill may read relevant project files when local context can answer a question. <br>
-Mitigation: Run it only in workspaces where that local file inspection is acceptable. <br>
+## Use Case:
 
+Developers, reviewers, and teams use this skill to examine plans or designs through persistent, step-by-step questioning. It is intended to surface unresolved decisions, dependencies, and recommended answers, including by inspecting the current codebase when that is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/mp-grill-me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text or Markdown with questions and recommended answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include findings derived from relevant local project files when they answer a review question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and package.json) <br>
+Risk: The skill may inspect the current codebase while reviewing a plan or design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where local code inspection by the agent is acceptable.
+
+Risk: Persistent questioning and recommended answers may influence planning decisions even when context is incomplete.
+
+Mitigation: Review recommendations before acting on them, especially for high-impact architecture, security, or product decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/mp-grill-me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational prompts with recommended answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks one question at a time and may include codebase findings when local inspection answers a review question.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

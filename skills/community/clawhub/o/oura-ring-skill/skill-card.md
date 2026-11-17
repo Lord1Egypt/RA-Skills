@@ -1,42 +1,63 @@
-## Description: <br>
-Fetch Oura Ring readiness/sleep + 7-day readiness trends via Oura Cloud API V2, and generate a Morning Readiness Brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Oura Ring readiness/sleep + 7-day readiness trends via Oura Cloud API V2, and generate a Morning Readiness Brief.
 
-## Publisher: <br>
-[sameerbajaj](https://clawhub.ai/user/sameerbajaj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sameerbajaj](https://clawhub.ai/user/sameerbajaj)
 
-## Use Case: <br>
-External users and developers use this skill to fetch Oura readiness, sleep, stress, and resilience data and turn it into JSON, text output, or a morning readiness brief for personal health and recovery planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive Oura tokens and health data may be exposed if local .env files or debug probe scripts are mishandled. <br>
-Mitigation: Use a least-privilege Oura token, keep .env files private, and avoid running the probe scripts unless they have been reviewed and cleaned for the target environment. <br>
-Risk: Documented controls for mock mode and environment-file overrides may not behave as described. <br>
-Mitigation: Review the scripts before installation and do not rely on morning_brief.sh mock or env-file override behavior until those controls are fixed and verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sameerbajaj/oura-ring-skill) <br>
-- [Oura Cloud API applications](https://cloud.ouraring.com/oauth/applications) <br>
-- [Oura API V2 usercollection endpoint](https://api.ouraring.com/v2/usercollection) <br>
-- [Oura OAuth token endpoint](https://api.ouraring.com/oauth/token) <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve Oura Ring readiness, sleep, resilience, stress, and short-term trend data from the Oura Cloud API, then produce raw JSON/text outputs or a concise morning readiness brief.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, plain text, and Markdown-style morning brief output with shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Oura API bearer-token configuration from environment variables or a local .env file; mock mode can emit example payloads without network access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Base URL overrides can direct authenticated Oura API requests away from the official HTTPS Oura host.
+
+Mitigation: Restrict live API calls to the official Oura host unless a reviewed deployment explicitly permits an alternate endpoint.
+
+Risk: Embedding API JSON into generated Python source can mishandle untrusted data and may run unwanted code.
+
+Mitigation: Pass API responses as data through files, stdin, or structured arguments instead of interpolating JSON into executable source.
+
+Risk: Probe scripts include hard-coded local paths for loading credentials.
+
+Mitigation: Remove the probe scripts from release artifacts or rewrite them to use documented environment configuration only.
+
+Risk: Oura bearer tokens can expose sensitive health data if stored or handled loosely.
+
+Mitigation: Use a safer secret mechanism or strict local file permissions, and avoid committing token-bearing environment files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sameerbajaj/skills/oura-ring-skill)
+- [Oura API base endpoint](https://api.ouraring.com/v2/usercollection)
+- [Oura OAuth applications](https://cloud.ouraring.com/oauth/applications)
+- [Oura OAuth token endpoint](https://api.ouraring.com/oauth/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [JSON or text from the CLI, and Markdown-like text from the morning brief wrapper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Oura API bearer token for live API calls; mock mode is available for local verification without a token.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

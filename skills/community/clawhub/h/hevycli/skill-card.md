@@ -1,41 +1,56 @@
-## Description: <br>
-Access and analyze Hevy fitness tracking data from the command line, including workouts, routines, exercise templates, JSON exports, and progress summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accesses and analyzes Hevy fitness tracking data, including workouts, routines, and exercise templates, through command-line guidance.
 
-## Publisher: <br>
-[nsampre](https://clawhub.ai/user/nsampre) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nsampre](https://clawhub.ai/user/nsampre)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve read-only Hevy fitness data, export it as structured JSON, and analyze training history, volume, frequency, and routines. It is useful when a user has Hevy Pro, a configured API key, and wants command-line access to their workout records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hevy API keys can expose access to private fitness data if pasted into shared terminals or chats. <br>
-Mitigation: Configure API keys only in trusted local environments and avoid sharing command history, screenshots, or transcripts that include credentials. <br>
-Risk: Exported workout JSON files may contain personal fitness history. <br>
-Mitigation: Store exported files privately, limit retention, and review them before sharing with other people or tools. <br>
-Risk: The skill depends on an external CLI project. <br>
-Mitigation: Install only from trusted sources and prefer a pinned or reviewed version when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hevy skill page](https://clawhub.ai/nsampre/hevycli) <br>
+## Use Case:
 
+Agents and users with Hevy Pro use this skill to retrieve, export, and analyze workouts, routines, and exercise templates through hevycli commands. The skill supports read-only fitness data workflows such as workout history review, JSON export, and progress analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Hevy data access; table and JSON CLI output formats are supported.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide access to personal Hevy fitness account data.
+
+Mitigation: Use it only when the user is comfortable granting hevycli access to their Hevy account, and limit retrieved output to the data needed for the task.
+
+Risk: API keys or sensitive request details may be exposed through config display, debug output, chat, logs, or terminal history.
+
+Mitigation: Avoid printing or sharing API keys, use debug output only when necessary, and rotate the Hevy API key if it is exposed.
+
+Risk: Installing an unpinned latest CLI release can change behavior without review.
+
+Mitigation: Prefer a reviewed pinned version when operational consistency matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nsampre/skills/hevycli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, analysis]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional table or JSON CLI outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Hevy account data access; command outputs may include personal fitness data.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

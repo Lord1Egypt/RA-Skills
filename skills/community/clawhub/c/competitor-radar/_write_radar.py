@@ -66,7 +66,7 @@ except ImportError:
 # ── 全局配置 ──────────────────────────────────────────────────────────────
 TIMEOUT = 8
 LLM_URL = "http://127.0.0.1:18790/anthropic/v1/messages"
-LLM_API_KEY = "sk-RPBUoe2SH7KigJ0SZn6IPDirZtJ2fUaWSukEx1FwxjhWFx0G"
+LLM_API_KEY = "REDACTED-SECRET"
 LLM_MODEL = "ppio/pa/claude-sonnet-4-6"
 VERBOSE = False
 

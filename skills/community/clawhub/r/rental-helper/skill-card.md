@@ -1,43 +1,62 @@
-## Description: <br>
-Rental Helper helps users manage rental searches by recording listings, calculating budgets, comparing options, reviewing rental pitfalls, recommending listings, importing data, parsing web pages or images, and optionally crawling rental sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rental Helper helps renters record listings, calculate rental budgets, compare options, track viewings, review rental pitfalls, and optionally parse listing pages or screenshots.
 
-## Publisher: <br>
-[sosshuai](https://clawhub.ai/user/sosshuai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sosshuai](https://clawhub.ai/user/sosshuai)
 
-## Use Case: <br>
-External users and agents use this skill to organize a housing search, compare rental options, calculate move-in and monthly costs, record viewing notes, and surface practical rental-checklist guidance. It can also help parse listing URLs, screenshots, CSV or spreadsheet imports, and rental-site crawl results when those workflows are appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some data-fetching workflows can present sample or unverified listing data as if it were live rental inventory. <br>
-Mitigation: Treat fetched listings as leads only, verify each listing against the original rental platform, and prefer manual listing entry for decisions that affect payments or lease commitments. <br>
-Risk: Logged-in scraping can create site, account, or terms-of-service risk. <br>
-Mitigation: Use interactive or logged-in crawling only after reviewing the target site's rules and accepting the account risk; avoid sharing credentials with the agent. <br>
-Risk: The skill can store sensitive rental-search details such as phone numbers, exact addresses, screenshots, commute notes, and viewing notes in local rental-data files. <br>
-Mitigation: Store only necessary details, review local files before sharing the workspace, and remove sensitive contact, address, or image data when it is no longer needed. <br>
+## Use Case:
 
+Renters and housing-search assistants use this skill to collect rental listings, estimate affordability, compare tradeoffs, record viewing notes, and surface practical lease-checklist guidance. Agents can also use its helper scripts to import listings, parse user-provided pages or screenshots, and generate recommendations from locally stored listing data.
 
-## Reference(s): <br>
-- [Rental Pitfall Guide](references/pitfall-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sosshuai/rental-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown, including tables, summaries, command suggestions, and local JSON-backed rental records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local rental listing and viewing data files under the user's rental-data workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Listing, viewing, screenshot-derived, and contact details may be saved locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs where possible and confirm that local rental-data files are appropriate for the user's privacy expectations before saving.
+
+Risk: URL parsing and scraping features may fetch broad or untrusted web content.
+
+Mitigation: Limit parsing to trusted rental-site URLs and review URL validation and HTTPS handling before enabling automated fetching.
+
+Risk: Scraping dependencies and browser automation can expand the runtime attack surface.
+
+Mitigation: Pin and review dependencies, run scraping in a constrained environment, and require explicit user confirmation before interactive login or scraping flows.
+
+Risk: Some built-in listing examples are described by server evidence as sample data rather than verified market data.
+
+Mitigation: Label built-in examples as illustrative and require user-provided or independently verified listings for real rental decisions.
+
+## Reference(s):
+
+- [Rental Pitfall Guide](references/pitfall-guide.md)
+- [Rental Helper ClawHub page](https://clawhub.ai/sosshuai/skills/rental-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Conversational guidance, Markdown comparison tables, shell command invocations, and local JSON listing or viewing records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores listing and viewing data locally under the OpenClaw rental-data workspace when helper scripts save records.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

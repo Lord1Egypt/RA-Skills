@@ -1,43 +1,53 @@
-## Description: <br>
-Gitignore Sync updates a repository's .gitignore by combining gitignore.io templates with detected repository context while preserving manual rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gitignore Sync generates context-aware .gitignore rules from requested templates and repository signals, backed by gitignore.io.
 
-## Publisher: <br>
-[nikita-holban](https://clawhub.ai/user/nikita-holban) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nikita-holban](https://clawhub.ai/user/nikita-holban)
 
-## Use Case: <br>
-Developers and engineers use this skill to create or update a repository .gitignore from requested templates and detected project tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated ignore rules can accidentally hide important files from version control. <br>
-Mitigation: Review the generated .gitignore diff before committing changes. <br>
-Risk: Using an untrusted template endpoint can introduce unwanted ignore rules. <br>
-Mitigation: Use the default gitignore.io endpoint unless a deliberate trust decision has been made for another source. <br>
-Risk: Running the updater in the wrong directory can modify an unintended repository. <br>
-Mitigation: Run the skill only in the repository intended for update and verify the repo path before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nikita-holban/gitignore-sync) <br>
-- [Publisher Profile](https://clawhub.ai/user/nikita-holban) <br>
-- [gitignore.io API](https://www.toptal.com/developers/gitignore/api) <br>
+## Use Case:
 
+Developers and engineers use this skill to create or update a repository .gitignore from requested tooling and detected project files while preserving manual rules outside a managed block.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash commands; the bundled script writes .gitignore text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates or appends a managed .gitignore block while preserving content outside the managed markers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts gitignore.io through Toptal to fetch ignore templates.
+
+Mitigation: Use dry-run to preview behavior or the local rules-file option when avoiding network access is preferred.
+
+Risk: The skill modifies the repository .gitignore file.
+
+Mitigation: Review the managed block after execution and keep manual rules outside the managed block markers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nikita-holban/skills/gitignore-sync)
+- [gitignore.io API](https://www.toptal.com/developers/gitignore/api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and repository file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates only a gitignore-sync managed block; supports dry-run and local rules-file modes.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

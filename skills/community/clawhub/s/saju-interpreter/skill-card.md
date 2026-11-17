@@ -1,43 +1,54 @@
-## Description: <br>
-Interprets East Asian Four Pillars / Saju charts from already-derived pillars using calm, evidence-first, rule-based analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets East Asian Four Pillars / Saju charts from already-derived year, month, day, and hour stems and branches, with an optional first-pass local calculator when birth date and time are provided.
 
-## Publisher: <br>
-[honeybearsoup](https://clawhub.ai/user/honeybearsoup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[honeybearsoup](https://clawhub.ai/user/honeybearsoup)
 
-## Use Case: <br>
-External users and practitioners use this skill to interpret already-derived Saju/Four Pillars charts, separating structural findings from conditional meaning and practical reading. When birth date/time conversion is requested, it can provide a first-pass local pillar calculation with explicit ambiguity notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth date/time conversion can vary for zi-hour handling, leap lunar month input, or school-specific month-boundary rules. <br>
-Mitigation: Use a reliable manse calendar source for full derivation and explicitly review uncertain calendar assumptions before relying on calculated pillars. <br>
-Risk: Saju interpretation can be overstated as deterministic claims about health, disaster, relationships, or life outcomes. <br>
-Mitigation: Use conditional language, anchor readings in structural signals, and avoid deterministic or high-impact predictions. <br>
-Risk: The optional calculator depends on korean_lunar_calendar for year, month, and day pillars. <br>
-Mitigation: Verify the dependency and manually review calculator output for strict use. <br>
+## Use Case:
 
+Developers and end users use this skill to produce calm, evidence-first Saju/Four Pillars readings from known pillars or from a clearly caveated first-pass pillar calculation. It is intended for structural interpretation, not deterministic prophecy or a substitute for a trusted calendar source.
 
-## Reference(s): <br>
-- [Saju Interpreter Rules](references/rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/honeybearsoup/saju-interpreter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown responses with optional JSON from the local pillar calculator] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses conditional interpretation language; optional calendar calculation requires the korean_lunar_calendar dependency and manual review of ambiguous cases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: First-pass pillar calculations may be inaccurate around lunar leap months, zi-hour handling, or school-specific boundary rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important birth-chart derivations with a trusted manseoryeok source before relying on the interpretation.
+
+Risk: Saju interpretations can be overstated as deterministic predictions or sensitive life outcomes.
+
+Mitigation: Use conditional language, keep structural evidence visible, and avoid presenting health, death, disaster, infertility, crime, or relationship outcomes as deterministic facts.
+
+## Reference(s):
+
+- [Saju Interpreter Rules](artifact/references/rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/honeybearsoup/skills/saju-interpreter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional JSON-style pillar details and concise Korean or English prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-first, conditional interpretations; optional local calculation notes ambiguity for zi-hour handling, lunar leap months, and school-specific month-boundary rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

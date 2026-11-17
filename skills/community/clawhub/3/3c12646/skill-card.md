@@ -1,42 +1,65 @@
-## Description: <br>
-Mission Control is an AI-agent task tracking and plan-confirmation skill that guides Moss through task triage, requirement capture, iterative plan analysis, user approval, execution logging, and final reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mission Control guides an agent through task triage, plan confirmation, iterative analysis, execution logging, and final reporting before carrying out code, file, delegation, web research, or command-line work.
 
-## Publisher: <br>
-[huangjk1103](https://clawhub.ai/user/huangjk1103) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjk1103](https://clawhub.ai/user/huangjk1103)
 
-## Use Case: <br>
-Developers and agent operators use Mission Control to require structured planning, approval, execution logging, and delivery reports before an agent performs code, file, terminal, delegation, or research tasks. It is intended for workflows where task state and explicit approval records are important. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation rules may route routine coding, file, terminal, delegation, or research tasks through the skill even when the user did not expect a planning gate. <br>
-Mitigation: Use the skill only where explicit plan confirmation is desired, and ask for user confirmation before activating it on ambiguous or routine tasks. <br>
-Risk: Task plans and reports can persist copied local file paths or content in the mission-control data directory. <br>
-Mitigation: Avoid including sensitive paths or confidential content in plan text, and periodically review or clean the local mission-control records. <br>
+## Use Case:
 
+Developers and agent operators use this skill to impose a plan-first workflow for tasks that involve code changes, file operations, web research, terminal commands, or agent delegation. It produces task requirements, plans, progress logs, and completion reports for review by a human operator.
 
-## Reference(s): <br>
-- [Mission Control ClawHub release](https://clawhub.ai/huangjk1103/3c12646) <br>
-- [Static Specification Conversion Case Study](references/2026-05-19-static-spec-conversion.md) <br>
-- [Project Intake Case Studies](references/project-intake-case-studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown task files, plain text progress updates, and Python script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create and update local task lifecycle files such as requirements, plans, logs, reports, and project-intake templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill applies a strict mission-control workflow across many agent task types, which can override lightweight interaction patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a persistent plan-confirmation workflow is desired, and scope activation to tasks that genuinely require review.
+
+Risk: Helper scripts write persistent task files using a hardcoded local storage path.
+
+Mitigation: Review and constrain the storage path before use, especially in shared or production environments.
+
+Risk: Task identifiers and project-intake content may be supplied by users and then incorporated into local tracking files.
+
+Mitigation: Validate task IDs and treat project-intake.md content as untrusted data rather than executable instructions.
+
+Risk: The release security verdict is suspicious due to broad workflow control and weak path scoping.
+
+Mitigation: Review the skill and helper scripts before deployment, and remove or restrict automatic source-file copying and broad file-write behavior where it is not needed.
+
+## Reference(s):
+
+- [Mission Control ClawHub release](https://clawhub.ai/huangjk1103/skills/3c12646)
+- [README](README.md)
+- [Project Intake Template](templates/project-intake.md)
+- [Static Spec Conversion Case Study](references/2026-05-19-static-spec-conversion.md)
+- [Project Intake Case Studies](references/project-intake-case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown task plans, logs, reports, intake templates, and command-line helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts can persist task lifecycle files under a fixed local mission-control directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

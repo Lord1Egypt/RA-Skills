@@ -1,44 +1,59 @@
-## Description: <br>
-Resolve and download WeChat Channels / 微信视频号 share links directly, using the online sph resolver and curl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve and download WeChat Channels / Weixin video share links directly using the online sph resolver and curl, without a local install or local proxy startup.
 
-## Publisher: <br>
-[imchao9](https://clawhub.ai/user/imchao9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imchao9](https://clawhub.ai/user/imchao9)
 
-## Use Case: <br>
-External users and developers use this skill to resolve WeChat Channels share links through a documented online resolver and download permitted videos without installing a local proxy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Share-link metadata is sent to the documented online resolver service. <br>
-Mitigation: Use the skill only when the user is comfortable sending the WeChat share link to that resolver. <br>
-Risk: The skill downloads media to the user's Downloads folder and can overwrite an existing file if the same filename is reused. <br>
-Mitigation: Choose a unique filename when preserving an existing download matters. <br>
-Risk: The skill can be misused to download content the user is not allowed to access or save. <br>
-Mitigation: Use it only for content the user has permission to access and download, and do not use it to bypass platform restrictions. <br>
+## Use Case:
 
+External users and developers use this skill to resolve WeChat Channels share links and download accessible videos to a local Downloads folder. It is scoped to direct share-link or direct media URL downloads and excludes proxy, certificate, injection, sudo, and access-control bypass workflows.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/imchao9/wx-channels-download) <br>
-- [Upstream wx_channels_download Repository](https://github.com/ltaoo/wx_channels_download) <br>
-- [Share Link Download Commands](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads media to ~/Downloads; filename can be provided or derived from resolver metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: WeChat share links are sent to a documented third-party resolver service before download.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for links you are comfortable disclosing to that resolver, and avoid sensitive or private share links.
+
+Risk: The optional filename influences the path written under ~/Downloads.
+
+Mitigation: Use a simple sanitized filename such as video.mp4 and review the output path before relying on the downloaded file.
+
+Risk: Resolved media URLs and downloaded content may not match user expectations or usage rights.
+
+Mitigation: Use only content the user is allowed to access and download, and review the resolved output before redistribution or reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imchao9/skills/wx-channels-download)
+- [Share Link Download Commands](artifact/references/commands.md)
+- [Online sph resolver endpoint](https://sph.litao.workers.dev/api/fetch_video_profile)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown with inline bash commands and local downloaded media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads resolved media to ~/Downloads and may print author, title, quality, output path, and completion status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

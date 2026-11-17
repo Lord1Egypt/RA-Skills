@@ -1,46 +1,56 @@
-## Description: <br>
-Hybrid text-to-speech, reusable voice cloning, and narrated audio generation for macOS plus Aliyun Qwen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hybrid text-to-speech, reusable voice cloning, and narrated audio generation for macOS plus Aliyun Qwen.
 
-## Publisher: <br>
-[aliyx](https://clawhub.ai/user/aliyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aliyx](https://clawhub.ai/user/aliyx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, creators, and agents use this skill to convert text, text files, or PowerPoint speaker notes into narrated audio, using local macOS speech or Aliyun Qwen text-to-speech. It also supports creating and reusing custom voices from consented reference recordings or text voice prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Qwen-backed synthesis and voice features may transmit scripts, slide notes, and voice samples to Aliyun Qwen.
+
+Mitigation: Review inputs for private or sensitive content before use, keep API credentials scoped appropriately, and use the local macOS backend when cloud processing is not acceptable.
+
+Risk: Voice cloning can create reusable custom voices from uploaded recordings.
+
+Mitigation: Use only recordings that the user owns or has consent to clone, and ask for confirmation when third-party voice consent is unclear.
+
+Risk: The security scan reports an output-path weakness that could overwrite user-writable files.
+
+Mitigation: Avoid absolute paths and parent-directory components in --output values until output path validation is fixed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, content creators, and agents use this skill to convert text, text files, and PPT speaker notes into narrated audio. It supports local macOS speech for simple playback and Aliyun Qwen for downloadable audio, reusable cloned voices, and prompt-designed voices. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud synthesis and voice cloning can send text and reference audio to Aliyun DashScope. <br>
-Mitigation: Use mac-say for local-only speech, and use Qwen features only when cloud processing is acceptable. <br>
-Risk: Voice cloning can create reusable voices from supplied recordings. <br>
-Mitigation: Clone a voice only when the user has appropriate consent, especially for third-party voices. <br>
-Risk: Remembered voices are stored locally for reuse. <br>
-Mitigation: Review, delete, or relocate remembered voice state when reusable voice records should not be retained. <br>
-Risk: Qwen commands require a DashScope API key. <br>
-Mitigation: Limit the API key where possible and avoid exposing it in shared logs, prompts, or shell history. <br>
+**Output Format:** [Markdown guidance with bash commands; commands may produce JSON status output and audio files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aliyx/qwen-audio-lab) <br>
-- [Aliyun DashScope API endpoint](https://dashscope.aliyuncs.com/api/v1) <br>
-- [Aliyun DashScope international API endpoint](https://dashscope-intl.aliyuncs.com/api/v1) <br>
+**Other Properties Related to Output:** [Qwen-backed commands require DASHSCOPE_API_KEY and may send text, slide notes, and voice samples to Aliyun Qwen.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON responses, and generated audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate WAV or MP3 audio files and local remembered-voice state when commands are executed.] <br>
+0.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

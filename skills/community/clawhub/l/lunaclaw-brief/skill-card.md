@@ -1,45 +1,59 @@
-## Description: <br>
-Pluggable AI report engine for generating AI, finance, and stock briefings from multiple public data sources with scoring, deduplication, LLM editing, rendering, scheduling, and optional delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Cv Weekly is a pluggable AI report engine that generates multi-source technology, finance, and stock briefings with scoring, deduplication, LLM editing, rendering, scheduling, and delivery support.
 
-## Publisher: <br>
-[llx9826](https://clawhub.ai/user/llx9826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llx9826](https://clawhub.ai/user/llx9826)
 
-## Use Case: <br>
-Developers and analysts use this skill to generate recurring AI/CV, finance, and market reports from configured presets or user hints. It can render reports as HTML, Markdown, and optional PDF, with email or webhook delivery when explicitly configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User hints, report context, and fetched public-source data may be sent to a configured LLM provider. <br>
-Mitigation: Use only approved LLM endpoints and avoid entering secrets, private portfolio details, or confidential business data in hints or configuration. <br>
-Risk: Email and webhook delivery can forward generated reports to external recipients or arbitrary webhook URLs. <br>
-Mitigation: Keep delivery disabled until recipients, webhook URLs, and channel permissions are reviewed and trusted. <br>
-Risk: Generated HTML reports may include content derived from external sources. <br>
-Mitigation: Review generated reports before forwarding or opening in sensitive environments, especially until the renderer sanitization behavior is confirmed. <br>
+## Use Case:
 
+Developers and operators use this skill to generate recurring AI/CV, financial, and market briefings from configured data sources, optionally routing user hints to a suitable preset and delivering the resulting report by email or webhook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/llx9826/lunaclaw-brief) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/skill.yaml) <br>
-- [Artifact usage guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated report files such as HTML, Markdown, and optional PDF] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns report paths and issue metadata; optional email and webhook delivery require trusted configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release metadata and artifact skill.yaml) <br>
+Risk: Manipulated source material or user hints may be reflected in generated HTML reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted sources and avoid opening or forwarding generated HTML from untrusted material until HTML escaping and sanitization are fixed.
+
+Risk: Custom preset creation can influence YAML files written by the skill.
+
+Mitigation: Avoid custom preset creation until preset names are strictly validated, and review generated preset YAML before reuse.
+
+Risk: Reports, user hints, and summaries may be sent to configured LLM, SMTP, or webhook services.
+
+Mitigation: Use only trusted LLM and delivery configurations, and avoid submitting confidential material unless those services are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/llx9826/skills/lunaclaw-brief)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, PDF, Configuration]
+
+**Output Format:** [Generated report files plus JSON-compatible paths and issue metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally send generated HTML reports through configured SMTP email or webhook channels.]
+
+## Skill Version(s):
+
+4.0.0 (source: evidence.release.version, target metadata, artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

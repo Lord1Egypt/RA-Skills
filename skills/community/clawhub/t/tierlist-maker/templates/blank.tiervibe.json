@@ -1,0 +1,23 @@
+{
+  "title": "My Tier List",
+  "bgBrightness": 0,
+  "layoutMode": "horizontal",
+  "tiers": [
+    {
+      "name": "T1",
+      "color": "#FF7F7F",
+      "fontSize": 24,
+      "cards": [
+        { "type": "text", "text": "Item A", "detail": "Why Item A belongs here." }
+      ]
+    },
+    {
+      "name": "T2",
+      "color": "#FFBF7F",
+      "cards": []
+    }
+  ],
+  "candidates": [
+    { "type": "text", "text": "Unranked item", "detail": "" }
+  ]
+}

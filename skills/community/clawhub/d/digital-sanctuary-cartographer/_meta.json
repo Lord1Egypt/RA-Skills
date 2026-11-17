@@ -1,0 +1,12 @@
+{
+  "name": "digital-sanctuary-cartographer",
+  "author": "DeepSeekOracle",
+  "version": "1.0.0",
+  "description": "Interactive skill for mapping, visualizing, and stress-testing digital sanctuary boundaries—permissions, data flows, trust perimeters, failure modes.",
+  "type": "meta-skill",
+  "tags": ["sanctuary", "boundaries", "trust", "mapping", "sovereignty", "audit"],
+  "category": "meta",
+  "dependencies": [],
+  "platform": "local",
+  "created": "2026-10-20"
+}

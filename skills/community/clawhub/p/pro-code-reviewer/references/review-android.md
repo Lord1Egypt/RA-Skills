@@ -100,7 +100,7 @@
 ```markdown
 # Code Review Report
 
-> **分支**: xxx
+> **分支**: <branch>
 > **Review 范围**: commit_id..HEAD (N commits)
 > **变更文件**: N 个
 

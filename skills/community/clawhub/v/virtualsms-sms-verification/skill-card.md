@@ -1,45 +1,60 @@
-## Description: <br>
-Real SIM-card phone numbers for SMS verification across 2000+ services and 145+ countries via the VirtualSMS MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real SIM-card phone numbers for SMS verification across 2000+ services and 145+ countries, exposed to agents through the VirtualSMS MCP server.
 
-## Publisher: <br>
-[virtualsms](https://clawhub.ai/user/virtualsms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[virtualsms](https://clawhub.ai/user/virtualsms)
 
-## Use Case: <br>
-External users and developers use this skill to configure agents to obtain real-SIM phone numbers, buy verification numbers, receive OTP codes, and manage SMS verification orders for accounts they own or are explicitly allowed to manage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to VirtualSMS country availability and applicable law. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables paid access to real-SIM OTP and account-verification workflows. <br>
-Mitigation: Use it only for lawful, authorized verification on accounts the user owns or is explicitly allowed to manage, and require explicit confirmation before number purchases or OTP retrieval. <br>
-Risk: VirtualSMS API keys, phone numbers, order details, and OTP codes are sensitive. <br>
-Mitigation: Store credentials in the host client's MCP configuration, avoid exposing or logging OTP data, and treat returned account and transaction details as sensitive. <br>
-Risk: Hosted or npm-based MCP access depends on external VirtualSMS infrastructure and package behavior. <br>
-Mitigation: Review the external MCP server or npm package before use and set spending controls or operational limits where possible. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill when an agent needs to acquire a temporary real-SIM number, receive an SMS or OTP code, and manage the verification order lifecycle.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/virtualsms/virtualsms-sms-verification) <br>
-- [VirtualSMS Project](https://virtualsms.io) <br>
-- [VirtualSMS MCP Setup](https://virtualsms.io/mcp) <br>
-- [virtualsms-mcp npm Package](https://www.npmjs.com/package/virtualsms-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, text] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and SMS/OTP results from MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make MCP tool calls that purchase phone numbers, wait for or poll SMS codes, and return order metadata; requires a VirtualSMS API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill handles sensitive authentication and account-verification workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for accounts where third-party temporary SMS verification is allowed and acceptable, and avoid banking or high-value identity accounts.
+
+Risk: The VirtualSMS API key can authorize account and order-management actions.
+
+Mitigation: Keep the API key scoped and rotated, and require explicit user confirmation before buying numbers, retrieving OTPs, or canceling orders.
+
+Risk: The local stdio path uses an unpinned npm execution command.
+
+Mitigation: Prefer the hosted MCP endpoint or a pinned, sandboxed local MCP installation.
+
+## Reference(s):
+
+- [VirtualSMS MCP setup](https://virtualsms.io/mcp)
+- [VirtualSMS project](https://virtualsms.io)
+- [virtualsms-mcp npm package](https://www.npmjs.com/package/virtualsms-mcp)
+- [Parent MCP server](https://github.com/virtualsms-io/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend MCP tool calls and order-management actions that require a VirtualSMS API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

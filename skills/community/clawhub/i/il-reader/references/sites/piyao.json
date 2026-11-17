@@ -1,0 +1,341 @@
+{
+  "version": "2.4.0",
+  "source_id": "piyao",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:44.782Z",
+  "entry": {
+    "url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+    "final_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+    "title": "搜索结果_中国互联网联合辟谣平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:44.782Z",
+    "identity": {
+      "declared_name": "中国互联网联合辟谣平台",
+      "hostname": "www.piyao.org.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "搜索",
+        "href": "javascript:",
+        "target": ""
+      }
+    ],
+    "frames": [
+      {
+        "src": "javascript:void(0)",
+        "id": "ariack2dduxgwo0",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "kw",
+      "id": "sIpt",
+      "css": "#sIpt",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#sIpt"
+      },
+      "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "observed_at": "2026-10-09T09:00:44.358Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "查证",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "observed_at": "2026-10-09T09:00:44.358Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "c9",
+      "css": "#c9",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#c9"
+      },
+      "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "observed_at": "2026-10-09T09:00:44.358Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "c10",
+      "css": "#c10",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#c10"
+      },
+      "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "observed_at": "2026-10-09T09:00:44.358Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "piyao:product-capability",
+      "source_id": "piyao",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "kw",
+          "id": "sIpt",
+          "css": "#sIpt",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#sIpt"
+          },
+          "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+          "observed_at": "2026-10-09T09:00:44.358Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c9",
+          "css": "#c9",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c9"
+          },
+          "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+          "observed_at": "2026-10-09T09:00:44.358Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c10",
+          "css": "#c10",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c10"
+          },
+          "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+          "observed_at": "2026-10-09T09:00:44.358Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "piyao:official-guidance",
+      "source_id": "piyao",
+      "task_kind": "official-guidance",
+      "status": "entry_observed",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "kw",
+          "id": "sIpt",
+          "css": "#sIpt",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#sIpt"
+          },
+          "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+          "observed_at": "2026-10-09T09:00:44.358Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c9",
+          "css": "#c9",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c9"
+          },
+          "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+          "observed_at": "2026-10-09T09:00:44.358Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c10",
+          "css": "#c10",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c10"
+          },
+          "observed_url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+          "observed_at": "2026-10-09T09:00:44.358Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "piyao",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M13-Q1",
+      "2026-M13-Q1",
+      "KH-Q030",
+      "KH-Q088"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:44.782Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/piyao-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/piyao-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

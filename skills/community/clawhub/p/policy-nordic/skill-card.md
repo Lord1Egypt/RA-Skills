@@ -1,40 +1,53 @@
-## Description: <br>
-基于惠迈智能体架构，智能查询并分析北欧及澳新加地区市场政策、法规与投资环境，支持多语言与多数据源配置。无需API Key，安装即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-oriented trade-policy assistant that helps query and analyze market policies, regulations, tariffs, and investment-environment information for Nordic and Australia, New Zealand, and Canada trade scenarios.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-External trade operators, cross-border commerce teams, and policy researchers use this skill to query tariffs, customs rules, compliance requirements, and market-policy context for Nordic, Australia, New Zealand, and Canada market entry questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tariff, customs, legal, or investment conclusions may be outdated, incomplete, or incorrect. <br>
-Mitigation: Verify conclusions against current official sources before making legal, trade, customs, or investment decisions. <br>
-Risk: Users may provide credentials even though the skill says no API key is needed. <br>
-Mitigation: Do not provide API keys, cookies, tokens, account credentials, or other secrets; use only non-sensitive product names or HS codes. <br>
+## Use Case:
 
+External trade teams, cross-border commerce operators, and policy researchers use this skill to obtain reference summaries of tariff policies, customs rules, compliance requirements, and trade-policy changes for named products or HS codes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/policy-nordic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown policy and compliance research summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tariff rates, policy basis, exemptions, license requirements, special rules, risk notes, and suggested next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact metadata) <br>
+Risk: Trade-policy, tariff, customs, or legal conclusions may be incomplete, outdated, or unsuitable as formal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify conclusions against current official sources before making legal, customs, tariff, or investment decisions.
+
+Risk: Broad prompts can produce less precise policy guidance.
+
+Mitigation: Provide the target region, product name, and HS code where possible to narrow the lookup and analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/policy-nordic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style policy summary with tariff rates, policy basis, exemptions, compliance notes, product classification, license requirements, and special provisions when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required; outputs are reference material and should be checked against current official notices.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

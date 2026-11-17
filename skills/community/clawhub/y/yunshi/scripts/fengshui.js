@@ -4,9 +4,6 @@
  * 支持：阳宅风水、办公室风水、颜色风水
  */
 
-const fs = require('fs');
-const path = require('path');
-
 // 八卦方位对应
 const baGuaDirection = {
   '乾': { direction: '西北', number: 6, element: '金', color: '白色', trait: '领导、权威' },

@@ -1,46 +1,60 @@
-## Description: <br>
-A supplier negotiation agent that helps procurement teams send inquiry emails, parse supplier replies, conduct multi-round price negotiations, and summarize final quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多轮商务谈判虾 helps procurement teams send supplier inquiry emails, parse replies, run up to three negotiation rounds, and summarize final quotes and terms.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Procurement employees and operations teams use this skill to manage supplier outreach, compare quotes, and prepare negotiation emails for price and terms optimization. It is intended for mailbox-backed supplier negotiations where humans can review recipient lists, messages, and final purchasing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read mailbox contents and parse supplier communications. <br>
-Mitigation: Install it only for a dedicated procurement mailbox, restrict parsing to supplier folders or allowlisted senders, and protect or delete generated CSV reports that may contain confidential supplier information. <br>
-Risk: The skill can send negotiation emails broadly through SMTP. <br>
-Mitigation: Use scoped app passwords where possible, review recipient lists before sending, and require human review of drafted negotiation emails before delivery. <br>
-Risk: Automated negotiation pressure may affect supplier relationships or communicate inaccurate leverage. <br>
-Mitigation: Limit automated follow-up rounds, verify claims about competing quotes, and route complex purchases, legal terms, or high-value negotiations to human reviewers. <br>
+## Use Case:
 
+Procurement employees and business operators use this skill to coordinate bulk supplier inquiries, negotiate pricing or terms by email, compare returned quotes, and prepare a recommended supplier choice.
 
-## Reference(s): <br>
-- [Negotiation scripts](references/negotiation-scripts.md) <br>
-- [Price benchmarks](references/price-benchmarks.md) <br>
-- [Supplier profiles](references/supplier-profiles.md) <br>
-- [Inquiry email template](references/email-templates/inquiry.txt) <br>
-- [Negotiation pressure email template](references/email-templates/negotiate-pressure.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples, email templates, and CSV report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate supplier outreach messages, parsed quote CSV files, and final quote comparison summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk outbound negotiation emails can affect supplier relationships or send incorrect proposals at scale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before bulk sends and use a dedicated procurement mailbox.
+
+Risk: Mailbox access and generated reports can expose supplier communications or pricing data.
+
+Mitigation: Avoid general-purpose inboxes and keep generated reports out of shared or source-controlled folders.
+
+Risk: The security review reports unsafe script patterns around configuration loading and generated Python snippets.
+
+Mitigation: Review and harden the script before real credential use, including replacing sourced config and heredoc generation with safer data-only parsing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/negotiation-bot-claw)
+- [Negotiation Scripts](references/negotiation-scripts.md)
+- [Price Benchmarks](references/price-benchmarks.md)
+- [Supplier Profiles](references/supplier-profiles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples, plain-text email templates, and CSV quote reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SMTP/IMAP configuration before email sending or inbox parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

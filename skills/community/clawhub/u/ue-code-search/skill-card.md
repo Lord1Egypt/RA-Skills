@@ -1,36 +1,48 @@
-## Description: <br>
-Search Unreal Engine C++ and Blueprint code, including function definitions, class names, UMG widget references, Lua/UnLua code, Blueprint-usable functions, and cross-language C++ and Lua matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Unreal Engine C++ and Blueprint code, including function definitions, class names, UMG widget references, Lua/UnLua code, Blueprint-usable functions, and cross-language C++/Lua matches.
 
-## Publisher: <br>
-[vincentwilliam](https://clawhub.ai/user/vincentwilliam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincentwilliam](https://clawhub.ai/user/vincentwilliam)
 
-## Use Case: <br>
-Developers and engineers use this skill to search Unreal Engine projects for C++, Blueprint asset references, and Lua/UnLua code, with file paths, line numbers, code context, and file purpose summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Searches may expose private source code, unreleased assets, or proprietary game logic when run outside the intended project scope. <br>
-Mitigation: Keep searches scoped to the intended Unreal Engine project directory and review outputs before sharing or relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to guide searches through Unreal Engine C++, Blueprint asset references, and Lua/UnLua project code, especially SilverPalace-style project structures.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with search commands, matched file paths, line numbers, brief code context, and file purpose summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches should be scoped to the intended Unreal Engine project directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the skill can surface local project source files and asset references that match a search request.
+
+Mitigation: Review matches before sharing them outside the project and limit searches to paths relevant to the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentwilliam/skills/ue-code-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with file paths, line numbers, code context, file-purpose summaries, and optional PowerShell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only search guidance; code context is expected to be limited to 2-3 lines around each match.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

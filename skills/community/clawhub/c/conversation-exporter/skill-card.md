@@ -1,41 +1,54 @@
-## Description: <br>
-Exports WorkBuddy conversation history into JSON, Markdown, and TXT files with timelines, metadata, statistics, milestones, and skill usage records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports WorkBuddy conversation history into JSON, Markdown, and TXT files with timelines, metadata, statistics, milestones, and skill usage records.
 
-## Publisher: <br>
-[0xf4vul](https://clawhub.ai/user/0xf4vul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xf4vul](https://clawhub.ai/user/0xf4vul)
 
-## Use Case: <br>
-WorkBuddy users and developers use this skill to archive, analyze, or share local conversation history and work memory exports. It is suited for creating structured records of project activity, summaries, milestones, and skill usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation exports may include private work memory, project details, or other sensitive context. <br>
-Mitigation: Choose a trusted local output location and manually review or redact generated files before sharing. <br>
-Risk: The artifact claims automatic sensitive-data filtering, but the filtering behavior is not defined in detail. <br>
-Mitigation: Use a narrow date range or event filter when possible and do not rely on automatic filtering as the only privacy control. <br>
+## Use Case:
 
+Developers and WorkBuddy users use this skill to export local conversation history for archiving, review, analysis, and sharing. It supports date ranges, event filters, output detail controls, and optional file attachment listings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xf4vul/conversation-exporter) <br>
-- [Submitted skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Markdown, Text, Guidance] <br>
-**Output Format:** [JSON, Markdown, and plain text export files with a concise completion summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses UTF-8 with BOM for generated files; default output filenames include the export date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and release changelog) <br>
+Risk: Exports may include persistent WorkBuddy memory, project metadata, automation-task information, and skill usage records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the exact date range, sources, output format, and destination before exporting, then review generated files for secrets or private information before sharing.
+
+Risk: The security summary notes broad local reads and history file writes without clear source-by-source consent or concrete redaction rules.
+
+Mitigation: Use only in workspaces where the user has approved the source scope, and manually verify that sensitive content has been removed from the export.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xf4vul/skills/conversation-exporter)
+- [Publisher profile](https://clawhub.ai/user/0xf4vul)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON, Markdown, and UTF-8 text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WorkBuddy memory, project metadata, automation-task information, and skill usage records; users can choose date range, filters, detail level, and destination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

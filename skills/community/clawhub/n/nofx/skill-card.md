@@ -1,55 +1,67 @@
-## Description: <br>
-NOFX AI Trading OS integration for crypto market data, AI trading signals, strategy management, trader control, and automated reporting on the NOFX platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NOFX AI Trading OS integration provides crypto market data, AI trading signals, strategy management, trader control, automated reporting, backtesting, and AI debate workflows for the NOFX platform.
 
-## Publisher: <br>
-[tinkle-community](https://clawhub.ai/user/tinkle-community) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tinkle-community](https://clawhub.ai/user/tinkle-community)
 
-## Use Case: <br>
-External users and developers use this skill to work with the NOFX crypto-trading platform: reviewing market signals, querying NOFX APIs, managing strategies and traders, running backtests, configuring alerts, and generating market reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can assist with live crypto trading workflows, including strategy activation, trader control, and exchange-connected account activity. <br>
-Mitigation: Use paper trading or isolated sub-accounts first, require explicit confirmation before activating strategies or starting traders, and keep withdrawals disabled. <br>
-Risk: The skill handles API credentials and exchange access that could affect financial accounts. <br>
-Mitigation: Use least-privilege, IP-restricted API keys, store credentials outside shared transcripts, and rotate keys if exposed. <br>
-Risk: Deployment instructions include remote installation commands and service exposure patterns. <br>
-Mitigation: Review scripts before running them, avoid unreviewed curl-to-bash installs, and do not expose the service over plain HTTP. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NOFX ClawHub listing](https://clawhub.ai/tinkle-community/nofx) <br>
-- [NOFX web dashboard](https://nofxai.com) <br>
-- [NOFX data API](https://nofxos.ai) <br>
-- [NOFX API docs](https://nofxos.ai/api-docs) <br>
-- [NOFX GitHub repository](https://github.com/NoFxAiOS/nofx) <br>
-- [API examples](references/api-examples.md) <br>
-- [Browser automation guide](references/browser-automation.md) <br>
-- [Deployment guide](references/deployment.md) <br>
-- [Supported exchanges](references/exchanges.md) <br>
-- [Grid trading guide](references/grid-trading.md) <br>
-- [Market charts guide](references/market-charts.md) <br>
-- [Multi-account guide](references/multi-account.md) <br>
-- [Strategy schema](references/strategy-schema.md) <br>
-- [Webhooks guide](references/webhooks.md) <br>
-- [FAQ](references/faq.md) <br>
+## Use Case:
 
+External users and developers use this skill to query NOFX crypto-market APIs, configure strategies and exchange connections, manage traders, run backtests, and generate market reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, bash commands, API call examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce market reports and trading workflow guidance; API and browser actions require user-provided NOFX credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live-trading controls and exchange API permission changes can affect real funds.
+
+Mitigation: Require explicit confirmation before strategy activation, trader start or stop actions, exchange API permission changes, or fund transfers; start with testnet or isolated sub-accounts with limited funds and withdrawal permissions disabled.
+
+Risk: Deployment and update instructions fetch remote installers or container definitions.
+
+Mitigation: Review the deployment source before installation, pin installers and images to immutable releases or checksums, and use HTTPS end to end.
+
+Risk: API keys and exchange credentials are needed for normal operation.
+
+Mitigation: Store secrets outside shared workspace files, prefer environment variables or a secret manager, enable IP whitelists, rotate keys, and grant only the minimum permissions required.
+
+## Reference(s):
+
+- [NOFX Skill on ClawHub](https://clawhub.ai/tinkle-community/skills/nofx)
+- [NOFX Web Dashboard](https://nofxai.com)
+- [NOFX Data API](https://nofxos.ai)
+- [NOFX API Docs](https://nofxos.ai/api-docs)
+- [NOFX GitHub Repository](https://github.com/NoFxAiOS/nofx)
+- [NOFX API Response Examples](references/api-examples.md)
+- [NOFX Browser Automation Guide](references/browser-automation.md)
+- [NOFX Deployment Guide](references/deployment.md)
+- [NOFX Supported Exchanges](references/exchanges.md)
+- [NOFX Strategy Configuration Schema](references/strategy-schema.md)
+- [NOFX Webhook Notification Integration](references/webhooks.md)
+- [NOFX Multi-Account Management](references/multi-account.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell command snippets, and API call instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a NOFX API key, exchange credentials, and an authenticated browser profile; some workflows can affect live trading accounts.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

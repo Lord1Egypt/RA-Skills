@@ -1,51 +1,70 @@
-## Description: <br>
-Automate browser interactions, test web pages and work with Playwright tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate browser interactions, test web pages, and work with Playwright tests.
 
-## Publisher: <br>
-[xinqian598188460](https://clawhub.ai/user/xinqian598188460) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinqian598188460](https://clawhub.ai/user/xinqian598188460)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive browser sessions with Playwright CLI, inspect pages, test flows, manage storage state, capture traces or videos, and generate Playwright-oriented commands or code. It also includes an Amazon product-search helper that exports top search results to CSV. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser storage state, cookies, persistent profiles, traces, videos, screenshots, PDFs, and CSV exports may contain sensitive account or session data. <br>
-Mitigation: Use a dedicated browser profile and low-risk test accounts; store generated artifacts securely and delete them when no longer needed. <br>
-Risk: The Amazon search helper reuses a saved login session and writes product-search results locally. <br>
-Mitigation: Avoid using a primary Amazon account; review the helper before execution and keep any saved auth file protected like a password. <br>
-Risk: The skill can execute arbitrary Playwright code and browser actions through CLI commands. <br>
-Mitigation: Review generated commands and code before running them, especially on authenticated, payment, or production sites. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to drive Playwright CLI browser sessions, inspect web pages, debug Playwright tests, manage browser state, mock requests, capture traces or videos, and generate automation guidance.
 
-## Reference(s): <br>
-- [Playwright Documentation](https://playwright.dev) <br>
-- [Running Playwright Tests](references/playwright-tests.md) <br>
-- [Request Mocking](references/request-mocking.md) <br>
-- [Running Custom Playwright Code](references/running-code.md) <br>
-- [Browser Session Management](references/session-management.md) <br>
-- [Storage Management](references/storage-state.md) <br>
-- [Test Generation](references/test-generation.md) <br>
-- [Tracing](references/tracing.md) <br>
-- [Video Recording](references/video-recording.md) <br>
-- [Inspecting Element Attributes](references/element-attributes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Playwright CLI commands, JavaScript snippets, YAML snapshots, screenshots, PDFs, traces, videos, and CSV files where workflows request them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write browser storage state, persistent profiles, traces, videos, screenshots, PDFs, snapshots, and CSV exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad browser-control commands can interact with authenticated sites and sensitive browser state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated test accounts and sessions, review proposed browser actions, and close or delete session data after use.
+
+Risk: Saved browser storage can contain credentials or session tokens.
+
+Mitigation: Treat storage-state files as secrets, store them outside shared workspaces, and remove them when no longer needed.
+
+Risk: The bundled Amazon helper uses saved Amazon login state and writes untrusted product data to CSV files.
+
+Mitigation: Review the helper before execution, avoid payment or production shopping accounts, and validate CSV output before importing it elsewhere.
+
+Risk: Global npm installation guidance can introduce unpinned tool versions.
+
+Mitigation: Prefer a locally pinned dependency or confirm the exact package version before installing or running the CLI.
+
+## Reference(s):
+
+- [Playwright documentation](https://playwright.dev)
+- [Element attributes](references/element-attributes.md)
+- [Running Playwright tests](references/playwright-tests.md)
+- [Request mocking](references/request-mocking.md)
+- [Running custom Playwright code](references/running-code.md)
+- [Browser session management](references/session-management.md)
+- [Storage management](references/storage-state.md)
+- [Test generation](references/test-generation.md)
+- [Tracing](references/tracing.md)
+- [Video recording](references/video-recording.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Playwright code snippets, configuration examples, and generated file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser snapshots, screenshots, PDFs, traces, videos, storage-state files, and CSV reports when the referenced CLI commands or helper scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

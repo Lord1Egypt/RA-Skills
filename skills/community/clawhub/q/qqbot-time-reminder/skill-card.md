@@ -1,41 +1,58 @@
-## Description: <br>
-创建每分钟发送当前时间的QQ定时提醒任务，用于用户要求每分钟报时、定期收到时间提醒或测试定时任务功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+创建每分钟发送当前时间的QQ定时提醒任务。
 
-## Publisher: <br>
-[eric331](https://clawhub.ai/user/eric331) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric331](https://clawhub.ai/user/eric331)
 
-## Use Case: <br>
-External users use this skill to create or cancel a QQ bot cron reminder that sends the current time to a selected QQ openid every minute. It is also suitable for validating basic scheduled-message behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reminder may run more frequently than the user expects because the artifact mentions hourly phrasing while the cron expression runs every minute. <br>
-Mitigation: Confirm the intended cadence and timezone with the user before creating the cron task. <br>
-Risk: A reminder can continue sending QQ bot messages until it is removed. <br>
-Mitigation: Return and retain the cron task ID, and use it with the documented removal command when the user asks to cancel. <br>
-Risk: Messages may be delivered to the wrong recipient if the openid is incorrect. <br>
-Mitigation: Confirm the recipient openid before running the add command. <br>
+## Use Case:
 
+QQ bot users can use this skill to create a scheduled reminder that sends the current time every minute. It is also suitable for testing OpenClaw cron task creation and cancellation behavior.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a QQ recipient openid, Asia/Shanghai timezone selection, and retention of the returned cron task ID for later cancellation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill creates a persistent QQ messaging task that sends every minute and may continue until explicitly removed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when a continuing every-minute reminder is intended, keep the returned task ID, and remove the cron job when the reminder is no longer needed.
+
+Risk: A wrong recipient OpenID or timezone can send repeated reminders to the wrong destination or at an unexpected local time.
+
+Mitigation: Confirm the recipient OpenID and Asia/Shanghai timezone before creating the cron task.
+
+Risk: The artifact says the skill may be used for hourly time reports, but its cron expression runs every minute.
+
+Mitigation: For hourly reminders, correct the cron schedule before creating the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric331/skills/qqbot-time-reminder)
+- [Publisher profile](https://clawhub.ai/user/eric331)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or removes an OpenClaw cron task for QQ bot delivery; returns the task ID and cancellation guidance when a reminder is created.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

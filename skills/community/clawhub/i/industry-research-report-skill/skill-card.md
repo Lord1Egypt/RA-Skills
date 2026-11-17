@@ -1,38 +1,53 @@
-## Description: <br>
-Generates professional industry research reports for investment due diligence, M&A evaluation, and industry analysis using PEST, Porter's Five Forces, value-chain analysis, and TAM/SAM/SOM market sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language industry due-diligence research reports using PEST, Porter's Five Forces, value-chain analysis, and TAM/SAM/SOM market sizing.
 
-## Publisher: <br>
-[parvaterram](https://clawhub.ai/user/parvaterram) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parvaterram](https://clawhub.ai/user/parvaterram)
 
-## Use Case: <br>
-External analysts, investment teams, and business development users use this skill to research an industry and produce a due-diligence report covering macro factors, competitive dynamics, value-chain structure, market sizing, investment value, and risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public web searches and generated market estimates may contain outdated, incomplete, or incorrect information. <br>
-Mitigation: Review cited sources, assumptions, and generated market estimates before relying on the report for investment or business decisions. <br>
+## Use Case:
 
+Investors, corporate development teams, and analysts use this skill to produce Chinese-language industry research reports for investment due diligence, M&A assessment, and board or partner briefings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parvaterram/industry-research-report-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Structured report content and PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source lists, assumptions, and a disclaimer that the report is for internal reference and is not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may perform multiple web searches and generate a PDF even when the user only needs a brief answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to confirm scope and choose a brief answer instead of a full report when appropriate.
+
+Risk: Industry research can include time-sensitive market data and estimates that may affect investment or M&A decisions.
+
+Mitigation: Require cited sources for data points, mark unconfirmed figures as estimates, and preserve the skill's non-investment-advice disclaimer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parvaterram/skills/industry-research-report-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Chinese-language Markdown report content with sourced tables and a generated PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report workflow asks the agent to cite data sources, include a non-investment-advice disclaimer, and deliver a PDF report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Set up Gmail API access via gog CLI with manual OAuth flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up Gmail API access via the gog CLI with a manual OAuth flow for headless servers.
 
-## Publisher: <br>
-[kai-jar](https://clawhub.ai/user/kai-jar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kai-jar](https://clawhub.ai/user/kai-jar)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Gmail API OAuth access for the gog CLI on local or headless systems, renew expired tokens, and troubleshoot Gmail authentication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles long-lived Gmail OAuth credentials that can provide broad mailbox access. <br>
-Mitigation: Protect the OAuth client secret and refresh token, use the narrowest Gmail scope that meets the need, and revoke access from the Google account when the integration is no longer needed. <br>
-Risk: Persisting GOG_KEYRING_PASSWORD in a shell startup file may expose the keyring password to other local processes or backups. <br>
-Mitigation: Prefer an interactive prompt or a more protected secret store instead of placing the keyring password in .bashrc. <br>
-Risk: The flow imports tokens into the gog CLI credential store, so compromise or misuse of that CLI can affect Gmail access. <br>
-Mitigation: Install only when intentionally setting up Gmail access for gog and when the gog CLI is trusted in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kai-jar/gmail-oauth) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Gmail modify OAuth scope](https://www.googleapis.com/auth/gmail.modify) <br>
-- [Google OAuth token endpoint](https://oauth2.googleapis.com/token) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Gmail API OAuth credentials, generate authorization URLs, exchange authorization codes, import refresh tokens into gog, and troubleshoot Gmail authentication on headless servers.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and an executable shell helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides users through an interactive or command-line OAuth authorization code flow for gog.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default Gmail scope can grant broad mailbox access.
+
+Mitigation: Use the least Gmail scope that fits the task, such as read-only or send-only access when modification access is not needed.
+
+Risk: OAuth secrets may persist in the environment, keyring configuration, or a temporary token import file.
+
+Mitigation: Prefer a secure keyring or one-session secret, avoid storing GOG_KEYRING_PASSWORD in shell startup files, and confirm temporary token files are removed after import.
+
+Risk: The helper relies on the external gog CLI for handling OAuth credentials.
+
+Mitigation: Verify the gog CLI source and version before trusting it with OAuth credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kai-jar/skills/gmail-oauth)
+- [Google Cloud Console](https://console.cloud.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands and an optional bash helper for generating Gmail OAuth URLs and exchanging authorization codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

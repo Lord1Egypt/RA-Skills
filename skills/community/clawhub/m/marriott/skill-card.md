@@ -1,44 +1,60 @@
-## Description: <br>
-Searches Marriott Bonvoy hotels on marriott.com.cn, compares available rooms and rates, and helps a user confirm a booking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Marriott Bonvoy hotels on marriott.com.cn, presents hotel, room, and rate options, and can submit a reservation after user confirmation.
 
-## Publisher: <br>
-[qianjunye](https://clawhub.ai/user/qianjunye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qianjunye](https://clawhub.ai/user/qianjunye)
 
-## Use Case: <br>
-External users and travel planners use this skill to search Marriott China hotels, review room and rate options, and proceed through a reservation flow after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a logged-in Marriott browser session and submit real hotel reservations. <br>
-Mitigation: Require explicit user confirmation before final booking and independently verify hotel, dates, cancellation terms, total price, and payment details before submission. <br>
-Risk: The skill stores or reuses browser login state, including cookies and generated booking artifacts. <br>
-Mitigation: Use a dedicated disposable Chrome profile for Marriott only, avoid copying normal browser cookies, and delete cookies.json plus generated result files after use. <br>
-Risk: The workflow includes behavior intended to avoid bot protections and may trigger access blocks or site policy issues. <br>
-Mitigation: Review whether use is permitted for the account and site, stop on access-denied or interception events, and do not retry in ways that obscure user intent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Marriott skill release page](https://clawhub.ai/qianjunye/marriott) <br>
-- [Usage guide](artifact/使用指南.md) <br>
-- [Marriott China](https://www.marriott.com.cn) <br>
-- [OpenStreetMap Nominatim search](https://nominatim.openstreetmap.org/search) <br>
+## Use Case:
 
+Travelers and booking assistants use this skill to search Marriott hotels in China, compare available rooms and rates, and complete a reservation only after the user confirms the final selection.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries and tables backed by JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local booking workflow artifacts such as search results, selections, room results, cookies, screenshots, and confirmation JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill controls a logged-in Marriott browser session and may leave copied cookies, screenshots, booking selections, and confirmation data on disk.
+
+Mitigation: Use a dedicated Marriott-only browser profile, avoid copying a primary Chrome profile, and remove cookies, screenshots, and debug files after use.
+
+Risk: The skill can submit real hotel reservations after the user confirms a selected room and rate.
+
+Mitigation: Manually verify the hotel, room, rate, cancellation policy, total price, dates, guest details, and payment method before approving reservation submission.
+
+Risk: Automated browsing may be blocked or produce stale room and price information.
+
+Mitigation: Treat displayed availability as provisional and retry or verify directly in the browser when access is blocked or results look inconsistent.
+
+## Reference(s):
+
+- [ClawHub Marriott skill page](https://clawhub.ai/qianjunye/skills/marriott)
+- [Publisher profile: qianjunye](https://clawhub.ai/user/qianjunye)
+- [Marriott China](https://www.marriott.com.cn)
+- [Marriott China sign-in](https://www.marriott.com.cn/sign-in.mi)
+- [OpenStreetMap Nominatim search](https://nominatim.openstreetmap.org/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summaries and tables backed by JSON script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hotel search results, room and rate comparisons, booking summaries, confirmation details, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

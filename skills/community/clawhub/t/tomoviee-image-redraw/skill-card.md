@@ -1,48 +1,59 @@
-## Description: <br>
-Redraw image content using Tomoviee Image Redrawing API (`tm_redrawing`) through the Wondershare OpenAPI gateway (`https://openapi.wondershare.cc`) for inpainting, localized replacement, object removal, or mask-based image edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redraw image content using Tomoviee Image Redrawing API (`tm_redrawing`) through Wondershare OpenAPI gateway (`https://openapi.wondershare.cc`).
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and external users use this skill to call Tomoviee/Wondershare image redrawing APIs for prompt-guided image edits, optional mask-controlled redrawing, and polling for generated image results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images and prompts are sent to Tomoviee/Wondershare for third-party processing. <br>
-Mitigation: Use the skill only with approved content, avoid sensitive or regulated images unless authorized, and confirm Tomoviee/Wondershare is acceptable for the intended workflow. <br>
-Risk: Public image URLs, private network URLs, or callback URLs can expose data or internal services. <br>
-Mitigation: Prefer short-lived public image URLs, avoid internal or private URLs, and review callback destinations before execution. <br>
-Risk: The authentication helper prints a Basic auth token that could be captured in logs or shared terminals. <br>
-Mitigation: Use a dedicated API key, keep generated tokens out of logs, and rotate credentials if a token is exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to call Tomoviee image redrawing for inpainting, localized replacement, object removal, and mask-based image edits. It provides Python client usage, authentication guidance, endpoint references, and prompt guidance for image-editing workflows.
 
-## Reference(s): <br>
-- [Tomoviee Image APIs](references/image_apis.md) <br>
-- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md) <br>
-- [Tomoviee Developer Portal (Global)](https://www.tomoviee.ai/developers.html) <br>
-- [Tomoviee API Docs (Global)](https://www.tomoviee.ai/doc/) <br>
-- [Tomoviee Developer Portal (Mainland)](https://www.tomoviee.cn/developers.html) <br>
-- [Tomoviee API Docs (Mainland)](https://www.tomoviee.cn/doc/) <br>
-- [Wondershare OpenAPI Gateway](https://openapi.wondershare.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API task IDs, polling guidance, and image result URL handling for Tomoviee redrawing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The credential workflow can expose reusable Tomoviee app keys, app secrets, and Basic tokens through command-line arguments, terminal output, CI logs, or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle Tomoviee credentials as secrets, avoid the documented token helper in shared terminals or logs, and prefer a credential flow that does not print reusable tokens.
+
+Risk: Image redrawing sends source images, masks, prompts, and optional callback URLs to the Tomoviee/Wondershare service.
+
+Mitigation: Submit only images, prompts, masks, and callback URLs that are approved for the external service and do not contain sensitive content unless that transfer is acceptable.
+
+## Reference(s):
+
+- [Tomoviee Image APIs](references/image_apis.md)
+- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md)
+- [Tomoviee Developer Portal (Global)](https://www.tomoviee.ai/developers.html)
+- [Tomoviee API Documentation (Global)](https://www.tomoviee.ai/doc/)
+- [Tomoviee Developer Portal (Mainland)](https://www.tomoviee.cn/developers.html)
+- [Tomoviee API Documentation (Mainland)](https://www.tomoviee.cn/doc/)
+- [ClawHub Skill Release](https://clawhub.ai/wondershare-boop/skills/tomoviee-image-redraw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; client calls return task data and generated image URLs from the Tomoviee service.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates asynchronous image redrawing tasks, polls task status, and parses service results for generated image paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,166 +1,106 @@
 ---
-name: acedatacloud-api
-description: Guide for using AceDataCloud APIs. Use when authenticating, making API calls, managing credentials, understanding billing, or integrating AceDataCloud services into applications. Covers setup, authentication, request patterns, error handling, and SDK integration.
+name: api-guide
+description: Set up an AceDataCloud API key, make a first request, and troubleshoot authentication, access, billing, and asynchronous tasks. Use before calling an AceDataCloud service for the first time.
 license: Apache-2.0
 metadata:
   author: acedatacloud
-  version: "1.0"
-compatibility: Requires an AceDataCloud account at platform.acedata.cloud.
+  version: "1.1"
+compatibility: Requires an AceDataCloud account; get a service API key at https://platform.acedata.cloud/console/applications.
 ---
 
-# AceDataCloud API Usage Guide
+# AceDataCloud API: from account to first result
 
-Complete guide for using AceDataCloud's AI-powered data services API.
+This guide is the source for the existing
+[@acedatacloud/api-guide](https://clawhub.ai/acedatacloud/skills/api-guide)
+ClawHub listing. A ClawHub login installs Skills; an AceDataCloud API key
+authorizes calls to `api.acedata.cloud`. They are different credentials.
 
-## Getting Started
+## 1. Install the right Skill
 
-### 1. Create an Account
-
-Register at [platform.acedata.cloud](https://platform.acedata.cloud).
-
-### 2. Subscribe to a Service
-
-Browse available services and click **Get** to subscribe. Most services include free quota.
-
-### 3. Create API Credentials
-
-Go to your service's **Credentials** page and create an API Token.
-
-## Authentication
-
-All APIs use Bearer token authentication:
+Install the [ClawHub CLI](https://github.com/openclaw/clawhub/blob/main/docs/cli.md)
+if needed, then install the service Skill you intend to use:
 
 ```bash
-curl -X POST https://api.acedata.cloud/<endpoint> \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{ ... }'
+npm install -g clawhub
+clawhub install @acedatacloud/suno
+clawhub list
 ```
 
-### Token Types
+For a different first workflow, choose its Skill, such as
+`clawhub install @acedatacloud/google-search`. Verify that the publisher is
+**@acedatacloud**. The general API guide explains setup; the service Skill
+contains its exact request fields, models, and task endpoint.
 
-| Type | Format | Scope |
-|------|--------|-------|
-| **Service Token** | UUID string | Access to subscribed service only |
-| **Global Token** | UUID string | Access to all subscribed services |
+## 2. Find or create your API key
 
-## Base URL
+1. Sign in at [AceDataCloud → Applications](https://platform.acedata.cloud/console/applications).
+   Create an account if needed.
+2. Open **General application**; initialize it if prompted. Its API key can
+   access multiple services enabled for your account. A service-specific
+   application key is limited to that service. Check access, balance, and the
+   current price of the service you want to call.
+3. Copy an existing key, or select **Manage Keys → Create**. Name a new key
+   (for example, `OpenClaw`), set expiration and restrictions if needed, and
+   copy the key value from the application card or key list. If **Allowed APIs**
+   is restricted, include every route needed for your first workflow. An
+   asynchronous generation needs both the submit and task-query routes.
 
-```
-https://api.acedata.cloud
-```
+The [illustrated repository guide](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+shows where to copy a key and how to create a separate one. Copy only the key
+value. Do not include `Bearer ` in the value, put it in a prompt, or commit it.
+A `platform-...` management token is for the separate account-management API,
+not for service generation, chat, or search.
 
-## SDK Integration (OpenAI-Compatible)
+## 3. Configure the key
 
-For chat completion services, use the standard OpenAI SDK:
+On the OpenClaw Gateway host, add this line to `~/.openclaw/.env`:
 
-```python
-from openai import OpenAI
-
-client = OpenAI(
-    api_key="YOUR_API_TOKEN",
-    base_url="https://api.acedata.cloud/v1"
-)
-
-response = client.chat.completions.create(
-    model="claude-sonnet-4-20250514",
-    messages=[{"role": "user", "content": "Hello!"}]
-)
-```
-
-```javascript
-import OpenAI from "openai";
-
-const client = new OpenAI({
-  apiKey: "YOUR_API_TOKEN",
-  baseURL: "https://api.acedata.cloud/v1"
-});
-
-const response = await client.chat.completions.create({
-  model: "gpt-4.1",
-  messages: [{ role: "user", content: "Hello!" }]
-});
+```dotenv
+ACEDATACLOUD_API_TOKEN=your_api_key_here
 ```
 
-## Common Request Patterns
-
-### Synchronous APIs
-
-Some APIs return results immediately (e.g., face transform, search):
+Keep the file private with `chmod 600 ~/.openclaw/.env`, restart the Gateway,
+and start a new session. [OpenClaw loads this global file](https://docs.openclaw.ai/help/faq/env-vars#how-does-openclaw-load-environment-variables)
+even when the Gateway runs as a service. For a direct terminal test instead:
 
 ```bash
-curl -X POST https://api.acedata.cloud/face/analyze \
-  -H "Authorization: Bearer $TOKEN" \
+export ACEDATACLOUD_API_TOKEN="your_api_key_here"
+```
+
+## 4. Make one first request
+
+This Google Search example returns a result without a separate task query.
+Check current service pricing first; API requests may be billable. The key
+must allow `/serp/google`:
+
+```bash
+curl -X POST https://api.acedata.cloud/serp/google \
+  -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"image_url": "https://example.com/photo.jpg"}'
+  -d '{"query":"AceDataCloud","type":"search"}'
 ```
 
-### Async Task APIs
+For image, video, or music generation, follow that service Skill's Quick Start.
+If a submission returns a `task_id`, save it and query the matching `/tasks`
+endpoint until the task is terminal. Use `async: true` where the service
+supports it; set `callback_url` only for a real public webhook that you own.
+Do not resubmit a pending generation merely to check it: a second submission
+can incur a second charge. See the
+[task-polling guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md).
 
-Most generation APIs (images, video, music) are asynchronous:
+## 5. Troubleshoot the first run
 
-**Step 1:** Submit request
+| Symptom | Check |
+|---|---|
+| 401 | Key copied completely, not expired, and available to the running Gateway. `Bearer ` belongs in the HTTP header, not the key value. |
+| 403 | Service entitlement, key restrictions, and **Allowed APIs**. A content-moderation rejection may also be 403; read the response. |
+| 400 | Exact endpoint, model, and JSON shape from the service Skill. |
+| 429 | Reduce request rate or concurrency. Do not automatically retry a billable submit. |
+| Pending, timeout, or 5xx | Query the original task or request history before submitting again. |
 
-```json
-POST /suno/audios
-{"prompt": "a jazz song", "wait": false}
-→ {"task_id": "abc123"}
-```
-
-**Step 2:** Poll for results
-
-```json
-POST /suno/tasks
-{"task_id": "abc123"}
-→ {"state": "succeeded", "data": [...]}
-```
-
-**Shortcut:** Pass `"wait": true` to block until completion (simpler but longer timeout).
-
-## Error Handling
-
-| HTTP Code | Meaning | Action |
-|-----------|---------|--------|
-| 400 | Bad request | Check request parameters |
-| 401 | Unauthorized | Check API token |
-| 403 | Forbidden | Content filtered or insufficient permissions |
-| 429 | Rate limited | Wait and retry with backoff |
-| 500 | Server error | Retry or contact support |
-
-Error response format:
-
-```json
-{
-  "error": {
-    "code": "token_mismatched",
-    "message": "Invalid or expired token"
-  }
-}
-```
-
-## Billing
-
-- Each API call deducts from your **subscription balance** (remaining_amount)
-- Cost varies by service, model, and usage (tokens, requests, data size)
-- Check balance at [platform.acedata.cloud](https://platform.acedata.cloud)
-- Most services offer free trial quota
-
-## Service Categories
-
-| Category | Services | Base Path |
-|----------|----------|-----------|
-| **AI Chat** | GPT, Claude, Gemini, DeepSeek, Grok | `/v1/chat/completions` |
-| **Image Gen** | Midjourney, Flux, Seedream, NanoBanana | `/midjourney/*`, `/flux/*`, etc. |
-| **Video Gen** | Luma, Sora, Veo, Kling, Hailuo, Seedance | `/luma/*`, `/sora/*`, etc. |
-| **Music Gen** | Suno, Producer, Fish Audio | `/suno/*`, `/producer/*`, `/fish/*` |
-| **Search** | Google Search (web/images/news/maps) | `/serp/*` |
-| **Face** | Analyze, beautify, swap, cartoon, age | `/face/*` |
-| **Utility** | Short URL, QR Art, Headshots | `/short-url`, `/qrart/*`, `/headshots/*` |
-
-## Gotchas
-
-- Tokens are **service-scoped** by default — create a global token if you need cross-service access
-- Async APIs return a `task_id` — you must poll to get the result
-- `wait: true` is convenient but has a timeout limit (typically 60–120s)
-- Rate limits vary by service tier — upgrade your plan if hitting limits
-- All timestamps are in UTC
+The [AceDataCloud account console](https://platform.acedata.cloud) shows
+balance and usage. Share a task or trace ID with [support](mailto:dev@acedata.cloud),
+never your API key. For service-specific examples, see
+[@acedatacloud/suno](https://clawhub.ai/acedatacloud/skills/suno),
+[@acedatacloud/nano-banana](https://clawhub.ai/acedatacloud/skills/nano-banana),
+and [@acedatacloud/ai-chat](https://clawhub.ai/acedatacloud/skills/ai-chat).

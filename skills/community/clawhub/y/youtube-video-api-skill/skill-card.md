@@ -1,44 +1,55 @@
-## Description: <br>
-This skill helps users automatically extract channel-level and video detail data from a specific YouTube channel via BrowserAct API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users extract channel-level and video detail data from a specific YouTube channel via the BrowserAct API.
 
-## Publisher: <br>
-[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif)
 
-## Use Case: <br>
-External users, developers, and content operations teams use this skill to collect structured YouTube channel and video metrics for competitor tracking, creator research, reporting, and content strategy analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the target YouTube channel URL and workflow parameters to BrowserAct. <br>
-Mitigation: Use it only when BrowserAct is an acceptable third-party service for the data being processed. <br>
-Risk: The skill requires a BrowserAct API key. <br>
-Mitigation: Provide BROWSERACT_API_KEY through a secure environment or secret manager, use a dedicated or revocable key, and avoid pasting secrets into chat. <br>
-Risk: Browser automation tasks can take several minutes or fail because of network or service conditions. <br>
-Mitigation: Monitor the timestamped status logs, retry once for non-authorization failures, and stop on invalid or expired authorization. <br>
+## Use Case:
 
+Developers, analysts, and content operations teams use this skill to retrieve structured YouTube channel and video metrics for competitor tracking, creator research, reporting, market research, and content strategy analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccmagia2-gif/youtube-video-api-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/ccmagia2-gif) <br>
-- [BrowserAct integrations console](https://www.browseract.com/reception/integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal status logs followed by structured YouTube channel and video data returned as text or JSON-like content from BrowserAct.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python and BROWSERACT_API_KEY; accepts a YouTube channel URL and optional video ordering mode: Latest, Popular, or Earliest.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The BrowserAct API key could be exposed if pasted into an agent conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the key through BROWSERACT_API_KEY or a protected secret mechanism, and rotate any key previously shared in chat.
+
+Risk: The target YouTube channel URL and selected video type are sent to BrowserAct.
+
+Mitigation: Use the skill only when sharing those inputs with BrowserAct is acceptable for the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccmagia2-gif/skills/youtube-video-api-skill)
+- [BrowserAct integrations console](https://www.browseract.com/reception/integrations)
+- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal status logs followed by structured YouTube channel and video data as text or JSON returned by the BrowserAct API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; accepts a YouTube channel URL and an optional video ordering mode of Latest, Popular, or Earliest.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,62 @@
-## Description: <br>
-分析A股大小盘风格轮动，通过中证2000与沪深300的相对强弱差值判断风格偏向与切换信号。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分析A股大小盘风格轮动，通过中证2000与沪深300的相对强弱差值判断风格偏向与切换信号。
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and analysts use this skill to produce an A-share large-cap versus small-cap style-rotation report from DaxiAPI market style data. It supports style positioning, trend analysis, and extreme-zone mean-reversion context, but not individual stock, sector, bond, futures, FX, intraday, or automated trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DaxiAPI tokens can be exposed through shared chats, logs, repositories, backups, synced dotfiles, or persistent local CLI configuration. <br>
-Mitigation: Trust the DaxiAPI CLI before installation, prefer temporary environment variables where practical, avoid sharing tokens, and delete or rotate any token that may have been exposed. <br>
-Risk: The skill depends on an external CLI package and API for market data. <br>
-Mitigation: Review the `npx daxiapi-cli@latest` commands before execution and confirm that the configured token and data source are appropriate for the environment. <br>
-Risk: Style-rotation analysis may be overinterpreted as investment advice or as a guaranteed prediction. <br>
-Mitigation: Keep the report conclusion tied to observed spread, percentile, and trend data, include the artifact's disclaimer, and avoid absolute language about future market moves. <br>
-Risk: Data is updated after market close and is not suitable for intraday signals or automated trading. <br>
-Mitigation: Use the output as post-close analytical context only and do not present it as real-time trading guidance. <br>
+## Use Case:
 
+External users and analysts use this skill to retrieve DaxiAPI market-style data and generate a concise A-share large-cap versus small-cap rotation report. It supports style-bias assessment, trend review, and extreme-spread risk framing, but not individual stock, sector, bond, or intraday trading analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ksky521/xiapi-style-rotation) <br>
-- [CLI 命令参考](references/cli-commands.md) <br>
-- [Token 配置指南](references/token-setup.md) <br>
-- [字段说明和名词解释](references/field-descriptions.md) <br>
-- [DaxiAPI](https://daxiapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and structured analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DaxiAPI market style data and should include concrete spread values, percentile context, trend evidence, and a risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks users to run a mutable npm CLI with @latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed DaxiAPI CLI version before installing or running the command.
+
+Risk: API tokens may be exposed if entered directly on the command line or repeated in logs or chat context.
+
+Mitigation: Prefer environment variables or reviewed local configuration, avoid sharing real token values, and prevent the agent from printing or storing tokens.
+
+Risk: The scanner verdict is suspicious because the skill combines external CLI execution with credential handling.
+
+Mitigation: Review the skill and DaxiAPI CLI source before installation and use it only if the CLI source is trusted.
+
+## Reference(s):
+
+- [CLI 命令参考](references/cli-commands.md)
+- [Token 配置指南](references/token-setup.md)
+- [字段说明](references/field-descriptions.md)
+- [DaxiAPI](https://daxiapi.com)
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-style-rotation)
+- [Publisher profile](https://clawhub.ai/user/ksky521)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market spread values, historical percentiles, trend interpretation, risk disclaimer, and token setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

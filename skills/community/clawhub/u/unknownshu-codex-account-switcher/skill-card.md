@@ -1,42 +1,61 @@
-## Description: <br>
-Query OpenAI Codex OAuth account quotas in OpenClaw, switch the preferred account by email/profile id, and optionally auto-switch when 5h quota drops below a threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codex Account Switcher helps agents query OpenAI Codex OAuth quotas in OpenClaw, switch the preferred account by email or profile id, and optionally auto-switch when the 5-hour quota falls below a threshold.
 
-## Publisher: <br>
-[unknown-shu](https://clawhub.ai/user/unknown-shu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unknown-shu](https://clawhub.ai/user/unknown-shu)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw OpenAI Codex OAuth profile quota, switch the preferred Codex account, sync an explicit Codex CLI login, and configure quota-aware failover. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles OAuth credentials and local OpenClaw/Codex auth files. <br>
-Mitigation: Install only on machines where OpenClaw should manage Codex profiles, keep auth files private, review file permissions and backups, and run dry-run commands before making changes. <br>
-Risk: Imported Codex CLI credentials may be promoted to the first OpenClaw profile if the operator chooses that behavior. <br>
-Mitigation: Use --no-set-first when importing credentials that should not become the preferred profile. <br>
-Risk: Optional notifications can expose account status through a NapCat configuration. <br>
-Mitigation: Enable notifications only with a trusted NapCat sendUrl and access token, and review logs or screenshots before sharing them. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to inspect Codex OAuth account quota status, reorder the preferred OpenClaw openai-codex profile, sync a Codex CLI login into OpenClaw, and automate quota-aware account failover.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unknown-shu/unknownshu-codex-account-switcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-capable command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and openclaw; operates on local OpenClaw and Codex auth configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill reads OpenClaw and Codex OAuth credential files and can persist OAuth credentials into OpenClaw profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that credential access is acceptable, verify auth directory file permissions, and use dry-run modes before writing changes.
+
+Risk: Quota checks send OAuth access tokens to ChatGPT's usage endpoint.
+
+Mitigation: Run the quota and auto-switch scripts only with accounts and network paths approved for ChatGPT usage queries.
+
+Risk: Account switching changes the OpenClaw openai-codex account order and may affect which account the agent uses.
+
+Mitigation: Preview switches with --dry-run, confirm the target email or profile id, and review the OpenClaw auth-state file after changes when operating shared agents.
+
+Risk: The sync command creates local credential backups that may retain sensitive OAuth material.
+
+Mitigation: Remove stale .bak credential files when they are no longer needed and avoid committing auth files, logs, screenshots, or account emails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unknown-shu/skills/unknownshu-codex-account-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; bundled scripts emit human-readable text or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and openclaw; some commands read local OpenClaw/Codex OAuth state and may write OpenClaw auth profile or account order files.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,19 @@
+# Pricing Presentation - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+product_name: ""
+pricing_model: "per seat per month"
+currency: USD
+tiers:
+  - name: ""
+    monthly_price_usd: ""
+    included: ""
+    excluded: ""
+    min_seats: ""
+cta_base_url: ""
+cta_label: ""
+channel: ""
+slides:
+  - headline: ""
+    body: ""
+disclosures:
+  - ""

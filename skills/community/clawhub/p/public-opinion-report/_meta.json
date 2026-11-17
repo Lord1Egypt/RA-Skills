@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7c531yf93g9ana1pet4dt0g1842s1k",
+  "owner": "Midu",
   "slug": "public-opinion-report",
-  "version": "0.0.5",
-  "publishedAt": 1775123966401
+  "displayName": "Public Opinion Report",
+  "latest": {
+    "version": "0.0.5",
+    "publishedAt": 1775000000000,
+    "commit": ""
+  },
+  "history": []
 }

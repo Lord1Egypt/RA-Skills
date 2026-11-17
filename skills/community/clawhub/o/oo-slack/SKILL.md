@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Slack"
   author: "OOMOL"
-  version: "1.0.3"
+  version: "1.0.13"
   services: ["slack"]
   icon: "https://static.oomol.com/logo/third-party/Slack.svg"
 ---
@@ -35,29 +35,55 @@ oo connector run "slack" --action "<action_name>" --data '<json>' --json
 
 Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
 
+### Preserve multiline message text
+
+Slack renders real newline characters in `text`; it renders literal backslash-n
+characters as `\n`. Keep one JSON-encoding boundary:
+
+- Before serialization, message text must contain actual LF characters.
+- In serialized JSON, each intended newline appears as `\n`. If it appears as
+  `\\n`, it has been double-escaped and Slack will display `\n`.
+- When passing raw JSON to `--data`, write the JSON newline escape exactly once.
+
+```bash
+oo connector run "slack" \
+  --action "post_message" \
+  --data '{"channelId":"C123","text":"First paragraph.\n\nSecond paragraph."}' \
+  --json
+```
+
+If visible formatting matters, read the posted message back and confirm that
+`text` contains line breaks rather than literal `\n` characters.
+
 ## Available actions
 
 - `add_reaction` — Add an emoji reaction to a Slack message. [write]
+- `conversations_members` — List one page of member user IDs for a Slack conversation.
 - `delete_file` — Delete a Slack file. [destructive]
-- `delete_message` — Delete a Slack message posted by the bot. [destructive]
+- `delete_message` — Delete a Slack message posted through this connection. [destructive]
+- `download_file` — Download a Slack-hosted file into Connector file transit storage using the connected identity's access.
 - `get_channel_messages` — Get recent messages from a Slack conversation.
 - `get_conversation` — Get metadata for a Slack conversation.
+- `get_current_user` — Get the workspace and user identity of the connected Slack credential.
 - `get_file` — Get metadata for a Slack file.
 - `get_message_permalink` — Get a permalink for a Slack message.
 - `get_reactions` — Get reactions for a Slack message.
 - `get_thread` — Get messages in a Slack thread.
 - `get_user` — Get metadata for a Slack user.
-- `list_channels` — List Slack public channels visible to the bot.
-- `list_conversations` — List Slack conversations visible to the bot.
-- `list_files` — List Slack files visible to the bot, optionally filtered by channel or user.
-- `list_users` — List Slack users visible to the bot.
+- `list_channels` — List Slack public channels visible to the connected Slack identity.
+- `list_conversations` — List Slack conversations visible to the connected Slack identity.
+- `list_files` — List Slack files visible to the connected Slack identity, optionally filtered by channel or user.
+- `list_reactions` — List the messages and files a Slack user reacted to, with the reactions on each. Defaults to the connected user.
+- `list_users` — List Slack users visible to the connected Slack identity.
 - `open_conversation` — Open or resume a direct message with one Slack user. [write]
 - `post_ephemeral_message` — Post an ephemeral Slack message visible only to one user in a conversation. [write]
 - `post_message` — Post a Slack message. Use text for plain messages, or blocks for rich Block Kit layouts with text as fallback. [write]
 - `remove_reaction` — Remove an emoji reaction from a Slack message. [destructive]
 - `reply_message` — Reply to a Slack thread. Use text, blocks, or attachments for the reply content. [write]
 - `schedule_message` — Schedule a Slack message to be posted later. Use text or blocks for the scheduled content. [write]
-- `update_message` — Update a Slack message posted by the bot. Provide text, blocks, or attachments as the new message content. [write]
+- `search_context` — Search Slack messages with the granular Real-time Search API.
+- `search_messages` — Search messages visible to the Slack user who authorized the connection. Slack search modifiers such as in:channel_name and from:<@UserID> are supported.
+- `update_message` — Update a Slack message posted through this connection. Provide text, blocks, or attachments as the new message content. [write]
 - `upload_file` — Upload a file to Slack using the current external upload flow. Provide fileUrl; binary content is fetched by the connector runtime. [write]
 
 ## Safety
@@ -89,11 +115,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Slack is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=slack
+  https://console.oomol.com/connections/slack
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Slack homepage: https://slack.com
+- API documentation: https://docs.slack.dev/apis/web-api/

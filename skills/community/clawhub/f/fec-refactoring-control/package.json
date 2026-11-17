@@ -1,0 +1,39 @@
+{
+  "name": "@bovinphang/fec-refactoring-control",
+  "version": "2.9.0",
+  "description": "Use when behavior-preserving frontend refactoring focuses on conditional complexity, repeated branches, guards, special cases, or internal invariants, and the selected technique needs family-specific mechanics, risks, and JavaScript/TypeScript/React/Vue adaptation.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-refactoring-control"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "refactoring",
+    "conditionals",
+    "guard-clauses",
+    "polymorphism"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

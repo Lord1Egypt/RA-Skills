@@ -1,0 +1,44 @@
+{
+  "name": "@yottameta/yotta-humanize",
+  "version": "0.2.5",
+  "description": "Yuanzhen (元真) — a Chinese AI-flavor checker and rewriter: paste a draft, get a 0-100 score, then apply deterministic rewrites for clichés, AI jargon, mechanical parallelism, and chat residue. Local, zero-dependency, no model calls. Text-only; facts and proper nouns are not rewritten.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-humanize",
+    "ai-writing",
+    "chinese-writing",
+    "de-ai-flavor",
+    "text-rewrite"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "README.zh-CN.md",
+    "!scripts/test_*.py",
+    "!scripts/__pycache__",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-humanize.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-humanize": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" && python scripts/test_yotta_humanize.py"
+  }
+}

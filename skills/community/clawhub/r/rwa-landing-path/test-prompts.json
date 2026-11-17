@@ -1,0 +1,80 @@
+{
+  "skill": "rwa-landing-path",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我们有一批充电桩想做 RWA 上链融资，第一步该怎么走、帮我出一份排期表。",
+      "expected_behavior": "应激活 rwa-landing-path，按六构件评估资格并排十环节（A–J）落地路线图。",
+      "notes": "正面场景：实体资产 RWA 落地，典型 S8 信号。"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "境内光伏资产怎么合规出海、香港沙盒怎么接？",
+      "expected_behavior": "应激活 rwa-landing-path，画出境内 A–G 与境外 H–J 双层路径并钉死止步点。",
+      "notes": "正面场景：境内资产合规出海，description 明确信号。"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "这个农产品能不能代币化、具体流程是什么？",
+      "expected_behavior": "应激活 rwa-landing-path，用六构件判别资格并给十环节流程。",
+      "notes": "正面场景：资产能否代币化及流程，正面触发。"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "境内 RWA 做到哪一步必须停、境外从哪一步开始？",
+      "expected_behavior": "应激活 rwa-landing-path，在路线图钉死境内止步点（G 之后）与境外衔接点（H 之前）。",
+      "notes": "正面场景：境内止步点/境外衔接点，S8 核心边界。"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "帮我排一份从资产识别到发行的十环节落地路线图。",
+      "expected_behavior": "应激活 rwa-landing-path，按 A–J 排程并标注负责人与合规节点。",
+      "notes": "正面场景：端到端十环节排期，直接命中。"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "某句说法/某个设计算不算踩境内金融红线？",
+      "expected_behavior": "不应激活本 skill，应转 S2 合规边界红线检查（本 skill 假定红线已确认）。",
+      "notes": "诱饵：纯红线判读属 S2，S8 不做生死闸门。"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我们项目属于原生型、产业变革型还是链改-资产支持型，组织形态怎么选？",
+      "expected_behavior": "不应激活本 skill，应转 S3 三类主导模式判别器（模式未定无法精准排程）。",
+      "notes": "诱饵：主导模式定性属 S3，S8 在模式结论上排程。"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "香港 Ensemble 沙盒、SPV、QFLP 的申报细则和材料怎么填？",
+      "expected_behavior": "不应激活本 skill，应转 S10 监管范式与香港沙盒路径（S8 只把 H–J 作衔接点）。",
+      "notes": "诱饵：沙盒/SPV 申报细节属 S10，S8 不深入。"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们已在境内联盟链存证了数据资产，想进一步出海发币跨境融资，整体怎么走？",
+      "expected_behavior": "应触发 S8 画整体路线图（含 H–J 占位与备案前置硬门槛），但沙盒/SPV 申报细节提示转 S10；属 S8 与 S10 重叠区，需说明分工。",
+      "notes": "边界：整体排期(S8) vs 跨境桥接细节(S10)，本案主用 S8 画全图。"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "地方政府想做农产品数字资产上链溯源、不涉及融资，走 RDA 还是 RWA？",
+      "expected_behavior": "可触发 S8 用六构件评估资格：若无稳定现金流/融资意图，结论应判走 RDA（非金融）而非 RWA，并提示 S2 复核。",
+      "notes": "边界：非金融数字化(RDA) vs 金融化(RWA)，S8 步骤1六构件可判别资格。"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

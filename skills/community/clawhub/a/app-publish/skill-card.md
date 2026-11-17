@@ -1,47 +1,64 @@
-## Description: <br>
-Automates video uploads and optional publishing to Kuaishou, Bilibili, and Douyin through a logged-in Chrome browser using TXT-based video metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates video upload and posting to Kuaishou, Bilibili, and Douyin through Chrome browser scripts, including title, cover, keyword entry, and login checks.
 
-## Publisher: <br>
-[xiaohei2022](https://clawhub.ai/user/xiaohei2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohei2022](https://clawhub.ai/user/xiaohei2022)
 
-## Use Case: <br>
-Content operators and developers use this skill to prepare, preview, and publish short-form videos across Kuaishou, Bilibili, and Douyin from a single text configuration file. It is most useful when the user already has valid platform accounts, local video assets, and an authenticated Chrome profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish real videos from logged-in accounts. <br>
-Mitigation: Run with --no-publish first, verify each platform form in the browser, and avoid publish-all until every target flow has been checked. <br>
-Risk: The skill controls a logged-in Chrome browser through a local debugging port. <br>
-Mitigation: Use a dedicated Chrome profile, keep the debugging port bound to localhost, and close the browser session when publishing is complete. <br>
-Risk: The release includes under-disclosed stealth browser automation. <br>
-Mitigation: Confirm that this behavior is acceptable for the target platforms and organization before deployment. <br>
-Risk: Debug HTML snapshots or browser artifacts may contain account or draft content. <br>
-Mitigation: Delete debug snapshots after troubleshooting and avoid storing them in shared locations. <br>
+## Use Case:
 
+Creators and operators use this skill to fill video metadata, upload video and cover files, and publish or preview posts across Kuaishou, Bilibili, and Douyin from a TXT configuration file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohei2022/app-publish) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Test report](artifact/TEST_REPORT.md) <br>
-- [Kuaishou flow test report](artifact/TEST_REPORT_2026-04-03.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may control a local Chrome browser over the Chrome DevTools Protocol and can publish content unless run with --no-publish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can publish video posts to logged-in creator accounts by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run commands with --no-publish first, review the browser state manually, and only publish after each platform workflow is verified.
+
+Risk: The Kuaishou workflow can discard an existing draft or cached draft prompt while preparing a post.
+
+Mitigation: Use an isolated Chrome profile or manually review the Kuaishou page before running full publishing commands.
+
+Risk: Credential-bearing proxy URLs may be exposed if proxy environment variables are logged.
+
+Mitigation: Avoid credential-bearing proxy URLs unless logs are protected or the skill is updated to redact proxy values.
+
+Risk: The skill reuses logged-in Chrome sessions, which can affect active creator account state.
+
+Mitigation: Use a dedicated Chrome user data directory for testing and clear or isolate the profile when account session reuse is not desired.
+
+## Reference(s):
+
+- [ClawHub App Publish Listing](https://clawhub.ai/xiaohei2022/skills/app-publish)
+- [Kuaishou Creator Service Platform](https://cp.kuaishou.com/)
+- [Bilibili Video Upload](https://member.bilibili.com/platform/upload/video/frame)
+- [Douyin Creator Upload](https://creator.douyin.com/creator-micro/content/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with CLI commands and JSON status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads TXT configuration files and supports --no-publish preview runs before posting.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Master OpenClaw's timing systems. Use for scheduling reliable reminders, setting up periodic maintenance (janitor jobs), and understanding when to use Cron vs Heartbeat for time-sensitive tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master OpenClaw's timing systems. Use for scheduling reliable reminders, setting up periodic maintenance (janitor jobs), and understanding when to use Cron vs Heartbeat for time-sensitive tasks.
 
-## Publisher: <br>
-[wt865143010](https://clawhub.ai/user/wt865143010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wt865143010](https://clawhub.ai/user/wt865143010)
 
-## Use Case: <br>
-Developers and operators use this skill to choose reliable OpenClaw scheduling patterns for reminders, recurring jobs, cleanup tasks, and timezone-sensitive automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example reminder payloads include a hard-coded Telegram recipient. <br>
-Mitigation: Replace example delivery destinations with channels and recipients controlled by the user before scheduling notifications. <br>
-Risk: Recurring summaries may access mailbox contents or send email-derived content to third-party delivery channels. <br>
-Mitigation: Schedule email summaries only after explicit user consent for mailbox access and the selected delivery channel. <br>
-Risk: Manual cron state-file deletion can remove active reminders or damage scheduler state. <br>
-Mitigation: Back up scheduler state and prefer normal job listing and deletion workflows before deleting cron state files manually. <br>
+## Use Case:
 
+Developers and agent operators use this skill to choose precise cron scheduling over drifting heartbeat checks, create reliable reminders, configure maintenance jobs, and migrate older scheduling patterns.
 
-## Reference(s): <br>
-- [Cron Examples & Templates](references/templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/wt865143010/cron-mastery-1-0-3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduling recommendations and example cron job payloads; does not execute jobs by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples can route reminders and email summaries to a fixed Telegram recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the recipient with a verified user-controlled destination or disable external delivery before using the examples.
+
+Risk: Cleanup guidance may remove the cron jobs state file and cause loss of scheduled jobs.
+
+Mitigation: Back up the cron jobs state file and confirm that losing scheduled jobs is acceptable before deleting it.
+
+Risk: Email-summary workflows may read email and send summaries externally.
+
+Mitigation: Review data access and destination settings before enabling email summaries or other external delivery workflows.
+
+## Reference(s):
+
+- [Cron Examples & Templates](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reminder, maintenance, recurring task, timezone, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

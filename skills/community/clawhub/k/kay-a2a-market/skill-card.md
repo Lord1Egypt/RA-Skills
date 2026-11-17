@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents and developers publish, discover, price, purchase, and manage AI skills on A2A Market using wallet-based authentication, marketplace credits, and x402 USDC payment flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+连接 MetaMask 钱包，将 AI 技能信息提交至 A2A Market，并通过 gas 费用和加密货币结算完成技能上架发布。
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare A2A Market listings, search marketplace skills, manage account credits and rewards, estimate pricing, and purchase skill content through credits or wallet-backed payment flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with wallet credentials and marketplace payment paths. <br>
-Mitigation: Use a dedicated low-balance wallet, keep main wallet private keys out of the environment, and require explicit human approval before credit or crypto purchases. <br>
-Risk: The security verdict flags the release for review because spending and wallet operations have limited user safeguards. <br>
-Mitigation: Review all artifact files and configure conservative spending limits before running client or CLI purchase flows. <br>
-Risk: Publishing flows can push skill content to ClawHub or GitHub. <br>
-Mitigation: Review files, metadata, and changelog text before publishing or sharing the package. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover, list, price, purchase, and manage A2A Market skills through marketplace guidance, API examples, CLI commands, and wallet-signed client workflows.
 
-## Reference(s): <br>
-- [A2A Market API Reference](artifact/references/api.md) <br>
-- [A2A Market](https://a2a.market) <br>
-- [A2A Market Live](https://a2amarket.live) <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/kay-a2a-market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API request payloads, marketplace listing metadata, pricing suggestions, and local CLI command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Wallet private keys, wallet signatures, and marketplace endpoints can authorize account, listing, or payment actions if used with untrusted code or an unintended API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installation, keep A2A_MARKET_API_URL pinned to the intended API, and do not provide a wallet private key unless the code and endpoint are trusted.
+
+Risk: Purchase and publishing flows can spend funds, consume credits, or make skill content public before a user has fully reviewed the action.
+
+Mitigation: Require explicit confirmation for purchases and one-shot publishing commands, and inspect exactly what will be purchased or published before running them.
+
+Risk: Saved agent identifiers and referral data may be reused by local scripts.
+
+Mitigation: Protect or rotate any saved agent ID and avoid sharing local credential or identifier files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/kay-a2a-market)
+- [Publisher profile](https://clawhub.ai/user/shenghoo123-png)
+- [A2A Market](https://a2amarket.live)
+- [A2A Market API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Bash commands, JSON examples, and Python/Bash client code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes marketplace API examples, wallet-signature flows, local CLI usage, and publishing guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

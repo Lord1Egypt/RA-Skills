@@ -1,40 +1,52 @@
-## Description: <br>
-Book beauty services through Lokuli MCP for haircuts, barber visits, hair salons, nails, makeup, spa treatments, and related beauty service requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book beauty services through Lokuli MCP for haircuts, barbers, salons, nails, makeup, spa treatments, and related beauty-service requests.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for beauty service providers, compare options and pricing, check availability, and create a booking after explicit approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Lokuli's external service to search for providers and create bookings. <br>
-Mitigation: Install only if external service use is acceptable, and review provider, service, time, price, and contact detail sharing before booking. <br>
-Risk: Booking creation may share customer name, email, and phone number with the service. <br>
-Mitigation: Require explicit user approval before creating a booking or submitting contact details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Beauty ClawHub page](https://clawhub.ai/edwardrodriguez703-design/book-beauty) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search for beauty-service providers, review pricing and availability, and create a booking after explicit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown with JSON-RPC request examples and booking guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external MCP service for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Beauty-service search details, ZIP code, appointment choices, and booking contact information can be shared with Lokuli or a selected provider.
+
+Mitigation: Review provider, service, time, price, and contact details before confirming a booking.
+
+Risk: A booking could be created for the wrong provider, service, time, price, or customer contact details.
+
+Mitigation: Require explicit user approval after presenting the full booking details and before calling create_booking.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP tool-call arguments and booking details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider search results, pricing, availability, user confirmation prompts, and checkout links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

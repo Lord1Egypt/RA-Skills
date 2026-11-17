@@ -1,45 +1,58 @@
-## Description: <br>
-LinkedIn automation skill for searching people and companies, fetching profiles, sending messages and InMails, managing connections, creating posts, reacting, commenting, and using Sales Navigator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn automation skill for searching people and companies, fetching profiles, sending messages and InMails, managing connections, creating posts, reacting, commenting, and using Sales Navigator.
 
-## Publisher: <br>
-[vprudnikoff](https://clawhub.ai/user/vprudnikoff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vprudnikoff](https://clawhub.ai/user/vprudnikoff)
 
-## Use Case: <br>
-External users and developers use this skill to operate a connected LinkedIn account through the Linked API CLI for prospecting, profile and company research, messaging, content posting, engagement, account management, Sales Navigator, and custom workflow automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent broad authority over a real LinkedIn account, including messages, InMails, connection changes, posts, comments, reactions, resets, and custom workflows. <br>
-Mitigation: Require explicit user approval before any account-changing action and confirm the target account, recipient, content, and intended effect. <br>
-Risk: Linked API tokens and identification tokens can expose account access if pasted into chat, logs, or shared files. <br>
-Mitigation: Handle tokens outside chat when possible, avoid logging credentials, verify how to revoke access, and reset credentials if exposure is suspected. <br>
-Risk: Installing and using the third-party CLI depends on the npm package and Linked API provider. <br>
-Mitigation: Verify the npm package, publisher, and provider account before installation or authentication. <br>
-Risk: Automation runs through real LinkedIn operations that may queue, take minutes, hit rate limits, or affect subscriptions and account status. <br>
-Mitigation: Check command success fields, monitor workflow status, respect account limits, and stop automation when account or rate-limit errors occur. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Linked API dashboard](https://app.linkedapi.io) <br>
-- [Linked API workflow schema documentation](https://linkedapi.io/docs/building-workflows/) <br>
-- [ClawHub skill listing](https://clawhub.ai/vprudnikoff/linkedapi-linkedin) <br>
+## Use Case:
 
+External users and developers use this skill to direct an agent through Linked API's LinkedIn CLI for profile research, company research, outreach, content posting, engagement, connection management, analytics, and Sales Navigator workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can perform live LinkedIn account actions, require Linked API tokens, and may take 30 seconds to several minutes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can cause a third-party Linked API cloud browser to act on a user's LinkedIn account.
+
+Mitigation: Require explicit confirmation before messages, posts, comments, reactions, connection changes, company-page actions, or custom workflows.
+
+Risk: The skill requires Linked API and identification tokens that grant account access through the linked service.
+
+Mitigation: Treat both tokens as secrets, avoid entering them in chat or shell history, and revoke and rotate them if exposed.
+
+Risk: The global third-party CLI performs live LinkedIn actions without enough safety scoping in the evidence.
+
+Mitigation: Pin and audit the CLI before use and install only when comfortable with the third-party service operating the account.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vprudnikoff/skills/linkedapi-linkedin)
+- [Linked API Workflow Documentation](https://linkedapi.io/docs/building-workflows/)
+- [Linked API Application Dashboard](https://app.linkedapi.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI command examples and JSON response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI actions may take 30 seconds to several minutes and should use machine-readable JSON output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

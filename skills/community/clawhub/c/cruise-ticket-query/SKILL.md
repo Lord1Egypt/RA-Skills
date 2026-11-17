@@ -1,17 +1,18 @@
 ---
-name: cruise-ticket-query
+name: 游轮船票查询
 display_name: 游轮船票查询
-description: 长江三峡游轮和城市游船船票查询，含价格、航线方向和退改政策，附带去码头交通（地铁优先）、景点门票和住宿推荐，多旅游平台数据直连，零配置即装即用。
+version: 1.0.12
+description: 长江三峡游轮和城市游船船票查询，含价格、航线方向和退改政策，附带去码头交通（地铁优先）、景点门票和住宿推荐，多旅游平台数据直连，零配置即装即用。暑假邮轮票查询比价，多平台对比省钱
 tags: [游轮, 三峡游轮, 游轮船票, 黄浦江游船, 城市游船]
 tools:
-  - name: search_cruise
+  - name: searchCruise
     description: 查询游轮船票信息，包括游轮名、价格、航线方向和退改政策
     parameters:
-      - name: scenic_name
+      - name: scenicName
         type: string
         description: 游轮线路名，如"长江三峡游轮"、"黄浦江游船"、"重庆游船"
         required: true
-  - name: query_transport
+  - name: queryTransport
     description: 查询从出发地到游轮码头的交通方式，地铁优先展示，还有公交和打车预估
     parameters:
       - name: origin
@@ -26,7 +27,7 @@ tools:
         type: string
         description: 所在城市，如"重庆"、"宜昌"
         required: true
-  - name: recommend_attraction
+  - name: recommendAttraction
     description: 推荐游轮出发地或目的地城市的热门景点，含门票价格和预订链接
     parameters:
       - name: city
@@ -37,7 +38,7 @@ tools:
         type: string
         description: 景点关键词，如"洪崖洞""大坝"，不填则推荐城市热门景点
         required: false
-  - name: recommend_hotel
+  - name: recommendHotel
     description: 用自然语言描述住宿需求，AI智能匹配高分酒店并返回推荐和预订链接
     parameters:
       - name: query

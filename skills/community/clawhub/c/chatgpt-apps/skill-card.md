@@ -1,38 +1,53 @@
-## Description: <br>
-Complete ChatGPT Apps builder - Create, design, implement, test, and deploy ChatGPT Apps with MCP servers, widgets, auth, database integration, and automated deployment <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete ChatGPT Apps builder - Create, design, implement, test, and deploy ChatGPT Apps with MCP servers, widgets, auth, database integration, and automated deployment
 
-## Publisher: <br>
-[hollaugo](https://clawhub.ai/user/hollaugo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hollaugo](https://clawhub.ai/user/hollaugo)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, generate, validate, test, and deploy ChatGPT Apps with MCP tools, widgets, authentication, database integration, and deployment configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated deployment, authentication, or database configuration could expose endpoints or credentials if used without review. <br>
-Mitigation: Review deployment settings before release, enable authentication where needed, and keep service-role keys server-side. <br>
-Risk: Generated tools may include destructive actions or insufficient user isolation if app-specific behavior is not checked. <br>
-Mitigation: Review tool annotations for destructive behavior and verify database user isolation and row-level security before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and builders use this skill to plan, implement, validate, test, and deploy ChatGPT Apps with MCP servers, widgets, authentication, database integration, and deployment guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and generated project file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate application scaffolding, validation reports, deployment configuration, and implementation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: App creation and deployment workflows may involve credentials such as client secrets, Supabase service role keys, or production deployment settings.
+
+Mitigation: Use environment variables or a secrets manager, avoid pasting production credentials into chat or committed files, and review configuration before deployment.
+
+Risk: Deployment guidance may publish public URLs or update live service targets.
+
+Mitigation: Review deployment targets, generated configuration, and public endpoints before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hollaugo/skills/chatgpt-apps)
+- [Skill homepage](https://github.com/hollaugo/prompt-circle-claude-plugins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration examples, and generated project file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce app scaffolding, MCP server code, widget HTML, authentication and database configuration, golden prompts, validation steps, and deployment commands.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

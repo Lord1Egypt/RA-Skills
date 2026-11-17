@@ -1,41 +1,54 @@
-## Description: <br>
-Continuous learning protocol for Claude that captures corrections, errors, and user preferences into native auto-memory so the next session remembers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous learning protocol for Claude that captures corrections, errors, and user preferences into native auto-memory so the next session remembers.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-Developers and Claude Code users use Learnloop to preserve high-value corrections, preferences, project facts, and reference pointers across sessions. It helps agents decide when to save a memory, classify it, update the MEMORY.md index, and verify recalled facts before acting on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist preferences, corrections, and project context into future sessions, including sensitive information if saved carelessly. <br>
-Mitigation: Do not save secrets, credentials, regulated data, sensitive personal details, or confidential business context unless retention is intentional; periodically review, edit, or delete saved memories. <br>
-Risk: Outdated or incorrect memories can influence later agent behavior. <br>
-Mitigation: Verify file paths, commands, symbols, and repo state before acting on recalled memories, and update or delete stale entries. <br>
+## Use Case:
 
+Developers and agent users use Learnloop to help Claude Code capture corrections, failed command lessons, user preferences, project constraints, and external references as local memories for future sessions.
 
-## Reference(s): <br>
-- [Learnloop ClawHub page](https://clawhub.ai/skills/learnloop) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown memory entries and concise status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local Claude Code memory files and updates the MEMORY.md index when a memory is saved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill writes auto-loaded future-session memories from broad conversation cues without requiring explicit per-item approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to ask before saving each memory, avoid storing sensitive personal, business, credential, or private system details, and periodically inspect and delete stale memory entries.
+
+Risk: Stale memories can mislead future work if paths, commands, or project facts change.
+
+Mitigation: Verify recalled paths, functions, flags, and repo state against the current workspace before acting, then update or delete stale memories.
+
+## Reference(s):
+
+- [Learnloop ClawHub homepage](https://clawhub.ai/skills/learnloop)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown status messages with file paths and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Claude project memory files and MEMORY.md entries when activated.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

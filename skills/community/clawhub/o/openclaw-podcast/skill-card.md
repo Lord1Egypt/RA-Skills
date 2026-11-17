@@ -1,45 +1,64 @@
-## Description: <br>
-Transform an OpenClaw workspace into personalized AI-powered podcast briefings about work, priorities, metrics, and strategy using Superlore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform your OpenClaw workspace into personalized AI-powered podcast briefings with daily audio updates on work, priorities, and strategy across multiple briefing styles.
 
-## Publisher: <br>
-[AdamJurgens](https://clawhub.ai/user/AdamJurgens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adamjurgens](https://clawhub.ai/user/adamjurgens)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to turn local workspace memory, job, and status files into private audio briefing episodes through Superlore. It supports manual episode generation, dry-run review, custom briefing styles, and scheduled recurring briefings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sanitized workspace summaries and derived project/profile context are transmitted to Superlore. <br>
-Mitigation: Run dry-run review before generation, keep sensitive information out of workspace memory files where possible, and install only if external transmission to Superlore is acceptable. <br>
-Risk: The setup wizard can persist the Superlore API key in a shell profile. <br>
-Mitigation: Decline shell-profile persistence unless plaintext storage is acceptable, or store the key using a local secret-management workflow instead. <br>
-Risk: Recurring briefings may repeatedly send newly derived workspace context on a schedule. <br>
-Mitigation: Inspect generated OpenClaw cron commands before enabling them and periodically review or remove scheduled jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/AdamJurgens/openclaw-podcast) <br>
-- [Publisher Profile](https://clawhub.ai/user/AdamJurgens) <br>
-- [Superlore](https://superlore.ai) <br>
-- [Superlore API Reference](references/api.md) <br>
-- [Briefing Styles Reference](references/styles.md) <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to turn workspace memory, job, heartbeat, and project files into private podcast briefings for daily or weekly review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console text with shell commands and generated episode links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce dry-run previews, OpenClaw cron commands, custom style configuration guidance, and private Superlore episode links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workspace-derived briefing data is sent to a remote Superlore API when generating episodes.
+
+Mitigation: Run a dry run first, review what will be transmitted, and enable scheduled runs only if recurring transmission is acceptable.
+
+Risk: The setup wizard can persist the Superlore API key in a shell profile.
+
+Mitigation: Prefer a temporary or manually managed API key, and avoid saving credentials to shell startup files unless that persistence is intended.
+
+Risk: Scheduled cron jobs can repeatedly generate and send briefings without further prompting.
+
+Mitigation: Review each generated cron command before activation and install only the schedules that match the user's data-sharing expectations.
+
+Risk: Custom style names with shell metacharacters may affect command construction.
+
+Mitigation: Use simple alphanumeric custom style names and inspect scheduled command output before running it.
+
+## Reference(s):
+
+- [Superlore API Reference](references/api.md)
+- [Briefing Styles Reference](references/styles.md)
+- [Superlore](https://superlore.ai)
+- [Superlore API endpoint](https://superlore-api.onrender.com)
+- [ClawHub skill page](https://clawhub.ai/adamjurgens/skills/openclaw-podcast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated podcast episode links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create private Superlore podcast episodes from sanitized workspace briefing data and can emit OpenClaw cron commands for scheduled briefings.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

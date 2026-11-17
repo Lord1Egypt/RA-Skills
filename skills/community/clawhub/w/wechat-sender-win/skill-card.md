@@ -1,42 +1,57 @@
-## Description: <br>
-Automates the Windows WeChat desktop app to search for contacts and send user-specified messages, including single-recipient and comma-separated batch sends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat Desktop for Windows with pywinauto to search contacts and send single or batch messages.
 
-## Publisher: <br>
-[cloud44552731-arch](https://clawhub.ai/user/cloud44552731-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloud44552731-arch](https://clawhub.ai/user/cloud44552731-arch)
 
-## Use Case: <br>
-External users and agent operators use this skill to drive a logged-in Windows WeChat client for contact lookup and message sending. It is intended for intentional, user-reviewed messages rather than unattended or unsolicited bulk outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script sends messages immediately from the user's logged-in WeChat account. <br>
-Mitigation: Verify the contact name and message text before execution, and test first with a harmless contact. <br>
-Risk: Batch mode can send the same message to multiple contacts in sequence. <br>
-Mitigation: Use batch sends only when every recipient is intentional and consented. <br>
-Risk: Desktop automation depends on a visible, correctly focused WeChat window and may select the first search result. <br>
-Mitigation: Keep WeChat visible, confirm search behavior in the local client, and adjust delays or contact names before sending important messages. <br>
+## Use Case:
 
+Developers and operators use this skill to run a Windows automation script that sends WeChat messages to a named contact or comma-separated contact list from a logged-in desktop session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cloud44552731-arch/wechat-sender-win) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown instructions with command-line examples and console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, a visible logged-in WeChat desktop window, Python, and pywinauto.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can automatically send WeChat messages from a logged-in account with weak recipient and window verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with contacts and message text that can be manually verified, avoid batch sending, and visibly confirm the WeChat window and recipient before execution.
+
+Risk: Search selects the first visible result, which can send a message to the wrong contact if names are ambiguous or search timing is unreliable.
+
+Mitigation: Prefer an implementation with exact recipient matching, preview or confirmation before send, and conservative search delays.
+
+Risk: Unpinned dependencies and UI automation behavior can change across WeChat, Windows, or pywinauto versions.
+
+Mitigation: Pin dependencies and test the workflow on the target Windows and WeChat Desktop versions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cloud44552731-arch/skills/wechat-sender-win)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash command examples and Python script execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, WeChat Desktop logged in and visible, Python, and pywinauto.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

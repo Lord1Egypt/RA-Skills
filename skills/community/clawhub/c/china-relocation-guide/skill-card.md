@@ -1,38 +1,49 @@
-## Description: <br>
-Use when expats, international students, or digital nomads need guidance on relocating to China, choosing cities, understanding visa requirements, or planning their move. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when expats, international students, or digital nomads need guidance on relocating to China, choosing cities, understanding visa requirements, or planning their move.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External users, including expatriates, international students, digital nomads, and relocation planners, use this skill to compare Chinese cities, estimate cost of living, plan pre-arrival tasks, and understand common visa and settling-in considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visa, tax, cost, healthcare, and relocation details may become outdated or may not fit a user's specific circumstances. <br>
-Mitigation: Treat the skill as general planning information and verify important decisions with current official sources or qualified local professionals. <br>
+## Use Case:
 
+External users use this skill to compare Chinese cities, estimate relocation costs, understand common visa categories, and plan pre-arrival and first-week relocation tasks. It is intended as planning guidance for expats, international students, digital nomads, and high-net-worth individuals.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/1970168137/china-relocation-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational relocation guidance; important visa, tax, healthcare, and cost decisions should be verified with current official sources or qualified local professionals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Relocation, visa, tax, VPN, healthcare, and cost guidance can change or vary by individual circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as planning context and verify current requirements with official government sources or qualified local professionals before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1970168137/skills/china-relocation-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and concise planning recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable tools, shell commands, or required binaries are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

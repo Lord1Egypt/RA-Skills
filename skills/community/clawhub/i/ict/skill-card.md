@@ -1,44 +1,59 @@
-## Description: <br>
-Security audit tool for Claw Skills that scans skill folders for quality issues, security vulnerability patterns, documentation completeness, and code-documentation consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ict audits Claw Skill folders for code style, security vulnerabilities, documentation completeness, and code-documentation consistency.
 
-## Publisher: <br>
-[vimvem](https://clawhub.ai/user/vimvem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vimvem](https://clawhub.ai/user/vimvem)
 
-## Use Case: <br>
-Developers and skill maintainers use ict to audit individual or installed Claw skills, generate trust scores, compare versions, and produce human-readable or JSON findings before review or deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads the skill folders it is pointed at. <br>
-Mitigation: Run it only against skill folders you intend to inspect and are comfortable exposing to local analysis. <br>
-Risk: Running ict.py performs an update check against api.clawhub.ai. <br>
-Mitigation: Use it in environments where this outbound update check is acceptable. <br>
-Risk: Bundled test samples intentionally contain vulnerable patterns for detection. <br>
-Mitigation: Do not manually execute bundled test sample files; treat them as scanner fixtures. <br>
+## Use Case:
 
+Developers and security reviewers use ict to audit individual or batches of Claw Skills, score trust signals, compare versions, and produce findings in human-readable or JSON form.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vimvem/ict) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON] <br>
-**Output Format:** [Plain text audit reports or JSON objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI exit codes distinguish pass, review, fail, and error states.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.8 (source: server release metadata and artifact documentation) <br>
+Risk: Reports can expose detected secrets when scanning repositories that contain real credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only where generated reports are protected, redact sensitive findings before sharing, and avoid using real credential repositories for casual testing.
+
+Risk: The skill makes an outbound update check to api.clawhub.ai.
+
+Mitigation: Install and run it only in environments where outbound access to that service is acceptable.
+
+Risk: Static scanner exclusions and pattern logic can miss malicious files or produce incomplete assurance.
+
+Mitigation: Use ict as one review signal and keep manual review or additional security scanning in the approval process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vimvem/skills/ict)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text reports or JSON audit results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit trust scores, issue summaries, batch scan summaries, comparison results, and trend records.]
+
+## Skill Version(s):
+
+4.0.8 (source: server release metadata, README.md, and SKILL.md Basic Info; SKILL.md frontmatter lists 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

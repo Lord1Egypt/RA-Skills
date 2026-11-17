@@ -1,7 +1,7 @@
 ---
 name: BaseMail
 description: "📬 BaseMail - Onchain Email for AI Agents on Base. Get yourname@basemail.ai linked to your Basename (.base.eth). SIWE wallet auth, no CAPTCHA, no passwords. Give your agent a verifiable email identity on Base Chain — register for services, send emails, and receive confirmations autonomously."
-version: 1.8.0
+version: 1.9.0
 homepage: https://basemail.ai
 repository: https://github.com/dAAAb/BaseMail-Skill
 metadata:
@@ -13,6 +13,7 @@ metadata:
     optionalEnv:
       - BASEMAIL_PASSWORD
       - BASEMAIL_TOKEN
+      - BASEMAIL_API_KEY
     primaryEnv: "BASEMAIL_PRIVATE_KEY"
     install:
       - id: npm-deps
@@ -20,7 +21,9 @@ metadata:
         label: "Install BaseMail dependencies (ethers)"
     notes: >
       BASEMAIL_PRIVATE_KEY is required only for initial registration (wallet signing via SIWE).
-      After registration, most operations (send, inbox) use the cached token (~/.basemail/token.json).
+      After registration, send/inbox use the cached token (~/.basemail/token.json) and renew it
+      automatically with the stored refresh_token — the private key is not needed again.
+      Non-interactive agents: use --yes and BASEMAIL_PASSWORD with setup.js --managed.
       Alternatively, use --wallet /path/to/key or managed mode (setup.js --managed) instead of the env var.
       No financial transactions are performed — this skill only signs authentication messages, never sends funds.
 ---
@@ -91,9 +94,10 @@ node scripts/register.js
 
 > ✅ **Always encrypted** — Private key protected with AES-256-GCM
 > - You'll set a password during setup (min 8 chars, must include letter + number)
-> - Password required each time you use the wallet
+> - Password required only when the private key is needed (registration)
 > - Mnemonic displayed once for manual backup (never saved to file)
 > - Password input is masked (hidden) in terminal
+> - **Agents / no TTY:** `BASEMAIL_PASSWORD=… node scripts/setup.js --managed --yes` (never hangs on prompts)
 
 ---
 
@@ -154,8 +158,8 @@ node scripts/inbox.js <email_id>   # Read specific email
 | `setup.js` | Show help | ❌ |
 | `setup.js --managed` | Generate wallet (always encrypted) | ❌ |
 | `register.js` | Register email address | ✅ |
-| `send.js` | Send email | ❌ (uses token) |
-| `inbox.js` | Check inbox | ❌ (uses token) |
+| `send.js` | Send email | ❌ (uses token, auto-refreshes) |
+| `inbox.js` | Check inbox | ❌ (uses token, auto-refreshes) |
 | `audit.js` | View audit log | ❌ |
 
 ---
@@ -166,7 +170,7 @@ node scripts/inbox.js <email_id>   # Read specific email
 ~/.basemail/
 ├── private-key.enc   # Encrypted private key (AES-256-GCM, chmod 600)
 ├── wallet.json       # Wallet info (public address only)
-├── token.json        # Auth token (chmod 600)
+├── token.json        # Auth token + refresh_token + expires_at (chmod 600)
 └── audit.log         # Operation log (no sensitive data)
 ```
 
@@ -187,9 +191,9 @@ Your Basename is your onchain identity on Base — and BaseMail turns it into a 
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/auth/start` | POST | Start SIWE auth |
-| `/api/auth/verify` | POST | Verify wallet signature |
-| `/api/register` | POST | Register email |
+| `/api/auth/start` | POST | Start SIWE auth (returns message to sign) |
+| `/api/auth/agent-register` | POST | Verify signature + register (idempotent; returns token, refresh_token, email) |
+| `/api/auth/refresh` | POST | Renew the 24 h token with refresh_token |
 | `/api/register/upgrade` | PUT | Upgrade to Basename |
 | `/api/send` | POST | Send email |
 | `/api/inbox` | GET | List inbox |
@@ -212,6 +216,14 @@ Your Basename is your onchain identity on Base — and BaseMail turns it into a 
 
 ## 📝 Changelog
 
+### v1.9.0 (2026-08-28)
+- Registration now uses the single-call `POST /api/auth/agent-register` (was verify + register); re-running no longer saves `Email: null`
+- `token.json` stores `refresh_token` + `expires_at`; `send.js` / `inbox.js` renew the token automatically (and retry once on 401) — the private key is only needed for the first registration
+- Readable API errors with HTTP status, `code`, `hint` and `Retry-After` (e.g. the 5 registrations/IP/hour limit) instead of JSON parse crashes
+- `setup.js --managed`: fixed `isEncrypt is not defined` crash; password prompt handles pasted input; non-TTY support via `--yes` + `BASEMAIL_PASSWORD`
+- `BASEMAIL_API_KEY` (long-lived `bm_live_…` key) accepted as an alternative credential
+- ethers ^6.16 (fixes `ws` advisory), `engines.node >= 18`
+
 ### v1.8.0 (2026-02-18)
 - 📝 Enhanced description: emphasize Base Chain and Basename (.base.eth) integration
 - 📝 Added architecture diagram showing wallet → SIWE → email flow
@@ -231,6 +243,12 @@ Your Basename is your onchain identity on Base — and BaseMail turns it into a 
 - 📝 Added `notes` in metadata clarifying: this skill only signs SIWE messages, never sends funds
 - 📝 Updated security guidelines and file locations documentation
 
+### v1.6.0 (Security Update)
+- 🔐 **Breaking**: `--managed` now encrypts by default
+- 🔐 Removed auto-detection of external wallet paths (security improvement)
+- 🔐 Mnemonic no longer auto-saved; displayed once for manual backup
+- 📝 Updated documentation for clarity
+
 ### v1.4.0 (2026-02-08)
 - ✨ Better branding and descriptions
 - 📝 Full English documentation
@@ -241,13 +259,6 @@ Your Basename is your onchain identity on Base — and BaseMail turns it into a 
 - 🔒 Encrypted storage option (--encrypt)
 - 📊 Audit logging
 
-### v1.6.0 (Security Update)
-- 🔐 **Breaking**: `--managed` now encrypts by default
-- 🔐 Removed auto-detection of external wallet paths (security improvement)
-- 🔐 Mnemonic no longer auto-saved; displayed once for manual backup
-- 📝 Updated documentation for clarity
-
 ### v1.0.0
 - 🎉 Initial release
 
-<!-- Last verified by LittleLobster: 2026-05-21 -->

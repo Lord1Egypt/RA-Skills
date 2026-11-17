@@ -1,43 +1,52 @@
-## Description: <br>
-This skill extracts Chinese and English text from image files using Tesseract OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image text recognition tool based on Tesseract OCR.
 
-## Publisher: <br>
-[ginntech](https://clawhub.ai/user/ginntech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ginntech](https://clawhub.ai/user/ginntech)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and other users use this skill to extract Chinese and English text from user-selected images and screenshots with local Tesseract OCR.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill adds local OCR dependencies, including Tesseract and Python packages.
+
+Mitigation: Install it only when those dependencies are acceptable for the environment, preferably in a virtual environment with pinned package versions.
+
+Risk: OCR should be limited to user-selected image files.
+
+Mitigation: Use the skill only with explicit image paths supplied for OCR and avoid treating it as a general image-analysis tool.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, employees, and external users use this skill to extract text from screenshots or local image files when an agent needs OCR assistance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation uses pip and sudo apt steps. <br>
-Mitigation: Review dependency installation commands before use and install only from trusted package sources in an appropriate environment. <br>
-Risk: OCR can expose sensitive text from screenshots or images into the agent workflow. <br>
-Mitigation: Avoid processing images that contain secrets, credentials, personal data, or confidential text unless the workflow is approved for that data. <br>
-Risk: The skill depends on a correct local image path and installed Tesseract language data. <br>
-Mitigation: Verify the image path and OCR dependencies before running, including the Chinese simplified language pack when Chinese recognition is needed. <br>
+**Output Format:** [Plain text OCR output and Markdown usage guidance with bash commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ginntech/img-ocr) <br>
-- [Publisher profile](https://clawhub.ai/user/ginntech) <br>
+**Other Properties Related to Output:** [Runs locally on a user-provided image path and depends on Python, Pillow, pytesseract, Tesseract OCR, and the Chinese language pack.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text extracted from an image, with shell command examples when setup or execution guidance is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local image path, Python dependencies, Tesseract OCR, and the Chinese simplified language pack for Chinese text.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

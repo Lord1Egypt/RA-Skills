@@ -1,38 +1,53 @@
-## Description: <br>
-Integrates with MissionClaw for project management and AI agent orchestration, helping users create projects, manage Kanban tasks, assign work to agents, view org charts, and schedule automated tasks against a local MissionClaw API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with MissionClaw for project management and AI agent orchestration, including project creation, task tracking, team routing, and status lookups through the configured MissionClaw API.
 
-## Publisher: <br>
-[sureshchitmil](https://clawhub.ai/user/sureshchitmil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sureshchitmil](https://clawhub.ai/user/sureshchitmil)
 
-## Use Case: <br>
-Developers and teams using MissionClaw use this skill to create projects from chat commands, track project status, list projects, and route work to teams through a local MissionClaw instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent project, agent, and scheduled-task changes through a local MissionClaw API without detailed scoping or confirmation in the artifact. <br>
-Mitigation: Use only with a trusted local MissionClaw instance, confirm what data each command sends, and ensure projects, assignments, and scheduled tasks can be listed, audited, and removed. <br>
+## Use Case:
 
+Developers and project teams use this skill to send project requests to MissionClaw, list projects, check project status, and understand available MissionClaw teams from an agent conversation.
 
-## Reference(s): <br>
-- [ClawHub Missionclaw page](https://clawhub.ai/sureshchitmil/missionclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown command responses with project status, project IDs, team lists, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or query projects through a local MissionClaw API configured by MISSIONCLAW_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: ClawHub release evidence) <br>
+Risk: Project names, descriptions, and status requests are sent to the configured MissionClaw API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MISSIONCLAW_URL set to localhost or another trusted MissionClaw service, and review project details before submission.
+
+Risk: The artifact documentation describes broader MissionClaw app capabilities that are not all implemented by this skill command handler.
+
+Mitigation: Treat dashboard, scheduler, organization chart, and agent-management behavior as connected MissionClaw app capabilities rather than direct commands implemented by this skill.
+
+## Reference(s):
+
+- [Missionclaw ClawHub listing](https://clawhub.ai/sureshchitmil/skills/missionclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown command responses with inline command examples and project status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the configured MISSIONCLAW_URL endpoint, defaulting to localhost.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata; artifact package.json is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

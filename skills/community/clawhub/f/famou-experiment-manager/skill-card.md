@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through submitting, monitoring, canceling, deleting, and retrieving results for FaMou evolution experiments with famou-ctl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Famou evolutionary experiment workflows, including setup checks, experiment submission, status polling, cancellation, deletion, log retrieval, and result retrieval.
 
-## Publisher: <br>
-[zhaoM0](https://clawhub.ai/user/zhaoM0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaom0](https://clawhub.ai/user/zhaom0)
 
-## Use Case: <br>
-Developers and experiment operators use this skill to manage FaMou evolution experiments from a config.yaml file, including submission, status polling, logs, results, and lifecycle actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store a FaMou API key at ~/.famou-ctl/settings.json. <br>
-Mitigation: Use a limited-scope key, run the SDK in an isolated environment, and require explicit approval before writing or overwriting credentials. <br>
-Risk: The skill can cancel, delete, or resubmit experiments. <br>
-Mitigation: Require explicit user confirmation before canceling, deleting, editing experiment files, or resubmitting experiments. <br>
+## Use Case:
 
+Developers and experiment operators use this skill to submit and manage Famou experiments from a workspace that contains a config.yaml file. It helps check local Famou CLI setup, configure API access, monitor validation status, and retrieve logs or results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoM0/famou-experiment-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide installation, local API configuration, experiment submission, status checks, logs, results, cancellation, deletion, and resubmission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can install mutable packages and run Famou experiment lifecycle commands, including cancellation, deletion, and resubmission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a controlled environment, prefer pinned and verified Famou SDK installs, and require explicit confirmation before destructive or resubmission actions.
+
+Risk: Famou API keys may be provided through command-line arguments and stored in ~/.famou-ctl/settings.json.
+
+Mitigation: Avoid entering API keys through command-line arguments when possible and check file permissions on ~/.famou-ctl/settings.json.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/zhaom0/skills/famou-experiment-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command-output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local Famou CLI configuration and may request user confirmation for experiment names, IDs, and selected config.yaml files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

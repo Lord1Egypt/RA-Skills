@@ -1,44 +1,61 @@
-## Description: <br>
-Automates Doubao Web with Playwright to generate images from prompts and save the resulting image locally. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Uses Playwright browser automation to generate and download images from Doubao Web from a prompt, optional aspect ratio, quality setting, and output path.
 
-## Publisher: <br>
-[atmosphere16happy](https://clawhub.ai/user/atmosphere16happy) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atmosphere16happy](https://clawhub.ai/user/atmosphere16happy)
 
-## Use Case: <br>
-Developers and AI assistant users can use this skill to generate Doubao Web images from natural-language prompts, with optional aspect ratio, quality, and output-path controls. The source README frames the project as programming learning, Playwright automation testing research, and technical exchange only. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates a logged-in Doubao browser session and stores reusable session data locally. <br>
-Mitigation: Use a dedicated low-risk account where possible, review local session storage, and delete ~/.doubao-web-session when the skill is no longer needed. <br>
-Risk: The release security summary notes possible platform terms issues from bypassing controls or obtaining watermark-free originals. <br>
-Mitigation: Confirm Doubao Web terms and content rules before use, and prefer an official API when available. <br>
-Risk: The skill writes generated images and may create debug files on the local filesystem. <br>
-Mitigation: Choose explicit output paths, avoid sensitive directories, and remove generated or debug files after review. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent to generate images through Doubao Web, including ratio, quality, and local save-path options. The artifact documentation frames the project for learning, Playwright automation testing, research, and technical exchange.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/atmosphere16happy/doubao-web-image) <br>
-- [Doubao Web chat](https://www.doubao.com/chat/) <br>
-- [Project repository link from README](https://github.com/pjf6568/doubao-web-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Text confirmation with local image file paths and command-line parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create image files at the requested output path and store browser session data locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill uses a reusable Doubao web session and persistent browser profile data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that account automation is acceptable, avoid global or root installation, and delete ~/.doubao-web-session when the session is no longer needed.
+
+Risk: The security evidence flags stealth browser automation and high-resolution or watermark-free retrieval behavior for careful review.
+
+Mitigation: Use a pinned reviewed release and confirm that the intended use complies with Doubao platform terms and generated-content policies before deployment.
+
+Risk: Caller-controlled output paths and debug artifacts may expose private account or generated-content data.
+
+Mitigation: Restrict output paths to a safe folder and treat debug screenshots and HTML as private data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atmosphere16happy/skills/doubao-web-image)
+- [ClawHub publisher profile](https://clawhub.ai/user/atmosphere16happy)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Doubao Web chat](https://www.doubao.com/chat/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Text or Markdown status with shell command usage and a local generated image file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save an image to a caller-selected path and may create local debug screenshots or HTML during failures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

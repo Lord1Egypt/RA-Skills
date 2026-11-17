@@ -1,41 +1,50 @@
-## Description: <br>
-Drawdown analysis reference for maximum drawdown, peak-to-trough loss, recovery time, and related portfolio risk metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drawdown analysis reference - maximum drawdown, peak-to-trough, recovery time, risk metrics. Use when evaluating portfolio risk, stress-testing strategies, or measuring downside exposure.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill as a finance reference for evaluating portfolio drawdowns, comparing downside risk, stress-testing strategies, and reviewing recovery behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance reference output could be mistaken for personalized investment advice. <br>
-Mitigation: Treat the material as educational guidance and require qualified review before using it for portfolio decisions. <br>
-Risk: The documented DRAWDOWN_DIR setting is not used by the current script. <br>
-Mitigation: Do not rely on DRAWDOWN_DIR for storage or configuration behavior unless the script is updated and re-reviewed. <br>
+## Use Case:
 
+External users, developers, and finance practitioners use this skill as an educational reference for drawdown concepts, maximum drawdown calculations, recovery analysis, and downside-risk comparisons.
 
-## Reference(s): <br>
-- [Drawdown Skill on ClawHub](https://clawhub.ai/bytesagain3/drawdown) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown command references emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local reference output; no API calls, credentials, persistence, or data-changing behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Finance examples, historical figures, and risk benchmarks may become outdated or be mistaken for current investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as educational reference material and verify any market figures or investment decisions against current data and qualified professional guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/drawdown)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style command examples printed by a shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static educational finance reference; no external API calls or data movement identified in evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

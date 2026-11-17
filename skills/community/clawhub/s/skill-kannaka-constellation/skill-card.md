@@ -1,46 +1,52 @@
-## Description: <br>
-Kannaka Constellation monitors status across Kannaka apps, services, swarm health, and connectivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kannaka Constellation status monitoring -- all apps, services, swarm health, and connectivity.
 
-## Publisher: <br>
-[nickflach](https://clawhub.ai/user/nickflach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickflach](https://clawhub.ai/user/nickflach)
 
-## Use Case: <br>
-Developers and operators use this skill to check the health of Kannaka constellation components, inspect swarm connectivity, monitor NATS transport status, and diagnose cross-service issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some commands can join or communicate with an external swarm and publish agent state. <br>
-Mitigation: Use read-only status commands for monitoring, and run join, sync, listen --auto-sync, or brief --peers only when external swarm communication is intended. <br>
-Risk: The health --apply command can modify memory-related state. <br>
-Mitigation: Run health without --apply first, review the report, and apply changes only when the memory-health actions are expected. <br>
-Risk: The skill mixes status checks with commands that can contact external services. <br>
-Mitigation: Review the configured NATS and service URLs before use, especially in environments that require read-only or internal-only operations. <br>
+## Use Case:
 
+Developers and operators use this skill to check Kannaka constellation health, inspect connected swarm agents, verify NATS transport status, and diagnose cross-service connectivity issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickflach/skill-kannaka-constellation) <br>
-- [Kannaka Radio](https://radio.ninja-portal.com) <br>
-- [Kannaka Observatory](https://observatory.ninja-portal.com) <br>
-- [GhostSignals markets API](https://radio.ninja-portal.com/api/markets) <br>
-- [Kannaka installer download](https://radio.ninja-portal.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands can emit JSON when invoked with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Joining or listening to a swarm can expose agent identifiers and runtime phase or state information to the configured NATS bus.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default local NATS URL or a NATS server you control, and join shared buses only when that exposure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickflach/skills/skill-kannaka-constellation)
+- [Kannaka radio reference deployment](https://radio.ninja-portal.com)
+- [Kannaka observatory reference deployment](https://observatory.ninja-portal.com)
+- [Kannaka installer download](https://radio.ninja-portal.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and TOML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

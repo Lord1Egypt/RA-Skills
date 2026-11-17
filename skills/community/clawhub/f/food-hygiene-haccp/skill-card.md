@@ -1,43 +1,53 @@
-## Description: <br>
-Generate UK food safety documentation — HACCP plans, food safety management systems, allergen matrices, cleaning schedules, and EHO inspection preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates UK food safety documentation, including HACCP plans, food safety management systems, allergen matrices, cleaning schedules, temperature logs, and EHO inspection preparation materials.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External users such as UK food business operators, kitchen managers, and food safety consultants use this skill to draft HACCP plans, allergen matrices, cleaning schedules, monitoring logs, and EHO inspection preparation materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food safety documents may contain outdated or jurisdiction-specific legal references or critical limits. <br>
-Mitigation: Confirm the business operates under the relevant UK jurisdiction, check legal references and critical limits against current regulator guidance, and have HACCP plans reviewed by a qualified food safety professional or local authority. <br>
-Risk: Generated documentation alone may be mistaken for operational food safety compliance. <br>
-Mitigation: Treat outputs as templates, implement the procedures consistently, keep monitoring records current, and train staff before relying on the materials for inspections or daily operations. <br>
+## Use Case:
 
+External food business operators, kitchen managers, and food safety consultants use this skill to draft UK food hygiene documentation tailored to specific business types and inspection needs. Outputs are templates that should be reviewed by a qualified food-safety professional before operational use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamespatrickthom2003-star/food-hygiene-haccp) <br>
-- [Publisher Profile](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown documents and templates with tables, checklists, and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft food safety documentation templates that require professional review before operational reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated food-safety documents may be incomplete for a specific premises, process, or devolved UK requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated documents with a qualified food-safety professional before relying on them operationally, especially for high-risk premises.
+
+Risk: Templates may be mistaken for a guarantee of legal compliance or inspection outcome.
+
+Mitigation: Treat outputs as documentation templates only and verify that procedures are implemented, followed, and kept current.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/food-hygiene-haccp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured documents with headings, tables, checklists, logs, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces food-safety documentation templates tailored by business type and requested document category.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

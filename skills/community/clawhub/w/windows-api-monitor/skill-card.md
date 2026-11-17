@@ -1,44 +1,58 @@
-## Description: <br>
-Monitors OpenClaw API usage on Windows by reading local usage logs, tracking model calls, costs, trends, and threshold alerts, and generating usage reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw API usage on Windows by reading local usage logs, estimating calls, tokens, and cost, and generating usage reports and quota alerts.
 
-## Publisher: <br>
-[guowaa223](https://clawhub.ai/user/guowaa223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowaa223](https://clawhub.ai/user/guowaa223)
 
-## Use Case: <br>
-Developers and OpenClaw users on Windows use this skill to inspect local API usage, understand model-level consumption, and decide whether current daily or weekly quotas are sufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw usage logs, which may contain sensitive usage patterns or operational details. <br>
-Mitigation: Install and run it only when local log analysis is intended, and keep generated reports private unless they have been reviewed. <br>
-Risk: The skill can create local report and state files, including reports at user-provided output paths. <br>
-Mitigation: Review custom output paths before running commands and before sharing generated files. <br>
-Risk: Continuous monitoring and scheduled-task examples can perform repeated local checks over time. <br>
-Mitigation: Enable continuous monitoring or scheduled checks only when ongoing API usage monitoring is intended. <br>
+## Use Case:
 
+Developers and operators using OpenClaw on Windows use this skill to monitor local API consumption, check whether daily or weekly quotas are sufficient, and produce text or JSON reports for usage review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guowaa223/windows-api-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/guowaa223) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, JSON, and local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can summarize current, daily, weekly, monthly, or all usage; optional alerts compare usage against configured thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill reads local OpenClaw logs and can write local reports or state files that may expose usage, model, session, or cost information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local workspace, restrict permissions on logs and generated reports, and review data-handling expectations before sharing outputs.
+
+Risk: The documentation includes a Windows scheduled-task example for persistent recurring execution.
+
+Mitigation: Create scheduled tasks only after review, using least privilege, absolute executable and script paths, controlled script permissions, and a documented removal command.
+
+Risk: Quota and cost outputs are estimates derived from local logs and configured model rates.
+
+Mitigation: Use the reports for operational guidance and verify important billing or quota decisions against official provider records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guowaa223/skills/windows-api-monitor)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style guidance with inline shell commands; scripts emit text or JSON usage reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows and OpenClaw log locations, quota settings, and alert thresholds shape the reported results; cost estimates should be checked against official billing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

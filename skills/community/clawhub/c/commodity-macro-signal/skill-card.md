@@ -1,47 +1,55 @@
-## Description: <br>
-Analyze energy, metals, and agricultural commodity markets alongside macro indicators to generate cross-asset macro signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze energy, metals, and agricultural commodity markets alongside macro indicators to generate cross-asset macro signals.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to fetch commodity market data, derive macro signals, and summarize inflation, growth, sector, and asset-class implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Finskills API key and may send requested commodity symbols or series to Finskills. <br>
-Mitigation: Use it only where Finskills API use is approved, keep FINSKILLS_API_KEY secret, and avoid submitting sensitive portfolio, client, or proprietary trading information. <br>
-Risk: Generated commodity and macro signals may be incomplete, stale, or misleading if treated as financial advice. <br>
-Mitigation: Treat reports as informational analysis, verify market data and assumptions independently, and apply qualified review before investment or business decisions. <br>
+## Use Case:
 
+Developers, analysts, and financial research teams use this skill to fetch Finskills commodity data and produce macro signal reports about inflation, growth, sector rotation, and asset-class implications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/commodity-macro-signal) <br>
-- [Project homepage](https://github.com/finskills/commodity-macro-signal) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills API key registration](https://finskills.net/register) <br>
-- [Finskills commodity prices endpoint](https://finskills.net/v1/free/commodity/prices) <br>
-- [Finskills commodity history endpoint](https://finskills.net/v1/free/commodity/history/{symbol}) <br>
-- [Finskills FRED commodity endpoint](https://finskills.net/v1/free/commodity/fred/{seriesId}) <br>
-- [Finskills IMF commodity endpoint](https://finskills.net/v1/free/commodity/imf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with commodity tables, ratios, macro synthesis, and sector implications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and uses Finskills commodity, FRED, and IMF endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: Commodity macro interpretations may be mistaken for personalized trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame results as informational market analysis and avoid automated trading or individualized portfolio recommendations.
+
+Risk: The skill requires a Finskills API key for commodity data requests.
+
+Mitigation: Keep FINSKILLS_API_KEY in environment configuration and avoid exposing it in prompts, logs, or generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/commodity-macro-signal)
+- [Project homepage](https://github.com/finskills/commodity-macro-signal)
+- [Finskills API registration](https://finskills.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Markdown market analysis report with commodity snapshots, signal ratios, cycle classification, and sector implications.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY; outputs should be treated as informational market analysis, not automated trading or personalized financial advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; target metadata agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

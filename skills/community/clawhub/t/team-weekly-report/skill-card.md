@@ -1,40 +1,51 @@
-## Description: <br>
-Collects team weekly report images, extracts work items, groups them by department management and project management, compares current work against last week's plans, and generates a plain-text team weekly report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects team members' weekly report images, extracts work items, organizes them into department-management and project-management sections, compares current completions with the prior week's plans, and generates a plain-text team weekly report.
 
-## Publisher: <br>
-[gotoloops](https://clawhub.ai/user/gotoloops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gotoloops](https://clawhub.ai/user/gotoloops)
 
-## Use Case: <br>
-Employees and team leads use this skill to collect weekly status updates from report images, organize them into department and project views, compare them with the previous week's plans, and prepare a concise team weekly report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weekly reports may include names, work details, plans, and hours that are saved locally under memory/weekly-reports. <br>
-Mitigation: Use the skill only where local storage of that report content is acceptable, and delete old weekly JSON files when retention or privacy requirements call for it. <br>
-Risk: OCR extraction, category assignment, or week-over-week comparison can be inaccurate when source images are unclear or work items are ambiguous. <br>
-Mitigation: Review collected entries and generated summaries before sharing or relying on the report. <br>
+## Use Case:
 
+Team leads and managers use this skill to collect weekly report images, consolidate team progress by management category, compare this week's work against last week's plans, and produce a copy-ready plain-text report.
 
-## Reference(s): <br>
-- [Report template](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Plain text weekly report with local JSON weekly-report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores weekly report data locally in memory/weekly-reports and summarizes only missing or newly added items in the comparison section.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weekly report data may include confidential employee or project details and is retained locally for future comparisons.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local retention is acceptable, avoid unnecessary confidential details, and delete or limit stored reports when they are no longer needed.
+
+## Reference(s):
+
+- [Report Output Template](references/report-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/gotoloops/skills/team-weekly-report)
+- [Publisher Profile](https://clawhub.ai/user/gotoloops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Plain text report with locally stored weekly-report JSON files for future comparison]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores weekly report data locally by ISO week for longitudinal comparison.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

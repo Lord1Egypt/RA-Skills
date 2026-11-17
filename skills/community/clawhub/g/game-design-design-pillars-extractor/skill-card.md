@@ -1,40 +1,54 @@
-## Description: <br>
-Extract 3 to 5 actionable design pillars from a game, feature, loop, or system based on what the design actually rewards and prioritizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract 3 to 5 actionable design pillars from a game, feature, loop, or system based on what the design actually rewards and prioritizes.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and narrative or systems designers use this skill to turn mechanics, loops, references, or prototype observations into 3 to 5 actionable design pillars, support maps, conflict maps, and decision guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill output is design judgment rather than factual validation or playtest evidence. <br>
-Mitigation: Use it with design context intended for analysis and review its recommendations before relying on them for product decisions. <br>
+## Use Case:
 
+Game designers, design leads, and product teams use this skill to reverse-engineer actionable design pillars from mechanics, loops, rewards, tradeoffs, and contradictions. It is suited for concept framing, preproduction alignment, pitch cleanup, feature triage, and post-prototype coherence checks.
 
-## Reference(s): <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/game-design-design-pillars-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown sections with bullets and numbered guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces extracted pillars, support maps, conflict maps, weak-pillar notes, and decision guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can influence design direction from incomplete or one-sided game design material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extracted pillars against actual mechanics, playtest observations, and team goals before using them to guide feature cuts or prioritization.
+
+Risk: The skill may surface tradeoff-driven recommendations that are stronger than the evidence provided by the user.
+
+Mitigation: Treat the output as design analysis guidance and require human design review for major scope, product, or roadmap decisions.
+
+## Reference(s):
+
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with structured sections and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 3 to 5 design pillars, support and conflict maps, weak or missing dimensions, and decision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

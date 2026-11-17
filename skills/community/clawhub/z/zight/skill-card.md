@@ -1,39 +1,53 @@
-## Description: <br>
-Extract structured data from Zight share links (a.cl.ly and share.zight.com), including title, stream URLs, AI smart summary, chapter markers, and full transcript text from captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from Zight share links, including video metadata, stream URLs, AI smart summary content, chapter markers, and transcript text from captions.
 
-## Publisher: <br>
-[phin](https://clawhub.ai/user/phin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[phin](https://clawhub.ai/user/phin)
 
-## Use Case: <br>
-Agents use this skill when a user provides a Zight video link and asks to read, summarize, quote, or automate follow-up work from the video content. It turns a Zight share page into structured metadata, media links, chapters, AI summary text, and transcript text for downstream analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests from supplied URLs, and the security review notes that fetching is broader than the Zight-only purpose described. <br>
-Mitigation: Use only Zight links the user is authorized to process, and prefer a future version that allowlists Zight hosts and validates caption URLs before fetching them. <br>
-Risk: Transcript content may contain operational or step-by-step instructions that should not be treated as automatic commands. <br>
-Mitigation: Treat transcript instructions as candidate input and require explicit user confirmation before using them for external or sensitive actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phin/zight) <br>
+## Use Case:
 
+Developers and agent users use this skill to convert Zight video share links into machine-usable JSON for reading, summarization, quoting, media processing, and follow-up workflow planning.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, guidance] <br>
-**Output Format:** [JSON object printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes video metadata, share and media URLs, captions URL, smart actions, chapters, transcript text, or structured error output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make outbound requests to arbitrary user-provided URLs and caption links rather than enforcing only the documented Zight hosts.
+
+Mitigation: Use only in environments where outbound HTTP requests are acceptable, and tighten deployment controls to allow only expected Zight HTTPS domains and trusted caption hosts before use in sensitive networks.
+
+Risk: Fetched transcript text may contain operational or step-by-step instructions that should not automatically drive external or sensitive actions.
+
+Mitigation: Treat transcript content as candidate input and require explicit user confirmation before using extracted instructions for follow-up actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phin/skills/zight)
+- [Publisher profile](https://clawhub.ai/user/phin)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [JSON object printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes video title, share URL, media URLs when exposed, captions URL, smart summary text, chapter metadata, and transcript text; errors are returned as JSON objects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

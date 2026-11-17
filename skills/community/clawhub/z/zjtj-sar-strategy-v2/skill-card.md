@@ -1,43 +1,54 @@
-## Description: <br>
-Evaluates A-share short-term swing trading opportunities and risk controls using major-fund activity, SAR trend signals, volume, and market sentiment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in explaining or applying a four-dimensional A-share short-term swing trading framework based on ZJTJ main-force signals, SAR trend direction, volume confirmation, and market sentiment.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-Traders and investment researchers use this skill as guidance for applying a four-factor technical-analysis checklist to A-share short-term swing trading decisions, including scoring, entry and exit rules, and position discipline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner coverage was limited according to the security summary. <br>
-Mitigation: Review the supplied SKILL.md and any supporting files before installation or deployment. <br>
-Risk: The skill provides trading guidance that may be unsuitable for a user's financial situation or current market conditions. <br>
-Mitigation: Treat outputs as educational decision support, verify signals against current market data, and apply independent financial judgment before trading. <br>
-Risk: The strategy depends on third-party charting indicators and market data that may vary by platform. <br>
-Mitigation: Confirm indicator definitions, data freshness, and liquidity assumptions in the user's chosen trading platform before acting. <br>
+## Use Case:
 
+Developers and trading-oriented users use this skill to have an agent summarize, explain, or apply a structured technical stock-screening and risk-control framework. It is most relevant for short-term A-share swing-trading analysis and should not be treated as professional financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/zjtj-sar-strategy-v2) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy guidance with scoring tables and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; depends on user-supplied market data and third-party charting indicators.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill can produce financial trading guidance that may be mistaken for professional investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational analysis, verify signals independently, consider personal risk tolerance and local regulations, and do not allow an agent to place trades or manage accounts based solely on this skill.
+
+Risk: Technical signals such as ZJTJ, SAR, volume, and market sentiment can be wrong or become unreliable in volatile, illiquid, or policy-driven markets.
+
+Mitigation: Use the skill's explicit risk controls, including independent confirmation, position sizing, stop-loss discipline, liquidity checks, and reduced exposure in weak market conditions.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/haohanyang92/skills/zjtj-sar-strategy-v2)
+- [Publisher profile](https://clawhub.ai/user/haohanyang92)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown or plain text trading-framework explanations and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory content only; it does not execute code, access credentials, persist data, or place trades.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

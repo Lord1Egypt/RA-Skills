@@ -2,7 +2,7 @@
 
 > Java/Maven 单模块深度文档生成器 - 让 AI 全面理解模块的每个细节
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://clawhub.com/skills/module-analyzer-generate-doc)
+[![Version](https://img.shields.io/badge/version-1.0.5-blue.svg)](https://clawhub.com/skills/module-analyzer-generate-doc)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw->=1.0.0-green.svg)](https://openclaw.ai)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](LICENSE)
 
@@ -11,6 +11,20 @@
 **Module Analyzer Generate Doc** 是一个专注于单个 Java/Maven 模块深度业务逻辑分析的文档生成器。它通过多子代理并行处理，为模块中的每个包含业务逻辑的类生成详细的自然语言文档，帮助开发者和非技术人员快速理解模块的核心职责和业务流程。
 
 **Module Analyzer Generate Doc** is a documentation generator focused on deep business logic analysis of single Java/Maven modules. It generates detailed natural language documentation for each class with business logic through multi-subagent parallel processing, helping developers and non-technical personnel quickly understand the module's core responsibilities and business flows.
+
+### ⚠️ 重要提示 / Important Notice
+
+**文件系统操作 / File System Operations**：
+- 本工具会在项目根目录创建 `.ai-doc/` 文件夹及其内容
+- 会生成状态文件（`.generate-state.json`）和日志文件（`.task-log.md`）
+- 所有操作仅限于文档生成，**不会修改源代码**
+- 建议在使用前将项目提交到版本控制系统
+
+**File system operations**:
+- This tool creates `.ai-doc/` folder and its contents in the project root
+- Generates state files (`.generate-state.json`) and log files (`.task-log.md`)
+- All operations are limited to documentation generation, **source code is NOT modified**
+- Recommend committing your project to version control before use
 
 ---
 
@@ -58,7 +72,7 @@
 
 - OpenClaw >= 1.0.0
 - Python 3.x（标准库，无需额外依赖）
-- PowerShell 5.1+（Windows）或 Bash（Linux/Mac）
+- PowerShell 5.1+（Windows）或 Python 3.x（Linux/Mac）
 - Java/Maven 项目源码
 
 ### 安装 / Installation
@@ -340,10 +354,11 @@ foreach ($java in $javaFiles) {
 **问题**: 文件被安全软件（天锐绿盾等）限制访问
 
 **解决**:
-1. 尝试使用 bash 工具读取文件
-2. 使用 PowerShell 的不同命令变体
-3. 记录无法访问的文件，最后统一处理
-4. 请求用户临时授权访问
+1. 尝试使用只读的文件读取工具（Python `open()` 或 Read 工具）
+2. 使用 PowerShell 的标准文件读取命令（仅限 `Get-Content`、`Test-Path` 等只读操作）
+3. ⚠️ 注意：所有 shell 回退仅限只读文件操作，**绝不执行任意命令或修改文件**
+4. 记录无法访问的文件，最后统一处理
+5. 请求用户临时授权访问
 
 ---
 
@@ -379,4 +394,4 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
-*Last updated: 2026-03-09 • Version 1.0.0*
+*Last updated: 2026-07-16 • Version 1.0.5*

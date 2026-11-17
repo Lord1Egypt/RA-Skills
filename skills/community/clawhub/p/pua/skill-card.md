@@ -1,40 +1,54 @@
-## Description: <br>
-PUA pushes an agent into a forceful, high-agency troubleshooting posture that emphasizes persistence, verification, root-cause analysis, and evidence-based delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PUA pushes an agent toward high-agency, exhaustive problem-solving when users express frustration, repeated failures, passive behavior, or quality complaints.
 
-## Publisher: <br>
-[tanweai](https://clawhub.ai/user/tanweai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanweai](https://clawhub.ai/user/tanweai)
 
-## Use Case: <br>
-Developers and agent users use this skill to push an assistant toward persistent troubleshooting, explicit verification, root-cause analysis, and evidence-based delivery when work has stalled or quality complaints arise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally makes the assistant more forceful and persistent, which may be inappropriate for sensitive interactions or users who need a gentler tone. <br>
-Mitigation: Install it only when a blunt troubleshooting mode is desired, and set explicit limits for tone, language, time budget, iteration count, and stop conditions. <br>
-Risk: Pressure-oriented troubleshooting can continue longer than the user expects if boundaries are not set. <br>
-Mitigation: Require the assistant to ask before continuing beyond the agreed iteration count or when the work changes scope. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent persist through difficult tasks, verify claims with evidence, and escalate troubleshooting after repeated failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanweai/pua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or task-specific agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the active user task and may include stronger tone, verification steps, root-cause analysis, and follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.0 (source: server release metadata) <br>
+Risk: The skill broadly changes agent behavior and retry limits across all task types without clear safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when persistent escalation is desired, and set explicit stopping criteria, tool-use approval, and cost limits before use.
+
+Risk: The security guidance classifies the release as suspicious because it is designed to make the agent persist harder and escalate after failures.
+
+Mitigation: Supervise tool use and side effects during runs, especially on tasks that can spend money, modify files, call services, or affect external systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanweai/skills/pua)
+- [Full version referenced by artifact](https://github.com/tanweai/pua)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown or task-specific text with code and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload in the artifact; behavior may increase retry persistence and escalation across task types.]
+
+## Skill Version(s):
+
+2.9.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

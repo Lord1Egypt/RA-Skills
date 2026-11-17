@@ -1,46 +1,60 @@
-## Description: <br>
-Use markdown-it to render Markdown to HTML, configure plugins, custom rendering rules, syntax highlighting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use markdown-it to render Markdown to HTML, configure plugins, custom rendering rules, syntax highlighting.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers use this skill to render Markdown to HTML with markdown-it, configure parser presets and plugins, customize renderer rules, set up syntax highlighting, and follow safe handling defaults for user-generated Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering Markdown from other users can expose unsafe HTML if raw HTML is enabled or the rendered output is not sanitized. <br>
-Mitigation: Keep markdown-it's default html option disabled for user-generated Markdown and sanitize final HTML before display. <br>
-Risk: Global npm installs and unpinned dependencies can make projects harder to audit or reproduce. <br>
-Mitigation: Prefer project-local installs and pin markdown-it and plugin versions in real projects. <br>
+## Use Case:
 
+Developers and agents use this skill when they need guidance for rendering Markdown to HTML with markdown-it, configuring parser options and plugins, adding syntax highlighting, or customizing renderer rules.
 
-## Reference(s): <br>
-- [markdown-it Architecture Principles](references/architecture.md) <br>
-- [markdown-it Plugin Development](references/plugin-dev.md) <br>
-- [markdown-it plugin packages on npm](https://www.npmjs.org/browse/keyword/markdown-it-plugin) <br>
-- [markdown-it source rules](https://github.com/markdown-it/markdown-it/tree/master/lib) <br>
-- [markdown-it linkify rule](https://github.com/markdown-it/markdown-it/blob/master/lib/rules_core/linkify.mjs) <br>
-- [markdown-it-emoji replacement rule](https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/replace.mjs) <br>
-- [markdown-it inline text rule](https://github.com/markdown-it/markdown-it/blob/master/lib/rules_inline/text.mjs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes markdown-it configuration, plugin, renderer, CLI, and safety guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Rendering untrusted Markdown with raw HTML enabled can expose users to cross-site scripting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep markdown-it HTML parsing disabled unless a separate sanitization plan is in place.
+
+Risk: Additional markdown-it plugins or npm packages may introduce behavior outside the base parser guidance.
+
+Mitigation: Review plugin packages before adding them to a project, especially when rendering untrusted Markdown.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/markdown-it)
+- [markdown-it Architecture Principles](references/architecture.md)
+- [markdown-it Plugin Development](references/plugin-dev.md)
+- [markdown-it plugin packages](https://www.npmjs.org/browse/keyword/markdown-it-plugin)
+- [markdown-it source rules](https://github.com/markdown-it/markdown-it/tree/master/lib)
+- [markdown-it linkify rule](https://github.com/markdown-it/markdown-it/blob/master/lib/rules_core/linkify.mjs)
+- [markdown-it emoji replacement reference](https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/replace.mjs)
+- [markdown-it inline text rule](https://github.com/markdown-it/markdown-it/blob/master/lib/rules_inline/text.mjs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes security guidance for rendering untrusted Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

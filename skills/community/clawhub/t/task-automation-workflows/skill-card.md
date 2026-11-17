@@ -1,42 +1,57 @@
-## Description: <br>
-Automate repetitive tasks with scripts, workflows, and schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate repetitive tasks with scripts, workflows, and schedules for file operations, data processing, API calls, and scheduled jobs.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and operators use this skill to design scripts, workflows, and schedules for repetitive file operations, data processing, API calls, batch jobs, and recurring tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk file operations can rename, move, or transform unintended files. <br>
-Mitigation: Use exact directories, trusted inputs, backups, and dry runs before running generated automation. <br>
-Risk: Scheduled jobs can repeatedly run a mistaken task. <br>
-Mitigation: Review each scheduled command and cadence before enabling it. <br>
-Risk: API automation can send private data to external services. <br>
-Mitigation: Use trusted endpoints and avoid sending private data unless that is the intended workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to design repeatable automation for file handling, batch data processing, API workflows, retries, scheduling, monitoring, and cleanup tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/task-automation-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes automation patterns, scheduled job snippets, and operational safety practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated file-operation workflows may rename, move, overwrite, or delete local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target paths and run the workflow on sample data or with a dry-run mode before applying it to important directories.
+
+Risk: Generated API workflows may send data to external endpoints.
+
+Mitigation: Confirm each endpoint, payload field, credential source, and rate limit before running the workflow.
+
+Risk: Generated schedules may continue running after the setup session.
+
+Mitigation: Document each cron or scheduler entry, verify its frequency, and define how to disable or remove it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/taREDACTED-SECRET)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflows should be reviewed before execution, especially when they modify files, call external APIs, or install persistent schedules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

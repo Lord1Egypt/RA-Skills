@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-pork-query",
   "version": "1.0.0",
-  "publishedAt": 1778289731330
+  "title": "国内猪肉价格实时查询 - 即刻数据",
+  "description": "按省份查询白条肉、精瘦肉、土杂猪、外三元、内三元价格，也支持不传省份返回全部地区价格。",
+  "env": "JIKE_PORK_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/pork/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

@@ -1,44 +1,57 @@
-## Description: <br>
-Monitors configured X.com (Twitter) accounts on a schedule and sends notifications when new posts are detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X.com account monitoring automation that periodically checks configured accounts for new tweets and sends notifications to selected messaging channels.
 
-## Publisher: <br>
-[imjszhang](https://clawhub.ai/user/imjszhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imjszhang](https://clawhub.ai/user/imjszhang)
 
-## Use Case: <br>
-Developers and operators use this skill to track selected X.com accounts for industry updates, competitor activity, technical trends, or other recurring information-monitoring workflows. It manages monitored accounts, schedules checks, deduplicates seen posts, and sends summaries with source links to configured notification channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored X.com content and source links can be sent to external messaging channels. <br>
-Mitigation: Use only approved notification channels and review ~/.openclaw/x-monitor/config.json before starting monitoring. <br>
-Risk: The skill relies on a logged-in browser session and can continue running as a scheduled background monitor. <br>
-Mitigation: Use a dedicated low-privilege X.com browser profile where appropriate and stop the monitoring job when it is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor selected X.com accounts for new posts, deduplicate previously seen content, and route updates to configured notification channels.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/imjszhang/js-x-monitor) <br>
-- [Quickstart](docs/QUICKSTART.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [JS-Eyes](https://github.com/imjszhang/JS-Eyes) <br>
-- [js-search-x](https://github.com/imjszhang/js-search-x) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Notifications] <br>
-**Output Format:** [Console text, Markdown-formatted notifications, and JSON configuration/state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, OpenClaw, JS-Eyes, js-search-x, an authenticated X.com browser session, and configured notification channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, openclaw.json, package.json) <br>
+Risk: Notification providers can receive monitored account identifiers and tweet content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive monitored accounts and notification channels that are acceptable for receiving this content.
+
+Risk: Scheduled job management and shell handling were flagged as unsafe in the security review.
+
+Mitigation: Review start and stop behavior before deployment, and avoid unusual account names or manual config entries until job matching and shell interpolation are narrowed.
+
+Risk: The skill writes local configuration and state files for monitored accounts.
+
+Mitigation: Check local file permissions and avoid storing sensitive monitoring configurations on shared machines.
+
+## Reference(s):
+
+- [JS X Monitor on ClawHub](https://clawhub.ai/imjszhang/skills/js-x-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local configuration and state files under the user's OpenClaw x-monitor directory when its commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

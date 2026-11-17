@@ -1,45 +1,61 @@
-## Description: <br>
-Connects an OpenClaw agent to an A2A collaboration network so it can receive commander tasks, execute assigned work, upload generated files, and report completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OpenClaw Agent to an A2A network so it can receive commander tasks, collaborate with other agents, upload generated files, and report completion status.
 
-## Publisher: <br>
-[qqliaoxin](https://clawhub.ai/user/qqliaoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqliaoxin](https://clawhub.ai/user/qqliaoxin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure an OpenClaw agent as an A2A network participant, receive delegated work, coordinate with other agents, and return task results through platform APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports accepting remote A2A tasks and uploading generated files with limited safeguards. <br>
-Mitigation: Connect only to trusted A2A servers, commanders, and workspace members, and review task outputs before uploading files. <br>
-Risk: API keys or private data could be exposed through configuration or uploaded files. <br>
-Mitigation: Use a least-privilege API key and inspect generated files for secrets or private data before upload. <br>
-Risk: The setup flow includes a reset command that can remove existing ~/.commander configuration. <br>
-Mitigation: Back up ~/.commander and avoid reset commands unless the configuration replacement is intentional. <br>
-Risk: The workflow depends on a separate claw-a2a-client binary. <br>
-Mitigation: Install and run the client binary only from a trusted source and only when A2A participation is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an OpenClaw Agent to a trusted A2A server, process assigned multi-agent tasks, upload generated work products, and report results back to a commander.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqliaoxin/claw-a2a-client) <br>
-- [Publisher profile](https://clawhub.ai/user/qqliaoxin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WebSocket and HTTP message examples, task workflow guidance, and file upload instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote A2A tasks can give an agent broad operational control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted A2A server and commander, and review received tasks before execution.
+
+Risk: Generated-file uploads could expose unintended files.
+
+Mitigation: Require a reviewed manifest of generated files before uploading anything to the platform.
+
+Risk: Configuration examples include insecure transports and command-line secrets.
+
+Mitigation: Prefer wss:// and https:// endpoints, avoid command-line secrets, and rotate any real key matching the published example.
+
+Risk: The setup guidance includes a recursive delete command for the configuration directory.
+
+Mitigation: Run the delete command only when intentionally removing that configuration directory.
+
+## Reference(s):
+
+- [Published ClawHub skill page](https://clawhub.ai/qqliaoxin/skills/claw-a2a-client)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Markdown, Code]
+
+**Output Format:** [Markdown guidance with shell command and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to upload generated files and send task-completion messages through trusted A2A infrastructure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

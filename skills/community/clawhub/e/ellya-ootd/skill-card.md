@@ -1,44 +1,62 @@
-## Description: <br>
-OpenClaw virtual companion skill that bootstraps character state, learns style prompts from uploaded photos, and generates prompt-based selfies or multi-pose photo series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw virtual companion skill that bootstraps character runtime files, learns visual style prompts from reference photos, and generates selfies or photo series using Gemini or Minimax.
 
-## Publisher: <br>
-[laogiant](https://clawhub.ai/user/laogiant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laogiant](https://clawhub.ai/user/laogiant)
 
-## Use Case: <br>
-OpenClaw agents and their operators use this skill to personalize a virtual companion, learn reusable outfit and visual-style descriptions from reference photos, and generate single images or photo series to send back in conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded reference photos, base images, generated outputs, and saved style text may contain sensitive appearance details. <br>
-Mitigation: Use only images the user is authorized to process, avoid minors, private documents, intimate images, and non-consenting people, and review or delete saved assets, outputs, and styles after use. <br>
-Risk: Reference images and prompts may be sent to third-party AI providers during analysis or generation. <br>
-Mitigation: Install and run the skill only when the operator is comfortable with that provider exposure and has configured the intended provider credentials. <br>
+## Use Case:
 
+OpenClaw users and skill handlers use this skill to personalize a virtual companion, learn reusable style descriptions from uploaded reference photos, generate prompted or style-based images, and create multi-pose photo sets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laogiant/ellya-ootd) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [ANALYSIS_PROMPT.md](artifact/ANALYSIS_PROMPT.md) <br>
-- [SOUL.md template](artifact/templates/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; bundled scripts create style markdown files and generated image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied reference images and configured Gemini or Minimax credentials; photo series generation accepts 1 to 10 variations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: target metadata and server release evidence) <br>
+Risk: Personal or reference photos may be sent to external AI providers for analysis or generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images the user is comfortable sending to Gemini or Minimax, avoid third-party or sensitive photos, and disclose remote processing before use.
+
+Risk: Derived appearance and style descriptions can persist locally in generated style files.
+
+Mitigation: Review and delete saved style descriptions when they are no longer needed, especially when they describe identifiable people or sensitive attributes.
+
+Risk: Generated media can be sent to an unintended OpenClaw channel or target.
+
+Mitigation: Verify the OpenClaw message target and channel before sending media.
+
+Risk: Minimax endpoints are configurable and could point to an untrusted provider domain.
+
+Mitigation: Restrict Minimax base, text, and image URLs to trusted HTTPS provider domains before enabling that provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laogiant/skills/ellya-ootd)
+- [Publisher profile](https://clawhub.ai/user/laogiant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated local files such as style descriptions and image outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under output/; learned style descriptions are saved under styles/; photo series are saved in timestamped output directories.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

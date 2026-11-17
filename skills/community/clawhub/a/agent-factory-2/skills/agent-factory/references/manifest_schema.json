@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpenClawSubAgentManifest",
+  "type": "object",
+  "required": [
+    "agent_id",
+    "version",
+    "status",
+    "target_domain",
+    "system_prompt",
+    "allowed_tools",
+    "routing_config",
+    "benchmark_results"
+  ],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["sandbox", "active", "paused", "archived", "deprecated"]
+    },
+    "target_domain": {
+      "type": "string"
+    },
+    "model_target": {
+      "type": "string",
+      "default": "prompt_specialized"
+    },
+    "system_prompt": {
+      "type": "string"
+    },
+    "allowed_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "routing_config": {
+      "type": "object",
+      "required": ["centroid_vector", "confidence_radius"],
+      "properties": {
+        "centroid_vector": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "confidence_radius": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "security_capabilities": {
+      "type": "object",
+      "properties": {
+        "read_only": { "type": "boolean", "default": true },
+        "network_access": { "type": "boolean", "default": false },
+        "scoped_domains": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "benchmark_results": {
+      "type": "object",
+      "required": ["passed_date", "accuracy_gain", "latency_reduction_pct", "token_cost_reduction_pct"],
+      "properties": {
+        "passed_date": { "type": "string" },
+        "accuracy_gain": { "type": "number" },
+        "latency_reduction_pct": { "type": "number" },
+        "token_cost_reduction_pct": { "type": "number" },
+        "human_intervention_drop_pct": { "type": "number" }
+      }
+    },
+    "lifecycle_telemetry": {
+      "type": "object",
+      "properties": {
+        "total_invocations": { "type": "integer", "default": 0 },
+        "last_invoked_at": { "type": "string" },
+        "current_error_rate": { "type": "number", "default": 0.0 }
+      }
+    }
+  }
+}

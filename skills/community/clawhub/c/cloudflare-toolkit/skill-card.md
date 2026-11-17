@@ -1,41 +1,50 @@
-## Description: <br>
-Manage Cloudflare domains, DNS records, SSL settings, zone configuration, firewall rules, tunnels, and analytics via the Cloudflare API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cloudflare domains, DNS records, SSL settings, zone configuration, firewall rules, tunnels, and analytics through the Cloudflare API.
 
-## Publisher: <br>
-[InsipidPoint](https://clawhub.ai/user/InsipidPoint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[insipidpoint](https://clawhub.ai/user/insipidpoint)
 
-## Use Case: <br>
-Developers and site operators use this skill to inspect and manage Cloudflare zones, DNS records, SSL settings, tunnels, cache purges, firewall rules, page rules, and analytics from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make privileged changes to Cloudflare DNS, SSL, tunnels, zone settings, cache, and related account resources. <br>
-Mitigation: Use a narrowly scoped Cloudflare API token, prefer read-only scopes for inspection, and approve each DNS, SSL, tunnel, settings, import, delete, or full-cache-purge action before execution. <br>
-Risk: Destructive or high-impact operations such as deleting DNS records, changing SSL mode, modifying firewall behavior, deleting tunnels, or purging cache can disrupt sites and services. <br>
-Mitigation: Follow the artifact's confirmation rules for destructive actions and review command arguments, zone IDs, record IDs, and target domains before running the bundled script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cloudflare API Quick Reference](references/api-guide.md) <br>
-- [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) <br>
-- [ClawHub Skill Page](https://clawhub.ai/InsipidPoint/cloudflare-toolkit) <br>
+## Use Case:
 
+Developers, operators, and site administrators use this skill to inspect and manage Cloudflare zones, DNS records, SSL settings, tunnels, cache, firewall rules, and analytics from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLOUDFLARE_API_TOKEN, curl, jq, and openssl; tunnel operations also require CLOUDFLARE_ACCOUNT_ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change live Cloudflare configuration, including DNS records, SSL settings, tunnels, cache state, and other zone settings.
+
+Mitigation: Use a narrowly scoped Cloudflare API token for the specific account or zones needed, and require explicit confirmation before delete, import, SSL/settings, tunnel, or full cache-purge commands.
+
+## Reference(s):
+
+- [Cloudflare API Quick Reference](references/api-guide.md)
+- [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens)
+- [Cloudflare API v4 Endpoint](https://api.cloudflare.com/client/v4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit Cloudflare API JSON summaries when commands are run.]
+
+## Skill Version(s):
+
+1.5.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

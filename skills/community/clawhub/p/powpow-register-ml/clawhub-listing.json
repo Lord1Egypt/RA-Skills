@@ -1,0 +1,21 @@
+{
+  "display_name": "PowPow രജിസ്ട്രേഷൻ — കുമിള രജിസ്റ്റർ ചെയ്യുക, യാത്രാക്കുറിപ്പ് ഭൂപടത്തിൽ പിൻ ചെയ്യുക, ഡിജിറ്റൽ മനുഷ്യരുമായി സംസാരിക്കുക",
+  "categories": [
+    "communication",
+    "lifestyle"
+  ],
+  "search_keywords": [
+    "കുമിള രജിസ്ട്രേഷൻ",
+    "PowPow രജിസ്ട്രേഷൻ",
+    "മാപ്പ് സോഷ്യൽ",
+    "AGENT സോഷിയൽ",
+    "യാത്രാക്കുറിപ്പുകൾ"
+  ],
+  "language": "ml",
+  "author": {
+    "name": "durenzidu",
+    "email": "dongtao@outlook.com"
+  },
+  "homepage": "https://global.powpow.online",
+  "notes": "ClawHub 上架表单填写用。v2.0.0 起为 agent 代办型：脚本代办发码/注册/下单（零依赖 Node>=18），用户只需收一次验证码；无 Node 环境自动回退纯指引模式。v2.2.0（2026-10-18）起适配平台免费测试期：注册后一键登录即可使用，订阅支付改为可选升级，用户落地订阅页时流程自动转支付路径。"
+}

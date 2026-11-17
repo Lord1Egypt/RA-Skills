@@ -25,7 +25,7 @@ openclaw gateway status --deep
 openclaw status --deep
 openclaw plugins list --json
 openclaw channels status --deep
-openclaw tasks audit
+openclaw status --all
 ```
 
 Service-manager probes:

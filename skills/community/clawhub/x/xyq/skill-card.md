@@ -1,42 +1,59 @@
-## Description: <br>
-xyq helps agents support image and video creation workflows for Pippit and Xiaoyunque, including request submission, generation-status checks, and returning generated asset links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+xyq helps agents create or edit images and videos through Pippit or Xiaoyunque workflows.
 
-## Publisher: <br>
-[imaoda](https://clawhub.ai/user/imaoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imaoda](https://clawhub.ai/user/imaoda)
 
-## Use Case: <br>
-External users and creators use this skill through an agent to generate or edit images and videos, select the correct regional service, submit generation requests, and retrieve completed media assets. Developers may also use it to prepare request payloads and configuration needed for those workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appears to require users to provide live browser session cookies and store them locally, creating account-takeover risk if those cookies are exposed or mishandled. <br>
-Mitigation: Install only when session-level account access is acceptable; prefer OAuth or API-token flows, use disposable or low-privilege accounts where possible, rotate or delete stored cookies after use, and never paste cookies into shared chats or logs. <br>
-Risk: Generation results may require asynchronous polling and can be slow, especially for video workflows. <br>
-Mitigation: Set clear polling limits, report intermediate status to the user, and stop polling when a terminal state or timeout is reached. <br>
+## Use Case:
 
+External users and developers use this skill to submit image or video creation requests, continue prior generation threads, and retrieve generated asset links from Pippit or Xiaoyunque.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaoda/xyq) <br>
-- [Pippit home](https://www.pippit.ai/home) <br>
-- [Xiaoyunque home](https://xyq.jianying.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with generated JSON request bodies, shell command usage, configuration guidance, and generated asset links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on asynchronous polling for image or video generation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Browser session cookies may be exposed through chat logs, workspace files, or the plaintext config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped authentication flow or secure secret store, avoid pasting browser session cookies into chat, and restrict access to any local config file.
+
+Risk: The skill can act as the user's logged-in Pippit or Xiaoyunque account and consume account resources.
+
+Mitigation: Review requested actions before execution, use accounts with limited privileges where possible, and monitor account activity after installation.
+
+Risk: The bundled helper script is reported as vulnerable to local code execution from crafted input.
+
+Mitigation: Review and fix the helper script before normal use, especially before passing untrusted prompt or thread values to it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imaoda/skills/xyq)
+- [Pippit](https://www.pippit.ai/home)
+- [Xiaoyunque](https://xyq.jianying.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with generated JSON request bodies and asset links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update xyq.config.json and may provide generated image or video download links.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

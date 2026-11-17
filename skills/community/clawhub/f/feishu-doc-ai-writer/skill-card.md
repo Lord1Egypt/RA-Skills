@@ -1,40 +1,52 @@
-## Description: <br>
-飞书文档AI写作助手 — 自动撰写、格式化、美化飞书文档。支持周报生成、会议纪要、项目方案、产品文档等飞书文档的智能创建。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书文档AI写作助手 — 自动撰写、格式化、美化飞书文档。支持周报生成、会议纪要、项目方案、产品文档等飞书文档的智能创建。
 
-## Publisher: <br>
-[young-joey](https://clawhub.ai/user/young-joey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[young-joey](https://clawhub.ai/user/young-joey)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external users who work in Feishu use this skill to draft, format, and update reports, meeting minutes, project plans, PRDs, and technical documents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Bulk Feishu document creation, replacement, or formatting could affect the wrong document or overwrite intended content.
+
+Mitigation: Confirm target documents and requested changes before execution, especially for batch operations or replacements.
+
+Risk: Generated reports, meeting notes, PRDs, or project plans may contain incomplete or inaccurate business details if the prompt omits context.
+
+Mitigation: Review generated document content for factual accuracy, owners, dates, action items, and sensitive information before sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external users can use this skill to have an agent create, structure, format, and update Feishu documents such as weekly reports, meeting minutes, project plans, PRDs, and technical design documents. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, or batch-replace content in external Feishu documents. <br>
-Mitigation: Confirm the exact document, operation, and replacement text before write or batch actions, and use the least-privileged account or connection available. <br>
-Risk: Generated document content may be incorrect, incomplete, or unsuitable for the intended audience. <br>
-Mitigation: Review generated reports, meeting minutes, plans, and PRDs before sharing or relying on them. <br>
+**Output Format:** [Structured document content with headings, tables, bold emphasis, and document links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/young-joey/feishu-doc-ai-writer) <br>
+**Other Properties Related to Output:** [May create, format, or replace Feishu document content; review targets before batch edits.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown-style structured document content and Feishu document operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, format, update, or batch-replace external Feishu document content when connected to the relevant document tools.] <br>
+1.0.2 (source: server release evidence; artifact frontmatter declares 1.0.0)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

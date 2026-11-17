@@ -1,41 +1,59 @@
-## Description: <br>
-Picture Edit helps agents perform local image loading, saving, resizing, cropping, format conversion, enhancement, filters, stitching, simple background removal, and text overlays through a Python image-processing package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picture Edit provides local image loading, editing, enhancement, filters, compositing, background removal, and text overlay through a Python/Pillow API.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and agents use this skill to script common image-editing workflows, including resizing, cropping, enhancing, filtering, compositing, removing simple backgrounds, and placing text on images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processing untrusted images can expose the runtime to dependency-level image parsing vulnerabilities. <br>
-Mitigation: Run the skill in a virtual environment and pin Pillow to a current reviewed version before handling untrusted files. <br>
-Risk: The skill reads and writes local image paths supplied by the user or agent workflow. <br>
-Mitigation: Review input and output paths before execution and restrict runs to an intended working directory. <br>
+## Use Case:
 
+Developers and agents use Picture Edit to script local image workflows such as resizing, cropping, format conversion, enhancement, filtering, stitching, simple background removal, and text overlays.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/picture-edit) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local image files when the generated or executed workflow saves edited images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill metadata, and package __version__) <br>
+Risk: Opening untrusted image files can expose the runtime to vulnerabilities in image parsing dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted images when possible and pin Pillow to a reviewed version before deployment.
+
+Risk: Image outputs are written to caller-supplied paths and can overwrite files if paths are chosen carelessly.
+
+Mitigation: Write generated images to a dedicated output directory and review output paths before running workflows.
+
+Risk: The documentation and examples are Chinese-first, which can increase operator error for teams that do not read Chinese.
+
+Mitigation: Translate or review the API examples before production use.
+
+## Reference(s):
+
+- [Picture Edit ClawHub Skill Page](https://clawhub.ai/hgta23/skills/picture-edit)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Python code examples and shell commands; executed workflows may write image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Pillow operations; security evidence reports no hidden network access, persistence, credential use, or destructive behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

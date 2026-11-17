@@ -1,50 +1,67 @@
-## Description: <br>
-Manages multiple Fecify independent stores with per-session site URL and API token binding, persistent configuration, and support for product, order, and CSV bulk-import workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages multiple Fecify independent stores with per-session site binding, persisted URL and API token configuration, product and image API operations, and Shopify CSV product import workflows.
 
-## Publisher: <br>
-[fancyecommerce](https://clawhub.ai/user/fancyecommerce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fancyecommerce](https://clawhub.ai/user/fancyecommerce)
 
-## Use Case: <br>
-E-commerce operators and developers use this skill to configure a Fecify site connection, inspect or change product and image data through Fecify APIs, and migrate Shopify product CSV exports after validation and confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Fecify API tokens on disk for persistent site configuration. <br>
-Mitigation: Install only when the publisher is trusted, use scoped or revocable tokens where possible, and avoid shared machines for configured sessions. <br>
-Risk: Authenticated API calls can create, update, delete, or bulk import store data. <br>
-Mitigation: Require explicit user confirmation before write operations or bulk imports, and prefer dry-run or validation steps before importing. <br>
-Risk: Temporary and failed-import files may contain sensitive product or request data. <br>
-Mitigation: Review and clean temp or failed-import files after troubleshooting, especially on shared or long-lived environments. <br>
-Risk: Misconfigured site URLs or insecure endpoints can expose tokens or send requests to the wrong store. <br>
-Mitigation: Use HTTPS-only site URLs and verify the target site before saving configuration or running API calls. <br>
+## Use Case:
 
+External operators and developers use this skill to configure Fecify store access, inspect or change product and image data through Fecify APIs, and migrate Shopify product CSV files into a Fecify store after detection and validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fancyecommerce/fecify-site-manager-v1) <br>
-- [Architecture and core modules](docs/architecture.md) <br>
-- [Product management API guide](docs/products.md) <br>
-- [Base image API guide](docs/base-image.md) <br>
-- [CSV import guide](docs/csv-import.md) <br>
-- [Shopify CSV product import guide](docs/csv-import/shopify-csv-product-import.md) <br>
-- [Extension guide](docs/extending.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API responses, and generated configuration or import-result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write per-site configuration, session binding files, and failed-import diagnostics under the skill data and temp paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores Fecify API tokens locally and uses them for live store API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege token, bind only intended HTTPS sites, and rotate or delete stored tokens when the workflow is complete.
+
+Risk: Product creation, product updates, image uploads, and CSV imports can make broad live changes to a store.
+
+Mitigation: Start with a test store or a small dry run, review generated product JSON and CSV detection results, and require explicit confirmation before bulk import.
+
+Risk: Network image import can fetch or reuse external image URLs from uploaded CSV content.
+
+Mitigation: Inspect CSV image URLs before import and prefer uploading vetted images to the Fecify store unless direct network images are required.
+
+Risk: Skipping execution-layer validation can bypass safeguards for malformed product rows.
+
+Mitigation: Do not use --skip-validation in production; fix CSV data issues reported by the detector before importing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fancyecommerce/skills/fecify-site-manager-v1)
+- [Architecture and core modules](docs/architecture.md)
+- [Product management API](docs/products.md)
+- [Image management API](docs/base-image.md)
+- [Shopify CSV product import](docs/csv-import/shopify-csv-product-import.md)
+- [CSV import guide](docs/csv-import.md)
+- [Extension guide](docs/extending.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API request or response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration, dry-run JSON, import summaries, and failed-item archives under the skill data or temp directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

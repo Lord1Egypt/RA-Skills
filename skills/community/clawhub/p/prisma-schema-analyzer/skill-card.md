@@ -1,40 +1,48 @@
-## Description: <br>
-Analyze Prisma schemas for performance, relation design, index strategy, migration safety, and query optimization for production readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Prisma schemas for performance, relation design, index strategy, migration safety, and query optimization - audit schema.prisma for production readiness.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to review Prisma schema.prisma files for production readiness, including model design, relation behavior, indexing, migration safety, and Prisma Client query patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The migration-diff step uses an unpinned Prisma CLI invocation through npx, which can unexpectedly download code.
+
+Mitigation: Run Prisma from a locally installed, lockfile-controlled project dependency or another local-only invocation, using ordinary project permissions and avoiding unnecessary production credentials.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Prisma schema files, migrations, and related Prisma Client usage for indexing, relation design, query performance, and migration-safety issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect Prisma schemas, migrations, and relevant application source files. <br>
-Mitigation: Use it only in repositories where the agent is allowed to read those files, and review findings before applying schema or code changes. <br>
-Risk: Prisma CLI commands can interact with project datasource settings or unpinned tooling. <br>
-Mitigation: Review each Prisma command before approval, use non-production DATABASE_URL values, and prefer pinned Prisma tooling in controlled environments. <br>
+**Output Format:** [Markdown analysis report with findings, schema metrics, and recommended Prisma changes.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Prisma Schema Analyzer on ClawHub](https://clawhub.ai/charlie-morrison/prisma-schema-analyzer) <br>
+**Other Properties Related to Output:** [May include shell commands for local schema, migration, and Prisma Client usage discovery; does not create files by itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with issue lists, schema metrics, and suggested Prisma changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, Prisma schema snippets, severity groupings, and command suggestions.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

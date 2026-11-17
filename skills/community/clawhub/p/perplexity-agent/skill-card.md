@@ -1,38 +1,55 @@
-## Description: <br>
-Search the web using the Perplexity Agent API. Provides real-time information, news, and grounded answers with citations. Use when the user asks for: (1) Current events or news, (2) Information retrieval from the web, (3) Real-time data search, (4) In-depth research using web results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using the Perplexity Agent API to provide real-time information, news, and grounded answers with citations.
 
-## Publisher: <br>
-[davidsteelerose](https://clawhub.ai/user/davidsteelerose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidsteelerose](https://clawhub.ai/user/davidsteelerose)
 
-## Use Case: <br>
-Developers and agents use this skill to run real-time web searches through the Perplexity Agent API and return grounded answers for current events, news, information retrieval, and research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User search queries are sent to Perplexity under the configured API account. <br>
-Mitigation: Use a dedicated PERPLEXITY_API_KEY where possible, monitor quota or billing, and avoid submitting secrets, private documents, or sensitive personal data unless that disclosure is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to route current-events, web research, and real-time information requests through Perplexity and return grounded answers with citations.
 
-## Reference(s): <br>
-- [Perplexity Agent API endpoint](https://api.perplexity.ai/v1/agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls] <br>
-**Output Format:** [JSON object containing success, answer, and model fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PERPLEXITY_API_KEY and sends search queries to Perplexity under that API account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries and prompts are sent to Perplexity when the skill is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive queries unless sharing them with the Perplexity provider fits the user's data-sharing expectations.
+
+Risk: The skill requires a Perplexity API key in the runtime environment.
+
+Mitigation: Store the API key in an environment variable and avoid exposing it in prompts, logs, source files, or shared transcripts.
+
+## Reference(s):
+
+- [Perplexity Agent API endpoint](https://api.perplexity.ai/v1/agent)
+- [ClawHub skill page](https://clawhub.ai/davidsteelerose/skills/perplexity-agent)
+- [Publisher profile](https://clawhub.ai/user/davidsteelerose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON response containing success status, answer text, and model metadata, usually summarized to the user as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PERPLEXITY_API_KEY and sends the user's search query to Perplexity.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

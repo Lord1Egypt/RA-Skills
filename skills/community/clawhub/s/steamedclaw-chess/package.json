@@ -1,0 +1,6 @@
+{
+  "name": "steamedclaw-chess",
+  "private": true,
+  "type": "commonjs",
+  "description": "Scope marker: chess-helper.js and bundled engine use CommonJS. Not published to npm."
+}

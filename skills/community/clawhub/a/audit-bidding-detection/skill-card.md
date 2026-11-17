@@ -1,42 +1,53 @@
-## Description: <br>
-Conducts a nine-step audit workflow to identify bid-rigging and collusion signals across bidder relationships, pricing, timing, document similarity, qualification checks, and risk grading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts a nine-step tender audit workflow to detect bid rigging and collusion through bidder mapping, relationship analysis, pricing review, timing analysis, document similarity checks, qualification review, risk scoring, and reporting.
 
-## Publisher: <br>
-[rc17777](https://clawhub.ai/user/rc17777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rc17777](https://clawhub.ai/user/rc17777)
 
-## Use Case: <br>
-Auditors, compliance teams, and procurement reviewers use this skill to run a structured bidding audit workflow, collect collusion indicators, score risk, and produce an audit findings report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit findings and risk grades may affect procurement or compliance decisions if treated as final conclusions. <br>
-Mitigation: Use the generated findings as decision support and require qualified human review against source procurement records before taking action. <br>
-Risk: The workflow depends on external pipeline scripts and related audit skills, so results may be incomplete or unavailable if those dependencies are missing or unauthorized. <br>
-Mitigation: Run the skill only in an authorized audit environment where required dependencies and data access have been reviewed. <br>
-Risk: Security evidence describes the reviewed operational skills as powerful but purpose-aligned and gated by user or admin control. <br>
-Mitigation: Install and run the skill only when its disclosed audit workflow is intended, and keep execution under explicit user or administrator authorization. <br>
+## Use Case:
 
+Audit, procurement, and compliance teams use this skill to structure an audit of tender activity and surface potential bid-rigging indicators across bidder relationships, pricing patterns, submission timing, document similarity, and qualifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rc17777/audit-bidding-detection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and structured audit workflow outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bidder profiles, relationship findings, pricing and timing findings, document-similarity findings, qualification findings, a risk assessment, and a bidding audit report when the referenced workflow dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The workflow may process sensitive bidder identities, ownership or personnel links, pricing, document metadata, and audit findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized procurement or bidding audits and confirm confidentiality obligations before providing audit materials.
+
+Risk: The workflow references local pipeline scripts and invoked skills that are not included in this artifact.
+
+Mitigation: Verify the referenced pipeline, scripts, and invoked skills in the target environment before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rc17777/skills/audit-bidding-detection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and structured audit report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bidder profiles, relationship findings, price findings, timing findings, similarity findings, qualification findings, risk assessment, and a final bid-rigging analysis report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

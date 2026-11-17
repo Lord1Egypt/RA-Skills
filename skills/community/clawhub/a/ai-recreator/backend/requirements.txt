@@ -1,0 +1,35 @@
+# 核心框架
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic-settings>=2.1.0
+
+# 视频下载
+yt-dlp>=2023.10.0
+
+# 语音转写
+openai-whisper>=20231117
+
+# AI 改写
+openai>=1.6.0
+
+# 音频处理
+edge-tts>=6.1.0
+pydub>=0.25.1
+soundfile>=0.12.1
+
+# 数字人 - SadTalker
+torch>=2.1.0
+torchvision>=0.16.0
+gfpgan>=1.3.8
+basicsr>=1.4.2
+facexlib>=0.3.0
+
+# 视频处理
+opencv-python>=4.8.0
+moviepy>=1.0.3
+Pillow>=10.1.0
+
+# 工具
+aiofiles>=23.2.1
+redis>=5.0.0  # 可选，任务队列

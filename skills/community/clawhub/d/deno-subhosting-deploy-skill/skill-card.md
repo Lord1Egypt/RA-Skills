@@ -1,44 +1,58 @@
-## Description: <br>
-Deploys simple web pages and HTML apps to Deno Deploy using the REST API and a standalone Python helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy simple web pages and HTML apps live to the internet using the Deno Deploy REST API.
 
-## Publisher: <br>
-[hosainnet](https://clawhub.ai/user/hosainnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[hosainnet](https://clawhub.ai/user/hosainnet)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare Deno-compatible single-file web apps, deploy them to Deno Deploy, verify the deployment, and share the resulting public URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish code publicly and create Deno resources using stored credentials. <br>
-Mitigation: Confirm the exact code, project name, Deno organization, and public URL before each deployment. <br>
-Risk: Stored Deno access tokens and organization identifiers can be misused if exposed. <br>
-Mitigation: Use a dedicated limited token when possible, protect the credential files, and rotate credentials if exposure is suspected. <br>
-Risk: Application source or environment values could unintentionally expose private information in a public deployment. <br>
-Mitigation: Review the code before deployment and avoid deploying secrets, private source, or sensitive data. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare Deno-compatible web apps, configure Deno Subhosting credentials, deploy through the bundled script, and verify the resulting public URL before sharing it.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/hosainnet/deno-subhosting-deploy-skill) <br>
-- [Deno Subhosting Setup](https://dash.deno.com/subhosting/new_auto) <br>
-- [Deno Deploy API Endpoint](https://api.deno.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and shell commands; the deploy helper prints JSON API responses and a deployment URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deployment output can include a public Deno URL, deployment ID, status, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact metadata reports 0.0.1) <br>
+Risk: The skill can reuse a Deno deployment token and publish generated code to a public URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped and revocable Deno credentials, require explicit approval before each deployment, and verify the deployed URL before presenting success.
+
+Risk: The skill stores Deno credentials in plaintext config files under the user's home directory.
+
+Mitigation: Store credentials with restrictive file permissions or in a secret manager, and rotate tokens after use when appropriate.
+
+Risk: Broad activation language may deploy content when a user only asks for a hosted or shareable result.
+
+Mitigation: Confirm the user's intent to publish publicly before running the deployment script.
+
+## Reference(s):
+
+- [Deno Subhosting Setup](https://dash.deno.com/subhosting/new_auto)
+- [ClawHub Skill Page](https://clawhub.ai/hosainnet/skills/deno-subhosting-deploy-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run the bundled deployment script, print Deno deployment JSON, and return a public deno.dev URL after verification.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; skill frontmatter metadata states 0.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

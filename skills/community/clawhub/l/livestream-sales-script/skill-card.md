@@ -1,39 +1,50 @@
-## Description: <br>
-Generates Chinese livestream commerce scripts for openings, product introductions, purchase prompts, audience interaction, and closing segments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese livestream commerce scripts for openings, product pitches, purchase prompts, audience interaction, and closings.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Livestream hosts, ecommerce operators, and brand teams use this skill to draft Chinese sales scripts for common shopping livestream moments, including product pitches, audience engagement, purchase prompts, and closing remarks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sales scripts could encourage misleading urgency, inventory limits, discounts, endorsements, or product claims. <br>
-Mitigation: Review generated scripts before use and publish only claims that are truthful, substantiated, and compliant with advertising, consumer-protection, and platform rules. <br>
+## Use Case:
 
+Livestream sellers, brand operators, and commerce creators use this skill to draft Chinese scripts for common live-selling moments, including product introductions, promotional prompts, viewer interaction, and closing calls to action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/livestream-sales-script) <br>
-- [Publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text script sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include script type labels, script text, timing guidance, and tone suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated livestream sales copy may overstate urgency, scarcity, discounts, endorsements, or product claims if the prompt includes inaccurate inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts against truthful product, discount, inventory, endorsement, and compliance-sensitive information before using them in a livestream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/livestream-sales-script)
+- [Publisher profile](https://clawhub.ai/user/huajianjiu000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown text with script labels, timing notes, and tone suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or privileged actions; generated copy should be checked against product facts and applicable advertising rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

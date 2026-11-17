@@ -1,0 +1,21 @@
+name: "novel-script-storyboard"
+display_name: "小说剧本转分镜"
+slug: "novel-script-storyboard"
+version: "1.0.2"
+category: "writing"
+author: "xxjrq"
+repository: "https://github.com/xxjrq/novel-script-storyboard"
+description: "由 AI 阅读原文并完成分镜创作；脚本仅校验 JSON 并排版 Markdown。"
+trigger_words:
+  - "小说转分镜"
+  - "剧本分镜"
+  - "故事拆镜头"
+  - "storyboard"
+tags:
+  - "novel"
+  - "screenplay"
+  - "storyboard"
+  - "中文写作"
+  - "分镜"
+license: MIT-0
+self_test: "python3 scripts/self_test.py self-test"

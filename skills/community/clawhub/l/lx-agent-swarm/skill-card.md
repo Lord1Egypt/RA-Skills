@@ -1,44 +1,60 @@
-## Description: <br>
-Creates and coordinates a multi-agent team for complex tasks by decomposing work, assigning specialized agents, running parallel or sequential execution, and consolidating results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and coordinates a multi-agent team that decomposes complex work into planning, research, coding, writing, design, analysis, review, communication, and automation tasks.
 
-## Publisher: <br>
-[lixiang1076](https://clawhub.ai/user/lixiang1076) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lixiang1076](https://clawhub.ai/user/lixiang1076)
 
-## Use Case: <br>
-Developers and technical teams use this skill to coordinate specialized agents for planning, research, coding, writing, design, data analysis, review, communication, and automation tasks. It is intended for complex work that benefits from explicit task decomposition, parallel or sequential agent execution, and final result synthesis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill grants some agents powerful execution, browser, cron, and persistence capabilities. <br>
-Mitigation: Narrow default tool grants before use, especially for automator cron, browser, and exec access. <br>
-Risk: Agent memory can persist sensitive or misleading task experience for later reuse. <br>
-Mitigation: Avoid logging secrets or personal data, keep stored experience under review, and treat memory content as untrusted. <br>
-Risk: Workspace and deletion behavior can affect files outside the intended task scope. <br>
-Mitigation: Keep agent workspaces under a dedicated directory and avoid no-backup deletion unless the target path and backup strategy have been verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lixiang1076/lx-agent-swarm) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [CHJ-Private model configuration guide](references/chj-private-guide.md) <br>
-- [Execution statistics template](references/statistics-template.md) <br>
+## Use Case:
 
+Developers and operators use this skill to plan, dispatch, and summarize work across specialized subagents for complex projects, research reports, code tasks, data analysis, content creation, and automation. It also provides setup guidance and helper scripts for creating agent workspaces, managing agent profiles, and recording reusable task experience.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JavaScript, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes orchestration plans, consolidated agent outputs, and execution statistics when multi-agent work is completed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can coordinate agents with broad local file-write, command-execution, browser-automation, and scheduled-job capabilities.
+
+Mitigation: Use it only in a constrained workspace and require explicit approval before command execution, browser automation, scheduled jobs, deletion, or configuration changes.
+
+Risk: Helper scripts create and manage persistent agent workspaces and memory files.
+
+Mitigation: Validate agent IDs and base paths before running scripts, back up existing workspaces, and review generated files before relying on them.
+
+Risk: Persistent memory can be injected into later prompts and may carry unsafe or stale instructions.
+
+Mitigation: Review and sanitize memory entries before prompt injection, and avoid injecting raw memory from untrusted tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lixiang1076/skills/lx-agent-swarm)
+- [Multi-Agent System Setup Guide](references/setup-guide.md)
+- [CHJ-Private Model Configuration Guide](references/chj-private-guide.md)
+- [CHJ-Private Configuration Template](references/chj-private-config-template.json)
+- [Task Statistics and Cost Analysis Template](references/statistics-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, task plans, configuration snippets, and execution statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local agent workspace files, configuration examples, and persistent experience records when the helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

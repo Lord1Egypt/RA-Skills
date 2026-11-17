@@ -1,41 +1,62 @@
-## Description: <br>
-Generate professional advertising images from product URLs using the Ad-Ready pipeline on ComfyDeploy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional advertising images from product URLs using the Ad-Ready pipeline on ComfyDeploy, with optional brand profiles, funnel-stage targeting, model or talent inputs, and multi-format output.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-External users, developers, and marketing teams use this skill to generate ad-ready product imagery from a product URL, brand profile, campaign objective, and optional logo, talent, or reference assets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Product URLs and image assets are sent to ComfyDeploy for ad generation. <br>
-Mitigation: Use public product pages and only upload assets that the user is comfortable processing through ComfyDeploy. <br>
-Risk: Likeness-preserving model images and reference ads can create consent, rights, or brand-safety concerns. <br>
-Mitigation: Use model, reference, logo, and product assets only when the user has clear consent and commercial usage rights. <br>
-Risk: Reference-image workflows may copy the style, pose, or location cues of an existing ad. <br>
-Mitigation: Keep reference images off by default and use them only when explicitly requested and rights-cleared. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PauldeLavallaz/product-to-ads) <br>
+## Use Case:
 
+External marketers, brand teams, and creative operators use this skill to turn product URLs and product assets into ad-ready image-generation runs for campaign funnel stages.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated ad image files when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires product URL, brand profile, prompt profile, output path, and a ComfyDeploy API key; may use optional product image, logo, model, reference, aspect ratio, language, and creative brief inputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Auto-fetch can retrieve arbitrary product URLs and upload retrieved assets to a cloud service.
+
+Mitigation: Use trusted product URLs and assets, avoid auto-fetch for untrusted or internal URLs, and run the skill in a sandbox with restricted network access.
+
+Risk: Product data, uploaded images, model references, logos, and generated outputs interact with ComfyDeploy.
+
+Mitigation: Review privacy, confidentiality, and rights before submitting assets or product data to the workflow.
+
+Risk: Talent or model image inputs may involve likeness rights and sensitive appearance handling.
+
+Mitigation: Use only images for which the user has consent and rights, and avoid supplying real talent/model images without clear authorization.
+
+Risk: Generated ad content may contain inaccurate product claims or brand-inconsistent creative choices.
+
+Mitigation: Review generated outputs before publication, especially product claims, CTA language, brand fit, and regulated-category messaging.
+
+## Reference(s):
+
+- [Product to Ads (Ad-Ready) ClawHub listing](https://clawhub.ai/pauldelavallaz/skills/product-to-ads)
+- [pauldelavallaz ClawHub publisher profile](https://clawhub.ai/user/pauldelavallaz)
+- [ComfyDeploy queue endpoint used by the skill](https://api.comfydeploy.com/api/run/deployment/queue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated advertising assets are saved as image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use product URLs, product images, brand logos, reference ads, model or talent images, brand profiles, funnel-stage prompt profiles, aspect ratios, language, and creative briefs.]
+
+## Skill Version(s):
+
+1.4.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

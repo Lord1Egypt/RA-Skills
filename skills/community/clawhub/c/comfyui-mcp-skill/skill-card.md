@@ -1,46 +1,60 @@
-## Description: <br>
-Generate AI videos, create storyboards, compose and download video clips, and check task progress via a ComfyUI MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos, create storyboards, compose and download video clips, and check task progress through a ComfyUI MCP service.
 
-## Publisher: <br>
-[wangxx07](https://clawhub.ai/user/wangxx07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxx07](https://clawhub.ai/user/wangxx07)
 
-## Use Case: <br>
-Developers and agent operators use this skill to expose ComfyUI video-generation workflows through MCP for prompt-based video creation, storyboard generation, video composition, downloads, and progress checks. The skill may send prompts and workflows to Comfy Cloud depending on configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud API use may send prompts and workflows outside the local environment. <br>
-Mitigation: Confirm Comfy Cloud use is intended, disclose the data flow to users, and configure credentials through environment-managed secrets. <br>
-Risk: The MCP server can bind broadly by default. <br>
-Mitigation: Bind the server to localhost unless remote access is intentionally secured. <br>
-Risk: Generated or downloaded media can be written to local output paths. <br>
-Mitigation: Restrict output paths and review generated files before use or redistribution. <br>
-Risk: Unpinned or outdated dependencies can increase operational risk. <br>
-Mitigation: Pin dependencies where practical and keep FastMCP, requests, aiohttp, and related packages updated. <br>
+## Use Case:
 
+Developers and creators use this MCP skill to connect an agent to ComfyUI workflows for prompt-based video generation, storyboard creation, video composition, download, and task progress checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangxx07/comfyui-mcp-skill) <br>
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) <br>
-- [FastMCP](https://github.com/jlowin/fastmcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, API calls] <br>
-**Output Format:** [MCP tool responses containing task IDs, status JSON, storyboard text, and downloaded video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media may be written under the configured output directory; ComfyUI or Comfy Cloud connectivity is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact package metadata) <br>
+Risk: The MCP service can expose powerful network-accessible tools if run over HTTP without access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stdio or bind HTTP only to 127.0.0.1; place any network deployment behind authentication and firewalling.
+
+Risk: Prompts and workflow data may be sent to the configured ComfyUI cloud endpoint.
+
+Mitigation: Avoid sensitive prompts unless cloud transmission is intended, and review endpoint and API key configuration before use.
+
+Risk: Download and FFmpeg composition tools work with local filesystem paths.
+
+Mitigation: Run as an unprivileged user in an isolated workspace and confine input and output paths before shared or network-reachable deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxx07/skills/comfyui-mcp-skill)
+- [Publisher profile](https://clawhub.ai/user/wangxx07)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [FastMCP](https://github.com/jlowin/fastmcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Configuration]
+
+**Output Format:** [MCP tool responses with JSON dictionaries, strings, local file paths, and generated or composed video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video generation is asynchronous and commonly returns a prompt ID for later progress checks or download.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

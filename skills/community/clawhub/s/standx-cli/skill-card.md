@@ -1,46 +1,64 @@
-## Description: <br>
-Standx Cli helps agents use the StandX crypto trading CLI to query market data, manage account information, execute orders, stream market data, and manage leverage or margin settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+StandX CLI helps agents use the StandX exchange command-line tool for crypto market data, account queries, order management, real-time streams, leverage, and margin settings.
 
-## Publisher: <br>
-[wjllance](https://clawhub.ai/user/wjllance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wjllance](https://clawhub.ai/user/wjllance)
 
-## Use Case: <br>
-External users and developers use this skill to operate the StandX CLI through an agent for crypto market lookup, account review, trading workflows, streaming data, and trading configuration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables live financial actions, including order creation, cancel-all operations, leverage changes, and margin changes. <br>
-Mitigation: Require dry-run review and explicit confirmation before any order, cancel-all, leverage, or margin change. <br>
-Risk: Some install paths download a StandX binary and move it into a system path with elevated privileges. <br>
-Mitigation: Prefer Homebrew or a release that can be verified, and avoid sudo-based direct downloads when possible. <br>
-Risk: The skill uses sensitive trading credentials, including a JWT and optional private trading key. <br>
-Mitigation: Keep credentials out of command history and version control, avoid storing the private trading key in shell startup files, and rotate tokens regularly. <br>
+## Use Case:
 
+External developers and traders use this skill to guide an agent in installing, configuring, and operating the StandX CLI for market-data queries, account checks, order management, WebSocket streams, and leverage or margin commands.
 
-## Reference(s): <br>
-- [Standx Cli ClawHub Page](https://clawhub.ai/wjllance/standx-cli) <br>
-- [StandX CLI API Documentation](references/api-docs.md) <br>
-- [StandX CLI Command Examples](references/examples.md) <br>
-- [StandX CLI Troubleshooting](references/troubleshooting.md) <br>
-- [StandX Credential Session](https://standx.com/user/session) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include guidance for JSON, CSV, quiet, and OpenClaw-optimized CLI output modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata and skill.json) <br>
+Risk: The release can install an unverified trading binary with elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew or another verified release path, and avoid direct sudo curl/tar installation unless the binary is independently verified.
+
+Risk: JWT tokens and private keys can expose account data or enable trading operations if printed, logged, or stored carelessly.
+
+Mitigation: Keep private keys out of shell startup files and logs, rotate short-lived tokens, restrict credential-file permissions, and never pass secrets on command lines.
+
+Risk: Order, cancel-all, leverage, and margin commands can change real trading positions.
+
+Mitigation: Require explicit confirmation before trading or risk-setting commands, and use dry-run previews before executing state-changing operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wjllance/skills/standx-cli)
+- [Publisher Profile](https://clawhub.ai/user/wjllance)
+- [StandX CLI API Documentation](references/api-docs.md)
+- [StandX CLI Command Examples](references/examples.md)
+- [StandX CLI Troubleshooting](references/troubleshooting.md)
+- [StandX CLI GitHub Repository](https://github.com/wjllance/standx-cli)
+- [StandX CLI Documentation](https://github.com/wjllance/standx-cli/tree/main/docs)
+- [StandX Credential Session](https://standx.com/user/session)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and references to JSON, CSV, table, or quiet CLI output modes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require the standx binary, STANDX_JWT for authenticated reads, and STANDX_PRIVATE_KEY for trading operations.]
+
+## Skill Version(s):
+
+0.5.0 (source: ClawHub release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

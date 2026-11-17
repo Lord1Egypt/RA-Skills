@@ -1,40 +1,48 @@
-## Description: <br>
-Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, visualization, and formula recalculation for spreadsheet files such as .xlsx, .xlsm, .csv, and .tsv. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, visualization, and formula recalculation.
 
-## Publisher: <br>
-[goulonghui](https://clawhub.ai/user/goulonghui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
+
+[goulonghui](https://clawhub.ai/user/goulonghui)
+
+### License/Terms of Use:
+
+Proprietary
+
+## Use Case:
+
+Developers and agents use this skill to create, edit, analyze, and validate spreadsheet files while preserving formulas, formatting, and existing template conventions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Formula recalculation may make persistent changes to the user's local LibreOffice macro profile.
+
+Mitigation: Run recalculation in an isolated user profile or container, avoid elevated privileges, and keep backups of important spreadsheets and LibreOffice macros.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to create, edit, analyze, format, and validate spreadsheet workbooks while preserving formulas and existing template conventions. It is especially oriented toward formula-driven spreadsheet generation and financial-model style formatting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Formula recalculation installs a persistent LibreOffice macro in the user's profile and can overwrite an existing macro file. <br>
-Mitigation: Review before installing, use copies of important spreadsheets, and prefer running recalculation in an isolated temporary LibreOffice profile or with explicit user approval before changing application-level macro files. <br>
-Risk: Running spreadsheet recalculation on untrusted macro-enabled workbooks can expose users to workbook-level macro risk. <br>
-Mitigation: Avoid running this workflow on untrusted macro-enabled workbooks and inspect files before recalculation. <br>
+**Output Format:** [Markdown guidance with inline Python and shell commands, plus generated spreadsheet files when applied by an agent]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goulonghui/lhx) <br>
+**Other Properties Related to Output:** [May use LibreOffice locally to recalculate spreadsheet formulas and report formula errors as JSON.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; agents may also create or modify spreadsheet files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formula recalculation returns JSON status, error counts, formula counts, and error locations when the included recalculation script is used.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Complete engineering management system - team building, 1:1s, performance, hiring, architecture decisions, incident management, and scaling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete engineering management system — team building, 1:1s, performance, hiring, architecture decisions, incident management, and scaling. From IC-to-manager transition through director-level operations.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Engineering managers, team leads, and directors use this skill to draft and structure management workflows for team health, 1:1s, performance reviews, hiring, technical leadership, incidents, delivery, and organizational scaling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Employee notes, performance reviews, hiring materials, PIP drafts, or layoff planning may contain sensitive personal or regulated data. <br>
-Mitigation: Keep those materials in approved company systems and avoid pasting regulated or unnecessary personal employee data into unmanaged tools. <br>
-Risk: Management outputs can influence hiring, promotion, performance, termination, or layoff decisions. <br>
-Mitigation: Use outputs as draft guidance and involve HR, legal, or qualified leadership review before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-engineering-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+Engineering managers, team leads, and directors use this skill to structure team operating practices, 1:1s, performance reviews, hiring loops, architecture decisions, incident reviews, sprint health reporting, and stakeholder communication.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with structured templates, checklists, tables, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only management playbook; does not invoke tools or APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes employee profiling and performance-management guidance that could affect people's jobs.
+
+Mitigation: Use it only with approved HR processes and do not rely on its guidance as a substitute for HR, legal, or company policy review.
+
+Risk: 1:1, flight-risk, PIP, and performance templates can involve sensitive personnel information.
+
+Mitigation: Collect only necessary information and store personnel notes in authorized workplace systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-engineering-manager)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML, markdown, and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces templates, checklists, scorecards, and management playbooks; HR-sensitive outputs require human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

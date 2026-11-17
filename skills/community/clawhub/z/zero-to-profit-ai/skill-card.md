@@ -1,41 +1,54 @@
-## Description: <br>
-Transforms business goals into ROI-ranked startup ideas, validation steps, MVP copy, action plans, and monitoring guidance for AI-assisted entrepreneurship. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms ideas into AI-driven startup plans with ROI-ranked ideas, market validation, MVP drafts, action plans, execution tracking, and self-correction.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users, founders, and developers use this skill to turn a business goal or target revenue into candidate ideas, validation checks, MVP messaging, execution plans, ROI estimates, and iteration guidance. It is best treated as a planning and drafting aid until a human approves any outward-facing or account-affecting action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask an agent to execute or delegate broad business and marketing actions without clear approval boundaries. <br>
-Mitigation: Require explicit user confirmation before sending messages, publishing content, spending money, deploying code, or acting on any business account. <br>
-Risk: ROI scoring, market validation, and profit projections are simple planning heuristics and may be overconfident. <br>
-Mitigation: Treat generated plans and forecasts as drafts, then verify assumptions with current market data, financial review, and user judgment before acting. <br>
+## Use Case:
 
+External users and developers use this skill to turn a business goal into ranked startup ideas, validation checks, MVP copy, action plans, and performance tracking outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/zero-to-profit-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/theshimaw-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured text with optional Python-generated values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ROI scores, landing page copy, action plans, logs, and lessons learned; actions should remain drafts until approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to execute or delegate business tasks without clear approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for planning and drafting by default, and require explicit confirmation before outreach, publishing, purchases, account changes, or file writes.
+
+Risk: The artifact includes logging helpers that write to caller-provided paths.
+
+Mitigation: Avoid passing user-controlled paths into logging functions and review destination paths before any file write.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/zero-to-profit-ai)
+- [Publisher profile](https://clawhub.ai/user/theshimaw-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-style structured planning output with optional code and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce business plans, MVP landing-page copy, ROI calculations, task lists, logs, and self-correction notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

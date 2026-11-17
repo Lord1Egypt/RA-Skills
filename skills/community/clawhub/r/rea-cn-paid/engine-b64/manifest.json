@@ -1,0 +1,8 @@
+{
+  "file": "engine.zip",
+  "sha256": "261f5a16f0b25a6ac3b02e4bd9793b5b3577be3e8d99d3449d5e5d689413ec92",
+  "size": 2337467,
+  "chunks": 6,
+  "encoding": "base64",
+  "note": "SkillHub 禁止上传二进制文件，故将 engine.zip 转为 base64 文本分片；首跑由 scripts 自动拼回并校验。"
+}

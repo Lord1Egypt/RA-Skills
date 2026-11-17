@@ -1,0 +1,75 @@
+{
+  "plug_slug": "plug-bundle-pandoc-document-converter",
+  "bundle_slug": "bundle-pandoc-document-converter",
+  "bundle_name": "Productivity Bundle: pandoc-convert-openclaw",
+  "members": [
+    {
+      "slug": "pandoc-document-converter",
+      "name": "pandoc-convert-openclaw",
+      "category": "Productivity",
+      "role": "primary"
+    },
+    {
+      "slug": "personal-productivity",
+      "name": "personal-productivity",
+      "category": "Productivity",
+      "role": "primary"
+    },
+    {
+      "slug": "queue-task",
+      "name": "queue-task",
+      "category": "Productivity",
+      "role": "primary"
+    },
+    {
+      "slug": "research-agent",
+      "name": "research-agent",
+      "category": "Productivity",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "日常事务繁杂难以聚焦核心",
+    "pandoc-document-converter: 存在耗时低效问题 (人工)",
+    "pandoc-document-converter: 存在门槛高问题 (复杂)",
+    "queue-task: 存在易出错问题 (风险)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "pandoc-document-converter",
+        "name": "pandoc-convert-openclaw",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "personal-productivity",
+        "name": "personal-productivity",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "queue-task",
+        "name": "queue-task",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "research-agent",
+        "name": "research-agent",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 0.0,
+    "bundle_price": 0.0,
+    "savings": 0.0,
+    "savings_percent": 0.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill组合为Plug，一站式解决多场景需求，享受20%捆绑折扣"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- pandoc-convert-openclaw (Productivity): 提供 read、exec、write\n- personal-productivity (Productivity): 提供 通用工具\n- queue-task (Productivity): 提供 read、exec、write\n- research-agent (Productivity): 提供 read、exec、write、glob、grep\n\n组合工具集: read, exec, write, glob, grep\n\n典型工作流:\n  1. 使用 pandoc-convert-openclaw 的 read、exec、write 完成相关任务\n  2. 使用 personal-productivity 的 数据处理 完成相关任务\n  3. 使用 queue-task 的 read、exec、write 完成相关任务\n  4. 使用 research-agent 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T18:17:17.766861"
+}

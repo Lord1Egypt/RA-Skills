@@ -1,45 +1,59 @@
-## Description: <br>
-SpiderShield Security Scanner provides security scanning and trust scoring for OpenClaw skills, including trust lookup, malware scanning, configuration audit and fixes, rug pull detection, and bulk scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SpiderShield Security Scanner provides OpenClaw skill trust lookups, malware scanning, configuration auditing, auto-fix guidance, tamper pinning, and bulk installed-skill scanning.
 
-## Publisher: <br>
-[teehooai](https://clawhub.ai/user/teehooai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teehooai](https://clawhub.ai/user/teehooai)
 
-## Use Case: <br>
-Developers and security reviewers use SpiderShield to check trust scores for published OpenClaw skills, scan local skill files for malicious patterns, audit and improve OpenClaw configuration, and pin skills to detect later tampering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local shell wrappers and the external spidershield Python package can inspect local skill and OpenClaw configuration files. <br>
-Mitigation: Install the Python package from a trusted source, review the command behavior, and run scans in an environment appropriate for security tooling. <br>
-Risk: The fix command can modify OpenClaw configuration files. <br>
-Mitigation: Run `fix --dry-run` first and review proposed changes before allowing writes. <br>
-Risk: The check command contacts the SpiderRating API. <br>
-Mitigation: Use it only when sending an author/skill slug to the external service is acceptable under the user's network and privacy policy. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to assess OpenClaw skills and installations through trust-score lookup, local malware scans, configuration audits, auto-fix review, and content-hash pinning.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/teehooai/spidershield) <br>
-- [SpiderRating Trust Registry](https://spiderrating.com) <br>
-- [SpiderShield source repository](https://github.com/teehooai/spidershield) <br>
-- [SpiderShield issues](https://github.com/teehooai/spidershield/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal text and Markdown-style command output from shell wrappers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The check command sends only an author/skill slug to the SpiderRating API; scan, audit-config, fix, pin, and scan-all operate on local OpenClaw files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and artifact skill.yaml) <br>
+Risk: Local commands delegate scanning and configuration-changing work to an external Python package that is not pinned by the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and trusted spidershield package or an isolated virtual environment before running local scan, audit, fix, pin, or scan-all commands.
+
+Risk: Configuration fixes can modify files under ~/.openclaw.
+
+Mitigation: Run /spidershield fix --dry-run first and review the proposed ~/.openclaw changes before confirming fixes.
+
+Risk: The security review reports an unsafe Python import fallback in the local command wrappers.
+
+Mitigation: Run local commands only from a trusted directory and prefer a trusted installed spidershield CLI over import fallback execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teehooai/skills/spidershield)
+- [SpiderRating Trust Registry](https://spiderrating.com)
+- [Publisher profile](https://clawhub.ai/user/teehooai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style command guidance and terminal text output, including trust reports, scan findings, audit results, and configuration-change previews.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The check command calls the SpiderRating API with an author/skill slug; local scan, audit, fix, pin, and scan-all commands depend on the spidershield Python package.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Write Bulgarian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Bulgarian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to make Bulgarian-language agent responses sound more natural, casual, and native to Bulgarian internet and conversational contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to make generated Bulgarian sound less obviously machine-written, which may matter in contexts requiring AI assistance disclosure. <br>
-Mitigation: Use the skill transparently where authorship or AI assistance disclosure is expected, and review generated Bulgarian before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/bulgarian) <br>
+## Use Case:
 
+External users and developers use this skill to make agent-generated Bulgarian sound warmer, more casual, and less robotic. It is best suited for informal or internet-style Bulgarian unless the user explicitly asks for a formal register.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text Bulgarian writing guidance and revised language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tools, system access, or external API calls are described by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults toward casual Bulgarian, which can be inappropriate for professional, institutional, elderly, or otherwise formal audiences.
+
+Mitigation: Ask explicitly for formal Bulgarian or Вие when writing to professionals, elderly people, institutions, or other formal audiences.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/bulgarian)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language Bulgarian text or editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to casual Bulgarian; users should request formal Bulgarian or Вие for formal audiences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

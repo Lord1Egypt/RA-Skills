@@ -1,40 +1,58 @@
-## Description: <br>
-Queries an enterprise AliMail directory for employee names, email addresses, and employee numbers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries AliMail for internal employee email addresses and employee numbers by name.
 
-## Publisher: <br>
-[Colin-megan](https://clawhub.ai/user/Colin-megan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colin-megan](https://clawhub.ai/user/colin-megan)
 
-## Use Case: <br>
-Authorized employees and agents use this skill to look up internal AliMail directory entries by employee name when they need an email address or employee number. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose internal AliMail employee-directory data when used with valid credentials. <br>
-Mitigation: Install only in authorized workspaces, use scoped AliMail OAuth credentials, and restrict access to users with a legitimate business need. <br>
-Risk: Automatic lookup of names mentioned in conversation can query employee records without clear intent. <br>
-Mitigation: Prefer explicit lookup prompts or confirmation before searching names mentioned in conversation. <br>
+## Use Case:
 
+Authorized enterprise users and agents use this skill to look up internal AliMail directory records by employee name when they need contact or employee-number details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Colin-megan/alimail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text] <br>
-**Output Format:** [JSON object with matching users, total count, or error status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALIMAIL_CLIENT_ID and ALIMAIL_CLIENT_SECRET; returns up to 10 matching users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence, SKILL.md frontmatter, manifest.json, openapi.json) <br>
+Risk: Broad or automatic name searches can expose internal employee email addresses and employee numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where AliMail directory lookup is authorized, require explicit lookup requests, and add exact-match or minimum-length search controls before deployment.
+
+Risk: Company OAuth credentials are required to query the directory service.
+
+Mitigation: Store ALIMAIL_CLIENT_ID and ALIMAIL_CLIENT_SECRET as protected environment secrets and limit access to authorized runtime environments.
+
+Risk: The dependency specification is not pinned to an exact requests version.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colin-megan/skills/alimail)
+- [AliMail API endpoint](https://alimail-cn.aliyuncs.com)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 10 fuzzy name matches with name, email, employeeNo, and total count; errors are returned as JSON status objects.]
+
+## Skill Version(s):
+
+1.0.6 (source: server evidence, SKILL.md frontmatter, manifest.json, openapi.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

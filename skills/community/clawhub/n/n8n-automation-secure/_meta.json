@@ -1,6 +1,67 @@
 {
-  "ownerId": "kn70w8hgbfqgnaa9yw0a2f2q7n828vd3",
+  "name": "n8n-automation-secure",
   "slug": "n8n-automation-secure",
   "version": "1.0.0",
-  "publishedAt": 1775724949405
+  "description": "Secure n8n workflow automation integration with enterprise-grade security. Features credential isolation, input validation, audit logging, rate limiting, and granular permissions. Prioritizes security over convenience.",
+  "author": "nelson-mazonzika",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/nelson-mazonzika/n8n-automation-secure",
+  "repository": "https://github.com/nelson-mazonzika/openclaw-n8n-automation-secure",
+  "tags": [
+    "n8n",
+    "automation",
+    "workflow",
+    "security",
+    "enterprise",
+    "audit-logging",
+    "rate-limiting",
+    "ci/cd"
+  ],
+  "category": "automation",
+  "openclaw": {
+    "requires": {
+      "bins": [],
+      "env": [
+        "N8N_URL",
+        "N8N_API_KEY"
+      ],
+      "node": ">=18.0.0"
+    },
+    "security": {
+      "level": "enterprise",
+      "features": [
+        "credential-isolation",
+        "input-validation",
+        "audit-logging",
+        "rate-limiting",
+        "granular-permissions",
+        "sandbox-support",
+        "https-only",
+        "confirmation-required"
+      ],
+      "tested": true,
+      "audit-trail": true
+    },
+    "emoji": "🔒"
+  },
+  "screenshots": [],
+  "publishedAt": 1712192000000,
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2024-04-04",
+      "changes": [
+        "Initial secure release",
+        "Credential isolation (environment variables only)",
+        "Input validation (URL format, data sanitization)",
+        "Audit logging with complete action trail",
+        "Rate limiting to prevent abuse",
+        "Three permission levels (readonly, restricted, full)",
+        "Two-factor confirmation for dangerous operations",
+        "HTTPS enforcement",
+        "Setup validation script",
+        "Comprehensive security documentation"
+      ]
+    }
+  ]
 }

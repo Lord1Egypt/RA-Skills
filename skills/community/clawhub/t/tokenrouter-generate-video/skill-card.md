@@ -1,44 +1,58 @@
-## Description: <br>
-Guides an agent to find existing Tokenrouter channel configuration, add missing video model routes with minimal config changes, and create and poll video generation tasks through Tokenrouter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to find or update Tokenrouter video model routing, then create and poll video generation tasks through the configured Tokenrouter endpoint.
 
-## Publisher: <br>
-[yb98k999](https://clawhub.ai/user/yb98k999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yb98k999](https://clawhub.ai/user/yb98k999)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare a workspace's Tokenrouter configuration for supported video models and run text-to-video or image-to-video generation through an existing Tokenrouter channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local Tokenrouter routing edits may change workspace behavior or disrupt the running service. <br>
-Mitigation: Review the proposed config diff before applying it, keep edits scoped to the requested model route, and run the workspace's reload or validation command when available. <br>
-Risk: Video generation requests can use an existing Tokenrouter key and consume paid quota. <br>
-Mitigation: Confirm the configured key belongs to the intended account and that the user approves the paid API request before submitting generation jobs. <br>
-Risk: Prompts and image URLs are sent to Tokenrouter and potentially upstream video providers. <br>
-Mitigation: Avoid submitting sensitive prompts, private images, or confidential media unless the user has approved sending that data to the service. <br>
+## Use Case:
 
+Developers and engineers use this skill to verify Tokenrouter channel and model routing for supported video models, apply minimal configuration edits when needed, and run asynchronous video generation requests.
 
-## Reference(s): <br>
-- [Tokenrouter Video API Reference](artifact/references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yb98k999/tokenrouter-generate-video) <br>
-- [Tokenrouter registration](https://www.tokenrouter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect and edit local Tokenrouter configuration, reload services, and submit video-generation API requests using an existing configured key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can modify Tokenrouter routing configuration or restart local services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a shown diff and explicit approval before config edits or service restarts.
+
+Risk: The skill may send discovered API credentials, prompts, and image URLs to Tokenrouter endpoints.
+
+Mitigation: Use only the existing server-issued Tokenrouter channel key for the matching endpoint and confirm sensitive prompts, image URLs, and credential scope before requests.
+
+Risk: Incorrect model parameters or routing can cause failed or misdirected video generation requests.
+
+Mitigation: Validate model-specific parameters and endpoint paths before making API calls, and stop on unsupported combinations.
+
+## Reference(s):
+
+- [Tokenrouter Video API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/yb98k999/skills/tokenrouter-generate-video)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed config diffs, API request bodies, polling results, and final video URLs.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

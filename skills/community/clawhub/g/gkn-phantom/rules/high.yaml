@@ -1,0 +1,758 @@
+# GKN-Phantom v3.0 — HIGH Tier Detection Rules
+# =============================================
+# All rules at the HIGH tier: stored XSS, SQLi, SSRF, IDOR, file upload,
+# logic flaws, and v3 additions (NoSQL/LDAP/GraphQL injection, cache
+# poisoning, race conditions, prototype pollution, JWT deep analysis,
+# OAuth misconfig, mass assignment, dependency confusion).
+#
+# Total: 16 rules
+
+- id: "xss-stored-cross-user"
+  type: "xss"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "comment"
+    - "bio"
+    - "message"
+    - "profile"
+  probe_description: >-
+    Submit marker via write endpoint; render as a DIFFERENT test account;
+    confirm cross-user reflection
+  detection_signal: "Stored marker reflected unescaped to a second account's view"
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Apply contextual output encoding to all stored data rendered in HTML
+    views. This is the same remediation as reflected XSS but must also
+    include input validation and sanitization at the persistence layer.
+    Use a defense-in-depth approach: (1) validate and sanitize input
+    before storage using a well-tested library like OWASP Java HTML
+    Sanitizer or bleach (Python); (2) apply output encoding when
+    rendering; (3) implement CSP with nonces. Never trust data from the
+    database — treat all rendered content as untrusted. Audit all stored
+    content that is rendered without encoding (markdown, rich text,
+    user-generated HTML).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/79.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+  tags:
+    - "xss"
+    - "stored"
+    - "persistent"
+    - "cross-user"
+    - "injection"
+
+- id: "sqli-error-boolean-time"
+  type: "sqli"
+  severity: "high"
+  tier: "high"
+  risk_level: "L2"
+  target_param_hints:
+    - "id"
+    - "q"
+    - "search"
+    - "user"
+    - "name"
+    - "filter"
+  probe_description: >-
+    Error-based (PTSKILLTEST') + boolean differential (AND 1=1 vs AND 1=2)
+    + capped time-based (pg_sleep 2)
+  detection_signal: "DB error signature OR boolean differential OR time delta >= 1.8s"
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Use parameterized queries (prepared statements) for ALL database
+    interactions — never concatenate user input into SQL strings. For
+    Java: PreparedStatement with ? placeholders. For .NET: SqlCommand with
+    SqlParameter. For PHP: PDO prepared statements with named parameters.
+    For Python: cursor.execute(query, params). If dynamic SQL is
+    unavoidable (e.g., ORDER BY, table names), validate against a strict
+    allowlist of permitted values. Apply the principle of least privilege
+    to the database user account (read-only for SELECT, no DDL/DML grants
+    beyond necessity). Use stored procedures with EXECUTE AS to limit
+    permissions.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/89.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+    - "https://portswigger.net/web-security/sql-injection"
+  tags:
+    - "sqli"
+    - "sql-injection"
+    - "database"
+    - "injection"
+
+- id: "ssrf-oob-callback"
+  type: "ssrf"
+  severity: "high"
+  tier: "high"
+  risk_level: "L4"
+  target_param_hints:
+    - "url"
+    - "image"
+    - "webhook"
+    - "callback"
+    - "fetch"
+  probe_description: >-
+    Set url param to https://oob.authorized.test/<run_id>/PTSKILLTEST;
+    await callback
+  detection_signal: "OOB callback hit within 30s"
+  safe_poc: false
+  requires_credentials: false
+  requires_human_approval: true
+  blocked_in_safe_mode: true
+  remediation: >-
+    Implement a strict allowlist of permitted outbound destinations for
+    server-side HTTP requests. Validate and sanitize all user-supplied
+    URLs using a URL parser (not regex). Block requests to internal IP
+    ranges (127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16,
+    169.254.169.254/32) and internal hostnames. Disable or restrict
+    protocol schemes to http: and https: only (block file://, gopher://,
+    dict://, ftp://). Use DNS resolution on a split-horizon basis so
+    internal DNS records are not leaked. Deploy the HTTP client with a
+    restrictive timeout and response size limit. Run the outbound fetcher
+    in an isolated network segment.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/918.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html"
+  tags:
+    - "ssrf"
+    - "oob"
+    - "server-side"
+    - "request-forgery"
+    - "l4"
+
+- id: "idor-cross-user-enumeration"
+  type: "idor"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "id"
+    - "user_id"
+    - "account"
+    - "doc_id"
+    - "order"
+    - "applyId"
+    - "student_uuid"
+    - "studentId"
+    - "userId"
+    - "qxid"
+    - "secode"
+    - "uid"
+  probe_description: >-
+    As user A capture object; as user B/unauth request SAME object id;
+    ALSO test sequential ID enumeration (id+1, id-1) and UUID
+    predictability; 覆盖水平越权(id/userId/applyId/student_uuid) +
+    交叉越权(qxid/secode)
+  detection_signal: >-
+    User B receives 200 with user-A's data (expected 403/404) OR sequential
+    ID returns different user's data
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Implement object-level authorization checks on every request. Use
+    unpredictable references (UUIDs) instead of sequential numeric IDs
+    for external-facing object identifiers, but DO NOT rely on this
+    alone for authorization — it is obfuscation, not security. Always
+    verify that the authenticated user has permission to access the
+    requested object by checking ownership or access control lists at
+    the data-access layer. In a multi-tenant system, scope all queries
+    by tenant_id. Use framework-level authorization middleware
+    (Spring Security's @PreAuthorize, Django's row-level permissions).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/639.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+  tags:
+    - "idor"
+    - "authorization"
+    - "horizontal-escalation"
+    - "enumeration"
+
+- id: "file-upload-unrestricted"
+  type: "file_upload"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "upload"
+    - "file"
+    - "avatar"
+    - "image"
+    - "attachment"
+    - "doc"
+    - "img"
+  probe_description: >-
+    DETECTION ONLY (no real webshell): (1) Upload a benign .txt marker
+    file 'PTSKILLTEST-upload-9a3f' — confirm it is stored & accessible;
+    (2) Test extension bypass: .jpg.php, .phtml, .phar, .asp;jpg, .html,
+    .svg (XSS carrier); (3) Test Content-Type manipulation: image/jpeg
+    header + .php body; (4) Test double-extension: file.jpg.html (同济案例);
+    (5) Test UEditor action=catchimage with remote URL pointing to
+    authorized sink; (6) Test Content-Disposition double-write bypass
+    (南开安全狗案例). Flag if uploaded file is accessible AND executable
+    OR if non-image extension accepted
+  detection_signal: >-
+    Uploaded marker file accessible at known path OR executable extension
+    (.php/.asp/.jsp) accepted & served OR SVG with script accessible OR
+    UEditor catchimage fetches remote URL
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Validate file uploads with a defense-in-depth strategy: (1) Whitelist
+    permitted file extensions (not blacklist) and validate against the
+    actual file content via magic bytes, not the Content-Type header;
+    (2) Store uploaded files outside the web root or on a separate
+    domain (static.example.com) with no script execution permissions;
+    (3) Rename all uploaded files to a generated UUID — never preserve
+    the original filename; (4) Set Content-Disposition: attachment on all
+    served files to prevent browser-based execution; (5) Run antivirus/
+    malware scanning on all uploads; (6) Limit file sizes and implement
+    rate limiting on upload endpoints; (7) If images are required,
+    re-encode them server-side to strip embedded scripts.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/434.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html"
+  tags:
+    - "file-upload"
+    - "unrestricted-upload"
+    - "rce-via-upload"
+    - "webshell"
+
+- id: "logic-flaw-parameter-tampering"
+  type: "logic_flaw"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "price"
+    - "amount"
+    - "count"
+    - "role"
+    - "type"
+    - "level"
+    - "status"
+    - "is_admin"
+    - "is_vip"
+    - "balance"
+    - "score"
+    - "orderId"
+    - "step"
+  probe_description: >-
+    Business-logic flaw DETECTION (non-destructive, synthetic test objects
+    only): (1) Response tampering: intercept response, flip error_code:1->0,
+    success:false->true, role:user->admin, Message:0->1; (2) Parameter
+    tampering: modify price/amount to negative or 0, modify quantity to
+    large number; (3) Step skip: directly access step3 URL bypassing
+    step1/step2; (4) SMS/verification bombing: probe /sendPasswordCode or
+    /sendSms endpoint — check rate limit; (5) Replay: replay a state-
+    changing request N times; (6) Negative value: amount=-1, count=-100
+  detection_signal: >-
+    Tampered response accepted OR negative/zero price accepted OR step-skip
+    grants access OR SMS endpoint has no rate limit (>5/min) OR replay
+    applies N times OR negative amount reverses balance
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Never trust client-side business logic. All critical values (price,
+    amount, role, permissions, workflow state) MUST be computed or
+    validated server-side. Implement server-side workflow state machines
+    that enforce step ordering — each step must verify the previous step
+    was completed. Apply idempotency keys to prevent replay attacks.
+    Rate-limit SMS and email sending endpoints with per-user and per-IP
+    limits. Validate that numeric inputs are within reasonable bounds
+    (positive, within max). Use signed or encrypted tokens for sensitive
+    client-side state rather than plain values.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/840.html"
+    - "https://cwe.mitre.org/data/definitions/841.html"
+    - "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/10-Business_Logic_Testing/README"
+  tags:
+    - "logic-flaw"
+    - "business-logic"
+    - "parameter-tampering"
+    - "workflow-bypass"
+    - "rate-limit"
+
+- id: "nosql-injection-mongodb"
+  type: "nosql_injection"
+  severity: "high"
+  tier: "high"
+  risk_level: "L2"
+  target_param_hints:
+    - "id"
+    - "user"
+    - "username"
+    - "email"
+    - "search"
+    - "q"
+    - "filter"
+  probe_description: >-
+    Test NoSQL injection (MongoDB): (1) $ne bypass: {'$ne': null} →
+    bypass auth/query filters; (2) $regex blind: {'$regex': '^admin'} →
+    enumerate users; (3) $gt timing: {'$gt': ''} → compare response
+    size/timing; (4) $where JS injection: {$where: 'sleep(3000)'}
+  detection_signal: >-
+    Response differs from baseline (JSON injection accepted) OR $regex
+    enumeration reveals data OR $where timing delta >= 2.5s
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Validate and sanitize all user input before passing it to NoSQL
+    queries. In MongoDB, use the $eq operator explicitly instead of
+    relying on implicit matching, and never pass raw JSON from the client
+    directly into find() or aggregate() queries. Use a schema validation
+    library (mongoose Schema with strict typing, mongoengine) that
+    enforces the expected data types on query parameters. For Node.js,
+    use the mongo-sanitize or express-mongo-sanitize middleware to strip
+    $-prefixed keys from user input. Apply the principle of least
+    privilege on the database user.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/943.html"
+    - "https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05.6-Testing_for_NoSQL_Injection"
+  tags:
+    - "nosql"
+    - "mongodb"
+    - "injection"
+    - "database"
+    - "$ne"
+    - "$where"
+
+- id: "ldap-injection-filter-bypass"
+  type: "ldap_injection"
+  severity: "high"
+  tier: "high"
+  risk_level: "L2"
+  target_param_hints:
+    - "user"
+    - "username"
+    - "name"
+    - "search"
+    - "filter"
+    - "query"
+  probe_description: >-
+    Test LDAP injection: (1) *)(& → bypass AND filter;
+    (2) *)(|(uid=* → OR filter; (3) *)(uid=*))(|(uid=* → multi-filter;
+    (4) *)(|(password=* → password enumeration; (5) time-based:
+    *)(objectClass=*&sleep(3) → timing test
+  detection_signal: >-
+    LDAP filter bypass succeeds (auth/login works with injected filter) OR
+    LDAP error message in response (LDAPException/NamingException) OR
+    time-based LDAP injection confirmed
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Escape all user-supplied values before constructing LDAP search
+    filters. Use parameterized LDAP queries where the library supports
+    them, or apply RFC 4515 / RFC 2254 escaping rules: escape *, (, ),
+    \, NUL, and / characters. For Java, use the Spring LDAP
+    LdapQueryBuilder or the standard JNDI with proper escaping via
+    LdapEncoder. For .NET, use DirectorySearcher.Filter with
+    parameterized queries. Never concatenate raw user input into LDAP
+    filter strings. Apply input validation to restrict characters in
+    search fields to alphanumerics and common delimiters only.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/90.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html"
+  tags:
+    - "ldap"
+    - "injection"
+    - "authentication"
+    - "filter"
+    - "directory"
+
+- id: "graphql-batching-abuse"
+  type: "graphql_injection"
+  severity: "high"
+  tier: "high"
+  risk_level: "L2"
+  target_param_hints:
+    - "/graphql"
+    - "/gql"
+    - "/api/graphql"
+  probe_description: >-
+    Test GraphQL injection: (1) batching attack — send multiple queries
+    in one request; (2) alias-based rate limit bypass — use aliases to
+    repeat the same query; (3) depth/circular query — test if nested
+    queries cause DOS; (4) field suggestion — send malformed query to
+    leak field names; (5) SQL injection via GraphQL arguments
+  detection_signal: >-
+    Batching accepted (multiple queries resolved) OR alias-based rate
+    limit bypass works OR deep recursive query accepted OR field
+    suggestions reveal schema OR SQL injection in GraphQL args
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Disable query batching in production or limit the number of queries
+    per request. Implement query depth limiting (max 5-7 levels) and
+    query complexity analysis (assign cost to each field and enforce a
+    total cost budget). Use persisted queries (whitelist of allowed
+    queries) for production GraphQL endpoints. Disable field suggestions
+    in production. Sanitize all arguments passed to resolvers — GraphQL
+    does not automatically protect against SQL/NoSQL injection in
+    resolver implementations. Implement query-specific rate limiting
+    (cost-based, not just request-count-based). Use GraphQL Armor or
+    similar middleware.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/89.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Cheat_Sheet.html"
+  tags:
+    - "graphql"
+    - "batching"
+    - "dos"
+    - "rate-limit-bypass"
+    - "injection"
+
+- id: "web-cache-poisoning"
+  type: "cache_poisoning"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "X-Forwarded-Host"
+    - "X-Forwarded-Scheme"
+    - "X-Forwarded-Port"
+    - "Origin"
+    - "Host"
+  probe_description: >-
+    Test web cache poisoning: (1) inject X-Forwarded-Host → check if
+    reflected in cached response; (2) unkeyed header injection — add
+    X-PTSKILLTEST: cache-test → check if cached; (3) cache deception —
+    GET /profile.css → check if cached; (4) fat GET — POST with body to
+    cached endpoint
+  detection_signal: >-
+    Injected header value reflected in cached response OR unkeyed header
+    cached and served to other users OR cache deception: authenticated
+    page cached as static resource
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Configure the cache (CDN, reverse proxy) to only cache responses based
+    on a clearly defined set of cache keys. Disable caching for responses
+    that vary based on unkeyed headers (X-Forwarded-Host, etc.). Set the
+    Vary header appropriately on dynamic responses. For cache deception,
+    ensure the cache respects the Content-Type and does not serve dynamic
+    responses under static resource URLs — configure URL normalization
+    rules. Use Cache-Control: no-store on authenticated pages. Test your
+    cache configuration with tools like Param Miner to identify unkeyed
+    inputs.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/524.html"
+    - "https://portswigger.net/web-security/web-cache-poisoning"
+  tags:
+    - "cache-poisoning"
+    - "cdn"
+    - "web-cache"
+    - "unkeyed-headers"
+
+- id: "race-condition-tctou"
+  type: "race_condition"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "coupon"
+    - "redeem"
+    - "withdraw"
+    - "transfer"
+    - "order"
+    - "checkout"
+  probe_description: >-
+    Test race condition (TOCTOU): (1) send multiple concurrent requests to
+    same endpoint; (2) test coupon/voucher double-use — send 2+ requests
+    simultaneously; (3) test balance withdrawal — send concurrent
+    withdrawal requests; (4) test file upload — concurrent uploads to
+    same filename
+  detection_signal: >-
+    Duplicate action accepted (coupon used twice, balance withdrawn twice)
+    OR race condition causes inconsistent state
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Use database-level locking or atomic operations for state-changing
+    transactions. Implement optimistic concurrency control with version
+    numbers or timestamps — check the version before committing. For
+    PostgreSQL/MySQL, use SELECT ... FOR UPDATE to lock rows within a
+    transaction. For MongoDB, use findOneAndUpdate with appropriate
+    filters and the $isolated operator. Apply idempotency keys to
+    prevent duplicate processing of the same request. Use rate limiting
+    on sensitive endpoints to make race exploitation harder. Always
+    use serializable isolation levels for critical transactions.
+  cvss_vector: "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/367.html"
+    - "https://portswigger.net/web-security/race-conditions"
+  tags:
+    - "race-condition"
+    - "toctou"
+    - "concurrency"
+    - "time-of-check"
+
+- id: "prototype-pollution-json"
+  type: "prototype_pollution"
+  severity: "high"
+  tier: "high"
+  risk_level: "L2"
+  target_param_hints:
+    - "__proto__"
+    - "constructor"
+    - "prototype"
+    - "q"
+    - "filter"
+    - "params"
+  probe_description: >-
+    Test prototype pollution: (1) client-side: ?__proto__[polluted]=
+    PTSKILLTEST; (2) server-side: POST JSON with {__proto__:{polluted:
+    PTSKILLTEST}}; (3) constructor.prototype injection: {constructor:
+    {prototype:{polluted:PTSKILLTEST}}}; (4) merge/deep-extend function
+    abuse
+  detection_signal: >-
+    Polluted property reflected in response OR DOM mutation observed via
+    browser OR server-side pollution changes behavior (status change,
+    error difference)
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Prevent prototype pollution by: (1) Using Object.create(null) for
+    dictionaries/maps to avoid __proto__ inheritance; (2) Validating
+    object keys and rejecting __proto__, constructor, and prototype as
+    key names; (3) Using safe merge/deep-extend libraries that do not
+    traverse the prototype chain (e.g., lodash.merge with a customizer,
+    or just-clone); (4) Freezing Object.prototype with
+    Object.freeze(Object.prototype) early in the application bootstrap;
+    (5) Using Map instead of plain objects for key-value storage;
+    (6) Upgrading vulnerable libraries (lodash < 4.17.11, jQuery < 3.4.0,
+    handlebars, etc.).
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/1321.html"
+    - "https://portswigger.net/web-security/prototype-pollution"
+  tags:
+    - "prototype-pollution"
+    - "javascript"
+    - "nodejs"
+    - "client-side"
+    - "server-side"
+
+- id: "jwt-algorithm-confusion"
+  type: "jwt_deep_analysis"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "Authorization"
+    - "Bearer"
+    - "token"
+    - "jwt"
+    - "access_token"
+  probe_description: >-
+    Extended JWT analysis: (1) kid injection — ../../../../etc/passwd;
+    (2) jku/x5u header injection — point to attacker-controlled JWKS;
+    (3) algorithms confusion: RS256→HS256 with public key; (4) empty
+    signature / none algorithm; (5) weak HMAC secret brute-force;
+    (6) exp/nbf/iat manipulation; (7) audience/sub claim confusion
+  detection_signal: >-
+    JWT accepted with modified algorithm (alg:none/HS256 with pubkey) OR
+    kid injection succeeds OR jku/x5u hijacking works OR
+    expired/exp-manipulated token accepted
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Use a well-audited JWT library and enforce strict algorithm
+    verification: always specify the expected algorithm (e.g.,
+    RS256 only) in the verification call — never rely on the alg header
+    from the token. Reject tokens with alg: "none". For HMAC-based JWTs
+    (HS256), use a strong secret (256+ bits, randomly generated). For
+    RSA/ECDSA-based JWTs, validate that the key used matches the expected
+    algorithm (public key for RS256 should not verify an HS256 token).
+    Validate all standard claims: exp, nbf, iat, iss, aud. Do not use
+    kid from the token to resolve keys unless the kid is validated
+    against a trusted registry (not a filesystem path). Use short token
+    lifetimes and implement token revocation.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/347.html"
+    - "https://portswigger.net/web-security/jwt"
+    - "https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/"
+  tags:
+    - "jwt"
+    - "authentication"
+    - "algorithm-confusion"
+    - "token"
+    - "kid-injection"
+
+- id: "oauth-redirect-uri-manipulation"
+  type: "oauth_misconfig"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "redirect_uri"
+    - "client_id"
+    - "state"
+    - "code"
+    - "response_type"
+    - "scope"
+  probe_description: >-
+    Test OAuth 2.0 misconfiguration: (1) open redirect in redirect_uri;
+    (2) CSRF in state parameter (missing/invalid); (3) authorization code
+    replay; (4) PKCE missing; (5) implicit flow token leakage; (6) scope
+    upgrade
+  detection_signal: >-
+    redirect_uri accepts attacker-controlled value OR state parameter
+    missing/not validated OR authorization code reusable OR PKCE not
+    enforced
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Register an exact allowlist of redirect URIs on the OAuth provider —
+    do not accept partial matches or pattern-based matching. Require and
+    validate the state parameter in every OAuth flow to prevent CSRF —
+    bind it to the user's session. Enforce PKCE (Proof Key for Code
+    Exchange) for all public clients and strongly recommended for
+    confidential clients. Use the authorization code flow with PKCE
+    instead of the implicit flow. Rotate client secrets regularly and
+    never expose them in client-side code (SPAs, mobile apps). Validate
+    scope requests server-side and do not grant more scope than the
+    client is authorized for.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/601.html"
+    - "https://portswigger.net/web-security/oauth"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/OAuth_2.0_Cheat_Sheet.html"
+  tags:
+    - "oauth"
+    - "oidc"
+    - "redirect-uri"
+    - "authorization"
+    - "pkce"
+
+- id: "mass-assignment-role-escalation"
+  type: "mass_assignment"
+  severity: "high"
+  tier: "high"
+  risk_level: "L3"
+  target_param_hints:
+    - "profile"
+    - "user"
+    - "account"
+    - "register"
+    - "settings"
+    - "update"
+  probe_description: >-
+    Test mass assignment (auto-binding): (1) add is_admin=true to user
+    update; (2) add role=admin / role_id=1 to registration; (3) add
+    balance=999999 to profile; (4) add verified=true / email_verified=true;
+    (5) add plan=enterprise to subscription
+  detection_signal: >-
+    Extra parameter accepted (is_admin/role/balance/verified/plan) and
+    value reflected in subsequent GET or login response
+  safe_poc: true
+  requires_credentials: true
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Never bind request parameters directly to internal data models. Use
+    explicit allowlists of fields that can be set by each user role (e.g.,
+    DTOs or form objects with only permitted fields). In Spring MVC, use
+    @ModelAttribute with a dedicated form backing object, not the entity
+    itself, and annotate sensitive fields with @JsonIgnore or
+    @JsonProperty(access = READ_ONLY). In Rails, use strong parameters
+    (params.require(:user).permit(:name, :email)). In Django, use
+    ModelForm with explicit fields or exclude lists. In ASP.NET, use
+    [Bind(Include="...")] on controller actions.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N"
+  references:
+    - "https://cwe.mitre.org/data/definitions/915.html"
+    - "https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html"
+    - "https://cwe.mitre.org/data/definitions/913.html"
+  tags:
+    - "mass-assignment"
+    - "auto-binding"
+    - "authorization"
+    - "privilege-escalation"
+
+- id: "dependency-confusion-supply-chain"
+  type: "dependency_confusion"
+  severity: "high"
+  tier: "high"
+  risk_level: "L1"
+  target_param_hints:
+    - "package.json"
+    - "composer.json"
+    - "requirements.txt"
+    - "Pipfile"
+    - "Gemfile"
+    - "pom.xml"
+  probe_description: >-
+    Supply chain dependency confusion: (1) check for exposed
+    package.json/Pipfile/composer.json; (2) identify internal packages
+    with no public registry entry; (3) check if npm/pip/composer
+    registry allows scoped packages without verification
+  detection_signal: >-
+    Internal package name found in dependency manifest AND package not
+    registered on public registry OR scoped package configurable
+  safe_poc: true
+  requires_credentials: false
+  requires_human_approval: false
+  blocked_in_safe_mode: false
+  remediation: >-
+    Use scoped packages (@company/package-name) for all internal
+    dependencies and register the scope on the public registry to
+    reserve it. Configure the package manager to prefer the private
+    registry for internal packages: npm with .npmrc scoped registry
+    settings (@company:registry=https://registry.company.com/), pip
+    with --extra-index-url pointing to the private registry first.
+    Periodically audit your dependency manifests for packages that exist
+    only internally and verify they are not available on public
+    registries. Do not expose dependency manifests (package.json,
+    requirements.txt) on publicly accessible web servers. Use lock
+    files with integrity hashes.
+  cvss_vector: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  references:
+    - "https://cwe.mitre.org/data/definitions/427.html"
+    - "https://cwe.mitre.org/data/definitions/1104.html"
+    - "https://medium.com/@alex.birsan/dependency-confusion-4a5d60fec610"
+  tags:
+    - "supply-chain"
+    - "dependency-confusion"
+    - "npm"
+    - "pip"
+    - "package-manager"

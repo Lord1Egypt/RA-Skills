@@ -1,0 +1,123 @@
+{
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "20260719-存量日报-归档30篇-Atoms18条-主种1个"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "2026-07-19 · obsidian-loop v2.1 · 整理归档轨 · 04:00 自动生成"
+    },
+    "template": "turquoise",
+    "icon": {
+      "tag": "standard_icon",
+      "token": "myai_colorful"
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**今日归档产出**：30 篇素材入库 → 18 atoms 入 Atoms 池 → 1 主种子升级\n\n**核心使命**：让 Inbox 不积压，让信息要素进入可检索、可复用的语料池，为日后的文章撰写、Skill 研发、工程攻坚储备弹药。"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "turquoise-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "turquoise-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📦 **归档概览**\n\n| 来源 | 篇数 | 入库路径 |\n|------|------|----------|\n| waytoagi.feishu.cn | 12 | 30-Projects/skill-ecology-watch |\n| 微信公众号 | 8 | 20-Areas/{domain} |\n| X/Twitter | 6 | 20-Areas/social-media |\n| GitHub Releases | 4 | 30-Projects/dev-tracking |\n\n**关键操作**：\n- 30 篇全部规范化命名 `YYYYMMDD-标题-关键信息.md`\n- YAML frontmatter 完整填充（source/url/tags/extracted_at）\n- Inbox 已清空至 0 文件"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "💎 **今日 5★ atom 精选**\n\n**atom-07** · 知识管理系统必须包含「排期/行动」环节才有价值\n> 「最大的卡点不在整理，把文件从目录 A 转移到 B 一点用都没有，解决方法是排期。」—— 卡尔\n▸ 影响：04:00 整理归档轨需升级为「整理 + 排期 + 行动」三段式\n\n**atom-12** · L3 最小真实生成作为通用健康检查范式\n> 「探活 vs 探真——L3 是探真，要的是真实数据流通。」\n▸ 影响：所有 Skill 部署后必须跑 L3 真实数据健康检查"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📊 **今日统计**\n- 素材入库：30 篇 / atoms 提取：18 个（4 层 10 类）\n- 5★ atoms：4 个（22% 覆盖率，达标 ≥10%）\n- 主种子升级：1 个（agent-negative-constraint，sprout → seedling）\n- 平均处理耗时：12 秒/篇\n- 失败重试：2 次（markitdown 反爬，已 fallback WebFetch）\n\n📁 **存储路径**\n- 本地：`<your-vault>/20-Areas/` + `30-Projects/`\n- 飞书云盘：`/obsidian-loop-archive/2026-07-19/`\n- IMA：`KB每日复盘` 知识库"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整存量日报"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/stock-report"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 obsidian-loop v2.1 · 04:00 整理归档轨 · schema 2.0 · 邻近色环 turquoise+yellow+grey（3 主色系）"
+      }
+    ]
+  }
+}

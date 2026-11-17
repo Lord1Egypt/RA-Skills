@@ -1,45 +1,59 @@
-## Description: <br>
-Build ORBCAFE standard report/list pages with CStandardPage, CTable, CSmartFilter, useStandardReport, persistence, and quickCreate/quickEdit/quickDelete using official examples-proven patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build ORBCAFE standard report/list pages with CStandardPage, CTable, CSmartFilter, useStandardReport, persistence, and quickCreate/quickEdit/quickDelete using official examples-proven patterns.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers use this skill to implement ORBCAFE report and list pages with the correct component pattern, persistence identity, pagination behavior, i18n setup, and quick operation callbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup commands may change npm dependencies in the consuming project. <br>
-Mitigation: Install only in the intended ORBCAFE UI project and review dependency changes before running setup. <br>
-Risk: Generated quick create, edit, or delete callbacks could bypass application controls if copied without adaptation. <br>
-Mitigation: Ensure callbacks enforce the application's normal authorization, confirmation, and audit behavior. <br>
-Risk: ALL pagination mode can send limit=-1 to a backend that does not support it. <br>
-Mitigation: Map unsupported ALL pagination explicitly in fetchData before calling the backend. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement ORBCAFE report and list pages with standard filters, tables, pagination, persistence, quick operations, and verification steps.
 
-## Reference(s): <br>
-- [StdReport Component Selection](references/component-selection.md) <br>
-- [StdReport Guardrails](references/guardrails.md) <br>
-- [StdReport Recipes](references/recipes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/SHENRUIYANG/orbcafe-stdreport-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript/TSX examples and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mode selection, data contract, verification steps, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Generated setup guidance may ask the agent to install npm packages before building ORBCAFE report pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package installation commands against the target project before running them.
+
+Risk: Generated quickCreate, quickEdit, or quickDelete callbacks may affect production data if connected without review.
+
+Mitigation: Review callback payloads and data writes before connecting them to real production services.
+
+Risk: Locale or pagination assumptions may not match the target application or backend API.
+
+Mitigation: Set locale through ORBCAFE's supported providers and map ALL pagination requests explicitly when the backend does not accept limit = -1.
+
+## Reference(s):
+
+- [StdReport Component Selection](references/component-selection.md)
+- [StdReport Guardrails](references/guardrails.md)
+- [StdReport Recipes](references/recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript/TSX and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes mode selection, paste-ready ORBCAFE imports, data-contract notes, verification steps, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

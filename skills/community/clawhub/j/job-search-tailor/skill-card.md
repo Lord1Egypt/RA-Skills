@@ -1,45 +1,59 @@
-## Description: <br>
-Searches LinkedIn for target roles and locations, deduplicates seen listings, and matches each job to a tailored resume archetype. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job Search Tailor helps users search LinkedIn job listings, deduplicate results, and match each posting to a tailored resume archetype.
 
-## Publisher: <br>
-[ericshi123](https://clawhub.ai/user/ericshi123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericshi123](https://clawhub.ai/user/ericshi123)
 
-## Use Case: <br>
-Job seekers use this skill to run recurring job searches, avoid repeated listings, and choose or create tailored resume variants for each role. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume content and tailored resume files may persist locally under ~/.job-search. <br>
-Mitigation: Review the generated files and delete ~/.job-search when the stored job-search state or resume-derived files are no longer needed. <br>
-Risk: Google Docs support is described as not implemented in this version, while future use may require sensitive credentials. <br>
-Mitigation: Keep google_docs_enabled false unless a later version clearly implements and documents credential handling. <br>
-Risk: Keyword-based archetype matching can choose a weak fit or create unnecessary new resume variants. <br>
-Mitigation: Review the selected archetype and adjust keywords or archetype_match_threshold when matches are too broad or too strict. <br>
+## Use Case:
 
+External job seekers use this skill to configure recurring job searches, track previously seen listings, and select or create resume archetypes for each relevant posting.
 
-## Reference(s): <br>
-- [Configuration Guide](references/config-guide.md) <br>
-- [Archetypes Guide](references/archetypes-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericshi123/job-search-tailor) <br>
-- [Publisher Profile](https://clawhub.ai/user/ericshi123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest with local file paths, JSON-backed configuration, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local resume archetype Markdown files, config JSON, and seen-job tracking JSON under ~/.job-search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill stores resume-derived files and job history locally under ~/.job-search or configured paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config.json paths before running and manually approve generated archetype or resume files before relying on them.
+
+Risk: Untrusted job pages and configurable paths can influence local file writes and resume tailoring decisions.
+
+Mitigation: Inspect fetched job content, tracking_file, and archetypes_dir settings before allowing the skill to create or update local files.
+
+Risk: Google Docs integration is not implemented in v1 but could involve credentials if configured later.
+
+Mitigation: Keep google_docs_enabled false unless deliberately setting up credentials, and audit any resume URLs before sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericshi123/skills/job-search-tailor)
+- [Archetypes Guide](references/archetypes-guide.md)
+- [Config Guide](references/config-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest with local file paths, JSON configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local resume archetype markdown files, config.json, and shared job tracking JSON under configured paths.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

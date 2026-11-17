@@ -1,0 +1,83 @@
+part: KW47
+link_status: verified_2026-07-01 (datasheet-html-extracted)
+expected_family: "Kinetis W / MCX W Series \u2014 KW47 Cortex-M33 + BLE 6.x + Channel Sounding"
+main_page: https://www.nxp.com/products/KW47
+datasheet_path_expected: references/semiconductor-vendor/NXP/datasheet-html/kw47.html
+created_at: '2026-06-30T10:06:00+08:00'
+specs:
+  family: Kinetis W / MCX W Wireless MCU
+  cores:
+    application:
+    - Arm Cortex-M33 @ up to 96 MHz
+    radio_subsystem:
+    - dedicated Cortex-M33 @ up to 64 MHz
+    radio_subsystem_memory:
+      flash_secure: 512 KB (supports upgradable software radio)
+      sram: 171 KB (link layer optimized)
+  memory:
+    flash_max: 2 MB with ECC
+    sram: 264 KB with ECC + parity
+  wireless:
+    protocol: Bluetooth Low Energy 6.x (upgradeable)
+    rx_sensitivity_dbm:
+      ble_125kbps_lr: -106
+      ble_500kbps_lr: -102
+      ble_1mbps: -97.5
+      ble_2mbps: -95
+    tx_power_max_dbm: 10
+    simultaneous_connections_hw: 24
+    data_rates_kbps:
+    - 125
+    - 500
+    - 1000
+    - 2000
+    modulation:
+    - 2-FSK
+    - GFSK
+    - MSK
+    - GMSK
+    channel_sounding: true
+    on_chip_balun: yes (single-ended bidirectional RF)
+  peripherals:
+    adc_16bit: 2 Msps (single-ended SAR)
+    comparators: 2 (high-speed, 8-bit DAC)
+    voltage_ref_v_min: 1.0
+    voltage_ref_v_max: 2.1
+    timers:
+    - 2x 6-channel 32-bit TPM (PWM + DMA)
+    - 2x 32-bit LPTMR (low-power/pulse counter, compare)
+    - 4-channel 32-bit LPIT (low-power periodic interrupt, DMA)
+    - 56-bit timestamp timer
+    - 32-bit seconds RTC with 32-bit alarm + independent VDD
+    - Signal frequency analyzer (SFA)
+  connectivity:
+    flexcan_can_fd: true
+  use_cases:
+  - Channel Sounding ranging (locator / finder)
+  - 24-link industrial BLE mesh
+  - Secure OTA firmware upgrade
+  - Smart home / building automation (secure radio)
+  - Asset tracking with ranging
+unverified:
+- exact operating temp range
+- exact supply voltage range
+- exact security module details (EdgeLock level)
+- exact analog comparator speed
+- exact package options
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from nxp.com KW47 product page via Firecrawl (66,706 bytes raw)."
+- 'Family differentiator vs KW45 (existing yaml): KW47 is Cortex-M33 @ 96 MHz + dedicated radio CM33 + 2 MB flash + BLE 6.x
+  upgradeable + Channel Sounding. KW45 is Cortex-M33 @ 48 MHz + single-core.'
+- 'Family differentiator vs KW31Z (just added): KW31Z is Cortex-M0+ + BLE 4.2 (no Channel Sounding, no dual-core); KW47 is
+  BLE 6.x + Channel Sounding + dedicated radio CM33 for performance.'
+- 'Family differentiator vs nRF54L15 (Nordic yaml set): KW47 adds Channel Sounding (BLE 6.x feature), dual-CM33, 24 simultaneous
+  connections; nRF54L15 also has Channel Sounding but single M33.'
+- 'Use case: channel sounding based ranging (locator door lock finder), industrial BLE mesh hub, secure OTA upgrade.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against kw47.html: 21/34 spec fields matched (62%). Source: https://www.nxp.com/products/KW47
+  (vendor product page scraped as HTML; no separate PDF available).'
+extracted_at: '2026-06-30T10:06:00+08:00'
+extraction_method: firecrawl-extract (keyed) of nxp.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/KW47_clean.md
+extraction_source_raw: references/semiconductor-vendor/NXP/firecrawl-snapshots/KW47_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.nxp.com/products/KW47

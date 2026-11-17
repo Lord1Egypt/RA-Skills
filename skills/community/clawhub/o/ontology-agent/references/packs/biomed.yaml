@@ -1,0 +1,128 @@
+# packs/biomed.yaml — Healthcare & Biomedicine industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `biomed.zh.yaml`.
+# Zero-intrusion note: this is an added pack; it does not modify the 24-department template,
+# the 159-action library, decision/roles/semantic/logic, or init.py.
+# ⚠️ Healthcare is heavily regulated and health data is highly sensitive; the red lines in this pack
+# are a reference framework and must be verified by licensed compliance/legal counsel against the
+# latest regulations.
+
+meta:
+  pack_id: biomed
+  display_name: Healthcare & Biomedicine
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [hospital, medical institution, public healthcare, private healthcare, clinic, biopharma, pharmaceutical, medical device, drug, vaccine, genomics, clinical]
+  description: >
+    For medical institutions (hospital / clinic / third-party medical laboratory) and biopharma
+    enterprises (pharmaceuticals / medical devices / IVD / genomics). The main pack covers healthcare
+    commonalities (care delivery / quality control / medical insurance / follow-up) and biopharma
+    commonalities (GMP / registration / clinical / adverse reactions); red lines are a reference framework.
+
+# ── 1. Healthcare / biopharma common entities ──
+entities_extra:
+  - type: MedicalInstitution
+    extends: Organization
+    properties:
+      - { name: license_no, type: string, desc: "Medical institution practice licence number" }
+      - { name: grade, type: enum, enum: [tertiary, secondary, primary, ungraded], desc: "Hospital grade" }
+      - { name: category, type: enum, enum: [general hospital, specialty, clinic, laboratory], desc: "Institution category" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many-to-one }
+  - type: DrugOrDevice
+    extends: Product
+    properties:
+      - { name: registration_no, type: string, desc: "Drug / device registration certificate number" }
+      - { name: gmp_cert, type: boolean, desc: "Whether produced under a valid GMP certificate" }
+      - { name: lot_no, type: string, desc: "Production lot number (batch record traceability)" }
+    relations:
+      - { to: Organization, type: produced_by, cardinality: many_to_one }
+  - type: Patient
+    extends: Customer
+    properties:
+      - { name: medical_record_no, type: string, pii: true, desc: "Medical record number — strong PII guardrail" }
+      - { name: visit_type, type: enum, enum: [outpatient, inpatient, telemedicine], desc: "Visit type" }
+  - type: ClinicalTrial
+    extends: Project
+    properties:
+      - { name: approval_no, type: string, desc: "Ethics approval / regulator clinical trial approval number" }
+      - { name: phase, type: enum, enum: [I, II, III, IV], desc: "Trial phase" }
+  - type: GeneticResource
+    extends: Asset
+    properties:
+      - { name: approval_no, type: string, desc: "Human genetic resource approval / filing number" }
+      - { name: cross_border, type: boolean, desc: "Whether providing abroad / export is involved" }
+
+# ── 2. Recommended departments ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+  # Healthcare / bio optional
+  - { code: quality,     name: Quality Management }    # QA / QC / GMP / adverse reactions
+  - { code: it_security, name: IT & Security }         # health data grading / de-identification
+  - { code: customer_service, name: Customer Service } # patient follow-up / service desk
+
+suggested_custom_departments:
+  - { code: medical_affairs, name: Medical Affairs, gender_default: male, expertise: "care compliance / medical quality / adverse events", when: "recommended for any medical institution" }
+  - { code: regulatory, name: Regulatory Affairs, gender_default: female, expertise: "drug / device registration, clinical compliance", when: "recommended whenever a product requires registration" }
+  - { code: pharmacovig, name: Pharmacovigilance, gender_default: female, expertise: "adverse reaction monitoring and reporting", when: "recommended once a product is on the market" }
+
+# ── 3. Default workflow ──
+default_workflow: biomed_ops
+workflow_bindings:
+  biomed_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [intake / project initiation, care delivery / R&D, billing & insurance / registration, follow-up / launch, quality control, review]
+
+# ── 4. Localization policy hooks ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.biomed             # human genetic resources / GMP / data compliance / care compliance (triggered by this pack; reference framework)
+    - compliance_redlines.tax
+    - compliance_redlines.general            # personal information protection: minimum necessity
+  local_services: []
+  note: Red lines are a reference framework; before implementation they must be verified by licensed compliance / legal counsel against the latest regulations.
+
+# ── 5. Layer-B flavor ──
+flavor:
+  default: >-
+    You serve a healthcare / biopharma organization; health data and medical records are among the
+    most sensitive data — under a strong PII guardrail, medical record numbers, case histories and
+    genetic information are never written in plain text and must be de-identified before storage.
+    Collection, preservation, use and provision abroad of human genetic resources require approval;
+    drug manufacturing requires GMP with traceable batch records; research involving human subjects
+    requires ethics review.
+  legal: Medical institution practice licence and scope-of-practice compliance; prescription / telemedicine compliance; medical device registration certificates and classification management; human genetic resource approval.
+  quality: Keep GMP / system certifications valid; batch records must be traceable; adverse reaction / adverse event monitoring and reporting is mandatory; non-conforming product is never released.
+  rnd: Clinical trials require ethics approval and regulator clinical approval; data must be truthful and traceable; tampering or selective reporting is prohibited.
+  it_security: Classify and grade health data; de-identify personal information; never share medical records without authorization; systems must be auditable.
+  finance: Medical insurance settlement compliance; medical service prices follow government pricing / standards; invoice compliance.
+
+# ── 6. Instantiation prompts ──
+instance_prompts:
+  - "Please describe the organization type (hospital / clinic / pharma / device / genomics) and qualifications (practice licence / registration certificate / GMP)"
+  - "Please introduce the organization (name, region, grade, whether you hire staff)"
+  - "Which departments do you want to build (12 core by default + quality / IT security / customer service; recommended to add Medical Affairs / Regulatory Affairs / Pharmacovigilance)"
+  - "Core business loop (e.g. intake → care delivery → billing & insurance → follow-up; or initiation → clinical → registration → launch)"
+  - "Whether human genetic resources / cross-border data / telemedicine are involved (affects strong red lines)"
+
+# ── 7. Healthcare-specific monitoring signals (pairs with the biomed domain in monitoring.yaml) ──
+biomed_signals:
+  signals:
+    - { id: adv_event, name: adverse reaction / adverse event, owner: [pharmacovig, quality], desc: "drug / device adverse reactions must be reported" }
+    - { id: genetic_resource_risk, name: genetic resource violation, owner: [legal, regulatory], desc: "human genetic resources exported or used without approval" }
+    - { id: quality_recall, name: quality recall risk, owner: [quality, legal], desc: "quality defects that may trigger a recall" }
+    - { id: data_leak, name: health data leak, owner: [it_security, legal], desc: "medical records / genetic information sent out without de-identification" }

@@ -1,0 +1,12 @@
+{
+  "schema": "layout-titleblock-template/v1",
+  "title": "施工平面布置图",
+  "drawing_no": "SLP-01",
+  "scale": "1:500",
+  "sheet_size": "A2",
+  "revision": "0",
+  "project": "",
+  "date": "",
+  "disclaimer": "本图为布置草案，须经项目技术负责人审核；不替代施工方案审批、设计签章和现场试吊。",
+  "note": "contract_id、版本、日期、DRAFT 由出图程序按输入自动写入，模板只提供默认值。"
+}

@@ -1,0 +1,32 @@
+{
+  "research_object": "",
+  "research_question": "",
+  "generated_at": "",
+  "evidence_window": "",
+  "entries": [
+    {
+      "id": "E1",
+      "lane_id": "",
+      "agent_role": "single-agent",
+      "claim": "",
+      "status": "confirmed_fact",
+      "source_title": "",
+      "source_url": "",
+      "upstream_source_id": "",
+      "corroboration_group": "",
+      "source_type": "official",
+      "published_at": "",
+      "accessed_at": "",
+      "evidence_window": "",
+      "reliability": "high",
+      "citation_strength": "direct-primary",
+      "formal_status_label": "status-unclear",
+      "effective_date": "",
+      "application_date": "",
+      "formal_adoption_step_remaining": "",
+      "conflicts_with": [],
+      "implication": "",
+      "notes": ""
+    }
+  ]
+}

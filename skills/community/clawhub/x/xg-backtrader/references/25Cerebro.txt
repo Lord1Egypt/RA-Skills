@@ -1,0 +1,838 @@
+Cerebro#
+Cerebro 是 Backtrader 的核心类，负责整个系统的运行。
+
+它的功能包括：
+
+收集输入（数据源）、执行者（策略）、观察者、评论者（分析器）和记录者（编写器），确保系统的正常运行。
+执行回测或实时数据供给和交易。
+返回回测结果。
+提供策略绘图功能。
+创建 Cerebro 实例#
+创建 Cerebro 实例时，可以通过传递一些控制参数：
+
+cerebro = bt.Cerebro(**kwargs)
+这些参数会影响系统的执行，具体的参数说明可以参考文档（也可以应用于后续的 run 方法）。
+
+添加数据源#
+最常见的方式是使用 cerebro.adddata(data) 添加数据源，data 是已实例化的数据源。例如：
+
+data = bt.BacktraderCSVData(dataname='mypath.days', timeframe=bt.TimeFrame.Days)
+cerebro.adddata(data)
+数据的重采样与重放#
+Cerebro 也支持对数据进行重采样或重放：
+
+重采样：
+
+data = bt.BacktraderCSVData(dataname='mypath.min', timeframe=bt.TimeFrame.Minutes)
+cerebro.resampledata(data, timeframe=bt.TimeFrame.Days)
+重放数据：
+
+data = bt.BacktraderCSVData(dataname='mypath.min', timeframe=bt.TimeFrame.Minutes)
+cerebro.replaydata(data, timeframe=bt.TimeFrame.Days)
+你可以同时使用多种类型的数据源，包括常规数据、重采样数据和重放数据。但需要确保它们的时间对齐。详见文档中的 多时间框架 和 数据重采样 部分。
+
+添加策略#
+Cerebro 接受策略类并传递相关参数，即使没有优化，也可以使用以下方式添加策略：
+
+cerebro.addstrategy(MyStrategy, myparam1=value1, myparam2=value2)
+策略优化#
+在优化时，参数需要作为可迭代对象传递。例如：
+
+cerebro.optstrategy(MyStrategy, myparam1=range(10, 20))
+这会运行 MyStrategy 10次，myparam1 的值从 10 到 19。
+
+添加其他组件#
+你可以通过以下方法为回测添加额外的功能：
+
+addwriter：记录回测数据。
+addanalyzer：分析回测结果。
+addobserver 或 addobservermulti：添加观察者，实时跟踪策略执行。
+自定义经纪人#
+Cerebro 默认使用 Backtrader 内建的经纪人，但你也可以自定义经纪人：
+
+broker = MyBroker()
+cerebro.broker = broker  # 通过 getbroker/setbroker 方法设置
+接收通知#
+数据源或经纪人可能会发出通知。Cerebro 通过 notify_store 方法接收这些通知。处理通知有三种方式：
+
+使用回调函数#
+你可以通过 addnotifycallback(callback) 向 Cerebro 添加回调函数，函数签名如下：
+
+callback(msg, *args, **kwargs)
+在策略中覆盖 notify_store 方法#
+你也可以在策略类中直接覆盖 notify_store 方法来处理通知，签名如下：
+
+def notify_store(self, msg, *args, **kwargs):
+    # 处理通知
+子类化 Cerebro#
+通过子类化 Cerebro 并覆盖 notify_store，这是最不推荐的方法。
+
+执行回测#
+回测执行通过以下方法进行：
+
+result = cerebro.run(**kwargs)
+run 方法支持多种参数，可以在实例化时指定，详细说明可以参考文档。
+
+标准观察者#
+Cerebro 默认会实例化三个标准观察者：
+
+经纪人观察者：追踪现金和投资组合的价值。
+交易观察者：记录每笔交易的效果。
+买卖观察者：记录操作的执行时间。
+如果不需要这些标准观察者，可以通过 stdstats=False 禁用它们。
+
+返回回测结果#
+回测执行后，Cerebro 会返回策略实例，供你分析回测结果。你可以访问策略中的所有元素进行详细检查：
+
+result = cerebro.run(**kwargs)
+优化时的返回结果#
+如果没有使用优化，result 将是一个策略实例列表。
+如果进行了优化，result 将是一个列表的列表，每个内部列表对应一次优化运行后的策略实例。
+注意：优化的默认行为已经更改，优化时只会返回分析器结果，优化的策略结果需要通过设置 optreturn=False 来获取。
+
+提供绘图功能#
+如果你安装了 matplotlib，可以通过以下方式绘制回测图形：
+
+cerebro.plot()
+回测流程概述#
+回测的执行逻辑大致如下：
+
+传递任何存储的通知。
+数据源提供下一组 tick/条。
+数据同步：多个数据源的数据会按时间对齐，确保不同时间框架的数据能够同时进行计算。
+版本更新：1.9.0.99 版本引入了新的同步行为。
+通知策略有关订单、交易和现金的更新。
+经纪人接受排队订单，并根据新数据执行订单。
+调用策略的 next 方法，评估新数据并执行策略逻辑。
+更新观察者、指标、分析器等，触发其他活动。
+将数据写入目标（通过编写器）。
+重要注意事项#
+在数据源传递新的一组数据时，这些数据是“已关闭”的。这意味着策略发出的订单将基于 下一条数据 执行，而不是当前数据。
+
+
+#######################################################################################################
+参数说明#
+如下是 Cerebro 类的详细说明。
+
+实例化参数#
+参数	默认值	说明
+preload	True	是否预加载传递给策略的不同数据源。
+runonce	True	以矢量化模式计算指标，从而提高整个系统的性能。
+注： 策略和观察者将始终基于事件运行。
+live	False	如果没有数据报告为实时（通过数据的islive方法，但用户仍希望以实时模式运行，可将此参数设为true。
+maxcpus	None	同时使用多少核心进行优化，默认 None，即启用所有可用的 CPU 核。
+stdstats	True）	如果为True，将添加默认观察者：经纪人（现金和价值）、交易和买卖。
+oldbuysell	False	如 stdstats 为 True 且自动添加观察者，此开关控制买卖观察者的主要行为。
+oldtrades	False	如果stdstats为True 且自动添加观察者，此开关控制交易观察者的主要行为。
+exactbars	False	
+- False：默认值，将存储在 Line 中的值都保存到内存。
+-True或1：所有Line对象的内存使用减少至计算最小周期。
+如果简单移动平均线的周期为30，则底层数据将始终有一个30条的运行缓冲区，以允许计算简单移动平均线。
+此设置将停用preload和runonce。
+使用此设置还将停用绘图。
+-1：策略级别的数据源和指标/操作将保留所有数据在内存中。
+如 RSI 通过指标UpDay计算，不会将它的所有数据保留内存。
+这允许保持绘图和预加载活动。
+runonce将被停用。
+-2：作为策略属性的数据源和指标将保留所有点在内存中。
+例如：RSI内部使用指标UpDay进行计算。此子指标将不保留所有数据在内存中。
+如果在__init__中定义了a = self.data.close - self.data.high，那么a将不保留所有数据在内存中。
+- 这允许保持绘图和预加载活动。
+runonce将被停用。
+objcache	False	实验选项，用于实现 Line 对象的缓存并减少它们的数量。示例来自UltimateOscillator：
+bp = self.data.close - TrueLow(self.data) 
+# -> 创建另一个 TrueLow(self.data)
+tr = TrueRange(self.data) 
+如果为True，TrueRange内部的第二个TrueLow(self.data)将匹配bp计算中的签名，并将被重用。可能发生的极端情况是这会使线对象超出其最小周期并导致问题，因此被禁用。
+writer	False	如果设置为True，将创建一个默认的WriterFile，它将打印到标准输出。它将被添加到策略中（除了用户代码添加的任何其他编写器）。
+tradehistory	False	如果设置为True，它将激活所有策略中每个交易的更新事件日志记录。也可以通过策略方法set_tradehistory在每个策略基础上完成。
+optdatas	True	如果为 True 且在优化（并且系统可以预加载和使用runonce），则数据预加载将仅在主进程中完成，以节省时间和资源。测试显示，执行时间从83秒减少到66秒，约20%的速度提升。
+optreturn	True	如果为True，优化结果将不会是完整的策略对象（和所有数据、指标、观察者…），而是具有以下属性的对象（与策略相同）：
+params（或p）	无	执行策略时的参数。
+analyzers	无	策略已执行的分析器。大多数情况下，仅需要分析器和参数来评估策略的性能。如果需要详细分析生成的值（例如指标），请将其关闭。测试显示，执行时间提高了13% - 15%。结合optdatas，总收益增加到32%。
+oldsync	False	从版本1.9.0.99开始，多个数据（相同或不同时间框架）的同步已更改，以允许不同长度的数据。如果希望使用数据0作为系统主控的数据的旧行为，请将此参数设置为True。
+tz	None	为策略添加全局时区。参数tz可以是：
+None：在这种情况下，策略显示的日期时间将是UTC，这一直是标准行为。
+pytz实例。将用作将UTC时间转换为所选时区。
+字符串。将尝试实例化pytz实例。
+整数。对于策略，使用self.datas可迭代对象中相应数据的相同时区（0将使用data0的时区）。
+cheat_on_open	False	将调用策略的next_open方法。
+
+这发生在next之前，并且在经纪人有机会评估订单之前。指标尚未重新计算。这允许发布考虑前一天指标的订单，但使用开盘价进行股份计算。
+
+对于cheat_on_open订单执行，还要调用 cerebro.broker.set_coo(True)或实例化一个BackBroker(coo=True)（coo表示cheat-on-open）或将broker_coo参数设置为True。除非在下文中禁用，否则Cerebro会自动执行此操作。
+broker_coo	True	这将自动调用经纪人的set_coo方法，并将其设置为True以激活cheat_on_open执行。只有在cheat_on_open也为True时才会执行。
+quicknotify	False	在传递下一个价格之前立即传递经纪人通知。对于回测没有影响，但对于实时经纪人，通知可能在条传递之前很久就发生。当设置为True时，将尽快传递通知（请参阅实时数据源中的qcheck）。为了兼容性，设置为False。可能会更改为True。
+成员方法#
+addstorecb(callback)
+添加一个回调以获取将由notify_store方法处理的消息。回调的签名必须支持以下内容：
+
+callback(msg, *args, **kwargs)
+实际接收的msg、*args和**kwargs是实现定义的（完全依赖于数据/经纪人/存储），但通常应该期望它们是可打印的，以便接收和实验。
+
+notify_store(msg, *args, **kwargs)
+在cerebro中接收存储通知。此方法可以在Cerebro子类中覆盖。实际接收的msg、*args和**kwargs是实现定义的（完全依赖于数据/经纪人/存储），但通常应该期望它们是可打印的，以便接收和实验。
+
+adddatacb(callback)
+添加一个回调以获取将由notify_data方法处理的消息。回调的签名必须支持以下内容：
+
+callback(data, status, *args, **kwargs)
+实际接收的*args和**kwargs是实现定义的（完全依赖于数据/经纪人/存储），但通常应该期望它们是可打印的，以便接收和实验。
+
+notify_data(data, status, *args, **kwargs)
+在cerebro中接收数据通知。此方法可以在Cerebro子类中覆盖。实际接收的*args和**kwargs是实现定义的（完全依赖于数据/经纪人/存储），但通常应该期望它们是可打印的，以便接收和实验。
+
+adddata(data, name=None)
+将数据源实例添加到混合中。如果name不为None，将放入data._name，用于装饰/绘图目的。
+
+resampledata(dataname, name=None, **kwargs)
+添加数据源以供系统重新采样。如果name不为None，将放入data._name，用于装饰/绘图目的。任何其他如timeframe、compression、todate等支持的参数将透明地传递。
+
+replaydata(dataname, name=None, **kwargs)
+添加数据源以供系统重放。如果name不为None，将放入data._name，用于装饰/绘图目的。任何其他如timeframe、compression、todate等支持的参数将透明地传递。
+
+chaindata(*args, **kwargs)
+将多个数据源链接为一个。如果作为命名参数传递并且name不为None，将放入data._name，用于装饰/绘图目的。如果为None，则使用第一个数据的名称。
+
+rolloverdata(*args, **kwargs)
+将多个数据源链接为一个。如果作为命名参数传递并且name不为None，将放入data._name，用于装饰/绘图目的。如果为None，则使用第一个数据的名称。任何其他kwargs将传递给RollOver类。
+
+addstrategy(strategy, *args, **kwargs)
+为单次运行添加策略类。在运行时进行实例化。args和kwargs将在实例化期间按原样传递给策略。返回的索引可以与添加其他对象（如Sizer）引用兼容。
+
+optstrategy(strategy, *args, **kwargs)
+为优化添加策略类。在运行时进行实例化。args和kwargs必须是包含要检查值的可迭代对象。例如：如果策略接受参数period，为了优化目的，调用optstrategy如下：
+
+cerebro.optstrategy(MyStrategy, period=(15, 25))
+这将执行值为15和25的优化。而：
+
+cerebro.optstrategy(MyStrategy, period=range(15, 25))
+将以period值15 -> 25（25不包含，因为Python中的范围是半开的）执行MyStrategy。如果传递了一个参数但不应优化，调用如下：
+
+cerebro.optstrategy(MyStrategy, period=(15,))
+注意period仍然作为一个可迭代对象传递……只有一个元素。backtrader无论如何都会尝试识别如下情况：
+
+cerebro.optstrategy(MyStrategy, period=15)
+如果可能，将创建一个内部伪可迭代对象。
+
+optcallback(cb)
+将回调添加到回调列表中，当每个策略运行时将与优化一起调用。签名：cb(strategy)。
+
+addindicator(indcls, *args, **kwargs)
+添加指标类到混合中。在传递策略中进行实例化。
+
+addobserver(obscls, *args, **kwargs)
+添加观察者类到混合中。在运行时进行实例化。
+
+addobservermulti(obscls, *args, **kwargs)
+添加观察者类到混合中。在运行时进行实例化。将为系统中的每个数据添加一次。一个用例是观察单个数据的买入/卖出观察者。一个反例是观察系统范围值的CashValue。
+
+addanalyzer(ancls, *args, **kwargs)
+添加分析器类到混合中。在运行时进行实例化。
+
+addwriter(wrtcls, *args, **kwargs)
+添加编写器类到混合中。在cerebro中进行实例化。
+
+run(**kwargs)
+执行回测的核心方法。传递给它的任何kwargs将影响实例化时Cerebro的标准参数值。如果cerebro没有数据，该方法将立即退出。返回值不同：
+
+无优化： 包含使用addstrategy添加的策略类实例的列表。
+优化： 包含使用addstrategy添加的策略类实例的列表的列表。
+
+runstop()
+如果从策略内部或其他地方（包括其他线程）调用，将尽快停止执行。
+
+setbroker(broker)
+为此策略设置特定的经纪人实例，替换从cerebro继承的经纪人。
+
+getbroker()
+返回经纪人实例。也可以通过broker属性访问。
+
+plot(plotter=None, numfigs=1, iplot=True, start=None, end=None, width=16, height=9, dpi=300, tight=True, use=None, **kwargs)
+绘制cerebro中的策略。如果plotter为None，将创建一个默认的Plot实例，并在实例化期间将kwargs传递给它。
+
+`numfigs`将图表分成所指示的数量，以减少图表密度。<br/>
+`iplot`：如果为True且在笔记本中运行，图表将内联显示。<br/>
+`use`：将其设置为所需matplotlib后端的名称。它将优先于`iplot`。<br/>
+`start`：策略日期时间线数组的索引或表示绘图开始的`datetime.date`、`datetime.datetime`实例。<br/>
+`end`：策略日期时间线数组的索引或表示绘图结束的`datetime.date`、`datetime.datetime`实例。<br/>
+`width`：保存图形的宽度（以英寸为单位）。<br/>
+`height`：保存图形的高度（以英寸为单位）。<br/>
+`dpi`：保存图形的质量（以每英寸点数为单位）。<br/>
+`tight`：仅保存实际内容而不保存图形框架。
+addsizer(sizercls, *args, **kwargs)
+添加一个Sizer类（和args），作为添加到cerebro的任何策略的默认定量器。
+
+addsizer_byidx(idx, sizercls, *args, **kwargs)
+按idx添加一个Sizer类。此idx是与addstrategy返回的索引兼容的引用。只有由idx引用的策略将收到此大小。
+
+add_signal(sigtype, sigcls, *sigargs, **sigkwargs)
+向系统添加一个信号，稍后将添加到SignalStrategy中。
+
+signal_concurrent(onoff)
+如果将信号添加到系统并且concurrent值设置为True，将允许并发订单。
+
+signal_accumulate(onoff)
+如果将信号添加到系统并且accumulate值设置为True，当已在市场中时进入市场，将允许增加头寸。
+
+signal_strategy(stratcls, *args, **kwargs)
+添加可以接受信号的SignalStrategy子类。
+
+addcalendar(cal)
+向系统添加一个全局交易日历。单个数据源可能有单独的日历覆盖全局日历。cal可以是TradingCalendar的实例、字符串或pandas_market_calendars的实例。字符串将实例化为PandasMarketCalendar（需要系统中安装模块pandas_market_calendar）。如果传递的是TradingCalendarBase的子类（而不是实例），它将被实例化。
+
+addtz(tz)
+也可以使用参数tz完成。为策略添加全局时区。参数tz可以是：
+
+可选项	描述
+None	在这种情况下，策略显示的日期时间将是UTC，这一直是标准行为。
+pytz 实例	将用作将UTC时间转换为所选时区。
+字符串	将尝试实例化pytz实例。
+整数	对于策略，使用self.datas中相应数据的时区（0就用data0的时区）。
+add_timer(when, offset=datetime.timedelta(0), repeat=datetime.timedelta(0), weekdays=[], weekcarry=False, monthdays=[], monthcarry=True, allow=None, tzdata=None, strats=False, cheat=False, *args, **kwargs)
+安排一个计时器以调用notify_timer。参数：
+
+参数	
+when	可以是datetime.time实例（见下文的tzdata），bt.timer.SESSION_START以参考会话开始，bt.timer.SESSION_END以参考会话结束。
+offset	必须是datetime.timedelta实例，用于偏移值when。在与SESSION_START和SESSION_END组合使用时具有有意义的用途，以指示例如在会话开始后15分钟调用计时器。
+repeat	必须是datetime.timedelta实例，表示在第一次调用后，是否在同一会话内按计划的重复增量安排进一步的调用。
+weekdays	一个排序的可迭代对象，包含表示计时器可以实际调用的天数（iso代码，周一是1，周日是7）。如果未指定，计时器将在所有天都有效。
+weekcarry	默认：False，如果为True并且未看到工作日（例如：交易假期），计时器将在第二天执行（即使在新的一周内）。
+monthdays	一个排序的可迭代对象，包含表示每月应执行计时器的天数。例如总是在每月的15日。如果未指定，计时器将在所有天都有效。
+monthcarry	默认：True，如果未看到该天（周末、交易假期），计时器将在下一个可用日执行。
+allow	默认：None，一个回调，接收一个datetime.date实例，如果日期被允许用于计时器则返回True，否则返回False。
+tzdata	可以是None（默认）、一个pytz实例或一个数据源实例。
+None：按面值解释when（这意味着将其处理为UTC，即使不是）。
+- pytz实例：when将被解释为在所选时区本地时间指定。
+数据源实例：when将被解释为在数据源实例的tz参数指定的本地时间。
+注意，如果when是SESSION_START或SESSION_END并且tzdata为None，将使用系统中的第一个数据源（即self.data0）作为参考，以找出会话时间。
+strats	默认：False，也调用策略的notify_timer。
+cheat	默认：False）如果为True，将在经纪人有机会评估订单之前调用计时器。这打开了发布基于开盘价的订单的机会，例如在会话开始前。
+*args	将传递给notify_timer的任何额外args。
+**kwargs	将传递给notify_timer的任何额外kwargs。返回值：创建的计时器。
+notify_timer(timer, when, *args, **kwargs)
+接收计时器通知，其中timer是由 add_timer 返回的计时器，when是调用时间。args和kwargs是传递给add_timer的任何附加参数。实际的when时间可能稍后，但系统可能无法提前调用计时器。此值是计时器值，而不是系统时间。
+
+add_order_history(orders, notify=True)
+将订单历史直接添加到经纪人以进行性能评估。
+
+orders：是一个可迭代对象（例如：列表、元组、迭代器、生成器），其中每个元素也是一个具有以下子元素（2种格式可能）的可迭代对象（具有长度）：[datetime, size, price]或[datetime, size, price, data]，注意，必须按日期时间升序排序（或生成排序的元素）。
+
+具体说明如下：
+
+参数	描述
+datetime	是Python的日期/日期时间实例或格式为YYYY-MM-DD[THH:MM:SS[.us]]的字符串，其中括号内的元素是可选的。
+size	是一个整数（正数表示买入，负数表示卖出）。
+price	是一个浮点数/整数。
+data	如果存在，可以取以下任何值：
+None - 将使用第一个数据源作为目标。
+integer - 将使用该索引（在Cerebro中插入顺序）的数据。
+string - 将使用具有该名称的数据，例如使用cerebro.adddata(data, name=value)分配的名称。
+notify（默认：True）：如果为True，系统中插入的第一个策略将收到根据每个订单的信息创建的人工订单通知。
+
+注意
+
+描述中隐含的是添加作为订单目标的数据源。例如，这是分析器（如跟踪回报）的必要条件。
+##############################################################################################################################
+内存优化#
+Backtrader 的开发是在拥有大量RAM的机器上进行的，加上绘图的可视化反馈非常有用，几乎是必需品，这使得设计决策变得容易：将所有内容保存在内存中。但这一决定有一些缺点：
+
+使用array.array进行数据存储时，当某些边界被超出时，需要分配和移动数据。
+内存较少的机器可能会受到影响。
+连接到一个可能在线数周/数月、提供数千秒/分钟分辨率tick的实时数据源。
+后者比前者更重要，因为backtrader做出了另一个设计决策：
+
+保持纯Python以便在需要时能够在嵌入式系统中运行。
+未来的一个场景可能是backtrader连接到第二台提供实时数据的机器，而backtrader本身运行在Raspberry Pi甚至更有限的设备上，如ADSL路由器（带有Freetz映像的AVM Frit!Box 7490）。
+
+因此，需要backtrader支持动态内存方案。现在可以使用以下语义实例化或运行Cerebro：
+
+exactbars 默认值为 False，每个存储在线中的值都保存在内存中。可能的值：
+
+True或1：所有“线”对象将内存使用减少到自动计算的最小周期。
+
+如果 SMA 的周期为30，则底层将始终有一个30条的运行缓冲区，以允许计算 SMA。
+此设置将停用预加载和runonce。
+使用此设置还将停用绘图。
+-1：在策略级别的数据源和指标/操作将保留所有数据在内存中。
+
+如 RSI 内部使用指标UpDay进行计算。此子指标将不保留所有数据在内存中。
+这允许保持绘图和预加载活动。
+runonce将被停用。
+-2：作为策略属性的数据源和指标将保留所有点在内存中。
+
+如 RSI 内部使用指标UpDay进行计算。此子指标将不保留所有数据在内存中。
+如果在__init__中定义了a = self.data.close - self.data.high，那么a将不保留所有数据在内存中。
+这允许保持绘图和预加载活动。
+runonce将被停用。
+正如往常，示例胜过千言万语。一个示例脚本展示了差异。它针对1996年至2015年的雅虎每日数据运行，共计4965天。
+
+注意：这是一个小样本。交易14小时的EuroStoxx50期货在一个月内将生成约18000个1分钟条。
+
+首先执行脚本，查看在不请求内存节省时使用了多少内存位置：
+
+$ ./memory-savings.py --save 0
+Total memory cells used: 506430
+对于级别1（完全节省）：
+
+$ ./memory-savings.py --save 1
+Total memory cells used: 2041
+从 50 万降到 2041。确实如此。
+
+系统中的每个“线”对象使用collections.deque作为缓冲区（而不是array.array），并且长度限制为所需操作的绝对最小值。
+
+假设，使用周期为30的简单移动平均线的策略。在这种情况下，将进行以下调整：
+
+数据源将有一个30位置的缓冲区，这是 SMA 生成下一个值所需的数量。
+SMA 将有一个位置的缓冲区，因为除非其他指标需要（依赖于 SMA），否则没必要保留更大缓冲区。
+注意：此模式最吸引人且可能最重要的特点是，整个脚本生命周期内使用的内存量保持不变。
+
+无论数据源的大小如何。如如果长时间连接实时数据源，这将非常有用。
+
+但请注意：
+
+绘图不可用。
+还有其他内存消耗源，如策略生成的订单，随着时间的推移会积累。
+此模式只能与runonce=False一起在cerebro中使用。这对于实时数据源也是强制性的，但在简单回测的情况下，这比runonce=True慢。毫无疑问，从某个折衷点来看，内存管理比逐步执行回测更昂贵，但这只能由平台的终端用户根据具体情况判断。
+现在是负级别。这些旨在在保持绘图可用的同时仍节省大量内存。第一个级别-1：
+
+$ ./memory-savings.py --save -1
+Total memory cells used: 184623
+在这种情况下，1 级指标（策略中声明的那些）保留其完整长度缓冲区。但如果这些指标依赖于其他指标（这是情况），则子对象将长度受限。在这种情况下，我们从：
+
+506430内存位置降至 -> 184623
+超过50%的节省。
+
+注意：当然，array.array对象已被collections.deque替换，后者在内存方面更昂贵，虽然在操作方面更快。但collections.deque对象相当小，节省的内存位置接近大致计算的内存位置使用。
+
+现在是级别-2，这也是为了节省在策略级别声明且标记为不绘图的指标：
+
+$ ./memory-savings.py --save -2
+Total memory cells used: 174695
+现在并没有节省多少。这是因为只有一个指标被标记为不绘图：TestInd().plotinfo.plot = False。
+
+让我们看看最后一个示例的绘图：
+
+$ ./memory-savings.py --save -2 --plot
+Total memory cells used: 174695
+
+
+对于感兴趣的读者，示例脚本可以详细分析遍历指标层次结构的每个“线”对象。启用绘图运行（在-1保存）：
+
+$ ./memory-savings.py --save -1 --lendetails
+-- Evaluating Datas
+---- Data 0 Total Cells 34755 - Cells per Line 4965
+-- Evaluating Indicators
+---- Indicator 1.0 Average Total Cells 30 - Cells per line 30
+---- SubIndicators Total Cells 1
+---- Indicator 1.1 _LineDelay Total Cells 1 - Cells per line 1
+---- SubIndicators Total Cells 1
+...
+---- Indicator 0.5 TestInd Total Cells 9930 - Cells per line 4965
+---- SubIndicators Total Cells 0
+-- Evaluating Observers
+---- Observer 0 Total Cells 9930 - Cells per Line 4965
+---- Observer 1 Total Cells 9930 - Cells per Line 4965
+---- Observer 2 Total Cells 9930 - Cells per Line 4965
+Total memory cells used: 184623
+相同的，但启用最大节省（1）：
+
+$ ./memory-savings.py --save 1 --lendetails
+-- Evaluating Datas
+---- Data 0 Total Cells 266 - Cells per Line 38
+-- Evaluating Indicators
+---- Indicator 1.0 Average Total Cells 30 - Cells per line 30
+---- SubIndicators Total Cells 1
+...
+---- Indicator 0.5 TestInd Total Cells 2 - Cells per line 1
+---- SubIndicators Total Cells 0
+-- Evaluating Observers
+---- Observer 0 Total Cells 2 - Cells per Line 1
+---- Observer 1 Total Cells 2 - Cells per Line 1
+---- Observer 2 Total Cells 2 - Cells per Line 1
+第二个输出立即显示数据源中的线已被限制为38个内存位置，而不是4965个（完整数据源长度）。
+
+并且在可能的情况下，指标和观察者已被限制为1个，如输出的最后几行所示。
+
+脚本代码和使用#
+在backtrader的源代码中提供了示例。使用方法：
+
+$ ./memory-savings.py --help
+usage: memory-savings.py [-h] [--data DATA] [--save SAVE] [--datalines]
+                         [--lendetails] [--plot]
+
+Check Memory Savings
+
+optional arguments:
+  -h, --help    show this help message and exit
+  --data DATA   Data to be read in (default: ../../datas/yhoo-1996-2015.txt)
+  --save SAVE   Memory saving level [1, 0, -1, -2] (default: 0)
+  --datalines   Print data lines (default: False)
+  --lendetails  Print individual items memory usage (default: False)
+  --plot        Plot the result (default: False)
+代码：
+
+from __future__ import (absolute_import
+
+, division, print_function,
+                        unicode_literals)
+
+import argparse
+import sys
+
+import backtrader as bt
+import backtrader.feeds as btfeeds
+import backtrader.indicators as btind
+import backtrader.utils.flushfile
+
+
+class TestInd(bt.Indicator):
+    lines = ('a', 'b')
+
+    def __init__(self):
+        self.lines.a = b = self.data.close - self.data.high
+        self.lines.b = btind.SMA(b, period=20)
+
+
+class St(bt.Strategy):
+    params = (
+        ('datalines', False),
+        ('lendetails', False),
+    )
+
+    def __init__(self):
+        btind.SMA()
+        btind.Stochastic()
+        btind.RSI()
+        btind.MACD()
+        btind.CCI()
+        TestInd().plotinfo.plot = False
+
+    def next(self):
+        if self.p.datalines:
+            txt = ','.join(
+                ['%04d' % len(self),
+                 '%04d' % len(self.data0),
+                 self.data.datetime.date(0).isoformat()]
+            )
+
+            print(txt)
+
+    def loglendetails(self, msg):
+        if self.p.lendetails:
+            print(msg)
+
+    def stop(self):
+        super(St, self).stop()
+
+        tlen = 0
+        self.loglendetails('-- Evaluating Datas')
+        for i, data in enumerate(self.datas):
+            tdata = 0
+            for line in data.lines:
+                tdata += len(line.array)
+                tline = len(line.array)
+
+            tlen += tdata
+            logtxt = '---- Data {} Total Cells {} - Cells per Line {}'
+            self.loglendetails(logtxt.format(i, tdata, tline))
+
+        self.loglendetails('-- Evaluating Indicators')
+        for i, ind in enumerate(self.getindicators()):
+            tlen += self.rindicator(ind, i, 0)
+
+        self.loglendetails('-- Evaluating Observers')
+        for i, obs in enumerate(self.getobservers()):
+            tobs = 0
+            for line in obs.lines:
+                tobs += len(line.array)
+                tline = len(line.array)
+
+            tlen += tdata
+            logtxt = '---- Observer {} Total Cells {} - Cells per Line {}'
+            self.loglendetails(logtxt.format(i, tobs, tline))
+
+        print('Total memory cells used: {}'.format(tlen))
+
+    def rindicator(self, ind, i, deep):
+        tind = 0
+        for line in ind.lines:
+            tind += len(line.array)
+            tline = len(line.array)
+
+        thisind = tind
+
+        tsub = 0
+        for j, sind in enumerate(ind.getindicators()):
+            tsub += self.rindicator(sind, j, deep + 1)
+
+        iname = ind.__class__.__name__.split('.')[-1]
+
+        logtxt = '---- Indicator {}.{} {} Total Cells {} - Cells per line {}'
+        self.loglendetails(logtxt.format(deep, i, iname, tind, tline))
+        logtxt = '---- SubIndicators Total Cells {}'
+        self.loglendetails(logtxt.format(deep, i, iname, tsub))
+
+        return tind + tsub
+
+
+def runstrat():
+    args = parse_args()
+
+    cerebro = bt.Cerebro()
+    data = btfeeds.YahooFinanceCSVData(dataname=args.data)
+    cerebro.adddata(data)
+    cerebro.addstrategy(
+        St, datalines=args.datalines, lendetails=args.lendetails)
+
+    cerebro.run(runonce=False, exactbars=args.save)
+    if args.plot:
+        cerebro.plot(style='bar')
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        description='Check Memory Savings')
+
+    parser.add_argument('--data', required=False,
+                        default='../../datas/yhoo-1996-2015.txt',
+                        help='Data to be read in')
+
+    parser.add_argument('--save', required=False, type=int, default=0,
+                        help=('Memory saving level [1, 0, -1, -2]'))
+
+    parser.add_argument('--datalines', required=False, action='store_true',
+                        help=('Print data lines'))
+
+    parser.add_argument('--lendetails', required=False, action='store_true',
+                        help=('Print individual items memory usage'))
+
+    parser.add_argument('--plot', required=False, action='store_true',
+                        help=('Plot the result'))
+
+    return parser.parse_args()
+
+
+if __name__ == '__main__':
+    runstrat()
+
+##################################################################################################################
+优化改进#
+Backtrader 通过引入两个新的 Cerebro 参数，优化了在多进程环境下管理数据源和结果的方式。
+
+参数说明：
+
+参数名	默认值	描述
+optdatas	True	如果为True并进行优化（系统可以预加载并使用runonce），则数据预加载将仅在主进程中进行一次，以节省时间和资源。
+optreturn	True	如果为True，优化结果将不是完整的策略对象（包括所有数据、指标、观察者等），而是带有以下属性的对象（与策略中相同）：
+- params（或p）：策略执行时的参数
+- analyzers：策略执行的分析器
+通常，我们只需要查看策略使用的参数的最终表现（如收益率）。如想查看运行过程中的详细数据（如每个时间点的指标值），请关闭此选项。
+
+数据源管理#
+在优化场景中，Cerebro 参数可能的组合是：
+
+preload=True（默认），数据源将在运行任何回测代码前完成预加载：
+runonce=True（默认），指标将在紧密的for循环中批量计算，而不是逐步计算。
+如果两个条件都为True且optdatas=True，则数据源将在生成新子进程之前在主进程中预加载（这些子进程负责执行回测）
+
+结果管理#
+在优化场景中，当评估每个策略运行的不同参数时，最重要的两个因素是：
+
+strategy.params（或strategy.p）
+
+回测使用的实际参数集
+
+strategy.analyzers
+
+提供策略实际表现评估的对象。例如：SharpeRatio_A（年化夏普比率）
+
+当optreturn=True时，不会返回完整的策略实例，而是创建占位符对象，这些对象携带上述两个属性以进行评估。
+
+这避免了传回大量生成的数据，例如回测期间指标生成的值。
+
+如果希望返回完整的策略对象，只需在Cerebro实例化或进行cerebro.run时设置optreturn=False。
+
+一些测试运行#
+backtrader源代码中的优化示例已扩展，添加了对optdatas和optreturn的控制（实际上是禁用它们）。
+
+单核心运行#
+作为参考，当将CPU数量限制为1且不使用多进程模块时会发生什么：
+
+$ ./optimization.py --maxcpus 1
+==================================================
+**************************************************
+--------------------------------------------------
+OrderedDict([(u'smaperiod', 10), (u'macdperiod1', 12), (u'macdperiod2', 26), (u'macdperiod3', 9)])
+**************************************************
+--------------------------------------------------
+OrderedDict([(u'smaperiod', 10), (u'macdperiod1', 13), (u'macdperiod2', 26), (u'macdperiod3', 9)])
+...
+...
+OrderedDict([(u'smaperiod', 29), (u'macdperiod1', 19), (u'macdperiod2', 29), (u'macdperiod3', 14)])
+==================================================
+Time used: 184.922727833
+多核心运行#
+在不限制CPU数量的情况下，Python多进程模块将尝试使用所有CPU。禁用optdatas和optreturn
+
+optdatas和optreturn都启用
+
+默认行为：
+
+$ ./optimization.py
+...
+...
+...
+==================================================
+Time used: 56.5889185394
+通过多核和数据源及结果改进，总时间从184.92秒减少到56.58秒。
+
+请注意，示例使用了252条数据，并且指标仅生成长度为252点的值。这只是一个例子。
+
+真正的问题是这种改进有多少是由于新行为。
+
+optreturn禁用：将完整的策略对象传回调用者：
+
+$ ./optimization.py --no-optreturn
+...
+...
+...
+==================================================
+Time used: 67.056914007
+执行时间增加了18.50%（或15.62%的速度提升）。
+
+optdatas禁用：每个子进程被迫加载其自己的数据源值：
+
+$ ./optimization.py --no-optdatas
+...
+...
+...
+==================================================
+Time used: 72.7238112637
+执行时间增加了28.52%（或22.19%的速度提升）。
+
+两者都禁用：仍然使用多核，但使用旧的未改进行为：
+
+$ ./optimization.py --no-optdatas --no-optreturn
+...
+...
+...
+==================================================
+Time used: 83.6246643786
+执行时间增加了47.79%（或32.34%的速度提升）。
+
+这表明使用多个核心是时间改进的主要贡献因素。
+
+注意：这些执行是在配备i7-4710HQ（4核/8逻辑）和16 GB RAM的笔记本电脑上进行的，操作系统为Windows 10 64位。在其他条件下可能会有所不同。
+
+总结#
+在优化过程中时间减少的最大因素是使用多个核心。
+
+使用optdatas和optreturn的示例运行显示了大约22.19%和15.62%的速度提升（在测试中两者一起提高了32.34%）。
+
+示例使用#
+$ ./optimization.py --help
+usage: optimization.py [-h] [--data DATA] [--fromdate FROMDATE]
+                       [--todate TODATE] [--maxcpus MAXCPUS] [--no-runonce]
+                       [--exactbars EXACTBARS] [--no-optdatas]
+                       [--no-optreturn] [--ma_low MA_LOW] [--ma_high MA_HIGH]
+                       [--m1_low M1_LOW] [--m1_high M1_HIGH] [--m2_low M2_LOW]
+                       [--m2_high M2_HIGH] [--m3_low M3_LOW]
+                       [--m3_high M3_HIGH]
+
+Optimization
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --data DATA, -d DATA  data to add to the system
+  --fromdate FROMDATE, -f FROMDATE
+                        Starting date in YYYY-MM-DD format
+  --todate TODATE, -t TODATE
+                        Starting date in YYYY-MM-DD format
+  --maxcpus MAXCPUS, -m MAXCPUS
+                        Number of CPUs to use in the optimization
+                          - 0 (default): use all available CPUs
+                          - 1 -> n: use as many as specified
+  --no-runonce          Run in next mode
+  --exactbars EXACTBARS
+                        Use the specified exactbars still compatible with preload
+                          0 No memory savings
+                          -1 Moderate memory savings
+                          -2 Less moderate memory savings
+  --no-optdatas         Do not optimize data preloading in optimization
+  --no-optreturn        Do not optimize the returned values to save time
+  --ma_low MA_LOW       SMA range low to optimize
+  --ma_high MA_HIGH     SMA range high to optimize
+  --m1_low M1_LOW       MACD Fast MA range low to optimize
+  --m1_high M1_HIGH     MACD Fast MA range high to optimize
+  --m2_low M2_LOW       MACD Slow MA range low to optimize
+  --m2_high M2_HIGH     MACD Slow MA range high to optimize
+  --m3_low M3_LOW       MACD Signal range low to optimize
+  --m3_high M3_HIGH     MACD Signal range high to optimize
+(C) 2015-2024 Daniel Rodriguez
+#############################################################################################################################
+异常#
+设计目标之一是尽早退出并让用户完全透明地了解错误发生的情况。目的是强制自己编写在异常情况下会中断的代码，并强制重新审视受影响的部分。
+
+但现在是时候了，某些异常可能会慢慢添加到平台中。
+
+继承层次结构#
+所有异常的基类是 BacktraderError（直接继承自 Exception）。
+
+位置#
+在 errors 模块内，可以通过以下方式访问：
+
+import backtrader as bt
+
+class Strategy(bt.Strategy):
+
+    def __init__(self):
+        if something_goes_wrong():
+            raise bt.errors.StrategySkipError
+或者直接从 backtrader 访问：
+
+import backtrader as bt
+
+class Strategy(bt.Strategy):
+
+    def __init__(self):
+        if something_goes_wrong():
+            raise bt.StrategySkipError
+异常#
+StrategySkipError，请求平台跳过该策略的回测。应在实例的初始化（__init__）阶段引发。
+######################################################################################
+Writer#
+Writer类负责将以下内容写入流：
+
+数据源、策略、指标和观察者的CSV流。可以通过每个对象的csv属性控制哪些对象实际进入CSV流（数据源和观察者默认为True，指标默认为False）。
+
+属性摘要：
+
+数据源
+策略（线条和参数）
+指标/观察者（线条和参数）
+分析器（参数和分析结果）
+系统中定义了一个名为WriterFile的Writer，可以通过以下方式添加：
+
+设置Cerebro的writer参数为True，将实例化一个标准的WriterFile
+调用Cerebro.addwriter(writerclass, **kwargs)，在回测执行期间，使用给定的kwargs实例化writerclass
+由于标准的WriterFile默认不输出CSV，以下调用可以处理这一点：
+
+cerebro.addwriter(bt.WriterFile, csv=True)
+参考#
+class backtrader.WriterFile()#
+系统范围内的Writer类。
+
+可以通过以下参数进行参数化：
+
+参数名	默认	说明
+out	sys.stdout	写入的输出流，如果传递的是字符串，将使用参数内容作为文件名。
+close_out	False	如果 out 是一个流，是否需要由Writer显式关闭。
+csv	False	在执行过程中，是否将数据源、策略、观察者和指标的CSV流写入输出流。可以通过每个对象的csv属性控制哪些对象实际进入CSV流（数据源和观察者默认为True，指标默认为False）。
+csv_filternan	True	CSV流中清除nan值（用空字段替换）。
+csv_counter	True	是否应保持并输出实际输出行的计数器。
+indent	2	每个级别的缩进空格数。
+separators	‘=’, ‘-’, ‘+’, ‘*’, ‘.’, ‘~’, ‘"’, ‘^’, ‘#’	用于分隔部分/子部分的行分隔符字符。
+seplen	79	包括缩进在内的行分隔符的总长度。
+rounding	None	将浮点数舍入到的小数位数。如果为None，则不执行舍入。

@@ -1,40 +1,57 @@
-## Description: <br>
-Brain-like local memory plugin for OpenClaw that stores, searches, and injects memories with importance scoring, entity extraction, and automatic consolidation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brain-like local memory plugin for OpenClaw that stores, searches, and injects memories with importance scoring, entity extraction, and automatic consolidation.
 
-## Publisher: <br>
-[flexrox](https://clawhub.ai/user/flexrox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flexrox](https://clawhub.ai/user/flexrox)
 
-## Use Case: <br>
-External users and developers use this plugin to give OpenClaw agents persistent local memory for saving, searching, recalling, and managing conversation-derived memories across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content, including credential-like or personal details, may be saved automatically and reused in future prompts. <br>
-Mitigation: Disable auto-capture or auto-recall before sensitive work, and use the forget or wipe tools to remove sensitive memories. <br>
-Risk: Local memory files persist on disk and may outlive the conversation where they were captured. <br>
-Mitigation: Limit stored content, prune or wipe memories when needed, and protect the local account and storage used for ~/.openclaw/memory. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to give an agent persistent local memory across sessions, including automatic capture, semantic recall, profile building, manual memory management, and memory cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flexrox/openclaw-local-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Plain text and Markdown memory summaries injected into context or returned by tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local JSON memory files under ~/.openclaw/memory; recall output is limited by configured result and context budgets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.2 (source: ClawHub release metadata) <br>
+Risk: Conversation content can be automatically captured and later recalled, including sensitive information if users discuss it while the skill is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable autoCapture and autoRecall for sensitive work, avoid sharing credentials or secrets, and periodically review or wipe stored memories.
+
+Risk: Persistent local memory can mix unrelated projects or users if the same memory namespace is reused.
+
+Mitigation: Use separate containerTag values for different projects, users, or work contexts.
+
+Risk: Stored memories may become outdated, incorrect, or overrepresented in future context.
+
+Mitigation: Use local_memory_forget or local_memory_wipe to remove stale memories, and tune pruning, decay, and significance settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flexrox/skills/openclaw-local-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown memory snippets returned by tools or injected into agent context]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory recall is locally generated and bounded by configuration such as max recall results, max memory injections, and context budget.]
+
+## Skill Version(s):
+
+0.4.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

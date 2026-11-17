@@ -1,40 +1,49 @@
-## Description: <br>
-Draft short, high-clarity replies for comments, objections, and pre-sale questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft short, high-clarity replies for comments, objections, and pre-sale questions.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External-facing commerce, social, and support teams use this skill to draft concise public replies to comments, objections, and pre-sale questions while keeping the conversation clear and non-pushy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies could include incorrect claims about product details, pricing, shipping, policies, or brand voice. <br>
-Mitigation: Review each reply before posting and verify any product, pricing, shipping, policy, or brand-specific statement against authoritative sources. <br>
-Risk: A reply may sound too forceful or unsuitable for a public thread. <br>
-Mitigation: Use the softer alternate reply when tone is sensitive and adjust CTAs to match the channel and brand voice. <br>
+## Use Case:
 
+External-facing social, marketing, and commerce teams use this skill to draft concise public replies to comments, objections, and pre-sale questions while keeping claims realistic and non-pushy.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections for intent, primary reply, alternate reply, and optional CTA.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short public-facing draft replies intended for review before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated public replies could include inaccurate product, pricing, shipping, policy, legal, or commercially sensitive claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated wording for accuracy, brand fit, and sensitive claims before posting; do not publish invented details.
+
+## Reference(s):
+
+- [Comment Replies Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response with an intent label, primary reply, alternate reply, and optional CTA line.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short public replies; the skill instructs the agent not to invent product details, pricing, shipping, or policy terms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

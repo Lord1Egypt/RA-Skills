@@ -1,43 +1,59 @@
-## Description: <br>
-Basecamp CLI helps agents and developers manage Basecamp projects, to-dos, messages, people, and campfires through a TypeScript command-line interface using the bc3 API and 37signals Launchpad OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Basecamp (via bc3 API / 37signals Launchpad) projects, to-dos, messages, and campfires via a TypeScript CLI.
 
-## Publisher: <br>
-[emredoganer](https://clawhub.ai/user/emredoganer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emredoganer](https://clawhub.ai/user/emredoganer)
 
-## Use Case: <br>
-Developers, operators, and agent workflows use this skill to configure and run authenticated Basecamp CLI commands for listing, creating, updating, completing, and archiving project-management resources. It is suited for Basecamp automation where the operator can review commands that affect projects, to-dos, messages, campfires, and people data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI uses OAuth permissions to read and write Basecamp data, including posting messages, creating tasks, completing tasks, and archiving projects. <br>
-Mitigation: Use a dedicated Basecamp integration where possible and require explicit operator approval before running write or archive commands. <br>
-Risk: Installing and running the package requires trust in the third-party npm publisher. <br>
-Mitigation: Install only when the publisher is trusted and verify the release source, version, and package contents before deployment. <br>
-Risk: OAuth client secrets can be exposed through unsafe shell practices. <br>
-Mitigation: Keep BASECAMP_CLIENT_SECRET out of shell history and prefer secure environment or secret-management workflows. <br>
+## Use Case:
 
+Developers and automation users use this skill to configure and run Basecamp CLI workflows for authentication, project management, to-do management, messages, campfires, and people lookup.
 
-## Reference(s): <br>
-- [Basecamp bc3 API documentation](https://github.com/basecamp/bc3-api) <br>
-- [37signals Launchpad integrations](https://launchpad.37signals.com/integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may perform authenticated Basecamp read and write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: The CLI handles Basecamp OAuth secrets, access tokens, and live account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-production Basecamp account first, keep BASECAMP_CLIENT_SECRET and tokens out of shared terminals and logs, and revoke tokens if exposed.
+
+Risk: Authenticated commands can change live Basecamp content, including archiving projects, creating messages, sending chat lines, and modifying to-dos.
+
+Mitigation: Review command targets and options before execution and limit use to accounts where those changes are authorized.
+
+Risk: People and profile commands can print personal or sensitive business data.
+
+Mitigation: Run these commands only for authorized Basecamp accounts and avoid sharing raw output in public or untrusted channels.
+
+## Reference(s):
+
+- [Basecamp bc3 API](https://github.com/basecamp/bc3-api)
+- [37signals Launchpad Integrations](https://launchpad.37signals.com/integrations)
+- [Basecamp CLI on ClawHub](https://clawhub.ai/emredoganer/skills/basecamp-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON or tabular CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read from or write to live Basecamp accounts after OAuth authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

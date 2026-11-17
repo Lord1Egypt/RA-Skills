@@ -1,43 +1,58 @@
-## Description: <br>
-Summarizes academic paper PDFs into Feishu documents with structured Markdown, selected figures, duplicate checks, and reviewer-assisted data verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes academic paper PDFs into Feishu documents with structured sections, selected figures and tables, duplicate checks, and review checkpoints.
 
-## Publisher: <br>
-[yy-fan](https://clawhub.ai/user/yy-fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yy-fan](https://clawhub.ai/user/yy-fan)
 
-## Use Case: <br>
-Researchers, students, and technical readers use this skill to turn academic PDFs or technical reports into Feishu summaries with structured sections, selected figures, duplicate checks, and review before final confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF-derived text and selected figures may be written to Feishu and processed by sub-agents. <br>
-Mitigation: Use this skill only when Feishu storage and sub-agent processing are acceptable; avoid confidential or unpublished PDFs unless that handling is approved. <br>
-Risk: The workflow may require installing local system packages for PDF extraction, OCR, and JSON processing. <br>
-Mitigation: Review and approve any installation of poppler-utils, tesseract-ocr, and jq before execution. <br>
-Risk: Local paper folders, logs, extracted text, image files, and Feishu token files may remain after processing. <br>
-Mitigation: Delete local paper folders, logs, extracted files, and token files after completion, especially for sensitive papers. <br>
+## Use Case:
 
+External users and developers use this skill to turn academic papers or technical-report PDFs into Chinese Feishu summaries with extracted metadata, figure placeholders, uploaded figures, and a reviewer pass before finalization.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yy-fan/paper-summarize-pdf-to-feishu) <br>
-- [Summary template](references/summary_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local paper folders, logs, metadata JSON, extracted text and images, summaries, audit reports, and Feishu document content when the required tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and frontmatter) <br>
+Risk: The workflow can upload extracted PDF contents and figures into Feishu documents and store local copies, logs, and document tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled workspace, avoid confidential papers unless the Feishu destination and logs are approved, and redact or protect document tokens after each run.
+
+Risk: The skill text includes elevated package installation commands for required PDF and OCR utilities.
+
+Mitigation: Install Poppler, Tesseract, and jq through an approved environment setup before running the skill instead of executing inline sudo commands during agent operation.
+
+Risk: The security scan advises avoiding attacker-supplied PDFs until prompt-injection boundaries, path validation, token redaction, and JSON escaping are fixed.
+
+Mitigation: Process only trusted PDFs in an isolated workspace and review generated summaries and Feishu updates before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yy-fan/skills/paper-summarize-pdf-to-feishu)
+- [Summary template](references/summary_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, Feishu document updates, local text/image files, logs, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local PDF utilities and Feishu document access; may create local paper directories, logs, extracted text, images, metadata JSON, and Feishu document tokens.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

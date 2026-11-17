@@ -1,0 +1,24 @@
+name: petroleum-reservoir-paper-team
+display_name: 石油工程油藏论文写作专家团
+version: 1.0.0
+description: 面向石油工程油藏方向科研人员的八角色协作写作团队部署器。覆盖选题策划、文献调研、知识整合、学术写作、事实核查、风格打磨、质量审稿与排版输出全流程，内置 OnePetro/EI/Scopus/Web of Science/CNKI 等数据库清单与核心期刊审稿标准。安装后一键部署到 WorkBuddy 专家中心。
+author:
+  name: 锦程
+tags:
+  - 石油工程
+  - 油藏工程
+  - 学术论文写作
+  - 专家团
+  - 科研协作
+categories:
+  - Research
+  - Knowledge
+  - Productivity
+keywords:
+  - petroleum-engineering
+  - reservoir-engineering
+  - academic-writing
+  - research-collaboration
+  - paper-review
+type: skill
+homepage: https://clawhub.ai

@@ -1,41 +1,58 @@
-## Description: <br>
-Helps Taobao store operators generate daily operations reports, compliance checks, inventory reminders, customer-service logs, after-sales records, and risk alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+日常运营 + 客服售后 + 合规风控三合一 - 仅读 API、不自动修改、客服合规、人工确认
 
-## Publisher: <br>
-[guowaa223](https://clawhub.ai/user/guowaa223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowaa223](https://clawhub.ai/user/guowaa223)
 
-## Use Case: <br>
-External ecommerce operators use this skill to produce local Taobao operations reports, compliance review sheets, inventory checks, customer-service response logs, after-sales records, and risk-control alerts for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flagged a mismatch between read-only and manual-approval claims and the documented customer auto-reply and after-sales automation behavior. <br>
-Mitigation: Review before connecting a real Taobao account; do not provide write-capable credentials or enable live customer replies, refunds, or after-sales automation until explicit approvals, API scopes, start/stop controls, and audit controls are documented and enforced. <br>
-Risk: Generated operations, compliance, inventory, and after-sales outputs could influence store decisions or customer interactions. <br>
-Mitigation: Treat outputs as local reports for human review and manually verify recommendations before making changes in Taobao or communicating with customers. <br>
+## Use Case:
 
+E-commerce operators and support teams use this skill to generate Taobao shop operations reports, compliance check reports, inventory reminders, customer-service logs, after-sales records, and risk-control alerts. The artifact describes outputs as recommendations and records that require human review before platform changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guowaa223/taobao-operations) <br>
-- [Publisher profile](https://clawhub.ai/user/guowaa223) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown instructions and CLI output; generated artifacts include Excel .xlsx reports, JSON customer-service logs, and local log files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 with requests, pandas, and openpyxl; artifact metadata declares win32 support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Reports and success messages may be based on hard-coded demo data rather than verified Taobao API checks or platform actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports and logs as draft outputs until the demo behavior is replaced with verified Taobao API integrations and clear failure handling.
+
+Risk: Operational, compliance, customer-service, inventory, risk, and refund outputs could be mistaken for validated store decisions.
+
+Mitigation: Require explicit human approval before acting on any report, recommendation, customer-service response, or after-sales result.
+
+Risk: Python dependencies are not pinned to exact versions.
+
+Mitigation: Install dependencies in an isolated environment and pin versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guowaa223/skills/taobao-operations)
+- [Publisher profile](https://clawhub.ai/user/guowaa223)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, JSON, Guidance]
+
+**Output Format:** [Excel reports, JSON logs, and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated as reports, reminders, task lists, logs, and alerts for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

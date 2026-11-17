@@ -1,40 +1,53 @@
-## Description: <br>
-Controller-level Balance Sheet deep analysis from QuickBooks Online that pulls current and prior period balance sheets, runs rolling averages and GL drill-downs, and generates a 7-tab Excel workbook with actionable findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controller-level Balance Sheet deep analysis from QuickBooks Online that pulls current and prior-period balance sheets, computes rolling averages, drills into material general-ledger changes, and generates a seven-tab Excel workbook with actionable findings.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance and accounting teams use this skill for monthly close balance sheet review, working capital health checks, equity rollforward reconciliation, and material balance-change explanations from QuickBooks Online data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Excel reports and cache files may contain sensitive financial, vendor, payee, and transaction-level details. <br>
-Mitigation: Use secure output directories and delete or protect generated Excel and cache files after use. <br>
-Risk: Running the skill with the wrong QuickBooks company access could analyze or expose unintended company data. <br>
-Mitigation: Install and run it only where the agent is expected to access that QuickBooks company, and confirm the company slug and authorization before execution. <br>
+## Use Case:
 
+Finance and accounting teams use this skill to produce monthly close balance sheet reviews, working-capital health checks, equity rollforward reconciliations, common-size analysis, and narratives for material balance changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/bs-deep-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown instructions with bash examples; the referenced pipeline produces an Excel workbook.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected QuickBooks Online company slug; generated reports and cache files may contain sensitive financial and transaction-level details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill handles confidential QuickBooks financial data and may produce sensitive Excel workbooks and cache files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted finance environment, restrict access to generated workbooks and cache files, and delete them when no longer needed.
+
+Risk: QuickBooks Online access and local dependencies are required but not fully specified by the artifact.
+
+Mitigation: Verify and pin the exact dependencies and QBO client before deployment, and limit QBO token scope to the minimum needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/skills/bs-deep-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of a QuickBooks Online balance sheet analysis pipeline that produces a seven-tab Excel workbook.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

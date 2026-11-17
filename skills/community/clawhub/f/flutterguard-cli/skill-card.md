@@ -1,45 +1,53 @@
-## Description: <br>
-Review Flutter Android APK/AAB release artifacts for manifest, permission, cleartext traffic, exported component, embedded secret, signing, size, WebView, deep link, and third-party service risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Flutter Android APK/AAB release artifacts for manifest, permission, cleartext traffic, exported component, embedded secret, signing, size, WebView, deep link, and third-party service risks.
 
-## Publisher: <br>
-[anasfik](https://clawhub.ai/user/anasfik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anasfik](https://clawhub.ai/user/anasfik)
 
-## Use Case: <br>
-Developers and security reviewers use this agent skill to inspect Flutter Android APK/AAB release artifacts before shipping. It guides evidence collection for Android manifest, signing, embedded-secret, WebView, network, deep-link, and third-party service risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APK/AAB inspection can expose private artifacts, production secrets, signing details, or customer data. <br>
-Mitigation: Inspect only artifacts the user is authorized to review, keep reports evidence-focused, and redact secret values before sharing. <br>
-Risk: Fetching published APKs with apkeep may require Google Play access tokens or may conflict with app-store expectations if used broadly. <br>
-Mitigation: Use apkeep only for authorized or appropriate public app review, do not store Google account credentials, and avoid bulk or high-parallel downloads. <br>
-Risk: Recommended fixes may affect sensitive production behavior such as authentication, payments, permissions, signing, publishing, privacy, or API key migration. <br>
-Mitigation: Require explicit human approval before changing sensitive app behavior; generate reports, checklists, and recommendations without silently modifying the app. <br>
-Risk: Reverse-engineering tools and string extraction can produce incomplete or misleading conclusions if their output is treated as source code. <br>
-Mitigation: Treat decompiled code and extracted strings as artifact evidence only, cite exact paths or command outputs, and avoid claiming full Dart source recovery from Flutter binaries. <br>
+## Use Case:
 
+Developers and release engineers use this skill to review Flutter Android APK or AAB release artifacts before shipping. It guides an agent through read-only artifact inspection, evidence collection, risk scoring, and human-approved remediation recommendations.
 
-## Reference(s): <br>
-- [Flutterguard Cli on ClawHub](https://clawhub.ai/anasfik/flutterguard-cli) <br>
-- [EFF apkeep](https://github.com/EFForg/apkeep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown security review report with findings, evidence, status, score, recommended actions, and human-approval notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should cite observable artifact evidence and redact secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Optional Google Play APK retrieval can involve account email and AAS token handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a local APK or AAB. If Google Play access is necessary, use the least-privilege option available and revoke or rotate the token after use.
+
+Risk: Artifact inspection depends on local tools and observable APK or AAB evidence, so decompiled or string-based findings can be incomplete.
+
+Mitigation: Treat results as review evidence and confirm sensitive findings before changing permissions, signing, authentication, payments, privacy behavior, or production configuration.
+
+## Reference(s):
+
+- [apkeep](https://github.com/EFForg/apkeep)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with evidence summaries and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secrets should be redacted; read-only inspection and preservation of the original APK or AAB are preferred.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

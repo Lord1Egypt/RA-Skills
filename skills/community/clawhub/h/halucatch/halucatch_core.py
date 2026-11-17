@@ -8,6 +8,12 @@
 
   python3 -m halucatch --skill-dir <目标Skill路径>        # 等价用法
 """
+import os
+import sys
+
+# 确保能 import halucatch 包（无论从哪个目录执行）
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from halucatch.cli import main
 
 if __name__ == '__main__':

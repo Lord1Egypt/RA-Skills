@@ -1,41 +1,52 @@
-## Description: <br>
-Check current Linux system resource usage and report load, memory, swap, disk, and top CPU/memory processes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check current Linux system resource usage and report load, memory, swap, disk, and top CPU/memory processes.
 
-## Publisher: <br>
-[karryklein](https://clawhub.ai/user/karryklein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[karryklein](https://clawhub.ai/user/karryklein)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and administrators use this skill to collect a quick Linux host health summary covering load, memory, swap, root disk usage, and top CPU or memory consumers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: System health output and top process command lines may expose sensitive local operational details or command arguments.
+
+Mitigation: Run the skill only in contexts where sharing local resource metrics and process command lines with the agent is acceptable; redact sensitive output before redistributing summaries.
+
+Risk: Reported values depend on standard Linux tools being available and reflecting the host accurately.
+
+Mitigation: Confirm unusual findings directly on the host before making operational decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to collect and summarize Linux host resource usage for quick health checks, recurring status summaries, and early detection of abnormal load or memory pressure. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Top-process output can include command-line arguments from running processes. <br>
-Mitigation: Review generated reports before sharing them externally. <br>
-Risk: Report accuracy depends on standard Linux tools being available on the host. <br>
-Mitigation: Confirm the target environment provides uptime, free, df, ps, head, and /proc/loadavg before relying on the report. <br>
+**Output Format:** [Markdown summary with command output interpretation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [System Resource Report on ClawHub](https://clawhub.ai/karryklein/system-resource-report) <br>
-- [karryklein publisher profile](https://clawhub.ai/user/karryklein) <br>
+**Other Properties Related to Output:** [Reports local Linux system metrics and may include process command lines.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with shell command output interpreted into concise status sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports load average, memory and swap usage, root disk usage, top CPU processes, and top memory processes from local Linux commands.] <br>
+1.0.0 (source: server release metadata and publishing notes)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and publishing notes) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Macro-gated US stock analysis combining technical indicators, fundamentals, and macro environment with weighted scoring and Buy/Hold/Sell verdicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Macro-gated US stock analysis combining technical indicators, fundamentals, and macro environment with weighted scoring and Buy/Hold/Sell verdicts.
 
-## Publisher: <br>
-[yumyumtum](https://clawhub.ai/user/yumyumtum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yumyumtum](https://clawhub.ai/user/yumyumtum)
 
-## Use Case: <br>
-External users and financial-research agents use this skill to produce structured US equity analysis from public market, macroeconomic, technical, and company fundamentals data. It compares a target ticker with related stocks and returns macro-gated Buy, Hold, or Sell verdicts for educational research. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stock-analysis outputs may include stale, incomplete, or incorrect market data and can be mistaken for investment advice. <br>
-Mitigation: Verify important figures against primary sources and treat Buy/Hold/Sell verdicts as educational research, not a recommendation or solicitation to trade. <br>
-Risk: The workflow depends on public sources and mixed technical or macro indicators, so conclusions can change quickly as market data updates. <br>
-Mitigation: Use current data dates in the analysis, rerun the skill for time-sensitive decisions, and consult a qualified financial advisor before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yumyumtum/yumstock) <br>
-- [CNN Fear and Greed Index](https://www.cnn.com/markets/fear-and-greed) <br>
-- [Chicago Fed NFCI current data](https://www.chicagofed.org/research/data/nfci/current-data) <br>
+## Use Case:
 
+External users and financial-research workflows use this skill to analyze US stock tickers with a macro-gated blend of technical, fundamental, and macro indicators. It produces structured comparative research and Buy/Hold/Sell verdicts for informational use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, scored analysis, comparative summaries, and final Buy/Hold/Sell verdicts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current public financial and macroeconomic data; instructs users to treat outputs as informational and educational rather than investment advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may query external financial and macro data sources for tickers the user asks about.
+
+Mitigation: Install only when that external data access is acceptable for the intended ticker research workflow.
+
+Risk: Buy/Hold/Sell verdicts may be mistaken for professional investment advice.
+
+Mitigation: Treat outputs as educational market analysis and require user due diligence or qualified financial review before trading decisions.
+
+## Reference(s):
+
+- [CNN Fear and Greed Index](https://www.cnn.com/markets/fear-and-greed)
+- [Chicago Fed National Financial Conditions Index](https://www.chicagofed.org/research/data/nfci/current-data)
+- [ClawHub Skill Page](https://clawhub.ai/yumyumtum/skills/yumstock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes macro, technical, fundamental, comparative, and final verdict sections; capped by the skill instructions at 3000 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Fetches Amazon product reviews for ASINs through the Reveyes API, including star distributions, critical review summaries, and review data across supported marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Amazon product reviews through the Reveyes API across 20 marketplaces and returns review data, star distributions, and critical review summaries.
 
-## Publisher: <br>
-[zhuojiuya](https://clawhub.ai/user/zhuojiuya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuojiuya](https://clawhub.ai/user/zhuojiuya)
 
-## Use Case: <br>
-External sellers, ecommerce analysts, and agents use this skill to fetch Amazon review data for ASINs, compare marketplace feedback, and summarize star distributions and critical reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the Reveyes API key and ASIN query parameters to a third-party Reveyes API. <br>
-Mitigation: Install only when use of Reveyes is intended, store REVEYES_API_KEY in an environment variable, and avoid submitting sensitive competitive-research queries unless that sharing is acceptable. <br>
-Risk: Fetching review pages consumes Reveyes credits and may time out while a task continues running. <br>
-Mitigation: Use the smallest page count that fits the task, monitor credit balance, and keep any returned task_id for follow-up when a timeout occurs. <br>
+## Use Case:
 
+External users and developers use this skill to fetch Amazon reviews for a supplied ASIN, compare review sentiment across marketplaces, inspect critical reviews, and export review data for product or competitor analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuojiuya/amazon-review-reveyes) <br>
-- [Reveyes API website](https://www.reveyes.cn) <br>
-- [Reveyes Python SDK](https://pypi.org/project/reveyes/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Markdown summary with optional JSON review data from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVEYES_API_KEY and sends ASIN, marketplace, page count, and star filter values to the Reveyes API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The skill sends ASINs, marketplace choices, and review-fetch requests to the third-party Reveyes service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sending those requests to Reveyes is acceptable for the user's workflow and data handling requirements.
+
+Risk: The skill requires a Reveyes API key and consumes Reveyes API credits.
+
+Mitigation: Store REVEYES_API_KEY in a protected secret store or tightly permissioned configuration and monitor page counts and credit usage.
+
+Risk: The skill depends on the external Reveyes Python SDK and service availability.
+
+Mitigation: Pin the Reveyes SDK version in controlled environments and review timeout or error responses before relying on fetched results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuojiuya/skills/amazon-review-reveyes)
+- [Reveyes official site](https://www.reveyes.cn)
+- [Reveyes Python SDK on PyPI](https://pypi.org/project/reveyes/)
+- [Repository listed by artifact metadata](https://github.com/zhuojiuya/Amazon-Review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown-style review summary with structured JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ASIN, marketplace, total review count, average rating, rating distribution, top critical reviews, task ID, and credits used.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, clawhub.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

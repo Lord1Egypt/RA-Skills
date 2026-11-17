@@ -1,40 +1,53 @@
-## Description: <br>
-Automates Kmong expert account sign-up, PASS SMS identity verification, profile setup, and initial service registration through an OpenClaw browser workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Kmong sign-up, identity verification, profile setup, and service registration using OpenClaw browser with SMS and captcha handling.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and automation operators use this skill to guide an OpenClaw browser through Kmong expert onboarding, including sign-up, identity verification, profile setup, and service registration. It is intended for supervised account creation where the user controls identity data and verification codes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automates real account creation and identity verification with sensitive personal data. <br>
-Mitigation: Use it only under close supervision and keep identity fields, SMS codes, CAPTCHA/security characters, and final registration submission under direct user control. <br>
-Risk: Local account credentials or profile settings may be stored in a secrets file. <br>
-Mitigation: Protect the local secrets file with restrictive permissions and keep it excluded from version control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Kmong skill page](https://clawhub.ai/mupengi-bot/kmong) <br>
-- [Kmong](https://kmong.com) <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent through creating and preparing a Kmong expert seller account, including registration, profile setup, and service listing steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with ordered browser-action steps and inline JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires supervised handling of identity fields, CAPTCHA/security characters, SMS codes, Google sign-in, agreements, and final submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs an agent through sensitive identity verification, including national-ID digits, SMS codes, CAPTCHA/security characters, and screenshots that may contain identity data.
+
+Mitigation: Use it only for an authorized Kmong account, keep identity verification and seller-term confirmation in the official browser interface, and do not allow the agent to view or store sensitive identity data or verification codes.
+
+Risk: The server security verdict is suspicious because the registration helper lacks adequate safeguards around sensitive verification flows.
+
+Mitigation: Review the skill carefully before installing or running it, and restrict use to trusted workspaces with no credential or screenshot retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/kmong)
+- [Kmong](https://kmong.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with browser automation steps and inline command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local secret and workspace configuration paths for account details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

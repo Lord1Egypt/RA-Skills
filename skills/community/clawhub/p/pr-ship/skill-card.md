@@ -1,48 +1,60 @@
-## Description: <br>
-Pre-ship risk report for OpenClaw PRs that dynamically explores the codebase to assess module risk, blast radius, and version-specific gotchas, then scores each finding by severity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-ship risk reporting for OpenClaw PRs that explores code changes, estimates module risk and blast radius, and scores evidence-backed findings by severity.
 
-## Publisher: <br>
-[Glucksberg](https://clawhub.ai/user/Glucksberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[glucksberg](https://clawhub.ai/user/glucksberg)
 
-## Use Case: <br>
-Developers and maintainers use this skill to inspect OpenClaw pull request diffs before shipping and produce an evidence-backed risk report with severity-scored findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include local diffs or grep output that contain secrets or sensitive repository details. <br>
-Mitigation: Review generated reports for sensitive content before sharing them outside the local review context. <br>
-Risk: The included update-pipeline test script is intended for maintainer workflow validation, not normal PR review. <br>
-Mitigation: Do not run scripts/test-update-pipeline.sh unless you specifically intend to validate the maintainer update or cron workflow. <br>
-Risk: The skill is scoped to OpenClaw pull requests and may produce misleading findings on other repositories. <br>
-Mitigation: Use the skill only in an OpenClaw repository and review the current branch diff against main. <br>
+## Use Case:
 
+Developers working in the OpenClaw repository use this skill before publishing PRs to inspect the current branch diff, identify module risk and blast radius, and produce an evidence-backed markdown risk report.
 
-## Reference(s): <br>
-- [Pr Ship on ClawHub](https://clawhub.ai/Glucksberg/pr-ship) <br>
-- [STABLE-PRINCIPLES.md](references/STABLE-PRINCIPLES.md) <br>
-- [ARCHITECTURE-MAP.md](references/ARCHITECTURE-MAP.md) <br>
-- [CURRENT-CONTEXT.md](references/CURRENT-CONTEXT.md) <br>
-- [EXPLORATION-PLAYBOOK.md](references/EXPLORATION-PLAYBOOK.md) <br>
-- [VISION-GUIDELINES.md](references/VISION-GUIDELINES.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown risk report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include branch, base, changed file count, touched modules, module risk summary, findings, final alert score, and executive summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata and package.json) <br>
+Risk: Generated reports may expose secrets or sensitive repository details from local diffs and grep output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before sharing them, and avoid publishing reports that include credentials, tokens, or confidential code context.
+
+Risk: The package includes maintenance tooling that can inspect local OpenClaw cron configuration, contact GitHub, and optionally trigger a live cron job.
+
+Mitigation: Use the main PR review workflow for routine review; inspect scripts/test-update-pipeline.sh and run it only when you accept its side effects, especially with --live.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/glucksberg/skills/pr-ship)
+- [Skill definition](SKILL.md)
+- [README](README.md)
+- [Stable Principles](references/STABLE-PRINCIPLES.md)
+- [Architecture Map](references/ARCHITECTURE-MAP.md)
+- [Current Context](references/CURRENT-CONTEXT.md)
+- [Exploration Playbook](references/EXPLORATION-PLAYBOOK.md)
+- [Vision Guidelines](references/VISION-GUIDELINES.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with command-derived evidence, severity scores, and suggested fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; it does not approve or reject a pull request.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

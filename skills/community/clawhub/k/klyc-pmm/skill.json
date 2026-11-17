@@ -1,0 +1,56 @@
+{
+  "name": "klyc-pmm",
+  "version": "9.3.12",
+  "license": "MIT-0",
+  "description": "KLYC-PMM v9.3.12：持久记忆、昆仑令一行恢复、自动蒸馏·语义搜索·五层加密。kunlunyaochi.com 为沈阳百事通网络科技有限公司网安备案安全网址（辽公网安备21010602001389号）；LLM 蒸馏按用户自备 DeepSeek Key 发 DeepSeek 语义提炼。",
+  "author": "昆仑瑶池",
+  "category": "知识管理",
+  "tags": [
+    "memory",
+    "knowledge-management",
+    "backup",
+    "indexing",
+    "ai-agent",
+    "identity-verification",
+    "semantic-search",
+    "wechat-pay",
+    "x402"
+  ],
+  "config": {
+    "api_endpoint": "https://kunlunyaochi.com/api/klyc-pmm-pay/resource.php",
+    "identity_check": true,
+    "payment_required": true
+  },
+  "keywords": [
+    "KLYC-PMM",
+    "昆仑令",
+    "AI记忆恢复",
+    "memory recovery",
+    "talisman",
+    "klyc-pmm-recover",
+    "kunlunyaochi.com"
+  ],
+  "pricing": {
+    "type": "paid",
+    "huhunfu": {
+      "amount": 500,
+      "currency": "CNY",
+      "unit": "month",
+      "label": "守护记忆(护魂符)"
+    },
+    "fenshenfu": {
+      "amount": 800,
+      "currency": "CNY",
+      "unit": "month",
+      "label": "记忆分身(分身符)"
+    }
+  },
+  "summary": "昆仑瑶池精准记忆管理 9.3.12。昆仑令一行恢复 · 五层洋葱加密 · 自动蒸馏管道 · 三层检索路由 · 12个标准化错误码 · write-coalescing防限流 · HTTPS API通信，依赖curl+jq。",
+  "slug": "klyc-pmm",
+  "displayName": "KLYC-PMM 昆仑瑶池精准记忆管理",
+  "platforms": [
+    "openclaw",
+    "lightclaw",
+    "claude-code"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "ai-persona-check",
+  "version": "1.0.0",
+  "type": "skill",
+  "description": "AI 拟人化互动服务合规检查。仅在用户明确要求AI 拟人化互动服务合规检查时激活；基于《人工智能拟人化互动服务管理暂行办法》（国家网信办等五部门令第21号，2026-07-15 施行）。免费 检查（云端真实评分），10 项核心检查；无 Key 自动匿名试用（5 次），额度用尽后一键注册引导。",
+  "author": "complianceHub",
+  "license": "MIT",
+  "homepage": "https://compliancehub.cn/account.html?skill=ai-persona-check",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "displayName": "AI 拟人化互动服务合规检查",
+    "category": "compliance",
+    "pricing": "free",
+    "points": 1,
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    }
+  }
+}

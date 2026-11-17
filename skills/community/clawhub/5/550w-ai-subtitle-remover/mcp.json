@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "ai-subtitle-remover": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "dist/550w-mcp.cjs"
+      ],
+      "cwd": ".",
+      "env": {
+        "SUBTITLE_REMOVER_USER_NO": "${SUBTITLE_REMOVER_USER_NO}",
+        "SUBTITLE_REMOVER_API_KEY": "${SUBTITLE_REMOVER_API_KEY}",
+        "SUBTITLE_REMOVER_REGION": "global"
+      },
+      "timeout": 660000
+    }
+  }
+}

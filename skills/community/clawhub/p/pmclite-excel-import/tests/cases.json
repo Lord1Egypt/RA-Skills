@@ -1,0 +1,81 @@
+{
+  "skill": "pmclite-excel-import",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准导入：物料表表头不规范",
+      "category": "happy_path",
+      "input": {
+        "user_message": "我这里有个物料表，表头是料号/品名/规格/单位/单价，帮我导进轻排",
+        "files": ["materials.xlsx"]
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_import_schema", "import_data"],
+        "tool_args_check": { "import_data": { "mode": "preview" } },
+        "output_contains": ["新增", "更新", "确认"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "缺单位与缺编码不拦",
+      "category": "edge_case",
+      "input": {
+        "user_message": "我们的表没有单位列，也没有物料编码，能导吗",
+        "table_sample": "品名 | 规格\n10K电阻 | 0805\n100nF电容 | 0603"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_import_schema", "import_data"],
+        "output_contains": ["默认为个", "AUTO", "自动生成"],
+        "must_not": ["因为缺单位无法导入", "请先补齐单位再导"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "BOM 引用未定义的产品",
+      "category": "error_path",
+      "input": {
+        "user_message": "先帮我导这张 BOM，产品资料我还没建",
+        "table_sample": "父件编码 | 子件编码 | 用量\nPROD-001 | RES-001 | 4"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_import_schema", "import_data"],
+        "output_contains": ["productCode", "不存在", "产品表"],
+        "must_not": ["跳过失败行继续导入"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "脏数据：千分位与斜杠日期",
+      "category": "edge_case",
+      "input": {
+        "user_message": "单价是 1,200.00 这种写法，日期是 2026/11/20，直接导会不会出问题"
+      },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_import_schema"],
+        "output_contains": ["千分位", "YYYY-MM-DD", "确认"],
+        "must_not": ["静默把 1,200 当作 1"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "边界：不是导入需求",
+      "category": "boundary",
+      "input": { "user_message": "把明天要开工的工单重新排一下" },
+      "expected": {
+        "trigger_skill": false,
+        "calls_tool": [],
+        "output_contains": ["排产"],
+        "uses_fallback": false
+      }
+    }
+  ]
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Git commit message conventions and workflow rules. Use when making git commits, pushing changes, or performing git operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git commit message conventions and workflow rules. Use when making git commits, pushing changes, or performing git operations.
 
-## Publisher: <br>
-[douglarek](https://clawhub.ai/user/douglarek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[douglarek](https://clawhub.ai/user/douglarek)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to follow consistent Git commit message conventions and workflow guardrails when committing, signing off, pushing, or force-pushing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Signed commits record the configured Git name and email in commit history. <br>
-Mitigation: Confirm the configured Git identity is appropriate before committing with sign-off. <br>
-Risk: Remote pushes, especially force pushes, can publish or overwrite repository history. <br>
-Mitigation: Review the target branch, remote, and intended changes before approving any push or force push. <br>
+## Use Case:
 
+Developers and coding agents use this skill to keep git commits and push workflows aligned with a consistent repository convention, including semantic commit messages, signed-off commits, and user confirmation before force pushes or remote pushes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/douglarek/git-conventions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with inline Git command conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; guidance affects Git commit and push workflow decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow conventions may conflict with a repository's existing contribution policy, such as required commit language, sign-off rules, or push process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill against repository policy before installation and adjust or avoid it when the conventions do not match the project.
+
+Risk: The skill affects agent behavior around git operations, including prompts before force pushes and remote pushes.
+
+Mitigation: Keep human confirmation in place for destructive or remote git operations and inspect proposed commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/douglarek/skills/git-conventions)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, shell commands]
+
+**Output Format:** [Markdown guidance with inline command conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden code, persistence, or data access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Provides a unified JavaScript pipeline for image understanding, OCR, speech recognition, and text-to-speech synthesis using OpenAI-compatible APIs, Tesseract.js, local Whisper, and Edge TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports image understanding, OCR, speech-to-text, and text-to-speech synthesis with multi-voice output through a unified multimodal processing pipeline.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers use this skill to add multimodal input and output handling to agents, including image descriptions, OCR extraction, speech-to-text transcription, and synthesized speech responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images or audio may be sent to configured OpenAI-compatible services when API mode is used. <br>
-Mitigation: Use local speech/OCR modes for sensitive content when possible, disclose external processing to users, and keep API keys scoped and rotated. <br>
-Risk: Generated speech files, temporary audio, or SSML text may contain confidential content in the configured output directory. <br>
-Mitigation: Use private per-run output directories, avoid shared locations for sensitive content, and clean temporary files after use. <br>
+## Use Case:
 
+Developers and agents use this skill to add multimodal input and output handling to workflows that need image analysis, OCR, audio transcription, and synthesized speech.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/yuyonghao-multimodal-base) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Package manifest](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown documentation with JavaScript and shell examples; runtime APIs return JavaScript objects and generated audio file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call OpenAI-compatible services, local Whisper, Tesseract.js, and edge-tts; text-to-speech writes audio files to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Sensitive images, recordings, transcripts, or API credentials may be sent to configured external endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted API endpoints and keys, and avoid processing private media unless third-party transmission is acceptable.
+
+Risk: Under-scoped file handling can delete unrelated files when cleanup is invoked on a shared output directory.
+
+Mitigation: Keep outputDir dedicated to generated audio and avoid cleanup on shared directories.
+
+Risk: Dependency and model download integrity controls may need additional review before production use.
+
+Mitigation: Review and update dependency and model download integrity controls before installing in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-multimodal-base)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, configuration snippets, structured result objects, and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image and audio processing may rely on configured external APIs, local OCR, Whisper, Edge TTS, and filesystem paths supplied by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

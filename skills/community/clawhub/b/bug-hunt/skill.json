@@ -1,0 +1,8 @@
+{
+  "id": "bug-hunt",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh bug-hunt"
+  ],
+  "trust_level": "workspace"
+}

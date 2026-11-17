@@ -1,40 +1,49 @@
-## Description: <br>
-Generates Objective-C iOS view code from screenshots, using lazy-loaded UI components and separated layout and data-binding methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Objective-C iOS view and view-controller code from screenshots, using lazy loading and separated UI, layout, and data-binding methods.
 
-## Publisher: <br>
-[near2sea](https://clawhub.ai/user/near2sea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[near2sea](https://clawhub.ai/user/near2sea)
 
-## Use Case: <br>
-Developers use this skill to turn iOS UI screenshots into Objective-C view or view-controller code with lazy-loaded UI components, layout constraints, and separate data binding methods. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may contain sensitive product, user, or business information. <br>
-Mitigation: Only provide screenshots that are appropriate for UI-code generation and do not contain information that should not be analyzed. <br>
-Risk: Generated Objective-C may include estimated layout values, placeholder resources, or dependencies such as Masonry. <br>
-Mitigation: Review and adapt the generated code before adding dependencies, replacing resources, or shipping it in an application. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Objective-C view code patterns](artifact/references/objc-view-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/near2sea/ios-view-generator) <br>
+## Use Case:
 
+Developers use this skill to turn iOS UI screenshots into Objective-C UIViewController or view code with lazy-loaded components, estimated sizing and spacing, and separated setup, constraint, and data-binding methods.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Objective-C code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code may include estimated sizes, spacing, system colors, Masonry constraints, native Auto Layout alternatives, and placeholder image or resource names.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Objective-C UI code can contain inaccurate layout estimates, placeholder image names, or dependency snippets that do not match the target app.
+
+Mitigation: Review and test generated code before using it in an app, with particular attention to sizing, spacing, image assets, and Masonry or native Auto Layout integration.
+
+## Reference(s):
+
+- [Objective-C view patterns](artifact/references/objc-view-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/near2sea/skills/ios-view-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Objective-C code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code may include Masonry constraints by default, native Auto Layout fallback guidance, estimated dimensions and spacing, system colors, and placeholder image names.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

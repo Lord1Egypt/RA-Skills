@@ -1,40 +1,52 @@
-## Description: <br>
-Sets up daily OpenClaw cron jobs for detected agents so each agent is prompted to summarize completed work into a diary file at 23:30. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up daily OpenClaw cron jobs that ask each configured agent to summarize completed work into its diary file at 23:30.
 
-## Publisher: <br>
-[RenchZhao](https://clawhub.ai/user/RenchZhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[renchzhao](https://clawhub.ai/user/renchzhao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+OpenClaw users and developers use this skill to configure daily summary reminders across all available agents so each agent records completed work in its diary on a recurring schedule.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill creates persistent daily jobs for every detected OpenClaw agent.
+
+Mitigation: Review the target agents before running the setup script, prefer a version with per-agent selection or dry-run support, and document how to remove created cron jobs.
+
+Risk: Security evidence reports unsafe shell command construction that could run unintended local commands.
+
+Mitigation: Run only in an environment where local command execution is acceptable, pin a reviewed version, and prefer an implementation that avoids shell=True and validates agent, workspace, and timezone values.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to automate daily work summaries across all configured agents. It is useful when teams want each agent to keep a dated diary without manually creating recurring prompts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script creates persistent daily automation for every detected OpenClaw agent. <br>
-Mitigation: Review the affected agents before running it, confirm how to list and delete the created OpenClaw cron jobs, and narrow the script if only specific agents should receive daily prompts. <br>
-Risk: The security summary notes unsafe shell command construction. <br>
-Mitigation: Review the command construction before execution and consider replacing shell-based calls with argument-list subprocess calls. <br>
+**Output Format:** [Markdown with inline shell commands and configuration behavior]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RenchZhao/auto-daily-summary) <br>
+**Other Properties Related to Output:** [Creates persistent daily cron jobs for detected OpenClaw agents when the setup script is run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; the setup script creates OpenClaw cron configuration through CLI calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the script creates persistent daily summary jobs for detected OpenClaw agents.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

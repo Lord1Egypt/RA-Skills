@@ -1,0 +1,65 @@
+{
+  "_chart_type": "rcs",
+  "_command": "python3 scripts/gen_figure.py -t rcs -d templates/rcs.json -o rcs.png --cjk",
+  "_note": "场景：BMI 与全因死亡的非线性剂量反应（模拟 Cox 样条输出，9 个网格点）。Y 轴=HR（对数刻度），带=95%CI；HR=1 虚线为无效应参照，ref=50 为参照值（惯例取中位数），曲线在该处穿过 HR=1。底部 rug=暴露变量样本分布。曲线解释：U 形/J 形/单调——置信带与 HR=1 相交处为无统计学差异区。points 来自你拟合的样条模型（R rms::rcs + cph/lasso 或 Python 统计包），引擎只可视化不拟合。",
+  "points": [
+    {
+      "value": 16.0,
+      "est": 1.62,
+      "ci_lo": 1.18,
+      "ci_hi": 2.22
+    },
+    {
+      "value": 18.5,
+      "est": 1.31,
+      "ci_lo": 1.04,
+      "ci_hi": 1.65
+    },
+    {
+      "value": 21.0,
+      "est": 1.11,
+      "ci_lo": 0.95,
+      "ci_hi": 1.3
+    },
+    {
+      "value": 23.5,
+      "est": 1.0,
+      "ci_lo": 0.9,
+      "ci_hi": 1.11
+    },
+    {
+      "value": 25.0,
+      "est": 1.02,
+      "ci_lo": 0.94,
+      "ci_hi": 1.11
+    },
+    {
+      "value": 27.5,
+      "est": 1.13,
+      "ci_lo": 1.02,
+      "ci_hi": 1.25
+    },
+    {
+      "value": 30.0,
+      "est": 1.29,
+      "ci_lo": 1.12,
+      "ci_hi": 1.49
+    },
+    {
+      "value": 32.5,
+      "est": 1.48,
+      "ci_lo": 1.22,
+      "ci_hi": 1.8
+    },
+    {
+      "value": 35.0,
+      "est": 1.7,
+      "ci_lo": 1.33,
+      "ci_hi": 2.17
+    }
+  ],
+  "ref": 23.5,
+  "log_y": true,
+  "x_label": "BMI（kg/m²）",
+  "y_label": "全因死亡 HR（对数轴）"
+}

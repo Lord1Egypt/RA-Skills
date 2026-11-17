@@ -1,43 +1,63 @@
-## Description: <br>
-国泰海通证券-灵犀研报搜索skill，查询国泰海通研究所专业研究报告，涵盖宏观策略、行业深度等，为投资分析提供专业研究支撑。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Guotai Haitong Research Institute reports across macro strategy, industry research, and market analysis to support investment research workflows.
 
-## Publisher: <br>
-[gtht-tech](https://clawhub.ai/user/gtht-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gtht-tech](https://clawhub.ai/user/gtht-tech)
 
-## Use Case: <br>
-External users and agents use this skill to search GuoTai HaiTong Research Institute reports for macro strategy, industry analysis, market analysis, and investment-strategy research. The skill supports authorization and calls the GTHT research-report service when a user asks for research-report data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive API credentials and device identifiers. <br>
-Mitigation: Install only when the publisher is trusted, prefer the QR/cloud authorization path instead of pasting an API key into chat, and clear local authorization when access is no longer needed. <br>
-Risk: Users may be directed to external GTHT authorization domains. <br>
-Mitigation: Verify the displayed GTHT domains before authorizing or entering credentials. <br>
+## Use Case:
 
+External users and investment research workflows use this skill to search Guotai Haitong research reports for macro strategy, industry analysis, investment strategy, and market-analysis queries. Outputs should be treated as objective report data, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gtht-tech/lingxi-researchreport-skill) <br>
-- [GTHT Lingxi API key authorization page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1) <br>
-- [GTHT Junhong API key authorization page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=junhong&webEnv=web2&isyyzshare=1) <br>
-- [GTHT research-report MCP endpoint](https://zx.app.gtja.com:8443/mcp/researchReport/lingxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and JSON service results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final responses include an investment-advice disclaimer from the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.3 (source: release evidence and frontmatter) <br>
+Risk: The skill stores API-key material locally and may ask users to provide API-key material through chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source before installation, use only approved secret-handoff channels, and rotate or revoke keys if they are exposed.
+
+Risk: The skill sends credentialed requests to configured gateways.
+
+Mitigation: Confirm the gateway allowlist and network destinations before deployment, and monitor credentialed traffic according to organizational policy.
+
+Risk: Authorization uses a device identifier and the security review recommends stronger nonce handling.
+
+Mitigation: Prefer a release that uses random short-lived device nonces and avoids persistent hardware-derived identifiers.
+
+Risk: Skill instructions include forced response text and inspection-limiting language.
+
+Mitigation: Treat artifact files as evidence during review, keep platform and safety policies higher priority, and require human review before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtht-tech/skills/lingxi-researchreport-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/gtht-tech)
+- [Guotai Haitong Lingxi research-report gateway](https://zx.app.gtja.com:8443/mcp/researchReport/lingxi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown or text responses with command snippets and structured research-report data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authorization before credentialed report searches; responses include an investment-advice disclaimer.]
+
+## Skill Version(s):
+
+1.11.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

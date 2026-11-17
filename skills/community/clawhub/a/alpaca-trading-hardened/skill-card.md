@@ -1,49 +1,69 @@
-## Description: <br>
-Execute trades, analyze markets, and manage portfolios using the apcacli command-line tool for Alpaca's Trading API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute trades, analyze markets, and manage portfolios using the apcacli command-line tool for Alpaca's Trading API.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and developers use this skill to operate Alpaca trading workflows from an agent, including account review, market data checks, order management, position management, and trading command preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help place real-money trades using Alpaca credentials. <br>
-Mitigation: Prefer paper-trading credentials and require explicit confirmation before any live order, cancel-all, close-all, account configuration change, or automated trading workflow. <br>
-Risk: Alpaca API credentials grant sensitive account access if exposed. <br>
-Mitigation: Never print, echo, log, encode, or otherwise reveal APCA_API_KEY_ID or APCA_API_SECRET_KEY values; refer to credentials by variable name only. <br>
-Risk: Trading account data and command output may contain sensitive financial information. <br>
-Mitigation: Do not pipe apcacli output, account data, or credential values to network-transmitting commands; keep exports local unless the user separately reviews and authorizes a safe workflow. <br>
-Risk: The authoritative scan verdict is suspicious because safeguards are broad for a real-money trading skill. <br>
-Mitigation: Install only after reviewing the skill, verifying the apcacli package, and confirming the deployment can enforce pre-trade review and user confirmation. <br>
+## Use Case:
 
+External users and developers use this skill to operate Alpaca trading workflows through apcacli, including market data checks, account and portfolio review, order management, and trading command preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/alpaca-trading-hardened) <br>
-- [apcacli repository](https://github.com/d-e-s-o/apcacli) <br>
-- [Alpaca documentation](https://docs.alpaca.markets/) <br>
-- [Alpaca API reference](https://docs.alpaca.markets/reference/) <br>
-- [Alpaca paper trading dashboard](https://app.alpaca.markets/paper/dashboard/overview) <br>
-- [apca crate repository](https://github.com/d-e-s-o/apca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trading command guidance for apcacli and should require explicit user confirmation before live, destructive, or automated trading actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can affect real brokerage accounts through order placement, cancellation, or position closure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper trading by default and require fresh explicit confirmation before any trade-affecting command.
+
+Risk: Live-trading credentials in general agent sessions can enable unintended or unauthorized account actions.
+
+Mitigation: Keep live credentials out of broad agent environments and prefer isolated sessions with the minimum required access.
+
+Risk: Credential-check commands from the safety report can reveal Alpaca key values in logs or transcripts.
+
+Mitigation: Do not run commands that echo credential values; rotate Alpaca keys if those commands were already used in a logged environment.
+
+Risk: Broad automatic invocation for ordinary market-data questions can escalate from information lookup into trading-capable workflows.
+
+Mitigation: Limit automatic activation and keep market-data questions separate from trade execution unless the user explicitly requests trading operations.
+
+Risk: Unreviewed apcacli versions may change behavior or introduce security issues.
+
+Mitigation: Use a pinned, reviewed apcacli version before deploying the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/alpaca-trading-hardened)
+- [apcacli Repository](https://github.com/d-e-s-o/apcacli)
+- [Alpaca Documentation](https://docs.alpaca.markets/)
+- [Alpaca API Reference](https://docs.alpaca.markets/reference/)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/alpaca-trading)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose apcacli commands and configuration steps; trade-affecting actions require explicit user review and confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

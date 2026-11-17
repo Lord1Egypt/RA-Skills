@@ -1,46 +1,61 @@
-## Description: <br>
-Installs, configures, and runs Claude Code CLI inside ArkClaw/OpenClaw sandboxes with review and build routing for AgentPlan, Coding Plan, or a custom Anthropic-compatible gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and runs Anthropic Claude Code CLI inside ArkClaw or OpenClaw, with read-only review routing and build-mode execution for coding tasks.
 
-## Publisher: <br>
-[bao2200220](https://clawhub.ai/user/bao2200220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bao2200220](https://clawhub.ai/user/bao2200220)
 
-## Use Case: <br>
-Developers working in ArkClaw/OpenClaw use this skill to set up Claude Code CLI, route coding requests into read-only review or file-editing build mode, and switch among supported model provider profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive API keys and Claude configuration in local home-directory files. <br>
-Mitigation: Install only when comfortable with local credential storage, review generated configuration, and remove stored keys and profile files when the skill is no longer used. <br>
-Risk: Build mode can run a shell-capable coding agent that edits files with limited confirmation. <br>
-Mitigation: Prefer review mode for analysis, inspect proposed changes before relying on them, and run the skill only in workspaces where file edits and shell commands are acceptable. <br>
-Risk: Incorrect provider, model, or key selection can cause authentication failures or route requests to an unintended compatible gateway. <br>
-Mitigation: Use the health check and provider references before switching profiles, and confirm the active provider when troubleshooting authentication or routing errors. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up Claude Code CLI in ArkClaw or OpenClaw, choose an AgentPlan, Coding Plan, or custom Anthropic-compatible provider, troubleshoot configuration, and delegate code review or implementation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bao2200220/claude-code-allinone) <br>
-- [Provider reference](references/providers.md) <br>
-- [Routing flow reference](references/routing-flow.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
-- [Volcengine](https://www.volcengine.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-style text with shell commands, configuration actions, and Claude Code output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run Claude Code in read-only review mode or build mode with Read, Glob, Grep, LS, Bash, Edit, and Write tools; run logs are retained locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can store API keys in the user's home directory and shell startup file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped or short-lived keys where possible, avoid long-lived production keys, and rotate any key that was stored in ~/.bashrc.
+
+Risk: Build mode can delegate work to Claude Code with shell and file-write tools.
+
+Mitigation: Use read-only review mode for assessment tasks and inspect proposed changes before allowing build-mode execution in sensitive workspaces.
+
+Risk: The installer can fetch a mutable latest npm package.
+
+Mitigation: Review the package source and lock or pin the installed Claude Code version in controlled environments.
+
+## Reference(s):
+
+- [Provider selection reference](artifact/references/providers.md)
+- [Routing flow reference](artifact/references/routing-flow.md)
+- [Troubleshooting reference](artifact/references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/bao2200220/skills/claude-code-allinone)
+- [Volcengine console](https://www.volcengine.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with shell commands, configuration changes, code edits, and Claude Code output excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run delegated Claude Code tasks with a timeout and retain task logs in the user's home directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

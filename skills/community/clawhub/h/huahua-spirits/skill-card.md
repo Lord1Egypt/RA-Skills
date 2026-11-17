@@ -1,43 +1,51 @@
-## Description: <br>
-Huahua Spirits gives each user a deterministic companion spirit with a personality, rarity, attributes, local growth state, and bilingual card-style interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huahua Spirits adds a deterministic companion-spirit system to an OpenClaw agent, giving each user a persistent spirit with species, rarity, personality, bond, bilingual display cards, and light interaction behavior.
 
-## Publisher: <br>
-[baiye1997](https://clawhub.ai/user/baiye1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiye1997](https://clawhub.ai/user/baiye1997)
 
-## Use Case: <br>
-External OpenClaw users use this skill to add a lightweight ambient companion to an agent, including spirit generation, display cards, mood and bond tracking, and short personality-driven interactions. It is for companionship and presentation, not for completing work tasks on the user's behalf. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce ambient companion messages without an explicit command. <br>
-Mitigation: Install it only where passive companion chatter is acceptable, and disable idle or hook integrations in sensitive workflows. <br>
-Risk: Identity-based seeds and companion history may reveal personal or message context if real platform IDs or message snippets are retained. <br>
-Mitigation: Use a pseudonymous seed in sensitive or shared environments, review or clear assets/companion.json periodically, and disable hook-react logging when snippets should not be stored. <br>
+## Use Case:
 
+External OpenClaw users and agent developers use this skill to add a lightweight companion character that can be summoned, displayed, interacted with, and occasionally surfaced by an agent for warmth and continuity.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/baiye1997/huahua-spirits) <br>
-- [README](README.md) <br>
-- [Product Specification](SPEC.md) <br>
-- [Species Guide](references/species-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style companion cards, ASCII sprites, JSON command responses, and short bilingual text responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Node.js helpers generate deterministic spirit data and update a small local companion state file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.7 (source: server release and frontmatter) <br>
+Risk: Passive interaction hooks can record short excerpts of user messages in local companion history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users what is stored, avoid routing sensitive messages through passive hooks, and provide a clear way to disable or delete the local companion history.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baiye1997/skills/huahua-spirits)
+- [Species Guide](artifact/references/species-guide.md)
+- [Product Spec](artifact/SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands; helper scripts may return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English spirit cards; local companion state is stored in the skill assets directory.]
+
+## Skill Version(s):
+
+1.4.7 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

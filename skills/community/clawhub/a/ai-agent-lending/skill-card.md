@@ -1,44 +1,62 @@
-## Description: <br>
-Wallet-based credit system for AI agents. Borrow USDC on Somnia without collateral - build credit with successful repayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wallet-based credit system for AI agents that lets agents borrow USDC on Somnia without collateral and build credit through successful repayments.
 
-## Publisher: <br>
-[aroushanpurdue](https://clawhub.ai/user/aroushanpurdue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aroushanpurdue](https://clawhub.ai/user/aroushanpurdue)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to integrate wallet-based USDC borrowing, repayment tracking, and credit-tier checks on Somnia Testnet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead users or agents to grant persistent wallet permissions and perform financial blockchain transactions. <br>
-Mitigation: Use only wallets and funds that can be risked, set short-lived low-limit permissions, and manually inspect every transaction before signing. <br>
-Risk: Borrowing behavior depends on an API provider and contract addresses that users must trust. <br>
-Mitigation: Verify the API provider, Somnia network, and contract addresses independently before installation or use. <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure AI agents for wallet-based lending flows on Somnia Testnet, including bot registration, borrow permission setup, wallet credit checks, USDC borrowing, and repayment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aroushanpurdue/ai-agent-lending) <br>
-- [Agent docs](https://yoursite.com/agent) <br>
-- [Website](https://yoursite.com) <br>
-- [Leaderboard](https://yoursite.com/leaderboard) <br>
-- [Somnia Shannon explorer](https://shannon-explorer.somnia.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, HTTP, JavaScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LENDING_API_URL and wallet review before signing transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter, skill.json, server release evidence) <br>
+Risk: The skill examples involve signing on-chain borrow, approval, and repayment transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the network, API provider, contract addresses, token amounts, decimals, and every wallet prompt before signing.
+
+Risk: The borrow permission example uses a non-expiring permission.
+
+Mitigation: Prefer short expirations and minimal limits, and confirm there is a way to revoke or reduce permissions after borrowing or repayment.
+
+Risk: The security verdict is suspicious because the DeFi workflow has limited risk guidance for transaction-signing behavior.
+
+Mitigation: Install only when the operator understands the transaction-signing requirements and has reviewed the lending flow before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aroushanpurdue/skills/ai-agent-lending)
+- [Website](https://yoursite.com)
+- [Agent docs](https://yoursite.com/agent)
+- [Leaderboard](https://yoursite.com/leaderboard)
+- [FAQ](https://yoursite.com/faq)
+- [Somnia Shannon Explorer](https://shannon-explorer.somnia.network)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with JavaScript, HTTP, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENDING_API_URL and wallet-signing context for blockchain transaction examples.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

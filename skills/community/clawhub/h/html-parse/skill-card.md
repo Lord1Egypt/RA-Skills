@@ -1,45 +1,60 @@
-## Description: <br>
-Parse HTML documents into structured Markdown using MinerU. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML Parse helps agents parse local HTML files or remote HTML URLs into structured Markdown with MinerU while preserving document hierarchy and formatting.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, content managers, and data pipeline operators use this skill to convert local HTML files, remote HTML documents, and live web pages into structured Markdown while preserving document hierarchy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party mineru-open-api CLI and MinerU service. <br>
-Mitigation: Install the CLI only from trusted MinerU/OpenDataLab package sources and review the dependency before deployment. <br>
-Risk: Parsed files, URLs, or page content may be sent to MinerU for processing. <br>
-Mitigation: Avoid using the skill with confidential local files, internal URLs, or proprietary pages unless MinerU's service terms are acceptable for that content. <br>
-Risk: MINERU_TOKEN is required for normal operation. <br>
-Mitigation: Store MINERU_TOKEN as a secret, avoid committing it to source control, and rotate it if exposed. <br>
+## Use Case:
 
+Developers, content managers, and data pipeline builders use this skill to convert HTML files, remote HTML URLs, and crawled pages into structured Markdown for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub HTML Parse release](https://clawhub.ai/mzlzyca/html-parse) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU open-source project](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides use of mineru-open-api, which writes parsed document output to stdout or an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: HTML content may be sent through MinerU, including local files, authenticated pages, intranet URLs, or regulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid parsing confidential, authenticated, intranet, or regulated content unless use of MinerU is approved for that data.
+
+Risk: The skill depends on installing and running mineru-open-api from an external package source.
+
+Mitigation: Install from trusted sources and prefer a pinned or reviewed version before use.
+
+Risk: MINERU_TOKEN is required for extraction and crawl commands.
+
+Mitigation: Set MINERU_TOKEN only in environments where this tool needs access and avoid exposing it in shared shells, logs, or committed configuration.
+
+## Reference(s):
+
+- [ClawHub HTML Parse skill page](https://clawhub.ai/mzlzyca/skills/html-parse)
+- [MinerU homepage](https://mineru.net)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses mineru-open-api with MINERU_TOKEN; document content is written to stdout by default or saved with -o.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

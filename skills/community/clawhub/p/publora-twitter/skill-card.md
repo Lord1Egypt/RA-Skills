@@ -1,42 +1,59 @@
-## Description: <br>
-Post or schedule content to X (Twitter) using the Publora API for tweets, scheduled tweets, and X/Twitter threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post or schedule content to X (Twitter) using the Publora API when the user wants to tweet, schedule a tweet, or post a thread via Publora.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Developers, social media operators, and agents use this skill to create or schedule X/Twitter posts through Publora, including single tweets, auto-split threads, explicit thread splits, and supported media attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Publora key can act on connected X/Twitter accounts and create or schedule posts. <br>
-Mitigation: Confirm the target account, post text, media, and scheduled time before allowing any create-post request. <br>
-Risk: X/Twitter API limits can cause failed or altered posts, especially for long videos, mixed media, thread media, emojis, and URLs. <br>
-Mitigation: Check content against the documented Publora limits before posting: Pro or Premium access, 280-character standard tweets, 120-second videos, no mixed image/video posts, and media only on the first thread tweet. <br>
+## Use Case:
 
+External users, social media managers, and developers use this skill to prepare Publora API requests for publishing, scheduling, or threading posts on X/Twitter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sergebulaev/publora-twitter) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
-- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript fetch examples and API parameter notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guidance for Publora create-post requests, X/Twitter platform IDs, character limits, media limits, and scheduling timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Publora requests can publish or schedule public X/Twitter content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review post content, target platform ID, attached media, and schedule time before allowing any request that would publish publicly.
+
+Risk: The Publora API key is a sensitive credential.
+
+Mitigation: Keep the key out of shared prompts, logs, and committed files, and use it only for intended Publora API requests.
+
+Risk: Plan requirements and platform limits can cause posting failures or unexpected thread/media behavior.
+
+Mitigation: Confirm the account has Pro or Premium access and check text, media, threading, and 120-second video limits before posting or scheduling.
+
+## Reference(s):
+
+- [Publora Twitter skill page](https://clawhub.ai/sergebulaev/skills/publora-twitter)
+- [Publora API base URL](https://api.publora.com/api/v1)
+- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with JavaScript fetch examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Publora API key and a twitter-{userId} platform ID; review content before publishing or scheduling.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

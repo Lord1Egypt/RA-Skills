@@ -1,39 +1,55 @@
-## Description: <br>
-Generates consolidated technical documentation for software systems made up of multiple local repositories, including frontend, backend, microservices, infrastructure, docs, and wikis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates consolidated technical documentation for software systems made up of multiple local repositories, including frontend, backend, microservices, infrastructure, documentation, and wikis.
 
-## Publisher: <br>
-[dannyxyz22](https://clawhub.ai/user/dannyxyz22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dannyxyz22](https://clawhub.ai/user/dannyxyz22)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze locally cloned multi-repository systems and generate consolidated architecture, repository map, deployment, process, README, API, code structure, and wiki summary documentation. It is intended for documentation generation without executing code or modifying the original repositories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the repository tree selected by the user and generated documentation may include credentials, private configuration, internal infrastructure, or wiki and business-process content. <br>
-Mitigation: Point ROOT_PATH only at approved projects, write to a controlled OUTPUT_PATH, and review generated documentation before committing or sharing it. <br>
-Risk: Generated documentation can be incomplete or misleading if repository structure, manifests, routes, or wiki content are stale or ambiguous. <br>
-Mitigation: Have project maintainers review the generated Markdown against the source repositories before relying on it for onboarding, architecture, deployment, or process decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dannyxyz22/document-multiple-repository) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scan local multi-repository software systems and generate consolidated system, architecture, deployment, repository map, API, code structure, and process documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, guidance] <br>
-**Output Format:** [Markdown documentation files organized by system and repository] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated documentation to OUTPUT_PATH and does not modify the source repositories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata; artifact changelog lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads repositories and wikis under the ROOT_PATH selected by the user.
+
+Mitigation: Use the narrowest practical ROOT_PATH so the agent only analyzes repositories intended for documentation.
+
+Risk: Generated documentation may consolidate internal architecture, process details, configuration names, and API examples.
+
+Mitigation: Write output to a controlled OUTPUT_PATH and review generated Markdown before sharing it outside the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dannyxyz22/skills/document-multiple-repository)
+- [Publisher profile](https://clawhub.ai/user/dannyxyz22)
+- [Skill definition](artifact/SKILL.md)
+- [Release changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Structured Markdown documentation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated documentation to the user-selected OUTPUT_PATH and does not modify the original repositories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

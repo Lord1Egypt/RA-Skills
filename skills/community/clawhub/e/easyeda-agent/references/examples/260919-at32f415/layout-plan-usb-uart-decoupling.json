@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "modules": [
+    {
+      "id": "usb-uart-decoupling",
+      "strategy": "pin-satellites",
+      "anchorRef": "U4",
+      "members": [
+        {
+          "ref": "U4",
+          "fixedAxes": [
+            "x",
+            "y",
+            "rotation"
+          ],
+          "allowedRotationsDeg": [
+            0
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C9",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C10",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "gapsMil": [
+          8,
+          20,
+          40
+        ]
+      },
+      "pinAssignments": [
+        {
+          "memberRef": "C9",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "fdb5728ee4c68b55e15",
+          "ownerRef": "U4",
+          "ownerPad": "8",
+          "ownerPadPrimitiveId": "3306d84751f1d257e29",
+          "side": "left",
+          "source": "原理图.pdf 第1页：C9服务CH340N U4.8 V3"
+        },
+        {
+          "memberRef": "C10",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "3154178becb5af96e15",
+          "ownerRef": "U4",
+          "ownerPad": "5",
+          "ownerPadPrimitiveId": "3306d84751f1d257e32",
+          "side": "right",
+          "source": "原理图.pdf 第1页：C10服务CH340N U4.5 VCC"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

@@ -1,47 +1,60 @@
-## Description: <br>
-PDF to DOCX converts PDF files or URLs into editable Word (.docx) documents using MinerU, with options for layout preservation, OCR, VLM mode, page ranges, and batch conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF to DOCX helps agents convert PDF documents into editable Word (.docx) files through MinerU, with support for local files, URLs, OCR, VLM mode, page ranges, and batch conversion.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to guide PDF-to-DOCX conversion through the MinerU CLI. It is useful when a PDF must become an editable Word document while preserving layout, text, tables, images, and formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MinerU external API may receive document contents during conversion. <br>
-Mitigation: Avoid converting confidential PDFs unless MinerU's document-handling terms meet the user's requirements. <br>
-Risk: The skill requires a MINERU_TOKEN for authenticated MinerU CLI use. <br>
-Mitigation: Configure the token through mineru-open-api auth or a protected environment variable, and avoid exposing it in prompts, logs, or shared files. <br>
-Risk: Installing mineru-open-api from an unvetted source could introduce supply-chain risk. <br>
-Mitigation: Use a vetted install source and pin or review the installed package version when operating in managed environments. <br>
-Risk: DOCX output cannot be streamed to stdout and conversion fails without an output directory. <br>
-Mitigation: Always include -o <directory>, then review the generated DOCX file before relying on it. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill when they need an agent to convert PDFs into editable Word documents while preserving text, tables, images, and layout.
 
-## Reference(s): <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub repository](https://github.com/opendatalab/MinerU) <br>
-- [mineru-open-api Go install path](https://github.com/opendatalab/MinerU-Ecosystem/tree/main/cli/mineru-open-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with inline bash commands; DOCX files are produced when the commands are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN. DOCX output must be written to a directory with -o and cannot be streamed to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Confidential PDFs may be processed through an external MinerU API workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not convert sensitive documents unless the user accepts MinerU API handling of the document contents and token-protected requests.
+
+Risk: Installing or running an unexpected mineru-open-api package could expose the environment to untrusted package behavior.
+
+Mitigation: Install only from expected MinerU package sources, prefer a pinned version, and use an isolated environment.
+
+Risk: DOCX conversion cannot stream to stdout, so missing output paths can cause failed or misplaced conversion results.
+
+Mitigation: Always pass an explicit output directory with -o and verify the generated .docx file before using it.
+
+## Reference(s):
+
+- [MinerU homepage](https://mineru.net)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [MinerU API token management](https://mineru.net/apiManage/token)
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/pdf-to-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; conversion output is a .docx file written to an output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mineru-open-api, MINERU_TOKEN authentication, and an explicit output directory because DOCX output cannot stream to stdout.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

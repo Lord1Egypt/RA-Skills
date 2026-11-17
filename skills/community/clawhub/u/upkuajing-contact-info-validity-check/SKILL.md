@@ -1,7 +1,7 @@
 ---
 name: upkuajing-contact-info-validity-check
-description: Official skill for upkuajing (跨境魔方). Check the validity of contact information including phone numbers, email addresses, and domains. Returns status, type, and additional metadata for each contact.
-metadata: {"version":"1.0.0","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+description: "Verify phone numbers, WhatsApp status, emails and website domains. Cut email bounce rates through CRM data cleansing. Help exporters and recruiters clean contact lists before cold‑email sending and buyer verification.\n\nTrigger: email validation, phone number checker, WhatsApp status verify, domain verification, CRM data cleansing, email list scrubbing, reduce email bounce rate"
+metadata: {"version":"1.0.4","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # UpKuaJing Contact Info Validity Check
@@ -94,6 +94,15 @@ When API response indicates insufficient balance, explain and guide user to top 
 ### **Get Account Information**
 Use this script to get account information for UPKUAJING_API_KEY: `auth.py --account_info`
 
+### **Report Skill Call Errors**
+When an API call fails or returns abnormal data (server error, timeout, malformed response, etc.), explain the anomaly to the user in natural language and ask whether to report it to the platform for troubleshooting. Only run the report after user confirmation:
+```bash
+python scripts/error_report.py --params '{"requestPath":"/agent/validation/email","requestId":"f47ac10b58cc4372a5670e02b2c3d479","context":"Contact validity check failed with a server error"}'
+```
+- Do not report normal business conditions (insufficient balance, invalid API key, parameter errors) — handle them via their own flows
+- Error reporting does not incur query fees
+- **Parameters**: See [Error Report API](references/skill-error-report-api.md)
+
 ## Fees
 
 **All validity check API calls incur fees**.
@@ -119,12 +128,14 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 - **API key invalid/non-existent**: Check `UPKUAJING_API_KEY` in `~/.upkuajing/.env` file
 - **Insufficient balance**: Guide user to top up
 - **Invalid parameters**: **Must first check the corresponding API documentation in references/ directory**, get correct parameter names and formats from documentation, do not guess
+- **Skill call errors / abnormal responses**: Explain to the user and, with user confirmation, report to the platform via `python scripts/error_report.py` (see [Report Skill Call Errors](#report-skill-call-errors))
 
 ### API Documentation Reference
 
 - Phone Validity: Check [references/phone-api.md](references/phone-api.md)
 - Email Validity: Check [references/email-api.md](references/email-api.md)
 - Domain Validity: Check [references/domain-api.md](references/domain-api.md)
+- Error Report: Check [references/skill-error-report-api.md](references/skill-error-report-api.md)
 
 ## Notes
 
@@ -137,8 +148,23 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 Other UpKuaJing skills you might find useful:
 
+- linkedin-person-search — Search people from the LinkedIn source
+- global-company-person-search — Search people from the global company database
+- linkedin-company-search — Search companies from the LinkedIn source
+- global-company-search — Search companies from the global company database
+- global-company-shareholder — Query shareholder list from the global company database
+- global-company-employee — Query employee list from the global company database
+- global-company-person-colleague — Query colleague list from the global company database
+- global-company-person-alumni — Query alumni list from the global company database
+- global-company-person-experience — Query work experience list from the global company database
+- global-company-person-education — Query education history list from the global company database
+- global-company-person-school-detail — Query school detail from the global company database
 - upkuajing-global-company-people-search — Global company and people search
 - upkuajing-customs-trade-company-search — Search customs trade companies
 - upkuajing-map-merchants-search — Map-based merchant search
 - upkuajing-email-tool — Send emails and manage email tasks
 - upkuajing-sms-tool — Send SMS and manage SMS tasks
+- upkuajing-contact-info-validity-check — Check contact info validity
+- phone-validity-check — Check phone number validity
+- email-validity-check — Check email address validity
+- domain-validity-check — Check domain validity and security

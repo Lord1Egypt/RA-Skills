@@ -1,41 +1,53 @@
-## Description: <br>
-Automatically registers or updates an OpenCollab freelancing profile, posts skill listings, checks job matches, scores opportunities, and drafts or submits proposals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically helps an agent register or use an OpenCollab account, build a freelancer profile, list marketable skills, find matching jobs, submit proposals, and track marketplace outcomes.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External agents and freelance operators use this skill to manage an OpenCollab marketplace presence, list high-demand technical services, monitor matching jobs, and track proposal activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs an agent to act on a live freelance marketplace, including account creation, profile edits, listings, and public proposals. <br>
-Mitigation: Use explicit per-action confirmation and set clear limits for account creation, profile changes, listings, proposal volume, scheduling, and credential storage. <br>
-Risk: The skill tells the agent to find current OpenCollab API endpoints and authentication details, which could lead to unreliable or unsafe integration behavior. <br>
-Mitigation: Use only official OpenCollab API documentation and user-provided limited-scope credentials before making marketplace changes. <br>
+## Use Case:
 
+External marketplace users and agents use this skill to create or update an OpenCollab freelancer presence, publish skill listings, monitor matching jobs, and submit selected proposals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/opencollab-autolist) <br>
-- [Publisher profile](https://clawhub.ai/user/ssidharhubble) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with operational steps and status-style outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include profile URLs, listing counts, job counts, proposal counts, and win-rate tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill asks an agent to use credentials and make account, profile, listing, and proposal changes on a live marketplace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, revocable OpenCollab credentials and require manual approval before registration, profile edits, skill listings, or proposal submissions.
+
+Risk: The source tells the agent to discover current API endpoints and authentication through web search, which can lead to unverified integration behavior.
+
+Mitigation: Verify the official OpenCollab API endpoint and authentication method before sending credentials or marketplace requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/opencollab-autolist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with profile, listing, API, and automation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce profile URLs, listing counts, job counts, proposal activity, and win-rate tracking notes.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Learning Loop - GEARS System helps agents set up autonomous cron-based GEARS learning pipelines for mastering complex topics through five-session feedback loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous structured learning for mastering complex topics through cron-based five-session GEARS feedback loops.
 
-## Publisher: <br>
-[sagarmainkar](https://clawhub.ai/user/sagarmainkar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sagarmainkar](https://clawhub.ai/user/sagarmainkar)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to build a structured curriculum, schedule recurring learning sessions, test progress, and synthesize mastered knowledge for a topic with verifiable answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create scheduled autonomous learning jobs that continue after the initial setup. <br>
-Mitigation: Before starting a pipeline, review the topic, timing, notification destination, expected duration, and how to pause or remove pending learning-* cron jobs. <br>
-Risk: Autonomous research and self-scoring can produce incorrect or misleading learning material. <br>
-Mitigation: Use the skill for topics with clear right or wrong answers, review generated curricula and session outputs, and verify important claims against cited sources. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up a structured learning pipeline for subjects that benefit from repeated study, objective testing, gap analysis, and scheduled follow-up sessions. It is best suited to complex topics with verifiable answers rather than quick summaries or opinion-based learning.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/sagarmainkar/learning-loop-skill) <br>
-- [OpenClaw](https://openclaw.com) <br>
-- [Learning Loop Methodology](references/methodology.md) <br>
-- [Playbook Template](references/playbook-template.md) <br>
-- [State Schema](references/state-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON state files, shell command invocations, and cron job configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-topic learning artifacts under memory/learning and scheduled agent jobs after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create durable cron jobs that continue running later.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the schedule before setup, inspect ~/.openclaw/cron/jobs.json after setup, and disable or remove pending learning jobs when autonomous sessions are no longer wanted.
+
+Risk: Autonomous sessions can continue creating future learning work with limited later user control.
+
+Mitigation: Use explicit topic slugs, clear stop or pause instructions, and the documented pause/resume flow to control whether the pipeline remains active.
+
+Risk: The skill creates local learning files and state that influence later agent behavior.
+
+Mitigation: Review the generated playbook, curriculum, and state.json before allowing scheduled sessions to proceed.
+
+## Reference(s):
+
+- [Learning Loop Methodology - GEARS](references/methodology.md)
+- [Learning Playbook Template](references/playbook-template.md)
+- [state.json Schema](references/state-schema.md)
+- [OpenClaw](https://openclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown learning files, JSON state, shell commands, and cron job configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates topic-specific local learning files and scheduled OpenClaw cron jobs when the user confirms setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

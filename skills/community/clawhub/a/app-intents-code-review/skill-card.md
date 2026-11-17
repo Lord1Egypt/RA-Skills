@@ -1,43 +1,56 @@
-## Description: <br>
-Reviews App Intents code for intent structure, entities, shortcuts, and parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews App Intents code for intent structure, entities, shortcuts, and parameters.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review Swift App Intents implementations for intent structure, entities, shortcuts, parameters, and evidence-backed finding reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a separate review-verification-protocol skill for one hard gate, which may be unavailable in some installations. <br>
-Mitigation: Treat that hard gate as an open question or verify the equivalent pre-report checklist before reporting findings. <br>
-Risk: Code-review guidance can produce incorrect or overconfident findings if the reviewer does not inspect the current source location and surrounding type. <br>
-Mitigation: Require each reported finding to include a current [FILE:LINE] location and a read of the full surrounding App Intents type before reporting. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to review Swift App Intents implementations for intent structure, AppEntity queries, Shortcuts discovery, parameters, and platform-specific pitfalls.
 
-## Reference(s): <br>
-- [Intent Structure](references/intent-structure.md) <br>
-- [Entities and Queries](references/entities.md) <br>
-- [Shortcuts Integration](references/shortcuts.md) <br>
-- [Parameters](references/parameters.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review guidance and finding summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to use [FILE:LINE] ISSUE_TITLE and be grounded in current repository evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill relies on a neighboring review-verification-protocol skill that is outside this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using the skill, confirm that the referenced protocol skill is present, trusted, versioned, and cannot silently override or suppress review findings.
+
+Risk: Incorrect or stale review guidance could lead to false positives, missed App Intents defects, or misleading code-review feedback.
+
+Mitigation: Apply the skill's hard gates for every finding, including current file and line evidence, full surrounding type review, and concrete platform or integration artifacts for version-dependent claims.
+
+## Reference(s):
+
+- [Intent Structure](references/intent-structure.md)
+- [Entities and Queries](references/entities.md)
+- [Shortcuts Integration](references/shortcuts.md)
+- [Parameters](references/parameters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown review findings with file and line references, or concise review questions when evidence is insufficient]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are expected to use the [FILE:LINE] ISSUE_TITLE format and pass the skill's pre-reporting gates.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

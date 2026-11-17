@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unsigned DeFi planning"
+  short_description: "Unsigned DeFi planning workflow and evidence"
+  default_prompt: "Use $galleon-defi-agent-plan to complete the requested workflow and return the observed decision record."

@@ -1,45 +1,58 @@
-## Description: <br>
-Generates Android Retrofit/Kotlin client code from Swagger v2 (OpenAPI 2.0) API documentation, with optional Swagger fetching over HTTP using no auth, Basic Auth, Bearer Token, or API Key auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Android Retrofit/Kotlin client code from Swagger v2 (OpenAPI 2.0) API documentation.
 
-## Publisher: <br>
-[opoojkk](https://clawhub.ai/user/opoojkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[opoojkk](https://clawhub.ai/user/opoojkk)
 
-## Use Case: <br>
-Developers and Android engineers use this skill to fetch Swagger v2 documentation, inspect or filter endpoints, and generate Kotlin Retrofit service interfaces and data classes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching Swagger documents from untrusted URLs can expose users to unwanted or misleading API definitions. <br>
-Mitigation: Use the fetch workflow only with Swagger URLs the user trusts. <br>
-Risk: Authentication values passed on the command line can be exposed through shell history, process listings, or CI logs. <br>
-Mitigation: Prefer test or limited-scope credentials and avoid putting production secrets directly in shell commands or logs. <br>
-Risk: Generated output can overwrite existing files when written to an existing path. <br>
-Mitigation: Choose the output path deliberately and review generated files before integrating them. <br>
-Risk: Generated Kotlin may need manual adjustment for file upload APIs, complex generic responses, or project-specific type mappings. <br>
-Mitigation: Review and test the generated Retrofit interfaces and data classes before using them in an Android application. <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch Swagger v2 API documentation and generate Android Retrofit service interfaces and Kotlin data classes. It supports selective generation by path, method, tag, or keyword search.
 
-## Reference(s): <br>
-- [Swagger v2 Structure Reference](references/swagger-v2-structure.md) <br>
-- [Retrofit + Kotlin Template Reference](references/retrofit-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and generated Kotlin source files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write Swagger JSON and Kotlin output files to user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated Kotlin source can reflect incorrect or unsafe Swagger input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Kotlin before compiling or shipping it, especially API paths, request bodies, response models, and authentication handling.
+
+Risk: Credentials may be supplied through command-line arguments or query-string API keys.
+
+Mitigation: Use trusted HTTPS endpoints, short-lived read-only credentials, and safer secret handling methods; avoid query-string API keys when possible.
+
+Risk: Fetching Swagger documents from untrusted or internal-only URLs may expose network access or process untrusted API specifications.
+
+Mitigation: Fetch only from trusted Swagger sources and avoid internal-only or untrusted URLs unless the network exposure has been reviewed.
+
+## Reference(s):
+
+- [Swagger v2 Structure Reference](references/swagger-v2-structure.md)
+- [Retrofit + Kotlin Template Reference](references/retrofit-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples and generated Kotlin source files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Kotlin can be written to stdout or to a user-specified output file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

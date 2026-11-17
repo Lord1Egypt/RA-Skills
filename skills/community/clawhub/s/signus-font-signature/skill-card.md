@@ -1,43 +1,63 @@
-## Description: <br>
-Generate font-based signature images via Signus API and return image files for chat delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate font-based signature images via Signus API and return image files for chat delivery.
 
-## Publisher: <br>
-[signus-ai](https://clawhub.ai/user/signus-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[signus-ai](https://clawhub.ai/user/signus-ai)
 
-## Use Case: <br>
-External users and agents use this skill to request font-based signature image variations from Signus using a name, first and last name, or initials, then return generated image files for chat delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends provided identity text to Signus for signature generation. <br>
-Mitigation: Use only ordinary names or initials and install only when sending that identity text to Signus is acceptable. <br>
-Risk: Path-like identity input can write generated files outside the promised output folder. <br>
-Mitigation: Avoid path-like input and enforce resolved-path containment under the intended output directory before deployment. <br>
-Risk: Generated signature images are kept on disk. <br>
-Mitigation: Review local retention expectations and remove generated files when they are no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to request font-based signature images from Signus using a name, first and last name, or initials, then receive generated image files for chat delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/signus-ai/signus-font-signature) <br>
-- [Publisher profile](https://clawhub.ai/user/signus-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Images, JSON] <br>
-**Output Format:** [JSON object with count, directory, and signatures array plus generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated signature files are written under the skill's media output directory for chat delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and release evidence) <br>
+Risk: Unsafe filename or ZIP entry handling can write outside the promised output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate path components, enforce output-directory boundaries, and review extracted files before broad deployment.
+
+Risk: ZIP processing or large responses can exhaust local resources.
+
+Mitigation: Add response size limits, extraction limits, and operational monitoring before broad use.
+
+Risk: User-supplied names or initials are sent to Signus and generated signature files are stored locally.
+
+Mitigation: Inform users about the data flow and storage location before using the skill with personal data.
+
+Risk: The bundled ZIP dependency may need maintenance or replacement before broad use.
+
+Mitigation: Update or replace the ZIP dependency as part of deployment review.
+
+## Reference(s):
+
+- [Signus Font Signature on ClawHub](https://clawhub.ai/signus-ai/skills/signus-font-signature)
+- [Signus API host](https://api.signus.ai)
+- [Publisher profile](https://clawhub.ai/user/signus-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON result with local image file paths, plus chat image delivery by the invoking agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script may create PNG, JPG, JPEG, or WebP files under the local OpenClaw media directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

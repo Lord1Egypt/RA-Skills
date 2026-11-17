@@ -1,46 +1,61 @@
-## Description: <br>
-Transforms business questions and supplied datasets into structured analytical reports through a seven-layer workflow with method routing, Python analysis, quality checks, and Feishu-style output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms business questions into structured data-analysis reports through a seven-layer workflow covering persona understanding, data scoping, method selection, Python-based computation, quality checks, and Feishu-style report output.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Business analysts, product managers, operations teams, and developers use this agent to turn business agendas and supplied data into reproducible analytical reports with method selection, validation notes, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python or package-install steps could affect the local environment or process sensitive data. <br>
-Mitigation: Review generated Python before execution, run it in a virtual environment or sandbox, and require approval before installing packages or analyzing sensitive datasets. <br>
-Risk: Analytical conclusions may be misleading when data is incomplete, small, biased, or method selection is weak. <br>
-Mitigation: Apply the skill's pre-execution checks, cross-validation guidance, confidence annotations, and data-quality caveats before relying on recommendations. <br>
-Risk: Reports could expose raw sensitive business data. <br>
-Mitigation: Use anonymized or aggregated outputs and avoid including raw sensitive records in the final report. <br>
+## Use Case:
 
+Business analysts, product teams, operations teams, and decision makers use this skill to turn data-backed business questions into scoped analyses, validated findings, and actionable report recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/full-link-data-analysis) <br>
-- [Analysis Methods Library](artifact/references/methods.md) <br>
-- [Data-Aware Routing Rules](artifact/references/routing.md) <br>
-- [Quality Assurance Mechanism](artifact/references/quality.md) <br>
-- [Feishu Document Format Report Template](artifact/references/feishu-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Feishu-style Markdown analytical report with confidence annotations, method notes, and actionable recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute Python analysis using pandas, numpy, scipy, statsmodels, or sklearn; reports should avoid raw sensitive data and include data-quality caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow may run Python and install analysis packages in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve package names and versions before installation, and run the skill in an isolated virtual environment or sandbox.
+
+Risk: Business datasets may include sensitive raw data.
+
+Mitigation: Provide only the minimum scoped data needed for the analysis, anonymize sensitive fields when possible, and control access to generated outputs.
+
+Risk: Analytical conclusions can be misleading when data quality, sample size, or method assumptions are weak.
+
+Mitigation: Use the skill's required data-quality checks, cross-validation, and confidence annotations before acting on recommendations.
+
+## Reference(s):
+
+- [Full-Link Data Analysis Skill Page](https://clawhub.ai/openlark/skills/full-link-data-analysis)
+- [Analysis Methods Library](artifact/references/methods.md)
+- [Data-Aware Routing Rules](artifact/references/routing.md)
+- [Quality Assurance Mechanism](artifact/references/quality.md)
+- [Feishu Document Format Report Template](artifact/references/feishu-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Feishu-style Markdown analytical reports with findings, method notes, confidence annotations, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python analysis code and package-installation commands during execution; final reports should omit raw execution traces.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

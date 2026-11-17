@@ -1,46 +1,66 @@
-## Description: <br>
-Converts natural-language descriptions or Mermaid source into flowchart and diagram outputs, with optional DeepSeek or OpenAI generation, templates, multiple Mermaid diagram types, and troubleshooting support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts natural-language descriptions or Mermaid code into flowchart images, with optional DeepSeek or OpenAI generation, Mermaid templates, multiple diagram types, and troubleshooting support.
 
-## Publisher: <br>
-[andapeng](https://clawhub.ai/user/andapeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andapeng](https://clawhub.ai/user/andapeng)
 
-## Use Case: <br>
-Developers, product teams, and technical writers use this skill to turn process descriptions or existing Mermaid code into flowcharts, architecture diagrams, timelines, and rendered PNG, SVG, or PDF assets for documentation and planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram prompts may be sent to the selected DeepSeek or OpenAI provider when LLM generation is enabled, which can expose sensitive or proprietary process details. <br>
-Mitigation: Avoid secrets and confidential content in prompts; use --no-llm, --raw, or a selected template when local-only generation is required. <br>
-Risk: The skill reads API credentials from command-line arguments, environment variables, or the OpenClaw configuration file when configured to use an LLM provider. <br>
-Mitigation: Provide only least-privilege credentials, prefer environment or managed configuration storage, and rotate credentials if prompts or logs may have exposed them. <br>
-Risk: Security evidence flags an unsafe Windows command-execution pattern around Mermaid CLI calls. <br>
-Mitigation: Use extra caution on Windows, review commands before execution, and prefer environments where Mermaid CLI invocation has been reviewed or patched. <br>
+## Use Case:
 
+Developers and other technical users can generate Mermaid-based workflow, sequence, Gantt, class, state, pie, journey, and timeline diagrams from plain-language prompts or raw Mermaid syntax. The skill is suited to documentation, architecture planning, business process mapping, and quick diagram prototyping.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/andapeng/flowchart-gen) <br>
-- [Mermaid documentation](https://mermaid.js.org) <br>
-- [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html) <br>
-- [Mermaid Live Editor](https://mermaid.live) <br>
-- [Syntax guide](references/syntax-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Mermaid source and rendered PNG, SVG, or PDF diagram files, with Markdown-style setup and troubleshooting guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and Mermaid CLI; can use DeepSeek or OpenAI credentials when LLM generation is enabled, or stay local with raw Mermaid input and no-LLM template mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Diagram prompts may be sent to DeepSeek, OpenAI, or a configured custom endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-llm, --use-template, or --raw for private diagrams, and only enable remote providers for content approved for external processing.
+
+Risk: Stored or command-line API credentials may be used by the skill.
+
+Mitigation: Prefer narrowly scoped environment variables or protected OpenClaw configuration, avoid passing live keys with --api-key, and rotate any exposed credentials.
+
+Risk: The installer uses global npm and pip dependency installation that may be unpinned.
+
+Mitigation: Review dependencies before installation, use an isolated environment where possible, and avoid sudo unless system-wide installation risk is accepted.
+
+Risk: Custom base URLs can direct prompts and credentials to untrusted services.
+
+Mitigation: Use custom endpoints only after verifying the operator, transport security, and data handling policy.
+
+## Reference(s):
+
+- [Flowchart Gen on ClawHub](https://clawhub.ai/andapeng/skills/flowchart-gen)
+- [Publisher profile: andapeng](https://clawhub.ai/user/andapeng)
+- [Mermaid syntax guide](references/syntax-guide.md)
+- [Mermaid documentation](https://mermaid.js.org/)
+- [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html)
+- [Mermaid live editor](https://mermaid.live/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands plus generated Mermaid code and PNG, SVG, or PDF diagram files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run without LLM calls using --no-llm, --use-template, or --raw; image rendering depends on Mermaid CLI and local environment setup.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,71 @@
-## Description: <br>
-Helps agents retrieve Amazon seller orders and order details, inspect buyer, address, item, and regulated-order information, and submit shipment or verification updates through Amazon SP-API Orders workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Amazon seller orders, retrieve order details, buyer and shipping information, order items, regulated-order information, and manage shipment or verification status through LinkFox-managed Amazon SP-API calls.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-Developers and ecommerce operators use this skill to let an agent search Amazon orders, retrieve order-level data, inspect order items and restricted order details, and prepare operational updates such as shipment confirmation or regulated-order verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose Amazon customer order data, including buyer, address, item, and regulated-order details. <br>
-Mitigation: Install only for users authorized to access the relevant seller account, use least-privilege Amazon roles and RDT controls, and redact stdout, logs, and support tickets. <br>
-Risk: The skill can change live shipment status, submit shipment confirmations, or update regulated-order verification status. <br>
-Mitigation: Require deliberate human confirmation before running write operations and review the generated request body before submission. <br>
-Risk: The skill depends on sensitive gateway credentials and a configurable gateway endpoint. <br>
-Mitigation: Protect LINKFOXAGENT_API_KEY, keep the gateway URL on a trusted endpoint, and avoid sharing command output that contains account or order data. <br>
+## Use Case:
 
+External Amazon sellers, operators, and support agents use this skill to query seller order data, inspect buyer or fulfillment details, and perform supported shipment, verification, or regulated-order workflows.
 
-## Reference(s): <br>
-- [API and gateway calling guide](references/api.md) <br>
-- [Amazon SP-API searchOrders](https://developer-docs.amazon.com/sp-api/reference/searchorders) <br>
-- [Amazon SP-API getOrder](https://developer-docs.amazon.com/sp-api/reference/getorder-3) <br>
-- [Amazon SP-API getOrderBuyerInfo](https://developer-docs.amazon.com/sp-api/reference/getorderbuyerinfo) <br>
-- [Amazon SP-API getOrderAddress](https://developer-docs.amazon.com/sp-api/reference/getorderaddress) <br>
-- [Amazon SP-API getOrderItems](https://developer-docs.amazon.com/sp-api/reference/getorderitems) <br>
-- [Amazon SP-API getOrderItemsBuyerInfo](https://developer-docs.amazon.com/sp-api/reference/getorderitemsbuyerinfo) <br>
-- [Amazon SP-API updateShipmentStatus](https://developer-docs.amazon.com/sp-api/reference/updateshipmentstatus) <br>
-- [Amazon SP-API getOrderRegulatedInfo](https://developer-docs.amazon.com/sp-api/reference/getorderregulatedinfo) <br>
-- [Amazon SP-API updateVerificationStatus](https://developer-docs.amazon.com/sp-api/reference/updateverificationstatus) <br>
-- [Amazon SP-API confirmShipment](https://developer-docs.amazon.com/sp-api/reference/confirmshipment) <br>
-- [Amazon SP-API createRestrictedDataToken](https://developer-docs.amazon.com/sp-api/reference/createrestricteddatatoken) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some scripts include resolved request paths, query strings, assembled request bodies, and developerProxy status details in stdout for troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles Amazon seller order data, buyer information, shipping addresses, and regulated-order information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the LinkFox gateway is trusted, treat saved output files and logs as sensitive, and require explicit user confirmation before retrieving PII.
+
+Risk: The onboarding flow can handle API keys, phone login codes, payment QR data, and order or billing status.
+
+Mitigation: Use secure secret storage for API keys, avoid persisting secrets in shared shell profiles, and require explicit confirmation before creating paid orders.
+
+Risk: Configurable gateway environment variables can direct credential-bearing requests to alternate endpoints.
+
+Mitigation: Prefer the default LinkFox gateway and review any custom gateway environment variable before use.
+
+Risk: Repeated failed or high-frequency Amazon SP-API requests can trigger store-level protective cooldowns.
+
+Mitigation: Stop automatic retries on repeated 400, 403, 404, or 429 responses, correct parameters or authorization first, and observe retryAfter or blockedUntil values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-store-orders)
+- [API and gateway calling guide](references/api.md)
+- [Authentication and billing onboarding](references/onboarding.md)
+- [Amazon SP-API searchOrders](https://developer-docs.amazon.com/sp-api/reference/searchorders)
+- [Amazon SP-API getOrder](https://developer-docs.amazon.com/sp-api/reference/getorder-3)
+- [Amazon SP-API getOrderItems](https://developer-docs.amazon.com/sp-api/reference/getorderitems)
+- [Amazon SP-API updateShipmentStatus](https://developer-docs.amazon.com/sp-api/reference/updateshipmentstatus)
+- [Amazon SP-API getOrderRegulatedInfo](https://developer-docs.amazon.com/sp-api/reference/getorderregulatedinfo)
+- [Amazon SP-API updateVerificationStatus](https://developer-docs.amazon.com/sp-api/reference/updateverificationstatus)
+- [Amazon SP-API confirmShipment](https://developer-docs.amazon.com/sp-api/reference/confirmshipment)
+- [Amazon SP-API createRestrictedDataToken](https://developer-docs.amazon.com/sp-api/reference/createrestricteddatatoken)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Files, Configuration]
+
+**Output Format:** [Markdown guidance with Python shell commands and JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts save full JSON responses under ./linkfox/<YYYY-MM-DD>/<session>/data and may print summaries for responses over 8 KB.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

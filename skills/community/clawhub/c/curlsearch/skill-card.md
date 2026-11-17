@@ -1,40 +1,53 @@
-## Description: <br>
-Web search using curl with Baidu, Google, Bing, and DuckDuckGo for agents that need a lightweight online search helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search using curl + multiple search engines (Baidu, Google, Bing, DuckDuckGo). Activates when user asks to search, look up, or query something online. Includes security enhancements: input sanitization, command injection protection, and URL encoding.
 
-## Publisher: <br>
-[bluejoy34](https://clawhub.ai/user/bluejoy34) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluejoy34](https://clawhub.ai/user/bluejoy34)
 
-## Use Case: <br>
-Developers and agent users can use this skill to run web searches from an agent environment when dedicated search APIs are unavailable. It supports selecting Baidu, Google, Bing, or DuckDuckGo and limiting the number of returned results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to public search engines and may expose secrets, private customer data, proprietary code, or credentials. <br>
-Mitigation: Do not use sensitive queries with this skill, and review organizational data-handling requirements before use. <br>
-Risk: The default Baidu path uses HTTP, and the sanitizer is described by the security evidence as imperfect. <br>
-Mitigation: Prefer SEARCH_ENGINE=google, SEARCH_ENGINE=bing, or SEARCH_ENGINE=duckduckgo where appropriate, and treat the input checks as a convenience rather than a security boundary. <br>
+## Use Case:
 
+Developers and agents use this skill to perform public web searches through curl when a dedicated search API is unavailable. It supports Baidu, Google, Bing, and DuckDuckGo with configurable engine and result-count options.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/bluejoy34/curlsearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text search result snippets and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search engine can be configured with SEARCH_ENGINE; result count can be configured with MAX_RESULTS from 1 to 50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence and artifact metadata) <br>
+Risk: Search queries may be sent to public search engines, and the default Baidu search path uses plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or proprietary queries, and set SEARCH_ENGINE to an HTTPS-backed engine when appropriate.
+
+Risk: Broad activation for search or lookup requests can unintentionally send sensitive text outside the local environment.
+
+Mitigation: Add explicit confirmation or narrower privacy guidance before external searches involving credentials, internal URLs, incident details, or proprietary text.
+
+## Reference(s):
+
+- [ClawHub curl-search skill page](https://clawhub.ai/bluejoy34/skills/curlsearch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text search output with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3; result count is bounded from 1 to 50 by CLI option or MAX_RESULTS.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence, SKILL.md frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

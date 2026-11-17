@@ -1,41 +1,58 @@
-## Description: <br>
-A note organization and knowledge-linking tool that analyzes a Markdown notes directory, reorganizes notes according to a chosen classification scheme, and adds Obsidian-style bidirectional links between related topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A note organization and knowledge-linking tool that analyzes the directory structure, reorganizes notes according to the user's chosen classification scheme, and adds Obsidian-style bidirectional links between highly related topics.
 
-## Publisher: <br>
-[youningnihaobang](https://clawhub.ai/user/youningnihaobang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youningnihaobang](https://clawhub.ai/user/youningnihaobang)
 
-## Use Case: <br>
-Developers, students, and knowledge workers use this skill to organize Markdown or Obsidian note vaults, move notes into a selected directory structure, and add simple wiki-style links between related notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bulk move and edit Markdown files in place without strong preview, rollback, or confirmation safeguards. <br>
-Mitigation: Run it on a copied or backed-up notes vault first, then review the reorganized files and inserted links before relying on the result. <br>
-Risk: The advertised undo and backup behavior should not be treated as a reliable restore mechanism. <br>
-Mitigation: Use an external backup or version-controlled copy as the recovery path and treat .organize_log.json as an activity record only. <br>
+## Use Case:
 
+Developers, students, and knowledge workers use this skill to reorganize Markdown or Obsidian note collections, choose a classification scheme, and optionally add bidirectional links between related notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youningnihaobang/notes-organizer) <br>
-- [Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with Obsidian-style links, command-line prompts, and a JSON operation log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on the user-provided notes directory and writes .organize_log.json in that directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The organizer can mass-move Markdown files and rewrite note contents without a preview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a backed-up notes folder and review the selected classification and linking options before execution.
+
+Risk: Custom category or subdirectory names may affect where files are created or moved.
+
+Mitigation: Avoid names containing slashes, absolute paths, or `..`.
+
+Risk: The documentation advertises undo or backup support, but the security guidance says not to rely on it.
+
+Mitigation: Maintain an external backup or version-controlled copy before using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/youningnihaobang/skills/notes-organizer)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, command-line prompts, Obsidian-style links, and local note file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May move Markdown files, edit note contents, and write .organize_log.json in the selected notes directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

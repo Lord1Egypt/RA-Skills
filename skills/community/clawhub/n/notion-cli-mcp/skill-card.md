@@ -1,44 +1,56 @@
-## Description: <br>
-Provides agent-facing guidance for using notion-cli as a Notion CLI and MCP server with read-only defaults, opt-in write and admin tiers, audit logs, dry-run validation, and Notion data-source support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion via notion-cli - a Rust CLI and MCP server for Notion API 2025-09-03+ with read-only defaults, opt-in write and admin modes, rate limiting, response-size caps, untrusted-source output envelopes, JSONL audit logs, dry-run checks, data-source support, schema mutation, relation wiring, page moves, database updates, and caller identity checks.
 
-## Publisher: <br>
-[0xarkstar](https://clawhub.ai/user/0xarkstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xarkstar](https://clawhub.ai/user/0xarkstar)
 
-## Use Case: <br>
-External developers and operators use this skill to connect agents to Notion through notion-cli, starting from read-only access and enabling write or admin workflows only when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Notion integration token can expose workspace content beyond the intended workflow. <br>
-Mitigation: Give the integration token only the least access needed and share it only with the pages or databases required for the task. <br>
-Risk: Write or admin tiers can modify Notion content, schemas, or page locations. <br>
-Mitigation: Keep the default read-only tier for general agents, enable write or admin mode only for specific workflows, and review the relevant audit logs. <br>
-Risk: Installing an unexpected notion-cli binary could introduce supply-chain risk. <br>
-Mitigation: Install only from the documented upstream source and verify published binaries or checksums when possible. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to Notion through the notion-cli MCP server, starting with read-only workspace access and explicitly enabling write or admin workflows only when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xarkstar/notion-cli-mcp) <br>
-- [notion-cli repository](https://github.com/0xarkstar/notion-cli) <br>
-- [notion-cli-mcp on crates.io](https://crates.io/crates/notion-cli-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward notion-cli MCP commands that return JSON-wrapped Notion responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and frontmatter) <br>
+Risk: Agents may mutate Notion pages, databases, or schemas when write or admin modes are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the MCP server in read-only mode by default, use least-privilege Notion integration tokens, and enable write or admin flags only for workflows where those changes are intended.
+
+Risk: Returned Notion content may contain untrusted instructions or misleading workspace data.
+
+Mitigation: Keep the untrusted-source output envelope enabled and treat returned content as data for review rather than as instructions to follow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xarkstar/skills/notion-cli-mcp)
+- [Project repository](https://github.com/0xarkstar/notion-cli)
+- [notion-cli-mcp on crates.io](https://crates.io/crates/notion-cli-mcp)
+- [Notion integrations](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes read-only defaults, opt-in write/admin modes, least-privilege Notion tokens, audit logs, and untrusted output handling.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

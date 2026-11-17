@@ -1,45 +1,66 @@
-## Description: <br>
-Gate DEX Trade helps agents execute on-chain token swaps, buys, sells, exchanges, conversions, and cross-chain bridge transactions through Gate DEX workflows that require user confirmation and transaction signing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate DEX Trade guides agents through on-chain token swap execution, including quotes, balance checks, staged signing, transaction submission, and status tracking.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to route agent-assisted Gate DEX trades, obtain quotes, prepare swap transactions, complete confirmation steps, sign transactions, and track swap status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-assisted crypto trading can move real funds and requires transaction signing. <br>
-Mitigation: Review every trading pair, quote, slippage setting, recipient address, and signature authorization before approving a transaction. <br>
-Risk: The security review flags handling of raw wallet keys, persistent credentials, and broad trading-tool configuration as requiring user review. <br>
-Mitigation: Prefer MCP wallet signing, do not paste raw private keys or expose .env or keystore files to the agent, replace default API credentials before OpenAPI use, and review installer-created files before using real funds. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through Gate DEX swap workflows for same-chain and cross-chain token trades. The skill helps collect trade parameters, route between MCP and OpenAPI modes, enforce confirmation steps, and produce the commands or API calls needed for execution.
 
-## Reference(s): <br>
-- [Gate DEX Trade skill page](https://clawhub.ai/gate-exchange/gate-dex-trade) <br>
-- [MCP trading workflow](references/mcp.md) <br>
-- [OpenAPI trading workflow](references/openapi.md) <br>
-- [MCP server setup](references/setup.md) <br>
-- [Gate runtime rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md) <br>
-- [Gate MCP](https://github.com/gate/gate-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with tool-call parameters, transaction confirmation prompts, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include swap quotes, signing prompts, check-in responses, submitted transaction identifiers, and transaction status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter version 2026.4.2-1) <br>
+Risk: The skill participates in real on-chain trading and transaction signing, which can move funds irreversibly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review of the trading pair, quote, slippage, target contract, gas, and signature authorization before any signing or submission step.
+
+Risk: Wallet private keys, keystore files, .env files, API keys, or MCP tokens could be exposed if pasted into the agent or read from local files.
+
+Mitigation: Prefer an external wallet or hardware signer, avoid pasting private keys into chat, keep secret files out of agent-readable workflows, and mask secret keys in any displayed configuration.
+
+Risk: Installation can alter persistent agent routing and MCP configuration.
+
+Mitigation: Review and back up existing agent and MCP configuration files before running the installer, then inspect generated routing rules before using the skill.
+
+Risk: Local check-in binaries and mutable remote rules influence transaction execution.
+
+Mitigation: Run only bundled or independently verified binaries, confirm hashes where possible, and do not execute missing or separately downloaded check-in binaries without source and hash verification.
+
+## Reference(s):
+
+- [Gate DEX Trade on ClawHub](https://clawhub.ai/gate-exchange/skills/gate-dex-trade)
+- [Skill Routing Definition](artifact/SKILL.md)
+- [MCP Mode Reference](artifact/references/mcp.md)
+- [OpenAPI Mode Reference](artifact/references/openapi.md)
+- [MCP Setup Guide](artifact/references/setup.md)
+- [Transaction Check-In Tool Reference](artifact/tools/tx-checkin/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction, signing, setup, and API-call guidance that requires user review before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter version 2026.4.2-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

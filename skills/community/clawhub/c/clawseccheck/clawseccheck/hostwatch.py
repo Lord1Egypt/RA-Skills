@@ -2,17 +2,24 @@
 
 ClawSecCheck normally audits the *agent's* configuration. This module widens the
 lens by one ring: it asks whether the **host** the agent runs on has any defensive
-monitoring — a network IDS, host audit logging, file-integrity monitoring, an
+monitoring - a network IDS, host audit logging, file-integrity monitoring, an
 endpoint/EDR sensor, or a host firewall. A powerful agent on an unwatched host is
 a real exposure: if it were compromised, the activity could go completely unseen.
 
 Doctrine (matches the rest of ClawSecCheck):
-- **No subprocess, no network.** We inspect only the filesystem: well-known config
-  paths, binary names on PATH (``shutil.which`` reads PATH, it does NOT execute),
-  systemd enable-symlinks, and read-only config/plist files.
+- **No subprocess, no network.** We read well-known config paths, binary names on
+  PATH (``shutil.which`` reads PATH, it does NOT execute), systemd enable-symlinks,
+  and read-only config/plist files. On Windows we additionally issue read-only
+  ``HKEY_LOCAL_MACHINE`` service-key lookups via ``winreg`` (see
+  :func:`_win_service_exists`); those read key existence only and take no values.
 - **No fabricated positives.** Every signal here is grounded against authoritative
   upstream docs for each monitor. Low-confidence signals are
-  deliberately omitted — an honest ``unknown`` beats a wrong ``present``/``absent``.
+  deliberately omitted - an honest ``unknown`` beats a wrong ``present``/``absent``.
+- **A miss on a visibility class is UNKNOWN, never a confident "absent"
+  (B-172).** A read-only, often non-root scan cannot PROVE ``network_ids`` /
+  ``host_audit`` / ``file_integrity`` / ``edr_av`` are absent - the monitor's
+  config or agent may live in a path this scan can't read. ``FIREWALL`` and
+  ``EGRESS_POSTURE`` are unaffected (see their own comments above/below).
 - **Injectable for tests.** ``detect(root=..., system=..., which=...)`` lets tests
   point at a fake filesystem root and a fake PATH resolver, so the suite stays
   offline, deterministic, and writes nothing outside ``tmp_path``.
@@ -26,34 +33,83 @@ Result shape (per class)::
 """
 from __future__ import annotations
 
+import os
 import platform
+import re
 import shutil
 import struct
 from pathlib import Path
+from . import pathprobe
 
-# detection-class keys (stable; consumed by checks B50–B54 and risk RISK-10)
+# detection-class keys (stable; consumed by checks B50-B54 and risk RISK-10)
 NETWORK_IDS = "network_ids"
 HOST_AUDIT = "host_audit"
 FILE_INTEGRITY = "file_integrity"
 EDR_AV = "edr_av"
 FIREWALL = "firewall"
+# Outbound (egress) filtering posture - is the default OUTPUT policy deny or
+# allow? Distinct from FIREWALL (which only asks "is a firewall present"):
+# a firewall can be installed and active with a wide-open default-allow
+# egress policy, which is exactly the gap this class targets (consumed by
+# check B101).
+EGRESS_POSTURE = "egress_posture"
+# E-065/C-324: a covert tunnel / mesh-VPN transport binary or artifact present on the
+# HOST - tailscale/tailscaled, cloudflared, ngrok, frpc, bore. Distinct in KIND from
+# every class above: those all ask "is something watching/filtering"; this asks
+# "does an outbound-tunnel-capable transport already exist here". `present` on its own
+# is NEVER a finding (a large share of developers legitimately run tailscale) - RISK-24
+# is the only consumer, and it only fires on the full combination of this class PLUS an
+# agent holding exec+egress PLUS a hardened egress-posture grade (see risk.py).
+# B-434 (C-135 adversarial review of RISK-24): a bare `shutil.which()` PATH hit is not
+# enough to justify RISK-24's severity by itself - an installed-but-never-enrolled
+# binary (downloaded once, never used) is indistinguishable from a live tunnel at that
+# level. On Linux, `active` is corroborated per-binary with a signal that needs more
+# than mere installation:
+#   - cloudflared: a systemd-enabled cloudflared.service. That unit is created only
+#     by the explicit `cloudflared service install` action (Cloudflare's own
+#     documented path to run a persistent tunnel) - installing the `cloudflared`
+#     binary alone never creates it, so "enabled" here really does mean "someone
+#     deliberately set this up to run".
+#   - tailscale: a persisted var/lib/tailscale/tailscaled.state file - NOT a
+#     systemd-enabled tailscaled.service. B-434 FOLLOW-UP (second adversarial
+#     pass): the original fix used the systemd-enabled signal for
+#     tailscale too, but that is unsound - Debian/Ubuntu's official tailscale .deb
+#     postinst (release/deb/debian.postinst.sh) both enables AND restarts
+#     tailscaled.service on a bare `apt install tailscale`, independent of whether
+#     the host was ever authenticated. Real repro: tailscaled.service enabled-at-
+#     boot, `tailscale up` never run, no tailscaled.state, no firewall exception for
+#     it at all - RISK-24 fired anyway. tailscaled.state is the sound signal instead:
+#     tailscaled lazily generates and persists its machine key only once it actually
+#     attempts to connect to control (upstream fix "ipn/ipnlocal: lazily connect to
+#     control, lazily generate machine key", tailscale/tailscale#1759) - a daemon
+#     merely started by the postinst script and never told to connect leaves no
+#     state file at all, so its presence is evidence `tailscale up` / `--auth-key`
+#     actually ran.
+# ngrok/frpc/bore have no single, authoritative systemd-unit convention (nor a state
+# file) to ground this against without fabricating one, so `active` stays
+# uncorroborated (None) for them - honest "can't confirm" beats a guessed signal.
+# macOS/Windows are unchanged (still uncorroborated) for the same reason.
+TUNNEL_TRANSPORT = "tunnel_transport"
 
-CLASSES = (NETWORK_IDS, HOST_AUDIT, FILE_INTEGRITY, EDR_AV, FIREWALL)
+CLASSES = (
+    NETWORK_IDS, HOST_AUDIT, FILE_INTEGRITY, EDR_AV, FIREWALL, EGRESS_POSTURE,
+    TUNNEL_TRANSPORT,
+)
 
 # The four *detection/visibility* classes (a firewall is prevention, not detection).
 # RISK-10 ("a breach would be invisible") keys off these only.
 VISIBILITY_CLASSES = (NETWORK_IDS, HOST_AUDIT, FILE_INTEGRITY, EDR_AV)
 
 
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 # Low-level read-only filesystem helpers (all root-relative, all best-effort)
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 
 def _exists(root: Path, *rels: str) -> bool:
     """True if any of the given root-relative paths exists (never raises)."""
     for rel in rels:
         try:
-            if (root / rel).exists():
+            if pathprobe.exists(root / rel):
                 return True
         except OSError:
             continue
@@ -61,7 +117,7 @@ def _exists(root: Path, *rels: str) -> bool:
 
 
 def _systemd_enabled(root: Path, unit: str) -> bool:
-    """Read-only 'is this unit enabled-at-boot?' — a symlink under any *.wants/ dir.
+    """Read-only 'is this unit enabled-at-boot?' - a symlink under any *.wants/ dir.
 
     `systemctl enable <unit>` creates a symlink at
     /etc/systemd/system/<target>.wants/<unit> -> the unit file. Detecting that
@@ -71,7 +127,7 @@ def _systemd_enabled(root: Path, unit: str) -> bool:
     base = root / "etc/systemd/system"
     try:
         for wants in base.glob("*.wants"):
-            if (wants / unit).exists():
+            if pathprobe.exists(wants / unit):
                 return True
     except OSError:
         pass
@@ -81,7 +137,7 @@ def _systemd_enabled(root: Path, unit: str) -> bool:
 def _read_text(path: Path) -> str | None:
     """Read a small text config file, or None if unreadable (never raises)."""
     try:
-        if not path.is_file():
+        if not pathprobe.is_file(path):
             return None
         return path.read_text(encoding="utf-8", errors="replace")
     except OSError:
@@ -100,6 +156,70 @@ def _ufw_enabled(root: Path) -> bool | None:
     return None
 
 
+def _ufw_outgoing_policy(root: Path) -> str | None:
+    """DEFAULT_OUTPUT_POLICY from /etc/default/ufw, lowercased ('drop'/'reject'/
+    'accept'/...; ufw itself writes 'drop', not 'deny' - see B-437 follow-up on
+    the caller), or None if the key or file is absent/unreadable.
+
+    B-437: the key does NOT live in /etc/ufw/ufw.conf (that file only holds
+    ENABLED/LOGLEVEL-style toggles) - it is DEFAULT_OUTPUT_POLICY in
+    /etc/default/ufw, verified directly against a real Ubuntu host."""
+    txt = _read_text(root / "etc/default/ufw")
+    if txt is None:
+        return None
+    for line in txt.splitlines():
+        s = line.strip()
+        if s.lower().startswith("default_output_policy"):
+            _, _, val = s.partition("=")
+            return val.strip().strip('"').strip("'").lower() or None
+    return None
+
+
+# nftables OUTPUT-chain default policy, e.g.:
+#   chain output {
+#       type filter hook output priority 0; policy drop;
+#   }
+# We only read the text - never invoke `nft` - so this is a best-effort regex over
+# the *declared* ruleset file, not the live kernel ruleset (which can differ if the
+# file was edited after `nft -f` last ran, or rules are loaded another way).
+_NFT_OUTPUT_CHAIN_RE = re.compile(
+    r"chain\s+output\s*\{([^}]*)\}", re.IGNORECASE | re.DOTALL
+)
+_NFT_POLICY_RE = re.compile(r"policy\s+(drop|reject|accept)\b", re.IGNORECASE)
+
+
+def _nftables_output_policy(root: Path) -> str | None:
+    """Default policy ('drop'/'reject'/'accept') of the OUTPUT chain in
+    /etc/nftables.conf, or None if the file/chain/policy can't be found."""
+    txt = _read_text(root / "etc/nftables.conf")
+    if txt is None:
+        return None
+    m = _NFT_OUTPUT_CHAIN_RE.search(txt)
+    if not m:
+        return None
+    pm = _NFT_POLICY_RE.search(m.group(1))
+    return pm.group(1).lower() if pm else None
+
+
+_PROXY_ENV_VARS = ("http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY")
+
+
+def _proxy_env_present() -> list[str]:
+    """Names of proxy-shaped env vars that are set (read-only os.environ read).
+
+    A weaker, non-conclusive signal: a proxy alone proves nothing about whether
+    *direct* egress is also allowed, so callers must never treat this as a
+    standalone PASS.
+    """
+    return [v for v in _PROXY_ENV_VARS if os.environ.get(v)]
+
+
+def _proxychains_present(root: Path) -> bool:
+    return _exists(
+        root, "etc/proxychains.conf", "etc/proxychains4.conf", "usr/local/etc/proxychains.conf"
+    )
+
+
 def _cls(found: list[str], active: bool | None = None) -> dict:
     """Build a class result from a found-list (present if non-empty, else absent)."""
     return {
@@ -114,6 +234,48 @@ def _unknown_cls() -> dict:
     return {"status": "unknown", "found": [], "active": None, "evidence": []}
 
 
+def _detection_cls(found: list[str], active: bool | None = None) -> dict:
+    """Detection/visibility class: present if found, else UNKNOWN (never a
+    confident 'absent'). A read-only, often non-root scan cannot PROVE a host
+    monitor is absent - its rules/agent may live in paths we can't read - so a
+    miss is honest UNKNOWN (mirrors macOS host_audit, hostwatch.py:362)."""
+    return _cls(found, active) if found else _unknown_cls()
+
+
+def _has_files(root: Path, rel: str, pattern: str) -> bool:
+    """True if directory *rel* under *root* holds at least one file matching
+    *pattern*. Distinguishes a configured dir from an empty leftover - C-135:
+    an empty ``etc/audit/rules.d`` from a purged package must NOT read as a
+    present monitor. Read-only; never raises."""
+    try:
+        return any((root / rel).glob(pattern))
+    except OSError:
+        return False
+
+
+def _egress_cls(found: list[str], deny: bool | None, weak: list[str]) -> dict:
+    """Build the egress-posture class result.
+
+    Shape matches the other classes for uniform consumption, but the fields carry
+    posture-specific meaning here:
+      status: "present" (a default policy was read from a config file) |
+              "unknown" (no readable egress-filtering config found at all)
+      active: True = default-deny outbound confirmed; False = default-allow
+              outbound confirmed; None = a config was found but its default
+              policy could not be determined.
+      evidence: the strong config-derived signals (found) plus, appended,
+                any weaker signals (proxy env vars / proxychains) so they are
+                visible but never mistaken for a standalone PASS.
+    """
+    status = "present" if found else "unknown"
+    return {
+        "status": status,
+        "found": found,
+        "active": deny if found else None,
+        "evidence": list(found) + list(weak),
+    }
+
+
 def _unsupported(system: str) -> dict:
     return {
         "system": system,
@@ -122,45 +284,57 @@ def _unsupported(system: str) -> dict:
     }
 
 
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 # Linux
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 
 def _detect_linux(root: Path, which) -> dict:
     classes: dict[str, dict] = {}
 
     # Network IDS / monitor ----------------------------------------------------
     found, active = [], None
-    if which("suricata") or _exists(root, "etc/suricata/suricata.yaml"):
+    if (which("suricata")
+            or _exists(root, "etc/suricata/suricata.yaml")
+            or _exists(root, "usr/sbin/suricata", "sbin/suricata")):
         found.append("Suricata")
-        if _systemd_enabled(root, "suricata.service"):
+        if (_exists(root, "run/suricata/suricata.pid", "var/run/suricata/suricata.pid",
+                    "run/suricata.pid", "var/run/suricata.pid")
+                or _systemd_enabled(root, "suricata.service")):
             active = True
     if (which("zeek") or which("zeekctl")
             or _exists(root, "opt/zeek/bin/zeek", "usr/local/zeek/bin/zeek")):
         found.append("Zeek")
     if which("snort") or _exists(root, "etc/snort/snort.lua", "usr/local/etc/snort/snort.lua"):
         found.append("Snort")
-    classes[NETWORK_IDS] = _cls(found, active)
+    classes[NETWORK_IDS] = _detection_cls(found, active)
 
     # Host audit / syscall logging --------------------------------------------
     found, active = [], None
-    if which("auditctl") or _exists(root, "etc/audit/auditd.conf", "etc/audit/audit.rules"):
+    if (which("auditctl")
+            or _exists(root, "sbin/auditctl", "usr/sbin/auditctl")
+            or _exists(root, "etc/audit/auditd.conf", "etc/audit/audit.rules")
+            or _has_files(root, "etc/audit/rules.d", "*.rules")):
         found.append("auditd")
-        if _systemd_enabled(root, "auditd.service"):
+        if _exists(root, "run/auditd.pid", "var/run/auditd.pid"):
             active = True
-    classes[HOST_AUDIT] = _cls(found, active)
+        elif _systemd_enabled(root, "auditd.service"):
+            active = True
+    classes[HOST_AUDIT] = _detection_cls(found, active)
 
     # File-integrity monitoring ------------------------------------------------
     found, active = [], None
-    if which("aide") or _exists(root, "etc/aide/aide.conf", "etc/aide.conf"):
+    if (which("aide") or _exists(root, "etc/aide/aide.conf", "etc/aide.conf")
+            or _exists(root, "usr/bin/aide", "usr/sbin/aide")):
         found.append("AIDE")
         if _exists(root, "var/lib/aide/aide.db", "var/lib/aide/aide.db.gz"):
             active = True  # baseline DB initialised
-    if which("tripwire") or _exists(root, "etc/tripwire/tw.cfg", "etc/tripwire/twcfg.txt"):
+    if (which("tripwire") or _exists(root, "etc/tripwire/tw.cfg", "etc/tripwire/twcfg.txt")
+            or _exists(root, "usr/sbin/tripwire", "usr/bin/tripwire")):
         found.append("Tripwire")
-    if which("osqueryd") or _exists(root, "etc/osquery/osquery.conf"):
+    if (which("osqueryd") or _exists(root, "etc/osquery/osquery.conf")
+            or _exists(root, "usr/bin/osqueryd")):
         found.append("osquery")
-    classes[FILE_INTEGRITY] = _cls(found, active)
+    classes[FILE_INTEGRITY] = _detection_cls(found, active)
 
     # EDR / endpoint protection / AV ------------------------------------------
     found = []
@@ -168,15 +342,16 @@ def _detect_linux(root: Path, which) -> dict:
         found.append("Wazuh")
     elif _exists(root, "var/ossec/bin/ossec-control", "var/ossec/etc/ossec.conf"):
         found.append("OSSEC")
-    if which("falconctl") or _exists(root, "opt/CrowdStrike/falconctl"):
+    if which("falconctl") or _exists(root, "opt/CrowdStrike/falconctl", "sbin/falconctl"):
         found.append("CrowdStrike Falcon")
     if _exists(root, "opt/sentinelone/bin/sentinelctl"):
         found.append("SentinelOne")
     if which("mdatp") or _exists(root, "opt/microsoft/mdatp"):
         found.append("Microsoft Defender")
-    if which("clamscan") or which("clamd") or _exists(root, "etc/clamav/clamd.conf"):
+    if (which("clamscan") or which("clamd")
+            or _exists(root, "etc/clamav/clamd.conf", "usr/sbin/clamd", "usr/bin/clamscan")):
         found.append("ClamAV")
-    classes[EDR_AV] = _cls(found)
+    classes[EDR_AV] = _detection_cls(found)
 
     # Host firewall ------------------------------------------------------------
     found, active = [], None
@@ -198,12 +373,77 @@ def _detect_linux(root: Path, which) -> dict:
             active = True
     classes[FIREWALL] = _cls(found, active)
 
+    # Egress (outbound) filtering posture ---------------------------------------
+    # Default-deny outbound vs default-allow. We only ever read declared config
+    # text (never run `nft`/`ufw status`), so this reflects what's on disk, which
+    # can drift from the live kernel ruleset if rules are (re)loaded another way.
+    found, deny = [], None
+    nft_policy = _nftables_output_policy(root)
+    if nft_policy is not None:
+        found.append(f"nftables OUTPUT policy={nft_policy}")
+        deny = nft_policy in ("drop", "reject")
+    ufw_policy = _ufw_outgoing_policy(root)
+    # B-437: a DEFAULT_OUTPUT_POLICY left on disk for a DISABLED ufw is not an
+    # active egress posture - gate on _ufw_enabled() also being True, or a
+    # `ufw disable` that never touched /etc/default/ufw would still be
+    # credited as enforcing a deny-outbound policy it isn't actually applying.
+    if ufw_policy is not None and _ufw_enabled(root) is True:
+        found.append(f"ufw DEFAULT_OUTPUT_POLICY={ufw_policy}")
+        # B-437 follow-up: real ufw never writes the literal "deny" to this file.
+        # `ufw default deny outgoing` (the exact hardening command this check's
+        # own remediation recommends) writes DEFAULT_OUTPUT_POLICY="DROP" -
+        # verified against backend_iptables.py's set_default_policy(). "deny" is
+        # kept for defense-in-depth (e.g. a hand-edited file) but "drop" is the
+        # value that actually occurs on real hosts.
+        policy_deny = ufw_policy in ("deny", "drop", "reject")
+        # multiple confirmed sources: any confirmed default-allow is a real gap,
+        # so let a False win over an earlier True rather than silently hiding it.
+        deny = policy_deny if deny is None else (deny and policy_deny)
+    # firewalld: we cannot ground a specific egress-policy XML field without
+    # fabricating one (project law: honest UNKNOWN beats an invented field), so
+    # firewalld only contributes the coarse "a firewall is present/active" signal
+    # already computed for FIREWALL above - it never confirms deny or allow here.
+    if "firewalld" in classes[FIREWALL]["found"] and classes[FIREWALL]["active"]:
+        found.append("firewalld active (egress policy not read \u2014 unmapped field)")
+
+    weak = list(_proxy_env_present())
+    if _proxychains_present(root):
+        weak.append("proxychains config present")
+
+    classes[EGRESS_POSTURE] = _egress_cls(found, deny, weak)
+
+    # Tunnel / mesh-VPN transport (E-065/C-324) --------------------------------
+    found, active = [], None
+    tailscale_state = _exists(root, "var/lib/tailscale/tailscaled.state")
+    if which("tailscale") or which("tailscaled") or tailscale_state:
+        found.append("Tailscale")
+        # B-434 follow-up: tailscaled.state is the enrollment signal, deliberately
+        # NOT a systemd-enabled tailscaled.service (see the TUNNEL_TRANSPORT comment
+        # above for why the unit signal was retracted - it fires on a bare `apt
+        # install tailscale` with no authentication at all).
+        if tailscale_state:
+            active = True
+    if which("cloudflared"):
+        found.append("cloudflared")
+        # B-434: `cloudflared service install` (Cloudflare's own documented path to
+        # run a persistent tunnel) enables this exact unit; installing the binary
+        # alone never does, so this signal is unaffected by the follow-up above.
+        if _systemd_enabled(root, "cloudflared.service"):
+            active = True
+    if which("ngrok"):
+        found.append("ngrok")
+    if which("frpc"):
+        found.append("frp")
+    if which("bore"):
+        found.append("bore")
+    classes[TUNNEL_TRANSPORT] = _detection_cls(found, active)
+
     return {"system": "Linux", "supported": True, "classes": classes}
 
 
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 # macOS
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 
 def _alf_globalstate(root: Path) -> int | None:
     """macOS Application Firewall global state from com.apple.alf.plist.
@@ -213,13 +453,13 @@ def _alf_globalstate(root: Path) -> int | None:
     the caller reports UNKNOWN rather than guessing.
     """
     p = root / "Library/Preferences/com.apple.alf.plist"
-    if not p.is_file():
+    if not pathprobe.is_file(p):
         return None
     try:
         import plistlib
         with p.open("rb") as fh:
             data = plistlib.load(fh)
-    except (OSError, ValueError, struct.error):  # unreadable/corrupt plist — never crash
+    except (OSError, ValueError, struct.error):  # unreadable/corrupt plist - never crash
         return None
     gs = data.get("globalstate") if isinstance(data, dict) else None
     return gs if isinstance(gs, int) else None
@@ -236,13 +476,13 @@ def _detect_macos(root: Path, which) -> dict:
         found.append("LuLu")
     classes[NETWORK_IDS] = _cls(found)
 
-    # Host audit — OpenBSM cannot be assessed honestly from the filesystem:
+    # Host audit - OpenBSM cannot be assessed honestly from the filesystem:
     # /etc/security/audit_control ships by default on macOS <=13 (present != enabled),
     # and OpenBSM is disabled-by-default and deprecated on >=14. So we report UNKNOWN
     # rather than a false PASS/active.
     classes[HOST_AUDIT] = _unknown_cls()
 
-    # File-integrity — osquery (homebrew or system paths) ----------------------
+    # File-integrity - osquery (homebrew or system paths) ----------------------
     found = []
     if (which("osqueryd") or _exists(root, "etc/osquery/osquery.conf",
                                      "usr/local/etc/osquery/osquery.conf",
@@ -264,19 +504,48 @@ def _detect_macos(root: Path, which) -> dict:
         found.append("SentinelOne")
     classes[EDR_AV] = _cls(found)
 
-    # Host firewall — ALF global state ----------------------------------------
+    # Host firewall - ALF global state ----------------------------------------
     gs = _alf_globalstate(root)
     if gs is None:
         classes[FIREWALL] = _unknown_cls()
     else:
         classes[FIREWALL] = _cls(["macOS Application Firewall"], active=gs >= 1)
 
+    # Egress posture - the macOS Application Firewall (ALF) governs *inbound*
+    # connections only; there is no grounded, read-only-inspectable field for a
+    # default *outbound* policy on stock macOS (PF anchors could theoretically
+    # carry one, but we have no authoritative default path to check without
+    # fabricating it). Only the weak proxy-env signal is honest to report here.
+    weak = list(_proxy_env_present())
+    if _proxychains_present(root):
+        weak.append("proxychains config present")
+    classes[EGRESS_POSTURE] = _egress_cls([], None, weak)
+
+    # Tunnel / mesh-VPN transport (E-065/C-324) --------------------------------
+    # B-434: no grounded, read-only "is it actually enrolled/running" signal on
+    # macOS (no equivalent of Linux's systemd-enabled unit check here) - `active`
+    # stays uncorroborated (None), same as before. RISK-24 (risk.py) requires
+    # `active is True`, so it simply cannot fire from macOS host data yet.
+    found = []
+    if (which("tailscale") or which("tailscaled")
+            or _exists(root, "Applications/Tailscale.app")):
+        found.append("Tailscale")
+    if which("cloudflared"):
+        found.append("cloudflared")
+    if which("ngrok"):
+        found.append("ngrok")
+    if which("frpc"):
+        found.append("frp")
+    if which("bore"):
+        found.append("bore")
+    classes[TUNNEL_TRANSPORT] = _detection_cls(found)
+
     return {"system": "Darwin", "supported": True, "classes": classes}
 
 
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 # Windows (best-effort: filesystem under root + optional read-only registry)
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 
 def _win_service_exists(name: str) -> bool | None:
     """True if a Windows service registry key exists. None when winreg is absent
@@ -319,7 +588,7 @@ def _win_firewall_enabled() -> bool | None:
 def _detect_windows(root: Path, which) -> dict:
     classes: dict[str, dict] = {}
 
-    # Network/host monitoring — Sysmon (filesystem + service key) --------------
+    # Network/host monitoring - Sysmon (filesystem + service key) --------------
     found = []
     sysmon = (_exists(root, "Windows/Sysmon64.exe", "Windows/Sysmon.exe")
               or _win_service_exists("Sysmon64") is True
@@ -331,7 +600,7 @@ def _detect_windows(root: Path, which) -> dict:
     # Sysmon doubles as the host syscall/event auditor on Windows
     classes[HOST_AUDIT] = _cls(list(found))
 
-    # File-integrity — osquery -------------------------------------------------
+    # File-integrity - osquery -------------------------------------------------
     found = []
     if (which("osqueryd")
             or _exists(root, "Program Files/osquery/osqueryd/osqueryd.exe",
@@ -349,19 +618,84 @@ def _detect_windows(root: Path, which) -> dict:
         found.append("Microsoft Defender")
     classes[EDR_AV] = _cls(found)
 
-    # Host firewall — registry EnableFirewall ----------------------------------
+    # Host firewall - registry EnableFirewall ----------------------------------
     fw = _win_firewall_enabled()
     if fw is None:
         classes[FIREWALL] = _unknown_cls()
     else:
         classes[FIREWALL] = _cls(["Windows Firewall"], active=fw)
 
+    # Tunnel / mesh-VPN transport (E-065/C-324) --------------------------------
+    # B-434: `active` stays uncorroborated (None) here for now, same as before -
+    # see the Linux block's B-434 comment. RISK-24 (risk.py) requires
+    # `active is True`, so it simply cannot fire from Windows host data yet.
+    found = []
+    if which("tailscale") or which("tailscaled") or _win_service_exists("Tailscale") is True:
+        found.append("Tailscale")
+    if which("cloudflared"):
+        found.append("cloudflared")
+    if which("ngrok"):
+        found.append("ngrok")
+    if which("frpc"):
+        found.append("frp")
+    if which("bore"):
+        found.append("bore")
+    classes[TUNNEL_TRANSPORT] = _detection_cls(found)
+
     return {"system": "Windows", "supported": True, "classes": classes}
 
 
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
 # Public API
-# ──────────────────────────────────────────────────────────────────────────────
+# ------------------------------------------------------------------------------
+
+# B-707: the conventional system locations, consulted when PATH resolution comes up empty.
+#
+# Every monitor above is located with `shutil.which`, and `shutil.which` answers a question
+# about the CURRENT PROCESS'S PATH -- not about the host. Those are different questions, and
+# for a scheduled run they give different answers: a classic user crontab runs with
+# `PATH=/usr/bin:/bin`, which excludes `/usr/sbin` and `/usr/local/bin`, and a `systemd`
+# timer inherits whatever its unit specifies, which is often nothing at all.
+#
+# Measured on this machine (openclaw 2026.8.2, monitors as actually installed):
+#     real shell PATH        tunnel_transport present ["Tailscale", "ngrok"]
+#     PATH=/usr/bin:/bin     tunnel_transport present ["Tailscale"]          <- ngrok lost
+#     PATH unset             tunnel_transport present ["Tailscale"]
+#     PATH=""                tunnel_transport unknown []                     <- class lost
+# `ngrok` lives at /usr/local/bin/ngrok and `ufw`/`nft`/`iptables` at /usr/sbin -- exactly the
+# directories a cron PATH drops. The host did not change between those runs; only the
+# question we asked did.
+#
+# This does NOT weaken any verdict. B-434's rule stands untouched: a bare `which` hit never
+# justifies RISK-24 on its own, and `active` is still corroborated per-binary by a signal that
+# needs more than mere installation (an enabled cloudflared.service, a persisted
+# tailscaled.state). What changes is only whether we can SEE the binary that corroboration is
+# then applied to.
+_SYSTEM_PATH_FALLBACK = (
+    "/usr/local/sbin", "/usr/local/bin", "/usr/sbin", "/usr/bin", "/sbin", "/bin",
+)
+
+
+def _default_path_resolver(system: str):
+    """`shutil.which`, falling back to the conventional system directories.
+
+    POSIX only: the fallback list is meaningless on Windows, where `_detect_windows` also
+    corroborates through `winreg` rather than PATH alone, so there it stays exactly
+    `shutil.which`.
+    """
+    if system == "Windows":
+        return shutil.which
+
+    fallback = os.pathsep.join(_SYSTEM_PATH_FALLBACK)
+
+    def resolve(name):
+        # PATH first, always: an operator who put a monitor earlier on PATH than the system
+        # copy means that one, and this must not silently prefer a different binary.
+        hit = shutil.which(name)
+        return hit if hit else shutil.which(name, path=fallback)
+
+    return resolve
+
 
 def detect(root: str | Path = "/", system: str | None = None, which=None) -> dict:
     """Detect host defensive monitors, read-only.
@@ -378,7 +712,7 @@ def detect(root: str | Path = "/", system: str | None = None, which=None) -> dic
     """
     system = system or platform.system()
     rootp = Path(root)
-    resolver = which if which is not None else shutil.which
+    resolver = which if which is not None else _default_path_resolver(system)
     if system == "Linux":
         return _detect_linux(rootp, resolver)
     if system == "Darwin":

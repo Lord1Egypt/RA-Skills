@@ -1,39 +1,53 @@
-## Description: <br>
-Guides translation workflows, terminology, style, machine-translation decisions, and quality checks for multilingual content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides translation workflow, terminology, style, and quality for multilingual content, including human versus machine translation, glossary creation, and SEO considerations.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Content and localization teams use this skill to plan translation work, maintain glossaries and style guidance, choose human translation versus machine translation, and run quality checks for multilingual content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files used for brand voice and terminology can expose sensitive information if they contain secrets or private data. <br>
-Mitigation: Keep .claude/project-context.md and .cursor/project-context.md accurate and free of secrets before using the skill. <br>
-Risk: Raw machine translation can introduce terminology, cultural, or compliance errors in customer-facing, legal, or brand-critical content. <br>
-Mitigation: Use glossaries, style guides, native-speaker review, and human post-editing for customer-facing or high-stakes translations. <br>
+## Use Case:
 
+External content teams, translators, localization managers, and developers use this skill to plan translation workflows, build glossaries and style guidance, choose human or machine translation approaches, and review multilingual content quality.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include translator briefs, glossary entries, style guide notes, human-versus-machine translation recommendations, and quality checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Project context files may contain sensitive business terminology, target markets, or product terminology that the skill can read to tailor translation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .claude/project-context.md and .cursor/project-context.md before use and remove confidential details that should not be exposed to the agent.
+
+Risk: Translation, machine translation, or terminology recommendations can be unsuitable for customer-facing, legal, compliance, or brand-critical content.
+
+Mitigation: Use glossary and style guide review, native speaker review, and legal or compliance review for high-stakes content before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/translation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations using local project context files when present.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

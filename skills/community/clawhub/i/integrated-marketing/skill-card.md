@@ -1,43 +1,49 @@
-## Description: <br>
-Guides agents in planning integrated marketing programs, coordinating channel mixes, and clarifying program, channel, campaign, PESO, customer journey, and measurement decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides integrated marketing strategy by helping agents plan coordinated channels, clarify program, channel, and campaign distinctions, map PESO channels, and define measurement approaches.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Employees, external users, and marketing practitioners use this skill to structure integrated marketing programs, select and coordinate channels, map PESO and customer journey touchpoints, and define measurement approaches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for broad marketing prompts where a more specific marketing skill would better fit the request. <br>
-Mitigation: Confirm the user is asking for integrated marketing, channel coordination, PESO mapping, or program/channel/campaign clarification before relying on this skill. <br>
-Risk: Catalog capability tags indicate crypto and purchase-making capabilities that are not supported by the markdown-only artifact. <br>
-Mitigation: Do not treat this as a crypto or purchasing tool; deploy it as text-only marketing guidance and correct overstated tags in catalog metadata when possible. <br>
-Risk: The artifact includes marketing performance benchmark claims without accompanying references. <br>
-Mitigation: Verify benchmark figures before using them in external recommendations, or present them as contextual guidance rather than sourced evidence. <br>
+## Use Case:
 
+Marketing operators, founders, and growth teams use this skill to structure integrated marketing programs, select and coordinate channels, map PESO coverage, and define campaign measurement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/integrated-marketing) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown guidance with tables and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference skill; no code, tools, credential access, persistence, or hidden actions are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and skill metadata) <br>
+Risk: Marketing ROI and acquisition-efficiency statistics may be treated as decision-grade claims without supporting source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate performance statistics against current, trusted business sources before using them for budget or strategy decisions.
+
+## Reference(s):
+
+- [Integrated Marketing skill page](https://clawhub.ai/kostja94/skills/integrated-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credential use, persistence, or privileged behavior.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

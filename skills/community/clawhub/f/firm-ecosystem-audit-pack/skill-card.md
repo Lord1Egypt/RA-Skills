@@ -1,40 +1,53 @@
-## Description: <br>
-Ecosystem differentiation audit pack for MCP firewall policies, RAG pipeline integrity, sandbox execution security, context health, provenance tracking, cost analytics, and token budget optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ecosystem differentiation audit pack for MCP firewall, RAG pipeline, sandbox execution, context health, provenance tracking, cost analytics, and token budget optimization checks.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit ecosystem differentiation features across MCP firewall policy validation, RAG integrity, sandbox execution security, context health, provenance, cost analytics, and token budget optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external mcp-openclaw-extensions package. <br>
-Mitigation: Verify the package source before installation and pin a known trusted version. <br>
-Risk: Audit inputs may include configuration files, session data, provenance records, or analytics records. <br>
-Mitigation: Run the audit tools only on intended files or session data and confirm where provenance and analytics records are stored. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit ecosystem differentiation controls across tool-call firewall policy, retrieval integrity, sandbox execution, context health, provenance, cost, and token budget workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-ecosystem-audit-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference OpenClaw audit tool inputs such as configuration paths and session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill depends on the external mcp-openclaw-extensions package for actual audit behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the package and its provider are trusted before installation or use.
+
+Risk: The artifact includes a non-localized human-validation warning.
+
+Mitigation: Require human review before operational use, especially for non-French users.
+
+## Reference(s):
+
+- [Firm Ecosystem Audit Pack on ClawHub](https://clawhub.ai/romainsantoli-web/skills/firm-ecosystem-audit-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on mcp-openclaw-extensions >= 3.0.0 for actual audit tool behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

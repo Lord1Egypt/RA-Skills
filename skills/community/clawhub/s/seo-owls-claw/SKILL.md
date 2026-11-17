@@ -1,11 +1,11 @@
-# SEOwlsClaw — Core Skill (v0.6)
+# SEOwlsClaw — Core Skill (v0.9.2)
 
 ## Name & Description
 
 **Name**: `seowlowsclaw`  
 **Description**: Full-stack SEO and content marketing system.
 Generates SEO-optimised content (landing pages, blog posts, product pages, FAQ, social) using persona-driven writing, multi-client brand profiles, and locale-aware templates.
-Supports brief-first agency workflows via /seobrief + --from-brief, strategic cluster planning via /seoplan, and a three-layer architecture (Locale → Brand → Persona) for clean multi-client work.
+Supports brief-first agency workflows via `seobrief + --from-brief`, strategic cluster planning via `seoplan`, and a three-layer architecture (Locale → Brand → Persona) for clean multi-client work.
 Outputs plain text or deploy-ready HTML with full schema markup. 
 Named "SEOwlsClaw" (pronounced "See Owls Claw") — the single 'O' makes it sound like "See".
 
@@ -49,22 +49,71 @@ Use only when Chris needs SEO-ready content generated with specific personas, ke
 
 ---
 
-## Core Commands
+## Core Commands - Triggers
 
 | Command | Output | Example |
 |---------|--------|---------|
-| `/persona <name>` | Sets writing style/tone for next `/write` or `/writehtml` | `/persona vintage-expert` |
-| `/write <type> "prompt"` | **Plain text content** — readable in chat, ready to paste into any editor | `/write Blogpost "Why is iPhone 16 Pro Max better than 15"` |
-| `/writehtml <type> "prompt"` | **Pure HTML code** — uses `TEMPLATES/<type>.md` structure, copy-paste ready for deployment | `/writehtml Productnew "Leica M6 TTL Chrome, serial 2741xxx, mint condition"` |
-| `/research <topic>` | Keyword cluster + SERP analysis | `/research best sony bravia 55 inch tv` |
-| `/checks <url>` | SEO audit checklist against a live URL | `/checks https://example.com/blog-post-example` |
-| `/checks <type>` | SEO audit against page type template (preview mode) | `/checks Productnew` |
-| `/personas` | List all available personas with one-line descriptions | `/personas` |
-| `/personas --show <id>` | Show full details of one persona | `/personas --show vintage-expert` |
-| `/brand <id>` | Loads client brand profile (CTAs, tone sliders, compliance rules) | `/brand example-id` |
-| `/brands` | Lists all brand profiles or shows details for one | `/brands --show example-id` |
-| `/seobrief <type> "topic"` | Generates a structured SEO content brief with KW cluster, outline, PAA, and competitor gaps | `/seobrief Blogpost "DIY computer build" --lang de` |
-| `/seoplan "niche"` | Builds a full SEO cluster plan — tiers nodes into PILLAR / QUICKWIN / FOUNDATION / STRATEGIC with keyword data, persona assignments, internal link matrix, and numbered execution order | `/seoplan "best vlogging camera for beginners" --lang en` |
+| `persona <name>` | Sets writing style/tone for next `write` or `writehtml` | `persona vintage-expert` |
+| `write <type> "prompt"` | **Plain text content** — readable in chat, ready to paste into any editor | `write Blogpost "Why is iPhone 16 Pro Max better than 15"` |
+| `writehtml <type> "prompt"` | **Pure HTML code** — uses `TEMPLATES/<type>.md` structure, copy-paste ready for deployment | `writehtml Productnew "Leica M6 TTL Chrome, serial 2741xxx, mint condition"` |
+| `research <topic>` | Keyword cluster + SERP analysis | `research best sony bravia 55 inch tv` |
+| `checks <url>` | SEO audit checklist against a live URL | `checks https://example.com/blog-post-example` |
+| `checks <type>` | SEO audit against page type template (preview mode) | `checks Productnew` |
+| `personas` | List all available personas with one-line descriptions | `personas` |
+| `personas --show <id>` | Show full details of one persona | `personas --show vintage-expert` |
+| `brand <id>` | Loads client brand profile (CTAs, tone sliders, compliance rules) | `brand example-id` |
+| `brands` | Lists all brand profiles or shows details for one | `brands --show example-id` |
+| `seobrief <type> "topic"` | Generates a structured SEO content brief with KW cluster, outline, PAA, and competitor gaps | `seobrief Blogpost "DIY computer build" --lang de` |
+| `seoplan "niche"` | Builds a full SEO cluster plan — tiers nodes into PILLAR / QUICKWIN / FOUNDATION / STRATEGIC with keyword data, persona assignments, internal link matrix, and numbered execution order | `seoplan "best vlogging camera for beginners" --lang en` |
+
+## Command Execution Rules — CRITICAL
+
+All SEOwlsClaw commands (`persona`, `write`, `writehtml`, `research`, `checks`, `seobrief`, `seoplan`, `brand`, `brands`) are **internal chat commands processed by this skill**. They are NOT shell commands, NOT OS executables, and must NEVER be passed to `exec`, `cron`, or any other system tool.
+
+### How to recognise a SEOwlsClaw command
+
+A SEOwlsClaw command is active when the user input:
+- starts with one of the command keywords above (with or without a leading `/`), OR
+- matches a trigger phrase from the "When to Use" section above.
+
+Both `persona vintage-expert` and `/persona vintage-expert` are valid so treat them identically as internal skill commands.
+
+### Execution decision tree
+1. User input received
+► Is it a SEOwlsClaw command or trigger phrase?
+► If NO than respond normally, no skill workflow needed.
+► If YES, than load BRAIN_ARCHITECTURE.md → run Steps 0–7 → output result in chat.
+
+DO NOT call exec, cron, or any other tool to "run" the command.
+
+---
+
+### Tool usage rules for this skill
+
+| Situation | ❌ WRONG | ✅ CORRECT |
+|-----------|---------|-----------|
+| User writes `persona vintage-expert` | Pass to `exec` tool | Parse internally, load `PERSONAS/vintage-expert.md` |
+| User writes `write Blogpost ...` | Create a `cron` job with the command as payload | Run Brain Steps 0–7, return plain-text article in chat |
+| User writes `/write Blogpost ...` | Treat `/write` as a shell binary | Strip the `/`, treat as internal `write` command, same as above |
+| User wants content **right now** | Schedule with `cron` | Execute immediately in the current session |
+| User says "schedule this for 18:00" | Ignore scheduling intent | Use `cron` with `kind: agentTurn` + the SEOwlsClaw command as `message` |
+
+### When `cron` IS allowed
+
+Only use the `cron` tool when the user **explicitly requests a scheduled or delayed execution** — for example:
+
+- "Schedule this blog post generation for tonight at 8pm"
+- "Run this every Monday at 9am"
+
+In all other cases: execute the skill workflow immediately in the current chat session.
+
+### Zero autonomous execution
+
+This skill never runs in the background, never writes files without confirmation, and never triggers tool calls unless the user has explicitly issued a command or trigger phrase in the current session.
+
+**Note**: Direct commands like `persona ...`, `write ...`, or `writehtml ...` also activate this skill immediately — no natural-language trigger phrase needed. Execute in-session without any `exec` or `cron` tool calls.
+
+---
 
 ## Skill File Map — Quick Navigation
 
@@ -76,28 +125,28 @@ Load only what the current command and workflow requires — never all files at 
 | File | Purpose | When to Load |
 |------|---------|--------------|
 | `SKILL.md` | Entry point — this file | Always loaded first |
-| `BRAIN_ARCHITECTURE.md` | Full 10-step processing logic, variable engine | Load at workflow start |
+| `BRAIN_ARCHITECTURE.md` | Full step-by-step processing logic, variable engine | Load at workflow start |
 | `COMMANDS.md` | Complete command + flag reference | Load when user asks about commands or flags |
 | `PAGE_STRUCTURES.md` | Master index linking all page templates | Load when selecting a template |
-| `SEO_PATH.md` | Full SEO workflow: research → write → check | Load for /research and strategic planning |
+| `SEO_PATH.md` | Full SEO workflow: research → write → check | Load for `research` and strategic planning |
 
 ### PERSONAS/
 
 | File | Purpose | When to Load |
 |------|---------|--------------|
-| `_index.md` | Registry of all persona IDs + file paths | Load first on every /persona command |
-| `blogger.md` | Default persona — load if no /persona set | Step 2b fallback |
-| `ecommerce-manager.md` | Conversion-focused writing | On /persona ecommerce-manager |
-| `creative-writer.md` | Narrative, emotional writing | On /persona creative-writer |
-| `researcher.md` | Neutral, fact-based — also used internally by /seobrief | Always on /seobrief |
-| `vintage-expert.md` | Collector-focused, authoritative | On /persona vintage-expert |
-| `travel-photographer.md` | Location + gear-focused | On /persona travel-photographer |
+| `_index.md` | Registry of all persona IDs + file paths | Load first on every `persona` command |
+| `blogger.md` | Default persona — load if no `persona` set | Step 2b fallback |
+| `ecommerce-manager.md` | Conversion-focused writing | On `persona` ecommerce-manager |
+| `creative-writer.md` | Narrative, emotional writing | On `persona` creative-writer |
+| `researcher.md` | Neutral, fact-based — also used internally by `seobrief` | Always on `seobrief` |
+| `vintage-expert.md` | Collector-focused, authoritative | On `persona` vintage-expert |
+| `travel-photographer.md` | Location + gear-focused | On `persona` travel-photographer |
 
 ### LOCALE/
 
 | File | Purpose | When to Load |
 |------|---------|--------------|
-| `base.md` | English defaults for all locale keys | Load on every /write or /writehtml |
+| `base.md` | English defaults for all locale keys | Load on every `write` or `writehtml` |
 | `de.md` | German overrides (Sie-form, DD.MM.YYYY, 1.090,00 €) | Load when --lang de |
 | `fr.md` | French overrides (vous-form, guillemets, thin-space thousands) | Load when --lang fr |
 | `es.md` | Spanish overrides (tú-form, ¿¡ punctuation) | Load when --lang es |
@@ -107,80 +156,88 @@ Load only what the current command and workflow requires — never all files at 
 
 | File | Purpose | When to Load |
 |------|---------|--------------|
-| `_index.md` | Registry of all brand IDs + file paths | Load first on every /brand command |
-| `<id>.md` | Brand CTAs, tone sliders, compliance rules | Load when /brand active or --brand flag |
+| `_index.md` | Registry of all brand IDs + file paths | Load first on every `brand` command |
+| `<id>.md` | Brand CTAs, tone sliders, compliance rules | Load when `brand` active or `--brand` flag |
+
+### SEO_RULES/
+
+| File | Purpose | When to Load |
+|------|---------|--------------|
+| `_index.md` | Registry of all rule files | Load first at Step 2f |
+| `universal.md` | Rules applying to every page type (E-E-A-T, on-page SEO, traps, FAQ, quality, natural language) | Step 2f, every `write`/`writehtml` |
+| `<page_type>.md` | Do's/don'ts, required elements, keyword placement for that page type | Step 2f, matched to the active page type |
 
 ### SEO_CHECKS/
 
 | File | Purpose | When to Load |
 |------|---------|--------------|
 | `search_intent.md` | SERP lookup + intent scoring + disambiguation | Step 0 — before everything else |
-| `do-and-don-lists.md` | Page-type specific dos and don'ts | Step 6 SEO checks |
-| `schema-markup.md` | Schema.org rules + all {SCHEMA_*} variable definitions | Step 5–6 for /writehtml |
-| `seo-checks-reference.md` | Full SEO audit reference | Step 6 + /checks command |
+| `schema-markup.md` | Schema.org rules + all {SCHEMA_*} variable definitions | Step 5–6 for `writehtml` |
+| `seo-checks-reference.md` | Full SEO audit reference | Step 6 + `checks` command |
 | `seo-output-quality-checklist.md` | Pre-output quality gates | Step 6.5 before final output |
+| `page-type-specific-checks.md` | Hard fails, warnings, schema rules, and pass thresholds per page type | Step 6, after seo-checks-reference.md |
 
 ### TEMPLATES/ and TEMPLATES_SOCIAL/
 
 | File | Purpose | When to Load |
 |------|---------|--------------|
-| `blog_post_template.md` | HTML template for Blogpost | /writehtml Blogpost |
-| `landing_page_template.md` | HTML template for Landingpage | /writehtml Landingpage |
-| `product_new_template.md` | HTML template for Productnew | /writehtml Productnew |
-| `product_used_template.md` | HTML template for Productused | /writehtml Productused |
-| `faq_page_template.md` | HTML template for FAQ | /writehtml FAQ |
-| `photo_post_template.md` | Social photo post template | /writehtml Socialphoto |
-| `video_post_template.md` | Social video metadata template | /writehtml Socialvideo |
+| `blog_post_template.md` | HTML template for Blogpost | `writehtml` Blogpost |
+| `landing_page_template.md` | HTML template for Landingpage | `writehtml` Landingpage |
+| `product_new_template.md` | HTML template for Productnew | `writehtml` Productnew |
+| `product_used_template.md` | HTML template for Productused | `writehtml` Productused |
+| `faq_page_template.md` | HTML template for FAQ | `writehtml` FAQ |
+| `photo_post_template.md` | Social photo post template | `writehtml` Socialphoto |
+| `video_post_template.md` | Social video metadata template | `writehtml` Socialvideo |
 
 ### SEO_BRIEFS/ and SEO_PLANS/
 
 | File | Purpose | When to Load |
 |------|---------|--------------|
-| `SEO_BRIEFS/_index.md` | Registry of all generated briefs | Load on /seobrief or --from-brief |
-| `SEO_PLANS/_index.md` | Registry of all generated plans | Load on /seoplan or --plan |
-| `SEO_PLANS/plan_workflow.md` | /seoplan pipeline logic (Steps A–G) | Load only on /seoplan |
+| `SEO_BRIEFS/_index.md` | Registry of all generated briefs | Load on `seobrief` or `--from-brief` |
+| `SEO_PLANS/_index.md` | Registry of all generated plans | Load on `seoplan` or `--plan` |
+| `SEO_PLANS/plan_workflow.md` | `seoplan` pipeline logic (Steps A–G) | Load only on `seoplan` |
 
 ---
 
 ## Output Format
 
-### `/write` — Plain Text Output
+### `write` — Plain Text Output
 Returns clean, structured text content — no HTML tags.  
 Use this when you want to **review content first**, paste into a CMS editor, or use the text elsewhere (social caption, email, document).
 
 ```
-/write Blogpost "How to identify a genuine Leica M6"
+write Blogpost "How to identify a genuine Leica M6"
 → Returns: Full blog post as readable text with headings, paragraphs, bullet lists
    No HTML tags. Ready to paste into WordPress, JTL Shop editor, Notion, etc.
 ```
 
-### `/writehtml` — Pure HTML Output
+### `writehtml` — Pure HTML Output
 Returns a complete HTML document using the corresponding `TEMPLATES/<type>.md` template.  
 All `{PLACEHOLDER}` variables are replaced with real content. Zero placeholders in the output.  
 Use this when you want **copy-paste ready code** to deploy directly.
 
 ```
-/writehtml Productused "Leica M6 TTL, serial 2741xxx, condition EX+"
+writehtml Productused "Leica M6 TTL, serial 2741xxx, condition A+"
 → Returns: Full HTML file with all placeholders replaced, schema included,
    Zone:AI and Zone:CTA sections marked, ready to deploy
 ```
 
 **After any output** the agent will offer:
 - `"give me raw HTML only"` → strip markdown wrapping, return pure code block
-- `"run /checks"` → re-run SEO audit on the generated output
+- `"run checks"` → re-run SEO audit on the generated output
 
 ---
 
-## `/write` vs `/writehtml` — When to Use Which
+## `write` vs `writehtml` — When to Use Which
 
 | Situation | Use |
 |-----------|-----|
-| Reviewing content before publishing | `/write` |
-| Pasting into a visual CMS editor | `/write` |
-| Deploying directly to a page | `/writehtml` |
-| Checking HTML structure and schema | `/writehtml` |
-| Social media captions | `/write` |
-| Testing a new template | `/writehtml` |
+| Reviewing content before publishing | `write` |
+| Pasting into a visual CMS editor | `write` |
+| Deploying directly to a page | `writehtml` |
+| Checking HTML structure and schema | `writehtml` |
+| Social media captions | `write` |
+| Testing a new template | `writehtml` |
 
 ---
 
@@ -229,39 +286,41 @@ Wrong format = wrong ranking signal. A product description written for an inform
 
 ```
 Step 0    Search Intent Detection     Analyze prompt → auto-select page format (SEO_CHECKS/search_intent.md)
-           SKIP for: /seoplan, /seobrief — strategy commands, no page format needed
+           SKIP for: seoplan, seobrief — strategy commands, no page format needed
 Step 1    Parse Command               Extract persona, type, prompt, all flags
            --from-brief               If flag present → load SEO_BRIEFS/<id>.md at parse time
            --plan                     If flag present → load SEO_PLANS/<plan-id>.md node at parse time
 Step 2a   Load Persona Index          PERSONAS/_index.md → find persona_id
 Step 2b   Load Persona File           PERSONAS/<id>.md → style, tone, E-E-A-T rules
-           /seoplan + /seobrief       Always load researcher.md internally (overrides session persona)
-           Default fallback           If no /persona command → load PERSONAS/blogger.md
+           seoplan + seobrief         Always load researcher.md internally (overrides session persona)
+           Default fallback           If no `persona` command → load PERSONAS/blogger.md
            Tone override              If --tone flag present → override persona tone, keep everything else
 Step 2c   Load Locale                 LOCALE/base.md + LOCALE/<lang>.md (if --lang flag present)
-Step 2d   Load Brand Profile          If /brand active or --brand flag: BRANDS/<id>.md → brand_vars{} + compliance{}
-           Skip if                    No /brand command and no --brand flag → no brand rules apply
-Step 2e   SEO Plan Pipeline           If /seoplan active: load SEO_PLANS/plan_workflow.md → run Steps A–G → STOP (Steps 3–7 do not run)
-Step 3    Generate Variables          Prompt + persona + brand + brief + plan node → full variable dictionary
+Step 2d   Load Brand Profile          If brand active or --brand flag: BRANDS/<id>.md → brand_vars{} + compliance{}
+           Skip if                    No brand command and no --brand flag → no brand rules apply
+Step 2e   SEO Plan Pipeline           If seoplan active: load SEO_PLANS/plan_workflow.md → run Steps A–G → STOP (Steps 3–7 do not run)
+Step 2f   Load SEO Writing Rules      SEO_RULES/universal.md + SEO_RULES/<page_type>.md → seo_rules{}
+           Skip if                    seoplan or seobrief active — no page content generated
+Step 3    Generate Variables          Prompt + persona + brand + brief + plan node + seo_rules → full variable dictionary
 Step 3.5  Zone Assignment Pass        Apply Zone A (neutral/factual) vs Zone B (CTA/sales) to each content section
 Step 4    Select Template             Match page type → load TEMPLATES/<type>.md
-           /write skips Steps 4–5     Plain text output — no template loading
+           write skips Steps 4–5      Plain text output — no template loading
 Step 5    Variable Substitution       Replace ALL {PLACEHOLDER} in template with real values
-Step 6    SEO Checks                  Run all applicable files in SEO_CHECKS/
-           /seoplan                   Runs plan quality check (Step F in SEO_PLANS/plan_workflow.md) instead
+Step 6    SEO Checks                  Run SEO_CHECKS/seo-checks-reference.md (universal) → SEO_CHECKS/page-type-specific-checks.md (type rules)
+           seoplan                    Runs plan quality check (Step F in SEO_PLANS/plan_workflow.md) instead
 Step 6.5  Persona Compliance Check    Headings formula · depth · E-E-A-T signals · Zone A/B · zero placeholder leakage
-           /seoplan                   Skipped (no page content generated)
+           seoplan                    Skipped (no page content generated)
 Step 6.6  Brand Compliance Check      If brand active: banned phrases · urgency limits · required disclosures
            HARD FAIL                  Blocks output until all violations resolved
-           /seoplan                   Brand persona defaults applied to node assignments only
-Step 7    Output                      /write → plain text | /writehtml → pure HTML
-           /seoplan                   Structured plan saved to SEO_PLANS/
-           /seobrief                  Structured brief saved to SEO_BRIEFS/
+           seoplan                    Brand persona defaults applied to node assignments only
+Step 7    Output                      write → plain text | `writehtml` → pure HTML
+           seoplan                    Structured plan saved to SEO_PLANS/
+           seobrief                   Structured brief saved to SEO_BRIEFS/
 ```
 
-### Workflow Example — `/write` (Plain Text)
+### Workflow Example — `write` (Plain Text)
 
-```bash
+```text
 /persona creative-writer
 /write Blogpost "Shooting film in Nürnberg with a Leica M6" --primary-kw "leica m6 film photography"
 
@@ -274,11 +333,11 @@ Step 7    Output                      /write → plain text | /writehtml → pur
 # Step 7: Returns readable blog post text — no HTML tags
 ```
 
-### Workflow Example — `/writehtml` (HTML Output)
+### Workflow Example — `writehtml` (HTML Output)
 
-```bash
-/persona ecommerce-manager
-/writehtml Productused "Leica M6 TTL Chrome, serial 2741xxx, EX+ condition" --primary-kw "leica m6 ttl kaufen"
+```text
+persona ecommerce-manager
+writehtml Productused "Leica M6 TTL Chrome, serial 2741xxx, EX+ condition" --primary-kw "leica m6 ttl kaufen"
 
 # Step 0: Transactional intent → Productused confirmed
 # Step 2: Loads PERSONAS/ecommerce-manager.md
@@ -290,11 +349,11 @@ Step 7    Output                      /write → plain text | /writehtml → pur
 # Step 7: Returns complete HTML — ready to deploy
 ```
 
-### Workflow Example — `/seobrief` → `/write` (Brief-First Flow)
+### Workflow Example — `seobrief` → `write` (Brief-First Flow)
 
-```bash
+```text
 # Step 1: Generate the brief
-/seobrief Blogpost "Leica M6 Analogfotografie Guide" --lang de --brand jbv-foto
+seobrief Blogpost "Leica M6 Analogfotografie Guide" --lang de --brand example-brand
 
 # → Researcher persona loads internally (always)
 # → Keyword cluster researched: primary KW auto-detected
@@ -303,22 +362,22 @@ Step 7    Output                      /write → plain text | /writehtml → pur
 # → Output: full structured brief with KW cluster, H1–H4 outline, PAA questions, internal link targets, and ready-to-run /write command
 
 # Step 2: Write content from the brief
-/brand jbv-foto
-/persona blogger
-/write Blogpost "Leica M6 Guide" --from-brief leica-m6-analogfotografie-guide-de --lang de
+brand example-brand
+persona blogger
+write Blogpost "Leica M6 Guide" --from-brief leica-m6-analogfotografie-guide-de --lang de
 
 # → Step 1: Loads brief → KWs, outline, PAA, internal links merged into parse
 # → Step 2a-c: blogger persona + de locale
-# → Step 2d: jbv-foto brand profile (CTAs, compliance) merged
+# → Step 2d: `example-brand` brand profile (CTAs, compliance) merged
 # → Step 3: Variables generated using brief outline as H-tag structure
 # → Steps 6, 6.5, 6.6: SEO + persona + brand compliance all pass
 # → Step 7: Returns plain text article following the brief's approved structure
 ```
 
-### Workflow Example — /seoplan → /seobrief → /write (Full Agency Flow)
+### Workflow Example — seoplan → seobrief → write (Full Agency Flow)
 
-```bash
-/seoplan "Vintage analog cameras Germany" --lang de --brand jbv-foto
+```text
+seoplan "Vintage analog cameras Germany" --lang de --brand example-brand
 ```
 → Step 2e: SEO_PLANS/plan_workflow.md loaded, researcher runs Steps A–G
 → Step A: Keyword families mapped, quick win threshold = difficulty < 22
@@ -327,16 +386,16 @@ Step 7    Output                      /write → plain text | /writehtml → pur
 → Step E: Execution order: qw-01 → qw-04 first, pillar-01 after, str-01–03 last
 → Step G: Saved as SEO_PLANS/<YEAR>/<MONTH>/vintage-analog-cameras-de.md
 
-```bash
-/seobrief Blogpost "Film einlegen Anleitung" --plan vintage-analog-cameras-de.qw-01 --lang de
+```text
+seobrief Blogpost "Film einlegen Anleitung" --plan vintage-analog-cameras-de.qw-01 --lang de
 ```
 → Step 1: Node qw-01 loaded from plan → primary_kw, page_type, links_to extracted
 → Research runs on top of plan data, brief saved: SEO_BRIEFS/<YEAR>/<MONTH>/film-einlegen-anleitung-de.md
 
-```bash
-/brand jbv-foto
-/persona blogger
-/write Blogpost "Film einlegen" --from-brief film-einlegen-anleitung-de --lang de
+```text
+brand example-brand
+persona blogger
+write Blogpost "Film einlegen" --from-brief film-einlegen-anleitung-de --lang de
 ```
 → Brief + plan node + brand all merged at Step 1
 → Steps 6 / 6.5 / 6.6 pass → Step 7: plain text article ready to publish
@@ -361,12 +420,12 @@ When you provide a content prompt, the brain:
   "URL_CANONICAL":                      "https://www.example.de/products/leica-m6-ttl-chrome-gebraucht",
   "H1_TITLE":                           "Leica M6 TTL Chrome (Type 10434) — EX+ Condition, Serial 2741xxx",
   "HERO_SUBHEADLINE_CONDITION_DISCLOSURE": "2000–2001 production · TTL flash metering · All functions verified",
-  "CONDITION_LEVEL_USED":               "EX+",
+  "CONDITION_LEVEL_USED":               "A+",
   "DISPLAY_PRICE_EUR_USED":             "€1,090",
   "SCHEMA_CONDITION":                   "https://schema.org/UsedCondition",
   "SCHEMA_SKU":                         "EXMAMPLE-2741",
   "FAQ_Q1":                             "What condition is this Leica M6 TTL in?",
-  "FAQ_A1":                             "EX+ — light use only. No brassing, viewfinder clear, shutter fires accurately at all speeds.",
+  "FAQ_A1":                             "A+ — light use only. No brassing, viewfinder clear, shutter fires accurately at all speeds.",
   # ... all remaining variables
 }
 ```
@@ -376,10 +435,10 @@ When you provide a content prompt, the brain:
 ## File Locations & Dependencies
 
 ```
-seowlowsclaw/
+seo-owls-claw/
 │
 ├── SKILL.md                    ← This file — core instructions + command reference
-├── BRAIN_ARCHITECTURE.md       ← Complete processing logic (all 9 brain steps)
+├── BRAIN_ARCHITECTURE.md       ← Complete processing logic (the full brain workflow)
 ├── COMMANDS.md                 ← Full command reference with all flags
 ├── PAGE_STRUCTURES.md          ← Master index + links to all page templates
 ├── SEO_PATH.md                 ← Full SEO workflow: research → analysis → writing → checks
@@ -397,6 +456,17 @@ seowlowsclaw/
 │   ├── _index.md               ← Load first — lists all brand IDs and file paths
 │   └── brand-template.md       ← Copy this to create a new brand profile
 │
+├── SEO_RULES/                  ← SEO writing rules, consulted before generation (Step 2f)
+│   ├── _index.md               ← Registry of all rule files
+│   ├── universal.md            ← Rules for every page type — always loaded
+│   ├── landingpage.md
+│   ├── blogpost.md
+│   ├── productnew.md
+│   ├── productused.md
+│   ├── faq.md
+│   ├── socialphoto.md
+│   └── socialvideo.md
+│
 ├── LOCALE/                     ← Language override files (Base + Delta architecture)
 │   ├── base.md                 ← English defaults for all locale keys — always loaded
 │   ├── de.md                   ← German overrides (--lang de)
@@ -412,14 +482,14 @@ seowlowsclaw/
 │   ├── plan-template.md        ← Format reference + example plan
 │   └── plan_workflow.md        ← Full /seoplan pipeline logic (Steps A–G) — loaded only on /seoplan
 │
-├── SEO_CHECKS/                 ← SEO rules, intent detection, schema, quality checks
+├── SEO_CHECKS/                 ← SEO audit mechanics — scores content against SEO_RULES/
 │   ├── search_intent.md        ← Step 0 rules — intent detection + format selection
-│   ├── do-and-don-lists.md     ← Page-type specific dos and don'ts
 │   ├── schema-markup.md        ← Schema.org rules + {SCHEMA_*} variable definitions
-│   ├── seo-checks-reference.md ← Full SEO check reference
+│   ├── seo-checks-reference.md ← Universal audit workflow, scores against SEO_RULES/universal.md
+│   ├── page-type-specific-checks.md ← Per-type audit scoring, scores against SEO_RULES/<type>.md
 │   └── seo-output-quality-checklist.md ← Pre-output quality gates
 │
-├── TEMPLATES/                  ← HTML output templates (used by /writehtml only)
+├── TEMPLATES/                  ← HTML output templates (used by `writehtml` only)
 │   ├── blog_post_template.md
 │   ├── landing_page_template.md
 │   ├── product_new_template.md
@@ -431,19 +501,19 @@ seowlowsclaw/
 │   └── video_post_template.md
 │
 ├── OUTPUT_EXAMPLES/            ← Reference output examples for agent guidance
-│   ├── blog_post_example.md
-│   ├── landing_page_example.md
-│   ├── product_new_example.md
-│   └── product_used_example.md
+│   ├── blog_post_example.html
+│   ├── landing_page_example.html
+│   ├── product_new_example.html
+│   └── product_used_example.html
 │
-#└── DOC/                        ← Internal project docs (not loaded by agent)
-#    ├── BUGS.md                 ← Internal project docs (not loaded by agent)
-#    ├── CHANGELOG.md            ← Internal project docs (not loaded by agent)
-#    └── PLANNING.md             ← Internal project docs (not loaded by agent)
+#└── DOC/                        ← Internal project docs (not required or loaded by agent)
+#    ├── BUGS.md                 ← Internal project docs (not required or loaded by agent)
+#    ├── CHANGELOG.md            ← Internal project docs (not required or loaded by agent)
+#    └── PLANNING.md             ← Internal project docs (not required or loaded by agent)
 ```
 
 ---
 
-*Last updated: 05-04-2026 (v0.6)*  
-*Adds: /brand, /brands, /seobrief, --from-brief flag, BRANDS/ and SEO_BRIEFS/ folders*
+*Last updated: 24-08-2026 (v0.9.2)*  
+*Adds: Step 2f (SEO_RULES/ loaded before generation), SEO_RULES/ folder, trimmed SEO_CHECKS/*
 *Maintainer: Chris — SEOwlsClaw core skill file*

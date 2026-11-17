@@ -1,43 +1,56 @@
-## Description: <br>
-Create and manage a custom DEX using Orderly One API - deployment, custom domains, graduation, and theming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage a custom DEX using Orderly One API - deployment, custom domains, graduation, and theming.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers and DEX operators use this skill to create, configure, deploy, update, and graduate white-label perpetuals DEXs with Orderly One. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users through wallet signatures, token transfers, broker registration, and admin wallet finalization. <br>
-Mitigation: Verify the official Orderly domain, inspect each signing payload, confirm chain IDs, recipient addresses, fees, and broker IDs, and prefer testnet or a limited-purpose wallet for setup. <br>
-Risk: DEX configuration can include custom domains, uploaded assets, theme CSS, analytics scripts, IP allowlists, and region restrictions. <br>
-Mitigation: Review configuration values before submission, validate CSS and encoded scripts, check file size limits, and confirm domain and regional settings match the intended deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Orderly One DEX Skill Page](https://clawhub.ai/Tarnadas/orderly-one-dex) <br>
-- [Orderly One Mainnet API](https://dex-api.orderly.network) <br>
-- [Orderly One Testnet API](https://testnet-dex-api.orderly.network) <br>
-- [Orderly Account Registration API](https://api.orderly.org/v1/register_account) <br>
-- [Default DEX Theme CSS](https://raw.githubusercontent.com/OrderlyNetworkDexCreator/dex-creator-template/refs/heads/main/app/styles/theme.css) <br>
+## Use Case:
 
+Developers and DEX operators use this skill to create, configure, deploy, update, and graduate white-label perpetuals DEXs through Orderly One.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions, Shell commands, Code] <br>
-**Output Format:** [Markdown with endpoint references, JSON payload examples, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference an Orderly MCP tool for detailed endpoint information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet signatures, token transfers, receiver addresses, and DEX updates can affect funds or deployed sites.
+
+Mitigation: Confirm every signature request, transaction hash, receiver address, transfer amount, and DEX update before submission.
+
+Risk: Analytics script configuration can affect end-user privacy.
+
+Mitigation: Review any analyticsScript content and privacy implications before adding it to a deployed DEX.
+
+## Reference(s):
+
+- [Orderly One API mainnet base URL](https://dex-api.orderly.network)
+- [Orderly One API testnet base URL](https://testnet-dex-api.orderly.network)
+- [Orderly DEX creator default theme](https://raw.githubusercontent.com/OrderlyNetworkDexCreator/dex-creator-template/refs/heads/main/app/styles/theme.css)
+- [Orderly registration nonce endpoint](https://api.orderly.org/v1/registration_nonce)
+- [Orderly register account endpoint](https://api.orderly.org/v1/register_account)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with endpoint references, workflow steps, and configuration fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multipart form fields, wallet-signature steps, token-transfer checks, deployment polling, and DEX customization guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

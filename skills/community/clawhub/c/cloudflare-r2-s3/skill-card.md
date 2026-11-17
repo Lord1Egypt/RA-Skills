@@ -1,43 +1,54 @@
-## Description: <br>
-Cloudflare R2 S3 兼容存储工具，支持配置 API 密钥、上传文件并获取公开访问地址。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloudflare R2 S3 兼容存储工具，支持配置 API 密钥、上传文件并获取公开访问地址。
 
-## Publisher: <br>
-[chao-eng](https://clawhub.ai/user/chao-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chao-eng](https://clawhub.ai/user/chao-eng)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Cloudflare R2 credentials, upload local files to an R2 bucket, list stored objects, delete objects, and retrieve public URLs for uploaded files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploads can be public by default. <br>
-Mitigation: Use private mode or set default public access to false unless the object is intended for public access; avoid uploading sensitive files to public buckets. <br>
-Risk: The delete command can remove bucket objects without an additional safety prompt. <br>
-Mitigation: Require clear human confirmation before deletion and use an R2 token scoped only to the intended bucket. <br>
-Risk: R2 access keys are required for operation. <br>
-Mitigation: Use a dedicated least-privilege R2 token and keep secrets out of version control. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Cloudflare R2 or another S3-compatible storage service, upload local files, list bucket objects, delete objects, and retrieve public URLs when sharing stored assets.
 
-## Reference(s): <br>
-- [Configuration example](references/config_example.env) <br>
-- [ClawHub skill page](https://clawhub.ai/chao-eng/cloudflare-r2-s3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Cloudflare R2 account credentials and boto3; uploads are public by default unless private mode is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Uploaded files may be publicly accessible by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading secrets or private documents, and use --private or public=False when files should not be shared publicly.
+
+Risk: The tool can write to and delete objects from the configured R2 bucket without built-in delete confirmation.
+
+Mitigation: Use a dedicated bucket with a restricted R2 token and manually confirm object names before deleting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chao-eng/skills/cloudflare-r2-s3)
+- [Configuration Example](references/config_example.env)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return public object URLs and JSON-like upload, list, delete, or connection-test results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

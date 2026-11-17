@@ -1,48 +1,57 @@
-## Description: <br>
-Use when an agent needs one universal entrypoint to discover and use the unified Clash of Coins gateway for sale and shop flows, choose the active protocol on the live instance, and execute purchase or integration workflows without mixing contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs one universal entrypoint to discover and use the unified Clash of Coins gateway for sale and shop flows, choose the active protocol on the live instance, and execute purchase or integration flows without mixing sale and shop contracts.
 
-## Publisher: <br>
-[clash-deployer](https://clawhub.ai/user/clash-deployer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clash-deployer](https://clawhub.ai/user/clash-deployer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover a live Clash of Coins gateway, select the correct sale or shop surface, choose the active x402 or MPP payment protocol, and return endpoint-level checkout or integration guidance. It is intended for flows where the agent must validate route, recipient, protocol, and payment status before any spending action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers quote, buy, order creation, wallet funding, and payment retry flows that can initiate real spending actions. <br>
-Mitigation: Verify the origin, item, recipient, amount, protocol, endpoint, and status route before allowing the agent to proceed with any checkout or funding step. <br>
-Risk: A sale route and shop route can use different contracts and recipient rules. <br>
-Mitigation: Use live discovery and catalog metadata to select exactly one surface and protocol, and stop if the selected item does not match the target buy endpoint. <br>
-Risk: Shop checkout can be misdirected if recipient fields are missing or ambiguous. <br>
-Mitigation: Require exactly one recipient identifier, either nickname or address, before shop quote or buy calls. <br>
-Risk: Treating an unpaid payment challenge or pending fulfillment as success can misreport purchase completion. <br>
-Mitigation: Preserve retry payloads exactly for paid retries and confirm settlement through the documented purchase-status or ledger endpoint. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to discover a live Clash of Coins gateway, select the correct sale or shop route, and produce endpoint, payload, payment retry, and status-check guidance before purchase execution.
 
-## Reference(s): <br>
-- [Clash of Coins - Agentic Gateway](https://clawhub.ai/clash-deployer/clash-of-coins-agentic) <br>
-- [Client Installation](references/client-installation.md) <br>
-- [Discovery And Routing](references/discovery-and-routing.md) <br>
-- [Integration Playbook](references/integration-playbook.md) <br>
-- [Purchase Playbooks](references/purchase-playbooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with endpoint paths, JSON payload constraints, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a concise Clash of Coins handoff with origin, enabled protocols, selected surface, next endpoint, payload constraints, payment retry rule, status endpoint, and risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The discovery helper accepts a caller-supplied origin and could probe non-public or untrusted services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict runs to trusted, known public HTTPS Clash of Coins gateway origins and do not use internal or local URLs.
+
+Risk: Recipient identifiers and buy or fund steps can disclose sensitive purchase intent or trigger payment-related actions.
+
+Mitigation: Require explicit user approval before recipient-scoped probes, buy calls, funding calls, or paid retries.
+
+## Reference(s):
+
+- [Clash of Coins - Agentic Gateway on ClawHub](https://clawhub.ai/clash-deployer/skills/clash-of-coins-agentic)
+- [Discovery and Routing](references/discovery-and-routing.md)
+- [Purchase Playbooks](references/purchase-playbooks.md)
+- [Integration Playbook](references/integration-playbook.md)
+- [Client Installation](references/client-installation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with endpoint, payload, command, and validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON payload examples and route decision records grounded in live gateway discovery.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Generates fact-based AI-GEO content assets from a user-provided brand knowledge base, including website FAQ, Zhihu answers, Toutiao articles, llms.txt drafts, and AI-quotable sentence libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI-search-oriented brand content assets from a supplied brand knowledge base.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-Developers, marketers, and brand teams use this skill to transform an existing brand knowledge base into structured content drafts for AI search, agent-readable summaries, and platform-specific publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The brand knowledge base may contain passwords, tokens, personal data, unreleased strategy, or highly confidential business material. <br>
-Mitigation: Remove sensitive or confidential material before using the skill. <br>
-Risk: Generated public content may be unsuitable for publication without editorial and compliance review. <br>
-Mitigation: Review all generated content before publishing and keep placeholder markers for facts that still need confirmation. <br>
-Risk: Medical, financial, legal, or other regulated content may require professional judgment. <br>
-Mitigation: Have qualified professionals review regulated-industry outputs and include appropriate disclaimers before use. <br>
+## Use Case:
 
+Brand and content teams use this skill to convert an existing brand knowledge base into structured draft assets for AI search, AI agents, and public content channels. It supports website FAQ, Zhihu-style answers, Toutiao-style articles, llms.txt drafts, and quote sentence libraries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ljseeking/ai-geo-content-generator) <br>
-- [README](artifact/README.md) <br>
-- [Input Contract](artifact/docs/input_contract.md) <br>
-- [Security Audit](artifact/SECURITY_AUDIT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown and plain text drafts with structured sections, templates, and self-check summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft content based on user-provided brand knowledge and require human review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Brand knowledge bases may contain confidential strategy, customer data, unreleased product details, or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove secrets and sensitive personal or business data before use, and confirm which model provider will process the supplied content.
+
+Risk: Security evidence reports conflicting privacy disclosures about sending supplied brand materials to an AI service.
+
+Mitigation: Review privacy expectations before installation and avoid submitting confidential material unless the processing path is acceptable.
+
+Risk: Generated drafts may contain unsupported claims when the source knowledge base is incomplete or covers regulated domains.
+
+Mitigation: Use the skill's placeholder and self-check workflow, then manually review all drafts before publishing; require professional review for medical, financial, legal, education, or similarly sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljseeking/skills/ai-geo-content-generator)
+- [Input contract](artifact/docs/input_contract.md)
+- [README](artifact/README.md)
+- [Security audit](artifact/SECURITY_AUDIT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown drafts, llms.txt text, structured checklists, and human-review guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content is draft material based on the supplied brand knowledge base and is expected to be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

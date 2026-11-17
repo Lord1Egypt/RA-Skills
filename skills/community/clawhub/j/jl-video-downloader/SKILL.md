@@ -51,8 +51,8 @@ uv tool install jl-video-downloader --index-url https://pypi.mirrors.ustc.edu.cn
 ### 3. 配置环境变量
 ```bash
 # API密钥配置（文案提取必需）
-export SILI_FLOW_API_KEY="sk-your-siliflow-api-key"
-export DEEPSEEK_API_KEY="sk-your-deepseek-api-key"
+export SILI_FLOW_API_KEY="REDACTED-SECRET"
+export DEEPSEEK_API_KEY="REDACTED-SECRET"
 
 # 代理配置（可选，用于访问YouTube等）
 export YOUTUBE_PROXY="http://127.0.0.1:7897"

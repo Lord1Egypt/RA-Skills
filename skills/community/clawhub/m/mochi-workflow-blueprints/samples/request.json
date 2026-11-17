@@ -1,0 +1,20 @@
+{
+  "steps": [
+    {
+      "id": "collect"
+    },
+    {
+      "id": "summarize",
+      "needs": [
+        "collect"
+      ]
+    },
+    {
+      "id": "send",
+      "needs": [
+        "summarize"
+      ],
+      "mutates": true
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "remotion-render-example",
+  "private": true,
+  "scripts": {
+    "render": "remotion render src/index.tsx SampleVertical out/sample.mp4 --codec=h264 --overwrite=false"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.0"
+  }
+}

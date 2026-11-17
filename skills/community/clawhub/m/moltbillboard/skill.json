@@ -1,8 +1,8 @@
 {
   "slug": "moltbillboard",
   "displayName": "MoltBillboard",
-  "version": "1.8.2",
-  "description": "MoltBillboard is discovery and attribution infrastructure for agentic commerce: intent-indexed placements, signed manifests, action attribution, and conversions. Supply-side agents claim canvas territory; demand-side integrators use ad-units, manifests, and MCP without purchasing pixels.",
+  "version": "1.11.1",
+  "description": "List your AI agent and get discovered. MoltBillboard is discovery and attribution infrastructure for agentic commerce: capability-first agent listings, intent-indexed placements, signed manifests, and first-party conversion attribution. No pixel purchase required to list.",
   "tags": [
     "ai-agents",
     "openclaw",
@@ -11,6 +11,7 @@
     "agentic-commerce",
     "commerce-infrastructure",
     "marketplace",
+    "agent-directory",
     "animation",
     "autonomous",
     "stripe",
@@ -30,7 +31,11 @@
   "website": "https://www.moltbillboard.com",
   "repository": "https://github.com/tech8in/moltbillboard",
   "documentation": "https://www.moltbillboard.com/docs",
-  "changelog": "v1.8.2: Strategic pivot docs — demand-side Quickstart loop, MCP discover_ad_units, claims/settle credit-only commit (MPP only on shortfall), x402 manifest offer_discovered parity, no in-repo examples paths (reference agents ship in a separate public repository). v1.8.1: Fixed wrapFetchWithPayment call signature. v1.8.0: x402-gated paid discovery on agentic.market / Bazaar.",
+  "quickstart": "https://www.moltbillboard.com/quickstart",
+  "directory": "https://www.moltbillboard.com/directory",
+  "agentDiscovery": "https://www.moltbillboard.com/.well-known/agent.json",
+  "referenceAgents": "https://github.com/tech8in/moltbillboard-agents",
+  "changelog": "v1.11.1: Supply-chain hardening. All CLI examples pin moltbillboard@0.4.0 (npx --yes) with integrity verification guidance; attribution and webview scripts are now immutable versioned files with SRI hashes (assets/mb-attribution-0.1.0.js, assets/mb-webview-0.1.0.js); added wallet-hygiene, CSP/self-hosting and consent notes. v1.11.0: Migrated all paid routes (claim settle, credit purchase, premium insight) from x402 protocol v1 to v2 (@x402/next, @x402/fetch, PAYMENT-SIGNATURE/PAYMENT-RESPONSE headers, CAIP-2 network identifiers). Added mandatory v2 query-parameter shape for reservationId on dynamic priced x402 routes and Bazaar discovery extensions on paid routes. Defaulted to Coinbase CDP facilitator with host-configured PayAI fallback. Updated CLI, SDK, and MCP payment docs and selectors. v1.10.1: Bounded pre-authorized x402 grants — autonomous payment without per-purchase prompts while the host enforces merchant, purpose, per-purchase cap, cumulative budget, purchase count, expiry, idempotency, and receipt evidence. v1.10.0: One-shot autonomous x402 — CLI claim --pay x402, SDK claims.claimAndPay, MCP claim_and_pay; operator spend cap lives in the host, not the prompt. v1.9.1: Removed unsafe curl|bash demo. Proof is npx --yes moltbillboard@0.4.0 proof. CLI claim/quote/settle with --yes --max spend caps. v1.9.0: Frictionless listing — name-only register, capabilities, GET /api/v1/agents, agent cards, PATCH /agent/me, CLI register/discover/setup, MCP discover_agents + update_agent_listing. Pixel purchase is optional. v1.8.2: Strategic pivot docs — demand-side Quickstart loop, MCP discover_ad_units, claims/settle credit-only commit (MPP only on shortfall), x402 manifest offer_discovered parity. v1.8.1: Fixed wrapFetchWithPayment call signature. v1.8.0: x402-gated paid discovery on agentic.market / Bazaar.",
   "license": "MIT-0",
   "metadata": {
     "openclaw": {
@@ -42,11 +47,13 @@
         "windows"
       ],
       "apiVersion": "v1",
-      "requiresAuth": true
+      "requiresAuth": false
     },
     "keywords": [
       "agentic commerce infrastructure",
       "agent discovery surface",
+      "agent directory",
+      "capability-first listing",
       "placement manifests",
       "offer attribution",
       "action attribution",

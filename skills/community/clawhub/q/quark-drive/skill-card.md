@@ -1,45 +1,60 @@
-## Description: <br>
-Quark helps an agent manage Quark Drive files with login, listing, search, upload, download, sharing, transfer-save, delete, clear, folder creation, and batch upload workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quark helps agents operate Quark Drive through a Python CLI for QR login, file listing and search, uploads, downloads, sharing, transfer-save, delete, and batch-upload workflows.
 
-## Publisher: <br>
-[imeiming](https://clawhub.ai/user/imeiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imeiming](https://clawhub.ai/user/imeiming)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a Quark Drive account from shell commands, including authenticated file management, sharing, transfer-save, and batch upload tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Quark Drive account cookies and can save them in a local config file. <br>
-Mitigation: Protect QUARK_COOKIE and the saved config file like passwords, and install the skill only for accounts you are comfortable granting this level of access. <br>
-Risk: Delete, clear, download, and upload commands can affect broad cloud or local paths. <br>
-Mitigation: Review exact paths before running destructive or broad file commands, and avoid uploading hidden or agent directories such as ~/.hermes. <br>
-Risk: Share commands can create public or long-lived access to files. <br>
-Mitigation: Prefer short-lived password-protected shares over public or permanent links. <br>
+## Use Case:
 
+External developers and agents use this skill to manage Quark Drive files, folders, shares, and transfers from agent workflows. It is suited for account-scoped file operations such as listing, uploading, downloading, deleting, sharing, cancelling shares, saving shared resources, and batch uploading directories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imeiming/quark-drive) <br>
-- [Quark Drive authentication reference](references/auth.md) <br>
-- [Quark Drive sharing and transfer-save API reference](references/share-api.md) <br>
-- [Quark Drive upload API reference](references/upload-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Quark CLI configuration and may produce share links, file listings, download paths, and upload progress output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Reusable Quark account cookies can grant account access if exposed or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, prefer QUARK_COOKIE, protect or remove ~/.hermes/skills/cloud-drive/quark/config.json, and clear stored cookies when they are no longer needed.
+
+Risk: Batch upload can unintentionally copy broad local directories or secrets into Quark Drive.
+
+Mitigation: Review source directories before upload, use skip and size filters, and avoid broad paths such as ~/.hermes unless secrets have been checked.
+
+Risk: Share, delete, clear, permanent-share, and confirmation-bypass actions can expose or remove cloud-drive data.
+
+Mitigation: Confirm target paths and share settings before execution, and use confirmation bypass only after the operation has been reviewed.
+
+## Reference(s):
+
+- [ClawHub Quark Release Page](https://clawhub.ai/imeiming/skills/quark-drive)
+- [Quark Drive QR Login Flow](references/auth.md)
+- [Quark Drive Upload API Notes](references/upload-api.md)
+- [Quark Drive Share and Transfer-Save API](references/share-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Python CLI actions against Quark Drive; outputs depend on account state, credentials, network access, and the selected command.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

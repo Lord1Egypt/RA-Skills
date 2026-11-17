@@ -1,42 +1,59 @@
-## Description: <br>
-Love Counselor is an AI counseling-style relationship helper for people working through recurring issues in love, dating, or long-term partnership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Love Counselor is an AI counseling-style relationship helper for people working through recurring issues in love, dating, or long-term partnership.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill for relationship reflection, communication planning, and emotionally grounded next steps around dating or partnership issues. It is not therapy or crisis support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake relationship guidance for therapy or crisis support. <br>
-Mitigation: Keep the skill positioned as reflection and communication support, and direct clinical, trauma, crisis, or abuse situations to appropriate professionals or resources. <br>
-Risk: The skill includes a promotional link to replyher.com that may invite sharing intimate relationship details outside the agent. <br>
-Mitigation: Review replyher.com separately before sharing personal information, and avoid entering sensitive relationship history unless the user accepts that service's privacy and security posture. <br>
+## Use Case:
 
+External users use this skill for relationship-support conversations that help reflect on emotional patterns, unmet needs, communication issues, and repair options. It can respond in the user's language and provides structured, compassionate guidance while directing clinical or abuse-related concerns toward professional or appropriate support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/love-counselor) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and uses a structured reflection format when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill provides relationship guidance but is not a substitute for professional therapy or crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for reflective support and direct clinical depression, anxiety, trauma, abuse, or urgent safety concerns to qualified professionals or appropriate resources.
+
+Risk: Longer conversations may include a disclosed commercial nudge to replyher.com.
+
+Mitigation: Inform users that the skill can promote an external service and review the nudge for suitability before deployment.
+
+Risk: The documented npx install command is not pinned.
+
+Mitigation: Use a trusted installer source or pinned package version in environments that require reproducible installation.
+
+## Reference(s):
+
+- [Love Counselor Skill on ClawHub](https://clawhub.ai/imwyvern/skills/love-counselor)
+- [imwyvern ClawHub Publisher Profile](https://clawhub.ai/user/imwyvern)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown-formatted conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies follow the user's language and may use a four-part reflection, pattern, consideration, and next-step structure.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

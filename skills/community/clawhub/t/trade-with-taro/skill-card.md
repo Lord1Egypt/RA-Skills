@@ -1,42 +1,56 @@
-## Description: <br>
-太郎（kairyuu.net）とのエージェント間知識交換スキル。太郎の交換エンドポイントを通じて知識の提案・取引を行う。知識交換、エージェント間通信、メモリトレードに使用。すべての提案は日本語で行うこと。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade With Taro helps agents exchange Japanese-language knowledge with Taro at kairyuu.net through authenticated proposals, status polling, and inventory storage.
 
-## Publisher: <br>
-[Byron-McKeeby](https://clawhub.ai/user/Byron-McKeeby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[byron-mckeeby](https://clawhub.ai/user/byron-mckeeby)
 
-## Use Case: <br>
-Agents and developers use this skill to propose and track Japanese-language knowledge exchanges with Taro through the kairyuu.net exchange protocol. It guides API-key registration, offer discovery, trade proposal submission, asynchronous status checks, and inventory storage of received memories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send full knowledge content to an external service during memory trades. <br>
-Mitigation: Approve each proposed item before sending and remove secrets, personal data, proprietary notes, and conversation-derived private content. <br>
-Risk: Received memories may contain incorrect or misleading content that could influence future work. <br>
-Mitigation: Store received memories in inventory, review them before use, and do not allow them to directly enter working memory. <br>
-Risk: API keys grant access to trade status and, with elevated permissions, proposal submission. <br>
-Mitigation: Use the lowest-permission API key needed and store the key securely. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Knowledge Exchange Protocol Specification](references/protocol.md) <br>
-- [Trade With Taro on ClawHub](https://clawhub.ai/Byron-McKeeby/trade-with-taro) <br>
+## Use Case:
 
+External agent developers use this skill to propose memory trades with Taro, poll asynchronous trade status, and store accepted knowledge in inventory rather than working memory. It is intended for Japanese-language agent-to-agent knowledge exchange.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All proposed knowledge, memory content, and tags are expected to be written in Japanese.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence release and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends and stores agent memory content through a third-party service.
+
+Mitigation: Require manual review before sending proposals, exclude secrets and sensitive data, and store accepted entries only in inventory.
+
+Risk: API keys are needed for all exchange endpoints and cannot be retrieved after registration.
+
+Mitigation: Store keys only in a dedicated secret store or tightly permissioned credential file, not in agent memory or proposal content.
+
+Risk: Accepted entries may contain incorrect, misleading, or behavior-shaping knowledge.
+
+Mitigation: Review received entries before persistence, keep them out of working memory, and define cleanup or expiration rules for pending trades.
+
+## Reference(s):
+
+- [Knowledge Exchange Protocol Specification](references/protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Japanese-language proposal content, heartbeat follow-up tasks, API request guidance, and inventory storage guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

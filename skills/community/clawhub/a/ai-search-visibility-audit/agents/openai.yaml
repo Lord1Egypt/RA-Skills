@@ -1,0 +1,10 @@
+interface:
+  display_name: "AI search visibility audit"
+  short_description: "Audit AI answer engine citations"
+  icon_small: "assets/composer-icon.png"
+  brand_color: "#1c63ff"
+  default_prompt: "Audit whether example.com gets cited by ChatGPT Search and Perplexity."
+policy:
+  products:
+    - CHAT
+  allow_implicit_invocation: true

@@ -1,4 +1,4 @@
-# 审计手册 · 报告模板与执行细则
+# 技能质量审计方法手册（Audit Playbook）
 
 ## 单 skill 评分 · Markdown 模板
 

@@ -1,40 +1,54 @@
-## Description: <br>
-DeepSynClaw helps an agent build a psychological profile from conversation history and find compatible people for romantic, business, friendship, or custom matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepSynClaw helps agents search for compatible romantic, business, friendship, or custom matches using deep psychological profiling rather than shared interests.
 
-## Publisher: <br>
-[ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivankoriako](https://clawhub.ai/user/ivankoriako)
 
-## Use Case: <br>
-People using ClawHub agents can use this skill to request compatibility matching for partners, co-founders, friends, or custom relationship searches. The skill is documented as coming soon, with the profile builder and matching engine still in development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes sensitive psychological profiling from prior conversations and remote matching while also claiming that user data stays local. <br>
-Mitigation: Use only after explicit consent, clarify what data leaves the device, and remove or correct the local-only claim unless it is true. <br>
-Risk: Compatibility recommendations may affect personal, romantic, or business decisions. <br>
-Mitigation: Treat results as advisory, review the reasoning, and avoid relying on the skill as the sole basis for high-impact relationship or business decisions. <br>
+## Use Case:
 
+External users ask their agent to find compatible romantic, business, friendship, or custom matches using psychological profiling. The artifact describes profile building, server-side matching, LLM compatibility evaluation, and agent-mediated contact exchange when the service is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivankoriako/deepsynclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include compatibility analysis and suggested next steps for agent-mediated introductions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill may analyze prior LLM conversations to infer psychological traits and create a sensitive profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear consent before analysis and let users choose, inspect, and edit any conversation data or profile content before it is used.
+
+Risk: The artifact describes sending a profile to an external matching server while also claiming that data stays local.
+
+Mitigation: Identify the server and operator before use, disclose what data leaves the local environment, and provide retention, deletion, and opt-out controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivankoriako/skills/deepsynclaw)
+- [Publisher profile](https://clawhub.ai/user/ivankoriako)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain-language or Markdown agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve psychological profile summaries, compatibility assessments, and matching guidance; service is described as not yet live.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

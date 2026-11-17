@@ -1,44 +1,55 @@
-## Description: <br>
-ComfyUI V8 Aki bundle assistant for installation checks, local startup, workflow generation, parameter optimization, troubleshooting, batch generation, and model management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comfyui V8 helps agents support ComfyUI Aki bundle workflows, including environment checks, local startup guidance, workflow JSON generation, parameter tuning, troubleshooting, batch generation, and model management.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, creators, and ComfyUI operators use this skill to inspect a local ComfyUI V8/Aki installation, generate common image workflow JSON, tune runtime parameters, and troubleshoot local setup issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The startup helper can run a local ComfyUI launcher or batch file from the configured bundle path. <br>
-Mitigation: Point the skill only at a ComfyUI installation whose files and launcher scripts you trust before using startup commands. <br>
-Risk: Generated workflows can overwrite or add files in the configured ComfyUI workflow directory. <br>
-Mitigation: Review the workflow save location and keep backups if preserving existing workflows matters. <br>
-Risk: InstantID workflows process face images. <br>
-Mitigation: Use InstantID only with face images you are allowed to process. <br>
+## Use Case:
 
+Developers and ComfyUI users use this skill to generate ComfyUI workflow JSON, inspect an Aki bundle installation, tune common generation parameters, and get troubleshooting guidance for local image-generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/comfyui-v8) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with JSON workflow snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write ComfyUI workflow JSON files under the configured local ComfyUI workflows directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill can launch local executables from a configurable ComfyUI path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only with a trusted local ComfyUI Aki bundle, verify the configured directory and files before startup actions, and avoid running the launcher with administrator privileges.
+
+Risk: The artifact includes troubleshooting advice to run as administrator or disable antivirus.
+
+Mitigation: Do not disable antivirus based solely on this skill's advice, and prefer normal user privileges while investigating startup failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/comfyui-v8)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and ComfyUI workflow JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write workflow JSON files into the configured ComfyUI workflows directory and may launch a local ComfyUI executable or batch file when startup actions are used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

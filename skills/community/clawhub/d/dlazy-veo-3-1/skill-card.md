@@ -1,45 +1,55 @@
-## Description: <br>
-Generate high-quality cinematic effects videos with Google Veo 3.1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality cinematic effects videos with Google Veo 3.1.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to generate or extend cinematic videos from prompts, images, or video inputs through the dLazy CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and can store it in the local CLI configuration. <br>
-Mitigation: Use an organization-scoped key, rotate or revoke it when needed, and prefer per-invocation environment variables when persistent local storage is not desired. <br>
-Risk: Prompts and user-selected media files are sent to dLazy hosted endpoints for generation. <br>
-Mitigation: Avoid private or sensitive prompts and media unless the user intends to upload them to the dLazy service. <br>
-Risk: The skill depends on the external @dlazy/cli package. <br>
-Mitigation: Use the pinned @dlazy/cli version from the skill metadata and prefer npx for on-demand execution when a persistent global binary is unnecessary. <br>
+## Use Case:
 
+Developers and creative users use this skill to generate short cinematic videos from text prompts, reference images or frames, or an existing video, and optionally save the results locally.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dlazyai/dlazy-veo-3-1) <br>
-- [dLazy Homepage](https://dlazy.com) <br>
-- [dLazy CLI Repository](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm Package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated media is returned through dLazy result URLs; async mode can return a task identifier for polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review found no AIG issues, but confidence is medium and coverage is incomplete; several references could not be resolved, and the login flow's connection to video generation was not established.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, review the CLI and its access requirements, including the login and API key flow.
+
+Risk: Prompts and local media supplied for generation are sent to dLazy's hosted API and media storage.
+
+Mitigation: Submit only prompts and media you are authorized to share, and protect the dLazy API key.
+
+## Reference(s):
+
+- [dLazy CLI repository (link listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Video files, JSON generation status and output metadata]
+
+**Output Format:** [Generated video assets as downloadable files or URLs, with JSON status responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation accepts a text prompt and optional reference media and settings; results can be saved locally.]
+
+## Skill Version(s):
+
+1.3.40 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

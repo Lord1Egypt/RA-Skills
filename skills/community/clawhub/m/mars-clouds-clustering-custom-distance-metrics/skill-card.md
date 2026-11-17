@@ -1,40 +1,49 @@
-## Description: <br>
-Define custom distance/similarity metrics for clustering and ML algorithms. Use when working with DBSCAN, sklearn, or scipy distance functions with application-specific metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define custom distance/similarity metrics for clustering and ML algorithms. Use when working with DBSCAN, sklearn, or scipy distance functions with application-specific metrics.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and ML practitioners use this skill for guidance on defining and applying custom distance or similarity metrics in DBSCAN, scikit-learn, and scipy workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example custom metric code may be incorrect or too slow for important or large datasets. <br>
-Mitigation: Review and test metric implementations for correctness and performance before use; consider vectorization or pre-computed distance matrices for large workloads. <br>
-Risk: Application-specific distance choices can change clustering behavior in misleading ways. <br>
-Mitigation: Validate chosen metrics against the data domain, expected invariances, and downstream clustering quality before relying on results. <br>
+## Use Case:
 
+Developers and ML practitioners use this skill to define custom distance or similarity functions for clustering and distance-matrix workflows in scikit-learn and SciPy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/mars-clouds-clustering-custom-distance-metrics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools, network access, or file outputs are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Example custom metric functions may be incorrect for a user's data or too slow for production ML workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the metric functions, test them on representative data, and use vectorization or precomputed distance matrices for large datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/mars-clouds-clustering-custom-distance-metrics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

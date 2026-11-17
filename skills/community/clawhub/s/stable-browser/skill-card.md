@@ -1,42 +1,57 @@
-## Description: <br>
-Set up reliable browser automation using Chrome DevTools Protocol (CDP) instead of the flaky browser extension relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up reliable browser automation using Chrome DevTools Protocol (CDP) instead of the flaky browser extension relay.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to configure OpenClaw browser automation through a local Chrome DevTools Protocol connection, especially when the browser extension relay is unstable. It supports setup, usage, and troubleshooting for headed or headless browser workflows such as scraping, form filling, and social media posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables a persistent Chrome debugging profile that can control logged-in browser sessions. <br>
-Mitigation: Use a dedicated Chrome profile only for intended automation accounts and avoid sensitive personal, financial, admin, or production sessions. <br>
-Risk: The setup can create an auto-start browser debugging service that remains available after setup. <br>
-Mitigation: Disable or remove the LaunchAgent or service when browser automation is not actively needed. <br>
-Risk: Browser automation may perform high-impact actions through authenticated sessions. <br>
-Mitigation: Require explicit user confirmation before posts, purchases, deletions, account changes, or other irreversible actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Manual Setup](references/manual-setup.md) <br>
-- [Stable Browser on ClawHub](https://clawhub.ai/jarvis563/stable-browser) <br>
+## Use Case:
 
+Developers and agents use this skill to configure a dedicated Chrome DevTools Protocol browser profile for more stable browser automation, including scraping, form filling, social media posting, and headed or headless browser control.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, JSON, and configuration code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local browser setup and troubleshooting guidance for OpenClaw CDP use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A persistent CDP-controlled browser profile can expose logged-in browser sessions if sensitive accounts are stored in it.
+
+Mitigation: Use a dedicated low-privilege browser account and avoid storing sensitive sessions in the CDP profile.
+
+Risk: The documented headless server setup can use --no-sandbox, which reduces Chrome process isolation.
+
+Mitigation: Remove --no-sandbox unless it is required in an isolated environment.
+
+Risk: LaunchAgent or systemd auto-start can leave the automation browser available when it is not actively needed.
+
+Mitigation: Disable any auto-start service when browser automation is not in use.
+
+## Reference(s):
+
+- [Manual Setup](references/manual-setup.md)
+- [Stable Browser ClawHub Page](https://clawhub.ai/jarvis563/skills/stable-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local Chrome CDP setup steps and OpenClaw browser configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

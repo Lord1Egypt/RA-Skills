@@ -1,13 +1,12 @@
 ---
 name: outlit
-description: Use when accessing Outlit customer intelligence through the `outlit` CLI, Outlit MCP tools, Pi tools, or @outlit/tools, including customer lookups, users, workspace users, timelines, facts, source evidence, semantic search, revenue, churn, SQL analytics, setup, notifications, integrations, or troubleshooting agent access.
+description: Use when accessing Outlit customer intelligence through the `outlit` CLI, Outlit MCP tools, Pi tools, or @outlit/tools, including customer lookups, users, workspace users, timelines, facts, source evidence, semantic search, revenue, churn, SQL analytics, identity splits, merge suggestions, setup, integrations, or troubleshooting agent access.
 metadata:
   openclaw:
     homepage: "https://outlit.ai"
     emoji: "🔦"
     requires:
       bins: [outlit]
-      env: [OUTLIT_API_KEY]
     primaryEnv: OUTLIT_API_KEY
     install:
       - kind: node
@@ -20,164 +19,204 @@ metadata:
 
 # Outlit
 
-Use Outlit to ground customer intelligence work in real customer data. Outlit joins product activity, conversations, billing, support, CRM, and web signals into a customer context graph and timeline for agents.
+Outlit joins product activity, conversations, billing, support, CRM, and web signals into customer profiles, timelines, facts, and source evidence for agents.
+
+## When to Use Outlit
+
+Use Outlit when the user needs real customer context for onboarding, adoption, retention, renewal, or expansion. Typical jobs include:
+
+- Find accounts with declining activity, renewal risk, expansion demand, or stalled onboarding.
+- Explain what changed for a customer and trace the answer to facts, events, conversations, or source records.
+- Prepare account research, customer-success follow-up, or custom analytics across customer data.
+- Inspect or configure an Outlit workspace capability when the user explicitly asks.
+
+Do not call Outlit for generic customer-success advice that does not need workspace data. Use the `outlit-sdk` skill instead when the user wants to instrument an application with tracking SDKs.
 
 ## Choose the Interface
 
 Use the highest-level interface already available:
 
-1. If `outlit_*` MCP or Pi tools are present, use those tools.
-2. Else if the `outlit` CLI is installed, use the CLI.
-3. Else guide setup:
-   - Coding agents: install/use the `outlit` CLI, then run `outlit onboard --agent <agent> --json` first. It starts browser auth when no API key is present outside CI, installs the Outlit skill, checks integration readiness, and prints next actions.
-   - Agent skills only: run `outlit setup --yes` or `outlit setup skills`.
-   - MCP clients: use the workspace MCP URL from **Settings > CLI & MCP**. Remote MCP uses OAuth in the client; do not hardcode shared endpoints, bearer headers, or API keys into remote MCP config.
-
-Use the `outlit-sdk` skill instead when the user wants to instrument an application with tracking SDKs.
+1. If suitable `outlit_*` MCP or Pi tools are present, call them.
+2. Otherwise, if the `outlit` CLI is installed, use it.
+3. Otherwise, guide setup:
+   - Coding agents: run `outlit onboard --agent <agent> --json`. Outside CI, it can start browser approval when no key is available, install this skill, validate access, and return next actions.
+   - Skills only: run `outlit --skill` to print this skill with no install, or `outlit setup --yes` / `outlit setup skills` to install a stub that points at it.
+   - MCP clients: use the workspace URL from **Settings > CLI & MCP** and complete OAuth in the client. Do not hardcode a shared endpoint, bearer header, or API key into remote MCP configuration.
 
 ## Quick Chooser
 
-| Need | MCP/Pi tool | CLI |
-|------|-------------|-----|
+Tool availability depends on the MCP server or Pi tool policy. If a named tool is absent, use the CLI only where your policy permits, or ask the user to enable the appropriate toolset.
+
+| Need | Tool when exposed | CLI |
+|------|-------------------|-----|
 | Browse customers | `outlit_list_customers` | `outlit customers list` |
-| Browse users/contacts | `outlit_list_users` | `outlit users list` |
-| Browse workspace users | `outlit_list_workspace_users` | - |
+| Browse customer-associated users | `outlit_list_people` | `outlit people list` |
+| Browse workspace users | `outlit_list_members` | `outlit ws-users list` |
 | Single account profile | `outlit_get_customer` | `outlit customers get` |
+| Current customer relationship | `outlit_get_customer` with `include: ["relationship"]` | `outlit customers get --include relationship` |
 | Chronology | `outlit_get_timeline` | `outlit customers timeline` |
-| Known structured signals | `outlit_list_facts` | `outlit facts list` |
-| Exact fact | `outlit_get_fact` | `outlit facts get` |
-| Deterministic source enumeration | `outlit_list_sources` | `outlit sources list` |
-| Exact source artifact | `outlit_get_source` | `outlit sources get` |
-| Thematic/fuzzy question | `outlit_search_customer_context` | `outlit search` |
-| Custom analytics | `outlit_schema` + `outlit_query` | `outlit schema` + `outlit sql` |
-| Send/post a notification | `outlit_send_notification` | `outlit notify` |
-| Integration status/setup | Use CLI unless explicit tools exist | `outlit integrations capabilities/setup/status` |
+| Known structured signals | `outlit_list_facts`, `outlit_get_fact` | `outlit facts list/get` |
+| Source enumeration and retrieval | `outlit_list_sources`, `outlit_get_source` | `outlit sources list/get` |
+| Thematic or fuzzy question | `outlit_search_customer_context` | `outlit search` |
+| Custom analytics | `outlit_get_schema` (`topic`: `views`, `view`, `event_types`, `examples`), then `outlit_query` | `outlit schema`, then `outlit sql` |
+| Customer ownership and access | `outlit_set_customer_owner`, `outlit_set_customer_access` | `outlit customers owner set`, `outlit customers grant/revoke` |
+| Browse automation destinations | `outlit_list_destinations` | `outlit destinations list/get` |
+| Configure automation destinations | `outlit_create_destination`, `outlit_update_destination` (including `enabled`) | `outlit destinations create/update/enable/disable` |
+| Archive a destination | `outlit_archive_destination` (preview, then confirm) | `outlit destinations archive` |
+| Integration readiness or setup | `outlit_list_integrations`, `outlit_setup_integration`, `outlit_get_setup_session` | `outlit integrations setup/status` |
+| Activation setting | `outlit_get_settings`, `outlit_preview_activation`, `outlit_update_settings` | `outlit activation get/preview/update/disable` |
+| Workspace timezone | `outlit_get_settings`, `outlit_update_settings` | `outlit settings get/update` |
+| Workspace Features | `outlit_list_features`, `outlit_create_feature`, `outlit_archive_feature` | `outlit features list/create/archive` |
+| Customer Feature usage and metered quantities | `outlit_get_customer` with `include: ["features", "meters"]` | `outlit customers get --include features,meters` |
+| Customer credit pools | `outlit_get_customer` with `include: ["credits"]` | `outlit customers get --include credits` |
+| Diagnose possible identity splits | `outlit_get_identity` | `outlit customers identity <customerId>` |
+| Browse saved merge suggestions and history | `outlit_list_merge_suggestions` | `outlit identity suggestions list` |
+| Reject a saved suggestion | `outlit_reject_merge_suggestion` | `outlit identity suggestions reject <suggestionId>` |
+| Preview or execute a customer merge | `outlit_merge_customers` | `outlit customers merge <survivorId> <duplicateId>` |
+| Track a merge operation | `outlit_get_merge` | `outlit customers merge-status <operationId>` |
+| See or load toolsets | `outlit_list_toolsets`, `outlit_load_toolset` | n/a |
+
+`outlit customers grant` also updates an existing collaborator's role; access commands are siblings of `owner`, not subcommands of it.
+
+Customer-associated users belong to customer accounts. Workspace users are internal Outlit members used for ownership and access actions. Do not substitute one ID type for the other.
+
+Find the fields customers can be filtered on (CRM and support tool account fields, SDK traits) with `outlit_list_customer_fields`.
+
+The earlier names `outlit_list_users`, `outlit_get_customer_relationship`, `outlit_get_customer_features`, `outlit_get_customer_credits`, `outlit_list_crm_fields` and `outlit_schema` answer as aliases until 2026-12-11 and then return an error naming the new tool. Use the new names.
+
+The earlier admin names (`outlit_get_destination`, `outlit_enable_destination`, `outlit_disable_destination`, `outlit_assign_customer_owner`, `outlit_grant_customer_access`, `outlit_update_customer_access`, `outlit_revoke_customer_access`, `outlit_list_workspace_users`, the integration setup and status tools, the workspace settings and customer activation tools) also answer as aliases until 2026-12-11.
+
+The earlier identity names (`outlit_get_customer_identity`, `outlit_list_identity_merge_suggestions`, `outlit_reject_identity_merge_suggestion`, `outlit_get_customer_merge_status`) also answer as aliases until 2026-12-11.
 
 Use customer lookups before SQL. SQL is for aggregates, cohorts, joins, time-series checks, and custom reporting.
 
 ## Working Rules
 
 - Start with the highest-level tool that can answer the question.
-- Gather evidence before drawing conclusions.
-- Separate evidence from interpretation in the final answer.
-- Cite the evidence kind: customer record, user record, workspace-user record, timeline event, fact, search result, source record, or SQL result.
-- If data is sparse, stale, or inconsistent, say how that affects confidence.
+- Gather evidence before drawing conclusions, and separate evidence from interpretation.
+- Cite the evidence kind: customer, user, workspace user, relationship item, timeline event, fact, search result, source, Feature usage, or SQL result.
+- Say when data is sparse, stale, truncated, partial, or inconsistent and how that affects confidence.
 - Request only the fields or include sections needed.
-- Results often include timestamps and source attribution; use them.
+- Treat write operations as changes to the user's workspace. Assign owners, change access, configure integrations, reject merge suggestions, merge customer records, or mutate destinations, activation, settings, and Features only when the user explicitly asks.
+- Do not treat integration `ready` status as proof that a sync or backfill finished or that customer data is current.
+- When the user wants to share Outlit product feedback, use `outlit_submit_feedback` when available with `body` and optional `area`/`context`, or `outlit feedback --body "..." --json`. Feedback does not open a support ticket.
 
-## Facts vs Search vs Sources vs Timeline
+## Facts, Search, Sources, and Timeline
 
 - Use `facts list` to browse known structured intelligence for one account.
-- Use `factTypes` for public customer-memory fact classes such as `CHURN_RISK`, `EXPANSION`, `SENTIMENT`, `BUDGET`, `REQUIREMENTS`, `PRODUCT_USAGE`, `CHAMPION_RISK`, or `CONTACT_INFO`.
-- Do not request anomaly-detector fact types as public filters, such as `CORE_ACTION_DECAY`, `CADENCE_BREAK`, `QUIET_ACCOUNT`, `ACTIVATION_RATE_DROP`, or `FUNNEL_DROPOFF`.
-- Use `facts get` when you already have a fact ID and need the canonical payload or best-effort `evidence`.
-- Use `search` for a specific question/theme, including cross-customer questions. Search returns grouped `source` and `fact` artifacts, not raw vector chunks.
-- Use `sources list` when you need deterministic enumeration of emails, calls, calendar events, support tickets, or CRM opportunities.
-- Use `sources get` when a fact/search/list result points to a concrete source and you need the exact artifact.
+- Public `factTypes` filters accept `CUSTOM`, `COMPANY_CHANGE`, `FUNDING_REVENUE`, `TECHNOLOGY`, `STRATEGY`, `COMPETITIVE`, `SENTIMENT`, `CHAMPION_RISK`, `EXPANSION`, `CHURN_RISK`, `TIMELINE`, `BUDGET`, `DECISION_MAKER`, `REQUIREMENTS`, `PRODUCT_USAGE`, `CONTACT_INFO`, `CONTACT_PREFERENCE`, `CONTACT_DEPARTURE`, `CONTACT_POSITION_CHANGE`, and `CONTACT_DISENGAGEMENT`.
+- Public `factCategories` filters accept `MEMORY`, `RELATIONSHIP`, and `CUSTOM`.
+- Contact-transition facts are neutral, source-backed observations about a known contact:
+  - `CONTACT_DEPARTURE`: the contact left or is leaving the customer's company. Exclude temporary leave, ordinary out-of-office notices, candidates, and people discussed as part of the customer's own business.
+  - `CONTACT_POSITION_CHANGE`: the contact changed title, department, team, or professional responsibility at the customer's company. This is not an Outlit relationship-role change; use `CONTACT_DEPARTURE` if the person left the company.
+  - `CONTACT_DISENGAGEMENT`: the contact explicitly stopped participating, organizing, responding, or owning the initiative. A single unanswered message, scheduling friction, or an out-of-office notice is insufficient. It remains extractable but does not currently wake Churn; current contact-transition Churn signals cover only confirmed departures and position changes.
+- `CHAMPION_RISK` remains historical and readable, but new extraction uses the specific contact-transition types instead of inferring a broad relationship judgment.
+- Do not request internal anomaly-detector types such as `CORE_ACTION_DECAY`, `CADENCE_BREAK`, `QUIET_ACCOUNT`, `ACTIVATION_RATE_DROP`, or `FUNNEL_DROPOFF` as public fact filters.
+- Use `facts get` with a known fact ID for the canonical payload or best-effort `evidence`.
+- Use `search` for a specific question or theme, including cross-customer questions. Search returns grouped source and fact artifacts, not raw vector chunks.
+- Use `sources list` for deterministic enumeration of emails, calls, calendar events, support tickets, CRM opportunities, or Slack messages.
+- Use `sources get` when another result points to a concrete source and you need the exact artifact.
 - Use `timeline` when order, recency, or sequence matters.
 
-Supported generic source types are `EMAIL`, `CALL`, `CALENDAR_EVENT`, `SUPPORT_TICKET`, and `OPPORTUNITY`. `CRM` and `CRM_OPPORTUNITY` are accepted aliases for opportunity filters.
+Supported generic source types are `EMAIL`, `CALL`, `CALENDAR_EVENT`, `SUPPORT_TICKET`, `OPPORTUNITY`, and `SLACK`. `CRM` and `CRM_OPPORTUNITY` are accepted aliases for opportunity filters.
 
-## Notifications
+## Identity and Customer Merges
 
-Notification tools are action tools. Use them only when the user explicitly asks you to send, post, or notify.
+When calls or other communications exist but product usage is absent, use `outlit_get_identity` for bounded split-record diagnosis alongside source readiness and usage checks. Candidates and shared participants are leads, not permission to combine evidence or proof of one company. Empty or incomplete identity results do not establish inactivity.
 
-- CLI: `outlit notify --title "..." --markdown "..."`.
-- File input: `--payload-file <path>`, `--markdown-file <path>`.
-- Optional context: `--message`, `--severity low|medium|high`, `--source`, `--subject`.
-- Destinations: `--destination slack` for the default Slack notifier, or `--destination slack:<channelId>` for a specific channel. Use comma-separated destinations for multiple targets.
-- Markdown is the preferred human-readable body; payload can carry JSON-serializable context.
+Merging is dangerous and has no supported undo. Only execute when the user authorized it and the records are certainly the same customer. Similar names, related domains, shared participants, a suggested match, or parent/subsidiary relationships are insufficient. The merge command defaults to preview; execution requires explicit permission, the reviewed preview token, and a stable request ID. Any pair involving an `INDIVIDUAL` requires an eligible saved suggestion.
 
-Do not notify by default just because an analysis found risk.
+Read [the identity and merge workflow](references/identity.md) before previewing, rejecting, executing, retrying, or tracking a merge. It includes the five tool contracts, CLI examples, and asynchronous status handling.
+
+Outlit-owned Churn and Renewal agents receive only the identity diagnostic for their assigned customer. Outlit-owned agents, including the Slack assistant acting for an admin, cannot reject suggestions or execute merges. Do not switch to CLI, API keys, or another identity to bypass an agent's tool policy or permissions. Customer-controlled agents may use the public tools within their granted authority.
+
+## Authorization
+
+Outlit API keys are independent workspace principals. They do not inherit their creator's human permissions or customer access. Key presets are Read only, Personal CLI, Full workspace access, and Custom. Browser onboarding issues a Personal CLI key with read access plus creator-bound integration setup; it does not grant general workspace integration administration.
+
+Current read grants are:
+
+- `customer_intelligence:read`
+- `workspace_members:read`
+- `analytics:read`
+- `activation:read`
+- `workspace_settings:read`
+
+Current write or setup grants are:
+
+- `destinations:manage`
+- `behavior_metrics:manage`
+- `integrations:connect_own`
+- `integrations:manage`
+- `activation:manage`
+- `workspace_settings:manage`
+- `customer_access:manage`
+- `customer_identity:review`
+- `customer_identity:merge`
+
+Identity diagnostics, saved suggestions, merge previews, and merge status require `customer_intelligence:read` for API keys. Rejection requires `customer_identity:review`; execution requires `customer_identity:merge`. The merge grant is excluded from Full workspace access and default presets; an admin must explicitly select it in a Custom key. OAuth MCP inherits the user's current permissions and record access.
+
+A valid key can still receive `403` when it lacks the required grant. Do not retry that failure. Ask a workspace admin to review the key under **Settings > API Keys**. Remote MCP OAuth uses the signed-in user's current workspace authorization instead of an Outlit API key.
 
 ## SQL Rules
 
 Call schema before writing SQL.
 
-- Use public analytics views, not backend table names: `activity`, `customers`, `users`, `revenue`.
-- Add explicit time filters to event/activity SQL.
+- Use public analytics views, not backend table names: `activity`, `customers`, `users`, `revenue`. `revenue` is ARR per customer per UTC day since 2026-11-06; there is no MRR column and no `arr_history` view.
+- Add explicit time filters to activity SQL.
 - Use `LIMIT`.
-- Divide money fields in cents by `100` for display.
-- Inspect JSON/trait column shapes before filtering nested values.
+- Money is in minor units: divide an amount (`arr_amount`) by `10^decimals` (`arr_decimals`) for display, and group or filter by its currency (`arr_currency`). Do not add amounts across currencies.
+- Inspect JSON or trait column shapes before filtering nested values.
 - Keep SQL read-only.
 
 For ClickHouse syntax and query patterns, read [references/sql-reference.md](references/sql-reference.md).
 
 ## CLI Setup
 
-Fast install:
+Install the CLI:
 
 ```bash
 curl -fsSL https://outlit.ai/install.sh | bash
-```
-
-Alternative installs:
-
-```bash
+# Alternatives:
 npm install -g @outlit/cli
 brew install outlitai/tap/outlit
 ```
 
-Auth resolution order is `--api-key`, `OUTLIT_API_KEY`, then stored credentials.
+Credential resolution order is `--api-key`, `OUTLIT_API_KEY`, then stored credentials.
 
 ```bash
+outlit onboard --agent <agent> --json
 outlit auth login --browser --json
-outlit auth login
-outlit auth login --key ok_your_api_key
 outlit auth status
 outlit auth whoami
-```
-
-Agent onboarding:
-
-```bash
-outlit onboard --agent codex --json
-outlit onboard --agent claude-code --json
-outlit onboard --agent gemini --json
-outlit onboard --agent droid --json
-outlit onboard --agent opencode --json
-outlit onboard --agent pi --json
-outlit onboard --agent openclaw --json
 outlit doctor --json
 ```
 
-`outlit onboard` is the first command for coding agents. It resolves an existing API key, starts browser auth when no key is available outside CI, validates the key, installs the Outlit skill for the named agent, checks integration setup readiness, and returns next actions. It does not connect integrations or ask for third-party credentials by itself; use `outlit integrations setup <provider>` for that. If `onboard` is missing, run `outlit upgrade` and fall back to the older agent setup commands:
+Plain `outlit auth login` automatically selects browser approval in a noninteractive agent shell outside CI. CI requires a key. `outlit --skill` prints the current skill with no auth or network. `outlit setup --yes` and `outlit setup skills` install a stub skill that runs it, but do not configure MCP clients or integrations.
 
-```bash
-outlit setup --yes
-outlit setup codex
-outlit setup claude-code
-outlit setup gemini
-outlit setup droid
-outlit setup opencode
-outlit setup pi
-outlit setup openclaw
-outlit setup skills
-```
-
-`outlit setup skills` opens the interactive Skills installer for `outlit` and optional extras like `outlit-sdk`.
+If `onboard` is unavailable, run `outlit upgrade`, then run `outlit --skill`, or use `outlit setup <agent>` / `outlit setup skills` to install the stub.
 
 ## CLI Output Behavior
 
-- Interactive terminal: readable tables, spinners, colors.
-- Piped stdout, `--json`, CI, or dumb terminal: JSON.
-- Force JSON: `--json`.
+- Interactive terminal: readable tables, spinners, and colors.
+- Piped output, `--json`, CI, or `TERM=dumb`: JSON.
+- Successful JSON is written to stdout. JSON errors are written to stderr with a nonzero exit status.
 
-AI agents commonly receive JSON automatically because stdout is piped.
+Agents should check the exit status and capture stderr instead of assuming every JSON payload is on stdout.
 
 ## MCP Setup
 
-Get the workspace URL from **Settings > CLI & MCP** in Outlit. It looks like:
+Get the workspace URL from **Settings > CLI & MCP**:
 
 ```text
 https://mcp.outlit.ai/w/<workspace-slug>/mcp
 ```
 
-Add that URL directly to the MCP client and complete OAuth in the client. Verify with `outlit_schema` or by asking for available analytics views.
+Add that URL directly to the MCP client and complete OAuth. Verify the connection with one of the tools actually exposed by the client.
+
+With no query parameter the connection lists every tool. For the slim list, add `?toolsets=core,work,meta` to the URL (toolsets: `core`, `work`, `identity`, `admin`, `meta`). A connection still answers a call to any public tool its grants allow. Call `outlit_list_toolsets` to see what a toolset holds and the URL that lists it, and `outlit_load_toolset` for the tools' full descriptions and input schemas.
 
 ## Pi and Tool Packages
-
-For Pi agents:
 
 ```bash
 pi install npm:@outlit/pi
@@ -185,75 +224,51 @@ export OUTLIT_API_KEY=ok_your_api_key
 pi
 ```
 
-`@outlit/pi` registers default customer intelligence tools and notification action tools. SQL tools are available but not enabled by default; use analytical/custom toolsets only for agents that should run read-only SQL.
+`@outlit/pi` registers `defaultToolNames` unless a custom policy is supplied. SQL and the broader public catalog are not enabled by default. Use `analyticalToolNames` for the default reads plus SQL, or `piToolNames` for the Pi-supported public catalog only when the agent should receive those capabilities.
 
-For custom TypeScript tool clients, use `@outlit/tools` and its exported `customerToolContracts`, `defaultAgentToolNames`, `actionToolNames`, `sqlToolNames`, `analyticalAgentToolNames`, and `allCustomerToolNames`.
+For custom TypeScript clients, `@outlit/tools` exports `publicToolContracts`, `publicToolNames`, `consumerToolPolicies`, `defaultToolNames`, `analyticalToolNames`, `piToolNames`, `cliToolNames`, `allPublicToolNames`, and `sqlToolNames`.
 
 ## Integrations
 
-Use integration commands only when the user asks to inspect or set up connected data sources. Disconnect integrations through the Outlit web app; the CLI does not expose destructive integration removal.
+Use `setup` to connect or repair a data source; use `status` to inspect readiness. The current CLI exposes two commands:
 
-```bash
-outlit integrations capabilities --json
-outlit integrations capabilities hubspot --json
-outlit integrations setup hubspot --json
-outlit integrations setup salesforce --json
-outlit integrations setup granola --config '{"apiKey":"..."}' --json
-outlit integrations setup pylon --config '{"apiToken":"..."}' --json
-outlit integrations status --session <sessionId> --json
-outlit integrations status hubspot --json
-outlit integrations list --json
+```text
+outlit integrations setup <provider>
+outlit integrations status [provider]
 ```
 
-Use `capabilities` before setup. It tells you the provider `setupMode`, credential type, whether CLI setup is supported, required credential fields, and follow-up steps such as CRM pipeline/stage mapping or webhooks. Provider-specific setup belongs after the provider name, for example `outlit integrations setup hubspot` and later provider subflows like `outlit integrations setup hubspot mappings` or `outlit integrations setup pylon webhooks`.
+Interactive `setup` negotiates capabilities first. It can securely prompt for a credential, open a validated browser handoff, or ask the user to confirm a CRM or Mixpanel mapping.
 
-For browser-based providers, `setup` returns a `connectUrl` and `sessionId`; surface the URL/code to the user when browser approval is required, then poll with `outlit integrations status --session <sessionId> --json`.
-
-For direct credential providers, pass JSON config and do not expect a session ID:
+Do not ask the user to paste provider secrets into chat. Do not put secrets in model-visible tool calls, command arguments, logs, shell history, or process listings. When automation must supply provider configuration, have the user run the command in a trusted local terminal and send one strict JSON object through stdin:
 
 ```bash
-outlit integrations setup stripe --config '{"apiKey":"rk_..."}' --json
-outlit integrations setup pylon --config '{"apiToken":"..."}' --json
-outlit integrations setup fireflies --config '{"apiKey":"..."}' --json
-outlit integrations setup granola --config '{"apiKey":"..."}' --json
-outlit integrations setup posthog --config '{"apiKey":"...","region":"us","projectId":"..."}' --json
-outlit integrations setup supabase --config '{"projectUrl":"https://...","serviceRoleKey":"..."}' --json
-outlit integrations setup clerk --config '{"secretKey":"sk_..."}' --json
+printf '%s\n' '{"credentials":{"apiKey":"<provider-api-key>"}}' \
+  | outlit integrations setup fireflies --config-stdin --json
 ```
 
-CRM providers can require pipeline/stage mappings after authentication. Run the follow-up command returned by `capabilities` or setup, such as `outlit integrations setup hubspot mappings --json`, without config first to fetch available pipelines, then rerun with `--config '{"mappings":[...]}'` to save mappings and start CRM syncs.
+Use `--accept-recommended` only to accept the exact CRM recommendation returned by the current setup response. Explicit mappings also go through `--config-stdin`.
 
-Pylon, Stripe, PostHog, Gong, and other providers can require webhook setup after credentials are connected. Run the follow-up command returned by `capabilities` or setup, such as `outlit integrations setup pylon webhooks --json`, to get manual provider setup details such as webhook URL, required headers/secrets, required events, docs links, and current status. Stripe can also accept `--config '{"webhookSecret":"whsec_..."}'`. These follow-up commands do not use `--session`.
+JSON mode never prompts, opens a browser, or polls. It returns the setup result, including any handoff or required next step. `status` reports configuration readiness as `not_connected`, `awaiting_auth`, `setup_required`, `ready`, or `requires_intervention`. It does not expose setup-session or synchronization metadata.
 
-If capabilities mark a follow-up as unsupported by the CLI, use the Outlit platform settings or ask the user before proceeding.
+Disconnect integrations through the Outlit web app. The CLI does not expose destructive integration removal.
 
 ## Troubleshooting
 
-- Missing API key: run `outlit onboard --agent <agent> --json` for coding agents, or tell the user to set `OUTLIT_API_KEY` / run `outlit auth login --browser --json` for non-agent setup.
-- Setup issues: run `outlit doctor --json`.
-- Stale CLI: run `outlit upgrade`; set `OUTLIT_NO_UPDATE_NOTIFIER=1` to suppress update notices.
-- Missing `onboard` or `integrations capabilities`: upgrade the CLI before continuing.
-- MCP auth issues: use the workspace MCP URL and OAuth flow; do not assume API-key-only auth for remote MCP.
-- Empty data: check integrations and sync status before concluding the customer has no activity.
+- Missing API key: use `outlit onboard --agent <agent> --json`, `outlit auth login`, or set `OUTLIT_API_KEY`. CI requires a key.
+- Valid key but `403`: inspect the key's grants under **Settings > API Keys**.
+- Setup issues: run `outlit doctor --json` and `outlit integrations status [provider] --json`.
+- Stale CLI or missing current commands: run `outlit upgrade`.
+- MCP auth issues: use the workspace URL and OAuth flow. Do not assume remote MCP requires an API key.
+- Empty data: inspect integration readiness and data freshness before concluding that a customer has no activity. If communications and usage disagree, check identity coverage too.
 
 ## Docs
 
-- Docs home: https://docs.outlit.ai/
-- CLI overview: https://docs.outlit.ai/cli/overview
-- CLI commands: https://docs.outlit.ai/cli/commands
-- CLI integrations: https://docs.outlit.ai/cli/integrations
-- AI agent setup: https://docs.outlit.ai/cli/ai-agents
-- Agent skills: https://docs.outlit.ai/ai-integrations/skills
-- MCP integration: https://docs.outlit.ai/ai-integrations/mcp
-- Pi agents: https://docs.outlit.ai/ai-integrations/pi
-- Public tools API: https://docs.outlit.ai/api-reference/tools
-- Customer context graph: https://docs.outlit.ai/concepts/customer-context-graph
+Start with the [documentation index](https://docs.outlit.ai/llms.txt), then read the relevant pages for your task. The [Outlit docs](https://docs.outlit.ai/) cover the product, CLI, MCP, API, and Outlit SDKs.
 
 ## Common Prompts
 
 - "What changed for this customer this week?"
 - "Who is paying but inactive for 30 days?"
+- "Why does this account need attention?"
 - "What pricing objections show up in conversations?"
-- "List recent opportunity sources for Acme."
-- "Which channels are driving revenue?"
-- "Notify Slack with the high-confidence expansion candidates."
+- "Which Features are customers using before renewal?"

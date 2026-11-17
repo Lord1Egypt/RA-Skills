@@ -1,43 +1,58 @@
-## Description: <br>
-Jimeng Skills helps an agent generate images and videos with Volcengine Jimeng AI and return plain-text results with local file paths, remote links, and optional public sharing links for enterprise messaging tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces image and video generation requests through Volcengine Jimeng AI and returns plain text summaries, remote URLs, public share URLs, and local file paths suitable for enterprise IM clients.
 
-## Publisher: <br>
-[klaus1534](https://clawhub.ai/user/klaus1534) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klaus1534](https://clawhub.ai/user/klaus1534)
 
-## Use Case: <br>
-Developers and agents use this skill to run Jimeng image or video generation tasks and package the results for OpenClaw workflows in Feishu, WeCom, DingTalk, or similar enterprise messaging environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced Jimeng script and skill.yaml are not included in the artifact. <br>
-Mitigation: Confirm those files come from a trusted source before installing or running the skill. <br>
-Risk: The skill requires Volcengine credentials for Jimeng generation. <br>
-Mitigation: Use temporary or least-privilege credentials where possible and avoid exposing VOLCENGINE_AK, VOLCENGINE_SK, or VOLCENGINE_TOKEN in logs or shared outputs. <br>
-Risk: Public sharing links can expose generated files outside the local environment. <br>
-Mitigation: Set JIMENG_PUBLIC_BASE_URL only when the generated files are intended to be publicly reachable. <br>
+## Use Case:
 
+Developers and automation agents use this skill to request Jimeng image or video generation and package results for Feishu, WeCom, DingTalk, and debugging workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/klaus1534/jimeng-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/klaus1534) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text with optional shell command examples and JSON-like result fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns local file paths, remote URLs, optional public URLs, pending status text, and simple numbered text suitable for enterprise IM clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The runnable implementation referenced by the skill is missing from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the publisher to include skill.yaml, scripts/openclaw-jimeng.ts, package.json, and a lockfile before installing or running the skill.
+
+Risk: The examples execute an unpinned npm tool.
+
+Mitigation: Prefer pinned dependency execution or local-only dependency execution after review.
+
+Risk: Volcengine credentials may be present during testing.
+
+Mitigation: Use least-privilege or temporary Volcengine credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/klaus1534/skills/jimeng-skills)
+- [Publisher profile](https://clawhub.ai/user/klaus1534)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Plain text with URL and file-path lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remoteUrls, publicUrls, localFiles, and pending status when a task is not complete.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

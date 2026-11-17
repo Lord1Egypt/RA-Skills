@@ -1,45 +1,65 @@
-## Description: <br>
-Migrates model code from the latest vLLM upstream repository into vllm-plugin-FL pinned at vLLM 0.13.0, then adapts, registers, validates, benchmarks, serves, and compares the migration against an upstream server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrates model code from the latest vLLM upstream repository into the vllm-plugin-FL project pinned at vLLM v0.13.0, including compatibility adaptation, registration, and verification.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and engineers use this skill to backport newly released vLLM model implementations into vllm-plugin-FL while preserving upstream behavior and verifying correctness with tests, benchmarks, serving checks, and token-level E2E comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad GPU and remote-server control, including commands that can terminate GPU workloads and manage remote vLLM servers. <br>
-Mitigation: Install and run it only in a dedicated development or GPU test environment, and gate or remove blanket GPU kill commands before use on shared or production machines. <br>
-Risk: Remote E2E workflows can use SSH, default root-oriented settings, and remote process management. <br>
-Mitigation: Restrict remote targets to trusted hosts, prefer scoped non-root SSH users and keys, and verify the target host and command before starting or stopping remote services. <br>
-Risk: Serving or benchmarking model directories with vLLM and remote-code trust can execute model-supplied code. <br>
-Mitigation: Serve and benchmark only trusted model directories after reviewing their source and configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to backport newly released upstream vLLM model implementations into vllm-plugin-FL. It guides code copying, compatibility patches, model registration, tests, benchmarking, serve/request smoke tests, and token-level E2E comparison against an upstream server.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Migration Procedure](references/procedure.md) <br>
-- [Compatibility Patches](references/compatibility-patches.md) <br>
-- [Operational Rules](references/operational-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code edits, configuration snippets, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify vllm-plugin-FL model and configuration files and may run validation, benchmark, serving, and E2E comparison commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can forcibly terminate GPU processes during benchmark or serve setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated development environment and require user confirmation before terminating processes.
+
+Risk: The skill can launch local or remote vLLM services that may be broadly reachable or unauthenticated.
+
+Mitigation: Bind services to localhost or a protected network and restrict access before serving models.
+
+Risk: The workflow uses trust-remote-code for model serving and benchmarking.
+
+Mitigation: Review exact model code before enabling trust-remote-code, or disable it when not required.
+
+Risk: Remote E2E verification can use SSH with disabled host-key checking and root-style defaults.
+
+Mitigation: Validate remote configuration values, use non-root SSH, and enable host-key checking before remote execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wbavon/skills/model-migrate-flagos)
+- [README](artifact/README.md)
+- [Migration Procedure](artifact/references/procedure.md)
+- [vLLM 0.13.0 Compatibility Patches](artifact/references/compatibility-patches.md)
+- [Operational Rules](artifact/references/operational-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown progress updates with inline shell commands, code edits, configuration guidance, and verification reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify vllm-plugin-FL model and config files, run local or remote vLLM verification commands, and write benchmark or E2E result files during migration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact frontmatter metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

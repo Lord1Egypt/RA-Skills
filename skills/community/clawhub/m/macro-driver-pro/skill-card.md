@@ -1,41 +1,56 @@
-## Description: <br>
-Macro-Driver-Pro provides real-time DXY and US10Y macro-financial data for agent workflows that need market context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time DXY and US10Y macro-financial data for agent workflows, with SkillPay micro-billing declared by the release.
 
-## Publisher: <br>
-[longxrise](https://clawhub.ai/user/longxrise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longxrise](https://clawhub.ai/user/longxrise)
 
-## Use Case: <br>
-External developers and agent operators use this skill to request macro reports with DXY and US10Y signals for automated trading checks, research dashboards, and investment-writing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated calls can trigger SkillPay billing through a user identifier without clear execution-time controls. <br>
-Mitigation: Use per-call approval, budget limits, and loop protection before allowing automated workflows to call the endpoint. <br>
-Risk: Requests may include unnecessary personal or account data in the payload. <br>
-Mitigation: Send only the minimum required payload data and avoid including extra personal or account details. <br>
+## Use Case:
 
+Agents, analysts, and investment research workflows use this skill to fetch macro-market signals for pre-trade checks, research article data pulls, and automated macro dashboards.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/longxrise/macro-driver-pro) <br>
-- [OpenAPI schema](https://macro-driver-pro.vercel.app/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON API response with macro-financial report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on current market data and the caller-supplied request payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Billing-sensitive calls rely on a caller-supplied user_id while the manifest declares no authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where the provider documents authenticated and signed payment authorization, replay protection, strict request validation, and privacy handling for user_id.
+
+Risk: The OpenAPI request schema allows arbitrary additional properties and does not document a typed response schema.
+
+Mitigation: Validate inputs and outputs in the calling agent, and avoid automated trading or billing actions based solely on the response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/longxrise/skills/macro-driver-pro)
+- [OpenAPI specification](https://macro-driver-pro.vercel.app/openapi.json)
+- [Legal information URL declared in manifest](https://github.com/longxrise/macro-driver-pro#readme)
+- [Source code URL declared in manifest](https://github.com/longxrise/macro-driver-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [API response containing a macro-financial report; the OpenAPI response schema is not specified.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No authentication is declared; /api/v1/macro-report accepts an open JSON object and may require user_id for billing.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

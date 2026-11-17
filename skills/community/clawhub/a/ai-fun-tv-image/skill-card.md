@@ -1,42 +1,59 @@
-## Description: <br>
-Helps an agent generate text-to-image assets through ai.fun.tv, including project creation, task submission, polling, image URL return, optional downloads, and token handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to create ai.fun.tv text-to-image projects, submit prompts with the Fun-GP-image2 default model, poll for results, return image URLs, and optionally save generated images.
 
-## Publisher: <br>
-[amireux0013](https://clawhub.ai/user/amireux0013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amireux0013](https://clawhub.ai/user/amireux0013)
 
-## Use Case: <br>
-Developers and external users use this skill to have an agent create ai.fun.tv text-to-image jobs, monitor completion, return generated image URLs, and optionally save generated image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation requests are sent to ai.fun.tv. <br>
-Mitigation: Install and use the skill only when ai.fun.tv is an acceptable image-generation provider for the prompt content. <br>
-Risk: A provided authorization token may be saved locally for reuse. <br>
-Mitigation: Use the environment variable or no-save option when persistence is not desired, and delete or rotate saved tokens on shared machines or workspaces. <br>
+## Use Case:
 
+External users and developers use this skill to generate prompt-based images with ai.fun.tv for posters, promotional visuals, social cover images, and related creative workflows. The skill handles token lookup, project creation, task submission, result polling, and optional local downloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amireux0013/ai-fun-tv-image) <br>
-- [ai.fun.tv](https://ai.fun.tv) <br>
-- [ai.fun.tv OpenClaw token page](https://ai.fun.tv/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; script output is JSON containing project ID, task ID, image URLs, and optional saved file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are returned as remote URLs and may be downloaded to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may persist an ai.fun.tv authentication token in a local authorization.txt file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an environment variable or --authorization with --no-save-authorization, keep the skill directory private, and review file permissions before use with real credentials.
+
+Risk: The script can download provider-supplied image URLs to a local output directory.
+
+Mitigation: Use --output-dir only when the provider-returned URLs are trusted and local downloads are acceptable for the environment.
+
+Risk: The security verdict is suspicious due to credential persistence and URL download behavior.
+
+Mitigation: Review the skill before installing or running it with account credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amireux0013/skills/ai-fun-tv-image)
+- [ai.fun.tv](https://ai.fun.tv)
+- [ai.fun.tv OpenClaw authentication](https://ai.fun.tv/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls, Files]
+
+**Output Format:** [JSON responses with image URLs and optional local file paths; guidance may include Markdown with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an ai.fun.tv authorization token; defaults to Fun-GP-image2 and can request one to four images per run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

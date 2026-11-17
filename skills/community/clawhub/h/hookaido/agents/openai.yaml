@@ -1,4 +1,4 @@
 interface:
   display_name: "Hookaido Operator"
-  short_description: "Webhook/webhooks flows, queue ops, MCP, and gRPC-pull"
-  default_prompt: "Use this skill for Hookaido inbound/outbound webhook flows, queue triage, MCP operations, and HTTP/gRPC pull workers."
+  short_description: "Durable, signature-verified webhooks for OpenClaw agents and other consumers"
+  default_prompt: "Use this skill to put Hookaido in front of an OpenClaw Gateway or other webhook consumer: verify provider HMAC, queue durably, push or pull events, triage the DLQ, and diagnose via MCP."

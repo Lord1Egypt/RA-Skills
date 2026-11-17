@@ -1,41 +1,54 @@
-## Description: <br>
-Generate CSS and SVG animation code snippets using bash and Python for UI animations, keyframes, and transition effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CSS and SVG animation code snippets using bash and Python for UI animations, keyframes, transitions, motion paths, and easing effects.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and UI engineers use this skill to create, store, preview, chain, and export reusable CSS keyframes, transitions, easing functions, and SVG animation snippets from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes persistent local animation data and can export or preview files at user-provided paths. <br>
-Mitigation: Use trusted output paths, avoid sensitive system locations, and review generated files before sharing or opening them. <br>
-Risk: Generated preview HTML is executable browser content derived from stored animation definitions. <br>
-Mitigation: Treat preview HTML as generated code and inspect it before opening, publishing, or sending it to others. <br>
+## Use Case:
 
+Developers and designers use this skill to generate reusable CSS and SVG animation snippets, preview animations in HTML, and export animation definitions for UI implementation.
 
-## Reference(s): <br>
-- [Animation on ClawHub](https://clawhub.ai/ckchzh/animation) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, CSS, SVG, or HTML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write local JSONL state under ~/.animation and export CSS, SVG, or preview HTML files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated exports and previews can write to caller-selected output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output paths before execution and avoid allowing untrusted prompts or project content to choose writable destinations.
+
+Risk: Stored animation content is embedded into generated preview HTML without sanitization.
+
+Mitigation: Use trusted animation names and values, and open generated preview HTML cautiously in an isolated or low-risk browser context.
+
+## Reference(s):
+
+- [Animation skill page](https://clawhub.ai/ckchzh/skills/animation)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [JSON responses, raw CSS/SVG code, shell command examples, and self-contained HTML previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated animation records may be stored locally and exported to caller-selected CSS, SVG, or HTML files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Conflict detection and error monitoring for AI agents. The 'something's off' detector. Part of the AI Brain series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conflict detection and error monitoring for AI agents. The 'something's off' detector. Part of the AI Brain series.
 
-## Publisher: <br>
-[ImpKind](https://clawhub.ai/user/ImpKind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[impkind](https://clawhub.ai/user/impkind)
 
-## Use Case: <br>
-External developers and agent builders can use this skill as an AI Brain series concept note for future conflict detection, contradiction monitoring, error tracking, and uncertainty awareness in agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Future versions that add memory storage, monitoring hooks, scripts, network calls, or permissions could change the security profile. <br>
-Mitigation: Treat this release as documentation only and re-review future versions before installation or deployment if operational behavior is added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ImpKind/anterior-cingulate-memory) <br>
-- [Hippocampus](https://www.clawhub.ai/skills/hippocampus) <br>
-- [Amygdala Memory](https://www.clawhub.ai/skills/amygdala-memory) <br>
-- [Basal Ganglia Memory](https://www.clawhub.ai/skills/basal-ganglia-memory) <br>
-- [Insula Memory](https://www.clawhub.ai/skills/insula-memory) <br>
+## Use Case:
 
+Developers and agent builders use this skill to frame conflict detection, contradiction monitoring, error tracking, and uncertainty awareness behaviors for AI agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown skill guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-operational placeholder; no scripts, network calls, data access, or file changes are requested by this release.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and openclaw metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Future versions may add monitoring code, memory-writing behavior, local indexing, or background execution.
+
+Mitigation: Re-review and scan future versions before installation, especially before enabling memory writes, broad local data access, or background behavior.
+
+Risk: Conflict and uncertainty guidance could cause an agent to over-flag or under-flag ambiguous information.
+
+Mitigation: Review generated conflict-detection behavior against the target workflow and keep human review for high-impact decisions.
+
+## Reference(s):
+
+- [Anterior Cingulate Memory on ClawHub](https://clawhub.ai/impkind/skills/anterior-cingulate-memory)
+- [Hippocampus](https://www.clawhub.ai/skills/hippocampus)
+- [Amygdala Memory](https://www.clawhub.ai/skills/amygdala-memory)
+- [Basal Ganglia Memory](https://www.clawhub.ai/skills/basal-ganglia-memory)
+- [Insula Memory](https://www.clawhub.ai/skills/insula-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown and natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only draft; no executable output is included in this version.]
+
+## Skill Version(s):
+
+0.1.1 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+name: selfmedia-reuse-map-cn
+slug: selfmedia-reuse-map-cn
+display_name: 旧内容二次利用清单
+version: 1.0.1
+description: 面向中文小店经营者、小说作者与自媒体创作者：接收用户自有内容清单和原文摘要，交付适合更新、拆分、合集的内容清单及新角度建议，并区分原始资料与推断。用于盘活既有内容库；关键字段缺失时明确提示，不抓取对标作品或照搬爆款。
+repository: https://github.com/xxjrq/selfmedia-reuse-map-cn
+license: MIT-0
+tags:
+  - 内容运营
+  - 内容复用
+  - 选题策划
+  - 中文创作
+trigger_words:
+  - 旧内容二次利用
+  - 内容盘活
+  - 文章拆分
+  - 内容合集
+interface:
+  display_name: 旧内容二次利用清单
+  short_description: 从自有内容库找出可更新、拆分与合集的下一轮选题清单
+  default_prompt: 请根据我提供的自有内容清单和原文摘要，制作旧内容二次利用清单；缺少字段时先指出，不要编造或引用外部爆款。
+self_test: ./scripts/self-test.sh
+sources:
+  - url: https://github.com/social-media-skills/skills
+    use: 仅核对内容再利用 Skill 的公开用途；本仓库说明、样例与实现均为原创。
+  - url: https://github.com/social-media-skills/skills/blob/main/skills/content-recycling/SKILL.md
+    use: 仅核对相关公开 Skill 的用途；未复制源码或文案。
+icon: icon-512.png

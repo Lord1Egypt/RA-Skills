@@ -1,41 +1,54 @@
-## Description: <br>
-将 Markdown 标题大纲转换为 KMind 导图，并导出 SVG 或 PNG 图片。支持主题、布局、连线、深浅色和彩虹分支配置。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 Markdown 标题大纲转换为 KMind 导图，并导出 SVG 或 PNG 图片，支持主题、布局、连线、深浅色和彩虹分支配置。
 
-## Publisher: <br>
-[suka233](https://clawhub.ai/user/suka233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suka233](https://clawhub.ai/user/suka233)
 
-## Use Case: <br>
-Chinese-speaking users and agents use this skill to turn Markdown heading outlines, notes, meeting agendas, reading notes, brainstorming lists, and project plans into KMind mind maps. It can generate PNG or SVG images and editable .kmindz.svg project files for continued editing in KMind Zen. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local renderer reads user-provided Markdown or KMind content and writes output files where requested. <br>
-Mitigation: Use trusted input paths and avoid sensitive notes when local file processing is not acceptable. <br>
-Risk: PNG and SVG image export can open a temporary localhost render session in a Chromium-family browser. <br>
-Mitigation: Use the skill only when this local browser workflow is acceptable; otherwise use editable .kmindz.svg export or manual review. <br>
+## Use Case:
 
+Developers, agents, and Chinese-speaking users use this skill to turn Markdown heading outlines for meetings, notes, brainstorming, and project plans into local KMind mind map images or editable KMind files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suka233/kmind-markdown-to-mindmap-cn) <br>
-- [KMind Zen](https://kmind.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated files are PNG, SVG, or .kmindz.svg.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Automatic PNG or SVG export requires an available local Chromium-family browser; editable .kmindz.svg export does not require browser rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter, package.json, CHANGELOG, released 2026-05-18) <br>
+Risk: The skill launches a local Chromium browser and briefly runs a local 127.0.0.1 render server without render-endpoint authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted local sessions, avoid highly sensitive Markdown, and prefer environments where the browser and localhost access are controlled.
+
+Risk: Automatic PNG or SVG export may fail when a compatible local Chromium browser is unavailable.
+
+Mitigation: Use the documented manual browser mode or export editable .kmindz.svg when browser rendering is not available.
+
+## Reference(s):
+
+- [KMind Zen](https://kmind.app)
+- [ClawHub skill page](https://clawhub.ai/suka233/skills/kmind-markdown-to-mindmap-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Shell command guidance plus PNG, SVG, or editable .kmindz.svg files with JSON status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Automatic PNG and SVG export depends on Node.js and an available local Chromium browser; editable .kmindz.svg export does not require browser rendering.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter, package.json, changelog, server release evidence; released 2026-05-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

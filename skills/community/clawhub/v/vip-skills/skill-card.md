@@ -1,44 +1,59 @@
-## Description: <br>
-唯品会技能集 helps agents support Vipshop shopping workflows, including account login, product search, product detail lookup, promotion discovery, and image-based product search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+唯品会（vip.com）电商服务技能包，帮助代理登录唯品会、搜索商品、查看商品详情、浏览促销活动，并通过图片搜索相似商品。
 
-## Publisher: <br>
-[vip](https://clawhub.ai/user/vip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vip](https://clawhub.ai/user/vip)
 
-## Use Case: <br>
-External users and shopping agents use this skill to search Vipshop products, inspect product details, browse promotions, authenticate with a Vipshop account, and find visually similar products from a selected image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves and reuses a Vipshop login token locally. <br>
-Mitigation: Install only if account-based access is acceptable, and review or remove ~/.vipshop-user-login/tokens.json when retained access is no longer wanted. <br>
-Risk: Image search uploads selected local image files to Vipshop. <br>
-Mitigation: Upload only images intended for Vipshop image search and avoid submitting sensitive or private images. <br>
-Risk: Generated product links may carry login context. <br>
-Mitigation: Do not share generated exchange-token links outside the intended session. <br>
+## Use Case:
 
+External shopping users and shopping-assistant agents use this skill to complete Vipshop shopping workflows, including QR-code login, keyword search, image-based product search, product-detail lookup, and promotion discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vip/vip-skills) <br>
-- [Vipshop User Login API Reference](vipshop-user-login/references/api_reference.md) <br>
-- [Vipshop User Login Integration Guide](vipshop-user-login/references/integration_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown shopping results and guidance based on JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product links, login status, promotion data, image-search results, and account-linked exchange-token URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: Product links produced while logged in may contain Vipshop login-session material visible in chat, logs, screenshots, or copied links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing logged-in transcripts, logs, screenshots, or copied product links; prefer a fixed release that returns ordinary product URLs or short-lived server-side redirects.
+
+Risk: The skill stores and reuses a local Vipshop login session for later API calls.
+
+Mitigation: Use it only on trusted devices, keep the token file private, and clear the local Vipshop login session when the shopping workflow is complete.
+
+Risk: Image-search workflows upload selected local images to Vipshop services.
+
+Mitigation: Upload only images intended for Vipshop search and avoid images containing sensitive personal or confidential content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vip/skills/vip-skills)
+- [Vipshop QR Login API Reference](artifact/vipshop-user-login/references/api_reference.md)
+- [Vipshop Login Integration Guide](artifact/vipshop-user-login/references/integration_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with structured JSON from helper scripts and Vipshop product links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include QR-code login status, product tables, prices, promotion details, image-search results, and links derived from the user's active Vipshop session.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

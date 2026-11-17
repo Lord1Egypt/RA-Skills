@@ -1,44 +1,62 @@
-## Description: <br>
-A modern web-based dashboard for managing OpenClaw agents with real-time monitoring, token usage tracking, skill management, and multi-language support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A web-based dashboard for managing OpenClaw agents with real-time monitoring, token usage tracking, skill management, subagent dispatch management, and multi-language support.
 
-## Publisher: <br>
-[mikezhuyan](https://clawhub.ai/user/mikezhuyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikezhuyan](https://clawhub.ai/user/mikezhuyan)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run a local dashboard for monitoring agents, reviewing token usage, managing skills, configuring subagent dispatch, and creating or updating OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can modify OpenClaw agents, skills, configuration, and local model credential copies. <br>
-Mitigation: Run it only in trusted local environments and review configuration or skill changes before relying on them. <br>
-Risk: The dashboard exposes powerful local administration endpoints without clear access protection. <br>
-Mitigation: Keep the service bound to localhost and avoid exposing it to a LAN or public network. <br>
-Risk: The artifact includes a helper for opening network access. <br>
-Mitigation: Do not run the firewall-opening helper unless the network exposure is intentional and separately controlled. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local dashboard for viewing OpenClaw agent status, reviewing token and cost statistics, creating agents, managing subagent dispatch, and enabling or disabling skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikezhuyan/digital-staff-dashboard) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mikezhuyan) <br>
-- [OpenClaw schema validation guide](artifact/OPENCLAW_SCHEMA_README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, shell commands, guidance, JSON API responses] <br>
-**Output Format:** [Markdown instructions with inline shell commands; the running dashboard serves HTML and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can modify local OpenClaw agent, skill, model, session, and dashboard configuration files when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: The dashboard exposes administrative OpenClaw controls over a network service without visible authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a controlled local environment, bind the service to 127.0.0.1, and add authentication before exposing any API endpoints.
+
+Risk: Agent, subagent, skill, model, avatar, and dashboard configuration endpoints can modify local OpenClaw state.
+
+Mitigation: Back up OpenClaw configuration before use and review changes made through the dashboard before relying on updated agents or prompts.
+
+Risk: The bundled LAN port-opening helper can make the dashboard reachable from other machines on the network.
+
+Mitigation: Do not use the port-opening helper unless network exposure has been explicitly approved and protected by firewall rules and authentication.
+
+Risk: The skill-installation endpoint invokes the OpenClaw CLI to install requested skills.
+
+Mitigation: Restrict dashboard access and install only trusted skill identifiers from expected publishers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikezhuyan/skills/digital-staff-dashboard)
+- [Publisher profile](https://clawhub.ai/user/mikezhuyan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions, shell commands, local web UI, JSON API responses, and OpenClaw configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a Flask dashboard that reads and modifies local OpenClaw agent, skill, session, avatar, and dashboard configuration state.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

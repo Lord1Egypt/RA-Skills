@@ -1,0 +1,3 @@
+# PDF verification script (verify-samples.py) dependency
+# Install: pip install -r requirements.txt
+pymupdf>=1.24

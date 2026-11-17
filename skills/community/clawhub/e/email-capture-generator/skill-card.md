@@ -1,43 +1,57 @@
-## Description: <br>
-Build high-converting lead magnets, squeeze pages, and email capture funnels using proven 5-section conversion frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-converting lead magnets, squeeze pages, and email capture funnels using proven 5-section conversion frameworks, including opt-in forms, thank you pages, and delivery automation hooks.
 
-## Publisher: <br>
-[cameron-jovan](https://clawhub.ai/user/cameron-jovan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cameron-jovan](https://clawhub.ai/user/cameron-jovan)
 
-## Use Case: <br>
-Marketing teams, founders, and agents supporting them use this skill to draft email capture landing pages for lead magnets such as ebooks, checklists, templates, quizzes, free tools, video series, cheat sheets, and swipe files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated pages collect visitor email addresses and can expose users to ordinary privacy and consent risks. <br>
-Mitigation: Before publishing, use a trusted HTTPS form endpoint, provide real privacy and terms links, include clear consent and unsubscribe language, and handle email data according to applicable policy. <br>
-Risk: Unverified testimonials, subscriber counts, deadlines, or security claims could mislead visitors. <br>
-Mitigation: Verify all proof, urgency, and security claims before deployment, and remove or rewrite claims that cannot be substantiated. <br>
-Risk: Substituted template values could introduce unsafe HTML if copied from untrusted input. <br>
-Mitigation: Escape substituted values before publishing generated pages and review the final HTML before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cameron-jovan/email-capture-generator) <br>
-- [Ebook capture example](examples/ebook-capture.md) <br>
-- [Checklist capture example](examples/checklist-capture.md) <br>
+## Use Case:
 
+External marketers, founders, and developers use this skill to generate lead magnet landing pages, squeeze pages, opt-in forms, and related email capture funnel copy.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance and HTML page templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces email capture page copy, opt-in form structure, placeholder substitutions, and publishing guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated pages can expose users to unsafe destinations if form actions, image URLs, privacy links, or terms links are set to untrusted targets.
+
+Mitigation: Use only trusted HTTPS destinations for form actions, image URLs, privacy links, and terms links before publishing.
+
+Risk: User-provided marketing copy inserted into generated pages could create unsafe or malformed HTML if it is not escaped.
+
+Mitigation: Use an escaping template engine or sanitize user-provided copy before publishing generated pages.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cameron-jovan/skills/email-capture-generator)
+- [Publisher Profile](https://clawhub.ai/user/cameron-jovan)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Squeeze Page Template](artifact/templates/squeeze-page.html)
+- [Ebook Capture Example](artifact/examples/ebook-capture.md)
+- [Checklist Capture Example](artifact/examples/checklist-capture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and HTML templates with configurable placeholder values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static marketing page structure and copy patterns; generated form actions, image URLs, privacy links, and terms links should be trusted HTTPS destinations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Monitors agent scheduling, execution, memory, retrieval, and token-efficiency metrics, records logs, detects bottlenecks, raises alerts, and suggests performance optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors agent scheduling, execution, and memory performance metrics, records logs and alerts, analyzes trends, and suggests optimizations.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor agent performance trends, identify scheduling and memory bottlenecks, configure alerts, and guide optimization work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Performance metrics and alerts may expose sensitive operational details if sent to an overly broad Feishu destination. <br>
-Mitigation: Confirm the Feishu destination and access controls before use, and record only aggregate metrics that exclude prompts, secrets, user content, customer data, and sensitive task details. <br>
-Risk: The configured hourly collection interval and 30-day retention period may conflict with an organization's monitoring or data-retention requirements. <br>
-Mitigation: Review and adjust the collection interval and retention setting for the deployment environment before enabling the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to track dispatch success, latency, retry and fallback rates, parallel execution, memory quality, retrieval accuracy, token efficiency, and related performance trends.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daxiangnaoyang/performance-monitoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and PowerShell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces performance metric logs, threshold configuration, Feishu alert guidance, trend analysis, and optimization recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Performance logs, memory metadata, or Feishu tables may expose sensitive workflow information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm which metrics are sent to Feishu, restrict table and alert access, and scope log directory and retention settings before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daxiangnaoyang/skills/performance-monitoring)
+- [Publisher profile](https://clawhub.ai/user/daxiangnaoyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and PowerShell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes metric thresholds, alerting guidance, log formats, and optimization suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

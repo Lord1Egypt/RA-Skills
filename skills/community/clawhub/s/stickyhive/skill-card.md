@@ -1,46 +1,55 @@
-## Description: <br>
-Manage communities, schedule posts, automate workflows, and run DM sequences across Skool, Circle, Mighty Networks, Discord, and Slack via the stickyhive CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage communities, schedule posts, automate workflows, and run DM sequences across Skool, Circle, Mighty Networks, Discord, and Slack via the stickyhive CLI.
 
-## Publisher: <br>
-[alexblr](https://clawhub.ai/user/alexblr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexblr](https://clawhub.ai/user/alexblr)
 
-## Use Case: <br>
-External operators and agent-assisted community teams use StickyHive to list communities and spaces, create or schedule posts, manage automation workflows, run DM sequences, and configure webhooks across supported community platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent publish, delete, reschedule, or bulk schedule posts in live communities. <br>
-Mitigation: Require explicit user approval and review target space IDs, post IDs, content, and schedule times before running write actions. <br>
-Risk: The skill requires a sensitive StickyHive API key. <br>
-Mitigation: Use a test or least-privilege key where possible and avoid exposing the key in prompts, logs, screenshots, or shared terminal output. <br>
-Risk: Workflow and DM sequence commands can automate messages, enroll members, and toggle or run automations. <br>
-Mitigation: Review workflow configs, sequence steps, member IDs, daily limits, and dry-run results before enabling, running, or changing enrollments. <br>
-Risk: Webhook commands can create or remove integrations that send event data to external URLs. <br>
-Mitigation: Verify webhook destinations and event scopes before creation or deletion. <br>
+## Use Case:
 
+External community operators, developers, and agent users use this skill to manage StickyHive communities, schedule and publish posts, configure automations, run DM sequences, and manage webhooks through CLI commands.
 
-## Reference(s): <br>
-- [ClawHub StickyHive release](https://clawhub.ai/alexblr/stickyhive) <br>
-- [StickyHive website](https://stickyhive.com) <br>
-- [StickyHive dashboard](https://app.stickyhive.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands return structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STICKYHIVE_API_KEY and optional STICKYHIVE_API_URL environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and package.json) <br>
+Risk: The skill can publish, delete, reschedule, run, toggle, enroll, and create webhook actions that affect live community operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege or sandbox API key and require explicit operator confirmation before executing state-changing commands.
+
+Risk: A custom STICKYHIVE_API_URL can route authenticated requests, including the API key, to an untrusted destination.
+
+Mitigation: Leave STICKYHIVE_API_URL unset unless the destination is controlled and trusted.
+
+## Reference(s):
+
+- [StickyHive ClawHub Skill Page](https://clawhub.ai/alexblr/skills/stickyhive)
+- [StickyHive README](README.md)
+- [StickyHive Skill Instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown command guidance; executed CLI commands return structured JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STICKYHIVE_API_KEY; STICKYHIVE_API_URL can override the API destination.]
+
+## Skill Version(s):
+
+0.1.1 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

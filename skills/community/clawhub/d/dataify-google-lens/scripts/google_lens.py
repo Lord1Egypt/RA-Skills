@@ -16,7 +16,7 @@ from typing import Any
 
 
 API_URL = "https://scraperapi.dataify.com/request"
-TOKEN_MISSING_MESSAGE = "缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+TOKEN_MISSING_MESSAGE = "缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
 
 FIELDS = (
     "url",

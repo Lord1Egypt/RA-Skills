@@ -1,0 +1,254 @@
+/* 乳制品市场行情报告 - print-friendly styles */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+:root {
+  --up: #d32f2f;       /* 中国股市: 涨 = 红 */
+  --down: #388e3c;     /* 跌 = 绿 */
+  --flat: #757575;
+  --ink: #1f2933;
+  --ink-soft: #4a5568;
+  --muted: #94a3b8;
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --accent: #1e40af;
+  --accent-soft: #dbeafe;
+  --warn: #b45309;
+  --warn-soft: #fef3c7;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  background: var(--bg);
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 28px 80px;
+}
+
+/* ===== Header ===== */
+.report-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 60%, #2563eb 100%);
+  color: #fff;
+  padding: 28px 32px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15);
+}
+.report-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.report-header .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  opacity: 0.92;
+}
+.report-header .meta span { display: inline-block; }
+.report-header .meta strong { font-weight: 600; }
+
+/* ===== KPI cards ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 0 0 28px;
+}
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+.kpi .label {
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.kpi .value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.kpi .delta {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.kpi .delta.up   { color: var(--up); }
+.kpi .delta.down { color: var(--down); }
+.kpi .delta.flat { color: var(--flat); }
+
+/* ===== Sections ===== */
+section.report-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 22px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+section.report-section h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+section.report-section h2 .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+section.report-section .subtitle {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin: 0 0 16px;
+}
+section.report-section p { margin: 0 0 12px; }
+section.report-section ul, section.report-section ol { padding-left: 22px; margin: 0 0 12px; }
+section.report-section li { margin-bottom: 6px; }
+
+/* ===== Tables ===== */
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+table.data th, table.data td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+table.data th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+table.data tbody tr:hover { background: #f8fafc; }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ===== Pills (price change) ===== */
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pill.up   { background: #fde8e8; color: var(--up); }
+.pill.down { background: #e6f4ea; color: var(--down); }
+.pill.flat { background: #eef2f7; color: var(--flat); }
+
+/* ===== AI Insight callout ===== */
+.insight {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  font-size: 13.5px;
+}
+.insight .tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.insight ul { padding-left: 20px; margin: 0; }
+.insight li { margin-bottom: 4px; }
+
+/* ===== Source footer ===== */
+.source {
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px dashed var(--border);
+  padding-top: 10px;
+}
+
+/* ===== GDT calc table highlight ===== */
+.gdt-calc {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.gdt-calc h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #3730a3;
+}
+.gdt-calc .formula {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  color: #4338ca;
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #c7d2fe;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* ===== Sparkline ===== */
+.sparkline {
+  width: 100%;
+  height: 60px;
+  display: block;
+  margin: 8px 0 4px;
+}
+
+/* ===== Report footer ===== */
+.report-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== Print ===== */
+@media print {
+  body { background: #fff; }
+  main { max-width: 100%; padding: 0; }
+  section.report-section, .report-header, .kpi {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  .report-header { background: #1e40af !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

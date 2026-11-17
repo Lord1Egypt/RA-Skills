@@ -1,47 +1,63 @@
-## Description: <br>
-A-share intelligence investigation skill that gathers and cross-checks company, competitor, event, background, and claim information and returns structured reports with credibility labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A deep A-share intelligence investigation and analysis skill that helps users research A-share companies, competitors, public sentiment events, people backgrounds, and factual claims, then produces structured investigation reports with source and credibility annotations.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External investors, product and market teams, journalists, business development teams, and general users use this skill to research A-share companies, compare competitors, track public sentiment, perform background checks, and verify claims. Reports are intended to support decision-making with source-aware findings and credibility annotations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global (content focus: China A-share market and Chinese-language sources) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated investigation reports, including business or personal-background content, may be sent to RedFox. <br>
-Mitigation: Use a revocable REDFOX_API_KEY and manually review, redact, or block report contents before allowing any external save. <br>
-Risk: Person-background screening can create privacy, consent, or sensitive personal-data concerns. <br>
-Mitigation: Avoid private-person profiling and sensitive personal data; limit use to lawful, consented, and proportionate business contexts. <br>
-Risk: Investigation findings may include incorrect, single-source, or misleading information. <br>
-Mitigation: Confirm key claims against authoritative sources and treat credibility labels as review aids rather than final proof. <br>
+## Use Case:
 
+Investors, product and marketing teams, content operators, journalists, business development teams, and other external users use this skill to collect, compare, and validate public information for A-share research, competitive analysis, sentiment tracking, background checks, and fact verification.
 
-## Reference(s): <br>
-- [README.en.md](README.en.md) <br>
-- [Core Workflow](references/core_workflow.md) <br>
-- [Investigation Modes](references/investigation-modes.md) <br>
-- [Engine Strategy](references/engine-strategy.md) <br>
-- [Investigation Templates](references/investigation-templates.md) <br>
-- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?souce=github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, source notes, credibility labels, and inline shell commands for RedFox report saving] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY for saving generated investigation reports to RedFox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated investigation reports may include sensitive business, financial, or personal-background content and are uploaded to RedFox as part of the save workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when report upload is acceptable; prefer a local-only or explicit opt-in version for sensitive investigations.
+
+Risk: The skill requires REDFOX_API_KEY for saving investigation records.
+
+Mitigation: Store the key in an environment variable, keep it out of prompts, logs, code, and output files, and avoid printing it in terminal output.
+
+Risk: A-share investigation reports can influence financial decisions while relying on public and cross-sourced information.
+
+Mitigation: Treat reports as research support rather than investment advice, review original sources, and confirm high-impact claims independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/ai-intelligence-investigator)
+- [Publisher profile](https://clawhub.ai/user/redfox-data)
+- [RedFox API keys](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Core workflow](references/core_workflow.md)
+- [Investigation modes](references/investigation-modes.md)
+- [Engine strategy](references/engine-strategy.md)
+- [Investigation templates](references/investigation-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown investigation reports with tables, source notes, credibility labels, and occasional shell configuration commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be uploaded to RedFox after generation and require REDFOX_API_KEY for the save workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

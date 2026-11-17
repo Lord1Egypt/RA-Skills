@@ -1,43 +1,55 @@
-## Description: <br>
-按公历日期查询农历、宜忌、吉神凶煞等黄历信息。当用户说：明天宜不宜搬家？这周五适合领证吗？或类似黄历择日时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按公历日期查询农历、宜忌、吉神凶煞等黄历信息，帮助代理回答搬家、领证、结婚等黄历择日问题。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agents use this skill to look up Chinese almanac details for a Gregorian date, including lunar date, zodiac, auspicious and inauspicious activities, directional fortune data, and related Huangli fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each lookup sends the configured JisuAPI AppKey and requested date to JisuAPI, which may affect provider logs, quota, or billing. <br>
-Mitigation: Use a JisuAPI key intended for this workflow, monitor provider usage, and avoid querying dates that reveal sensitive user intent when that matters. <br>
-Risk: The skill depends on an external API and may fail when the key is missing, expired, unauthorized, rate-limited, or the provider service is unavailable. <br>
-Mitigation: Check JISU_API_KEY configuration and handle API error codes or request failures before relying on the returned almanac result. <br>
+## Use Case:
 
+External users and agents use this skill to look up Chinese almanac details for a Gregorian date and summarize auspicious or inauspicious activities, lunar calendar information, zodiac, and related Huangli fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/huangli) <br>
-- [JisuAPI Huangli API documentation](https://www.jisuapi.com/api/huangli) <br>
-- [JisuAPI website](https://www.jisuapi.com/) <br>
-- [JisuAPI Huangli date endpoint](https://api.jisuapi.com/huangli/date) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API result interpreted as human-facing Markdown or text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable; each query uses year, month, and day.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Requested dates and the API key are sent to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted JisuAPI key with low quota where possible, and avoid submitting sensitive context beyond the date required for lookup.
+
+Risk: Huangli results may be mistaken for general scheduling, legal, medical, or other sensitive advice.
+
+Mitigation: Frame outputs as almanac lookup results and avoid using the skill for sensitive advice unrelated to Huangli interpretation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/huangli)
+- [JisuAPI Huangli API Documentation](https://www.jisuapi.com/api/huangli)
+- [JisuAPI](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text guidance, Shell commands, Configuration]
+
+**Output Format:** [JSON from the helper script, typically summarized by the agent as concise text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JISU_API_KEY environment variable; sends requested dates to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Operate the saizeriya.js command-line interface on behalf of a user for Saizeriya mobile-ordering sessions, including session start or resume, state inspection, cart management, receipt details, and CLI command calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the saizeriya.js command-line interface on behalf of a user.
 
-## Publisher: <br>
-[nakasyou](https://clawhub.ai/user/nakasyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nakasyou](https://clawhub.ai/user/nakasyou)
 
-## Use Case: <br>
-External users and agent operators use this skill to run a Saizeriya ordering CLI carefully on the user's behalf, including reading session state, looking up item codes, managing a cart, and submitting confirmation-gated restaurant actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a live restaurant ordering session, including actions that submit orders or call staff. <br>
-Mitigation: Require explicit user confirmation before submit, call staff, or call dessert commands, and state the exact real-world action before running it. <br>
-Risk: QR/session data and local session storage may expose or affect the wrong table if reused incorrectly. <br>
-Mitigation: Use only QR or session data supplied for the intended table, treat scanned QR values as untrusted until passed to the requested Saizeriya command, and consider a dedicated SAIZERIYA_CLI_HOME when session storage isolation matters. <br>
+## Use Case:
 
+External users use this skill to have an agent operate Saizeriya mobile-ordering sessions through the saizeriya.js CLI, including starting or resuming sessions, checking state, managing carts, and viewing account or receipt details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nakasyou/saizeriya) <br>
-- [qr-scanner-cli](https://github.com/victorperin/qr-scanner-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke npx or bunx commands and continue interactive CLI sessions through stdin when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can run third-party npm packages with the local agent's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reviewed, pinned, preinstalled versions of saizeriya.js and the QR scanner where possible, and run the agent in a restricted environment.
+
+Risk: Some CLI actions can affect a real restaurant order or reveal account and receipt details.
+
+Mitigation: Require explicit confirmation before submitting orders, changing carts, calling staff, or showing sensitive session information.
+
+Risk: QR photo scanning introduces untrusted input into the ordering workflow.
+
+Mitigation: Treat scanned QR values as untrusted and pass them only to the requested Saizeriya CLI start command after user intent is clear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nakasyou/skills/saizeriya)
+- [qr-scanner-cli](https://github.com/victorperin/qr-scanner-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and concise user-facing summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request explicit user confirmation before actions that submit orders, change carts, call staff, or expose account and receipt details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

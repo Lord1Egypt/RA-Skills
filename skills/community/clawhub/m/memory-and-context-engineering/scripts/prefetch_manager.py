@@ -39,8 +39,9 @@
 - 缓存命中率提升：15-20%
 """
 
+import threading
 import time
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any, Tuple, Callable
 from datetime import datetime, timedelta
 from collections import defaultdict, deque
 from dataclasses import dataclass, field
@@ -99,6 +100,9 @@ class PrefetchManager:
         # 访问历史（键 -> 访问模式）
         self.access_patterns: Dict[str, AccessPattern] = {}
 
+        # 并发安全锁
+        self._lock = threading.RLock()
+
         # 访问序列（用于预测下一个访问）
         self.access_sequence: deque = deque(maxlen=window_size)
 
@@ -124,31 +128,32 @@ class PrefetchManager:
             task_type: 任务类型
             context: 上下文
         """
-        now = datetime.now()
+        with self._lock:
+            now = datetime.now()
 
-        # 更新访问模式
-        if key not in self.access_patterns:
-            self.access_patterns[key] = AccessPattern(
-                key=key,
-                access_times=deque(maxlen=self.window_size),
-                access_count=0,
-                last_access=now,
-                task_type=task_type,
-                context=context,
-            )
+            # 更新访问模式
+            if key not in self.access_patterns:
+                self.access_patterns[key] = AccessPattern(
+                    key=key,
+                    access_times=deque(maxlen=self.window_size),
+                    access_count=0,
+                    last_access=now,
+                    task_type=task_type,
+                    context=context,
+                )
 
-        pattern = self.access_patterns[key]
-        pattern.access_times.append(now)
-        pattern.access_count += 1
-        pattern.last_access = now
+            pattern = self.access_patterns[key]
+            pattern.access_times.append(now)
+            pattern.access_count += 1
+            pattern.last_access = now
 
-        if task_type:
-            pattern.task_type = task_type
-        if context:
-            pattern.context = context
+            if task_type:
+                pattern.task_type = task_type
+            if context:
+                pattern.context = context
 
-        # 更新访问序列
-        self.access_sequence.append(key)
+            # 更新访问序列
+            self.access_sequence.append(key)
 
     def _calculate_similarity(
         self,
@@ -298,79 +303,80 @@ class PrefetchManager:
         返回：
             预测结果
         """
-        if not self.access_sequence:
-            return PrefetchPrediction(
-                predicted_keys=[],
-                confidence=0.0,
-                strategy="no_data",
+        with self._lock:
+            if not self.access_sequence:
+                return PrefetchPrediction(
+                    predicted_keys=[],
+                    confidence=0.0,
+                    strategy="no_data",
+                )
+
+            current_time = current_time or datetime.now()
+
+            # 收集所有预测
+            all_predictions: List[Tuple[str, int, str]] = []  # (key, score, strategy)
+
+            # 1. 序列模式预测
+            sequence_predictions = self._predict_by_sequence()
+            for key in sequence_predictions:
+                all_predictions.append((key, 3, "sequence"))
+
+            # 2. 相似度预测
+            if current_key:
+                similarity_predictions = self._predict_by_similarity(current_key)
+                for key in similarity_predictions:
+                    all_predictions.append((key, 2, "similarity"))
+
+            # 3. 任务类型预测
+            if task_type:
+                task_predictions = self._predict_by_task_type(task_type)
+                for key in task_predictions:
+                    all_predictions.append((key, 2, "task_type"))
+
+            # 4. 时间模式预测
+            time_predictions = self._predict_by_time_pattern(current_time)
+            for key in time_predictions:
+                all_predictions.append((key, 1, "time_pattern"))
+
+            # 聚合预测（去重并排序）
+            key_scores: Dict[str, Tuple[int, str]] = {}
+            for key, score, strategy in all_predictions:
+                if key not in key_scores:
+                    key_scores[key] = (score, strategy)
+                else:
+                    # 取最高分数
+                    if score > key_scores[key][0]:
+                        key_scores[key] = (score, strategy)
+
+            # 排序
+            sorted_keys = sorted(
+                key_scores.items(),
+                key=lambda x: x[1][0],
+                reverse=True,
             )
 
-        current_time = current_time or datetime.now()
+            # 限制数量
+            predicted_keys = [k for k, _ in sorted_keys[:self.prefetch_limit]]
 
-        # 收集所有预测
-        all_predictions: List[Tuple[str, int, str]] = []  # (key, score, strategy)
-
-        # 1. 序列模式预测
-        sequence_predictions = self._predict_by_sequence()
-        for key in sequence_predictions:
-            all_predictions.append((key, 3, "sequence"))
-
-        # 2. 相似度预测
-        if current_key:
-            similarity_predictions = self._predict_by_similarity(current_key)
-            for key in similarity_predictions:
-                all_predictions.append((key, 2, "similarity"))
-
-        # 3. 任务类型预测
-        if task_type:
-            task_predictions = self._predict_by_task_type(task_type)
-            for key in task_predictions:
-                all_predictions.append((key, 2, "task_type"))
-
-        # 4. 时间模式预测
-        time_predictions = self._predict_by_time_pattern(current_time)
-        for key in time_predictions:
-            all_predictions.append((key, 1, "time_pattern"))
-
-        # 聚合预测（去重并排序）
-        key_scores: Dict[str, Tuple[int, str]] = {}
-        for key, score, strategy in all_predictions:
-            if key not in key_scores:
-                key_scores[key] = (score, strategy)
+            # 计算置信度（基于预测数量和分数）
+            if not predicted_keys:
+                confidence = 0.0
+                strategy = "no_prediction"
             else:
-                # 取最高分数
-                if score > key_scores[key][0]:
-                    key_scores[key] = (score, strategy)
+                confidence = min(1.0, sum(score for _, (score, _) in sorted_keys) / (self.prefetch_limit * 3))
+                strategy = "mixed"
 
-        # 排序
-        sorted_keys = sorted(
-            key_scores.items(),
-            key=lambda x: x[1][0],
-            reverse=True,
-        )
+            self.stats["total_prefetches"] += 1
+            self.stats["strategies"][strategy] += 1
 
-        # 限制数量
-        predicted_keys = [k for k, _ in sorted_keys[:self.prefetch_limit]]
-
-        # 计算置信度（基于预测数量和分数）
-        if not predicted_keys:
-            confidence = 0.0
-            strategy = "no_prediction"
-        else:
-            confidence = min(1.0, sum(score for _, (score, _) in sorted_keys) / (self.prefetch_limit * 3))
-            strategy = "mixed"
-
-        self.stats["total_prefetches"] += 1
-        self.stats["strategies"][strategy] += 1
-
-        return PrefetchPrediction(
-            predicted_keys=predicted_keys,
-            confidence=confidence,
-            strategy=strategy,
-            metadata={
-                "key_scores": {k: v for k, v in key_scores.items()},
-            },
-        )
+            return PrefetchPrediction(
+                predicted_keys=predicted_keys,
+                confidence=confidence,
+                strategy=strategy,
+                metadata={
+                    "key_scores": {k: v for k, v in key_scores.items()},
+                },
+            )
 
     def prefetch(
         self,
@@ -378,6 +384,7 @@ class PrefetchManager:
         cache_set_func,  # 向缓存设置数据的函数
         current_key: Optional[str] = None,
         task_type: Optional[str] = None,
+        storage_get_func: Optional[Callable[[str], Optional[Any]]] = None,
     ) -> List[str]:
         """
         执行预取
@@ -387,68 +394,89 @@ class PrefetchManager:
             cache_set_func: 缓存设置函数
             current_key: 当前访问的键
             task_type: 任务类型
+            storage_get_func: 底层存储读取函数（key -> 数据）。
+                预取在缓存 miss 时通过它从持久存储加载数据并回填缓存；
+                若为 None，则跳过实际加载（预取仅记录 miss）。
 
         返回：
             成功预取的键列表
         """
-        # 预测
-        prediction = self.predict(current_key, task_type)
+        with self._lock:
+            # 预测
+            prediction = self.predict(current_key, task_type)
 
-        if not prediction.predicted_keys:
-            return []
+            if not prediction.predicted_keys:
+                return []
 
-        # 预取（仅预取不在缓存中的）
-        prefetched_keys = []
+            # 预取（仅预取不在缓存中的）
+            prefetched_keys = []
 
-        for key in prediction.predicted_keys:
-            # 检查是否已在缓存中
-            if cache_get_func(key) is None:
-                # 尝试从存储加载
-                try:
-                    data = self._load_from_storage(key)
-                    if data is not None:
-                        cache_set_func(key, data)
-                        prefetched_keys.append(key)
-                        self.stats["prefetch_hits"] += 1
-                    else:
+            for key in prediction.predicted_keys:
+                # 检查是否已在缓存中
+                if cache_get_func(key) is None:
+                    # 尝试从存储加载
+                    try:
+                        data = self._load_from_storage(key, storage_get_func)
+                        if data is not None:
+                            cache_set_func(key, data)
+                            prefetched_keys.append(key)
+                            self.stats["prefetch_hits"] += 1
+                        else:
+                            self.stats["prefetch_misses"] += 1
+                    except Exception as e:
+                        print(f"Prefetch error for key {key}: {e}")
                         self.stats["prefetch_misses"] += 1
-                except Exception as e:
-                    print(f"Prefetch error for key {key}: {e}")
-                    self.stats["prefetch_misses"] += 1
 
-        return prefetched_keys
+            return prefetched_keys
 
-    def _load_from_storage(self, key: str) -> Optional[Any]:
+    def _load_from_storage(
+        self,
+        key: str,
+        storage_get_func: Optional[Callable[[str], Optional[Any]]] = None,
+    ) -> Optional[Any]:
         """
-        从存储加载数据（子类实现）
+        从底层存储加载数据（预取数据来源）
 
-        这是一个占位方法，实际应用中需要根据存储方式实现
+        该方法作为存储加载的适配点，真实实现由调用方注入
+        ``storage_get_func``（key -> 数据）。传递后据此加载真实数据；
+        未传递时返回 None，表示当前环境无法从持久层读取（预取降级为 miss）。
+
+        Args:
+            key: 存储键
+            storage_get_func: 可选的真实存储读取函数
+
+        Returns:
+            存储中的数据；无法加载时返回 None
         """
-        # 实际应用中，这里会从 Redis、磁盘或其他存储加载数据
+        if storage_get_func is not None:
+            return storage_get_func(key)
+        # 未注入读取实现：无法从持久层加载，如实返回 None（不伪造数据）
         return None
 
     def get_stats(self) -> Dict[str, Any]:
         """获取统计信息"""
-        total_attempts = self.stats["prefetch_hits"] + self.stats["prefetch_misses"]
-        hit_rate = self.stats["prefetch_hits"] / total_attempts if total_attempts > 0 else 0
+        with self._lock:
+            total_attempts = self.stats["prefetch_hits"] + self.stats["prefetch_misses"]
+            hit_rate = self.stats["prefetch_hits"] / total_attempts if total_attempts > 0 else 0
 
-        return {
-            **self.stats,
-            "hit_rate": hit_rate,
-            "total_access_patterns": len(self.access_patterns),
-            "access_sequence_length": len(self.access_sequence),
-        }
+            return {
+                **self.stats,
+                "hit_rate": hit_rate,
+                "total_access_patterns": len(self.access_patterns),
+                "access_sequence_length": len(self.access_sequence),
+            }
 
     def clear(self) -> None:
         """清空访问历史"""
-        self.access_patterns.clear()
-        self.access_sequence.clear()
-        self.stats = {
-            "total_prefetches": 0,
-            "prefetch_hits": 0,
-            "prefetch_misses": 0,
-            "strategies": defaultdict(int),
-        }
+        with self._lock:
+            self.access_patterns.clear()
+            self.access_sequence.clear()
+            self.stats = {
+                "total_prefetches": 0,
+                "prefetch_hits": 0,
+                "prefetch_misses": 0,
+                "strategies": defaultdict(int),
+            }
 
 
 class CacheWarmer:

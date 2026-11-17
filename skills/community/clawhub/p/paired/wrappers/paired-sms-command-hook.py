@@ -94,8 +94,28 @@ TRUSTED_NUMBERS_FILE = Path.home() / ".config" / "paired" / "trusted-numbers.con
 SPEAK_BIN = f"{_HOME}/bin/paired-call-and-speak"
 MAX_TTS_CHARS = 1500
 
-# Owner-only — only this sender_id is honored
-ALLOWED_SENDER_ID = "${TELEGRAM_OWNER_CHAT_ID}"
+# Owner-only gate: only this Telegram sender_id (chat_id) is honored. Resolved
+# from real configuration, not a placeholder — PAIRED_OWNER_CHAT_ID if set,
+# otherwise TG_CHAT_ID from the mode-0600 telegram.env file. If neither is
+# configured this stays None and every command is rejected (fail-closed).
+def _load_owner_chat_id() -> str | None:
+    v = os.environ.get("PAIRED_OWNER_CHAT_ID", "").strip()
+    if v:
+        return v
+    try:
+        if TG_ENV_PATH.exists():
+            for line in TG_ENV_PATH.read_text().splitlines():
+                line = line.strip()
+                if line.startswith("#") or "=" not in line:
+                    continue
+                k, val = line.split("=", 1)
+                if k.strip() == "TG_CHAT_ID":
+                    return val.strip().strip('"').strip("'") or None
+    except OSError:
+        pass
+    return None
+
+ALLOWED_SENDER_ID = _load_owner_chat_id()
 
 logging.basicConfig(
     level=logging.INFO,
@@ -324,7 +344,7 @@ def dispatch_sms(parsed: dict, token: str, chat_id: str) -> dict:
         "result": None,
         "telegram_replied": False,
     }
-    if parsed.get("sender_id") != ALLOWED_SENDER_ID:
+    if not ALLOWED_SENDER_ID or parsed.get("sender_id") != ALLOWED_SENDER_ID:
         log.warning(
             f"REJECTED /sms from sender_id={parsed.get('sender_id')} "
             f"(only {ALLOWED_SENDER_ID} is allowed)")
@@ -393,7 +413,7 @@ def dispatch_phone(parsed: dict, token: str, chat_id: str) -> dict:
         "result": None,
         "telegram_replied": False,
     }
-    if parsed.get("sender_id") != ALLOWED_SENDER_ID:
+    if not ALLOWED_SENDER_ID or parsed.get("sender_id") != ALLOWED_SENDER_ID:
         sender = parsed.get("sender_id")
         log.warning(
             f"REJECTED /phone from sender_id={sender} "

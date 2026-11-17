@@ -1,39 +1,58 @@
-## Description: <br>
-Track and find unanswered messages using a local file-based inbox with no database required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and find unanswered messages using a local file-based inbox. No DB required. Use when asked to find unanswered messages, missed messages, people waiting for a response, or to log a new incoming message.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Agents and operators use this skill to log incoming messages that need replies, find recent unanswered messages, mark replies as answered, and clean up old answered entries in a local inbox file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The inbox file can contain personal message content and contact details. <br>
-Mitigation: Store the file in an access-controlled workspace and limit logged message bodies to the short previews needed for follow-up. <br>
-Risk: The skill writes directly to a local JSON file, so concurrent edits or malformed entries could corrupt tracking state. <br>
-Mitigation: Review generated file operations before use, keep backups for the inbox file, and validate the JSON structure after updates. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain a lightweight inbox of messages that still need replies, find recent unanswered messages, mark them answered, and clean up old answered records.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code snippets and message report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local file paths, JSON inbox fields, message previews, and heartbeat check guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The inbox stores sender details, phone numbers, chat IDs, and message previews in a local plaintext JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restrictive file permissions, keep the file in a controlled workspace, and avoid storing unnecessary message body content.
+
+Risk: Heartbeat or reminder jobs may expose private message previews in logs or alerts.
+
+Mitigation: Avoid logging full message bodies from automated checks and limit previews to the minimum needed for follow-up.
+
+Risk: Concurrent updates to the JSON inbox can overwrite or corrupt message state.
+
+Mitigation: Use file locking or move to a small database if multiple processes may write to the inbox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/unanswered-messages)
+- [Publisher profile](https://clawhub.ai/user/netanel-abergel)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON structure examples and inline Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local file operations and concise message summaries; no external service calls are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

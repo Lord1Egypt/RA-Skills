@@ -1,0 +1,562 @@
+'''
+9交易下单函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+交易下单函数
+passorder - 综合下单函数
+综合下单函数，用于股票、期货、期权等下单和新股、新债申购、融资融券等交易操作推荐使用
+
+提示
+
+推荐使用
+可覆盖多品种下单
+注意参数的变化
+调用方法：
+
+python示例
+
+passorder(
+    opType, orderType, accountid
+    , orderCode, prType, price, volume
+    , strategyName, quickTrade, userOrderId
+    , ContextInfo
+)
+'''
+passorder(
+    2 #opType 操作号
+    , 1101 #orderType 组合方式
+    , '1000044' #accountid 资金账号
+    , 'cu2403.SF' #orderCode 品种代码
+    , 14 #prType 报价类型
+    , 0.0 #price 价格
+    , 2 #volume 下单量
+    , '示例下单' #strategyName 策略名称
+    , 1 #quickTrade 快速下单标记
+    , '投资备注' #userOrderId 投资备注
+    , C #ContextInfo 策略上下文
+)
+'''
+参数：
+
+参数名	类型	说明	提示
+opType	int	交易类型	可选买、买，期货开仓、平仓等
+
+可选值参考opType-操作类型
+orderType	int	
+
+下单方式	可选值参考orderType-下单方式
+
+可选按股票数量买卖或按照金额等方式买卖
+
+一、期货不支持 1102 和 1202;
+
+二、对所有账号组的操作相当于对账号组里的每个账号做一样的操作，如 passorder (23, 1202, 'testS', '000001. SZ', 5, -1, 50000, ContextInfo)，意思就是对账号组 testS 里的所有账号都以最新价开仓买入 50000 元市值的 000001.SZ 平安银行；passorder (60,1101,"test",'510050. SH', 5,-1,1, ContextInfo)意思就是账号test申购 1 个单位 (900000股)的华夏上证50ETF (只申购不买入成分股)。
+
+accountID	string	资金账号	下单的账号ID（可多个）或账号组名或套利组名（一个篮子一个套利账号，如 accountID = '股票账户名, 期货账号'）
+orderCode	string	下单代码	1. 如果是单股或单期货、港股，则该参数填合约代码；
+2. 如果是组合交易, 则该参数填篮子名称，参考组合交易；
+3. 如果是组合套利，则填一个篮子名和一个期货合约名（如orderCode = '篮子名, 期货合约名'），请参考组合套利交易
+
+prType	int	下单选价类型	可选值参考prType-下单选价类型
+
+特别的对于套利，这个 prType 只对篮子起作用，期货的采用默认的方式）
+price	float	下单价格	一、单股下单时，prType 是模型价/科创板盘后定价时 price 有效；其它情况无效；
+
+1.1 即单股时， prType 参数为 11，49 时被使用。
+
+1.2 prType 参数不为 11，49 时也需填写，填写的内容可为 -1，0，2，100 等任意数字；
+
+二、组合下单时，是组合套利时，price 作套利比例有效，其它情况无效。
+volume	int	下单数量（股 / 手 / 元 / %）	根据 orderType 值最后一位确定 volume 的单位，可选值参考volume - 下单
+strategyName	string	自定义策略名	
+
+一、用来区分 order 委托和deal 成交来自不同的策略。
+
+根据该策略名，get_trade_detail_data，get_last_order_id 函数可以获取相应策略名对应的委托或成交集合。
+
+strategyName 只对同账号本地客户端有效，即 strategyName 只对当前客户端下的单进行策略区分，且该策略区分只能当前客户端使用。
+
+quickTrade	int	设定是否立即触发下单	
+
+可选值参考quicktrade - 快速下单
+
+passorder是对最后一根K线完全走完后生成的模型信号在下一根K线的第一个tick数据来时触发下单交易；
+
+采用quickTrade参数设置为1时，非历史bar上执行时（ContextInfo.is_last_bar()为True），只要策略模型中调用到就触发下单交易。
+
+quickTrade参数设置为2时，不判断bar状态，只要策略模型中调用到就触发下单交易，历史bar上也能触发下单，请谨慎使用。
+userOrderId	string	用户自设委托 ID	如果传入该参数，
+则 strategyName 和 quickTrade 参数也填写。
+对应 order 委托对象和 deal 成交对象中的 m_strRemark 属性，通过 get_trade_detail_data 函数或委托主推函数 order_callback 和成交主推函数 deal_callback 可拿到这两个对象信息。
+ContextInfo	class	系统参数	含有k线信息和接口的上下文对象
+返回：
+
+无
+
+更多示例：
+
+股票
+基金
+两融
+期货
+期权
+新股申购
+债券
+ETF
+组合交易
+组合套利交易
+algo_passorder - 算法下单（拆单）函数
+用于按固定时间间隔和固定规则把目标交易数量拆分成多次下单的交易函数
+
+调用用法：
+
+python
+
+algo_passorder(opType,orderType,accountid,orderCode,prType,price,volume,[strategyName,quickTrade,userOrderId,userOrderParam],ContextInfo)`
+提示
+
+算法交易下单，此时使用交易面板-程序交易-函数交易-函数交易参数中设置的下单类型(普通交易,算法交易,随机量交易) 如果函数交易参数使用未修改的默认值,此函数和passorder函数一致， 设置了函数交易参数后，将会使用函数交易参数的超价等拆单参数，algo_passorder内的prType若赋值,则优先使用该参数，若algo_passorder内的prType=-1,将会使用userOrderParam内的opType，若userOrderParam未赋值，则使用界面上的函数交易参数的报价方式
+
+参数：
+其他参数同passorder，详细解释可参考passorder的说明
+userOrderParam dict[str:value] 是用户自定义交易参数,主要用于修改算法交易的参数 其中Key Value定义如下
+
+注：所有参数均为非必选
+
+Key	Value类型	Value
+OrderType	int	普通交易:0
+算法交易:1
+随机量交易:2
+PriceType	int	报价方式:数值同passorde prType
+MaxOrderCount	int	最大下单次数
+SinglePriceRange	int	波动区间是否单向:
+否:0，
+是:1
+PriceRangeType	int	波动区间类型按比例:0,按数值1
+PriceRangeValue	float	波动区间(按数值)
+PriceRangeRate	float	波动区间(按比例)[0-1]
+SuperPriceType	int	单笔超价类型:
+按比例:0
+按数值1
+SuperPriceRate	float	单笔超价(按比例)[0-1]
+SuperPriceValue	float	单笔超价(按数值)
+VolumeType	int	单笔基准量类型卖1+2+3+4+5量:0
+卖1+2+3+4量:1
+...
+卖1量:4
+买1量:5
+...
+买1+2+3+4+5量:9
+目标量:10
+目标剩余量:11
+持仓数量:12
+VolumeRate	float	单笔下单比率[0-1]
+SingleNumMin	float	单笔下单量最小值
+SingleNumMax	float	单笔下单量最大值
+ValidTimeType	int	有效时间类型:
+0:按持续时间
+1 按时间区间，默认为0
+ValidTimeElapse	int	有效持续时间,ValidTimeType设置为0时生效
+ValidTimeStart	int	有效开始时间偏移,ValidTimeType设置为1时生效
+ValidTimeEnd	int	有效结束时间偏移,ValidTimeType设置为1时生效
+UndealtEntrustRule	int	未成委托处理数值同prType
+PlaceOrderInterval	int	下撤单时间间隔
+UseTrigger	int	是否触价:
+否:0
+是:1
+TriggerType	int	触价类型:
+最新价大于:1
+最新价小于:2
+TriggerPrice	float	触价价格
+SuperPriceEnable	int	超价启用笔数
+返回
+无
+示例
+
+python
+
+#coding:gbk
+userparam = {
+    "OrderType": 1,
+    "MaxOrderCount": 20,
+    "SuperPriceType": 1,
+    "SuperPriceValue": 1.12}
+accid = '918800000818'  #资金账号
+algo_passorder(23,1101,accid,'000001.SZ',5,15,1000,'',1,'strReMark',userparam,ContextInfo)
+#表示修改算法交易的最大委托次数为20,单笔下单基准类型为按价格类型超价,单笔超价1.12元,其他参数同函数交易参数中设置
+smart_algo_passorder - 智能算法（VWAP 等）函数
+提示
+
+调用该函数需要有【智能算法】使用权限
+用于使用主动算法或被动算法交易的函数如VWAP TWAP等
+
+调用方法一：
+
+python
+
+smart_algo_passorder(opType,orderType,accountid,orderCode,prType,price,volume,strageName,quickTrade,userOrderId,smartAlgoType,limitOverRate,minAmountPerOrder,[targetPriceLevel,startTime,endTime,limitControl],ContextInfo)
+提示
+
+可选参数可缺省
+
+参数：
+其他参数同passorder，详细解释可参考passorder的说明
+
+参数名	类型	说明	提示
+prType	int	可选值：
+11:限价（只对单股情况支持,对组合交易不支持）
+12:市价
+特别的对于套利：这个prType只对篮子起作用，期货的采用默认的方式	
+smartAlgoType	str	智能算法类型 [enum_constants#smartAlgoType智能算法类型]	
+limitOverRate	int	量比 数据范围0-100	网格算法无此项
+若在algoParam中填写量比，则填写范围0-1的小数。
+minAmountPerOrder	int	智能算法最小委托金额，数据范围0-100000	
+targetPriceLevel	int	智能算法目标价格,可选值：
+1：己方盘口 1
+2：己方盘口2
+3：己方盘口3
+4：己方盘口4
+5：己方盘口5
+6：最新价
+7：对方盘口	一、输入无效值则targetPriceLevel为1
+二、本项只针对冰山算法,其他算法可缺省。
+startTime	str	智能算法开始时间	格式"HH:MM:SS"，如"10:30:00"。如果缺省值，则默认为"09:30:00"
+endTime	str	智能算法截止时间	格式"HH:MM:SS"，如"14:30:00"。如果缺省值，则默认为"15:30:00"
+limitControl	int	涨跌停控制	默认值为1
+1：涨停不卖跌停不买
+0：无限制
+返回
+无
+
+示例：
+
+python
+
+#coding:gbk
+
+
+def init(ContextInfo):
+    pass
+
+
+def after_init(ContextInfo):
+    # # 使用smart_algo_passorder 下单
+    smart_algo_passorder(
+        23,                # 买入
+        1101,              # 表示volume的单位是股
+        account,           # 资金账号
+        '000001.SZ',
+        12,                #  11限价，12市价
+        0,                 # 限价时，价格填任意数量占位
+        50000,             # 5000股
+        '',
+        2,                 # quickTrade
+        '',
+        'VWAP',
+        25,                 # 量比25%
+        0,                  # 智能算法最小委托金额
+        1,                  # 智能算法目标价格 本项只针对冰山算法,其他算法可缺省。
+        "10:25:00",         # 开始时间
+        "14:50:00",         # 结束时间
+        1,                  # 涨跌停控制 1为涨停不卖跌停不卖 0 为无限制
+        ContextInfo
+        )
+调用方法二：
+当时用algoParam时，函数声明为：smart_algo_passorder(opType,orderType,accountid,orderCode,prType,modelprice,volume,strageName,quickTrade,userid,smartAlgoType,startTime,endTime,algoParam,ContextInfo)参数均不可缺省
+smartAlgoType,startTime,endTime 含义同上，algoParam请使用下面的方法获取：
+
+获取algoParam具体字段
+释义
+
+获取智能算法参数配置信息
+
+用法
+
+python
+
+get_smart_algo_param(algoList)
+参数
+
+参数	类型	说明
+algoList	list	需要查询参数配置信息的算法名称列表, 若传空则查询全部有权限的算法参数配置信息
+返回
+
+返回一个字典，键为算法名称，值为参数字典列表。
+
+字段	类型	说明
+key	string	参数名称key值,即smart_algo_order中algoList字典需要传的键值
+name	string	参数名称
+dataType	string	参数类型
+valueRange	string	参数范围
+defaultValue	string	参数默认值
+enumName	string	参数枚举值的名称
+enumValue	string	参数实际的枚举值
+unit	string	参数的单位, 当单位为%时, 值要填写小数而非参数范围所示的百分数值
+valueRangeByName	string	不同算法参数范围
+defaultValueByName	string	不同算法参数默认值
+示例
+
+python
+
+#coding:gbk
+
+
+def init(ContextInfo):
+    pass
+
+    # 方法2 使用algoParam 和smart_algo_passorder
+    # 该方法部分旧版本客户端可能会不支持
+    # algoParam
+    # 先获取所有需要传入的参数
+    #
+    print(get_smart_algo_param(['VWAP']))
+    '''
+    输出：[2024-01-30 11:21:10][智能算法1][SH000300][日线] 
+    {'VWAP': [
+        {'key': 'm_dLimitOverRate', 'name': '量比比例', 'dataType': '浮点数', 'valueRange': '0.00-100.00', 'defaultValue': '20.00', 'enumName': '', 'enumValue': '', 'unit': '%', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_dMinAmountPerOrder', 'name': '委托最小金额', 'dataType': '整数', 'valueRange': '0-100000', 'defaultValue': '0', 'enumName': '', 'enumValue': '', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''},
+        {'key': 'm_dMaxAmountPerOrder', 'name': '委托最大金额', 'dataType': '浮点数', 'valueRange': '0.00-100000000.00', 'defaultValue': '0', 'enumName': '', 'enumValue': '', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_nStopTradeForOwnHiLow', 'name': '涨跌停控制', 'dataType': '整数', 'valueRange': '', 'defaultValue': '涨停不卖跌停不买', 'enumName': '无,涨停不卖跌停不买', 'enumValue': '0,1', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_dMulitAccountRate', 'name': '多账号总量比', 'dataType': '浮点数', 'valueRange': '0.00-100.00', 'defaultValue': '0', 'enumName': '', 'enumValue': '', 'unit': '%', 'valueRangByName': '', 'defaultValueByName': ''}, 
+        {'key': 'm_strCmdRemark', 'name': '投资备注', 'dataType': '字符串', 'valueRange': '', 'defaultValue': '', 'enumName': '', 'enumValue': '', 'unit': '', 'valueRangByName': '', 'defaultValueByName': ''}]}
+    '''
+    algoParam={
+    'm_dLimitOverRate': 0.25,      # 量比 25%
+    'm_dMinAmountPerOrder':0,      # 委托最小金额
+    'm_dMaxAmountPerOrder':10000,  # 委托最大金额
+    'm_nStopTradeForOwnHiLow': 1,  # 涨跌停控制
+    'm_dMulitAccountRate':0.30,    # 多账号总量比
+    'm_strCmdRemark':  '投资备注1'  # 投资备注
+    }
+    smart_algo_passorder(
+        23,
+        1101,
+        account,
+        '600000.SH',
+        12,
+        0,
+        10000,
+        '',
+        2,               # quickTrade
+        '投资备注',
+        'VWAP',
+        "10:25:00",      # 开始时间
+        "14:50:00",      # 结束时间
+        algoParam,       # 算法参数
+        ContextInfo
+        ) 
+    
+cancel-撤销委托
+调用方法cancel(orderId, accountId, accountType, ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+orderId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了取消委托信号，返回值含义：
+
+True：是
+False：否
+
+示例
+
+python返回值
+
+#coding:gbk
+'''
+（1）下单前,根据 get_trade_detail_data 函数返回账号的信息，判定资金是否充足，账号是否在登录状态，统计持仓情况等等。
+（2）满足一定的模型条件，用 passorder 下单。
+（3）下单后，时刻根据 get_last_order_id 函数获取委托和成交的最新id，注意如果委托生成了，就有了委托号（这个id需要自己保存做一个全局控制）。
+（4）用该委托号根据 get_value_by_order_id 函数查看委托的状态，各种情况等。
+当一个委托的状态变成“已成'后，那么对应的成交 deal 信息就有一条成交数据；用该委托号可查看成交情况。
+*注：委托列表和成交列表中的委托号是一样的,都是这个 m_strOrderSysID 属性值。
+可用 get_last_order_id 获取最新的 order 的委托号,然后根据这个委托号获取 deal 的信息，当获取成功后，也说明这笔交易是成了，可再根据 position 持仓信息再进一步验证。
+（5）根据委托号获取委托信息，根据委托状态，或模型设定，用 cancel 取消委托。
+'''
+
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'
+
+def handlebar(ContextInfo):
+    if ContextInfo.is_last_bar():
+        orderid = get_last_order_id(ContextInfo.accid, 'stock', 'order')
+        print(cancel(orderid, ContextInfo.accid, 'stock', ContextInfo))
+cancel_task - 撤销任务
+调用方法cancel_task(taskId,accountId,accountType,ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+taskId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了撤销任务信号，返回值含义：
+
+True：是
+
+False：否
+
+示例
+
+python
+
+#coding:gbk
+'''
+（1）根据get_trade_detail_data函数返回任务的信息,获取任务编号（m_nTaskId），任务状态等等；
+（2）根据任务编号，用cancel_task取消委托。
+'''
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'
+
+def handlebar(ContextInfo):
+    # 获取当前客户端所有的任务
+    if ContextInfo.is_last_bar():
+        objlist = get_trade_detail_data(ContextInfo.accid,'stock','task')
+        for obj in objlist:
+            cancel_task(str(obj.m_nTaskId),ContextInfo.accid,'stock',ContextInfo)
+pause_task - 暂停任务
+暂停智能算法任务
+
+调用方法 pause_task(taskId,accountId,accountType,ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+taskId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了暂停任务信号，返回值含义：
+
+True：是
+
+False：否
+
+示例
+
+python
+
+#coding:gbk
+'''
+（1）根据get_trade_detail_data函数返回任务的信息,获取任务编号（m_nTaskId），任务状态等等；
+（2）根据任务编号，用pause_task暂停智能算法任务。
+'''
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'    
+
+def handlebar(ContextInfo):
+    
+    if ContextInfo.is_last_bar():
+        # 获取当前客户端所有的任务
+        objlist = get_trade_detail_data(ContextInfo.accid,'stock','task')
+        for obj in objlist:
+            pause_task(obj.m_nTaskId,ContextInfo.accid,'stock',ContextInfo)
+resume_task - 继续任务
+继续智能算法任务
+
+调用方法resume_task(taskId,accountId,accountType,ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+taskId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了重启任务信号，返回值含义：
+
+True：是
+
+False：否
+
+示例
+
+python
+
+#coding:gbk
+'''
+（1）根据get_trade_detail_data函数返回任务的信息,获取任务编号（m_nTaskId），任务状态等等；
+（2）根据任务编号，用resume_task启动已暂停智能算法任务。
+'''
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'    
+def handlebar(ContextInfo):
+    if ContextInfo.is_last_bar():
+        # 获取当前客户端所有的任务
+        objlist = get_trade_detail_data(ContextInfo.accid,'stock','task')
+        for obj in objlist:
+            resume_task(obj.m_nTaskId,ContextInfo.accid,'stock',ContextInfo)
+get_basket-获取股票篮子
+用法： get_basket(basketName)
+
+释义： 获取股票篮子
+
+参数：
+
+basketName：股票篮子名称
+示例：
+
+
+print( get_basket('basket1') )
+set_basket-设置股票篮子
+用法： set_basket(basketDict)
+
+释义： 设置passorder的股票篮子,仅用于passorder进行篮子交易,设置成功后,用get_basket可以取出后即可进行passorder组合交易下单
+
+参数：
+
+basketDict：股票篮子 {'name':股票篮子名称,'stocks':[{'stock':股票名称,'weight',权重,'quantity':数量,'optType':交易类型}]} 。
+示例：
+
+
+table=[
+    {'stock':'600000.SH','weight':0.11,'quantity':100,'optType':23},
+    {'stock':'600028.SH','weight':0.11,'quantity':200,'optType':24},
+]
+basket={'name':'basket1','stocks':table}
+set_basket(basket)
+#一键买卖2份(2101代表用篮子里quantity字段)basket1里面的股票组合，即600000.SH买入200股，600028.SH卖出400股
+table=[
+    {'stock':'600000.SH','weight':0.11,'quantity':100,'optType':23},
+    {'stock':'600028.SH','weight':0.11,'quantity':200,'optType':24},
+]
+basket={'name':'basket1','stocks':table}
+set_basket(basket)
+#一键买卖2份(2101代表用篮子里quantity字段)basket1里面的股票组合，即600000.SH买入200股，600028.SH卖出400股
+passorder(35,2101,ContextInfo.accid,'basket1',5,-1,2,'basketOrder',2,'basketOrder',ContextInfo)

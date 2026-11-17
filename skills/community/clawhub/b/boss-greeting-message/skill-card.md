@@ -1,43 +1,58 @@
-## Description: <br>
-BOSS Zhipin greeting generator that uses boss-cli to fetch target job details, compare role requirements with a user's resume, and draft a personalized greeting under 200 Chinese characters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized BOSS Zhipin greeting messages by using boss-cli to retrieve job details, compare them with a user's resume, and draft two concise message variants under 200 Chinese characters.
 
-## Publisher: <br>
-[bifang988](https://clawhub.ai/user/bifang988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bifang988](https://clawhub.ai/user/bifang988)
 
-## Use Case: <br>
-Job seekers and recruiting assistants use this skill to inspect a BOSS Zhipin job posting, identify the strongest resume-to-role matches, and draft two concise outreach greeting options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external boss-cli login flow may read browser cookies for a job-site account. <br>
-Mitigation: Review and trust the kabi-boss-cli package before installation and prefer QR login over browser-cookie reuse when available. <br>
-Risk: Resume content and job-search details may contain personal or sensitive information. <br>
-Mitigation: Provide only the resume details needed to draft the greeting and avoid sharing unnecessary personal data. <br>
-Risk: The skill could be mistaken for an automated application or messaging tool. <br>
-Mitigation: Confirm it is only fetching job details and drafting text, and review any greeting before sending it manually. <br>
+## Use Case:
 
+Job seekers and recruiting assistants use this skill to turn a target BOSS Zhipin job and a user's resume details into a focused job-fit analysis and two human-sounding outreach greetings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bifang988/boss-greeting-message) <br>
-- [Publisher profile](https://clawhub.ai/user/bifang988) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with job analysis, two greeting drafts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Greeting drafts are constrained to two versions, each under 200 Chinese characters with a stated character count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The workflow asks users to install and run an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the kabi-boss-cli source and version before installation, and pin or record the reviewed version where possible.
+
+Risk: Login through the CLI may access browser cookies.
+
+Mitigation: Prefer QR-code login over browser-cookie access when authenticating to BOSS Zhipin.
+
+Risk: Resume content can include sensitive personal data.
+
+Mitigation: Provide only the resume fields needed to generate the greeting instead of a complete sensitive resume file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bifang988/skills/boss-greeting-message)
+- [ClawHub publisher profile](https://clawhub.ai/user/bifang988)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with job analysis, two greeting-message variants, word counts, and inline shell commands when setup or job lookup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Greeting messages are constrained to no more than 200 Chinese characters each.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

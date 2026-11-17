@@ -1,41 +1,58 @@
-## Description: <br>
-高德地图 API 调用工具，返回原始 JSON 数据 for China weather, geocoding, place search, route, distance, navigation, taxi, and trip-planning requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高德地图 API 调用工具，返回原始 JSON 数据。Use when users ask about 天气、地址、坐标、周边、路线、导航、打车、行程 in China.
 
-## Publisher: <br>
-[Fangtianwd](https://clawhub.ai/user/Fangtianwd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangtianwd](https://clawhub.ai/user/fangtianwd)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for China-focused AMap weather, address, coordinate, place, route, navigation, taxi, and itinerary lookups. It helps the agent call the local amap command and work with the returned AMap JSON or URI links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send weather, address, coordinate, route, taxi, itinerary, and IP lookup details to AMap. <br>
-Mitigation: Avoid submitting sensitive personal locations or routes unless that disclosure is acceptable, and use a restricted AMap Web Service API key where possible. <br>
-Risk: The skill depends on the amap executable installed in the user's PATH. <br>
-Mitigation: Install only a trusted amap executable and review it before using the skill. <br>
+## Use Case:
 
+External users and developers can use this skill to query AMap for China-focused weather, geocoding, reverse geocoding, place search, POI detail, routing, distance, IP-location, navigation link, taxi link, and trip-planning responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fangtianwd/fangtian-amap) <br>
-- [AMap Web Service API key console](https://console.amap.com/dev/key/app) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Configuration guidance] <br>
-**Output Format:** [JSON responses and URI links, with shell commands for setup and invocation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and an AMAP_API_KEY environment variable; REST commands return raw AMap JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Location, route, and IP-location queries are sent to AMap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive home, workplace, route, or IP-location data unless sharing it with AMap is acceptable.
+
+Risk: The installation instructions reference an `amap` executable that is not included in the artifact.
+
+Mitigation: Confirm the executable source before installation and run standard local review or scanning before placing it on PATH.
+
+Risk: The skill requires an AMap API key.
+
+Mitigation: Set only `AMAP_API_KEY`, keep the key out of prompts and logs, and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [AMap API key console](https://console.amap.com/dev/key/app)
+- [ClawHub skill page](https://clawhub.ai/fangtianwd/skills/fangtian-amap)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON responses and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and an AMAP_API_KEY environment variable; AMap API quotas and China-only service coverage apply.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

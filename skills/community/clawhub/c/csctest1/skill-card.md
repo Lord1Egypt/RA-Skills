@@ -1,40 +1,54 @@
-## Description: <br>
-Guide for creating effective skills that extend an agent with specialized knowledge, workflows, tool integrations, scripts, references, and assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill or update an existing skill that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[chenscgit](https://clawhub.ai/user/chenscgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[chenscgit](https://clawhub.ai/user/chenscgit)
 
-## Use Case: <br>
-Developers and agent authors use this skill to plan, initialize, validate, package, and iterate on skills that add specialized workflows, references, scripts, or assets to an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Packaging a skill folder can accidentally include credentials, secrets, or unrelated local files. <br>
-Mitigation: Review the target skill folder before running the packaging script and scan the archive before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to plan, create, validate, package, and iterate on agent skills with focused instructions, supporting scripts, and reference materials.
 
-## Reference(s): <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenscgit/csctest1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional generated files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes helper Python scripts for initializing, validating, and packaging skill folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review flags file-safety concerns in the bundled initialization and packaging scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted skill folders, pass explicit output directories, and review generated files before packaging or sharing.
+
+Risk: Packaging untrusted directories may include unsafe or unintended files.
+
+Mitigation: Avoid packaging directories from other people unless symlinks and archive contents have been checked first.
+
+## Reference(s):
+
+- [Workflow Patterns](references/workflows.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local skill directories, validation output, and .skill archive packages when its bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

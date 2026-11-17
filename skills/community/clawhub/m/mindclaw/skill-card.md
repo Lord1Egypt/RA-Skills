@@ -1,44 +1,59 @@
-## Description: <br>
-MindClaw provides persistent memory and a knowledge graph for AI agents, with structured fact curation, search, conflict detection, and OpenClaw sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MindClaw provides persistent memory and a knowledge graph for AI agents.
 
-## Publisher: <br>
-[Blue8x](https://clawhub.ai/user/Blue8x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[blue8x](https://clawhub.ai/user/blue8x)
 
-## Use Case: <br>
-Developers and agent operators use MindClaw to give OpenClaw and MCP-compatible agents durable, searchable memory across sessions, including curated facts, decisions, preferences, timelines, and prompt-ready context blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Durable memory may retain sensitive, personal, confidential, or credential-like content from conversations, logs, configs, or imported Markdown. <br>
-Mitigation: Avoid auto-capture and Markdown import on unreviewed sensitive sources; review and redact content before storage, then use archive or hard-delete workflows for entries that should not persist. <br>
-Risk: Setup and MCP registration can change future agent tooling and workspace behavior. <br>
-Mitigation: Review the selected workspace, agent namespace, database path, and MCP target before approving setup or setup_mindclaw. <br>
-Risk: Syncing memories into OpenClaw MEMORY.md can make stored memory visible to other OpenClaw workflows. <br>
-Mitigation: Treat sync_openclaw as a publishing step; inspect stored memories before syncing and limit workspace access to the intended users and agents. <br>
+## Use Case:
 
+Developers and agent operators use MindClaw to give AI agents structured long-term memory, searchable recall, context blocks, and OpenClaw Markdown synchronization.
 
-## Reference(s): <br>
-- [MindClaw ClawHub release](https://clawhub.ai/Blue8x/mindclaw) <br>
-- [Blue8x publisher profile](https://clawhub.ai/user/Blue8x) <br>
-- [Artifact-declared MindClaw source link](https://github.com/Blue8x/MindClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with CLI commands, MCP tool calls, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update local SQLite memory stores, OpenClaw MEMORY.md content, and MCP registration/configuration files when the user authorizes those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata, pyproject.toml, clawhub.yaml, README badge, CHANGELOG released 2026-03-03) <br>
+Risk: Agents can store and retrieve broad long-term memory, including content later injected into prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated database and agent namespace, and avoid storing secrets, regulated data, or sensitive personal information.
+
+Risk: Setup, import, capture, sync, and hard-delete actions can mutate configuration, memory stores, or Markdown memory files.
+
+Mitigation: Require explicit user approval for those tools and back up memory files before sync or import.
+
+Risk: Semantic search can depend on trusted local services such as Ollama.
+
+Mitigation: Run local embedding services only in trusted environments and review their configuration before enabling semantic recall.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blue8x/skills/mindclaw)
+- [README](README.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, XML, and JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include retrieved memories, generated context blocks, memory mutation results, setup results, sync results, and import or export summaries.]
+
+## Skill Version(s):
+
+0.3.1 (source: release metadata, pyproject.toml, clawhub.yaml, CHANGELOG, src/mindclaw/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

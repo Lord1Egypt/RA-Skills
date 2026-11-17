@@ -158,7 +158,7 @@ Before sending, evaluate if the email would benefit from a piece jointe (PJ). **
 | `2026_01_Arcascience_Dilon_V2.pdf` | Dilon v2 proposal |
 | `2026_01_Arcascience_SANOFI_V2.pdf` | Sanofi proposal |
 | `2026_01_Arcascience_SANOFI_V2B.pdf` | Sanofi proposal variant |
-| `Benefit-Risk-Intelligence-for-Asphalion.pdf` | Asphalion-specific proposal |
+| `Benefit-RiREDACTED-SECRET.pdf` | Asphalion-specific proposal |
 | `Sales Organisation package.pdf` | Internal — sales org process |
 | `Partnership contract ArcaScience_BLANK.docx` | Blank partnership contract template |
 | `CDA ARCASCIENCE.docx` | Confidentiality agreement |

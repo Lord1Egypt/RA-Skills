@@ -1,43 +1,64 @@
-## Description: <br>
-Turn mistakes, corrections, dead ends, and repeated fixes into durable improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns mistakes, corrections, dead ends, and repeated fixes into durable improvements by helping agents capture lessons, link recurring issues, promote stable rules, and extract reusable skills.
 
-## Publisher: <br>
-[alethean-kaw](https://clawhub.ai/user/alethean-kaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alethean-kaw](https://clawhub.ai/user/alethean-kaw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture meaningful corrections, non-obvious failures, repeated friction, and missing capabilities, then promote stable lessons into durable guidance or reusable skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning entries can accidentally preserve secrets, customer data, private prompts, proprietary details, or sensitive personal and business context. <br>
-Mitigation: Summarize lessons at a high level, remove sensitive details before saving, and review entries before promoting them into shared guidance. <br>
-Risk: Promoted guidance or extracted skill scaffolds can encode incorrect lessons if the original incident was misunderstood. <br>
-Mitigation: Review learning entries, require stable repeated patterns before promotion, and scan generated guidance or skill files before use. <br>
+## Use Case:
 
+Developers, agent operators, and teams use this skill to capture meaningful corrections, non-obvious failures, missing capabilities, and stronger workflows so they can become durable workspace or repository guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alethean-kaw/self-optimization) <br>
-- [Examples](references/examples.md) <br>
-- [Hooks Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local learning files, guidance files, hook configuration, and skill scaffold files when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Persistent learning files can capture secrets, tokens, private customer data, or sensitive logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact entries before storing them in .learnings; do not record secrets, tokens, private customer data, or raw sensitive logs.
+
+Risk: Promoting unreviewed learnings into agent guidance can spread incorrect or misleading rules.
+
+Mitigation: Review captured learnings before promotion into AGENTS.md, CLAUDE.md, TOOLS.md, SOUL.md, or reusable skills.
+
+Risk: Broad prompt or tool hooks can add reminders in more sessions than intended.
+
+Mitigation: Enable hooks selectively, narrow hook matchers where possible, and skip all-prompt hooks when the overhead or exposure is not acceptable.
+
+Risk: The extraction helper writes new skill scaffolds in the workspace.
+
+Mitigation: Run the helper only in trusted workspaces and inspect generated files before use.
+
+## Reference(s):
+
+- [Self Optimization on ClawHub](https://clawhub.ai/alethean-kaw/skills/self-optimization)
+- [Examples](references/examples.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update learning logs, agent guidance files, hook configuration, and reusable skill scaffolds when used by an agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

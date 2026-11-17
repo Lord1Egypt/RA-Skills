@@ -122,7 +122,7 @@ metadata:
 **请求示例：**
 ```json
 {
-  "sn": "device-sn",
+  "sn": "add8f44285d63514",
   "props": {
     "feed": 1
   }

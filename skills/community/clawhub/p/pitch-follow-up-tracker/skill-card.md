@@ -1,39 +1,58 @@
-## Description: <br>
-Track outreach pitches and draft contextual follow-up emails by checking a Google Sheet or markdown tracker, reviewing Gmail activity, flagging stale pitches, and drafting tiered follow-ups that reference the original pitch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pitch Follow-Up Tracker monitors an outreach pipeline, checks Gmail for replies, and drafts contextual follow-up emails that reference the original pitch.
 
-## Publisher: <br>
-[alexa853](https://clawhub.ai/user/alexa853) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexa853](https://clawhub.ai/user/alexa853)
 
-## Use Case: <br>
-Talent managers, PR professionals, agency teams, sales reps, and other outbound campaign operators use this skill to review pitch status, identify contacts who have not replied, and prepare contextual follow-up drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect sensitive Gmail messages, drafts, full email threads, pitch tracker data, and recent memory or off-channel context. <br>
-Mitigation: Run it only on accounts and trackers the user approves, and limit contacts, date ranges, Gmail searches, draft access, thread reads, and memory/context sources before use. <br>
-Risk: Generated follow-up drafts may be inaccurate, overly broad, or inappropriate for the relationship. <br>
-Mitigation: Review and personalize every draft before creating it in Gmail or sending it. <br>
+## Use Case:
 
+External outreach teams use this skill to review a Google Sheet or markdown pitch tracker, check Gmail for replies, classify pitch status, and prepare tiered follow-up drafts for user review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown outreach report with draft email text and optional Gmail draft creation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Gmail account, pitch tracker, sender details, and explicit approval before creating Gmail drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect Gmail, pitch trackers, and broader local or remembered context while verifying replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to a specific Gmail account, tracker, date range, thread, or contact, and avoid broad mailbox or memory searches unless explicitly approved.
+
+Risk: Generated follow-up drafts may contain incorrect context, inappropriate tone, or unapproved outreach content.
+
+Mitigation: Review and personalize every generated draft before creating or sending any email.
+
+Risk: Installing gog through an unpinned global npm command may introduce supply-chain uncertainty.
+
+Mitigation: Install gog from a trusted source and pin the version used in the agent environment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/alexa853/skills/pitch-follow-up-tracker)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown outreach report with draft email text and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces status classifications, tiered follow-up drafts, and Gmail draft commands only after explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

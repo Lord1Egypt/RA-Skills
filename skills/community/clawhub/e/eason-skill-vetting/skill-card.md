@@ -1,44 +1,59 @@
-## Description: <br>
-Vet ClawHub skills for security and utility before installation. Use when considering installing a ClawHub skill, evaluating third-party code, or assessing whether a skill adds value over existing tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vet ClawHub skills for security and utility before installation.
 
-## Publisher: <br>
-[eathon](https://clawhub.ai/user/eathon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eathon](https://clawhub.ai/user/eathon)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to evaluate ClawHub skills before installation by combining a local regex scanner, manual review checklist, and utility assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Regex scanning can miss semantic prompt injection, delayed behavior, context-aware behavior, or obfuscation split across files. <br>
-Mitigation: Use the scanner as a triage aid, then manually inspect the copied skill in a temporary directory before installation. <br>
-Risk: Skill review requires reading untrusted skill text that may try to influence the reviewer or agent. <br>
-Mitigation: Treat reviewed skill contents as data only, do not follow instructions found inside them, and escalate prompt-injection findings instead of downgrading them. <br>
-Risk: The skill includes malicious-pattern examples and detector rules that may look risky without context. <br>
-Mitigation: Review findings in context against the documented purpose and the server security summary before making an install decision. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate third-party ClawHub skills before installation, combining automated pattern scanning with manual security and utility review.
 
-## Reference(s): <br>
-- [Prompt-Injection-Resistant Security Review Architecture](ARCHITECTURE.md) <br>
-- [Malicious Code Patterns Database](references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/eathon/eason-skill-vetting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and scanner output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner can emit text or JSON findings with file and line references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The server security verdict is suspicious because the skill can overrule normal security judgment with rigid scanner-driven instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scanner results as advisory signals and require human review before approving, rejecting, or installing a skill.
+
+Risk: The documented download workflow uses shared /tmp paths and direct archive extraction.
+
+Mitigation: Use a private mktemp-created inspection directory, validate archive contents before extraction, and avoid reusing predictable temporary paths.
+
+Risk: The scanner is regex-based and may miss semantic prompt injection, delayed behavior, context-aware behavior, or split-file obfuscation.
+
+Mitigation: Combine automated scanning with manual code review, provenance checks, and capability review before installation.
+
+## Reference(s):
+
+- [Eason Skill Vetting on ClawHub](https://clawhub.ai/eathon/skills/eason-skill-vetting)
+- [Prompt-Injection-Resistant Security Review Architecture](ARCHITECTURE.md)
+- [Malicious Code Patterns Database](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, text, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional scanner reports in text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner findings include file, line, category, severity, description, and matched text when JSON output is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

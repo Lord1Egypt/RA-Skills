@@ -1,40 +1,57 @@
-## Description: <br>
-Build, debug, and contribute to the MEGAcmd project with guidance for C++, CMake, vcpkg, tests, packaging, and architecture investigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, debug, and contribute to the MEGAcmd project using C++, CMake, and vcpkg.
 
-## Publisher: <br>
-[alefsanderribeiro](https://clawhub.ai/user/alefsanderribeiro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alefsanderribeiro](https://clawhub.ai/user/alefsanderribeiro)
 
-## Use Case: <br>
-Developers and engineers use this skill to build MEGAcmd from source, configure development environments, run tests, debug server and client behavior, package releases, and understand the project's internal architecture. It is not intended for end-user MEGAcmd operations such as upload, sync, or backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated guidance may include sudo installs, Docker builds, or integration tests that use a MEGA account or real sync folders. <br>
-Mitigation: Review commands before execution, prefer test accounts for integration tests, and use disposable folders when debugging sync behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to compile MEGAcmd from source, configure development environments, run tests, debug server or client issues, create packages, and understand the project's internal architecture.
 
-## Reference(s): <br>
-- [MEGAcmd Source Repository](https://github.com/meganz/MEGAcmd.git) <br>
-- [MEGA](https://mega.nz) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alefsanderribeiro/megacmd-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution was found in the server security scan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes normal development commands that can change the host, including package installation, repository cloning, submodule initialization, Docker builds, and local installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and prefer a dedicated development directory or isolated build environment.
+
+Risk: Debugging or integration testing with real MEGA account data can expose account-specific files, folders, or logs to the working environment.
+
+Mitigation: Use a test account or sanitized data when possible, and review before starting or debugging MEGAcmd with real account data.
+
+## Reference(s):
+
+- [MEGAcmd for Developer on ClawHub](https://clawhub.ai/alefsanderribeiro/skills/megacmd-developer)
+- [MEGAcmd GitHub](https://github.com/meganz/MEGAcmd)
+- [MEGA SDK](https://github.com/meganz/sdk)
+- [vcpkg](https://github.com/microsoft/vcpkg)
+- [CMake](https://cmake.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose host-changing development commands that require user approval before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

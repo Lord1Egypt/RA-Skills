@@ -1,44 +1,55 @@
-## Description: <br>
-Use MSX when a user asks to scout market opportunities, decide what to build, identify a market gap, find recent demand signals, or run MSX market intelligence through an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use MSX when a user asks to scout market opportunities, decide what to build, identify a market gap, find recent demand signals, or run MSX market intelligence through an agent.
 
-## Publisher: <br>
-[tornikeo](https://clawhub.ai/user/tornikeo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tornikeo](https://clawhub.ai/user/tornikeo)
 
-## Use Case: <br>
-Developers and agent users use MSX to scout market opportunities, identify market gaps, gather recent demand signals, and request market intelligence through the MSX API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends market research prompts, product descriptions, and related business context to the third-party MSX service. <br>
-Mitigation: Avoid submitting sensitive business information unless the user is comfortable sharing it with MSX. <br>
-Risk: The skill requires storing and using an MSX API key. <br>
-Mitigation: Store the API key securely, keep device codes private, and avoid exposing credentials in conversation or logs. <br>
-Risk: The skill can initiate a Stripe checkout flow for paid MSX usage. <br>
-Mitigation: Create checkout only after the API indicates a subscription is required and the user explicitly agrees. <br>
-Risk: The installed artifact defers to a mutable hosted MSX skill file. <br>
-Mitigation: Re-check the hosted MSX instructions before sensitive use. <br>
+## Use Case:
 
+External users, developers, and founders use MSX to scout buildable market opportunities, identify market gaps, and find recent demand signals through the MSX service.
 
-## Reference(s): <br>
-- [MSX homepage](https://msx.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and cited market opportunity summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an MSX API key, device authentication, and a paid MSX subscription for continued use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and release evidence) <br>
+Risk: The skill delegates authority to a hosted skill file that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only if the user trusts msx.dev to control future agent instructions, and review the hosted instructions before executing MSX workflows.
+
+Risk: MSX workflows may involve confidential product ideas, market strategy, authentication, billing, or sensitive queries.
+
+Mitigation: Require explicit user confirmation before authentication, billing, or sending sensitive market-research queries to the MSX service.
+
+## Reference(s):
+
+- [MSX homepage](https://msx.dev)
+- [MSX hosted skill contract](https://msx.dev/skill.md)
+- [MSX API base](https://api.msx.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with API-derived findings, citations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated MSX API calls, polling status, market-opportunity findings, confidence, urgency, risk notes, and next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

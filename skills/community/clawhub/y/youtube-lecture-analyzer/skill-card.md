@@ -1,42 +1,52 @@
-## Description: <br>
-Extracts YouTube lecture subtitles and generates structured analysis with key points, evidence, action items, and Chinese and English summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and analyzes YouTube lecture subtitles to identify key points, evidence, and actionable insights for review, writing, and teaching purposes.
 
-## Publisher: <br>
-[wallfacer-web](https://clawhub.ai/user/wallfacer-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wallfacer-web](https://clawhub.ai/user/wallfacer-web)
 
-## Use Case: <br>
-Developers, educators, writers, and learning-focused agents use this skill to fetch subtitles for a user-selected YouTube lecture and turn them into reviewable structure, summaries, key questions, concepts, and action items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Transcript requests are configured to use a local HTTP/HTTPS proxy at 127.0.0.1:26739. <br>
-Mitigation: Run the skill only when you trust the local proxy service, or adjust the proxy configuration before use. <br>
-Risk: Fetched transcript content is saved in a local analysis report. <br>
-Mitigation: Run the skill in a directory where transcript reports are acceptable, and delete or secure generated reports when they contain sensitive material. <br>
-Risk: The analysis depends on available subtitles and simple transcript-derived summarization. <br>
-Mitigation: Review conclusions against the source video or transcript before using them for teaching, publication, or decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wallfacer-web/youtube-lecture-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/wallfacer-web) <br>
+## Use Case:
 
+Learners, writers, and educators use this skill to fetch YouTube lecture subtitles and produce structured bilingual summaries, key questions, concepts, action items, and source-grounded takeaways.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Command-line instructions and UTF-8 text report with structured lecture analysis and Chinese and English summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local lecture_analysis_<video_id>.txt report containing summaries and transcript-derived text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local analysis reports can retain transcript content, including when a user expects summary-only behavior.
+
+Mitigation: Avoid processing sensitive videos unless local transcript retention is acceptable, and delete generated lecture_analysis_<video_id>.txt files when they are no longer needed.
+
+Risk: Transcript retrieval depends on a fixed local HTTP proxy.
+
+Mitigation: Run the skill only in an environment where the local proxy is expected and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wallfacer-web/skills/youtube-lecture-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and local text report with structured markdown-style sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual summaries and may write transcript-derived content to a local lecture_analysis_<video_id>.txt file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

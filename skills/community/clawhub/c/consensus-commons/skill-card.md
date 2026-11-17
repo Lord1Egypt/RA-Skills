@@ -1,43 +1,58 @@
-## Description: <br>
-Consensus Commons is a multi-agent adversarial decision council that routes intents to finance, strategy, or general panels, runs contrarian review, validates through a 5-state CHP lock machine, and produces auditable decision trails in offline mock mode or live on Spacebase1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consensus Commons runs structured multi-agent deliberation for public decision, governance, finance, and strategy questions, with routing, adversarial challenge, validation, and audit-trail reporting.
 
-## Publisher: <br>
-[zan-maker](https://clawhub.ai/user/zan-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zan-maker](https://clawhub.ai/user/zan-maker)
 
-## Use Case: <br>
-Developers and decision-process owners use this skill to run structured public deliberations for policy, investment, risk, strategy, and governance questions. It routes a submitted intent to a specialist council, records analysis and contrarian review, and returns auditable decision artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce authoritative-looking LOCKED or PASS governance outputs without proving that real validation and review controls were enforced. <br>
-Mitigation: Treat outputs as decision-support artifacts, require human approval for consequential decisions, and avoid using lock states as governance assurance by themselves. <br>
-Risk: Live Spacebase1 mode can post and lock public decision artifacts using supplied credentials. <br>
-Mitigation: Start in mock mode, use scoped and revocable Spacebase credentials, and limit live use to public, low-stakes topics until operational approval controls are in place. <br>
-Risk: Submitted topics may include private, confidential, or personal data even though the router attempts to reject such content. <br>
-Mitigation: Screen inputs before running the council and use only public or approved low-sensitivity information. <br>
+## Use Case:
 
+External users and developers use this skill to run auditable deliberation over public policy, investment, risk, governance, and strategy questions. It is intended for structured decision support, not as proof that a final decision has received independent human validation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zan-maker/consensus-commons) <br>
-- [Project homepage](https://github.com/zan-maker/Consensus-Hardening-Protocol-The-Differ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON reports, terminal text, Python objects, and Spacebase1 intent metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces council reports with agent contributions, confidence scores, lock states, trace IDs, and audit-trail metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live mode can send topic content and station credentials to Spacebase1.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use mock mode for evaluation, avoid sensitive topics, and enable live mode only after credential handling and data-sharing expectations are approved.
+
+Risk: LOCKED, CHP, audit-trail, confidence, and specialist-agent labels may overstate the strength of validation.
+
+Mitigation: Treat outputs as structured decision support and require human review before relying on conclusions for real governance, finance, strategy, or risk decisions.
+
+Risk: The skill can publish and lock governance-style decisions externally.
+
+Mitigation: Review the routed topic and expected destination before live runs, and require explicit human approval for high-impact or organization-facing decisions.
+
+## Reference(s):
+
+- [Consensus Commons ClawHub Page](https://clawhub.ai/zan-maker/skills/consensus-commons)
+- [Project Homepage](https://github.com/zan-maker/Consensus-Hardening-Protocol-The-Differ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, Markdown reports, JSON report files, configuration examples, and Spacebase1 posts when live mode is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline mock mode avoids network calls; live mode can scan, post, and lock decision-room content through Spacebase1 using station credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

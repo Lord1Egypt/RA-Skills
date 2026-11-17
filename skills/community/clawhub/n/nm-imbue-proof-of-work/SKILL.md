@@ -2,7 +2,7 @@
 name: proof-of-work
 description: |
   Enforces validation and evidence before claiming work complete. Use before declaring implementation done, creating a PR, or submitting deliverables for review
-version: 1.9.8
+version: 1.10.3
 triggers:
   - validation
   - testing
@@ -14,25 +14,19 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-> Claims without evidence fail the people who depend on
-> your work. Proof-of-work is humility in practice:
-> "it looks correct" is not "I verified it works."
+> "It looks correct" is not "I verified it works."
+> Proof-of-work is the discipline of closing that gap:
+> reproducible evidence before any claim that a task is done.
 
 # Proof of Work
 
-## Table of Contents
+## When NOT To Use
 
-- [Overview](#overview)
-- [The Iron Law](#the-iron-law)
-- [Usage Standards](#usage-standards)
-- [Validation Protocol](#validation-protocol)
-- [Integration](#integration)
-- [Validation Checklist](#validation-checklist-before-claiming-done)
-- [Red Flag Self-Check](#red-flag-self-check)
-- [Exit Criteria](#exit-criteria)
+- Planning before implementation (use `imbue:karpathy-principles`)
+- Deciding whether the work is in scope (use `imbue:scope-guard`)
 
 ## Overview
 
@@ -103,6 +97,18 @@ explain each line of a configuration or why a specific practice
 applies to the current context, the necessary validation steps have
 been skipped.
 
+### An agent's report is a claim, not evidence
+
+This holds wherever the work happened, and it binds hardest inside a
+Workflow script, because a script has no filesystem and no shell.
+Everything it knows, an agent told it. A stage that returns "the tests
+pass" is the same kind of statement as a session saying "should work,"
+and it carries the same weight, which is none.
+
+So a workflow may find, rank, structure and propose. The run that
+produces evidence happens where its output can be pasted. A workflow's
+return value feeds a gate. It is not one.
+
 ## Validation Protocol
 
 ### Step 1: Reproduce the Problem (`proof:problem-reproduced`)
@@ -162,10 +168,26 @@ by the user. Ensure you are proving rather than assuming.
 
 ## Supporting Modules
 
-- [TodoWrite naming patterns](modules/todowrite-patterns.md): naming
-  conventions and safe deletion rules for imbue TodoWrite items
+- [Progress item naming patterns](modules/todowrite-patterns.md): naming
+  conventions and safe deletion rules for imbue progress items
 - [Evidence logging](modules/evidence-logging.md): structured
   evidence capture, audit trails, and reproducibility patterns
+- [Independent verification](modules/independent-verification.md): for
+  high-stakes changes, why the producing agent may not be its own
+  sole verifier, and what counts as an independent check
+- [Verifier integrity](modules/verifier-integrity.md): whether the
+  check is real at all: validate the spec separately, prove the check
+  fails when behavior breaks (mutation/revert), prefer executable and
+  property-based checks over an LLM judge
+
+## Progress Items
+
+Skills across the marketplace name the progress items they require, such
+as `proof:iron-law-red`. Record each with TaskCreate or TodoWrite when the
+session offers them. Since Claude Code 2.1.233 current models get neither
+unless `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` is set, so otherwise list the
+items with their status in the progress update. An item counts as complete
+when its evidence exists, whichever way it was recorded.
 
 ## Related Skills
 
@@ -177,6 +199,14 @@ by the user. Ensure you are proving rather than assuming.
 
 ## Exit Criteria
 
-Complete all progress tracking items. Create an evidence log with
-reproducible proofs. Define and validate acceptance criteria, and
-document any identified blockers.
+- [ ] Every implementation change has a corresponding progress item
+      (`proof:iron-law-red`, `proof:iron-law-green`) confirming
+      test-first execution.
+- [ ] At least one `[E1]`/`[E2]` evidence reference exists in the
+      response, backed by a real command invocation and its output.
+- [ ] All acceptance criteria are explicitly stated and each has been
+      verified by running, not by inspection.
+- [ ] Any blocker is documented with the exact failure output and the
+      next concrete step to unblock it.
+- [ ] The final response does not contain any "should work", "looks
+      correct", or "will work" claims without supporting evidence.

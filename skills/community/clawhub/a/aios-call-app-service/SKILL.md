@@ -1,6 +1,6 @@
 ---
 name: aios-call-app-service
-description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时数据、接口调用或业务操作时，优先使用本技能。先读取 AIOS_ONTOLOGY_DIR 指向的本体目录，再确认应用、命令、参数结构和枚举映射，通过 aios-apps-invoke-cli 发起调用，并以实时返回结果作为后续分析和执行依据。遇到 aios-mqtt-channel 会话时，把当前会话的 SessionId 视为唯一合法会话标识；它来自当前会话上下文中的 `sessionId`。
+description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时数据、接口调用或业务操作时，优先使用本技能。先读取 AIOS_ONTOLOGY_DIR 指向的本体目录，再确认应用、命令、参数结构和枚举映射，通过 aios-apps-invoke-cli 发起调用，并以实时返回结果作为后续分析和执行依据。遇到 aios-mqtt-channel 会话时，把当前会话的 SessionId 视为唯一合法会话标识；它来自当前会话上下文中的 `topic_id`。如果调用过程需要在 workspace 保存请求体、下载结果或生成文件，文件隔离标识必须使用当前通道的 `senderId`。
 ---
 
 # 系统调用技能
@@ -38,9 +38,9 @@ description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时
 2. 根据文档，确认本次是 `servercommand` 还是 `binding`。
 3. 根据文档，确认 `applicationName`。
 4. 根据文档，确认 `commandName`。
-5. 根据文档，确认 `provider`。
-6. 通过会话上下文的 `topic_id` ，确认 `SessionId`。
-7. 生成 `jsonBody`，并检查确认合法性。
+5. 通过会话上下文的 `topic_id` ，确认 `SessionId`。`topic_id` 只用于 CLI 的 `-s` 参数，不作为 workspace 文件目录。
+6. 通过当前通道上下文确认 `senderId`。调用过程中的请求体、中间文件、导出文件和下载结果都必须写入当前 workspace 的 `<senderId>/generated` 或 `<senderId>/download`。
+7. 生成 `jsonBody`，保存为 UTF-8 JSON 文件到当前 `<senderId>/generated`，并检查确认合法性。
 8. 如果涉及到创建、修改、提交、审核、删除等动作，必须整理出包括每个参数、值和说明的表格，请用户确认后，方可执行。查询类动作需忽略这一步。
 9. 生成并执行唯一一条 CLI 命令。
 
@@ -51,19 +51,24 @@ description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时
 - `aios-apps-invoke-cli` 的 `-s` 参数，只接受当前会话上下文中的 `topic_id`。
 - `topic_id` 以 `s-` 开头，后面跟30个数字，不要忽略开头的 `s-`。
 - 如果当前上下文没有 `topic_id`，就视为运行时缺参，必须停止调用并明确说明缺口。
+- `senderId` 不得传给 `-s` 参数；它只用于 workspace 文件隔离。
 
 ## 约束要求
 
 - `AIOS_ONTOLOGY_DIR` （默认为 `/var/aios/kernel/ontology`）视为当前事实源。
-- 当前 CLI 只支持 `provider=hzg`，如果出现其他 provider，直接说明当前运行链路不支持，不要猜测替代方案。
+- 业务系统调用链路固定使用 HZG；CLI 不接受 `provider`、`-p` 或 `--provider` 参数。
 - 调用 CLI 时，`-s` 传入当前会话的 `topic_id` 。
   - 不能臆造，不能复用其他会话的 `topic_id` 。
   - 不得使用提示词中的 `SessionId` 、 `topic_id` 、`chat_id` 、 `message_id` 或其他字段代替。
-- 不要臆造接口名、请求字段、枚举 ID 或 `provider`。
+- workspace 文件隔离固定使用当前通道的 `senderId`。
+  - 不能臆造，不能复用其他会话或其他用户的 `senderId`。
+  - 不得读取、查询、写入、索引或暴露其他 `senderId` 的 `upload`、`download`、`generated` 目录。
+  - 如果缺少 `senderId` 且本次调用需要保存请求体、下载结果或生成文件，必须停止并说明缺口。
+- 不要臆造接口名、请求字段或枚举 ID。
 - 不要绕过 CLI 自行编写 API 调用脚本。
 - 不要手动启动 `aios-apps-invoke-cli serve` ；运行环境应已提供常驻 app invoke service。
 - 只有拿到 CLI 结果后，才允许用 Python 做二次分析和计算。
-- 如果本体不完整、`provider` 未知或运行时上下文缺失，应明确说明阻塞点，不要猜测。
+- 如果本体不完整或运行时上下文缺失，应明确说明阻塞点，不要猜测。
 - 禁止将调用结果存储到记忆、缓存或数据库中；禁止在后续对话中复用之前的调用结果。
 
 ## 降歧义规则
@@ -74,6 +79,7 @@ description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时
   - `CalcBindingDataSource`
 - `servercommand` 的 `jsonBody` 严格按 ontology 的 `Input Arguments` 生成。
 - `binding` 的 `jsonBody` 严格按 [references/invoke-rules.md](references/invoke-rules.md) 中的兼容 schema 生成。
+- 调用 `POST` 或 `binding` 时，优先使用 `--body-file <json文件>`；调用 `GET servercommand` 时，优先使用 `--query-file <json文件>`。
 - 不要把底层 HTTP 原始 body 直接塞进 `binding` 的 `jsonBody`，除非规则文件明确允许。
 - 同一个问题里如果存在多个可疑 ontology 条目，先说明候选项并停止，不要自选一个继续调用。
 

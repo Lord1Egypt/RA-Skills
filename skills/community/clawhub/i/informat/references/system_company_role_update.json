@@ -1,0 +1,56 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_role_update",
+    "description": "Update an existing role in the company. Must specify the role ID and list the fields to be updated in updateFieldList. Only fields listed in updateFieldList will be modified.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role ID (required)."
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "List of field names to be updated in this operation. Only fields listed here will be modified; other fields will remain unchanged.",
+          "items": {
+            "type": "string",
+            "enum": ["key", "name", "remark", "permissionIds", "rowNumber"]
+          }
+        },
+        "key": {
+          "type": "string",
+          "description": "Role unique identifier (must be unique within the company). Must use camelCase naming, only English letters and numbers, no underscores or special characters.",
+          "minLength": 2,
+          "maxLength": 50,
+          "pattern": "^[a-z][A-Za-z0-9]{1,49}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Role name (must be unique within the company). Used for display in the interface.",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "remark": {
+          "type": "string",
+          "description": "Role description, explaining the responsibilities and usage scenarios.",
+          "maxLength": 200
+        },
+        "permissionIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Permission ID."
+          },
+          "description": "Set of permission IDs assigned to this role."
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number. Lower numbers appear first."
+        }
+      },
+      "required": ["id", "updateFieldList"],
+      "additionalProperties": false
+    }
+  }
+}

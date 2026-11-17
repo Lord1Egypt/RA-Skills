@@ -1,0 +1,332 @@
+---
+name: continue-learning
+slug: continue-learning
+version: 1.3.2
+description: |
+  Instinct-based learning system for OpenClaw. Analyzes sessions, detects patterns, creates atomic learnings with confidence scoring, and suggests optimizations for self-evolution.
+  
+  Works alongside agent-self-improvement for complete learning: internal session analysis + external user feedback.
+  
+  Use when: you want your AI agent to learn from its own behavior, improve over time, discover optimization opportunities, or build a self-improving automation system.
+  
+  Don't use when: static agent behavior is preferred.
+triggers:
+  - continuous learning
+  - self improving agent
+  - agent evolution
+  - pattern detection
+  - session analysis
+  - ai learning
+  - agent optimization
+  - automation improvement
+  - self evolution
+metadata:
+  openclaw:
+    emoji: "🧠"
+    requires:
+      bins: ["node"]
+---
+
+# Continuous Learning for AI Agents
+
+An instinct-based learning system that helps AI agents improve themselves through observation and pattern detection.
+
+## What This Skill Does
+
+- **Analyzes session history** - Reviews agent interactions and outputs
+- **Detects patterns** - Identifies recurring behaviors, preferences, workflows
+- **Creates instincts** - Atomic learnings with confidence scores
+- **Suggests optimizations** - Based on observed behavior patterns
+- **Enables self-evolution** - Converts insights into improvements
+
+## When to Use
+
+**Use when:**
+- Building self-improving AI agents
+- Want agent to learn from interactions
+- Discovering optimization opportunities
+- Creating adaptive automation
+- Tracking behavioral patterns
+
+**Skip when:**
+- Static, unchanging behavior preferred
+- No session history available
+- Simple, deterministic workflows only
+
+## Architecture
+
+```
+~/.openclaw/agents/ (session .jsonl files)
+        │
+        ▼
+┌───────────────────────────────────────────┐
+│ analyze.mjs                                │
+│ • Reads session history                   │
+│ • Extracts tool calls & errors             │
+│ • Detects patterns                         │
+└───────────────────────────────────────────┘
+        │
+        ▼
+┌───────────────────────────────────────────┐
+│ memory/learning/                           │
+│ • instincts.jsonl (atomic learnings)       │
+│ • patterns.json (aggregated)              │
+│ • optimizations.json (suggestions)         │
+└───────────────────────────────────────────┘
+```
+
+## External Feedback (Sub-Skill)
+
+This skill works with **agent-self-improvement** (ClawHub) for external user feedback capture:
+
+- **Internal Learning**: Session analysis (this skill)
+- **External Learning**: User feedback via `SKILL:agent-self-improvement`
+
+### Combined Usage
+
+```
+# Nightly: Internal analysis
+SKILL:openclaw-continuous-learning --analyze
+
+# After any output: Capture feedback
+SKILL:agent-self-improvement --job <task> --feedback "<user response>"
+
+# Daily: Generate combined improvements
+SKILL:agent-self-improvement --improve all
+```
+
+### Feedback Flow
+
+```
+User Response → agent-self-improvement → Directive Hints
+        ↓
+Session Analysis → openclaw-continuous-learning → Internal Patterns
+        ↓
+Combined Insights → Agent Optimization
+```
+
+Both skills store learnings in `memory/learning/` and can reference each other's data.
+
+## Confidence Scoring
+
+| Score | Meaning | Behavior |
+|-------|---------|----------|
+| 0.3 | Tentative | Suggested but not enforced |
+| 0.5 | Moderate | Applied when relevant |
+| 0.7 | Strong | Auto-approved |
+| 0.9 | Core behavior | Always apply |
+
+**Confidence increases when:**
+- Pattern observed repeatedly
+- User doesn't correct behavior
+- Multiple observations agree
+
+**Confidence decreases when:**
+- User explicitly corrects
+- Pattern not observed recently
+- Contradicting evidence appears
+
+## Key Concepts
+
+### Instincts
+
+An instinct is a small learned behavior:
+
+```yaml
+id: prefer-simplicity
+trigger: "when solving problems"
+confidence: 0.7
+domain: problem_solving
+---
+# Prefer Simple Solutions
+
+## Action
+Always choose the simplest solution that meets requirements.
+
+## Evidence
+- Observed preference for minimal code
+- User corrected over-engineered approaches
+```
+
+### Patterns
+
+Aggregated observations grouped by category:
+- code_style
+- testing
+- git
+- debugging
+- workflow
+- communication
+
+### Optimizations
+
+Actionable improvements derived from patterns.
+
+## Use Cases
+
+### 1. Agent Self-Improvement
+
+```
+Agent observes its own sessions:
+- What works consistently?
+- What gets corrected?
+- What patterns emerge?
+
+Creates instincts → Applies high-confidence patterns
+```
+
+### 2. User Preference Learning
+
+```
+Learn user preferences from interactions:
+- Coding style preferences
+- Communication preferences
+- Workflow preferences
+
+Adapt behavior accordingly
+```
+
+### 3. Performance Optimization
+
+```
+Detect performance patterns:
+- Slow operations
+- Bottlenecks
+- Optimization opportunities
+
+Suggest improvements
+```
+
+### 4. Error Pattern Detection
+
+```
+Track error patterns:
+- Common failures
+- Resolution strategies
+- Prevention approaches
+
+Build error-handling instincts
+```
+
+## Security & Privacy
+
+1. **Scoped analysis (opt-in).** `analyze.mjs` does not silently scan every agent. It analyses
+   only sessions of an agent you explicitly name with `--agent <name>`, or all agents only when
+   you pass `--all`. Running it with no scope refuses.
+2. **Redaction.** Any session-derived text stored (error snippets, evidence) is secret-redacted
+   and control/Unicode-stripped before persistence. Tokens, API keys, private-key blocks, long
+   hex, and URI credentials become `[REDACTED]`.
+3. **Retention caps.** Learning is bounded: instincts capped at the most recent 200, evidence
+   capped at 10 per instinct, patterns capped at the last 50 analysis runs. Nothing is retained
+   unbounded.
+4. **Deletion control.** Run `node scripts/analyze.mjs prune` to delete all stored instincts,
+   patterns, and optimizations at any time.
+5. **No raw transcripts.** Full session text is never persisted. Only aggregated counts and
+   redacted snippets are stored. Suggestions require your approval to apply — nothing
+   auto-modifies your agent.
+
+## Quick Start
+
+```bash
+# Analyze sessions for ONE explicit agent (opt-in scoping)
+cd ~/.openclaw/workspace/skills/continue-learning
+node scripts/analyze.mjs --agent <agent-name>
+
+# Explicitly analyze all agents
+node scripts/analyze.mjs --all
+
+# List learned instincts / optimizations / patterns (no scope needed)
+node scripts/analyze.mjs instincts
+node scripts/analyze.mjs list
+node scripts/analyze.mjs patterns
+
+# Show redacted error patterns (scoped)
+node scripts/analyze.mjs errors --agent <agent-name>
+
+# Delete all stored learning data
+node scripts/analyze.mjs prune
+```
+
+## Setup
+
+### 1. Create storage directory
+
+```bash
+mkdir -p ~/.openclaw/workspace/memory/learning
+```
+
+### 2. Schedule analysis
+
+Add to cron for periodic analysis:
+
+```json
+{
+  "id": "continuous-learning",
+  "schedule": "0 22 * * *"
+}
+```
+
+### 3. Integrate with daily tips
+
+Connect to daily summary for optimization delivery.
+
+## File Structure
+
+```
+~/.openclaw/workspace/
+└── memory/
+    └── learning/
+        ├── instincts.jsonl    # Atomic learnings
+        ├── patterns.json      # Aggregated patterns
+        └── optimizations.json # Suggestions
+```
+
+## Example Output
+
+```
+🧠 Learning Report
+
+Patterns Detected:
+- prefer-simplicity (0.7) ↑2
+- test-first (0.5) ↑1
+- commit-often (0.3) new
+
+Confidence Changes:
+- minimal-code: 0.5 → 0.7
+
+Suggested:
+1. Prioritize simple solutions
+2. Add pre-commit hooks
+3. Enable stricter typing
+```
+
+## Best Practices
+
+1. **Start simple** - Few patterns, low confidence
+2. **Validate often** - Check if patterns still hold
+3. **Review suggestions** - Don't auto-apply everything
+4. **Track confidence** - Update based on results
+5. **Export/share** - Build library of common patterns
+
+## FAQ
+
+**How is this different from memory?**
+Memory stores facts. This learns behavioral patterns and preferences.
+
+**How long to see results?**
+Depends on session volume. Typically 1-2 weeks for meaningful patterns.
+
+**Is it safe to auto-apply?**
+Only high-confidence (0.7+) patterns. Always review suggestions first.
+
+## Related Skills
+
+- **skill-engineer** - Quality-gated skill development
+- **compound-engineering** - Session review and learning
+- **memory-setup** - Memory configuration
+- **openclaw-daily-tips** - Daily optimization tips
+
+---
+
+**Version:** 1.1.0  
+**Inspired by:** Anthropic's continuous learning patterns, Claude Code homunculus

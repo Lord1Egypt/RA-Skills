@@ -1,43 +1,57 @@
-## Description: <br>
-Take full-page screenshots of local HTML files as PNG images using Chrome and puppeteer-core, with optional PDF output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take full-page screenshots of HTML files as PNG images using Chrome + puppeteer-core, without downloading any browser; it can also generate PDF via Chrome's print-to-PDF.
 
-## Publisher: <br>
-[cclam5](https://clawhub.ai/user/cclam5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cclam5](https://clawhub.ai/user/cclam5)
 
-## Use Case: <br>
-Developers and engineers use this skill to render locally authored HTML reports, visualizations, and shareable pages into PNG screenshots or PDF documents when a browser capture workflow is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe input handling and weak browser isolation may make untrusted HTML files or paths risky to process. <br>
-Mitigation: Use this skill only with trusted local HTML files and paths, and prefer a temporary directory containing only the target file and required assets. <br>
-Risk: Unexpected filenames or viewport values may affect the screenshot workflow. <br>
-Mitigation: Use simple filenames and numeric viewport widths, and review command arguments before execution. <br>
-Risk: The documented PDF mode may not be reliable until patched. <br>
-Mitigation: Prefer PNG output for normal use and avoid relying on PDF output until the issue is fixed and reviewed. <br>
+## Use Case:
 
+Developers and agents use this skill to convert locally authored HTML reports, data visualizations, and shareable pages into PNG screenshots or PDF documents when browser or canvas tooling is unavailable or impractical.
 
-## Reference(s): <br>
-- [Chrome Screenshot on ClawHub](https://clawhub.ai/cclam5/chrome-screenshot) <br>
-- [Publisher profile: cclam5](https://clawhub.ai/user/cclam5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash and JSON examples; generated PNG or PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a full-page PNG screenshot; optional PDF output is documented but should be treated cautiously until reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill weakens browser isolation and handles inputs unsafely during local screenshot execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only HTML you authored and prefer a revised version that keeps Chrome sandboxing enabled and passes arguments to Node as data.
+
+Risk: The local HTTP server can serve files from the HTML file's directory during capture.
+
+Mitigation: Run it from a minimal directory containing only approved assets and no sensitive neighboring files.
+
+Risk: Global dependency resolution can make the execution environment harder to review and reproduce.
+
+Mitigation: Pin puppeteer-core locally and verify Chrome, Node.js, and Python dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cclam5/skills/chrome-screenshot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with bash commands and generated PNG or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Chrome, Node.js, Python 3, and puppeteer-core; output path and viewport width are configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

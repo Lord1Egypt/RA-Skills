@@ -1,40 +1,52 @@
-## Description: <br>
-This skill helps agents create, edit, analyze, visualize, and recalculate spreadsheet files, including XLSX, XLSM, CSV, and TSV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and helper tooling for creating, editing, analyzing, formatting, visualizing, and recalculating spreadsheet files such as .xlsx, .xlsm, .csv, and .tsv.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+Proprietary
+
+## Use Case:
+
+Developers and agents use this skill to build, inspect, modify, format, analyze, and recalculate spreadsheet workbooks while preserving formulas and existing workbook conventions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The recalculation workflow can persistently install or overwrite a LibreOffice macro in the user's profile.
+
+Mitigation: Run the skill in a disposable user profile or sandbox, review the macro behavior before use, and avoid using it on a primary LibreOffice profile.
+
+Risk: Spreadsheet creation, editing, and recalculation can change workbook structure, formulas, and calculated values.
+
+Mitigation: Keep backups of important spreadsheets and review formula error reports before relying on the resulting workbook.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, developers, and analysts use this skill to build spreadsheet models, preserve or update workbook formatting and formulas, analyze tabular data, and recalculate formulas through LibreOffice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify spreadsheet workbooks during editing and formula recalculation. <br>
-Mitigation: Use the skill on trusted workbooks, keep backups before edits or recalculation, and review resulting files before relying on them. <br>
-Risk: The recalculation workflow can add a persistent LibreOffice macro to the user's LibreOffice profile. <br>
-Mitigation: Run the skill in a sandbox or disposable LibreOffice profile when possible, and only install it if persistent local LibreOffice configuration changes are acceptable. <br>
+**Output Format:** [Markdown guidance with Python and shell examples; generated spreadsheet artifacts may be XLSX, XLSM, CSV, or TSV files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/financial-modeling-qa-xlsx) <br>
+**Other Properties Related to Output:** [The recalculation helper returns JSON error reports and may modify local spreadsheet files during formula recalculation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Python code snippets, shell commands, JSON recalculation results, and generated or modified spreadsheet files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify workbook files and may configure a persistent LibreOffice macro in the user's LibreOffice profile.] <br>
+0.1.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

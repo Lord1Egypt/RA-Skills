@@ -1,42 +1,52 @@
-## Description: <br>
-Verifies Chinese GitHub developers by correlating public profile evidence across Bilibili, Douyin, Xiaohongshu, Zhihu, Juejin, and CSDN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies whether Chinese GitHub developers appear credible by checking public profiles on Bilibili, Douyin, Xiaohongshu, Zhihu, Juejin, and CSDN.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to gather public cross-platform identity signals for a GitHub project author and summarize those signals as an advisory credibility check.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Public social-profile correlation and follower or activity metrics can produce misleading trust judgments.
+
+Mitigation: Treat results as advisory context only and verify repository history, releases, maintainer behavior, issues, dependencies, and code before relying on a project.
+
+Risk: Absence from a listed Chinese content platform may be misread as suspicious.
+
+Mitigation: Use the skill only for explicitly requested public-profile research and avoid negative conclusions based solely on missing platform accounts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and users evaluating GitHub projects can ask an agent to search public Chinese social and developer platforms for an author's presence and summarize identity-correlation signals. Results should be treated as limited public-profile clues rather than a trust score, hiring judgment, or safety verdict. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can turn weak public-profile correlation into overconfident trust judgments. <br>
-Mitigation: Frame results as limited identity-matching clues, not trust scores, hiring judgments, or safety verdicts. <br>
-Risk: Absence from the listed regional social platforms could be misread as negative evidence. <br>
-Mitigation: Avoid penalizing missing social-platform presence and state when evidence is unavailable or inconclusive. <br>
+**Output Format:** [Markdown table with a short credibility summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/zhuchenggong-github-source-verification) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Outputs are advisory and should not be treated as proof of software safety or maintainer trustworthiness.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with a verification table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public profile links, follower or content counts, and a credibility note.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

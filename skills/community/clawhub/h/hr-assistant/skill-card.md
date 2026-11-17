@@ -1,44 +1,61 @@
-## Description: <br>
-Smart HR Assistant for Chinese small and medium businesses that manages employee records, organization structure, attendance, payroll, tax calculations, year-end bonus optimization, and HR reports using local Excel and JSON data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HR助手 helps Chinese small and medium businesses manage employee rosters, organization structure, attendance, payroll, tax and social contribution calculations, year-end bonus optimization, and local HR reports.
 
-## Publisher: <br>
-[stoned0516](https://clawhub.ai/user/stoned0516) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stoned0516](https://clawhub.ai/user/stoned0516)
 
-## Use Case: <br>
-HR staff at Chinese small and medium businesses use this skill to initialize local HR spreadsheets, manage employee lifecycle changes, calculate payroll and tax-related deductions, track attendance, and generate HR reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change sensitive employee, payroll, attendance, and configuration records, and the security summary says confirmation safeguards described by the instructions are not consistently enforced. <br>
-Mitigation: Review before installing, use only on a protected workstation and restricted folder, back up spreadsheets first, and enforce confirmation for delete, batch update, reset, payroll calculation, and export actions before using real HR or payroll data. <br>
-Risk: Exports and local data files can expose sensitive HR and payroll information if saved to shared or synced locations. <br>
-Mitigation: Avoid shared or synced export locations, restrict file permissions on the local .hr-data directory and exported spreadsheets, and keep backups in approved protected storage. <br>
-Risk: Feishu or cloud storage prompts may create expectations beyond the implemented and disclosed local Excel workflow. <br>
-Mitigation: Treat Feishu and cloud storage prompts as unsupported unless the publisher updates the implementation and disclosures. <br>
+## Use Case:
 
+HR teams at Chinese small and medium businesses use this skill to initialize local Excel-based HR data, manage employee and department records, calculate payroll and attendance deductions, and generate HR reports.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/stoned0516/hr-assistant) <br>
-- [README](README.md) <br>
-- [Payroll Engine Documentation](docs/payroll_engine.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese natural-language responses with command examples, local file paths, JSON records, and Excel report files when export actions are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local HR data changes and local exports through Python tools; no cloud storage is supported by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can change or delete sensitive employee records and run payroll, bulk status changes, and exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and explicit approval before employee deletion, bulk changes, payroll runs, or exports.
+
+Risk: HR, payroll, audit, and conversation data are persisted locally and may contain sensitive personal information.
+
+Mitigation: Install only in a trusted, access-controlled environment, protect the .hr-data directory, avoid shared machines, and back up HR spreadsheets before use.
+
+Risk: Generated or modified Excel files may carry spreadsheet-specific risks until stronger hardening is confirmed.
+
+Mitigation: Treat generated Excel files carefully and review exported spreadsheets before sharing or opening them in higher-trust environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stoned0516/skills/hr-assistant)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Payroll Engine Documentation](artifact/docs/payroll_engine.md)
+- [Onboarding Prompt](artifact/prompts/onboarding.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Chinese text or Markdown with optional shell commands and local Excel or JSON file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user-provided Excel files and write local .hr-data configuration, audit, payroll, conversation, and report files.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

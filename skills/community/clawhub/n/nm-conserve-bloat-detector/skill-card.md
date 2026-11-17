@@ -1,43 +1,54 @@
-## Description: <br>
-Detects codebase bloat via dead code, duplication, complexity, and doc bloat scans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects codebase bloat via dead code, duplication, complexity, and doc bloat scans
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan repositories for cleanup candidates, including dead code, duplicate logic, stale documentation, dependency bloat, and rapid codebase growth. It supports quick heuristic scans, targeted analysis with optional tools, and deeper audit reporting before refactoring or release cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup recommendations can incorrectly identify live code, documentation, or configuration as removable. <br>
-Mitigation: Treat DELETE and ARCHIVE outputs as review candidates, confirm references and tests manually, and require approval before removal. <br>
-Risk: Bulk cleanup can remove useful repository history or working implementation details if acted on without safeguards. <br>
-Mitigation: Use dry-run previews and create a backup branch before applying broad code or documentation changes. <br>
-Risk: Heuristic and static-analysis findings may include false positives, especially for entry points, generated files, stable libraries, and configuration. <br>
-Mitigation: Use the skill's confidence levels, exclusions, and tool corroboration before accepting a cleanup recommendation. <br>
+## Use Case:
 
+Developers and engineers use this skill to find dead or stale code, duplication, complexity, documentation and dependency bloat, and growth trends during maintenance or before a release. It organizes findings into confidence-ranked analysis and remediation guidance for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-bloat-detector) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional report snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence levels, prioritized cleanup candidates, dry-run commands, and remediation categories such as DELETE, REFACTOR, CONSOLIDATE, ARCHIVE, or INLINE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Optional package registry checks may disclose dependency names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only the checks needed for the task, and skip registry lookups when that disclosure is unacceptable.
+
+Risk: Some commands are reported as posing file-overwrite risk, and the security scan could not resolve some local references.
+
+Mitigation: Inspect commands and target paths before running them; use dry-run options and backups for file-changing cleanup, and review referenced components when needed.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-bloat-detector)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON findings with optional shell commands for analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tiered findings include confidence and prioritization; remediation proposals are reviewed by the user before changes.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

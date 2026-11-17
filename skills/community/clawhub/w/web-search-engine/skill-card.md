@@ -1,40 +1,52 @@
-## Description: <br>
-Retrieve search results from web search engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve search results from web search engines.
 
-## Publisher: <br>
-[lwq057](https://clawhub.ai/user/lwq057) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lwq057](https://clawhub.ai/user/lwq057)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to run lightweight web searches across supported search engines and receive serialized search result text for follow-up analysis or citation discovery.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to selected external search engines.
+
+Mitigation: Do not submit secrets, credentials, private customer data, or highly confidential prompts as search terms.
+
+Risk: Search results may be localized toward Chinese-language content.
+
+Mitigation: Review returned results for locale relevance and corroborate important findings with additional sources when needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and developers use this skill to run lightweight web searches across Bing, Baidu, 360 Search, or Sogou and collect result snippets for research. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to external search engines. <br>
-Mitigation: Avoid submitting secrets, confidential prompts, private business terms, or personal data. <br>
-Risk: Returned snippets may contain untrusted or misleading web content. <br>
-Mitigation: Treat search results as reference material and verify them before acting on them. <br>
+**Output Format:** [JSON-serialized array of search result text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lwq057/web-search-engine) <br>
+**Other Properties Related to Output:** [Searches may be run against one or more selected engines; result ordering corresponds to the requested engine order.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON-serialized array of search result text strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result array order follows the selected search engine order.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Jielong CLI helps agents manage Jielong activities through the jielong command-line tool, including creating, viewing, updating, deleting, and managing registrations and activity state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jielong CLI helps an agent manage Jielong activities through the `jielong` command-line tool, including creating, viewing, modifying, deleting, starting, ending, and restarting activities, handling paid signup and check-in activities, managing form fields, and reviewing or deleting signup records.
 
-## Publisher: <br>
-[liu-tao-hash](https://clawhub.ai/user/liu-tao-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liu-tao-hash](https://clawhub.ai/user/liu-tao-hash)
 
-## Use Case: <br>
-External users and operators use this skill to have an agent manage Jielong signup, paid registration, and check-in activities through CLI commands. It supports activity creation, lookup, updates, signup management, state changes, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a global npm CLI, open a login QR flow, and run commands that change Jielong account data. <br>
-Mitigation: Use it only in an environment where the user expects the jielong CLI to run, and require explicit user confirmation before login, creation, mutation, or deletion actions. <br>
-Risk: Account details, phone numbers, OpenID values, activity IDs, and signup records may appear in command output. <br>
-Mitigation: Avoid sharing command output outside the active session, redact personal identifiers when they are not needed, and confirm the account belongs to the user before continuing. <br>
-Risk: Deletion, clearing signups, and state-change commands can be destructive or difficult to reverse. <br>
-Mitigation: Confirm the target activity and requested action with the user before running destructive commands, and prefer listing or viewing records first to verify IDs. <br>
+## Use Case:
 
+External users and agents use this skill to operate Jielong activity workflows from natural-language requests, including activity creation, signup management, status changes, field configuration, and attendance or paid registration handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liu-tao-hash/skills/tianba-jielong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute jielong CLI commands and prepare temporary JSON configuration for complex activity creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can install or update a global CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts the `jielong-cli` npm package, prefer a pinned package version, and confirm installation or update before execution.
+
+Risk: The skill can open browser login flows and expose account identity details.
+
+Mitigation: Ask before starting login, show only the minimum account confirmation details needed, and mask phone numbers, user IDs, OpenIDs, and other persistent identifiers.
+
+Risk: The skill can modify, delete, clear, start, stop, restart, or create paid activity records.
+
+Mitigation: Require explicit user confirmation for every destructive, account-changing, or paid-operation action, and summarize the target activity by name rather than by internal identifiers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liu-tao-hash/skills/tianba-jielong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that invoke the global `jielong` CLI and JSON configuration for complex activity creation.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

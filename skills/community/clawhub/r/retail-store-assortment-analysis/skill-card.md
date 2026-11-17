@@ -1,40 +1,49 @@
-## Description: <br>
-Analyzes retail assortment display performance by comparing SKU attention, trial depth, customer intent dispersion, and conversion efficiency from store BI data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes retail store assortment performance from pallet and display perspectives, including intent-generating SKUs, trial depth, customer intent dispersion, and conversion efficiency.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-Retail operators, analysts, and store performance teams use this skill to compare store assortment engagement and conversion metrics across periods. It helps identify assortment attractiveness, trial depth changes, customer intent concentration, and SKU conversion efficiency from BI data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an unbundled local API client from a hard-coded personal path before reading store BI data. <br>
-Mitigation: Review or replace the external API client before installation and run only in an environment where the local client is trusted. <br>
-Risk: The skill accesses store BI data through the referenced dashboard endpoint. <br>
-Mitigation: Use only with authorization for the referenced store data and confirm data handling requirements before execution. <br>
+## Use Case:
 
+Retail operators and analysts use this skill to compare display, behavior, and customer funnels for a store over a selected date range. It produces diagnostic findings and action guidance for assortment attractiveness, trial depth, customer intent concentration, and conversion efficiency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gwyang7/retail-store-assortment-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Console text report with structured analysis sections and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces period-over-period retail BI analysis based on store ID and date range inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports that the skill loads unreviewed local code from a hardcoded personal workspace path before running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the local path dependency with a packaged, pinned, reviewable API client, or run only in an environment where that path is strictly controlled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gwyang7/skills/retail-store-assortment-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain-text analysis report with structured Chinese sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires store ID, date range, and optional store name; calls the store dashboard BI endpoint through a local API client.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+# 全栈一体编排模板（复制为 docker-compose.yaml 使用）
+# 前端 + 后端 + 数据库，一条命令起全套。
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://app:app@db:5432/app
+      PORT: "3000"
+    ports: ["3000:3000"]
+    depends_on: [db]
+
+  frontend:
+    build: ./frontend
+    ports: ["5173:5173"]
+    depends_on: [backend]
+
+volumes:
+  pgdata:

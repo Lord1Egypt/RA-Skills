@@ -1,16 +1,16 @@
 # ILIB\_LibraryInfo interface
 
-库信息
+Library information
 
 ## Signature
 
 ```typescript
-interface ILIB_LibraryInfo 
+interface ILIB_LibraryInfo
 ```
 
 ## Remarks
 
-包含库的名称以及它的 UUID
+Contains the name of the library and its UUID
 
 ## Properties
 
@@ -18,59 +18,47 @@ interface ILIB_LibraryInfo
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [name](./ILIB_LibraryInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-库名称
-
+Library name
 
 </td></tr>
 <tr><td>
 
 [uuid](./ILIB_LibraryInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-库 UUID
-
+Library UUID
 
 </td></tr>
 </tbody></table>
@@ -83,7 +71,7 @@ string
 
 # ILIB\_LibraryInfo.name property
 
-库名称
+Library name
 
 ## Signature
 
@@ -95,7 +83,7 @@ name: string;
 
 # ILIB\_LibraryInfo.uuid property
 
-库 UUID
+Library UUID
 
 ## Signature
 

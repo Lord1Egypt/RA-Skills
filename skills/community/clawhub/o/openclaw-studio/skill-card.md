@@ -1,43 +1,56 @@
-## Description: <br>
-Use when the user wants a local visual operations dashboard for OpenClaw, with a cute robot presentation, live status visibility, chat access, efficiency trend monitoring, and optional recovery helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Studio helps an agent install, run, configure, and present a local visual operations dashboard for supervising one OpenClaw agent.
 
-## Publisher: <br>
-[LucasZH7](https://clawhub.ai/user/LucasZH7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaszh7](https://clawhub.ai/user/lucaszh7)
 
-## Use Case: <br>
-Developers, solo builders, and operators use this skill to install, run, configure, and present a local dashboard for supervising one OpenClaw agent. It supports live status review, chat access, trend monitoring, and optional recovery helpers for local single-agent supervision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installer creates persistent macOS background services while referenced runtime files are not included for review. <br>
-Mitigation: Prefer foreground or non-persistent local startup with ./run_monitor.sh or ./start_bg.sh; review install_launchd.sh before enabling launchd persistence. <br>
-Risk: Persistent services may remain active after installation. <br>
-Mitigation: Use uninstall_launchd.sh to remove the LaunchAgents when persistence is no longer intended. <br>
+## Use Case:
 
+External developers and operators use this skill to run a local dashboard for one OpenClaw agent, monitor status and efficiency trends, access chat controls, and apply optional recovery helpers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/LucasZH7/openclaw-studio) <br>
-- [Publisher Profile](https://clawhub.ai/user/LucasZH7) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The package includes a macOS persistence installer that can start monitor, auto-heal, and watchdog LaunchAgents at login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the foreground run command for routine use; run install_launchd.sh only after explicit user approval, verify runtime files first, and remove installed LaunchAgents with uninstall_launchd.sh or launchctl when no longer needed.
+
+Risk: Recovery helpers may create a false impression that an agent action succeeded.
+
+Mitigation: Confirm recovery outcomes through logs or visible dashboard state before reporting success.
+
+## Reference(s):
+
+- [OpenClaw Studio ClawHub page](https://clawhub.ai/lucaszh7/skills/openclaw-studio)
+- [Declared repository](https://github.com/LucasZH7/openclaw-studio)
+- [README](README.md)
+- [Market listing](MARKET_LISTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and configuration file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local setup, operation, presentation, and safety guidance for a single-agent dashboard.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

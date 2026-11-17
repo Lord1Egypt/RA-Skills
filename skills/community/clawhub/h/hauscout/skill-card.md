@@ -1,40 +1,52 @@
-## Description: <br>
-Hauscout helps an agent collect HouseSigma real estate listings, analyze them with AI, and store listing and price-history results in Neon PostgreSQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hauscout automates collection and AI analysis of HouseSigma real estate listings, then stores structured listing data and price-history updates in Neon PostgreSQL.
 
-## Publisher: <br>
-[sonim1](https://clawhub.ai/user/sonim1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonim1](https://clawhub.ai/user/sonim1)
 
-## Use Case: <br>
-Real estate data operators and developers use this skill to run a local Hauscout collection pipeline for targeted listing or profile collection, dry-run analysis, database review, and post-collection reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The collection workflow can scrape HouseSigma pages and may affect rate limits or site-policy compliance. <br>
-Mitigation: Require explicit approval before scraping, start with --dry-run where practical, and keep the documented request delays in place. <br>
-Risk: The workflow can write listing and price-history data to a Neon PostgreSQL database. <br>
-Mitigation: Confirm the target database credentials and project context before any non-dry-run collection. <br>
-Risk: The post-collection checklist can create local memory files and commit or push changes. <br>
-Mitigation: Require the agent to ask before writing memory files, committing, or pushing to a remote Git repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to run and verify a real estate listing collection pipeline, including targeted listing or profile collection, AI analysis, database updates, and post-run reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include collection summaries, database query guidance, and post-run reporting steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run unaudited local collection code that scrapes HouseSigma, calls AI services, and writes or updates persistent database records.
+
+Mitigation: Inspect the collection script and dependencies, run with dry-run first, and use scoped database credentials before allowing persistent writes.
+
+Risk: The skill's workflow can create local memory summaries and push repository changes after collection.
+
+Mitigation: Review generated files, git status, and diffs before committing, and require explicit manual approval before any push.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sonim1/skills/hauscout)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create dated local collection summaries and report new listings, price changes, errors, and database query results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

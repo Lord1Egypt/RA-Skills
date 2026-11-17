@@ -4,7 +4,7 @@ description: "问卷网（www.wenjuan.com）- 人人都好用的在线问卷调�
 description_zh: 问卷网操作（创建、编辑、发布、报表、数据导出）
 description_en: Wenjuan Survey operations (create, edit, publish, report, data export)
 homepage: https://www.wenjuan.com
-version: 1.0.13
+version: 1.0.15
 ---
 
 # 问卷网 Skill 使用指南
@@ -25,6 +25,55 @@ version: 1.0.13
   - **投票/评选**：`--type vote`
   - **表单/报名/信息登记**：`--type form`
   **不要**把投票、表单、测评误作成 `survey`，否则题型与后台能力不匹配。
+
+- **确认交互（操作按钮）**：展示标题、类型、题目概要后，必须明确说明选择“直接创建”会在问卷网账号中创建项目、发布并开始收集；随后在回复末尾提供两个可点击的操作按钮，按钮文案必须分别为：
+  - `返回修改`
+  - `直接创建`
+
+  **原生交互优先**：先检查当前会话实际提供的工具；若存在交互选择、提问、建议回复或按钮工具，必须调用该工具创建原生按钮，不要仅在正文中罗列选项。Skill 文本本身不能制造客户端按钮，因此不得在未调用交互工具时声称已经提供按钮。仅在当前工具列表没有任何原生交互能力时，才回退为回复末尾两行纯文本，顺序固定为“返回修改”“直接创建”。禁止只写“请回复‘直接创建’”而遗漏“返回修改”，也不得用 Markdown 链接或 HTML 模拟按钮。
+
+  用户点击“直接创建”按钮即完成确认，必须立即执行创建发布工作流；**不得再要求用户输入“直接创建”，也不得进行第二次确认**。点击“返回修改”时只继续修改题目，不得创建、导入或发布。仅在客户端没有原生交互工具、已回退为纯文本选项时，用户才需要输入对应文字。
+
+- **发布成功结果必须对用户可见（硬性）**：工作流结束后，上述「项目标题 / 项目 ID / 题目数量 / 当前状态 / 答题链接 / 二维码海报」信息块 + 海报文件附件，**必须写进面向用户的最终回复正文**，让用户在聊天主界面直接看到。**禁止**只出现在工具输出、终端日志、折叠的过程/思考消息、侧栏产物列表而不在最终回复里复述；**禁止**用“已完成，详见过程消息/产物”一类话术代替。否则用户拿不到链接与海报，无法继续使用。
+- **复用已有同主题项目时同样必须带海报（硬性）**：若因「同一主题不得刷测试项目」检测到账号侧已有同主题问卷、本次未新建，最终回复仍须给出完整可用信息（含答题链接与二维码海报）。须先用已有 `survey_link`（或 short_id）调用 `node scripts/generate_share_poster.js --title "..." --url "..." --project-id "..."` 生成海报，再按下方格式展示；**禁止**只列标题/ID/链接而无海报附件。可先用一两句说明“检测到同主题已存在、未新建”，随后仍输出同一套字段块 + 海报文件附件。
+- **最终回复格式（固定，新建成功与复用已有均适用）**：最终回复必须按以下顺序与字段展示（字段名加粗，取值跟在冒号后；勿增删字段、勿改顺序）。海报**不要**用 Markdown/HTML 内联渲染成大图；应在信息块下方以**文件附件/产物卡片**附上 `poster_path`（效果：文件名 + 大小，可下载打开）：
+
+  ```
+  **项目标题：** <title>
+  **项目 ID：** <project_id>
+  **题目数量：** <question_count> 道
+  **当前状态：** 收集中
+  **答题链接：** <survey_link>
+  **二维码海报：** 已生成并展示，可直接扫码填写。
+
+  <以文件附件附上 poster_path，例如：大学生恋爱观与恋爱现状调查-<project_id>.png>
+  ```
+
+  示例（新建成功）：
+
+  ```
+  **项目标题：** 大学生恋爱观与恋爱现状调查
+  **项目 ID：** 6a8fa7a1e9cf9ea0b999b8ee
+  **题目数量：** 23 道
+  **当前状态：** 收集中
+  **答题链接：** https://www.wenjuan.com/s/UZBZJvUStK6
+  **二维码海报：** 已生成并展示，可直接扫码填写。
+  ```
+
+  示例（复用已有，可加简短说明后接同一字段块）：
+
+  ```
+  检测到同主题问卷已存在，为避免重复创建，本次未新建项目。
+
+  **项目标题：** 大学生恋爱观与恋爱现状调查
+  **项目 ID：** 6a8fa7a1e9cf9ea0b999b8ee
+  **题目数量：** 23 道
+  **当前状态：** 收集中
+  **答题链接：** https://www.wenjuan.com/s/UZBZJvUStK6
+  **二维码海报：** 已生成并展示，可直接扫码填写。
+  ```
+
+  随后附上海报文件产物（聊天中显示为附件卡片，而非内联预览图）。**禁止**输出 `![问卷二维码海报](...)` 或 `<img ...>`。若海报生成失败：将「二维码海报」一行改为失败原因，不附文件，并保留答题链接。若仍在审核中，将「当前状态」写为「审核中」。复用已有时可在字段块后补充一句「如需修改题目或标题，可直接编辑该项目」。
 
 ### 模糊场景
 
@@ -71,6 +120,47 @@ version: 1.0.13
 | check_env       | 仅检查 Node.js 与 npm 依赖（**不检查**登录/授权） | `references/check_env.md`       |
 
 
+## 硬性约束：不支持矩阵题型
+
+**本 Skill 不支持创建、导入或批量生成矩阵类题型**（矩阵单选/多选/打分/填空等）。`question_list` 中不得出现 `QUESTION_TYPE_MATRIX_*` 或带 `matrixrow_list` 的题目；导入时脚本会报错拒绝。
+
+用户需要多维度评价时，请改为 **多道量表题、评价题、打分题或单选题**；若必须用矩阵，告知用户在问卷网编辑器中手动添加。
+
+## 硬性约束：同一主题不得刷测试项目
+
+调试题型、改 JSON、试 `survey`/`assess` **只允许在本地文件迭代**。**禁止**为同一次需求在用户账号里连续创建 expA/expB、t1、基线、验证、草稿等多份项目。
+
+| 允许 | 禁止 |
+|------|------|
+| 本地改 `examples/*.json` 或题目 JSON，对照 `project_json_structure_guide.md` | 每改一版就跑一次 `workflow_create_and_publish.js` / `import_project.js`（含 `--no-publish`） |
+| 用户明确同意后，账号侧**只创建 1 个**项目 | 用「实验 / 调试 / 验证 / 基线」标题再开新项目 |
+| 结构不对：在**已有那一个项目**上改题（`edit_question` / `create_question`），或用户明确说「删掉重来」后再建第 2 个 | 类型判错就再发一份、旧的留着（如误判 `assess` 后又发 `survey`） |
+
+**计数上限**：同一用户主题，未获「再建一个」的明确指令前，账号侧创建次数为 **0 或 1**。已经有正式项目时，后续只编辑该 `project_id`。**复用已有项目回复用户时**，仍须生成并附上二维码海报（`generate_share_poster.js`），字段块与新建成功相同，不得省略海报。
+
+## 请求来源参数（Agent 调用时显式传入）
+
+本 Skill 的 Markdown 指引值为：
+
+- 创建项目：`--ai-source 12`
+- 获取扫码二维码/注册来源：`--reg-source ai_skills`
+
+Agent 调用 `workflow_create_and_publish.js` 时应显式带上这两个参数，例如：
+
+```bash
+node scripts/workflow_create_and_publish.js \
+  --ai-source 12 \
+  --reg-source ai_skills \
+  --title "问卷标题" \
+  --type survey
+```
+
+若外层 Markdown 指引未加载、旧调用方未传参数，JS 才使用兼容默认值 `12` 和 `ai_skills`。接入方需要其他来源值时可通过同名参数覆盖，禁止直接修改请求脚本。
+
+## 硬性约束：测评必须给出正确答案
+
+创建 `assess` 测评时必须按题型提供正确答案：**单选/多选/判断题**在正确选项上设置 `custom_attr.is_correct: "1"`；**填空题**在填空项上设置 `custom_attr.correct_answer`，不使用 `is_correct`。同时设置对应分值。`custom_attr.answer_analysis` 只是答案解析，**不能替代正确答案**；导入脚本会在创建项目之前报错拦截缺少正确答案的题目，不得猜测答案。
+
 ## 核心工作流
 
 ### 工作流 1：新建问卷
@@ -87,6 +177,8 @@ version: 1.0.13
 3. 发布项目（update_project_status）
 4. 如遇 NOT_BIND_MOBILE，先 bind_mobile 再重试发布
 5. 发布成功后自动轮询审核与项目状态，直至稳定或超时（不可关闭）
+6. 获取最终答题链接后自动生成二维码海报，输出到 `~/.wenjuan/posters/`
+7. 发布成功或复用已有同主题项目时：必须把「最终回复格式」整段写进**面向用户的最终回复**（信息块 + 海报文件附件）；复用场景须先用已有答题链接生成海报；禁止只留在过程/工具输出里、禁止折叠隐藏
 ```
 
 一键命令示例见 `references/create_survey.md`。**调研 / 测评 / 投票 / 表单**共用本脚本，**仅 `--type`（及题目 JSON）不同**。
@@ -129,9 +221,9 @@ version: 1.0.13
 
 **支持系统：** macOS, Ubuntu/Debian, CentOS/RHEL/Fedora, Arch Linux, openSUSE, Alpine, Windows
 
-**Workerbuddy / 无图形界面登录问卷网：** 执行 **`node scripts/login_auto.js`**，脚本会**始终尝试自动打开浏览器**；若在 Agent 环境无可见窗口，请使用获取二维码后已写入的 **`last_wenjuan_login_url.txt`** 内整行链接，在**本机浏览器**扫码。扫码后**不要关运行脚本的终端**，直至出现登录成功。详见 `references/auth.md`。
+**WorkBuddy / 无图形界面登录问卷网：** 执行 **`node scripts/login_auto.js`**，脚本会**始终尝试自动打开浏览器**；若在 Agent 环境无可见窗口，请使用获取二维码后已写入的 **`last_wenjuan_login_url.txt`** 内整行链接，在**本机浏览器**扫码。扫码后**不要关运行脚本的终端**，直至出现登录成功。详见 `references/auth.md`。
 
-**减少重复扫码：** 若本地已有未过期凭证（`token_store` 约定的 `~/.wenjuan/`、项目内 `.wenjuan/auth.json` 等），`login_auto.js` 与 `workflow_create_and_publish.js` 内嵌登录会**跳过再次拉二维码**；仅在服务端判定需重新登录（如 `NEED_LOGIN`）或你使用 **`node scripts/login_auto.js --force-login`** 时才会重新扫码。Workerbuddy 若每次任务沙箱清空主目录，请把凭证目录指到**持久卷**：设置环境变量 **`WENJUAN_TOKEN_DIR`** 指向固定路径，避免每轮任务都误判「未登录」而反复扫码。
+**减少重复扫码：** 若本地已有未过期凭证（`token_store` 约定的 `~/.wenjuan/`、项目内 `.wenjuan/auth.json` 等），`login_auto.js` 与 `workflow_create_and_publish.js` 内嵌登录会**跳过再次拉二维码**；仅在服务端判定需重新登录（如 `NEED_LOGIN`）或你使用 **`node scripts/login_auto.js --force-login`** 时才会重新扫码。WorkBuddy 若每次任务沙箱清空主目录，请把凭证目录指到**持久卷**：设置环境变量 **`WENJUAN_TOKEN_DIR`** 指向固定路径，避免每轮任务都误判「未登录」而反复扫码。
 
 ### 其他选项
 
@@ -151,7 +243,7 @@ version: 1.0.13
 
 **建议触发时机：每天第一次打开时自动检查**
 
-**强制触发规则（WorkerBuddy）**：
+**强制触发规则（WorkBuddy）**：
 - 当用户输入「升级版本 / 更新版本 / 升级到最新 / 更新到最新」等同义表达时，必须立即执行版本检查，不等待“每日首次”时机。
 - 版本检查后若 `has_update=true`（或 `latest > current_version`），必须立刻进入更新流程，不能只提示不执行。
 - 更新完成后，必须再次读取本地 `package.json` 的 `version` 进行核验，并向用户输出“更新前版本 → 更新后版本”。
@@ -167,7 +259,7 @@ node scripts/check_version.js
 
 | 命令 | 说明 |
 |------|------|
-| `node scripts/check_version.js` | 检查版本，显示完整信息；**默认退出码 0**（含「有新版本」提示），Workerbuddy 不应判为失败 |
+| `node scripts/check_version.js` | 检查版本，显示完整信息；**默认退出码 0**（含「有新版本」提示），WorkBuddy 不应判为失败 |
 | `node scripts/check_version.js --auto` | 自动模式，有更新时才输出 |
 | `node scripts/check_version.js --json` | 输出原始 JSON 格式 |
 | `node scripts/check_version.js --fail-on-update` | 有新版本时退出码 1（仅 CI 需要严格失败时使用） |
@@ -224,8 +316,7 @@ if (shouldUpdate(result)) {
 ├── 页面列表（Pages[]）
 │   └── 题目列表（Questions[]）
 │       ├── 基本属性：question_id, question_type, title, is_required
-│       ├── 选项列表（Options[]）：option_id, title, is_open
-│       └── 矩阵行（MatrixRows[]）：title
+│       └── 选项列表（Options[]）：option_id, title, is_open
 └── 查看报表 ← `https://www.wenjuan.com/report/topic/{project_id}`（`get_report` / `open_report.js`）；**数据概况** ← `overview_stats.js`（`/report/api/v2/overview/stats/{pid}/`，**签名同** `generate_sign.js`）；原始答卷 ← `export_data`
 ```
 
@@ -332,6 +423,7 @@ wenjuan-survey/
 │   ├── export_data.js
 │   ├── overview_stats.js       # 数据概况（Stats v2）
 │   ├── open_report.js          # get_report：查看报表，默认打开浏览器
+│   ├── generate_share_poster.js # 根据答题链接生成带标题和二维码的分享海报
 │   ├── generate_sign.js
 │   ├── token_store.js          # JWT 路径与读取顺序（单一来源）
 │   ├── login_auto.js
@@ -357,6 +449,11 @@ wenjuan-survey/
 │   ├── check_env.md
 │   ├── skill_overview.md       # 触发/工作流/错误码等总览（与本文档互补）
 │   └── url_signing.md          # URL 查询签名说明
+├── assets/
+│   ├── share_poster_template.png   # 分享海报模板 1（设计稿 1080×1920，输出 900×1350）
+│   ├── share_poster_template_2.png # 分享海报模板 2（同上）
+│   ├── share_poster_template_3.png # 分享海报模板 3（同上）
+│   └── share_poster_template_4.png # 分享海报模板 4（生成时四选一随机；输出统一 900×1350）
 └── examples/                   # 示例文件
     ├── sample_questions.json   # 题目列表示例
     ├── sample_project.json     # 完整项目数据示例

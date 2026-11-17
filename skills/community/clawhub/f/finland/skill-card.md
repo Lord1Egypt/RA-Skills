@@ -1,46 +1,70 @@
-## Description: <br>
-Plan Finland trips with verified entry rules, season-aware routing, rail-and-Lapland logistics, and practical tourist safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Finland trips with verified entry rules, season-aware routing, rail-and-Lapland logistics, and practical tourist safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to plan Finland trips with practical routing, seasonal tradeoffs, Schengen entry checks, transport options, budget framing, and safety notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip preferences may persist locally in ~/finland/memory.md. <br>
-Mitigation: Do not store passport numbers, identity documents, payment details, or other highly sensitive information in the trip memory; review or delete the file when retention is no longer wanted. <br>
-Risk: Travel rules, border restrictions, weather, ferry schedules, and seasonal conditions can change after the skill content was checked. <br>
-Mitigation: Verify entry, border, transport, and safety details against official sources before booking non-refundable travel. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to build operational Finland itineraries with Schengen entry checks, season-aware route choices, transport tradeoffs, budget realism, and practical safety notes.
 
-## Reference(s): <br>
-- [ClawHub Finland Skill](https://clawhub.ai/ivangdavila/finland) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Finland Abroad Visitor Visa Guidance](https://finlandabroad.fi/web/eng/visa-to-visit-finland) <br>
-- [EU Travel to Europe Portal](https://travel-europe.europa.eu/) <br>
-- [Finnish Border Guard](https://raja.fi/en/frontpage) <br>
-- [Finnish Customs Traveller Guidance](https://tulli.fi/en/private-persons/travelling) <br>
-- [Visit Finland](https://www.visitfinland.com/en/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with itinerary, logistics, safety, and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and reuse local trip context in ~/finland/memory.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local trip memory under ~/finland/ may contain travel preferences, itinerary details, budget, mobility needs, or other personal context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing highly sensitive details unless needed, and review or delete ~/finland/memory.md when the trip is over.
+
+Risk: Entry rules, EES/ETIAS rollout details, border restrictions, weather warnings, and transport schedules can change after the skill content was last checked.
+
+Mitigation: Verify current requirements and conditions with the official sources listed in sources.md before booking non-refundable travel or departing.
+
+Risk: Winter, Lapland, archipelago, and remote nature plans can be affected by cold, darkness, road conditions, ferry frequency, and emergency-access constraints.
+
+Mitigation: Keep routes season-specific, include transfer buffers and fallback plans, and check official weather, road, ferry, and emergency guidance before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/finland)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Skill homepage](https://clawic.com/skills/finland)
+- [Official source map](sources.md)
+- [Finland Abroad visitor visa guidance](https://finlandabroad.fi/web/eng/visa-to-visit-finland)
+- [Finnish Immigration Service](https://migri.fi/en/coming-to-finland)
+- [EU travel to Europe portal](https://travel-europe.europa.eu/)
+- [Finnish Border Guard](https://raja.fi/en/frontpage)
+- [Finnish Customs traveller guidance](https://tulli.fi/en/private-persons/travelling)
+- [HSL Helsinki region transport](https://www.hsl.fi/en)
+- [VR trains and night trains](https://www.vr.fi/en)
+- [Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/)
+- [112 Suomi emergency guidance](https://112.fi/en)
+- [Visit Finland](https://www.visitfinland.com/en/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with occasional shell commands and local trip-memory updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local trip context under ~/finland/ when available; does not make network requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

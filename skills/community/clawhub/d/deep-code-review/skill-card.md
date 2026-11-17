@@ -1,45 +1,62 @@
-## Description: <br>
-Multi-dimensional code audit using structured subagent delegation for GitHub releases, pull requests, and codebases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-dimensional code audit skill that uses structured subagent delegation to review GitHub releases, pull requests, or codebases across security, concurrency, implementation logic, test quality, and simplicity.
 
-## Publisher: <br>
-[yinghaojia](https://clawhub.ai/user/yinghaojia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinghaojia](https://clawhub.ai/user/yinghaojia)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit releases, pull requests, or codebases across security, concurrency, implementation logic, test quality, and simplicity concerns. It guides structured subagent review and synthesizes findings into severity and priority matrices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read or fetch many source files and share repository context with subagents during review. <br>
-Mitigation: Use it only on repositories, pull requests, or releases that the operator is authorized to share with the agent and subagents. <br>
-Risk: Deep multi-agent audits can consume extra model and tool resources. <br>
-Mitigation: Choose audit depth based on repository size and review criticality, and reserve Four-Eyes verification for critical or uncertain findings. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run structured code audits before merging or releasing code. It helps organize findings into verified severity, priority, risk, and fix guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinghaojia/deep-code-review) <br>
-- [Audit Dimensions](references/audit-dimensions.md) <br>
-- [Four-Eyes Cross-Verification Protocol](references/four-eyes.md) <br>
-- [Output Format Specification](references/output-format.md) <br>
-- [Severity Classification Rubric](references/severity-rubric.md) <br>
-- [Subagent Audit Templates](references/subagent-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown audit report with structured findings, source citations, severity tables, priority matrix, and executive summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include subagent reports, Confirmed/Mitigated/False Alarm conclusions, Four-Eyes verification notes for critical findings, and a simplicity score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: The workflow reads source code and may use multiple subagents during review, which can expose private code beyond the main session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the review scope and data handling expectations before using it on private repositories or sensitive code.
+
+Risk: Audit findings and fix recommendations may be incomplete, incorrect, or overly broad.
+
+Mitigation: Require line-level evidence for each finding and have humans verify important remediation decisions before changing production code.
+
+Risk: Critical findings can create release-blocking decisions if a single reviewer misclassifies severity.
+
+Mitigation: Use the skill's Four-Eyes cross-verification process for Critical findings and escalate disputed findings to a human reviewer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yinghaojia/skills/deep-code-review)
+- [Audit Dimensions](references/audit-dimensions.md)
+- [Four-Eyes Cross-Verification Protocol](references/four-eyes.md)
+- [Output Format Specification](references/output-format.md)
+- [Severity Classification Rubric](references/severity-rubric.md)
+- [Subagent Audit Templates](references/subagent-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with structured findings, severity tables, priority matrix, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-formatted report sections and source file citations.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

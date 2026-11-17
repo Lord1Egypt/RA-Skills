@@ -1,43 +1,58 @@
-## Description: <br>
-PikaBoard helps agents create, update, list, and manage tasks through the PikaBoard task management API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PikaBoard helps agents interact with a local PikaBoard task management API to create, update, list, and manage kanban tasks.
 
-## Publisher: <br>
-[angelstreet](https://clawhub.ai/user/angelstreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[angelstreet](https://clawhub.ai/user/angelstreet)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to a local PikaBoard task board, manage task status, and keep agent work queues scoped by board. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PikaBoard uses a bearer token, and exposing the real token in shared or version-controlled files can grant unintended task-board access. <br>
-Mitigation: Use a dedicated PikaBoard token and avoid placing the real token in shared or version-controlled files such as TOOLS.md. <br>
-Risk: Agent automation can modify the wrong tasks or board if board scoping is not configured. <br>
-Mitigation: Configure MY_BOARD_ID before allowing an agent to operate and review important task or board changes before automation proceeds. <br>
-Risk: The release depends on the PikaBoard repository and npm dependencies installed during setup. <br>
-Mitigation: Install only when you trust the PikaBoard repository and its npm dependency chain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PikaBoard ClawHub listing](https://clawhub.ai/angelstreet/pikaboard) <br>
-- [PikaBoard repository](https://github.com/angelstreet/pikaboard) <br>
-- [API documentation pointer](references/api.md) <br>
+## Use Case:
 
+Developers and agent operators use PikaBoard to connect agents to a PikaBoard kanban/task API, assign each agent to a board, and create, list, or update tasks during work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PikaBoard environment variables, bearer token authentication, and board_id scoping when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation runs mutable external Node code during npm install and build steps.
+
+Mitigation: Review before installing, run setup from a sandbox or low-privilege account, and verify the upstream repository revision before executing install or build commands.
+
+Risk: Bearer tokens may be handled in plaintext environment files or copied into agent-facing documentation.
+
+Mitigation: Avoid putting the bearer token in TOOLS.md or shared files, and protect backend/.env with restrictive permissions.
+
+Risk: Agents can create or update tasks on the wrong board if board IDs are misconfigured.
+
+Mitigation: Confirm board IDs before allowing task creation or updates, and operate only on the assigned board unless explicitly directed.
+
+## Reference(s):
+
+- [PikaBoard ClawHub skill page](https://clawhub.ai/angelstreet/skills/pikaboard)
+- [PikaBoard repository from install metadata](https://github.com/angelstreet/pikaboard)
+- [API documentation pointer](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with shell, environment, and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm; uses PIKABOARD_API, PIKABOARD_TOKEN, AGENT_NAME, and optional board environment configuration.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

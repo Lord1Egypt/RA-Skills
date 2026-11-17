@@ -1,0 +1,8 @@
+interface:
+  display_name: "YouTube 上传草稿检查"
+  short_description: "只读核对本人 Studio 草稿字段并生成发布前缺项清单"
+  default_prompt: "使用 $youtube-upload-draft-check-free，只读核对我指定 browserId 中本人唯一明确的 YouTube Studio 草稿，逐项给出可见状态、缺项与真实来源；不发布或改动内容。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

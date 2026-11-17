@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>截图隐藏文字回归夹具</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{margin:0;padding:0;overflow:hidden;}
+  .slide-container{position:relative;width:1920px;height:1080px;overflow:hidden;background:#FAFAF7;font-family:"Noto Sans SC","Inter",sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide-container">
+  <!-- 方式 B/C 典型形态:渐变 shape 对象,内部含浅色文字子元素 + 白底圆徽。
+       修复前:子级文字被烙进截图 PNG → 与原生文本框重影。
+       修复后:截图只留渐变与白圆,文字全部为原生文本框。 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:200px;width:1720px;height:150px;background:linear-gradient(90deg, #14477A 0%, #0A2E5C 100%);border-radius:10px;z-index:5;padding:0 36px;display:flex;align-items:center;gap:28px;">
+    <div style="width:76px;height:76px;background:#FFFFFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:#0A2E5C;">I</div>
+    <div style="flex:1;">
+      <div style="font-size:26px;font-weight:800;color:#F39800;line-height:1.25;">标题文字应消失于截图</div>
+      <div style="font-size:17px;color:#FFD966;line-height:1.4;margin-top:4px;">副题文字也应消失于截图</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

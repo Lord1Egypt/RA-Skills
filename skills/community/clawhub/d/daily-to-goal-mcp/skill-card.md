@@ -1,43 +1,55 @@
-## Description: <br>
-Connect to Daily-to-Goal (D2G) platform via MCP to manage goals, tasks, entities, and team performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily-to-Goal MCP connects an agent to the Daily-to-Goal platform through MCP so users can manage goals, tasks, entities, and team performance with a D2G account and API key.
 
-## Publisher: <br>
-[xiaoke-bot](https://clawhub.ai/user/xiaoke-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoke-bot](https://clawhub.ai/user/xiaoke-bot)
 
-## Use Case: <br>
-External users and developers use this skill to connect an AI assistant to Daily-to-Goal via MCP for goal, task, entity, and team-performance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write goals, tasks, entities, and team data in the Daily-to-Goal account tied to its API key. <br>
-Mitigation: Confirm the account and installation intent before use, and use a dedicated or least-privilege API key where available. <br>
-Risk: Broad trigger wording may route generic goal or task requests to this integration. <br>
-Mitigation: Clarify that the user wants Daily-to-Goal before creating, updating, deleting, approving, or otherwise changing records. <br>
-Risk: The required DTG_API_KEY grants access according to its configured scopes and role. <br>
-Mitigation: Store the key in environment variables or a secrets manager, avoid committing it to version control, and review scopes and role permissions. <br>
+## Use Case:
 
+External users and developers use this skill to connect an assistant to Daily-to-Goal for listing, creating, updating, approving, and deleting goal, task, entity, and team-performance records. It is suited to users who already have a D2G account, API key, and role permissions for the requested actions.
 
-## Reference(s): <br>
-- [Daily-to-Goal platform](https://h5.dd-up.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoke-bot/daily-to-goal-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls] <br>
-**Output Format:** [Markdown with JSON configuration examples and MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DTG_API_KEY and a D2G account; available actions depend on account role and API key scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill configures an unpinned remote MCP package that uses a D2G API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source, pin a reviewed package version, and keep DTG_API_KEY in environment variables or a secrets manager rather than committed config.
+
+Risk: The connected tools can create, update, delete, approve, and otherwise change live Daily-to-Goal records.
+
+Mitigation: Use a dedicated least-privilege API key and require explicit confirmation before delete, approve, or other state-changing actions.
+
+## Reference(s):
+
+- [Daily-to-Goal web application](https://h5.dd-up.com/)
+- [ClawHub skill page](https://clawhub.ai/xiaoke-bot/skills/daily-to-goal-mcp)
+- [Publisher profile](https://clawhub.ai/user/xiaoke-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON MCP configuration and text results from the configured server]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DTG_API_KEY and a configured MCP server; available actions depend on D2G role permissions and API key scopes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,67 @@
-## Description: <br>
-Export Salesforce business data into business-readable Excel files from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports Salesforce business data from natural-language requests into business-readable Excel review packages with layout-visible fields, SOQL generation, relationship handling, SOAP query/queryMore export, and validation artifacts.
 
-## Publisher: <br>
-[evonne528](https://clawhub.ai/user/evonne528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evonne528](https://clawhub.ai/user/evonne528)
 
-## Use Case: <br>
-Developers, operators, and business analysts use this skill to turn Salesforce business questions into review-ready Excel exports with field catalogs, SOQL, validation summaries, and manifests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can export broad Salesforce business datasets into local Excel files if scope is left open. <br>
-Mitigation: Before execution, explicitly set the Salesforce org, object list, date range, filters, profile or record type, and output directory; avoid full-scope exports unless they are intended. <br>
-Risk: Using an over-privileged Salesforce account can expose more data than the business request requires. <br>
-Mitigation: Run with a least-privileged Salesforce account that has only the object and field access needed for the requested export. <br>
-Risk: Ambiguous page fields, record type, or profile context can produce incomplete or misleading review packages. <br>
-Mitigation: Resolve page context before export, fall back only to explicit field lists when documented, and treat unresolved objects as failed rather than complete. <br>
+## Use Case:
 
+Employees, external business reviewers, developers, and data operations teams use this skill to turn Salesforce export requests into review-ready Excel packages when standard Reports do not provide enough field coverage, row volume, or relationship handling. It is most useful for exports that need page-visible fields, owner or parent-owner context, polymorphic relationship handling, staged detail queries, and manifest-based validation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/evonne528/sf-business-data-export) <br>
-- [End-to-End Usage](references/end-to-end-usage.md) <br>
-- [Export Output Spec](references/export-output-spec.md) <br>
-- [Review Package Format](references/review-package-format.md) <br>
-- [Query Strategy](references/query-strategy.md) <br>
-- [Page Field Collection SOP](references/page-field-collection-sop.md) <br>
-- [Owner Polymorphism](references/owner-polymorphism.md) <br>
-- [Parent Traversal Patterns](references/parent-traversal-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples plus generated CSV, JSON, SOQL, and XLSX artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces per-object field catalogs, SOQL files, Excel exports, validation results, and review manifests when Salesforce access and local output paths are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive Salesforce CRM data and can generate Excel, CSV, JSON, SOQL, and manifest files containing business records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in controlled environments, use Salesforce accounts with appropriate export permissions, confirm object and field scope before execution, and treat all generated files as sensitive.
+
+Risk: Auth JSON files and export logs may expose Salesforce access tokens or related authentication details if mishandled.
+
+Mitigation: Use only trusted auth JSON files, restrict file access, avoid sharing authentication artifacts or raw logs, and rotate credentials if exposure is suspected.
+
+Risk: Outbound Salesforce requests need host and redirect review to avoid unsafe destinations.
+
+Mitigation: Review or patch the exporter to require Salesforce HTTPS hosts and block redirects or private destinations before real use.
+
+Risk: Spreadsheet outputs can carry formula-injection risk when cell values are opened in Excel or similar tools.
+
+Mitigation: Neutralize spreadsheet formulas before distributing generated Excel or CSV files.
+
+## Reference(s):
+
+- [End-to-End Usage](references/end-to-end-usage.md)
+- [Export Output Spec](references/export-output-spec.md)
+- [Query Strategy](references/query-strategy.md)
+- [Page Field Collection SOP](references/page-field-collection-sop.md)
+- [Review Package Format](references/review-package-format.md)
+- [Owner Polymorphism](references/owner-polymorphism.md)
+- [Parent Traversal Patterns](references/parent-traversal-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated SOQL, CSV, JSON, and XLSX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Salesforce authentication and trusted local inputs; review packages include per-object exports, field catalogs, validation results, and manifests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

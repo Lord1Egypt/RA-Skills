@@ -1,41 +1,53 @@
-## Description: <br>
-HTTP客户端 - 发送GET/POST/PUT/DELETE请求，自定义请求头/Body，响应验证，超时控制，重试机制 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTP客户端 helps developers send GET, POST, PUT, DELETE, and PATCH requests with custom headers, request bodies, response checks, timeouts, retries, and authentication.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare Python-based HTTP client code and guidance for calling REST or GraphQL APIs, including request methods, headers, bodies, timeouts, retries, authentication, and response inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help send credentials or private request data to external endpoints. <br>
-Mitigation: Use it only for intentional requests to trusted endpoints, and avoid placing secrets in headers or bodies unless the destination is trusted. <br>
-Risk: Request history may retain sensitive URLs, headers, bodies, or tokens. <br>
-Mitigation: Review whether request history redacts tokens or can be disabled or cleared before using the generated client with sensitive data. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft or adapt HTTP client workflows for REST, GraphQL, webhook testing, API integration, data collection, and automation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-http-client) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, guidance, configuration] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include example API requests, authentication headers, retry settings, timeout values, and response-validation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: User-provided URLs, headers, request bodies, bearer tokens, API keys, or basic-auth values may be sent to the selected remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended API targets, review request destinations before execution, and keep real credentials in environment variables or a secret manager.
+
+Risk: Request history can retain sensitive request metadata such as URLs and headers.
+
+Mitigation: Avoid placing secrets directly in URLs or headers shown to the agent, mask sensitive values in examples, and clear or limit retained history when handling confidential requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-http-client)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python code examples and request configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP request examples, response validation guidance, timeout settings, retry settings, and authentication guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

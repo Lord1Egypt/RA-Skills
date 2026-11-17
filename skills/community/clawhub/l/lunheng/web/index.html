@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>论衡 - AI裁判文书撰写助手</title>
+<style>
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #242836;
+  --border: #2e3345; --text: #e2e8f0; --muted: #8892b0;
+  --accent: #6366f1; --accent2: #818cf8; --green: #22c55e;
+  --red: #ef4444; --yellow: #eab308; --blue: #3b82f6;
+  --radius: 10px; --shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 24px;
+}
+.header h1 { font-size: 24px; font-weight: 700; }
+.header h1 span { color: var(--accent2); }
+.header .badge {
+  background: var(--accent); color: #fff; font-size: 11px;
+  padding: 2px 8px; border-radius: 99px; font-weight: 500;
+}
+
+/* Input Panel */
+.input-panel {
+  background: var(--surface); border-radius: var(--radius);
+  padding: 24px; margin-bottom: 24px; border: 1px solid var(--border);
+}
+.input-panel label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+.input-panel textarea {
+  width: 100%; min-height: 180px; padding: 14px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface2); color: var(--text);
+  font-size: 14px; line-height: 1.8; resize: vertical; font-family: inherit;
+}
+.input-panel textarea:focus { outline: none; border-color: var(--accent); }
+.input-panel textarea::placeholder { color: var(--muted); opacity: 0.6; }
+
+.controls { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; align-items: flex-end; }
+.controls .field { flex: 1; min-width: 160px; }
+.controls select, .controls input {
+  width: 100%; padding: 10px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface2); color: var(--text);
+  font-size: 14px;
+}
+.controls select:focus, .controls input:focus { outline: none; border-color: var(--accent); }
+
+.btn-generate {
+  padding: 10px 32px; border-radius: 8px; border: none;
+  background: var(--accent); color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.btn-generate:hover { background: var(--accent2); transform: translateY(-1px); }
+.btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* Loading */
+.loading { display: none; text-align: center; padding: 40px; }
+.loading.active { display: block; }
+.spinner {
+  width: 36px; height: 36px; border: 3px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading p { color: var(--muted); font-size: 14px; }
+
+/* Results */
+.results { display: none; }
+.results.active { display: block; }
+
+.result-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.result-header h2 { font-size: 18px; }
+.elapsed { color: var(--muted); font-size: 13px; }
+
+/* Tabs */
+.tabs {
+  display: flex; gap: 2px; background: var(--surface);
+  border-radius: var(--radius) var(--radius) 0 0; padding: 4px 4px 0;
+  border: 1px solid var(--border); border-bottom: none;
+  overflow-x: auto;
+}
+.tab {
+  padding: 10px 20px; border-radius: 8px 8px 0 0; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  transition: all 0.2s; white-space: nowrap; border: 1px solid transparent;
+}
+.tab:hover { color: var(--text); background: var(--surface2); }
+.tab.active {
+  color: var(--accent2); background: var(--bg);
+  border-color: var(--border); border-bottom-color: var(--bg);
+}
+.tab .badge {
+  display: inline-block; min-width: 18px; height: 18px; line-height: 18px;
+  text-align: center; border-radius: 99px; font-size: 10px;
+  padding: 0 5px; margin-left: 6px; font-weight: 600;
+}
+.badge-green { background: rgba(34,197,94,0.2); color: var(--green); }
+.badge-red { background: rgba(239,68,68,0.2); color: var(--red); }
+.badge-yellow { background: rgba(234,179,8,0.2); color: var(--yellow); }
+
+.tab-content {
+  background: var(--bg); border: 1px solid var(--border);
+  border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+  padding: 24px; min-height: 200px;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Draft Content */
+.draft-content {
+  font-family: "SimSun", "Songti SC", serif;
+  line-height: 2; font-size: 15px; white-space: pre-wrap;
+}
+.draft-content h2 { font-size: 16px; margin: 20px 0 8px; color: var(--accent2); }
+.draft-content .ref-section { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+.draft-content .ref-item { padding: 8px 12px; background: var(--surface2); border-radius: 6px; margin: 6px 0; font-size: 13px; }
+.draft-content .warnings { background: rgba(234,179,8,0.1); border-left: 3px solid var(--yellow); padding: 12px 16px; border-radius: 0 6px 6px 0; margin-top: 16px; }
+
+/* Score Cards */
+.scores { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.score-card {
+  flex: 1; min-width: 140px; background: var(--surface);
+  border-radius: var(--radius); padding: 16px; text-align: center;
+  border: 1px solid var(--border);
+}
+.score-big { font-size: 32px; font-weight: 700; }
+.score-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* Check Items */
+.check-list { list-style: none; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.check-item:last-child { border-bottom: none; }
+.check-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.check-name { font-weight: 500; font-size: 14px; }
+.check-msg { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.check-fix { font-size: 12px; color: var(--blue); margin-top: 4px; padding: 6px 10px; background: rgba(59,130,246,0.1); border-radius: 4px; }
+
+/* Warnings List */
+.warnings-list { list-style: none; }
+.warnings-list li {
+  padding: 8px 12px; margin: 4px 0; border-radius: 6px;
+  font-size: 13px; background: var(--surface);
+}
+.warnings-list li::before { content: " "; margin-right: 6px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container { padding: 12px; }
+  .controls { flex-direction: column; }
+  .controls .field { min-width: 100%; }
+  .scores { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1><span>论衡</span> - AI裁判文书撰写助手</h1>
+    <span class="badge">v0.1 MVP</span>
+  </div>
+
+  <!-- Input Panel -->
+  <div class="input-panel">
+    <label>案情描述</label>
+    <textarea id="caseText" placeholder="请输入案情描述，包括：当事人信息、案件事实、诉讼请求、争议焦点等...&#10;&#10;示例：原告张三诉称：2023年5月1日，被告李四因经营需要向原告借款人民币50万元..."></textarea>
+    <div class="controls">
+      <div class="field">
+        <label>案由（可选）</label>
+        <select id="cause">
+          <option value="">自动识别</option>
+          <option value="民间借贷纠纷">民间借贷纠纷</option>
+          <option value="买卖合同纠纷">买卖合同纠纷</option>
+          <option value="租赁合同纠纷">租赁合同纠纷</option>
+          <option value="劳动合同纠纷">劳动合同纠纷</option>
+          <option value="离婚纠纷">离婚纠纷</option>
+          <option value="交通事故责任纠纷">交通事故责任纠纷</option>
+          <option value="建设工程合同纠纷">建设工程合同纠纷</option>
+          <option value="侵权责任纠纷">侵权责任纠纷</option>
+          <option value="物业服务合同纠纷">物业服务合同纠纷</option>
+          <option value="医疗损害责任纠纷">医疗损害责任纠纷</option>
+          <option value="不当得利纠纷">不当得利纠纷</option>
+          <option value="保证合同纠纷">保证合同纠纷</option>
+          <option value="房屋买卖合同纠纷">房屋买卖合同纠纷</option>
+          <option value="承揽合同纠纷">承揽合同纠纷</option>
+          <option value="著作权纠纷">著作权纠纷</option>
+          <option value="商标权纠纷">商标权纠纷</option>
+          <option value="专利权纠纷">专利权纠纷</option>
+          <option value="保险纠纷">保险纠纷</option>
+          <option value="确认合同效力纠纷">确认合同效力纠纷</option>
+          <option value="公司决议纠纷">公司决议纠纷</option>
+          <option value="行政处罚纠纷">行政处罚纠纷</option>
+          <option value="不正当竞争纠纷">不正当竞争纠纷</option>
+          <option value="垄断纠纷">垄断纠纷</option>
+          <option value="海事海商纠纷">海事海商纠纷</option>
+        </select>
+      </div>
+      <div class="field" style="max-width:160px">
+        <label>输出格式</label>
+        <select id="format">
+          <option value="html">HTML</option>
+          <option value="markdown">Markdown</option>
+          <option value="text">纯文本</option>
+        </select>
+      </div>
+      <button class="btn-generate" id="btnGenerate" onclick="generate()">生成判决书</button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p id="loadingText">正在解析案情要素...</p>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results">
+    <div class="result-header">
+      <h2>生成结果</h2>
+      <span class="elapsed" id="elapsed"></span>
+    </div>
+
+    <div class="scores" id="scores"></div>
+
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-panel="draft">判决书草稿</div>
+      <div class="tab" data-panel="quality">质量检查</div>
+      <div class="tab" data-panel="lawcheck">法条校验</div>
+      <div class="tab" data-panel="consistency">一致性检查</div>
+      <div class="tab" data-panel="elements">解析要素</div>
+    </div>
+
+    <div class="tab-content">
+      <div class="tab-panel active" id="panel-draft"></div>
+      <div class="tab-panel" id="panel-quality"></div>
+      <div class="tab-panel" id="panel-lawcheck"></div>
+      <div class="tab-panel" id="panel-consistency"></div>
+      <div class="tab-panel" id="panel-elements"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const API_BASE = window.location.origin;
+
+// Tab switching
+document.getElementById('tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+});
+
+async function generate() {
+  const caseText = document.getElementById('caseText').value.trim();
+  if (!caseText) { alert('请输入案情描述'); return; }
+
+  const cause = document.getElementById('cause').value;
+  const format = document.getElementById('format').value;
+
+  const btn = document.getElementById('btnGenerate');
+  const loading = document.getElementById('loading');
+  const results = document.getElementById('results');
+
+  btn.disabled = true;
+  loading.classList.add('active');
+  results.classList.remove('active');
+
+  const steps = ['正在解析案情要素...', '正在检索类案和法条...', '正在组装判决书...', '正在质量校验...'];
+  let step = 0;
+  const stepTimer = setInterval(() => {
+    step = Math.min(step + 1, steps.length - 1);
+    document.getElementById('loadingText').textContent = steps[step];
+  }, 3000);
+
+  try {
+    const resp = await fetch(API_BASE + '/api/draft', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ case_text: caseText, cause, format }),
+    });
+    const data = await resp.json();
+
+    if (data.error) {
+      alert('Error: ' + data.error);
+      return;
+    }
+
+    renderResults(data);
+    results.classList.add('active');
+
+  } catch (err) {
+    alert('Request failed: ' + err.message);
+  } finally {
+    clearInterval(stepTimer);
+    btn.disabled = false;
+    loading.classList.remove('active');
+  }
+}
+
+function renderResults(data) {
+  // Elapsed
+  document.getElementById('elapsed').textContent = `耗时 ${data.elapsed_seconds}s`;
+
+  // Score cards
+  const scoresDiv = document.getElementById('scores');
+  scoresDiv.innerHTML = '';
+  const cards = [
+    { label: '质量得分', value: data.quality_check?.score ?? '-', color: scoreColor(data.quality_check?.score) },
+    { label: '法条校验', value: data.law_check?.score ?? '-', color: scoreColor(data.law_check?.score) },
+    { label: '一致性', value: data.consistency_check?.score ?? '-', color: scoreColor(data.consistency_check?.score) },
+    { label: '警告数', value: (data.all_warnings?.length ?? 0), color: (data.all_warnings?.length ?? 0) > 0 ? 'var(--yellow)' : 'var(--green)' },
+  ];
+  cards.forEach(c => {
+    scoresDiv.innerHTML += `<div class="score-card"><div class="score-big" style="color:${c.color}">${typeof c.value === 'number' ? Math.round(c.value) : c.value}</div><div class="score-label">${c.label}</div></div>`;
+  });
+
+  // Draft
+  const draftPanel = document.getElementById('panel-draft');
+  const fmt = document.getElementById('format').value;
+  if (fmt === 'html') {
+    draftPanel.innerHTML = data.formatted;
+  } else {
+    draftPanel.innerHTML = `<div class="draft-content">${escapeHtml(data.formatted)}</div>`;
+  }
+
+  // Quality
+  renderQuality(data.quality_check);
+
+  // Law check
+  renderLawCheck(data.law_check);
+
+  // Consistency
+  renderConsistency(data.consistency_check);
+
+  // Elements
+  renderElements(data.elements);
+
+  // Update tab badges
+  updateTabBadges(data);
+}
+
+function renderQuality(qc) {
+  const panel = document.getElementById('panel-quality');
+  if (!qc) { panel.innerHTML = '<p style="color:var(--muted)">No data</p>'; return; }
+
+  let html = `<p style="margin-bottom:16px;color:var(--muted)">${qc.summary || ''}</p>`;
+  html += '<ul class="check-list">';
+
+  (qc.items || []).forEach(item => {
+    const icon = item.passed ? '&#10003;' : (item.severity === 'error' ? '&#10007;' : '&#9888;');
+    const iconColor = item.passed ? 'var(--green)' : (item.severity === 'error' ? 'var(--red)' : 'var(--yellow)');
+    html += `<li class="check-item">
+      <span class="check-icon" style="color:${iconColor}">${icon}</span>
+      <div>
+        <div class="check-name">${item.name}</div>
+        <div class="check-msg">${item.message}</div>
+        ${!item.passed && item.fix ? `<div class="check-fix">${item.fix}</div>` : ''}
+      </div>
+    </li>`;
+  });
+
+  html += '</ul>';
+  panel.innerHTML = html;
+}
+
+function renderLawCheck(lc) {
+  const panel = document.getElementById('panel-lawcheck');
+  if (!lc) { panel.innerHTML = '<p style="color:var(--muted)">No data</p>'; return; }
+
+  let html = `<p style="margin-bottom:12px">引用: ${lc.valid_refs}/${lc.total_refs} 有效 | 得分: ${Math.round(lc.score)}/100</p>`;
+
+  if (lc.warnings?.length) {
+    html += '<ul class="warnings-list">';
+    lc.warnings.forEach(w => { html += `<li>${w}</li>`; });
+    html += '</ul>';
+  }
+
+  if (lc.missing_laws?.length) {
+    html += '<h3 style="margin:16px 0 8px;font-size:14px;color:var(--blue)">建议补充法条</h3><ul class="warnings-list">';
+    lc.missing_laws.forEach(m => { html += `<li>${m}</li>`; });
+    html += '</ul>';
+  }
+
+  panel.innerHTML = html;
+}
+
+function renderConsistency(cc) {
+  const panel = document.getElementById('panel-consistency');
+  if (!cc) { panel.innerHTML = '<p style="color:var(--muted)">No data</p>'; return; }
+
+  let html = `<p style="margin-bottom:12px">${cc.summary || ''}</p>`;
+
+  if (cc.amount_deviation) {
+    html += `<p style="margin-bottom:12px"><strong>金额偏离:</strong> ${cc.amount_deviation}</p>`;
+  }
+
+  if (cc.similar_cases?.length) {
+    html += '<h3 style="margin:16px 0 8px;font-size:14px">参考类案</h3>';
+    cc.similar_cases.slice(0, 5).forEach((c, i) => {
+      html += `<div class="ref-item"><strong>${i+1}.</strong> ${c.title || ''}</div>`;
+    });
+  }
+
+  if (cc.warnings?.length) {
+    html += '<ul class="warnings-list" style="margin-top:12px">';
+    cc.warnings.forEach(w => { html += `<li>${w}</li>`; });
+    html += '</ul>';
+  }
+
+  panel.innerHTML = html;
+}
+
+function renderElements(el) {
+  const panel = document.getElementById('panel-elements');
+  if (!el) { panel.innerHTML = '<p style="color:var(--muted)">No data</p>'; return; }
+
+  const sections = [
+    ['案由', el.cause],
+    ['当事人', JSON.stringify(el.parties)],
+    ['诉讼请求', (el.claims || []).map((c,i) => `${i+1}. ${c}`).join('<br>')],
+    ['关键事实', (el.facts || []).map((f,i) => `${i+1}. ${f}`).join('<br>')],
+    ['争议焦点', (el.disputes || []).map((d,i) => `${i+1}. ${d}`).join('<br>')],
+    ['证据', (el.evidence || []).map((e,i) => `${i+1}. ${e}`).join('<br>')],
+    ['法律问题', (el.legal_issues || []).join(', ')],
+    ['适用法条', (el.applicable_laws || []).join(', ')],
+  ];
+
+  let html = '<div style="display:grid;gap:12px">';
+  sections.forEach(([label, value]) => {
+    if (!value) return;
+    html += `<div style="background:var(--surface);padding:12px 16px;border-radius:8px;border:1px solid var(--border)">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:500">${label}</div>
+      <div style="font-size:14px">${value}</div>
+    </div>`;
+  });
+  html += '</div>';
+  panel.innerHTML = html;
+}
+
+function updateTabBadges(data) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    const existing = tab.querySelector('.badge');
+    if (existing) existing.remove();
+
+    let count = 0, cls = 'badge-green';
+    if (tab.dataset.panel === 'quality' && data.quality_check) {
+      count = data.quality_check.errors || 0;
+      cls = count > 0 ? 'badge-red' : 'badge-green';
+    } else if (tab.dataset.panel === 'lawcheck' && data.law_check) {
+      count = data.law_check.warnings?.length || 0;
+      cls = count > 0 ? 'badge-yellow' : 'badge-green';
+    } else if (tab.dataset.panel === 'consistency' && data.consistency_check) {
+      count = data.consistency_check.warnings?.length || 0;
+      cls = count > 0 ? 'badge-yellow' : 'badge-green';
+    }
+
+    if (count > 0) {
+      tab.innerHTML += `<span class="badge ${cls}">${count}</span>`;
+    }
+  });
+}
+
+function scoreColor(score) {
+  if (score == null || score === '-') return 'var(--muted)';
+  if (score >= 80) return 'var(--green)';
+  if (score >= 60) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Keyboard shortcut
+document.getElementById('caseText').addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    generate();
+  }
+});
+</script>
+</body>
+</html>

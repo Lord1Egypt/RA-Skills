@@ -1,41 +1,54 @@
-## Description: <br>
-Short alias skill for listing files, directories, processes, or system information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short alias skill for listing files, directories, processes, or system information. Use when you need to see what's present in a directory or system state.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and operators use this skill as a quick reference for listing files, directories, running processes, network listeners, routes, environment variables, and related system state across Linux, macOS, Windows, and PowerShell. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The one-letter trigger may be invoked unintentionally in contexts where broader system-listing guidance is not desired. <br>
-Mitigation: Confirm the user intends to use the listing-command reference before applying sensitive examples. <br>
-Risk: Process, network, route, firewall, and environment-variable listing commands can expose sensitive local details. <br>
-Mitigation: Filter or redact sensitive values before sharing command output, especially in shared or sensitive workspaces. <br>
+## Use Case:
 
+Developers and technical users use this skill as a compact command reference for listing files, directories, processes, network connections, environment state, routes, firewall rules, and related system information across Linux, macOS, Windows, and PowerShell.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/l) <br>
-- [Publisher profile](https://clawhub.ai/user/openlang-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides command variants and cross-platform notes; does not generate or execute commands by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad listing requests can disclose sensitive local system details such as environment variables, process lists, routes, firewall rules, or network listeners.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit, narrow requests and redact tokens, passwords, keys, cookies, usernames, hostnames, and internal service details before sharing outputs.
+
+Risk: Cross-platform command variants may reveal more information than intended when copied without review.
+
+Mitigation: Review commands before running them and prefer scoped paths, process filters, ports, or fields that match the immediate task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/l)
+- [ClawHub publisher profile](https://clawhub.ai/user/openlang-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

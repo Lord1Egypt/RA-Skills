@@ -1,45 +1,59 @@
-## Description: <br>
-OpenAI Ban Risk Tracker provides a CLI-backed agent skill for OpenAI account ban risk scoring, known ban reason review, appeal template generation, and V2EX community signal scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenAI ban risk detection CLI with a 9-question risk assessment, known ban-reason guidance, Chinese and English appeal templates, and V2EX community signal scanning.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and support-oriented users use this skill to assess OpenAI account ban risk, review common ban causes, draft Chinese or English appeal messages, and check community-reported ban and unban signals before taking action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Risk scores, ban reason summaries, and appeal-success estimates may be mistaken for authoritative OpenAI policy or account decisions. <br>
-Mitigation: Treat outputs as decision support; verify account-specific issues against official OpenAI account, billing, and support channels before acting. <br>
-Risk: The scan command performs live V2EX network requests and community signals can be incomplete, stale, or misleading. <br>
-Mitigation: Review scanned results for relevance and date before relying on them, and avoid sharing private account details in community follow-up. <br>
-Risk: Appeal templates can include personal account, billing, or identity details when users customize them. <br>
-Mitigation: Review generated appeal text before sending or saving it, include only necessary personal information, and store output files in an appropriate location. <br>
+## Use Case:
 
+Developers and OpenAI account administrators use this skill to estimate account suspension risk, review common ban patterns, generate appeal drafts, and monitor community-reported ban or unban signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/openai-ban-tracker) <br>
-- [Project homepage from metadata](https://github.com/minirr890112-byte/openai-ban-tracker) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with optional appeal template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive CLI prompts can collect local yes/no answers; the appeal command can write a text file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata; pyproject.toml agrees; artifact SKILL.md says 1.2.0) <br>
+Risk: The documented GitHub pip install command is unpinned and may install code other than the reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install an immutable release artifact or pin to a full reviewed commit SHA.
+
+Risk: The scan command contacts V2EX over the network.
+
+Mitigation: Run scan only when external network access and associated metadata disclosure are acceptable.
+
+Risk: The appeal --output command writes or overwrites the user-provided path.
+
+Mitigation: Choose an intended output path and review the generated appeal file before using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/openai-ban-tracker)
+- [Publisher profile](https://clawhub.ai/user/minirr890112-byte)
+- [Project homepage](https://github.com/minirr890112-byte/openai-ban-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [CLI text, terminal tables, and optional plain-text appeal template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Risk assessment runs locally; scan contacts V2EX; appeal --output writes the requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

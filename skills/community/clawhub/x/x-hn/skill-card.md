@@ -1,42 +1,51 @@
-## Description: <br>
-Fetches and analyzes Hacker News content for top stories, technical discussions, user information, comments, and topic-focused briefings through x-cmd. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and analyze Hacker News content, including top stories, technical discussions, AI and programming topics, user information, comments, and trending analysis.
 
-## Publisher: <br>
-[qiakai](https://clawhub.ai/user/qiakai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiakai](https://clawhub.ai/user/qiakai)
 
-## Use Case: <br>
-Developers, engineers, and technical researchers use this skill to retrieve Hacker News stories, filter discussions by software and AI topics, inspect posts and users, and produce concise trend or briefing outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on sourcing ~/.x-cmd.root/X, which can run shell code in the current shell if the x-cmd installation is not trusted. <br>
-Mitigation: Install this only if the separate x-cmd tool is trusted, and verify ~/.x-cmd.root/X came from the expected x-cmd installation before running examples. <br>
-Risk: Commands that retrieve active users, large comment threads, or all submissions can be slow or produce large outputs. <br>
-Mitigation: Limit output with x jq filters, request smaller story or comment ranges, and avoid broad user-history fetches unless needed. <br>
+## Use Case:
 
+Developers, engineers, and technical analysts use this skill to retrieve Hacker News stories and user data, filter technology discussions, and generate concise briefings or JSON-backed analyses through x-cmd commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiakai/x-hn) <br>
-- [x-cmd Hacker News module](https://www.x-cmd.com/mod/hn) <br>
-- [x-cmd LLMs entrypoint](https://www.x-cmd.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on x-cmd JSON output and x jq filtering for structured Hacker News data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires sourcing the local x-cmd initialization script before running Hacker News commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the x-cmd dependency only from a trusted source, and review the local initialization script before sourcing it in a shell session.
+
+## Reference(s):
+
+- [x-cmd Hacker News module](https://www.x-cmd.com/mod/hn)
+- [x-cmd agent usage index](https://www.x-cmd.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/qiakai/skills/x-hn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or process Hacker News JSON output; requires a trusted x-cmd installation and local x-cmd initialization before commands run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

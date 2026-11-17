@@ -1,0 +1,21 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_survey_delete_item",
+    "description": "删除问卷调查定义。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "description": "Survey module ID（所属模块ID）"
+        },
+        "id": {
+          "type": "string",
+          "description": "问卷定义ID（驼峰命名，全局唯一）"
+        }
+      },
+      "required": ["scope","id"]
+    }
+  }
+}

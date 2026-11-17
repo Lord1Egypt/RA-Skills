@@ -1,42 +1,55 @@
-## Description: <br>
-Loads reusable publication-channel strategy for layout, packaging, and publication-fit decisions for specific publication surfaces such as WeChat public accounts or Xiaohongshu, asking for the channel when it is missing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load reusable publication-channel strategy for layout, packaging, and publication-fit decisions.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Editors, content strategists, and agents use this skill to adapt final content for a specified publication channel. It applies channel-specific rules for structure, packaging, scanability, visuals, and final checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Channel-specific guidance may be applied to the wrong publication surface if the channel is not confirmed first. <br>
-Mitigation: Confirm the publication channel before final packaging and load the matching channel strategy reference. <br>
-Risk: The WeChat reference includes a workflow-specific staging expectation for image embeds that may not match every publishing process. <br>
-Mitigation: Review the channel reference files before use and confirm their publishing advice fits the local editorial workflow. <br>
+## Use Case:
 
+Content authors and editorial agents use this skill to adapt final content structure, packaging, scanability, and publication-fit checks for WeChat public accounts or Xiaohongshu.
 
-## Reference(s): <br>
-- [WeChat Public Account channel strategy](references/channels/wechat-public-account.md) <br>
-- [Xiaohongshu channel strategy](references/channels/xiaohongshu.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/chaoyang78/editorial-channel-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text editorial guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a publication channel before final packaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: If the publication channel is missing or ambiguous, the agent could apply the wrong channel strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user or calling workflow to specify the active channel before final packaging or layout.
+
+Risk: The WeChat guidance expects final articles to be staged in Obsidian with image embeds, which may not match every publishing workflow.
+
+Mitigation: Review the staging expectation before use and adapt the final publication checklist to the user's actual toolchain.
+
+## Reference(s):
+
+- [WeChat Public Account Channel Strategy](references/channels/wechat-public-account.md)
+- [Xiaohongshu Channel Strategy](references/channels/xiaohongshu.md)
+- [Editorial Channel Strategy on ClawHub](https://clawhub.ai/chaoyang78/skills/editorial-channel-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance and channel-fit recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the publication channel to be specified before final packaging or layout work.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

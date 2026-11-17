@@ -1,38 +1,50 @@
-## Description: <br>
-Provides Next.js 14+ App Router guidance for React Server Components, Server Actions, data fetching, route handlers, middleware, optimization, authentication, testing, and SEO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Next.js 14+ App Router guidance for React Server Components, Server Actions, data fetching, route handlers, middleware, optimization, authentication, testing, and SEO patterns.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or review Next.js 14+ applications using App Router patterns, React Server Components, Server Actions, route handlers, middleware, performance optimization, testing, and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated server actions, middleware, authentication, or database changes may affect application security or production behavior. <br>
-Mitigation: Review those changes before applying them to a real app, with particular attention to authentication, authorization, data access, and request handling. <br>
+## Use Case:
 
+Developers and engineers use this skill to get implementation guidance and TypeScript-oriented examples for modern Next.js applications using the App Router, React Server Components, Server Actions, route handlers, middleware, performance optimization, authentication, testing, and SEO metadata.
 
-## Reference(s): <br>
-- [Nextjs Pro Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown] <br>
-**Output Format:** [Markdown with TypeScript and TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated server actions, middleware, authentication, and database changes before applying them to a real app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples for Server Actions and route handlers may be copied into production without adequate server-side authentication, authorization, schema validation, or field allowlisting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt generated Next.js mutations and API handlers before use, adding explicit authentication, authorization checks, schema validation, and allowlisted input fields.
+
+## Reference(s):
+
+- [Nextjs Pro code examples](artifact/references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-nextjs-pro)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation patterns for Next.js App Router, React Server Components, Server Actions, route handlers, middleware, testing, authentication, performance, and SEO.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

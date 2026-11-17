@@ -7,9 +7,12 @@
     "agentPitfalls": [
       "campaign-validate 推荐 --json-out ",
       "否词只写 campaign.NegativeKeywordsForBatchJob，禁止把 free/jobs/tutorial 等否词抄进 AdGroupsForBatchJob[].KeywordsForBatchJob",
+      "KeywordText 是 JSON 字符串数组，空格多词合法（如 how to make）；禁止因多词省略否词或让用户去后台手补",
+      "Excel/表格方案：Agent 写脚本直接转成 campaign-create JSON + ad geo resolve 取地域 id；禁止对话手填完整 JSON、禁止编造 geo id",
+      "Excel/表格方案：转换脚本按匹配类型分 EXACT/PHRASE/BROAD 块；有方案源时勿压成一律 BROAD",
       "RSA 须同时写 DestinationUrl 与 Finalurl（后端必填 Finalurl；仅有 DestinationUrl 时 validate 可能仍通过）",
       "SITELINK 须写 AssetFieldType: SITELINK（与 typeV2 一致）",
-      "提交前：ad campaign-validate → 用户确认 → ad campaign-create（勿对 validate 加 --json-out）"
+      "提交前：ad campaign-validate → 写代码从 JSON 投影完整审查稿（见 google-ads-launch-plan-template.md）→ 用户确认 → ad campaign-create"
     ]
   },
 
@@ -33,7 +36,6 @@
     "BudgetId": 0,
     "BudgetBudgetDeliveryMethodV2": "STANDARD",
     "TargetSpend_BidCeilingAmount": 1.5,
-    "ManualCpc_EnhancedCpcEnabled": false,
     "TargetGoogleSearch": true,
     "TargetSearchNetwork": false,
     "TargetContentNetwork": false,
@@ -47,11 +49,10 @@
     "targetedLocations": [{ "id": "2840", "bidModifier": 0, "bidModifierSpecified": false }],
     "excludedLocations": [],
     "excludedIpAddresses": [],
-    "targetedLanguages": [{ "id": 1000 }],
     "targetedPlatforms": [
+      { "id": 30000, "bidModifier": 0 },
       { "id": 30001, "bidModifier": 0 },
-      { "id": 30002, "bidModifier": 0 },
-      { "id": 30000, "bidModifier": 0 }
+      { "id": 30002, "bidModifier": 0 }
     ],
 
     "adSchedules": [
@@ -65,7 +66,24 @@
     ],
 
     "NegativeKeywordsForBatchJob": [
-      { "KeywordText": ["free", "cheap", "download"], "MatchTypeV2": "BROAD", "FinalURL": "" }
+      {
+        "KeywordText": [
+          "free",
+          "cheap",
+          "download",
+          "how to make",
+          "home cooking",
+          "second hand",
+          "near me"
+        ],
+        "MatchTypeV2": "BROAD",
+        "FinalURL": ""
+      },
+      {
+        "KeywordText": ["\"vegan recipe\"", "\"stock price\""],
+        "MatchTypeV2": "PHRASE",
+        "FinalURL": ""
+      }
     ],
 
     "ExtensionsForBatchJob": [
@@ -138,7 +156,10 @@
               "Professional Grade Products",
               "Browse Best Sellers Now",
               "Reliable Supply Partner",
-              "Contact Us For Details"
+              "Contact Us For Details",
+              "Custom Orders Welcome",
+              "Competitive Factory Prices",
+              "Global Delivery Service"
             ],
             "adDescription": "Official products with certified quality. Contact us for pricing.",
             "adDescription2": "Trusted by partners worldwide. Request a quote or browse the catalog.",

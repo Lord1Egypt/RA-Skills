@@ -1,0 +1,9 @@
+{
+  "name": "lexiang-website-sync",
+  "normalizedName": "lexiang-website-sync",
+  "description": "将乐享 MedXpert 知识库（官网内容源）的最新内容同步到本地并重新生成官网 HTML。当用户说\"同步官网\"、\"乐享同步\"、\"更新官网内容\"、\"归档同步\"时使用。乐享 MedXpert 知识库是官网内容的核心管理源。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

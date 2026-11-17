@@ -1,0 +1,10 @@
+{
+  "profile_type": "theme",
+  "id": "travel",
+  "version": "1.0.0",
+  "subject_priority": ["user-selected primary subject", "place-defining context", "atmospheric cues"],
+  "preserve": ["recognizable subject silhouette", "source-specific spatial relationships", "place-defining context"],
+  "deemphasize": ["incidental clutter", "unrelated bystanders", "unreadable text"],
+  "forbid_invention": ["landmarks", "labels", "logos", "events not visible in the source"],
+  "prompt_fragment": "Extract the user-selected travel subject and only enough context to preserve a specific sense of place."
+}

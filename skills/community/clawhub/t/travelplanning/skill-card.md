@@ -1,41 +1,58 @@
-## Description: <br>
-Create comprehensive, personalized travel itineraries with day-by-day plans, budget breakdowns, packing lists, and practical tips for any destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create comprehensive, personalized travel itineraries with day-by-day plans, budget breakdowns, packing lists, and practical tips for any destination.
 
-## Publisher: <br>
-[mcj923808-gif](https://clawhub.ai/user/mcj923808-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcj923808-gif](https://clawhub.ai/user/mcj923808-gif)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to create personalized trip plans with realistic daily schedules, accommodation options, transportation guidance, budgets, packing lists, and local tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel details such as visa rules, safety advisories, prices, opening hours, and emergency contacts may be outdated or incorrect. <br>
-Mitigation: Verify high-impact trip details through official sources before booking travel or relying on the itinerary. <br>
-Risk: Web, map, or place searches may expose travel preferences or trip details to external services. <br>
-Mitigation: Share only the trip details needed for planning and follow applicable privacy requirements when using external search tools. <br>
+## Use Case:
 
+External users use this skill to plan trips, vacations, and multi-city travel with realistic daily schedules, budget estimates, packing guidance, local tips, and backup options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcj923808-gif/travelplanning) <br>
-- [Lonely Planet](https://www.lonelyplanet.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown travel itinerary with headings, lists, tables, and practical recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include time estimates, cost ranges, accommodation options, packing lists, food recommendations, safety notes, and alternative plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Travel details such as dates, budget, companions, dietary needs, and accessibility needs can be personal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask only for details needed to produce the plan, and avoid storing or sharing unnecessary sensitive information.
+
+Risk: Travel information such as visa rules, opening hours, prices, safety conditions, and closures can change quickly.
+
+Mitigation: Verify time-sensitive recommendations with current web, places, or map research before presenting them as actionable.
+
+Risk: Broad phrases such as "trip to" may trigger the skill when an agent auto-invokes skills aggressively.
+
+Mitigation: Review invocation behavior and ask a clarifying question before collecting trip details when intent is ambiguous.
+
+## Reference(s):
+
+- [Travel Planning Skill on ClawHub](https://clawhub.ai/mcj923808-gif/skills/travelplanning)
+- [Lonely Planet](https://www.lonelyplanet.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown itinerary with headings, bullet lists, tables, and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include travel budgets, accommodation options, transportation notes, packing lists, safety tips, food recommendations, and alternative plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

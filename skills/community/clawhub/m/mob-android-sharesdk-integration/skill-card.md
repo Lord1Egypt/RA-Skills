@@ -1,45 +1,59 @@
-## Description: <br>
-Interactive guide for integrating MobTech ShareSDK into Android projects with a six-step workflow covering project validation, platform credential collection, Gradle configuration, privacy consent wiring, share-code insertion, and project documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive guide for integrating MobTech ShareSDK into Android projects with a 6-step workflow for project validation, platform configuration, Gradle setup, privacy authorization, share code insertion, and project documentation.
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Android developers use this skill to add MobTech ShareSDK sharing capabilities to an Android app through an interactive, confirmation-based integration flow. It helps configure Gradle, validate ShareSDK platform credentials, add privacy authorization callbacks, generate sharing code, and document the resulting integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles MobTech appKey and appSecret values from a local ShareSDK configuration spreadsheet. <br>
-Mitigation: Keep real appSecret values out of chat and public repositories, and review generated configuration before committing or sharing project files. <br>
-Risk: The skill can edit Android project Gradle files and insert Java integration code. <br>
-Mitigation: Review proposed Gradle and source-code changes before applying them, and use version control to inspect the final diff. <br>
-Risk: The skill can run Gradle synchronization in the target Android project. <br>
-Mitigation: Run Gradle only in projects you trust and review dependency changes before continuing development or release work. <br>
+## Use Case:
 
+Developers and Android engineers use this skill to add MobTech ShareSDK sharing support to Android apps. It guides configuration of app credentials, social platform devInfo blocks, privacy authorization callbacks, share invocation code, and integration documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mobsupport/mob-android-sharesdk-integration) <br>
-- [Mob documentation center](https://www.mob.com/wiki/list) <br>
-- [Mob SDK compliance guide](https://www.mob.com/wiki/detailed?wiki=421&id=717) <br>
-- [Mob Android Maven repository](https://mvn.mob.com/android) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Gradle, Java, shell command, and configuration snippets; may also create or edit Android project files after user confirmation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow asks for confirmation before project edits, reads a local ShareSDK credential spreadsheet, and may run Gradle dependency synchronization in the target Android project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The workflow asks users to handle MobTech and social platform app secrets in Excel, Gradle, and properties files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholder values in chat, keep populated secret-bearing files out of version control, and review generated project files before committing changes.
+
+Risk: The Gradle examples include dynamic dependency versions and additional Maven repositories.
+
+Mitigation: Pin Gradle plugin versions where possible and use only trusted repositories approved for the target project.
+
+Risk: The skill may propose direct Android project edits and Gradle dependency refresh commands.
+
+Mitigation: Approve project edits and Gradle commands only after reviewing the exact files, diffs, and commands to be run.
+
+## Reference(s):
+
+- [Mob Documentation Center](https://www.mob.com/wiki/list)
+- [Mob SDK Download Center](https://www.mob.com/download)
+- [Mob SDK Compliance Guide](https://www.mob.com/wiki/detailed?wiki=421&id=717)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Interactive Markdown guidance with inline Gradle, Java, shell, and configuration snippets; may create Excel and README files in the target Android project.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before project edits and Gradle commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

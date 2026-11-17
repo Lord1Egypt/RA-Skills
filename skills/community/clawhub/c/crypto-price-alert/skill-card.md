@@ -1,41 +1,53 @@
-## Description: <br>
-Real-time cryptocurrency price alerts and monitoring. Track Bitcoin, Ethereum, and 100+ coins with custom price alerts delivered to your Telegram, Discord, or Email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time cryptocurrency price alerts and monitoring. Track Bitcoin, Ethereum, and 100+ coins with custom price alerts delivered to your Telegram, Discord, or Email.
 
-## Publisher: <br>
-[zy42905163-web](https://clawhub.ai/user/zy42905163-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zy42905163-web](https://clawhub.ai/user/zy42905163-web)
 
-## Use Case: <br>
-Crypto traders, portfolio holders, DeFi users, and investment teams use this skill to monitor cryptocurrency prices, configure threshold alerts, receive scheduled market summaries, and ask for portfolio or technical-indicator status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio details and alert settings may reveal sensitive financial positions or trading intent. <br>
-Mitigation: Provide only the holdings needed for tracking, use private notification channels, and review who can access reports and alert history. <br>
-Risk: Notification integrations may require bot tokens, webhooks, SMTP settings, or similar credentials. <br>
-Mitigation: Use dedicated low-privilege credentials, store secrets securely, rotate them if exposed, and avoid sharing wallet seed phrases or exchange trading keys. <br>
-Risk: Automated alerts or scheduled reports can become stale, noisy, or unwanted if configuration is not maintained. <br>
-Mitigation: Confirm how alerts, reports, and stored configuration can be reviewed, changed, or disabled before deployment. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to configure cryptocurrency price alerts, scheduled reports, portfolio tracking, and technical-analysis prompts across delivery channels such as Telegram, Discord, Email, and Slack.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with example natural-language prompts and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include alert criteria, notification-channel setup guidance, portfolio summaries, scheduled report settings, and technical-indicator responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Portfolio holdings and delivery-channel credentials may be sensitive if stored or processed by the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use low-privilege bot tokens or webhooks, avoid pasting secrets into plain chat, and review how alert configuration and scheduled reports are stored.
+
+Risk: Market data alerts and technical indicators can be delayed, incomplete, or unsuitable as financial advice.
+
+Mitigation: Treat generated alerts and analysis as monitoring support, verify data against trusted sources, and avoid relying on the skill as the sole basis for trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zy42905163-web/skills/crypto-price-alert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with natural-language command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve user-provided portfolio holdings and delivery-channel credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

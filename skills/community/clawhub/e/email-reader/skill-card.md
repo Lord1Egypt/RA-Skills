@@ -1,41 +1,56 @@
-## Description: <br>
-Email Reader helps an agent read, summarize, search, classify, and send email through IMAP/SMTP accounts using the himalaya CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Reader helps an agent read, summarize, classify, and send email through the himalaya IMAP/SMTP CLI.
 
-## Publisher: <br>
-[Jackeven02](https://clawhub.ai/user/Jackeven02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jackeven02](https://clawhub.ai/user/jackeven02)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect configured mailboxes, summarize unread or important messages, and draft or send email through supported IMAP/SMTP providers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive mailbox contents to an agent. <br>
-Mitigation: Use the least-privileged email account practical for the task, prefer OAuth or app-specific passwords, and avoid storing real passwords in shell history or logs. <br>
-Risk: The skill enables outbound email actions and mailbox changes. <br>
-Mitigation: Require explicit user approval before sending, deleting, marking messages, or setting up recurring checks. <br>
-Risk: The skill relies on the himalaya CLI for mailbox operations. <br>
-Mitigation: Verify the himalaya package source before installation and confirm configuration against the intended email provider. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Email management reference resources](references/resources.md) <br>
+## Use Case:
 
+External users and developers use this skill to give an agent mailbox workflows such as reading recent messages, summarizing unread mail, searching messages, flagging important items, and drafting or sending email.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and concise email summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents sender, subject, summary, and suggested actions for relevant messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive mailbox contents and may grant the agent authority to send or modify messages.
+
+Mitigation: Use a least-privilege account, require user confirmation before sending or deleting email, and review mailbox access before deployment.
+
+Risk: Credential examples include passwords or app passwords in CLI configuration, which can be leaked through shell history, logs, or configuration files.
+
+Mitigation: Prefer provider-supported OAuth, keychain, or secret-helper flows, and avoid entering real passwords directly in shell commands.
+
+Risk: The workflow depends on installing and trusting the himalaya CLI.
+
+Mitigation: Pin or verify the CLI package and installation source before use.
+
+## Reference(s):
+
+- [Email management reference resources](references/resources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with email summaries, suggested actions, and inline himalaya shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sender, subject, summary, received-time context, and recommended actions such as reply, delete, or mark.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

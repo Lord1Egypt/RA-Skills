@@ -1,49 +1,64 @@
-## Description: <br>
-Directus.io Headless CMS helps agents answer questions about Directus setup, SDK and API usage, frontend integrations, Flows and automations, extensions, data modeling, permissions, file management, realtime features, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Directus headless CMS guidance for setup, SDK and API usage, frontend integrations, data modeling, automations, extensions, access control, files, real-time subscriptions, and troubleshooting.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, implement, and troubleshoot Directus-backed content systems, including CMS data models, API clients, framework integrations, automations, and extensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example Directus authentication and integration snippets may expose secrets or tokens if copied directly into production. <br>
-Mitigation: Keep secrets server-side, avoid tokens in URLs, use least-privilege tokens, and review environment variables before deployment. <br>
-Risk: Cookie-based authentication examples can be unsafe without correct browser and server protections. <br>
-Mitigation: Add SameSite and CSRF protections, configure CORS carefully, and validate cookie behavior in the target deployment environment. <br>
-Risk: Schema, automation, webhook, and AI-service examples can affect production data or send content to external services. <br>
-Mitigation: Review schema changes, back up production data, and confirm what content is sent to OpenAI, translation APIs, webhooks, or search services. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, configure, and troubleshoot Directus-backed content systems, APIs, frontend integrations, automation flows, and custom extensions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/encryptshawn/directus-io) <br>
-- [SDK & API](references/sdk-and-api.md) <br>
-- [Astro Integration](references/astro-integration.md) <br>
-- [TypeScript Patterns](references/typescript-patterns.md) <br>
-- [Flows & Automation](references/flows-and-automation.md) <br>
-- [Extensions](references/extensions.md) <br>
-- [Data Modeling & Administration](references/data-modeling.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copyable examples handle credentials, tokens, and deployment secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped tokens, keep secrets in environment variables or secret stores, and avoid placing credentials in URLs or shell arguments.
+
+Risk: Schema migration, container, and package commands can change or damage a Directus project if copied without review.
+
+Mitigation: Review schema diffs, test changes in staging, keep backups or snapshots, and pin npx packages and container images before production use.
+
+Risk: CMS HTML and integrations with external or AI services can expose unsafe content or private data.
+
+Mitigation: Sanitize rendered CMS HTML and require explicit approval and privacy review before sending CMS content to third-party services.
+
+## Reference(s):
+
+- [Directus Skill](SKILL.md)
+- [Directus + Astro Integration Guide](references/astro-integration.md)
+- [Directus Data Modeling & Administration](references/data-modeling.md)
+- [Directus Extensions](references/extensions.md)
+- [Directus Flows & Automation](references/flows-and-automation.md)
+- [Directus SDK & API Reference](references/sdk-and-api.md)
+- [Directus Troubleshooting](references/troubleshooting.md)
+- [Directus TypeScript Patterns](references/typescript-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline code blocks, shell commands, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include example TypeScript, Astro, Docker, environment, REST, GraphQL, and Directus configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

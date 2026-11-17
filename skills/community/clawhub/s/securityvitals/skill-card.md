@@ -1,46 +1,61 @@
-## Description: <br>
-Security vitals checker for OpenClaw. Scans your installation, scores your setup, and shows you exactly what to fix. First scan in seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security vitals checker for OpenClaw. Scans your installation, scores your setup, and shows you exactly what to fix. First scan in seconds.
 
-## Publisher: <br>
-[bk-cm](https://clawhub.ai/user/bk-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bk-cm](https://clawhub.ai/user/bk-cm)
 
-## Use Case: <br>
-External OpenClaw administrators and developers use SecurityVitals to run point-in-time security health checks on self-hosted OpenClaw installations and receive scored remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to execute local OpenClaw and Node.js commands. <br>
-Mitigation: Review the five documented commands before approving execution and skip update status when a fully offline scan is required. <br>
-Risk: Local command output may contain sensitive operational details. <br>
-Mitigation: Extract only the documented fields and do not display API keys, tokens, credentials, secrets, or raw command output. <br>
-Risk: Point-in-time checks can become stale and may not represent ongoing security posture. <br>
-Mitigation: Treat each report as a current snapshot and rerun the scan after configuration, version, or deployment changes. <br>
+## Use Case:
 
+OpenClaw operators and administrators use SecurityVitals to run point-in-time local security health checks of self-hosted OpenClaw installations, score stable controls, surface experimental notes, and get remediation guidance.
 
-## Reference(s): <br>
-- [SecurityVitals ClawHub Listing](https://clawhub.ai/bk-cm/securityvitals) <br>
-- [ClawVitals Website](https://clawvitals.io) <br>
-- [ClawVitals Documentation](https://clawvitals.io/docs) <br>
-- [ClawVitals Controls](https://clawvitals.io/docs/controls) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with a scored control table, optional detail report, and remediation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stateless point-in-time report; stable controls are scored and experimental notes are reported separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.8 (source: server release and skill.json) <br>
+Risk: The skill runs local OpenClaw diagnostic commands, so results depend on the local installation state and command output quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested scan before execution and treat findings as point-in-time diagnostics that may need local confirmation.
+
+Risk: The update status check may indirectly contact the OpenClaw update registry through the OpenClaw CLI.
+
+Mitigation: Skip the update status command when a fully offline scan is required; version-related controls may then be reported as unavailable.
+
+Risk: Reports include optional links to the ClawVitals plugin and dashboard.
+
+Mitigation: Treat those links as optional external resources and verify remediation actions against local policy.
+
+## Reference(s):
+
+- [SecurityVitals ClawHub Listing](https://clawhub.ai/bk-cm/skills/securityvitals)
+- [ClawVitals Website](https://clawvitals.io)
+- [ClawVitals Documentation](https://clawvitals.io/docs)
+- [ClawVitals Controls](https://clawvitals.io/docs/controls)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown security report with command snippets and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Point-in-time report only; no scan history is stored by the skill.]
+
+## Skill Version(s):
+
+1.4.8 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

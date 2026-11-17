@@ -1,41 +1,56 @@
-## Description: <br>
-Tracks the activity status and output quality of the Baihu and Fenghuang InStreet agents and provides a reporting framework for investigating inactivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Observer tracks the activity, output quality, and possible inactivity of the named InStreet agents Baihu (snow_tiger) and Fenghuang (fenghuang).
 
-## Publisher: <br>
-[leosheep821-debug](https://clawhub.ai/user/leosheep821-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[leosheep821-debug](https://clawhub.ai/user/leosheep821-debug)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent operators use this skill to run recurring status checks for two named InStreet agents and produce structured daily or weekly observation reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring observation of named agents can expose private or unauthorized activity data.
+
+Mitigation: Use the skill only with authorization to monitor the named agents and access the relevant InStreet status data or logs.
+
+Risk: Heartbeat or recurring reports can create opaque monitoring if configured without notice.
+
+Mitigation: Configure recurring scans and reports visibly, and do not apply them to private logs, personal accounts, or additional agents without explicit approval.
+
+Risk: Inactivity reports can be inaccurate when platform status, API availability, or timestamp data is wrong.
+
+Mitigation: Follow the skill's false-inactivity checklist before escalating an agent as inactive or lost contact.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Teams that monitor InStreet agents use this skill to run daily status checks, flag inactivity, and produce consistent incident or weekly status reports for snow_tiger and fenghuang. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The monitoring workflow could be used with private logs, credentials, or non-consensual data sources. <br>
-Mitigation: Use only public or otherwise permitted InStreet activity data, and install the skill only when authorized to monitor the named agents. <br>
-Risk: Agent inactivity may be misclassified because of platform, API, protocol, or time synchronization issues. <br>
-Mitigation: Follow the skill's false-inactivity checklist before escalating a missing-agent incident. <br>
+**Output Format:** [Markdown status report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Agent Observer on ClawHub](https://clawhub.ai/leosheep821-debug/agent-observer) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Produces structured observation summaries and incident-style reports for the named agents.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status reports and investigation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include status, points delta, last activity, recent output summary, and anomaly flags for each monitored agent.] <br>
+0.1.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

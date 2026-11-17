@@ -1,40 +1,54 @@
-## Description: <br>
-Verify the optional local Switchyard runtime path without changing Campus-owned response semantics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify the optional local Switchyard runtime path without changing Campus-owned response semantics.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and engineers use this skill to check whether a local Campus/Switchyard runtime is ready and to keep any follow-on interaction within Campus response semantics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may query local Campus or Switchyard API endpoints in environments where that access is not intended. <br>
-Mitigation: Confirm before installation that agents using this skill are allowed to reach the local Campus/Switchyard /api endpoints. <br>
-Risk: A response could misrepresent raw upstream provider payloads as Campus-owned response semantics. <br>
-Mitigation: Keep responses constrained to the Campus fields named by the skill: answerText, optional structuredAnswer, nextActions, trustGaps, and citations. <br>
+## Use Case:
 
+Developers and engineers use this skill to check whether a local Switchyard runtime is ready and, when it is, route through the Campus consumer seam while preserving Campus response fields.
 
-## Reference(s): <br>
-- [Switchyard Runtime Check on ClawHub](https://clawhub.ai/xiaojiou176/switchyard-runtime-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text] <br>
-**Output Format:** [Markdown guidance with endpoint names and response-field checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instructs the agent to check local runtime readiness and preserve named Campus response fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Using the chat route may send prompts through whichever provider the local runtime is configured to use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the local API endpoint and configured provider are controlled or trusted before sending prompts.
+
+Risk: Bypassing Campus response semantics could expose raw upstream provider payloads or misrepresent runtime capabilities.
+
+Mitigation: Keep outputs within the documented Campus fields and do not describe the runtime as hosted autonomy or a write-capable agent runtime.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaojiou176/skills/switchyard-runtime-check)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/xiaojiou176)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown with inline API routes and response field names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves Campus response semantics and avoids exposing raw upstream provider payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

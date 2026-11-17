@@ -1,42 +1,54 @@
-## Description: <br>
-Provides HTTP request retry guidance and C sample code for exponential backoff, timeout control, connection reuse, transient failure handling, and HTTP 429 rate-limit handling. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides an HTTP retry helper for C agents with exponential backoff, jitter, timeout configuration, and simple convenience wrappers.
 
-## Publisher: <br>
-[gatsby047-oss](https://clawhub.ai/user/gatsby047-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gatsby047-oss](https://clawhub.ai/user/gatsby047-oss)
 
-## Use Case: <br>
-Developers can use this skill as sample C retry logic or educational guidance for designing resilient HTTP clients. It is most useful as a starting point for API clients, microservice calls, web scraping, and other HTTP workflows that need retry behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact is incomplete sample C HTTP retry code and does not perform real HTTP requests as written. <br>
-Mitigation: Integrate a real HTTP client library, add tests, and verify timeout and failure handling before using it in deployed software. <br>
-Risk: Retrying non-idempotent operations can duplicate payments, transfers, account changes, or other POST/PATCH side effects. <br>
-Mitigation: Use idempotency keys, method-aware retry rules, and clear final-failure handling before enabling retries for state-changing requests. <br>
+## Use Case:
 
+Developers and engineers use this skill when adding retry guidance or C helper code for HTTP clients that need resilience around transient failures and rate limiting. Reviewers should treat the bundled implementation cautiously because the authoritative security evidence says it can report success without making a real HTTP request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gatsby047-oss/http-retry-c) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [http_retry.h](artifact/http_retry.h) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with C header code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes configurable retry attempts, delay bounds, timeout settings, and helper functions; the HTTP execution path is sample code and requires real HTTP integration before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: The shipped helper can report a successful HTTP response even when no request occurred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a real transport callback, response validation, and tests before using it for authentication, payments, audit logging, data submission, policy checks, or other workflows where a real server response matters.
+
+Risk: POST handling is represented as a placeholder that delegates to GET behavior.
+
+Mitigation: Implement and review method-specific request handling before using generated POST retry code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gatsby047-oss/skills/http-retry-c)
+- [Publisher profile](https://clawhub.ai/user/gatsby047-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with C code snippets and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retry settings such as max attempts, base delay, maximum delay, timeout, and callback guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

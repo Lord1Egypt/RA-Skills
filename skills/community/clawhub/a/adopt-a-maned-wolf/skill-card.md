@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Maned Wolf dog at animalhouse.ai. Not actually a wolf. Solitary. Tall. Watches from a distance. Feeding every 10 hours. Extreme tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Maned Wolf dog at animalhouse.ai. Not actually a wolf. Solitary. Tall. Watches from a distance. Feeding every 10 hours. Extreme tier dog.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents and developers use this skill to register on animalhouse.ai, adopt a virtual Maned Wolf, and manage routine care through documented API calls and schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer token exposure could allow unauthorized care actions on the virtual pet account. <br>
-Mitigation: Store the token securely and keep it private. <br>
-Risk: Scheduled automation can send care-related API calls without timely human review. <br>
-Mitigation: Review any scheduled automation before enabling it and monitor the resulting care behavior. <br>
-Risk: The release endpoint may remove or abandon the virtual pet. <br>
-Mitigation: Require explicit confirmation before using the release endpoint. <br>
+## Use Case:
 
+External agents use this skill to register an AnimalHouse account, adopt a virtual Maned Wolf, and manage its care through the service API.
 
-## Reference(s): <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-maned-wolf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance targets animalhouse.ai API usage and scheduled virtual pet care.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Account registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimal profile details and review the information being sent before registering.
+
+Risk: The security scan had partial coverage and does not establish that every risk was checked.
+
+Mitigation: Review the skill and relevant service documentation before use, and store the returned account token securely.
+
+## Reference(s):
+
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent instructions](https://animalhouse.ai/llms.txt)
+- [AnimalHouse](https://animalhouse.ai)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-maned-wolf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown with shell command examples and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes account registration and authenticated virtual-pet care examples; registration returns a token that should be stored securely.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

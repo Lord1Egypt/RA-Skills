@@ -1,43 +1,61 @@
-## Description: <br>
-This skill helps university students find available classrooms for self-study, group discussion, exam prep, or meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps university students find available classrooms for self-study, group discussion, exam prep, or meetings.
 
-## Publisher: <br>
-[jjmorant12](https://clawhub.ai/user/jjmorant12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjmorant12](https://clawhub.ai/user/jjmorant12)
 
-## Use Case: <br>
-External users, especially university students, use this skill to choose campus study spaces by time, group size, location, and preferences such as quietness, outlets, or group-work suitability. The skill ranks usable rooms, explains tradeoffs, and flags schedule conflicts, room restrictions, and recent feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may be based on bundled sample classroom, schedule, and feedback data rather than the school's live room system. <br>
-Mitigation: Verify room availability with the school's official classroom system, posted notices, or on-site checks before relying on a recommendation. <br>
-Risk: The included demo login and admin controls are not suitable as real application security. <br>
-Mitigation: Do not deploy the demo page as a production application without replacing it with server-side authentication and authorization. <br>
+## Use Case:
 
+External university students use this skill to find suitable campus classrooms for individual study, exam preparation, group discussion, or meetings. The skill filters by time, location, capacity, preferences, schedule conflicts, and recent on-site feedback, then explains the recommended rooms and cautions.
 
-## Reference(s): <br>
-- [StudySeat Buddy ClawHub page](https://clawhub.ai/jjmorant12/studyseat-buddy) <br>
-- [Classroom data](references/classroom_data.md) <br>
-- [Schedule data](references/schedule_data.md) <br>
-- [Feedback data](references/feedback_data.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown response with ranked recommendations, rationale, avoided-room notes, and cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled sample campus data unless replaced with official school classroom, schedule, and feedback sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled classroom, schedule, and feedback files use sample campus data and may not reflect real room availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the sample data with school-managed classroom and schedule data, and tell users to confirm availability with official systems or posted notices.
+
+Risk: The included demo admin page uses hardcoded accounts and client-side administrative behavior.
+
+Mitigation: Keep the demo page as a prototype only unless authorization is moved server-side and hardcoded accounts are removed.
+
+Risk: User or admin-entered text in the demo interface could be unsafe if connected to production data flows.
+
+Mitigation: Safely render or sanitize all entered text before using the interface with real users, APIs, or production data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jjmorant12/skills/studyseat-buddy)
+- [Skill instructions](artifact/SKILL.md)
+- [Classroom data reference](artifact/references/classroom_data.md)
+- [Schedule data reference](artifact/references/schedule_data.md)
+- [Feedback data reference](artifact/references/feedback_data.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendation response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a concise recommendation set with learning mode, 1-3 room options, avoided-room rationale, best choice, and usage cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

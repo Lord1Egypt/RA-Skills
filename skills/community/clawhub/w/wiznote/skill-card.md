@@ -1,46 +1,59 @@
-## Description: <br>
-WizNote is a connector for WizNote account automation, including note search, reading, creation, updates, deletion, attachment handling, categories, tags, comments, and sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WizNote connects an agent to WizNote so it can list, search, read, create, update, delete, share, comment on, and manage notes, categories, tags, and attachments.
 
-## Publisher: <br>
-[wangfengxiang](https://clawhub.ai/user/wangfengxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangfengxiang](https://clawhub.ai/user/wangfengxiang)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an MCP-compatible agent to a WizNote account for searching, reading, creating, modifying, sharing, and exporting notes and attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation includes example WizNote account credentials. <br>
-Mitigation: Replace examples with safely stored secrets before use, and rotate any exposed password if it was real. <br>
-Risk: The skill can modify WizNote content through create, update, delete, move, copy, category, tag, comment, share, and attachment operations. <br>
-Mitigation: Use only with a trusted publisher and account scope, and explicitly confirm destructive or sharing actions before execution. <br>
-Risk: The skill can fetch URL content, connect to a configured WizNote server, and download attachments or resources. <br>
-Mitigation: Restrict configuration and URL-import workflows to trusted HTTPS endpoints and review attachment-download requests before running them. <br>
-Risk: Downloaded notes, attachments, OCR text, and extracted document text may contain sensitive account data. <br>
-Mitigation: Store local outputs in an approved workspace, limit extraction size when possible, and remove exported files when they are no longer needed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to operate a WizNote workspace through natural-language or MCP-style workflows, including note retrieval, Markdown-based note creation, attachment handling, sharing, and note organization.
 
-## Reference(s): <br>
-- [ClawHub WizNote release page](https://clawhub.ai/wangfengxiang/wiznote) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, API Calls] <br>
-**Output Format:** [JSON tool responses with note content, Markdown, Base64 attachments, and optional saved local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download note resources and attachments into local output directories when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The security evidence reports apparent real credentials and private endpoint or account examples in the skill material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those credentials as compromised, rotate them, and remove private endpoint and account examples before installation or publication.
+
+Risk: The skill can delete, share, upload, download, and import content from URLs, which can affect user data and expose note contents.
+
+Mitigation: Require explicit user confirmation for destructive or sharing operations, URL imports, uploads, and downloads.
+
+Risk: The security evidence warns about unsafe handling of note data, network requests, and local files.
+
+Mitigation: Use HTTPS/WSS, restrict URL fetching, sanitize download paths, and run the skill with pinned dependencies in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangfengxiang/skills/wiznote)
+- [Publisher profile](https://clawhub.ai/user/wangfengxiang)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown, text, and JSON-like API responses with occasional shell or Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may create, modify, share, upload, download, or delete WizNote content when connected to a configured WizNote account.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Daily Mood helps an agent generate bilingual, mood-aware morning, evening, and on-demand life messages for registered users based on their current emotional state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Mood generates mood-aware morning, evening, and immediate life-message prompts for registered users in Chinese or English.
 
-## Publisher: <br>
-[cosmofang](https://clawhub.ai/user/cosmofang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmofang](https://clawhub.ai/user/cosmofang)
 
-## Use Case: <br>
-External users use this skill to receive warm, language-aware daily mood messages, register lightweight mood preferences, and manage scheduled morning or evening prompts. Agents can use it to produce immediate emotional-support messages or scheduled push-message content without calling an external API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores each registered user's mood label, language preference, push setting, and timestamps in local profile files. <br>
-Mitigation: Register users only with explicit consent, explain what profile data is stored, and delete or disable profiles when users opt out. <br>
-Risk: Scheduled morning and evening messages can create recurring notifications for registered users. <br>
-Mitigation: Require user opt-in before adding cron jobs or enabling push delivery, and provide a clear path to turn push messages off. <br>
-Risk: Broad trigger keywords may activate the skill in environments with many installed skills. <br>
-Mitigation: Review and narrow trigger keywords for the deployment context if accidental activation would be disruptive. <br>
-Risk: Mood-aware messages may be mistaken for therapeutic or diagnostic support. <br>
-Mitigation: Keep messages non-diagnostic, avoid clinical claims, and route users to appropriate professional or emergency support when needed. <br>
+## Use Case:
 
+External users and developers use this skill to register mood preferences, generate immediate mood-matched messages, and schedule daily morning and evening emotional-support prompts. It is not a mental-health diagnostic or therapy tool.
 
-## Reference(s): <br>
-- [Daily Mood ClawHub release](https://clawhub.ai/cosmofang/daily-mood) <br>
-- [cosmofang publisher profile](https://clawhub.ai/user/cosmofang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style prompts with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be in Chinese or English and may reflect stored user mood, language, and push preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact package.json and _meta.json report 1.0.0) <br>
+Risk: The skill stores mood and profile data that can reveal sensitive emotional state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where users explicitly opt in, keep stored profile data minimal, and restrict access to local user data files.
+
+Risk: The authoritative security evidence reports unsafe local file access and persistence boundaries, including the --show path validation path.
+
+Mitigation: Fix --show path validation before multi-user use and avoid exposing CLI arguments to untrusted users.
+
+Risk: Scheduled morning and evening messages can continue after registration if user intent changes.
+
+Mitigation: Require clear opt-in for scheduled pushes and honor per-user push-toggle state before sending messages.
+
+## Reference(s):
+
+- [Daily Mood ClawHub page](https://clawhub.ai/cosmofang/skills/daily-mood)
+- [Cosmofang publisher profile](https://clawhub.ai/user/cosmofang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text prompts with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces mood-specific prompts and local profile records for scheduled push workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

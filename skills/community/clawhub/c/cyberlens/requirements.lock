@@ -1,0 +1,6 @@
+# Pinned direct dependencies for reproducible local installs.
+# Refresh intentionally when updating requirements.txt.
+httpx==0.25.0
+beautifulsoup4==4.12.0
+pydantic==2.4.0
+pyyaml==6.0

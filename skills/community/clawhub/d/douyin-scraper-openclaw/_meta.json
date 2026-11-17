@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn72jmd20ws94jr0p8b3p24wyn82abgj",
-  "slug": "douyin-scraper-openclaw",
+  "name": "douyin-scraper",
   "version": "1.0.0",
-  "publishedAt": 1778278236975
+  "description": "抖音内容爬虫，支持自然语言直接搜索视频内容。说'搜索一下海鲜视频'即可执行搜索。",
+  "author": "OpenClaw",
+  "emoji": "🎬"
 }

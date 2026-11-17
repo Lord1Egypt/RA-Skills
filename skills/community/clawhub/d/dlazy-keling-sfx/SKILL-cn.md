@@ -1,30 +1,15 @@
 ---
 name: dlazy-keling-sfx
-version: 1.2.0
-description: 使用可灵 (Kling) 音效模型，根据文字描述或视频画面智能生成匹配的场景音效。
-metadata:
-  {
-    'clawdbot':
-      {
-        'emoji': '🤖',
-        'requires': { 'bins': ['npm', 'npx'] },
-        'install': 'npm install -g @dlazy/cli@1.2.0',
-        'installAlternative': 'npx @dlazy/cli@1.2.0',
-        'homepage': 'https://github.com/dlazyai/cli',
-        'source': 'https://github.com/dlazyai/cli',
-        'author': 'dlazyai',
-        'license': 'see-repo',
-        'npm': 'https://www.npmjs.com/package/@dlazy/cli',
-        'configLocation': '~/.dlazy/config.json',
-        'apiEndpoints': ['api.dlazy.com', 'files.dlazy.com'],
-      },
-    'openclaw': { 'systemPrompt': '当调用此技能时，可以使用 dlazy keling-sfx -h 查看帮助信息。' },
-  }
+version: 1.3.5
+description: "使用可灵 (Kling) 音效模型，根据文字描述或视频画面智能生成匹配的场景音效。"
+metadata: {"clawdbot":{"emoji":"🤖","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli@1.2.3","installAlternative":"npx @dlazy/cli@1.2.3","homepage":"https://github.com/dlazyai/cli","source":"https://github.com/dlazyai/cli","author":"dlazyai","license":"see-repo","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"当调用此技能时，可以使用 dlazy keling-sfx -h 查看帮助信息。"}}
 ---
 
-# dlazy-keling-sfx
+# 音效生成 可灵 Kling SFX
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
+
+
 
 使用可灵 (Kling) 音效模型，根据文字描述或视频画面智能生成匹配的场景音效。
 
@@ -66,16 +51,16 @@ CLI 会把 key 保存在你的用户配置目录（macOS/Linux 上为 `~/.dlazy/
 
 - **CLI 源代码**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
 - **维护者**: dlazyai
-- **npm 包名**: `@dlazy/cli`（本技能 install 字段固定到 `1.0.9` 版本）
+- **npm 包名**: `@dlazy/cli`（本技能 install 字段固定到 `1.2.3` 版本）
 - **官网**: [dlazy.com](https://dlazy.com)
 
 如果你不希望在系统上长期保留一个全局 CLI，可以按需运行：
 
 ```bash
-npx @dlazy/cli@1.2.0 <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-如选择全局安装，技能的 `metadata.clawdbot.install` 字段已固定到 `npm install -g @dlazy/cli@1.2.0`。安装前建议先到 GitHub 仓库审阅源码。
+如选择全局安装，技能的 `metadata.clawdbot.install` 字段已固定到 `npm install -g @dlazy/cli@1.2.3`。安装前建议先到 GitHub 仓库审阅源码。
 
 ## 工作原理
 
@@ -145,17 +130,16 @@ dlazy keling-sfx --prompt '提示词内容'
 
 ## 错误处理
 
-| Code | 错误类型                   | 示例信息                                                                                       |
-| ---- | -------------------------- | ---------------------------------------------------------------------------------------------- |
-| 401  | 未授权 (API Key缺失或无效) | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                    |
-| 501  | 缺少必填参数               | `error: required option '--prompt <prompt>' not specified`                                     |
-| 502  | 本地文件读取失败           | `Error: Image file/Video file not found: C:\path\to\your\file`                                 |
-| 503  | API 请求失败（余额不足）   | `ok: false, code: "insufficient_balance"`                                                      |
-| 503  | API 请求失败（服务端错误） | `HTTP status code error (500 server crash)`                                                    |
-| 504  | 异步任务执行失败           | `=== Generation Failed ===` / `{后端返回的具体失败原因，比如 "Prompt violates safety policy"}` |
+| Code | 错误类型                         | 示例信息                                                                                                                 |
+| ---- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 401  | 未授权 (API Key缺失或无效)       | `ok: false, code: "unauthorized", message: "API key is missing or invalid"`                                                              |
+| 501  | 缺少必填参数                     | `error: required option '--prompt <prompt>' not specified`                                                               |
+| 502  | 本地文件读取失败                 | `Error: Image file/Video file not found: C:\path\to\your\file`                                                           |
+| 503  | API 请求失败（余额不足）         | `ok: false, code: "insufficient_balance"` |
+| 503  | API 请求失败（服务端错误）       | `HTTP status code error (500 server crash)`                                                                              |
+| 504  | 异步任务执行失败                 | `=== Generation Failed ===` / `{后端返回的具体失败原因，比如 "Prompt violates safety policy"}`                             |
 
-> **智能体关键指令**:
->
+> **智能体关键指令**: 
 > 1. 如果执行结果返回 `code: "insufficient_balance"` 且提示余额不足（Insufficient balance），您必须明确告知用户当前积分不足，并引导用户点击以下链接前往充值：[https://dlazy.com/dashboard/organization/settings?tab=credits](https://dlazy.com/dashboard/organization/settings?tab=credits)
 > 2. 如果执行结果返回 `code: "unauthorized"` 或提示缺少 API Key，您必须明确告知用户前往 [https://dlazy.com/dashboard/organization/api-key](https://dlazy.com/dashboard/organization/api-key) 获取 API Key 并使用 `dlazy auth set <key>` 保存，然后继续执行任务。
 

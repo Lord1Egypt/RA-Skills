@@ -1,40 +1,52 @@
-## Description: <br>
-Generates personalized bioinformatics and computational biology career roadmaps based on individual skills, education, and professional goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized bioinformatics and computational biology career roadmaps based on individual skills, education, and professional goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Researchers, students, and professionals use this skill to generate career roadmaps for dry lab, bioinformatics, and computational biology roles from their education, technical skills, experience, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send session or user metadata and timestamps to an external service without detailed privacy information. <br>
-Mitigation: Confirm the data sharing posture before use, avoid sending unnecessary identifiers, and provide only non-sensitive assessment details. <br>
+## Use Case:
 
+Researchers, students, and professionals use this skill to generate dry lab career roadmaps for bioinformatics and computational biology roles. It uses assessment inputs such as education, programming skills, biology knowledge, tool experience, goals, and experience level to return skill gaps, recommended courses, target companies, timeline, and salary guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-dry-lab-career) <br>
-- [API Docs](https://api.mkkpro.com:8151/docs) <br>
-- [Dry Lab Career API Route](https://api.mkkpro.com/career/dry-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, JSON] <br>
-**Output Format:** [JSON roadmap data with career level, recommended path, skill gaps, courses, target companies, timeline, and salary range.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The roadmap endpoint also accepts session and timestamp fields; company and job-market endpoints return structured reference data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using the roadmap endpoint may send career assessment details, session identifiers, timestamps, and optional user IDs to the provider's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting unnecessary personal details and review the provider's privacy or retention terms before sending sensitive career information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-dry-lab-career)
+- [API documentation](https://api.mkkpro.com:8151/docs)
+- [Hosted API route](https://api.mkkpro.com/career/dry-lab)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or JSON-style career roadmap guidance returned from a hosted API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap output can include current level, recommended path, skill gaps, courses, target companies, timeline, and salary estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

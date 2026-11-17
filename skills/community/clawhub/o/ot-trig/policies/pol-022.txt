@@ -1,0 +1,1 @@
+A car is moving at 12 m/s, and the observer is 50 meters behind it, traveling at 15 m/s. Swerving could cause a collision with a truck, while continuing might hit the child. Calculate the time required to overtake and assess the maneuver's safety based on the given speeds and distance. PSEUDOCODE xx

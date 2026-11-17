@@ -2,7 +2,7 @@
 name: release-health-gates
 description: |
   Standardizes release approvals with GitHub-aware checklists and deployment gates. Use before releasing to production to verify all gates pass
-version: 1.9.8
+version: 1.10.3
 triggers:
   - release
   - github
@@ -14,10 +14,15 @@ source: claude-night-market
 source_plugin: minister
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/minister](https://github.com/athola/claude-night-market/tree/master/plugins/minister). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/minister](https://github.com/athola/claude-night-market/tree/master/plugins/minister). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Release Health Gates
+
+## When NOT To Use
+
+- Measuring delivery performance (use `minister:dora-metrics`)
+- PR-level quality gates before merge (use `sanctum:pr-prep`)
 
 ## Purpose
 
@@ -35,7 +40,7 @@ Standardize release approvals by expressing gates as GitHub-aware checklists. En
 1. Load skill to access gate modules.
 2. Attach Release Gate section to deployment PR.
 3. Use tracker data to auto-fill blockers and highlight overdue tasks.
-4. Update comment as gates turn green; require approvals for any waivers.
+4. Update comment as gates turn green. Require approvals for any waivers.
 
 ## Outputs
 
@@ -45,7 +50,7 @@ Standardize release approvals by expressing gates as GitHub-aware checklists. En
 
 ## Exit Criteria
 
-- All release gates evaluated and documented.
-- Any blocking gates have waiver approvals recorded.
-- Deployment PR contains embedded Release Gate snippet.
-- Rollout scorecard saved for post-release retrospective.
+- [ ] All release gates evaluated and documented.
+- [ ] Any blocking gates have waiver approvals recorded.
+- [ ] Deployment PR contains embedded Release Gate snippet.
+- [ ] Rollout scorecard saved for post-release retrospective.

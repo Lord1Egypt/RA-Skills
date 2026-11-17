@@ -1,43 +1,62 @@
-## Description: <br>
-从抖音视频反推AI绘画提示词和分镜脚本。当用户提到反推提示词、视频反推、抖音分析、分镜反推、游戏改写、视频转提示词时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Douyin or local video inputs to reverse-engineer AI image prompts, scene-by-scene storyboard scripts, and optional game-style rewrites.
 
-## Publisher: <br>
-[clair-001](https://clawhub.ai/user/clair-001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clair-001](https://clawhub.ai/user/clair-001)
 
-## Use Case: <br>
-Developers and creators use this skill to download or analyze a Douyin or local video, extract scene-by-scene storyboard details, and generate AI image prompts. It can also produce game-style and Rusty Lake-style rewrites when the required analyzer skills and ARK_API_KEY are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses ARK_API_KEY and sends selected videos or downloaded media to Volcengine/Doubao and downloader helper services. <br>
-Mitigation: Use a dedicated API key, avoid sensitive private videos, and run the skill only when that third-party processing is acceptable. <br>
-Risk: The workflow writes downloaded media and generated analysis files to a local output directory. <br>
-Mitigation: Use a dedicated output directory and review generated files before sharing or reusing them. <br>
-Risk: The skill depends on referenced downloader and analyzer skills for key behavior. <br>
-Mitigation: Review and install the referenced helper skills before running this skill. <br>
+## Use Case:
 
+Developers and creators use this skill to download or analyze video content, generate structured scene breakdowns, and produce AI image prompts or storyboard tables for creative workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clair-001/douyin-reverse-engineer) <br>
-- [Publisher profile](https://clawhub.ai/user/clair-001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [CLI text plus JSON, Markdown, and CSV output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and ARK_API_KEY; optional output includes downloaded video files, analysis.json, prompt Markdown, storyboard Markdown, and storyboard CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: User videos and derived analysis may be sent to external Volcengine/Ark services during video analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only videos suitable for external processing and review applicable data-handling requirements before running the skill.
+
+Risk: Douyin identifiers may be handled through TikHub-related downloader code when downloading Douyin videos.
+
+Mitigation: Review the downloader dependency before use and prefer local-video analysis when external downloader handling is not acceptable.
+
+Risk: The skill relies on unpinned third-party skill dependencies.
+
+Mitigation: Pin and review dependency versions, including the missing douyin-downloader dependency, before deployment.
+
+Risk: Running with a broad environment could expose unrelated local secrets to subprocesses or dependencies.
+
+Mitigation: Run with a minimal environment containing only the required ARK_API_KEY secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clair-001/skills/douyin-reverse-engineer)
+- [Publisher profile](https://clawhub.ai/user/clair-001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, CSV, and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write analysis.json, storyboard Markdown and CSV files, prompt Markdown files, downloaded video files, and optional rewritten variants.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

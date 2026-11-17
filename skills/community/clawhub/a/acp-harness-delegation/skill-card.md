@@ -1,41 +1,58 @@
-## Description: <br>
-Provides a standard protocol for delegating tasks through the ACP runtime to acpx-enabled harnesses such as Claude Code and Codex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a standard protocol for delegating work through ACP runtime to acpx-enabled harnesses such as Claude Code, Codex, Gemini CLI, OpenCode, Pi, and Kimi.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Developers and coordinator agents use this skill to delegate work to ACP-compatible harnesses while preserving session threading, authentication checks, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated harnesses may act without approval prompts when configured with global approve-all permissions. <br>
-Mitigation: Prefer read-only or per-action approval, restrict the working directory, and avoid global approve-all for routine use. <br>
-Risk: Provider credentials may be exposed or misused if stored insecurely in acpx configuration. <br>
-Mitigation: Protect ~/.acpx/config.json and API keys, and install only when the delegated ACP harnesses are trusted. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure ACP delegation workflows, spawn reusable harness sessions, and troubleshoot authentication, permission, and session-return issues.
 
-## Reference(s): <br>
-- [Harness List](references/harness-list.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chaoyang78/acp-harness-delegation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; does not itself execute delegated harness calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends broad automatic authority for delegated external agents, which can permit unintended file changes or command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer read-only or per-task approvals, review the acpx permission configuration before use, and run delegated agents in a restricted workspace.
+
+Risk: API keys may be exposed if credentials are printed in logs or stored in plaintext configuration without protection.
+
+Mitigation: Avoid printing secrets, protect credential files, and use scoped or rotated keys where possible.
+
+Risk: Harness package behavior can change if adapter packages are installed without fixed versions.
+
+Mitigation: Pin harness package versions and review package updates before deploying delegated workflows.
+
+## Reference(s):
+
+- [Harness List](references/harness-list.md)
+- [ClawHub Skill Page](https://clawhub.ai/chaoyang78/skills/acp-harness-delegation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JavaScript, bash, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational trigger phrases, ACP session spawning guidance, configuration snippets, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

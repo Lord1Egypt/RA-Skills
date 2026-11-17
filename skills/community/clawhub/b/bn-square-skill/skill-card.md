@@ -1,44 +1,60 @@
-## Description: <br>
-Binance Square publishing skill for AI agents that validates sessions, publishes posts, and checks post status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance Square publishing skill for AI agents. Validate session, publish posts, and check status.
 
-## Publisher: <br>
-[Phlegonlabs](https://clawhub.ai/user/Phlegonlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[phlegonlabs](https://clawhub.ai/user/phlegonlabs)
 
-## Use Case: <br>
-External developers and agent operators use this skill to validate a Binance Square session, publish posts, and retrieve post status through structured CLI/API outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires full active Binance web-session credentials and posting authority. <br>
-Mitigation: Use a dedicated low-privilege account where possible, validate the session before publishing, and keep cookies, CSRF tokens, and config files out of repositories and logs. <br>
-Risk: Browser CDP, probe, and analyze scripts can inspect or exercise live Binance sessions. <br>
-Mitigation: Avoid those scripts unless their side effects are understood and run them only in a controlled browser/session context. <br>
-Risk: Untrusted image URLs may introduce unsafe or unexpected upload behavior. <br>
-Mitigation: Pass only trusted image URLs and enforce the documented image limits before publish flows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Phlegonlabs/bn-square-skill) <br>
-- [Homepage](https://github.com/Phlegonlabs/bn-square-skill) <br>
-- [Cookie guide](docs/cookie-guide.md) <br>
-- [Messaging contract](MESSAGING.md) <br>
+## Use Case:
 
+Developers and agents use this skill to validate a Binance Square session, publish posts, and check post status from structured inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Structured JSON-compatible output with concise operational text when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require Binance session credentials and return sanitized errors.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata; artifact frontmatter and package.json show 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires live Binance browser-session credentials and can publish publicly on the connected account.
+
+Mitigation: Use an isolated or test account where possible, validate the session before publishing, and review each post payload before execution.
+
+Risk: Credential material could be exposed if cookies, CSRF tokens, session tokens, or authorization headers are logged or sent to an untrusted destination.
+
+Mitigation: Keep credentials out of shared files and logs, send Binance authentication only to https://www.binance.com or trusted *.binance.com endpoints, and use sanitized error output.
+
+Risk: Analyzer, endpoint-probing, or CDP modes can broaden account access beyond a simple publish operation.
+
+Mitigation: Avoid running analyzer or endpoint probes against a real account, and restrict CDP configuration to a local trusted browser endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phlegonlabs/skills/bn-square-skill)
+- [Publisher profile](https://clawhub.ai/user/phlegonlabs)
+- [Project homepage](https://github.com/Phlegonlabs/bn-square-skill)
+- [Cookie guide](docs/cookie-guide.md)
+- [API notes](api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON-compatible command results with concise operational guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include session validity, publish success, post identifiers, post URLs, status values, and sanitized errors.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

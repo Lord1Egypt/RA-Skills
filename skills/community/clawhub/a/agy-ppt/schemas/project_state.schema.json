@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/project_state.schema.json",
+  "title": "AGY PPT project state",
+  "description": "Deterministic, AGY-owned project state for the agy-ppt workflow. AGY is the only controller; workers (Kiro, Codex) never write this file directly.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_id",
+    "controller",
+    "phase",
+    "sequential_only",
+    "slides"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "controller": {
+      "type": "string",
+      "const": "agy",
+      "description": "State ownership is AGY only. This value must never change."
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "outline",
+        "style",
+        "sample",
+        "slide_generation",
+        "visual_qa",
+        "assembly",
+        "complete",
+        "blocked"
+      ]
+    },
+    "phase_before_block": {
+      "type": ["string", "null"],
+      "description": "When phase is 'blocked', the phase the project was in before it was blocked, so AGY can decide where to resume."
+    },
+    "sequential_only": {
+      "type": "boolean",
+      "const": true,
+      "description": "First version renders slides sequentially. Parallel generation is intentionally out of scope."
+    },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "outline": { "$ref": "#/definitions/gate" },
+    "style": { "$ref": "#/definitions/gate" },
+    "sample": { "$ref": "#/definitions/gate" },
+    "deck_spec_path": { "type": ["string", "null"] },
+    "slide_jobs_path": { "type": ["string", "null"] },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "at"],
+        "properties": {
+          "from": { "type": ["string", "null"] },
+          "to": { "type": "string" },
+          "at": { "type": "string" },
+          "note": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "operator_blocker": {
+      "type": ["object", "null"],
+      "description": "Orchestration/operator-confirmed block (e.g. subscription quota exhaustion confirmed via an external UI). Distinct from a worker-reported error_code: this field never overrides or is derived from a slide's attempts/blocker, and a slide's blocker.error_code is never rewritten to a value from here.",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "description": "e.g. 'subscription_quota_exhausted'. Always an operator/AGY decision, never a fabricated worker error_code."
+        },
+        "confirmed_by": { "type": "string" },
+        "at": { "type": "string" },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+    "slides": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/slide" }
+    }
+  },
+  "definitions": {
+    "gate": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "approved", "rejected"]
+        }
+      }
+    },
+    "slide": {
+      "type": "object",
+      "required": ["status", "generation"],
+      "additionalProperties": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "ready",
+            "generating",
+            "generated",
+            "qa_passed",
+            "qa_failed",
+            "generation_failed",
+            "assembled",
+            "blocked"
+          ]
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of real Codex generation calls made for this slide. 0 before the first call."
+        },
+        "generating_attempt": {
+          "type": ["integer", "null"],
+          "description": "The generation number of the in-flight attempt while status is 'generating'."
+        },
+        "phase_before_block": {
+          "type": ["string", "null"]
+        },
+        "job_path": { "type": ["string", "null"] },
+        "image_path": { "type": ["string", "null"] },
+        "aspect_ratio": { "type": ["string", "null"] },
+        "blocker": {
+          "type": ["object", "null"],
+          "additionalProperties": true,
+          "properties": {
+            "reason": {
+              "type": "string",
+              "description": "e.g. 'codex generation failed' (from record_worker_result), 'interrupted during generation; outcome unconfirmed' (from recover_interrupted), or 'repeated_image_backend_failure' (from block_after_repeated_failure, after a second consecutive same-error_code failure on this slide)."
+            },
+            "error_code": {
+              "type": ["string", "null"],
+              "description": "The worker-reported error_code this blocker preserves verbatim (e.g. 'IMAGE_GENERATION_FAILED'). Never a quota-specific code inferred from a returncode; never rewritten by an operator-confirmed quota decision (see top-level operator_blocker)."
+            },
+            "retry_immediately": {
+              "type": "boolean",
+              "description": "Present (false) only on a 'repeated_image_backend_failure' blocker: AGY has determined a second consecutive same-error_code failure must not be retried immediately a third time."
+            },
+            "at": { "type": "string" }
+          }
+        },
+        "attempts": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/attempt" }
+        }
+      }
+    },
+    "attempt": {
+      "type": "object",
+      "required": ["generation", "worker", "status", "idempotency_key", "at"],
+      "additionalProperties": true,
+      "properties": {
+        "generation": { "type": "integer", "minimum": 1 },
+        "worker": { "type": "string", "enum": ["codex", "kiro"] },
+        "status": { "type": "string" },
+        "operation": { "type": ["string", "null"] },
+        "backend": { "type": ["string", "null"] },
+        "output_path": { "type": ["string", "null"] },
+        "error_code": { "type": ["string", "null"] },
+        "idempotency_key": { "type": "string", "minLength": 1 },
+        "at": { "type": "string" },
+        "diagnostics": { "type": ["object", "null"] }
+      }
+    }
+  }
+}

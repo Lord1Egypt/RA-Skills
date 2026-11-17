@@ -1,0 +1,5 @@
+# PaperTrade + ONDO 中性对冲机器人依赖
+eth-account>=0.11.0
+requests>=2.31.0
+web3>=6.15.0
+python-dotenv>=1.0.0

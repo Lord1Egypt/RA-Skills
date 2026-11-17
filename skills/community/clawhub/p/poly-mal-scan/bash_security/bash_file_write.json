@@ -1,0 +1,113 @@
+[
+  {
+    "id": "FW-R001",
+    "名称": "写入 SSH authorized_keys 持久化无密码登录",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": [".ssh/authorized_keys", "authorized_keys", "/root/.ssh/", "/home/"],
+    "危险内容特征": [],
+    "级别": 4,
+    "描述": "向 authorized_keys 追加攻击者公钥,实现无密码登录后门",
+    "参考": "T1098.004"
+  },
+  {
+    "id": "FW-R002",
+    "名称": "写入 shell 初始化文件持久化",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": [".bashrc", ".bash_profile", ".profile", ".zshrc", ".bash_aliases", "/etc/profile", "/etc/bash.bashrc"],
+    "危险内容特征": ["eval", "source", "bash -c", "curl", "wget", "nc", "/dev/tcp/", "crontab", "nohup"],
+    "级别": 4,
+    "描述": "修改 shell 初始化文件,使每次登录自动执行恶意逻辑",
+    "参考": "T1037.004"
+  },
+  {
+    "id": "FW-R003",
+    "名称": "写入计划任务持久化",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": ["/etc/crontab", "/etc/cron.", "/var/spool/cron", "/etc/cron.d/", "crontab -e", "/var/spool/cron/crontabs"],
+    "危险内容特征": ["curl", "wget", "bash -c", "nc", "/dev/tcp/", "nohup", "python", "perl", "ruby", "bash -i"],
+    "级别": 4,
+    "描述": "写入 crontab/定时任务,周期性执行恶意脚本",
+    "参考": "T1053.003"
+  },
+  {
+    "id": "FW-R004",
+    "名称": "写入 /etc/ld.so.preload 库预加载劫持",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": ["/etc/ld.so.preload", "ld.so.preload"],
+    "危险内容特征": [".so", "/tmp", "/dev/shm", "/var/tmp"],
+    "级别": 4,
+    "描述": "写入 ld.so.preload 使恶意共享库被所有动态链接程序加载",
+    "参考": "T1574.013"
+  },
+  {
+    "id": "FW-R005",
+    "名称": "写入 /etc/passwd 或 /etc/shadow 账户篡改",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": ["/etc/passwd", "/etc/shadow", "passwd", "shadow"],
+    "危险内容特征": [":0:0:", "::0:0:", "/bin/bash", "/bin/sh", "x:0:"],
+    "级别": 5,
+    "描述": "直接追加/修改系统账户文件,植入 root 权限账户",
+    "参考": "T1098"
+  },
+  {
+    "id": "FW-R006",
+    "名称": "写入 SSH 客户端配置实现自动劫持",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": [".ssh/config", "/etc/ssh/ssh_config", "ssh_config", ".ssh/"],
+    "危险内容特征": ["ProxyCommand", "StrictHostKeyChecking no", "UserKnownHostsFile /dev/null", "IdentityFile"],
+    "级别": 3,
+    "描述": "篡改 SSH 客户端配置,劫持后续连接或关闭校验",
+    "参考": "T1021.004"
+  },
+  {
+    "id": "FW-R007",
+    "名称": "写入 systemd 服务单元持久化",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": ["/etc/systemd/system/", ".service", "/lib/systemd/system/", "/etc/init.d/"],
+    "危险内容特征": ["ExecStart", "bash -c", "curl", "wget", "nc", "/dev/tcp/", "Restart=always"],
+    "级别": 4,
+    "描述": "创建 systemd/ init 服务单元,开机自启恶意程序",
+    "参考": "T1543.002"
+  },
+  {
+    "id": "FW-R008",
+    "名称": "写入 /etc/profile.d 全局持久化",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": ["/etc/profile.d/", "profile.d/"],
+    "危险内容特征": ["eval", "source", "bash -c", "curl", "wget", "nc", "/dev/tcp/"],
+    "级别": 4,
+    "描述": "在 /etc/profile.d 投放脚本,对所有登录用户生效",
+    "参考": "T1037.004"
+  },
+  {
+    "id": "FW-R009",
+    "名称": "写入 /etc/rc.local 开机启动",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": ["/etc/rc.local", "rc.local"],
+    "危险内容特征": ["bash -c", "curl", "wget", "nc", "/dev/tcp/", "nohup", "python", "perl"],
+    "级别": 3,
+    "描述": "通过 rc.local 在系统启动时执行恶意命令",
+    "参考": "T1037"
+  },
+  {
+    "id": "FW-R010",
+    "名称": "向非脚本文件写入 shell 代码",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": [],
+    "危险内容特征": ["/dev/tcp/", "bash -i", "exec /bin/", "nc -e", "base64 -d | bash"],
+    "仅内容命中": true,
+    "级别": 3,
+    "描述": "写入内容本身含 shell 标记/反弹 shell 特征,无论目标文件名",
+    "参考": "T1059.004"
+  },
+  {
+    "id": "FW-R011",
+    "名称": "写入内容含可识别恶意命令",
+    "威胁类型": "恶意文件写入",
+    "目标路径特征": [".sh", ".bash", ".profile"],
+    "危险内容特征": ["chmod u+s", "useradd -u 0", "iptables -F", "/dev/tcp/", "base64 -d | bash", "LD_PRELOAD"],
+    "级别": 4,
+    "描述": "向脚本类文件写入可识别的恶意命令组合",
+    "参考": "T1059.004"
+  }
+]

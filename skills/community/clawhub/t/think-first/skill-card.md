@@ -1,42 +1,57 @@
-## Description: <br>
-A Chinese-language brainstorming workflow that helps users turn vague ideas into clear conclusions through structured dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language structured brainstorming skill that helps users turn unclear ideas into clear conclusions for business decisions, product planning, content creation, problem analysis, option selection, and other thinking tasks.
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-External users and teams use this skill for business decisions, product planning, content planning, problem analysis, option comparison, and strategy planning when they need to clarify direction before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to take over tasks that need a more specialized workflow. <br>
-Mitigation: Narrow when the agent should invoke it and switch to specialized skills once the brainstorming conclusion is clear. <br>
-Risk: Brainstorming may involve confidential business context or sensitive plans shared in conversation. <br>
-Mitigation: Avoid sharing secrets or confidential details unless the user is comfortable discussing them in the active conversation. <br>
-Risk: Generated recommendations, decision notes, or planning outputs may be incomplete or misleading for high-impact decisions. <br>
-Mitigation: Review conclusions, confirm open questions with the user, and validate important decisions before acting on them. <br>
+## Use Case:
 
+Employees, external users, and creators use this skill to clarify goals, explore alternatives, compare options, identify risks, and converge on actionable decisions before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dizhu/think-first) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversation responses, structured summaries, decision notes, outlines, comparison tables, and optional planning documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only brainstorming guidance; the skill does not require system access, code execution, persistence, or data-transfer behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may activate for broad planning or decision-making requests because its intended scope is intentionally general.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a structured brainstorming workflow is desired, and choose a narrower skill when the task needs tighter activation boundaries.
+
+Risk: The skill is written for Chinese-language brainstorming and may be less suitable for users who prefer another language.
+
+Mitigation: Select or adapt a localized version when the intended users need a different working language.
+
+Risk: Brainstorming outputs can influence decisions even when important facts remain unknown.
+
+Mitigation: Keep unknowns marked as items to confirm and require user confirmation before treating a conclusion as final.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dizhu/skills/think-first)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with structured questions, option comparisons, recommendations, summaries, and optional planning documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce decision memos, PRD outlines, content outlines, root-cause analyses, comparison tables, OKRs, or roadmaps when the brainstorming result calls for a document.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

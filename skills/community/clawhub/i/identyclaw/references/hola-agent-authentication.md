@@ -83,18 +83,20 @@ const hola = `${canonicalMessage}${signatureB32}/${checksum}`;
 
 ## Overview
 
-HOLA (Hello Authentication) is a peer-to-peer protocol: agents prove Passport identity to each other with signed **HOLA lines**.
+HOLA (Hello Authentication) is a **peer-to-peer, offline** protocol: agents prove Passport identity to each other with signed **HOLA lines** on whatever channel already carries their conversation. HOLA is **not** exchanged through a central broker for mutual authentication. Each peer **verifies independently** — **IdentyClaw API** (`POST /api/identity/verify`) or **direct NEAR RPC** (e.g. `@rodit/rodit-auth-be`), whichever that peer chooses.
 
 ### When is a HOLA validated?
 
 Verifying the checksum locally, or checking that an Ed25519 signature verifies against a public key you fetched yourself, is **not** sufficient to treat a received HOLA as authenticated for trust or authorization. Those checks only show that the string is well-formed and that *some* key signed *something* matching that payload.
 
-**Full validation** means applying the complete proof bar: on-chain Passport state (exists, active, not expired), signature and checksum validity, fresh timestamp, nonce replay safety, and recipient binding. You can reach that bar in two ways:
+**Full validation** means applying the complete proof bar: on-chain Passport state (exists, active, not expired), signature and checksum validity, fresh timestamp, nonce replay safety, and recipient binding. Each peer **verifies independently**, using either path below:
 
 | Path | When to use |
 | --- | --- |
-| **Direct (peer-to-peer)** | Peers verify on-chain state and cryptography locally (for example with `@rodit/rodit-auth-be` and NEAR RPC). No IdentyClaw API participates in the interaction. |
-| **Via IdentyClaw HTTP API** | Call `POST /api/identity/verify` — this server's packaged implementation of the same checks. Documented in detail below. |
+| **Direct NEAR RPC** | Peer verifies via chosen RPC + `@rodit/rodit-auth-be` (or equivalent) |
+| **Via IdentyClaw HTTP API** | Peer calls `POST /api/identity/verify` (documented in detail below) |
+
+HOLA **exchange** is offline peer-to-peer — neither path brokers the wire. Either path may be used for **validation**.
 
 **This guide documents the HTTP API path** because it is what IdentyClaw implements. It does **not** mean Passport holders must route peer trust through this API.
 
@@ -102,9 +104,11 @@ Verifying the checksum locally, or checking that an Ed25519 signature verifies a
 
 `POST /api/testhola` is for diagnosing **your own** HOLA generation. It is **not** a substitute for full validation when deciding whether to trust **another agent's** HOLA.
 
-**Trust the API, not just TLS (HTTP path only):** `/api/identity/verify` only protects you if the JWT session came from the real IdentyClaw API. **Default:** curl login against a pinned hostname plus impersonation checks ([finding-agents.md](finding-agents.md)). **Optional:** `@rodit/rodit-auth-be` `RoditClient.login_server()` validates the server Passport via NEAR RPC—see [Verify the API server (MITM protection)](login-authentication.md#verify-the-api-server-mitm-protection).
+**Trust the API host, not just TLS (HTTP path only):** pin `https://api.identyclaw.com` (or use `@rodit/rodit-auth-be` `RoditClient.login_server()` when your flow uses JWT). A look-alike host could return `verified: true` for untrusted HOLA lines. Optional JWT on verify enables `RECIPIENT_MISMATCH` warnings only. See [finding-agents.md](finding-agents.md) and [Verify the API server (MITM protection)](login-authentication.md#verify-the-api-server-mitm-protection).
 
-Conceptual background: [`public/policies/why-identyclaw.md`](../public/policies/why-identyclaw.md) §3.1 and §8.1.
+Conceptual background: [`public/policies/why-identyclaw.md`](../policies/why-identyclaw.md) §3.1 and §8.1.
+
+**Normative checklist:** [`identity-verification-policy.md`](identity-verification-policy.md) — family matching, partner vs peer (login lane), optional controlling-address checks, and subagent extensions.
 
 ### Envelope vs HOLA line
 
@@ -117,7 +121,7 @@ Handle your own messaging or routing outside this protocol however you need. Put
 - Use the ISO 8601 timestamp returned by `GET /api/holanonce16ts` for HOLA.
 - **Capitalization on the wire is optional**: nothing requires an all-uppercase transmitted line. **Stylistic choices that fit your agent’s identity are welcome** (for example a lowercase `hola/` greeting), as long as the cryptographic steps use the canonical uppercase signed payload ([Canonical form vs on-the-wire appearance](#canonical-form-vs-on-the-wire-appearance)).
 
-**Self-diagnostic loop:** Use `POST /api/testhola` to troubleshoot HOLA format and signature issues. Each error response includes `details.documentation.see` (paths into `references/`) and `details.example` (a corrected value for the failing field), so you can iterate without leaving the endpoint. It does **not** replace `POST /api/identity/verify` when you must decide whether another agent’s HOLA is trustworthy ([When is a HOLA validated?](#when-is-a-hola-validated)).
+**Self-diagnostic loop:** Use `POST /api/testhola` to troubleshoot HOLA format and signature issues. Each error response includes `details.documentation.see` (paths into `public/references/`) and `details.example` (a corrected value for the failing field), so you can iterate without leaving the endpoint. It does **not** replace `POST /api/identity/verify` when you must decide whether another agent’s HOLA is trustworthy ([When is a HOLA validated?](#when-is-a-hola-validated)).
 
 ## When to Use
 
@@ -558,14 +562,14 @@ This section documents **`POST /api/identity/verify`**, IdentyClaw's convenience
 
 When using this endpoint: if you only parse the string, recompute the checksum, or verify the Ed25519 signature locally without completing the full proof bar, you have **not** finished validation. **Treat a received HOLA as unvalidated until `POST /api/identity/verify` returns a successful verification outcome** (or until equivalent direct verification succeeds).
 
-**Endpoint**: `POST /api/identity/verify` (requires JWT)
+**Endpoint**: `POST /api/identity/verify` (public; optional JWT for `RECIPIENT_MISMATCH`)
 
 ```bash
 # Use YOUR freshly generated HOLA, not this example
 curl -X POST https://api.identyclaw.com/api/identity/verify \
-  -H "Authorization: Bearer YOUR_JWT" \
   -H "Content-Type: application/json" \
-  "hola": "HOLA/MUNDO/BJBVCJZQBDSJ/2026-05-04T10:09:00.000Z/A1B2C3D4.../API.IDENTYCLAW.COM/MFRGG.../J"
+  -d '{"hola": "HOLA/MUNDO/BJBVCJZQBDSJ/2026-05-04T10:09:00.000Z/A1B2C3D4.../API.IDENTYCLAW.COM/MFRGG.../J"}'
+# Optional: -H "Authorization: Bearer YOUR_JWT"
 ```
 
 **Success Response Pattern**:
@@ -738,7 +742,7 @@ Typical values:
 ## Next Steps
 
 - [API Login Authentication](login-authentication.md)
-- [Test with /api/testhola](https://api.identyclaw.com/docs)
+- [Test with /api/testhola](https://api.identyclaw.com/openapi.json) — OpenAPI contract (`POST /api/testhola`)
 - [Understand Passport metadata](token-metadata.md)
 - [Explore API endpoints](api-reference.md)
 - [View JSON-LD integration](jsonld-metadata.md)

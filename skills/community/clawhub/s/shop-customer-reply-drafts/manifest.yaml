@@ -1,0 +1,24 @@
+name: shop-customer-reply-drafts
+slug: shop-customer-reply-drafts
+version: 1.0.3
+display_name: 店铺客服回复草稿
+description: 免费、免第三方 API Key：根据商品资料、店铺政策和买家问题生成简短自然的客服回复草稿，标记缺失信息并区分售前售后；输出可复制的售前售后回复和缺失资料清单，不自动发送或虚构承诺。
+repository: https://github.com/xxjrq/shop-customer-reply-drafts
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 店铺客服
+  - 回复草稿
+  - 售前咨询
+  - 售后服务
+  - 电商运营
+trigger_words:
+  - 客服回复怎么写
+  - 买家咨询回复
+  - 售后回复草稿
+  - 店铺话术
+self_test: node scripts/self-test.mjs
+platforms:
+  - github
+  - gitee
+  - skillhub

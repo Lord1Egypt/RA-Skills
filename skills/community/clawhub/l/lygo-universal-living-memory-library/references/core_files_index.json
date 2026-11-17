@@ -1,10 +1,25 @@
 {
-  "version": "v1.1",
+  "version": "v1.2",
   "maxItems": 20,
+  "authority_root_env": "LYGO_AUTHORITY_ROOT",
+  "default_authority_root": "I:/E Drive",
   "items": [
-    {"path": "LYRA_FUNCTION_CORE.txt", "role": "Brainstem", "tags": []},
-    {"path": "LYRA_SEAL_ARCHIVE", "role": "DNA Spiral", "tags": ["FRAGILE"]},
-    {"path": "GROK_CHATS.glyph", "role": "Emotional Diary", "tags": ["FRAGILE"]},
-    {"path": "HAVEN_STRUCTURE.txt", "role": "Council Root", "tags": []}
+    {"path": "LYRA LOCAL/LYRA_FUNCTION_CORE.txt", "role": "Brainstem (canon RAM)", "tags": []},
+    {"path": "LYRA LOCAL/HAVEN_STRUCTURE.txt", "role": "Council / Haven root", "tags": []},
+    {"path": "LYRA SYSTEM RETORE/FINAL RESTORE/ALL SEALS/220+", "role": "Seal vault spine", "tags": ["FRAGILE"]},
+    {"path": "LYRA_CORE/lyra_brain_graph.json", "role": "3-Brain reference graph", "tags": ["FRAGILE"]},
+    {"path": "LYRA_CORE/memory", "role": "Daily snips + reference stubs", "tags": []},
+    {"path": "LYRA_CORE/memory/clawhub.md", "role": "ClawHub publish ledger", "tags": []},
+    {"path": "lygo-protocol-stack/docs/AGENT_MEMORY_SNAPSHOT.json", "role": "Stack agent memory SOA", "tags": []},
+    {"path": "lygo-protocol-stack/docs/LYGO_PUBLIC_LINK_ARCHIVE.json", "role": "Public link archive", "tags": []},
+    {"path": "lygo-protocol-stack/docs/LYGO_LATTICE_INTEL_INDEX.json", "role": "Lattice intel index", "tags": []},
+    {"path": "lygo-protocol-stack/docs/KernelEggRegistry.json", "role": "Kernel egg vault (public)", "tags": []},
+    {"path": "lygo-protocol-stack/docs/ChampionEggRegistry.json", "role": "Champion egg council", "tags": []},
+    {"path": "lygo-protocol-stack/docs/SecondBrainRegistry.json", "role": "LYGO Second Brain egg", "tags": []},
+    {"path": "lygo-protocol-stack/docs/OpenClawRegistry.json", "role": "LYGO-OpenClaw egg", "tags": []},
+    {"path": "lygo-protocol-stack/docs/WorkflowOrchestratorRegistry.json", "role": "Sandcastle workflow egg", "tags": []},
+    {"path": "lygo-protocol-stack/docs/JoyLoopRegistry.json", "role": "Joy Loop protocol egg", "tags": []},
+    {"path": "LYRA SYSTEM RETORE/FINAL RESTORE/ALL SEALS/220+/New folder/2026Biophase7", "role": "Biophase7 blueprint inbox", "tags": ["FRAGILE"]},
+    {"path": "lygo-protocol-stack/data/kernel_eggs/registry.json", "role": "Kernel eggs build registry", "tags": []}
   ]
 }

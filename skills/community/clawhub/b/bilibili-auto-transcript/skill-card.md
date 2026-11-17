@@ -1,44 +1,59 @@
-## Description: <br>
-B站视频转录+收藏夹扫描。三级降级（CC→AI→Whisper），AI摘要生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B站视频转录+收藏夹扫描。三级降级（CC→AI→Whisper），AI摘要生成。
 
-## Publisher: <br>
-[54lynnn](https://clawhub.ai/user/54lynnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54lynnn](https://clawhub.ai/user/54lynnn)
 
-## Use Case: <br>
-External users and developers use this skill to transcribe Bilibili videos or monitor a public Bilibili favorites list for new videos, then generate local transcript files, optional summaries, and processing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use Bilibili browser login cookies to access subtitles. <br>
-Mitigation: Use a dedicated browser profile and avoid exporting cookies to shared temporary paths. <br>
-Risk: Transcript excerpts may be sent to the configured AI summary provider when OPENAI_API_KEY or .env credentials are present. <br>
-Mitigation: Leave OPENAI_API_KEY unset for local-only transcription, or review the configured provider before enabling summaries. <br>
-Risk: Scheduled scanning can automatically process new favorites and create local transcripts, reports, logs, and database entries. <br>
-Mitigation: Review cron jobs before enabling them and disable schedules that are not needed. <br>
+## Use Case:
 
+Developers and Bilibili users use this skill to transcribe individual Bilibili videos or monitor a Bilibili favorites folder for new videos, generating local transcript files, reports, and optional AI summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/54lynnn/bilibili-auto-transcript) <br>
-- [Architecture reference](references/architecture.md) <br>
-- [Bilibili favorites API reference](references/bilibili-fav-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcripts with metadata and optional structured summaries, plus CSV reports and local SQLite records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized by video publish year and month when batch processing is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.2.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill can use browser session cookies for Bilibili access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated or low-privilege environment and avoid exposing broad browser session cookies.
+
+Risk: API keys and summary provider settings may be stored in a local .env file.
+
+Mitigation: Keep .env private, restrict file permissions, use a limited API key with spending controls, and set SUMMARY_API_URL only to a trusted HTTPS provider.
+
+Risk: Transcripts and summaries are retained locally and may be sent to an external AI summary API when enabled.
+
+Mitigation: Review content sensitivity before enabling summaries and confirm retention expectations for the local transcript database and output directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/54lynnn/skills/bilibili-auto-transcript)
+- [Architecture Reference](references/architecture.md)
+- [Bilibili Favorites API Reference](references/bilibili-fav-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, local text transcript files, SQLite records, and CSV reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retain transcripts and summaries locally and may call a configured OpenAI-compatible summary API when enabled.]
+
+## Skill Version(s):
+
+5.2.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

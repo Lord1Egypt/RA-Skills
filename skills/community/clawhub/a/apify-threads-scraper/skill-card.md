@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents scrape Meta Threads posts, search by keyword or hashtag, and collect engagement metrics through the Apify Threads Scraper actor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent collect Meta Threads posts, search by keyword or hashtag, and retrieve engagement metrics through the Apify Threads scraper actor.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers and agents use this skill to collect public Threads posts, profile fields, and engagement metrics for monitoring, research, or analysis workflows using Apify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Threads usernames, search keywords, scraped profile data, and post results are sent to Apify and may include personal data. <br>
-Mitigation: Confirm the data sharing posture before use, handle scraped emails, phone numbers, profile fields, and post content under applicable privacy and platform rules, and start with small max_posts values. <br>
-Risk: An Apify API token is required and could be exposed through shared logs or command history. <br>
-Mitigation: Use a dedicated Apify token where possible, keep APIFY_API_TOKEN out of shared logs and committed files, and rotate the token if it is exposed. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to guide agents in starting Apify Threads scraper runs, polling for completion, and fetching JSON results for authorized Threads usernames, hashtags, or keyword searches.
 
-## Reference(s): <br>
-- [Apify Threads Scraper actor](https://apify.com/futurizerush/meta-threads-scraper?fpr=rush) <br>
-- [Apify API documentation](https://docs.apify.com/api/v2) <br>
-- [Apify API token settings](https://console.apify.com/account/integrations?fpr=rush) <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/apify-threads-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Apify actor returns JSON arrays containing Threads post, profile, media, and engagement fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Token-in-URL examples can expose APIFY_API_TOKEN values through logs, shell history, copied commands, or shared request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Authorization headers where supported, use a dedicated least-privilege Apify token, avoid logging full request URLs, and rotate any token that was used in copied commands or shared logs.
+
+Risk: Threads usernames, keywords, run metadata, and scraped results are processed through Apify and the named third-party actor.
+
+Mitigation: Use the skill only for Threads data the user is authorized to collect and process, disclose third-party handling where appropriate, and apply data minimization and retention controls.
+
+## Reference(s):
+
+- [Apify Threads Scraper Actor](https://apify.com/futurizerush/meta-threads-scraper?fpr=rush)
+- [Apify API v2 Documentation](https://docs.apify.com/api/v2)
+- [ClawHub Skill Page](https://clawhub.ai/futurizerush/skills/apify-threads-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and bash examples for Apify API calls and JSON results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an APIFY_API_TOKEN and authorized Threads data collection scope.]
+
+## Skill Version(s):
+
+0.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

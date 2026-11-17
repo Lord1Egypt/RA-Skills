@@ -1,40 +1,53 @@
-## Description: <br>
-Jarvis-Video-STT helps agents batch-transcribe local video files with Faster-Whisper and produce subtitles, text transcripts, and summary reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jarvis-Video-STT helps agents batch-transcribe video files with Faster-Whisper and produce subtitles, plain-text transcripts, and summary reports.
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Developers, content teams, and agents use this skill to transcribe batches of local videos into SRT subtitles, plain text transcripts, and processing reports for review, search, or content preprocessing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe shell command construction when invoking ffmpeg may execute unintended commands for crafted video filenames. <br>
-Mitigation: Process only trusted local video files with ordinary filenames until the script is changed to call ffmpeg through subprocess with an argument list. <br>
-Risk: Generated transcripts and reports may contain confidential recording content saved in the local output folder. <br>
-Mitigation: Use a dedicated output directory and avoid confidential recordings unless local transcript storage is acceptable. <br>
+## Use Case:
 
+Developers, content teams, and automation agents use this skill to convert batches of MP4, MKV, AVI, or MOV videos into SRT subtitles, text transcripts, and processing reports for review or content preprocessing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chongjie-ran/jarvis-video-stt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; generated artifacts include SRT, TXT, JSON, and Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local faster-whisper, tqdm, and ffmpeg dependencies; writes transcription outputs to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted video filenames may trigger unintended shell command execution during audio extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running; process only trusted filenames and directories, and prefer a fixed version that invokes ffmpeg through subprocess.run with an argument list and shell=False.
+
+Risk: Transcripts and reports may contain sensitive spoken content.
+
+Mitigation: Choose an appropriate output directory, restrict access to generated SRT, TXT, JSON, and Markdown files, and review retention requirements before processing sensitive media.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chongjie-ran/skills/jarvis-video-stt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with command-line examples and generated SRT, TXT, JSON, and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive spoken content written to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

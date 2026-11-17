@@ -1,38 +1,54 @@
-## Description: <br>
-Automatically removes unnecessary spaces from URLs, commands, and file paths in code snippets and text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically removes unnecessary spaces from URLs, commands, file paths, and code snippets in agent output and text.
 
-## Publisher: <br>
-[ra1nzzz](https://clawhub.ai/user/ra1nzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ra1nzzz](https://clawhub.ai/user/ra1nzzz)
 
-## Use Case: <br>
-Developers and agent users use this skill to clean generated URLs, shell commands, file paths, code snippets, and Markdown so spacing issues are less likely to break copied output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically rewrite every agent response, including generated commands, URLs, file paths, code blocks, and formatting-sensitive text. <br>
-Mitigation: Review generated commands, URLs, paths, code, and formatted text before copying or executing them; prefer deployments with explicit enable/disable controls or visible change previews. <br>
+## Use Case:
 
+Developers and agent users install this skill to clean stray spaces from generated URLs, shell commands, file paths, and code snippets. It can run automatically on agent output or be called manually to clean generated text.
 
-## Reference(s): <br>
-- [Code Url Cleaner on ClawHub](https://clawhub.ai/ra1nzzz/code-url-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Cleaned agent output as plain text, Markdown, code snippets, shell commands, URLs, and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatically rewrites output when its hook is active; no external dependencies are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, target metadata, README, SKILL.md) <br>
+Risk: Session-wide output rewriting can alter commands, code snippets, paths, and URLs before the user sees them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cleaned output before executing commands or using generated code; prefer scoped or opt-in use when available.
+
+Risk: Automatic hook activation changes agent display behavior immediately when the skill loads.
+
+Mitigation: Enable only in trusted sessions, use a pinned installer version where possible, and prefer a version with a disable switch or original-versus-cleaned comparison.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ra1nzzz/skills/code-url-cleaner)
+- [ClawHub publisher profile](https://clawhub.ai/user/ra1nzzz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Cleaned text or Markdown, including inline code and fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rewrite URLs, paths, commands, and code snippets before display when the automatic output hook is active.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

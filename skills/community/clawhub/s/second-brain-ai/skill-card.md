@@ -1,41 +1,53 @@
-## Description: <br>
-Read, capture, search, relate, and assemble context from a user-specified local Markdown knowledge base, with controlled write operations requiring explicit approval and attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, capture, search, relate, and assemble context from a user-specified local Markdown knowledge base (Obsidian/Logseq style). Supports controlled write operations with explicit approval and attribution. Use when the user wants a Second Brain / note-vault memory layer for Markdown notes, including saving ideas, searching past notes, finding related notes or backlinks, building context packs, appending to existing notes (with attribution), or getting smart link suggestions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to manage a local Markdown note vault: search past notes, find related notes and backlinks, build context packs, and create or append notes only after explicit write approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read snippets from the Markdown vault configured in SECOND_BRAIN_VAULT, which may expose sensitive personal notes to the agent. <br>
-Mitigation: Point SECOND_BRAIN_VAULT at a narrow notes folder and use .secondbrainignore for sensitive areas. <br>
-Risk: Write-capable actions can create, append to, or initialize files in the configured vault. <br>
-Mitigation: Require explicit confirmation before capture_note, append_note, or init_vault; keep allow_write gates enabled and require append attribution. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local Markdown note vault: capturing notes, searching prior notes, finding related material, assembling context packs, and appending attributed updates after explicit write approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/second-brain-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool outputs and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses file-scan mode over the configured SECOND_BRAIN_VAULT; no semantic or vector index is claimed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.3 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The server security summary reports that the vault boundary can be bypassed through symbolic links, which could expose or modify files outside the chosen vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for vaults you control, avoid symbolic links inside the configured vault, and use write operations cautiously until realpath containment is enforced before every read and write.
+
+Risk: Write tools can create or append Markdown files in the configured vault when approved.
+
+Mitigation: Use a dedicated vault path, require explicit allow_write approval for each write action, and review proposed note content and append attribution before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/second-brain-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, configuration, guidance]
+
+**Output Format:** [JSON command results and Markdown note content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SECOND_BRAIN_VAULT for a local Markdown vault; write operations require explicit allow_write approval and append attribution.]
+
+## Skill Version(s):
+
+2.3.3 (source: skill frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

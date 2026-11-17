@@ -1,39 +1,57 @@
-## Description: <br>
-This skill helps a user keep local, long-term notes about a child's original expressions, thinking patterns, choices, and cognitive growth when the user explicitly asks to create or update that record. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records a child's original expressions, reasoning patterns, choices, and cognitive changes only when the user explicitly asks to build or update a cognitive-growth record.
 
-## Publisher: <br>
-[web-seeker](https://clawhub.ai/user/web-seeker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web-seeker](https://clawhub.ai/user/web-seeker)
 
-## Use Case: <br>
-External users, especially parents or guardians, use this skill as a personal note-taking template for recording a child's cognitive development over time. It is intended for explicit record-keeping requests, not general parenting advice, education guidance, medical assessment, or psychological diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead users to keep long-term notes about a child, which may include sensitive minor-related information. <br>
-Mitigation: Use nicknames, avoid identifying details such as school or address, keep records local, and periodically review whether the child should participate in or control the records as they grow older. <br>
-Risk: Cognitive observations could be mistaken for professional educational, medical, or psychological assessment. <br>
-Mitigation: Use the output only as personal notes and consult qualified professionals for developmental concerns or formal assessment. <br>
+## Use Case:
 
+Parents or guardians use this skill to keep local, long-term notes about a child's cognitive growth, including original statements, observed reasoning, strategies, and changes over time. It is a personal note-taking aid and is not intended for education, medical, or psychological advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and structured text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local note-taking guidance only; no executable or network behavior found in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Long-term notes about a child may contain sensitive personal or identifying information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use nicknames instead of real names, avoid schools and addresses, keep locations vague, and store records only on a trusted private device.
+
+Risk: A child may later object to historical records created without their control.
+
+Mitigation: Periodically revisit whether the child should know about, control, receive, or delete the records as they mature.
+
+Risk: Personal observations could be mistaken for professional developmental assessment.
+
+Mitigation: Treat the output as private notes only and consult qualified professionals for educational, medical, psychological, or developmental concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/web-seeker/skills/child-cognitive-growth-observer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text note templates and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; intended for local private notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

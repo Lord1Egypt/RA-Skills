@@ -1,41 +1,57 @@
-## Description: <br>
-Control Android Chrome via ADB and raw WebSocket CDP. No Playwright needed for navigate, JS injection, cookies, DOM, scroll, click. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Android Chrome via ADB and raw WebSocket CDP. No Playwright needed for navigate, JS injection, cookies, DOM, scroll, click.
 
-## Publisher: <br>
-[laolaoshiren](https://clawhub.ai/user/laolaoshiren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laolaoshiren](https://clawhub.ai/user/laolaoshiren)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to connect an Android Chrome browser through ADB and Chrome DevTools Protocol for navigation, JavaScript execution, cookie inspection or updates, DOM reading, scrolling, clicking, and screenshots through ADB. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CDP access can inspect or change an authenticated browser session, including cookies, page scripts, forms, and page content. <br>
-Mitigation: Use an isolated test browser profile where possible and require explicit approval before reading cookies, modifying cookies, running page scripts, submitting forms, or taking screenshots. <br>
-Risk: Exposing the forwarded Chrome DevTools port beyond localhost can allow unintended browser control from the network. <br>
-Mitigation: Keep port 9222 local and avoid LAN exposure unless access is deliberately constrained and approved. <br>
+## Use Case:
 
+Developers and test engineers use this skill to operate Android Chrome through ADB and Chrome DevTools Protocol for navigation, JavaScript execution, DOM inspection, cookie handling, scrolling, clicking, and ADB screenshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laolaoshiren/phone-chrome-cdp) <br>
-- [Publisher profile](https://clawhub.ai/user/laolaoshiren) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ADB setup commands, raw WebSocket CDP client code, and browser-control usage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: CDP access can control Chrome and expose authenticated browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when that browser-control capability is intended and understood.
+
+Risk: Exposing the DevTools port beyond localhost can allow remote browser control.
+
+Mitigation: Keep the DevTools port bound to localhost, and avoid LAN sharing unless it is inside an authenticated and encrypted trusted tunnel.
+
+Risk: Cookie and screenshot inspection can reveal sensitive user data.
+
+Mitigation: Inspect cookies or screenshots only after explicit user approval and handle the results as sensitive data.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/laolaoshiren/skills/phone-chrome-cdp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Android Debug Bridge connection and Chrome DevTools port forwarding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

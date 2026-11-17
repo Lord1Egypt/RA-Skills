@@ -1,0 +1,1 @@
+# kb_web_query uses only the Python 3 standard library for deterministic prepare/apply helpers.

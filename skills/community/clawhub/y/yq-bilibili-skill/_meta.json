@@ -1,6 +1,43 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-bilibili-skill",
-  "version": "1.0.0",
-  "publishedAt": 1778979990034
+  "author": "MiniMax Agent",
+  "capabilities": [
+    "视频详情抓取",
+    "字幕导出(SRT/文本/时间轴)",
+    "AI视频摘要",
+    "评论获取",
+    "相关视频推荐",
+    "音频提取与分割",
+    "用户资料查询",
+    "UP主视频列表",
+    "搜索(用户/视频)",
+    "热门榜单",
+    "排行榜",
+    "动态时间线",
+    "收藏夹/稍后观看/历史",
+    "点赞/投币/一键三连",
+    "关注/取关",
+    "QR码登录认证",
+    "YAML/JSON结构化输出"
+  ],
+  "created_at": "2026-03-30",
+  "description": "哔哩哔哩CLI工具，支持抓取视频详情/字幕/AI摘要/评论、提取音频并分割为WAV片段、获取用户资料/视频列表/关注列表、搜索功能、热门榜单、收藏夹、点赞/投币/三连等互动操作。",
+  "display_name": "B站数据抓取与互动",
+  "id": 382204073112441,
+  "name": "yq-bilibili-skill",
+  "platform": "minimax",
+  "skill_id": 1723614887,
+  "source": "https://github.com/public-clis/bilibili-cli",
+  "tags": [
+    "bilibili",
+    "视频",
+    "音频",
+    "用户信息",
+    "抓取",
+    "互动",
+    "评论",
+    "字幕",
+    "下载"
+  ],
+  "updated_at": 1774865979323,
+  "version": "1.0.0"
 }

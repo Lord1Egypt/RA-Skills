@@ -1,0 +1,12 @@
+{
+  "action": "add",
+  "requestId": "sample-work",
+  "date": "2026-10-24",
+  "title": "完成登录页修改",
+  "detail": "调整了错误提示，已按提交记录完成。",
+  "status": "done",
+  "evidence": [
+    "用户提供的提交记录 commit:example123"
+  ],
+  "minutes": 90
+}

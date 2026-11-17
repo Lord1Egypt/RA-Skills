@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7aqj9rnjrsgd6awr5hm4rq9h828zzd",
   "slug": "questrade",
+  "name": "Questrade",
   "version": "1.0.0",
-  "publishedAt": 1772654471496
+  "tags": ["questrade", "brokerage", "stocks", "canada", "market-data", "portfolio", "tfsa", "rrsp"],
+  "changelog": "Initial release — account data, balances, positions, orders, executions, activities, symbol search, Level 1 quotes, and historical candles via the Questrade REST API."
 }

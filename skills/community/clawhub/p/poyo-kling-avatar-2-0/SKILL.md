@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-avatar-2-0
 description: Kling Avatar 2.0 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-avatar-2.0/standard`, `kling-avatar-2.0/pro`, audio-driven avatar video, one reference image, one driving audio URL, optional prompt guidance, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-avatar-2-0","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-avatar-2-0","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling Avatar 2.0 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-avatar-2-0>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-avatar-2-0>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling Avatar 2.0 jobs on PoYo. It helps agents prepare one-image plus one-audio avatar video payloads, submit async tasks, and explain polling or webhook follow-up.
 

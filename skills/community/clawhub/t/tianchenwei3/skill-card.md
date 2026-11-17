@@ -1,39 +1,52 @@
-## Description: <br>
-Use this skill whenever the user wants to set up, configure, or refactor TypeORM within a NestJS TypeScript project, including data sources, entities, migrations, repositories, relations, and transactional patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user wants to set up, configure, or refactor TypeORM within a NestJS TypeScript project, including data sources, entities, migrations, repositories, relations, and transactional patterns.
 
-## Publisher: <br>
-[theanswerss](https://clawhub.ai/user/theanswerss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[theanswerss](https://clawhub.ai/user/theanswerss)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to integrate TypeORM into NestJS TypeScript projects, including database configuration, entity and relation design, migrations, repository wiring, transactions, and query patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sample database configuration includes a DB_PASSWORD=postgres fallback that is not suitable for production.
+
+Mitigation: Require a strong environment-provided database password, avoid password fallbacks, and use a least-privilege database role.
+
+Risk: Generated database configuration or migrations may alter application data behavior if applied without review.
+
+Mitigation: Review generated TypeORM configuration and migration files before execution, and keep synchronize disabled outside local development.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate TypeORM into NestJS TypeScript projects, including database configuration, entities, relations, migrations, repository wiring, transactions, and query patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migrations or schema changes could alter application data unexpectedly. <br>
-Mitigation: Review migration files, test database changes outside production, and use backups or rollback plans before running migrations. <br>
-Risk: Example database credentials or local configuration values could be copied into real deployments. <br>
-Mitigation: Replace examples with environment variables or secret-manager values before deployment. <br>
+**Output Format:** [Markdown with TypeScript, JSON, shell, and environment configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces implementation guidance and code snippets for adapting NestJS TypeORM patterns to an existing project structure.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, shell, and environment variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-specific recommendations and examples that should be reviewed before applying database changes.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

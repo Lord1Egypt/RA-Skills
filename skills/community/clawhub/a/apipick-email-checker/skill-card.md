@@ -1,42 +1,59 @@
-## Description: <br>
-Validate email addresses using the apipick Email Validator API, including syntax checks, MX record verification, and disposable email detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate email addresses using the apipick Email Validator API, including syntax checks, MX record verification, and disposable/throwaway email detection.
 
-## Publisher: <br>
-[javainthinking](https://clawhub.ai/user/javainthinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[javainthinking](https://clawhub.ai/user/javainthinking)
 
-## Use Case: <br>
-Developers and agent users use this skill to check whether an email address has valid syntax, whether its domain can receive mail, and whether it appears to be disposable before using it in workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Email addresses checked with this skill are sent to the apipick API. <br>
-Mitigation: Use the skill only for email addresses you are authorized to validate and review apipick's privacy and retention terms before checking sensitive or bulk personal email lists. <br>
-Risk: The skill requires an apipick API key. <br>
-Mitigation: Provide the key through the APIPICK_API_KEY environment variable and avoid pasting long-lived credentials into chat. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [apipick Email Validator API Reference](references/api_reference.md) <br>
-- [apipick API Platform](https://www.apipick.com) <br>
-- [Email Validator Product Page](https://www.apipick.com/check-email) <br>
-- [apipick API Keys](https://www.apipick.com/dashboard/api-keys) <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to ask an agent to validate email addresses, confirm whether domains can receive mail, and flag disposable addresses through the apipick API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and structured API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIPICK_API_KEY and sends submitted email addresses to the apipick API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Email addresses submitted for validation are sent to apipick with the user's API key.
+
+Mitigation: Avoid submitting sensitive or regulated personal email data unless the user is comfortable with apipick processing it.
+
+Risk: Each successful validation request consumes apipick account credits.
+
+Mitigation: Confirm the user intends to spend credits before validating large batches or repeated requests.
+
+Risk: The skill depends on a user-provided API key.
+
+Mitigation: Use the APIPICK_API_KEY environment variable and avoid displaying or storing the key in conversation output.
+
+## Reference(s):
+
+- [apipick Email Validator API Reference](references/api_reference.md)
+- [apipick API Platform](https://www.apipick.com)
+- [Email Validator Product Page](https://www.apipick.com/check-email)
+- [Get apipick API Key](https://www.apipick.com/dashboard/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline JSON or bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIPICK_API_KEY and consumes one apipick credit per successful validation request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

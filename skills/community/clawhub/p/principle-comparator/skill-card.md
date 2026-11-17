@@ -1,43 +1,59 @@
-## Description: <br>
-Compare two sources to find shared and divergent principles - discover what survives independent observation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare two sources to find shared and divergent principles — discover what survives independent observation.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to compare two extractions or text sources and identify shared principles, source-specific principles, and divergences without deciding which source is correct. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared principles may be mistaken for proof that an idea is true or correct. <br>
-Mitigation: Use the output as structural comparison only, and apply independent judgment before treating any principle as correct. <br>
-Risk: Semantic alignment requires judgment and may produce incorrect matches or missed divergences. <br>
-Mitigation: Review alignment confidence, evidence notes, and divergent items before using the comparison for decisions. <br>
-Risk: Input text is processed by the configured agent model, which may be cloud-hosted. <br>
-Mitigation: Only provide source text that is appropriate for the configured agent trust boundary. <br>
+## Use Case:
 
+Developers, analysts, and knowledge workers use this skill to compare two extractions or raw text sources and identify shared principles, source-specific ideas, and divergences. It supports pattern validation while leaving correctness judgments to the user.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/principle-comparator) <br>
-- [Skill Homepage](https://github.com/live-neon/skills/tree/main/pbd/principle-comparator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown or JSON-style structured comparison with shared principles, source-specific principles, divergence analysis, confidence notes, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include N-count validation, normalized principle forms, alignment confidence, and share text when a high-confidence N=2 invariant is identified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: Compared content is processed by the configured agent model, which may be cloud-hosted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for deliberate two-source comparison tasks and avoid submitting sensitive content unless the configured agent environment is approved for that data.
+
+Risk: The skill compares structure and semantic alignment, not factual correctness.
+
+Mitigation: Treat shared principles as pattern evidence and review conclusions before relying on them.
+
+Risk: The artifact contains stray wording about requires_review.md even though security evidence says the skill does not write files.
+
+Mitigation: Do not create review files unless the user explicitly requests a file output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/principle-comparator)
+- [Publisher profile](https://clawhub.ai/user/leegitw)
+- [Skill homepage](https://github.com/live-neon/skills/tree/main/pbd/principle-comparator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown narrative with optional JSON comparison results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shared principles, source-specific principles, divergence analysis, confidence levels, N-counts, next steps, and an optional share_text when high-confidence N=2 alignment is found.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter states 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

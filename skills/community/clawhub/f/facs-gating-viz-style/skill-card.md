@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a command-line placeholder for beautifying FACS gating plots for publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beautify FACS gating plots for publication.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers can use this skill as a starting point for styling flow cytometry gating plots. Verify plotting functionality before relying on it for publication outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included script appears to be a placeholder and may not read FCS data or produce publication-ready plots. <br>
-Mitigation: Verify functionality with representative FCS files before relying on the skill for publication workflows. <br>
-Risk: The skill runs a local script against user-supplied file paths. <br>
-Mitigation: Run it in a sandboxed workspace and provide only intended local FCS file paths. <br>
+## Use Case:
 
+Developers and analysts use this skill as a local command-line helper for FACS gating plot styling workflows, selecting contour, density, or dot styles for an input FCS path.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/AIPOCH-AI/facs-gating-viz-style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command-line output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The current artifact may not generate a publication plot despite the skill description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate expected plot output before relying on the skill, and treat current behavior as draft placeholder output until plotting is implemented.
+
+Risk: Future versions that write files could save outputs in unexpected locations or overwrite existing files.
+
+Mitigation: Review output paths and overwrite behavior before deployment, especially when processing workspace files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/facs-gating-viz-style)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local FCS path and a style choice of contour, density, or dot. Current script prints status messages rather than writing a plot file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

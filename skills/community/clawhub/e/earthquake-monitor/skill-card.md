@@ -1,46 +1,59 @@
-## Description: <br>
-Real-time earthquake monitoring for China, Taiwan, and Japan using CENC, CWA, and JMA earthquake feeds with configurable multilingual alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time earthquake monitoring for China, Taiwan, and Japan using CENC, CWA, and JMA data with configurable proactive alerts.
 
-## Publisher: <br>
-[fungjcode](https://clawhub.ai/user/fungjcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fungjcode](https://clawhub.ai/user/fungjcode)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to retrieve recent earthquake data, configure a monitored location, and receive proximity and magnitude-based alerts for China, Taiwan, and Japan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Earthquake data is fetched through api.wolfx.jp rather than directly from the named government agencies. <br>
-Mitigation: Deploy only where this data path is acceptable, and disclose the intermediary feed dependency to users relying on alerts. <br>
-Risk: Webhook URLs may be stored in plaintext in config.json. <br>
-Mitigation: Avoid storing sensitive webhook URLs, restrict file permissions, or manage secrets outside the skill. <br>
-Risk: Continuous monitoring runs on an interval until stopped. <br>
-Mitigation: Call stop() when monitoring is no longer needed and use an interval appropriate for the runtime environment. <br>
+## Use Case:
 
+Developers and operators use this skill to query recent earthquake activity, configure monitored locations, and receive distance- and magnitude-based alerts for China, Taiwan, and Japan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fungjcode/earthquake-monitor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fungjcode) <br>
-- [CENC earthquake feed via api.wolfx.jp](https://api.wolfx.jp/cenc_eqlist.json) <br>
-- [CWA earthquake early warning feed via api.wolfx.jp](https://api.wolfx.jp/cwa_eew.json) <br>
-- [JMA earthquake feed via api.wolfx.jp](https://api.wolfx.jp/jma_eqlist.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [Structured JSON results plus human-readable alert messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can start a recurring monitor; results depend on external earthquake feeds and local config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata, package.json, skill.json) <br>
+Risk: Webhook URLs may be stored in plaintext local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing token-bearing webhook URLs unless local file permissions and operational controls are acceptable.
+
+Risk: Earthquake alerts depend on third-party aggregator endpoints and may overstate source reliability.
+
+Mitigation: Treat alerts as advisory and verify critical events against authoritative government or emergency-management channels.
+
+Risk: Network polling and local configuration writes are expected behavior.
+
+Mitigation: Review network access and local write permissions before installing in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fungjcode/skills/earthquake-monitor)
+- [Publisher profile](https://clawhub.ai/user/fungjcode)
+- [Security policy](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration, Guidance]
+
+**Output Format:** [JavaScript-returned objects and human-readable alert messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include earthquake lists, alert status, localized alert text, city configuration, and monitoring status.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

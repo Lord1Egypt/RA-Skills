@@ -1,47 +1,68 @@
-## Description: <br>
-多 agent 自我进化系统，自动记录学习、错误和功能需求，支持多 agent 统计和自动提升 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-agent self-evolution system that automatically records learnings, errors, and feature requests, supports multi-agent statistics, and promotes recurring patterns into agent guidance.
 
-## Publisher: <br>
-[cheney87](https://clawhub.ai/user/cheney87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheney87](https://clawhub.ai/user/cheney87)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrections, knowledge gaps, command failures, and feature requests across OpenClaw agents. It writes shared learning records and can promote repeated patterns into future agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning records may capture chat or tool output that contains sensitive information. <br>
-Mitigation: Use a private SHARED_LEARNING_DIR, avoid enabling the skill in sessions that may expose secrets, and periodically inspect or purge LEARNINGS.md, ERRORS.md, FEATURE_REQUESTS.md, and SOUL.md. <br>
-Risk: Automatic promotion can change future agent behavior based on repeated patterns. <br>
-Mitigation: Review setup.sh and daily_review.sh before enabling the skill, and set AUTO_PROMOTE_ENABLED=false when promotion should require manual review. <br>
-Risk: Shared multi-agent persistence can spread incorrect or unwanted lessons across agents. <br>
-Mitigation: Limit shared learning directories to trusted agents and review promoted entries before using them as durable behavior guidance. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, knowledge gaps, and feature requests across OpenClaw agents. It helps recurring learning patterns become durable guidance through shared learning files and optional daily promotion.
 
-## Reference(s): <br>
-- [Self Evolution Cn on ClawHub](https://clawhub.ai/skills/self-evolution-cn) <br>
-- [Record format](artifact/references/format.md) <br>
-- [Promotion mechanism](artifact/references/promotion.md) <br>
-- [Hook setup](artifact/references/hooks-setup.md) <br>
-- [OpenClaw integration](artifact/references/openclaw-integration.md) <br>
-- [Multi-agent support](artifact/references/multi-agent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown records, hook messages, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent learning, error, feature request, state, and log files in the configured learning directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: SKILL.md frontmatter and server release metadata, released 2026-04-18) <br>
+Risk: Persistent hooks and daily jobs can capture conversation or tool output across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where automatic learning capture is intended, and disable the hook or cron job when that capture is not needed.
+
+Risk: Automatic promotion can modify SOUL.md and change future agent behavior.
+
+Mitigation: Set AUTO_PROMOTE_ENABLED=false until promoted guidance has a review process.
+
+Risk: Shared learning directories can mix context across agents or projects.
+
+Mitigation: Use isolated per-project SHARED_LEARNING_DIR values and avoid use where secrets or proprietary context may be recorded.
+
+Risk: The setup workflow defaults to root-oriented OpenClaw paths.
+
+Mitigation: Avoid running setup as root unless that is the intended OpenClaw installation context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cheney87/skills/self-evolution-cn)
+- [ClawHub homepage metadata](https://clawhub.ai/skills/self-evolution-cn)
+- [Format reference](references/format.md)
+- [Promotion reference](references/promotion.md)
+- [Multi-agent reference](references/multi-agent.md)
+- [OpenClaw integration reference](references/openclaw-integration.md)
+- [Hook setup reference](references/hooks-setup.md)
+- [Examples reference](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated learning, error, feature request, and agent guidance files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append records to shared learning files and, when automatic promotion is enabled, update SOUL.md based on recurring patterns.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

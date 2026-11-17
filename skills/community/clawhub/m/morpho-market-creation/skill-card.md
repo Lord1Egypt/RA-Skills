@@ -1,45 +1,60 @@
-## Description: <br>
-Deploys Morpho markets backed by Api3 oracles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys Morpho markets backed by Api3 oracles.
 
-## Publisher: <br>
-[metobom](https://clawhub.ai/user/metobom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api3dao](https://clawhub.ai/user/api3dao)
 
-## Use Case: <br>
-Developers and DeFi operators use this skill to validate Api3 feeds, deploy a Morpho oracle, and create a Morpho market with guided checks before transactions are submitted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a local wallet mnemonic to submit irreversible blockchain transactions. <br>
-Mitigation: Use a dedicated low-value deployment wallet, never a primary seed phrase, and prefer the Safe or Etherscan paths when possible. <br>
-Risk: Incorrect chain, token, oracle, IRM, LLTV, gas, or contract address values can create an unintended or unsafe market. <br>
-Mitigation: Independently verify all deployment parameters and contract addresses before approving any transaction. <br>
-Risk: Api3 reader proxy addresses and ERC-20 token contract addresses serve different roles and may be confused during setup. <br>
-Mitigation: Confirm oracle feed addresses in the oracle parameters and separately confirm ERC-20 token addresses in the market parameters. <br>
+## Use Case:
 
+Developers and DeFi operators use this skill to configure, validate, and deploy Morpho markets backed by Api3 oracle feeds, including oracle checks and transaction execution options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metobom/skills/morpho-market-creation) <br>
-- [Api3 Market integration pages](https://market.api3.org/) <br>
-- [Morpho Oracle Tester](https://oracles.morpho.dev/oracle-tester) <br>
-- [Morpho Blue addresses](https://docs.morpho.org/get-started/resources/addresses/#morpho-blue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration edits, URLs, transaction hashes, and deployed contract identifiers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pnpm, ts-node, and WALLET_MNEMONIC when using the script-based transaction path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can broadcast irreversible blockchain transactions for oracle deployment and Morpho market creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Safe or Etherscan when possible, verify chain IDs, contract addresses, oracle feeds, IRM, LLTV, gas costs, and transaction targets before approving any transaction.
+
+Risk: The script execution path uses WALLET_MNEMONIC from a local environment file.
+
+Mitigation: Use a dedicated low-value deployment account, never use a production seed phrase, and avoid installing dependencies after secrets are placed in the project.
+
+Risk: Incorrect token, oracle, or feed addresses can create an unusable or unsafe market.
+
+Mitigation: Validate Api3ReaderProxyV1 addresses, run the Morpho Oracle Tester, and confirm token addresses are ERC-20 token contracts rather than oracle proxy addresses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/api3dao/skills/morpho-market-creation)
+- [Api3 Market](https://market.api3.org/)
+- [Morpho Oracle Tester](https://oracles.morpho.dev/oracle-tester)
+- [Morpho Blue Addresses](https://docs.morpho.org/get-started/resources/addresses/#morpho-blue)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pnpm, ts-node, WALLET_MNEMONIC, and completed oracle and market parameter JSON files.]
+
+## Skill Version(s):
+
+0.6.0 (source: SKILL.md metadata and server release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

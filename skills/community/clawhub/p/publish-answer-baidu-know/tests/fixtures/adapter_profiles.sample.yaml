@@ -1,0 +1,40 @@
+# 样例：五类 adapter 运行方式（复制到业务仓后按环境改名；勿提交真实凭证）
+runtime:
+  profile: mock
+
+adapters:
+  demo_external_system:
+    interface: demo
+    profile: mock
+
+    mock:
+      target: mock
+      channel: none
+
+    simulator_api:
+      target: simulator
+      channel: api
+      base_url: http://localhost:5180/api/demo
+      timeout_seconds: 10
+
+    simulator_rpa:
+      target: simulator
+      channel: rpa
+      entry_url: http://localhost:5180/select
+      timeout_seconds: 30
+
+    real_api:
+      target: real
+      channel: api
+      base_url: https://example.invalid/api
+      credential_ref: vault://tenant/demo/external-system/api
+      write_enabled: false
+      timeout_seconds: 20
+
+    real_rpa:
+      target: real
+      channel: rpa
+      entry_url: https://example.invalid/portal
+      credential_ref: vault://tenant/demo/external-system/rpa
+      write_enabled: false
+      timeout_seconds: 60

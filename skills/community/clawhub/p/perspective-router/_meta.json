@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn790g3nvy4r4dwkn4wzpxp8z980akny",
-  "slug": "perspective-router",
+  "name": "perspective-router",
   "version": "1.0.0",
-  "publishedAt": 1776264958492
+  "description": "Nova视角调度引擎 — 自动匹配专家心智模型",
+  "author": "Nova Group B",
+  "license": "MIT",
+  "tags": ["router", "perspective", "thinking-models", "nova"],
+  "platform": "openclaw"
 }

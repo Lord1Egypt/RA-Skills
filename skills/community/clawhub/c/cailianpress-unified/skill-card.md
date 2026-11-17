@@ -1,47 +1,61 @@
-## Description: <br>
-Provides a unified, auditable access layer for Cailian Press telegraph data, including normal, red-level, hot, and article-detail queries with JSON, text, and Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cailianpress Unified provides a single auditable access layer for Cailian Press telegraph data, article details, local persistence, and JSON, text, or Markdown output.
 
-## Publisher: <br>
-[caimao9539](https://clawhub.ai/user/caimao9539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caimao9539](https://clawhub.ai/user/caimao9539)
 
-## Use Case: <br>
-Developers and agent operators use this skill to fetch, store, normalize, and query CLS telegraph news through a single reusable interface instead of calling multiple CLS endpoints directly. It supports live queries, SQLite-backed local history, article-detail completion, and downstream report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls public CLS endpoints and may maintain a local news database. <br>
-Mitigation: Install it only when that data access pattern is intended, and review the documented endpoint strategy before enabling scheduled ingestion. <br>
-Risk: Suggested cron jobs can create recurring network calls and local data updates. <br>
-Mitigation: Enable scheduled ingestion and pruning deliberately, with an operating cadence that matches the deployment environment. <br>
-Risk: Raw ingest logs are documented for online retention for 30 days before direct deletion. <br>
-Mitigation: Confirm the retention policy meets audit needs before relying on raw logs for long-term review. <br>
-Risk: The release depends on the unpinned requests package. <br>
-Mitigation: Pin and lock the dependency before production deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to query, normalize, store, and reuse Cailian Press telegraph records through one stable interface instead of calling CLS endpoints directly. It supports recent telegraph, highlighted, hot, article-detail, snapshot, and SQLite-backed query workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/caimao9539/cailianpress-unified) <br>
-- [API contract](docs/api_contract.md) <br>
-- [SQLite mode](docs/sqlite_mode.md) <br>
-- [Snapshot mode](docs/snapshot_mode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, plain text, Markdown, Python CLI commands, and cron configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can query live CLS endpoints or a local SQLite store; local raw ingest logs are documented for 30-day online retention before deletion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: release evidence and CHANGELOG, released 2026-03-30) <br>
+Risk: The skill contacts CLS/Cailian Press endpoints and stores fetched telegraph or news records locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review endpoint access, local data handling, and retention expectations before installation or scheduled ingestion.
+
+Risk: The raw-log pruning workflow directly deletes audit log rows older than 30 days.
+
+Mitigation: Confirm the required audit-retention period before enabling the prune script or cron example, and keep separate backups if longer retention is needed.
+
+Risk: Security guidance notes operational reliability concerns around dependency pinning and a SQLite binding issue.
+
+Mitigation: Pin dependencies and test or fix the SQLite path in the target environment before relying on scheduled or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caimao9539/skills/cailianpress-unified)
+- [README](artifact/README.md)
+- [API Contract](artifact/docs/api_contract.md)
+- [SQLite Mode](artifact/docs/sqlite_mode.md)
+- [Snapshot Mode](artifact/docs/snapshot_mode.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, plain text, Markdown, Python service calls, and shell or cron examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include CLS item fields, source/fallback metadata, local SQLite query results, and retention/pruning operation summaries.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata and CHANGELOG, released 2026-03-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

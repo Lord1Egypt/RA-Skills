@@ -1,42 +1,55 @@
-## Description: <br>
-Manages event notification push decisions with cooldowns, watch-pool promotion, push-count limits, retry handling, and local state persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geo Push Policy helps agents manage event notification decisions with cooldown windows, watch-pool handling, push-count limits, event state tracking, and rate-limit protection.
 
-## Publisher: <br>
-[liweijie0709-cmyk](https://clawhub.ai/user/liweijie0709-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liweijie0709-cmyk](https://clawhub.ai/user/liweijie0709-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to control when event notifications should be sent, suppressed, retried, or moved through a watch pool. It is suited for workflows that need local notification state management and duplicate-notification protection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local state files may retain event messages, errors, or dead-letter queue entries that include sensitive notification content. <br>
-Mitigation: Store the JSON state file in a dedicated protected location and avoid placing secrets in event messages or error text. <br>
-Risk: Dead-letter retry behavior can resend stale or duplicate notifications if queued entries are no longer relevant. <br>
-Mitigation: Review and clear the dead-letter queue when duplicate or outdated notifications would be harmful. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to add a Chinese-language notification policy layer that decides when scored events should be pushed, watched, retried, or suppressed. It is suited for agents that need local JSON state tracking and caller-provided delivery functions for alert workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liweijie0709-cmyk/geo-push-policy) <br>
-- [Artifact documentation](artifact/SKILL.md) <br>
-- [Python policy module](artifact/geo_push_policy.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Python API guidance with JSON state structure examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local push decisions, state updates, watch-pool changes, and retry guidance; no hidden network, credential, or install behavior was found by the security scan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version) <br>
+Risk: Cooldown and push-count rules may suppress important alerts or allow duplicate notifications if thresholds do not match the deployment workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test the cooldown, watch-pool, threshold, and max-push settings with representative events before relying on the skill for important alerts.
+
+Risk: The helper persists event state and failed messages in a local JSON file, including dead-letter queue content that can be resent through a caller-provided send function.
+
+Mitigation: Use a limited local state-file path, control file permissions, and review retained dead-letter content before enabling resend behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liweijie0709-cmyk/skills/geo-push-policy)
+- [SKILL.md](artifact/SKILL.md)
+- [geo_push_policy.py](artifact/geo_push_policy.py)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with Python API examples and JSON state structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces notification policy decisions, reason strings, local state updates, and retry/dead-letter queue handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

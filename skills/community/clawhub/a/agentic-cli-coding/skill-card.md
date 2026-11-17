@@ -1,47 +1,61 @@
-## Description: <br>
-Provides the `oce` command, a validation-aware, transaction-capable editing toolkit for agents working with source code across common programming and markup languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic CLI Coding provides the oce command, a validation-aware and transaction-capable toolkit for agents to read, search, modify, format, and validate source code across common languages.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developers and coding agents use this skill to read, search, edit, validate, format, and recover changes in source-code workspaces. It is intended for bug fixes, feature work, refactors, code review, configuration changes, and coordinated multi-file edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad local file-changing authority. <br>
-Mitigation: Use it only in workspaces where the agent is allowed to edit files, review diffs before accepting changes, and run the project's tests for important edits. <br>
-Risk: Persistent installation and bundled dependency behavior may be more permissive than a single-session workflow needs. <br>
-Mitigation: Prefer direct invocation or a session-only alias unless persistent installation is required, and review the install script and dependencies first. <br>
-Risk: Formatting and validation commands may execute local project tooling or behave unexpectedly on untrusted repositories or unusual file paths. <br>
-Mitigation: Avoid running those commands on untrusted repositories, keep paths simple and reviewed, and use transactions for coordinated multi-file edits. <br>
+## Use Case:
 
+Developers and coding agents use this skill to make source-code changes with CLI workflows for project discovery, contextual reads, syntax validation, backups, rollback, and multi-file transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/encryptshawn/agentic-cli-coding) <br>
-- [README](artifact/README.md) <br>
-- [JSON Output Schema](artifact/references/json-schema.md) <br>
-- [Workflows](artifact/references/workflows.md) <br>
-- [Language Support Matrix](artifact/references/language-support.md) <br>
-- [Troubleshooting](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell command guidance, with optional JSON command output from `oce`] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can create backups, transactions, diffs, validation results, and edited files in the target workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: Formatter and validator workflows can execute attacker-controlled code through crafted filenames when used on untrusted checkouts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only in trusted repositories; avoid format or edit/validate workflows on untrusted projects until filename interpolation issues are fixed.
+
+Risk: Persistent PATH installation may broaden exposure in environments where the skill is not trusted.
+
+Mitigation: Prefer direct invocation or a per-session alias unless a persistent wrapper is required.
+
+Risk: Syntax validation does not prove an edit is logically correct.
+
+Mitigation: Review diffs and run the target project's tests before relying on generated changes.
+
+## Reference(s):
+
+- [JSON Output Schema](references/json-schema.md)
+- [Language Support Matrix](references/language-support.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Workflows](references/workflows.md)
+- [ClawHub skill page](https://clawhub.ai/encryptshawn/skills/agentic-cli-coding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The oce command can emit single-line JSON for programmatic parsing when invoked with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Helps agents configure scheduled OpenClaw and ClawHub update routines that update OpenClaw, update installed skills, and summarize results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically update OpenClaw and installed skills on a schedule.
 
-## Publisher: <br>
-[crazyozzy](https://clawhub.ai/user/crazyozzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crazyozzy](https://clawhub.ai/user/crazyozzy)
 
-## Use Case: <br>
-Developers and operators use this skill to set up recurring OpenClaw maintenance that updates the core toolchain, updates installed ClawHub skills, checks health when needed, and reports concise results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled update jobs may update OpenClaw and installed skills without per-update review. <br>
-Mitigation: Use dry-run or notification-first scheduling when practical, keep rollback or backup options available, and make sure the scheduled job can be disabled. <br>
-Risk: Forced skill updates can overwrite or conflict with local modifications. <br>
-Mitigation: Avoid `clawhub update --all --force` unless local changes have been checked and the user accepts the overwrite risk. <br>
-Risk: OpenClaw updates may require follow-up health checks or service recovery. <br>
-Mitigation: Run `openclaw doctor` when update output reports configuration or service issues, and summarize any manual follow-up clearly. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure scheduled maintenance that updates OpenClaw, updates installed ClawHub skills, and returns concise update summaries.
 
-## Reference(s): <br>
-- [CrazyOzzy Auto Updater ClawHub release page](https://clawhub.ai/crazyozzy/crazyozzy-auto-updater) <br>
-- [Agent Implementation Guide](references/agent-guide.md) <br>
-- [Update Summary Examples](references/summary-examples.md) <br>
-- [Local OpenClaw update documentation](docs/cli/update.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise user-facing setup and update-summary text] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Recurring automatic updates can change OpenClaw or installed skill behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or status commands first, schedule updates during a maintenance window, and review the concise summary after each run.
+
+Risk: An update failure can leave manual follow-up work for configuration, service health, or skill resolution issues.
+
+Mitigation: Run OpenClaw doctor/status checks and targeted ClawHub update repair commands when the update summary reports a failure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crazyozzy/skills/crazyozzy-auto-updater)
+- [Agent implementation guide](artifact/references/agent-guide.md)
+- [Update summary examples](artifact/references/summary-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and scheduled-task prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise user-facing update summaries; supports dry-run/status guidance before enabling recurring updates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

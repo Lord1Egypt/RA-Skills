@@ -1,41 +1,61 @@
-## Description: <br>
-AI Travel Agent helps users plan single-destination or multi-stop trips by searching flights, hotels, and ground transport through SerpAPI, suggesting seasonal destinations, and optionally using calendar availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Travel Agent helps users plan single-destination and multi-stop trips by searching SerpAPI-backed flight, hotel, and transport options, recommending travel dates and destinations, and optionally integrating with calendar skills.
 
-## Publisher: <br>
-[floogles](https://clawhub.ai/user/floogles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[floogles](https://clawhub.ai/user/floogles)
 
-## Use Case: <br>
-External users use this skill to compare real travel options, build costed itineraries, and refine routes before booking through external providers. It provides search results and booking links only; it does not book travel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [AI Travel Agent on ClawHub](https://clawhub.ai/floogles/ai-travel-agent) <br>
-- [SerpAPI](https://serpapi.com) <br>
-- [SerpAPI Reference](references/serpapi.md) <br>
-- [Seasonal Destination Guide](references/seasonal-destinations.md) <br>
-- [Multi-Stop Route Templates](references/multi-stop-routes.md) <br>
+External users and travel-planning agents use this skill to collect trip preferences, search flights, hotels, and internal transport, compare itinerary options, and produce costed trip plans with booking links but no booking action.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with itinerary options, cost comparisons, booking links, and optional shell commands for travel searches.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a user-provided SERPAPI_KEY from the environment or documented credential files. Risk mitigations: store the key only in the documented locations, avoid passing keys as CLI arguments, review trip details before sending searches to SerpAPI, and approve optional calendar access only when availability checks or calendar events are wanted.] <br>
+Global
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: API keys could be exposed if commands are run with `--key $SERPAPI_KEY` as shown in parts of the skill instructions.
+
+Mitigation: Use the SERPAPI_KEY environment variable or the documented credential files, and avoid passing the key as a command-line argument.
+
+Risk: Optional calendar access could expose availability data if used before the user has clearly chosen a date-range or calendar action.
+
+Mitigation: Allow calendar access only after explicit user confirmation for date suggestions or calendar-event creation.
+
+Risk: Travel search results may be incomplete, stale, or differ from booking-site terms.
+
+Mitigation: Treat itinerary options as planning guidance and confirm price, availability, baggage, cancellation, and booking terms on the linked provider before purchase.
+
+## Reference(s):
+
+- [AI Travel Agent ClawHub Page](https://clawhub.ai/floogles/skills/ai-travel-agent)
+- [SerpAPI](https://serpapi.com)
+- [SerpAPI Reference](references/serpapi.md)
+- [Seasonal Destination Guide](references/seasonal-destinations.md)
+- [Multi-Stop Route Templates](references/multi-stop-routes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON search-result data from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces itinerary summaries, comparison tables, booking links, and optional calendar-event guidance; it does not book travel.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Automates a GitHub Trending to AI summary to knowledge card to WeChat technical blog drafting workflow for technical content production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a GitHub Trending content workflow that collects repository signals, summarizes project details, generates developer-style knowledge cards, and drafts WeChat-ready technical blog articles.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Technical bloggers, independent developers, and newsletter authors use this skill to monitor open source trends and turn selected GitHub repositories into summaries, social knowledge-card assets, and long-form Markdown blog drafts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unsafe shell command templates could allow crafted inputs or repository content to execute commands.
+
+Mitigation: Review and harden command templates before use, quote or validate all user-controlled values, and avoid running the workflow on untrusted repository content without isolation.
+
+Risk: The workflow summarizes remote repository content and turns it into public-facing blog drafts, which can propagate misleading or injected content.
+
+Mitigation: Manually review source summaries, generated cards, and Markdown drafts before publication, especially when content comes from unfamiliar repositories.
+
+Risk: The workflow writes generated drafts and outputs to /tmp paths.
+
+Mitigation: Confirm output paths before execution and avoid placing sensitive source material or credentials in generated draft files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, technical bloggers, newsletter authors, and content creators use this skill to discover public GitHub projects, summarize selected repositories, generate developer knowledge cards, and draft long-form technical blog posts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on other skills and external tools whose behavior is not fully covered by this artifact. <br>
-Mitigation: Review dependent skills separately before deployment and confirm the intended workflow before running broad blog-writing requests. <br>
-Risk: GitHub API calls may expose more repository access than needed if run with an over-privileged CLI session. <br>
-Mitigation: Use least-privileged GitHub CLI authentication and prefer public-repository access for trend collection. <br>
-Risk: Generated blog drafts and images may contain inaccurate, misleading, or unsuitable content for publication. <br>
-Mitigation: Manually review generated drafts and images before publishing them to WeChat or other public channels. <br>
+**Output Format:** [Markdown guidance with shell command examples, JSON-like workflow outputs, and generated draft or image file paths]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zlszhonglongshen/github-trending-blog) <br>
-- [README](artifact/README.md) <br>
-- [Workflow Definition](artifact/workflow.json) <br>
+**Other Properties Related to Output:** [May produce repository summaries, PNG knowledge-card paths, and Markdown blog draft paths under /tmp.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON-shaped workflow outputs, and generated draft file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates dependent skills for GitHub data collection, summarization, card rendering, and article drafting; generated drafts and images require human review before publication.] <br>
+1.0.0 (source: server release metadata and artifact/workflow.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and workflow.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

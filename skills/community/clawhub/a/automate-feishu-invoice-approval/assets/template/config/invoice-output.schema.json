@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_type",
+    "invoice_type",
+    "invoice_code",
+    "invoice_number",
+    "issue_date",
+    "check_code",
+    "machine_number",
+    "buyer_name",
+    "buyer_tax_id",
+    "buyer_address_phone",
+    "buyer_bank_account",
+    "seller_name",
+    "seller_tax_id",
+    "seller_address_phone",
+    "seller_bank_account",
+    "amount_excluding_tax",
+    "tax_amount",
+    "total_amount",
+    "amount_in_words",
+    "currency",
+    "remarks",
+    "payee",
+    "reviewer",
+    "issuer",
+    "passenger_name",
+    "trip_origin",
+    "trip_destination",
+    "expense_category",
+    "approval_summary",
+    "items",
+    "overall_confidence",
+    "uncertain_fields",
+    "needs_review",
+    "review_reasons"
+  ],
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "enum": ["invoice", "receipt", "other"]
+    },
+    "invoice_type": {"type": ["string", "null"]},
+    "invoice_code": {"type": ["string", "null"]},
+    "invoice_number": {"type": ["string", "null"]},
+    "issue_date": {
+      "type": ["string", "null"],
+      "description": "YYYY-MM-DD"
+    },
+    "check_code": {"type": ["string", "null"]},
+    "machine_number": {"type": ["string", "null"]},
+    "buyer_name": {"type": ["string", "null"]},
+    "buyer_tax_id": {"type": ["string", "null"]},
+    "buyer_address_phone": {"type": ["string", "null"]},
+    "buyer_bank_account": {"type": ["string", "null"]},
+    "seller_name": {"type": ["string", "null"]},
+    "seller_tax_id": {"type": ["string", "null"]},
+    "seller_address_phone": {"type": ["string", "null"]},
+    "seller_bank_account": {"type": ["string", "null"]},
+    "amount_excluding_tax": {
+      "type": ["string", "null"],
+      "description": "Decimal amount without a currency symbol"
+    },
+    "tax_amount": {
+      "type": ["string", "null"],
+      "description": "Decimal amount without a currency symbol"
+    },
+    "total_amount": {
+      "type": ["string", "null"],
+      "description": "Amount including tax, decimal without a currency symbol"
+    },
+    "amount_in_words": {"type": ["string", "null"]},
+    "currency": {"type": ["string", "null"]},
+    "remarks": {"type": ["string", "null"]},
+    "payee": {"type": ["string", "null"]},
+    "reviewer": {"type": ["string", "null"]},
+    "issuer": {"type": ["string", "null"]},
+    "passenger_name": {"type": ["string", "null"]},
+    "trip_origin": {"type": ["string", "null"]},
+    "trip_destination": {"type": ["string", "null"]},
+    "expense_category": {
+      "type": "string",
+      "enum": ["差旅", "住宿", "交通", "设备", "团建", "通讯", "招待", "其他"],
+      "description": "根据票面内容选择最接近的报销类型"
+    },
+    "approval_summary": {
+      "type": "string",
+      "description": "仅依据票面内容生成的简洁中文报销事由"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "specification",
+          "unit",
+          "quantity",
+          "unit_price",
+          "amount",
+          "tax_rate",
+          "tax_amount"
+        ],
+        "properties": {
+          "name": {"type": ["string", "null"]},
+          "specification": {"type": ["string", "null"]},
+          "unit": {"type": ["string", "null"]},
+          "quantity": {"type": ["string", "null"]},
+          "unit_price": {"type": ["string", "null"]},
+          "amount": {"type": ["string", "null"]},
+          "tax_rate": {"type": ["string", "null"]},
+          "tax_amount": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "overall_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "uncertain_fields": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "needs_review": {"type": "boolean"},
+    "review_reasons": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

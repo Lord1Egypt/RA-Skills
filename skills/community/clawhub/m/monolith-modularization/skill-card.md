@@ -1,37 +1,52 @@
-## Description: <br>
-Deep workflow for evolving monoliths by mapping domains, defining module boundaries, applying strangler patterns, assigning data ownership, extracting incrementally, and validating testing and deployment safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep workflow for evolving monoliths by mapping domains, defining module boundaries, planning strangler-pattern migration, assigning data ownership, extracting candidates incrementally, and validating testing and deployment safety.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and software architects use this skill to plan low-disruption modularization of monolithic applications before service extraction or major maintainability work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Proposed module boundaries, CI enforcement, or migration steps can affect build behavior and application architecture.
+
+Mitigation: Review the proposed boundaries, enforcement rules, and migration sequence with the owning engineering teams before applying changes.
+
+Risk: Data ownership and extraction recommendations may be incomplete when shared tables or cross-feature dependencies are not fully mapped.
+
+Mitigation: Create a dependency and data-ownership map first, then migrate incrementally with feature flags or allowlists where appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan staged modularization of monolithic applications, from domain mapping and boundary definition through incremental migration, candidate service extraction, and validation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture guidance may lead to inappropriate code, CI, or migration changes if applied without project-specific review. <br>
-Mitigation: Review proposed boundaries, enforcement rules, and migration steps with maintainers; test incrementally and use feature flags for risky changes. <br>
+**Output Format:** [Markdown guidance with checklists and architecture-planning steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Documentation-only workflow; no executable artifacts or hidden tool calls are included.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown guidance with staged checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no executable code, install hooks, credentials, or hidden automation.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

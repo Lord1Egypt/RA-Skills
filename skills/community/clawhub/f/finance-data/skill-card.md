@@ -1,42 +1,55 @@
-## Description: <br>
-Fetch professional stock market data from Yahoo Finance (yfinance) and SEC EDGAR for quotes, historical prices, company financials, filings, insider transactions, options, dividends, news, profiles, and equity research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch professional stock market data from Yahoo Finance (yfinance) and SEC EDGAR for quotes, historical prices, financial statements, company profiles, filings, XBRL concepts, insider transactions, options chains, dividends, earnings, analyst recommendations, and news.
 
-## Publisher: <br>
-[1shadow1](https://clawhub.ai/user/1shadow1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1shadow1](https://clawhub.ai/user/1shadow1)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to retrieve market data, company fundamentals, SEC filings, XBRL concepts, and related equity research data through command-line helpers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SEC filing reader can fetch arbitrary or untrusted filing URLs, including non-SEC and local file URLs. <br>
-Mitigation: Use only HTTPS SEC EDGAR URLs from expected filing paths, do not pass untrusted URLs to read-filing, and prefer a patched version that enforces this restriction. <br>
-Risk: Market data and filing-derived outputs can be delayed, incomplete, or outside the skill's intended scope when sourced from non-SEC URLs. <br>
-Mitigation: Confirm material financial conclusions against authoritative market or SEC sources before relying on the output. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to retrieve market data and SEC filing information for equity research and financial due diligence. It helps agents produce commands and structured data lookups for public company analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1shadow1/finance-data) <br>
-- [SEC company tickers endpoint](https://www.sec.gov/files/company_tickers.json) <br>
-- [SEC EDGAR full-text search endpoint](https://efts.sec.gov/LATEST/search-index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Finance helper commands print JSON to stdout; filing text output may be truncated by max character settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A SEC filing command can fetch an arbitrary URL rather than only SEC filing pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-filing only with URLs returned by the skill's SEC filings command, and prefer patching or policy controls that restrict it to SEC archive URLs before deployment.
+
+Risk: Market data and filings may be delayed or incomplete for time-sensitive financial decisions.
+
+Mitigation: Treat outputs as research inputs, confirm critical data against authoritative sources, and avoid relying on the skill as the sole basis for trading or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub finance-data skill page](https://clawhub.ai/1shadow1/skills/finance-data)
+- [SEC company tickers data](https://www.sec.gov/files/company_tickers.json)
+- [SEC EDGAR full-text search API endpoint](https://efts.sec.gov/LATEST/search-index)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands call Yahoo Finance through yfinance and SEC EDGAR endpoints; read-filing output is capped by the requested max character limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Provides China-focused insurance education, terminology explanations, product comparisons, coverage analysis, and buying guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides China-focused insurance knowledge explanations and comparison frameworks for terminology, coverage, and policy questions.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-China insurance consumers, agents, and advisors can use this skill to explain insurance terms, compare product categories, analyze coverage gaps, and structure buying questions for educational decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Insurance explanations or comparisons may be outdated, incomplete, or mismatched to current rules and product terms. <br>
-Mitigation: Verify current regulations, policy wording, and product details with official sources or a licensed professional before acting. <br>
-Risk: Insurance planning questions may include sensitive medical, identity, or financial details. <br>
-Mitigation: Avoid sharing identifiers, detailed medical records, or unnecessary financial details when using the skill. <br>
-Risk: Broad trigger phrases may invoke the skill outside its intended insurance education scope. <br>
-Mitigation: Keep use limited to insurance-related questions and review outputs before relying on them for decisions. <br>
+## Use Case:
 
+External insurance consumers and professionals use it to understand insurance terms, compare coverage dimensions, and structure questions for review. It produces educational drafts rather than product recommendations or definitive underwriting or claims decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/insurance-knowledge-qa) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; users should verify current rules and product terms with official sources or a licensed professional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Insurance rules, product terms, limits, and figures can change or vary by contract.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current official information and the applicable policy wording; record the source and date.
+
+Risk: Readers may treat educational comparisons or coverage analysis as personal financial, underwriting, or claims advice.
+
+Mitigation: Keep outputs as drafts for qualified review; direct underwriting and claims decisions to the insurer.
+
+Risk: Questions may contain sensitive health, financial, or identifying details.
+
+Mitigation: Use placeholders and disclose only necessary details; confirm before adding personal information.
+
+Risk: The security assessment was partial, despite a benign verdict.
+
+Mitigation: Treat the assessment as limited and consider whether you trust the source before installing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/insurance-knowledge-qa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational drafts and comparison frameworks; no product recommendations or definitive underwriting or claims decisions.]
+
+## Skill Version(s):
+
+3.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

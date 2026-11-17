@@ -1,43 +1,54 @@
-## Description: <br>
-Create, validate, and manage portable agent identity cards using the Agent Card v1 schema. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, validate, and manage agent identity cards (agent.json) following the Agent Card v1 schema with interactive setup and validation tools.
 
-## Publisher: <br>
-[ryancampbell](https://clawhub.ai/user/ryancampbell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryancampbell](https://clawhub.ai/user/ryancampbell)
 
-## Use Case: <br>
-Developers and agent publishers use this skill to create standardized agent.json identity cards, validate them against a bundled JSON Schema, and prepare them for hosting at well-known agent identity URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The validator can install external packages when local validation tools are missing. <br>
-Mitigation: Review the shell scripts first and prefer installing ajv-cli or jsonschema yourself in an isolated environment. <br>
-Risk: The validator has unsafe fallback path handling. <br>
-Mitigation: Avoid validating files with untrusted or unusual path names. <br>
-Risk: The initializer writes to the requested output path. <br>
-Mitigation: Do not run init.sh on a path containing important existing data unless you intend to overwrite it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryancampbell/agent-identity-kit) <br>
-- [Agent Card specification](https://foragents.dev/spec/agent-card) <br>
-- [Agent Card v1 JSON Schema](https://foragents.dev/schemas/agent-card/v1.json) <br>
+## Use Case:
 
+Developers and agent publishers use this skill to create and validate portable agent identity cards for publication at well-known URLs and registry indexing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and JSON Schema configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and validates agent.json identity card files through bundled shell scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Validation may fetch unpinned dependencies when local tooling is missing.
+
+Mitigation: Pin and preinstall validation dependencies in CI or local environments before running the skill.
+
+Risk: Validation of untrusted paths can execute attacker-controlled code through the fallback validator.
+
+Mitigation: Do not run validate.sh on paths supplied by others until path handling is fixed; use a preinstalled, pinned validator instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryancampbell/skills/agent-identity-kit)
+- [Agent Card specification](https://foragents.dev/spec/agent-card)
+- [Agent Card v1 JSON Schema](https://foragents.dev/schemas/agent-card/v1.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON agent-card files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated agent cards are intended to follow the Agent Card v1 JSON Schema.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

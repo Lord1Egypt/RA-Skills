@@ -1,43 +1,54 @@
-## Description: <br>
-Website Audit helps agents audit websites with 230+ checks across SEO, performance, security, technical, and content issues, including health scores and recommended actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Website Audit mit 230+ Rules fuer SEO, Performance, Security, Technical und Content Issues. LLM-optimierte Reports mit Health Scores und Handlungsempfehlungen.
 
-## Publisher: <br>
-[akkualle](https://clawhub.ai/user/akkualle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akkualle](https://clawhub.ai/user/akkualle)
 
-## Use Case: <br>
-External users, developers, and site operators use this skill to run website audits and interpret SEO, performance, security, technical, and content findings with prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on an external `squirrel` command that is not bundled with the skill. <br>
-Mitigation: Verify which `squirrel` CLI will run on the target machine before executing examples. <br>
-Risk: Website audits can touch systems outside the user's control. <br>
-Mitigation: Audit only sites the user is authorized to test. <br>
-Risk: Audit reports may contain sensitive site details before they are shared with external AI services. <br>
-Mitigation: Review report contents before piping them to external services. <br>
+## Use Case:
 
+Developers, site owners, and SEO teams use this skill to audit websites for SEO, performance, security, technical, and content issues and receive health scores with remediation guidance.
 
-## Reference(s): <br>
-- [LLM Format Output Reference](references/OUTPUT-FORMAT.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/akkualle/akkualle-audit-website) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured audit report references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can reference JSON and compact LLM-oriented XML/text audit report formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The referenced squirrel audit tool is not included in the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the installed audit tool is expected and trusted before using the skill.
+
+Risk: Website audits crawl user-provided URLs and can generate reports about third-party or sensitive sites.
+
+Mitigation: Run audits only for authorized sites and review generated reports before sharing them.
+
+## Reference(s):
+
+- [LLM Format Output Reference](artifact/references/OUTPUT-FORMAT.md)
+- [ClawHub skill page](https://clawhub.ai/akkualle/skills/akkualle-audit-website)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and references to text, JSON, and compact XML audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit reports may include health scores, issue lists, affected pages, metrics, and recommended fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

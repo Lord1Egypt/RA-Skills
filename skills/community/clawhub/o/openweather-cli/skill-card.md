@@ -1,42 +1,54 @@
-## Description: <br>
-Use this skill when the user wants to run, troubleshoot, or extend the owget CLI for geocoding, current weather, and 5-day forecasts with OpenWeatherMap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to run, troubleshoot, or extend the owget CLI for geocoding, current weather, and 5-day forecasts with OpenWeatherMap.
 
-## Publisher: <br>
-[ParinLL](https://clawhub.ai/user/ParinLL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parinll](https://clawhub.ai/user/parinll)
 
-## Use Case: <br>
-Developers and CLI users use this skill to install, run, troubleshoot, or extend the owget command-line tool for OpenWeatherMap geocoding, current weather, and 5-day forecast workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing from the linked source can introduce supply-chain risk if the source changes or is not reviewed. <br>
-Mitigation: Review the linked source before installing, and pin a trusted commit when supply-chain control matters. <br>
-Risk: OpenWeatherMap API keys can be exposed through chat, shell history, or debug logs. <br>
-Mitigation: Use a dedicated API key, avoid pasting it into chat or shared logs, and enable debug mode only when needed. <br>
+## Use Case:
 
+Developers and external users use this skill to install, run, and troubleshoot owget commands for OpenWeatherMap geocoding, current weather, and 5-day forecasts. It also guides safe handling of the required OPENWEATHER_API_KEY environment variable.
 
-## Reference(s): <br>
-- [OpenWeatherMap-script homepage](https://github.com/ParinLL/OpenWeatherMap-script) <br>
-- [OpenWeather CLI on ClawHub](https://clawhub.ai/ParinLL/openweather-cli) <br>
-- [ParinLL publisher profile](https://clawhub.ai/user/ParinLL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples, environment-variable setup, troubleshooting steps, and credential-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: Install guidance builds and installs a mutable third-party GitHub project without pinning or integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository before installing and prefer a pinned reviewed commit or signed release.
+
+Risk: OpenWeather API keys may be exposed through environment leakage or debug output.
+
+Mitigation: Expose only the required OPENWEATHER_API_KEY variable, redact credential query parameters such as appid, and avoid debug output in shared or logged environments.
+
+## Reference(s):
+
+- [OpenWeatherMap-script homepage](https://github.com/ParinLL/OpenWeatherMap-script)
+- [OpenWeather CLI ClawHub listing](https://clawhub.ai/parinll/skills/openweather-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples, environment-variable setup, install guidance, and API-key handling cautions.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

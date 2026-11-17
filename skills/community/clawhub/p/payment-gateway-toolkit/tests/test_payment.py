@@ -20,7 +20,7 @@ class TestPaymentHandler:
         """创建支付宝处理器fixture"""
         config = {
             "app_id": "test_app_id",
-            "private_key": "-----BEGIN RSA PRIVATE KEY-----\ntest\n-----END RSA PRIVATE KEY-----",
+            "private_key": "REDACTED-SECRET",
             "alipay_public_key": "-----BEGIN PUBLIC KEY-----\ntest\n-----END PUBLIC KEY-----",
             "debug": True
         }

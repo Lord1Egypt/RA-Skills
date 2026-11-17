@@ -1,47 +1,70 @@
-## Description: <br>
-Detect unregistered faces loitering in sensitive areas across one or many RTSP cameras using shared ONNX face detection and recognition models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects unregistered faces loitering in sensitive areas across one or many RTSP cameras using shared ONNX face detection and recognition models.
 
-## Publisher: <br>
-[13681882136](https://clawhub.ai/user/13681882136) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13681882136](https://clawhub.ai/user/13681882136)
 
-## Use Case: <br>
-Security operators and smart-home administrators use this skill to monitor authorized camera feeds for unknown people who remain in sensitive areas beyond a configured threshold. The skill can configure monitoring inputs, launch the detector, and route alerts through local JSON records and optional chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs face-recognition monitoring and stores biometric reference data and alert snapshots. <br>
-Mitigation: Install and run it only with authority and consent for the cameras involved; define retention and deletion rules for face_db, alerts, logs, and related outputs. <br>
-Risk: Alert delivery can send face snapshots or links to external services, including a public image-host fallback on the Feishu path when app credentials are absent. <br>
-Mitigation: Prefer local-only operation or tightly controlled Feishu, Discord, or Telegram destinations; avoid the Feishu path without app credentials if public image upload is not acceptable. <br>
-Risk: Configuration files and logs may contain sensitive camera URLs, webhooks, bot tokens, chat IDs, and biometric file paths. <br>
-Mitigation: Restrict filesystem access to config.json, logs, face_db, and alerts; rotate exposed credentials and avoid sharing those files in support bundles. <br>
-Risk: Dependencies and model downloads are retrieved during setup. <br>
-Mitigation: Pin or verify dependencies and model artifacts before production use. <br>
+## Use Case:
 
+External users and operators use this skill to configure and run continuous camera monitoring for unknown-face loitering events in sensitive areas. It helps produce alerts, face snapshot files, and optional push notifications when an unregistered person remains in view beyond the configured threshold.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13681882136/kami-suspicious-person) <br>
-- [Kami Suspicious Person privacy policy](https://kamiclaw-skill.kamihome.com/privacy) <br>
-- [Model download package](https://publicfiles.xiaoyi.com/kami-suspicious-person-model.zip) <br>
-- [uv installer referenced by setup](https://astral.sh/uv/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, json, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, persisted JSON configuration, and JSON alarm records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs continuously after launch and may emit repeated alarm JSON lines while monitoring camera streams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server evidence and frontmatter) <br>
+Risk: Biometric snapshots and camera feed details may expose sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy requirements before use, restrict access to alert images and logs, and retain snapshots only for an approved operational purpose.
+
+Risk: Configuration values and logs may contain camera URLs, bot tokens, webhook URLs, or other secrets.
+
+Mitigation: Protect config.json and runtime logs as secrets, use dedicated low-privilege camera and bot credentials, and rotate credentials if exposure is suspected.
+
+Risk: Installer, dependency, and model downloads introduce supply-chain risk.
+
+Mitigation: Prefer pinned and verified installers, Python dependencies, and model files before production deployment.
+
+Risk: Feishu image fallback can upload face snapshots to a public image host.
+
+Mitigation: Avoid enabling Feishu unless the public image-host fallback is removed or explicitly disabled, or use approved inline image upload credentials only.
+
+Risk: Background monitoring can continue collecting alerts beyond the operator's immediate attention.
+
+Mitigation: Run the detector under an accountable operator, document the monitoring scope, and periodically confirm that the process, cameras, and alert destinations remain intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/13681882136/skills/kami-suspicious-person)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/13681882136)
+- [Model Archive](https://publicfiles.xiaoyi.com/kami-suspicious-person-model.zip)
+- [uv Project](https://github.com/astral-sh/uv)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Discord Developer Portal](https://discord.com/developers/applications)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands, configuration updates, JSON alert records, and saved face snapshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs continuously when launched; alerts are written to stdout and an inbox JSONL file, with optional Feishu, Discord, or Telegram push delivery.]
+
+## Skill Version(s):
+
+2.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

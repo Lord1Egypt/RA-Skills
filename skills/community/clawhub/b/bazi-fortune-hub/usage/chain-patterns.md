@@ -5,7 +5,7 @@
 
 ## Why this snippet exists
 
-The 4 fortune tools form a **strict chain**. Mis-ordering or re-calling t1/t2 wastes
+The 4 paid chain tools (t1–t4) form a **strict chain** (the standalone s1/s2 are outside it). Mis-ordering or re-calling t1/t2 wastes
 credits and ~25–90s of wall time. The most common LLM mistake is **re-running t1/t2
 to regenerate inputs that a previous step already produced** — pass the prior output
 through instead.
@@ -113,7 +113,7 @@ state.final = r4.data["final_result"]
 ```
 
 > Note on t1 vs t2 inputs: **t1 takes the raw birth fields; t2 takes t1's `base_context`.**
-> `../references/12-tools.md` is authoritative for field-level schemas — follow it.
+> `../references/14-tools.md` is authoritative for field-level schemas — follow it.
 
 ## Reuse across turns — don't re-call t1/t2
 

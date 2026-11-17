@@ -1,40 +1,53 @@
-## Description: <br>
-Asistente personalizado de bienvenida y pruebas de sistema para el servidor de Santi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asistente personalizado de bienvenida y pruebas de sistema para el servidor de Santi.
 
-## Publisher: <br>
-[santi-patic](https://clawhub.ai/user/santi-patic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[santi-patic](https://clawhub.ai/user/santi-patic)
 
-## Use Case: <br>
-External users and workspace operators use this skill to give an agent Santi-branded greeting behavior and lightweight readiness responses for a personalized OpenClaw workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill states that the assistant is running OpenClaw on a dedicated Ubuntu server. <br>
-Mitigation: Confirm the deployment environment before release, or revise the statement so users are not given inaccurate operational information. <br>
-Risk: The skill claims capabilities including weather, link summaries, and file management. <br>
-Mitigation: Verify those capabilities are enabled for the target assistant and remove any unsupported claims before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/santi-patic/mi-habilidad-nueva) <br>
-- [Publisher Profile](https://clawhub.ai/user/santi-patic) <br>
+## Use Case:
 
+External users interacting with Santi's workspace use this always-on skill to receive a personalized welcome and capability summary for greetings or readiness checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spanish-language persona and greeting behavior; no files, code, or shell commands are produced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Always-on greeting behavior can make the assistant present itself as Santi's bot in shared or general workspaces.
+
+Mitigation: Install only in Santi's intended workspace or edit the identity and greeting behavior before broader deployment.
+
+Risk: The skill advertises server details and capabilities that may not be true in the installer's environment.
+
+Mitigation: Verify the deployment environment and enabled capabilities before using the skill's readiness or capability responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/santi-patic/skills/mi-habilidad-nueva)
+- [ClawHub publisher profile](https://clawhub.ai/user/santi-patic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always-on behavior for greetings, readiness checks, and capability summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

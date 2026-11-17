@@ -2,7 +2,7 @@
 name: session-state
 description: |
   Session state persistence format and management for context handoffs.
-  Defines the checkpoint structure that enables seamless continuation.
+  Defines the checkpoint structure that enables smooth continuation.
 category: conservation
 ---
 
@@ -343,7 +343,7 @@ Each continuation agent increments `handoff_count` and adds to `handoff_history`
 
 2. **Include Context**: Don't assume continuation agent knows anything
 
-3. **Document Decisions**: Future agents need to understand WHY, not just WHAT
+3. **Document Decisions**: Future agents need to understand WHY as well as WHAT
 
 4. **Test File Paths**: Ensure all referenced files exist and are readable
 

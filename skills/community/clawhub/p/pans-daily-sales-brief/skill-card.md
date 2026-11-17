@@ -1,42 +1,57 @@
-## Description: <br>
-Generates a daily sales brief for AI compute sales by summarizing customer follow-ups, expiring contracts, new leads, performance metrics, and competitor news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Daily Sales Brief generates daily AI compute sales briefs covering follow-ups, expiring contracts, new leads, performance metrics, and competitor news.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales representatives and account managers use this skill to maintain local customer pipeline data and generate daily sales reports for follow-up planning. It supports adding clients, contracts, and leads, listing pipeline data, and producing text or JSON briefs for daily automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sales and customer pipeline data in a local JSON file. <br>
-Mitigation: Use it only on protected machines and avoid entering regulated, secret, or highly confidential customer information unless local storage and backups are secured. <br>
-Risk: Add and update commands mutate the local pipeline data file. <br>
-Mitigation: Review JSON inputs before running mutating commands and keep backups for important pipeline records. <br>
-Risk: The competitor-news feature can use an external search helper and may return unverified snippets. <br>
-Mitigation: Review the referenced helper skill before enabling competitor-news searches and verify news results before using them in sales decisions. <br>
+## Use Case:
 
+Sales teams and business operators use this skill to maintain local pipeline data and generate daily sales briefings for customer follow-up, contract renewal, lead tracking, performance review, and competitor monitoring.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dashiming/pans-daily-sales-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text daily brief or structured JSON, with shell command examples in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read, write, and update local sales pipeline JSON data used to generate the brief.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can modify local customer, contract, lead, competitor, and sales statistics data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive or backed-up pipeline data and review generated updates before relying on them for sales operations.
+
+Risk: Write and competitor-search operations depend on local helper scripts outside the reviewed package.
+
+Mitigation: Review the local helper scripts and installed search skill before enabling write operations or competitor-news searches.
+
+Risk: Sales pipeline records may contain customer, contract, and revenue information.
+
+Mitigation: Avoid storing confidential business data unless the local environment and retention practices are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-daily-sales-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Plain text or JSON sales brief output with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can list, add, and update local customer, contract, lead, competitor, and sales statistics records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

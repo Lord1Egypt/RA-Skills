@@ -1,42 +1,55 @@
-## Description: <br>
-Generate PNG/SVG images from Mermaid diagram syntax using mermaid.ink API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PNG or SVG images from Mermaid diagram syntax using the mermaid.ink API.
 
-## Publisher: <br>
-[vincent-ng](https://clawhub.ai/user/vincent-ng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincent-ng](https://clawhub.ai/user/vincent-ng)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn Mermaid diagram source into shareable PNG or SVG images for documentation, presentations, and technical communication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mermaid diagram text is sent to the external mermaid.ink rendering service. <br>
-Mitigation: Do not use this skill for confidential architecture, credentials, customer data, or other sensitive diagrams; use a local Mermaid renderer for those cases. <br>
-Risk: Rendering requires network access to mermaid.ink. <br>
-Mitigation: Confirm internet connectivity before use, or choose a local renderer when offline operation is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mermaid image rendering service](https://mermaid.ink) <br>
-- [Mermaid Live Editor](https://mermaid.live) <br>
-- [ClawHub skill page](https://clawhub.ai/vincent-ng/mermaid-image-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/vincent-ng) <br>
+## Use Case:
 
+Developers, technical writers, and content creators use this skill to convert Mermaid diagrams into PNG or SVG assets for documentation, presentations, and shareable visual explanations.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [PNG or SVG image files generated from Mermaid source, with concise command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports file input or stdin; output format is selected from the requested .png or .svg extension.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Diagram text is sent to the external mermaid.ink rendering service.
+
+Mitigation: Do not use the skill for diagrams containing secrets, private infrastructure details, customer data, or other sensitive information unless switching to a local renderer.
+
+Risk: Image generation requires network access to mermaid.ink.
+
+Mitigation: Confirm connectivity before use, or use a local Mermaid renderer for offline workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincent-ng/skills/mermaid-image-generator)
+- [Mermaid.ink PNG endpoint](https://mermaid.ink/img/{base64_code})
+- [Mermaid.ink SVG endpoint](https://mermaid.ink/svg/{base64_code})
+- [Mermaid Live syntax validator](https://mermaid.live)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated PNG or SVG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output format is selected from the file extension; Mermaid input can be read from a file or stdin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

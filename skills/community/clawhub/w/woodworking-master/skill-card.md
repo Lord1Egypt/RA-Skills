@@ -1,45 +1,49 @@
-## Description: <br>
-AI木工大师 helps users learn woodworking joinery, tools, machinery, wood selection, safety, finishing, and project planning, and can generate interactive HTML reports with steps, tool lists, precision requirements, safety notes, buying advice, and practical tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI木工大师 provides Chinese-language woodworking guidance across joinery, hand tools, machines, wood selection, safety, finishing, and project planning, with optional interactive HTML reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to answer woodworking questions, generate topic-specific woodworking reports, compare techniques and materials, and receive safety-aware guidance for projects from beginner to advanced levels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script that creates an HTML report file. <br>
-Mitigation: Install only if local report generation is acceptable, and review the generated file before sharing or relying on it. <br>
-Risk: Custom output paths can write the report to a user-selected destination. <br>
-Mitigation: Use the default report filename or choose custom output paths deliberately. <br>
-Risk: Tool and brand buying advice may be region-specific. <br>
-Mitigation: Validate recommendations against local availability, regulations, safety standards, and project needs before purchase. <br>
-Risk: Woodworking and power-tool guidance can involve physical safety hazards. <br>
-Mitigation: Follow the skill's safety reminders, use appropriate PPE, and defer to qualified instruction and manufacturer manuals for hazardous operations. <br>
+## Use Case:
 
+External users and woodworking learners use this skill to get practical Chinese-language guidance on joinery, tool selection, machine safety, materials, finishing, and staged project work. Agents can also generate an HTML report for supported woodworking topics.
 
-## Reference(s): <br>
-- [Woodworking Knowledge Base](references/woodworking_knowledge.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/woodworking-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown-style response text plus a generated interactive HTML report file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes woodworking_report.html by default and supports topic listing, index, detailed-topic, and general-topic report modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The report generator accepts a custom output path and can overwrite arbitrary writable local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the generator only with trusted arguments, prefer the default report filename, and constrain or remove the custom output option before use in shared or important workspaces.
+
+## Reference(s):
+
+- [Woodworking Knowledge Base](references/woodworking_knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown/text response with optional generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report generator supports topic listing, index generation, detail reports, and general-topic reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

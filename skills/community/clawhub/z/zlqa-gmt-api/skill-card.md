@@ -1,40 +1,57 @@
-## Description: <br>
-Automates ZLQA game GM tool API testing by helping manage test cases, execute interface tests, and view generated reports after binding a local project path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports automated testing for ZLQA game GM tool APIs, including test case management, execution, and HTML report viewing after binding a local project path.
 
-## Publisher: <br>
-[gerburmsidep7](https://clawhub.ai/user/gerburmsidep7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gerburmsidep7](https://clawhub.ai/user/gerburmsidep7)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to initialize a local ZLQA project path, discover GM API interfaces, run selected or grouped test cases, and view generated HTML reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes local Python test scripts from the bound ZLQA project, which may use API secrets or test credentials. <br>
-Mitigation: Install and run it only for trusted ZLQA repositories, use least-privilege test credentials, and avoid production GM secrets. <br>
-Risk: The runner writes configuration and edits target project test files when selecting cases. <br>
-Mitigation: Review project diffs after runs and keep secret-bearing configuration files out of version control. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to initialize a trusted ZLQA checkout, discover GM API test interfaces, run selected or grouped test cases, and inspect generated reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gerburmsidep7/zlqa-gmt-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Plain text summaries with command examples and generated HTML test reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write skill configuration, edit target project test selection, and open generated HTML reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can edit and execute project-local Python test scripts from a mutable external checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted ZLQA checkout and review the project test scripts before running them.
+
+Risk: Test configuration may contain server addresses, signing keys, accounts, roles, or other sensitive data.
+
+Mitigation: Avoid real production secrets in markdown configuration files and keep the checkout out of shared commits unless secrets are excluded.
+
+Risk: Generated HTML reports are opened automatically after test execution.
+
+Mitigation: Review generated reports as local artifacts from trusted test code before sharing or opening them in broader environments.
+
+## Reference(s):
+
+- [ZLQA-GMT-API-Test ClawHub listing](https://clawhub.ai/gerburmsidep7/skills/zlqa-gmt-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console-style text with generated HTML test reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit project-local test runner configuration, execute Python test scripts, and open generated HTML reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

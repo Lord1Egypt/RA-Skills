@@ -1,47 +1,64 @@
-## Description: <br>
-Imou/Lechange device operation for PTZ control, snapshot capture, and image download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imou/Lechange device operation for PTZ control, snapshot capture, and image download.
 
-## Publisher: <br>
-[imou-openplatform](https://clawhub.ai/user/imou-openplatform) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imou-openplatform](https://clawhub.ai/user/imou-openplatform)
 
-## Use Case: <br>
-Developers and operators use this skill to control Imou/Lechange cloud cameras, capture snapshots, optionally save images, and move PTZ-capable devices through the Imou Open API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate Imou/Lechange cameras and move PTZ devices. <br>
-Mitigation: Install it only when camera operation is intended, use least-privileged Imou credentials, and review PTZ requests before execution. <br>
-Risk: Snapshots may capture sensitive locations and can be saved to local paths. <br>
-Mitigation: Review snapshot requests for sensitive spaces and choose save paths deliberately. <br>
-Risk: Requests are sent to the configured Imou Open API base URL. <br>
-Mitigation: Set IMOU_BASE_URL explicitly for the correct region or data center. <br>
+## Use Case:
 
+Developers and operators use this skill to control Imou or Lechange cameras through the Imou Open API, including PTZ movement and snapshot capture or download.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/imou-openplatform/imou-device-operate) <br>
-- [Publisher Profile](https://clawhub.ai/user/imou-openplatform) <br>
-- [Imou Open API Reference - Device Operate](references/imou-operate-api.md) <br>
-- [Imou Developer Portal](https://open.imou.com) <br>
-- [Imou International Developer Portal](https://open.imoulife.com) <br>
-- [Imou Development Specification](https://open.imoulife.com/book/http/develop.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Command-line text output with optional downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Snapshot prints a downloadable URL and can save an image to a chosen path; PTZ prints a success or error message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Sensitive camera tokens and device data can be sent to an unvalidated network endpoint if IMOU_BASE_URL is misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documented HTTPS Imou API base URLs and keep IMOU_APP_SECRET private.
+
+Risk: Camera snapshots and PTZ movement can expose privacy-sensitive scenes or physically move a camera.
+
+Mitigation: Require user authorization before snapshot capture, image download, or PTZ movement.
+
+Risk: The --save option can write content from unexpected snapshot responses before URL and file-size validation is added.
+
+Mitigation: Avoid --save on untrusted or unexpected snapshot responses and inspect snapshot URLs before downloading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imou-openplatform/skills/imou-device-operate)
+- [Imou Open API reference summary](references/imou-operate-api.md)
+- [Imou developer portal](https://open.imou.com)
+- [Imou overseas developer portal](https://open.imoulife.com)
+- [Imou development specification](https://open.imoulife.com/book/http/develop.html)
+- [Get accessToken API](https://open.imou.com/document/pages/fef620/)
+- [Device snapshot API](https://open.imou.com/document/pages/09fe83/)
+- [PTZ move control API](https://open.imou.com/document/pages/66c489/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output, URLs, and optional downloaded image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Snapshot URLs are time-limited by the upstream API; optional local downloads write image files to the requested path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Analyze Solana tokens for rug pull risks using the RugCheck API, including token safety, risk score, liquidity, holder distribution, metadata mutability, insider patterns, and token discovery signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Solana tokens for rug pull risks using the RugCheck API, including risk score, liquidity, holder distribution, metadata mutability, insider patterns, and token discovery signals.
 
-## Publisher: <br>
-[PsychoTechV4](https://clawhub.ai/user/PsychoTechV4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psychotechv4](https://clawhub.ai/user/psychotechv4)
 
-## Use Case: <br>
-External users and developers use this skill to query RugCheck for Solana token risk summaries, detailed reports, holder and liquidity signals, insider graph data, and token discovery lists. Results support token due diligence and should be treated as one risk signal rather than financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries send public Solana mint addresses and token-discovery requests to RugCheck. <br>
-Mitigation: Do not submit sensitive private data; verify token addresses before querying external RugCheck endpoints. <br>
-Risk: Token risk output can be incomplete or misleading if treated as investment advice. <br>
-Mitigation: Present RugCheck results as one due-diligence signal and encourage independent verification before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub RugCheck skill page](https://clawhub.ai/PsychoTechV4/rugcheck) <br>
-- [PsychoTechV4 ClawHub publisher profile](https://clawhub.ai/user/PsychoTechV4) <br>
-- [RugCheck API](https://api.rugcheck.xyz) <br>
-- [RugCheck token pages](https://rugcheck.xyz/tokens/<mint>) <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to inspect Solana token risk signals and summarize RugCheck findings before making token safety assessments. It supports single-token checks by mint address and discovery of trending, new, recent, or verified Solana tokens.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries RugCheck read endpoints and pretty-prints JSON responses when possible.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Token mint addresses and discovery requests are sent to RugCheck's external API.
+
+Mitigation: Avoid querying sensitive watchlists or unpublished token research when strict privacy is required.
+
+Risk: Risk scores and token signals may be incomplete, stale, or misleading if treated as a sole decision source.
+
+Mitigation: Present RugCheck results as risk indicators and encourage corroboration with liquidity, holder, market, and authority data before acting.
+
+Risk: Repeated discovery or token queries may encounter RugCheck rate limits.
+
+Mitigation: Respect 429 responses and add short delays between bulk-like query sequences.
+
+## Reference(s):
+
+- [RugCheck API](https://api.rugcheck.xyz)
+- [RugCheck token pages](https://rugcheck.xyz/tokens/<mint>)
+- [ClawHub RugCheck skill page](https://clawhub.ai/psychotechv4/skills/rugcheck)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON responses and Markdown summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only RugCheck endpoints for normal operation; bulk endpoints require wallet JWT authentication and are not available for most agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

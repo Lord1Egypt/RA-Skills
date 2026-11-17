@@ -1,41 +1,54 @@
-## Description: <br>
-Generate LLM-optimized codebase context from any directory using context-builder CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate LLM-optimized codebase context from any directory using context-builder CLI
 
-## Publisher: <br>
-[igorls](https://clawhub.ai/user/igorls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[igorls](https://clawhub.ai/user/igorls)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate scoped, LLM-ready Markdown snapshots of codebases for review, onboarding, architecture analysis, and incremental change analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated context may accidentally include private files or sensitive source content if the skill is run against an overly broad directory. <br>
-Mitigation: Run it only against explicit project folders, use filters and ignore rules, avoid home, system, and credential directories, and review the generated Markdown before sharing it. <br>
-Risk: Using an unexpected context-builder installation could produce different behavior from the documented release. <br>
-Mitigation: Install from the documented upstream source and verify the expected context-builder version before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/igorls/context-builder) <br>
-- [Context Builder Repository](https://github.com/igorls/context-builder) <br>
-- [Context Builder Releases](https://github.com/igorls/context-builder/releases/latest) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate scoped, LLM-ready Markdown snapshots of codebases for review, onboarding, architecture analysis, diff updates, and API-surface inspection.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration snippets, and generated codebase context files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file contents or code signatures from the target directory; supports filters, token budgets, diff-only output, and signature-only output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.8.3-1 (source: server release metadata; artifact frontmatter version: 0.8.3) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The underlying CLI reads file contents from the specified directory, and generated context may include secrets or credentials embedded in source files.
+
+Mitigation: Run only on explicit project directories, use scoped filters and ignore rules, and review generated context files before sharing.
+
+Risk: Manual binary downloads create a supply-chain verification step for installers.
+
+Mitigation: Prefer pinning the documented version, use locked installs when supported, and verify downloaded binaries against version-specific checksums.
+
+## Reference(s):
+
+- [Context Builder ClawHub Skill Page](https://clawhub.ai/igorls/skills/context-builder)
+- [context-builder GitHub Repository](https://github.com/igorls/context-builder)
+- [context-builder GitHub Releases](https://github.com/igorls/context-builder/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and TOML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce full codebase context, AST signatures, token-count previews, and diff-only updates depending on CLI flags.]
+
+## Skill Version(s):
+
+0.8.3-1 (source: server release metadata; artifact frontmatter reports 0.8.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

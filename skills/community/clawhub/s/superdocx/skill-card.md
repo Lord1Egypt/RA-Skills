@@ -1,41 +1,57 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Word and DOCX documents with reliable handling of styles, numbering, tracked changes, tables, sections, and compatibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Word documents and DOCX files with attention to styles, numbering, tracked changes, tables, sections, and compatibility checks.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers, document reviewers, and agents use this skill when creating, inspecting, or editing Word and DOCX files where review metadata, layout stability, fields, lists, tables, headers, or round-trip compatibility matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated DOCX guidance or edits can unintentionally alter tracked changes, comments, fields, numbering, tables, headers, or layout. <br>
-Mitigation: Review outputs before replacing originals, preserve backups, and verify important documents in the target editor before sharing. <br>
-Risk: Sensitive legal, business, academic, or macro-bearing documents may contain hidden metadata or behavior that is not obvious from visible text. <br>
-Mitigation: Inspect tracked changes, comments, fields, hidden metadata, and macro-bearing files carefully before distribution. <br>
+## Use Case:
 
+Developers, document automation users, and reviewers use this skill when creating, inspecting, or editing Word and DOCX files where formatting stability, review metadata, fields, tables, sections, or round-trip compatibility matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/superdocx) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/subaru0573) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output should be reviewed before replacing originals or sharing Word documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The manifest description contains a malformed trigger fragment that may affect automated skill routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the description before relying on automated routing or policy matching.
+
+Risk: The skill text mentions optional registry commands for installing related skills and syncing updates.
+
+Mitigation: Run suggested install or sync commands only after confirming the target skill and update source.
+
+Risk: DOCX work can preserve hidden review metadata, stale fields, or layout drift across editors.
+
+Mitigation: Use structure-preserving edits and verify round-trip compatibility before delivering edited documents.
+
+## Reference(s):
+
+- [Superdocx ClawHub skill page](https://clawhub.ai/subaru0573/skills/superdocx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional code, shell commands, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is bundled in the skill; outputs are guidance for DOCX-oriented workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

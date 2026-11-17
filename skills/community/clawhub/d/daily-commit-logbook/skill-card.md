@@ -1,45 +1,59 @@
-## Description: <br>
-Generate daily internship logbook drafts and weekly internship reports from GitHub and GitLab commit activity, with Indonesian MIS-friendly summaries, Telegram approval requests, and OpenClaw cron delivery for daily and weekly reporting flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily internship logbook drafts and weekly internship reports from GitHub and GitLab commit activity. Build Indonesian MIS-friendly summaries, prepare Telegram approval requests before submission, and install OpenClaw cron delivery for daily and weekly reporting flows.
 
-## Publisher: <br>
-[mozaldy](https://clawhub.ai/user/mozaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mozaldy](https://clawhub.ai/user/mozaldy)
 
-## Use Case: <br>
-Developers, engineering interns, and supervisors use this skill to turn same-day GitHub and GitLab commit activity into Indonesian internship logbook drafts, weekly reports, and approval-ready status messages. It supports repo-aware activity summaries and approval-before-submit workflows for MIS logbook reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install persistent scheduled reporting automation. <br>
-Mitigation: Review generated cron jobs before enabling them and disable jobs that are no longer needed. <br>
-Risk: MIS submission helpers can change account data if run after approval. <br>
-Mitigation: Do not run submission helpers until the pending draft and the related MIS submission behavior have been reviewed and explicitly approved. <br>
-Risk: Commit-derived summaries and local configuration may contain sensitive project or account details. <br>
-Mitigation: Keep the local .env file private, review Telegram-bound messages before sending, and back up HEARTBEAT.md before enabling recurring flows. <br>
+## Use Case:
 
+Developers and internship students use this skill to turn GitHub and GitLab commit activity into Indonesian daily logbook drafts, weekly internship reports, and approval-before-submit Telegram workflows.
 
-## Reference(s): <br>
-- [Indonesian Logbook Formatting Guide](references/format-guide.md) <br>
-- [Repository Context Overrides](references/repo-contexts.json) <br>
-- [Daily Commit Logbook release page](https://clawhub.ai/mozaldy/daily-commit-logbook) <br>
-- [MIS portal referenced by the skill](https://online.mis.pens.ac.id/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, Indonesian text snippets, Telegram-ready messages, shell commands, and local configuration entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily and weekly report artifacts, pending MIS drafts, and optional recurring OpenClaw cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup scripts install recurring OpenClaw cron jobs and modify local scheduling state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated cron jobs before relying on them, and back up HEARTBEAT.md plus crontab or OpenClaw cron configuration before setup.
+
+Risk: The security summary identifies an unsafe executable .env configuration path.
+
+Mitigation: Avoid running setup until .env handling is fixed, and keep any local .env file limited to trusted simple assignments.
+
+Risk: The skill reads GitHub/GitLab activity and can deliver summaries through Telegram or a MIS submission flow.
+
+Mitigation: Use it only in workspaces where those account reads and delivery destinations are intended, and keep the approval step before MIS submission.
+
+## Reference(s):
+
+- [Indonesian Logbook Formatting Guide](references/format-guide.md)
+- [Repository Context Configuration](references/repo-contexts.json)
+- [Daily Commit Logbook on ClawHub](https://clawhub.ai/mozaldy/skills/daily-commit-logbook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown reports, Indonesian text summaries, LaTeX report artifacts, shell commands, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write dated report files, pending MIS drafts, OpenClaw cron job configuration, and Telegram-ready approval messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

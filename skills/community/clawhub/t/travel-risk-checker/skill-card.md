@@ -1,42 +1,57 @@
-## Description: <br>
-Assesses tight transit connections, recommends delay-ready airport hotels, and checks late-arrival last-mile transport options for travel itineraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses travel disruption risk for tight flight connections, delayed-arrival hotel needs, and late-night last-mile transport availability.
 
-## Publisher: <br>
-[mlyjqx](https://clawhub.ai/user/mlyjqx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlyjqx](https://clawhub.ai/user/mlyjqx)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to flag risky connections, find hotels suitable for delayed late-night arrivals, and identify last-mile transport gaps before or during a trip. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route itinerary, airport, city, and location-related data to external travel, hotel, and transport MCP providers. <br>
-Mitigation: Install it only with trusted providers, control which API keys are available, and disclose external data processing to users. <br>
-Risk: Proactive SMS, email, or push travel alerts may contact users unexpectedly. <br>
-Mitigation: Keep proactive notifications opt-in and allow users to disable risk checks or alert channels. <br>
-Risk: Travel, hotel, and transport recommendations may be inaccurate when provider data is unavailable, delayed, or cached. <br>
-Mitigation: Treat outputs as decision support and ask users to confirm time-sensitive itinerary, hotel, and local transport details before relying on them. <br>
+## Use Case:
 
+External travelers and travel-service agents use this skill to evaluate connection risk, identify airport hotels for significant delays, and plan backup transport after late arrivals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mlyjqx/travel-risk-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown travel risk assessments and recommendations with MCP configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk levels, time estimates, hotel options, transport status, and suggested next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter and package.json list 0.1.0) <br>
+Risk: The skill configures unpinned external MCP packages for travel, hotel, and city transport data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or otherwise vet MCP packages before installation and review package provenance during deployment.
+
+Risk: The skill uses travel-related API keys and may access order, location, flight, hotel, and transport data.
+
+Mitigation: Use scoped, rotatable API keys and clearly disclose what trip and location data may be sent to outside services.
+
+Risk: The security verdict is suspicious due to dependency and data-sharing concerns.
+
+Mitigation: Review the skill before installing and deploy only in environments where external services are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mlyjqx/skills/travel-risk-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown-style travel risk assessments, recommendations, and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on travel order, location, flight status, hotel, and transport data supplied by external MCP services.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter/package.json report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

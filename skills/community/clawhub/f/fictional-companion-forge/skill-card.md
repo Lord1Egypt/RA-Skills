@@ -1,43 +1,59 @@
-## Description: <br>
-Turn a fictional character from games, films, TV, novels, comics, or anime into a deployable OpenClaw companion agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a fictional character from games, films, TV, novels, comics, or anime into a deployable OpenClaw companion package centered on soul.md, identity.md, memory.md, and agents.md.
 
-## Publisher: <br>
-[aliciawque](https://clawhub.ai/user/aliciawque) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aliciawque](https://clawhub.ai/user/aliciawque)
 
-## Use Case: <br>
-External users and developers use this skill to turn named fictional characters into OpenClaw companion-agent profiles with character-faithful voice, memory, identity, and interaction rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated fictional companions may include unwanted intensity, romance, violence, or unsupported canon inferences. <br>
-Mitigation: Review generated companion profiles before use and require canon or clearly marked inference for sparse source material. <br>
-Risk: The workflow could be misapplied to impersonate real people or present fan-inferred traits as official canon. <br>
-Mitigation: Use the skill for fictional characters only, and label fan-informed extensions instead of treating them as authoritative source facts. <br>
+## Use Case:
 
+External users and developers use this skill to generate character-faithful OpenClaw companion agent files from a named fictional character and optional source or version.
 
-## Reference(s): <br>
-- [Fictional Companion Forge on ClawHub](https://clawhub.ai/aliciawque/fictional-companion-forge) <br>
-- [Ghost character reference](references/cod-ghost.md) <br>
-- [Keegan P. Russ character reference](references/cod-keegan.md) <br>
-- [Konig character reference](references/cod-konig.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown companion-agent profile files such as soul.md, identity.md, memory.md, and agents.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Character analysis should distinguish canon facts from fan-informed or inferred extensions when source material is sparse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger wording may invoke the skill during ordinary discussion of fictional characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when the user explicitly asks to create or adapt a character companion.
+
+Risk: Character-generation outputs may overstate canon or blur fan-informed inference with source facts.
+
+Mitigation: Preserve canon-first handling and clearly mark inference or fan-informed extensions when provenance matters.
+
+Risk: In-character companion behavior may be inappropriate during an actual self-harm crisis.
+
+Mitigation: Break character and prioritize safety guidance when crisis language is present.
+
+## Reference(s):
+
+- [Ghost (Simon Riley) Character Reference](references/cod-ghost.md)
+- [Keegan P. Russ Character Reference](references/cod-keegan.md)
+- [Konig Character Reference](references/cod-konig.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown companion-agent files and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces soul.md, identity.md, memory.md, and agents.md content for an OpenClaw companion package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn7061qb57has37skkf6anv53d81pf49",
-  "slug": "openclaw-guardian-suite",
-  "version": "1.0.7",
-  "publishedAt": 1773198685259
+  "id": "openclaw-guardian",
+  "name": "OpenClaw 全能守护包",
+  "version": "1.0.3",
+  "author": "halfmoon82",
+  "requires_auth": true,
+  "auth_skill_id": "openclaw-guardian",
+  "license": "Proprietary - Commercial License",
+  "license_terms": "购买后授权终身有效，限单一 OpenClaw 实例使用。严禁以任何形式二次打包、出售或转让给第三方。每份安装副本含专属用户水印，违规可溯源追责。",
+  "price": {"CNY": 66, "USDT": 10},
+  "anti_redistribution": true,
+  "bundle": true,
+  "bundle_skills": [
+    "config-preflight-validator",
+    "model-failover-doctor",
+    "gateway-auto-rollback",
+    "config-modification",
+    "openclaw-health-audit",
+    "compaction-proxy",
+    "skill-safe-install"
+  ],
+  "clawhub_slug": "openclaw-guardian-suite",
+  "clawhub_url": "https://clawhub.ai/halfmoon82/openclaw-guardian-suite",
+  "tags": ["guardian", "system", "bundle", "stability", "monitoring"],
+  "minOpenclawVersion": "2026.3.0",
+  "dependencies": {
+    "python": ">=3.9",
+    "node": ">=18",
+    "system": ["curl", "openssl", "rsync"]
+  },
+  "changelog": [
+    "v1.0.0: 初版 OpenClaw 全能守护包，含7个系统守护技能 + IP保护 + 用户水印",
+    "v1.0.3: 修复新用户环境 oc-pay-sdk 缺失问题，将 auth.sh 随包分发至 lib/sdk/"
+  ]
 }

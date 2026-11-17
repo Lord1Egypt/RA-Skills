@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 组件图模板
+    展示组件+提供/需求接口+依赖关系
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow-dep" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 组件1: WebApp -->
+  <rect x="50" y="70" width="230" height="120" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <!-- 组件图标 -->
+  <rect x="55" y="75" width="20" height="14" rx="2" fill="{{ACCENT_COLOR}}" fill-opacity="0.3" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <rect x="50" y="79" width="10" height="6" rx="1" fill="{{ACCENT_COLOR}}" fill-opacity="0.5" stroke="{{ACCENT_COLOR}}" stroke-width="0.5"/>
+  <text x="165" y="105" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«component»</text>
+  <text x="165" y="125" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{COMP_1}}</text>
+  <text x="165" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{COMP_1_DESC}}</text>
+
+  <!-- 提供接口（棒棒糖）: WebApp 提供 HTTP API -->
+  <line x1="280" y1="120" x2="330" y2="120" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="335" cy="120" r="6" fill="{{ACCENT_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="310" y="110" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">HTTP API</text>
+
+  <!-- 组件2: OrderService -->
+  <rect x="380" y="70" width="230" height="120" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="385" y="75" width="20" height="14" rx="2" fill="{{ACCENT_COLOR}}" fill-opacity="0.3" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <rect x="380" y="79" width="10" height="6" rx="1" fill="{{ACCENT_COLOR}}" fill-opacity="0.5" stroke="{{ACCENT_COLOR}}" stroke-width="0.5"/>
+  <text x="495" y="105" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«component»</text>
+  <text x="495" y="125" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{COMP_2}}</text>
+  <text x="495" y="145" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{COMP_2_DESC}}</text>
+
+  <!-- 需求接口（半圆弧）: OrderService 需要 HTTP API -->
+  <path d="M 380 114 A 8 8 0 0 1 380 126" fill="none" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <line x1="341" y1="120" x2="380" y2="120" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+
+  <!-- 组件3: PaymentGateway -->
+  <rect x="380" y="250" width="230" height="120" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="385" y="255" width="20" height="14" rx="2" fill="{{ACCENT_COLOR}}" fill-opacity="0.3" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <rect x="380" y="259" width="10" height="6" rx="1" fill="{{ACCENT_COLOR}}" fill-opacity="0.5" stroke="{{ACCENT_COLOR}}" stroke-width="0.5"/>
+  <text x="495" y="285" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT_COLOR}}">«component»</text>
+  <text x="495" y="305" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{COMP_3}}</text>
+  <text x="495" y="325" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{COMP_3_DESC}}</text>
+
+  <!-- 组件4: Database -->
+  <rect x="700" y="140" width="170" height="100" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="705" y="145" width="20" height="14" rx="2" fill="{{ACCENT3_COLOR}}" fill-opacity="0.3" stroke="{{ACCENT3_COLOR}}" stroke-width="1"/>
+  <rect x="700" y="149" width="10" height="6" rx="1" fill="{{ACCENT3_COLOR}}" fill-opacity="0.5" stroke="{{ACCENT3_COLOR}}" stroke-width="0.5"/>
+  <text x="785" y="175" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{ACCENT3_COLOR}}">«component»</text>
+  <text x="785" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{COMP_4}}</text>
+
+  <!-- 依赖关系: OrderService ──▶ PaymentGateway -->
+  <line x1="495" y1="190" x2="495" y2="248" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        stroke-dasharray="6,4" marker-end="url(#arrow-dep)"/>
+  <text x="505" y="225" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">«use»</text>
+
+  <!-- 依赖关系: OrderService ──▶ Database -->
+  <line x1="610" y1="130" x2="698" y2="170" stroke="{{ARROW_COLOR}}" stroke-width="2"
+        stroke-dasharray="6,4" marker-end="url(#arrow-dep)"/>
+  <text x="660" y="142" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">«use»</text>
+
+  <!-- 提供接口: PaymentGateway 提供 -->
+  <line x1="380" y1="300" x2="330" y2="300" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="324" cy="300" r="6" fill="{{ACCENT_COLOR}}"/>
+  <text x="300" y="290" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">PayAPI</text>
+
+  <!-- 图例 -->
+  <rect x="50" y="400" width="350" height="85" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="65" y="420" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+  <circle cx="75" cy="440" r="5" fill="{{ACCENT_COLOR}}"/>
+  <line x1="60" y1="440" x2="70" y2="440" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <text x="90" y="444" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">提供接口 Provided Interface</text>
+  <path d="M 60 455 A 7 7 0 0 1 60 467" fill="none" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <text x="90" y="466" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">需求接口 Required Interface</text>
+  <line x1="260" y1="440" x2="310" y2="440" stroke="{{ARROW_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="6,4" marker-end="url(#arrow-dep)"/>
+  <text x="320" y="444" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">依赖 Dependency</text>
+</svg>

@@ -1,40 +1,50 @@
-## Description: <br>
-Query Google Calendar free/busy status for multiple users to find a meeting slot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Google Calendar free/busy status for multiple users to find a meeting slot.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this recipe to query multiple Google Calendar free/busy schedules, identify overlapping availability, and create a meeting event in an available slot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can create a Google Calendar event and may notify invitees if executed with the wrong account, attendees, title, start time, or end time. <br>
-Mitigation: Before running the insert command, verify the Google account, target calendar, attendees, event title, start time, and end time. <br>
-Risk: The recipe depends on the local gws setup and the gws-calendar skill. <br>
-Mitigation: Install and use it only in environments where the gws configuration and gws-calendar skill are already trusted. <br>
+## Use Case:
 
+Employees, assistants, and scheduling agents use this recipe to compare Google Calendar availability across multiple attendees and select a shared meeting slot. It also shows how to create an event after the slot is chosen.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-find-free-time) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Google Workspace CLI commands and human review guidance for selecting a meeting slot before event creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: ClawHub release evidence; artifact metadata version 0.22.5) <br>
+Risk: The recipe can create calendar events even though it is described as finding free time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an agent that asks before running the calendar insert command and lets the user verify attendees, title, start time, and end time.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-find-free-time)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown recipe with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-calendar skill.]
+
+## Skill Version(s):
+
+1.0.13 (source: ClawHub release metadata; artifact frontmatter metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

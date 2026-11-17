@@ -1,44 +1,60 @@
-## Description: <br>
-Tracks stock prices and company news from Google Finance on a schedule, with watchlists, alerts, and heuristic BUY/HOLD/SELL signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track stock prices and company news from Google Finance on a schedule for watchlists, alerts, and heuristic BUY/HOLD/SELL signals.
 
-## Publisher: <br>
-[mli-cj](https://clawhub.ai/user/mli-cj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mli-cj](https://clawhub.ai/user/mli-cj)
 
-## Use Case: <br>
-External users and developers use this skill to monitor a stock watchlist, fetch Google Finance quote data, review price changes and company news, and produce informational stock reports or scheduled alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols are queried against public finance sites and saved in a local OpenClaw state file. <br>
-Mitigation: Install only when that data handling is acceptable, and review or delete the local watchlist state when it is no longer needed. <br>
-Risk: BUY/SELL signals are heuristic informational output and may be incorrect or misleading. <br>
-Mitigation: Treat reports as non-financial-advice summaries and verify decisions with independent financial analysis. <br>
-Risk: Cron or Slack reporting can create recurring stock reports after setup. <br>
-Mitigation: Enable scheduled reports only intentionally and review the configured cadence and recipients before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mli-cj/google-finance) <br>
-- [Google Finance](https://finance.google.com) <br>
-- [Stock Analysis Framework](references/analysis-framework.md) <br>
-- [Data Sources Reference](references/data-sources.md) <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to monitor stock watchlists, fetch Google Finance price data, generate heuristic BUY/HOLD/SELL reports, and set scheduled stock alerts. Its outputs are informational and not financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, CLI text output, and optional JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include price, change percentage, signal, confidence, score, factors, optional headlines, and a not-financial-advice disclaimer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stock symbols requested by the user are sent to Google Finance and possibly fallback finance or news sources described in the references.
+
+Mitigation: Install only if that disclosure is acceptable, and review configured fallback sources before use.
+
+Risk: BUY/HOLD/SELL signals, stop-loss values, and target prices are simple heuristics that may be incorrect or misleading.
+
+Mitigation: Treat outputs as informational only, not as professional financial advice or automated trading instructions.
+
+Risk: Cron and Slack announcement examples can distribute stock reports automatically.
+
+Mitigation: Review schedules, channels, recipients, and generated command text before enabling recurring reports.
+
+## Reference(s):
+
+- [Stock Analysis Framework](references/analysis-framework.md)
+- [Data Sources Reference](references/data-sources.md)
+- [Google Finance](https://finance.google.com)
+- [Google Finance quote endpoint pattern](https://www.google.com/finance/quote/*)
+- [ClawHub skill page](https://clawhub.ai/mli-cj/skills/google-finance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style stock reports and optional JSON output; setup guidance includes shell commands for scheduled checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include symbol, price, percent change, heuristic signal, confidence, score, alerts, and a financial-advice disclaimer.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Natural Language Planner turns natural conversation into organized local tasks and projects with Markdown storage and a local Kanban dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural language task and project management that captures tasks from conversation, organizes them into projects, tracks progress, and serves a local Kanban dashboard.
 
-## Publisher: <br>
-[bparticle](https://clawhub.ai/user/bparticle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bparticle](https://clawhub.ai/user/bparticle)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to capture tasks and projects from conversation, organize them as local Markdown/YAML files, track priorities and deadlines, and view work in a local dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The unauthenticated dashboard and attachments may expose task data when LAN mode, tunnels, static hosting, or persistent services are enabled. <br>
-Mitigation: Keep the dashboard bound to localhost for sensitive work and avoid LAN mode, public tunnels, static hosting, and systemd persistence unless the exposure is understood. <br>
-Risk: Conversation-derived tasks may include sensitive information stored in local Markdown files. <br>
-Mitigation: Use an appropriate local workspace location and protect filesystem access to planner data. <br>
+## Use Case:
 
+External users and developers use this skill to turn natural conversation into local Markdown task and project records, maintain project status, and view work through a local Kanban dashboard.
 
-## Reference(s): <br>
-- [Natural Language Planner README](artifact/README.md) <br>
-- [Architecture Overview](artifact/ARCHITECTURE.md) <br>
-- [Conversation Examples](artifact/examples/conversation_examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bparticle/natural-language-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline Python or shell snippets plus local Markdown/YAML task and project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local workspace files and start a local unauthenticated dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Unauthenticated task data may be exposed if the dashboard is bound to a LAN address or shared through a public tunnel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the dashboard bound to localhost for normal use, and use trusted access controls before enabling network access, public tunnels, static hosting, or persistent services for sensitive data.
+
+Risk: The skill writes local task and project Markdown in the configured planner workspace.
+
+Mitigation: Install only if local planner file writes are acceptable, choose the workspace path deliberately, and keep backups or version control for important task data.
+
+Risk: Setup, dashboard exposure, or persistence workflows may propose shell commands, including sudo commands.
+
+Mitigation: Review all shell and sudo commands before execution, especially commands that expose the dashboard or create persistent services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bparticle/skills/natural-language-planner)
+- [README](artifact/README.md)
+- [Architecture](artifact/ARCHITECTURE.md)
+- [License](artifact/LICENSE.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell command snippets, plus local Markdown task and project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start or manage a local dashboard and write task, project, index, configuration, and attachment files in the configured planner workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

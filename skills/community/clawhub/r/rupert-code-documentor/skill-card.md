@@ -1,41 +1,49 @@
-## Description: <br>
-Automatically generates detailed, convention-aware documentation for codebases, including READMEs, API references, architecture notes, contributing guides, changelogs, code comments, and function documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate detailed and convention-compliant documentation for codebases in multiple languages, including README, API docs, and function comments.
 
-## Publisher: <br>
-[rupertnt034](https://clawhub.ai/user/rupertnt034) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rupertnt034](https://clawhub.ai/user/rupertnt034)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to draft and update project documentation across common programming languages. It is suited for creating project READMEs, API documentation, architecture docs, contributing guides, changelogs, code comments, and function-level documentation from code context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation may expose private implementation details, internal endpoints, or sensitive examples if accepted without review. <br>
-Mitigation: Review generated documentation before committing or publishing it, and remove sensitive implementation details, internal service names, private endpoints, credentials, and non-public examples. <br>
-Risk: Generated documentation can become inaccurate if it overstates behavior or drifts from the codebase. <br>
-Mitigation: Check generated READMEs, API references, comments, and changelog entries against the current code and tests before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or improve project documentation, including READMEs, API references, architecture notes, contributing guides, changelogs, and function comments across common programming languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rupertnt034/rupert-code-documentor) <br>
-- [Source skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown, prose, code comments, and documentation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include README sections, API reference tables, function docstrings, examples, contributing guidance, changelog entries, and comments tailored to the target language and requested documentation style.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated documentation changes may touch many files or add comments across a codebase.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated file edits before accepting them, especially broad comment additions or documentation rewrites.
+
+## Reference(s):
+
+- [Code Documentor Skill Page](https://clawhub.ai/rupertnt034/skills/rupert-code-documentor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, inline code examples, documentation templates, and file-editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce broad documentation edits or generated documentation files depending on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

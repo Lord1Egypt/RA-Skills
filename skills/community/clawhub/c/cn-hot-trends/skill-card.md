@@ -1,45 +1,62 @@
-## Description: <br>
-聚合中国主流平台热点榜单，帮助代理获取实时热搜、热议、科技、财经、影视、音乐等多维度热点内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates real-time hot lists from major Chinese platforms and summarizes trending search, discussion, technology, finance, entertainment, and music topics.
 
-## Publisher: <br>
-[SunGang-pine](https://clawhub.ai/user/SunGang-pine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sungang-pine](https://clawhub.ai/user/sungang-pine)
 
-## Use Case: <br>
-External users and developers use this skill to gather and summarize public Chinese trending-topic lists across platforms such as Weibo, Baidu, Zhihu, Douyin, Bilibili, 36Kr, and Huxiu. It supports general daily trend briefs as well as platform- or category-specific trend lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some platform requests may require cookies or user-agent headers, and cookies can act like account access. <br>
-Mitigation: Use public trend lookups by default and provide cookies only when necessary for the specific query and after understanding the account-access implications. <br>
-Risk: Broad activation phrases may cause the skill to be used for general public trend lookups across several sites. <br>
-Mitigation: Keep use to public trending-topic retrieval and limit each aggregation to a small set of relevant platforms. <br>
+## Use Case:
 
+External users and analysts use this skill to ask for current Chinese-platform trending topics, either as a general multi-platform brief or filtered by platform or category.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SunGang-pine/cn-hot-trends) <br>
-- [Weibo Hot Search API](https://weibo.com/ajax/side/hotSearch) <br>
-- [Baidu Realtime Hot Search](https://top.baidu.com/board?tab=realtime) <br>
-- [Zhihu Billboard](https://www.zhihu.com/billboard) <br>
-- [Bilibili Popular Ranking](https://www.bilibili.com/v/popular/rank/all) <br>
-- [36Kr Hot List](https://36kr.com/hot-list/catalog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown trend brief with optional inline PowerShell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform sections, ranked topic lists, heat indicators, keyword summaries, and graceful skips when a platform cannot be fetched.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may fetch data from multiple public Chinese websites for a trend request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound access to those public sites is acceptable, and limit requests to the platforms needed for the task.
+
+Risk: Some platforms may return more complete results when cookies are supplied, which can share account-context data.
+
+Mitigation: Do not provide platform cookies unless the user explicitly chooses to share them for a specific query.
+
+Risk: Trending lists are time-sensitive and source pages can fail or change format.
+
+Mitigation: Treat the output as a current brief from available sources and skip failed platforms rather than relying on a single list.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sungang-pine/skills/cn-hot-trends)
+- [Weibo Hot Search API](https://weibo.com/ajax/side/hotSearch)
+- [Baidu Realtime Hot List](https://top.baidu.com/board?tab=realtime)
+- [Zhihu Billboard](https://www.zhihu.com/billboard)
+- [Douyin Hot List](https://www.douyin.com/hot)
+- [Bilibili Popular Ranking](https://www.bilibili.com/v/popular/rank/all)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown trend brief with ranked lists, keyword summary, and optional PowerShell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are time-sensitive and depend on availability of the source platforms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

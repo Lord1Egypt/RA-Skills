@@ -1,46 +1,63 @@
-## Description: <br>
-Configures and manages a local Google Chrome debug-mode browser for OpenClaw browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and manages a local Chrome debug-mode browser for OpenClaw browser automation, including startup, status checks, OpenClaw browser configuration, troubleshooting, and shutdown guidance.
 
-## Publisher: <br>
-[liulike](https://clawhub.ai/user/liulike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liulike](https://clawhub.ai/user/liulike)
 
-## Use Case: <br>
-Developers and automation users use this skill to start, stop, troubleshoot, and configure a local Chrome instance for OpenClaw browser tasks such as JavaScript-rendered pages, screenshots, form interaction, and page analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables powerful local Chrome control through CDP for browser automation. <br>
-Mitigation: Use it only on trusted machines, keep the debug port bound to localhost, use a disposable Chrome profile, and close Chrome when automation is finished. <br>
-Risk: The skill promotes private-network access and broad SSRF bypass behavior. <br>
-Mitigation: Disable private-network access unless it is explicitly required, and prefer a narrow hostname allowlist for routine use. <br>
-Risk: The setup flow can modify OpenClaw browser configuration and launch or stop local Chrome processes. <br>
-Mitigation: Review the configuration change before use, back up existing OpenClaw settings, and run the skill in an isolated environment when possible. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw browser automation to a locally running Chrome instance when JavaScript rendering, screenshots, page analysis, or interactive web operations are needed. It is also used as a fallback or troubleshooting path when the OpenClaw-managed browser is unavailable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liulike/browser-local-chrome) <br>
-- [README.md](README.md) <br>
-- [INSTALL.md](INSTALL.md) <br>
-- [HYBRID-MODE.md](HYBRID-MODE.md) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands and configuration target local Chrome, localhost CDP, and OpenClaw browser settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and _meta.json) <br>
+Risk: The security evidence says the skill weakens browser network protections by enabling private-network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted local environment, prefer a hostname allowlist over broad private-network access, and review OpenClaw browser configuration before use.
+
+Risk: The security evidence says setup and configuration scripts can overwrite OpenClaw browser configuration.
+
+Mitigation: Back up openclaw.json before running setup or configure scripts, and review the resulting browser profile and SSRF policy before restarting the gateway.
+
+Risk: The security evidence says local scripts can run shell commands from unvalidated inputs and that stop-chrome.js may close unrelated Chrome sessions.
+
+Mitigation: Do not pass untrusted port, version, or output-file arguments to the scripts, and close unrelated Chrome work before running the shutdown script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liulike/skills/browser-local-chrome)
+- [Publisher profile](https://clawhub.ai/user/liulike)
+- [README.md](artifact/README.md)
+- [HYBRID-MODE.md](artifact/HYBRID-MODE.md)
+- [INSTALL.md](artifact/INSTALL.md)
+- [QUICKSTART.md](artifact/QUICKSTART.md)
+- [RELEASE.md](artifact/RELEASE.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local browser lifecycle commands, OpenClaw configuration steps, status checks, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, artifact _meta.json, RELEASE.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

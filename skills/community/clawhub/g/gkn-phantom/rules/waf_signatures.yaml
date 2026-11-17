@@ -1,0 +1,484 @@
+# GKN-Phantom v3.0 — WAF Signature Definitions
+# =============================================
+# Extracted from adaptive_engine.py WAF_SIGNATURES dict.
+# Each entry defines how to detect a specific WAF/security appliance
+# via HTTP response headers, status codes, and body patterns.
+#
+# The generic entry serves as a catch-all fallback.
+#
+# Total: 27 signatures (3 tiers + generic)
+
+# ---- Tier 1: Global CDN / Cloud WAFs -------------------------------------
+
+- id: "waf-cloudflare"
+  name: "Cloudflare"
+  vendor: "Cloudflare, Inc."
+  tier: 1
+  category: "cdn_waf"
+  header: "cf-ray"
+  status: [403, 503]
+  body:
+    - "cloudflare"
+    - "attention required"
+    - "cf-chl-bypass"
+    - "cf-cache-status"
+  bypass_hints:
+    - "Origin IP discovery via DNS history"
+    - "Cloudflare Workers abuse"
+    - "CF-Host header override"
+  description: "Cloudflare reverse-proxy CDN/WAF"
+
+- id: "waf-akamai"
+  name: "Akamai"
+  vendor: "Akamai Technologies"
+  tier: 1
+  category: "cdn_waf"
+  header: "akamai-grn"
+  status: [403]
+  body:
+    - "access denied"
+    - "akamai"
+    - "reference #"
+  bypass_hints:
+    - "Origin IP discovery via DNS history"
+    - "Akamai staging environment"
+    - "Pragma: akamai-x-get-cache-key"
+  description: "Akamai Kona Site Defender / CDN WAF"
+
+- id: "waf-aws"
+  name: "AWS WAF / CloudFront"
+  vendor: "Amazon Web Services"
+  tier: 1
+  category: "cdn_waf"
+  header: "x-amzn-requestid"
+  status: [403]
+  body:
+    - "request blocked"
+    - "awswaf"
+    - "awselb"
+  bypass_hints:
+    - "Origin ALB/EC2 IP discovery"
+    - "CloudFront header injection"
+    - "X-Forwarded-For spoofing"
+  description: "AWS WAF integrated with CloudFront or ALB"
+
+- id: "waf-imperva"
+  name: "Imperva / Incapsula"
+  vendor: "Imperva, Inc."
+  tier: 1
+  category: "cdn_waf"
+  header: "x-cdn"
+  status: [403]
+  body:
+    - "imperva"
+    - "incapsula"
+    - "blocked by incapsula"
+    - "_Incapsula_Resource"
+  bypass_hints:
+    - "Origin IP discovery"
+    - "Imperva debug mode"
+    - "Cookie manipulation (incap_ses, visid_incap)"
+  description: "Imperva Cloud WAF (formerly Incapsula)"
+
+- id: "waf-f5-asm"
+  name: "F5 BIG-IP ASM"
+  vendor: "F5 Networks"
+  tier: 1
+  category: "appliance_waf"
+  header: ~
+  status: [403]
+  body:
+    - "the requested url was rejected"
+    - "please consult with your administrator"
+    - "f5 networks"
+    - "big-ip"
+  bypass_hints:
+    - "HTTP parameter pollution"
+    - "BIG-IP iRule bypass"
+    - "CVE-2020-5902 (TMUI RCE)"
+  description: "F5 BIG-IP Application Security Manager (on-premise/appliance)"
+
+- id: "waf-fortiweb"
+  name: "Fortinet FortiWeb"
+  vendor: "Fortinet, Inc."
+  tier: 1
+  category: "appliance_waf"
+  header: ~
+  status: [403, 406]
+  body:
+    - "fortiweb"
+    - "attack detected"
+    - "application firewall"
+  bypass_hints:
+    - "HTTP/2 downgrade"
+    - "Content-Encoding manipulation"
+    - "HTTP verb tampering"
+  description: "Fortinet FortiWeb Web Application Firewall"
+
+- id: "waf-barracuda"
+  name: "Barracuda WAF"
+  vendor: "Barracuda Networks"
+  tier: 1
+  category: "appliance_waf"
+  header: ~
+  status: [403]
+  body:
+    - "barracuda"
+    - "barra counter"
+    - "session blocked"
+  bypass_hints:
+    - "Cookie manipulation"
+    - "Encoded payloads"
+    - "Parameter pollution"
+  description: "Barracuda Web Application Firewall"
+
+- id: "waf-sucuri"
+  name: "Sucuri CloudProxy"
+  vendor: "Sucuri / GoDaddy"
+  tier: 1
+  category: "cdn_waf"
+  header: "x-sucuri-id"
+  status: [403]
+  body:
+    - "sucuri"
+    - "cloudproxy"
+    - "sucuri/cloudproxy"
+    - "access denied - sucuri"
+  bypass_hints:
+    - "Origin IP discovery"
+    - "Sucuri cache bypass"
+    - "DNS record leak"
+  description: "Sucuri Website Firewall (CloudProxy)"
+
+- id: "waf-radware"
+  name: "Radware AppWall"
+  vendor: "Radware Ltd."
+  tier: 1
+  category: "appliance_waf"
+  header: "x-sl-compstate"
+  status: [403]
+  body:
+    - "unauthorized activity"
+    - "cloud waf"
+    - "appwall"
+  bypass_hints:
+    - "HTTP request splitting"
+    - "Encoding obfuscation"
+    - "Header manipulation"
+  description: "Radware AppWall Web Application Firewall"
+
+- id: "waf-f5-silverline"
+  name: "F5 Silverline"
+  vendor: "F5 Networks"
+  tier: 1
+  category: "cdn_waf"
+  header: ~
+  status: [403]
+  body:
+    - "blocked by silverline"
+    - "request blocked"
+    - "f5 silverline"
+  bypass_hints:
+    - "Origin IP discovery"
+    - "HTTP/2 multiplexing"
+    - "Silverline policy bypass"
+  description: "F5 Silverline cloud-based WAF/DDoS protection"
+
+# ---- Tier 2: Chinese WAFs (国内安全厂商) -----------------------------------
+
+- id: "waf-safedog"
+  name: "安全狗 SafeDog"
+  vendor: "厦门服云信息科技有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "safedog"
+    - "安全狗"
+    - "waf"
+  bypass_hints:
+    - "Content-Disposition double-write (南开案例)"
+    - "Unicode encoding bypass"
+    - "WebSocket tunneling"
+    - "HTTP/2 smuggling"
+  description: "安全狗 (SafeDog) — 国内主机WAF/云WAF"
+
+- id: "waf-yundun"
+  name: "阿里云盾 Alibaba Cloud Shield"
+  vendor: "阿里云 (Alibaba Cloud)"
+  tier: 2
+  category: "chinese_waf"
+  header: "yundun"
+  status: [405, 403]
+  body:
+    - "yundun"
+    - "云盾"
+  bypass_hints:
+    - "Chunked transfer encoding"
+    - "HTTP method override"
+    - "CDN-based origin bypass"
+  description: "阿里云盾 (YunDun) — Alibaba Cloud WAF"
+
+- id: "waf-tencent"
+  name: "腾讯云WAF Tencent Cloud WAF"
+  vendor: "腾讯云 (Tencent Cloud)"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "tencent"
+    - "tencent cloud waf"
+    - "腾讯云waf"
+    - "waf.tencent"
+  bypass_hints:
+    - "Origin IP discovery via Censys/Shodan"
+    - "HTTP parameter pollution"
+    - "JSON/XML content-type bypass"
+  description: "腾讯云Web应用防火墙 (Tencent Cloud WAF)"
+
+- id: "waf-sangfor"
+  name: "深信服 Sangfor WAF"
+  vendor: "深信服科技股份有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "sangfor"
+    - "深信服"
+    - "sangfor waf"
+  bypass_hints:
+    - "Fragmented HTTP requests"
+    - "Multipart form-data bypass"
+    - "Encoding layer confusion"
+  description: "深信服 (Sangfor) Web应用防火墙"
+
+- id: "waf-chaitin"
+  name: "长亭雷池 SafeLine"
+  vendor: "北京长亭科技有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: "x-safeline"
+  status: [403]
+  body:
+    - "safeline"
+    - "chaitin"
+    - "雷池"
+    - "sl-ce"
+  bypass_hints:
+    - "P-crew semantic engine bypass"
+    - "HTTP request smuggling"
+    - "Unusual content-type"
+  description: "长亭雷池 SafeLine — 语义分析WAF"
+
+- id: "waf-venustech"
+  name: "启明星辰 VenusTech 天清WAF"
+  vendor: "北京启明星辰信息安全技术有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "venustech"
+    - "启明星辰"
+    - "天清waf"
+  bypass_hints:
+    - "Encoded payloads"
+    - "Request obfuscation"
+    - "Protocol-level evasion"
+  description: "启明星辰天清Web应用防火墙 (VenusTech)"
+
+- id: "waf-nsfocus"
+  name: "绿盟 Nsfocus WAF"
+  vendor: "绿盟科技集团股份有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "nsfocus"
+    - "绿盟"
+    - "nsfocus waf"
+  bypass_hints:
+    - "HTTP/2 downgrade attacks"
+    - "Chunked encoding evasion"
+    - "SQLi semantic bypass"
+  description: "绿盟科技Web应用防火墙 (NSFOCUS WAF)"
+
+- id: "waf-hillstone"
+  name: "山石网科 Hillstone"
+  vendor: "山石网科通信技术股份有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "hillstone"
+    - "山石"
+    - "stoneos"
+  bypass_hints:
+    - "Parameter pollution"
+    - "Encoding variation"
+    - "Boundary manipulation"
+  description: "山石网科 (Hillstone) Web应用防火墙 / StoneOS"
+
+- id: "waf-topsec"
+  name: "天融信 TopSec WAF"
+  vendor: "北京天融信网络安全技术有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403]
+  body:
+    - "topsec"
+    - "天融信"
+    - "topsecwaf"
+  bypass_hints:
+    - "Multipart encoding"
+    - "HTTP verb variation"
+    - "Header injection"
+  description: "天融信 (TopSec) Web应用防火墙"
+
+- id: "waf-huawei"
+  name: "华为云WAF Huawei Cloud WAF"
+  vendor: "华为技术有限公司"
+  tier: 2
+  category: "chinese_waf"
+  header: ~
+  status: [403, 418]
+  body:
+    - "huawei"
+    - "huaweicloud waf"
+    - "华为云waf"
+  bypass_hints:
+    - "Origin IP via CNAME chain"
+    - "HTTP/2 multiplexing abuse"
+    - "Host header manipulation"
+  description: "华为云Web应用防火墙 (Huawei Cloud WAF)"
+
+- id: "waf-baidu"
+  name: "百度云加速 Baidu YunJiaSu"
+  vendor: "百度 (Baidu)"
+  tier: 2
+  category: "chinese_waf"
+  header: "x-bce"
+  status: [403]
+  body:
+    - "baidu"
+    - "yunjiasu"
+    - "云加速"
+  bypass_hints:
+    - "Origin IP discovery"
+    - "CDN cache bypass"
+    - "DNS rebinding"
+  description: "百度云加速 (Baidu YunJiaSu) — CDN/WAF"
+
+# ---- Tier 3: Open-source / Niche WAFs -------------------------------------
+
+- id: "waf-modsecurity"
+  name: "ModSecurity"
+  vendor: "Trustwave / OWASP (Open Source)"
+  tier: 3
+  category: "opensource_waf"
+  header: "mod_security"
+  status: [403]
+  body:
+    - "mod_security"
+    - "not acceptable"
+    - "mod-security"
+  bypass_hints:
+    - "CRS rule-specific bypass"
+    - "HTTP parameter pollution"
+    - "Encoding bypass (UTF-8 overlong)"
+    - "Multipart evasion"
+  description: "ModSecurity — open-source WAF engine (Apache/Nginx/IIS module)"
+
+- id: "waf-naxsi"
+  name: "Naxsi"
+  vendor: "NBS System (Open Source)"
+  tier: 3
+  category: "opensource_waf"
+  header: ~
+  status: [403, 418]
+  body:
+    - "naxsi"
+    - "naxsi/waf"
+    - "blocked by naxsi"
+  bypass_hints:
+    - "Score-threshold manipulation"
+    - "Extremely long payloads"
+    - "Rule whitelist enumeration"
+  description: "Naxsi — open-source WAF (Nginx module)"
+
+- id: "waf-wallarm"
+  name: "Wallarm"
+  vendor: "Wallarm Inc."
+  tier: 3
+  category: "ai_waf"
+  header: "x-wallarm"
+  status: [403]
+  body:
+    - "wallarm"
+    - "wallarm waf"
+  bypass_hints:
+    - "Behavioral analysis evasion"
+    - "Low-and-slow attacks"
+    - "Legitimate traffic mimicry"
+  description: "Wallarm — AI-powered application security platform"
+
+- id: "waf-wordfence"
+  name: "Wordfence"
+  vendor: "Defiant, Inc."
+  tier: 3
+  category: "cms_waf"
+  header: ~
+  status: [403, 503]
+  body:
+    - "generated by wordfence"
+    - "wordfence"
+    - "blocked by wordfence"
+  bypass_hints:
+    - "Wordfence plugin version enumeration"
+    - "Rate limit bypass via IP rotation"
+    - "Brute-force protection timeout bypass"
+  description: "Wordfence — WordPress firewall and security plugin"
+
+- id: "waf-cloudbric"
+  name: "Cloudbric"
+  vendor: "Penta Security Systems"
+  tier: 3
+  category: "cdn_waf"
+  header: ~
+  status: [403]
+  body:
+    - "cloudbric"
+    - "penta security"
+  bypass_hints:
+    - "Origin IP discovery"
+    - "Encoding obfuscation"
+    - "Cookie manipulation"
+  description: "Cloudbric — cloud-based WAF by Penta Security"
+
+# ---- Generic fallback -----------------------------------------------------
+
+- id: "waf-generic"
+  name: "Generic / Unknown WAF"
+  vendor: "Unknown"
+  tier: 3
+  category: "generic"
+  header: ~
+  status: [403, 406, 429]
+  body:
+    - "blocked"
+    - "forbidden"
+    - "request rejected"
+    - "intercepted"
+    - "access denied"
+  bypass_hints:
+    - "Try all encoding/obfuscation strategies"
+    - "Probe with benign payloads to map detection rules"
+    - "Test HTTP method variation (GET vs POST vs PUT)"
+    - "Test content-type variation (JSON vs XML vs form-data)"
+  description: "Generic fallback signature for unidentified WAF products"

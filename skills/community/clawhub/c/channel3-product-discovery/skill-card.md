@@ -1,44 +1,55 @@
-## Description: <br>
-Searches real product data for prices, availability, merchant links, product recommendations, comparisons, and visual-similarity shopping queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Channel3 product data for products, prices, availability, merchant offers, and buy links across retailers.
 
-## Publisher: <br>
-[evanfen-c3](https://clawhub.ai/user/evanfen-c3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanfen-c3](https://clawhub.ai/user/evanfen-c3)
 
-## Use Case: <br>
-External users and shopping agents use this skill to find products, compare prices, check merchant availability, and produce concise recommendations from Channel3 catalog results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries and image URLs are sent to Channel3. <br>
-Mitigation: Avoid sensitive personal information in searches and only install when that data sharing is acceptable. <br>
-Risk: The skill uses a Channel3 API key and may consume credits or incur billing. <br>
-Mitigation: Use a dedicated API key and monitor credit or billing usage. <br>
-Risk: Product buy links redirect through buy.trychannel3.com with affiliate tracking. <br>
-Mitigation: Disclose redirected merchant links when presenting results and let users inspect links before purchase. <br>
+## Use Case:
 
+External users and shopping agents use this skill to find products, compare prices and availability, and return concise recommendations with merchant links.
 
-## Reference(s): <br>
-- [Skill listing](https://clawhub.ai/evanfen-c3/channel3-product-discovery) <br>
-- [Channel3](https://trychannel3.com) <br>
-- [Channel3 API docs](https://docs.trychannel3.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries based on structured text product search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, network access to api.trychannel3.com, and a CHANNEL3_API_KEY secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Product search terms, filters, and image URLs are sent to Channel3 using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive purchase intents and private image URLs; review requests before running searches.
+
+Risk: Returned buy links may use affiliate-tracked redirects.
+
+Mitigation: Verify merchant destinations and disclose or review affiliate redirects where required.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/evanfen-c3/skills/channel3-product-discovery)
+- [Channel3 API docs](https://docs.trychannel3.com)
+- [Channel3 website](https://trychannel3.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured text from the search script, typically summarized into Markdown lists or comparison tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHANNEL3_API_KEY, curl, and jq; sends product queries, filters, and image URLs to Channel3.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact/skill.yaml lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

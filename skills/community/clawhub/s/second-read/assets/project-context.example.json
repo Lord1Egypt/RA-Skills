@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Example product (fictional)",
+    "kind": "product",
+    "source_id": "brief"
+  },
+  "campaign": {
+    "name": "Trial onboarding",
+    "goal": "Help first-time users start a legitimate trial",
+    "audience": "People who have never used the product",
+    "approved_offer": "Seven-day trial"
+  },
+  "sources": [
+    {
+      "id": "brief",
+      "kind": "author_brief",
+      "location": "Text provided by the author in this conversation"
+    },
+    {
+      "id": "house",
+      "kind": "house_style",
+      "location": "Illustrative internal rules supplied by the author"
+    }
+  ],
+  "rules": [
+    {
+      "id": "headline-truth",
+      "scope": ["landing_page", "email", "ad"],
+      "kind": "must",
+      "text": "Describe the approved trial, not permanent free access.",
+      "source_id": "brief",
+      "exception": "Only if a newer approved offer is provided."
+    },
+    {
+      "id": "voice-specificity",
+      "scope": ["all"],
+      "kind": "prefer",
+      "text": "Prefer specific observable actions over vague words like 'seamless'.",
+      "source_id": "house"
+    }
+  ]
+}

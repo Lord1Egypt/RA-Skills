@@ -1,40 +1,57 @@
-## Description: <br>
-(macOS) Discord voice assistant installer. Install/update discord-local-stt-tts (Discord voice, Discord local, local STT + local TTS) from GitHub Releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+(macOS) Discord voice assistant installer. Install/update discord-local-stt-tts (Discord voice, Discord local, local STT + local TTS) from GitHub Releases.
 
-## Publisher: <br>
-[vilmire](https://clawhub.ai/user/vilmire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vilmire](https://clawhub.ai/user/vilmire)
 
-## Use Case: <br>
-Developers and OpenClaw users use this macOS-only skill to install or update the discord-local-stt-tts plugin for Discord voice workflows with local STT and local TTS. It downloads the latest upstream GitHub Release, installs it into the OpenClaw plugin directory, and leaves plugin enablement/configuration to the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installer downloads and optionally builds the current upstream GitHub Release and its dependencies. <br>
-Mitigation: Install only if the upstream `vilmire/discord-local-stt-tts` project is trusted; review the release and package scripts first, or run dependency and build steps manually in a controlled environment. <br>
-Risk: Apple Speech and microphone permissions may be needed for local STT workflows. <br>
-Mitigation: Grant macOS Speech Recognition and Microphone permissions only when required for the chosen STT configuration, and review plugin settings before enabling it in OpenClaw. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [discord-local-stt-tts plugin repository](https://github.com/vilmire/discord-local-stt-tts) <br>
-- [ClawHub skill page](https://clawhub.ai/vilmire/discord-local-stt-tts-installer) <br>
+## Use Case:
 
+Developers and OpenClaw users on macOS use this skill to install or update the discord-local-stt-tts plugin for local speech-to-text and text-to-speech in Discord voice workflows. Users still need to restart OpenClaw and enable or configure the plugin separately.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only installer guidance; the skill does not modify openclaw.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer downloads mutable latest-release source from GitHub without a pinned checksum.
+
+Mitigation: Install only from a trusted upstream release, or inspect and pin a checksummed artifact before running the installer.
+
+Risk: If pnpm is available, local dependency installation and build scripts may run under the user's account.
+
+Mitigation: Review the downloaded source and dependencies before allowing the optional build step, and run the installer in a trusted user environment.
+
+Risk: The Discord voice workflow may require local microphone and speech recognition permissions on macOS.
+
+Mitigation: Grant only the permissions needed for the chosen local STT engine and review macOS privacy settings before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vilmire/skills/discord-local-stt-tts-installer)
+- [discord-local-stt-tts plugin repository](https://github.com/vilmire/discord-local-stt-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only installer guidance; may include OpenClaw restart, plugin configuration, ffmpeg, and macOS microphone or speech recognition permission notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

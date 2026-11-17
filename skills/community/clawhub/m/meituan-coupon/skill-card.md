@@ -1,45 +1,60 @@
-## Description: <br>
-美团红包助手 helps users claim Meituan coupons and red-packet offers across supported Meituan categories and query coupon claim history after Meituan account authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meituan Coupon Assistant helps users authenticate with Meituan, claim coupons across supported Meituan categories, and query previous coupon-claim records.
 
-## Publisher: <br>
-[meituan-openplatform](https://clawhub.ai/user/meituan-openplatform) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituan-openplatform](https://clawhub.ai/user/meituan-openplatform)
 
-## Use Case: <br>
-External users use this skill through an agent to authenticate with Meituan, claim eligible coupons, view coupon claim records, and optionally configure daily automatic coupon claiming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable Meituan login tokens and local coupon history for repeat use. <br>
-Mitigation: Install only when the publisher is trusted, prefer an isolated workspace, and clear stored authentication or device data when finished. <br>
-Risk: The skill can configure recurring automatic coupon claiming, which may perform ongoing account actions. <br>
-Mitigation: Enable auto-claim only when the user explicitly wants ongoing actions, and review or cancel scheduled tasks when no longer needed. <br>
-Risk: The security evidence flags shared local cache behavior that users should review before installation. <br>
-Mitigation: Use an isolated workspace for sensitive accounts and remove stored cache files after use if persistence is not desired. <br>
+## Use Case:
 
+External users use this skill to claim Meituan coupons for food delivery, dining, hotels, tickets, local services, instant retail, medicine, and entertainment, then check the status and validity period of prior claims. The workflow requires Meituan account authentication before coupon issuance or history lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meituan-openplatform/meituan-coupon) <br>
-- [Authentication flow](artifact/references/auth-flow.md) <br>
-- [Scheduled auto-claim rules](artifact/references/cron-rules.md) <br>
-- [Response copy templates](artifact/references/response-copy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with shell command invocations and JSON script results handled by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include coupon status tables, login prompts, scheduled-task setup guidance, and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill handles Meituan login credentials and can persist tokens across sessions, including in general agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, review credential storage before use, and disable or audit the memory-token fallback on shared or cloud agent hosts.
+
+Risk: The skill can create recurring coupon jobs that continue after the initial interaction.
+
+Mitigation: Require explicit user opt-in for scheduling, verify the created job and removal path, and periodically review active cron jobs.
+
+Risk: Server security evidence reports unsafe local file and command-handling code.
+
+Mitigation: Run the skill in an isolated, trusted environment and review shared cache access and command execution paths before deployment.
+
+## Reference(s):
+
+- [Authentication Flow](references/auth-flow.md)
+- [Scheduled Coupon Rules](references/cron-rules.md)
+- [Response Copy Templates](references/response-copy.md)
+- [ClawHub Skill Page](https://clawhub.ai/meituan-openplatform/skills/meituan-coupon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with coupon tables, plus JSON script results and shell commands for authentication, coupon issuance, history lookup, and scheduling.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Beijing time for date-sensitive coupon operations and may maintain local account, device, coupon-history, and schedule state.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

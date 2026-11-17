@@ -1,0 +1,4 @@
+interface:
+  display_name: "WebGL Liquid Glass"
+  short_description: "Build high-fidelity GPU liquid glass surfaces"
+  default_prompt: "Use $build-webgl-liquid-glass to add a polished WebGL glass surface to this interface."

@@ -1,39 +1,53 @@
-## Description: <br>
-Helps create, optimize, or audit migration-guide pages for users switching from competitors to a product. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create, optimize, or audit migration guides for users switching from competitors, including page structure, transfer scope, troubleshooting, internal links, and SEO metadata.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, product, and growth teams use this skill to draft migration pages that explain how users can switch from a competitor, what data transfers, common troubleshooting steps, and conversion-focused calls to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration pages may overstate supported imports, transfer limits, competitor details, or customer metrics. <br>
-Mitigation: Review all generated migration claims against current product documentation and approved marketing data before publishing. <br>
+## Use Case:
 
+Marketing, product, and growth teams use this skill to plan migration pages for customers moving from competing SaaS, productivity, or tooling platforms. It guides page copy and structure for step-by-step migration guides, data transfer explanations, troubleshooting, calls to action, and SEO metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/migration-page-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces migration-page copy, page structure, data-transfer scope, troubleshooting content, internal-link suggestions, and SEO metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release metadata and skill frontmatter) <br>
+Risk: The skill may activate for broad migration-related phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that it is being used for migration page generation or audit work before applying its guidance.
+
+Risk: Migration page recommendations can omit product-specific transfer limits if project context is incomplete.
+
+Mitigation: Review generated migration copy against the product's actual import paths, supported data types, and support process before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/migration-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include headline copy, step-by-step migration guidance, data transfer scope, troubleshooting content, internal link suggestions, and SEO metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Provides shell commands for an AMM-named local entry manager with status, add, list, search, remove, export, stats, and config operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advertised as AMM/blockchain analysis, but the inspected artifact implements a local entry and configuration management CLI.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers or operators can use this skill as a local note and log manager for entries, exports, and simple configuration. Do not rely on it for AMM or blockchain security analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents itself as AMM or blockchain analysis, but the security evidence says the artifacts implement a persistent local entry manager. <br>
-Mitigation: Treat the skill as a local note/log manager only and do not use it for AMM mechanism analysis, protocol security evaluation, or on-chain decision support. <br>
-Risk: Entries and exports may persist sensitive notes, protocol details, or trading information under AMM_DIR, ~/.amm, or local export files. <br>
-Mitigation: Avoid storing private keys, secrets, confidential protocol notes, or trading information unless local persistence and export are acceptable. <br>
+## Use Case:
 
+Developers and operators can use this skill as a local CLI datastore for recording, searching, listing, removing, exporting, and configuring entries. Do not rely on it for AMM protocol analysis without independent review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/amm) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text command output with optional JSONL or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists local entries under AMM_DIR or ~/.amm and can export local data to files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The artifact is advertised as AMM analysis but behaves as a local entry/config datastore.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and do not use it for AMM protocol or security analysis unless separately validated.
+
+Risk: The script creates, modifies, deletes, and exports local files, with AMM_DIR controlling the data directory.
+
+Mitigation: Run it in a constrained workspace, set AMM_DIR to a dedicated directory, and avoid using sensitive paths.
+
+Risk: Configuration updates may be unsafe with untrusted keys or values.
+
+Mitigation: Only pass trusted configuration values and inspect config changes before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/amm)
+- [Publisher profile](https://clawhub.ai/user/bytesagain1)
+- [Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text CLI output with JSONL, JSON, or CSV file exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and modifies local files under AMM_DIR, defaulting to ~/.amm/.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

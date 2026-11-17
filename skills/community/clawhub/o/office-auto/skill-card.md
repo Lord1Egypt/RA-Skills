@@ -1,40 +1,49 @@
-## Description: <br>
-将口语化任务转为结构化工单并自动保存，助力会议记录和待办事项整理办公自动化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将口语化办公任务描述转换为结构化文本工单，并以时间戳文件保存到本地导出目录。
 
-## Publisher: <br>
-[linyao58](https://clawhub.ai/user/linyao58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linyao58](https://clawhub.ai/user/linyao58)
 
-## Use Case: <br>
-Office staff and agents use this skill to turn informal task notes, meeting summaries, and todo descriptions into saved work-ticket text files for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves whatever office text the user provides into a persistent exports folder. <br>
-Mitigation: Use it only for notes that are acceptable to store as files, and avoid passwords, regulated data, confidential meeting details, or personal information unless the storage location and retention policy are approved. <br>
-Risk: Generated work tickets may preserve raw informal instructions that need human review before follow-up. <br>
-Mitigation: Review generated ticket files before using them as authoritative task records. <br>
+## Use Case:
 
+Employees and operations staff use this skill to capture informal office notes, meeting summaries, and to-do descriptions as structured follow-up tickets. It is suited for routine office task tracking where local file retention is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linyao58/office-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Plain text status message and UTF-8 text work-ticket file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped Task_*.txt files under ./data/exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Office notes and task descriptions are written to timestamped files under ./data/exports, which can retain sensitive workplace content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential meeting notes, personal data, credentials, or regulated business information unless the runtime environment's retention and access controls are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linyao58/skills/office-auto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text status message and timestamped .txt work ticket]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes user-provided office notes to ./data/exports using timestamped filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

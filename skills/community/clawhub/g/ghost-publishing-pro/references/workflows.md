@@ -28,9 +28,9 @@ This single integration token covers the full publishing workflow: post creation
    - Full HTML content (see HTML Content Guidelines below)
    - Tags, excerpt, feature_image if ready
 3. Review in Ghost admin browser if needed
-4. Update post: PUT with `status: "published"` and `email_segment: "all"` to publish + send newsletter simultaneously
+4. Update post: `PUT /posts/{id}/?newsletter={newsletter_slug}&email_segment=all` with `status: "published"` and the current `updated_at` to publish + send newsletter simultaneously
 
-**Critical:** Ghost publish + newsletter send is ONE action. Don't publish first then try to send separately — you'll need to use Ghost admin to resend, which is clunky.
+**Critical:** Ghost publish + newsletter send is ONE action, and `newsletter`/`email_segment` go on the query string, not in the body. If a post was already published without the email, use Workflow 18.
 
 ---
 
@@ -138,17 +138,7 @@ Key book-style rules:
 - Wrap in `lang="en"` for hyphenation to work
 - `font-family: Georgia, serif` for book feel
 
-**YouTube embed (responsive):**
-```html
-<figure class="kg-card kg-embed-card">
-  <iframe width="560" height="315"
-    src="https://www.youtube-nocookie.com/embed/{VIDEO_ID}"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</figure>
-```
+**YouTube embed:** native Lexical `embed` card only. See SKILL.md gate `youtube_native_embed`. Never a raw iframe.
 
 **Email newsletter rules (critical):**
 - JS is stripped in Ghost email delivery — no interactive elements
@@ -205,7 +195,8 @@ Use case: Import a collection of stories or essays from a DOCX as individual Gho
 ## Common Pitfalls
 
 - **409 on PUT** — Always re-fetch post to get current `updated_at` before updating
-- **Email not sending** — `email_segment` only fires on first publish. If post was already published, use Ghost admin to send manually
+- **Email not sending** — `newsletter` and `email_segment` must be query-string params on the publishing call (the verified route), and the send fires only on draft → published. Already published and never emailed? Use Workflow 18.
+- **403 on /emails/** — that endpoint is staff-session only. Integration keys cannot create emails directly. Use the publish transition instead.
 - **HTML rendering wrong** — Always use `?source=html` parameter on POST/PUT
 - **Token expired mid-batch** — Regenerate token every 50 posts in long batch operations
 - **Rate limiting** — Add 500ms delay between API calls in batch scripts; Ghost will 429 without it
@@ -226,25 +217,24 @@ curl -s -X POST "{url}/ghost/api/admin/images/upload/" \
 # Copy the returned URL
 ```
 
-**Step 2: Create the post with embed + feature image**
+**Step 2: Create the post with feature image**, then **Step 3: insert the video as a native embed card** (fetch `lexical`, insert the embed node from SKILL.md after the intro paragraph, PUT with current `updated_at`). Create as draft, add the embed, then publish, so the email includes the card. Step 2 call: (`POST /posts/?source=html&newsletter={newsletter_slug}&email_segment=all` to also email it; drop the query params for web-only)
 ```json
 {
   "posts": [{
     "title": "Video Title",
-    "html": "<p>Intro paragraph setting up the video.</p>\n\n<figure class=\"kg-card kg-embed-card\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/{VIDEO_ID}\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></figure>\n\n<p>Description or transcript excerpt below the video.</p>",
+    "html": "<p>Intro paragraph setting up the video.</p>\n\n<p>Description or transcript excerpt below the video.</p>",
     "feature_image": "https://your-ghost-site.com/content/images/returned-thumbnail-url.jpg",
     "status": "published",
-    "email_segment": "all",
     "tags": [{"name": "Video"}]
   }]
 }
 ```
 
 **YouTube embed rules:**
-- Use `youtube-nocookie.com` not `youtube.com` — avoids cookie consent banners
-- `kg-card kg-embed-card` classes tell Ghost to render it as an embed card (proper responsive sizing)
+- Native Lexical `embed` node only. A raw iframe (even with `kg-embed-card` classes) breaks in email: blank 16:9 gap, no link to the video
+- Use the watch URL (`youtube.com/watch?v=`) as `url`; Ghost builds the responsive player
 - Thumbnail dimensions: 1280×720 (16:9) — Ghost crops to this for feature image display
-- The embed renders in email but autoplay is blocked — acceptable behavior
+- In email, the native card renders as a thumbnail with a play button linking to YouTube
 
 ---
 
@@ -301,7 +291,7 @@ Copy-paste HTML patterns for common Ghost content needs.
 Hard-won Ghost email lessons from production use.
 
 **The one-shot rule:**
-`email_segment` only fires on the FIRST time a post is published. If you publish without it and then try to add it — Ghost won't send. You must use Ghost admin to manually trigger a resend, and even then it's unreliable. Always include `email_segment` in the same call that sets `status: "published"`.
+Email only fires on a draft → published transition, and only when `newsletter` and `email_segment` are on that call's **query string**. Adding them to an already-published post does nothing. The best path is to include them on the first publish. If you missed it and the post has never been emailed, Workflow 18 recovers it via the API. Ghost will email a given post only once.
 
 **Email-safe content:**
 Ghost sends HTML email through its own template wrapper. What gets stripped:
@@ -314,14 +304,15 @@ Ghost sends HTML email through its own template wrapper. What gets stripped:
 What works in email:
 - Inline styles
 - Standard HTML (p, h2, h3, ul, ol, blockquote, hr, img)
-- YouTube embeds (renders as linked thumbnail in most clients)
+- YouTube native embed cards (render as a linked thumbnail). Raw iframes do NOT: they leave a blank gap
 - Web fonts from Google Fonts loaded inline
 
 **Subscriber segments:**
-- `"email_segment": "all"` — free + paid subscribers
-- `"email_segment": "free"` — free tier only
-- `"email_segment": "paid"` — paid subscribers only
-- Omit `email_segment` entirely — no email sent (web publish only)
+- `email_segment=all`: free and paid subscribers
+- `email_segment=status:free`: free tier only
+- `email_segment=status:-free`: paid subscribers only
+- Omit both `newsletter` and `email_segment` for a web publish only, with no email
+- Recipient count is lower than subscriber count. Ghost excludes unsubscribed and bounced/suppressed members.
 
 **Member-only content:**
 Set `"visibility": "members"` on a post to restrict it to logged-in members. `"visibility": "paid"` restricts to paying subscribers. Default is `"public"`.
@@ -348,7 +339,7 @@ openclaw cron add "ghost-publish-check" "0 9 * * *" "Check Ghost drafts queue an
 In the cron prompt, instruct the agent to:
 1. Fetch posts filtered by `status:scheduled` and `published_at` in today's range
 2. Verify content looks correct
-3. Update status to `published` with `email_segment` if newsletter delivery is intended
+3. Update status to `published`, with `?newsletter={slug}&email_segment=...` on the query string if newsletter delivery is intended (and approved)
 
 **Memory file for publishing cadence:**
 Keep a `memory/publishing.md` file that tracks:
@@ -1305,3 +1296,45 @@ This isn't a one-time fix. Run it quarterly:
 - **GSC data lags 2–3 days** — a redirect fix you deployed today won't show as resolved until Google re-crawls and GSC processes it. Check back in a week before deciding a fix didn't work.
 - **Tag page noindex requires a theme change** — this means re-uploading your Ghost theme via Admin → Design → Upload. If you're on a paid Ghost theme, test on a staging site first.
 
+---
+
+## Workflow 18: Send a Newsletter for an Already-Published Post
+
+Proven in production on 2026-10-13 (Ghost Pro, integration key only, no browser or staff session).
+
+**Use when:** a post went live without the email. Ghost hides "send as email" after publishing, and integration keys get 403 on `/emails/`.
+
+**Why it works:** Ghost creates and sends the email on the draft → published transition. The integration key may perform that transition. Reverting to draft and republishing with the newsletter on the query string triggers the send, and keeping the original `published_at` preserves the slug, URL and date.
+
+**Preconditions (gate):**
+- The post has never been emailed. `GET /posts/{id}/?include=email` shows `email: null`. Ghost won't send a post twice.
+- The user has explicitly approved this send. It is irreversible and reaches every member in the segment.
+- Accept that the post is offline for a few seconds between steps 2 and 3.
+
+**Steps:**
+1. **Back up and capture.** Fetch the post and save the JSON. Record `published_at` and `updated_at`.
+   ```
+   GET /posts/{id}/?include=email,newsletter
+   ```
+2. **Revert to draft.**
+   ```
+   PUT /posts/{id}/
+   {"posts":[{"status":"draft","updated_at":"<current updated_at>"}]}
+   ```
+3. **Republish with the newsletter on the query string,** keeping the original publish date. Use the `updated_at` returned by step 2.
+   ```
+   PUT /posts/{id}/?newsletter={newsletter_slug}&email_segment=all
+   {"posts":[{"status":"published","published_at":"<original published_at>","updated_at":"<updated_at from step 2>"}]}
+   ```
+4. **Verify.**
+   - `GET /posts/{id}/?include=email`: `email.status` should be `pending`, `submitted` or `sending`, and the record should include `email_count`, `subject` and `recipient_filter`.
+   - The live URL returns 200, with the same slug and date.
+   - Re-check after about a minute for `delivered_count` and `failed_count`.
+
+**Pitfalls:**
+- Each PUT needs that moment's `updated_at`. Reusing step 1's value in step 3 returns 409.
+- Pass the newsletter **slug** (`GET /newsletters/`), not its display name or ID.
+- Put `newsletter` and `email_segment` on the query string. That is the route verified in production.
+- The email is rendered from the post content through the newsletter template. Custom HTML previews built elsewhere are not used.
+- `email_count` will be below the subscriber total. Ghost excludes unsubscribed and suppressed addresses.
+- If step 3 fails, the post is left as a draft. Republish it with no query params to restore it, then diagnose.

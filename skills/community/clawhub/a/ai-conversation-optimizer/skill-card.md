@@ -1,44 +1,57 @@
-## Description: <br>
-AI对话优化助手。诊断用户提问中的问题，给出可执行的改进方案和优化后的prompt示例。覆盖角色设定、Few-shot、CoT、格式指定等核心技巧。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI conversation optimization assistant that diagnoses issues in user prompts and provides actionable improvements, optimized prompt examples, and related prompt engineering tips.
 
-## Publisher: <br>
-[laninga](https://clawhub.ai/user/laninga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laninga](https://clawhub.ai/user/laninga)
 
-## Use Case: <br>
-External users and developers use this skill to diagnose unclear or underspecified prompts, then produce improved prompts with role, context, scope, format, Few-shot, and reasoning-pattern guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets or private data while asking for prompt improvements. <br>
-Mitigation: Review and redact sensitive prompt content before using the skill. <br>
-Risk: The skill may activate on broad questions about AI answer quality. <br>
-Mitigation: Confirm the user wants prompt coaching before applying the full optimization workflow. <br>
+## Use Case:
 
+External users and developers use this skill to improve prompts when an AI answer is unsatisfactory or when they want a clearer, more constrained question. It guides the agent to diagnose prompt weaknesses, select optimization strategies, and return improved prompt examples in Markdown.
 
-## Reference(s): <br>
-- [Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering) <br>
-- [Prompt Engineering Guide (DAIR.AI)](https://www.promptingguide.ai/) <br>
-- [Chain-of-Thought Prompting](https://www.promptingguide.ai/techniques/cot) <br>
-- [Prompt 提问检查清单](references/checklist.md) <br>
-- [常见 Prompt 模式](references/prompt-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured diagnostic sections and prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt diagnoses, optimization suggestions, revised prompts, and brief related technique notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0) <br>
+Risk: The skill may activate for broad requests about improving AI questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when prompt optimization is intended, and review whether the user's request actually asks for prompt diagnosis or rewriting before applying the workflow.
+
+Risk: The skill is written for Chinese-language prompt-improvement workflows and may not provide multilingual guidance on its own.
+
+Mitigation: Adapt the generated guidance to the user's requested language and locale when the conversation is not in Chinese.
+
+## Reference(s):
+
+- [Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
+- [Prompt Engineering Guide (DAIR.AI)](https://www.promptingguide.ai/)
+- [Chain-of-Thought Prompting](https://www.promptingguide.ai/techniques/cot)
+- [Prompt Patterns](references/prompt-patterns.md)
+- [Prompt Checklist](references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with diagnostic sections, recommendations, optimized prompt examples, and related tips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance by default; no code execution, credential handling, persistence, or system access.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

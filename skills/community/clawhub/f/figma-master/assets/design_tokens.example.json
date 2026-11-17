@@ -1,0 +1,24 @@
+{
+  "color": {
+    "blue-500": { "$value": "#3b82f6", "$type": "color" },
+    "action": {
+      "primary": { "$value": "{color.blue-500}", "$type": "color" },
+      "primary-hover": { "$value": "{color.blue-300}", "$type": "color" }
+    },
+    "text": {
+      "muted": { "$value": "#6b7280", "$type": "color" }
+    }
+  },
+  "space": {
+    "4": { "$value": "16px", "$type": "dimension" }
+  },
+  "radius": {
+    "md": { "$value": "8px", "$type": "dimension" }
+  },
+  "font": {
+    "heading-1": {
+      "size": { "$value": "32px", "$type": "dimension" },
+      "weight": { "$value": "700", "$type": "fontWeight" }
+    }
+  }
+}

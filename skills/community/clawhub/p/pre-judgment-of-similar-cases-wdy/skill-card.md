@@ -1,44 +1,59 @@
-## Description: <br>
-This skill helps agents retrieve legal provisions and similar case examples through the Wendaoyun/Wintaocloud API, then summarize legal consequences and possible next steps for dispute scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves relevant legal provisions and similar case examples for user-described disputes, then formats legal basis, case summaries, and optional practical analysis.
 
-## Publisher: <br>
-[rose-develop](https://clawhub.ai/user/rose-develop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rose-develop](https://clawhub.ai/user/rose-develop)
 
-## Use Case: <br>
-External users and agents use this skill to support legal research for disputes such as fraud, debts, contract breaches, injuries, and litigation questions. It retrieves relevant laws and similar cases, formats the results, and can provide optional risk points and suggested next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User dispute summaries are sent to the third-party Wendaoyun/Wintaocloud API and may contain personal or sensitive case facts. <br>
-Mitigation: Avoid unnecessary names, ID numbers, addresses, account details, and private case facts before using the skill. <br>
-Risk: The skill supports legal research but its responses may be mistaken for professional legal advice. <br>
-Mitigation: Treat responses as research support and have users consult qualified legal professionals for legal decisions. <br>
-Risk: The skill depends on a bearer API key for the Wendaoyun/Wintaocloud API. <br>
-Mitigation: Keep WENDAOYUN_API_KEY private and revoke or rotate it if disclosure is suspected. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve legal provisions and similar case examples for common dispute descriptions, such as fraud, unpaid debts, contract breaches, personal injury, torts, and litigation prospects. The skill can also summarize legal risk factors and practical next steps when the user asks for analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rose-develop/skills/pre-judgment-of-similar-cases-wdy) <br>
-- [Wintaocloud open platform](https://open.wintaocloud.com/home) <br>
-- [Wintaocloud get-laws API endpoint](https://h5.wintaocloud.com/prod-api/api/invoke/get-laws) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with legal provisions, similar case summaries, optional analysis, and inline shell commands for setup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WENDAOYUN_API_KEY; default top_k is 3 and maximum top_k is 5.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: User dispute descriptions may contain personal, financial, or legal-strategy details that are sent to Wendaoyun's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimized and redacted queries; avoid names, IDs, addresses, account details, exact private facts, and legal strategy before calling the API.
+
+Risk: Legal retrieval results and similar-case summaries may be incomplete, jurisdiction-sensitive, or unsuitable as final legal advice.
+
+Mitigation: Treat the output as retrieval assistance, verify legal conclusions with authoritative sources, and consult qualified legal counsel for consequential decisions.
+
+Risk: The skill depends on a user-provided WENDAOYUN_API_KEY for authenticated external API calls.
+
+Mitigation: Store the API key only in the environment, do not paste it into prompts or logs, and revoke it promptly if exposure is suspected.
+
+## Reference(s):
+
+- [Wendaoyun Open Platform](https://open.wendaoyun.com/home)
+- [Wendaoyun get-laws API endpoint](https://h5.wintaocloud.com/prod-api/api/invoke/get-laws)
+- [ClawHub skill page](https://clawhub.ai/rose-develop/skills/pre-judgment-of-similar-cases-wdy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with formatted legal provisions, case summaries, optional analysis, and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WENDAOYUN_API_KEY for authenticated API requests; top_k defaults to 3 and is capped at 5.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

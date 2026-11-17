@@ -1,43 +1,55 @@
-## Description: <br>
-Cognitive Agent is a framework for AI assistants with memory, learning, emotional interaction, and metacognitive reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive Agent is a framework-style skill for designing AI agents with long-term memory, spaced-repetition learning, emotional context, and metacognitive reflection.
 
-## Publisher: <br>
-[1580021414-afk](https://clawhub.ai/user/1580021414-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1580021414-afk](https://clawhub.ai/user/1580021414-afk)
 
-## Use Case: <br>
-Developers use this skill to design AI assistants that can retain and retrieve memories, schedule learning reviews, model emotional state, and generate reflection or growth reports. It is suited for personal assistants, adaptive learning systems, knowledge management, and memory-driven interactive characters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-term memory and emotion features may retain privacy-sensitive personal information. <br>
-Mitigation: Avoid storing sensitive personal details by default, define retention and deletion controls, and sanitize learning logs. <br>
-Risk: The artifact describes a JavaScript package interface but does not include the implementation code referenced by package.json. <br>
-Mitigation: Verify the implementation code and dependencies before running or deploying it as a JavaScript package. <br>
+## Use Case:
 
+Developers and agent builders use this skill to prototype assistants that remember user preferences and interaction history, support adaptive learning or knowledge management, and generate memory, study-plan, emotional-response, and reflection patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1580021414-afk/cognitive-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/1580021414-afk) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Quick Start Guide](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, TypeScript, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes memory, learning, emotion, and metacognition API patterns plus configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, artifact package.json, and skill metadata) <br>
+Risk: The skill may encourage agents to retain long-term local memory about users, preferences, interaction history, emotions, and logs without clear privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in before collecting memory, provide inspect/export/delete controls, set retention limits, and redact sensitive content from logs and memories.
+
+Risk: The uploaded artifact declares runtime entry points and ranged dependencies, but the server security guidance calls for verifying the missing runtime implementation and pinning dependencies.
+
+Mitigation: Review the complete runtime implementation before deployment, pin dependency versions, and run security scans on the resolved dependency tree.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1580021414-afk/skills/cognitive-agent)
+- [Skill source documentation](artifact/SKILL.md)
+- [Quick start guide](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, JSON, JavaScript, TypeScript, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe memory records, learning plans, emotional-state records, API shapes, and reflection reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, OpenClaw metadata, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

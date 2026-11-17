@@ -1,38 +1,54 @@
-## Description: <br>
-OpenClaw飞书问题排查 helps users troubleshoot Feishu plugin issues with an FAQ and /feishu doctor diagnostic guidance for app permissions, API connectivity, and user authorization state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Feishu troubleshooting helps users resolve Feishu plugin issues with an FAQ and the /feishu doctor diagnostic for app configuration, API connectivity, permission, and authorization checks.
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenfa188](https://clawhub.ai/user/chenfa188)
 
-## Use Case: <br>
-Developers and administrators who manage an OpenClaw Feishu app use this skill to resolve card callback and permission or authorization problems and to decide when to run /feishu doctor for deeper diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic reports may reveal Feishu app configuration, bot identity, permission gaps, and authorization state, even when secrets are masked. <br>
-Mitigation: Use the diagnostic guidance only when administering or helping troubleshoot the relevant Feishu app, and handle generated reports as sensitive operational information. <br>
+## Use Case:
 
+Developers, operators, and support staff use this skill to troubleshoot Feishu plugin card-interaction and permission problems, especially repeated authorization failures or cases where automatic authorization does not resolve the issue.
 
-## Reference(s): <br>
-- [Feishu Open Platform App Console](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown troubleshooting guidance with Feishu configuration steps and slash command instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Diagnostic reports should be treated as sensitive because they can expose app configuration, bot identity, permission gaps, and authorization state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagnostic reports may include Feishu app configuration, masked credential presence, bot identity, permission gaps, and user authorization status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share diagnostic output only with authorized troubleshooters and redact environment-specific details before wider distribution.
+
+Risk: The package and its troubleshooting instructions are written for Chinese-reading users.
+
+Mitigation: Confirm intended users can read Chinese or provide an accurate translation before relying on the guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenfa188/skills/openclaw-feishu-troubleshoot)
+- [Feishu Open Platform app console](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown troubleshooting guidance with diagnostic command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; diagnostic guidance may mention Feishu app configuration, masked credential presence, bot identity, permission gaps, and user authorization status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

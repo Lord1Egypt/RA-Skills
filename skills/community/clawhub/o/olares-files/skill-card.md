@@ -1,52 +1,68 @@
-## Description: <br>
-Olares Files helps agents manage files on an Olares system through `olares-cli files`, including listing, upload, download, editing, copy and move, deletion, ownership changes, sharing, SMB mounts, and Sync repository operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Olares Files helps agents guide users through olares-cli files commands for listing, uploading, downloading, editing, sharing, SMB mounts, ownership changes, and Sync repository operations on an Olares system.
 
-## Publisher: <br>
-[olares](https://clawhub.ai/user/olares) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olares](https://clawhub.ai/user/olares)
 
-## Use Case: <br>
-Olares users, developers, and operators use this skill to plan and run `olares-cli files` commands against the active Olares profile for remote file management, sharing, SMB mounting, and Sync repository maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands operate with the active Olares profile and may use sensitive credentials. <br>
-Mitigation: Confirm the intended Olares profile before use and never expose access tokens, refresh tokens, or SMB passwords in terminal output or command history. <br>
-Risk: Delete, move, ownership, share, SMB, and repository operations can materially change remote data or access. <br>
-Mitigation: Confirm target paths, recipients, permissions, passwords, expirations, and network trust before running mutating commands. <br>
-Risk: Uploads, copies, moves, and edits can overwrite or replace remote file contents. <br>
-Mitigation: Verify destination paths and use preflight listing or existing CLI safeguards before operations that could clobber data. <br>
+## Use Case:
 
+Developers, operators, and support agents use this skill to help manage files and shares on Olares through olares-cli while respecting path, namespace, authentication, and confirmation rules.
 
-## Reference(s): <br>
-- [files ls](references/olares-files-ls.md) <br>
-- [files upload](references/olares-files-upload.md) <br>
-- [files download](references/olares-files-download.md) <br>
-- [files edit](references/olares-files-edit.md) <br>
-- [files mkdir](references/olares-files-mkdir.md) <br>
-- [files rm](references/olares-files-rm.md) <br>
-- [files cp / files mv](references/olares-files-cp-mv.md) <br>
-- [files rename](references/olares-files-rename.md) <br>
-- [files chown](references/olares-files-chown.md) <br>
-- [files share](references/olares-files-share.md) <br>
-- [files smb](references/olares-files-smb.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are scoped to the active Olares profile and may require confirmation for mutating operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill covers high-impact file operations such as deletion, moving, ownership changes, repository removal, unmounting, and overwrite-capable transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target path, operation, and expected effect with the user before proposing state-changing commands, and prefer listing or preflight checks before mutation.
+
+Risk: Public-share and SMB actions can expose folders or credentials if recipients, permissions, passwords, or expiration settings are wrong.
+
+Mitigation: Review target folders, recipients, permissions, expiration, and password handling before sharing; prefer generated or strong passwords and stdin or prompts over command-line passwords.
+
+Risk: Incorrect Olares namespace or path syntax can cause failed commands or operations against the wrong file or directory.
+
+Mitigation: Preserve case-sensitive frontend paths, trailing-slash intent, and namespace allow-lists, and use olares-cli files verb help plus relevant reference material before composing commands.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/olares/skills/olares-files)
+- [files ls](references/olares-files-ls.md)
+- [files upload](references/olares-files-upload.md)
+- [files download](references/olares-files-download.md)
+- [files edit](references/olares-files-edit.md)
+- [files mkdir](references/olares-files-mkdir.md)
+- [files rm](references/olares-files-rm.md)
+- [files cp / files mv](references/olares-files-cp-mv.md)
+- [files rename](references/olares-files-rename.md)
+- [files chown](references/olares-files-chown.md)
+- [files share](references/olares-files-share.md)
+- [files smb](references/olares-files-smb.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires olares-cli and an active Olares account context; guidance should confirm high-impact file, sharing, SMB, and ownership actions before execution.]
+
+## Skill Version(s):
+
+4.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

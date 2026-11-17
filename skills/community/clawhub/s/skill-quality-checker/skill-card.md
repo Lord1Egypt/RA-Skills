@@ -1,41 +1,58 @@
-## Description: <br>
-Skill Quality Checker evaluates installed skills across five quality dimensions and produces scoring reports with improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Quality Checker evaluates installed OpenClaw skills across five quality dimensions and produces scoring reports with improvement suggestions.
 
-## Publisher: <br>
-[shaozhengmao](https://clawhub.ai/user/shaozhengmao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaozhengmao](https://clawhub.ai/user/shaozhengmao)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to review installed skills, score them across intent fit, completeness, robustness, description accuracy, and token efficiency, and identify practical improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include local skill names, paths, or review details that should not be shared broadly. <br>
-Mitigation: Run the checker only against skill directories intended for review, choose report output paths deliberately, and review reports before sharing them. <br>
-Risk: The quality scores are heuristic static-analysis results and may miss issues or overstate confidence. <br>
-Mitigation: Use the report as review support and keep human review as the final decision point before deployment or publication. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to scan one or more local OpenClaw skills, review heuristic quality scores, and prioritize improvements before release or manual review.
 
-## Reference(s): <br>
-- [Scoring Criteria](references/scoring-criteria.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaozhengmao/skill-quality-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown or JSON quality report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print results to the terminal or write a report to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The checker reads local skill files from the selected scan path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the --scan-dir or --skill path before running and point it only at skill directories intended for inspection.
+
+Risk: Using --output can create or overwrite a report file at the provided path.
+
+Mitigation: Use --output only for report locations intended to be created or overwritten, or omit it to print results to the terminal.
+
+Risk: Static heuristic scores can miss context that a human reviewer would catch.
+
+Mitigation: Treat the report as a screening aid and perform manual review before deployment or publication decisions.
+
+## Reference(s):
+
+- [Scoring Criteria](references/scoring-criteria.md)
+- [ClawHub Skill Page](https://clawhub.ai/shaozhengmao/skills/skill-quality-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON report, with optional terminal output or file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python standard library static analysis; reports are heuristic and should not replace human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

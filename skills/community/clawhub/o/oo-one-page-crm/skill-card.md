@@ -1,43 +1,56 @@
-## Description: <br>
-OnePageCRM (onepagecrm.com). Use this skill for OnePageCRM requests involving reading, creating, and updating CRM data through the OOMOL connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OnePageCRM to read, create, and update contacts and deals through the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and agents use this skill to list and retrieve OnePageCRM contacts and deals, and to create contacts or deals after confirming write payloads. It is intended for CRM workflows mediated through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write actions can create OnePageCRM contacts or deals in the connected account. <br>
-Mitigation: Confirm the exact JSON payload and expected effect with the user before running create actions. <br>
-Risk: Incorrect action payloads may fail or create malformed CRM records. <br>
-Mitigation: Inspect the live connector schema before building each payload and match the command data to that schema. <br>
-Risk: The skill depends on the local oo CLI, OOMOL sign-in, and an active OnePageCRM connection. <br>
-Mitigation: Use first-time setup steps only after an auth, connection, missing CLI, or billing error is returned. <br>
+## Use Case:
 
+External users and teams can use the skill to look up OnePageCRM contacts and deals, or create new contacts and deals. It requires an installed, signed-in oo CLI connected to the intended OnePageCRM account.
 
-## Reference(s): <br>
-- [OnePageCRM homepage](https://www.onepagecrm.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; read actions can run directly, while write actions require payload confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and server release evidence) <br>
+Risk: Automatic setup can execute changing remote code and may make unexplained changes to other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve a fixed CLI version before setup, and check automatic skill installation and synchronization settings.
+
+Risk: The skill accesses a connected CRM account, and create actions change CRM data.
+
+Mitigation: Connect only the intended account and keep the required user confirmation of the exact write payload and effect.
+
+## Reference(s):
+
+- [OnePageCRM homepage](https://www.onepagecrm.com/)
+- [OnePageCRM API documentation](https://developer.onepagecrm.com/api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-one-page-crm)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON payloads and connector responses, with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CRM records returned by read actions; create actions require user confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

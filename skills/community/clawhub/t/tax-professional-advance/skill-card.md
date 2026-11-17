@@ -1,44 +1,63 @@
-## Description: <br>
-A US tax planning skill for identifying deductions, tracking expenses, estimating payments, assessing audit risk, and preparing year-round tax summaries across W-2, 1099, S-Corp, mixed, multi-state, and life-event scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tax Professional Advance helps users evaluate US tax deductions, track deductible expenses, plan estimated payments, assess audit risk, and prepare year-end summaries across W-2, self-employed, S-Corp, mixed, and multi-state situations.
 
-## Publisher: <br>
-[shoumiksaha](https://clawhub.ai/user/shoumiksaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shoumiksaha](https://clawhub.ai/user/shoumiksaha)
 
-## Use Case: <br>
-US taxpayers, freelancers, business owners, and mixed-income earners use this skill to plan deductions, track tax-related expenses, estimate quarterly payments, assess audit risk, and prepare summaries for review with official sources or a licensed tax professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive financial profile context and local tax or expense records. <br>
-Mitigation: Require explicit confirmation before reading personal profile context or writing expense records, and review stored data before relying on it. <br>
-Risk: Tax guidance can be outdated, incomplete, or unsuitable for a user's exact filing situation. <br>
-Mitigation: Verify current rules with IRS or state sources and consult a licensed tax professional before filing, paying, or taking material tax positions. <br>
-Risk: The skill includes persistent Telegram reminder setup and references cross-skill data access without clear user-control boundaries. <br>
-Mitigation: Ask for explicit approval before creating Telegram cron reminders or reading mechanic, card-optimizer, or other skill data. <br>
+## Use Case:
 
+Individuals, self-employed workers, and small business owners use this skill to get US tax planning guidance, track potential deductions, organize documentation, and prepare filing summaries. Users should verify tax decisions with a licensed tax professional for their specific facts.
 
-## Reference(s): <br>
-- [Tax Professional Advance ClawHub release](https://clawhub.ai/shoumiksaha/tax-professional-advance) <br>
-- [IRS](https://www.irs.gov) <br>
-- [Common Write-Offs People Miss](references/common-writeoffs.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON expense records and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file writes for expense tracking and Telegram cron reminders only after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: The skill can store sensitive financial records in workspace expense files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private workspace and avoid storing full payment confirmation numbers, tax identifiers, or other unnecessary sensitive details.
+
+Risk: The skill may read context from other skills when tailoring tax guidance.
+
+Mitigation: Confirm before allowing it to read other skills' data and limit that access to information needed for the current tax task.
+
+Risk: The skill includes persistent Telegram reminder setup commands.
+
+Mitigation: Run reminder setup only after verifying the recipient and understanding how to review or remove the scheduled jobs.
+
+Risk: Tax guidance may be incomplete or outdated for a user's exact situation.
+
+Mitigation: Verify current-year rules and significant tax decisions with authoritative IRS guidance or a licensed CPA or tax attorney.
+
+## Reference(s):
+
+- [Common Write-Offs People Miss](references/common-writeoffs.md)
+- [IRS](https://www.irs.gov)
+- [ClawHub Skill Page](https://clawhub.ai/shoumiksaha/skills/tax-professional-advance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON expense records and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workspace expense-tracking records and reminder setup commands when the user requests tracking or calendar workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,443 +1,135 @@
-# calculus-intelligent-grading - 高等数学多模态智能批改Skill
+---
+name: "calculus-intelligent-grading"
+description: "高数多解法智能批改：计算题+证明题双模式，MathJax SVG，分步卡片，符号面板，手写模拟。省级培训专用"
+---
+
+# 高等数学多解法智能批改 Skill
 
 ## 概述
-专门针对高等数学主观题的智能批改系统，支持LaTeX公式验证、推导过程检查、多模态批注生成。整合OCR识别、符号计算和LLM分析，实现AI助教+人工复核双模式批改。
 
-## 核心功能
+面向高等数学主观题的智能批改系统，支持**计算题**和**证明题**双模式。基于 MathJax SVG 渲染，提供符号面板、分步作答卡片、多解法评判和手写模拟。适用于省级大学数学 OpenClaw 培训场景。
 
-### 1. 多模态输入支持
-- **图像识别**: 手写数学公式OCR识别
-- **LaTeX解析**: 符号公式语义分析
-- **步骤分割**: 自动分割解题步骤
-- **结构理解**: 理解证明逻辑结构
+## 核心设计理念
 
-### 2. 智能批改引擎
-- **符号计算验证**: 使用SymPy验证数学计算
-- **步骤依赖分析**: 检查推导逻辑完整性
-- **错误类型分类**: 概念错误/计算错误/逻辑跳跃
-- **部分得分计算**: 根据正确步骤给予部分分数
+### 多解法评判原则
 
-### 3. 多模态反馈生成
-- **文字批注**: 精准定位错误位置
-- **语音讲解**: TTS生成知识点讲解
-- **视频推荐**: 关联教学视频资源
-- **可视化对比**: 展示正确解法动画
+数学题允许多种正确解法。批改策略的核心是**独立评判数学正确性**，而非与单一标准答案比对。
 
-## 工具定义
+- 计算题：参考答案只是其中一种解法，AI 独立判断计算正确性
+- 证明题：常见证法仅供参考，AI 独立判断逻辑正确性
+- 创新方法且逻辑正确 → 应得高分，不因「不常见」扣分
 
-### grade_submission
-批改学生作业提交
+### 双模式批改
 
-**参数**：
-- `submission_type` (string): 提交类型，"image"、"latex"、"text"
-- `submission_content` (string): 提交内容（Base64图像或文本）
-- `reference_answer` (string): 标准答案（LaTeX格式）
-- `grading_mode` (string): 批改模式，"auto"、"assisted"、"manual"
-- `detailed_feedback` (boolean): 是否生成详细反馈
+| 维度 | 🧮 计算题模式 | 📐 证明题模式 |
+|:---|:---|:---|
+| 评判重点 | 步骤计算正确性 | 逻辑完整性 + 定理使用 |
+| 步骤类型 | 计算步骤 | 已知/假设/定理/推导/结论 |
+| 错误分类 | concept / calculation / notation | 逻辑跳跃 / 循环论证 / 前提错误 |
+| 输出 | 分步得分 + 方法识别 | 分步得分 + 逻辑结构分析 |
+| 配色 | 紫色系 | 青色系 |
 
-**返回**：
-```json
-{
-  "submission_id": "sub_001",
-  "overall_score": 85,
-  "step_scores": [
-    {
-      "step_no": 1,
-      "is_correct": true,
-      "score": 20,
-      "content": "设f(x)=x²"
-    },
-    {
-      "step_no": 2, 
-      "is_correct": false,
-      "score": 10,
-      "error_type": "calculation_error",
-      "error_detail": "积分计算错误",
-      "suggestion": "应为∫x² dx = x³/3 + C"
-    }
-  ],
-  "feedback": {
-    "text_annotations": [
-      {
-        "position": "step2",
-        "type": "error",
-        "content": "积分公式应用错误"
-      }
-    ],
-    "voice_feedback": "data:audio/mp3;base64,...",
-    "recommended_videos": [
-      {
-        "title": "定积分计算方法",
-        "url": "https://example.com/video1"
-      }
-    ]
-  }
-}
+## 功能清单
+
+### 1. 多模态输入
+- LaTeX 文本输入（主输入方式）
+- 数学符号面板（10 组，可搜索、可收藏）
+- 智能符号推荐（根据题型/模式自动高亮相关符号组）
+- 快捷键支持：`/`→分式、`^`→上标、`_`→下标、`Tab`→切换步骤
+
+### 2. 分步作答系统
+- 每步独立卡片：输入框 + 实时 MathJax 预览 + 语法状态灯
+- 计算题：简洁步骤卡片
+- 证明题：每步可选类型标签（已知/假设/定理/推导/结论）
+- 动态增删步骤，自动重新编号
+
+### 3. MathJax SVG 渲染
+- 使用 MathJax 3 `tex-svg` 输出，而非 KaTeX
+- 实时预览：250ms 防抖，`tex2svg` 验证语法后克隆到预览区
+- 题目/订正渲染：`typesetPromise` 异步渲染
+- 异步加载不阻塞 UI
+
+### 4. 手写模拟
+- MathJax SVG + `feTurbulence` 粗糙滤镜模拟笔触抖动
+- 逐语义单元（`g[data-mjx-texclass]`）渐显动画
+- 米色纸质背景
+
+### 5. AI 批改引擎
+- 调用 DeepSeek API 进行分步评判
+- 计算题 Prompt：强调多解法、独立评判
+- 证明题 Prompt：强调逻辑完整性、定理使用
+- 返回结构化 JSON：分步得分 + 方法识别 + 错误类型 + 逻辑分析
+
+## 批改 Prompt 模板
+
+### 计算题
+```
+你是高等数学批改专家。请独立评判以下解答的数学正确性。
+
+【题目】{latex}
+【一种参考答案】{answer}
+【常见解法】{methods}
+【学生解答步骤】{steps}
+
+⚠️ 核心原则：
+1. 数学题允许多种解法，参考答案只是其中之一
+2. 评判标准是数学正确性，不是是否与参考答案一致
+3. 学生用不同方法得出正确结果 → 应得满分
+4. 结果正确但中间步骤有瑕疵 → 适当扣分
+5. 注意区分"计算错误"和"方法错误"
+
+返回JSON：overall_score, approach, is_alternative_method, step_results, summary
 ```
 
-### analyze_proof_structure
-分析证明题逻辑结构
+### 证明题
+```
+你是高等数学证明题批改专家。请独立评判以下证明解答的数学正确性。
 
-**参数**：
-- `proof_text` (string): 证明过程文本
-- `theorem_statement` (string): 定理陈述
-- `check_logical_jumps` (boolean): 检查逻辑跳跃
+【证明题】{latex}
+【可用定理】{theorems}
+【常见证法参考】{methods}
+【学生证明过程】{steps}
 
-**返回**：
-```json
-{
-  "proof_id": "proof_001",
-  "structure_valid": true,
-  "logical_steps": [
-    {
-      "step": 1,
-      "type": "assumption",
-      "content": "假设f在[a,b]连续",
-      "valid": true
-    },
-    {
-      "step": 2,
-      "type": "application",
-      "content": "应用中值定理",
-      "valid": true,
-      "theorem_used": "Lagrange中值定理"
-    },
-    {
-      "step": 3,
-      "type": "conclusion",
-      "content": "因此存在ξ∈(a,b)",
-      "valid": true,
-      "depends_on": [1, 2]
-    }
-  ],
-  "logical_jumps": [],
-  "completeness_score": 95
-}
+⚠️ 核心原则：数学证明允许多种路径。常见证法仅供参考，不要因为学生用了不同方法就扣分。只根据逻辑正确性评分。
+
+返回JSON：overall_score, approach, is_valid_approach, step_results, logic_analysis, summary
 ```
 
-### generate_multimodal_feedback
-生成多模态批注反馈
+## 使用方式
 
-**参数**：
-- `error_analysis` (object): 错误分析结果
-- `student_level` (string): 学生水平
-- `feedback_mode` (string): 反馈模式，"text"、"voice"、"mixed"
+### 在培训中演示
 
-**返回**：
-```json
-{
-  "feedback_id": "fb_001",
-  "modes": {
-    "text": [
-      {
-        "annotation": "第2步积分计算错误",
-        "correct_form": "∫x² dx = x³/3 + C",
-        "explanation": "幂函数积分公式：∫xⁿ dx = xⁿ⁺¹/(n+1) + C"
-      }
-    ],
-    "voice": {
-      "url": "data:audio/mp3;base64,...",
-      "duration": 30,
-      "topics": ["积分基本公式"]
-    },
-    "visual": {
-      "animation_url": "https://geogebra.org/...",
-      "type": "integral_calculation"
-    }
-  },
-  "personalized": true
-}
-```
+1. 打开 `grading-demo/index.html`（单文件，无需服务器）
+2. 选择一道计算题或证明题
+3. 展示分步作答 + 符号面板
+4. 提交批改，展示 AI 如何识别不同解法
+5. 打开手写模拟，展示 MathJax SVG 渲染效果
 
-## 使用示例
+### 培训要点
 
-### 示例1：批改图像作业
-```bash
-# 批改手写作业图像
-openclaw skill calculus-intelligent-grading grade_submission \
-  --submission-type "image" \
-  --submission-content "$(base64 student_work.jpg)" \
-  --reference-answer "\\int_0^1 x^2 dx = \\frac{1}{3}" \
-  --grading-mode "auto" \
-  --detailed-feedback true
-```
+1. **多解法评判**：重点演示同一道题用不同方法作答，AI 都能正确识别和评分
+2. **证明题逻辑分析**：选一道证明题，故意制造逻辑跳跃，看 AI 如何检测
+3. **符号面板 + 快捷键**：降低学生 LaTeX 输入门槛
+4. **MathJax vs KaTeX**：MathJax SVG 输出在手写模拟上的优势
 
-### 示例2：分析证明题
-```bash
-# 分析证明题逻辑结构
-openclaw skill calculus-intelligent-grading analyze_proof_structure \
-  --proof-text "假设f在[a,b]连续...应用中值定理..." \
-  --theorem-statement "罗尔定理" \
-  --check-logical-jumps true
-```
+## 技术栈
 
-### 示例3：生成语音批注
-```bash
-# 为错误步骤生成语音讲解
-openclaw skill calculus-intelligent-grading generate_multimodal_feedback \
-  --error-analysis '{"step":2,"error_type":"concept_error","topic":"积分"}' \
-  --student-level "中等" \
-  --feedback-mode "mixed"
-```
+- **渲染引擎**：MathJax 3 (`tex-svg`)，CDN 加载
+- **AI 接口**：DeepSeek Chat API
+- **前端**：纯 HTML/CSS/JS，无框架，单文件部署
+- **存储**：localStorage（收藏符号持久化）
 
-## 技术实现
+## 适用场景
 
-### 核心批改引擎
-```python
-class CalculusGradingEngine:
-    def __init__(self):
-        self.ocr = MathOCR()          # 数学公式OCR
-        self.sympy = SymPyValidator() # 符号计算验证
-        self.llm = LLMGrader()        # LLM语义分析
-        self.validator = StepValidator() # 步骤验证
-        
-    async def grade(self, submission, reference):
-        # 1. 内容识别
-        if submission.type == "image":
-            content = await self.ocr.recognize(submission.image)
-        else:
-            content = submission.content
-            
-        # 2. 步骤分割
-        steps = self.segment_steps(content)
-        
-        # 3. 逐步骤批改
-        results = []
-        for i, step in enumerate(steps):
-            result = await self.grade_step(step, reference, i)
-            results.append(result)
-            
-        # 4. 生成反馈
-        feedback = self.generate_feedback(results)
-        
-        return GradingResult(
-            score=self.calculate_score(results),
-            step_results=results,
-            feedback=feedback
-        )
-```
+- 大学数学课程作业批改
+- 考研数学辅导班练习批改
+- 数学竞赛培训
+- OpenClaw 教学培训演示
 
-### 符号计算验证
-```python
-class SymPyValidator:
-    def validate_integral(self, student_expr, correct_expr, variable='x'):
-        """验证积分计算"""
-        try:
-            # 解析表达式
-            student_sympy = parse_expr(student_expr)
-            correct_sympy = parse_expr(correct_expr)
-            
-            # 计算导数验证
-            student_derivative = diff(student_sympy, variable)
-            correct_derivative = diff(correct_sympy, variable)
-            
-            # 符号等价性检查
-            return simplify(student_derivative - correct_derivative) == 0
-            
-        except Exception as e:
-            return False, f"表达式解析错误: {str(e)}"
-```
+## 扩展方向
 
-### LLM语义分析
-```python
-class LLMGrader:
-    def __init__(self, model="deepseek/deepseek-chat"):
-        self.model = model
-        
-    async def analyze_concept_error(self, step_content, topic):
-        """分析概念性错误"""
-        prompt = f"""
-        分析以下高等数学解题步骤中的概念错误：
-        知识点：{topic}
-        学生解答：{step_content}
-        
-        请分析：
-        1. 是否存在概念理解错误
-        2. 错误的具体类型
-        3. 正确的概念应该是什么
-        4. 如何讲解这个知识点
-        """
-        
-        response = await self.llm_complete(prompt)
-        return self.parse_analysis(response)
-```
-
-## 与现有Skill集成
-
-### 调用calculus-concept-visualizer
-```python
-# 为错误生成可视化解释
-from calculus_concept_visualizer import create_error_visualization
-
-visualization = create_error_visualization(
-    error_type="integral_concept",
-    student_misunderstanding="认为∫x² dx = x²/2",
-    correct_concept="∫xⁿ dx = xⁿ⁺¹/(n+1) + C"
-)
-```
-
-### 集成calculus-error-analyzer
-```python
-# 深度错误分析
-from calculus_error_analyzer import analyze_error_pattern
-
-pattern = analyze_error_pattern(
-    student_id="stu001",
-    error_history=grading_results,
-    knowledge_graph=True
-)
-```
-
-## 配置说明
-
-### 批改规则配置
-```yaml
-grading_rules:
-  step_scoring:
-    correct_step: 10
-    partial_correct: 5
-    concept_error: 0
-    calculation_error: 2
-    
-  error_classification:
-    concept_errors:
-      - "公式记错"
-      - "定理误用"
-      - "定义混淆"
-      
-    calculation_errors:
-      - "符号错误"
-      - "计算失误" 
-      - "化简错误"
-      
-    logical_errors:
-      - "循环论证"
-      - "逻辑跳跃"
-      - "前提错误"
-```
-
-### OCR配置
-```yaml
-ocr_settings:
-  math_formula:
-    engine: "mathpix"
-    confidence_threshold: 0.8
-    retry_count: 3
-    
-  handwriting:
-    engine: "google_vision"
-    language: "zh"
-    math_mode: true
-```
-
-## 性能优化
-
-### 批改缓存
-```python
-class GradingCache:
-    def __init__(self):
-        self.redis = RedisCache()
-        self.memory_cache = LRUCache(maxsize=1000)
-        
-    async def get_cached_result(self, submission_hash):
-        """获取缓存批改结果"""
-        # 1. 检查内存缓存
-        if result := self.memory_cache.get(submission_hash):
-            return result
-            
-        # 2. 检查Redis缓存
-        if result := await self.redis.get(f"grading:{submission_hash}"):
-            self.memory_cache[submission_hash] = result
-            return result
-            
-        return None
-```
-
-### 批量处理
-```python
-async def batch_grade(self, submissions, parallel=4):
-    """批量批改作业"""
-    semaphore = asyncio.Semaphore(parallel)
-    
-    async def grade_one(submission):
-        async with semaphore:
-            return await self.grade(submission)
-    
-    tasks = [grade_one(sub) for sub in submissions]
-    return await asyncio.gather(*tasks)
-```
-
-## 测试用例
-
-### 单元测试
-```python
-def test_integral_validation():
-    validator = SymPyValidator()
-    
-    # 测试正确积分
-    valid, msg = validator.validate_integral(
-        "x**3/3", 
-        "x**3/3"
-    )
-    assert valid == True
-    
-    # 测试错误积分
-    valid, msg = validator.validate_integral(
-        "x**2/2",  # 错误
-        "x**3/3"   # 正确
-    )
-    assert valid == False
-```
-
-### 集成测试
-```python
-async def test_full_grading_pipeline():
-    engine = CalculusGradingEngine()
-    
-    # 模拟学生作业
-    submission = HomeworkSubmission(
-        type="latex",
-        content="\\int x^2 dx = \\frac{x^2}{2} + C"  # 错误
-    )
-    
-    reference = "\\int x^2 dx = \\frac{x^3}{3} + C"  # 正确
-    
-    result = await engine.grade(submission, reference)
-    
-    assert result.score < 50  # 应得低分
-    assert "积分公式错误" in result.feedback.text_annotations[0]
-```
-
-## 部署说明
-
-### 系统要求
-- Python 3.9+
-- SymPy 1.12+
-- LaTeX环境（用于公式渲染）
-- GPU（可选，加速LLM推理）
-
-### 安装步骤
-```bash
-# 1. 安装依赖
-pip install sympy opencv-python pillow
-pip install torch transformers  # LLM支持
-
-# 2. 配置OCR服务
-# 需要Mathpix或Google Vision API密钥
-
-# 3. 启动批改服务
-python grading_service.py --port 8080 --workers 4
-```
-
-## 版本历史
-- v1.0.0 (2026-04-16): 初始版本
-  - 多模态作业批改
-  - 符号计算验证
-  - 步骤逻辑分析
-  - 多模态反馈生成
-
-## 作者
-代国兴 - 高等数学智慧课程系统
-
-## 许可证
-MIT License
+- 接入更多 AI 模型（通义千问、文心一言等）
+- 批量批改模式
+- 学情统计面板
+- 错题本自动归类
+- 板书/手写照片 OCR 输入

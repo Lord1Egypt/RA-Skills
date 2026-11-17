@@ -1,42 +1,57 @@
-## Description: <br>
-Launches Clawdbot-native background sessions that research business ideas, write a markdown analysis, and return a verdict and summary to the active chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launches background Clawdbot sessions to research business ideas and return a comprehensive Markdown report with market, technical, go-to-market, risk, validation, and recommendation analysis.
 
-## Publisher: <br>
-[rqrqrqrq](https://clawhub.ai/user/rqrqrqrq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rqrqrqrq](https://clawhub.ai/user/rqrqrqrq)
 
-## Use Case: <br>
-ClawHub and Clawdbot users use this skill to turn an `Idea:` chat prompt into background research covering market, technical, business model, go-to-market, validation, and risk analysis. The skill is intended for users who want a practical markdown research report and concise verdict returned to their active chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business ideas may be confidential, and results are returned to the active chat. <br>
-Mitigation: Use a private chat for sensitive ideas and confirm the active chat before triggering research. <br>
-Risk: The skill stores generated research locally under `~/clawd/ideas/`. <br>
-Mitigation: Delete generated sessions or files when the research is no longer needed. <br>
-Risk: The background session uses web searches, so findings may depend on public, time-sensitive, or incomplete sources. <br>
-Mitigation: Review cited findings before using the report for business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Research Idea on ClawHub](https://clawhub.ai/rqrqrqrq/research-idea) <br>
-- [Idea Exploration Prompt Template](templates/idea-exploration-prompt.md) <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to start autonomous business-idea research from chat and receive actionable market, technical, business-model, go-to-market, risk, validation, and verdict guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research file with a concise chat summary and verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Research is saved under `~/clawd/ideas/<slug>/research.md` and returned to the active chat.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Submitted ideas and generated reports may be stored locally under ~/clawd/ideas/ and sent back through the chat.
+
+Mitigation: Avoid highly confidential business ideas unless local storage and chat delivery are acceptable for the workspace.
+
+Risk: Spawned research sessions may be kept for later review and retain context about the submitted idea.
+
+Mitigation: Review retained sessions and reports according to workspace data-handling expectations.
+
+Risk: Market research, pricing benchmarks, and competitor analysis can be stale or incomplete.
+
+Mitigation: Verify cited sources and key assumptions before using the report for business decisions.
+
+## Reference(s):
+
+- [Research Idea ClawHub skill page](https://clawhub.ai/rqrqrqrq/skills/research-idea)
+- [Publisher profile](https://clawhub.ai/user/rqrqrqrq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown research report plus a short chat summary and verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save reports under ~/clawd/ideas/<slug>/research.md and keep spawned sessions for later review.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

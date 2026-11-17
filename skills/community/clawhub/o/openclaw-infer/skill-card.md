@@ -1,41 +1,54 @@
-## Description: <br>
-Use the OpenClaw `infer` CLI for provider-backed model, image, audio transcription, TTS, video, web-search, and embedding tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OpenClaw `infer` CLI for provider-backed model, image, audio transcription, TTS, video, web-search, and embedding tasks.
 
-## Publisher: <br>
-[takhoffman](https://clawhub.ai/user/takhoffman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[takhoffman](https://clawhub.ai/user/takhoffman)
 
-## Use Case: <br>
-Developers and agents use this skill to choose and run OpenClaw `infer` commands for text, image, audio, TTS, video, web search, and embeddings. It is most useful when the task needs provider-backed inference through a consistent CLI with JSON output available for automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider-backed inference may send prompts, search queries, audio, images, or videos to configured services. <br>
-Mitigation: Avoid secrets or regulated personal data unless authorized, and confirm the configured provider policies before use. <br>
-Risk: The skill depends on the `openclaw` CLI package and local provider configuration. <br>
-Mitigation: Install the CLI only from a trusted package source and verify available providers before running inference commands. <br>
+## Use Case:
 
+Developers and agents use this skill to choose and run OpenClaw `infer` CLI commands for provider-backed model, image, audio transcription, TTS, video, web-search, and embedding tasks.
 
-## Reference(s): <br>
-- [OpenClaw Infer skill page](https://clawhub.ai/takhoffman/openclaw-infer) <br>
-- [OpenClaw infer CLI documentation](https://docs.openclaw.ai/cli/infer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `openclaw` binary on PATH; command examples commonly use `--json` for machine-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installing or invoking the wrong OpenClaw CLI package or provider configuration could run unintended tooling or send requests to unintended providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the npm package, `openclaw` binary on PATH, and configured provider before running commands.
+
+Risk: Prompts, local files, audio, video, images, and search queries may be sent to configured inference providers.
+
+Mitigation: Avoid secrets or regulated data unless the provider's data handling rules have been reviewed and approved.
+
+## Reference(s):
+
+- [OpenClaw Infer documentation](https://docs.openclaw.ai/cli/infer)
+- [OpenClaw Infer ClawHub release](https://clawhub.ai/takhoffman/skills/openclaw-infer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill encourages `--json` for machine-readable results and requires the `openclaw` binary on PATH.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Helps diagnose and repair OpenClaw CLI device scope issues that cause subagent, spawn, or cron operations to fail with pairing-required errors while the gateway is running. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps diagnose and repair OpenClaw CLI device scope issues that cause subagent, spawn, or cron operations to fail with pairing required errors.
 
-## Publisher: <br>
-[whhh1994](https://clawhub.ai/user/whhh1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[whhh1994](https://clawhub.ai/user/whhh1994)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to diagnose an OpenClaw CLI device with insufficient permissions and apply a local recovery workflow when pairing-required errors block spawn or cron operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The repair workflow can grant broad admin-level OpenClaw device permissions and rewrite local authentication files.
+
+Mitigation: Prefer official pairing or admin approval flows when available, verify the target device and requested scopes, keep backups, use dry-run previews, and avoid --force unless automation explicitly requires it.
+
+Risk: The workflow may include highly sensitive scopes such as approval, pairing, and operator.talk.secrets permissions.
+
+Mitigation: Treat requested scopes as sensitive, grant only to the intended CLI device, and review the changed local trust and token files before restarting the gateway.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill when an OpenClaw CLI device is paired but lacks the admin-level scopes needed for subagent, spawn, or cron workflows. It guides diagnosis, dry-run review, repair, gateway restart, and verification. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The repair script rewrites local OpenClaw pairing and device-auth files to grant persistent admin-level device scopes. <br>
-Mitigation: Run the diagnostic and dry-run modes first, confirm the target device ID and requested scopes, keep generated backups, and avoid force mode unless automation requires it. <br>
-Risk: Verification output includes token prefixes that could expose sensitive authentication context if shared. <br>
-Mitigation: Do not paste or publish raw verification output; redact token prefixes and device identifiers before sharing logs. <br>
+**Output Format:** [Markdown guidance with shell commands and Python helper scripts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whhh1994/fix-cli-device-scope) <br>
-- [Publisher profile](https://clawhub.ai/user/whhh1994) <br>
+**Other Properties Related to Output:** [Produces local diagnostics, dry-run previews, configuration rewrites, and verification guidance for OpenClaw CLI device scope repair.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local configuration file changes performed by bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The repair workflow writes backups before changing local OpenClaw pairing and device-auth files.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

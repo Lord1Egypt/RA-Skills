@@ -1,43 +1,58 @@
-## Description: <br>
-Ghost Mode provides browser-style incognito behavior for an OpenClaw agent by suppressing memory writes while active and scrubbing session traces when deactivated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ghost Mode provides a local OpenClaw incognito workflow that pauses memory writes and scrubs session traces from logs, memory files, transcripts, and search indexes when deactivated.
 
-## Publisher: <br>
-[stelloxx](https://clawhub.ai/user/stelloxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stelloxx](https://clawhub.ai/user/stelloxx)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run private or sensitive agent sessions without adding those interactions to persistent agent memory, logs, transcripts, or search indexes. It is intended for explicit user-triggered privacy workflows such as experiments, sensitive discussions, one-off tasks, and cleanup of stale ghost sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter or delete session, transcript, memory, and search-index data. <br>
-Mitigation: Review before installing, keep backups of important sessions, and use the documented dry-run and confirmation controls before destructive cleanup. <br>
-Risk: Activation and safety boundaries may be unclear in some environments. <br>
-Mitigation: Confirm OPENCLAW_WORKSPACE and OPENCLAW_HOME point only to the intended OpenClaw directories before use. <br>
-Risk: Partial failures during cleanup may leave memory state inconsistent or incompletely scrubbed. <br>
-Mitigation: Run the status and verification workflow after cleanup and restore from backups if the workspace is not in the expected state. <br>
+## Use Case:
 
+Developers and OpenClaw users use Ghost Mode for sensitive, experimental, or one-off sessions where agent memory and session history should not persist after explicit cleanup.
 
-## Reference(s): <br>
-- [Architecture](references/ARCHITECTURE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stelloxx/ghost-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces local command workflows and status text; it does not call external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+Risk: The skill is designed to permanently delete OpenClaw memory and session traces and may delete more data than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use backups, run dry-run previews first, and require explicit confirmation before destructive cleanup.
+
+Risk: Server security guidance reports unsafe failure behavior, including possible cleanup success claims when verification failed.
+
+Mitigation: Review cleanup output and verification status manually; avoid unattended cron cleanup, --yes, and disabled confirmations until the implementation is fixed.
+
+Risk: Server security guidance reports input and path handling bugs.
+
+Mitigation: Run only in a trusted local environment with OPENCLAW_HOME and OPENCLAW_WORKSPACE set to strict OpenClaw subdirectories.
+
+## Reference(s):
+
+- [Ghost Mode Architecture](references/ARCHITECTURE.md)
+- [ClawHub Skill Page](https://clawhub.ai/stelloxx/skills/ghost-mode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-only workflow; destructive cleanup commands require careful review before execution.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

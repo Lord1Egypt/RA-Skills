@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数据红利——互联网20年的“意外慷慨”</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+    }
+    .slide-container {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container" data-screen-label="16 数据意外慷慨">
+    
+    <!-- 顶部红色装饰条 -->
+    <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1920px; height: 16px; background-color: #E1251B; z-index: 5;"></div>
+    
+    <!-- 标题 -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 60px; width: 1680px; height: 100px; z-index: 10;">
+      <h2 style="margin: 0; font-size: 38px; font-weight: 900; color: #111111; line-height: 1.3;">
+        数据红利：20 年互联网创作积累了超过 3000 亿网页——这些内容的创作者从未想到它们会训练出一个通用大脑
+      </h2>
+    </div>
+    
+    <!-- 左栏：CSS 极简数据漏斗图 (占据 50% 宽度，即 840px) -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 190px; width: 840px; height: 550px; background-color: #F8F9FA; border: 1px solid #E5E5E5; padding: 40px; box-sizing: border-box; z-index: 10;">
+      <h3 style="margin: 0 0 30px 0; font-size: 24px; font-weight: bold; color: #111111; text-align: center;">
+        ⚙️ 全人类 20 年数字化痕迹的“无意汇聚漏斗”
+      </h3>
+      
+      <!-- 创意漏斗图形区域 -->
+      <div style="position: relative; width: 100%; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+        
+        <!-- 宽顶部：多种互联网原始形态 (720px 宽) -->
+        <div style="width: 720px; display: flex; justify-content: space-between; gap: 10px;">
+          <div style="background-color: #E1251B; color: #FFFFFF; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; text-align: center; flex: 1; box-shadow: 0 4px 10px rgba(225,37,27,0.15);">📖 Wikipedia<br><span style="font-size: 12px; opacity: 0.9;">百科全书</span></div>
+          <div style="background-color: #111111; color: #FFFFFF; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; text-align: center; flex: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">💻 GitHub<br><span style="font-size: 12px; opacity: 0.9;">开源代码</span></div>
+          <div style="background-color: #555555; color: #FFFFFF; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; text-align: center; flex: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">📝 arXiv<br><span style="font-size: 12px; opacity: 0.9;">学术论文</span></div>
+          <div style="background-color: #555555; color: #FFFFFF; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; text-align: center; flex: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">💬 Reddit<br><span style="font-size: 12px; opacity: 0.9;">社区讨论</span></div>
+          <div style="background-color: #111111; color: #FFFFFF; padding: 12px 15px; border-radius: 4px; font-size: 16px; font-weight: bold; text-align: center; flex: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">🛠️ Stack Overflow<br><span style="font-size: 12px; opacity: 0.9;">技术问答</span></div>
+        </div>
+        
+        <!-- 漏斗向下汇聚管道连线 (SVG 绘制) -->
+        <svg style="position: absolute; left: 0; top: 60px; width: 100%; height: 200px; z-index: 1;" xmlns="http://www.w3.org/2000/svg">
+          <!-- 漏斗漏勺外框 -->
+          <polygon points="60,0 700,0 480,180 280,180" fill="#E5E5E5" opacity="0.4" stroke="#CCCCCC" stroke-width="2" />
+          <!-- 汇聚流向虚线 -->
+          <path d="M 180,10 Q 300,100 380,180" fill="none" stroke="#E1251B" stroke-dasharray="5 5" stroke-width="2" />
+          <path d="M 580,10 Q 460,100 380,180" fill="none" stroke="#111111" stroke-dasharray="5 5" stroke-width="2" />
+          <path d="M 380,10 L 380,180" fill="none" stroke="#E1251B" stroke-dasharray="5 5" stroke-width="3" />
+        </svg>
+        
+        <!-- 中间收窄：Common Crawl 公共水库 (460px 宽) -->
+        <div style="width: 460px; background-color: #FFFFFF; border: 2px solid #E1251B; border-radius: 6px; padding: 15px 25px; box-sizing: border-box; text-align: center; z-index: 10; margin-top: 15px; box-shadow: 0 10px 25px rgba(225,37,27,0.08);">
+          <div style="font-size: 20px; font-weight: 900; color: #E1251B; margin-bottom: 5px;">📥 Common Crawl 互联网公共水库</div>
+          <div style="font-size: 16px; color: #555555; font-weight: bold;">累计爬取：超过 3000 亿网页 · 突破 10 PB 原始数据</div>
+        </div>
+        
+        <!-- 底部汇聚：通用 AI 大脑模型 (280px 宽) -->
+        <div style="width: 320px; background-color: #111111; color: #FFFFFF; padding: 15px 20px; border-radius: 4px; text-align: center; z-index: 10; font-weight: bold; font-size: 18px; box-shadow: 0 12px 30px rgba(0,0,0,0.15);">
+          🤖 汇入：GPT、Llama、Claude 等<br>通用 AI 智力训练底座
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- 右栏：Common Crawl 与人类知识红利细节 (占据 50% 宽度，即 840px) -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 1000px; top: 190px; width: 800px; height: 550px; background-color: #F8F9FA; border: 1px solid #E5E5E5; border-top: 6px solid #E1251B; padding: 40px; box-sizing: border-box; z-index: 10;">
+      <h3 style="margin: 0 0 30px 0; font-size: 26px; font-weight: bold; color: #E1251B;">
+        🧠 互联网 20 年“意外慷慨”的非凡红利
+      </h3>
+      
+      <div style="font-size: 21px; line-height: 1.8; color: #333333;">
+        <p style="margin: 0 0 20px 0;">💨 <strong>全人类知识的无偿大奉献</strong>：</p>
+        
+        <div style="background-color: #FFFFFF; border: 1px solid #E5E5E5; padding: 20px; margin-bottom: 20px; box-sizing: border-box;">
+          📖 <strong>Common Crawl（非营利爬虫）</strong>：自 2008 年成立起日夜不停爬取网页，沉淀出超 10 PB 的公共水库。被超 10,000 篇论文引用，成为通用大模型的**绝对基础数据配方**。[Source](https://commoncrawl.org/about)
+        </div>
+        
+        <div style="background-color: #FFFFFF; border: 1px solid #E5E5E5; padding: 20px; box-sizing: border-box;">
+          💻 <strong>专为人类编写的文字</strong>：数十亿百科词条、数千万高质量代码库、数百万顶尖学术论文。这些创作初衷纯粹是为了供人类读者交流研习，但恰好成为了 AI 模型训练最纯正、逻辑最严密的专属燃料。
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部：为什么以前不行 (1680px 宽，180px 高) -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 770px; width: 1680px; height: 180px; background-color: #111111; color: #FFFFFF; padding: 30px; box-sizing: border-box; z-index: 10;">
+      <div style="font-size: 22px; line-height: 1.6; color: #CCCCCC;">
+        💡 <strong style="color: #FFFFFF;">为什么以前不行？大数据的物理培育周期：</strong><br>
+        在 <strong>2010 年</strong> 或是 <strong>2005 年</strong>，哪怕人类掌握了 Scaling Law、掌握了 Transformer 算法，也无法训练出今天的 GPT-4。因为当时互联网上的高质量语料积累量根本达不到这个数量级红线。<br>
+        <strong>大模型所需的训练数据吞吐规模，必须建立在全人类互联网生态繁衍发展了 15 - 20 年的丰厚副产品上。这不是被刻意准备的，它是互联网发展的“意外馈赠”。</strong>
+      </div>
+    </div>
+    
+    <!-- 底部注释线与标识 -->
+    <div data-object="true" data-object-type="shape" style="position: absolute; left: 120px; top: 980px; width: 1680px; height: 1px; background-color: #E5E5E5; z-index: 1;"></div>
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 995px; width: 1680px; height: 40px; z-index: 10; display: flex; justify-content: space-between; align-items: center; color: #888888; font-size: 16px;">
+      <div>数据来源：Common Crawl “About” page & Dev.to “Inside Common Crawl” (2025)</div>
+      <div>16/34</div>
+    </div>
+    
+  </div>
+  
+  <template data-slide-notes>
+    没有人在 2005 年写维基百科词条的时候想到：“我这是在训练未来的 AI”。没有人在 GitHub 上开源代码的时候想到：“这会成为 Copilot 的燃料”。但事实上，全人类无意中用了 20 年为 AI 铺了一条跑道。这就是“数据条件到了”的真正含义——它不是被谁刻意准备的，而是互联网发展的副产品恰好足够大了。
+  </template>
+</body>
+</html>

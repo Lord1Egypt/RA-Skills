@@ -1,0 +1,37 @@
+# Preset: manager / lead track (any function)
+#
+# A preset is a MENU, not a default. Offer these lines to the user during Quick
+# Start, let them pick and reword, and write only what they chose. Never write a
+# preset value into jd_criteria.md without the user selecting it.
+
+preset_id: people-lead
+label: "Manager / lead track"
+
+suggested_org_traits:
+  - "flat org, few management layers"
+  - "team already exists (not a hire-from-zero mandate)"
+  - "budget authority for the team"
+  - "reports directly to a founder or executive"
+  - "matrixed reporting"
+  - "recently through layoffs or restructuring"
+  - "distributed team across timezones"
+
+suggested_red_line_starters:
+  - "player-coach with a full IC workload"
+  - "no hiring authority for my own team"
+  - "team inherited mid-performance-plan"
+  - "reorg announced but not completed"
+
+vibe_prompt: >
+  Name 1-3 teams or organizations whose *way of working* you admire — how they
+  make decisions, handle disagreement, treat people leaving. One line each on
+  WHY. For a leadership role the culture reason is the signal, not the logo.
+
+# Leadership roles are judged more on the org than on the title,
+# and comp bands are wider — weights shift accordingly.
+axis_weights:
+  role_fit: 20
+  domain_fit: 15
+  org_fit: 25
+  vibe_fit: 25
+  comp_fit: 15

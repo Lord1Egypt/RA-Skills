@@ -1,0 +1,8 @@
+{
+ "_example": "Made-up reply for the example. These posts do not exist.",
+ "id": "example-post-0001",
+ "socialAccountPosts": [
+  {"socialAccountId": "example-tiktok-1", "deliveryStatus": "PUBLISHED", "externalPostUrl": "https://www.tiktok.com/@example.clipper/video/example-0001", "deliveryCompletedAt": "2026-11-16T14:01:40Z"},
+  {"socialAccountId": "example-instagram-1", "deliveryStatus": "PUBLISHED", "externalPostUrl": "https://www.instagram.com/reel/example-0001/", "deliveryCompletedAt": "2026-11-16T14:02:15Z"}
+ ]
+}

@@ -1,0 +1,129 @@
+# Copy to .github/workflows/tauri-build.yml. See release-workflow.md for setup.
+name: Build one Tauri target
+'on':
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        required: true
+      target:
+        type: string
+        required: true
+      build-args:
+        type: string
+        required: true
+      draft-id:
+        type: string
+        required: true
+      source-commit:
+        type: string
+        required: true
+      publish:
+        type: boolean
+        required: true
+    secrets:
+      TAURI_SIGNING_PRIVATE_KEY:
+        required: false
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD:
+        required: false
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.source-commit || github.sha }}
+      - name: Refresh apt package lists
+        if: inputs.runner == 'ubuntu-22.04'
+        run: sudo apt-get update
+      - name: Install Tauri Linux build dependencies
+        if: inputs.runner == 'ubuntu-22.04'
+        run: sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev patchelf libgtk-3-dev
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: yarn
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ inputs.runner == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ./src-tauri -> target
+      - name: Sync version from tag
+        if: inputs.publish
+        shell: bash
+        run: npm pkg set version="${GITHUB_REF_NAME#v}"
+      - name: Propagate package.json version into tauri.conf.json
+        run: yarn update-version
+      - name: Install frontend dependencies
+        run: yarn install --frozen-lockfile
+      - uses: tauri-apps/tauri-action@v1
+        id: tauri
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          releaseId: ${{ inputs.draft-id }}
+          tagName: ${{ inputs.publish && 'v__VERSION__' || '' }}
+          releaseName: ${{ inputs.publish && '<App Title> v__VERSION__' || '' }}
+          releaseBody: See the assets to download and install.
+          generateReleaseNotes: true
+          releaseDraft: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          uploadWorkflowArtifacts: ${{ !inputs.publish }}
+          retryAttempts: 2
+          releaseAssetNamePattern: '[mainBinaryName]_[version]_[arch][_setup][ext]'
+          args: ${{ inputs.build-args }}
+      - name: Prepare portable exe
+        if: inputs.runner == 'windows-latest'
+        shell: bash
+        env:
+          APP_VERSION: ${{ steps.tauri.outputs.appVersion }}
+        run: bash .github/scripts/ci/prepare-portable.sh
+      - name: Upload portable exe as workflow artifact
+        if: inputs.runner == 'windows-latest'
+        uses: actions/upload-artifact@v7
+        with:
+          name: portable-windows
+          path: <AppName>_${{ env.APP_VERSION }}_x64_portable.exe
+          if-no-files-found: error
+      - name: Attach portable exe to the release
+        if: inputs.runner == 'windows-latest' && inputs.publish
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "v${APP_VERSION}" "<AppName>_${APP_VERSION}_x64_portable.exe" --clobber
+      - name: Record this target's built assets
+        if: inputs.publish
+        shell: bash
+        env:
+          EXTRA_ARTIFACTS: ${{ inputs.runner == 'windows-latest' && format('["<AppName>_{0}_x64_portable.exe"]', steps.tauri.outputs.appVersion) || '[]' }}
+          ARTIFACT_PATHS: ${{ steps.tauri.outputs.artifactPaths }}
+          APP_VERSION: ${{ steps.tauri.outputs.appVersion }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+          TARGET: ${{ inputs.target }}
+          SOURCE_COMMIT: ${{ inputs.source-commit }}
+          GH_TOKEN: ${{ github.token }}
+          DRAFT_ID: ${{ inputs.draft-id }}
+        run: bash .github/scripts/ci/record-build.sh
+      - uses: actions/upload-artifact@v7
+        if: inputs.publish
+        with:
+          name: tauri-evidence-${{ inputs.target }}
+          path: release-evidence/*.json
+          if-no-files-found: error
+          overwrite: true
+      - name: Link the draft release in the run summary
+        if: inputs.publish && steps.tauri.outputs.releaseHtmlUrl != ''
+        shell: bash
+        env:
+          RELEASE_URL: ${{ steps.tauri.outputs.releaseHtmlUrl }}
+          APP_VERSION: ${{ steps.tauri.outputs.appVersion }}
+        run: bash .github/scripts/ci/write-summary.sh

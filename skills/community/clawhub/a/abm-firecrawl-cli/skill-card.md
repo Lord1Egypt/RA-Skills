@@ -1,41 +1,59 @@
-## Description: <br>
-Helps agents choose and run Firecrawl CLI commands to scrape pages, crawl sites, discover URLs, search and scrape results, run autonomous data gathering, and extract structured data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents choose and run Firecrawl CLI commands to scrape pages, crawl sites, discover URLs, search and scrape results, and extract structured data from websites.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect web content and structured data through Firecrawl CLI workflows for single-page scraping, site crawling, URL discovery, search-backed extraction, and LLM-based structured extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, prompts, and retrieved content may be sent to Firecrawl as a third-party service. <br>
-Mitigation: Avoid confidential, internal, authenticated, personal-data-heavy, or terms-restricted sites unless the user has permission, and avoid including secrets or proprietary research details in prompts or crawl requests. <br>
-Risk: Firecrawl API access requires a FIRECRAWL_API_KEY, which could be exposed if pasted into prompts or command text. <br>
-Mitigation: Keep the API key in the environment, do not print or embed it in generated commands, and use --dry-run when previewing requests. <br>
+## Use Case:
 
+Developers, marketers, and research agents use this skill to collect website content with Firecrawl CLI workflows. It is suited for single-page scraping, multi-page crawling, URL discovery, web search with scraping, autonomous data gathering, and structured extraction.
 
-## Reference(s): <br>
-- [Firecrawl](https://firecrawl.dev) <br>
-- [ClawHub release page](https://clawhub.ai/mariokarras/abm-firecrawl-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify source URLs, extraction method, and extracted content; live Firecrawl commands require FIRECRAWL_API_KEY, while --dry-run can preview requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill can guide agents to scrape, crawl, search, and extract content from websites, which can collect data outside the user's authorization or intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized sites and data, keep crawl limits and extraction scope narrow, and avoid collecting personal or sensitive data without a valid basis.
+
+Risk: Firecrawl commands require FIRECRAWL_API_KEY, and exposing this key can compromise the user's Firecrawl account.
+
+Mitigation: Treat FIRECRAWL_API_KEY as a secret, keep it in the environment rather than outputs or shared files, and avoid including it in prompts, logs, or copied command transcripts.
+
+Risk: The skill instructs agents to read local product marketing context before asking questions, which can influence prompts or outputs sent to Firecrawl.
+
+Mitigation: Read local product marketing context only when it is needed for the task and the user is comfortable with that context influencing external Firecrawl requests or results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-firecrawl-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/mariokarras)
+- [Firecrawl](https://firecrawl.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source URLs, extraction method labels, extracted page content, crawl result sections, and Firecrawl API key setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

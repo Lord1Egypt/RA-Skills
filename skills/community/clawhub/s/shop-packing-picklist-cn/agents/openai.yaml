@@ -1,0 +1,8 @@
+interface:
+  display_name: 发货拣货装箱单
+  short_description: 将脱敏订单快速整理为可核对的逐单拣货装箱清单与组件汇总
+  default_prompt: 根据我提供的脱敏订单、套装组成、赠品条件和包装规则，生成保守的发货拣货装箱单；信息不足时只列待确认项，不要猜测。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

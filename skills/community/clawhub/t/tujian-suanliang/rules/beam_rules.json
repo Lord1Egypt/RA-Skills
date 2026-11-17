@@ -1,0 +1,38 @@
+{
+  "beam_rules": [
+    {
+      "id": "first-stirrup-offset",
+      "enabled": true,
+      "kind": "constant",
+      "name": "梁端第一道箍筋距支座边距离",
+      "applies_to": ["WKL", "KL", "L"],
+      "required_inputs": [],
+      "output_key": "first_stirrup_offset_mm",
+      "value_mm": 50,
+      "source": "用户规则模板",
+      "source_page": "",
+      "uncertainty": "需按图纸指定图集核对"
+    },
+    {
+      "id": "beam-stirrup-encrypted-length",
+      "enabled": true,
+      "kind": "expression",
+      "name": "梁端箍筋加密区长度",
+      "applies_to": ["WKL", "KL", "L"],
+      "required_inputs": ["section_h_mm", "seismic_level"],
+      "formula": "max(k * section_h_mm, min_mm)",
+      "params": {
+        "seismic_level": {
+          "特一级": {"k": 2.0, "min_mm": 500},
+          "一级": {"k": 2.0, "min_mm": 500},
+          "二级": {"k": 1.5, "min_mm": 500},
+          "三级": {"k": 1.5, "min_mm": 500},
+          "四级": {"k": 1.5, "min_mm": 500}
+        }
+      },
+      "source": "用户规则模板",
+      "source_page": "",
+      "uncertainty": "公式需与图纸指定图集相关页一致；没有抗震等级时不自动计算"
+    }
+  ]
+}

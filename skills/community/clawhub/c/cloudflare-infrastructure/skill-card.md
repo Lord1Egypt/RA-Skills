@@ -1,45 +1,63 @@
-## Description: <br>
-Manage Cloudflare zones, DNS records, workers, rules, firewall settings, and account resources through ClawLink-backed Cloudflare API tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cloudflare zones, DNS records, workers, rules, firewall settings, and account resources via the Cloudflare API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to inspect and manage Cloudflare DNS, zones, firewall rules, tunnels, workers, and account resources from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloudflare write actions such as DNS, WAF, tunnel, and delete operations can affect production traffic. <br>
-Mitigation: Use least-privileged Cloudflare API tokens, preview changes, and require explicit user confirmation before executing writes. <br>
-Risk: The skill relies on ClawLink to broker Cloudflare access and credentialed API calls. <br>
-Mitigation: Install only when the user trusts ClawLink for Cloudflare access and verify the Cloudflare connection before making tool calls. <br>
+## Use Case:
 
+Developers and operators use this skill from OpenClaw to inspect and manage Cloudflare infrastructure, including zones, DNS records, account resources, workers, rules, firewall settings, WAF lists, tunnels, and related Cloudflare API resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/cloudflare-infrastructure) <br>
-- [Cloudflare API documentation](https://developers.cloudflare.com/api/) <br>
-- [Cloudflare DNS Records API](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone) <br>
-- [Cloudflare Zones API](https://developers.cloudflare.com/api/operations/zones) <br>
-- [ClawLink OpenClaw docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-like tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide Cloudflare API-backed read and write actions through ClawLink tools; write actions require preview and user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill manages high-impact Cloudflare infrastructure through a third-party ClawLink plugin that stores and uses Cloudflare credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and ClawLink are trusted, use the narrowest Cloudflare permissions possible, and revoke the Cloudflare connection when it is no longer needed.
+
+Risk: Write operations can create, update, or delete zones, DNS records, WAF lists, tunnel configuration, and other account resources.
+
+Mitigation: Confirm the target resource and intended effect before every write, preview tool calls where supported, and prefer read/list/describe operations before changes.
+
+Risk: Tunnel configuration updates replace the full configuration and can unintentionally remove existing ingress rules.
+
+Mitigation: Fetch and review the current tunnel configuration before applying an update, then confirm that the preview preserves required rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/cloudflare-infrastructure)
+- [Cloudflare API Documentation](https://developers.cloudflare.com/api/)
+- [Cloudflare DNS API](https://developers.cloudflare.com/api/operations/dns-records-for-a-zone)
+- [Cloudflare Zones API](https://developers.cloudflare.com/api/operations/zones)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=cloudflare-infrastructure)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Cloudflare tool names, preview guidance, confirmation prompts, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

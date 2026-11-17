@@ -1,45 +1,64 @@
-## Description: <br>
-Generates Xiaohongshu-style images from text prompts, with style and aspect-ratio presets for home decor, food, fashion, and travel content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu-style images from text prompts for home decor, food, fashion, and travel content, using OpenAI DALL-E 3, Stability AI SDXL, or a local image-generation fallback.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Content creators, ecommerce sellers, and personal-brand operators use this skill to turn short Chinese prompts into Xiaohongshu-ready image assets with platform-oriented style and sizing defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because it bundles an unrelated Tushare financial-data API helper that uses a separate account token. <br>
-Mitigation: Review or remove the Tushare helper before installation unless the publisher can justify why it belongs in this image-generation skill. <br>
-Risk: Prompts may be sent to OpenAI or Stability AI when the corresponding API keys are configured. <br>
-Mitigation: Avoid sending sensitive or private prompts to cloud providers unless that use is approved for the deployment environment. <br>
-Risk: The local fallback delegates generation to a separately installed image-generate skill. <br>
-Mitigation: Use the local fallback only after reviewing and trusting the installed image-generate skill. <br>
+## Use Case:
 
+External creators, marketers, ecommerce sellers, and personal-brand operators use this skill to generate platform-tailored images for Xiaohongshu posts across home decor, food, fashion, and travel themes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utopiabenben/xiaohongshu-image-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/utopiabenben) <br>
-- [Stability AI SDXL text-to-image endpoint](https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image) <br>
-- [Tushare service referenced by bundled helper](https://tushare.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PNG image files with command-line status text and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports portrait, square, and landscape aspect ratios; may use OpenAI, Stability AI, or a local image-generate fallback depending on configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill.json) <br>
+Risk: The release includes unrelated financial API code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installation and do not run artifact/scripts/api_client.py unless Tushare financial API access is intentionally needed.
+
+Risk: The supplied dependency file is considered unsafe by the security evidence.
+
+Mitigation: Use a virtual environment and verify external package provenance before installing requirements.txt.
+
+Risk: Cloud generation modes send prompt content to OpenAI or Stability AI.
+
+Mitigation: Treat prompts as data shared with the selected provider and use --use-local when prompt content is sensitive.
+
+Risk: API keys may be exposed during troubleshooting.
+
+Mitigation: Read credentials from environment variables and avoid printing API keys or token values in logs, shell output, or support messages.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/utopiabenben/skills/xiaohongshu-image-gen)
+- [Publisher Profile](https://clawhub.ai/user/utopiabenben)
+- [Stability AI SDXL text-to-image endpoint](https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image)
+- [Tushare Pro](https://tushare.pro)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration guidance]
+
+**Output Format:** [PNG image files with CLI status text and usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports 9:16, 1:1, and 16:9 image aspect ratios; cloud modes send prompts to the selected provider, while local fallback depends on an installed image-generate skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

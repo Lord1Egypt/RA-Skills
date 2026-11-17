@@ -1,5 +1,5 @@
 ---
-name: task-experience-summaries
+name: taREDACTED-SECRET
 description: Experience summaries for OpenClaw tasks, including common installation problems, troubleshooting steps, and best practices for packages, configurations, and tools. Use when experiencing installation issues, facing unknown error messages, or needing guidance on package names and configuration methods. Also use when documenting new experiences for future reference.
 ---
 

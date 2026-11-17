@@ -1,41 +1,53 @@
-## Description: <br>
-Atomic node skill to update the subject of an existing Gmail draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to update the subject of an existing Gmail draft.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents and developers use this skill when a Gmail draft already exists and only its subject line needs to be set or updated through the configured native CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change the subject of an existing Gmail draft through the user's configured Gmail CLI. <br>
-Mitigation: Confirm gog is trusted, authenticated to the intended Gmail account, and only granted access where changing that draft is acceptable. <br>
-Risk: The command may target the wrong draft ID or use an unintended subject if parameters are supplied incorrectly. <br>
-Mitigation: Check the JSON response after execution and retry or fail rather than proceeding without confirmation. <br>
+## Use Case:
 
+Agents use this skill when they need to set or update the subject line on an existing Gmail draft through the native Gmail CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-draft-update-subject) <br>
-- [Publisher profile](https://clawhub.ai/user/zvirb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the configured gog CLI and returns confirmation from the Gmail draft update command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Untrusted draft IDs or subject text could be used unsafely when constructing the Gmail CLI invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke `gog` with separated arguments or validated inputs, and avoid concatenating an executable shell command string from user-controlled values.
+
+Risk: The command may fail or update the wrong value if parameters are malformed or hallucinated.
+
+Mitigation: Check the JSON response to confirm the subject was updated, retry only with corrected parameters, and stop after the documented retry limit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/gmail-draft-update-subject)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, guidance]
+
+**Output Format:** [JSON confirmation and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the `gog` binary and should validate JSON responses before confirming completion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

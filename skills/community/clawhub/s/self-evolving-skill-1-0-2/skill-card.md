@@ -1,43 +1,60 @@
-## Description: <br>
-Meta-cognitive self-learning system - Automated skill evolution based on predictive coding and value-driven mechanisms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-cognitive self-learning system - Automated skill evolution based on predictive coding and value-driven mechanisms.
 
-## Publisher: <br>
-[86293073](https://clawhub.ai/user/86293073) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[86293073](https://clawhub.ai/user/86293073)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create, execute, analyze, list, save, and load self-evolving OpenClaw skills through CLI and MCP-style tools. It supports local experimentation with residual analysis, reflection triggers, experience replay, and persisted skill state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store and reuse task context as learned skill state. <br>
-Mitigation: Use a non-sensitive test workspace first and configure an explicit storage directory before use. <br>
-Risk: Persisted or mutated skill state can affect later executions. <br>
-Mitigation: Require manual review before executing, saving, loading, or clearing learned skill state. <br>
-Risk: Server-mode operation may depend on runtime components that were not present in the release artifact. <br>
-Mitigation: Verify the Python core and MCP server components before enabling server mode. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, execute, analyze, list, save, and load self-evolving OpenClaw skills through CLI, TypeScript, and MCP-style tools. It helps agents analyze embeddings, track execution outcomes, and persist learned skill state.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/86293073/self-evolving-skill-1-0-2) <br>
-- [Project homepage](https://github.com/whtoo/self-evolving-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, JSON-like tool results, TypeScript code interfaces, shell commands, and OpenClaw configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may persist and reuse learned skill state in local filesystem storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata); artifact package version is 1.0.2 <br>
+Risk: The skill writes local state under OpenClaw-related directories, which may retain sensitive context or embeddings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local persistence is acceptable, and review or clear its storage after handling sensitive data.
+
+Risk: The skill may run a local Python MCP helper.
+
+Mitigation: Review the local helper configuration before use and run it with only the filesystem access needed for the workflow.
+
+Risk: Some functionality may not work because Python core files referenced by the artifact are absent.
+
+Mitigation: Verify the required core files and dependencies before relying on skill creation, execution, or analysis workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/86293073/skills/self-evolving-skill-1-0-2)
+- [Project homepage](https://github.com/whtoo/self-evolving-bot)
+- [README](README.md)
+- [Installation guide](INSTALLATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses, CLI text, and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local skill state under OpenClaw-related storage paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); artifact metadata, package.json, and openclaw.yaml report 1.0.2
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

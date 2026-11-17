@@ -1,0 +1,123 @@
+{
+  "version": "2.4.0",
+  "source_id": "unesco-students",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:02:18.073Z",
+  "entry": {
+    "url": "https://unesdoc.unesco.org/ark:/48223/pf0000391105",
+    "final_url": "https://unesdoc.unesco.org/ark:/48223/pf0000391105",
+    "title": "",
+    "status": "network_error",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:02:18.073Z",
+    "identity": {
+      "declared_name": "UNESCO《学生人工智能能力框架》2024 英文版",
+      "hostname": null,
+      "domain_matches": false
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "unesco-students:pdf-inspection",
+      "source_id": "unesco-students",
+      "task_kind": "pdf-inspection",
+      "status": "blocked",
+      "parameters": [
+        "document_title_or_identifier",
+        "edition_or_language",
+        "body_page_or_pdf_page",
+        "target_section"
+      ],
+      "instructions": [
+        "本来源是《学生人工智能能力框架》2024英文版；《生成式人工智能教育和研究应用指南》等其他UNESCO文件必须按完整题名、语言和版本另行定位，不能共用本文件页码或表题。",
+        "使用本题书名、标识符、语言和版次定位记录，确认正文页码与PDF物理页码的偏移后读取目标页；只在页面/全文确实可读时取证。"
+      ],
+      "transitions": {},
+      "entry_url": "https://unesdoc.unesco.org/ark:/48223/pf0000391105",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Navigation to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\" is interrupted by another navigation to \"chrome-error://chromewebdata/\"\nCall log:\n\u001b[2m  - navigating to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 2,
+      "detail": "page.goto: Navigation to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\" is interrupted by another navigation to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\"\nCall log:\n\u001b[2m  - navigating to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 3,
+      "detail": "page.goto: Navigation to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\" is interrupted by another navigation to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\"\nCall log:\n\u001b[2m  - navigating to \"https://unesdoc.unesco.org/ark:/48223/pf0000391105\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "unesco-students",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M01-Q1",
+      "2026-M01-Q1",
+      "KH-Q048",
+      "KH-Q072"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:02:18.073Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": null,
+      "original_entry_snapshot": null,
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

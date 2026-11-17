@@ -1,41 +1,55 @@
-## Description: <br>
-Query real-time and historical financial data across equities and crypto, including prices, market moves, metrics, and trends for analysis, alerts, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time and historical financial data across equities and crypto, including prices, market moves, metrics, and trends for analysis, alerts, and reporting.
 
-## Publisher: <br>
-[aisaDevco](https://clawhub.ai/user/aisaDevco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aisadevco](https://clawhub.ai/user/aisadevco)
 
-## Use Case: <br>
-External developers and agent operators use this skill to retrieve stock and cryptocurrency market data, financial statements, metrics, analyst information, SEC filings, screen results, and rate data through AIsa API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends an AISA_API_KEY and submitted market queries to the AIsa API. <br>
-Mitigation: Use a dedicated API key where possible, monitor usage, and avoid submitting proprietary investment screens, portfolio details, or sensitive research criteria unless sharing them with AIsa is acceptable. <br>
-Risk: Market data requests may create usage costs or consume credits. <br>
-Mitigation: Monitor returned usage information and account costs before running broad screens, historical pulls, or repeated automated queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisaDevco/aisa-financial-data-api) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [AIsa API reference](https://aisa.mintlify.app/api-reference/introduction) <br>
+## Use Case:
 
+External developers and agents use this skill to query AIsa market-data endpoints for equities, crypto, financial statements, analyst estimates, filings, insider activity, ownership, rates, and stock screening.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl and Python command examples; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to the AIsa API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AIsa API keys and financial query details, including tickers, date ranges, and screener filters, are sent to api.aisa.one.
+
+Mitigation: Use a dedicated revocable API key where possible and avoid sending account-specific or private portfolio details unless intended.
+
+Risk: The skill performs authenticated market-data API calls that may consume paid credits.
+
+Mitigation: Review query scope before execution and monitor response usage fields such as cost and credits remaining.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadevco/skills/aisa-financial-data-api)
+- [Publisher profile](https://clawhub.ai/user/aisadevco)
+- [OpenClaw homepage](https://openclaw.ai)
+- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl and Python command examples; CLI execution returns JSON from the AIsa API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to api.aisa.one.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

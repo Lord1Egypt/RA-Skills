@@ -1,40 +1,53 @@
-## Description: <br>
-Generate PPT documents using Python and python-pptx. No third-party API calls, fully open source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PPT documents using Python and python-pptx. No third-party API calls, fully open source.
 
-## Publisher: <br>
-[xiangzhanyou](https://clawhub.ai/user/xiangzhanyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiangzhanyou](https://clawhub.ai/user/xiangzhanyou)
 
-## Use Case: <br>
-Developers and agents use this skill to generate local PowerPoint presentations from a title and structured slide content, including text and bullet lists, without third-party API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generator writes a .pptx file to a user-specified path, which could overwrite an existing file if the path is reused. <br>
-Mitigation: Choose a deliberate output folder and filename, and review the returned path before relying on the file. <br>
-Risk: The script depends on python-pptx at runtime. <br>
-Mitigation: Install python-pptx from a trusted package source and version before running the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to generate PowerPoint presentations locally from a title and structured slide content with optional bullet lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiangzhanyou/openclaw-ppt-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [PowerPoint .pptx file with JSON status output from the generator script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and python-pptx; generated files are saved to a caller-provided output path or a timestamped default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The skill writes a PowerPoint file to the path provided by the user or agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose an intended output path before execution and review the resulting file location after generation.
+
+Risk: Generated presentation content may be inaccurate, incomplete, or unsuitable for external sharing.
+
+Mitigation: Review the generated slides before distributing the presentation outside the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiangzhanyou/skills/openclaw-ppt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [files, json, shell commands, guidance]
+
+**Output Format:** [PowerPoint .pptx file with a JSON status response containing the generated file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated locally with python-pptx from user-provided title, slide content, and optional output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

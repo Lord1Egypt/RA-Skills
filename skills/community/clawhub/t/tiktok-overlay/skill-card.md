@@ -1,37 +1,54 @@
-## Description: <br>
-Adds TikTok-style text overlays to images and videos with styled fonts, backgrounds, strokes, and timed animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds TikTok-style text overlays to images and videos with styled fonts, backgrounds, strokes, and timed animations.
 
-## Publisher: <br>
-[xmuweili](https://clawhub.ai/user/xmuweili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xmuweili](https://clawhub.ai/user/xmuweili)
 
-## Use Case: <br>
-Developers and creators use this skill to add styled text overlays to local image and video files for social-media-style edits. It supports single and multiple overlays, flexible styling inputs, timed video text, and fade animations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local image or video files and writes outputs to paths selected by the user. <br>
-Mitigation: Use trusted media inputs, review output paths before running, and keep the Pillow and moviepy dependencies updated. <br>
+## Use Case:
 
+Developers and content automation agents use this skill to add styled text overlays to image and video files, including multiple captions, timed video text, backgrounds, strokes, and fade animations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xmuweili/tiktok-overlay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Python function calls and CLI commands that create image or video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save outputs to user-selected paths or return a PIL Image for image overlays.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill installs unpinned Python dependencies for local media processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a virtual environment or container and avoid administrator-level installs.
+
+Risk: The skill reads and writes local image and video files supplied by the user or calling agent.
+
+Mitigation: Use trusted input paths and review output paths before running file-writing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xmuweili/skills/tiktok-overlay)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with Python examples and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or returns edited image and video files through local Python utilities.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

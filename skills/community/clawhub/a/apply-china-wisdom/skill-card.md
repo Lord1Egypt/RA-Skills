@@ -1,49 +1,64 @@
-## Description: <br>
-A Chinese-language cultural strategy assistant that maps classical Chinese philosophy, strategy, and aesthetics into reflective analysis, practical guidance, creative prompts, and scenario simulations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国古智慧运用 V3.0 helps agents translate classical Chinese philosophy, strategy, and aesthetics into reflective analysis, action plans, creative prompts, and scenario simulations.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-External users can use this skill to explore personal, workplace, business, and creative questions through modern interpretations of Chinese classics. It supports reflective analysis, action planning, mindset coaching, visual prompt generation, and multi-perspective scenario simulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request sensitive personal profiling details such as birth time, location, private reflections, or business-sensitive context. <br>
-Mitigation: Share only information that is intentionally needed for the analysis, and avoid confidential or highly personal details unless the user accepts that exposure. <br>
-Risk: The skill can produce tactical workplace or business guidance that may be inappropriate if treated as professional, legal, financial, or operational advice. <br>
-Mitigation: Treat outputs as reflective cultural guidance and review any consequential action with qualified professionals and applicable legal, ethical, and workplace standards. <br>
-Risk: The artifact includes instructions for persistent case-log and knowledge-base updates. <br>
-Mitigation: Require explicit user approval and a visible diff before allowing any case-log or knowledge-base modification. <br>
+## Use Case:
 
+External users use this Chinese-language advisory skill to frame personal, workplace, business, creative, or strategic questions through classical Chinese concepts and receive structured guidance, prompts, or probability-style scenario analysis. The skill is best treated as reflective cultural and strategic support rather than professional legal, medical, financial, or life-critical advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/apply-china-wisdom) <br>
-- [Publisher profile](https://clawhub.ai/user/mikewongonline) <br>
-- [README](artifact/README.md) <br>
-- [Disclaimer](artifact/DISCLAIMER.md) <br>
-- [Chinese classics scenario index](artifact/KNOWLEDGE/a-list-wisdom.md) <br>
-- [Metaphysics and energy framework](artifact/KNOWLEDGE/metaphysics-framework.md) <br>
-- [Modern tactical mapping library](artifact/KNOWLEDGE/modern-mapping.md) <br>
-- [Agent simulation protocol](artifact/KNOWLEDGE/agent-simulation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Creative prompts] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reflective questions, action steps, scenario simulations, and image-generation prompt text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary says the skill may ask for sensitive personal, spatial, resource, workplace, or business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid precise personal identifiers, confidential business information, and sensitive strategy details when using the skill.
+
+Risk: The security summary and artifact behavior identify persistent feedback and shared knowledge-file update instructions.
+
+Mitigation: Run the skill in a read-only environment or require explicit user consent and human review before any case-log or mapping updates.
+
+Risk: The artifact describes advisory strategy and probability-style simulation outputs that may be incorrect or over-applied.
+
+Mitigation: Treat outputs as reflective guidance only, and consult qualified professionals for legal, medical, financial, or other high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikewongonline/skills/apply-china-wisdom)
+- [README](artifact/README.md)
+- [Disclaimer](artifact/DISCLAIMER.md)
+- [A-List Classics knowledge base](artifact/KNOWLEDGE/a-list-wisdom.md)
+- [Metaphysics and energy framework](artifact/KNOWLEDGE/metaphysics-framework.md)
+- [Agent simulation protocol](artifact/KNOWLEDGE/agent-simulation.md)
+- [Tactical mapping library](artifact/KNOWLEDGE/modern-mapping.md)
+- [Visual prompt library](artifact/KNOWLEDGE/visual-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured analysis sections, action steps, reflective questions, and optional creative prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language outputs may include classical quotations, scenario framing, tactical mappings, and probability-style simulation summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

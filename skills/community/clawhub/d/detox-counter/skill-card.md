@@ -1,37 +1,56 @@
-## Description: <br>
-Track any detox with customizable counters, symptom logging, and progress milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track any detox with customizable counters, symptom logging, and progress milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to track a cleanse or detox, log daily symptoms, monitor milestones, and review progress over a selected duration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Symptom and detox logs can contain sensitive personal health or lifestyle information. <br>
-Mitigation: Keep logs local unless the user intentionally exports or shares them, especially when sending information to healthcare providers or nutritionists. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Detox Counter on ClawHub](https://clawhub.ai/jhillin8/detox-counter) <br>
+## Use Case:
 
+External users use this skill to track cleanse or detox duration, daily symptoms, progress milestones, and completion notes for personal wellness records.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-facing detox progress summaries, symptom logs, milestone status, and export-ready notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may capture personal wellness, symptom, or diet information in local records.
+
+Mitigation: Use it only for information the user is comfortable keeping locally, and review entries before sharing them outside the local machine.
+
+Risk: Broad trigger phrases such as detox progress or detox day may activate the skill unintentionally.
+
+Mitigation: Use more specific trigger wording and confirm before creating or updating tracking entries.
+
+Risk: Symptom and diet logs can be mistaken for medical or nutrition advice.
+
+Mitigation: Treat outputs as personal tracking notes and consult a doctor or nutritionist for personalized health decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhillin8/skills/detox-counter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tracking prompts, progress summaries, and milestone notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally stored personal wellness, symptom, and diet tracking details when the user provides them.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

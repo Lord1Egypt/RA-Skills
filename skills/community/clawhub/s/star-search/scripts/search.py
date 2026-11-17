@@ -31,7 +31,7 @@ STEALTH_JS = os.path.join(os.path.dirname(__file__), 'stealth.js')
 CACHE_DB = os.path.join(os.path.dirname(__file__), '.search_cache.sqlite')
 USER_AGENT = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
               'AppleWebKit/537.36 (KHTML, like Gecko) '
-              'Chrome/131.0.0.0 Safari/537.36')
+              'Chrome/<server-ip> Safari/537.36')
 VIEWPORT = {'width': 1920, 'height': 1080}
 
 # Playwright引擎（反爬严格，需要浏览器）
@@ -61,13 +61,31 @@ HTTP_BASE_URLS = {
     'tencent_cloud': 'https://cn.bing.com/search?q=site%3Acloud.tencent.com+{q}&setlang=zh-cn&count=15',
     'sina_finance':  'https://cn.bing.com/search?q=site%3Afinance.sina.com.cn+{q}&setlang=zh-cn&count=15',
     'sohu':     'https://cn.bing.com/search?q=site%3Asohu.com+{q}&setlang=zh-cn&count=15',
-    # v16.1: 5 个 RSS 引擎（不带 query — RSS endpoint 固定）
-    # 注：RSS_BASE_URLS 在 _search_http 里特殊处理：q 占位符忽略
-    'rss_ithome':  'https://www.ithome.com/rss/?q={q}',
-    'rss_36kr':    'https://36kr.com/feed-newsflash?q={q}',
-    'rss_sspai':   'https://sspai.com/feed?q={q}',
-    'rss_oschina': 'https://www.oschina.net/news/rss?q={q}',
-    'rss_woshipm': 'https://www.woshipm.com/feed?q={q}',
+    # v20.103: 23 个实测可用 RSS/API 源（时效性 7/3 当天，server IP 可达）
+    'rss_36kr':              'https://36kr.com/feed',                              # 科技/创业/融资 (深度)
+    'rss_36kr_newsflash':    'https://36kr.com/feed-newsflash',                    # 科技/创业/快讯 (5分钟级)
+    'rss_tmtpost':           'https://www.tmtpost.com/rss',                         # 科技/AI/营销
+    'rss_infoq':             'https://www.infoq.cn/feed.xml',                       # 中文技术/AI/编程
+    'rss_solidot':           'https://www.solidot.org/index.rss',                   # 科技新闻（国际/AI）
+    'rss_ithome':            'https://www.ithome.com/rss/',                        # 中文 IT 新闻
+    'rss_oschina':           'https://www.oschina.net/news/rss',                   # 中文开源
+    'rss_segmentfault':      'https://segmentfault.com/feeds',                     # 中文技术问答 (Atom)
+    'rss_xinhua_photo':      'https://www.news.cn/photo/news_photo.xml',           # 新华社图片新闻
+    'rss_hn':                'https://hnrss.org/frontpage.jsonfeed',                # 英文技术（强）
+    'rss_hn_best':           'https://hnrss.org/best.jsonfeed',                     # 英文技术（高质量）
+    'rss_techcrunch':        'https://techcrunch.com/feed/',                        # 国际科技媒体
+    'rss_theverge':          'https://www.theverge.com/rss/index.xml',             # 国际科技媒体
+    'rss_wired':             'https://www.wired.com/feed/rss',                     # 国际科技媒体
+    'rss_engadget':          'https://www.engadget.com/rss.xml',                   # 国际科技媒体
+    'rss_arstechnica':       'https://feeds.arstechnica.com/arstechnica/index',   # 国际技术深度
+    'rss_9to5mac':           'https://9to5mac.com/guides/mac/feed/',               # 苹果专业
+    'rss_9to5google':        'https://9to5google.com/guides/google/feed/',         # 谷歌专业
+    'rss_github':            'https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml',  # GitHub 趋势
+    'rss_github_api':        'https://api.github.com/search/repositories?q=stars:>100&sort=updated&order=desc&per_page=15',  # GitHub stars API
+    'rss_devto':             'https://dev.to/feed',                                # 英文编程（中文偶尔）
+    'rss_realpython':        'https://realpython.com/atom.xml',                    # Python 教程 (Atom)
+    'rss_simonwillison':     'https://simonwillison.net/atom/everything/',         # AI/LLM 大神博客 (Atom)
+    'rss_ruanyifeng':        'https://www.ruanyifeng.com/blog/atom.xml',           # 阮一峰博客 (Atom)
 }
 
 # ===== Playwright全局单例 =====
@@ -142,7 +160,12 @@ DEFAULT_TTL = 1800    # 默认30分钟
 def _get_cache_conn():
     global _cache_conn
     if _cache_conn: return _cache_conn
-    _cache_conn = sqlite3.connect(CACHE_DB, check_same_thread=False)
+    # v20.103: 加 timeout 5s + WAL 模式, 避免 "database is locked" 死锁
+    _cache_conn = sqlite3.connect(CACHE_DB, check_same_thread=False, timeout=5.0)
+    try:
+        _cache_conn.execute('PRAGMA journal_mode=WAL')  # WAL 模式: 读写并发不锁
+        _cache_conn.execute('PRAGMA busy_timeout=5000')  # 5s busy timeout
+    except Exception: pass
     # v13: 加 ttl 列
     _cache_conn.execute('''CREATE TABLE IF NOT EXISTS search_cache (
         id TEXT PRIMARY KEY, created_at REAL NOT NULL,
@@ -357,21 +380,59 @@ HTTP_PARSERS = {
     'tencent_cloud': _parse_bing_cn,
     'sina_finance': _parse_bing_cn,
     'sohu': _parse_bing_cn,
-    # v16.1: 5 个 RSS 引擎（v15.1 探针确认 target>0）
-    'rss_ithome':  lambda xml, engine='rss_ithome':  _parse_rss(xml, engine),
-    'rss_36kr':    lambda xml, engine='rss_36kr':    _parse_rss(xml, engine),
-    'rss_sspai':   lambda xml, engine='rss_sspai':   _parse_rss(xml, engine),
-    'rss_oschina': lambda xml, engine='rss_oschina': _parse_rss(xml, engine),
-    'rss_woshipm': lambda xml, engine='rss_woshipm': _parse_rss(xml, engine),
+    # v20.103: 23 个可用 RSS 引擎（实测 7/3 都 200 + 时效性好）
+    'rss_36kr':              lambda xml, engine='rss_36kr':              _parse_rss(xml, engine),
+    'rss_36kr_newsflash':    lambda xml, engine='rss_36kr_newsflash':    _parse_rss(xml, engine),
+    'rss_tmtpost':           lambda xml, engine='rss_tmtpost':           _parse_rss(xml, engine),
+    'rss_infoq':             lambda xml, engine='rss_infoq':             _parse_rss(xml, engine),
+    'rss_solidot':           lambda xml, engine='rss_solidot':           _parse_rss(xml, engine),
+    'rss_ithome':            lambda xml, engine='rss_ithome':            _parse_rss(xml, engine),
+    'rss_oschina':           lambda xml, engine='rss_oschina':           _parse_rss(xml, engine),
+    'rss_xinhua_photo':      lambda xml, engine='rss_xinhua_photo':      _parse_rss(xml, engine),
+    'rss_hn':                lambda xml, engine='rss_hn':                _parse_jsonfeed(xml, engine),
+    'rss_hn_best':           lambda xml, engine='rss_hn_best':           _parse_jsonfeed(xml, engine),
+    'rss_techcrunch':        lambda xml, engine='rss_techcrunch':        _parse_rss(xml, engine),
+    'rss_theverge':          lambda xml, engine='rss_theverge':          _parse_rss(xml, engine),
+    'rss_wired':             lambda xml, engine='rss_wired':             _parse_rss(xml, engine),
+    'rss_engadget':          lambda xml, engine='rss_engadget':          _parse_rss(xml, engine),
+    'rss_arstechnica':       lambda xml, engine='rss_arstechnica':       _parse_rss(xml, engine),
+    'rss_9to5mac':           lambda xml, engine='rss_9to5mac':           _parse_rss(xml, engine),
+    'rss_9to5google':        lambda xml, engine='rss_9to5google':        _parse_rss(xml, engine),
+    'rss_github':            lambda xml, engine='rss_github':            _parse_rss(xml, engine),
+    'rss_github_api':        lambda xml, engine='rss_github_api':        _parse_github_api(xml, engine),
+    'rss_devto':             lambda xml, engine='rss_devto':             _parse_rss(xml, engine),
+    'rss_segmentfault':      lambda xml, engine='rss_segmentfault':      _parse_atom(xml, engine),
+    'rss_realpython':        lambda xml, engine='rss_realpython':        _parse_atom(xml, engine),
+    'rss_simonwillison':     lambda xml, engine='rss_simonwillison':     _parse_atom(xml, engine),
+    'rss_ruanyifeng':        lambda xml, engine='rss_ruanyifeng':        _parse_atom(xml, engine),
 }
 
 # v16.1: RSS 端点配置（site 字段用于 engine 标签真实）
 RSS_ENDPOINTS = {
-    'rss_ithome':  ('https://www.ithome.com/rss/',                      'ithome.com'),
-    'rss_36kr':    ('https://36kr.com/feed-newsflash',                   '36kr.com'),
-    'rss_sspai':   ('https://sspai.com/feed',                            'sspai.com'),
-    'rss_oschina': ('https://www.oschina.net/news/rss',                  'oschina.net'),
-    'rss_woshipm': ('https://www.woshipm.com/feed',                      'woshipm.com'),
+    'rss_36kr':              ('https://36kr.com/feed',                              '36kr.com'),
+    'rss_36kr_newsflash':    ('https://36kr.com/feed-newsflash',                    '36kr.com'),
+    'rss_tmtpost':           ('https://www.tmtpost.com/rss',                         'tmtpost.com'),
+    'rss_infoq':             ('https://www.infoq.cn/feed.xml',                       'infoq.cn'),
+    'rss_solidot':           ('https://www.solidot.org/index.rss',                   'solidot.org'),
+    'rss_ithome':            ('https://www.ithome.com/rss/',                        'ithome.com'),
+    'rss_oschina':           ('https://www.oschina.net/news/rss',                   'oschina.net'),
+    'rss_xinhua_photo':      ('https://www.news.cn/photo/news_photo.xml',           'news.cn'),
+    'rss_hn':                ('https://hnrss.org/frontpage.jsonfeed',                'news.ycombinator.com'),
+    'rss_hn_best':           ('https://hnrss.org/best.jsonfeed',                     'news.ycombinator.com'),
+    'rss_techcrunch':        ('https://techcrunch.com/feed/',                        'techcrunch.com'),
+    'rss_theverge':          ('https://www.theverge.com/rss/index.xml',             'theverge.com'),
+    'rss_wired':             ('https://www.wired.com/feed/rss',                     'wired.com'),
+    'rss_engadget':          ('https://www.engadget.com/rss.xml',                   'engadget.com'),
+    'rss_arstechnica':       ('https://feeds.arstechnica.com/arstechnica/index',   'arstechnica.com'),
+    'rss_9to5mac':           ('https://9to5mac.com/guides/mac/feed/',               '9to5mac.com'),
+    'rss_9to5google':        ('https://9to5google.com/guides/google/feed/',         '9to5google.com'),
+    'rss_github':            ('https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml', 'github.com'),
+    'rss_github_api':        ('https://api.github.com/search/repositories?q=stars:>100&sort=updated&order=desc&per_page=15', 'github.com'),
+    'rss_devto':             ('https://dev.to/feed',                                'dev.to'),
+    'rss_segmentfault':      ('https://segmentfault.com/feeds',                     'segmentfault.com'),
+    'rss_realpython':        ('https://realpython.com/atom.xml',                    'realpython.com'),
+    'rss_simonwillison':     ('https://simonwillison.net/atom/everything/',         'simonwillison.net'),
+    'rss_ruanyifeng':        ('https://www.ruanyifeng.com/blog/atom.xml',           'ruanyifeng.com'),
 }
 
 
@@ -413,6 +474,100 @@ def _parse_rss(xml, engine='rss'):
                  engine=engine, url_type='direct')
         _classify(r)
         # 强制 engine 标签为真实别名
+        r['engine'] = engine
+        results.append(r)
+    return results
+
+
+def _parse_jsonfeed(xml, engine='rss_hn'):
+    """v20.103: JSON Feed 解析器 (Hacker News 等)
+    输入: JSON Feed 1.1 格式字符串 (https://jsonfeed.org/)
+    输出: [{title, url, summary, date, engine, url_type}, ...]
+    """
+    import json as _json
+    try:
+        data = _json.loads(xml)
+    except Exception as e:
+        print(f'  [{engine}] JSON parse error: {e}', file=sys.stderr)
+        return []
+    results = []
+    site = RSS_ENDPOINTS.get(engine, ('', ''))[1] or 'news.ycombinator.com'
+    for item in data.get('items', [])[:15]:
+        title = (item.get('title') or '').strip()
+        if len(title) < 3: continue
+        url = item.get('url') or item.get('external_url') or ''
+        if not url: continue
+        # HN JSON Feed 没有 summary 字段 - 用 title 当 summary
+        summary = item.get('summary') or item.get('content_text') or title
+        # ISO 8601 date (e.g. 2026-07-02T03:11:09Z) → YYYY-MM-DD
+        date = (item.get('date_published') or '')[:10]
+        r = dict(title=title, url=url, summary=summary[:500], date=date,
+                 engine=engine, url_type='direct')
+        _classify(r)
+        r['engine'] = engine
+        results.append(r)
+    return results
+
+
+def _parse_github_api(json_str, engine='rss_github_api'):
+    """v20.103: GitHub Search API 解析器 (repos)
+    输入: GitHub API JSON
+    输出: [{title, url, summary, date, engine, url_type}, ...]
+    """
+    import json as _json
+    try:
+        data = _json.loads(json_str)
+    except Exception as e:
+        print(f'  [{engine}] JSON parse error: {e}', file=sys.stderr)
+        return []
+    results = []
+    for item in data.get('items', [])[:15]:
+        title = (item.get('full_name') or '').strip()
+        if len(title) < 3: continue
+        url = item.get('html_url') or ''
+        if not url: continue
+        desc = (item.get('description') or '').strip()
+        # 用 stars 作"摘要"
+        stars = item.get('stargazers_count', 0)
+        lang = item.get('language', '')
+        summary = f"⭐ {stars} | {lang} | {desc}" if desc else f"⭐ {stars} | {lang}"
+        date = (item.get('updated_at') or '')[:10]  # YYYY-MM-DD
+        r = dict(title=title, url=url, summary=summary[:500], date=date,
+                 engine=engine, url_type='direct')
+        _classify(r)
+        r['engine'] = engine
+        results.append(r)
+    return results
+
+
+def _parse_atom(xml_str, engine='rss_ruanyifeng'):
+    """v20.103: Atom feed 解析器 (博客, e.g. 阮一峰)
+    输入: Atom XML (类似 RSS 但用 <entry> 而非 <item>)
+    输出: [{title, url, summary, date, engine, url_type}, ...]
+    """
+    results = []
+    entries = re.findall(r'<entry[^>]*>(.*?)</entry>', xml_str, re.DOTALL | re.IGNORECASE)
+    for it in entries[:15]:
+        tm = re.search(r'<title[^>]*>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</title>', it, re.DOTALL)
+        title = (tm.group(1).strip() if tm else '').replace('<![CDATA[', '').replace(']]>', '')
+        if len(title) < 3: continue
+        # Atom: <link href="..."/> (无内容)
+        lm = re.search(r'<link[^>]*href=["\']([^"\']+)["\'][^>]*/?>', it)
+        if not lm: lm = re.search(r'<link[^>]*>([^<]+)</link>', it)
+        href = lm.group(1).strip() if lm else ''
+        if not href.startswith('http'): continue
+        # summary / content
+        sm = re.search(r'<summary[^>]*>(.*?)</summary>|<content[^>]*>(.*?)</content>', it, re.DOTALL)
+        summary = (sm.group(1) or sm.group(2) or '') if sm else ''
+        summary = re.sub(r'<[^>]+>', '', summary)
+        summary = summary.replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&').replace('&quot;', '"')
+        # Atom: <published> / <updated> ISO 8601
+        pm = re.search(r'<published>([^<]+)</published>|<updated>([^<]+)</updated>', it)
+        date_raw = (pm.group(1) or pm.group(2) or '') if pm else ''
+        date = date_raw[:10] if date_raw else ''
+        r = dict(title=title, url=href, summary=summary[:500], date=date,
+                 engine=engine, url_type='direct')
+        _classify(r)
         r['engine'] = engine
         results.append(r)
     return results
@@ -709,21 +864,64 @@ def _pick_global_engines(query):
 MODES = {
     'deep':    CN_ENGINES,             # 综合：国内+Bing CN
     'quick':   ['sogou'],              # 极速
-    'news':    ['sogou', 'baidu', 'weixin', 'bing_cn'],  # 中文新闻+Bing
+    # v20.103: news 模式 - 中文 RSS 5 + 英文 RSS 5 (12 个引擎)
+    'news':    ['sogou', 'baidu', 'weixin', 'bing_cn',
+               'rss_36kr', 'rss_36kr_newsflash', 'rss_tmtpost', 'rss_infoq', 'rss_solidot',
+               'rss_ithome', 'rss_xinhua_photo',
+               'rss_hn', 'rss_hn_best', 'rss_techcrunch', 'rss_theverge', 'rss_wired'],
     'global':  GLOBAL_ENGINES_ZH,       # v16.1: 中文走双源；纯英文在 search_async 里再切
     'policy':  ['baidu', 'sogou', 'bing_cn'],  # 政策研究+Bing
-    'stock':   ['sogou', 'baidu', 'weixin', 'bing_cn'],  # 财经+Bing
-    'dev':     ['sogou', 'baidu', 'github_issues', 'bing_cn'],  # 开发者向：技术问答+官方源
-    # v16.1: 4 个新组合 mode（v15.1 7 引擎 + v16.1 5 RSS 引擎）
-    'dev_rss':   ['sogou', 'baidu', 'github_issues', 'bing_cn', 'cnblogs', 'csdn',
-                  'rss_ithome', 'rss_36kr', 'rss_sspai', 'rss_oschina', 'rss_woshipm'],
-    'tech_news': ['cnblogs', 'csdn', 'rss_ithome', 'rss_36kr', 'rss_sspai', 'rss_oschina'],
-    'finance':   ['eastmoney', 'cls', 'sina_finance', 'sohu', 'baidu', 'weixin', 'bing_cn'],  # v16.2.4: 去 RSS, 加 baidu/weixin/bing_cn/sohu 兜底
-    'weixin_agg':['weixin', 'sogou', 'cls', 'woshipm'],  # v16.1: weixin (PW+HTTP双源) + sogou + cls + woshipm
+    # v20.103: stock 模式 - 财经科技新闻
+    'stock':   ['sogou', 'baidu', 'weixin', 'bing_cn', 'rss_36kr', 'rss_36kr_newsflash', 'rss_tmtpost', 'rss_infoq'],
+    # v20.103: dev 模式 - 技术 RSS
+    'dev':     ['sogou', 'baidu', 'github_issues', 'bing_cn',
+               'rss_github', 'rss_github_api', 'rss_devto', 'rss_hn', 'rss_hn_best',
+               'rss_realpython', 'rss_simonwillison', 'rss_segmentfault'],
+    # v20.103: tech_news - 中文技术 RSS
+    'tech_news': ['cnblogs', 'csdn',
+                  'rss_36kr', 'rss_tmtpost', 'rss_infoq', 'rss_solidot', 'rss_ithome', 'rss_oschina',
+                  'rss_segmentfault', 'rss_realpython', 'rss_simonwillison', 'rss_ruanyifeng'],
+    'finance':   ['eastmoney', 'cls', 'sina_finance', 'sohu', 'baidu', 'weixin', 'bing_cn',
+                  'rss_36kr', 'rss_36kr_newsflash', 'rss_tmtpost'],
+    'weixin_agg':['weixin', 'sogou', 'cls', 'woshipm'],
+    # v20.103: 新增 ai_news (AI 专门) + 英文国际
+    'ai_news':   ['rss_36kr_newsflash', 'rss_36kr', 'rss_tmtpost', 'rss_infoq', 'rss_solidot',
+                  'rss_hn', 'rss_hn_best', 'rss_simonwillison',
+                  'rss_realpython', 'rss_devto', 'rss_arstechnica'],
+    'tech_intl': ['rss_techcrunch', 'rss_theverge', 'rss_wired', 'rss_engadget', 'rss_arstechnica',
+                  'rss_9to5mac', 'rss_9to5google', 'rss_hn', 'rss_hn_best', 'rss_simonwillison'],
 }
 
-# HTTP引擎权重 & 权威性评分
-HTTP_ENGINE_WEIGHTS = {'bing_cn': 85, 'bing_http': 70, 'github_issues': 80}
+# HTTP引擎权重 & 权威性评分 (v20.103: 加 23 个 RSS 引擎权重)
+HTTP_ENGINE_WEIGHTS = {
+    'bing_cn': 85, 'bing_http': 70, 'github_issues': 80,
+    # 中文 RSS (时效性强)
+    'rss_36kr_newsflash': 78,  # 36kr 快讯 (5分钟级)
+    'rss_36kr': 75,
+    'rss_tmtpost': 75,
+    'rss_infoq': 75,
+    'rss_ithome': 72,         # IT 之家
+    'rss_oschina': 70,
+    'rss_solidot': 70,
+    'rss_segmentfault': 72,  # Atom
+    'rss_xinhua_photo': 65,  # 图片为主
+    'rss_ruanyifeng': 70,    # 博客
+    # 英文 RSS
+    'rss_hn': 60,
+    'rss_hn_best': 65,
+    'rss_techcrunch': 70,
+    'rss_theverge': 70,
+    'rss_wired': 70,
+    'rss_engadget': 70,
+    'rss_arstechnica': 75,    # 技术深度
+    'rss_9to5mac': 65,
+    'rss_9to5google': 65,
+    'rss_github': 60,
+    'rss_github_api': 60,
+    'rss_devto': 60,
+    'rss_realpython': 70,    # Python
+    'rss_simonwillison': 75, # AI/LLM 大神
+}
 DOMAIN_AUTHORITY = {
     'gov.cn': 20, 'edu.cn': 20,
     'github.com': 15, 'arxiv.org': 20,
@@ -914,6 +1112,17 @@ def _days_since(d):
 
 # ===== 主搜索函数 =====
 async def search_async(query, engine=None, num=10, mode='deep', resolve_urls=True, recency=None, exact=False, sources=None, force_refresh=False):
+    # v20.103: auto 模式自动检测 query 语言
+    # 纯英文 query → global (bing_http 国际)
+    # 含中文 → 保持用户原 mode (默认 deep)
+    if mode == 'auto':
+        if re.search(r'[\u4e00-\u9fff]', query):
+            mode = 'deep'
+        else:
+            mode = 'global'
+        import sys as _ss
+        print(f'  [auto-mode] -> {mode} (q: {query[:40]!r})', file=_ss.stderr)
+
     # v17.2: 默认用原 query, 智能识别时改写
     query_for_search = query
 
@@ -1097,6 +1306,8 @@ def main():
     p.add_argument('--list', action='store_true')
     p.add_argument('--no-resolve', action='store_true', help='禁用URL解析')
     p.add_argument('--explain', action='store_true', help='v16: 调试模式，显示每条结果的评分构成与跨源验证详情')
+    p.add_argument('--fetch', type=int, default=0, metavar='N',
+                   help='v20.101: 抓取前 N 条结果的正文 (默认 0=不抓; 需 import fetch_content)')
     args = p.parse_args()
 
     if args.list:
@@ -1120,6 +1331,19 @@ def main():
         mode=args.mode, resolve_urls=resolve, recency=args.recency,
         exact=args.exact, sources=sources))
 
+    # v20.101: --fetch N - 自动抓取前 N 条正文
+    if args.fetch and args.fetch > 0:
+        try:
+            import fetch_content
+            print(f'\\n[fetch] 抓取前 {args.fetch} 条结果正文...', file=sys.stderr)
+            t0 = time.time()
+            results = fetch_content.fetch_results(results, top_n=args.fetch, use_playwright=True)
+            ok = sum(1 for r in results if isinstance(r, dict) and r.get('fetch_success'))
+            elapsed = round(time.time() - t0, 1)
+            print(f'[fetch] 完成: {ok}/{args.fetch} 成功, 耗时 {elapsed}s', file=sys.stderr)
+        except ImportError:
+            print('⚠️ fetch_content.py 未找到, 跳过抓取', file=sys.stderr)
+
     if args.json:
         print(json.dumps(results, ensure_ascii=False, indent=2))
     else:
@@ -1138,9 +1362,18 @@ def main():
             # v16: 总评分后缀（透明度）
             score = r.get('score')
             score_str = f' [score={score:.0f}]' if isinstance(score, (int, float)) else ''
-            print(f'{i}. {r["title"]}{d}{e}{c}{cross}{score_str}')
+            # v20.101: 抓取标识
+            fetch_mark = ''
+            if r.get('fetch_success'):
+                fetch_mark = f' 📄[抓取成功 {r.get("fetch_elapsed","")}s]'
+            elif r.get('fetch_error') and r.get('fetch_error') != 'skipped':
+                fetch_mark = f' ⚠️[抓取失败: {r.get("fetch_error","")[:30]}]'
+            print(f'{i}. {r["title"]}{d}{e}{c}{cross}{score_str}{fetch_mark}')
             print(f'   {r["url"][:100]}')
             if r.get('summary'): print(f'   {r["summary"][:150]}')
+            # v20.101: 显示抓取的正文 (前 300 字)
+            if r.get('content'):
+                print(f'   📄 正文: {r["content"][:300]}...')
             # v16: --explain 调试模式 — 显示评分构成
             if args.explain:
                 expl_parts = []

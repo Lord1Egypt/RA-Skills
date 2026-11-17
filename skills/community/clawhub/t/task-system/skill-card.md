@@ -1,43 +1,57 @@
-## Description: <br>
-Manage tasks with automatic creation, SQLite tracking, heartbeat updates, notifications, stuck task detection, and recovery in a complete lifecycle system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task System manages local task lifecycles with SQLite tracking, task creation, heartbeat updates, completion status, stuck-task detection, and status summaries.
 
-## Publisher: <br>
-[npmisantosh](https://clawhub.ai/user/npmisantosh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[npmisantosh](https://clawhub.ai/user/npmisantosh)
 
-## Use Case: <br>
-Developers and agents use this skill to create, update, complete, list, and recover local work tasks through a shell-based SQLite task tracker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer adds persistent command-line access by modifying shell PATH setup and may create a task-system symlink. <br>
-Mitigation: Install only when persistent local CLI access is desired, and review or remove the added shell PATH entry and ~/.local/bin/task-system symlink when uninstalling. <br>
-Risk: Task text and notes are stored in a local SQLite database and may persist sensitive information. <br>
-Mitigation: Avoid putting secrets, credentials, or other sensitive material in task requests or completion notes. <br>
-Risk: Task operations depend on caller-supplied task IDs and local shell scripts. <br>
-Mitigation: Use numeric task IDs and review command arguments before running update, complete, or stuck-task checks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, update, complete, and review locally stored task records during agent work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/npmisantosh/task-system) <br>
-- [Publisher Profile](https://clawhub.ai/user/npmisantosh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local SQLite task records under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The installer persistently changes shell startup files and may alter PATH behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer explicit opt-in PATH changes, and avoid writing to ~/.bashrc by default.
+
+Risk: Task mutation commands can default to task ID 1 and do not validate task IDs before SQLite updates.
+
+Mitigation: Require explicit task IDs, validate IDs as integers, and review updates before running mutations against the local database.
+
+Risk: Unsafe task ID handling can corrupt or alter the local task database.
+
+Mitigation: Back up the SQLite database and use parameterized or validated updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/npmisantosh/skills/task-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local task records in a SQLite database under the user's home directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

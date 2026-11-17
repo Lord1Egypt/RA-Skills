@@ -1,40 +1,54 @@
-## Description: <br>
-Diagnoses and helps fix mimo-v2.5-pro and related mimo model API failures, including 400 Param Incorrect responses, rejected request schemas, tool-calling payload issues, and model configuration problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and helps fix mimo-v2.5-pro and related Mimo model API failures involving 400 Param Incorrect responses, rejected request schemas or tool payloads, and schema-format provider runtime failures.
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-Developers and operators use this skill to troubleshoot OpenClaw requests to mimo models, validate API connectivity and tool-calling behavior, inspect model configuration, and apply targeted configuration fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic commands read local OpenClaw configuration and call the configured provider endpoint with an API key. <br>
-Mitigation: Confirm the configured baseUrl is trusted, keep API keys private, and redact diagnostic output before sharing it. <br>
-Risk: Configuration repair snippets can modify ~/.openclaw/openclaw.json and gateway restarts can change runtime model behavior. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before applying edits and review the intended changes before restarting the gateway. <br>
+## Use Case:
 
+Developers and engineers use this skill to troubleshoot OpenClaw provider configuration, Mimo API connectivity, tool calling support, model naming, and related log evidence when Mimo requests fail.
 
-## Reference(s): <br>
-- [mimo API error reference](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic commands, curl requests, log-search commands, and OpenClaw configuration edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diagnostic commands read local OpenClaw provider credentials and send test requests to the configured API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that ~/.openclaw/openclaw.json points to a trusted provider endpoint and use only non-sensitive test prompts.
+
+Risk: Suggested fixes may modify OpenClaw model configuration, including enabling toolCall for Mimo models.
+
+Mitigation: Back up openclaw.json and review the proposed configuration change before applying it.
+
+## Reference(s):
+
+- [mimo API error reference](artifact/references/errors.md)
+- [ClawHub release page](https://clawhub.ai/lgugeng/skills/mimo-api-fix)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic API calls and local OpenClaw configuration edits for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

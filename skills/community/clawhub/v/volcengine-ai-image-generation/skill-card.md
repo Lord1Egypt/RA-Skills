@@ -1,38 +1,52 @@
-## Description: <br>
-Image generation workflow on Volcengine AI services for text-to-image requests, style variants, prompt refinement, deterministic parameters, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image generation workflow on Volcengine AI services. Use when users need text-to-image, style variants, prompt refinement, or deterministic image generation parameters and troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare and run Volcengine image generation workflows, including prompt structuring, generation parameter selection, and returning generated image links or files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image prompts or generation parameters could include secrets or sensitive personal data sent to a Volcengine endpoint. <br>
-Mitigation: Confirm the Volcengine endpoint and account credentials before production use, and avoid sending secrets or sensitive personal data in prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/volcengine-ai-image-generation) <br>
-- [Skill reference sources](artifact/references/sources.md) <br>
+## Use Case:
 
+Developers and external users use this skill to generate and iterate images through Volcengine AI services with structured prompts, generation parameters, and troubleshooting guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with prompts, parameter settings, and generated image links or files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model or endpoint choices, output constraints, prompt structure, style settings, and generation parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Image prompts and generation settings may be sent to Volcengine/ARK services.
+
+Mitigation: Confirm users are comfortable with that data sharing before installation and avoid submitting sensitive prompt content.
+
+Risk: API credentials could be exposed if embedded in skill files or prompts.
+
+Mitigation: Configure required credentials through the user's normal trusted environment rather than embedding them in the skill.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown with image links or files, prompts, parameter settings, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated image links or files together with the prompt and generation parameters used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

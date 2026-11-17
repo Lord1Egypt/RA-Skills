@@ -1,0 +1,6 @@
+interface:
+  display_name: "xjev · Agent 决策"
+  short_description: "Jev 决策、贡献回执、自然语言纠正与个性化请求迭代"
+  default_prompt: "使用 $xjev 比较当前方案，说明 Jev 的判断与取舍，并根据我的反馈改进后续决策。"
+policy:
+  allow_implicit_invocation: true

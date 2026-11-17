@@ -1,43 +1,53 @@
-## Description: <br>
-Composio helps an agent discover tools, manage third-party app connections, execute actions across connected services, and process larger workflows through remote workbench tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Composio helps agents discover tools, manage app connections, and execute actions across connected services such as Gmail, Slack, GitHub, Notion, Google Workspace, Microsoft apps, and browser or web-search tools.
 
-## Publisher: <br>
-[wjayesh](https://clawhub.ai/user/wjayesh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wjayesh](https://clawhub.ai/user/wjayesh)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect AI agents to Composio-supported apps, find the right tools for a task, manage required account connections, execute actions, and process large tool outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Connected app actions can send, post, edit, delete, upload, or otherwise change data in third-party accounts. <br>
-Mitigation: Use a dedicated Composio project, connect only required accounts, review OAuth scopes, and require explicit user confirmation before state-changing actions. <br>
-Risk: The remote workbench and bash tools can run persistent remote code and process large outputs outside the local agent session. <br>
-Mitigation: Use remote execution only for necessary processing, keep code scoped to the task, avoid secrets in code or logs, and revoke connections after the task is complete. <br>
-Risk: The Composio API key grants access to connected Composio capabilities if exposed. <br>
-Mitigation: Store the API key in a private environment variable, do not paste it into shared output, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/wjayesh/composio) <br>
-- [Composio platform](https://platform.composio.dev) <br>
-- [Composio API base](https://backend.composio.dev/api/v3) <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect an AI agent to Composio-supported apps, find the right tool schemas, initiate required account connections, and run schema-compliant tool actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration, API calls] <br>
-**Output Format:** [Markdown instructions with JSON payload examples, cURL commands, and Python or Bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authentication URLs, tool execution responses, remote workbench output, and uploaded artifact links through Composio services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents using this skill may gain broad access to connected accounts and can send, post, edit, delete, upload, or bulk-process data through Composio-connected apps.
+
+Mitigation: Require explicit user approval before any externally visible, destructive, upload, or bulk action, and confirm the active connected account before execution.
+
+Risk: Private emails, documents, messages, credentials, or account data could be sent to workbench, web-search, file-upload, or LLM helpers without enough context.
+
+Mitigation: Share sensitive data only when the destination and task need are clear, and minimize or redact private content before remote processing.
+
+## Reference(s):
+
+- [ClawHub Composio Skill](https://clawhub.ai/wjayesh/skills/composio)
+- [Composio Platform](https://platform.composio.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers API-key setup, tool search, connection management, schema retrieval, tool execution, and remote processing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

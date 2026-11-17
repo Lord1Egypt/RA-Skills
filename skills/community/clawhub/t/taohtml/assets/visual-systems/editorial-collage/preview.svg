@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">杂志图文拼贴</title><desc id="desc">图片切片、错位排版、大字标题和编辑杂志感</desc>
+  <rect width="800" height="450" fill="#eee9df"/><path d="M0 0H800V450H0z" fill="url(#paper)" opacity=".2"/><defs><pattern id="paper" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#111"/></pattern></defs>
+  <rect x="38" y="35" width="100" height="24" fill="#f1c84b" stroke="#111" stroke-width="2" transform="rotate(-2 38 35)"/><text x="39" y="117" font-family="Impact,Arial Black,PingFang SC,sans-serif" font-size="55" font-weight="900" fill="#111">杂志图文</text><text x="39" y="168" font-family="Impact,Arial Black,PingFang SC,sans-serif" font-size="55" font-weight="900" fill="#111">拼贴</text>
+  <rect x="52" y="225" width="248" height="142" fill="#3155d9" stroke="#111" stroke-width="3" transform="rotate(-3 52 225)"/><path d="M76 342l74-88 48 52 52-69" fill="none" stroke="#fff" stroke-width="14"/>
+  <rect x="327" y="203" width="174" height="152" fill="#f1c84b" stroke="#111" stroke-width="3" transform="rotate(3 327 203)"/><text x="361" y="303" font-family="Impact,sans-serif" font-size="76" font-weight="900">12</text>
+  <rect x="511" y="52" width="206" height="234" fill="#e64b38" stroke="#111" stroke-width="3" transform="rotate(4 511 52)"/><rect x="536" y="82" width="156" height="162" fill="#111" opacity=".18"/><path d="M540 220l60-104 38 67 38-56" fill="none" stroke="#fff" stroke-width="12"/>
+  <rect x="500" y="292" width="246" height="94" fill="#fffaf0" stroke="#111" stroke-width="3" transform="rotate(-2 500 292)"/><rect x="520" y="316" width="82" height="8" fill="#3155d9"/><rect x="520" y="340" width="180" height="7" fill="#111"/><line x1="38" y1="414" x2="760" y2="414" stroke="#111" stroke-width="2"/>
+</svg>

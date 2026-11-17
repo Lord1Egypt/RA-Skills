@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn75neczzxsdbx7djhh1kn544182nsbj",
-  "slug": "hermes-agent-v2",
-  "version": "2.1.1",
-  "publishedAt": 1775958598074
+  "name": "hermes-agent-v2",
+  "version": "2.1.0",
+  "description": "NousResearch Hermes Agent CLI integration - self-improving skills, persistent memory, sub-agent delegation, MCP",
+  "author": "wihy",
+  "keywords": ["hermes", "agent", "ai", "nousresearch", "memory", "delegation", "mcp"],
+  "triggers": ["hermes", "使用 hermes", "调用 hermes", "hermes agent", "hermes run", "hermes delegate", "hermes memory", "hermes skills"],
+  "category": "ai-agents",
+  "dependencies": {
+    "required": [{"name": "hermes-cli", "check": "which hermes"}]
+  }
 }

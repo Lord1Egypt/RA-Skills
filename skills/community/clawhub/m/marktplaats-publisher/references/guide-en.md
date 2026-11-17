@@ -4,7 +4,7 @@
 
 **Marktplaats Seller Assistant**
 
-Technical skill key: `marktplaats`.
+Technical skill key: `marktplaats-publisher`.
 
 The name is intentionally broader than search. The skill supports the selling workflow: category selection, live field inspection, photo preparation/upload, local ad tracking, repost preparation, dry-run review, and publishing only after explicit confirmation.
 
@@ -20,7 +20,7 @@ This skill helps an agent prepare, place, track and later repost Marktplaats adv
 - Inspect the live placement form in a logged-in browser session.
 - Extract category-specific fields such as condition, brand, type, delivery, price and options.
 - Prepare resized, metadata-reduced photo copies where possible.
-- Upload photos through the logged-in browser context.
+- Guide and verify photo upload through the logged-in browser context.
 - Fill advertisement fields conservatively.
 - Keep paid features disabled by default.
 - Present a dry-run summary.
@@ -191,7 +191,7 @@ Hard requirements:
 - at least 7 substantial sections/paragraphs;
 - no `Zoektermen:`, `Keywords:`, `SEO:` or keyword dump;
 - natural SEO terms in prose;
-- at least one subtle typo/spelling/search variant in context.
+- at least one subtle product-relevant typo/spelling/search variant in context.
 
 ### 4. Inspect The Live Form
 
@@ -199,6 +199,14 @@ Open the placement page for the chosen category and capture a fresh snapshot wit
 
 ```bash
 node scripts/marktplaats-place-probe.js --browser --save housekeeping/marktplaats-snapshots/current.json
+```
+
+Or open the placement page in Safari in the background before probing the same session:
+
+```bash
+node scripts/marktplaats-place-probe.js --browser \
+  --open-background "https://www.marktplaats.nl/plaats/..." \
+  --save housekeeping/marktplaats-snapshots/current.json
 ```
 
 Inspect:
@@ -215,8 +223,11 @@ Inspect:
 - postcode/contact fields;
 - paid feature fields;
 - selected bundle.
+- `security.challengeSignals` for login, captcha, MFA, WAF, or payment/promotion signals.
 
 A `curl` probe on `/plaats` may return `401` without a session cookie. That is expected. In that case, use the logged-in browser DOM as the source of truth instead of manual UI clicking.
+
+Prefer background-safe inspection before visible UI: use `--browser-fetch --url ...` or `--browser --open-background ...` where possible. Safari may carry the logged-in session, but the workflow should not unnecessarily activate Safari or steal the user's current tab.
 
 ### 4. Fill Fields Conservatively
 
@@ -263,7 +274,7 @@ The proven browser-context upload uses:
 
 Preferred local helper:
 
-Upload the photos in the live flow and then read back the generated `images.ids` / hidden fields through the probe. Use the browser only as a session carrier, not to guess an upload path by hand.
+Upload the photos in the live flow and then read back the generated `images.ids` / hidden fields through the probe. Use the browser only as a session carrier, not to guess an upload path by hand. If upload or photo count cannot be verified, stop.
 
 ### 8. Dry-Run Summary
 
@@ -291,6 +302,7 @@ Publish only after explicit approval. After submission:
 - report the advertisement id/link;
 - summarize validation errors if any;
 - stop if a payment page appears;
+- run live verification;
 - update the local ad register.
 
 ## Testing Protocol

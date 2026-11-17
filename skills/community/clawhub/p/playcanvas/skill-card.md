@@ -1,50 +1,64 @@
-## Description: <br>
-Comprehensive guide for PlayCanvas, the web-first 3D graphics platform including the Engine API, Editor, React wrapper, and Web Components for building 3D web applications, games, and interactive experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive guide for PlayCanvas, the web-first 3D graphics platform including the Engine API, Editor, React wrapper, and Web Components.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill for PlayCanvas implementation guidance across the Engine API, Editor workflows, React wrapper, Web Components, assets, graphics, physics, scripting, optimization, and publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A real-looking bearer token example could be copied into workflows or treated as an exposed credential. <br>
-Mitigation: Replace the example token with a clear placeholder, use least-privilege PlayCanvas tokens, and revoke any token that may have been exposed. <br>
-Risk: REST API guidance includes mutating or destructive project operations such as delete, force, overwrite, merge, and publish actions. <br>
-Mitigation: Require explicit user approval before agents run mutating PlayCanvas API calls, especially delete, force, overwrite, merge, or publish operations. <br>
-Risk: Production projects may inherit dependency or CDN drift if versions are left unpinned. <br>
-Mitigation: Pin CDN or package versions for production PlayCanvas projects. <br>
+## Use Case:
 
+Developers and engineers use this skill as a PlayCanvas reference when building 3D web applications, games, and interactive experiences with the Engine API, Editor, React wrapper, Web Components, and related platform features.
 
-## Reference(s): <br>
-- [PlayCanvas Skill Overview](SKILL.md) <br>
-- [Getting Started](references/getting-started.md) <br>
-- [Engine Standalone](references/engine-standalone.md) <br>
-- [REST API](references/api.md) <br>
-- [Scripting](references/scripting.md) <br>
-- [Graphics](references/graphics.md) <br>
-- [Optimization](references/optimization.md) <br>
-- [Security](references/security.md) <br>
-- [PlayCanvas Engine API Reference](https://api.playcanvas.com/engine/classes/Entity.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PlayCanvas API examples, project configuration guidance, and implementation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may copy package, CDN, token, API, publishing, merge, delete, or editor-automation examples into a live project without enough review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package and CDN versions, use a clean project or branch, keep PlayCanvas access tokens out of shell history and logs, and explicitly confirm delete, force, merge, publish, and editor-automation actions before execution.
+
+## Reference(s):
+
+- [PlayCanvas Skill Page](https://clawhub.ai/openlark/skills/playcanvas)
+- [Getting Started](references/getting-started.md)
+- [Editor](references/editor.md)
+- [Editor Getting Started](references/editor-getting-started.md)
+- [Engine Standalone](references/engine-standalone.md)
+- [Graphics](references/graphics.md)
+- [Scripting](references/scripting.md)
+- [Entity Component System](references/ecs.md)
+- [Assets](references/assets.md)
+- [REST API](references/api.md)
+- [React](references/react.md)
+- [Web Components](references/web-components.md)
+- [Physics](references/physics.md)
+- [Animation](references/animation.md)
+- [Optimization](references/optimization.md)
+- [Security](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline code examples and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; users should review generated code, commands, API calls, publishing steps, and editor automation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

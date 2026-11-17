@@ -1,49 +1,71 @@
-## Description: <br>
-Bitget Wallet Skill.Disabled provides agent-facing guidance and Python commands for Bitget Wallet market data, token checks, swap workflows, wallet signing, and x402 payments, while release evidence says this version is disabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This ClawHub release disables the Bitget Wallet skill, so wallet, swap, market-data, token-info, security-audit, and trading operations are unavailable.
 
-## Publisher: <br>
-[xunbin0908](https://clawhub.ai/user/xunbin0908) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunbin0908](https://clawhub.ai/user/xunbin0908)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Bitget Wallet-related market data, token risk checks, portfolio balances, swap quotes, signing guidance, and x402 payment flows. The release changelog states this version is disabled, so users should confirm availability before attempting wallet, trading, or payment operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says the artifact is a functional crypto wallet, trading, and payment skill with real fund-moving authority despite metadata that says it is disabled. <br>
-Mitigation: Install only when intentionally using an agent-capable crypto wallet or trading helper, and verify whether the disabled release should perform any wallet, swap, or payment operation. <br>
-Risk: Wallet signing, swap, and x402 payment flows can authorize real asset transfers. <br>
-Mitigation: Use a fresh low-balance wallet, avoid existing seed phrases or high-value keys, and review every transaction or payment before approval. <br>
-Risk: Unreviewed updates can change fund-moving behavior. <br>
-Mitigation: Avoid unpinned self-updates unless the diff is reviewed before use. <br>
+## Use Case:
 
+External users and developers can install this release as a disabled placeholder for the Bitget Wallet skill. Normal wallet, swap, market-data, token-info, security-audit, and trading operations are unavailable until the skill is enabled or updated.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xunbin0908/bitget-wallet-skill-disabled) <br>
-- [Bitget Wallet API documentation](https://web3.bitget.com/en/docs) <br>
-- [README](README.md) <br>
-- [Commands reference](docs/commands.md) <br>
-- [Wallet signing guide](docs/wallet-signing.md) <br>
-- [Swap guide](docs/swap.md) <br>
-- [Market data guide](docs/market-data.md) <br>
-- [x402 payments guide](docs/x402-payments.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve wallet, swap, signing, and payment actions; users should review generated commands and transaction details before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact contains wallet custody, transaction signing, swap, and payment flows that can move funds if enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that capability is intended, use a dedicated low-balance wallet, and require review of every decoded transaction or payment before signing.
+
+Risk: Private keys passed through command-line arguments or broad environment variables can leak through shell history, process listings, logs, or agent context.
+
+Mitigation: Use secure storage and narrow in-memory handling for keys; avoid command-line private-key arguments and broad environment variables.
+
+Risk: Automatic x402 payment execution can spend funds on untrusted URLs.
+
+Mitigation: Do not use x402 automatic payment mode with untrusted URLs; require user review and spending limits for payment requests.
+
+Risk: The artifact describes a main-branch self-update path that could change behavior after installation.
+
+Mitigation: Avoid self-updating from the main branch unless the new release has been separately verified.
+
+Risk: This specific ClawHub release is disabled, while artifact files still describe operational wallet and trading behavior.
+
+Mitigation: Treat the operational artifact behavior as unavailable for version 1.0.0 unless the skill is explicitly enabled or updated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xunbin0908/skills/bitget-wallet-skill-disabled)
+- [Bitget Wallet API documentation](https://web3.bitget.com/en/docs)
+- [Artifact README](artifact/README.md)
+- [Commands reference](artifact/docs/commands.md)
+- [Swap domain knowledge](artifact/docs/swap.md)
+- [Wallet and signing domain knowledge](artifact/docs/wallet-signing.md)
+- [x402 payments domain knowledge](artifact/docs/x402-payments.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [This disabled release does not process wallet, swap, market-data, token-info, security-audit, or trading operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub server release metadata; artifact frontmatter reports 2026.3.12-1 and artifact changelog top entry reports 2026.3.13-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

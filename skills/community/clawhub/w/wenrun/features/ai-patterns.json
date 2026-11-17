@@ -1,0 +1,1345 @@
+{
+  "version": "1.1.0",
+  "description": "中文AI文本特征库 — 记录中文AI生成文本的典型语言特征",
+  "last_updated": "2026-07-24",
+  "categories": [
+    {
+      "id": "TEMPLATE_STRUCTURE",
+      "name": "模板化结构",
+      "weight": 18,
+      "description": "AI文本最常见的结构模板，段落组织方式过于规整",
+      "patterns": [
+        {
+          "id": "T-01",
+          "pattern": "首先",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI喜欢用'首先'开头列清单，人类写作更灵活 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-02",
+          "pattern": "其次",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "'首先其次最后'三段式是典型AI模板 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-03",
+          "pattern": "最后",
+          "type": "keyword",
+          "severity": "low",
+          "note": "单独使用正常，但出现在'首先其次最后'序列中是AI信号 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-04",
+          "pattern": "第一",
+          "type": "keyword_context",
+          "severity": "medium",
+          "note": "编号式论述（第一第二第三）在AI文本中密度远高于人类 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-05",
+          "pattern": "第二",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "学术写作中该表达属于正常句式",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-06",
+          "pattern": "第三",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "学术写作中该表达属于正常句式",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-07",
+          "pattern": "一方面.*另一方面",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI喜欢用此结构做对比论述，人类更倾向用段落自然过渡 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-08",
+          "pattern": "总的来说|总而言之|综上所述",
+          "type": "regex",
+          "severity": "high",
+          "note": "高度AI化的总结句式，尤其在段落末尾频繁出现 【学术文体中权重降低】",
+          "counter": "真正需要总结时使用不算异常，但每段结尾都用是AI信号",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-09",
+          "pattern": "值得注意的是|需要指出的是|需要强调的是",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI的万能引出句式，人类很少这样写",
+          "style_mode": "casual"
+        },
+        {
+          "id": "T-10",
+          "pattern": "在.*方面",
+          "type": "regex",
+          "severity": "low",
+          "note": "'在X方面'是AI偏好的开头方式，密度过高时提示 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-11",
+          "pattern": "从.*角度来看|从.*层面来看",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI喜欢从多个'角度'或'层面'展开论述 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-12",
+          "pattern": "具体来说",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI喜欢用'具体来说'引出细节，人类更倾向直接用例子说明 【学术文体中权重降低】",
+          "counter": "在需要正式分点说明时（如报告中的分项），'具体来说'自然可用",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-13",
+          "pattern": "以.*为例",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI引出例子的公式化表达，密度过高提示 【学术文体中权重降低】",
+          "counter": "学术论文或教程中自然使用",
+          "style_mode": "academic"
+        },
+        {
+          "id": "T-14",
+          "pattern": "主要有以下几.*|主要包括",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI分点列举的典型开头，人类较少这样打标签",
+          "style_mode": "casual"
+        },
+        {
+          "id": "T-15",
+          "pattern": "可分为以下几类|分为以下几个方面",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI分类论述的标志性开头",
+          "style_mode": "casual"
+        }
+      ]
+    },
+    {
+      "id": "TRANSITION",
+      "name": "生硬过渡词",
+      "weight": 15,
+      "description": "AI依赖固定的过渡词来串联段落，导致文章读起来像拼接而成",
+      "patterns": [
+        {
+          "id": "TR-01",
+          "pattern": "总的来说",
+          "type": "keyword",
+          "severity": "high",
+          "note": "段落或全文的AI标准结尾 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "TR-02",
+          "pattern": "综上所述",
+          "type": "keyword",
+          "severity": "high",
+          "note": "同'总的来说'，AI偏好 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "TR-03",
+          "pattern": "因此|由此可见",
+          "type": "regex",
+          "severity": "medium",
+          "note": "作为段落开头时AI使用频率高于人类 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "TR-04",
+          "pattern": "换言之|也就是说|换句话说",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI喜欢用三个同义表达轮换，人类通常只说一次 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "TR-05",
+          "pattern": "此外|另外|与此同时",
+          "type": "regex",
+          "severity": "medium",
+          "note": "段落间过渡的AI三件套",
+          "style_mode": "casual"
+        },
+        {
+          "id": "TR-06",
+          "pattern": "然而|但是|不过",
+          "type": "keyword_context",
+          "severity": "low",
+          "note": "作为段落开头出现超过2次是AI信号",
+          "style_mode": "casual"
+        },
+        {
+          "id": "TR-07",
+          "pattern": "基于此|鉴于此|有鉴于此",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI偏好的正式过渡，人类较少使用 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "TR-08",
+          "pattern": "不言而喻|毋庸置疑",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI强调确定性的标准表达",
+          "style_mode": "casual"
+        },
+        {
+          "id": "TR-09",
+          "pattern": "毋庸置疑的是",
+          "type": "keyword",
+          "severity": "high",
+          "note": "同'毋庸置疑'，AI强论断句式",
+          "style_mode": "casual"
+        },
+        {
+          "id": "TR-10",
+          "pattern": "众所周知",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI的经典万能开头，尤其是科普类文章",
+          "counter": "在引用常识时自然使用",
+          "style_mode": "casual"
+        }
+      ]
+    },
+    {
+      "id": "BUZZWORD",
+      "name": "AI高频套话",
+      "weight": 28,
+      "description": "AI高频套话 — 商业套话、万能评价、AI万能开头、论断句式、自媒体套话、过渡引导等",
+      "patterns": [
+        {
+          "id": "B-01",
+          "pattern": "在这个日新月异的时代",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI开篇金句，人类几乎不这样写 【高置信度AI信号】",
+          "counter": "几乎任何场景都不自然，建议替换为具体切入",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-02",
+          "pattern": "随着科技的不断发展",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI万能开场白，尤其出现在科技类文章中 【高置信度AI信号】",
+          "counter": "几乎任何场景都不自然，建议直接进入主题",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-03",
+          "pattern": "值得我们深思|值得我们关注",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI万能结尾句式，空洞无物 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-04",
+          "pattern": "不可或缺的一部分",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI描述任何事物重要性的标配 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-05",
+          "pattern": "发挥着越来越重要的作用",
+          "type": "keyword",
+          "severity": "high",
+          "note": "同'不可或缺'，AI功能描述的标准模板 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-06",
+          "pattern": "提供了强有力的支撑",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI评价任何工具或方法时的万能评价 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-07",
+          "pattern": "带来了前所未有的机遇",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI最爱的套话之一 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-08",
+          "pattern": "在.*背景下",
+          "type": "regex",
+          "severity": "medium",
+          "note": "'在大数据背景下' '在数字化转型背景下' 等AI惯用开头",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-09",
+          "pattern": "具有.*意义",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI评价事物意义时的套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-10",
+          "pattern": "成为.*必然趋势",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI趋势预测的标准表达",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-11",
+          "pattern": "既是.*也是.*更是",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI喜欢的排比递进结构 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-12",
+          "pattern": "功不可没",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI评价贡献的标准用语 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-13",
+          "pattern": "刻不容缓",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI强调紧迫性的套话 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-14",
+          "pattern": "任重而道远",
+          "type": "keyword",
+          "severity": "high",
+          "note": "学术写作中该表达属于正常句式",
+          "counter": "正式工作报告中使用不算异常",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-15",
+          "pattern": "来之不易",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI谈论成果或成就时的标准表达 【学术文体中权重降低】",
+          "counter": "正式总结中使用正常",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-16",
+          "pattern": "不断完善|不断优化|持续改进",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI描述进步的万能说法",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-17",
+          "pattern": "大有可为",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI预估前景的套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-18",
+          "pattern": "落地生根|走深走实|见行见效",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI（尤其官方风格）喜欢用这类动宾结构的套话堆砌 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-19",
+          "pattern": "多措并举|精准施策|长效机制",
+          "type": "regex",
+          "severity": "medium",
+          "note": "学术写作中该表达属于正常句式",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-20",
+          "pattern": "提质增效",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "学术写作中该表达属于正常句式",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-21",
+          "pattern": "协同发力|形成合力|统筹推进",
+          "type": "regex",
+          "severity": "medium",
+          "note": "学术写作中该表达属于正常句式",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-22",
+          "pattern": "底气和信心|充满信心|坚定信心",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI信心类套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-23",
+          "pattern": "按下快进键|跑出加速度|驶入快车道",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI加速比喻套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-24",
+          "pattern": "砥砺前行|笃行不怠|踔厉奋发",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI在正式文章中偏好使用的古雅励志词 【学术文体中权重降低】",
+          "counter": "政府工作报告等正式文体中使用正常",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-25",
+          "pattern": "行稳致远",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI谈论长期发展时的标准搭配 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-26",
+          "pattern": "久久为功",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI描述持续努力的套话 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-27",
+          "pattern": "赋能",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI商业文案高频词，人类较少使用",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-28",
+          "pattern": "抓手",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI商业用语标志词",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-29",
+          "pattern": "闭环",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI商业模型描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-30",
+          "pattern": "颗粒度",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI互联网行业套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-31",
+          "pattern": "底层逻辑",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI万能分析套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-32",
+          "pattern": "顶层设计",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI宏观论述套话",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-33",
+          "pattern": "痛点",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI商业分析常用词",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-34",
+          "pattern": "护城河",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI商业竞争分析套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-35",
+          "pattern": "第二曲线",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI商业创新套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-36",
+          "pattern": "破局",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI商业突破套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-37",
+          "pattern": "重构",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI变革描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-38",
+          "pattern": "重塑",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI变革描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-39",
+          "pattern": "深耕",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI行业专注描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-40",
+          "pattern": "降维打击",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI竞争策略套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-41",
+          "pattern": "认知升级",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI个人成长套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-42",
+          "pattern": "第一性原理",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI思维模型套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-43",
+          "pattern": "飞轮",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI增长模型套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-44",
+          "pattern": "指数级",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI增长描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-45",
+          "pattern": "裂变",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI增长策略套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-46",
+          "pattern": "令人瞩目",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI评价套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-47",
+          "pattern": "应运而生",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI事物出现套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-48",
+          "pattern": "大势所趋",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI趋势论断套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-49",
+          "pattern": "方兴未艾",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI发展描述套话",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-50",
+          "pattern": "蓬勃发展",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI发展描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-51",
+          "pattern": "如火如荼",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI发展描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-52",
+          "pattern": "至关重要",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI重要性套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-53",
+          "pattern": "举足轻重",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI重要性套话",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-54",
+          "pattern": "不可替代",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI价值评价套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-55",
+          "pattern": "在这个充满不确定性的时代",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI万能开篇金句",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-56",
+          "pattern": "在当今这个时代",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI万能开篇",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-57",
+          "pattern": "在人工智能飞速发展的今天",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI科技类开篇套话",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-58",
+          "pattern": "随着AI技术的不断进步",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI科技类开篇套话",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-59",
+          "pattern": "随着科技的日新月异",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI万能开篇",
+          "style_mode": "universal"
+        },
+        {
+          "id": "B-60",
+          "pattern": "随着时代的快速发展",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI万能开篇",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-61",
+          "pattern": "不可否认的是",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI论断开头",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-62",
+          "pattern": "毫无疑问的是",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI强调论断",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-63",
+          "pattern": "从长远来看",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI视角转换套话",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-64",
+          "pattern": "从某种意义上讲",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI模糊限定套话",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-65",
+          "pattern": "干货满满",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI自媒体标题套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-66",
+          "pattern": "建议收藏",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体引导套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-67",
+          "pattern": "划重点",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体引导套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-68",
+          "pattern": "敲黑板",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体引导套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-69",
+          "pattern": "一键三连",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体结尾套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-70",
+          "pattern": "绝了",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体评价套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-71",
+          "pattern": "封神",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体评价套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-72",
+          "pattern": "高级感",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI自媒体审美套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-73",
+          "pattern": "氛围感",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI自媒体审美套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-74",
+          "pattern": "沉浸式",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI自媒体体验套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-75",
+          "pattern": "仪式感",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI自媒体体验套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-76",
+          "pattern": "体验感",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI自媒体体验套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-77",
+          "pattern": "获得感",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI自媒体体验套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-78",
+          "pattern": "值得一提的是",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI引出要点套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-79",
+          "pattern": "值得关注的是",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI引出要点套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-80",
+          "pattern": "不难发现",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI引导结论套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-81",
+          "pattern": "不难看出",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI引导结论套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-82",
+          "pattern": "归根结底",
+          "type": "keyword",
+          "severity": "high",
+          "note": "AI总结套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-83",
+          "pattern": "本质上说",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI本质论断套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-84",
+          "pattern": "可以预见",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI预测套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-85",
+          "pattern": "深入浅出",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI评价讲解套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-86",
+          "pattern": "通俗易懂",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI评价讲解套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-87",
+          "pattern": "反过来说",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI视角转换套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "B-88",
+          "pattern": "从短期来看",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI时间维度套话",
+          "style_mode": "academic"
+        },
+        {
+          "id": "B-89",
+          "pattern": "从某种角度来说",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI模糊限定套话",
+          "style_mode": "academic"
+        }
+      ]
+    },
+    {
+      "id": "EXCESSIVE_POLITE",
+      "name": "过度礼貌",
+      "weight": 10,
+      "description": "AI文本的过度客气和官腔表达",
+      "patterns": [
+        {
+          "id": "P-01",
+          "pattern": "非常荣幸|很荣幸",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI开场的公式化客气",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-02",
+          "pattern": "衷心感谢|诚挚感谢",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI感谢用语显得生硬",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-03",
+          "pattern": "请您知悉|敬请注意",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI通知式表达",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-04",
+          "pattern": "希望能够帮助到您",
+          "type": "keyword",
+          "severity": "medium",
+          "note": "AI客服/帮助文档的标配结尾",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-05",
+          "pattern": "您也可以",
+          "type": "keyword",
+          "severity": "low",
+          "note": "AI建议句式",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-06",
+          "pattern": "请随时|请及时|请务必",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI引导语",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-07",
+          "pattern": "竭诚为您|用心为您|全力为您",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI客服/服务描述的标配套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "P-08",
+          "pattern": "如果您有任何.*请随时",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI邮件/帮助文档的典型结尾",
+          "style_mode": "casual"
+        }
+      ]
+    },
+    {
+      "id": "PARAGRAPH_STRUCTURE",
+      "name": "段落结构异常",
+      "weight": 15,
+      "description": "AI段落过于规整，长度均匀，缺乏节奏变化",
+      "patterns": [
+        {
+          "id": "PS-01",
+          "pattern": "paragraph_length_uniform",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI段落长度趋同，人类写作段落长短不一 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "PS-02",
+          "pattern": "topic_sentence_every_paragraph",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI每段都有标准主题句，人类段落更自由 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "PS-03",
+          "pattern": "no_single_sentence_paragraphs",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI很少使用单句段落，人类写作中单句段落有特殊强调效果 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "PS-04",
+          "pattern": "perfect_balance",
+          "type": "statistical",
+          "severity": "low",
+          "note": "AI各段落长度标准差小，人类段落长短差异大 【高置信度AI信号】",
+          "style_mode": "universal"
+        }
+      ]
+    },
+    {
+      "id": "SYNTAX",
+      "name": "句式单一化",
+      "weight": 10,
+      "description": "AI偏好的句式结构，导致文章读起来单调",
+      "patterns": [
+        {
+          "id": "S-01",
+          "pattern": "这是一种|这是一个|这意味着",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI定义式的'这'字开头句过多",
+          "style_mode": "casual"
+        },
+        {
+          "id": "S-02",
+          "pattern": "所谓.*是指",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI定义解释的典型句式 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "S-03",
+          "pattern": "即",
+          "type": "keyword_context",
+          "severity": "low",
+          "note": "AI偏好用'即'做解释说明 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "S-04",
+          "pattern": "的",
+          "type": "statistical",
+          "severity": "low",
+          "note": "AI中文文本的密度偏高，可通过统计检测 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "S-05",
+          "pattern": "在.*中|在.*上|在.*下",
+          "type": "regex",
+          "severity": "low",
+          "note": "AI介词短语密度高 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "S-06",
+          "pattern": "这.*这.*这",
+          "type": "statistical",
+          "severity": "low",
+          "note": "AI中文文本'这'字密度过高（是一种/这是一个/这意味着）",
+          "style_mode": "casual"
+        },
+        {
+          "id": "S-07",
+          "pattern": "不仅.*而且",
+          "type": "regex",
+          "severity": "low",
+          "note": "AI偏爱递进句式用于每一点，密度过高提示 【学术文体中权重降低】",
+          "counter": "说理文章中使用正常",
+          "style_mode": "academic"
+        },
+        {
+          "id": "S-08",
+          "pattern": "既.*又.*既",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI喜欢用'既X又Y既A又B'的多重并列结构 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "S-09",
+          "pattern": "随着.*的.*[,，]",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI偏好的开篇句式，'随着X的发展/提高/普及'",
+          "style_mode": "casual"
+        }
+      ]
+    },
+    {
+      "id": "MOOD",
+      "name": "语气与情感缺陷",
+      "weight": 10,
+      "description": "AI文本缺乏真实的情感和语气变化",
+      "patterns": [
+        {
+          "id": "M-01",
+          "pattern": "emotion_uniformity",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI全文语气一致，缺乏情感起伏 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "M-02",
+          "pattern": "no_ rhetorical_questions",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI很少使用反问句，人类写作中反问具有天然说服力 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "M-03",
+          "pattern": "overuse_exclamation",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI的情绪词和感叹号使用要么过多（空洞口号）要么过少（缺乏情感）",
+          "style_mode": "universal"
+        },
+        {
+          "id": "M-04",
+          "pattern": "no_colloquial",
+          "type": "statistical",
+          "severity": "medium",
+          "note": "AI几乎不使用口语化表达、语气词（嘛、呗、啦）和方言 【高置信度AI信号】",
+          "style_mode": "universal"
+        },
+        {
+          "id": "M-05",
+          "pattern": "perfect_formality",
+          "type": "statistical",
+          "severity": "low",
+          "note": "AI文本的正式程度全篇一致，人类写作会在正式和随意间切换 【高置信度AI信号】",
+          "style_mode": "universal"
+        }
+      ]
+    },
+    {
+      "id": "DATA_DESCRIPTION",
+      "name": "数据化表达机械",
+      "weight": 10,
+      "description": "AI在描述数据、趋势、分析时的机械表达",
+      "patterns": [
+        {
+          "id": "D-01",
+          "pattern": "从数据可以看出|从图表可以看出",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI数据分析报告的标配引导语",
+          "counter": "真正的数据分析报告中可以使用，但每段都用是AI信号",
+          "style_mode": "casual"
+        },
+        {
+          "id": "D-02",
+          "pattern": "呈现.*趋势|保持.*增长态势",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI趋势描述套话",
+          "style_mode": "casual"
+        },
+        {
+          "id": "D-03",
+          "pattern": "同比增长|环比增长",
+          "type": "keyword_context",
+          "severity": "low",
+          "note": "AI在非财报场景中用增长率描述过于精确 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "D-04",
+          "pattern": "不容忽视|不可小觑",
+          "type": "regex",
+          "severity": "high",
+          "note": "AI强调某个数据时的常用夸张",
+          "style_mode": "casual"
+        },
+        {
+          "id": "D-05",
+          "pattern": "显著提升|明显改善|大幅增长",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI描述变化的模糊夸张",
+          "style_mode": "casual"
+        },
+        {
+          "id": "D-06",
+          "pattern": "处于.*水平|保持在.*水平",
+          "type": "regex",
+          "severity": "low",
+          "note": "AI描述状态的标准化表达 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "D-07",
+          "pattern": "在.*范围内|区间.*内",
+          "type": "regex",
+          "severity": "low",
+          "note": "AI描述区间的公式化表达 【学术文体中权重降低】",
+          "style_mode": "academic"
+        }
+      ]
+    },
+    {
+      "id": "ENGLISH_MIX",
+      "name": "英文表达中式化",
+      "weight": 5,
+      "description": "AI中文文本中夹带的英文表达方式和西化句式",
+      "patterns": [
+        {
+          "id": "E-01",
+          "pattern": "作为.*之一",
+          "type": "regex",
+          "severity": "medium",
+          "note": "'作为X之一'是英文'as one of X'的直译，AI使用频率远高于人类 【学术文体中权重降低】",
+          "counter": "正式场合合理使用",
+          "style_mode": "academic"
+        },
+        {
+          "id": "E-02",
+          "pattern": "被.*所",
+          "type": "regex",
+          "severity": "medium",
+          "note": "AI偏好'被...所'式被动语态，中文被动语态本来就少 【学术文体中权重降低】",
+          "counter": "书面语中正常使用",
+          "style_mode": "academic"
+        },
+        {
+          "id": "E-03",
+          "pattern": "之一$",
+          "type": "regex",
+          "severity": "low",
+          "note": "AI频繁用'之一'结束句子 【学术文体中权重降低】",
+          "style_mode": "academic"
+        },
+        {
+          "id": "E-04",
+          "pattern": "比.*更.*比.*更",
+          "type": "regex",
+          "severity": "low",
+          "note": "学术写作中该表达属于正常句式",
+          "style_mode": "academic"
+        },
+        {
+          "id": "E-05",
+          "pattern": "以及",
+          "type": "keyword_context",
+          "severity": "low",
+          "note": "AI中文中'以及'出现频率异常高，尤其是非列举场景 【学术文体中权重降低】",
+          "style_mode": "academic"
+        }
+      ]
+    }
+  ],
+  "style_config": {
+    "version": "1.0",
+    "description": "文体上下文配置 — 不同写作风格下同一模式的不同权重",
+    "default_mode": "auto",
+    "modes": {
+      "academic": {
+        "label": "学术/正式写作",
+        "description": "论文、研究报告、教材等正式文体",
+        "adjustments": {
+          "TEMPLATE_STRUCTURE": 0.3,
+          "TRANSITION": 0.4,
+          "SYNTAX": 0.3,
+          "ENGLISH_MIX": 0.5,
+          "default": 0.7
+        },
+        "guidance": "学术写作中结构化和递进是基本要求，不视为AI特征"
+      },
+      "casual": {
+        "label": "日常/自媒体写作",
+        "description": "公众号文章、博客、朋友圈、日常对话",
+        "adjustments": {
+          "default": 1.0
+        },
+        "guidance": "日常写作中不应出现模板化结构和套话"
+      },
+      "marketing": {
+        "label": "营销/推广文案",
+        "description": "广告文案、产品介绍、品牌宣传",
+        "adjustments": {
+          "TEMPLATE_STRUCTURE": 1.2,
+          "BUZZWORD": 1.5,
+          "default": 1.0
+        },
+        "guidance": "营销文案中套话和模板化是强烈AI信号"
+      }
+    }
+  }
+}

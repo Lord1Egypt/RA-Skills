@@ -1,50 +1,57 @@
-## Description: <br>
-话袋笔记 helps an agent create, update, and search a user's personal notes through the Huadai notes API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+话袋笔记 Skill helps agents create, update, and search personal notes through the Huadai OpenAPI.
 
-## Publisher: <br>
-[monkeydb](https://clawhub.ai/user/monkeydb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[monkeydb](https://clawhub.ai/user/monkeydb)
 
-## Use Case: <br>
-External users and their agents use this skill to save new personal notes, update existing notes, and search prior notes by natural-language requests. It also guides OAuth and local configuration needed before note operations are performed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles OAuth-derived API credentials and a user UUID for private notes. <br>
-Mitigation: Keep HUADAI_API_KEY, HUADAI_USER_UUID, OpenClaw configuration, and session logs private; never paste or echo credentials in chat. <br>
-Risk: The skill can read and write personal notes through openapi.ihuadai.cn. <br>
-Mitigation: Install only if you trust Huadai with notes saved or searched through this integration, and use explicit save, update, or search commands when tighter control is needed. <br>
-Risk: In shared or group contexts, a mismatched requester could attempt to access another user's notes. <br>
-Mitigation: Use HUADAI_USER_UUID as the access boundary and refuse note access when the requester cannot be matched to the configured owner. <br>
+## Use Case:
 
+External users and agent developers use this skill to connect a compatible agent to Huadai Notes so it can save new notes, search existing notes, and update confirmed notes through the Huadai OpenAPI.
 
-## Reference(s): <br>
-- [话袋笔记 API 详细参考](references/api-details.md) <br>
-- [配置（必须先完成）](references/config.md) <br>
-- [OAuth 授权配置（话袋笔记）](references/oauth.md) <br>
-- [新建笔记（Upload）](references/upload.md) <br>
-- [更新笔记（Update）](references/update.md) <br>
-- [搜索笔记（Search）](references/search.md) <br>
-- [话袋官网](https://ihuadai.cn) <br>
-- [话袋 OpenAPI Base URL](https://openapi.ihuadai.cn/open/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/monkeydb/hd-notes-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown text with JSON examples, shell commands, and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OAuth-derived credentials and Huadai API responses to report note save, update, and search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Helper scripts may execute unintended local code when handling note identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid arbitrary or externally supplied note IDs until upload.sh and update.sh serialize unique_id safely.
+
+Risk: The Huadai API key can be sent to an overridden endpoint if HUADAI_BASE_URL points away from Huadai.
+
+Mitigation: Use only a Huadai API key you are comfortable exposing to this skill and do not set HUADAI_BASE_URL to a non-Huadai host.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/monkeydb/skills/hd-notes-skills)
+- [ClawHub Marketplace Page](https://clawhub.ai/monkeydb/hd-notes-skills)
+- [Huadai Open Platform](https://ihuadai.cn/desktop/openai)
+- [Huadai OpenAPI Base URL](https://openapi.ihuadai.cn/open/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with shell commands and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HUADAI_API_KEY for authenticated Huadai OpenAPI calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package metadata report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

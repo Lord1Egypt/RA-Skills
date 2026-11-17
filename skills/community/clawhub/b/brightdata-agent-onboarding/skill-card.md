@@ -1,44 +1,59 @@
-## Description: <br>
-Onboards coding agents to Bright Data by routing them to the right setup path for live web work, product integration, MCP usage, authentication, or direct REST access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onboard an agent to Bright Data for live web work, product integration, MCP setup, authentication, or direct REST access.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-Developers and coding agents use this skill when first setting up Bright Data access, choosing between CLI tools, product integration, MCP, authentication-only setup, or direct REST calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run a remote installer. <br>
-Mitigation: Prefer the npm or npx install path when practical, or download and inspect the installer before executing it. <br>
-Risk: The skill handles Bright Data API credentials and local configuration. <br>
-Mitigation: Use a scoped API key, protect local config and .env files, and avoid exposing tokens in URLs, logs, or screenshots. <br>
-Risk: The skill can install additional Bright Data skills through the CLI. <br>
-Mitigation: Review additional skills before installing or using them. <br>
+## Use Case:
 
+Developers and coding agents use this skill to choose the correct Bright Data setup path for web search, scraping, structured data, MCP tooling, credentials, or REST integration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/meirk-brd/brightdata-agent-onboarding) <br>
-- [Bright Data product documentation](https://docs.brightdata.com) <br>
-- [Bright Data LLM-friendly docs index](https://docs.brightdata.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, dotenv, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to narrower Bright Data skills after onboarding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Installer commands can execute mutable external code and make persistent CLI or agent-skill changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned, reviewable install paths; inspect the skill bundle before placing it in an active agent directory.
+
+Risk: Credential setup can expose API keys through shell history, URL query strings, local files, or version control.
+
+Mitigation: Avoid pasting secrets into command history or URLs, keep .env files out of version control, and rotate any key that may have been exposed.
+
+Risk: The release security verdict is suspicious because setup steps require substantial trust in external code and account configuration.
+
+Mitigation: Install only when Bright Data is trusted for the deployment context and review security guidance before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meirk-brd/skills/brightdata-agent-onboarding)
+- [Bright Data documentation](https://docs.brightdata.com)
+- [Bright Data LLM documentation index](https://docs.brightdata.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, REST examples, environment variables, and routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference API keys, zones, CLI commands, MCP endpoints, and REST requests that require human review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Use when the user wants to generate DESIGN.md or design.md from a webpage URL by running a local, rule-based design token extraction script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design.md Extractor generates AI-friendly DESIGN.md or design.md files from a user-provided webpage URL or local HTML file by running a local Playwright-based design token extractor.
 
-## Publisher: <br>
-[liuwei1125](https://clawhub.ai/user/liuwei1125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwei1125](https://clawhub.ai/user/liuwei1125)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to extract visible design tokens and component guidance from a user-provided webpage URL or local HTML file before building or restyling UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may capture page metadata, CSS identifiers, and short visible text evidence from pages it analyzes. <br>
-Mitigation: Run it only on pages whose local design.md and snapshot outputs may safely contain that information, and avoid sensitive logged-in dashboards, customer data, internal tools, or pages with secrets. <br>
-Risk: Generated design tokens are inferred from visible computed styles and may miss hidden states, authenticated views, responsive variants, animation details, proprietary assets, or brand rules that are not visible in the loaded page. <br>
-Mitigation: Review the generated design.md before using it as implementation guidance and treat the output as a practical starting point rather than a complete brand book. <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to inspect visible webpage styles from an explicitly provided URL or local file and produce reusable design documentation for frontend implementation.
 
-## Reference(s): <br>
-- [Extraction Rules](references/extraction-rules.md) <br>
-- [Design Snapshot Schema](references/snapshot-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown and optional JSON snapshot files, with shell commands for local execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design.md or DESIGN.md and can optionally write design-snapshot.json for evidence and debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can open arbitrary URLs or local files provided by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted public pages or intentionally selected local files, and confirm the exact target before running extraction.
+
+Risk: Generated snapshots may include page URLs, selectors, metadata, and visible text snippets.
+
+Mitigation: Review design-snapshot.json before sharing or committing it, especially when extracting from private or sensitive pages.
+
+Risk: Rule-based sampling can miss hidden states, authenticated content, responsive variants, animation details, and brand rules that are not visible in the loaded page.
+
+Mitigation: Treat generated design tokens as a practical starting point and review DESIGN.md before using it as implementation guidance.
+
+## Reference(s):
+
+- [Extraction Rules](references/extraction-rules.md)
+- [Design Snapshot Schema](references/snapshot-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/liuwei1125/skills/design-md-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown design guide and optional JSON snapshot, with shell commands in agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on an explicitly provided URL or file; optional snapshots may include page URLs, selectors, and visible text snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

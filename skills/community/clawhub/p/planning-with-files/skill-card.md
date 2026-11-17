@@ -1,45 +1,52 @@
-## Description: <br>
-Implements Manus-style file-based planning to help agents organize multi-step work, track findings and progress, and recover context after /clear. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent file-based planning for multi-step AI-agent work. Keeps task_plan.md, findings.md, and progress.md on disk; lifecycle hooks inject selected project planning context. Automatic recovery reads project planning files only. Explicit session-catchup.py --metadata reads same-project local agent session records and emits aggregate counts only; --replay may emit bounded nonce-framed excerpts. Optional gated mode can request continuation only when the host supports it and never runs commands declared in Markdown. The skill has no network upload path. Use for research or work needing 5+ tool calls.
 
-## Publisher: <br>
-[othmanadi](https://clawhub.ai/user/othmanadi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[othmanadi](https://clawhub.ai/user/othmanadi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep complex, multi-step work organized through persistent planning files, progress logs, findings, session recovery, and optional completion gating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local agent session logs for the current project and surface prior conversation snippets during session recovery. <br>
-Mitigation: Avoid using it in repositories or sessions where prompts, command arguments, or tool outputs may contain secrets. <br>
-Risk: Automatic plan-file injection can place project planning content back into the agent context. <br>
-Mitigation: Use attested or scoped plan modes for automatic injection and review planning files before allowing them to guide work. <br>
-Risk: Gated long-running work can influence when an agent stops. <br>
-Mitigation: Use gated mode only when completion criteria in task_plan.md are current and acceptable for the task. <br>
+## Use Case:
 
+Developers and AI agents use this skill to organize multi-step research or implementation work in persistent planning files, recover selected project context, and track progress across sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/othmanadi/planning-with-files) <br>
-- [Publisher profile](https://clawhub.ai/user/othmanadi) <br>
-- [Planning With Files reference](references/reference.md) <br>
-- [Planning With Files examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown planning files, hook messages, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates task_plan.md, findings.md, progress.md, and optional scoped .planning files in the user's project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: ClawScan marks the skill suspicious with medium confidence because it reports security weaknesses and unexpected behavior; analysis of some files was incomplete. This is not a finding of malicious intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill's scripts and setup instructions before installing, and install only if you need it and are comfortable with what you reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/othmanadi/skills/planning-with-files)
+- [Attestation locking and fallback](https://github.com/OthmanAdi/planning-with-files/blob/master/docs/attestation-locking.md)
+- [Performance notes](https://github.com/OthmanAdi/planning-with-files/blob/master/docs/perf-notes.md)
+- [Claude Code hook reference](https://code.claude.com/docs/en/hooks#precompact-output)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown planning files and templates, with shell and Python helper scripts and agent setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates task plans, findings, and progress records; behavior depends on the selected plan and host lifecycle-hook support.]
+
+## Skill Version(s):
+
+3.28.2 (source: evidence metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

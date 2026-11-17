@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "title": "To-dos & Spending",
+  "icon": "checklist",
+  "starters": [
+    {
+      "id": "ledger-todos",
+      "label": "What's still on my to-do list?",
+      "prompt": "what's on my list",
+      "source": "recordings",
+      "requires": ["has_recording"],
+      "order": 10
+    },
+    {
+      "id": "ledger-spending",
+      "label": "How much have I spent this month?",
+      "prompt": "what did I spend this month",
+      "source": "recordings",
+      "requires": ["has_recording"],
+      "order": 20
+    }
+  ]
+}

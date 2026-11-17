@@ -1,0 +1,36 @@
+{
+  "_comment": "Every URL and path this skill points at. No placeholders: a null value means the resource is not released yet, and the skill says so in plain words instead of linking to an empty page.",
+  "product_name": "Windows Multi-Tool Suite",
+  "suite_version": "1.0.3",
+  "publisher": "rapidworker1",
+  "publisher_home": "https://github.com/rapidworker1",
+  "license": "MIT-0",
+  "support_page": "https://github.com/rapidworker1",
+  "support_hours": "US business hours (ET)",
+  "catalog": {
+    "ai-creative-studio": "https://clawhub.ai/rapidworker1/skills/ai-creative-studio",
+    "ai-trading": "https://clawhub.ai/rapidworker1/skills/ai-trading",
+    "b2b-lead-research-agent": "https://clawhub.ai/rapidworker1/skills/b2b-lead-research-agent"
+  },
+  "local_docs": {
+    "product": "PRODUCT.md",
+    "install": "references/install-and-verify.md",
+    "faq": "references/faq.md",
+    "feature_matrix": "templates/feature-matrix.md",
+    "config_example": "config.example.json"
+  },
+  "desktop_app": {
+    "name": "Windows Multi-Tool Suite",
+    "status": "separate_download",
+    "download_url": "https://github.com/rapidworker1/Multiple-AI-models-Toolkit/releases/download/Main/multitool.zip",
+    "file_name": "multitool.zip",
+    "size": 4584650,
+    "sha256": "a82bf643085d86cae398f49ec9a53dad213d0118dfb49fcf405c4679c9c4c5b6",
+    "exe_name": "multitool/toolkit.exe",
+    "requires_password": true
+  },
+  "install_commands": {
+    "clawhub_install": "clawhub install @rapidworker1/ai-creative-studio",
+    "manual": "Copy the skill folder into your OpenClaw skills directory, then run scripts/verify_install.py."
+  }
+}

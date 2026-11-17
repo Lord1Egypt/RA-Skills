@@ -1,43 +1,62 @@
-## Description: <br>
-Reads and analyzes images from messages across 10+ chat platforms using platform-specific APIs and unified image processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads and analyzes images from messages across 10+ chat platforms using platform-specific APIs and unified image processing.
 
-## Publisher: <br>
-[zqy15306762317](https://clawhub.ai/user/zqy15306762317) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zqy15306762317](https://clawhub.ai/user/zqy15306762317)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve chat image attachments from supported platforms and pass them to an image analysis workflow for OCR, screenshot review, chart extraction, and general image description. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles chat bot or app credentials that can read messages and download attachments. <br>
-Mitigation: Use least-privilege platform scopes, restrict the bot or app to required chats and workspaces, and keep credentials in environment variables or managed secret storage. <br>
-Risk: Downloaded chat images can contain sensitive local files or message attachments. <br>
-Mitigation: Treat downloaded images as sensitive, store them only in controlled temporary locations, and remove them after analysis when retention is not required. <br>
-Risk: Broad direct URL inputs or attachment downloads can retrieve untrusted files. <br>
-Mitigation: Limit direct URL use to trusted chat platform URLs or approved domains, and review file type and size before analysis. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve image attachments from configured chat platforms, save them locally, and pass them to an image analysis tool for OCR, screenshot, chart, or general image interpretation.
 
-## Reference(s): <br>
-- [Chat Platform Image API Reference](references/platform-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zqy15306762317/chat-image-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with code blocks and local file-path output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires platform credentials and chat or attachment permissions; downloaded images may be stored temporarily before analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The downloader has broad network access across configured chat and media endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the configured chat platforms are trusted, and restrict bot or app credentials to the least privileges needed for image retrieval.
+
+Risk: Downloaded images are written to local paths and may contain sensitive chat content.
+
+Mitigation: Use a private temporary directory, limit file permissions, and clean downloaded images after analysis.
+
+Risk: Direct URL downloads can retrieve untrusted or unexpected content.
+
+Mitigation: Avoid passing arbitrary URLs from untrusted users and review URL sources before download.
+
+Risk: Passing API tokens on command lines can expose credentials through shell history or process listings.
+
+Mitigation: Prefer environment variables or secret-managed configuration for tokens and rotate credentials if exposed.
+
+## Reference(s):
+
+- [Chat Platform Image API Reference](references/platform-api.md)
+- [ClawHub skill page](https://clawhub.ai/zqy15306762317/skills/chat-image-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, API call patterns, and local file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download images to local temporary files and then emit the file path for downstream analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

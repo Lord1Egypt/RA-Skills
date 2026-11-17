@@ -1,43 +1,57 @@
-## Description: <br>
-Find Appian application objects that are missing a description by exporting the application, scanning object XML files, and reporting each object with an empty or absent description tag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Appian application objects that are missing a description by exporting an application, scanning object XML files, and reporting each object with an empty or absent description tag.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and Appian application teams use this skill to audit application documentation coverage after changes by finding exported Appian objects with missing or blank descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Appian credentials. <br>
-Mitigation: Use a least-privileged Appian API key and rotate or revoke it if exposure is suspected. <br>
-Risk: The skill may load Appian credentials from appian.json files in parent directories. <br>
-Mitigation: Run it only from a trusted working directory and check parent directories for unintended appian.json files before execution. <br>
-Risk: Exported Appian application ZIP files can remain on disk after the audit. <br>
-Mitigation: Delete appian-exports files after use when exported application data should not persist locally. <br>
+## Use Case:
 
+Developers and Appian application administrators use this skill to audit documentation coverage after application changes by listing Appian objects with missing or blank descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solarspiker/appian-unnamedobjects) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/solarspiker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output with grouped object findings and object-type counts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports each matching object's type, name, and UUID; the skill asks the agent to relay the full printed output verbatim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: evidence.release.version and script header) <br>
+Risk: The skill forwards APPIAN_API_KEY to the configured Appian endpoint and packageZip URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged Appian API key and run only against trusted Appian endpoints.
+
+Risk: Exported application ZIPs are saved locally and may remain on disk after the run.
+
+Mitigation: Review and delete files in appian-exports after use when exported application contents are sensitive.
+
+Risk: The scanner notes review-worthy local file overwrite risk around saved ZIP filenames.
+
+Mitigation: Validate packageZip origin and sanitize or inspect saved ZIP filenames before running in sensitive project directories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/solarspiker/skills/appian-unnamedobjects)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown-compatible plain text report with object type, name, UUID, and grouped counts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APPIAN_BASE_URL and APPIAN_API_KEY; writes exported application ZIPs to local appian-exports directories.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and script annotation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

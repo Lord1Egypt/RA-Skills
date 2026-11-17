@@ -1,44 +1,52 @@
-## Description: <br>
-Reviews WidgetKit code for timeline management, view composition, configurable intents, and performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews WidgetKit code for timeline management, view composition, configurable intents, and performance when reviewing Swift code that imports WidgetKit or defines widget entry points.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review WidgetKit implementations for timeline behavior, view composition, configurable widget intents, and performance-sensitive patterns before reporting findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced review-verification protocol can influence when the agent reports or withholds review findings. <br>
-Mitigation: Confirm the referenced protocol is present and trusted before relying on this skill's findings. <br>
-Risk: WidgetKit platform claims may be misleading if reported without inspecting the relevant implementation or project artifact. <br>
-Mitigation: Require file and line evidence plus the relevant WidgetKit source, entitlement, deployment target, or reference subsection before reporting a platform-specific finding. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Swift WidgetKit implementations for timeline behavior, widget view composition, configurable intents, refresh budgeting, memory use, and caching patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/widgetkit-code-review) <br>
-- [Timeline Management](references/timeline.md) <br>
-- [Widget Views](references/views.md) <br>
-- [Configurable Widgets](references/intents.md) <br>
-- [Widget Performance](references/performance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review findings and checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should cite concrete file and line locations and satisfy the referenced review-verification protocol before reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: release evidence) <br>
+Risk: The skill depends on an unbundled parent-directory review verification protocol that may be missing or mutable and could suppress valid review findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external protocol dependency before installation and prefer bundling or pinning the full verification checklist used by the skill.
+
+## Reference(s):
+
+- [Timeline Management](references/timeline.md)
+- [Widget Views](references/views.md)
+- [Configurable Widgets](references/intents.md)
+- [Widget Performance](references/performance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown review findings and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are expected to include concrete file and line locations when reported.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

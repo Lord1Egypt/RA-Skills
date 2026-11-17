@@ -1,47 +1,64 @@
-## Description: <br>
-Build, review, debug, and automate VASP first-principles workflows. Use when working with VASP input sets such as INCAR, POSCAR, KPOINTS, and POTCAR; when choosing SCF, relaxation, static, DOS, or band-structure stages; or when fixing convergence, symmetry, cutoff, and k-point issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, review, debug, and automate VASP first-principles workflows for input sets, staged calculations, convergence issues, and cluster execution.
 
-## Publisher: <br>
-[fzj1214](https://clawhub.ai/user/fzj1214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fzj1214](https://clawhub.ai/user/fzj1214)
 
-## Use Case: <br>
-Developers, researchers, and HPC users use this skill to prepare, review, and repair VASP input sets and staged workflows for relaxation, static SCF, DOS, and band-structure calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or copied Slurm launch scripts can be inappropriate for a specific cluster environment. <br>
-Mitigation: Before execution, verify the VASP executable or module setup, task count, walltime, working directory, output paths, and site-specific scheduler requirements. <br>
-Risk: VASP workflow guidance can be invalid if stage intent, restart files, species order, or POTCAR assumptions do not match the actual system. <br>
-Mitigation: Review the four-file input set, stage handoff files, and pseudopotential order before production runs or downstream DOS and band-structure analysis. <br>
+## Use Case:
 
+Developers, engineers, and researchers use this skill to prepare, review, debug, and hand off VASP workflows across relaxation, static SCF, DOS, and band-structure stages.
 
-## Reference(s): <br>
-- [VASP Input Set Manual](references/input-set-manual.md) <br>
-- [VASP Stage And Parameter Matrix](references/stage-and-parameter-matrix.md) <br>
-- [VASP Pseudopotential, K-Points, And Convergence](references/pseudopotential-kpoints-and-convergence.md) <br>
-- [VASP Cluster Execution Playbook](references/cluster-execution-playbook.md) <br>
-- [VASP Error Recovery](references/error-recovery.md) <br>
-- [VASP DOS And Band Workflows](references/dos-and-band-workflows.md) <br>
-- [VASP Workflow Handoff Matrix](references/workflow-handoff-matrix.md) <br>
-- [VASP Error Pattern Dictionary](references/error-pattern-dictionary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, command snippets, configuration examples, and workflow summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize workflow stage, INCAR intent, KPOINTS strategy, POTCAR and species assumptions, expected outputs, and next-stage handoff guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated or copied VASP inputs and Slurm settings may be unsuitable for a specific material system or cluster environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review INCAR, POSCAR, KPOINTS, and POTCAR consistency; confirm POTCAR/species order, module or executable names, and scheduler resource requests before cluster use.
+
+Risk: Restart and handoff decisions may accidentally carry stale WAVECAR, CHGCAR, CONTCAR, or related stage files into a later workflow step.
+
+Mitigation: Keep stage directories explicit, preserve the last good outputs before overwriting, and make restart-file reuse a user-directed decision.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fzj1214/skills/vasp-skills)
+- [VASP Input Set Manual](references/input-set-manual.md)
+- [VASP Stage And Parameter Matrix](references/stage-and-parameter-matrix.md)
+- [VASP Pseudopotential, K-Points, And Convergence](references/pseudopotential-kpoints-and-convergence.md)
+- [VASP Cluster Execution Playbook](references/cluster-execution-playbook.md)
+- [VASP Error Recovery](references/error-recovery.md)
+- [VASP DOS And Band Workflows](references/dos-and-band-workflows.md)
+- [VASP INCAR Tag Matrix](references/incar-tag-matrix.md)
+- [VASP Workflow Handoff Matrix](references/workflow-handoff-matrix.md)
+- [VASP Error Pattern Dictionary](references/error-pattern-dictionary.md)
+- [VASP POSCAR, Species, And Structure Manual](references/poscar-species-and-structure.md)
+- [VASP Restarts, Spin, And Wavefunction Files](references/restarts-spin-and-wavefunction-files.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with VASP input snippets, workflow summaries, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference reusable INCAR, KPOINTS, POSCAR, and Slurm template files when a concrete starting point is needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

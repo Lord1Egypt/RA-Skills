@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cierre con CTA</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const ANTES = 'comenta';                              // arriba, chiquito
+const PALABRA = 'RUBRO';                              // la palabra a comentar (≤ 10 letras; sale en MAYÚSCULAS)
+const DESPUES = 'y te mando la estrategia completa';  // abajo (≤ 45 letras, '' = nada). Solo lo que el guion promete.
+const COLORES = {
+  fondo: '#1d1a24',     // fondo
+  tinta: '#ffffff',     // textos
+  acento: '#ffd84d',    // la palabra y la flecha
+  burbuja: '#ffffff',   // el comentario de ejemplo
+  burbujaTinta: '#1d1a24',
+  avatar: '#ff9db0',    // el circulito de quien comenta
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+const PAL = PALABRA.toUpperCase();
+const T_ANTES = .15, T_PAL = .45, CADA_LETRA = .07, T_DESPUES = T_PAL + PAL.length * CADA_LETRA + .35;
+const T_BURBUJA = T_DESPUES + .35, T_ESCRIBE = T_BURBUJA + .35, T_FLECHA = T_ESCRIBE + PAL.length * .09 + .15;
+const DUR = +(T_FLECHA + .7 + 1.5).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+WOBBLE = .9;
+const FONDO = (() => {
+  const c = hacerPapel(COLORES.fondo, { fibras: false, viñeta: .3, semilla: 6 }), p = c.getContext('2d');
+  const g = p.createRadialGradient(W / 2, 760, 40, W / 2, 760, 700);
+  g.addColorStop(0, 'rgba(255,216,77,.13)'); g.addColorStop(1, 'rgba(255,216,77,0)'); p.fillStyle = g; p.fillRect(0, 0, W, H);
+  return c;
+})();
+
+// medidas
+const AJ_PAL = autoajuste(PAL, LETRA_LIMPIA, 900, 900, 1, 250, 110);
+const OSCURO = (() => { const n = parseInt(COLORES.acento.slice(1), 16); return `rgb(${(n >> 16) * .62 | 0},${(n >> 8 & 255) * .62 | 0},${(n & 255) * .62 | 0})`; })();
+const Y_ANTES = 560, Y_PAL = Y_ANTES + 50 + AJ_PAL.size * .85, Y_DESPUES = Y_PAL + 120;
+const AJ_DESP = DESPUES ? autoajuste(DESPUES, LETRA_LIMPIA, 600, 860, 2, 58, 40) : null;
+const Y_BURBUJA = Y_DESPUES + (AJ_DESP ? AJ_DESP.rs.length * AJ_DESP.size * 1.2 : 0) + 90;
+
+function textoCentrado(txt, font, y, col, alpha = 1) { ctx.save(); ctx.globalAlpha = alpha; ctx.font = font; ctx.fillStyle = col; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.fillText(txt, W / 2, y); ctx.restore(); }
+
+function iconoComentario(cx, cy, r, col, lw) {        // globito de comentario genérico (contorno)
+  ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.lineJoin = 'round';
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI * .72, Math.PI * .58 + Math.PI * 2 - .02); ctx.lineTo(cx - r * .95, cy + r * 1.02); ctx.closePath(); ctx.stroke(); ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(FONDO, 0, 0);
+
+  // «comenta»
+  const a = easeOut(prog(t, T_ANTES, T_ANTES + .35));
+  textoCentrado(ANTES, `700 64px ${LETRA_LIMPIA}`, Y_ANTES + (1 - a) * 30, COLORES.tinta, a);
+
+  // la palabra: letra por letra, cayendo con rebote
+  ctx.save(); ctx.font = AJ_PAL.font; ctx.textBaseline = 'alphabetic'; ctx.fillStyle = COLORES.acento;
+  const anchoPal = medir(PAL, AJ_PAL.font); let x = W / 2 - anchoPal / 2;
+  [...PAL].forEach((ch, i) => { const w = medir(ch, AJ_PAL.font), k = prog(t, T_PAL + i * CADA_LETRA, T_PAL + i * CADA_LETRA + .4);
+    if (k > 0) { ctx.save(); ctx.globalAlpha = clamp(k * 3); ctx.translate(x + w / 2, Y_PAL); ctx.scale(1, lerp(.2, 1, back(k))); ctx.translate(0, (1 - easeOut(k)) * -140);
+      ctx.fillStyle = OSCURO; ctx.fillText(ch, -w / 2, AJ_PAL.size * .07);   // relieve: la misma letra, más oscura y abajo
+      ctx.fillStyle = COLORES.acento; ctx.fillText(ch, -w / 2, 0); ctx.restore(); }
+    x += w; });
+  ctx.restore();
+  // subrayado a mano bajo la palabra
+  const sub = easeOut(prog(t, T_DESPUES - .2, T_DESPUES + .2));
+  drawOn(resample([[W / 2 - anchoPal / 2 - 10, Y_PAL + 34], [W / 2, Y_PAL + 44], [W / 2 + anchoPal / 2 + 14, Y_PAL + 28]], 8), sub, { w: 12, col: COLORES.acento, amp: 2.5, seed: 4 });
+
+  // la promesa
+  if (AJ_DESP) { const d = easeOut(prog(t, T_DESPUES, T_DESPUES + .4));
+    AJ_DESP.rs.forEach((r, i) => textoCentrado(r, AJ_DESP.font, Y_DESPUES + 30 + i * AJ_DESP.size * 1.2 + (1 - d) * 24, 'rgba(255,255,255,.82)', d)); }
+
+  // el comentario de ejemplo: avatar + burbuja donde se escribe la palabra
+  const b = back(prog(t, T_BURBUJA, T_BURBUJA + .4));
+  if (b > 0) {
+    const bw = 620, bh = 124, bx = W / 2 - bw / 2 + 40, by = Y_BURBUJA;
+    ctx.save(); ctx.translate(bx, by + bh / 2); ctx.scale(b, b); ctx.translate(-bx, -(by + bh / 2));
+    fill(circle(bx - 80, by + bh / 2, 46), COLORES.avatar, { amp: .6, seed: 7 });
+    fill(circle(bx - 80, by + bh / 2 - 12, 16), 'rgba(29,26,36,.35)', { amp: .3, seed: 8 });
+    fill(circle(bx - 80, by + bh / 2 + 30, 28, 16), 'rgba(29,26,36,.35)', { amp: .3, seed: 9 });
+    fill(roundRect(bx, by, bw, bh, 36), COLORES.burbuja, { amp: .8, seed: 10 });
+    const n = Math.floor(clamp((t - T_ESCRIBE) / (PAL.length * .09)) * PAL.length);
+    ctx.font = `800 64px ${LETRA_LIMPIA}`; ctx.fillStyle = COLORES.burbujaTinta; ctx.textBaseline = 'middle';
+    const escrito = PAL.slice(0, n); ctx.fillText(escrito, bx + 40, by + bh / 2 + 3);
+    if (t < T_FLECHA + .3 && Math.floor(t * 3) % 2 === 0) ctx.fillRect(bx + 44 + medir(escrito, ctx.font), by + 34, 5, bh - 68);
+    // corazoncito de «me gusta» al terminar
+    const c = back(prog(t, T_FLECHA, T_FLECHA + .35));
+    if (c > 0) { ctx.save(); ctx.translate(bx + bw - 60, by + bh / 2); ctx.scale(c, c); ctx.fillStyle = '#e5484d'; ctx.beginPath();
+      for (let u = 0; u <= 6.3; u += .1) { const px = 16 * Math.pow(Math.sin(u), 3) * 1.4, py = -(13 * Math.cos(u) - 5 * Math.cos(2 * u) - 2 * Math.cos(3 * u) - Math.cos(4 * u)) * 1.4; u ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+      ctx.fill(); ctx.restore();
+      const ch = prog(t, T_FLECHA + .05, T_FLECHA + .45);                  // chispitas que saltan del corazón y se apagan
+      if (ch > 0 && ch < 1) for (let k = 0; k < 7; k++) { const a = k / 7 * Math.PI * 2 - .3, r0 = 30 + easeOut(ch) * 34, r1 = r0 + 18 * (1 - ch);
+        ink([[bx + bw - 60 + Math.cos(a) * r0, by + bh / 2 + Math.sin(a) * r0], [bx + bw - 60 + Math.cos(a) * r1, by + bh / 2 + Math.sin(a) * r1]], { w: 6, col: '#e5484d', amp: .3, seed: 50 + k, passes: 1 }); } }
+    ctx.restore();
+  }
+
+  // flecha a mano que baja en curva hacia el botón de comentarios, que late dentro de un círculo
+  const f = easeOut(prog(t, T_FLECHA, T_FLECHA + .55));
+  if (f > 0) {
+    const ix = W - 190, iy = Math.min(SEGURA.bottom - 90, Y_BURBUJA + 330);
+    // flecha a mano con UN bucle limpio (cicloide con lazo): baja del comentario, da la vuelta y llega al botón
+    const y0 = Y_BURBUJA + 150, x0 = W / 2 - 170, bucle = [];
+    for (let k = 0; k <= 60; k++) { const u = k / 60 * Math.PI * 2;
+      bucle.push([x0 + 48 * u - 100 * Math.sin(u), y0 + 185 - 100 * (1 - Math.cos(u)) * .72 + u / (Math.PI * 2) * (iy - y0 - 185)]); }
+    const [bx1, by1] = bucle[bucle.length - 1];
+    const pts = resample([[x0 - 30, y0 + 30], [x0 - 12, y0 + 120], ...bucle, [bx1 + 60, by1 + 14], [ix - 170, iy + 8], [ix - 100, iy + 2]], 8);
+    drawOn(pts, f, { w: 12, col: COLORES.acento, amp: 2, seed: 12 });
+    if (f >= 1) { const [ex, ey] = pts[pts.length - 1], [px, py] = pts[pts.length - 3], ang = Math.atan2(ey - py, ex - px);
+      const ala = a2 => [ex - Math.cos(ang + a2) * 46, ey - Math.sin(ang + a2) * 46];
+      ink([ala(.55), [ex, ey], ala(-.55)], { w: 12, col: COLORES.acento, amp: 1.2, seed: 13 }); }
+    const late = 1 + Math.sin((t - T_FLECHA) * 9) * .08 * (1 - prog(t, DUR - .9, DUR - .3));
+    const e = back(prog(t, T_FLECHA + .35, T_FLECHA + .7));
+    for (let k = 0; k < 2; k++) {                                       // 2 ondas que salen del botón y se apagan antes del final
+      const o = ((t - T_FLECHA - .5 - k * .45) % 1.1) / 1.1, vive = t > T_FLECHA + .5 + k * .45 && t < DUR - 1.1;
+      if (vive && o > 0) { ctx.save(); ctx.globalAlpha = (1 - o) * .7; ctx.strokeStyle = COLORES.acento; ctx.lineWidth = 8 * (1 - o) + 2;
+        ctx.beginPath(); ctx.arc(ix, iy, 76 + o * 90, 0, 7); ctx.stroke(); ctx.restore(); }
+    }
+    if (e > 0) { ctx.save(); ctx.translate(ix, iy); ctx.scale(e * late, e * late);
+      glow(0, 0, 140, '255,216,77', .35); ctx.fillStyle = COLORES.acento; ctx.beginPath(); ctx.arc(0, 0, 72, 0, 7); ctx.fill();
+      iconoComentario(0, -2, 32, COLORES.fondo, 8); ctx.restore(); }
+  }
+});
+</script>
+</body>
+</html>

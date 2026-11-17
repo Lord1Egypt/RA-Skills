@@ -1,0 +1,7 @@
+{
+  "name": "js-chess-engine-bundled",
+  "private": true,
+  "type": "commonjs",
+  "main": "index.js",
+  "description": "Vendored copy of js-chess-engine v2.4.6 (MIT). See LICENSE. Upstream: https://github.com/josefjadrny/js-chess-engine"
+}

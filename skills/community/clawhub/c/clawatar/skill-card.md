@@ -1,45 +1,62 @@
-## Description: <br>
-Clawatar gives an AI agent a local 3D VRM avatar viewer with animations, expressions, voice chat, TTS lip sync, and WebSocket control. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Clawatar gives an AI agent a 3D VRM avatar viewer with animations, expressions, voice chat, lip sync, and WebSocket control.
 
-## Publisher: <br>
-[Dongping-Chen](https://clawhub.ai/user/Dongping-Chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dongping-chen](https://clawhub.ai/user/dongping-chen)
 
-## Use Case: <br>
-Developers and agent users use Clawatar to install and control a local visual avatar companion for VRM display, avatar actions, expressions, voice chat, and TTS lip sync. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release requires review because it runs unpinned remote npm code and dependencies from the referenced project. <br>
-Mitigation: Review the referenced project and npm dependency tree before installation, and prefer a pinned, audited revision for deployment. <br>
-Risk: Voice chat and TTS can send audio or text to external services and may expose sensitive conversations. <br>
-Mitigation: Use a dedicated ElevenLabs API key, avoid using voice or TTS for secrets, and confirm where audio and text are sent before enabling these features. <br>
-Risk: The local WebSocket control surface can trigger avatar actions and speech. <br>
-Mitigation: Keep the WebSocket bound to localhost and avoid exposing the control port to untrusted networks. <br>
-Risk: The artifact notes Mixamo animations require credit and are non-commercial. <br>
-Mitigation: Confirm animation licensing and attribution requirements, or replace the animations, before any commercial use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dongping-Chen/clawatar) <br>
-- [Clawatar GitHub project referenced by install instructions](https://github.com/Dongping-Chen/Clawatar.git) <br>
-- [Mixamo animation reference](https://www.mixamo.com/) <br>
+## Use Case:
 
+Developers and external users use Clawatar to install and control a browser-based VRM avatar companion for agent visualization, animation, expression control, and optional voice chat.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WebSocket JSON payloads for avatar actions, expressions, reset, and TTS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install and run mutable unaudited code from a third-party GitHub repository.
+
+Mitigation: Verify the repository revision and npm dependencies before use, run the viewer in a contained environment, and avoid elevated privileges.
+
+Risk: The local web and WebSocket services may expose avatar controls or voice-chat behavior if reachable beyond localhost.
+
+Mitigation: Keep ports 3000 and 8765 bound to localhost and do not expose them to untrusted networks.
+
+Risk: Voice chat can send spoken content or transcripts to AI or TTS services.
+
+Mitigation: Treat voice input and generated speech text as potentially shared with external AI/TTS services and avoid sensitive content unless the service terms are acceptable.
+
+Risk: The skill notes Mixamo animations with credit and non-commercial requirements.
+
+Mitigation: Confirm asset rights and attribution requirements before commercial deployment.
+
+## Reference(s):
+
+- [Clawatar ClawHub listing](https://clawhub.ai/dongping-chen/skills/clawatar)
+- [Clawatar repository referenced by installation instructions](https://github.com/Dongping-Chen/Clawatar.git)
+- [Mixamo animation source referenced by skill notes](https://www.mixamo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent through installing, configuring, launching, and sending WebSocket JSON commands to a local VRM avatar viewer.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

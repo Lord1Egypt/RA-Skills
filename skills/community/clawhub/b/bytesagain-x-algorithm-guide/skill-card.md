@@ -1,41 +1,55 @@
-## Description: <br>
-Audit and optimize X (Twitter) posts using bash-based 2026 algorithm rules and growth tactics. Use when drafting tweets, checking content before posting, reviewing hashtag count, or learning posting strategy based on open-source X algorithm weights and real creator case studies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and optimizes X (Twitter) post drafts with bash-based algorithm checks, posting checklists, draft templates, and growth tactics.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External creators and social media operators use this skill to audit draft X posts, generate tweet templates, and review posting and growth guidance before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The X algorithm and growth claims are author-provided advice rather than guaranteed or official platform facts. <br>
-Mitigation: Treat recommendations as advisory and verify them against current platform behavior before relying on them. <br>
-Risk: Generated draft posts or audit results may not fit the user's brand, audience, or compliance needs. <br>
-Mitigation: Review and edit any generated draft manually before posting. <br>
+## Use Case:
 
+External creators, social media managers, and developers use this skill to audit X post drafts, generate draft templates, and review posting and growth tactics before publishing.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-x-algorithm-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local bash commands print summaries, checklists, tweet audits, draft templates, and growth guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill's X algorithm and growth guidance may be outdated or inaccurate for a user's account or market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as strategy suggestions, verify important platform claims against current X documentation or trusted analytics, and review drafts before posting.
+
+Risk: Tweet text provided to the local audit command may include sensitive draft content.
+
+Mitigation: Avoid passing confidential, regulated, or embargoed content unless local execution and logs are acceptable for the user's environment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/loutai0307-prog/skills/bytesagain-x-algorithm-guide)
+- [BytesAgain homepage](https://bytesagain.com)
+- [X algorithm open-source repository](https://github.com/twitter/the-algorithm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style command output from a local Bash script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not post to X, access accounts, call networks, or persist changes according to security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

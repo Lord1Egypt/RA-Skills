@@ -100,14 +100,57 @@ def get_provider(provider_name: str, model: str):
         raise ValueError(f"Unknown provider '{provider_name}'. Supported: openai, anthropic, ollama, custom")
 
 
+def _pick_median(outputs: list[str]) -> str:
+    """Return the output closest to the semantic centre of a list of outputs.
+
+    Uses character-level Jaccard similarity as a cheap proxy for semantic
+    distance — no extra deps required.  For small N (2-5) this is accurate
+    enough to throw away outlier responses.
+    """
+    if len(outputs) == 1:
+        return outputs[0]
+
+    def jaccard(a: str, b: str) -> float:
+        sa, sb = set(a.split()), set(b.split())
+        if not sa and not sb:
+            return 1.0
+        return len(sa & sb) / len(sa | sb)
+
+    # Sum similarity of each output against every other
+    scores = []
+    for i, out in enumerate(outputs):
+        total = sum(jaccard(out, outputs[j]) for j in range(len(outputs)) if j != i)
+        scores.append((total, i))
+
+    # Highest total similarity = closest to centre
+    _, best_idx = max(scores)
+    return outputs[best_idx]
+
+
 def capture_baseline(test: dict, baseline_dir: Path) -> None:
     name = test["name"]
     prompt = test["prompt"]
     provider_name = test["provider"]
     model = test["model"]
+    n_samples = int(test.get("baseline_samples", 1))
 
     provider = get_provider(provider_name, model)
-    output = provider.chat([{"role": "user", "content": prompt}])
+    messages = []
+    if system_prompt := test.get("system_prompt"):
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+
+    if n_samples > 1:
+        print(f"  [sampling] {name} — collecting {n_samples} responses...")
+        outputs = []
+        for i in range(n_samples):
+            sample = provider.chat(messages)
+            outputs.append(sample)
+            print(f"    sample {i + 1}/{n_samples} collected")
+        output = _pick_median(outputs)
+        print(f"  [median selected] from {n_samples} samples")
+    else:
+        output = provider.chat(messages)
 
     from llm_behave.core.drift import DriftTest
     DriftTest._save_baseline(name, output, baseline_dir)

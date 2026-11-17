@@ -388,7 +388,7 @@ class TestInvest:
             codes = list(holdings.keys())
             h = holdings[codes[0]]
         assert h["total_shares"] == 500.0  # 买入1000 - 卖出500
-        assert h["total_cost"] == 1750.00  # 剩余500股的成本
+        assert h["total_cost"] == 1500.00  # 净成本法: 3500 - 2000 = 1500
 
     # D-5 持仓计算（含分红）
     def test_holdings_with_dividend(self):

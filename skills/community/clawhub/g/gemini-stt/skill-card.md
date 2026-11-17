@@ -1,43 +1,53 @@
-## Description: <br>
-Transcribe audio files using Google's Gemini API or Vertex AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio files using Google's Gemini API or Vertex AI.
 
-## Publisher: <br>
-[araa47](https://clawhub.ai/user/araa47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[araa47](https://clawhub.ai/user/araa47)
 
-## Use Case: <br>
-Developers and agent operators use this skill to convert local audio files, including voice-message recordings, into plain text transcripts through Google Gemini or Vertex AI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are sent to Google Gemini or Vertex AI for transcription. <br>
-Mitigation: Use the skill only when organizational policy permits cloud processing of the recording content. <br>
-Risk: The transcription runs under the configured Gemini API key or Google Cloud Application Default Credentials. <br>
-Mitigation: Confirm the intended account, project, and region before processing sensitive or customer-provided audio. <br>
-Risk: Confidential, regulated, or third-party recordings may require additional approval before external processing. <br>
-Mitigation: Avoid those recordings unless the applicable policy and consent requirements allow use of Google transcription services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gemini API Models](https://ai.google.dev/gemini-api/docs/models) <br>
-- [ClawHub skill page](https://clawhub.ai/araa47/gemini-stt) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/araa47) <br>
+## Use Case:
 
+Developers and agent users use this skill to transcribe local audio files, including voice-message formats, through Google Gemini API or Vertex AI authentication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text transcript with command-line usage and authentication configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads supported audio files and returns only the transcription text when the API call succeeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected audio files are uploaded to Google Gemini or Vertex AI for transcription.
+
+Mitigation: Only transcribe recordings that your organization permits to be processed by those Google services.
+
+Risk: The skill uses a Gemini API key or Google Cloud Application Default Credentials to make requests.
+
+Mitigation: Use scoped, managed credentials and follow local key-handling rules before running the transcription command.
+
+## Reference(s):
+
+- [Gemini API Models](https://ai.google.dev/gemini-api/docs/models)
+- [ClawHub Skill Page](https://clawhub.ai/araa47/skills/gemini-stt)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription with Markdown usage guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an audio file path and either GEMINI_API_KEY or Google Cloud Application Default Credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Recommends must-play city attractions by combining FlyAI CLI results for 5A-rated scenic areas and popular well-reviewed points of interest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends must-play attractions for a city by using FlyAI CLI to retrieve 5A-rated attractions and popular well-reviewed points of interest, then returns detailed travel recommendations.
 
-## Publisher: <br>
-[ysxiiun](https://clawhub.ai/user/ysxiiun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysxiiun](https://clawhub.ai/user/ysxiiun)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to answer city attraction requests with ranked Markdown recommendations, ticket notes, addresses, travel guidance, and booking links from FlyAI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City and travel-search queries are sent to the external FlyAI/Feizhu travel service. <br>
-Mitigation: Avoid including sensitive itinerary details unless they are necessary for the recommendation request. <br>
-Risk: A configured FlyAI API key is a credential that could require rotation if exposed. <br>
-Mitigation: Store the key in the expected FlyAI configuration only, avoid sharing it in prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: The bundled FlyAI reference covers broader travel actions beyond attraction recommendations. <br>
-Mitigation: Use this skill for attraction recommendations rather than booking, flight, hotel, or account-related actions. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer city attraction questions with curated must-play recommendations, including 5A-rated sites, popular attractions, ticket notes, travel time, transit guidance, tags, images, and booking links.
 
-## Reference(s): <br>
-- [FlyAI CLI Reference](flyai-readme.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ysxiiun/must-play-recommendations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown attraction recommendations with inline FlyAI CLI command examples and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a city name as required input and may include images, ticket information, addresses, travel guidance, and external booking URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill relies on a broad third-party FlyAI CLI and network travel searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after reviewing the FlyAI CLI dependency, prefer a pinned or local CLI install, and limit agent use to attraction-related FlyAI commands.
+
+Risk: Recommendations may include external booking links and images from FlyAI results.
+
+Mitigation: Inspect booking URLs before opening them and treat external result content as untrusted until verified.
+
+Risk: An optional FlyAI API key may be stored for enhanced results.
+
+Mitigation: Avoid configuring an API key unless needed; if configured, store it with the least exposure available in the runtime environment.
+
+## Reference(s):
+
+- [FlyAI CLI Reference](flyai-readme.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown travel recommendation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a city name input; outputs attraction entries that may include externally sourced images and booking URLs from FlyAI results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

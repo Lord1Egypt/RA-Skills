@@ -1,39 +1,52 @@
-## Description: <br>
-Standard SSH command templates for a remote operator machine (bird reads, Puppeteer runs, inbox-style messaging). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard SSH command templates for a remote operator machine (bird reads, Puppeteer runs, inbox-style messaging).
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Developers and operators use this skill to apply standard SSH command templates for checking a remote operator machine and sending inbox-style messages after configuring REMOTE_TARGET and replacing placeholders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs SSH commands on a remote machine, so incorrect targets or placeholder commands can affect systems outside the local agent environment. <br>
-Mitigation: Set REMOTE_TARGET intentionally, use a least-privileged SSH account, and inspect or replace each TODO command before execution. <br>
-Risk: The message script interpolates user-supplied message text into a remote shell command. <br>
-Mitigation: Do not pass secrets or untrusted text to msg-sapconet.sh unless the script is changed to pass the message safely, such as via stdin or robust shell escaping. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Highlander89/remote-ssh-bridge) <br>
+## Use Case:
 
+Developers and operators use this skill to apply standard SSH command patterns for remote operator machines, including connectivity checks, bird read placeholders, Puppeteer prerequisite checks, and inbox-style message templates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts are templates that require REMOTE_TARGET and command placeholders to be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted message text can become commands on the configured SSH host.
+
+Mitigation: Review and fix the message script before using it with generated or untrusted message text; prefer stdin to a fixed remote handler or robust remote-shell-safe quoting.
+
+Risk: Remote SSH execution can affect the configured host with the privileges of the SSH account.
+
+Mitigation: Set REMOTE_TARGET deliberately, review placeholders before running commands, and restrict the SSH account to the least privilege needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highlander89/skills/remote-ssh-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require a configured REMOTE_TARGET value and reviewed remote command placeholders before use.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

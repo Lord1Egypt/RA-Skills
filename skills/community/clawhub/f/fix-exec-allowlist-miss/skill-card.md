@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents through diagnosing OpenClaw exec allowlist denials and applying hash-verified gateway configuration changes, including reload, restart, and Minimax cron auth troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hybrid reload mode auto-restarts for gateway/plugins changes. Config patching requires baseHash from config.get first. Minimax cron auth uses system-level tokens, not session OAuth.
 
-## Publisher: <br>
-[rabbykst](https://clawhub.ai/user/rabbykst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rabbykst](https://clawhub.ai/user/rabbykst)
 
-## Use Case: <br>
-Developers and operators use this skill to investigate OpenClaw exec denials, adjust gateway tool profiles, and verify configuration changes while preserving hash-verified patch and rollback discipline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to broaden persistent gateway exec or profile settings, which may expand command execution access. <br>
-Mitigation: Review the current gateway configuration with config.get first, require hash-verified patches, and keep the previous profile and security settings available for rollback. <br>
-Risk: Patch examples or protected-path changes can cause unsafe or unintended gateway configuration changes. <br>
-Mitigation: Use object-shaped config patches with the captured baseHash, avoid protected channel-specific paths, and verify the resulting profile and security settings after the patch. <br>
-Risk: Troubleshooting Minimax cron authentication may involve sensitive OAuth or provider API credentials. <br>
-Mitigation: Use system-level credential handling only where required, avoid exposing tokens in prompts or logs, and rotate or revoke credentials if they may have been shared. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw gateway exec denials and apply narrowly scoped, hash-verified configuration changes for allowlist, reload, and Minimax authentication issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline gateway commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include security-relevant configuration patch recommendations; users should verify current config and maintain a rollback path before applying changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad gateway security-profile changes can expose more exec capability than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a narrowly scoped exec allowlist fix over switching to a full tools profile, then verify the resulting configuration.
+
+Risk: Gateway configuration changes can fail or affect restart-required and protected paths.
+
+Mitigation: Capture the baseHash with config.get before config.patch, respect protected paths, and confirm a rollback or restart path before applying changes.
+
+Risk: Credential fallback steps can lead to plaintext API key handling.
+
+Mitigation: Avoid plaintext API keys where possible and use approved secret handling for Minimax provider credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rabbykst/skills/fix-exec-allowlist-miss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with inline gateway and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes config patch workflow, restart guidance, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

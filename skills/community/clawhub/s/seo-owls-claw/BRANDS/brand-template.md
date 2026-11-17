@@ -1,12 +1,19 @@
-# SEOwlsClaw — Brand Profile Template
+# SEOwlsClaw — Brand Profile Template v0.8
 # File: BRANDS/brand-template.md
-# Usage: Copy this file → rename to BRANDS/<your-id>.md → fill in all fields
+# Usage: Copy this file → rename to BRANDS/<brand-id>.md → fill in all fields
 # Loaded in: Brain Step 2d
+# This is just a template for you to read and follow when creating new BRANDS/<brand-id>.md files. NEVER ever edit, change or overwrite this file. NEVER!
+
+---
+
+# How to use Brand Profile Template
+
+Copy BRANDS/brand-template.md → rename the copied file in BRANDS/<new-brand-id>.md → fill in the renamed file with the updated data requested by the user → save new BRANDS/<new-brand-id>.md file → add index row to BRANDS/_index.md
 
 ---
 
 # Brand Profile — [BRAND NAME]
-ID: your-brand-id
+ID: brand-example-id
 Industry: [e.g. E-Commerce / Photography / SaaS / Health]
 Default Locale: [de / en / fr / es / pt]
 Default Persona: [blogger / researcher / ecommerce-manager / vintage-expert / creative-writer]
@@ -177,5 +184,4 @@ notes: |
 
 ---
 
-*Template version: v0.1 — 2026-04-05*
-*Copy → rename → fill in → add row to BRANDS/_index.md*
+*Brand Template version: v0.8 — 04-05-2026*

@@ -1,382 +1,104 @@
 ---
-name: openclaw-verified-upgrade
-description: Use when upgrading OpenClaw, running an OpenClaw upgrade, changing OpenClaw versions, selecting latest vs stable OpenClaw releases, or recovering from partial OpenClaw upgrades where gateway, config, plugins, channels, agents, or runtime availability must remain reliable.
+name: "openclaw-verified-upgrade"
+description: "Assess OpenClaw releases, upgrade an installation, or recover a failed update using verified backups, official durable handoff and runtime evidence."
+license: "MIT-0"
+metadata:
+  version: "2.0.0"
 ---
 
 # OpenClaw Verified Upgrade
 
-## Overview
-
-Upgrade OpenClaw as a verified state transition, not as a command. The job is complete only when the selected version is installed, the running gateway uses it, **externally-installed plugins (especially `@openclaw/*` official plugins) are compatible with that version**, and the user's critical OpenClaw paths still work.
+Treat an upgrade as an evidence-backed state transition. The selected package, running Gateway, plugin contracts, configuration, critical workflows and agreed stability window must all be verified.
 
-Convergence is multi-axis: the **host axis** (CLI, service, running process, gateway runtime) and the **plugin axis** (`~/.openclaw/npm` plugins) drift independently. A host that reports the target version is not proof that plugins agree with it.
+## 1. Record intent and authority
 
-Default UX: **ordinary-user wizard, expert-grade guardrails**. Keep prompts simple; do the operational analysis internally.
+- Upgrade intent authorizes discovery, verified local backup, reviewed standard migrations/plugin convergence, managed activation and verification. Carry existing approval forward; do not add a duplicate confirmation for the same scope.
+- Assessment is read-only. Skill maintenance authorizes skill changes and offline validation, never a host update/restart as a test.
+- Record the exact target, requested channel/persistence, runtime changes, allowed tests, interruption plan, stability window, backup retention and failure/recovery policy. A one-time upgrade does not authorize auto-update/cron policy changes or coordinator installation.
+- Ask only for genuinely new scope: an actual downgrade, widened plugin capabilities, unresolved high-impact migration, an unaccepted degraded baseline, service reconstruction, credentials, destructive cleanup or unsafe rollback. Explicit stop/preserve instructions override automatic recovery.
+- Respect current owner/auth/exec policy. Never invent requester identity, reset approval records or use another transport to bypass a denied action.
 
-## Non-Negotiable Rules
+## 2. Discover the actual installation and baseline
 
-1. **Latest is not automatically best.** If the user is vague, recommend a stable target, not blind latest.
-2. **No command discovery, no command execution.** OpenClaw commands and flags are version-sensitive.
-3. **Command exists ≠ command means what you remember.** Confirm semantics from current help/docs/output before critical use.
-4. **No release review, no upgrade.** Map target-version changes to the current environment.
-5. **No verified backup, no mutation.** Backup must be readable and have a manifest/hash.
-6. **One approval does not authorize everything.** Upgrade, restart, config repair, rollback, cache cleanup, daemon edits, and reinstall are separate risk levels.
-7. **CLI version ≠ running gateway version.** Verify both.
-8. **Gateway alive ≠ user workflow available.** Verify configured critical paths.
-9. **Host version ≠ plugin version.** Externally-installed plugins, especially `@openclaw/*`, drift independently of the pinned host. A plugin **newer** than the host can import host SDK entry points that do not exist yet and hard-crash at load time; converge plugins **down** to the host, not the host up to a drifted plugin.
-10. **No blind retry.** Classify failure, refresh state, then retry only capped recoverable steps.
-11. **No completion claim without evidence.** Report exact checks and outcomes.
+Read installed help before version-sensitive commands. Record CLI realpath/version, package manager/root, config/profile/state identity, service definition, live Gateway build/PID/path, actual Node executable, plugins and install intent, channels, agents/routes/providers, active work, free space and update settings.
 
-## Dangerous Actions Blacklist
+Read durable active/last runs; unknown history is not empty history. Follow the original active run rather than competing. Resolve shell/service/process identity mismatches before mutation. Do not silently change npm/git/Nix/Brew ownership.
 
-These actions are never covered by generic upgrade approval. Ask for explicit authorization and preserve evidence first:
+Record pre-existing failures and authoritative state outside JSON configuration, including SQLite-backed automation definitions and enabled status. Identify configured agents separately from physical stores and plugin-owned native state.
 
-- Deleting OpenClaw state, sessions, caches, plugins, skills, or config directories.
-- Running `rm -rf`, destructive cleanup, reinstall, downgrade, or force overwrite as a recovery shortcut.
-- Overwriting or restoring config without showing what will change and why.
-- Editing LaunchAgent, systemd, daemon, shell profile, or package-manager state.
-- Using `sudo` or changing file ownership/permissions.
-- Stopping the gateway with stop+start when restart/reload is supported and sufficient.
-- Rolling back version or config after state/data migration risk is detected.
-- Publishing logs, configs, tokens, session data, or backup contents outside the local machine.
+Read [native-updater.md](references/native-updater.md) for transport and result semantics. For SQLite migrations, private runtimes or legacy drivers, also read [migration-and-runtime.md](references/migration-and-runtime.md).
 
-## Wizard Entry
+## 3. Resolve an exact target and review impact
 
-Ask only what is needed:
+Use authoritative releases, installed/target documentation and current selectors. Preserve explicit versions; do not substitute moving latest. Honor requested extended-stable semantics and recheck the selector immediately before admission. Persist a channel only when authorized.
 
-```text
-How should I choose the OpenClaw target version?
-1. Recommended stable version (default)
-2. Latest version
-3. Specific version: ______
+Review runtime, schema, config, service, plugin, channel, provider/auth and feature changes. Unknown high-impact migration or a critical incompatibility blocks activation. Distinguish installed-driver limitations from candidate capabilities.
 
-If the gateway becomes unhealthy, may I auto-rollback to the pre-upgrade version?
-1. Ask me first (default)
-2. Auto-rollback if the pre-approved rollback checks pass
-```
+Check plugin origin, integrity/trust, pins, declared compatibility and capability changes. Let the official updater apply its documented host-bound release-cohort rules, including eligible old official pins. Preserve independently versioned/third-party contracts and explicit user pin constraints; numeric order alone proves neither compatibility nor failure.
 
-If the user already specified these, do not ask again.
+If package/runtime/plugins already agree and are healthy, report already-current. Same-version official plugin/config maintenance is distinct from another core package replacement. Prove its target and effects before invoking it.
 
-## State Machine
+Preview execution only when supported and useful; a dry-run can write history and does not validate migration, providers or restart survival.
 
-```text
-INTAKE
-  -> DISCOVER_ENVIRONMENT
-  -> SELECT_TARGET_VERSION
-  -> RELEASE_RISK_REVIEW
-  -> BUILD_CRITICAL_PATH_CHECKLIST
-  -> PREFLIGHT_HEALTH
-  -> VERIFIED_BACKUP
-  -> USER_CONFIRMATION
-  -> EXECUTE_UPGRADE
-  -> RESTART_OR_RELOAD
-  -> POST_UPGRADE_VERIFICATION
-  -> FINAL_REPORT
+## 4. Verify complete recovery coverage before mutation
 
-Any failure -> CLASSIFY_FAILURE -> RETRY_LIMITED | REPAIR_FORWARD | ROLLBACK_IF_AUTHORIZED | STOP_WITH_EVIDENCE
-```
+Build a required-source inventory and map every migration-relevant item to a verified recovery object: actual config/includes, credentials, shared and discovered affected Agent databases, unregistered historical stores, plugin-native state, associated archives, service/runtime metadata and recoverable old core/plugin payloads. State workspace exclusions explicitly.
 
-Never skip ahead. Each phase must produce evidence or a named blocker.
+Use supported WAL-aware SQLite snapshots, not ordinary copies of live database files. Equivalent consistent backups are allowed within the approved scope when the native command cannot cover a store; do not register historical agents just to back them up.
 
-## Phase Requirements
+Verify scope coverage, manifests/hashes and read-back, not merely command success or file count. A rehearsal copy is not the independent recovery set. If restore validation is required, use a separate destination; verification never authorizes overwriting production.
 
-### 1. Discover Environment
+No core mutation until all required coverage passes. Keep private material local. If a new gap is discovered later, preserve originals and backups, disclose the gap and freeze cleanup until recovery coverage is independently proven.
 
-Collect facts before changing anything:
+## 5. Choose one lifecycle owner and execute approved phases
 
-- Current OpenClaw CLI version and path.
-- Package/install source: npm, pnpm, brew, source checkout, bundled binary, unknown.
-- Running gateway manager: LaunchAgent, systemd, manual process, OpenClaw-managed, unknown.
-- Service command/path from service manager, e.g. LaunchAgent plist or process command line.
-- Running process command line and binary path when available.
-- Config path used by CLI and service.
-- Node/npm/brew versions only if relevant to the detected install method.
-- Enabled plugins/channels and key agents/bindings. For each plugin record: id, enabled state, install source, **installed version**, install spec, whether it is **pinned**, whether it is an `@openclaw/*` official external plugin, and whether it sits on a critical path. Host-bound official plugins (e.g. Codex) are the ones most likely to break on version skew.
-- Active sessions/background jobs if restart may interrupt work.
-- Existing health: gateway status, config validity, channel/agent state.
+Announce the concrete target, risks, backup, interruption stages, checks and recovery limits, then proceed within existing authority.
 
-**Path mismatch gate:** compare shell CLI path, package location, service command path, and running process path. If they disagree, identify which one will be upgraded before proceeding.
+Prefer the official durable updater able to enforce the reviewed target. Use a documented managed handoff or an execution context genuinely outside the target Gateway. Do not invent unsupported version parameters, requester identity or restart-survival guarantees.
 
-### 2. Discover Commands and Semantics
+The official updater normally owns staging, migration, convergence and activation. Do not add a parallel restart or replacement command. Use a documented external package-manager fallback only under the conditions in migration-and-runtime.md; never as an improvised retry of an active or ambiguous update.
 
-Inspect the current installation's command surface. Do not assume historical commands or flags:
+When approved runtime preparation is needed, record it as a separate phase, verify the old host under the new private runtime, refresh the final backup and then activate the core. Budget necessary service actions per approved phase, not one arbitrary action for the whole upgrade. Never clear counters, locks or run history to obtain another attempt.
 
-- Main help/version command.
-- Status/health/doctor commands.
-- Gateway lifecycle commands.
-- Config validation/apply commands.
-- Update/self-update commands.
-- Logs command/location.
+Submit one logical core replacement attempt. A lost response is not permission to repeat it. Record case/run identifiers, exact target, installation identity, phase/action results and real maintenance timestamps. Map external phases to native run IDs when available; never fabricate a native ID.
 
-For critical commands, record what success means. Example: a restart command may only schedule a restart; it is not proof that the new gateway is running.
+Do not default to --no-restart; use it only when an approved phase/lifecycle owner will complete activation. --yes can accept downgrades; --accept-capabilities widens trust. Neither substitutes for the relevant authority. Never install or repair a coordinator implicitly.
 
-### 3. Select Target Version
+## 6. Resume and verify the same operation
 
-Rules:
+Read the original run ID and phase after interruption. A newer unrelated lastRun is not evidence for this task. Observe within recorded phase budgets without silently resetting deadlines or issuing another mutation.
 
-- If the user names an exact version, preserve it after availability and compatibility checks.
-- If the user asks for latest, verify latest and known risks before recommending it.
-- If the user asks for stable/safe/reliable, recommend a conservative stable version with evidence.
-- If the user gives a range like `2026.5.x`, choose an exact patch version and explain why.
-- If evidence is insufficient, say so; unknown risk is not low risk.
+Verify fresh evidence:
 
-Evidence sources may include npm dist-tags/versions, GitHub releases, OpenClaw changelog/release notes, docs migration notes, local successful upgrade history, and relevant issue reports.
+- CLI/package and live Gateway build/path equal the reviewed target; actual Node/process, service, port, RPC and application readiness agree.
+- Configuration and required databases pass validation/integrity checks; compare meaningful data counts where migration warrants it.
+- Plugin install/effective versions satisfy their contracts, and critical plugins actually load at runtime.
+- Channels, routes, provider/auth and essential memory/Wiki/automation configuration remain available relative to the accepted baseline.
+- Permitted minimal E2E checks exercise the intended route. Record effective provider/model and rerouting; a successful fallback cannot conceal a broken primary.
+- Compare semantic changes in all authoritative stores. Explain expected system-managed changes; unaccepted critical workflow loss blocks acceptance even when the updater exits zero.
 
-### 4. Release Risk Review
+A live process after a short start-command timeout may still be starting. Refresh progress and use bounded read-only probes; do not repeatedly restart. Aggregate readiness/auth exit codes require diagnosis against the affected route and baseline, not credential resets to make everything green. For memory maintenance notices, observe supported automatic convergence and recheck the final index identity before considering a manual rebuild.
 
-Before upgrade, summarize target-version changes and map them to this environment:
+Keep paid/external effects within authorization. Do not send channel messages or run outward-delivering automations merely to test an upgrade. Mark critical E2E evidence missing when it could not be obtained.
 
-- Breaking changes or migration notes.
-- CLI command/lifecycle changes.
-- Gateway/daemon/LaunchAgent/systemd changes.
-- Config schema/default behavior changes.
-- Plugin/channel changes, especially currently enabled ones.
-- **Plugin–host version skew.** Compare the target host version against each installed `@openclaw/*` plugin version. Pinning the host without pinning official plugins is a known drift risk: a plugin can auto-update ahead of the host.
-- Model/provider/auth/token changes.
-- Node/runtime/package-manager requirements.
-- State/data migrations and rollback implications.
-- Known issues involving gateway, config, channels, plugins, auth, doctor/update, crash/startup.
+## 7. Observe the agreed window and retain evidence
 
-Risk levels:
+Use the user's agreed duration and cadence. If unspecified, three real readiness samples spanning at least 120 seconds are a starting policy, not a universal duration. A longer agreed window must be completed in full.
 
-- **LOW:** no relevant runtime/config/plugin impact.
-- **MEDIUM:** command/config/plugin changes with clear mitigation.
-- **HIGH:** gateway lifecycle, schema migration, auth/provider, Node requirement, or key channel impact.
-- **BLOCKER:** target unavailable, environment requirement unmet, known bug affects critical path, or rollback cannot be made safe.
+Preserve start/end, stable process/build/path identity, all readiness failures, fatal errors and unexplained termination/update activity over the whole window. Keep full samples or lossless cumulative summaries; a rolling tail must not discard earlier failures or replace the original start time. A new observation phase requires an explicit recorded reason and must respect the failure policy.
 
-HIGH requires explicit explanation and confirmation. BLOCKER stops unless the user explicitly accepts risk and rollback limits.
+Record the actual maintenance interval separately from a native run's reported downtime, especially for external runtime/core preparation or an already-current maintenance run.
 
-**Plugin skew is directional.** A host-bound official plugin **newer** than the host is HIGH or BLOCKER: it forward-references SDK paths the older host lacks and will hard-crash at load. A plugin **older** than the host usually degrades or warns rather than crashing. Converged end-state: official plugins at the host version, pinned with an exact-version install.
+Before cleanup or final acceptance, read [verification-and-retention.md](references/verification-and-retention.md).
 
-### 5. Build Critical Path Checklist
+## 8. Route failures and report accurately
 
-Define what “usable” means for this user before upgrading. Include:
+Refresh installed/runtime versions, original run state and bounded logs before recovery. Adapt a command mismatch once only when no mutation was admitted. Back off bounded read-only/network probes within the original budget. Unknown ownership, active migration locks, partial migrations or exhausted budgets freeze mutation; do not remove locks or invent a new run.
 
-- Gateway process/connectivity.
-- Config validity.
-- Dashboard or local control access if used.
-- Important channels, e.g. Feishu/Telegram/WhatsApp.
-- Important agents and routes, e.g. main, CodingMeow/codex-peer.
-- Model/provider/auth path used by those agents.
-- Essential plugins/skills/memory/browser/search tools.
+Target installed plus later failure means post-update recovery, not another core install. Inspect plugin compatibility, convergence, integrity and capability consent before blaming Node/cache/OAuth. update repair can mutate Doctor/config/plugin state; it is not a status command.
 
-For ordinary users, show only a short plain-language summary.
+Never automatically restore databases/config, force-install services, reset credentials, disable plugins or purge state as a recovery shortcut. Review official compatibility-checked package recovery against the user's policy before admission and report its actual outcome.
 
-### 6. Preflight Health
+Report success / already-current / installed-but-unverified / rolled-back / blocked / failed, from -> target -> actual runtime, native or external case/run IDs, backups, semantic differences, critical checks, observation evidence, cleanup and remaining action. Terminal updater success alone is insufficient.
 
-Check whether the system is healthy before upgrading. If it is already unhealthy, do not mix pre-existing failure with upgrade failure. Either fix preflight issues first or ask whether to continue with a degraded baseline.
-
-### 7. Verified Backup Gate
-
-Before any mutation, create a timestamped local backup directory, e.g.:
-
-```text
-~/.openclaw/backups/openclaw-upgrade/YYYYMMDD-HHMMSS/
-```
-
-Minimum backup manifest:
-
-- `openclaw.json` or actual config path.
-- Current CLI version and path.
-- Gateway/service status and manager details.
-- Service command/path and running process command line when available.
-- Config validation result.
-- Install/package metadata for the detected package manager.
-- Installed versions of critical/official plugins, recorded alongside the host version so skew is visible.
-- Critical path baseline results.
-- Target version and risk review summary.
-
-Backup must be read back and hash/manifest verified. If backup creation or read-back fails, stop.
-
-Do not default to copying all `~/.openclaw`; it may contain secrets, logs, caches, sessions, and large/private data. Expand backup scope only when release review identifies state/data migration risk, and keep it local.
-
-### 8. User Confirmation
-
-🔴 CHECKPOINT: Before mutation, present a concise plan and wait for explicit approval:
-
-```text
-Current: ...
-Target: ... (stable/latest/user-specified)
-Risk: LOW/MEDIUM/HIGH/BLOCKER
-Impact: gateway restart? estimated downtime?
-Backup: verified at ...
-Rollback: ask first / auto-rollback authorized
-Critical paths to verify: ...
-Proceed? yes/no
-```
-
-### 9. Execute Upgrade
-
-Use only commands supported by the discovered command table and semantics review. Prefer official/current-version mechanisms. If a command fails because it is missing or its options changed, refresh help/docs once and adapt; do not keep trying remembered commands.
-
-If the gateway blocks the update, use a safe path that preserves the old running system when possible, then restart/reload with the correct manager.
-
-### 10. Restart or Reload
-
-Do not assume restart completed. Verify:
-
-- New process is running.
-- Runtime path matches the upgraded installation.
-- Service manager state is healthy.
-- Gateway connectivity probe succeeds.
-
-Respect OpenClaw lifecycle guidance: use restart rather than stop+start unless the user explicitly approved stop/start or the current version's docs require it.
-
-### 11. Post-Upgrade Verification
-
-Required checks:
-
-- CLI/package version equals target.
-- Running gateway/runtime version equals target, or explain why exact runtime version is unavailable and provide alternative evidence.
-- Running process path matches upgraded path.
-- Gateway status/connectivity healthy.
-- Config validation/doctor equivalent passes.
-- Logs have no fresh fatal startup errors.
-- Critical plugins/channels/agents/routes from the checklist are available. For each `@openclaw/*` plugin, confirm its installed version matches the host; a plugin version **higher** than the host is a blocker, not a warning.
-- For critical plugins (e.g. Codex), a runtime-level load probe is **required**, not optional: `plugins list` proves only cold-state discovery, not that the plugin loads at runtime. Use a real message-path or runtime-load probe whose command and meaning are confirmed against the current install's help/docs — do not hardcode a remembered plugin-inspect command.
-- A minimal end-to-end check passes when safe and supported.
-
-If rollback happens, run the same verification checklist after rollback.
-
-## Failure Taxonomy and Retry Policy
-
-Before any retry, refresh current state: CLI version/path, service status, config status, process path, and logs.
-
-| Failure | Auto retry? | Action |
-|---|---:|---|
-| command not found / unknown option | once | Refresh help/docs, update command table, retry only adapted command |
-| network timeout / registry fetch | 2-3 | Backoff, retry same idempotent fetch/install step |
-| gateway starting / restart scheduled | 3-5 probes | Wait and recheck; do not claim restart complete early |
-| gateway blocks update | once | Switch to safe upgrade path after state snapshot |
-| CLI upgraded, gateway old | once | Restart/reload correct service manager, then double-check versions |
-| plugin load / import / runtime failure | no | Suspect host↔plugin version skew first, then auth, then hook timeout; converge plugin to host. Do not blame Node/cache/OAuth before checking versions |
-| config validation failed | no | Stop; restore config only with authorization or propose fix plan |
-| permission denied / sudo needed | no | Stop and ask; do not escalate silently |
-| auth/token/provider failure | no | Stop and ask user to refresh credentials |
-| state/data migration risk or partial migration | no blind retry | Preserve evidence; rollback may be unsafe; ask before repair/rollback |
-| post-upgrade unhealthy | limited | Collect logs; repair-forward or rollback only within prior authorization |
-
-Never rerun the entire upgrade loop blindly. Never use destructive cleanup, reinstall, config overwrite, or version downgrade without explicit authorization.
-
-Triage rule for plugin errors: **suspect version skew before Node, cache, or OAuth.** A plugin that fails to load is far more often newer than the host than it is missing a dependency.
-
-## Final Report Format
-
-For ordinary users:
-
-```text
-Upgrade result: success / failed / rolled back / stopped safely
-From -> To: ... -> ...
-Why this target: stable/latest/user-specified
-Backup: verified at ...
-Gateway: healthy/unhealthy
-Critical paths: pass/fail/not checked
-Rollback: not needed / completed / available / unsafe
-Need your action: yes/no
-```
-
-For expert detail, include:
-
-```text
-CLI version/path: ...
-Gateway version/path/process: ...
-Service manager: ...
-Config validation: ...
-Release risk level: ...
-Commands used: ...
-Retries: ...
-Logs checked: ...
-Remaining risks: ...
-```
-
-## Evidence Table Template
-
-Track phase evidence as the upgrade progresses. Every required phase should have a row before moving on:
-
-```markdown
-| Phase | Evidence source / command | Result | Blocker? | Next action |
-|---|---|---|---|---|
-| discover environment | <source> | <fact> | no | continue |
-| command semantics | <help/doc/output> | <supported command + meaning> | no | continue |
-| release risk review | <release notes/issues> | <risk level + reason> | no/yes | continue/stop |
-| verified backup | <manifest/hash/read-back> | <verified path> | no | ask confirmation |
-| post-upgrade verification | <status/log/check> | <pass/fail> | no/yes | report/repair/rollback |
-```
-
-If a row cannot be filled, stop and report the missing evidence instead of inferring success.
-
-## Pressure Scenario Examples
-
-### Scenario: latest requested but release risk is unclear
-
-User says: "Upgrade OpenClaw to latest."
-
-Expected behavior:
-
-1. Discover current install, gateway manager, config path, and critical channels.
-2. Verify the latest exact version and release notes.
-3. If release evidence is missing or high-impact changes are unclear, recommend a stable target or stop with `unknown risk is not low risk`.
-4. Ask for confirmation before mutation.
-
-### Scenario: CLI upgraded but gateway still runs the old binary
-
-Evidence:
-
-- CLI/package version equals target.
-- Running process command path still points to the old install.
-- Gateway reports old runtime evidence or does not expose target evidence.
-
-Expected behavior:
-
-1. Do not claim success.
-2. Record path mismatch in the evidence table.
-3. Restart/reload the correct service manager only if authorized and supported.
-4. Recheck process path, gateway connectivity, and critical routes.
-
-### Scenario: upgrade succeeds but gateway is unhealthy
-
-Expected behavior:
-
-1. Collect fresh logs and status.
-2. Classify failure before retry.
-3. Repair-forward or rollback only within prior authorization.
-4. If rollback occurs, run the same verification checklist after rollback.
-
-### Scenario: host pinned to an older stable version, but an official plugin auto-updated ahead
-
-Evidence:
-
-- Host (CLI/package) is at the user-chosen stable version.
-- An `@openclaw/*` plugin under `~/.openclaw/npm` is at a higher version than the host.
-- A message fails with a plugin load error referencing a host SDK module path the older host does not provide.
-
-Expected behavior:
-
-1. In Discover Environment, record each official plugin's version and flag any plugin newer than the host.
-2. Classify plugin-newer-than-host as HIGH or BLOCKER, not a warning.
-3. Converge **toward the pinned target**: bring the plugin down to the host version with an exact-version install, rather than letting an auto-updated plugin pull the host up. This is `latest is not automatically best` applied to the plugin axis.
-4. Re-run post-upgrade verification, including a runtime load probe for the affected plugin.
-
-## Common Failure Modes This Skill Prevents
-
-- Upgrading `which openclaw` while LaunchAgent keeps running a different binary.
-- Claiming completion after package install without checking gateway runtime.
-- Treating a scheduled restart as a completed restart.
-- Assuming old commands/flags work on every OpenClaw version.
-- Recommending latest when stable is safer.
-- Skipping release notes and discovering breaking changes after the system is down.
-- Having a backup that was never read back and cannot be restored.
-- Retrying a partial upgrade until the original state is lost.
-- Rolling back config/version without approval.
-- Calling gateway healthy while Feishu, agent routes, models, memory, or plugins are broken.
-- Treating the host version as proof of completion while an official plugin has drifted to a newer, incompatible version.
-
-## GitHub Publishing Checklist
-
-Before publishing this skill:
-
-- Keep the skill self-contained; no secrets, local paths, or user-specific credentials.
-- Test with pressure scenarios: rushed latest upgrade, version-sensitive commands, partial failure recovery.
-- Verify frontmatter uses a discovery-focused description, not a workflow summary.
-- Include examples only if they are generic and version-tolerant.
-- Do not include commands that imply they are universal across OpenClaw versions.
+Validate skill changes using [offline acceptance scenarios](examples/acceptance-scenarios.md), never a live upgrade.

@@ -1,43 +1,51 @@
-## Description: <br>
-Fetches Hong Kong Jockey Club race cards with horse details, odds, and recommended picks per race, including date selection, class filtering, exclusions, single-race fetch, advanced scoring, and enhanced form analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Hong Kong Jockey Club race cards, available WIN/PLA odds, recommendations, official results, and dividends. Supports date selection, exclusions, single-race fetch, and advanced scoring.
 
-## Publisher: <br>
-[stevenho1394](https://clawhub.ai/user/stevenho1394) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenho1394](https://clawhub.ai/user/stevenho1394)
 
-## Use Case: <br>
-External users and agents use this skill to fetch public Hong Kong horse-racing race-card data, inspect horse details and odds, and generate informational recommended picks with reasoning. Betting decisions should be verified independently against official race and odds sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an unofficial HKJC API package, so race data, odds, or availability may be incomplete, delayed, or unavailable. <br>
-Mitigation: Verify race cards, odds, dividends, and official results against authoritative sources before relying on the output. <br>
-Risk: The skill produces gambling-related recommendations that could be mistaken for financial or betting advice. <br>
-Mitigation: Treat recommendations as informational analysis only and ensure users comply with applicable betting laws and responsible gambling practices. <br>
-Risk: Advanced scoring and form analysis use heuristics, and place odds may be estimated when live data is missing. <br>
-Mitigation: Review the reasoning and scoring settings before use, and compare recommendations against independent data or human judgment. <br>
+## Use Case:
 
+Horse racing enthusiasts and analysts can retrieve Hong Kong Jockey Club race cards, available odds, and official results, then review the skill's experimental picks and their stated reasoning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevenho1394/hk-horse-racing) <br>
-- [hkjc-api npm package](https://registry.npmjs.org/hkjc-api/-/hkjc-api-1.0.3.tgz) <br>
+### Deployment Geography for Use:
 
+Global (Hong Kong racing data)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON object with meeting details, race entries, odds, recommendations, estimated win probabilities, and reasoning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English output; recommendations depend on available HKJC data, odds, and scoring settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence and package.json) <br>
+Risk: Experimental racing picks and estimated win probabilities may be inaccurate, and odds or results may change or be unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat picks as informational, verify current odds and official results, and do not rely on them as betting advice.
+
+## Reference(s):
+
+- [Hong Kong Jockey Club race cards](https://racing.hkjc.com/en-us/local/information/racecard)
+- [Hong Kong Jockey Club race results](https://racing.hkjc.com/en-us/local/information/localresults)
+- [ClawHub skill release](https://clawhub.ai/stevenho1394/skills/hk-horse-racing)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured JSON with race cards, runner details, available odds, recommendations, official results, and dividends.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [English-only output. Live odds and results depend on current public data; unavailable odds remain null. Recommendations use experimental heuristics.]
+
+## Skill Version(s):
+
+1.2.4 (source: server-resolved release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

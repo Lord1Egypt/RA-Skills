@@ -1,40 +1,61 @@
-## Description: <br>
-Guides a team through hourly retrospectives that capture mistakes, lessons learned, improvement actions, and reusable knowledge artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides a Chinese-speaking agent team through hourly reviews that record errors, lessons learned, task progress, feedback, and concrete improvements into reusable skills and knowledge-base notes.
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Team leads, project managers, and agent teams use this skill to run regular retrospectives, track decisions and task status, and turn repeated errors into reusable skill files, Obsidian notes, and memory logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to persist and share team memory broadly, which can expose secrets, personal data, or sensitive task context if boundaries are not set. <br>
-Mitigation: Define allowed read and write locations before use, exclude secrets and personal data from shared memory, and require human review before generated skill files or persistent notes become active. <br>
-Risk: Automated reminders, restarts, forwarding, or log access could affect team workflows beyond the intended retrospective process. <br>
-Mitigation: Make cron jobs, auto-restart behavior, A2A forwarding, Feishu reminders, and API-log access opt-in, reversible, and scoped to approved channels. <br>
+## Use Case:
 
+Team leads, PM agents, and operations agents use this skill to run recurring Chinese-language team retrospectives, capture task and decision status, and turn repeated mistakes into reusable rules, skill files, and memory records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/admirobot/tvdr-team-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown templates, checklists, process guidance, and knowledge-base entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce reusable skill files, Obsidian notes, memory logs, task records, decision registers, and retrospective action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring reviews, reminders, backups, and session restarts may run without clear user awareness or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in, visible scheduling controls, and an easy way to list, expire, pause, or disable recurring jobs before use.
+
+Risk: The skill asks agents to write persistent memory and shared knowledge, which can expose secrets or sensitive personal and business data.
+
+Mitigation: Define which agents and memory stores may be accessed, apply redaction rules, and review stored notes before sharing or reuse.
+
+Risk: Generated improvement rules can become active skills and influence future work even if they are inaccurate or overly broad.
+
+Mitigation: Require human review and security scanning before promoted rules become active skills or team-wide requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/admirobot/skills/tvdr-team-review)
+- [Publisher profile](https://clawhub.ai/user/admirobot)
+- [MAST Multi-Agent Failure Analysis](https://arxiv.org/abs/2503.13657)
+- [团队每小时复盘机制](artifact/SKILL.md)
+- [系统性改进框架](artifact/systemic-improvement-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration, Shell commands]
+
+**Output Format:** [Chinese-language Markdown guidance with templates, checklists, and occasional inline configuration or command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recurring review notes, task records, decision reminders, memory logs, Obsidian knowledge-base entries, and proposed reusable skill rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

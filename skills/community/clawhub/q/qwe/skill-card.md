@@ -1,45 +1,54 @@
-## Description: <br>
-Facebook Publisher Skill (Automate Page Posts via Graph API) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook Publisher Skill (Automate Page Posts via Graph API)
 
-## Publisher: <br>
-[YunneeToiChoi](https://clawhub.ai/user/YunneeToiChoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunneetoichoi](https://clawhub.ai/user/yunneetoichoi)
 
-## Use Case: <br>
-Developers and page operators use this skill to configure Facebook Graph API Page publishing, exchange user tokens for Page tokens, publish text or image posts, schedule posts, and verify Page token connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful Facebook Page credentials and app secrets. <br>
-Mitigation: Install only for Facebook apps and Pages you control, keep tokens in protected environment variables, avoid logging secrets, and rotate any exposed credentials. <br>
-Risk: The token helper can save long-lived user and Page tokens to fb_tokens_output.json. <br>
-Mitigation: Delete or protect fb_tokens_output.json after use and ensure it is never committed or shared. <br>
-Risk: Running fb_publisher_agent.py directly can create a live public test post. <br>
-Mitigation: Review scripts before execution and run posting commands only when you intend to publish to the configured Page. <br>
-Risk: The artifact references OpenAI and Apify credentials although evidence does not document a required workflow for them. <br>
-Mitigation: Do not provide OpenAI or Apify credentials unless a specific reviewed workflow requires them. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Facebook Page publishing workflows, exchange Page tokens, publish text or image posts, schedule Page content, and test Graph API connectivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YunneeToiChoi/qwe) <br>
-- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and helper scripts for Facebook Page posting workflows; the helper may create fb_tokens_output.json when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter says 1.0.1) <br>
+Risk: The skill handles powerful Facebook user and Page access tokens and may print or save token values during helper flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store tokens in protected environment variables or a secret manager, avoid logging full token values, add .env and fb_tokens_output.json to git ignores, and rotate any token that was printed, logged, or committed.
+
+Risk: The token helper points users to a hard-coded Facebook app ID.
+
+Mitigation: Replace the hard-coded app ID with the user's own configured FB_APP_ID before running token exchange or Page publishing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunneetoichoi/skills/qwe)
+- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python scripts and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Facebook app credentials, a Facebook Page ID, and a Page access token configured through environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

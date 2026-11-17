@@ -1,44 +1,61 @@
-## Description: <br>
-T138 Imea Clawhub provides an Integrated Memory Evolution Action workflow for agents to search local memory, reuse lessons, maintain WAL state, and enforce before-action checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IMEA helps agents use a three-layer memory workflow, error-learning checks, and before-action routines to reuse prior context and reduce repeated mistakes.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure local memory tiers, before-action checks, and learning records so agents can consult past task history and reduce repeated errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent local recording and reuse of conversation and task history, with weak privacy and deletion controls. <br>
-Mitigation: Install only when persistent local agent memory is intentional; exclude secrets and confidential conversations, and define retention and deletion processes for L1/L2/L3 memory files and SESSION-STATE.md. <br>
-Risk: Before-action and heartbeat workflows can run local checks that inspect workspace memory and learning files. <br>
-Mitigation: Inspect scripts/memory-check.sh before enabling hooks, and allow indexing only in approved workspaces. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure persistent memory checks, WAL/session-state logging, and recurrence-count review before agent actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chungvic/t138-imea-clawhub) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Triple memory system configuration](config/triple-memory-system.md) <br>
-- [Agent memory certificate](config/agent-memory-certificate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with JSON configuration examples and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a local memory-check shell script and persistent L1/L2/L3 memory file conventions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Persistent memory can store conversation history, secrets, or personal data longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit consent, redact sensitive data, and define retention and deletion rules before enabling memory storage.
+
+Risk: Automatically reused memory records can conflict with current user instructions or platform policy.
+
+Mitigation: Limit memory records to advisory context and require current user instructions and platform policy to take precedence.
+
+Risk: Broad control hooks and workspace scripts may affect agent behavior across tasks.
+
+Mitigation: Review the skill before installing, pin dependencies where applicable, and enable it only in workspaces where persistent agent memory is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chungvic/skills/t138-imea-clawhub)
+- [SKILL.md](artifact/SKILL.md)
+- [Quick start README](artifact/README.md)
+- [Triple memory system configuration](artifact/config/triple-memory-system.md)
+- [Agent memory certificate](artifact/config/agent-memory-certificate.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a shell script for keyword-based memory checks and documentation for retention, review, and recurrence-count workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,7 +12,7 @@ import urllib.error
 import urllib.request
 
 API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-MODEL = "u1-insuremed"
+MODEL = "u2-med"
 
 
 def _http_post(url: str, payload: Dict[str, Any], headers: Dict[str, str], *, timeout: int = 120) -> Any:

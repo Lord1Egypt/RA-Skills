@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "git-hooks-generator",
+  "schema_version": "1",
+  "name": "git-hooks-generator",
   "version": "1.0.0",
-  "publishedAt": 1772444096951
+  "description": "生成 Git hooks 脚本",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["git", "hooks", "automation", "devops"],
+  "license": "MIT"
 }

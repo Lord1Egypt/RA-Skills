@@ -1,46 +1,60 @@
-## Description: <br>
-Use when the user wants to discover, track, sync, or query news, RSS, social, financial, or other external sources through agent-data-cli and any configured source workspace such as agent-data-hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover, track, sync, and query news, RSS, social, financial, and other external sources through agent-data-cli and configured source workspaces.
 
-## Publisher: <br>
-[severinzhong](https://clawhub.ai/user/severinzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[severinzhong](https://clawhub.ai/user/severinzhong)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate agent-data-cli for source discovery, channel subscription, remote sync, local content queries, and explicit content interactions across configured data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide remote interactions such as likes, comments, source installation, or source uninstallation. <br>
-Mitigation: Require explicit source, verb, and content refs before running content interaction commands, and report remote side effects clearly. <br>
-Risk: Sync, subscription, scheduled jobs, and shell redirection can create or modify local databases, logs, source workspaces, and output files. <br>
-Mitigation: Confirm persistence-oriented intent, keep paths explicit, and distinguish remote discovery from local writes in the final report. <br>
-Risk: The skill depends on an external agent-data-cli repository and configured source workspace. <br>
-Mitigation: Verify trust in the external repository and workspace location before installation or ongoing use. <br>
+## Use Case:
 
+Developers and operators use this skill to translate data-source tasks into agent-data-cli command flows for discovery, subscription, sync, local querying, and explicit remote interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/severinzhong/using-data-cli) <br>
-- [agent-data-cli repository](https://github.com/severinzhong/agent-data-cli) <br>
-- [Command Semantics](references/command-semantics.md) <br>
-- [Task Patterns](references/task-patterns.md) <br>
-- [Result Reporting](references/result-reporting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and concise execution summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSONL-oriented command pipelines and local file redirection when the user requests machine-readable filtering or saved snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill directs users toward installing mutable third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources, pin a known commit or version, and review dependency setup before use.
+
+Risk: Scheduler examples can create recurring background syncs.
+
+Mitigation: Use cron, launchd, or systemd only when recurring sync is intended and the disable path is understood.
+
+Risk: Install and uninstall interactions through data_hub can cause remote or local side effects.
+
+Mitigation: Confirm the source, verb, and explicit refs before allowing install, uninstall, or other content interaction commands.
+
+## Reference(s):
+
+- [using-data-cli ClawHub release](https://clawhub.ai/severinzhong/skills/using-data-cli)
+- [Command Semantics](references/command-semantics.md)
+- [Task Patterns](references/task-patterns.md)
+- [Result Reporting](references/result-reporting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise execution reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSONL-oriented command examples for downstream filtering.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

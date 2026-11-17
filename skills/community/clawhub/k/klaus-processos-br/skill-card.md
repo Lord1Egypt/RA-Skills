@@ -1,43 +1,58 @@
-## Description: <br>
-Consulta processos judiciais brasileiros (Brasil) via API Pública do DataJud (CNJ). <br>
+## Description:
 
-This skill is for research and development only. <br>
+Queries Brazilian judicial processes through the public DataJud API from Brazil's National Council of Justice.
 
-## Publisher: <br>
-[runawaydevil](https://clawhub.ai/user/runawaydevil) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[runawaydevil](https://clawhub.ai/user/runawaydevil)
 
-## Use Case: <br>
-External users and agents use this skill to query public Brazilian court processes by CNJ number, search by court filters, infer tribunals, and monitor case updates through DataJud. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Brazil <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Court lookup queries are sent to CNJ's public DataJud API and may reveal legal research interests. <br>
-Mitigation: Use the skill only for queries appropriate to send to DataJud and avoid entering sensitive case research unless that disclosure is acceptable. <br>
-Risk: The monitoring state file can reveal which process numbers the user tracks. <br>
-Mitigation: Protect or delete state/monitor.json when monitored cases are sensitive. <br>
-Risk: Dry-run output can expose an Authorization header when a private DATAJUD_API_KEY is configured. <br>
-Mitigation: Avoid dry-run with private API keys, and redact command output before sharing logs. <br>
+## Use Case:
 
+External users and developers use this skill to look up Brazilian public court cases by CNJ number, search cases by court filters, infer tribunal aliases, and monitor case movement updates.
 
-## Reference(s): <br>
-- [API Pública do DataJud (CNJ)](https://api-publica.datajud.cnj.jus.br/) <br>
-- [ClawHub release page](https://clawhub.ai/runawaydevil/klaus-processos-br) <br>
+### Deployment Geography for Use:
 
+Brazil
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text or JSON from CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can persist monitored process numbers and recent movement snapshots in state/monitor.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Credential handling may expose a private DATAJUD_API_KEY during dry runs because request headers can be printed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid dry-run mode with a private DATAJUD_API_KEY unless Authorization headers are redacted.
+
+Risk: Monitored CNJ case numbers and movement snapshots are retained in a local state file.
+
+Mitigation: Treat monitored case numbers as sensitive local data and prefer a version that clearly documents or lets users configure the monitoring state file.
+
+Risk: The security verdict is suspicious due to review-worthy credential handling and local retention issues.
+
+Mitigation: Prefer a version that removes the embedded key and masks headers before deployment.
+
+## Reference(s):
+
+- [DataJud Public API](https://api-publica.datajud.cnj.jus.br/)
+- [ClawHub skill page](https://clawhub.ai/runawaydevil/skills/klaus-processos-br)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or JSON CLI output, with Markdown-formatted usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make network requests to the DataJud public API and may store monitored case numbers and movement snapshots in a local JSON state file.]
+
+## Skill Version(s):
+
+0.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+{
+  "purpose": "X list collection and Feishu CLI integration",
+  "hosts": ["x.com", "api.x.com", "abs.twimg.com", "pbs.twimg.com", "video.twimg.com", "open.feishu.cn", "accounts.feishu.cn"],
+  "notes": ["Apply via the host's supported environment configuration; editing this file does not change policy.", "Keep inherited proxy and TLS verification.", "Local authenticated browser/CLI may run on a separate machine and require a supported connection, not cloud token copying.", "Add tenant-specific auth hosts only when the actual local CLI reports them; do not guess credentials or destinations."]
+}

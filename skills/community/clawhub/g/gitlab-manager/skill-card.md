@@ -1,40 +1,54 @@
-## Description: <br>
-Manage GitLab repositories, merge requests, and issues via API. Use for tasks like creating repos, reviewing code in MRs, or tracking issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage GitLab repositories, merge requests, and issues via API.
 
-## Publisher: <br>
-[jorgermp](https://clawhub.ai/user/jorgermp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jorgermp](https://clawhub.ai/user/jorgermp)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage GitLab projects, merge requests, and issues from an agent workflow, including creating repositories, listing or commenting on merge requests, and creating issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A GitLab token with broad permissions could allow unintended repository, merge request, or issue changes. <br>
-Mitigation: Use a dedicated least-privilege GitLab token limited to the relevant projects or groups. <br>
-Risk: Write actions can create repositories, create issues, or post merge request comments in GitLab. <br>
-Mitigation: Review proposed commands, target project paths, and write-action arguments before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gitlab Manager on ClawHub](https://clawhub.ai/jorgermp/gitlab-manager) <br>
-- [GitLab REST API v4 endpoint](https://gitlab.com/api/v4) <br>
+## Use Case:
 
+Developers and engineers use this skill to automate common GitLab tasks, including creating repositories, listing merge requests, commenting on merge requests, and creating issues.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON or text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GITLAB_TOKEN environment variable with appropriate GitLab API permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated commands can create repositories, create issues, or post merge request comments in unintended GitLab resources.
+
+Mitigation: Use a narrowly scoped project or group token, avoid broad personal tokens, and verify command arguments before execution.
+
+Risk: Weak input validation can make malformed or unintended GitLab API requests more likely.
+
+Mitigation: Review project paths, issue titles, merge request IDs, and comment bodies before running the script, especially in production namespaces.
+
+## Reference(s):
+
+- [GitLab API v4](https://gitlab.com/api/v4)
+- [ClawHub skill page](https://clawhub.ai/jorgermp/skills/gitlab-manager)
+- [Publisher profile](https://clawhub.ai/user/jorgermp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitLab API responses and requires GITLAB_TOKEN for authenticated operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

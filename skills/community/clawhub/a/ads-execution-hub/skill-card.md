@@ -1,40 +1,53 @@
-## Description: <br>
-Ads Execution Hub control skill for ad campaign management and optimization across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ads Execution Hub control skill for ad campaign management and optimization across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Media teams and advertising operators use this skill to plan, launch, monitor, optimize, and scale campaigns across major ad platforms. It produces operator-facing bid, budget, testing, alerting, and handoff guidance tied to KPI constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Budget, bid, launch, scaling, or containment guidance could be applied directly to live advertising accounts without sufficient authorization or review. <br>
-Mitigation: Treat outputs as recommendations and require an authorized operator to review them before making live ad platform changes. <br>
-Risk: Incomplete campaign data, weak measurement confidence, policy flags, or account health issues could lead to poor optimization decisions. <br>
-Mitigation: Request missing platform data, improve tracking before scaling, route policy or account blocks to the appropriate helper, and prefer containment actions when spend risk is severe. <br>
+## Use Case:
 
+External media teams and ad operators use this skill to plan, launch, monitor, optimize, and scale paid campaigns across major ad channels while keeping budget and bid decisions tied to KPI constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/ads-execution-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured action plans, policies, test models, monitoring plans, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides recommendations for authorized operators to review before live platform changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Budget, bidding, or scaling recommendations could affect live ad spend if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as operator decision support and review proposed changes before applying them in live ad accounts.
+
+Risk: Campaign guidance may be incomplete when required platform data, tracking status, policy flags, or account-health details are missing.
+
+Mitigation: Request the minimum missing campaign data and address tracking, policy, or account-health blockers before scaling or making irreversible changes.
+
+## Reference(s):
+
+- [Ads Execution Hub ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/skills/ads-execution-hub)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown with structured campaign action plans, bidding policies, test plans, monitoring triggers, and operator checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are decision support for qualified operators and should be reviewed before application in live ad accounts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

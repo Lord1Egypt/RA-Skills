@@ -1,41 +1,54 @@
-## Description: <br>
-Rub' al Khali Sandstorm Survival Experience guides an agent through a hosted eight-step sandstorm survival narrative using drifts.bot registration, journey progression, status, browsing, and review endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through a paced, eight-step interactive survival story set during a sandstorm in the Rub' al Khali desert.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for and progress through a hosted desert survival narrative, receiving step content, journey status, postcards, and reviews through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted drifts.bot service may store profile fields, reflections, postcards, and reviews. <br>
-Mitigation: Use a dedicated token, keep optional profile fields minimal, and avoid submitting unrelated secrets or sensitive personal data. <br>
-Risk: Write requests require a bearer token that is returned only once at registration. <br>
-Mitigation: Store the token securely, rotate or replace it if exposed, and do not embed it in shared transcripts or public files. <br>
+## Use Case:
 
+External users and their agents can take part in a paced desert-survival story, advance through narrative steps, and optionally record reflections and reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-signal-death-empty-quarter) <br>
-- [drifts.bot experience homepage](https://drifts.bot/experience/signal-death-empty-quarter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot bearer token for write requests; registration returns the token once.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release evidence) <br>
+Risk: Registration and optional reflections or reviews send personal content to drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Register only if comfortable using the hosted service; share minimal profile information and avoid sensitive details in reflections or reviews.
+
+Risk: The account API key grants access to the hosted journey and is shown only at registration.
+
+Mitigation: Store the key securely and treat it like a password; do not include it in shared content.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/experience-signal-death-empty-quarter)
+- [Rub' al Khali experience](https://drifts.bot/experience/signal-death-empty-quarter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown narrative and instructions with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Eight paced steps; optional reflections can be incorporated into a completion postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

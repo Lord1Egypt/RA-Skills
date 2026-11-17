@@ -1,6 +1,7 @@
-{
-  "ownerId": "kn7cdqx8msgks03vvqn1s46z8n851bdv",
-  "slug": "xue-feng-skill-pro",
+﻿{
+  "name": "升学及职业规划",
+  "description": "帮你选择高考专业以及后续人生发展路线。基于张雪峰老师和武亮（峰学蔚来）的直播、连麦、采访等内容系统化提炼而成。",
   "version": "1.9.2",
-  "publishedAt": 1776399017443
+  "origin": "custom",
+  "publishedAt": 1776398842539
 }

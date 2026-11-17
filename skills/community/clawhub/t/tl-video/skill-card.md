@@ -1,49 +1,56 @@
-## Description: <br>
-Generates videos with TensorsLab AI video models, supporting text-to-video and image-to-video workflows with prompt enhancement, progress tracking, and local file saving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate text-to-video and image-to-video clips with TensorsLab's AI video generation API, including prompt enhancement, progress tracking, and local result saving.
 
-## Publisher: <br>
-[bob5-tensorslab](https://clawhub.ai/user/bob5-tensorslab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bob5-tensorslab](https://clawhub.ai/user/bob5-tensorslab)
 
-## Use Case: <br>
-Developers and agent users use this skill to create short videos from text prompts or source images through TensorsLab's API, then monitor asynchronous generation and save the resulting files locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a TensorsLab account key. <br>
-Mitigation: Store the key in TENSORSLAB_API_KEY, avoid passing it on the command line, and do not print full key values in logs or chat. <br>
-Risk: Prompts and selected source images are sent to TensorsLab for video generation. <br>
-Mitigation: Use only content approved for processing by TensorsLab and avoid submitting sensitive or restricted data. <br>
-Risk: Video generation may spend account credits. <br>
-Mitigation: Confirm account credit availability and expected usage before starting generation, especially for longer or higher-resolution jobs. <br>
-Risk: Generated videos are saved on local disk. <br>
-Mitigation: Choose an appropriate output directory and review generated files before sharing or publishing them. <br>
-Risk: The script uses a session-level proxy override. <br>
-Mitigation: Review the proxy setting before use on networks that require an HTTP or HTTPS proxy. <br>
+## Use Case:
 
+External users and developers use this skill to generate short videos from text prompts or source images through TensorsLab. It helps agents choose model settings, track long-running generation, and save generated MP4 files locally.
 
-## Reference(s): <br>
-- [TensorsLab Video API Reference](references/api_reference.md) <br>
-- [TensorsLab Console](https://tensorslab.tensorslab.com/) <br>
-- [TensorsLab API](https://api.tensorslab.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bob5-tensorslab/tl-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated videos are saved as MP4 files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses asynchronous TensorsLab video tasks, polls status, and writes results to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The helper script may download content from URLs returned by the remote API and write files outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated workspace with a low-privilege account, review outputs before reuse, and prefer a patched version that validates download URLs, enforces size limits, and sanitizes task IDs before writing files.
+
+Risk: API credentials and uploaded source images are sent to a third-party video generation provider.
+
+Mitigation: Set the API key through TENSORSLAB_API_KEY, avoid command-line secrets, and do not use sensitive source images unless the provider is trusted for the intended use.
+
+## Reference(s):
+
+- [TensorsLab Video API Reference](references/api_reference.md)
+- [TensorsLab API](https://api.tensorslab.com)
+- [TensorsLab Console](https://tensorslab.tensorslab.com/)
+- [ClawHub Skill Page](https://clawhub.ai/bob5-tensorslab/skills/tl-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and local video file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated videos are saved as MP4 files in a configurable local output directory after asynchronous API polling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

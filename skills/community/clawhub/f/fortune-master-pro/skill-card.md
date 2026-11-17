@@ -1,58 +1,67 @@
-## Description: <br>
-Provides structured, symbolic fortune-telling guidance across BaZi, Zi Wei Dou Shu, tarot, astrology, numerology, Daoist divination, feng shui, relationship timing, and related consultation themes while enforcing professional-advice boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language symbolic guidance skill for Bazi, Zi Wei Dou Shu, tarot, Western astrology, numerology, Qimen, Yijing, feng shui, timing, and relationship readings with stated boundaries for professional advice.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, creators, and consultants use this skill to produce structured symbolic readings for life themes, relationships, timing, and space-layout questions. It is intended for reflective and entertainment-style guidance, not medical, legal, financial, investment, or emergency decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat symbolic fortune-telling output as professional medical, legal, financial, investment, or emergency advice. <br>
-Mitigation: Keep the output framed as symbolic or entertainment guidance and redirect high-stakes decisions to qualified professionals or emergency resources. <br>
-Risk: The skill may ask for birth, relationship, or home-layout details that users consider sensitive. <br>
-Mitigation: Ask only for details needed for the requested reading and remind users to share only information they are comfortable putting into chat. <br>
-Risk: Questions about other people may involve personal details provided without consent. <br>
-Mitigation: Avoid requesting exact third-party personal details unless consent is clear, and keep relationship readings focused on the user's choices and boundaries. <br>
-Risk: Mystical interpretations can amplify fear, fatalism, or manipulative claims. <br>
-Mitigation: Avoid absolute predictions, fear-based conclusions, paid-remedy claims, or language that validates self-harm, retaliation, stalking, or coercive behavior. <br>
+## Use Case:
 
+External users can use this skill for Chinese-language cultural, entertainment, and reflective readings across multiple divination frameworks. It helps route the user's question, assess whether the provided details support a light or detailed reading, and produce structured guidance while avoiding medical, legal, financial, emergency, or deterministic claims.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/fortune-master-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Intake and Routing](references/intake-and-routing.md) <br>
-- [Safety and Ethics](references/safety-and-ethics.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [BaZi Framework](references/bazi-framework.md) <br>
-- [Zi Wei Framework](references/ziwei-framework.md) <br>
-- [Tarot Framework](references/tarot-framework.md) <br>
-- [Astrology Framework](references/astrology-framework.md) <br>
-- [Numerology Framework](references/numerology-framework.md) <br>
-- [Daoist Mysticism Framework](references/dao-mysticism-framework.md) <br>
-- [Qi Men Framework](references/qimen-framework.md) <br>
-- [Yijing Divination Framework](references/yijing-divination-framework.md) <br>
-- [Feng Shui and Timing Framework](references/fengshui-and-timing-framework.md) <br>
-- [Relationship and Timing](references/relationship-and-timing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for optional personal, relationship, timing, or space-layout details before producing symbolic guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake symbolic readings for professional medical, legal, financial, safety, or emergency advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as entertainment, reflection, or cultural interpretation and redirect professional or urgent decisions to qualified support.
+
+Risk: Divination workflows can invite unnecessary personal detail sharing.
+
+Mitigation: Ask only for details needed for the selected reading depth and remind users not to share information they are uncomfortable using for a reading.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/fortune-master-pro)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+- [Intake and Routing](references/intake-and-routing.md)
+- [Output Templates](references/output-templates.md)
+- [Safety and Ethics](references/safety-and-ethics.md)
+- [Bazi Framework](references/bazi-framework.md)
+- [Ziwei Framework](references/ziwei-framework.md)
+- [Tarot Framework](references/tarot-framework.md)
+- [Astrology Framework](references/astrology-framework.md)
+- [Numerology Framework](references/numerology-framework.md)
+- [Dao Mysticism Framework](references/dao-mysticism-framework.md)
+- [Qimen Framework](references/qimen-framework.md)
+- [Yijing Divination Framework](references/yijing-divination-framework.md)
+- [Feng Shui and Timing Framework](references/fengshui-and-timing-framework.md)
+- [Relationship and Timing](references/relationship-and-timing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses; reading depth varies by user-provided evidence level.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Seal OCR recognizes seals in user-selected files and returns structured details such as seal coordinates, shape, color, type, text, and confidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Precisely identifies seal information in images and returns seal coordinates, shape, color, type, and inner text.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Developers and agents use this skill to call SCNet's seal OCR service for images, PDFs, or archives and return structured seal recognition results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, PDFs, or archives are uploaded to SCNet for OCR processing. <br>
-Mitigation: Use only files you are authorized to share; avoid identity documents, contracts, invoices, or confidential seals unless permission and SCNet data-handling terms have been reviewed. <br>
-Risk: The skill requires an SCNet API key. <br>
-Mitigation: Store SCNET_API_KEY in a local environment variable or config/.env file with restricted permissions, and do not paste the key into chats or logs. <br>
-Risk: SCNet may rate-limit OCR requests. <br>
-Mitigation: Run requests serially where possible and back off before retrying if 429 responses occur. <br>
+## Use Case:
 
+Developers and external users use this skill to submit an image, PDF, or archive to Scnet OCR and receive structured seal-recognition results for document processing workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/seal-ocr) <br>
-- [Sugon-Scnet OCR API Documentation](references/api-docs.md) <br>
-- [Seal OCR Field Summary](assets/templates/fields-summary.md) <br>
-- [SCNet Website](https://www.scnet.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON recognition results with text error messages and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and uploads selected files to SCNet for recognition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and changelog, released 2025-05-29) <br>
+Risk: Selected images, PDFs, or archives are uploaded to Scnet's OCR service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents appropriate for that provider and confirm data-handling terms before processing confidential or regulated content.
+
+Risk: The API key and document uploads can be sent to a configurable API base.
+
+Mitigation: Keep SCNET_API_KEY out of chat, protect config/.env, and change SCNET_API_BASE only to a fully trusted endpoint.
+
+Risk: Rapid repeated calls can hit the OCR service rate limit.
+
+Mitigation: Call the skill serially where possible and rely on the built-in retry/backoff behavior when 429 responses occur.
+
+## Reference(s):
+
+- [Sugon-Scnet OCR API documentation](references/api-docs.md)
+- [Seal recognition fields summary](assets/templates/fields-summary.md)
+- [Scnet website](https://www.scnet.cn)
+- [Scnet OCR API base](https://api.scnet.cn/api/llm/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON OCR results emitted to standard output, with Markdown guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON data contains seal recognition fields such as position, confidence, shape, color, type, and text.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, changelog, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

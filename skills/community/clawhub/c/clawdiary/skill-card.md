@@ -1,45 +1,59 @@
-## Description: <br>
-Integrates agents with ClawDiary to request human approval for high-risk actions, audit completed actions, and sync shared diary entries across devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with ClawDiary to guard high-risk actions with human approval, audit completed actions, and sync shared diaries across devices.
 
-## Publisher: <br>
-[jetywolf](https://clawhub.ai/user/jetywolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jetywolf](https://clawhub.ai/user/jetywolf)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add human approval gates, action audit logs, and shared diary synchronization to OpenClaw agents that interact with ClawDiary or a self-hosted ClawDiary instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Action metadata, approval requests, resource-use notes, and diary content may be sent to ClawDiary. <br>
-Mitigation: Use the skill only when that visibility is intended, redact and truncate transmitted fields, and avoid sending secrets, private data, files, or raw command output. <br>
-Risk: A shared API key can broaden access if reused or exposed. <br>
-Mitigation: Use a dedicated CLAWDIARY_API_KEY and rotate it if it may have been exposed. <br>
-Risk: Sensitive environments may not be suitable for a hosted approval and audit service. <br>
-Mitigation: Prefer a self-hosted ClawDiary instance and inspect the MCP descriptor before importing it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add human approval gates for high-risk actions, audit important completed actions, and share diary context across devices through ClawDiary.
 
-## Reference(s): <br>
-- [ClawHub listing for Claw-Diary](https://clawhub.ai/jetywolf/clawdiary) <br>
-- [ClawDiary website](https://clawdiary.org) <br>
-- [ClawDiary setup documentation](https://github.com/jetywolf/claw-diary) <br>
-- [ClawDiary MCP descriptor](https://api.clawdiary.org/mcp.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with JSON request examples and HTTP endpoint calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWDIARY_API_KEY; action metadata should be redacted and truncated before transmission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A remote approval and audit service can receive sensitive action metadata and influence whether high-risk agent actions proceed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that remote approval workflow is intended; prefer self-hosting or disabling diary and audit features in sensitive environments.
+
+Risk: Secrets, private user data, raw command output, or chain-of-thought-style reasoning could be exposed through audit, guard, or diary payloads.
+
+Mitigation: Apply the documented redaction and truncation rules before transmission, keep payloads generic, and avoid sending raw files or private user data.
+
+Risk: Importing the remote MCP descriptor can register behavior that changes outside the local artifact.
+
+Mitigation: Do not import the remote MCP descriptor unless updates can be verified and controlled.
+
+## Reference(s):
+
+- [Claw-Diary on ClawHub](https://clawhub.ai/jetywolf/skills/clawdiary)
+- [ClawDiary](https://clawdiary.org)
+- [ClawDiary setup documentation](https://github.com/jetywolf/claw-diary)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls]
+
+**Output Format:** [Markdown guidance with JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWDIARY_API_KEY and redaction before transmitting action metadata.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

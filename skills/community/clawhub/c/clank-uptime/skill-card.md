@@ -1,40 +1,53 @@
-## Description: <br>
-Tracks website uptime, response times, and availability with CSV-based history, 24-hour stats, visual bars, and average/minimum/maximum latency as a lightweight alternative to paid monitoring services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track website uptime, response times, and availability with CSV-based history, 24-hour stats with visual bars, and average, minimum, and maximum latency.
 
-## Publisher: <br>
-[t3mr0i](https://clawhub.ai/user/t3mr0i) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t3mr0i](https://clawhub.ai/user/t3mr0i)
 
-## Use Case: <br>
-Developers, operators, and site owners use this skill to add monitored URLs, run uptime checks, inspect 24-hour availability and latency stats, and maintain simple local monitoring history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored URLs and timestamp, status, and response-time history are stored locally in ~/.clank-uptime. <br>
-Mitigation: Add only URLs acceptable for local storage, and manage file permissions and retention for the ~/.clank-uptime directory. <br>
-Risk: Automated checks can continue on a schedule if the user adds cron entries. <br>
-Mitigation: Review the monitored site list and cron schedule before enabling automation, and remove cron entries when scheduled checks are no longer intended. <br>
+## Use Case:
 
+Developers, site operators, and agents use this skill to check website availability, record response-time history, and summarize 24-hour uptime and latency from local CSV data.
 
-## Reference(s): <br>
-- [Clank Uptime on ClawHub](https://clawhub.ai/t3mr0i/clank-uptime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and python3; stores monitored site configuration and CSV history under ~/.clank-uptime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores monitored URLs and uptime history under ~/.clank-uptime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only add sites you intend to monitor, and handle the local history according to your privacy and retention requirements.
+
+Risk: Cron automation can create recurring external requests to configured sites.
+
+Mitigation: Enable scheduled checks only when recurring monitoring is intended, and choose an interval appropriate for the monitored service.
+
+## Reference(s):
+
+- [Clank Uptime ClawHub release](https://clawhub.ai/t3mr0i/skills/clank-uptime)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cron examples and local file paths for uptime configuration and CSV history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

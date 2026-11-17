@@ -1,42 +1,51 @@
-## Description: <br>
-Searches and explores Are.na for curated channels, references, visual inspiration, linked resources, and key curators across research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and explore Are.na for curated channels, references, and visual inspiration by analyzing connections and identifying key curators across any topic.
 
-## Publisher: <br>
-[givenness](https://clawhub.ai/user/givenness) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[givenness](https://clawhub.ai/user/givenness)
 
-## Use Case: <br>
-Researchers, designers, writers, and agents use this skill to search Are.na, inspect curated collections, follow channel and block connections, identify recurring curators, and synthesize sourced research briefings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package documents running Are.na helper code, but the helper CLI files are not included in the artifact. <br>
-Mitigation: Review or supply the missing CLI code before installation and execution. <br>
-Risk: The skill asks users to source a broad local environment file that may expose unrelated secrets. <br>
-Mitigation: Use only a scoped ARENA_ACCESS_TOKEN for this skill instead of sourcing a global environment file. <br>
-Risk: Authenticated Are.na scopes may allow access to personal collections through my or following searches. <br>
-Mitigation: Avoid authenticated scopes unless the user explicitly wants the agent to access personal Are.na collections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Arena Research on ClawHub](https://clawhub.ai/givenness/arena-research-skill) <br>
-- [givenness publisher profile](https://clawhub.ai/user/givenness) <br>
+## Use Case:
+
+External users and developers use this skill to research Are.na collections, follow channel and block connections, identify relevant curators, and synthesize sourced briefs from curated material.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to load a broad global shell environment file, which may expose unrelated secrets or execute local shell content.
+
+Mitigation: Provide only ARENA_ACCESS_TOKEN through a skill-specific environment file or per-command environment before use.
+
+Risk: The artifact references CLI and API files that are not included in the submitted artifact.
+
+Mitigation: Verify the missing referenced CLI files are present and reviewed before relying on the skill's command workflows.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output from the Are.na CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save sourced research briefs to local markdown drafts when the documented --save option is used.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and optional JSON output from the referenced CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save markdown research drafts when the skill's save workflow is available.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

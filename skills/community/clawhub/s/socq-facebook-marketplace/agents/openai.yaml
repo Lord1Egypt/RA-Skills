@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Facebook Marketplace Research"
+  short_description: "Collect and analyze public Facebook Marketplace data"
+  default_prompt: "Use $socq-facebook-marketplace to collect and analyze this public Facebook Marketplace research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Facebook Marketplace data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=facebook-marketplace"

@@ -1,42 +1,56 @@
-## Description: <br>
-Provides guidance and commands for discovering and querying Pilot Protocol news and current-events service agents across sources such as Hacker News, dev.to, GDELT, Reddit, Stack Exchange, and USGS hazards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News feeds, forum aggregators, and current-events streams for Hacker News, dev.to, GDELT, Reddit, Stack Exchange, and USGS hazards.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover Pilot Protocol news service agents, inspect each agent's filter contract, and fetch structured feed data or natural-language summaries for current-events workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Pilot Protocol, the pilotctl binary, a running daemon, and joining network 9. <br>
-Mitigation: Install and run it only in environments where Pilot Protocol, pilotctl, and the joined network are trusted. <br>
-Risk: Returned links, public feed data, and Gemini-generated summaries may contain external or misleading content. <br>
-Mitigation: Treat outputs as external content, verify important claims against primary sources, and avoid sending sensitive or private queries through public feed agents. <br>
+## Use Case:
 
+External developers and operators use this skill to discover Pilot Protocol news and current-events service agents, inspect each agent's /help contract, and query public feeds or summaries through pilotctl.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-news) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills index](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON response examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include JSON envelopes with items, counts, pagination, truncation status, and upstream URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Queries are sent to remote public data agents through Pilot Protocol on network 9.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that network dependency is acceptable, and avoid sending private context unless the target agent's /help contract is understood.
+
+Risk: Some catalogue entries may be broader than strict news feeds.
+
+Mitigation: Run a fresh list-agents query and inspect each selected agent's /help output before using /data, /summary, or free-text queries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-news)
+- [Publisher Profile](https://clawhub.ai/user/teoslayer)
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Skills](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to use pilotctl for public data feed discovery, /help inspection, structured /data queries, and summary requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Drafts a volunteer onboarding script designed for audio narration or live orientation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write a volunteer onboarding script designed for audio or live orientation.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Nonprofit staff, volunteer coordinators, nonprofit marketers, executive directors, and development teams use this skill to draft volunteer orientation scripts for audio or live onboarding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted volunteer onboarding scripts may contain inaccurate, incomplete, or unsuitable guidance for a specific nonprofit program. <br>
-Mitigation: Review and edit scripts for accuracy, readability, and fit before sharing or using them in live orientation. <br>
-Risk: Script prompts or outputs may include unnecessary personal or sensitive volunteer information. <br>
-Mitigation: Avoid including sensitive volunteer details and confirm which chat or text-to-speech provider will receive the text. <br>
+## Use Case:
 
+Nonprofit staff, development teams, marketers, and executive directors use this skill to draft volunteer orientation scripts for audio or live onboarding.
 
-## Reference(s): <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/create-volunteer-orientation-voice-script) <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-create-volunteer-orientation-voice-script) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text script draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference chat and text-to-speech provider use; outputs should be reviewed before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated orientation scripts may omit or misstate organization-specific policy, legal, or safety details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit scripts before public use, especially sections that describe policies, legal obligations, safety practices, or organization-specific procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-create-volunteer-orientation-voice-script)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/create-volunteer-orientation-voice-script)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text script content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be suitable for audio narration or live delivery after human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

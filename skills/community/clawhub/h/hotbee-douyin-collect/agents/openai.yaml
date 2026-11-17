@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee 抖音数据采集"
+  short_description: "通过中文需求解析抖音链接并调用 HotBee 接口。"
+  default_prompt: "使用 HotBee 抖音数据采集技能，根据中文需求解析视频链接或主页链接并返回对应数据。"

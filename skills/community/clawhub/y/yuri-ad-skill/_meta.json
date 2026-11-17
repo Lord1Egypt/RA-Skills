@@ -1,6 +1,14 @@
 {
   "ownerId": "kn74v7svs52dtsm7pxkexqq1ss8300aw",
   "slug": "yuri-ad-skill",
-  "version": "1.0.6",
-  "publishedAt": 1773987158139
+  "version": "1.0.3",
+  "publishedAt": 1773814773085,
+  "primaryCredential": "BAIZ_API_TOKEN",
+  "env": {
+    "BAIZ_API_TOKEN": {
+      "description": "baiz.ai platform API Token. Generate it from the 'API Management' page in your baiz.ai dashboard. Format: xxx|xxx. Only valid for baiz.ai, not a raw Facebook Token. Use a minimal-permission test token.",
+      "required": true,
+      "sensitive": true
+    }
+  }
 }

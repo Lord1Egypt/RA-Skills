@@ -1,47 +1,68 @@
-## Description: <br>
-Track elapsed time from a set epoch with tamper-evident locking for uptime, service hours, time since events, sobriety counters, project duration, equipment runtime, and similar counters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TARDIS helps agents create, lock, verify, list, and export tamper-evident elapsed-time meters for uptime, service hours, event counters, project duration, and equipment runtime.
 
-## Publisher: <br>
-[rm289](https://clawhub.ai/user/rm289) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rm289](https://clawhub.ai/user/rm289)
 
-## Use Case: <br>
-External users, developers, and operators use TARDIS to create, lock, check, verify, list, and export tamper-evident elapsed-time meters with optional milestone notifications and career projection calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Networked notification and webhook features can expose SendGrid events or forward them to configured Discord/OpenClaw destinations. <br>
-Mitigation: Install those features only when needed, review what event data is sent, and enable SendGrid signature verification for webhook use. <br>
-Risk: Broad environment loading can read more secrets than the meter needs. <br>
-Mitigation: Use a dedicated least-privilege configuration for SendGrid and avoid broad .env loading for local-only use. <br>
-Risk: Background webhook tunnels can make a local service publicly reachable. <br>
-Mitigation: Do not run check-webhook-services.sh or Cloudflare/ngrok tunnels for local-only tracking, and review tunnel exposure before enabling webhooks. <br>
-Risk: ACTION milestone triggers can become agent instructions if explicitly enabled. <br>
-Mitigation: Keep ACTION triggers opt-in and restrict who can edit meters.json and HEARTBEAT.md. <br>
+## Use Case:
 
+External users and developers use this skill to track time since, until, or between events with tamper-evident locks, paper codes, witness files, milestone checks, JSON exports, and optional email or webhook notifications.
 
-## Reference(s): <br>
-- [ClawHub TARDIS Release](https://clawhub.ai/rm289/tardis) <br>
-- [README](README.md) <br>
-- [Technical Whitepaper](WHITEPAPER.md) <br>
-- [Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local meter storage and witness files when the user runs the bundled commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill includes networked email and webhook features that can expose event data or send outbound notifications when configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those features are needed, run them from a constrained account, and configure only intended SendGrid, Discord, or OpenClaw destinations.
+
+Risk: The webhook server and tunnel helper can expose a local service to the public internet.
+
+Mitigation: Avoid running the webhook server or tunnel helper on sensitive hosts, and prefer controlled ingress with least-privilege runtime credentials.
+
+Risk: Generic .env loading can make unrelated secrets visible to the skill process.
+
+Mitigation: Do not keep unrelated secrets in generic .env files accessible to the skill; use a dedicated environment for SendGrid and webhook credentials.
+
+Risk: Unsigned SendGrid webhook events can be spoofed if signature verification is not configured.
+
+Mitigation: Enable signed SendGrid webhooks, install the cryptography dependency, and set SENDGRID_WEBHOOK_PUBLIC_KEY with a bounded timestamp age.
+
+Risk: ACTION-prefixed milestone messages can become unsafe if an agent is configured to execute them as instructions.
+
+Mitigation: Keep ACTION handling disabled unless explicitly required, and add approval gates plus allowlist controls before treating milestone messages as executable instructions.
+
+## Reference(s):
+
+- [TARDIS ClawHub listing](https://clawhub.ai/rm289/skills/tardis)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [WHITEPAPER.md](artifact/WHITEPAPER.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local meter state, witness logs, webhook logs, and exported JSON files through the bundled command-line scripts.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

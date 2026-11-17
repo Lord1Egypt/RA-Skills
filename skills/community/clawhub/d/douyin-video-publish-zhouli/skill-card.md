@@ -1,44 +1,60 @@
-## Description: <br>
-抖音视频发布。使用浏览器自动化在抖音创作者平台发布视频。当用户说"发布视频到抖音"、"发抖音"时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音视频发布。使用浏览器自动化在抖音创作者平台发布视频。当用户说"发布视频到抖音"、"发抖音"时使用此技能。
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External creators and agent operators use this skill to publish a prepared local video to a logged-in Douyin creator account, including upload, title, hashtags, cover selection, location, and post-publication verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish video content from a logged-in Douyin creator account. <br>
-Mitigation: Require the agent to show the exact account, video, title, hashtags, cover, visibility settings, and location before any publish action, and require explicit final approval. <br>
-Risk: The workflow always selects the fixed location "苏州中心". <br>
-Mitigation: Remove or change the location unless the operator intentionally wants that location attached to the post. <br>
-Risk: Repeated publish clicks could create duplicate posts. <br>
-Mitigation: Confirm the target video is not already present in content management before publishing and stop immediately after a successful publish. <br>
+## Use Case:
 
+External creators and operators use this skill to guide browser automation for uploading and publishing videos through Douyin Creator Center, including title, hashtag, cover, location, and post-publication checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/douyin-video-publish-zhouli) <br>
-- [Douyin creator video publish page](https://creator.douyin.com/creator-micro/content/post/video?enter_from=publish_page) <br>
-- [Douyin creator content management page](https://creator.douyin.com/creator-micro/content/manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions for browser automation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Douyin creator account and a browser automation session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Risk: The skill can publish publicly from a logged-in Douyin creator account without a clear final confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit final confirmation showing the account, video, title, hashtags, cover, and location before clicking publish.
+
+Risk: The workflow presets the location to Suzhou Center, which may be inaccurate or unwanted for a given post.
+
+Mitigation: Remove or override the preset location unless the publisher explicitly approves that location.
+
+Risk: Repeated publish clicks can create duplicate posts.
+
+Mitigation: Check the Douyin content management page before publishing and stop immediately after a successful publish action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/douyin-video-publish-zhouli)
+- [Publisher Profile](https://clawhub.ai/user/onlyloveher)
+- [Douyin Creator Video Publish](https://creator.douyin.com/creator-micro/content/post/video?enter_from=publish_page)
+- [Douyin Creator Content Management](https://creator.douyin.com/creator-micro/content/manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown instructions and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through browser-based publishing steps; does not produce standalone executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, artifact metadata, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

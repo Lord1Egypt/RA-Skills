@@ -1,40 +1,57 @@
-## Description: <br>
-This skill guides an agent through a five-step communication loop of listening, thinking, saying, doing, and reviewing to make reasoning, execution, and lessons learned more transparent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures agent communication into five phases: listening, thinking, saying, doing, and seeing, so collaborators can inspect reasoning, execution, and follow-up learning.
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-Agents and their users use this skill to structure replies and collaborative work through listening, thinking, saying, doing, and reviewing. It is most useful when the user wants assumptions, chosen actions, command results, and reflections to be visible before the next step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow encourages saving decisions, execution results, and reflections to memory or knowledge stores, which may capture sensitive work details. <br>
-Mitigation: Confirm whether memory, Obsidian, ChromaDB, or web tools are enabled before use, and require redaction or explicit confirmation before saving secrets, credentials, confidential command output, regulated data, or sensitive business information. <br>
-Risk: The skill can ask the agent to show commands and results, which may expose private paths, environment details, or confidential output. <br>
-Mitigation: Review command output before preserving or sharing it, and redact sensitive values from logs, terminal output, and review notes. <br>
+## Use Case:
 
+Agent users and collaborators use this skill to make responses follow a transparent five-step loop before, during, and after work. It is most useful where structured reasoning, command/result reporting, and retrospective learning are expected in each exchange.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markma84/five-steps-to-wisdom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with structured five-step sections and optional inline command/result blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include decision rationale, execution results, review notes, and wiki-style knowledge links when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence) <br>
+Risk: The skill can impose a rigid five-step response style on every interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in contexts where this fixed communication structure is desired.
+
+Risk: The skill describes automatic persistence of conversation-derived content.
+
+Mitigation: Use it only where memory writes are disabled, host-controlled, or explicitly confirmed by the user.
+
+Risk: Sensitive conversation content or command output could be retained if the host agent stores memory automatically.
+
+Mitigation: Avoid sensitive work unless the host prevents automatic storage or provides clear retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/five-steps-to-wisdom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown response with five named sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command/result pairs and wiki-style cross-references when the task calls for execution or review.]
+
+## Skill Version(s):
+
+3.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

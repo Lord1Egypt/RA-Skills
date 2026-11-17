@@ -1,42 +1,53 @@
-## Description: <br>
-Navigate Berlin as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Berlin as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer Berlin questions for visitors, residents, students, tech workers, entrepreneurs, and people planning a move. It provides practical guidance across neighborhoods, transport, costs, visas, local services, culture, food, safety, healthcare, education, and business setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Visa, salary, transit, rent, healthcare, and legal details can change or depend on a user's circumstances. <br>
-Mitigation: Verify current requirements and figures with official German or Berlin sources before acting. <br>
-Risk: Neighborhood guidance may include demographic generalizations. <br>
-Mitigation: Review and rephrase demographic claims before relying on or republishing recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Berlin Skill Page](https://clawhub.ai/ivangdavila/berlin) <br>
-- [Skill Homepage](https://clawic.com/skills/berlin) <br>
-- [Berlin Skill Manifest](artifact/SKILL.md) <br>
-- [Berlin Topic File Index](artifact/EXTRA_FILES.txt) <br>
+## Use Case:
 
+External users, visitors, residents, students, entrepreneurs, and tech workers use this skill to get practical Berlin guidance on neighborhoods, transport, costs, visas, food, safety, healthcare, education, and local customs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with practical recommendations and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or external tool requirements are declared.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill covers legal, tax, immigration, medical, housing, and local-rule topics that can change or require professional advice.
+
+Mitigation: Verify current official requirements, prices, and local rules before acting, especially for business setup, visas, healthcare, rentals, and waste disposal.
+
+Risk: The artifact contains static Berlin data labeled February 2026, so costs, salaries, transit prices, and visa thresholds may become outdated.
+
+Mitigation: Check current sources and dates before using figures for planning or decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/berlin)
+- [Skill Homepage](https://clawic.com/skills/berlin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text responses with topic-specific bullets and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no executable behavior or external API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

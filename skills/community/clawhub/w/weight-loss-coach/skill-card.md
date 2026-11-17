@@ -1,46 +1,60 @@
-## Description: <br>
-Provides weight loss, fitness, and nutrition coaching with calorie estimates, profile-based BMR/TDEE calculations, meal and takeout suggestions, exercise estimates, and progress summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weight Loss Coach helps users track weight, calories, exercise, health screenshots, recipes, and takeout choices for personalized weight-management support.
 
-## Publisher: <br>
-[yijiecheng](https://clawhub.ai/user/yijiecheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yijiecheng](https://clawhub.ai/user/yijiecheng)
 
-## Use Case: <br>
-Individuals managing weight, diet, and fitness use this skill to track body metrics, food intake, exercise activity, and progress over time. It provides lifestyle coaching, calorie and nutrition estimates, recipe and takeout ideas, and reminders to seek professional medical support when health conditions or eating-disorder concerns arise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to remember sensitive health and lifestyle details, including weight, body metrics, diet logs, exercise habits, goals, and recipe preferences. <br>
-Mitigation: Review platform controls for viewing or deleting remembered data, and avoid sharing screenshots that contain account identifiers or unrelated private information. <br>
-Risk: Weight-loss, diet, and exercise guidance may be mistaken for medical advice. <br>
-Mitigation: Treat the skill as lifestyle coaching support only, and consult a qualified professional for medical conditions, very low weight goals, or eating-disorder concerns. <br>
-Risk: Food photos, health screenshots, and user descriptions can produce incomplete or approximate calorie and activity estimates. <br>
-Mitigation: Use estimates for tracking and planning, verify unclear screenshot data manually, and avoid making strict diet decisions from a single generated estimate. <br>
+## Use Case:
 
+External users use this skill as a lifestyle coaching assistant for weight management, meal logging, calorie and exercise estimates, health screenshot summaries, progress check-ins, and low-calorie recipe or takeout suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yijiecheng/weight-loss-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/yijiecheng) <br>
-- [Chinese calorie database](artifact/references/calorie-database.md) <br>
-- [Exercise MET and calorie database](artifact/references/exercise-database.md) <br>
-- [Fat-loss recipes and takeout guide](artifact/references/recipes-and-takeout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style coaching responses with calorie estimates, tables, summaries, meal plans, exercise suggestions, and progress feedback.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on remembered weight, body metrics, diet logs, exercise habits, goals, screenshots, and recipe preferences; health-related recommendations should be treated as coaching support, not medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to remember and accumulate sensitive health, diet, weight, and lifestyle information across sessions without clear consent, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, confirm whether health data should be handled session-only or persisted, and provide users a way to review, delete, or disable stored profile and health data.
+
+Risk: Health and fitness screenshots may contain unrelated personal details in addition to the data the user wants processed.
+
+Mitigation: Ask users to crop or redact screenshots before upload unless they intend all visible details to be processed.
+
+Risk: Weight-loss and nutrition guidance can be inappropriate for users with medical conditions, very low BMI, or signs of disordered eating.
+
+Mitigation: Keep recommendations conservative, avoid medical advice, and direct users to a qualified clinician when disease, underweight goals, or eating-disorder signals appear.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yijiecheng/skills/weight-loss-coach)
+- [Chinese food calorie database](references/calorie-database.md)
+- [Exercise MET and calorie expenditure table](references/exercise-database.md)
+- [Low-calorie recipes and takeout guide](references/recipes-and-takeout.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style conversational coaching responses with tables, lists, calorie estimates, summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include food and exercise estimates, trend summaries, recipe steps, and safety reminders; outputs should not be treated as medical advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

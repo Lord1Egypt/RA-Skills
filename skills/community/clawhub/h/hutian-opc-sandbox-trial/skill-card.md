@@ -1,39 +1,52 @@
-## Description: <br>
-基于OPC平台生态三会治理体系，通过注入外部/内部变量，推演不同阶段、不同竞争态势下的演化路径。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于OPC平台生态三会治理体系，通过注入外部/内部变量，推演不同阶段、不同竞争态势下的演化路径
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[golngod](https://clawhub.ai/user/golngod)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External founders, strategy teams, and advisors use this skill to stress-test OPC platform plans by varying policy, competition, capital, technology, market, team, funding, execution, and talent assumptions. It helps produce scenario cards, path comparisons, red-blue confrontation notes, and prioritized response strategies for decision preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scenario-planning outputs can be mistaken for factual forecasts or expert business, legal, financial, or market advice.
+
+Mitigation: Use outputs as planning hypotheses and review assumptions with qualified experts before consequential decisions.
+
+Risk: The skill has a broad planning scope and is Chinese-language by default, which can cause context mismatch if the business stage, variables, or locale are underspecified.
+
+Mitigation: Confirm the decision context, target stage, relevant variables, and language expectations before applying recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business strategists, operators, and advisors use this Chinese-language skill to stress test OPC-style plans, compare optimistic/baseline/pessimistic paths, and prepare prioritized response strategies before major decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Scenario-planning output can be mistaken for prediction or definitive business advice. <br>
-Mitigation: Treat generated paths and strategy lists as decision-support material and review them with current business, market, policy, and financial evidence before acting. <br>
-Risk: The skill is written for Chinese-language OPC-style planning and may be misapplied by users who do not share that context. <br>
-Mitigation: Confirm terminology, assumptions, and translations with domain-aware reviewers before using results in non-Chinese or non-OPC settings. <br>
+**Output Format:** [Markdown scenario cards and prioritized strategy lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language output by default]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown scenario cards and prioritized strategy lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces optimistic, baseline, and pessimistic paths plus P0/P1/P2 response priorities.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

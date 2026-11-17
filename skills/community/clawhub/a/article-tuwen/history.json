@@ -26,6 +26,51 @@
       "theme": "kraft-paper",
       "layout_sequence": ["M01","M11","M09","M06","M05","M07","C02","M10","M16"],
       "chart_types": ["C02"]
+    },
+    {
+      "date": "2026-06-12",
+      "slug": "ai-org",
+      "cover_search": "technology hands",
+      "closing_search": "dark ocean",
+      "theme": "arctic-dawn",
+      "layout_sequence": ["M02","M12","M09","M06","M05","M07","C03","M10","M15"],
+      "chart_types": ["C03"]
+    },
+    {
+      "date": "2026-06-13",
+      "slug": "spacex",
+      "cover_search": "rocket launch night sky",
+      "closing_search": "sunset silhouette",
+      "theme": "moss-stone",
+      "layout_sequence": ["M01","M11","M08","M06","M05","M07","C04","M10","M16"],
+      "chart_types": ["C04"]
+    },
+    {
+      "date": "2026-06-13",
+      "slug": "spacex-v2",
+      "cover_search": "code screen",
+      "closing_search": "mountain fog",
+      "theme": "indigo-porcelain",
+      "layout_sequence": ["M02","M12","M09","M04","M05","M07","C05","M10","M15"],
+      "chart_types": ["C05"]
+    },
+    {
+      "date": "2026-06-13",
+      "slug": "zhiyuan",
+      "cover_search": "circuit board",
+      "closing_search": "rain window",
+      "theme": "ink-classic",
+      "layout_sequence": ["M01","M11","M09","M06","M05","M07","C06","M10","M16"],
+      "chart_types": ["C06"]
+    },
+    {
+      "date": "2026-06-15",
+      "slug": "klarman",
+      "cover_search": "city skyline night",
+      "closing_search": "dark forest",
+      "theme": "kraft-paper",
+      "layout_sequence": ["M02","M12","M09","M06","M05","M07","C07","M10","M15"],
+      "chart_types": ["C07"]
     }
   ],
   "rotation": {
@@ -33,8 +78,8 @@
     "closing_pool": ["abstract dark", "night city", "deep space", "dark ocean", "sunset silhouette", "mountain fog", "rain window", "dark forest"],
     "theme_pool_editorial": ["indigo-porcelain", "ink-classic", "kraft-paper", "arctic-dawn", "moss-stone"],
     "theme_pool_swiss": ["copper-oxide", "slate-storm", "sage-garden", "wine-dark-sea", "desert-rose"],
-    "next_cover_idx": 3,
-    "next_closing_idx": 3,
+    "next_cover_idx": 0,
+    "next_closing_idx": 0,
     "next_theme_idx": 3
   }
 }

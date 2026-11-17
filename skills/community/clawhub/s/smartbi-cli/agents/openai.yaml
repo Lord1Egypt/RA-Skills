@@ -1,0 +1,4 @@
+interface:
+  display_name: "SmartBI CLI"
+  short_description: "Query model/report data and operate SmartBI APIs"
+  default_prompt: "Use $smartbi-cli to resolve the target SmartBI resource through verified APIs, then route model queries, existing-report queries, complex insight, or other BI operations through the matching scenario while preserving user-selected execution preferences."

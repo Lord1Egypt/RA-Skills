@@ -1,43 +1,61 @@
-## Description: <br>
-Reviews Feishu/Lark technical documents across literature research, solution planning, experiment design, and external-facing materials, then produces a structured review report and summary record. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Feishu technical documents across literature surveys, solution walkthroughs, experimental designs, and external materials, then produces a structured review report and Feishu report artifacts.
 
-## Publisher: <br>
-[tang-auuu](https://clawhub.ai/user/tang-auuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tang-auuu](https://clawhub.ai/user/tang-auuu)
 
-## Use Case: <br>
-Employees, reviewers, and technical teams use this skill to inspect Feishu/Lark documents for structure, evidence quality, experiment rigor, AI conversation links, and publication readiness. It is intended for workflows where the agent can read source documents, create review documents, and maintain a shared review summary table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Feishu/Lark document read and write authority. <br>
-Mitigation: Authorize it only in a workspace where the agent is allowed to read source documents and create or update review artifacts. <br>
-Risk: Review reports and raw document links may be stored persistently in Feishu/Lark. <br>
-Mitigation: Test in a non-sensitive workspace first and avoid confidential documents unless storing report content and links is acceptable. <br>
-Risk: The workflow has limited confirmation controls before creating reports or updating the summary table. <br>
-Mitigation: Verify destination folders, document permissions, and summary table access before running the skill on real materials. <br>
+## Use Case:
 
+Teams reviewing technical, research, experimental-design, and external-facing documents use this skill to generate structured findings, severity-ranked issues, and Feishu report and summary documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tang-auuu/doc-review-auuu) <br>
-- [Publisher profile](https://clawhub.ai/user/tang-auuu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review reports, Markdown summary tables, and lark-cli command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Feishu/Lark report documents and update a persistent review summary table when credentials and lark-cli access are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.4 (source: release evidence, SKILL.md frontmatter, skill.json) <br>
+Risk: The skill requires Feishu document read/write access and can create or overwrite report and summary documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact source documents, destination folder, summary-table token, and overwrite behavior before execution.
+
+Risk: Review reports plus document and link metadata are stored in Feishu.
+
+Mitigation: Treat generated reports and summary tables as sensitive workspace records and verify Feishu sharing and retention settings.
+
+Risk: The external-material workflow references a separate material-review skill that is not bundled in this artifact.
+
+Mitigation: Remove that dependency or vendor a reviewed copy before relying on the external-material workflow.
+
+Risk: Security evidence marks the release as suspicious because some instructions are unsafe or under-scoped.
+
+Mitigation: Review the source instructions and security scan results before installing or enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tang-auuu/skills/doc-review-auuu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review report with Feishu document and summary-table outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu/lark-cli authorization and user confirmation of source documents, destination folder, summary-table token, and overwrite behavior.]
+
+## Skill Version(s):
+
+2.9.4 (source: server release evidence, artifact SKILL.md frontmatter, and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

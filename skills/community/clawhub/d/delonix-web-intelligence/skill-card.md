@@ -1,44 +1,59 @@
-## Description: <br>
-德胧外网舆情采集工具 helps an agent collect hotel-industry web intelligence, summarize search results, generate daily monitoring reports, and prepare Feishu card updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language OpenClaw skill for hotel public-opinion monitoring that searches web results, summarizes competitive and complaint signals, drafts daily reports, and prepares Feishu card delivery.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Hotel operations, brand, public-relations, and competitive-intelligence teams use this skill to monitor external web mentions, competitor activity, complaints, industry trends, and daily hotel-sector news. It produces concise reports and Feishu-ready summaries for internal review and follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad hotel-industry monitoring triggers and scheduled delivery can produce or send reports before a reviewer confirms scope, recipients, keywords, and timezone. <br>
-Mitigation: Keep scheduled delivery disabled until explicitly needed, replace example chat IDs, and confirm recipients, schedule, timezone, and keywords before enabling automation. <br>
-Risk: Optional third-party collection or messaging tools may require additional authorization and operational review. <br>
-Mitigation: Independently vet optional AutoCLI and Lark or Feishu tooling before installation or authorization. <br>
-Risk: Search summaries and generated reports may contain incomplete or misleading claims about competitors, complaints, or public incidents. <br>
-Mitigation: Review generated summaries and source links before acting on or redistributing important findings. <br>
+## Use Case:
 
+Hotel industry employees and analysts use this skill to monitor public opinion, competitor activity, complaints, industry trends, and crisis signals for brands such as Huazhu, Jinjiang, Atour, and Delonix.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/delonix-web-intelligence) <br>
-- [AutoCLI referenced optional tool](https://github.com/nashsu/AutoCLI.git) <br>
-- [AutoCLI v0.3.7 referenced release asset](https://github.com/nashsu/AutoCLI/releases/download/v0.3.7/autocli-x86_64-unknown-linux-musl.tar.gz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown reports, Feishu card markup, shell command examples, cron configuration, and optional JSON search output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report files and raw search JSON under a dated temporary output directory when the bundled daily-report script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Install instructions include unpinned npx and GitHub build or download commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package and release versions, verify integrity before execution, and avoid running the commands on sensitive machines until reviewed.
+
+Risk: The skill supports broad web and platform data collection for public-opinion monitoring.
+
+Mitigation: Limit collection scope to approved business topics, respect platform terms and rate limits, and review data handling before sharing reports.
+
+Risk: Scheduled Feishu delivery can send recurring reports to a hardcoded chat destination.
+
+Mitigation: Replace the chat ID with an approved destination, keep scheduled delivery disabled until explicitly needed, and narrow invocation triggers to Delonix-specific phrases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/delonix-web-intelligence)
+- [AutoCLI repository referenced by artifact](https://github.com/nashsu/AutoCLI.git)
+- [AutoCLI v0.3.7 release artifact referenced by artifact](https://github.com/nashsu/AutoCLI/releases/download/v0.3.7/autocli-x86_64-unknown-linux-musl.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, Feishu card markup, JSON search output, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate local daily report files under /tmp/delonix-intelligence when the bundled report script is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact text references v1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

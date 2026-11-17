@@ -1,44 +1,59 @@
-## Description: <br>
-Generates a daily 21:30 fixed-income-plus product review report covering 87 products, track rankings, and top and bottom attribution analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily 21:30 fixed-income-plus product review report covering 87 products, full data dashboards, top and bottom 3 attribution analysis, and track rankings.
 
-## Publisher: <br>
-[wesdaliang](https://clawhub.ai/user/wesdaliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wesdaliang](https://clawhub.ai/user/wesdaliang)
 
-## Use Case: <br>
-Investment analysts and operations teams use this skill to gather Wind data for 87 fixed-income-plus products and produce a Markdown review with per-track dashboards, rankings, and attribution notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact documents an every-60-second cron task that posts to chat, which is broader than the stated daily 21:30 reporting purpose. <br>
-Mitigation: Before installation or use, confirm whether the cron job exists and disable it or rescope it to the intended daily schedule. <br>
-Risk: The skill depends on Wind data access and may create API quota, cost, or authorization issues if used without the right account permissions. <br>
-Mitigation: Use only with authorized Wind access, monitor API usage, and set batch limits appropriate for the account. <br>
-Risk: Financial reports can be misleading if the product list or returned market data is incomplete or stale. <br>
-Mitigation: Validate the 87-product list and review Wind query results before relying on the generated report. <br>
+## Use Case:
 
+Investment analysts and reporting agents use this skill to query Wind data for a fixed-income-plus product universe, rank products by track, and prepare a daily Markdown review with attribution notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wesdaliang/xqant-daily-gushouplus-report) <br>
-- [Product codes](references/product_codes.md) <br>
-- [Wind function reference](references/wind_functions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with tables, attribution notes, and inline shell commands for cron execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Wind data queries and product code validation; report tables omit product code columns in the final display.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: A persistent every-60-second cron job may automatically post financial reports to an unspecified chat channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the cron job ID, payload, destination channel, and deletion controls before enabling automatic posting.
+
+Risk: The workflow references global memory as a possible product-list source, which can introduce unreviewed or stale data.
+
+Mitigation: Prefer the packaged product list or an approved authoritative source, and remove the MEMORY.md dependency if the packaged list is sufficient.
+
+Risk: Wind API quota or timeout limits can lead to incomplete data collection for the 87-product report.
+
+Mitigation: Confirm Wind API quota impact, batch queries by track or data type, and require completeness checks before publishing.
+
+## Reference(s):
+
+- [Product Codes](references/product_codes.md)
+- [Wind Functions](references/wind_functions.md)
+- [ClawHub Skill Page](https://clawhub.ai/wesdaliang/skills/xqant-daily-gushouplus-report)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables, attribution notes, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires complete 87-product Wind data, strict product-code validation, and report tables that omit product codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

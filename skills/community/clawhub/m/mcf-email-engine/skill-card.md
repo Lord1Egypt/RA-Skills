@@ -1,44 +1,58 @@
-## Description: <br>
-Send emails, bulk campaigns, AI-powered classification, auto-reply generation, and template management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails, bulk campaigns, AI-powered classification, auto-reply generation, and template management.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-External developers and agent builders use this skill to add paid email sending, bulk campaign delivery, inbound email classification, automatic reply drafting, and reusable template management to autonomous workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous bulk email and tracking can be misused for unauthorized outreach or campaigns without proper consent. <br>
-Mitigation: Use only with sender authorization, campaign approval, lawful recipient contact, unsubscribe handling, suppression lists, and tracking disclosure controls. <br>
-Risk: Email content and context sent to the external gateway may include confidential, regulated, or unnecessary personal data. <br>
-Mitigation: Minimize submitted data and avoid sensitive content unless the provider's privacy and retention practices are acceptable for the use case. <br>
-Risk: AI-generated classifications and replies may produce incorrect routing decisions or inappropriate outbound responses. <br>
-Mitigation: Review generated replies and high-impact classifications before sending or acting on them, especially in customer, sales, or support workflows. <br>
+## Use Case:
 
+External agents use this skill to send transactional or outreach email, run bulk campaigns, classify inbound messages, generate contextual replies, and manage reusable templates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cameron48/mcf-email-engine) <br>
-- [Publisher Profile](https://clawhub.ai/user/cameron48) <br>
-- [Email Engine Gateway](https://gateway.mcfagentic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown documentation with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Endpoints require x402 payment in USDC on Base L2.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Bulk outreach and tracking can enable unsolicited or noncompliant campaigns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only recipient lists and sender identities that are authorized, and review campaign compliance before sending.
+
+Risk: AI classification and reply generation process email content, threads, attachments, or CRM context that may contain confidential data.
+
+Mitigation: Do not send confidential data unless the provider's data handling terms are acceptable for the intended workflow.
+
+Risk: The security verdict is suspicious because privacy, consent, and misuse controls are not clearly documented.
+
+Mitigation: Review the skill carefully before installing and apply organization-specific privacy, consent, and misuse controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cameron48/skills/mcf-email-engine)
+- [Email Engine Gateway](https://gateway.mcfagentic.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents paid API endpoints for email sending, bulk campaigns, AI classification, AI reply generation, and template management.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

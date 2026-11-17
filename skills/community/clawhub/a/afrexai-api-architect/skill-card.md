@@ -1,41 +1,53 @@
-## Description: <br>
-Design, build, test, document, and secure production-grade APIs. Covers the full lifecycle from schema design through deployment, monitoring, and versioning. Use when designing new APIs, reviewing existing ones, generating OpenAPI specs, building test suites, or debugging production issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, build, test, document, and secure production-grade APIs across schema design, deployment, monitoring, and versioning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, test, document, secure, deploy, monitor, and version production-grade APIs across REST, GraphQL, and gRPC workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example curl commands may create, update, or delete real API resources if run against production systems. <br>
-Mitigation: Run commands against staging or test systems first, confirm every DELETE, PATCH, or POST target, and avoid production tokens unless necessary. <br>
-Risk: Load-test examples may affect shared services if used without review. <br>
-Mitigation: Review the target, request rate, concurrency, and authorization context before running load-test examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-api-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers and engineers use this skill to design new REST, GraphQL, or gRPC APIs, review existing APIs, generate or validate OpenAPI specs, build tests, and debug production API issues.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline YAML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API design templates, OpenAPI snippets, testing checklists, security review guidance, monitoring patterns, and curl examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Example curl and load-test snippets could be run against the wrong API or environment if placeholders are replaced carelessly.
+
+Mitigation: Review commands before execution, use staging endpoints first, and avoid casual use of production tokens.
+
+Risk: The README contains promotional links that are separate from the Markdown-only skill behavior.
+
+Mitigation: Review external promotional links independently before using or purchasing related materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-api-architect)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured checklists, code blocks, API specifications, commands, and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenAPI YAML, JSON examples, curl commands, test plans, security checklists, monitoring guidance, and API review scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

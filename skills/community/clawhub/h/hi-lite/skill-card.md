@@ -1,43 +1,59 @@
-## Description: <br>
-Search, browse, and rediscover your Kindle highlights <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, browse, and rediscover your Kindle highlights.
 
-## Publisher: <br>
-[gofordylan](https://clawhub.ai/user/gofordylan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gofordylan](https://clawhub.ai/user/gofordylan)
 
-## Use Case: <br>
-OpenClaw users use Hi Lite to import Kindle highlights, store them locally as Markdown, search and browse their personal highlight library, and curate themed collections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Amazon fetch mode stores reusable authenticated Amazon browser session data locally. <br>
-Mitigation: Use /hi-lite fetch only on a trusted machine and remove ~/.openclaw/workspace/hi-lite/.browser-data/ when the retained session is no longer needed. <br>
-Risk: The Amazon fetch mode opens Amazon and may require manual sign-in before extracting Kindle notebook data. <br>
-Mitigation: Prefer manual import and local search for lower-risk use; review the fetch flow before using it with an Amazon account. <br>
+## Use Case:
 
+External users and developers use Hi Lite to import Kindle highlights into a local markdown library, search and browse those highlights, create themed collections, and optionally fetch highlights from Amazon through a local browser session.
 
-## Reference(s): <br>
-- [ClawHub Hi Lite release page](https://clawhub.ai/gofordylan/hi-lite) <br>
-- [OpenClaw](https://openclaw.org) <br>
-- [Amazon Read Notebook](https://read.amazon.com/notebook) <br>
-- [Bookcision](https://readwise.io/bookcision) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown responses, local Markdown files, JSON import files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates files under ~/.openclaw/workspace/hi-lite/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can read and rewrite the user's local Kindle-highlight library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit /hi-lite commands, review import results, and keep a backup of ~/.openclaw/workspace/hi-lite/ before large imports or rewrites.
+
+Risk: The Amazon fetch flow opens a browser and stores a reusable local login profile.
+
+Mitigation: Run fetch only when intended, avoid shared machines for account access, and delete ~/.openclaw/workspace/hi-lite/.browser-data/ when the saved session is no longer needed.
+
+Risk: Custom Amazon domains are not constrained by a documented allowlist.
+
+Mitigation: Avoid custom Amazon domains unless the skill is updated with an allowlist or the domain is independently reviewed.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.org)
+- [Amazon Kindle Notebook](https://read.amazon.com/notebook)
+- [Bookcision](https://readwise.io/bookcision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses, markdown library files, JSON fetch files, and optional Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under ~/.openclaw/workspace/hi-lite/; optional Amazon fetch stores a local browser profile.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

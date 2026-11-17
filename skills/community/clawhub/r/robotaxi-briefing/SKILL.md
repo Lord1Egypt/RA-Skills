@@ -131,11 +131,20 @@ Use `web_search site:x.com` to search for breaking robotaxi discussions on X/Twi
 
 ### Step 3: URL Resolution (Mandatory)
 
-`web_search` often returns Google News redirect URLs (`news.google.com/...`). Every URL must be resolved:
+`web_search` often returns Google News redirect URLs (`news.google.com/...`). Every URL must be resolved.
 
+**Preferred method**: Use `web_fetch` on each URL and extract the final domain from the result.
+
+**Alternative**: Single `curl` command per URL:
 ```bash
-curl -sIL -o /dev/null -w "%{url_effective}\n" "URL"
+curl -sIL -o /dev/null -w "%{url_effective}\n" "SINGLE_URL_HERE"
 ```
+
+⛔ **Shell Safety Rules (CRITICAL)**:
+- ✅ **Allowed**: Single `curl` commands, one URL at a time
+- ❌ **Absolutely FORBIDDEN**: `for`/`while` loops (`for url in ...; do ...; done` — THIS IS WHAT BREAKS THE CRON JOB)
+- ❌ **FORBIDDEN**: Variable assignment/substitution, `awk`/`sed`/`grep` pipelines, command nesting, multi-line shell scripts
+- Resolve URLs one at a time using `web_fetch` or a single `curl` command per URL
 
 - Only keep resolved final-domain URLs (bloomberg.com, cnbc.com, etc.)
 - If resolution fails or returns 403/404/429: drop the link, note as `来源：媒体名（原文链接不可用）`

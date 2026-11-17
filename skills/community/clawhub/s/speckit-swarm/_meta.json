@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn74nrx32v4n0423jptzg1v5kx80ssnf",
-  "slug": "speckit-swarm",
-  "version": "1.1.0",
-  "publishedAt": 1771374162436
+  "name": "speckit-swarm",
+  "version": "1.0.0",
+  "description": "Speckit workflow with Swarm orchestration. Uses spec-kit (specify, plan, task, implement) with Opencode. Detects first-time initialization and runs parallel tasks via Swarm when possible.",
+  "author": "Helder",
+  "homepage": "",
+  "keywords": ["speckit", "spec-kit", "spec-driven-development", "opencode", "swarm"],
+  "license": "MIT"
 }

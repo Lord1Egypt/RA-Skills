@@ -1,56 +1,66 @@
-## Description: <br>
-Software Manager Skill helps an agent run an active product-management workflow for requirements analysis, PRD writing, product planning, competitive analysis, data analysis, Mermaid diagrams, document export, and optional interactive H5 prototypes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Software Manager Skill helps agents provide product-manager support for requirements analysis, PRD writing, product planning, competitive analysis, Mermaid diagrams, DOCX/Markdown export, and interactive H5 prototype generation.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Product managers, founders, developers, and agents use this skill to turn product ideas or product questions into clarified requirements, product plans, PRDs, Mermaid diagrams, exportable documents, and optional browser-openable H5 prototypes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use product details in web searches during research. <br>
-Mitigation: Avoid providing sensitive product, customer, or business-confidential details unless that disclosure is acceptable. <br>
-Risk: Optional export and diagram features may require local Node.js, npm, Python packages, and browser-based rendering. <br>
-Mitigation: Install optional dependencies only in trusted environments and review generated PRD, DOCX, diagram, and H5 outputs before sharing. <br>
-Risk: Generated files are written to user-directed paths. <br>
-Mitigation: Choose export paths deliberately and review requested paths before allowing file writes. <br>
-Risk: The H5 prototype instructions include mixed claims about zero external dependencies versus Tailwind CDN use. <br>
-Mitigation: Confirm whether offline-only output or CDN-backed output is required before generating or distributing prototypes. <br>
+## Use Case:
 
+Developers, product managers, and product teams use this skill to structure product discovery conversations, compare solution options, draft PRDs, generate product diagrams, export documents, and create browser-viewable H5 prototypes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yhongm/software-manager-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/yhongm) <br>
-- [README](README.md) <br>
-- [PRD template](references/prd-template.md) <br>
-- [PM framework](references/pm-framework.md) <br>
-- [PM responsibilities](references/pm-responsibilities.md) <br>
-- [SDLC product process](references/sdlc-product-process.md) <br>
-- [Mermaid guide](references/mermaid-guide.md) <br>
-- [Atlassian Agile](https://www.atlassian.com/software-development-lifecycle) <br>
-- [Scrum Guide](https://www.scrumguides.org/) <br>
-- [Mermaid Documentation](https://mermaid.js.org/) <br>
-- [Tailwind CSS Chinese documentation](https://www.tailwindcss.cn/) <br>
-- [Lucide](https://lucide.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, Mermaid diagrams, HTML/CSS/JavaScript prototype code, and optional local document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write user-directed Markdown, DOCX, PNG-rendered diagrams, or single-file HTML prototypes when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: DOCX export and Mermaid rendering involve local command execution and browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run exports in a disposable or low-privilege environment, and avoid rendering Mermaid diagrams from untrusted sources.
+
+Risk: Generated H5 prototypes may expose sensitive product details or user-provided sample data.
+
+Mitigation: Do not include real credentials or confidential data in generated prototypes, and review prototype files before sharing or deploying them.
+
+Risk: Dependency installation for document export can introduce global package or supply-chain exposure.
+
+Mitigation: Pin and install dependencies locally where possible instead of relying on global npm or Python packages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhongm/skills/software-manager-skill)
+- [README](artifact/README.md)
+- [PRD template](artifact/references/prd-template.md)
+- [PM framework](artifact/references/pm-framework.md)
+- [Mermaid guide](artifact/references/mermaid-guide.md)
+- [Agile development](artifact/references/agile-dev.md)
+- [Atlassian Agile](https://www.atlassian.com/software-development-lifecycle)
+- [Scrum Guide](https://www.scrumguides.org/)
+- [Mermaid Documentation](https://mermaid.js.org/)
+- [Tailwind CSS Chinese Documentation](https://www.tailwindcss.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tables, Mermaid code blocks, export commands, and optional HTML/CSS/JavaScript prototype files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Markdown or DOCX PRD exports and single-file H5 prototypes when requested by the user.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

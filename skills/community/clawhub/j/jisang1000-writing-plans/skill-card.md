@@ -1,39 +1,53 @@
-## Description: <br>
-Break work into clear, ordered plans before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break work into clear, ordered plans before execution. Use when a task is multi-step, long-running, easy to derail, or needs coordination across tools, files, or agents.
 
-## Publisher: <br>
-[jisang1000](https://clawhub.ai/user/jisang1000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisang1000](https://clawhub.ai/user/jisang1000)
 
-## Use Case: <br>
-Developers and agents use this skill to turn multi-step setup, migration, debugging, automation, refactoring, and research-plus-implementation work into ordered plans with clear verification points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plans can propose actions that affect files, accounts, external services, installed tools, or long-running automation. <br>
-Mitigation: Review generated plans before approving consequential steps, especially those involving external services, credentials, filesystem changes, or automation. <br>
+## Use Case:
 
+Developers and agents use this skill to create clear, reviewable plans before multi-step implementation, setup, debugging, research, browser automation, refactoring, or tool-coordination work.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/jisang1000/jisang1000-writing-plans) <br>
-- [Publish Notes](references/publish-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with ordered steps, verification points, and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans may include concrete file, tool, or command references when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on many multi-step tasks and broaden work beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed plan for scope before execution, especially for installs, external systems, or sub-agent use.
+
+Risk: Plans can include incorrect or misleading steps if the agent starts from incomplete assumptions.
+
+Mitigation: Require explicit constraints, verification points, and changed-assumption reporting before continuing through long-running work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisang1000/skills/jisang1000-writing-plans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ordered steps, verification points, blocker notes, and execution status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

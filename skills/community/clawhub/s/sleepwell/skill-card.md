@@ -1,43 +1,58 @@
-## Description: <br>
-Track sleep-related habits and local productivity notes with commands for logging, reviewing, searching, and exporting entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sleepwell is a wellness-branded logging skill for sleep and productivity entries, including bedtimes, schedules, streaks, reviews, statistics, search, and export.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use this skill to log sleep or productivity entries locally, review recent history and statistics, search notes, and export records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is marketed as a sleep tracker but includes broad local productivity logging with persistent, searchable, exportable notes. <br>
-Mitigation: Treat it as a local productivity logger; avoid entering secrets, credentials, sensitive work details, or private health notes. <br>
-Risk: Local data may be stored in both ~/.local/share/sleepwell and ~/.sleep. <br>
-Mitigation: Review and manage both storage paths before and after use, and add deletion or privacy controls before broader deployment. <br>
-Risk: The sleep diary script has Python argument handling concerns identified by the security evidence. <br>
-Mitigation: Review and fix the sleep_diary.sh argument handling before relying on those commands. <br>
+## Use Case:
 
+External users and developers can use this skill to log, review, search, and export sleep or productivity journal entries over time. Because the release security evidence flags broad persistent logging behavior, it should be used only for non-sensitive personal or work notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/sleepwell) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text command output with generated JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores persistent local logs under ~/.local/share/sleepwell and ~/.sleep.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The wellness branding may lead users to store sensitive health, credential, customer, incident, or confidential planning data in persistent local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a general journal and productivity logger; do not enter secrets, regulated health information, customer data, incident details, or confidential work plans.
+
+Risk: The skill persistently stores, searches, and exports arbitrary entries from local files.
+
+Mitigation: Use it only on trusted single-user systems, review exported files before sharing, and apply restrictive file permissions for the data directory.
+
+Risk: The security evidence flags unsafe shell argument handling and file permission concerns.
+
+Mitigation: Review and fix shell argument handling and file permissions before accepting untrusted inputs or running on shared systems.
+
+## Reference(s):
+
+- [Sleepwell ClawHub listing](https://clawhub.ai/ckchzh/skills/sleepwell)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local log and export files when installed and executed by the user.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

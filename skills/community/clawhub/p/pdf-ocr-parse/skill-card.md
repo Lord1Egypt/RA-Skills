@@ -1,41 +1,54 @@
-## Description: <br>
-Extract text from scanned PDFs using Tesseract OCR. Supports multiple languages, page selection, DPI control, and word-level bounding boxes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from scanned PDFs using Tesseract OCR. Supports multiple languages, page selection, DPI control, and word-level bounding boxes.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-External developers and agents use this skill to OCR scanned PDFs such as invoices, receipts, legacy documents, forms, claims, and legal discovery files into searchable text with optional confidence scores and word-level bounding boxes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs, uploaded files, or PDF URLs are sent to pdfapihub.com for OCR processing. <br>
-Mitigation: Review the provider's privacy, retention, and security terms before use, and avoid confidential, regulated, or production documents until those terms are acceptable. <br>
-Risk: The skill requires a sensitive API key in the CLIENT-API-KEY header. <br>
-Mitigation: Use a dedicated API key stored outside prompts and source files, restrict access where possible, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and external users use this skill to OCR scanned PDFs such as invoices, forms, legacy records, insurance claims, and legal documents into searchable text and optional word-level data.
 
-## Reference(s): <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF OCR Parse on ClawHub](https://clawhub.ai/rishabhdugar/pdf-ocr-parse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls] <br>
-**Output Format:** [JSON response or plain text, depending on output_format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Per-page text, confidence scores, optional word-level bounding boxes, and full_text; requires a CLIENT-API-KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: PDFs, document URLs, and OCR results are sent to pdfapihub.com for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for that third-party service and review the provider's privacy, retention, and contractual terms before sending sensitive data.
+
+Risk: OCR output can be incomplete or inaccurate, especially for low-quality scans, unusual layouts, or multilingual documents.
+
+Mitigation: Use confidence scores and human review before relying on extracted text for accounting, legal, insurance, or other consequential workflows.
+
+## Reference(s):
+
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+- [PDF OCR Parse on ClawHub](https://clawhub.ai/rishabhdugar/skills/pdf-ocr-parse)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON or plain text containing OCR text, confidence scores, and optional word-level bounding boxes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include full_text, per-page text, character counts, language, processed page counts, and word bounding boxes when detail is words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

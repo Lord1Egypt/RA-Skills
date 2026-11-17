@@ -1,47 +1,63 @@
-## Description: <br>
-Register, transfer, renew, and secure domains across major provider APIs and dashboards with provider-specific workflows and rollback-safe execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register, transfer, renew, and secure domains across major provider APIs and dashboards with provider-specific workflows and rollback-safe execution.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and domain operations teams use this skill to plan and execute domain registrations, transfers, renewals, DNS handoffs, and registrar hardening across supported providers with explicit approvals for billing and ownership changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Domain lifecycle actions can affect billing, ownership, renewal status, and service continuity. <br>
-Mitigation: Require explicit confirmation for billing and ownership writes, verify exact domains and renewal pricing, and run one-domain pilots before batch operations. <br>
-Risk: Registrar credentials, API keys, and recovery codes could expose domain ownership if stored in operational notes. <br>
-Mitigation: Use least-privilege provider credentials and keep passwords, API keys, and recovery codes out of ~/domain-registration/. <br>
-Risk: DNS or nameserver changes can cause outages or failed recovery during transfers and migrations. <br>
-Mitigation: Snapshot DNS and nameserver state before changes, validate outcomes with provider confirmations plus dig and WHOIS checks, and keep rollback-ready records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/domain-registration) <br>
-- [Skill homepage](https://clawic.com/skills/domain-registration) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Provider matrix](artifact/provider-matrix.md) <br>
-- [Registration playbooks](artifact/registration-playbooks.md) <br>
-- [Transfer and renewal operations](artifact/transfer-renewal.md) <br>
-- [DNS and registrar security controls](artifact/dns-security-controls.md) <br>
+## Use Case:
 
+External users, developers, and operators use this skill to plan domain registration, transfer, renewal, registrar security, and DNS handoff workflows across major providers. It supports provider-specific API and dashboard paths while requiring confirmation for billing, ownership, WHOIS/contact, transfer, auto-renew, and DNS changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with provider-specific checklists and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local operational memory under ~/domain-registration/ and registrar API or dashboard workflows selected by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Registrar workflows can affect billing, ownership, WHOIS/contact records, auto-renew settings, transfers, and DNS service continuity.
+
+Mitigation: Require explicit user confirmation before purchases, transfers, auto-renew changes, WHOIS/contact writes, ownership changes, or DNS changes.
+
+Risk: Registrar credentials or sensitive operational context could be exposed if stored in skill memory files.
+
+Mitigation: Keep registrar credentials outside the skill's memory files and persist only factual operational preferences, inventory, rollback state references, and incident notes.
+
+Risk: Transfer, nameserver, or DNS mutations can disrupt domain resolution if rollback state is incomplete.
+
+Mitigation: Snapshot WHOIS, lock status, nameservers, and DNS records before transfer or DNS changes, then verify outcomes through provider confirmation and resolver-level checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/domain-registration)
+- [Skill Homepage](https://clawic.com/skills/domain-registration)
+- [Setup - Domain Registration](setup.md)
+- [Provider Matrix - Domain Registration](provider-matrix.md)
+- [Registration Playbooks](registration-playbooks.md)
+- [Transfer and Renewal Operations](transfer-renewal.md)
+- [DNS and Registrar Security Controls](dns-security-controls.md)
+- [Memory Template - Domain Registration](memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with provider-specific workflow steps, approval checkpoints, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include registrar API or dashboard action plans, local memory-file updates, rollback notes, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

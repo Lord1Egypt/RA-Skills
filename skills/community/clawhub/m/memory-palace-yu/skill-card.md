@@ -1,45 +1,59 @@
-## Description: <br>
-Memory Palace activates a user-selected Markdown memory folder so an assistant can load identity notes, knowledge, and methods for personalized conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+激活并加载用户提供的 Markdown 记忆资料，使代理能够在对话中沿用用户的身份信息、知识和方法论。
 
-## Publisher: <br>
-[MarkMa84](https://clawhub.ai/user/MarkMa84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-Individuals and knowledge workers use this skill to let an agent read their own Markdown notes and adapt replies to their identity, style, prior insights, and methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected memory folder may contain personal notes, secrets, regulated data, or third-party private information. <br>
-Mitigation: Keep sensitive information out of the memory folder and install only when assistant access to that folder is intended. <br>
-Risk: A .memory-path file can point the assistant at an unexpected folder. <br>
-Mitigation: Review the .memory-path setting before activation and confirm it points only to the intended Markdown memory directory. <br>
-Risk: Automatic memory updates can persist inaccurate or unwanted details. <br>
-Mitigation: Approve each proposed memory write manually before saving it. <br>
+## Use Case:
 
+Individuals, developers, and knowledge workers use this skill to point an agent at a curated folder of personal Markdown notes so it can load identity, style, decisions, insights, and reusable methods during conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MarkMa84/memory-palace-yu) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Memory concept template](examples/memory/00-概念模板.md) <br>
-- [Daily memory template](examples/memory/日记录模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and memory note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The assistant may propose reading from or writing to a user-selected Markdown memory folder; memory writes should be reviewed manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks the agent to read and persist personal Markdown memory files, which may expose sensitive notes if the memory folder is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the configured memory folder limited to files intentionally shared with the agent, and exclude secrets, credentials, regulated data, and unrelated personal records.
+
+Risk: .memory-path can point outside the workspace and expand what the agent can inspect.
+
+Mitigation: Review .memory-path before use and prefer a dedicated, minimal memory directory with only approved Markdown files.
+
+Risk: Saved conversation notes may preserve inaccurate or sensitive information for later reuse.
+
+Mitigation: Review and edit memory updates before relying on them in future conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/memory-palace-yu)
+- [Core concept memory template](artifact/examples/memory/00-概念模板.md)
+- [Daily memory template](artifact/examples/memory/日记录模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and memory file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for reading and updating user-managed Markdown memory files; no executable code is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

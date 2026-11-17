@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7319r7g4t4gqg9npqye0m7en88ghnx",
-  "slug": "zeecu-device-skill",
-  "version": "1.0.2",
-  "publishedAt": 1782368933949
+  "name": "zeecu-device-skill",
+  "version": "1.1.0",
+  "description": "极酷电动车车辆信息查询 Skill - 支持车辆列表、实时状态、历史轨迹查询",
+  "tags": ["vehicle", "electric-scooter", "iot", "query"],
+  "requires": {
+    "env": ["API_KEY"]
+  }
 }

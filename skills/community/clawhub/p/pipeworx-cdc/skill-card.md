@@ -1,40 +1,51 @@
-## Description: <br>
-Searches and retrieves public CDC datasets and records from data.cdc.gov through a hosted Pipeworx MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and retrieves public health datasets and records from CDC Open Data through a Socrata-backed MCP server using dataset keywords or IDs.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Agents use this skill to help users search CDC public health datasets by keyword and fetch rows from a specific Socrata dataset ID for public health research, reporting, or data exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and dataset requests are routed through a third-party hosted MCP gateway. <br>
-Mitigation: Use the skill for public CDC dataset lookups and avoid entering private health details, credentials, or sensitive internal identifiers. <br>
+## Use Case:
 
+Developers, public health analysts, and agents use this skill to find CDC public datasets by keyword and retrieve rows from known Socrata dataset IDs for analysis or reporting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-cdc) <br>
-- [CDC Open Data](https://data.cdc.gov) <br>
-- [Pipeworx CDC MCP endpoint](https://gateway.pipeworx.io/cdc/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [Markdown or plain text summaries of CDC dataset search results and retrieved records, plus MCP server configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns public dataset names, descriptions, IDs, update details, and rows for a supplied Socrata dataset ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: CDC dataset searches and dataset IDs are sent through a third-party gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the gateway operator and privacy terms before installing; do not send private prompts, credentials, or sensitive health information unless those terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-cdc)
+- [CDC Open Data](https://data.cdc.gov)
+- [Pipeworx CDC MCP gateway](https://gateway.pipeworx.io/cdc/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Plain text or Markdown summaries of dataset search results and records, plus JSON MCP server configuration for setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns public CDC dataset names, descriptions, IDs, update details, and dataset rows when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

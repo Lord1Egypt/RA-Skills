@@ -1,48 +1,58 @@
-## Description: <br>
-Trade Qualifier scores B2B foreign-trade leads across six dimensions and assigns A/B/C/D priority grades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Qualifier helps agents score and prioritize B2B foreign-trade prospects across six dimensions with A/B/C/D grading.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Sales and business-development teams use this skill to prioritize potential foreign-trade customers, compare lead quality, and decide follow-up actions from weighted scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles business lead and customer-scoring data that may be sensitive. <br>
-Mitigation: Use it only with business data you are comfortable sharing with the agent and review outputs before acting on them. <br>
-Risk: The release metadata declares a curl binary requirement that is not explained by the documented skill behavior. <br>
-Mitigation: Ask the publisher to clarify or remove the requirement if dependency hygiene is important for your environment. <br>
-Risk: Automated customer scores and priority grades can be incorrect or misleading when input data is incomplete. <br>
-Mitigation: Validate high-impact lead rankings against current source data before outreach or resource-allocation decisions. <br>
+## Use Case:
 
+External business users and sales teams use this skill to qualify customer lists, prioritize high-value B2B prospects, and decide follow-up actions from structured scoring criteria.
 
-## Reference(s): <br>
-- [Trade Qualifier on ClawHub](https://clawhub.ai/wangm-a3/trade-qualifier) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [README](README.md) <br>
-- [Sample qualifier output](examples/qualifier_output_sample.csv) <br>
-- [Related skill: trade-hunter](https://github.com/cloud-travel-skills/trade-hunter) <br>
-- [Related skill: trade-closer](https://github.com/cloud-travel-skills/trade-closer) <br>
-- [Related skill: trade-dashboard](https://github.com/cloud-travel-skills/trade-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON tables with lead grades, dimension scores, and suggested follow-up actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports custom scoring weights and visual summaries such as radar or funnel views.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Customer lists used for B2B lead qualification may contain sensitive business or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize customer data before use, and avoid including unnecessary personal, credential, or confidential commercial information.
+
+Risk: The release metadata declares a curl requirement even though the written skill instructions do not use it.
+
+Mitigation: Do not grant network, credential, or shell access solely because of the declared curl requirement unless a specific reviewed workflow requires it.
+
+Risk: Qualification scores and follow-up recommendations may be incomplete or inaccurate if source customer data is outdated or biased.
+
+Mitigation: Treat scoring output as decision support and review high-impact outreach decisions against current customer records and applicable compliance requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/trade-qualifier)
+- [Publisher Profile](https://clawhub.ai/user/wangm-a3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown guidance with JSON or table-style scoring results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include six-dimension BOI scores, A/B/C/D grade summaries, recommended follow-up actions, and visual analysis guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

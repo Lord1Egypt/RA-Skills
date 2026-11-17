@@ -1,43 +1,56 @@
-## Description: <br>
-Scans AI-generated code for hallucinated packages, stale APIs, security anti-patterns, and over-engineering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan AI-generated code for hallucinated packages, stale APIs, security anti-patterns, and over-engineering.
 
-## Publisher: <br>
-[raye-deng](https://clawhub.ai/user/raye-deng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raye-deng](https://clawhub.ai/user/raye-deng)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan AI-generated code in pull requests, pre-merge quality gates, or third-party code reviews for AI-specific defects that traditional linters may miss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+BSL 1.1
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to third-party npm packages, a GitHub Action, and an MCP server. <br>
-Mitigation: Verify package provenance, pin versions in CI, and review third-party code before installing or executing it. <br>
-Risk: AI-powered scan levels may process private repository content through remote services when configured with API keys. <br>
-Mitigation: Prefer local Ollama for private repositories and use scoped API keys when remote AI scans are enabled. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scan pull requests, CI/CD changes, and third-party AI-generated code for defects that ordinary linters may miss.
 
-## Reference(s): <br>
-- [Open Code Review GitHub repository](https://github.com/raye-deng/open-code-review) <br>
-- [Open Code Review portal](https://codes.evallab.ai) <br>
-- [Open Code Review MCP endpoint](https://open-code-review-mcp.v2ray-seins.workers.dev/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/raye-deng/open-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code review findings] <br>
-**Output Format:** [Markdown with inline bash, YAML, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide CLI scans, GitHub Action setup, SARIF output generation, and MCP server configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutable, unpinned third-party execution in npm, GitHub Action, and MCP setup paths can change behavior between reviews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin npm package versions, use lockfile-backed installs in CI, pin the GitHub Action to a commit SHA, and pin or review the MCP server version before use.
+
+Risk: Repository scanning may expose source code, secrets, or tokens to tools with broader access than needed.
+
+Mitigation: Run scans with the minimum repository, token, secret, and network permissions required for the selected scan level.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raye-deng/skills/open-code-review)
+- [Project homepage](https://github.com/raye-deng/open-code-review)
+- [Open Code Review portal](https://codes.evallab.ai)
+- [MCP server endpoint](https://open-code-review-mcp.v2ray-seins.workers.dev/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown with shell commands, YAML and JSON configuration snippets, and scanner output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SARIF files when the scanner is configured with SARIF output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

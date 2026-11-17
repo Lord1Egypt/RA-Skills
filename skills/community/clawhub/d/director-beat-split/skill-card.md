@@ -1,41 +1,53 @@
-## Description: <br>
-Director Beat Split helps agents convert short-drama scripts into paced beat structures, emotion curves, foreshadowing logs, self-audits, and production supervision templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Director Beat Split guides an agent to split Chinese short-drama scripts into structured pacing beats, emotion curves, foreshadowing logs, self-audits, and production review templates.
 
-## Publisher: <br>
-[remaindert](https://clawhub.ai/user/remaindert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[remaindert](https://clawhub.ai/user/remaindert)
 
-## Use Case: <br>
-Writers, directors, and production teams use this skill to analyze short-drama scripts and generate structured pacing plans for downstream storyboard, art, and production review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pacing plans and production guidance may be incomplete, culturally mismatched, or creatively unsuitable for a specific script. <br>
-Mitigation: Review the generated beat plan, scores, and supervision templates before using them for production decisions. <br>
-Risk: The security scan did not identify concrete artifact-backed concerns, but users may still provide sensitive story drafts or production details. <br>
-Mitigation: Review the skill text before installing and connect only intended accounts or credentials, following the security guidance in the release evidence. <br>
+## Use Case:
 
+Chinese-language creators, writers, and production reviewers use this skill to turn short-drama scripts into beat-level pacing plans and to review storyboard or art-department outputs against the intended rhythm.
 
-## Reference(s): <br>
-- [Beat Examples](artifact/references/beat-examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/remaindert/director-beat-split) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Structured JSON with concise prose fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes beat timing, pacing scores, foreshadowing logs, emotion curves, self-audit results, and storyboard or art supervision templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill is written for Chinese-language short-drama workflows, so non-Chinese users may misunderstand instructions or lose production nuance through translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it with Chinese-language scripts when possible, or translate and review the instructions and generated beat plans with a fluent reviewer before production use.
+
+Risk: Creative pacing guidance can still produce formulaic or mismatched beat plans for a specific story.
+
+Mitigation: Have a writer or director review the generated pacing scores, emotion curve, foreshadowing log, and supervision templates before using them downstream.
+
+## Reference(s):
+
+- [Beat Examples](references/beat-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured JSON with Chinese-language explanatory text and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes beat arrays, pacing scores, foreshadowing logs, emotion curves, self-audit results, and supervision templates; no shell commands or code execution are produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

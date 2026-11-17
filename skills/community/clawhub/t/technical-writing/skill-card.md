@@ -1,47 +1,57 @@
-## Description: <br>
-Activate this skill whenever a user asks to write, structure, or improve developer documentation across README files, API documentation, Architecture Decision Records, RFCs, changelogs, runbooks, diagram-as-code, style guides, documentation site generators, docs-as-code CI workflows, and code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical Writing helps agents write, structure, and improve developer documentation, including READMEs, API documentation, ADRs, RFCs, changelogs, runbooks, diagrams, docs-as-code workflows, and code examples.
 
-## Publisher: <br>
-[royhk920](https://clawhub.ai/user/royhk920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royhk920](https://clawhub.ai/user/royhk920)
 
-## Use Case: <br>
-Developers, engineers, and documentation maintainers use this skill to plan, draft, improve, and standardize developer documentation for projects, APIs, operations, and architecture decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example installer and runbook commands may be copied into real projects without enough verification. <br>
-Mitigation: Replace curl-to-shell installers with pinned, verified installation steps and review every command before reuse. <br>
-Risk: Runbook examples include commands that can restart services or alter production state. <br>
-Mitigation: Treat remediation commands as placeholders requiring explicit approval, impact checks, validation, and rollback planning. <br>
-Risk: Generated documentation can become inaccurate if templates are reused without project-specific review. <br>
-Mitigation: Review generated documentation against the target project, update placeholders, and validate examples before publication. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to draft and improve developer-facing documentation such as READMEs, API references, ADRs, RFCs, changelogs, runbooks, and diagram-as-code guidance.
 
-## Reference(s): <br>
-- [Technical Writing Style Guide](references/writing-style-guide.md) <br>
-- [Mermaid Diagram Cheatsheet](references/mermaid-cheatsheet.md) <br>
-- [ADR Template](examples/adr-template.md) <br>
-- [Runbook Template](examples/runbook-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/royhk920/technical-writing) <br>
-- [Publisher Profile](https://clawhub.ai/user/royhk920) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with prose, templates, tables, code blocks, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reusable documentation templates and a scaffold script for creating documentation project structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Copy-ready command examples may run remote installers, restart services, scale deployments, or alter production systems if reused without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, adapt, and test commands before use; replace remote installer pipelines with verified package or checksum-based install steps; require explicit approval, environment confirmation, impact, rollback, and post-check steps for runbooks.
+
+Risk: Generated documentation can include incorrect or misleading guidance.
+
+Mitigation: Subject generated documentation to human technical review and documentation CI, including linting, link checks, and tested code examples, before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/royhk920/skills/technical-writing)
+- [Technical Writing Style Guide](artifact/references/writing-style-guide.md)
+- [Mermaid Diagram Cheatsheet](artifact/references/mermaid-cheatsheet.md)
+- [Keep a Changelog](https://keepachangelog.com/)
+- [Semantic Versioning](https://semver.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with prose, tables, templates, code blocks, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include copy-ready documentation templates and commands that require review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Guides users in running Codex through acpx persistent sessions, prompt files, full-access mode, local dependency installs, shell-based writes, and validation for generated deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical playbook for running Codex through acpx in persistent sessions, especially when the task needs reliable file creation, local dependency installs, shell-based writes, or structured delivery such as PPTX, reports, generated assets, and multi-step coding work.
 
-## Publisher: <br>
-[spyfree](https://clawhub.ai/user/spyfree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spyfree](https://clawhub.ai/user/spyfree)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure acpx/Codex sessions for reliable file creation, local dependency setup, generated deliverables, and troubleshooting of quoting, file-write, and sandbox-boundary issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The playbook encourages full-access acpx sessions and shell or Python writes, which can broaden file-system or command-execution impact if used without boundaries. <br>
-Mitigation: Set explicit allowed directories, decide whether full-access and network use are permitted, and require confirmation before shell/Python writes or copying generated files into final locations. <br>
-Risk: Dependency installation guidance could modify the local environment or fail when network or package access is restricted. <br>
-Mitigation: Prefer project-local virtual environments and avoid assuming global install rights or unrestricted network access. <br>
-Risk: Generated deliverables can be incomplete or invalid if declared successful before inspection. <br>
-Mitigation: Use the skill's validation checklist for file existence, parseable structure, expected counts, and a short report before final delivery. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Codex work through acpx sessions when tasks need reliable file creation, local dependency setup, validation, structured deliverables, or recovery from quoting, permission, sandbox, or mode confusion.
 
-## Reference(s): <br>
-- [PPT playbook for acpx + Codex](references/ppt-playbook.md) <br>
-- [acpx troubleshooting notes](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; it does not execute commands, install dependencies, or write files by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The playbook may encourage broader filesystem or network access through persistent full-access sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start sessions in a narrower mode when possible, approve full-access only for a specific need, scope outputs to a known directory, and terminate sessions after use.
+
+Risk: Package installation guidance may lead to unpinned or insufficiently vetted dependencies.
+
+Mitigation: Use project-local environments and pin or pre-vet dependencies before installation.
+
+## Reference(s):
+
+- [PPT playbook for acpx + Codex](references/ppt-playbook.md)
+- [acpx troubleshooting notes](references/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/spyfree/skills/acpx-codex-playbook)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and text snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt-file patterns, session-mode guidance, local dependency setup steps, output-path conventions, and validation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,49 @@
-## Description: <br>
-Fornece orientacoes educativas em portugues do Brasil sobre saude humana, sintomas, doencas, medicamentos, exames, prevencao, primeiros socorros e emergencias medicas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides educational Brazilian Portuguese guidance for questions about human health, symptoms, diseases, medications, exams, prevention, first aid, and medical emergencies.
 
-## Publisher: <br>
-[edsoneras](https://clawhub.ai/user/edsoneras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edsoneras](https://clawhub.ai/user/edsoneras)
 
-## Use Case: <br>
-External Portuguese-speaking users use this skill for general educational health guidance, including symptom explanations, medication overviews, disease information, prevention, first aid, and emergency escalation cues. It is not a substitute for in-person clinical evaluation, diagnosis, individualized medication dosing, or treatment decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Medical guidance may be mistaken for diagnosis or individualized treatment advice. <br>
-Mitigation: Use the skill only for general educational information and direct users to qualified clinicians for diagnosis and treatment decisions. <br>
-Risk: Users with urgent or worsening symptoms may delay emergency care. <br>
-Mitigation: Surface emergency escalation guidance for immediate risk or rapidly worsening symptoms and advise contacting local emergency services or urgent clinical care. <br>
-Risk: Medication questions may require individualized dosing, contraindication, pregnancy, comorbidity, or interaction review. <br>
-Mitigation: Avoid individualized medication dosing and refer users to a qualified clinician or pharmacist for personal medication decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clinico Geral on ClawHub](https://clawhub.ai/edsoneras/clinico-geral) <br>
-- [Publisher profile: edsoneras](https://clawhub.ai/user/edsoneras) <br>
+## Use Case:
 
+External users use this skill to receive clear, empathetic, educational medical information in Brazilian Portuguese, including general explanations of symptoms, conditions, medications, prevention, first aid, and emergency warning signs. It is not intended to replace in-person medical evaluation, diagnosis, treatment decisions, medication dosing, or urgent care.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text in Brazilian Portuguese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational medical information with required disclaimers and emergency escalation language when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.20 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users could rely on educational medical information for diagnosis, treatment decisions, medication dosing, or urgent care.
+
+Mitigation: Require clear disclaimers that the information is educational, avoid definitive diagnoses and individualized dosing, and direct emergencies or worsening symptoms to local emergency services or a health professional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edsoneras/skills/clinico-geral)
+- [ClawHub publisher profile](https://clawhub.ai/user/edsoneras)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational response in Brazilian Portuguese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes educational medical disclaimers and emergency-care guidance when relevant.]
+
+## Skill Version(s):
+
+1.0.20 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,73 @@
+{
+  "$schema": null,
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-adlc",
+  "data": {
+    "projectId": 166324,
+    "systemName": "Sample System",
+    "projectHandle": "PRJ-SMP",
+    "status": "Complete",
+    "currentPhase": "Assembly",
+    "currentStage": 13,
+    "workflowDepth": "Standard",
+    "inputMode": "Full PIP",
+    "started": "2026-06-22T12:00:00Z",
+    "lastUpdated": "2026-06-22T12:00:00Z",
+    "producerVersion": "AI-ADLC v1.1.0",
+    "enabledExtensions": [],
+    "containers": [
+      {
+        "name": "api",
+        "technology": "Node.js",
+        "responsibility": "Sample API"
+      }
+    ],
+    "adrs": [
+      {
+        "number": 1,
+        "title": "Sample decision",
+        "stage": 6,
+        "status": "Accepted",
+        "summary": "Sample"
+      }
+    ],
+    "principles": [],
+    "constraints": [],
+    "openQuestions": [],
+    "progress": [],
+    "decisions": [],
+    "changes": [],
+    "issues": [],
+    "lessons": [],
+    "arch": {
+      "status": "complete",
+      "phase": "Assembly",
+      "stage": "Package Assembly",
+      "stageNum": 13,
+      "c4Progress": { "context": "complete", "container": "complete", "component": "complete", "code": "pending" },
+      "vision": { "status": "approved", "statement": "A sample architecture demonstrating the Architect pane.", "optimisesFor": ["maintainability", "security"], "path": "projects/PRJ-SMP-sample/architecture/01_Architecture_Vision.md" },
+      "principles": [ { "id": "P1", "name": "Security by Default", "summary": "Encryption, RBAC, audit from day one" } ],
+      "constraints": [ { "id": "C1", "text": "Open-source only", "impact": "No proprietary dependencies" } ],
+      "nfrs": { "security": { "defined": true, "target": "OWASP ASVS L2", "priority": "Critical" }, "performance": { "defined": true, "target": "<2s p95", "priority": "High" } },
+      "integrations": [ { "name": "Email Service", "type": "REST", "direction": "outbound", "status": "planned" } ],
+      "adrs": [ { "id": "ADR-001", "title": "Sample decision", "status": "Accepted", "date": "2026-06-22", "path": "projects/PRJ-SMP-sample/architecture/ADR/ADR-001_Sample.md" } ],
+      "risks": [ { "text": "Sample architecture risk", "severity": "Medium" } ],
+      "techStack": { "languages": ["TypeScript"], "frameworks": ["NestJS"], "databases": ["PostgreSQL"], "infrastructure": ["Docker"], "messaging": [], "observability": ["OpenTelemetry"] },
+      "containers": [ { "name": "api", "type": "Service", "tech": "Node.js" } ],
+      "c4Diagrams": {
+        "l1": { "mermaid": "graph TD; User-->API;", "path": "projects/PRJ-SMP-sample/architecture/02_System_Context.md", "status": "complete" },
+        "l2": { "mermaid": "graph TD; API-->DB;", "path": "projects/PRJ-SMP-sample/architecture/03_Container.md", "status": "complete" },
+        "l3": { "mermaid": null, "path": null, "status": "pending" }
+      },
+      "diagrams": {
+        "security": { "mermaid": null, "path": null, "label": "Security" },
+        "data": { "mermaid": null, "path": null, "label": "Data" },
+        "api": { "mermaid": null, "path": null, "label": "API" },
+        "infrastructure": { "mermaid": null, "path": null, "label": "Infrastructure" }
+      }
+    }
+  }
+}

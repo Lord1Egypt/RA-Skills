@@ -1,0 +1,61 @@
+<template>
+  <div class="digital-flop">
+    <div class="digital-flop__label">{{ metric.label }}</div>
+    <div class="digital-flop__value">
+      <span v-if="metric.prefix" class="digital-flop__prefix">{{ metric.prefix }}</span>
+      <VueDigitalFlop
+        :end="metric.value"
+        :duration="1500"
+        :separator="','"
+        :to-fixed-num="metric.unit === '元' ? 2 : 0"
+      />
+      <span v-if="metric.unit" class="digital-flop__unit">{{ metric.unit }}</span>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { VueDigitalFlop } from 'vue3-digital-flop'
+import type { Metric } from '@/api/types'
+
+defineProps<{ metric: Metric }>()
+</script>
+
+<style scoped>
+.digital-flop {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  padding: 8px 4px;
+}
+
+.digital-flop__label {
+  font-size: 14px;
+  color: #7fb8e6;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.digital-flop__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--c-primary);
+  font-size: 30px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--c-primary) 45%, transparent);
+}
+
+.digital-flop__prefix,
+.digital-flop__unit {
+  font-size: 16px;
+  color: var(--c-text);
+  margin: 0 4px;
+}
+
+/* vue3-digital-flop 内部数字使用 em 单位，这里兜底字体 */
+.digital-flop :deep(.digital-flop) {
+  font-family: inherit;
+}
+</style>

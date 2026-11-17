@@ -1,41 +1,50 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for installable skills, compare relevant options, and receive installation guidance for extending an agent's capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer an agent toward broad third-party skill discovery or installation commands that skip confirmation. <br>
-Mitigation: Review each suggested publisher and source link, prefer install commands without `-y`, and avoid global installs unless the user explicitly wants future sessions affected. <br>
-Risk: Skill search results may be irrelevant, outdated, or unsuitable for the user's environment. <br>
-Mitigation: Inspect the skill page and source before installation, and handle the task directly when no trustworthy matching skill is found. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover installable skills for specialized domains, evaluate search results, and optionally install selected skills with the Skills CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/find-skills-lvjunjie) <br>
-- [Skills ecosystem browser](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested skill names, install commands, source links, and cautions about confirmation before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may steer an agent toward unpinned third-party skill installs, including global installs that skip confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target skill and install source before use, avoid global installs unless needed, remove `-y` from install commands, and prefer pinned trusted sources.
+
+## Reference(s):
+
+- [Find Skills Pro on ClawHub](https://clawhub.ai/lvjunjie-byte/skills/find-skills-lvjunjie)
+- [Skills Directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose third-party skill install commands for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

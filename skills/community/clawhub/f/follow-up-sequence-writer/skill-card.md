@@ -1,38 +1,52 @@
-## Description: <br>
-Writes complete email and SMS follow-up sequences for small businesses, including ready-to-deploy nurture campaigns calibrated to industry, tone, and sales cycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes complete email and SMS follow-up sequences for small businesses, calibrated to industry, tone, and sales cycle for nurture, reactivation, and appointment follow-up campaigns.
 
-## Publisher: <br>
-[PeakAgent](https://clawhub.ai/user/PeakAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peakagent](https://clawhub.ai/user/peakagent)
 
-## Use Case: <br>
-Small business operators, marketers, and CRM users use this skill to draft lead nurture, appointment reminder, and reactivation sequences with email and SMS copy, timing, merge fields, and CRM workflow notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing messages may be activated without confirming recipient consent, opt-out handling, quiet-hour rules, privacy obligations, or industry-specific marketing requirements. <br>
-Mitigation: Treat generated campaigns as drafts and review them against consent, unsubscribe, SMS opt-out, privacy, quiet-hour, brand, and industry requirements before CRM import or activation. <br>
-Risk: Draft campaign copy may include inaccurate brand, offer, or business details supplied by the user or inferred during generation. <br>
-Mitigation: Review each message for brand accuracy, factual claims, offers, links, merge fields, and CRM workflow notes before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and small-business marketers use this skill to draft CRM-ready email and SMS follow-up campaigns for new leads, appointment reminders, and stale lead reactivation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sequences with timing, channel, subject lines, message bodies, and CRM notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Email copy is constrained to short subject lines and sub-250-word bodies; SMS copy is constrained to 160 characters and includes first-touch opt-out language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated campaigns may be sent without valid recipient consent or legally required sender identity and unsubscribe language.
+
+Mitigation: Confirm recipient consent, sender identity, and unsubscribe language before importing a campaign into a CRM.
+
+Risk: Sensitive or regulated-industry outreach may require additional legal or compliance review before use.
+
+Mitigation: Have regulated-industry or sensitive outreach reviewed before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/peakagent/skills/follow-up-sequence-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured timing, channel, subject, message body, and CRM notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes campaign timing, email and SMS copy, opt-out guidance, delivery-window constraints, merge-field-ready text, and CRM workflow notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Help a bid manager track multiple tender submissions, deadlines, required documents, and document completeness for construction bids. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help a bid manager track multiple tender submissions, deadlines, required documents, and document completeness for construction bids.
 
-## Publisher: <br>
-[nitevity](https://clawhub.ai/user/nitevity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nitevity](https://clawhub.ai/user/nitevity)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Bid managers, commercial managers, and quantity surveyors use this skill to maintain conversation-based tender registers, track submission deadlines, monitor required documents, and support bid/no-bid review for construction bids.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat the conversation tracker as an authoritative tender submission system.
+
+Mitigation: Use official bid controls, tender documents, and submission records as the source of truth; treat the skill as a planning aid.
+
+Risk: The default checklist, terminology, date style, or currency examples may not match the user's organization or jurisdiction.
+
+Mitigation: Review and adapt the checklist and terminology before use, and confirm tender-specific document requirements for each bid.
+
+Risk: Incorrect or incomplete deadline details could lead to unreliable urgency warnings.
+
+Mitigation: Require explicit deadline dates and times, verify them against the tender documents, and update submitted or no-bid tenders promptly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Bid managers, commercial managers, and quantity surveyors use this skill to maintain a live construction tender register, track required submission documents, monitor bid/no-bid status, and surface approaching deadlines. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Tender records can include confidential commercial information and personal details. <br>
-Mitigation: Enter only the tracking metadata needed and treat tender values, deadlines, personnel names, CV details, audited accounts, and bank references as confidential. <br>
-Risk: Deadline calculations or conversation-maintained status may be incomplete or stale. <br>
-Mitigation: Verify final submission deadlines and readiness against the official bid register before acting. <br>
+**Output Format:** [Markdown summaries, tender detail views, document checklists, deadline warnings, and bid/no-bid review questions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Conversation-scoped tracking; no files, executable code, external access, or hidden behavior are produced by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown status summaries, tender detail views, checklists, and decision-support prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conversation-maintained tender register with deadline warnings and document completeness calculations] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

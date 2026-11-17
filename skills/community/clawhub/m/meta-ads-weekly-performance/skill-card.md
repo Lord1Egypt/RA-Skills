@@ -1,42 +1,50 @@
-## Description: <br>
-[Didoo AI] Generates a structured weekly performance report for Meta Ads accounts that reviews performance, explains changes, and identifies what needs attention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Generates a structured weekly performance report for Meta Ads accounts.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-External marketers and ads operators use this skill to produce a weekly Meta Ads performance report with week-over-week KPI changes, performance drivers, and issues requiring action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Meta Ads reporting data for the configured ad account. <br>
-Mitigation: Use a Meta access token limited to the read-only ads_read scope and only for the intended ad account. <br>
-Risk: Long-lived or overly broad credentials could expose ad account reporting data beyond the intended use. <br>
-Mitigation: Avoid broader ad management permissions, rotate or revoke the token when no longer needed, and store credentials outside generated reports. <br>
+## Use Case:
 
+External marketers, operators, and agents use this skill to generate an end-of-week Meta Ads performance report for a specified ad account, compare current and prior-week metrics, explain changes, and flag issues that need attention.
 
-## Reference(s): <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/meta-ads-weekly-performance) <br>
-- [Publisher Profile](https://clawhub.ai/user/elias-didoo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with KPI table and concise bullet sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires META_ACCESS_TOKEN and META_AD_ACCOUNT_ID; intended to use read-only ads_read access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The agent receives read-only access to the specified Meta Ads account's performance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token limited to ads_read and the intended ad account, and avoid granting write scopes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elias-didoo/skills/meta-ads-weekly-performance)
+- [Didoo blog](https://didoo.ai/blog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with KPI tables and concise bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires META_ACCESS_TOKEN and META_AD_ACCOUNT_ID; intended for read-only Meta Ads reporting with ads_read scope.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

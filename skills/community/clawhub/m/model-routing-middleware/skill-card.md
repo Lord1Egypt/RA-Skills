@@ -1,43 +1,58 @@
-## Description: <br>
-Intelligent model selection middleware for AI agents. Route tasks to the best model, manage context, and cut API costs 40-70%. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model Routing Middleware helps AI agents select models by task type, context size, and confidence signals to manage context and reduce model spend.
 
-## Publisher: <br>
-[larios613-hub](https://clawhub.ai/user/larios613-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larios613-hub](https://clawhub.ai/user/larios613-hub)
 
-## Use Case: <br>
-Developers and engineers use this skill to add model-routing middleware to an AI agent or gateway so requests can be classified, routed to configured models, escalated on low confidence, and managed against context-window limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt excerpts may be logged by default, which can expose secrets, private data, proprietary code, or regulated information. <br>
-Mitigation: Review and change logging settings before installation; disable prompt previews or reduce retained prompt content for sensitive deployments. <br>
-Risk: Broad activation terms can route unintended requests through the middleware. <br>
-Mitigation: Narrow activation triggers and confirm the router is only invoked for intended model-selection workflows. <br>
-Risk: Cloud routes or escalation targets may send data to providers that do not match the user's data-handling policy. <br>
-Mitigation: Verify configured model providers, endpoints, and escalation chains before connecting the router to real model providers. <br>
+## Use Case:
 
+Developers and engineers use this skill as middleware for AI agents that need to route prompts across local and cloud model targets based on task type, context size, and confidence or escalation signals.
 
-## Reference(s): <br>
-- [Model Routing Middleware on ClawHub](https://clawhub.ai/larios613-hub/model-routing-middleware) <br>
-- [Model Routing Integration Guide](artifact/references/integration-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes include model choice, think-mode setting, task type, confidence, context status, and escalation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Prompt-preview logging can expose sensitive user or business content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable prompt-preview logging or add redaction before storing or forwarding routing logs.
+
+Risk: Routing and escalation can send requests to configured cloud models without an explicit consent step.
+
+Mitigation: Make cloud routing and confidence escalation opt-in for sensitive workflows, and document which model providers may receive prompts.
+
+Risk: The skill depends on configurable model keys, endpoints, and imports that must match the deployment environment.
+
+Mitigation: Verify package imports, model-key mappings, provider endpoints, and API credentials before operational use.
+
+## Reference(s):
+
+- [Model Routing Integration Guide](references/integration-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/larios613-hub/skills/model-routing-middleware)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python, YAML, JSON, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routing outputs include selected model metadata, think-mode flags, confidence scores, context status, and escalation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

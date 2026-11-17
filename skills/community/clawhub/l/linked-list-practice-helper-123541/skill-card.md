@@ -1,39 +1,54 @@
-## Description: <br>
-Helps users plan, produce, and verify practical outputs for adding frequently asked linked-list problems from top technology companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users create practical guidance, checklists, artifacts, analysis, or implementation support for adding frequently asked linked-list problems from top companies such as Amazon, Google, and Microsoft.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, maintainers, and contributors use this skill to turn a linked-list practice request into an actionable plan, checklist, code-support workflow, or decision-support artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation keywords and implicit invocation may route unrelated requests involving common words such as add, linked, or list to this skill. <br>
-Mitigation: Narrow trigger terms before deployment or confirm the user is asking for linked-list interview-practice or issue-planning support before applying the workflow. <br>
+## Use Case:
 
+Developers, maintainers, and learners use this skill to turn a linked-list practice requirement into actionable plans, problem-selection guidance, checklists, artifacts, analysis, code changes, or decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/linked-list-practice-helper-123541) <br>
-- [Requirement plan](artifact/references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include visible assumptions, limits, verification notes, and next steps when helpful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Broad trigger wording may activate the skill for unrelated requests involving common words such as add, linked, or list.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger terms or confirm that the user is asking about linked-list practice before relying on the skill output.
+
+Risk: Generated practice guidance, checklists, or implementation support may be incomplete or misaligned with the target repository's contribution criteria.
+
+Mitigation: Review outputs against the stated success criteria and repository expectations before using them in a release or pull request.
+
+## Reference(s):
+
+- [Requirement Plan](artifact/references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/linked-list-practice-helper-123541)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with code and configuration snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, remaining risks, and next-step guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

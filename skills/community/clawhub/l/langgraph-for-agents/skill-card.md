@@ -1,45 +1,57 @@
-## Description: <br>
-Use LangGraph/LangChain to build agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use LangGraph/LangChain to build agents.
 
-## Publisher: <br>
-[zachysun](https://clawhub.ai/user/zachysun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zachysun](https://clawhub.ai/user/zachysun)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and implement single-agent and multi-agent systems with LangGraph and LangChain patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example patterns may send prompts, documents, or search queries to external model, search, or documentation services. <br>
-Mitigation: Add user notice and consent before external calls, and avoid sending secrets or sensitive personal data. <br>
-Risk: Demo memory and retrieval examples may not provide production-grade retention, scoping, or deletion controls. <br>
-Mitigation: Replace in-memory examples with scoped storage, retention limits, and deletion controls before reuse in a real application. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and implement single-agent and multi-agent systems with LangGraph and LangChain patterns, including ReAct agents, workflows, routing, memory, streaming, RAG, and human-in-the-loop flows.
 
-## Reference(s): <br>
-- [LangGraph Usage Library](references/README.md) <br>
-- [LangGraph Official GitHub Repository](https://github.com/langchain-ai/langgraph) <br>
-- [LangGraph Official Documentation](https://docs.langchain.com/oss/python/langgraph/overview) <br>
-- [LangChain Official Documentation](https://docs.langchain.com/oss/python/langchain/overview) <br>
-- [Context-7 LangGraph Documentation Fetch](https://context7.com/websites/langchain_oss_python_langgraph/llms.txt?topic={}&tokens={}) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zachysun/langgraph-for-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python code examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external model, search, documentation, and memory examples when adapting the patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Running the included LLM, search, RAG, or memory examples can send prompts, documents, search queries, or memory contents to configured model, embedding, web, or Tavily providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive test data by default, and add consent, redaction, provider controls, and per-user memory isolation before using private or user-specific data.
+
+## Reference(s):
+
+- [LangGraph Usage Library](references/README.md)
+- [LangGraph Official GitHub Repository](https://github.com/langchain-ai/langgraph)
+- [LangGraph Official Documentation](https://docs.langchain.com/oss/python/langgraph/overview)
+- [LangChain Official Documentation](https://docs.langchain.com/oss/python/langchain/overview)
+- [Context-7 LangGraph Documentation](https://context7.com/websites/langchain_oss_python_langgraph/llms.txt?topic={}&tokens={})
+- [LangGraph Human-in-the-Loop Example](references/langgraph_human_in_the_loop.py)
+- [LangGraph Streaming Example](references/langgraph_streaming.py)
+- [LangGraph Short-Term Memory Example](references/langgraph_workflow_st_mem.py)
+- [LangGraph Long-Term Memory Example](references/langgraph_workflow_lt_mem.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include application structure recommendations and references to local example files.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

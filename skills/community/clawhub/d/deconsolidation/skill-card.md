@@ -1,41 +1,54 @@
-## Description: <br>
-Deconsolidation provides logistics reference guidance for container stripping, cargo breakdown, cross-dock operations, LCL unpacking, and warehouse receiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deconsolidation reference for container stripping, cargo breakdown, cross-dock operations, and LCL unpacking when planning deconsolidation workflows or optimizing warehouse receiving.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Warehouse, logistics, and supply-chain operators use this skill to plan deconsolidation workflows, review receiving steps, and consult checklists, equipment notes, documentation flow, metrics, LCL handling, and cross-docking guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill runs a local Bash script. <br>
-Mitigation: Review the artifact before installation and run only the documented commands from the trusted release. <br>
-Risk: The logistics guidance is general reference material and may not reflect a facility's operating procedures or regulatory obligations. <br>
-Mitigation: Validate recommendations against site SOPs, carrier requirements, customs processes, and safety rules before operational use. <br>
+## Use Case:
 
+Warehouse, logistics, receiving, and operations teams use this skill as a quick reference for deconsolidation planning, LCL handling, cross-dock workflows, documentation flow, performance metrics, and operational checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/deconsolidation) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text guidance emitted by Bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command selected by the first shell argument; no API calls, network access, credential inputs, persistence, or automatic changes identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users could treat static deconsolidation guidance as a substitute for site-specific safety, customs, hazardous-materials, or compliance procedures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against local operating procedures and qualified logistics, safety, or compliance guidance before using them in operations.
+
+Risk: The skill does not integrate with WMS, ERP, or other systems of record and does not enforce procedural completion.
+
+Mitigation: Use it as reference guidance only and complete records, approvals, and controls through approved operational systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/deconsolidation)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text guidance from shell commands, with Markdown command examples in the skill definition]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static logistics reference content; no external service calls or business-record updates are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

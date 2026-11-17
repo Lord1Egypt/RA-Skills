@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools -- covers intro, quickstart, patterns and more, with quick lookup for Encrypt concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypt is a reference skill that gives developers quick guidance for encryption concepts, workflows, patterns, debugging, performance, security, migration, and cheat-sheet use.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference helper for Encrypt-related concepts, quickstart guidance, patterns, debugging, performance, security, migration, and cheatsheet material. It provides generic documentation output and is not a real encryption implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the reference helper for a tool that performs real encryption. <br>
-Mitigation: Treat outputs as generic guidance only; use reviewed cryptographic libraries and procedures for security-sensitive encryption work. <br>
-Risk: Generic reference guidance may be incomplete for a specific compliance, infrastructure, or threat model. <br>
-Mitigation: Review the guidance against local security requirements before relying on it in production decisions. <br>
+## Use Case:
 
+Developers and security practitioners use Encrypt for quick reference guidance on encryption-related concepts, common workflows, implementation patterns, troubleshooting, performance, security, and migration topics.
 
-## Reference(s): <br>
-- [Encrypt on ClawHub](https://clawhub.ai/bytesagain3/encrypt) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, network access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release metadata) <br>
+Risk: The skill provides generic reference guidance that may not fit a user's specific security environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against local security, compliance, and operational requirements before applying it.
+
+Risk: One cheatsheet entry names a non-implemented troubleshooting command.
+
+Mitigation: Use the implemented debugging command or help output for troubleshooting guidance.
+
+## Reference(s):
+
+- [Encrypt on ClawHub](https://clawhub.ai/bytesagain3/skills/encrypt)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API keys, network access, or external service calls.]
+
+## Skill Version(s):
+
+2.0.5 (source: release evidence; artifact SKILL.md lists 2.0.4 and script lists 2.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

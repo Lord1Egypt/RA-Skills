@@ -64,21 +64,23 @@ cat .gitignore | grep .env
 
 ### Step 2: Docker Environment
 
-Edit `docker-compose.yml`:
+Edit `docker-compose.yml` to **reference** the variables. The real values stay
+in the untracked `.env` file:
 
 ```yaml
 services:
   freqtrade:
     environment:
-      - FREQTRADE__EXCHANGE__KEY=your-api-key
-      - FREQTRADE__EXCHANGE__SECRET=your-secret
+      - FREQTRADE__EXCHANGE__KEY=${FREQTRADE__EXCHANGE__KEY}
+      - FREQTRADE__EXCHANGE__SECRET=${FREQTRADE__EXCHANGE__SECRET}
 ```
 
 **Not:**
 ```yaml
-# BAD ❌
+# BAD ❌ — hardcoded real values in a tracked file
 environment:
-  - FREQTRADE__EXCHANGE__KEY=your-api-key  # Hardcoded in committed file
+  - FREQTRADE__EXCHANGE__KEY=your-api-key
+  - FREQTRADE__EXCHANGE__SECRET=your-secret
 ```
 
 ### Step 3: config.json Reference
@@ -87,13 +89,19 @@ environment:
 {
   "exchange": {
     "name": "kraken",
-    "key": "empty string ("")",
-    "secret": "empty string ("")"
+    "key": "",
+    "secret": "",
+    "ccxt_config": {},
+    "ccxt_async_config": {}
   }
 }
 ```
 
-**Check:** `cat config.json | grep "key":` should show `"empty string ("")"`, not actual keys.
+The values are empty strings here. Freqtrade populates them at runtime from
+the `FREQTRADE__EXCHANGE__*` environment variables.
+
+**Check:** `grep -A2 '"exchange"' config.json` should show empty strings, not
+actual keys.
 
 ---
 
@@ -110,6 +118,7 @@ environment:
 
 - [ ] `.env` in `.gitignore`
 - [ ] `config.json` does NOT contain real keys
+- [ ] `docker-compose.yml` does NOT contain real key values (references only)
 - [ ] Never committed `.env` to git history
 - [ ] If you accidentally committed keys: **rotate them immediately**
 
@@ -200,7 +209,8 @@ Use this before enabling live trading:
 
 - [ ] `.env` file created with API keys
 - [ ] `.env` added to `.gitignore`
-- [ ] `config.json` uses `empty string ("")` syntax (not literal keys)
+- [ ] `docker-compose.yml` references keys via `${...}` (no literal values)
+- [ ] `config.json` has empty-string key/secret (not literal keys)
 - [ ] `dry_run: true` in config
 - [ ] `max_open_trades: 3` or fewer
 - [ ] `stake_amount: 0.01` (start small in live mode)

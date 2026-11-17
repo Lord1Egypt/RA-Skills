@@ -41,4 +41,4 @@ SkillError (基类, code=500)
 
 | 环境变量                      | 说明                              | 默认值 |
 | ----------------------------- | --------------------------------- | ------ |
-| `ORDER_INQUIRY_TOOL_TIMEOUT`  | NewtonOrderBatchInquiry 超时(秒)  | 100    |
+| `ORDER_INQUIRY_TOOL_TIMEOUT`  | alibaba.1688.newton.order.batch.inquiry 超时(秒)  | 100    |

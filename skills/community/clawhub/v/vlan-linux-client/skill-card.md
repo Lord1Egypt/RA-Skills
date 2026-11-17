@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents guide VLAN.CN Linux client installation, login, virtual network management, service control, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents provide guidance for installing, authenticating, operating, and troubleshooting the VLAN.CN Linux client.
 
-## Publisher: <br>
-[sxf-oss](https://clawhub.ai/user/sxf-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxf-oss](https://clawhub.ai/user/sxf-oss)
 
-## Use Case: <br>
-Developers and Linux operators use this skill to manage VLAN.CN client setup, authentication, virtual network connections, service lifecycle commands, and troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a curl-to-sh remote installer pattern that may execute unverified code. <br>
-Mitigation: Only run the installer after verifying the VLAN.CN source through a trusted channel and explicitly approving execution. <br>
-Risk: Login commands can expose credentials if passwords are entered directly on the command line. <br>
-Mitigation: Prefer short-lived login codes and avoid placing passwords in shell commands or command history. <br>
-Risk: Service control and removal commands can change system state or delete client files. <br>
-Mitigation: Manually confirm sudo, service, and deletion commands, including target paths, before allowing an agent to run them. <br>
+## Use Case:
 
+Developers, administrators, and support engineers use this skill to guide VLAN.CN Linux client setup, login, virtual network connection management, service control, and network diagnostics.
 
-## Reference(s): <br>
-- [VLAN.CN Linux Client Documentation](https://www.vlan.cn/guide/linux-client) <br>
-- [VLAN.CN Management Console](https://www.vlan.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require user-specific VLAN IDs, login codes, credentials, or sudo confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill presents an unverified HTTP installer piped directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently trust and verify the VLAN.CN installer before use; prefer an official HTTPS package or a downloaded script with a published checksum or signature.
+
+Risk: The uninstall guidance includes privileged recursive deletion.
+
+Mitigation: Verify the exact target path and service state before running sudo deletion commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxf-oss/skills/vlan-linux-client)
+- [VLAN.CN Linux client guide](https://www.vlan.cn/guide/linux-client)
+- [VLAN.CN management portal](https://www.vlan.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational cautions for credential handling, installer verification, privileged commands, and network diagnostics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

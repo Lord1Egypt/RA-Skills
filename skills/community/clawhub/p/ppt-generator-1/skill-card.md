@@ -1,43 +1,53 @@
-## Description: <br>
-Transforms a user script into a minimalist, technology-themed vertical HTML slide deck in a Jobs-inspired style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT Generator converts user scripts into Jobs-style, minimalist, tech-themed vertical HTML presentations.
 
-## Publisher: <br>
-[sunerw-dev](https://clawhub.ai/user/sunerw-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunerw-dev](https://clawhub.ai/user/sunerw-dev)
 
-## Use Case: <br>
-External users and developers use this skill to turn draft talk scripts into condensed Markdown, a slide outline, and a ready-to-run vertical HTML presentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated presentations may load fonts and styling from third-party CDNs, which can be unsuitable for sensitive or offline decks. <br>
-Mitigation: Review or replace CDN links with local assets before using generated decks in sensitive, restricted-network, or offline settings. <br>
-Risk: The default generation behavior favors a Chinese, Jobs-style, vertical presentation format and may not match every audience or brand requirement. <br>
-Mitigation: State the desired language, style, page count, and slide constraints when invoking the skill. <br>
-Risk: Script condensation can omit nuance from the source material. <br>
-Mitigation: Review the condensed script and slide outline before relying on the generated HTML presentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunerw-dev/ppt-generator-1) <br>
-- [Design Specification](artifact/references/design-spec.md) <br>
-- [Slide Types](artifact/references/slide-types.md) <br>
+## Use Case:
 
+Creators, employees, and developers use this skill to turn a talk script into a condensed Markdown script, slide outline, and ready-to-run 9:16 HTML presentation with keyboard and touch navigation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown summary and slide outline followed by a single HTML document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML targets a 9:16 vertical layout with keyboard navigation, smooth transitions, and CDN-loaded fonts/styles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated presentations may contact third-party CDNs for scripts and fonts when opened.
+
+Mitigation: For sensitive, offline, or restricted environments, replace CDN-hosted TailwindCSS and font resources with bundled or locally hosted resources before sharing the HTML.
+
+## Reference(s):
+
+- [Design Specification](artifact/references/design-spec.md)
+- [Slide Types](artifact/references/slide-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/sunerw-dev/skills/ppt-generator-1)
+- [TailwindCSS CDN Used by Generated HTML](https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/tailwindcss/3.0.23/tailwind.min.js)
+- [Font CSS Used by Generated HTML](https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap)
+- [Inter Font CSS Used by Generated HTML](https://fonts.loli.net/css2?family=Inter:wght@300;400;700;900&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code]
+
+**Output Format:** [Markdown response containing a refined script, slide outline, and complete single-file HTML code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML targets a 9:16 vertical presentation and may load TailwindCSS and font resources from third-party CDNs when opened.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

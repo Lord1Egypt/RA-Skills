@@ -1,45 +1,57 @@
-## Description: <br>
-Token Pilot helps OpenClaw agents reduce token usage with behavioral rules, plugin synergy guidance, workspace analysis, and audit or optimization commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic token optimization during interaction with behavioral rules, plugin synergy, and workspace analysis for OpenClaw agents.
 
-## Publisher: <br>
-[beyound87](https://clawhub.ai/user/beyound87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beyound87](https://clawhub.ai/user/beyound87)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inject and apply token-saving operating rules, audit workspace and agent configurations, and generate recommendations for lower-cost agent execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The initialization flow can persistently change all local OpenClaw agents by appending or replacing Token Pilot rules in AGENTS.md files. <br>
-Mitigation: Review the initialization preview, confirm affected agents before writing, and avoid --yes unless unattended bulk changes are intentional. <br>
-Risk: The optional optimization apply mode can move or delete workspace files. <br>
-Mitigation: Run read-only audit or optimization modes first, review proposed changes, and back up workspace files before using --apply. <br>
-Risk: Persistent memory and workspace files can accidentally retain sensitive user data while applying token-saving memory practices. <br>
-Mitigation: Keep secrets and sensitive user data out of persistent memory files and review memory cleanup recommendations before applying them. <br>
+## Use Case:
 
+Developers and OpenClaw users use Token Pilot to audit and reduce agent token use through persistent agent rules, workspace cleanup guidance, cron and model routing recommendations, and configuration suggestions.
 
-## Reference(s): <br>
-- [Token Pilot Skill Page](https://clawhub.ai/beyound87/token-pilot) <br>
-- [Token Pilot Core Rules](references/TOKEN-PILOT-CORE.md) <br>
-- [Cron Job Token Optimization](references/cron-optimization.md) <br>
-- [Workspace File Organization for Minimal Token Cost](references/workspace-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only audit summaries, initialization previews, and optional workspace cleanup recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.0 (source: server release metadata; artifact frontmatter and README report 3.6.0) <br>
+Risk: Persistent changes to every agent's AGENTS.md can alter future agent behavior or duplicate existing rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the initialization preview, avoid --yes on first install, keep backups, and inspect overlap warnings before accepting changes.
+
+Risk: Automatic cleanup modes can move or delete local workspace files without strong safeguards.
+
+Mitigation: Run audit or recommendation modes first, manually inspect affected paths, and keep backups before using apply modes on important workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/beyound87/skills/token-pilot)
+- [README](artifact/README.md)
+- [Token Pilot Core Rules](artifact/references/TOKEN-PILOT-CORE.md)
+- [Cron Job Token Optimization](artifact/references/cron-optimization.md)
+- [Workspace File Organization for Minimal Token Cost](artifact/references/workspace-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and JSON code blocks, plus text reports from bundled Node.js scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-stream agent guidance; scripts may write agent instruction files, generated catalog files, or workspace changes when users approve execution modes.]
+
+## Skill Version(s):
+
+3.8.0 (source: server release evidence; artifact frontmatter reports 3.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

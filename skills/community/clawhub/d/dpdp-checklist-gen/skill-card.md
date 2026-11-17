@@ -1,45 +1,55 @@
-## Description: <br>
-Generate a comprehensive DPDP Act implementation checklist with evidence tracker and roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a comprehensive DPDP Act implementation checklist with evidence tracker and roadmap.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Privacy, security, and compliance teams use this skill to create DPDP Act implementation plans, audit evidence trackers, executive summaries, and phased roadmaps tailored to an organization's data processing profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends organization and data processing details to the ToolWeb service. <br>
-Mitigation: Avoid regulated, customer, employee, health, children-related, or confidential business details unless approved for third-party processing. <br>
-Risk: The skill uses an API key for a third-party service. <br>
-Mitigation: Use a scoped or revocable TOOLWEB_API_KEY and rotate or revoke it if access is no longer needed. <br>
-Risk: Compliance outputs may be used for legal or audit planning decisions. <br>
-Mitigation: Have qualified privacy, legal, or compliance reviewers validate the checklist and roadmap before relying on them. <br>
+## Use Case:
 
+Developers, privacy teams, and compliance leads use this skill to gather organization context and request a DPDP Act implementation checklist, roadmap, evidence tracker, and executive summary from ToolWeb.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/dpdp-checklist-gen) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [DPDP Checklist API Endpoint](https://portal.toolweb.in/apis/compliance/dpdp-checklist) <br>
-- [ToolWeb Platform](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary generated from ToolWeb API response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; outputs may include compliance checklist, implementation roadmap, evidence tracker, and executive summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends organization DPDP planning details to ToolWeb's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize submitted data and avoid secrets, customer records, incident details, unnecessary personal names, or other sensitive information; use pseudonymous values where possible.
+
+Risk: Successful API calls may consume paid quota or incur billing.
+
+Mitigation: Confirm TOOLWEB_API_KEY configuration and expected paid API use before running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/dpdp-checklist-gen)
+- [ToolWeb API Portal](https://portal.toolweb.in)
+- [ToolWeb Platform](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary of checklist, roadmap, evidence tracker, and executive summary content returned by the ToolWeb API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; successful API calls may be metered or billed by ToolWeb.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

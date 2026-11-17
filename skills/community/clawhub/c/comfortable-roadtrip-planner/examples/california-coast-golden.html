@@ -1,0 +1,2140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comfortable Roadtrip Planner</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f2ea;
+      --ink: #24211d;
+      --muted: #70685e;
+      --line: rgba(36, 33, 29, .12);
+      --panel: rgba(255, 255, 255, .78);
+      --shadow: 0 18px 50px rgba(35, 31, 26, .14);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(135deg, rgba(63, 119, 125, .16), transparent 34%),
+        linear-gradient(315deg, rgba(184, 111, 74, .18), transparent 42%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    body.modal-open main {
+      filter: blur(12px) saturate(.9);
+      transform: scale(.985);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0 72px;
+      transition: filter .32s ease, transform .32s ease;
+    }
+
+    .hero {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .button,
+    button.button,
+    .stop-links a,
+    .stop-links button,
+    .route-link,
+    .meal-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .66);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      cursor: pointer;
+      transform: translateY(16px);
+      opacity: 0;
+      animation: cardIn .62s cubic-bezier(.18, .85, .28, 1) forwards;
+      transition: transform .22s ease, box-shadow .22s ease, opacity .22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 64px rgba(35, 31, 26, .18);
+    }
+
+    .card.is-muted {
+      opacity: .35;
+    }
+
+    .card header {
+      padding: 18px 18px 14px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .strategy,
+    .brief-note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .brief {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .58);
+    }
+
+    .brief-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .brief-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .brief-pills span,
+    .stop-tag {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: rgba(36, 33, 29, .08);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .priority-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      max-width: 100%;
+      border-radius: 999px;
+      padding: 4px 9px 4px 5px;
+      background: rgba(36, 33, 29, .09);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .priority-letter {
+      min-width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(36, 33, 29, .78);
+      color: white;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .priority-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .map {
+      height: 220px;
+      border-block: 1px solid var(--line);
+      background: #d7dfd6;
+    }
+
+    .meta {
+      padding: 16px 18px 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .points {
+      margin: 0;
+      padding-left: 22px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .points a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .point-name {
+      min-width: 0;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .point-priority {
+      transform: translateY(-1px);
+    }
+
+    .num-marker {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      border: 2px solid white;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, .22);
+    }
+
+    .day-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(22, 20, 18, .34);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s ease;
+    }
+
+    .day-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-stage {
+      width: min(980px, 100%);
+      height: min(78vh, 820px);
+      perspective: 1800px;
+    }
+
+    .flip-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform: rotateY(0deg) scale(.96);
+      transition: transform .72s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .flip-card.is-flipped {
+      transform: rotateY(180deg) scale(1);
+    }
+
+    .modal-face {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      backface-visibility: hidden;
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 24px;
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .28);
+      background: rgba(255, 252, 246, .94);
+    }
+
+    .modal-front {
+      display: grid;
+      align-content: end;
+      padding: 28px;
+      color: white;
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, .68), rgba(0, 0, 0, .08)),
+        var(--cover, linear-gradient(135deg, #3f777d, #b86f4a));
+      background-size: cover;
+      background-position: center;
+    }
+
+    .modal-front h2,
+    .modal-back h2 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .modal-kicker {
+      margin: 0 0 8px;
+      font-weight: 900;
+      opacity: .78;
+    }
+
+    .modal-front-note {
+      max-width: 720px;
+      margin: 14px 0 18px;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+
+    .modal-route-preview,
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-route-preview span {
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(10px);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .modal-front-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .modal-actions a {
+      color: white;
+      border-color: rgba(255, 255, 255, .34);
+      background: rgba(255, 255, 255, .16);
+    }
+
+    .modal-back {
+      transform: rotateY(180deg);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .modal-back-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-back-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .modal-close {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-back-content {
+      overflow: auto;
+      padding: 22px 24px 26px;
+    }
+
+    .meal-card,
+    .day-extra,
+    .stop {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    .meal-card,
+    .day-extra {
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .meal-card h3,
+    .day-extra h3,
+    .stop h3 {
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .meal-card ul,
+    .day-extra ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+
+    .meal-links,
+    .stop-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stop-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .stop {
+      display: grid;
+      grid-template-columns: minmax(180px, 34%) 1fr;
+      overflow: hidden;
+    }
+
+    .stop-visual {
+      position: relative;
+      min-height: 220px;
+      background: #d8d3c8;
+      overflow: hidden;
+    }
+
+    .stop-gallery {
+      height: 100%;
+      min-height: inherit;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(36, 33, 29, .38) transparent;
+    }
+
+    .stop-photo {
+      position: relative;
+      flex: 0 0 100%;
+      min-height: inherit;
+      color: white;
+      text-decoration: none;
+      scroll-snap-align: start;
+      background: #bcb5a8;
+    }
+
+    .stop-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .66));
+      pointer-events: none;
+    }
+
+    .stop-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .stop-photo-copy {
+      position: absolute;
+      inset-inline: 14px;
+      bottom: 14px;
+      z-index: 1;
+      display: grid;
+      gap: 5px;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, .48);
+    }
+
+    .stop-photo-copy strong {
+      font-size: 15px;
+      line-height: 1.15;
+    }
+
+    .stop-photo-copy span,
+    .stop-photo-copy small {
+      font-size: 12px;
+      line-height: 1.35;
+      opacity: .88;
+    }
+
+    .stop-photo-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: rgba(0, 0, 0, .54);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      backdrop-filter: blur(10px);
+    }
+
+    .stop-visual-empty {
+      display: grid;
+      align-content: end;
+      padding: 16px;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(63, 119, 125, .2), transparent 52%),
+        linear-gradient(315deg, rgba(184, 111, 74, .2), transparent 58%),
+        #d8d3c8;
+    }
+
+    .stop-visual-empty span {
+      width: max-content;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: rgba(255, 255, 255, .62);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .stop-visual-empty strong {
+      margin-top: 8px;
+      font-size: 18px;
+      line-height: 1.15;
+    }
+
+    .stop-visual-empty p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 13px;
+    }
+
+    .stop-body {
+      padding: 16px;
+    }
+
+    .stop-topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .stop-index {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .stop-copy {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .map-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(22, 20, 18, .42);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+
+    .map-panel.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .map-panel-card {
+      width: min(780px, 100%);
+      max-height: min(82vh, 760px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, .56);
+      border-radius: 22px;
+      background: rgba(255, 252, 246, .96);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .28);
+    }
+
+    .map-panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .map-panel-header h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .map-panel-header p,
+    .map-note {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .map-panel-body {
+      display: grid;
+      gap: 18px;
+      padding: 20px 22px 22px;
+    }
+
+    .map-provider-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+      gap: 10px;
+    }
+
+    .map-choice {
+      display: grid;
+      gap: 4px;
+      min-height: 72px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, .74);
+      text-decoration: none;
+    }
+
+    .map-choice strong {
+      font-size: 14px;
+    }
+
+    .map-choice span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .leg-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .leg-card {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .62);
+    }
+
+    .leg-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      main { width: min(100% - 20px, 1180px); padding-top: 28px; }
+      .day-modal { padding: 10px; }
+      .modal-stage { height: 86vh; }
+      .modal-front-footer { align-items: flex-start; flex-direction: column; }
+      .stop { grid-template-columns: 1fr; }
+      .stop-visual { min-height: 190px; }
+      .map-panel { padding: 10px; align-items: end; }
+      .map-panel-card { max-height: 88vh; border-radius: 18px; }
+      .map-provider-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .flip-card,
+      .flip-card.is-flipped {
+        transform: none;
+      }
+
+      .modal-front {
+        display: none;
+      }
+
+      .modal-back {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <h1 id="tripTitle">Road Trip Route App</h1>
+    <p class="intro" id="tripIntro">Replace the sample data in <code>tripDays</code>. Each day card has a map, ordered stops, navigation links, flip-card details, images, meals, and calendar import.</p>
+    <div class="top-actions">
+      <a class="button" href="#" id="downloadAllCalendar">Add Whole Trip to Calendar</a>
+    </div>
+  </section>
+  <section class="grid" id="cards" aria-label="Daily route cards"></section>
+</main>
+
+<div class="day-modal" id="dayModal" aria-hidden="true">
+  <div class="modal-stage" id="modalStage"></div>
+</div>
+
+<div class="map-panel" id="mapPanel" aria-hidden="true">
+  <div class="map-panel-card" role="dialog" aria-modal="true" aria-labelledby="mapPanelTitle">
+    <div class="map-panel-header">
+      <div>
+        <h2 id="mapPanelTitle">Choose a Map App</h2>
+        <p id="mapPanelIntro">Pick the navigation app that works best on this device.</p>
+      </div>
+      <button class="modal-close" type="button" data-close-map-panel aria-label="Close">×</button>
+    </div>
+    <div class="map-panel-body" id="mapPanelBody"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const tripMeta = {
+  "title": "California Coast Comfort-First Golden Route",
+  "intro": "A脱敏 3-day California coast fixture for validating map cards, A/B/C priorities, multi-map navigation, swipeable photo galleries, source provenance, and calendar import.",
+  "timezone": "America/Los_Angeles",
+  "audience": "Low-stamina self-drive travelers with fixed hotels",
+  "comfortProfile": "Start after 9:30 AM, protect meal/rest breaks, avoid night driving, keep every day to one real objective."
+};
+
+const tripDays = [
+  {
+    "id": "day-1",
+    "title": "Day 1 | 2026-06-15 | San Francisco → Monterey",
+    "date": "2026-06-15",
+    "color": "#2d7f9f",
+    "strategy": "Keep the day gentle: pick up the car, eat before the aquarium, then protect an early Monterey check-in.",
+    "mainObjective": "Monterey Bay Aquarium without rushing or late arrival.",
+    "coverImage": "https://commons.wikimedia.org/wiki/Special:FilePath/Wide%20image%20overlooking%20Monterey%20Bay%20from%20the%20aquarium's%20decks.jpg?width=960",
+    "weather": {
+      "summary": [
+        "San Francisco 16-21°C, marine layer possible",
+        "Monterey 15-19°C, cool near the bay"
+      ],
+      "checkedAt": "2026-07-05",
+      "source": "National Weather Service fixture source",
+      "appliesToDate": "2026-06-15",
+      "note": "Golden fixture source pointer; refresh for real travel dates."
+    },
+    "drive": {
+      "summary": "About 2.5-3.5 hr / 125 mi before local stops",
+      "difficulty": "Medium",
+      "note": "Main fatigue sources: Bay Area traffic, rental pickup friction, and aquarium standing time. Avoid night driving by checking in before dinner.",
+      "fatigueSources": [
+        "rental pickup",
+        "Bay Area traffic",
+        "standing time",
+        "late arrival risk"
+      ]
+    },
+    "stops": [
+      {
+        "name": "San Francisco Rental-Car Pickup",
+        "lat": 37.6213,
+        "lng": -122.379,
+        "address": "San Francisco International Airport Rental Car Center, San Francisco, CA",
+        "priority": "A start",
+        "tag": "fixed anchor",
+        "why": "A realistic public start anchor for a脱敏 fixture; start logistics matter more than sightseeing here.",
+        "history": "SFO is a common California coast rental-car gateway.",
+        "tip": "Use this as a bathroom/coffee reset before leaving the airport corridor.",
+        "imageQuery": "SFO rental car center exterior public photo",
+        "imageNote": "For a real trip, fill this with the user-provided rental-car or airport pickup point if public and safe."
+      },
+      {
+        "name": "Half Moon Bay Lunch Reset",
+        "lat": 37.4636,
+        "lng": -122.4286,
+        "address": "Half Moon Bay, CA",
+        "priority": "B optional",
+        "tag": "meal rest",
+        "why": "A useful first rest valve before continuing south, especially if the rental pickup runs late.",
+        "history": "Half Moon Bay sits on the coastal route between San Francisco and Santa Cruz/Monterey.",
+        "tip": "Skip if traffic is smooth and everyone wants more aquarium time; keep lunch before Monterey if body battery is low.",
+        "imageQuery": "Half Moon Bay Main Street lunch stop photo",
+        "imageNote": "Use a restaurant official page or user-provided meal link for real itineraries."
+      },
+      {
+        "name": "Monterey Bay Aquarium",
+        "lat": 36.6183,
+        "lng": -121.9013,
+        "address": "Monterey Bay Aquarium, 886 Cannery Row, Monterey, CA",
+        "priority": "A keep",
+        "tag": "indoor high reward",
+        "why": "The strongest low-weather-risk Monterey anchor: bathrooms, seats, cafe access, and a clear sense of place.",
+        "history": "The aquarium is known for marine conservation and bay-facing exhibits on Cannery Row.",
+        "tip": "Treat the big window and kelp forest as the main experience; do not try to see every exhibit if the day is running long.",
+        "imageQuery": "Monterey Bay Aquarium classic exhibit and bay deck photos",
+        "images": [
+          {
+            "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Monterey%20Bay%20Aquarium%2C%20California%2C%20USA%20(2).jpg?width=960",
+            "alt": "Monterey Bay Aquarium exterior and bay context",
+            "title": "Exterior Arrival Frame",
+            "caption": "Good orientation shot before entering; keep it quick if parking or wind is annoying.",
+            "credit": "Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Monterey_Bay_Aquarium,_California,_USA_(2).jpg"
+          },
+          {
+            "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Wide%20image%20overlooking%20Monterey%20Bay%20from%20the%20aquarium's%20decks.jpg?width=960",
+            "alt": "View over Monterey Bay from aquarium decks",
+            "title": "Low-Effort Bay View",
+            "caption": "A comfortable visual payoff without adding a separate outdoor stop.",
+            "credit": "Rhinopias / Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Wide_image_overlooking_Monterey_Bay_from_the_aquarium%27s_decks.jpg"
+          }
+        ],
+        "links": [
+          [
+            "Official",
+            "https://www.montereybayaquarium.org/"
+          ],
+          [
+            "Tickets",
+            "https://www.montereybayaquarium.org/visit/admission-tickets"
+          ]
+        ]
+      },
+      {
+        "name": "Monterey Fixed Hotel Area",
+        "lat": 36.6002,
+        "lng": -121.8947,
+        "address": "Monterey, CA",
+        "priority": "A rest",
+        "tag": "overnight",
+        "why": "The hotel is the recovery point; protect arrival energy over squeezing in one more stop.",
+        "history": "This fixture uses city-level hotel anchoring to avoid private booking details.",
+        "tip": "Check in first, then decide whether a very short waterfront walk still feels good.",
+        "imageQuery": "Monterey CA public hotel exterior or waterfront near hotel",
+        "imageNote": "When the user supplies an exact public hotel link, fill images[] from official hotel/public sources."
+      }
+    ],
+    "meals": [
+      {
+        "label": "Lunch",
+        "text": "Eat in Half Moon Bay or before aquarium entry; do not let lunch slide past mid-afternoon.",
+        "links": [
+          [
+            "Restaurant search",
+            "https://www.google.com/maps/search/?api=1&query=restaurants%20Half%20Moon%20Bay%20CA"
+          ]
+        ]
+      },
+      {
+        "label": "Dinner",
+        "text": "Keep dinner near the hotel after check-in to avoid driving again.",
+        "links": [
+          [
+            "Nearby dinner search",
+            "https://www.google.com/maps/search/?api=1&query=restaurants%20near%20Monterey%20CA%20hotel"
+          ]
+        ]
+      }
+    ],
+    "tickets": [
+      {
+        "label": "Aquarium",
+        "text": "Buy official admission before travel if this is an A stop.",
+        "links": [
+          [
+            "Official tickets",
+            "https://www.montereybayaquarium.org/visit/admission-tickets"
+          ]
+        ]
+      }
+    ],
+    "cutRules": [
+      "If rental pickup or traffic is slow, cut Half Moon Bay and go straight to Monterey lunch/aquarium.",
+      "If body battery drops inside the aquarium, keep the big window/kelp forest and skip completionist exhibits."
+    ],
+    "parking": {
+      "label": "Aquarium parking",
+      "text": "Use public Cannery Row/nearby paid parking and expect slow arrival friction.",
+      "links": [
+        [
+          "Parking search",
+          "https://www.google.com/maps/search/?api=1&query=parking%20near%20Monterey%20Bay%20Aquarium"
+        ]
+      ]
+    },
+    "medicalBackup": [
+      {
+        "label": "Regional backup",
+        "text": "Use Monterey-area urgent care/hospital search only as logistics, not medical advice.",
+        "links": [
+          [
+            "Medical backup search",
+            "https://www.google.com/maps/search/?api=1&query=urgent%20care%20Monterey%20CA"
+          ]
+        ]
+      }
+    ],
+    "sourceProvenance": [
+      {
+        "type": "weather",
+        "label": "2026-06-15 forecast placeholder",
+        "url": "https://www.weather.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-15",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "road",
+        "label": "Caltrans QuickMap road conditions",
+        "url": "https://quickmap.dot.ca.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-15",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "ticket",
+        "label": "Official ticket or venue action",
+        "url": "https://www.montereybayaquarium.org/visit/admission-tickets",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-15",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "restaurant",
+        "label": "Meal/rest search corridor",
+        "url": "https://www.google.com/maps/search/?api=1&query=restaurants%20Half%20Moon%20Bay%20CA",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-15",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "image",
+        "label": "Wikimedia Commons visual references",
+        "url": "https://commons.wikimedia.org/wiki/File:Monterey_Bay_Aquarium,_California,_USA_(2).jpg",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-15",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      }
+    ]
+  },
+  {
+    "id": "day-2",
+    "title": "Day 2 | 2026-06-16 | Monterey → Big Sur → San Luis Obispo",
+    "date": "2026-06-16",
+    "color": "#8f6a37",
+    "strategy": "Make Big Sur the one real objective, with short coastal stops and lunch before services get sparse.",
+    "mainObjective": "Enjoy the Big Sur coast through short, high-reward stops without a late arrival.",
+    "coverImage": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg",
+    "weather": {
+      "summary": [
+        "Monterey/Big Sur 14-22°C, coastal wind possible",
+        "San Luis Obispo warmer inland by late afternoon"
+      ],
+      "checkedAt": "2026-07-05",
+      "source": "National Weather Service fixture source",
+      "appliesToDate": "2026-06-16",
+      "note": "Golden fixture source pointer; refresh for real travel dates."
+    },
+    "drive": {
+      "summary": "About 4.5-5.5 hr / 230 mi with scenic slowdowns",
+      "difficulty": "Medium-high",
+      "note": "Main fatigue sources: CA-1 curves, parking pullouts, sparse services, and temptation to chase late-day camera spots. Keep driving in daylight.",
+      "fatigueSources": [
+        "coastal curves",
+        "parking pullouts",
+        "sparse services",
+        "late driving risk"
+      ]
+    },
+    "stops": [
+      {
+        "name": "Monterey Fixed Hotel Area",
+        "lat": 36.6002,
+        "lng": -121.8947,
+        "address": "Monterey, CA",
+        "priority": "A start",
+        "tag": "overnight anchor",
+        "why": "Start after breakfast from the fixed hotel rather than adding a morning detour.",
+        "history": "Monterey is the north-side recovery base for this Big Sur day.",
+        "tip": "Pack water/snacks before leaving; services thin out south of Carmel.",
+        "imageQuery": "Monterey CA hotel exterior public photo",
+        "imageNote": "Fill from the exact public hotel page when supplied."
+      },
+      {
+        "name": "Bixby Creek Bridge",
+        "lat": 36.3714,
+        "lng": -121.9018,
+        "address": "Bixby Creek Bridge, CA-1, Big Sur, CA",
+        "priority": "A keep",
+        "tag": "classic photo",
+        "why": "The clearest high-reward Big Sur frame: bridge, canyon, and ocean with a short stop.",
+        "history": "The bridge is one of the most recognizable Highway 1 landmarks.",
+        "tip": "Stop only if parking feels calm; do not wait across traffic or force a risky pullout.",
+        "imageQuery": "Bixby Creek Bridge classic photo spots roadside viewpoint",
+        "images": [
+          {
+            "src": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg",
+            "alt": "Bixby Creek Bridge with canyon and ocean",
+            "title": "Classic Bridge Frame",
+            "caption": "The easy high-reward angle; a quick photo is enough for comfort-first pacing.",
+            "credit": "Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg"
+          },
+          {
+            "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Bixby%20Bridge%20por%20Gustavo%20Gerdel.jpg?width=960",
+            "alt": "Bixby Bridge in blue-hour light",
+            "title": "Blue-Hour Reference",
+            "caption": "A famous moody look, but optional; avoid recreating it if it means late driving.",
+            "credit": "Gustavo Gerdel / Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Bixby_Bridge_por_Gustavo_Gerdel.jpg"
+          }
+        ],
+        "links": [
+          [
+            "Visual reference",
+            "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg"
+          ]
+        ]
+      },
+      {
+        "name": "Big Sur Lunch / Rest Stop",
+        "lat": 36.2704,
+        "lng": -121.8081,
+        "address": "Big Sur, CA",
+        "priority": "A rest",
+        "tag": "meal valve",
+        "why": "Lunch is infrastructure today; eating before the remote stretch makes the scenic drive feel humane.",
+        "history": "Big Sur services are clustered and can be crowded, so flexibility matters.",
+        "tip": "If waits are long, switch to a simple cafe/market stop and keep moving.",
+        "imageQuery": "Big Sur cafe lunch stop public photo",
+        "imageNote": "Use an official restaurant page or visual reference link for a real plan."
+      },
+      {
+        "name": "Morro Rock Viewpoint",
+        "lat": 35.3658,
+        "lng": -120.8675,
+        "address": "Morro Rock, Morro Bay, CA",
+        "priority": "B optional",
+        "tag": "low-walk view",
+        "why": "A car-adjacent coastal landmark that works as a final stretch break if the day is on time.",
+        "history": "Morro Rock is a volcanic plug at the entrance to Morro Bay harbor.",
+        "tip": "Skip freely if Big Sur took longer than expected; it does not break the day.",
+        "imageQuery": "Morro Rock easy viewpoint photo",
+        "images": [
+          {
+            "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Morro%20Rock%201.jpg?width=960",
+            "alt": "Morro Rock from Morro Bay",
+            "title": "Easy Landmark View",
+            "caption": "Good leg-stretch visual if arrival timing is still comfortable.",
+            "credit": "Kjkolb / Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Morro_Rock_1.jpg"
+          }
+        ]
+      },
+      {
+        "name": "San Luis Obispo Fixed Hotel Area",
+        "lat": 35.2828,
+        "lng": -120.6596,
+        "address": "San Luis Obispo, CA",
+        "priority": "A rest",
+        "tag": "overnight",
+        "why": "A practical overnight recovery point after the coast road.",
+        "history": "This fixture uses city-level hotel anchoring to avoid private booking details.",
+        "tip": "Check in before dinner and keep the evening walk optional.",
+        "imageQuery": "San Luis Obispo hotel exterior public photo",
+        "imageNote": "Fill from exact public hotel sources when the user provides the hotel."
+      }
+    ],
+    "meals": [
+      {
+        "label": "Lunch",
+        "text": "Eat in Big Sur before the lower-service stretch; use reservations or a backup market plan.",
+        "links": [
+          [
+            "Lunch search",
+            "https://www.google.com/maps/search/?api=1&query=lunch%20Big%20Sur%20CA"
+          ]
+        ]
+      },
+      {
+        "label": "Dinner",
+        "text": "Dinner should be near the San Luis Obispo hotel after check-in.",
+        "links": [
+          [
+            "Dinner search",
+            "https://www.google.com/maps/search/?api=1&query=restaurants%20San%20Luis%20Obispo%20CA"
+          ]
+        ]
+      }
+    ],
+    "tickets": [
+      {
+        "label": "No timed ticket anchor",
+        "text": "Verify state park/day-use or venue pages only if adding a formal park stop.",
+        "links": [
+          [
+            "California State Parks",
+            "https://www.parks.ca.gov/"
+          ]
+        ]
+      }
+    ],
+    "cutRules": [
+      "If coastal parking is stressful, keep Bixby as a drive-by visual and preserve lunch/rest timing.",
+      "If arrival is slipping, cut Morro Rock first and go straight to the San Luis Obispo hotel."
+    ],
+    "parking": {
+      "label": "Scenic pullouts",
+      "text": "Use only legal, calm pullouts; no photo is worth a tense shoulder stop."
+    },
+    "medicalBackup": [
+      {
+        "label": "Regional backup",
+        "text": "Use Monterey/Salinas before Big Sur or San Luis Obispo after the coast as practical regions.",
+        "links": [
+          [
+            "Medical backup search",
+            "https://www.google.com/maps/search/?api=1&query=urgent%20care%20San%20Luis%20Obispo%20CA"
+          ]
+        ]
+      }
+    ],
+    "sourceProvenance": [
+      {
+        "type": "weather",
+        "label": "2026-06-16 forecast placeholder",
+        "url": "https://www.weather.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-16",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "road",
+        "label": "Caltrans QuickMap road conditions",
+        "url": "https://quickmap.dot.ca.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-16",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "ticket",
+        "label": "Official ticket or venue action",
+        "url": "https://www.parks.ca.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-16",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "restaurant",
+        "label": "Meal/rest search corridor",
+        "url": "https://www.google.com/maps/search/?api=1&query=lunch%20Big%20Sur%20CA",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-16",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "image",
+        "label": "Wikimedia Commons visual references",
+        "url": "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-16",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      }
+    ]
+  },
+  {
+    "id": "day-3",
+    "title": "Day 3 | 2026-06-17 | San Luis Obispo → Santa Barbara → Los Angeles",
+    "date": "2026-06-17",
+    "color": "#9b4f42",
+    "strategy": "Use Santa Barbara as the one pleasant stop, then finish the rental-car return before evening traffic fatigue stacks up.",
+    "mainObjective": "A comfortable Santa Barbara waterfront break before finishing in Los Angeles.",
+    "coverImage": "https://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Barbara%20Waterfront%20(9098178072).jpg?width=960",
+    "weather": {
+      "summary": [
+        "San Luis Obispo/Santa Barbara 17-25°C",
+        "Los Angeles warmer with afternoon traffic risk"
+      ],
+      "checkedAt": "2026-07-05",
+      "source": "National Weather Service fixture source",
+      "appliesToDate": "2026-06-17",
+      "note": "Golden fixture source pointer; refresh for real travel dates."
+    },
+    "drive": {
+      "summary": "About 3.5-4.5 hr / 210 mi before LA traffic variation",
+      "difficulty": "Medium",
+      "note": "Main fatigue sources: LA approach traffic and temptation to add one more beach. Avoid night driving by leaving Santa Barbara on time.",
+      "fatigueSources": [
+        "LA approach traffic",
+        "late beach detours",
+        "return logistics"
+      ]
+    },
+    "stops": [
+      {
+        "name": "San Luis Obispo Fixed Hotel Area",
+        "lat": 35.2828,
+        "lng": -120.6596,
+        "address": "San Luis Obispo, CA",
+        "priority": "A start",
+        "tag": "overnight anchor",
+        "why": "Start from the fixed hotel and keep the morning simple.",
+        "history": "San Luis Obispo is a practical central coast overnight base.",
+        "tip": "Leave after breakfast but before the day drifts; pack water before US-101.",
+        "imageQuery": "San Luis Obispo hotel exterior public photo",
+        "imageNote": "Fill from exact public hotel sources when the user provides the hotel."
+      },
+      {
+        "name": "Morro Bay Coffee View",
+        "lat": 35.3658,
+        "lng": -120.8675,
+        "address": "Morro Bay, CA",
+        "priority": "C skip freely",
+        "tag": "bonus view",
+        "why": "Nice if everyone wakes up well, but redundant if Day 2 already included Morro Rock.",
+        "history": "Morro Bay is a classic central coast harbor stop.",
+        "tip": "Skip without regret if the goal is a calmer Santa Barbara break.",
+        "imageQuery": "Morro Bay coffee waterfront photo",
+        "imageNote": "Optional visual reference only; do not add if it creates backtracking."
+      },
+      {
+        "name": "Santa Barbara Waterfront",
+        "lat": 34.4105,
+        "lng": -119.6914,
+        "address": "Stearns Wharf, Santa Barbara, CA",
+        "priority": "A keep",
+        "tag": "low-walk coast break",
+        "why": "A scenic, food-adjacent, low-effort stop that gives the day a real reward before LA.",
+        "history": "Stearns Wharf and the waterfront are long-running Santa Barbara coastal landmarks.",
+        "tip": "Keep the walk flat and short; skip any extra beach if heat, parking, or timing feels off.",
+        "imageQuery": "Santa Barbara waterfront Stearns Wharf easy viewpoint photos",
+        "images": [
+          {
+            "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Barbara%20Waterfront%20(9098178072).jpg?width=960",
+            "alt": "Santa Barbara waterfront and palm-lined coast",
+            "title": "Waterfront Arrival Frame",
+            "caption": "The main low-effort visual payoff: coast, palms, and food nearby.",
+            "credit": "Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Santa_Barbara_Waterfront_(9098178072).jpg"
+          },
+          {
+            "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Beach%20Santa%20Barbara%20CA.JPG?width=960",
+            "alt": "Santa Barbara beach view",
+            "title": "Beach Reference",
+            "caption": "Optional if parking and heat are gentle; keep it short before the LA drive.",
+            "credit": "Wikimedia Commons",
+            "link": "https://commons.wikimedia.org/wiki/File:Beach_Santa_Barbara_CA.JPG"
+          }
+        ],
+        "links": [
+          [
+            "Visual reference",
+            "https://commons.wikimedia.org/wiki/File:Santa_Barbara_Waterfront_(9098178072).jpg"
+          ]
+        ]
+      },
+      {
+        "name": "Los Angeles Rental-Car Return",
+        "lat": 33.9416,
+        "lng": -118.4085,
+        "address": "Los Angeles International Airport, Los Angeles, CA",
+        "priority": "A finish",
+        "tag": "fixed final anchor",
+        "why": "The route is only successful if the final logistics stay calm.",
+        "history": "LAX is a common public endpoint for a California coast rental return.",
+        "tip": "Leave a buffer for fuel, traffic, luggage, and terminal transfer; do not add late beach stops.",
+        "imageQuery": "LAX rental car return public photo",
+        "imageNote": "Fill only with public airport/rental-car visuals, not private booking details."
+      }
+    ],
+    "meals": [
+      {
+        "label": "Lunch",
+        "text": "Eat in Santa Barbara while parked; avoid pushing lunch into LA traffic.",
+        "links": [
+          [
+            "Lunch search",
+            "https://www.google.com/maps/search/?api=1&query=lunch%20near%20Stearns%20Wharf%20Santa%20Barbara"
+          ]
+        ]
+      },
+      {
+        "label": "Snack",
+        "text": "Keep water/snacks in the car before the LA approach.",
+        "links": [
+          [
+            "Grocery search",
+            "https://www.google.com/maps/search/?api=1&query=grocery%20near%20Santa%20Barbara%20waterfront"
+          ]
+        ]
+      }
+    ],
+    "tickets": [
+      {
+        "label": "No ticketed anchor",
+        "text": "Santa Barbara waterfront is flexible; verify only parking or restaurant hours.",
+        "links": [
+          [
+            "Waterfront info search",
+            "https://www.google.com/maps/search/?api=1&query=Santa%20Barbara%20waterfront%20visitor%20information"
+          ]
+        ]
+      }
+    ],
+    "cutRules": [
+      "If traffic forecasts look heavy, cut Morro Bay Coffee View and shorten Santa Barbara.",
+      "If body battery drops, keep only lunch plus one waterfront photo and drive to the rental return."
+    ],
+    "parking": {
+      "label": "Waterfront parking",
+      "text": "Choose a simple paid waterfront/wharf parking option; do not circle for a perfect space.",
+      "links": [
+        [
+          "Parking search",
+          "https://www.google.com/maps/search/?api=1&query=parking%20Stearns%20Wharf%20Santa%20Barbara"
+        ]
+      ]
+    },
+    "medicalBackup": [
+      {
+        "label": "Regional backup",
+        "text": "Santa Barbara and Los Angeles have better backup options than remote highway stretches.",
+        "links": [
+          [
+            "Medical backup search",
+            "https://www.google.com/maps/search/?api=1&query=urgent%20care%20Santa%20Barbara%20CA"
+          ]
+        ]
+      }
+    ],
+    "sourceProvenance": [
+      {
+        "type": "weather",
+        "label": "2026-06-17 forecast placeholder",
+        "url": "https://www.weather.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-17",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "road",
+        "label": "Caltrans QuickMap road conditions",
+        "url": "https://quickmap.dot.ca.gov/",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-17",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "ticket",
+        "label": "Official ticket or venue action",
+        "url": "https://www.google.com/maps/search/?api=1&query=Santa%20Barbara%20waterfront%20visitor%20information",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-17",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "restaurant",
+        "label": "Meal/rest search corridor",
+        "url": "https://www.google.com/maps/search/?api=1&query=lunch%20near%20Stearns%20Wharf%20Santa%20Barbara",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-17",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      },
+      {
+        "type": "image",
+        "label": "Wikimedia Commons visual references",
+        "url": "https://commons.wikimedia.org/wiki/File:Santa_Barbara_Waterfront_(9098178072).jpg",
+        "checkedAt": "2026-07-05",
+        "appliesToDate": "2026-06-17",
+        "note": "Golden fixture source pointer; refresh for real travel dates."
+      }
+    ]
+  }
+];
+
+document.getElementById("tripTitle").textContent = tripMeta.title;
+document.getElementById("tripIntro").textContent = tripMeta.intro;
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+const MAP_SOURCE = "comfortable-roadtrip-planner";
+const BAIDU_SOURCE = "webapp.comfortableRoadtripPlanner.trip";
+
+function stopQuery(stop) {
+  return stop?.address || stop?.name || "Road trip stop";
+}
+
+function stopTitle(stop) {
+  return stop?.name || stop?.address || "Road trip stop";
+}
+
+function hasCoordinates(stop) {
+  return Number.isFinite(Number(stop?.lat)) && Number.isFinite(Number(stop?.lng));
+}
+
+function routePoint(stop) {
+  return hasCoordinates(stop) ? `${stop.lat},${stop.lng}` : stopQuery(stop);
+}
+
+function appleMapsUrl(query) {
+  return `https://maps.apple.com/?q=${encodeURIComponent(query)}`;
+}
+
+function appleMapsPointUrl(stop) {
+  const params = new URLSearchParams({ q: stopTitle(stop) });
+  if (hasCoordinates(stop)) params.set("ll", `${stop.lat},${stop.lng}`);
+  return `https://maps.apple.com/?${params}`;
+}
+
+function appleMapsRouteUrl(stops) {
+  if (stops.length < 2) return appleMapsPointUrl(stops[0]);
+  const params = new URLSearchParams({
+    saddr: routePoint(stops[0]),
+    daddr: routePoint(stops[stops.length - 1]),
+    dirflg: "d"
+  });
+  return `https://maps.apple.com/?${params}`;
+}
+
+function googleMapsPointUrl(stop) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(routePoint(stop))}`;
+}
+
+function googleMapsUrl(stops) {
+  if (stops.length < 2) return googleMapsPointUrl(stops[0]);
+  const params = new URLSearchParams({
+    api: "1",
+    origin: routePoint(stops[0]),
+    destination: routePoint(stops[stops.length - 1]),
+    travelmode: "driving"
+  });
+  const waypoints = stops.slice(1, -1).map(routePoint).join("|");
+  if (waypoints) params.set("waypoints", waypoints);
+  return `https://www.google.com/maps/dir/?${params}`;
+}
+
+function amapPointValue(stop) {
+  return `${stop.lng},${stop.lat},${stopTitle(stop)}`;
+}
+
+function amapPointUrl(stop) {
+  if (!hasCoordinates(stop)) {
+    const params = new URLSearchParams({ keyword: stopQuery(stop), src: MAP_SOURCE, callnative: "1" });
+    return `https://uri.amap.com/search?${params}`;
+  }
+  const params = new URLSearchParams({
+    position: `${stop.lng},${stop.lat}`,
+    name: stopTitle(stop),
+    coordinate: "wgs84",
+    src: MAP_SOURCE,
+    callnative: "1"
+  });
+  return `https://uri.amap.com/marker?${params}`;
+}
+
+function amapRouteUrl(stops) {
+  if (stops.length < 2 || !hasCoordinates(stops[0]) || !hasCoordinates(stops[stops.length - 1])) {
+    return amapPointUrl(stops[stops.length - 1] || stops[0]);
+  }
+  const params = new URLSearchParams({
+    from: amapPointValue(stops[0]),
+    to: amapPointValue(stops[stops.length - 1]),
+    mode: "car",
+    policy: "0",
+    src: MAP_SOURCE,
+    callnative: "1"
+  });
+  const via = stops.slice(1, -1).find(hasCoordinates);
+  if (via) params.set("via", amapPointValue(via));
+  return `https://uri.amap.com/navigation?${params}`;
+}
+
+function baiduPointUrl(stop) {
+  if (!hasCoordinates(stop)) {
+    const params = new URLSearchParams({
+      address: stopQuery(stop),
+      output: "html",
+      src: BAIDU_SOURCE
+    });
+    return `http://api.map.baidu.com/geocoder?${params}`;
+  }
+  const params = new URLSearchParams({
+    location: `${stop.lat},${stop.lng}`,
+    title: stopTitle(stop),
+    content: stopQuery(stop),
+    coord_type: "wgs84",
+    output: "html",
+    src: BAIDU_SOURCE
+  });
+  return `http://api.map.baidu.com/marker?${params}`;
+}
+
+function baiduRoutePoint(stop) {
+  return hasCoordinates(stop) ? `latlng:${stop.lat},${stop.lng}|name:${stopTitle(stop)}` : stopQuery(stop);
+}
+
+function baiduRouteUrl(stops) {
+  if (stops.length < 2) return baiduPointUrl(stops[0]);
+  const params = new URLSearchParams({
+    origin: baiduRoutePoint(stops[0]),
+    destination: baiduRoutePoint(stops[stops.length - 1]),
+    mode: "driving",
+    coord_type: "wgs84",
+    output: "html",
+    src: BAIDU_SOURCE
+  });
+  return `http://api.map.baidu.com/direction?${params}`;
+}
+
+function mapLinksForStop(stop) {
+  return [
+    ["Apple Maps", "Best default on iPhone, iPad, and CarPlay.", appleMapsPointUrl(stop)],
+    ["Google Maps", "Good cross-platform search and international coverage.", googleMapsPointUrl(stop)],
+    ["Amap / 高德地图", "Useful for China-friendly phones and Chinese map habits.", amapPointUrl(stop)],
+    ["Baidu Maps / 百度地图", "Useful for mainland China routing and POI lookup.", baiduPointUrl(stop)]
+  ];
+}
+
+function mapLinksForRoute(stops) {
+  return [
+    ["Google Maps", "Full day route with visible waypoint order.", googleMapsUrl(stops)],
+    ["Apple Maps", "First-to-last drive link; use leg links below for every stop.", appleMapsRouteUrl(stops)],
+    ["Amap / 高德地图", "First-to-last route with up to one via point; legs below are safer for many stops.", amapRouteUrl(stops)],
+    ["Baidu Maps / 百度地图", "First-to-last route; use leg links below for multi-stop days.", baiduRouteUrl(stops)]
+  ];
+}
+
+function mapLinksForLeg(stops) {
+  return [
+    ["Apple Maps", "Open this driving segment.", appleMapsRouteUrl(stops)],
+    ["Google Maps", "Open this driving segment.", googleMapsUrl(stops)],
+    ["Amap / 高德地图", "Open this driving segment.", amapRouteUrl(stops)],
+    ["Baidu Maps / 百度地图", "Open this driving segment.", baiduRouteUrl(stops)]
+  ];
+}
+
+function routeLegs(stops) {
+  return stops.slice(0, -1).map((from, index) => ({
+    title: `${index + 1}. ${stopTitle(from)} → ${stopTitle(stops[index + 1])}`,
+    stops: [from, stops[index + 1]]
+  }));
+}
+
+function isGeneratedMapLink(label, href = "") {
+  return /apple|google|map|maps|route|directions|导航|地图|高德|百度/i.test(label || "") ||
+    /maps\.apple|google\.com\/maps|uri\.amap|api\.map\.baidu/i.test(href || "");
+}
+
+function priorityParts(priority) {
+  const text = String(priority || "").trim();
+  const match = text.match(/^([abc])\b\s*(.*)$/i);
+  if (!match) return { letter: "", label: text };
+  return { letter: match[1].toUpperCase(), label: match[2].trim() };
+}
+
+function renderPriorityBadge(priority, extraClass = "") {
+  const { letter, label } = priorityParts(priority);
+  if (!letter && !label) return "";
+  const classes = `priority-pill${extraClass ? ` ${extraClass}` : ""}`;
+  return `
+    <span class="${classes}">
+      ${letter ? `<span class="priority-letter">${escapeHtml(letter)}</span>` : ""}
+      ${label ? `<span class="priority-text">${escapeHtml(label)}</span>` : ""}
+    </span>
+  `;
+}
+
+function slug(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "trip";
+}
+
+function icsDate(date, offsetDays = 0) {
+  const parsed = new Date(`${date}T00:00:00`);
+  parsed.setDate(parsed.getDate() + offsetDays);
+  return parsed.toISOString().slice(0, 10).replace(/-/g, "");
+}
+
+function icsEscape(value) {
+  return String(value ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,")
+    .replace(/\r?\n/g, "\\n");
+}
+
+function asArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
+function weatherItems(weather) {
+  if (Array.isArray(weather)) return weather;
+  if (!weather) return [];
+  if (Array.isArray(weather.summary)) return weather.summary;
+  if (weather.summary) return [weather.summary];
+  return [];
+}
+
+function weatherProvenance(weather) {
+  if (!weather || Array.isArray(weather)) return "";
+  return [weather.source, weather.checkedAt ? `checked ${weather.checkedAt}` : "", weather.appliesToDate ? `for ${weather.appliesToDate}` : ""]
+    .filter(Boolean)
+    .join(" · ");
+}
+
+function renderLinksInline(links = []) {
+  if (!links.length) return "";
+  return ` ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`).join(" ")}`;
+}
+
+function renderListSection(title, items, formatter) {
+  if (!items?.length) return "";
+  return `
+    <aside class="day-extra">
+      <h3>${escapeHtml(title)}</h3>
+      <ul>
+        ${items.map(item => `<li>${formatter(item)}</li>`).join("")}
+      </ul>
+    </aside>
+  `;
+}
+
+function renderDayExtras(day) {
+  const ticketSection = renderListSection("Tickets and Timed Stops", asArray(day.tickets), item => {
+    return `<strong>${escapeHtml(item.label || "Ticket")}:</strong> ${escapeHtml(item.text || item.note || "")}${renderLinksInline(item.links)}`;
+  });
+  const cutSection = renderListSection("Cut Rules", asArray(day.cutRules), item => escapeHtml(item));
+  const medicalSection = renderListSection("Backup Logistics", asArray(day.medicalBackup), item => {
+    return `<strong>${escapeHtml(item.label || "Backup")}:</strong> ${escapeHtml(item.text || "")}${renderLinksInline(item.links)}`;
+  });
+  const sourceSection = renderListSection("Checked Sources", asArray(day.sourceProvenance), item => {
+    const meta = [item.type, item.checkedAt, item.appliesToDate].filter(Boolean).join(" · ");
+    return `<strong>${escapeHtml(item.label || "Source")}:</strong> ${escapeHtml(meta)}${item.url ? ` <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">source</a>` : ""}`;
+  });
+  const parkingSection = day.parking ? `
+    <aside class="day-extra">
+      <h3>Parking and Arrival</h3>
+      <p class="stop-copy">${escapeHtml(typeof day.parking === "string" ? day.parking : day.parking.text || "")}${typeof day.parking === "object" ? renderLinksInline(day.parking.links) : ""}</p>
+    </aside>
+  ` : "";
+  return [ticketSection, cutSection, parkingSection, medicalSection, sourceSection].join("");
+}
+
+function dayDescription(day) {
+  const stopLines = day.stops.map((stop, index) => {
+    const nav = mapLinksForStop(stop).map(([label, , href]) => `${label}: ${href}`).join(" | ");
+    return `${index + 1}. ${stop.priority || ""} ${stop.name}: ${stop.why || ""}\nMaps: ${nav}`;
+  });
+  const mealLines = (day.meals || []).map(meal => `${meal.label}: ${meal.text}`);
+  const ticketLines = (day.tickets || []).map(ticket => `Ticket: ${ticket.label}: ${ticket.text}`);
+  const cutLines = (day.cutRules || []).map(rule => `Cut rule: ${rule}`);
+  const routeLines = mapLinksForRoute(day.stops).map(([label, , href]) => `Route ${label}: ${href}`);
+  return [
+    day.strategy,
+    `Drive: ${day.drive?.summary || ""} | ${day.drive?.difficulty || ""}`,
+    `Weather: ${weatherItems(day.weather).join(" / ")}${weatherProvenance(day.weather) ? ` (${weatherProvenance(day.weather)})` : ""}`,
+    ...mealLines,
+    ...ticketLines,
+    ...cutLines,
+    ...stopLines,
+    ...routeLines
+  ].filter(Boolean).join("\n");
+}
+
+function makeIcs(days) {
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const events = days.map(day => [
+    "BEGIN:VEVENT",
+    `UID:${day.id}-${day.date}@comfortable-roadtrip-planner`,
+    `DTSTAMP:${stamp}`,
+    `SUMMARY:${icsEscape(day.title)}`,
+    `DTSTART;VALUE=DATE:${icsDate(day.date)}`,
+    `DTEND;VALUE=DATE:${icsDate(day.date, 1)}`,
+    `LOCATION:${icsEscape((day.stops[day.stops.length - 1] || {}).address || day.title)}`,
+    `DESCRIPTION:${icsEscape(dayDescription(day))}`,
+    `URL:${googleMapsUrl(day.stops)}`,
+    "END:VEVENT"
+  ].join("\r\n")).join("\r\n");
+  return `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Comfortable Roadtrip Planner//EN\r\nCALSCALE:GREGORIAN\r\n${events}\r\nEND:VCALENDAR\r\n`;
+}
+
+function downloadIcs(days, filename) {
+  const blob = new Blob([makeIcs(days)], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function renderLinks(links, dayId, stopIndex) {
+  const externalLinks = (links || []).filter(([label, href]) => !isGeneratedMapLink(label, href));
+  return `
+    <div class="stop-links">
+      <button type="button" data-map-stop="${escapeHtml(dayId)}:${stopIndex}">Choose Map App</button>
+      ${externalLinks.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`).join("")}
+    </div>
+  `;
+}
+
+function renderMealPlan(day) {
+  if (!day.meals?.length) return "";
+  return `
+    <aside class="meal-card">
+      <h3>Meals and Rest</h3>
+      <ul>
+        ${day.meals.map(meal => `
+          <li>
+            <strong>${escapeHtml(meal.label)}:</strong> ${escapeHtml(meal.text)}
+            ${meal.links?.length ? `<div class="meal-links">${meal.links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`).join("")}</div>` : ""}
+          </li>
+        `).join("")}
+      </ul>
+    </aside>
+  `;
+}
+
+function normalizeStopImages(stop) {
+  const rawImages = Array.isArray(stop.images) && stop.images.length ? stop.images : (
+    stop.image ? [{ src: stop.image, alt: stop.imageAlt, title: stop.imageTitle, caption: stop.imageCaption, credit: stop.imageCredit, link: stop.imageLink }] : []
+  );
+  return rawImages
+    .map((image, imageIndex) => {
+      if (typeof image === "string") {
+        return {
+          src: image,
+          alt: `${stop.name} photo ${imageIndex + 1}`,
+          title: imageIndex === 0 ? stop.name : `View ${imageIndex + 1}`,
+          caption: ""
+        };
+      }
+      return {
+        src: image?.src || image?.url || "",
+        alt: image?.alt || image?.imageAlt || `${stop.name} photo ${imageIndex + 1}`,
+        title: image?.title || image?.label || (imageIndex === 0 ? stop.name : `View ${imageIndex + 1}`),
+        caption: image?.caption || image?.tip || image?.note || "",
+        credit: image?.credit || image?.source || "",
+        link: image?.link || image?.sourceUrl || image?.href || image?.src || image?.url || ""
+      };
+    })
+    .filter(image => image.src);
+}
+
+function renderStopVisual(stop) {
+  const images = normalizeStopImages(stop);
+  if (!images.length) {
+    const query = stop.imageQuery || stop.visualQuery || `${stop.name} ${stop.address || ""} photo`.trim();
+    const note = stop.imageNote || "Add user-provided photos or ask the skill to search stable public/official image sources.";
+    return `
+      <div class="stop-visual stop-visual-empty" role="img" aria-label="No photo loaded for ${escapeHtml(stop.name)}">
+        <span>Photo to add</span>
+        <strong>${escapeHtml(stop.name)}</strong>
+        <p>${escapeHtml(note)}</p>
+        <p><strong>Search:</strong> ${escapeHtml(query)}</p>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="stop-visual">
+      <div class="stop-gallery" aria-label="${escapeHtml(stop.name)} photo gallery">
+        ${images.map((image, imageIndex) => `
+          <a class="stop-photo" href="${escapeHtml(image.link || image.src)}" target="_blank" rel="noopener">
+            <img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" loading="lazy">
+            <span class="stop-photo-count">${imageIndex + 1}/${images.length}</span>
+            <span class="stop-photo-copy">
+              <strong>${escapeHtml(image.title)}</strong>
+              ${image.caption ? `<span>${escapeHtml(image.caption)}</span>` : ""}
+              ${image.credit ? `<small>${escapeHtml(image.credit)}</small>` : ""}
+            </span>
+          </a>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderStop(stop, index, color, dayId) {
+  return `
+    <article class="stop">
+      ${renderStopVisual(stop)}
+      <div class="stop-body">
+        <div class="stop-topline">
+          <span class="stop-index" style="background:${escapeHtml(color)}">${index + 1}</span>
+          <h3>${escapeHtml(stop.name)}</h3>
+        </div>
+        ${renderPriorityBadge(stop.priority)}
+        ${stop.tag ? `<span class="stop-tag">${escapeHtml(stop.tag)}</span>` : ""}
+        <p class="stop-copy"><strong>Why:</strong> ${escapeHtml(stop.why || "A route stop chosen for timing and comfort.")}</p>
+        <p class="stop-copy"><strong>Background:</strong> ${escapeHtml(stop.history || "This stop is mainly included for route flow.")}</p>
+        <p class="stop-copy"><strong>Comfort note:</strong> ${escapeHtml(stop.tip || "Keep the stop short and skip if energy drops.")}</p>
+        ${renderLinks(stop.links, dayId, index)}
+      </div>
+    </article>
+  `;
+}
+
+function renderModal(day) {
+  const preview = day.stops.slice(0, 5).map(stop => `<span>${escapeHtml(stop.name)}</span>`).join("");
+  const cover = day.coverImage || normalizeStopImages(day.stops.find(stop => normalizeStopImages(stop).length) || {})[0]?.src || "";
+  return `
+    <div class="flip-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="--cover:url('${escapeHtml(cover)}')">
+      <section class="modal-face modal-front">
+        <div>
+          <p class="modal-kicker">${escapeHtml(day.date)}</p>
+          <h2>${escapeHtml(day.title)}</h2>
+          <p class="modal-front-note">${escapeHtml(day.strategy)}</p>
+          <div class="modal-route-preview">${preview}</div>
+        </div>
+        <div class="modal-front-footer">
+          <span>Tap to explore the back of the card</span>
+          <div class="modal-actions">
+            <a href="#" data-map-route="${escapeHtml(day.id)}">Choose Route App</a>
+            <a href="#" data-calendar-day="${escapeHtml(day.id)}">Add Calendar</a>
+          </div>
+        </div>
+      </section>
+      <section class="modal-face modal-back">
+        <div class="modal-back-header">
+          <div>
+            <p class="modal-kicker">${escapeHtml(day.date)}</p>
+            <h2 id="modal-title">${escapeHtml(day.title)}</h2>
+            <p>${escapeHtml(day.strategy)}</p>
+          </div>
+          <button class="modal-close" type="button" data-close-modal aria-label="Close">×</button>
+        </div>
+        <div class="modal-back-content">
+          ${renderMealPlan(day)}
+          ${renderDayExtras(day)}
+          <div class="stop-list">${day.stops.map((stop, index) => renderStop(stop, index, day.color, day.id)).join("")}</div>
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+const modal = document.getElementById("dayModal");
+const modalStage = document.getElementById("modalStage");
+const mapPanel = document.getElementById("mapPanel");
+const mapPanelTitle = document.getElementById("mapPanelTitle");
+const mapPanelIntro = document.getElementById("mapPanelIntro");
+const mapPanelBody = document.getElementById("mapPanelBody");
+let closeTimer = null;
+
+function renderMapChoiceGrid(links) {
+  return `
+    <div class="map-provider-grid">
+      ${links.map(([label, hint, href]) => `
+        <a class="map-choice" href="${escapeHtml(href)}" target="_blank" rel="noopener">
+          <strong>${escapeHtml(label)}</strong>
+          <span>${escapeHtml(hint)}</span>
+        </a>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderLegOptions(legs) {
+  if (!legs.length) return "";
+  return `
+    <section class="leg-list" aria-label="Leg-by-leg navigation">
+      ${legs.map(leg => `
+        <article class="leg-card">
+          <h3>${escapeHtml(leg.title)}</h3>
+          ${renderMapChoiceGrid(mapLinksForLeg(leg.stops))}
+        </article>
+      `).join("")}
+    </section>
+  `;
+}
+
+function openMapPanel({ title, intro, links, note = "", legs = [] }) {
+  mapPanelTitle.textContent = title;
+  mapPanelIntro.textContent = intro;
+  mapPanelBody.innerHTML = `
+    ${renderMapChoiceGrid(links)}
+    ${note ? `<p class="map-note">${escapeHtml(note)}</p>` : ""}
+    ${renderLegOptions(legs)}
+  `;
+  mapPanel.classList.add("is-open");
+  mapPanel.setAttribute("aria-hidden", "false");
+  mapPanel.querySelector("[data-close-map-panel]")?.focus();
+}
+
+function closeMapPanel() {
+  mapPanel.classList.remove("is-open");
+  mapPanel.setAttribute("aria-hidden", "true");
+  mapPanelBody.innerHTML = "";
+}
+
+function openStopMapPanel(dayId, stopIndex) {
+  const day = tripDays.find(item => item.id === dayId);
+  const stop = day?.stops?.[Number(stopIndex)];
+  if (!stop) return;
+  openMapPanel({
+    title: stopTitle(stop),
+    intro: stop.address || "Choose the map app that works best on this phone or browser.",
+    links: mapLinksForStop(stop),
+    note: "If Amap or Baidu looks offset outside mainland China, fall back to Apple Maps or Google Maps. For China trips, verify coordinates and names before travel."
+  });
+}
+
+function openRouteMapPanel(dayId) {
+  const day = tripDays.find(item => item.id === dayId);
+  if (!day) return;
+  openMapPanel({
+    title: `${day.title} Route`,
+    intro: "Pick a full-day route, or use the leg-by-leg links when a map app drops waypoints.",
+    links: mapLinksForRoute(day.stops),
+    note: "Google Maps supports the full waypoint order here. Apple Maps, Amap, and Baidu web URI behavior varies by device, so leg links are included for reliable stop-by-stop driving.",
+    legs: routeLegs(day.stops)
+  });
+}
+
+function openModal(day, cardIndex) {
+  window.clearTimeout(closeTimer);
+  modalStage.innerHTML = renderModal(day);
+  document.body.classList.add("modal-open");
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.querySelectorAll(".card").forEach((card, index) => card.classList.toggle("is-muted", index !== cardIndex));
+  requestAnimationFrame(() => window.setTimeout(() => modal.querySelector(".flip-card")?.classList.add("is-flipped"), 110));
+}
+
+function closeModal() {
+  modal.querySelector(".flip-card")?.classList.remove("is-flipped");
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.querySelectorAll(".card").forEach(card => card.classList.remove("is-muted"));
+  closeTimer = window.setTimeout(() => {
+    document.body.classList.remove("modal-open");
+    modalStage.innerHTML = "";
+  }, 300);
+}
+
+function renderCard(day, index) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.tabIndex = 0;
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", `Open details for ${day.title}`);
+  card.style.animationDelay = `${index * 80}ms`;
+  const mapId = `map-${day.id}`;
+  card.innerHTML = `
+    <header>
+      <h2>${escapeHtml(day.title)}</h2>
+      <p class="strategy">${escapeHtml(day.strategy)}</p>
+      <div class="brief">
+        <div>
+          <span class="brief-label">Weather</span>
+          <div class="brief-pills">${weatherItems(day.weather).map(item => `<span>${escapeHtml(item)}</span>`).join("")}</div>
+          ${weatherProvenance(day.weather) ? `<p class="brief-note">${escapeHtml(weatherProvenance(day.weather))}</p>` : ""}
+        </div>
+        <div>
+          <span class="brief-label">Drive</span>
+          <div class="brief-pills">
+            <span>${escapeHtml(day.drive?.summary || "Drive time TBD")}</span>
+            <span>${escapeHtml(day.drive?.difficulty || "Difficulty TBD")}</span>
+          </div>
+          ${day.drive?.note ? `<p class="brief-note">${escapeHtml(day.drive.note)}</p>` : ""}
+        </div>
+      </div>
+    </header>
+    <div id="${mapId}" class="map"></div>
+    <div class="meta">
+      <ol class="points">
+        ${day.stops.map((stop, stopIndex) => `
+          <li>
+            <a href="#" data-map-stop="${escapeHtml(day.id)}:${stopIndex}">
+              <span class="point-name">${escapeHtml(stop.name)}</span>
+              ${renderPriorityBadge(stop.priority, "point-priority")}
+            </a>
+          </li>
+        `).join("")}
+      </ol>
+      <div class="top-actions">
+        <a class="route-link" href="#" data-map-route="${escapeHtml(day.id)}">Choose Route App</a>
+        <a class="route-link" href="#" data-calendar-day="${escapeHtml(day.id)}">Add to Calendar</a>
+      </div>
+    </div>
+  `;
+  document.getElementById("cards").appendChild(card);
+  card.addEventListener("click", event => {
+    if (event.target.closest("a, button, .leaflet-control, .leaflet-popup")) return;
+    openModal(day, index);
+  });
+  card.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openModal(day, index);
+    }
+  });
+
+  const map = L.map(mapId, { scrollWheelZoom: false });
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
+  const latlngs = day.stops.map(stop => [stop.lat, stop.lng]);
+  L.polyline(latlngs, { color: day.color, weight: 4, opacity: .86 }).addTo(map);
+  day.stops.forEach((stop, stopIndex) => {
+    const icon = L.divIcon({
+      className: "",
+      html: `<div class="num-marker" style="background:${day.color}">${stopIndex + 1}</div>`,
+      iconSize: [26, 26],
+      iconAnchor: [13, 13]
+    });
+    L.marker([stop.lat, stop.lng], { icon })
+      .bindPopup(`<strong>${stopIndex + 1}. ${escapeHtml(stop.name)}</strong><br><a href="#" data-map-stop="${escapeHtml(day.id)}:${stopIndex}">Choose map app</a>`)
+      .addTo(map);
+  });
+  map.fitBounds(L.latLngBounds(latlngs), { padding: [24, 24] });
+}
+
+modal.addEventListener("click", event => {
+  if (event.target === modal || event.target.closest("[data-close-modal]")) closeModal();
+  const calendarTrigger = event.target.closest("[data-calendar-day]");
+  if (calendarTrigger) {
+    event.preventDefault();
+    const day = tripDays.find(item => item.id === calendarTrigger.dataset.calendarDay);
+    if (day) downloadIcs([day], `${slug(day.title)}.ics`);
+  }
+});
+
+mapPanel.addEventListener("click", event => {
+  if (event.target === mapPanel || event.target.closest("[data-close-map-panel]")) closeMapPanel();
+});
+
+document.addEventListener("click", event => {
+  const stopTrigger = event.target.closest("[data-map-stop]");
+  if (stopTrigger) {
+    event.preventDefault();
+    const [dayId, stopIndex] = stopTrigger.dataset.mapStop.split(":");
+    openStopMapPanel(dayId, stopIndex);
+    return;
+  }
+
+  const routeTrigger = event.target.closest("[data-map-route]");
+  if (routeTrigger) {
+    event.preventDefault();
+    openRouteMapPanel(routeTrigger.dataset.mapRoute);
+  }
+});
+
+document.addEventListener("click", event => {
+  const calendarTrigger = event.target.closest("[data-calendar-day]");
+  if (!calendarTrigger || modal.contains(calendarTrigger)) return;
+  event.preventDefault();
+  const day = tripDays.find(item => item.id === calendarTrigger.dataset.calendarDay);
+  if (day) downloadIcs([day], `${slug(day.title)}.ics`);
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key !== "Escape") return;
+  if (mapPanel.classList.contains("is-open")) {
+    closeMapPanel();
+    return;
+  }
+  if (modal.classList.contains("is-open")) closeModal();
+});
+
+document.getElementById("downloadAllCalendar").addEventListener("click", event => {
+  event.preventDefault();
+  downloadIcs(tripDays, `${slug(tripMeta.title)}.ics`);
+});
+
+tripDays.forEach(renderCard);
+</script>
+</body>
+</html>

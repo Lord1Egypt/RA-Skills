@@ -1,43 +1,58 @@
-## Description: <br>
-T54 provides guidance for using ClawCredit to register agents for credit, monitor qualification, and make x402 service payments through a credit line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+T54 provides ClawCredit guidance for registering agents, managing pre-qualification, and using a credit line to access x402 services without upfront cryptocurrency payment.
 
-## Publisher: <br>
-[Rizaldii09](https://clawhub.ai/user/Rizaldii09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rizaldii09](https://clawhub.ai/user/rizaldii09)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure ClawCredit SDK flows for x402 service access, credit qualification, repayments, and credential handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports broad private agent data collection and recurring uploads for credit evaluation. <br>
-Mitigation: Install only in a dedicated low-sensitivity workspace, review what the SDK uploads and retains, and avoid exposing secrets in prompts or transcripts. <br>
-Risk: The skill enables payment authority for x402 service calls through a credit line. <br>
-Mitigation: Set explicit spend limits and approval rules before paid calls, and verify repayment status before continued use. <br>
-Risk: The artifact describes heartbeat or cron-based monitoring behavior. <br>
-Mitigation: Disable or closely monitor scheduled entries and keep the saved API token private. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register for ClawCredit, configure agent context, check pre-qualification and repayment status, and pay x402 services through a credit line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Rizaldii09/firstt) <br>
-- [X402 partner services registry](https://www.claw.credit/X402_PARTNER_SERVICES_REGISTRY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational guidance for consent, credential storage, payment preflight checks, monitoring, and repayments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports broad recurring agent-context uploads, including transcripts, prompts, workspace Markdown, and trace context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where users have given explicit consent and where transcripts, prompts, workspace files, and trace data have been reviewed or redacted for secrets and confidential content.
+
+Risk: The security evidence reports local API-token storage and guidance warns against printing or manually copying tokens.
+
+Mitigation: Use the SDK-managed credential file, restrict file permissions, avoid logging tokens, and rotate or re-register credentials if exposure is suspected.
+
+Risk: The security evidence reports persistent background checks through heartbeat behavior and scheduled jobs.
+
+Mitigation: Review scheduled or heartbeat tasks before installation and disable or remove recurring checks when the operating environment does not support them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rizaldii09/skills/firstt)
+- [ClawCredit x402 partner services registry](https://www.claw.credit/X402_PARTNER_SERVICES_REGISTRY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes consent, credential handling, tracing, payment, heartbeat, repayment, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

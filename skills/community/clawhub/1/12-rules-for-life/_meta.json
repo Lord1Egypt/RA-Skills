@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "12-rules-for-life",
+  "name": "12-rules-for-life",
+  "title": "12 Rules for Life: An Antidote to Chaos",
+  "author": "Jordan B. Peterson",
   "version": "1.0.0",
-  "publishedAt": 1780925279431
+  "license": "MIT",
+  "tags": ["self-improvement", "philosophy", "psychology", "meaning", "peterson"],
+  "description": "Jordan B. Peterson's 12 Rules for Life — an executable toolkit for finding meaning, confronting chaos, and living responsibly using the 12 Rules framework.",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/12-rules-for-life",
+  "clawhub": {
+    "slug": "12-rules-for-life",
+    "owner": "jaysonmeng"
+  }
 }

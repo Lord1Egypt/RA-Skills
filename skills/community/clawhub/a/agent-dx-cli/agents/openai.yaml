@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent DX CLI"
+  short_description: "Evidence-based CLI design, review and refactoring"
+  default_prompt: "Use $agent-dx-cli to review and score this CLI, then implement authorized improvements with executable evidence."
+policy:
+  allow_implicit_invocation: false

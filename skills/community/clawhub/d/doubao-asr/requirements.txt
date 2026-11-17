@@ -1,0 +1,6 @@
+# Pinned so the dependency set cannot change after this skill is reviewed.
+# The audit flagged `pip install requests` as an unpinned third-party install:
+# requests runs in the same process as the transcriber and can therefore see the
+# audio, the environment and the network, so which build is installed matters.
+# Bump deliberately and re-run the smoke test; do not widen to a range.
+requests==2.34.2

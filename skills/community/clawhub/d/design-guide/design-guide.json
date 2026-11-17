@@ -1,0 +1,28 @@
+{
+  "name": "design-guide",
+  "version": "0.1.2",
+  "releaseDate": "2026-08-07",
+  "schemaVersion": 1,
+  "minimumPython": "3.10",
+  "supportedAides": [
+    "codex",
+    "claude",
+    "cursor",
+    "qwen"
+  ],
+  "requiredFiles": [
+    "SKILL.md",
+    "references/design-process.md",
+    "references/artifact-presentation.md",
+    "references/product-design-review.md",
+    "references/anti-ai-design-tells.md",
+    "references/internationalization.md",
+    "references/quality-gates.md",
+    "scripts/i18n.py",
+    "scripts/design-guide-doctor.py",
+    "scripts/smoke-aides.py",
+    "scripts/sync-aide.sh",
+    "locales/en.json",
+    "locales/zh-CN.json"
+  ]
+}

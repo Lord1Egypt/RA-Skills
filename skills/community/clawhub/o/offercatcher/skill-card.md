@@ -1,45 +1,58 @@
-## Description: <br>
-Turn recruiting emails into native Apple Reminders. AI-powered parsing extracts interview/assessment events and syncs to iPhone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OfferCatcher turns recruiting emails into native Apple Reminders by using AI-powered parsing to extract interviews, assessments, deadlines, and related events.
 
-## Publisher: <br>
-[nissoncx](https://clawhub.ai/user/nissoncx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissoncx](https://clawhub.ai/user/nissoncx)
 
-## Use Case: <br>
-Job seekers and recruiting workflow users use OfferCatcher to scan Apple Mail for interviews, assessments, deadlines, and related recruiting events, then create native Apple Reminders from parsed results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads recent Apple Mail content and passes it through the OpenClaw LLM workflow. <br>
-Mitigation: Configure a specific account and mailbox, limit the scan window and result count, and inspect scan output before applying events. <br>
-Risk: The Reminders bridge includes delete and clear-list operations that can remove reminders. <br>
-Mitigation: Use dry-run before applying events and do not expose delete or clear-list commands to unattended automation. <br>
-Risk: The artifact documents a curl-to-bash installation path. <br>
-Mitigation: Prefer the ClawHub install path or review the install script before running it. <br>
+## Use Case:
 
+Job seekers and OpenClaw users use this skill on macOS to scan recent recruiting email, extract interview, assessment, test, authorization, and deadline events, and create Apple Reminders that sync through iCloud.
 
-## Reference(s): <br>
-- [OfferCatcher ClawHub listing](https://clawhub.ai/nissoncx/offercatcher) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [OpenClaw](https://github.com/NissonCX/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON event data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return scanned email JSON for LLM parsing and can create or update Apple Reminders when parsed events are applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The documented one-line install path fetches and executes a remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install through ClawHub or a pinned, verified release, and review installation commands before execution.
+
+Risk: The skill needs Apple Mail access and can expose recruiting email subjects, senders, timestamps, and body snippets to the agent workflow.
+
+Mitigation: Use a dedicated recruiting mailbox or account where possible, keep days and max_results small, and confirm whether the configured LLM processing is local or remote before scanning sensitive email.
+
+Risk: Reminder-writing helpers can create, update, delete, or clear reminders when invoked with those commands.
+
+Mitigation: Use dry-run for event application checks, avoid clear-list unless deletion is intended, and keep state output paths on trusted user-owned storage.
+
+## Reference(s):
+
+- [ClawHub OfferCatcher Release Page](https://clawhub.ai/nissoncx/skills/offercatcher)
+- [OpenClaw Project](https://github.com/NissonCX/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON event payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan mode returns recent Apple Mail messages as JSON with body text truncated to 2000 characters; apply mode creates Apple Reminders and emits a JSON sync summary.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

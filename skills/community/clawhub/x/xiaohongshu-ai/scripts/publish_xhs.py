@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-小红书笔记发布脚本 - 增强版
+小红书图文/视频笔记发布脚本 - 增强版
 使用 xhs 库直接发布（本地签名）。
 """
 
@@ -72,6 +72,35 @@ def validate_images(image_paths: List[str]) -> List[str]:
     return valid_images
 
 
+def validate_video(video_path: str) -> str:
+    """验证本地 MP4 视频文件。"""
+    path = Path(video_path)
+    if not path.exists() or not path.is_file():
+        print(f"❌ 错误: 视频不存在或不是文件 - {video_path}")
+        sys.exit(1)
+    if path.suffix.lower() != ".mp4":
+        print(f"❌ 错误: 当前 xhs 发布接口仅支持 MP4 视频 - {video_path}")
+        sys.exit(1)
+    if path.stat().st_size == 0:
+        print(f"❌ 错误: 视频文件为空 - {video_path}")
+        sys.exit(1)
+    return str(path.resolve())
+
+
+def validate_cover(cover_path: Optional[str]) -> Optional[str]:
+    """验证可选的视频封面图片。"""
+    if not cover_path:
+        return None
+    path = Path(cover_path)
+    if not path.exists() or not path.is_file():
+        print(f"❌ 错误: 视频封面不存在或不是文件 - {cover_path}")
+        sys.exit(1)
+    if path.stat().st_size == 0:
+        print(f"❌ 错误: 视频封面文件为空 - {cover_path}")
+        sys.exit(1)
+    return str(path.resolve())
+
+
 def natural_sort_key(text: str):
     """用于对 card_1/card_2/... 做自然排序。"""
     return [int(tok) if tok.isdigit() else tok.lower() for tok in re.split(r"(\d+)", text)]
@@ -131,7 +160,7 @@ class LocalPublisher:
             from xhs.help import sign as local_sign
         except ImportError:
             print("❌ 错误: 缺少 xhs 库")
-            print("请运行: pip install xhs")
+            print('请运行: pip install "xhs>=0.2.13"')
             sys.exit(1)
 
         cookies = parse_cookie(self.cookie)
@@ -200,17 +229,84 @@ class LocalPublisher:
                 print("3. 确保 Cookie 来自已登录的小红书网页版")
             raise
 
+    def publish_video(
+        self,
+        title: str,
+        desc: str,
+        video_path: str,
+        cover_path: Optional[str] = None,
+        is_private: bool = False,
+        post_time: Optional[str] = None,
+        wait_time: int = 3,
+    ) -> Dict[str, Any]:
+        """发布视频笔记。"""
+        print("\n🚀 准备发布视频笔记（本地模式）...")
+        print(f"  📌 标题: {title}")
+        print(f"  📝 描述: {desc[:50]}..." if len(desc) > 50 else f"  📝 描述: {desc}")
+        print(f"  🎬 视频: {video_path}")
+        print(f"  🖼️ 封面: {cover_path or '自动使用视频第一帧'}")
+        print(f"  🔒 私密: {is_private}")
+
+        try:
+            create_video_note = getattr(self.client, "create_video_note", None)
+            if not callable(create_video_note):
+                raise RuntimeError('当前 xhs 库不支持视频发布，请运行: pip install "xhs>=0.2.13"')
+
+            with maybe_suppress_output(self.verbose):
+                result = create_video_note(
+                    title=title,
+                    video_path=video_path,
+                    desc=desc,
+                    cover_path=cover_path,
+                    is_private=is_private,
+                    post_time=post_time,
+                    wait_time=wait_time,
+                )
+
+            print("\n✨ 视频笔记发布成功！")
+            if isinstance(result, dict):
+                note_id = result.get("note_id") or result.get("id")
+                if note_id:
+                    print(f"  📎 笔记ID: {note_id}")
+                    print(f"  🔗 链接: https://www.xiaohongshu.com/explore/{note_id}")
+
+            return result
+        except Exception as exc:
+            error_msg = str(exc)
+            print(f"\n❌ 视频发布失败: {error_msg}")
+            if "sign" in error_msg.lower() or "signature" in error_msg.lower():
+                print("\n💡 签名错误排查建议：")
+                print("1. 确保 Cookie 包含有效的 a1 和 web_session 字段")
+                print("2. Cookie 可能已过期，请重新获取")
+            elif "cookie" in error_msg.lower():
+                print("\n💡 Cookie 错误排查建议：")
+                print("1. 确保 Cookie 格式正确")
+                print("2. Cookie 可能已过期，请重新获取")
+                print("3. 确保 Cookie 来自已登录的小红书网页版")
+            raise
+
 
 def main():
     parser = argparse.ArgumentParser(
-        description="将图片发布为小红书笔记",
+        description="将图片或 MP4 视频发布为小红书笔记",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--title", "-t", required=True, help="笔记标题（不超过20字）")
     parser.add_argument("--desc", "-d", default="", help="笔记描述/正文内容")
     parser.add_argument("--desc-file", default=None, help="从 UTF-8 文件读取笔记描述/正文")
-    parser.add_argument("--images", "-i", nargs="+", default=[], help="图片文件路径")
-    parser.add_argument("--images-glob", default=None, help="使用 glob 匹配图片，会按自然序排序")
+
+    content_group = parser.add_mutually_exclusive_group(required=True)
+    content_group.add_argument("--images", "-i", nargs="+", default=[], help="图文笔记的图片文件路径")
+    content_group.add_argument("--images-glob", default=None, help="使用 glob 匹配图片，会按自然序排序")
+    content_group.add_argument("--video", "-v", default=None, help="视频笔记的本地 MP4 文件路径")
+
+    parser.add_argument("--cover", default=None, help="视频封面图片；省略时自动使用视频第一帧")
+    parser.add_argument(
+        "--video-wait-time",
+        type=int,
+        default=3,
+        help="未指定封面时轮询视频第一帧的间隔秒数（默认：3）",
+    )
     parser.add_argument("--require-image-count", type=int, default=None, help="要求图片数量必须等于该值")
 
     visibility_group = parser.add_mutually_exclusive_group()
@@ -226,46 +322,68 @@ def main():
 
     args = parser.parse_args()
 
+    if args.cover and not args.video:
+        parser.error("--cover 只能与 --video 一起使用")
+    if args.video and args.require_image_count is not None:
+        parser.error("--require-image-count 不能用于视频笔记")
+    if args.video_wait_time < 1:
+        parser.error("--video-wait-time 必须大于等于 1")
+
     if len(args.title) > 20:
         print("⚠️ 警告: 标题超过20字，将被截断")
         args.title = args.title[:20]
 
-    cookie = load_cookie()
-    validate_cookie(cookie)
-
     desc = load_desc(args.desc, args.desc_file)
-    image_inputs = load_images(args.images, args.images_glob)
-    if not image_inputs:
-        print("❌ 错误: 必须提供图片（--images 或 --images-glob）")
-        sys.exit(1)
-
-    valid_images = validate_images(image_inputs)
-    if args.require_image_count is not None and len(valid_images) != args.require_image_count:
-        print(f"❌ 错误: 图片数量不符合要求：期望 {args.require_image_count}，实际 {len(valid_images)}")
-        sys.exit(1)
+    valid_video = validate_video(args.video) if args.video else None
+    valid_cover = validate_cover(args.cover)
+    valid_images: List[str] = []
+    if not valid_video:
+        image_inputs = load_images(args.images, args.images_glob)
+        valid_images = validate_images(image_inputs)
+        if args.require_image_count is not None and len(valid_images) != args.require_image_count:
+            print(f"❌ 错误: 图片数量不符合要求：期望 {args.require_image_count}，实际 {len(valid_images)}")
+            sys.exit(1)
 
     if args.dry_run:
         print("\n🔍 验证模式 - 不会实际发布")
         print(f"  📌 标题: {args.title}")
         print(f"  📝 描述: {desc}")
-        print(f"  🖼️ 图片: {valid_images}")
+        if valid_video:
+            print(f"  🎬 视频: {valid_video}")
+            print(f"  🖼️ 封面: {valid_cover or '自动使用视频第一帧'}")
+        else:
+            print(f"  🖼️ 图片: {valid_images}")
         print(f"  🔒 私密: {args.private}")
         print(f"  ⏰ 定时: {args.post_time or '立即发布'}")
         print("  📡 模式: 本地")
         print("\n✅ 验证通过，可以发布")
         return
 
+    cookie = load_cookie()
+    validate_cookie(cookie)
+
     publisher = LocalPublisher(cookie, verbose=args.verbose)
     publisher.init_client()
 
     try:
-        result = publisher.publish(
-            title=args.title,
-            desc=desc,
-            images=valid_images,
-            is_private=args.private,
-            post_time=args.post_time,
-        )
+        if valid_video:
+            result = publisher.publish_video(
+                title=args.title,
+                desc=desc,
+                video_path=valid_video,
+                cover_path=valid_cover,
+                is_private=args.private,
+                post_time=args.post_time,
+                wait_time=args.video_wait_time,
+            )
+        else:
+            result = publisher.publish(
+                title=args.title,
+                desc=desc,
+                images=valid_images,
+                is_private=args.private,
+                post_time=args.post_time,
+            )
         if args.debug_json:
             Path(args.debug_json).write_text(
                 json.dumps(result, ensure_ascii=False, indent=2),

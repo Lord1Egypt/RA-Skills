@@ -1,0 +1,9 @@
+{
+  "ownerId": "kn7cygd6ckn7npcg5t4ezts67x81wdab",
+  "slug": "linkfox-os",
+  "version": "0.0.0",
+  "publishedAt": 1784009505035,
+  "requires": {
+    "env": ["LINKFOXAGENT_API_KEY"]
+  }
+}

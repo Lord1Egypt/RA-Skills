@@ -1,0 +1,79 @@
+{
+ "stats": {
+  "total_sentences": 34,
+  "flagged_sentences": 9,
+  "flag_ratio": 0.265,
+  "connective_open_ratio": 0.0,
+  "type_counts": {
+   "punctuation": 10,
+   "rhythm": 1
+  }
+ },
+ "suggestions": [
+  {
+   "index": 7,
+   "sentence": "---\n\n# STAT3 高 IgE 综合征：从冷脓肿到全程管理——写给儿科与免疫科医生的病种深读\n\n**Doctor Q · 2026年9月**\n\n> **文献来源**：Murray CE, Jannoud E, Prader S, Grimbacher B. How I treat: STAT3 hyper IgE syndrome. J Hum Immun 2026;",
+   "issues": [
+    {
+     "type": "punctuation",
+     "evidence": "破折号",
+     "advice": ""
+    },
+    {
+     "type": "punctuation",
+     "evidence": "：从冷脓肿到全程管理——",
+     "advice": ""
+    }
+   ]
+  },
+  {
+   "index": 24,
+   "sentence": "两个团队分别独立发现：显性负效应的 STAT3 突变是本病的分子基础——Minegishi 在 15 例散发患者中找到 8 例携带杂合 STAT3 突变，父母与同胞均不携带，全部为新生突变，且 5 种突变无一例外落在 DNA 结合域[6]；",
+   "issues": [
+    {
+     "type": "punctuation",
+     "evidence": "破折号",
+     "advice": ""
+    },
+    {
+     "type": "punctuation",
+     "evidence": "：显性负效应的 STAT3 突变是本病的",
+     "advice": ""
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "sentence": ">\n> 🙏 v3 修订致谢：外部专家复核指出 DOCK8 的 IUIS 归类（已核：IUIS 2024/ImmunoLens 归入 CID）、dupilumab 体重分层（说明书 400/200）、产前检测前提（家族变异先确诊）等，均已采纳修订。",
+   "issues": [
+    {
+     "type": "punctuation",
+     "evidence": "：外部专家复核指出 DOCK8 的 IU",
+     "advice": ""
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "sentence": "13(6):1440-1448[11]、Meric Z, et al. Immunotargets Ther 2025;",
+   "issues": [
+    {
+     "type": "rhythm",
+     "evidence": "58/60/55字",
+     "advice": ""
+    }
+   ]
+  },
+  {
+   "index": 18,
+   "sentence": "[STAT3-HIES 一图概览](/static/figures/iei07_fig0_hero.svg)\n\n## 1 引言：一个六十年前就画好了脸、八十年后才找到病根的病\n\n1966 年，Davis 等在 Lancet 报告了两例反复发生\"冷\"性葡萄球菌脓肿的女性患者，脓肿周围几乎没有红、肿、热——这与当时对化脓性感染的全部常识相悖，作者借用《圣经》中遍体生疮的约伯，将其命名为\"约伯综合征\"[2]。",
+   "issues": [
+    {
+     "type": "punctuation",
+     "evidence": "破折号",
+     "advice": ""
+    }
+   ]
+  }
+ ]
+}

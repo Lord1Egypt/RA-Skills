@@ -1,40 +1,62 @@
-## Description: <br>
-Selects three local AI-generated girl portrait images for review, lets the user choose one, and saves the selected image as the current OpenClaw avatar while recording the preference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Selects three random AI girl portrait images from a configured local directory, shows a preview for user choice, saves the selected image as an avatar, and records the selection preference.
 
-## Publisher: <br>
-[FrankChi2022](https://clawhub.ai/user/FrankChi2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankchi2022](https://clawhub.ai/user/frankchi2022)
 
-## Use Case: <br>
-External OpenClaw users with a local image library use this skill to preview three random AI portrait images, choose a preferred image, update the daily avatar, and keep a lightweight preference record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence marks the release suspicious because scripts read from hard-coded local image paths and overwrite avatar and preference files with limited user control. <br>
-Mitigation: Review and adjust the configured source, workspace, avatar, and preference paths before installation or execution, then run the scripts only in a workspace where overwriting those files is acceptable. <br>
-Risk: The security guidance notes that the numeric selection mapping should be fixed before relying on the workflow. <br>
-Mitigation: Validate that each displayed candidate maps to the selected file before using the skill to update an avatar. <br>
+## Use Case:
 
+External OpenClaw users can run this skill to choose a daily avatar from a local AI portrait image collection and persist the selected image and preference record. It is intended for local personal avatar rotation and image-selection workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FrankChi2022/ai-girl-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Terminal text plus a generated HTML preview page, copied image files, and a local Markdown preference file containing structured status data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 according to metadata; scripts use Bash/macOS commands, hard-coded local paths, and local image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The workflow reads and writes hardcoded local paths, including the image source directory, preview workspace, avatar file, and preference record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and configure paths before running the skill, and limit execution to a local workspace where those reads and writes are expected.
+
+Risk: The workflow overwrites ~/.openclaw/workspace/avatars/mimi-today.png when a selection is processed.
+
+Mitigation: Back up the current avatar or require explicit confirmation before accepting a selected image.
+
+Risk: Selection processing may not be bound to the current preview and can use fixed or user-provided filenames from the source directory.
+
+Mitigation: Confirm that the chosen filename matches the current preview set before copying it to the avatar path.
+
+Risk: Preference data is written locally to .learnings/AI-GIRL-PREFERENCES.md.
+
+Mitigation: Inspect preference contents before sharing the workspace and ensure preference records are serialized safely.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankchi2022/skills/ai-girl-selection)
+- [ClawHub publisher profile](https://clawhub.ai/user/frankchi2022)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text plus generated local HTML preview, avatar image file, and markdown preference record]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and local filesystem access to the configured image, preview, avatar, and preference paths.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

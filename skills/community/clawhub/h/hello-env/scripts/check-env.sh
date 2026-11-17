@@ -59,18 +59,27 @@ Examples:
 EOF
 }
 
+# Require that a flag value is present (guards "$2" against being unset).
+need_value() {
+  if [ "$#" -lt 2 ]; then
+    echo "Error: $1 requires a value" >&2
+    echo "Try '$0 --help' for usage." >&2
+    exit 2
+  fi
+}
+
 while [ "$#" -gt 0 ]; do
   case "$1" in
-    --workdir)        WORKDIR="$2"; shift 2 ;;
+    --workdir)        need_value "$@"; WORKDIR="$2"; shift 2 ;;
     --workdir=*)      WORKDIR="${1#*=}"; shift ;;
-    --watch-dir)      WATCH_DIR="$2"; shift 2 ;;
+    --watch-dir)      need_value "$@"; WATCH_DIR="$2"; shift 2 ;;
     --watch-dir=*)    WATCH_DIR="${1#*=}"; shift ;;
-    --config)         CONFIG_PATH="$2"; shift 2 ;;
+    --config)         need_value "$@"; CONFIG_PATH="$2"; shift 2 ;;
     --config=*)       CONFIG_PATH="${1#*=}"; shift ;;
-    --probe-env)      PROBE_ENV="$2"; shift 2 ;;
+    --probe-env)      need_value "$@"; PROBE_ENV="$2"; shift 2 ;;
     --probe-env=*)    PROBE_ENV="${1#*=}"; shift ;;
     --force-pvc)      FORCE_PVC=1; shift ;;
-    --snapshot-dir)   SNAPSHOT_DIR="$2"; shift 2 ;;
+    --snapshot-dir)   need_value "$@"; SNAPSHOT_DIR="$2"; shift 2 ;;
     --snapshot-dir=*) SNAPSHOT_DIR="${1#*=}"; shift ;;
     -h|--help)        show_help; exit 0 ;;
     *)
@@ -110,14 +119,13 @@ probe_container_env() {
   for var in $PROBE_ENV; do
     var="$(echo "$var" | xargs)"  # trim
     [ -z "$var" ] && continue
-    # Indirect expansion via eval — bash 3.x compatible (macOS default bash 3.2)
-    # Validate var name is a valid shell identifier to avoid eval injection.
+    # Indirect expansion via ${!var} — no eval. (bash 2.0+, covers macOS bash 3.2)
+    # Validate identifier first: invalid names cause "bad substitution" (fatal).
     case "$var" in
       [a-zA-Z_][a-zA-Z0-9_]*) ;;
       *) continue ;;
     esac
-    local val=""
-    eval "val=\"\${${var}:-}\""
+    local val="${!var:-}"
     if [ -n "$val" ]; then
       CONTAINER_HIT_VAR="$var"
       CONTAINER_HIT_REASON="env:${var}=${val}"
@@ -287,8 +295,7 @@ if probe_container_env; then
       [a-zA-Z_][a-zA-Z0-9_]*) ;;
       *) IFS=','; continue ;;
     esac
-    local_val=""
-    eval "local_val=\"\${${var}:-}\""
+    local_val="${!var:-}"
     [ -n "$local_val" ] && info "  ${var} = ${local_val}"
     IFS=','
   done

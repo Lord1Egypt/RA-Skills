@@ -1,40 +1,56 @@
-## Description: <br>
-Monitors real-time grid bot performance including fill rate, inventory levels, and status across trading pairs on multiple exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns grid bot health: fill rate, inventory, and level status across pairs.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-Agents and trading-system operators use this skill to request live grid bot health metrics before adjusting grid parameters or diagnosing fill-rate and inventory issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated use can spend wallet funds on paid x402 requests. <br>
-Mitigation: Use a dedicated low-balance wallet or spending controls, verify the per-call cost before automated use, and avoid wallets that hold significant funds. <br>
+## Use Case:
 
+Developers and grid bot operators use the skill to retrieve fill rate, inventory, active-pair, and status data from the paid endpoint when monitoring bot performance or diagnosing poor fill rates.
 
-## Reference(s): <br>
-- [ClawHub Grid Health listing](https://clawhub.ai/kynto2001-ctrl/skills/grid-health) <br>
-- [APEX Runner Grid Health signal](https://apexrunner.ai/signals/grid-health) <br>
-- [APEX Runner pricing tier check](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes an x402-authenticated GET request that requires EVM_PRIVATE_KEY and returns paid JSON signal data from APEX Runner.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's crypto trading signal purpose may not fit the user's intended use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether this signal service fits your needs before installing.
+
+Risk: Requests spend USDC through a wallet and the example reads EVM_PRIVATE_KEY to authorize payment.
+
+Mitigation: Protect the wallet key and set a payment cap that matches the amount you intend to spend.
+
+## Reference(s):
+
+- [Grid Health endpoint](https://apexrunner.ai/signals/grid-health)
+- [Related signal: Grid Health Score](https://apexrunner.ai/signals/grid-health-score)
+- [Related signal: Grid Levels](https://apexrunner.ai/signals/grid-levels)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/grid-health)
+
+## Skill Output:
+
+**Output Type(s):** [JSON]
+
+**Output Format:** [JSON object returned by the endpoint]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes fill rate, inventory, active-pair count, and status fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

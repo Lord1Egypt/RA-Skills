@@ -1,47 +1,63 @@
-## Description: <br>
-Routes Chinese-language product design requests to workflows for PRDs, interactive prototypes, RBAC matrices, tracking plans, product iteration, and SaaS productization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes product design requests to workflows for new internal process systems, product iterations, and SaaS productization, producing PRDs and interactive prototypes.
 
-## Publisher: <br>
-[lailiai](https://clawhub.ai/user/lailiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lailiai](https://clawhub.ai/user/lailiai)
 
-## Use Case: <br>
-Product managers, founders, and product-design agents use this skill to turn product-design requests into structured Chinese-language deliverables for internal process systems, existing-product iterations, or SaaS productization. It guides collection, validation, design decomposition, prototype generation, PRD generation, RBAC planning, and tracking-plan creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can process sensitive project materials such as DDLs, screenshots, documents, customer data, or regulated personal information. <br>
-Mitigation: Redact secrets, credentials, customer data, and regulated personal information before providing inputs to the skill. <br>
-Risk: Generated PRDs, prototypes, RBAC matrices, tracking plans, and project files may be too broad or incorrect if treated as implementation requirements without review. <br>
-Mitigation: Review generated requirements, analytics plans, access-control matrices, and prototypes with product, security, and engineering stakeholders before implementation. <br>
+## Use Case:
 
+Product managers, founders, and internal-tool teams use this skill to turn product design requests into structured PRDs, user stories, workflows, RBAC and tracking plans, and high-fidelity prototypes for internal process systems or SaaS productization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lailiai/prd-design) <br>
-- [Product Design Router](artifact/SKILL.md) <br>
-- [0-to-1 Product Design Workflow](artifact/0to1/SKILL0to1.md) <br>
-- [Product Iteration Workflow](artifact/iteration/SKILLiteration.md) <br>
-- [SaaS Productization Workflow](artifact/productization/SKILLproductization.md) <br>
-- [Output and Prototype Requirements](artifact/shared/steps/step7-output.md) <br>
-- [Self-Check Appendix](artifact/shared/appendices/selfcheck.md) <br>
-- [SaaS Productization Patches](artifact/productization/references/saas-patches.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown project files, structured matrices, and an interactive HTML prototype] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language workflow that routes requests to 0-to-1 design, existing-product iteration, or SaaS productization paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: The workflow may save or transform sensitive product materials such as screenshots, HTML prototypes, DDL, internal URLs, credentials, or confidential business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only sanitized materials, redact personal data and secrets before invoking the skill, and review generated files before sharing or deployment.
+
+Risk: Generated or template-based prototypes may run unpinned third-party CDN scripts.
+
+Mitigation: Avoid opening prototypes in a sensitive browser context unless dependencies are pinned, integrity-protected, or vendored locally.
+
+Risk: The scanner verdict is suspicious because the skill stores potentially sensitive internal materials and generates executable prototypes.
+
+Mitigation: Review the skill before installing, follow the scanner guidance, and scan generated prototypes before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lailiai/skills/prd-design)
+- [Product Design Router](artifact/SKILL.md)
+- [Product Design 0to1 Workflow](artifact/0to1/SKILL0to1.md)
+- [Product Design Iteration Workflow](artifact/iteration/SKILLiteration.md)
+- [SaaS Productization Workflow](artifact/productization/SKILLproductization.md)
+- [Prototype and PRD Output Rules](artifact/shared/steps/step7-output.md)
+- [Iteration Prototype Template](artifact/iteration/references/templates/prototype-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown PRDs and single-file HTML prototypes with supporting design guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate project files for inputs, flows, RBAC, tracking plans, PRDs, and prototypes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Post content to GitHub Gist and get back a shareable URL. Rich context sharing between agents, operators, and humans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts content to GitHub Gist and returns a shareable URL for rich context sharing between agents, operators, and humans.
 
-## Publisher: <br>
-[psiclawops](https://clawhub.ai/user/psiclawops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psiclawops](https://clawhub.ai/user/psiclawops)
 
-## Use Case: <br>
-Agents, operators, and developers use this skill to publish selected markdown content, summaries, logs, or handoff notes to GitHub Gist and return a shareable URL for humans or future agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected content may be published to GitHub Gist with secrets, personal data, private logs, proprietary code, or internal context. <br>
-Mitigation: Review every Gist before posting and avoid publishing sensitive or proprietary information. <br>
-Risk: A GitHub token with excessive permissions could increase account or repository exposure if mishandled. <br>
-Mitigation: Use a Personal Access Token limited to the gist scope and avoid storing or pasting real tokens into prompts or shared files. <br>
-Risk: Secret Gists are not indexed but remain accessible to anyone with the URL. <br>
-Mitigation: Use --secret for non-indexed sharing only when appropriate and still treat the URL as shareable access. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to publish reviewed markdown or text content to GitHub Gist and return a shareable URL for handoff or collaboration.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/psiclawops/gist-post) <br>
-- [Skill homepage](https://github.com/PsiClawOps/gist-share) <br>
-- [GitHub CLI](https://cli.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and a returned GitHub Gist URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GitHub CLI access and a gist-scoped GITHUB_TOKEN; can create public or secret Gists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Agents may publish sensitive or internal content to a public GitHub Gist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content before posting, prefer secret Gists for non-public material, and never include tokens, credentials, private logs, customer data, or internal context.
+
+Risk: The GitHub token used for posting could be over-scoped or exposed.
+
+Mitigation: Use a token with only the required gist scope, store it outside shared content, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psiclawops/skills/gist-post)
+- [Project homepage](https://github.com/PsiClawOps/gist-share)
+- [GitHub CLI](https://cli.github.com)
+- [GitHub token settings](https://github.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and a returned Gist URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitHub CLI access and a GITHUB_TOKEN with gist scope.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Use AIsa for model routing, provider setup, and Chinese LLM access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use AIsa for model routing, provider setup, and Chinese LLM access.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure AIsa-backed model routing, inspect available model options, and prepare workflows for Chinese LLM access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AISA_API_KEY and can send prompts, image URLs, and usage data to AIsa. <br>
-Mitigation: Use a scoped or revocable API key when available, avoid sending sensitive content unless AIsa's data handling terms are acceptable, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure AIsa-backed model routing, inspect supported model options, and prepare workflows for Chinese LLM access.
 
-## Reference(s): <br>
-- [LLM Router on ClawHub](https://clawhub.ai/baofeng-tech/llm-router) <br>
-- [baofeng-tech publisher profile](https://clawhub.ai/user/baofeng-tech) <br>
-- [AIsa API endpoint](https://api.aisa.one/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY for AIsa-backed API calls; the bundled models command can run without an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Prompts, messages, and image URLs are sent to AIsa and may be routed to downstream model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data allowed by the user's AIsa account terms and downstream provider policies; avoid secrets, private documents, and sensitive image URLs.
+
+Risk: API-backed operations require an AISA_API_KEY credential.
+
+Mitigation: Provide the key through the expected environment variable and avoid pasting credentials into prompts, command arguments, or shared logs.
+
+## Reference(s):
+
+- [LLM Router ClawHub Skill Page](https://clawhub.ai/baofeng-tech/skills/llm-router)
+- [baofeng-tech Publisher Profile](https://clawhub.ai/user/baofeng-tech)
+- [AIsa API Endpoint](https://api.aisa.one/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; bundled CLI commands return JSON or streamed text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [AISA_API_KEY is required for API-backed chat, vision, and compare operations; model listing can run without an API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

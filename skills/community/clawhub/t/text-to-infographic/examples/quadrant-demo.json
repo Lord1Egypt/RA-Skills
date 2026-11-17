@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "meta": { "title": "优先级矩阵", "subtitle": "重要程度 × 紧急程度", "x_label": "紧急程度", "y_label": "重要程度" },
+  "layout": "quadrant",
+  "blocks": [
+    { "id": "q1", "title": "重要且紧急", "text": "立刻做" },
+    { "id": "q2", "title": "重要不紧急", "text": "规划做" },
+    { "id": "q3", "title": "不重要紧急", "text": "委托做" },
+    { "id": "q4", "title": "不重要不紧急", "text": "砍掉" }
+  ]
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Rebuttal Letter Strategist helps draft structured academic reviewer-response language with explicit assumptions and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use rebuttal letter strategist for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, authors, and academic-writing assistants use this skill to turn reviewer criticism and revision details into professional point-by-point rebuttal language. It is intended for bounded drafting support, not for replacing human review of manuscript claims or evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewer comments, manuscript details, and revision plans may contain sensitive or unpublished research information. <br>
-Mitigation: Use the skill only in trusted environments and avoid providing confidential manuscript material where retention or access controls are unclear. <br>
-Risk: Generated rebuttal language can overstate revisions, evidence, or agreement with reviewers if the user supplies incomplete context. <br>
-Mitigation: Have a human author verify every drafted response against the manuscript changes and supporting evidence before submission. <br>
-Risk: The bundled script supports command-line text inputs and may not perform file-based workflows described by generic skill scaffolding. <br>
-Mitigation: Validate the intended workflow with the documented command-line options before relying on file input or output behavior. <br>
+## Use Case:
 
+Researchers, academics, and writing-focused agents use this skill to draft professional rebuttal responses to reviewer criticism, including point-by-point revision replies, rejection appeals, and major revision responses.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces suggested rebuttal wording, severity, tone, strategy, assumptions, risks, and next checks when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat generated rebuttal language as a complete document-processing workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the suggested response against the manuscript, reviewer comment, and actual revision before sending it.
+
+Risk: Documentation and script parameters differ, which can cause incomplete or failed command-line use.
+
+Mitigation: Supply the required criticism and revision inputs explicitly, and verify script help before relying on automated execution.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/rebuttal-letter-strategist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown and command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise rebuttal strategy guidance and suggested response text from reviewer criticism and revision details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,356 @@
+{
+  "updated": "2026-07-30",
+  "note": "参考单价 / 上下文 / 可用性为公开资料整理，由维护者周更；非实时抓取。未匹配到家族的模型一律显示 —（绝不编造）。价格单位：美元 / 每 1M tokens；人民币计价模型带 currency:\"CNY\"，显示 ¥。",
+  "models": [
+    {
+      "keys": [
+        "claude"
+      ],
+      "display": "Claude",
+      "price_in": 3,
+      "price_out": 15,
+      "context": 200000,
+      "multimodal": "文本+视觉",
+      "commercial": "可商用(API)",
+      "cn_access": "境外/代理",
+      "license": "专有",
+      "best_for": "长文档、Agent、高质量写作"
+    },
+    {
+      "keys": [
+        "gpt",
+        "openai",
+        "chatgpt"
+      ],
+      "display": "GPT",
+      "price_in": 2.5,
+      "price_out": 10,
+      "context": 128000,
+      "multimodal": "文本+视觉",
+      "commercial": "可商用(API)",
+      "cn_access": "境外/代理",
+      "license": "专有",
+      "best_for": "通用、生态成熟"
+    },
+    {
+      "keys": [
+        "gemini"
+      ],
+      "display": "Gemini",
+      "price_in": 1.5,
+      "price_out": 6,
+      "context": 1000000,
+      "multimodal": "文本+视觉+音频",
+      "commercial": "可商用(API)",
+      "cn_access": "境外/代理",
+      "license": "专有",
+      "best_for": "超长上下文、多模态"
+    },
+    {
+      "keys": [
+        "llama",
+        "meta"
+      ],
+      "display": "Llama",
+      "price_in": null,
+      "price_out": null,
+      "context": 128000,
+      "multimodal": "文本(+视觉变体)",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署",
+      "license": "Apache-2.0 / Llama 系列",
+      "best_for": "自部署、微调、私有化"
+    },
+    {
+      "keys": [
+        "muse spark",
+        "musespark",
+        "meta muse"
+      ],
+      "display": "Muse Spark",
+      "price_in": 1.25,
+      "price_out": 4.25,
+      "context": 1048576,
+      "multimodal": "文本+视觉+视频+PDF",
+      "commercial": "可商用(Meta Model API 公测)",
+      "cn_access": "境外/代理",
+      "license": "专有闭源",
+      "best_for": "原生多模态、超长上下文"
+    },
+    {
+      "keys": [
+        "minimax"
+      ],
+      "display": "MiniMax",
+      "price_in": 0.3,
+      "price_out": 1.2,
+      "context": 1000000,
+      "multimodal": "文本+视觉",
+      "commercial": "可商用(API)+开放权重",
+      "cn_access": "国内可直连",
+      "license": "开放权重",
+      "best_for": "长上下文、Agent、编程"
+    },
+    {
+      "keys": [
+        "qwen3.5-397b",
+        "qwen3.5 397b"
+      ],
+      "display": "Qwen3.5-397B-A17B",
+      "price_in": 0.39,
+      "price_out": 2.34,
+      "context": 262144,
+      "multimodal": "文本+视觉",
+      "commercial": "可商用(API+自部署)",
+      "cn_access": "国内可直连",
+      "license": "Apache 2.0",
+      "best_for": "复杂推理、编程、智能体、多模态理解与长视频理解",
+      "currency": "CNY"
+    },
+    {
+      "keys": [
+        "qwen3.6-27b",
+        "qwen3.6 27b"
+      ],
+      "display": "Qwen3.6-27B",
+      "price_in": 0.3,
+      "price_out": 3.2,
+      "context": 262144,
+      "multimodal": "文本+视觉",
+      "commercial": "可商用(API+自部署)",
+      "cn_access": "国内可直连",
+      "license": "Apache 2.0",
+      "best_for": "代码生成、智能体工作流、前端开发、视觉理解",
+      "currency": "CNY"
+    },
+    {
+      "keys": [
+        "qwen"
+      ],
+      "display": "Qwen",
+      "price_in": null,
+      "price_out": null,
+      "context": 131072,
+      "multimodal": "文本+视觉",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署(国内可直连)",
+      "license": "Apache-2.0 等",
+      "best_for": "中文、自部署、国内合规",
+      "currency": "CNY"
+    },
+    {
+      "keys": [
+        "deepseek"
+      ],
+      "display": "DeepSeek",
+      "price_in": 0.55,
+      "price_out": 2.19,
+      "context": 128000,
+      "multimodal": "文本(+视觉变体)",
+      "commercial": "API+自部署",
+      "cn_access": "国内可直连",
+      "license": "MIT",
+      "best_for": "推理、代码、中文、低成本",
+      "currency": "CNY"
+    },
+    {
+      "keys": [
+        "mistral",
+        "mixtral"
+      ],
+      "display": "Mistral",
+      "price_in": 0.9,
+      "price_out": 2.7,
+      "context": 128000,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署/欧洲",
+      "license": "Apache-2.0",
+      "best_for": "自部署、欧洲合规"
+    },
+    {
+      "keys": [
+        "gemma"
+      ],
+      "display": "Gemma",
+      "price_in": null,
+      "price_out": null,
+      "context": 8192,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署",
+      "license": "Gemma 许可",
+      "best_for": "轻量自部署"
+    },
+    {
+      "keys": [
+        "phi"
+      ],
+      "display": "Phi",
+      "price_in": null,
+      "price_out": null,
+      "context": 128000,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署",
+      "license": "MIT",
+      "best_for": "端侧/小模型"
+    },
+    {
+      "keys": [
+        "yi",
+        "01.ai"
+      ],
+      "display": "Yi",
+      "price_in": null,
+      "price_out": null,
+      "context": 200000,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署",
+      "license": "Apache-2.0",
+      "best_for": "自部署、长上下文"
+    },
+    {
+      "keys": [
+        "glm",
+        "chatglm",
+        "zhipu"
+      ],
+      "display": "GLM",
+      "price_in": 0.5,
+      "price_out": 1,
+      "context": 128000,
+      "multimodal": "文本+视觉",
+      "commercial": "API+自部署",
+      "cn_access": "国内可直连",
+      "license": "Apache-2.0 等",
+      "best_for": "中文、国内合规",
+      "currency": "CNY"
+    },
+    {
+      "keys": [
+        "kimi",
+        "moonshot"
+      ],
+      "display": "Kimi",
+      "price_in": 1,
+      "price_out": 4,
+      "context": 200000,
+      "multimodal": "文本",
+      "commercial": "可商用(API)",
+      "cn_access": "国内可直连",
+      "license": "专有",
+      "best_for": "超长中文上下文",
+      "currency": "CNY"
+    },
+    {
+      "keys": [
+        "grok",
+        "xai"
+      ],
+      "display": "Grok",
+      "price_in": 5,
+      "price_out": 15,
+      "context": 131072,
+      "multimodal": "文本+视觉",
+      "commercial": "可商用(API)",
+      "cn_access": "境外/代理",
+      "license": "专有",
+      "best_for": "实时、X 生态"
+    },
+    {
+      "keys": [
+        "olmo",
+        "ai2",
+        "allenai"
+      ],
+      "display": "OLMo",
+      "price_in": null,
+      "price_out": null,
+      "context": 32768,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署",
+      "license": "Apache-2.0",
+      "best_for": "科研、完全开放"
+    },
+    {
+      "keys": [
+        "command r",
+        "cohere"
+      ],
+      "display": "Command R",
+      "price_in": 0.15,
+      "price_out": 0.6,
+      "context": 128000,
+      "multimodal": "文本(+视觉)",
+      "commercial": "可商用(API)",
+      "cn_access": "境外/代理",
+      "license": "专有",
+      "best_for": "RAG、企业"
+    },
+    {
+      "keys": [
+        "nemotron 3 ultra",
+        "nemotron-3-ultra",
+        "nemotron3ultra"
+      ],
+      "display": "Nemotron 3 Ultra",
+      "price_in": 0.5,
+      "price_out": 2.2,
+      "currency": "USD",
+      "context": 1000000,
+      "multimodal": "文本",
+      "commercial": "API+开放权重",
+      "cn_access": "境外/代理",
+      "license": "OpenMDW-1.1",
+      "best_for": "前沿推理、复杂智能体、长上下文分析、RAG、工具调用、多语言推理"
+    },
+    {
+      "keys": [
+        "nemotron",
+        "nvidia"
+      ],
+      "display": "Nemotron",
+      "price_in": null,
+      "price_out": null,
+      "context": 128000,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署",
+      "license": "NVIDIA Open Model",
+      "best_for": "自部署、企业"
+    },
+    {
+      "keys": [
+        "baichuan"
+      ],
+      "display": "Baichuan",
+      "price_in": null,
+      "price_out": null,
+      "context": 128000,
+      "multimodal": "文本",
+      "commercial": "自部署可商用",
+      "cn_access": "自部署(国内)",
+      "license": "Apache-2.0 等",
+      "best_for": "中文、国内"
+    },
+    {
+      "keys": [
+        "hy3",
+        "hunyuan"
+      ],
+      "display": "Hunyuan Hy3",
+      "price_in": 1,
+      "price_out": 4,
+      "currency": "CNY",
+      "context": 256000,
+      "multimodal": "文本",
+      "commercial": "可商用(API)+Apache2.0 开源",
+      "cn_access": "国内可直连",
+      "license": "Apache-2.0",
+      "best_for": "性价比、Agent、代码、中文"
+    }
+  ]
+}

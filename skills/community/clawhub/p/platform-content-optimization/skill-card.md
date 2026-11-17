@@ -1,40 +1,54 @@
-## Description: <br>
-Provides Chinese-language guidance for adapting a core message into platform-specific content, formats, tone, and content strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Traditional Chinese content optimization skill for adapting core messages across platforms while adjusting format, tone, audience fit, and content strategy.
 
-## Publisher: <br>
-[peterlwh62-arch](https://clawhub.ai/user/peterlwh62-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peterlwh62-arch](https://clawhub.ai/user/peterlwh62-arch)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to adapt one core message into platform-specific social media, email, article, or short-video content while keeping the main message and brand tone consistent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is narrowly written for a Chinese-language and '小小' persona context, which may not match another brand, audience, or voice. <br>
-Mitigation: Tell the agent the desired language, audience, brand voice, and platform constraints before using the guidance. <br>
-Risk: Content adaptation guidance can produce platform-specific recommendations that are inaccurate for a campaign or channel. <br>
-Mitigation: Review adapted content and performance assumptions before publication, then adjust using channel metrics. <br>
+## Use Case:
 
+Content creators, marketers, and communications teams use this skill to transform a single core message into platform-specific versions for social, email, article, short-video, and campaign workflows. It supports tone adjustment, content restructuring, multi-platform strategy, and post-publication optimization planning.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/peterlwh62-arch/platform-content-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text content strategy guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance focused on multi-platform content adaptation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is written for Traditional Chinese content-strategy workflows, so users who do not work in that language may misunderstand its recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to translate or adapt the guidance before use, and review final platform copy with a fluent speaker or domain owner.
+
+Risk: Platform-specific content advice can become stale or may not match current campaign goals, audience data, or platform policies.
+
+Mitigation: Review generated recommendations against current platform requirements, brand standards, and observed performance data before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peterlwh62-arch/skills/platform-content-optimization)
+- [Publisher profile](https://clawhub.ai/user/peterlwh62-arch)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown or structured text with platform-specific content recommendations, checklists, and content variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; no executable behavior, persistence, credential handling, or hidden data access identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

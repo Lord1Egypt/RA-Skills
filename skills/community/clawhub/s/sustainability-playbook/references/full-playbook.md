@@ -9,7 +9,7 @@
 6. [Carbon Accounting Deep Dive](#6-carbon-accounting-deep-dive)
 7. [Scope 3 Category Guidance](#7-scope-3-category-guidance)
 8. [ESG Technology Stack](#8-esg-technology-stack)
-9. [Risk Management Framework](#9-risk-management-framework)
+9. [Risk Management Framework](#9-riREDACTED-SECRET)
 10. [Case Studies & Benchmarks](#10-case-studies--benchmarks)
 11. [Stakeholder Engagement Playbook](#11-stakeholder-engagement-playbook)
 12. [Circular Economy Framework](#12-circular-economy-framework)

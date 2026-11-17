@@ -1,0 +1,10 @@
+{
+  "widths_mm": {
+    "single": 89,
+    "double": 183
+  },
+  "font_size": 7,
+  "min_text_size": 5,
+  "font_family": "Helvetica",
+  "dpi": 600
+}

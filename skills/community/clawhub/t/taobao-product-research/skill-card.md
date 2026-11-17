@@ -1,43 +1,59 @@
-## Description: <br>
-Taobao Product Research collects Taobao product information such as images, titles, prices, sales counts, review counts, shop names, and product links, then generates image-rich Excel reports for product research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taobao Product Research collects Taobao product data, including main images, titles, prices, sales counts, review counts, shops, and product links, then generates image-backed Excel research reports for market and competitive analysis.
 
-## Publisher: <br>
-[redcreen](https://clawhub.ai/user/redcreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redcreen](https://clawhub.ai/user/redcreen)
 
-## Use Case: <br>
-External users and developers use this skill to research Taobao products by keyword and price range, collect market and competitor data, and produce local Excel reports with product images and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a browser profile that can persist Taobao login state locally. <br>
-Mitigation: Use a dedicated browser profile and delete the browser_data directory when the saved session is no longer needed. <br>
-Risk: The skill writes reports, images, and debug screenshots to a local output directory. <br>
-Mitigation: Choose a dedicated output directory and avoid search keywords or paths that could create confusing or unintended filenames. <br>
-Risk: The skill depends on npm packages and browser automation to collect data from Taobao. <br>
-Mitigation: Inspect dependencies in sensitive environments and keep collection volumes modest to reduce operational and compliance risk. <br>
+## Use Case:
 
+External users, developers, and ecommerce researchers use this skill to collect Taobao search results by keyword and price range, compare products, monitor pricing, and create Excel reports with product details and images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redcreen/taobao-product-research) <br>
-- [Publisher profile](https://clawhub.ai/user/redcreen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with command-line examples; generated local Excel, image, and debug screenshot files when the script runs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime script may create a browser_data directory that persists Taobao login state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: The skill persists a logged-in Taobao browser profile on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Taobao account in an isolated workspace and delete the browser_data directory after each research session when persistent login is no longer needed.
+
+Risk: The skill downloads marketplace-controlled image URLs with weak safeguards.
+
+Mitigation: Run it on a network where internal services are not reachable, review downloaded files before sharing, and add URL validation and download limits before routine use.
+
+Risk: Dependencies and browser automation behavior may change over time.
+
+Mitigation: Pin and update dependencies deliberately, then re-run security review before deploying the skill for repeated operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redcreen/skills/taobao-product-research)
+- [Publisher profile](https://clawhub.ai/user/redcreen)
+- [Taobao search](https://s.taobao.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples; runtime produces console text, downloaded images, debug screenshots, JSON summaries, and Excel .xlsx reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts a keyword, price range, item count, and optional output directory; reports include product images, titles, prices, sales, reviews, shops, and links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and scripts/package.json, released 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

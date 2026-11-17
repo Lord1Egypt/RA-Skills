@@ -1,43 +1,57 @@
-## Description: <br>
-Sends Feishu text messages, local images, and workspace files to a configured Feishu user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to send Feishu text, local image, and local file messages to a configured recipient.
 
-## Publisher: <br>
-[zh6](https://clawhub.ai/user/zh6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zh6](https://clawhub.ai/user/zh6)
 
-## Use Case: <br>
-Agents and users use this skill to send Feishu messages with text, supported image files, or supported document files from the local workspace to a configured recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages or files could be sent to the wrong Feishu recipient. <br>
-Mitigation: Confirm the Feishu user ID and message content before sending. <br>
-Risk: Workspace files may contain secrets or private documents. <br>
-Mitigation: Inspect file paths and contents before sharing them through Feishu. <br>
-Risk: Downloaded network images may come from untrusted sources before forwarding. <br>
-Mitigation: Download images only from trusted URLs and review the saved file before sending. <br>
+## Use Case:
 
+Developers and operators can use this skill when they want an agent to send Feishu messages, images, or document attachments to a configured recipient through the local workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zh6/feishu-zh6) <br>
-- [Publisher profile](https://clawhub.ai/user/zh6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with message_tool examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local workspace files for Feishu image and file messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Messages or files could be sent to the wrong Feishu recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the recipient ID before each send.
+
+Risk: Sensitive business content or unintended local files could be sent through Feishu.
+
+Mitigation: Review message text and file paths before sending.
+
+Risk: Network image URLs cannot be sent directly.
+
+Mitigation: Download network images to the local workspace before sending the local file path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zh6/skills/feishu-zh6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with message_tool examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local files under ~/.openclaw/workspace/ for images and documents.]
+
+## Skill Version(s):
+
+1.0.5 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

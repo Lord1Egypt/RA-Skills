@@ -1,43 +1,55 @@
-## Description: <br>
-Hologres Query Optimizer helps agents analyze Hologres SQL execution plans, interpret EXPLAIN and EXPLAIN ANALYZE output, and propose query performance optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hologres Query Optimizer helps agents analyze Hologres SQL performance issues, interpret EXPLAIN and EXPLAIN ANALYZE output, and provide query optimization recommendations.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Developers and database engineers use this skill to diagnose slow Hologres SQL, read execution plan metrics, and choose targeted fixes such as statistics refreshes, distribution-key changes, indexing, join-order tuning, or GUC adjustments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes example database commands that can execute queries or change Hologres tuning settings. <br>
-Mitigation: Verify hologres-cli before use, use least-privilege database credentials, and require explicit review before running EXPLAIN ANALYZE, ANALYZE, set_table_property, or persistent hologres guc set commands, especially on production databases. <br>
-Risk: Query-tuning recommendations can be incorrect or unsuitable for a specific workload. <br>
-Mitigation: Review proposed changes against the actual execution plan, test in a safe environment when possible, and apply production changes through the normal database change process. <br>
+## Use Case:
 
+Developers and database engineers use this skill to diagnose slow Hologres queries, read execution-plan metrics, identify bottleneck operators, and choose targeted SQL, index, statistics, distribution-key, or GUC tuning actions.
 
-## Reference(s): <br>
-- [Hologres Query Optimizer on ClawHub](https://clawhub.ai/wenbingyu/hologres-query-optimizer) <br>
-- [Hologres Query Operators Reference](references/operators.md) <br>
-- [Hologres Query Optimization Patterns](references/optimization-patterns.md) <br>
-- [Hologres GUC Parameters for Query Tuning](references/guc-parameters.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations and example commands for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and VERSION file; artifact package.json reports 1.0.1) <br>
+Risk: The skill may propose EXPLAIN ANALYZE, ANALYZE, table-property changes, or persistent database-level GUC set/reset commands against production Hologres systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before running database commands, review target scope and expected impact, and test changes in a non-production environment when practical.
+
+Risk: Installing or using hologres-cli directly in an uncontrolled environment can broaden operational risk for database work.
+
+Mitigation: Install hologres-cli in an isolated pinned environment and use this skill only for Hologres-related analysis and tuning tasks.
+
+## Reference(s):
+
+- [Hologres Query Operators Reference](references/operators.md)
+- [Hologres Query Optimization Patterns](references/optimization-patterns.md)
+- [Hologres GUC Parameters for Query Tuning](references/guc-parameters.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Hologres CLI commands, SQL statements, execution-plan interpretation, and tuning recommendations for human review before execution.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and VERSION; package.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

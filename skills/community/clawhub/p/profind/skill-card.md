@@ -1,46 +1,66 @@
-## Description: <br>
-ProFind helps agents automate macOS file search through AppleScript, URL scheme calls, shell wrappers, script hooks, and the optional local Media Server API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProFind helps agents operate the macOS ProFind application for indexed file search, content and metadata queries, advanced filters, script hooks, URL-scheme launches, and local SOAP API calls.
 
-## Publisher: <br>
-[steve-shi-web](https://clawhub.ai/user/steve-shi-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steve-shi-web](https://clawhub.ai/user/steve-shi-web)
 
-## Use Case: <br>
-Developers, engineers, and macOS automation users use this skill to search local files by name, content, metadata, size, date, kind, path, or label, and to open ProFind workflows from an agent. It also supports optional batch operations through ProFind script hooks and local SOAP API queries when the user enables those workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad file-search access may expose local file names, paths, metadata, or search results. <br>
-Mitigation: Install only when the user trusts ProFind, grant only needed macOS permissions, and avoid sharing generated search output without review. <br>
-Risk: Script hooks can rename files, move files to Trash, copy paths, or email paths when the user enables and runs those workflows. <br>
-Mitigation: Review each script before placing it in ~/Library/Scripts/ProFind and test batch operations on non-critical files first. <br>
-Risk: The optional Media Server API can expose ProFind search results over the local SOAP interface. <br>
-Mitigation: Keep the Media Server disabled unless needed and query only trusted local endpoints. <br>
+## Use Case:
 
+Developers and macOS users use this skill to help an agent compose ProFind searches, open ProFind search windows, invoke script actions, and query the optional local Media Server interface. It is intended for file discovery, metadata/content lookup, and guided batch-operation workflows on macOS.
 
-## Reference(s): <br>
-- [ClawHub ProFind Skill Page](https://clawhub.ai/steve-shi-web/profind) <br>
-- [ProFind App Store Listing](https://apps.apple.com/app/id1559203395) <br>
-- [API Reference](docs/API-REFERENCE.md) <br>
-- [URL Scheme Reference](docs/URL-SCHEME.md) <br>
-- [Sample Scripts Reference](docs/SAMPLE-SCRIPTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline AppleScript, shell, URL scheme, and SOAP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS, ProFind, and user-granted file access permissions for local search workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Automation helpers can access broad local file locations when ProFind has Full Disk Access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant Full Disk Access only when protected locations must be searched, and scope searches to the narrowest practical paths.
+
+Risk: Script hooks and sample batch operations can modify local files.
+
+Mitigation: Review proposed scripts before use, add confirmations and dry-run previews for bulk changes, and check for filename collisions before renaming or moving files.
+
+Risk: CLI and URL-scheme search text may be unsafe when populated from untrusted input.
+
+Mitigation: Escape or validate search terms and avoid passing untrusted input to the included CLI or script examples until input handling is hardened.
+
+Risk: The optional Media Server exposes ProFind search results through a local HTTP SOAP interface.
+
+Mitigation: Keep Media Server disabled unless needed and review local access assumptions before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steve-shi-web/skills/profind)
+- [Publisher profile](https://clawhub.ai/user/steve-shi-web)
+- [ProFind on the App Store](https://apps.apple.com/app/id1559203395)
+- [API reference](docs/API-REFERENCE.md)
+- [URL scheme reference](docs/URL-SCHEME.md)
+- [Sample scripts reference](docs/SAMPLE-SCRIPTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, AppleScript, URL-scheme, and SOAP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may launch local macOS applications or propose scripts that act on selected files; users should review commands before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "可验证的 Schema 结构化标记"
+  short_description: "依据可见正文核对JSON-LD与问答配对，衔接免费aimeGeo产品内容和同条件引用复测"
+  default_prompt: "使用 $aimegeo-schema-markup，根据已确认资料和可见正文制作JSON-LD、HTML片段与本地报告，核对FAQ精确配对并省略未知字段；再说明怎样由Agent把确认后的产品说明与FAQ用于免费aimeGeo内容和引用复测。网站嵌入单独交接，不假称自动部署或已获引用。"

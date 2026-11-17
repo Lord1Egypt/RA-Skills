@@ -1,40 +1,54 @@
-## Description: <br>
-Monitors child agent status and generates concise progress summaries every 30 seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Agent Summary helps an agent monitor child agent activity and generate concise progress summaries about every 30 seconds.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and agent coordinators use this skill to monitor active child agents, summarize their current work in short status phrases, and report only meaningful progress changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on subagent and session-history access, so status summaries may expose recent worker activity to the coordinating agent. <br>
-Mitigation: Use it only in agent workspaces where reviewing child-agent progress is expected, and avoid including sensitive details in user-facing summaries. <br>
-Risk: Over-frequent polling can create noisy notifications or unnecessary tool usage. <br>
-Mitigation: Follow the artifact guidance to poll no more than every 30 seconds and notify users only when status changes or a worker completes or fails. <br>
+## Use Case:
 
+Developers and agent coordinators use this skill to check active child agents, read recent session history, and report short status summaries only when progress changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/lobster-agent-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and status-summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are intended to be 3-5 words, checked no more often than every 30 seconds, and reported when status changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads recent child-agent session messages to summarize progress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where reviewing recent sub-agent session history for coordination is acceptable.
+
+Risk: Most operating instructions are written in Chinese, which may be misread by non-Chinese users.
+
+Mitigation: Review a translation before installation or operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-agent-summary)
+- [Publisher Profile](https://clawhub.ai/user/wangxiaofei860208-source)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise 3-5 word progress summaries and change-only user notifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

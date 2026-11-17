@@ -1,45 +1,58 @@
-## Description: <br>
-Analyzes Apple Health export.zip data to extract key Apple Watch health metrics and generate a personalized interactive HTML health report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Apple Health export.zip files by streaming XML, extracting RHR, HRV, VO2 Max, sleep, steps, blood oxygen, and related metrics, then generating a personalized interactive HTML health report with Chart.js graphs.
 
-## Publisher: <br>
-[gloriaameng](https://clawhub.ai/user/gloriaameng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloriaameng](https://clawhub.ai/user/gloriaameng)
 
-## Use Case: <br>
-External users and agent users use this skill to analyze Apple Health exports, compare heart, sleep, activity, blood oxygen, and body metrics against personalized baselines, and produce an interactive local health report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes Apple Health exports that contain sensitive health data. <br>
-Mitigation: Run it in a private workspace, avoid sharing the export.zip beyond the active analysis, and delete the export and generated reports when finished. <br>
-Risk: The workflow examples write derived chart data to the default /tmp path. <br>
-Mitigation: Choose a private output path for chart_data.json and the HTML report when running the scripts. <br>
-Risk: The generated HTML report loads Chart.js from a public CDN when opened online. <br>
-Mitigation: Open the report only when that network behavior is acceptable, or bundle Chart.js locally before viewing. <br>
-Risk: Health trend summaries may be mistaken for medical diagnosis. <br>
-Mitigation: Treat the report as informational guidance and consult a qualified clinician for medical decisions or concerning results. <br>
+## Use Case:
 
+External users and analysts use this skill to process Apple Health exports and create personalized trend reports for fitness, sleep, cardiovascular, respiratory, and activity metrics. The reports can help users review trends and anomalies, but they should not be treated as medical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gloriaameng/iwatch-health-data-analysis) <br>
-- [Chart.js CDN used by generated report](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown instructions with Python commands, JSON chart data, and an interactive HTML report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parses Apple Health export.zip into chart_data.json and generates a local HTML report with Chart.js visualizations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Apple Health exports contain highly sensitive health information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only process exports the user is willing to expose to the agent environment, and delete export.zip, chart_data.json, and generated reports when analysis is complete.
+
+Risk: Generated HTML reports may load Chart.js from a CDN and may display user-provided report text.
+
+Mitigation: Open reports offline only after bundling Chart.js locally and verifying user-supplied text is escaped before rendering.
+
+Risk: Health trend summaries and anomaly flags may be mistaken for clinical advice.
+
+Mitigation: Present the output as trend analysis and advise users to consult a qualified clinician for medical concerns or abnormal readings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gloriaameng/skills/iwatch-health-data-analysis)
+- [Publisher profile](https://clawhub.ai/user/gloriaameng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON chart data, and an interactive HTML report file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes sensitive Apple Health exports in the agent environment; the generated report uses Chart.js and may load it from a CDN unless bundled locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

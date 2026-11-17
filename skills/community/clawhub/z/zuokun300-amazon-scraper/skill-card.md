@@ -1,45 +1,63 @@
-## Description: <br>
-Amazon Scraper helps an agent collect Amazon product search data through Apify and generate structured Excel and Markdown reports with product, brand, ASIN, and link details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Amazon product search data through Apify and generates structured Excel and Markdown reports with product details, brand summaries, and clickable links.
 
-## Publisher: <br>
-[zuokun300](https://clawhub.ai/user/zuokun300) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zuokun300](https://clawhub.ai/user/zuokun300)
 
-## Use Case: <br>
-Developers, marketplace analysts, and ecommerce operators use this skill to gather Amazon search results for product research, competitor monitoring, brand distribution analysis, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a paid third-party Apify API key for Amazon scraping, which can incur costs or expose credentials if handled carelessly. <br>
-Mitigation: Keep the Apify key in an environment variable or secret manager, review Apify cost limits before use, and avoid hardcoding credentials. <br>
-Risk: Crawl scope and scheduling can create unexpected volume or policy risk when scraping Amazon results. <br>
-Mitigation: Set bounded keyword and product limits, avoid high-frequency scraping, and keep cron or scheduled runs disabled until the crawl scope is reviewed. <br>
-Risk: The artifact contains a report-generation defect that can prevent successful output after data collection. <br>
-Mitigation: Review and test the scraper in a virtual environment before deployment, and fix the report-generation path before relying on generated reports. <br>
+## Use Case:
 
+E-commerce researchers, sellers, and analysts use this skill to collect Amazon product search results, compare competing products, and produce spreadsheet and Markdown summaries for market, pricing, and brand analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zuokun300/zuokun300-amazon-scraper) <br>
-- [Apify API key setup](https://console.apify.com/account/integrations) <br>
-- [README.md](artifact/README.md) <br>
-- [USAGE.md](artifact/USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance plus generated Excel workbooks and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Apify API key and writes timestamped report files to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: Amazon search terms and scraping activity are sent to Apify as part of the scraping workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that third-party processing is acceptable, and review the target site's terms and applicable scraping policies before running collection jobs.
+
+Risk: The skill requires an Apify API key, and the artifact includes setup paths that could lead users to place the token directly in code.
+
+Mitigation: Store the Apify token in an environment variable or secret manager, run the skill in an isolated virtual environment, and avoid hardcoding credentials.
+
+Risk: Scheduled scraping can create unexpected third-party activity or costs.
+
+Mitigation: Use the cron example only for intentional monitoring workflows, keep product limits modest, and monitor Apify account usage.
+
+Risk: Generated spreadsheet and Markdown reports contain externally sourced product links and image links.
+
+Mitigation: Treat generated reports as untrusted external-content files and review links before redistribution or automated processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuokun300/skills/zuokun300-amazon-scraper)
+- [zuokun300 publisher profile](https://clawhub.ai/user/zuokun300)
+- [Apify account integrations](https://console.apify.com/account/integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated Excel and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may include Amazon product titles, ASINs, inferred brands, product links, image links, and brand distribution summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

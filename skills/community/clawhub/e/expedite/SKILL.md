@@ -1,18 +1,20 @@
 ---
 name: expedite
-description: Use when the user wants to act on an audit, fix the findings in a line-check/bug-hunt/security-sweep report, work a prioritized backlog, or asks to "fix the findings", "work the backlog", "clear the audit", or "do the high-leverage items". The step after the audit trio.
+version: 0.2.0
+license: MIT
+description: Use when the user wants to act on an audit, fix the findings in a line-check/bug-hunt/security-sweep/latent-premises/retry-safety report, work a prioritized backlog, or asks to "fix the findings", "work the backlog", "clear the audit", or "do the high-leverage items". The step after the audit roster.
 ---
 
 # expedite
 
-The expeditor at the pass drives tickets from the board to plated, in priority order, and lets nothing leave half-cooked. This skill takes an audit backlog (from line-check, bug-hunt, or security-sweep) and executes it: highest-leverage finding first, one focused change at a time, each one verified before the next is started.
+The expeditor at the pass drives tickets from the board to plated, in priority order, and lets nothing leave half-cooked. This skill takes an audit backlog (from line-check, bug-hunt, security-sweep, latent-premises, or retry-safety) and executes it: highest-leverage finding first, one focused change at a time, each one verified before the next is started.
 
-The audit trio is read-only on purpose. This is the separate step it hands off to. Findings already carry severity, effort, location, and a fix; the work is execution discipline, not re-analysis.
+The audit roster is read-only on purpose. This is the separate step it hands off to. Findings already carry severity, effort, location, and a fix. The work is execution discipline, not re-analysis.
 
 ## Preconditions
 
 Check before touching anything; stop and report if any fail:
-- A backlog exists. The input is an audit report following the report contract (a `## Backlog` section, or `## Findings` to sort yourself). No report? Run line-check, bug-hunt, or security-sweep first, do not freelance.
+- A backlog exists. The input is an audit report following the report contract (a `## Backlog` section, or `## Findings` to sort yourself). No report? Run line-check, bug-hunt, security-sweep, latent-premises, or retry-safety first, do not freelance.
 - Working on a branch, never the default branch. Create one if needed (`expedite/<audit>-<date>`).
 - Clean tree to start, so each finding's change is isolable.
 

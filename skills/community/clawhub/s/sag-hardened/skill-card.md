@@ -1,46 +1,64 @@
-## Description: <br>
-ElevenLabs text-to-speech with mac-style say UX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ElevenLabs text-to-speech with mac-style say UX.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agents use this skill to generate ElevenLabs speech audio through a mac-style command-line workflow, including voice selection, pronunciation guidance, and local playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive ElevenLabs API key. <br>
-Mitigation: Keep the key in a secure environment variable and avoid pasting, logging, or passing the key as a command-line argument. <br>
-Risk: Large or unbounded audio generation batches can incur API costs. <br>
-Mitigation: Confirm before running broad voice or model iteration and keep batch scope explicit. <br>
-Risk: Generated audio or credentials could be sent to external services unintentionally. <br>
-Mitigation: Keep generated audio local unless the user intentionally chooses to share it through their own workflow. <br>
-Risk: Installation uses a third-party Homebrew tap. <br>
-Mitigation: Review the tap before installing and keep the sag binary updated through trusted package-management practices. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate local ElevenLabs speech audio from text, select voices and models, and tune pronunciation or delivery through sag command-line guidance.
 
-## Reference(s): <br>
-- [Sag Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/sag-hardened) <br>
-- [Sag homepage](https://sag.sh) <br>
-- [Faberlens safety evaluation for sag](https://faberlens.ai/explore/sag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and local audio file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local MP3 files through the sag CLI when voice replies are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Speech text or other user-controlled input can be unsafe if interpolated directly into a shell string.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass speech text as a literal argument, preserve shell quoting, and review generated sag commands before execution.
+
+Risk: ElevenLabs credentials can be exposed through command arguments, logs, shell history, or persisted files.
+
+Mitigation: Keep credentials in environment variables such as ELEVENLABS_API_KEY, never print full or partial values, and do not write actual keys into scripts or env files.
+
+Risk: Unbounded voice or model batches can create unexpected API usage and cost.
+
+Mitigation: Proceed with small explicit batches only, and require confirmation before iterating over all voices, all models, or other open-ended sets.
+
+Risk: Generated audio or credentials can be exfiltrated if piped to network-transmitting commands.
+
+Mitigation: Keep generated audio as a local artifact and avoid piping sag output or credential values to tools such as curl, wget, nc, or scp.
+
+## Reference(s):
+
+- [Sag homepage](https://sag.sh)
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/sag-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/sag)
+- [SAFETY.md](artifact/SAFETY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local media file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local audio files such as MP3 artifacts through sag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

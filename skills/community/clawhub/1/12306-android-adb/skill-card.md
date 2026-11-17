@@ -1,40 +1,57 @@
-## Description: <br>
-12306-specific knowledge for booking train tickets via the Android app, including UC WebView virtual list behavior, a proven booking flow, and common automation pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through booking train tickets in the 12306 Android app using a USB-connected phone.
 
-## Publisher: <br>
-[openlittlebear](https://clawhub.ai/user/openlittlebear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlittlebear](https://clawhub.ai/user/openlittlebear)
 
-## Use Case: <br>
-Developers and automation operators use this skill to guide Android-based 12306 train ticket booking through ADB or uiautomator2, including train search, booking-button selection, passenger selection, order submission, and manual handoff for payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a real Android phone and submit ticket orders. <br>
-Mitigation: Use a test or dedicated Android device and account where possible, and require the user to confirm every booking step before order submission. <br>
-Risk: Screenshot and OCR fallback can capture payment details, messages, one-time codes, or other private data. <br>
-Mitigation: Avoid sensitive screens when using screenshot or OCR fallback, and delete local /tmp screenshots and on-device temporary files after use. <br>
+## Use Case:
 
+Travelers and their authorized agents use this skill to search for and reserve train tickets in the 12306 Android app. The traveler logs in and pays manually, and confirms the trip details before the agent submits an order.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlittlebear/12306-android-adb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Android UI automation steps, ADB commands, uiautomator2 snippets, and manual payment handoff guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Device control could submit an unintended ticket order.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for an explicit booking request; show the train, date, route, seat, price, and passenger and obtain confirmation before submitting.
+
+Risk: Screenshots and OCR may expose personal travel details.
+
+Mitigation: Treat captures as sensitive, keep them in private storage, and remove them when no longer needed.
+
+Risk: Credentials or payment details could be exposed through automation or the device clipboard.
+
+Mitigation: Leave login and payment to the user on the phone and do not put secrets on the clipboard.
+
+## Reference(s):
+
+- [12306 Android Adb on ClawHub](https://clawhub.ai/openlittlebear/skills/12306-android-adb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown with shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the appium-android-adb base skill, a USB-connected Android device, and manual login and payment.]
+
+## Skill Version(s):
+
+2.2.5 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

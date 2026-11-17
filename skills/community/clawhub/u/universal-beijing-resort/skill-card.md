@@ -1,42 +1,55 @@
-## Description: <br>
-零配置即装即用，提供7项游园工具，含实时排队查询和智能推荐下一步，基于themeparks.wiki实时数据与本地预设数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+北京环球影城一站式游园助手，7项工具覆盖实时排队查询、智能推荐下一步、路线规划、演出时间、营业时间、餐厅推荐、门票价格，零配置即装即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External park visitors and travel planners use this skill to ask for Universal Beijing Resort wait times, operating hours, show guidance, dining suggestions, ticket estimates, route plans, and next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content is specific to Universal Beijing Resort in Beijing, China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-time wait-time and schedule answers depend on themeparks.wiki public data and may be delayed, unavailable, or different from on-site conditions. <br>
-Mitigation: Use the skill for planning support and verify current hours, showtimes, and wait times with official Universal Beijing Resort sources before acting. <br>
-Risk: Built-in ticket, dining, route, attraction, and height-limit reference data can become outdated. <br>
-Mitigation: Confirm prices, age and height restrictions, attraction availability, and safety constraints with official park sources, especially for children or guests with accessibility needs. <br>
+## Use Case:
 
+External travelers and trip planners use this skill to plan a Beijing Universal Resort visit, including ride wait checks, next-step recommendations, show times, daily routing, dining suggestions, operating hours, and ticket-price guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/universal-beijing-resort) <br>
-- [themeparks.wiki live park data endpoint](https://api.themeparks.wiki/v1/entity/68e1d8f0-ed42-4351-af25-160421e37ce0/live) <br>
-- [themeparks.wiki park schedule endpoint](https://api.themeparks.wiki/v1/entity/68e1d8f0-ed42-4351-af25-160421e37ce0/schedule) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese text with lightweight Markdown-style sections and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool responses may include live public park data when themeparks.wiki is reachable and local reference data otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; script header still states v1.0.0) <br>
+Risk: Live wait-time and schedule lookups contact themeparks.wiki, which may receive normal request metadata such as IP address and User-Agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform installers and users about the external data request and avoid including sensitive personal information in queries.
+
+Risk: Ticket prices and some recommendations are local preset guidance and may be outdated or incomplete for purchase or travel decisions.
+
+Mitigation: Verify pricing, availability, and travel-critical details with official Beijing Universal Resort channels before buying tickets or finalizing plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/universal-beijing-resort)
+- [ThemeParks.wiki live park data endpoint](https://api.themeparks.wiki/v1/entity/68e1d8f0-ed42-4351-af25-160421e37ce0/live)
+- [ThemeParks.wiki park schedule endpoint](https://api.themeparks.wiki/v1/entity/68e1d8f0-ed42-4351-af25-160421e37ce0/schedule)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text with Markdown-style lists in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May combine live themeparks.wiki wait-time and schedule data with local preset trip-planning, dining, route, and ticket guidance.]
+
+## Skill Version(s):
+
+1.1.19 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

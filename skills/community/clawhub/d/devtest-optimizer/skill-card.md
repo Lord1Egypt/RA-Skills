@@ -1,40 +1,51 @@
-## Description: <br>
-Optimize Azure dev/test environment costs with auto-shutdown schedules and Dev/Test pricing enrollment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Azure dev/test environment costs with auto-shutdown schedules and Dev/Test pricing enrollment.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Developers, cloud engineers, and FinOps teams use this skill to analyze user-provided Azure VM, cost, and subscription exports, estimate dev/test waste, and draft shutdown schedules, runbooks, and policy tagging guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Azure exports may contain secrets or unnecessary sensitive fields. <br>
-Mitigation: Review exports before use and remove credentials, access keys, secret keys, and fields not needed for cost analysis. <br>
-Risk: Generated shutdown schedules, runbooks, and policies may not match operational requirements. <br>
-Mitigation: Treat outputs as drafts and verify scopes, exclusions, business-hour assumptions, and always-on workloads before applying them in Azure. <br>
-Risk: Dev/Test pricing eligibility may be misunderstood or applied to ineligible environments. <br>
-Mitigation: Confirm Visual Studio subscription requirements and subscription eligibility before relying on estimated Dev/Test savings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers, cloud engineers, and FinOps teams use this skill to review Azure dev/test VM and cost exports, identify non-production resources that appear to run outside business hours, estimate savings, and draft shutdown automation or tagging policy.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Azure inventory, cost, and subscription exports can contain sensitive operational details.
+
+Mitigation: Share only the minimum required exports, remove credentials or secret values before analysis, and prefer read-only Azure data sources.
+
+Risk: Generated runbooks or Azure Policy templates could affect availability or cost if applied without review.
+
+Mitigation: Review all generated automation and policy changes, test them in a non-production subscription, and apply them through normal Azure change controls.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Azure CLI examples, savings analysis, schedules, PowerShell runbook drafts, and Azure Policy guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output based on user-provided exports; it does not access Azure directly.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash, JSON, and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommendations and templates from user-provided Azure exports; it does not directly access Azure or apply cloud changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

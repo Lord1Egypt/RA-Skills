@@ -77,6 +77,8 @@ Prompt 有多个步骤？
 | domain_knowledge | `references/domain-*.md` | 有领域知识 |
 | standards | `rubrics/*.md` | 有评分/质量标准 |
 | examples | `examples/*.md` | 有示例（或触发 Example Generation pass） |
+| honest-boundaries（v2.0） | `references/honest-boundaries.md` | **强制**：有 out_of_scope 或失败模式时必生成 |
+| conflicts（v2.0） | `references/conflicts.md` | Pass 2 检测到未裁决冲突时生成 |
 
 ### 拆分原则
 
@@ -84,6 +86,7 @@ Prompt 有多个步骤？
 2. **知识外置** — 任何 > 200 字的知识块 → references/
 3. **配置参数化** — 可变的参数 → config/
 4. **模板独立** — 固定格式的输出 → templates/
+5. **诚实边界强制（v2.0）** — 每个 skill 必须规划 honest-boundaries 模块，即使初版为骨架。📍 详见 [honest-boundaries.md](honest-boundaries.md)
 
 ---
 
@@ -235,6 +238,61 @@ skill-name/
 ### 派生完成后
 
 `self_test_cases` 写入 IR 的 `pass_3_design.self_test_cases`。Pass 6 Layer B/C 直接读取此字段，无需重新生成用例。
+
+---
+
+## Step 3.10 — Skill Interlinking（v2.0 可选）
+
+**仅当一次编译产出多个相关 skill 时执行**（如从一份长文档蒸馏出多个方法论 skill）。单 skill 编译跳过此步。
+
+当输出包含多个 skill 模块时，规划它们之间的关系图谱，生成 `INDEX.md` 作为技能地图：
+
+### 关系类型
+
+| 关系 | 含义 | 示例 |
+|------|------|------|
+| `depends_on` | A 的执行依赖 B 先完成 | "代码审查" depends_on "静态分析" |
+| `complements` | A 与 B 互补，组合使用效果更好 | "PEP8 检查" complements "安全审计" |
+| `contradicts` | A 与 B 在某些场景给出冲突建议 | 记录冲突，指向 conflicts.md |
+| `alternative` | A 与 B 是同一问题的不同方案 | 标注各自适用场景 |
+
+### INDEX.md 模板
+
+```markdown
+# Skill Index — 技能地图
+
+## 包含的 Skills
+| Skill | 职责 | 触发场景 |
+|-------|------|---------|
+| {name} | {一句话} | {when} |
+
+## 关系图
+- {SkillA} → depends_on → {SkillB}
+- {SkillC} → complements → {SkillD}
+
+## 推荐组合
+{哪些 skill 适合串联使用}
+```
+
+### 设计原则
+
+- INDEX.md 是**可选输出**，只在多 skill 产出时生成
+- 关系图帮助用户理解 skill 间的协作方式，而非孤立使用
+- `contradicts` 关系必须指向 `references/conflicts.md` 的具体条目
+
+### Step 3.11 — Meta-Reflection Checkpoint（v2.1）
+
+在设计产出 IR 之前，用以下 3 个维度二次审视设计决策。Quick 模式跳过此步。
+
+📍 完整框架见 [meta-reflection.md](meta-reflection.md)
+
+| 维度 | 自检问题 | 触发条件 |
+|------|---------|---------|
+| D3 推理 | architecture_type 的决策链是否有跳跃？模块拆分标准是否前后一致？ | 总是 |
+| D5 替代解释 | 是否考虑过至少 1 个替代架构并给出诚实的淘汰理由？替代方案的优势是否被如实评估？ | architecture_type 非 single-prompt |
+| D6 边界条件 | out_of_scope 条目是否足够具体？当前设计在输入为空/极长/格式退化时是否仍适用？ | 总是 |
+
+**输出：** 自省结果写入 trace。如果发现设计漏洞，在进入 Pass 4 前修正 IR。
 
 ---
 

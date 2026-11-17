@@ -1,42 +1,57 @@
-## Description: <br>
-Access Finnish sports club events, invoices, notifications, and RSVP on myclub.fi for AI agents and parents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Finnish sports club events, invoices, notifications, and RSVP on myclub.fi for AI agents and parents.
 
-## Publisher: <br>
-[jannemakela](https://clawhub.ai/user/jannemakela) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jannemakela](https://clawhub.ai/user/jannemakela)
 
-## Use Case: <br>
-Parents, athletes, and agents assisting authorized MyClub users use this skill to retrieve Finnish sports club events, invoices, notifications, RSVP status, participants, comments, and calendar subscriptions from myclub.fi. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Finland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MyClub credentials, notifications, child or member details, invoices, and generated calendar links may expose sensitive family or schedule data. <br>
-Mitigation: Install only if the maiklubi npm package is trusted, use authorized family or club accounts only, avoid sharing sensitive command output in public chats or logs, and clear saved account access when it is no longer needed. <br>
-Risk: Club-internal details such as team assignments, line-ups, event comments, and schedule changes may be incomplete or misleading if answered from public web sources. <br>
-Mitigation: Use the skill's MyClub notification, event, participant, and summary commands for authorized account data, then review the returned details before acting. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve family sports club schedules, RSVP status, invoices, notifications, participant lists, and calendar subscriptions from myclub.fi.
 
-## Reference(s): <br>
-- [Maiklubi on ClawHub](https://clawhub.ai/jannemakela/maiklubi-myclub) <br>
-- [maiklubi npm package](https://www.npmjs.com/package/maiklubi) <br>
-- [myclub.fi](https://myclub.fi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the maiklubi CLI and a configured MyClub account; command outputs may contain private member, invoice, notification, event, and calendar data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release evidence) <br>
+Risk: The skill depends on a mutable npm CLI that handles myclub.fi account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, prefer a pinned or audited CLI version, avoid elevated privileges, and clear stored credentials when no longer needed.
+
+Risk: Skill outputs can contain sensitive family, club, invoice, and attendance information.
+
+Mitigation: Treat command output as private data and avoid sharing it outside the intended family or club context.
+
+Risk: The wrapper script can fall back to a local build path outside the packaged skill boundary.
+
+Mitigation: Review the installed wrapper and local filesystem fallback before enabling the skill in an agent environment.
+
+## Reference(s):
+
+- [Maiklubi Skill on ClawHub](https://clawhub.ai/jannemakela/skills/maiklubi-myclub)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Text, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the maiklubi CLI and may surface sensitive family and club information.]
+
+## Skill Version(s):
+
+1.2.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

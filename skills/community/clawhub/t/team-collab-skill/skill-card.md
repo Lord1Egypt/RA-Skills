@@ -1,48 +1,57 @@
-## Description: <br>
-Sets up a multi-agent collaboration system with product, development, and operations agents, persistent memory, task routing, knowledge extraction, and parallel work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up a Chinese-language multi-agent collaboration workflow with product, development, and operations agent templates, persistent Markdown memory, task routing, knowledge extraction, and parallel collaboration guidance.
 
-## Publisher: <br>
-[aboutyao](https://clawhub.ai/user/aboutyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aboutyao](https://clawhub.ai/user/aboutyao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to bootstrap a coordinated product, development, and operations agent team with shared memory files, routing rules, and reusable collaboration templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may store personal details, preferences, decisions, tasks, and lessons without a clear retention policy. <br>
-Mitigation: Require user confirmation before saving personal details or decisions, and periodically review or delete memory files. <br>
-Risk: Heartbeat behavior can prompt proactive outreach after inactivity and periodic checks that may be unwanted. <br>
-Mitigation: Disable unsolicited heartbeat outreach unless the user explicitly wants reminders or check-ins. <br>
-Risk: Agent templates reference tool-driven actions such as GitHub work, skill installation, browser automation, scheduled posting, and publishing. <br>
-Mitigation: Add explicit approval gates before any external service action, installation, automation, scheduled posting, or public publishing. <br>
+## Use Case:
 
+Developers and agent builders use this skill to bootstrap a product, development, and operations agent team with persistent Markdown state, shared knowledge templates, routing rules, and parallel collaboration patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aboutyao/team-collab-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/aboutyao) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Long-term memory template](artifact/templates/MEMORY.md) <br>
-- [Heartbeat template](artifact/templates/HEARTBEAT.md) <br>
-- [Task routing rules](artifact/templates/shared/task-routing.md) <br>
-- [Knowledge extraction rules](artifact/templates/shared/knowledge-extraction.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates with inline shell and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates reusable memory and agent state templates; no API credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Persistent Markdown memory can retain user preferences, decisions, and agent state without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in, retention limits, and review/delete controls before storing sensitive work.
+
+Risk: Stored memory may be reused as trusted context by future agents.
+
+Mitigation: Treat memory files as untrusted input and review them before using them to route tasks or make decisions.
+
+Risk: Proactive reminders and automation suggestions could trigger actions the user did not intend.
+
+Mitigation: Require confirmation before reminders, posting, skill installation, repository changes, or scheduled automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aboutyao/skills/team-collab-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates with inline shell commands and JavaScript-style spawn examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable memory, agent-state, shared-knowledge, task-routing, and collaboration templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

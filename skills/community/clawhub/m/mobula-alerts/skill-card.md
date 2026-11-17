@@ -1,47 +1,60 @@
-## Description: <br>
-24/7 autonomous monitoring for crypto portfolios, whales, and market conditions. Multi-condition alerts via OpenClaw heartbeat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+24/7 autonomous monitoring for crypto portfolios, whales, and market conditions. Multi-condition alerts via OpenClaw heartbeat.
 
-## Publisher: <br>
-[flotapponnier](https://clawhub.ai/user/flotapponnier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flotapponnier](https://clawhub.ai/user/flotapponnier)
 
-## Use Case: <br>
-External crypto users, portfolio managers, and traders use this skill to configure an agent for continuous crypto portfolio, wallet, token, and market monitoring. It supports threshold alerts, whale watching, token discovery, and scheduled market briefs through heartbeat-driven checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, holdings, and portfolio alerts can reveal sensitive financial activity. <br>
-Mitigation: Use private alert channels and avoid sending full wallet addresses or exact holdings unless they are necessary for the monitoring task. <br>
-Risk: The skill requires a Mobula API key for monitoring workflows. <br>
-Mitigation: Protect MOBULA_API_KEY as a secret and avoid exposing it in prompts, logs, screenshots, or shared alert output. <br>
-Risk: Heartbeat monitoring can keep checking conditions and sending alerts after setup. <br>
-Mitigation: Confirm how to disable heartbeat tasks before enabling 24/7 alerts, and tune monitoring frequency to the intended use. <br>
+## Use Case:
 
+External users, portfolio managers, and traders use this skill to configure ongoing crypto portfolio, wallet, token discovery, price movement, and market-brief monitoring through an OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/flotapponnier/mobula-alerts) <br>
-- [Mobula homepage](https://mobula.io) <br>
-- [Mobula API documentation](https://docs.mobula.io) <br>
-- [Mobula OpenClaw repository](https://github.com/Flotapponnier/Crypto-date-openclaw) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with alert templates, setup commands, and monitoring pattern examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOBULA_API_KEY and may describe heartbeat schedules, wallet or token monitoring criteria, and notification-channel setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The agent may store monitoring rules, wallet or watchlist identifiers, previous values, schedules, and alert destinations for ongoing checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated or pseudonymous wallet addresses and notification channels when privacy matters, and confirm monitored items and alert destinations before enabling heartbeat monitoring.
+
+Risk: The skill requires a Mobula API key for authenticated data access.
+
+Mitigation: Use an API key with appropriate limits, rotate it if exposed, and avoid sharing it in prompts, logs, or public configuration.
+
+Risk: Alerts sent through Telegram, WhatsApp, Discord, or similar services may disclose trading interests or wallet activity to third-party services.
+
+Mitigation: Choose alert destinations deliberately and limit message content to the level of portfolio or wallet detail acceptable for that channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flotapponnier/skills/mobula-alerts)
+- [Mobula homepage](https://mobula.io)
+- [Mobula API documentation](https://docs.mobula.io)
+- [Repository listed in skill documentation](https://github.com/Flotapponnier/Crypto-date-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and monitoring examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Mobula API key and may rely on related Mobula price and wallet skills for full monitoring workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Daily hot AI opinion - 150-200 word take on one AI topic, rotating through 18 topics, in Sol's direct wry voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily hot AI opinion generator that drafts a 150-200 word take on one rotating AI topic in Sol's direct, wry voice.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-External users and developers can use this skill to generate and publish a daily short AI opinion post in a consistent voice. It is intended for a configured content site with a MiniMax API key and repository write access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended scheduled publishing can push generated content to a GitHub-backed site without a human review step. <br>
-Mitigation: Run against a draft branch or pull-request workflow and require manual approval before merge or push. <br>
-Risk: Repository credentials and the MiniMax API key are needed for the workflow and could grant broader access than intended. <br>
-Mitigation: Use scoped credentials, restrict repository permissions, and store secrets only in the configured secrets path. <br>
-Risk: Generated opinion content may be incorrect, misleading, or unsuitable for the publisher's site. <br>
-Mitigation: Review each generated post for accuracy, tone, and publication suitability before it is published. <br>
+## Use Case:
 
+External users and site maintainers use this skill to generate short daily AI opinion posts and publish them to a Jekyll site.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amrree/skills/sol-take) <br>
-- [Publisher profile](https://clawhub.ai/user/amrree) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file paths, setup details, and generated Jekyll post output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a 150-200 word AI opinion post and may trigger repository file writes and GitHub publishing when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unattended scheduling and GitHub pushes can publish generated public site content without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make scheduling and automatic push explicitly opt-in, review generated posts before publication, and use a dedicated branch or token with minimal permissions.
+
+Risk: The artifact does not show tight scoping around which files are staged and pushed.
+
+Mitigation: Confirm the workflow stages only the intended Jekyll post path before enabling automatic commits.
+
+Risk: The skill requires a MiniMax API key and a specific local site repository path.
+
+Mitigation: Store the API key in the documented secrets path and verify the target repository path before running the publishing workflow.
+
+## Reference(s):
+
+- [Sol Take on ClawHub](https://clawhub.ai/amrree/skills/sol-take)
+- [Publisher profile: amrree](https://clawhub.ai/user/amrree)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown Jekyll post with generated prose and a Git commit/push workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a 150-200 word opinion post on one rotating AI topic per day.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

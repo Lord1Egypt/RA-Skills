@@ -1,44 +1,61 @@
-## Description: <br>
-Checks OpenClaw and ClawHub skills against Agora Sentinel trust data for malware, prompt injection, data theft, dangerous permissions, and related security risks before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agora Sentinel checks ClawHub and OpenClaw skills against a public security database for malware, prompt injection, data theft, wallet stealing, and dangerous permissions before installation.
 
-## Publisher: <br>
-[Folvindine](https://clawhub.ai/user/Folvindine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[folvindine](https://clawhub.ai/user/folvindine)
 
-## Use Case: <br>
-Developers and agent users use this skill to check ClawHub skill trust scores before installing new skills and to audit installed OpenClaw skills for security concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled checker scripts may execute local commands if a malicious or compromised API response is interpolated into Python source. <br>
-Mitigation: Review or patch the JSON parsing so API responses are passed as data, not executable Python source, before relying on the scripts. <br>
-Risk: Skill checks disclose queried skill slugs to checksafe.dev. <br>
-Mitigation: Use the skill only when sharing checked skill names with that service is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check individual ClawHub or OpenClaw skill slugs and audit installed skills for trust scores, security badges, and warnings before installation or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Folvindine/agora-sentinel) <br>
-- [Agora Sentinel homepage](https://checksafe.dev) <br>
-- [Agora Sentinel dashboard](https://checksafe.dev/dashboard/) <br>
-- [Badge API endpoint](https://checksafe.dev/api/v1/skills/{slug}/badge.json) <br>
-- [Full report API endpoint](https://checksafe.dev/api/v1/skills/{slug}/report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and terminal-style security reports; direct API calls return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries public checksafe.dev endpoints by skill slug; no API key or account is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can influence future skill installation decisions through remote trust scores and broad install-gating guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat remote scores as advisory, review the reported findings, and require explicit user confirmation before acting on caution, warning, or danger results.
+
+Risk: Skill slugs are sent to a third-party service when checks or installed-skill audits run.
+
+Mitigation: Avoid scanning private or sensitive internal skill names unless sharing those slugs with the service is acceptable.
+
+Risk: The security evidence flags unsafe shell and Python parsing patterns if the bundled scripts are made runnable.
+
+Mitigation: Prefer a version that validates slugs and parses API JSON through stdin or a fixed parser before executing the scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/folvindine/skills/agora-sentinel)
+- [Agora Sentinel Homepage](https://checksafe.dev)
+- [Agora Sentinel Dashboard](https://checksafe.dev/dashboard/)
+- [Badge API Endpoint](https://checksafe.dev/api/v1/skills/{slug}/badge.json)
+- [Full Report API Endpoint](https://checksafe.dev/api/v1/skills/{slug}/report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style guidance with inline shell commands and parsed text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries checksafe.dev by skill slug; no API key is required.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Query and manage farm work orders and tasks. View assignments, create tasks, update status. Uses integration endpoints (no auth) for reads and authenticated endpoints for writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage farm work orders and tasks, including assignments, task creation, status updates, and restock follow-ups.
 
-## Publisher: <br>
-[brianppetty](https://clawhub.ai/user/brianppetty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianppetty](https://clawhub.ai/user/brianppetty)
 
-## Use Case: <br>
-Farm managers and operations teams use this skill to query task summaries and assignments, create work orders, update task status, and capture restock or follow-up work from natural-language requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated actions can create, assign, or update FarmOS task records. <br>
-Mitigation: Require explicit user confirmation before every write action and use the least-privileged role allowed by the local role mapping. <br>
-Risk: The skill depends on a trusted FarmOS endpoint, local auth helper, and local role file. <br>
-Mitigation: Install only in environments where those local components are trusted and periodically review the role mapping for excess privileges. <br>
-Risk: Broad task detection and cross-module lookups can add unrelated operational context. <br>
-Mitigation: Limit cross-module lookups to cases the user requested or where the extra context is clearly needed for the task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brianppetty/farmos-tasks) <br>
+## Use Case:
 
+Farm managers and farm operations staff use this skill to inspect task and work-order status, create or assign tasks with confirmation, and track field, equipment, and procurement follow-ups.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with task summaries, confirmation prompts, curl examples, and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FarmOS API calls for reads and authenticated task writes after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles operational task data through insecure or under-protected API patterns.
+
+Mitigation: Use it only on a trusted, isolated FarmOS network, require authentication for task reads when possible, and use HTTPS for any request carrying tokens or task details.
+
+Risk: Authenticated endpoints can create, assign, or change farm tasks.
+
+Mitigation: Require explicit confirmation before writes and use the JWT role that matches the requesting user's permissions.
+
+Risk: Natural-language task detection may treat casual comments as actionable work.
+
+Mitigation: Confirm task title, priority, assignee, and due date before creating or updating tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianppetty/skills/farmos-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, API calls]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task summaries, confirmation prompts, and FarmOS API request details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

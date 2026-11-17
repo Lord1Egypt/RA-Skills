@@ -1,43 +1,56 @@
-## Description: <br>
-计算中文姓名和公司名的五格数理、康熙笔画、吉凶解释，并可按规则批量生成名字。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Chinese Wuge name numerology for personal and company names, including Traditional Chinese conversion, Kangxi stroke counts, five-grid scoring, and candidate name generation.
 
-## Publisher: <br>
-[azazlf09](https://clawhub.ai/user/azazlf09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[azazlf09](https://clawhub.ai/user/azazlf09)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate Chinese personal names, company names, stroke counts, and Five Grid numerology results, or to generate candidate names under the skill's scoring rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Name scoring is numerology behavior and should not be treated as factual prediction or professional advice. <br>
-Mitigation: Present results as culturally contextual name-analysis guidance and keep human judgment in the loop for consequential naming decisions. <br>
-Risk: Rare-character lookups may download about 3 MB of dictionary data from GitHub or CDN sources. <br>
-Mitigation: For restricted environments, prepopulate the cache, disable automatic downloads, or use a pinned checksum-verified dictionary source. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate Chinese personal or company names with Wuge numerology, query Kangxi stroke counts, and generate candidate names under score constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/azazlf09/name-wuge) <br>
-- [cnk3x/bys 81 numerology data source](https://github.com/cnk3x/bys) <br>
-- [breezyreeds/kangxi-strokecount data source](https://github.com/breezyreeds/kangxi-strokecount) <br>
-- [Kangxi stroke count CSV CDN source](https://cdn.jsdelivr.net/gh/breezyreeds/kangxi-strokecount@master/kangxi-strokecount.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code] <br>
-**Output Format:** [Markdown or plain text name reports, generated name lists, and Python callable outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include simplified/traditional Chinese display, Kangxi stroke counts, Five Grid values, auspiciousness labels, explanations, and scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release evidence) <br>
+Risk: The skill may contact GitHub or a CDN to download a larger Kangxi stroke dictionary and cache it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For privacy-sensitive or locked-down environments, disable automatic downloads or provide a vetted local cache before use.
+
+Risk: Name scores and generated recommendations could be mistaken for authoritative personal or business advice.
+
+Mitigation: Present results as entertainment or cultural reference and review outputs before using them in real decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/azazlf09/skills/name-wuge)
+- [Publisher profile](https://clawhub.ai/user/azazlf09)
+- [Kangxi stroke dictionary CSV via jsDelivr](https://cdn.jsdelivr.net/gh/breezyreeds/kangxi-strokecount@master/kangxi-strokecount.csv)
+- [Kangxi stroke dictionary CSV via GitHub Raw](https://raw.githubusercontent.com/breezyreeds/kangxi-strokecount/master/kangxi-strokecount.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with formatted Chinese name-analysis tables and optional Python usage snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include simplified and Traditional Chinese name forms, Kangxi stroke counts, Wuge scores, auspiciousness labels, and short explanations.]
+
+## Skill Version(s):
+
+2.7.0 (source: ClawHub release evidence; artifact metadata reports 2.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

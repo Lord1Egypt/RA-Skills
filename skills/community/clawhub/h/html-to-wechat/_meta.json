@@ -1,0 +1,10 @@
+{
+  "slug": "html-to-wechat",
+  "displayName": "HTML to WeChat",
+  "description": "将现有 HTML 内容一键发布到微信公众号草稿箱。自动检测微信兼容性，自动转换 CSS 为内联样式，压缩封面图，上传到草稿箱等待审核发布。",
+  "tags": ["wechat", "html", "publishing", "chinese", "公众号", "微信发布"],
+  "prerequisites": ["anything-to-wechat"],
+  "scripts": [
+    "scripts/compress_image.py"
+  ]
+}

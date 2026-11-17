@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7emggfqcj5rh92t9we7yzy8d82zc1g",
   "slug": "drission-sota-toolkit",
-  "version": "7.1.0",
-  "publishedAt": 1773577672936
+  "version": "7.0.0",
+  "publishedAt": 1773577500000,
+  "ownerId": "kn7emggfqcj5rh92t9we7yzy8d82zc1g",
+  "description": "Minimal Web Scraper (Lab v7.0). Only basic search and aggregation scripts. No high-risk capabilities included. Manual audit ready.",
+  "name": "Drission SOTA Toolkit (Minimal)",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🔍",
+      "disable-model-invocation": false,
+      "requires": {
+        "bins": ["google-chrome-stable"],
+        "python": ["curl_cffi", "lxml", "DrissionPage", "requests"]
+      }
+    }
+  }
 }

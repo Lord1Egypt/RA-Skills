@@ -1,46 +1,56 @@
-## Description: <br>
-UI design-style selector that helps an agent apply a user-specified design system from a bundled design-md library, including brand-inspired styles such as Linear, Apple, Stripe, and Vercel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+awesome-design-skill helps agents apply a user-specified UI design style by selecting a bundled brand-inspired design system and copying its DESIGN.md guidance into the working project.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers and designers use this skill in Claude Code when they explicitly request a named design style, need a list of available styles, or want an existing interface restyled according to one of the bundled design-system references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The copy helper can write a DESIGN.md file into the selected target directory. <br>
-Mitigation: Review the target directory before running copy-design.sh and confirm overwriting or adding DESIGN.md is intended. <br>
-Risk: Preview HTML files may contact third-party font hosts when opened. <br>
-Mitigation: Open previews only in environments where third-party font requests are acceptable, or replace the configured font host before use. <br>
-Risk: Random or keyword-based style helpers may choose a style that the user did not explicitly select. <br>
-Mitigation: Use get-design.sh or copy-design.sh with an explicit style name when exact style selection is required. <br>
+## Use Case:
 
+Developers use this skill when they want an agent to follow a specific UI style, list available design styles, inspect a style guide, or restyle an existing page while preserving its function and content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouchang1988/awesome-design-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhouchang1988) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Design style index](artifact/scripts/styles.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and copied DESIGN.md files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May copy a selected DESIGN.md file into the target working directory; preview HTML assets may load fonts from third-party font hosts when opened.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Applying a style can overwrite an existing DESIGN.md in the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check for an existing DESIGN.md before applying a style, or copy the selected guide into a temporary location first.
+
+Risk: Path-like style names could select unintended filesystem paths.
+
+Mitigation: Use known style names from the style list and avoid values containing slashes or '..'.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/awesome-design-skill)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [VoltAgent awesome-design-md inspiration project](https://github.com/VoltAgent/awesome-design-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown design guidance files, concise text responses, and shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite DESIGN.md in the target directory when applying a style.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

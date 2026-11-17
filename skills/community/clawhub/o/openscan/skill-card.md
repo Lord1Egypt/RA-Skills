@@ -1,44 +1,59 @@
-## Description: <br>
-Scan binaries and scripts for malicious patterns before trusting them. Use when installing skills, evaluating unknown binaries, or auditing tool dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan binaries and scripts for malicious patterns before trusting them. Use when installing skills, evaluating unknown binaries, or auditing tool dependencies.
 
-## Publisher: <br>
-[dev-null321](https://clawhub.ai/user/dev-null321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dev-null321](https://clawhub.ai/user/dev-null321)
 
-## Use Case: <br>
-Developers and engineers use OpenScan to perform lightweight static analysis of macOS and Linux binaries, scripts, and skill folders before trusting or installing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: On macOS, a specially crafted filename may cause the signature check to run unintended shell commands. <br>
-Mitigation: Avoid scanning untrusted directories until the signature check uses a non-shell API such as execFileSync or spawn with an argument array. <br>
-Risk: Published source metadata is inconsistent and server-resolved import provenance is unavailable. <br>
-Mitigation: Verify the intended publisher and source before installing or relying on the release. <br>
-Risk: Static analysis may miss runtime-only behavior, sophisticated obfuscation, or malware without matching patterns. <br>
-Mitigation: Use scan results as a review aid alongside source review, sandboxing, and established security tools. <br>
+## Use Case:
 
+Developers and agents use OpenScan to perform lightweight static checks on macOS and Linux binaries, scripts, and skill folders before trusting or installing them.
 
-## Reference(s): <br>
-- [OpenScan README](README.md) <br>
-- [OpenScan on ClawHub](https://clawhub.ai/dev-null321/openscan) <br>
-- [Harkonnen antimalware engine](https://github.com/dev-null321/Harkonnen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript integration examples, human-readable scan summaries, and optional JSON scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI exit codes indicate clean, suspicious, or high-threat scan outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: Server security evidence reports a suspicious verdict and a command-injection issue when scanning specially named files on macOS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the scanner with sudo or against untrusted macOS files until the code-signature check uses an argument-array API such as execFileSync.
+
+Risk: The scanner is lightweight static analysis and can miss runtime-only behavior, sophisticated obfuscation, custom packers, or malware not covered by its patterns.
+
+Mitigation: Use results as review signals, not final security decisions, and pair them with deeper antivirus, EDR, sandboxing, or manual review for high-risk artifacts.
+
+Risk: Legitimate security tools, debuggers, and system utilities may trigger false positives.
+
+Mitigation: Manually review suspicious findings before blocking or trusting a dependency.
+
+## Reference(s):
+
+- [OpenScan ClawHub listing](https://clawhub.ai/dev-null321/skills/openscan)
+- [Harkonnen antimalware engine](https://github.com/dev-null321/Harkonnen)
+- [OpenScan repository](https://github.com/dev-null321/openScan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Human-readable terminal report or JSON scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes file hashes, threat scores from 0-100, findings, and exit codes 0, 1, or 2 for automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

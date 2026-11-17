@@ -1,50 +1,67 @@
-## Description: <br>
-AdMapix helps agents search ad creatives, analyze apps, view rankings, track download and revenue estimates, and summarize market insights through the AdMapix API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AdMapix helps agents search ad creatives, analyze apps, review rankings, track estimated downloads and revenue, and generate market insights through the AdMapix API.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Marketing, growth, product, and competitive-intelligence users can use this skill to research ad creatives, app rankings, app performance estimates, advertising distribution, and market trends. The skill is also useful for agents that need bilingual English and Chinese reporting over AdMapix API results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-directed ad and app research queries and related query parameters to the AdMapix API. <br>
-Mitigation: Use it only for queries appropriate to share with AdMapix and avoid submitting sensitive or confidential search terms. <br>
-Risk: The skill requires an API key for the AdMapix service. <br>
-Mitigation: Keep the key scoped to this skill, configure it through the environment, and do not paste it into chats, logs, or generated reports. <br>
-Risk: Download and revenue outputs are third-party estimates rather than official figures. <br>
-Mitigation: Label estimate-based results clearly and avoid presenting them as authoritative financial or store-reported data. <br>
+## Use Case:
 
+External users, marketers, growth analysts, and app developers use this skill to investigate ad creatives, app performance, rankings, audience distribution, estimated downloads and revenue, and market trends. It supports English and Chinese analysis workflows backed by AdMapix API data.
 
-## Reference(s): <br>
-- [AdMapix website](https://www.admapix.com) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [Creative Search API](artifact/references/api-creative.md) <br>
-- [Product & Company API](artifact/references/api-product.md) <br>
-- [Ranking API](artifact/references/api-ranking.md) <br>
-- [Download & Revenue API](artifact/references/api-download-revenue.md) <br>
-- [App Distribution API](artifact/references/api-distribution.md) <br>
-- [Market Analysis API](artifact/references/api-market.md) <br>
-- [Parameter Mapping Reference](artifact/references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, tables, H5 result links, and inline shell commands for API-key checks and API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in English or Chinese based on the user's language and labels download and revenue figures as third-party estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends ad intelligence queries and targets to the third-party AdMapix API using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where sharing those queries is acceptable, protect the API key, and avoid private or confidential business data unless that sharing has been approved.
+
+Risk: Install guidance uses a broad package command rather than a pinned or organization-approved installer.
+
+Mitigation: Prefer a pinned version or an organization-approved installation path before deploying the skill in managed environments.
+
+Risk: Download and revenue outputs are third-party estimates and may be mistaken for official app metrics.
+
+Mitigation: Label those figures as estimates in user-facing summaries and avoid using them as the sole basis for high-stakes decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/marjorie-admapix)
+- [AdMapix Website](https://www.admapix.com)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+- [Project Repository](https://github.com/fly0pants/admapix)
+- [Creative Search API](references/api-creative.md)
+- [Product & Company API](references/api-product.md)
+- [Ranking API](references/api-ranking.md)
+- [Download & Revenue API](references/api-download-revenue.md)
+- [App Distribution API](references/api-distribution.md)
+- [Market Analysis API](references/api-market.md)
+- [Parameter Mapping Reference](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with tables, summaries, links, and inline shell commands or API calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include H5 result links; requires SKILLBOSS_API_KEY; download and revenue figures are third-party estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

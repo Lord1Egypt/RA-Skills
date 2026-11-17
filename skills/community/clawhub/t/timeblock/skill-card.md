@@ -1,41 +1,50 @@
-## Description: <br>
-Timeblock helps users plan a day hour-by-hour with intentional time blocking for blocking sessions, checking plans, analyzing allocation, and generating agendas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan your day hour-by-hour with intentional time blocking. Use when blocking sessions, checking plans, analyzing allocation, generating agendas.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers use Timeblock to log planned and actual schedule blocks, check adherence, analyze time allocation, search history, and export local time-block records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Time-block notes are stored locally and may include sensitive personal, location, or work details. <br>
-Mitigation: Use the skill only on a trusted local account, avoid entering highly sensitive information, and periodically review or delete logs under ~/.local/share/timeblock. <br>
-Risk: The skill runs a shell script that creates and updates files in the user's home directory. <br>
-Mitigation: Review the script before installation and confirm the local data path is acceptable for the deployment environment. <br>
+## Use Case:
 
+External users and developers use Timeblock to plan, log, search, compare, and export time-blocked schedules and productivity records from a local command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub Timeblock listing](https://clawhub.ai/xueyetianya/timeblock) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and local log or export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists local logs and export files under ~/.local/share/timeblock/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Time-block entries can contain sensitive schedule or meeting details stored as local plaintext under ~/.local/share/timeblock and included in exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering highly sensitive details, check local file permissions on shared systems, and review exported files before sharing.
+
+## Reference(s):
+
+- [Timeblock ClawHub listing](https://clawhub.ai/xueyetianya/skills/timeblock)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output with local log files and JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads local files under ~/.local/share/timeblock; no external services, API keys, or network calls are described.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

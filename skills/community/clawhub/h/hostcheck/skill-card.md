@@ -1,41 +1,53 @@
-## Description: <br>
-Hostcheck provides a free host health check for OpenClaw deployments, covering system status, updates, security settings, and recommendations without requiring paid tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free host health check for OpenClaw deployments. Check system status, updates, security settings, and provide recommendations. No paid tools required.
 
-## Publisher: <br>
-[bwtomekk-bit](https://clawhub.ai/user/bwtomekk-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bwtomekk-bit](https://clawhub.ai/user/bwtomekk-bit)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for read-only host health and security posture checks on OpenClaw deployments, including update status, SSH and firewall posture, backups, service health, and actionable maintenance recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested sudo, package upgrade, firewall, or installation commands could affect host configuration if executed without review. <br>
-Mitigation: Treat those commands as manual administrator actions and approve them only after confirming they fit the operating system and maintenance window. <br>
-Risk: The skill may inspect local host health and security posture. <br>
-Mitigation: Install it only when an agent should review local system status, security settings, backups, and OpenClaw service health. <br>
+## Use Case:
 
+Developers and operators use Hostcheck to request a read-only health and security posture report for OpenClaw hosts, including system status, update, SSH, firewall, backup, and OpenClaw service checks.
 
-## Reference(s): <br>
-- [Hostcheck ClawHub skill page](https://clawhub.ai/bwtomekk-bit/hostcheck) <br>
-- [bwtomekk-bit publisher profile](https://clawhub.ai/user/bwtomekk-bit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown status report with inline shell commands and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; recommends manual approval before any host changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Administrator-level remediation suggestions such as update, upgrade, or package-install commands could affect production hosts if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat remediation commands as recommendations only; require an administrator to review and approve them before execution.
+
+Risk: The skill does not include virus scanning, real-time protection, or automatic firewall installation.
+
+Mitigation: Use the report as a basic host-health checklist and add dedicated security tools or manual controls when those protections are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bwtomekk-bit/skills/hostcheck)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status report with concise findings and optional inline shell commands for administrator-reviewed remediation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; remediation commands are recommendations and require user consent before changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

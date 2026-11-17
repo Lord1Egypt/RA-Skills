@@ -1,7 +1,7 @@
 ---
 name: memory-palace-architect
 description: Designs memory palace structures with spatial layouts and domain organization
-version: 1.9.8
+version: 1.10.3
 triggers:
   - memory
   - organization
@@ -15,31 +15,12 @@ source: claude-night-market
 source_plugin: memory-palace
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-> **Status: unwired**. As of v1.9.4, no command or agent
-> invokes `Skill(memory-palace:memory-palace-architect)`.
-> The `/palace create` command does palace creation directly
-> without routing through this skill. The architectural
-> guidance below is reference material; consult it when
-> designing a new palace by hand. Tracked for follow-up in
-> the April 2026 skill audit.
-
-## Table of Contents
-
-- [What It Is](#what-it-is)
-- [Quick Start](#quick-start)
-- [Create a New Palace](#create-a-new-palace)
-- [List Existing Palaces](#list-existing-palaces)
-- [View Palace Status](#view-palace-status)
-- [When to Use](#when-to-use)
-- [Architectural Templates](#architectural-templates)
-- [Core Workflow](#core-workflow)
-- [Detailed Resources](#detailed-resources)
-- [Integration](#integration)
-- [Expected Outputs](#expected-outputs)
-
+> **Status: wired**. The `palace-architect` agent loads this skill
+> for its design method (#618). `/palace create` still creates the
+> palace record directly. This skill decides what goes in it.
 
 # Memory Palace Architect
 
@@ -57,21 +38,18 @@ A memory palace is a mnemonic technique that uses spatial visualization to organ
 
 ### Create a New Palace
 ```bash
-python scripts/palace_manager.py create "My Palace" "programming" --metaphor workshop
+python scripts/memory_palace_cli.py create "My Palace" "programming" --metaphor workshop
 ```
-**Verification:** Run `python --version` to verify Python environment.
 
 ### List Existing Palaces
 ```bash
-python scripts/palace_manager.py list
+python scripts/memory_palace_cli.py list
 ```
-**Verification:** Run `python --version` to verify Python environment.
 
 ### View Palace Status
 ```bash
-python scripts/palace_manager.py status
+python scripts/memory_palace_cli.py status
 ```
-**Verification:** Run `python --version` to verify Python environment.
 
 ## When To Use
 
@@ -92,9 +70,13 @@ python scripts/palace_manager.py status
 - Session-specific context - use
   session-palace-builder
 
-## Architectural Templates
+## Metaphor Choices
 
-| Template | Best For | Key Features |
+`--metaphor` is a free-form label stored on the palace as given, and it
+defaults to `building`. Nothing validates it or loads a template from
+it. These five are suggested starting points for the design:
+
+| Metaphor | Best For | Key Features |
 |----------|----------|--------------|
 | **Fortress** | Security, defense, production-grade systems | Strong boundaries, layered access |
 | **Library** | Knowledge, research, documentation | Organized shelves, categorized sections |
@@ -135,4 +117,19 @@ Works with:
 
 ### Common Issues
 
-If palace creation fails, check that the `metaphor` argument matches one of the supported templates (Fortress, Library, Workshop, Garden, Observatory). For script errors, ensure the `palace_manager.py` script has executable permissions and that your Python environment meets the requirements listed in `pyproject.toml`.
+If palace creation fails, ensure your Python environment meets the requirements listed in `pyproject.toml`. The `metaphor` value cannot cause a failure, because any string is accepted.
+
+## Exit Criteria
+
+- [ ] `scripts/memory_palace_cli.py create "<name>" "<domain>" --metaphor
+      <metaphor>` completes without error and adds the palace to the
+      index
+- [ ] `scripts/memory_palace_cli.py list` shows the newly created palace
+      by the name supplied during creation
+- [ ] The created palace JSON has a `layout` (districts, buildings,
+      rooms, connections) and a `sensory_encoding` block, and both are
+      filled in from the design
+- [ ] The palace's `metaphor` field records the metaphor the design
+      chose
+- [ ] Recall testing results or optimization recommendations are
+      produced as part of the Expected Outputs section

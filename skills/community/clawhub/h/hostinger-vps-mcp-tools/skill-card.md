@@ -1,51 +1,70 @@
-## Description: <br>
-Helps agents set up Hostinger VPS servers as AI assistant workstations with GUI access, Docker, OpenClaw/Koda deployment, Hostinger API MCP integration, and post-deployment hardening guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up Hostinger VPS servers as AI virtual employees with GUI and Koda (OpenClaw). Use when deploying new VPS instances, setting up remote desktops, installing Koda/OpenClaw, or configuring AI agent workstations. Handles Ubuntu server setup, GUI (XFCE + VNC/XRDP), Docker, and Koda deployment.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and operators use this skill to provision and configure Hostinger VPS instances as remotely accessible AI workstations. It supports Hostinger API MCP setup, server bootstrapping, GUI installation, Docker and OpenClaw/Koda deployment, and identity configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Hostinger API token and run root-level provisioning scripts, giving it broad infrastructure authority. <br>
-Mitigation: Review the scripts before execution, run them on a fresh VPS, use the least-privileged rotatable Hostinger token available, and rotate any token that may have been displayed or entered in shell commands. <br>
-Risk: Default deployment paths can expose SSH, RDP, and webchat services on public network ports. <br>
-Mitigation: Verify SSH host keys yourself, prefer VPN or tunnel access, and use the included public-access lockdown or equivalent firewall controls before relying on the server. <br>
-Risk: Automation may create broad local privileges such as passwordless sudo for the deployed user. <br>
-Mitigation: Remove or narrow passwordless sudo after setup and confirm account, firewall, and remote access settings match the intended operating model. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/maverick-software/hostinger-vps-mcp-tools) <br>
-- [Hostinger API Reference](https://developers.hostinger.com/) <br>
-- [Hostinger API Authentication](https://developers.hostinger.com/#description/authentication) <br>
-- [Hostinger Official MCP Server](https://github.com/hostinger/api-mcp-server) <br>
-- [hPanel API Tokens](https://hpanel.hostinger.com/api-tokens) <br>
-- [hostinger-backend.ts](references/hostinger-backend.ts) <br>
-- [hostinger-controller.ts](references/hostinger-controller.ts) <br>
-- [hostinger-views.ts](references/hostinger-views.ts) <br>
-- [Hostinger VPS Notes](references/hostinger-notes.md) <br>
-- [Virtual Employee Identity Setup](references/identity-setup.md) <br>
-- [Security Options](references/security-options.md) <br>
+## Use Case:
 
+Developers and operators use this skill to provision and configure Hostinger VPS instances as AI agent workstations with remote desktop, Docker, OpenClaw/Koda deployment, identity setup, and post-deployment hardening guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and reference code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include root-level VPS provisioning steps, Hostinger API MCP calls, and post-deployment hardening guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe root-level deployment defaults could expose or compromise a VPS.
+
+Mitigation: Review and harden scripts before real use, avoid root SSH key login, and remove passwordless full sudo and Docker access from the runtime account.
+
+Risk: Public XRDP or webchat exposure could make remote access and agent services reachable from the internet.
+
+Mitigation: Avoid public exposure by default; place access behind VPN, Cloudflare Tunnel, HTTPS, or firewall rules, and validate all ports, domains, and keys.
+
+Risk: Unpinned or unverified installers can introduce supply-chain uncertainty during server setup.
+
+Mitigation: Pin and verify installers before execution on production infrastructure.
+
+Risk: Hostinger and integration tokens grant sensitive infrastructure access.
+
+Mitigation: Store tokens as secrets, limit file permissions, avoid plaintext configuration, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/hostinger-vps-mcp-tools)
+- [Hostinger API documentation](https://developers.hostinger.com/)
+- [Hostinger API authentication](https://developers.hostinger.com/#description/authentication)
+- [Hostinger official MCP server](https://github.com/hostinger/api-mcp-server)
+- [Hostinger API tokens](https://hpanel.hostinger.com/api-tokens)
+- [hostinger-backend.ts](references/hostinger-backend.ts)
+- [hostinger-controller.ts](references/hostinger-controller.ts)
+- [hostinger-views.ts](references/hostinger-views.ts)
+- [Hostinger VPS Notes](references/hostinger-notes.md)
+- [Identity setup](references/identity-setup.md)
+- [Security options](references/security-options.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment steps and scripts that require operator review before execution on infrastructure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,50 @@
-## Description: <br>
-Sleep better tonight - personalized wind-down routine, breathing exercises, bedtime stories, and sleep hygiene tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sleep better tonight - personalized wind-down routine, breathing exercises, bedtime stories, and sleep hygiene tips. Daily evening push for better rest.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users use Daily Sleep to receive sleep coaching prompts, bedtime wind-down guidance, daily sleep tips, and optional recurring morning and evening reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring sleep reminders may be disruptive if enabled unintentionally or no longer wanted. <br>
-Mitigation: Enable reminders only by explicit user choice and use the provided off command to disable morning and evening scheduled pushes. <br>
-Risk: A userId is stored with simple reminder preferences. <br>
-Mitigation: Use a non-sensitive identifier and avoid putting personal or confidential information in the userId. <br>
-Risk: Broad trigger phrases may activate sleep coaching in unintended conversations. <br>
-Mitigation: Narrow trigger phrases before deployment if accidental activation would be disruptive. <br>
+## Use Case:
 
+External users use Daily Sleep as a sleep-coaching assistant for morning wake-up checks, evening wind-down routines, breathing exercises, meditation prompts, sleep environment tips, and recurring reminders.
 
-## Reference(s): <br>
-- [Daily Sleep on ClawHub](https://clawhub.ai/jiajiaoy/daily-sleep) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit OpenClaw cron add/remove control messages for opt-in sleep reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Enabling pushes creates recurring morning and evening scheduled messages through the selected third-party channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the intended user ID and channel before enabling reminders, and use the documented off command when scheduled messages are no longer wanted.
+
+## Reference(s):
+
+- [Daily Sleep ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/daily-sleep)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples and scheduled-message configuration markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >=18 for bundled push scripts; default reminders are morning 07:00 and evening 22:00, with telegram, feishu, slack, and discord channels documented.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; package.json reports 1.0.2 and _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

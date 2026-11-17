@@ -1,47 +1,61 @@
-## Description: <br>
-OpenClaw Workspace Governance is a governance playbook for complex OpenClaw workspaces that helps agents reduce drift, clarify current truth, route retrieval, manage live document freshness, and close maintenance phases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Workspace Governance helps agents manage complex OpenClaw workspaces by reducing drift, clarifying current truth, bounding live documents, and routing semantic retrieval more carefully.
 
-## Publisher: <br>
-[heishiqing](https://clawhub.ai/user/heishiqing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heishiqing](https://clawhub.ai/user/heishiqing)
 
-## Use Case: <br>
-Developers and workspace maintainers use this skill to govern complex OpenClaw workspaces with multiple agents, layered memory, semantic retrieval, live document boundaries, and maintenance checks. It is intended for advanced workspaces where current-state drift, document drift, retrieval drift, or unclear approval paths have become operational risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The governance playbook may lead an agent to reorganize document authority, live-document boundaries, retrieval priority, or process rules across a workspace. <br>
-Mitigation: Back up or snapshot the workspace before applying changes, review proposed governance edits before execution, and require human authorization for core rule or policy changes. <br>
-Risk: Helper scripts can inspect freshness, document status, and semantic runtime behavior across paths or runtimes selected by the user. <br>
-Mitigation: Run the scripts only against intended workspace roots, configuration paths, cache paths, and semantic runtimes; review their reported findings before acting on them. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to classify governance drift, separate source-of-truth layers, keep a minimal working set fresh, and evaluate semantic search reliability before making workspace changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heishiqing/openclaw-workspace-governance) <br>
-- [Multi-agent governance](references/multi-agent-governance.md) <br>
-- [Source-of-truth layering](references/source-of-truth-layering.md) <br>
-- [Query-class routing](references/query-class-routing.md) <br>
-- [Live vs historical docs](references/live-vs-historical-docs.md) <br>
-- [Freshness discipline](references/freshness-discipline.md) <br>
-- [Semantic search diagnostics](references/semantic-search-diagnostics.md) <br>
-- [Completion criteria](references/completion-criteria.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes helper scripts for freshness checks, document status scans, and semantic runtime diagnostics; scripts report results and do not automatically rewrite files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: frontmatter and server release metadata) <br>
+Risk: Governance or routing changes could alter workspace source-of-truth behavior if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as proposals, back up the workspace, and require human review before applying process or routing changes.
+
+Risk: The freshness checker reads paths from its working-set config and could inspect files outside the intended workspace if the config is untrusted.
+
+Mitigation: Run local diagnostic scripts only with trusted configs scoped to the intended workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heishiqing/skills/openclaw-workspace-governance)
+- [README](README.md)
+- [Completion Criteria](references/completion-criteria.md)
+- [Freshness Discipline](references/freshness-discipline.md)
+- [Live vs Historical Docs](references/live-vs-historical-docs.md)
+- [Multi-Agent Governance](references/multi-agent-governance.md)
+- [Query-Class Routing](references/query-class-routing.md)
+- [Semantic Search Diagnostics](references/semantic-search-diagnostics.md)
+- [Source of Truth Layering](references/source-of-truth-layering.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, JSON examples, and local diagnostic command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose workspace file, routing, or documentation changes; bundled diagnostic scripts do not automatically rewrite files.]
+
+## Skill Version(s):
+
+1.0.9 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-GEO conversion optimization engine that balances AI citation readiness with real user conversion for content that ranks well in AI answers and drives sign-ups, leads, purchases, or other business outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO conversion optimization engine that balances AI citation readiness with real user conversion for content that should rank in AI answers while driving sign-ups, leads, purchases, or other business outcomes.
 
-## Publisher: <br>
-[GEOlyAI](https://clawhub.ai/user/GEOlyAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geolyai](https://clawhub.ai/user/geolyai)
 
-## Use Case: <br>
-Marketing, content, product, and growth teams use this skill to redesign pages and content so they remain clear and citable for AI systems while protecting conversion goals such as sign-ups, leads, purchases, bookings, and trial activations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing claims, CTAs, experiment plans, or regulated-industry copy may not fit brand, legal, compliance, or ethical requirements. <br>
-Mitigation: Review recommendations before publishing and route sensitive or regulated content through the appropriate brand, legal, compliance, and ethical review process. <br>
-Risk: GEO-focused changes can improve AI citability while reducing human clarity, trust, or conversion performance. <br>
-Mitigation: Use baseline snapshots, focused experiments, and conversion guardrail metrics before rolling changes out broadly. <br>
+## Use Case:
 
+External marketing, growth, content, and web teams use this skill to optimize landing pages, product pages, comparison content, local pages, and long-form content for both AI citation readiness and measurable conversion outcomes. It helps produce conversion-aware GEO audits, page blueprints, copy recommendations, CTA guidance, and experiment plans.
 
-## Reference(s): <br>
-- [GEO + Conversion Optimization Playbook](references/conversion_playbook.md) <br>
-- [Geo Conversion Optimizer on ClawHub](https://clawhub.ai/GEOlyAI/geo-conversion-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown reports, page blueprints, content recommendations, and experiment plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, GEO versus conversion rationale, CTAs, measurement guardrails, rollout notes, and draft copy when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill has broad trigger language around conversion, sales, ROI, and business outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it deliberately for GEO or AI-discovery content work, rather than generic sales, ROI, or business-planning tasks.
+
+Risk: Content changes optimized for AI citation can unintentionally reduce conversion rate, lead quality, or downstream revenue.
+
+Mitigation: Capture baselines, test focused variants, and use conversion and lead-quality guardrails before accepting GEO improvements.
+
+Risk: Marketing recommendations may produce claims, comparisons, or regulated-industry wording that needs domain review.
+
+Mitigation: Verify claims against source material and route regulated or competitor-facing copy through legal, compliance, or brand review before publishing.
+
+## Reference(s):
+
+- [GEO + Conversion Optimization Playbook](references/conversion_playbook.md)
+- [ClawHub Skill Release](https://clawhub.ai/geolyai/skills/geo-conversion-optimizer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/geolyai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code, configuration]
+
+**Output Format:** [Markdown reports, structured page blueprints, draft copy, checklists, schema notes, and measurement plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, GEO versus conversion rationale, CTAs, experiment guardrails, and optional structured blueprint examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

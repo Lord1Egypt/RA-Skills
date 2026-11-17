@@ -1,0 +1,224 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Stockpile Market API",
+    "description": "Stockpile autonomous marketplace API for catalog discovery, inventory management, appraisal, and order fulfillment.",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://stockpile.market",
+      "description": "Stockpile Production API"
+    }
+  ],
+  "paths": {
+    "/api/v1/market/items": {
+      "get": {
+        "operationId": "searchCatalog",
+        "summary": "Search market listings",
+        "description": "Search public marketplace listings by query, category, price, and condition.",
+        "parameters": [
+          { "name": "q", "in": "query", "schema": { "type": "string" }, "description": "Search keyword" },
+          { "name": "category", "in": "query", "schema": { "type": "string" }, "description": "Category slug" },
+          { "name": "min_price", "in": "query", "schema": { "type": "number" }, "description": "Minimum price" },
+          { "name": "max_price", "in": "query", "schema": { "type": "number" }, "description": "Maximum price" }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of matching catalog items"
+          }
+        }
+      }
+    },
+    "/api/v1/market/items/{id}": {
+      "get": {
+        "operationId": "getItemDetails",
+        "summary": "Get item specifications",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" }, "description": "Item ID" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item specifications, pricing, and seller info"
+          }
+        }
+      }
+    },
+    "/api/v1/market/categories": {
+      "get": {
+        "operationId": "getCategories",
+        "summary": "Get marketplace categories",
+        "responses": {
+          "200": {
+            "description": "List of active marketplace categories"
+          }
+        }
+      }
+    },
+    "/api/v1/agent/stores": {
+      "get": {
+        "operationId": "listMyStores",
+        "summary": "List agent stores",
+        "responses": {
+          "200": {
+            "description": "List of storefronts owned by authenticated agent"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      },
+      "post": {
+        "operationId": "createStore",
+        "summary": "Create new storefront",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Store created successfully"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      }
+    },
+    "/api/v1/agent/stores/{store_id}/inventory": {
+      "get": {
+        "operationId": "listStoreInventory",
+        "summary": "List inventory for a store",
+        "parameters": [
+          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of inventory items"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      },
+      "post": {
+        "operationId": "createInventoryItem",
+        "summary": "List an item for sale in store",
+        "parameters": [
+          { "name": "store_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "price"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "price": { "type": "number" },
+                  "description": { "type": "string" },
+                  "condition": { "type": "string" },
+                  "category": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Inventory item created and listed"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      }
+    },
+    "/api/v1/agent/orders": {
+      "get": {
+        "operationId": "listOrders",
+        "summary": "List store orders",
+        "parameters": [
+          { "name": "status", "in": "query", "schema": { "type": "string" }, "description": "pending, paid, shipped, completed" }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of store orders"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      }
+    },
+    "/api/v1/agent/orders/{order_id}/fulfill": {
+      "post": {
+        "operationId": "fulfillOrder",
+        "summary": "Fulfill order with shipping tracking",
+        "parameters": [
+          { "name": "order_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["tracking_carrier", "tracking_number"],
+                "properties": {
+                  "tracking_carrier": { "type": "string" },
+                  "tracking_number": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order fulfilled and tracking dispatched"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      }
+    },
+    "/api/v1/agent/appraisals": {
+      "post": {
+        "operationId": "getItemAppraisal",
+        "summary": "Calculate item appraisal",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["item_title"],
+                "properties": {
+                  "item_title": { "type": "string" },
+                  "category": { "type": "string" },
+                  "condition_grade": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Valuation estimate with comps and confidence score"
+          }
+        },
+        "security": [{ "ApiKeyAuth": [] }]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Stockpile-Api-Key"
+      }
+    }
+  }
+}

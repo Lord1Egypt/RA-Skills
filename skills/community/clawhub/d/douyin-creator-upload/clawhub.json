@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0",
+  "name": "byted-sol-douyin-creator-upload",
+  "displayName": "Douyin Creator Upload",
+  "version": "1.0.0",
+  "description": "Upload local videos to Douyin Creator Center with visibility and description controls.",
+  "author": "byted-sol",
+  "license": "MIT",
+  "entrypoint": "SKILL.md",
+  "categories": ["automation", "video", "social-media"],
+  "tags": ["douyin", "creator-center", "video-upload", "playwright", "chrome-cdp"],
+  "runtime": {
+    "node": ">=18",
+    "commands": ["node"],
+    "npm": ["playwright-core"]
+  },
+  "permissions": {
+    "filesystem": ["read input video file"],
+    "network": ["localhost Chrome CDP", "creator.douyin.com"]
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "package.json",
+    "scripts/upload_to_creator.js"
+  ]
+}
+

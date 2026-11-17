@@ -1,43 +1,58 @@
-## Description: <br>
-Karpathy Wiki Improve helps an agent maintain a local markdown knowledge wiki with ingest, query, relink, lint, and deep-research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize bookmarks and research into a persistent Markdown knowledge wiki with ingest, query, relink, lint, Deep Research, and URL-level source traceability.
 
-## Publisher: <br>
-[zhangmengyang](https://clawhub.ai/user/zhangmengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangmengyang](https://clawhub.ai/user/zhangmengyang)
 
-## Use Case: <br>
-Developers, researchers, and external agents use this skill to organize bookmarks and research material into a traceable markdown wiki, answer questions from that wiki, and maintain links, quality checks, and research gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update markdown wiki files and maintain bidirectional links, so an overly broad wiki root could affect files outside the intended knowledge base. <br>
-Mitigation: Configure the wiki root narrowly and review planned file changes before ingest, relink, lint, or research runs. <br>
-Risk: Deep-research and query workflows may use web search or fetched sources, which can introduce outdated, incorrect, or untrusted material into the wiki. <br>
-Mitigation: Review cited URLs and generated pages before relying on them, and keep source URLs attached to claims for later verification. <br>
-Risk: Periodic maintenance wording could lead to automatic lint, relink, or quality checks if the agent environment enables scheduled activity. <br>
-Mitigation: Enable periodic maintenance only when automatic checks are desired and confirm write actions before they modify the wiki. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to turn collected links and research topics into a structured personal wiki, then query and maintain it with linting and relinking workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/zhangmengyang/karpathy-wiki-improve) <br>
-- [Andrej Karpathy LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured plans, wiki page templates, reports, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or write local wiki files under the configured wiki root and may use web research to supplement wiki content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Broad triggers can lead the agent to make persistent local wiki edits beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, backed-up wiki folder and review proposed file changes before execution.
+
+Risk: Deep Research and query workflows can introduce unverified or misleading source material into the wiki.
+
+Mitigation: Approve search queries before execution and require URL-level source traceability with confidence annotations.
+
+Risk: Periodic linting or relinking can change wiki relationships without enough explicit consent.
+
+Mitigation: Run maintenance only when explicitly requested or clearly enabled for the configured wiki.
+
+## Reference(s):
+
+- [Andrej Karpathy LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [Karpathy Wiki Improve ClawHub listing](https://clawhub.ai/zhangmengyang/skills/karpathy-wiki-improve)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with wiki plans, source links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or create persistent local wiki files within the configured wiki folder.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

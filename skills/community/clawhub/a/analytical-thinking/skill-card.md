@@ -1,40 +1,50 @@
-## Description: <br>
-Guides agents to answer analytical questions with a structured flow for framing the question, decomposing drivers, forming hypotheses, mapping evidence, and synthesizing uncertainty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for analytical thinking, or when a question needs breaking down and evidence: "why did metric X drop?", "what drives this?", "break this down", "what data do we need?". Builds a tree, hypotheses and evidence, ends with an answer and key uncertainty. Skip for quick verdicts.
 
-## Publisher: <br>
-[ysskrishna](https://clawhub.ai/user/ysskrishna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysskrishna](https://clawhub.ai/user/ysskrishna)
 
-## Use Case: <br>
-External users and developers use this skill to get structured analytical reasoning for estimates, comparisons, explanations, predictions, optimization choices, root-cause work, and decision tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Responses may become longer or more framework-driven than needed for simple questions. <br>
-Mitigation: Use this skill when the user asks for analytical thinking or a structured breakdown, and keep the synthesis direct. <br>
-Risk: Structured analysis can appear more certain than the available evidence supports. <br>
-Mitigation: Preserve the skill's caveats, estimated ranges, theoretical labels, and key uncertainty in the final answer. <br>
+## Use Case:
 
+Developers and analysts use this skill to structure explanations, predictions, and comparisons around a clear question, a driver tree, testable hypotheses, evidence, uncertainty, and next steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ysskrishna/analytical-thinking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with headed sections, tables, and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated ranges, theoretical labels, option matrices, caveats, and explicit uncertainty when the prompt calls for them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.5.17 (source: server release evidence and skill frontmatter) <br>
+Risk: An unresolved reference left part of the security evidence incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve and inspect the reference before relying on the skill, and check analysis against its source data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysskrishna/skills/analytical-thinking)
+- [Example: Analytical Thinking](references/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organized around the question, decomposition, hypotheses, evidence, synthesis, key uncertainty, and next step.]
+
+## Skill Version(s):
+
+2026.11.15 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

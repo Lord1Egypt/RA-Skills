@@ -1,39 +1,48 @@
-## Description: <br>
-Helps agents detect skills that change behavior when they sense monitoring, targeting attestation and sandbox evasion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps detect skills that behave differently when they sense they are being monitored, catching attestation and sandbox evasion behavior.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and trust-and-safety teams use this skill to probe other skills for observer-aware behavior, sandbox fingerprinting, timing sensitivity, and context-dependent evasion signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Probing another skill can involve generated shell commands or network requests such as curl or python3 execution. <br>
-Mitigation: Review proposed commands before running them and execute probes only in isolated environments without real credentials. <br>
-Risk: A clean observer-effect result does not prove that no evasion logic exists. <br>
-Mitigation: Treat results as evidence from the tested environments and combine them with other security review methods. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/observer-effect-probe) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to probe other agent skills for behavior changes across sandbox, timing, observer API, and environment variations that may indicate attestation evasion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with probe findings, behavioral comparisons, scores, verdicts, and recommended actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed curl or python3-based probing steps that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Probing target skills in production or credentialed environments could expose sensitive systems during repeated environment variation.
+
+Mitigation: Run probes only in isolated sandboxes without real credentials or production access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/observer-effect-probe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown probe report with scored findings and a verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sandbox fingerprint indicators, invocation sensitivity, observer API inventory, behavioral consistency matrix, evasion probability score, and probe verdict.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Dropbox Sign helps agents read and search Dropbox Sign account, signature request, and template data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dropbox Sign (sign.dropbox.com). Use this skill for ANY Dropbox Sign request — searching and reading data. Whenever a task involves Dropbox Sign, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Dropbox Sign account details, inspect signature requests, and list accessible templates without handling raw Dropbox Sign API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dropbox Sign account data, signature requests, and templates may contain sensitive business information. <br>
-Mitigation: Install and use the skill only when the connected OOMOL account is permitted to access the relevant Dropbox Sign data. <br>
-Risk: Future connector actions marked write or destructive could change Dropbox Sign state. <br>
-Mitigation: Review the live action schema and require explicit user confirmation before running any write or destructive action. <br>
+## Use Case:
 
+Users with an OOMOL-connected Dropbox Sign account can retrieve account settings and search or read accessible signature requests and templates through the oo CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-dropbox-sign) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Dropbox Sign homepage](https://sign.dropbox.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before running Dropbox Sign read and list actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup may execute unchecked installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, verify a fixed release, and consider installing from a trusted source.
+
+Risk: Automatic skill synchronization may introduce undisclosed changes to agent skills.
+
+Mitigation: Consider disabling automatic synchronization with OO_SKILLS_SYNC_DISABLED=1.
+
+Risk: The connected OOMOL account brokers access to private Dropbox Sign records.
+
+Mitigation: Connect only the account needed for the requested reads and understand its access to private records.
+
+## Reference(s):
+
+- [Dropbox Sign](https://sign.dropbox.com)
+- [Dropbox Sign API documentation](https://developers.hellosign.com/api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance, Shell commands]
+
+**Output Format:** [JSON connector responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read results depend on the connected Dropbox Sign account's access; responses may contain private records.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter; server release 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

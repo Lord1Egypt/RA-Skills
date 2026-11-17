@@ -1,42 +1,62 @@
-## Description: <br>
-Processes local lifestyle venue scene images by combining a user-provided scene with a preset or user-provided person reference through Replicate image editing, then upscales the result with SeedVR2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes local venue scene images by blending a person reference into a user-provided store, restaurant, cafe, mall, or similar setting with Replicate gpt-image-2 editing followed by SeedVR2 upscaling.
 
-## Publisher: <br>
-[turkyden](https://clawhub.ai/user/turkyden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turkyden](https://clawhub.ai/user/turkyden)
 
-## Use Case: <br>
-Creators and operators preparing local lifestyle, restaurant, cafe, store, mall, or showroom promotional imagery use this skill to place a person reference into a venue scene and return an upscaled output image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scene images, template images, template URL content, and prompts are sent to Replicate/SeedVR2 for processing. <br>
-Mitigation: Avoid sensitive, customer-identifying, proprietary, or unconsented images unless sharing them with the provider is acceptable. <br>
-Risk: Generated image files are written to a user-selected or default output path. <br>
-Mitigation: Confirm that the output path is writable and appropriate for the generated content before running the skill. <br>
-Risk: The workflow consumes the configured Replicate account quota. <br>
-Mitigation: Run only with an intended Replicate API token and monitor usage for the account used. <br>
+## Use Case:
 
+Developers and creators use this skill to generate local-business visit images by placing a selected or preset person reference into a venue scene and returning an upscaled result. It is intended for workflows where the user provides an authorized scene image or URL, configures Replicate credentials, and needs reproducible shell-command guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/turkyden/tandian-image-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and a generated image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Replicate API token, an accessible scene image path or URL, and a writable output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: User-controlled local paths may upload arbitrary readable files to Replicate or SeedVR2.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandbox limited to dedicated input and output folders, and use only non-sensitive images the user is authorized to process.
+
+Risk: User-controlled image URLs may point to internal, private, or unauthorized resources.
+
+Mitigation: Allow only trusted public HTTPS image URLs and reject internal URLs or arbitrary local network locations.
+
+Risk: User-controlled output paths may overwrite files writable by the execution environment.
+
+Mitigation: Constrain outputs to a dedicated output directory and review the resolved path before execution.
+
+Risk: Generated images may involve identifiable people or private business interiors.
+
+Mitigation: Use only images with appropriate consent and avoid private interiors or identifiable people unless the user confirms authorization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/turkyden/skills/tandian-image-skills)
+- [Publisher profile](https://clawhub.ai/user/turkyden)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local output file paths; runtime output is a WebP image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REPLICATE_API_TOKEN, an accessible scene image path or URL, and a writable output path.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

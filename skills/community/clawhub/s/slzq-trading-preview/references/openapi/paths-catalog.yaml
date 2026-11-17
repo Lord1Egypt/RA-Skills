@@ -1,0 +1,263 @@
+# 分片：与 references/api-*.md 主题一致；路径项由 references/openapi.yaml 引用。
+OpenV1CatalogGoods:
+    get:
+      operationId: get_catalog_goods
+      summary: 品种+主力合约分页
+      description: |
+        获取品种列表及其主力合约和实时行情。分页返回。
+        - `nextDayFlag=1` 表示该品种支持夜盘。
+        - `isPrincipal=1` 表示当前主力合约（随换月变化）。
+        - 行情字段（价格、量等）均为 string 类型，计算前需 parseFloat。
+        下单前先调用此接口核对合约代码与交易时间。
+      parameters:
+        - name: excode
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 交易所代码；传 __NIGHT__ 筛选有夜盘品种
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: 页码，默认 1
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+          description: 每页条数，默认 20，最大 100
+        - name: sortType
+          in: query
+          required: false
+          schema:
+            type: integer
+            enum: [1, 2, 3, 4]
+          description: 排序方式。1=涨幅，2=跌幅，3=成交量，4=增仓
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 商品分类
+        - name: productId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 品种代码，如 au、cu；与 excode 同传时返回该品种下所有合约
+        - name: onlyMainInCategory
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: 与 category 联用：仅返回该分类主力合约
+        - name: allContractsByExcode
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: 与 excode 联用：返回该所全部有效合约（非仅主力）
+      responses:
+        '200':
+          description: 品种列表
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          total:
+                            type: integer
+                          page:
+                            type: integer
+                          pageSize:
+                            type: integer
+                          list:
+                            type: array
+                            items:
+                              type: object
+
+
+OpenV1CatalogGoodsDetail:
+    get:
+      operationId: get_catalog_goods_detail
+      summary: 品种详情
+      description: 获取某品种（商品大类）的详细信息，包括完整交易时段、是否有夜盘（nextDayFlag）、以及今晚是否排夜盘（calendarNightSessionTonight）。
+      parameters:
+        - name: excode
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 交易所代码，如 SHFE
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 商品代码（品种），如 au（黄金）、cu（铜）、ag（白银）
+      responses:
+        '200':
+          description: 品种详情
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          goods:
+                            type: object
+                          calendarNightSessionTonight:
+                            type: boolean
+                            description: 交易日历层面今晚是否有夜盘
+
+
+OpenV1CatalogContract:
+    get:
+      operationId: get_contract_detail
+      summary: 合约详情
+      description: |
+        获取特定期货合约的规格说明。
+        - **volumeMultiple**（合约乘数）：计算盈亏时必须使用此值。
+        - **isPrincipal**：1=当前主力，0=非主力。
+        - **priceTick**：报价精度，下单时 limitPrice 须符合此精度。
+        - priceLimit 和 shortMarginRatioByMoney 仅供参考，以交易所和期货公司实际为准。
+        下单陌生合约前建议先调用此接口核对合约规格。
+      parameters:
+        - name: contractCode
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 完整合约代码，如 au2606、cu2506
+      responses:
+        '200':
+          description: 合约详情
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/ContractDetail'
+
+
+OpenV1CatalogContractF10:
+    get:
+      operationId: get_contract_f10
+      summary: 合约 F10 详情
+      description: 获取合约的东财 F10 扩展信息，包括交割单位、交易单位、报价单位、最小变动价位、交割品级、交割地点、保证金比例等。eastmoneyDetail 字段为 null 表示该合约不在东财数据库中。
+      parameters:
+        - name: contractCode
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 完整合约代码，如 au2606、cu2506
+      responses:
+        '200':
+          description: F10 详情
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+
+
+OpenV1CatalogHot:
+    get:
+      operationId: get_hot_contracts
+      summary: 热门合约 TOP10
+      description: 获取近 30 分钟成交量排名前 10 的期货合约，含合约乘数、最小变动价、交易时段、到期日等信息。用于发现当前最活跃的可交易合约。
+      responses:
+        '200':
+          description: 热门合约列表
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '../openapi.yaml#/components/schemas/ContractDetail'
+
+
+OpenV1CatalogExchanges:
+    get:
+      operationId: get_exchanges
+      summary: 交易所列表
+      description: 获取所有可用期货交易所，按商品数量降序排列。返回交易所代码（SHFE、DCE、CZCE、INE、CFFEX、GFEX）及其商品数量。
+      responses:
+        '200':
+          description: 交易所列表
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            excode:
+                              type: string
+                              description: 交易所代码
+                            count:
+                              type: integer
+                              description: 商品数量
+
+
+OpenV1CatalogSessionNightToday:
+    get:
+      operationId: get_night_session_today
+      summary: 当晚是否有夜盘
+      description: |
+        检查交易日历层面今晚是否安排了夜盘交易。
+        此结果与具体品种的 nextDayFlag（是否支持夜盘）是独立维度：
+        - nextDayFlag=1 表示品种设计上支持夜盘。
+        - hasNightSessionTonight=true 表示今晚交易日历实际安排了夜盘。
+        两个条件都满足时，今晚才实际有夜盘。
+      responses:
+        '200':
+          description: 今晚夜盘状态
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          hasNightSessionTonight:
+                            type: boolean
+                            description: 今晚是否有夜盘
+                          date:
+                            type: string
+                            description: 日期，如 2026-03-27
+

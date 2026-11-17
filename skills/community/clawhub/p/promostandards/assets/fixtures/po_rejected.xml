@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:SendPOResponse xmlns:ns="http://www.promostandards.org/WSDL/PO/1.0.0/"
+        xmlns:shar="http://www.promostandards.org/WSDL/PO/1.0.0/SharedObjects/">
+      <shar:ServiceMessageArray>
+        <shar:ServiceMessage>
+          <shar:code>300</shar:code>
+          <shar:description>Line 1: part PC61-BLK-XXL is not orderable</shar:description>
+          <shar:severity>Error</shar:severity>
+        </shar:ServiceMessage>
+      </shar:ServiceMessageArray>
+    </ns:SendPOResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

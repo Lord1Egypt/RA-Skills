@@ -1,44 +1,62 @@
-## Description: <br>
-Analyzes LLM-generated brand mentions and sentiment within industry recommendations using DeepSeek's staged GEO performance pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes LLM-generated brand mentions and sentiment within industry recommendations using DeepSeek's two-stage GEO performance pipeline.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-External brand, marketing, and growth teams use this skill to test whether a target brand or product appears in DeepSeek-generated industry recommendations, then review mention status, sentiment, context, competitors, and optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a DeepSeek API key and can incur token usage costs. <br>
-Mitigation: Use a dedicated DeepSeek API key with usage limits and monitor usage for the release. <br>
-Risk: Brand name and category keyword inputs are sent to DeepSeek for analysis. <br>
-Mitigation: Do not submit confidential or embargoed brand, product, or category information unless DeepSeek's data handling is acceptable. <br>
-Risk: The artifact depends on unpinned Python package version ranges. <br>
-Mitigation: Install in an isolated Python environment and pin reviewed dependency versions before production use. <br>
+## Use Case:
 
+Developers, marketers, and brand analysts use this skill to test whether a brand or product appears in LLM-generated recommendations for a target category, then review sentiment, mention context, competitors, and optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljseeking/geo-analyzer-deepseek) <br>
-- [Skill homepage](https://github.com/LJseeking/lifesignal) <br>
-- [DeepSeek API endpoint used by the skill](https://api.deepseek.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing a structured_result object and generated report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires brand_name and category_keyword inputs; the bundled script generates the report in Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Brand names, category keywords, and generated analysis text are sent to DeepSeek.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs and confirm that sending this data to DeepSeek is acceptable before running the skill.
+
+Risk: DeepSeek API usage can incur token-based costs.
+
+Mitigation: Set API usage controls and review expected cost before repeated or large-scale analysis.
+
+Risk: Prompt injection or model variability can affect LLM-based GEO judgments.
+
+Mitigation: Treat conclusions as advisory and review the structured result, context, and report before making business decisions.
+
+Risk: Dependencies are specified with lower bounds rather than a lock file.
+
+Mitigation: Pin dependencies in a lock file for controlled deployment environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljseeking/skills/geo-analyzer-deepseek)
+- [Project homepage](https://github.com/LJseeking/lifesignal)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, analysis, guidance]
+
+**Output Format:** [JSON containing a structured GEO result and a Chinese analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPSEEK_API_KEY and sends brand names, category keywords, and generated analysis text to DeepSeek.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,67 @@
-## Description: <br>
-Connects Claude CLI OAuth credentials to Clawdbot and refreshes them with a local scheduled job. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect Claude to Clawdbot instantly and keep it connected 24/7 by linking a Claude subscription and refreshing OAuth tokens automatically.
 
-## Publisher: <br>
-[TunaIssaCoding](https://clawhub.ai/user/TunaIssaCoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tunaissacoding](https://clawhub.ai/user/tunaissacoding)
 
-## Use Case: <br>
-External users and developers use this legacy Clawdbot helper to copy Claude CLI OAuth credentials from macOS Keychain into Clawdbot auth profiles and keep them refreshed. The release README says current Clawdbot handles Claude OAuth natively, so this skill is mainly for users who specifically need the older refresher behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill copies live Claude OAuth refresh tokens from Keychain into a local Clawdbot auth file. <br>
-Mitigation: Install only when this legacy refresher is specifically needed; review the destination auth file and local file permissions before running installer or refresh scripts. <br>
-Risk: The installer sets up a persistent launchd background job that refreshes tokens automatically. <br>
-Mitigation: Review the launchd job before loading it, monitor the refresh log, and use the provided uninstall path to remove the job when native Clawdbot OAuth support is sufficient. <br>
-Risk: Notification recipient auto-detection may use local Clawdbot data with insufficient scoping. <br>
-Mitigation: Disable notifications or manually set the notification channel and target in the configuration before enabling automatic refresh. <br>
+## Use Case:
 
+External developers and Clawdbot users maintaining a legacy Claude CLI OAuth setup use this skill to install and manage a macOS token refresher, update Clawdbot auth profiles, and configure refresh notifications.
 
-## Reference(s): <br>
-- [Claude Connect on ClawHub](https://clawhub.ai/TunaIssaCoding/claude-connect) <br>
-- [Clawdbot documentation](https://docs.clawd.bot) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup, refresh, verification, and uninstall guidance for a macOS credential refresher.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata and CHANGELOG, released 2026-01-26) <br>
+Risk: The skill installs a persistent process that can read and update Claude OAuth credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when intentionally maintaining a legacy Clawdbot setup, review the installed launchd job, and uninstall it when native Clawdbot onboarding is sufficient.
+
+Risk: The release is for a deprecated use case and may duplicate Clawdbot's native OAuth onboarding.
+
+Mitigation: Prefer Clawdbot's native onboarding path before installing this skill.
+
+Risk: Configuration and skill files affect credential refresh behavior, including the OAuth token endpoint.
+
+Mitigation: Review claude-oauth-refresh-config.json, especially token_url, and treat the skill directory and config as credential-sensitive.
+
+Risk: An existing installation may leave a background token refresher running.
+
+Mitigation: Use uninstall.sh and verify launchctl no longer lists com.clawdbot.claude-oauth-refresher.
+
+## Reference(s):
+
+- [Claude Connect Skill Page](https://clawhub.ai/tunaissacoding/skills/claude-connect)
+- [Publisher Profile](https://clawhub.ai/user/tunaissacoding)
+- [Clawdbot Docs](https://docs.clawd.bot)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [QUICKSTART.md](artifact/QUICKSTART.md)
+- [UPGRADE.md](artifact/UPGRADE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installer, verifier, token refresh, detection, validation, and uninstall shell scripts for a macOS Clawdbot environment.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, changelog, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

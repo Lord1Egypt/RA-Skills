@@ -1,42 +1,61 @@
-## Description: <br>
-Plan Greece trips with island-mainland routing, ferry logistics, verified entry rules, and practical seasonal safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Greece trips with island-mainland routing, ferry logistics, verified entry rules, and practical seasonal safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to build realistic Greece itineraries across Athens, islands, mainland regions, ferries, driving, budgets, entry checks, seasonality, and safety constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain sensitive travel details such as dates, family details, mobility needs, budgets, or bookings in ~/greece/memory.md. <br>
-Mitigation: Review or delete ~/greece/memory.md when those details should no longer be retained. <br>
+## Use Case:
 
+External travelers and agents assisting them use this skill to plan Greece itineraries that balance entry requirements, regional routing, ferries, seasonality, budget, transport, safety, and practical tradeoffs.
 
-## Reference(s): <br>
-- [ClawHub Greece skill page](https://clawhub.ai/ivangdavila/greece) <br>
-- [Official source map](artifact/sources.md) <br>
-- [Visit Greece passports and visas](https://www.visitgreece.gr/before-travelling-to-greece/passports-visas/) <br>
-- [EU Entry/Exit System information](https://travel-europe.europa.eu/ees_en) <br>
-- [Greek Civil Protection](https://www.civilprotection.gov.gr/en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown travel guidance with concise checklists, routing options, and local memory setup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save trip preferences in ~/greece/memory.md when the agent initializes or updates local trip context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Local trip memory may retain dates, budget, mobility notes, preferences, and booking details in ~/greece/memory.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving sensitive trip details, and edit or delete ~/greece/memory.md when retained memory is no longer wanted.
+
+Risk: Entry rules, EU border systems, ferry conditions, weather, and wildfire information can change close to travel dates.
+
+Mitigation: Refresh time-sensitive guidance against the official sources referenced by the skill before booking or departure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/greece)
+- [Skill homepage](https://clawic.com/skills/greece)
+- [Visit Greece passports and visas](https://www.visitgreece.gr/before-travelling-to-greece/passports-visas/)
+- [Hellenic Ministry of Foreign Affairs](https://www.mfa.gr/en/)
+- [EU ETIAS information](https://travel-europe.europa.eu/etias_en)
+- [EU Entry/Exit System information](https://travel-europe.europa.eu/ees_en)
+- [Greek Civil Protection](https://www.civilprotection.gov.gr/en)
+- [Hellenic National Meteorological Service](https://emy.gr/en/)
+- [Official Hellenic Heritage e-ticket platform](https://hhticket.gr/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with trip-planning checklists, tables, and optional local memory updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize or update ~/greece/memory.md with trip preferences and planning constraints when memory use is appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

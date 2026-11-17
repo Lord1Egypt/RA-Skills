@@ -1,38 +1,55 @@
-## Description: <br>
-Structured decision-making for high-stakes choices that classifies decisions, runs weighted pro/con analysis, and stress-tests options with a simple pre-mortem exercise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured decision-making for high-stakes choices: classify the decision by type, run a focused weighted pro/con analysis, and stress-test it with a simple pre-mortem exercise.
 
-## Publisher: <br>
-[jseale](https://clawhub.ai/user/jseale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jseale](https://clawhub.ai/user/jseale)
 
-## Use Case: <br>
-External users and teams use this skill to structure high-stakes personal, business, and strategy decisions by classifying the decision type, comparing weighted options, identifying failure scenarios, and producing a clear next-step recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jseale/decision-engine-lite) <br>
-- [Agent of Alpha upgrade site](https://agentofalpha.com) <br>
+External users and teams use this skill to structure high-stakes decisions, compare options with weighted criteria, identify hidden risks through a pre-mortem, and produce a clear next-step recommendation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured tables and recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, tool calls, credential handling, or persistence. Use normal caution when sharing sensitive decision details or following the external upgrade link.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Decision outputs may be incomplete or misleading if the user provides weak criteria, missing constraints, or unstated stakeholder impacts.
+
+Mitigation: Review the generated analysis against the real decision context, add missing constraints, and validate assumptions before acting.
+
+Risk: The artifact promotes an external full-version offering, which may influence expectations beyond the reviewed Lite skill.
+
+Mitigation: Evaluate the reviewed Lite artifact independently and inspect external resources before relying on or purchasing additional material.
+
+## Reference(s):
+
+- [Decision Engine Lite ClawHub Page](https://clawhub.ai/jseale/skills/decision-engine-lite)
+- [jseale ClawHub Publisher Profile](https://clawhub.ai/user/jseale)
+- [Agent of Alpha Full Framework Library](https://agentofalpha.com)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown decision analysis with tables, risk summaries, and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, code execution, persistence, or sensitive data access are required by the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

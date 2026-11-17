@@ -1,44 +1,64 @@
-## Description: <br>
-Stock Assistant is a Python A-share trading helper for quote lookup, trade record management, position tracking, PnL analysis, CSV import/export, and optional Feishu notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Assistant helps agents query A-share market quotes, manage local trade records, calculate positions and profit or loss, and import or export CSV trade data.
 
-## Publisher: <br>
-[54meteor](https://clawhub.ai/user/54meteor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54meteor](https://clawhub.ai/user/54meteor)
 
-## Use Case: <br>
-Developers and external users can use this skill to run a local CLI for A-share market quote checks, portfolio record keeping, PnL calculations, and CSV-based trade import/export. Users can also format quote and position updates for Feishu delivery when they provide trusted notification credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock and portfolio details can be sent to Feishu or arbitrary webhook destinations. <br>
-Mitigation: Use only trusted webhook URLs and verified recipients, and disable or avoid notification commands when portfolio disclosure is not acceptable. <br>
-Risk: Feishu App Secret values may be passed on the command line for private-message delivery. <br>
-Mitigation: Prefer safer secret handling outside shell history and process listings, and rotate credentials if they may have been exposed. <br>
-Risk: Local trade data can be imported, deleted, exported, and stored in a SQLite database. <br>
-Mitigation: Review bundled CSV files before import and back up or export the local database before destructive record changes. <br>
+## Use Case:
 
+External users and developers use this skill to inspect A-share quotes, maintain local trade records, calculate holdings and profit or loss, and prepare CSV imports or exports for trading records.
 
-## Reference(s): <br>
-- [Detailed design](references/design.md) <br>
-- [Tencent Finance](https://finance.qq.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/54meteor/stock-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [CLI text, Python dictionaries, Feishu card JSON, CSV files, and SQLite-backed local records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read and write local trade data and can send portfolio-related quote summaries to Feishu or webhook destinations when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Feishu notifications can send holdings and profit or loss data to external webhook or chat destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Feishu webhook URLs and avoid sending holdings or P&L to shared chats unless that disclosure is intentional.
+
+Risk: Feishu app secrets are accepted through command-line arguments and scheduled job parameters.
+
+Mitigation: Do not put real app secrets directly in shell commands or scheduled jobs; use a protected secret management path when deploying.
+
+Risk: Local trade databases and CSV exports may contain sensitive trading, account, holdings, and P&L information.
+
+Mitigation: Protect the local SQLite database and exported CSV files, restrict access to the data directory, and avoid sharing exported files broadly.
+
+Risk: CSV imports from untrusted sources may expose users to malformed or sensitive data handling issues.
+
+Mitigation: Import CSV files only from trusted sources and inspect unfamiliar files before opening or processing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/54meteor/skills/stock-assistant)
+- [Detailed Design](artifact/references/design.md)
+- [Design Overview](artifact/DESIGN.md)
+- [Tencent Finance](https://finance.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, CSV files, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands, CLI text output, Feishu card JSON, and CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores trade records in a local SQLite database and can send notification content to Feishu when configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

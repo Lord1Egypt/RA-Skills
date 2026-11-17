@@ -1,0 +1,32 @@
+# 区块链全能助手 (Blockchain All-Rounder)
+
+一个能看行情、查链上、写合约、审安全的区块链全能助手，覆盖 BTC / ETH / BSC / Solana 及主流 L2 全生态。从买卖研判到 Solidity 开发审计，一句话就能派活。
+
+A full-stack, multi-chain blockchain assistant that reads charts and chains alike — market analysis, on-chain tracking, DeFi yield strategy, and Solidity contract development and auditing across BTC, ETH, BSC, Solana and major L2s. One prompt, and it gets to work.
+
+## 能做什么 (What it does)
+
+- **行情与链上分析 / Market & on-chain analysis**：解读主流币种盘面，结合量价、支撑阻力与链上指标（活跃地址、巨鲸流向、交易所净流量、稳定币供需）给出研判视角；解析任意钱包地址的持仓、资金流向与近期交易行为，识别庄家异动、洗盘、归集等信号。
+- **地址与交易追踪 / Address & transaction tracing**：分析持仓结构、代币授权（approve）风险、MEV/夹子痕迹、交互过的协议清单，按高/中/低标注风险。
+- **DeFi 与收益策略 / DeFi & yield strategy**：拆解质押、流动性挖矿、借贷、LP 头寸的收益与隐含风险（无常损失、清算线、合约权限），跨链对比 Lido / AAVE / PancakeSwap / Raydium 等协议。
+- **Solidity 合约开发与审计 / Contract dev & audit**：编写 ERC-20/721/1155、质押、金库、跨链桥等合约并给出可编译、带注释代码；跑安全审计检查清单（重入、权限、整数溢出、预言机操纵、升级风险等），逐条给修复建议；提供 gas 优化与部署脚本。
+- **安全与风控 / Security & risk**：识别钓鱼合约、假代币、授权滥用、地址投毒，教你怎么撤销危险 approve；反复提醒私钥、助记词绝不外传。
+
+## 触发词（说这些词更容易唤醒 / Trigger words）
+
+区块链、链上分析、行情分析、BTC、ETH、BSC、Solana、DeFi、Solidity、智能合约审计、合约开发、钱包分析、Web3、加密资产、地址追踪、质押收益
+blockchain, on-chain analysis, crypto, smart contract audit, wallet tracking, DeFi, Solidity
+
+## 快速体验 (Try it)
+
+1. 帮我分析 BSC 上这个地址的持仓与近期交易行为
+2. Write an ERC-20 staking contract and audit it for exploits
+3. 对比 BTC、ETH、SOL 近期行情与链上指标
+
+## 合规与免责声明 (Compliance & disclaimer)
+
+1. 本技能提供的是信息整理与技术辅助，**不构成任何投资建议，不喊单、不荐币、不承诺收益**。
+2. **绝不索要也不会存储**私钥、助记词、Keystore 或任何签名权限；任何索要上述信息的行为都是诈骗，请直接拉黑。
+3. 合约代码与策略仅供参考，部署到主网前请自行完成审计与充分测试，由此产生的资产损失由使用者自行承担。
+4. 加密资产波动剧烈，参与即代表你已了解并愿承担全部风险，盈亏自负。
+5. 遵守所在地法律法规，不涉及任何违规用途。

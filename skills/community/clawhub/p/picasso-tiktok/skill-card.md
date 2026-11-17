@@ -1,39 +1,57 @@
-## Description: <br>
-Picasso TikTok guides agents through a TikTok/Reels production pipeline that turns scripts or source media into 1080x1920 videos with TTS voiceover, a HeyGen avatar, subtitles, ffmpeg composition, and optional AI B-roll. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picasso TikTok guides agents through a TikTok/Reels pipeline that writes scripts, generates TTS voiceover, creates a HeyGen talking avatar, transcribes subtitles with Whisper, composes 1080x1920 videos with ffmpeg, and can generate AI B-roll with Runway Gen-4.5.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Creators, social media teams, and developers use this skill to plan and execute short-form vertical video production with approved scripts, generated voice audio, talking-avatar footage, corrected subtitles, and final ffmpeg rendering. It is suited for TikTok or Instagram Reels workflows that rely on external media-generation services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scripts, media, generated voice audio, transcripts, and video assets may be sent to external cloud media services, including temporary file hosting. <br>
-Mitigation: Use non-sensitive inputs unless the providers' data handling is acceptable, and replace uguu.se with private signed-URL storage for sensitive work. <br>
-Risk: Paid media APIs and reusable service credentials can create cost or access exposure. <br>
-Mitigation: Use project-specific API keys with spending limits and rotate or revoke credentials after the workflow is complete. <br>
+## Use Case:
 
+External creators, social media operators, and developers use this skill to produce vertical TikTok or Instagram Reels videos from a topic, article, script, or source video. It is especially suited for workflows that need a reviewed Spanish-language script, generated voiceover, talking avatar, subtitles, layout selection, and final ffmpeg composition.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash, Python, API-call, ffmpeg, and checklist snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow steps and commands for media artifacts such as audio files, subtitle files, avatar clips, B-roll clips, and a final 1080x1920 video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated voice audio, scripts, prompts, and media may be sent to external AI providers and a public file host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content appropriate for those services, and replace the public uguu.se upload path with private expiring storage or an official HeyGen upload path before processing confidential voiceovers.
+
+Risk: The workflow includes opinionated promotional script defaults that could introduce unwanted CTA or brand language.
+
+Mitigation: Review and approve the generated script before audio generation, and remove unwanted CTA or brand phrasing before continuing.
+
+## Reference(s):
+
+- [Picasso TikTok ClawHub listing](https://clawhub.ai/pauldelavallaz/skills/picasso-tiktok)
+- [ElevenLabs text-to-speech API](https://api.elevenlabs.io/v1/text-to-speech/$ELEVENLABS_VOICE_ID)
+- [HeyGen video generation API](https://api.heygen.com/v2/video/generate)
+- [OpenAI audio transcription API](https://api.openai.com/v1/audio/transcriptions)
+- [Replicate Runway Gen-4.5 predictions API](https://api.replicate.com/v1/models/runwayml/gen-4.5/predictions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets plus generated media file instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewed scripts, TTS variation guidance, avatar generation steps, subtitle correction guidance, ffmpeg composition commands, and final 1080x1920 H.264/AAC video settings.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

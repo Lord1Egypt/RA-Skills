@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn740dspnt5pyzkc21gr4yx9e9850my0",
-  "slug": "self-improving-agent-pro-v1",
-  "version": "1.0.0",
-  "publishedAt": 1778163278179
+  "owner": "yun520-1",
+  "slug": "self-improving-agent",
+  "displayName": "Self-Improving Agent",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1746652800000,
+    "commit": "https://github.com/yun520-1/self-improving-agent/commit/f216a48101d96c28cf7bfcbbdcf0db8b340df09d"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1746652800000,
+      "commit": "https://github.com/yun520-1/self-improving-agent/commit/f216a48101d96c28cf7bfcbbdcf0db8b340df09d"
+    }
+  ]
 }

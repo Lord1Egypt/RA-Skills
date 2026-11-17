@@ -1,0 +1,24 @@
+# PROGRESS.md — keelwright loop log
+
+> **What this is:** your AI's memory across chats. Each iteration it records what was tried,
+> what worked, and what broke — so a brand-new session picks up where the last one stopped
+> instead of re-making old mistakes.
+>
+> **You never have to write in it.** keelwright created it and maintains it. Safe to commit
+> (a useful history of how the project got here). Deleting it is allowed — it will be
+> recreated empty, and the accumulated history is lost.
+
+## STATUS
+- Project: <auto-filled by agent>
+- Start: <date>
+- Iteration: 0
+- Mode: <Autopilot|Checkpoint|Copilot>
+
+## Loop
+
+<!-- Agent appends one block per iteration: -->
+## Iteration 1
+- Task:
+- Result: ✅/❌/⚠️
+- Findings:
+- Next step:

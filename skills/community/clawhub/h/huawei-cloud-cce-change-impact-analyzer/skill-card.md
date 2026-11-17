@@ -1,47 +1,59 @@
-## Description: <br>
-Analyzes recent Huawei Cloud CCE workload, configuration, node, network, and security-policy changes to produce evidence-based incident attribution reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud CCE change impact analysis skill that converts recent cluster, workload, configuration, network, security, node, and infrastructure changes into evidence-based causal attribution reports.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate whether recent CCE changes contributed to an incident and to generate a timeline, evidence matrix, blast-radius assessment, risk score, conclusions, and data gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled dispatcher exposes cloud and Kubernetes administration actions beyond the advertised read-only change analysis workflow. <br>
-Mitigation: Review and constrain allowed actions before installation, and expose only the read-only analysis actions needed for the workflow. <br>
-Risk: The skill requires sensitive Huawei Cloud credentials and can inspect CCE resources, including security-relevant configuration. <br>
-Mitigation: Use least-privilege read-only credentials, avoid cluster-admin or write IAM permissions, and prevent credentials or tokens from being logged or persisted. <br>
-Risk: Kubeconfig export, Secret data access, output file paths, and any confirm=true invocation can increase operational or data exposure. <br>
-Mitigation: Require explicit human approval for those operations and review requested output paths before execution. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to investigate Huawei Cloud CCE incidents where recent workload releases, configuration edits, route changes, policy changes, node events, or infrastructure changes may explain an outage. It produces a timeline, evidence matrix, blast radius, risk score, conclusion, and data gaps for human review.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Capability Map](references/capability-map.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
-- [Huawei Cloud CCE Documentation](https://support.huaweicloud.com/cce/index.html) <br>
-- [Huawei Cloud Python SDK Documentation](https://support.huaweicloud.com/api-cce/cce_02_0113.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Markdown, Files, Guidance] <br>
-**Output Format:** [Structured JSON with embedded Markdown report and optional Markdown report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an analysis trace ID, analysis window, scoped CCE resources, top changes, risk scoring, evidence, data-source status, and capture metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The server security verdict is suspicious because the package presents this skill as read-only analysis while the bundled dispatcher exposes mutation actions that could alter or delete cloud and Kubernetes resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after manual review, restrict execution to the documented read-only actions, and use tightly scoped read-only Huawei Cloud credentials and Kubernetes RBAC.
+
+Risk: Cloud credentials and cluster access are required for analysis and could expose sensitive infrastructure data if over-scoped.
+
+Mitigation: Use temporary or least-privilege credentials, avoid write-capable permissions, and prevent credential values from being logged or included in reports.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Capability Map](references/capability-map.md)
+- [Output Schema](references/output-schema.md)
+- [Risk Rules](references/risk-rules.md)
+- [Huawei Cloud CCE Documentation](https://support.huaweicloud.com/cce/index.html)
+- [Huawei Cloud Python SDK Documentation](https://support.huaweicloud.com/api-cce/cce_02_0113.html)
+- [ClawHub Skill Page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-change-impact-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON with embedded Markdown report content and optional Markdown report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes trace ID, analysis window, scope, data source status, ranked changes, evidence, blast radius, confidence, and data gaps.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

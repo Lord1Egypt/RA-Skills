@@ -1,43 +1,57 @@
-## Description: <br>
-Provides Chinese-language economics coaching with daily concept prompts, conversational reframing of everyday decisions, and structured explanations of economics concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+smart-economics-skill is a Chinese-language economics assistant that delivers daily concept prompts and reframes everyday financial, work, and consumption decisions through economics concepts.
 
-## Publisher: <br>
-[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell)
 
-## Use Case: <br>
-Chinese-speaking users can use this skill as an educational economics coach to connect daily choices, spending, work, debt, and investment questions with practical economics concepts. It also supports scheduled daily learning prompts and concept lookup responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically create recurring daily messages and proactively steer broad everyday conversations. <br>
-Mitigation: Install only where users can review, pause, modify, or remove the scheduled task and understand when the skill is adding economics framing. <br>
-Risk: Debt, investment, and financial independence content may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as educational guidance and verify financial decisions with qualified human advice or trusted authoritative sources. <br>
+## Use Case:
 
+External users use this skill to receive Chinese-language daily economics concept prompts, ask for structured explanations, and get economics-based framing for everyday decisions about spending, debt, work, and investing.
 
-## Reference(s): <br>
-- [Concept library](artifact/references/concepts.md) <br>
-- [Case library](artifact/references/cases.md) <br>
-- [Decision framework](artifact/references/decision-framework.md) <br>
-- [Daily prompt queue](artifact/references/daily-queue.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown-style explanatory text and scheduled prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May proactively add economics framing to everyday decisions and may generate a recurring 08:00 daily prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks to create a daily recurring 08:00 task during installation without clear consent or removal controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before scheduling reminders and provide a clear way to pause, remove, or avoid duplicate scheduled tasks.
+
+Risk: The skill may proactively reframe related user conversations through economics concepts.
+
+Mitigation: Enable it only for users who want Chinese-language economics coaching and allow users to opt out of proactive reframing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shianaixuexi-cell/skills/smart-economics-skill)
+- [Concept library](artifact/references/concepts.md)
+- [Case library](artifact/references/cases.md)
+- [Decision framework](artifact/references/decision-framework.md)
+- [Daily queue](artifact/references/daily-queue.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown-style conversational responses and scheduled prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May proactively associate user conversations with economics concepts and may request a daily 08:00 recurring task if the host permits.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

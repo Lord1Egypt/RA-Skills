@@ -1,41 +1,58 @@
-## Description: <br>
-Oskill Proxy guides an agent to use a local Android HTTP proxy to start activities and services, send broadcasts, and operate ContentProviders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oskill Proxy lets an agent call a local Android HTTP API to start Activities and Services, send Broadcasts, and operate on ContentProviders when direct Android component invocation is not available.
 
-## Publisher: <br>
-[SOSO-eng](https://clawhub.ai/user/SOSO-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soso-eng](https://clawhub.ai/user/soso-eng)
 
-## Use Case: <br>
-Developers and automation agents use this skill when they need to invoke Android components through a local OSkillProxy service, including from environments such as Termux where direct Intent or component calls are unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad Android component and ContentProvider operations through a local proxy, including actions that can query sensitive providers or modify and delete provider data. <br>
-Mitigation: Use it only with a trusted OSkillProxy Android app, keep the service bound to localhost, and require explicit approval before invoking unknown components or changing ContentProvider data. <br>
-Risk: The artifact includes a concrete-looking bearer token in configuration. <br>
-Mitigation: Replace and rotate the token before use and avoid treating the bundled token as a production secret. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate HTTP API calls for controlling Android app components through a locally running OSkillProxy service. It is intended for trusted device automation scenarios where the target component, token, and ContentProvider operation are explicitly chosen.
 
-## Reference(s): <br>
-- [OSkill Proxy Skill Source](artifact/SKILL.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/SOSO-eng/oskill-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local OSkillProxy Android app, a bearer token, and a localhost HTTP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A hardcoded bearer token may allow unintended access if reused or exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate a token for your own device, rotate any exposed token, and keep requests limited to trusted local agents.
+
+Risk: The proxy can start Android components and perform broad ContentProvider reads, writes, updates, deletes, and calls.
+
+Mitigation: Use explicit package, class, URI, and selection parameters whenever possible, and avoid broad ContentProvider operations unless the data impact is understood.
+
+Risk: Incorrect implicit Intents or provider operations can affect apps or data beyond the intended target.
+
+Mitigation: Review generated requests before execution and prefer narrow, explicit targets with least-necessary flags and extras.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soso-eng/skills/oskill-proxy)
+- [Publisher profile](https://clawhub.ai/user/soso-eng)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bearer-token authenticated local HTTP requests for Android component and ContentProvider operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

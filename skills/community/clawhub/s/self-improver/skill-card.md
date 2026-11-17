@@ -1,45 +1,57 @@
-## Description: <br>
-Self-improving agent system for OpenClaw that enables continuous learning from interactions, errors, recoveries, and performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving agent system for OpenClaw that enables continuous learning from interactions, errors, recoveries, and performance metrics.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add persistent learning, reviewable memory, and hook-based improvement workflows to agent sessions. It supports learning from sessions, errors, recoveries, and performance signals, with manual commands for review and export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning files may capture session, error, recovery, or performance details, including sensitive context. <br>
-Mitigation: Use only in workspaces where persistent memory is intended, add redaction for sensitive sessions, and review or delete learning files before sharing or committing them. <br>
-Risk: Automatic mode can execute Python hook files from the workspace hooks directory with limited user control. <br>
-Mitigation: Review and trust all hook files before enabling automatic mode, keep auto-apply disabled where possible, and scan hooks before deployment. <br>
-Risk: Stored learnings can preserve incorrect, stale, or misleading guidance and influence future agent behavior. <br>
-Mitigation: Review learnings regularly, remove outdated entries, and require human review before applying learned guidance to sensitive workflows. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to collect learnings from sessions, errors, recoveries, and performance signals, then review, export, or apply those learnings to improve future agent behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leohuang8688/self-improver) <br>
-- [Publisher profile](https://clawhub.ai/user/leohuang8688) <br>
-- [README.md](README.md) <br>
-- [USAGE.md](USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text with JSON learning records and optional Markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores learning data in workspace learning files and can export a Markdown summary for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata) <br>
+Risk: Persistent learning records may contain private prompts, tracebacks, secrets, or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and redact learning JSON files and Markdown exports before reuse, sharing, or email.
+
+Risk: Executable Python hooks are loaded from the workspace hooks directory.
+
+Mitigation: Install only in trusted workspaces and restrict write access to the hooks directory.
+
+Risk: Automatic learning or application of stored records can reuse unreviewed content.
+
+Mitigation: Keep auto_learn and auto_apply disabled until stored learnings have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leohuang8688/skills/self-improver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [CLI text, Markdown exports, and JSON learning files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist learning records in the workspace and load Python hooks from the workspace hooks directory.]
+
+## Skill Version(s):
+
+3.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "channel": "competitor-page-audit",
+  "workflow": "page_compare",
+  "focus": "page",
+  "outputTemplate": "ops_page_compare",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ]
+}

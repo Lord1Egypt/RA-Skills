@@ -1,37 +1,47 @@
-## Description: <br>
-Helps locate local files by searching common directories for a specified file name or partial name on Windows, macOS, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps locate local files by searching common directories for a specified file name or partial name on Windows, macOS, and Linux.
 
-## Publisher: <br>
-[Fidods](https://clawhub.ai/user/Fidods) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fidods](https://clawhub.ai/user/fidods)
 
-## Use Case: <br>
-Developers and end users use this skill when an agent needs to help locate a local file by name or partial name, starting with common user directories and returning matching file paths. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: File searches can reveal local filenames and full paths. <br>
-Mitigation: Start with specific folders such as Documents or Downloads, and use whole-disk searches only when necessary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fidods/findfilepath) <br>
+## Use Case:
+
+Users ask an agent to find local documents or other files by exact or partial name. The agent searches common local directories, reports matching paths, and offers follow-up actions such as opening the file, narrowing the search, or broadening the search scope.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: File-name searches may reveal private local file paths in the chat.
+
+Mitigation: Search only locations needed for the request and avoid displaying paths the user would not want visible in the session.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with local file path results and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include full local file paths and prompts to narrow or broaden the search.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text with local file paths and brief follow-up options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May display local file names and paths; does not modify, delete, upload, or share files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

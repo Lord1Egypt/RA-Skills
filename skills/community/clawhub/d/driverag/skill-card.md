@@ -1,42 +1,61 @@
-## Description: <br>
-Use the Google Drive RAG CLI to search your synced personal documents, add tracking folders, or check the service account status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Google Drive RAG CLI to search your synced personal documents, add tracking folders, or check the service account status.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query a Google Drive RAG API for answers from synced personal documents, inspect indexed files, check sync status, add folders, trigger syncs, and renew access tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private Google Drive document data through a remote RAG API. <br>
-Mitigation: Install only when the Drive RAG API operator is trusted, and avoid sharing returned answers, citations, or file listings beyond the intended user. <br>
-Risk: The skill stores and renews bearer tokens and may expose renewed tokens in terminal output. <br>
-Mitigation: Use a limited, short-lived token, protect the plaintext .env file, avoid sharing terminal output from token renewal, and require explicit confirmation before renewing tokens. <br>
-Risk: The skill can add folders, sync documents, and force complete re-indexing of Drive data. <br>
-Mitigation: Require explicit confirmation before adding folders, syncing, or using force re-indexing, and verify the target folders before running those commands. <br>
+## Use Case:
 
+External users and developers use this skill to query, sync, and inspect a Google Drive backed RAG index of their personal documents through a CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eladrave/driverag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output may include RAG answers, citations, indexed file lists, sync status, service account details, and token renewal results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill handles JWT credentials and personal document queries for a Google Drive RAG service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS API endpoint, treat the JWT as a secret, and restrict permissions on the local .env file.
+
+Risk: Indexed personal documents may be processed by the RAG API.
+
+Mitigation: Avoid indexing highly sensitive documents unless the user is comfortable with the service processing them.
+
+Risk: Token renewal and sync operations can affect access credentials or re-index document content.
+
+Mitigation: Require explicit confirmation before token renewal or sync operations, and review forced re-indexing before use.
+
+Risk: Unpinned dependencies and local environment setup can change runtime behavior over time.
+
+Mitigation: Pin dependencies before deployment and review the installed packages in the virtual environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eladrave/skills/driverag)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses should include citations and source documents exactly as returned by the CLI.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

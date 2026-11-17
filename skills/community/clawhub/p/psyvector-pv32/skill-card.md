@@ -1,39 +1,52 @@
-## Description: <br>
-Crisis calming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crisis calming.
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to generate crisis-calming conversational support for distress or breakdown scenarios.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Crisis-calming content may be mistaken for emergency or clinical support.
+
+Mitigation: Review carefully before crisis or mental-health-adjacent use, and add clear emergency escalation guidance, clinical boundaries, and human support handoff language before deployment.
+
+Risk: The artifact disables risk reminders while framing the skill for crisis counseling.
+
+Mitigation: Require appropriate risk reminders and route severe, self-harm, or emergency content to qualified human or emergency support.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to give an agent a lightweight crisis-calming persona for brief calming responses during stressful situations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the calming persona for emergency or professional mental-health support. <br>
-Mitigation: Use it only for lightweight calming and escalate emergencies, self-harm concerns, medical or mental-health decisions, financial crises, and other high-stakes situations to qualified humans or emergency services. <br>
+**Output Format:** [Plain text or Markdown conversational responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv32) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jkzfhq) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona; no code, tools, or permissions declared.] <br>
+3.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

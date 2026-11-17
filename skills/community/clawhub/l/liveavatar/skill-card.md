@@ -1,43 +1,59 @@
-## Description: <br>
-Talk face-to-face with your OpenClaw agent using a real-time video avatar powered by LiveAvatar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talk face-to-face with your OpenClaw agent using a real-time video avatar powered by LiveAvatar.
 
-## Publisher: <br>
-[eNNNo](https://clawhub.ai/user/eNNNo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ennno](https://clawhub.ai/user/ennno)
 
-## Use Case: <br>
-External users and developers use this skill to start a browser-based LiveAvatar interface for voice and video conversations with an OpenClaw agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Spoken input may contain sensitive information that is transcribed and passed through the avatar and agent flow. <br>
-Mitigation: Avoid speaking secrets or other sensitive data unless the user accepts the LiveAvatar service and agent data handling. <br>
-Risk: The skill launches a third-party npm package and depends on the LiveAvatar service. <br>
-Mitigation: Install and run it only when the user trusts the LiveAvatar service and the openclaw-liveavatar npm package. <br>
-Risk: The browser interface requires microphone access and a local OpenClaw Gateway. <br>
-Mitigation: Confirm microphone permissions intentionally and run the OpenClaw Gateway before starting the avatar session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LiveAvatar](https://liveavatar.com) <br>
-- [LiveAvatar App](https://app.liveavatar.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to start a LiveAvatar voice and video interface that sends spoken input to an OpenClaw agent and speaks the agent response back with lip-synced video.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to check configuration, launch the npm package, and explain browser microphone and local gateway requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill launches an unpinned npm package that executes locally while handling microphone input, a LiveAvatar API key, and local agent connectivity.
+
+Mitigation: Use a pinned and reviewed package version, install only from a trusted publisher, and avoid running it in environments where local execution or gateway access is not acceptable.
+
+Risk: Microphone audio, transcripts, and agent responses are part of the LiveAvatar workflow.
+
+Mitigation: Do not speak secrets, regulated data, or sensitive business information unless LiveAvatar privacy and retention terms have been reviewed and approved for that data.
+
+Risk: The interface depends on local OpenClaw Gateway access.
+
+Mitigation: Run the gateway only in a trusted local environment and close the avatar session when it is no longer needed.
+
+## Reference(s):
+
+- [LiveAvatar](https://liveavatar.com)
+- [LiveAvatar App](https://app.liveavatar.com)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub LiveAvatar Skill](https://clawhub.ai/ennno/skills/liveavatar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch a local browser interface and requires LIVEAVATAR_API_KEY, Node.js/npm, browser microphone access, and a running OpenClaw Gateway.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

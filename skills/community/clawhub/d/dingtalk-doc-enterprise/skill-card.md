@@ -1,44 +1,60 @@
-## Description: <br>
-Helps agents read, inspect, overwrite, append to, and delete blocks in DingTalk enterprise documents when DingTalk document context is confirmed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates on existing DingTalk documents that the user identifies by URL or docKey and is authorized to access, supporting read, overwrite, insert, modify, and delete-block operations while explicitly refusing document creation.
 
-## Publisher: <br>
-[shyzhen](https://clawhub.ai/user/shyzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shyzhen](https://clawhub.ai/user/shyzhen)
 
-## Use Case: <br>
-Employees and developers use this skill to let an agent operate on DingTalk enterprise documents after confirming the target is a DingTalk document. It supports document reading, structure inspection, full-document overwrite, paragraph append, and block deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live changes to enterprise DingTalk documents, including overwrite, append, insert, and delete operations. <br>
-Mitigation: Use a least-privilege DingTalk app and require human confirmation of the exact document and block before any update, delete, append, or insert operation. <br>
-Risk: DINGTALK_CLIENTSECRET and operator identity settings can expose privileged document access if shared broadly. <br>
-Mitigation: Protect DINGTALK_CLIENTSECRET, avoid shared privileged DINGTALK_OPERATOR_ID values in multi-user deployments, and rely on per-user sender identity where available. <br>
-Risk: The scan summary notes an under-disclosed insert command compared with the skill-facing usage instructions. <br>
-Mitigation: Review available commands before installation and document whether insert is allowed in the deployment policy. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an agent read and update existing DingTalk enterprise documents through user-provided document URLs. It is intended for document maintenance workflows where the current DingTalk user already has access to the target document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shyzhen/dingtalk-doc-enterprise) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com/) <br>
-- [DingTalk OpenClaw connector docs](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector?tab=readme-ov-file#%E9%92%89%E9%92%89%E6%96%87%E6%A1%A3docs%E4%B8%8E-mcpdocs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and text or JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js plus DingTalk application credentials in DINGTALK_CLIENTID and DINGTALK_CLIENTSECRET.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release evidence) <br>
+Risk: The skill uses DingTalk enterprise app credentials to read and change existing documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workflows that require DingTalk document access, keep credentials scoped to the intended enterprise app, and do not expose them in prompts or logs.
+
+Risk: Overwrite and delete-block operations can be destructive if the document or block target is wrong.
+
+Mitigation: Confirm the document URL or docKey and inspect block structure before update, delete, or ambiguous block-level changes.
+
+Risk: Configuring a local debug operator identity in production can bypass the expected current-user identity flow.
+
+Mitigation: Use OPENCLAW_SENDER_ID or DINGTALK_SENDER_ID in deployed environments and avoid DINGTALK_OPERATOR_ID outside local debugging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shyzhen/skills/dingtalk-doc-enterprise)
+- [DingTalk OpenClaw connector docs](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector?tab=readme-ov-file#%E9%92%89%E9%92%89%E6%96%87%E6%A1%A3docs%E4%B8%8E-mcpdocs)
+- [Related DingTalk connector issue](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector/issues/456)
+- [Alternative ClawHub skill with write whitelist controls](https://clawhub.ai/shyzhen/dingtalk-doc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js plus DINGTALK_CLIENTID and DINGTALK_CLIENTSECRET environment variables; operations are constrained to existing DingTalk document URLs or docKeys.]
+
+## Skill Version(s):
+
+1.0.8 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

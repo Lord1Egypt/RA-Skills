@@ -1,40 +1,54 @@
-## Description: <br>
-Build and interpret Ryanair fare-finder URLs for cheap flight searches with route, date, time-window, passenger, price, currency, and promo-code parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and interpret Ryanair fare-finder URLs for cheap flight searches.
 
-## Publisher: <br>
-[Callum-Kemp](https://clawhub.ai/user/Callum-Kemp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[callum-kemp](https://clawhub.ai/user/callum-kemp)
 
-## Use Case: <br>
-External users and travel planners use this skill to turn budget-flight requirements into Ryanair fare-finder URLs and to explain or adjust query parameters before checking fares on Ryanair. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated fare-finder links may not reflect current fares, availability, fees, or travel details. <br>
-Mitigation: Verify routes, dates, passenger counts, prices, and booking conditions on Ryanair before making travel decisions. <br>
-Risk: The skill can guide users to Ryanair pages where account or payment actions may occur outside the skill. <br>
-Mitigation: Only enter account, payment, or personal information after intentionally proceeding on Ryanair's official checkout flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ryanair Fare Finder](https://www.ryanair.com/gb/en/fare-finder) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Callum-Kemp/ryanair-fare-finder) <br>
+## Use Case:
 
+External users and agents use this skill to construct, modify, and explain Ryanair fare-finder URLs for budget flight searches from UK airports with route, date, passenger, time-window, price, currency, and promo-code parameters.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with generated URLs and parameter explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to open Ryanair fare-finder pages; generated links should be verified on Ryanair before booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated fare-finder URLs may not match the user's intended route, dates, passengers, price cap, or promo-code settings.
+
+Mitigation: Review generated URLs and parameter explanations before opening or sharing them.
+
+Risk: Users may be asked for personal or payment details after navigating away from the generated URL.
+
+Mitigation: Only enter personal or payment details on Ryanair's official site.
+
+## Reference(s):
+
+- [Ryanair Fare Finder](https://www.ryanair.com/gb/en/fare-finder)
+- [ClawHub Skill Page](https://clawhub.ai/callum-kemp/skills/ryanair-fare-finder)
+- [Publisher Profile](https://clawhub.ai/user/callum-kemp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with generated Ryanair fare-finder URLs and parameter explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access when users open generated Ryanair fare-finder pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Expert AI agent for premium full-stack web development with Laravel, Livewire, FluxUI, Three.js, and advanced CSS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent for premium senior web development with Laravel, Livewire, FluxUI, Three.js, and advanced CSS.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and engineers use this skill to shape, implement, and review premium web experiences with refined interaction design, Laravel/Livewire patterns, FluxUI components, advanced CSS, and Three.js where appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to consult local ai/system or ai/agents files for additional project guidance. <br>
-Mitigation: Review those local files before use and keep the skill scoped to relevant web development tasks. <br>
-Risk: Generated implementation guidance or code may include incorrect UI behavior, accessibility gaps, or performance issues. <br>
-Mitigation: Review, test, and scan changes before deployment, including responsive behavior, interactive states, and performance-sensitive animations. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide premium web application implementation, especially Laravel, Livewire, FluxUI, Three.js, advanced CSS, responsive UX, animation, and performance-focused frontend work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-senior-developer) <br>
-- [FluxUI component documentation](https://fluxui.dev/docs/components) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include frontend implementation guidance, Laravel/Livewire examples, CSS patterns, Three.js suggestions, and quality checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may favor theme toggles, animations, and premium visual effects by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly state project requirements when simpler UI, reduced motion, or narrower scope is preferred.
+
+## Reference(s):
+
+- [FluxUI component documentation](https://fluxui.dev/docs/components/[component-name])
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-senior-developer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose premium UI effects, theme toggles, animation details, performance checks, and implementation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-追踪多个被动收入来源，包括订阅收入、广告分成、技能销售佣金等。支持Webhook接入ClawHub统计。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks multiple passive income sources, including subscription revenue, advertising shares, skill sales commissions, and ClawHub statistics through an optional webhook.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-External users use this skill to track passive income streams such as subscriptions, advertising revenue, and referral commissions, with optional webhook-based synchronization for ClawHub statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Income and revenue details entered into the skill may be sensitive. <br>
-Mitigation: Provide only the financial details needed for tracking and avoid unnecessary account, credential, or personal financial information. <br>
-Risk: Webhook configuration can send revenue data to an external endpoint. <br>
-Mitigation: Use an HTTPS endpoint you control or trust, and review what data is sent before enabling synchronization. <br>
+## Use Case:
 
+External ClawHub users can use this skill to summarize subscription, advertising, and referral income, compare monthly trends, and track passive-income goals.
 
-## Reference(s): <br>
-- [Passive Income Tracker on ClawHub](https://clawhub.ai/linbo405/passive-income-tracker-xiaomolongxia) <br>
-- [Publisher profile: linbo405](https://clawhub.ai/user/linbo405) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include income totals, source breakdowns, trend summaries, and webhook configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Income amounts and optional webhook endpoints may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only income data and webhook URLs you trust, and review generated summaries before sharing them.
+
+Risk: The skill source is written in Chinese, which may be unclear to operators who do not read Chinese.
+
+Mitigation: Confirm the requested tracking fields and generated summaries in a language the operator understands before use.
+
+## Reference(s):
+
+- [Passive Income Tracker ClawHub listing](https://clawhub.ai/linbo405/skills/passive-income-tracker-xiaomolongxia)
+- [linbo405 publisher profile](https://clawhub.ai/user/linbo405)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [JSON summaries with concise text guidance and optional webhook configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; may reference user-provided income data, date ranges, currency, and webhook endpoint settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

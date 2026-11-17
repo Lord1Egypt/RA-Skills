@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.list-wrap {
+  max-width: 560px;
+  width: 100%;
+  background: #fff;
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.list-header {
+  padding: 22px 28px;
+  background: var(--coral);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 400;
+}
+/* sin título, la banda coral quedaría vacía → render.mjs pone "hidden" en {{title_hidden}} */
+.list-header.hidden { display: none; }
+.list-items {
+  padding: 8px 0;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--gray-line);
+}
+.list-item:last-child { border-bottom: none; }
+.list-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.list-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.list-text strong { font-weight: 700; }
+.list-text code {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  background: var(--gray-soft);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+</style>
+</head>
+<body data-bg="{{bg}}">
+<div class="stage" data-bg="{{bg}}">
+  <div class="list-wrap">
+    <div class="list-header {{title_hidden}}">{{title}}</div>
+    <div class="list-items">{{items_html}}</div>
+  </div>
+</div>
+</body>
+</html>

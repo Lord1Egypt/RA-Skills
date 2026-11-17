@@ -1,47 +1,61 @@
-## Description: <br>
-Computer use for GUI automation tasks via VLA models when the user describes a natural-language task that requires visual screen interaction and no API or CLI exists for the target app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Computer use for GUI automation tasks via VLA models. Use when the user describes a task in natural language that requires visual screen interaction and no API or CLI exists for the target app.
 
-## Publisher: <br>
-[xiaoluohei](https://clawhub.ai/user/xiaoluohei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoluohei](https://clawhub.ai/user/xiaoluohei)
 
-## Use Case: <br>
-External users and developers use this skill to automate foreground desktop apps or webpages from natural-language task descriptions when API or CLI automation is unavailable. It supports local on-device mode for privacy-sensitive tasks and cloud mode for more complex visual reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can see the primary display and control mouse and keyboard input during a user-started session. <br>
-Mitigation: Install only when that level of desktop automation is acceptable, keep unrelated private windows out of view, and supervise active sessions. <br>
-Risk: Cloud mode may send primary-display screenshots transiently for inference. <br>
-Mitigation: Use local mode for privacy-sensitive tasks and avoid displaying confidential information when cloud mode is active. <br>
-Risk: Purchases, credential entry, deletions, financial actions, or account changes can have irreversible effects. <br>
-Mitigation: Require user confirmation for sensitive actions and personally review the screen before approving each step. <br>
+## Use Case:
 
+Developers and end users use Mano Cua A to automate visible desktop GUI tasks from natural language when target apps do not provide API or CLI access. It supports local on-device inference for private work and cloud mode for more complex screen reasoning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoluohei/mano-cua-a) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoluohei) <br>
-- [Mano skill repository](https://github.com/Mininglamp-AI/mano-skill) <br>
-- [Mano skill releases](https://github.com/Mininglamp-AI/mano-skill/releases) <br>
-- [Mano-P model](https://huggingface.co/Mininglamp-2718/Mano-P) <br>
-- [Network model module](https://github.com/Mininglamp-AI/mano-skill/blob/main/visual/model/task_model.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command options for installing, launching, stopping, or configuring mano-cua; the skill itself does not produce persistent files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release asks users to install external native desktop-control components without pinned versions or hashes in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted publisher channels and prefer pinned releases with hashes or signatures before running the binary, SDK installer, or model installer.
+
+Risk: The tool can observe and act on the visible foreground desktop during a user-initiated task.
+
+Mitigation: Avoid sensitive accounts unless the session can be monitored, use step limits, and stop the task immediately if behavior diverges from the requested scope.
+
+Risk: Cloud mode sends primary-display screenshots for inference during active sessions.
+
+Mitigation: Use local mode for privacy-sensitive work and close or hide unrelated sensitive content before starting a task.
+
+## Reference(s):
+
+- [Mano Cua A on ClawHub](https://clawhub.ai/xiaoluohei/skills/mano-cua-a)
+- [Mininglamp-AI mano-skill source](https://github.com/Mininglamp-AI/mano-skill)
+- [mano-skill GitHub releases](https://github.com/Mininglamp-AI/mano-skill/releases)
+- [Mano-P model](https://huggingface.co/Mininglamp-2718/Mano-P)
+- [task_model.py audit reference](https://github.com/Mininglamp-AI/mano-skill/blob/main/visual/model/task_model.py)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation commands, run examples, local and cloud mode notes, and operational safety constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

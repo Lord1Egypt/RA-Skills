@@ -1,7 +1,7 @@
 ---
 name: mcp-code-execution
 description: Routes multi-tool workflows through MCP servers for large datasets and pipelines
-version: 1.9.8
+version: 1.10.3
 triggers:
   - Bash tool overhead is limiting throughput on data-heavy tasks
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conserve", "emoji": "\ud83e\udd9e"}}
@@ -9,37 +9,14 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Core Hub Responsibilities](#core-hub-responsibilities)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Step 1 – Assess Workflow](#step-1-assess-workflow-mcp-code-executionassess-workflow)
-- [Workflow Classification](#workflow-classification)
-- [MECW Risk Assessment](#mecw-risk-assessment)
-- [Step 2 – Route to Modules](#step-2-route-to-modules-mcp-code-executionroute-to-modules)
-- [Module Orchestration](#module-orchestration)
-- [Step 3 – Coordinate MECW](#step-3-coordinate-mecw-mcp-code-executioncoordinate-mecw)
-- [Cross-Module MECW Management](#cross-module-mecw-management)
-- [Step 4 – Synthesize Results](#step-4-synthesize-results-mcp-code-executionsynthesize-results)
-- [Result Integration](#result-integration)
-- [Module Integration](#module-integration)
-- [With Context Optimization Hub](#with-context-optimization-hub)
-- [Performance Skills Integration](#performance-skills-integration)
-- [Emergency Protocols](#emergency-protocols)
-- [Hub-Level Emergency Response](#hub-level-emergency-response)
-- [Success Metrics](#success-metrics)
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # MCP Code Execution Hub
 
 ## Quick Start
 
-This skill is an orchestration hub, not a CLI. It activates
+This skill is an orchestration hub with no CLI. It activates
 inside a Claude Code session when one of the trigger keywords
 below appears, or when invoked explicitly:
 
@@ -104,7 +81,7 @@ step or CLI entry point.
 - Coordinates MECW compliance across submodules
 - Manages token budget allocation for submodules
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `mcp-code-execution:assess-workflow`
 2. `mcp-code-execution:route-to-modules`
 3. `mcp-code-execution:coordinate-mecw`
@@ -117,23 +94,23 @@ step or CLI entry point.
 def classify_workflow_for_mecw(workflow):
     """Determine appropriate MCP modules and MECW strategy"""
 
-    if has_tool_chains(workflow) and workflow.complexity == 'high':
+    if has_tool_chains(workflow) and workflow.complexity == "high":
         return {
-            'modules': ['mcp-subagents', 'mcp-patterns'],
-            'mecw_strategy': 'aggressive',
-            'token_budget': 600
+            "modules": ["mcp-subagents", "mcp-patterns"],
+            "mecw_strategy": "aggressive",
+            "token_budget": 600,
         }
-    elif workflow.data_size > '10k_rows':
+    elif workflow.data_size > "10k_rows":
         return {
-            'modules': ['mcp-patterns', 'mcp-validation'],
-            'mecw_strategy': 'moderate',
-            'token_budget': 400
+            "modules": ["mcp-patterns", "mcp-validation"],
+            "mecw_strategy": "moderate",
+            "token_budget": 400,
         }
     else:
         return {
-            'modules': ['mcp-patterns'],
-            'mecw_strategy': 'conservative',
-            'token_budget': 200
+            "modules": ["mcp-patterns"],
+            "mecw_strategy": "conservative",
+            "token_budget": 200,
         }
 ```
 
@@ -142,8 +119,7 @@ Delegate to mcp-validation module for detailed risk analysis:
 ```python
 def delegate_mecw_assessment(workflow):
     return mcp_validation_assess_mecw_risk(
-        workflow,
-        hub_allocated_tokens=self.token_budget * 0.5
+        workflow, hub_allocated_tokens=self.token_budget * 0.5
     )
 ```
 
@@ -154,21 +130,21 @@ def delegate_mecw_assessment(workflow):
 class MCPExecutionHub:
     def __init__(self):
         self.modules = {
-            'mcp-subagents': MCPSubagentsModule(),
-            'mcp-patterns': MCPatternsModule(),
-            'mcp-validation': MCPValidationModule()
+            "mcp-subagents": MCPSubagentsModule(),
+            "mcp-patterns": MCPatternsModule(),
+            "mcp-validation": MCPValidationModule(),
         }
 
     def execute_workflow(self, workflow, classification):
         results = []
 
         # Execute modules in optimal order
-        for module_name in classification['modules']:
+        for module_name in classification["modules"]:
             module = self.modules[module_name]
             result = module.execute(
                 workflow,
-                mecw_budget=classification['token_budget'] //
-                len(classification['modules'])
+                mecw_budget=classification["token_budget"]
+                // len(classification["modules"]),
             )
             results.append(result)
 
@@ -191,11 +167,11 @@ def synthesize_module_results(module_results):
     """Combine module results into a single status dict."""
 
     return {
-        'status': 'completed',
-        'token_savings': calculate_savings(module_results),
-        'mecw_compliance': verify_mecw_rules(module_results),
-        'hallucination_risk': assess_hallucination_prevention(module_results),
-        'results': consolidate_results(module_results)
+        "status": "completed",
+        "token_savings": calculate_savings(module_results),
+        "mecw_compliance": verify_mecw_rules(module_results),
+        "hallucination_risk": assess_hallucination_prevention(module_results),
+        "results": consolidate_results(module_results),
     }
 ```
 
@@ -231,3 +207,20 @@ When MECW limits exceeded:
 - **MECW Compliance**: 100% adherence to 50% context rule
 - **Token Efficiency**: Maintain >80% savings vs traditional methods
 - **Module Coordination**: <5% overhead for hub orchestration
+
+## Exit Criteria
+
+- [ ] Workflow classified into one of the three MECW strategies
+  (aggressive/moderate/conservative) with the correct module
+  roster (`mcp-subagents`, `mcp-patterns`, `mcp-validation`)
+  selected based on tool-chain length and data size
+- [ ] Context usage remains at or below 50% of the total window
+  throughout the workflow; any breach triggers the hub-level
+  emergency response (delegate to mcp-validation, route to
+  mcp-subagents, apply compression)
+- [ ] `synthesize_module_results` returns a dict with all four
+  keys: `status`, `token_savings`, `mecw_compliance`,
+  `hallucination_risk`
+- [ ] Token savings reported at the end of the workflow are
+  greater than 80% compared to running the same workflow via
+  direct Bash tool chaining

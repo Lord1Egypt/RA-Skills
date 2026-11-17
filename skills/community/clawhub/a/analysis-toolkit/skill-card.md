@@ -1,48 +1,65 @@
-## Description: <br>
-Quality-control and data-analysis toolkit for inspection and testing workflows, covering internal quality control, inter-lab comparison, inter-batch comparison, method validation, and trend monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quality-control and data-analysis toolkit for testing and inspection workflows, covering internal QC, inter-lab comparison, batch comparison, method validation, and trend monitoring.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers, quality engineers, and laboratory analysts use this skill to plan and run statistical quality-control workflows, validate methods, compare groups or batches, monitor trends, and generate human-readable analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configuration panel can be exposed as a network-reachable local server and can persist changes to templates. <br>
-Mitigation: Run it only on trusted machines and networks, bind it to localhost before use when possible, and review saved template changes before relying on them. <br>
-Risk: Generated operators can be written into Python source files. <br>
-Mitigation: Require human code review and run the included validation or self-test workflows before executing newly generated operators. <br>
-Risk: Some generated HTML reports may depend on CDN-hosted chart assets. <br>
-Mitigation: Treat those reports as non-offline artifacts unless CDN access is approved, or use the local/static rendering path when offline operation is required. <br>
+## Use Case:
 
+Developers, analysts, and quality engineers use this skill to plan and run statistical QC analyses, method-validation calculations, trend monitoring, and structured report generation for testing and inspection data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/analysis-toolkit) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Data interface](references/data-interface.md) <br>
-- [Pipeline reference](references/pipeline.md) <br>
-- [Report generation](references/report-generation.md) <br>
-- [Regression and method validation](references/regression-validation.md) <br>
-- [Time series analysis](references/time-series.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown responses with Python snippets, structured numeric results, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report files and local template or configuration files when invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: SKILL.md frontmatter, ClawHub release evidence, changelog released 2026-06-17) <br>
+Risk: The security review says the skill can persistently modify code or templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandboxed workspace and review generated or modified files before relying on analysis results.
+
+Risk: The security review says the skill can expose an unauthenticated configuration server.
+
+Mitigation: Run any configuration server only on trusted local interfaces and never on shared or exposed networks.
+
+Risk: The security review advises caution with untrusted templates, datasets, and runtime Python source generation.
+
+Mitigation: Use trusted datasets and templates, scan inputs before execution, and disable or remove runtime source generation before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/analysis-toolkit)
+- [Quickstart](references/quickstart.md)
+- [Data interface](references/data-interface.md)
+- [Pipeline reference](references/pipeline.md)
+- [Regression and method validation](references/regression-validation.md)
+- [ANOVA analysis](references/anova-analysis.md)
+- [Report generation](references/report-generation.md)
+- [Permissions](references/permissions.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, numeric analysis results, charts, and generated report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce warnings for low-quality input data and may generate HTML, Word, PDF, image, or table artifacts depending on the workflow.]
+
+## Skill Version(s):
+
+2.0.4 (source: frontmatter, release metadata, changelog released 2026-06-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

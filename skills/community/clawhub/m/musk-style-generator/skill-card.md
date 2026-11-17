@@ -1,42 +1,55 @@
-## Description: <br>
-Transforms text into a visionary, tech-forward communication style modeled on Elon Musk for launches, announcements, social posts, and futuristic messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform any text into Elon Musk's visionary tech communication style. Perfect for product launches, tech announcements, Twitter posts, or making any message sound like it's from the future.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External users and content creators use this skill to rewrite ordinary text into concise, future-focused social posts, product announcements, startup pitches, or technical explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated numbers, dates, product claims, or market-sensitive statements may be inaccurate or misleading. <br>
-Mitigation: Review factual claims before use and replace invented specifics with verified information. <br>
-Risk: Outputs could be mistaken for authentic Elon Musk communications or endorsements. <br>
-Mitigation: Present results as style-transformed draft text and avoid implying identity, authorship, or endorsement. <br>
+## Use Case:
 
+External users and content creators use this skill to rewrite product announcements, social posts, startup pitches, and technical explanations in a concise, future-focused Musk-inspired style.
 
-## Reference(s): <br>
-- [Musk Style Generator Reference Guide](references/REFERENCE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/musk-style-generator) <br>
-- [Publisher Homepage](https://xiaping.coze.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with rewritten copy and style guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only writing aid; outputs should be reviewed for factual accuracy and attribution risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated text could be mistaken for an actual Elon Musk quote, endorsement, announcement, or financial statement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review public-facing output before publication and label it as inspired copy rather than an authentic statement or endorsement.
+
+Risk: Bold, numbers-driven launch or market language could overstate product claims.
+
+Mitigation: Verify all metrics, timelines, product claims, and market-sensitive statements against approved source material before use.
+
+## Reference(s):
+
+- [Musk Style Generator Reference Guide](references/REFERENCE.md)
+- [Publisher homepage](https://xiaping.coze.site)
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/musk-style-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text rewriting guidance with example transformed copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces stylistic writing transformations and examples; no shell commands, code execution, credentials, or external tool calls are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

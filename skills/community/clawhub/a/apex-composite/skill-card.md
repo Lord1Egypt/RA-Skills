@@ -1,45 +1,58 @@
-## Description: <br>
-Composite APEX score combining regime, momentum, and risk metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns composite APEX score combining regime, momentum, and risk metrics.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and agents use this skill to request a paid, real-time crypto trading composite signal for opportunity ranking and decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may authorize paid x402 requests without a clear confirmation step or spending limit. <br>
-Mitigation: Use a dedicated wallet with limited USDC on Base, monitor call volume and costs, and disable the skill when paid requests are not intended. <br>
-Risk: Use of an EVM private key can expose wallet funds if the execution environment or logs are compromised. <br>
-Mitigation: Avoid primary wallets, scope funds to the minimum needed for calls, and keep EVM_PRIVATE_KEY out of shared logs and prompts. <br>
+## Use Case:
 
+Developers and agents use this paid market signal endpoint to retrieve a composite crypto score for ranking opportunities. The score can inform a strategy after independent review.
 
-## Reference(s): <br>
-- [Apex Composite Signal](https://apexrunner.ai/signals/apex-composite) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/apex-composite) <br>
-- [Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
-- [Combined Alpha Signal](https://apexrunner.ai/signals/combined-alpha) <br>
-- [Signal Intelligence](https://apexrunner.ai/signals/signal-intelligence) <br>
-- [Apex Alpha Score](https://apexrunner.ai/signals/apex-alpha-score) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown instructions with a Python example and JSON response shape] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and an EVM wallet with USDC on Base mainnet for paid x402 requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Each request signs a USDC payment using the configured EVM wallet key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet funded only for intended calls, keep the x402 maximum-amount policy at or below the expected per-call price, and protect EVM_PRIVATE_KEY.
+
+Risk: A composite market score may be over-relied on when ranking or trading opportunities.
+
+Mitigation: Treat the returned score as one input and independently validate it against the strategy and risk limits before trading.
+
+## Reference(s):
+
+- [APEX Composite endpoint](https://apexrunner.ai/signals/apex-composite)
+- [ClawHub skill release](https://clawhub.ai/kynto2001-ctrl/skills/apex-composite)
+- [Publisher profile](https://clawhub.ai/user/kynto2001-ctrl)
+- [Related signal: combined-alpha](https://apexrunner.ai/signals/combined-alpha)
+- [Related signal: signal-intelligence](https://apexrunner.ai/signals/signal-intelligence)
+- [Related signal: apex-alpha-score](https://apexrunner.ai/signals/apex-alpha-score)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Paid x402 HTTP GET request with a JSON response and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each request incurs a USDC payment on Base; authentication signing uses an EVM wallet key.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

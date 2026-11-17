@@ -1,0 +1,45 @@
+# 注塑模具专家 Skill — 市场上架元数据
+# 本文件供 WorkBuddy 技能市场 / SkillHub / ClawHub 等渠道提交时读取。
+# 字段说明依据 WorkBuddy 企业 Skill 上传规范 + ClawHub/SkillHub 开发者文档。
+
+name: injection-molding-pro          # 技能唯一标识（ID），小写中划线，全平台唯一
+title: 注塑模具专家 · MoldYang         # 客户端显示名称
+display_name: 注塑模具专家 · MoldYang (Injection Molding Pro)
+version: 1.1.14                       # 语义化版本号，须与 SKILL.md/CHANGELOG 一致
+description: >-
+  注塑成型全流程技术支持专家技能：覆盖材料选型（PP/ABS/PC/PA/POM/PPS/PEEK 等）、
+  工艺参数优化、缺陷诊断（缩水/飞边/翘曲/熔接线/银纹/气泡）、DFM 可制造性审查、
+  模具结构设计与规范（NST/SPI/Philips）、模流分析（Moldflow/Moldex3D）规范、
+  公差与尺寸精度、成本估算；并涵盖 ICM/E-Mold/RHCM/LDS/IML/IMD/2K/包覆/水辅等
+  先进成型工艺。面向模具工程师与塑料件产品工程师的实战知识库。
+category: manufacturing               # 类目：制造/工业。SkillHub/ClawHub 可在此大类下选细分
+author: MoldYang（老杨）
+author_contact: 502898119@qq.com
+license: CC BY-NC-SA 4.0              # 署名-非商业性使用-相同方式共享
+homepage: https://github.com/GlenYang2026/injection-molding-pro
+repository: https://github.com/GlenYang2026/injection-molding-pro
+tags:
+  - 注塑模具
+  - injection molding
+  - 模具设计
+  - 模流分析
+  - 缺陷诊断
+  - 双色注塑
+  - RHCM
+  - LDS
+  - IML
+  - 先进成型工艺
+triggers:                             # 典型触发词（用于市场检索与技能触发）
+  - 注塑
+  - 注射成型
+  - 模具设计
+  - 缩水 飞边 翘曲 熔接线
+  - 模流分析 Moldflow
+  - DFM 可制造性
+  - 双色注塑 2K
+  - 包覆成型 overmolding
+  - ICM 注塑压缩
+  - RHCM 高光无痕
+  - LDS 激光直接成型
+  - 嵌件成型 insert molding
+min_workbuddy_version: "1.0.0"

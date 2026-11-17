@@ -1,42 +1,54 @@
-## Description: <br>
-Coordinates multiple user instructions as parallel or serial tasks with priority scheduling, dependency handling, progress tracking, retries, and execution reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parallel Task Executor coordinates multiple user instructions as separate tasks with priority scheduling, dependency handling, progress tracking, and execution reports.
 
-## Publisher: <br>
-[Erichy777](https://clawhub.ai/user/Erichy777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erichy777](https://clawhub.ai/user/erichy777)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break a multi-part request into tracked tasks, schedule them by priority and dependency, and summarize completion or failure across concurrent work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad concurrent file, shell, network, API, and database actions. <br>
-Mitigation: Require the agent to show the planned task list before execution and obtain explicit approval for deletes, writes, uploads, shell or script execution, API mutations, database actions, retries, and background work. <br>
-Risk: Parallel retries and background work can amplify mistakes or resource usage. <br>
-Mitigation: Use narrow directory, command, account, domain, concurrency, timeout, and retry limits before enabling task execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Erichy777/parallel-task-executor) <br>
-- [Task priority specification](references/priorities.md) <br>
-- [Execution report format](references/reports.md) <br>
-- [Scheduling algorithm notes](references/scheduler.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to break multiple independent instructions into scheduled tasks, run them in parallel or serial modes, and collect status and result reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured task or report snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task queues, priority labels, progress summaries, retry status, and execution reports.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can coordinate destructive file, shell, network, API, and database actions without clearly documented safety gates.
+
+Mitigation: Set strict limits and require explicit confirmation before deletion, uploads, shell or script execution, API calls, database operations, cleanup, and archival tasks.
+
+Risk: The documented scheduler examples may not be safe production code for concurrency and result handling.
+
+Mitigation: Review and harden concurrency limits, timeout behavior, retry handling, and result aggregation before production use.
+
+## Reference(s):
+
+- [Execution Report Format](references/reports.md)
+- [Task Priority Specification](references/priorities.md)
+- [Scheduler Algorithm Notes](references/scheduler.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured task, progress, and execution-report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-style task records, progress counters, retry status, and failure summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

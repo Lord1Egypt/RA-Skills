@@ -1,44 +1,59 @@
-## Description: <br>
-ClawClau schedules Claude Code tasks in background tmux sessions and provides progress notifications, status checks, result retrieval, termination, and mid-task steering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asynchronous Claude Code task scheduling toolkit based on tmux, with background dispatch, progress reporting, completion notifications, status checks, result retrieval, task termination, and mid-task steering.
 
-## Publisher: <br>
-[BarryYJJ](https://clawhub.ai/user/BarryYJJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barryyjj](https://clawhub.ai/user/barryyjj)
 
-## Use Case: <br>
-Developers and technical operators use this skill to dispatch, monitor, steer, stop, and retrieve results from long-running Claude Code tasks without blocking the foreground agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended Claude Code sessions may run with permission safeguards disabled. <br>
-Mitigation: Review before installing; run only in isolated workspaces and avoid high-impact repositories unless the launcher is patched or constrained. <br>
-Risk: Task prompts, logs, or notifications may persist locally or be forwarded to Feishu/OpenClaw channels. <br>
-Mitigation: Avoid secrets in prompts, consider --interval 0 and no Feishu chat for sensitive tasks, and regularly clean ~/.clawclau. <br>
-Risk: Untrusted paths or model values can affect task launcher behavior. <br>
-Mitigation: Use trusted workdirs and model names, and review script behavior before trusting it with untrusted inputs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to dispatch Claude Code work into isolated tmux sessions, monitor long-running tasks, collect results, stop jobs, and steer interactive runs from a controlling agent workflow.
 
-## Reference(s): <br>
-- [ClawClau schema and status reference](references/schema.md) <br>
-- [ClawClau design principles and mechanisms](references/design.md) <br>
-- [Clawclau on ClawHub](https://clawhub.ai/BarryYJJ/clawclau) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, Configuration instructions] <br>
-**Output Format:** [Markdown with shell command examples plus text, stream-json, and local log outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write task registry, prompt backups, wrapper scripts, and logs under ~/.clawclau.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence) <br>
+Risk: Spawned Claude Code tasks may run unattended with high execution authority and bypass interactive permission prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted workspaces, review prompts before dispatch, and reserve it for environments where unattended Claude Code execution is acceptable.
+
+Risk: Untrusted repositories, prompt content, model names, or paths can influence background task execution.
+
+Mitigation: Avoid untrusted repositories and prompt content, validate model names and work directories, and keep CC_HOME pointed at a normal trusted directory.
+
+Risk: Prompts, logs, result snippets, and notifications may persist locally or be sent to Feishu when notifications are configured.
+
+Mitigation: Treat task content as persistent operational data, avoid sensitive prompts unless retention is acceptable, and configure notification targets carefully.
+
+## Reference(s):
+
+- [ClawClau schema and task state reference](references/schema.md)
+- [ClawClau design principles and runtime modes](references/design.md)
+- [ClawHub skill page](https://clawhub.ai/barryyjj/skills/clawclau)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, Markdown, Guidance]
+
+**Output Format:** [Terminal text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local task registry entries, prompt backups, wrapper scripts, and log files under CC_HOME.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../schemas/edit-plan.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "planId": "edit_demo",
+  "transcriptId": "transcript_demo",
+  "transcriptRevision": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "segments": [
+    {
+      "segmentId": "segment_001",
+      "sourceAssetId": "asset_speaker",
+      "sourceWordIds": [
+        "word_001",
+        "word_002"
+      ],
+      "action": "keep",
+      "order": 1,
+      "speed": {
+        "numerator": 1,
+        "denominator": 1
+      },
+      "risk": "low",
+      "approval": {
+        "required": false,
+        "status": "not-required"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: mixed-language-boundary
+expected_outcome: |
+  The review treats services/api, web and worker as separate units and checks each
+  boundary against docs/api.md. It finds that the Go worker sleeps retry_after
+  milliseconds although the contract and the API use seconds (30 ms instead of 30 s,
+  so it gives up after five fast retries), and that the TypeScript client reads
+  totalCents while the API sends total_cents, so the page shows $NaN; the `as Order`
+  cast hides the mismatch. The report says what was reviewed per unit and edits
+  nothing before approval.
+context:
+  scaffold_script: place-files.sh

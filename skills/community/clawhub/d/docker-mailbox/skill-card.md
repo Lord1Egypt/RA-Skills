@@ -1,46 +1,61 @@
-## Description: <br>
-docker-mailbox lets agents use a running mailboxd server to read, search, send, mark-seen, and delete mail across multiple IMAP/SMTP accounts through REST and MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate a running docker-mailbox service over REST or MCP to read, search, organize, draft, reply and send mail using scoped bearer access. Use for mailbox tasks against a configured instance.
 
-## Publisher: <br>
-[psyb0t](https://clawhub.ai/user/psyb0t) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psyb0t](https://clawhub.ai/user/psyb0t)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent or script to configured real email accounts for unified mailbox search, message retrieval, sending, deletion, and mailbox state changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent access to real email accounts, including read, send, mark-seen, and delete actions. <br>
-Mitigation: Use it only with accounts and scopes intended for agent access, require explicit review before sending or deleting mail, and monitor mailbox activity. <br>
-Risk: An unauthenticated or publicly exposed mailboxd service could expose email contents or allow mailbox actions. <br>
-Mitigation: Configure strong auth.tokens before any non-local exposure, keep the service bound locally or behind a protected proxy, and rotate tokens when needed. <br>
-Risk: config.yaml contains mailbox passwords and bearer tokens. <br>
-Mitigation: Treat config.yaml as a secret, keep it out of source control and chat transcripts, restrict file permissions, and mount it read-only into containers. <br>
-Risk: Using an unverified Docker image or repository can introduce supply-chain risk. <br>
-Mitigation: Verify the Docker image and repository before deployment and pin trusted image versions for production use. <br>
+## Use Case:
 
+Developers and operators use this skill to work with a configured mailbox service: search and read email, organize messages, prepare drafts, and send or reply to mail through scoped REST or MCP access.
 
-## Reference(s): <br>
-- [Setup guide](references/setup.md) <br>
-- [Project homepage](https://github.com/psyb0t/docker-mailbox) <br>
-- [html2text](https://github.com/Alir3z4/html2text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown with curl commands, JSON request and response examples, and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running mailboxd service, MAILBOX_URL, and optional MAILBOX_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Setting up a Cloudflare Tunnel can expose the mailbox service beyond local access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tunnel only when remote access is intended; configure bearer authentication and narrow mailbox and operation scopes first, and protect tunnel credentials.
+
+Risk: Mailbox configuration contains plaintext account passwords and bearer tokens.
+
+Mitigation: Restrict file permissions, keep configuration and secrets out of source control and chat, and mount configuration read-only.
+
+Risk: Deployment relies on trusting the Docker image source and release being used.
+
+Mitigation: Verify the image source and release you intend to run before deployment.
+
+## Reference(s):
+
+- [Mailbox operations API reference](references/api.md)
+- [Setup and deployment guide](references/setup.md)
+- [Project homepage](https://github.com/psyb0t/docker-mailbox)
+- [Upgrade notes](https://psyb0t.github.io/docker-mailbox/operations/#upgrade-notes)
+- [Cloudflare Tunnel installation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration]
+
+**Output Format:** [Text and Markdown guidance, including API requests, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mailbox summaries, search results, draft content, and operation status]
+
+## Skill Version(s):
+
+1.2.10 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

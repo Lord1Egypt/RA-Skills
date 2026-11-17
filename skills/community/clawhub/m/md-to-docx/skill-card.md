@@ -1,44 +1,53 @@
-## Description: <br>
-Converts Markdown files to formatted Word (.docx) documents with optional Word template style detection and Mermaid diagram rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown files into formatted Word (.docx) documents with optional Word template style extraction and Mermaid diagram rendering.
 
-## Publisher: <br>
-[krabww](https://clawhub.ai/user/krabww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krabww](https://clawhub.ai/user/krabww)
 
-## Use Case: <br>
-Developers, writers, and documentation teams use this skill to convert Markdown drafts, reports, and book chapters into Word documents while preserving common Markdown structure and optional template styling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt installation of Python and Node dependencies. <br>
-Mitigation: Install dependencies only in an approved environment and review package installation commands before execution. <br>
-Risk: Mermaid rendering uses local browser automation and server evidence notes sandbox protections are disabled. <br>
-Mitigation: Avoid untrusted Mermaid blocks or run conversion in a disposable or sandboxed environment. <br>
-Risk: Implicit input or output paths can affect sensitive working directories. <br>
-Mitigation: Use explicit input and output paths and review the target directory before running conversion. <br>
-Risk: When no template is supplied, the output uses Chinese publishing defaults. <br>
-Mitigation: Provide a trusted .doc or .docx template when a different house style or locale is required. <br>
+## Use Case:
 
+Developers, writers, and agents use this skill to turn Markdown drafts, reports, and book chapters into styled .docx files, optionally matching a Word template and embedding Mermaid diagrams as PNGs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krabww/md-to-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated .docx file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can produce a Word .docx document from a Markdown input file and may embed Mermaid diagrams as PNG images when local dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Mermaid rendering and dependency setup can rely on global or system-level tools such as npm packages, Chrome or Chromium, LibreOffice, and platform conversion utilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, pin dependencies, and review global npm, sudo, browser, LibreOffice, or textutil commands before allowing an agent to run them.
+
+Risk: Processing untrusted Markdown with Mermaid enabled may exercise local browser-based rendering paths.
+
+Mitigation: Avoid processing untrusted Markdown with Mermaid enabled, or review Mermaid diagram blocks before conversion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krabww/skills/md-to-docx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the bundled converter creates .docx files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May render Mermaid diagrams to PNG and embed them in generated Word documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

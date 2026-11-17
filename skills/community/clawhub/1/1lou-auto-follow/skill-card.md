@@ -1,43 +1,54 @@
-## Description: <br>
-管理追剧清单，自动检查并推送1lou网站的最新剧集更新。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+管理追剧清单，自动检查并推送1lou网站的最新剧集更新。
 
-## Publisher: <br>
-[bluepop1991-cloud](https://clawhub.ai/user/bluepop1991-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluepop1991-cloud](https://clawhub.ai/user/bluepop1991-cloud)
 
-## Use Case: <br>
-External users use this skill to maintain a local drama watchlist, check 1lou for new episodes on a schedule or on request, and prepare update notifications and torrent download actions after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs scheduled network checks against 1lou domains. <br>
-Mitigation: Install only when automated 1lou update checks are intended, and review the configured domains before use. <br>
-Risk: The artifact uses hard-coded local paths and private service addresses. <br>
-Mitigation: Review or change the /Users/bluepop paths and 192.168.1.38 service addresses before running the skill. <br>
-Risk: The workflow can submit torrent files to qBittorrent after user confirmation. <br>
-Mitigation: Approve torrent downloads only from sources the user trusts. <br>
+## Use Case:
 
+External users can use this skill to maintain a Chinese-language drama watchlist, check 1lou for newly available episodes, report matching results, and assist with confirmed torrent download handoff to qBittorrent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bluepop1991-cloud/1lou-auto-follow) <br>
-- [1lou primary domain](https://1lou.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status messages with links and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update a local JSON watchlist and may prepare torrent download actions after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is tailored to a specific local watchlist path and private qBittorrent network address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the disclosed macOS path and private IP settings before installation or execution.
+
+Risk: The skill contacts listed 1lou domains and can help add torrent files to qBittorrent after confirmation.
+
+Mitigation: Install only when those network actions are expected, and require explicit user confirmation before download or qBittorrent handoff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bluepop1991-cloud/skills/1lou-auto-follow)
+- [Publisher profile](https://clawhub.ai/user/bluepop1991-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status messages with links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update a local JSON watchlist and may prepare torrent files after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

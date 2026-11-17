@@ -1,45 +1,60 @@
-## Description: <br>
-Manage agent memory with Membase, a decentralized encrypted backup and restore system for agent memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage agent memory with Membase - a decentralized, encrypted memory backup and restore system. Provides backup, restore, list, diff, status, and cleanup operations for agent memories.
 
-## Publisher: <br>
-[ibitnoah](https://clawhub.ai/user/ibitnoah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ibitnoah](https://clawhub.ai/user/ibitnoah)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to back up, list, compare, restore, and inspect agent memory files through Membase-backed encrypted storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Secrets may be exposed through documented echo commands, visible password arguments, or unredacted status output. <br>
-Mitigation: Avoid echoing secrets, avoid passing passwords directly in shell commands, and use JSON-disabled or redacted status output until secret handling is reviewed. <br>
-Risk: Restore operations can write remote backup contents into local agent memory. <br>
-Mitigation: Verify the backup ID and source, preserve the current workspace, and inspect backup differences before restoring. <br>
-Risk: The provided artifact references a lib implementation that is not included in the package evidence. <br>
-Mitigation: Request and review the complete package before trusting encryption, upload, download, and restore behavior. <br>
+## Use Case:
 
+External users and developers use this skill to back up, restore, list, compare, and inspect OpenClaw agent memory files with Membase-backed encrypted storage.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ibitnoah/unibase-membase) <br>
-- [Membase Documentation](https://github.com/unibaseio/membase) <br>
-- [AgentSkills Specification](https://agentskills.io) <br>
-- [OpenClaw Skills Guide](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text with optional JSON blocks and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operations require Membase credentials and may require a backup password.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md metadata and ClawHub release evidence) <br>
+Risk: Normal workflows can expose credentials or backup passwords through echoed environment variables, command-line password arguments, or status JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use real credentials or backup passwords until secret checks use non-disclosing presence checks, password arguments are avoided, and status JSON is redacted.
+
+Risk: Restore operations can write memory files back into the configured workspace without clear staging or overwrite confirmation.
+
+Mitigation: Review restore behavior before use and require staging or explicit overwrite confirmation for restored files.
+
+Risk: The reviewed artifact imports implementation modules from an unbundled lib path.
+
+Mitigation: Install only a reviewed package that includes the actual lib implementation rather than relying on an external symlink.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ibitnoah/skills/unibase-membase)
+- [Membase Documentation](https://github.com/unibaseio/membase)
+- [AgentSkills Specification](https://agentskills.io)
+- [OpenClaw Skills Guide](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may emit machine-readable JSON between JSON_OUTPUT markers for agent parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

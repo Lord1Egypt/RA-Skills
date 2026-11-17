@@ -1,41 +1,59 @@
-## Description: <br>
-股价异动实时提醒，支持行情接口、邮件和Sonos语音播报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured stock symbols and sends alerts through email and optional Sonos voice announcements when price movement or price thresholds are triggered.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to monitor configured stock symbols and receive console, email, or Sonos alerts when prices or percentage moves cross configured thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
 
-## Known Risks and Mitigations: <br>
-Risk: A modified or untrusted config can point apikey_env at sensitive environment variables and send them as an API key. <br>
-Mitigation: Keep the config file under user control, use a dedicated Alpha Vantage API key, and never set apikey_env to cloud tokens, session secrets, or other sensitive variables. <br>
-Risk: Continuous polling can repeatedly call external quote and notification services. <br>
-Mitigation: Run with --once first, confirm the watchlist and notification settings, then enable continuous polling only with an appropriate poll interval. <br>
+## Use Case:
 
+External users and developers use this skill to monitor a configured stock watchlist and receive threshold-based alerts through console output, email, or local Sonos voice announcements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/stock-price-alert) <br>
-- [Publisher Profile](https://clawhub.ai/user/terrycarter1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces stock alert status text and optional email or Sonos notification guidance based on local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Malformed alert values in the local configuration can lead to command execution in the alert script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, locally controlled config file and validate symbols, prices, percentages, and polling intervals before running the skill.
+
+Risk: SMTP credentials may be exposed through command-line arguments when email alerts are enabled.
+
+Mitigation: Prefer a dedicated app-specific SMTP password and avoid treating the skill as low risk until credential handling is fixed.
+
+Risk: Watched symbols and alerts may be sent to external services or local Sonos devices.
+
+Mitigation: Use a dedicated Alpha Vantage key and enable only notification channels approved for the portfolio data being monitored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/stock-price-alert)
+- [Stock Price Alert README](artifact/README.md)
+- [Stock Price Alert skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON configuration, and plain text alert output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; optional notifications use SMTP settings and a local Sonos CLI.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

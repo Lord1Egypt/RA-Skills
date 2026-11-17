@@ -1,0 +1,50 @@
+[project]
+name = "agent-memguard"
+version = "0.1.0"
+description = "Local-first MCP memory backend and governance console for coding agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "MemoryGuard Contributors" }]
+keywords = ["agent", "governance", "memory", "mcp", "skill", "local-first", "claude", "cursor", "codex"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries",
+]
+# 首期零运行时第三方依赖：纯标准库实现，保证无网络、无供应链风险。
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/irisxc4/memoryguard"
+Repository = "https://github.com/irisxc4/memoryguard"
+Documentation = "https://github.com/irisxc4/memoryguard#readme"
+Issues = "https://github.com/irisxc4/memoryguard/issues"
+
+[project.scripts]
+memoryguard = "memoryguard.cli:main"
+
+[project.optional-dependencies]
+# 原生桌面窗口 GUI（可选）。未安装时 `open` 自动降级到 localhost/HTML。
+# 引入理由: 用户需求要求原生窗口；保持可选以维持 Core 零依赖原则（spec §1.3/§10）。
+gui = ["pywebview>=5.0"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra --strict-markers"

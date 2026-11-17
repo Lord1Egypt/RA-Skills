@@ -1,0 +1,28 @@
+name: novel-feedback-actionlist-cn
+slug: novel-feedback-actionlist-cn
+display_name: 读者反馈改稿待办
+description: 输入读者或编辑已经给出的意见和章节摘要，交付去重的问题组、影响章节及按优先级排列的可执行改稿清单，并保留意见依据。适合单次章节、场景或短文的反馈复盘；缺少反馈或章节定位时明确列出缺项，材料超过100行时提示分批处理，不伪造评价或重新评分。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/novel-feedback-actionlist-cn
+license: MIT-0
+tags:
+  - 写作
+  - 小说改稿
+  - 读者反馈
+  - 编辑协作
+trigger_words:
+  - 整理读者反馈
+  - 小说改稿待办
+  - 编辑意见归纳
+triggers:
+  - 把这些读者意见整理成改稿清单
+  - 根据章节摘要归纳编辑反馈
+  - 去重反馈并标出影响章节
+interface:
+  display_name: "读者反馈改稿待办"
+  short_description: "将读者与编辑意见去重归纳为可执行且可核查的章节改稿清单"
+  default_prompt: "使用 $novel-feedback-actionlist-cn 整理我提供的读者或编辑意见及对应章节摘要，归纳问题组、影响章节和优先改稿项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: python3 scripts/self_test.py

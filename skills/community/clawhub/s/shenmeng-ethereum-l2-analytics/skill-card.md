@@ -1,43 +1,60 @@
-## Description: <br>
-以太坊 Layer 2 生态综合分析工具，提供 Optimism、Arbitrum、Base、zkSync、Starknet 等协议的深度分析、TVL 监控、技术对比、跨链桥分析和投资机会识别。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ethereum L2 Analytics analyzes Ethereum Layer 2 protocols such as Optimism, Arbitrum, Base, zkSync, and Starknet for ecosystem trends, TVL monitoring, technical comparison, bridge analysis, and investment-opportunity discovery.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers, analysts, and crypto researchers use this skill to compare Ethereum Layer 2 protocols, monitor ecosystem metrics, evaluate bridges, and frame investment or airdrop research. Users should treat its market and bridge guidance as analysis support rather than financial or fund-movement advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports an under-disclosed paid SkillPay verification flow that may send a wallet address to an external service and uses an embedded API key. <br>
-Mitigation: Review the payment flow before installation, avoid sharing wallet addresses unless acceptable, and do not use embedded credentials in a production environment. <br>
-Risk: Bridge, token, and investment recommendations can be incomplete, stale, or unsuitable for real fund movement. <br>
-Mitigation: Independently verify official URLs, contract addresses, fees, supported networks, and personal risk tolerance before acting on any recommendation. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Ethereum L2 ecosystems, compare rollup projects, evaluate bridges, monitor L2 fund-flow narratives, and identify potential market or airdrop opportunities. Outputs should be treated as informational because server security evidence flags static data and payment-verification concerns.
 
-## Reference(s): <br>
-- [Ethereum L2 协议数据库](references/l2-protocols.md) <br>
-- [Ethereum L2 跨链桥指南](references/bridge-guide.md) <br>
-- [DefiLlama API](https://api.llama.fi) <br>
-- [L2Beat API](https://l2beat.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local JSON reports under /tmp when the bundled monitoring script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Paid verification and wallet-address handling may not be clear to the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm payment terms before use and do not provide a wallet address unless transmission to SkillPay is acceptable.
+
+Risk: An exposed payment API key is present in the artifact metadata.
+
+Mitigation: Rotate or remove the exposed key and require deployment-time secrets before publishing or installing.
+
+Risk: Static or stale L2 data could lead to misleading investment or bridge recommendations.
+
+Mitigation: Verify outputs against current trusted sources and treat financial or bridge guidance as informational, not financial advice.
+
+## Reference(s):
+
+- [Ethereum L2 protocol database](references/l2-protocols.md)
+- [Ethereum L2 bridge guide](references/bridge-guide.md)
+- [DefiLlama API](https://api.llama.fi)
+- [L2Beat API](https://l2beat.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with analysis summaries and optional Python or shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-monitoring guidance, project scoring, bridge comparisons, and payment-verification considerations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

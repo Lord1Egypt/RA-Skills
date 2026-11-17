@@ -1,48 +1,63 @@
-## Description: <br>
-Runs PII anonymization, local de-anonymization, and deterministic local detector checks for text and supported files. Use for redact/restore flows, file-first anonymization, or offline detector tuning with allowlist, blocklist, and threshold controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs PII anonymization, local de-anonymization, and deterministic local detector checks for text and supported files for redact/restore flows, file-first anonymization, and offline detector tuning with allowlist, blocklist, and threshold controls.
 
-## Publisher: <br>
-[modeioai](https://clawhub.ai/user/modeioai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modeioai](https://clawhub.ai/user/modeioai)
 
-## Use Case: <br>
-Developers and operators use this skill to anonymize sensitive text or supported files, restore placeholders from saved maps, and tune deterministic local detection with allowlists, blocklists, and thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Non-lite anonymization modes send content to an API. <br>
-Mitigation: Use --level lite for local-only processing, and use non-lite modes for regulated or confidential data only when the API is approved for that data. <br>
-Risk: Restore maps contain original sensitive values on disk. <br>
-Mitigation: Store maps only in approved protected locations, control access to the map directory, and override MODEIO_REDACT_MAP_DIR when a dedicated storage path is required. <br>
-Risk: PDF workflows are anonymize-only and cannot be restored through the PDF path. <br>
-Mitigation: Use supported text-like or DOCX workflows when reversible restore behavior is required, and validate PDF outputs before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to anonymize text and supported files, restore placeholders from saved maps, and tune deterministic local PII detection with allowlist, blocklist, and threshold controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modeioai/privacy-protector) <br>
-- [Publisher profile](https://clawhub.ai/user/modeioai) <br>
-- [Project homepage](https://github.com/mode-io/mode-io-skills/tree/main/privacy-protector) <br>
-- [Architecture](ARCHITECTURE.md) <br>
-- [CLI Contracts](references/cli-contracts.md) <br>
-- [File Workflows](references/file-workflows.md) <br>
-- [Local Detector](references/local-detector.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON envelopes, local configuration files, and redacted or restored file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local lite mode, API-backed non-lite modes, sidecar or embedded restore map references, and machine-readable --json output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Dynamic, strict, and crossborder modes can send raw sensitive input to a remote or environment-selected API endpoint before redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --level lite for local-only processing, or verify ANONYMIZE_API_URL points to a trusted HTTPS backend before using remote-backed modes.
+
+Risk: Saved placeholder map files can restore original PII.
+
+Mitigation: Protect or delete saved map files and set MODEIO_REDACT_MAP_DIR only to storage locations appropriate for sensitive data.
+
+Risk: In-place file modification can overwrite source files during redaction or restoration.
+
+Mitigation: Prefer --output for file workflows and review generated files before replacing originals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modeioai/skills/privacy-protector)
+- [Publisher Homepage](https://github.com/mode-io/mode-io-skills/tree/main/privacy-protector)
+- [Architecture](ARCHITECTURE.md)
+- [CLI Contracts](references/cli-contracts.md)
+- [File Workflows](references/file-workflows.md)
+- [Local Detector](references/local-detector.md)
+- [Detect-Local Examples](examples/detect-local/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-oriented CLI output contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce redacted files, sidecar map references, saved placeholder maps, detector diagnostics, and machine-readable JSON envelopes when invoked with --json.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Design and optimize caching strategies for applications. Analyze data access patterns, recommend cache layers (browser, CDN, application, database), configure TTLs, invalidation policies, and measure cache hit rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and optimize caching strategies for applications. Analyze data access patterns, recommend cache layers (browser, CDN, application, database), configure TTLs, invalidation policies, and measure cache hit rates.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to assess cache layers, measure cache hit rates, diagnose stale data or low hit-rate issues, and produce cache strategy recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Diagnostic commands can inspect local cache statistics, search project code, and contact the configured host for cache headers.
+
+Mitigation: Review commands and target hosts before running diagnostics against production systems.
+
+Risk: Cache configuration guidance can introduce stale data, low hit rates, or excessive cache pressure if applied without validation.
+
+Mitigation: Validate TTLs, invalidation rules, and hit-rate measurements in the target environment before production rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to assess existing cache layers, identify caching opportunities and anti-patterns, choose browser, CDN, application, and database cache strategies, and generate practical TTL, invalidation, and debugging guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic commands may inspect the wrong host or environment if variables such as HOST are set incorrectly. <br>
-Mitigation: Confirm the target host and environment before execution and run commands with the minimum privileges needed. <br>
-Risk: Generated cache settings could cause stale data or production regressions if applied without validation. <br>
-Mitigation: Review cache policies in staging, verify TTLs and invalidation behavior against application data-change patterns, and monitor hit rates and evictions before rollout. <br>
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/cache-strategy-advisor) <br>
+**Other Properties Related to Output:** [May include cache strategy reports, cache policy recommendations, diagnostic commands, and implementation snippets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands, cache policy tables, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include TTL recommendations, invalidation policies, cache hit-rate diagnostics, and cache issue debugging steps.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

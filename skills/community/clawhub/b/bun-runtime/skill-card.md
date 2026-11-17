@@ -1,38 +1,53 @@
-## Description: <br>
-Bun Runtime provides native Bun filesystem, process, and network operations for agents working with Bun APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bun Runtime provides Bun-based filesystem, process, and network operations for agents that need native Bun APIs.
 
-## Publisher: <br>
-[rabin-thami](https://clawhub.ai/user/rabin-thami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rabin-thami](https://clawhub.ai/user/rabin-thami)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent to read and write files, match paths, run process commands, and make HTTP requests through Bun runtime helpers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad local shell, filesystem, and network capability through Bun. <br>
-Mitigation: Install it only in trusted workspaces and review each command, path, URL, and request body before execution. <br>
-Risk: Untrusted strings passed into shell, filesystem, or network helpers can expand the impact of agent mistakes or misuse. <br>
-Mitigation: Avoid passing untrusted input and prefer a safer version that removes eval, constrains file access to an approved workspace, and requires explicit approval for command execution and outbound requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to run Bun-native file, glob, process, and HTTP operations from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, API calls, JSON] <br>
-**Output Format:** [Shell command invocations with JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [File helpers can read and write local paths, process helpers can execute commands, and network helpers can return HTTP status, success state, and response text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill grants broad local file, shell, and network authority with little scoping.
+
+Mitigation: Run it only in a constrained sandbox, restrict file paths and network destinations, and require clear user approval before writes, commands, or outbound requests.
+
+Risk: The security guidance identifies unsafe input handling.
+
+Mitigation: Revise command and script invocation paths to avoid eval or generated source and pass data through arguments or stdin.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rabin-thami/skills/bun-runtime)
+- [Publisher Profile](https://clawhub.ai/user/rabin-thami)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON command results and Markdown shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Bun runtime and may read files, write files, run shell commands, and make network requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,65 @@
-## Description: <br>
-Intelligent onboarding, resume stats, and profile update manager for BossClaw that checks bossclaw/token.md, uses token headers for API calls, registers users after confirmation, queries resume views, and updates profile fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent onboarding, resume stats and update manager. Checks 'bossclaw/token.md'. Uses header 'token: xxx' for all API calls. Supports: 1) Registration with admin confirmation 2) Querying resume stats via /api/staff_self (focus on 'views') 3) Updating profile via /api/staff_update.
 
-## Publisher: <br>
-[echome123](https://clawhub.ai/user/echome123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[echome123](https://clawhub.ai/user/echome123)
 
-## Use Case: <br>
-BossClaw users and agents use this skill to create and manage a BossClaw public profile, query resume view counts, and update permitted profile fields through the documented BossClaw APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for or infers profile information and can submit confirmed registration or update data to BossClaw APIs, including fields that may be public. <br>
-Mitigation: Review the generated profile fields, especially email and resume details, before confirming registration or updates. <br>
-Risk: The skill stores a reusable authentication token in bossclaw/token.md. <br>
-Mitigation: Keep the token file private, do not reveal token contents in chat, and reset the BossClaw identity if the token is no longer trusted. <br>
-Risk: Profile updates can change public-facing BossClaw profile data. <br>
-Mitigation: Confirm requested changes before API submission and preserve system-managed fields such as views, hash_mark, sign_id, created_at, and onboardingTime. <br>
+## Use Case:
 
+Agents assisting BossClaw users use this skill to register a BossClaw profile after admin confirmation, view resume statistics with emphasis on profile views, and update allowed personal profile fields.
 
-## Reference(s): <br>
-- [BossClaw website](https://bossclaw.dongyao.ren) <br>
-- [BossClaw skill page](https://clawhub.ai/echome123/bossclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/echome123) <br>
-- [Registration API endpoint](https://api-boss.dongyao.ren/api/initialize) <br>
-- [Resume query API endpoint](https://api-boss.dongyao.ren/api/staff_self) <br>
-- [Profile update API endpoint](https://api-boss.dongyao.ren/api/staff_update) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, files, guidance] <br>
-**Output Format:** [Markdown and plain text with API request examples and local token file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update bossclaw/token.md and submit confirmed profile data to BossClaw APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends BossClaw profile details to api-boss.dongyao.ren.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming that sending the profile details to that service is acceptable.
+
+Risk: Profile data such as email may be public.
+
+Mitigation: Confirm public-facing fields before registration or update, especially email and profile description.
+
+Risk: The skill stores a reusable API token in the predictable plaintext path bossclaw/token.md.
+
+Mitigation: Keep the workspace private, exclude the token file from sync and version control, and restrict file access.
+
+Risk: The skill may infer registration details from prior chat context or identity files.
+
+Mitigation: Require explicit user confirmation for inferred registration details and avoid using unrelated history or identity files.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/echome123/skills/bossclaw)
+- [BossClaw Website](https://bossclaw.dongyao.ren)
+- [BossClaw Registration API](https://api-boss.dongyao.ren/api/initialize)
+- [BossClaw Profile Query API](https://api-boss.dongyao.ren/api/staff_self)
+- [BossClaw Profile Update API](https://api-boss.dongyao.ren/api/staff_update)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API endpoint details and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to read and write bossclaw/token.md and to call BossClaw profile APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

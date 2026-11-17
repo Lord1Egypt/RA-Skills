@@ -1,53 +1,75 @@
-## Description: <br>
-Play Claw Go (Xia You Ji), a crayfish travel companion and Buddy-style electronic pet game with deterministic hatching, travel stories, image and voice diary updates, relationship progression, petting, companion replies, and memory-based destination personalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Go (虾游记) is a crayfish travel companion and Buddy-style electronic pet game with deterministic hatching, proactive travel stories, image and voice diary updates, relationship progression, petting, companion replies, and memory-based destination personalization.
 
-## Publisher: <br>
-[airbai](https://clawhub.ai/user/airbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airbai](https://clawhub.ai/user/airbai)
 
-## Use Case: <br>
-External users play a chat-based travel companion and virtual pet game that generates personalized trip updates, companion status, image prompts or media, voice scripts, and optional social posts. Developers can also use the bundled scripts and references to integrate Claw Go with media generation, voice, entitlement, and social posting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled real-looking service secrets may expose external service accounts or internal APIs. <br>
-Mitigation: Revoke and replace bundled secrets before use, move credentials to a controlled secret store, and verify that distributed templates contain placeholders only. <br>
-Risk: Local scripts can send user-linked voice, media, location, and social post content to external services. <br>
-Mitigation: Require clear user consent before media processing or social posting, disclose the service destinations, and limit accepted URLs and local file paths. <br>
-Risk: Proactive and broad triggers may publish or process content with weak consent boundaries. <br>
-Mitigation: Narrow triggers for sensitive operations and require explicit confirmation before every social post or externally processed media action. <br>
-Risk: Memory-based destination personalization uses user preferences and profile signals. <br>
-Mitigation: Define retention, deletion, opt-out, and access controls for memory and preference data before deployment. <br>
+## Use Case:
 
+External users use this skill to play a chat-based travel companion game that generates travel updates, companion status, pet interactions, image prompts, voice scripts, and optional social posts. Agents use it to route Claw Go commands, maintain game state, personalize destinations from user preferences, and prepare media or posting payloads when configured.
 
-## Reference(s): <br>
-- [Claw Go Skill Page](https://clawhub.ai/airbai/claw-go) <br>
-- [API Contract](references/api-contract.md) <br>
-- [Buddy System](references/buddy-system.md) <br>
-- [Character System](references/character-system.md) <br>
-- [Deployment Checklist](references/deployment-checklist.md) <br>
-- [Game Design](references/game-design.md) <br>
-- [Media Pipeline](references/media-pipeline.md) <br>
-- [Monetization](references/monetization.md) <br>
-- [Runtime Architecture](references/runtime-architecture.md) <br>
-- [Visual Style Guide](references/visual-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with JSON payloads, shell command examples, media prompts, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce travel reports, companion cards, image prompts, voice scripts, QQ media tags, and social post status text depending on channel and configured services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.2 (source: SKILL.md frontmatter, server release evidence, target metadata) <br>
+Risk: The security assessment reports live-looking credentials and tokens in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or remove committed keys and tokens before installation or use.
+
+Risk: The security assessment flags broad authority for voice transcription and media handling.
+
+Mitigation: Restrict transcription and media inputs to trusted attachment or generated-media paths.
+
+Risk: The security assessment flags external social posting as broader than users may expect.
+
+Mitigation: Require explicit consent before posting to external social feeds.
+
+Risk: The security assessment flags broad memory personalization behavior.
+
+Mitigation: Obtain explicit consent for memory personalization and limit stored preference tags to the game purpose.
+
+Risk: The security assessment recommends narrowing the activation surface.
+
+Mitigation: Review and narrow command triggers so unrelated user messages do not unexpectedly activate the skill.
+
+## Reference(s):
+
+- [Claw Go skill page](https://clawhub.ai/airbai/skills/claw-go)
+- [API Contract](references/api-contract.md)
+- [Buddy System](references/buddy-system.md)
+- [Character System](references/character-system.md)
+- [Deployment Checklist](references/deployment-checklist.md)
+- [Game Design](references/game-design.md)
+- [Media Pipeline](references/media-pipeline.md)
+- [Monetization](references/monetization.md)
+- [Runtime Architecture](references/runtime-architecture.md)
+- [Visual Style Guide](references/visual-style.md)
+- [Output Templates](assets/output-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Chat text, Markdown status blocks, JSON payloads, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include image prompts, TTS voice scripts, media URLs or file paths, and social-post result summaries when providers are configured.]
+
+## Skill Version(s):
+
+0.6.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

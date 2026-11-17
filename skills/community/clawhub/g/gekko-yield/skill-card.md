@@ -1,42 +1,56 @@
-## Description: <br>
-Earn yield on USDC by supplying to the Moonwell Flagship USDC vault on Base. Use when depositing USDC, withdrawing from the vault, checking position/APY, or generating yield reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Earn yield on USDC by supplying to the Moonwell Flagship USDC vault on Base. Use when depositing USDC, withdrawing from the vault, checking position/APY, or generating yield reports.
 
-## Publisher: <br>
-[Sergey1997](https://clawhub.ai/user/Sergey1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sergey1997](https://clawhub.ai/user/sergey1997)
 
-## Use Case: <br>
-External users and agents use Gekko Yield to manage USDC deposits, withdrawals, position checks, APY reporting, and reward compounding for the Moonwell Flagship USDC vault on Base. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This is a hot-wallet DeFi skill that can approve tokens and submit live Base transactions. <br>
-Mitigation: Use a dedicated wallet with limited USDC, WELL, MORPHO, and ETH, and review every transaction before execution. <br>
-Risk: Auto-compounding swaps reward tokens through Odos and can deposit available USDC back into the vault. <br>
-Mitigation: Review the Odos-based transaction before execution and do not keep idle USDC in the wallet before running compound unless it should be deposited. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sergey1997/gekko-yield) <br>
-- [Base RPC endpoint](https://mainnet.base.org) <br>
-- [Odos quote API](https://api.odos.xyz/sor/quote/v2) <br>
-- [Odos assemble API](https://api.odos.xyz/sor/assemble) <br>
+## Use Case:
 
+External users and developers use this skill to manage USDC yield positions on Base through Moonwell vault deposits, withdrawals, status checks, reports, and reward compounding.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; script outputs include plain text, JSON, and Telegram/Discord-formatted reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, USDC on Base, ETH on Base for gas, and a private key supplied at runtime through an environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, release metadata, package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: This skill manages real funds through a hot-wallet private key.
+
+Mitigation: Use a dedicated wallet with limited funds, keep only necessary ETH for gas, and review every transaction before execution.
+
+Risk: The auto-compound path can sign under-validated Odos swap transactions and may deposit more USDC than expected.
+
+Mitigation: Avoid auto-compound until transaction payload validation is reviewed; manually confirm that only intended reward proceeds are swapped and deposited.
+
+Risk: Transaction previews are informational because scripts do not consistently require explicit user confirmation before signing.
+
+Mitigation: Treat previews as review aids only and run commands in a controlled local environment with locked dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergey1997/skills/gekko-yield)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown, plain text, JSON reports, and executable shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a locally configured Base wallet; transaction scripts may sign on-chain operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

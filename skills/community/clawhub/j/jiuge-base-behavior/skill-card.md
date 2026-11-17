@@ -1,41 +1,55 @@
-## Description: <br>
-A local audio-processing skill that packages a Jiuge Flow shell workflow for vocal separation, dereverberation, and MP3 mastering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiuge Flow Perfect V1 guides an agent through a local audio-processing workflow that separates vocals, applies de-reverb processing, and produces 48 kHz master and preview MP3 files.
 
-## Publisher: <br>
-[lzgsrbs](https://clawhub.ai/user/lzgsrbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzgsrbs](https://clawhub.ai/user/lzgsrbs)
 
-## Use Case: <br>
-Audio producers and local automation users can use this skill to run a three-step 48 kHz audio workflow that separates vocals, applies dereverberation, and exports master and preview MP3 files. Users should first review the listing mismatch noted by the security scan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry metadata describes a broad behavior-control skill, while the packaged files implement a local audio-processing workflow. <br>
-Mitigation: Review the packaged files and install only if the intended use is running the local audio workflow. <br>
-Risk: The script depends on hardcoded local tool and model paths and writes processed audio under ~/Desktop/Jiuge_Audio_Projects. <br>
-Mitigation: Verify dependency paths, model availability, input locations, and output retention expectations before execution. <br>
+## Use Case:
 
+Audio creators and automation agents use this skill to run a repeatable local vocal separation, optional wash, de-reverb, and MP3 mastering pipeline for prepared input recordings.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lzgsrbs/jiuge-base-behavior) <br>
-- [Packaged skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with bash command examples and a packaged shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow produces local WAV intermediates plus 320 kbps master and 128 kbps preview MP3 files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The script can operate outside the intended input and output folders when given a path-like filename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only simple filenames already placed in Jiuge_Input and prefer a fixed version that rejects path separators and traversal before creating output directories or running cleanup.
+
+Risk: Audio files may contain sensitive recordings when processed on shared systems.
+
+Mitigation: Avoid sensitive recordings on shared systems and review local storage locations before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lzgsrbs/skills/jiuge-base-behavior)
+- [SKILL.md](artifact/SKILL.md)
+- [jiuge_flow.sh](artifact/scripts/jiuge_flow.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled shell workflow creates project folders and audio files when executed in a prepared local environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

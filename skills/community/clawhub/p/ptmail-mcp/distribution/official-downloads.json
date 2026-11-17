@@ -1,0 +1,13 @@
+{
+  "snapshot_date": "2026-10-06",
+  "repository_contains_runtime": false,
+  "downloads": [
+    {
+      "file": "ptmail-mcp-453cd07d1045.zip",
+      "url": "https://res.qique.cn/system/skill/ptmail-mcp-453cd07d1045.zip",
+      "bytes": 8490,
+      "sha256": "453cd07d10450687622539127e05b693c91713280238528c237186291ca5c979"
+    }
+  ],
+  "note": "Runtime packages remain hosted by the product publisher. Snapshot hashes do not establish functional compatibility or grant a license."
+}

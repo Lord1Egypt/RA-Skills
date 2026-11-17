@@ -1,44 +1,56 @@
-## Description: <br>
-Socialdatax Douyin helps agents retrieve Douyin hot-search, content, comment, reply, creator, creator-post, and creator-series data through the SocialDataX service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents research Douyin hot searches, posts, comments, creators, and short-drama series through SocialDataX.
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to research Douyin trends and content, inspect videos and comments, and look up creator profiles, posts, and series.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatically installing an unpinned latest CLI package creates supply-chain exposure.
+
+Mitigation: Use a reviewed, pinned package release and reassess it before upgrading.
+
+Risk: Search terms or share text submitted for lookup may be sent to SocialDataX.
+
+Mitigation: Avoid submitting sensitive or confidential terms and share text.
+
+Risk: The scan is partial and several local references could not be resolved, leaving the security evidence incomplete.
+
+Mitigation: Resolve and review the referenced components before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to perform read-only Douyin research, including hot-search lookup, work discovery, details, comment and reply analysis, and creator profile or content lookups. It is suited for workflows that have a SocialDataX API key and need structured Douyin data without account-changing actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [API Calls, Analysis, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Commands run the external npm package socialdatax-skills and use the SOCIALDATAX_API_KEY. <br>
-Mitigation: Verify trust in SocialDataX and the npm package before installing or executing commands, and provide the API key only in the intended environment. <br>
-Risk: Douyin research results may be incomplete, paginated, or dependent on SocialDataX service availability and API access. <br>
-Mitigation: Use the documented pagination options where available and treat returned data as service-provided research evidence rather than a complete platform record. <br>
-Risk: Misuse could imply account interaction even though the skill is intended for read-only research. <br>
-Mitigation: Keep use within the documented safety boundary: no login, posting, liking, commenting, local browser-data access, API-key storage, or account changes. <br>
+**Output Format:** [Structured JSON data with concise research summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [SocialDataX homepage](https://socialdatax.52choujiang.com/?from=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/socialdatax-douyin) <br>
-- [Publisher profile](https://clawhub.ai/user/devinchen2014) <br>
+**Other Properties Related to Output:** [Results depend on the SocialDataX service and the user's access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOCIALDATAX_API_KEY plus node and npm; the skill describes read-only data retrieval commands.] <br>
+0.1.25 (source: server-resolved ClawHub release)
 
-## Skill Version(s): <br>
-0.1.7 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

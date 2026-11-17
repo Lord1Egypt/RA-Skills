@@ -1,45 +1,60 @@
-## Description: <br>
-AI-powered PDF form filling that accepts a PDF and JSON data, detects fields visually, maps values semantically, performs quality checks, and returns a completed PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered PDF form filling that uploads a PDF form and JSON data to DeepRead, detects fields visually, maps values semantically, performs quality checks, and returns a completed PDF.
 
-## Publisher: <br>
-[uday390](https://clawhub.ai/user/uday390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uday390](https://clawhub.ai/user/uday390)
 
-## Use Case: <br>
-Developers and operations teams use this skill to submit existing PDF forms and structured JSON data to DeepRead, then retrieve a filled PDF and quality report. It is suited for document workflows such as applications, claims, onboarding packets, and other PDF form automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs and JSON form data are sent to DeepRead's external service for processing. <br>
-Mitigation: Use only when that data transfer is approved, and review DeepRead privacy, retention, and compliance terms before processing sensitive documents. <br>
-Risk: API keys, signed download links, and webhook endpoints can expose submitted or completed documents if mishandled. <br>
-Mitigation: Use a dedicated rotatable API key, keep signed URLs and webhook endpoints private, and rotate credentials if exposure is suspected. <br>
-Risk: AI form filling may leave fields flagged for human review or produce values that need verification. <br>
-Mitigation: Review the returned quality report and any human-in-the-loop flags before relying on completed forms. <br>
+## Use Case:
 
+Developers and document-automation teams use this skill to fill existing PDF forms from structured JSON data through DeepRead's remote form-fill API, including scanned forms and templates without AcroForm fields. The returned report helps users review filled, verified, and human-review fields before relying on the completed PDF.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uday390/deepread-form-fill) <br>
-- [DeepRead homepage](https://www.deepread.tech) <br>
-- [DeepRead dashboard](https://www.deepread.tech/dashboard) <br>
-- [DeepRead BYOK setup](https://www.deepread.tech/dashboard/byok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API calls] <br>
-**Output Format:** [Markdown guidance with curl commands, Python and shell examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY; sends selected PDFs and JSON form data to DeepRead and returns a filled PDF URL plus a quality report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill sends PDFs, form-field data, and optional webhook destinations to DeepRead's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data transfer is acceptable, review DeepRead's retention and compliance terms, and avoid sending sensitive SSNs, tax, financial, medical, or employment data unless the use case has appropriate approval.
+
+Risk: Generated filled-PDF download URLs may expose completed documents if they are logged or shared.
+
+Mitigation: Shorten signed URL expiry where possible and keep generated download URLs out of logs, shared transcripts, and tickets.
+
+Risk: Command-line examples can place sensitive form-field values in shell history or process logs.
+
+Mitigation: Prefer secure files or application-managed request bodies for sensitive data, and avoid putting real sensitive values directly on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uday390/skills/deepread-form-fill)
+- [DeepRead homepage](https://www.deepread.tech)
+- [DeepRead dashboard](https://www.deepread.tech/dashboard/?utm_source=clawhub)
+- [DeepRead BYOK setup](https://www.deepread.tech/dashboard/byok)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPREAD_API_KEY; submits PDF files and form-field JSON to DeepRead's API and returns status, a signed filled-PDF URL, and a quality report.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

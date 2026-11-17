@@ -1,39 +1,54 @@
-## Description: <br>
-Audits and hardens an OpenClaw installation for common security misconfigurations, including exposed gateway listeners, missing authentication, elevated execution, permissive tool policies, open DM access, plaintext API keys, and insecure file permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and harden an OpenClaw installation for common security misconfigurations including exposed listeners, missing authentication, permissive tool policies, open DM access, plaintext API keys, and insecure file permissions.
 
-## Publisher: <br>
-[billyhetech](https://clawhub.ai/user/billyhetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyhetech](https://clawhub.ai/user/billyhetech)
 
-## Use Case: <br>
-Developers and operators use this skill to review a local OpenClaw setup before first use, after reconfiguration, or when investigating whether the installation is safe. It produces a concise report card and prioritized hardening guidance based on local configuration, process state, listener exposure, authentication, tool policy, channel access, and secret handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local configuration, process state, listeners, permissions, and secret-adjacent files, which may expose sensitive operational details during an audit. <br>
-Mitigation: Use it only in a trusted maintenance environment, keep inspection local, and avoid printing full API keys, tokens, or secret values. <br>
-Risk: Hardening recommendations can affect authentication, network binding, execution privileges, tool policy, file permissions, or startup commands. <br>
-Mitigation: Review each proposed change before applying it, require explicit confirmation, and prefer the smallest safe remediation first. <br>
+## Use Case:
 
+Developers and operators use this skill to review an OpenClaw setup during installation, reconfiguration, or security review. It guides local checks for gateway exposure, authentication, privileges, tool policy, channel access, and secret handling before proposing fixes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain-text or Markdown report with status labels, native shell commands, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Secret values should not be printed in full, and configuration, permission, user, or startup-command changes require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect local OpenClaw configuration, process state, permissions, environment values, and secret hygiene signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in the intended workspace and review any proposed changes before approving them.
+
+Risk: Security checks can require configuration or permission changes that affect OpenClaw operation.
+
+Mitigation: Require explicit user confirmation before changing files, permissions, users, or startup commands, and restart OpenClaw after accepted configuration changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billyhetech/skills/openclaw-hardening-v1)
+- [ClawHub publisher profile](https://clawhub.ai/user/billyhetech)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and a concise text report card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect local OpenClaw configuration, process state, permissions, environment values, and secret hygiene signals; changes require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Automates a stock prediction workflow that extracts stock codes from images, checks and starts the local prediction environment, verifies and switches the model, runs batch prediction, and returns the result text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a local stock prediction workflow from image-based stock-code extraction through service health checks, model switching, batch prediction, and returning result text.
 
-## Publisher: <br>
-[guanhang89](https://clawhub.ai/user/guanhang89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guanhang89](https://clawhub.ai/user/guanhang89)
 
-## Use Case: <br>
-Developers and operators use this skill to automate local stock prediction runs from user-provided images containing stock codes and prediction parameters. The skill coordinates OCR-derived inputs, a local Kronos backend, model selection, batch prediction execution, and result return. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local PowerShell commands, start a backend service, switch a local model, and execute batch prediction scripts. <br>
-Mitigation: Install and run it only in a trusted local Kronos environment, review commands before execution, and stop the backend when the prediction task is complete. <br>
-Risk: The skill writes stock-code input files and reads prediction result files under hardcoded Windows paths. <br>
-Mitigation: Review generated files for sensitive content, restrict filesystem access to the intended Kronos directories, and clean up stored input and result files after use. <br>
-Risk: Prediction parameters are parsed from user prompts and could be malformed or outside the expected range. <br>
-Mitigation: Use normal YYYY-MM-DD dates and integer sample counts, and validate parsed values before running the batch prediction command. <br>
+## Use Case:
 
+External users and developers use this skill to run a Windows-based local Kronos stock prediction workflow when a prompt includes stock-code images and prediction parameters. It checks the local backend, switches to the expected model, executes batch prediction, and returns generated prediction results.
 
-## Reference(s): <br>
-- [Stock Prediction on ClawHub](https://clawhub.ai/guanhang89/stock-prediction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown or plain text with command execution status and prediction-result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes stock-code input files and reads result files under a hardcoded local Windows Kronos prediction path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can start a local backend and switch models as part of the prediction workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local Kronos environment and require operator confirmation before starting services or switching models.
+
+Risk: The prediction script builds a PowerShell command string from runtime inputs.
+
+Mitigation: Validate dates and numeric sample counts before execution, and update the script to call the prediction command with an argument list instead of a shell string.
+
+Risk: The workflow reads and returns local prediction result files.
+
+Mitigation: Run under a low-privilege account and review output paths so only expected prediction files are accessed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guanhang89/skills/stock-prediction)
+- [ClawHub publisher profile](https://clawhub.ai/user/guanhang89)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown and plain text with shell command and script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns prediction status and result text from local files after running the configured workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Turns a video topic, rough notes, outline, or transcript into a YouTube launch package with title variants, description, chapters, tags, a pinned comment, a discussion seed, and optional promotional assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a video topic, rough notes, or transcript into a complete YouTube launch package with title variants, description, chapters, tags, pinned comment, discussion seed, and optional promo assets.
 
-## Publisher: <br>
-[zepoldani](https://clawhub.ai/user/zepoldani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zepoldani](https://clawhub.ai/user/zepoldani)
 
-## Use Case: <br>
-Creators, channel operators, and marketing teams use this skill to convert a video topic, notes, outline, or transcript into upload-ready YouTube launch copy. It is most useful when a user needs titles, a keyword-aware description, tags, chapter structure, a pinned comment, and optional thumbnail or social promotion prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted transcripts, unpublished plans, or business details may be included in the model session. <br>
-Mitigation: Use an approved environment for sensitive material and avoid pasting confidential details that are not needed for the launch copy. <br>
-Risk: Keyword and tag recommendations may not reflect live search trends or highly competitive niches. <br>
-Mitigation: Validate time-sensitive or competitive keyword choices with current SEO tools such as TubeBuddy or VidIQ before publishing. <br>
-Risk: Generated launch copy can overstate details when the provided topic or notes are sparse. <br>
-Mitigation: Review titles, descriptions, chapters, and comments against the actual video content before publishing. <br>
+## Use Case:
 
+Creators and content teams use this skill to turn YouTube topics, outlines, notes, or transcripts into upload-ready launch copy. It is intended for external creator workflows that need titles, descriptions, tags, pinned comments, discussion prompts, and optional promotional assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zepoldani/youtube-launch-kit) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections containing YouTube titles, description copy, timestamped chapters, tags, pinned comment, discussion seed, and optional thumbnail prompt or promo tweets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API is required; keyword suggestions are based on model knowledge and optional promotional deliverables are generated only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: User-provided transcripts or notes may contain unreleased or sensitive material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove sensitive details before pasting content into the agent.
+
+Risk: Generated launch copy can be misleading if the source notes are sparse or ambiguous.
+
+Mitigation: Review titles, descriptions, chapters, tags, and comments against the actual video before publishing.
+
+Risk: Keyword and tag recommendations reflect model knowledge rather than live search data.
+
+Mitigation: Validate trend-sensitive or highly competitive keywords with a current YouTube SEO tool before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zepoldani/skills/youtube-launch-kit)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single response with core YouTube launch copy; optional thumbnail prompts and promo tweets are generated only when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

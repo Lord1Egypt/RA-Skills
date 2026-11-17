@@ -1,39 +1,49 @@
-## Description: <br>
-Guides an agent to explain and generate an outlined ASCII letter D using text characters and a small Python example. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to explain and generate an ASCII-art letter D using text characters and a small Python example.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers, educators, and agents use this skill to produce concise guidance or code for drawing a text-based letter D in ASCII art. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing summary is stale or mismatched and describes Docker/OpenClaw deployment instead of ASCII-art guidance. <br>
-Mitigation: Use the skill source and server security summary when evaluating behavior, and correct the listing metadata before relying on it for discovery or deployment decisions. <br>
+## Use Case:
 
+Developers, educators, and agents can use this skill when they need concise guidance or sample code for producing an outlined ASCII letter D.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/d) <br>
-- [Publisher profile](https://clawhub.ai/user/DuanC-Chao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with ASCII examples and an optional Python code snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces text-only guidance; no external tools or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The example drawing logic may produce imperfect ASCII-art proportions for some requested heights or display fonts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the rendered letter and adjust height, spacing, or curve characters for the intended display context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/d)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with inline Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructional prose and ASCII-art construction logic; no files or background actions are required.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

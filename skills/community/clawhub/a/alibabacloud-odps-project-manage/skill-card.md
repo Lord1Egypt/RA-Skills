@@ -1,49 +1,70 @@
-## Description: <br>
-Alibaba Cloud MaxCompute Project Management Skill for creating, querying, and listing MaxCompute projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, query, and list Alibaba Cloud MaxCompute (ODPS) projects using Aliyun CLI workflows.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud MaxCompute projects through guided Aliyun CLI workflows for listing, inspecting, creating, and verifying projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide creation of Alibaba Cloud MaxCompute resources that may incur cost. <br>
-Mitigation: Require explicit user approval before resource creation and confirm region, project name, quota, and command body before execution. <br>
-Risk: The skill depends on Alibaba Cloud credentials and permissions. <br>
-Mitigation: Use least-privilege or temporary credentials, verify only masked credential status, and never display access key or secret values. <br>
-Risk: Setup steps may install or update the Aliyun CLI and plugins, including enabling automatic plugin installation. <br>
-Mitigation: Prefer a verified package-manager or signed installer path, review plugin state after use, and disable automatic plugin installation when it is no longer needed. <br>
-Risk: Evidence notes broader and riskier actions in setup and references than the main project-management description promises. <br>
-Mitigation: Keep execution scoped to supported list, get, and create workflows, and do not run project deletion commands. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud MaxCompute projects through Aliyun CLI commands. It supports listing projects, retrieving project details, creating projects after quota checks, and reporting unsupported deletion requests.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Alibaba Cloud MaxCompute API Reference](https://api.aliyun.com/product/MaxCompute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided region, project name, quota selection, and configured Alibaba Cloud credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Installer guidance includes a remote shell script and plugin-update steps that can make persistent local changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use, prefer a trusted package manager or verified download, and avoid piping remote scripts directly into bash.
+
+Risk: MaxCompute project creation can create billable cloud resources.
+
+Mitigation: Require explicit user confirmation for create operations and use least-privilege RAM credentials with only the actions needed for the workflow.
+
+Risk: The requested RAM permissions use broad resource scopes for project and quota operations.
+
+Mitigation: Review RAM policy scope before installation and restrict permissions to specific projects or environments where feasible.
+
+Risk: Enabling automatic plugin installation can change future CLI behavior without per-plugin review.
+
+Mitigation: Do not enable global automatic plugin installation unless the operator accepts that persistent configuration change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-odps-project-manage)
+- [CLI Installation Guide](artifact/references/cli-installation-guide.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+- [Related APIs](artifact/references/related-apis.md)
+- [Verification Method](artifact/references/verification-method.md)
+- [RAM Policies](artifact/references/ram-policies.md)
+- [MaxCompute Product Page](https://api.aliyun.com/product/MaxCompute)
+- [CreateProject API](https://api.aliyun.com/api/MaxCompute/2022-01-04/create-project)
+- [GetProject API](https://api.aliyun.com/api/MaxCompute/2022-01-04/get-project)
+- [ListProjects API](https://api.aliyun.com/api/MaxCompute/2022-01-04/list-projects)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided region and project parameters before executing cloud operations.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

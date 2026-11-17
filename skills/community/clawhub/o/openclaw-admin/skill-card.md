@@ -1,39 +1,56 @@
-## Description: <br>
-Manage and inspect the OpenClaw multi-agent gateway by listing agents, checking model health, viewing routing rules, managing crons, inspecting context budgets, and running system diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and inspect the OpenClaw multi-agent gateway — list agents, check model health, view routing rules, manage crons, inspect context budgets, and run system diagnostics.
 
-## Publisher: <br>
-[atiati82](https://clawhub.ai/user/atiati82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[atiati82](https://clawhub.ai/user/atiati82)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to inspect and administer an OpenClaw multi-agent gateway, including agents, model health, routing rules, scheduled jobs, triggers, context budgets, and gateway diagnostics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill includes admin-context commands that can run local or registry code.
+
+Mitigation: Install only in trusted OpenClaw workspaces, review local scripts before running full diagnostics, and prefer pinned or locally installed restart commands.
+
+Risk: The skill may reveal local gateway configuration.
+
+Mitigation: Treat command output as sensitive operational information and avoid sharing configuration details outside approved channels.
+
+Risk: Routing, cron, trigger, or gateway configuration changes can alter agent behavior.
+
+Mitigation: Require explicit approval before making configuration changes and review the affected files before applying updates.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and administer an OpenClaw gateway, including agent inventory, model status, routing, scheduled jobs, triggers, context budgets, and health diagnostics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad OpenClaw gateway administration, including persistent routing, cron, trigger, prompt, and gateway configuration changes. <br>
-Mitigation: Require an explicit diff and approval before edits to ROUTING.json, CRONS.json, TRIGGERS.json, agent prompt files, or openclaw.json, and keep a backup or rollback path. <br>
-Risk: The skill references local diagnostic and restart commands that may execute workspace-specific scripts or processes. <br>
-Mitigation: Inspect status.sh and verify any npx restart command before execution. <br>
+**Output Format:** [Markdown with inline bash code blocks and operational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Commands inspect local OpenClaw configuration and may propose administrative changes that require explicit approval.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run local inspection commands and may guide changes to gateway configuration files when approved.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

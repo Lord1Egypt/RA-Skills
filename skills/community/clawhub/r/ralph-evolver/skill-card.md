@@ -1,43 +1,57 @@
-## Description: <br>
-Recursive self-improvement engine. Think from first principles, let insights emerge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recursive self-improvement engine. Think from first principles, let insights emerge.
 
-## Publisher: <br>
-[hsssgdtc](https://clawhub.ai/user/hsssgdtc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hsssgdtc](https://clawhub.ai/user/hsssgdtc)
 
-## Use Case: <br>
-Developers and engineers use Ralph Evolver to analyze a target repository, collect project health and history signals, and generate prompts for iterative code or documentation improvements. It supports repeated cycles for repair, discovery, and self-improvement workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a target project's build, test, lint, and pytest commands with local user permissions. <br>
-Mitigation: Use it only on trusted repositories, or run it in a sandbox without secrets or sensitive credentials. <br>
-Risk: Generated prompts may instruct an agent to edit repository files. <br>
-Mitigation: Review the generated prompt and proposed changes before allowing an agent to modify files. <br>
-Risk: The .ralph directory stores local run history, and --reset deletes that local state. <br>
-Mitigation: Keep loop counts small, treat .ralph as disposable run history, and back it up before resetting if the history matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze a repository, identify repair or discovery opportunities, and generate first-principles improvement prompts for an agent workflow.
 
-## Reference(s): <br>
-- [Ralph Evolver on ClawHub](https://clawhub.ai/hsssgdtc/ralph-evolver) <br>
-- [Publisher profile: hsssgdtc](https://clawhub.ai/user/hsssgdtc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown prompt with inline code, shell commands, project-analysis findings, and iteration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local repository health summaries, git-history signals, TODO/FIXME findings, error-pattern snippets, and .ralph improvement-history guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and package.json) <br>
+Risk: The skill runs project-controlled build, test, lint, git, grep, python, and pytest commands under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted repositories or inside a sandbox where command execution and filesystem writes are acceptable.
+
+Risk: Repository text is turned into agent-facing improvement prompts, which can carry misleading or malicious project content into the workflow.
+
+Mitigation: Review generated prompts and proposed changes before applying them, especially when analyzing third-party repositories.
+
+Risk: The skill writes .ralph state and improvement history files in the target project.
+
+Mitigation: Run it in a disposable checkout or review .ralph changes before committing or sharing repository contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hsssgdtc/skills/ralph-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated improvement instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write .ralph state files in the target repository and may print repository-derived prompt content.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

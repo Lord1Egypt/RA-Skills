@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+# therapyportal — read a TherapyNotes client portal (www.therapyportal.com/p/<practice>/)
+# through the user's signed-in browser tab with fpx. Read-only.
+# stdout = JSON, stderr = status.
+#
+#   therapyportal <command> [args]
+#
+# Env: THERAPYPORTAL_PRACTICE  practice code from the portal URL (required, e.g. example12345)
+#      THERAPYPORTAL_PROFILE   fpx profile name (default therapyportal)
+set -uo pipefail
+
+BASE=https://www.therapyportal.com
+PRACTICE="${THERAPYPORTAL_PRACTICE:-}"
+PROFILE="${THERAPYPORTAL_PROFILE:-therapyportal}"
+
+die() { echo "therapyportal: $1" >&2; exit "${2:-1}"; }
+[ -n "$PRACTICE" ] || die "set THERAPYPORTAL_PRACTICE to the code in your portal URL (/p/<code>/)"
+
+# Every data call is a form POST that needs three values the portal page
+# carries: the TNRAC anti-forgery token, the site version (tnv), and the
+# NUMERIC practice id (portalpractice) — the slug is not accepted. Read them
+# once per invocation from the signed-in practice page.
+TNRAC= TNV= PID=
+boot() {
+  [ -n "$TNRAC" ] && return
+  local page rc
+  page="$(fpx get "$BASE/p/$PRACTICE/" -p "$PROFILE")"; rc=$?
+  [ "$rc" -eq 0 ] || exit "$rc"
+  read -r TNRAC TNV PID < <(printf '%s' "$page" | python3 -I -c '
+import json, re, sys
+t = sys.stdin.read()
+tok = re.search(r"<input[^>]*\bid=\"TNRAC\"[^>]*>", t)
+tok = tok and re.search(r"\bvalue=\"([^\"]*)\"", tok.group(0))
+ver = re.search(r"siteVersion\s*=\s*\"([^\"]+)\"", t)
+pid = re.search(r"\"PracticeID\":(\d+)", t)
+if not (tok and tok.group(1) and ver and pid):
+    sys.exit(1)
+print(tok.group(1), ver.group(1), pid.group(1))
+') || die "not signed in (no portal session on $BASE/p/$PRACTICE/) — sign in in the browser and retry" 5
+}
+
+enc() { python3 -I -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1],safe=""))' "$1"; }
+
+# post <path-under-/portal/practice/> [urlencoded-fields]
+post() {
+  boot
+  local body rc data="${2:-}"
+  [ -n "$data" ] && data="$data&"
+  data="${data}correlationid=$(uuidgen | tr 'A-Z' 'a-z')&tnrac=$(enc "$TNRAC")&tnv=$(enc "$TNV")&portalpractice=$PID"
+  body="$(fpx request "$BASE/portal/practice/$1.aspx?msg=1" -p "$PROFILE" -X POST \
+    -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
+    -H 'X-Requested-With: XMLHttpRequest' -d "$data")"; rc=$?
+  [ "$rc" -eq 0 ] || exit "$rc"
+  case "$body" in
+    *'<title>'*'Page Not Found'*) die "portal answered 'Page Not Found' for $1 — unknown endpoint, or a missing/invalid field" 4 ;;
+    *'<html'*|*'<!DOCTYPE'*) die "portal returned an HTML page for $1 — the session has likely expired; sign back in at $BASE/p/$PRACTICE/" 5 ;;
+  esac
+  printf '%s\n' "$body"
+}
+jreq() { enc "$1"; }   # url-encode a JSON value for a form field
+
+# download job: <create-path> <fields> — create, poll to 100%, fetch the file.
+# fpx saves it to the browser's download folder and prints {path,bytes,mime}.
+download_job() {
+  local job jid st enc_id i
+  job="$(post "$1" "$2")" || exit $?
+  jid="$(printf '%s' "$job" | jq -r '.JobId // empty')"
+  [ -n "$jid" ] || die "no JobId from $1" 4
+  for i in $(seq 1 40); do
+    st="$(post document/getdocumentdownloadstatus "request=$(jreq "{\"Id\":$jid}")")" || exit $?
+    [ "$(printf '%s' "$st" | jq -r '.ProgressPercentage')" = 100 ] && break
+    sleep 3
+  done
+  enc_id="$(printf '%s' "$st" | jq -r '.EncryptedJobID // empty')"
+  [ "$(printf '%s' "$st" | jq -r '.ProgressPercentage')" = 100 ] && [ -n "$enc_id" ] ||
+    die "download job $jid did not finish in 2 minutes" 4
+  fpx download "$BASE/p/$(printf '%s' "$PRACTICE" | tr 'A-Z' 'a-z')/document/download/$enc_id/" -p "$PROFILE"
+}
+
+now_utc() { python3 -I -c 'import datetime;print(datetime.datetime.now(datetime.UTC).isoformat(timespec="milliseconds").replace("+00:00","Z"))'; }
+
+# first non-empty of two fields (jq's // keeps "")
+NE='def ne(a; b): if (a // "") != "" then a else b end;'
+jq() { if [ $# -ge 1 ] && [ "${1#-}" = "$1" ]; then local f="$1"; shift; command jq "$NE $f" "$@"; else command jq "$@"; fi; }
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  patients)      # the clients linked to this portal login (ids for other commands)
+    post document/getpatientsforportaluser |
+      jq '[.[] | {PatientId: .Id // .PatientId, FirstName, LastName, Nickname, DateOfBirth}]' ;;
+  appointments)  # upcoming appointments (the portal lists future ones only)
+    post appointments/appointmentinformation \
+      "json=$(jreq "{\"searchAllAppointmentsForTheDay\":false,\"usersCurrentTimeInUtc\":\"$(now_utc)\"}")" |
+      jq '{practice: .PracticeName, practicePhone: .PracticePhone,
+           appointments: [.Appointments[] | {ApptId, start: .StartDate, end: .EndDate,
+             tz: .TimeZoneAbbreviation, type: .CalendarEntryTypeName,
+             clinician: .ClinicianDisplayName, title: .ClinicianDisplayTitle,
+             telehealth: .IsTelehealth, location: .LocationName,
+             patients: [.Patients[] | ne(.Nickname; .FirstName)],
+             pendingCancel: .PendingCancel, pendingReschedule: .PendingReschedule}],
+           requests: .AppointmentRequests}' ;;
+  counts)        # per-client counts of portal documents awaiting completion/approval
+    post getportaldocumentstatisticsforportaluser ;;
+  documents)     # [pending|completed|all] — document requests the practice sent
+    case "${1:-all}" in
+      pending) s='[1,4]' ;; completed) s='[5]' ;; all) s='[1,4,5]' ;;
+      *) die "documents: pending|completed|all" ;;
+    esac
+    post documents/api/getportaluserdocumentrequestsbystatus "Request=$(jreq "$s")" |
+      jq '[.PortalDocumentRequests[] | {RequestId, requestStatus: ({"1":"Pending","4":"InProgress","5":"Completed"}[.RequestStatus|tostring] // .RequestStatus),
+             patient: ne(.PatientNickName; .PatientFirstName), PatientId, sent: .RequestDateCreated,
+             instructions: .VersionInstructions,
+             documents: [.PortalDocuments[] | {PortalDocumentId, title: .Title, PatientDocumentType,
+               status: ({"1":"Pending","2":"InProgress","3":"Completed"}[.PortalDocumentStatus|tostring] // .PortalDocumentStatus),
+               completed: .PortalDocumentDateCompleted}]}]' ;;
+  forms)         # always-available forms/documents the practice publishes (sign/upload as needed)
+    post documents/api/getalwaysavailabledocumentsforportaluser |
+      jq '[.[] | {title: .Title, description: .DocumentDescription, PatientId,
+             signatureRequired: .PatientSignatureRequired, uploadRequired: .IsUploadRequired,
+             fileName: .OriginalFileName, mime: .MimeType, size: .FileSize}]' ;;
+  balances)      # amount due per client
+    post billing/payments/getbalancesdueforportaluser |
+      jq '[.[] | {PatientId, name: ne(.PreferredName; .FirstName), due: .AmountToPatient, autoPay: .AutoPayEnabled}]' ;;
+  receipts)      # payment receipts with what each payment covered
+    post billing/payments/getreceiptsforportaluser |
+      jq '[.[] | {PaymentId, PatientId, patient: .PatientPreferredName, date: .PaymentDate,
+             amount: .PaymentAmount, allocated: .TotalAmountAllocated,
+             cardLast4: .CreditCardNumberLast4,
+             lines: [.TransactionData[] | {dateOfService: .DateOfService, paid: .AmountPaid, description: .TransactionDescription}]}]' ;;
+  threads)       # <PatientId> [count] — message threads for one client (null = none)
+    [ $# -ge 1 ] || die "threads <PatientId> [count]"
+    post messages/getthreads "patientselection=null&readstatus=2&audiences=0%2C1%2C2&topicid=-1&patientid=$1&newestfirst=true&recordnumber=0&recordstoretrieve=${2:-50}&addresseetype=" ;;
+  messages)      # <ThreadId> — messages in a thread (does not call markthreadasread)
+    [ $# -ge 1 ] || die "messages <ThreadId>"
+    post messages/getmessages "threadid=$1" ;;
+  download)      # <PortalDocumentId> <PatientId> [PatientDocumentType=3] — a document as a file.
+                 # Type 0 = a file the practice uploaded (e.g. a PDF sent for review): a direct link.
+                 # Type 3 = a portal form the client filled in: rendered to PDF by a download job.
+    [ $# -ge 2 ] || die "download <PortalDocumentId> <PatientId> [PatientDocumentType]"
+    if [ "${3:-3}" = 0 ]; then
+      fpx download "$BASE/p/$(printf '%s' "$PRACTICE" | tr 'A-Z' 'a-z')/documents/files/download/$1/" -p "$PROFILE"
+    else
+      download_job document/createportalformdownloadrequest \
+        "request=$(jreq "{\"PortalFormId\":$1,\"PatientId\":$2,\"PatientDocumentType\":${3:-3}}")"
+    fi ;;
+  receipt)       # <PaymentId> — a payment receipt as PDF
+    [ $# -ge 1 ] || die "receipt <PaymentId>"
+    download_job billing/payments/createreceiptdownloadrequest "PaymentId=$1" ;;
+  raw)           # <path-under-/portal/practice/> [urlencoded-fields] — unprojected
+    [ $# -ge 1 ] || die "raw <path> [fields]"; post "$1" "${2:-}" ;;
+  *) sed -n '2,12p' "$0" >&2
+     die "commands: patients appointments counts documents forms balances receipts threads messages download receipt raw" ;;
+esac

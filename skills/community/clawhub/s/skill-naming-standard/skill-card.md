@@ -1,38 +1,49 @@
-## Description: <br>
-Use when naming, renaming, or reviewing agent skills. Produces cold-readable display names, kebab-case slugs, trigger descriptions, and approval-aware autonomy wording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when naming, renaming, or reviewing agent skills to produce clear display names, kebab-case slugs, trigger descriptions, and approval-aware autonomy wording.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dodge1218](https://clawhub.ai/user/dodge1218)
 
-## Use Case: <br>
-Developers and skill authors use this skill to choose clear public names, slugs, trigger descriptions, aliases, and approval-aware wording for agent skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested names or approval wording may overstate or understate a skill's actual autonomy boundary. <br>
-Mitigation: Review generated names, descriptions, and approval language against the skill's real behavior before publication or use. <br>
+## Use Case:
 
+Developers and skill authors use this skill to choose cold-readable skill names, slugs, trigger descriptions, aliases, and approval-aware wording before publishing or revising agent skills.
 
-## Reference(s): <br>
-- [Skill Naming Standard release page](https://clawhub.ai/dodge1218/skill-naming-standard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text naming recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a display name, kebab-case slug, trigger description, aliases, and a short rationale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Incorrect naming or approval-boundary wording could make an agent invoke a skill in the wrong context or overstate its autonomy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed names, slugs, descriptions, and aliases against the skill's actual scope and approval requirements before adoption.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dodge1218/skills/skill-naming-standard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text naming recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a display name, kebab-case slug, trigger description, aliases, and a short rationale.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

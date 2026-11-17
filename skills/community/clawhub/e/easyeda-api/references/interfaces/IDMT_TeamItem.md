@@ -1,11 +1,11 @@
 # IDMT\_TeamItem interface
 
-团队属性
+Team properties
 
 ## Signature
 
 ```typescript
-interface IDMT_TeamItem 
+interface IDMT_TeamItem
 ```
 
 ## Properties
@@ -14,99 +14,79 @@ interface IDMT_TeamItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [identity](./IDMT_TeamItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-当前用户在团队内的身份（权限组）ID
-
+ID of the current user's identity (permission group) in the team
 
 </td></tr>
 <tr><td>
 
 [itemType](./IDMT_TeamItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.TEAM](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_TeamItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-团队名称
-
+Team name
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_TeamItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-团队 UUID
-
+Team UUID
 
 </td></tr>
 </tbody></table>
@@ -119,7 +99,7 @@ string
 
 # IDMT\_TeamItem.identity property
 
-当前用户在团队内的身份（权限组）ID
+ID of the current user's identity (permission group) in the team
 
 ## Signature
 
@@ -131,7 +111,7 @@ identity: number;
 
 # IDMT\_TeamItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -143,7 +123,7 @@ readonly itemType: EDMT_ItemType.TEAM;
 
 # IDMT\_TeamItem.name property
 
-团队名称
+Team name
 
 ## Signature
 
@@ -155,7 +135,7 @@ name: string;
 
 # IDMT\_TeamItem.uuid property
 
-团队 UUID
+Team UUID
 
 ## Signature
 

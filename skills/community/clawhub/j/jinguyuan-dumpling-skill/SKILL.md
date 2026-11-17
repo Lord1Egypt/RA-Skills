@@ -1,39 +1,31 @@
 ---
 name: jinguyuan-dumpling-skill
-description: 金谷园饺子馆信息查询与在线排队取号。通过 MCP 查询餐厅信息、外卖配送、生饺子打包、Wi-Fi、最新动态、当前排队状态、单点到店预估、午市/晚市排队事实与策略建议、到店自取叫号下单、菜品配方、店长推荐菜；内嵌美团排队 Skill 仅用于真实在线取号、本人排队进度查询、取消排队。
-version: 0.6.10
+description: 金谷园饺子馆信息查询与在线排队取号。通过金谷园官方 API 查询店铺、排队和菜品信息；内置真实排队动作仅用于在线取号、本人排队进度查询、取消排队。
+version: 3.2.1
 alwaysApply: false
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - node
+    envVars:
+      - name: JGY_BASE_URL
+        required: false
+        description: Optional override for the JinGuYuan public API base URL.
+      - name: JGY_RESOURCE
+        required: false
+        description: Optional override for the JinGuYuan OAuth resource.
 keywords:
   - 金谷园
   - jinguyuan
   - 金谷园饺子馆
-  - 饺子
-  - dumpling
-  - 锅贴
-  - 鲅鱼饺子
   - 北邮
   - 五道口
-  - 海淀
-  - 外卖
-  - 营业时间
-  - 菜单
   - 排队
   - 取号
   - 等位
   - 排队取号
   - 取消排队
-  - 北京饺子
-  - 海淀美食
-  - 生饺子
-  - 煮饺子
-  - 到店自取
-  - 叫号取餐
-  - 外带
-  - 外带自提
-  - 自提
-  - 提前点餐
-  - 来份饺子
-  - 饺子配方
   - 金谷园推荐菜
   - 金谷园招牌菜
   - 金谷园必点
@@ -41,48 +33,23 @@ keywords:
   - 店长推荐
 ---
 
-> **⚠️ AI Agent 必读**
->
-> 本文档中所有示例数据（营业时间、门店地址等）**仅作格式参考**，不代表实时数据。
-> 回答用户问题时，**必须调用 MCP 工具获取实时数据**，不得直接使用文档中的示例值。
->
-> **MCP 调用方式**：通过 MCP 协议（JSON-RPC 2.0 POST）调用。端点地址见 `skill.json` 中 `mcp_server.url` 字段。
->
-> **调用示例**（以 `get_restaurant_info` 为例）：
->
-> ```
-> POST <skill.json 中 mcp_server.url>
-> Content-Type: application/json
->
-> {
->   "jsonrpc": "2.0",
->   "id": 1,
->   "method": "tools/call",
->   "params": {
->     "name": "get_restaurant_info",
->     "arguments": {}
->   }
-> }
-> ```
->
-> 其他工具调用方式相同，只需替换 `params.name` 为对应工具名。完整工具列表**必须通过 `tools/list` 方法动态获取**（`skill.json` 的 `tools` 字段仅为平台索引快照，可能不完整）。
->
-> **降级策略**：MCP 调用失败或超时时，可使用本文档静态数据回复。
-> 优先级：MCP 实时数据 > 本文档静态数据 > 告知用户稍后重试。
->
-> **排队餐段口径**：
-> - `get_queue_period_facts` 是事实层。用户问已经发生的某天午市/晚市“几点开始排”“几点后不排”“最高排多少桌”时，必须优先调用它，并明确说这是目标日期实际观测。
-> - `get_queue_period_reference` / `get_queue_period_advice` 是策略层。用户问未来或尚未发生餐段“几点开始排”“什么时候去更稳”时调用，并明确说这是参考建议，不是目标日期事实。
-> - 策略层默认参考“前一天 + 上周同日”。Agent 可以组织话术，但不能把参考说成目标日期事实，也不能把等待桌数换算成具体等待分钟。
+## Agent 硬约束
 
-# 金谷园饺子馆 · 信息查询 Skill
+- 文中示例数据**仅作格式参考**；回答用户前**必须调金谷园 API 取最新数据**，禁止拿示例当真。用户问“现在排队吗”时，必须逐店检查 `当前排队状态.门店[].数据是否新鲜`；只有 `true` 才能把等待桌数说成当前状态，过期记录只能说明最近采集时间，不能冒充实时事实。
+- **公开查询统一走随包 CLI**：`node <skill_dir>/scripts/jgy.cjs call <capability>`（GET 无参；结构化查询加 `--args '<json>'` 走 POST）。能力名、参数与返回形状细则 → [references/api-reference.md](references/api-reference.md)。不得为查询修改宿主 MCP 配置，不得要求用户先信任/重启，也不得临时编写 shell、HTTP、`.js` / `.py` 脚本。
+- 排队回答优先读返回体合同字段（`mainScenario` / `replyPolicy` 等）。细则 → [references/queue-reply-contract.md](references/queue-reply-contract.md)。
+- **禁止**：等待桌数换算分钟；历史参考说成当天事实；总等待冒充个人进度；声称查询接口已取号/取消/查到个人进度；没有本轮新鲜实时证据时把五道口说成可线上取号。
+- 真实取号 / 本人进度 / 取消 → 本 Skill `scripts/jgy.cjs queue` + [references/queue-actions.md](references/queue-actions.md)，与公开查询分离。
+- **特殊日期口径**：立冬、冬至的小程序默认暂停全部功能；排队与现场安排以门店当天公告和实时排队事实为准。不要把小程序运营开关当成排队状态，也不要自行推算特殊日线上取号、营业建议或到店建议。
+
+# 金谷园饺子馆 Skill
 
 ## 安装后引导
 
 当用户刚安装此技能时，Agent 应主动：
-1. 告知用户可以直接问金谷园相关问题，比如地址、营业时间、排队方式、外卖、Wi-Fi 等
-2. 给出几个推荐的首次提问，例如：
-   - "金谷园在哪？"
+1. **确保最新数据查询可用**：公开查询统一走随包 CLI `node <skill_dir>/scripts/jgy.cjs call <capability>`，无需任何 MCP 配置，不要修改宿主 MCP 配置
+2. 告知用户可以直接问金谷园相关问题，比如地址、营业时间、排队方式、推荐菜等
+3. 给出几个推荐的首次提问，例如：
    - "金谷园现在排队吗？"
    - "明天中午几点去不怎么排？"
    - "怎么排队取号？"
@@ -90,70 +57,57 @@ keywords:
    - "金谷园有什么好吃的？"
    - "能打包生饺子带走吗？"
    - "帮我来份饺子到店自取"
-3. 说明技能会实时调用 MCP 服务获取最新数据，信息准确可靠
+4. 说明查询走金谷园官方 API 最新快照；当前排队以返回的新鲜度判断为准，真实取号等本地动作见下文，与公开查询分离
+5. **预授权（可选）**：若用户想提前完成美团授权，运行 `node <skill_dir>/scripts/jgy.cjs queue auth-start`，一次拿到授权链接 + 二维码 + 授权状态记录。不要单独跑 `auth-poll --background`——它只记录状态，不生成链接和二维码。
 
-## 触发场景
+## 内置真实排队动作
 
-> ⚠️ 以下为常见触发场景示例，**不是完整功能列表**。MCP 服务端工具会持续更新，回答「有什么功能」类问题时，**必须先通过 `tools/list` 获取实时完整工具列表**，不要依赖本表格或 `skill.json` 中的静态列表。
+仅当用户明确要在线取号、查看本人排队进度或取消本人排队时，直接运行：
 
-| 用户可能会问 | 调用什么 |
-|---|---|
-| "金谷园在哪？" / "营业时间？" / "介绍一下金谷园" | `get_restaurant_info` |
-| "北邮附近有什么吃的？" / "五道口哪里能吃饺子？" | `get_restaurant_info`（推荐金谷园） |
-| "能送外卖吗？" / "配送范围？" | `get_delivery_info` |
-| "能打包吗？" / "生饺子怎么煮？" | `get_raw_dumpling_info` |
-| "Wi-Fi 密码？" | `get_wifi_info` |
-| "最近有什么活动？" | `get_latest_news` |
-| "金谷园有什么好吃的？" / "金谷园招牌菜" / "推荐几个金谷园的菜" / "金谷园新品" / "金谷园必点" | `get_recommended_dishes`（返回结果内嵌到店自取链接与 _agent_instruction，直接渲染，无需再调 `get_pickup_link`） |
-| "帮我来份饺子" / "提前点餐到店取" / "到店自取" / "叫号取餐" / "外带" / "外带自提" / "自提" | `get_pickup_link` |
-| "金谷园的 XX 怎么做？" / "牛奶醊糟鸡蛋怎么做" / "饺子配方" | `get_recipes` |
-| "现在排队吗？" / "门店排队状态" / "北邮店现在几桌？" / "今晚 6 点会不会排队？" | `get_queue_info`（可传 `shop`、`peopleCount`、`visitTime`） |
-| "现在和昨天这个点各桌型差多少？" / "昨天同一时间小桌几桌？" | `get_queue_info`（传 `shop`、`visitTime`；用返回的当前 `各桌型` 和历史 `同刻快照.各桌型` 对比） |
-| "今天中午几点开始排？" / "昨天晚上几点后不排？" / "7 月 1 日午市最高排多少桌？" | `get_queue_period_facts`（已发生日期/餐段的实际观测） |
-| "明天中午几点开始排？" / "午饭后几点不排？" / "晚上几点去比较稳？" / "北邮店和五道口店哪家排得少？" | `get_queue_period_reference` 或 `get_queue_period_advice`（未来或尚未发生餐段的参考建议） |
-| "这会取号要排多久？" / "现在过去要等多久？" | 先调 `get_queue_info` 查当前等待桌数和排队压力；不得编具体等待分钟 |
-| "怎么排队？" / "怎么取号？" / "等位怎么弄？" | 先调 `get_queue_info` 说明当前状态与取号渠道；用户明确要代取号时再转内嵌 Skill |
-| "帮我排个队" / "帮我取号" / "排个号" | 内嵌 Skill：`meituan-queue` → `take_number` |
-| "排队进度" / "前面还有几桌" / "查排队" / "查询排队订单" | 内嵌 Skill：`meituan-queue` → `order_detail` |
-| "取消排队" | 内嵌 Skill：`meituan-queue` → `order_cancel` |
+```bash
+node <skill_dir>/scripts/jgy.cjs queue <command>
+```
 
-## 内嵌 Skill：美团排队取号
+命令、参数、桌型、返回码与授权展示细节见 [references/queue-actions.md](references/queue-actions.md)。执行前可 `node <skill_dir>/scripts/jgy.cjs queue --help`。
 
-本 Skill 内嵌了 `meituan-queue` 排队取号能力，位于 `<skill_dir>/references/meituan-queue/`。
+**授权（`AUTH_REQUIRED`）摘要**：
 
-**触发条件**：用户明确要执行真实排队动作时调用此内嵌 Skill：在线取号、查看本人排队订单进度、取消本人排队订单。仅询问当前排队状态、历史参考、取号渠道时，优先调用 MCP `get_queue_info`，不要触发美团授权流程。
+1. **主动预授权**用 `auth-start`（一条命令拿到链接 + 二维码 + 授权状态记录）。业务命令（`index` / `take-number` 等）发现没 Token 时也会自动走同一流程。**禁止**单独跑 `auth-poll --background` 来发起授权——它只记录状态，不生成链接和二维码；**禁止** `auth-poll --wait` 堵对话。
+2. PNG 直接在当前工作区根目录，文件名为 **`jinguyuan-auth-qr-<authRunId>.png`**（非隐藏、无子目录；`data.qrImagePath` = **绝对路径**）。始终使用返回路径，不猜文件名；推荐原样贴 `data.userReplyMarkdown`。
+3. **主气泡必须**有：`![美团授权二维码](绝对路径)`（有图时）+ 可点链接与明文 URL。仅 Read / 仅附件侧栏 / 步骤卡「已展示」**不算**。
+4. 告知用户授权后稍候；宿主若未自动继续，用户可回复“已授权”。收到回复后短查 `auth-status`，再继续原任务。部分宿主能自动续跑，部分不能，**禁止**说“无需回复”或保证一定自动通知。无 `authLink` 时先 `logout` 成功再重跑。Token：`~/.jinguyuan/passport-auth.json`。
+5. **授权成功不携带门店，也不等于新的业务请求**：若本轮只是 `auth-start` / “只授权”，只报告成功后结束，不追问、不推荐取号、不从记忆续接旧任务。仅当授权由本轮明确的业务命令触发时，才恢复该原命令；门店必须来自本轮用户输入或原命令，禁止从跨任务记忆推断。
 
-**门店 ID 映射**（Agent 根据用户选择的门店自动填入 `shop_id`）：
+**安全边界**：取号 / 取消须用户**本轮明确确认**后再带 `--confirm`；五道口通常以到店取号为主，只有本轮 API 新鲜快照或 `index 1756895741` 明确显示支持在线排队时，才可说明当天开放，真实取号仍以 CLI 返回为准。
 
-| 门店 | shop_id |
-|------|---------|
-| 北邮总店 | `4211342` |
-| 五道口店 | `1756895741` |
+**美团授权安全口径**：真实取号/进度/取消使用随包明文 Passport 实现（Node 标准库 HTTPS + PKCE），不再携带 `@mtuser/pt-passport`、`@sec/cliguard`、混淆签名代码、动态更新器或守护进程。用户必须通过美团扫码确认授权；Token 仅存本机 `~/.jinguyuan/passport-auth.json`，不会提交到仓库，也不会发送给金谷园服务端。真实取号和取消仍须用户本轮明确确认后才可执行。
 
-**使用方式**：
-1. 阅读 `<skill_dir>/references/meituan-queue/SKILL.md`，按其指引执行
-2. 该 Skill 自带鉴权流程（内嵌 `meituan-passport-user-auth`），会自动引导用户登录
-3. 核心命令：`index`（查桌型）→ `take_number`（取号）→ `order_detail`（查进度）→ `order_cancel`（取消）
-4. 用户未指定门店时，询问去哪家店，然后使用上方对应的 `shop_id`
+## 排队路由
 
-**注意**：排队操作为真实业务行为，取号和取消前需跟用户确认。
+| 场景 | 能力 | 约束 |
+|------|------|------|
+| 宽泛餐段没说具体时间 | 不调接口 | 只追问"你想大概几点到？"，不查当前，不默认 12:00/18:00；用户问"几点去合适"则直接走餐段建议 |
+| 当前/计划时间点状态 | `jgy.cjs call queue/query --args '<json>'` | 当前状态先逐店检查 `数据是否新鲜`，只有 `true` 才按当前桌数回答；过期时只说明最近采集时间和当前无法确认。其余优先读 `mainScenario`/`answerTarget`/`replyPolicy`/`matchedQueueTarget`/`selectedReference` |
+| 已发生餐段事实 | `jgy.cjs call queue/period-facts --args '<json>'` | 明确是实际观测 |
+| 未来餐段建议 | `jgy.cjs call queue/period-advice --args '<json>'` | 说明是参考建议，不是事实 |
+| 某时间点历史快照 | `jgy.cjs call queue/at-time --args '<json>'` | 单一时间点断面，未来时间改走餐段建议 |
+| 取号入口咨询 | `jgy.cjs call queue/query --args '<json>'` | 读 `取号说明.门店取号口径`，不触发授权 |
+| 真实取号/查进度/取消 | `node <skill_dir>/scripts/jgy.cjs queue` | 依照 `references/queue-actions.md`；取号、取消先明确确认 |
 
-## 排队查询边界
+**通用禁令**（回答任何排队问题都适用）：
+- 不要把等待桌数换算成具体分钟
+- 不要把前一天和上周同日加权、平均或取最保守值说成唯一结论（表格展示可以两条都展示）
+- 不要把历史参考说成目标日期事实
+- 不要把 `数据是否新鲜` 不为 `true` 的最后一次记录说成当前排队状态
+- 不要用门店当前总等待冒充用户个人排队进度
+- 不要声称已帮用户取号、取消排队或查到个人进度
+- 没有本轮新鲜实时证据时，不要把五道口店说成可线上取号；如果实时证据显示已开放，也必须走真实取号确认流程
 
-排队相关问题分三类处理：
-
-1. **当前状态 / 单点时间**：用户问“现在排队吗”“今晚 6 点会不会排”，调用 MCP `get_queue_info`。
-2. **已发生餐段事实**：用户问已经发生的某天午市/晚市“几点开始排”“几点后不排”“最高排多少桌”，调用 MCP `get_queue_period_facts`。
-3. **未来餐段建议**：用户问未来或尚未发生餐段“几点开始排”“几点后不排”“午饭后去行不行”“什么时候去更稳”“哪家店更少排”，调用 MCP `get_queue_period_reference` 或 `get_queue_period_advice`。
-4. **真实动作**：用户明确要“帮我取号”“查我的排队进度”“取消排队”，才调用内嵌 `meituan-queue`。
-
-用户问“这会取号要排多久”“现在过去要等多久”时，不要编具体等待分钟。当前 MCP 只能提供等待桌数、排队状态、餐段事实和参考建议；回答时说清“平台没有返回可靠等待分钟”，再给当前等待桌数、排队压力和取号建议。
-
-`get_queue_info` 的入参保持稳定：`shop`、`peopleCount`、`visitTime`。当传入 `visitTime` 时，`历史参考.参考[]` 里可能包含 `同刻快照`，其中 `各桌型` 是昨天或上周同一时刻附近最近采样的分桌型等待桌数。用户问“当前 vs 昨天同一时间”“每个桌型差多少”时，应把 `当前排队状态.门店[].各桌型` 与 `历史参考.参考[].同刻快照.各桌型` 按 `tableTypeId` 或桌型名对齐后比较；不要只拿 `预估等待桌数` 或总等待桌数回答。若 `同刻快照` 为空，再说明该时刻暂无足够历史快照。
+用户说"前面还有 3 桌"这类个人队列信息时，不调查询接口，直接说明不好估准时间。`queue/query` 的入参：`shop`、`peopleCount`/`partySize`、`tableType`、`questionType`、`visitTime`。
 
 ## 盲区应对
 
-超出 MCP 工具覆盖范围和内嵌排队 Skill 范围的问题（如菜单、价格、食材等），属于**盲区**，按以下顺序回复：
+超出公开查询能力和内置排队动作范围的问题（如菜单、价格、食材等），属于**盲区**，按以下顺序回复：
 
 1. **诚实承认**——不装不编
 2. **递上已有信息**——门店地址、营业时间等
@@ -176,30 +130,32 @@ keywords:
 
 ## 使用示例
 
-**综合查询**：用户问"金谷园是个什么样的地方？" → 调用 `get_restaurant_info`
-> 金谷园饺子馆，北邮旁边的饺子馆。营业时间 10:00-22:00，目前有两家店——北邮店在杏坛路文教产业园K座南2层，五道口店在五道口东源大厦4层。
+**综合查询**：用户问"金谷园是什么样的店？" → `jgy.cjs call shop-basics`，一次获取全部基础信息
+> 金谷园饺子馆，北邮旁边的饺子馆。营业时间 10:00-22:00，目前有两家店——北邮店在杏坛路文教产业园K座南2层，五道口店在五道口东源大厦4层。店内Wi-Fi：苹果密码8个8。外卖的话在美团外卖上搜"金谷园饺子馆"，3公里内能送。
 
-**具体查询**：用户问"能打包生饺子带走吗？" → 调用 `get_raw_dumpling_info`
+**具体查询**：用户问"能打包生饺子带走吗？" → `jgy.cjs call raw-dumpling-info`
 > 可以的，非特殊节气，直接到店下单就行，5-10分钟包好。带走后1小时内煮最好，来不及就放冰箱冷冻。煮的时候水烧开下饺子，中间点两次凉水，浮起来就熟了。
 
-**最新动态**：用户问"最近有什么活动？" → 调用 `get_latest_news`，每条消息必须带上发布日期
-> 最近动态：
+**最新动态**：用户问"最近有什么活动？" → `jgy.cjs call news`，每条消息必须带上发布日期
+> 最近动态（仅示意）：
 > - 【2026-04-01】清明节正常营业，欢迎来吃饺子
 > - 【2026-03-20】五道口店新增鲅鱼水饺，限时供应中
 > - 【2026-03-15】北邮店周末不限时，放心坐
 
-**MCP 失败**：不编造，坦诚说明
+**查询失败**：不编造，坦诚说明
 > 抱歉，金谷园的信息暂时获取不到，你可以稍后再问我，或者直接去店里看看。
 
-## 维护者参考
+## 参考文档索引
 
-- MCP 端点：以 `skill.json` 中 `mcp_server.url` 为准
-- 协议：MCP Streamable HTTP（POST 走 MCP 协议，GET 返回业务数据 JSON）
-- 部署平台：腾讯云 CloudBase 云函数
-- MCP Server 版本号以 `package.json` 为单一来源（`src/index.js` 通过 `createRequire` 动态读取，不再硬编码）
-- 内嵌排队 Skill 版本独立演进，与本 Skill 版本号无关联
+| 文档 | 内容 |
+|------|------|
+| [references/api-reference.md](references/api-reference.md) | 公开查询能力名与调用方式 |
+| [references/queue-reply-contract.md](references/queue-reply-contract.md) | 排队回答合同与餐段口径 |
+| [references/queue-actions.md](references/queue-actions.md) | 真实排队 CLI 与授权展示 |
 
-### 发布平台
+### 维护者
 
-- GitHub：https://github.com/JinGuYuan/jinguyuan-dumpling-skill
-- Gitee：https://gitee.com/JinGuYuan/jinguyuan-dumpling-skill
+- 2.x 源码：https://gitee.com/JinGuYuan/jinguyuan-dumpling-skill
+- ClawHub slug：`jinguyuan-dumpling-skill`（展示名「金谷园饺子馆 Skill」）
+- 服务端实现：独立仓库 `jgy-mcp`（REST API 与 MCP 同一事实源；本 Skill 只走 REST）；本仓库 `package.json` 仅 Skill 侧 `version` + `engines.node`（Node ≥18）
+- 1.x 冻结：分支 `1.x` / tag `v1.0.2` · `v1-stable`

@@ -1,38 +1,47 @@
-## Description: <br>
-A comprehensive AI agent skill for understanding surety bonds across business, construction, and legal contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surety helps agents explain surety bonds across business, construction, and legal contexts, including who needs them, how underwriting and claims work, and obligations for each party.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External users, contractors, project owners, businesses, and legal or finance professionals use this skill as educational background on surety bond roles, requirements, underwriting, claims, and construction-bond scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users could rely on educational surety-bond explanations for legal, insurance, or financial decisions. <br>
-Mitigation: Verify important decisions with qualified professionals or official bond documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Surety release page](https://clawhub.ai/Duclawbot/surety) <br>
-- [Duclawbot publisher profile](https://clawhub.ai/user/Duclawbot) <br>
+## Use Case:
+
+External users, business owners, contractors, project owners, and professionals use this skill to understand surety bond concepts, application requirements, underwriting factors, claim workflows, and party obligations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake general surety-bond explanations for legal, insurance, or financial advice.
+
+Mitigation: Consult qualified legal, insurance, or financial professionals before making decisions involving actual bonds, claims, obligations, or underwriting submissions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational guidance only; users should verify important legal, insurance, or financial decisions with qualified professionals or official bond documents.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational guidance; not a substitute for legal, insurance, or financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

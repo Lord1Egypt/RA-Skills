@@ -4,6 +4,13 @@ All notable changes to the `docs-organization` skill will be documented in this 
 
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.0] - 2026-10-04
+
+### Changed
+
+- Rename `docs-organization` to `brainharness-docs` and align repository links and installation names with BrainHarness.
+- Update distribution metadata and documentation; preserve skill behavior and historical release notes.
+
 ## [1.1.0] - 2026-04-08
 
 ### Added

@@ -1,47 +1,61 @@
-## Description: <br>
-Summarize recent posts from followed Knowledge Planet circles into a daily digest prioritizing key updates using local tokens or browser relay for access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes recent posts from followed Knowledge Planet circles into a daily or per-circle digest using a local session token, with browser-assisted recovery when token mode is unavailable.
 
-## Publisher: <br>
-[sealiu1997](https://clawhub.ai/user/sealiu1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sealiu1997](https://clawhub.ai/user/sealiu1997)
 
-## Use Case: <br>
-External users and developers use this skill to collect recent Knowledge Planet updates from followed circles, deduplicate them, and produce a scan-friendly digest that helps decide what to read first. It is intended for private membership content where authentication material stays local. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live account cookies and session tokens for private Knowledge Planet content. <br>
-Mitigation: Keep `state/` private and out of git, backups, screenshots, and support bundles; delete captured cookie files after setup. <br>
-Risk: Under-scoped probe or custom API-base paths could send credentials outside the intended ZSXQ service. <br>
-Mitigation: Do not use probe or custom API-base modes against non-ZSXQ URLs unless the code is changed to enforce a ZSXQ allowlist. <br>
-Risk: Browser bootstrap can expose account state through the active browser profile. <br>
-Mitigation: Use a dedicated browser profile where possible and treat the skill as an account-access tool before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Runtime modes](references/runtime-modes.md) <br>
-- [Auth bootstrap design](references/auth-bootstrap.md) <br>
-- [Session token guide](references/session-token-guide.md) <br>
-- [Output schema](references/output-schema.md) <br>
-- [Browser workflow](references/browser-workflow.md) <br>
-- [Browser recovery](references/browser-recovery.md) <br>
+## Use Case:
 
+External users and developers use this skill to collect recent visible Knowledge Planet updates from followed circles, deduplicate them, and generate a concise digest for deciding which posts to read first. It is intended for private membership content where session tokens and captured cookies remain local.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown digest output with JSON intermediate files, local configuration, and explicit status guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups updates by circle, preserves original links when available, and uses bounded local cursor state for deduplication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles live Knowledge Planet session cookies and token files that could expose account access if copied into logs, shared screenshots, repositories, or public artifacts.
+
+Mitigation: Use it only in a private local environment, keep state/session.token.json and captured cookie files under gitignored local paths, and avoid sharing tool logs that may contain credential material.
+
+Risk: Probe or custom API-base options can send authenticated requests outside the intended Knowledge Planet endpoint if pointed at untrusted URLs.
+
+Mitigation: Use the default trusted endpoint for normal runs and avoid probe or custom API-base options with untrusted URLs.
+
+Risk: Token, browser, or fetch-based collection can fail, expire, or capture incomplete private-member content.
+
+Mitigation: Validate authentication before extraction, return explicit failure states such as TOKEN_EXPIRED or PARTIAL_CAPTURE, preserve original links, and do not fabricate missing summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sealiu1997/skills/zsxq-digest)
+- [README](README.md)
+- [Runtime modes](references/runtime-modes.md)
+- [Session token guide](references/session-token-guide.md)
+- [Output schema](references/output-schema.md)
+- [Browser recovery](references/browser-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest with JSON collection and state files, plus shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Digest items can include circle name, author, timestamp, content preview, priority, suggested action, original URL, and partial-capture status when extraction is incomplete.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

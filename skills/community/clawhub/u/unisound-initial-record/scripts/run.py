@@ -30,7 +30,7 @@ from preprocess import (
 
 
 DEFAULT_LLM_BASE = "https://maas-api.hivoice.cn/v1"
-DEFAULT_LLM_MODEL = "u1-insuremed"
+DEFAULT_LLM_MODEL = "u2-med"
 
 
 def _read_json(path: Path) -> dict[str, Any]:

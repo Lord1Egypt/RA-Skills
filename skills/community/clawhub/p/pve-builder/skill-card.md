@@ -1,43 +1,58 @@
-## Description: <br>
-Proxmox VE VM builder with cloud-init automation, config-driven hardware defaults, validation, and static IP support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proxmox VE VM builder with cloud-init automation, config-driven hardware defaults, validation, and static IP support.
 
-## Publisher: <br>
-[mbojer](https://clawhub.ai/user/mbojer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbojer](https://clawhub.ai/user/mbojer)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to prepare Proxmox VE VM creation guidance, including cloud-init setup, SSH key handling, network configuration, storage choices, and copyable qm commands for manual execution on a Proxmox node. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bootstrap VM passwords may be exposed in chat transcripts or generated command files. <br>
-Mitigation: Prefer SSH-key-only provisioning when possible, avoid saving passwords in generated files, and rotate any bootstrap password immediately after first access. <br>
-Risk: The skill uses local shell execution and writes SSH key material, so broad permissions can affect the local environment. <br>
-Mitigation: Use a dedicated locked-down SSH key directory, review generated shell and Proxmox commands before running them, and keep private key files permissioned to the local user. <br>
-Risk: Software requirement lookups can disclose internal product names, URLs, or deployment context. <br>
-Mitigation: Avoid sensitive internal URLs or names in web lookups and provide manual sizing inputs when the workload details are confidential. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to assemble Proxmox VE VM creation commands, cloud-init user-data, SSH key setup, network settings, and optional data disk configuration for manual review and execution on a Proxmox node.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mbojer/pve-builder) <br>
-- [Proxmox QM Command Reference](artifact/qm-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands for the user to review and run manually on a Proxmox node; it does not verify VM creation itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata; artifact frontmatter reports 1.0.10) <br>
+Risk: Generated shell commands could be incorrect or unsafe if user-provided VM names, paths, disk names, package names, URLs, or other inputs are not reviewed before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect every generated command before running it on a Proxmox host, and prefer a revised version that validates inputs and shell-quotes generated commands.
+
+Risk: The skill handles and displays VM passwords, which can expose credentials or encourage password-based SSH access.
+
+Mitigation: Do not reuse passwords with this skill, avoid password SSH where possible, and rotate or disable generated passwords after initial access.
+
+Risk: Local configuration files, SSH key paths, and generated files may contain sensitive infrastructure details.
+
+Mitigation: Keep pve-env.md and private keys permission-restricted, do not commit them, and verify generated file paths before saving or running commands.
+
+## Reference(s):
+
+- [Proxmox QM Command Reference](artifact/qm-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/mbojer/skills/pve-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style prompts and bash command blocks for manual execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally save generated commands to a user-selected file; outputs should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata; artifact frontmatter lists 1.0.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

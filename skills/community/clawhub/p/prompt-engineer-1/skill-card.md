@@ -1,39 +1,53 @@
-## Description: <br>
-Transforms vague or simple user requests into clear, logically structured, expert-grade prompts for Gemini, GPT, Claude, Qwen, and similar large language models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms vague task requests into clear, structured expert prompts for large language models such as Gemini, GPT, Claude, and Qwen.
 
-## Publisher: <br>
-[DK-style](https://clawhub.ai/user/DK-style) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dk-style](https://clawhub.ai/user/dk-style)
 
-## Use Case: <br>
-Developers, writers, and AI practitioners use this skill to turn underspecified tasks into reusable structured prompts with role, context, goals, rules, workflow, output format, examples, and design rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording and default Simplified Chinese output may cause accidental use or language mismatch in multilingual environments. <br>
-Mitigation: Invoke the skill explicitly for prompt-engineering tasks and review language defaults before deployment. <br>
-Risk: Generated prompts may include assumptions when a user's request lacks key details. <br>
-Mitigation: Review the generated assumptions and adjust missing role, audience, style, or constraints before using the prompt. <br>
+## Use Case:
 
+Developers, writers, and AI users use this skill to turn brief or incomplete requests into structured prompts with role, context, goals, constraints, workflow, output format, and initialization sections. It also explains key prompt design choices so users can refine the prompt for their model and task.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a structured prompt code block and brief design notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Simplified Chinese unless the user requests another language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill defaults to Simplified Chinese output, which may surprise users expecting another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the desired output language when asking the skill to generate a prompt.
+
+Risk: The skill may fill missing request details with reasonable assumptions that do not match the user's intent.
+
+Mitigation: Review the stated assumptions and generated prompt before using it in a production workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dk-style/skills/prompt-engineer-1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown response containing demand analysis, a structured prompt in a markdown code block, and a short design explanation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Simplified Chinese unless the user specifies another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Add `/topic` to the start of any message in a Telegram forum group to auto-create a new topic from it, with a title generated automatically from the message content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds /topic handling for Telegram forum groups so an agent can create a new forum topic from a message and generate a concise title from the message content.
 
-## Publisher: <br>
-[itstauq](https://clawhub.ai/user/itstauq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itstauq](https://clawhub.ai/user/itstauq)
 
-## Use Case: <br>
-External Telegram group operators and bot maintainers use this skill to create new forum topics from `/topic` messages, quote or forward the original message into the new topic, and continue the conversation there. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Telegram forum topics through a configured bot. <br>
-Mitigation: Install it only for Telegram forum groups where members should be allowed to create topics through the bot. <br>
-Risk: The Telegram bot token and Manage Topics permission grant topic-management capability. <br>
-Mitigation: Keep the bot token protected and grant Manage Topics only in intended groups. <br>
-Risk: Disabling mention-required behavior can make topic creation easier to trigger in a group. <br>
-Mitigation: Leave mention-required behavior enabled unless the group is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itstauq/telegram-auto-topic) <br>
-- [Publisher profile](https://clawhub.ai/user/itstauq) <br>
-- [GitHub project link from skill documentation](https://github.com/itstauq/telegram-auto-topic) <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw Telegram bot turn /topic messages in forum-enabled groups into dedicated discussion topics, quote the original message, and continue the conversation in the new thread.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocation and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script returns topic_id, title, and link for the created Telegram forum topic.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Telegram bot token is powerful and may be exposed locally during execution.
+
+Mitigation: Use a dedicated bot token, grant access only to required groups and topic-management permissions, protect the OpenClaw config file, avoid multi-user or heavily monitored hosts, and fix curl token handling before broad deployment.
+
+Risk: The skill can create topics only in Telegram groups that have forums enabled and where the bot has Manage Topics permission.
+
+Mitigation: Confirm the target group is forum-enabled and verify the bot's administrator permissions before enabling the /topic workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itstauq/skills/telegram-auto-topic)
+- [Publisher profile](https://clawhub.ai/user/itstauq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with a shell script invocation and JSON script output containing topic_id, title, and link.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, an OpenClaw Telegram configuration file, and Telegram forum group permissions.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

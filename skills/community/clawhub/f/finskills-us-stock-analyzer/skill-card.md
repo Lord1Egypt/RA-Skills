@@ -1,44 +1,56 @@
-## Description: <br>
-Perform institutional-grade analysis of any US-listed stock using real-time and fundamental data from the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform institutional-grade analysis of any US-listed stock using real-time and fundamental data from the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and analysts use this skill to research US-listed equities, compare valuation and financial-health signals, and generate structured buy, hold, avoid, or sell research reports. Outputs should be treated as analytical research rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key. <br>
-Mitigation: Use a dedicated key with appropriate quota or billing controls, and rotate or revoke it if exposure is suspected. <br>
-Risk: Ticker requests and related query context are sent to Finskills. <br>
-Mitigation: Review Finskills privacy and retention terms before using the skill for confidential investment research. <br>
-Risk: Generated ratings and price targets may be mistaken for financial advice. <br>
-Mitigation: Treat reports as research output, review assumptions and source data, and avoid using the skill to make unsupervised trading decisions. <br>
+## Use Case:
 
+External users and analysts use this skill to research US-listed equities by ticker symbol, combining Finskills API market data with business quality, financial health, valuation, analyst consensus, earnings quality, and risk analysis. Outputs should be treated as research support rather than financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/finskills-us-stock-analyzer) <br>
-- [Source homepage](https://github.com/finskills/us-stock-analyzer) <br>
-- [Finskills API](https://finskills.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Structured Markdown investment research report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and a US-listed ticker; report completeness depends on requested depth and available Finskills API data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends requested ticker symbols and related query parameters to the Finskills API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Finskills API key only when sharing those queries with Finskills is acceptable.
+
+Risk: Generated ratings, price targets, and valuation judgments may be incomplete, stale, or incorrect.
+
+Mitigation: Treat outputs as research support, verify data and assumptions independently, and do not rely on the report as financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/finskills-us-stock-analyzer)
+- [Publisher profile](https://clawhub.ai/user/finskills)
+- [Source homepage](https://github.com/finskills/us-stock-analyzer)
+- [Finskills API](https://finskills.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Structured Markdown investment research report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and a US equity ticker symbol; optional depth and investment-horizon inputs affect report scope.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and README show 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

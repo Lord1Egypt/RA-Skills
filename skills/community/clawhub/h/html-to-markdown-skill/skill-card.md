@@ -1,45 +1,61 @@
-## Description: <br>
-Converts HTML content from strings, files, or web URLs into Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts HTML content to Markdown from strings, files, and URLs.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-Developers and agents use this skill to convert HTML snippets, local HTML files, or selected webpage content into Markdown for documentation, migration, and content capture workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL fetching can reach unintended or sensitive web resources if the target URL is not checked. <br>
-Mitigation: Confirm the exact URL before use and avoid internal services, private metadata endpoints, authenticated pages, and other sensitive targets. <br>
-Risk: File conversion can read or overwrite paths the user did not intend. <br>
-Mitigation: Confirm input and output paths before execution and avoid paths containing secrets or files that should not be modified. <br>
-Risk: The skill depends on an external npm package for conversion behavior. <br>
-Mitigation: Install and run it only when the external package and publisher are trusted for the environment. <br>
+## Use Case:
 
+Developers and agents use this skill to convert HTML snippets, local HTML files, or fetched web pages into Markdown for documentation migration, content extraction, and saved article workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sipingme/html-to-markdown-skill) <br>
-- [API documentation](references/api.md) <br>
-- [Quick start guide](references/quick-start.md) <br>
-- [npm package](https://www.npmjs.com/package/@siping/html-to-markdown-node) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content or JSON command responses with Markdown payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write converted Markdown to a user-specified output file when converting local HTML files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill delegates conversion to external npm code that may change across installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local pinned package version, review the dependency before installation, and avoid versionless global installs for managed environments.
+
+Risk: URL conversion fetches remote pages and may process untrusted or unexpected content.
+
+Mitigation: Review target URLs before conversion and prefer local file conversion when pages require authentication or come from untrusted sources.
+
+Risk: File conversion can write Markdown output to paths chosen during use.
+
+Mitigation: Confirm output paths before running conversion and avoid writing into directories that contain important source files unless intentional.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/sipingme/skills/html-to-markdown-skill)
+- [Project GitHub](https://github.com/sipingme/html-to-markdown-skill)
+- [npm package](https://www.npmjs.com/package/@siping/html-to-markdown-node)
+- [Quick Start Guide](references/quick-start.md)
+- [API Documentation](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The delegated converter returns JSON that includes success status, markdown content or error text, and length metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Операционный директор для работы компании с банком: сводка и статус по счёту, ограничения, картотека, сертификаты, доверенности и рекомендованные действия через JSON-инструмент и виджет карточки счёта. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Операционный директор для работы компании с банком: сводка и статус по счёту, приостановления и блокировки, картотека, сертификаты ЭП/ЭЦП, доверенности и рекомендованные действия через JSON-инструмент `bank_get_status` и карточку счёта на странице Widgets.
 
-## Publisher: <br>
-[mikhail2018](https://clawhub.ai/user/mikhail2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikhail2018](https://clawhub.ai/user/mikhail2018)
 
-## Use Case: <br>
-Business operators and company staff use this skill to ask about a company bank account status, recent payments, blocked or suspended operations, card-file queues, signature certificates, powers of attorney, and next operational steps. It is intended for Russian-language banking operations workflows that need short summaries and status-oriented guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Russia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Banking-status summaries may expose sensitive account information in chat, widget views, or repeated daily summaries. <br>
-Mitigation: Install and schedule the skill only in appropriate workspaces, review who can see the chat and Widgets page, and treat generated account summaries as sensitive business information. <br>
-Risk: The bundled account data is synthetic unless the skill is later connected to a real bank source. <br>
-Mitigation: Confirm the data source before making operational decisions and disclose when responses are based on synthetic or demonstration data. <br>
+## Use Case:
 
+Employees and business operators use this skill to ask about a company bank account, including balances, recent operations, payment failures, restrictions, card-index items, signature certificates, powers of attorney, and first recommended actions. The skill also exposes a widget card for a compact account status view.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikhail2018/bank-ops-director-api) <br>
-- [Sber Business: account arrests, collections, and suspensions](https://www.sberbank.ru/ru/s_m_business/bankingservice/arest) <br>
-- [Sber Business: electronic signature](https://www.sberbank.ru/ru/s_m_business/nbs/signature) <br>
-- [Sber Business: certificates and statements](https://www.sberbank.ru/ru/s_m_business/rko/tariffs/spravki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Concise chat responses, JSON account-status data, and an inline account-status widget] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses date-relative synthetic account data unless connected to a real bank data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill can show realistic, current-dated synthetic account data without making the demo nature clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show a persistent demo-data warning in every chat and widget response before users rely on balances, payment status, restrictions, certificates, or recommended actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikhail2018/skills/bank-ops-director-api)
+- [Sberbank business account arrests and suspensions](https://www.sberbank.ru/ru/s_m_business/bankingservice/arest)
+- [Sberbank business electronic signature](https://www.sberbank.ru/ru/s_m_business/nbs/signature)
+- [Sberbank business certificates and account references](https://www.sberbank.ru/ru/s_m_business/rko/tariffs/spravki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown chat responses plus JSON tool and widget payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses locally generated synthetic sample banking data; no real bank integration is evidenced.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

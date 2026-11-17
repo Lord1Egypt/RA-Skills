@@ -1,41 +1,56 @@
-## Description: <br>
-Guides agents through an academic research workflow for topic selection, outlining, drafting, review, and response using AI-prompt patterns learned from referenced video material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Research Skills 606a56 helps agents guide academic research workflows from topic selection and outlining through writing, review, and response drafting.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External researchers, students, and academic writers use this skill to prompt an agent through research topic selection, outline creation, drafting, review, and reply preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad academic and research trigger wording may activate the skill when the user did not intend to invoke it. <br>
-Mitigation: Prefer narrowing activation to the exact skill name or review activation behavior before installation. <br>
+## Use Case:
 
+External users and researchers use this skill to prompt an agent for structured academic research support, including topic selection, outlining, drafting, review, and response preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/academic-research-skills-606a56) <br>
-- [Bilibili reference: Academic Research Skills complete tutorial](https://www.bilibili.com/video/BV1YU5c68EjB) <br>
-- [Bilibili reference: Academic Research Skills researcher-led AI workflow](https://www.bilibili.com/video/BV1wyLS6nE94) <br>
-- [Bilibili reference: academic-research-skills GH roundup](https://www.bilibili.com/video/BV1V6Lt6CE2U) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with prompt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; activation trigger is broad across academic or research prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation phrases may trigger the skill when the user only mentions general academic or research terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger scope before deployment and narrow triggers to the exact skill name when accidental activation would be disruptive.
+
+Risk: Academic research guidance can produce incomplete or misleading research plans, drafts, reviews, or responses.
+
+Mitigation: Require human review of generated academic guidance before using it in scholarly work or publication workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/academic-research-skills-606a56)
+- [Bilibili source: academic-research-skills overview](https://www.bilibili.com/video/BV1V6Lt6CE2U)
+- [Bilibili source: academic research workflow tutorial](https://www.bilibili.com/video/BV1YU5c68EjB)
+- [Bilibili source: researcher-led AI academic workflow](https://www.bilibili.com/video/BV1wyLS6nE94)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with optional command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

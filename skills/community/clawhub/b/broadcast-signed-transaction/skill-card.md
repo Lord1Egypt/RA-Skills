@@ -1,41 +1,59 @@
-## Description: <br>
-Broadcasts an already signed transaction hex to a blockchain through the OKX Web3 API without requiring a private key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Broadcasts an already-signed transaction hex to a blockchain through the OKX Web3 broadcast API without requiring a private key.
 
-## Publisher: <br>
-[wangchengming666](https://clawhub.ai/user/wangchengming666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wangchengming666](https://clawhub.ai/user/wangchengming666)
 
-## Use Case: <br>
-Developers and operators use this skill when they already have a signed transaction and need an agent to validate inputs, call the OKX broadcast API, and return the resulting order ID, transaction hash, or error details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broadcasting a signed transaction is an irreversible financial action once accepted on chain. <br>
-Mitigation: Verify the transaction contents, target chain, sender address, and MEV setting before running the broadcast. <br>
-Risk: OKX Web3 API credentials are required and could be exposed through logs, shell history, or repositories if handled carelessly. <br>
-Mitigation: Keep credentials out of logs and version control, and use least-privilege OKX Web3 API credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to validate required broadcast inputs, call the bundled broadcast script, and return transaction broadcast results for already-signed blockchain transactions. It is intended for cases where the transaction has already been signed elsewhere and no wallet private key should be handled by the skill.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangchengming666/broadcast-signed-transaction) <br>
-- [OKX Web3 API](https://web3.okx.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success status, order ID, transaction hash, explorer URL, MEV setting, and error details when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles OKX Web3 API credentials needed to submit broadcast requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secret manager, avoid command-line credential flags, and prefer narrowly scoped OKX Web3 API keys.
+
+Risk: Broadcasting a signed blockchain transaction is irreversible after submission.
+
+Mitigation: Confirm the signed transaction payload, chain index, sender address, and intended effects before broadcasting.
+
+Risk: Unpinned dependencies or environment drift can affect script behavior.
+
+Mitigation: Install dependencies in a pinned virtual environment before using the skill with valuable transactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangchengming666/skills/broadcast-signed-transaction)
+- [Publisher profile](https://clawhub.ai/user/wangchengming666)
+- [OKX Web3 API](https://web3.okx.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON broadcast results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include order ID, transaction hash, chain name, block explorer URL, MEV flag status, and error details returned by the broadcast script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

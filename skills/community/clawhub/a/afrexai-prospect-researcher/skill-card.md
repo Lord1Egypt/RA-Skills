@@ -1,41 +1,58 @@
-## Description: <br>
-Research and qualify B2B prospects using web search. Builds structured profiles with company intel, key contacts, pain points, and engagement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches and qualifies B2B prospects using public web search to build structured profiles with company intel, key contacts, pain points, and engagement recommendations.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Sales, business development, and go-to-market users use this skill to turn a company or lead name into a sourced B2B prospect profile with qualification, contacts, pain points, and outreach recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect research can include company or lead names that are sent to the configured web search provider. <br>
-Mitigation: Use the skill only for legitimate B2B prospect research and avoid submitting sensitive or unnecessary personal information. <br>
-Risk: Public web data and outreach recommendations may be outdated, incomplete, or inaccurate. <br>
-Mitigation: Verify cited sources before relying on qualification scores, contact recommendations, or personalized outreach. <br>
+## Use Case:
 
+Sales, growth, and business development teams use this skill to turn company names or lead lists into sourced prospect research, qualification scores, recommended contacts, and outreach angles.
 
-## Reference(s): <br>
-- [Prospect Researcher on ClawHub](https://clawhub.ai/1kalin/afrexai-prospect-researcher) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown research report with cited sources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Unknown data is marked explicitly rather than guessed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prospecting outputs may include incorrect, stale, or inferred company or contact information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require source URLs for key claims, mark unknowns as Not found, and review findings before outreach.
+
+Risk: The skill researches professional contacts and may collect personal or sensitive data beyond a lawful business purpose.
+
+Mitigation: Limit use to publicly available or user-provided business data and apply applicable privacy, consent, and outreach rules.
+
+Risk: The artifact contains an unrelated third-party promotional redirect.
+
+Mitigation: Review or remove the promotional line before deployment, consistent with the security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-prospect-researcher)
+- [Research output template](artifact/research-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research report with tables, bullet lists, source URLs, and a qualification recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public or user-provided prospect data; unknowns are marked as Not found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

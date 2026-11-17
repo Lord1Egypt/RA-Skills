@@ -1,42 +1,56 @@
-## Description: <br>
-Query real-time A-share stock prices, major indices, and sector data across Shanghai, Shenzhen, and Beijing exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time A-share stock prices, major indices, and sector data across Shanghai, Shenzhen, and Beijing exchanges.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and format A-share quotes, index snapshots, and sector-related market data for Shanghai, Shenzhen, and Beijing exchanges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags helper behavior with broad execution permissions. <br>
-Mitigation: Install only after reviewing the publisher and helper behavior; disable full-access review defaults when applicable and inspect diffs for secrets before use. <br>
-Risk: Market data can be stale outside A-share trading hours or when the upstream quote service is unavailable. <br>
-Mitigation: Check the quote timestamp, trading session, and upstream response before relying on the output for time-sensitive decisions. <br>
+## Use Case:
 
+External users, developers, and market analysts use this skill to look up China A-share stocks and indices, then format informational quote summaries for Shanghai, Shenzhen, and Beijing exchanges.
 
-## Reference(s): <br>
-- [China Stock Quotes on ClawHub](https://clawhub.ai/zhaocaixia888/china-stock-quotes) <br>
-- [Sina Finance real-time quote page example](https://finance.sina.com.cn/realstock/company/sh600519/nc.shtml) <br>
-- [Sina quote API batch example](https://hq.sinajs.cn/list=sh600519,sz300750,sh600036) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and formatted quote tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for direct quote API calls; stock names returned by the API may require GBK-aware decoding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill makes outbound requests to Sina Finance for requested stock or index codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound market-data requests are acceptable, and avoid entering secrets or unrelated personal data into quote queries.
+
+Risk: Returned prices may be live, delayed, or last-close market data and could be mistaken for financial advice.
+
+Mitigation: Present quote results as informational market data and verify important trading or investment decisions with authoritative sources.
+
+## Reference(s):
+
+- [China Stock Quotes on ClawHub](https://clawhub.ai/zhaocaixia888/skills/china-stock-quotes)
+- [Sina Finance](https://finance.sina.com.cn)
+- [Sina Finance quote endpoint](https://hq.sinajs.cn/list=sh600519,sz300750,sh600036)
+- [Sina Finance real-time stock page example](https://finance.sina.com.cn/realstock/company/sh600519/nc.shtml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown quote summaries with optional curl or PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may reflect live or last-close market data from Sina Finance and should be treated as informational, not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

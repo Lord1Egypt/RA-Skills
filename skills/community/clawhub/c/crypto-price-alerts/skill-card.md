@@ -1,40 +1,57 @@
-## Description: <br>
-Set and manage cryptocurrency price alerts and receive notifications when watched pairs reach target prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set and manage cryptocurrency price alerts and receive notifications when targets are reached.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Traders and crypto market watchers use this skill to create, list, remove, and check local price alerts for cryptocurrency pairs without continuously monitoring charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watched trading pairs and target prices are stored in a local JSON file. <br>
-Mitigation: Install only where local workspace files are acceptable for this information, and remove the stored alerts when they are no longer needed. <br>
-Risk: Alerts and notification claims may not be reliable enough for time-sensitive trading decisions without testing. <br>
-Mitigation: Test alert checks and notification delivery before relying on the skill, and verify market prices independently before acting. <br>
+## Use Case:
 
+External crypto users and trading-focused agents use this skill to add, list, remove, and check local price alerts for cryptocurrency pairs. It helps monitor target prices without requiring the user to watch charts continuously.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/crypto-price-alerts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON status messages and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores alert definitions locally and queries Binance through ccxt when checking alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Local alert records may reveal the user's cryptocurrency interests and target prices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review access to the local OpenClaw workspace data path before use, and avoid sharing the stored alert file.
+
+Risk: Price checks contact Binance, which can disclose requested market pairs to an external service.
+
+Mitigation: Use the skill only when contacting Binance for ticker data is acceptable for the user and deployment environment.
+
+Risk: Telegram and Discord notification behavior is under-documented in the release evidence.
+
+Mitigation: Confirm what notification data is sent and how accounts are linked before enabling external notifications.
+
+## Reference(s):
+
+- [Crypto Price Alerts on ClawHub](https://clawhub.ai/dagangtj/skills/crypto-price-alerts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Alerts are stored locally, and price checks contact Binance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

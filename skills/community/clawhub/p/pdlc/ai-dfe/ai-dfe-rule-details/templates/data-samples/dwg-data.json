@@ -1,0 +1,22 @@
+{
+  "$schema": null,
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "ai-dwg",
+  "data": {
+    "projectId": 96724,
+    "generatedBy": "AI-DWG",
+    "generatedVersion": "1.0.0",
+    "generatedOn": "2026-06-22T12:00:00Z",
+    "source": "architecture/01_Architecture_Vision.md",
+    "identityType": "architecture",
+    "systemName": "Sample System",
+    "architectureStyle": "modular-monolith",
+    "primaryTechnology": "Node.js + Express",
+    "deploymentModel": "cloud",
+    "productName": null,
+    "workspaceGenerated": true
+  }
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-generate images via OpenAI Images API with a random prompt sampler and an index.html gallery.
 
-## Publisher: <br>
-[shi8103312](https://clawhub.ai/user/shi8103312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shi8103312](https://clawhub.ai/user/shi8103312)
 
-## Use Case: <br>
-Developers and creators use this skill to generate batches of OpenAI image outputs from either random structured prompts or user-provided prompts, then review the saved images, prompt mapping, and gallery locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to the configured OpenAI API endpoint. <br>
-Mitigation: Use a dedicated API key, verify OPENAI_BASE_URL or OPENAI_API_BASE before running, and avoid sending sensitive prompt content. <br>
-Risk: Generated prompts and gallery files are stored locally. <br>
-Mitigation: Review generated files before sharing them and avoid untrusted HTML-like prompt text before opening the gallery. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate batches of images from random or custom prompts through the OpenAI Images API and review the outputs in a local thumbnail gallery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shi8103312/openai-image-gen-1-0-1) <br>
-- [OpenAI Images API endpoint](https://api.openai.com/v1/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Images, Files, JSON, HTML] <br>
-**Output Format:** [PNG image files, prompts.json, and a local index.html thumbnail gallery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports count, model, prompt, size, quality, timeout, sleep, output directory, API key, and dry-run options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends prompts and an OpenAI API key over the network, and server security evidence notes that environment variables can redirect those requests to another endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted API base URLs, keep OPENAI_BASE_URL and OPENAI_API_BASE unset unless intentionally configured, and avoid sensitive prompt content.
+
+Risk: The generated HTML gallery displays prompt text and local image outputs.
+
+Mitigation: Open galleries only from trusted runs and review prompt content before sharing generated output directories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shi8103312/skills/openai-image-gen-1-0-1)
+- [OpenAI API Endpoint](https://api.openai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated runtime artifacts include PNG images, JSON prompt mappings, and an HTML gallery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenAI API key; supports count, model, prompt, size, output directory, quality, timeout, sleep, and dry-run options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

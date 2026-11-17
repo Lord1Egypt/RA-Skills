@@ -1,44 +1,60 @@
-## Description: <br>
-AI governance layer that logs, audits, and enforces kill-switch rules on agent tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrustLoop provides an AI governance layer that logs, audits, and checks kill-switch rules for agent tool calls.
 
-## Publisher: <br>
-[SMJAI](https://clawhub.ai/user/SMJAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smjai](https://clawhub.ai/user/smjai)
 
-## Use Case: <br>
-Developers and agent operators use TrustLoop to check sensitive tool calls before execution, log decisions, and route destructive, external, financial, or bulk actions through hosted governance rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive tool-call metadata and arguments are sent to a hosted TrustLoop service. <br>
-Mitigation: Minimize and redact arguments before submission, protect TRUSTLOOP_API_KEY, review TrustLoop retention and access controls, and avoid sending credentials, file contents, customer data, or full prompts. <br>
-Risk: The included helper can fail open on missing API keys, network failures, timeouts, invalid responses, and service errors. <br>
-Mitigation: Wrap or modify enforcement to fail closed for sensitive actions and test blocked, error, and timeout paths before relying on it as a kill switch. <br>
-Risk: The security verdict is suspicious and calls for review before deployment. <br>
-Mitigation: Review and scan the skill before installation, with special attention to external data transmission and fail-open behavior. <br>
+## Use Case:
 
+Developers and agent operators use TrustLoop to check sensitive tool calls against an external policy and audit service before execution, with dashboard visibility into logged activity.
 
-## Reference(s): <br>
-- [TrustLoop homepage](https://trustloop.live) <br>
-- [TrustLoop ClawHub page](https://clawhub.ai/SMJAI/trustloop) <br>
-- [TrustLoop API reference](artifact/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JavaScript helper usage, and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRUSTLOOP_API_KEY and sends minimized tool-call metadata and arguments to the TrustLoop API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Tool-call arguments may contain sensitive operational details when sent to the third-party TrustLoop service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum fields needed for policy review, keep secrets and full content out of arguments, and use a dedicated low-privilege API key.
+
+Risk: The integration is advisory and may fail open, so it should not be treated as a hard enforcement boundary for sensitive workflows.
+
+Mitigation: Verify fail-closed behavior and operational controls before relying on the service for high-impact actions.
+
+Risk: Audit logs and retained tool-call metadata may create privacy or access-control obligations.
+
+Mitigation: Review TrustLoop retention, log access, and authorization practices before deployment.
+
+## Reference(s):
+
+- [TrustLoop homepage](https://trustloop.live)
+- [TrustLoop dashboard](https://app.trustloop.live)
+- [TrustLoop skill page](https://clawhub.ai/smjai/skills/trustloop)
+- [API reference](api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit JSON allow or block decisions when using the included check script.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

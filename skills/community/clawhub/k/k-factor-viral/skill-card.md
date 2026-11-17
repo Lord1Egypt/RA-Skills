@@ -1,46 +1,56 @@
-## Description: <br>
-Guides agents through calculating and interpreting viral coefficient, K-factor, invite conversion, cycle time, and stability across growth waves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides product teams in measuring viral acquisition through invite volume, activation conversion, cycle time, growth ceilings, and cohort stability.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, founders, investors, product managers, and growth teams use this skill to test claims of virality by calculating K = i x c, separating invite and conversion levers, and checking whether viral growth remains stable across waves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce misleading growth conclusions if users calculate K on signups rather than activated users or omit cohort and time-window definitions. <br>
-Mitigation: Require activated-user definitions, invite events, conversion events, cohort windows, cycle time, and wave-by-wave K checks in the analysis. <br>
-Risk: Invitation mechanics can create consent, platform, or deliverability risk when they rely on aggressive address-book imports or non-consensual sharing. <br>
-Mitigation: Keep recommendations consent-based and review any proposed invite mechanic for platform policy and user-consent requirements before launch. <br>
+## Use Case:
 
+Product managers, founders, and growth teams use this skill to evaluate whether an acquisition loop is genuinely viral and to decide whether invite volume, conversion, or cycle time needs attention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/k-factor-viral) <br>
-- [Sources - k-factor-viral](references/sources.md) <br>
-- [Hotmail, 1996-1998](examples/hotmail-1996-1998.md) <br>
-- [DFJ](https://www.dfj.com/) <br>
-- [Viral Marketing - The Science Of Sharing](https://www.forentrepreneurs.com/lessons-learnt-viral-marketing/) <br>
-- [Andrew Chen](https://andrewchen.com/) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown analysis template with structured fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use stepwise coaching prompts that stop for user input before continuing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Saved case notes could expose confidential product or customer details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregate growth metrics and omit confidential details from saved notes; account and contact access is unnecessary.
+
+Risk: Aggressive address-book imports or other non-consensual invitations can create platform-ban risk.
+
+Mitigation: Use consent-based invitation mechanics.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [Viral Marketing — The Science Of Sharing](https://www.forentrepreneurs.com/lessons-learnt-viral-marketing/)
+- [Andrew Chen](https://andrewchen.com/)
+- [K-Factor and Viral Coefficient guide](https://www.deciqai.com/c/k-factor-viral)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown K-factor analysis with calculations, interpretation, and suggested growth levers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses aggregate growth metrics; does not require account or contact access.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

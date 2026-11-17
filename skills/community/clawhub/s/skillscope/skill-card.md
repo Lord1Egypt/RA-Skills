@@ -1,42 +1,58 @@
-## Description: <br>
-AI Agent Skill decision engine that helps users find, evaluate, and install skills with quality and safety scoring personalized to platform, region, budget, and skill level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Skill decision engine that helps users find, evaluate, or install skills by recommending options with quality and safety scoring personalized to platform, region, and budget.
 
-## Publisher: <br>
-[smilelight](https://clawhub.ai/user/smilelight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smilelight](https://clawhub.ai/user/smilelight)
 
-## Use Case: <br>
-Developers and agent users use this skill to request personalized skill recommendations, compare alternatives, and retrieve install commands for tasks across ClawHub and GitHub skill catalogs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill recommendation queries are sent to skillscope.cn and may disclose task details. <br>
-Mitigation: Avoid confidential task details when requesting recommendations. <br>
-Risk: Recommended install commands may install third-party skills selected by an external service. <br>
-Mitigation: Inspect the recommended skill and install command before running it. <br>
+## Use Case:
 
+External users and developers use SkillScope to get personalized skill recommendations, compare alternatives, and obtain install commands or details for agent skills matching a task.
 
-## Reference(s): <br>
-- [SkillScope homepage](https://skillscope.cn) <br>
-- [SkillScope API base](https://skillscope.cn/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/smilelight/skillscope) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with API examples and install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommendations, alternatives, scores, reasons, and install commands returned from the external SkillScope API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: SkillScope can send broad user task details to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including confidential project details, credentials, secrets, or sensitive user data in task descriptions.
+
+Risk: The skill can relay remote install commands for recommended skills.
+
+Mitigation: Independently verify each command, publisher, version, and source before running it.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review the skill before installing and use it only when third-party skill recommendations are intended.
+
+## Reference(s):
+
+- [SkillScope homepage](https://skillscope.cn)
+- [ClawHub SkillScope listing](https://clawhub.ai/smilelight/skills/skillscope)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown text with recommendation summaries, reasoning, alternatives, and install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quality scores, safety scores, skill identifiers, remote service reasons, and install commands returned by SkillScope.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

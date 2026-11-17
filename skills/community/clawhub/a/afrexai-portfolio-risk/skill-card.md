@@ -1,39 +1,52 @@
-## Description: <br>
-Analyzes investment portfolios, calculates common risk metrics, runs stress tests, suggests allocation changes, and generates portfolio risk reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portfolio Risk Analyzer helps agents analyze investment positions, calculate portfolio risk metrics, run stress tests, assess allocations, and generate risk reports.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Investors and advisors using AI agents can provide portfolio holdings and ask for risk metrics, stress-test scenarios, diversification checks, rebalancing ideas, and report-ready summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Portfolio holdings and ticker-level searches can reveal sensitive financial information. <br>
-Mitigation: Share only the holdings needed for analysis and avoid providing brokerage credentials, account numbers, tax IDs, or unnecessary personal details. <br>
-Risk: Risk calculations, rebalancing ideas, tax-loss harvesting notes, and investment recommendations may be incomplete, outdated, or unsuitable for the user's circumstances. <br>
-Mitigation: Verify prices, assumptions, and recommendations against authoritative sources and consult a qualified professional before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-portfolio-risk) <br>
+## Use Case:
 
+External users and financial-analysis agents use this skill to structure portfolio holdings, look up market data, calculate risk metrics, compare allocations, and produce risk reports for informational review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, YAML snippets, and plain-language recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-data lookups, calculations, estimates, scenario tables, and report-ready markdown.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive portfolio and financial details.
+
+Mitigation: Avoid sharing account numbers, broker logins, personal identifiers, or unnecessary exact values; prefer ticker-only lookups where possible.
+
+Risk: Market data, rebalancing, tax-loss harvesting, and risk outputs may be incomplete or unsuitable for a user's circumstances.
+
+Mitigation: Treat outputs as informational and verify them with trusted market data or a qualified financial professional before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-portfolio-risk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, YAML snippets, and concise natural-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include portfolio summaries, Value at Risk estimates, stress-test results, allocation recommendations, monitoring templates, tax-loss harvesting scans, and financial disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

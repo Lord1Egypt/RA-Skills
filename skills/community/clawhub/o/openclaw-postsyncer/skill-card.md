@@ -1,40 +1,57 @@
-## Description: <br>
-Manage your PostSyncer social media workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your PostSyncer social media workflows.
 
-## Publisher: <br>
-[abakermi](https://clawhub.ai/user/abakermi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abakermi](https://clawhub.ai/user/abakermi)
 
-## Use Case: <br>
-External users and developers use this skill to manage PostSyncer social media workflows, including listing workspaces and posts and creating basic scheduled text posts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create social posts through the PostSyncer CLI. <br>
-Mitigation: Review the workspace ID and post text before allowing an agent to create or publish posts. <br>
-Risk: The skill requires a PostSyncer API key for authenticated operations. <br>
-Mitigation: Use a revocable, least-privileged API key where available and install only if you trust PostSyncer and the postsyncer CLI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PostSyncer Settings](https://app.postsyncer.com/settings) <br>
-- [ClawHub skill page](https://clawhub.ai/abakermi/openclaw-postsyncer) <br>
+## Use Case:
 
+Developers and social media operators use this skill to configure PostSyncer access, list workspaces and posts, and create basic text posts from an agent-assisted workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POSTSYNCER_API_KEY for authenticated PostSyncer CLI use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The create-post command can affect a connected PostSyncer account.
+
+Mitigation: Review workspace IDs and post text before running account-impacting commands.
+
+Risk: The skill documents PostSyncer CLI usage but does not include the CLI implementation.
+
+Mitigation: Verify the postsyncer CLI source before allowing an agent to use it.
+
+Risk: The skill requires POSTSYNCER_API_KEY for account access.
+
+Mitigation: Install only when agent access to the intended PostSyncer account is acceptable.
+
+## Reference(s):
+
+- [PostSyncer Settings](https://app.postsyncer.com/settings)
+- [ClawHub skill page](https://clawhub.ai/abakermi/skills/openclaw-postsyncer)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires POSTSYNCER_API_KEY for PostSyncer account access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

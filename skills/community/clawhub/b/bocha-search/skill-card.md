@@ -1,42 +1,54 @@
-## Description: <br>
-博查搜索 API 插件，从全网搜索网页信息，结果准确、摘要完整，适合 AI 使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+博查搜索 lets agents query Bocha's web search API and return structured web results with optional summaries and time filters.
 
-## Publisher: <br>
-[sunjingji](https://clawhub.ai/user/sunjingji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunjingji](https://clawhub.ai/user/sunjingji)
 
-## Use Case: <br>
-External users and developers use this skill to run Bocha web searches from an agent workflow, with optional result summaries and time-range filters. It is suited for gathering structured web-search results that an AI agent can consume directly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Bocha's API and may reveal sensitive user intent, private identifiers, secrets, regulated data, or personal information. <br>
-Mitigation: Use the skill only for search terms that are acceptable under Bocha's data handling terms, and avoid submitting secrets, private internal identifiers, regulated data, or sensitive personal information. <br>
-Risk: The skill requires a Bocha API key or account quota, so misuse can expose credentials or consume paid service capacity. <br>
-Mitigation: Provide the API key through a controlled environment variable or local configuration, restrict access to that secret, and monitor account quota or rate-limit errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunjingji/bocha-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/sunjingji) <br>
-- [博查开放平台](https://open.bochaai.com) <br>
-- [博查 API 文档](https://bocha-ai.feishu.cn/wiki/RXEOw02rFiwzGSkd9mUcqoeAnNK) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add Bocha web search to agents that need current web results, optional page summaries, and date-range filtering.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON search results or structured JSON error responses from a Node.js command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include query text, total and returned result counts, titles, URLs, descriptions, optional summaries, site names, and publication or crawl dates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to Bocha's external search API.
+
+Mitigation: Review Bocha's handling of submitted queries and avoid sending secrets, credentials, private customer data, or confidential internal names unless disclosure is acceptable.
+
+Risk: The skill requires a user-provided Bocha API key.
+
+Mitigation: Use a dedicated Bocha API key and keep it in an environment variable or untracked local configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunjingji/skills/bocha-search)
+- [Bocha Open Platform](https://open.bochaai.com)
+- [Bocha API documentation](https://bocha-ai.feishu.cn/wiki/RXEOw02rFiwzGSkd9mUcqoeAnNK)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [JSON search or error response printed by a Node.js command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result objects may include title, URL, description, optional summary, site name, and publication or crawl date.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

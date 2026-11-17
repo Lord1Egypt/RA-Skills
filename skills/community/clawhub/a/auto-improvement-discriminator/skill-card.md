@@ -1,42 +1,58 @@
-## Description: <br>
-Scores and ranks improvement candidates using heuristic scoring, evaluator evidence, optional LLM judging, and multi-reviewer blind panels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-signal scoring skill for ranking improvement candidates with heuristic rules, optional evaluator evidence, LLM-as-judge semantic review, and multi-reviewer blind panels.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to score generated improvement candidates, run blind panel review, apply optional LLM-as-judge semantic evaluation, and diagnose hold, reject, or accept-for-execution recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence an improvement pipeline by producing accept_for_execution, hold, or reject recommendations. <br>
-Mitigation: Treat recommendations as advisory unless a separate gate enforces policy before execution. <br>
-Risk: The interface module can execute local Python skill code when used with the real evaluator path. <br>
-Mitigation: Evaluate only trusted skill files or run untrusted targets inside an appropriate sandbox. <br>
-Risk: Claude or OpenAI judge backends may send candidate and target content to an external model provider. <br>
-Mitigation: Use mock or local-only judging for sensitive content and configure API credentials deliberately. <br>
+## Use Case:
 
+Developers and maintainers use this skill to score and rank proposed skill improvements, run blind-panel or LLM-assisted reviews, and produce accept, hold, or reject recommendations before a separate gate or executor acts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/auto-improvement-discriminator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance, shell commands] <br>
-**Output Format:** [JSON ranking artifacts with advisory notes; CLI usage is documented in Markdown with shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scored candidates, recommendations, blockers, panel reviews, LLM verdicts, and a summary count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill frontmatter lists 0.1.0) <br>
+Risk: Untrusted skill paths or manipulated review data could influence downstream actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an isolated review environment, avoid using it as an automatic approval or execution gate, and sandbox untrusted skill paths without inherited secrets.
+
+Risk: LLM judge backends may disclose confidential artifacts externally.
+
+Mitigation: Use the mock LLM backend for confidential artifacts unless external disclosure is acceptable.
+
+Risk: Human-review receipts may be unauthenticated.
+
+Mitigation: Treat human-review receipts as advisory unless additional signature and reviewer controls are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/auto-improvement-discriminator)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON scoring artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scores, recommendations, blockers, panel reviews, and optional LLM verdicts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

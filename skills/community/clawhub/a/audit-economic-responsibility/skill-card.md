@@ -1,40 +1,57 @@
-## Description: <br>
-Provides a 10-step economic responsibility audit workflow with checkpoints for planning, financial analysis, decision review, evidence collection, working papers, report drafting, and report review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language, 10-step economic responsibility audit workflow with four checkpoints for ongoing, departure, and natural resource asset audits.
 
-## Publisher: <br>
-[rc17777](https://clawhub.ai/user/rc17777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rc17777](https://clawhub.ai/user/rc17777)
 
-## Use Case: <br>
-Audit teams and agents use this skill to run a structured economic responsibility audit workflow for current-term, departure, and natural resource asset audit scenarios. It guides collection of unit context, audit planning, financial and decision analysis, internal control testing, evidence qualification, working paper preparation, report drafting, and report review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit workflow outputs may contain incomplete, inaccurate, or unsupported audit conclusions if used without review. <br>
-Mitigation: Review generated audit plans, findings, evidence characterization, responsibility determinations, report drafts, and review notes before relying on them. <br>
-Risk: Audit context and evidence may include sensitive organizational, personnel, financial, or compliance information. <br>
-Mitigation: Use intended accounts and approved environments, and avoid including secrets or unnecessary sensitive data in workflow inputs or review bundles. <br>
+## Use Case:
 
+Audit teams and agents use this skill to run a structured Chinese-language economic responsibility audit workflow for public-sector leadership reviews, including audit planning, financial analysis, decision review, internal control testing, evidence classification, working papers, report drafting, and report review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rc17777/audit-economic-responsibility) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and workflow-generated audit artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged workflow outputs such as audit plans, findings summaries, evidence bundles, working papers, report drafts, and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Audit inputs and generated findings may contain sensitive organizational, personnel, financial, or legal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle audit materials under the user's applicable confidentiality, access-control, and retention procedures.
+
+Risk: The workflow depends on external local scripts that are not included as authoritative safety evidence in the card context.
+
+Mitigation: Review and approve pipeline_engine.py, audit_workflow.py, and audit_router.py in the deployment environment before running the workflow.
+
+Risk: Generated evidence assessments, legal citations, and responsibility determinations may be incomplete or inaccurate.
+
+Mitigation: Require review by qualified audit or legal personnel before relying on outputs for decisions or reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rc17777/skills/audit-economic-responsibility)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and workflow-generated audit text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language audit workflow outputs; depends on external pipeline_engine.py, audit_workflow.py, and audit_router.py scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

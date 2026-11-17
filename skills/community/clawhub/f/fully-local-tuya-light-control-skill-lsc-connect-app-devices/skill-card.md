@@ -1,42 +1,56 @@
-## Description: <br>
-Control local LSC/Tuya lamps and groups to turn on or off, set brightness, change colors or white modes, query status, and onboard devices after repair or network changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls locally configured LSC/Tuya lamps and lamp groups from a workspace registry, including on/off actions, brightness, colors, white modes, status checks, and onboarding after repair or network changes.
 
-## Publisher: <br>
-[ooxtcoo](https://clawhub.ai/user/ooxtcoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ooxtcoo](https://clawhub.ai/user/ooxtcoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to let an agent translate local lighting requests into Tuya lamp-control commands for a configured home or workspace setup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may run local executables from mutable project paths.
+
+Mitigation: Verify the lampctl binary, Python scripts, and configured paths before enabling the skill.
+
+Risk: The skill may refresh Tuya device keys and update local lamp configuration.
+
+Mitigation: Keep real local keys only in local configuration, sanitize shared registry examples, and review configuration updates before applying them.
+
+Risk: The skill asks agents to persistently edit the installed skill file for local path changes.
+
+Mitigation: Prefer a separate local configuration file for site-specific paths and avoid automatic rewrites of the installed SKILL.md.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate locally configured Tuya/LSC lamps through the project CLI or Python fallback, including routine control and key refresh after device repair or network changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can control the configured local lamps and groups. <br>
-Mitigation: Install only where agent-initiated lamp control is acceptable, and review the lamp registry before use. <br>
-Risk: The skill asks the agent to update its installed SKILL.md for machine-specific paths. <br>
-Mitigation: Keep machine-specific paths in a separate user-reviewed configuration or review any instruction changes before deployment. <br>
-Risk: Local Tuya keys are sensitive and required for device control. <br>
-Mitigation: Store real local_key values only in expected local files, verify their location, and use sanitized values in shared artifacts. <br>
+**Output Format:** [Markdown text with inline shell commands and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ooxtcoo/fully-local-tuya-light-control-skill-lsc-connect-app-devices) <br>
+**Other Properties Related to Output:** [Outputs are intended for local execution against user-configured Tuya device registries and controller binaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue local CLI or Python fallback commands against configured Tuya devices; requires a valid local registry and local_key values.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

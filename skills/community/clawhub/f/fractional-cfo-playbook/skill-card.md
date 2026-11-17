@@ -1,43 +1,54 @@
-## Description: <br>
-Complete operational playbook for fractional CFO engagements, including client onboarding, monthly close cadence, board-ready reporting packages, cash flow management, strategic financial advisory, and engagement scope templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fractional CFO Playbook provides an operational guide for outsourced CFO engagements, including onboarding, monthly close cadence, board-ready reporting, cash flow management, strategic advisory, and engagement scope templates.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-External finance operators and fractional CFO providers use this skill to set up and run ongoing client engagements. It guides monthly CFO deliverables such as financial diagnostics, close review, KPI dashboards, cash flow forecasts, board packages, and fundraising support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports work with sensitive client financial, payroll, bank, tax, and accounting materials. <br>
-Mitigation: Use client-approved systems, least-privilege access, and approved storage; do not share passwords or move financial records outside authorized environments. <br>
-Risk: Generated CFO materials or checklist outputs could contain incorrect entries, payment recommendations, close decisions, or client-facing report content. <br>
-Mitigation: Require qualified human review before posting entries, approving payments, locking books, or sending client, investor, tax, or board reports. <br>
-Risk: The playbook discusses tax materials and financial compliance context but is not a substitute for regulated tax filing, audit, attest, legal, or HR services. <br>
-Mitigation: Keep regulated services out of scope and escalate to appropriately credentialed professionals when filings, attest work, legal advice, or HR decisions are required. <br>
+## Use Case:
 
+External finance advisors and client-service teams use this skill to structure ongoing Fractional CFO engagements, prepare monthly CFO deliverables, manage cash flow reporting, and support board or fundraising conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/fractional-cfo-playbook) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, templates, tables, and advisory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; human review is required before client delivery or financial actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may be used with confidential client financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use client authorization, least-privilege accounting access, and avoid sharing unnecessary bank, payroll, tax, or investor diligence documents with an agent unless the engagement requires it.
+
+Risk: Finance advisory outputs can be incomplete or misleading if source records, assumptions, or engagement scope are stale.
+
+Mitigation: Review recommendations against current client systems, agreed scope, and qualified professional judgment before client, board, investor, tax, or compliance use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/skills/fractional-cfo-playbook)
+- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with checklists, tables, and engagement templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory playbooks and deliverable templates for human review before client, board, investor, tax, or compliance use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

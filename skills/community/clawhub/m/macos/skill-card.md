@@ -1,39 +1,53 @@
-## Description: <br>
-macOS system administration, command-line differences from Linux, and automation best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS system administration, command-line differences from Linux, and automation best practices.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for macOS administration guidance, especially when adapting Linux-oriented command-line workflows and automation to macOS. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples for commands that can read secrets, access clipboard or screenshots, use sudo, change network or power settings, alter privacy permissions, create launchd jobs, or modify quarantine attributes. <br>
-Mitigation: Require explicit confirmation before applying those commands and review their target paths, permissions, and side effects before execution. <br>
-Risk: macOS administration guidance may be copied into local automation where incorrect use can affect user privacy, security settings, or system behavior. <br>
-Mitigation: Treat the output as reference material, test changes in a controlled environment, and prefer least-privilege execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/macos) <br>
+## Use Case:
 
+Developers and engineers use this skill for macOS command-line administration, Linux-to-macOS command differences, service management, permissions, preferences, file operations, networking, logging, and automation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference guidance only; no executable code is included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes macOS administration examples involving sudo, launchctl, defaults write/delete, clipboard, screenshots, Keychain, TCC, and SIP commands that can change system settings, expose local data, or require elevated permissions.
+
+Mitigation: Review commands before running them and apply them only when the requested macOS administration task requires that level of access.
+
+Risk: The skill provides sensitive command examples for local system administration.
+
+Mitigation: Use it as guidance; it does not install code, run commands automatically, or hide unrelated behavior according to the ClawHub security summary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/macos)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

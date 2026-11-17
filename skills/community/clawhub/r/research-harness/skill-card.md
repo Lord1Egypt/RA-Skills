@@ -1,47 +1,61 @@
-## Description: <br>
-Research Harness routes public-market research tasks through structured workflows for company deep dives, industry maps, earnings previews, consensus checks, red-team reviews, and PM-ready briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Harness is an open prompt stack that routes public-market research tasks into structured workflows for company deep dives, industry maps, earnings reviews, model checks, red-team analysis, PM briefs, and research briefings.
 
-## Publisher: <br>
-[joansongjr](https://clawhub.ai/user/joansongjr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[joansongjr](https://clawhub.ai/user/joansongjr)
 
-## Use Case: <br>
-External analysts, fund managers, and research teams use this skill to structure AI-assisted public-market research across A-shares, Hong Kong stocks, U.S. equities, funds, and cross-market themes. It emphasizes evidence grading, source planning, checkpoints, archiving, and compliance boundaries for repeatable research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist research targets, notes, checkpoints, task state, and full outputs in local workspace files. <br>
-Mitigation: Use a private workspace for sensitive work, avoid shared directories, and periodically review .task-pulse, .checkpoint, active-tasks.md, biases.md, and archived outputs. <br>
-Risk: Auto-triggering and routing can start multi-step research workflows that use available data sources and produce archived outputs. <br>
-Mitigation: Review the preflight plan, selected workflow, data-source choices, and archive paths before relying on or retaining generated research. <br>
-Risk: Financial research outputs can be mistaken for investment advice or final analyst judgment. <br>
-Mitigation: Apply the bundled compliance boundaries: do not treat outputs as buy or sell instructions, and require human review for ratings, target prices, earnings forecast changes, and client-facing conclusions. <br>
+## Use Case:
 
+Analysts, fund managers, and investment-research teams use the skill to plan data gathering, grade evidence, produce structured public-market research outputs, and archive work for later review across A-shares, Hong Kong stocks, US equities, funds, and cross-market themes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joansongjr/research-harness) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/joansongjr) <br>
-- [Evidence Grading](core/evidence.md) <br>
-- [Compliance Boundaries](core/compliance.md) <br>
-- [Data Adapters](core/adapters.md) <br>
-- [Output Archive](core/output-archive.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown research outputs with structured checklists, tables, source plans, evidence labels, and archive paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local research notes, checkpoints, task state, and archived Markdown outputs when used in a configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The prompt stack can broadly steer the assistant and route market-related or vague prompts into its workflow automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the system-prompt enablement and routing behavior before installation, and enable it only in workspaces where automatic investment-research routing is desired.
+
+Risk: The workflow can persist local task state and archived research outputs in the workspace.
+
+Mitigation: Install it only where local research state and archived outputs are appropriate, and periodically review generated .task-pulse, .checkpoint, active task, coverage, and archive files.
+
+Risk: Investment-research outputs may be mistaken for investment advice or definitive market data.
+
+Mitigation: Use the documented compliance boundaries: do not treat outputs as investment advice, verify key facts and data sources, and require qualified human review for ratings, target prices, or forecast changes.
+
+## Reference(s):
+
+- [Research Harness on ClawHub](https://clawhub.ai/joansongjr/skills/research-harness)
+- [Data Adapters](core/adapters.md)
+- [Compliance](core/compliance.md)
+- [Output Archive](core/output-archive.md)
+- [Markets](core/markets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, checklists, routing decisions, data-source plans, and workspace archive files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local task state and archived research outputs such as .task-pulse, .checkpoint, active task records, coverage folders, and dated research files when the workflow is enabled.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

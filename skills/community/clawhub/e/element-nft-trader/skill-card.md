@@ -1,54 +1,68 @@
-## Description: <br>
-Element NFT Trader helps agents manage Element Market NFT trading workflows, including sell orders, purchases, offers, order queries, cancellations, wallet address lookup, and supported custom payment-token use on Element EVM networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to sell or buy an NFT on Element, create or accept a bid or offer, query public collection orders or account orders, cancel an Element order, get the configured trading wallet address, or use a supported custom payment token on a supported Element EVM network.
 
-## Publisher: <br>
-[element-som](https://clawhub.ai/user/element-som) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[element-som](https://clawhub.ai/user/element-som)
 
-## Use Case: <br>
-External users and developers use this skill to operate Element Market NFT trading workflows from an agent, including querying orders, preparing transactions, and executing sell, buy, offer, accept-offer, and cancel operations after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and broadcast real blockchain transactions from a configured private-key wallet. <br>
-Mitigation: Use a dedicated low-value wallet, require explicit confirmation for state-changing operations, and keep the private key out of chat. <br>
-Risk: The skill can automatically grant broad token or NFT approvals during sell, buy, offer, and accept-offer flows. <br>
-Mitigation: Review approval transactions before submission, verify the approved token or collection and spender address, and revoke approvals after use when they are no longer needed. <br>
-Risk: Incorrect chain, collection, order, or payment-token assumptions can change execution scope or cause unintended trades. <br>
-Mitigation: Require the network and all operation-specific parameters before execution, use the matching reference file for payload construction, and do not guess unsupported ERC20 tokens or order identifiers. <br>
+## Use Case:
 
+External users and developers use this skill to manage Element Market NFT trading workflows, including listings, purchases, offers, cancellations, order queries, and wallet-address lookup. It is intended for trading actions and order management rather than collection analytics or portfolio tracking.
 
-## Reference(s): <br>
-- [Element NFT Trader skill page](https://clawhub.ai/element-som/element-nft-trader) <br>
-- [Element Skills repository](https://github.com/element-som/element-skills) <br>
-- [Element API keys](https://element.market/apikeys) <br>
-- [Element Market](https://element.market) <br>
-- [Accept Offer](references/accept-offer.md) <br>
-- [Buy](references/buy.md) <br>
-- [Cancel](references/cancel.md) <br>
-- [Get Wallet Address](references/get-address.md) <br>
-- [Offer](references/offer.md) <br>
-- [Payment Tokens](references/payment-tokens.md) <br>
-- [Query Account Orders](references/query-account-orders.md) <br>
-- [Query Orders](references/query-orders.md) <br>
-- [Sell](references/sell.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include transaction previews, structured operation results, explorer links, order tables, wallet addresses, and guidance for required confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill can sign high-impact NFT trading transactions and approvals that may move assets or grant lasting marketplace permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, preview every state-changing action, require explicit confirmation, and verify transaction details in an external wallet or explorer before funding the wallet.
+
+Risk: Remote marketplace calldata may be signed with insufficient local validation.
+
+Mitigation: Use only exact order objects returned by the query workflow, avoid hand-reconstructed order data, and confirm network, collection, token, payment token, price, and quantity before execution.
+
+Risk: Private-key exposure would compromise the configured trading wallet.
+
+Mitigation: Keep the private key in the local environment only; never ask users to paste it into chat and never echo it in responses.
+
+## Reference(s):
+
+- [Element NFT Trader on ClawHub](https://clawhub.ai/element-som/skills/element-nft-trader)
+- [Publisher Profile](https://clawhub.ai/user/element-som)
+- [Project Homepage](https://github.com/element-som/element-skills)
+- [Payment Tokens](references/payment-tokens.md)
+- [Sell](references/sell.md)
+- [Buy](references/buy.md)
+- [Offer](references/offer.md)
+- [Accept Offer](references/accept-offer.md)
+- [Query Orders](references/query-orders.md)
+- [Query Account Orders](references/query-account-orders.md)
+- [Cancel](references/cancel.md)
+- [Get Wallet Address](references/get-address.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute read-only queries or confirmed state-changing blockchain transaction commands through the bundled Node.js executor.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

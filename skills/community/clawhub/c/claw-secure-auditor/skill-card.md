@@ -1,43 +1,59 @@
-## Description: <br>
-Security audit tool for ClawHub/OpenClaw skills with static analysis and reputation scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit tool for ClawHub/OpenClaw skills using static analysis and reputation scoring.
 
-## Publisher: <br>
-[emeraldring3134-netizen](https://clawhub.ai/user/emeraldring3134-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[emeraldring3134-netizen](https://clawhub.ai/user/emeraldring3134-netizen)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to run lightweight local checks on ClawHub/OpenClaw skill folders before installation or publication. Its results should support manual review, not replace a dependable security assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The audit result can be unreliable because the skill may mark a folder named like itself as safe without scanning it. <br>
-Mitigation: Treat this as a lightweight regex checker, review findings manually, and do not rely on a Safe result as a security verdict. <br>
-Risk: The skill metadata declares an optional VirusTotal API key, but the security guidance advises against providing it for this version. <br>
-Mitigation: Run this version without a VirusTotal API key and avoid supplying sensitive credentials. <br>
-Risk: The scanner reads files in the target folder during local analysis. <br>
-Mitigation: Run it only on specific folders you intend to inspect. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to review ClawHub/OpenClaw skill directories for static-risk patterns, reputation scoring, and pre-publish security guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emeraldring3134-netizen/claw-secure-auditor) <br>
-- [Declared homepage](https://github.com/YOURNAME/claw-secure-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Terminal text with optional JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local audit; requires python3 and can run without the optional VIRUSTOTAL_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: Audit verdicts may be misleading because a self-named target is automatically marked safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on this skill as the sole security decision point; remove or review the self-whitelist behavior before trusting results.
+
+Risk: The skill advertises full, sandbox, and VirusTotal checks that the authoritative security evidence says are not implemented.
+
+Mitigation: Treat those checks as unavailable until the code implements them, or update the documentation and metadata to match actual behavior.
+
+Risk: The release metadata requires a VirusTotal API key and requests dependency even though the security evidence flags that requirement as unnecessary.
+
+Mitigation: Avoid configuring unnecessary credentials and clean up dependency/API-key requirements before broad deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/emeraldring3134-netizen/skills/claw-secure-auditor)
+- [Publisher Profile](https://clawhub.ai/user/emeraldring3134-netizen)
+- [Declared Homepage](https://github.com/YOURNAME/claw-secure-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Terminal text report with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports a reputation score, risk level, and findings for a target skill directory.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

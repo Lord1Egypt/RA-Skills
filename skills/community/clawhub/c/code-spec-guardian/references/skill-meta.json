@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "lastUpdate": "2026-07-29",
+  "projectPath": "",
+  "modules": {
+    "code-style": { "version": 1, "items": 0, "hash": "" },
+    "ui-style": { "version": 1, "items": 0, "hash": "" },
+    "architecture": { "version": 1, "items": 0, "hash": "" },
+    "api-spec": { "version": 1, "items": 0, "hash": "" },
+    "sql-spec": { "version": 1, "items": 0, "hash": "" },
+    "git-spec": { "version": 1, "items": 0, "hash": "" },
+    "python-style": { "version": 1, "items": 0, "hash": "" },
+    "java-style": { "version": 1, "items": 0, "hash": "" },
+    "go-style": { "version": 1, "items": 0, "hash": "" },
+    "node-style": { "version": 1, "items": 0, "hash": "" },
+    "php-style": { "version": 1, "items": 0, "hash": "" },
+    "rust-style": { "version": 1, "items": 0, "hash": "" }
+  }
+}

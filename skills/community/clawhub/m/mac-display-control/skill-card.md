@@ -1,50 +1,66 @@
-## Description: <br>
-Guides agents through controlling external Mac display settings with m1ddc or ddcctl, including brightness, contrast, volume, input source, color temperature, power, automation, and software fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step guide for controlling external display settings on macOS from the command line or keyboard shortcuts, including brightness, contrast, volume, input source, color temperature, power, and DDC/CI fallback guidance.
 
-## Publisher: <br>
-[oakland](https://clawhub.ai/user/oakland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oakland](https://clawhub.ai/user/oakland)
 
-## Use Case: <br>
-Mac users, developers, and IT support staff use this skill to generate command-line guidance and script patterns for adjusting external display settings without third-party GUI apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Homebrew and monitor-control commands can change local display behavior or install command-line tools. <br>
-Mitigation: Review commands before running them, verify the target display, and smoke-test reversible settings before saving scripts or shortcuts. <br>
-Risk: Automation, power controls, input switching, or factory reset commands can disrupt display use or erase monitor preferences. <br>
-Mitigation: Use factory reset only when intended, keep backups of working settings, and remove cron jobs or Automator shortcuts when automatic changes are no longer wanted. <br>
-Risk: DDC/CI support varies by Mac, cable, adapter, dock, and monitor firmware. <br>
-Mitigation: Probe display support first, enable DDC/CI in the monitor menu when available, and use the documented software fallback only when hardware DDC is unavailable. <br>
+## Use Case:
 
+Developers, IT staff, and macOS power users use this skill to set up command-line and keyboard-shortcut control of external monitor settings across Apple Silicon and Intel Macs.
 
-## Reference(s): <br>
-- [Brightness Control](references/brightness.md) <br>
-- [Color Temperature & Color Presets](references/color-temperature.md) <br>
-- [Contrast Control](references/contrast.md) <br>
-- [Input Source Switching](references/input-source.md) <br>
-- [Power & Miscellaneous Controls](references/pow-and-misc.md) <br>
-- [Volume Control](references/volume.md) <br>
-- [m1ddc Apple Silicon display control](https://github.com/waydabber/m1ddc) <br>
-- [ddcctl Intel Mac display control](https://github.com/kfix/ddcctl) <br>
-- [MonitorControl DDC/CI compatibility notes](https://github.com/MonitorControl/MonitorControl#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users choose whether to run, save, or automate the suggested commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan flags an unverified remote Homebrew installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official Homebrew installation instructions or inspect and verify the installer before running it.
+
+Risk: Scheduled cron jobs and keyboard shortcuts can repeatedly change display settings after setup.
+
+Mitigation: Create persistent automation only when desired, document each job or shortcut, and keep removal steps available.
+
+Risk: Display commands for factory reset, input switching, power, and color gain can make disruptive or hard-to-reverse changes.
+
+Mitigation: Test commands manually on the target display before binding them to shortcuts or schedules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oakland/skills/mac-display-control)
+- [Brightness control reference](references/brightness.md)
+- [Contrast control reference](references/contrast.md)
+- [Volume control reference](references/volume.md)
+- [Input source switching reference](references/input-source.md)
+- [Color temperature reference](references/color-temperature.md)
+- [Power and miscellaneous controls reference](references/pow-and-misc.md)
+- [m1ddc](https://github.com/waydabber/m1ddc)
+- [ddcctl](https://github.com/kfix/ddcctl)
+- [MonitorControl README](https://github.com/MonitorControl/MonitorControl#readme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup steps, control-specific command examples, automation guidance, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

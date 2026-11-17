@@ -1,7 +1,7 @@
 ---
-name: transit-route-query
-display_name: 公交地铁线路查询
-description: 市内公交地铁路线查询，自动规划最优换乘方案，地铁优先展示，支持最快/少换乘/少步行三种策略，零配置即装即用。
+name: 公交地铁线路查询
+display_name: "公交地铁线路查询"
+description: 市内公交地铁路线查询，自动规划最优换乘方案，地铁优先展示，支持最快/少换乘/少步行三种策略，零配置即装即用。暑期城市出行导航。
 tags: [公交查询, 地铁查询, 市内交通, 换乘方案, 公交地铁路线]
 tools:
   - name: query_route

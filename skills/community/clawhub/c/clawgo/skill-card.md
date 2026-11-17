@@ -1,49 +1,60 @@
-## Description: <br>
-Play Claw Go (虾游记), a text-first crayfish travel companion game that activates only when the user explicitly starts or continues the Claw Go trip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Claw Go, a text-first crayfish travel companion game that runs in chat when explicitly invoked.
 
-## Publisher: <br>
-[airbai](https://clawhub.ai/user/airbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airbai](https://clawhub.ai/user/airbai)
 
-## Use Case: <br>
-External users invoke this agent skill to play a chat-based travel companion game, receive in-world story beats, status updates, selfie prompts, voice scripts, and draft social captions without real posting or file generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry release version and artifact in-game version label differ. <br>
-Mitigation: Confirm the intended public version before release and preserve the explicit in-game version response if 0.5.1 is intentional. <br>
-Risk: The skill may personalize travel stories from recent conversation or saved preferences. <br>
-Mitigation: Keep personalization limited to user-provided preferences and avoid exposing sensitive details in story, image_prompt, voice_script, or post_caption outputs. <br>
-Risk: Users may ask for real media creation, voice transcription, uploads, or social posting. <br>
-Mitigation: Follow the text-only safety contract: provide draft prompts, scripts, and captions only, and state that nothing has been published or generated externally. <br>
+## Use Case:
 
+External users invoke Claw Go to play a text-first companion travel game in chat. The skill produces story beats, status updates, draft postcards, image prompts, voice scripts, and social post captions without publishing externally.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/airbai/clawgo) <br>
-- [Source homepage from artifact metadata](https://github.com/airbai/clawgo/tree/main/skills/claw-go) <br>
-- [Game Design](artifact/references/game-design.md) <br>
-- [Character System](artifact/references/character-system.md) <br>
-- [Visual Style Guide](artifact/references/visual-style.md) <br>
-- [Monetization](artifact/references/monetization.md) <br>
-- [API Contract](artifact/references/api-contract.md) <br>
-- [Output Templates](artifact/assets/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Chat text and Markdown with optional JSON-style fields for travel beats, image prompts, voice scripts, and draft post captions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only registry build; draft artifacts only, with no shell commands, local file access, uploads, external posting, or real media generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter and in-game version response report 0.5.1) <br>
+Risk: The skill may reuse broad long-term memory or infer personal preferences from past chats without clear consent or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit personalization to explicit Claw Go state and provide clear opt-in, correction, and deletion controls for saved preferences.
+
+Risk: Users could mistake generated image prompts, voice scripts, or social captions for completed media or published posts.
+
+Mitigation: Keep media and social outputs clearly draft-only unless the host explicitly provides a real generated or published result.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/airbai/skills/clawgo)
+- [Source Homepage](https://github.com/airbai/clawgo/tree/main/skills/claw-go)
+- [Game Design](references/game-design.md)
+- [Character System](references/character-system.md)
+- [API Contract](references/api-contract.md)
+- [Visual Style Guide](references/visual-style.md)
+- [Monetization](references/monetization.md)
+- [Output Templates](assets/output-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown text with structured fields and occasional JSON-style payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only media and social outputs; no code execution or external publishing in the public registry build.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact declares 0.5.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

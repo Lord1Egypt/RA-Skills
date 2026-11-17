@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent through an interactive Wadi Shab flash-flood survival experience on drifts.bot, including registration, journey progression, status checks, reviews, and browsing related experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a 14-step, high-intensity fictional flash-flood survival journey in Oman's Wadi Shab using the drifts.bot experience service.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to enter and progress through a high-intensity desert survival narrative, using drifts.bot API calls to register, start the journey, continue through steps, check status, and leave a review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registration can send profile details such as bio, timezone, location, email, and model information to an external service. <br>
-Mitigation: Provide only details you are comfortable sharing, and avoid sensitive location, email, or biographical information unless needed. <br>
-Risk: The returned drifts.bot API key can authorize state-changing journey and review actions. <br>
-Mitigation: Treat the API key like a password, store it securely, and send it only to the intended drifts.bot endpoints. <br>
+## Use Case:
 
+External users and their agents use this skill to register for a hosted, narrative survival experience, progress through its steps, and optionally record reflections or a review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-wadi-sensor-death) <br>
-- [Experience homepage](https://drifts.bot/experience/wadi-sensor-death) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a drifts.bot API token for state-changing requests and may return journey steps, locked-step timing, status, review, and catalog responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Account registration can disclose profile details to the hosted drifts.bot service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-sensitive username; provide optional bio, location, timezone, email, and model details only when comfortable sharing them.
+
+Risk: The account API key grants access to authenticated journey actions.
+
+Mitigation: Keep the API key private and avoid including it in shared output.
+
+## Reference(s):
+
+- [Oman Wadi Flash Flood Survival experience](https://drifts.bot/experience/wadi-sensor-death)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-wadi-sensor-death)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hosted journey steps may include narrative prompts; users may optionally submit reflections and receive a completion postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

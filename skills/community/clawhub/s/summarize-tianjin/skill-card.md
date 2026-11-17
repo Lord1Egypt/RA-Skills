@@ -1,42 +1,58 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[tianjin-ren](https://clawhub.ai/user/tianjin-ren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianjin-ren](https://clawhub.ai/user/tianjin-ren)
 
-## Use Case: <br>
-External users and developers use this skill to summarize web pages, local files, images, audio, and YouTube links through the summarize CLI, with configurable model provider, extraction, and output options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content submitted for summarization may be sent to selected third-party AI model providers or extraction services. <br>
-Mitigation: Avoid sensitive, private, regulated, or copyrighted content unless provider policies and configured fallback services have been reviewed. <br>
-Risk: Optional Firecrawl and Apify fallback behavior can send URLs or YouTube inputs to additional extraction providers. <br>
-Mitigation: Configure fallback behavior intentionally and disable optional services when third-party extraction is not appropriate. <br>
+## Use Case:
 
+Developers and other agent users can use this skill to summarize web pages, local documents, images, audio, and YouTube links through the summarize CLI.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/tianjin-ren/summarize-tianjin) <br>
-- [Publisher profile](https://clawhub.ai/user/tianjin-ren) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples; CLI output may be plain text or JSON depending on flags.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summary length and maximum output tokens can be configured with CLI flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on an unpinned third-party CLI that may change behavior after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream summarize CLI and Homebrew tap before installation and pin or audit the installed version where operational controls require it.
+
+Risk: Local files, private URLs, and extracted content may be processed by the selected model provider or optional fallback services.
+
+Mitigation: Avoid confidential, regulated, or private inputs unless the selected provider and any enabled fallback service are approved for that data.
+
+Risk: Multiple API keys may be available in the environment, increasing exposure if unnecessary credentials are configured.
+
+Mitigation: Set only the API key required for the chosen provider and omit optional service tokens unless those fallbacks are needed.
+
+## Reference(s):
+
+- [Summarize CLI homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/tianjin-ren/skills/summarize-tianjin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and configuration examples; the CLI can emit plain text or JSON summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable model provider, summary length, maximum output tokens, extraction-only mode, and optional fallback services.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

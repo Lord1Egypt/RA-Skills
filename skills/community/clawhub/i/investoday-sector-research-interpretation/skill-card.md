@@ -1,43 +1,57 @@
-## Description: <br>
-Interprets sell-side research for industries, sectors, concepts, and themes by using the investoday finance data interface to identify the requested entity and produce a structured sector research report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets sector, industry, concept, and theme research reports using Investoday finance data, summarizing sell-side consensus, core theses, disagreements, opportunities, risks, and representative directions.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
 
-## Use Case: <br>
-External finance research users and agents use this skill to summarize sell-side views for industries, sectors, concepts, and themes. It identifies the requested sector or concept through the investoday-finance-data dependency, retrieves recent research sentiment, and returns structured consensus, disagreement, opportunity, risk, and follow-up observation points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated sector research summary may be mistaken for personalized investment advice. <br>
-Mitigation: Present findings as market research only, avoid buy or sell instructions, target prices, position sizing, and trade timing, and preserve the skill's evidence and disclaimer constraints. <br>
-Risk: Sector consensus can be overstated when the retrieved research sample is sparse or one-sided. <br>
-Mitigation: Require repeated evidence before labeling a view as consensus, use a clear time window such as recent 90-day research, and state when data is insufficient. <br>
-Risk: The skill depends on the separate investoday-finance-data skill for market data and entity recognition. <br>
-Mitigation: Confirm the dependency is available before use and ask for a clearer sector, industry, concept, or theme when entity recognition is unstable. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to turn a sector, industry, concept, or theme question into a structured research interpretation report grounded in recent Investoday research sentiment data. It is intended for research summaries and does not provide investment advice, price targets, position sizing, or trading timing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-sector-research-interpretation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kenneth-bro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sector research interpretation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses recent sector or concept research sentiment through the investoday-finance-data dependency and should state when available evidence is insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server-resolved release evidence) <br>
+Risk: Finance-related user queries are sent through the Investoday data dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only where routing those finance queries to Investoday data tools is acceptable.
+
+Risk: Research summaries may be mistaken for investment advice.
+
+Mitigation: Present outputs as research summaries only and preserve the skill's restrictions against buy or sell recommendations, price targets, position sizing, or trading timing.
+
+Risk: Limited or sparse research data can make sector-level consensus unreliable.
+
+Mitigation: Follow the skill's evidence rules by requiring repeated evidence, stating the 90-day time window, and saying when a dimension has insufficient data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenneth-bro/skills/investoday-sector-research-interpretation)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language sector research report with sections for conclusion, research theses, consensus and disagreement, key directions, opportunities and risks, follow-up observations, and a summarized conclusion.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

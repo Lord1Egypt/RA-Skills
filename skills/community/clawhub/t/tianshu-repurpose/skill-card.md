@@ -1,40 +1,54 @@
-## Description: <br>
-Repurpose one long article into platform-sized drafts for Xiaohongshu, Douyin, Weibo, and WeChat using local text rules and no API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tianshu Repurpose converts a long Chinese article or plain text into platform-sized draft copy for Xiaohongshu, Douyin, Weibo, and WeChat public account title and summary use.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Content and marketing users can convert a PR article, blog post, or long-form draft into copy blocks sized for common Chinese social platforms. The output is intended for manual review and posting, not direct platform publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated platform copy may be inaccurate, outdated against platform norms, or misaligned with brand voice. <br>
-Mitigation: Review and edit each generated section before posting. <br>
-Risk: The selected source article text is read locally and included in generated output. <br>
-Mitigation: Run the skill only on articles intended for repurposing and avoid sensitive or confidential source text. <br>
+## Use Case:
 
+External users and content operators use this skill to repurpose a provided long article into copy blocks sized for Chinese social and publishing platforms. It supports manual review-and-paste workflows rather than automated posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-repurpose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown sections written to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts UTF-8 article text from --file or --text and produces locally clipped platform drafts; no network API access is indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact clawhub.json) <br>
+Risk: Generated platform drafts may not reflect current platform rules, brand requirements, or factual nuance in the source article.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit each draft manually before posting, especially for platform policy compliance and brand tone.
+
+Risk: The skill is Chinese-content focused and may produce less useful drafts for other languages or markets.
+
+Mitigation: Use it primarily for Chinese social-media copy and verify suitability before adapting output to other locales.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangshengli0421/skills/tianshu-repurpose)
+- [ClawHub publisher profile](https://clawhub.ai/user/wangshengli0421)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown sections with platform-specific draft text and brief posting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts are written to stdout and should be manually reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

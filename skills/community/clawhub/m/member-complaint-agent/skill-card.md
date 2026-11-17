@@ -1,41 +1,57 @@
-## Description: <br>
-Helps support teams analyze member complaint issues from Linear and draft structured internal analysis plus customer reply comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle member/customer complaint workflows with a Linear-centered operating model.
 
-## Publisher: <br>
-[qwqcode](https://clawhub.ai/user/qwqcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwqcode](https://clawhub.ai/user/qwqcode)
 
-## Use Case: <br>
-Support and operations teams use this skill to triage member or customer complaints arriving through Linear. It separates facts from judgment, classifies complaint intent and risk, routes SOP considerations by platform or vendor, and drafts reviewable Linear comments and customer replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated complaint analysis or reply drafts could imply refund, billing, legal, privacy, or timeline commitments that are not authorized by policy. <br>
-Mitigation: Use the skill as support assistance only; review all generated Linear comments and customer drafts before posting or sending, especially for billing, refunds, legal threats, privacy issues, and unclear short complaints. <br>
-Risk: Missing SOPs or ambiguous metadata could lead to incorrect channel or vendor routing. <br>
-Mitigation: Treat provided SOPs and confirmed Linear issue facts as authoritative, mark ambiguous metadata as ambiguous, and avoid inventing channel rules or next steps. <br>
+## Use Case:
 
+Support teams use this skill to triage member complaint issues from Linear, separate issue facts from AI judgments, classify risk and intent, and draft structured internal analysis plus customer-facing replies.
 
-## Reference(s): <br>
-- [Complaint Playbook](references/complaint-playbook.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/qwqcode/member-complaint-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown comments and concise support guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured complaint analysis, customer reply drafts, and digest summaries for human review before posting or sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Drafted customer replies may imply refunds, compensation, exceptions, or timelines without approved policy support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review replies before sending and avoid final commitments unless the relevant policy or SOP is provided.
+
+Risk: Complaint handling may involve legal threats, privacy concerns, chargebacks, public escalation, or other sensitive cases.
+
+Mitigation: Escalate sensitive cases for human review and use the skill output as a structured draft rather than a final decision.
+
+Risk: The default comment templates are Chinese and may not match every support team's workflow.
+
+Mitigation: Confirm language and Linear write-back expectations before using the skill in production complaint handling.
+
+## Reference(s):
+
+- [Complaint Playbook](artifact/references/complaint-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown-style Linear comments and concise complaint summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured AI analysis comments, customer reply drafts, and complaint digest summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Expert in threat modeling methodologies, security architecture review, and risk assessment using STRIDE, PASTA, attack trees, and security requirement extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in threat modeling methodologies, security architecture review, and risk assessment using STRIDE, PASTA, attack trees, and security requirement extraction.
 
-## Publisher: <br>
-[brandonwise](https://clawhub.ai/user/brandonwise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandonwise](https://clawhub.ai/user/brandonwise)
 
-## Use Case: <br>
-Developers, security architects, and product teams use this skill to structure threat modeling for systems and features, identify attack paths and trust boundaries, prioritize threats, and document mitigations and residual risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may provide systems or architecture details they are not authorized to review. <br>
-Mitigation: Use the skill only for systems and information the user is authorized to assess. <br>
-Risk: Threat-modeling output could be mistaken for legal compliance certification. <br>
-Mitigation: Treat the output as security planning guidance and consult qualified legal or compliance reviewers for certification decisions. <br>
-Risk: Threat models may miss risks when the supplied architecture, data flow, or trust-boundary details are incomplete. <br>
-Mitigation: Review outputs with system owners, validate assumptions, and update the model when the architecture changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Threat Modeling Expert on ClawHub](https://clawhub.ai/brandonwise/threat-modeling) <br>
+## Use Case:
+
+Developers, security engineers, and architecture reviewers use this skill to perform authorized threat modeling for system designs, architecture reviews, audit preparation, and security documentation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Threat modeling without authorization or a clear review scope could produce inappropriate security analysis.
+
+Mitigation: Use the skill only for authorized security architecture reviews with system-owner-approved scope.
+
+Risk: Security documentation workflows can expose sensitive architecture details or live secrets.
+
+Mitigation: Avoid sharing live secrets unless necessary and minimize sensitive system details to what the approved review requires.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown threat model with structured sections, tables, diagrams, prioritized threats, mitigations, and residual risks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only defensive security planning output; no code execution or credential handling is performed by the skill.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured threat model content, including scope, assets, trust boundaries, data flow diagram notes, STRIDE analysis, prioritized threats, mitigations, residual risks, and review schedule.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

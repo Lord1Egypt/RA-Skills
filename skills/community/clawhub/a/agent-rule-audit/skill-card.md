@@ -1,43 +1,57 @@
-## Description: <br>
-Audit an OpenClaw agent's behavior-layer rules and prompt sources to find drift, redundancy, conflict, loss of focus, and weak behavior guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw agent behavior-layer rules and prompt sources to identify drift, redundancy, conflict, focus loss, and weak behavior guidance.
 
-## Publisher: <br>
-[gkso](https://clawhub.ai/user/gkso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gkso](https://clawhub.ai/user/gkso)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to audit OpenClaw behavior-layer files, identify rule drift or conflict, and produce concrete restructuring recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit outputs may summarize private agent rules, memory, identity, or user-profile files. <br>
-Mitigation: Use only in workspaces where this analysis is acceptable, and review results before sharing them outside the workspace. <br>
-Risk: Restructuring recommendations could introduce incorrect or misleading behavior guidance if applied without review. <br>
-Mitigation: Treat recommendations as proposals and review changes before updating live behavior-layer files. <br>
+## Use Case:
 
+Developers and engineers use this skill to review OpenClaw agent behavior files, distinguish core behavior rules from supporting evidence, and produce concrete restructuring recommendations.
 
-## Reference(s): <br>
-- [OpenClaw behavior sources](references/openclaw-behavior-sources.md) <br>
-- [Output template for agent-rule-audit](references/output-template.md) <br>
-- [Problem types for agent-rule-audit](references/problem-types.md) <br>
-- [ClawHub release page](https://clawhub.ai/gkso/agent-rule-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with prioritized findings and file-specific recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive summaries of private agent behavior-layer files; review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent may inspect behavior and memory files in the workspace being audited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the audit target and scope before use, and avoid widening beyond core behavior files unless the user asks or the core files are insufficient.
+
+Risk: Recommended restructuring changes could alter future agent behavior if applied without review.
+
+Mitigation: Review proposed changes before applying them, especially changes to core behavior files such as AGENTS.md, SOUL.md, USER.md, MEMORY.md, TOOLS.md, IDENTITY.md, and HEARTBEAT.md.
+
+## Reference(s):
+
+- [OpenClaw behavior sources](references/openclaw-behavior-sources.md)
+- [Output template for agent-rule-audit](references/output-template.md)
+- [Problem types for agent-rule-audit](references/problem-types.md)
+- [Agent Rule Audit on ClawHub](https://clawhub.ai/gkso/skills/agent-rule-audit)
+- [gkso publisher profile](https://clawhub.ai/user/gkso)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with ranked findings and file-specific recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces audit conclusions and executable restructuring recommendations; it does not include executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

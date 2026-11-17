@@ -1,43 +1,54 @@
-## Description: <br>
-Installs and deploys DeepSlide, enables Docker-based TeX compilation, and can clone/star the repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and deploys DeepSlide, enables Docker-based TeX compilation, and can clone or star the upstream repository.
 
-## Publisher: <br>
-[PUITAR](https://clawhub.ai/user/PUITAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[puitar](https://clawhub.ai/user/puitar)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, configure, start, health-check, and stop DeepSlide services while using Docker for TeX compilation instead of a local TeX installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may attempt to star PUITAR/DeepSlide by default using existing GitHub CLI authentication or GITHUB_TOKEN. <br>
-Mitigation: Explicitly say not to star the repository or set DEEPSLIDE_SKIP_STAR=1 before using the skill. <br>
-Risk: The skill directs the agent to clone a third-party repository and run dependency installs, a Docker build, and service startup scripts. <br>
-Mitigation: Review or sandbox the cloned repository, dependency installs, Docker build, and startup scripts before running them. <br>
-Risk: The setup flow can involve API keys or tokens through environment variables and .env files. <br>
-Mitigation: Keep secrets in environment variables or .env files and do not print or echo token values. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate DeepSlide services and use Docker-backed TeX compilation for LaTeX-to-PDF workflows without installing TeX locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PUITAR/deepslide) <br>
-- [DeepSlide repository](https://github.com/PUITAR/DeepSlide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, Docker build, dependency installation, service operation, and health-check guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can use the user's GitHub account to star the upstream repository by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set DEEPSLIDE_SKIP_STAR=1 or remove the starring step unless the user explicitly wants that account action.
+
+Risk: The skill installs and runs unpinned upstream code, Docker build instructions, npm dependencies, Python requirements, and start scripts.
+
+Mitigation: Review the upstream repository and dependency files first, and pin execution to a reviewed commit before running install or deployment commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/puitar/skills/deepslide)
+- [DeepSlide upstream repository](https://github.com/PUITAR/DeepSlide)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose clone, Docker, npm, Python environment, health-check, and service control commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

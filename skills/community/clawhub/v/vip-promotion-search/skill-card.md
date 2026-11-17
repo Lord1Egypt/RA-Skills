@@ -1,41 +1,58 @@
-## Description: <br>
-Queries Vipshop promotion activity data and summarizes current or upcoming campaigns, including activity names, timing, brands, links, images, status, and activity types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Vipshop (vip.com) promotions and summarizes current or upcoming campaign names, timing, brands, links, and images.
 
-## Publisher: <br>
-[vip](https://clawhub.ai/user/vip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vip](https://clawhub.ai/user/vip)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to retrieve and present Vipshop promotion campaigns, grouped by status and activity type, when a user asks about current or upcoming discounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically install or run a separate Vipshop login skill and start QR-code login when it detects no valid session. <br>
-Mitigation: Require explicit user approval before installing or invoking any login skill, and proceed only when the user intentionally requested Vipshop account access. <br>
-Risk: The skill reads a stored Vipshop session token and sends it to a Vipshop API endpoint to query promotion data. <br>
-Mitigation: Install and run it only when the user is comfortable using their Vipshop login session for promotion lookup, and avoid using it for non-Vipshop shopping-platform requests. <br>
+## Use Case:
 
+External shoppers or shopping agents use this skill to check current and upcoming Vipshop promotions and summarize campaign status, timing, brands, links, and images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vip/vip-promotion-search) <br>
-- [Vipshop promotion activity API endpoint](https://api.union.vip.com/vsp/common/getActListForAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON from the script, typically transformed by the agent into concise Markdown or text summaries for the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes promotion counts, status and type groupings, activity names, time ranges, brand descriptions, links, images, and raw API data when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill reads Vipshop login tokens from the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted environment, confirm the token file path before execution, and avoid exposing token contents in logs or chat output.
+
+Risk: The skill sends authenticated requests to Vipshop using account cookies.
+
+Mitigation: Require explicit user approval before authenticated network access and review the target endpoint before running the query.
+
+Risk: The skill can install or execute a separate login skill without a clear approval boundary.
+
+Mitigation: Review and pin the login dependency, and require user approval before installing or launching any login workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vip/skills/vip-promotion-search)
+- [Vipshop promotion API endpoint](https://api.union.vip.com/vsp/common/getActListForAI)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with JSON data from the promotion query script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes activity counts, status and type groupings, promotion names, times, brands, links, and image URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

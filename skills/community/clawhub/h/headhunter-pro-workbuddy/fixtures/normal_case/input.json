@@ -1,0 +1,13 @@
+{
+  "task_type": "resume_screen",
+  "candidate_info": {
+    "name": "张明",
+    "experience_years": 8,
+    "current_company": "阿里巴巴",
+    "current_title": "高级 SRE 工程师",
+    "education": "浙江大学 计算机硕士",
+    "key_skills": ["Kubernetes", "Docker", "Python", "CI/CD", "Prometheus"]
+  },
+  "job_description": "璞睿生命科技 SRE 负责人：8年+运维经验，Kubernetes/Docker，Shell/Python，可观测性，带 5+ 人团队",
+  "industry": "医疗"
+}

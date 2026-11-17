@@ -1,44 +1,55 @@
-## Description: <br>
-OpenCode CLI guidance for submitting coding tasks, managing sessions, delegating work to coding agents, checking task status, and configuring OpenCode settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCode CLI guidance for submitting coding tasks, managing sessions, delegating work to coding agents, checking status, and configuring OpenCode settings.
 
-## Publisher: <br>
-[tornado404](https://clawhub.ai/user/tornado404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tornado404](https://clawhub.ai/user/tornado404)
 
-## Use Case: <br>
-Developers and coding-agent operators use this skill as a concise OpenCode and oho CLI handbook for creating sessions, sending coding tasks, monitoring work, handling timeouts, and configuring local OpenCode services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward broad shell, file, permission, session, and server-control actions. <br>
-Mitigation: Require explicit user approval before running shell commands, approving permissions, sharing or deleting sessions, attaching local files, changing provider credentials, or starting network-facing services. <br>
-Risk: The artifact includes an example OpenCode server password and server startup commands. <br>
-Mitigation: Replace sample credentials with a real secret-handling method and avoid exposing services unless the deployment is intentionally network-facing and access-controlled. <br>
-Risk: Async sessions and MCP/server processes may continue running after task submission. <br>
-Mitigation: Monitor started sessions and processes, check status before assuming completion, and stop services that are no longer needed. <br>
+## Use Case:
 
+Developers and coding-agent operators use this skill to drive OpenCode and oho CLI workflows for submitting tasks, managing sessions, checking task status, and configuring providers or project settings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tornado404/opencode-client) <br>
-- [OpenCode official docs](https://opencode.ai/docs/) <br>
-- [OpenCode configuration schema](https://opencode.ai/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples, session-management procedures, timeout handling, server restart steps, and MCP configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Server startup examples include a hard-coded password, broad network binding, and mDNS exposure that could expose powerful coding-agent controls if copied as written.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique password, bind to localhost by default, and enable remote access or mDNS only on trusted networks with intentional access controls.
+
+Risk: Session deletion, session sharing, shell execution, process killing, and file attachment commands can change projects or disclose private files.
+
+Mitigation: Require explicit user confirmation before destructive actions, sharing sessions, executing shell commands, killing processes, or sending private project files to external models.
+
+## Reference(s):
+
+- [OpenCode Official Docs](https://opencode.ai/docs/)
+- [oho CLI Repository](https://github.com/tornado404/opencode_cli)
+- [OpenCode Configuration Schema](https://opencode.ai/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON output flags, file attachment examples, and environment-variable settings when relevant.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

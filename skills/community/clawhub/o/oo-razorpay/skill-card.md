@@ -1,46 +1,56 @@
-## Description: <br>
-Razorpay helps agents operate Razorpay through an OOMOL-connected account for reading, creating, and updating payment, order, and refund data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Razorpay (razorpay.com). Use this skill for ANY Razorpay request — reading, creating, updating, and deleting data. Whenever a task involves Razorpay, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Razorpay schemas and run Razorpay connector actions through the oo CLI for orders, payments, and refunds. The skill is intended for accounts where Razorpay has already been connected through OOMOL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Razorpay orders and refunds, which are real payment-related write operations. <br>
-Mitigation: Review the exact payload and get explicit user approval before running write actions such as order or refund creation. <br>
-Risk: The skill requires an OOMOL-connected Razorpay account and therefore depends on sensitive account credentials managed outside the skill. <br>
-Mitigation: Install only when OOMOL's oo CLI should access the user's Razorpay account, and reconnect only when an auth or connection failure requires it. <br>
-Risk: Incorrect action payloads can produce unintended financial or operational effects. <br>
-Mitigation: Fetch the live connector schema before building payloads and compare the request with the user's intended order, payment, or refund operation. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Razorpay orders and payments and, with approval, create orders or refunds through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Razorpay skill](https://clawhub.ai/oomol/oo-razorpay) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Razorpay homepage](https://razorpay.com) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands run through the oo CLI and return JSON responses that include data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: If the oo CLI is missing, the setup instructions run a remote installer whose contents and local effects are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified CLI release yourself, and require approval before any fallback installation. Review the CLI's bundled-skill synchronization behavior and the Razorpay access it receives.
+
+Risk: Creating orders or issuing refunds changes Razorpay account state.
+
+Mitigation: Keep the skill's confirmation requirements: confirm the exact order payload before creating an order, and confirm the refund target and action before issuing a refund.
+
+## Reference(s):
+
+- [Razorpay API authentication documentation](https://razorpay.com/docs/api/authentication/)
+- [Razorpay](https://razorpay.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with oo CLI commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas are fetched before calls; no fixed output size is stated.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

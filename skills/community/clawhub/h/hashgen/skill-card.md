@@ -1,41 +1,50 @@
-## Description: <br>
-Hash files and strings, verify checksums, and run integrity checks fast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hash files and strings, verify checksums, and run integrity checks fast. Use when generating SHA hashes, verifying files, or comparing digest values.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use Hashgen to generate MD5, SHA1, SHA256, and SHA512 hashes for text or files, compare digest values, and verify checksums during integrity checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive text passed on the command line can appear in shell history, terminal scrollback, logs, or process-related records. <br>
-Mitigation: Avoid hashing passwords, API keys, tokens, and other secrets as command-line text; use non-sensitive inputs or file-based workflows where appropriate. <br>
-Risk: MD5 and SHA1 are weak for security-sensitive integrity decisions. <br>
-Mitigation: Prefer SHA256 or SHA512 for integrity checks; use MD5 and SHA1 only when compatibility with existing checksums requires them. <br>
+## Use Case:
 
+Developers and engineers use Hashgen to generate MD5 and SHA-family digests for strings and files, compare hash values, and verify text against an expected checksum.
 
-## Reference(s): <br>
-- [Hashgen on ClawHub](https://clawhub.ai/bytesagain3/hashgen) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command output and concise Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local hash values, comparison results, file metadata, and checksum verification status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Text passed as command-line input may appear in terminal output, shell history, logs, or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass passwords, API keys, tokens, or other secrets as command-line text; use non-sensitive sample inputs or files whose contents are appropriate to hash locally.
+
+## Reference(s):
+
+- [Hashgen on ClawHub](https://clawhub.ai/bytesagain3/skills/hashgen)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include digest values, file metadata, comparison results, and verification results from local hashgen commands.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence, artifact frontmatter, script constant)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

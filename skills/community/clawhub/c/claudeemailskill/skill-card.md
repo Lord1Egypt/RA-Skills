@@ -1,43 +1,53 @@
-## Description: <br>
-Helps agents plan, draft, critique, and QA Claude-oriented email prompts and campaign copy with review gates before live email-system changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, draft, review, and hand off Claude-oriented email prompts and campaigns with critique loops and human approval gates.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Developers, marketers, and email operations teams use this skill through an agent to structure Claude prompts, draft or critique campaign copy, generate variants, and prepare approval-ready email handoffs while keeping live-system actions behind approval gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts or critiques could introduce unsupported claims, overpromising, or compliance-sensitive language. <br>
-Mitigation: Trace major claims to supplied source material and require human, legal, product, or deliverability review where the artifact marks approval needs. <br>
-Risk: Email-system recommendations could be mistaken for permission to perform live operational changes. <br>
-Mitigation: Separate recommendations from execution and require explicit approval before live sends, contact imports, suppression edits, DNS/authentication changes, production automation changes, provider migrations, or destructive cleanup. <br>
-Risk: Prompts may expose unnecessary private or customer data during email drafting or critique. <br>
-Mitigation: Use bounded source material and avoid exposing unnecessary private data in prompts. <br>
+## Use Case:
 
+Agents and operators use this skill to create and evaluate Claude-oriented email prompts, campaign drafts, rewrite instructions, critique rubrics, variant sets, and approval-ready copy packets while keeping live email actions behind explicit human review.
 
-## Reference(s): <br>
-- [Claude Email Skill Operating Checklist](references/operating-checklist.md) <br>
-- [Claude Email Skill on ClawHub](https://clawhub.ai/polnikale/claudeemailskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with prompts, drafts, critique rubrics, rewrite instructions, variant sets, and approval-ready copy packets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit human approval before live sends, contact imports, DNS/authentication changes, suppression edits, production automation changes, or provider migrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill may activate for broad email planning or improvement tasks, including work that could affect live email systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for drafting and review support, and require explicit human approval before live sends, contact imports, DNS/authentication changes, suppression edits, or production automation changes.
+
+Risk: Email copy can include unsupported claims, overpromising subject lines, unsafe personalization, or changes that need brand, legal, product, or deliverability review.
+
+Mitigation: Trace claims to supplied source material, review subject and preview alignment with the body, validate personalization fallbacks, and route required human review before production use.
+
+## Reference(s):
+
+- [Claude Email Skill Operating Checklist](references/operating-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured plain text with prompts, drafts, rubrics, variant sets, and QA notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit approval before live sends, contact imports, DNS/authentication changes, suppression edits, or production automation changes.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Integrate Self (self.xyz), a privacy-first identity protocol, to verify passports and ID cards with zero-knowledge proofs across frontend QR code, backend API, and Celo smart contract flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Self (self.xyz), a privacy-first identity protocol using zero-knowledge proofs to verify passports and ID cards across frontend QR flows, backend proof verification, and Celo smart contract verification.
 
-## Publisher: <br>
-[0xturboblitz](https://clawhub.ai/user/0xturboblitz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xturboblitz](https://clawhub.ai/user/0xturboblitz)
 
-## Use Case: <br>
-Developers and engineers use this skill to add privacy-preserving KYC, age verification, nationality checks, OFAC screening, or Sybil-resistance flows based on Self identity proofs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Identity verification flows can expose sensitive passport or ID attributes if applications request, log, retain, or disclose raw personal data unnecessarily. <br>
-Mitigation: Prefer predicate checks such as minimum age or sanctions status, avoid passport or ID numbers unless legally required, and define deletion, retention, and access controls before production use. <br>
-Risk: On-chain integrations can permanently expose personal data if raw identity fields are emitted or stored by smart contracts. <br>
-Mitigation: Do not store or emit raw personal data on-chain; use proof outcomes, nullifiers, or minimal status flags instead. <br>
-Risk: Development settings for mock passports or staging networks can weaken production verification if left enabled. <br>
-Mitigation: Disable mock-passport and staging settings in production and verify that frontend disclosures exactly match backend or contract verification configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Backend Integration](references/backend.md) <br>
-- [Smart Contract Integration](references/contracts.md) <br>
-- [Frontend Integration](references/frontend.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to add privacy-preserving passport or ID-card verification, age checks, nationality checks, OFAC screening, KYC-style flows, Sybil resistance, and Celo on-chain verification using Self.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, Solidity, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes integration patterns, configuration notes, deployed Celo contract addresses, and privacy guardrails.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Identity verification examples can lead developers to collect or expose sensitive identity attributes beyond what is needed.
+
+Mitigation: Use explicit privacy notices, request the minimum disclosures required for the use case, define strict retention rules, and avoid placing raw identity fields on-chain unless public permanent exposure is intended.
+
+Risk: The smart contract example may be copied without binding the verified address to the proof subject or another trusted identity signal.
+
+Mitigation: Review contract code before deployment and cryptographically bind verified addresses to the proof subject or another trusted identity signal.
+
+Risk: Unpinned dependency versions can change verification behavior over time.
+
+Mitigation: Pin dependency versions and review Self package changes before updating production integrations.
+
+## Reference(s):
+
+- [Frontend Integration](artifact/references/frontend.md)
+- [Backend Integration](artifact/references/backend.md)
+- [Smart Contract Integration](artifact/references/contracts.md)
+- [ClawHub Skill Page](https://clawhub.ai/0xturboblitz/skills/self-xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript, Solidity, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces integration guidance and examples for frontend, backend, and on-chain verification flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

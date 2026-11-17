@@ -1,17 +1,17 @@
-# 列表虚拟化优化
+# List virtualization optimization
 
-Frontend Craft skill for 列表虚拟化优化.
+Optimize large scrolling lists with windowing, measurement, and stable loading behavior.
 
 ## Skill
 
 - ID: `fec-list-virtualization`
 - Category: `implementation-capability`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-list-virtualization/SKILL.md`
 
 ## Description
 
-Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include 虚拟列表, 大列表优化, 滚动性能.
+Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include virtual lists, large list optimization, scroll performance.
 
 ## Usage
 

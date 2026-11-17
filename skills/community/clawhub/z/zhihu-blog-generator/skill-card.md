@@ -1,41 +1,55 @@
-## Description: <br>
-知乎风格技术博客生成器 - 自动化生成高质量技术文章 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Zhihu-style technical blog posts by selecting topics, collecting technical sources, drafting, refining, and exporting Markdown.
 
-## Publisher: <br>
-[xieyuantao7](https://clawhub.ai/user/xieyuantao7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xieyuantao7](https://clawhub.ai/user/xieyuantao7)
 
-## Use Case: <br>
-Developers and technical writers use this skill to select or provide a technical topic, collect supporting sources, draft a Zhihu-style technical blog post, refine the prose, and output a publishable Markdown article. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided topic text can be passed through shell-driven commands. <br>
-Mitigation: Review topic strings before running one-click workflows and avoid executing commands with untrusted or unsanitized input. <br>
-Risk: Generated posts can contain publishable-looking technical claims, metrics, case studies, source-code analysis, or personal-experience statements that are not source-backed. <br>
-Mitigation: Fact-check every generated claim against collected sources before publishing and require human editorial review for final Markdown output. <br>
+## Use Case:
 
+Developers and technical writers use this skill to create Chinese Zhihu-style technical blog drafts from a selected topic. The workflow gathers web, paper, and project source material, creates a draft, refines style and depth, and exports a final Markdown article.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xieyuantao7/zhihu-blog-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/xieyuantao7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles, JSON workflow artifacts, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes topic, collection, draft, refinement, and final output files under the configured reports directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe command execution and path handling may affect runner safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the runner before installation: remove shell execution, validate topic and session inputs, and keep outputs in a controlled directory.
+
+Risk: Generated technical claims may be incorrect, outdated, or insufficiently supported.
+
+Mitigation: Manually verify sources, links, data, code claims, and citations before publishing any generated article.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xieyuantao7/skills/zhihu-blog-generator)
+- [Artifact README](artifact/README.md)
+- [Artifact skill guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown articles with YAML front matter, plus JSON session metadata and logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes topic, collection, draft, refinement, and final output files under a configured session directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,65 @@
-## Description: <br>
-Build tai chi practice plans, improve form, and track balance-focused sessions with safe progressions, concise coaching cues, and weekly reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build tai chi practice plans, improve form, and track balance-focused sessions with safe progressions, concise coaching cues, and weekly reviews.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to plan short tai chi sessions, reinforce class practice, improve form with concise cues, and track balance-oriented progress while keeping health and safety boundaries explicit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may store health-adjacent practice notes such as pain, dizziness, balance limits, or pregnancy and postpartum context under ~/tai-chi/. <br>
-Mitigation: Review each proposed file write before confirming, keep notes minimal, and avoid storing unrelated health details. <br>
-Risk: Movement coaching can be misread as medical or rehabilitation advice. <br>
-Mitigation: Use the skill as practice support only; it does not diagnose, prescribe, or replace clinician or instructor judgment. <br>
-Risk: Balance work, pain, dizziness, acute injury, or worsening symptoms can create safety concerns during practice. <br>
-Mitigation: Use conservative modifications, support such as a wall or chair when needed, and stop coaching for urgent symptoms or escalation thresholds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/tai-chi) <br>
-- [Skill homepage](https://clawic.com/skills/tai-chi) <br>
+## Use Case:
 
+External users use this skill for home tai chi practice, class reinforcement, balance-oriented movement, gentle recovery sessions, and repeatable mind-body routines. The agent helps choose a practice mode, create short practice blocks, provide concise form cues, track approved local notes, and keep safety boundaries explicit.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with short practice plans, coaching cues, logs, and review templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no external network requests; local notes require user confirmation before writes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional local notes may contain sensitive health-adjacent details such as pain, dizziness, pregnancy, balance limits, or fear of falling.
+
+Mitigation: Keep notes local under ~/tai-chi/, ask before creating or changing files, and store only details that improve future practice decisions.
+
+Risk: Users may treat gentle movement guidance as medical diagnosis, treatment, rehabilitation advice, or a substitute for professional judgment.
+
+Mitigation: Separate practice goals from health claims, avoid disease-specific promises, and recommend clinical or emergency care when red-flag symptoms or unclear medical constraints appear.
+
+Risk: Balance, joint, fatigue, pregnancy, or recovery concerns can make ordinary tai chi practice unsafe if progression is too aggressive.
+
+Mitigation: Use conservative modifications, reduce range or stance depth, provide wall or chair support where appropriate, and increase only one variable at a time after stability is demonstrated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/tai-chi)
+- [Skill Homepage](https://clawic.com/skills/tai-chi)
+- [Setup - Tai Chi](artifact/setup.md)
+- [Practice Modes - Tai Chi](artifact/practice-modes.md)
+- [Session Templates - Tai Chi](artifact/session-templates.md)
+- [Form Checks - Tai Chi](artifact/form-checks.md)
+- [Safety Modifications - Tai Chi](artifact/safety-modifications.md)
+- [Progression Ladder - Tai Chi](artifact/progression-ladder.md)
+- [Memory Template - Tai Chi](artifact/memory-template.md)
+- [Weekly Review Template - Tai Chi](artifact/weekly-review-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown guidance, practice plans, session reviews, and optional local Markdown notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill with no declared external network requests; local notes are kept under ~/tai-chi/ only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

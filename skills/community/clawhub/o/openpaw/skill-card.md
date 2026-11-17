@@ -1,40 +1,62 @@
-## Description: <br>
-ResonanceEngine analyzes conversation micro-signals and produces bot response tuning guidance for engagement, conversion, and revenue without API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ResonanceEngine analyzes conversation text for engagement, trust, decision-readiness, and style-match signals, then returns response guidance and conversion-oriented predictions for chatbot workflows.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and bot builders use this skill to analyze conversation history and generate response tuning guidance, conversion estimates, and prompt-ready recommendations for sales, support, retention, or engagement workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill profiles conversation behavior and generates conversion-oriented response guidance. <br>
-Mitigation: Use only with explicit disclosure, consent, human oversight, and clear policy limits, especially in sensitive domains or with vulnerable users. <br>
-Risk: Prompt-ready recommendation strings may steer live bot behavior if injected directly into a system prompt. <br>
-Mitigation: Review, constrain, and sanitize generated recommendation strings before using them in production prompts. <br>
+## Use Case:
 
+Developers and teams building chatbot workflows can use this skill to analyze conversation history and produce response-tuning guidance, yield predictions, and prompt text for the next bot response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/openpaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python objects and text guidance with prompt-ready recommendation strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analysis results including frequency profiles, resonance levels, tuning recommendations, yield predictions, risks, opportunities, and prompt-injection text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, pyproject.toml, server release metadata) <br>
+Risk: Conversation analytics and personalization may be used without clear user awareness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in contexts where users are clearly told that conversation analytics and personalization may be used.
+
+Risk: Generated prompt-tuning text can steer bot behavior in sensitive or high-pressure sales contexts.
+
+Mitigation: Require policy review before sensitive-domain or high-pressure sales use, and keep generated prompt text out of privileged system prompts unless it is reviewed and constrained.
+
+Risk: Recommendations may include scarcity or social-proof tactics that need factual support.
+
+Mitigation: Verify scarcity and social-proof claims before using them in customer-facing responses.
+
+Risk: Unpinned or unreviewed installation could introduce unexpected code changes.
+
+Mitigation: Install from a pinned, reviewed release in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcools1977/skills/openpaw)
+- [Publisher Profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Python objects, dictionaries, human-readable summaries, and prompt-tuning text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally without API-key or MCP dependencies according to discovery signals.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, pyproject.toml, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

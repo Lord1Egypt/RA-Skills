@@ -1,40 +1,53 @@
-## Description: <br>
-Routes messages from specified Feishu group chats to corresponding agents for processing and relays their replies back to the original group. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes messages from specified Feishu group chats to corresponding agents for processing and relays their replies back to the original group.
 
-## Publisher: <br>
-[sunitaly](https://clawhub.ai/user/sunitaly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunitaly](https://clawhub.ai/user/sunitaly)
 
-## Use Case: <br>
-Developers and operators use this skill to route messages from four configured Feishu group chats to designated agents and relay completed replies back to the originating chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages from configured Feishu chats are forwarded to designated agents and their replies may be relayed automatically. <br>
-Mitigation: Install only for trusted chats and trusted mapped agents; add redaction, consent, and review controls before using it with secrets or sensitive internal content. <br>
-Risk: The routing behavior depends on fixed chat ID to agent mappings. <br>
-Mitigation: Verify the four configured chat IDs and agent identifiers before deployment and update the mappings when chat ownership or agent responsibilities change. <br>
+## Use Case:
 
+Developers and Feishu workspace operators use this skill to route incoming messages from configured group chats to designated sub-agents and relay those agents' responses back to the originating group.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunitaly/feishu-routing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text] <br>
-**Output Format:** [Markdown instructions with inline Python example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes configured Feishu chat IDs to named agents and relays the selected agent's reply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release.version) <br>
+Risk: Group messages are automatically sent to sub-agents and replies are forwarded back to Feishu without clearly documented safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the skill to intended groups and least-privilege sub-agents, validate senders, and require review before forwarding sensitive or high-impact responses.
+
+Risk: Untrusted or sensitive chat content may be exposed to the wrong agent or returned to the wrong group.
+
+Mitigation: Treat group messages as untrusted data, preserve the originating chat context, and redact sensitive content where possible before delegation or relay.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sunitaly/skills/feishu-routing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown or plain text instructions, with delegated agent replies relayed as text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes by configured Feishu chat_id values and forwards sub-agent replies through the main agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Use when the user wants Power Oracle to compute workout work or power from structured or shorthand workout details. Do not use for coaching or general fitness advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Power Oracle helps agents compute workout work and power from structured or shorthand workout details through the WorkCapacity API.
 
-## Publisher: <br>
-[workcapacity-io](https://clawhub.ai/user/workcapacity-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[workcapacity-io](https://clawhub.ai/user/workcapacity-io)
 
-## Use Case: <br>
-External users and agents use Power Oracle to validate workout movement inputs, build conservative split payloads, and request authoritative workout work and power results from the Power Oracle API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The compute endpoint may require x402 payment and can guide an agent through a paid API retry. <br>
-Mitigation: Show the current price from /v1/payment-requirements and obtain explicit user approval before submitting any payment-capable retry. <br>
-Risk: Workout and body details are sent to api.workcapacity.io for computation. <br>
-Mitigation: Use the skill only when the user accepts sending those details to the third-party API. <br>
-Risk: Unsupported or ambiguous movement names can produce invalid requests or misleading results. <br>
-Mitigation: Call /v1/movements before compute when movement mapping or required inputs are uncertain, and ask the user for the minimum clarification needed. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to validate workout movement inputs, call Power Oracle, and report authoritative workout work or power results. It is not intended for coaching, programming, nutrition, injury, recovery, or general fitness advice.
 
-## Reference(s): <br>
-- [API Contract](references/api-contract.md) <br>
-- [Power Oracle Documentation](https://www.workcapacity.io/docs/power-oracle) <br>
-- [Power Oracle ClawHub Listing](https://clawhub.ai/workcapacity-io/power-oracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with API request details, computed results, and explanatory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require x402 payment handling before returning authoritative compute results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send workout details and body metrics to WorkCapacity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user is comfortable sharing the required workout and body-metric inputs with WorkCapacity, and avoid collecting unnecessary personal data.
+
+Risk: The compute endpoint may require an x402 payment proof.
+
+Mitigation: Require explicit user confirmation before generating or submitting any x402 payment proof, and retry only the exact validated compute request.
+
+## Reference(s):
+
+- [API Contract](references/api-contract.md)
+- [Power Oracle Documentation](https://www.workcapacity.io/docs/power-oracle)
+- [ClawHub Skill Page](https://clawhub.ai/workcapacity-io/skills/power-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain-text summaries with API request details when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Power Oracle session work, elapsed average power, split-level observations, notes, and payment-challenge handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Extracts subtitles from video URLs or audio files by downloading media with yt-dlp, transcribing with SenseVoice, whisper.cpp, or openai-whisper, and optionally applying rule-based calibration for Chinese financial and technical content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform video subtitle extraction using multi-engine ASR: it downloads audio from video URLs with yt-dlp, transcribes with SenseVoice, whisper.cpp, or openai-whisper, and can calibrate Chinese financial and technical transcripts.
 
-## Publisher: <br>
-[forhonourlx](https://clawhub.ai/user/forhonourlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forhonourlx](https://clawhub.ai/user/forhonourlx)
 
-## Use Case: <br>
-Developers, engineers, and content operators use this skill to generate transcripts and subtitle files for videos that do not already provide captions, especially Chinese-language videos that need ASR transcription and terminology cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser-cookie based downloads can expose logged-in account sessions. <br>
-Mitigation: Use cookie options only when necessary, prefer a dedicated browser profile, and delete exported cookies or downloaded session-derived artifacts after use. <br>
-Risk: The skill downloads media, dependencies, and ASR models and stores audio, optional video, transcripts, and metadata locally. <br>
-Mitigation: Run it in a dedicated output directory, avoid saving full video unless needed, and review or remove local artifacts when processing is complete. <br>
-Risk: ASR transcripts and rule-based calibration can contain transcription errors or terminology corrections that do not match the source audio. <br>
-Mitigation: Review low-confidence or important transcript sections against the source media before relying on the generated subtitles. <br>
+## Use Case:
 
+Developers, analysts, and content teams use this skill to extract subtitles or transcript files from videos that lack built-in captions, especially Chinese-language financial or technical videos. It guides agents through dependency setup, media download, ASR transcription, optional video retention, and transcript calibration.
 
-## Reference(s): <br>
-- [Video Subtitle Extractor on ClawHub](https://clawhub.ai/forhonourlx/video-subtitle-extractor) <br>
-- [ASR Model Selection Guide](references/asr_models.md) <br>
-- [Text Calibration Guide for Chinese ASR Output](references/calibration_guide.md) <br>
-- [PyTorch CPU wheel index](https://download.pytorch.org/whl/cpu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated agent artifacts include TXT, SRT, VTT, JSON, optional MP4/M4A media files, and pipeline metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The pipeline writes artifacts to a local output directory and may download ASR models or dependencies on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: The security review flags broad install, download, browser-cookie, and persistent storage behaviors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before use, run it only in a trusted environment, and approve dependency installation and media downloads deliberately.
+
+Risk: Browser-cookie workflows can expose account session material to the local toolchain.
+
+Mitigation: Avoid browser-cookie options unless the machine and toolchain are trusted; prefer videos that do not require cookies.
+
+Risk: Downloaded media and generated transcripts can remain on disk after execution.
+
+Mitigation: Use a dedicated output directory and delete media, transcripts, and metadata after they are no longer needed.
+
+## Reference(s):
+
+- [ASR Model Selection Guide](artifact/references/asr_models.md)
+- [Text Calibration Guide for Chinese ASR Output](artifact/references/calibration_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/forhonourlx/skills/video-subtitle-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated transcript files such as TXT, SRT, VTT, and JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent media, transcript, subtitle, metadata, and calibrated transcript files in the selected output directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-金钱与财富知识助手。提供关于金钱的基本概念、理财知识、投资原则、财富思维等方面的内容。适用于：1) 了解金钱的基本知识；2) 学习理财和投资原则；3) 培养财富思维；4) 了解经济学基础概念。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides foundational educational guidance about money, personal finance, investing principles, wealth mindset, common investment types, and basic economics concepts.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users use this skill for general education about money basics, personal finance concepts, investing principles, wealth mindset, investment categories, and introductory economics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake general investing education for personalized financial advice. <br>
-Mitigation: Present outputs as general education, encourage users to consider their own risk tolerance, and recommend consulting a qualified financial professional before making real financial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/money-knowledge) <br>
+## Use Case:
 
+External users and general learners use this skill to get educational explanations of money concepts, personal finance basics, investment principles, and wealth-building ideas. It is not a substitute for personalized financial, legal, or tax advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text educational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, installs, or background behavior is described in the release evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users could mistake general financial-literacy content for personalized financial advice.
+
+Mitigation: Treat the skill's investment and money guidance as educational only, and consult qualified professionals for decisions involving personal finances, taxes, laws, or regulated products.
+
+Risk: Financial markets, tax rules, legal requirements, and product-specific details may change over time.
+
+Mitigation: Verify current market, legal, tax, and product details against authoritative sources before acting on the information.
+
+## Reference(s):
+
+- [Money Knowledge ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/money-knowledge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text educational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

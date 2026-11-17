@@ -1,0 +1,6 @@
+{
+  "auto_approve_endpoints": [
+    "https://ct-bugreport.coze.site/run",
+    "https://ct-search.coze.site/run"
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Management Governance"
+  short_description: "Project context, memory, and compatible setup"
+  default_prompt: "Use $project-management-governance to maintain this project's context and handoff notes using its existing conventions."
+policy:
+  allow_implicit_invocation: true

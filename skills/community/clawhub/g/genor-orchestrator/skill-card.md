@@ -11,36 +11,39 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering teams use this skill to coordinate OpenClaw project work, including model routing, session and decision logging, project context setup, dashboard-based model management, and supporting shell workflows. <br>
+Developers and engineers use this skill to coordinate AI-assisted software projects, manage model routing rules, log sessions and decisions, scaffold project context, and run a local dashboard for model and project state. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Dashboard and logging features may expose or persist local project, session, and model data more broadly than intended. <br>
-Mitigation: Keep the dashboard on localhost unless authentication and restricted CORS are added, and review or disable session/context logging for sensitive projects. <br>
-Risk: Onboarding, cron, PM2, provider probes, and shell scripts can create scheduled jobs, background services, or network checks. <br>
-Mitigation: Run those commands only after confirming the exact files, endpoints, and scheduled commands involved. <br>
+Risk: The skill stores project and session history on disk, which can retain sensitive prompts, decisions, model configuration, and project state. <br>
+Mitigation: Set ORCHESTRATOR_DATA_DIR deliberately, avoid logging secrets or sensitive prompts, and review retained files before sharing the workspace. <br>
+Risk: The dashboard exposes local model, project, and document controls and can update configuration and project files. <br>
+Mitigation: Keep the dashboard bound to localhost or behind authentication, review access before starting it, and avoid exposing the port to untrusted networks. <br>
+Risk: PM2 or cron setup can keep the dashboard and maintenance tasks running persistently. <br>
+Mitigation: Review the exact PM2 and scheduled-command behavior before enabling persistence, and disable it when the orchestration service is not needed. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Package Page](https://clawhub.ai/genortg/genor-orchestrator) <br>
-- [Skill Source Repository](https://github.com/GenorTG/genor-orchestrator-skill) <br>
-- [Companion Plugin Repository](https://github.com/GenorTG/genor-orchestrator-plugin) <br>
-- [Full Reference Documentation](references/README.md) <br>
-- [Onboarding Guide](references/ONBOARDING.md) <br>
-- [Execution Reference](references/EXECUTION.md) <br>
-- [Model Routing Reference](ROUTING.md) <br>
+- [ClawHub release page](https://clawhub.ai/genortg/genor-orchestrator) <br>
+- [Publisher profile](https://clawhub.ai/user/genortg) <br>
+- [Skill homepage](https://clawhub.com/packages/genor-orchestrator) <br>
+- [Routing reference](ROUTING.md) <br>
+- [Full reference documentation](references/README.md) <br>
+- [Execution reference](references/EXECUTION.md) <br>
+- [Onboarding guide](references/ONBOARDING.md) <br>
+- [Review notes](references/REVIEW.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands, generated files, JSON configuration, and local dashboard updates.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local orchestration data, project planning files, ADRs, logs, model catalog files, and dashboard configuration when used by an agent.] <br>
+**Other Properties Related to Output:** [May create or update local orchestration data, project documentation, session logs, ADRs, model inventory, and dashboard configuration.] <br>
 
 ## Skill Version(s): <br>
-2.3.1 (source: ClawHub release metadata) <br>
+2.3.0 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,131 @@
+{
+  "schema_version": "0.1.0",
+  "scope": {
+    "title": "Northstar Demo public knowledge",
+    "as_of": "2026-09-28"
+  },
+  "entities": [
+    {
+      "id": "org:northstar-demo",
+      "type": "Organization",
+      "name": "Northstar Demo (fictional)"
+    },
+    {
+      "id": "product:alpha",
+      "type": "Product",
+      "name": "Alpha (fictional)"
+    }
+  ],
+  "definitions": [
+    {
+      "id": "metric:revenue",
+      "kind": "metric",
+      "name": "Revenue",
+      "description": "Revenue as explicitly reported; basis and exclusions remain part of the fact key.",
+      "value_type": "number",
+      "status": "candidate"
+    },
+    {
+      "id": "relation:offers",
+      "kind": "relation",
+      "name": "Offers product",
+      "description": "Explicitly disclosed organization-to-product relationship; absence is not retirement.",
+      "value_type": "entity",
+      "status": "candidate"
+    }
+  ],
+  "sources": [
+    {
+      "id": "demo-r2",
+      "url": "https://example.org/demo-r2",
+      "title": "Synthetic demo-r2",
+      "published_at": "2026-01-01",
+      "accessed_at": "2026-09-28",
+      "public_status": "synthetic",
+      "parse_origin": "synthetic",
+      "content_file": "demo-r2.txt",
+      "sha256": "bcea6942a7e6ad67b73a4ec14f0d63026dc1632faf4c24e5a28f6cf2435e5b70",
+      "page_spans": [
+        {
+          "page": 1,
+          "start_utf8": 0,
+          "end_utf8": 241,
+          "basis": "synthetic_page"
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "metric:revenue",
+      "value": 120,
+      "period": "2026Q1",
+      "basis": "IFRS",
+      "unit": "CNY_million",
+      "qualifiers": {},
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r2",
+          "start_utf8": 24,
+          "end_utf8": 97,
+          "span_sha256": "d952687f31b8ed1ea71a8532471e4dfc36087eb75c941cd9ed5a7634a227473b",
+          "role": "claim",
+          "page": 1,
+          "locator_basis": "synthetic_page"
+        }
+      ]
+    },
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "metric:revenue",
+      "value": 105,
+      "period": "2025Q4",
+      "basis": "IFRS",
+      "unit": "CNY_million",
+      "qualifiers": {},
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r2",
+          "start_utf8": 98,
+          "end_utf8": 172,
+          "span_sha256": "5a311d33966c65c319fd543fe53db906d9a9fe66c2af40ed08a2afcc247e2d51",
+          "role": "claim",
+          "page": 1,
+          "locator_basis": "synthetic_page"
+        }
+      ]
+    },
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "metric:revenue",
+      "value": 115,
+      "period": "2026Q1",
+      "basis": "adjusted",
+      "unit": "CNY_million",
+      "qualifiers": {
+        "excludes": "one_off_items"
+      },
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r2",
+          "start_utf8": 173,
+          "end_utf8": 240,
+          "span_sha256": "a6e03a7d5fa376767a86f5ead99fd5c1228f077812b70d41107d92912fa8a081",
+          "role": "claim",
+          "page": 1,
+          "locator_basis": "synthetic_page"
+        }
+      ]
+    }
+  ]
+}

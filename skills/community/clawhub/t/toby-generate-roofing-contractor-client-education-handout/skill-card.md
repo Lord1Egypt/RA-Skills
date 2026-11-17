@@ -1,44 +1,59 @@
-## Description: <br>
-Create a polished roofing contractor client education handout with visuals, FAQs, and clear next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a roofing contractor.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Roofing business owners, home service operators, and their agents use this skill to draft client-facing educational handouts that explain roofing topics with FAQs, visuals, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan notes that the skill requests Bash and local file Read access. <br>
-Mitigation: Grant shell or file access only for a specific user-approved reason, and review any command or file access before use. <br>
-Risk: The security scan reports mismatched installation or source references. <br>
-Mitigation: Use the server-resolved publisher profile and ClawHub listing as the release reference, and avoid relying on unverified repository links in the artifact. <br>
-Risk: Generated roofing client education materials may contain inaccurate or unsuitable guidance. <br>
-Mitigation: Review each handout for business fit, safety, local requirements, warranty details, and client readiness before sending it externally. <br>
+## Use Case:
 
+External roofing contractors and home service operators use this skill to draft client education handouts that explain roofing topics, answer common questions, and provide clear next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-roofing-contractor-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-roofing-contractor-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style handout content with FAQs, visual guidance, and client next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses chat and image-generation capabilities; generated handouts should be reviewed before client delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Broad Bash and Read permissions are requested for a content-generation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only in an OpenClaw environment that limits or prompts for tool use.
+
+Risk: README and package metadata name different GitHub owners.
+
+Mitigation: Verify the intended repository/source before relying on repository provenance or update paths.
+
+Risk: Generated roofing education content may be inaccurate or unsuitable for a specific client, roof system, or jurisdiction.
+
+Mitigation: Have a qualified reviewer check the handout for accuracy, readability, and local applicability before sharing it externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-roofing-contractor-client-education-handout)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-roofing-contractor-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout with explanatory copy, FAQs, visual guidance, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommendations for visuals; outputs should be reviewed before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

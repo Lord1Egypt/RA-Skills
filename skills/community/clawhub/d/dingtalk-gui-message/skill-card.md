@@ -1,45 +1,65 @@
-## Description: <br>
-Automates sending messages to DingTalk contacts on macOS through GUI control, screenshots, OCR, coordinate clicks, and optional DashScope vision verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates sending messages to DingTalk contacts through macOS GUI automation using screenshots, OCR, and coordinate-based clicks.
 
-## Publisher: <br>
-[jacky-wzj](https://clawhub.ai/user/jacky-wzj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacky-wzj](https://clawhub.ai/user/jacky-wzj)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate DingTalk desktop messaging workflows on macOS, including contact search, login handling, message entry, and send confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls the macOS desktop and can send real DingTalk messages. <br>
-Mitigation: Install and invoke it only when desktop message sending is intended, and review the recipient and message text before execution. <br>
-Risk: Screenshots and QR-code captures may contain sensitive information, and optional vision verification can send screenshots to DashScope. <br>
-Mitigation: Treat files under /tmp/dingtalk-gui as sensitive, clean them up after use, and leave --vision disabled unless screenshot upload is explicitly acceptable. <br>
-Risk: The security guidance identifies shell=True command construction as a concrete injection weakness. <br>
-Mitigation: Avoid untrusted contact names or message content until command construction is fixed with validated arguments or subprocess argv. <br>
+## Use Case:
 
+Developers and agent users can use this skill to ask an assistant to search a DingTalk contact and send a message through the macOS desktop client. It is intended for environments where local GUI automation, screen capture, and DingTalk account access are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacky-wzj/dingtalk-gui-message) <br>
-- [Peekaboo](https://github.com/nicklama/peekaboo) <br>
-- [cliclick](https://github.com/BlueM/cliclick) <br>
-- [DashScope compatible API](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and JSON status output from the automation script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return screenshot file paths under /tmp/dingtalk-gui when login, search, click, or send confirmation steps run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill can send real DingTalk messages through desktop automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted contact names and message text, and review the final target and content before enabling unattended use.
+
+Risk: The automation requires Screen Recording and Accessibility permissions and can capture the desktop while controlling DingTalk.
+
+Mitigation: Install only on systems where those permissions are acceptable, and keep unrelated sensitive windows closed during operation.
+
+Risk: Optional vision verification can send screenshots to DashScope.
+
+Mitigation: Avoid the --vision option unless screenshot upload to DashScope is acceptable for the workspace.
+
+Risk: The security guidance reports an exploitable shell-command construction pattern.
+
+Mitigation: Do not pass untrusted contact names or message text until that command construction is fixed and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacky-wzj/skills/dingtalk-gui-message)
+- [Publisher profile](https://clawhub.ai/user/jacky-wzj)
+- [Peekaboo](https://github.com/nicklama/peekaboo)
+- [cliclick](https://github.com/BlueM/cliclick)
+- [DashScope compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The message-sending script returns process exit codes and may emit JSON when login is required.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

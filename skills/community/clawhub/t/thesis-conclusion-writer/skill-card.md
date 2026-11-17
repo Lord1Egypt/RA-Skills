@@ -1,42 +1,54 @@
-## Description: <br>
-Writes academically rigorous conclusion sections or final conclusion chapters for theses, dissertations, papers, and research reports using the user's supplied thesis materials and target language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes academically rigorous conclusion sections or final conclusion chapters for theses, dissertations, undergraduate papers, journal-style papers, and research reports using the user's supplied thesis materials.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, researchers, and academic writing assistants use this skill to draft, expand, polish, or structure only the conclusion portion of a thesis, dissertation, journal-style paper, or research report. It is intended to synthesize user-provided findings, contributions, limitations, and future-research information without inventing unsupported claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide confidential or unpublished thesis material for conclusion drafting. <br>
-Mitigation: Avoid pasting sensitive thesis content unless sharing it with the agent environment is acceptable. <br>
-Risk: The marketplace short description emphasizes Chinese output while the main skill instructions support English and other thesis languages. <br>
-Mitigation: Confirm the desired output language and follow the user's thesis language or explicit language request. <br>
-Risk: Conclusion text can become misleading if findings, contributions, or limitations are missing or overstated. <br>
-Mitigation: Use placeholders and request the exact missing thesis materials instead of inventing findings, data, citations, applications, or future work. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to draft, expand, polish, or structure only the conclusion section or final conclusion chapter from supplied thesis materials, findings, contributions, limitations, and future-research details.
 
-## Reference(s): <br>
-- [Thesis Conclusion Writing Guide](references/conclusion-writing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with optional academic section headings and placeholders when source findings are missing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the same dominant language as the thesis unless the user requests another language; may produce Chinese or English conclusion structures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The generated conclusion may contain inaccurate, unsupported, or academically noncompliant claims if the user provides incomplete thesis materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the thesis excerpts needed for the conclusion and review the output for accuracy, academic integrity, and school policy compliance before use.
+
+Risk: The skill can only produce substantive conclusions from supplied findings and should not invent results, citations, or applications.
+
+Mitigation: When findings are missing, use the generated framework or placeholders and add the required research questions, main findings, contribution, limitations, and future directions before finalizing.
+
+## Reference(s):
+
+- [Thesis Conclusion Writing Guide](references/conclusion-writing-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/thesis-conclusion-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain academic prose in the requested thesis language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured headings, placeholders for missing findings, and limitations or future-work sections when appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,7 +3,7 @@ name: maverick-monday-mcp
 description: Search, read, and update Monday.com boards, workspaces, items, updates, and columns via Monday.com's hosted MCP server (https://mcp.monday.com/mcp). Use when the user asks about Monday.com boards, items, workspaces, updates, or column values.
 metadata:
   openclaw:
-    emoji: "📊"
+    emoji: '📊'
     requires:
       bins:
         - mcporter
@@ -13,7 +13,7 @@ metadata:
     install:
       - id: node
         kind: node
-        package: mcporter
+        package: mcporter@0.13.10
         bins:
           - mcporter
         label: Install mcporter (node)
@@ -61,4 +61,4 @@ Tool calls travel to Monday.com's hosted MCP service at `https://mcp.monday.com/
 
 ## Dependencies
 
-- **`mcporter`** ([github.com/openclaw/mcporter](https://github.com/openclaw/mcporter)) - MCP CLI used to invoke Monday.com's hosted MCP server. Auto-installed via `npm install -g --ignore-scripts mcporter` if missing on PATH (see `install` spec in frontmatter). The install spec uses unpinned `mcporter` (npm `latest`); operators with strict supply-chain controls should override the install to pin a specific version (e.g. `mcporter@<version>`).
+- **`mcporter`** ([github.com/openclaw/mcporter](https://github.com/openclaw/mcporter)) - MCP CLI used to invoke Monday.com's hosted MCP server. If it is missing from PATH, the frontmatter installs the exact `mcporter@0.13.10` package with npm install scripts disabled.

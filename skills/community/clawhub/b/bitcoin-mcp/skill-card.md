@@ -1,44 +1,57 @@
-## Description: <br>
-47 Bitcoin tools for AI agents, including fee intelligence, mempool analysis, address lookups, transaction decoding, and related Bitcoin MCP workflows backed by the Satoshi API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+47 Bitcoin tools for AI agents, including fee intelligence, mempool analysis, address lookups, transaction decoding, and access to an MCP server backed by the Satoshi API.
 
-## Publisher: <br>
-[Bortlesboat](https://clawhub.ai/user/Bortlesboat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bortlesboat](https://clawhub.ai/user/bortlesboat)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure and use a Bitcoin MCP server for fee estimates, mempool and block inspection, address lookups, transaction analysis, PSBT checks, Lightning invoice decoding, mining data, and market context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill launches the upstream bitcoin-mcp package through uvx, so users depend on that package and its distribution channel. <br>
-Mitigation: Install only if you trust the upstream bitcoin-mcp package, review the referenced package and repository, and monitor package updates before use in sensitive environments. <br>
-Risk: Bitcoin queries may be sent to the Satoshi API and could include wallet-linked data. <br>
-Mitigation: Avoid submitting wallet addresses, raw transactions, PSBTs, invoices, or other private wallet-linked data unless that privacy tradeoff is acceptable. <br>
+## Use Case:
 
+Developers and external users install this MCP server to give agents Bitcoin blockchain, mempool, fee, transaction, address, PSBT, Lightning, mining, and market lookup capabilities. The skill is useful when an agent needs Bitcoin context without operating a local Bitcoin node or managing an API key.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/Bortlesboat/bitcoin-mcp) <br>
-- [PyPI package: bitcoin-mcp](https://pypi.org/project/bitcoin-mcp/) <br>
-- [GitHub repository: Bortlesboat/bitcoin-mcp](https://github.com/Bortlesboat/bitcoin-mcp) <br>
-- [Satoshi API](https://bitcoinsapi.com) <br>
-- [uv package manager](https://github.com/astral-sh/uv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup status text, MCP configuration snippets, and connection-test guidance for uvx-based bitcoin-mcp use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill runs an unpinned third-party bitcoin-mcp package under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and prefer a pinned, reviewed package version before production use.
+
+Risk: Bitcoin lookup metadata, wallet addresses, transactions, or PSBT data may be sent to the Satoshi API.
+
+Mitigation: Avoid submitting sensitive wallet, transaction, or PSBT data unless third-party API exposure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bortlesboat/skills/bitcoin-mcp)
+- [bitcoin-mcp PyPI package](https://pypi.org/project/bitcoin-mcp/)
+- [bitcoin-mcp GitHub project](https://github.com/Bortlesboat/bitcoin-mcp)
+- [Satoshi API documentation](https://bitcoinsapi.com)
+- [uv installer](https://github.com/astral-sh/uv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs installation snippets and setup guidance; MCP tool responses depend on the bitcoin-mcp package and Satoshi API.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

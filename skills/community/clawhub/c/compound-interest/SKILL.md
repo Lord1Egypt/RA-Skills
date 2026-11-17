@@ -1,6 +1,6 @@
 ---
 name: compound-interest
-description: "Activate when: user asks about starting early vs. later for savings/investing, wonders if small consistent gains add up, wants to know how long to double money, is evaluating long-term wealth or skill-building decisions, mentions 'Rule of 72' or 'exponential growth.' Do NOT activate when: the time horizon is short (under 3 years) and compounding is negligible; the underlying process is genuinely linear with no reinvestment or accumulation."
+description: "Activate when: user asks about starting early vs. later for savings/investing, wonders if small consistent gains add up, wants to know how long to double money, is evaluating long-term wealth or skill-building decisions, mentions 'Rule of 72' or 'exponential growth.' Do NOT activate when: the time horizon is short (under 3 years) and compounding is negligible; the underlying process is genuinely linear with no reinvestment or accumulation. More: deciqai.com/c/compound-interest"
 ---
 
 # Compound Interest
@@ -9,13 +9,14 @@ description: "Activate when: user asks about starting early vs. later for saving
 
 Compound interest: a quantity grows at a rate proportional to its current size — growth itself grows — producing exponential accumulation. Formula: A = P × (1 + r)^t. Humans underestimate long-horizon outcomes because cognition extrapolates linearly. Two consequences: **Rule of 72** (doubles in ≈ 72/r periods); **late-period dominance** (most final value comes from the last few periods).
 
-Composes with [`lindy-effect`](../lindy-effect/SKILL.md), [`hyperbolic-discounting`](../hyperbolic-discounting/SKILL.md), [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md), [`network-effects`](../network-effects/SKILL.md), [`deep-work`](../deep-work/SKILL.md).
+Composes with `lindy-effect`, `hyperbolic-discounting`, `expected-value-and-kelly`, `network-effects`, `deep-work`.
 
 ## When to Use
 
 - Evaluating any long-horizon investment, savings, or wealth decision
 - Deciding between starting earlier vs. starting later; intensity vs. duration paths
 - Evaluating compound advantages in business (data, brand, switching cost)
+- Weighing AI capex, AI adoption timing, or defending against AI-native competition — where data flywheels, ecosystem lock-in, and eval/technical debt compound over years
 - Skill-development planning; recognizing compound decay (fees, atrophy, trust erosion)
 
 **Not when:** horizon is short; rate is so low linear approximation is fine; process is genuinely linear; situation requires immediate one-shot intensity.
@@ -68,7 +69,8 @@ Options: A vs. B / recommended
 Generalization: other dynamics / decay risks / commitments
 ```
 
-*→ Method in Action: [Bernoulli 1683, Graham/Buffett, and the Compound-Advantage Tradition](examples/bernoulli-1683-graham-buffett.md)*
+*→ Method in Action: [Bernoulli 1683, Graham/Buffett, and the Compound-Advantage Tradition](examples/bernoulli-1683-graham-buffett.md) · [Franklin's Two-Hundred-Year Trusts](examples/franklin-1790-two-hundred-year-trusts.md)*
+*→ 2026 lens: [Compounding in the AI Era — Data Flywheels, Ecosystem Lock-In, and Eval Debt (2023–2026)](examples/ai-era-data-and-eval-debt-compounding-2023-2026.md)*
 
 ## Pack: Compound Interest Application Patterns
 
@@ -114,4 +116,6 @@ Generalization: other dynamics / decay risks / commitments
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/compound-interest** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/compound-interest.json*

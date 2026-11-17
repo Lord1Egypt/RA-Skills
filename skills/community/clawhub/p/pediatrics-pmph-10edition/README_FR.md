@@ -156,7 +156,7 @@ Aucun traitement spécifique requis. Assurer une alimentation adéquate pour fav
 
 ---
 
-**Compétence associée :** [Évaluation du risque d'ictère néonatal et diagnostic d'ictère physiologique](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md)
+**Compétence associée :** [Évaluation du risque d'ictère néonatal et diagnostic d'ictère physiologique](neonatal-jaundice-riREDACTED-SECRET/SKILL.md)
 ```
 
 #### 2. **Analyse de cas clinique**
@@ -192,7 +192,7 @@ Réponse :
 
 ---
 
-**Compétences associées :** [Évaluation du risque d'ictère néonatal et diagnostic](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md) · [Stadification et diagnostic de l'encéphalopathie bilirubinique](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
+**Compétences associées :** [Évaluation du risque d'ictère néonatal et diagnostic](neonatal-jaundice-riREDACTED-SECRET/SKILL.md) · [Stadification et diagnostic de l'encéphalopathie bilirubinique](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
 ```
 
 #### 3. **Question d'examen**

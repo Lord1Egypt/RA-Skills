@@ -1,0 +1,32 @@
+# Knowledge Base Article - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+article_id: ""
+title: ""
+audience: ""
+product_or_service: ""
+version: "the release or policy this applies to"
+owner_role: ""
+question_answered: ""
+summary: ""
+prerequisites:
+  - ""
+steps:
+  - step: ""
+    do: ""
+    expected_result: ""
+exclusions:
+  - ""
+related_articles:
+  - ""
+sources:
+  - claim: ""
+    source: ""
+gaps:
+  - ""
+accessibility:
+  heading_order_checked: ""
+  link_text_checked: ""
+  alt_text_checked: ""
+review:
+  last_reviewed_on: "YYYY-MM-DD"
+  next_review_due_on: "YYYY-MM-DD"

@@ -1,41 +1,54 @@
-## Description: <br>
-Fetch MarsBit news and flash data through the hosted MCP route in marsbit-co for latest news, channel lookup, keyword search, detail, related news, and flash updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch MarsBit news and flash data through the hosted MCP route in marsbit-co for latest news, channel lookup, keyword search, detail, related news, and flash updates.
 
-## Publisher: <br>
-[domilin](https://clawhub.ai/user/domilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[domilin](https://clawhub.ai/user/domilin)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current MarsBit blockchain news, flash updates, news channels, keyword search results, item details, and related stories through a hosted MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: MarsBit search terms and news identifiers are sent to the hosted www.marsbit.co MCP endpoint. <br>
-Mitigation: Avoid submitting sensitive terms or private identifiers, and disclose the external request path to users before use in restricted environments. <br>
-Risk: The skill depends on curl and the availability of a third-party hosted endpoint. <br>
-Mitigation: Check connectivity with the tools/list request, handle endpoint errors clearly, and retry later when rate limits or availability issues occur. <br>
+## Use Case:
 
+Developers and agent users use this skill to let an agent retrieve MarsBit blockchain news, flash updates, channels, keyword search results, article details, and related news from the hosted MarsBit MCP endpoint.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/domilin/marsbit-news-skill) <br>
-- [MarsBit hosted MCP endpoint](https://www.marsbit.co/api/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses that summarize JSON returned by MCP tool calls made with curl] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and sends requests to the hosted MarsBit MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release evidence) <br>
+Risk: Search terms and item IDs are sent to the hosted MarsBit MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets or sensitive personal information in MarsBit news or flash queries.
+
+Risk: Manual GitHub fallback installation can copy unverified source into a local skills directory.
+
+Mitigation: Prefer the ClawHub install path; if using the GitHub fallback, review repository contents and pin or verify the exact version before copying files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/domilin/skills/marsbit-news-skill)
+- [MarsBit MCP Endpoint](https://www.marsbit.co/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON-derived news responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl to call a hosted MCP endpoint; returned MCP text is expected to contain JSON that the agent parses before answering.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Recognizes text in PDFs and images with the MiniMax Vision API and writes OCR results as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax PDF OCR converts PDF pages to images and sends them to the MiniMax Vision API to produce Chinese and English OCR text.
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Developers and document-processing users can use this skill to convert PDF pages to images, send them to MiniMax for OCR, and collect the recognized Chinese or English text in Markdown output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processed PDF page images are sent to a third-party MiniMax API. <br>
-Mitigation: Use only documents approved for external processing, and avoid confidential, regulated, customer, or financial documents unless that processing is authorized. <br>
-Risk: PDF conversion invokes a shell command using user-provided file paths. <br>
-Mitigation: Review file paths before running the skill and avoid passing untrusted or unexpected paths. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to extract text from PDFs or images into Markdown while preserving basic page structure and formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chongjie-ran/minimax-pdf-ocr) <br>
-- [MiniMax API key setup](https://platform.minimaxi.com/user-center/basic-information/interface-key) <br>
-- [MiniMax chat completion endpoint](https://api.minimax.chat/v1/text/chatcompletion_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and a local pdftoppm binary from poppler; document page images are sent to the MiniMax API for recognition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Input documents and generated page images are sent to MiniMax for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for external OCR processing and avoid sensitive PDFs unless MiniMax use is authorized.
+
+Risk: The security evidence reports a local command-injection risk in the pdftoppm spawn call.
+
+Mitigation: Disable shell execution for the pdftoppm spawn call before using the skill on file paths supplied by other people.
+
+Risk: The install instructions ask users to install packages that are not declared or used by package.json.
+
+Mitigation: Correct or remove the unnecessary npm install instruction before release or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chongjie-ran/skills/minimax-pdf-ocr)
+- [MiniMax API Key Page](https://platform.minimaxi.com/user-center/basic-information/interface-key)
+- [MiniMax Chat Completion API Endpoint](https://api.minimax.chat/v1/text/chatcompletion_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown files and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and poppler; writes OCR results to a Markdown file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

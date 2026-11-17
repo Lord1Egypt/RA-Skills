@@ -1,43 +1,58 @@
-## Description: <br>
-AI flight ticket assistant for domestic flight search, fare lookup, booking, order lookup, changes, cancellations, and refunds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI机票助手实现国内航班搜索、舱位查询、预订下单、机票改期和机票退票，适用于用户询问航班、查询机票价格、提交机票订单、改期航班或退票时使用。
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search domestic flights, compare cabin prices and fare rules, create booking orders, and manage order changes, cancellations, or refunds through the Fenbeitong flight service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles credentials and passenger identity data for booking workflows. <br>
-Mitigation: Use it only with a trusted publisher and service; restore TLS certificate verification, store the apiKey in a user-private secure location, and mask passenger PII in outputs. <br>
-Risk: Booking, change, cancellation, and refund workflows can affect paid travel orders. <br>
-Mitigation: Require explicit, scoped user confirmation for paid bookings, changes, cancellations, and refunds after showing the flight, order, and fee details. <br>
-Risk: Order-detail and booking outputs may expose phone numbers, passenger names, identity numbers, order IDs, and payment links. <br>
-Mitigation: Redact sensitive values in chat, logs, screenshots, and support transcripts unless the user explicitly needs the value for the active transaction. <br>
+## Use Case:
 
+External users use this skill to search domestic flights, compare seat and fare details, create flight orders, and manage order details, cancellations, changes, and refunds through an external flight service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/airfly) <br>
-- [Fenbeitong flight service endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plaintext tables with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include order IDs, payment links, booking status, fare details, and temporary local JSON files used between workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill handles credentials, passenger identity data, and ticket transactions with unsafe storage, logging, and network protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before real bookings; trust only approved flight service endpoints, redact passenger identity data from responses and logs, and store credentials and transaction files in user-private locations with restrictive permissions.
+
+Risk: The scripts disable normal TLS certificate verification for API requests.
+
+Mitigation: Enable normal TLS verification and restrict the API endpoint before production or real-booking use.
+
+Risk: Refund and change operations can affect paid tickets and fees.
+
+Mitigation: Require an explicit separate user confirmation after fee review before submitting refund or change applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/airfly)
+- [Publisher profile](https://clawhub.ai/user/ryan-zry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with plaintext table code blocks, command invocations, order identifiers, and payment or order links when returned by the service.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and phone verification before authenticated flight, booking, change, cancellation, or refund operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Uses LibTV's agent-im OpenAPI to create, edit, monitor, upload, and download AI-generated image and video work from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+libtv-skills lets agents create LibTV sessions, upload reference media, send image or video generation and editing requests, poll progress, and download generated results.
 
-## Publisher: <br>
-[316530790](https://clawhub.ai/user/316530790) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[316530790](https://clawhub.ai/user/316530790)
 
-## Use Case: <br>
-External users and agents use this skill to send image or video creation and editing requests to LibTV, track session progress, upload reference media, and download generated results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and selected media to LibTV for third-party processing. <br>
-Mitigation: Use it only for LibTV image or video work, and avoid uploading sensitive media unless third-party processing is acceptable. <br>
-Risk: The skill requires a LIBTV_ACCESS_KEY and can use OPENAPI_IM_BASE or IM_BASE_URL to redirect requests. <br>
-Mitigation: Use a LibTV key appropriate for this integration and do not set custom endpoint variables to untrusted hosts. <br>
-Risk: Generated media is saved locally, using a default downloads directory when no output path is supplied. <br>
-Mitigation: Specify an output directory when control over saved result locations is required. <br>
+## Use Case:
 
+Developers and external users use this skill to route AI image and video generation or editing requests to LibTV, monitor sessions, upload reference media, and retrieve finished media assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/316530790/libtv-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/316530790) <br>
-- [LibTV default API endpoint](https://im.liblib.tv) <br>
-- [LibTV project canvas](https://www.liblib.tv/canvas?projectId=) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, API calls, guidance] <br>
-**Output Format:** [Markdown and JSON with shell command examples and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates LibTV sessions, uploads image or video inputs, polls for results, and downloads generated media to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Prompts, selected local media files, and session requests are sent to the configured LibTV endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted OPENAPI_IM_BASE or IM_BASE_URL values and avoid submitting confidential media unless approved.
+
+Risk: The download and upload helpers are loosely scoped and may fetch, write, or upload more than users expect.
+
+Mitigation: Confirm local file paths before upload, avoid arbitrary --urls values, avoid path-like --prefix values, and choose an explicit output directory.
+
+Risk: The script's media and size checks are weak.
+
+Mitigation: Manually verify media type and size before upload, including the documented 200 MB limit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/316530790/skills/libtv-skills)
+- [LibTV OpenAPI endpoint](https://im.liblib.tv)
+- [LibTV canvas URL pattern](https://www.liblib.tv/canvas?projectId=)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JSON command outputs, media URLs, project links, and downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and LIBTV_ACCESS_KEY; optional OPENAPI_IM_BASE or IM_BASE_URL can change the LibTV endpoint.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

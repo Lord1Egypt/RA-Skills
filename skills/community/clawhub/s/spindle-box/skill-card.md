@@ -1,41 +1,58 @@
-## Description: <br>
-主轴箱CAD图纸生成。当用户说"主轴箱"、"生成主轴箱图纸"、"做一个主轴箱"、"spindle-box"时使用此 skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+主轴箱CAD图纸生成。当用户说"主轴箱"、"生成主轴箱图纸"、"做一个主轴箱"、"spindle-box"时使用此 skill。
 
-## Publisher: <br>
-[realsanyu](https://clawhub.ai/user/realsanyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realsanyu](https://clawhub.ai/user/realsanyu)
 
-## Use Case: <br>
-External users and mechanical design practitioners use this skill to collect spindle-box parameters, request CAD drawing generation through jixietools.com, review calculated values, and monitor guest production-sheet progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends spindle-box design parameters to jixietools.com. <br>
-Mitigation: Use the skill only when sharing those design parameters with jixietools.com is acceptable, especially for proprietary CAD work. <br>
-Risk: Generated guest URLs and guest_code values act as private access links for production-sheet status and outputs. <br>
-Mitigation: Treat guest URLs and guest_code values as confidential and avoid posting them in public chats, tickets, or logs. <br>
+## Use Case:
 
+External users and developers use this skill to collect spindle-box design parameters, call the JXT mechanical parts APIs, review calculated values, and create a CAD drawing production sheet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realsanyu/spindle-box) <br>
-- [jixietools API base](https://jixietools.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Chinese conversational guidance with Markdown tables, JSON examples, URLs, and inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides step-by-step collection of CAD parameters, preserves filename and guest_code values, and polls production-sheet status at five-second intervals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The workflow sends spindle-box design parameters to jixietools.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that sharing the relevant design parameters with jixietools.com is acceptable before using the skill.
+
+Risk: The workflow uses filename and guest_code values as sensitive links for continuing calculations and viewing generated results.
+
+Mitigation: Treat filename and guest_code values as sensitive workflow links and avoid exposing them beyond intended collaborators.
+
+Risk: The evidence notes a category ID mismatch that could fetch the wrong product set.
+
+Mitigation: Verify the product category behavior with the publisher before relying on generated selections for production work.
+
+## Reference(s):
+
+- [Jixietools API base](https://jixietools.com/api/v1)
+- [Spindle Box ClawHub release](https://clawhub.ai/realsanyu/skills/spindle-box)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Chinese Markdown with tables, inline shell commands, API request examples, and generated result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a step-by-step interactive workflow and may return guest-accessible production sheet URLs after API calls complete.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

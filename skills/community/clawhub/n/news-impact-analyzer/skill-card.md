@@ -1,41 +1,59 @@
-## Description: <br>
-Input news text and use an LLM to analyze its impact on stock market sectors and concepts (bullish/bearish/neutral) along with the underlying logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Input news text and use an LLM to analyze its impact on stock market sectors and concepts (bullish/bearish/neutral) along with the underlying logic.
 
-## Publisher: <br>
-[fonilye](https://clawhub.ai/user/fonilye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fonilye](https://clawhub.ai/user/fonilye)
 
-## Use Case: <br>
-External agents, developers, and investment researchers use this skill to submit news text and receive a concise market-impact analysis across sectors and concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted news text and the API key are sent to the EasyAlpha backend. <br>
-Mitigation: Use the skill only with a trusted backend and avoid submitting confidential, proprietary, unpublished, or regulated information unless separate handling and retention assurances are in place. <br>
-Risk: HTTPS certificate verification is disabled by default, and users can configure a plain HTTP or untrusted backend URL. <br>
-Mitigation: Set ALLOW_INSECURE_SSL=false before use and avoid plain HTTP or untrusted NEWS_EXTRACTOR_SERVER_URL values. <br>
+## Use Case:
 
+Investors, analysts, and AI agents use this skill to submit market news text and receive a concise sector and concept impact analysis with bullish, bearish, or neutral direction and supporting logic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fonilye/news-impact-analyzer) <br>
-- [EasyAlpha service registration and default backend](https://easyalpha.duckdns.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Formatted text or Markdown; JSON responses are rendered as a summary plus sector/concept impact lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and EASYALPHA_API_KEY; sends submitted news text to a remote EasyAlpha analysis API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Submitted news text and the EasyAlpha API key are sent to a remote analysis service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only news text that is acceptable to share with the configured service, and avoid confidential research, sensitive prompts, or regulated data.
+
+Risk: The script can use an arbitrary analysis server URL.
+
+Mitigation: Configure only trusted HTTPS endpoints and avoid plain HTTP or unknown remote servers.
+
+Risk: HTTPS certificate validation is disabled by default in the client script.
+
+Mitigation: Require corrected HTTPS certificate validation before using the skill with important credentials or investment workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fonilye/skills/news-impact-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/fonilye)
+- [EasyAlpha Service](https://easyalpha.duckdns.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted terminal text from JSON or Markdown/text returned by the analysis service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and an EASYALPHA_API_KEY; submitted news text is sent to the configured analysis server.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Post or schedule Instagram images, reels, stories, and carousels through the Publora API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post or schedule Instagram images, reels, stories, and carousels through the Publora API.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Developers and operators use this skill to create, upload media for, and schedule Instagram posts through Publora while checking Instagram-specific account and media limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Posting or media upload can send user content to Publora and upload endpoints. <br>
-Mitigation: Confirm the destination Instagram account, caption, media files, schedule, and any private or sensitive content before creating a post or uploading media. <br>
-Risk: An API key grants access to the Publora workspace and connected Instagram account. <br>
-Mitigation: Install and use the skill only when the user trusts Publora with the Instagram account connected to the API key. <br>
+## Use Case:
 
+Developers, operators, and social media teams use this skill to let an agent prepare Publora API calls for publishing or scheduling Instagram media posts.
 
-## Reference(s): <br>
-- [Publora Instagram Skill on ClawHub](https://clawhub.ai/sergebulaev/publora-instagram) <br>
-- [Publora API Base URL](https://api.publora.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with API request examples and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform limits, account requirements, media constraints, and Publora API request bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The Publora API key can authorize Instagram publishing or scheduling actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key securely, avoid exposing it in prompts or logs, and provide it only when the agent is expected to prepare Publora requests.
+
+Risk: Generated requests can create public or scheduled Instagram posts.
+
+Mitigation: Review captions, platform targets, scheduled times, and media files before sending requests to Publora.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/publora-instagram)
+- [Publora API base URL](https://api.publora.com/api/v1)
+- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post)
+- [Publora get-upload-url endpoint](https://api.publora.com/api/v1/get-upload-url)
+
+## Skill Output:
+
+**Output Type(s):** [Code, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline code examples and API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JavaScript or Python examples for creating posts, requesting upload URLs, and uploading media.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

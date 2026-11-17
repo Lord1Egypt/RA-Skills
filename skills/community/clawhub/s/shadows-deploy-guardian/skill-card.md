@@ -1,44 +1,59 @@
-## Description: <br>
-Pre-deployment verification checklist — tests, types, build, secrets scan, environment validation. Use before pushing to production or staging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-deployment verification checklist - tests, types, build, secrets scan, environment validation. Use before pushing to production or staging.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and release engineers use this skill before staging or production deployment to run a six-gate readiness check covering git state, tests, type and lint checks, builds, secret patterns, and environment validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The checklist runs repository test, lint, and build commands that may execute project code. <br>
-Mitigation: Use it only in trusted repositories or inside a sandbox or CI environment before relying on the results. <br>
-Risk: Secret-like matches from the grep-based scan can appear in terminal output. <br>
-Mitigation: Run the scan in a private terminal session where output is not logged to shared systems. <br>
-Risk: Git remote checks contact configured remotes and environment validation may contact DEPLOY_URL when set. <br>
-Mitigation: Review configured remotes and target URLs before running the gates in sensitive environments. <br>
+## Use Case:
 
+Developers and release engineers use this skill before staging or production deployment to check repository status, tests, type and lint results, build readiness, secrets exposure, and environment setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NakedoShadow/shadows-deploy-guardian) <br>
-- [Publisher profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [Clawdis homepage](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with gate-status table and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PASS, FAIL, SKIP, or warning statuses for deployment gates and does not auto-deploy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact/SKILL.md) <br>
+Risk: The skill can run project-controlled test, lint, type-check, and build commands that may execute repository code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted repositories or in a sandboxed CI runner with minimal credentials.
+
+Risk: Unpinned npx commands may execute unexpected tool versions or downloaded code.
+
+Mitigation: Prefer local pinned tool dependencies or no-install execution before using the skill for production deployment review.
+
+Risk: The secrets scan may print matched credential-like values into terminal output.
+
+Mitigation: Run the scan in a private terminal or CI log context where output is not shared or retained broadly.
+
+## Reference(s):
+
+- [Shadows Deploy Guardian on ClawHub](https://clawhub.ai/nakedoshadow/skills/shadows-deploy-guardian)
+- [nakedoshadow publisher profile](https://clawhub.ai/user/nakedoshadow)
+- [ClawHub homepage metadata](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Analysis, Guidance]
+
+**Output Format:** [Markdown report with gate results, blockers, warnings, and a recommended deployment command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report summarizes six deployment gates and returns PASS, FAIL, SKIP, WARN, CLEAR TO DEPLOY, BLOCKED, or CLEAR WITH WARNINGS statuses.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

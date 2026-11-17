@@ -1,45 +1,58 @@
-## Description: <br>
-Authorization middleware that checks avatar mandates, pauses sensitive agent actions for local LLM review, and can email denial alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authorization middleware that enforces Avatar Mandates, uses a local LLM to approve or deny sub-agent actions, and sends email alerts for denied actions.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to simulate or configure an authorization gate for sensitive sub-agent actions using a local LLM and email alerts. It is intended for workflows that require human-reviewed controls around delegated AI behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill asks for email credentials and stores local SMTP configuration. <br>
-Mitigation: Use a dedicated SMTP app password, restrict access to generated local configuration files, and remove stored credentials when they are no longer needed. <br>
-Risk: The security evidence says the skill relies on prompt-based local LLM decisions while presenting itself as an enforcement gatekeeper. <br>
-Mitigation: Treat decisions as advisory, keep human review in the loop for sensitive actions, and do not rely on the skill as a proven safety firewall. <br>
-Risk: The security evidence advises against placing secrets in action or context text. <br>
-Mitigation: Redact secrets and sensitive personal data before sending action descriptions or context into the local review flow. <br>
-Risk: The artifact version signals differ from the server release version. <br>
-Mitigation: Verify the released source and version before trusting the skill in sensitive workflows. <br>
+## Use Case:
 
+Developers and advanced users use this skill to simulate an authorization gate for sub-agent actions against a pre-generated Avatar Mandate, with local LLM review and email alerting for denials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-digital-avatar) <br>
-- [Space2.world homepage](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Interactive console text and Markdown guidance with configuration prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON configuration and audit files when run by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Stored SMTP app passwords may expose email account access if workspace files are compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-privilege email app password, restrict the account's purpose, and rotate or delete the credential after use.
+
+Risk: Prompt-based LLM approval may produce incorrect decisions and is not a technical firewall.
+
+Mitigation: Keep hard permission boundaries and human approval for physical, financial, account, or safety-critical actions.
+
+Risk: Alert emails may contain sensitive operational context.
+
+Mitigation: Avoid placing secrets or unnecessary personal data in reviewed action context and use trusted email retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-digital-avatar)
+- [Space2.world homepage](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Interactive console text, configuration prompts, and JSON approval decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate an override prompt for subordinate agents and send denial alert emails when SMTP is configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

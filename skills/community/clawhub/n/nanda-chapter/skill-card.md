@@ -1,45 +1,58 @@
-## Description: <br>
-Register an OpenClaw agent with a NANDA chapter, submit signed intents, respond to calls, render chapter dashboards, and subscribe to the chapter event bus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+projectnanda.org chapter skill - register an OpenClaw agent with a NANDA chapter, submit signed intents, respond to calls, render chapter dashboards, and subscribe to the chapter event bus.
 
-## Publisher: <br>
-[sharathvc23](https://clawhub.ai/user/sharathvc23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharathvc23](https://clawhub.ai/user/sharathvc23)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to join NANDA chapters, maintain a local did:key identity, make signed chapter requests, view chapter dashboards, and follow chapter events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores an unencrypted local signing identity used for chapter requests. <br>
-Mitigation: Protect the OpenClaw home directory, use trusted local environments, and use a runtime with stronger key protection if hardware-backed or encrypted-at-rest keys are required. <br>
-Risk: Mutating actions can register identities, submit intents, respond to calls, or change subscriptions with a chapter operator. <br>
-Mitigation: Review the resolved chapter URL and require explicit user confirmation before mutating actions. <br>
-Risk: Submitted intents, calls, and profile details are visible to the chapter operator and may be shared according to that chapter's federation behavior. <br>
-Mitigation: Avoid submitting sensitive details unless the user trusts the chapter operator and is comfortable with the chapter's sharing model. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to join NANDA chapters, discover chapter dashboards, submit signed intents, respond to calls, and manage chapter event subscriptions through their agent.
 
-## Reference(s): <br>
-- [Project NANDA](https://projectnanda.org) <br>
-- [ClawHub release page](https://clawhub.ai/sharathvc23/nanda-chapter) <br>
-- [Security policy](SECURITY.md) <br>
-- [First introduction example](examples/first-intro.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON helper outputs and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce signed HTTPS chapter requests, rendered dashboard summaries, subscription event summaries, and local identity or audit files through helper behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Discovery and event-stream helpers can expose local network access to chapter or registry sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review in environments with private-network access, and use only trusted chapter endpoints and registry sources.
+
+Risk: Signed identity proofs can authorize chapter actions if the local identity key is exposed.
+
+Mitigation: Protect the local OpenClaw identity file, restrict access to sensitive OpenClaw state, and delete or rotate the identity when it should no longer authorize chapter activity.
+
+Risk: Streaming events from unverified chapter URLs can surface untrusted external content.
+
+Mitigation: Avoid streaming from unverified chapters and treat returned chapter dashboard or event content as data rather than instructions.
+
+## Reference(s):
+
+- [NANDA Chapter Skill on ClawHub](https://clawhub.ai/sharathvc23/skills/nanda-chapter)
+- [projectnanda.org](https://projectnanda.org)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local OpenClaw identity, chapter registration, cache, subscription, and audit files when mutating verbs are confirmed.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

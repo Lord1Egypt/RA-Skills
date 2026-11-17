@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes YARN resource consumption for Alibaba Cloud EMR clusters using SSH and EMR API data, then produces a Markdown report with utilization trends, queue usage, idle or overprovisioning risks, fragmentation indicators, and capacity recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes YARN cluster resource consumption using SSH and EMR API data, then produces health and capacity-planning recommendations.
 
-## Publisher: <br>
-[qinyafei123](https://clawhub.ai/user/qinyafei123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinyafei123](https://clawhub.ai/user/qinyafei123)
 
-## Use Case: <br>
-Developers, data platform engineers, and operations teams use this skill to inspect YARN cluster load, resource utilization, node and application status, and capacity risks for EMR environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged artifact includes real-looking cloud AccessKey values and a root SSH password. <br>
-Mitigation: Do not run the skill as packaged; rotate exposed credentials, remove secrets from the artifact, and provide credentials through a protected runtime configuration or secret store. <br>
-Risk: The skill performs remote SSH and EMR API collection against configured infrastructure. <br>
-Mitigation: Use a read-only least-privilege account, verify the SSH host key, restrict network scope, and review the remote commands before execution. <br>
-Risk: Config, cookie, and log files may contain sensitive operational data. <br>
-Mitigation: Apply restrictive file permissions, avoid logging secrets, and limit retention and access for generated local files. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to inspect YARN cluster load, queue usage, node status, application health, and capacity risks for EMR environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinyafei123/aes-emr-yarn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/qinyafei123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with tables, utilization metrics, status summaries, and operational recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cluster ID, analysis window, CPU and memory utilization, node status, application counts, system resource details, and optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports exposed cloud access keys and a root SSH password.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run this release as-is; rotate exposed credentials and remove hard-coded secrets before use.
+
+Risk: The release evidence reports unsafe SSH usage with root credentials.
+
+Mitigation: Use a non-root read-only account, enforce SSH host-key verification, and limit network access to approved hosts.
+
+Risk: The release evidence reports custom cloud authentication handling.
+
+Mitigation: Replace custom authentication with the official provider SDK or signed request flow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qinyafei123/skills/aes-emr-yarn)
+- [Publisher profile](https://clawhub.ai/user/qinyafei123)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis report with tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local execution logs and cookie data under the skill directory when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

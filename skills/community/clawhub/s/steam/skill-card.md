@@ -1,41 +1,54 @@
-## Description: <br>
-Browse, filter, and discover games in a Steam library by playtime, reviews, Steam Deck compatibility, genres, and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, filter, and discover games in a Steam library by playtime, reviews, Steam Deck compatibility, genres, and tags.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-External users and agents use this skill to inspect a Steam library, filter games, and produce game recommendations such as what to play next or what works on Steam Deck. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Steam API key and Steam ID to read Steam profile and library data. <br>
-Mitigation: Use a revocable Steam API key, avoid exposing it in chats or logs, and revoke or remove it when the skill is no longer needed. <br>
-Risk: The skill depends on the external steam-games-cli package and steam binary being installed. <br>
-Mitigation: Install only from a trusted package source and verify the CLI before using it with account-related credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mjrussell/steam) <br>
-- [Steam Web API Key](https://steamcommunity.com/dev/apikey) <br>
-- [Skill Homepage](https://github.com/mjrussell/steam-cli) <br>
+## Use Case:
 
+External users and agents use this skill to query a configured Steam library, filter games by playtime, reviews, Steam Deck compatibility, tags, and genres, and produce game recommendations or library summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI results may be colored tables, plain text, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the steam CLI binary plus STEAM_API_KEY and a Steam ID; JSON output is available for scripting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires installing and invoking the steam-games-cli package.
+
+Mitigation: Confirm trust in the npm package and publisher before installation, avoid elevated privileges, and consider pinning a reviewed package version or using an isolated local install.
+
+Risk: The configured Steam API key and Steam ID can be used to query Steam account and library metadata.
+
+Mitigation: Configure credentials only in trusted environments, avoid exposing them in logs or shared transcripts, and rotate the API key if it may have been disclosed.
+
+## Reference(s):
+
+- [Steam Games CLI ClawHub Skill](https://clawhub.ai/mjrussell/skills/steam)
+- [Steam Web API Key Setup](https://steamcommunity.com/dev/apikey)
+- [Project Homepage](https://github.com/mjrussell/steam-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI output may be colored tables, plain text, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the steam CLI binary and STEAM_API_KEY configuration.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

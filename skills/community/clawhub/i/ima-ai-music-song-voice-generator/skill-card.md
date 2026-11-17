@@ -1,43 +1,58 @@
-## Description: <br>
-IMA AI Music & Voice Generator helps agents generate music-oriented audio such as songs, background soundtracks, jingles, beats, and instrumental compositions with IMA-supported models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to create AI-generated music, songs, background tracks, jingles, beats, and voice-oriented audio content using IMA-supported music models including Suno sonic v5, DouBao BGM, and DouBao Song.
 
-## Publisher: <br>
-[dai-shuo](https://clawhub.ai/user/dai-shuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dai-shuo](https://clawhub.ai/user/dai-shuo)
 
-## Use Case: <br>
-External users and developers use this skill to route text prompts to IMA music models for generated songs, background music, jingles, beats, and instrumental compositions. It is suited for agent workflows that need user-facing audio generation with status updates and generated media links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts are sent to IMA and the configured IMA API key may consume credits. <br>
-Mitigation: Avoid sensitive prompt text and use scoped or test keys when available. <br>
-Risk: Local preference and log files may retain model choices, task IDs, timestamps, and HTTP status history. <br>
-Mitigation: Delete ~/.openclaw/memory/ima_prefs.json and ~/.openclaw/logs/ima_skills/ when local history should not be retained. <br>
-Risk: Changing the API base URL could redirect requests to an untrusted service. <br>
-Mitigation: Keep the default IMA endpoint unless the replacement endpoint is explicitly trusted. <br>
+## Use Case:
 
+External users, creators, marketers, and developers use this skill to direct an agent to generate music or audio assets from text prompts, including songs with lyrics, background music, soundtracks, jingles, beats, and narration-oriented audio. It requires an IMA API key and returns generation status plus an audio result URL for playback or sharing.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/dai-shuo/ima-ai-music-song-voice-generator) <br>
-- [IMA Studio homepage](https://imastudio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text updates and JSON metadata containing task ID, generated audio URL, duration, model, and credit use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is returned as a remote media URL; the skill requires an IMA API key and may retain local preference and log history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: API credentials could be exposed to an arbitrary server if the base URL is changed to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default IMA endpoint for normal operation, and pass --base-url only with trusted development credentials.
+
+Risk: User prompts are sent to IMA's service, and local model preferences or generation logs may be written under ~/.openclaw.
+
+Mitigation: Avoid sensitive prompt content, use limited-scope IMA keys, and delete or disable local preferences and logs when retention is not desired.
+
+Risk: Unsafe shell-style invocation guidance could create command injection risk if user text is concatenated into a shell command.
+
+Mitigation: Invoke the Python script with an argument array and pass the prompt as a single argument rather than constructing a shell command string.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dai-shuo/skills/ima-ai-music-song-voice-generator)
+- [IMA Studio homepage](https://imastudio.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime flow produces status messages and an audio URL from the IMA service; local preferences and logs may be written under ~/.openclaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

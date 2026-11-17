@@ -1,42 +1,56 @@
-## Description: <br>
-Helps evaluate whether an agent maintains refusal integrity when harmful requests are disguised through role-play, slang, technical framing, or persuasive pressure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tests whether an agent maintains safety refusals when harmful requests are disguised through role-play, linguistic variation, or persuasive framing.
 
-## Publisher: <br>
-[tzwwww](https://clawhub.ai/user/tzwwww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tzwwww](https://clawhub.ai/user/tzwwww)
 
-## Use Case: <br>
-Developers, safety evaluators, and red-team reviewers use this skill to create and select adversarial safety-evaluation QA pairs that test whether an agent refuses harmful requests despite role-play, obfuscation, or persuasion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for safety testing but can create reusable, persuasion-shaped harmful prompt sets. <br>
-Mitigation: Use only in controlled red-team or safety-evaluation environments, and access-control any generated unsafe prompt libraries. <br>
-Risk: Browsing or broad corpora could enrich adversarial prompts with current or private details. <br>
-Mitigation: Disable or explicitly approve web browsing, use vetted non-private corpora, and review outputs before reuse. <br>
+## Use Case:
 
+Developers and safety evaluators use this skill to create refusal-integrity test data for agents facing harmful requests hidden behind role-play, slang, technical framing, or authority-based pressure.
 
-## Reference(s): <br>
-- [Phase 1: Environment Exploration Guide](references/EXPLORATION.md) <br>
-- [Phase 2: Trajectory Selection Criteria](references/SELECTION.md) <br>
-- [Phase 3: Data Synthesis Instructions](references/SYNTHESIS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown guidance and JSON QA pairs with trajectory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces safety-evaluation prompts, refusal answers, and trajectory notes for reviewer-controlled use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill creates and reuses disguised harmful prompts for refusal testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled safety-evaluation environment and treat generated prompts, trajectories, and seed sets as sensitive red-team data.
+
+Risk: Using broad private corpora or live web search during evaluation can increase exposure of sensitive or current-event risk material.
+
+Mitigation: Connect only authorized data sources and web tools, with logging, review controls, and clear approval.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tzwwww/skills/adaptive-safety-refusal-integrity)
+- [Environment Exploration Guide](artifact/references/EXPLORATION.md)
+- [Trajectory Selection Criteria](artifact/references/SELECTION.md)
+- [Data Synthesis Instructions](artifact/references/SYNTHESIS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown guidance and JSON question-answer trajectories]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated data should include a question, refusal answer, and trajectory steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

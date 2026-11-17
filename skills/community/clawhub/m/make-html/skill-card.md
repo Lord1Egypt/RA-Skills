@@ -1,50 +1,62 @@
-## Description: <br>
-Make Html directs agents to create self-contained, validated HTML artifacts for substantial human-facing deliverables, with optional hosted sharing when explicitly requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make Html guides agents to produce polished, self-contained HTML artifacts for substantial human-facing deliverables instead of defaulting to Markdown.
 
-## Publisher: <br>
-[fuller-stack-dev](https://clawhub.ai/user/fuller-stack-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuller-stack-dev](https://clawhub.ai/user/fuller-stack-dev)
 
-## Use Case: <br>
-Developers, reviewers, and other ClawHub users use this skill to turn substantial reports, plans, reviews, dashboards, diagrams, decks, prototypes, and editors into self-contained HTML deliverables that are easier to inspect, present, and share. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive content could be exposed if a generated HTML artifact is shared through the hosted preview path. <br>
-Mitigation: Use hosted sharing only after explicit user request or confirmation, and do not upload credentials, secrets, personal data, private customer data, or internal-only material. <br>
-Risk: Password-protected hosted links may still be inappropriate for sensitive material. <br>
-Mitigation: Treat password protection as defense in depth, use a dedicated password environment variable, and keep the local HTML file as the canonical artifact. <br>
+## Use Case:
 
+External users, developers, reviewers, and operators use this skill when an agent response should become a readable, navigable, shareable HTML artifact such as a report, plan, review, dashboard, diagram, deck, prototype, or editor. It is intended for substantial deliverables where layout, visual hierarchy, validation, interactivity, or publishing support improves comprehension.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuller-stack-dev/make-html) <br>
-- [Recognition](references/recognition.md) <br>
-- [Artifact Patterns](references/artifact-patterns.md) <br>
-- [Interaction Patterns](references/interaction-patterns.md) <br>
-- [Visual Quality](references/visual-quality.md) <br>
-- [Validation](references/validation.md) <br>
-- [Source Style](references/source-style.md) <br>
-- [Custom Themes](references/custom-themes.md) <br>
-- [Sharing HTML Artifacts](references/sharing.md) <br>
-- [PageDrop About](https://pagedrop.io/about) <br>
-- [PageDrop FAQ](https://pagedrop.io/faq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Self-contained HTML files with inline CSS and JavaScript, Markdown fallback when files cannot be created, and optional shell commands for hosted sharing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline-first HTML by default; optional PageDrop upload is used only after the user requests or confirms hosted sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Hosted sharing can expose sensitive content because a secret Gist is unlisted rather than private.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using the opt-in Pagedrop/Gist publishing workflow, review the generated HTML for secrets, private data, source excerpts, embedded metadata, and hidden content.
+
+Risk: The skill changes the agent's default posture toward HTML for substantial deliverables.
+
+Mitigation: Install it only when polished HTML should be the normal output for larger work, and honor explicit requests for Markdown, JSON, plain text, code-only snippets, or brief chat replies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuller-stack-dev/skills/make-html)
+- [Make HTML Skill Source](artifact/SKILL.md)
+- [Recognition](artifact/references/recognition.md)
+- [Artifact Patterns](artifact/references/artifact-patterns.md)
+- [Interaction Patterns](artifact/references/interaction-patterns.md)
+- [Visual Quality](artifact/references/visual-quality.md)
+- [Validation](artifact/references/validation.md)
+- [Sharing HTML Artifacts](artifact/references/sharing.md)
+- [Pagedrop](https://pagedrop.ai)
+- [Pagedrop GitHub Repository](https://github.com/Martian-Engineering/pagedrop)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Self-contained HTML files, or a fenced HTML document when file creation is unavailable; optional shell commands are used for validation and opt-in publishing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should work offline by default, include inline CSS and JavaScript when needed, remain responsive on narrow screens, and publish through Pagedrop/Gist only after explicit user request or confirmation.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

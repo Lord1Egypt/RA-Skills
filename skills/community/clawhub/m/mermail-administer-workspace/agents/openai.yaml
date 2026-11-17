@@ -1,0 +1,11 @@
+interface:
+  display_name: "Administer Mermail Workspace"
+  short_description: "Manage workspaces, mailboxes, webhooks, access, and usage"
+  default_prompt: "Use $mermail-administer-workspace when this task is about workspace settings, members, domains, mailbox configuration, webhooks, storage, credits, or usage."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

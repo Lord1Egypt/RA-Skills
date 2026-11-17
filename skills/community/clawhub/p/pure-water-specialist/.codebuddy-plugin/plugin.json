@@ -1,0 +1,64 @@
+{
+  "name": "pure-water-specialist",
+  "version": "1.0.0",
+  "description": "Pure water and ultra-pure water system design, installation, commissioning, and operations expert with 20 years of industry experience.",
+  "author": {
+    "name": "刘老师",
+    "email": ""
+  },
+  "agents": [
+    "./agents/pure-water-specialist.md"
+  ],
+  "skills": [
+    "./skills/pure-water-specialist"
+  ],
+  "expertType": "agent",
+  "agentName": "pure-water-specialist",
+  "displayName": {
+    "en": "Pure Water Specialist",
+    "zh": "纯水工艺专员"
+  },
+  "profession": {
+    "en": "Pure Water & Ultra-Pure Water System Engineer",
+    "zh": "纯水、超纯水系统设计、安装、调试、运营"
+  },
+  "displayDescription": {
+    "en": "20 years of pure water and ultra-pure water system design, installation, commissioning, and operations experience. Expert in water treatment process design, equipment selection, and project management.",
+    "zh": "深耕纯水行业20年，精通纯水、超纯水系统设计、安装、调试、运营全流程，熟悉各类水处理设备及工艺路线。"
+  },
+  "avatar": "avatars/pure-water-specialist.png",
+  "categoryId": "02-Engineering",
+  "defaultInitPrompt": {
+    "en": "Please help me design an efficient pure water system based on my water quality requirements.",
+    "zh": "请帮我设计高效的纯水系统，我提供工艺水质要求。"
+  },
+  "plugin": "pure-water-specialist",
+  "tags": [
+    {
+      "en": "Pure Water Design",
+      "zh": "纯水系统设计"
+    },
+    {
+      "en": "Ultra-Pure Water Operations",
+      "zh": "超纯水运营"
+    },
+    {
+      "en": "Water Treatment Equipment",
+      "zh": "水处理设备"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Please help me design an efficient pure water system based on my water quality requirements.",
+      "zh": "请帮我设计高效的纯水系统，我提供工艺水质要求。"
+    },
+    {
+      "en": "What are common troubleshooting issues during pure water system commissioning?",
+      "zh": "纯水系统调试常见问题有哪些？"
+    },
+    {
+      "en": "Please evaluate the current operation efficiency of my pure water system.",
+      "zh": "请评估当前纯水系统的运行效率。"
+    }
+  ]
+}

@@ -1,45 +1,55 @@
-## Description: <br>
-Semantic quote search with source transparency. Find quotes by meaning, not keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic quote search with source transparency that helps agents find quotes by meaning, not only by keyword.
 
-## Publisher: <br>
-[quotewisio](https://clawhub.ai/user/quotewisio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[quotewisio](https://clawhub.ai/user/quotewisio)
 
-## Use Case: <br>
-External users and agents use this skill to search for quotes by meaning, person, source, exact text, similarity, or random selection, with source transparency and attribution-checking support. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes third-party npm tooling with npx and connects to the Quotewise MCP service. <br>
-Mitigation: Install and use it only when the user trusts Quotewise and the invoked npm tools. <br>
-Risk: Configuring an Authorization header may store a Quotewise API key in client configuration. <br>
-Mitigation: Use a dedicated Quotewise API key where possible and review local MCP client configuration storage. <br>
-Risk: Quote-search queries may be sent to an external service. <br>
-Mitigation: Avoid sending sensitive private text as quote-search or attribution-checking queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quotewise homepage](https://quotewise.io) <br>
-- [Quotewise MCP documentation](https://quotewise.io/developers/mcp/) <br>
-- [Plans and pricing](https://quotewise.io/plans/) <br>
-- [ClawHub release page](https://clawhub.ai/quotewisio/quotewise) <br>
-- [MCP setup repository](https://github.com/quotewise/mcp) <br>
+## Use Case:
 
+External users, agents, and developers use this skill to search for quotations by concept, person, source, exact text, similarity, or random selection, and to check attribution with source transparency.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and JSON MCP responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional QUOTEWISE_API_KEY enables collections and higher rate limits; anonymous access is limited to 20 requests per day.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup instructions use unpinned npm commands, so installation or calls may execute package versions that changed after review.
+
+Mitigation: Prefer pinned package versions, review packages before use, and run setup from a least-privilege shell.
+
+Risk: Authenticated setup may store an API key in persistent home-scoped mcporter configuration.
+
+Mitigation: Avoid exposing API keys in command-line arguments where possible, use least-privilege credentials, and confirm how mcporter stores and removes home-scoped Authorization headers.
+
+## Reference(s):
+
+- [Quotewise homepage](https://quotewise.io)
+- [Quotewise MCP documentation](https://quotewise.io/developers/mcp/)
+- [Quotewise plans and pricing](https://quotewise.io/plans/)
+- [Quotewise MCP setup repository](https://github.com/quotewise/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples; MCP tool responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional QUOTEWISE_API_KEY authentication enables collections and higher rate limits; anonymous access is documented as limited to 20 requests per day.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

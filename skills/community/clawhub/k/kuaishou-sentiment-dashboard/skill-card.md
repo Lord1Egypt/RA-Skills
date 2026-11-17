@@ -1,45 +1,61 @@
-## Description: <br>
-快手短视频运营增长助手适合内容创作者、运营、品牌方、电商在用户提供了快手内容链接时使用，帮助基于输入材料生成情绪、画像和讨论焦点、舆情与转化线索、优化建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快手短视频运营增长助手 helps creators, operators, brands, and e-commerce teams analyze Kuaishou content links for sentiment, audience signals, discussion themes, public-opinion risk, conversion leads, and optimization guidance.
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-Content creators, operators, brand teams, and e-commerce teams use this skill to analyze Kuaishou video comments from a provided link. It returns sentiment, audience and discussion insights, public-opinion and conversion signals, and operational recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key for the AI Skills service. <br>
-Mitigation: Store AISKILLS_API_KEY locally in the environment and do not paste it into chat or shared prompts. <br>
-Risk: Kuaishou links and related metadata are sent to the configured API provider for analysis. <br>
-Mitigation: Invoke the skill only for links and metadata that may be shared with that provider, and use explicit invocation for sensitive conversations. <br>
-Risk: The skill returns operational sentiment and conversion guidance that may be incomplete or misleading if the source comments are unrepresentative. <br>
-Mitigation: Review the generated insights against the original content, business context, and any available first-party analytics before acting on recommendations. <br>
+## Use Case:
 
+External creators, operations teams, brands, and e-commerce users provide a Kuaishou video link or work ID to receive comment sentiment, audience-feedback themes, discussion focus, public-opinion signals, conversion leads, and recommended follow-up actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/kuaishou-sentiment-dashboard) <br>
-- [AI Skills](https://ai-skills.ai) <br>
-- [form-schema.json](references/form-schema.json) <br>
-- [skill.json](references/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISKILLS_API_KEY and a Kuaishou video link or work ID; the runner polls until the comment-analysis task completes or times out.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The runner sends Kuaishou links, derived content identifiers, and task requests to an external AI Skills service using an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that may be shared with that service, and provide a narrowly scoped AISKILLS_API_KEY.
+
+Risk: AISKILLS_BASE_URL is configurable, so a modified environment could send requests and credentials to an unintended service.
+
+Mitigation: Pin AISKILLS_BASE_URL to the trusted HTTPS service before execution and review the environment in automated deployments.
+
+Risk: The agent configuration allows implicit invocation, which could trigger analysis for sensitive business content.
+
+Mitigation: Disable or gate implicit invocation where sensitive campaign, customer, or business data may appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allinherog-star/skills/kuaishou-sentiment-dashboard)
+- [Publisher profile](https://clawhub.ai/user/allinherog-star)
+- [Form schema](references/form-schema.json)
+- [Skill metadata](references/skill.json)
+- [AI Skills service](https://ai-skills.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown usage guidance and JSON task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Kuaishou content link or work ID and an AISKILLS_API_KEY; the runner polls until the analysis task completes or times out.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

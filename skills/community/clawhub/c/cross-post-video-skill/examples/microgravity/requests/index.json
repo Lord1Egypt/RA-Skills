@@ -1,0 +1,21 @@
+{
+ "microgravity.json": {
+  "video": "microgravity",
+  "when": "2027-01-12T23:00:00Z",
+  "file": "clips/microgravity.mp4",
+  "accounts": [
+   {
+    "name": "TikTok",
+    "socialAccountId": "example-tiktok-account-id",
+    "platform": "TIKTOK",
+    "when": "2027-01-12T23:00:00Z"
+   },
+   {
+    "name": "Reels",
+    "socialAccountId": "example-instagram-account-id",
+    "platform": "INSTAGRAM",
+    "when": "2027-01-12T23:00:00Z"
+   }
+  ]
+ }
+}

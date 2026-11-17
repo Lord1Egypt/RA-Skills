@@ -1,44 +1,59 @@
-## Description: <br>
-Provides WeChat mini-program CI commands for previewing, uploading, building npm assets, uploading cloud functions and storage, and retrieving SourceMaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers preview, upload, build npm, upload cloud functions, and upload cloud storage for WeChat Mini Program projects.
 
-## Publisher: <br>
-[super9du](https://clawhub.ai/user/super9du) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[super9du](https://clawhub.ai/user/super9du)
 
-## Use Case: <br>
-Developers and release engineers use this skill to manage WeChat mini-program CI workflows, including local configuration checks, preview QR code generation, code upload, npm build steps, cloud asset uploads, and SourceMap retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The init workflow may install miniprogram-ci globally, changing the user's Node.js environment. <br>
-Mitigation: Manually install and pin a trusted miniprogram-ci version before use, then review any global installation step before allowing it. <br>
-Risk: The skill uses WeChat private key material and persists configuration under ~/.wxmini-ci.config.js. <br>
-Mitigation: Store private keys with restricted filesystem permissions and review the configuration file before sharing logs, projects, or workspaces. <br>
-Risk: Upload, cloud upload, and SourceMap commands can publish or retrieve remote project assets. <br>
-Mitigation: Require explicit human approval and verify the target AppID, project, environment, version, and paths before running these commands. <br>
+## Use Case:
 
+Developers and engineers maintaining WeChat Mini Program projects use this skill to configure and run miniprogram-ci operations, including preview, upload, npm build, cloud function and cloud storage upload, and source map retrieval.
 
-## Reference(s): <br>
-- [miniprogram-ci npm package](https://www.npmjs.com/package/miniprogram-ci) <br>
-- [WeChat miniprogram-ci documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html#%E6%A6%82%E8%BF%B0) <br>
-- [ClawHub skill page](https://clawhub.ai/super9du/wx-miniprogram-ci) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration and CI output files when the described commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and script constant) <br>
+Risk: The skill can upload code and cloud assets to WeChat services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and use least-privilege WeChat CI credentials in a dedicated project environment.
+
+Risk: The skill uses WeChat CI private key paths and may persist configuration in the user's home directory.
+
+Mitigation: Store private keys securely, avoid sharing config files, and prefer project-specific configuration paths when appropriate.
+
+Risk: The init flow may install global tooling with npm install -g miniprogram-ci.
+
+Mitigation: Preinstall and pin an approved miniprogram-ci version before using the skill in controlled environments.
+
+## Reference(s):
+
+- [miniprogram-ci package](https://www.npmjs.com/package/miniprogram-ci)
+- [WeChat Mini Program CI documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html#%E6%A6%82%E8%BF%B0)
+- [Wx Miniprogram Ci on ClawHub](https://clawhub.ai/super9du/skills/wx-miniprogram-ci)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local output files and may persist WeChat Mini Program CI configuration when executed.]
+
+## Skill Version(s):
+
+1.2.1 (source: release evidence and script constant)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

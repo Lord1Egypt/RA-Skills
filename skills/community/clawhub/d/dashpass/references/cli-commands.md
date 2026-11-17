@@ -202,7 +202,7 @@ echo "<new-secret>" | node dashpass-cli.mjs rotate \
 
 ```bash
 # Rotate the Anthropic API key to a new value
-echo "sk-ant-api03-NEW-KEY-HERE" | node dashpass-cli.mjs rotate \
+echo "REDACTED-SECRET" | node dashpass-cli.mjs rotate \
   --service anthropic-api \
   --value-stdin
 ```

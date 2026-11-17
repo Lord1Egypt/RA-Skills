@@ -1,45 +1,60 @@
-## Description: <br>
-Skill Alchemy Main helps an agent turn a person, method, experience, or existing skills into installable skills by coordinating Lens analysis and LEAP execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Alchemy Main orchestrates Lens and LEAP to turn a person, method, experience, or skill-fusion idea into an installable agent skill.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers and agent builders use this skill to distill personas, methods, or workflows into reusable agent skills, or to fuse existing skills into a combined workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch untrusted remote skill files and produce installed-agent behavior changes. <br>
-Mitigation: Review LEAP and Lens before installation, run only where network search and generated output files are acceptable, and inspect generated SKILL.md and references before copying them into an agent skills directory. <br>
-Risk: All-default operation may skip review points for sensitive or proprietary targets. <br>
-Mitigation: Use explicit checkpoints for sensitive work, confirm source URLs used for exemplars, and avoid all-default mode when generated skills could affect confidential or high-impact workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to plan, research, compile, and validate new installable skills or combinations of existing skills. It is intended for normal ClawHub release use, with human review before deploying generated skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentsope/skill-alchemy-main) <br>
-- [Publisher profile](https://clawhub.ai/user/agentsope) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Lens README_EN.md](artifact/skills/Lens/README_EN.md) <br>
-- [LEAP README_EN.md](artifact/skills/LEAP/README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated skill files and JSON planning artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write generated skills, references, plans, and audit artifacts under an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Generated skills may incorporate unreviewed public skill text or misleading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SKILL.md files, references, and scan results before installing or publishing them.
+
+Risk: All-default generation can be too broad for sensitive targets.
+
+Mitigation: Use explicit scope, depth, source requirements, and human checkpoints for sensitive people, methods, or domains.
+
+Risk: The subtitle helper has weak input validation for untrusted or option-like input.
+
+Mitigation: Do not run the subtitle helper on untrusted inputs, and pin installer or dependency versions where practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentsope/skills/skill-alchemy-main)
+- [README_EN.md](artifact/README_EN.md)
+- [SKILL.md](artifact/SKILL.md)
+- [LEAP skill grammar](artifact/skills/LEAP/references/skill-grammar.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, structured task briefs, research plans, and generated SKILL.md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a depth setting of quick, standard, or deep; generated skill artifacts are written under an output directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

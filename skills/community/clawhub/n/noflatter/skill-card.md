@@ -1,41 +1,55 @@
-## Description: <br>
-Official 第三人称 NoFlatter skill. Reframes requests into a neutral third-person brief so AI becomes less sycophantic, less leading, and more objectively useful. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reframes user requests into a neutral third-person brief so the agent becomes less sycophantic, less leading, and more objectively useful.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for a neutral third-person case brief and a less validating, more evidence-oriented answer. It is intended for user-controlled prompt reframing, not as a silent global override. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Neutral reframing may remove emotional context that is important to the user's actual task. <br>
-Mitigation: Preserve stakes, constraints, urgency, and emotional context when they affect the analysis. <br>
-Risk: A less validating answer may be perceived as hostile or contrarian if over-applied. <br>
-Mitigation: Stay kind and evidence-oriented without becoming argumentative or inventing support for a conclusion. <br>
+## Use Case:
 
+External users and developers enable this skill when they want an agent to rewrite a request into a neutral outside-observer framing and then answer with concise, evidence-oriented analysis instead of validating the user's preferred conclusion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sheygoodbai/noflatter) <br>
-- [Publisher profile](https://clawhub.ai/user/sheygoodbai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with a concise neutral brief and direct analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May show the rewritten third-person brief unless the user requests answer-only mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill intentionally makes enabled responses more neutral and less validating, which may feel too detached for users who expect a warmer response style in sensitive conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only when a neutral outside-observer framing is desired, and disable it when the conversation calls primarily for warmth or emotional support.
+
+Risk: Neutral reframing can remove answer-leading phrasing, but it does not independently verify facts or guarantee correct analysis.
+
+Mitigation: Review important conclusions against evidence and ask the agent to cite or explain the basis for high-stakes recommendations.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.ai/sheygoodbai/noflatter)
+- [ClawHub skill page](https://clawhub.ai/sheygoodbai/skills/noflatter)
+- [Publisher profile](https://clawhub.ai/user/sheygoodbai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with a neutral brief, objective analysis, key evidence, and concise conclusion when the user requests the default pattern.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-controlled response posture; no tool, credential, or persistence behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

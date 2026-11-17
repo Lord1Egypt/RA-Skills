@@ -1,40 +1,61 @@
-## Description: <br>
-tftcoach helps agents analyze Teamfight Tactics board states from screenshots or descriptions and provide coaching on comps, items, augments, economy, pivoting, positioning, and patch meta. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+tftcoach helps an agent provide Teamfight Tactics coaching from a player's screenshot or board description, including comp direction, item choices, augment picks, economy, pivots, positioning, and patch-meta advice.
 
-## Publisher: <br>
-[kewang0622](https://clawhub.ai/user/kewang0622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kewang0622](https://clawhub.ai/user/kewang0622)
 
-## Use Case: <br>
-External TFT players use this skill to get contextual, game-state-specific coaching for comp direction, item slams, augment choices, economy decisions, pivots, and positioning. Agents may use screenshots or user-provided board descriptions to produce concise gameplay guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots used for coaching can include unrelated personal or account details. <br>
-Mitigation: Crop or redact screenshots to the TFT board and relevant game UI before sharing. <br>
-Risk: TFT patch meta changes frequently, so stale composition or item advice can become misleading. <br>
-Mitigation: Use current web search or up-to-date TFT meta sources before making patch-specific recommendations. <br>
+## Use Case:
 
+External users and game-focused agent operators use this skill to get concise, context-aware Teamfight Tactics decisions from a described or screenshot-based board state. It is intended for gameplay coaching on comps, items, augments, economy, pivoting, positioning, and current patch meta.
 
-## Reference(s): <br>
-- [ClawHub tftcoach release](https://clawhub.ai/kewang0622/tftcoach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text coaching guidance, sometimes with small board-layout code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on user-provided screenshots or board descriptions and current web search for TFT patch meta.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Patch-meta, item, and augment advice can become outdated as Teamfight Tactics changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify patch-specific recommendations against current sources before relying on them for gameplay decisions.
+
+Risk: Screenshots or board descriptions may include visible account or gameplay information.
+
+Mitigation: Share only the game state needed for coaching, and redact identifiers when screenshots contain information unrelated to the requested advice.
+
+Risk: The skill directs the agent to search the web for current TFT information.
+
+Mitigation: Review sourced recommendations and prefer current, reputable TFT references when the agent uses web search.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kewang0622/skills/tftcoach)
+- [Publisher profile](https://clawhub.ai/user/kewang0622)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Repository link from artifact README](https://github.com/KeWang0622/tftcoach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text coaching responses, optionally with simple board-layout code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on current web search for patch-meta and item guidance; no executable code is produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

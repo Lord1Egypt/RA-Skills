@@ -1,36 +1,49 @@
-## Description: <br>
-Backend Architect helps agents design scalable, maintainable backend systems, including APIs, service boundaries, databases, event-driven architecture, and authentication patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides backend architecture guidance for scalable, maintainable systems, including API design, service boundaries, data storage, messaging, authentication, authorization, caching, performance, and deployment concerns.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan backend architectures, define API contracts, choose data and messaging patterns, and document testing, deployment, security, and observability considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and engineers use this skill to plan backend systems, design API contracts, choose persistence and messaging patterns, and reason about scalability, security, observability, deployment, and rollback strategies.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with architectural guidance, API specifications, code examples, and testing suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include architectural diagrams when relevant] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated backend designs may contain incomplete or incorrect choices for authentication, authorization, data consistency, or deployment.
+
+Mitigation: Review recommendations against production requirements and security controls before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-backend-architect)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with architectural guidance, API specifications, code examples, testing strategies, and optional diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

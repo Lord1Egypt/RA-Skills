@@ -1,41 +1,58 @@
-## Description: <br>
-Local-first data asset manager that helps scan, classify, and report on data before deciding what to share. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first data asset manager that helps agents scan, classify, and report on files before a user decides what data to share.
 
-## Publisher: <br>
-[Shangri-la-0428](https://clawhub.ai/user/Shangri-la-0428) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shangri-la-0428](https://clawhub.ai/user/shangri-la-0428)
 
-## Use Case: <br>
-Developers, data owners, and operators use this skill to inventory local files, classify individual assets, and generate text or JSON reports before sharing or registering selected data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning broad or sensitive directories can expose more local file inventory information than intended. <br>
-Mitigation: Scan only intended folders, consider --no-recursive for sensitive locations, and review generated text or JSON reports before sharing them. <br>
-Risk: The skill depends on an external Python package source. <br>
-Mitigation: Install only from a trusted package source, use a virtual environment, and verify the installed package before use. <br>
+## Use Case:
 
+External users and developers use this skill to inventory local directories, classify individual files, and generate text or JSON reports before sharing or registering selected data assets.
 
-## Reference(s): <br>
-- [Oasyce package on PyPI](https://pypi.org/project/oasyce/) <br>
-- [ClawHub skill listing](https://clawhub.ai/Shangri-la-0428/oasyce-vault) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to request or review text and JSON reports produced by the local datavault CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scanning broad or sensitive directories can expose more local file inventory information than the user intended to review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to choose a specific scan path, use non-recursive scans for narrow checks when appropriate, and review generated reports before sharing them.
+
+Risk: The skill depends on installing and running an external Python package.
+
+Mitigation: Install only from a trusted datavault package source and avoid running scans with elevated privileges.
+
+Risk: Optional Oasyce registration may share or register information externally.
+
+Mitigation: Treat registration as a separate user-confirmed step after local scan results have been reviewed.
+
+## Reference(s):
+
+- [Oasyce Python Package](https://pypi.org/project/oasyce/)
+- [Oasyce Vault on ClawHub](https://clawhub.ai/shangri-la-0428/skills/oasyce-vault)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide users to produce local scan, classification, and report outputs from selected paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

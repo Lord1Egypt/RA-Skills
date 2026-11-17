@@ -1,43 +1,63 @@
-## Description: <br>
-Delegate coding tasks to Cline CLI, including one-shot tasks, CI/CD automation, parallel workstreams, and Kanban-mode workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Cline CLI, an open-source autonomous coding agent that supports one-shot tasks, CI/CD automation, and parallel workstreams with Node.js 20+.
 
-## Publisher: <br>
-[andreasthinks](https://clawhub.ai/user/andreasthinks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreasthinks](https://clawhub.ai/user/andreasthinks)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to operate Cline CLI and Kanban workflows for delegated coding tasks, automated code review, CI/CD assistance, and coordinated multi-agent implementation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended Cline runs can modify code, commit, push, or deploy changes with substantial repository authority. <br>
-Mitigation: Use disposable worktrees or protected branches, review diffs before committing or deploying, and limit credentials to the minimum required scope. <br>
-Risk: Kanban control exposed beyond the local machine can allow unintended remote task control. <br>
-Mitigation: Keep Kanban on localhost unless it is protected by VPN, firewall, and authentication. <br>
-Risk: Passing API keys through CLI flags can expose credentials through shell history, process lists, or logs. <br>
-Mitigation: Avoid passing API keys as CLI flags and use least-privilege credentials that can be rotated. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate coding, review, testing, CI/CD, and Kanban-style parallel workstream tasks to Cline CLI while retaining human review of generated changes.
 
-## Reference(s): <br>
-- [Cline CLI documentation](https://cline.bot/cli) <br>
-- [ClawHub release page](https://clawhub.ai/andreasthinks/cline-kanban) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational patterns for Cline CLI and Kanban workflows, including unattended automation patterns that require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Autonomous coding and deploy workflows can make high-impact file, commit, or deployment changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated repository, worktree, or container, and review diffs before committing or deploying.
+
+Risk: Auto-approval flags such as `-y` can approve broad tasks without human checkpoints.
+
+Mitigation: Avoid auto-approval for broad or sensitive tasks, use pinned package versions, and scope prompts to specific files or workflows.
+
+Risk: Kanban network binding on `0.0.0.0` can expose the browser UI beyond localhost.
+
+Mitigation: Keep Kanban bound to localhost unless strong access controls and network protections are in place.
+
+Risk: Provider and deployment tokens used by Cline workflows can be over-privileged.
+
+Mitigation: Use least-privilege tokens and keep provider or deployment credentials out of shared logs and prompts.
+
+## Reference(s):
+
+- [Cline CLI documentation](https://cline.bot/cli)
+- [ClawHub skill page](https://clawhub.ai/andreasthinks/skills/cline-kanban)
+- [Publisher profile](https://clawhub.ai/user/andreasthinks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command patterns, configuration paths, workflow steps, and review guidance for autonomous coding-agent use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact/SKILL.md frontmatter declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

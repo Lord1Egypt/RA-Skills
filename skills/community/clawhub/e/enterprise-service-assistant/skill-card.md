@@ -1,52 +1,60 @@
-## Description: <br>
-Enterprise Service Assistant helps park operations teams manage customer records, fee collection, contract renewals, work orders, inventory, service matching, visit planning, move-outs, operational reports, and complaints from Excel-based ledgers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists park operations teams with daily work triage, tenant service management, follow-up tracking, local SQLite queries, and scheduled Tencent Docs synchronization.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Employees responsible for park or enterprise-service operations use this agent to read configured Excel or Tencent Docs data, identify operational risks, prepare follow-up messages, and generate daily or periodic service-work summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes WeCom webhook behavior and a hard-coded webhook URL. <br>
-Mitigation: Rotate or remove embedded webhook credentials, require administrator-approved outbound recipients, and keep external messaging disabled until reviewed. <br>
-Risk: Broad scheduled automation can send operational reminders and reports without an operator present. <br>
-Mitigation: Disable scheduled tasks by default and enable only reviewed schedules with clear owners, recipients, and run windows. <br>
-Risk: The artifact contains high-impact legal-proceeding automation and collection workflows. <br>
-Mitigation: Require human review and approval before generating, sending, filing, or acting on legal or collection-related outputs. <br>
-Risk: The skill processes enterprise ledger data from Excel files and Tencent Docs templates. <br>
-Mitigation: Use redacted test data until file paths, retention, cloud document access, and per-feature permissions are approved by an administrator. <br>
+## Use Case:
 
+Employees and operations teams use this skill to manage park enterprise service workflows such as customer lookup, fee follow-up, work-order dispatch, inventory checks, contract-renewal warnings, visit planning, and KPI reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/perrykono-debug/enterprise-service-assistant) <br>
-- [Installation Guide](artifact/references/安装指引.md) <br>
-- [Knowledge Base Configuration](artifact/references/知识库配置.md) <br>
-- [Enterprise Service Product Catalog](artifact/references/企业赋能_服务产品清单.md) <br>
-- [Customer Management Data Source Mapping](artifact/references/数据源_客户管理表.md) <br>
-- [Fee Collection Data Source Mapping](artifact/references/数据源_费用收缴表.md) <br>
-- [Value-Added Service Data Source Mapping](artifact/references/数据源_增值服务记录.md) <br>
-- [Tencent Docs data-source template](https://docs.qq.com/smartsheet/DTGJwZUJTZU1tc3dk) <br>
-- [Tencent Docs service catalog template](https://docs.qq.com/aio/DTHJ2Q0Jick5vV2RH) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with optional Python examples, configuration snippets, and outbound message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce operational reminders, risk labels, reports, message drafts, Excel update guidance, and WeCom notification payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Risk: The skill can handle and mutate sensitive enterprise service data, including local SQLite and JSON records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, back up Excel and SQLite data, and require transactional sync checks before enabling data writes.
+
+Risk: Scheduled sync, daemon mode, and automatic WeCom pushes can send or update operational data without timely human review.
+
+Mitigation: Keep scheduled automation disabled until webhook allowlisting, redaction, and explicit approval controls are configured.
+
+Risk: Unpinned installation sources can make it harder to reproduce the reviewed release.
+
+Mitigation: Install a pinned release matching the server release hash before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/enterprise-service-assistant)
+- [README](artifact/README.md)
+- [Installation Guide](artifact/knowledge/INSTALL.md)
+- [Onboarding Guide](artifact/knowledge/ONBOARDING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with structured tables, inline commands, configuration examples, and Python code snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce operational summaries, reminders, setup instructions, reports, and local data-management guidance.]
+
+## Skill Version(s):
+
+3.6.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

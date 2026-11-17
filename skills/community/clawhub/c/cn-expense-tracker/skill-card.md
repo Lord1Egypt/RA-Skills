@@ -1,41 +1,57 @@
-## Description: <br>
-Cn Expense Tracker is a Chinese personal expense tracking skill for recording spending, reviewing monthly statistics, setting budgets, comparing trends, and exporting local CSV data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese personal expense tracking assistant for recording expenses, reviewing monthly statistics, setting budgets, comparing spending trends, and exporting CSV data.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users use this skill to manage personal expenses in Chinese through local command-line workflows, including adding records, checking monthly reports, setting budgets, comparing trends, listing or deleting entries, and exporting CSV data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deleting an expense record permanently rewrites the local expense data file and renumbers remaining records. <br>
-Mitigation: Export or back up ~/.qclaw/workspace/expenses.json before using deletion. <br>
-Risk: Expense, budget, and export files are stored locally under ~/.qclaw/workspace and may contain personal financial details. <br>
-Mitigation: Protect local workspace files and review expenses_export.csv before sharing or importing it elsewhere. <br>
+## Use Case:
 
+Chinese-speaking users and agents use this skill for local personal bookkeeping: adding expense records, listing and deleting records, generating monthly reports, setting budgets, comparing monthly trends, and exporting expense data for spreadsheet analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-expense-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text, local JSON data, and CSV export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores expenses in ~/.qclaw/workspace/expenses.json, budgets in ~/.qclaw/workspace/budget.json, and CSV exports in ~/.qclaw/workspace/expenses_export.csv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server evidence release.version) <br>
+Risk: Personal expense data is stored as local JSON files under ~/.qclaw/workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and include the workspace in normal local backup and access-control practices.
+
+Risk: Deleted expense records are treated as permanent.
+
+Mitigation: Review record IDs before running delete commands and keep backups when records need to be recoverable.
+
+Risk: Exported CSV files can carry spreadsheet formula risks if record text starts with =, +, -, or @.
+
+Mitigation: Inspect or sanitize exported CSV values before opening them in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-expense-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, delete, and export local expense files under ~/.qclaw/workspace when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release metadata, released 2026-06-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

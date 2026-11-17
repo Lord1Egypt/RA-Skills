@@ -1,41 +1,56 @@
-## Description: <br>
-Control Apple TV, HomePod, and AirPlay devices via pyatv (scan, stream, playback, volume, navigation). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Apple TV, HomePod, and AirPlay devices via pyatv (scan, stream, playback, volume, navigation).
 
-## Publisher: <br>
-[aaronn](https://clawhub.ai/user/aaronn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaronn](https://clawhub.ai/user/aaronn)
 
-## Use Case: <br>
-External users, developers, and home media operators use this skill to discover and control Apple TV, HomePod, and AirPlay devices from an agent through pyatv and atvremote commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pairing stores reusable local credentials in ~/.pyatv.conf. <br>
-Mitigation: Protect the credentials file and remove it when the machine or agent environment is no longer trusted. <br>
-Risk: Agent-issued playback, volume, navigation, power, and streaming commands can affect local Apple media devices. <br>
-Mitigation: Review target device names, files, URLs, and command intent before execution. <br>
-Risk: The documented install path depends on pyatv compatibility with Python 3.13 or earlier. <br>
-Mitigation: Install pyatv with the documented Python 3.13 pipx command when newer Python runtimes are the default. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/aaronn/apple-media) <br>
+## Use Case:
 
+Developers and external users use this skill to generate command-line guidance for discovering, pairing, targeting, and controlling authorized Apple TV, HomePod, and AirPlay devices on a local network.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require the atvremote binary and access to the target local-network media device.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to control Apple media devices discovered on the local network.
+
+Mitigation: Only target devices the operator is authorized to use, and prefer known device IPs when possible.
+
+Risk: Pairing credentials may be stored in ~/.pyatv.conf after setup.
+
+Mitigation: Protect or remove ~/.pyatv.conf when device control should no longer persist.
+
+Risk: The install command accepts the latest pyatv release rather than a pinned reviewed version.
+
+Mitigation: For stricter supply-chain control, install a reviewed pinned pyatv version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronn/skills/apple-media)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires atvremote from pyatv and authorized access to Apple media devices on the local network.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

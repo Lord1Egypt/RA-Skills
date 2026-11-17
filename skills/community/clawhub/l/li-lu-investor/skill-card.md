@@ -1,43 +1,53 @@
-## Description: <br>
-基于李录文明进化论与价值投资理念，系统分析公司商业模式、护城河、管理层与估值，提供理性投资建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于李录文明进化论与价值投资理念，系统分析公司商业模式、护城河、管理层与估值，提供理性投资建议。
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and analysts use this skill to structure Li Lu-style value-investing reviews of companies, industries, and China-focused long-term opportunities. It produces educational analysis checklists and ratings that require independent fact, valuation, and suitability review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ratings or recommendations could be mistaken for personalized financial advice. <br>
-Mitigation: Use outputs as educational analysis structure only and make investment decisions after independent professional and suitability review. <br>
-Risk: Company facts, valuations, policy risks, and market conditions may be incomplete or stale. <br>
-Mitigation: Verify all facts, financial metrics, valuations, and policy assumptions against current primary sources before relying on the analysis. <br>
-Risk: The skill applies an opinionated Li Lu-style investment framework that can bias analysis toward China-focused long-term value opportunities. <br>
-Mitigation: Treat the framework as one lens among several and compare conclusions against alternative investment theses and risk models. <br>
+## Use Case:
 
+External users can use this Chinese-language skill to structure educational value-investing analysis of companies, China opportunities, and long-term civilization or modernization trends through a Li Lu-inspired framework.
 
-## Reference(s): <br>
-- [李录投资原则参考](references/li-principles.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/li-lu-investor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown investment-analysis checklist with ratings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational structure only; verify facts, valuations, and investment suitability independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Outputs may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational analysis and consult qualified financial professionals before making investment decisions.
+
+Risk: The skill applies an opinionated Li Lu, China-focused value-investing framework that may underweight current market conditions or alternative viewpoints.
+
+Mitigation: Compare outputs against current market data, company filings, policy risks, and competing investment perspectives.
+
+## Reference(s):
+
+- [李录投资原则参考](references/li-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown investment-analysis narrative with tables, checklists, ratings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, opinionated educational analysis; not personalized financial advice.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence, target metadata, and subskill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

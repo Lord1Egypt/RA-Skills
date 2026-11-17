@@ -1,0 +1,18 @@
+﻿{
+  "name": "ai-assistant-guide",
+  "version": "2.0.0",
+  "display_name": "AI助手百科全书",
+  "description": "从零搭建你的AI助手系统，OpenClaw完整安装配置指南 - 按月29 USDT / 按请求计费0.035 USDT每次",
+  "icon": "📖",
+  "categories": ["documentation", "education"],
+  "tags": ["ai-assistant", "guide", "tutorial", "openclaw", "paid"],
+  "author": "@cx75227-ops",
+  "license": "MIT-0",
+  "pricing": {
+    "currency": "USDT",
+    "plans": [
+      { "type": "subscription", "name": "月付", "price": 29, "period": "monthly" },
+      { "type": "pay_per_request", "name": "按次", "price": 0.035, "unit": "request" }
+    ]
+  }
+}

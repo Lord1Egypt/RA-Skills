@@ -1,42 +1,60 @@
-## Description: <br>
-Natural language bookkeeping that parses Chinese or English expense, income, and transfer descriptions and appends confirmed entries to a QianJi CSV ledger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural language bookkeeping skill that parses Chinese, English, or mixed expense descriptions and appends confirmed entries to a QianJi CSV ledger.
 
-## Publisher: <br>
-[deusyu](https://clawhub.ai/user/deusyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deusyu](https://clawhub.ai/user/deusyu)
 
-## Use Case: <br>
-External users use this skill to turn natural-language bookkeeping notes into reviewed QianJi ledger entries. The skill previews parsed fields for confirmation before appending rows to a local CSV file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit local QianJi CSV ledger data after user confirmation. <br>
-Mitigation: Review the target file, amount, category, timestamp, account, currency, recorder, and note before confirming, and keep backups of important ledger files. <br>
-Risk: Natural-language parsing can misclassify ambiguous expenses or choose an unintended category. <br>
-Mitigation: Use the preview and modification flow to correct ambiguous entries before the append script writes to the CSV. <br>
+## Use Case:
 
+External users and developers use this skill to turn natural-language bookkeeping notes into structured QianJi CSV entries. It supports category inference, multi-entry previews, explicit confirmation before writes, and append-only ledger updates.
 
-## Reference(s): <br>
-- [Category Keyword Mapping](references/category_map.md) <br>
-- [QianJi CSV Schema](references/csv_schema.md) <br>
-- [ClawHub release page](https://clawhub.ai/deusyu/nl2ledger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown preview text plus shell commands that append CSV rows after confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local QianJi CSV ledger entries through the bundled append script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill can append financial records to an unconstrained user-supplied file path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a dedicated QianJi CSV file you trust and confirm the exact destination path before any write.
+
+Risk: Ledger notes or other text fields may contain formula-like content that spreadsheet tools could interpret.
+
+Mitigation: Avoid opening exported ledgers in spreadsheet tools when fields may contain formula-like text, or sanitize those fields before opening.
+
+Risk: Default account and recorder values may not match the user's bookkeeping context.
+
+Mitigation: Review and set the recorder and account defaults before relying on the generated ledger entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deusyu/skills/nl2ledger)
+- [Category keyword mapping](artifact/references/category_map.md)
+- [QianJi CSV schema](artifact/references/csv_schema.md)
+- [Append entry script](artifact/scripts/append_entry.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown/text previews with bash command invocations and CSV row append operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before writing; appends one QianJi CSV row per confirmed entry.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

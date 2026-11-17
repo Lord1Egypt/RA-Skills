@@ -1,43 +1,55 @@
-## Description: <br>
-Professional Business Analyst career roadmap platform that generates personalized learning paths for IT, Data, and Finance specializations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Business Analyst career roadmap platform that generates personalized learning paths for IT, Data, and Finance specializations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External professionals, HR and talent teams, consulting firms, and educators use this skill to generate Business Analyst career roadmaps, retrieve specialization tracks, and access curated learning paths across IT, Data, and Finance domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send career background, skills, goals, session IDs, and optional user IDs to an external service. <br>
-Mitigation: Use pseudonymous or minimal identifiers, avoid unrelated sensitive data, and review the provider's privacy and retention practices before using it with employee or student data. <br>
-Risk: Career assessment fields can contain private employee or student development information. <br>
-Mitigation: Limit submitted assessment data to what is needed for roadmap generation and handle returned roadmap guidance according to the user's internal privacy requirements. <br>
+## Use Case:
 
+Business Analysts, HR and talent teams, consulting firms, and educators use this skill to generate personalized career roadmaps, review specialization tracks, and retrieve curated learning paths for IT, Data, and Finance Business Analyst roles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-business-analyst) <br>
-- [Business Analyst API Route](https://api.mkkpro.com/career/business-analyst) <br>
-- [Business Analyst API Docs](https://api.mkkpro.com:8091/docs) <br>
-- [OpenAPI Specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON API request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces career roadmap guidance, specialization data, learning path descriptions, and API usage examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Career assessment requests may include personal career profile details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session IDs, omit userId unless needed, and avoid sending sensitive employer, compensation, or private personal details.
+
+Risk: Generated roadmap guidance may not fully match an individual's employment context or goals.
+
+Mitigation: Review roadmap outputs before acting on them and treat recommendations as planning support rather than definitive career advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-business-analyst)
+- [Business Analyst Roadmap API Route](https://api.mkkpro.com/career/business-analyst)
+- [Business Analyst Roadmap API Docs](https://api.mkkpro.com:8091/docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API Calls, configuration]
+
+**Output Format:** [Markdown with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized roadmap phases, skill gaps, recommended certifications, next steps, specialization data, and learning path details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

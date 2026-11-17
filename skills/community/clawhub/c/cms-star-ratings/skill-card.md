@@ -1,44 +1,63 @@
-## Description: <br>
-CMS Star Ratings clinical intelligence for Medicare Advantage pharmacy optimization, including plan performance analysis, adherence intervention prioritization, guideline drift detection, and MTM/CMR strategy support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Educational and professional workflow guidance for reviewing CMS Medicare Advantage and Part D Star Ratings pharmacy measures, interpreting adherence gaps, recognizing clinical-versus-measure tradeoffs, and planning pharmacist-led medication reviews. Refer to current official CMS, PQA, and clinical guideline specifications before drawing conclusions.
 
-## Publisher: <br>
-[Erikaalexander1](https://clawhub.ai/user/Erikaalexander1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erikaalexander1](https://clawhub.ai/user/erikaalexander1)
 
-## Use Case: <br>
-Clinical pharmacists, managed care teams, Stars optimization teams, and medication management platform users use this skill to analyze Medicare Advantage Part D Star Ratings performance and prioritize evidence-based pharmacy interventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical reference content may be outdated or unsuitable for live member outreach without review. <br>
-Mitigation: Use only in approved environments for patient health data and verify current CMS and clinical guidance before operational use. <br>
-Risk: A CMR prioritization rule can lower outreach priority for members with limited English proficiency. <br>
-Mitigation: Correct the scoring rubric so limited-English members receive interpreter-supported or language-concordant outreach without lower priority. <br>
+## Use Case:
 
+Clinical pharmacists and quality teams use this skill to review Medicare Advantage and Part D pharmacy quality measures, check current specifications, and plan patient-centered adherence or medication review workflows. It helps distinguish measure performance from clinical appropriateness and identify issues for authorized clinician or quality-team review.
 
-## Reference(s): <br>
-- [CMS Star Ratings Measures Reference](references/measures.md) <br>
-- [Adherence Intervention Logic](references/adherence-interventions.md) <br>
-- [Clinical Guideline Drift Detection](references/guideline-drift.md) <br>
-- [MTM/CMR Optimization](references/mtm-cmr.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Erikaalexander1/cms-star-ratings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown clinical and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations and analysis for agent responses; it does not execute code or call external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Outdated specifications or incomplete claims data may lead to inaccurate measure interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the official CMS and applicable PQA specifications for the requested measurement year, and state data gaps and assumptions clearly.
+
+Risk: An apparent difference between a quality measure and clinical guidance may be treated as a confirmed conflict without source verification.
+
+Mitigation: Compare the original sources and their dates, describe uncertainty, and refer the issue to an authorized clinician or quality team.
+
+Risk: A measure opportunity could be mistaken for a reason to change an individual patient's medication.
+
+Mitigation: Separate measure performance from clinical appropriateness and refer patient-specific treatment decisions to an authorized clinician.
+
+## Reference(s):
+
+- [Medication Adherence Review: Clinical Context and Barriers](references/adherence-interventions.md)
+- [Reviewing Apparent Differences Between Clinical Guidelines and Quality Measures](references/guideline-drift.md)
+- [Pharmacy Star Ratings: Specification Review Checklist](references/measures.md)
+- [Medication Therapy Management / Comprehensive Medication Reviews](references/mtm-cmr.md)
+- [CMS Medicare Advantage and Part D performance data and technical notes](https://www.cms.gov/medicare/health-drug-plans/part-c-d-performance-data)
+- [Pharmacy Quality Alliance](https://www.pqaalliance.org/)
+- [CMS Quality Payment Program](https://qpp.cms.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Analysis]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General workflow guidance; relies on current source specifications and supplied data.]
+
+## Skill Version(s):
+
+1.1.1 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

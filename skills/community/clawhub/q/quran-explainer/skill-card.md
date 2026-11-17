@@ -1,40 +1,58 @@
-## Description: <br>
-Explain Qur'an verses respectfully in simple Arabic and English with translation notes, vocabulary, tafsir summaries, context, lessons, and clear limits around fatwa or sectarian claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain Qur'an verses respectfully in simple Arabic and English with translation notes, vocabulary, tafsir summaries, context, lessons, and clear limits around fatwa or sectarian claims.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Learners, educators, and general users can use this skill to generate respectful Quran study explanations, bilingual notes, vocabulary breakdowns, tafsir summaries, reflections, and study guides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quran explanations or tafsir summaries may be incomplete, disputed, or unsuitable for binding religious decisions. <br>
-Mitigation: Keep responses educational, state uncertainty, avoid fatwas, and direct users to qualified scholars for rulings or sensitive matters. <br>
-Risk: The artifact includes donation messaging and a PayPal link. <br>
-Mitigation: Review or remove donation messaging before use where payment links are not appropriate. <br>
+## Use Case:
 
+External learners use this skill for respectful educational explanations of Qur'an verses, surahs, themes, Arabic vocabulary, tafsir summaries, reflection notes, and study guides. It is learning support only and directs users to qualified scholars for binding religious rulings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/quran-explainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown explanations with headings, bilingual sections, vocabulary notes, tafsir summaries, reflection notes, and cautions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credential access, persistence, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Religious explanations may be mistaken for binding scholarly rulings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present answers as educational summaries and direct users to a qualified scholar for fatwas, legal rulings, family matters, finance, medical issues, or disputes.
+
+Risk: Verse references, translations, hadith, or tafsir claims may be inaccurate if generated without verification.
+
+Mitigation: State uncertainty clearly, prefer citing surah names, ayah numbers, and source names when available, and avoid inventing references or claims.
+
+Risk: The skill includes an external donation link.
+
+Mitigation: Treat the donation URL as an external link and verify it before publishing or recommending payment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/quran-explainer)
+- [Publisher profile](https://clawhub.ai/user/abdullah944)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown with structured headings, bilingual explanation sections, vocabulary notes, tafsir summaries, lessons, and caution notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should be respectful, educational, concise by default, and clear when verification or qualified scholarly advice is needed.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

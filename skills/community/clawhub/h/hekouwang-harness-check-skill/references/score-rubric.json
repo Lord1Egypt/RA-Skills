@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "scoreMax": 100,
+  "dimensions": [
+    {"id": "instruction_routing", "name": "规则与路由", "weight": 8, "description": "入口规则、宿主路由和知识下沉是否可发现、可执行。"},
+    {"id": "verification", "name": "验证入口", "weight": 12, "description": "是否存在唯一、可执行、分模式的验证入口。"},
+    {"id": "ci_parity", "name": "CI 可复现性", "weight": 10, "description": "CI 是否复现本地关键治理，而不是只跑表面测试。"},
+    {"id": "host_adapters", "name": "宿主适配", "weight": 8, "description": "Claude Code、Cursor、CodeBuddy、Codex 等宿主是否有明确挂载。"},
+    {"id": "safety_enforcement", "name": "安全执行", "weight": 12, "description": "危险动作是否由 Hook、策略和 fail-closed 规则在模型外约束。"},
+    {"id": "evidence_contracts", "name": "证据与完成门", "weight": 12, "description": "完成声明是否绑定文件摘要、Task Contract、Evaluator 和人工证据。"},
+    {"id": "recovery_state", "name": "状态与恢复", "weight": 8, "description": "Episode、checkpoint、锁、原子写入和恢复路径是否持久化。"},
+    {"id": "observability", "name": "可观测性", "weight": 8, "description": "事件、脱敏、开关、趋势和失败上下文是否可追踪。"},
+    {"id": "regression", "name": "正反例回归", "weight": 8, "description": "是否用正例和反例证明规则真的能命中和拦截。"},
+    {"id": "lifecycle_drift", "name": "生命周期与漂移", "weight": 6, "description": "组件注册、流程 Profile、适配链接和失败台账是否治理。"},
+    {"id": "docs_portability", "name": "文档与可移植性", "weight": 4, "description": "规则、安装、许可证、贡献和机器路径边界是否清楚。"},
+    {"id": "human_boundary", "name": "人工边界", "weight": 4, "description": "是否诚实区分自动化、真实宿主烟测和内容人工验收。"}
+  ],
+  "hardCaps": [
+    {"id": "no_verification_entrypoint", "maxScore": 35, "severity": "P0", "message": "没有可执行的 Harness 验证入口，分数最多只能表示文档存在。"},
+    {"id": "no_ci_parity", "maxScore": 70, "severity": "P1", "message": "没有可复现 CI 门禁，无法证明本机通过能在干净环境重现。"},
+    {"id": "no_safety_enforcement", "maxScore": 55, "severity": "P0", "message": "没有模型外的安全执行边界，危险动作只能依赖提示词自律。"},
+    {"id": "no_negative_regression", "maxScore": 65, "severity": "P1", "message": "没有反例回归，无法证明治理规则真的会拦截错误路径。"},
+    {"id": "no_evidence_contract", "maxScore": 70, "severity": "P1", "message": "没有完成证据契约，最终回答不能被独立复核。"}
+  ],
+  "maturityBands": [
+    {"min": 0, "max": 29, "id": "L0", "name": "叙事型", "description": "主要依赖说明和模型自报。"},
+    {"min": 30, "max": 49, "id": "L1", "name": "已搭建", "description": "有入口和基本规则，但证据闭环不完整。"},
+    {"min": 50, "max": 69, "id": "L2", "name": "可重复", "description": "有自动化回归，但跨环境或安全边界仍有缺口。"},
+    {"min": 70, "max": 84, "id": "L3", "name": "证据门控", "description": "完成和危险动作开始由独立证据与策略控制。"},
+    {"min": 85, "max": 94, "id": "L4", "name": "跨宿主治理", "description": "多宿主、CI、恢复和失败闭环基本成形。"},
+    {"min": 95, "max": 100, "id": "L5", "name": "可发布", "description": "关键门禁、证据和真实宿主边界均具备可交付证据。"}
+  ]
+}

@@ -1,53 +1,72 @@
-## Description: <br>
-x402-layer helps agents pay for APIs with USDC, deploy monetized endpoints, manage credits, webhooks, marketplace listings, wallet-first ERC-8004 registration and reputation, support flows, and $SGL staking across Base, Ethereum, Polygon, BSC, Monad, and Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+x402 Layer helps developers and agents pay for APIs with USDC, create and manage monetized endpoints and marketplace services, handle credits and payment webhooks, and perform wallet-based agent registration, reputation, and staking workflows on supported networks.
 
-## Publisher: <br>
-[ivaavimusic](https://clawhub.ai/user/ivaavimusic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivaavimusic](https://clawhub.ai/user/ivaavimusic)
 
-## Use Case: <br>
-Developers and operators use this skill to let agents discover, pay for, create, list, and manage x402 monetized endpoints, products, credits, webhooks, and marketplace resources. It also supports wallet-based agent registration, reputation feedback, support messaging, and Solana $SGL staking when the user explicitly authorizes signing or owner-scoped actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend funds and submit blockchain transactions. <br>
-Mitigation: Use low-balance or delegated wallets and inspect every payment, staking, registration, or reputation action before execution. <br>
-Risk: Owner-scoped credentials can manage or remove account resources such as endpoints, webhooks, campaigns, or support access. <br>
-Mitigation: Use scoped API keys or PATs only for the selected runbook and confirm delete, revoke, webhook, and campaign operations before allowing the agent to run them. <br>
-Risk: Wallet keys and service tokens grant sensitive authority when exposed to the agent runtime. <br>
-Mitigation: Prefer AWAL, OWS, endpoint-scoped keys, or ephemeral wallets, and avoid loading credentials that are not needed for the current task. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate USDC payments into APIs and applications, discover and consume paid services, and manage endpoints, credits, webhooks, and agent-registry workflows. Some operations sign wallet messages or submit on-chain transactions, so select a runbook and credentials appropriate to the requested action.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivaavimusic/x402-layer) <br>
-- [x402 Layer Studio](https://studio.x402layer.cc) <br>
-- [OpenClaw Skill Documentation](https://docs.x402layer.cc/agentic-access/openclaw-skill) <br>
-- [Agentic Endpoint Creation](references/agentic-endpoints.md) <br>
-- [Integrating Payments Into Your App](references/payments-integration.md) <br>
-- [Webhooks and Payment Genuineness Verification](references/webhooks-verification.md) <br>
-- [Agent Registry and Reputation](references/agent-registry-reputation.md) <br>
-- [$SGL Staking](references/staking.md) <br>
-- [Payment Signing Reference](references/payment-signing.md) <br>
-- [OpenWallet / OWS](references/openwallet-ows.md) <br>
-- [Singularity MCP Control Plane](references/mcp-control-plane.md) <br>
-- [XMTP Support in Studio](references/xmtp-support.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include wallet, payment, endpoint, webhook, marketplace, support, or staking runbooks; signing and write actions require explicit user-selected credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.14.0 (source: frontmatter and server release metadata) <br>
+Risk: Signing tools may authorize excessive payments or unintended wallet transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Begin with secret-free discovery; use a dedicated low-balance wallet, enforce spending limits, validate transactions, and avoid unattended direct-key operations.
+
+Risk: Privileged credentials may grant broader access than a specific task requires.
+
+Mitigation: Use task-specific, least-privilege credentials and approved HTTPS hosts; only enable credentials required by the chosen runbook.
+
+Risk: Repeated or stale webhook events could trigger duplicate payment-related grants.
+
+Mitigation: Check event freshness and implement duplicate-event protection before granting goods or credits.
+
+## Reference(s):
+
+- [Agent Registry and Reputation (ERC-8004 / Solana-8004)](references/agent-registry-reputation.md)
+- [Agentic Endpoint Creation](references/agentic-endpoints.md)
+- [World AgentKit Benefits](references/agentkit-benefits.md)
+- [Credit-Based Access](references/credit-based.md)
+- [Marketplace Discovery](references/marketplace.md)
+- [Singularity MCP Control Plane](references/mcp-control-plane.md)
+- [OpenWallet / OWS](references/openwallet-ows.md)
+- [Pay-Per-Request](references/pay-per-request.md)
+- [Payment Signing Reference](references/payment-signing.md)
+- [Integrating Payments Into Your App](references/payments-integration.md)
+- [$SGL Staking](references/staking.md)
+- [Webhooks and Payment Verification](references/webhooks-verification.md)
+- [XMTP Support in Studio](references/xmtp-support.md)
+- [x402 Layer Documentation](https://docs.x402layer.cc/agentic-access/openclaw-skill)
+- [x402 Layer Studio](https://studio.x402layer.cc)
+- [ClawHub Release](https://clawhub.ai/ivaavimusic/skills/x402-layer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API results]
+
+**Output Format:** [Markdown guidance with shell commands, code and configuration examples, and JSON/API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected workflow and may involve external API calls, payments, or signed on-chain transactions.]
+
+## Skill Version(s):
+
+1.15.0 (source: SKILL.md frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

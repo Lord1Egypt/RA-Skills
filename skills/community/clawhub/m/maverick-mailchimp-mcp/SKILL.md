@@ -3,7 +3,7 @@ name: maverick-mailchimp-mcp
 description: Search and read Mailchimp Marketing API audiences, members, campaigns, content, and reports through a local MCP wrapper. Use when the user asks about Mailchimp marketing data.
 metadata:
   openclaw:
-    emoji: "📣"
+    emoji: '📣'
     requires:
       bins:
         - mcporter
@@ -15,7 +15,7 @@ metadata:
     install:
       - id: node
         kind: node
-        package: mcporter
+        package: mcporter@0.13.10
         bins:
           - mcporter
         label: Install mcporter (node)
@@ -62,5 +62,5 @@ Tool calls run locally: mcporter spawns this skill's Python MCP server as a subp
 
 ## Dependencies
 
-- **`mcporter`** ([github.com/steipete/mcporter](https://github.com/steipete/mcporter)) - MCP CLI used to invoke the local MCP server. Auto-installed via `npm install -g --ignore-scripts mcporter` if missing on PATH (see `install` spec in frontmatter). The install spec uses unpinned `mcporter` (npm `latest`); operators with strict supply-chain controls should override the install to pin a specific version.
+- **`mcporter`** ([github.com/steipete/mcporter](https://github.com/steipete/mcporter)) - MCP CLI used to invoke the local MCP server. If it is missing from PATH, the frontmatter installs the exact `mcporter@0.13.10` package with npm install scripts disabled.
 - **`uv`** ([docs.astral.sh/uv](https://docs.astral.sh/uv/)) - runs the Python wrapper and local MCP server from their inline dependency metadata.

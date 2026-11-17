@@ -1,45 +1,51 @@
-## Description: <br>
-OKSign connector support for reading OKSign account, user, document, and signed-document metadata through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OKSign through an OOMOL-connected account to search and read account, user, and signed-document data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect OKSign account credits, users, active documents, linked document IDs, and signed-document metadata through OOMOL's OKSign connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected OKSign account, and the agent can read account, user, and document metadata visible to that account. <br>
-Mitigation: Install only when the publisher is trusted, connect the minimum appropriate OKSign account, and review requested actions before allowing access to sensitive document metadata. <br>
-Risk: Authentication, connection, or billing recovery flows can redirect the user into account setup or recharge steps. <br>
-Mitigation: Run setup or recovery commands only after an oo CLI command fails with the matching authentication, connection, scope, credential, app, or billing error. <br>
-Risk: Future connector actions or schemas may include write or destructive operations even though the listed actions are read-only. <br>
-Mitigation: Fetch the live action schema before building a payload and require explicit user confirmation for any action tagged write or destructive. <br>
+## Use Case:
 
+External users can use the skill to retrieve OKSign credits, document metadata and links, active documents, and configured account users through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub OKSign skill page](https://clawhub.ai/oomol/oo-oksign) <br>
-- [OKSign homepage](https://www.oksign.be/en/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return JSON data with a meta.executionId when executed through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: First-time setup directs users to run an unverified remote CLI installer; the installer and live connector code were not audited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a verified CLI version under your control, review or disable automatic skill synchronization, and limit use to the listed OKSign reads.
+
+## Reference(s):
+
+- [OKSign website](https://www.oksign.be/en/)
+- [OKSign API documentation](https://www.oksign.be/public/api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with shell command examples and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands retrieve OKSign data through the connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

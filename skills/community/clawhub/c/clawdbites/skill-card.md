@@ -1,45 +1,63 @@
-## Description: <br>
-Extracts recipes from Instagram reels by parsing captions, transcribing audio, and structuring ingredients, instructions, and macros. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract recipes from Instagram reels. Use when a user sends an Instagram reel link and wants to get the recipe from the caption. Parses ingredients, instructions, and macros into a clean format.
 
-## Publisher: <br>
-[kylelol](https://clawhub.ai/user/kylelol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kylelol](https://clawhub.ai/user/kylelol)
 
-## Use Case: <br>
-External users and personal cooking assistants use this skill to turn public Instagram reel links into structured recipes with ingredients, instructions, macros, and source attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may download, transcribe, and visually analyze public Instagram reel content. <br>
-Mitigation: Use it only with public reels the user intends to process, and disclose that frame analysis may send reel images to the agent's vision model. <br>
-Risk: The skill depends on local media-processing tools and a pip-installed Whisper dependency. <br>
-Mitigation: Install yt-dlp, ffmpeg, and Whisper only from trusted package sources and keep them updated. <br>
-Risk: Optional wishlist or notes actions can persist recipe data. <br>
-Mitigation: Save recipes only after the user explicitly chooses a persistent action. <br>
-Risk: Estimated ingredient quantities may be inaccurate when the source omits measurements. <br>
-Mitigation: Label inferred amounts as estimates and have the user review them before cooking or saving. <br>
+## Use Case:
 
+External ClawHub users use this skill to turn public Instagram recipe reels into structured recipes with ingredients, instructions, macros, and source attribution. It can optionally support saving recipe wishlist data for meal-planning workflows.
 
-## Reference(s): <br>
-- [ClawdBites on ClawHub](https://clawhub.ai/kylelol/clawdbites) <br>
-- [Clawdbot project](https://github.com/clawdbot/clawdbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown recipe summaries with ingredients, instructions, macros, source links, and optional JSON wishlist records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated quantities when source media omits measurements; estimates are labeled for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can automatically download and analyze public Instagram reel media when a caption is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user before audio or video analysis and limit use to public reels the user is comfortable processing.
+
+Risk: Extracted frames may be sent to the active vision model during fallback analysis.
+
+Mitigation: Disclose frame analysis before use and avoid processing reels that may contain sensitive personal information.
+
+Risk: The installation path includes an unpinned Python package installation for Whisper.
+
+Mitigation: Use pinned versions in an isolated environment and review dependency sources before deployment.
+
+Risk: The artifact behavior uses shared temporary media paths for downloaded video and audio.
+
+Mitigation: Store temporary media in a private per-run directory and clean it up after processing.
+
+## Reference(s):
+
+- [ClawdBites ClawHub listing](https://clawhub.ai/kylelol/skills/clawdbites)
+- [kylelol ClawHub publisher profile](https://clawhub.ai/user/kylelol)
+- [Clawdbot project](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown recipe summary with optional JSON wishlist entries and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include inferred ingredient quantities marked as estimated and source attribution to the Instagram reel.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

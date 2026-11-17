@@ -1,41 +1,60 @@
-## Description: <br>
-Fetches Douyin hot-list data and keyword search results, including natural-language requests that map to scraper commands. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Retrieves Douyin hot-search data and keyword search results, including natural-language search requests.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Douyin trending topics or keyword-based video search results and save them as structured data for analysis or reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language triggers can initiate Douyin network searches and send search terms to Douyin sooner than some users expect. <br>
-Mitigation: Use explicit Douyin-related requests, avoid sensitive keywords, and run the skill only when sharing those search terms with Douyin is acceptable. <br>
-Risk: Saved result files may be written to paths chosen during use. <br>
-Mitigation: Choose output file paths deliberately and review saved JSON or CSV results before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Douyin hot-search topics or keyword-related video metadata and optionally save results for review or downstream analysis. The artifact describes the data use as learning and research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/douyin-hot-scraper) <br>
-- [Douyin](https://www.douyin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON or CSV data with terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save results to a selected output path; keyword search defaults to 10 results and hot-list retrieval defaults to 20 results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Browser mode launches Chromium with an unsafe configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer API-only mode where possible, run browser mode only in an isolated environment, and avoid privileged execution.
+
+Risk: Install steps pull unpinned Playwright and Chromium dependencies.
+
+Mitigation: Pin and verify Playwright and Chromium versions before installation.
+
+Risk: Scraping behavior can be invoked for broad Douyin search requests.
+
+Mitigation: Require explicit Douyin-specific user intent and review platform rules before running the scraper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-hot-scraper)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+- [Douyin hot-search API endpoint](https://www.douyin.com/aweme/v1/web/hot/search/list/)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Console text with optional JSON or CSV file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include video or hot-search fields such as title, author, engagement counts, URL, tags, publish date, hot value, and search word.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

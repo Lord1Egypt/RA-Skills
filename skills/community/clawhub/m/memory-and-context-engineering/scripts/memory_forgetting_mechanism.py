@@ -366,7 +366,7 @@ class MemoryForgettingMechanism:
         if imp_score > 0.5:
             score += imp_score * 0.3
             if metadata.importance == MemoryImportance.TRIVIAL:
-                triggers.append(ForgettingTrigger.TRIVIAL)
+                triggers.append(ForgettingTrigger.IRRELEVANCE)
 
         return min(1.0, score), triggers
 

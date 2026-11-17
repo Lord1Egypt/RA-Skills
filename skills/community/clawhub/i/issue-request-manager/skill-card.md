@@ -1,45 +1,61 @@
-## Description: <br>
-Issue Request Manager helps agents create, track, update, assign, prioritize, close, and notify stakeholders about issue requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue Request Manager helps create, classify, track, update, reply to, and close issue requests, with local persistence and optional WeChat/WeCom notifications.
 
-## Publisher: <br>
-[Viv888-AI](https://clawhub.ai/user/Viv888-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viv888-ai](https://clawhub.ai/user/viv888-ai)
 
-## Use Case: <br>
-Developers, support teams, and project managers use this skill to manage issue request lifecycles, including creation, tracking, replies, assignments, priority changes, closure, local persistence, and optional Enterprise WeChat notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Issue records may contain sensitive project, customer, or security details and are persisted locally. <br>
-Mitigation: Limit sensitive ticket content, protect the local data path, and apply normal access controls and retention practices for stored issue data. <br>
-Risk: Enterprise WeChat notifications can expose selected issue details or credentials if recipients or secrets are mishandled. <br>
-Mitigation: Keep the WeChat Secret out of committed files, verify recipient lists before enabling notifications, and avoid sending secrets or sensitive customer/security details in notification bodies. <br>
-Risk: Runtime dependencies and network notification behavior may change if dependencies are installed without review. <br>
-Mitigation: Pin or audit dependencies before production use and review outbound notification behavior in the target environment. <br>
+## Use Case:
 
+Developers, project managers, and support teams use this skill to manage issue request lifecycle tasks such as creation, tracking, assignment, comments, priority changes, and closure. Teams can optionally configure WeChat/WeCom notifications for issue events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viv888-AI/issue-request-manager) <br>
-- [README](artifact/README.md) <br>
-- [Notification guide](artifact/NOTIFICATION_GUIDE.md) <br>
-- [Configuration](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, JSON configuration, and issue/status data returned as strings or dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write issue data to a local JSON file and can send selected issue details through Enterprise WeChat when notification credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Issue metadata may be sent to WeChat/WeCom when notification functions are enabled or called.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict recipients and avoid sending notifications for issues that contain secrets, incident details, regulated data, or customer-sensitive information.
+
+Risk: WeChat/WeCom CorpID, Secret, and AgentID values can expose notification infrastructure if stored in tracked configuration.
+
+Mitigation: Keep secrets out of tracked config files; use environment variables or a secret manager and grant only the permissions needed for notification delivery.
+
+Risk: Issue records may be persisted locally as JSON files by the database helper.
+
+Mitigation: Store local issue data in an access-controlled location and avoid placing secrets or regulated information in issue titles, descriptions, labels, or comments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/viv888-ai/skills/issue-request-manager)
+- [Publisher Profile](https://clawhub.ai/user/viv888-ai)
+- [Skill Definition](artifact/SKILL.md)
+- [Issue Request Manager README](artifact/README.md)
+- [WeChat Notification Guide](artifact/NOTIFICATION_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, Python snippets, issue dictionaries, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist issue records to local JSON files and may call WeChat/WeCom APIs when notification functions are configured and invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

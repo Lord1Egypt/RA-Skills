@@ -1,47 +1,61 @@
-## Description: <br>
-fboc is a CLI skill for managing Facebook Page posts, comments, page information, and scheduled publishing through the Facebook Graph API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+fboc helps agents manage Facebook Pages through CLI commands for listing, creating, scheduling, hiding, and deleting posts and comments via the Facebook Graph API.
 
-## Publisher: <br>
-[phuongsky](https://clawhub.ai/user/phuongsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[phuongsky](https://clawhub.ai/user/phuongsky)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Facebook Page credentials, inspect Page content, publish or schedule posts, manage comments, and hide or delete Page content from an agent-accessible CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful Facebook Page credentials. <br>
-Mitigation: Review the code before installation, use a non-production Facebook Page first, keep tokens out of shared shells and logs, and rotate any token used with the package. <br>
-Risk: Posting and test workflows can affect live Facebook Page content. <br>
-Mitigation: Run setup and tests only after confirming the target Page and token scope, and validate content in a non-production Page before using a production Page. <br>
-Risk: Hide and delete commands can remove or change public visibility of Page content. <br>
-Mitigation: Verify post or comment IDs before execution, avoid force or confirm flags unless the action has been reviewed, and prefer reversible hiding where practical. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent configure Facebook Page credentials, test access, and manage Page content from terminal workflows. It is suited to publishing, scheduling, reviewing, hiding, or deleting Facebook Page posts when the operator has approved credentials and content changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phuongsky/facebook-openclaw) <br>
-- [Facebook Developers](https://developers.facebook.com/) <br>
-- [Facebook Graph API documentation](https://developers.facebook.com/docs/graph-api) <br>
-- [Facebook Page reference](https://developers.facebook.com/docs/graph-api/reference/page) <br>
-- [Facebook Page posts reference](https://developers.facebook.com/docs/graph-api/reference/page/posts) <br>
-- [Facebook post comments reference](https://developers.facebook.com/docs/graph-api/reference/post/comments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Facebook Page access token and can create, schedule, hide, or delete live Facebook Page content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can publish, schedule, hide, or delete live Facebook Page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test Page first, manually review commands before execution, and require explicit confirmation for destructive actions.
+
+Risk: The skill requires a Facebook Page token with permissions that can modify Page content.
+
+Mitigation: Use least-privilege Page tokens, avoid pasting tokens into chats or shell history, store credentials securely, and rotate any token used with this version.
+
+Risk: Automated test or cron examples can affect a production Page if run with production credentials.
+
+Mitigation: Run tests and scheduled jobs only against reviewed Page IDs and tokens, and avoid production cron jobs without manual approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phuongsky/skills/facebook-openclaw)
+- [Facebook Graph API Documentation](https://developers.facebook.com/docs/graph-api)
+- [Facebook Pages API](https://developers.facebook.com/docs/graph-api/reference/page)
+- [Facebook Page Posts API](https://developers.facebook.com/docs/graph-api/reference/page/posts)
+- [Facebook Post Comments API](https://developers.facebook.com/docs/graph-api/reference/post/comments)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Facebook Graph API actions that modify live Page content when executed with valid Page credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

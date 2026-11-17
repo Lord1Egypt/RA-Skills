@@ -1,43 +1,59 @@
-## Description: <br>
-PostgreSQL database patterns for query optimization, schema design, indexing, and security. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PostgreSQL database patterns for query optimization, schema design, indexing, and security.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and database engineers use this skill as a quick reference for PostgreSQL queries, migrations, schema design, indexing, RLS, connection pooling, and production safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production PostgreSQL configuration changes can affect availability, performance, or access control if applied without review. <br>
-Mitigation: Review current settings first, test changes in staging, confirm administrator privileges, and keep backups or rollback plans before applying impactful changes. <br>
-Risk: SQL examples and database diagnostics can expose credentials or sensitive query text. <br>
-Mitigation: Do not echo secrets back to users, use placeholders or bound parameters, and filter or hash pg_stat_statements query text before sharing it outside the database environment. <br>
-Risk: Destructive DDL can cause irreversible data loss. <br>
-Mitigation: Require a pg_dump backup, a rollback plan, and explicit confirmation for the specific destructive operation before generating or applying the change. <br>
+## Use Case:
 
+Developers and engineers use this skill as a PostgreSQL reference for writing SQL and migrations, designing schemas, selecting indexes, troubleshooting slow queries, implementing Row Level Security, and setting up connection pooling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/postgres-hardened) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/postgres) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with SQL, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include query examples, configuration templates, anti-pattern checks, and safety prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated SQL or configuration changes can affect production database availability, permissions, or data integrity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL before use, require explicit approval for production-impacting changes, and prepare backups and rollback plans before destructive migrations.
+
+Risk: Query-stat and diagnostic outputs can expose credentials or sensitive query text if copied into endpoints, logs, or external systems.
+
+Mitigation: Filter, redact, or hash query text before sharing it outside the database administration context.
+
+Risk: User-provided secrets can be repeated in generated examples or warnings.
+
+Mitigation: Refer to credentials by description and use parameters, environment variables, or secret-management patterns instead of echoing secret values.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/snazar-faberlens/skills/postgres-hardened)
+- [Faberlens PostgreSQL safety evaluation](https://faberlens.ai/explore/postgres)
+- [Faberlens publisher site](https://faberlens.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with SQL, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PostgreSQL query patterns, schema guidance, index recommendations, RLS examples, anti-pattern checks, and operational safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

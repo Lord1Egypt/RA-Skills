@@ -1,43 +1,52 @@
-## Description: <br>
-An agent memory workflow guide for OpenClaw and Codex with MEMORY.md, daily notes, SESSION-STATE, working-buffer, Obsidian archiving, and optional OpenViking support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when setting up or improving an agent memory workflow for OpenClaw, Codex, or Obsidian with MEMORY.md, daily notes, session recovery, and optional OpenViking support.
 
-## Publisher: <br>
-[cjke84](https://clawhub.ai/user/cjke84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjke84](https://clawhub.ai/user/cjke84)
 
-## Use Case: <br>
-Developers and agent users use this skill to set up a portable, local-first memory workflow with recovery files, daily notes, memory capture, and optional archive or recall layers. It is useful when an agent needs auditable continuity across sessions without depending on a hosted memory platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory files may accidentally contain passwords, API keys, private secrets, or other sensitive workspace information. <br>
-Mitigation: Use the workflow for collaboration facts, decisions, and recovery context only; do not store credentials or private secrets in memory files. <br>
-Risk: Import or clean restore commands can overwrite supported memory files in the selected workspace. <br>
-Mitigation: Confirm the workspace path before running import or --clean and keep the generated pre-import backup for recovery. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up a local-first memory workflow with recovery files, daily notes, Obsidian archiving, and optional recall backends. It is intended for OpenClaw, Codex, and related agent workspaces that need portable memory practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjke84/agent-memory-system-guide) <br>
-- [Project homepage](https://github.com/cjke84/agent-memory-system-guide) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw memory_search documentation](https://docs.openclaw.ai/tools#memory_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory workflow instructions, file templates, and helper-script command examples for an agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.7 (source: server release evidence and manifest.toml) <br>
+Risk: Backup import and export can restore or archive more workspace files than users reasonably expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect backup contents before restoring, do not import archives from untrusted sources, avoid symlinks inside memory and attachments, and keep a separate backup before using clean restore mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjke84/skills/agent-memory-system-guide)
+- [Project homepage](https://github.com/cjke84/agent-memory-system-guide)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw memory_search documentation](https://docs.openclaw.ai/tools#memory_search)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, file templates, and optional JSON or Markdown report output from helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper commands may create local memory files, Markdown reports, and backup zip archives when executed by the user or agent.]
+
+## Skill Version(s):
+
+1.1.7 (source: release evidence and manifest.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

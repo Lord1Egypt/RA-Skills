@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73h4498gxvpmcvkdwwgbyxvd82s88q",
-  "slug": "ghl",
+  "name": "ghl-crm-mastery",
   "version": "1.3.0",
-  "publishedAt": 1774494671122
+  "description": "Full read/write access to GoHighLevel CRM via API v2. Contacts, conversations, notes, opportunities, calendars, tags, tasks, forms, workflows, payments, and invoices. Includes rate-limit retries, safety guardrails, and real-time conversation support.",
+  "author": "SetupClaw.Tech",
+  "license": "MIT-0",
+  "source": "custom",
+  "homepage": "https://setupclaw.tech",
+  "requires": {
+    "openclaw": ">=2026.2.0",
+    "env": ["GHL_API_KEY", "GHL_LOCATION_ID"],
+    "bins": ["python3"]
+  },
+  "primaryCredential": "GHL_API_KEY"
 }

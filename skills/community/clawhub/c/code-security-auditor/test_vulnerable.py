@@ -19,8 +19,8 @@ def get_user_vulnerable(user_id):
     return cursor.fetchone()
 
 # 🔴 CRITICAL: 硬编码 API Key
-API_KEY = "sk-1234567890abcdefghijklmnopqrstuvwxyz"
-AWS_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
+API_KEY = "REDACTED-SECRET"
+AWS_ACCESS_KEY = "REDACTED-SECRET"
 
 # 🔴 CRITICAL: SSRF 漏洞
 def fetch_url_vulnerable(url):

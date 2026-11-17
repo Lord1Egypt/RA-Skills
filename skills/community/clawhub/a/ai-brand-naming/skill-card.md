@@ -1,39 +1,54 @@
-## Description: <br>
-Ai Brand Naming helps agents generate and refine brand name ideas for ecommerce, marketing, business, and freelance naming workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Brand Naming helps users generate and process Chinese-language brand name ideas for e-commerce, marketing, and freelance contexts.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users, marketers, ecommerce operators, businesses, and freelancers use this skill to produce brand naming options and related naming guidance more efficiently. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes efficiency, cost-savings, and ROI claims that may be marketing claims rather than verified business outcomes. <br>
-Mitigation: Validate pricing, efficiency, cost-savings, and ROI assumptions before using them for business decisions. <br>
+## Use Case:
 
+E-commerce operators, marketing teams, businesses, and freelancers can use this skill to draft and batch-process brand naming ideas. It is intended as a lightweight Chinese-language naming aid rather than a full brand strategy or legal clearance workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-brand-naming) <br>
-- [Skill source evidence](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text brand naming suggestions and supporting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, commands, credentials, or background behavior are included in the artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: server release evidence) <br>
+Risk: The skill has sparse Chinese-language instructions and broad feature, pricing, and ROI claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact text and test representative outputs before relying on it for a production naming workflow.
+
+Risk: Users needing detailed controls or non-Chinese-language behavior may find the skill insufficient.
+
+Mitigation: Confirm the required language, input controls, and output format before installation or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-brand-naming)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text naming suggestions and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prompt-oriented output; no code, privileged access, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

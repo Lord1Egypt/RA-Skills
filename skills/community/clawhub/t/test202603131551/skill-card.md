@@ -1,46 +1,64 @@
-## Description: <br>
-Retrieve real-time commodity price quotes using Octagon MCP for current prices, day ranges, moving averages, and commodity market comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve real-time commodity price quotes via Octagon MCP, including current prices, day ranges, moving averages, and comparisons for metals, energy, and agricultural commodities.
 
-## Publisher: <br>
-[wdm1136](https://clawhub.ai/user/wdm1136) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wdm1136](https://clawhub.ai/user/wdm1136)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve and interpret real-time commodity quote data through the Octagon MCP server. It supports price checks, trend analysis, day-range review, moving-average comparison, and commodity comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Octagon API key and MCP configuration, which can expose credentials if stored or shared carelessly. <br>
-Mitigation: Store the API key securely, avoid committing MCP configuration files, and rotate the key if it may have been exposed. <br>
-Risk: Commodity quote interpretation can be mistaken for financial or trading advice. <br>
-Mitigation: Treat the output as market information only and have users apply appropriate financial review before making trading decisions. <br>
-Risk: The skill depends on running the Octagon MCP server through npx. <br>
-Mitigation: Install only when the publisher and Octagon MCP dependency are trusted in the deployment environment. <br>
+## Use Case:
 
+Developers and market analysts use this skill to ask an agent for current commodity quote data, compare commodity prices, and interpret day ranges, moving averages, volume, and 52-week range position.
 
-## Reference(s): <br>
-- [Interpreting Commodities Quote Results](references/interpreting-results.md) <br>
-- [Octagon MCP Setup](references/mcp-setup.md) <br>
-- [Octagon Docs](https://docs.octagonagents.com) <br>
-- [Octagon MCP GitHub](https://github.com/OctagonAI/octagon-mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wdm1136/test202603131551) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Octagon MCP server configuration and an Octagon API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Setup uses mutable remote package execution through npx or installer commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions where possible and review package provenance before installation.
+
+Risk: The Octagon API key may be stored in persistent agent configuration files.
+
+Mitigation: Use a protected secret mechanism and avoid sharing configuration files that contain credentials.
+
+Risk: Reference setup material includes curl-to-bash style installation for Homebrew.
+
+Mitigation: Prefer trusted package-manager installation paths and review installer scripts before execution.
+
+Risk: Commodity quote analysis can be mistaken for trading advice.
+
+Mitigation: Treat outputs as informational market data and require human review before financial decisions.
+
+## Reference(s):
+
+- [Octagon MCP Setup](references/mcp-setup.md)
+- [Interpreting Commodities Quote Results](references/interpreting-results.md)
+- [Octagon MCP GitHub](https://github.com/OctagonAI/octagon-mcp)
+- [Octagon Documentation](https://docs.octagonagents.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with commodity quote summaries, interpretation tables, JSON MCP call examples, and shell or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Octagon MCP server and OCTAGON_API_KEY; quote data depends on upstream market-data freshness.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

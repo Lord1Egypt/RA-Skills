@@ -1,40 +1,53 @@
-## Description: <br>
-Research tokens, check DEX liquidity, and get live gas prices for DeFi traders and agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research tokens, check DEX liquidity, and get live gas prices for flash loan traders and DeFi agents.
 
-## Publisher: <br>
-[kennywayn3](https://clawhub.ai/user/kennywayn3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennywayn3](https://clawhub.ai/user/kennywayn3)
 
-## Use Case: <br>
-External developers, DeFi traders, and wallet-enabled agents use this skill to look up token prices, request deeper token research, compare DEX liquidity, and check Ethereum gas prices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid requests can involve irreversible USDC transfers or other spending by a wallet-enabled agent. <br>
-Mitigation: Require manual approval for every payment, use a low-balance dedicated wallet, verify Base/USDC recipient details, and do not allow autonomous spending. <br>
-Risk: The skill may rely on sensitive credentials or wallet permissions for paid access. <br>
-Mitigation: Use scoped API keys and avoid broad wallet permissions. <br>
+## Use Case:
 
+External DeFi traders and agent developers use this skill to guide token price checks, token research, DEX liquidity checks, and Ethereum gas price lookups through the documented DeFi API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kennywayn3/defi-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid endpoints may require an API key, wallet support, or a transaction hash.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: Paid API and crypto payment instructions are under-specified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify the service domain, recipient wallet address, Base network, USDC token contract, amount, and fulfillment or refund terms before use.
+
+Risk: An agent could send API keys or USDC without enough user oversight.
+
+Mitigation: Require explicit user confirmation for every payment and do not allow automatic transfer of API keys or USDC.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kennywayn3/skills/defi-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with API endpoint examples and JSON request snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment flow guidance for Stripe credits or USDC pay-per-call requests.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

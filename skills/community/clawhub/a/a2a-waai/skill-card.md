@@ -1,41 +1,53 @@
-## Description: <br>
-Agent Interconnect helps agents discover and invoke other AI agents for cross-platform collaboration, task delegation, and multi-agent systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A2A helps agents discover and invoke peer agents through a compact Python client, server, registry, and message model.
 
-## Publisher: <br>
-[HuaiBuer](https://clawhub.ai/user/HuaiBuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaibuer](https://clawhub.ai/user/huaibuer)
 
-## Use Case: <br>
-Developers and engineers use this skill to create or call lightweight WebSocket-based agent endpoints, delegate work to specialized agents, and maintain a small registry of available capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated prompts, parameters, or task data may be visible to the operator of a remote agent endpoint. <br>
-Mitigation: Use only trusted endpoints, prefer wss://, and do not send secrets, private files, credentials, or sensitive personal data to unknown agents. <br>
-Risk: Live WebSocket calls depend on the Python websockets package even though the release metadata only declares python3 as a binary requirement. <br>
-Mitigation: Confirm required Python dependencies are installed in the agent environment before relying on live agent-to-agent calls. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents over WebSocket endpoints, delegate work to specialized agents, and build multi-agent workflows with call, notification, and asynchronous task message types.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HuaiBuer/a2a-waai) <br>
-- [Publisher profile](https://clawhub.ai/user/HuaiBuer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WebSocket endpoint URLs, action names, and JSON-style message parameters supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence; artifact frontmatter metadata.version is 1.1) <br>
+Risk: Networked agent calls are exposed without clear authentication or transport security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use endpoint allowlisting, authenticated peers, encrypted transport, and trusted networks before using the skill for real agents.
+
+Risk: Outbound delegation can share sensitive data or trigger consequential tasks through another agent.
+
+Mitigation: Do not send secrets, private user data, or credentials through peer calls, and require explicit user approval for consequential delegation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaibuer/skills/a2a-waai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; the Python module imports websockets when client connections are used.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

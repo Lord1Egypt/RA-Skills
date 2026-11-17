@@ -1,43 +1,54 @@
-## Description: <br>
-Runs a three-tier codebase audit covering git history, targeted scans, and gated full review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a three-tier codebase audit (git history, targeted scans, full review) with gating.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to audit codebase quality, branch changes, instability, churn, and pre-PR readiness through staged review tiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as review or audit may activate the skill during routine code-review requests. <br>
-Mitigation: Confirm the intended audit scope before allowing Tier 2 or Tier 3 review. <br>
-Risk: Audit findings and generated local files may influence code decisions if accepted without review. <br>
-Mitigation: Review the findings, cited evidence, and any proposed commands before relying on them. <br>
-Risk: Full-codebase Tier 3 review can expand scope and resource use beyond the initial audit. <br>
-Mitigation: Require documented Tier 2 justification and explicit user approval before Tier 3 begins. <br>
+## Use Case:
 
+Developers use this skill to review codebase quality, changes, or instability before release or after incidents. It starts with Git history and escalates to targeted review or a full audit when documented criteria warrant it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-tiered-audit) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown findings with inline shell commands and YAML output contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local findings under .coordination/agents and requires explicit user approval before Tier 3 full-codebase review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security review reports a medium-severity conflict involving the “review” trigger; confidence is medium and some reference checks were incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check that the trigger matches the intended invocation, and verify referenced local paths before use.
+
+Risk: A full codebase audit can consume substantial time and compute.
+
+Mitigation: Keep Tier 3 gated on documented justification and explicit user approval, as described in the skill.
+
+## Reference(s):
+
+- [Project homepage (skill metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-pensive-tiered-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown audit findings with evidence and escalation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tiered findings; a full codebase audit requires explicit approval.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

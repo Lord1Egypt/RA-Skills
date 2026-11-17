@@ -1,45 +1,58 @@
-## Description: <br>
-SEO content strategy for the AI Overviews era that helps agents research keywords, analyze SERP and AI citations, create content briefs, draft articles, and generate schema markup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through SEO keyword research, SERP and AI-citation analysis, content briefs, long-form article drafting, and schema markup for AI-era search.
 
-## Publisher: <br>
-[aisoftgg](https://clawhub.ai/user/aisoftgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisoftgg](https://clawhub.ai/user/aisoftgg)
 
-## Use Case: <br>
-Content marketers, SEO specialists, and publishing agents use this skill to plan search-focused content, compare competitor coverage, optimize for AI citations, and produce article drafts with structured schema markup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may apply SEO research or optimization to ordinary writing requests where that workflow was not intended. <br>
-Mitigation: Confirm whether the user wants keyword research, competitor analysis, web browsing, and SEO optimization before applying the full workflow. <br>
-Risk: SEO and AI citation recommendations may become stale or misleading without current source checks. <br>
-Mitigation: Use fresh search results and cited sources for claims, statistics, and AI Overview observations before publishing generated content. <br>
+## Use Case:
 
+External users, marketers, and content teams use this skill to research SEO opportunities, analyze search results and AI citations, draft optimized blog content, and generate structured data for publishing workflows.
 
-## Reference(s): <br>
-- [AI Citation Optimization Framework](references/ai-citation.md) <br>
-- [Keyword Research Methodology](references/keyword-research.md) <br>
-- [Schema Markup Templates](references/schema-templates.md) <br>
-- [SEO Article Writing Checklist](references/writing-checklist.md) <br>
-- [Schema.org](https://schema.org) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON-LD code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include keyword maps, content briefs, article drafts, metadata, internal link suggestions, and schema markup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated statistics, claims, or citation recommendations may be inaccurate, stale, or unsupported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify facts against current authoritative sources before publishing or using the content commercially.
+
+Risk: Schema markup or SEO recommendations may not fit the target site, jurisdiction, or editorial policy.
+
+Mitigation: Review JSON-LD, metadata, and publishing guidance with the site owner or responsible editor before deployment.
+
+## Reference(s):
+
+- [AI Citation Optimization Framework](references/ai-citation.md)
+- [Keyword Research Methodology](references/keyword-research.md)
+- [Schema Markup Templates](references/schema-templates.md)
+- [SEO Article Writing Checklist](references/writing-checklist.md)
+- [Schema.org](https://schema.org)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance, keyword maps, content briefs, article drafts, and JSON-LD code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include web-search prompts and schema snippets; generated claims, statistics, and publishing suggestions should be reviewed before public use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

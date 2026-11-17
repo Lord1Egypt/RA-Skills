@@ -1,48 +1,65 @@
-## Description: <br>
-深度研究 Deep Research orchestrates multi-source web, academic, and news research, fact checks findings, and generates bilingual Markdown research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual deep-research workflow that helps agents plan multi-source research, evaluate source credibility, and produce structured Markdown research reports.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to plan and run comprehensive research, market analysis, competitive analysis, and professional report generation workflows with cited source review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries may be sent to configured third-party search providers. <br>
-Mitigation: Avoid entering sensitive topics or credentials in research prompts unless the configured providers are approved for that data. <br>
-Risk: Generated reports can include incorrect, stale, or weakly sourced claims. <br>
-Mitigation: Treat reports as drafts and independently verify important claims, citations, and source credibility before use. <br>
-Risk: The skill saves task state and generated reports to a local deep-research workspace. <br>
-Mitigation: Review local output paths and clean up generated files that contain sensitive research topics or proprietary analysis. <br>
-Risk: Optional PDF conversion and companion-skill workflows can invoke npx or install/use additional tooling. <br>
-Mitigation: Review md-to-pdf and companion-skill installation steps before running them in trusted environments. <br>
+## Use Case:
 
+Developers, analysts, and agent users can use this skill to organize market, competitive, industry, or general research into a repeatable workflow with source tracking and Markdown report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/research-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/tobewin) <br>
-- [arXiv API endpoint referenced by the skill](http://export.arxiv.org/api/query) <br>
-- [DuckDuckGo Instant Answer API endpoint referenced by the skill](https://api.duckduckgo.com/?q=QUERY&format=json) <br>
-- [Wikipedia summary API endpoint referenced by the skill](https://en.wikipedia.org/api/rest_v1/page/summary/QUERY) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands, JSON task files, and optional PDF conversion guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; saves research task state and generated reports under a local deep-research workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Research topics and queries may be sent to external search or content services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved search providers and network policy, and avoid confidential topics unless those providers are acceptable.
+
+Risk: The skill includes shell command templates and security evidence flags risky shell and unpinned npm execution paths.
+
+Mitigation: Review commands before execution, pin package versions, and run the skill in a restricted workspace.
+
+Risk: The security summary says the skill overstates its capabilities, and generated reports may be incomplete or unsupported.
+
+Mitigation: Require source review, citation checks, and clear marking of gaps before using reports for decisions.
+
+Risk: Generated task and report files are written into workspace paths.
+
+Mitigation: Validate output paths and task identifiers before writing files, especially in shared workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/research-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/tobewin)
+- [arXiv API](http://export.arxiv.org/api/query)
+- [DuckDuckGo Instant Answer API](https://api.duckduckgo.com/)
+- [Wikipedia REST API](https://en.wikipedia.org/api/rest_v1/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, structured research notes, JSON progress data, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual research reports and may create local task, research, analysis, and output files under a deep-research workspace.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

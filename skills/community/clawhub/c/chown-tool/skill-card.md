@@ -1,37 +1,52 @@
-## Description: <br>
-Perform chown-tool operations from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform chown-tool operations from the command line.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill when they need an agent to provide command-line guidance for changing file ownership on local systems.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The utility can change ownership of arbitrary local paths and does not provide built-in path safeguards.
+
+Mitigation: Use it only on trusted, intended paths and avoid sudo, privileged automation, or attacker-controlled path input unless additional validation is added.
+
+Risk: Ownership-change failures are printed to stderr, but the script does not explicitly return a nonzero exit status.
+
+Mitigation: Check stderr and command output after use, or wrap execution so automation fails closed when ownership changes are unsuccessful.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and system operators use this skill to ask an agent for chown-style command-line ownership changes on specified files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Changing file ownership can affect access control on local files and directories. <br>
-Mitigation: Verify the exact owner and file path before execution, avoid root privileges or sensitive system directories unless intended, and require explicit confirmation for real ownership changes. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

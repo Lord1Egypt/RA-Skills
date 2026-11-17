@@ -1,40 +1,49 @@
-## Description: <br>
-Streamlines vendor onboarding with a 5-gate workflow to collect information, verify documents, obtain approvals, configure systems, and activate vendors efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Streamlines vendor onboarding with a five-gate workflow to collect information, verify documents, obtain approvals, configure systems, and activate vendors.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-Operations, procurement, finance, IT, and compliance teams use this skill to run a structured intake-to-activation process for new vendors, including document collection, approval routing, system setup, and activation communications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vendor onboarding may involve sensitive records such as tax IDs, ACH details, insurance documents, contracts, and approval packets. <br>
-Mitigation: Store sensitive vendor materials in approved secure business systems, limit access to people who need it, and avoid pasting full sensitive documents into chat. <br>
-Risk: Process guidance could be mistaken for authorization to grant vendor system access or mark a vendor active. <br>
-Mitigation: Require human approval before granting access, provisioning accounts, or activating a vendor. <br>
-Risk: Incomplete or stale vendor documentation can create compliance and operational risk. <br>
-Mitigation: Use the workflow's document checks, expiration tracking, and approval gates before advancing a vendor. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Operations, procurement, finance, legal, and IT/security teams use this skill to standardize vendor onboarding from intake through activation. It provides checklists, decision criteria, routing guidance, tracker fields, and communication templates for managing vendor records and approvals.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Configuration] <br>
-**Output Format:** [Markdown workflow with checklists, tables, and email templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces process guidance for vendor onboarding, including intake fields, document checklists, approval routing, tracker setup, and communication templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Vendor onboarding may involve sensitive tax forms, banking details, contacts, and compliance documents.
+
+Mitigation: Store vendor records only in approved secured systems or vendor portals, restrict access by role, define retention rules, and collect only identifiers required for the onboarding process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flynndavid/skills/vendor-onboarding-workflow)
+- [Publisher Profile](https://clawhub.ai/user/flynndavid)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown workflow with checklists, decision tables, tracker fields, and email templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain-text operational workflow; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

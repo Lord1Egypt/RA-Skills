@@ -1,40 +1,53 @@
-## Description: <br>
-Daily Budget Skill helps users record expenses from natural language or voice prompts, automatically categorize spending, generate monthly reports, and warn about budget overruns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Budget Skill helps users quickly record expenses, classify spending, review monthly budgets, and receive overspending alerts.
 
-## Publisher: <br>
-[katherine0325](https://clawhub.ai/user/katherine0325) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherine0325](https://clawhub.ai/user/katherine0325)
 
-## Use Case: <br>
-Individuals such as students, young professionals, parents, and other budget-conscious users use the skill to log daily expenses quickly, review spending trends, and control overspending with local records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Expense records and exports may contain sensitive personal financial details. <br>
-Mitigation: Keep the local budget folder and exported files in trusted storage, and review exports before sharing them. <br>
-Risk: Automatic categorization, totals, and budget alerts can be incorrect or incomplete. <br>
-Mitigation: Review recorded entries and monthly summaries before relying on them for budgeting decisions. <br>
+## Use Case:
 
+External users use this skill to maintain simple personal budget records from text or voice-style expense descriptions, then inspect category totals, monthly trends, and budget alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/katherine0325/daily-budget-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown ledger entries, budget summaries, alert messages, and optional CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records are intended for local files under ~/Documents/daily-budget/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Personal spending records may contain sensitive financial details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the local budget directory private and review Markdown or CSV exports before sharing them.
+
+Risk: Automatic expense categorization and budget analysis may be incorrect or incomplete.
+
+Mitigation: Review recorded entries, categories, totals, and alerts before relying on them for financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherine0325/skills/daily-budget-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, csv, guidance]
+
+**Output Format:** [Conversational text with local Markdown budget records and optional CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user budget records locally under ~/Documents/daily-budget when the agent follows the skill workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

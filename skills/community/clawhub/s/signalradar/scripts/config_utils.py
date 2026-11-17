@@ -13,7 +13,10 @@ from typing import Any
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "profile": {
-        "timezone": "Asia/Shanghai",
+        # Empty = use the machine's local timezone. Hard-coding one made
+        # schedules and digests fire at unexpected local times for anyone
+        # outside that zone, without them ever choosing it.
+        "timezone": "",
         "language": "",
     },
     "check_interval_minutes": 10,
@@ -38,6 +41,14 @@ DEFAULT_CONFIG: dict[str, Any] = {
     },
     "baseline": {
         "cleanup_after_expiry_days": 90,
+    },
+    # Keep in sync with config/default_config.json — there are two seeding
+    # paths (copy the shipped JSON, or write this dict) and a key present in
+    # only one of them exists or not depending on which path ran.
+    "schedule": {
+        # null = ask before installing a crontab entry (the default).
+        # true = always install unattended. false = never install.
+        "auto_enable": None,
     },
 }
 
@@ -77,6 +88,10 @@ def save_json_config(path: Path, data: dict[str, Any]) -> None:
             json.dump(data, f, indent=2, ensure_ascii=False)
             f.write("\n")
         os.rename(tmp_path, str(path))
+        # Explicit: this file can hold a webhook URL (a bearer credential).
+        # mkstemp already yields 0600, but stating it here makes the invariant
+        # survive a future rewrite that stops using mkstemp.
+        os.chmod(str(path), 0o600)
     except BaseException:
         try:
             os.unlink(tmp_path)
@@ -141,6 +156,10 @@ def save_watchlist(path: Path, data: dict[str, Any]) -> None:
             json.dump(data, f, indent=2, ensure_ascii=False)
             f.write("\n")
         os.rename(tmp_path, str(path))
+        # Explicit: this file can hold a webhook URL (a bearer credential).
+        # mkstemp already yields 0600, but stating it here makes the invariant
+        # survive a future rewrite that stops using mkstemp.
+        os.chmod(str(path), 0o600)
     except BaseException:
         # Clean up temp file on any failure
         try:

@@ -1,43 +1,59 @@
-## Description: <br>
-中国公域新媒体平台需求挖掘技能，用于从抖音、小红书、淘宝等平台收集用户评论和反馈，按需求类型选择数据源，分析并分级用户需求，生成结构化需求调研报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mines feedback from Chinese public social and ecommerce platforms, classifies user pains and product opportunities by frequency, sentiment, and actionability, and produces structured demand research reports.
 
-## Publisher: <br>
-[fengertian5](https://clawhub.ai/user/fengertian5) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengertian5](https://clawhub.ai/user/fengertian5)
 
-## Use Case: <br>
-External users and product, research, or growth teams use this skill to investigate demand signals, user complaints, pain points, and market opportunities across Chinese public social media and ecommerce channels. The skill guides source selection, search patterns, cleaning, classification, prioritization, and Markdown report generation. <br>
-
-### Deployment Geography for Use: <br>
-China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated sample data may be mistaken for real platform research. <br>
-Mitigation: Require clear labeling of synthetic or sample data, add provenance fields to datasets and reports, and verify collection methods before using outputs for product or business decisions. <br>
-Risk: Live collection from public platforms can raise compliance and privacy concerns. <br>
-Mitigation: Review platform terms, privacy requirements, and data minimization practices before enabling real data collection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fengertian5/china-demand-mining) <br>
-- [Publisher profile](https://clawhub.ai/user/fengertian5) <br>
-- [Analysis framework](artifact/references/ANALYSIS_FRAMEWORK.md) <br>
-- [Report template](artifact/references/REPORT_TEMPLATE.md) <br>
-- [Search patterns](artifact/references/SEARCH_PATTERNS.md) <br>
+## Use Case:
 
+Product, research, and strategy teams use this skill to explore demand signals, complaints, and product opportunities from China-focused public platform feedback. Generated findings should be treated as draft market research until source records are real, authorized, deduplicated, and traceable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with supporting JSON data, Python scripts, shell commands, and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include demand classifications, prioritization tables, source summaries, user-voice excerpts, and action recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+China-focused public-platform analysis
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports may be misleading if synthetic, repeated, unverified, or untraceable comments are presented as empirical market evidence.
+
+Mitigation: Use only real, authorized, deduplicated, and source-labeled records for decision-making, and disclose sample limitations in the report.
+
+Risk: Broad scraping guidance can create compliance, privacy, or platform-terms risk.
+
+Mitigation: Use compliant data adapters, respect platform terms and applicable privacy rules, and retain provenance for every collected record.
+
+Risk: Prioritizing negative feedback and complaints can skew demand analysis.
+
+Mitigation: Label the sampling strategy clearly and balance complaint mining with representative feedback before using outputs for product strategy.
+
+## Reference(s):
+
+- [Analysis Framework](artifact/references/ANALYSIS_FRAMEWORK.md)
+- [Report Template](artifact/references/REPORT_TEMPLATE.md)
+- [Search Patterns](artifact/references/SEARCH_PATTERNS.md)
+- [ClawHub Skill Page](https://clawhub.ai/fengertian5/skills/china-demand-mining)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with tables, JSON data structures, and optional Python/script execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source counts, demand categories, sentiment labels, priority levels, product opportunities, and action recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

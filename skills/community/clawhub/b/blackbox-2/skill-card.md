@@ -1,45 +1,64 @@
-## Description: <br>
-Delegate coding tasks to Blackbox AI CLI agent. Multi-model agent with built-in judge that runs tasks through multiple LLMs and picks the best result. Requires the blackbox CLI and a Blackbox AI API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Blackbox AI CLI agent, a multi-model agent with a built-in judge that runs tasks through multiple LLMs and picks the best result.
 
-## Publisher: <br>
-[AgungPrabowo123](https://clawhub.ai/user/AgungPrabowo123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agungprabowo123](https://clawhub.ai/user/agungprabowo123)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate coding, review, refactoring, and project automation tasks to the Blackbox AI CLI from an agent terminal. It is suited for one-shot tasks, interactive or background sessions, checkpoint resume workflows, and parallel coding-agent runs when the user has configured the required CLI and API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blackbox CLI may send relevant project context to external AI services. <br>
-Mitigation: Use the skill only for projects where that data sharing is acceptable, and avoid placing secrets in prompts or files exposed to the agent. <br>
-Risk: Delegated coding-agent sessions can modify files in the selected working directory. <br>
-Mitigation: Run in a scoped project directory, keep version control enabled, review diffs after each run, and avoid `--yolo` on important repositories. <br>
-Risk: Long-running or multi-model sessions can consume credits and continue in the background. <br>
-Mitigation: Monitor background sessions and credit usage, and stop sessions that are no longer needed. <br>
+## Use Case:
 
+Developers and coding agents use this skill to delegate software engineering tasks to Blackbox CLI, including one-shot tasks, longer background runs, PR reviews, multi-model judging, and CLI session management.
 
-## Reference(s): <br>
-- [Blackbox AI](https://www.blackbox.ai/) <br>
-- [Blackbox AI Dashboard](https://app.blackbox.ai/dashboard) <br>
-- [Blackbox CLI Repository](https://github.com/blackboxaicode/cli) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AgungPrabowo123/blackbox-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate interactive or background Blackbox CLI sessions that modify files in the selected working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill delegates work to a mutable third-party CLI with broad coding-agent authority over a project workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed Blackbox CLI version in an isolated environment and review all file changes before merging or running them.
+
+Risk: Auto-approval behavior can allow unwanted model actions or file changes on real repositories.
+
+Mitigation: Avoid `--yolo` on real repositories and keep long-running sessions monitored.
+
+Risk: Prompts, project code, or secrets may be sent to Blackbox or configured model providers.
+
+Mitigation: Remove secrets before delegation and assume submitted prompts and code may leave the local environment.
+
+Risk: Global install commands can alter the host environment or install unreviewed code.
+
+Mitigation: Do not run install commands with elevated privileges; install only reviewed versions in disposable or isolated environments.
+
+## Reference(s):
+
+- [Blackbox AI](https://www.blackbox.ai/)
+- [Blackbox CLI Repository](https://github.com/blackboxaicode/cli)
+- [Blackbox API Dashboard](https://app.blackbox.ai/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/agungprabowo123/skills/blackbox-2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate interactive or background terminal sessions when used by an agent with terminal access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

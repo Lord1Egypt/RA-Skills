@@ -1,45 +1,57 @@
-## Description: <br>
-Transform any topic into a polished self-help book chapter, outline, or manuscript with structured storytelling, factual grounding, reader insight, and actionable takeaways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft self-help book outlines, chapters, introductions, and manuscript sections with story-driven, research-aware motivational prose.
 
-## Publisher: <br>
-[ajithberlin](https://clawhub.ai/user/ajithberlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajithberlin](https://clawhub.ai/user/ajithberlin)
 
-## Use Case: <br>
-External users and writers use this skill to draft self-help chapters, book outlines, introductions, micro-chapters, and motivational nonfiction that blends story, insight, factual support, and practical action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated factual or scientific claims may be inaccurate, oversimplified, or unsuitable for publication without review. <br>
-Mitigation: Verify cited studies, historical examples, and scientific claims before publishing; label unverifiable material as anecdote or metaphor. <br>
-Risk: Requests to write in the style of living authors may create direct imitation or attribution concerns. <br>
-Mitigation: Use broad craft attributes such as clarity, warmth, structure, and narrative pacing rather than presenting output as written by or endorsed by a named author. <br>
-Risk: Broad activation and strong stylistic steering may shape outputs even when the user needs a narrower format or audience. <br>
-Mitigation: Confirm the intended reader, tone, content type, and evidence standard before drafting substantial self-help or motivational content. <br>
+## Use Case:
 
+External authors, coaches, and content creators use this skill to turn self-help topics or prompts into structured book outlines, chapters, introductions, micro-chapters, section openers, and calls to action.
 
-## Reference(s): <br>
-- [Content Format Templates](references/formats.md) <br>
-- [Opening Hook Patterns](references/opening-hooks.md) <br>
-- [Science Toolkit](references/science-toolkit.md) <br>
-- [Story Bank](references/story-bank.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured outlines, chapters, lists, and calls to action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults include 1,500-3,000 word chapters, warm inspirational tone, at least one reference story per 600 words, and factual claims framed as verifiable or clearly labeled as anecdote or metaphor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Psychology, health-related, or biographical claims in generated self-help content may be inaccurate, outdated, or oversimplified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited studies, named people, events, and health-related claims against reliable sources before publishing.
+
+Risk: Generated self-help content could be mistaken for medical, psychological, psychiatric, or crisis advice.
+
+Mitigation: Present outputs as writing assistance only and direct medical, mental-health, psychiatric, or crisis situations to qualified professionals or appropriate emergency resources.
+
+## Reference(s):
+
+- [Self Help Author on ClawHub](https://clawhub.ai/ajithberlin/skills/self-help-author)
+- [Content Format Templates](references/formats.md)
+- [Opening Hook Patterns](references/opening-hooks.md)
+- [Science Toolkit](references/science-toolkit.md)
+- [Story Bank](references/story-bank.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, outlines, and structured manuscript sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include cited studies, biographical stories, practical exercises, and calls to action that require review before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

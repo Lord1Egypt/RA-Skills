@@ -1,43 +1,56 @@
-## Description: <br>
-Helps developers install, configure, run, troubleshoot, and extend MolecularAI REINVENT4 workflows for generative molecular design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help install, configure, run, troubleshoot, and extend MolecularAI REINVENT4 for generative molecular design.
 
-## Publisher: <br>
-[zoeprior](https://clawhub.ai/user/zoeprior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoeprior](https://clawhub.ai/user/zoeprior)
 
-## Use Case: <br>
-External developers, computational chemistry teams, and coding agents use this skill to work through REINVENT4 installation, backend selection, TOML configuration, runtime commands, troubleshooting, plugin setup, notebook conversion, and tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated install, run, or configuration commands may change a local Python environment or development workspace. <br>
-Mitigation: Use the skill only in a trusted workspace, review commands before execution, and prefer help or dry-run commands when backend choice or dependency resolution is uncertain. <br>
-Risk: Full REINVENT4 workflows may depend on local models, datasets, hardware backends, or optional licensed tools that are not present. <br>
-Mitigation: Verify required files, device settings, writable outputs, and optional license availability before running full workflows. <br>
+## Use Case:
 
+Developers and computational chemistry practitioners use this skill to get REINVENT4-specific guidance for installation, backend selection, TOML configuration, sampling, scoring, transfer learning, staged learning, notebook conversion, plugin work, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoeprior/reinvent4) <br>
-- [Install and run guidance](artifact/references/install-and-run.md) <br>
-- [Configuration modes guidance](artifact/references/config-modes.md) <br>
-- [Plugins, notebooks, and tests guidance](artifact/references/plugins-and-tests.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, TOML configuration guidance, and code-oriented examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounds recommendations in a local REINVENT4 checkout and upstream reference files when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated install or runtime commands may target the wrong checkout, environment, backend, or dependency set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the REINVENT4 checkout markers, use an isolated Python environment, inspect help output, and prefer dry-run installs before executing real install commands.
+
+Risk: Optional licensed or external scoring integrations can fail or create compliance issues when required upstream tools are unavailable.
+
+Mitigation: Enable optional OpenEye, iSIM, docking, REST, or external-process integrations only after confirming the relevant tool, license, and local configuration are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoeprior/skills/reinvent4)
+- [Install And Run](references/install-and-run.md)
+- [Config Modes](references/config-modes.md)
+- [Plugins, Notebooks, And Tests](references/plugins-and-tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should keep paths explicit, prefer local checkout verification, and avoid promising complete runs unless required models, data, configs, and licensed tools are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

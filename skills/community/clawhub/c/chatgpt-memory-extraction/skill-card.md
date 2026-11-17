@@ -1,44 +1,55 @@
-## Description: <br>
-Extracts structured personal memories from ChatGPT export data into timelines, people profiles, and thematic records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured personal memories from ChatGPT export data into organized timelines, people profiles, and thematic records.
 
-## Publisher: <br>
-[cyresearch](https://clawhub.ai/user/cyresearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyresearch](https://clawhub.ai/user/cyresearch)
 
-## Use Case: <br>
-External users and developers use this skill to convert their own ChatGPT export into a searchable personal memory archive. The agent reads exported conversations in batches, writes timeline files, and maintains people and topic records for later review or reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated archive can contain sensitive personal, third-party, or secret information from a user's ChatGPT history. <br>
-Mitigation: Store outputs in a private or encrypted folder, avoid cloud-synced or Git-tracked locations unless intentional, and redact sensitive details before sharing the archive or giving it to another AI assistant. <br>
-Risk: Large exports may lead an agent to produce shallow, incomplete, or false-completion summaries. <br>
-Mitigation: Process the export in reviewable batches, verify each batch against the raw extracted conversations, and redo shallow sections before continuing. <br>
+## Use Case:
 
+External users and developers use this skill to convert their own ChatGPT export into a searchable personal memory archive with quarterly timelines, people profiles, topic records, and extraction progress logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyresearch/chatgpt-memory-extraction) <br>
-- [Output Format Specification](references/output-format.md) <br>
-- [Quality Rules](references/quality-rules.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ChatGPT export](https://chat.openai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files and plaintext extracted conversations, with shell commands for running the extraction script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timeline, people, topics, meta, and raw conversation files from a user-provided ChatGPT export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can create durable local archives from highly sensitive ChatGPT export data, including third-party personal details, direct quotes, emotional summaries, and topic indexes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private or encrypted workspace, avoid cloud-synced folders unless intentional, redact sensitive or third-party information, and review outputs before sharing or importing them into another assistant.
+
+Risk: The security verdict is suspicious because the privacy scoping and safeguards may be insufficient for the sensitivity of the exported data.
+
+Mitigation: Review the skill before installing, prefer pinned or verified install sources, and confirm that the handling of plaintext exports matches the user's privacy expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyresearch/skills/chatgpt-memory-extraction)
+- [Output Format Specification](references/output-format.md)
+- [Quality Rules](references/quality-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and plaintext conversation extracts organized in a directory structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory archive files, including timelines, people profiles, topic records, raw extracted conversation text, and progress logs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Trade K-pop artist lightstick tokens using bonding curve prices, real-time signals, and news to buy or sell with a $100 daily limit and fee structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade K-pop artist lightstick tokens on the K-Trendz bonding curve market with price checks, trading signals, and buy or sell commands.
 
-## Publisher: <br>
-[hans1329](https://clawhub.ai/user/hans1329) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hans1329](https://clawhub.ai/user/hans1329)
 
-## Use Case: <br>
-External users and agents with a K-Trendz API key use this skill to configure access, check token prices and signals, and execute one-token buy or sell actions on the K-Trendz bonding curve market. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute live buy and sell transactions without a built-in confirmation step. <br>
-Mitigation: Confirm the artist, action, estimated cost or refund, fees, and slippage before running any buy or sell command. <br>
-Risk: The skill stores or uses a K-Trendz API key for trading access. <br>
-Mitigation: Use only if you trust K-Trendz with the API key, protect the saved configuration file, and remove it when the skill is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to check K-Trendz token prices and signals, then optionally buy or sell one artist lightstick token through configured shell commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hans1329/ktrendz-lightstick-trading) <br>
-- [K-Trendz bot API](https://k-trendz.com/api/bot/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a K-Trendz API key; buy and sell commands execute live token trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill can place real buy or sell orders for K-Trendz tokens without script-level confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation immediately before running buy or sell commands, and prefer quote-only review before execution.
+
+Risk: The skill handles a K-Trendz API key and stores that key locally in plaintext.
+
+Mitigation: Use an environment variable or secret manager where possible, restrict local config file permissions, and rotate the key if local configuration is exposed.
+
+Risk: Unsafe API response parsing could run code if a compromised API response is interpolated into Python code.
+
+Mitigation: Avoid running the current scripts against untrusted responses; safer versions should parse JSON through stdin or files and validate fields before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hans1329/skills/ktrendz-lightstick-trading)
+- [ClawHub publisher profile](https://clawhub.ai/user/hans1329)
+- [K-Trendz bot API](https://k-trendz.com/api/bot/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with shell command invocations and script output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call K-Trendz API endpoints through local shell scripts after configuration with a K-Trendz API key.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

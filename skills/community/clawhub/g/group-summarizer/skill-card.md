@@ -1,41 +1,54 @@
-## Description: <br>
-Synthesizes member-parent markdown reports into a continuous narrative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synthesizes member-parent markdown reports into a continuous narrative.
 
-## Publisher: <br>
-[DeanLeeFumu](https://clawhub.ai/user/DeanLeeFumu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanleefumu](https://clawhub.ai/user/deanleefumu)
 
-## Use Case: <br>
-Employees and teams use this skill to turn multiple member markdown reports into one cohesive daily progress summary grouped by team member. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads all markdown files under ~/openclaw_agent/src/temp_sync/ and may include unintended local report content in the daily summary. <br>
-Mitigation: Before running it, confirm that the source folder contains only markdown reports intended for summarization. <br>
-Risk: A generated dated summary may overwrite an existing file at the target path. <br>
-Mitigation: Check for an existing summary for the same UTC+8 date before execution when preserving prior output matters. <br>
+## Use Case:
 
+Developers and team leads use this skill to turn member-organized markdown status reports into a single daily markdown summary. It reads reports grouped by team member, synthesizes multi-day progress into cohesive narratives, and writes a date-stamped daily output file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeanLeeFumu/group-summarizer) <br>
-- [Publisher profile](https://clawhub.ai/user/DeanLeeFumu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files] <br>
-**Output Format:** [Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a UTC+8 date-stamped daily summary under ~/openclaw_agent/src/latest_summaries/daily/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenClaw metadata) <br>
+Risk: The skill reads recursively from the configured report directory and may summarize markdown files that were not intended for the daily report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the source directory contains only markdown reports intended for summarization before running the skill.
+
+Risk: The skill writes a date-stamped summary file and could replace an existing daily summary for the same date.
+
+Mitigation: Ask the agent to check for an existing output file before writing or replacing a daily summary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deanleefumu/skills/group-summarizer)
+- [ClawHub publisher profile](https://clawhub.ai/user/deanleefumu)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown file with member-name section headers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a UTC+8 date-stamped daily summary to the configured latest_summaries path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

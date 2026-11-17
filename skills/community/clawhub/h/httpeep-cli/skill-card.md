@@ -1,58 +1,72 @@
-## Description: <br>
-Use HTTPeep from the terminal with httpeep-cli for proxy lifecycle control, HTTP/HTTPS traffic capture, session inspection, rule injection, request replay, recording flows, certificate troubleshooting, CI scripting, and agent-driven network debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use HTTPeep from the terminal with httpeep-cli for proxy lifecycle control, HTTP/HTTPS traffic capture, session inspection, rule injection, request replay, recording flows, certificate troubleshooting, CI scripting, and agent-driven network debugging.
 
-## Publisher: <br>
-[imchrischen](https://clawhub.ai/user/imchrischen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imchrischen](https://clawhub.ai/user/imchrischen)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate HTTPeep from an agent-driven terminal workflow for local HTTP API debugging, traffic capture, session inspection, request replay, DNS overrides, rule management, and certificate troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through high-impact proxy capture and traffic manipulation workflows. <br>
-Mitigation: Use it in local or test environments, review commands before execution, avoid production credentials, and scope capture to the requested app, domain, process, status, or time range. <br>
-Risk: Captured traffic and recordings may contain credentials, cookies, API keys, or sensitive request and response bodies. <br>
-Mitigation: Redact secrets from reports, inspect only the fields needed to support conclusions, and do not store recordings in source control. <br>
-Risk: HTTPS interception requires installing and trusting an HTTPeep root CA certificate. <br>
-Mitigation: Verify certificate status before use, use HTTPS interception only where appropriate, and uninstall the root CA when finished. <br>
-Risk: The skill includes guidance for checking and updating the installed skill from HTTPeep/agent-skills. <br>
-Mitigation: Do not allow automatic skill updates unless the HTTPeep/agent-skills source is trusted, and avoid interrupting active investigations with maintenance updates. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate HTTPeep from an agent terminal: start and inspect proxies, capture HTTP/HTTPS sessions, manage DNS and rules, replay requests, record flows, and troubleshoot certificates while redacting sensitive data.
 
-## Reference(s): <br>
-- [CLI Overview](references/overview.md) <br>
-- [CLI Basics](references/basics.md) <br>
-- [Proxy](references/proxy.md) <br>
-- [Sessions](references/sessions.md) <br>
-- [Rules](references/rules.md) <br>
-- [Request](references/request.md) <br>
-- [Replay](references/replay.md) <br>
-- [Record](references/record.md) <br>
-- [DNS](references/dns.md) <br>
-- [Certificate](references/cert.md) <br>
-- [License](references/license.md) <br>
-- [Monitor](references/monitor.md) <br>
-- [Shell](references/shell.md) <br>
-- [Launch](references/launch.md) <br>
-- [Import](references/import.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and structured JSON-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should redact credentials, cookies, tokens, API keys, and sensitive captured bodies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill directs agents to run unpinned remote npx skill update commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or ignore automatic update instructions unless the updater and target version can be reviewed and pinned.
+
+Risk: HTTP/HTTPS interception, system proxy changes, and root CA certificate commands can expose sensitive traffic or affect local network trust.
+
+Mitigation: Use these commands only on machines and traffic the user is authorized to inspect, and verify proxy and certificate state before and after use.
+
+Risk: Captured sessions, recordings, headers, cookies, and bodies may contain secrets.
+
+Mitigation: Redact sensitive values in reports and avoid committing or sharing recording files or captured sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imchrischen/skills/httpeep-cli)
+- [CLI overview](artifact/references/overview.md)
+- [CLI basics](artifact/references/basics.md)
+- [Proxy](artifact/references/proxy.md)
+- [Sessions](artifact/references/sessions.md)
+- [Rules](artifact/references/rules.md)
+- [Request](artifact/references/request.md)
+- [Replay](artifact/references/replay.md)
+- [Record](artifact/references/record.md)
+- [Certificate](artifact/references/cert.md)
+- [DNS](artifact/references/dns.md)
+- [Launch](artifact/references/launch.md)
+- [Monitor](artifact/references/monitor.md)
+- [Shell](artifact/references/shell.md)
+- [License](artifact/references/license.md)
+- [Import](artifact/references/import.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command traces, session or rule identifiers, statuses, timings, and entitlement disclosures; sensitive values should be redacted.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

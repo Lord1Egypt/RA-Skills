@@ -1,42 +1,54 @@
-## Description: <br>
-Creates WeChat Official Account article collections in the WeChat public platform backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在公众号后台创建文章合集。触发场景：创建公众号合集、新建文章合集、在公众号创建一个合集、创建合集。
 
-## Publisher: <br>
-[infiniteask](https://clawhub.ai/user/infiniteask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infiniteask](https://clawhub.ai/user/infiniteask)
 
-## Use Case: <br>
-Content operators and agents use this skill to create article collections in an authenticated WeChat Official Account backend, including opening the collection form, filling collection details, publishing, and verifying the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on a live WeChat Official Account backend. <br>
-Mitigation: Use an isolated browser profile where possible, review collection name and description manually, and require manual confirmation before the final publish click. <br>
-Risk: Token-bearing WeChat URLs may expose session-sensitive information in logs or screenshots. <br>
-Mitigation: Avoid sharing logs or screenshots that include token-bearing WeChat URLs and refresh tokens from the current homepage session before navigation. <br>
+## Use Case:
 
+External users with access to a WeChat Official Account backend use this skill to guide an agent through creating a new article collection in an authenticated OpenClaw browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infiniteask/create-wechat-oa-article-collection-infinite) <br>
-- [Publisher profile](https://clawhub.ai/user/infiniteask) <br>
-- [WeChat Official Account backend](https://mp.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with browser operation steps and URL patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated WeChat Official Account browser session and current session token handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: The skill operates an authenticated WeChat Official Account browser session and can create a real article collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the account context and desired collection name before invocation, and use the documented OpenClaw browser profile.
+
+Risk: Stale account tokens or page references can cause the workflow to fail or act on the wrong browser state.
+
+Mitigation: Retrieve the current token from the WeChat backend home page and use fresh page snapshots before clicking or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infiniteask/skills/create-wechat-oa-article-collection-infinite)
+- [WeChat Official Account backend](https://mp.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration]
+
+**Output Format:** [Markdown instructions with ordered workflow steps and operational cautions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated WeChat Official Account browser session; uses the current account token and dynamic page references.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

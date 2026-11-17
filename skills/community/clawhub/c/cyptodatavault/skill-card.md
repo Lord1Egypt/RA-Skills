@@ -1,45 +1,60 @@
-## Description: <br>
-Provides real-time cryptocurrency prices, on-chain Ethereum data, and DeFi metrics through a unified agent-facing tool interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CyptoDataVault provides AI agents with real-time cryptocurrency prices, on-chain Ethereum data, and DeFi metrics through a unified set of market-data tools.
 
-## Publisher: <br>
-[wangshuniguang](https://clawhub.ai/user/wangshuniguang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshuniguang](https://clawhub.ai/user/wangshuniguang)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve crypto market prices, Ethereum account and gas data, and DeFi TVL, yield, and stablecoin metrics for analysis and user-facing answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged runtime can load code outside the reviewed artifact. <br>
-Mitigation: Review the complete upstream DataVault source that supplies the missing app/src modules before installation or production use. <br>
-Risk: The skill is a networked crypto-data integration with under-declared credential and configuration needs. <br>
-Mitigation: Use only low-privilege data-provider API keys and avoid exchange trading credentials. <br>
-Risk: Wallet-related lookups may encourage users to provide sensitive wallet material. <br>
-Mitigation: Provide public wallet addresses only; never provide private keys, seed phrases, or signing credentials. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to let agents retrieve crypto market prices, funding rates, Ethereum account data, gas prices, DeFi TVL, yield, and stablecoin metrics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangshuniguang/cyptodatavault) <br>
-- [Publisher profile](https://clawhub.ai/user/wangshuniguang) <br>
-- [README_OPENCLAW.md](artifact/README_OPENCLAW.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON-like tool responses summarized as agent text when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network-backed data may depend on exchange, blockchain, and DeFi provider availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The reviewed artifact imports core implementation code that is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the surrounding repository layout before installation and install only in an isolated environment.
+
+Risk: The setup and test scripts install mutable Python dependencies.
+
+Mitigation: Use a pinned release or lockfile before using the skill with real credentials.
+
+Risk: Wallet addresses and API keys may be used when calling on-chain or provider-backed data tools.
+
+Mitigation: Treat wallet addresses and API keys as sensitive and avoid exposing production credentials in shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangshuniguang/skills/cyptodatavault)
+- [DataVault website](https://datavault.io)
+- [Project repository listed in artifact metadata](https://github.com/wangshuniguang/DataVault)
+- [OpenClaw installation guide](artifact/README_OPENCLAW.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown usage guidance with JSON-like tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool responses may include live market, on-chain, and DeFi data from external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,7 +2,7 @@
 
 > Less skills. Deeper connections.
 
-**64-skill mesh** for AI coding assistants — 5-layer architecture, 215+ connections, 14 extension packs.
+**67-skill mesh** for AI coding assistants — 5-layer architecture, 248 connections + 45 signals, 14 extension packs.
 
 ## Install
 
@@ -29,7 +29,7 @@ Use `rune:cook` for any code task, `rune:team` for parallel work, `rune:launch` 
 | L0 | Router | skill-router |
 | L1 | Orchestrators | cook, launch, rescue, scaffold, team |
 | L2 | Workflow Hubs | adversary, audit, autopsy, ba, brainstorm, db, debug, deploy, design, docs, fix, graft, improve-architecture, incident, logic-guardian, marketing, mcp-builder, onboard, perf, plan, preflight, retro, review-intake, review, safeguard, scout, sentinel, skill-forge, surgeon, test |
-| L3 | Utilities | asset-creator, browser-pilot, completion-gate, constraint-check, context-engine, context-pack, dependency-doctor, doc-processor, docs-seeker, git, hallucination-guard, integrity-check, journal, neural-memory, problem-solver, quarantine, research, sast, scope-guard, sentinel-env, sequential-thinking, session-bridge, slides, trend-scout, verification, video-creator, watchdog, worktree |
+| L3 | Utilities | asset-creator, browser-pilot, completion-gate, constraint-check, context-engine, context-pack, converge, council, dependency-doctor, diagram, doc-processor, docs-seeker, git, hallucination-guard, integrity-check, journal, neural-memory, problem-solver, quarantine, research, sast, scope-guard, sentinel-env, sequential-thinking, session-bridge, slides, trend-scout, verification, video-creator, watchdog, worktree |
 | L4 | Extensions | 14 domain packs |
 
 ## Extension Packs (L4)
@@ -44,4 +44,4 @@ ui · backend · devops · mobile · security · trading · saas · ecommerce ·
 
 ## License
 
-MIT — v2.20.0
+MIT — v2.32.0

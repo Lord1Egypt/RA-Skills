@@ -1,39 +1,54 @@
-## Description: <br>
-Extract and clean readable article content, metadata, and Markdown from URLs, raw HTML, or web page text for research, note-taking, and web scraping workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts clean readable article content, metadata, Markdown, or JSON from URLs, raw HTML, or web page text.
 
-## Publisher: <br>
-[extrastu](https://clawhub.ai/user/extrastu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[extrastu](https://clawhub.ai/user/extrastu)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to turn cluttered web pages or copied HTML into readable Markdown or structured metadata for downstream notes, datasets, and LLM processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article cleaning may send private pages or copied HTML to an external parser if the agent uses the defuddle.md service. <br>
-Mitigation: Before processing private or sensitive content, confirm whether the agent will use the external defuddle.md service, a local Defuddle CLI, or another approved parser. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to convert web pages, raw HTML, or page text into cleaner article content for research workflows, note taking, web scraping, Obsidian clipping, and LLM processing.
 
-## Reference(s): <br>
-- [Defuddle Reference](references/defuddle-usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/extrastu/defuddle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown article content or structured JSON metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title, author, site, description, published date, content, contentMarkdown, domain, favicon, image, wordCount, and parseTime when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: URL inputs can cause the agent or Defuddle tooling to retrieve external pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat URL input as explicit permission to fetch that page, and avoid private intranet URLs, authenticated pages, or sensitive documents unless that retrieval path is acceptable.
+
+Risk: Cleaned article output may omit page elements such as navigation, comments, sidebars, ads, social buttons, or footers.
+
+Mitigation: Use the output for readable article extraction and verify source pages directly when omitted surrounding content could affect interpretation.
+
+## Reference(s):
+
+- [Defuddle usage reference](references/defuddle-usage.md)
+- [ClawHub skill page](https://clawhub.ai/extrastu/skills/defuddle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown article content with metadata, or structured JSON metadata and content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include title, author, site, description, published date, domain, image, word count, parse time, content, and contentMarkdown when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

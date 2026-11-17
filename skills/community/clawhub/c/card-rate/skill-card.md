@@ -1,39 +1,53 @@
-## Description: <br>
-Return earning rates, bonus categories, caps, exclusions, and merchant-coding caveats for one major-US credit card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Return earning rates, caps, exclusions, activation requirements, and merchant-coding caveats for one major-US credit card.
 
-## Publisher: <br>
-[jiahongc](https://clawhub.ai/user/jiahongc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahongc](https://clawhub.ai/user/jiahongc)
 
-## Use Case: <br>
-Agents use this skill when a user asks for the earning rates, reward categories, caps, exclusions, or merchant-coding caveats for a specific major U.S. credit card. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credit-card reward rates, caps, exclusions, and category rules can change or conflict across sources. <br>
-Mitigation: Use current issuer information and approved secondary sources, then flag uncertain or conflicting details in confidence notes. <br>
-Risk: The skill may use web lookups and can optionally use a Brave Search API key. <br>
-Mitigation: Provide only the public card name, avoid account numbers or other private financial details, and supply a Brave Search API key only when that optional path is needed. <br>
+## Use Case:
 
+External users and agents use this skill to research the earn-side details for one exact major-US credit-card variant, including rates, caps, exclusions, activation requirements, merchant-coding caveats, and confidence notes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with rate summary, earning categories, caps and exclusions, confidence notes, and source links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Condensed factual output for one resolved card variant; ambiguous card names produce a numbered choice list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credit-card earning rates, caps, exclusions, and merchant-coding caveats can change or vary by exact card variant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve the exact card first, prioritize the issuer page, use one approved secondary source only when issuer copy is vague, and include confidence notes.
+
+Risk: The skill references companion card-identity and card-shared policy or contract files that may be absent in some installations.
+
+Mitigation: Verify the companion skills or policy files are installed before relying on the referenced source rules, normalization rules, confidence rules, and formatting contract.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiahongc/skills/card-rate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with hidden source metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on earning-rate details for a single resolved card variant; sources are kept out of the visible response.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

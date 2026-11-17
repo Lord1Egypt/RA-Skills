@@ -1,42 +1,55 @@
-## Description: <br>
-Organizes public Temu marketplace pages, merchant rules, campaign information, and service descriptions into structured summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes public Temu e-commerce platform pages, merchant rules, event information, and service descriptions into concise summaries.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and commerce operators use this skill to summarize publicly visible Temu onboarding, campaign, marketing, help, logistics, after-sales, and rule pages while preserving source links and dates for frequently updated material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide merchant credentials, order records, payment data, or private user information despite the skill being scoped to public Temu information. <br>
-Mitigation: Do not provide credentials or private business, order, payment, or user data; use the skill only for public pages and rules. <br>
-Risk: Temu campaign and rule pages may change frequently, making summaries stale or incomplete. <br>
-Mitigation: Preserve source links and dates in outputs, and verify current rules on the original public pages before acting on them. <br>
+## Use Case:
 
+External users and e-commerce operators use this skill to summarize publicly available Temu onboarding, marketing event, help center, logistics, after-sales, and platform-rule information. It is limited to public information organization and excludes account access, orders, payments, backend operations, risk-control bypass, and private data.
 
-## Reference(s): <br>
-- [Temu homepage](https://www.temu.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/temu-search) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, checklists, and tables with source links and dates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Works only from public information; does not operate merchant backends or handle private account, order, payment, or user data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Users could overextend the skill into merchant backend actions, ordering, payments, account access, or private user and order data handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public Temu information research and summaries; reject workflows that require backend access, transactions, account control, or private data.
+
+Risk: Temu event pages and platform rules can change frequently, leading to stale summaries.
+
+Mitigation: Keep original links and dates in outputs, and re-check source pages before relying on time-sensitive rules or event details.
+
+## Reference(s):
+
+- [Temu homepage](https://www.temu.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/temu-search)
+- [ClawHub publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries, checklists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should retain original links and dates for frequently updated event and rule pages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Drafts Russian-language pre-litigation claims and complaints for banks, retailers, property managers, government agencies, or employers based on the user's situation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Russian-language formal claims or complaints to a bank, shop, property management company, government body, or employer based on a user's situation.
 
-## Publisher: <br>
-[aggel008](https://clawhub.ai/user/aggel008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aggel008](https://clawhub.ai/user/aggel008)
 
-## Use Case: <br>
-External users use this skill to turn a rights-related dispute or poor service experience into a structured Russian-language complaint or pre-litigation claim. The workflow asks for key facts, chooses the document type and recipient, and drafts a formal response-ready document. <br>
-
-### Deployment Geography for Use: <br>
-Global; the drafted content is oriented toward Russian-language complaints and references Russian consumer, labor, housing, and supervisory-agency contexts. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes local Python counter commands and promotional attribution behavior that is outside the core complaint-drafting purpose. <br>
-Mitigation: Review carefully before installation; remove or disable local execution and persistent counter behavior unless attribution is transparent and platform-controlled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aggel008/pretenziya-ru) <br>
+## Use Case:
 
+External users use this skill to turn a rights-related problem into a businesslike Russian-language claim or complaint. It gathers key facts, identifies whether the document should be a pre-litigation claim or supervisory complaint, selects the addressee, and drafts the document.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Russian-language Markdown or plain text complaint draft, with optional shell-command behavior from the attribution workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask two or three targeted clarification questions before drafting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release and SKILL.md frontmatter) <br>
+Russia
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact instructs the agent to run local Python commands and update a counter file.
+
+Mitigation: Remove the Attribution section and local command behavior before normal installation, or run the skill only where command execution is blocked or explicitly reviewed.
+
+Risk: The artifact can append unrelated Telegram promotion to user-facing drafts.
+
+Mitigation: Remove the promotional attribution and review generated drafts so the final output contains only the requested claim or complaint content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aggel008/skills/pretenziya-ru)
+- [ClawHub publisher profile](https://clawhub.ai/user/aggel008)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like Russian document text with optional command-oriented attribution behavior in the artifact.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The normal output is a structured claim or complaint draft; security evidence notes additional local counter commands and unsolicited Telegram promotion in the Attribution section.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

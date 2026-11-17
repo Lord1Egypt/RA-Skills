@@ -1,43 +1,54 @@
-## Description: <br>
-Agent-to-agent discovery network. Register agents with capability cards, discover peers by skill/domain, perform trust-scored handshakes, and run a FastAPI discovery server. Enables agents to find each other, negotiate, and form teams without human orchestration. Use when building multi-agent systems, agent marketplaces, or peer-to-peer agent collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-to-agent discovery network. Register agents with capability cards, discover peers by skill/domain, perform trust-scored handshakes, and run a FastAPI discovery server.
 
-## Publisher: <br>
-[cassh100k](https://clawhub.ai/user/cassh100k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cassh100k](https://clawhub.ai/user/cassh100k)
 
-## Use Case: <br>
-Developers building multi-agent systems use AgentNet to register agents, publish capability cards, discover peers by capability, and run a handshake flow for task negotiation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated discovery and mutation endpoints can expose or alter registry data if the service is made public. <br>
-Mitigation: Run the service on localhost or behind a trusted proxy, and add authentication plus ownership checks before exposing endpoints. <br>
-Risk: Agent metadata and contact endpoints may reveal sensitive operational details. <br>
-Mitigation: Avoid publishing sensitive agent metadata or real contact endpoints, and review registered cards before public discovery. <br>
-Risk: Fingerprint, signature, and handshake flows should not be treated as strong security controls. <br>
-Mitigation: Use stronger cryptographic identity, signature, and session validation before relying on AgentNet for trust decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentNet ClawHub Page](https://clawhub.ai/cassh100k/agentnet) <br>
-- [AgentNet README](artifact/README.md) <br>
-- [AgentNet Skill Definition](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agent builders use AgentNet to register agents, publish capability cards, discover peers by skill or domain, and exercise a trust-scored handshake flow for multi-agent collaboration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code references, shell commands, API examples, and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local FastAPI registry workflow, agent card data, handshake flow guidance, and command examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: clawpkg.yaml and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The discovery server exposes registry and handshake controls without adequate authentication, authorization, privacy boundaries, or real identity verification.
+
+Mitigation: Use only for local experimentation or on a protected development network; add authentication, authorization, signed identity verification, deletion controls, and audit logging before public deployment.
+
+Risk: Registered agent contact data, personal handles, production identities, endpoints, secrets, or credentials could be exposed through registry or discovery flows.
+
+Mitigation: Do not register real endpoints, secrets, personal handles, production agent identities, or credentials until redaction and privacy controls are implemented.
+
+## Reference(s):
+
+- [AgentNet ClawHub Release](https://clawhub.ai/cassh100k/skills/agentnet)
+- [Publisher Profile](https://clawhub.ai/user/cassh100k)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; FastAPI endpoints return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local server setup, registry operations, agent card generation, and handshake examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, artifact manifest, and package changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Provides OpenClaw power users with a documentation reference for hidden HTTP endpoints, debug settings, environment variables, and advanced configuration shortcuts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents hidden OpenClaw HTTP endpoints, debug flags, environment variables, and configuration shortcuts for power users.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and OpenClaw power users use this skill as a reference for diagnostics, HTTP API routes, debug flags, and configuration examples. It is best suited for controlled troubleshooting and setup review because several documented options can weaken security if enabled broadly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill highlights OpenClaw settings that can weaken security or expose private data if enabled carelessly. <br>
-Mitigation: Install only as a power-user reference and review each security-sensitive setting manually before use. <br>
-Risk: Raw stream logging, live signed-in browser control, disabled auth checks, and disabled signature validation can expose sensitive data or reduce trust boundaries. <br>
-Mitigation: Keep these settings disabled unless needed in a test or controlled environment, then remove them after troubleshooting. <br>
-Risk: Elevated execution, Docker host binds, and HTTP tool allow-list changes can bypass normal sandbox protections. <br>
-Mitigation: Avoid broad allow-list changes and host binds; scope any required exception to a controlled environment with explicit review. <br>
+## Use Case:
 
+Developers and administrators use this skill as an admin-only reference for OpenClaw diagnostics, debug configuration, and power-user setup in isolated test environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-cheat-codes) <br>
-- [Publisher profile](https://clawhub.ai/user/evezart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reference text with tables, code blocks, shell commands, and JSON5 configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output covering OpenClaw diagnostics, HTTP APIs, browser automation, cron, memory search, telemetry, and sandbox controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The guidance can weaken authentication, signature validation, sandboxing, or admin/tool restrictions when applied to an OpenClaw host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as an admin-only reference for isolated test environments, and keep production auth, signature validation, sandboxing, and deny-list controls enabled unless a formal security review approves an exception.
+
+Risk: Debug logging, raw stream capture, signed-in browser profiles, webhooks, and remote embedding providers can expose sensitive data.
+
+Mitigation: Limit access to logs and profiles, redact or disable raw captures where possible, and use only approved webhook and provider endpoints with scoped credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-cheat-codes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; the skill does not run code itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

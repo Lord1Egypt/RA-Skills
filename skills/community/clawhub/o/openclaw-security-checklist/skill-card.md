@@ -1,49 +1,67 @@
-## Description: <br>
-OpenClaw Security Checklist helps developers and operators run pre-deployment security and compliance checks for OpenClaw deployments, covering firewall, SSH, API key handling, data-border considerations, and Mac, VPS, Docker, and enterprise scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw pre-deployment security checklist for firewall, SSH, API key management, data export compliance, and Mac, VPS, Docker, and enterprise deployment checks.
 
-## Publisher: <br>
-[yiyuanlu](https://clawhub.ai/user/yiyuanlu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiyuanlu](https://clawhub.ai/user/yiyuanlu)
 
-## Use Case: <br>
-Developers, operators, and security reviewers use this skill before deploying OpenClaw to check baseline security controls, review compliance-sensitive configuration, and produce shareable Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include raw lines that match secret-like patterns from local OpenClaw workspace files. <br>
-Mitigation: Review and redact generated reports before sharing, run checks in a controlled workspace, and rotate any credential that appears in report output. <br>
-Risk: The security check can read local OpenClaw configuration and workspace files while evaluating API key and deployment settings. <br>
-Mitigation: Review the script before running it on sensitive systems and limit execution to environments where local configuration inspection is acceptable. <br>
-Risk: The data-border check can make an outbound request to ipinfo.io when curl is available. <br>
-Mitigation: Run the check only where that network lookup is acceptable, or review and disable the location check before execution. <br>
+## Use Case:
 
+Developers, administrators, and security reviewers use this skill to check OpenClaw deployments before launch and to produce a shareable security and compliance report.
 
-## Reference(s): <br>
-- [Openclaw Security Checklist on ClawHub](https://clawhub.ai/yiyuanlu/openclaw-security-checklist) <br>
-- [API Key Management](references/api-key-management.md) <br>
-- [China Compliance Checklist](references/compliance-cn.md) <br>
-- [Data Border Checklist](references/data-border.md) <br>
-- [Personal Mac Deployment Checklist](references/deployment-scenarios/personal-mac.md) <br>
-- [VPS Deployment Checklist](references/deployment-scenarios/vps.md) <br>
-- [Docker Deployment Checklist](references/deployment-scenarios/docker.md) <br>
-- [Enterprise Deployment Checklist](references/deployment-scenarios/enterprise.md) <br>
+### Deployment Geography for Use:
 
+Global, with China-specific compliance guidance for deployments operating in or serving users in China.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and checklist guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local Markdown or text reports from host and OpenClaw workspace checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Security reports or audit output may include sensitive credentials or credential-like strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize reports before sharing them, and avoid running the default audit in directories that may contain live credentials unless that exposure is acceptable.
+
+Risk: Some examples show risky credential handling, including printing API keys, appending keys to shell profiles, and storing Docker image environment values.
+
+Mitigation: Use a secret manager or tightly permissioned environment files, avoid logging secrets, and keep credentials out of Dockerfiles and image layers.
+
+Risk: Operational examples may replace scheduled tasks or modify local security configuration if copied without review.
+
+Mitigation: Treat shell snippets as reviewable guidance, test them in a non-production environment, and preserve existing crontab and configuration before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiyuanlu/skills/openclaw-security-checklist)
+- [README](README.md)
+- [Example report](example-report.md)
+- [API key management](references/api-key-management.md)
+- [China compliance checklist](references/compliance-cn.md)
+- [Data export checklist](references/data-border.md)
+- [Personal Mac deployment checklist](references/deployment-scenarios/personal-mac.md)
+- [VPS deployment checklist](references/deployment-scenarios/vps.md)
+- [Docker deployment checklist](references/deployment-scenarios/docker.md)
+- [Enterprise deployment checklist](references/deployment-scenarios/enterprise.md)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and generated checklist reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local OpenClaw security report files when the bundled shell scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,22 @@
+{
+  "name": "hky-insure-risk-report",
+  "display_name": "胡开奕 · 养老与传承顾问技能 · 标准化风险分析报告",
+  "slug": "hky-insure-risk-report",
+  "version": "1.0.1",
+  "description": "读取结构化会谈纪要，一键产出暖黄版标准化风险评估报告：家庭架构图 PNG、人·权·财三主线、P0–P3 风险排序 + 五角度交叉分析、法律释义出处、工具矩阵（只给方向）、风险盘点总表、二次沟通议程。报告只讲风险与逻辑，不推具体产品。",
+  "author": "清流计划 · 胡开奕",
+  "built": "2026-08-17",
+  "category": "wealth-management",
+  "tags": ["养老规划", "财富传承", "保险顾问", "风险分析报告", "家庭架构", "P0-P3风险", "养老与传承顾问技能", "清流计划", "胡开奕养老"],
+  "triggers": ["养老与传承顾问技能", "养老传承顾问", "胡开奕养老", "养老风险评估报告", "风险分析报告", "养老传承风险", "生成风险评估", "养老风险盘点", "养老报告生成"],
+  "license": "MIT",
+  "path": ".",
+  "dependencies": ["python-docx", "pillow"],
+  "skills": [
+    {
+      "name": "hky-insure-risk-report",
+      "path": ".",
+      "display_name": "胡开奕 · 养老与传承顾问技能 · 标准化风险分析报告"
+    }
+  ]
+}

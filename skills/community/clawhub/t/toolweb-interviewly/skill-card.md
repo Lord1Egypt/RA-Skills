@@ -1,42 +1,55 @@
-## Description: <br>
-AI-powered voice mock interview platform that analyzes job descriptions and conducts adaptive interviews with real-time feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered voice mock interview platform that analyzes job descriptions and conducts adaptive interviews with real-time feedback.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, recruitment platforms, training teams, and educational institutions use this skill to integrate Interviewly's job description analysis, adaptive mock interview flow, response feedback, and report generation into interview preparation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interview answers, job descriptions, and generated reports are sensitive content sent to Interviewly/toolweb and Claude for evaluation. <br>
-Mitigation: Avoid submitting secrets, confidential employer information, or highly sensitive personal details, and use the service only with appropriate consent. <br>
-Risk: Session IDs and report URLs may expose completed interview artifacts because the evidence does not describe retention, deletion, authentication, or link expiration. <br>
-Mitigation: Protect session IDs and report URLs, share them only with intended recipients, and confirm retention or deletion controls before production use. <br>
+## Use Case:
 
+External developers, job seekers, recruiting platforms, corporate training teams, and education providers use this skill to run mock interview workflows: analyze job descriptions, conduct adaptive question-and-answer sessions, evaluate responses, and generate interview reports.
 
-## Reference(s): <br>
-- [Interviewly API Docs](https://api.toolweb.in:8173/docs) <br>
-- [Interviewly Kong Route](https://api.toolweb.in/tools/interviewly) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents a remote API workflow that returns JSON interview state, feedback, scores, and PDF report download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and openapi.json info.version) <br>
+Risk: Sensitive candidate answers, proprietary job descriptions, personal identifiers, or regulated employment data may be sent to and stored by an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm ToolWeb/Interviewly's privacy policy and retention/deletion terms before using the skill with confidential or regulated material.
+
+Risk: Generated interview reports may contain sensitive evaluation details and the available evidence does not fully describe report access controls.
+
+Mitigation: Verify report access controls and sharing behavior before distributing report URLs or enabling production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-interviewly)
+- [Interviewly API route](https://api.toolweb.in/tools/interviewly)
+- [Interviewly API docs](https://api.toolweb.in:8173/docs)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Text, Guidance, Files]
+
+**Output Format:** [JSON API responses with interview questions, feedback, scores, report URLs, and PDF report downloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires job descriptions, candidate responses, session identifiers, and user identifiers during the interview workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

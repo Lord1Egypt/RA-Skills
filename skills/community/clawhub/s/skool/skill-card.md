@@ -1,47 +1,64 @@
-## Description: <br>
-Operate Skool communities with onboarding, classroom planning, calendar cadence, official automations, and safer member lifecycle workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Skool communities with onboarding, classroom planning, calendar cadence, official automations, and safer member lifecycle workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External community operators and agents use this skill to plan and run Skool groups, onboarding flows, classroom access, calendar cadence, and official automation workflows while keeping member-facing changes explicit and reviewable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Skool operations such as invites, removals, access changes, AutoDM, Zapier, webhook, or billing-adjacent work can affect real members. <br>
-Mitigation: Keep the skill advisory unless the user explicitly approves the exact member-facing action, preview the workflow, and confirm rollback steps before execution. <br>
-Risk: Local Skool memory can become privacy-sensitive if it stores raw messages, credentials, payment details, or member dossiers. <br>
-Mitigation: Store only group-level operating rules, approved defaults, automation boundaries, and incident lessons in ~/skool/ after user consent. <br>
-Risk: Unsupported automation or stale platform assumptions can produce fragile workflows or incorrect access behavior. <br>
-Mitigation: Use native Skool behavior and officially documented surfaces first, re-check current Skool docs for plan-gated or feature-specific behavior, and make unsupported limitations explicit. <br>
+## Use Case:
 
+External community operators and creators use this skill to plan and run Skool groups, onboarding, classroom access, calendars, official automations, and member lifecycle decisions while keeping member-impacting actions explicit.
 
-## Reference(s): <br>
-- [ClawHub Skool release page](https://clawhub.ai/ivangdavila/skool) <br>
-- [Skill homepage](https://clawic.com/skills/skool) <br>
-- [Skool official help](https://help.skool.com) <br>
-- [Official surface guidance](artifact/official-surface.md) <br>
-- [Automation and integrations guidance](artifact/automation-and-integrations.md) <br>
-- [Member lifecycle guidance](artifact/member-lifecycle.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with occasional inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local notes under ~/skool/ after user consent; may reference official Skool help, Zapier, or approved webhook destinations when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local Skool operating notes could accumulate more member detail than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only durable group-level operating rules, approved workflows, and incident lessons in ~/skool/ after user consent; avoid raw DMs, payment details, and full member histories.
+
+Risk: Invites, removals, course access changes, DM automation, and billing-adjacent edits can affect real members.
+
+Mitigation: Keep the skill in preview or advisory mode until the user explicitly approves the action, payload, affected group, and rollback path.
+
+Risk: Unsupported Skool automation can create fragile or misleading operational guidance.
+
+Mitigation: Prefer native Skool settings, AutoDM, Zapier, documented webhooks, and official help documentation; make unsupported automation limits explicit before proposing custom workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/skool)
+- [Clawic skill homepage](https://clawic.com/skills/skool)
+- [Official Skool help center](https://help.skool.com)
+- [SKILL.md](artifact/SKILL.md)
+- [Official Surface - Skool](artifact/official-surface.md)
+- [Automation and Integrations - Skool](artifact/automation-and-integrations.md)
+- [Member Lifecycle - Skool](artifact/member-lifecycle.md)
+- [Troubleshooting - Skool](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with optional local setup commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain durable operating notes in ~/skool/ after user consent; live member, invite, access, DM, automation, or billing-adjacent changes require explicit confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

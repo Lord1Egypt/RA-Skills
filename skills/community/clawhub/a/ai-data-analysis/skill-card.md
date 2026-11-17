@@ -1,40 +1,53 @@
-## Description: <br>
-Automates local CSV data analysis and cleaning, producing Markdown reports or cleaned CSV/JSON outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local CSV analysis and data-cleaning utilities that generate markdown reports or cleaned CSV/JSON outputs.
 
-## Publisher: <br>
-[arthasking123](https://clawhub.ai/user/arthasking123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arthasking123](https://clawhub.ai/user/arthasking123)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to run basic local CSV summaries, clean duplicated or missing data, and generate shareable analysis artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated output files can contain copies or summaries of sensitive datasets. <br>
-Mitigation: Treat generated reports and cleaned files as sensitive data, restrict access, and delete them when they are no longer needed. <br>
-Risk: The implementation requires pandas and supports a narrower feature set than some artifact text advertises. <br>
-Mitigation: Install pandas before use and validate that required Excel, charting, PDF/HTML, trend, or anomaly workflows are implemented before relying on them. <br>
+## Use Case:
 
+Developers, data analysts, and operations teams use this skill to run local CSV summary analysis and basic cleaning, then save markdown reports or cleaned CSV/JSON files for review.
 
-## Reference(s): <br>
-- [AI Data Analysis on ClawHub](https://clawhub.ai/arthasking123/ai-data-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, CSV/JSON data files, and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated reports and cleaned data to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json, SKILL.md) <br>
+Risk: Documentation describes Excel, charts, PDF/HTML export, trend detection, anomaly detection, and prediction, but security evidence identifies the implemented behavior as a basic CSV-only local analysis and cleaning utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as CSV-only unless updated evidence proves additional formats or report types are implemented.
+
+Risk: The skill writes generated report or cleaned-data files into its local output directory.
+
+Mitigation: Run it only on data intended for local analysis and review generated files before sharing or relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arthasking123/skills/ai-data-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration]
+
+**Output Format:** [Markdown reports, CSV files, JSON files, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated reports and cleaned data into a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, SKILL.md, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

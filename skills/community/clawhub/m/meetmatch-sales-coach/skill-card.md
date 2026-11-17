@@ -1,46 +1,61 @@
-## Description: <br>
-AI sales coach that sends personalized morning briefings, tracks rep patterns over time, and uses MeetMatch's ML predictions to make your agent smarter about sales outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI sales coach that sends personalized morning briefings, tracks rep patterns over time, and uses MeetMatch's ML predictions to make your agent smarter about sales outcomes.
 
-## Publisher: <br>
-[brettonb](https://clawhub.ai/user/brettonb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brettonb](https://clawhub.ai/user/brettonb)
 
-## Use Case: <br>
-Sales reps and sales managers use this skill to prepare for meetings, review risk-scored schedules, receive personalized coaching nudges, and generate morning or on-demand briefings from MeetMatch sales outcome data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive employee performance data and customer-call context. <br>
-Mitigation: Confirm MeetMatch data handling, access controls, and retention policies before enabling it for a sales organization. <br>
-Risk: Persistent rep memory may create long-running profiles of employee behavior. <br>
-Mitigation: Define administrator controls for visibility, deletion, retention, and opt-out before broad deployment. <br>
-Risk: Scheduled morning briefings may send sales and performance information by email. <br>
-Mitigation: Require opt-in recipients, verified delivery addresses, and review of what content is included in outbound briefings. <br>
+## Use Case:
 
+Sales reps and sales managers use this skill through an OpenClaw agent to receive personalized morning briefings, meeting prep, no-show risk context, performance snapshots, and coaching nudges based on MeetMatch data.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/brettonb/meetmatch-sales-coach) <br>
-- [MeetMatch](https://www.meetmatch.ai) <br>
-- [OpenClaw Integration Guide](https://www.meetmatch.ai/integrations/openclaw) <br>
-- [Interactive Demo](https://www.meetmatch.ai/demo/clawcon) <br>
-- [MeetMatch OpenClaw API](https://www.meetmatch.ai/api/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Conversational text or Markdown briefings generated from MeetMatch API data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEETMATCH_API_KEY and MEETMATCH_ORG_ID; scheduled briefings may be delivered by email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.yaml) <br>
+Risk: The skill can email sensitive employee and prospect performance briefings automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm approved recipients, delivery rules, and access controls before enabling scheduled briefings.
+
+Risk: Persistent coaching memory may retain transcript-derived observations about reps and prospects.
+
+Mitigation: Define notice, consent, retention, and deletion practices with sales, HR, legal, and security stakeholders before installation.
+
+Risk: Broad keyword and schedule triggers may activate coaching workflows more often than intended.
+
+Mitigation: Narrow or disable automatic triggers where possible and require explicit user requests for sensitive briefings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brettonb/skills/meetmatch-sales-coach)
+- [MeetMatch](https://www.meetmatch.ai)
+- [OpenClaw Integration Guide](https://www.meetmatch.ai/integrations/openclaw)
+- [MeetMatch OpenClaw API](https://www.meetmatch.ai/api/openclaw)
+- [Interactive Demo](https://www.meetmatch.ai/demo/clawcon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text and Markdown-style sales briefings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MeetMatch API credentials, organization ID, briefing hour, and delivery method configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

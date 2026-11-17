@@ -1,39 +1,52 @@
-## Description: <br>
-将AI生成的机械化文本转换为自然、有人情味的人类写作风格 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将AI生成的机械化文本转换为自然、有人情味的人类写作风格
 
-## Publisher: <br>
-[bbintom123321-lab](https://clawhub.ai/user/bbintom123321-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bbintom123321-lab](https://clawhub.ai/user/bbintom123321-lab)
 
-## Use Case: <br>
-Chinese writers, editors, marketers, and agent users use this skill to rewrite AI-sounding Chinese text into a more conversational, varied, and human-feeling style. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Humanizing generated text can mislead readers when authorship or AI disclosure matters. <br>
-Mitigation: Use the skill with clear disclosure where required and avoid presenting AI-assisted text as an unaided human account. <br>
-Risk: The skill encourages adding personal color or experiences that may be fabricated if no real source supports them. <br>
-Mitigation: Only include personal experiences, emotions, or concrete examples that the author can truthfully support. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bbintom123321-lab/humanize-zh) <br>
+## Use Case:
 
+Chinese-language writers, editors, marketers, and other content creators use this skill to rewrite AI-generated Chinese text into a more casual, conversational, human-sounding style.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain Chinese prose with rewrite guidance and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include conversational phrasing, varied sentence rhythm, concrete examples, and self-check guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Casual rewriting can reduce formal tone or source fidelity when exact wording is required.
+
+Mitigation: Use the skill only when a conversational Chinese style is desired, and ask the agent to preserve formal tone, exact meaning, citations, or target language when those constraints matter.
+
+Risk: The artifact encourages adding personal color and examples, which could introduce unsupported personal anecdotes.
+
+Mitigation: Require edits to keep any examples or first-person details grounded in user-provided facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbintom123321-lab/skills/humanize-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text rewriting guidance and edited Chinese text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or hidden system access; the skill provides writing-style transformation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

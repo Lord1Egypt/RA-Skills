@@ -1,46 +1,56 @@
-## Description: <br>
-Generate HTML slide presentations from markdown or plain text with a dark reveal.js theme, keyboard navigation, animations, and optional speaker notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate beautiful HTML slide presentations from markdown or plain text as a single browser-openable HTML file with a dark theme, smooth animations, and speaker notes.
 
-## Publisher: <br>
-[vanthienha199](https://clawhub.ai/user/vanthienha199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanthienha199](https://clawhub.ai/user/vanthienha199)
 
-## Use Case: <br>
-Developers, creators, and business users can use this skill to turn a topic, outline, text, or markdown into a browser-ready HTML presentation. It is suited for pitch decks, technical presentations, and structured slide drafts that need quick visual formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks may include speaker notes or user-provided material that is not intended for public sharing. <br>
-Mitigation: Review the generated HTML before presenting or distributing it, especially any speaker notes. <br>
-Risk: A generated slide deck can overwrite an existing file if the requested output path or generated filename collides with important work. <br>
-Mitigation: Choose a descriptive output path and check before replacing existing presentation files. <br>
-Risk: Opened decks fetch reveal.js assets from jsDelivr by default. <br>
-Mitigation: Replace CDN links with local copies when offline use, stricter supply-chain controls, or network isolation are required. <br>
+## Use Case:
 
+External users, developers, and content creators use this skill to turn a topic, outline, markdown, or text into a ready-to-present HTML slide deck.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vanthienha199/slide-deck) <br>
-- [Publisher profile](https://clawhub.ai/user/vanthienha199) <br>
-- [reveal.js browser presentation framework](https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js) <br>
-- [reveal.js default stylesheet](https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css) <br>
-- [reveal.js syntax highlighting plugin](https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files] <br>
-**Output Format:** [Single HTML file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses reveal.js assets from jsDelivr unless replaced with local copies; dark theme, responsive layout, keyboard navigation, optional speaker notes, and code highlighting are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated slide decks may load third-party CDN code from jsDelivr.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML and confirm the CDN dependency is acceptable before presenting or sharing the deck.
+
+Risk: Untrusted markdown or text could be converted into unsafe or misleading HTML content.
+
+Mitigation: Avoid attacker-supplied content unless the agent escapes or sanitizes it, and inspect generated HTML before sharing it externally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vanthienha199/skills/slide-deck)
+- [Reveal.js CDN stylesheet](https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.css)
+- [Reveal.js CDN script](https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.min.js)
+- [Reveal.js Highlight Plugin CDN script](https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code]
+
+**Output Format:** [A single HTML file containing reveal.js slides.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks load reveal.js assets from jsDelivr and are intended to be reviewed before external sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

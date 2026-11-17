@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "pricing",
-  "version": "1.0.0",
-  "publishedAt": 1770694060405
+  "displayName": "Pricing",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1785140325499
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1785089320241
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770694060405
+    }
+  ]
 }

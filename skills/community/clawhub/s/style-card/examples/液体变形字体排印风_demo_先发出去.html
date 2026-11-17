@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html data-page-node-id="Jo7MlrgUGcww67reNswcby" lang="zh-CN">
+<head data-page-node-id="Ow6FXzy3KbnRvmJl9bU0yK">
+<script data-page-node-id="VlrDGsSKJHLxbSFanCyYTD" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="kbmcY00YIeGHZbed9ZNasS" charset="UTF-8">
+<link data-page-node-id="FzSQEhJDitz0KilCPhpwOl" href="https://fonts.googleapis.com" rel="preconnect">
+<link data-page-node-id="c7yW9pYUg6Rwiwgv3q8XL2" crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link data-page-node-id="qm2fLSbvR6xz0twVwEyCmG" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style data-page-node-id="BR6K7Yi31QQUkFexhlAoRy" data-pnid-children="3jw6pdmzNql5xjS6r9I6zj">
+/* ============================================================
+   html-base.css — style-card HTML 引擎强制底座（全文，勿删改）
+   ============================================================ */
+:root {
+    --card-width: 1170px;
+    --card-height: 1560px;
+    --bg-page: #FFF6E9;
+    --ink: #1a1a1a;
+    --accent: #FF6B2C;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+    width: var(--card-width);
+    height: var(--card-height);
+    overflow: hidden;
+    background: var(--bg-page);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+h1, h2, h3 { font-weight: 900; line-height: 1.25; }
+p, li { line-height: 1.6; }
+p, li, span { overflow-wrap: break-word; }
+.pixelated { image-rendering: pixelated; }
+.pixel-font { font-family: 'ZCOOL QingKe HuangYou', 'Noto Sans SC', sans-serif; letter-spacing: 0.02em; }
+.hand-font  { font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; }
+::selection { background: transparent; }
+
+/* === 卡片覆盖变量 === */
+:root { --bg-page: #FFF6E9; --card-width: 1170px; --card-height: 1560px; }
+
+/* === 柔光渐变背景 === */
+.grad-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 28%, #FFF9EF 0%, #FFF1DE 42%, #FFE3C4 100%);
+}
+
+/* === 区块1：顶部 meta 行 === */
+.meta-top {
+    position: relative; text-align: center; padding: 64px 56px 0;
+    font-family: 'Space Grotesk', monospace; font-weight: 700;
+    font-size: 26px; letter-spacing: 0.22em; color: #E07A20;
+}
+
+/* === 区块2：主标题（液体变形大字） === */
+.title-wrap {
+    position: relative;
+    margin-top: 120px;
+    display: flex; justify-content: center; align-items: center;
+}
+.title {
+    font-family: 'Noto Sans SC', sans-serif; font-weight: 900;
+    font-size: 240px; line-height: 1.1; letter-spacing: 0.02em;
+    /* 液态渐变 */
+    background: linear-gradient(180deg, #FFB053 0%, #FF9A3D 38%, #FF7A1E 62%, #FF9A3D 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    /* 膨胀变形：纵向拉高 + 轻微缩放 */
+    transform: scaleY(1.10);
+    /* 镜面高光：顶部白色反光模拟液体弧面 */
+    filter: drop-shadow(0 -2px 0 rgba(255,255,255,0.55))
+            drop-shadow(0 10px 30px rgba(255,122,30,0.35));
+    position: relative;
+}
+/* 独立镜面高光条（叠加在标题上方，模拟液体顶面反光） */
+.gloss {
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 78%; height: 26px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 72%);
+    filter: blur(2px);
+    z-index: 2; pointer-events: none;
+}
+
+/* === 区块3：副题 === */
+.subtitle {
+    position: relative; text-align: center; margin-top: 46px;
+    font-family: 'Noto Sans SC', sans-serif; font-weight: 400;
+    font-size: 40px; color: #6B4A2A; letter-spacing: 0.14em;
+}
+
+/* === 区块4：液态分隔线 === */
+.rule {
+    position: relative; width: 460px; height: 10px; margin: 56px auto 0;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #FFE3A8, #FF9A3D, #FFE3A8);
+    box-shadow: 0 4px 16px rgba(255,154,61,0.35);
+}
+
+/* === 区块5：要点（可选，克制 3 个） === */
+.points {
+    position: relative; margin-top: 64px; padding: 0 56px;
+    display: flex; justify-content: center; gap: 34px; flex-wrap: wrap;
+}
+.point {
+    font-family: 'Noto Sans SC', sans-serif; font-weight: 700;
+    font-size: 36px; color: #8A5A28;
+}
+.point .dot { color: #FF6B2C; font-size: 28px; vertical-align: 3px; margin-right: 10px; }
+
+/* === 区块6：底部 meta === */
+.meta-bottom {
+    position: relative; margin-top: auto; padding: 0 56px 64px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.meta-bottom .l { font-family: 'Noto Sans SC', sans-serif; font-weight: 500; font-size: 28px; color: #B07A3C; letter-spacing: 0.08em; }
+.meta-bottom .r { font-family: 'Space Grotesk', monospace; font-weight: 500; font-size: 24px; color: #C09A6A; letter-spacing: 0.18em; }
+</style>
+</head>
+<body data-page-node-id="ATrCvC6IdcBz5EFTqv63EC">
+<div data-page-node-id="hZm3Dd1p7vtx2yPIjAeo2h" class="card">
+    <div data-page-node-id="dHBpUX58gEesppPgNVmoJK" class="grad-bg"></div>
+
+    <!--pnid:uKmEY0U5I3t5QaaBHVNd1n--><!-- 区块1：顶部 meta -->
+    <div data-page-node-id="7nhz8ZefNYknQ0fCdWMfsE" class="meta-top"><!--pnid:O3KwTuibGmny4D94jBtTUJ-->LIQUID TYPE · 2026</div>
+
+    <!--pnid:886RH3RPCZaQxrKQukwngg--><!-- 区块2：主标题（液体变形大字） -->
+    <div data-page-node-id="aEOwZsBhMFwUzj8N9OwHF9" class="title-wrap">
+        <div data-page-node-id="aIeNa6vN8fPY6po1dgTrqI" class="title"><!--pnid:bmQMaQG5mmMhNsdg29H090-->先发出去</div>
+        <div data-page-node-id="7FYoVrTlFYKF8sIFNhnDcR" class="gloss"></div>
+    </div>
+
+    <!--pnid:hUCB5i0PXQSCY73WlZU1nU--><!-- 区块3：副题 -->
+    <div data-page-node-id="oH7gigzuZuqjVCcwWdchcz" class="subtitle"><!--pnid:F2FBPw70eWdPbvwY4A6O7C-->完成比完美更重要</div>
+
+    <!--pnid:sEuElitU4A9SBo2In6GC1Y--><!-- 区块4：液态分隔线 -->
+    <div data-page-node-id="vLKGsgkwCmQFZNbgmJ83bs" class="rule"></div>
+
+    <!--pnid:zqd468QQ2SyRBUHFyBKkyd--><!-- 区块5：要点 -->
+    <div data-page-node-id="26zvcbQNWPLgIOXdy5gU8v" class="points">
+        <span data-page-node-id="dNEZrEvYBIU3CCsDMG2iCt" class="point"><span data-page-node-id="NJiK6tPQRqhWoE72Tgw4hz" class="dot"><!--pnid:apZ1cPrcYvf5gyLhl8f9fx-->●</span><!--pnid:iSSeEYT77bNdj7OUkBe899-->别等完美</span>
+        <span data-page-node-id="xXz8zxBbVwTpMERGowXKbe" class="point"><span data-page-node-id="2UX21FBbQeNfAoeWHiWefo" class="dot"><!--pnid:VwYBRR7NHV2GfbsnxZOZuJ-->●</span><!--pnid:VFxryt3x8EXFTGzRFOeJpu-->先跑起来</span>
+        <span data-page-node-id="CBM8uznuVTNEXduSLf6brc" class="point"><span data-page-node-id="X5il27ZNj4OotEcMdPlso3" class="dot"><!--pnid:PoyWXZSYaEtWyvqgl2kxRB-->●</span><!--pnid:nV7Z4Lx56IvRFJcXCYtY7u-->再迭代</span>
+    </div>
+
+    <!--pnid:SNSF5cci7IfrlYyXEigQQi--><!-- 区块6：底部 meta -->
+    <div data-page-node-id="RJsxjyZnPLmbyN4wsTcqQy" class="meta-bottom">
+        <span data-page-node-id="TCPCK8bzBsBjQlsyVxXHT2" class="l"><!--pnid:F3msR8fleYLOscVXrOmCLj-->巴扎嘿</span>
+        <span data-page-node-id="fOagpH8EE8LQ3Vje2ZweIn" class="r"><!--pnid:4ied1nQjpsEkIS519OV7Jz-->FLOW &amp; GLOW</span>
+    </div>
+</div>
+</body>
+</html>

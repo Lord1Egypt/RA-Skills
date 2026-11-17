@@ -1,42 +1,54 @@
-## Description: <br>
-Plan Andorra trips with parish-level tips for skiing, hiking, shopping, wellness, and cross-border logistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Andorra trips with parish-level tips for skiing, hiking, shopping, wellness, and cross-border logistics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers use this skill to plan Andorra trips around parish choice, seasonal activities, transport, accommodations, food, shopping, wellness, and cross-border practicalities. It also helps tailor advice to skiing, hiking, family, shopping, spa, and short-weekend travel styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local preference memory can retain trip preferences, budget, group details, or trip history under ~/andorra/. <br>
-Mitigation: Use the memory feature only with user consent, and avoid saving sensitive travel details when persistence is not needed. <br>
-Risk: Travel guidance can become stale for weather, mountain access, bookings, roaming, road rules, customs allowances, and emergency logistics. <br>
-Mitigation: Verify time-sensitive travel details with current official or provider sources before booking, driving, hiking, skiing, or relying on connectivity advice. <br>
+## Use Case:
 
+External users use this skill to plan Andorra trips by matching season, base parish, transport mode, activity style, budget, and practical constraints such as roaming, weather, customs, parking, and border timing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/andorra) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill homepage](https://clawic.com/skills/andorra) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or conversational text with optional local preference-memory structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local trip preference memory under ~/andorra/ when the user agrees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local preference notes may include trip style, budget, transport, and travel history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before saving memory and keep any retained notes limited to ~/andorra/.
+
+Risk: Weather, road, roaming, booking, customs, and emergency details can change or depend on the travel date.
+
+Mitigation: Prompt users to verify current conditions and official requirements before acting on time-sensitive travel guidance.
+
+## Reference(s):
+
+- [ClawHub Andorra Skill Page](https://clawhub.ai/ivangdavila/skills/andorra)
+- [Andorra Skill Homepage](https://clawic.com/skills/andorra)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown travel-planning guidance with optional local preference notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local trip preferences stored under ~/andorra/ when the user opts in.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

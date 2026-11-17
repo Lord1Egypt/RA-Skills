@@ -1,0 +1,4 @@
+interface:
+  display_name: "49天教员点评"
+  short_description: "按教员评分表逐项点评并生成评分表"
+  default_prompt: "请依据对应的教员评分表，逐模块协助我点评学员作业；每轮只确认一个模块的最终点评和得分。"

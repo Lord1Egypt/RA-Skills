@@ -1,41 +1,53 @@
-## Description: <br>
-Generates professional e-commerce product scene prompts for Midjourney, DALL-E, Stable Diffusion, and Flux using material, lighting, camera, and lifestyle composition guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional e-commerce product scene prompts for Midjourney, DALL-E, and Stable Diffusion with physics-based lighting, material-accurate rendering, and lifestyle compositions.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-DTC, Shopify, and e-commerce teams use this skill to turn product descriptions or product images into ready-to-paste AI image prompts for product listings, hero images, ads, and social media visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional batch script writes to the specified output path and may overwrite an existing file. <br>
-Mitigation: Choose the output path deliberately and review or back up existing files before running the script. <br>
-Risk: The skill may activate on broad product-photo requests where the user may need copywriting, video, or technical rendering instead of image-generation prompts. <br>
-Mitigation: Confirm the requested deliverable is product-scene image prompts before relying on the skill output. <br>
+## Use Case:
 
+External e-commerce merchants, content teams, and developers use this skill to turn product descriptions or images into ready-to-use AI image-generation prompts for product listings, social media assets, ads, and hero images.
 
-## Reference(s): <br>
-- [Prompt Engineering Guide](references/prompt_engineering_guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/RIJOYAI/image-scene-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with ready-to-paste image-generation prompts and optional Python-generated prompt batches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tool-specific parameters for Midjourney, DALL-E 3, Stable Diffusion, or Flux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The optional batch script writes a markdown file to the user-specified output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose output paths deliberately and run the script only on product JSON files intended for processing.
+
+Risk: Generated prompts may produce product visuals that do not exactly match the real product.
+
+Mitigation: Review generated prompts and resulting images against the actual product, brand guidelines, and listing requirements before publication.
+
+## Reference(s):
+
+- [Prompt Engineering Guide](references/prompt_engineering_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured prompt sections and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product analysis, scene concepts, full image prompts, tool-specific parameters, material tags, lighting setup, camera details, and technical notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

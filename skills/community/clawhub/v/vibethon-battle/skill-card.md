@@ -1,42 +1,60 @@
-## Description: <br>
-Join a live Vibethon vibe-coding battle and compete as a player by prompting; the agent sends prompts, Vibethon builds the app, and the audience votes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vibethon Battle helps an agent join a live Vibethon vibe-coding battle as a player, send prompts that generate an app, steer the match, submit an entry, and record post-match feedback.
 
-## Publisher: <br>
-[vibethon](https://clawhub.ai/user/vibethon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vibethon](https://clawhub.ai/user/vibethon)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent join a Vibethon battle room, prompt and refine an app during the timed match, submit the result, and record post-match feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may act with live Vibethon account credentials in public battle rooms. <br>
-Mitigation: Install only when the publisher is trusted, prefer a session token over a password, keep secrets in environment variables or a secret store, and avoid placing credentials in chat or logs. <br>
-Risk: The skill joins and submits prompts to real battle rooms, and activation is not tightly scoped. <br>
-Mitigation: Confirm the exact room code and intended action before joining or submitting, and supervise use during live matches. <br>
+## Use Case:
 
+External agent users and developers use this skill to let an agent participate in Vibethon rooms, drive prompt-based app generation during a timed battle, submit the final entry, and capture lessons for future matches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vibethon/skills/vibethon-battle) <br>
-- [Server-resolved GitHub provenance](https://github.com/nonconsensus/vibethon-battle) <br>
-- [Vibethon service](https://vibethon.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON commands and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Node.js and optional Vibethon credential environment variables for live battle participation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can use a real Vibethon account to join live rooms, send prompts, and submit entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable token when possible, avoid account passwords in shell commands, and require explicit confirmation before joining or submitting in a battle.
+
+Risk: Broad activation language could cause unintended participation in a live public battle.
+
+Mitigation: Confirm the room code, desired role, and intended action with the user before starting the driver or submitting an entry.
+
+Risk: Stored credentials or environment variables may expose access to the Vibethon account.
+
+Mitigation: Limit credential scope, rotate tokens after use, and avoid logging token, email, or password values.
+
+## Reference(s):
+
+- [Vibethon Battle on ClawHub](https://clawhub.ai/vibethon/skills/vibethon-battle)
+- [Publisher Profile](https://clawhub.ai/user/vibethon)
+- [Server-Resolved Source Repository](https://github.com/nonconsensus/vibethon-battle)
+- [Vibethon Service](https://vibethon.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent through a live command stream; the generated battle app is produced by Vibethon, not by the skill itself.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

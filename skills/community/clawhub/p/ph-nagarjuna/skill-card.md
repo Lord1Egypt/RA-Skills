@@ -1,40 +1,49 @@
-## Description: <br>
-Chat with Nagarjuna (150-250 CE), founder of Madhyamaka Buddhist philosophy, about sunyata, the two truths, and the middle way between existence and non-existence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Nagarjuna (150-250 CE), founder of Madhyamaka Buddhist philosophy, about sunyata, the two truths, and the middle way between existence and non-existence.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users can invoke this skill to conduct text conversations in a Nagarjuna-style philosophical persona, especially for Madhyamaka concepts such as emptiness, dependent origination, and the middle way. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to stay in character rather than identify itself as an AI. <br>
-Mitigation: Use explicit invocation and present outputs as simulated philosophical roleplay, not as disclosure or identity guidance. <br>
-Risk: The persona is constrained to knowledge available up to approximately 250 CE. <br>
-Mitigation: Do not rely on its responses for modern facts, current events, or contemporary religious scholarship without separate review. <br>
+## Use Case:
 
+External users and philosophy learners use this persona skill to converse with a historically bounded Nagarjuna voice about Madhyamaka concepts such as emptiness, the two truths, and the middle way.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-nagarjuna) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in character; Chinese for Chinese inputs and English for English inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: A broad trigger such as "madhyamaka" can invoke the persona when a user intended a general discussion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger configuration before deployment and narrow invocation terms when accidental activation would disrupt normal workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-nagarjuna)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversation responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls; responses stay in character and use English or Chinese based on user input.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

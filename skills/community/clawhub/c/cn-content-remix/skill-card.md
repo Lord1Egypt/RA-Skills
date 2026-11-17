@@ -1,41 +1,54 @@
-## Description: <br>
-cn-content-remix helps agents transform Chinese source content into platform-native drafts for Xiaohongshu, Douyin, WeChat Official Account, Zhihu, Weibo, and WeChat Video, with platform-rule lookup and advertising-law compliance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+cn-content-remix helps agents rewrite Chinese content into platform-native versions for Xiaohongshu, Douyin, WeChat Official Account, Zhihu, Weibo, and WeChat Video, with platform rules and advertising-law checks.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-External creators, marketers, and agents use this skill to rewrite one Chinese content source into platform-specific drafts for major Chinese social platforms and to check wording against listed advertising-law and platform rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API-assisted checks may send submitted content or lookup details to an undocumented external service. <br>
-Mitigation: Do not submit confidential, client, regulated, or unpublished business content unless the publisher documents data handling and the user accepts those terms. <br>
-Risk: Generated compliance checks can miss legal or platform-policy issues. <br>
-Mitigation: Review drafts and compliance notes before publishing, especially for advertising, medical, financial, education, or other regulated content. <br>
+## Use Case:
 
+Developers, content marketers, and agent users use this skill to adapt one Chinese source text into channel-specific drafts, scripts, hashtags, and posting guidance for major Chinese social platforms while checking for advertising-law risk terms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lm203688/cn-content-remix) <br>
-- [Platform rules API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown sections with platform-specific drafts, compliance notes, hashtags, and distribution guidance; the included shell script returns plain-text platform-rule summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a remote API for platform-rule lookup and compliance assistance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence.release.version) <br>
+Risk: The skill may use a Tencent SCF endpoint for platform-rule lookups and documented content checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this network behavior is acceptable, and review the generated content before publishing.
+
+Risk: Advertising-law checks can miss context-specific or jurisdiction-specific compliance issues.
+
+Mitigation: Treat checks and replacement suggestions as review aids, and manually verify regulated or promotional claims before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/cn-content-remix)
+- [Platform rules API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with platform-specific content drafts, compliance notes, tags, posting guidance, and optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a disclosed Tencent SCF endpoint for platform-rule lookups, and may call the documented compliance-check API if the agent chooses to use it.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

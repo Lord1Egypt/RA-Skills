@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect x="0" y="0" width="1280" height="720" fill="#FAF8F5" />
+  <rect x="0" y="0" width="6" height="720" fill="#1A2744" />
+  <rect x="30" y="30" width="50" height="50" fill="#1A2744" rx="6" />
+  <text x="55" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#CFAC6A">目</text>
+  <text x="100" y="65" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="28" font-weight="bold" fill="#1A2744">录 录</text>
+  <rect x="80" y="130" width="520" height="110" rx="8" fill="#FFFFFF" stroke="#CFAC6A" stroke-width="1" stroke-opacity="0.4" />
+  <rect x="80" y="130" width="50" height="110" rx="8" fill="#1A2744" />
+  <text x="105" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#CFAC6A">01</text>
+  <text x="150" y="180" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="bold" fill="#1A2744">{{TOC_ITEM_1_TITLE}}</text>
+  <text x="150" y="210" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#6B7280">{{TOC_ITEM_1_DESC}}</text>
+  <rect x="680" y="130" width="520" height="110" rx="8" fill="#FFFFFF" stroke="#CFAC6A" stroke-width="1" stroke-opacity="0.4" />
+  <rect x="680" y="130" width="50" height="110" rx="8" fill="#1A2744" />
+  <text x="705" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#CFAC6A">02</text>
+  <text x="750" y="180" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="bold" fill="#1A2744">{{TOC_ITEM_2_TITLE}}</text>
+  <text x="750" y="210" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#6B7280">{{TOC_ITEM_2_DESC}}</text>
+  <rect x="80" y="270" width="520" height="110" rx="8" fill="#FFFFFF" stroke="#CFAC6A" stroke-width="1" stroke-opacity="0.4" />
+  <rect x="80" y="270" width="50" height="110" rx="8" fill="#1A2744" />
+  <text x="105" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#CFAC6A">03</text>
+  <text x="150" y="320" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="bold" fill="#1A2744">{{TOC_ITEM_3_TITLE}}</text>
+  <text x="150" y="350" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#6B7280">{{TOC_ITEM_3_DESC}}</text>
+  <rect x="680" y="270" width="520" height="110" rx="8" fill="#FFFFFF" stroke="#CFAC6A" stroke-width="1" stroke-opacity="0.4" />
+  <rect x="680" y="270" width="50" height="110" rx="8" fill="#1A2744" />
+  <text x="705" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#CFAC6A">04</text>
+  <text x="750" y="320" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="bold" fill="#1A2744">{{TOC_ITEM_4_TITLE}}</text>
+  <text x="750" y="350" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#6B7280">{{TOC_ITEM_4_DESC}}</text>
+</svg>

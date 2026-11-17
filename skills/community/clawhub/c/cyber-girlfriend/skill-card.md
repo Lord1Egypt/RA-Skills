@@ -1,54 +1,64 @@
-## Description: <br>
-Build or customize an owner-only proactive companion system with a cyber-girlfriend persona, Markdown private-life context, lightweight relationship memory, and OpenClaw presence cron delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or customize an owner-only proactive companion system with a cyber-girlfriend persona, Markdown private-life context, lightweight relationship memory, and OpenClaw presence cron delivery.
 
-## Publisher: <br>
-[kasanuowa](https://clawhub.ai/user/kasanuowa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasanuowa](https://clawhub.ai/user/kasanuowa)
 
-## Use Case: <br>
-External users and agent operators use this skill to configure an owner-only proactive companion that maintains persona, daily schedule, and relationship-memory files, wires OpenClaw delivery cron jobs, and validates setup or upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent proactive messaging may send content on a schedule to the wrong route or at undesired times. <br>
-Mitigation: Preview cron payloads and delivery channel, account, target, quiet hours, and pacing before enabling; keep a documented pause or removal path. <br>
-Risk: The skill requires sensitive delivery credentials or OAuth-backed runtime access. <br>
-Mitigation: Keep secrets in local configuration or environment variables, never in published defaults, and confirm the sender account before use. <br>
-Risk: Setup can read local owner context such as USER.md, session history, config files, and companion state. <br>
-Mitigation: Confirm the exact files to be read or written and import only stable identity fields needed for the owner-only companion. <br>
-Risk: Configurable healthcheck, jobs-list, and state-commit commands can execute local shell commands. <br>
-Mitigation: Review configured commands before installation and run validation in preview or dry-run mode where available. <br>
-Risk: Daily schedule and presence writing may use public web search. <br>
-Mitigation: Enable web search only after confirming that public-web lookup is acceptable for the companion's configured context. <br>
+## Use Case:
 
+External users and developers use this skill to set up or customize an owner-only proactive companion that sends scheduled private-life messages through OpenClaw. It helps generate local persona and schedule files, configure recurring delivery, preserve lightweight relationship memory, and validate the installation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kasanuowa/cyber-girlfriend) <br>
-- [Standard Init / Upgrade Flow](references/standard-init-upgrade-flow.md) <br>
-- [Configuration](references/configuration.md) <br>
-- [Turn Contract](references/contract-schema.md) <br>
-- [First-Time Setup Guide](references/first-time-setup.md) <br>
-- [Presence Integration](references/presence-integration.md) <br>
-- [Private Life Layer](references/private-life-layer.md) <br>
-- [Required Events And Cron](references/required-events-and-cron.md) <br>
-- [Script Contract Migration](references/script-contract-v2-migration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup or upgrade guidance for OpenClaw-based proactive companion delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.9 (source: frontmatter and server release evidence) <br>
+Risk: Recurring companion delivery can use local messaging credentials and send owner-facing text or media automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before enabling it, require explicit confirmation before creating or enabling cron jobs, and keep delivery credentials in local configuration or environment variables.
+
+Risk: Custom WeChat endpoints and automatic media recovery may expose credential or transcript-access risks.
+
+Mitigation: Do not enable custom WeChat endpoints or automatic media delivery unless strict allowlists and dispatch-scoped files are in place.
+
+Risk: The skill creates local relationship and state files that may contain personal context.
+
+Mitigation: Keep generated persona, schedule, state, and life-log files local, owner-only, and excluded from published defaults.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kasanuowa/skills/cyber-girlfriend)
+- [Standard Init / Upgrade Flow](artifact/references/standard-init-upgrade-flow.md)
+- [Configuration](artifact/references/configuration.md)
+- [Turn Contract](artifact/references/contract-schema.md)
+- [First-Time Setup Guide](artifact/references/first-time-setup.md)
+- [Presence Integration](artifact/references/presence-integration.md)
+- [Private Life Layer](artifact/references/private-life-layer.md)
+- [Required Events And Cron](artifact/references/required-events-and-cron.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, local file edits, and shell command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces owner-facing companion setup guidance and local runtime artifacts; recurring delivery and media behavior require review before enabling.]
+
+## Skill Version(s):
+
+2.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

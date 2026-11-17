@@ -1,41 +1,55 @@
-## Description: <br>
-Wink helps an agent summarize public Wink templates, editing features, export specifications, copyright guidance, help content, and pricing from official sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wink helps agents summarize public Wink pages for templates, editing capabilities, export specifications, copyright guidance, help content, and plan information.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and content operations teams use this skill to collect concise summaries, link lists, and tables about public Wink product pages, templates, help content, pricing, and usage boundaries. The skill is scoped to public information and excludes account operations, paid-resource access, copyright bypasses, private assets, and API interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wink pricing, copyright guidance, and commercial-use terms can change after a summary is generated. <br>
-Mitigation: Verify pricing, copyright, and commercial-use details against the original Wink pages before relying on them. <br>
-Risk: Using non-public account data or private assets would exceed the skill's intended scope. <br>
-Mitigation: Limit use to public Wink documentation and pages, and do not request account access, private project data, paid-resource downloads, or API interactions. <br>
+## Use Case:
 
+External users and developers use this skill to gather concise summaries of publicly visible Wink templates, editing features, export specifications, help pages, copyright notes, commercial-use boundaries, and pricing details from official Wink sources.
 
-## Reference(s): <br>
-- [Wink official website](https://wink.meitu.com/) <br>
-- [ClawHub Wink skill page](https://clawhub.ai/codenova58/wink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, link lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses official public Wink pages as the preferred source and preserves original links for copyright, commercial-use, pricing, and help information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may summarize copyright, commercial-use, pricing, or plan details that change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify those details against the original linked Wink pages before relying on them.
+
+Risk: The skill is scoped to public Wink information and should not be used with private account assets or unpublished projects.
+
+Mitigation: Use only publicly visible Wink pages and avoid entering private account, project, or asset information.
+
+## Reference(s):
+
+- [Wink homepage](https://wink.meitu.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/wink)
+- [ClawHub publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, link lists, and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public official Wink sources and preserves original links for copyright and commercial-use details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Automates the four highest-ROI tasks for newsletter writers and content creators: content repurposing, sponsorship outreach, subscriber reactivation, and performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates content repurposing, sponsorship outreach, subscriber reactivation, and performance analysis for newsletter writers and creators monetizing an audience.
 
-## Publisher: <br>
-[drew2operations](https://clawhub.ai/user/drew2operations) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drew2operations](https://clawhub.ai/user/drew2operations)
 
-## Use Case: <br>
-External creators, newsletter operators, podcasters, and YouTubers use this skill to repurpose content, draft sponsor outreach, reactivate lapsed subscribers, and analyze content performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sponsorship outreach may be inaccurate, unsuitable for a brand, or too aggressive for the recipient. <br>
-Mitigation: Review and edit all outreach drafts before sending, especially prospect-specific claims, pricing, and calls to action. <br>
-Risk: Subscriber reactivation or performance analysis inputs may include unnecessary personal data. <br>
-Mitigation: Provide only the minimum subscriber or metrics data needed for the task and avoid pasting unnecessary personal information. <br>
-Risk: The skill may propose saving generated files into newsletter-specific output folders. <br>
-Mitigation: Approve file writes only after checking the exact destination and overwrite risk. <br>
+## Use Case:
 
+External creators, newsletter operators, podcasters, and YouTubers use this skill to turn existing content and audience metrics into platform-ready posts, sponsorship outreach, reactivation emails, and performance reports.
 
-## Reference(s): <br>
-- [Platform-Specific Repurposing Rules](references/repurposing-by-platform.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/drew2operations/newsletter-creator-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured text drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file paths for generated creator assets after the user confirms the destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sponsor prospect research may use web search and produce outreach based on current public information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prospect details and claims before sending outreach.
+
+Risk: Generated drafts or reports may be saved locally under the configured Documents output path.
+
+Mitigation: Confirm the save location before writing files and avoid using sensitive subscriber data unless the environment and destination are appropriate.
+
+## Reference(s):
+
+- [Platform-Specific Repurposing Rules](references/repurposing-by-platform.md)
+- [ClawHub Skill Page](https://clawhub.ai/drew2operations/skills/newsletter-creator-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown drafts, email copy, social posts, and concise analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated Markdown files under a confirmed local Documents output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

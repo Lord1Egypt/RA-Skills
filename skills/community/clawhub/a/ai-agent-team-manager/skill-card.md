@@ -1,45 +1,61 @@
-## Description: <br>
-AI Agent Team Manager coordinates multiple OpenClaw agents with task assignment, progress tracking, quality control, performance evaluation, and workflow management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional AI agent team management system for coordinating multiple OpenClaw agents with task assignment, progress tracking, quality control, and performance evaluation.
 
-## Publisher: <br>
-[komong](https://clawhub.ai/user/komong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[komong](https://clawhub.ai/user/komong)
 
-## Use Case: <br>
-Developers and AI operations teams use this skill to coordinate multi-agent OpenClaw projects, assign and track tasks, apply quality checkpoints, and evaluate agent performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation makes enterprise compliance and audit-trail claims that require additional controls. <br>
-Mitigation: Use the skill only after defining approval, privacy, and agent-authentication boundaries, and independently validate any compliance or audit requirements. <br>
-Risk: The package metadata points to index.js, but the artifact does not include an index.js export file. <br>
-Mitigation: Verify or add the package entry point and exports before relying on require('ai-agent-team-manager') or the example usage in a real workflow. <br>
-Risk: Multi-agent coordination can propagate incorrect task assignments, status reports, or quality recommendations. <br>
-Mitigation: Keep human review checkpoints for critical work and review task plans, reports, and recommendations before acting on them. <br>
+## Use Case:
 
+Developers and AI operations teams use this skill to coordinate multiple OpenClaw agents across complex projects, including task assignment, progress tracking, quality review, performance evaluation, and workflow management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/komong/ai-agent-team-manager) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/komong) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local OpenClaw workspace with git, node, python3, and OPENCLAW_WORKSPACE configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Generated HTML reports can include untrusted task or agent data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize or escape caller-provided task names, statuses, and agent identifiers before rendering or sharing HTML reports.
+
+Risk: Quality scoring and review gates may be unreliable.
+
+Mitigation: Use generated quality scores as advisory signals only, and keep human review or independent validation for release decisions.
+
+Risk: The implementation appears incomplete or overclaimed relative to its documentation.
+
+Mitigation: Pilot the modules on non-critical workflows and verify each claimed integration before relying on the skill operationally.
+
+Risk: The declared environment requirements request broader local workspace access than the code appears to need.
+
+Mitigation: Run the skill with least privilege and scope OPENCLAW_WORKSPACE to a dedicated project workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/komong/skills/ai-agent-team-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, HTML, JavaScript snippets, and plain text status or guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local coordination data, reports, recommendations, and example usage patterns from caller-provided project, task, and agent inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

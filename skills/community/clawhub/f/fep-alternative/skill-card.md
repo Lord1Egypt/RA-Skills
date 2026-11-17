@@ -1,47 +1,62 @@
-## Description: <br>
-Relative binding free-energy and activity-label prediction workflows using PBCNet 2.0 on SciMiner, with Gnina docking and PDB/database retrieval to complete missing inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relative binding free-energy and activity-label prediction workflows using PBCNet 2.0 on SciMiner, with Gnina docking and PDB/database retrieval to complete missing inputs.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-Developers and computational chemistry teams use this skill to prepare and run PBCNet 2.0 relative binding-affinity or activity-label predictions, using Gnina docking and RCSB PDB retrieval when receptor, pocket, or ligand-pose inputs are missing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a SciMiner API key and uploads scientific input files to SciMiner. <br>
-Mitigation: Store the API key only at ~/.config/sciminer/credentials.json, avoid printing or persisting it, and review files before upload. <br>
-Risk: The bundled RCSB helper can make broader HTTP requests and save raw responses. <br>
-Mitigation: Use it only for the documented SciMiner and RCSB workflows, avoid passing secrets in headers or bodies, and choose raw output paths intentionally. <br>
-Risk: Incorrect receptor selection, reference ligand poses, activity-label order, or ligand bond orders can produce misleading predictions. <br>
-Mitigation: Build the input ledger, preserve reference label order and ligand chemistry, rank docked poses by centroid deviation, and ask for clarification when mappings are ambiguous. <br>
+## Use Case:
 
+External users, developers, and computational chemistry teams use this skill to predict relative binding affinity or activity labels for candidate small molecules against a known target. It helps complete missing receptor, pocket, docking, or conformation inputs before invoking SciMiner PBCNet 2.0.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sciminer/fep-alternative) <br>
-- [SciMiner tool API files](https://sciminer.tech/tool_api_files/) <br>
-- [SciMiner API key setup](https://sciminer.tech/utility) <br>
-- [RCSB PDB Data API](https://data.rcsb.org/rest/v1) <br>
-- [RCSB PDB Search API](https://search.rcsb.org/rcsbsearch/v2) <br>
-- [RCSB PDB](https://www.rcsb.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JSON, bash, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SciMiner task IDs and share URLs, compact RCSB summaries, and raw response files only when intentionally requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Risk: The skill relies on mutable remote SciMiner documentation to construct authenticated API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the resolved SciMiner documentation and generated payloads before execution, allowlist only required SciMiner endpoints, and do not execute code copied directly from remote Markdown.
+
+Risk: The workflow uses outbound network calls and can save raw RCSB responses to caller-selected paths.
+
+Mitigation: Run the skill in a sandbox with restricted filesystem access, allowlist SciMiner and RCSB destinations, and restrict or disable raw response writes unless an approved output path is provided.
+
+Risk: The skill requires a SciMiner API token for authenticated calls.
+
+Mitigation: Use a scoped SciMiner token stored outside the repository at the documented credentials path, and prevent token values from being printed, logged, or committed.
+
+## Reference(s):
+
+- [FEP Alternative on ClawHub](https://clawhub.ai/sciminer/skills/fep-alternative)
+- [SciMiner API key utility](https://sciminer.tech/utility)
+- [SciMiner tool API documentation](https://sciminer.tech/tool_api_files/)
+- [RCSB PDB Data API](https://data.rcsb.org/rest/v1)
+- [RCSB PDB Search API](https://search.rcsb.org/rcsbsearch/v2)
+- [Bundled RCSB PDB sub-skill](rcsb-pdb-skill/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, JSON request payloads, and SciMiner share URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare API payloads, file-upload steps, docking workflow decisions, compact RCSB summaries, and final task links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

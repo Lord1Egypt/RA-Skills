@@ -1,41 +1,55 @@
-## Description: <br>
-Catch Disk Failures Before Disaster -- Advanced bad sector detection and SMART diagnostics that catch disk problems before you lose your data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Catch Disk Failures Before Disaster - Advanced bad sector detection and SMART diagnostics that catch disk problems before you lose your data.
 
-## Publisher: <br>
-[hezhaoyun](https://clawhub.ai/user/hezhaoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hezhaoyun](https://clawhub.ai/user/hezhaoyun)
 
-## Use Case: <br>
-External users and support agents use this skill to guide Windows disk-health triage, including SMART checks, bad-sector scans, file-system validation, and preflight checks before disk operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to silently install and run a powerful third-party disk management tool with elevated privileges. <br>
-Mitigation: Install only if the publisher and EaseUS are trusted; prefer the vendor download path, verify the installer signature, and approve elevation only when the installation is intentional. <br>
-Risk: Disk and partition tools can affect data if users go beyond read-only health checks. <br>
-Mitigation: Back up important data first, confirm the target disk, review any operation preview, and stay within SMART or health checks unless a disk change is deliberate. <br>
+## Use Case:
 
+External users and storage administrators use this skill to triage Windows disk health, bad-sector, SMART, file-system, and BitLocker status checks before resizing, cloning, conversion, or other storage operations.
 
-## Reference(s): <br>
-- [EaseUS Partition Master](https://www.easeus.com/partition-manager/) <br>
-- [EaseUS Partition Master Free Download](https://down.easeus.com/product/epm_free?source=skills&dest=disk-health-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with Windows command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, launch, troubleshooting, and validation guidance for Windows disk-health workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill silently downloads and runs an unverified Windows installer for a broad partition-management application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when EaseUS Partition Master is intentionally required; prefer manual vendor download, publisher or signature verification, and avoidance of silent install flags.
+
+Risk: The installed application may prompt for administrator privileges and can perform elevated partition-management operations beyond disk-health checks.
+
+Mitigation: Use only the disk-health functions needed for diagnostics, review any operation preview before proceeding, and avoid elevated partition changes unless separately authorized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hezhaoyun/skills/disk-health-guardian)
+- [EaseUS Partition Master](https://www.easeus.com/partition-manager/)
+- [EaseUS Partition Master download](https://down.easeus.com/product/epm_free?source=skills&dest=disk-health-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Windows command and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides human-facing installation, launch, troubleshooting, and disk-health triage guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Guides agents through deterministic architecture pattern selection, spec compilation, constraint and NFR iteration, decision auditing, and final architecture approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through deterministic architecture pattern selection, canonical spec compilation, constraint and NFR iteration, audit review, and final approval of architecture artifacts.
 
-## Publisher: <br>
-[inetgas](https://clawhub.ai/user/inetgas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inetgas](https://clawhub.ai/user/inetgas)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn known project constraints, NFRs, and provider choices into reproducible architecture artifacts and reviewable pattern decisions before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward compiler registry maintenance even though the security review notes under-scoped authority around architecture vocabulary changes. <br>
-Mitigation: Require explicit human approval before any change under schemas/, especially capability-vocabulary.yaml, and review the separate architecture compiler repository before allowing its Python tools to run. <br>
-Risk: Architecture outputs may be treated as approved even when provider, runtime, auth, storage, retention, or messaging choices remain unresolved. <br>
-Mitigation: Use the provider-binding gate and require fresh review after provider choices, brownfield discoveries, or architecture drift change the approved spec. <br>
+## Use Case:
 
+Developers and engineers use this skill to compile, audit, and approve architecture specifications with deterministic pattern selection before implementation or architecture drift remediation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inetgas/compiling-architecture) <br>
-- [Architecture compiler homepage](https://github.com/inetgas/arch-compiler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML artifacts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce architecture spec files, compiled pattern summaries, review prompts, and approval guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: External compiler checkout or dependencies may not match the reviewed release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the arch-compiler repository source and commit, review its requirements file, install dependencies in a virtual environment or container, and avoid running pip with elevated privileges.
+
+Risk: Compiler-maintenance changes, especially vocabulary changes and new patterns, can alter architecture selection.
+
+Mitigation: Treat compiler-maintenance actions as review-required changes and require human review before promoting vocabulary or pattern updates.
+
+Risk: Architecture artifacts can be treated as final before provider, runtime, data, or messaging decisions are resolved.
+
+Mitigation: Follow the provider-binding and pre-approval validation gates, then recompile and obtain fresh approval whenever those decisions change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/inetgas/skills/compiling-architecture)
+- [Project Homepage from ClawHub Metadata](https://github.com/inetgas/arch-compiler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML examples, shell commands, and generated architecture artifact files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compiled architecture specifications and pattern-selection artifacts for an application repository; final architecture approval requires human review.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Architect biotech business plans tailored to company type, stage, and disclosure level to align investor presentations with fundraising goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architect biotech business plans tailored to company type, stage, and disclosure level to align investor presentations with fundraising goals.
 
-## Publisher: <br>
-[summerliehu](https://clawhub.ai/user/summerliehu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[summerliehu](https://clawhub.ai/user/summerliehu)
 
-## Use Case: <br>
-Biotech founders, operators, advisors, and fundraising teams use this skill to build or critique investor business plans and decks from user-owned, authorized, or public materials. It helps choose confidential versus non-confidential structure, shape a page-by-page financing narrative, and flag weak evidence, disclosure issues, and unsupported claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided biotech decks or diligence materials may include confidential third-party, patient-level, personal, or traceable technical information. <br>
-Mitigation: Use only owned, authorized, or public materials and remove unnecessary patient-level, personal, proprietary protocol, manufacturing, non-public deal, and traceable technical details. <br>
-Risk: Investor-facing materials can overstate early scientific, regulatory, partnership, IP, or financing claims. <br>
-Mitigation: Label hypotheses and early signals clearly, separate assumptions from established facts, and require evidence for claims about data, validation, timelines, partnerships, IP, and use of proceeds. <br>
-Risk: Confidentiality-page and diligence guidance may be mistaken for legal, regulatory, clinical, IP, or financial review. <br>
-Mitigation: Present confidentiality language and business-plan feedback as drafting support only and route legal, regulatory, clinical, IP, and financial matters to qualified reviewers. <br>
+## Use Case:
 
+Developers, founders, and biotech fundraising teams use this skill to draft or critique investor business plans and decks, including disclosure-aware non-confidential first-meeting decks and confidential diligence materials.
 
-## Reference(s): <br>
-- [Biotech BP Architect on ClawHub](https://clawhub.ai/summerliehu/biotech-bp-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with deck-version recommendations, slide order, page-by-page logic, evidence gaps, rewrite suggestions, and founder questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual confidentiality-page drafting support for confidential decks; not legal, regulatory, clinical, IP, or financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat generated confidentiality, regulatory, legal, or investment language as final professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sensitive confidentiality text, regulatory positioning, legal claims, and investment materials with qualified counsel or domain experts before use.
+
+Risk: Users may provide non-public third-party, patient-level, or trade-secret information without authorization.
+
+Mitigation: Use only materials the user owns, is authorized to share, or that are public, and avoid unnecessary personal, patient-level, traceable, or proprietary technical detail.
+
+Risk: Early biotech evidence may be overstated as clinical proof or validated traction.
+
+Mitigation: Label hypotheses, planned studies, animal data, in vitro data, internal data, and working assumptions clearly, and separate established facts from projections.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/summerliehu/skills/biotech-bp-architect)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured deck recommendations, page-by-page logic, critique notes, rewrite suggestions, and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual confidentiality drafting support for confidential decks; legal, regulatory, and investment claims require user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

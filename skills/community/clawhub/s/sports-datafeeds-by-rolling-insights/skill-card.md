@@ -1,52 +1,67 @@
-## Description: <br>
-DataFeeds by Rolling Insights API skill for REST API documentation, endpoint usage, schemas, sample requests, schedules, live feeds, play-by-play, fields, team and player information, season stats, injuries, depth charts, recap, highlight, fantasy, and stat outputs across NHL, NBA, NFL, MLB, NCAABB, NCAAFB, SOCCER, DARTS, and PGA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Covers the DataFeeds by Rolling Insights sports API end-to-end: getting live scores, schedules, stats, play-by-play, and player data across major leagues (NFL, NBA, MLB, NHL, NCAA, Soccer, PGA, Darts).
 
-## Publisher: <br>
-[skenway](https://clawhub.ai/user/skenway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[skenway](https://clawhub.ai/user/skenway)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with Rolling Insights DataFeeds, discover sports game or tournament identifiers, fetch schedule/live/play-by-play/stat data, and parse sport-specific REST responses. It is aimed at building scoreboards, recaps, fantasy tools, sports data pipelines, and API support workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Rolling Insights RSC_token is required and is carried as a query-string credential, which can leak through logs, browser history, screenshots, or copied URLs. <br>
-Mitigation: Store the token only in RSC_TOKEN or a secret store, avoid sharing raw request URLs, rely on redacted examples, and rotate the token if exposure is suspected. <br>
-Risk: Changing ROLLING_INSIGHTS_BASE_URL to an untrusted endpoint could send credentials to the wrong service. <br>
-Mitigation: Keep the base URL pointed at the trusted Rolling Insights REST endpoint unless there is an explicit, reviewed reason to override it. <br>
-Risk: Sports coverage and payload shapes vary by sport and endpoint, so a generic parser can produce incomplete or misleading results. <br>
-Mitigation: Check the per-sport endpoint matrix and response shape references before using player, team, injury, depth chart, play-by-play, or season-stat data. <br>
+## Use Case:
 
+Developers and builders use this skill to help agents authenticate to Rolling Insights DataFeeds, discover games and tournaments, call REST endpoints, and turn sport-specific payloads into schedules, live-score summaries, play-by-play recaps, stats lookups, and integration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/skenway/sports-datafeeds-by-rolling-insights) <br>
-- [Product and endpoint overview](references/overview.md) <br>
-- [Authentication guidance](references/auth.md) <br>
-- [REST API reference](references/rest-api-reference.md) <br>
-- [Per-sport endpoint matrix](references/sport-endpoints.md) <br>
-- [Sport-specific response shapes](references/sport-shapes.md) <br>
-- [Common workflows](references/workflows.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [End-to-end examples](references/examples.md) <br>
-- [Rolling Insights API Locker registration](https://accounts.rolling-insights.com/register) <br>
-- [Rolling Insights REST API base](https://rest.datafeeds.rolling-insights.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose REST endpoint patterns, redacted request examples, sport-specific parsing notes, and credential handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: evidence.json release.version) <br>
+Risk: The RSC_token is carried in query strings and can leak through logs, browser history, screenshots, copied URLs, or chat transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep RSC_TOKEN in a local environment variable or secret store, use HTTPS, avoid sharing raw request URLs, preserve token redaction, and rotate the token if exposure is suspected.
+
+Risk: Endpoint availability and payload shape vary by sport, so unsupported endpoint calls or single-schema parsing can produce misleading answers.
+
+Mitigation: Check the endpoint matrix before calling player, team, injury, depth-chart, or play-by-play resources, and parse sport-specific payloads defensively.
+
+Risk: Live sports responses can be stale because of cache behavior.
+
+Mitigation: Use no-cache headers and a timestamp cache buster for live calls, and treat HTTP 304 as a cache problem to retry once rather than as a successful fresh result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skenway/skills/sports-datafeeds-by-rolling-insights)
+- [Overview](references/overview.md)
+- [Authentication](references/auth.md)
+- [REST API Reference](references/rest-api-reference.md)
+- [Sports Endpoint Matrix](references/sport-endpoints.md)
+- [Sport Shapes](references/sport-shapes.md)
+- [Workflows](references/workflows.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [End-to-End Examples](references/examples.md)
+- [Rolling Insights API Locker](https://accounts.rolling-insights.com/register)
+- [Breakaway Accelerator](https://rolling-insights.com/breakaway-accelerator/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with endpoint patterns, shell command examples, and JSON-oriented response parsing notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference helper scripts that read RSC_TOKEN, redact the token in logged URLs, and emit raw JSON from Rolling Insights REST endpoints.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

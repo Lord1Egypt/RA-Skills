@@ -1,41 +1,58 @@
-## Description: <br>
-输入短视频主题后，指导代理完成文案、素材、配音、字幕、BGM、质量检查和多平台输出规划。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI短视频工厂 helps an agent turn a short-video topic into scripts, shot plans, media, voiceover, subtitles, music guidance, quality checks, and multi-platform delivery recommendations.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Creators, marketers, and agent operators use this skill to plan and package short videos for platforms such as Douyin, Kuaishou, Bilibili, YouTube, Xiaohongshu, and WeChat Channels. It is intended for short-form video workflows from topic selection through batch-ready output guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms could cause an agent to start asset search, media generation, or batch output when the user did not intend the video workflow. <br>
-Mitigation: Confirm the user wants the short-video workflow before searching for assets, generating media, or producing batch output. <br>
-Risk: Generated scripts, platform guidance, or asset selections may still require copyright, policy, and quality review before publication. <br>
-Mitigation: Review proposed scripts and assets, use only free or licensed media, and apply the skill's quality and compliance checks before publishing. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to plan and batch-produce short-form videos from topic confirmation through scripts, materials, voiceover, subtitles, music, quality review, and platform-specific delivery guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-ai-video-factory) <br>
-- [Platform specifications and production details](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown workflow guidance with structured video output details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scripts, shot guidance, asset and audio recommendations, quality checks, and multi-platform export guidance rather than executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: External media, TTS, AI-generation, or music services may be used without the user's intended budget, licensing, or platform constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm allowed services, budget, target platforms, language, and whether batch output or publication is approved before proceeding.
+
+Risk: Generated or sourced visuals, music, or subtitles may create licensing, watermark, or accuracy issues.
+
+Mitigation: Use free or authorized assets, check commercial rights, filter watermarked media, and route uncertain matches or low quality scores to human review.
+
+Risk: Batch-produced videos may include restricted topics, misleading promotion, or platform compliance problems.
+
+Mitigation: Apply the documented quality and content checks for every item and require review for restricted topics or outputs below the stated quality threshold.
+
+## Reference(s):
+
+- [AI Video Factory Details](references/details.md)
+- [ClawHub Skill Page](https://clawhub.ai/qqyougitcom/skills/mimo-ai-video-factory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured video plans, scripts, quality checks, and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe MP4, subtitle, cover image, and platform-specific output packages for downstream tools or human review.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

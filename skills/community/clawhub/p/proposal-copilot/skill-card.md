@@ -1,43 +1,57 @@
-## Description: <br>
-Generate Upwork/freelance bid materials from a job description, including English proposal draft, bid-worthiness score, pricing suggestion, milestone split, and follow-up messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Upwork and freelance bid materials from a job description, including a proposal draft, bid-worthiness score, pricing suggestion, milestone split, and follow-up messages.
 
-## Publisher: <br>
-[jeterWang](https://clawhub.ai/user/jeterWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeterwang](https://clawhub.ai/user/jeterwang)
 
-## Use Case: <br>
-Freelancers and proposal writers use this skill to turn job descriptions into bid-readiness scores, proposal drafts, pricing suggestions, milestone plans, and follow-up copy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External billing code includes a hardcoded API key and unclear charge controls. <br>
-Mitigation: Remove the hardcoded API key, use a platform-managed billing mechanism, and require explicit user confirmation before any charge. <br>
-Risk: Users may not understand what data is sent to SkillPay during paid operations. <br>
-Mitigation: Clearly disclose the data sent to SkillPay before enabling billing-backed features. <br>
-Risk: Broken command or runtime logic may prevent intended billing and proposal workflows from executing reliably. <br>
-Mitigation: Repair and test the command/runtime logic before installation or release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jeterWang/proposal-copilot) <br>
-- [Publisher Profile](https://clawhub.ai/user/jeterWang) <br>
-- [SkillPay Billing Service](https://skillpay.me) <br>
+## Use Case:
 
+Freelancers and proposal-writing agents use this skill to evaluate whether to bid on a job description and produce copy-paste-ready proposal, pricing, milestone, and follow-up materials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Copy-paste-ready text or JSON containing score, decision, reasons, proposal, pricing, milestones, and follow-up messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid generation, pricing, and follow-up paths are described as using SkillPay billing at 0.001 USDT per call.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release evidence reports an exposed billing API key.
+
+Mitigation: Remove the key from the artifact, rotate it before release, and use a documented secret-management path.
+
+Risk: The release evidence reports an under-scoped external charging flow.
+
+Mitigation: Document the billing endpoint and transmitted fields, and require explicit user confirmation before each paid charge.
+
+Risk: The release evidence reports broken JavaScript and paid/free command logic issues.
+
+Mitigation: Repair the syntax error and verify that preview, scoring, pricing, follow-up, and paid generation commands enforce the documented billing behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeterwang/skills/proposal-copilot)
+- [Publisher profile](https://clawhub.ai/user/jeterwang)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON containing proposal text, scoring, pricing, milestones, and follow-up copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bid decision labels, numeric score components, pricing suggestions, and paid/free command behavior.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and module export)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

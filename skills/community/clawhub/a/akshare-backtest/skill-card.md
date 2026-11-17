@@ -1,42 +1,60 @@
-## Description: <br>
-A-share quantitative strategy backtesting tool that uses AkShare historical market data to simulate strong-stock rotation strategies and output equity curves, trade records, and monthly statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share quantitative backtesting skill that uses AkShare market data to run a short-term rotation strategy and report portfolio performance, trades, and monthly statistics.
 
-## Publisher: <br>
-[gracexiaoo](https://clawhub.ai/user/gracexiaoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gracexiaoo](https://clawhub.ai/user/gracexiaoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to run historical A-share strategy backtests, inspect simulated trade records, and compare portfolio performance over a configurable date range. Results are for research and evaluation, not investment advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Backtest output can be mistaken for investment advice or a predictor of future market performance.
+
+Mitigation: Treat results as research, independently validate assumptions, and avoid using the output for live trading decisions without separate financial review.
+
+Risk: Python dependencies are not pinned, so future package changes could alter behavior or installation results.
+
+Mitigation: Install in an isolated Python environment and pin reviewed versions of akshare, pandas, and numpy before repeated or production-like use.
+
+Risk: The script writes CSV results to the selected output directory.
+
+Mitigation: Run with a dedicated output directory and review generated files before sharing or reusing them.
+
+Risk: Some documented strategy settings and output filenames differ from the script behavior.
+
+Mitigation: Inspect the script parameters and generated filenames before relying on the documented defaults or comparing runs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to run local historical backtests for A-share short-term stock strategies, review simulated trades, and inspect CSV performance outputs. The results are experimental financial analysis and are not investment advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Backtest results may be mistaken for investment advice or future performance guarantees. <br>
-Mitigation: Treat outputs as experimental financial analysis only and review assumptions before using results in any decision process. <br>
-Risk: AkShare retrieves market data and strategy controls may be hardcoded or differ from the documentation. <br>
-Mitigation: Review the script, dependencies, and configured parameters before relying on generated performance metrics. <br>
-Risk: The skill writes CSV outputs to a local directory. <br>
-Mitigation: Run it in an expected workspace and choose an output path that is safe to create or overwrite. <br>
+**Output Format:** [Markdown guidance with Python command examples, console summaries, and CSV file outputs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gracexiaoo/akshare-backtest) <br>
+**Other Properties Related to Output:** [The bundled script writes dragon_lowpick_daily.csv and dragon_lowpick_trades.csv to the configured output directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Analysis, Guidance] <br>
-**Output Format:** [Command-line output plus CSV files and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes backtest result CSV files to the configured output directory.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

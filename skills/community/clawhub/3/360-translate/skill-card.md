@@ -1,44 +1,59 @@
-## Description: <br>
-File Translate helps agents translate text, images, and documents through the 360 AI Translation API while preserving document layout and image context where supported. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Translate helps agents translate text, images, and common document formats with layout-preserving outputs through the 360 AI Translation API.
 
-## Publisher: <br>
-[ray771](https://clawhub.ai/user/ray771) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ray771](https://clawhub.ai/user/ray771)
 
-## Use Case: <br>
-Agents use this skill when a user asks to translate text, an image, or a document such as a PDF, Word file, spreadsheet, presentation, or ePub. It is intended for users who accept sending the selected content to 360's translation service for processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text, images, and documents selected for translation are sent to 360's API for processing. <br>
-Mitigation: Use only when that transfer is acceptable, and avoid confidential or regulated files unless the user has approved the data handling risk. <br>
-Risk: Translated image and document results may be returned through temporary, public-style URLs. <br>
-Mitigation: Download results promptly, avoid sharing result URLs, and do not rely on temporary URLs as protected storage. <br>
-Risk: The skill requires a 360 API key for requests. <br>
-Mitigation: Use a dedicated API key with minimal billing scope when possible, and rotate or revoke it when the skill is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to translate PDFs, Word files, slide decks, spreadsheets, images, and free-form text while preserving layout when supported. It is best suited for content that can be sent to a third-party translation service.
 
-## Reference(s): <br>
-- [360 AI Platform](https://ai.360.com/platform/keys) <br>
-- [360 AI Translation API Reference](artifact/references/api-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ray771/360-translate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, translated text, output file paths, or temporary result URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRANSLATE_360_API_KEY; document output is PDF; image output may be a saved file or result URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: User text, images, and whole documents are sent to 360's external translation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or classified content unless that transfer is acceptable, and test first with non-sensitive samples.
+
+Risk: Credential and billing exposure can occur if a broad or long-lived API key is used.
+
+Mitigation: Use a dedicated low-limit TRANSLATE_360_API_KEY and rotate or revoke it when no longer needed.
+
+Risk: Returned result URLs may be accessible to anyone with the link during their validity window.
+
+Mitigation: Download results promptly, avoid sharing result URLs, and prefer a patched version that validates downloaded result URLs before routine use.
+
+## Reference(s):
+
+- [360 AI Translation API Reference](artifact/references/api-reference.md)
+- [360 AI Platform API Keys](https://ai.360.com/platform/keys)
+- [File Translate on ClawHub](https://clawhub.ai/ray771/skills/360-translate)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, translated strings, result URLs, and saved PDF or image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRANSLATE_360_API_KEY; sends requested text, images, or documents to 360's external translation service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

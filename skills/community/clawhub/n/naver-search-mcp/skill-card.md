@@ -1,41 +1,54 @@
-## Description: <br>
-Use for Korean web search, Naver News, Blog, Cafe, Shopping, Image, Knowledge iN, Local search, and Naver DataLab trend analysis through the published npm MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Korean web and Naver-specific search, including news, blogs, local places, and DataLab trends and shopping insights through an MCP server.
 
-## Publisher: <br>
-[isnow890](https://clawhub.ai/user/isnow890) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isnow890](https://clawhub.ai/user/isnow890)
 
-## Use Case: <br>
-External users and developers use this skill to route Korean-source search and Naver DataLab trend requests through a published MCP server, including setup guidance for required Naver Developers credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious and calls for review before trusted deployment. <br>
-Mitigation: Install only in a trusted maintainer environment and review the skill bundle before use. <br>
-Risk: The skill requires Naver Developers credentials through NAVER_CLIENT_ID and NAVER_CLIENT_SECRET. <br>
-Mitigation: Provide credentials through the configured environment only, keep secrets out of prompts and logs, and rotate them if exposed. <br>
+## Use Case:
 
+Developers and other OpenClaw users use this skill to find and summarize Korean-language sources, Naver local information, and DataLab search or shopping trends.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/isnow890/naver-search-mcp) <br>
-- [Project Homepage](https://github.com/isnow890/naver-search-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes guidance for selecting Naver search and DataLab tools and for configuring required credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: An unpinned third-party npm MCP server runs with Naver API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and use a pinned, vetted server version before installation.
+
+Risk: Naver API credentials could be exposed through configuration, chats, logs, or source control.
+
+Mitigation: Store keys only in the intended secret configuration; do not paste or commit them, and rotate exposed keys.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/isnow890/skills/naver-search-mcp)
+- [Naver Search MCP homepage](https://github.com/isnow890/naver-search-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown search summaries and trend analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links, dates, prices, locations, and categories when relevant.]
+
+## Skill Version(s):
+
+1.0.54 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

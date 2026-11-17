@@ -1,45 +1,64 @@
-## Description: <br>
-Interact with the Manus AI agent platform through its REST API to create or continue tasks, manage projects and files, poll status, and configure webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Manus AI agent platform through its REST API to create and continue tasks, manage projects, handle files and webhooks, and track sessions.
 
-## Publisher: <br>
-[krishbhimani](https://clawhub.ai/user/krishbhimani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishbhimani](https://clawhub.ai/user/krishbhimani)
 
-## Use Case: <br>
-Developers and agent operators use this skill to delegate work to Manus, continue tracked Manus sessions, upload files, manage projects, and inspect task status without accidentally duplicating sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Manus API key and can act through the user's Manus account. <br>
-Mitigation: Install only when the publisher and skill are trusted, keep MANUS_API_KEY in environment configuration, and do not expose the key in prompts or files. <br>
-Risk: Manus API actions can spend credits, upload files, create public sharing links, use connectors, configure webhooks, or change task visibility. <br>
-Mitigation: Explicitly confirm new task creation, uploads, public sharing, connector use, webhook changes, deletion, and visibility-changing actions before execution. <br>
-Risk: The local session registry can contain prompts, task IDs, and task URLs. <br>
-Mitigation: Add .manus_sessions.json to .gitignore and avoid putting secrets or sensitive content in prompts or uploaded files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate work to Manus, continue existing Manus sessions, upload files, organize projects, poll task status, and manage API resources from an agent workflow.
 
-## Reference(s): <br>
-- [Manus Skill Release Page](https://clawhub.ai/krishbhimani/manus-skill) <br>
-- [Manus API Reference](artifact/references/api-reference.md) <br>
-- [Session Management Design](artifact/references/session-management.md) <br>
-- [Manus API Base URL](https://api.manus.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, Python snippets, and Manus API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MANUS_API_KEY; may create or update .manus_sessions.json and call Manus APIs for tasks, files, projects, and webhooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can send prompts and selected files to Manus and create remote tasks or projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before sending sensitive prompts or files, and limit use to data appropriate for Manus processing.
+
+Risk: The local session registry can retain prompt text, task IDs, and task URLs.
+
+Mitigation: Keep the registry out of version control, restrict local access, and redact or disable full prompt retention for sensitive work.
+
+Risk: Task, file, sharing, connector, and webhook operations can expose or remove remote resources.
+
+Mitigation: Require explicit confirmation with the exact task ID, file name, webhook ID, or connector before upload, sharing, connector, or deletion workflows.
+
+Risk: Creating duplicate Manus tasks can waste credits.
+
+Mitigation: Search and reuse existing sessions or task IDs before creating a new task.
+
+## Reference(s):
+
+- [Manus API - Complete Reference](artifact/references/api-reference.md)
+- [Session Management - Full Design](artifact/references/session-management.md)
+- [Manus API](https://api.manus.ai)
+- [ClawHub Skill Page](https://clawhub.ai/krishbhimani/skills/manus-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MANUS_API_KEY; may create remote Manus tasks, upload files, manage projects and webhooks, and store session metadata locally.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

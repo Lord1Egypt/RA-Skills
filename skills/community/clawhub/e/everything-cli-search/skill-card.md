@@ -1,42 +1,66 @@
-## Description: <br>
-Search files and folders on Windows using Everything CLI with advanced filters, wildcards, regex, macros, sorting, and real-time indexing features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search files and folders on Windows using Everything CLI with advanced filters, wildcards, regex, macros, sorting, and real-time indexing features.
 
-## Publisher: <br>
-[dahanhstudio](https://clawhub.ai/user/dahanhstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dahanhstudio](https://clawhub.ai/user/dahanhstudio)
 
-## Use Case: <br>
-Developers and Windows power users use this skill to install and operate Everything's es.exe CLI, compose advanced file-search queries, and use included wrappers to retrieve local file and folder search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Bash wrapper constructs a command string and executes it with eval, which can execute unintended shell syntax if arguments are not trusted. <br>
-Mitigation: Prefer direct es.exe or the Python wrapper; do not use scripts/es_search.sh until eval is removed and arguments are passed without shell re-evaluation. <br>
-Risk: Administrative, deletion, reindexing, and remote server examples can affect files or expose indexed paths if followed carelessly. <br>
-Mitigation: Treat destructive and administrative examples as manual actions requiring explicit confirmation; enable HTTP or ETP/FTP servers only on trusted networks with strong access controls and exclusions for sensitive folders. <br>
+## Use Case:
 
+Developers, engineers, and Windows power users use this skill to install and operate Everything's es.exe command line search, compose advanced file queries, and use helper scripts for repeated searches.
 
-## Reference(s): <br>
-- [Everything Documentation](https://www.voidtools.com/support/everything/) <br>
-- [Everything Download](https://www.voidtools.com/) <br>
-- [Everything Command Line Options](https://www.voidtools.com/support/everything/command_line_options) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-focused guidance; requires Everything and es.exe to be installed and running for searches to work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Everything indexes local filesystem paths and metadata, which may expose sensitive filenames or locations to users or tools that can query it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local filesystem indexing is acceptable, and restrict use to trusted accounts and intended search scopes.
+
+Risk: The Bash wrapper is flagged by server security guidance because it uses eval when executing constructed commands.
+
+Mitigation: Avoid the Bash wrapper until eval is removed; prefer direct es.exe usage or review and harden the wrapper before execution.
+
+Risk: The artifact includes remote HTTP and ETP server guidance that can expose search or file access over a network.
+
+Mitigation: Enable HTTP or ETP servers only on trusted networks, with strong credentials and a documented need for remote access.
+
+Risk: The examples include a forced-delete PowerShell cleanup pattern.
+
+Mitigation: Do not copy the forced-delete example into automation without a dry run, explicit path constraints, and manual review of matched files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dahanhstudio/skills/everything-cli-search)
+- [Everything documentation](https://www.voidtools.com/support/everything/)
+- [Everything download](https://www.voidtools.com/)
+- [Everything command line options](https://www.voidtools.com/support/everything/command_line_options)
+- [Everything HTTP server](https://www.voidtools.com/support/everything/http)
+- [Everything ETP server](https://www.voidtools.com/support/everything/etp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-focused; requires Everything and es.exe to be installed and available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

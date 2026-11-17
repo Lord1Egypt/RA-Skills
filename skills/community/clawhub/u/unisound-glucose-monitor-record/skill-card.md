@@ -1,44 +1,63 @@
-## Description: <br>
-Records patient-side chronic-care blood glucose measurements by structuring values, units, measurement types, timestamps, and notes into a standard output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records and structures patient blood glucose readings for chronic disease management, including values, units, measurement types, timestamps, and notes.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Patients, caregivers, or chronic-care workflow builders use this skill to capture blood glucose readings and convert supported input formats into structured records with an optional short natural-language confirmation. It is a logging aid only and does not provide diagnosis or replace clinician judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health data and may send glucose values, timestamps, notes, and document contents to a remote model/API provider. <br>
-Mitigation: Use structured input where possible, avoid uploading broad medical documents unless necessary, obtain appropriate consent, and verify provider retention, access-control, and privacy practices before deployment. <br>
-Risk: Broad document and image inputs can include more medical or personal information than a glucose log requires. <br>
-Mitigation: Minimize source files, redact unrelated content, and prefer direct field entry or local preprocessing for sensitive records. <br>
-Risk: Generated summaries or reminders could be mistaken for medical advice. <br>
-Mitigation: Present outputs as record confirmations, keep clinical decisions with qualified professionals, and review any user-facing medical wording before use. <br>
+## Use Case:
 
+Developers and healthcare workflow builders can use this skill to collect patient glucose readings from JSON, table, text, document, or image inputs and return structured blood-glucose records with a concise patient-facing Markdown analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-glucose-monitor-record) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Glucosio reference on F-Droid](https://f-droid.org/packages/org.glucosio.android/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text] <br>
-**Output Format:** [UTF-8 JSON with structured data and optional Markdown or natural-language text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include normalized glucose value, unit, measurement type, measured time, notes, status, and generated confirmation text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill handles sensitive blood-glucose records and notes and requires external medical-model analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including names, identifiers, or extra medical details in notes, and confirm health-data consent, retention, and compliance controls before use.
+
+Risk: Document and image inputs may include more personal health information than the skill needs.
+
+Mitigation: Prefer JSON or CSV inputs and review prepared data before sending it for analysis.
+
+Risk: The appkey is supplied at runtime and may be exposed through local command handling.
+
+Mitigation: Rotate appkeys used on the command line and follow local credential-handling controls.
+
+Risk: Generated patient-facing Markdown may be incomplete or misleading for medical decisions.
+
+Mitigation: Review outputs before relying on them and keep clinical decisions with qualified healthcare professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-glucose-monitor-record)
+- [Glucosio F-Droid package](https://f-droid.org/packages/org.glucosio.android/)
+- [Configured medical-model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Text]
+
+**Output Format:** [UTF-8 JSON containing structured blood-glucose records and Markdown natural-language analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The command can write the JSON result to a file or stdout and requires a caller-provided appkey.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

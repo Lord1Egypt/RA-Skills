@@ -1,43 +1,64 @@
-## Description: <br>
-Structural documentation for the brand-marketing-workflow skill that helps users understand, audit, or review the workflow design without exposing implementation code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans brand marketing workflows by normalizing brand inputs, drafting channel content, analyzing public competitor signals, scoring performance, and preparing iteration guidance with human approval gates for sensitive actions.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Marketing operators, brand teams, and agent developers use this skill to structure brand inputs into planning, content drafting, competitor review, performance scoring, iteration notes, and approval boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is advertised as documentation-only, but server security evidence says it ships runnable marketing automation code. <br>
-Mitigation: Treat it as runnable automation and review the package before installing or executing it. <br>
-Risk: Server security evidence says the skill can read local OpenClaw configuration, use configured LLM or search services, fetch public competitor data, and leave local cache or evidence files. <br>
-Mitigation: Install only in environments where those behaviors are acceptable, and verify configured service access, cache handling, and human approval boundaries before use. <br>
+## Use Case:
 
+Marketing operators, brand teams, and developers use this skill to turn brand inputs into briefs, content plans, competitor summaries, performance reviews, and iteration notes for public or authorized-only marketing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/halfmoon82/brand-marketing-workflow) <br>
-- [Skill structural reference](artifact/SKILL.md) <br>
-- [Autoresearch optimization notes](artifact/autoresearch.md) <br>
-- [Integration test result](artifact/evidence/integration_test_result.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON workflow results and Markdown-ready brand planning artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit human-assist approval requests when publishing, payment, login, personal-data, or browser-compliance boundaries are reached.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and artifact clawhub.yaml) <br>
+Risk: The package is presented as documentation-only while server security evidence reports runnable workflow code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review it as operational code before installation and run it only in an environment intended for marketing workflow execution.
+
+Risk: The workflow can read local OpenClaw configuration and use configured LLM and search services.
+
+Mitigation: Use least-privilege configuration values and confirm that outbound LLM and search services are approved for the brand data being processed.
+
+Risk: Brand briefs or strategy data may be sent externally before the current authorization check runs.
+
+Mitigation: Avoid sensitive brand inputs unless external processing is approved, and review outbound service settings before use.
+
+Risk: Competitor content may be cached during workflow runs.
+
+Mitigation: Treat cached competitor data as retained marketing intelligence and clear caches when persistence is not acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/halfmoon82/skills/brand-marketing-workflow)
+- [Structural Reference](artifact/SKILL.md)
+- [Workflow Optimization Notes](artifact/autoresearch.md)
+- [Integration Test Result](artifact/evidence/integration_test_result.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON workflow result plus Markdown-ready planning artifacts and approval prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit human-assist requests for login, captcha, publishing, payment, or authorization boundaries.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

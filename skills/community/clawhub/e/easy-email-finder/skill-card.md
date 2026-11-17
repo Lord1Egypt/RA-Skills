@@ -1,41 +1,59 @@
-## Description: <br>
-Search for local or digital businesses and enrich them with verified email addresses, tech stack detection, and social media links using the Easy Email Finder API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for local or digital businesses and enrich them with verified email addresses, tech stack detection, and social media links using the Easy Email Finder API.
 
-## Publisher: <br>
-[faalbane](https://clawhub.ai/user/faalbane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[faalbane](https://clawhub.ai/user/faalbane)
 
-## Use Case: <br>
-External users and developers use this skill to find business leads, enrich company websites with contact emails, check technology and social links, and monitor Easy Email Finder API usage and credits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit business lead data to a third-party API and return contact information that may be sensitive or regulated. <br>
-Mitigation: Use it only for authorized business lead enrichment and review provider terms, privacy obligations, and anti-spam requirements before submitting lead lists. <br>
-Risk: Enrichment endpoints consume paid credits and could create unexpected cost if run without supervision. <br>
-Mitigation: Use a dedicated API key with controlled credits, check balance and usage endpoints, and supervise batch or search-and-enrich calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/faalbane/easy-email-finder) <br>
-- [Easy Email Finder homepage](https://easyemailfinder.com) <br>
-- [Easy Email Finder developer access](https://easyemailfinder.com/developer) <br>
+## Use Case:
 
+Developers and business users use this skill to find local or digital business leads, enrich websites with email addresses, and check related metadata such as technology stack, social links, credit balance, and usage.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EEF_API_KEY and may use paid Easy Email Finder enrichment credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends business search queries, website URLs, and an API key to the Easy Email Finder service.
+
+Mitigation: Use it only when that data sharing is intended, store EEF_API_KEY securely, and avoid including sensitive data in queries or website lists.
+
+Risk: Returned email addresses may be personal data and may be subject to privacy, consent, website terms, or anti-spam rules.
+
+Mitigation: Review applicable rules before contacting addresses, especially personal or non-role-based addresses.
+
+Risk: Enrichment endpoints consume credits and documented rate limits apply.
+
+Mitigation: Check balance and usage endpoints, batch requests within the documented limits, and honor Retry-After responses when rate limited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/faalbane/skills/easy-email-finder)
+- [Easy Email Finder homepage](https://easyemailfinder.com)
+- [Easy Email Finder developer access](https://easyemailfinder.com/developer)
+- [Easy Email Finder API base URL](https://easyemailfinder.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with curl examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an EEF_API_KEY bearer token and sends business search queries or website URLs to the Easy Email Finder API.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

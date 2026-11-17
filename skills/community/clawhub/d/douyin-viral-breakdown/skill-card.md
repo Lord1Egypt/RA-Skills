@@ -1,43 +1,57 @@
-## Description: <br>
-Analyzes Douyin short-video links to explain why a video may be popular, who it reaches, and what viewer behaviors it may trigger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Douyin short-video links to explain why a video may be viral, including audience reach, engagement signals, content hooks, visual framing, and viewer behavior.
 
-## Publisher: <br>
-[csak47mu](https://clawhub.ai/user/csak47mu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[csak47mu](https://clawhub.ai/user/csak47mu)
 
-## Use Case: <br>
-External users and content analysts use this skill to turn a Douyin video link into a structured breakdown of metadata, engagement signals, visual framing, audience fit, behavioral psychology, and reusable content patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch Douyin pages and download referenced videos, which may expose public URLs or media content to the local analysis environment. <br>
-Mitigation: Use public links only, avoid sensitive content, and review fetched content before retaining or sharing results. <br>
-Risk: The analysis workflow can create local video and frame files that may remain after the report is generated. <br>
-Mitigation: Delete generated media files after analysis when retention is not needed. <br>
-Risk: Some optional analysis paths may send image data or URLs to third-party services. <br>
-Mitigation: Prefer first-party parsing and only use third-party services when the user accepts that data-sharing behavior. <br>
+## Use Case:
 
+External users and content analysts use this skill by sending a Douyin link to receive a structured Markdown breakdown of video metadata, engagement metrics, visual content, viral drivers, audience profile, behavioral psychology, and reusable content patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/csak47mu/douyin-viral-breakdown) <br>
-- [Publisher profile](https://clawhub.ai/user/csak47mu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis report with tables, calculated engagement metrics, and optional command or helper-code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local video or frame files when the media-analysis workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may fetch Douyin pages and media with weak request scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict requests to known Douyin and media hosts, and require user confirmation before following unfamiliar or redirected links.
+
+Risk: Video downloads and frame extraction can create temporary media files containing user-provided content.
+
+Mitigation: Run the skill in a sandbox, limit file size and duration, and delete downloaded videos and extracted frames after analysis.
+
+Risk: Third-party parsing or vision services may receive video frames or metadata.
+
+Mitigation: Require explicit consent before external uploads and disclose when third-party services are used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/csak47mu/skills/douyin-viral-breakdown)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted Douyin metadata, engagement-rate calculations, visual-frame analysis, audience and behavior analysis, and reusable content formulas.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

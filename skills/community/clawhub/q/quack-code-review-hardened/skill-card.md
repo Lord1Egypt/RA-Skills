@@ -1,43 +1,58 @@
-## Description: <br>
-AI-powered code analysis via LogicArt for bug detection, security review, code quality analysis, and logic flow visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered code analysis via LogicArt to find bugs, security issues, and logic flow visualizations during code review.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and engineers use this skill to review code snippets or files for bugs, security issues, complexity, suggested fixes, and logic flow before relying on or shipping the code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code sent to external analysis services may expose proprietary logic, customer data, or embedded credentials. <br>
-Mitigation: Confirm the exact snippet or file before transmission, scan for secrets, remove sensitive data, and avoid repository-wide scans unless the broader scope has been reviewed and approved. <br>
-Risk: Automated review pipelines can transmit code repeatedly without human oversight. <br>
-Mitigation: Require per-invocation approval for each external transmission, or use a manual trigger or local-only review approach for automated workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to send selected code snippets or files to LogicArt for bug detection, security review, complexity assessment, suggestions, and logic-flow analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/quack-code-review-hardened) <br>
-- [LogicArt analysis API](https://logic.art/api/agent/analyze) <br>
-- [Validate Repo](https://validate-repo.replit.app) <br>
-- [Safety evaluation](SAFETY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON analysis responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results prioritize critical bugs and security issues, then complexity, suggestions, and logic flow when provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Code sent to LogicArt or Validate Repo can expose proprietary logic, trade secrets, or embedded credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for code approved for external analysis, manually check and redact secrets first, and confirm each transmission before sending.
+
+Risk: The helper script can upload arbitrary code files without enforcing the consent and secret checks promised in the docs.
+
+Mitigation: Avoid CI, cron, repository-wide, or unattended usage until per-file consent and secret scanning are enforced outside the agent instructions.
+
+## Reference(s):
+
+- [Quack Code Review Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/quack-code-review-hardened)
+- [Faberlens Publisher Profile](https://clawhub.ai/user/snazar-faberlens)
+- [LogicArt](https://logic.art)
+- [LogicArt Analyze API](https://logic.art/api/agent/analyze)
+- [Validate Repo](https://validate-repo.replit.app)
+- [SAFETY.md](SAFETY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with optional JSON returned by the LogicArt analysis helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized critical issues, complexity score, suggestions, and logic flow when provided by LogicArt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

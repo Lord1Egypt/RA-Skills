@@ -1,49 +1,60 @@
-## Description: <br>
-MiniMax Monitor helps users track MiniMax API package quota, rate probe results, weekly usage, and 24-hour usage history through a local dashboard and optional Feishu notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a local MiniMax quota dashboard for token-plan usage monitoring, 24-hour usage history, and explicitly triggered inference latency probes.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and MiniMax API users use this skill to monitor package quota consumption, reset timing, weekly limits, rate probe results, and optional Feishu quota summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local service uses MiniMax credentials and can act as a credential-using proxy. <br>
-Mitigation: Install only after reviewing the local service behavior and use the default configuration unless header key passthrough is explicitly needed. <br>
-Risk: Rate probes can make billable MiniMax inference requests. <br>
-Mitigation: Start the service with probes disabled unless billable performance testing is intentional. <br>
-Risk: The browser remember option can retain credentials on shared machines. <br>
-Mitigation: Avoid the 24-hour remember option on shared or untrusted computers. <br>
-Risk: Optional Feishu notifications can send quota results to the wrong chat if configured incorrectly. <br>
-Mitigation: Use the Feishu script only after confirming the target chat and credentials. <br>
+## Use Case:
 
+Developers and MiniMax API users use this skill to launch a local dashboard that checks remaining MiniMax Token Plan quota, tracks recent usage, and runs opt-in latency probes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/minimax-monitor) <br>
-- [README](artifact/README.md) <br>
-- [Chinese README](artifact/README_zh.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [MiniMax token plan endpoint](https://www.minimaxi.com/v1/token_plan/remains) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and dashboard usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a local Node.js service, open an HTML dashboard, and optionally send quota summaries to Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The dashboard can read and use the user's MiniMax API key for authenticated MiniMax requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only on a trusted local machine, and avoid shared or network-exposed environments.
+
+Risk: Authenticated quota polling and probes may consume MiniMax account resources or trigger billable actions.
+
+Mitigation: Treat probes as opt-in actions, monitor usage, stop the local service when finished, and do not rely on --no-probe as the only control.
+
+Risk: The dashboard may read and use ~/.mmx/config.json as soon as the page polls quota.
+
+Mitigation: Assume credential access can occur during dashboard polling and use a dedicated or limited MiniMax key where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/minimax-monitor)
+- [Publisher profile](https://clawhub.ai/user/wangjipeng977)
+- [Metadata source](https://github.com/MiniMax-AI/skills)
+- [MiniMax token plan remains API](https://www.minimaxi.com/v1/token_plan/remains)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local dashboard instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The dashboard can make authenticated MiniMax requests and write local usage-history samples.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

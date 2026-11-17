@@ -1,45 +1,59 @@
-## Description: <br>
-通过 IMAP/SMTP 收发腾讯企业邮箱（exmail.qq.com）邮件，支持发送邮件、收取邮件列表和按 UID 获取邮件正文，凭证从环境变量读取。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends, lists, and retrieves Tencent Exmail messages over IMAP/SMTP using credentials supplied through environment variables.
 
-## Publisher: <br>
-[hunger09](https://clawhub.ai/user/hunger09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunger09](https://clawhub.ai/user/hunger09)
 
-## Use Case: <br>
-Developers and agent users use this skill to send Tencent Enterprise Mail messages, list recent inbox messages, and retrieve full message bodies when working with exmail.qq.com accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SMTP sender disables TLS certificate verification while using mailbox credentials. <br>
-Mitigation: Review and fix TLS verification before using the send script; avoid sending mail until certificate validation is enforced. <br>
-Risk: EXMAIL_AUTH_CODE functions like an app password for the mailbox. <br>
-Mitigation: Provide it only through environment variables or a local secret store, never commit it, and rotate it if exposed. <br>
-Risk: Mailbox subjects, senders, summaries, and full message bodies can be printed to stdout. <br>
-Mitigation: Avoid terminal logs, transcripts, redirected files, or pipes that may persist sensitive email content. <br>
-Risk: The send script can transmit content to unintended recipients if arguments are wrong. <br>
-Mitigation: Confirm every recipient, subject, and message body before execution. <br>
+## Use Case:
 
+Developers and operators with Tencent Exmail mailboxes use this skill to send mail, list recent inbox messages, and fetch a full message body by UID from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hunger09/qqexmail) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hunger09) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print email metadata, message summaries, or full message bodies to stdout depending on the script used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The email-sending script disables TLS certificate verification, which could expose mailbox credentials or sent mail on a compromised network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the sending script with a real mailbox until TLS certificate verification is restored and tested.
+
+Risk: The skill can read mailbox content and print message summaries or full bodies to the console.
+
+Mitigation: Use a dedicated Tencent Exmail authorization code, keep credentials in environment variables, and avoid shared terminals or persistent logs for sensitive mail.
+
+Risk: Runtime dependencies handle mailbox credentials and message content.
+
+Mitigation: Install from the included lockfile after dependency review, and keep dependencies pinned and updated through normal security review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hunger09/skills/qqexmail)
+- [Source skill instructions](artifact/SKILL.md)
+- [Publisher profile](https://clawhub.ai/user/hunger09)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and console text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses EXMAIL_ACCOUNT and EXMAIL_AUTH_CODE environment variables; mailbox content may be printed to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

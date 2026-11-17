@@ -1,45 +1,57 @@
-## Description: <br>
-Smart Memory Plus provides a zero-dependency local memory and context compression system for OpenClaw agents, including WAL-backed session state, typed memory extraction, BM25 search, temporal decay, and session compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Memory Plus gives OpenClaw agents a local memory system with WAL-backed session state, conversation compaction, type classification, temporal decay, BM25 search, and a SQLite memory graph.
 
-## Publisher: <br>
-[zgjq](https://clawhub.ai/user/zgjq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgjq](https://clawhub.ai/user/zgjq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain durable local memory for OpenClaw sessions, extract useful conversation facts, search prior memories, compact long sessions, and run memory hygiene tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists conversation-derived data in local memory files and indexes. <br>
-Mitigation: Install only when durable local agent memory is desired, and periodically inspect or purge stored memories and indexes. <br>
-Risk: The health-check helper has filename handling risk for crafted local /tmp cache filenames on shared machines. <br>
-Mitigation: Review or fix memory_health.sh before running health checks in shared environments. <br>
-Risk: State restoration from untrusted files can reintroduce unwanted or unsafe session context. <br>
-Mitigation: Avoid restoring state from untrusted files and prefer dry-run modes for decay and maintenance workflows. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to persist conversation-derived facts, summarize long sessions, search prior memory, track task state, and maintain local memory hygiene.
 
-## Reference(s): <br>
-- [Memory Schema Reference](references/memory_schema.md) <br>
-- [Memory Extraction Guide](references/extraction_prompt.md) <br>
-- [Session Compaction Guide](references/compaction_prompt.md) <br>
-- [Decay & Archival Rules](references/decay_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown memory files, local JSON cache files, SQLite index data, and shell/Python command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All documented workflows are local-only and use Python standard library scripts plus optional Bash helpers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The skill persists conversation-derived facts and task context locally, which can retain sensitive or stale information if used on shared machines or sensitive workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted workspaces, avoid storing credentials or private third-party information, and periodically review the generated memory files and archives.
+
+Risk: Server security evidence reports that several scripts can write, move, restore, or expose files outside the intended scope.
+
+Mitigation: Review or patch the temporary cache handling, health-report filename handling, restore path containment, classify file writes, and archive destination controls before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zgjq/skills/smart-memory-plus)
+- [Extraction prompt template](references/extraction_prompt.md)
+- [Compaction prompt template](references/compaction_prompt.md)
+- [Decay and archival rules](references/decay_rules.md)
+- [Memory schema reference](references/memory_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python commands plus local file outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory artifacts such as MEMORY.md, daily notes, session state, compacts, JSON cache/index files, and a SQLite graph database.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

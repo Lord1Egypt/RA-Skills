@@ -1,0 +1,43 @@
+{
+  "name": "boiler-water-treatment-expert",
+  "version": "1.0.0",
+  "description": "Expert in boiler water treatment systems",
+  "author": {
+    "name": "刘老师",
+    "email": "liu@example.com"
+  },
+  "agents": ["./agents/boiler-water-treatment-expert.md"],
+
+  "expertType": "agent",
+  "agentName": "boiler-water-treatment-expert",
+
+  "displayName": {
+    "en": "Boiler Water Treatment Expert",
+    "zh": "锅炉水处理专家"
+  },
+  "profession": {
+    "en": "Boiler Water Treatment Specialist",
+    "zh": "锅炉水处理专家"
+  },
+  "displayDescription": {
+    "en": "20 years of boiler water treatment experience, proficient in feedwater pretreatment, softening, desalination, deoxygenation, and dosing to ensure steam quality.",
+    "zh": "20年锅炉水处理经验，精通补给水预处理、软化、除盐、除氧及加药，保障蒸汽质量，确保安全。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "12-IndustryConsultant",
+  "defaultInitPrompt": {
+    "zh": "请问我的锅炉系统补给水处理方案如何优化？",
+    "en": "How can I optimize the feedwater treatment plan for my boiler system?"
+  },
+  "plugin": "boiler-water-treatment-expert",
+  "tags": [
+    { "en": "Boiler Water Treatment", "zh": "锅炉水处理" },
+    { "en": "Feedwater Pretreatment", "zh": "补给水预处理" },
+    { "en": "Deoxygenation & Dosing", "zh": "除氧加药" }
+  ],
+  "quickPrompts": [
+    { "en": "How can I optimize the feedwater treatment plan for my boiler system?", "zh": "请问我的锅炉系统补给水处理方案如何优化？" },
+    { "en": "What protection measures exist for scale and corrosion in boiler water?", "zh": "锅炉水中的垢和腐蚀问题有哪些防护措施？" },
+    { "en": "How to design an ion exchange system for boiler water treatment?", "zh": "如何设计锅炉水处理的离子交换系统？" }
+  ]
+}

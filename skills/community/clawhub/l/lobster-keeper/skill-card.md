@@ -1,41 +1,53 @@
-## Description: <br>
-自动执行日常维护：状态检查、自我复盘、记忆流动、任务记录。基于龙虾饲养员的六条经验。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moyu performs daily maintenance for an OpenClaw-style workspace, including status checks, self-review, memory organization, and task recording.
 
-## Publisher: <br>
-[Ayadododo](https://clawhub.ai/user/Ayadododo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayadododo](https://clawhub.ai/user/ayadododo)
 
-## Use Case: <br>
-Agents and operators use this skill to run recurring workspace maintenance: checking identity, memory, logs, available skills, and producing a concise status report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read workspace identity, user, memory, and log files during maintenance. <br>
-Mitigation: Install and run it only in workspaces where that access is acceptable. <br>
-Risk: Scheduled runs or broad write and execution permissions could apply changes without immediate review. <br>
-Mitigation: Enable scheduled execution and write or exec tools only after reviewing the workspace contents and resulting maintenance changes. <br>
+## Use Case:
 
+Agents or operators use this skill to run routine workspace maintenance: checking identity, memory and daily logs, comparing available skills with tool definitions, and producing a concise status report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ayadododo/lobster-keeper) <br>
-- [Publisher profile](https://clawhub.ai/user/Ayadododo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status reports and maintenance guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read workspace identity, memory, and log files and may write maintenance records when the runtime grants those tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The skill can collect private user notes, memories, logs, and capability information during routine maintenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and define explicit file allowlists and redaction rules for sensitive workspace content.
+
+Risk: Scheduled runs can repeatedly summarize sensitive workspace information without a fresh approval step.
+
+Mitigation: Enable recurring execution only after adding confirmation controls or after confirming the workspace does not contain sensitive notes, memories, logs, or task history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayadododo/skills/lobster-keeper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status report with operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workspace maintenance summaries derived from identity, memory, log, and skill-availability files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

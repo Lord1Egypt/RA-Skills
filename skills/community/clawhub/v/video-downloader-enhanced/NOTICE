@@ -1,0 +1,21 @@
+Video Downloader Enhanced - Attribution Notice
+
+本项目包含基于 kangarooking/kangarooking-skills 仓库中
+video-downloader Skill 修改和扩展的代码。
+
+上游项目地址：
+https://github.com/kangarooking/kangarooking-skills/tree/main/video-downloader
+
+上游仓库 README 声明：除各 Skill 另有说明外，其原创内容默认采用
+MIT License。
+
+本项目主要新增和修改：
+
+- whisper.cpp 支持及跨平台环境变量配置；
+- whisper.cpp、openai-whisper、SiliconFlow 的 ASR 自动选择；
+- xhslink.cn 支持和小红书公开媒体直链回退；
+- Chrome Cookie 最后级回退与相关状态记录；
+- 下载文件有效性检查、结构化元数据和输出目录命名。
+
+当前作者仅声明本项目新增和修改部分的版权，不声称上游原始代码由当前
+作者原创。上游来源与许可说明应随本项目的再发布版本一并保留。

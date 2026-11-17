@@ -1,0 +1,4 @@
+interface:
+  display_name: "VOC洞察"
+  short_description: "评论里的消费者之声：画像、动因与 Listing 优化"
+  default_prompt: "使用 $voc-insight 为一个 Amazon ASIN 一键生成 VOC 报告。"

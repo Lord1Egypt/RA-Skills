@@ -1,0 +1,521 @@
+{
+  "version": "2.4.0",
+  "source_id": "microsoft-academic-retired",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:29.773Z",
+  "entry": {
+    "url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+    "final_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+    "title": "Next Steps for Microsoft Academic - Expanding into New Horizons - Microsoft Research",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:29.773Z",
+    "identity": {
+      "declared_name": "微软学术（已停运，官方说明）",
+      "hostname": "www.microsoft.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Research",
+        "href": "https://www.microsoft.com/en-us/research/",
+        "target": ""
+      },
+      {
+        "text": "Register: Research Forum",
+        "href": "https://researchforum.microsoft.com/",
+        "target": ""
+      },
+      {
+        "text": "core search engine MAKES\n(opens in new tab)",
+        "href": "https://docs.microsoft.com/en-us/academic-services/knowledge-exploration-service/?view=makes-3.0",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Accept",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Accept",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Reject",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Reject",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Manage cookies",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Manage cookies",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "No, thanks",
+      "label": "",
+      "aria_label": "No, thanks",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "No, thanks",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Our research",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Our research",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Programs & events",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Programs & events",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "News",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "News",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "About",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "About",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "All Microsoft",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "All Microsoft",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Search Microsoft Research",
+      "label": "",
+      "aria_label": "Search Microsoft Research",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Search Microsoft Research",
+        "exact": true
+      },
+      "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "observed_at": "2026-10-09T09:00:29.621Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "microsoft-academic-retired:record-lookup",
+      "source_id": "microsoft-academic-retired",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Accept",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Accept",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Reject",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Reject",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Manage cookies",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Manage cookies",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "No, thanks",
+          "label": "",
+          "aria_label": "No, thanks",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "No, thanks",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Our research",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Our research",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Programs & events",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Programs & events",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "News",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "News",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "About",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "About",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "All Microsoft",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "All Microsoft",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Search Microsoft Research",
+          "label": "",
+          "aria_label": "Search Microsoft Research",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Search Microsoft Research",
+            "exact": true
+          },
+          "observed_url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+          "observed_at": "2026-10-09T09:00:29.621Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "microsoft-academic-retired",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:29.773Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/microsoft-academic-retired-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/microsoft-academic-retired-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

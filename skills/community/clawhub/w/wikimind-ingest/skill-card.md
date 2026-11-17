@@ -1,43 +1,61 @@
-## Description: <br>
-Ingest articles, docs, notes, and web pages into a local LLM-WikiMind knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests articles, docs, notes, and web pages into a local LLM-WikiMind knowledge base.
 
-## Publisher: <br>
-[hal-9909](https://clawhub.ai/user/hal-9909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hal-9909](https://clawhub.ai/user/hal-9909)
 
-## Use Case: <br>
-Developers and knowledge-work users use this skill to save selected articles, documentation, notes, or web pages into a local WikiMind knowledge base. The skill helps classify content, write Markdown pages with frontmatter, update the search index, and log the ingest operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent searchable records from selected content, including sensitive or private material if the user asks it to ingest that material. <br>
-Mitigation: Avoid ingesting secrets, private conversations, or sensitive third-party content; use explicit prompts and review saved entries. <br>
-Risk: The direct-file fallback writes Markdown files, updates the search index, and appends logs inside the configured WikiMind root. <br>
-Mitigation: Keep WIKIMIND_ROOT pointed at the intended local knowledge base and review generated paths before relying on direct-file writes. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to save selected articles, docs, notes, and web pages into a local WikiMind knowledge base as classified Markdown entries for later agent retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hal-9909/wikimind-ingest) <br>
-- [WikiMind skill homepage](https://github.com/HAL-9909/llm-wikimind-skill) <br>
-- [LLM-WikiMind setup guide](https://github.com/HAL-9909/llm-wikimind#quick-start) <br>
-- [Karpathy LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and frontmatter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local knowledge-base entries, index updates, and log entries when used with WikiMind.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill persists selected content into a local searchable wiki, which can capture confidential or unwanted text if inputs are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the content, title, domain, source URL, and destination path before ingesting; avoid storing secrets or confidential material.
+
+Risk: Fallback file writes and index updates modify the local WikiMind workspace.
+
+Mitigation: Prefer the scoped wiki-kb MCP tool when available and review proposed file paths and qmd update commands before execution.
+
+Risk: The workflow depends on qmd and ClawHub tooling installed outside the skill artifact.
+
+Mitigation: Install dependencies from trusted, pinned versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hal-9909/skills/wikimind-ingest)
+- [Skill repository](https://github.com/HAL-9909/llm-wikimind-skill)
+- [LLM-WikiMind](https://github.com/HAL-9909/llm-wikimind)
+- [LLM-WikiMind quick start](https://github.com/HAL-9909/llm-wikimind#quick-start)
+- [Karpathy LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown pages with YAML frontmatter, shell commands, and brief status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write WikiMind files, update the qmd search index, and append an ingest log when used.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

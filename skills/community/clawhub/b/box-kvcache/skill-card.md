@@ -1,44 +1,59 @@
-## Description: <br>
-Local KV Cache compression for LLMs using low-rank decomposition and INT8 quantization to reduce GPU memory use during inference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Box-KVCache helps agents guide local LLM users through KV cache memory estimation, low-rank compression, INT8 quantization, and Ollama launch workflows for longer-context inference.
 
-## Publisher: <br>
-[heijiaziopenclaw](https://clawhub.ai/user/heijiaziopenclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heijiaziopenclaw](https://clawhub.ai/user/heijiaziopenclaw)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a local LLM environment, estimate KV Cache memory use, and run or adapt compression workflows for longer contexts or higher local inference concurrency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A compressed cache loader uses pickle-enabled NumPy loading, which can execute code if a malicious cache file is opened. <br>
-Mitigation: Review or patch the load path before installation, remove pickle-enabled loading where possible, and only load compressed cache files from trusted sources. <br>
-Risk: The scripts inspect local Ollama, llama.cpp, GPU, and system state, and the launcher can start an Ollama service that may remain running. <br>
-Mitigation: Run the scripts as an unprivileged user, review local commands before use, and stop Ollama manually when persistent service behavior is not desired. <br>
-Risk: KV Cache quantization and low-rank compression are lossy and can reduce generation quality for some models or tasks. <br>
-Mitigation: Validate model output quality for the target workload and avoid relying on compressed inference for tasks that require exact or high-fidelity generation. <br>
+## Use Case:
 
+Developers and local LLM operators use this skill to check their Ollama or llama.cpp environment, estimate KV cache memory use, and run Python utilities that demonstrate or launch compression-oriented workflows.
 
-## Reference(s): <br>
-- [Box-KVCache ClawHub release](https://clawhub.ai/heijiaziopenclaw/box-kvcache) <br>
-- [Ollama download](https://ollama.com/download) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local environment checks, memory estimates, launch commands, and compression configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Compressed NumPy files loaded by the utilities may be unsafe when sourced from untrusted locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Python scripts before installing, use an isolated virtual environment with pinned dependencies, and only load trusted .npz or .npy files unless unsafe pickle loading is removed.
+
+Risk: The launch helper can start local Ollama commands and may leave an Ollama service running.
+
+Mitigation: Inspect the launch command and environment variables before use, run with least necessary privileges, and stop the local Ollama service when it is no longer needed.
+
+Risk: Lossy KV cache compression can reduce output quality or behave differently across model and runtime versions.
+
+Mitigation: Test compression settings on representative prompts and keep uncompressed execution available for quality-sensitive tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heijiaziopenclaw/skills/box-kvcache)
+- [Ollama Download](https://ollama.com/download)
+- [Python Downloads](https://www.python.org/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local environment checks, compression estimates, and Ollama command recommendations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

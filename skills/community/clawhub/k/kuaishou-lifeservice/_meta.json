@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ckwfbaxje25yf4a6tq5axvs839g3c",
-  "slug": "kuaishou-lifeservice",
+  "name": "kuaishou-lifeservice-business-assistant",
   "version": "1.0.0",
-  "publishedAt": 1774321289716
+  "description": "快手生服服务商家经营助手",
+  "author": "Kuaishou Life Service Team, locallifecraw@kuaishou.com",
+  "tags": ["kuaishou", "lifeservice", "merchant", "api", "business", "assistant"],
+  "category": "business",
+  "language": "zh-CN"
 }

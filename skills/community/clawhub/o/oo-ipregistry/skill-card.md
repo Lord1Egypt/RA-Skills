@@ -1,42 +1,51 @@
-## Description: <br>
-Ipregistry helps an agent use the OOMOL Ipregistry connector to look up IP address, ASN, user-agent, geolocation, network, company, currency, time zone, and security data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ipregistry (ipregistry.co). Use this skill for ANY Ipregistry request — searching and reading data. Whenever a task involves Ipregistry, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to query Ipregistry through the oo CLI for IP intelligence, ASN data, and user-agent parsing without handling raw service credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connected service credentials through OOMOL. <br>
-Mitigation: Use it only after confirming the intended Ipregistry connection and review any permission or command prompts before approving installation or execution. <br>
-Risk: Lookup results may include security and network intelligence that can be misapplied if treated as complete ground truth. <br>
-Mitigation: Review returned Ipregistry data in context and corroborate high-impact security or compliance decisions with appropriate sources. <br>
+## Use Case:
 
+Developers use this skill through an OOMOL-connected account to look up IP addresses and autonomous system numbers, retrieve geolocation and related data, and parse user-agent strings with Ipregistry.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/oomol/oo-ipregistry) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Ipregistry homepage](https://ipregistry.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return IP intelligence, ASN records, parsed user-agent data, command execution IDs, and setup guidance for OOMOL-managed credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The CLI dependency can persistently change other agent skills through startup synchronization, a behavior not explained by this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the oo CLI's broader skill-management behavior before installation and set OO_SKILLS_SYNC_DISABLED=1 before CLI runs to disable startup synchronization. Verify the installer separately; submit only lookup inputs you intend to share with OOMOL and Ipregistry, and account for service charges.
+
+## Reference(s):
+
+- [Ipregistry](https://ipregistry.co)
+- [Ipregistry API authentication documentation](https://ipregistry.co/docs/authentication)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, Guidance]
+
+**Output Format:** [Structured Ipregistry response data and concise textual summaries or instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected action, submitted lookup inputs, and connected Ipregistry account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Provides a concise neural-network training tip: overfit a tiny dataset before scaling up to check that the model and training pipeline work end to end. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise guidance for validating neural network training pipelines by first overfitting a tiny dataset before scaling up.
 
-## Publisher: <br>
-[Robinyves](https://clawhub.ai/user/Robinyves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinyves](https://clawhub.ai/user/robinyves)
 
-## Use Case: <br>
-Developers and ML learners use this skill for a concise training-loop sanity check: first fit a model on a tiny dataset before attempting larger-scale training. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The @karpathy attribution is not independently proven by the release artifacts. <br>
-Mitigation: Treat the attribution as publisher-provided context, not verified provenance. <br>
-Risk: The Python example is illustrative placeholder code rather than a ready-to-run test. <br>
-Mitigation: Review and adapt the model, dataset, training routine, and loss assertion before execution. <br>
+## Use Case:
 
+Developers and machine learning practitioners use this skill as a compact training-loop checklist and example for confirming that a model, data loading, loss computation, and optimization path can learn from a tiny dataset.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Robinyves/ai-tip-from-karpathy) <br>
-- [Publisher profile](https://clawhub.ai/user/Robinyves) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with a Python code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Illustrative placeholder code; users must adapt the model, dataset, training function, and loss variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The Python snippet is illustrative and references placeholder objects, so copying it directly may fail or give misleading validation results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt the example to the actual model, data loader, loss variable, and training loop, then review the tiny-dataset test before relying on its result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robinyves/skills/ai-tip-from-karpathy)
+- [Publisher profile](https://clawhub.ai/user/robinyves)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, markdown]
+
+**Output Format:** [Markdown with a Python code example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Example code includes placeholder model and dataset objects that must be adapted before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

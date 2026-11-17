@@ -1,43 +1,57 @@
-## Description: <br>
-Gmail, Calendar, Drive, Docs, and Sheets access through OAuth sign-in without Google Cloud Console setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Google Workspace tools including Gmail, Calendar, Drive, Docs, Sheets, Slides, Chat, and People through OAuth sign-in without Google Cloud Console setup.
 
-## Publisher: <br>
-[dru-ca](https://clawhub.ai/user/dru-ca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dru-ca](https://clawhub.ai/user/dru-ca)
 
-## Use Case: <br>
-Developers and Workspace users use this skill to install and call a Google Workspace MCP server with mcporter, then search, read, create, update, send, and manage content across Gmail, Calendar, Drive, Docs, Sheets, Slides, Chat, People, and time tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an unpinned third-party MCP server with persistent OAuth access to Google Workspace data. <br>
-Mitigation: Install only after trusting the @presto-ai npm package, verify OAuth consent scopes during sign-in, and use the least-privileged Google account practical. <br>
-Risk: The available tools can send messages, change documents, modify Gmail or Calendar data, or delete data. <br>
-Mitigation: Require explicit confirmation before any send, modify, or delete action and review the requested operation before execution. <br>
-Risk: OAuth credentials persist locally after setup. <br>
-Mitigation: Remove ~/.config/google-workspace-mcp/ and revoke the Google app when the skill is no longer used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dru-ca/google-workspace-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/dru-ca) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and operators use this skill to let agents search, read, create, update, and send content across Google Workspace apps after OAuth sign-in. It provides setup and command examples for mcporter and the Google Workspace MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and mcporter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides installation, OAuth re-authentication, credential deletion, and Google Workspace MCP tool calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Google Workspace account access can expose sensitive email, files, calendars, chats, and contacts.
+
+Mitigation: Review account contents before installing and prefer a dedicated or limited Google account for agent access.
+
+Risk: The setup auto-executes an unpinned npm package with `npx -y`.
+
+Mitigation: Verify the npm package and publisher, and pin a reviewed package version before use.
+
+Risk: OAuth credentials are stored locally for later reuse.
+
+Mitigation: Revoke or delete stored OAuth credentials when the integration is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dru-ca/skills/google-workspace-mcp)
+- [Publisher profile](https://clawhub.ai/user/dru-ca)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and mcporter tool examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides command-oriented guidance for configuring and calling Google Workspace tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Email Operations lets an agent read, search, retrieve, and send email through IMAP and SMTP, including inbox listings, message details, attachments, text email, HTML email, and bulk sends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Operations lets an agent read, search, inspect, and send email through IMAP and SMTP using configured mailbox credentials.
 
-## Publisher: <br>
-[yiweiweilai](https://clawhub.ai/user/yiweiweilai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiweiweilai](https://clawhub.ai/user/yiweiweilai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to operate a configured mailbox: list and search messages, inspect message bodies and attachments, save attachments, and send text, HTML, or attachment-bearing email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access the configured mailbox and send email from it. <br>
-Mitigation: Install only when mailbox access and send authority are acceptable, and use an app-specific password. <br>
-Risk: The skill can send local files as attachments or send message content read from local files. <br>
-Mitigation: Review recipients, subject, body, body-file paths, and attachment paths before sending. <br>
-Risk: The skill can save email attachments using sender-provided filenames. <br>
-Mitigation: Save attachments only into a disposable folder until filenames are sanitized. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to let an agent list inbox messages, search by sender or date, inspect message contents and attachments, send plain-text or HTML email, and send messages with attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiweiweilai/email-operations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime methods return Python dictionaries/lists and write attachment files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mailbox credentials in a local .env file and can read mailbox contents, send email, and read or write attachment files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill requires mailbox credentials and can read mailbox contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use app-specific mail passwords, grant only the mailbox access needed, and avoid storing real secrets in a committed .env file.
+
+Risk: The skill can send email and save attachments to local files.
+
+Mitigation: Review every send request, attachment list, and attachment-save path before allowing routine use.
+
+Risk: The security guidance flags unsafe dependency handling and attachment filename handling before routine use.
+
+Mitigation: Fix requirements.txt handling and sanitize attachment filenames before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiweiweilai/skills/email-operations)
+- [Skill documentation](artifact/SKILL.md)
+- [Email client source](artifact/scripts/email_client.py)
+- [Evaluation prompts](artifact/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with Python examples, shell commands, and structured email dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read mailbox contents, send email, and save attachments to local files when configured with mailbox credentials.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

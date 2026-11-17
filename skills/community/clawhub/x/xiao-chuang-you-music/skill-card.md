@@ -1,38 +1,49 @@
-## Description: <br>
-小窗幽音乐为中文音乐请求提供新中式歌单、民乐乐器专题、茶乐搭配和背景音乐推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小窗幽音乐子技能。当用户询问音乐、歌单、民乐、古琴、古筝、茶乐、禅乐、丝竹等话题时激活。提供新中式歌单、乐器专题、茶乐搭配指南。
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-Listeners and agents use this skill for Chinese music recommendation conversations, especially when a user asks for playlists, traditional instruments, tea music, meditation, reading, work, sleep, or culture-themed background music. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad music activation terms may cause the skill to answer general music requests when a narrower specialist skill would be better. <br>
-Mitigation: Use narrower activation terms or clarify the desired style when overlapping music recommendation skills are installed. <br>
+## Use Case:
 
+External users can use this skill to receive Chinese-style music recommendations, traditional instrument playlists, tea-music pairings, and background music suggestions tailored to mood or setting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zcr3344/xiao-chuang-you-music) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language Chinese recommendations, usually as Markdown-style playlists or short guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or system access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad music-related activation may trigger the skill for generic music prompts where a narrower assistant response was intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before deployment and narrow trigger terms if accidental activation is observed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-music)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational recommendations with playlist details and platform links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include playlist names, track counts, music platform links, scene descriptions, and follow-up questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

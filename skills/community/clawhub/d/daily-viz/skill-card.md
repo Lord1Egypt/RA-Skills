@@ -1,42 +1,55 @@
-## Description: <br>
-Daily Viz helps users record mood, exercise, sleep, and work hours, then view charts, reports, and habit insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Viz records mood, exercise, sleep, work hours, and related notes, then displays simple local visual summaries for habit tracking and self-improvement.
 
-## Publisher: <br>
-[xiaooojun](https://clawhub.ai/user/xiaooojun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiaooojun](https://clawhub.ai/user/xiaooojun)
 
-## Use Case: <br>
-External users use this skill to track daily wellness and productivity signals, summarize recent activity, and generate simple visual reports for habit building and self-improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal wellness and productivity records in a local JSON file under the user's home directory. <br>
-Mitigation: Use it only for information the user is comfortable storing locally, and manage local file access, backup, and deletion according to the user's privacy needs. <br>
-Risk: Export, share, cloud-sync, and encryption claims are under-specified in the available evidence. <br>
-Mitigation: Do not rely on those claims for sensitive data unless a future version clearly documents what leaves the device, where it is stored, and how deletion and encryption work. <br>
+## Use Case:
 
+External users can use this skill to record daily wellness and productivity data locally and review simple trend summaries for personal habit building. The evidenced package supports local JSON record keeping and console-based visual summaries.
 
-## Reference(s): <br>
-- [Daily Viz ClawHub listing](https://clawhub.ai/xiaooojun/daily-viz) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown and text guidance with local JSON records and console chart or report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered records locally under ~/.daily-viz/data/records.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, _meta.json, server release metadata) <br>
+Risk: Daily records may contain personal wellness and productivity information stored as local JSON under ~/.daily-viz/data/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted devices and avoid entering sensitive information beyond the intended personal tracking data.
+
+Risk: Some advertised capabilities, including AI advice, PDF export, cloud sync, and encryption, are not evidenced in this package.
+
+Mitigation: Treat this release as a local record and console visualization utility unless those capabilities are separately implemented, documented, and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaooojun/skills/daily-viz)
+- [Publisher profile](https://clawhub.ai/user/xiaooojun)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text and console output with local JSON records and simple ASCII charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-entered records in ~/.daily-viz/data/records.json when the record script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json, and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

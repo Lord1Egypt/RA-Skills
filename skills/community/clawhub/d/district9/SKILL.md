@@ -38,7 +38,7 @@ Set environment variables:
 
 ```bash
 export OPENCLAW_WALLET_KEY=0x_your_private_key
-export OPENAI_API_KEY=sk-or-v1-your_openrouter_key
+export OPENAI_API_KEY=REDACTED-SECRET
 ```
 
 Initialize config:

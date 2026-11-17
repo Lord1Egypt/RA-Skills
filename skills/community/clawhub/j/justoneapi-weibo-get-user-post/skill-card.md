@@ -1,42 +1,56 @@
-## Description: <br>
-Call GET /api/weibo/get-user-post/v1 for Weibo User Published Posts through JustOneAPI with uid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/weibo/get-user-post/v1 for Weibo User Published Posts through JustOneAPI with uid.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve published Weibo posts for a specific UID through JustOneAPI. It supports account monitoring workflows by returning post text, media, and publish-time data from the documented endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required JustOneAPI token may be exposed through command arguments or query-string handling. <br>
-Mitigation: Use a limited, revocable token, avoid pasting token values into chat or logs, and prefer a version that keeps credentials out of command arguments and URLs. <br>
-Risk: The endpoint retrieves Weibo account published-post data, which may be sensitive or subject to legal and policy constraints. <br>
-Mitigation: Use the skill only for legitimate, lawful account-monitoring purposes and avoid sharing raw command output when it contains sensitive data. <br>
+## Use Case:
 
+Developers and agents use this skill to call a JustOneAPI Weibo endpoint for published posts from a specific Weibo user ID. It supports account monitoring workflows that need post text, media, and publish time data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-weibo-get-user-post) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_get_user_post&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JUST_ONE_API_TOKEN credential and a target Weibo uid; optional pagination inputs are page and sinceId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token can be exposed unnecessarily because the skill handles it in query-token authentication flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token, avoid logging full request URLs, and monitor only accounts the user is permitted to monitor.
+
+Risk: Tokens with broad quota, billing, or data access increase installation and runtime impact.
+
+Mitigation: Review token scope before installing and prefer a version that reads the token directly from the environment and uses header-based authentication if the API supports it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-weibo-get-user-post)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_get_user_post&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_get_user_post&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes the endpoint response before returning raw JSON; backend errors include the backend payload and operation ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

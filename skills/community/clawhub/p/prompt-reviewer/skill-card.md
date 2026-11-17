@@ -1,41 +1,49 @@
-## Description: <br>
-Review a prompt to identify ambiguities, missing constraints, and hallucination risks, and provide an optimized version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review a prompt to identify ambiguities, missing constraints, and hallucination risks, and provide an optimized version.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers, writers, and prompt authors use this skill to review draft prompts for ambiguity, missing constraints, and hallucination risk before rewriting them into a clearer, ready-to-use prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incorrect or misleading prompt-review guidance if the input prompt lacks enough context. <br>
-Mitigation: Review the generated analysis and optimized prompt before using it in production workflows. <br>
-Risk: The release evidence advises reviewing commands before running them for powerful automation workflows. <br>
-Mitigation: Inspect any commands or workflow changes proposed by the skill before execution. <br>
+## Use Case:
 
+Developers, prompt authors, and teams using AI assistants can use this skill to review prompts for ambiguous wording, missing constraints, and hallucination risk before reuse or publication. It returns actionable improvement advice and a rewritten prompt ready for use.
 
-## Reference(s): <br>
-- [Prompt Reviewer on ClawHub](https://clawhub.ai/sunny0826/prompt-reviewer) <br>
-- [Publisher profile: sunny0826](https://clawhub.ai/user/sunny0826) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown in Chinese with review sections and an optimized prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ambiguity analysis, missing-constraint analysis, hallucination-risk analysis, improvement suggestions, and a rewritten prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is designed to answer primarily in Chinese, which may be unsuitable when multilingual output is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended output language before deployment or ask the maintainer to make Chinese a default preference rather than a fixed instruction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/prompt-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown in Chinese with a review report, improvement suggestions, and an optimized prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior is reported in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

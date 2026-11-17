@@ -1,42 +1,54 @@
-## Description: <br>
-Generate daily cinema and film industry content and TikTok scripts using free entertainment news sources for movie releases, film news, celebrity updates, box office results, and entertainment industry developments from the last 24 hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily cinema and film industry content and TikTok scripts using free entertainment news sources.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-External creators and content teams use this skill to draft daily movie-news TikTok scripts and social posts from recent entertainment headlines, including releases, trailers, celebrity news, box office results, awards, and streaming updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated entertainment scripts may depend on public news sources with attribution, copyright, or source-term requirements. <br>
-Mitigation: Review source terms, attribution, and copyright expectations before publishing generated scripts or derivative social content. <br>
-Risk: Generated daily news content may include stale, incomplete, or misleading entertainment updates. <br>
-Mitigation: Check current source articles and manually review scripts before publication. <br>
-Risk: Local configuration or templates added by a user are not bundled with this release. <br>
-Mitigation: Review and scan any local config or templates before using them with the skill. <br>
+## Use Case:
 
+External content creators and social media teams use this skill to generate daily movie news summaries, 60-90 second TikTok scripts, hashtags, and content angles from recent entertainment coverage.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ahmed181283/daily-cinema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted TikTok scripts and social media content outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 60-90 second script structures, hashtags, topic focus, and concise cinema-news summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence release metadata and artifact/clawhub.json) <br>
+Risk: Generated entertainment news may include stale, inaccurate, or unverified claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fact-check stories against the cited entertainment news sources before publishing.
+
+Risk: Public-facing scripts and hashtags may reuse source material or framing in ways that conflict with rights or platform expectations.
+
+Mitigation: Review generated posts for originality, source attribution, and rights-sensitive material before posting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ahmed181283/skills/daily-cinema)
+- [Publisher Profile](https://clawhub.ai/user/ahmed181283)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style social content with structured TikTok script sections and hashtags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces public-facing cinema content that should be fact-checked before posting.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

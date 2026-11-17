@@ -1,42 +1,58 @@
-## Description: <br>
-Game Informer section RSS skill for fetching news, reviews, previews, and features, then formatting populated sections as Markdown linked headlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game Informer section RSS skill that fetches news, reviews, previews, and features feeds and formats returned items as English Markdown section lists.
 
-## Publisher: <br>
-[maximedogawa](https://clawhub.ai/user/maximedogawa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maximedogawa](https://clawhub.ai/user/maximedogawa)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current Game Informer headlines from public RSS feeds and present them in ordered Markdown sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request public RSS feeds from Game Informer when invoked. <br>
-Mitigation: Review the feed URLs and allow outbound network access only when that external source is acceptable. <br>
-Risk: RSS feed content can be unavailable or include HTML descriptions that are unsuitable for direct output. <br>
-Mitigation: Use only successfully loaded feed items, omit empty sections, and avoid pasting raw HTML from descriptions. <br>
+## Use Case:
 
+External users and agents use this skill to answer Game Informer headline, review, preview, and feature requests by retrieving the appropriate public RSS feeds and presenting linked story titles by section.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maximedogawa/news-gameinfomer) <br>
-- [Game Informer source site](https://www.gameinformer.com/) <br>
-- [Game Informer RSS feed](https://www.gameinformer.com/rss.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown headings with numbered linked headlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to 3-5 items per populated section and omits empty or unavailable sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad gaming-news prompts may be answered specifically with Game Informer results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill when Game Informer is an acceptable source, and make the source clear in responses.
+
+Risk: The skill prefers English responses even when another language is desired.
+
+Mitigation: Set separate localization expectations if non-English output is required.
+
+Risk: RSS fetch failures or empty feeds can leave a section without current items.
+
+Mitigation: Omit empty sections and state failure only when all relevant fetches fail, without inventing headlines.
+
+## Reference(s):
+
+- [Game Informer](https://www.gameinformer.com/)
+- [ClawHub skill page](https://clawhub.ai/maximedogawa/skills/news-gameinfomer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown with section headings and numbered linked story titles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Game Informer RSS feed items; default response lists 3-5 items per included section.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

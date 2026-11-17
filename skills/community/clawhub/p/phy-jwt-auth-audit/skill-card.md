@@ -1,40 +1,54 @@
-## Description: <br>
-Audits JWT and OAuth/OIDC token security locally by decoding claims and scanning code or environment files for insecure token handling patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits JWT and OAuth/OIDC token security locally by decoding claims, scanning source and .env files for insecure token handling, and producing severity-ranked findings with fixes.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect JWTs, OAuth scopes, and source files for token handling risks before deployment or during authentication reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect JWTs, OAuth scopes, source files, and .env files that contain sensitive tokens or credentials. <br>
-Mitigation: Use expired or test tokens where possible, scope scans to the smallest relevant directory, and redact or rotate any live credentials that appear in output. <br>
-Risk: Audit reports can include decoded claims, file paths, line numbers, and remediation snippets that may expose sensitive implementation details if shared broadly. <br>
-Mitigation: Review and sanitize reports before sharing them outside the team or attaching them to tickets. <br>
+## Use Case:
 
+Developers and security engineers use this skill to review JWT, OAuth, and OIDC token handling in application code, token samples, and intended .env files. It helps identify risky claims, insecure storage or logging patterns, broad scopes, weak secrets, and missing validation controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/PHY041/phy-jwt-auth-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown security report with severity-ranked findings, code locations, and remediation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include decoded JWT claims, source paths, line numbers, and concrete fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and frontmatter) <br>
+Risk: The skill can scan credential-bearing .env files and may include weak secret values or token-derived details in reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories and env files intended for audit, restrict report access, and rotate any real secret that appears in output.
+
+Risk: Broad workspace scans can collect sensitive findings from files outside the intended review scope.
+
+Mitigation: Use targeted paths for scans and review generated findings before sharing or storing the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-jwt-auth-audit)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown security audit report with severity-ranked findings, code locations, and remediation snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include decoded token claims, paths, line numbers, and secret-like values found in audited inputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

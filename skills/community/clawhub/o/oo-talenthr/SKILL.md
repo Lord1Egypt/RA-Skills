@@ -1,11 +1,11 @@
 ---
 name: oo-talenthr
-description: "TalentHR (talenthr.io). Use this skill for ANY TalentHR request — searching and reading data. Whenever a task involves TalentHR, use this skill instead of calling the API directly."
+description: "TalentHR (talenthr.io). Use this skill for ANY TalentHR request — reading, creating, and updating data. Whenever a task involves TalentHR, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "TalentHR"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["talenthr"]
   icon: "https://static.oomol.com/logo/third-party/Talenthr.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `change_employee_role` — Change a TalentHR employee's user role to Employee or HR-Manager using the official employee role endpoints.
+- `change_employee_role` — Change a TalentHR employee's user role to Employee or HR-Manager using the official employee role endpoints. [write]
 
 ## Safety
 
@@ -68,11 +68,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — TalentHR is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=talenthr
+  https://console.oomol.com/connections/talenthr
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - TalentHR homepage: https://www.talenthr.io/
+- API documentation: https://apidocs.talenthr.io/

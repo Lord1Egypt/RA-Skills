@@ -1,42 +1,56 @@
-## Description: <br>
-Recognizes invoices, receipts, bills, tickets, and similar documents by sending images or PDFs to the iFlytek OCR API and returning extracted structured fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes invoices, receipts, bills, and tickets by sending supported image or PDF files to the iFlytek OCR API and returning extracted structured fields.
 
-## Publisher: <br>
-[iflytek.skills](https://clawhub.ai/user/iflytek.skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflytek.skills](https://clawhub.ai/user/iflytek.skills)
 
-## Use Case: <br>
-Developers and agents use this skill to digitize invoice, receipt, bill, ticket, and medical document images into structured OCR output for tasks such as expense reporting, archiving, and data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice, receipt, bill, medical, and travel document images may contain sensitive information and are sent to a third-party OCR API. <br>
-Mitigation: Install and use this skill only when sending those documents to iFlytek is acceptable for the user's privacy, security, and compliance requirements. <br>
-Risk: The artifact includes troubleshooting commands that can print full XFYUN credentials into terminal output or logs. <br>
-Mitigation: Check only whether credential variables are set, mask values in logs, and rotate XFYUN credentials if they were exposed. <br>
+## Use Case:
 
+Developers, agents, and business users use this skill to extract structured invoice, receipt, ticket, and bill data for expense reporting, archiving, or downstream document processing.
 
-## Reference(s): <br>
-- [iFlytek OCR service](https://www.xfyun.cn/services/ocr) <br>
-- [iFlytek invoice recognition documentation](https://www.xfyun.cn/services/Invoice_recognition) <br>
-- [iFlytek invoice recognition pricing](https://www.xfyun.cn/services/Invoice_recognition?target=price) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable structured text by default, or raw JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and XFYUN_APP_ID, XFYUN_API_KEY, and XFYUN_API_SECRET; submitted document files are sent to the iFlytek OCR API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Invoices, receipts, bank slips, or medical bills may contain sensitive data that is uploaded to iFlytek's cloud OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only when authorized to send the target documents to iFlytek, and avoid processing documents whose privacy, contractual, or regulatory constraints forbid third-party cloud OCR.
+
+Risk: The documentation includes environment-check commands that can print full API credentials.
+
+Mitigation: Use masked or presence-only checks, store credentials in a protected secret manager or restricted environment file, and rotate the API key and secret if they were exposed in logs, screenshots, or chat.
+
+## Reference(s):
+
+- [iFlytek OCR Service](https://www.xfyun.cn/services/ocr)
+- [iFlytek Invoice Recognition](https://www.xfyun.cn/services/Invoice_recognition)
+- [iFlytek Console](https://console.xfyun.cn)
+- [ClawHub Skill Page](https://clawhub.ai/iflytek.skills/skills/iflytek-ocr-invoice)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Human-readable structured text by default, or raw JSON when invoked with --raw]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and XFYUN_APP_ID, XFYUN_API_KEY, and XFYUN_API_SECRET environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Interactive study assistant that creates flashcards, quizzes, and spaced repetition reviews from notes, PDFs, photos, text, URLs, or topic prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study Buddy creates flashcards, quizzes, practice exams, and spaced repetition reviews from notes, PDFs, photos, text, URLs, topics, or recent conversation.
 
-## Publisher: <br>
-[keepfit44](https://clawhub.ai/user/keepfit44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keepfit44](https://clawhub.ai/user/keepfit44)
 
-## Use Case: <br>
-External users and developers use this skill to turn study material into flashcard decks, quiz sessions, practice exams, and spaced repetition reviews through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local deck file operations may create, import, export, or delete files using deck names that are only partially constrained. <br>
-Mitigation: Review the skill before installing, use ordinary deck names, avoid untrusted imported deck JSON, and confirm delete/export operations before relying on them. <br>
-Risk: Study material and generated decks are stored locally, which may be inappropriate for sensitive notes if local retention is not acceptable. <br>
-Mitigation: Use the skill only with study material you are comfortable storing locally, and avoid sensitive content unless local storage is approved. <br>
+## Use Case:
 
+Students, educators, and other external users use Study Buddy to turn study material into flashcards, run quiz or practice exam sessions, and track due reviews with local spaced repetition.
 
-## Reference(s): <br>
-- [Study Buddy on ClawHub](https://clawhub.ai/keepfit44/studyclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/keepfit44) <br>
-- [Study Buddy Guidelines](references/guidelines.md) <br>
-- [Study Buddy Data Format](references/data_format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown chat guidance with inline shell commands and local JSON deck files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; stores study decks locally under ~/.openclaw/study-buddy/decks/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Flashcards and review history are stored locally on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use on trusted machines and avoid highly sensitive notes on shared systems.
+
+Risk: Imported deck files can add or overwrite local study content.
+
+Mitigation: Review deck files before importing them and confirm the source is trusted.
+
+Risk: Generated cards, quizzes, and practice exams can contain inaccurate or incomplete study guidance.
+
+Mitigation: Review generated study material against the original source before relying on it for exams or decisions.
+
+## Reference(s):
+
+- [Study Buddy Guidelines](references/guidelines.md)
+- [Study Buddy Data Format](references/data_format.md)
+- [Study Buddy ClawHub Release](https://clawhub.ai/keepfit44/skills/studyclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with shell command invocations and JSON deck records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores deck files and review history locally under ~/.openclaw/study-buddy/decks/.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

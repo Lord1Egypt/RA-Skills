@@ -1,39 +1,54 @@
-## Description: <br>
-Interact with GitHub using the gh CLI to manage pull requests, check CI status, view workflow runs, and access advanced API queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub using the gh CLI to manage pull requests, check CI status, view workflow runs, and access advanced API queries.
 
-## Publisher: <br>
-[yequanzheng](https://clawhub.ai/user/yequanzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yequanzheng](https://clawhub.ai/user/yequanzheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for GitHub CLI commands and guidance for pull requests, CI checks, workflow runs, failed logs, API queries, and JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can use the user's existing GitHub CLI authentication and repository permissions. <br>
-Mitigation: Confirm the active GitHub account and target repository before running commands, and approve write actions only when explicitly requested. <br>
-Risk: GitHub CLI commands may target an unintended repository if repository context is ambiguous. <br>
-Mitigation: Use --repo owner/repo or direct URLs when the agent is not already operating in the intended git directory. <br>
+## Use Case:
 
+Developers and agents use this skill to operate GitHub through the gh CLI for pull request checks, workflow run inspection, logs, API queries, and JSON output.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may rely on the user's local GitHub CLI authentication and repository context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: GitHub CLI commands can operate on private or sensitive repositories when run with an authenticated account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and confirm the target repository with --repo or a direct URL.
+
+Risk: Advanced gh api use may access data beyond the read-only examples shown in the skill.
+
+Mitigation: Inspect gh api endpoints, filters, and jq expressions before running them, and limit use to the intended repository and operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yequanzheng/skills/test33)
+- [Publisher profile](https://clawhub.ai/user/yequanzheng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash command examples and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the caller's existing GitHub CLI authentication and repository access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

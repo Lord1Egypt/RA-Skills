@@ -1,46 +1,58 @@
-## Description: <br>
-Execute commands on the host machine from inside the OpenClaw container via the HostLink daemon, using authenticated remote shell execution over a Unix domain socket or TCP/WireGuard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute commands on the host machine from inside the OpenClaw container via the HostLink daemon.
 
-## Publisher: <br>
-[jebadiahgreenwood](https://clawhub.ai/user/jebadiahgreenwood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jebadiahgreenwood](https://clawhub.ai/user/jebadiahgreenwood)
 
-## Use Case: <br>
-Developers and operators use HostLink when an OpenClaw agent needs intentional access to host-side files, Docker, GPU or ML tools, or other commands that cannot run inside the container. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables commands to run on the host rather than only inside the OpenClaw container. <br>
-Mitigation: Install it only for workflows that intentionally require host access, and require explicit user approval before each host command. <br>
-Risk: A persistent daemon, socket, or token can expose broad host command execution if misconfigured or leaked. <br>
-Mitigation: Protect the auth token and Unix socket, keep the token out of git, restrict socket permissions, and run the daemon as a dedicated least-privileged user where possible. <br>
-Risk: Host-side installation uses sudo and may run commands as the daemon user, often root when installed with systemd. <br>
-Mitigation: Review and pin the HostLink daemon source before sudo installation, and confirm the daemon account, shell, timeout, output, and concurrency settings before use. <br>
-Risk: Remote TCP transport can expose host command execution beyond the local container boundary. <br>
-Mitigation: Avoid direct TCP exposure; use WireGuard for remote access and keep TCP disabled unless the deployment explicitly requires it. <br>
+## Use Case:
 
+Developers and operators use HostLink to let an OpenClaw agent run authenticated host-side shell commands for filesystem access, GPU or ML tooling, Docker management, and other host-level tasks.
 
-## Reference(s): <br>
-- [HostLink Setup Guide](references/setup.md) <br>
-- [HostLink source repository](https://github.com/jebadiahgreenwood/hostlink) <br>
-- [HostLink ClawHub page](https://clawhub.ai/jebadiahgreenwood/hostlink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, YAML, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return command output as text or JSON when hostlink is invoked with JSON output enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: HostLink provides a host-command channel from inside the OpenClaw container.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that access is intentional, restrict socket permissions, and require explicit human approval for filesystem, Docker, service, package, or credential-related commands.
+
+Risk: The setup path can run the daemon with persistent, root-capable host access.
+
+Mitigation: Review and pin the HostLink source before installation, avoid unverified sudo installation, run the daemon as a dedicated unprivileged user where possible, and disable boot persistence unless needed.
+
+Risk: The authentication token protects the host command channel.
+
+Mitigation: Use a strong token and keep it out of source-controlled or broadly readable configuration.
+
+## Reference(s):
+
+- [HostLink ClawHub Skill Page](https://clawhub.ai/jebadiahgreenwood/skills/hostlink)
+- [HostLink Setup Guide](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may execute on the host through an authenticated Unix socket or TCP/WireGuard transport.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

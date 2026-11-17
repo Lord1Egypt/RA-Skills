@@ -1,0 +1,71 @@
+{
+  "kind": "youtube-video-metadata-localization-draft",
+  "translation_method": "agent-authored; script validates and assembles only",
+  "collection_scope": "独立新离线可见文字材料，不是在线访问结果；未使用既有示例词汇。",
+  "chinese_audience": "熟悉Bikepacking装备的中文骑行者",
+  "audience_adaptation": "熟悉装备的骑行者保留Bikepacking术语，使用装载配置和固定绑带的简洁表达；三条事实与入门版完全一致。",
+  "original": {
+    "title": "Set Up a Bikepacking Kit Without Overpacking",
+    "description_points": [
+      "Pack the heaviest items close to the frame.",
+      "Keep rain gear accessible.",
+      "Check every strap before riding."
+    ]
+  },
+  "chinese_draft": {
+    "title": "Bikepacking 装载配置：避免过量携带",
+    "description": "重物靠近车架装载。\n确保雨具可随时取用。\n出发前逐条检查固定绑带。",
+    "title_source": {
+      "original": "Set Up a Bikepacking Kit Without Overpacking",
+      "url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "field": "title"
+    },
+    "description_points": [
+      {
+        "index": 0,
+        "original": "Pack the heaviest items close to the frame.",
+        "chinese": "重物靠近车架装载。",
+        "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+        "source_field": "description_points[0]"
+      },
+      {
+        "index": 1,
+        "original": "Keep rain gear accessible.",
+        "chinese": "确保雨具可随时取用。",
+        "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+        "source_field": "description_points[1]"
+      },
+      {
+        "index": 2,
+        "original": "Check every strap before riding.",
+        "chinese": "出发前逐条检查固定绑带。",
+        "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+        "source_field": "description_points[2]"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "field": "title",
+      "original": "Set Up a Bikepacking Kit Without Overpacking"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "field": "description_points[0]",
+      "original": "Pack the heaviest items close to the frame."
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "field": "description_points[1]",
+      "original": "Keep rain gear accessible."
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "field": "description_points[2]",
+      "original": "Check every strap before riding."
+    }
+  ],
+  "missing_items": [],
+  "no_backend_changes": true
+}

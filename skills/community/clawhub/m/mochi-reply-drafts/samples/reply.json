@@ -1,0 +1,21 @@
+{
+  "schema":"mochi-reply-drafts.v1",
+  "reportLanguage":"en",
+  "channel":"email",
+  "incoming":{"from":"customer@example.test","body":"Hello, can you check order A123? I sent 25 USD. Please confirm whether it arrived."},
+  "sources":[{"id":"operator-notes","kind":"provided","text":"We have not confirmed a matching payment for order A123. Ask the customer for the transaction reference and payment network."}],
+  "facts":[{"id":"f1","sourceId":"operator-notes","quote":"We have not confirmed a matching payment for order A123.","text":"We have not confirmed a matching payment for order A123."}],
+  "requests":[{"id":"r1","quote":"Please confirm whether it arrived.","text":"Check the payment status."}],
+  "allowedRecipients":["customer@example.test"],
+  "allowedCommitments":[],
+  "draft":{
+    "to":["customer@example.test"],
+    "subject":"Payment query for order A123",
+    "greeting":"Hello,",
+    "paragraphs":[
+      {"text":"We have not confirmed a matching payment for order A123.","factIds":["f1"],"requestIds":[]},
+      {"text":"Please share the transaction reference and payment network so the payment can be checked.","factIds":[],"requestIds":["r1"]}
+    ],
+    "closing":"Regards,\nSupport"
+  }
+}

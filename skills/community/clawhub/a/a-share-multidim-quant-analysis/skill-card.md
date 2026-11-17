@@ -1,42 +1,54 @@
-## Description: <br>
-A-Share Multi-Dimensional Quantitative Analysis MCP Server - broker research reports, AI news analysis, and stock comprehensive analysis <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-Share Multi-Dimensional Quantitative Analysis is a hosted MCP server that provides broker research reports, AI news analysis, and comprehensive stock analysis for China's A-share market.
 
-## Publisher: <br>
-[Li-Evan](https://clawhub.ai/user/Li-Evan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-evan](https://clawhub.ai/user/li-evan)
 
-## Use Case: <br>
-External users and developers use this hosted MCP server to query A-share broker research reports, AI-analyzed news, and stock analysis reports from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer API keys may be sent over a plain HTTP MCP endpoint. <br>
-Mitigation: Use the skill only through a trusted network path, avoid sensitive financial research until HTTPS is available, and ask the publisher for an HTTPS endpoint. <br>
-Risk: The artifact includes weak default secrets and database credentials. <br>
-Mitigation: Ask the publisher to rotate and remove backend credentials before using the skill with sensitive data. <br>
-Risk: Data retention and access scope are not clearly documented. <br>
-Mitigation: Confirm retention, access scope, and provider trust before connecting agent workflows or sharing sensitive queries. <br>
+## Use Case:
 
+External developers and agents use this skill to connect to a hosted MCP service for researching Chinese A-share companies, reviewing broker reports and news analysis, and retrieving stock-level trading analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Li-Evan/a-share-multidim-quant-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Configuration] <br>
-**Output Format:** [Markdown text returned by MCP tools, plus JSON configuration for setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool responses may include broker research report text, news summaries, sentiment analysis, investment recommendations, risk management notes, and trading decision sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata; artifact frontmatter says 1.3.0) <br>
+Risk: The release security summary flags an insecure remote MCP setup with hardcoded authentication and database credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or using; do not send API keys unless the service is served over HTTPS with a trusted hostname and the publisher confirms credential rotation, least-privilege database access, and scoped or revocable user tokens.
+
+Risk: The security guidance says exposed default tokens and database credentials should be treated as compromised.
+
+Mitigation: Require credential rotation before relying on the service, and verify that replacement credentials are scoped and revocable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/li-evan/skills/a-share-multidim-quant-analysis)
+- [Hosted MCP endpoint](http://42.121.167.42:9800/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted text returned by MCP tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool outputs may include broker report text, news summaries, sentiment, investment recommendations, and stock analysis sections.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata; artifact frontmatter reports 1.3.0 and pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

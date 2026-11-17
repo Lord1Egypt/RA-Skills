@@ -1,43 +1,57 @@
-## Description: <br>
-Recommends and can execute a cost-aware Chinese LLM for a prompt using task classification, benchmark scores, context length, token estimates, and budget tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a prompt, classifies the task, recommends a cost-effective Chinese large language model, and can execute the prompt while tracking token usage and estimated cost.
 
-## Publisher: <br>
-[nihaoxuan2026](https://clawhub.ai/user/nihaoxuan2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nihaoxuan2026](https://clawhub.ai/user/nihaoxuan2026)
 
-## Use Case: <br>
-Developers and advanced agent users use this skill to classify a prompt, compare supported Chinese LLMs by quality, cost, latency, and context length, then choose cheap, balanced, or quality-focused routing. It can return recommendation guidance only or execute the prompt through configured provider APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be sent to third-party model providers during automatic execution. <br>
-Mitigation: Use --dry-run or --no-exec for recommendation-only operation, and avoid secrets, regulated data, or confidential prompts. <br>
-Risk: Prompt snippets are retained in the local SQLite usage log. <br>
-Mitigation: Review or clear local usage logs before sharing the environment and avoid entering sensitive text. <br>
-Risk: The skill contacts countapi.xyz telemetry during usage logging and statistics display. <br>
-Mitigation: Remove or disable the telemetry calls before use in privacy-sensitive environments. <br>
+## Use Case:
 
+Developers and agent users use this skill to choose an LLM for writing, coding, translation, analysis, Q&A, summarization, math reasoning, or chat based on quality, cost, latency, context length, and token-budget estimates. It can return a recommendation only or call the selected model provider when execution is enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nihaoxuan2026/token-decision) <br>
-- [Publisher profile](https://clawhub.ai/user/nihaoxuan2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external model-provider APIs unless run with --dry-run or --no-exec; local usage logs include truncated prompt text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Prompt content may be sent to external model providers during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run or --no-exec when only a routing recommendation is needed, and do not submit confidential prompts unless provider sharing is approved.
+
+Risk: Prompt snippets are stored locally in plaintext usage logs.
+
+Mitigation: Disable raw prompt logging or regularly clear the local usage database before using the skill with sensitive data.
+
+Risk: The skill makes telemetry calls that may not be obvious to users.
+
+Mitigation: Remove or disable CountAPI telemetry before deployment in environments with privacy, compliance, or disclosure requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nihaoxuan2026/skills/token-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style console output with model recommendations, cost estimates, token estimates, alternatives, and optional model response text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports cheap, balanced, and quality modes; --dry-run and --no-exec avoid model execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

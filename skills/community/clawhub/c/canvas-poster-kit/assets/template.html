@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Canvas Poster — Multi-Resolution Template</title>
+<style>
+  body { background: #1a1a2e; display: flex; flex-direction: column; align-items: center;
+         font-family: system-ui, sans-serif; margin: 24px; gap: 16px; }
+  canvas { box-shadow: 0 8px 40px rgba(0,0,0,.5); border-radius: 4px; }
+  .bar { display: flex; gap: 10px; }
+  button { padding: 10px 22px; border: none; border-radius: 8px; cursor: pointer;
+           font-size: 14px; font-weight: 600; }
+  .b1 { background: #334155; color: #fff; }
+  .b2 { background: #0ea5e9; color: #fff; }
+  .b4 { background: #f59e0b; color: #000; }
+  #status { color: #94a3b8; font-size: 13px; min-height: 18px; opacity: 0; transition: opacity .2s; }
+  #status.show { opacity: 1; }
+</style>
+</head>
+<body>
+<canvas id="poster" width="900" height="1273"></canvas>
+<div class="bar">
+  <button class="b1" onclick="download(1)">Download 1x (900×1273)</button>
+  <button class="b2" onclick="download(2)">Download 2K (1800×2546)</button>
+  <button class="b4" onclick="download(4)">Download 4K (3600×5092)</button>
+</div>
+<div id="status"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// Multi-resolution engine — do not modify this section.
+// Set W/H to your logical (preview) size; everything scales.
+// ═══════════════════════════════════════════════════════════
+const canvas = document.getElementById('poster');
+const ctx = canvas.getContext('2d');
+const W = 900;   // logical width
+const H = 1273;  // logical height (≈1:1.414 A-series ratio)
+let currentScale = 1;
+
+function applyScale(scale) {
+  currentScale = scale;
+  canvas.width  = W * scale;          // internal pixels grow
+  canvas.height = H * scale;
+  canvas.style.width  = W + 'px';     // display size stays constant → no layout jump
+  canvas.style.height = H + 'px';
+  ctx.setTransform(scale, 0, 0, scale, 0, 0);  // all existing drawing code auto-scales
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+}
+
+// ── Palette — replace with topic-driven colors ──
+// Dark-tech:      bg #000814, card #001d3d, accent #00b4d8, muted #90e0ef
+// Warm empathy:   bg #FBF6F1, accent #E57F4D, band #EBBB9A, deep #B85F3D
+const C = {
+  bg: '#000814', card: '#001d3d', accent: '#00b4d8',
+  light: '#90e0ef', white: '#FFFFFF', grey: '#94A3B8',
+};
+
+// ── Shared drawing helpers ──
+function roundRect(x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function drawGlowCircle(x, y, r, color, blur) {
+  ctx.save();
+  ctx.shadowColor = color;
+  ctx.shadowBlur = blur;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+
+// ═══════════════════════════════════════════════════════════
+// YOUR CONTENT — replace the sections below
+// ═══════════════════════════════════════════════════════════
+
+function drawBackground() {
+  ctx.fillStyle = C.bg;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawTitle() {
+  ctx.fillStyle = C.white;
+  ctx.font = '700 44px "Trebuchet MS", sans-serif';
+  ctx.fillText('Your Poster Title', 60, 120);
+  ctx.fillStyle = C.accent;
+  ctx.font = '400 18px Consolas, monospace';
+  ctx.fillText('Your subtitle / kicker line', 60, 155);
+}
+
+function drawBody() {
+  // Example card with left accent bar
+  const y = 220;
+  ctx.fillStyle = C.card;
+  roundRect(60, y, W - 120, 140, 14);
+  ctx.fill();
+  ctx.fillStyle = C.accent;
+  ctx.fillRect(60, y, 5, 140);
+  ctx.fillStyle = C.white;
+  ctx.font = '600 22px "Trebuchet MS", sans-serif';
+  ctx.fillText('Card heading', 90, y + 45);
+  ctx.fillStyle = C.grey;
+  ctx.font = '400 16px Calibri, sans-serif';
+  ctx.fillText('Card body text — describe one idea per card.', 90, y + 78);
+}
+
+function drawBottom() {
+  ctx.fillStyle = C.grey;
+  ctx.font = '400 14px Calibri, sans-serif';
+  ctx.fillText('Footer / org / date', 60, H - 60);
+}
+
+// ── Render all (keep this composition list in sync with your sections) ──
+function render() {
+  ctx.clearRect(0, 0, W, H);
+  drawBackground();
+  drawTitle();
+  drawBody();
+  drawBottom();
+}
+
+applyScale(1);
+render();
+
+// ═══════════════════════════════════════════════════════════
+// Export engine — do not modify.
+// ═══════════════════════════════════════════════════════════
+const statusEl = document.getElementById('status');
+let statusTimer = null;
+function flashStatus(msg) {
+  statusEl.textContent = msg;
+  statusEl.classList.add('show');
+  clearTimeout(statusTimer);
+  statusTimer = setTimeout(() => statusEl.classList.remove('show'), 2500);
+}
+
+function download(scale) {
+  const tags = { 1: '1x', 2: '2K', 4: '4K' };
+  flashStatus(`Rendering ${tags[scale] || scale + 'x'} …`);
+  // Defer so the status message paints before the heavy render
+  requestAnimationFrame(() => {
+    applyScale(scale);
+    render();
+    const dataURL = canvas.toDataURL('image/png');  // valid PNG: data:image/png;base64,iVBORw0K…
+    const link = document.createElement('a');
+    link.download = `poster_${tags[scale] || scale + 'x'}.png`;
+    link.href = dataURL;
+    link.click();
+    applyScale(1);
+    render();
+    flashStatus(`Saved ${tags[scale]} · back to preview`);
+  });
+}
+</script>
+</body>
+</html>

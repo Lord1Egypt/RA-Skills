@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 用户场景提炼"
+  short_description: "从评论证据提炼真实使用场景"
+  default_prompt: "使用 $amazon-use-case-miner 从 Amazon 评论中提炼真实用户使用场景和限制条件。"

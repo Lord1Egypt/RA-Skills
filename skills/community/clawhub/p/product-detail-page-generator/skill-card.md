@@ -1,44 +1,56 @@
-## Description: <br>
-Generates mobile-optimized H5 product detail pages by guiding an agent through product image upload, AI-assisted page generation, review, publishing, and delivery of a share link and QR code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, updates, and queries mobile product detail pages through the HuanZhuangXiu/Queenshow workflow using product images and descriptions.
 
-## Publisher: <br>
-[xiongwang11](https://clawhub.ai/user/xiongwang11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiongwang11](https://clawhub.ai/user/xiongwang11)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and agent users use this skill to turn product images and descriptions into published mobile product-detail pages on the HuanZhuangXiu platform. It is intended for product showcase and ordering workflows where the user can review generated copy, imagery, and layout before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product images, descriptions, and order details may contain confidential or customer-identifying information. <br>
-Mitigation: Use only assets you are authorized to upload or email, and avoid confidential unreleased products, customer-identifying images, and proprietary campaign details unless approved. <br>
-Risk: The artifact includes public demo credentials for the external platform. <br>
-Mitigation: Use your own platform account for real work and do not rely on shared demo credentials for production or customer data. <br>
-Risk: Generated product copy, scenes, and layouts may be inaccurate or unsuitable for a brand or market. <br>
-Mitigation: Review the generated page, chapter plan, imagery, claims, and share link before publishing or sending to customers. <br>
+## Use Case:
 
+Developers, ecommerce operators, and agents use this skill to create mobile H5 product detail pages from product images and descriptions, then publish or return share links and QR codes for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiongwang11/product-detail-page-generator) <br>
-- [HuanZhuangXiu platform](https://show.3diy.world) <br>
-- [3DIY World website](https://www.3diy.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown-style procedural instructions with published page result details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a share link and QR code after the page is saved and published; generated content should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence) <br>
+Risk: The artifact publishes reusable demo credentials for an external platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a customer-owned account for real work and do not rely on the published demo username or password.
+
+Risk: Uploaded product assets, emailed order details, or published share links may be visible outside the user organization unless the provider supplies clearer privacy and access controls.
+
+Mitigation: Avoid sensitive or unreleased product data, review publication settings, and treat generated share links as externally accessible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiongwang11/skills/product-detail-page-generator)
+- [Publisher profile](https://clawhub.ai/user/xiongwang11)
+- [HuanZhuangXiu platform](https://show.3diy.world)
+- [3DIY World website](https://www.3diy.world)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or text instructions with published share-link and QR-code results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish a mobile H5 product detail page on an external platform.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata, released 2026-06-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

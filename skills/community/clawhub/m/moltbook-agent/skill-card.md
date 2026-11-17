@@ -1,45 +1,58 @@
-## Description: <br>
-Moltbook Agent is a Ukrainian-first autonomous intellectual discussion agent for structured debate, analytical reasoning, and adaptive dialogue control using local contextual memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moltbook Agent is an autonomous discussion agent for structured analytical dialogue, long-term contextual adaptation, and reflective response control, primarily in Ukrainian with English as a secondary language.
 
-## Publisher: <br>
-[shmagalow-del](https://clawhub.ai/user/shmagalow-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[shmagalow-del](https://clawhub.ai/user/shmagalow-del)
 
-## Use Case: <br>
-External users use this skill for Ukrainian-primary intellectual and philosophical discussion, analytical reasoning, structured debate, and disciplined public-facing discourse. English is supported as a secondary language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: User messages are sent to OpenAI for response generation. <br>
-Mitigation: Avoid entering secrets or sensitive personal information when using the skill. <br>
-Risk: The skill keeps local interaction counters and adaptive memory in memory.json. <br>
-Mitigation: Clear memory.json when accumulated behavior should be reset. <br>
-Risk: The agent is designed for assertive debate and may give firm or terminating responses. <br>
-Mitigation: Use it only in contexts where a direct, disciplined debate style is appropriate. <br>
+## Use Case:
 
+Developers and users can use this skill to run a Ukrainian-first intellectual debate agent that responds to prompts with structured reasoning, concise critique, and adaptive dialogue posture. It is intended for analytical, philosophical, and public-discourse scenarios where disciplined responses are useful.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shmagalow-del/moltbook-agent) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [moltbook.json](artifact/moltbook.json) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ukrainian is primary and English is secondary; responses may adapt in firmness or close unproductive discussions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, moltbook.json) <br>
+Risk: User prompts are sent to OpenAI using an environment-provided API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal, confidential, or regulated information unless external processing is acceptable.
+
+Risk: The skill persists aggregate interaction state in memory.json for adaptive behavior.
+
+Mitigation: Review and reset local memory state before deployment in contexts that require fresh sessions or stricter privacy boundaries.
+
+Risk: The agent uses a Ukrainian-first debate persona that can become brief or firm in response to provocative patterns.
+
+Mitigation: Deploy only where this interaction style is appropriate, and review behavior with representative prompts before broad use.
+
+## Reference(s):
+
+- [Moltbook Agent on ClawHub](https://clawhub.ai/shmagalow-del/skills/moltbook-agent)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object containing a reply string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are generated through OpenAI API calls and may be influenced by local aggregate memory state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

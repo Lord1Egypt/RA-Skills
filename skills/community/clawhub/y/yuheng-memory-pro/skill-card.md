@@ -1,42 +1,54 @@
-## Description: <br>
-Memory Pro proactively distills important knowledge from conversations and notes into structured long-term memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Pro actively distills useful knowledge from conversations and notes into structured long-term memory records.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-Developers and agent users use this skill to identify durable preferences, decisions, lessons, project knowledge, and cross-domain insights, then save them as structured long-term memory notes for future sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can proactively store private conversation details in long-term memory. <br>
-Mitigation: Require the agent to show the exact note content and destination before saving, and exclude secrets or sensitive personal details. <br>
-Risk: The skill may commit saved notes to Git without clear user approval. <br>
-Mitigation: Approve each file write and Git commit explicitly before execution. <br>
-Risk: Sensitive or outdated memories may persist after they are no longer appropriate. <br>
-Mitigation: Periodically review, edit, or remove saved notes and related Git history. <br>
+## Use Case:
 
+Developers and agent users use this skill to identify durable preferences, project decisions, lessons, and knowledge from a session and record them into persistent memory notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horizoncove/yuheng-memory-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown notes with optional shell command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update long-term memory files and propose Git archival commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation-derived personal or project information may be written into persistent notes or Git history without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and explicit approval of each proposed memory entry before saving files or creating commits.
+
+Risk: Long-term memory notes may preserve sensitive or outdated details beyond the original session.
+
+Mitigation: Use the skill only in trusted workspaces and periodically review memory files for sensitive, stale, or unnecessary content.
+
+## Reference(s):
+
+- [Memory Pro ClawHub listing](https://clawhub.ai/horizoncove/skills/yuheng-memory-pro)
+- [horizoncove publisher profile](https://clawhub.ai/user/horizoncove)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown notes with optional shell commands for Git archival]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent memory files and propose Git commits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

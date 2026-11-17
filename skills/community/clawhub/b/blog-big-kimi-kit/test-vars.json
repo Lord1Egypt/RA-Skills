@@ -1,0 +1,126 @@
+{
+  "skill_name": "blog-big-kimi-kit",
+  "entry_file": "scripts/blog-big-kimi-kit.py",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "health-check",
+      "command": "python3 scripts/blog-big-kimi-kit.py health-check",
+      "expected": "{\"status\":\"ok\",\"service\":\"blog-api\",\"version\":\"1.0.0\"}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "检查 API 可达性"
+    },
+    {
+      "id": "TC-02",
+      "name": "list-articles",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-articles --page 1 --size 10",
+      "expected": "{\"code\":200,\"data\":[...],\"total\":N,\"page\":1,\"size\":10}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章列表"
+    },
+    {
+      "id": "TC-03",
+      "name": "get-article",
+      "command": "python3 scripts/blog-big-kimi-kit.py get-article --article-id 1",
+      "expected": "{\"code\":200,\"data\":{\"article\":{...},\"comments\":[...]}}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章详情"
+    },
+    {
+      "id": "TC-04",
+      "name": "top-articles",
+      "command": "python3 scripts/blog-big-kimi-kit.py top-articles --limit 5",
+      "expected": "{\"code\":200,\"data\":[{\"id\":...,\"title\":...,\"heat\":...}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询热门文章"
+    },
+    {
+      "id": "TC-05",
+      "name": "list-labels",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-labels",
+      "expected": "{\"code\":200,\"data\":[{\"id\":...,\"lname\":...}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询标签列表"
+    },
+    {
+      "id": "TC-06",
+      "name": "list-users",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-users",
+      "expected": "{\"code\":200,\"data\":[{\"id\":...,\"uname\":...}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询用户列表"
+    },
+    {
+      "id": "TC-07",
+      "name": "list-comments",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-comments --aid 1",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章评论列表"
+    },
+    {
+      "id": "TC-08",
+      "name": "list-messages",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-messages",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询留言列表"
+    },
+    {
+      "id": "TC-09",
+      "name": "list-moods",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-moods",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询说说列表"
+    },
+    {
+      "id": "TC-10",
+      "name": "list-uploads",
+      "command": "python3 scripts/blog-big-kimi-kit.py list-uploads",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询已上传文件列表"
+    },
+    {
+      "id": "TC-11",
+      "name": "capability-list",
+      "command": "python3 scripts/blog-big-kimi-kit.py capability-list",
+      "expected": "{\"capability\":\"capability-list\",\"skill\":\"blog-big-kimi-kit\",\"version\":\"0.1.0\",\"capabilities\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出 skill 所有能力项"
+    },
+    {
+      "id": "TC-12",
+      "name": "create-article",
+      "command": "python3 scripts/blog-big-kimi-kit.py create-article --title test-skill-article --content hello",
+      "expected": "{\"code\":200,\"data\":{\"id\":...}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建文章",
+      "cleanup": "执行 delete-article --article-id {返回的id} 删除刚创建的测试文章"
+    },
+    {
+      "id": "TC-13",
+      "name": "create-label",
+      "command": "python3 scripts/blog-big-kimi-kit.py create-label --lname test-skill-label",
+      "expected": "{\"code\":200,\"data\":{\"id\":...}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建标签"
+    }
+  ],
+  "env_vars_required": ["BLOG_BIG_KIMI_KIT_BASE_URL（API 地址）"],
+  "notes": "凭据和 base_url 从环境变量或 .project-info/ 下 JSON 配置文件获取，不写入此文件"
+}

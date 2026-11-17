@@ -1,42 +1,54 @@
-## Description: <br>
-Create shareable HTML canvases through the gui.new API for visual outputs, live previews, and Mermaid diagrams by posting content and receiving a live URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create shareable HTML canvases and Mermaid diagram links through the gui.new API, returning live URLs with input sync and state persistence.
 
-## Publisher: <br>
-[dylanfeltus](https://clawhub.ai/user/dylanfeltus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dylanfeltus](https://clawhub.ai/user/dylanfeltus)
 
-## Use Case: <br>
-Developers and agents use this skill to publish generated HTML, UI mockups, dashboards, forms, tables, or Mermaid diagrams as shareable gui.new links. It is useful when a user wants a live preview URL for visual or interactive output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML or Mermaid content is uploaded to a third-party hosted service and resulting canvas links may be publicly accessible until they expire. <br>
-Mitigation: Do not send secrets, personal data, confidential business content, sensitive form inputs, or other private material to gui.new. <br>
-Risk: An optional Pro API key may be used for extended expiry and higher limits. <br>
-Mitigation: Protect the API key, avoid exposing it in shared canvases or logs, and use the free tier when elevated limits are not required. <br>
+## Use Case:
 
+Developers and agents use this skill to publish generated HTML, visual tools, dashboards, forms, tables, and Mermaid diagrams as shareable gui.new links.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/dylanfeltus/gui-new) <br>
-- [gui.new documentation](https://gui.new/docs) <br>
-- [gui.new llms.txt](https://gui.new/docs/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash commands, HTML or Mermaid examples, and returned gui.new URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include canvas IDs, edit tokens, expiry metadata, and public share links returned by gui.new.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User-provided HTML or Mermaid content is sent to gui.new and resulting canvases are publicly accessible by URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, private customer data, confidential business content, or material that should not be visible to anyone with the link.
+
+Risk: Hosted canvas links expire and may have free-tier limits on size, edits, and creation rate.
+
+Mitigation: Plan for the documented expiry and rate limits, or use the optional API key only in an appropriate isolated environment.
+
+## Reference(s):
+
+- [gui.new documentation](https://gui.new/docs)
+- [gui.new llms.txt](https://gui.new/docs/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline code and API command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces public gui.new URLs for submitted HTML or Mermaid content; optional API key enables extended expiry and higher limits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

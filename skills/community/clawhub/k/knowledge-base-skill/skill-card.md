@@ -1,42 +1,54 @@
-## Description: <br>
-Multi-business knowledge base with image attachment + OCR support. Manage Q&A databases by business type, auto page splitting, and intelligent search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-business knowledge base with image attachment and OCR support for managing Q&A databases by business type, auto page splitting, and intelligent search.
 
-## Publisher: <br>
-[wwl52](https://clawhub.ai/user/wwl52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwl52](https://clawhub.ai/user/wwl52)
 
-## Use Case: <br>
-Developers, support teams, and operations staff use this skill to maintain local business-specific Q&A knowledge bases, search existing answers, track pending questions, attach screenshots, extract OCR text, and export Markdown documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted business or image names can cause writes or deletes outside the intended knowledge-base directory. <br>
-Mitigation: Use only simple business and image names with no slashes, absolute paths, or '..' segments, and avoid delete commands until path containment and confirmation checks are added. <br>
-Risk: Screenshots and OCR text may preserve passwords, tokens, customer data, or other sensitive information in searchable local files. <br>
-Mitigation: Redact sensitive screenshots before adding them and store only information that is acceptable to keep searchable on the local machine. <br>
-Risk: The security verdict is suspicious, so normal installation could expose local files to unintended modification. <br>
-Mitigation: Review the scripts and security guidance before installing or running the skill. <br>
+## Use Case:
 
+Developers, support teams, and operations teams use this skill to create and query local business-specific Q&A knowledge bases, attach screenshots, extract OCR text, track unanswered questions, view statistics, and export Markdown documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwl52/knowledge-base-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local JSON knowledge-base files, image attachments, OCR-derived text, pending-question records, statistics, and Markdown exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter and server release metadata) <br>
+Risk: File handling can escape intended knowledge-base folders and delete or overwrite user-writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, run the skill in a contained workspace or sandbox, and avoid delete or export commands with untrusted business names, filenames, or output paths.
+
+Risk: Screenshots and OCR text may contain sensitive business or personal information.
+
+Mitigation: Redact sensitive screenshots before attaching them and document local privacy, retention, and cleanup practices for stored images and extracted text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwl52/skills/knowledge-base-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/wwl52)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-style command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create and update local JSON knowledge-base files, copy image attachments, run optional OCR, and export Markdown.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

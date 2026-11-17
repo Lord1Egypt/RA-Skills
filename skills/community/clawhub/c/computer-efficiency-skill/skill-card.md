@@ -1,42 +1,55 @@
-## Description: <br>
-Computer Efficiency Skill helps an agent inspect macOS, Windows, and Linux system health, score performance, suggest cleanup, identify memory-heavy processes, and prepare scheduled health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cross-platform system health monitoring and optimization guidance for macOS, Windows, and Linux, including diagnostics, performance scoring, cleanup planning, memory review, and scheduled check recommendations.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Developers, technical users, and support agents use this skill to generate cross-platform system health reports, review optimization suggestions, and plan confirmed cleanup or process-management actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance could delete useful files or logs if executed without review. <br>
-Mitigation: Require a clear list of items, estimated space, risk level, backup location, and explicit confirmation before any cleanup. <br>
-Risk: Process-management guidance could interrupt user applications or system services. <br>
-Mitigation: Show memory-heavy processes first, distinguish user applications from system processes, and require explicit confirmation before terminating any process. <br>
-Risk: Scheduled health checks could create recurring actions the user did not intend. <br>
-Mitigation: Confirm the schedule, check contents, and alert thresholds before creating or changing recurring checks. <br>
+## Use Case:
 
+Developers and end users can use this skill to have an agent inspect system status, produce health reports, and propose cleanup or process-management steps across macOS, Windows, and Linux. Actions that affect the system should be reviewed and explicitly confirmed before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/computer-efficiency-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands, PowerShell commands, tables, and JSON schedule examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before cleanup, file deletion, process termination, or system configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Cleanup, process termination, or scheduled checks can affect the user's system if executed without clear review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show exactly what it will change and obtain explicit user confirmation before any cleanup, process termination, or scheduled-check setup.
+
+Risk: The skill instructions are primarily in Chinese, which can make review harder for users who do not read Chinese.
+
+Mitigation: Before installation or use, review an accurate translation or have a Chinese-reading reviewer confirm the operational and safety instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/computer-efficiency-skill)
+- [Skill source](artifact/SKILL.md)
+- [MIT License](artifact/LICENSE)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline shell or PowerShell commands and JSON schedule examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include read-only diagnostics, optimization recommendations, and confirmation-gated cleanup or process termination plans.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

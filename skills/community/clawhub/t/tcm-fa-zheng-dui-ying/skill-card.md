@@ -1,40 +1,53 @@
-## Description: <br>
-中医“法证对应”临床思维辅助，帮助用户拆解证候要素、确立治法、选择药物并说明组方逻辑。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Traditional Chinese Medicine fa-zheng-dui-ying reasoning support for decomposing syndrome elements, establishing treatment principles, selecting herbs, and explaining formula modifications.
 
-## Publisher: <br>
-[boxertan](https://clawhub.ai/user/boxertan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boxertan](https://clawhub.ai/user/boxertan)
 
-## Use Case: <br>
-External users and practitioners studying traditional Chinese medicine use this skill to move from formula-syndrome matching toward method-syndrome reasoning, including syndrome-element decomposition, treatment-principle selection, herb comparison, and formula-adjustment rationale. It should be treated as educational reasoning support, not as medical diagnosis or prescribing authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce patient-specific traditional Chinese medicine treatment and herb guidance without medical safety boundaries. <br>
-Mitigation: Use it only for educational TCM reasoning support and verify diagnosis, formulas, dosages, contraindications, pregnancy or pediatric use, chronic-condition use, and herb-drug interactions with a qualified clinician. <br>
-Risk: Users may mistake herb or formula suggestions for licensed medical prescribing. <br>
-Mitigation: Present outputs as reasoning aids and require qualified clinical review before any real-world treatment decision. <br>
+## Use Case:
 
+External users, TCM learners, and clinician-supervised workflows use this skill to structure educational TCM analysis by breaking symptoms into syndrome elements, choosing treatment principles, and comparing herbs or formula adjustments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/boxertan/tcm-fa-zheng-dui-ying) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured Chinese clinical-reasoning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include syndrome-element breakdowns, treatment principles, herb-selection rationale, formula variations, and method summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat individualized herbal formula guidance as medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational TCM analysis and require qualified clinician review before starting, stopping, or modifying treatment.
+
+Risk: Higher-risk users may face greater harm from unsupervised herbal recommendations.
+
+Mitigation: Escalate pregnancy, children, elderly users, chronic illness, urgent symptoms, and medication interactions to qualified medical supervision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boxertan/skills/tcm-fa-zheng-dui-ying)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown structured into syndrome decomposition, treatment principles, herb selection, modifications, and rationale sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational TCM reasoning output; may include individualized herbal formula guidance that requires qualified clinical review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

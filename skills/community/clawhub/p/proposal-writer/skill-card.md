@@ -1,40 +1,54 @@
-## Description: <br>
-Write compelling business proposals that win deals. Structured templates for service proposals, project bids, and partnership pitches with proven conversion frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write compelling business proposals that win deals. Structured templates for service proposals, project bids, and partnership pitches with proven conversion frameworks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Freelancers, agencies, consultants, and service businesses use this skill to draft persuasive proposals for client work, including service proposals, project bids, and partnership pitches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Proposal drafts may include inaccurate claims, pricing, timelines, or terms if the user provides incomplete business details. <br>
-Mitigation: Review all generated proposal content against the actual client brief, scope, legal terms, and delivery capacity before sending. <br>
-Risk: The README links to an external paid context-pack site outside the skill package. <br>
-Mitigation: Review the external context-pack link separately before relying on it or making a purchase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Proposal Writer ClawHub listing](https://clawhub.ai/1kalin/proposal-writer) <br>
-- [Industry context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Freelancers, agencies, consultants, and service businesses use this skill to draft client-ready business, project, service, and partnership proposals with clear structure, pricing, timelines, deliverables, and next steps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-ready proposal drafts and writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ready-to-send proposal structure with pricing, timeline, deliverables, and next-step sections; user review is still required before client delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Proposal drafts may include persuasive framing, urgency, ROI, pricing, or proof claims that are inaccurate for the user's business or client context.
+
+Mitigation: Review and verify all factual claims, pricing logic, ROI figures, timelines, testimonials, and guarantees before sending a proposal.
+
+Risk: The README links to an external paid resource that is outside the skill artifact.
+
+Mitigation: Evaluate external resources separately before purchasing or relying on them; they are not required for the prompt-only skill to operate.
+
+## Reference(s):
+
+- [Proposal Writer on ClawHub](https://clawhub.ai/1kalin/skills/proposal-writer)
+- [Publisher profile: 1kalin](https://clawhub.ai/user/1kalin)
+- [Industry context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown proposal drafts and proposal-writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Client-ready proposal text intended for review before delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

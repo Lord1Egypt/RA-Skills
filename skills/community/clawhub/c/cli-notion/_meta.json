@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "cli-notion",
+  "name": "cli-notion",
   "version": "1.0.0",
-  "publishedAt": 1775023537519
+  "description": "CLI interface for Notion - Make your workspace agent-native",
+  "author": "CLI Skill Factory",
+  "category": "productivity",
+  "price": 68,
+  "currency": "CNY",
+  "license": "commercial",
+  "python_version": ">=3.10",
+  "tags": ["notion", "cli", "automation", "ai", "agent", "workspace"],
+  "repository": "https://github.com/openclaw/workspace",
+  "created_at": "2026-04-01T14:15:00+08:00"
 }

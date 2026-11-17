@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "checker": "check_table_claims.py",
+  "contract": "case-good.json",
+  "mutants": [
+    {
+      "id": "neg-raw",
+      "class": "unknown-shown-as-raw",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A02"
+          },
+          "column": "quantity",
+          "value": "-3"
+        }
+      ]
+    },
+    {
+      "id": "zero",
+      "class": "unknown-shown-as-zero",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A02"
+          },
+          "column": "quantity",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "qty-blank-reliable",
+      "class": "value-dropped",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A07"
+          },
+          "column": "quantity",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "day-dropped",
+      "class": "value-dropped",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A07"
+          },
+          "column": "day",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "swap",
+      "class": "order-swapped",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "swap_rows",
+          "a": {
+            "id": "A07"
+          },
+          "b": {
+            "id": "A08"
+          }
+        }
+      ]
+    },
+    {
+      "id": "drop-row",
+      "class": "row-dropped",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "delete_row",
+          "where": {
+            "id": "A09"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-group",
+      "class": "group-wrong",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A01"
+          },
+          "column": "group",
+          "value": "on-or-after"
+        }
+      ]
+    },
+    {
+      "id": "bad-date-raw",
+      "class": "invalid-date-shown-as-raw",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A10"
+          },
+          "column": "day",
+          "value": "2030-13-45"
+        }
+      ]
+    },
+    {
+      "id": "valid-to-unknown",
+      "class": "valid-value-unknownified",
+      "file": "actual-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A07"
+          },
+          "column": "quantity",
+          "value": "未知"
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    "table-delivery"
+  ]
+}

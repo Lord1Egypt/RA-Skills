@@ -1,6 +1,10 @@
 ---
 name: designing-tuis
-description: Design, replicate, or iterate terminal user interfaces from screenshots, descriptions, layout sketches, or existing .tui files. Generate framework code (BubbleTea/Ink/Textual) directly or via .tui Schema intermediate representation.
+description: Design, replicate, or iterate terminal user interfaces from screenshots, descriptions, layout sketches, or existing .tui files. Generate framework code (BubbleTea/Ink/Textual/Ratatui) directly or via .tui Schema intermediate representation.
+license: MIT-0
+metadata:
+  openclaw:
+    homepage: https://github.com/albert-lv/designing-tuis
 ---
 
 # Designing TUIs
@@ -23,7 +27,7 @@ Preferred for most tasks. TUI's simplicity (no Z-axis overlap, ~20 component typ
 ### Advanced Route (Screenshot → Schema → Code)
 
 Use when:
-- **Multi-framework output**: one `.tui` Schema generates BubbleTea (Go) + Ink (JS) + Textual (Python) simultaneously
+- **Multi-framework output**: one `.tui` Schema generates BubbleTea (Go) + Ink (JS) + Textual (Python) + Ratatui (Rust) simultaneously
 - **Design asset persistence**: team needs versioned, editable TUI design files
 - **Cross-role collaboration**: designers produce `.tui` files, developers consume code
 - **Batch generation**: CI/CD generates multi-platform code from `.tui` source

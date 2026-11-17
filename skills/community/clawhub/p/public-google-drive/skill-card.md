@@ -1,41 +1,57 @@
-## Description: <br>
-Create public Google Docs and Google Sheets through Memyard without requiring Google OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create public Google Docs and Google Sheets in Memyard's workspace without requiring Google OAuth.
 
-## Publisher: <br>
-[memyard](https://clawhub.ai/user/memyard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memyard](https://clawhub.ai/user/memyard)
 
-## Use Case: <br>
-External users and agent developers use this skill to create, append to, inspect, and share public Google Docs or Sheets hosted in Memyard's workspace without a Google sign-in flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents created through this skill are public to anyone with the link. <br>
-Mitigation: Do not use the skill for secrets, confidential business information, regulated personal data, or private notes unless public link viewing is acceptable. <br>
-Risk: The skill stores a local Memyard service key in the user's home directory. <br>
-Mitigation: Keep the per-user config file protected and remove ~/.memyard/agent_config.json if the service is no longer used. <br>
+## Use Case:
 
+External users and agents use this skill to create, update, and list public Google Docs or Sheets through Memyard without a Google sign-in flow.
 
-## Reference(s): <br>
-- [ClawHub listing: Public Google Drive](https://clawhub.ai/memyard/public-google-drive) <br>
-- [Memyard Drive API base URL](https://api.memyard.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates public, link-viewable document or spreadsheet content through a plan-then-execute workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documents created through this skill are public to anyone with the share link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for content where public link-based viewing is acceptable, and avoid private, regulated, or confidential material unless that sharing model is approved.
+
+Risk: Document content is sent to Memyard for creation and updates.
+
+Mitigation: Review content sensitivity before using the skill and avoid sending data that should not be processed by Memyard.
+
+Risk: The skill stores a local agent key for future requests.
+
+Mitigation: Protect the per-user config file and delete the stored key if the skill is no longer used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/memyard/skills/public-google-drive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API payloads, shell command examples, and public share URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates documents with anyone-with-link viewer access and stores an agent key in a per-user local config file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

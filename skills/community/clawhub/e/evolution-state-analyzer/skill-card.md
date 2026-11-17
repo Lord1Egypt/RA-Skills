@@ -1,39 +1,51 @@
-## Description: <br>
-Analyzes the evolution memory graph for stagnation patterns, recurring failures, and success plateaus. Generates actionable insights to guide future evolution cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes the evolution memory graph for stagnation patterns, recurring failures, and success plateaus. Generates actionable insights to guide future evolution cycles.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze an OpenClaw evolution memory graph, identify stagnation or recurring failure patterns, and generate recommendations for future evolution cycles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local evolution memory graph from its default path or from a caller-supplied path. <br>
-Mitigation: Only pass file paths that are intended for analysis and avoid exposing unrelated local files. <br>
-Risk: The generated recommendations can be mistaken for commands or authoritative decisions. <br>
-Mitigation: Treat recommendations as reviewable guidance and confirm them before changing future evolution cycles. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/evolution-state-analyzer) <br>
+## Use Case:
+
+Developers and engineers use this skill to analyze evolution memory graph data for stagnation, recurring failure causes, gene efficacy, and trend signals that can guide future evolution cycles.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The analyzer can be pointed at any readable JSONL file and may access evolution-memory data outside the intended scope.
+
+Mitigation: Constrain graphPath to an approved memory directory before exposing the skill in shared or untrusted environments.
+
+Risk: The analyzer has no file-size, line-length, event-count, or timeout limits.
+
+Mitigation: Add input size and execution limits before using the skill with untrusted or very large memory graph files.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cycle counts, success rates, stagnation status, top genes, top failures, and recommendations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, server release evidence) <br>
+**Output Type(s):** [analysis, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a memory_graph.jsonl file and returns cycle counts, success rates, stagnation signals, top genes, top failures, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

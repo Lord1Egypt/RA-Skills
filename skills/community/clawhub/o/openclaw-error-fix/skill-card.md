@@ -1,44 +1,61 @@
-## Description: <br>
-OpenClaw 常见错误修复 - 解决安装/配置/运行问题。适合：遇到错误的用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw troubleshooting guidance for common installation, configuration, runtime, API key, and platform-connection errors.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to troubleshoot common installation, configuration, runtime, and platform connection errors with concise remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting commands may delete configuration, alter package manager settings, install software, or terminate processes. <br>
-Mitigation: Review each command before running it, back up configuration files, verify remote installer URLs, and prefer graceful process termination before using forceful kill commands. <br>
-Risk: API keys and bot tokens could be exposed while checking credentials or requesting support. <br>
-Mitigation: Keep secrets out of logs, screenshots, chats, and support messages; rotate any credential that may have been shared. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to diagnose and resolve common setup, configuration, runtime, network, and messaging-platform connection failures.
 
-## Reference(s): <br>
-- [Openclaw Error Fix on ClawHub](https://clawhub.ai/yang1002378395-cmyk/openclaw-error-fix) <br>
-- [NodeSource Node.js 20 setup script](https://deb.nodesource.com/setup_20.x) <br>
-- [DeepSeek models API endpoint](https://api.deepseek.com/v1/models) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
-- [Discord Developer Portal](https://discord.com/developers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only troubleshooting content; users choose which commands apply to their environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Remote setup scripts and privileged shell commands can make broad system changes if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download and verify remote setup scripts before execution, and avoid sudo -E unless the user has confirmed it is necessary.
+
+Risk: Troubleshooting steps can delete or persistently change local OpenClaw, npm registry, or proxy configuration.
+
+Mitigation: Back up ~/.openclaw/config.yaml and review npm registry, prefix, and proxy changes before applying them.
+
+Risk: Force-killing a process can interrupt unrelated work if the process ID is incorrect.
+
+Mitigation: Confirm the process using the target port and try graceful termination before using kill -9.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-error-fix)
+- [NodeSource Node.js 20 setup](https://deb.nodesource.com/setup_20.x)
+- [DeepSeek models API](https://api.deepseek.com/v1/models)
+- [Telegram BotFather](https://t.me/BotFather)
+- [Discord Developer Portal](https://discord.com/developers)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human review is recommended before running commands that change system, npm, proxy, process, or OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

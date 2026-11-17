@@ -1,40 +1,58 @@
-## Description: <br>
-You are an agent generation specialist with expertise in dynamic agent creation, template systems, code generation, and AI system design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Generator helps with dynamic agent generation, template systems, code generation, prompt engineering, domain-specific language design, and agent capability composition.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, compose, and document new AI agents from requirements, templates, DSLs, capability maps, and generated code examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requirements, examples, or generated prompts may contain sensitive information that could be sent to a model provider. <br>
-Mitigation: Remove secrets and confidential details before using model-backed examples; keep API keys in environment variables or a secret manager. <br>
-Risk: Generated agents, prompts, or code may be incomplete, incorrect, or unsafe to run without review. <br>
-Mitigation: Review generated agents and code before execution, then validate and test them in a controlled environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, template, generate, validate, and document specialized AI agents from requirements, reusable patterns, and capability definitions.
 
-## Reference(s): <br>
-- [Agent Generator Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with structured sections and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include template libraries, DSL syntax, validation and testing patterns, performance benchmark guidance, and best practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Requirements or examples may be shared with a remote model during agent-generation workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive requirements before using remote model examples or integrations.
+
+Risk: Generated prompts and tool declarations may be influenced by model output without sufficient safeguards.
+
+Mitigation: Use schema validation, a server-controlled tool allowlist, and human approval before activating generated agents.
+
+Risk: Automatically granting generated agents requested tools can expand their effective permissions.
+
+Mitigation: Review each generated agent before deployment and grant only the minimum tools required for the intended task.
+
+## Reference(s):
+
+- [Agent Generator examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/agent-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with code examples and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated agent prompts, template patterns, DSL examples, validation guidance, testing recommendations, and benchmark suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

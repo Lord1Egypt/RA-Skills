@@ -1,39 +1,53 @@
-## Description: <br>
-AI 3D model generation for text-to-3D and image-to-3D workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 3D model workflows from text prompts or images, with support for model optimization, material generation, and batch processing.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and creative teams use this skill to guide 3D asset generation from text or images, with supporting workflows for model optimization, material generation, and batch processing. The documented scenarios include game development, VR/AR, architecture, and product design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation steps run external Python code not included in the reviewed artifact. <br>
-Mitigation: Inspect the referenced repository, requirements.txt, and app.py before installing, and run the application in a virtual environment or container. <br>
+## Use Case:
 
+Developers and creators can use this skill to set up and reason about text-to-3D, image-to-3D, model optimization, material generation, and batch 3D asset workflows for games, VR/AR, architecture, and product design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-3d-model-generation) <br>
-- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-3d-model-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external Python application files that were not included in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: The install flow asks users to run code from a mutable remote GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependency list before installing, prefer a pinned reviewed commit, and run the skill in an isolated environment without sensitive files or credentials.
+
+Risk: Private images or model assets could be exposed to unclear provider processing, storage, or retention practices.
+
+Mitigation: Do not upload private images or model assets unless the provider documents acceptable processing, storage, and retention terms.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-3d-model-generation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

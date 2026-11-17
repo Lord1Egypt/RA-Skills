@@ -1,43 +1,57 @@
-## Description: <br>
-Agent-to-agent cloud service: deploys and runs your apps and services - domains, logs, real status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-to-agent cloud service: deploys and runs your apps and services -- domains, logs, real status.
 
-## Publisher: <br>
-[nyxory](https://clawhub.ai/user/nyxory) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyxory](https://clawhub.ai/user/nyxory)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect an agent to nyxory, deploy Git repositories or long-running services to live URLs, manage domains and secrets, inspect logs, and check deployment status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connector can grant broad, persistent cloud deployment access across projects. <br>
-Mitigation: Review OAuth or API-token permissions before installation and prefer least-privilege, non-production, or tightly scoped projects where possible. <br>
-Risk: Build logs, runtime logs, and configured secrets may contain sensitive information. <br>
-Mitigation: Treat logs and secrets as sensitive, restrict who can access the connector, and avoid exposing credentials through shared agent sessions. <br>
-Risk: Persistent MCP access may continue to provide deployment authority after initial setup. <br>
-Mitigation: Install only when persistent deployment access is acceptable, periodically review access, and revoke credentials when the connector is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect an agent to Nyxory's MCP service, deploy Git repositories to live URLs, manage custom domains and secrets, inspect logs, and check deployment status.
 
-## Reference(s): <br>
-- [nyxory homepage](https://nyxory.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/nyxory/nyxory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide OAuth or API-token based MCP setup, cloud deployment operations, domain configuration, secret management, log review, and status checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill connects the agent to a persistent third-party MCP service with authority over deployments, secrets, domains, and logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming trust in Nyxory and prefer project-scoped configuration where available.
+
+Risk: OAuth or API-token access may expose repository, deployment, secret, domain, or log capabilities beyond the immediate task.
+
+Mitigation: Verify requested scopes, use the narrowest available token or authorization, and confirm revocation procedures before use.
+
+Risk: Production deployments, domain changes, secret changes, and log access can affect live services or expose sensitive information.
+
+Mitigation: Require explicit confirmation before those operations and review the target project, environment, and domain before proceeding.
+
+## Reference(s):
+
+- [Nyxory homepage](https://nyxory.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the agent to configure a third-party MCP service that uses OAuth or an API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

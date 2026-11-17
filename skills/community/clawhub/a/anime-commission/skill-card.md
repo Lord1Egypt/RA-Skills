@@ -1,40 +1,49 @@
-## Description: <br>
-Guides agents in planning and improving an anime art commission business, including positioning, MVP validation, channels, monetization, delivery, compliance, and weekly review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language operational guidance for monetizing anime-style art commissions through positioning, channel testing, delivery workflows, metrics, and compliance checks.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External creators, artists, and small teams use this skill to structure an anime art commission offering, validate acquisition channels, track monetization metrics, and standardize delivery. It is most useful when the agent is asked for practical business planning guidance rather than execution access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business, legal, tax, copyright, and platform-policy guidance may be incomplete or become outdated. <br>
-Mitigation: Verify those details against current platform policies and qualified legal, tax, or business sources before using the guidance commercially. <br>
-Risk: Anime art commission workflows can create copyright, licensing, scope, delivery, and payment disputes. <br>
-Mitigation: Use clear written copyright and delivery terms, contracts or invoices where appropriate, and avoid false promotion, artificial traffic, or infringing work. <br>
+## Use Case:
 
+External users can use this skill as practical planning guidance for starting or improving an anime-style illustration commission business, including MVP validation, customer acquisition, delivery process, and weekly review habits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/anime-commission) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with bullets, checklists, and planning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not request device, account, credential, or code execution access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may act on monetization guidance without confirming applicable legal, copyright, tax, or platform-policy requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local legal obligations, copyright ownership terms, tax requirements, and platform policies before using the guidance operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/anime-commission)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational business-planning guidance; no code execution or privileged behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

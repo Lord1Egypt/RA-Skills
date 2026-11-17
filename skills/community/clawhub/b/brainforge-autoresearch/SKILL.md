@@ -1,12 +1,12 @@
 ---
-name: brainforge-autoresearch
+name: brainharness-autoresearch
 description: >-
   Use when user wants to optimize, improve, benchmark, or evaluate a skill's prompt.
   Triggers on "optimize skill", "improve skill prompt", "benchmark skill", "eval skill",
   "run autoresearch", "tune prompt", "prompt optimization", "skill evaluation",
   "A/B test prompt", "find best prompt", "auto-improve skill".
   Runs automated prompt experiments using the Karpathy autoresearch pattern.
-version: 0.2.5
+version: 0.3.0
 metadata:
   author: zning1994
   openclaw:
@@ -22,15 +22,15 @@ metadata:
     optionalEnv:
       - OPENAI_BASE_URL
       - OPENAI_API_BASE
-    homepage: https://github.com/zning1994/brainforge-autoresearch
+    homepage: https://github.com/zning1994/brainharness-autoresearch
     os:
       - macos
       - linux
 ---
 
-# brainforge-autoresearch
+# brainharness-autoresearch
 
-> Previously published as `autoresearch` / `openclaw-autoresearch`. Renamed for the brainforge marketplace rollout — functionality unchanged.
+> Previously published as `brainforge-autoresearch`, with earlier names `autoresearch` / `openclaw-autoresearch`. Renamed for the BrainHarness marketplace; functionality unchanged.
 
 Autonomous prompt optimization for AI agent skills. Runs controlled experiments to find better prompt variants using the [Karpathy autoresearch pattern](https://github.com/karpathy/autoresearch): generate hypothesis, mutate prompt, evaluate, repeat.
 

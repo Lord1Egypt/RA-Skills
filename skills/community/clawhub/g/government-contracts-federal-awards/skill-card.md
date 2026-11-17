@@ -1,41 +1,54 @@
-## Description: <br>
-Government Contracts & Federal Awards helps agents look up U.S. federal contract awards by company or keyword, identify recent winners, and surface GovCon sales-intent signals through paid HTTPS endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Government contract and federal award data for AI agents to find US federal awards by company or keyword, identify recent winners, and surface GovCon sales-intent signals.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-Agents, analysts, and sales teams use this skill to research U.S. government contractors, find procurement opportunities by topic, and identify recent federal award winners for lead qualification or competitor tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-initiated paid x402 API lookups can incur repeated USDC charges. <br>
-Mitigation: Use wallet or spending controls and review lookup frequency before enabling frequent or automated searches. <br>
-Risk: Company names or search keywords are sent to GoCreative when the endpoints are called. <br>
-Mitigation: Avoid submitting sensitive internal terms unless that data sharing is approved for the user's environment. <br>
+## Use Case:
 
+External agents and business development or research users use this skill to look up US federal contract awards by company or keyword, find recent winners, and qualify B2G leads or competitors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/colinhughes2121/government-contracts-federal-awards) <br>
-- [GoCreative API](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [JSON responses from HTTPS GET endpoints, typically summarized by the agent in text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid x402 requests may send company names or search keywords to GoCreative and incur per-call USDC charges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Paid API calls may trigger USDC wallet payments without clear per-call confirmation or spend limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wallet controls before installing, require per-call confirmation where available, and set spend limits before use.
+
+Risk: Queries may disclose confidential client names, internal strategy keywords, or sensitive lead lists to the provider.
+
+Mitigation: Avoid sensitive queries unless the data is approved for sharing with the provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/government-contracts-federal-awards)
+- [GoCreative API](https://api.gocreativeai.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [JSON responses from HTTPS GET endpoints with concise agent-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid per call in USDC via x402; listed endpoints are approximately $0.05 per call.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

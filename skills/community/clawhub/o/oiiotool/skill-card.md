@@ -1,44 +1,56 @@
-## Description: <br>
-Image processing with the oiiotool CLI for format conversion, OCIO/ACES color management, exposure adjustment, resizing and cropping, compositing, EXR sequence-to-video workflows, texture baking, image comparison, and batch or sequence operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image processing with the oiiotool CLI for format conversion, OCIO/ACES color management, exposure adjustment, resizing and cropping, compositing, EXR sequence video conversion, texture baking, image comparison, and batch image operations.
 
-## Publisher: <br>
-[oumad](https://clawhub.ai/user/oumad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oumad](https://clawhub.ai/user/oumad)
 
-## Use Case: <br>
-Developers, VFX artists, CGI teams, game developers, and photography workflows use this skill to generate oiiotool, OpenColorIO, and ffmpeg commands for local image processing, HDR review, color transforms, sequence conversion, and inspection tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples and helper scripts can overwrite output files when paths point at existing assets. <br>
-Mitigation: Use explicit output directories, avoid important existing files as outputs, and review target paths before running commands. <br>
-Risk: Metadata manipulation commands can alter or remove image metadata. <br>
-Mitigation: Review metadata commands before execution and keep source files or backups when metadata must be preserved. <br>
-Risk: The workflow depends on local OpenImageIO, oiiotool, ffmpeg, and Python tooling. <br>
-Mitigation: Install required tools from trusted sources and verify local binaries before using the generated commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenImageIO Documentation](https://docs.openimageio.org) <br>
-- [ACES Display Transforms Reference](references/aces-displays.md) <br>
-- [Format Reference](references/formats.md) <br>
-- [Usage Examples](references/usage.md) <br>
+## Use Case:
 
+Developers, VFX and CGI artists, and pipeline engineers use this skill to produce oiiotool commands and workflow guidance for converting, inspecting, color-managing, comparing, and batch-processing image files and EXR sequences.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, command options, color-space names, format settings, and helper-script invocations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local image-processing and video commands can overwrite outputs or produce lossy deliverables if paths, codecs, or compression settings are wrong.
+
+Mitigation: Check output paths before running helpers, keep originals, and review lossy compression settings before writing final assets.
+
+Risk: Results can vary across machines when command-line tools or Python packages are installed without pinned versions.
+
+Mitigation: Install in a virtual environment and pin OpenImageIO and Pillow when reproducible output is required.
+
+## Reference(s):
+
+- [OpenImageIO Documentation](https://docs.openimageio.org)
+- [ClawHub Oiiotool Skill Page](https://clawhub.ai/oumad/skills/oiiotool)
+- [ACES Display Transforms Reference](artifact/references/aces-displays.md)
+- [Image Format Reference](artifact/references/formats.md)
+- [oiiotool Usage Examples](artifact/references/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may depend on local oiiotool, ffmpeg, OpenColorIO, OpenImageIO, and Pillow versions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact metadata version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

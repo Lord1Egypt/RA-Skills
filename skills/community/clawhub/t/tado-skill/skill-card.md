@@ -1,43 +1,59 @@
-## Description: <br>
-Interact with Tado smart thermostat. Use for reading temperature, setting heating with auto-revert, viewing energy usage, and controlling zones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Tado smart thermostat. Use for reading temperature, setting heating with auto-revert, viewing energy usage, and controlling zones.
 
-## Publisher: <br>
-[davek-dev](https://clawhub.ai/user/davek-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davek-dev](https://clawhub.ai/user/davek-dev)
 
-## Use Case: <br>
-External users and developers use this skill to authenticate with Tado, inspect thermostat zones, read temperatures and energy usage, and send zone overlay commands such as timed or schedule-bound heating changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tado access and refresh tokens can control the user's thermostat account if exposed. <br>
-Mitigation: Store tokens only in trusted environment variables or secret storage, do not commit them, and revoke the Tado authorization when the skill is no longer needed. <br>
-Risk: Temperature override commands can change real heating behavior for a home and zone. <br>
-Mitigation: Confirm the home, zone, temperature, and duration before execution, and prefer timer or schedule-bound overrides over permanent manual overrides. <br>
+## Use Case:
 
+External users and developers use this skill to operate a Tado smart thermostat through Tado API examples for authentication, zone status, temperature overrides, override clearing, and energy usage checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davek-dev/tado-skill) <br>
-- [Tado OAuth device authorization endpoint](https://login.tado.com/oauth2/device_authorize) <br>
-- [Tado OAuth token endpoint](https://login.tado.com/oauth2/token) <br>
-- [Tado account API endpoint](https://my.tado.com/api/v2/me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, Python examples, and JSON request and response snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that call Tado OAuth and thermostat APIs; users supply tokens, home IDs, and zone IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: Tado access and refresh tokens can expose thermostat account access if stored in logs, shell history, shared terminals, or project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep TADO_TOKEN and TADO_REFRESH_TOKEN out of logs, shell history, shared terminals, and project files, and revoke or rotate tokens if exposed.
+
+Risk: Temperature changes can affect the user's home until the selected termination condition is reached or cleared.
+
+Mitigation: Before executing a heating change, verify the home, zone, target temperature, and termination type; prefer timer-based changes unless a lasting manual override is intended.
+
+## Reference(s):
+
+- [Tado OAuth2 device authorization endpoint](https://login.tado.com/oauth2/device_authorize)
+- [Tado OAuth2 token endpoint](https://login.tado.com/oauth2/token)
+- [Tado current user API endpoint](https://my.tado.com/api/v2/me)
+- [Tado zones API endpoint](https://my.tado.com/api/v2/homes/$TADO_HOME_ID/zones)
+- [Tado zone state API endpoint](https://my.tado.com/api/v2/homes/$TADO_HOME_ID/zones/$ZONE_ID/state)
+- [Tado zone overlay API endpoint](https://my.tado.com/api/v2/homes/$TADO_HOME_ID/zones/$ZONE_ID/overlay)
+- [Tado energy usage API endpoint](https://my.tado.com/api/v2/homes/$TADO_HOME_ID/energyUsage)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with bash, JSON, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Tado OAuth tokens, refresh token, home ID, and zone ID values before API calls can run.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

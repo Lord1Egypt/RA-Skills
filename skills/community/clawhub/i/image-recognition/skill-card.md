@@ -1,43 +1,62 @@
-## Description: <br>
-Recognizes image content, extracts OCR text, identifies objects and scenes, and analyzes screenshots by sending images to a configured vision model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Recognition helps an agent analyze image files for OCR, object recognition, scene analysis, and screenshot understanding by sending image content and a user prompt to a configured vision model API.
 
-## Publisher: <br>
-[wangning823-arch](https://clawhub.ai/user/wangning823-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangning823-arch](https://clawhub.ai/user/wangning823-arch)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run OCR, object recognition, scene analysis, and screenshot analysis on static images from an agent workflow, especially on Android and Termux systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may be uploaded to a remote vision-model provider, and the artifact includes an embedded fallback API key. <br>
-Mitigation: Configure a trusted API key explicitly, remove or distrust the fallback key, and process only images approved for that provider. <br>
-Risk: Screenshots, documents, QR codes, account pages, or other images can contain private or credential-like data. <br>
-Mitigation: Avoid private or credential-containing images unless the user accepts the upload path and the remote provider's data handling terms. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect local images, screenshots, documents, and other static image files, returning extracted text or natural-language visual analysis. It is especially oriented toward Android/Termux and OpenClaw environments that need Python-based image recognition without native image-processing dependencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangning823-arch/image-recognition) <br>
-- [Aliyun Model Studio documentation](https://help.aliyun.com/zh/model-studio/) <br>
-- [Aliyun Model Studio pricing](https://help.aliyun.com/zh/model-studio/pricing) <br>
-- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Analysis] <br>
-**Output Format:** [Plain text returned from a Python CLI or function call] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit error strings for missing files, API failures, network timeouts, or provider errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill uploads image content and prompts to remote model APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive screenshots, IDs, private documents, and business data unless the user accepts that external transfer.
+
+Risk: The artifact contains an embedded shared API key fallback.
+
+Mitigation: Remove and revoke the embedded key, then require users to configure their own key through the environment variable read by the code.
+
+Risk: Runtime dependencies are installed from Python packages.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions before using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangning823-arch/skills/image-recognition)
+- [Publisher Profile](https://clawhub.ai/user/wangning823-arch)
+- [DashScope Model Studio](https://help.aliyun.com/zh/model-studio/)
+- [DashScope Pricing](https://help.aliyun.com/zh/model-studio/pricing)
+- [OpenRouter Chat Completions Endpoint](https://openrouter.ai/api/v1/chat/completions)
+- [OpenAI-Compatible Chat Completions Endpoint](https://api.openai.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown guidance, with optional shell commands, Python snippets, configuration examples, and model API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recognition requests use a single image path plus an optional question prompt and can return error strings for missing files, network failures, timeouts, or non-200 API responses.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Direct MyAnimeList lookup tool. Bypasses Jikan/API issues by using MAL's internal endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Direct MyAnimeList lookup tool. Bypasses Jikan/API issues by using MAL's internal endpoints.
 
-## Publisher: <br>
-[zun43d](https://clawhub.ai/user/zun43d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zun43d](https://clawhub.ai/user/zun43d)
 
-## Use Case: <br>
-Anime and manga users, list maintainers, and agents use this skill to search MyAnimeList entries, inspect top or seasonal charts, and retrieve public anime or manga lists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lookup terms and usernames may be sent to MyAnimeList during searches, list retrieval, chart lookups, or seasonal queries. <br>
-Mitigation: Avoid entering sensitive search text, private identifiers, or usernames that should not be shared with MyAnimeList. <br>
-Risk: Results depend on MyAnimeList internal endpoints and may be unavailable or change without notice. <br>
-Mitigation: Treat lookup results as external web data and verify important results against MyAnimeList before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zun43d/mal-lookup) <br>
+## Use Case:
 
+Developers and external users use this skill to look up anime, manga, seasonal charts, top airing anime, and public MyAnimeList user lists from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and text results from MyAnimeList lookups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, grep, and awk; lookup terms and usernames may be sent to MyAnimeList.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact frontmatter is 1.3.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may query MyAnimeList internal endpoints rather than an official API, so lookup behavior can change if MyAnimeList changes those endpoints.
+
+Mitigation: Review generated commands before execution and verify important results against MyAnimeList when endpoint behavior changes.
+
+Risk: The skill performs disclosed network lookups to retrieve anime, manga, chart, and user-list data.
+
+Mitigation: Use it only where outbound requests to MyAnimeList are acceptable under the deployment environment's network and data policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zun43d/skills/mal-lookup)
+- [Publisher profile](https://clawhub.ai/user/zun43d)
+- [MyAnimeList](https://myanimelist.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, grep, and awk; performs network lookups against MyAnimeList endpoints.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

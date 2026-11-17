@@ -1,0 +1,54 @@
+/* 动效规范 CSS 模板 —— 配合 scripts/lint_css_keyframes.py 自检 0 错误。
+   要点：时长/缓动走 CSS 变量 token；关键帧起止都用 transform/opacity；
+   无 top/left 位移；无重名 @keyframes；animation 引用均存在。 */
+
+:root {
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 240ms;
+  --motion-duration-slow: 400ms;
+  --motion-duration-enter: 600ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 微交互：hover 上移（transform，非 top） */
+.btn {
+  transition: transform var(--motion-duration-fast) var(--ease-standard);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* 入场：淡入 + 上移（起止均 transform + opacity） */
+.fade-in {
+  animation: fadeIn var(--motion-duration-enter) var(--ease-out) both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 侧滑入场：0%/100% 双端 transform+opacity */
+.slide-in {
+  animation: slideIn var(--motion-duration-slow) var(--ease-out) both;
+}
+@keyframes slideIn {
+  0%   { opacity: 0; transform: translateX(-16px); }
+  60%  { opacity: 1; transform: translateX(4px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* 模态弹出：scale + opacity（GPU 友好） */
+.modal {
+  animation: modalPop var(--motion-duration-slow) var(--ease-out) both;
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* 可访问性降级：reduced-motion 下近乎关闭 */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .slide-in, .modal { animation-duration: 0.01ms; }
+  .btn { transition-duration: 0.01ms; }
+}

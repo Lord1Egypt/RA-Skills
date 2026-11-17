@@ -1,44 +1,53 @@
-## Description: <br>
-抓取用户可访问的微信公众号文章，将正文保存为 Markdown，并保留渲染后的 HTML 快照。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archives accessible WeChat public account articles by converting loaded article pages into clean Markdown and saving rendered HTML snapshots.
 
-## Publisher: <br>
-[liuhedev](https://clawhub.ai/user/liuhedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhedev](https://clawhub.ai/user/liuhedev)
 
-## Use Case: <br>
-Developers, knowledge workers, and content archivists use this skill to convert WeChat public-account articles they can access into local Markdown, HTML snapshots, and optional image files for personal archiving, offline reading, or authorized content reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional image downloading may send Referer headers and domain-matching browser cookies while fetching article images. <br>
-Mitigation: Use a dedicated low-privilege browser profile or session, enable image downloading only when needed, and avoid using accounts or profiles with broader access than the article requires. <br>
-Risk: Generated Markdown, HTML snapshots, and local images may contain login-gated or copyrighted article content. <br>
-Mitigation: Store outputs privately unless redistribution is authorized, and confirm that saved content complies with the publisher's rights and applicable platform terms. <br>
-Risk: WeChat page structure changes or lazy-loaded content can lead to incomplete or imperfect extraction. <br>
-Mitigation: Use headed wait mode for pages that require login or manual loading, then review the captured HTML snapshot and generated Markdown before relying on the archive. <br>
+## Use Case:
 
+Developers, archivists, and knowledge workers use this skill to save WeChat public account articles they can lawfully access as local Markdown, rendered HTML snapshots, and optional local image assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuhedev/lh-wechat-to-markdown) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, html, files, shell commands, guidance] <br>
-**Output Format:** [Markdown files with YAML front matter, rendered HTML snapshots, optional local image files, and terminal status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When image downloading is enabled, image links may be rewritten to local relative paths under an images directory; failed image downloads keep their original URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can open and save arbitrary URLs even though it is framed for WeChat articles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted WeChat article URLs and avoid passing arbitrary or third-party supplied links.
+
+Risk: The skill opens web pages through Playwright and writes local Markdown, HTML, and optional image snapshots.
+
+Mitigation: Run it in an isolated environment when handling untrusted links or content, and review output before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuhedev/skills/lh-wechat-to-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with YAML front matter, rendered HTML snapshots, optional local image files, and concise command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to a dated local directory by default, with optional image localization into an images subdirectory.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

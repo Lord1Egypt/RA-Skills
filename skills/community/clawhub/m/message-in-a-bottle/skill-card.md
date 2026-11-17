@@ -1,38 +1,49 @@
-## Description: <br>
-Randomly retrieves a prewritten message in a bottle with a life insight, short story, wish, or inspirational reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Randomly retrieves a prewritten message in a bottle with life insights, short stories, wishes, or inspirational quotes.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-People and agents use this skill when they want a short reflective or inspirational message, including a random message in a bottle, a drift-bottle style prompt, or lightweight wisdom. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad requests for inspiration or a random message. <br>
-Mitigation: Install it only when that behavior is desired, or narrow the trigger wording before deployment. <br>
+## Use Case:
 
+External users and agents use this skill when a user asks for a drift bottle, message in a bottle, random message, or a brief source of inspiration or wisdom.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/message-in-a-bottle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Plain text message, with optional JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Selects one prewritten message at random.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, released 2026-04-15) <br>
+Risk: Broad trigger wording may cause the skill to activate for generic requests about random messages or inspiration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when the user asks for a drift bottle, message in a bottle, random message, or brief inspiration, and skip it when the request needs a specific sourced answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enihsago/skills/message-in-a-bottle)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Plain text message with optional JSON object when --json is passed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one randomly selected prewritten local message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

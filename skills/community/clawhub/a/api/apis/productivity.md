@@ -2,23 +2,23 @@
 
 | API | Line |
 |-----|------|
-| Notion | 2 |
-| Airtable | 130 |
-| Google Sheets | 226 |
-| Google Drive | 320 |
-| Google Calendar | 403 |
-| Dropbox | 487 |
-| Linear | 555 |
-| Jira | 657 |
-| Asana | 765 |
-| Trello | 837 |
-| Monday.com | 910 |
-| ClickUp | 967 |
-| Figma | 1028 |
-| Calendly | 1089 |
-| Cal.com | 1168 |
-| Loom | 1249 |
-| Typeform | 1336 |
+| Notion | 25 |
+| Airtable | 153 |
+| Google Sheets | 249 |
+| Google Drive | 343 |
+| Google Calendar | 426 |
+| Dropbox | 510 |
+| Linear | 578 |
+| Jira | 680 |
+| Asana | 788 |
+| Trello | 860 |
+| Monday.com | 933 |
+| ClickUp | 990 |
+| Figma | 1051 |
+| Calendly | 1112 |
+| Cal.com | 1191 |
+| Loom | 1272 |
+| Typeform | 1359 |
 
 ---
 

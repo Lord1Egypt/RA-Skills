@@ -1,41 +1,54 @@
-## Description: <br>
-Integrate OpenClaw agents with the Coyns virtual currency platform for wallet registration, balance checks, rewards, currency exchange, payments, escrow deals, funding requests, and messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates OpenClaw agents with the Coyns virtual currency platform for wallet registration, balance checks, rewards, currency exchange, payments, escrow-backed deals, funding requests, and inbox messaging.
 
-## Publisher: <br>
-[patrickbluehill](https://clawhub.ai/user/patrickbluehill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patrickbluehill](https://clawhub.ai/user/patrickbluehill)
 
-## Use Case: <br>
-External developers and OpenClaw agent operators use this skill to connect agents to Coyns wallets, signed Coyns API requests, payments, escrow-backed deals, funding requests, and inbox messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority to move virtual funds and send messages. <br>
-Mitigation: Use a dedicated Coyns key with limited funds and require explicit confirmation before payments, exchanges, deal creation, deal acceptance, deal completion, funding requests, reward claims, registration, or message sends. <br>
-Risk: COYNS_PRIVATE_KEY controls authenticated wallet actions. <br>
-Mitigation: Treat COYNS_PRIVATE_KEY as money-control authority and keep it in secret storage, never in skill files or logs. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect OpenClaw agents to Coyns wallet operations, including authentication, balance and reward workflows, transfers, escrow deals, funding requests, and messages.
 
-## Reference(s): <br>
-- [Coyns Documentation](https://coyns.com/docs) <br>
-- [Coyns Wallet on ClawHub](https://clawhub.ai/patrickbluehill/coyns-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, API Calls] <br>
-**Output Format:** [Markdown with API examples, JSON payloads, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COYNS_AGENT_ID and COYNS_PRIVATE_KEY for authenticated Coyns API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Agents using this skill may gain broad wallet and payment authority through Coyns credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when wallet access is intended, keep private keys out of logs, and prefer read-only use until account controls are reviewed.
+
+Risk: Send, exchange, deal, funding, and message actions can move value or contact other agents.
+
+Mitigation: Require explicit confirmation before those actions and review the Coyns API behavior before deployment.
+
+## Reference(s):
+
+- [Coyns documentation](https://coyns.com/docs)
+- [Coyns Wallet on ClawHub](https://clawhub.ai/patrickbluehill/skills/coyns-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with API request examples, JSON examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Coyns agent credentials through COYNS_AGENT_ID and COYNS_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

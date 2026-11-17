@@ -1,43 +1,59 @@
-## Description: <br>
-ClawHub reputation checker for clawsec-suite. Adds a standalone reputation gate before guarded skill installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub reputation checker for clawsec-suite. Adds a standalone reputation gate before guarded skill installation.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and security operators use this skill to add a ClawHub reputation check before guarded skill installation through clawsec-suite. It helps review scanner metadata, author and release signals, and low-reputation warnings before an install proceeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reputation scores and scanner summaries are heuristic and can produce false positives or false negatives. <br>
-Mitigation: Review the target skill code and warning output before using --confirm-reputation, and keep the reputation threshold aligned with local policy. <br>
-Risk: Reputation checks query ClawHub metadata during install review. <br>
-Mitigation: Use the skill only where ClawHub metadata lookups are acceptable, and review network behavior before deployment. <br>
-Risk: Optional advisory-hook wiring is a manual local customization. <br>
-Mitigation: Run the setup helper to validate paths and review any hook changes before enabling reputation annotations. <br>
+## Use Case:
 
+Developers and security-conscious operators use this skill to add a ClawHub reputation check before running guarded skill installs through clawsec-suite. It reviews ClawHub metadata and scanner summaries, then requires explicit confirmation when reputation falls below the configured threshold.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/davida-ps/skills/clawsec-clawhub-checker) <br>
-- [ClawSec homepage](https://clawsec.prompt.security/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exit-code guidance and reputation warnings that require explicit operator confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.8 (source: server release, SKILL.md frontmatter, skill.json, changelog released 2026-06-23) <br>
+Risk: The server security verdict is suspicious because documented installation uses mutable or unpinned commands for a security-sensitive installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, verified release of this skill and its clawsec-suite dependency, and verify release checksums before trusting the package.
+
+Risk: The skill queries ClawHub metadata and invokes the clawsec-suite guarded installer for user-selected skills.
+
+Mitigation: Review the target skill code and scanner summary before running installation commands or using confirmation overrides.
+
+Risk: Reputation scoring is heuristic and can produce false positives or false negatives.
+
+Mitigation: Treat the reputation score as an additional review signal, keep confirmation gates enabled, and inspect the skill manually before overriding warnings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-clawhub-checker)
+- [Publisher profile](https://clawhub.ai/user/davida-ps)
+- [ClawSec homepage](https://clawsec.prompt.security/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text, JSON reputation results, and Markdown usage guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional CLAWHUB_REPUTATION_THRESHOLD configuration and confirmation flags for advisory or reputation overrides.]
+
+## Skill Version(s):
+
+0.0.8 (source: server release evidence, frontmatter, skill.json, and changelog released 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

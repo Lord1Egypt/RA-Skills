@@ -1,44 +1,60 @@
-## Description: <br>
-Analyzes medical and pharmaceutical R&D literature by matching literature to research themes, structuring evidence, extracting key findings, summarizing evidence, and identifying research gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes pharmaceutical R&D literature for medical affairs workflows by matching literature to a research topic, extracting key findings, summarizing evidence, and identifying research gaps.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers, pharmaceutical R&D teams, and medical affairs users use this skill to prepare structured evidence summaries from supplied literature records. It is intended for research literature organization and does not provide clinical diagnosis, treatment advice, or drug promotion conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplied literature content may be sensitive and is sent to a remote medical model endpoint for semantic analysis. <br>
-Mitigation: Install only where this remote processing is approved, and avoid confidential, unpublished, regulated, or personal medical data unless the API provider's retention and processing terms are acceptable. <br>
-Risk: The artifact includes a shared preprocessing fallback that is under-disclosed in the public skill description. <br>
-Mitigation: Review or remove the external _shared preprocessing fallback before production use. <br>
-Risk: Generated medical literature summaries may be incomplete or misleading if treated as clinical or promotional conclusions. <br>
-Mitigation: Use outputs for research literature organization only and require qualified review before relying on them for medical, regulatory, or product decisions. <br>
+## Use Case:
 
+Developers and medical affairs teams use this skill to turn structured or extracted literature inputs into topic-matched evidence summaries for pharmaceutical R&D analysis. It is intended for research reference and does not provide clinical diagnosis, individualized treatment guidance, or promotional drug conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-literature-analysis) <br>
-- [Referenced Literature Review evidence synthesis skill](https://agent-skills.md/skills/ovachiever/droid-tings/literature-review) <br>
-- [Configured hivoice medical model endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text] <br>
-**Output Format:** [UTF-8 JSON containing structured analysis data and Markdown natural-language summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey bearer token and sends matched literature content to the configured medical model API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Selected literature fields and extracted document text are sent to the maas-api.hivoice.cn medical model service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for that service, and avoid confidential, unpublished, regulated, or licensed material unless organizational policy permits it.
+
+Risk: App keys may be exposed if passed directly on command lines or logs.
+
+Mitigation: Prefer a secrets-managed invocation path and avoid including real app keys in shell history, logs, or shared examples.
+
+Risk: Document and OCR preprocessing can process untrusted files and may execute external conversion tools.
+
+Mitigation: Prefer JSON input when possible and run file preprocessing in a sandboxed environment for untrusted documents or images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-literature-analysis)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Referenced Literature Review skill](https://agent-skills.md/skills/ovachiever/droid-tings/literature-review)
+- [Medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Files]
+
+**Output Format:** [UTF-8 JSON containing structured data and Markdown analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write an output JSON file and, when requested, a prepared intermediate JSON file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

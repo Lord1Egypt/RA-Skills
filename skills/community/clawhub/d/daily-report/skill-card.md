@@ -1,38 +1,56 @@
-## Description: <br>
-Generate daily, weekly, and alert reports tracking leads, outreach, cost, priorities, and issues, saving structured summaries for progress monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Report helps an agent generate scheduled morning, end-of-day, weekly, and immediate alert reports for lead pipeline activity, outreach metrics, costs, priorities, and issues.
 
-## Publisher: <br>
-[visualdeptcreative](https://clawhub.ai/user/visualdeptcreative) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[visualdeptcreative](https://clawhub.ai/user/visualdeptcreative)
 
-## Use Case: <br>
-Developers and operators use this skill to generate morning, end-of-day, weekly, and immediate alert reports for lead pipeline, outreach activity, budget status, priorities, and blockers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local memory logs may retain sensitive lead, budget, or operational information longer than intended. <br>
-Mitigation: Limit saved summaries to necessary aggregate details and periodically review or delete old memory/YYYY-MM-DD.md logs. <br>
-Risk: Telegram alerts may expose confidential replies, budget status, API errors, or blockers to unintended recipients. <br>
-Mitigation: Send only minimal alert details to approved chats and avoid secrets, full lead records, and personal message contents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Operators and business-development teams use this skill to keep structured daily and weekly summaries of lead generation, outreach production, budget status, blockers, and next priorities. It also defines immediate alert conditions for replies, budget depletion, API errors, completed runs, and blocked tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and short alert messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes structured morning, end-of-day, weekly, memory-log, and alert formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reports and memory logs may contain operational lead, outreach, cost, or blocker details.
+
+Mitigation: Periodically review or delete local memory logs when they contain sensitive business information.
+
+Risk: Telegram alerts may expose business data through an external notification channel.
+
+Mitigation: Configure Telegram only when that channel is approved for the organization's business data.
+
+Risk: The skill defines Spain-time reporting schedules that may not match every user's operating timezone.
+
+Mitigation: Confirm the listed Spain-time schedule before installing or activating the reporting workflow.
+
+## Reference(s):
+
+- [Daily Report on ClawHub](https://clawhub.ai/visualdeptcreative/skills/daily-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown report templates and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Spain-time report schedules, memory log format, and Telegram alert trigger guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

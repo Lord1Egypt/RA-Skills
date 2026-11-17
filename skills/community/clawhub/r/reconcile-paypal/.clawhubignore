@@ -1,0 +1,11 @@
+.clawhub/
+.clawdhub/
+.git/
+.DS_Store
+*.log
+*.tmp
+*.bak
+cookies*
+session*
+profile*
+downloads/

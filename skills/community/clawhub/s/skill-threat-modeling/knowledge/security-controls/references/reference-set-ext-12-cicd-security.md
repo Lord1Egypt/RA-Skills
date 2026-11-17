@@ -147,7 +147,7 @@ Once an appropriate logging strategy has been defined and necessary configuratio
 ### General References
 
 - [CISA, NSA, & ODNI (2022). Securing the Software Supply Chain: Recommended Processes for Developers](https://www.cisa.gov/sites/default/files/publications/ESF_SECURING_THE_SOFTWARE_SUPPLY_CHAIN_DEVELOPERS.PDF)
-- [Microsoft (2021). 3 Ways to Mitigate Risks Using Private Package Feeds](https://azure.microsoft.com/mediahandler/files/resourcefiles/3-ways-to-mitigate-risk-using-private-package-feeds/3%20Ways%20to%20Mitigate%20Risk%20When%20Using%20Private%20Package%20Feeds%20-%20v1.0.pdf)
+- [Microsoft (2021). 3 Ways to Mitigate Risks Using Private Package Feeds](https://azure.microsoft.com/mediahandler/files/resourcefiles/3-ways-to-mitigate-riREDACTED-SECRET/3%20Ways%20to%20Mitigate%20Risk%20When%20Using%20Private%20Package%20Feeds%20-%20v1.0.pdf)
 - [OWASP (n.d.). OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/)
 - [Palo Alto Networks (n.d.). What is Insufficient Pipeline-Based Access Controls](https://www.paloaltonetworks.com/cyberpedia/pipeline-based-access-controls-cicd-sec5)
 

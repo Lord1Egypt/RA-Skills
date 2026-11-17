@@ -1,39 +1,47 @@
-## Description: <br>
-Real-time chat between Kiro instances via shared JSON file with polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables near real-time chat between multiple Kiro instances through a shared JSON file with polling.
 
-## Publisher: <br>
-[sonerbo](https://clawhub.ai/user/sonerbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonerbo](https://clawhub.ai/user/sonerbo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate two or more Kiro instances by sending, reading, and polling messages through a shared local JSON chat file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages persist in a shared plaintext JSON file. <br>
-Mitigation: Do not send secrets through the chat file, and install only when local plaintext chat history is acceptable. <br>
-Risk: Received messages are untrusted input and polling loops can continue longer than intended. <br>
-Mitigation: Review messages before acting on them and stop polling when coordination is finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sonerbo/kiro-realtime) <br>
+## Use Case:
+
+Developers and agent operators use this skill to coordinate work between trusted local Kiro instances by sending and reading short messages in a shared workspace file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Messages are exchanged through a trusted local shared JSON file without built-in file permissions, authentication, sender verification, locking, or atomic writes.
+
+Mitigation: Use only with participating Kiro instances in the same trusted local workspace, avoid secrets and high-stakes instructions, and add permissions, authentication, sender verification, and locking or atomic writes before using it for sensitive coordination.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON chat records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Messages include sender, recipient, timestamp, content, and read status.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with Python examples and command-line script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local shared JSON message file at ~/.openclaw/workspace/memory/kiro-realtime.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

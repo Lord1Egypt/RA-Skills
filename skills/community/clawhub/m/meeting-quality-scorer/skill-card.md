@@ -1,44 +1,56 @@
-## Description: <br>
-Objectively scores meeting quality from a transcript across decision clarity, time efficiency, and participation balance, producing Markdown and HTML reports through an OpenAI-compatible LLM endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Objectively scores meeting quality from a transcript across decision clarity, time efficiency, and participation balance, producing Markdown and HTML reports with an OpenAI-compatible LLM endpoint.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-Employees, external teams, and developers use this skill to score completed meeting transcripts, identify unclear decisions, off-topic time, and uneven participation, and generate reviewable reports. It is designed for batch analysis after a transcript has already been created. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts may contain confidential or regulated information and are sent to the configured LLM endpoint. <br>
-Mitigation: Use a trusted local or organization-approved provider for sensitive meetings, and avoid sending confidential, legal, HR, or regulated transcripts to unapproved endpoints. <br>
-Risk: LLM-based scoring can be incomplete or misleading when the model output is malformed, the endpoint fails, or the transcript lacks speaker labels. <br>
-Mitigation: Treat the score as a review aid, manually verify important decisions and recommendations, and preserve speaker labels or diarization when participation balance matters. <br>
-Risk: HTML visualizations may load Chart.js from a CDN by default. <br>
-Mitigation: Review report output handling for restricted environments and vendor or bundle visualization dependencies before production use. <br>
+## Use Case:
 
+Developers and teams use this skill to evaluate meeting transcripts, identify weak decision follow-through, inefficient time use, and participation imbalance, and generate reports for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/meeting-quality-scorer) <br>
-- [README](artifact/README.md) <br>
-- [Example configuration](artifact/config.example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown report and HTML visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a transcript text file and a configured OpenAI-compatible LLM endpoint; plain transcripts use degraded scoring without participation balance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Meeting transcripts are sent to the configured LLM endpoint, which may expose sensitive meeting content if the endpoint is not approved for that data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local or approved provider for sensitive meetings, keep API keys out of shared config files where possible, and protect config file permissions.
+
+Risk: The current package appears to be missing report templates needed for the advertised Markdown and HTML output.
+
+Mitigation: Verify the report templates are present and run report-generation tests before relying on the generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/skills/meeting-quality-scorer)
+- [Publisher profile](https://clawhub.ai/user/ucsdzehualiu)
+- [README](README.md)
+- [License](LICENSE)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, HTML, Files, Configuration instructions]
+
+**Output Format:** [Markdown and HTML report files with numeric scores, decision tables, filler findings, speaker balance charts, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured OpenAI-compatible LLM endpoint; labeled transcripts enable participation scoring, while plain transcripts use a two-dimension degraded mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

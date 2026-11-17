@@ -1,41 +1,58 @@
-## Description: <br>
-Creates, validates, lists, and resumes structured handoff documents so a fresh agent can continue long-running work with clear context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates structured session handoff documents so a fresh AI agent can resume long-running work with clear project state, decisions, next steps, and validation checks.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve session state before context loss, pauses, or major milestones, and to resume from prior handoff documents with verification checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Handoff files can persist sensitive or personal context if users include secrets, credentials, or private project details. <br>
-Mitigation: Review generated handoffs before resuming from or sharing them, keep secrets and personal data out of handoffs, and use the included validation workflow to check for likely secrets. <br>
-Risk: Old or externally supplied handoff documents may describe stale project paths, branches, assumptions, or file state. <br>
-Mitigation: Treat old or external handoffs as untrusted until their project path and contents are verified, and run the staleness check before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Handoff Template](references/handoff-template.md) <br>
-- [Resume Checklist](references/resume-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/session-handoff) <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, validate, list, and resume session handoffs for long-running AI coding or project work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown handoff documents, validation reports, staleness summaries, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated handoffs are stored under .claude/handoffs/ and may include project paths, branch names, recent commits, and modified file lists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented installer uses mutable remote code.
+
+Mitigation: Install only from a pinned, reviewed version or a trusted ClawHub distribution path.
+
+Risk: Handoff files can contain sensitive project records.
+
+Mitigation: Review handoff content before sharing or committing, and do not include secrets, credentials, or token values.
+
+Risk: A resume staleness check can inspect git metadata from a project path recorded inside a handoff file.
+
+Mitigation: Run resume and staleness checks only on trusted handoffs, or verify the recorded project path before executing them.
+
+## Reference(s):
+
+- [Handoff Template](references/handoff-template.md)
+- [Resume Checklist](references/resume-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/wpank/skills/session-handoff)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated handoff files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or inspects .claude/handoffs/ Markdown files and reports validation or staleness results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

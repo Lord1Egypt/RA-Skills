@@ -1,149 +1,99 @@
-# Câmara dos Deputados — Referência Completa de Endpoints
+# Câmara API endpoint reference
 
 Base: `https://dadosabertos.camara.leg.br/api/v2`
-Swagger: `https://dadosabertos.camara.leg.br/swagger/api.html`
 
-## Deputados
+This is a task-oriented map of verified core endpoints, not a replacement for the [official Swagger](https://dadosabertos.camara.leg.br/swagger/api.html). Contracts were checked against `/api/v2/api-docs` on 2026-08-23.
 
-| Endpoint | Params principais |
+## Common collection parameters
+
+- `pagina`: page number
+- `itens`: page size, normally at most 100
+- `ordem`: `ASC` or `DESC`
+- `ordenarPor`: endpoint-specific sort field
+
+Follow the link with `rel: next`; do not infer another page only from the number of returned items.
+
+## Deputies
+
+| Endpoint | Main parameters |
 |---|---|
-| `GET /deputados` | nome, siglaPartido, siglaUf, idLegislatura, siglaSexo, codSituacao |
+| `GET /deputados` | `nome`, `siglaPartido`, `siglaUf`, `idLegislatura`, `codSituacao` |
 | `GET /deputados/{id}` | — |
-| `GET /deputados/{id}/discursos` | dataInicio, dataFim, idTipoDiscurso, ordenarPor, ordem |
-| `GET /deputados/{id}/despesas` | ano, mes, cnpjCpfFornecedor, pagina, itens |
-| `GET /deputados/{id}/documentos` | dataInicio, dataFim, codTipoDocumento |
-| `GET /deputados/{id}/eventos` | dataInicio, dataFim, codTipoEvento |
+| `GET /deputados/{id}/discursos` | `dataInicio`, `dataFim`, `idLegislatura` |
+| `GET /deputados/{id}/despesas` | `ano`, `mes`, `cnpjCpfFornecedor` |
+| `GET /deputados/{id}/eventos` | `dataInicio`, `dataFim`, `codTipoEvento` |
 | `GET /deputados/{id}/frentes` | — |
 | `GET /deputados/{id}/mandatos` | — |
 | `GET /deputados/{id}/ocupacoes` | — |
-| `GET /deputados/{id}/orgaos` | dataInicio, dataFim |
-| `GET /deputados/{id}/profissoes` | — |
+| `GET /deputados/{id}/orgaos` | `dataInicio`, `dataFim` |
 
-## Proposições
+There is no direct deputy-attendance endpoint. Event participant lists are not a drop-in substitute for formal attendance.
 
-| Endpoint | Params principais |
+## Propositions
+
+| Endpoint | Main parameters |
 |---|---|
-| `GET /proposicoes` | siglaTipo, numero, ano, autor, tema, keywords, dataApresentacaoInicio, dataApresentacaoFim, codSituacao, tramitacaoSenado |
+| `GET /proposicoes` | `siglaTipo`, `numero`, `ano`, `autor`, `keywords`, `codTema`, `codSituacao`, `tramitacaoSenado`, date filters |
 | `GET /proposicoes/{id}` | — |
 | `GET /proposicoes/{id}/autores` | — |
 | `GET /proposicoes/{id}/relacionadas` | — |
 | `GET /proposicoes/{id}/temas` | — |
-| `GET /proposicoes/{id}/tramitacoes` | dataInicio, dataFim |
+| `GET /proposicoes/{id}/tramitacoes` | `dataInicio`, `dataFim` |
 | `GET /proposicoes/{id}/votacoes` | — |
 
-### Tipos de proposição (siglaTipo)
-PL, PEC, PLP, MPV, PDC, PRC, REC, REQ, REP, REO, MSC, PLN, PDS, PFC, PDN, EMC, EMP, EMS, SBT, SCR, SGM, SMP
+`siglaTipo` examples include `PL`, `PLP`, `PEC`, `MPV`, and `PDL`. Obtain the maintained list from `/referencias/proposicoes/siglaTipo`.
 
-### Situações de proposição (codSituacao)
-- `1` = Tramitando
-- `2` = Arquivada
-- `3` = Transformada em norma jurídica
-- Consultar `/referencias/proposicoes/codSituacaoProposicao`
+## Votes and events
 
-## Votações
-
-| Endpoint | Params principais |
+| Endpoint | Main parameters |
 |---|---|
-| `GET /votacoes` | dataInicio, dataFim, idOrgao, siglaPartido, idDeputado, ordem, ordenarPor |
+| `GET /votacoes` | `dataInicio`, `dataFim`, `idOrgao`, `idDeputado` |
 | `GET /votacoes/{id}` | — |
 | `GET /votacoes/{id}/votos` | — |
 | `GET /votacoes/{id}/orientacoes` | — |
-
-### Órgãos principais
-- `180` = Plenário
-
-## Eventos / Agenda
-
-| Endpoint | Params principais |
-|---|---|
-| `GET /eventos` | dataInicio, dataFim, siglaOrgao, codTipoEvento, codSituacao, ordem, ordenarPor, itens |
+| `GET /eventos` | `dataInicio`, `dataFim`, `siglaOrgao`, `codTipoEvento`, `codSituacao` |
 | `GET /eventos/{id}` | — |
 | `GET /eventos/{id}/deputados` | — |
 | `GET /eventos/{id}/orgaos` | — |
 | `GET /eventos/{id}/pauta` | — |
 | `GET /eventos/{id}/votacoes` | — |
 
-### Situações de evento (codSituacao)
-- `1` = Convocada / Prevista
-- `2` = Realizada
-- `3` = Em andamento
-- `4` = Cancelada
+## Organizations and groups
 
-## Órgãos / Comissões
-
-| Endpoint | Params principais |
+| Endpoint | Main parameters |
 |---|---|
-| `GET /orgaos` | sigla, codTipoOrgao, nome, dataInicio, dataFim |
+| `GET /orgaos` | `sigla`, `codTipoOrgao`, `nome`, date filters |
 | `GET /orgaos/{id}` | — |
-| `GET /orgaos/{id}/eventos` | dataInicio, dataFim, codTipoEvento |
-| `GET /orgaos/{id}/membros` | dataInicio, dataFim |
-| `GET /orgaos/{id}/votacoes` | dataInicio, dataFim |
+| `GET /orgaos/{id}/eventos` | date filters |
+| `GET /orgaos/{id}/membros` | date filters |
+| `GET /orgaos/{id}/votacoes` | date filters |
+| `GET /grupos` | collection filters |
+| `GET /grupos/{id}` | — |
+| `GET /grupos/{id}/historico` | — |
+| `GET /grupos/{id}/membros` | — |
 
-### Tipos de órgão (codTipoOrgao)
-- `2` = Comissão Permanente
-- `3` = Comissão Temporária
-- `4` = Comissão Especial
-- `5` = Comissão Externa
-- `6` = CPI
-- `26` = Plenário Virtual
-- Consultar `/referencias/tiposOrgao`
+Other stable collections include `/partidos`, `/blocos`, `/frentes`, and `/legislaturas`, with their `{id}` detail and documented child resources.
 
-## Comissões principais (sigla)
-CCJC, CFT, CDE, CSAUDE, CTRAB, CAPADR, CDC, CDU, CMADS, CREDN, CME, CTUR, CCULT, CDH, CCOM, CESPO, CVT, CSPCCO
+## Reference data
 
-## Partidos e Blocos
+Resolve codes dynamically:
 
-| Endpoint | Params |
-|---|---|
-| `GET /partidos` | sigla, dataInicio, dataFim, ordem, ordenarPor |
-| `GET /partidos/{id}` | — |
-| `GET /partidos/{id}/membros` | dataInicio, dataFim |
-| `GET /blocos` | idLegislatura |
-| `GET /blocos/{id}` | — |
-
-## Frentes Parlamentares
-
-| Endpoint |
-|---|
-| `GET /frentes` |
-| `GET /frentes/{id}` |
-| `GET /frentes/{id}/membros` |
-
-## Grupos de Trabalho
-
-| Endpoint |
-|---|
-| `GET /gruposTrabalho` |
-| `GET /gruposTrabalho/{id}` |
-| `GET /gruposTrabalho/{id}/membros` |
-
-## Legislaturas
-
-| Endpoint |
-|---|
-| `GET /legislaturas` |
-| `GET /legislaturas/{id}` |
-| `GET /legislaturas/{id}/mesa` |
-
-- Legislatura atual: **57** (iniciada em 01/02/2023)
-
-## Referências (dados auxiliares)
-
-```
+```text
 GET /referencias/deputados/codSituacao
 GET /referencias/deputados/siglaSexo
-GET /referencias/proposicoes/codSituacaoProposicao
-GET /referencias/proposicoes/siglaTipo
-GET /referencias/proposicoes/tema
+GET /referencias/proposicoes/codSituacao
 GET /referencias/proposicoes/codTema
+GET /referencias/proposicoes/codTipoAutor
+GET /referencias/proposicoes/codTipoTramitacao
+GET /referencias/proposicoes/siglaTipo
 GET /referencias/tiposEvento
 GET /referencias/tiposSituacaoEvento
 GET /referencias/tiposOrgao
 GET /referencias/uf
-GET /referencias/partidos
 ```
 
-## Bulk Data (despesas CEAP)
-- `https://www.camara.leg.br/cotas/Ano-{ano}.json.zip`
-- Anos disponíveis: 2008–atual
-- Atualização diária
+Do not maintain hand-written dictionaries for proposition or event situations; the official lists contain more states and can change.
+
+## Bulk CEAP data
+
+For large historical expense analyses, prefer the annual files linked by the official API documentation, such as `https://www.camara.leg.br/cotas/Ano-{ano}.json.zip`, instead of paginating thousands of per-deputy calls.

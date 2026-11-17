@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn76x7hpvesmfc0sva5ep85p01814mq1",
-  "slug": "shopify-pay2",
-  "version": "1.0.1",
-  "publishedAt": 1773865951169
+  "version": "2.9.0",
+  "updated": "2026-03-14",
+  "homepage": "https://creditclaw.com",
+  "api_base": "https://creditclaw.com/api/v1",
+  "credentials": ["CREDITCLAW_API_KEY"],
+  "openclaw": {
+    "requires": {
+      "env": ["CREDITCLAW_API_KEY"]
+    },
+    "primaryEnv": "CREDITCLAW_API_KEY",
+    "default_approval_mode": "ask_for_everything",
+    "invocation": "user_confirmed"
+  }
 }

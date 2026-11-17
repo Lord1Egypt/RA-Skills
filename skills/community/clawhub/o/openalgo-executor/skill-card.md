@@ -1,39 +1,57 @@
-## Description: <br>
-Interacts with the OpenAlgo API for trading operations by placing market or limit orders, retrieving positions, and fetching symbol quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openalgo Executor lets agents place market or limit orders, retrieve open positions, and fetch symbol quotes through an OpenAlgo API endpoint.
 
-## Publisher: <br>
-[anthonyabraham1379-pixel](https://clawhub.ai/user/anthonyabraham1379-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anthonyabraham1379-pixel](https://clawhub.ai/user/anthonyabraham1379-pixel)
 
-## Use Case: <br>
-Developers and trading automation operators use this skill to query an OpenAlgo service for positions and quotes or submit market and limit orders through a configured endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real trading orders through OpenAlgo. <br>
-Mitigation: Use only endpoints you control and add explicit live-trade confirmation and safe order limits before connecting it to a funded account. <br>
-Risk: The script defaults to an undocumented remote endpoint rather than the documented localhost service. <br>
-Mitigation: Change or override the default URL and verify the endpoint before sending position, quote, or order requests. <br>
+## Use Case:
 
+External developers and trading operators use this skill to have an agent perform OpenAlgo trading operations and retrieve portfolio or market data. Because order commands can place real trades, it is intended for environments where endpoint trust and human order confirmation are enforced.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API responses and plain-text CLI messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Order placement can affect real trading accounts when connected to a live OpenAlgo endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Order commands can place real trades through OpenAlgo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before live order submission and test commands against a non-production account or paper-trading setup when possible.
+
+Risk: The security summary reports an undocumented remote HTTP endpoint instead of the documented local OpenAlgo server.
+
+Mitigation: Change or verify the default endpoint before installation, and use only a trusted local or authenticated HTTPS OpenAlgo server.
+
+Risk: Custom or ngrok URLs may send trading requests to an untrusted service.
+
+Mitigation: Avoid untrusted custom URLs and confirm the endpoint owner, transport security, and authentication before allowing order commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anthonyabraham1379-pixel/skills/openalgo-executor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OpenAlgo endpoint can be configured with a URL argument; order commands may submit live trading requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

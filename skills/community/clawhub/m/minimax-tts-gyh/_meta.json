@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn760j8hvg3eze215091p55bx982drwk",
+  "ownerId": "gyh",
   "slug": "minimax-tts-gyh",
   "version": "1.0.0",
-  "publishedAt": 1775964504656
+  "publishedAt": 1744394400000,
+  "name": "minimax-tts",
+  "description": "MiniMax TTS 文字转语音技能，支持 speech-02/speech-01 系列。"
 }

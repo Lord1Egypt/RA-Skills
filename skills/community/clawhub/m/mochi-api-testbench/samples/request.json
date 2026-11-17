@@ -1,0 +1,12 @@
+{
+  "action": "validate",
+  "cases": [
+    {
+      "id": "health",
+      "url": "https://example.com/",
+      "assert": {
+        "status": 200
+      }
+    }
+  ]
+}

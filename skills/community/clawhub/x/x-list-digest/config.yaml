@@ -1,0 +1,11 @@
+version: 2
+timezone: Asia/Bangkok
+default_window_hours: 24
+default_rhythm: conservative
+default_max_tweets: 500
+default_output: both
+lists: {}
+browser:
+  backend: host
+feishu: null
+cron_jobs: []

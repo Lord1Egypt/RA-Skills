@@ -1,40 +1,53 @@
-## Description: <br>
-A runbook for creating, reviewing, validating, and troubleshooting scheduled reminders and notification workflows with OpenClaw cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliable runbook for scheduled reminders and notification workflows with OpenClaw cron.
 
-## Publisher: <br>
-[atomiccn](https://clawhub.ai/user/atomiccn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atomiccn](https://clawhub.ai/user/atomiccn)
 
-## Use Case: <br>
-Developers and skill authors use this runbook to design, review, validate, and troubleshoot scheduled reminders and notification workflows that use OpenClaw cron. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled agent jobs or webhook delivery could notify the wrong destination or send unnecessary data. <br>
-Mitigation: Confirm the destination, session target, and payload with the user; avoid secrets and unnecessary personal data; periodically review recurring or named-session jobs. <br>
-Risk: Reminder text, schedule choices, or timezone assumptions could make a delivered notification confusing or late. <br>
-Mitigation: Use future-readable reminder text and validate the schedule shape, enabled state, timezone assumptions, job identifier, run history, and delivery location. <br>
+## Use Case:
 
+Developers and skill authors use this runbook to create or review scheduled reminder and notification workflows, including payload selection, session targeting, reminder text, validation, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/atomiccn/scheduler-notification-runbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with decision rules, checklists, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only runbook; no executable code or tool calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Webhook delivery can expose reminder or run-result content to an unintended external endpoint if configured without care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use webhook delivery only for explicit user intent; confirm the destination is trusted, authenticated, HTTPS-protected, and receives only the minimum needed content.
+
+Risk: Scheduled reminders can arrive at the wrong time or in the wrong place when timezone, payload type, or session target assumptions are not checked.
+
+Mitigation: Validate the schedule shape, payload type, session target, enabled state, delivery mode, and timezone assumptions before relying on the job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atomiccn/skills/scheduler-notification-runbook)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown runbook guidance with inline configuration names and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides decision rules, validation checks, and troubleshooting steps for scheduled reminder workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

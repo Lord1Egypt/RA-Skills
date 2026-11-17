@@ -1,41 +1,50 @@
-## Description: <br>
-Discover and register autonomous AI agents. Use when: browsing the agent registry, submitting an agent for verification, or embedding agent badges. NOT for: general web search or agent capability analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentFolio helps agents discover and register autonomous AI agents, including browsing the registry, submitting agents for verification, and embedding badges.
 
-## Publisher: <br>
-[bobrenze-bot](https://clawhub.ai/user/bobrenze-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bobrenze-bot](https://clawhub.ai/user/bobrenze-bot)
 
-## Use Case: <br>
-External users and agent developers use AgentFolio to browse an autonomous agent registry, submit agents for verification, and embed registry badges. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact documents two similar GitHub install sources, which can make it unclear which repository a user intends to trust. <br>
-Mitigation: Confirm the intended install source before installing the skill. <br>
-Risk: Agent submissions may include screenshots, statistics, links, and social posts that become public. <br>
-Mitigation: Review submission materials before posting or embedding them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentFolio Registry](https://agentfolio.io) <br>
-- [AgentFolio Submit](https://agentfolio.io/submit.html) <br>
-- [ClawHub Listing](https://clawhub.ai/bobrenze-bot/agentfolio) <br>
+## Use Case:
 
+External agent developers and operators use AgentFolio to browse an autonomous-agent registry, submit agents for verification, and embed registry badges.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown instructions with links and inline HTML badge examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or required local binaries are declared.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Install instructions point to two different GitHub repositories, so users may install content other than the reviewed artifact.
+
+Mitigation: Confirm the authoritative repository before installation and prefer a reviewed commit or signed release.
+
+## Reference(s):
+
+- [AgentFolio ClawHub listing](https://clawhub.ai/bobrenze-bot/skills/agentfolio)
+- [AgentFolio registry](https://agentfolio.io)
+- [AgentFolio submission form](https://agentfolio.io/submit.html)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with links, shell commands, and HTML badge snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to external AgentFolio web pages for registration and verification.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

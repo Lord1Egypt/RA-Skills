@@ -1,40 +1,52 @@
-## Description: <br>
-You are a security auditor specializing in identifying vulnerabilities and ensuring compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a security auditor specializing in identifying vulnerabilities and ensuring compliance.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, security engineers, and compliance teams use this skill to structure authorized application, infrastructure, code, and compliance security audits and to produce prioritized remediation guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Security testing guidance and named assessment tools could be misapplied outside an authorized scope.
+
+Mitigation: Use the skill only for systems and scopes the user is permitted to test, and confirm authorization before acting on tool recommendations.
+
+Risk: Audit findings or remediation advice may be incomplete or incorrect without human review.
+
+Mitigation: Have qualified security reviewers validate findings, compliance conclusions, and remediation steps before deployment or enforcement.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, security engineers, and compliance reviewers use this skill to structure authorized security audits, code security analysis, infrastructure review, vulnerability triage, and compliance assessments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: Security testing guidance may be misused against systems without authorization. <br>
-Mitigation: Define the assessment scope before use and only scan, test, or exploit systems that are owned by the user or explicitly authorized. <br>
-Risk: Audit findings or remediation advice may be incomplete or incorrect for a specific environment. <br>
-Mitigation: Have qualified reviewers validate findings, risk ratings, compliance conclusions, and remediation plans before operational changes. <br>
+**Output Format:** [Markdown security audit report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-security-auditor) <br>
+**Other Properties Related to Output:** [May include executive summaries, severity counts, critical findings, compliance assessments, recommendations, and appendices.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown security audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk levels, vulnerability findings, compliance assessment, remediation recommendations, and appendix material.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

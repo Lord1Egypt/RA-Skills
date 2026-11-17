@@ -1,45 +1,56 @@
-## Description: <br>
-Dev.to (dev.to). Use this skill for ANY Dev.to request - reading, creating, and updating data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev.to (dev.to). Use this skill for ANY Dev.to request — reading, creating, and updating data. Whenever a task involves Dev.to, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and content operators use this skill to read Dev.to content and manage authenticated Dev.to articles through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an authenticated OOMOL-connected Dev.to account and can use credentials indirectly. <br>
-Mitigation: Use it only with accounts intended for Dev.to operations, and reconnect or refresh credentials only when the connector reports an authentication or connection error. <br>
-Risk: Write actions can create or update Dev.to articles. <br>
-Mitigation: Confirm the exact payload and expected publishing effect with the user before running write actions. <br>
-Risk: Connector input schemas may change over time. <br>
-Mitigation: Inspect the live connector schema before constructing each action payload. <br>
+## Use Case:
 
+Developers use this skill to read Dev.to articles, tags, videos, and profiles, and to create or update articles through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-devto) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Dev.to Homepage](https://dev.to) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Dev.to connector responses as JSON when actions are run with the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Installing the CLI may run unverified software and introduce changes to other agents' skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI release and dependency setup before installing; set OO_SKILLS_SYNC_DISABLED=1 if you do not want automatic changes to other agents' skills.
+
+Risk: Connecting Dev.to authorizes OOMOL-mediated account operations, including article creation and edits.
+
+Mitigation: Retain approval for article changes and review the action schema and payload before running them.
+
+## Reference(s):
+
+- [Dev.to](https://dev.to)
+- [Forem API documentation](https://developers.forem.com/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON request payloads and connector response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the connected Dev.to account and requested action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

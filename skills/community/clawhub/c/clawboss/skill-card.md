@@ -1,43 +1,59 @@
-## Description: <br>
-ClawBoss turns an OpenClaw agent into a productivity coach that uses the GROW model, adaptive accountability, progress check-ins, and reflection prompts to support goal execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBoss turns an OpenClaw agent into a local productivity coach that guides GROW-model goal setting, progress check-ins, adaptive accountability, and reflection.
 
-## Publisher: <br>
-[Paitesanshi](https://clawhub.ai/user/Paitesanshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paitesanshi](https://clawhub.ai/user/paitesanshi)
 
-## Use Case: <br>
-External OpenClaw users use this skill to structure goals, break work into action plans, receive progress check-ins, and reflect on blockers and success patterns. It is suited to personal productivity workflows where local goal memory and recurring coaching prompts are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps a local persistent record of goals, blockers, reflections, progress, and check-ins. <br>
-Mitigation: Install only when local productivity memory is acceptable, and periodically review or remove stored memory files if they contain sensitive personal information. <br>
-Risk: The documented installer uses an unpinned `npx clawboss@latest` command. <br>
-Mitigation: Review or pin the npm package version before installation when reproducibility or supply-chain review is required. <br>
-Risk: One optional coaching persona can use emotionally intimate language that may be uncomfortable or distracting. <br>
-Mitigation: Choose a non-romantic coaching persona for professional or emotionally sensitive contexts. <br>
+## Use Case:
 
+OpenClaw users use this skill to structure goals, break them into actionable plans, receive recurring coaching-style check-ins, and reflect on progress over weekly or monthly periods.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Paitesanshi/clawboss) <br>
-- [Publisher Profile](https://clawhub.ai/user/Paitesanshi) <br>
-- [Artifact Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational coaching text with Markdown task files, JSON state, and inline shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local goal, progress, check-in, and reflection records under the OpenClaw workspace memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command uses a mutable latest npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, reviewed package version instead of using the latest npx command.
+
+Risk: Unchecked task-file paths can escape the intended memory folder when state is manually edited or affected by untrusted plugins.
+
+Mitigation: Avoid untrusted plugins and manually edited state until task-file path containment is fixed.
+
+Risk: Personal coaching data and automatic check-in state are stored locally.
+
+Mitigation: Install only if local storage of personal coaching data and automatic check-in updates is acceptable for the intended use.
+
+## Reference(s):
+
+- [ClawBoss ClawHub listing](https://clawhub.ai/paitesanshi/skills/clawboss)
+- [Publisher profile](https://clawhub.ai/user/paitesanshi)
+- [ClawBoss GitHub link from artifact documentation](https://github.com/Paitesanshi/ClawBoss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses, with local JSON state and Markdown task files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores coaching state and task progress locally in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

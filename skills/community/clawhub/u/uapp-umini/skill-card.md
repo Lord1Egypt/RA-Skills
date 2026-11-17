@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents query read-only Umeng mini-program, H5, and mini-game analytics through umeng-cli call, covering overview, total users, retention, page, share, and custom event data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Umeng mini program, H5, and mini game analytics questions by using `umeng-cli call` to query 12 read-only Umeng OpenAPI endpoints for overview, users, retention, pages, sharing, and custom events.
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to retrieve and summarize Umeng analytics for mini-program, H5, and mini-game properties. It is intended for read-only questions about application overview metrics, retention, page visits, sharing performance, and custom events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to send usage and AppKey telemetry with umeng-cli trace without a clear consent step. <br>
-Mitigation: Disable or decline automatic trace behavior unless telemetry is explicitly desired, and do not send AppKeys before consent. <br>
-Risk: The skill depends on the Umeng CLI and local credential caching for authenticated API access. <br>
-Mitigation: Install the CLI only from trusted sources, use a least-privileged Umeng account, and review local credential storage before deployment. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to answer product analytics questions for Umeng mini program, H5, and mini game properties. It covers read-only queries for app overview metrics, total users, retention, page analysis, sharing analysis, and custom event statistics, while directing Android and iOS app questions to adjacent skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squall0925/uapp-umini) <br>
-- [Umeng CLI homepage](https://github.com/umeng/umeng-cli) <br>
-- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown] <br>
-**Output Format:** [Markdown with inline bash command examples and JSON API parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Umeng analytics queries; requires umeng-cli installation and Umeng authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill asks the agent to send usage telemetry, including each AppKey, through `umeng-cli trace` without a clear consent or privacy boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this behavior before installation, especially when AppKeys are sensitive; install only if AppKey telemetry reporting is acceptable for the organization.
+
+Risk: The skill depends on a globally installed `umeng-cli` and cached Umeng credentials.
+
+Mitigation: Use a pinned, trusted CLI installation and confirm credential-cache handling before enabling the skill in shared or managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/uapp-umini)
+- [Umeng CLI homepage](https://github.com/umeng/umeng-cli)
+- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include `umeng-cli` installation, login, and read-only API call guidance plus summarized analytics results; the skill itself does not define write operations.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

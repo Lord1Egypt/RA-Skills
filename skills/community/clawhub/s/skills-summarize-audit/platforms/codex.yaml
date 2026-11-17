@@ -1,0 +1,12 @@
+﻿platform: codex
+# OpenAI Codex CLI 平台特征配置（v5.9.1 平台适配）
+# scan_paths 定义在 config.yaml（唯一配置源），此文件仅存平台特征。
+# ⚠️ 触发词权威来源：SKILL.md 触发词矩阵。此文件不重复定义。
+project_scan_default_depth: 10
+# Codex 特有配置
+codex:
+  skills_dir: "~/.codex/skills/"
+  config_file: "~/.codex/config.toml"
+  # Codex 当前技能生态较新，外部信号可能不丰富，建议降低 Community 阈值
+  community_min_stars: 5  # 默认100→降低到5（生态新）
+

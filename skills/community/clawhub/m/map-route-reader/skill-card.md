@@ -1,39 +1,50 @@
-## Description: <br>
-Reads route results from Amap or Baidu Maps and returns usable public transit, taxi, walking, or route-comparison guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads real Amap or Baidu Maps route results and turns them into route guidance a user can follow for transit, taxi, walking, or route-comparison questions.
 
-## Publisher: <br>
-[wuyunting555](https://clawhub.ai/user/wuyunting555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyunting555](https://clawhub.ai/user/wuyunting555)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer point-to-point travel questions with route details from Amap or Baidu Maps, including transfers, stops, walking segments, taxi comparisons, and alternate-route comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route queries and shared map tabs can reveal location information. <br>
-Mitigation: Share only the specific map route tab needed for the task and avoid exposing saved places, account pages, or unrelated browser content. <br>
-Risk: Route details can be time-sensitive or safety-critical. <br>
-Mitigation: Verify time-sensitive travel details, service changes, and safety-critical decisions in the map application before acting. <br>
+## Use Case:
 
+External users and agents use this skill to answer point-to-point route questions with concrete map-derived steps, station names, transfer points, walking segments, and side-by-side comparisons when an alternate route is proposed.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown route summary or side-by-side comparison] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route segments, station names, transfer counts, walking distances, timings, uncertainty notes, and Browser Relay handoff instructions when map extraction fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and artifact/_meta.json) <br>
+Risk: Route queries and map results may expose sensitive origin, destination, or travel-pattern information, especially when Browser Relay is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Browser Relay only on a dedicated Amap or Baidu route tab and select exactly that tab so the agent sees only the intended route details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuyunting555/skills/map-route-reader)
+- [Amap route query endpoint](https://ditu.amap.com/dir)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown route summaries with structured steps, route comparisons, and uncertainty notes when extraction fails]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include origin, destination, travel mode, estimated duration, transfers, station names, exits, walking distances, and comparison criteria.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

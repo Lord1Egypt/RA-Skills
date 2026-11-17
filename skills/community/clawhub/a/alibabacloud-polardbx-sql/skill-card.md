@@ -1,56 +1,71 @@
-## Description: <br>
-Design partition schemes, select partition keys, create GSI and CCI indexes, and write or adapt SQL for PolarDB-X 2.0 Enterprise Edition AUTO mode databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design partition schemes, select partition keys, create GSI, and write SQL for PolarDB-X 2.0 Enterprise Edition AUTO mode databases, handling PolarDB-X vs MySQL differences.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and database engineers use this skill to design PolarDB-X table partitioning, indexes, migrations, compatibility rewrites, and query diagnostics for Enterprise Edition AUTO mode workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes Alibaba Cloud CLI credential and account-administration guidance beyond the stated SQL design purpose. <br>
-Mitigation: Do not provide cloud account keys or run Aliyun CLI setup from this skill unless that capability is intentionally required; use least-privilege credentials and explicit user confirmation. <br>
-Risk: DDL, partition changes, TTL cleanup, and EXPLAIN ANALYZE commands can affect production data or workload behavior. <br>
-Mitigation: Require backups, staging validation, and explicit confirmation before applying generated SQL or diagnostic commands to a live PolarDB-X environment. <br>
+## Use Case:
 
+Developers and database engineers use this skill to design and review PolarDB-X 2.0 Enterprise Edition AUTO mode schemas, indexes, migrations, SQL compatibility changes, and slow-query diagnostics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdk-team/alibabacloud-polardbx-sql) <br>
-- [PolarDB-X SQL skill instructions](artifact/SKILL.md) <br>
-- [Acceptance criteria](artifact/references/acceptance-criteria.md) <br>
-- [PolarDB-X CREATE TABLE](artifact/references/create-table.md) <br>
-- [PolarDB-X partition design best practices](artifact/references/partition-design-best-practice.md) <br>
-- [Primary keys and unique keys](artifact/references/primary-key-unique-key.md) <br>
-- [PolarDB-X Global Secondary Index](artifact/references/gsi.md) <br>
-- [PolarDB-X Clustered Columnar Index](artifact/references/cci.md) <br>
-- [PolarDB-X sequence](artifact/references/sequence.md) <br>
-- [PolarDB-X distributed transactions](artifact/references/transactions.md) <br>
-- [PolarDB-X and MySQL compatibility notes](artifact/references/mysql-compatibility-notes.md) <br>
-- [PolarDB-X EXPLAIN diagnostics](artifact/references/explain.md) <br>
-- [PolarDB-X TTL tables and cold data archiving](artifact/references/ttl-table.md) <br>
-- [PolarDB-X online DDL and lock-free DDL operations](artifact/references/online-ddl.md) <br>
-- [PolarDB-X efficient pagination best practices](artifact/references/pagination-best-practice.md) <br>
-- [PolarDB-X range partition auto-add partitions](artifact/references/auto-add-range-parts.md) <br>
-- [Aliyun CLI installation and configuration guide](artifact/references/cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with SQL and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PolarDB-X SQL proposals, compatibility notes, diagnostic commands, and configuration guidance requiring user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server-resolved release metadata; artifact frontmatter metadata.version is 0.3.1) <br>
+Risk: The bundled Aliyun CLI guide expands the skill beyond SQL guidance into credential setup and machine-wide binary installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI instructions before use; avoid unverified latest binary downloads, avoid sudo or system-wide installation unless necessary, and prefer least-privilege short-lived credentials.
+
+Risk: Generated SQL examples can include production-impacting operations such as partition drops, TTL cleanup, DDL changes, and execution-based EXPLAIN modes.
+
+Mitigation: Require explicit confirmation, backups, and review before running destructive or runtime-executing SQL in production environments.
+
+Risk: Cloud secrets may be exposed if users place credentials directly on command lines or in shared configuration.
+
+Mitigation: Use secure credential storage, avoid command-line secrets, rotate access keys, and scope permissions to the minimum required.
+
+## Reference(s):
+
+- [CREATE TABLE syntax and table types](references/create-table.md)
+- [Partition design best practices](references/partition-design-best-practice.md)
+- [Primary key and unique key rules](references/primary-key-unique-key.md)
+- [Global Secondary Index guidance](references/gsi.md)
+- [Clustered Columnar Index guidance](references/cci.md)
+- [Sequence guidance](references/sequence.md)
+- [Distributed transactions](references/transactions.md)
+- [MySQL compatibility notes](references/mysql-compatibility-notes.md)
+- [EXPLAIN diagnostics](references/explain.md)
+- [TTL tables and cold data archiving](references/ttl-table.md)
+- [Online DDL and lock-free operations](references/online-ddl.md)
+- [Efficient pagination best practices](references/pagination-best-practice.md)
+- [Range partition auto-add partitions](references/auto-add-range-parts.md)
+- [Acceptance criteria](references/acceptance-criteria.md)
+- [Aliyun CLI installation and configuration guide](references/cli-installation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compatibility notes, version and mode checks, risk warnings, and stepwise database migration guidance.]
+
+## Skill Version(s):
+
+0.0.2 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

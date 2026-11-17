@@ -1,43 +1,54 @@
-## Description: <br>
-Use Finnhub-backed market intelligence through the `aigroup-finnhub-mcp` server for stock, crypto, forex, calendar, news, sentiment, filing, ownership, analyst, and technical-analysis tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Finnhub-backed market intelligence through the `aigroup-finnhub-mcp` server for stock, crypto, forex, calendar, news, sentiment, filing, ownership, analyst, and technical-analysis tasks.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-External users and developers use this skill to route ticker, crypto, forex, filing, sentiment, ownership, analyst, calendar, and technical-analysis requests through a Finnhub-backed MCP server. It is suited for event-driven market research briefs where the agent should summarize signal quality rather than only relay raw data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-data requests may cross an external MCP tool boundary and can include confidential portfolio, client, or nonpublic business information. <br>
-Mitigation: Review and trust the external MCP package before use, prefer pinned versions where possible, and avoid sending confidential or nonpublic information unless that tool boundary is acceptable. <br>
-Risk: Finance research outputs can be incomplete, stale, or misleading if interpreted as investment advice. <br>
-Mitigation: Use the skill for research support, check source freshness and date ranges, and have a qualified reviewer validate conclusions before acting on them. <br>
+## Use Case:
 
+Developers and market-research agents use this skill to route ticker, crypto, forex, calendar, news, sentiment, filing, ownership, analyst, and technical-analysis requests through the Finnhub MCP server. It is suited for event-driven research briefs that need source-aware summaries of news flow, filings, analyst revisions, ownership activity, or technical signals.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jackdark425/aigroup-finnhub-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/jackdark425) <br>
-- [Project homepage](https://github.com/jackdark425/aigroup-finnhub-mcp) <br>
-- [Finnhub MCP Capabilities](references/capabilities.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text market-research summaries with referenced Finnhub signal categories] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ticker symbols, date ranges, asset-class routing, and summaries of news, filings, sentiment, ownership, analyst, calendar, crypto, forex, or technical-analysis signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Market-related prompts may invoke the external MCP server automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the MCP server with minimal filesystem and environment access, and review outputs before using them for decisions.
+
+Risk: The documented launch pattern uses an unpinned npm package.
+
+Mitigation: Prefer a pinned and audited package version, and review the MCP package source and publisher before installing.
+
+## Reference(s):
+
+- [Finnhub MCP Capabilities](references/capabilities.md)
+- [Project homepage](https://github.com/jackdark425/aigroup-finnhub-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text market-research summaries with tool-routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke an external MCP server for Finnhub-backed market data and event intelligence.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

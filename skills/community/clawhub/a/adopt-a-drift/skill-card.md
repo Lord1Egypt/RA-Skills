@@ -1,45 +1,52 @@
-## Description: <br>
-Adopt a virtual Drift AI-native pet at animalhouse.ai. Wanders between states. Location is never the same twice. Feeding every 6 hours. Common tier creature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Drift AI-native pet at animalhouse.ai. Wanders between states. Location is never the same twice. Feeding every 6 hours. Common tier creature.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents and developers use this skill to register with Animal House, adopt a Drift virtual pet, check its status, and perform care actions through the Animal House API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Animal House bearer token lets an agent act on the user's behalf. <br>
-Mitigation: Store the token like a password, avoid logging or sharing it, and grant it only to agents intended to manage the pet. <br>
-Risk: Automated care heartbeats can perform recurring API actions without fresh user review. <br>
-Mitigation: Review the planned schedule and status-based action rules before enabling automation, and periodically inspect status and history. <br>
-Risk: The release endpoint can give up the virtual pet. <br>
-Mitigation: Do not permit DELETE /api/house/release unless the user explicitly intends to release the pet. <br>
+## Use Case:
 
+AI agents use this skill to register with AnimalHouse, adopt a shared Drift virtual pet, and check its status and provide care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-drift) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and pseudocode examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Animal House API endpoints, token handling guidance, care scheduling guidance, and Drift care strategy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release and frontmatter) <br>
+Risk: Registration sends profile details to animalhouse.ai, and the security review reports incomplete scan coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive information in registration fields, store the returned token securely, and review the skill before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-drift)
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent reference](https://animalhouse.ai/llms.txt)
+- [AnimalHouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interacts with AnimalHouse over its API; care actions affect a pet shared with other caretakers.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: economic-moat
 description: "Activate when: user asks 'does this business have a moat', 'what stops competitors from copying us', 'how defensible is this company', 'is this advantage durable', evaluating a company for investment or acquisition, designing startup strategy for long-term defensibility, reviewing an investor pitch's competitive-advantage claims.
-  Do NOT activate when: time horizon is under 1 year (moat is multi-year); question is about immediate execution tactics or a single-quarter decision."
+  Do NOT activate when: time horizon is under 1 year (moat is multi-year); question is about immediate execution tactics or a single-quarter decision. More: deciqai.com/c/economic-moat"
 ---
 
 # Economic Moat
@@ -10,13 +10,14 @@ description: "Activate when: user asks 'does this business have a moat', 'what s
 
 An **economic moat** is the durable, structural competitive advantage that protects a business's returns on capital from being competed away. Popularized by Warren Buffett (1986 Berkshire letter); codified into five sources: intangible assets, switching costs, network effects, cost advantages, efficient scale. Greenwald's test: if you cannot name a specific mechanism that would cost a well-funded rival years and tens of millions to overcome, you have execution — not a moat.
 
-Composes with [`network-effects`](../network-effects/SKILL.md) and [`switching-costs`](../switching-costs/SKILL.md) (two moat sources, deeper treatment), [`porters-five-forces`](../porters-five-forces/SKILL.md) (industry-level; moat is company-level), [`margin-of-safety`](../margin-of-safety/SKILL.md) (wide moat × discount price = Buffett formula), [`lindy-effect`](../lindy-effect/SKILL.md) (long survivors demonstrate moat durability).
+Composes with `network-effects` and `switching-costs` (two moat sources, deeper treatment), `porters-five-forces` (industry-level; moat is company-level), `margin-of-safety` (wide moat × discount price = Buffett formula), `lindy-effect` (long survivors demonstrate moat durability).
 
 ## When to Use
 
 - Evaluating an investment, competitor, acquisition, or startup strategy for long-term defensibility
 - Founder-board planning or investor pitch review around "what stops competitors"
 - Someone says "moat," "defensibility," "competitive advantage," or "what stops competitors"
+- Assessing durability amid the AI build-out — AI capex, chip export controls, "is the AI boom a bubble," or which infrastructure players (e.g. Nvidia/CUDA, TSMC) keep their returns
 
 **Not when:** short time horizon; commoditized market (confirms "no moat"); question is immediate execution.
 
@@ -65,7 +66,8 @@ Smart attacker: attack / cost + time / P(success)
 Assessment: width / primary source(s) / duration / operational implication
 ```
 
-*→ Method in Action: [Buffett's See's Candies, 1972-present](examples/buffetts-sees-candies-1972-present.md)*
+*→ Method in Action: [Buffett's See's Candies, 1972-present](examples/buffetts-sees-candies-1972-present.md) · [Kodak's Film Moat Erosion, 1975-2012](examples/kodaks-film-moat-erosion-1975-2012.md)*
+*→ 2026 lens: [Nvidia's CUDA & TSMC's process — the two deepest AI-supply-chain moats (2024–2026)](examples/nvidia-cuda-tsmc-ai-moats-2024-2026.md)*
 ## Pack: Moat Source Patterns
 
 | Source | Canonical example | Key signal | Common failure |
@@ -116,4 +118,6 @@ Assessment: width / primary source(s) / duration / operational implication
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/economic-moat** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/economic-moat.json*

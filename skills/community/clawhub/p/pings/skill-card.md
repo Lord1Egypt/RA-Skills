@@ -1,41 +1,61 @@
-## Description: <br>
-Fetches the latest Wink Pings news and can use a user-provided email as the user_id for personalized subscription results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent Wink Pings news and, when the user provides or has configured an email, uses it as the user_id to retrieve personalized subscription news.
 
-## Publisher: <br>
-[ully](https://clawhub.ai/user/ully) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ully](https://clawhub.ai/user/ully)
 
-## Use Case: <br>
-External users and agents use this skill to request recent AI or Wink Pings news, optionally personalize results with their Wink/Pings email, and present returned articles in a consistent Markdown list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send a user email to Wink Pings as user_id and store it locally in plain text for reuse. <br>
-Mitigation: Use only an email the user provides, explain why it is needed before saving it, and delete skills/pings/pings-user-email when the user no longer wants automatic reuse. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current AI or Wink Pings news, optionally personalized through a user-provided email identifier.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ully/pings) <br>
-- [Wink Pings latest news API](https://wink.run/api/pings/latest) <br>
-- [Artifact API reference](artifact/reference.md) <br>
-- [Artifact usage examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown news list with optional curl commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write a local single-line email configuration file when the user consents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Risk: Generic AI-news requests may be routed to Wink Pings rather than another news source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger behavior before installing and enable the skill only when Wink Pings should handle those requests.
+
+Risk: The skill can collect, reuse, or locally store an email address as a user_id for personalized news.
+
+Mitigation: Provide an email only with user consent, avoid logging the full address, and do not store it locally unless the user explicitly approves persistent reuse.
+
+Risk: Email addresses can appear in URL query strings or unpinned npx command examples.
+
+Mitigation: Prefer URL-encoded requests that avoid exposing real addresses in shared logs, and review command provenance before running npx examples.
+
+## Reference(s):
+
+- [Pings skill page](https://clawhub.ai/ully/skills/pings)
+- [Wink Pings latest news API](https://wink.run/api/pings/latest)
+- [Wink Pings service](https://wink.run)
+- [reference.md](artifact/reference.md)
+- [examples.md](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news summaries with URLs, plus optional curl or CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a locally stored email identifier for personalized Wink Pings results when the user consents.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

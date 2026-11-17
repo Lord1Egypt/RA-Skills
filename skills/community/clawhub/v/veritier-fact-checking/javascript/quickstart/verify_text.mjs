@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Verify Claims from Text - Veritier Quickstart (JavaScript)
  * ============================================================
  * Extracts and fact-checks every claim in a block of text using live web evidence.
@@ -16,7 +16,7 @@
 import "dotenv/config";
 
 const API_KEY = process.env.VERITIER_API_KEY || "";
-const API_URL = "https://api.veritier.ai";  // hardcoded � never sent to any other domain
+const API_URL = "https://api.veritier.ai";  // hardcoded � never sent to any other domain
 
 if (!API_KEY) {
   console.error("✗ Error: VERITIER_API_KEY is not set.");
@@ -76,3 +76,30 @@ if (data.warnings?.length) {
 console.log(
   `── Rate limit: ${response.headers.get("RateLimit-Remaining") ?? "?"} requests remaining this minute`
 );
+
+// ─── Zero-quota integration testing ──────────────────────────────────────────
+// Use a test API key (vt_test_...) and the mock_verdict field to test your
+// integration without consuming your monthly verification quota.
+// Returns 3 deterministic ClaimResult objects; no LLM is called.
+//
+// mock_verdict: true  → all verdicts True  (happy-path / success handling)
+// mock_verdict: false → all verdicts False (error-path / failure handling)
+//
+// Example (replace your prod key with a vt_test_... key from your dashboard):
+//
+//   const response = await fetch(${API_URL}/v1/verify, {
+//     method: "POST",
+//     headers: {
+//       Authorization: Bearer , // vt_test_... key
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ text: sampleText, mock_verdict: true }),
+//   });
+//   const data = await response.json();
+//   console.log(data.is_test === true);     // confirms test mode
+//
+// See https://veritier.ai/docs#testing for full details.
+//
+// Optional action_id mints an informational Claim Credential. Verdicts stay
+// the same; verify is not fail-closed. Use attest_action to gate a tool call.
+// See use-cases/informational_credential.mjs and quickstart/attest_action.mjs.

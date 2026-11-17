@@ -1,39 +1,54 @@
-## Description: <br>
-Advertised as a Chinese lunar calendar reference skill for solar terms, zodiac years, auspicious dates, traditional festivals, Heavenly Stems, and lunar-calendar conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Calendar Cn is advertised as a Chinese lunar-calendar reference skill for solar terms, zodiac years, auspicious dates, traditional festivals, Heavenly Stems, Earthly Branches, and lunar-calendar conversion.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External users and agents can request Chinese-calendar reference guidance in Chinese, including solar terms, zodiac information, traditional festivals, and lunar-calendar concepts. Users should verify results before relying on them because the packaged script does not match all advertised calendar functions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appears low-risk to execute, but it does not implement the Chinese calendar features it advertises. <br>
-Mitigation: Review output before relying on it and verify Chinese-calendar facts or date conversions against a trusted source. <br>
+## Use Case:
 
+External users and agents can request Chinese lunar-calendar reference material such as solar terms, zodiac years, festival notes, auspicious-date guidance, and lunar-conversion explanations. Security evidence says the packaged Bash script currently returns generic reference guidance rather than the advertised calendar-specific command set, so outputs should be reviewed before relying on them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-chinese-calendar-cn) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference content with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls or credentials are documented; outputs are static local reference text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package is advertised as a Chinese lunar calendar tool, but security evidence says the script only prints unrelated generic guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before use and ask the publisher to align the script and documentation with real Chinese calendar functionality before relying on it.
+
+Risk: The artifact includes a Bash script, even though security evidence does not show data theft or persistence.
+
+Mitigation: Review the script before installing or executing it in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-chinese-calendar-cn)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference guidance from Bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls or credentials are described by the artifact; security evidence warns that the script output is generic and does not match the advertised calendar functionality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 5.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Three-tier system health monitoring (L1/L2/L3) with heartbeat mechanism, zero external dependencies, i18n support, and console output only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three-tier system health monitoring (L1/L2/L3) with heartbeat mechanism. Zero external dependencies, i18n support, console output only.
 
-## Publisher: <br>
-[lim1202](https://clawhub.ai/user/lim1202) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lim1202](https://clawhub.ai/user/lim1202)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor local OpenClaw workspaces and host health through L1/L2/L3 checks, heartbeat status, cron setup guidance, and console or JSON reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled monitoring can add cron jobs that run local checks repeatedly. <br>
-Mitigation: Review and edit crontab entries and paths before enabling them. <br>
-Risk: Daily audit checks local system state such as update status, process counts, and aggregate temp/cache directory sizes. <br>
-Mitigation: Run it only where local system telemetry collection is acceptable and keep output logs scoped to the intended workspace. <br>
-Risk: Health checks call local utilities such as systemctl, pgrep, lsof, ps, apt-get, and yum, so results vary by OS and permissions. <br>
-Mitigation: Validate behavior on the target Linux or macOS host and treat warnings as operational signals rather than automatic remediation. <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw host health through fast file checks, hourly resource, service, and log checks, daily audits, and heartbeat status output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lim1202/system-healthcheck) <br>
-- [Publisher profile](https://clawhub.ai/user/lim1202) <br>
-- [README](README.md) <br>
-- [Installation guide](INSTALL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
-- [Crontab example](templates/crontab_example.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text, JSON status objects, Markdown guidance, and cron/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate pass/fail; quiet mode can suppress healthy output except HEARTBEAT_OK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and CHANGELOG, released 2026-03-23) <br>
+Risk: Recurring host execution can inspect local OpenClaw files, process and service state, logs, package-update status, and temporary or cache directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts and crontab entries before enabling schedules, run without elevated privileges, and remove cron entries to disable recurring checks.
+
+Risk: Configuration controls may not fully stop scheduled checks after cron entries are installed.
+
+Mitigation: Treat crontab as the authority for recurring execution and remove or comment scheduled entries when disabling the skill.
+
+Risk: Healthcheck output can reveal local system state and log details.
+
+Mitigation: Write output only to intended local consoles or logs and limit access to generated healthcheck logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lim1202/skills/system-healthcheck)
+- [README.md](README.md)
+- [INSTALL.md](INSTALL.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional console or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Console-oriented health status output; documented script modes include quiet output and JSON output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and CHANGELOG, released 2026-03-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

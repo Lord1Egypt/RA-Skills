@@ -1,43 +1,56 @@
-## Description: <br>
-Create accurate, visual product sizing guides for apparel, footwear, and accessories that reduce size-related returns by including measurement instructions, fit notes, brand-specific conversion tables, and body-type recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create accurate, visual product sizing guides for apparel, footwear, and accessories that reduce size-related returns by including measurement instructions, fit notes, brand-specific conversion tables, and body-type recommendations.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce merchants and operators use this skill to build product size guides for apparel, footwear, and accessories, including measurement tables, international conversions, fit notes, body-type recommendations, and publishing-ready guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sizing conversions, fit notes, or measurements can be inaccurate when source product data is incomplete or generic. <br>
-Mitigation: Review generated conversions and measurements against manufacturer, brand, or fit-sample data before publishing. <br>
-Risk: Private product URLs, internal customer feedback, or unpublished store data may be exposed if included in prompts or guide inputs. <br>
-Mitigation: Use only product and store information that is approved for use in the generated guide. <br>
+## Use Case:
 
+External ecommerce teams and store operators use this skill to generate customer-facing size guides for apparel, footwear, and accessories. It helps assemble measurement tables, fit guidance, international conversions, body-type recommendations, and publishing checks from product and brand sizing data.
 
-## Reference(s): <br>
-- [Size Guide Output Template](references/output-template.md) <br>
-- [International Sizing Standards Reference Guide](references/sizing-standards-guide.md) <br>
-- [Measurement Best Practices for Ecommerce Size Guides](references/measurement-best-practices.md) <br>
-- [Size Guide Builder Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, optional HTML snippets, and structured size-guide sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dual-unit measurement tables, international conversion tables, fit notes, measurement instructions, and platform-specific formatting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated measurements, conversions, or fit recommendations may be wrong if product data, brand fit notes, or target-market assumptions are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated size tables and conversions against authoritative manufacturer specs, fit samples, or current product data before publishing.
+
+Risk: The skill may ask for product sizing data, brand fit notes, target markets, and store platform details.
+
+Mitigation: Provide only the product and store context needed to create the guide, and avoid including sensitive customer or business data.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Sizing Standards Guide](references/sizing-standards-guide.md)
+- [Measurement Best Practices](references/measurement-best-practices.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown size guide content with tables, measurement instructions, fit notes, and checklist-style recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dual-unit measurements, international size conversions, brand-specific fit notes, body-type recommendations, and platform-aware formatting guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

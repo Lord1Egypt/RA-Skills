@@ -1,66 +1,43 @@
-# Project Memory / 项目记忆工作流
+# Project Memory Fallback / 项目记忆回退模块
 
-## Role / 角色
+Use this reduced-fidelity module only when `daily-workflow` is unavailable. Preserve enough factual context for the user or another agent to resume accurately.
 
-This module preserves project context so the user or another AI can resume work accurately.
+本模块只在 `daily-workflow` 不可用时使用，保存足够的事实上下文，让用户或下一任 Agent 可以准确恢复工作。
 
-本模块保存项目上下文，让用户或下一任 AI 可以准确恢复工作。
+## Ownership / 权威边界
 
-## Core Files / 核心文件
+When project governance or a coding loop is active, defer owned fields to that system. Read and summarize existing files, but do not overwrite targets, acceptance evidence, QA decisions, latest verification, stop gates, or loop records.
+
+项目治理或编码循环处于活动状态时，不抢写它们拥有的字段。可以读取和总结现有文件，但不得覆盖目标、验收证据、QA 决定、最近验证、停止门禁或循环记录。
+
+Persist only for an explicit start/resume, checkpoint, wrap-up, or handoff request.
+
+只有用户明确要求开工/恢复、checkpoint、收工或交接时才持久化。
+
+## Minimal Files / 最小文件
+
+Reuse project-owned files. If none exist and persistence is requested, start with:
 
 ```text
-Docs/PROJECT.md
-Docs/TARGET.md
 Docs/STATUS.md
-Docs/COMPLETED.md
-Docs/PENDING.md
 Docs/NEXT_ACTIONS.md
-Docs/HANDOFF.md
-Docs/CONFIG.md
-Docs/archive/YYYY-MM.md
 ```
 
-## Workflow / 工作流程
+Add `PROJECT.md`, `TARGET.md`, `COMPLETED.md`, `PENDING.md`, `HANDOFF.md`, or `CONFIG.md` only when each has a distinct owner and purpose. Do not create `TARGET.md` from an AI guess.
 
-### Start Work / 开工
+复用项目已有文件。只有在没有权威体系且用户要求持久化时，才从 `STATUS.md` 和 `NEXT_ACTIONS.md` 开始。不要根据 AI 猜测创建 `TARGET.md`。
 
-Read existing project files. If none exist, create the minimum project memory set.
+## Record / 记录内容
 
-读取现有项目文件。如不存在，创建最小项目记忆文件组。
+- current state and authority / 当前状态与权威
+- user intent and decisions / 用户意图与决定
+- completed work with evidence / 有证据的已完成工作
+- exact commands and final outcomes / 准确命令与最终结果
+- not-executed or deferred scenarios / 未执行或延后场景
+- dirty worktree notes / 脏工作树说明
+- pending work, blockers, risks, and Owner decisions / 待办、阻塞、风险与 Owner 决定
+- exactly one immediate next action / 唯一立即下一步
 
-### Checkpoint / 中段检查
+Do not store secrets, full confidential content, large logs, or hidden reasoning. Preserve history; do not delete legacy files automatically.
 
-Update current status, decisions, blockers, and next actions.
-
-更新当前状态、已做决策、阻碍和下一步。
-
-### Wrap Up / 收工
-
-Summarize completed work, pending work, risks, next actions, and handoff notes.
-
-总结已完成、待办、风险、下一步和交接信息。
-
-### Handoff / 交接
-
-Create a compact, actionable handoff note for the next AI or human.
-
-为下一任 AI 或人员创建简洁可执行的交接说明。
-
-## Legacy Migration / 旧版迁移
-
-If legacy Daily Workflow files exist, migrate by mapping:
-
-如果发现旧版 Daily Workflow 文件，按以下方式迁移：
-
-```text
-PROJECT_TARGET.md  -> TARGET.md
-PROJECT_STATUS.md  -> STATUS.md
-COMPLETED_JOBS.md  -> COMPLETED.md
-PENDING_JOBS.md    -> PENDING.md
-NEXT_STEPS.md      -> NEXT_ACTIONS.md
-SCHEDULE.md        -> NEXT_ACTIONS.md or compatibility alias
-```
-
-Do not delete old files automatically.
-
-不要自动删除旧文件。
+不得保存密钥、完整机密内容、大段日志或隐藏推理。保留历史，不自动删除旧文件。

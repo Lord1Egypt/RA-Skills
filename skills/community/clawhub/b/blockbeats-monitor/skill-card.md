@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors BlockBeats news and articles, categorizes selected crypto-market keyword groups, stores results in SQLite, and generates Telegram-ready daily sentiment reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors BlockBeats news and articles, classifies coverage for specified crypto-market keyword groups, stores results in SQLite, and generates Telegram-ready sentiment reports.
 
-## Publisher: <br>
-[yugulugulu](https://clawhub.ai/user/yugulugulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yugulugulu](https://clawhub.ai/user/yugulugulu)
 
-## Use Case: <br>
-Developers and operators use this skill to collect BlockBeats Pro API items, track predefined crypto-market topics over 24-hour windows, and deliver a Markdown daily report to Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive BlockBeats Pro API and Telegram bot credentials. <br>
-Mitigation: Store credentials in the local config file with appropriate file permissions and rotate them if they are exposed. <br>
-Risk: Reports can be sent to the wrong Telegram destination if chat_id is misconfigured. <br>
-Mitigation: Verify the Telegram chat_id before enabling run-daily or scheduled delivery. <br>
-Risk: Fetched content and generated reports may remain in the local SQLite database. <br>
-Mitigation: Choose an appropriate storage.db_path and delete or rotate the database according to retention needs. <br>
+## Use Case:
 
+Developers and operators use this skill to collect BlockBeats Pro API content, track configured crypto-market keyword groups over rolling 24-hour windows, and produce daily Markdown reports for Telegram delivery.
 
-## Reference(s): <br>
-- [BlockBeats Pro API](https://api-pro.theblockbeats.info) <br>
-- [SQLite schema](references/schema.sql) <br>
-- [Example configuration](config.example.toml) <br>
-- [ClawHub skill page](https://clawhub.ai/yugulugulu/blockbeats-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and TOML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-configured BlockBeats Pro API credentials, local SQLite storage, and optional Telegram delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Telegram bot tokens can be exposed through the spawned curl command used for report delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged Telegram bot, protect config.toml, and prefer updating the sender to avoid putting the bot token in child-process command arguments.
+
+Risk: Collected BlockBeats content and generated reports are stored in a local SQLite database.
+
+Mitigation: Store the database in an access-controlled location and delete retained data that is no longer needed.
+
+Risk: Generated reports are sent to the configured Telegram chat.
+
+Mitigation: Confirm the chat_id before use and review report contents before sending.
+
+## Reference(s):
+
+- [BlockBeats Pro API endpoint](https://api-pro.theblockbeats.info)
+- [SQLite schema](artifact/references/schema.sql)
+- [ClawHub skill page](https://clawhub.ai/yugulugulu/skills/blockbeats-monitor)
+- [Publisher profile](https://clawhub.ai/user/yugulugulu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON command status, TOML configuration guidance, and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores normalized source content and generated report runs in a local SQLite database; can send reports to a configured Telegram chat.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

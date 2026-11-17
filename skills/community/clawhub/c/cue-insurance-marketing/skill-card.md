@@ -1,46 +1,60 @@
-## Description: <br>
-Runs Cue deep research for insurance marketing scenarios, including cross-source public data checks and source-linked conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 跑「保险营销」场景的深度研究：横向比对目标保险产品与竞品在保障、收益、服务与适配场景上的差异，扫描热点事件自动映射保险需求，产出可用于客户沟通的选型对比、营销线索和合规边界参考。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-Insurance, marketing, and product-analysis users use this skill to run Cue research on insurance product comparisons, marketing leads, suitability checks, policy-term reviews, and compliance boundary checks. It helps produce source-linked research reports from public data and reminds users that the output does not replace due diligence, legal advice, or underwriting review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install, update, and run mutable external Cue code while using a local Cue API key. <br>
-Mitigation: Install only if Cue, the sensedeal/cue-skills repository, and the local Cue account are trusted; review or pin the runner source before first use. <br>
-Risk: Running deep research can consume Cue credits. <br>
-Mitigation: Require explicit user confirmation before executing a selected research run. <br>
-Risk: Insurance research outputs may be mistaken for due diligence, legal advice, or underwriting review. <br>
-Mitigation: Keep source links in the report and treat findings as public-data research that requires qualified review before use. <br>
+## Use Case:
 
+Insurance marketing and advisory users use this skill to run Cue research for product comparison, marketing lead discovery, suitability checks, policy-term review, and compliance red-line summaries. It helps prepare source-linked research outputs for customer communication while reminding users to stay within claims that can be truthfully supported.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangxiaoxu/skills/cue-insurance-marketing) <br>
-- [Cue playbook source](https://cuecue.cn/playbook) <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [Cue skills repository](https://github.com/sensedeal/cue-skills) <br>
-- [Cue skills Gitee mirror](https://gitee.com/sensedeal/cue-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with source links and inline shell commands for runner setup and execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May consume Cue credits after explicit user confirmation; failed or empty runs should be reported without fabricating findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses Cue's external research service and runner, which may read the user's Cue API key from ~/.cue/config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments approved for Cue access, protect the Cue API key, and review the external runner source when pinned or audited dependencies are required.
+
+Risk: Running deep research consumes Cue credits.
+
+Mitigation: Confirm the selected buddy, research subject, and credit use with the user before starting a run.
+
+Risk: Insurance research outputs may be incomplete, outdated, or unsuitable as legal, underwriting, or due-diligence advice.
+
+Mitigation: Keep source links in the report, verify important claims against authoritative sources, and route regulated advice through qualified review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-insurance-marketing)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [cue-skills runner source](https://github.com/sensedeal/cue-skills)
+- [cue-skills runner mirror](https://gitee.com/sensedeal/cue-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research reports with source links, plus setup and run commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Cue live playbook data and may return an empty result when the runner does not retrieve content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

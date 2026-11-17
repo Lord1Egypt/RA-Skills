@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents through an AI-assisted continuous requirements engineering workflow, from planning and capture through baselining, traceability, testing, change control, and acceptance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a continuous, AI-assisted requirements engineering workflow for capturing, clarifying, prioritizing, reviewing, testing, and evolving living requirements.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Product managers, project managers, requirements analysts, and engineering teams use this skill to turn vague ideas and feedback into baselined, traceable, continuously updated requirements. It provides staged checklists, prompt templates, quality gates, and human review points for AI-assisted requirements work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real customer feedback, logs, telemetry, or requirements data may contain personal information, secrets, or other sensitive business data. <br>
-Mitigation: Confirm authorization before use, redact personal information and secrets, avoid sending raw data to unapproved AI providers, and set retention and access limits. <br>
-Risk: AI-generated requirements, estimates, traceability links, tests, or change impact analysis can be incomplete, inconsistent, or misleading. <br>
-Mitigation: Keep human review for compliance and product decisions, require quality gates for consistency and hallucination checks, and verify AI-generated conclusions against source evidence before adoption. <br>
+## Use Case:
 
+Developers, product managers, and project teams use this skill to run a structured continuous requirements process with AI-assisted discovery, Smart RTM maintenance, quality gates, change-impact analysis, and reusable prompt and document templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/intelligent-continuous-re) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, document templates, and reusable prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow guidance; no code execution or shell commands are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release metadata) <br>
+Risk: The skill encourages AI analysis of customer feedback, support logs, production monitoring, and behavior analytics, which may expose personal data or sensitive operational data if used without controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval before using real customer or production data, remove personal data and secrets, minimize shared fields, document retention and access, and avoid sending sensitive telemetry to external AI services unless authorized.
+
+Risk: AI-generated requirements analysis, prioritization, risk estimates, models, and test cases can be inaccurate or unsupported.
+
+Mitigation: Keep human review and sign-off for critical requirements, quality gates, change-control decisions, compliance judgments, and any AI-generated estimates or traceability updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/intelligent-continuous-re)
+- [Skill source artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, document templates, and ready-to-use prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces requirements-analysis workflows, prompt templates, RTM structures, quality-gate checklists, and review guidance; outputs should be reviewed by humans before use in project decisions.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release evidence and artifact version notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

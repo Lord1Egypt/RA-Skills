@@ -1,43 +1,53 @@
-## Description: <br>
-Task Queue by Model Source routes tasks into per-model-source FIFO queues with support for dependencies, context passing, retries, and failure handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-queue task orchestration system. Tasks are routed to queues by model source, with support for task dependencies, context passing, and failure handling.
 
-## Publisher: <br>
-[bg1avd](https://clawhub.ai/user/bg1avd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bg1avd](https://clawhub.ai/user/bg1avd)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route delegated work into per-model-source queues, track dependencies, dispatch pending tasks, and report completion or failure status. It is intended for local task orchestration where users want persistent queue files and optional heartbeat or cron-backed dispatch. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent background execution and broad triggers could run queued work without clear user control. <br>
-Mitigation: Install only if persistent local task queues are desired, review pending and running queue files regularly, and keep automatic dispatcher triggers disabled unless explicitly needed. <br>
-Risk: First-run setup may create local queue files and register heartbeat or cron-backed dispatcher entries. <br>
-Mitigation: Confirm the exact queue directory, heartbeat entry, and cron payload before setup, and verify there is a clear stop, uninstall, or rollback path. <br>
-Risk: Queued tasks can spawn subagents and pass context from dependency results into later tasks. <br>
-Mitigation: Avoid placing sensitive data in queued task descriptions or dependency summaries unless the selected model source and subagent runtime are approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Queue Schema Reference](artifact/queue-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bg1avd/model-queue) <br>
-- [Publisher Profile](https://clawhub.ai/user/bg1avd) <br>
+## Use Case:
 
+Developers and operators use this skill to queue agent tasks by model source, run one task at a time per source, pass context across dependencies, and monitor task completion or failure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown and chat text with JSON queue files and shell/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates one FIFO JSON queue per model source, emits task status notifications, and may register heartbeat or cron-backed dispatcher entries on first use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and target metadata; artifact metadata reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install persistent background dispatch through heartbeat or cron behavior.
+
+Mitigation: Require confirmation before first-run setup, narrow activation triggers, and review or disable heartbeat and cron integration before deployment.
+
+Risk: Queued tasks may spawn agents from broad prompts and store task data locally.
+
+Mitigation: Avoid queueing sensitive data unless local storage permissions and retention are approved, and review queued task prompts before dispatch.
+
+## Reference(s):
+
+- [Queue Schema Reference](artifact/queue-schema.md)
+- [ClawHub skill page](https://clawhub.ai/bg1avd/skills/model-queue)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with JSON queue files and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates per-source FIFO queue files, archive files, heartbeat entries, and optional cron dispatch notifications.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Professional digital forensics tools assessment platform that generates personalized tool recommendations and skill development guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional digital forensics tools assessment platform that generates personalized tool recommendations and skill development guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security professionals, incident responders, digital forensics practitioners, and organizations use this skill to request personalized forensic tool recommendations and skill development guidance from an external assessment API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment profile details and session data are sent to an external API. <br>
-Mitigation: Avoid submitting confidential case information, client names, regulated personal data, or unnecessary identifiers; omit or pseudonymize userId when possible. <br>
+## Use Case:
 
+External security professionals, incident responders, digital forensics practitioners, and organizations use this skill to request profile-based forensic tool recommendations and skill development guidance.
 
-## Reference(s): <br>
-- [Digital Forensics Tools on ClawHub](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-digital-forensics-tools) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [ToolWeb Hub](https://hub.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [Digital Forensics API Route](https://api.mkkpro.com/compliance/digital-forensics) <br>
-- [Digital Forensics API Docs](https://api.mkkpro.com:8116/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, JSON, API calls] <br>
-**Output Format:** [Markdown guidance and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assessment requests may include session identifiers, optional user identifiers, timestamps, experience, focus areas, and skill-level details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Assessment profile data is sent to a third-party API with limited privacy transparency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymous or non-sensitive session and user identifiers, and avoid confidential investigation details unless the provider's privacy and retention terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-digital-forensics-tools)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb portal](https://portal.toolweb.in)
+- [ToolWeb hub](https://hub.toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI publisher profile](https://rapidapi.com/user/mkrishna477)
+- [ToolWeb YouTube channel](https://youtube.com/@toolweb-009)
+- [Digital forensics API route](https://api.mkkpro.com/compliance/digital-forensics)
+- [API documentation](https://api.mkkpro.com:8116/docs)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses with tool recommendations, skill gaps, and assessment summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires assessment profile fields such as session ID, timestamp, experience, focus areas, and skill level for personalized recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

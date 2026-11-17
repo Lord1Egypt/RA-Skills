@@ -1,39 +1,59 @@
-## Description: <br>
-Connect to and explore PostgreSQL, MySQL, SQLite, MongoDB, and Redis databases by running queries, inspecting schemas, exporting data, and diagnosing database issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Db Explorer helps agents connect to PostgreSQL, MySQL, SQLite, MongoDB, and Redis databases to inspect schemas, run bounded queries, export results, and debug database issues.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect to supported databases, inspect schemas, run bounded diagnostic queries, export query results, and troubleshoot database issues from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes high-impact restore, import, migration, dump, and export workflows that can affect production data or expose sensitive data if run without clear scoping. <br>
-Mitigation: Before any export, backup, restore, import, migration, or write operation, require the exact command, confirm the target database and environment, choose a protected destination path, and avoid production unless explicitly intended. <br>
+## Use Case:
 
+Developers and database operators use this skill to explore database structure, run diagnostic or read-only queries, export bounded result sets, and prepare cautious database maintenance commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrg913427-dot/lrg913427-db-explorer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lrg913427-dot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes database connection guidance, schema exploration steps, export workflows, diagnostic queries, and safety checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Database exploration can expose or alter sensitive production data when run with broad credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged database accounts, prefer read-only operations, and require explicit confirmation with target verification before any write, restore, import, migration, or full export.
+
+Risk: Credential examples that place passwords in command lines can leak secrets through shell history, process listings, or logs.
+
+Mitigation: Use environment variables, prompts, or secret managers instead of pasting real passwords directly into commands.
+
+Risk: Unbounded exports and Redis key scans can create operational load or expose more data than intended.
+
+Mitigation: Limit query results by default, scope exports narrowly, and avoid Redis KEYS on production or shared Redis instances.
+
+## Reference(s):
+
+- [Db Explorer ClawHub Release](https://clawhub.ai/lrg913427-dot/skills/lrg913427-db-explorer)
+- [lrg913427-dot Publisher Profile](https://clawhub.ai/user/lrg913427-dot)
+- [MongoDB Shell Documentation](https://www.mongodb.com/docs/shell/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database queries, schema summaries, export commands, diagnostic commands, and safety confirmation prompts.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

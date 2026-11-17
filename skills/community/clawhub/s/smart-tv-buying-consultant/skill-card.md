@@ -1,41 +1,54 @@
-## Description: <br>
-Guide users buying a smart TV through screen size, room lighting, panel type, resolution, and usage questions to determine the exact specs they need - region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a smart TV through screen size, room lighting, panel type, resolution, and usage questions to determine the exact specs they need -- region-aware, brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill when buying or replacing a Smart TV and need a structured consultation that turns room setup, viewing habits, connectivity needs, and region into practical specifications and product starting points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product availability, prices, model specifications, warranties, certifications, and reviews can become outdated or vary by region. <br>
-Mitigation: Before spending money, independently verify current model details with retailers, manufacturer pages, warranty terms, regional certification labels, and recent reviews. <br>
-Risk: A recommendation can be misleading if the user's room setup, viewing distance, usage, connected devices, or region are incomplete or incorrect. <br>
-Mitigation: Collect the critical room, use-case, content, connectivity, and region answers before recommending specs, and revise recommendations when the user corrects an input. <br>
+## Use Case:
 
+External Smart TV buyers and agents assisting shoppers use this skill to run a structured buying consultation and produce brand-neutral specification guidance. It helps users evaluate screen size, panel technology, resolution, refresh rate, HDR, ports, smart OS needs, regional standards, and matching product options.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/arbazex/smart-tv-buying-consultant) <br>
-- [Skill homepage](https://github.com/arbazex/home-appliance-buying-consultants/tree/master/smart-tv-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with consultation questions, structured specification lists, and optional product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include up to 5 region-tailored product suggestions; does not perform purchases or call external APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Product suggestions may become outdated or may not match local availability, warranties, prices, or exact specifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat suggested models as starting points and verify current prices, availability, regional warranty coverage, and manufacturer specifications before purchase.
+
+Risk: Recommendations can be incomplete when the user provides vague room, usage, connectivity, or region details.
+
+Mitigation: Ask targeted follow-up questions for the critical room setup, primary use, content, connectivity, and region details before giving final specification guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/smart-tv-buying-consultant)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured questions, specification lists, and product suggestion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include up to five product suggestions as starting points for user research; no external APIs or runtime dependencies are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,7 +12,7 @@
    */
 
   const { generateDream, getDreamEngine, LEVELS } = require('./dream-loop.js');
-  const { WakeUpVerifier } = require('./wake-up-verifier.js');
+  const { WakeUpVerifier } = require('../shield/wake-up-verifier.js');
   const { generateNarrative, generateWideNarrative } = require('./narrative-generator.js');
 
   class InteractiveDream {
@@ -307,8 +307,4 @@ ${levels ? `L1~L6层级分布：L1=${levels.L1?.toFixed(1) || 0}, L2=${levels.L2
       { text: 'prajna wisdom sees reality directly', layer: 'EPHEMERAL' },
       { text: 'the sage acts only to benefit all beings', layer: 'EPHEMERAL' },
     ]);
-    console.log('=== InteractiveDream with DAG ===');
-    console.log('levels:', JSON.stringify(dream.levels, null, 2));
-    console.log('contradictions:', JSON.stringify(dream.contradictions, null, 2));
-    console.log('insight_record:', JSON.stringify(dream.insight_record.entries.slice(-3), null, 2));
   }

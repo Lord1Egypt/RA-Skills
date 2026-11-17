@@ -1,44 +1,59 @@
-## Description: <br>
-Use Chanjing TTS API to convert text to speech by listing voices, creating synthesis tasks, and polling task status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Chanjing TTS API to convert text to speech by listing voices, creating synthesis tasks, and polling task status.
 
-## Publisher: <br>
-[zuoyuting214](https://clawhub.ai/user/zuoyuting214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyuting214](https://clawhub.ai/user/zuoyuting214)
 
-## Use Case: <br>
-Developers and agents use this skill to turn Chinese or English text into speech with Chanjing TTS, including voice selection, task creation, status polling, and retrieval of remote audio URLs and subtitle timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Chanjing app_id and secret_key credentials in a local credentials file. <br>
-Mitigation: Use a dedicated or revocable API key, keep the credentials file private, and use the configured private file permissions. <br>
-Risk: Text submitted for synthesis is sent to Chanjing's API. <br>
-Mitigation: Avoid sending sensitive text unless Chanjing's handling terms are acceptable for the user's environment. <br>
-Risk: The published artifact documents helper scripts that are not present in the provided files. <br>
-Mitigation: Verify available helper scripts before relying on the example commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate Chinese or English speech with Chanjing TTS, including voice listing, synthesis task creation, task polling, and returning remote audio URLs with subtitle timestamps when available.
 
-## Reference(s): <br>
-- [Zyt TTS on ClawHub](https://clawhub.ai/zuoyuting214/zyt-tts-test) <br>
-- [Chanjing Open API](https://open-api.chanjing.cc) <br>
-- [Chanjing OpenAPI Login](https://www.chanjing.cc/openapi/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and API result values such as task IDs, remote audio URLs, and subtitles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default behavior returns a remote audio URL and subtitles when available; local audio download is only proposed when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: release evidence) <br>
+Risk: The skill stores app_id, secret_key, and cached access_token in a local JSON credentials file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ~/.chanjing or CHANJING_CONFIG_DIR private, avoid shared directories, and restrict access to the credentials file.
+
+Risk: Credentials are sent to Chanjing's API to obtain access tokens.
+
+Mitigation: Install and use the skill only when the user intends to use Chanjing TTS and accepts the credential flow.
+
+Risk: Some scripts named in the documentation were not present in the reviewed artifact, so functionality may be incomplete.
+
+Mitigation: Verify the installed artifact includes the expected workflow scripts before relying on the complete TTS flow.
+
+## Reference(s):
+
+- [Chanjing Open API](https://open-api.chanjing.cc)
+- [Zyt TTS on ClawHub](https://clawhub.ai/zuoyuting214/skills/zyt-tts-test)
+- [Publisher profile](https://clawhub.ai/user/zuoyuting214)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns remote audio URLs by default and may include subtitle timestamps from the API response; it does not download audio unless the user explicitly asks.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

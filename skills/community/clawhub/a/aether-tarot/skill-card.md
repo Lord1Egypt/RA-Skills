@@ -1,40 +1,50 @@
-## Description: <br>
-Provides calm, intuitive 3-card tarot readings for daily reflection, decision support, and emotional clarity in a private, conversational format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides calm, intuitive tarot-style conversations for daily reflection, decision support, and emotional clarity.
 
-## Publisher: <br>
-[emmiev573-web](https://clawhub.ai/user/emmiev573-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emmiev573-web](https://clawhub.ai/user/emmiev573-web)
 
-## Use Case: <br>
-External users can use this skill for private, conversational tarot-style reflection around daily decisions, emotional clarity, and personal perspective. It is for entertainment and personal reflection, not medical, legal, financial, or other professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat tarot-style responses as professional medical, legal, financial, or other high-stakes advice. <br>
-Mitigation: Present readings as entertainment and personal reflection only, and direct users to qualified professionals for high-stakes decisions. <br>
-Risk: The included code does not evidence deterministic tarot card selection, so readings may depend on model-generated responses rather than a local deck engine. <br>
-Mitigation: Do not claim reproducible card draws unless a deterministic deck-selection mechanism is added and reviewed. <br>
+## Use Case:
 
+External users use this skill for private, gentle tarot-style reflection on daily questions, decisions, emotional clarity, and life transitions. Review the runtime behavior before relying on full card-selection functionality.
 
-## Reference(s): <br>
-- [Aether Tarot on ClawHub](https://clawhub.ai/emmiev573-web/aether-tarot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-guided 3-card tarot reflection; no deterministic local deck engine is evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The runtime evidence is a simple prompt-response stub and may not deliver the full 78-card tarot selection described in documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review behavior in the target agent before release and update the implementation or documentation so described tarot-card functionality matches runtime output.
+
+## Reference(s):
+
+- [Aether Tarot ClawHub skill page](https://clawhub.ai/emmiev573-web/skills/aether-tarot)
+- [emmiev573-web ClawHub publisher profile](https://clawhub.ai/user/emmiev573-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns short prompt-response messages with optional context.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

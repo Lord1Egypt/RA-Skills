@@ -1,42 +1,55 @@
-## Description: <br>
-Build Next.js 15 apps with App Router, server components, caching, auth, and production patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Next.js 15 apps with App Router, server components, caching, auth, and production patterns.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers, technical founders, and product engineers use this skill to plan and produce Next.js 15 application work with App Router, server components, caching, authentication, and production patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External SkillBoss guide content may change independently of this skill artifact. <br>
-Mitigation: Review the external guide before following commands or recommendations from it. <br>
-Risk: Generated Next.js code or configuration may be inaccurate or unsuitable for a production application. <br>
-Mitigation: Inspect generated code, avoid sharing secrets in prompts, and test changes before using them in production. <br>
+## Use Case:
 
+Developers, technical founders, and product engineers use this skill to plan and draft Next.js 15 application work, including App Router, server components, caching, authentication, and production patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alvis-nextjs-framework) <br>
-- [SkillBoss Next.js Guide](https://www.SkillBoss.co/skills/nextjs) <br>
-- [SkillBoss Setup Guide](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and configuration snippets when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included in the skill artifact; review generated outputs before publication or execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Generated authentication or production code may be incorrect or unsuitable for a specific application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, test, and adapt generated code before applying it to a project.
+
+Risk: The external setup-guide link is outside the reviewed artifact.
+
+Mitigation: Treat external setup instructions as unreviewed material and verify them before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis-nextjs-framework)
+- [SkillBoss Next.js homepage](https://www.SkillBoss.co/skills/nextjs)
+- [SkillBoss setup guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files are bundled; review generated authentication and production code before applying it.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

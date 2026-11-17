@@ -1,43 +1,58 @@
-## Description: <br>
-Generates a consolidated enterprise diagnosis report by parsing and integrating company profile, financial and tax diagnosis, and policy matching PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consolidates enterprise profile, finance and tax diagnosis, and policy matching reports into a comprehensive enterprise diagnosis report.
 
-## Publisher: <br>
-[wangl271](https://clawhub.ai/user/wangl271) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangl271](https://clawhub.ai/user/wangl271)
 
-## Use Case: <br>
-Employees, external advisers, and developers use this skill to combine enterprise diagnosis PDFs into a Markdown report covering company profile, financial and tax health, policy opportunities, data conflicts, and missing inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enterprise PDFs and generated outputs may contain financial, tax, or business-sensitive information. <br>
-Mitigation: Use a dedicated working directory, restrict access to inputs and outputs, and delete or protect generated text and reports after use. <br>
-Risk: The PDF parser can download PDFs from URLs, which may expose the agent to untrusted remote files. <br>
-Mitigation: Prefer trusted local PDFs or known-good URLs, and avoid parsing unexpected or untrusted PDF links. <br>
-Risk: Extracted tables, numbers, and policy matches can be incomplete or stale, especially for scanned PDFs or time-sensitive policy information. <br>
-Mitigation: Review key figures, conflicts, missing fields, and current policy requirements before relying on the generated report. <br>
+## Use Case:
 
+Developers and business analysts use this skill to parse trusted enterprise diagnosis PDFs, extract company, financial, tax, and policy data, cross-check shared fields, and generate an integrated Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangl271/enterprise-diagnosis-report) <br>
-- [Enterprise diagnosis report template](references/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with extracted text outputs and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write extracted PDF text and generated reports to local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The PDF parser can fetch arbitrary URLs and write extracted content to caller-chosen paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted local PDFs or trusted HTTPS report sources only, avoid attacker-supplied URLs, and keep outputs in a dedicated workspace directory.
+
+Risk: Generated text files may contain sensitive enterprise financial and tax data.
+
+Mitigation: Treat generated reports and extracted text as sensitive and restrict access according to the organization's data handling requirements.
+
+Risk: PDF extraction can misread tables, numbers, scanned pages, or time-sensitive policy details.
+
+Mitigation: Manually verify key figures and policy information before using the report for decisions.
+
+## Reference(s):
+
+- [Report template](references/report_template.md)
+- [ClawHub skill page](https://clawhub.ai/wangl271/skills/enterprise-diagnosis-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with extracted PDF text files when an output path is provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can mark missing or conflicting report data for user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

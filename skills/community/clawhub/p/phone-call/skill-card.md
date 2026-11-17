@@ -1,43 +1,58 @@
-## Description: <br>
-Make phone calls through the macOS Phone/FaceTime app and let an OpenClaw agent speak into the call via local TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make phone calls through the macOS Phone/FaceTime app and let an OpenClaw agent speak into the call via local TTS.
 
-## Publisher: <br>
-[flexrox](https://clawhub.ai/user/flexrox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flexrox](https://clawhub.ai/user/flexrox)
 
-## Use Case: <br>
-Developers and OpenClaw users on macOS use this skill to place outbound calls through the local Phone/FaceTime Continuity stack and speak generated text into an active call. It is intended for cases where the user has provided an explicit phone number and permission to call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound calls from the user's Mac/iPhone setup. <br>
-Mitigation: Require explicit user permission and a confirmed E.164 phone number before live use; use --dry-run or --no-confirm when manual control is preferred. <br>
-Risk: The skill requires macOS Accessibility/Automation permission to control local Phone/FaceTime UI. <br>
-Mitigation: Grant permissions only to a trusted OpenClaw runner or terminal process and review the skill before deployment. <br>
-Risk: Optional ElevenLabs TTS uses sensitive credentials and may send spoken text to an external service. <br>
-Mitigation: Leave ElevenLabs credentials unset when speech should remain local; the skill falls back to macOS say. <br>
+## Use Case:
 
+Developers and agent operators use this skill to place explicitly authorized outbound calls from a Mac through the local Phone/FaceTime stack and speak generated text through local TTS.
 
-## Reference(s): <br>
-- [Apple Phone User Guide for Mac](https://support.apple.com/guide/phoneapp/make-or-receive-calls-phn28c9d643a/mac) <br>
-- [ClawHub Phone Call release page](https://clawhub.ai/flexrox/phone-call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and plain text passed to local TTS] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only; requires Phone or FaceTime, osascript, Accessibility/Automation permission, and explicit user permission for live outbound calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can initiate real outbound calls through the local macOS Phone/FaceTime stack.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user permission and verify the exact E.164 phone number before each live call.
+
+Risk: macOS Accessibility/Automation control can interact with broad system dialogs while placing calls.
+
+Mitigation: Grant permissions only to the intended runner, avoid running the skill while unrelated dialogs are open, and prefer --no-confirm or another explicit approval workflow.
+
+Risk: Generated speech may be played into an active call through local TTS.
+
+Mitigation: Review or constrain agent-generated text before speaking it into calls, especially in customer-facing or regulated contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flexrox/skills/phone-call)
+- [Apple Phone User Guide for Mac](https://support.apple.com/guide/phoneapp/make-or-receive-calls-phn28c9d643a/mac)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance for macOS calling and local TTS workflows; it does not produce inbound telephony services.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

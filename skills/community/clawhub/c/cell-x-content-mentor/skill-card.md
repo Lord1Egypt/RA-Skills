@@ -1,44 +1,57 @@
-## Description: <br>
-X/Twitter content strategy skill for Chinese creators, indie builders, and expert accounts that routes requests across topic strategy, writing, review, growth, and account diagnosis instead of free-generating posts blindly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes X/Twitter content work for Chinese creators, indie builders, and expert accounts across topic strategy, drafting, review, growth, and account diagnosis.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External creators, indie builders, expert accounts, and agents use this skill to turn raw ideas, existing posts, growth problems, or recent account data into structured X/Twitter content strategy and concrete next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account diagnosis material may be saved locally and reused in later strategy work. <br>
-Mitigation: Use only the minimum account data needed, confirm before saving sensitive analytics or private account data, and ask for deletion or no reuse when prior strategy files should not be retained. <br>
+## Use Case:
 
+Creators, indie builders, expert accounts, and their agents use this skill to decide whether ideas belong on X, shape posts or threads, review drafts, diagnose growth bottlenecks, and analyze account data into reusable strategy notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-x-content-mentor) <br>
-- [Source homepage from metadata](https://github.com/cellinlab/cell-skills/tree/main/skills/x-content-mentor) <br>
-- [Topic Engine](references/topic-engine.md) <br>
-- [Writing Workshop](references/writing-workshop.md) <br>
-- [Review Scorecard](references/review-scorecard.md) <br>
-- [Growth Engine](references/growth-engine.md) <br>
-- [Account Diagnosis](references/account-diagnosis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown strategy packs, account diagnosis reports, post drafts, reviews, and next-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save account diagnosis material and reusable strategy notes under user-data/x-content-mentor/<username>/ when the account diagnosis workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Account diagnosis stores and silently reuses X account diagnostics and strategy notes locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before account diagnosis, decide what account data may be stored; avoid private analytics unless needed, and review or delete user-data/x-content-mentor/<username>/ when prior strategy should no longer be reused.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cellinlab/skills/cell-x-content-mentor)
+- [Project homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/x-content-mentor)
+- [Account Diagnosis](references/account-diagnosis.md)
+- [Growth Engine](references/growth-engine.md)
+- [Review Scorecard](references/review-scorecard.md)
+- [Topic Engine](references/topic-engine.md)
+- [Writing Workshop](references/writing-workshop.md)
+- [X Strategy Pack Template](assets/x-strategy-pack-template.md)
+- [Account Diagnosis Template](assets/account-diagnosis-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown strategy advice, post drafts, review notes, and account diagnosis reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account diagnosis may persist local account diagnostics and strategy notes for later reuse.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

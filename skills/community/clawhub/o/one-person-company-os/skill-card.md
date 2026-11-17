@@ -1,45 +1,58 @@
-## Description: <br>
-Build a visual operating cockpit for an AI-native one-person company across promise, buyer, product, delivery, cash, learning, and assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One Person Company OS builds a visual operating cockpit for an AI-native one-person company across promise, buyer, product capability, delivery, cash, learning, and assets.
 
-## Publisher: <br>
-[living-hi](https://clawhub.ai/user/living-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[living-hi](https://clawhub.ai/user/living-hi)
 
-## Use Case: <br>
-External founders and operators use this skill to turn an AI product idea into a local operating workspace with a cockpit, business-loop state, editable work surfaces, formal deliverables, and visual assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes generated company files and workspace state locally. <br>
-Mitigation: Use a dedicated founder-approved workspace directory and keep generated writes inside that directory. <br>
-Risk: Generated business, legal, pricing, or customer-facing material could be incomplete or unsuitable for direct use. <br>
-Mitigation: Review and approve generated material before publishing it, sending it to customers, changing budgets, or making legal or pricing decisions. <br>
-Risk: Tool adapters such as MCP, Dify, or API hosts may expose write-capable actions. <br>
-Mitigation: Require explicit user approval before invoking write operations and avoid providing unrelated credentials or secrets. <br>
+## Use Case:
 
+Solo founders and agents use this skill to turn an AI product idea into a local operating workspace with a visible business loop, current bottleneck, next action, formal deliverables, and visual assets. It supports founder-reviewed drafting and updates for product, sales, delivery, cash, learning, and asset work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/living-hi/one-person-company-os) <br>
-- [README](artifact/README.md) <br>
-- [Security Policy](artifact/SECURITY.md) <br>
-- [ClawHub listing draft](artifact/release/clawhub-listing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local workspace files, including HTML, Markdown, DOCX, SVG, JSON, and optional image prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normal operation uses a founder-approved local workspace and does not require API keys or image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and changelog, released 2026-05-06) <br>
+Risk: A runtime helper has an under-disclosed path that can run arbitrary local Python scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit normal use to documented commands and a workspace path the founder explicitly approves; do not invoke scripts/ensure_python_runtime.py with --apply --run-script unless the target is a trusted repository script and the resolved path has been reviewed.
+
+Risk: Generated business, pricing, legal, launch, budget, and customer-facing materials can be incorrect or premature if treated as final decisions.
+
+Mitigation: Keep the founder as the approval boundary and review high-impact outputs before publishing, sending, spending, or deploying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/living-hi/skills/one-person-company-os)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Security policy](artifact/SECURITY.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [ClawHub listing](artifact/release/clawhub-listing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown and local workspace files, including HTML, DOCX deliverables, SVG visuals, JSON state, and optional prompt text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal use expects a trusted local Python 3.7+ runtime, writes only inside a founder-approved workspace, and does not require API keys or image generation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and CHANGELOG, released 2026-05-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

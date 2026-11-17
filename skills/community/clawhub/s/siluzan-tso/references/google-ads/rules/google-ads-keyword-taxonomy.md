@@ -1,29 +1,28 @@
-# Google 搜索广告关键词分层与数量规范（Agent 参考）
+﻿# Google 搜索广告关键词分层与数量规范（Agent 参考）
 
-> 所属 skill：`siluzan-tso`。本文为**方案撰写参考**，**不由** `ad campaign-validate` / `ad campaign-create` 强制执行。  
 > 建户 JSON 契约与 CLI 硬约束见 `assets/campaign-create-template.md`、`references/google-ads/google-ads-campaign-plan.md`。
 
 ---
 
 ## 结构数量（每广告系列 / 每广告组）
 
-| 模块 | 规则 | 建议数量 | 示例 |
-|------|------|----------|------|
-| Campaign | 按产品线拆分 | 3–10 个系列（多文件 + `campaign-manifest.json`） | Payment Gateway / CRM |
-| Ad Group | 一个搜索意图一组 | 每组 5–20 个词 | Payment API Integration |
-| 核心词 | 高商业意图 | 每组 **5–15** | payment api pricing |
-| 长尾词 | 场景明确的长 query | 每组 **10–25** | crm for manufacturing |
-| Exact Match | 核心高转化 | 每组 **2–8** 条 | [stripe alternative] |
-| Phrase Match | 主流量 | 每组 **3–10** 条 | "payment solution" |
-| Broad Match | 少量测试 | 每组 **1–3** 条 | payment platform |
-| 否定关键词 | 基础否词库 | 系列级建议 **≥20** | free / jobs / tutorial |
+| 模块         | 规则               | 建议数量                                         | 示例                    |
+| ------------ | ------------------ | ------------------------------------------------ | ----------------------- |
+| Campaign     | 按产品线拆分       | 3–10 个系列（多文件 + `campaign-manifest.json`） | Payment Gateway / CRM   |
+| Ad Group     | 一个搜索意图一组   | 每组 5–20 个词                                   | Payment API Integration |
+| 核心词       | 高商业意图         | 每组 **5–15**                                    | payment api pricing     |
+| 长尾词       | 场景明确的长 query | 每组 **10–25**                                   | crm for manufacturing   |
+| Exact Match  | 核心高转化         | 每组 **2–8** 条                                  | [stripe alternative]    |
+| Phrase Match | 主流量             | 每组 **3–10** 条                                 | "payment solution"      |
+| Broad Match  | 少量测试           | 每组 **1–3** 条                                  | payment platform        |
+| 否定关键词   | 基础否词库         | 系列级建议 **≥20**                               | free / jobs / tutorial  |
 
 **写入位置（Agent 必遵，勿混放）**
 
-| 类型 | JSON 字段 | 层级 |
-| ---- | --------- | ---- |
-| 正向关键词 | `campaign.AdGroupsForBatchJob[].KeywordsForBatchJob[]` | 广告组 |
-| 否定关键词 | `campaign.NegativeKeywordsForBatchJob[]` | **系列**（非 KeywordsForBatchJob 内） |
+| 类型       | JSON 字段                                              | 层级                                  |
+| ---------- | ------------------------------------------------------ | ------------------------------------- |
+| 正向关键词 | `campaign.AdGroupsForBatchJob[].KeywordsForBatchJob[]` | 广告组                                |
+| 否定关键词 | `campaign.NegativeKeywordsForBatchJob[]`               | **系列**（非 KeywordsForBatchJob 内） |
 
 方案 Markdown 的「关键词矩阵」→ 前者；「系列级补充否定词 / 账户级否定词表」→ 后者（账户级列表另在 Google 后台应用）。**禁止**把否词抄进正向 `KeywordsForBatchJob`。`ad campaign-validate` 会对常见否词词根误填给出 warnings。
 

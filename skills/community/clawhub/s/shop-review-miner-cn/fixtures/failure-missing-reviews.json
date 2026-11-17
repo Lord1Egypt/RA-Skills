@@ -1,0 +1,21 @@
+{
+  "product_name": "云朵颈枕（标准款）",
+  "category": "旅行用品",
+  "analysis_goal": "找出需要补充的详情页信息",
+  "expected_result": {
+    "analysis_status": "insufficient_input",
+    "missing_fields": [
+      "reviews"
+    ],
+    "missing_field_messages": [
+      "缺少评价原文，无法归纳诉求或反馈主题；请提供每条评价的原文。"
+    ],
+    "analysis_stopped": true,
+    "forbidden_output_sections": [
+      "常见诉求",
+      "正向反馈主题",
+      "负向反馈主题",
+      "详情页补充点"
+    ]
+  }
+}

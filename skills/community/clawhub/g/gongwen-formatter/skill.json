@@ -1,19 +1,21 @@
 {
-  "name": "official-doc-formatter",
+  "name": "gongwen-formatter",
   "name_cn": "公文格式转换",
-  "version": "1.1.0",
+  "displayName": "Gongwen Formatter 公文格式转换",
+  "version": "1.1.9",
   "description": "将 Markdown 文档转换为符合 GB/T 9704-2012 党政机关公文格式的 Word 文档",
   "description_en": "Convert Markdown documents to Chinese government official document format (GB/T 9704-2012)",
   "author": "EdwardWason",
   "license": "MIT",
   "homepage": "https://github.com/EdwardWason/official-doc",
   "tags": ["document", "formatter", "markdown", "word", "government", "chinese", "gb9704"],
+  "triggers": ["公文格式转换", "转换公文格式"],
   "platform": ["windows", "linux", "macos"],
   "python_version": ">=3.8",
-  "dependencies": ["python-docx>=1.1.0", "markdown-it-py>=3.0.0"],
+  "dependencies": ["python-docx~=1.1.0", "markdown-it-py~=3.0.0"],
 
   "skills": {
-    "name": "official-doc-formatter",
+    "name": "gongwen-formatter",
     "type": "formatter",
     "category": "文档处理"
   },

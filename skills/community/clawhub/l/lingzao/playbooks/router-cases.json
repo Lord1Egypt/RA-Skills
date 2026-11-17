@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {"prompt": "我完全不懂小红书，也不知道该发什么", "routing_signals": ["不知道"], "expected_primary": "zero-beginner-gate"},
+    {"prompt": "帮我找 3 个还在更新的同赛道对标账号", "routing_signals": ["同赛道", "对标账号"], "expected_primary": "benchmark-discovery"},
+    {"prompt": "完整拆解这条小红书笔记，标题封面评论区都看", "routing_signals": ["完整拆解"], "expected_primary": "single-note-breakdown"},
+    {"prompt": "这是我的账号，帮我看看现在卡在哪里", "routing_signals": ["我的账号", "卡在哪里"], "expected_primary": "self-account-diagnosis"},
+    {"prompt": "找同阶段同粉丝量账号和我横向对比", "routing_signals": ["同粉丝量账号"], "expected_primary": "peer-horizontal-diagnosis"},
+    {"prompt": "品牌 Brief 发来了，帮我拆完直接出内容", "routing_signals": ["品牌 Brief"], "expected_primary": "brand-brief-content"},
+    {"prompt": "围绕 AI 写作做一份关键词洞察报告", "routing_signals": ["关键词洞察报告"], "expected_primary": "keyword-insight"},
+    {"prompt": "从这个关键词开始，一条龙给我出小红书内容", "routing_signals": ["一条龙"], "expected_primary": "keyword-content-package"},
+    {"prompt": "我有一篇草稿，参考这个爆款结构帮我改但别照抄", "routing_signals": ["草稿"], "expected_primary": "draft-rewrite"},
+    {"prompt": "我发几篇喜欢的公众号和自己的稿子，判断适不适合学再帮我写", "routing_signals": ["喜欢的公众号"], "expected_primary": "wechat-benchmark-writing"},
+    {"prompt": "我没有喜欢的文章链接，根据我的内容帮我找公众号对标并写一篇", "routing_signals": ["找公众号对标"], "expected_primary": "wechat-benchmark-writing"},
+    {"prompt": "把这个母题改成小红书、朋友圈和公众号", "routing_signals": ["朋友圈"], "expected_primary": "mother-content-distribution"},
+    {"prompt": "整理这一周素材，给我下周五个母题", "routing_signals": ["整理这一周素材"], "expected_primary": "weekly-motherpack"},
+    {"prompt": "帮我把这个宽泛需求改成可以直接复制给灵造的提示词", "routing_signals": ["宽泛需求"], "expected_primary": "copy-paste-scope"},
+    {"prompt": "给我 3 个最强的小红书标题", "routing_signals": ["小红书标题"], "expected_primary": "xhs-title-design"},
+    {"prompt": "帮我写小红书主页 100 字简介", "routing_signals": ["100 字"], "expected_primary": "xhs-profile-bio"},
+    {"prompt": "正文写完了，帮我设计最后 10 个发布关键词", "routing_signals": ["发布关键词"], "expected_primary": "publishing-keywords"},
+    {"prompt": "按照这张参考图做 7 页小红书图文", "routing_signals": ["小红书图文"], "expected_primary": "reference-image-graphic-note"},
+    {"prompt": "给这篇公众号做封面和三张正文配图方向", "routing_signals": ["配图方向"], "expected_primary": "visual-generation"},
+    {"prompt": "图片方案定了，直接生成并保存图片", "routing_signals": ["直接生成"], "expected_primary": "image-generation-execution"},
+    {"prompt": "做一张南宁美食打卡路线手绘地图", "routing_signals": ["美食"], "expected_primary": "travel-map-visual"},
+    {"prompt": "把我收藏的这些链接整理成内容知识库", "routing_signals": ["知识库"], "expected_primary": "content-knowledge-base"},
+    {"prompt": "这篇已经写完了，发布前帮我检查一下", "routing_signals": ["发布前"], "expected_primary": "pre-publish-check"},
+    {"prompt": "这条发布 48 小时了，根据数据帮我复盘", "routing_signals": ["复盘"], "expected_primary": "post-publish-review"}
+  ]
+}

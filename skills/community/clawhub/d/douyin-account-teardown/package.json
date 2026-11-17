@@ -1,0 +1,34 @@
+{
+  "name": "douyin-account-teardown",
+  "version": "1.5.0",
+  "description": "获取抖音真实一手数据，逆向拆解抖音平台账号，根据账号互动数据及账号作品数据，产出可复刻的运营手册。当用户提出「拆解某账号」「分析对标号」「看看XX号为什么火」「复刻这个账号的风格」「抓取抖音账号数据」「竞品账号分析」「对标账号数据」「账号诊断」等需求时使用。产出结构化数据 + 互动指标 + 形态拆解 + 差距定位。",
+  "keywords": [
+    "douyin",
+    "search",
+    "user-search",
+    "hot",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis",
+    "customer-acquisition",
+    "lead-generation"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node src/douyin/search-cli.js",
+    "user-search": "node src/douyin/user-search-cli.js",
+    "post": "node src/douyin/post-cli.js",
+    "comment": "node src/douyin/comment-cli.js",
+    "detail": "node src/douyin/detail-cli.js",
+    "hot": "node src/douyin/hot-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/douyin-search-openclaw.git"
+  }
+}

@@ -1,47 +1,62 @@
-## Description: <br>
-Athena Protocol is a modular identity and communication framework for personal AI assistants on OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Athena Protocol is a modular identity, memory, and communication framework for personal AI assistants on OpenClaw.
 
-## Publisher: <br>
-[skbylife](https://clawhub.ai/user/skbylife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skbylife](https://clawhub.ai/user/skbylife)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to adapt an existing personal AI assistant with persistent memory conventions, operating principles, communication analysis patterns, and proactive check-in templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory guidance may lead an assistant to record sensitive or unnecessary personal information. <br>
-Mitigation: Define what may be remembered before installation, exclude secrets and sensitive records, and periodically review memory files. <br>
-Risk: Proactive heartbeat behavior may inspect email, calendar, project, or memory sources beyond the user's intended scope. <br>
-Mitigation: Limit access to accounts and workspaces the user controls, set quiet hours, and scope each optional check before enabling it. <br>
-Risk: Copying framework sections into agent configuration can materially change assistant behavior. <br>
-Mitigation: Review selected sections before copying them into AGENTS.md, SOUL.md, or HEARTBEAT.md, and require explicit approval before external actions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add selected identity principles, persistent memory practices, communication heuristics, and heartbeat check-in patterns to a personal assistant configuration.
 
-## Reference(s): <br>
-- [Athena Protocol Skill Page](https://clawhub.ai/skbylife/athena-protocol) <br>
-- [SKILL.md](SKILL.md) <br>
-- [protocol.md](protocol.md) <br>
-- [memory-architecture.md](memory-architecture.md) <br>
-- [human-comms-framework.md](human-comms-framework.md) <br>
-- [heartbeat-template.md](heartbeat-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with configuration snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; users copy selected sections into existing OpenClaw configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill encourages broad persistent memory and assistant-behavior rules with weak scoping and consent controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review and narrow copied sections, restrict memory writes to the authenticated principal, and require human review before updating MEMORY.md, SOUL.md, AGENTS.md, HEARTBEAT.md, or skills.
+
+Risk: The communication heuristics may be treated as facts about people rather than uncertain coaching aids.
+
+Mitigation: Use the heuristics as tentative signals, ask clarifying questions, and avoid storing sensitive personal data or unsupported conclusions.
+
+Risk: The installer command delegates installation to a package fetched at runtime.
+
+Mitigation: Pin or otherwise verify the installer before use, and inspect the installed files before copying them into active assistant configuration.
+
+## Reference(s):
+
+- [Athena Protocol Skill Page](https://clawhub.ai/skbylife/skills/athena-protocol)
+- [SKILL.md](artifact/SKILL.md)
+- [Core Identity Principles](artifact/protocol.md)
+- [Memory Architecture](artifact/memory-architecture.md)
+- [Human Communication Decoding Framework](artifact/human-comms-framework.md)
+- [Heartbeat Template](artifact/heartbeat-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance, Shell commands]
+
+**Output Format:** [Markdown with configuration snippets and an inline installation command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; users copy selected sections into assistant configuration files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

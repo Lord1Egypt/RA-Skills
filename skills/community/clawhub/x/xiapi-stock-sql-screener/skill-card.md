@@ -1,45 +1,61 @@
-## Description: <br>
-Screens A-share stocks with SQL-style conditions through DAXIAPI and returns structured stock data and analysis for custom quantitative screening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens A-share stocks using Daxi API SQL conditions, including custom filters, logical combinations, sorting, and limits, and returns structured stock-screening analysis.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and agents use this skill to convert custom A-share screening criteria into supported DAXIAPI SQL conditions, run the CLI, and summarize matching stocks with sector, momentum, and risk context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries a third-party DAXIAPI service and relies on the daxiapi-cli package and a locally provided API token. <br>
-Mitigation: Install and use it only when DAXIAPI access is intended, trust the CLI package, and keep the token in local CLI configuration or an environment variable. <br>
-Risk: The trigger language is broad enough that an agent could start stock-screening API calls when the user's intent is ambiguous. <br>
-Mitigation: Confirm that the next action is the stock-screening CLI workflow before allowing network or API calls. <br>
-Risk: Generated stock analysis can be incomplete, stale, or mistaken and may be misread as investment advice. <br>
-Mitigation: Treat outputs as informational, require the report date and data source, include risk notes and a disclaimer, and avoid absolute buy or sell claims. <br>
+## Use Case:
 
+External users and market-analysis agents use this skill to construct SQL-style filters for A-share stock screening, retrieve matching records through the Daxi API CLI, and summarize results into a structured screening report. It is intended for technical and quantitative screening workflows, not deep fundamental analysis or investment advice.
 
-## Reference(s): <br>
-- [DAXIAPI](https://daxiapi.com) <br>
-- [SQL syntax](references/sql-syntax.md) <br>
-- [Field list](references/field-list.md) <br>
-- [Query examples](references/query-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with CLI command snippets and tabular stock-screening results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DAXIAPI token and a supported recent trading date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill invokes an unpinned external Daxi API CLI with an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned CLI version, run it in a minimal environment, and store only narrowly scoped, revocable tokens.
+
+Risk: Free-form SQL conditions can become unsafe when interpolated into shell commands.
+
+Mitigation: Validate SQL conditions against the documented grammar and avoid passing untrusted user input directly through a shell command.
+
+Risk: Stock-screening outputs can be mistaken for investment advice.
+
+Mitigation: Keep recommendations conditional, cite the data date, include risk notes, and retain the required disclaimer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ksky521/skills/xiapi-stock-sql-screener)
+- [Daxi API](https://daxiapi.com)
+- [SQL Syntax Guide](references/sql-syntax.md)
+- [Field List](references/field-list.md)
+- [Query Examples](references/query-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and SQL condition examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock tables, sector summaries, strength metrics, risk notes, and disclaimers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,9 +7,9 @@ export const statusCommand = new Command('status')
   .description('Show JEP Guard status')
   .action(async () => {
     const configDir = path.join(os.homedir(), '.jep-guard');
-    const socketPath = path.join(os.tmpdir(), 'jep-guard.sock');
+    const socketPath = path.join(configDir, 'guard.sock');
 
-    console.log('\n🛡️  JEP Guard v2.0.4 Status\n');
+    console.log('\n🛡️  JEP Guard v3.0.0 Status\n');
 
     // Config
     const configPath = path.join(configDir, 'config.json');
@@ -17,7 +17,7 @@ export const statusCommand = new Command('status')
       const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
       console.log(`Mode:      ${config.mode}`);
       console.log(`Version:   ${config.version}`);
-      console.log(`Daemon:    ${fs.existsSync(socketPath) ? '✅ Running' : '⏹️  Stopped'}`);
+      console.log(`Daemon:    ${fs.existsSync(socketPath) ? 'Socket exists; liveness unverified' : 'No socket'}`);
     } else {
       console.log('❌ Not initialized. Run: claw run jep-guard init');
       return;

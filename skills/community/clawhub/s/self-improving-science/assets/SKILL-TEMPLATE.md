@@ -9,7 +9,7 @@ Template for creating skills extracted from research learnings. Copy and customi
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of when and why to use this skill. Include trigger conditions."
+description: "Concise description of when and why to use this skill. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -77,12 +77,17 @@ For simple skills that don't need all sections:
 ```markdown
 ---
 name: skill-name-here
-description: "What this skill does and when to use it."
+description: "What this skill does and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Solution
 
@@ -97,17 +102,24 @@ description: "What this skill does and when to use it."
 
 ## Template with Scripts
 
+If the skill includes scripts, document narrowly scoped, testable conditions for when each script may run, plus exclusions. Do not imply always-on automation.
+
 For skills that include executable helpers (data validation, leakage detection, etc.):
 
 ```markdown
 ---
 name: skill-name-here
-description: "What this skill does and when to use it."
+description: "What this skill does and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Introduction]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Quick Reference
 

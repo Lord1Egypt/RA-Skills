@@ -1,40 +1,53 @@
-## Description: <br>
-A Chinese-language persona skill that applies Zhu Xiaohu-inspired venture investing mental models to business, investment, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhu Xiaohu Perspective V2 gives an agent a disclosed Zhu Xiaohu-style investment-analysis persona with 10 mental models for evaluating investment questions, business decisions, and market trends.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and analysts use this skill to role-play a direct venture-investor perspective when evaluating startups, business decisions, market trends, and investment questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an opinionated investment and business-analysis perspective that could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as perspective only, not financial advice, and verify business or investment decisions with qualified review and independent evidence. <br>
-Risk: The persona may activate unexpectedly or continue longer than intended. <br>
-Mitigation: Use the documented exit phrases such as "退出" or "切回正常" to return to normal assistant behavior. <br>
+## Use Case:
 
+External users use this skill to prompt an agent into a Zhu Xiaohu-style investment-analysis mode for assessing projects, business decisions, and market trends through 3S theory and related investment heuristics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/zhu-xiaohu-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, analysis] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona output; no code execution, file access, credentials, or data transfer behavior is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill imitates a real person in first person and may be mistaken for statements by that person.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as AI-generated roleplay based on described public-facing concepts, not as statements by Zhu Xiaohu.
+
+Risk: The investment-analysis persona may produce forceful or misleading business guidance.
+
+Mitigation: Review outputs before relying on them for investment or business decisions and use the documented exit phrases if the mode activates unintentionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/zhu-xiaohu-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text investment-analysis guidance in a disclosed persona style]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool calls, or data access are described by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

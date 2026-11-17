@@ -1,40 +1,58 @@
-## Description: <br>
-Search LinkedIn for candidates matching user-defined role, location, and criteria, classify requirements, and save profiles to avoid duplicates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches LinkedIn for candidates matching user-defined role, location, and criteria, classifies hard and soft requirements, and saves profile summaries to avoid duplicate scans.
 
-## Publisher: <br>
-[qianjunye](https://clawhub.ai/user/qianjunye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianjunye](https://clawhub.ai/user/qianjunye)
 
-## Use Case: <br>
-Recruiters, sourcing teams, and hiring support agents use this skill to clarify candidate requirements, search LinkedIn profiles, evaluate hard and soft criteria, and summarize saved candidates for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to copy sensitive Chrome profile data for a debug browser session. <br>
-Mitigation: Use a dedicated temporary Chrome profile, log in manually only for the intended session, close the debug browser afterward, and avoid copying a main browser profile. <br>
-Risk: The skill persists LinkedIn candidate profile data to local markdown files. <br>
-Mitigation: Use it only where candidate data processing is authorized and delete saved candidate files when they are no longer needed. <br>
+## Use Case:
 
+Recruiters, sourcers, and hiring teams use this skill to clarify candidate requirements, search LinkedIn profiles, evaluate role and location fit, and save candidate records for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qianjunye/linkedin-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with candidate summary tables, YAML front matter examples, shell command blocks, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves candidate profile markdown files under ./linkedin-save/{role}/ and reports A, B, or C match levels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The setup can expose sensitive Chrome profile data if normal browser Cookies or Login Data are copied into the debug profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh dedicated Chrome profile for LinkedIn and log in manually instead of copying normal Chrome profile data.
+
+Risk: A Chrome remote debugging session can expose browser access if it is reachable beyond the local machine.
+
+Mitigation: Bind debugging to localhost and close the debug browser session when the search is complete.
+
+Risk: LinkedIn profile data is saved locally under ./linkedin-save/.
+
+Mitigation: Review, protect, and delete saved profile files according to the organization's candidate-data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qianjunye/skills/linkedin-search)
+- [Publisher profile](https://clawhub.ai/user/qianjunye)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with tables, inline shell commands, browser-check instructions, and saved profile files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves LinkedIn profile summaries under ./linkedin-save/ and reports candidate match levels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

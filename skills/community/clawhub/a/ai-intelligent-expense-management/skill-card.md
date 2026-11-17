@@ -1,37 +1,49 @@
-## Description: <br>
-Provides enterprise expense management support for reimbursement, approvals, budget control, analytics, and reconciliation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise expense management for reimbursement, controls, and analysis.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Employees, finance teams, and operations teams use this skill to support enterprise expense workflows covering online reimbursement requests, multi-level approvals, budget reminders, expense analysis, and reconciliation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup points to an external repository and dependencies that were not included in the reviewed artifact. <br>
-Mitigation: Inspect the referenced repository and requirements.txt, then test with non-sensitive sample data before connecting reimbursement, approval, budget, or accounting data. <br>
+## Use Case:
 
+Employees, finance teams, and business operators can use this skill to plan or discuss enterprise expense workflows covering online requests, multilevel approvals, budget controls, analytics, and reconciliation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill directs users to install and run unpinned code from a remote repository that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependencies before installation, pin a commit, verify checksums, lock dependency hashes, and run in an isolated environment without sensitive credentials or financial records until audited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-expense-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language expense-management feature, pricing, scenario, technology-stack, and installation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

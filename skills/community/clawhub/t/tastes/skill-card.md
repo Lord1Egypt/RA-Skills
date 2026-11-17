@@ -1,42 +1,54 @@
-## Description: <br>
-Cultivate aesthetic judgment through conversation and memory. Build and maintain TASTES.md - the missing layer between SOUL.md and SKILL.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cultivate aesthetic judgment through conversation and memory. Build and maintain TASTES.md - the missing layer between SOUL.md and SKILL.md.
 
-## Publisher: <br>
-[MingxuanXie](https://clawhub.ai/user/MingxuanXie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingxuanxie](https://clawhub.ai/user/mingxuanxie)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent mine memory and conversation for aesthetic preferences, then create or maintain a compact TASTES.md file for creative work. It also guides updates, taste checks, and AGENTS.md setup for applying those preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read stored memories and daily logs to infer personal aesthetic preferences. <br>
-Mitigation: Use explicit activation commands and review the proposed TASTES.md before saving or relying on it. <br>
-Risk: The skill can append aesthetic judgment rules to AGENTS.md and maintain persistent taste rules. <br>
-Mitigation: Review the AGENTS.md section and any TASTES.md changes after setup or updates, and require approval before modifying taste rules. <br>
+## Use Case:
 
+Developers, designers, and creative agents use this skill to build and maintain a compact TASTES.md file that captures a user's aesthetic constraints from memory and conversation. The skill supports taste calibration, creative audits, and approved updates to personal design preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MingxuanXie/tastes) <br>
-- [TASTES.md homepage](https://tastes.md) <br>
-- [Metadata source link](https://github.com/tastesmd/tastes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance, Shell commands] <br>
-**Output Format:** [Markdown files and concise conversational guidance, with occasional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [TASTES.md is capped at 500 tokens by the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can persistently change future agent behavior by adding aesthetic judgment rules to AGENTS.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed AGENTS.md changes before installation and require explicit approval before editing persistent agent instructions.
+
+Risk: The skill can inspect broad memory history to infer aesthetic preferences.
+
+Mitigation: Limit memory searches to relevant aesthetic signals and ask the user before searching old logs or saving distilled preferences.
+
+## Reference(s):
+
+- [TASTES.md homepage](https://tastes.md)
+- [ClawHub skill page](https://clawhub.ai/mingxuanxie/skills/tastes)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown text and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or update a TASTES.md file with a 500-token maximum when approved by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

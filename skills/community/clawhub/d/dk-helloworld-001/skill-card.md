@@ -1,39 +1,55 @@
-## Description: <br>
-Print any user-input text directly for quick debugging or demonstration without additional processing. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Prints user-provided text directly back for quick debugging or demonstration.
 
-## Publisher: <br>
-[hellodk34](https://clawhub.ai/user/hellodk34) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellodk34](https://clawhub.ai/user/hellodk34)
 
-## Use Case: <br>
-Developers and agents can use this skill to echo supplied text during quick debugging, smoke testing, or simple demonstrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Echoed input may expose secrets or sensitive text in agent output, logs, or UI history. <br>
-Mitigation: Do not send credentials, tokens, private data, or other sensitive text to this skill; review downstream output and logging before use. <br>
-Risk: The skill documentation includes an unrelated registry API table that can confuse users and reviewers about the skill's actual behavior. <br>
-Mitigation: Treat the implementation as a text echo skill only, and remove or clearly separate the unrelated API notes before broader distribution. <br>
+## Use Case:
 
+Developers and agents can use this skill to echo a supplied text value when checking skill wiring, debugging a workflow, or demonstrating a minimal ClawHub skill.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the provided input text, or a no-input message when input.text is absent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: User-provided text is echoed back and may become visible output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets or sensitive data as input.
+
+Risk: The skill instructions include unrelated registry API documentation that may confuse reviewers or users.
+
+Mitigation: Remove or clearly separate the unrelated registry API table before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hellodk34/skills/dk-helloworld-001)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a fallback message when no input text is provided.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Research and qualify B2B prospects using web search. Builds structured profiles with company intel, key contacts, pain points, and engagement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and qualify B2B prospects using web search. Builds structured profiles with company intel, key contacts, pain points, and engagement recommendations.
 
-## Publisher: <br>
-[ker2xu](https://clawhub.ai/user/ker2xu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ker2xu](https://clawhub.ai/user/ker2xu)
 
-## Use Case: <br>
-Sales, business development, and go-to-market teams use this skill to research public information about B2B prospects and produce structured qualification reports with cited company intelligence, likely pain points, key contacts, and engagement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contact details and outreach recommendations may be inaccurate, privacy-sensitive, or unsuitable for anti-spam compliance. <br>
-Mitigation: Review generated contact details and outreach recommendations for accuracy, privacy, and anti-spam compliance before use; use only public sources and avoid personal background checks or non-public information gathering. <br>
+## Use Case:
 
+Sales, business development, and go-to-market teams use this skill to turn a company or lead name into a sourced B2B prospect profile with qualification, likely pain points, key contacts, and outreach recommendations.
 
-## Reference(s): <br>
-- [Afrexai Prospect Researcher Temp on ClawHub](https://clawhub.ai/ker2xu/afrexai-prospect-researcher-temp) <br>
-- [Afrexai Context Packs](https://afrexai-cto.github.io/context-packs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report with sourced prospect profile sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marks unknowns explicitly, cites public sources for key claims, and flags inferred data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can collect and summarize public decision-maker information, including names and LinkedIn URLs, which may be inappropriate if used for sensitive or login-gated personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only publicly available information and avoid private, login-gated, or sensitive personal information.
+
+Risk: Prospect profiles and engagement recommendations may include outdated or inferred claims from web search.
+
+Mitigation: Cite sources for key claims, mark unknowns as not found, flag inferred data, and review profiles before outreach.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/ker2xu/skills/afrexai-prospect-researcher-temp)
+- [Context packs](https://afrexai-cto.github.io/context-packs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown prospect research report with source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Unknowns are marked explicitly, inferred data is flagged, and recent public information is prioritized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

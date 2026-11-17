@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "source": "Bacon & Co. Recommended Garment & Accessory Decoration Guide (references/decoration_spec_sheet.pdf)",
+    "units": "inches",
+    "note": "Max print dimensions per decoration location. Ranges are captured as the UPPER bound in max_width_in / max_height_in; the raw label is preserved. At runtime prefer the authoritative Odoo decoration_location.max_width/max_height for the specific record; use this table as a fallback / cross-check, matched by location name. 'Logo placement and sizing may vary, based on artwork provided.'",
+    "embroidery_minimum": {"lettering_height_in": 0.25, "stroke_mm": 2}
+  },
+  "locations": [
+    {"num": 1,  "location": "Full Front",                "adult": {"max_width_in": 13.0, "max_height_in": null, "raw": "13\"W"},        "youth": {"max_width_in": 9.0, "max_height_in": null, "raw": "9\"W"}},
+    {"num": 2,  "location": "Center Chest",              "adult": {"max_width_in": 5.0,  "max_height_in": null, "raw": "3\"-5\"W"},     "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 3,  "location": "Right Chest",               "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 4.0, "max_height_in": null, "raw": "3\"-4\"W"}},
+    {"num": 4,  "location": "Left Chest",                "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 4.0, "max_height_in": null, "raw": "3\"-4\"W"}},
+    {"num": 5,  "location": "Pocket",                    "adult": {"max_width_in": 3.0,  "max_height_in": 3.0,  "raw": "3\"W x 3\"H"},  "youth": {"max_width_in": 3.0, "max_height_in": 3.0, "raw": "3\"W x 3\"H"}},
+    {"num": 6,  "location": "Full Back",                 "adult": {"max_width_in": 13.0, "max_height_in": null, "raw": "13\"W"},        "youth": {"max_width_in": 9.0, "max_height_in": null, "raw": "9\"W"}},
+    {"num": 7,  "location": "Upper Back",                "adult": {"max_width_in": 13.0, "max_height_in": null, "raw": "10\"-13\"W"},   "youth": {"max_width_in": 9.0, "max_height_in": null, "raw": "7\"-9\"W"}},
+    {"num": 8,  "location": "Tag",                       "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 4.0, "max_height_in": null, "raw": "3\"-4\"W"}},
+    {"num": 9,  "location": "Lower Back",                "adult": {"max_width_in": 13.0, "max_height_in": null, "raw": "10\"-13\"W"},   "youth": {"max_width_in": 9.0, "max_height_in": null, "raw": "7\"-9\"W"}},
+    {"num": 10, "location": "Right Sleeve (short)",      "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 11, "location": "Left Sleeve (short)",       "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 12, "location": "Right Sleeve (long)",       "adult": {"max_width_in": 3.25, "max_height_in": 12.0, "raw": "3.25\"W x 12\"H"}, "youth": {"max_width_in": 3.0, "max_height_in": 9.0, "raw": "3\"W x 9\"H"}},
+    {"num": 13, "location": "Left Sleeve (long)",        "adult": {"max_width_in": 3.25, "max_height_in": 12.0, "raw": "3.25\"W x 12\"H"}, "youth": {"max_width_in": 3.0, "max_height_in": 9.0, "raw": "3\"W x 9\"H"}},
+    {"num": 14, "location": "Full Front (Hoodie)",       "adult": {"max_width_in": 13.0, "max_height_in": 9.0,  "raw": "13\"W x 9\"H"}, "youth": {"max_width_in": 9.0, "max_height_in": 6.0, "raw": "9\"W x 6\"H"}},
+    {"num": 15, "location": "Left Chest (Polo)",         "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3-4\"W"},       "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 16, "location": "Right Chest (Polo)",        "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3-4\"W"},       "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 17, "location": "Right Hip / Under Pocket",  "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 18, "location": "Left Hip / Under Pocket",   "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 19, "location": "Right Leg (side)",          "adult": {"max_width_in": null, "max_height_in": 12.0, "raw": "12\"H"},        "youth": {"max_width_in": null, "max_height_in": 9.0, "raw": "9\"H"}},
+    {"num": 20, "location": "Left Leg (side)",           "adult": {"max_width_in": null, "max_height_in": 12.0, "raw": "12\"H"},        "youth": {"max_width_in": null, "max_height_in": 9.0, "raw": "9\"H"}},
+    {"num": 21, "location": "Right Leg (front)",         "adult": {"max_width_in": 3.0,  "max_height_in": null, "raw": "3\"W"},         "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 22, "location": "Left Leg (front)",          "adult": {"max_width_in": 4.0,  "max_height_in": null, "raw": "3\"-4\"W"},     "youth": {"max_width_in": 3.0, "max_height_in": null, "raw": "3\"W"}},
+    {"num": 23, "location": "Drawstring Backpack",       "size": {"max_width_in": 12.0, "max_height_in": null, "raw": "11\"-12\"W"}}
+  ],
+  "headwear": [
+    {"num": 24, "location": "Hat Front",   "high_profile": {"max_height_in": 2.5,  "raw": "2.5\"H (max)"}, "low_profile": {"max_height_in": 2.0,  "raw": "2\"H (max)"}},
+    {"num": 25, "location": "Hat Back",    "high_profile": {"max_height_in": 1.25, "raw": "1.25\"H (max)"}, "low_profile": {"max_height_in": 1.25, "raw": "1.25\"H (max)"}},
+    {"num": 26, "location": "Hat Side",    "high_profile": {"max_width_in": 2.0,   "raw": "2\"W (max)"},   "low_profile": {"max_width_in": 2.0,   "raw": "2\"W (max)"}},
+    {"num": 27, "location": "Visor Front", "high_profile": {"max_height_in": 1.5,  "raw": "1.5\"H (max)"}, "low_profile": {"max_height_in": 1.0,  "raw": "1\"H (max)"}}
+  ]
+}

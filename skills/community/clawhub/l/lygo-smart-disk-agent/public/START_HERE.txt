@@ -1,0 +1,18 @@
+LYGO SMART DISK AGENT — START HERE
+Signature: Δ9Φ963-LYGO-SMART-DISK-AGENT-v1.1.0
+
+1) Install Ollama on the host and pull:  ollama pull qwen2.5:3b
+2) BOOT (one-shot):
+     launch\LYGO_SMART_DISK_BOOT.bat
+   or:
+     python agent\smart_disk_agent.py
+3) Browser opens http://localhost:9631/?t=<local-token>
+   Token is also printed in the console and saved to data\.sda_local_token
+4) Chat works with local token (not a cloud password).
+5) Memory / open-url limbs are CLI-only (not over HTTP).
+
+Stop: launch\LYGO_SMART_DISK_STOP.bat
+Verify: python verify\self_check.py
+
+Docs: docs\00_VISION_AND_THEORY.md … docs\09_TEST_PLAN.md
+Security: ClawHub references/SECURITY.md when installed as skill

@@ -1,48 +1,63 @@
-## Description: <br>
-Katelynn Lead Gen helps agents find and qualify prospects, build company and contact profiles, draft personalized outreach, and route warm leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Katelynn Lead Gen helps agents find, qualify, profile, and draft multi-channel outreach for prospective customers based on a user's target customer profile and value proposition.
 
-## Publisher: <br>
-[dirtonyou](https://clawhub.ai/user/dirtonyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dirtonyou](https://clawhub.ai/user/dirtonyou)
 
-## Use Case: <br>
-Sales and marketing users use this skill to turn an ideal customer profile, value proposition, outreach goal, and channel preference into researched prospect lists, lead scores, outreach drafts, and follow-up guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect business contact data and prepare direct outreach, SMS alerts, phone routing, exports, and follow-ups. <br>
-Mitigation: Require human approval before any email, LinkedIn message, call, SMS, transfer, CRM update, export, or follow-up. <br>
-Risk: Prospect research and outreach may rely on data sources with legal, platform, or consent constraints. <br>
-Mitigation: Use lawful and permitted data sources, honor opt-outs and platform terms, and review generated contact records before use. <br>
-Risk: Learned rules and external release files can affect future targeting and execution behavior. <br>
-Mitigation: Review learned rules and inspect any external scripts or release files before running them. <br>
+## Use Case:
 
+External sales, marketing, and business development users use this skill to turn an ICP, value proposition, outreach goal, and channel choice into qualified prospect records, personalized outreach drafts, and a run summary. It is intended for permission-aware lead research and human-reviewed outreach workflows.
 
-## Reference(s): <br>
-- [Katelynn Lead Gen on ClawHub](https://clawhub.ai/dirtonyou/katelynn-lead-gen) <br>
-- [gerika.ai](https://gerika.ai) <br>
-- [Project repository](https://gitlab.com/gerika-ai/agentic-ai-skills) <br>
-- [Skill source folder](https://gitlab.com/gerika-ai/agentic-ai-skills/-/tree/main/katelynn-lead-gen) <br>
-- [ICP Research Tactics](references/icp-research.md) <br>
-- [Outreach Copywriting Guide](references/copywriting.md) <br>
-- [Katelynn Learned Failure Rules](references/learned-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, csv, guidance] <br>
-**Output Format:** [Markdown lead tables, CSV-ready lead records, personalized message drafts, call scripts, and run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lead volume defaults to 10 and is capped at 25 per run in the artifact instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill collects and outputs personal business contact data such as names, titles, emails, phone numbers, LinkedIn profiles, and research hooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for lawful, permission-aware prospecting; limit exports to necessary business data and review records before storage or sharing.
+
+Risk: The skill can draft or route outbound actions through email, SMS alerts, and phone transfer workflows.
+
+Mitigation: Require explicit human confirmation before any outreach, SMS alert, phone transfer, or follow-up action is sent or initiated.
+
+Risk: The skill uses a cross-run learned-rules file that could retain sensitive prospect or customer details.
+
+Mitigation: Store only generalized failure patterns in learned-rules.md and remove personal, confidential, or unnecessary prospect details.
+
+## Reference(s):
+
+- [ICP Research Tactics](references/icp-research.md)
+- [Outreach Copywriting Guide](references/copywriting.md)
+- [Learned Failure Rules](references/learned-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/dirtonyou/skills/katelynn-lead-gen)
+- [Publisher Profile](https://clawhub.ai/user/dirtonyou)
+- [Publisher Homepage](https://gerika.ai)
+- [Source Repository Metadata Link](https://gitlab.com/gerika-ai/agentic-ai-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or CSV lead tables, personalized outreach drafts, call scripts, SMS alert templates, and run summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain business contact data and should be reviewed before export, outreach, SMS alerts, or phone transfer.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

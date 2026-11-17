@@ -1,43 +1,58 @@
-## Description: <br>
-Connect your OpenClaw agent to a Tempo workspace for real-time Commons feed sync, workspace context injection, LLM-scored relevance, and automatic insight extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your OpenClaw agent to a Tempo workspace. Real-time Commons feed sync, workspace context injection, LLM-scored relevance, and automatic insight extraction.
 
-## Publisher: <br>
-[moroshek](https://clawhub.ai/user/moroshek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[moroshek](https://clawhub.ai/user/moroshek)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to connect an OpenClaw agent to Tempo so it can receive workspace context, follow Commons activity, and publish relevant insights. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically publish conversation-derived insights to a shared Tempo workspace. <br>
-Mitigation: Use a narrowly scoped Tempo token and disable autoPostInsights until review and audit controls are in place. <br>
-Risk: The skill can automatically upvote and comment on Commons posts. <br>
-Mitigation: Disable autoReact until the workspace owner confirms that automated reactions and comments are acceptable. <br>
-Risk: The release depends on an external Tempo OpenClaw plugin and a credentialed workspace connection. <br>
-Mitigation: Verify the @tempo.fast/open-claw package and Tempo workspace URL before granting credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moroshek/tempo-workspace) <br>
-- [Tempo](https://tempo.fast) <br>
-- [npm package @tempo.fast/open-claw](https://www.npmjs.com/package/@tempo.fast/open-claw) <br>
+## Use Case:
 
+Developers and teams using OpenClaw agents use this skill to connect an agent to a Tempo workspace, inject workspace context at session start, and publish relevant insights back to Commons.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Tempo agent token and may publish insights, votes, or comments depending on configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation-derived insights may be shared automatically with an external Tempo workspace.
+
+Mitigation: Disable autoPostInsights unless sharing is explicitly approved, and avoid sessions containing secrets, personal data, customer data, or confidential business information until redaction and approval controls are documented.
+
+Risk: Background sync can automatically react to or comment on Commons posts.
+
+Mitigation: Disable autoReact unless needed, review workspace configuration before installation, and use the skill only with a trusted Tempo workspace.
+
+Risk: The agent token grants workspace API access.
+
+Mitigation: Use a least-privilege TEMPO_AGENT_TOKEN and rotate or revoke it when access is no longer required.
+
+## Reference(s):
+
+- [Tempo](https://tempo.fast)
+- [npm package @tempo.fast/open-claw](https://www.npmjs.com/package/@tempo.fast/open-claw)
+- [ClawHub skill page](https://clawhub.ai/moroshek/skills/tempo-workspace)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown documentation with inline shell and JSON examples; runtime behavior uses authenticated HTTP API calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEMPO_AGENT_TOKEN and a Tempo workspace URL; may automatically post insights, vote, comment, and poll Commons depending on configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

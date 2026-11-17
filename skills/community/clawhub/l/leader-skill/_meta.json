@@ -1,6 +1,54 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "leader-skill",
-  "version": "1.0.1",
-  "publishedAt": 1775606992373
+  "name": "create-leader",
+  "version": "1.1.0",
+  "author": "zhuqingsonga",
+  "license": "MIT",
+  "description": "Create a Leader AI Skill with Leadership Simulation, Upward Management, and Replacement Path Planning. 一个用于创建领导AI技能的OpenClaw skill，支持领导力模拟、向上管理、取代路径规划，帮助你理解领导、搞定老板、规划职业发展。",
+  "keywords": [
+    "leadership",
+    "manager",
+    "boss",
+    "upward",
+    "career",
+    "promotion",
+    "workplace",
+    "领导",
+    "老板",
+    "向上管理",
+    "职业发展",
+    "晋升",
+    "职场"
+  ],
+  "categories": [
+    "productivity",
+    "career",
+    "workplace"
+  ],
+  "homepage": "https://github.com/zhuqingsonga/create--leader",
+  "repository": "https://github.com/zhuqingsonga/create--leader",
+  "bugs": "https://github.com/zhuqingsonga/create--leader/issues",
+  "language": "multilingual",
+  "supported_languages": [
+    "en",
+    "zh"
+  ],
+  "requirements": {
+    "python": ">=3.7",
+    "optional_binaries": [
+      "playwright"
+    ]
+  },
+  "security_notes": [
+    "This skill requires Feishu/DingTalk credentials for auto-collection",
+    "Use limited-scope app credentials, not admin keys",
+    "Only collect data you are authorized to access",
+    "Tokens are stored locally in ~/.create-leader/",
+    "Review and delete tokens if you stop using this skill"
+  ],
+  "ethical_notes": [
+    "For personal growth and learning only",
+    "Not for malicious purposes",
+    "Career advancement through legitimate means is recommended",
+    "Respect others, do not spread negative information"
+  ]
 }

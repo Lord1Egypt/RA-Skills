@@ -1,41 +1,60 @@
-## Description: <br>
-Searches Twitter/X with keyword or advanced queries, retrieves tweet data through twitterapi.io, and helps agents produce data-driven social media analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Twitter/X with advanced query syntax, fetches tweet data through twitterapi.io, and helps agents produce data-driven social media analysis reports.
 
-## Publisher: <br>
-[flyfoxCI](https://clawhub.ai/user/flyfoxCI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flyfoxci](https://clawhub.ai/user/flyfoxci)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to search Twitter/X with advanced query syntax and generate social listening, trend, influencer, and engagement reports from retrieved tweets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The wrapper evaluates shell-profile content while loading TWITTER_API_KEY. <br>
-Mitigation: Provide TWITTER_API_KEY directly through the process environment and avoid the wrapper unless the eval-based shell-profile parsing is removed. <br>
-Risk: The wrapper may install the Python requests package without an approval step. <br>
-Mitigation: Preinstall dependencies in a controlled environment before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twitter API Reference](artifact/references/twitter_api.md) <br>
-- [twitterapi.io Advanced Search API](https://docs.twitterapi.io/api-reference/endpoint/tweet_advanced_search) <br>
-- [Twitter Advanced Search Syntax](https://github.com/igorbrigadir/twitter-advanced-search) <br>
+## Use Case:
 
+Developers, analysts, and social media teams use this skill to collect Twitter/X search results, summarize engagement metrics, identify themes or influential accounts, and draft markdown reports with data-backed recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown analysis reports with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TWITTER_API_KEY credential and may fetch up to 1000 tweets per query.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends Twitter/X search queries and a twitterapi.io API key to a third-party API.
+
+Mitigation: Use the skill only when that data sharing is acceptable, scope queries appropriately, and prefer an exported TWITTER_API_KEY over passing keys directly in command arguments.
+
+Risk: The wrapper can evaluate shell startup file content while loading TWITTER_API_KEY.
+
+Mitigation: Review shell configuration before use or bypass the wrapper by running the Python script with a trusted environment variable.
+
+Risk: The wrapper may install an unpinned Python dependency into the user environment.
+
+Mitigation: Run the skill from a preconfigured virtual environment with reviewed dependencies instead of allowing automatic installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flyfoxci/skills/twitter-search-skill)
+- [Twitter API Reference](references/twitter_api.md)
+- [twitterapi.io Advanced Search Endpoint](https://docs.twitterapi.io/api-reference/endpoint/tweet_advanced_search)
+- [Twitter Advanced Search Syntax](https://github.com/igorbrigadir/twitter-advanced-search)
+- [Publisher Profile](https://clawhub.ai/user/flyfoxci)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [JSON search results and markdown analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 1000 tweets by default and can output either full tweet JSON or aggregate summaries.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

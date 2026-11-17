@@ -1,45 +1,60 @@
-## Description: <br>
-Extract and fill PDF AcroForm fields with a multi-backend fallback chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts PDF AcroForm field schemas and fills forms from user-provided JSON values using a multi-backend fallback chain.
 
-## Publisher: <br>
-[qubit999](https://clawhub.ai/user/qubit999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qubit999](https://clawhub.ai/user/qubit999)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect PDF AcroForm field schemas and fill forms from JSON values. It is useful for one-off form completion, batch filling, and PDFs that need fallback handling across multiple PDF backends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Completed PDFs may contain sensitive personal, legal, or business information and may be returned through the current chat or workspace attachment channel. <br>
-Mitigation: Use the skill only with PDFs the user is comfortable having the agent process, keep outputs inside the workspace, and confirm the delivered filename and filled-field count. <br>
-Risk: Checkboxes and radio buttons can be left unset or defaulted incorrectly if the agent omits uncertain fields. <br>
-Mitigation: Extract the schema first, copy field names and option values exactly, explicitly set checkbox and radio values where possible, and review the fill summary for unset fields before relying on the PDF. <br>
-Risk: The skill depends on the external oc-pdf-filler package and optional PDF backends such as pdfrw, PyMuPDF, and pdftk. <br>
-Mitigation: Install only trusted package versions and verify available backends before processing PDFs. <br>
+## Use Case:
 
+Developers and operations users use this skill to inspect PDF AcroForm fields, build matching JSON values, and produce completed PDF forms in an agent workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qubit999/pdf-filler) <br>
-- [Project homepage](https://github.com/qubit999/oc-pdf-filler) <br>
-- [Backend fallback chain](references/BACKENDS.md) <br>
-- [Field type value contract](references/FIELD_TYPES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples; generated artifacts are schema JSON files and filled PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The fill command prints a JSON summary including backend choice, output path, filled fields, missing fields, failed fields, and unset checkbox or radio fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and skill frontmatter) <br>
+Risk: Installing an unpinned third-party PDF package or optional backends can introduce dependency drift.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install oc-pdf-filler and its dependencies in a locked environment with pinned versions before production use.
+
+Risk: Input values and filled PDFs may contain personal, financial, medical, legal, or business-sensitive information.
+
+Mitigation: Use the skill only with documents approved for processing in the agent workspace and confirm the attachment destination before delivery.
+
+Risk: PDF backend or viewer differences can cause form appearances to render incorrectly or appear blank.
+
+Mitigation: Verify filled outputs with extraction and visual inspection, and use strict mode, flattening, or a forced backend when needed.
+
+## Reference(s):
+
+- [Field Type Value Contract](artifact/references/FIELD_TYPES.md)
+- [Backend Fallback Chain](artifact/references/BACKENDS.md)
+- [oc-pdf-filler homepage](https://github.com/qubit999/oc-pdf-filler)
+- [Pdf Filler ClawHub page](https://clawhub.ai/qubit999/skills/pdf-filler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON snippets, and generated PDF or JSON workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce filled PDF attachments and JSON summaries; backend behavior depends on installed PDF libraries and optional pdftk.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

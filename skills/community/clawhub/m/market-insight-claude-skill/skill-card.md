@@ -1,39 +1,56 @@
-## Description: <br>
-Helps agents produce structured user needs insights and product opportunity analysis for product development, marketing planning, and market entry research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用户需求洞察与产品机会分析技能。适用于新产品开发、营销策划、品类切入前的市场分析。当你需要快速理解目标用户、挖掘情绪动机、将洞察转化为可落地的产品机会时使用此技能。
 
-## Publisher: <br>
-[liangdabiao](https://clawhub.ai/user/liangdabiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liangdabiao](https://clawhub.ai/user/liangdabiao)
 
-## Use Case: <br>
-Product, marketing, and business teams use this skill to turn a product or service description into target user personas, emotional drivers, prioritized product opportunities, and validation ideas. It is intended as a fast structured analysis starting point that teams validate against real users and market data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated market insights may be mistaken for validated research or final product strategy. <br>
-Mitigation: Treat outputs as hypotheses and validate recommendations with real user interviews, business data, and small market tests before making product or marketing decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Templates](references/prompt_templates.md) <br>
-- [Quick Reference](references/quick_reference.md) <br>
-- [Sample Report Template](assets/sample_report_template.md) <br>
+## Use Case:
 
+Product managers, founders, marketers, and strategy teams use this skill to turn a product or service idea into structured user personas, emotional drivers, and prioritized product opportunities. It is especially useful before new product development, marketing planning, category entry, or early product direction validation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis reports and prompt-guided recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user personas, pain/itch/pleasure point analysis, prioritized product opportunities, marketing copy examples, and validation suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can generate plausible market and product recommendations that may be mistaken for validated customer research.
+
+Mitigation: Treat generated insights as hypotheses and validate them with customer interviews, market data, and small experiments before making product or marketing investments.
+
+Risk: The bundled templates and examples are in Chinese and may not fit users who need another language or local market context.
+
+Mitigation: Ask the agent to translate, localize, or adapt the templates before use in another language or region.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangdabiao/skills/market-insight-claude-skill)
+- [Publisher profile](https://clawhub.ai/user/liangdabiao)
+- [Prompt templates](references/prompt_templates.md)
+- [Quick reference](references/quick_reference.md)
+- [Sample report template](assets/sample_report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown reports, outlines, and prompt-guided analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language templates and examples; users can request translation or adaptation for other languages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

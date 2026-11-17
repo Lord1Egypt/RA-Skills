@@ -1,6 +1,11 @@
-# 模式说明与交互笔记（Mode Reference & Interaction Notes）— 即梦 Seedance 2.0 / Seedancer
+> **Language**: This document is in Chinese only. For English overview, see [README.md](../README.md).
+>
+> **语言说明**: 本文档仅提供中文版本。英文概述请查看 [README.md](../README.md)。
 
-> **v2.2.0 升级说明**：本文件所有电影专业术语采用"中文（English）"中英对照格式，与 SKILL.md v2.2.0 及 references/camera-and-styles.md 保持一致。
+---
+# 模式说明与交互笔记（Mode Reference & Interaction Notes）— 即梦 Seedance 2.5 / Seedancer
+
+> **v4.0.0 升级说明**：全面适配 Seedance 2.5 模型。30秒直出、50个参考素材、4K输出、局部编辑、白模/绿幕参考、10+语言。
 
 ---
 
@@ -13,12 +18,14 @@
 - 原创角色/生物概念设计（Original Character / Creature Concept Design）
 - IP 安全的抽象场景（IP-Safe Abstract Scenes）
 - 快速概念验证（Quick Concept Validation）
+- **🆕 完整叙事短片**（30秒内讲完一个故事）
 
 最佳实践：
 - 开头声明比例（Aspect Ratio）、时长（Duration）、帧率（Frame Rate）和风格（Style）
 - 角色/生物使用完全原创名称和独特特征
 - 所有动作用五维度节拍描述（Five-dimension Beat Description）
-- 提示词控制在 200 字以内（过长会生成失败）
+- 提示词控制在 300 字以内（2.5 支持更长提示词）
+- 🆕 可包含精确文字内容（用「」包裹）
 
 ### 2) 首帧模式（Image-to-Video）
 上传单张首帧图片（或首帧+尾帧）加文本提示词。模型从首帧出发生成动画。
@@ -27,11 +34,13 @@
 - 已有概念图/分镜图需要动画化（Concept Art / Storyboard to Animation）
 - 口播视频（上传角色照片 + 音频）（Talking Head Video）
 - 产品展示（上传产品照片）（Product Showcase）
+- **🆕 4K 商业广告**（原生4K输出，品质直出）
 
 关键技巧：
 - 首帧构图决定最终画面的起点，确保主体位置合理
 - 尾帧可选上传，模型会自动生成中间过渡动作（Interpolation）
 - 首尾帧主体位置和姿态需合理衔接（Seamless Pose Transition）
+- 🆕 支持 4K 分辨率输出
 
 ### 3) 全参考模式（Reference-to-Video）
 同时上传图片和视频、音频进行多模态控制。赋予创作者对表演（Performance）、光影（Lighting）、运镜（Camera Movement）的调度权。
@@ -41,17 +50,109 @@
 - 角色一致性（Character Consistency）要求高的多镜头序列
 - 音乐节拍同步（Music Beat Sync）
 - 复杂多资产场景（Complex Multi-asset Scenes）
+- **🆕 大型项目**（一次输入完整角色集合+场景集合+参考镜头+参考音乐）
 
-### 4) 视频延长模式（Extend / Video Extension）
+🆕 **Seedance 2.5 限额升级**：
+- 最多 **30 张图片**（原 9 张）
+- 最多 **10 段视频**（原 3 段）
+- 最多 **10 段音频**（原 3 段）
+- 总计最多 **50 个参考素材**（原 12 个）
+- 多人同框/群像叙事中多主体形象与声音特征可同时保持稳定
+
+### 4) 🆕 局部编辑模式（Edit / Local Editing）— Seedance 2.5 新增
+对已有视频的指定区域/时间段进行精准修改，保持整体画面、镜头与节奏不变。
+
+适用场景：
+- 广告内容本地化适配（换背景/换语言文字）
+- 电商素材 SKU 批量复用（只换产品）
+- 品牌内容多渠道版本化生产
+- 修正生成中的局部瑕疵（背景错误元素/商品颜色偏差）
+
+关键技巧：
+- 使用时间戳精准定位编辑范围
+- 可修改：背景、商品、人物、道具、文字
+- 保持不变：整体画面节奏、镜头运动、灯光
+- 编辑前后保持连贯性
+
+提示词模板：
+```
+@视频1 = 待编辑源视频
+@图片1 = 替换元素参考
+
+提示词：
+在 @视频1 的 [X秒-Y秒] 时间段内，将 [目标元素] 替换为 @图片1 中的内容。
+保持整体画面、镜头运动和节奏不变。
+确保修改前后与相邻帧的连贯性。
+```
+
+### 5) 🆕 白模参考模式（Clay/White Model Reference）— Seedance 2.5 新增
+使用 3D 白模（无纹理模型）精确控制画面的空间结构、主体姿态、运动轨迹和镜头机位。
+
+适用场景：
+- 影视前期制作的概念验证（Pre-visualization）
+- 精确控制摄像机路径和构图
+- 产品/建筑的精确空间展示
+- **接入专业影视工业管线**（Maya/Blender 插件）
+
+关键技巧：
+- 白模只控制空间/姿态/运动/机位，不转移材质/纹理
+- 配合其他参考素材使用：白模=空间结构，图片=材质外观
+- Maya/Blender 插件可直接唤起即梦生成
+- 白模可精确控制光照效果（符合真实物理规律）
+
+提示词模板：
+```
+@图片1 = 3D白模参考（锁定空间结构和机位）
+@图片2 = 材质/外观参考
+
+提示词：
+基于 @图片1 的空间结构和机位，用 @图片2 的材质外观填充。
+保持白模中所有空间关系、主体姿态和摄像机路径不变。
+添加真实材质纹理和光影效果。
+不要转移白模的无纹理外观。
+```
+
+### 6) 🆕 绿幕参考模式（Green Screen Reference）— Seedance 2.5 新增
+使用绿幕素材提取主体，合成到新场景中，并根据新场景物理规则重渲染光影。
+
+适用场景：
+- 人物/产品合成到新环境
+- 广告/电商场景快速换背景
+- 影视特效预演
+- 多版本内容快速制作
+
+关键技巧：
+- 不仅替换背景，还能根据新场景物理规则渲染主体光影
+- 衣物根据新场景风力飘动
+- 步态根据新地形调整
+- 主体与场景自然融合，无抠图痕迹
+
+提示词模板：
+```
+@图片1 = 绿幕主体
+@图片2 = 目标场景参考
+
+提示词：
+将 @图片1 中的主体合成到 @图片2 的场景中。
+根据新场景的光源方向重新渲染主体光影。
+衣物根据场景环境自然飘动。
+主体与场景自然融合，不要保留绿幕痕迹。
+```
+
+### 7) 视频延长模式（Extend / Video Extension）
 上传已有视频作为 `@视频1`，写 `延长 @视频1 X 秒`。模型从原视频结尾继续生成。
 
-⚠️ **关键规则**：
-- 生成时长选择 = **新增片段的时长（Extension Duration）**，不是最终总时长（Total Duration）
-- 提示词中需包含连续性描述（Continuity Description）（角色从上一段结尾动作直接过渡到新动作）
-- 交接帧（Handoff Frame）需稳定姿态、清晰构图
+🆕 **Seedance 2.5 升级**：高保真时序延长，数分钟一致性。
 
-### 5) 视频编辑模式（Edit / Video Editing）
-对已有视频的指定片段、角色、动作或剧情进行定向修改。
+⚠️ **关键规则**：
+- 生成时长选择 = **新增片段的时长（Extension Duration）**，不是最终总时长
+- 提示词中需包含连续性描述（Continuity Description）
+- 交接帧（Handoff Frame）需稳定姿态、清晰构图
+- 🆕 人物/场景/镜头全程一致性显著提升
+- 🆕 可通过多轮延长至数分钟
+
+### 8) 视频编辑模式（Video Editing）
+对已有视频的整体进行修改。与局部编辑（Edit）不同，此模式修改范围更大。
 
 适用场景：
 - 替换视频中某个角色（Character Replacement）
@@ -68,29 +169,38 @@
 素材映射（Asset Mapping）：
 - @图片1 = 首帧（First Frame） / 角色身份锚定（Character Identity Anchor）
 - @图片2 = 环境风格参考（Environment Style Reference）
+- @图片3-N = 其他角色/道具/白模/绿幕参考
 - @视频1 = 运动 + 镜头参考（Motion + Camera Reference）
 - @音频1 = 音乐节奏 / 台词音频（Music Rhythm / Dialogue Audio）
 ```
 
-在 12 个文件限制内，按影响力排序使用：
-1. 核心视觉风格（Core Visual Style）（2-3 张图）
-2. 角色/主体参考（Character / Subject Reference）（1-3 张图）
-3. 动作/镜头参考（Motion / Camera Reference）（1 段视频）
-4. 音频基础（Audio Foundation）（1 段音频）
-5. 支持细节（Supporting Details）（剩余插槽）
+🆕 **Seedance 2.5 限额**（按影响力排序使用）：
+1. 核心视觉风格（Core Visual Style）（最多 30 张图）
+2. 角色/主体参考（Character / Subject Reference）
+3. 动作/镜头参考（Motion / Camera Reference）（最多 10 段视频）
+4. 音频基础（Audio Foundation）（最多 10 段音频）
+5. 白模/绿幕参考（Clay/Green Screen Reference）
+6. 支持细节（Supporting Details）（总计 ≤ 50）
 
 ---
 
 ## 可充分利用的控制能力（Available Control Capabilities）
 
-Seedance 2.0 擅长：
+Seedance 2.5 擅长：
+- **🆕 30秒连续叙事**（Long-form Storytelling）：单次生成30秒完整叙事，无需分段拼接
 - **多镜头叙事（Multi-shot Narrative）**：自动生连贯的多镜头序列，角色/场景/氛围全程一致
-- **音画同步（Audio-visual Sync）**：原生双声道立体声，含背景音乐/环境音效/口型同步（8+ 语言）
-- **物理仿真（Physics Simulation）**：高级模式适合运动、碰撞场景（基础/可选）
+- **音画同步（Audio-visual Sync）**：原生双声道立体声，含背景音乐/环境音效/口型同步（10+ 语言）
+- **物理仿真（Physics Simulation）**：高级模式适合运动、碰撞场景
 - **角色一致性（Character Consistency）**：跨镜头保持面部特征、发型、配饰完全一致
-- **运镜复刻（Camera Movement Replication）**：准确复制推拉变焦（Push-pull Zoom）、跟踪镜头（Tracking Shot）和机械臂多角度跟拍（Robotic Arm Multi-angle Tracking）
-- **视频延长（Video Extension）**：将片段链式连接超过 15 秒限制
-- **视频编辑（Video Editing）**：对指定片段/角色/动作/剧情进行定向修改
+- **🆕 多人一致性**：多人同框/群像叙事中多主体形象同时保持稳定
+- **运镜复刻（Camera Movement Replication）**：准确复制推变焦、跟踪镜头和机械臂多角度跟拍
+- **视频延长（Video Extension）**：高保真延长至数分钟，一致性显著提升
+- **🆕 局部编辑（Local Editing）**：时间戳精准控制，修改背景/人物/商品/道具
+- **🆕 白模参考（Clay Reference）**：3D白模精确控制空间/姿态/运动/机位
+- **🆕 绿幕参考（Green Screen）**：主体合成+光影重渲染
+- **🆕 文字渲染（Text Rendering）**：精确渲染中英文文字、品牌名、slogan
+- **🆕 4K 输出**：原生 4K 高清成片
+- **🆕 去油腻感**：系统优化，肤质/光影/材质更接近实拍
 
 ---
 
@@ -100,202 +210,135 @@ Seedance 2.0 擅长：
 向导演确认以下变量：
 
 1. **视觉风格基调（Visual Style Tone）**：全局美学倾向
-   - 示例选项：高反差纪实（High-contrast Documentary）/ 复古科幻（Retro Sci-fi）/ 现代极简（Modern Minimalist）/ 水墨国风（Ink-wash Chinese Style）/ 赛博朋克（Cyberpunk）
+   - 示例选项：高反差纪实 / 复古科幻 / 现代极简 / 水墨国风 / 赛博朋克
    
 2. **时长策略（Duration Strategy）**：叙事节奏倾向
-   - 动作快切（Quick Action Cuts）（短镜头组接）vs 长镜头叙事（Long Take Narrative）（一镜到底 / Single Continuous Shot）
+   - 30秒内完成 vs 延长至数分钟 vs 序列项目
+   - 动作快切（短镜头组接）vs 长镜头叙事（一镜到底）
    
 3. **超自然规律（Supernatural Rules）**：特殊能量或物理现象的视觉表现
-   - 示例：法术粒子密度（Spell Particle Density）/ 能量颜色（Energy Color）/ 重力异常表现方式（Gravity Anomaly Visuals）
+   - 示例：法术粒子密度 / 能量颜色 / 重力异常表现方式
    
 4. **生成模式（Generation Mode）**：根据用户素材情况选择
-   - 纯文本（Text-to-Video）/ 首帧（Image-to-Video）/ 全参考（Reference-to-Video）
+   - 纯文本 / 首帧 / 全参考 / 局部编辑 / 白模参考 / 绿幕参考 / 延长
 
 ### 后续交互（输出初版提示词后）
-- 导演可针对任一维度要求调整（如"把光影改暗一点"、"节奏再快一些"）
+- 导演可针对任一维度要求调整
 - 根据反馈修改后重新输出
 
 ---
 
 ## 对白与音效设计（Dialogue & Sound Design）
 
-当提示词包含角色台词或音效时，将其作为视觉方向的**独立层级（Independent Layer）**：
+当提示词包含角色台词或音效时，将其作为视觉方向的**独立层级**：
 
 ```text
-[时间段（Time Segment）]：[视觉动作和镜头（Visual Action & Camera）]
-对白（角色名，情绪）（Dialogue: Character Name, Emotion）："台词"
-音效（Sound Effect）：[环境/效果描述]
+[时间段]：[视觉动作和镜头]
+对白（角色名，情绪）："台词"
+音效：[环境/效果描述]
 ```
 
 最佳实践：
 - 每 3-5 秒时间段最多一条对白
-- 情绪显式标记（Explicit Emotion Tags）：`冰冷（Cold）`、`绝望（Desperate）`、`欢快（Cheerful）`、`耳语（Whisper）`
-- 音效单独描述：脚步声（Footsteps）、环境嗡鸣（Ambient Hum）、配乐高潮（Score Climax）、寂静（Silence）
-- 结尾音频收束（Audio Resolution）：`配乐淡出（Score Fade Out）`、`环境风声（Ambient Wind）`、`寂静（Silence）`
-- 口播视频必须开启口型同步（Lip Sync），确保音频清晰无杂音
+- 情绪显式标记：`冰冷`、`绝望`、`欢快`、`耳语`
+- 音效单独描述：脚步声、环境嗡鸣、配乐高潮、寂静
+- 结尾音频收束：`配乐淡出`、`环境风声`、`寂静`
+- 🆕 支持 10+ 种语言口型同步
+- 口播视频必须开启口型同步
 
 ---
 
-## 多段工作流（Multi-segment Workflow）— 超过 15 秒
+## 多段工作流（Multi-segment Workflow）— 超过 30 秒
 
-### 路径一：视频延长接力（Video Extension Relay）— 推荐新手
-1. 开头声明 **总时长（Total Duration）** 和 **分段数量（Segment Count）**
-2. 第一段：正常生成，结束于**干净的交接帧（Clean Handoff Frame）**
+### 路径一：视频延长接力（Video Extension Relay）— 推荐
+1. 开头声明 **总时长** 和 **分段数量**
+2. 第一段：正常生成（≤30秒），结束于**干净的交接帧**
 3. 第二段及之后：上传上一段作为 `@视频1`，使用 `延长 @视频1 X 秒`
-4. 每段末尾包含 **交接帧描述（Handoff Frame Description）**
-5. 向前传递：身份（Identity）、服装（Costume）、光照（Lighting）、镜头风格（Camera Style）、场景连续性（Scene Continuity）
+4. 🆕 Seedance 2.5 高保真延长，数分钟一致性
+5. 向前传递：身份、服装、光照、镜头风格、场景连续性
 
-### 路径二：分段独立生成 + 剪辑拼接（Independent Generation + Edit Assembly）— 高级，质量更可控
+### 路径二：分段独立生成 + 剪辑拼接（Independent Generation + Edit Assembly）— 高级
 1. 所有段落共用同一套角色图和场景图
 2. 每段独立生成，使用统一的 prompt 模板
-3. 最后编辑软件中拼接，可添加过渡效果（Transition Effects）✅
+3. 最后编辑软件中拼接，可添加过渡效果 ✅
+
+### 路径三：🆕 局部编辑迭代
+1. 先生成满意的基底视频
+2. 使用局部编辑模式微调各段
+3. 无需重新生成，只修改需要改进的部分
 
 ---
 
 ## 一镜到底/连续镜头技巧（Long Take / Continuous Shot Tips）
 
-- `@图片1` 作为首帧（First Frame）（主角/开场构图）
-- 额外图片作为 **场景路标点（Scene Landmarks）** — 镜头经过的地点、角色或道具
-- 将提示词写成一条连续摄像机路径（Continuous Camera Path），按顺序经过每个路标点
-- 明确注明：`无剪辑（No Cuts）、单镜头连续拍摄（Single Continuous Take）、一镜到底（Long Take）` ✅
-- 15 秒配合 3-5 个路标点效果最佳
+- `@图片1` 作为首帧（主角/开场构图）
+- 额外图片作为 **场景路标点（Scene Landmarks）**
+- 将提示词写成一条连续摄像机路径
+- 明确注明：`无剪辑、单镜头连续拍摄、一镜到底` ✅
+- 🆕 30秒配合 5-8 个路标点效果最佳（15秒时代为3-5个）
 
 ---
 
 ## 产品展示技巧（Product Showcase Tips）
 
-- 将产品照片绑定为 `@图片1`，作为身份锚定（Identity Anchor）
-- 技巧：**360° 旋转（360° Spin）**、**3D 爆炸视图（3D Exploded View）**、**重组卡合（Reassembly Snap）**、**英雄光效（Hero Lighting）** ✅
-- 指定材质渲染（Material Rendering）✅：`玻璃反射（Glass Reflection）` ✅、`金属光泽（Metallic Sheen）` ✅、`哑光质感（Matte Texture）`、`半透明辉光（Translucent Glow）`
-- 背景保持干净：影棚渐变（Studio Gradient）、中性表面（Neutral Surface）或情境化生活场景（Lifestyle Context）
-
----
-
-## 口播视频批量工作流（Talking Head Video Batch Workflow）
-
-适合系列内容（如每天一条知识分享）：
-1. 建立统一角色档案（Unified Character Profile）（多角度照片：正面/侧面/表情特写）
-2. 写标准 prompt 模板，每段仅替换动作描述和音频
-3. 使用视频延长功能（Video Extension）接力生成，或使用分段独立生成 + 统一参考
-4. 每段控制在 10-13 秒（别卡满 15 秒，留余量给转场 / Transition）
+- 将产品照片绑定为 `@图片1`，作为身份锚定
+- 技巧：**360° 旋转**、**3D 爆炸视图**、**重组卡合**、**英雄光效** ✅
+- 🆕 白模参考模式可精确控制产品展示的空间路径
+- 🆕 局部编辑可快速生成不同颜色/款式版本
+- 指定材质渲染：玻璃反射 ✅、金属光泽 ✅、哑光质感、半透明辉光
+- 背景保持干净：影棚渐变、中性表面或情境化生活场景
 
 ---
 
 ## 常见陷阱（Common Pitfalls）
 
 - 文件过多但未明确每个素材的角色
-- 遗漏身份（Identity）/服装（Costume）/道具（Props）的连续性（Continuity）指令
-- 混淆目标总时长（Total Duration）与延长时间（Extension Duration）
-- 请求可能被政策拦截的写实人脸（即梦平台）
+- 遗漏身份/服装/道具的连续性指令
+- 混淆目标总时长与延长时间
+- 请求可能被政策拦截的写实人脸
 - 使用系列名、角色名或品牌近似词（触发审核拒绝）
-- 过于接近可识别的标志性特征
-- 从参考图中保留品牌 Logo 或商标而未明确去除
-- 不为可推断的 IP 引用添加负面约束（Negative Constraints）
-- 提示词超过 200 字导致生成失败
+- 提示词过长导致生成失败（🆕 2.5 限额提升至约 300 字）
 - 首尾帧主体位置和姿态不合理导致衔接断裂
+- 🆕 文字内容未用「」包裹，导致渲染失败
+- 🆕 使用局部编辑时未指定时间戳
+- 🆕 白模参考未声明"不转移无纹理外观"
+
+---
+
+## 🆕 Seedance 2.5 平台限额速查
+
+| 参数 | Seedance 2.5 限额 |
+|------|-------------------|
+| 单次生成时长 | 4-30 秒 |
+| 参考素材总数 | ≤ 50 个 |
+| 图片参考 | ≤ 30 张 |
+| 视频参考 | ≤ 10 段 |
+| 音频参考 | ≤ 10 段 |
+| 输出分辨率 | 最高原生 4K |
+| 口型同步语言 | 10+ 种 |
+| 延长能力 | 多轮延长至数分钟 |
+| 白模参考 | ✅ Maya/Blender |
+| 绿幕参考 | ✅ |
+| 局部编辑 | ✅ 时间戳精准控制 |
+| 文字渲染 | ✅ 大幅改善 |
 
 ---
 
 ## 快速验证清单（Quick Verification Checklist）
 
-- [ ] 文件数量和大小限制已遵守（总≤12，图片≤9，视频≤3，音频≤3）
-- [ ] 混合文件总数 ≤ 12
-- [ ] 时长（Duration）在 4 到 15 秒之间
-- [ ] 每个参考素材都有明确的 `@asset` 角色（Asset Role）
-- [ ] 提示词包含五维度信息（Five Dimensions）：镜头（Camera）/ 物理（Physics）/ 情感（Emotion）/ 光影（Lighting）/ 节奏（Pacing）
-- [ ] 必要时包含负面约束（Negative Constraints）
+- [ ] 🆕 文件数量和大小限制已遵守（总≤50，图≤30，视频≤10，音频≤10）
+- [ ] 🆕 时长（Duration）在 4 到 30 秒之间
+- [ ] 每个参考素材都有明确的 `@asset` 角色
+- [ ] 提示词包含五维度信息：镜头/物理/情感/光影/节奏
+- [ ] 必要时包含负面约束
 - [ ] 提示词和素材描述中无系列名、角色名、品牌名
-- [ ] 负面约束明确列出所有可推断的 IP 引用（IP References）
-- [ ] 角色/生物使用完全原创的名称和独特视觉特征（Original Name & Visual Features）
-- [ ] 对白（Dialogue）和音效（Sound Effects）作为视觉动作的独立层级写入
-- [ ] 多段视频有明确的交接帧描述（Handoff Frame Description）
-- [ ] 镜头术语（Camera Terms）与 `camera-and-styles.md` 词汇表一致
-- [ ] 提示词总长度 ≤ 200 字
+- [ ] 角色/生物使用完全原创的名称和独特视觉特征
+- [ ] 对白和音效作为视觉动作的独立层级写入
+- [ ] 多段视频有明确的交接帧描述
+- [ ] 🆕 文字内容用「」包裹并指定位置/字体/颜色
+- [ ] 🆕 白模参考声明了"不转移无纹理外观"
+- [ ] 🆕 局部编辑指定了精确时间戳
 
 ---
 
-## 🆕 时间片模式（Time-Slice Mode）— v2.1 新增
-
-### 概述（Overview）
-
-时间片模式（Time-Slice Mode）是为**单镜头内情绪复杂递进（Complex Emotion Progression within Single Shot）**场景设计的提示词结构。与 Shot-by-Shot 模式不同，它不切割镜头，而是按时间轴分段描述同一连续镜头内的情绪演变。
-
-### 适用场景（Use Cases）
-
-- ✅ 单镜头内情绪多次转变（Multiple Emotion Shifts in Single Shot）（如恐惧→倔强→决绝）
-- ✅ 微表情表演（Micro-expression Performance ⚠️）需要精确时间控制
-- ✅ 摄影机参数需要随情绪变化（Camera Parameters Emotion Sync）（如快门角度递进 / Shutter Angle Progression ⚠️）
-- ✅ 台词嵌入表演节奏中（Dialogue Embedded in Performance Rhythm）
-- ❌ 多镜头剪辑（Multi-shot Editing）（用 Shot-by-Shot 模式）
-- ❌ 需要明显场景切换（Scene Change Required）（用多段工作流 / Multi-segment Workflow）
-
-### 结构组成（Structure）
-
-```
-【全局基础设定（Global Base Setup）】        ← 统领所有时间片
-  ├─ 🎨 环境与光影（Environment & Lighting）
-  ├─ 👤 人物资产（Character Asset）
-  ├─ 📷 摄影机全局参数（Camera Global Parameters）
-  ├─ 🎭 表演基调（Performance Tone）
-  └─ 🔊 声音设计（Sound Design）
-
-【资产变量表（Asset Variable Table）】       ← 可复用元素的变量定义
-
-【时间片分镜脚本（Time-Slice Storyboard）】 ← 按时间轴分段
-  ├─ 🎬 0-Xs（情绪锚点 / Emotion Anchor：A·B）
-  ├─ 🎬 X-Ys（情绪锚点 / Emotion Anchor：C·D）
-  └─ 🎬 Y-Zs（情绪锚点 / Emotion Anchor：E·F）
-```
-
-### 与 Shot-by-Shot 模式的对比（Comparison with Shot-by-Shot Mode）
-
-| 维度（Dimension） | 时间片模式（Time-Slice Mode） | Shot-by-Shot 模式（Shot-by-Shot Mode） |
-|------|-----------|------------------|
-| 镜头数（Shot Count） | 单镜头连续（Single Continuous Shot） | 多镜头剪辑（Multi-shot Editing） |
-| 分段依据（Segmentation Basis） | 时间轴（Timeline）（0-6s, 7-15s） | 镜头 ID（Shot ID）（Shot 1, Shot 2） |
-| 情绪表达（Emotion Expression） | 在同一镜头内演变（Evolution within Single Shot） | 每个镜头有独立情绪（Independent Emotion per Shot） |
-| 摄影机（Camera） | 可描述参数递进（如快门变化）（Parameter Progression） | 每个镜头独立参数（Independent Parameters per Shot） |
-| 适用（Best For） | 表演特写（Performance Close-up）、情绪戏（Emotional Scenes） | 动作剪辑（Action Editing）、场景转换（Scene Transitions） |
-
-### 关键规则（Key Rules）
-
-1. **时间片连续（Continuous Time-slices）**：0-6s → 7-15s（不要漏掉第 6 秒）
-2. **情绪锚点必写（Emotion Anchor Required）**：每段必须有 `（情绪锚点 / Emotion Anchor：A·B）`
-3. **双保险描述（Dual-insurance Description）**：技术参数后必须跟视觉翻译（Visual Translation）
-4. **矛盾检测（Contradiction Check）**：全局设定与时间片之间不能有逻辑矛盾
-
-### 全局基础设定说明（Global Base Setup Description）
-
-全局基础设定（Global Base Setup）在所有时间片之前建立，统领整段视频的视觉基调（Visual Tone）：
-
-| 层（Layer） | 作用（Function） | 示例 |
-|----|------|------|
-| 🎨 环境与光影（Environment & Lighting） | 锁定整体氛围（Atmosphere）、光源类型（Light Source Type）、渲染风格（Rendering Style） | 「极寒幽暗体育馆，高对比度顶光（Top-down Spotlight）✅，UE5 超写实（UE5 Hyperrealistic 💡）」 |
-| 👤 人物资产（Character Asset） | 引用资产变量，添加表演约束（Performance Constraints） | `{{人物 1}}` + 「画面内只出现面部（Face Only in Frame）」 |
-| 📷 摄影机全局参数（Camera Global Parameters） | 机型（Camera Model）、光圈（Aperture）、快门递进策略（Shutter Progression Strategy ⚠️） | 「ARRI Alexa 35 ✅, T1.5 大光圈（Large Aperture）✅, 45°→90°→180° 递进（Progression）」 |
-| 🎭 表演基调（Performance Tone） | 表演风格总纲 + 禁止项 | 「拒绝夸张大喊，力量向内收缩（Reject Exaggeration, Internalize Power）」 |
-| 🔊 声音设计（Sound Design） | 配乐（Score）/音效（SFX）/口型（Lip Sync）需求 | 「无配乐（No Score）、仅有自然音效（Natural SFX Only）」 |
-
-### 情绪锚点速查（Emotion Anchor Quick Reference）
-
-情绪锚点（Emotion Anchor）是两个关键词，作为语义锚帮助模型锁定该时间段的情绪基调：
-
-- 恐惧·挣扎（Fear · Struggle）
-- 偏执·倔强（Obsession · Stubbornness）
-- 决绝·爆发（Resolve · Eruption）
-- 宁静·空洞（Serenity · Emptiness）
-- 隐忍·克制（Endurance · Restraint）
-- 温柔·眷恋（Tenderness · Attachment）
-- 迷失·游移（Lost · Wandering）
-
-完整速查见 `camera-and-styles.md` 情绪锚点关键词速查表（Emotion Anchor Keywords Quick Reference）。
-
-### 时间片模式快速验证清单（Time-Slice Mode Quick Checklist）
-
-- [ ] 全局基础设定（Global Base Setup）完整（环境 / Environment / 人物 / Character / 摄影机 / Camera / 表演 / Performance / 声音 / Sound）
-- [ ] 资产变量表（Asset Variable Table）已建立
-- [ ] 每个时间片有情绪锚点（Emotion Anchor per Time-slice）
-- [ ] 时间片连续无间隙（Continuous Time-slices, No Gaps）
-- [ ] 技术参数有视觉翻译兜底（Visual Translation for Technical Parameters）
-- [ ] 全局与时间片无逻辑矛盾（No Logical Contradictions between Global and Time-slices）
-- [ ] 台词嵌入时间片内（Dialogue Embedded in Time-slice）（非独立 tag / Not Independent Tag）
+> 🎬 **Seedancer v4.0.0** — Seedance 2.5 全面适配，30秒直出，50素材全模态，4K交付。

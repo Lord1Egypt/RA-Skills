@@ -1,44 +1,59 @@
-## Description: <br>
-Search for hotels, hostels, and lodging near landmarks, conference venues, or neighborhoods using Camino AI's location intelligence with AI-powered ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for hotels, hostels, and lodging near landmarks, conference venues, or neighborhoods using Camino AI's location intelligence with AI-powered ranking.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to find hotels, hostels, and lodging near landmarks, venues, neighborhoods, airports, or cities. It sends the lodging search to Camino AI and returns ranked location results with a human-readable answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lodging searches may include addresses, itinerary details, or other travel context that is sent to Camino AI. <br>
-Mitigation: Avoid submitting confidential addresses, private itineraries, or sensitive travel plans unless the user is comfortable sharing them with Camino AI. <br>
-Risk: The skill requires a Camino API key and calls an external Camino API endpoint. <br>
-Mitigation: Use a dedicated Camino API key where possible, keep it private, and review the command before execution. <br>
-Risk: Installing the full Camino skill suite expands the amount of code and behavior in scope. <br>
-Mitigation: Install the specific hotel-finder skill unless the other Camino skills have also been reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to find hotels, hostels, and other lodging near landmarks, conference venues, neighborhoods, airports, or coordinates, with Camino AI ranking results for proximity and relevance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/james-southendsolutions/camino-hotel-finder) <br>
-- [Camino API Key Activation](https://app.getcamino.ai/skills/activate) <br>
-- [x402 Payment Protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands] <br>
-**Output Format:** [JSON lodging search results with an answer field] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq; accepts a JSON query with optional latitude, longitude, radius, and limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Search terms and optional coordinates are sent to Camino.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive travel plans or exact coordinates unless sharing them with Camino is acceptable.
+
+Risk: Install examples are not pinned.
+
+Mitigation: Install a trusted, specific skill release or version when possible.
+
+Risk: The skill requires CAMINO_API_KEY.
+
+Mitigation: Store and handle the API key as a credential, and avoid exposing it in logs, prompts, or shared configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/camino-hotel-finder)
+- [Camino API key activation](https://app.getcamino.ai/skills/activate)
+- [Camino API](https://api.getcamino.ai/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON lodging search results with a human-readable answer field, plus Markdown usage guidance and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and CAMINO_API_KEY for the provided shell script path.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

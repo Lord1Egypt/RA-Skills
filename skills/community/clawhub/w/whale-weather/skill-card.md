@@ -1,42 +1,55 @@
-## Description: <br>
-全球城市天气查询与对比工具。支持中英文城市名，具备多语言输出、动态数据源切换（Open-Meteo）及精准大城市定位功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球城市天气查询与对比工具，支持中英文城市名、多语言输出、Open-Meteo 数据源和大城市定位。
 
-## Publisher: <br>
-[redapp](https://clawhub.ai/user/redapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redapp](https://clawhub.ai/user/redapp)
 
-## Use Case: <br>
-External users and developers use this skill to query current weather for one city or compare multiple cities in Chinese or English, including temperature, humidity, wind, precipitation probability, and travel advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups send the supplied city name or lookup term to Open-Meteo over the network. <br>
-Mitigation: Use the skill only when sharing the queried location with Open-Meteo is acceptable. <br>
-Risk: The skill runs local shell scripts and invokes python3 to fetch live weather data. <br>
-Mitigation: Review the included scripts before installation and run them from the skill directory as documented. <br>
+## Use Case:
 
+Agents use this skill to answer single-city weather questions or compare weather across cities in Chinese or English. It is useful for current conditions, temperature ranges, precipitation likelihood, and simple travel guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redapp/whale-weather) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [Open-Meteo geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text weather summaries from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can be localized to Chinese or English; scripts require python3 and network access to Open-Meteo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Queried city names are sent over HTTPS to Open-Meteo for geocoding and weather results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only where sharing requested city names with Open-Meteo is acceptable.
+
+Risk: Weather answers depend on live Open-Meteo availability and returned data.
+
+Mitigation: Treat results as current guidance and re-query or cross-check for critical travel decisions.
+
+## Reference(s):
+
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+- [ClawHub skill page](https://clawhub.ai/redapp/skills/whale-weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands]
+
+**Output Format:** [Plain text weather report with bilingual labels and short advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries may call Open-Meteo over HTTPS for geocoding and weather data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

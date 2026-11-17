@@ -17,14 +17,15 @@ if str(SKILL_ROOT) not in sys.path:
 
 import argparse
 import json
-import subprocess
+from core.common import WORKSPACE_ROOT, resolve_path
+from core.openclaw_signal_hook import run_hook
+from core.signal_detect import load_context_text
 
-from core.common import WORKSPACE_ROOT
 
-
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Prototype runner for Hui-Yi OpenClaw hook integration")
-    parser.add_argument("--query", required=True)
+    parser.add_argument("--query", default=None, help="current query; use --stdin to keep query text out of process arguments")
+    parser.add_argument("--stdin", action="store_true", help="read private query/context from stdin")
     parser.add_argument("--channel", required=True)
     parser.add_argument("--scope-type", required=True, choices=["user", "chat"])
     parser.add_argument("--scope-id", required=True)
@@ -32,44 +33,28 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--memory-root", default="memory/cold")
     parser.add_argument("--trigger-source", choices=["skill_hit", "heuristic_fallback", "manual_probe"], default="manual_probe")
-    args = parser.parse_args()
-
-    workspace = WORKSPACE_ROOT
-    hook_script = workspace / "skills" / "hui-yi" / "core" / "openclaw_signal_hook.py"
-    cmd = [
-        sys.executable,
-        str(hook_script),
-        "--query",
-        args.query,
-        "--channel",
-        args.channel,
-        "--scope-type",
-        args.scope_type,
-        "--scope-id",
-        args.scope_id,
-        "--memory-root",
-        args.memory_root,
-        "--trigger-source",
-        args.trigger_source,
-    ]
-    if args.thread_id:
-        cmd.extend(["--thread-id", args.thread_id])
-    if args.dry_run:
-        cmd.append("--dry-run")
-
-    proc = subprocess.run(cmd, cwd=str(workspace), capture_output=True, text=True)
+    args = parser.parse_args(argv)
+    try:
+        query = load_context_text(args.query, None, args.stdin)
+        # Preserve the previous workspace-relative CLI path semantics without
+        # launching a child process or exposing its command line/output.
+        memory_root = resolve_path(args.memory_root, base=WORKSPACE_ROOT)
+        hook_result = run_hook(memory_root, query, args.channel, args.scope_type, args.scope_id,
+                               thread_id=args.thread_id, trigger_source=args.trigger_source,
+                               dry_run=args.dry_run)
+    except (OSError, ValueError, TypeError, OverflowError):
+        hook_result = {"ok": False, "exitCode": 1, "error": "probe_input_failed"}
+    returncode = 0 if hook_result.get("ok") else 1
     result = {
-        "ok": proc.returncode == 0,
-        "command": cmd,
-        "stdout": proc.stdout,
-        "stderr": proc.stderr,
-        "returncode": proc.returncode,
+        "ok": returncode == 0,
+        "result": hook_result,
+        "returncode": returncode,
         "integrationMode": "workspace-prototype",
         "runtimePatchApplied": False,
         "recommendedRuntimeHookPoint": "after Hui-Yi skill selection, before recall/resurface execution",
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    return 0 if proc.returncode == 0 else proc.returncode
+    return returncode
 
 
 if __name__ == "__main__":

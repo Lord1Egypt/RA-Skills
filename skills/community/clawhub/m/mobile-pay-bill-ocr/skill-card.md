@@ -1,43 +1,60 @@
-## Description: <br>
-Recognizes Alipay and WeChat mobile payment bill images or PDFs and extracts structured transaction fields such as time, merchant, amount, and transaction type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes AliPay and WeChat mobile payment bill screenshots and extracts transaction time, merchant, amount, income or expense type, and related fields as structured JSON.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to send a local mobile payment bill image or PDF to Scnet OCR and receive structured transaction data for review, reconciliation, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment bill images or PDFs may contain sensitive financial data and are uploaded to Scnet's external OCR service. <br>
-Mitigation: Confirm the exact file path before each run, avoid uploading unrelated or unredacted financial records, and review the provider's privacy, retention, and compliance terms before using real payment data. <br>
-Risk: The skill requires a Scnet API credential. <br>
-Mitigation: Store SCNET_API_KEY in an environment variable or local config file with restricted permissions, and do not paste the key into chat or commit it to source control. <br>
+## Use Case:
 
+External users and agents use this skill to submit a local mobile payment bill screenshot to Scnet's OCR API and receive normalized transaction fields for review, reconciliation, or recordkeeping.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/mobile-pay-bill-ocr) <br>
-- [Sugon-Scnet OCR API Docs](references/api-docs.md) <br>
-- [Mobile Payment Bill Fields Summary](assets/templates/fields-summary.md) <br>
-- [Scnet Website](https://www.scnet.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration instructions] <br>
-**Output Format:** [Structured JSON with OCR recognition results; text error messages on failure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and a local file path; supported input includes common image formats and PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, skill.yaml, CHANGELOG.md) <br>
+Risk: Payment bill screenshots can contain sensitive personal, social, and financial data and are uploaded to Scnet's OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only screenshots approved for external processing, confirm consent for any third-party information, and delete local or cloud copies after use where appropriate.
+
+Risk: A configurable SCNET_API_BASE can send the image and API key to an endpoint other than the documented Scnet host.
+
+Mitigation: Keep SCNET_API_BASE at https://api.scnet.cn/api/llm/v1 unless the alternate endpoint is fully trusted, and review config/.env before running.
+
+Risk: The required Scnet API key could be exposed if pasted into chat or stored with broad file permissions.
+
+Mitigation: Store the key in an environment variable or config/.env with restricted permissions, and avoid including the key in prompts or transcripts.
+
+## Reference(s):
+
+- [Sugon-Scnet mobile payment bill OCR API docs](references/api-docs.md)
+- [Mobile payment bill field summary](assets/templates/fields-summary.md)
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/mobile-pay-bill-ocr)
+- [Scnet service website](https://www.scnet.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON data on stdout, with human-readable error text on failure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and a local image path; uploads the image to Scnet's OCR service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact SKILL.md and skill.yaml report 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Create and update skills for the ClawHub registry, optimize their structure and metadata, and validate compatibility for AI agent usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create effective skills for clawhub registry. Use when: (1) Creating new skill for publication, (2) Updating existing skill metadata, (3) Optimizing skill structure for AI agents, (4) Validating skill before publish, (5) Understanding clawhub-specific requirements.
 
-## Publisher: <br>
-[erview](https://clawhub.ai/user/erview) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[erview](https://clawhub.ai/user/erview)
 
-## Use Case: <br>
-Developers and AI agents use this skill to scaffold, refine, validate, package, and publish ClawHub-compatible skills with clear metadata, references, versioning, and token-aware structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or packaged skill files could include unintended local content or incorrect release metadata. <br>
-Mitigation: Review generated files, confirm the active ClawHub account and version, and inspect the .skill package before publishing. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, update, validate, package, and publish ClawHub-compatible skills with agent-first structure, metadata, references, versioning, and token optimization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/erview/clawhub-skill-creator) <br>
-- [Agent-First Design](references/agent-first-design.md) <br>
-- [Skill Structure Patterns](references/skill-structure.md) <br>
-- [Token Optimization](references/token-optimization.md) <br>
-- [Validation Checklist](references/validation-checklist.md) <br>
-- [Versioning Best Practices](references/versioning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update skill files and package artifacts through local commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The packaging script can unintentionally include sensitive files when creating publishable packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review packages before publishing; do not run the packaging script on directories containing .env files, keys, credentials, private config, or symlinks, and inspect the generated archive contents before publishing.
+
+## Reference(s):
+
+- [Clawhub Skill Creator](https://clawhub.ai/erview/skills/clawhub-skill-creator)
+- [Agent-First Design](references/agent-first-design.md)
+- [Skill Structure Patterns](references/skill-structure.md)
+- [Token Optimization](references/token-optimization.md)
+- [Validation Checklist](references/validation-checklist.md)
+- [Versioning Best Practices](references/versioning.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON, bash, cmd, and PowerShell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces skill-authoring guidance and command templates; bundled shell scripts can initialize or package skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: _meta.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

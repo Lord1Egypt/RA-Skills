@@ -1,40 +1,58 @@
-## Description: <br>
-SnapGen manages the lifecycle of Windows desktop application automation scripts in per-application folders using Python and Clicknium. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks to open, run, or automate a specific desktop application. It manages the full lifecycle of automation scripts within dedicated application folders, handling class-based automation execution. This skill relies on the Python environment and the `clicknium` package.
 
-## Publisher: <br>
-[snapgen](https://clawhub.ai/user/snapgen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snapgen](https://clawhub.ai/user/snapgen)
 
-## Use Case: <br>
-Developers and operators on Windows use SnapGen to create, extend, and run Clicknium-based automation for desktop applications by maintaining per-application Python classes and capability documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, modify, and run local Python automation code for desktop applications. <br>
-Mitigation: Review generated app folders and Python files before execution, and scan changes before deployment. <br>
-Risk: Desktop automation can interact with sensitive accounts or business-critical applications. <br>
-Mitigation: Use only with applications you intentionally want to automate, and avoid sensitive accounts or critical workflows unless separately reviewed. <br>
+## Use Case:
 
+Developers and operators use SnapGen to create, extend, document, and run desktop application automations on Windows using Python and Clicknium.
 
-## Reference(s): <br>
-- [SnapGen on ClawHub](https://clawhub.ai/snapgen/snapgen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python and shell snippets; generated files may be Python, Markdown, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows desktop automation and relies on the local Python environment with Clicknium.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can control desktop applications and generate, save, and immediately run Python automation code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, supervise automation runs, and review generated code and diffs before execution.
+
+Risk: The skill can use the global Python environment and install Clicknium with an unpinned upper version.
+
+Mitigation: Use a virtual environment or isolated Windows profile and review dependency versions before installation.
+
+Risk: Desktop automation may interact with sensitive applications or data.
+
+Mitigation: Avoid using it with sensitive apps unless the automation can be closely supervised.
+
+## Reference(s):
+
+- [SnapGen ClawHub skill page](https://clawhub.ai/snapgen/skills/snapgen)
+- [SnapGen publisher profile](https://clawhub.ai/user/snapgen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated automation artifacts may include Python, Markdown, and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create per-application automation folders and temporary driver scripts; returned application data is expected as ordered list values.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

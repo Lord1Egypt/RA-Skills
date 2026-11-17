@@ -1,43 +1,60 @@
-## Description: <br>
-Guides OpenClaw users through Telegram cross-instance chat, bot mentions, personal bot setup, and identity mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through Telegram group onboarding, cross-instance bot messaging, mentions, identity mapping, and personal Telegram bot setup.
 
-## Publisher: <br>
-[adminlove520](https://clawhub.ai/user/adminlove520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adminlove520](https://clawhub.ai/user/adminlove520)
 
-## Use Case: <br>
-OpenClaw users and maintainers use this skill to join shared Telegram groups, configure personal Telegram bots, mention other bot users, and keep bot usernames mapped to GitHub identities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens can grant access to the configured bot if exposed. <br>
-Mitigation: Use a dedicated Telegram bot, keep the token private, and avoid committing it to repositories. <br>
-Risk: Broad chat access or administrator permissions can expose messages beyond the intended group scope. <br>
-Mitigation: Restrict allowed_chats to intended groups, grant only the minimum required administrator permissions, and disable privacy mode only in trusted groups. <br>
+## Use Case:
 
+OpenClaw users and maintainers use this skill to set up Telegram-based communication between agent instances, map bots to user identities, and troubleshoot mentions and message delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adminlove520/openclaw-telegram-chat) <br>
-- [Publisher profile](https://clawhub.ai/user/adminlove520) <br>
-- [Contact: YuLin807 on X](https://x.com/YuLin807) <br>
-- [Contact: ythx-101 on GitHub](https://github.com/ythx-101) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with inline commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for Telegram bot onboarding and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill requires handling a Telegram bot token, which can expose bot access if copied into shared files or repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bot token, keep it out of committed configuration, and rotate it if it is exposed.
+
+Risk: Broad Telegram bot access can allow the bot to observe more group activity than users expect.
+
+Mitigation: Restrict allowed_chats, grant only the minimum Telegram permissions needed, and avoid administrator status unless it is required.
+
+Risk: Group participants may not understand what messages a configured bot can see or relay.
+
+Mitigation: Keep privacy mode enabled where possible and make group participants aware of the bot's visibility before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adminlove520/skills/openclaw-telegram-chat)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL guide](artifact/SKILL.md)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guide with Telegram commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable scripts are included.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact changelog lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

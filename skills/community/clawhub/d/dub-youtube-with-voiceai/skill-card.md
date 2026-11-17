@@ -1,45 +1,60 @@
-## Description: <br>
-Dub YouTube videos with Voice.ai TTS. Turn scripts into publish-ready voiceovers with chapters, captions, and audio replacement for YouTube long-form and Shorts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dub YouTube videos with Voice.ai TTS. Turn scripts into publish-ready voiceovers with chapters, captions, and audio replacement for YouTube long-form and Shorts.
 
-## Publisher: <br>
-[gizmoGremlin](https://clawhub.ai/user/gizmoGremlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gizmogremlin](https://clawhub.ai/user/gizmogremlin)
 
-## Use Case: <br>
-External creators and developers use this skill to turn scripts into YouTube-ready AI voiceovers, captions, chapters, review pages, and optional dubbed video files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected script text is sent to Voice.ai or to the endpoint configured with VOICEAI_API_BASE. <br>
-Mitigation: Use only approved script content, avoid sensitive or regulated text unless authorized, and keep VOICEAI_API_BASE unset unless an alternate endpoint is intentionally required. <br>
-Risk: A Voice.ai API key is required for non-mock generation. <br>
-Mitigation: Use a dedicated, revocable API key and rotate it if exposed. <br>
-Risk: Generated ffmpeg helper scripts may be run manually. <br>
-Mitigation: Review generated helper scripts before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gizmoGremlin/dub-youtube-with-voiceai) <br>
-- [Voice.ai API Reference](references/VOICEAI_API.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Voice.ai](https://voice.ai) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+External creators and developers use this skill to turn YouTube scripts into Voice.ai narration, captions, chapters, review pages, and optional dubbed videos. It supports long-form videos, Shorts, course content, screen recordings, and batch voiceover production.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with CLI commands; generated artifacts include WAV, MP3, MP4, SRT, JSON, HTML, and text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses VOICE_AI_API_KEY for Voice.ai requests; ffmpeg is optional but required for audio stitching, MP3 encoding, normalization, and video dubbing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends script text and API credentials to Voice.ai for text-to-speech generation.
+
+Mitigation: Use only scripts suitable for Voice.ai processing, keep VOICE_AI_API_KEY scoped and rotatable, and review the destination endpoint before use.
+
+Risk: Changing VOICEAI_API_BASE can redirect requests that include credentials or script content.
+
+Mitigation: Set VOICEAI_API_BASE only to a trusted HTTPS Voice.ai endpoint.
+
+Risk: Generated ffmpeg helper scripts can execute media-processing commands derived from local paths and files.
+
+Mitigation: Inspect helper scripts before running them, especially when media paths or files came from someone else.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gizmogremlin/skills/dub-youtube-with-voiceai)
+- [Voice.ai](https://voice.ai)
+- [Voice.ai Dashboard](https://voice.ai/dashboard)
+- [Voice.ai API Reference](references/VOICEAI_API.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with CLI commands; generated audio, video, caption, chapter, HTML review, manifest, and timeline files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20+; ffmpeg is optional for stitching, MP3 encoding, loudness normalization, and video dubbing.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata; artifact frontmatter states 0.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

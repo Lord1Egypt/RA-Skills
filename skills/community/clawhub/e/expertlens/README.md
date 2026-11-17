@@ -1,14 +1,16 @@
-# ExpertLens
+# ExpertLens-Lite
 
-**An AI skill that forces expert-level thinking on any task.**
+**The same expert-level thinking framework — compressed into a single companion file.**
 
-Most AI responses are generic — safe, average, and forgettable. ExpertLens changes how the AI thinks before it responds. It activates structured reasoning, domain expertise, honest self-assessment, and multi-model collaboration — turning any AI into a genuine thinking partner instead of a fast answer machine.
+Most AI responses are generic — safe, average, and forgettable. ExpertLens-Lite changes how the AI thinks before it responds. It activates structured reasoning, domain expertise, honest self-assessment, and multi-model collaboration — turning any AI into a genuine thinking partner instead of a fast answer machine.
+
+This is the compressed build: same reasoning architecture as the full framework, restated in dense, instructional form — rule, trigger, correct behavior, nothing else. Two files instead of four. Built for token efficiency without losing capability.
 
 ---
 
 ## What It Does
 
-When ExpertLens is active, the AI:
+When ExpertLens-Lite is active, the AI:
 
 - **Identifies the actual problem** — not just what was literally asked, but what actually needs solving
 - **Thinks like a domain expert** — finance, medical, engineering, legal, strategy, creative, research — each has a different way of thinking
@@ -26,33 +28,33 @@ AI without structure tends to:
 - Give you a list of options when you needed a recommendation
 - Produce average output that looks thorough but isn't
 
-ExpertLens is the instruction layer that prevents all of this.
+ExpertLens-Lite is the instruction layer that prevents all of this.
 
 ---
 
 ## Quick Start
 
 ### Option 1 — Skill Platforms (ClawHub, OpenClaw, etc.)
-1. Download or copy the ExpertLens skill folder
+1. Download or copy the `expertlens-lite` skill folder
 2. Add it to your AI's skill directory
 3. The skill auto-activates when needed — no setup required
 
 ### Option 2 — Manual Installation (any AI platform)
-1. Copy the contents of `SKILL.md` and `expert-persona.md`
+1. Copy the contents of `SKILL.md` and `expert-persona-lite.md`
 2. Add them to your AI's context, system prompt, or knowledge base
 3. Add this line to your system prompt:
    ```
-   You have an ExpertLens skill. Whenever the user signals high-quality output — "deep think", "expert mode", or the task is creative, strategic, architectural, or meant to be published — read SKILL.md and expert-persona.md completely before executing.
+   You have an ExpertLens-Lite skill. Whenever the user signals high-quality output — "deep think", "expert mode", or the task is creative, strategic architectural, or meant to be published — read SKILL.md and expert-persona-lite.md completely before executing.
    ```
 
 ### Option 3 — Project / Knowledge Base
-Upload `SKILL.md` and `expert-persona.md` as knowledge files in your AI project. Add the system prompt line from Option 2.
+Upload `SKILL.md` and `expert-persona-lite.md` as knowledge files in your AI project. Add the system prompt line from Option 2.
 
 ---
 
 ## How To Activate
 
-ExpertLens activates automatically for complex tasks. You can also trigger it manually:
+ExpertLens-Lite activates automatically for complex tasks. You can also trigger it manually:
 
 | Say this | Or this |
 |----------|---------|
@@ -63,13 +65,13 @@ ExpertLens activates automatically for complex tasks. You can also trigger it ma
 
 Works in any language.
 
-**No trigger needed for:** simple questions, quick tasks, casual conversation. ExpertLens stays out of the way.
+**No trigger needed for:** simple questions, quick tasks, casual conversation. ExpertLens-Lite stays out of the way.
 
 ---
 
 ## What Happens When It's Active
 
-You won't see ExpertLens working — it runs internally. What you will see:
+You won't see ExpertLens-Lite working — it runs internally. What you will see:
 
 - A one-line activation notice: *"ExpertLens active — approaching this as [task type]"*
 - The AI asking fewer but better clarifying questions
@@ -81,26 +83,26 @@ You won't see ExpertLens working — it runs internally. What you will see:
 
 ## Swarm Mode — Optional Power Feature
 
-For complex tasks, ExpertLens can coordinate multiple AI models to get diverse perspectives and synthesize them into a stronger result.
+For complex tasks, ExpertLens-Lite can coordinate multiple AI models to get diverse perspectives and synthesize them into a stronger result.
 
-**Standard (Relay):** ExpertLens writes the prompts; you copy-paste them to other AI platforms (ChatGPT, Gemini, Grok, etc.) and bring back the responses. ExpertLens synthesizes everything.
+**Standard (Relay):** ExpertLens-Lite writes the prompts; you copy-paste them to other AI platforms (ChatGPT, Gemini, Grok, etc.) and bring back the responses. It synthesizes everything.
 
 **Autonomous (Agentic platforms):** If your AI has direct access to other platforms, it handles the entire swarm itself. You don't do anything.
 
-Most tasks don't need Swarm Mode. ExpertLens will tell you when it thinks it would help.
+Most tasks don't need Swarm Mode. ExpertLens-Lite will tell you when it thinks it would help.
 
 ---
 
 ## Domain Personas — Optional Depth Layer
 
-ExpertLens is a general foundation. For deeper domain expertise, add a domain-specific persona file to the same folder:
+ExpertLens-Lite is a general foundation. For deeper domain expertise, add a domain-specific persona file to the same folder:
 
 - `trading-persona.md` — quantitative finance, trading strategies
 - `medical-persona.md` — clinical reasoning, differential diagnosis
 - `legal-persona.md` — doctrinal analysis, risk stratification
 - `coding-persona.md` — software architecture, security, systems
 
-ExpertLens automatically reads any domain persona it finds that matches the current task.
+ExpertLens-Lite automatically reads any domain persona it finds that matches the current task.
 
 *(Domain persona files are not included in this repo — they are separate, specialized extensions.)*
 
@@ -109,13 +111,12 @@ ExpertLens automatically reads any domain persona it finds that matches the curr
 ## File Structure
 
 ```
-ExpertLens/
-├── SKILL.md              # Core framework — phases, triggers, swarm logic
-├── expert-persona.md     # Who the expert is — identity, principles, protocols
-└── references/
-    ├── swarm-protocol.md  # Relay templates, model tips, synthesis framework
-    └── platform-guide.md  # Storage rules per platform (Claude, ChatGPT, Grok, etc.)
+ExpertLens-Lite/
+├── SKILL.md                 # Core framework — phases, triggers, swarm logic, storage rules
+└── expert-persona-lite.md   # Who the expert is — identity, principles, protocols, self-audit
 ```
+
+Just two files. No `references/` folder — relay templates, model routing, and per-platform storage rules are folded directly into `SKILL.md`.
 
 ---
 
@@ -153,10 +154,10 @@ MIT License — free to use, modify, and distribute. Attribution appreciated but
 
 Built by Ashutosh Merwade.
 
-ExpertLens started as a personal tool for getting genuinely expert-level output from AI — not just faster output. The core insight: the problem isn't AI capability, it's AI thinking structure. Give AI the right thinking framework and the output transforms.
+ExpertLens started as a personal tool for getting genuinely expert-level output from AI — not just faster output. The core insight: the problem isn't AI capability, it's AI thinking structure. Give AI the right thinking framework and the output transforms. ExpertLens-Lite is that same insight, compressed to its essentials.
 
 GitHub Repo link: https://github.com/Ashutosh2M/ExpertLens
 
 ---
 
-*ExpertLens — Platform-agnostic AI thinking framework*
+*ExpertLens-Lite — Platform-agnostic AI thinking framework, compressed.*

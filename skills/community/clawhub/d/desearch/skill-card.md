@@ -1,42 +1,59 @@
-## Description: <br>
-ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径。从快速信息梳理、系统分析到超万字专家报告全流程覆盖，依托多轮推理与多源数据整合，高效完成企业分析、市场洞察、招商研究等复杂任务，一站式提升研究效率与决策质量。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径。从快速信息梳理、系统分析到超万字专家报告全流程覆盖，依托多轮推理与多源数据整合，高效完成企业分析、市场洞察、招商研究等复杂任务，一站式提升研究效率与决策质量。
 
-## Publisher: <br>
-[zhushanwei](https://clawhub.ai/user/zhushanwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhushanwei](https://clawhub.ai/user/zhushanwei)
 
-## Use Case: <br>
-External users and agents use this skill to submit research prompts to ZeeLin Deep Research, poll for completion, and retrieve generated reports for market, company, policy, technology, and business analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and generated reports are sent to ZeeLin, and Feishu delivery can place report content into a Feishu document. <br>
-Mitigation: Use the skill only when ZeeLin and the delivery platform are approved for the data being submitted; avoid secrets, regulated data, and confidential business material unless explicitly authorized. <br>
-Risk: Generated reports may be downloaded to temporary local files before being sent to the user. <br>
-Mitigation: Delete temporary report files after delivery when handling sensitive content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhushanwei/desearch) <br>
-- [Publisher profile](https://clawhub.ai/user/zhushanwei) <br>
-- [ZeeLin Deep Research service](https://desearch.zeelin.cn) <br>
-- [ZeeLin API key and credits page](https://desearch.zeelin.cn/skill-activity) <br>
+## Use Case:
 
+External users and developers use this skill to submit research prompts to ZeeLin Deep Research, choose a deep or major research mode, poll task status, and deliver generated research reports. Typical tasks include market research, company analysis, policy review, technical comparison, and investment or business decision support.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples; generated research reports are retrieved as PDF or Word files and may be delivered as files or Feishu document links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and DESEARCH_API_KEY; report workflows may create temporary local files before delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research prompts and generated reports are sent to the external ZeeLin service and may also be forwarded through a messaging or Feishu channel.
+
+Mitigation: Use only content approved for those transfers, avoid confidential or regulated material unless the organization permits it, and confirm the destination channel before delivery.
+
+Risk: The workflow downloads report files from returned URLs and sends local files automatically.
+
+Mitigation: Validate the returned report URL and downloaded file before sending, use per-run private temporary directories, and delete temporary files after delivery.
+
+Risk: The security scan marked the skill suspicious because automated sharing instructions have weak safeguards.
+
+Mitigation: Review before installing and require human confirmation for recipients, channels, and report contents before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhushanwei/skills/desearch)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhushanwei)
+- [ZeeLin Deep Research service](https://desearch.zeelin.cn)
+- [ZeeLin API key and credits page](https://desearch.zeelin.cn/skill-activity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses, bash command examples, and downloaded PDF or document report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a DESEARCH_API_KEY; report delivery may use local temporary files or a messaging/document channel.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

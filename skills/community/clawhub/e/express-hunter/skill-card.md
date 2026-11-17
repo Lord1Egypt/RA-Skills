@@ -1,46 +1,60 @@
-## Description: <br>
-Tracks courier shipments from tracking numbers or forwarded delivery SMS messages, stores a local tracking list, and produces status reports with map links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Express Tracker helps an agent identify courier carriers from tracking numbers or SMS text, query package status, maintain a local tracking list, and produce map links and daily delivery reports.
 
-## Publisher: <br>
-[wumaoqianq](https://clawhub.ai/user/wumaoqianq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wumaoqianq](https://clawhub.ai/user/wumaoqianq)
 
-## Use Case: <br>
-Developers and end users can use this skill to query express shipment status, extract tracking numbers from delivery SMS messages, manage a local tracking list, and generate delivery reports with map links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment privacy can be exposed because tracking numbers are sent to external courier-query services. <br>
-Mitigation: Use the skill only for tracking numbers you are comfortable submitting to those services, and avoid forwarding SMS messages that include addresses, pickup codes, or other sensitive details. <br>
-Risk: Shipment history is retained locally under G:\PC先生\express_data\packages.json. <br>
-Mitigation: Run it on a trusted machine and periodically remove old or sensitive shipment records. <br>
-Risk: The Juhe API key is read from Desktop\999.txt. <br>
-Mitigation: Store only a non-sensitive, scoped API key there and rotate it if the file may have been exposed. <br>
+## Use Case:
 
+External users and agents can use this skill to track courier packages, parse forwarded delivery SMS messages, refresh package states, and generate concise delivery reports with route or tracking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wumaoqianq/express-hunter) <br>
-- [Publisher profile](https://clawhub.ai/user/wumaoqianq) <br>
-- [Juhe express query service](http://v.juhe.cn/exp/index) <br>
-- [Kuaidi100 query service](https://www.kuaidi100.com/query) <br>
-- [Amap route maps](https://ditu.amap.com/dir) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown and text responses with shell command examples and optional JSON from track.py --json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local Python scripts that query third-party courier services and update a local packages.json tracking store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Tracking numbers and the Juhe API key are sent to the primary courier endpoint over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only low-value test credentials until the endpoint is changed to HTTPS or the API provider documents a secure transport option.
+
+Risk: The skill stores package numbers, courier status, trace history, and SMS-derived tracking data in a fixed local packages.json path.
+
+Mitigation: Review the local data path before installation, restrict file access, and avoid forwarding SMS content that contains unrelated personal information.
+
+Risk: The Juhe API key is read from a fixed desktop text file rather than a safer documented configuration mechanism.
+
+Mitigation: Move credential handling to a documented secret store or environment configuration before using a valuable API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wumaoqianq/skills/express-hunter)
+- [Juhe express API endpoint](http://v.juhe.cn/exp/index)
+- [Kuaidi100 query endpoint](https://www.kuaidi100.com/query)
+- [Amap route links](https://ditu.amap.com/dir)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON files, guidance]
+
+**Output Format:** [Command-line text, Markdown-formatted status reports, URLs, and local JSON package records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads and writes local package state and uses courier API responses to produce tracking status, trace history, and map links.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

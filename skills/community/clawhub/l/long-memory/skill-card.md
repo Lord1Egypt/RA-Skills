@@ -1,46 +1,60 @@
-## Description: <br>
-Long Memory persistently archives full AI-agent conversations and helps retrieve prior sessions with keyword, TF-IDF, semantic, SQLite, and reporting tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Memory helps agents archive complete conversation histories, retrieve prior sessions semantically, and maintain continuity across sessions.
 
-## Publisher: <br>
-[zyuanjia](https://clawhub.ai/user/zyuanjia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zyuanjia](https://clawhub.ai/user/zyuanjia)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to preserve long-running conversation context, search historical discussions, generate summaries and reports, and manage memory archives across sessions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive conversation archives may be retained locally for long periods.
+
+Mitigation: Install only when long-term local retention is acceptable, configure retention deliberately, and avoid storing secrets or regulated data unless the environment is approved.
+
+Risk: The REST API can write chat archives and should not be exposed to untrusted callers.
+
+Mitigation: Do not start the API unless it is isolated to trusted local use or protected by external access controls.
+
+Risk: The advertised encryption should not be relied on for protecting secrets.
+
+Mitigation: Use separate, reviewed secret-management or encryption controls for sensitive material and avoid placing credentials in memory archives.
+
+Risk: Exports, reports, and Git backups may disclose archived conversations.
+
+Mitigation: Review generated reports and exports before opening or sharing them, and configure backup remotes only when the destination is trusted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users can use this skill when they need durable cross-session memory: capturing full conversations, searching prior context, generating summaries, exporting memory, and producing local reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently captures full conversations, which may include personal, business, credential, medical, legal, or regulated information. <br>
-Mitigation: Use a protected memory directory, review retention settings before use, and avoid capturing sensitive or regulated content unless local handling requirements are satisfied. <br>
-Risk: Exports, HTML reports, operation logs, API responses, and git backups can expose stored conversation history. <br>
-Mitigation: Treat these outputs as sensitive, restrict file and backup access, and do not expose the local API without additional access controls. <br>
-Risk: The security evidence warns not to rely on the advertised encryption for strong protection. <br>
-Mitigation: Use external storage encryption and established secret-management controls for high-sensitivity memory data. <br>
-Risk: Importing untrusted JSON or memory files can introduce unwanted or misleading stored context. <br>
-Mitigation: Import only trusted files and review imported content before using it to guide future agent behavior. <br>
+**Output Format:** [Markdown and command-line guidance, with optional JSON, Markdown, text, and HTML files produced by the bundled tools.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Long Memory ClawHub Release](https://clawhub.ai/zyuanjia/long-memory) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+**Other Properties Related to Output:** [May create local memory archives, indexes, summaries, exports, reports, logs, backups, and API responses depending on the command used.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown memory records, JSON CLI/API responses, plain text summaries, configuration files, and HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists archives, indexes, exports, reports, logs, backups, and API responses in a local memory directory.] <br>
+7.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-7.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

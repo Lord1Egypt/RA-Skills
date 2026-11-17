@@ -1,44 +1,60 @@
-## Description: <br>
-快速搭建临时 HTTP 文件下载服务器，支持生成下载页面、启动下载服务和开放指定防火墙端口。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速搭建临时文件下载服务器，支持 HTTP 下载、下载页面生成和防火墙端口开放，适用于需要向用户发送文件但聊天工具不支持直接文件传输的场景。
 
-## Publisher: <br>
-[mtafersit1-png](https://clawhub.ai/user/mtafersit1-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtafersit1-png](https://clawhub.ai/user/mtafersit1-png)
 
-## Use Case: <br>
-Developers and agents use this skill to create short-lived HTTP download links for files or folders when a chat or workflow cannot transfer the files directly. It is intended for deliberate temporary sharing of selected files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a local folder over unauthenticated HTTP. <br>
-Mitigation: Use a dedicated folder that contains only files intended for sharing, prefer localhost unless external access is required, and stop the server after the transfer. <br>
-Risk: The skill can automatically open firewall ports. <br>
-Mitigation: Run the port-opening behavior only when network exposure is intended, track the opened port, and manually remove the firewall rule after use. <br>
-Risk: Generated download pages can include filenames, titles, or descriptions supplied by the operator. <br>
-Mitigation: Avoid untrusted filenames and descriptions, and review the generated page before sharing the link externally. <br>
+## Use Case:
 
+Developers and operators use this skill to create a temporary HTTP download endpoint for selected files or directories and share a browser-accessible link with external users.
 
-## Reference(s): <br>
-- [Quickstart](references/QUICKSTART.md) <br>
-- [Python http.server documentation](https://docs.python.org/3/library/http.server.html) <br>
-- [iptables project](https://netfilter.org/projects/iptables/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and code snippets; generated HTML download pages when the bundled scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start a background HTTP server and change local firewall rules when the operator runs the relevant scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can expose files through a temporary unauthenticated public HTTP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a tightly controlled directory containing non-sensitive files and stop the server promptly after the transfer is complete.
+
+Risk: The skill can open firewall ports and bind the server broadly.
+
+Mitigation: Prefer binding to 127.0.0.1 unless public access is explicitly needed, avoid automatic firewall opening when possible, and remove firewall rules after use.
+
+Risk: Generated pages may include filenames, titles, or descriptions from local inputs.
+
+Mitigation: Do not use generated pages with untrusted filenames or descriptions.
+
+## Reference(s):
+
+- [Quickstart Guide](references/QUICKSTART.md)
+- [Python http.server documentation](https://docs.python.org/3/library/http.server.html)
+- [iptables project](https://netfilter.org/projects/iptables/)
+- [ClawHub skill page](https://clawhub.ai/mtafersit1-png/skills/file-download-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate an index.html download page and commands for running a temporary HTTP server.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7ane048ayepp8zgbx2yrq26182tkkv",
-  "slug": "ai-daily-news-get",
+  "name": "ai-daily-news",
   "version": "1.0.0",
-  "publishedAt": 1774785787955
+  "author": "OpenClaw",
+  "description": "每日AI早报生成 - 每天早上自动梳理过去24小时内发生的国内外AI新闻大事"
 }

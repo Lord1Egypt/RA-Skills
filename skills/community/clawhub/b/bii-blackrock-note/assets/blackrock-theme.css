@@ -1,0 +1,272 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   贝莱德智库风格主题层 · BlackRock Investment Institute style overlay
+   v1.1.0 · 由 theme_inject.py 注入到 BII 简报 HTML 的最末尾（优先级最高）
+   v1.1.0 变更：吸收《2026Q4 全球投资展望》全要素研读——新增第六节 opt-in 品牌组件
+   （估计区 / 状态徽章 / 观点量尺 / 2×2 象限 / 三栏映射 / 分位带）与 3 个令牌变量。
+   组件仅当源稿显式使用对应 class 时生效，不进 required_structures，不影响 22 页门禁。
+
+   职责边界：
+     ① 品牌令牌重定义（:root）
+     ② 结构装饰：左侧黑色书脊 / 顶部黑色色带 / 品牌黄书签 /
+        黑色持仓面板 / 黄头摘要框 / 三段式页脚
+     ③ 必须压过内联样式时用 !important（仅少数几处）
+
+   ⚠️ 铁律（v1.0.0 踩坑后固化）：装饰件必须做到「版式净增量 ≤ 0」。
+   BII 简报 22 页的正文栏原本刚好卡在 793.7px（= min-height:210mm），
+   任何正的层高增量都会让该页溢出到第二页，破坏硬门「PDF 页数 == 22」。
+   两个具体坑：
+     (a) display:inline-block 的胶囊标签会撑高「行盒」——行盒高度取
+         max(父级 strut, 标签高)，父级 strut = 10.5px×1.66 ≈ 17.4px，
+         比标签本身高得多 → 单这一项就 +7px。
+         正解：保持 display:block + width:fit-content（法式胶囊，不产生行盒）。
+     (b) 页脚改成两行网格会 +4.5px。
+         正解：文件编号改绝对定位到页脚下方（落在页面下内边距里），行数不变。
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── 覆盖 BII 原令牌 ── */
+  --bk:#000000; --by:#FFCE00; --bw:#FFFFFF;
+  --bg:#F7F7F5; --bd:#E2E2DD; --t3:#8C8C8C; --t2:#595959; --t1:#111111;
+  --up:#CE2A0A; --dn:#00704A;
+  /* ── 贝莱德品牌扩展 ── */
+  --br-red:#FF4713; --br-purple:#9062BC; --br-pink:#FC9BB3;
+  --br-green:#008B5C; --br-gray:#D9D9D9; --br-tint:#FFF5CC;
+  /* v1.1.0 · 2026Q4 实测扩展（见 docs/br2026q4_design_study.md） */
+  --by2:#FEDC00;            /* 深黄（第二黄系列，柱状第二系列） */
+  --br-pl:#9E79D9;          /* 浅紫（线/填充用紫，实测 p9/p12/p14/p16） */
+  --br-ax:#808080;          /* 轴线/来源文字灰（实测主轴灰） */
+  --br-spine:1.3mm; --br-band:6.2mm;
+}
+
+/* ══ 一、页面骨架：左侧黑色书脊 + 顶部黑色色带 + 品牌黄书签 ══════════ */
+/* 色带落在原有 11mm 上内边距里，不挤占正文；再把上下内边距各收 0.6/0.8mm，
+   为装饰件留出净余量（净 −5.3px）。 */
+
+.page{
+  padding-top:10.4mm; padding-bottom:8.2mm;
+  background-image:
+    linear-gradient(90deg,#000 0 var(--br-spine),transparent var(--br-spine)),
+    linear-gradient(180deg,#000 0 var(--br-band),transparent var(--br-band));
+  background-repeat:no-repeat;
+}
+.page::before{
+  content:''; position:absolute; left:0; top:0; width:100%; height:var(--br-band);
+  background:#000; z-index:5;
+}
+.page::after{
+  content:attr(data-br-tab);
+  position:absolute; left:12mm; top:0; height:var(--br-band); z-index:6;
+  display:flex; align-items:center; box-sizing:border-box;
+  background:var(--by); color:#000;
+  font-size:8.6px; font-weight:800; letter-spacing:.13em; text-transform:uppercase;
+  padding:0 11px; min-width:64mm; max-width:158mm;
+  white-space:nowrap; overflow:hidden;
+}
+
+/* 页眉：黑色双线取代浅灰单线（1px 增量靠收 margin 抵消并倒赚 2px） */
+.runhead{ border-bottom:2px solid #000; margin-bottom:8px; }
+.runhead .rh-l{ font-weight:800; letter-spacing:.11em; }
+
+/* ══ 二、封面：黑书脊 + 高色带 + 黄色品牌签 ══════════════════════════ */
+
+.cover{
+  /* 与 .page 同款收紧（0.6/0.8mm ≈ −5.3px）：抵消 cv-foot 右件 font-size:11px 的
+     行盒 +4px 与边线 +1.5px。22 页稿封面余量大掩盖了此缺口，卡线封面稿实测爆 +4.3px。 */
+  padding-top:15.4mm; padding-bottom:10.2mm;
+  background-image:
+    linear-gradient(90deg,#000 0 4.6mm,transparent 4.6mm),
+    linear-gradient(180deg,#000 0 10mm,transparent 10mm);
+  background-repeat:no-repeat;
+}
+.cover::before{
+  content:''; position:absolute; left:0; top:0; width:100%; height:10mm; background:#000; z-index:5;
+}
+.cover::after{
+  content:attr(data-br-tab);
+  position:absolute; left:18mm; top:0; height:10mm; z-index:6;
+  display:flex; align-items:center; box-sizing:border-box;
+  background:var(--by); color:#000;
+  font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  padding:0 14px; min-width:104mm;
+}
+.cv-top{ border-bottom-width:4px; }
+.cv-brand{ font-size:12px; font-weight:800; letter-spacing:.26em; }
+.cv-brand span{ letter-spacing:.1em; color:var(--t2); }
+.cv-kicker{ color:#8A6200; letter-spacing:.22em; font-weight:800; }
+h1 em{ background:linear-gradient(transparent 58%,var(--by) 58%); }
+
+/* 核心判断框 → 黄头摘要框（贝莱德 summary box 范式）
+   原 padding 2px 0 2px 15px + .vh(13.3+5margin) → 现 .vh 条(4+13.3+4)=21.3，
+   由 .vt 内边距回收，净增量 ≈ 0 */
+.cv-verdict{ border-left:0; background:var(--br-tint); padding:0; margin-bottom:19px; }
+.cv-verdict .vh{
+  background:var(--by); color:#000; padding:4px 12px; margin-bottom:0; letter-spacing:.16em;
+}
+.cv-verdict .vt{ padding:8px 13px 9px; }
+
+/* 持仓核算块 → 黑色面板（顶部黄线用 inset 阴影，零层高增量） */
+.pos{
+  background:#000; color:#fff; padding:18px 18px 16px;
+  box-shadow:inset 0 4px 0 0 var(--by);
+}
+.pos .ph{ color:var(--by); }
+.pos-row{ border-bottom:1px solid #2B2B2B; color:#fff; }
+.pos-row .k{ color:#A8A8A8; }
+.pos-row .v{ color:#fff; }
+.pos-hl{ border-top:2px solid var(--by); }
+.pos .pos-note{ color:#9A9A9A; }
+.pos .pos-note b{ color:#fff; }
+.pos .pos-note{ border-top-color:#2B2B2B !important; }
+.pos .dn{ color:#5BD3A3; }
+.pos .up{ color:#FF8A66; }
+.pos .flat{ color:#A8A8A8; }
+
+/* ══ 三、正文页左栏 ══════════════════════════════════════════════════ */
+
+/* eyebrow → 品牌黄胶囊。必须 display:block + width:fit-content（见文件头铁律 a） */
+.eyebrow{
+  display:block; width:-webkit-fit-content; width:fit-content;
+  color:#000; background:var(--by);
+  padding:1px 7px; line-height:1.15; letter-spacing:.15em; font-weight:800; margin-bottom:5px;
+}
+h2{ font-weight:800; letter-spacing:-.018em; margin-bottom:8px; }
+.lead{ font-weight:700; border-left-width:4px; }
+
+/* 引文块 → 黑左规（只改颜色，层高不变） */
+.quote{ border-left:3px solid #000; background:var(--bg); }
+
+/* 投资启示 → 黄头摘要框。ih 条 21.3px 由 ul 内边距回收，净 −4px */
+.impl{ background:var(--br-tint); border-left:0; padding:0; margin-top:7px; }
+.impl .ih{
+  background:var(--by); color:#000; padding:4px 10px; margin-bottom:0; letter-spacing:.15em;
+}
+.impl ul{ padding:4px 11px 5px 11px; }
+.impl li{ color:#3A2C00; }
+.impl li:before{ color:#8A6200; }
+
+/* 三栏判断块：只改色，不加边线（加 border/padding 会每块 +4px ×3） */
+.tri-h{ color:#8A6200; }
+
+/* 图卡：编号 → 黄色小签（同样必须 block + fit-content） */
+.card-n{
+  display:block; width:-webkit-fit-content; width:fit-content;
+  color:#000; background:var(--by);
+  padding:1px 6px; line-height:1.15; letter-spacing:.12em; font-weight:800;
+}
+.card-t{ font-weight:800; letter-spacing:-.01em; }
+.take{ box-shadow:inset 4px 0 0 0 #000; }
+
+/* 增补册面板：顶部黑色规线用 inset 阴影（不占层高） */
+.alb-panel{ border-radius:0; box-shadow:inset 0 3px 0 0 #000; }
+.alb-panel h4{ font-weight:800; }
+.alb-tag{ background:#000; color:var(--by); border-radius:0; letter-spacing:.14em; }
+.alb-take{ border-left:3px solid var(--by); }
+.alb-idx th{ background:var(--br-tint); }
+
+/* ══ 四、表格 / 热力图 / 徽标 ════════════════════════════════════════ */
+
+table.tb th{ background:#000; color:#fff; letter-spacing:.06em; }
+table.tb tr:nth-child(even) td{ background:#FBFAF7; }
+table.hm th.hm-grp{ border-bottom:1.5px solid #000; }
+.pill{ border-radius:0; }
+.disclaimer{ border-left:3px solid #000; }
+
+/* ══ 五、页脚：三段式（免责声明 | 页码 | 文件编号） ══════════════════ */
+/* 关键：只保留单行网格；文件编号绝对定位到页脚正下方（落在页面下内边距里），
+   因此行数与层高与原稿完全一致（见文件头铁律 b）。 */
+
+.runfoot{
+  position:relative;
+  display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end;
+  column-gap:16px; border-top:1.5px solid #000; padding-top:5px;
+}
+.runfoot > span:first-child{ grid-column:1; grid-row:1; }
+.runfoot > span:nth-child(2){
+  grid-column:2; grid-row:1; text-align:right; white-space:nowrap;
+  font-size:11px; font-weight:800; color:#000; letter-spacing:-.01em;
+}
+.runfoot > .br-code{
+  position:absolute; right:0; top:100%; margin-top:1px;
+  font-size:8px; color:var(--t3); line-height:1.2; letter-spacing:.04em;
+  font-family:ui-monospace,SFMono-Regular,monospace; white-space:nowrap;
+}
+
+.cv-foot{
+  position:relative;
+  display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end;
+  column-gap:16px; border-top:1.5px solid #000;
+  margin-top:20px;                    /* 与源稿一致；「风格声明」已出流（absolute top:100%），零净增量铁律 */
+}
+.cv-foot > span:first-child{ grid-column:1; grid-row:1; }
+.cv-foot > span:nth-child(2){
+  grid-column:2; grid-row:1; text-align:right; white-space:nowrap;
+  font-size:11px; font-weight:800; color:#000;
+}
+.cv-foot > .br-code{
+  position:absolute; right:0; top:100%; margin-top:1px;
+  font-size:8px; color:var(--t3); line-height:1.2; letter-spacing:.04em;
+  font-family:ui-monospace,SFMono-Regular,monospace; white-space:nowrap;
+}
+.br-style-note{ position:absolute; left:0; top:100%; margin-top:1px; color:#A0A0A0; font-size:8px; line-height:1.5; white-space:nowrap; }
+
+/* 打印：确保底色与品牌色被完整印出 */
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+/* ══ 六、2026Q4 研读新增 · opt-in 品牌组件（v1.1.0）══════════════════════
+   来源：docs/br2026q4_design_study.md（MKTG0926-M-5961218-EXP0927 全要素实测）。
+   纪律：
+   (a) 仅当源稿显式使用对应 class 时才生效——不使用则零影响，22 页门禁不受牵连；
+   (b) 全部遵守「零净增量铁律」：胶囊/徽章一律 display:block + width:fit-content；
+       面板分隔一律 inset box-shadow 或背景渐变，不用真实 border 占层高；
+   (c) 色值全部来自 br_tokens.json 的 bii2026q4.measured_colors，禁止另造。 */
+
+/* 6.1 估计区：预测段浅底 + 左侧虚线界（对应 p7 对数趋势估计段 / p15 估计年份） */
+.br-est{
+  position:relative;
+  background:linear-gradient(180deg, rgba(254,220,0,.10), rgba(254,220,0,.10));
+  box-shadow:inset 1.5px 0 0 0 var(--br-ax);
+}
+.br-est::after{
+  content:'估计'; position:absolute; right:0; top:-14px;
+  font-size:8px; letter-spacing:.14em; color:var(--br-ax); line-height:1.2;
+}
+
+/* 6.2 信号状态徽章（p8 信号面板表）：乐观=黄底黑字；观察中=描边灰字 */
+.br-sig{ display:block; width:-webkit-fit-content; width:fit-content;
+  padding:1px 7px; font-size:9px; font-weight:800; letter-spacing:.12em; line-height:1.3; }
+.br-sig.br-sig-pos{ background:var(--by); color:#000; }
+.br-sig.br-sig-watch{ background:transparent; color:var(--t2); box-shadow:inset 0 0 0 1px var(--br-ax); }
+
+/* 6.3 观点量尺（p17/p19/p20）：低配—中性—超配；.early=早期观点（空心点） */
+.br-gauge{ display:flex; align-items:center; gap:6px; line-height:1.2; }
+.br-gauge .br-g-lab{ font-size:8.5px; color:var(--br-ax); letter-spacing:.06em; }
+.br-gauge .br-g-track{ position:relative; width:64px; height:1.5px; background:var(--br-ax); }
+.br-gauge .br-g-dot{ position:absolute; top:50%; transform:translate(-50%,-50%);
+  width:9px; height:9px; border-radius:50%; background:var(--by); box-shadow:0 0 0 1.5px #000; }
+.br-gauge .br-g-dot.early{ background:transparent; box-shadow:0 0 0 1.5px var(--br-ax); }
+
+/* 6.4 2×2 象限（p9）：中线虚十字 + 四角标签位；容器需自带宽高 */
+.br-quad{ position:relative; }
+.br-quad::before{ content:''; position:absolute; left:0; right:0; top:50%;
+  border-top:1px dashed #BBBBBB; }
+.br-quad::after{ content:''; position:absolute; top:0; bottom:0; left:50%;
+  border-left:1px dashed #BBBBBB; }
+.br-quad .br-q-dot{ width:10px; height:10px; border-radius:50%; display:block; }
+.br-quad .br-q-dot.c-yellow{ background:var(--by); }
+.br-quad .br-q-dot.c-green{ background:var(--br-green); }
+.br-quad .br-q-dot.c-red{ background:var(--br-red); }
+.br-quad .br-q-dot.c-green-tint{ background:var(--br-green-tint2, #80C5AE); }
+.br-quad .br-q-dot.c-red-tint{ background:var(--br-red-tint2, #FFA389); }
+
+/* 6.5 三栏驱动映射（p16）：左列主题卡 → 彩色左规（inset，不占层高） */
+.br-map3{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1fr) minmax(0,1.4fr); column-gap:14px; }
+.br-map3 .br-theme-card{ box-shadow:inset 4px 0 0 0 var(--br-ax); }
+.br-map3 .br-theme-card.t-green{ box-shadow:inset 4px 0 0 0 var(--br-green); }
+.br-map3 .br-theme-card.t-purple{ box-shadow:inset 4px 0 0 0 var(--br-purple); }
+.br-map3 .br-theme-card.t-yellow{ box-shadow:inset 4px 0 0 0 var(--by); }
+.br-map3 .br-theme-card.t-pink{ box-shadow:inset 4px 0 0 0 var(--br-pink); }
+.br-map3 .br-theme-card.t-red{ box-shadow:inset 4px 0 0 0 var(--br-red); }
+
+/* 6.6 分位带（p15 IQR/十分位距）：鲑鱼色带填充 + 中值黑线（实测 #FFB5A1） */
+.br-iqr{ background:#FFB5A1; }
+.br-iqr .br-iqr-med{ box-shadow:inset 0 -1.5px 0 0 #000; }

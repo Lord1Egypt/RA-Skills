@@ -1,0 +1,2 @@
+# No mandatory third-party dependencies.
+# Optional: install pypdf or PyPDF2 to improve PDF text previews.

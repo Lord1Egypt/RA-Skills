@@ -1,7 +1,7 @@
 ---
 name: doc-consolidation
 description: Merges ephemeral report and analysis artifacts into permanent documentation
-version: 1.9.8
+version: 1.10.3
 triggers:
   - docs
   - consolidation
@@ -14,38 +14,7 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When to Use](#when-to-use)
-- [Quick Start](#quick-start)
-- [Two-Phase Workflow](#two-phase-workflow)
-- [Phase 1: Triage (Fast Model)](#phase-1:-triage-(fast-model))
-- [Phase 2: Execute (Main Model)](#phase-2:-execute-(main-model))
-- [Workflow Details](#workflow-details)
-- [Step 1: Candidate Detection](#step-1:-candidate-detection)
-- [Step 2: Content Analysis](#step-2:-content-analysis)
-- [Step 3: Destination Routing](#step-3:-destination-routing)
-- [Step 4: Generate Plan](#step-4:-generate-plan)
-- [Source: API_REVIEW_REPORT.md](#source:-api_review_reportmd)
-- [Post-Consolidation](#post-consolidation)
-- [Step 5: Execute Merges](#step-5:-execute-merges)
-- [Fast Model Delegation](#fast-model-delegation)
-- [Content Categories](#content-categories)
-- [Merge Strategies](#merge-strategies)
-- [Intelligent Weave](#intelligent-weave)
-- [Replace Section](#replace-section)
-- [Append with Context](#append-with-context)
-- [Create New File](#create-new-file)
-- [Integration](#integration)
-- [Example Session](#example-session)
-- [Troubleshooting](#troubleshooting)
-- [No candidates found](#no-candidates-found)
-- [Low-quality extractions](#low-quality-extractions)
-- [Merge conflicts](#merge-conflicts)
-- [Related Skills](#related-skills)
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Doc Consolidation
@@ -66,6 +35,11 @@ Do NOT use when:
 - Files are intentionally temporary scratch notes
 - User explicitly wants to preserve the original report format
 - Source files have no extractable value (pure log output)
+
+## When NOT To Use
+
+- Updating docs to match a code change (use `sanctum:doc-updates`)
+- Detecting AI patterns in prose (use `scribe:slop-detector`)
 
 ## Formatting
 
@@ -137,6 +111,15 @@ For each valuable chunk:
 - Semantic match against existing documentation
 - Apply default mappings if no good match
 - Determine merge strategy (weave, replace, append, create)
+- **Check the audience tier before routing.** A destination
+  serves one reader, and merging across tiers is how a
+  getting-started page acquires an audit table. Report-derived
+  findings, metrics, and rationale are `expert` content: route
+  them to `docs/<topic>.md`, an ADR, or a benchmarks
+  page, then link from the `newcomer` document rather than
+  weaving into it. Tier table and cut test:
+  `scribe:slop-detector` module `audience-targeting.md`. When
+  the destination's own tier is unclear, **ask, do not guess**.
 
 ### Step 4: Generate Plan
 
@@ -175,11 +158,11 @@ Phase 1 tasks are delegated to haiku-class models for efficiency:
 
 ```python
 # plugins/sanctum/scripts/consolidation_planner.py handles:
-- scan_for_candidates()
-- extract_content_chunks()
-- categorize_chunks()
-- score_value()
-- find_semantic_matches()
+-scan_for_candidates()
+-extract_content_chunks()
+-categorize_chunks()
+-score_value()
+-find_semantic_matches()
 ```
 
 Phase 2 stays on the main model for careful merge execution.
@@ -190,7 +173,7 @@ Phase 2 stays on the main model for careful merge execution.
 |----------|-------------|---------------------|
 | Actionable Items | Tasks, TODOs, next steps | `docs/plans/YYYY-MM-DD-{topic}.md` |
 | Decisions Made | Architecture choices | `docs/adr/NNNN-{date}-{topic}.md` |
-| Findings/Insights | Audit results, analysis | Best-match existing doc |
+| Findings/Insights | Audit results, analysis | Best-match existing doc **of the same tier**, else `docs/` |
 | Metrics/Baselines | Before/after comparisons | `docs/benchmarks/` |
 | Migration Guides | Step-by-step procedures | `docs/migration-guide.md` |
 | API Changes | Breaking changes, deprecations | CHANGELOG or api docs |
@@ -289,3 +272,20 @@ Consolidation complete. Review the created files and commit when ready.
 - `sanctum:git-workspace-review` - Pre-flight workspace analysis
 - `sanctum:pr-prep` - Pull request preparation
 - `imbue:catchup` - Understanding recent changes
+
+## Exit Criteria
+
+- [ ] Consolidation plan presented to the user showing source files,
+      content categories, destination paths, and merge strategies
+      before any file is modified
+- [ ] All source ephemeral files (`*_REPORT.md`, `*_ANALYSIS.md`, etc.)
+      are deleted after their content is successfully merged
+- [ ] Each merged destination file has its frontmatter intact and
+      existing structure preserved after the merge
+- [ ] No merge moved content into a document written for a
+      different reader. Cross-tier content went to a linked deep
+      dive instead
+- [ ] `git status` shows no untracked report-style markdown files
+      after consolidation completes
+- [ ] If no candidates are found, skill reports "no candidates" with
+      the search criteria used rather than silently completing

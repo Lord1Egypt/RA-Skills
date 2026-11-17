@@ -1,40 +1,54 @@
-## Description: <br>
-Manage GoList grocery lists via CLI: create, join, switch, share lists, and add or remove items with automatic device and item ID handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoList helps an agent manage GoList grocery lists through a CLI for creating, joining, switching, sharing, reading, and updating shopping lists.
 
-## Publisher: <br>
-[daniel17903](https://clawhub.ai/user/daniel17903) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniel17903](https://clawhub.ai/user/daniel17903)
 
-## Use Case: <br>
-OpenClaw users use this skill to create, join, share, switch, read, and update GoList shopping lists through a Python CLI. It is suited for grocery-list collaboration where the agent manages device IDs, list IDs, item IDs, and timestamps behind the scenes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends shopping-list content, device identifiers, and share-token operations to go-list.app. <br>
-Mitigation: Install only if you are comfortable using go-list.app for this data and review proposed CLI actions before execution. <br>
-Risk: Share URLs, share tokens, and the local state file can expose or preserve access to list context. <br>
-Mitigation: Keep tokens and share URLs private, and remove or isolate ~/.openclaw_golist_state.json on shared machines or when resetting saved context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub GoList release page](https://clawhub.ai/daniel17903/golist) <br>
-- [GoList application and API service](https://go-list.app/) <br>
+## Use Case:
 
+Developers and agent users use this skill to operate GoList shopping lists from an agent session, including list creation, item updates, sharing, and joining shared lists. It is intended for low-friction grocery list workflows backed by the GoList API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist a device ID, active list, and known list context in ~/.openclaw_golist_state.json unless OPENCLAW_STATE_FILE is set.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automatically creates and displays share links after new lists, which may expose list access if shared unintentionally.
+
+Mitigation: Review generated share links before sending them onward and use the skill only when automatic sharing is acceptable.
+
+Risk: Shopping list contents and list or device identifiers may be private and are sent to GoList or stored in local CLI state.
+
+Mitigation: Avoid entering sensitive list contents and protect or limit access to the local state file before use.
+
+## Reference(s):
+
+- [ClawHub GoList skill page](https://clawhub.ai/daniel17903/skills/golist)
+- [GoList app](https://go-list.app/)
+- [GoList API endpoint](https://go-list.app/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local CLI state and send requests to the fixed GoList API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

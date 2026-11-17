@@ -1,0 +1,64 @@
+{
+  "capabilities": [
+    "inline-delivery",
+    "canonical-state-read"
+  ],
+  "capability_ceiling": "lite",
+  "catalog_sha256": "6f0256cf52710f2916ecebaea0f3110c9313099ec4a69a11cac72ba9b2f3b940",
+  "files": [
+    {
+      "bytes": 8986,
+      "mode": "0644",
+      "path": "SKILL.md",
+      "sha256": "771f7c2ff94eb235fc1c364b697b6b49a5d26a7e6cc62116b8422d3a3dd2bbef"
+    },
+    {
+      "bytes": 6535,
+      "mode": "0644",
+      "path": "references/entity-signal-checklist.md",
+      "sha256": "0f652a6a6a5659ec53448183c4200a63b8067a8c3e1293c071ce49462caf6958"
+    },
+    {
+      "bytes": 1819,
+      "mode": "0644",
+      "path": "references/entity-type-reference.md",
+      "sha256": "c629e2416d2f050dec8940125bc2beb6774aae295e0e77bd6eba7c55568dccc1"
+    },
+    {
+      "bytes": 4029,
+      "mode": "0644",
+      "path": "references/example-audit-report.md",
+      "sha256": "f9d24cb322b13ebf8a049a64c0b2e53b0b4bd76704c1f3df158ac30c6ffd8209"
+    },
+    {
+      "bytes": 2450,
+      "mode": "0644",
+      "path": "references/knowledge-graph-guide.md",
+      "sha256": "c19a6dd7e01fd13773c28253a66deafb4f1ff2c73c913216e38257fcdcd86364"
+    },
+    {
+      "bytes": 3268,
+      "mode": "0644",
+      "path": "references/knowledge-panel-wikidata-guide.md",
+      "sha256": "962ffc1685ad13ad71fa863774e3a2c5768fc294e69e2a5a6a8a2ad90e1b2a69"
+    }
+  ],
+  "files_sha256": "afb956969e99965c43ba5ca6e8bf778b5a3cbe8fdd5485d08d85f3a24a67694a",
+  "hash_algorithm": "sha256",
+  "kind": "standalone-skill",
+  "manifest_excludes": [
+    "distribution-manifest.json"
+  ],
+  "manifest_path": "distribution-manifest.json",
+  "package_ceiling": {
+    "max_bytes": 1000000,
+    "max_files": 64
+  },
+  "profile": "lite",
+  "profile_definition_sha256": "4598e1f7bba667ef928ea2a60a6252ad9348086e9eecab29437db442df2a568e",
+  "schema_version": "1.1",
+  "source": {
+    "commit": "f552620c278afddcb25d09637a0cfcc1ce48faf4",
+    "repository": "aaron-he-zhu/aaron-marketing-skills"
+  }
+}

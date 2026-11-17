@@ -1,44 +1,58 @@
-## Description: <br>
-Typecho Publisher helps an agent create, query, update, delete, and publish Markdown posts to a configured Typecho blog through the bundled typecho-cli tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Typecho Publisher lets an agent manage Typecho blog posts with typecho-cli, including creating, listing, updating, deleting, and querying categories.
 
-## Publisher: <br>
-[coolingrabbit](https://clawhub.ai/user/coolingrabbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolingrabbit](https://clawhub.ai/user/coolingrabbit)
 
-## Use Case: <br>
-Developers and blog operators use this skill to let an agent manage a Typecho-based knowledge blog, including publishing new technical notes, reviewing existing posts, and updating or deleting posts by cid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording and direct publish or delete authority can cause accidental public blog changes. <br>
-Mitigation: Use explicit user requests for publish, update, and delete actions, and confirm the target blog, post title, status, and exact cid before executing write operations. <br>
-Risk: Full-text updates can overwrite existing post content if only a partial edit is submitted. <br>
-Mitigation: Fetch the current post with typecho-cli get and submit the complete revised Markdown body when updating. <br>
-Risk: The blog API token grants write access to the configured Typecho site. <br>
-Mitigation: Store the token outside public content, keep it limited and rotated, and never include it in published Markdown. <br>
+## Use Case:
 
+Developers, blog operators, and external agents use this skill to publish and maintain Typecho blog content through a configured CLI while respecting existing categories and account-bound update/delete permissions.
 
-## Reference(s): <br>
-- [Typecho Documentation](https://typecho.org/docs/) <br>
-- [OpenClawTypecho Plugin Repository](https://github.com/CoolingRabbit/OpenClawTypecho) <br>
-- [OpenClawTypecho Releases](https://github.com/CoolingRabbit/OpenClawTypecho/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content, shell commands, configuration snippets, and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can trigger create, update, publish, query, and delete operations against a configured Typecho blog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter, plugin.json, server release evidence) <br>
+Risk: The skill can change or permanently delete live blog content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before update or delete actions, verify article ownership and cid, and fetch the existing article before full-replacement updates.
+
+Risk: Token handling can expose credentials if misconfigured.
+
+Mitigation: Use only HTTPS Typecho URLs you control, avoid passing the token with --token, store configuration with restrictive permissions, and rotate the token if it may have been exposed.
+
+Risk: Publishing can fail or target an unsuitable category when categories are assumed.
+
+Mitigation: Run the categories command before publishing and select only an existing category, asking the user to create one manually when none fits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coolingrabbit/skills/typecho-publisher)
+- [CoolingRabbit Publisher Profile](https://clawhub.ai/user/coolingrabbit)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured HTTPS Typecho domain and an API token; CLI actions return JSON success or error results.]
+
+## Skill Version(s):
+
+4.1.1 (source: ClawHub release metadata; artifact SKILL.md reports 4.1.0 and plugin.json reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

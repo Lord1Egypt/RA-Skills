@@ -1,48 +1,60 @@
-## Description: <br>
-Navigate and use OpenClaw documentation efficiently with cached doc fetch/search tooling, sitemap routing, category guidance, config snippet lookup, and source-linked answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate and use OpenClaw documentation efficiently with cached doc fetch/search tooling, sitemap/category routing, and config snippet lookup.
 
-## Publisher: <br>
-[ollieb89](https://clawhub.ai/user/ollieb89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ollieb89](https://clawhub.ai/user/ollieb89)
 
-## Use Case: <br>
-Developers and agents answering OpenClaw setup, configuration, troubleshooting, automation, platform, and provider questions use this skill to route docs, fetch or search cached pages, and return source-linked configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local bash scripts for documentation fetch, search, cache, and change tracking. <br>
-Mitigation: Review scripts before use and run them in an environment where local shell execution is acceptable. <br>
-Risk: The skill fetches public OpenClaw docs over the network and may return stale cached content when offline or past the configured TTL. <br>
-Mitigation: Refresh the cache for time-sensitive answers and state cache freshness when using cached or offline results. <br>
-Risk: Cache cleanup and refresh commands remove Markdown files from the configured cache directory. <br>
-Mitigation: Keep OPENCLAW_DOCS_CACHE_DIR dedicated to this skill so cleanup cannot affect unrelated Markdown files. <br>
-Risk: A local .openclawdocs-env.sh helper file can change the base URL, TTL, or cache path used by the scripts. <br>
-Mitigation: Review or avoid added .openclawdocs-env.sh files before running the bundled scripts. <br>
+## Use Case:
 
+Developers and operators use this skill to answer OpenClaw setup, configuration, troubleshooting, automation, and platform questions with cached documentation search, fetched source pages, and concrete configuration examples.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ollieb89/new-openclaw-docs) <br>
-- [Operations Guide](references/operations.md) <br>
-- [Routing Guide](references/routing.md) <br>
-- [Common Config Snippets](snippets/common-configs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown answers with source paths or URLs, inline shell commands, and JSON configuration snippets when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on local cached documentation freshness and network availability for doc fetches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata; artifact/package.json reports 1.3.0) <br>
+Risk: Cache refresh behavior can remove cached Markdown unexpectedly if the cache directory is misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set OPENCLAW_DOCS_CACHE_DIR to a dedicated cache folder and verify the path before using cache refresh or cleanup commands.
+
+Risk: Copying broad provider or gateway examples can expose agents or services more widely than intended.
+
+Mitigation: Require Discord mentions, scope guild and channel IDs, and bind gateways to localhost unless external access is deliberately protected with authentication and network controls.
+
+Risk: Suggested global installation of qmd can introduce unpinned tooling into the execution environment.
+
+Mitigation: Vet and pin qmd before installation, or keep using the bundled keyword search workflow.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Operations Guide](references/operations.md)
+- [Routing Guide](references/routing.md)
+- [Common Config Snippets](snippets/common-configs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should cite OpenClaw documentation paths or source URLs when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

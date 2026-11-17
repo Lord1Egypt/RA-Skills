@@ -1,0 +1,39 @@
+{
+  "_note": "示例文件（随 strategy/sample_data.json 演示数据一同使用）。日更时由 18:00 任务把当天撰写的 5 条预判写入 dragon-tiger-YYYYMMDD/predictions.json，再用 --predict-file 注入生成器。5 条为硬性数量；每条必须同时有 claim（预判内容）与 falsify（可证伪判据/观测口径），否则生成端直接报错退出。",
+  "demo": true,
+  "report_date": "2026-09-16",
+  "data_basis_date": "2026-09-16",
+  "target_date": "2026-09-17",
+  "items": [
+    {
+      "n": 1,
+      "claim": "恒瑞医药（sh600276）次日成交额额比维持 ≥1.2×，且收盘价不破 MA20",
+      "falsify": "额比 <1.2× 或收盘 <MA20 → 未命中；仅一项不达标 → 部分命中",
+      "source": "data_kline(period=day, 60 根) 复算 MA20；成交额 vs 近 3 个完整月均值算额比"
+    },
+    {
+      "n": 2,
+      "claim": "合盛硅业（sh603260）次日不出现「放量涨停」：额比 <2.5×，或当日涨幅未达涨停",
+      "falsify": "额比 ≥2.5× 且收涨停 → 未命中；两者仅一项成立 → 部分命中",
+      "source": "data_quote（涨幅 / 是否涨停）+ data_kline（成交额）"
+    },
+    {
+      "n": 3,
+      "claim": "L2.5 不可交易清单不出新面孔：全池无新增 ST/*ST/退市名称、无 PB<0、无成交额或换手率为 0",
+      "falsify": "任一新增命中项 → 未命中（并须当日修正 L2 池）",
+      "source": "tool_filter 全池清单 + data_quote（PB / 成交额 / 换手率）+ 名称核对"
+    },
+    {
+      "n": 4,
+      "claim": "过会标的数维持 2 只（恒瑞医药、合盛硅业），无新增过会、无过会标的掉出",
+      "falsify": "过会数 ≠ 2，或名单发生替换 → 未命中；仅数量相同但名单替换 → 部分命中",
+      "source": "按口径 v2（半年口径 + 增速红线）全量重算 L1→L2→L2.5→L3"
+    },
+    {
+      "n": 5,
+      "claim": "行业层不出现新入池行业：31 个申万一级行业中，3 年分位 ≤25% 且额比 ≥1.0× 的数量保持 0",
+      "falsify": "出现任一行业同时满足分位 ≤25% 与额比 ≥1.0× → 未命中",
+      "source": "data_kline(period=month, 36 根) 算分位；data_sector(mode=ranking, kind=industry) 取板块码"
+    }
+  ]
+}

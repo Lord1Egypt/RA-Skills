@@ -1,6 +1,65 @@
 {
-  "ownerId": "kn77sx66y5x1dma74vrp8re1th82d8fj",
-  "slug": "daily-learning-cards",
-  "version": "2.0.0",
-  "publishedAt": 1780018101123
+  "name": "daily-learning-cards",
+  "version": "1.1.0",
+  "description": "每日学习卡片自动生成与多渠道推送",
+  "author": "金银 Planet · 后勤保障部",
+  "license": "MIT",
+  "keywords": ["learning", "cards", "daily", "feishu", "webui", "dingtalk", "automation"],
+  "type": "cron",
+  "entry": "daily-learning-cards.sh",
+  "schedule": "0 10 * * *",
+  "config": {
+    "extract": {
+      "type": "object",
+      "description": "内容提取配置",
+      "properties": {
+        "maxTopics": { "type": "number", "default": 20 },
+        "maxPitfalls": { "type": "number", "default": 6 },
+        "maxConcepts": { "type": "number", "default": 6 },
+        "maxInsights": { "type": "number", "default": 6 },
+        "minInsightLength": { "type": "number", "default": 10 }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "摘要生成配置",
+      "properties": {
+        "includeTopics": { "type": "boolean", "default": true },
+        "includeDecisions": { "type": "boolean", "default": true },
+        "includePitfalls": { "type": "boolean", "default": true },
+        "includeConcepts": { "type": "boolean", "default": true },
+        "includeInsights": { "type": "boolean", "default": true },
+        "emojiStyle": { "type": "string", "default": "unicode" }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "description": "定时任务配置",
+      "properties": {
+        "hour": { "type": "number", "default": 10 },
+        "minute": { "type": "number", "default": 0 },
+        "timezone": { "type": "string", "default": "Asia/Shanghai" }
+      }
+    },
+    "channels": {
+      "type": "object",
+      "description": "渠道配置",
+      "properties": {
+        "sources": { "type": "array", "default": ["webui", "feishu"] },
+        "delivery": { "type": "string", "default": "feishu" }
+      }
+    },
+    "feishu": {
+      "type": "object",
+      "description": "飞书推送配置",
+      "properties": {
+        "target": { "type": "string", "default": "", "description": "飞书群ID或私聊ID" }
+      }
+    },
+    "language": {
+      "type": "string",
+      "default": "zh",
+      "description": "输出语言（zh/en）"
+    }
+  }
 }

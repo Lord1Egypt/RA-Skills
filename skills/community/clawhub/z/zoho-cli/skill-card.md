@@ -1,43 +1,58 @@
-## Description: <br>
-Read, search, send, and manage Zoho Mail from the terminal with JSON output for scripting and agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, send, and manage Zoho Mail from the terminal with JSON output for scripting and agents.
 
-## Publisher: <br>
-[robsannaa](https://clawhub.ai/user/robsannaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robsannaa](https://clawhub.ai/user/robsannaa)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to inspect, search, send, organize, and download Zoho Mail content through the zoho CLI after local OAuth setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Zoho credentials, keyring entries, config files, debug logs, downloaded attachments, and email bodies are sensitive. <br>
-Mitigation: Treat those materials as confidential, avoid exposing local config or keyring data, and review debug logs before sharing them. <br>
-Risk: The skill can send email, attach files, permanently delete mail, and delete folders through the external zoho CLI. <br>
-Mitigation: Require explicit user review before sending messages, attaching files, deleting mail permanently, or deleting folders. <br>
-Risk: The skill depends on an external zoho CLI and local OAuth setup. <br>
-Mitigation: Install only from a trusted zoho CLI source and complete authentication on the user's local machine. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zoho CLI GitHub repository](https://github.com/robsannaa/zoho-cli) <br>
-- [Zoho CLI setup guide](https://github.com/robsannaa/zoho-cli#setup) <br>
-- [ClawHub skill page](https://clawhub.ai/robsannaa/zoho-cli) <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to read, search, send, and manage Zoho Mail through the local zoho CLI. It is suited for scripted mail workflows where JSON or markdown command output can be consumed by automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying zoho CLI writes JSON to stdout by default, can emit Markdown tables with --md, and writes errors, prompts, and debug logs to stderr.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on an unpinned third-party Zoho Mail CLI that handles OAuth credentials and mail operations.
+
+Mitigation: Review the upstream source and installation path before installing, and prefer a pinned release or commit with integrity verification.
+
+Risk: OAuth access can allow reading, sending, downloading, moving, and deleting mail on the user's behalf.
+
+Mitigation: Grant the minimum appropriate account access, protect local config and keyring material, and avoid exposing token storage to untrusted parties.
+
+Risk: Permanent delete and folder delete operations can cause irreversible mail loss when automated incorrectly.
+
+Mitigation: Avoid destructive mail or folder deletion through automation unless the exact affected items have been independently confirmed and recovery options are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robsannaa/skills/zoho-cli)
+- [Zoho CLI repository](https://github.com/robsannaa/zoho-cli)
+- [Zoho CLI setup guide](https://github.com/robsannaa/zoho-cli#setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on a local authenticated CLI whose stdout is JSON by default and markdown when requested.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

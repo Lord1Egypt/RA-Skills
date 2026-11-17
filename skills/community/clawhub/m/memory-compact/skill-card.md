@@ -1,43 +1,64 @@
-## Description: <br>
-Daily memory automation that backs up local OpenClaw memory files, extracts key points, appends them to MEMORY.md, and prepares notification text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically processes daily OpenClaw memory files, extracts a small set of key points, appends them to long-term memory, and backs up the source memory file.
 
-## Publisher: <br>
-[GarryFan-AI](https://clawhub.ai/user/GarryFan-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garryfan-ai](https://clawhub.ai/user/garryfan-ai)
 
-## Use Case: <br>
-OpenClaw users use this skill to summarize recent memory notes into long-term MEMORY.md entries and retain the original daily files in a local backup directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory summaries and backups may retain sensitive or incorrect information from local OpenClaw memory files. <br>
-Mitigation: Review generated MEMORY.md entries and backup files before relying on them or sharing workspace contents. <br>
-Risk: Notification workflow content may expose memory details if routed outside the local workspace. <br>
-Mitigation: Enable notification delivery only after confirming where notification text will be stored or sent. <br>
-Risk: Automated daily execution may repeatedly process local memory files without direct review. <br>
-Mitigation: Review cron configuration and run the script manually first to confirm expected file paths and output. <br>
+## Use Case:
 
+OpenClaw users can use this skill to compact daily conversation-derived memory into a persistent MEMORY.md file and archive the original dated memory file. It is intended for recurring local memory maintenance, including scheduled execution through cron.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GarryFan-AI/memory-compact) <br>
-- [Publisher profile](https://clawhub.ai/user/GarryFan-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files, notification text, logs, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local MEMORY.md entries, backup copies, logs, and notification content in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can promote sensitive conversation-derived memory into persistent MEMORY.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extracted key points before or after each run, and delete any sensitive or incorrect retained memory.
+
+Risk: The optional cron setup can create recurring agent runs that process memory automatically.
+
+Mitigation: Enable the cron job only after review, keep the schedule visible to operators, and remove or disable it when automatic memory compaction is no longer wanted.
+
+Risk: Processed source memory files are moved into backups and may remain available indefinitely.
+
+Mitigation: Apply a retention policy for backup/memory/ and periodically remove backups that should not persist.
+
+Risk: Path checks rely on local filesystem behavior while the skill processes workspace memory files.
+
+Mitigation: Add symlink-safe path validation and review workspace permissions before deploying in shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/garryfan-ai/skills/memory-compact)
+- [Publisher profile](https://clawhub.ai/user/garryfan-ai)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown files and console text with optional cron configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes selected memory lines to MEMORY.md, moves processed dated memory files into backup/memory/, and emits status messages.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

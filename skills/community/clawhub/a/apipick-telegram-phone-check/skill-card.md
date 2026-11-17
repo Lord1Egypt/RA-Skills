@@ -1,42 +1,60 @@
-## Description: <br>
-Check if a phone number is registered on Telegram using the apipick Telegram Checker API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether a phone number is registered on Telegram using the apipick Telegram Checker API and returns registration status plus available public profile details.
 
-## Publisher: <br>
-[javainthinking](https://clawhub.ai/user/javainthinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[javainthinking](https://clawhub.ai/user/javainthinking)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to check Telegram registration status for a phone number with an international country code and return available public profile fields. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Phone-number lookups are privacy-sensitive and send queried numbers to apipick.com. <br>
-Mitigation: Use the skill only for numbers you own or are authorized to check, and avoid contact discovery, stalking, doxxing, or bulk enumeration. <br>
-Risk: The skill requires an apipick API key for authenticated requests. <br>
-Mitigation: Keep the API key in APIPICK_API_KEY, do not expose it in chat or logs, and confirm the user is comfortable using apipick credits before making requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [apipick Telegram Phone Checker API Reference](artifact/references/api_reference.md) <br>
-- [apipick API Platform](https://www.apipick.com) <br>
-- [Telegram Checker Product Page](https://www.apipick.com/check-phone-telegram) <br>
-- [Get API Key](https://www.apipick.com/dashboard/api-keys) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to check Telegram registration status for specific phone numbers when they have a legitimate, authorized reason to do so.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional JSON response summaries and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIPICK_API_KEY for authenticated requests to apipick.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Phone numbers and returned Telegram profile data are sent to apipick.
+
+Mitigation: Use the skill only for specific phone numbers where there is consent, authorization, or another legitimate basis, and avoid retaining raw lookup results longer than necessary.
+
+Risk: The lookup capability can support broad enumeration, stalking, or profiling.
+
+Mitigation: Avoid bulk checks and refuse requests that appear to target people without a legitimate purpose.
+
+Risk: The APIPICK_API_KEY is a credential required for API access.
+
+Mitigation: Store the key in the APIPICK_API_KEY environment variable and do not paste, log, or expose it in agent output.
+
+## Reference(s):
+
+- [apipick Telegram Phone Checker API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/javainthinking/skills/apipick-telegram-phone-check)
+- [apipick API Platform](https://www.apipick.com)
+- [Telegram Checker Product Page](https://www.apipick.com/check-phone-telegram)
+- [apipick API Keys](https://www.apipick.com/dashboard/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIPICK_API_KEY and sends phone numbers to the apipick API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

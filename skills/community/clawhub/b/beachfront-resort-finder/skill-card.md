@@ -1,46 +1,61 @@
-## Description: <br>
-Find beach and island resorts, including oceanfront rooms, private beaches, tropical stays with direct beach access, and water activities, powered by Fliggy through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find beach and island resorts, including oceanfront rooms, private beaches, tropical stays, direct beach access, and water activities, using Fliggy-powered live travel search.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search for beach and island resort options with real-time availability, pricing, and booking links. It is activated for beach, oceanfront, seaside, island resort, and matching Chinese-language resort requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an unpinned global flyai CLI package. <br>
-Mitigation: Require approval before any npm global install and prefer a pinned, local, or sandboxed CLI installation. <br>
-Risk: Travel search details may be sent to the flyai provider. <br>
-Mitigation: Install only when users trust the provider and are comfortable sharing the travel details needed for search and booking. <br>
-Risk: The skill can store raw travel queries in .flyai-execution-log.json. <br>
-Mitigation: Disable, delete, or restrict access to the execution log when local query retention is not acceptable. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find beach, oceanfront, and island resort options with current booking links. It is intended for resort discovery and comparison workflows that require live travel-search output rather than static travel knowledge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/beachfront-resort-finder) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and short guidance with inline shell commands and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results; user-facing results should include booking links and the flyai real-time pricing brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill may install and run an unpinned third-party flyai CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed CLI version in a sandbox, and require approval before installing or executing it.
+
+Risk: Travel input can be used to build shell commands for live searches.
+
+Mitigation: Validate and quote user-provided parameters before command execution, and restrict commands to documented flyai parameters.
+
+Risk: The runbook describes persisting raw user queries in a local execution log.
+
+Mitigation: Disable local logging or redact personal travel details before retaining execution logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/beachfront-resort-finder)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to include live booking links from flyai CLI output and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

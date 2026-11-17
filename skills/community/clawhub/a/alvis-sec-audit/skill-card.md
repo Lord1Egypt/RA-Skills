@@ -1,42 +1,59 @@
-## Description: <br>
-Security Audit helps agents audit OpenClaw, Clawdbot, and Moltbot deployments for misconfigurations, public exposure, unsafe tool policies, credential leakage, and hardening gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit OpenClaw/Clawdbot deployments for misconfigurations and attack vectors, including gateway exposure, skill safety, credential leakage, and hardening gaps.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and operators use this skill to run read-only OpenClaw and Clawdbot security reviews. It produces a terminal audit report with findings, evidence, impact, and fix guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local host, network, process, log, and credential-storage state, so its report may contain sensitive system details or secret paths. <br>
-Mitigation: Run checks read-only, redact secret values, and review the generated report before sharing it. <br>
-Risk: The artifact references an external setup guide that is outside the server-resolved provenance. <br>
-Mitigation: Inspect the external guide separately before following it. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw, Clawdbot, or Moltbot environments for common security misconfigurations and produce an actionable terminal audit report.
 
-## Reference(s): <br>
-- [Security Audit on ClawHub](https://clawhub.ai/alvisdunlop/alvis-sec-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
-- [Complete setup guide](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal report with status sections, evidence summaries, impact notes, and fix guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Secret values should be redacted; remediation commands are proposed only when the user explicitly requests them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may gather broad host-level security posture details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a controlled session and limit checks to OpenClaw paths unless broader inspection is explicitly approved.
+
+Risk: Configuration secrets may be exposed to the agent context during inspection.
+
+Mitigation: Ask the agent to inspect non-secret fields by default and redact any detected secrets in reports.
+
+Risk: Whole-host enumeration or complete config-file reads can expose unnecessary sensitive information.
+
+Mitigation: Require explicit approval before broad enumeration or full config-file reads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis-sec-audit)
+- [Publisher profile](https://clawhub.ai/user/alvisdunlop)
+- [Setup guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown terminal report with command-output summaries and remediation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are labeled OK, VULNERABLE, or UNKNOWN and should redact detected secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

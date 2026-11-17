@@ -1,42 +1,51 @@
-## Description: <br>
-Software implementation planning with file-based persistence (.plan/) for code changes touching three or more files or ambiguous implementation scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates software implementation plans, with optional file-based state for unresolved decisions and multi-phase recovery.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineering agents use this workflow to decide when to create a plan, scaffold local .plan/ state files, break implementation work into verifiable phases, and preserve findings and progress across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the helper script may create or overwrite local .plan/ planning files and may append .plan/ to .gitignore. <br>
-Mitigation: Run it from the intended repository root, review existing .plan/ contents first, and preserve important planning notes before scaffolding a new task. <br>
-Risk: A plan can carry incorrect assumptions forward if vague requirements or stale code observations are not checked before execution. <br>
-Mitigation: Review the plan before implementation and verify scope, assumptions, file paths, and test commands against the current codebase. <br>
+## Use Case:
 
+Developers use this skill to turn software requests into scoped, verifiable implementation plans and preserve decisions or recovery state when work spans phases.
 
-## Reference(s): <br>
-- [ia-planning Specification](SPEC.md) <br>
-- [Operational Patterns](references/operational-patterns.md) <br>
-- [Plan Deepening](references/plan-deepening.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated planning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script can create or overwrite .plan/task_plan.md, .plan/findings.md, and .plan/progress.md, and can append .plan/ to .gitignore.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.5 (source: server release evidence) <br>
+Risk: The partial security scan could not assess the underlying Python script and flagged a possible mismatch between evaluation or diagnostic commands and the planning purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reported commands and unresolved local path before running them, and confirm they fit the intended planning task.
+
+## Reference(s):
+
+- [Plan Format](artifact/references/plan-format.md)
+- [Task Design](artifact/references/task-design.md)
+- [ClawHub Skill Page](https://clawhub.ai/iliaal/skills/compound-eng-planning)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Files]
+
+**Output Format:** [Markdown implementation plans and task lists, optionally saved as planning files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May scaffold .plan/task_plan.md for durable working state]
+
+## Skill Version(s):
+
+5.1.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

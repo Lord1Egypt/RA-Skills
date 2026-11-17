@@ -1,42 +1,54 @@
-## Description: <br>
-Configures OpenClaw cron jobs and memory rules to generate daily, weekly, monthly, quarterly, and yearly experience summaries and retrieve past experience on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages an experience-summary memory system that schedules daily, weekly, monthly, quarterly, and yearly summaries and retrieves historical experience on demand.
 
-## Publisher: <br>
-[17oko](https://clawhub.ai/user/17oko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17oko](https://clawhub.ai/user/17oko)
 
-## Use Case: <br>
-OpenClaw users use this skill to set up recurring summaries of conversation history and maintain longer-term memory files for later retrieval. It is intended for users who explicitly want automated local memory creation from their workspace activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deleted or reset conversations may be preserved in long-lived summaries. <br>
-Mitigation: Exclude deleted/reset session files or add retention limits before enabling the scheduled summaries. <br>
-Risk: Generated memory files may contain sensitive conversation content. <br>
-Mitigation: Review generated memory files regularly and narrow retrieval to explicit user requests when privacy matters. <br>
-Risk: Automated memory reuse may surface stale or inappropriate historical context. <br>
-Mitigation: Use relevance thresholds, limit returned memories, and require user confirmation for sensitive decisions. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to configure recurring memory summaries and retrieve relevant prior experience during later conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/17oko/experience-summary-sys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory files and AGENTS.md guidance when the user follows the setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and artifact changelog) <br>
+Risk: The skill can preserve long-term summaries of conversation history, including sessions that were deleted or reset.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that retention behavior is intended; exclude deleted/reset session files by default or document explicit consent for retaining them.
+
+Risk: Recurring cron jobs and AGENTS.md retrieval rules can change future agent behavior by automatically generating and using memory summaries.
+
+Mitigation: Review the cron schedule and retrieval rules before deployment, prefer explicit memory lookups for sensitive workspaces, and provide a clear purge process for derived summaries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/17oko/skills/experience-summary-sys)
+- [Publisher Profile](https://clawhub.ai/user/17oko)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduled memory-summary guidance and AGENTS.md retrieval-rule instructions; no API-key environment variables were detected in the provided evidence.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

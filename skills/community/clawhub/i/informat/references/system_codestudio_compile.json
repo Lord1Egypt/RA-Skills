@@ -1,0 +1,20 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_compile",
+		"description": "Compile the AICodeStudio module (synchronously waits for vite build) and return a structured result: success / errorMessage / stderr / illegalDeps. Always call after writing files — on failure, self-fix from the stderr errors (e.g. Could not resolve './assets/main.css') and recompile.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Module id."
+				}
+			},
+			"required": [
+				"moduleId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

@@ -1,50 +1,62 @@
-## Description: <br>
-Installs, wires, audits, and hardens AgentMemory integrations for Codex, OpenClaw, ClawHub skill work, and project workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, wires, audits, and hardens AgentMemory integrations for Codex, OpenClaw, and project workspaces.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and engineers use this skill to install or audit AgentMemory and configure reliable memory support for coding agents across Codex, OpenClaw, and project workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and agent configuration changes can retain sensitive context or affect future sessions. <br>
-Mitigation: Install only when persistent coding-agent memory is desired, avoid storing secrets in memory, and review generated configuration and hooks after setup. <br>
-Risk: Bearer-token-protected AgentMemory servers can expose credentials if tokens are sent over non-loopback HTTP. <br>
-Mitigation: Use localhost or HTTPS for protected servers and set AGENTMEMORY_REQUIRE_HTTPS=1 when unsafe routes should fail closed. <br>
-Risk: Shared memory can cross role boundaries in sensitive or multi-agent work. <br>
-Mitigation: Enable isolated agent scope for sensitive or multi-role workflows. <br>
-Risk: MCP fallback mode can appear functional while exposing only a limited tool surface. <br>
-Mitigation: Start and verify the live AgentMemory server and run the bundled diagnostic script before and after configuration changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install, configure, verify, and troubleshoot AgentMemory as a persistent shared memory layer across Codex, OpenClaw, and project workspaces.
 
-## Reference(s): <br>
-- [AgentMemory Adapter ClawHub page](https://clawhub.ai/zack-dev-cm/agentmemory-adapter) <br>
-- [Publisher profile: zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
-- [AgentMemory Adapter homepage](https://github.com/zack-dev-cm/agentmemory-skills) <br>
-- [AgentMemory upstream repository](https://github.com/rohitg00/agentmemory) <br>
-- [AgentMemory Deep Analysis](references/agentmemory-deep-analysis.md) <br>
-- [Platform Recipes](references/platform-recipes.md) <br>
-- [Source Manifest](references/source-manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON/TOML/YAML snippets, and diagnostic output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect local Codex/OpenClaw configuration and AgentMemory endpoints; should avoid printing secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and source-manifest.json) <br>
+Risk: The skill intentionally installs persistent shared memory and hook/plugin integrations that can capture or inject agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent shared memory is intended, review Codex/OpenClaw config and hook changes before accepting them, and use isolated agent scope or deletion workflows only with explicit user approval.
+
+Risk: Bearer-token handling can expose AGENTMEMORY_SECRET when used with untrusted or plaintext non-loopback endpoints.
+
+Mitigation: Use trusted local or HTTPS AgentMemory endpoints, avoid setting AGENTMEMORY_SECRET unless required, set AGENTMEMORY_REQUIRE_HTTPS=1 for strict transport checks, and rotate the secret if it may have been used with an untrusted endpoint.
+
+Risk: MCP fallback mode can appear operational while exposing only a reduced memory tool surface.
+
+Mitigation: Verify the AgentMemory server is reachable, prefer proxy mode with a live server for the full tool surface, and run the bundled diagnostic script before and after configuration changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/agentmemory-adapter)
+- [AgentMemory Adapter Homepage](https://github.com/zack-dev-cm/agentmemory-skills)
+- [Upstream AgentMemory Repository](https://github.com/rohitg00/agentmemory)
+- [AgentMemory Deep Analysis](references/agentmemory-deep-analysis.md)
+- [Platform Recipes](references/platform-recipes.md)
+- [Source Manifest](references/source-manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and diagnostic interpretation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Codex/OpenClaw MCP, hook, plugin, and environment configuration changes; diagnostic guidance avoids printing AGENTMEMORY_SECRET.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and references/source-manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

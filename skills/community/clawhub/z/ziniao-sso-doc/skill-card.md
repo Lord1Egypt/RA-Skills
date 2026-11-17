@@ -1,45 +1,62 @@
-## Description: <br>
-Guides ERP and integration engineers through Ziniao SSO OpenAPI capabilities, integration flow, authentication modes, interface routing, and Windows client Schema URL usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers understand the Ziniao SSO OpenAPI capabilities, integration flow, and interface map for ERP single sign-on planning and evaluation.
 
-## Publisher: <br>
-[ziniao-open](https://clawhub.ai/user/ziniao-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziniao-open](https://clawhub.ai/user/ziniao-open)
 
-## Use Case: <br>
-Developers and integration engineers use this skill to plan and evaluate ERP single sign-on integrations with Ziniao, including API authentication, company, employee, account, and user login token flows. It also helps agents route detailed parameter lookup to the appropriate reference document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses API keys, app tokens, user login tokens, employee lists, account mappings, and superbrowser:// links that may expose or control business account access. <br>
-Mitigation: Treat these values as sensitive, use only authorized business access, minimize queries, and avoid pasting secrets or account data into chats or logs. <br>
-Risk: Schema URL actions can open accounts, close accounts, or exit the Ziniao browser on supported Windows clients. <br>
-Mitigation: Confirm the intended user, account, client environment, and action with the user before calling APIs or opening, closing, or exiting browser sessions. <br>
+## Use Case:
 
+Developers and ERP integration engineers use this skill to design Ziniao SSO integrations, identify required API calls, and route to detailed reference files for authentication, account lookup, user login, and client URL handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziniao-open/ziniao-sso-doc) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Authentication interfaces](artifact/reference/account-auth.md) <br>
-- [Company, staff, and account query interfaces](artifact/reference/account-crud.md) <br>
-- [API usage guide](artifact/reference/api-guide.md) <br>
-- [Client Schema URL protocol](artifact/reference/client-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, JSON examples, curl commands, and Schema URL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not install code or perform actions itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SSO credentials such as API_Key, appAuthToken, and openapiToken may appear in headers, URLs, or command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these values as secrets, avoid logging or sharing full Schema URLs, and prefer the documented no-token local-login path when available.
+
+Risk: Debug ports, forced download paths, and no-prompt download behavior can change local browser and file-handling behavior.
+
+Mitigation: Require explicit user or administrator approval before using those options.
+
+Risk: Employee and account query responses can expose sensitive business data.
+
+Mitigation: Limit access to authorized integration workflows and avoid copying returned employee or account details into shared logs or support bundles.
+
+## Reference(s):
+
+- [Ziniao SSO Skill Definition](artifact/SKILL.md)
+- [Authentication and User Login Reference](artifact/reference/account-auth.md)
+- [Company, Staff, and Account Query Reference](artifact/reference/account-crud.md)
+- [API Usage Guide](artifact/reference/api-guide.md)
+- [Client Schema URL Protocol Reference](artifact/reference/client-schema.md)
+- [ClawHub Skill Release Page](https://clawhub.ai/ziniao-open/skills/ziniao-sso-doc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API paths, request examples, response handling notes, and integration flow summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no direct API calls are executed by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

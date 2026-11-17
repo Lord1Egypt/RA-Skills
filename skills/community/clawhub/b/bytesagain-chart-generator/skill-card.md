@@ -1,42 +1,55 @@
-## Description: <br>
-Generate ASCII bar, line, pie, and scatter charts from CSV or inline data in the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ASCII bar, line, pie, and scatter charts from CSV or inline data in a terminal.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, data analysts, and command-line users use this skill to quickly visualize small datasets, compare values, inspect trends, and create terminal-friendly chart output without opening a spreadsheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input files are read from paths supplied by the user. <br>
-Mitigation: Run the skill only on intended local data files and review file paths before execution. <br>
-Risk: Generated charts can be misleading if source data is malformed, incomplete, or uses an unexpected label/value format. <br>
-Mitigation: Validate input data and review generated chart output before using it in reports or decisions. <br>
+## Use Case:
 
+Developers, analysts, and command-line users use this skill to quickly visualize small datasets, trends, comparisons, and distributions as terminal ASCII charts without opening a spreadsheet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-chart-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ASCII chart output for terminal workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Local data files may contain sensitive or unintended information before charting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local CSV or data files before passing them to the chart command.
+
+Risk: Scatter plots require numeric coordinate data and may not represent arbitrary label/value categories correctly.
+
+Mitigation: Use scatter charts only with numeric x,y coordinate data; use bar, line, or pie charts for label/value categories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-chart-generator)
+- [Publisher profile](https://clawhub.ai/user/loutai0307-prog)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with terminal commands and ASCII chart output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces terminal-rendered bar, line, pie, scatter, and demo chart output from inline data or CSV-style files.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

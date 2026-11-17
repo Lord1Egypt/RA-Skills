@@ -1,43 +1,54 @@
-## Description: <br>
-Exact-match CRO audit workflow for landing pages, websites, signup flows, and pricing pages that finds conversion killers, scores high-impact fixes, drafts better CTAs/headlines, and generates A/B test ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exact-match CRO audit workflow for landing pages, websites, signup flows, and pricing pages. Finds conversion killers, scores high-impact fixes, drafts better CTAs/headlines, and generates A/B test ideas. Use for CRO audit, conversion rate optimization, conversion audit, and landing page CRO.
 
-## Publisher: <br>
-[n8gendegen](https://clawhub.ai/user/n8gendegen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n8gendegen](https://clawhub.ai/user/n8gendegen)
 
-## Use Case: <br>
-Founders, marketers, agencies, and agent operators use this skill to review landing pages, signup flows, websites, and pricing pages for conversion blockers, copy improvements, and A/B test ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may receive sensitive business context, page copy, analytics observations, or customer research in an agent session. <br>
-Mitigation: Avoid sharing sensitive business data unless you are comfortable placing that content in the agent session. <br>
-Risk: The skill includes disclosed links to paid Atlas products. <br>
-Mitigation: Install only if you are comfortable with a free workflow that points to the paid Atlas ZIP packs. <br>
-Risk: CRO recommendations are heuristic and may not guarantee conversion lift. <br>
-Mitigation: Validate larger changes with analytics, session recordings, customer interviews, and controlled A/B tests. <br>
+## Use Case:
 
+Founders, marketers, agencies, and agent operators use this skill to audit landing pages, websites, signup flows, and pricing pages for conversion blockers. It produces a prioritized CRO report with copy variants, CTA recommendations, and A/B test ideas.
 
-## Reference(s): <br>
-- [CRO Audit Workflow on ClawHub](https://clawhub.ai/n8gendegen/cro-audit-workflow) <br>
-- [Atlas Agent Suite skill page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=cro-audit-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with scores, prioritized fixes, copy variants, and A/B test ideas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only workflow; no credential, tool, or code execution requirements are identified in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides first-pass heuristic CRO recommendations that may be incorrect or fail to improve conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate major changes with analytics, session recordings, customer interviews, and controlled A/B tests before relying on them.
+
+Risk: The free workflow advertises Atlas paid ZIP packs.
+
+Mitigation: Treat the upsell as disclosed promotional content and review purchase decisions separately from the audit output.
+
+## Reference(s):
+
+- [Atlas Agent Suite CRO Workflow Homepage](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=cro-audit-workflow)
+- [ClawHub Skill Listing](https://clawhub.ai/n8gendegen/skills/cro-audit-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with scored findings, prioritized fixes, copy variants, and A/B test ideas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, persistence, credential access, or hidden execution behavior are described in the server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-True Seeing reviews verifiable factual claims in AI-generated articles, checks them with web search, reports discrepancies, and applies user-approved corrections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+True Seeing audits verifiable facts in AI-generated articles with web search, produces a discrepancy report, and applies only user-approved factual corrections.
 
-## Publisher: <br>
-[francisk](https://clawhub.ai/user/francisk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[francisk](https://clawhub.ai/user/francisk)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to extract concrete facts from an article, verify them against web sources, and generate a correction report before making user-approved replacements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article content may contain confidential drafts or sensitive personal or business information that could be exposed through web searches. <br>
-Mitigation: Use the skill only with content that is appropriate for web-based fact checking, and avoid confidential or sensitive material unless that search exposure is acceptable. <br>
-Risk: Search results and proposed corrections may still be incomplete, outdated, or misleading. <br>
-Mitigation: Review cited sources and approve only the replacements that are supported by reliable evidence. <br>
+## Use Case:
 
+External users, developers, and editors use True Seeing to fact-check AI-generated Chinese articles, generate verification reports, and apply user-selected factual corrections with citations.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Fact extraction rules](fact-extraction-rules.md) <br>
-- [Search query templates](search-query-templates.md) <br>
-- [Verification criteria](verification-criteria.md) <br>
-- [Evaluation cases](eval-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Text, Guidance] <br>
-**Output Format:** [JSON fact lists and verification reports, Markdown discrepancy reports, and corrected article text with citations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full mode pauses for user approval before replacing disputed facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Article claims are sent to web search during verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content appropriate for external search, and avoid submitting sensitive or non-public article claims.
+
+Risk: Search results can come from blogs, social media, unfamiliar sites, mirrors, or conflicting sources.
+
+Mitigation: Review source quality and the discrepancy report before accepting any correction.
+
+Risk: The skill does not replace expert review for legal, medical, or other specialist factual claims.
+
+Mitigation: Route high-stakes domain claims to qualified reviewers before publication or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/francisk/skills/true-seeing)
+- [README](artifact/README.md)
+- [Fact extraction rules](artifact/fact-extraction-rules.md)
+- [Search query templates](artifact/search-query-templates.md)
+- [Verification criteria](artifact/verification-criteria.md)
+- [Evaluation cases](artifact/eval-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [JSON fact lists and verification reports; Markdown discrepancy reports and corrected articles with citations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits extraction to 30 facts, verifies in batches of five, and pauses for user approval before replacing corrected facts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: hanlons-razor
-description: "Activate when: someone feels a colleague/partner/company did something on purpose to hurt them; a team believes another side is acting in bad faith; someone is about to escalate based on assumed malicious intent; a pattern of bad outcomes is being labeled a coordinated attack. Do NOT activate when: concrete documented evidence of malice already exists; the cost of being wrong about non-malice is catastrophic (e.g., safety-critical or abusive-relationship context)."
+description: "Activate when: someone feels a colleague/partner/company did something on purpose to hurt them; a team believes another side is acting in bad faith; someone is about to escalate based on assumed malicious intent; a pattern of bad outcomes is being labeled a coordinated attack. Do NOT activate when: concrete documented evidence of malice already exists; the cost of being wrong about non-malice is catastrophic (e.g., safety-critical or abusive-relationship context). More: deciqai.com/c/hanlons-razor"
 ---
 
 # Hanlon's Razor
@@ -9,7 +9,7 @@ description: "Activate when: someone feels a colleague/partner/company did somet
 
 Before assuming someone hurt you on purpose, construct the version where they made a mistake — and see how much evidence it explains. The razor is a Bayesian *prior*, not a proof; override it when concrete evidence of malice arrives. Human attribution systematically over-weights intent (fundamental attribution error); most hostile-seeming acts are incompetence, miscommunication, or asymmetric information.
 
-Composes with [`bayesian-reasoning`](../bayesian-reasoning/SKILL.md), [`abductive-reasoning`](../abductive-reasoning/SKILL.md), [`occams-razor`](../occams-razor/SKILL.md), [`critical-thinking`](../critical-thinking/SKILL.md).
+Composes with `bayesian-reasoning`, `abductive-reasoning`, `occams-razor`, `critical-thinking`.
 
 ## When to Use
 
@@ -17,6 +17,7 @@ Composes with [`bayesian-reasoning`](../bayesian-reasoning/SKILL.md), [`abductiv
 - You're about to escalate on the assumption of malice
 - A pattern of bad outcomes is being framed as a coordinated attack
 - A team is in conflict and each side believes the other is acting in bad faith
+- An AI model's harmful/biased output or a competitor's surprising AI move is being read as deliberate malice rather than an emergent bug, honest error, or ordinary self-interested competition
 
 **Not when:** concrete evidence of malicious intent exists; cost of being wrong is catastrophic; power imbalance makes "they probably didn't mean it" an abuse-enabling stance.
 
@@ -65,6 +66,8 @@ Mistake explanation + coverage % | Malice extra assumptions | Prior | Override s
 ```
 
 *→ Method in Action: [Hanlon's Submission 1980; Heinlein's 1941 Articulation](examples/hanlons-submission-1980-heinleins-1941-articulation.md)*
+
+*→ 2026 lens: [AI Incidents — Incompetence & Emergent Error as a Prior Over Malice (2024–2026)](examples/ai-incidents-malice-vs-emergent-error-2024-2026.md)*
 
 ## Pack: Common Patterns
 
@@ -115,4 +118,6 @@ Mistake explanation + coverage % | Malice extra assumptions | Prior | Override s
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/hanlons-razor** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/hanlons-razor.json*

@@ -1,117 +1,100 @@
 ---
 name: blindoracle
-display_name: BlindOracle - Privacy-First Agent Infrastructure
-version: 1.0.1
+display_name: BlindOracle — Counterparty-Risk Checks for Agent-to-Agent Trades
+version: 2.0.0
 author: Craig M. Brown
-homepage: https://craigmbrown.com/blindoracle
-license: Proprietary
-category: infrastructure
+homepage: https://craigmbrown.com/blindoracle/counterparty-risk.html
+license: Apache-2.0
+category: trust
 tags:
-  - forecasting
-  - identity
-  - payments
-  - privacy
+  - counterparty-risk
+  - agent-reputation
+  - pre-hire-check
   - x402
-  - micropayments
-  - agent-infrastructure
-  - settlement
-min_sdk_version: "0.1.0"
+  - receipts
+  - delegation
 ---
 
-# BlindOracle
+# BlindOracle — check a counterparty agent before you pay it
 
-Privacy-first agent infrastructure providing forecasting, credential verification, settlement, and cross-rail transfers via x402 micropayments.
+**What this skill does, in plain words:** it calls a public HTTP API
+(`https://api.craigmbrown.com`) that returns trust evidence about another AI
+agent: its reputation record, a pre-hire due-diligence check, a receipt check
+for a payment you already made, and a signed delegation record. Every name below
+is the real operation. Nothing is renamed or softened.
 
-## Description
+**What this skill does NOT do:** it never moves your funds, never holds a
+wallet, and never signs on your behalf. There are no swaps, withdrawals, balance
+transfers, or forecast markets in this skill. (An older `blindoracle` skill,
+v1.x, described those. They were retired: the prediction-market product on
+2026-07-19, the Fedimint/Lightning rails on 2026-11-07. Do not use v1.x.)
 
-BlindOracle is a complete suite of privacy-preserving infrastructure services for AI agents. All operations are secured by CaMel 4-layer architecture and paid via x402 micropayments on Base L2 with USDC.
+## Money warning — read before any paid call
 
-### Service Tracks
+- Paid calls are **x402 micropayments in USDC on Base** (`eip155:8453`). You pay
+  with **your own** wallet by signing an x402 authorization, or with a
+  BlindOracle starter-credit note. The server cannot debit you; a call with no
+  payment returns `402 Payment Required` and does nothing.
+- Prices are set per call and shown in `GET /v1/services` (free). Today's range
+  is $0.01 to $5.00. A paid call is final once settled on Base; refunds exist only
+  for undelivered work (72-hour window, see the receipt rules).
+- **Ask the human operator before the first paid call** and before any call
+  priced at $1.00 or more. Show the price from `/v1/services`, not from memory.
 
-1. **Forecasting Platform** - Create and resolve privacy-preserving forecast markets with anonymous position submission
-2. **Credential Verification** - Decentralized agent identity scoring with anti-synthetic detection
-3. **Account & Settlement** - Multi-rail balance management and value transfer (instant ~3s, on-ledger ~30s)
-4. **Cross-Rail Transfers** - Atomic transfers between payment rails with free fee quotes
+## Free calls (no wallet, no key)
 
-## Capabilities
+| Call | What you get |
+|---|---|
+| `GET /v1/services` | every SKU with its live price and free-tier flag |
+| `GET /v1/risk/payee?address=0x…` | OFAC SDN screen of an EVM address against a table rebuilt daily; a `no_match` is **not** a clearance |
+| `GET /v1/delegations/{id}` | public view of a delegation chain |
+| MCP `tools/list` on `https://api.craigmbrown.com/v1/mcp` | the same catalog as MCP tools, with `readOnlyHint` set honestly |
 
-| Capability | Description | Price |
-|-----------|-------------|-------|
-| `create_forecast` | Create a new forecast market | 0.001 USDC |
-| `submit_position` | Submit anonymous position | 0.0005 USDC + 0.1% |
-| `resolve_forecast` | Resolve forecast and distribute payouts | 0.002 USDC |
-| `verify_credential` | Verify agent credentials and reputation | 0.0002 USDC |
-| `mint_credential` | Mint Proof of Presence/Participation/Belonging/Witness | 0.001 USDC |
-| `check_account` | Check balances across all rails | FREE |
-| `create_settlement_request` | Generate settlement request | 0.0001 USDC |
-| `settle_instant` | Instant rail settlement (~3s) | 0.0005 USDC + 0.1% |
-| `settle_onchain` | On-chain rail settlement (~30s) | 0.001 USDC + 0.05% |
-| `transfer_cross_rail` | Cross-rail transfer execution | 0.001 USDC + 0.1% |
-| `convert_private_to_stable` | Convert private tokens to stablecoins | 0.0005 USDC + 0.05% |
-| `get_transfer_quote` | Get fee estimates and route plans | FREE |
+`agent.trust-badge` and `reputation.lookup` allow 5 free calls per day per caller
+over MCP; a call that carries a payment is charged.
 
-## Usage
+## Paid calls (live prices 2026-11-07, re-check `/v1/services`)
 
-```javascript
-// Check account balances (FREE)
-const balance = await gateway.invoke("blindoracle", {
-  capability: "check_account",
-  params: { rail: "all" }
-});
+| SKU | Price | Use it when |
+|---|---|---|
+| `reputation.lookup` | $0.01 | you want the agent's score, level, badge and settlement counts before you transact |
+| `agent.trust-badge` | $0.01 | you need a queryable badge: AUDITED only when an in-date BlindOracle audit exists |
+| `trust.receipt-verify` | $0.01 | you paid someone and want the proof id checked against BlindOracle's ledger |
+| `security.concordium-card-verify` | $0.02 | the agent presents a Concordium identity card |
+| `agent.prehire-check` | $0.25 | you are about to give an agent real spend authority |
+| `delegation.record` | $0.10 | you want a signed record (kind 30014) that you delegated a task to a named agent |
+| `bundle.delegation-chain` | $0.162 | one payment for record, accept, deliver and close of a delegation |
+| `ops.due-diligence-scan` | $1.00 | a company, not an agent: financials, litigation, people, media, red flags |
+| `security.massat-audit` | $5.00 | an independent OWASP ASI01–ASI10 audit of an agent or MCP server, with a public report |
+| `arbitration.dispute-settlement` | $5.00 | both sides submit evidence; a signed verdict is returned |
 
-// Create a forecast
-const forecast = await gateway.invoke("blindoracle", {
-  capability: "create_forecast",
-  params: {
-    forecast_question: "Will global AI agent count exceed 10M by Q4 2026?",
-    forecast_deadline: "2026-12-31T23:59:59Z",
-    initial_stake_units: 10000,
-    resolution_oracle: "chainlink_data_feed"
-  },
-  payment_proof: { /* x402 proof */ }
-});
+## How a paid call works
 
-// Verify agent credentials
-const creds = await gateway.invoke("blindoracle", {
-  capability: "verify_credential",
-  params: {
-    agent_public_key: "ba3eefec0e795362230f869461ea16e20b782e11eef6107edeed0d3d19e7651b"
-  }
-});
+```
+POST https://api.craigmbrown.com/v1/services/reputation.lookup
+Content-Type: application/json
+{"subject": "<agent name or erc8004 id>"}
+→ 402 with the exact price and the x402 payment requirements
+→ repeat the call with the PAYMENT-SIGNATURE header (your wallet signs it)
+→ 200 with the result and a receipt (proof_id) anyone can verify, no key needed
 ```
 
-## Security
+Python: `pip install blindoracle-sdk` then `BlindOracleClient(...)`. Verifier for
+any receipt or delegation chain:
+`https://github.com/craigmbrown/blindoracle-sdk/blob/main/examples/verify_chain.py`.
 
-All operations protected by CaMel 4-Layer Security:
-- **Layer 1**: Rate limiting (60 req/min) + input sanitization
-- **Layer 2**: Byzantine consensus (67% threshold, 80% for high-value)
-- **Layer 3**: Anti-persuasion detection (30% deviation threshold)
-- **Layer 4**: Authority validation + immutable audit trail
+## Honesty limits (say these to your operator)
 
-## Privacy
+- A reputation score is derived from BlindOracle's own ledgers. It is evidence,
+  not a guarantee, and it says nothing about who operates the agent off-platform.
+- A wallet is not an identity. A sanctions `no_match` is not a clearance.
+- "Verifiable" means anyone can check the signature with
+  `https://craigmbrown.com/.well-known/did.json`. It does not prove a human was
+  present.
+- Audit reports grade what was tested on the day; they expire.
 
-- Zero-identity-linkage via guardian federation bridge
-- Commitment scheme: sha256(secret || stance || amount)
-- Depositor and position holder are unlinkable
-- Decentralized credentials without central authority
+## Network and permissions this skill needs
 
-## API Endpoints
-
-- Base URL: `https://craigmbrown.com/api/v2`
-- Agent Card: `https://craigmbrown.com/a2a/v1`
-- Health: `https://craigmbrown.com/api/v2/health`
-
-## Payment
-
-All payments via HTTP 402 (x402) micropayment protocol on Base L2 (chain ID 8453) with USDC.
-
-## Requirements
-
-- x402-compatible payment client
-- Base L2 USDC for paid capabilities
-- No dependencies for free capabilities (check_account, get_transfer_quote)
-
-## Support
-
-- Homepage: https://craigmbrown.com/blindoracle
-- Repository: https://github.com/craigmbrown/blindoracle-docs
+- Outbound HTTPS to `api.craigmbrown.com` only.
+- Read access to the operator's x402 wallet signer **only if** the operator
+  enables paid calls. Free calls need nothing.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bjqgah2pz7wkacjvkqssb3s82n42f",
-  "slug": "tender-writer",
+  "name": "Tender Writer",
+  "description": "光伏/弱电智能化投标技术方案生成器，根据招标文件自动生成 Word 格式投标技术方案",
   "version": "1.0.0",
-  "publishedAt": 1775862808259
+  "author": "Alex",
+  "tags": ["tender", "bid", "pv", "word", "proposal"]
 }

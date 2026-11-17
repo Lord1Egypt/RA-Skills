@@ -1,0 +1,7 @@
+collected_at,metrics_collected_at,campaign,post,account,platform,url,views,likes,comments,shares,engagement,published_at,submission_id,us_share
+2026-11-17T08:00:00Z,2026-11-17T06:00:00Z,example-orbit-crew-dragon,groundhog-tiktok,TikTok,TIKTOK,https://www.tiktok.com/@example.clipper/video/example-0001,1840,61,4,3,0.0370,2026-11-16T14:01:40Z,example-sub-101,
+2026-11-17T08:00:00Z,2026-11-17T06:00:00Z,example-orbit-crew-dragon,safe-path-reels,Reels,INSTAGRAM,https://www.instagram.com/reel/example-0001/,950,22,1,2,0.0263,2026-11-16T14:02:15Z,example-sub-102,
+2026-11-17T08:00:00Z,2026-11-17T06:00:00Z,example-orbit-crew-dragon,curse-names-shorts,Shorts,YOUTUBE,https://www.youtube.com/shorts/example-0001,310,9,0,0,0.0290,2026-11-16T14:05:30Z,example-sub-103,
+2026-11-19T08:00:00Z,2026-11-19T06:00:00Z,example-orbit-crew-dragon,groundhog-tiktok,TikTok,TIKTOK,https://www.tiktok.com/@example.clipper/video/example-0001,7420,248,17,21,0.0385,2026-11-16T14:01:40Z,example-sub-101,0.41
+2026-11-19T08:00:00Z,2026-11-19T06:00:00Z,example-orbit-crew-dragon,safe-path-reels,Reels,INSTAGRAM,https://www.instagram.com/reel/example-0001/,2380,41,2,4,0.0197,2026-11-16T14:02:15Z,example-sub-102,0.22
+2026-11-19T08:00:00Z,2026-11-19T06:00:00Z,example-orbit-crew-dragon,curse-names-shorts,Shorts,YOUTUBE,https://www.youtube.com/shorts/example-0001,1120,30,2,0,0.0286,2026-11-16T14:05:30Z,example-sub-103,0.35

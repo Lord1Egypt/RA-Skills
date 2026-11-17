@@ -1,0 +1,8 @@
+interface:
+  display_name: 采访原话摘引清单
+  short_description: 从授权逐字稿提炼可追溯、保留语义限定的安全原话清单
+  default_prompt: 请根据我拥有或获授权的采访逐字稿，按主题和公开范围整理可用原话、位置、上下文与待确认项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

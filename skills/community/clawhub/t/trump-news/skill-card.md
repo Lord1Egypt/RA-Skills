@@ -1,47 +1,64 @@
-## Description: <br>
-每日拉取特朗普相关新闻（来自官方与主流通讯社信息源），经 AI 翻译成中文、编辑后推送给用户 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily retrieves Trump-related news from official and major wire sources, then translates, edits, and delivers concise Chinese summaries to the user.
 
-## Publisher: <br>
-[Wall-nut417](https://clawhub.ai/user/Wall-nut417) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wall-nut417](https://clawhub.ai/user/wall-nut417)
 
-## Use Case: <br>
-External users and operators use this skill to fetch public Trump-related news, translate the gathered summaries into Chinese, and receive a concise news digest through chat or an optional configured delivery channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Truth Social fetching requires account credentials or a token. <br>
-Mitigation: Enable the Truth Social option only when the user is comfortable providing those credentials, and store them as environment variables rather than embedding them in prompts or files. <br>
-Risk: The optional truthbrush dependency changes the runtime dependency surface. <br>
-Mitigation: Pin and review the truthbrush package before enabling optional Truth Social support. <br>
-Risk: Scheduled or Telegram delivery can send news digests to the wrong recipient or at the wrong cadence if misconfigured. <br>
-Mitigation: Confirm the recipient and schedule before enabling Telegram or cron delivery. <br>
+## Use Case:
 
+External users and OpenClaw operators use this skill to collect recent Trump-related items from selected public sources, translate them into Chinese, and receive a concise news digest by chat or optional Telegram delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Wall-nut417/trump-news) <br>
-- [Publisher profile](https://clawhub.ai/user/Wall-nut417) <br>
-- [White House Briefing Room feed](https://www.whitehouse.gov/briefing-room/feed/) <br>
-- [Federal Register documents API](https://www.federalregister.gov/api/v1/documents.json) <br>
-- [SCOTUSblog feed](https://www.scotusblog.com/feed/) <br>
-- [truthbrush package](https://pypi.org/project/truthbrush/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown news digest with source links and optional shell commands for fetching or delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese summaries from fetched public-source English news; optional Truth Social support requires user-provided credentials or token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Truth Social support may require sensitive credentials or a browser session token and uses an optional unpinned dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid browser session tokens when possible, pin and review truthbrush before enabling it, and keep credentials in a restricted environment.
+
+Risk: The workflow makes outbound requests and can optionally send generated summaries to Telegram.
+
+Mitigation: Enable Telegram or cron delivery only after verifying the destination, schedule, and operating environment.
+
+Risk: Feed failures, access limits, or stale source data can produce incomplete news coverage.
+
+Mitigation: Review source links in the generated digest and treat the result as a source snapshot rather than exhaustive real-time coverage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wall-nut417/skills/trump-news)
+- [Truthbrush Python Package](https://pypi.org/project/truthbrush/)
+- [White House Briefing Room Feed](https://www.whitehouse.gov/briefing-room/feed/)
+- [Federal Register Documents API](https://www.federalregister.gov/api/v1/documents.json)
+- [SCOTUSblog Feed](https://www.scotusblog.com/feed/)
+- [Reuters Political Feed](https://www.reutersagency.com/feed/?best-topics=political-general&post_type=best)
+- [Associated Press Top News Feed](https://feeds.apnews.com/rss/ap_top_news)
+- [AFP Feed](https://www.afp.com/en/actus/afp_communique/all/feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news digest with source links, plus optional shell commands and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are intended to be translated and edited into Chinese before chat or optional Telegram delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

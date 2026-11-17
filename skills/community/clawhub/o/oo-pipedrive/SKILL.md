@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Pipedrive"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["pipedrive"]
-  icon: "https://static.oomol.com/logo/third-party/Pipedrive.svg"
+  icon: "https://static.oomol.com/logo/third-party/pipedrive.png"
 ---
 
 # Pipedrive
@@ -94,11 +94,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Pipedrive is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=pipedrive
+  https://console.oomol.com/connections/pipedrive
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Pipedrive homepage: https://www.pipedrive.com
+- API documentation: https://developers.pipedrive.com/docs/api/v1

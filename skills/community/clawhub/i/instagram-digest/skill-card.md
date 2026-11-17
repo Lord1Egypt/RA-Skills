@@ -1,44 +1,62 @@
-## Description: <br>
-Scrape recent Instagram reels, transcribe audio, summarize with OpenRouter, and save a digest.html file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape recent Instagram reels, transcribe audio, summarize with OpenRouter, and save a digest.html file.
 
-## Publisher: <br>
-[sirimaddala99](https://clawhub.ai/user/sirimaddala99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirimaddala99](https://clawhub.ai/user/sirimaddala99)
 
-## Use Case: <br>
-External users and developers use this skill to collect recent reels from configured Instagram accounts, transcribe reel audio, summarize transcripts with OpenRouter, and produce a local HTML digest for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store a reusable Instagram login session on disk when optional Instagram credentials are used. <br>
-Mitigation: Use a throwaway Instagram account when login is needed and delete scripts/.instagram_session.json when finished or when access should be revoked. <br>
-Risk: Tracked Instagram content and transcripts are sent to OpenRouter for summarization. <br>
-Mitigation: Only track content that is acceptable to send to OpenRouter and avoid using the skill for sensitive accounts or private material. <br>
-Risk: The skill runs Python dependencies and browser automation against external services. <br>
-Mitigation: Review before installing, run in an isolated Python environment, and pin or lock dependencies before regular use. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent Instagram reels from configured accounts, transcribe reel audio, and generate a local HTML digest of concise summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sirimaddala99/instagram-digest) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
-- [Instagram profile URL pattern](https://www.instagram.com/{username}/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, HTML file, shell commands, configuration] <br>
-**Output Format:** [Local digest.html file plus console text and command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY; optional Instagram credentials can enable login-gated access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Instagram session cookies may be stored in plaintext in scripts/.instagram_session.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Instagram account, keep the skill directory private, and delete scripts/.instagram_session.json when finished.
+
+Risk: The generated digest.html can contain untrusted Instagram or model-generated content.
+
+Mitigation: Treat digest.html as untrusted local content and review it before opening, sharing, or reusing it.
+
+Risk: Transcripts and captions may be sent to OpenRouter for summarization.
+
+Mitigation: Avoid processing private or sensitive reels unless that data sharing is acceptable.
+
+Risk: Dependencies are not pinned.
+
+Mitigation: Pin and review dependencies before routine or automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sirimaddala99/skills/instagram-digest)
+- [OpenRouter API endpoint](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is a local digest.html file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY; optional Instagram credentials can be used for account access.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

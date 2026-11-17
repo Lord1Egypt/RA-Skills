@@ -455,7 +455,7 @@ aliyun ecs attach-disk \
   --user-agent AlibabaCloud-Agent-Skills/alibabacloud-ecs-disaster-recovery-snapshot
 ```
 
-> **Failure Handling**: See [Error Handling Guide](references/error-handling.md#scenario-b--steps-4-5-disk-creation--attachment).
+> **Failure Handling**: See [Error Handling Guide](references/error-handling.md#scenario-b--steps-4-5-diREDACTED-SECRET).
 
 Verify disks show `Status: In_use` via `describe-disks`. Remind user that the new disk needs to be mounted on the target instance, but **NEVER** output system commands (e.g. `lsblk`, `mount`, `fdisk`, `mkfs`) — you don't know the user's OS or usage scenario.
 

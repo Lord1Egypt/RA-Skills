@@ -1,44 +1,58 @@
-## Description: <br>
-Kling 2.6 Motion Control uses PoYo's API to submit `kling-2.6-motion-control` jobs for motion transfer, character animation, orientation control, and 720p or 1080p output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents submit PoYo Kling 2.6 Motion Control video-generation jobs for motion transfer using a character image, reference video, orientation mode, and output resolution.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare or submit PoYo Kling 2.6 Motion Control tasks that animate a character image from a reference motion video. It is suited to workflows that need explicit character orientation and 720p or 1080p output control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, video URLs, and generation metadata are sent to PoYo for processing. <br>
-Mitigation: Do not use sensitive, private, or proprietary media unless PoYo's terms and retention practices are acceptable for the intended use. <br>
-Risk: The submission script authenticates with POYO_API_KEY and sends a caller-provided JSON payload to the PoYo generation endpoint. <br>
-Mitigation: Keep POYO_API_KEY secret, review payloads before submission, and use the returned task_id for controlled follow-up polling or webhook tracking. <br>
+## Use Case:
 
+Developers and automation agents use this skill to prepare and submit PoYo Kling 2.6 Motion Control jobs when they need to animate a supplied character image from a supplied motion-reference video. The skill helps produce payload guidance, shell commands, and follow-up details such as the returned task_id.
 
-## Reference(s): <br>
-- [PoYo Kling 2.6 Motion Control API Reference](references/api.md) <br>
-- [PoYo Kling 2.6 Motion Control Documentation](https://docs.poyo.ai/api-manual/video-series/kling-2.6-motion-control) <br>
-- [PoYo Kling 2.6 Motion Control OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/kling-2.6-motion-control.json) <br>
-- [PoYo Task Status Documentation](https://docs.poyo.ai/api-manual/task-management/status) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/poyo-kling-2-6-motion-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the selected model id, final payload or parameter summary, reference-media usage, returned task_id, and polling or webhook next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill submits image, video, prompt, and optional callback URL values to PoYo as part of generation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review media URLs and callback_url values before submission, and use the skill only when sending those assets to PoYo is intended.
+
+Risk: The skill requires a PoYo API key for authenticated requests.
+
+Mitigation: Set POYO_API_KEY in a protected environment and avoid passing credentials on the command line or embedding secrets in payload files.
+
+## Reference(s):
+
+- [PoYo Kling 2.6 Motion Control Model Page](https://poyo.ai/models/kling-2-6-motion-control)
+- [PoYo Kling 2.6 Motion Control API Docs](https://docs.poyo.ai/api-manual/video-series/kling-2.6-motion-control)
+- [PoYo Kling 2.6 Motion Control OpenAPI JSON](https://docs.poyo.ai/api-manual/video-series/kling-2.6-motion-control.json)
+- [PoYo Task Status Docs](https://docs.poyo.ai/api-manual/task-management/status)
+- [PoYo API Key Page](https://poyo.ai/dashboard/api-key)
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-kling-2-6-motion-control)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the selected model id, payload summary, reference-media usage, returned task_id, and next polling or webhook step.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

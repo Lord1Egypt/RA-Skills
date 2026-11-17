@@ -1,44 +1,53 @@
-## Description: <br>
-Track and synthesize podcasts with subscriptions, briefings, progress tracking, and smart alerts for new episodes and guests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and synthesize podcasts with subscriptions, briefings, progress tracking, and smart alerts for new episodes and guests.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to manage podcast subscriptions, prioritize listening queues, generate episode briefings, and track guests or topics across audio and YouTube podcasts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local podcast records may retain subscriptions, listening progress, guest watchlists, summaries, and inferred interests. <br>
-Mitigation: Use explicit podcast commands and review or delete ~/podcasts/ when local listening history or summaries should not be retained. <br>
-Risk: Processing episodes may involve media-download or transcription tools when the user asks for summaries or briefings. <br>
-Mitigation: Run those tools only for explicit user requests and review the generated transcript or summary before relying on it. <br>
-Risk: Transcript-derived summaries and quotes can be wrong when based on auto-generated captions or imperfect transcription. <br>
-Mitigation: Disclose transcript source quality and verify important quotes, timestamps, and claims against the original episode. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Briefings & Summaries](briefings.md) <br>
-- [Discovery & Recommendations](discovery.md) <br>
-- [Learning Mode](learning.md) <br>
-- [YouTube Video Podcasts](youtube.md) <br>
+## Use Case:
 
+Podcast listeners and knowledge workers use this skill to track subscriptions, summarize new episodes, prioritize a listening queue, monitor guests and topics, and extract reusable learning notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown summaries, tables, checklists, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local Markdown records under ~/podcasts/ for subscriptions, queues, briefings, knowledge, and guest tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to retain subscriptions, listening interests, summaries, guest watchlists, and learning notes in local files under ~/podcasts/.
+
+Mitigation: Review or clear ~/podcasts/ before installation or use if persistent local podcast records are not desired.
+
+Risk: Broad podcast-tracking triggers may add shows or generate briefings when user intent is ambiguous.
+
+Mitigation: Use explicit commands when adding shows, generating briefings, or updating progress.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/podcasts)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, queue entries, briefing notes, watchlists, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local podcast records under ~/podcasts/ when the agent follows the skill behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Track social media performance and engagement across Facebook, Instagram, Threads, YouTube, and TikTok using Boring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track social media performance and analytics across Facebook, Instagram, Threads, YouTube, and TikTok using Boring.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and social media operators use this skill to ask an agent for account performance, post analytics, publishing history, and cross-platform comparisons from connected Boring accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP Connector link contains an embedded authentication token and can grant access to connected analytics. <br>
-Mitigation: Treat the MCP URL like a password, avoid sharing it, and regenerate it if exposed. <br>
-Risk: Analytics requests are handled through Boring's service for connected social accounts. <br>
-Mitigation: Install only if you trust Boring with analytics access, and review account disconnection and data retention controls. <br>
+## Use Case:
 
+External users and social media operators use this skill to query connected social accounts, compare platform performance, review post metrics, and summarize publishing history through Boring.
 
-## Reference(s): <br>
-- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring documentation](https://boring-doc.aiagent-me.com) <br>
-- [Boring account and connector setup](https://boring.aiagent-me.com) <br>
-- [ClawHub skill page](https://clawhub.ai/snoopyrain/boring-social-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown summaries and tables based on MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account summaries, ranked post metrics, cross-platform comparison tables, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The Boring MCP Connector URL contains an embedded authentication token and can grant access to connected social analytics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the connector URL like a password, avoid sharing it publicly, and regenerate it if exposed.
+
+Risk: Connected social accounts may contain sensitive performance and audience data.
+
+Mitigation: Review connected platform permissions and only connect accounts whose analytics may be queried through Boring.
+
+## Reference(s):
+
+- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring documentation](https://boring-doc.aiagent-me.com)
+- [Boring account and connector setup](https://boring.aiagent-me.com)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/boring-social-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with tool-call examples and summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Boring MCP Connector URL with an embedded authentication token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

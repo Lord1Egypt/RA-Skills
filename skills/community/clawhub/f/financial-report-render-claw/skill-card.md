@@ -1,40 +1,56 @@
-## Description: <br>
-Transforms analysis results and structured data into polished financial, operating, monthly, quarterly, annual, project, dashboard, and presentation-ready reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns financial and operating analysis results into polished report files with structured sections, charts, and export paths for HTML, PDF, Word, Markdown, and PNG outputs.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to turn completed analysis, JSON report configuration, or tabular data into formatted report files with charts, tables, KPI cards, summaries, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted report configuration or report text can be rendered into HTML that behaves like active browser content. <br>
-Mitigation: Use trusted or reviewed report data and configuration, avoid raw HTML in report text, generate outputs in a dedicated folder, and inspect reports before opening them in a browser or sharing externally. <br>
+## Use Case:
 
+Employees, external report preparers, and developers use this skill to turn existing financial, operating, or project analysis into formal report configurations, charts, and rendered report files for review or presentation.
 
-## Reference(s): <br>
-- [Report Configuration Specification](references/report-config-spec.md) <br>
-- [Report Templates](references/report-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/financial-report-render-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON report configuration, Python command examples, and generated report files such as HTML, PDF, DOCX, and PNG charts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include embedded charts, tables, KPI cards, cover metadata, and print-oriented styling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted report text or image paths can be written into generated HTML or PDF output and can trigger arbitrary resource loads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted report JSON and local chart assets, sanitize report text and image paths before rendering, and review rendered output before sharing.
+
+Risk: Advertised PPT and dashboard capabilities are not substantiated by the reviewed artifact behavior.
+
+Mitigation: Plan around the supported HTML, PDF, DOCX, Markdown, and PNG chart workflow unless PPT or dashboard support is added and reviewed.
+
+## Reference(s):
+
+- [Report Configuration Specification](references/report-config-spec.md)
+- [Report Templates](references/report-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/financial-report-render-claw)
+- [Publisher Profile](https://clawhub.ai/user/tujinsama)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON report configuration, shell commands, and generated report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports HTML, PDF through WeasyPrint or browser print flow, DOCX through python-docx, and PNG chart generation from CSV inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

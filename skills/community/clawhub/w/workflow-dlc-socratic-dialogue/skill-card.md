@@ -1,38 +1,52 @@
-## Description: <br>
-Guides agents through a three-step Socratic, first-principles, and Occam's razor dialogue before drafting new 0-to-1 work products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a three-step Socratic, first-principles, and Occam's razor dialogue before drafting new 0-to-1 outputs such as PRDs, technical plans, agent designs, retrospectives, and work plans.
 
-## Publisher: <br>
-[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, and developers use this skill to clarify the true goal, necessary conditions, and scope cuts for new planning or design tasks before asking an agent to draft the final artifact.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Planning discussions may contain confidential product, customer, business, or internal strategy details.
+
+Mitigation: Review the skill before installation and avoid using it for sensitive planning unless local logging behavior is acceptable.
+
+Risk: The skill may direct the agent to save detailed project notes to disk without clear opt-in or retention controls.
+
+Mitigation: Make logging opt-in, minimize the recorded fields, and define a clear deletion or retention process before broad use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, product managers, and other planning-focused users use this skill to clarify the real goal, necessary conditions, and minimum useful scope before creating PRDs, technical plans, agent designs, retrospectives, or similar new work products. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Planning conversations may include confidential product, strategy, customer, or business information, and the skill asks the agent to save detailed answers to local experience-base logs without clear consent or retention limits. <br>
-Mitigation: Review the skill before installation, disable or modify local logging for sensitive work, and require explicit user consent before storing session details. <br>
+**Output Format:** [Conversational Markdown guidance with optional local JSON records]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mistyhuqwq-art/workflow-dlc-socratic-dialogue) <br>
+**Other Properties Related to Output:** [May guide the agent to record structured project notes locally after the three-step dialogue.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Conversational Markdown with structured questions, gate checks, concise draft outputs, and optional JSON log content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a real-goal statement, not-doing list, user pain points, success and failure criteria, one to three necessary conditions, a simplified scope list, and next-skill guidance.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

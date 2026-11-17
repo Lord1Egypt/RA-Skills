@@ -1,40 +1,50 @@
-## Description: <br>
-Daily AI & tech news in 60 seconds — LLM updates, product launches, startup funding, developer tools. Bilingual EN/CN visual card. Morning & evening push. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily AI & tech news in 60 seconds — LLM updates, product launches, startup funding, developer tools. Bilingual EN/CN visual card. Morning & evening push.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and builders use this skill to generate concise bilingual AI and technology news briefings with optional morning and evening push delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled push delivery can send briefings to an unintended recipient or channel if configured with the wrong userId, channel, timezone, or time. <br>
-Mitigation: Confirm the target userId, delivery channel, timezone, and morning/evening times before enabling push notifications. <br>
-Risk: Recurring notifications may continue after they are no longer wanted. <br>
-Mitigation: Use the documented off command to disable push delivery when the briefing is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to generate concise bilingual AI and technology news briefings, including a shareable visual card and optional morning or evening push delivery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiajiaoy/dailytech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions, generated HTML artifact guidance, and Node.js command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bilingual EN/CN briefing content and optional scheduled push configuration commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The push feature can create persistent scheduled messages to external channels without enough consent, authorization, or lifetime controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable pushes only for recipients you control, verify the userId, channel, timezone, and disable path before enabling, and confirm the off command removes the scheduled morning and evening jobs.
+
+## Reference(s):
+
+- [Dailytech ClawHub skill page](https://clawhub.ai/jiajiaoy/skills/dailytech)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated single-file HTML and optional Node.js push commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual English/Chinese briefings and may schedule persistent morning and evening pushes when enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

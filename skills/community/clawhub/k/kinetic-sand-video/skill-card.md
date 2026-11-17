@@ -1,40 +1,59 @@
-## Description: <br>
-Generate vertical kinetic or magic sand satisfying videos with WeryAI from a text prompt or public sand-shape image URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical kinetic and magic sand satisfying shorts through WeryAI, using text prompts or public HTTPS sand-shape images to create slicing, mold-release, collapse, or pouring motion.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users and creators use this skill to turn kinetic sand briefs or public HTTPS sand-shape images into short vertical WeryAI video generations with expanded prompts and validated parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WeryAI API key and successful generations can consume paid WeryAI credits. <br>
-Mitigation: Keep WERYAI_API_KEY out of files, review the full prompt and parameters before confirming, and run only when credit usage is acceptable. <br>
-Risk: Prompts and public image URLs are sent to WeryAI for generation. <br>
-Mitigation: Use only prompts and public HTTPS image URLs that are appropriate to share with WeryAI, and avoid private or sensitive inputs. <br>
+## Use Case:
 
+External creators and agents use this skill to generate short vertical kinetic-sand ASMR videos from a brief or public HTTPS image, with prompt expansion and parameter checks before submitting WeryAI jobs.
 
-## Reference(s): <br>
-- [Kinetic Sand Video on ClawHub](https://clawhub.ai/zoucdr/kinetic-sand-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON parameters and shell commands for WeryAI video generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns WeryAI task status, errors, and playable video URLs when generation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Following the documented quoted shell command pattern with untrusted prompt text can turn prompt content into shell syntax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the Node script with structured arguments, stdin, or another non-shell mechanism rather than interpolating JSON into a quoted shell command.
+
+Risk: The skill requires WERYAI_API_KEY and submits requests to external WeryAI API hosts.
+
+Mitigation: Use it only in an environment where the API key is intentionally available, keep the key out of skill packages and logs, and run generation in an isolated or short-lived environment when higher assurance is needed.
+
+Risk: Successful wait runs consume paid WeryAI credits and repeated runs create new paid tasks.
+
+Mitigation: Confirm parameters before submission, use dry-run or status checks where appropriate, and avoid automatic retries that submit new generation jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/kinetic-sand-video)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI model registry API host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown guidance with command snippets and JSON API results that include generated video URLs or failure details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and paid WeryAI credits; image inputs must be public HTTPS URLs.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

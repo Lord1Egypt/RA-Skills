@@ -1,38 +1,49 @@
-## Description: <br>
-Responds with a greeting message to verify the skill system is working properly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Responds with a greeting message to verify that the skill system is working properly.
 
-## Publisher: <br>
-[mazvaris](https://clawhub.ai/user/mazvaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mazvaris](https://clawhub.ai/user/mazvaris)
 
-## Use Case: <br>
-Developers and reviewers use this skill as a basic smoke test to confirm that OpenClaw can load and invoke a skill. It only returns a greeting and confirms the skill system is working. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is only a basic functionality test and may be mistaken for broader validation of a real workflow. <br>
-Mitigation: Use it only to confirm skill loading and invocation, then run task-specific validation for production workflows. <br>
+## Use Case:
 
+Developers and skill publishers use this skill as a lightweight smoke test to confirm that an agent can load a skill and return the expected chat response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mazvaris/hello-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text chat response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, file changes, or external actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is intended only to confirm basic skill loading and chat response behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a smoke test and do not grant file, account, credential, or tool access for this release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mazvaris/skills/hello-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Chat response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No file, account, credential, or tool access is expected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

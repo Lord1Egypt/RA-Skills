@@ -1,44 +1,55 @@
-## Description: <br>
-输入销售国家后，该技能为跨境电商卖家汇总多国税率、注册门槛、申报周期、截止日、EU OSS 场景和平台代扣注意事项。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入销售国家后，帮助中文跨境电商卖家快速查看多国税率、申报周期、注册门槛、特殊规则和 EU OSS 一站式申报方案。
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-External sellers and operators use this skill to quickly compare tax obligations across supported cross-border ecommerce markets, including VAT, GST, Sales Tax, JCT, registration checks, filing calendars, EU OSS guidance, and next-action planning. The output is informational and should be verified before filing or changing tax strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax rates, registration thresholds, and filing duties may be outdated or jurisdiction-specific. <br>
-Mitigation: Verify current obligations with official tax authorities or a qualified tax professional before registering, filing, or changing tax strategy. <br>
-Risk: Users may mistake informational tax checklists for professional tax advice. <br>
-Mitigation: Treat the output as a starting point for review, especially for EU OSS, marketplace-facilitator, double-taxation, and filing-duty questions. <br>
-Risk: Marketplace-facilitator and platform collection rules can reduce collection work without removing every reporting obligation. <br>
-Mitigation: Confirm whether each marketplace, country, and sales channel still requires registration, periodic filing, or zero returns. <br>
+## Use Case:
 
+Chinese-speaking cross-border e-commerce sellers and operators use this skill to compare tax rates, registration thresholds, filing calendars, marketplace facilitator rules, and EU OSS options across supported sales markets. It is a quick-reference aid and does not replace current local authority guidance or professional tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sheyuy/compliance-tax) <br>
-- [Server-resolved GitHub provenance](https://github.com/Sheyuy/compliance-skills/tree/main/compliance-tax) <br>
-- [Tax data matrix](references/tax-data.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown summaries with JSON-compatible tax health, country detail, recommendation, and next-action fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses countries plus optional revenue, channel, and existing-compliance inputs; produces informational tax checklists rather than filing-ready advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Tax rates, thresholds, filing deadlines, and registration rules may be stale or incomplete for a user's exact jurisdiction and sales pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify any rate, threshold, deadline, registration, or filing action against current local authority guidance or a qualified accountant before acting.
+
+Risk: Users may treat quick-reference tax output as professional tax advice.
+
+Mitigation: Present the output as a compliance reference aid and preserve the source disclaimer that final filing decisions must follow local tax authority requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sheyuy/skills/compliance-tax)
+- [Server-resolved GitHub provenance](https://github.com/Sheyuy/compliance-skills/tree/main/compliance-tax)
+- [Tax data matrix](references/tax-data.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables with optional JSON-compatible action summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output shaped by user-provided countries, revenue, sales channels, and existing compliance status.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

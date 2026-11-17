@@ -1,42 +1,54 @@
-## Description: <br>
-Static code analysis tool. Detects security vulnerabilities, code smells, and complexity issues across 17 languages. All analysis runs locally; no code leaves your machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static code analysis tool that detects security vulnerabilities, code smells, and complexity issues across 17 languages while running analysis locally.
 
-## Publisher: <br>
-[artvepa80](https://clawhub.ai/user/artvepa80) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[artvepa80](https://clawhub.ai/user/artvepa80)
 
-## Use Case: <br>
-Developers and engineers use this skill to run local static analysis on project directories and review security, quality, complexity, and DevOps findings before shipping code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party local CLI package. <br>
-Mitigation: Install it only when you trust the hefesto-ai package and want a local code-auditing CLI. <br>
-Risk: Analysis reports may include sensitive source snippets or secret findings. <br>
-Mitigation: Run analysis on specific project directories and protect generated reports according to your code and secrets handling policies. <br>
-Risk: The optional git hook can run on future pushes in a repository. <br>
-Mitigation: Enable the hook only in repositories where you intentionally want HefestoAI checks to run before pushes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [HefestoAI site](https://hefestoai.narapallc.com) <br>
-- [HefestoAI setup guide](https://hefestoai.narapallc.com/setup) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run local static analysis on project directories for security, quality, complexity, and DevOps configuration issues across supported languages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and examples of text, JSON, and HTML report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the hefesto binary; analysis runs locally against user-selected project directories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an unpinned external pip package for its analyzer behavior.
+
+Mitigation: Install in a sandbox or virtual environment, trust the package publisher and index, and pin or independently review the package version before use on sensitive repositories.
+
+Risk: Static analysis may inspect repositories that contain secrets or sensitive source code.
+
+Mitigation: Limit analysis to intended project directories and review repository contents before running the analyzer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/artvepa80/skills/hefestoai-auditor)
+- [HefestoAI product site](https://hefestoai.narapallc.com)
+- [HefestoAI setup guide](https://hefestoai.narapallc.com/setup)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks; the underlying CLI can emit text, JSON, or HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be filtered by severity, capped by issue count, or configured to fail CI on selected severity thresholds.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

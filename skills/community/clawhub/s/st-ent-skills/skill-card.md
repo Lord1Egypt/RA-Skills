@@ -1,43 +1,59 @@
-## Description: <br>
-Searches 699pic enterprise photo and video assets, checks whether assets were downloaded, inspects download records, and generates download links through a local 699pic OpenAPI integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 699pic enterprise photo and video assets, check whether assets were already downloaded, inspect download records, and generate download links through the local 699pic OpenAPI integration.
 
-## Publisher: <br>
-[st699pic](https://clawhub.ai/user/st699pic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[st699pic](https://clawhub.ai/user/st699pic)
 
-## Use Case: <br>
-Developers and enterprise users with authorized 699pic access use this skill to search photo and video assets, review download status and history, and generate download links through a local MCP or direct OpenAPI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated network access can send business search terms or account-related data to the 699pic service. <br>
-Mitigation: Use the skill only for explicit 699pic requests, review requests before execution, and configure a least-privilege SERVICE_API_KEY where available. <br>
-Risk: Broad media-search triggers may activate the skill for generic image or video requests. <br>
-Mitigation: Tighten activation to explicit 699pic enterprise workflows before deployment. <br>
-Risk: Local MCP registration or service endpoint configuration may differ across machines. <br>
-Mitigation: Inspect the local mcporter configuration, command, environment variables, permissions, and SERVICE_API_BASE_URL before use. <br>
+## Use Case:
 
+Developers and enterprise asset users use this skill to search 699pic photo and video assets, verify enterprise download history, and request download links after confirming the target asset.
 
-## Reference(s): <br>
-- [699pic OpenAPI MCP Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/st699pic/st-ent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown summaries with embedded image previews, shell command examples, and optional JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authorized SERVICE_API_KEY and may use SERVICE_API_BASE_URL, node, and mcporter depending on the selected route.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill can send an enterprise API key to a configurable service endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a narrowly scoped SERVICE_API_KEY, keep SERVICE_API_BASE_URL on a trusted HTTPS endpoint, and review the script before execution.
+
+Risk: Broad image or video search requests may route user queries through the enterprise asset service.
+
+Mitigation: Confirm the user's intent before invoking search tools for generic image or video requests.
+
+Risk: A local MCP registration named st-mcp may have environment, command, or permission settings that differ by machine.
+
+Mitigation: Inspect and authorize the local MCP registration before using it, including command, arguments, environment variables, and permissions.
+
+## Reference(s):
+
+- [699pic OpenAPI MCP reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/st699pic/skills/st-ent-skills)
+- [ClawHub publisher profile](https://clawhub.ai/user/st699pic)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown image summaries with optional JSON and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results should embed available preview or thumbnail images and include asset identifiers, titles, extensions, and relevant asset flags.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 # ============ 配置 ============
 TONGCHENG_PROXY = "https://1439498936-7vqpkiipef.ap-guangzhou.tencentscf.com"
 FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
 TC_TIMEOUT = 15
 FG_TIMEOUT = 30
 

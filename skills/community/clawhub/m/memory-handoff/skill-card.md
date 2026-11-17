@@ -1,40 +1,50 @@
-## Description: <br>
-Guides agents to write concise, structured memory handoff notes when a session discovers durable knowledge such as architecture decisions, root causes, setup gotchas, workflow changes, security findings, reusable patterns, or explicit handoff requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use at the end of any session that discovered durable knowledge (architecture decisions, root causes, setup gotchas, workflow changes, security findings, reusable patterns), or when the user says "hand off", "write a handoff", or "save this for the memory system".
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and coding agents use this skill to preserve durable session knowledge as reviewable markdown handoff notes for a memory owner, teammate, or future session. It is useful when findings should be routed into a long-term memory system without editing canonical memory files directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handoff notes may persist sensitive context in the repository. <br>
-Mitigation: Review handoffs before sharing them or ingesting them into a long-term memory system, especially after sessions involving sensitive context. <br>
-Risk: Low-value or unverifiable handoffs can pollute durable memory. <br>
-Mitigation: Keep handoffs specific and verifiable, include exact paths or commands where relevant, and use the skill's verification guidance before routing the note. <br>
+## Use Case:
 
+Developers and agents use this skill to capture durable session knowledge in a structured Markdown handoff for a memory owner to review and route. It applies when a session produces reusable findings or the user explicitly requests a handoff.
 
-## Reference(s): <br>
-- [brigade](https://github.com/escoffier-labs/brigade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown handoff note with structured sections and optional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handoff notes are expected to be specific, verifiable, and under 400 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Handoff notes may contain secrets or sensitive project details, or preserve inaccurate information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each note for accuracy and sensitive content; redact it before sharing or promoting it into long-term memory.
+
+## Reference(s):
+
+- [ClawHub memory-handoff release](https://clawhub.ai/solomonneas/skills/memory-handoff)
+- [Brigade project](https://github.com/escoffier-labs/brigade)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Files]
+
+**Output Format:** [Structured Markdown handoff note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes durable facts, evidence, and memory-routing sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

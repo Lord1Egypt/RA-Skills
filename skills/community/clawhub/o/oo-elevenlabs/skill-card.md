@@ -1,45 +1,60 @@
-## Description: <br>
-Use this skill for ElevenLabs requests that read, create, update, or delete data through the OOMOL-connected ElevenLabs connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected ElevenLabs service to read, create, and delete ElevenLabs data through natural-language requests.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate ElevenLabs through the oo CLI with an OOMOL-connected account. It supports voice and model discovery, user and subscription lookups, history workflows, text-to-speech generation, sound effect generation, and deletion of selected history items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected ElevenLabs account and sensitive credentials are handled by OOMOL server-side. <br>
-Mitigation: Use only an intended OOMOL account connection, avoid handling raw tokens directly, and reconnect only when an auth or connection error requires it. <br>
-Risk: Write actions can generate audio or sound effects and may consume account credits or change service state. <br>
-Mitigation: Inspect the live action schema first and confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: The delete_history_item action permanently removes an ElevenLabs history item. <br>
-Mitigation: Confirm the specific history item ID and get explicit user approval before running the destructive action. <br>
+## Use Case:
 
+External users can use the skill through their OOMOL-connected ElevenLabs account to inspect voices, models, subscriptions, and generation history, or to create speech and sound effects. It also supports downloading audio for existing history items and deleting a history item with explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub ElevenLabs skill page](https://clawhub.ai/oomol/oo-elevenlabs) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ElevenLabs homepage](https://elevenlabs.io) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON request or response payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce connector transit storage references for generated or downloaded binary audio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+Risk: Initial setup may run downloaded installer code that has not been verified and may introduce additional agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately, verify a specific release, and disable automatic skill synchronization unless additional skills are intended.
+
+Risk: Creating speech or sound effects changes ElevenLabs account state, and deleting a history item removes account data.
+
+Mitigation: Confirm the exact generation payload and effect before running write actions, and get explicit approval for the specific history item before deletion.
+
+Risk: The OOMOL connection can perform the requested ElevenLabs operations and handle audio through transit storage.
+
+Mitigation: Connect only the intended ElevenLabs account and keep the skill's approval requirements for generation and deletion.
+
+## Reference(s):
+
+- [ElevenLabs API authentication documentation](https://elevenlabs.io/docs/api-reference/authentication)
+- [ElevenLabs](https://elevenlabs.io)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-elevenlabs)
+
+## Skill Output:
+
+**Output Type(s):** [API responses, JSON, Audio, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON responses and generated or retrieved audio]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio is returned through connector transit storage; timestamped speech also includes character-level timing metadata.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

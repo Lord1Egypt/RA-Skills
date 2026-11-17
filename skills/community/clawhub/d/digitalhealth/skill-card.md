@@ -1,46 +1,60 @@
-## Description: <br>
-Implements USDC x402 payments via PayAI and DHM x402 payments via EVVM native signed pay for the ClawHub/NHS EVVM app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements USDC x402 payments via PayAI (EIP-3009) and DHM x402 payments via EVVM native signed pay for ClawHub/Digital Health EVVM payment flows.
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or debug x402 payment flows for USDC through PayAI Echo, DHM through EVVM pay(), and agent-to-agent payments with Privy server wallets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-signing guidance could be applied with incorrect token, amount, recipient, chain, nonce, or expiry values. <br>
-Mitigation: Validate token, amount, recipient, chain, nonce, and expiry before production signing. <br>
-Risk: Agent-payment flows can spend funds autonomously if wallet controls are too broad. <br>
-Mitigation: Use testnet or strict spend limits first and review Privy server-wallet policies before enabling production agent payments. <br>
-Risk: Payment integrations may expose sensitive wallet or executor credentials if copied into source control or logs. <br>
-Mitigation: Keep secrets out of source control and logs, and review required environment variables before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or debug x402 payment flows for USDC via PayAI Echo and DHM via EVVM native pay, including browser-wallet and agent-to-agent payment paths.
 
-## Reference(s): <br>
-- [Digital Health ClawHub listing](https://clawhub.ai/arunnadarasa/digitalhealth) <br>
-- [Publisher profile](https://clawhub.ai/user/arunnadarasa) <br>
-- [PayAI Echo Base Sepolia paid content endpoint](https://x402.payai.network/api/base-sepolia/paid-content) <br>
-- [DHM x402 EVVM server](https://evvm-x402-dhm.fly.dev) <br>
-- [Privy agentic wallets skill](https://github.com/privy-io/privy-agentic-wallets-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript type snippets, shell commands, endpoint references, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for payment signing flows, request payloads, environment variables, and debugging checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives high-impact crypto payment guidance that could cause unintended transfers if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the integration before installing it in any wallet-enabled environment, and use testnet by default.
+
+Risk: Weak validation or fallback payment-option selection could route payments to unintended contracts, recipients, tokens, networks, executors, or amounts.
+
+Mitigation: Require exact local allowlists for contracts, recipients, tokens, networks, executors, and amounts, and remove fallback option selection.
+
+Risk: Autonomous wallet instructions may allow agent-initiated payments beyond the intended scope.
+
+Mitigation: Keep Privy secrets server-side, pin and inspect the Privy skill before installation, and require human approval or strong policy limits for autonomous payment paths.
+
+## Reference(s):
+
+- [ClawHub Digital Health Skill](https://clawhub.ai/arunnadarasa/skills/digitalhealth)
+- [PayAI Echo Base Sepolia Paid Content Endpoint](https://x402.payai.network/api/base-sepolia/paid-content)
+- [DHM x402 EVVM Server](https://evvm-x402-dhm.fly.dev)
+- [Privy Agentic Wallets Skill](https://github.com/privy-io/privy-agentic-wallets-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript types, request examples, checklists, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes payment-flow guidance for Base Sepolia, PayAI Echo, EVVM native pay, and Privy agentic-wallet extensions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

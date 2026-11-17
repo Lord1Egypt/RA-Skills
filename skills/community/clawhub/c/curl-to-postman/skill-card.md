@@ -1,39 +1,51 @@
-## Description: <br>
-Convert curl commands to Postman Collection v2.1 importable JSON <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert curl commands to Postman Collection v2.1 importable JSON.
 
-## Publisher: <br>
-[liuliwanzi](https://clawhub.ai/user/liuliwanzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuliwanzi](https://clawhub.ai/user/liuliwanzi)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert pasted curl commands into Postman Collection v2.1 JSON that can be imported into Postman for API testing and request sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted curl commands may include Authorization headers, cookies, API keys, passwords, or private request bodies that are copied into the generated Postman collection. <br>
-Mitigation: Remove or mask sensitive values before conversion, and review the generated JSON before importing, syncing, or sharing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn pasted curl commands into formatted Postman Collection v2.1 JSON for direct import into Postman.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuliwanzi/curl-to-postman) <br>
-- [Postman Collection v2.1 schema](https://schema.getpostman.com/json/collection/v2.1.0/collection.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [Pretty-printed Postman Collection v2.1 JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve headers, authentication values, request bodies, query parameters, redirect behavior, and SSL validation settings from the input curl command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Copied curl commands may contain live Authorization headers, Basic Auth credentials, cookies, API keys, or sensitive body fields that are preserved in the generated Postman collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and sensitive request body values before using, storing, or sharing generated collections.
+
+## Reference(s):
+
+- [Postman Collection v2.1 schema](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [ClawHub skill page](https://clawhub.ai/liuliwanzi/skills/curl-to-postman)
+- [ClawHub publisher profile](https://clawhub.ai/user/liuliwanzi)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Guidance]
+
+**Output Format:** [Postman Collection v2.1 JSON with concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves headers, request method, URL query parameters, request body, redirect and SSL options, and supported authentication fields from the pasted curl command.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/decision-log.schema.json",
+  "title": "Explainable A-roll decision log",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "runId", "decisions"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/decision-log.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.decisions.v1"},
+    "runId": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decisionId", "type", "risk", "action", "spokenExcerpt", "resultExcerpt", "reason", "evidenceRefs", "status", "approvalRequired", "approvalRef"],
+        "properties": {
+          "decisionId": {"type": "string", "pattern": "^dec-[a-z0-9-]+$"},
+          "type": {"enum": ["head-tail-silence", "hesitation", "false-start", "covered-restart", "pause", "duplicate-dialogue", "smooth-audio", "filler", "partial-retake", "caption-display", "transcript-repair", "intro", "whole-sentence", "numeric-content", "proper-noun", "negation", "restructure", "hook-forward", "take-selection", "portrait-reframe", "privacy", "protected-baseline", "generated-content", "spoken-replacement", "export", "publish"]},
+          "risk": {"enum": ["low", "medium", "high"]},
+          "action": {"type": "string", "minLength": 1, "maxLength": 80},
+          "spokenExcerpt": {"type": "string", "minLength": 1, "maxLength": 160},
+          "resultExcerpt": {"type": "string", "minLength": 1, "maxLength": 160},
+          "reason": {"type": "string", "minLength": 1, "maxLength": 240},
+          "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+          "status": {"enum": ["proposed", "approved", "applied", "rejected", "stale"]},
+          "approvalRequired": {"type": "boolean"},
+          "approvalRef": {"type": ["string", "null"], "pattern": "^logical:[a-z0-9-]+$"}
+        },
+        "allOf": [
+          {
+            "if": {"required": ["type"], "properties": {"type": {"enum": ["head-tail-silence", "hesitation", "false-start", "covered-restart", "duplicate-dialogue", "smooth-audio"]}}},
+            "then": {"properties": {"risk": {"const": "low"}, "approvalRequired": {"const": false}}}
+          },
+          {
+            "if": {"required": ["type"], "properties": {"type": {"enum": ["filler", "partial-retake", "caption-display", "transcript-repair", "intro", "pause"]}}},
+            "then": {"properties": {"risk": {"const": "medium"}, "approvalRequired": {"const": true}}}
+          },
+          {
+            "if": {"required": ["type"], "properties": {"type": {"enum": ["whole-sentence", "numeric-content", "proper-noun", "negation", "restructure", "hook-forward", "take-selection", "portrait-reframe", "privacy", "protected-baseline", "generated-content", "spoken-replacement", "export", "publish"]}}},
+            "then": {"properties": {"risk": {"const": "high"}, "approvalRequired": {"const": true}}}
+          },
+          {
+            "if": {"properties": {"risk": {"const": "high"}}},
+            "then": {"properties": {"approvalRequired": {"const": true}}}
+          },
+          {
+            "if": {"properties": {"risk": {"const": "high"}, "status": {"const": "applied"}}, "required": ["risk", "status"]},
+            "then": {"properties": {"approvalRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}}}
+          },
+          {
+            "if": {"properties": {"risk": {"const": "medium"}, "status": {"const": "applied"}}, "required": ["risk", "status"]},
+            "then": {"properties": {"approvalRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}}}
+          }
+        ]
+      }
+    }
+  }
+}

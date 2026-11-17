@@ -1,14 +1,21 @@
 ---
 spec: usk/3.0
 id: token_safe_webhook_sender
-version: 1.1.0
+version: 1.2.0
 name: Webhook Token Security (Zero‑Exposure Edition)
-description: Secure webhook token management using MGC Blackbox. Supports DingTalk, WeCom, Feishu, Telegram, Slack and more. Store webhook tokens locally in encrypted form, retrieve at runtime without exposing to AI models.
+description: Secure webhook token management using MGC Blackbox. Supports DingTalk, WeCom, Feishu, Telegram, Slack and more. Two execution modes: local script with MGC-stored config, or full zero-exposure via mgc_run. Tokens never exposed to AI models.
 author: MirginCipher Team
 license: MIT
 tags: webhook, token, security, credential-management, zero-exposure, mgc, dingtalk, wecom, feishu, telegram, slack
 platform_compatibility: windows, macos, linux
 changelog:
+  - version: 1.2.0
+    changes:
+      - Add mgc_run full zero-exposure execution mode (Mode B)
+      - Add mgc_open_webui / mgc_list / mgc_seal tool references
+      - Document ext02 message-passing parameter
+      - Adapt to MGC 1.4.9 (sandbox mode note, Windows MCP encoding fix)
+      - Unify info_type to config; require MGC 1.4.9+
   - version: 1.1.0
     changes:
       - Removed CLI interface (not functional)
@@ -33,7 +40,8 @@ After reading this documentation, an AI agent will understand how to:
 
 - Store webhook tokens (DingTalk, WeCom, Feishu, Telegram, Slack, etc.) securely in MGC Blackbox
 - Retrieve tokens at runtime without AI seeing plaintext
-- Send notifications through local scripts
+- Send notifications through local scripts (Mode A) or via `mgc_run` (Mode B, full zero-exposure)
+- Pass message content to scripts via the `ext02` parameter
 - Handle platform-specific differences
 - Rotate tokens without code changes
 
@@ -41,11 +49,13 @@ After reading this documentation, an AI agent will understand how to:
 
 # Prerequisites
 
-1. Install MGC Blackbox: `pip install mgc-blackbox`(recommended 1.4.6+)
-2. Start MGC service: `mgc` (runs at http://127.0.0.1:57219)
-3. Use **MCP tools** (`mgc_save`, `mgc_get`) for token management
+1. Install MGC Blackbox: `pip install mgc-blackbox` (recommended 1.4.9+)
+2. Start MGC service: `mgc` (WebUI: http://127.0.0.1:57218, API: http://127.0.0.1:57219)
+3. Use **MCP tools** (`mgc_save`, `mgc_run`, `mgc_list`, `mgc_open_webui`, `mgc_seal`) for token & script management
 
-> **Important:** For AI agents, use **MCP tools**. CLI may have port conflicts in some environments.
+> **Important:** `mgc_get` returns plaintext and is for human/debug use only — it breaks zero-exposure. Prefer `mgc_run` for AI-driven sending.
+
+> **Sandbox mode (Trae Work / Workbuddy):** After installing MGC, open the WebUI to view and install the main MGC skill documentation. Run `mgc --status` to check status and sandbox mode.
 
 ---
 
@@ -121,7 +131,7 @@ Can use either incoming webhook URL or bot token.
 
 ```json
 {
-  "webhook_url": "https://hooks.slack.com/services/xxx",
+  "webhook_url": "REDACTED-SECRET",
   "bot_token": "xoxb-xxx",
   "channel": "#my-channel"
 }
@@ -139,46 +149,59 @@ Create a JSON file containing your webhook token details (see Platform-Specific 
 
 ## Step 2: Store in MGC
 
-> **Important:** Use **MCP tools** for AI agents. CLI may have port conflicts in some environments.
+> **Important:** Tokens should be stored by humans via WebUI to avoid AI directly handling sensitive values. AI may call `mgc_open_webui` to open the page for the user.
 
 **Recommended: WebUI (for human operators)**
-> **Note:** According to user feedback, webhook tokens should be stored by humans via WebUI to avoid AI directly handling sensitive tokens through MCP.
-
-Store via WebUI:
 1. Open: http://127.0.0.1:57218
 2. Navigate to Save page
-3. Enter info_type: "webhook", info_owner: "your_webhook_name"
+3. Enter info_type: `config`, info_owner: `your_webhook_name`
 4. Enter token content
 5. Click Save
 
-**Alternative: MCP Interface** (for AI agents)
-- Use `mgc_get` MCP tool to retrieve tokens
-- Use `mgc_save` MCP tool if needed
+**Alternative: MCP** (for AI agents, when user-authorized)
+- Store token: `mgc_save(info_type="config", info_owner="...", content=...)`
+- List stored tokens (no plaintext): `mgc_list(info_type="config")`
 
 ---
 
-# Webhook Token Pattern (Conceptual)
+# Two Execution Modes
 
-## Local Script Pattern
+## Mode A: Local Script + MGC-stored Config (token zero-exposure)
 
-A secure webhook script follows this pattern:
+Script runs locally and reads the token from MGC via HTTP API at runtime. The token never appears in code, but the script source is visible to whoever runs it.
 
-1. **Retrieve token from MGC** (not visible to AI)
-2. **Format message** (platform-specific)
-3. **Send request** (HTTP POST)
-4. **Return result** (non-sensitive data only)
+1. User stores token via WebUI (`info_type=config`)
+2. Local script reads token from MGC API at runtime
+3. Script formats message and sends HTTP POST
+4. Returns non-sensitive result only
 
-The script must never print or expose webhook tokens.
+Suitable for: one-off or debug tasks where you control the host.
 
-## Conceptual Code Structure
+## Mode B: Script in MGC + mgc_run (full zero-exposure) — recommended
 
+Script is stored (and optionally sealed) inside MGC. AI calls `mgc_run` to execute; MGC returns only the execution result. AI never sees the token, the script source, or stdout.
+
+1. Store token: `mgc_save(info_type="config", info_owner="dingtalk_myapp", content=...)`
+2. Store sending script: `mgc_save(info_type="script", info_owner="webhook_send_dingtalk_v1", ext01="python", content=...)`
+3. (Optional) Seal script: `mgc_seal(info_owner="webhook_send_dingtalk_v1")` — sealed scripts can only run inside MGC, cannot be decrypted
+4. AI executes: `mgc_run(info_owner="webhook_send_dingtalk_v1", ext02=json.dumps({"message": "deploy ok"}))`
+5. MGC returns execution result only
+
+Suitable for: production, multi-agent collaboration, any case where AI must not touch the token.
+
+> **Note:** `mgc_run` returns only the execution result, not script stdout. For sending tasks, have the script return a status JSON as the result; if detailed output is needed, write to a file and return the path.
+
+# ext02 Parameter (passing message content)
+
+`ext02` carries runtime params to the script. It MUST be a JSON string (use `json.dumps()`). Some MCP clients mis-serialize dict values and return HTTP 422.
+
+```python
+import json
+ext02 = json.dumps({"title": "Alert", "message": "Deploy succeeded"})
+result = mgc_run(info_owner="webhook_send_dingtalk_v1", ext02=ext02)
 ```
-function send_webhook(message):
-    token = retrieve_from_mgc("my_webhook")
-    payload = format_message(message, token)
-    response = http_post(token["webhook_url"], payload)
-    return response
-```
+
+The script reads `ext02` from its input, fetches the token from MGC internally, and sends. Token and script source stay inside MGC.
 
 ---
 
@@ -216,6 +239,19 @@ function send_webhook(message):
 - info_type: "config"
 - info_owner: your identifier
 - content: JSON string of token
+
+## Run Script API (mgc_run, since 1.4.7)
+
+**Endpoint:** /api/mgc/sensitive/run
+**Method:** POST
+**Headers:** same as above
+
+**Body fields:**
+- info_type: "script"
+- info_owner: script name
+- ext02: JSON string of runtime params
+
+**Response:** execution result only (non-blocking since 1.4.5, may return PID immediately). `mgc_get action=run` is retained for backward compatibility.
 
 ---
 

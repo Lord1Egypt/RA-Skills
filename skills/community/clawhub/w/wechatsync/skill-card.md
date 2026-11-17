@@ -1,45 +1,61 @@
-## Description: <br>
-Multi-platform article publisher and content distribution tool for syncing and cross-posting Markdown or HTML articles to Chinese content platforms, tech communities, blogging sites, and self-hosted blogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform article publisher and content distribution tool for syncing and cross-posting Markdown or HTML articles to Chinese content platforms, tech communities, blogging sites, and self-hosted blogs.
 
-## Publisher: <br>
-[lljxx1](https://clawhub.ai/user/lljxx1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lljxx1](https://clawhub.ai/user/lljxx1)
 
-## Use Case: <br>
-Content creators, developers, and operators use this skill to check WechatSync prerequisites and authentication state, extract browser articles, and prepare CLI commands for syncing article drafts to selected publishing platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected articles and images may be uploaded to third-party publishing platforms through logged-in browser sessions. <br>
-Mitigation: Confirm the exact article file and target platforms before syncing, use dry-run or draft review where possible, and review resulting drafts before publishing. <br>
-Risk: The workflow depends on the external WechatSync npm package and Chrome extension. <br>
-Mitigation: Install only after confirming trust in those components and verifying the required CLI, extension, token, and platform logins. <br>
+## Use Case:
 
+Content creators, developers, and publishing teams use this skill to have an agent prepare WechatSync CLI workflows for checking platform login status, extracting browser articles, and syncing Markdown or HTML drafts across supported publishing platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lljxx1/wechatsync) <br>
-- [WechatSync homepage](https://github.com/wechatsync/Wechatsync) <br>
-- [WechatSync CLI source](https://github.com/wechatsync/Wechatsync/tree/v2/packages/cli) <br>
-- [WechatSync extension source](https://github.com/wechatsync/Wechatsync/tree/v2/packages/extension) <br>
-- [Chrome Web Store extension](https://chrome.google.com/webstore/detail/hchobocdmclopcbnibdnoafilagadion) <br>
-- [WechatSync extension install page](https://www.wechatsync.com/#install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prerequisite checks, platform login guidance, sync or extraction commands, and draft URLs reported by the CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Installing an unpinned npm CLI or browser extension can introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from the intended npm registry and Chrome Web Store or source repository, avoid elevated installs, and consider pinning or reviewing the @wechatsync/cli version before use.
+
+Risk: The browser extension can act through platform sessions where the user is already logged in.
+
+Mitigation: Confirm the target platforms and login state before syncing, use dry-run or draft workflows when available, and review drafts before publishing.
+
+Risk: The WechatSync token grants local CLI-to-extension access for the user's browser environment.
+
+Mitigation: Keep WECHATSYNC_TOKEN local, avoid sharing it in prompts or logs, and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [WechatSync Homepage](https://github.com/wechatsync/Wechatsync)
+- [WechatSync CLI Source](https://github.com/wechatsync/Wechatsync/tree/v2/packages/cli)
+- [WechatSync Extension Source](https://github.com/wechatsync/Wechatsync/tree/v2/packages/extension)
+- [Chrome Web Store Listing](https://chrome.google.com/webstore/detail/hchobocdmclopcbnibdnoafilagadion)
+- [WechatSync Install Page](https://www.wechatsync.com/#install)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include login-status summaries, draft URLs, or next-step publishing guidance based on WechatSync CLI results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

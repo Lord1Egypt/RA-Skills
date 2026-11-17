@@ -1,38 +1,50 @@
-## Description: <br>
-Manage daily schedules, tasks, family coordination, shopping, appointments, and planning to improve personal organization and productivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage daily schedules, tasks, family coordination, shopping, appointments, and planning to improve personal organization and productivity.
 
-## Publisher: <br>
-[supadoopa](https://clawhub.ai/user/supadoopa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supadoopa](https://clawhub.ai/user/supadoopa)
 
-## Use Case: <br>
-Individuals, families, and personal productivity users use this skill to organize schedules, tasks, shopping, appointments, routines, and practical plans for everyday life. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning output may affect real-world appointments, travel, purchases, family coordination, or messages. <br>
-Mitigation: Manually confirm real-world actions outside the skill before sending messages, making purchases, booking travel, or relying on appointment details. <br>
+## Use Case:
 
+Individuals and households use this skill to organize daily schedules, tasks, errands, shopping, appointments, routines, and family coordination.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/supadoopa/adam-skill-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language plans, lists, reminders, checklists, and draft messages in text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory planning artifacts and should be manually confirmed before real-world action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may process sensitive personal, family, financial, medical, or account details during planning tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing sensitive details unless needed for the task, and review generated plans or drafted messages before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supadoopa/skills/adam-skill-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/supadoopa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text planning guidance, checklists, drafts, and schedules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-reviewed recommendations for personal planning and organization]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

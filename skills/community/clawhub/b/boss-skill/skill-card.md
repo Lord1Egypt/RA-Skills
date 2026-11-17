@@ -1,47 +1,63 @@
-## Description: <br>
-Boss orchestrates a BMAD-style software delivery workflow that coordinates product, architecture, design, development, QA, and DevOps agents from requirements through optional deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boss orchestrates a BMAD-style software delivery workflow from requirements through deployment by coordinating specialized PM, architecture, UI design, tech lead, scrum master, frontend, backend, QA, and DevOps agents.
 
-## Publisher: <br>
-[echoVic](https://clawhub.ai/user/echoVic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[echovic](https://clawhub.ai/user/echovic)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan and execute new projects or feature work through a structured Chinese-language workflow that produces requirements, architecture, UI, task, QA, and deployment artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad project and environment changes as part of an automated coding and deployment workflow. <br>
-Mitigation: Run it in a clean branch or sandbox and review proposed file, dependency, service, and deployment changes before allowing them to affect production work. <br>
-Risk: The --quick mode can skip confirmation points in the workflow. <br>
-Mitigation: Avoid --quick for important projects and require explicit review before dependency installs, Docker or service startup, global package installs, or production-affecting commands. <br>
-Risk: Deployment steps may affect live services or external infrastructure. <br>
-Mitigation: Use --skip-deploy unless deployment is explicitly intended and approved for the target environment. <br>
+## Use Case:
 
+Developers use Boss to plan and execute new projects or feature work through a structured Chinese-language workflow. The skill produces planning, architecture, UI, task, QA, and deployment artifacts while coordinating specialist agents across the delivery cycle.
 
-## Reference(s): <br>
-- [Boss Skill README](README.md) <br>
-- [Boss Skill Design](DESIGN.md) <br>
-- [BMAD Methodology](references/bmad-methodology.md) <br>
-- [Artifact Guide](references/artifact-guide.md) <br>
-- [Testing Standards](references/testing-standards.md) <br>
-- [Quality Gate](references/quality-gate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese-language Markdown artifacts, code changes, shell commands, configuration files, and final delivery summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project files and .boss/<feature>/ delivery artifacts; deployment output is optional and controlled by skill arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The workflow can automatically modify projects, install or run tools, start services, and deploy or expose URLs with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or version-controlled workspace, prefer --skip-deploy until the generated plan is reviewed, and require approval before package installs, global npm installs, docker-compose, service startup, deployment, or external URL exposure.
+
+Risk: Broad trigger phrases and the --quick option can reduce user review before execution.
+
+Mitigation: Use explicit /boss invocation, avoid --quick for normal work, and keep confirmation checkpoints for requirements and planning review.
+
+## Reference(s):
+
+- [Boss Skill on ClawHub](https://clawhub.ai/echovic/skills/boss-skill)
+- [README](README.md)
+- [Design Document](DESIGN.md)
+- [BMAD Methodology](references/bmad-methodology.md)
+- [Artifact Guide](references/artifact-guide.md)
+- [Testing Standards](references/testing-standards.md)
+- [Quality Gate](references/quality-gate.md)
+- [Agent Browser](https://github.com/vercel-labs/agent-browser)
+- [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)
+- [Agile Manifesto](https://agilemanifesto.org/)
+- [EARS Requirements Syntax](https://www.iaria.org/conferences2013/filesICCGI13/ICCGI_2013_Tutorial_Terzakis.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese-language Markdown documents with inline code blocks, shell commands, and structured checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured project artifacts under .boss/<feature>/ and supports --skip-ui, --skip-deploy, and --quick options.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

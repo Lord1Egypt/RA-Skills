@@ -1,25 +1,48 @@
 ---
-slug: halucatch
-displayName: "HaluCatch / 捕幻"
 name: halucatch
 description: |
-  AI Skill 执行可靠性审查工具。评估一个 Skill 被 AI 执行时，结果是否可信、是否可复现、是否经得起业务推敲。
-  覆盖四维度：地基（数据管线）、代码、规则（业务口径）、护栏（解读指南）。
-author: Engineering Assurance Team
-version: "1.7.7"
+  Evaluates the reliability of AI Skill execution. Assesses whether a Skill's output is trustworthy, reproducible, and withstands business scrutiny when executed by an AI agent. Covers four dimensions: data pipeline integrity, code risk, business logic ambiguity, and interpretation guardrails. Use when auditing an AI Skill, checking for hallucinations or unreliable outputs, verifying execution reproducibility, or reviewing a Skill's safety before deployment or sharing.
+summary: AI Skill 执行可靠性审查工具。评估一个 Skill 被 AI 执行时，结果是否可信、是否可复现、是否经得起业务推敲。覆盖四维度：地基（数据管线）、代码、规则（业务口径）、护栏（解读指南）。
+license: MIT
+allowed-tools:
+  - Read
+  - Write
+  - Bash
+compatibility: Requires Python 3.8+; Bash only for local 'python3 halucatch_core.py', no network/arbitrary commands
+author: CoderMoray
+version: 1.8.8
+metadata:
+  hermes:
+    tags:
+    - skill-audit
+    - reliability
+    - engineering-assurance
+    - Skill审查
+    - 工程质量
+    - 可靠性
+  openclaw:
+    requires:
+      bins:
+      - python3
+    emoji: 🔍
+    homepage: https://github.com/CoderMoray/HaluCatch
+slug: halucatch
+displayName: HaluCatch / 捕幻
 tags:
-  - "工程质量"
-  - "engineering-assurance"
-  - "Skill审查"
-  - "skill-audit"
-  - "可靠性"
-  - "reliability"
-category: "engineering"
+  - skill-audit
+  - reliability
+  - engineering-assurance
+  - Skill审查
+  - 工程质量
+  - 可靠性
 ---
+> **一句话总结**：把一个 AI Skill 的文件夹扔给 HaluCatch，它会逐项检查数据管线、代码逻辑、业务规则、安全护栏有没有漏洞，然后给你三份报告（标准版看全貌、专业版看细节、行动版直接修），全程几秒钟、完全离线。
+>
+> [快速开始](#1-入口逻辑) · [能力边界](#能力边界) · [输出解读](#5-报告)
 
 # HaluCatch / 捕幻 — AI Skill 执行可靠性审查
 
-评估一个 Skill 包在 AI 执行时的可靠性，产出评估报告和修复建议。
+评估一个 Skill 包在 AI 执行时的可靠性，产出评估报告和修复建议（建议需用户确认后才执行，不自动修改目标 Skill）。
 
 ---
 
@@ -33,6 +56,8 @@ category: "engineering"
 | 检查解读护栏是否到位 | 代码性能优化 |
 | 输出修复建议和骨架脚本 | 替换人工业务决策 |
 
+**硬件限制：** 单文件上限 10 MB（超大文件会被跳过并提示），不支持批量审查（一次一个目录），不支持二进制文件，不建立网络连接（仅通过本地 Python 脚本运行）。审查耗时取决于目录下文件数量和大小，通常几秒到几十秒。
+
 ---
 
 ## 角色
@@ -41,11 +66,10 @@ category: "engineering"
 
 ### 职责
 
-- 读取目标 Skill 文件夹的全部文件
-- 按四维框架执行评估
 - 调用 `halucatch_core.py` **一次性完成全流程**（L1 扫描 + L2 评估 + L3 报告生成）
 - 读取脚本生成的报告文件，对话中展示标准版，询问是否修复
-- 在脚本报告基础上补充语义分析（`info` 级别条目）
+- 在脚本报告基础上做语义补充：按需读取报告中引用的源文件，提供上下文分析（`info` 级别条目）
+- **不要自己读取目标目录的文件**——文件扫描由脚本完成，AI 读取只会浪费 token
 
 ### 你与 halucatch_core.py 的分工
 
@@ -57,6 +81,20 @@ category: "engineering"
 
 > **核心原则**：`halucatch_core.py` 涵盖全流程——L1 扫描、L2 评估、L3 报告生成一次性完成。你只需读取脚本生成的报告并展示给用户。不再由 AI 独立编写报告正文。
 
+## 权限与安全边界
+
+**⚠️ 写入警告：HaluCatch 会生成报告文件写入目标目录的 `reports/` 子目录，并可能产出修复指引（需用户确认后才应用）。这不是纯只读工具。**
+
+HaluCatch 仅需要以下权限即可运行：
+
+| 操作 | 需要 | 说明 |
+|------|------|------|
+| 读取目标 Skill 目录 | Read | 递归读取全部文件 |
+| 写入报告文件 | Write | 仅写入目标目录内的 `reports/` 子目录，不修改 Skill 源文件 |
+| 执行 Python 脚本 | Bash | 仅执行本地 `halucatch_core.py`，不访问网络、不执行外部命令 |
+
+**安全约束**：HaluCatch 不会访问目标目录以外的任何路径，不会发起网络连接。Bash 权限仅用于运行自带的 Python 审查脚本，不会执行非本项目代码。审查前必须由用户显式指定目标路径。
+
 ---
 
 ## 输入
@@ -66,7 +104,7 @@ category: "engineering"
 | 文件类型 | 是否必需 | 说明 |
 |---------|---------|------|
 | `SKILL.md` | ✅ | Skill 的主指令文件 |
-| `_meta.json` 或 `meta.json` | ❌ | Skill 元数据（含版本号等） |
+| `manifest.json` 或 `config.yaml` | ❌ | Skill 配置文件（含版本号等） |
 | `*.py` | ❌ | 数据管线的固化脚本（如有） |
 | `*.xlsx / *.csv` 等 | ❌ | 数据文件（如有，用于验证对账） |
 
@@ -80,18 +118,6 @@ category: "engineering"
 - 目标目录存在且有读取权限。
 - 目标 Skill 应包含至少一个 `SKILL.md` 文件（规范名称）。如有其他 `.md` 文件，AI 将尝试启发式匹配，但会报告规范性问题。
 - 目录中的 `.py` 文件视为 Skill 核心执行脚本，非第三方依赖库。
-
-### 用户问法示例
-
-| 用户说 | AI 执行动作 |
-|--------|-----------|
-| 「请用 HaluCatch 审查这个 Skill：/path/to/skill」 | 标准流程：扫描 → 分类 → 四维评估 → 三版输出 |
-| 「审查 ./data-skill，重点看数据管道」 | 分类为代码工程型，侧重地基和代码维度 |
-| 「审查 ./guide-skill，看指令够不够清晰」 | 分类为纯方法论型，输出方法论评估 |
-| 「用 --validate 模式扫描 ./my-skill」 | 仅输出文件清单和类型分类，不做评估 |
-| 「审查这个 Skill 后如果发现问题就修」 | 评估 → 用户确认「修」→ 自动出修复方案 |
-
----
 
 ## AI 执行指南
 
@@ -251,6 +277,8 @@ python3 halucatch_core.py --skill-dir /path/to/skill
 
 ---
 
+> ⚠️ **执行前确认**：在开始扫描文件、运行 `halucatch_core.py`、或生成报告之前，必须先向用户确认目标路径无误，并告知即将执行的操作（读取目标目录文件、运行本地脚本、生成报告到 reports/ 目录）。未明确确认前不得执行任何读写操作。
+
 ### Phase 3：三版输出
 
 **核心变更**：报告由 `halucatch_core.py`（`reporter.py`）自动生成，你**不再需要独立撰写报告正文**。你只负责：
@@ -261,7 +289,7 @@ python3 halucatch_core.py --skill-dir /path/to/skill
 **输出决策规则**：三版报告**始终由脚本生成并存盘**，对话中只展示标准版。
 
 1. 运行 `halucatch_core.py --skill-dir <路径>` → 脚本自动完成 L1 扫描 + L2 评估 + L3 报告生成
-2. 三份 `.md` 文件写入 `HaluCatch/reports/` 目录（或 `--output-dir` 指定路径）
+2. 三份 `.md` 文件写入 `reports/` 目录（或 `--output-dir` 指定路径）
 3. 对话中只输出**标准版**（白话、零术语）
 4. 标准版末尾附带提示：「需要看技术细节（专业版）或修复方案（行动版）吗？」
 5. 如果用户说「要」→ 对话中展示对应版本内容（文件已在磁盘上，直接读取展示）
@@ -302,6 +330,19 @@ python3 halucatch_core.py --skill-dir /path/to/skill
 
 输出格式：在每个发现条目下方追加一行 `> **AI 分析**: [具体判断]`。
 
+#### 报告审查前检查
+
+报告生成后、向用户展示或提交前，**必须**先检查标准版报告中是否存在 `⚠️ 疑似外部 Skill` 标记。
+
+**如存在**：不做 `present_files`，向用户确认（优先用交互弹窗；不支持弹窗的平台改用文字列出选项，等用户回复 1/2/3）：
+
+> ⚠️ 发现疑似外部 Skill 目录。`skills/` 是外部安装的 Skill（非本项目代码）吗？→ 确认后我会同步更新 HaluCatch 运行配置，之后自动跳过。
+
+选项（标题「外部 Skill 确认」）：
+1. 「是，跳过 skills/」→ 设 `skills_is_external: true`，重跑审查
+2. 「否，正常扫描」→ 设 `skills_is_external: false`，重跑审查
+3. 「不确定，保留标记」→ 保持现状，报告自动标注 `[⚠️ 疑似外部 Skill]`，继续展示
+
 ---
 
 ### Phase 4：修复决策与闭环
@@ -327,9 +368,8 @@ python3 halucatch_core.py --skill-dir /path/to/skill
 
 ## 报告落盘
 
-- 缺省输出到 `HaluCatch/reports/` 目录（不污染目标 Skill 目录）
+- 缺省输出到 `reports/` 目录（目标 Skill 目录内）
 - 指定 `--output-dir` 则输出到自定义路径
-- 修复包（如有）保存到：`{Skill目录}/halucatch-fix/`
 
 ---
 
@@ -361,7 +401,7 @@ python3 halucatch_core.py --skill-dir /path/to/skill
 
 ### 如果还是不会用
 
-> 直接说：「帮我审查这个 Skill」然后把 Skill 文件夹拖进来，或贴一段 SKILL.md 的内容。AI 会自行判断接下来的步骤。
+> 直接说：「审查 /path/to/skill」，把 Skill 文件夹拖进来即可。AI 会自行判断接下来的步骤。不要直接贴 SKILL.md 内容——用文件夹路径保证完整性。
 
 ---
 
@@ -373,7 +413,7 @@ python3 halucatch_core.py --skill-dir /path/to/skill
 |---------|------|---------|
 | `❌ 找不到 SKILL.md` | 目标目录不存在或没有 .md 文件 | 确认路径正确 → 检查目录是否有 `SKILL.md` 或其他 `.md` 文件 → 如无，创建一个 |
 | `⚠️ 未找到标准 SKILL.md` | 文件名不是 `SKILL.md`（如 `skill.md`、`README.md`） | 将文件重命名为 `SKILL.md`，或告知 AI 用 `--file` 指定文件名 |
-| `🔧 文件编码异常，已跳过 XXX.py` | 文件包含非 UTF-8 字符（如 GBK 编码的中文注释） | 用编辑器将文件另存为 UTF-8 编码，或将注释改为英文 |
+| `🔧 文件编码异常，已跳过 XXX.py` | 文件包含非 UTF-8 字符（如 GBK 编码的中文注释） | 用编辑器将文件另存为 UTF-8 编码（编码转换不改变内容，仅调整存储方式） |
 | `📦 Skill 包过大（> 2MB）` | 目录包含大量数据文件或依赖包 | 仅保留核心文件（SKILL.md + .py 脚本），数据文件和依赖放入 `.halucatch-ignore` |
 | `⏱️ 审查超时` | 文件过多或脚本执行时间过长 | 告知 AI：「只审查 SKILL.md 和核心 .py 文件」 |
 

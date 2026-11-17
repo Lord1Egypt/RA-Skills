@@ -1,40 +1,57 @@
-## Description: <br>
-Xiamen Tide Calculator helps agents calculate tide times for Xiamen waters and provide beachcombing advice, including lunar date conversion, tide-size classification, scoring, location recommendations, equipment suggestions, and safety reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Xiamen waters tide times and informational beachcombing guidance, including Gregorian-to-lunar date conversion, high and low tide times, beachcombing scores, location suggestions, equipment advice, and safety reminders.
 
-## Publisher: <br>
-[kingwingshome](https://clawhub.ai/user/kingwingshome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingwingshome](https://clawhub.ai/user/kingwingshome)
 
-## Use Case: <br>
-External users and agents use this skill to answer Xiamen tide queries, compare beachcombing windows, and produce practical outing guidance for specific solar or lunar dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tide and beachcombing guidance may not reflect official tide tables, current weather, or on-site conditions. <br>
-Mitigation: Treat results as advisory and confirm plans with official tide tables, weather forecasts, and local observations. <br>
-Risk: The skill runs local Python scripts and depends on the zhdate package for lunar date conversion. <br>
-Mitigation: Install dependencies in a virtual environment and review generated guidance before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to answer Xiamen tide queries and plan beachcombing windows for specific dates. It provides informational tide timing, suitability scoring, multi-day comparisons, equipment suggestions, and safety reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingwingshome/xiamen-tide-calculator) <br>
+### Deployment Geography for Use:
 
+Global users; guidance is localized to Xiamen, China waters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style tide reports, beachcombing recommendations, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output based on local Python calculations for requested dates and modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata) <br>
+Risk: Tide times and beachcombing recommendations can be safety-critical and may differ from real conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational and verify official tide tables, weather, local warnings, and on-site conditions before going out.
+
+Risk: The skill may execute local Python scripts and depends on the zhdate package.
+
+Mitigation: Install and run it only after reviewing the disclosed scripts and dependency requirements for your environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingwingshome/skills/xiamen-tide-calculator)
+- [README_en.md](artifact/README_en.md)
+- [SKILL_en.md](artifact/SKILL_en.md)
+- [Usage guide](artifact/usage_guide.md)
+- [New features guide](artifact/new_features_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with tide tables, ranked beachcombing recommendations, and safety reminders.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python scripts and the zhdate dependency for lunar date conversion when script execution is available.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

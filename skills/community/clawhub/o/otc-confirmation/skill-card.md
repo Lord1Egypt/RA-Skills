@@ -1,54 +1,62 @@
-## Description: <br>
-Otc Confirmation adds an email-delivered one-time confirmation code gate for sensitive agent operations before execution proceeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OTC Confirmation gives agents a one-time email confirmation workflow for sensitive, irreversible, or externally visible operations, with shell scripts for code generation, email delivery, and verification.
 
-## Publisher: <br>
-[Lewis-404](https://clawhub.ai/user/Lewis-404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lewis-404](https://clawhub.ai/user/lewis-404)
 
-## Use Case: <br>
-Developers and agent operators use this skill to require human confirmation before agents perform dangerous, irreversible, externally visible, or security-sensitive operations. It provides shell scripts, prompt integration guidance, and reference security architecture materials for adding an out-of-band approval step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan states that the zero-knowledge guarantee is overstated when approval codes are pasted into chat. <br>
-Mitigation: Treat the chat session as sensitive, avoid displaying or logging codes, and prefer an isolated verification path for high-impact workflows. <br>
-Risk: Stale confirmation state can remain valid because the shell workflow does not provide time-based expiry. <br>
-Mitigation: Clear stale state files before sensitive operations or add an expiry wrapper before relying on the confirmation gate. <br>
-Risk: Custom email backends can execute a user-provided script. <br>
-Mitigation: Use the default SMTP backend where practical; if a custom backend is required, allow only trusted scripts with restricted permissions. <br>
-Risk: The confirmation step alone does not bind approval to a full operation policy for truly dangerous actions. <br>
-Mitigation: Pair the skill with a separate operation-bound permission or risk policy wrapper before allowing destructive or high-impact operations. <br>
-Risk: SMTP credentials are required for normal operation. <br>
-Mitigation: Use a dedicated SMTP app password and avoid sharing the account password with the agent runtime. <br>
+## Use Case:
 
+Developers and operators use this skill to add human-in-the-loop confirmation before an agent performs external communication, destructive local changes, security-rule changes, deployments, or similar high-impact actions.
 
-## Reference(s): <br>
-- [Otc Confirmation ClawHub Page](https://clawhub.ai/Lewis-404/otc-confirmation) <br>
-- [OTC Enforcement Checklist](references/enforcement-checklist.md) <br>
-- [OTC Enforcement Discipline](references/enforcement-discipline.md) <br>
-- [OTC Trigger Categories](references/trigger-categories.md) <br>
-- [AI DevOps Agent Security Pack Overview](ai-devops-agent-security-pack/00_overview.md) <br>
-- [Confirmation System Deep Dive](ai-devops-agent-security-pack/02_confirmation_system.md) <br>
-- [OpenClaw Integration Configuration](ai-devops-agent-security-pack/examples/openclaw_config.yaml) <br>
-- [Gmail App Password Help](https://support.google.com/accounts/answer/185833) <br>
-- [himalaya CLI](https://github.com/pimalaya/himalaya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON/YAML configuration snippets, and reference code files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the default SMTP path and OTC_EMAIL_RECIPIENT, OTC_SMTP_USER, and OTC_SMTP_PASS environment variables for email delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: changelog and server release, released 2026-03-08) <br>
+Risk: The scanner reports that the security gate is weaker than advertised and should not be treated as a strong authorization boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and add operation/session binding, expiry, attempt limits, atomic verification, and safer temp-file handling before relying on it for high-impact authorization.
+
+Risk: The scanner reports a local code-execution bug and warns against passing untrusted operation text into the scripts.
+
+Mitigation: Avoid untrusted operation descriptions, validate or escape email-rendered text, and use the skill only in a controlled environment until the issue is fixed.
+
+Risk: SMTP credentials are required for the normal email workflow.
+
+Mitigation: Use isolated SMTP credentials with limited privileges and rotate them if the agent workspace or logs may have exposed configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lewis-404/skills/otc-confirmation)
+- [README](artifact/README.md)
+- [OTC Trigger Categories](artifact/references/trigger-categories.md)
+- [OTC Enforcement Checklist](artifact/references/enforcement-checklist.md)
+- [OTC Enforcement Discipline](artifact/references/enforcement-discipline.md)
+- [AI DevOps Agent Security Pack Overview](artifact/ai-devops-agent-security-pack/00_overview.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and OTC email environment variables for the SMTP workflow.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata and changelog, released 2026-03-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

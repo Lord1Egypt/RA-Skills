@@ -1,49 +1,60 @@
-## Description: <br>
-AI legal assistant for Indian advocates and lawyers that helps draft Indian legal documents, analyze case files, research statutes and procedural questions, and support practice-management tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI legal assistant for Indian advocates and lawyers that helps draft Indian legal documents, analyze case files, research statutes and case law, manage practice workflows, and handle post-2024 BNS/BNSS/BSA dual-citation.
 
-## Publisher: <br>
-[dhirajpatra](https://clawhub.ai/user/dhirajpatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dhirajpatra](https://clawhub.ai/user/dhirajpatra)
 
-## Use Case: <br>
-Indian advocates and legal practitioners use this skill to prepare court-ready drafts, summarize uploaded legal documents into structured case briefs, check Indian statutory and procedural references, and organize client or matter information for advocate review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential legal or client information may be included in prompts or uploaded documents. <br>
-Mitigation: Use redacted documents where practical and avoid unnecessary Aadhaar, PAN, bank, or other client identifiers. <br>
-Risk: Generated legal citations, limitation calculations, or procedural suggestions may be incorrect or incomplete. <br>
-Mitigation: Require advocate review and verification of all citations, deadlines, pleadings, and filing-ready outputs before use. <br>
-Risk: Broad activation phrases may invoke the skill outside the intended Indian legal-work context. <br>
-Mitigation: Invoke the skill deliberately for Indian legal matters and confirm court, forum, statute, and relief details before relying on output. <br>
+## Use Case:
 
+External legal professionals, especially Indian advocates and lawyers, use this skill to prepare advocate-review legal drafts, structure case-file analysis, research Indian statutes and citations, and organize court and client workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/dhirajpatra/openclaw-indian-advocate) <br>
-- [Publisher homepage](https://dhirajpatra.github.io) <br>
-- [Drafting reference](references/drafting.md) <br>
-- [Indian statutes and citation reference](references/statutes.md) <br>
-- [Case file analysis reference](references/case-analysis.md) <br>
-- [Practice management reference](references/practice-management.md) <br>
-- [Court procedure and timelines reference](references/procedure.md) <br>
-- [Templates index](templates/index.md) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured legal-practice templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for advocate review and may include document drafts, case briefs, statute mappings, timeline checks, intake forms, diary entries, fee notes, and next-step suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Client documents and advocate workflows can contain sensitive legal, government ID, tax, or banking information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted placeholders where possible, avoid sharing full government IDs or bank details unless strictly needed, and keep client facts confined to the relevant matter.
+
+Risk: Legal drafts, citations, limitation calculations, and procedural guidance may be incorrect, outdated, or unsuitable for filing without professional review.
+
+Mitigation: Have all drafts, citations, procedural deadlines, court-fee assumptions, and filing strategy reviewed by a qualified advocate before use.
+
+## Reference(s):
+
+- [OpenClaw homepage](https://dhirajpatra.github.io)
+- [ClawHub skill page](https://clawhub.ai/dhirajpatra/skills/openclaw-indian-advocate)
+- [Case File Analysis Reference](references/case-analysis.md)
+- [Drafting Reference](references/drafting.md)
+- [Practice Management Reference](references/practice-management.md)
+- [Court Procedure and Timelines Reference](references/procedure.md)
+- [Indian Statutes and Citation Reference](references/statutes.md)
+- [Templates Index](templates/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured text suitable for legal drafts, research notes, case briefs, checklists, templates, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Legal document drafts are intended for advocate review and verification before filing; citations and procedural deadlines should be checked against authoritative legal sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

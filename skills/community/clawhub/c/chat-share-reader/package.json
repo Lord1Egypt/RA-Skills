@@ -1,0 +1,46 @@
+{
+  "name": "chat-share-reader",
+  "version": "0.5.3",
+  "description": "Export AI chat conversations (ChatGPT, Claude, Gemini, Grok, Perplexity, DeepSeek, Kimi, Qwen) and 15 local agent session stores (Claude Code, Codex, Cursor, opencode) to markdown. 把 AI 对话与得到笔记导出为 markdown，默认脱敏。",
+  "type": "module",
+  "bin": {
+    "chat-share-reader": "scripts/read.mjs",
+    "chat-sessions": "scripts/sessions.mjs"
+  },
+  "engines": {
+    "node": ">=22.15"
+  },
+  "scripts": {
+    "start": "node scripts/read.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\""
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts",
+    "references",
+    "tests"
+  ],
+  "keywords": [
+    "chat-export",
+    "conversation-export",
+    "session-export",
+    "chatgpt",
+    "claude",
+    "claude-code",
+    "claude-skills",
+    "codex",
+    "cursor",
+    "gemini",
+    "grok",
+    "perplexity",
+    "biji",
+    "得到大脑",
+    "markdown",
+    "export",
+    "backup",
+    "redact",
+    "agent-skill"
+  ],
+  "license": "MIT"
+}

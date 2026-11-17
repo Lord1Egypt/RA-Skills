@@ -1,38 +1,52 @@
-## Description: <br>
-Analyze how to extend and leverage existing assets for growth strategy and resource optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze how to extend and leverage existing assets. Use for growth strategy and resource optimization.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business strategists, founders, and operators use this skill to analyze existing brand, technology, customer, and operational assets for extension opportunities, prioritization, recommendations, and implementation planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad business strategy trigger phrases may activate the skill in unintended contexts.
+
+Mitigation: Review the invocation context before using recommendations and scope prompts to the intended business asset.
+
+Risk: Strategic recommendations may be incomplete or misleading if the input business context is sparse.
+
+Mitigation: Validate outputs with domain experts, current market data, and internal financial assumptions before making investment decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business strategists, founders, operators, and consultants use this skill to inventory assets, evaluate extension opportunities, prioritize investments, and plan implementation roadmaps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad business phrasing and can produce strategic or investment recommendations that require judgment. <br>
-Mitigation: Review recommendations, assumptions, market sizing, and investment guidance before acting on them. <br>
+**Output Format:** [Markdown analysis with tables and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Asset Extension on ClawHub](https://clawhub.ai/linuszz/asset-extension) <br>
+**Other Properties Related to Output:** [Produces an asset inventory, extension opportunities, recommendations, and an implementation roadmap.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables and numbered recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the provided business or asset as the analysis subject.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

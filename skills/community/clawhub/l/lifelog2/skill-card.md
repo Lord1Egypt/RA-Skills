@@ -1,46 +1,57 @@
-## Description: <br>
-碎片化日记记录和汇总技能。当用户想要记录当天碎片化的想法、心情、事件，或者需要汇总、存档日记时使用。触发场景包括：用户发送"记日记"记录碎片内容、发送"汇总日记"整理当天内容、发送"日记存档"将日记写入 flomo 和 ima。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+lifelog2 records short diary fragments, stores daily drafts locally, summarizes entries without rewriting them, and archives reviewed summaries to flomo and ima when requested.
 
-## Publisher: <br>
-[quanmengli777](https://clawhub.ai/user/quanmengli777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanmengli777](https://clawhub.ai/user/quanmengli777)
 
-## Use Case: <br>
-External users use this skill to capture same-day diary fragments, preserve the original wording, summarize entries into a dated lifelog, and archive the summary to flomo and ima. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diary fragments persist locally across sessions until archived. <br>
-Mitigation: Install only if local draft storage is acceptable, and review or remove drafts when they should no longer remain on the device. <br>
-Risk: Archiving sends the compiled diary to flomo and ima. <br>
-Mitigation: Review the generated summary before archiving and confirm the connected flomo and ima skills use the intended accounts. <br>
-Risk: Successful archival removes the local draft. <br>
-Mitigation: Keep a separate copy before archiving if the local draft should be retained. <br>
+## Use Case:
 
+External users use this skill to capture daily thoughts, moods, and events as timestamped diary fragments, review a same-day markdown summary, and archive the approved summary to flomo and ima.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quanmengli777/lifelog2) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [File storage demo](artifact/lifelog2-workspace/iteration-1/file_storage_demo.md) <br>
-- [Test results](artifact/lifelog2-workspace/iteration-1/test_results.md) <br>
-- [Evaluation config](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, API Calls, Guidance] <br>
-**Output Format:** [Markdown and short confirmation text with local dated draft files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves user diary text verbatim, stores local drafts by date, and archives only after user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Diary entries are saved in local draft files and may contain sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local draft storage is acceptable, and avoid recording secrets or highly sensitive details unless that storage location is appropriate.
+
+Risk: The archive command sends reviewed diary content to flomo and ima.
+
+Mitigation: Review the generated summary before archiving, and archive only when both destinations are acceptable for the content.
+
+Risk: Local draft cleanup occurs after both archive destinations report success.
+
+Mitigation: If either archive step fails, keep the draft file and tell the user what failed so the content can be retried or handled manually.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quanmengli777/skills/lifelog2)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown diary entries and concise status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the user's original diary text and uses local daily draft files before user-directed archival.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

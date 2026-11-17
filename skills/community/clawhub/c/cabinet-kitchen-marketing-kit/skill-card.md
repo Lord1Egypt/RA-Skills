@@ -1,46 +1,60 @@
-## Description: <br>
-Generates marketing content for cabinet refacing and kitchen remodeling contractors with prompts that enforce license, advertising, environmental, warranty, and review-solicitation guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates compliance-oriented marketing prompts for cabinet refacing, custom cabinetry, and kitchen remodeling contractors.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Cabinet and kitchen contractors, general contractors with cabinetry divisions, and marketing agencies use this skill to draft local campaigns, service pages, ad copy, review and referral messaging, local SEO calendars, JSON-LD snippets, and compliance audit notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, with Nevada-specific contractor licensing assumptions in the provided prompts. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft review requests may include satisfaction-conditioned language that could be interpreted as review gating. <br>
-Mitigation: Replace satisfaction-conditioned review asks with neutral honest-review requests before using any output. <br>
-Risk: Referral incentives, review solicitations, warranty claims, environmental claims, and contractor-license statements can trigger jurisdiction-specific legal or platform requirements. <br>
-Mitigation: Keep referral incentives separate from review solicitations and have a qualified reviewer confirm state, local, FTC, platform, licensing, and advertising requirements before publication. <br>
-Risk: The skill produces marketing drafts, not legal advice or verified compliance determinations. <br>
-Mitigation: Treat outputs as drafts and verify all license numbers, certifications, warranty terms, certifications, platform rules, and claim substantiation against current source documents. <br>
+## Use Case:
 
+Contractors, home-services marketers, and agencies use this skill to draft cabinet and kitchen remodeling landing pages, ads, local SEO content, review requests, referral outreach, and JSON-LD snippets. Outputs are intended for publication workflows where business credentials, warranty terms, environmental claims, financing language, and regulatory disclosures are checked before use.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gitflopez/cabinet-kitchen-marketing-kit) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gitflopez) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Prompt 3 - Reputation Management & Referral System](prompts/03-reputation-referral.md) <br>
+### Deployment Geography for Use:
 
+United States, with Nevada and Southwest U.S. assumptions in the included prompt templates
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown prompt outputs with ad copy, service-page drafts, LocalBusiness JSON-LD snippets, review and referral templates, checklists, calendars, and audit tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only skill; outputs are draft marketing materials that require jurisdiction, platform, and legal review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated ads, SEO pages, review requests, referral letters, or outreach copy may contain unsupported licensing, warranty, environmental, financing, or certification claims if user inputs are inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify license numbers, EPA RRP status, warranty terms, financing disclosures, CARB Phase 2 or GREENGUARD claims, and any lifetime or eco-friendly wording before publication.
+
+Risk: The included prompts focus on Nevada and Southwest U.S. cabinet marketing assumptions, which may not match other jurisdictions or business scopes.
+
+Mitigation: Adapt regulatory disclosures and contractor-license requirements to the target service area before using generated copy outside the intended market.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/cabinet-kitchen-marketing-kit)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Seasonal campaign prompt](artifact/prompts/01-seasonal-campaign.md)
+- [Service pages and schema prompt](artifact/prompts/02-service-pages-schema.md)
+- [Reputation and referral prompt](artifact/prompts/03-reputation-referral.md)
+- [Digital ads and local SEO prompt](artifact/prompts/04-digital-ads-local-seo.md)
+- [Example output](artifact/examples/desert-kitchen-henderson-nv.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown prompt outputs with ad copy, service-page copy, outreach templates, checklists, and JSON-LD code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only prompt kit; no executable behavior is identified in the server security summary.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,82 @@
+{
+  "profile_type": "style",
+  "id": "sumi-e-ink",
+  "version": "1.0.0",
+  "reference_status": "approved-bundled",
+  "references": [
+    {
+      "id": "teapot-and-cups-1847",
+      "image": "assets/style-packs/sumi-e-ink/reference.webp",
+      "source_metadata": "assets/style-packs/sumi-e-ink/source.json",
+      "technique_roles": [
+        "sparse sumi-e ink line construction",
+        "light wash shadow and negative-space balance",
+        "selective ink density for volume",
+        "large paper-white breathing room"
+      ],
+      "subject_exclusions": [
+        "teapot",
+        "cups",
+        "tableware set",
+        "reference composition",
+        "Japanese calligraphy seal"
+      ]
+    }
+  ],
+  "positive_prompt": "Sparse sumi-e ink lines with light wash shadows, selective ink density for volume, large paper-white breathing room, restrained diffusion; translate only the photographed subject through the reference's ink handling.",
+  "negative_prompt": "Do not copy teapot, cups, tableware, calligraphy, seals, or composition. No invented background, no Starbucks logo, no text, no hand, no cloth, no decorative frame, no watermark.",
+  "line": {
+    "weight": "fine-to-variable",
+    "character": "calligraphic with controlled dry-brush",
+    "color": "sumi black"
+  },
+  "color": {
+    "saturation": "none-to-low",
+    "transparency": "high",
+    "temperature": "neutral"
+  },
+  "edges": {
+    "subject": "ink line with light wash edge, occasional dry-brush break",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "use reference only for ink line quality, wash control, and negative-space balance",
+    "preserve paper-white, no full-field tint",
+    "keep diffusion restrained to 2-3 edge bleeds"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "sparse ink lines with light wash shadows",
+      "controlled dry-brush breaks, not heavy outline"
+    ],
+    "negative_space_rules": [
+      "preserve large unpainted paper",
+      "do not fill background with pattern"
+    ],
+    "fill_tonal_rules": [
+      "group values in ink wash from light to mid, no color",
+      "use density for volume, not shading"
+    ],
+    "background_cleanliness": [
+      "empty areas match shared paper master",
+      "no speckle field or backing patch"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "selective ink simplification that preserves source identity and imports no reference subject",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 10,
+    "alpha_feather_distance": 30,
+    "preserve_luminance_below": 225,
+    "preserve_saturation_above": 24,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.004,
+    "max_corner_alpha_mean": 10
+  }
+}

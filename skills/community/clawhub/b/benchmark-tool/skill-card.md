@@ -1,43 +1,58 @@
-## Description: <br>
-Benchmark CPU, memory, disk I/O, and network on your system when measuring server performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark CPU, memory, disk I/O, and network on your system.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and system operators use this skill to run basic local CPU, memory, disk I/O, and network checks when measuring server performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Disk and network benchmarks can write test files or contact external hosts outside the user's intended scope. <br>
-Mitigation: Run the skill only in a scratch directory and only against network hosts the user intends to contact. <br>
-Risk: The compare command can expose differences from sensitive files. <br>
-Mitigation: Use compare only with non-sensitive files that are safe to show in the agent conversation. <br>
-Risk: The security review marked this release suspicious because of unscoped disk, network, and file comparison behavior. <br>
-Mitigation: Review the commands before installation and execute them in a controlled environment. <br>
+## Use Case:
 
+Developers and operators use this skill to run local CPU, memory, disk I/O, network, and comparison checks when measuring server performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/benchmark-tool) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Benchmark results may depend on host resources, selected disk path, and selected network host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release, SKILL.md frontmatter, script VERSION) <br>
+Risk: The disk benchmark can write and delete a predictable file in a user-provided directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, do not run the disk benchmark in sensitive, shared, or privileged directories, and do not run it with elevated privileges.
+
+Risk: The network benchmark contacts the host provided by the user.
+
+Mitigation: Use only approved hosts and review network policy before running the network benchmark.
+
+Risk: The compare command can reveal file contents or differences from arbitrary files the skill can access.
+
+Mitigation: Run comparisons only on intended files and avoid sensitive paths.
+
+## Reference(s):
+
+- [Benchmark Tool on ClawHub](https://clawhub.ai/bytesagain1/skills/benchmark-tool)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and textual benchmark output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can write benchmark data under ~/.local/share/benchmark-tool and can run local shell commands that inspect system resources.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

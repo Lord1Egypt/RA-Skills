@@ -1,49 +1,58 @@
-## Description: <br>
-CTF-oriented ZIP cracking and recovery with the bundled ZipCracker engine for authorized analysis and recovery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CTF-oriented ZIP cracking and recovery with the bundled ZipCracker engine for authorized archive analysis, pseudo-encryption repair, dictionary and mask attacks, CRC32 recovery, known-plaintext workflows, template KPA, WinZip AES triage, and large-dictionary handling.
 
-## Publisher: <br>
-[asaotomo](https://clawhub.ai/user/asaotomo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asaotomo](https://clawhub.ai/user/asaotomo)
 
-## Use Case: <br>
-Developers, CTF players, challenge authors, and authorized security operators use this skill to profile encrypted ZIP archives and choose an appropriate recovery path, including pseudo-encryption repair, dictionary and mask attacks, CRC32 recovery, known-plaintext workflows, template KPA, bkcrack workflows, and AES triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to crack ZIP passwords. <br>
-Mitigation: Use it only for CTFs, self-owned archives, or explicitly authorized recovery work; refuse requests that indicate unauthorized access to third-party data. <br>
-Risk: Recovery workflows may write extracted files, recovered passwords, and logs to disk. <br>
-Mitigation: Run the skill in a contained project directory with a disposable output folder and avoid storing sensitive archives or recovered material longer than necessary. <br>
-Risk: Some workflows can trigger long-running dictionary or mask searches. <br>
-Mitigation: Profile first, prefer strong clues over broad brute force, and require explicit user acceptance before very large mask searches. <br>
-Risk: Optional dependency installation prompts can fetch external tools. <br>
-Mitigation: Keep install prompts disabled unless the operator trusts the dependency sources and has approved installation in the current environment. <br>
+## Use Case:
 
+Developers, CTF players, challenge authors, and authorized recovery operators use this skill to profile encrypted ZIP archives, choose an evidence-based recovery tactic, run the bundled wrapper, and report the command, rationale, and result.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/asaotomo/zipcracker) <br>
-- [Attack Playbook](references/attack-playbook.md) <br>
-- [OpenClaw Workflow](references/openclaw-workflow.md) <br>
-- [CTF Techniques](references/ctf-techniques.md) <br>
-- [Natural Language Command Examples](references/natural-language-command-examples.md) <br>
-- [Forward Test Report](references/forward-test-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exact commands run, selected attack rationale, recovered status, blocker notes, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill can be used for ZIP password recovery and may be inappropriate for unauthorized access attempts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for CTFs, self-owned archives, or explicitly authorized recovery, and refuse requests that suggest unauthorized third-party access.
+
+Risk: Extraction and optional dependency-install paths create high-impact filesystem and supply-chain risks.
+
+Mitigation: Review before installing, prefer a disposable workspace or container, preinstall pinned dependencies where possible, avoid --allow-install-prompts unless mutable downloads are accepted, and avoid pointing --out at important existing directories until the flagged issues are fixed.
+
+## Reference(s):
+
+- [ZipCracker Skill Page](https://clawhub.ai/asaotomo/skills/zipcracker)
+- [Attack Playbook](references/attack-playbook.md)
+- [CTF Techniques](references/ctf-techniques.md)
+- [OpenClaw Workflow](references/openclaw-workflow.md)
+- [Natural Language Command Examples](references/natural-language-command-examples.md)
+- [Forward Test Report](references/forward-test-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and concise run summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected wrapper flags, archive profile observations, recovered password or extraction status when authorized, and next-step guidance when recovery is blocked.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

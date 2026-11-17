@@ -1,0 +1,102 @@
+{
+ "brand": {
+  "name": "Based on NASA images",
+  "font": "serif",
+  "colors": {
+   "bg": "#0D1020",
+   "fg": "#F4EFE6",
+   "accent": "#E9B949"
+  }
+ },
+ "pins": [
+  {
+   "id": "phases-grid",
+   "layout": "grid",
+   "headline": "The 8 Moon phases, in order",
+   "sub": "As seen from the Northern Hemisphere",
+   "cols": 2,
+   "tiles": [
+    {
+     "image": "media/phase-1.jpg",
+     "label": "New Moon"
+    },
+    {
+     "image": "media/phase-2.jpg",
+     "label": "Waxing crescent"
+    },
+    {
+     "image": "media/phase-3.jpg",
+     "label": "First quarter"
+    },
+    {
+     "image": "media/phase-4.jpg",
+     "label": "Waxing gibbous"
+    },
+    {
+     "image": "media/phase-5.jpg",
+     "label": "Full Moon"
+    },
+    {
+     "image": "media/phase-6.jpg",
+     "label": "Waning gibbous"
+    },
+    {
+     "image": "media/phase-7.jpg",
+     "label": "Third quarter"
+    },
+    {
+     "image": "media/phase-8.jpg",
+     "label": "Waning crescent"
+    }
+   ]
+  },
+  {
+   "id": "same-side",
+   "layout": "photo",
+   "image": "media/ksc-full-moon.jpg",
+   "focus": [
+    0.5,
+    0.42
+   ],
+   "headline": "Why we always see the same side of the Moon",
+   "sub": "It spins once for every trip around Earth",
+   "bg": "#F4EFE6",
+   "fg": "#14182B",
+   "accent": "#9A4E12"
+  },
+  {
+   "id": "cycle",
+   "layout": "fact",
+   "big": "29.5",
+   "image": "media/crescent-over-earth.jpg",
+   "focus": [
+    0.36,
+    0.5
+   ],
+   "darken": 0.3,
+   "headline": "days from one new Moon to the next",
+   "sub": "Eight phases, then it starts again"
+  },
+  {
+   "id": "when-to-see",
+   "layout": "list",
+   "headline": "When to see the main Moon phases",
+   "font": "serif",
+   "items": [
+    "New Moon: up with the Sun, so you can't see it",
+    "First quarter: rises around midday, best in the evening",
+    "Full Moon: rises at sunset, sets at sunrise",
+    "Third quarter: rises around midnight, sets around midday"
+   ],
+   "image": "media/capitol-moon.jpg",
+   "focus": [
+    0.28,
+    0.1
+   ],
+   "bg": "#F4EFE6",
+   "fg": "#14182B",
+   "accent": "#9A4E12",
+   "strip": 460
+  }
+ ]
+}

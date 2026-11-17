@@ -1,0 +1,430 @@
+name: standard_incident_response
+version: 1.0.0
+type: workflow
+description: 标准应急响应工作流（多智能体协作版）
+
+agents_involved:
+  - ic_agent
+  - analyst_agent
+  - scribe_agent
+  - advisor_agent
+  - forensics_agent
+  - threat_intel_agent
+
+phases:
+  - id: detect
+    name: 事件检测
+    description: 接收告警，初步判断事件真实性
+    
+    entry_criteria:
+      - 告警已接收
+      - 初始信息已收集
+    
+    activities:
+      - agent: ic_agent
+        action: create_incident
+        inputs:
+          - alert_data
+          - initial_scope
+        outputs:
+          - incident_id
+          - session_id
+      
+      - agent: ic_agent
+        action: classify_incident
+        inputs:
+          - incident_id
+          - alert_data
+        outputs:
+          - incident_type
+          - severity
+          - priority
+      
+      - agent: scribe_agent
+        action: initialize_wal
+        inputs:
+          - incident_id
+          - incident_name
+          - scope
+          - rules
+        outputs:
+          - wal_initialized
+    
+    exit_criteria:
+      - 事件已创建
+      - WAL已初始化
+      - 事件类型已确定
+
+  - id: triage
+    name: 事件研判
+    description: 范围界定、证据收集、初步根因假设
+    
+    entry_criteria:
+      - detect phase completed
+    
+    parallel_activities:
+      - branch: evidence_collection
+        agent: forensics_agent
+        action: collect_evidence
+        inputs:
+          - scope
+          - targets
+        outputs:
+          - evidence_list
+      
+      - branch: analysis
+        agent: analyst_agent
+        action: analyze_incident
+        inputs:
+          - incident_id
+          - evidence_list
+        outputs:
+          - iocs
+          - timeline
+          - findings
+      
+      - branch: intel_enrichment
+        agent: threat_intel_agent
+        action: enrich_iocs
+        inputs:
+          - iocs
+        outputs:
+          - enriched_iocs
+      
+      - agent: scribe_agent
+        action: record_findings
+        inputs:
+          - iocs
+          - timeline
+          - findings
+        outputs:
+          - wal_updated
+    
+    synchronization:
+      wait_for: [evidence_collection, analysis, intel_enrichment]
+      action: merge_results
+    
+    exit_criteria:
+      - 证据已收集
+      - IOC已提取
+      - 时间线已建立
+      - 根因已假设
+
+  - id: contain
+    name: 遏制措施
+    description: 最小影响隔离，防止扩散
+    
+    entry_criteria:
+      - triage phase completed
+      - root_cause_identified
+    
+    activities:
+      - agent: analyst_agent
+        action: propose_containment
+        inputs:
+          - iocs
+          - affected_assets
+        outputs:
+          - containment_options
+      
+      - agent: advisor_agent
+        action: evaluate_containment
+        inputs:
+          - containment_options
+          - business_context
+        outputs:
+          - recommended_containment
+          - risk_assessment
+      
+      - agent: ic_agent
+        action: approve_containment
+        inputs:
+          - recommended_containment
+          - risk_assessment
+        outputs:
+          - approval_status
+          - approved_containment
+      
+      - condition: approval_status == "approved"
+        branch: hitl_required
+        agent: ic_agent
+        action: request_hitl
+        inputs:
+          - approved_containment
+        outputs:
+          - hitl_response
+        
+        timeout: 300
+        on_timeout: reject
+      
+      - agent: ic_agent
+        action: execute_containment
+        inputs:
+          - hitl_response
+          - approved_containment
+        outputs:
+          - containment_status
+      
+      - agent: scribe_agent
+        action: record_containment
+        inputs:
+          - containment_status
+        outputs:
+          - wal_updated
+    
+    exit_criteria:
+      - 遏制措施已执行
+      - 扩散已阻止
+
+  - id: eradicate
+    name: 清除威胁
+    description: 清除威胁，修补漏洞
+    
+    entry_criteria:
+      - contain phase completed
+      - containment_verified
+    
+    activities:
+      - agent: analyst_agent
+        action: identify_eradication_steps
+        inputs:
+          - iocs
+          - root_cause
+        outputs:
+          - eradication_plan
+      
+      - agent: ic_agent
+        action: approve_eradication
+        inputs:
+          - eradication_plan
+        outputs:
+          - approval_status
+      
+      - condition: approval_status == "approved"
+        agent: analyst_agent
+        action: execute_eradication
+        inputs:
+          - eradication_plan
+        outputs:
+          - eradication_status
+      
+      - agent: analyst_agent
+        action: verify_eradication
+        inputs:
+          - eradication_status
+        outputs:
+          - verification_result
+      
+      - agent: scribe_agent
+        action: record_eradication
+        inputs:
+          - eradication_status
+          - verification_result
+        outputs:
+          - wal_updated
+    
+    exit_criteria:
+      - 威胁已清除
+      - 漏洞已修补
+      - 清除已验证
+
+  - id: recover
+    name: 业务恢复
+    description: 恢复业务，验证功能
+    
+    entry_criteria:
+      - eradicate phase completed
+      - eradication_verified
+    
+    activities:
+      - agent: analyst_agent
+        action: create_recovery_plan
+        inputs:
+          - affected_services
+          - backup_status
+        outputs:
+          - recovery_plan
+      
+      - agent: ic_agent
+        action: approve_recovery
+        inputs:
+          - recovery_plan
+        outputs:
+          - approval_status
+      
+      - condition: approval_status == "approved"
+        agent: analyst_agent
+        action: execute_recovery
+        inputs:
+          - recovery_plan
+        outputs:
+          - recovery_status
+      
+      - agent: analyst_agent
+        action: verify_recovery
+        inputs:
+          - recovery_status
+        outputs:
+          - verification_result
+      
+      - agent: scribe_agent
+        action: record_recovery
+        inputs:
+          - recovery_status
+          - verification_result
+        outputs:
+          - wal_updated
+    
+    exit_criteria:
+      - 业务已恢复
+      - 功能已验证
+      - 用户已确认
+
+  - id: postmortem
+    name: 复盘与进化
+    description: 分析根因，沉淀经验
+    
+    entry_criteria:
+      - recover phase completed
+    
+    activities:
+      - agent: analyst_agent
+        action: analyze_root_cause
+        inputs:
+          - timeline
+          - evidence
+          - iocs
+        outputs:
+          - root_cause_analysis
+      
+      - agent: advisor_agent
+        action: identify_lessons_learned
+        inputs:
+          - root_cause_analysis
+          - historical_cases
+        outputs:
+          - lessons_learned
+      
+      - agent: advisor_agent
+        action: generate_candidate_patterns
+        inputs:
+          - lessons_learned
+          - incident_data
+        outputs:
+          - candidate_patterns
+      
+      - agent: scribe_agent
+        action: record_postmortem
+        inputs:
+          - root_cause_analysis
+          - lessons_learned
+          - candidate_patterns
+        outputs:
+          - wal_updated
+    
+    exit_criteria:
+      - 根因已分析
+      - 经验已沉淀
+      - 候选模式已生成
+
+  - id: report
+    name: 报告生成
+    description: 生成应急响应报告
+    
+    entry_criteria:
+      - postmortem phase completed
+    
+    activities:
+      - agent: scribe_agent
+        action: generate_report
+        inputs:
+          - wal_data
+          - timeline
+          - iocs
+          - actions
+        outputs:
+          - ir_report
+          - executive_summary
+          - technical_report
+      
+      - agent: ic_agent
+        action: review_report
+        inputs:
+          - ir_report
+        outputs:
+          - review_status
+          - revisions
+      
+      - condition: review_status == "needs_revision"
+        agent: scribe_agent
+        action: revise_report
+        inputs:
+          - revisions
+        outputs:
+          - revised_report
+      
+      - agent: scribe_agent
+        action: archive_session
+        inputs:
+          - incident_id
+          - all_data
+        outputs:
+          - archive_status
+    
+    exit_criteria:
+      - 报告已生成
+      - 报告已审核
+      - 会话已归档
+
+error_handling:
+  - error_type: agent_timeout
+    handling:
+      - notify_ic_agent
+      - retry_with_different_agent
+      - escalate_if_persistent
+  
+  - error_type: hitl_timeout
+    handling:
+      - default_to_reject
+      - notify_human_commander
+      - log_and_continue
+  
+  - error_type: evidence_missing
+    handling:
+      - request_evidence_collection
+      - adjust_timeline
+      - proceed_with_available_data
+  
+  - error_type: conflict
+    handling:
+      - invoke_conflict_resolver
+      - apply_voting_mechanism
+      - escalate_to_ic_if_needed
+
+escalation_rules:
+  - condition: severity == "critical"
+    action: immediate_human_notification
+  
+  - condition: hitl_rejected_count > 3
+    action: escalate_to_human_commander
+  
+  - condition: phase_duration > sla_threshold
+    action: notify_ic_agent
+
+monitoring:
+  metrics:
+    - phase_duration
+    - agent_response_time
+    - hitl_response_time
+    - error_rate
+  
+  alerts:
+    - phase_duration > expected + 50%
+    - error_rate > 10%
+    - agent_unavailable
+
+optimization:
+  parallel_execution: true
+  resource_pooling: true
+  result_caching: true
+  adaptive_routing: true

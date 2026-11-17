@@ -1,41 +1,54 @@
-## Description: <br>
-mailprocess opens the Mali low-code builder in Chrome, submits the user's app-building request, and starts the build workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically opens the Mali low-code app builder in Chrome, fills in a user's app-building request, and starts the build flow for internal tools, dashboards, forms, and rapid prototypes.
 
-## Publisher: <br>
-[chenjada45-maker](https://clawhub.ai/user/chenjada45-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjada45-maker](https://clawhub.ai/user/chenjada45-maker)
 
-## Use Case: <br>
-Employees and internal developers use this skill to send application requirements to the Mali low-code platform for internal tools, dashboards, forms, and quick prototypes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, where users have access to the Mali platform and any required internal network or VPN. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control Chrome and submit user text through a logged-in session without a clear final confirmation step. <br>
-Mitigation: Use explicit invocations, install only in trusted internal workflows, and add a manual confirmation or draft-only mode before sending requests. <br>
-Risk: Submitted requirements may contain secrets or sensitive business data. <br>
-Mitigation: Avoid including credentials, tokens, customer data, or confidential business details in prompts sent to the Mali platform. <br>
+## Use Case:
 
+Developers and internal platform users can use this skill to launch the Mali App Builder and submit requirements for low-code applications such as management systems, dashboards, forms, and prototypes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjada45-maker/mailprocess) <br>
-- [Mali low-code platform](https://lowcode.baidu-int.com/ai-coding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown status text with shell command invocations when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open Chrome, fill a browser input, and click send in a logged-in Mali session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can submit prompts through an authenticated Chrome session without a confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the submitted requirement before execution and avoid using the skill for secrets, credentials, personal data, or sensitive internal plans.
+
+Risk: Browser automation uses AppleScript and JavaScript injection paths.
+
+Mitigation: Use only in a trusted environment, confirm the target URL and page state before submission, and require stricter URL and button validation before broader deployment.
+
+## Reference(s):
+
+- [Mali App Builder](https://lowcode.baidu-int.com/ai-coding)
+- [ClawHub skill page](https://clawhub.ai/chenjada45-maker/skills/mailprocess)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown status messages with inline shell commands and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open a browser and submit the user's requirement to the Mali platform through an authenticated session.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

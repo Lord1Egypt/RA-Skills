@@ -1,41 +1,66 @@
-## Description: <br>
-Automates browser interactions for web testing, form filling, screenshots, and data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates browser interactions for web testing, form filling, screenshots, and data extraction.
 
-## Publisher: <br>
-[tang2606](https://clawhub.ai/user/tang2606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tang2606](https://clawhub.ai/user/tang2606)
 
-## Use Case: <br>
-Developers and agents use this skill to control a browser from the command line for navigation, page inspection, form interactions, screenshots, and data extraction. It is suited to testing or web workflows that need persistent sessions, authenticated profiles, cloud browsers, or browser automation commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags the skill as suspicious because it exposes broad browser automation, Python execution, authenticated session, cloud API, and public tunnel capabilities. <br>
-Mitigation: Install only when the full browser-use CLI surface is needed, review commands before use, and run browser-use Python only on trusted code. <br>
-Risk: Browser profiles, cookies, cloud API keys, and tunnels can expose accounts, secrets, or local services if used carelessly. <br>
-Mitigation: Prefer isolated browser profiles, avoid cookie export/import and profile sync unless explicitly needed, treat cloud API keys as secrets, and stop public tunnels promptly. <br>
+## Use Case:
 
+Developers and agents use this skill to drive browser-based workflows such as navigation, web testing, form filling, screenshots, authenticated browsing, and page data extraction through the browser-use CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tang2606/browser-use-conflict) <br>
-- [browser-use CLI README](https://github.com/browser-use/browser-use/blob/main/browser_use/skill_cli/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Text, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser state text, screenshots, HTML, cookies, or JSON output through the browser-use CLI depending on the command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can access authenticated browser profiles, cookies, and real browsing sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile for skill activity and avoid personal default profiles unless the task explicitly requires them.
+
+Risk: Cookie export, cookie import, and profile sync commands can expose sensitive session data.
+
+Mitigation: Export or sync cookies and profiles only when necessary, store resulting files carefully, and delete them after use.
+
+Risk: Tunnel commands can expose local development services to the public internet.
+
+Mitigation: Start tunnels only for intended services, verify what is listening on the port, and stop tunnels when the task is complete.
+
+Risk: Cloud browser and API commands can involve account credentials or API keys.
+
+Mitigation: Prefer environment variables or secure secret handling for API keys and avoid placing credentials directly in prompts or command histories.
+
+Risk: The browser-use Python command can execute arbitrary Python in a persistent session.
+
+Mitigation: Review Python snippets before execution and limit them to the minimum code needed for the browser task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tang2606/skills/browser-use-conflict)
+- [browser-use CLI README](https://github.com/browser-use/browser-use/blob/main/browser_use/skill_cli/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct creation of screenshots, cookie JSON exports, tunnel URLs, and browser session state through the browser-use CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact/_meta.json reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

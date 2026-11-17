@@ -1,44 +1,55 @@
-## Description: <br>
-Generates a complete presentation with slides, speaker notes, and custom images for webinars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a complete webinar presentation deck with slides, speaker notes, and custom images tailored for live presentations and marketing purposes.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External creators, solopreneurs, indie hackers, and marketing users use this skill to draft webinar presentation decks for live events, including slides, speaker notes, and custom image support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README includes a manual GitHub clone path that is not backed by server-resolved provenance for this release. <br>
-Mitigation: Install through ClawHub when possible, or verify the external repository independently before cloning or copying files. <br>
-Risk: The skill requests Bash and Read permissions even though the package is instruction-only. <br>
-Mitigation: Restrict Bash and Read permissions in OpenClaw where supported, especially when generating or reviewing presentation assets. <br>
-Risk: Generated webinar slides, notes, or marketing claims may be inaccurate or unsuitable for external publication. <br>
-Mitigation: Review the deck for factual accuracy, readability, audience fit, and publication readiness before use in a live event. <br>
+## Use Case:
 
+External creators, solopreneurs, and indie hackers use this skill to draft webinar presentation decks with slide content, speaker notes, and custom images for live marketing presentations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-webinar-presentation-deck) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-webinar-presentation-deck) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Guidance] <br>
-**Output Format:** [Presentation deck content with slide outlines, speaker notes, and custom image guidance or assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for accuracy, readability, marketing claims, and readiness before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad Bash and file-read authority without explaining why that access is needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before granting Bash or broad file-read access, and install from a pinned, reviewed release.
+
+Risk: Generated webinar deck content may contain inaccurate or unsuitable claims for external publication.
+
+Mitigation: Review and refine generated slides, speaker notes, and images before live use or public distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-webinar-presentation-deck)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+- [SkillBoss Skill Homepage](https://www.skillboss.co/skills/generate-webinar-presentation-deck)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Images]
+
+**Output Format:** [Markdown-style webinar deck content with speaker notes and custom image outputs or specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated deck content should be reviewed for accuracy, readability, and suitability before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

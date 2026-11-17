@@ -1,44 +1,60 @@
-## Description: <br>
-Search the web using Google via AceDataCloud API for web pages, images, news, maps, local places, or videos, with localization, time filtering, pagination, and structured result data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Google web, image, news, map, place, and video results through AceDataCloud's SERP API.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and agents use this skill to run Google SERP searches through AceDataCloud for web, image, news, maps, places, and video results with localization, time filtering, and pagination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, localization parameters, URLs, or business context may be sent to AceDataCloud. <br>
-Mitigation: Do not use secrets, private URLs, internal identifiers, or sensitive personal or business data unless that third-party transmission is approved. <br>
-Risk: The AceDataCloud API token can grant access to paid or private API usage if exposed. <br>
-Mitigation: Store the token as a protected environment secret and avoid committing, logging, or sharing it. <br>
-Risk: The optional MCP package or hosted MCP service adds another third-party component to the workflow. <br>
-Mitigation: Review the MCP package or hosted service before enabling it in a production agent. <br>
+## Use Case:
 
+Developers and other agent users use this skill to find web pages, images, news, places, maps, and videos with localized, time-filtered, or paginated Google searches.
 
-## Reference(s): <br>
-- [ClawHub Google Search release](https://clawhub.ai/Germey/acedatacloud-google-search) <br>
-- [AceDataCloud Google SERP API](https://api.acedata.cloud/serp/google) <br>
-- [AceDataCloud hosted SERP MCP](https://serp.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACEDATACLOUD_API_TOKEN; search parameters include query, search_type, country, language, time_range, number, and page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; skill metadata version 1.0) <br>
+Risk: An exposed API key can allow unauthorized use of the search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped key and keep it out of prompts and commits.
+
+Risk: Resubmitting a pending search can incur duplicate charges.
+
+Mitigation: Check the existing task ID until it completes instead of submitting the request again.
+
+Risk: The optional mcp-serp package is a separate dependency.
+
+Mitigation: Review that package separately before installing it.
+
+## Reference(s):
+
+- [ClawHub Google Search skill](https://clawhub.ai/acedatacloud/skills/google-search)
+- [AceDataCloud applications and API keys](https://platform.acedata.cloud/console/applications)
+- [First run and troubleshooting](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search requests can return structured titles, snippets, URLs, and other result details.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

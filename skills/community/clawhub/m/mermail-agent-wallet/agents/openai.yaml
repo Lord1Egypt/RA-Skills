@@ -1,0 +1,11 @@
+interface:
+  display_name: "Mermail Agent Wallet"
+  short_description: "Balances, funding, transfers, swaps, bridges, and isolated x402 payments"
+  default_prompt: "Use $mermail-agent-wallet for Agent Wallet balances, funding, transfers, swaps, native USDC bridges, status checks, or an isolated x402 payment. If the job is pay x402 and then continue the original task, use $mermail-x402-agent instead. If the job is an xStocks standing grant, PayBox Jupiter plugin DCA, PayBox xStock swap fallback, per-DCA invoice email, or weekly brokerage statement, use $mermail-xstocks-desk instead."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

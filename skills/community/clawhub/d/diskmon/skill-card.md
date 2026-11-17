@@ -1,42 +1,54 @@
-## Description: <br>
-Watch disk space in real time and alert before storage runs low. Use when monitoring usage, finding large dirs, preventing disk-full events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diskmon helps agents record, search, summarize, and export local disk-related observations from a Bash command-line utility.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, system administrators, and operations teams use Diskmon to record, review, search, and export disk-related observations and maintenance notes from a local command-line logbook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diskmon records disk-related entries in local plaintext logs and export files. <br>
-Mitigation: Do not enter secrets or sensitive infrastructure details unless storage under ~/.local/share/diskmon/ and generated export files are acceptable. <br>
-Risk: Diskmon is a logbook and should not be treated as live monitoring, alerting, cleanup, backup, restore, or repair automation. <br>
-Mitigation: Use it for recording and reviewing observations; rely on dedicated operational tools for automatic monitoring, alerting, remediation, backup, and restore workflows. <br>
+## Use Case:
 
+Developers, sysadmins, and operations teams can use this skill to log disk observations, maintenance notes, alerts, cleanup activity, backup notes, benchmark results, and searchable history. It should be treated as a local documentation aid, not as an automated disk monitor, alerting system, cleanup tool, backup tool, or restore tool.
 
-## Reference(s): <br>
-- [Diskmon ClawHub page](https://clawhub.ai/ckchzh/diskmon) <br>
-- [ckchzh publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or TXT exports and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local plaintext logs and exports under ~/.local/share/diskmon/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release metadata) <br>
+Risk: The release is marketed as real disk monitoring, but the reviewed behavior records plaintext notes and exports rather than performing automated monitoring or alerting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for local note and history tracking; rely on dedicated monitoring, alerting, cleanup, backup, and restore tooling for operational protection.
+
+Risk: Disk observations, infrastructure names, incident details, and maintenance notes may be stored in plaintext local logs and exported files.
+
+Mitigation: Avoid entering secrets or sensitive infrastructure details unless plaintext local storage is acceptable for the deployment environment.
+
+## Reference(s):
+
+- [Diskmon ClawHub skill page](https://clawhub.ai/ckchzh/skills/diskmon)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local JSON, CSV, TXT, and log file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes plaintext logs and exports under ~/.local/share/diskmon when its shell script is used.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

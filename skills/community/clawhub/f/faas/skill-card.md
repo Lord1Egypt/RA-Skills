@@ -1,39 +1,52 @@
-## Description: <br>
-Deep workflow for serverless workloads: event sources, IAM, cold start/latency, limits, observability, security, cost, and deployment patterns for functions, containers, and step functions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Faas guides developers through designing and debugging serverless workloads across event sources, IAM, cold starts, limits, observability, security, cost, and deployment patterns for functions, containers, step functions, and edge workers.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to assess whether serverless is a good fit, design event and retry contracts, review IAM and networking, tune runtime performance, improve observability, and control cost for cloud function and edge worker workloads.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cloud IAM policies or deployment changes produced during use could affect cost, availability, or access control.
+
+Mitigation: Review generated IAM policies, network settings, and deployment changes before applying them.
+
+Risk: Serverless workloads can incur unexpected cost from recursive invocations, retries, or over-provisioned concurrency.
+
+Mitigation: Use budgets, billing alerts, anomaly detection, and explicit retry and dead-letter policies.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to design or debug serverless workloads across AWS Lambda, Google Cloud Functions, Azure Functions, and edge workers, with attention to triggers, IAM, networking, performance, observability, and cost. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration, Code, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cloud commands, IAM policy edits, or deployment changes could affect live infrastructure if applied without review. <br>
-Mitigation: Review proposed infrastructure changes, especially IAM and deployment updates, before running them in production environments. <br>
-Risk: Incorrect retry, idempotency, or dead-letter handling guidance could cause duplicate side effects or missed failure recovery in serverless workflows. <br>
-Mitigation: Confirm event contracts, idempotency keys, retry policies, and DLQ replay procedures against the target cloud platform and workload. <br>
+**Output Format:** [Markdown guidance with checklists and optional code, configuration, or shell command snippets.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Guidance-only skill; any proposed cloud IAM policies, deployment changes, or runtime settings should be reviewed before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and optional inline commands or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory workflow; review generated cloud commands, IAM policy edits, and deployment changes before applying them.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

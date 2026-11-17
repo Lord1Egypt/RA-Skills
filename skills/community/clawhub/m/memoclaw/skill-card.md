@@ -1,47 +1,58 @@
-## Description: <br>
-Memory-as-a-Service for AI agents that stores and recalls memories with semantic vector search using wallet-based identity and x402 micropayments after the free tier. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory-as-a-Service for AI agents that stores and recalls memories with semantic vector search using wallet-based identity and x402 micropayments after the free tier.
 
-## Publisher: <br>
-[anajuliabit](https://clawhub.ai/user/anajuliabit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anajuliabit](https://clawhub.ai/user/anajuliabit)
 
-## Use Case: <br>
-Developers and agent operators use MemoClaw to give agents persistent semantic memory across sessions, including storing preferences, decisions, project context, and session summaries. It is most useful when memory should survive context resets or be shared through namespaces instead of kept in local scratch files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload persistent personal, project, or conversation data to a remote memory service. <br>
-Mitigation: Do not store secrets or sensitive personal data, recall before storing to avoid unnecessary duplication, and periodically review, export, or delete memories that should not persist. <br>
-Risk: Wallet-based authentication and paid x402 calls use a private key and can incur charges after the free tier. <br>
-Mitigation: Use a dedicated low-balance wallet, verify the MemoClaw endpoint before use, and require manual approval for paid commands and for ingest, migrate, export, purge, force, and yes operations. <br>
-Risk: Bulk ingest, migration, consolidation, and destructive commands can process or remove many memories at once. <br>
-Mitigation: Preview or scope bulk operations where possible, create a snapshot before destructive changes, and require explicit user approval before purge, force, or yes flags are used. <br>
+## Use Case:
 
+Developers and agent operators use MemoClaw to give AI agents persistent, searchable memory across sessions, including storing user preferences, project decisions, and session summaries, then retrieving relevant context for future prompts.
 
-## Reference(s): <br>
-- [MemoClaw Skill on ClawHub](https://clawhub.ai/anajuliabit/memoclaw) <br>
-- [MemoClaw Documentation](https://docs.memoclaw.com) <br>
-- [MemoClaw Website](https://memoclaw.com) <br>
-- [README.md](README.md) <br>
-- [examples.md](examples.md) <br>
-- [api-reference.md](api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON or markdown outputs from MemoClaw CLI/API commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can store, recall, update, export, import, migrate, and delete remote memories; paid operations may require USDC on Base after the free tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.23.5 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Selected memories, queries, files, or transcripts may be sent to a third-party remote memory service under a wallet identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, confirm MEMOCLAW_URL before use, and do not store secrets or sensitive personal or regulated data.
+
+Risk: CLI operations can mutate or delete remote memories and may incur x402 charges after the free tier.
+
+Mitigation: Require explicit approval before paid operations, transcript ingest, imports, exports, purge/delete, or commands using --force or --yes; use snapshots and dry runs where available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anajuliabit/skills/memoclaw)
+- [MemoClaw Documentation](https://docs.memoclaw.com)
+- [MemoClaw Website](https://memoclaw.com)
+- [API Reference](api-reference.md)
+- [Usage Examples](examples.md)
+- [Full Agent Instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to call the MemoClaw CLI or HTTPS API; context output can be plain text or structured JSON depending on command options.]
+
+## Skill Version(s):
+
+1.23.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

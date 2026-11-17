@@ -1,42 +1,54 @@
-## Description: <br>
-Find legitimate GitHub bounties by filtering out farm/scam repositories, tracking competition, and monitoring payment history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find legitimate GitHub bounties by filtering out farm/scam repositories, tracking competition, and monitoring payment history.
 
-## Publisher: <br>
-[xiaomomini](https://clawhub.ai/user/xiaomomini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomomini](https://clawhub.ai/user/xiaomomini)
 
-## Use Case: <br>
-Developers and external contributors use this skill to discover public GitHub bounty opportunities, evaluate competition, filter likely farms or scams, and review payment signals before deciding whether to pursue an issue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub searches and payment checks may rely on account access or tokens. <br>
-Mitigation: Use a GitHub account or token with only the access needed for public bounty discovery. <br>
-Risk: Bounty terms, payment claims, and competition signals may be incomplete or misleading. <br>
-Mitigation: Independently verify bounty terms, payment history, and maintainer activity before claiming or completing work. <br>
-Risk: Agent-proposed GitHub actions could affect public repositories or user reputation. <br>
-Mitigation: Review any proposed GitHub action before approving it. <br>
+## Use Case:
 
+External developers use this skill to discover viable GitHub bounty opportunities, screen out likely farms or scams, compare competition, and check available payment-history signals before deciding whether to pursue an issue.
 
-## Reference(s): <br>
-- [GitHub Bounty Hunter on ClawHub](https://clawhub.ai/xiaomomini/xiaomo-bounty-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON-like opportunity reports and GitHub search commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked bounty opportunities, competition signals, payment-history indicators, filtered farm or scam counts, and user-specified reward or platform filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use GitHub search tooling through an authenticated gh session to inspect public issues and repository activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that GitHub access posture is acceptable, and review proposed gh commands before execution.
+
+Risk: Bounty legitimacy, competition, and payment history can be incomplete or outdated, especially for off-chain or token-based payments.
+
+Mitigation: Verify issue status, maintainer activity, payment terms, and payment evidence directly before claiming or starting work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaomomini/skills/xiaomo-bounty-hunter)
+- [Publisher Profile](https://clawhub.ai/user/xiaomomini)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with GitHub search queries and structured bounty summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository and issue URLs, competition scores, payment-signal notes, filtered-count summaries, and suggested GitHub CLI search commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

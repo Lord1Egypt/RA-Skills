@@ -1,45 +1,58 @@
-## Description: <br>
-Java Performance Analyzer helps agents diagnose remote JVM performance issues with Arthas and MCP by collecting targeted JVM, thread, memory, method tracing, class loading, profiling, and heap dump evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Java Performance Analyzer helps agents diagnose Java application performance issues by using Arthas and MCP to inspect remote JVMs.
 
-## Publisher: <br>
-[lyl340321](https://clawhub.ai/user/lyl340321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[lyl340321](https://clawhub.ai/user/lyl340321)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate Java application issues such as high CPU, memory pressure or leaks, slow requests, blocked threads, deadlocks, and class loading problems on controlled servers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent powerful remote access to live servers and JVM memory. <br>
-Mitigation: Install only for trusted publishers and controlled target servers; use SSH keys or a secret manager instead of stored passwords. <br>
-Risk: Heap dumps, watch or trace commands, profiling, decompilation, and arbitrary Arthas commands can expose sensitive data or disrupt production workloads. <br>
-Mitigation: Require explicit approval before these actions, prefer limited result counts and short sampling windows, and avoid long-running tracing during peak traffic. <br>
-Risk: An exposed Arthas HTTP endpoint can broaden access to JVM diagnostics. <br>
-Mitigation: Bind Arthas to localhost behind an SSH tunnel and restrict network access with host firewall or equivalent controls. <br>
-Risk: The installer downloads a remote Arthas binary before attaching to the target JVM. <br>
-Mitigation: Verify downloaded binaries and use approved package or artifact sources before running the installer. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to investigate Java CPU spikes, memory pressure, slow requests, blocked threads, class loading issues, heap dumps, and flame graphs on remote JVMs.
 
-## Reference(s): <br>
-- [Arthas command reference](references/arthas-commands.md) <br>
-- [ClawHub release page](https://clawhub.ai/lyl340321/java-perf-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, MCP tool calls, configuration snippets, and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that inspect live JVM state, generate heap dumps, start profilers, or retrieve diagnostic artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: SSH passwords and host credentials can be exposed or retained during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use SSH keys or a secret manager, avoid storing SSH passwords in agent memory, and limit access to trusted target environments.
+
+Risk: Remote installation and live JVM control can affect production availability or integrity.
+
+Mitigation: Run the skill only in approved environments, review commands before execution, verify downloaded Arthas binaries, and stop or clean up Arthas after each session.
+
+Risk: An exposed Arthas management API or unrestricted command execution can permit high-impact JVM operations.
+
+Mitigation: Bind Arthas to localhost behind an SSH tunnel and remove or restrict arbitrary Arthas commands where possible.
+
+## Reference(s):
+
+- [Arthas Commands Reference](references/arthas-commands.md)
+- [ClawHub Skill Page](https://clawhub.ai/lyl340321/skills/java-perf-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JVM diagnostic summaries, optimization guidance, Arthas command plans, and MCP configuration snippets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

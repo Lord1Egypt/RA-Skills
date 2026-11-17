@@ -1,43 +1,57 @@
-## Description: <br>
-Recall teaches agents to check local context, use knowledge access patterns, maintain memory, and resist hallucination before answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recall teaches agents to check local skills, workspace files, tools, and memory before answering, using knowledge access patterns to reduce hallucinated or stale responses.
 
-## Publisher: <br>
-[crewhaus](https://clawhub.ai/user/crewhaus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crewhaus](https://clawhub.ai/user/crewhaus)
 
-## Use Case: <br>
-Developers and agent operators use Recall to help agents inspect workspace context, skills, tools, and memory before answering or acting. It is intended for agents that benefit from proactive context loading, source checking, and concise uncertainty handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages proactive local context and memory use, which can surface stale, sensitive, or overly broad workspace information if left unmanaged. <br>
-Mitigation: Review memory, TOOLS.md, and task files periodically, avoid storing secrets or sensitive personal details, and limit proactive reads to files intended for agent consumption. <br>
-Risk: Tool-first behavior can lead an agent toward high-impact actions such as sending messages, posting publicly, spending money, or modifying important data. <br>
-Mitigation: Require explicit operator confirmation before using tools that communicate externally, spend money, or change important data. <br>
+## Use Case:
 
+Developers and agent operators use Recall to make coding or operations agents inspect local context, tool docs, and memory before answering or acting. It is aimed at reducing hallucinations, stale context, and missed tool usage in ClawHub workspaces.
 
-## Reference(s): <br>
-- [Knowledge-Driven Agent certification](https://crewhaus.ai/certify) <br>
-- [Anti-patterns](references/anti-patterns.md) <br>
-- [Knowledge patterns](references/knowledge-patterns.md) <br>
-- [Session checklist](references/session-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown instructions and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no scripts or runtime API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may cause an agent to proactively read broad agent-readable workspace memory, identity, task, tool, and skill files that contain sensitive personal, customer, security, or business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where that context loading is acceptable, keep secrets out of agent-readable files, and require explicit approval before accessing sensitive locations.
+
+Risk: The skill encourages writing session notes for future use, which may persist sensitive information without clear retention controls.
+
+Mitigation: Review memory and task updates regularly, define retention and redaction expectations, and prefer explicit approval before storing personal, customer, security, or business-sensitive information.
+
+## Reference(s):
+
+- [Recall Skill Page](https://clawhub.ai/crewhaus/skills/recall)
+- [CrewHaus Certification](https://crewhaus.ai/certify)
+- [Knowledge Access Patterns](references/knowledge-patterns.md)
+- [Session Checklist](references/session-checklist.md)
+- [The 7 Deadly Sins of Agent Knowledge Access](references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, examples, and reference patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill does not define executable scripts; it guides agents to inspect workspace context and update memory or task files when appropriate.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

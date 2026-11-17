@@ -1,44 +1,58 @@
-## Description: <br>
-Use when users need DesignKit image editing, ecommerce product-image generation, or A+ detail-page planning and rendering, with runtime guidance defaulting to Simplified Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DesignKit Ecommerce AI Studio helps agents route DesignKit workflows for background removal, image restoration, ecommerce listing-image generation, and A+ detail-page planning and rendering.
 
-## Publisher: <br>
-[meituskills](https://clawhub.ai/user/meituskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituskills](https://clawhub.ai/user/meituskills)
 
-## Use Case: <br>
-External users and agents use this skill to remove image backgrounds, restore low-quality images, generate ecommerce listing assets, and plan or render A+ detail-page image sets from user-provided product images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a DesignKit/OpenClaw API key and sends selected product images to a remote processing service. <br>
-Mitigation: Use only images explicitly provided for the requested task, avoid sensitive images, keep credentials private, and tell users when local files will be uploaded. <br>
-Risk: Request logging may expose operational details if enabled during debugging. <br>
-Mitigation: Keep request logging disabled unless debugging and rely on the bundled redaction behavior for credentials and signed upload fields. <br>
-Risk: Generated ecommerce and A+ detail images are downloaded to a local output directory. <br>
-Mitigation: Review custom output directories and API-base overrides before use, and avoid saving outputs inside the skill repository. <br>
+## Use Case:
 
+External users and developers use this skill to run Chinese-language DesignKit image-editing and ecommerce image-production workflows through an agent. It supports single-image edits, product listing image sets, and A+ detail-page planning and rendering from user-provided image URLs or local image paths.
 
-## Reference(s): <br>
-- [DesignKit OpenClaw](https://www.designkit.cn/openclaw) <br>
-- [ClawHub Skill Page](https://clawhub.ai/meituskills/designkit-skills) <br>
-- [Publisher Profile](https://clawhub.ai/user/meituskills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files, markdown] <br>
-**Output Format:** [Markdown user guidance with generated image URLs and local saved image paths when workflows complete] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DESIGNKIT_OPENCLAW_AK; accepts user-provided image URLs or local image paths and may save generated outputs to a configured local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: Configurable network endpoints can receive the API key and uploaded images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep custom API-base environment variables unset unless you control and trust the endpoint.
+
+Risk: Local image paths may be uploaded to DesignKit/OpenClaw for processing.
+
+Mitigation: Provide only local image paths intended for upload, and tell users before sending local files to the remote service.
+
+Risk: Unpinned direct installation commands may bypass the ClawHub review path.
+
+Mitigation: Prefer the ClawHub inspect/install path before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/meituskills/skills/designkit-skills)
+- [DesignKit OpenClaw](https://www.designkit.cn/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown and structured text describing generated image URLs, local saved paths, workflow status, and user-facing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download generated ecommerce or A+ detail images to a local output directory; requires DESIGNKIT_OPENCLAW_AK.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,42 @@
+{
+  "skill_name": "huawei-cloud-product-list",
+  "region": "cn-north-1",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CLI 服务可用性检查",
+      "command": "hcloud BSS --help",
+      "expected": "帮助信息正常输出，BSS 服务存在",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "BSS ListServiceTypes 只读产品目录",
+      "command": "hcloud BSS ListServiceTypes --cli-region={region} --limit=1",
+      "expected": "返回云服务类型（产品）目录 JSON 或空列表",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "BSS ListServiceTypes 名称模糊查询（服务端参数）",
+      "command": "hcloud BSS ListServiceTypes --cli-region={region} --limit=1 --service_type_name=弹性",
+      "expected": "按名称前缀/后缀/中间模糊匹配返回产品目录条目",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "自带脚本 --help 冒烟",
+      "command": "python3 $PWD/scripts/list_products.py --help",
+      "expected": "脚本帮助正常输出（argparse 可用）",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": [
+    "HUAWEICLOUD_SDK_AK / HUAWEICLOUD_SDK_SK（或 HUAWEI_ACCESS_KEY / HUAWEI_SECRET_KEY、HW_ACCESS_KEY / HW_SECRET_KEY）"
+  ],
+  "notes": "只读用例使用真实可用的 hcloud 只读命令（BSS ListServiceTypes，云服务类型目录，GET /v2/products/service-types），区域 cn-north-1（BSS 为全局服务）。缺 hcloud/凭据时用例跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

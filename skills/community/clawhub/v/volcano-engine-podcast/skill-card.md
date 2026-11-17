@@ -1,42 +1,62 @@
-## Description: <br>
-生成火山引擎豆包语音播客（PodcastTTS）。输入主题文本，自动生成双人对话式播客音频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成火山引擎豆包语音播客（PodcastTTS）。输入主题文本，自动生成双人对话式播客音频。
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-Developers and agents use this skill to generate Chinese two-speaker podcast audio from topic text through Volcano Engine PodcastTTS, with options for head music, segmented streaming, retries, voice selection, and audio post-processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast prompts and generated text are sent to Volcano Engine/ByteDance services for processing. <br>
-Mitigation: Avoid sensitive prompts and review the provider terms, data handling expectations, and account configuration before use. <br>
-Risk: Volcano credentials are required, and passing tokens on the command line can expose them through local history or process inspection. <br>
-Mitigation: Use environment variables or a protected local configuration file instead of command-line tokens, and restrict credential file permissions. <br>
-Risk: The helper script can stage generated audio into a QQ bot delivery path. <br>
-Mitigation: Review or modify scripts/kamei_podcast.py before use, or call scripts/generate_podcast.py directly when QQ bot delivery is not intended. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn topic text into a two-speaker podcast audio workflow backed by Volcano Engine PodcastTTS. It supports command-line and Python use, with options for head or tail music, voice hints, streamed audio output, and optional audio post-processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cindypapa/volcano-engine-podcast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated runs may produce MP3/WAV/PCM audio files and JSON usage metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Volcano Engine PodcastTTS credentials and sends input text to Volcano Engine/ByteDance services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: The skill handles Volcano Engine API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted Volcano Engine account, provide credentials through environment or documented config only, and avoid exposing tokens in prompts, logs, or generated artifacts.
+
+Risk: Podcast topics are sent to an external speech service.
+
+Mitigation: Do not submit secrets, regulated data, or sensitive personal data as podcast topics unless the external-service use has been approved.
+
+Risk: Security evidence flags unsafe file and endpoint handling.
+
+Mitigation: Keep the endpoint fixed to the official Volcano Engine service and run the skill under an unprivileged account with write access limited to the intended output directory.
+
+Risk: The QQ bot helper has higher-risk config and media-path behavior.
+
+Mitigation: Review and document the QQ helper before deployment, and sanitize output filenames and destination paths before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cindypapa/skills/volcano-engine-podcast)
+- [ClawHub publisher profile](https://clawhub.ai/user/cindypapa)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, audio files, guidance]
+
+**Output Format:** [Markdown instructions with Python and shell examples; runtime output is JSON-like status data and generated audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated podcasts may include segment files, final MP3/WAV/PCM audio, duration, transcript text, and token usage.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

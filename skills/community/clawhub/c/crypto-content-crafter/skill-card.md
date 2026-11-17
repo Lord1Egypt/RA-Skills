@@ -1,39 +1,54 @@
-## Description: <br>
-Generates NFT and crypto collection marketing content, including collection descriptions, launch threads, Discord welcome messages, roadmaps, and tokenomics blurbs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate NFT and crypto collection launch content, including descriptions, roadmap copy, Twitter threads, Discord welcome messages, tokenomics blurbs, and mint announcements.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External creators, marketers, and community managers use this skill to draft NFT or crypto collection launch copy from collection details. It supports content planning for collection pages, social posts, Discord onboarding, roadmap messaging, and tokenomics descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated crypto or NFT promotional copy may include unverified utility, roadmap, governance, access, redemption, scarcity, or return-related claims. <br>
-Mitigation: Treat outputs as marketing drafts and verify every claim for accuracy and compliance before publishing. <br>
+## Use Case:
 
+Marketing teams, founders, and agents use this skill to draft launch-ready NFT or crypto collection copy from collection details such as name, theme, mint price, supply, and mint date. Outputs are intended for human review before publication.
 
-## Reference(s): <br>
-- [Crypto Content Templates](references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/crypto-content-crafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft marketing copy that should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated copy may include unverified claims about DAO rights, staking, yield, liquidity, partnerships, team history, floor prices, merchandise, or future utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review and rewrite generated claims before publication; publish only claims that are true, documented, and legally reviewed for the relevant jurisdiction and platform.
+
+Risk: NFT or crypto marketing content can mislead users if urgency, scarcity, or utility statements are not grounded in the project plan.
+
+Mitigation: Require project-specific evidence for mint details, utility, supply, pricing, roadmap timing, and community benefits before using the output externally.
+
+## Reference(s):
+
+- [Crypto Content Templates](artifact/references/templates.md)
+- [Crypto Content Crafter on ClawHub](https://clawhub.ai/fuzzyb33s/skills/crypto-content-crafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with optional command-line generated content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include collection descriptions, short pitches, social posts, Discord onboarding copy, roadmap sections, tokenomics blurbs, and mint announcements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

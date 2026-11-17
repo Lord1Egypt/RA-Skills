@@ -1,42 +1,57 @@
-## Description: <br>
-Extracts a user's writing voice from text samples via SICO comparative analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts a user's writing voice from text samples via SICO comparative analysis.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Writers and developers use this skill to collect authorized writing samples, derive a SICO voice profile, and create registers that guide later writing generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Writing samples and extracted voice profiles may contain sensitive personal, client, employer, or regulated information and are stored locally. <br>
-Mitigation: Use only samples you are comfortable storing on disk, inspect and delete files under ~/.claude/voice-profiles as needed, and avoid confidential or regulated text without a retention and deletion plan. <br>
-Risk: The skill's privacy and consent posture is unclear for samples that may come from other people or shared contexts. <br>
-Mitigation: Use only your own writing or material you are authorized to process, and confirm consent before extracting or reusing another person's writing style. <br>
-Risk: A generated voice profile can make later text resemble a specific person's writing style. <br>
-Mitigation: Use generated profiles only for authorized writing workflows and review downstream output for consent, attribution, and impersonation concerns. <br>
+## Use Case:
 
+Writers use the skill to analyze anonymized writing samples and create a reusable voice profile for consistent writing. It guides sample collection, comparative extraction, and profile and register creation.
 
-## Reference(s): <br>
-- [Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown voice profile and register files, a JSON manifest, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Profiles are written under ~/.claude/voice-profiles/{name}; baseline comparisons are described as in-memory during extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Writing samples may contain private details that are copied into profile storage, and sample files may be overwritten.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sample contents and storage paths before intake, remove sensitive details, and back up existing profile files.
+
+Risk: The security scan was partial because two referenced paths were missing, leaving some referenced material unreviewed.
+
+Mitigation: Check the missing paths or confirm they are no longer needed, then review the complete skill before installation.
+
+## Reference(s):
+
+- [Claude Night Market Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+- [Research basis for voice extraction](modules/research-basis.md)
+- [Sample intake guidance](modules/sample-intake.md)
+- [SICO extraction guidance](modules/sico-extraction.md)
+- [Register creation guidance](modules/register-creation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown voice profile and register files, a JSON manifest, and comparative text analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Builds a reusable voice profile from user-provided writing samples; the documented validation target is at least three samples and 500 total words.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, confirmed by server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

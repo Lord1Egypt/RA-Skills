@@ -1,44 +1,54 @@
-## Description: <br>
-Analyze AFM images to compute surface roughness, detect nanoparticles, extract line profiles, generate 3D renderings, and process batches with detailed reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze AFM images to compute surface roughness, detect nanoparticles, extract line profiles, generate 3D renderings, and process batches with detailed reports.
 
-## Publisher: <br>
-[xrayxiaoruiyang-pixel](https://clawhub.ai/user/xrayxiaoruiyang-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrayxiaoruiyang-pixel](https://clawhub.ai/user/xrayxiaoruiyang-pixel)
 
-## Use Case: <br>
-Researchers, lab analysts, and developers use this skill to run local AFM image analysis for roughness metrics, particle statistics, line-profile extraction, 3D surface visualization, and batch comparison reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Report files may be overwritten when the same output directory and input names are reused. <br>
-Mitigation: Choose an output directory deliberately and keep separate directories for separate runs when preserving previous reports matters. <br>
-Risk: Recursive batch mode can process more local files than intended if pointed at a broad or private directory. <br>
-Mitigation: Run recursive mode only on a scoped AFM data folder and review the input path before execution. <br>
-Risk: Grayscale image inputs default to a simple height scale when calibration is not supplied. <br>
-Mitigation: Provide the correct scale factor for calibrated image data before using numeric height or roughness values. <br>
+## Use Case:
 
+Researchers, lab engineers, and developers use this skill to run local AFM image analysis for roughness measurement, nanoparticle statistics, line-profile extraction, 3D visualization, and batch comparison.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xrayxiaoruiyang-pixel/afm-image-analysis-1-0-0) <br>
-- [Skill usage documentation](artifact/SKILL.md) <br>
-- [AFM analysis script](artifact/scripts/analyze_afm.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration] <br>
-**Output Format:** [Text guidance with shell commands; generated analysis files include PNG, CSV, and JSON reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local AFM arrays, text matrices, and grayscale images, then writes per-input output directories plus an optional batch summary CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recursive batch mode can process many matching files below the selected directory and create analysis artifacts there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit input folders and output directories, and review the directory scope before enabling recursive mode.
+
+Risk: Image-based height mapping depends on calibration, and grayscale inputs default to a 1 gray-level to 1 nm scale unless overridden.
+
+Mitigation: Set the scale parameter from instrument calibration before relying on quantitative height or roughness values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xrayxiaoruiyang-pixel/skills/afm-image-analysis-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/xrayxiaoruiyang-pixel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files, JSON, CSV, Images]
+
+**Output Format:** [Markdown guidance with bash commands; generated analysis artifacts include PNG images, CSV tables, and JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on user-selected AFM data and writes per-file output directories plus a batch summary CSV.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

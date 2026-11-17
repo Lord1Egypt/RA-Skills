@@ -1,39 +1,54 @@
-## Description: <br>
-Swift linting and style enforcement via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swift linting and style enforcement via the SwiftLint CLI.
 
-## Publisher: <br>
-[alexissan](https://clawhub.ai/user/alexissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexissan](https://clawhub.ai/user/alexissan)
 
-## Use Case: <br>
-Developers and engineers use this skill to run SwiftLint on Swift projects, configure linting rules, autocorrect fixable style issues, and integrate checks into Xcode or CI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SwiftLint autofix commands can modify Swift source files. <br>
-Mitigation: Run lint-only commands first, scope checks with --path when possible, and review version-control diffs before accepting swiftlint --fix changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to lint Swift projects, configure SwiftLint rules, run autocorrect, and integrate style checks with Xcode or CI.
 
-## Reference(s): <br>
-- [ClawHub Swiftlint page](https://clawhub.ai/alexissan/swiftlint) <br>
-- [SwiftLint upstream repository](https://github.com/realm/SwiftLint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with inline shell, Swift, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SwiftLint reporter outputs such as JSON, CSV, XML, plist, Markdown, HTML, or JUnit when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: SwiftLint autocorrect commands such as swiftlint --fix can modify source files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Lint before autocorrecting, review the resulting git diff, and report any remaining non-autocorrectable violations separately.
+
+Risk: Workflow examples using git stash, branch checkout, or sudo xcode-select can affect local repository or developer tool state.
+
+Mitigation: Confirm intent before running state-changing git or system tool-selection commands, and prefer read-only linting commands when the user only asks for analysis.
+
+## Reference(s):
+
+- [ClawHub Swiftlint skill page](https://clawhub.ai/alexissan/skills/swiftlint)
+- [SwiftLint upstream repository](https://github.com/realm/SwiftLint)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell, YAML, Swift, and CI configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose SwiftLint commands that produce human-readable, JSON, CSV, XML, plist, SonarQube, Markdown, HTML, or JUnit reports; autocorrect commands can modify source files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

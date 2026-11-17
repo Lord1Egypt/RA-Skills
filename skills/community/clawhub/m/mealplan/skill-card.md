@@ -1,41 +1,58 @@
-## Description: <br>
-Plan meals with calorie tracking and shopping lists. Use when organizing weekly meals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mealplan is a command-line meal organizer that logs meal entries locally and exposes commands for listing meals, planning days, nutrition, shopping lists, and random meal suggestions.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users and developers use Mealplan to organize weekly meals, track calories, review nutrition summaries, generate shopping lists, and request meal suggestions from local meal history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meal and calorie history is stored locally under ~/.local/share/mealplan. <br>
-Mitigation: Avoid entering sensitive health details unless local storage is acceptable, and remove ~/.local/share/mealplan to clear saved data. <br>
-Risk: Using the skill runs a local Bash script. <br>
-Mitigation: Review the script and run it in an environment where local file writes to the mealplan data directory are acceptable. <br>
+## Use Case:
 
+External users use Mealplan to organize weekly meal records through shell commands, including adding meals, listing meals for a day, and requesting simple planning, nutrition, shopping, or random suggestion output.
 
-## Reference(s): <br>
-- [Mealplan on ClawHub](https://clawhub.ai/bytesagain1/mealplan) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can append local JSON Lines meal entries under ~/.local/share/mealplan when the add command is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Shell argument handling can expose arbitrary local files readable by the user account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix argument handling and quoting before deployment; until then, run the skill only with trusted meal, date, and type inputs.
+
+Risk: Planning, nutrition, shopping, and random suggestion commands may overstate what the script actually provides.
+
+Mitigation: Treat those outputs as simple helper text and verify meal plans, nutrition information, and shopping lists before relying on them.
+
+Risk: Meal data is stored locally under ~/.local/share/mealplan/.
+
+Mitigation: Avoid entering sensitive diet or health details unless local storage is acceptable, and manage or delete the stored JSON Lines file according to user or organization policy.
+
+## Reference(s):
+
+- [Mealplan on ClawHub](https://clawhub.ai/bytesagain1/skills/mealplan)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text command output with JSON Lines local meal records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The add command writes meal records under ~/.local/share/mealplan/.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, script, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

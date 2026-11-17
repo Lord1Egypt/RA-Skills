@@ -1,44 +1,60 @@
-## Description: <br>
-Quant Trade helps an agent analyze OKX market candles with RSI, EMA, Bias, and Bollinger Bands, then prepare or execute OKX spot, swap, and futures orders through the OKX CLI when credentials are configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive quantitative trading skill for OKX that combines technical indicator analysis with OKX CLI order execution for spot, perpetual swap, and futures workflows.
 
-## Publisher: <br>
-[long778899](https://clawhub.ai/user/long778899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[long778899](https://clawhub.ai/user/long778899)
 
-## Use Case: <br>
-Traders and developers use this skill to give an agent OKX technical-analysis workflows and guarded order-management commands. It is intended for users who deliberately want agent-assisted trading and can choose demo or live profiles before any authenticated action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated OKX commands can affect real funds when the live profile is used. <br>
-Mitigation: Start in demo mode, require an explicit live-or-demo profile choice, and review order details before execution. <br>
-Risk: Trading credentials may be exposed if pasted into chat or stored too broadly. <br>
-Mitigation: Configure credentials locally with the OKX CLI or environment variables, avoid sharing secrets in chat, and use API keys with only the permissions needed. <br>
-Risk: Scheduled monitoring or trading workflows can continue running after the user stops actively supervising them. <br>
-Mitigation: Avoid leaving the scheduler running unattended with live credentials and stop the process when monitoring is no longer needed. <br>
+## Use Case:
 
+Developers and external users can use this skill to calculate OKX market indicators such as RSI, EMA, Bias, and Bollinger Bands, then prepare or execute OKX spot, perpetual swap, and futures trading commands. Trading operations require configured OKX API credentials and an explicit live or demo profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/long778899/okx-quant-trade) <br>
-- [OKX](https://www.okx.com) <br>
-- [OKX market candles API](https://www.okx.com/api/v5/market/candles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON indicator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OKX CLI commands, credential/profile checks, trading-mode prompts, technical indicator summaries, and scheduler guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can execute live OKX trades with real funds when configured with trading credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use demo mode first, require an explicit profile for authenticated commands, and grant OKX API keys only the minimum trading permissions with no withdrawal permission.
+
+Risk: Unpinned Python and npm dependencies may change behavior between installs.
+
+Mitigation: Review and pin dependencies in an isolated environment before connecting live credentials.
+
+Risk: Incorrect instrument IDs, order sizes, leverage, or live/demo profile choices can create unintended orders.
+
+Mitigation: Confirm the instrument, amount unit, margin mode, leverage, and live or demo profile before running authenticated OKX CLI commands.
+
+## Reference(s):
+
+- [OKX](https://www.okx.com)
+- [OKX Market Candles API](https://www.okx.com/api/v5/market/candles)
+- [ClawHub Skill Page](https://clawhub.ai/long778899/skills/okx-quant-trade)
+- [Publisher Profile](https://clawhub.ai/user/long778899)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON from the indicator calculator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live or demo trading profile annotations, technical indicator summaries, and OKX CLI command outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

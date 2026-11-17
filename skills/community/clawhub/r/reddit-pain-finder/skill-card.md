@@ -1,43 +1,55 @@
-## Description: <br>
-Mines Reddit for user pain points, product complaints, unmet needs, micro-SaaS opportunities, content gaps, and service demands by analyzing subreddit conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reddit Pain Finder helps agents mine public Reddit conversations for user pain points, product complaints, unmet needs, micro-SaaS opportunities, content gaps, service demands, and competitive intelligence.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External founders, product builders, product teams, content marketers, agencies, and indie hackers use this skill to analyze public Reddit conversations for pain points, competitor gaps, content ideas, and market-validation evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public Reddit research can expose usernames, links, or other identifying details. <br>
-Mitigation: Use public posts only, avoid collecting identifiers, paraphrase by default, and include short non-sensitive quotes only when necessary. <br>
-Risk: Payment, crypto, wallet, or financial authority is unnecessary for this skill. <br>
-Mitigation: Do not grant payment, purchasing, crypto, wallet, or financial permissions when using the skill. <br>
-Risk: Market conclusions based on Reddit conversations may be incomplete or unrepresentative. <br>
-Mitigation: Cross-reference findings across multiple subreddits and review the evidence before making product or investment decisions. <br>
+## Use Case:
 
+Founders, product teams, content marketers, agencies, and indie hackers use this skill to analyze public Reddit discussions for pain points, competitor complaints, content gaps, trend signals, and idea validation.
 
-## Reference(s): <br>
-- [High-Value Subreddits for Business Opportunity Research](references/high-value-subreddits.md) <br>
-- [Opportunity Scoring Rubric](references/scoring-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranked pain points, opportunity scores, supporting Reddit evidence, content gaps, trend summaries, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can lead an agent to browse or search Reddit and quote or summarize public posts, which could be misused to collect private, deleted, gated, or personally sensitive Reddit data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public market research on public Reddit content, and do not request collection of private, deleted, gated, or personally sensitive data.
+
+Risk: Opportunity reports and GO/MAYBE/NO-GO recommendations can overstate demand when based on narrow subreddit samples or unverified user claims.
+
+Mitigation: Cross-reference findings across multiple relevant subreddits, preserve evidence context, and treat rankings as research input rather than final business validation.
+
+## Reference(s):
+
+- [High-Value Subreddits for Business Opportunity Research](references/high-value-subreddits.md)
+- [Opportunity Scoring Rubric](references/scoring-rubric.md)
+- [ClawHub Skill Page](https://clawhub.ai/tktk-ai/skills/reddit-pain-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with ranked findings, quoted or summarized public Reddit evidence, scores, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include opportunity scores, GO/MAYBE/NO-GO recommendations, content ideas, competitor complaints, and sample public post quotes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

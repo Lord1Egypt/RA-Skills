@@ -1,48 +1,58 @@
-## Description: <br>
-CodeSmith is a senior engineering agent configuration for OpenClaw agents that supports full-stack development automation, CI/CD work, GitHub workflows, ACP dispatch patterns, and operational coding guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeSmith is a senior engineering agent configuration for OpenClaw agents that do full-stack development automation, CI/CD, GitHub workflows, ACP dispatch, and production coding work.
 
-## Publisher: <br>
-[clawmentorai](https://clawhub.ai/user/clawmentorai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawmentorai](https://clawhub.ai/user/clawmentorai)
 
-## Use Case: <br>
-Developers who use OpenClaw as a coding partner use this package to configure an agent for repo work, CI/CD workflows, GitHub operations, sub-agent dispatch, memory practices, and staged cron adoption. It is intended for setups where some autonomy is earned over time and reviewed through explicit safety boundaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cron jobs and ACP dispatch can increase agent autonomy before the setup has earned trust. <br>
-Mitigation: Enable cron jobs one at a time, verify LOCKDOWN behavior, and require human approval for production deploys, main-branch merges, public posts, and external messages. <br>
-Risk: GitHub, hosting, and delivery-channel credentials could create unnecessary exposure if they are over-permissioned. <br>
-Mitigation: Keep GitHub and hosting credentials least-privilege, verify required scopes before enabling workflows, and avoid granting access that is not needed for the coding workflow. <br>
-Risk: Applying the package may modify agent configuration, cron configuration, or memory files. <br>
-Mitigation: Review proposed file changes, make backups before setup, approve writes explicitly, and restore from backups if the new configuration behaves unexpectedly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CodeSmith ClawHub listing](https://clawhub.ai/clawmentorai/codesmith) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CLAW_MENTOR.md](artifact/CLAW_MENTOR.md) <br>
-- [setup-guide.md](artifact/setup-guide.md) <br>
-- [privacy-notes.md](artifact/privacy-notes.md) <br>
-- [cron-patterns.json](artifact/cron-patterns.json) <br>
-- [skills.md](artifact/skills.md) <br>
-- [working-patterns.md](artifact/working-patterns.md) <br>
+## Use Case:
 
+Developers and engineers use CodeSmith to configure OpenClaw agents for repository maintenance, CI/CD workflows, GitHub operations, sub-agent dispatch, scheduled briefs, and supervised overnight branch-based work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown documentation and JSON cron configuration with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only mentor package; user approval is expected before writes, cron activation, production deploys, main-branch merges, public posts, or external messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ready-enabled scheduled autonomous jobs can perform briefs, health checks, and overnight work without active supervision.
+
+Mitigation: Review cron-patterns.json before installation, set cron templates to disabled first, enable one job at a time, and require human approval for overnight work.
+
+Risk: GitHub and deployment API guidance can affect repositories or hosting environments when used with broad credentials.
+
+Mitigation: Use narrowly scoped GitHub and hosting tokens, limit jobs to approved repositories and branches, and require human approval for every deployment API call.
+
+## Reference(s):
+
+- [CodeSmith ClawHub Skill Page](https://clawhub.ai/clawmentorai/skills/codesmith)
+- [CodeSmith Mentor Package](artifact/CLAW_MENTOR.md)
+- [CodeSmith Skill Definition](artifact/SKILL.md)
+- [Setup Guide](artifact/setup-guide.md)
+- [Privacy Notes](artifact/privacy-notes.md)
+- [Cron Patterns](artifact/cron-patterns.json)
+- [Working Patterns](artifact/working-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, JSON cron templates, shell command snippets, and configuration text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scheduled job templates and deployment guidance that should be reviewed before enabling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md, CLAW_MENTOR.md, cron-patterns.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

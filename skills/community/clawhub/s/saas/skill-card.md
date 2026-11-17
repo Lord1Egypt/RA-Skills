@@ -1,36 +1,54 @@
-## Description: <br>
-Build and scale profitable software-as-a-service with viral growth, retention, and monetization strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents advise on SaaS operating work across subscription revenue, packaging, trials, retention, expansion, enterprise readiness, multi-tenancy, compliance, support, reporting, and ARR quality.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders, operators, product teams, and go-to-market teams use this skill to evaluate SaaS pricing, growth loops, retention, sales motion, scaling decisions, and financial model tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, sales, retention, and financial-model suggestions may be incomplete or unsuitable for a real company decision. <br>
-Mitigation: Treat outputs as general business advice and review them against company data, market context, and financial assumptions before acting. <br>
+## Use Case:
 
+Developers, founders, operators, and revenue teams use this skill to compute and explain SaaS metrics, design plans and entitlements, diagnose retention and failed-payment leaks, prepare enterprise readiness, and maintain local operating notes for durable decisions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, or persistent changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local SaaS operating notes can contain confidential business data such as account names, ARR, renewal dates, churn reasons, and commercial commitments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review files under ~/Clawic/data/ periodically and avoid storing secrets, full customer exports, card data, or unnecessary personal data.
+
+Risk: Guidance about live billing actions such as cancellations, refunds, migrations, or access suspension could affect customers or revenue if acted on without review.
+
+Mitigation: Require explicit confirmation and check the affected customer count and revenue before taking any live billing or access-changing action.
+
+## Reference(s):
+
+- [ClawHub SaaS skill page](https://clawhub.ai/ivangdavila/skills/saas)
+- [Clawic SaaS skill homepage](https://clawic.com/skills/saas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown prose, tables, formulas, and local note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update plain local notes under configured ~/Clawic/data/ paths when durable SaaS operating decisions or records are produced.]
+
+## Skill Version(s):
+
+1.0.2 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

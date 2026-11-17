@@ -1,45 +1,56 @@
-## Description: <br>
-Gowok helps agents guide developers through using a Go library for project setup, configuration, web routing, SQL connections, runner management, singleton objects, and nil-safe helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gowok is a Go library skill that guides developers using Gowok utilities for project bootstrapping, configuration, HTTP routing, runners, singleton containers, nil-safe values, and SQL connections.
 
-## Publisher: <br>
-[hadihammurabi](https://clawhub.ai/user/hadihammurabi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hadihammurabi](https://clawhub.ai/user/hadihammurabi)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on building Go services with Gowok, including REST API setup, gRPC or event-driven runner patterns, configuration, SQL connectivity, and utility helpers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes development commands and setup guidance that may install dependencies, run Go code, modify project files, or connect to configured SQL services. <br>
-Mitigation: Review commands, configuration values, dependency changes, and database connection settings before running them in a local or production project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Getting Started](references/getting-started.md) <br>
-- [Configuration](references/configuration.md) <br>
-- [Runner](references/runner.md) <br>
-- [Singleton](references/singleton.md) <br>
-- [Some (Nil Safety)](references/some.md) <br>
-- [SQL](references/sql.md) <br>
-- [Web](references/web.md) <br>
-- [Go Documentation](https://go.dev) <br>
-- [Gowok Releases](https://github.com/gowok/gowok/releases) <br>
+## Use Case:
 
+Developers use this skill for guidance on starting Go projects with Gowok, configuring services, routing HTTP requests, managing runners and singletons, and wiring SQL connections.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Go, shell, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configuration examples may expose secrets if copied into application logs or diagnostics.
+
+Mitigation: Avoid logging full gowok.Config or gowok.Config.Map(); redact sensitive values and store production secrets in environment variables or a secret manager.
+
+## Reference(s):
+
+- [Gowok Skill Page](https://clawhub.ai/hadihammurabi/skills/gowok)
+- [Getting Started](references/getting-started.md)
+- [Configuration](references/configuration.md)
+- [Runner](references/runner.md)
+- [Singleton](references/singleton.md)
+- [Some (Nil Safety)](references/some.md)
+- [SQL](references/sql.md)
+- [Web](references/web.md)
+- [Gowok Releases](https://github.com/gowok/gowok/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Go, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

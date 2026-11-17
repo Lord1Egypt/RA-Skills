@@ -1,47 +1,61 @@
-## Description: <br>
-Coding Swarm Agent coordinates tmux-driven Claude Code and Codex agents for delegated coding, writing, analysis, review, testing, image, and deployment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multi-agent coding, writing, analysis, and image workflows through tmux-driven Claude Code and Codex sessions.
 
-## Publisher: <br>
-[ayao99315](https://clawhub.ai/user/ayao99315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayao99315](https://clawhub.ai/user/ayao99315)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to decompose complex project work, dispatch scoped tasks to coding agents, monitor task status, cross-review outputs, and coordinate commits or deployments in a local ClawHub/OpenClaw workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant agents broad authority to commit, push, install persistent hooks, send notifications, and run deployment commands. <br>
-Mitigation: Install only in an isolated, trusted repository and enable automatic commit, push, hook, notification, and deployment paths only after review. <br>
-Risk: Bypass-sandbox or highly automated command paths can execute project-changing operations with limited human intervention. <br>
-Mitigation: Review and disable bypass-sandbox command examples unless that level of automation is explicitly intended for the repository. <br>
-Risk: Delegated coding agents can produce incorrect or out-of-scope changes that are then committed or deployed. <br>
-Mitigation: Use file-scoped task prompts, cross-review agent outputs, inspect commit diffs, and run the release dashboard before deployment. <br>
+## Use Case:
 
+Developers and engineering leads use this skill to decompose software work into agent tasks, dispatch Claude Code or Codex sessions, monitor progress, coordinate reviews, and report completion across a local swarm workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ayao99315/ayao-workflow-agent) <br>
-- [Agent Swarm Playbook](references/agent-swarm-playbook.md) <br>
-- [Task Schema](references/task-schema.md) <br>
-- [Cross-Review Prompt Template](references/prompt-cc-review.md) <br>
-- [Codex Backend Coding Prompt Template](references/prompt-codex.md) <br>
-- [Codex Deploy Prompt Template](references/prompt-codex-deploy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, prompt templates, JSON task records, and code change instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate task registry updates, git commits, pushes, hooks, notifications, and deployment commands through delegated agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: release evidence) <br>
+Risk: Unsafe default privileges can let delegated agents run high-impact commands without normal approval or sandbox prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts before dispatch and remove bypass permission flags unless the workflow runs in an isolated, disposable repository.
+
+Risk: Automatic Git push and force-commit behavior can publish unintended changes or sensitive files.
+
+Mitigation: Use repositories without secrets, inspect changed files before commit or push, and narrow or disable auto-push and force-commit defaults.
+
+Risk: Persistent post-commit hooks can affect future repository work after the swarm workflow ends.
+
+Mitigation: Inspect or back up existing Git hooks before installation and uninstall the swarm hook after the workflow is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayao99315/skills/ayao-workflow-agent)
+- [Agent Swarm Playbook](references/agent-swarm-playbook.md)
+- [Task Schema](references/task-schema.md)
+- [Architecture Review](docs/arch-review-2026-03-22.md)
+- [Fix Review](docs/review-fix-2026-03-22.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command blocks and JSON task schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local swarm state updates, agent dispatch commands, review routing, and hook-based workflow coordination.]
+
+## Skill Version(s):
+
+1.7.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

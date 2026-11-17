@@ -1,4 +1,15 @@
 # Changelog
+
+## [0.6.0] - 2026-08-31
+
+### Fixed
+- Removed `flock` from `requires.bins`. It is not standard on macOS, and a single missing binary makes the whole skill ineligible: the model cannot see it, the slash command does not exist, and nothing is reported in the chat.
+- `CLAWD_DIR` no longer documented as defaulting to `~/clawd`. On OpenClaw 2.0 the workspace is `~/.openclaw/workspace`, so the old default scanned an empty directory on new installs.
+- Moved the trigger phrases from the unsupported `triggers:` field into `description`, which is what OpenClaw actually matches on. Dropped `primaryEnv: null` and `capabilities:`, neither of which is part of the schema.
+
+### Added
+- Note that `jq` is a hard requirement, and how to check with `openclaw skills info skillminer`.
+- Section comparing skillminer to the built-in Skill Workshop and its `skill-collection-review` automation.
 ## 0.5.3 — 2026-04-21
 Cosmetic release. No behavior changes, no bug fixes.
 

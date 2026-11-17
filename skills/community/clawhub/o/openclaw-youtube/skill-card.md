@@ -1,41 +1,53 @@
-## Description: <br>
-Searches YouTube videos, channels, rankings, and trends through AIsa for research, competitor scouting, and content discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search YouTube videos, channels, rankings, and trends through AIsa for YouTube research, competitor scouting, content discovery, and SERP-style analysis.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and content researchers use this skill to run YouTube search, top-video discovery, and competitor research workflows backed by AIsa results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires AISA_API_KEY and sends YouTube search queries to AIsa. <br>
-Mitigation: Use a scoped or dedicated key when possible, avoid confidential queries, monitor usage, and rotate the key if it is exposed. <br>
-Risk: Returned YouTube titles, URLs, metrics, and rankings may be incomplete or unavailable from upstream results. <br>
-Mitigation: Keep summaries grounded in returned data and state clearly when no results or fields are returned. <br>
+## Use Case:
 
+Developers, researchers, and content teams use this skill to search public YouTube results, find top-ranking videos, review competitor channels, and support trend or content-opportunity analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/openclaw-youtube) <br>
-- [AIsa API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; results depend on AIsa service responses and public YouTube availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: YouTube search terms, country or language parameters, filter values, and the configured API key are sent to AIsa's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive search queries and use a scoped API key when the provider supports it.
+
+Risk: Returned video titles, URLs, metrics, or channel details may be incomplete, unavailable, or changed upstream.
+
+Mitigation: Keep summaries grounded in returned results, avoid inventing missing details, and state clearly when no results are returned.
+
+## Reference(s):
+
+- [Openclaw Youtube ClawHub release](https://clawhub.ai/bibaofeng/skills/openclaw-youtube)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON results from the bundled CLI helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; search commands may accept query, country, language, filter, count, competitor name, and topic parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

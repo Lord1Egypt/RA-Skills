@@ -1,43 +1,58 @@
-## Description: <br>
-Search, download, and explore arXiv academic papers. Use when the user needs to find research papers, download PDFs, get recent publications in a field, or summarize academic content from arXiv. Supports searching by keywords, categories, authors, and downloading papers for offline reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, downloads, and explores arXiv academic papers by keyword, category, author, or arXiv ID.
 
-## Publisher: <br>
-[xunuowu](https://clawhub.ai/user/xunuowu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunuowu](https://clawhub.ai/user/xunuowu)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to search arXiv, retrieve recent papers by category, inspect paper metadata and summaries, and download selected PDFs for offline reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to arXiv over an HTTP API endpoint. <br>
-Mitigation: Avoid confidential, sensitive, or proprietary search terms when using the search and recent-paper commands. <br>
-Risk: The download command writes PDF files to the user-selected path. <br>
-Mitigation: Choose an intended output path and review downloaded PDFs before opening or sharing them. <br>
-Risk: The support QR code is an optional off-platform donation prompt. <br>
-Mitigation: Treat donation links as separate from the skill's core search and download function. <br>
+## Use Case:
 
+External researchers, students, and developers use this skill to search arXiv, inspect recent papers by category, and download PDFs for offline reading or follow-up analysis.
 
-## Reference(s): <br>
-- [arXiv API query endpoint](http://export.arxiv.org/api/query) <br>
-- [arXiv PDF download endpoint](https://arxiv.org/pdf/{arxiv_id}.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, files, guidance] <br>
-**Output Format:** [CLI text output, optional JSON, and downloaded PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, authors, publication date, arXiv ID, PDF URL, and a truncated summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search requests use a non-HTTPS arXiv API endpoint, which may expose queries or responses to transport-security issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on trusted networks or update the API endpoint to HTTPS before deployment.
+
+Risk: Remote paper metadata is displayed in terminal output.
+
+Mitigation: Treat paper metadata as untrusted remote text and sanitize or escape it before display in stricter environments.
+
+Risk: PDF downloads write files to user-selected output paths.
+
+Mitigation: Review output paths before download and restrict writes to intended working directories.
+
+## Reference(s):
+
+- [ClawHub arXiv Explorer Skill Page](https://clawhub.ai/xunuowu/skills/arxiv-explorer)
+- [arXiv API Query Endpoint](http://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text search results, optional JSON, and downloaded PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, authors, publication date, arXiv ID, PDF URL, and a truncated summary; downloads write PDFs to the requested output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

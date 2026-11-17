@@ -1,43 +1,63 @@
-## Description: <br>
-查询 Shodan 物联网搜索引擎获取设备信息、安全数据和网络资产；当用户需要进行 IP 地址分析、设备搜索、DNS 查询、网络安全评估或获取物联网设备信息时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Shodan for internet-connected device information, security data, DNS records, host details, search counts, and network asset analysis.
 
-## Publisher: <br>
-[Moxin1044](https://clawhub.ai/user/Moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxin1044](https://clawhub.ai/user/moxin1044)
 
-## Use Case: <br>
-Developers, security analysts, and asset owners use this skill to query Shodan for host details, device search results, DNS data, port information, and account status. Agents can use the returned data to summarize internet-exposed assets, identify security-relevant signals, and draft structured assessment reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup targets are sent to Shodan and may reveal sensitive internal domains, customer names, or investigation targets. <br>
-Mitigation: Confirm targets before querying and avoid submitting sensitive or unauthorized targets. <br>
-Risk: The Shodan API key may appear in full request URLs, logs, or screenshots. <br>
-Mitigation: Use a dedicated Shodan API key and redact full API URLs from logs, screenshots, and shared reports. <br>
+## Use Case:
 
+Developers and security analysts use this skill to query Shodan for authorized IP, domain, device, and organization investigations and to produce structured security assessments or asset reports.
 
-## Reference(s): <br>
-- [Shodan API reference](references/api-reference.md) <br>
-- [Shodan developer API documentation](https://developer.shodan.io/api) <br>
-- [ClawHub skill page](https://clawhub.ai/Moxin1044/shodan-skills) <br>
-- [Third-party publisher profile](https://clawhub.ai/user/Moxin1044) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHODAN_API_KEY and sends lookup targets to Shodan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends IP addresses, domains, search terms, and the configured Shodan API key to Shodan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those targets with Shodan is approved, and avoid sensitive internal targets unless authorized.
+
+Risk: Shodan searches can expose information about systems outside the user's authority.
+
+Mitigation: Limit investigations to assets the user is authorized to assess and review generated findings before acting on them.
+
+Risk: The Shodan API key is a credential required for every API call.
+
+Mitigation: Store SHODAN_API_KEY in a secret store, avoid placing it in prompts or logs, and rotate it if exposure is suspected.
+
+Risk: The artifact pins requests==2.28.0, which evidence.security flags for update before proxy-sensitive use.
+
+Mitigation: Update the pinned requests dependency before deploying in proxy-sensitive environments.
+
+## Reference(s):
+
+- [Shodan API Reference](references/api-reference.md)
+- [Shodan Developer API](https://developer.shodan.io/api)
+- [ClawHub Skill Page](https://clawhub.ai/moxin1044/skills/shodan-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHODAN_API_KEY and sends Shodan queries to the Shodan API.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

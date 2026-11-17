@@ -1,0 +1,200 @@
+{
+ "category": "manufacturing",
+ "zh": "制造与生产管理专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "autoshop-parts-labor-check",
+   "name": "汽修配件与工时费结算核对",
+   "layer": "local",
+   "entry": "autoshop-parts-labor-check-full.js",
+   "kw": [
+    "免费",
+    "工单总额",
+    "工时费",
+    "汽修配件与工时费结算核对",
+    "结算核对",
+    "配件小计"
+   ],
+   "cols": [
+    "备注",
+    "工单号",
+    "工单总额",
+    "工时",
+    "工时单价",
+    "工时费",
+    "工时项目",
+    "折扣",
+    "数量",
+    "规格型号",
+    "辅料费",
+    "配件单价",
+    "配件名称",
+    "配件小计",
+    "门店"
+   ]
+  },
+  {
+   "id": "equipment-maintenance-cost-check",
+   "name": "设备维保与备件领用费用核对",
+   "layer": "local",
+   "entry": "equipment-maintenance-cost-check-full.js",
+   "kw": [
+    "免费",
+    "备件领用",
+    "维保台账",
+    "设备维保与备件领用费用核对",
+    "费用核对"
+   ],
+   "cols": [
+    "保修状态",
+    "出库数量",
+    "备件单价",
+    "备件名称",
+    "备件编号",
+    "备件金额",
+    "外委报价",
+    "实际结算",
+    "工时单价",
+    "工时费",
+    "月度维保预算",
+    "维保类型",
+    "维修工时",
+    "设备名称",
+    "设备编号",
+    "费用归属月份",
+    "领用数量"
+   ]
+  },
+  {
+   "id": "manufacturing-monthly-selfcheck",
+   "name": "制造业月度自查包",
+   "layer": "local",
+   "entry": "manufacturing-monthly-selfcheck-full.js",
+   "kw": [
+    "\"制造业月度自查包\"",
+    "\"月度自查\"",
+    "\"核对\"",
+    "制造业月度自查包"
+   ],
+   "cols": []
+  },
+  {
+   "id": "manufacturing-ops-pack",
+   "name": "制造与生产技能包",
+   "layer": "local",
+   "entry": "manufacturing-ops-pack-full.js",
+   "kw": [
+    "BOM用量差异",
+    "仓库周转",
+    "分包结算",
+    "制造与生产技能包",
+    "固定资产盘点",
+    "委外加工费",
+    "存货成本",
+    "安全生产费",
+    "材料损耗",
+    "核对",
+    "模具摊销",
+    "生产成本核对",
+    "设备维保",
+    "证照年检"
+   ],
+   "cols": []
+  },
+  {
+   "id": "outsourced-processing-fee-check",
+   "name": "委外加工费与损耗核对",
+   "layer": "local",
+   "entry": "outsourced-processing-fee-check-full.js",
+   "kw": [
+    "免费",
+    "委外加工结算核对表",
+    "委外加工费与损耗核对",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "加工单号",
+    "加工数量",
+    "加工费",
+    "加工费单价",
+    "发出数量",
+    "合同单价",
+    "损耗率",
+    "损耗量",
+    "收回数量",
+    "期末盘点数量",
+    "期间",
+    "物料名称",
+    "结存数量"
+   ]
+  },
+  {
+   "id": "safety-production-fee-check",
+   "name": "安全生产费用提取与使用核对",
+   "layer": "local",
+   "entry": "safety-production-fee-check-full.js",
+   "kw": [
+    "免费",
+    "安全生产费用提取与使用核对",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "产量",
+    "应提取金额",
+    "所属期间",
+    "提取比例",
+    "期初余额",
+    "期末余额",
+    "本期使用",
+    "本期提取",
+    "核算主体",
+    "营业收入",
+    "行业类别"
+   ]
+  },
+  {
+   "id": "secondary-water-supply-check",
+   "name": "二次供水清洗消毒与水质检测核对",
+   "layer": "local",
+   "entry": "secondary-water-supply-check-full.js",
+   "kw": [
+    "二次供水清洗消毒与水质检测核对",
+    "免费",
+    "核对",
+    "水箱清洗周期",
+    "水质检测限值"
+   ],
+   "cols": [
+    "上次清洗日期",
+    "下次清洗日期",
+    "供水状态",
+    "健康证有效期",
+    "单位",
+    "备注",
+    "小区/项目名称",
+    "核对基准日",
+    "检测日期",
+    "检测结果",
+    "检测项数",
+    "检测项目",
+    "水箱名称",
+    "水箱数",
+    "水箱编号",
+    "清洗人员",
+    "清洗单位",
+    "限值"
+   ]
+  }
+ ],
+ "coverage": {
+  "local": 7,
+  "total": 7,
+  "note": "本公开包内可本地运行 7 个子技能；本类共 7 个，其余 0 个只在订阅版里提供"
+ }
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents plan and evaluate free marketing tools for lead generation, SEO value, and brand awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan and evaluate free marketing tools for lead generation, SEO value, and brand awareness.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing teams, founders, and product or growth teams use this skill to assess free-tool opportunities, compare tool types, define MVP scope, plan lead capture, and weigh SEO and distribution strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill during unrelated product or calculator discussions. <br>
-Mitigation: Use it only for explicit free-tool, engineering-as-marketing, or lead-generation strategy requests; disable it or tighten trigger wording if it activates outside that scope. <br>
-Risk: Strategic recommendations could affect marketing spend, engineering time, or lead-capture choices. <br>
-Mitigation: Validate assumptions with search-demand data, competitive review, implementation estimates, and human approval before committing resources. <br>
+## Use Case:
 
+Marketing teams, founders, and consultants use this skill to decide whether to build a free tool, compare tool ideas, define MVP scope, and choose lead-capture and SEO strategies.
 
-## Reference(s): <br>
-- [Free Tool Types Reference](artifact/references/tool-types.md) <br>
-- [ClawHub release page](https://clawhub.ai/mariokarras/abm-free-tool-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown prose, tables, scorecards, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include strategic questions, evaluation scores, MVP scope, lead-capture tradeoffs, SEO considerations, and build-vs-buy recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata.version is 1.1.0) <br>
+Risk: Lead-capture recommendations may encourage unnecessary or poorly disclosed personal-data collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only necessary information, make email capture optional or clearly disclosed where possible, and confirm consent and legal compliance before launch.
+
+Risk: Broad trigger wording may activate the skill in general free-tool or lead-generation discussions.
+
+Mitigation: Confirm the user wants marketing-tool strategy before applying the full framework.
+
+## Reference(s):
+
+- [Free Tool Types Reference](references/tool-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-free-tool-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown strategy guidance, scorecards, recommendations, and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include evaluation scores, lead-capture options, SEO considerations, and MVP scope recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

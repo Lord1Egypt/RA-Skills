@@ -1,49 +1,60 @@
-## Description: <br>
-Automates China Mobile Wangda course workflows, including course progress checks, adding new course URLs, browser-assisted login, auto-study monitoring, and stopping active study sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates China Mobile Wangda course workflows for tracking progress, adding course URLs, continuing study sessions, handling SMS login, and stopping active study.
 
-## Publisher: <br>
-[luobusita-ai](https://clawhub.ai/user/luobusita-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luobusita-ai](https://clawhub.ai/user/luobusita-ai)
 
-## Use Case: <br>
-Users with authorized access to China Mobile Wangda use this skill to manage course learning sessions, summarize progress, add courses, complete SMS-assisted login, and start or stop automated course monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a local browser through remote debugging and automate authenticated Wangda pages. <br>
-Mitigation: Run it only in an isolated Chrome profile and only with an account approved for automation. <br>
-Risk: The bundled stealth extension is injected into every site loaded by the automated Chrome profile. <br>
-Mitigation: Keep the automated profile dedicated to Wangda and avoid browsing unrelated sites in that profile. <br>
-Risk: The skill can receive SMS login codes and store session/account state locally. <br>
-Mitigation: Use accounts and phone numbers you are comfortable automating, and clear session state when switching users. <br>
-Risk: The skill can persist scheduled monitor tasks and terminate Chrome/session state. <br>
-Mitigation: Review scheduled tasks after use and run the clear or stop-study workflow when automation should end. <br>
-Risk: The skill can dump authenticated page contents locally. <br>
-Mitigation: Store outputs only in trusted local directories and review local files before sharing logs or artifacts. <br>
+## Use Case:
 
+Employees or authorized users who need an agent-assisted Wangda workflow can use this skill to manage course progress, add course URLs, continue automated study, complete SMS login steps, and stop or clear existing study sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luobusita-ai/tmd-wangda) <br>
-- [China Mobile Wangda](https://wangda.chinamobile.com) <br>
-- [Tool command reference](artifact/references/tools.md) <br>
-- [Session schema reference](artifact/references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON session/progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local session files, control a Chrome profile, and create or remove scheduled monitor tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release metadata) <br>
+Risk: Persistent scheduled execution can continue automated course activity after the user expects it to stop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented stop-study or clear command after use and verify scheduler cleanup.
+
+Risk: The bundled stealth extension changes page behavior in the automated Chrome profile.
+
+Mitigation: Run the skill only in a dedicated Chrome profile and avoid opening non-Wangda links in that browser.
+
+Risk: SMS login codes and account identifiers are handled through local tool commands and session state.
+
+Mitigation: Avoid entering SMS codes where terminal history or logs are retained, and clear session data when switching accounts.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/luobusita-ai/skills/tmd-wangda)
+- [China Mobile Wangda](https://wangda.chinamobile.com)
+- [Session Schema Reference](references/schemas.md)
+- [Tool Command Reference](references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python command invocations and JSON session or progress outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local session JSON and schedule or remove recurring OS monitor tasks through documented tool commands.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

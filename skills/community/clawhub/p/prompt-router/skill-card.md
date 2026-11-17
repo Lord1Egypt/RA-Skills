@@ -1,44 +1,60 @@
-## Description: <br>
-Prompt-Router routes user prompts to likely local skills using deterministic text matching, with low-confidence requests falling back to LLM routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt-Router is a text-matching routing engine that gives agents a fast path for simple prompts, supports mixed Chinese and English inputs, and falls back to LLM semantic routing when confidence is low.
 
-## Publisher: <br>
-[aiwell0721](https://clawhub.ai/user/aiwell0721) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiwell0721](https://clawhub.ai/user/aiwell0721)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route simple, high-frequency prompts to matching local skills quickly while sending ambiguous or complex prompts to LLM-based routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The router reads the local skills directory and can be used to auto-select skills. <br>
-Mitigation: Install only where local skill discovery and routing are intended; keep confirmation or LLM fallback for low-confidence, sensitive, or destructive actions. <br>
-Risk: Bundled metadata scripts can rewrite other installed skills' SKILL.md files. <br>
-Mitigation: Do not run metadata rewrite scripts unless manifest changes are intended; review diffs or back up the skills directory first. <br>
-Risk: Prompt logging, monitoring, or auto-PR workflows could expose user prompts or create unreviewed changes if enabled without controls. <br>
-Mitigation: Disable those workflows unless explicit consent, redaction, retention limits, and credential controls are in place. <br>
+## Use Case:
 
+Developers and agent builders use this skill to route simple user prompts to matching skills or tools through deterministic text matching. It is intended to reduce latency for high-confidence routes while preserving LLM fallback for low-confidence or ambiguous requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiwell0721/prompt-router) <br>
-- [Prompt-Router SKILL.md](artifact/SKILL.md) <br>
-- [Prompt-Router README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; command-line helper output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routing output may include matched skill name, skill path, confidence, score, and invocation or fallback decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Agent-wide routing changes can invoke the wrong skill when matching is weak or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an allowlist, higher confidence thresholds, ambiguity checks, and explicit confirmation before auto-invoking skills that write files, run commands, browse, authenticate, or contact external services.
+
+Risk: Metadata repair scripts can rewrite multiple skill files in a broad skills directory.
+
+Mitigation: Back up the skills directory and review a diff before and after running metadata repair scripts.
+
+Risk: Automatic routing may hide fallback decisions from users or operators.
+
+Mitigation: Log matched skill names, confidence scores, and fallback decisions so routing behavior can be audited and thresholds can be tuned.
+
+## Reference(s):
+
+- [Prompt-Router ClawHub listing](https://clawhub.ai/aiwell0721/skills/prompt-router)
+- [Skill guide](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Test report](artifact/TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Shell commands, Configuration]
+
+**Output Format:** [JSON routing result or short text recommendation, with Markdown documentation and inline shell/Python examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes matched skill name, confidence, score, invocation recommendation, and error details when run through the integration script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

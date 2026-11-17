@@ -1,43 +1,53 @@
-## Description: <br>
-Send emails via the gomail sender CLI with attachments, templates, and recipient management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails via the gomail sender CLI with attachments, templates, and recipient management. Use when sending or testing email delivery from OpenClaw.
 
-## Publisher: <br>
-[craftslab](https://clawhub.ai/user/craftslab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[craftslab](https://clawhub.ai/user/craftslab)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send SMTP email, notifications, or messages with optional attachments and templates, or to validate recipients with dry-run mode before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates email sending to a downloaded gomail sender CLI with SMTP authority. <br>
-Mitigation: Install only from a trusted release source, use a dedicated SMTP account where possible, and review generated commands before execution. <br>
-Risk: SMTP credentials and sender details are stored in sender.json-style configuration files. <br>
-Mitigation: Replace template values with real credentials only in protected local files, keep secrets out of source control, and restrict file access. <br>
-Risk: Incorrect recipients or attachments could send email to unintended parties or leak information. <br>
-Mitigation: Verify recipients and attachment paths before sending, and use --dry-run to validate recipients without sending mail. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send email through the gomail sender CLI, configure SMTP delivery, attach files, manage recipients, and validate recipients with dry-run before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/craftslab/gomail) <br>
-- [gomail releases](https://github.com/craftslab/gomail/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recipient validation output when --dry-run is used; sending behavior depends on the external gomail sender CLI and SMTP configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Install instructions download the latest GitHub release binary without a pinned version, checksum, or signature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a specific gomail release, verify a published checksum or signature when available, and review the install command before execution.
+
+Risk: The sender configuration, message bodies, recipient lists, and attachments can contain SMTP credentials or sensitive email content.
+
+Mitigation: Keep sender.json and email inputs out of source control, restrict file permissions, and use --dry-run to validate recipients before sending.
+
+## Reference(s):
+
+- [gomail GitHub releases](https://github.com/craftslab/gomail/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recipient validation JSON when --dry-run is used by the underlying sender CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

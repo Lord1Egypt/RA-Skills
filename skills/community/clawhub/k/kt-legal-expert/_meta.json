@@ -1,0 +1,10 @@
+{
+  "slug": "kt-legal-expert",
+  "name": "KT 合同审查专家",
+  "ownerId": "seairteng",
+  "version": "1.0.1",
+  "publishedAt": "2026-08-19T21:00:00+08:00",
+  "tags": ["contract", "legal", "review", "real-estate", "construction", "china"],
+  "summary": "基于 25 份真实合同修改经验提炼的合同审查工具；含自动审查脚本（7 大原则 + 34 条具体习惯）",
+  "minRuntime": "1.0.0"
+}

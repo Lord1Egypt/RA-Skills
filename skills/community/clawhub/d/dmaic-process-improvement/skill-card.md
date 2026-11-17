@@ -1,42 +1,59 @@
-## Description: <br>
-An interactive DMAIC process-improvement assistant that guides users through Define, Measure, Analyze, Improve, and Control stages with tool selection, step-by-step questioning, expert review, and Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An interactive DMAIC process improvement guide that walks users through Define, Measure, Analyze, Improve, and Control stages with guided questions, selected Six Sigma tools, expert review prompts, and project documentation.
 
-## Publisher: <br>
-[savidwilbert](https://clawhub.ai/user/savidwilbert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[savidwilbert](https://clawhub.ai/user/savidwilbert)
 
-## Use Case: <br>
-Employees, quality teams, and process-improvement practitioners use this skill to structure Six Sigma DMAIC projects, analyze quality or process problems, document each stage, and produce a complete project report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for sensitive operational, business, or project information while guiding DMAIC analysis. <br>
-Mitigation: Avoid uploading trade secrets, credentials, regulated personal data, or highly confidential operational files unless necessary. <br>
-Risk: Generated DMAIC reports and recommendations may contain confidential process details or require business review before use. <br>
-Mitigation: Review and redact generated reports before saving, distributing, or using them for process-improvement decisions. <br>
+## Use Case:
 
+Employees, external users, and process improvement practitioners use this skill to structure DMAIC projects for Six Sigma work, quality analysis, root cause investigation, process optimization, and control planning. The skill gathers project context, guides tool-by-tool analysis, and produces stage documents and a final project report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/savidwilbert/dmaic-process-improvement) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [DMAIC methodology](https://en.wikipedia.org/wiki/DMAIC) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, tables, ASCII diagrams, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged DMAIC documents, optional expert-review records, progress summaries, and a complete final project report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Users may include customer, employee, financial, regulated, proprietary, or unnecessary confidential details in uploaded files or generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove sensitive or unnecessary business information before uploading files or saving and exporting reports.
+
+Risk: Broad triggers such as quality analysis, process improvement, DMAIC, or Six Sigma may activate the skill in business contexts where users share operational data.
+
+Mitigation: Confirm the intended workflow before collecting project context and limit inputs to information needed for the DMAIC task.
+
+Risk: Generated process improvement recommendations or analysis artifacts may be incomplete or misleading if the user's data is incomplete.
+
+Mitigation: Review outputs with qualified quality, process, customer, safety, finance, or domain experts before applying changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/savidwilbert/skills/dmaic-process-improvement)
+- [OpenClaw](https://openclaw.ai)
+- [DMAIC Methodology](https://en.wikipedia.org/wiki/DMAIC)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text and Markdown documents, including tables and simple diagrams when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-tool DMAIC documents, stage summaries, expert review prompts, optional review records, progress reports, and a final project report.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

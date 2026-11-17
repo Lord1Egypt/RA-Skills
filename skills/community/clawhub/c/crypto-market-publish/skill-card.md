@@ -1,49 +1,65 @@
-## Description: <br>
-Comprehensive cryptocurrency market monitoring and economic data analysis for tracking crypto prices, market sentiment, economic data releases, and economic indicator impacts on crypto markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive cryptocurrency market monitoring and economic data analysis for tracking crypto prices, market sentiment, economic data releases, and how economic indicators may affect crypto markets.
 
-## Publisher: <br>
-[KJjjj0](https://clawhub.ai/user/KJjjj0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kjjjj0](https://clawhub.ai/user/kjjjj0)
 
-## Use Case: <br>
-Developers, analysts, and crypto operators use this skill to monitor major cryptocurrency prices, generate market reports, review economic calendar events, and update actual economic values for bullish or bearish impact analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual setup can overwrite or reset local crypto workspace data. <br>
-Mitigation: Install into a dedicated crypto workspace, back up existing ~/.openclaw/workspace/crypto data first, and avoid reset commands unless clearing saved economic data is intentional. <br>
-Risk: Hard-coded /root/.openclaw paths can cause reliability or local import risks when using custom install locations. <br>
-Mitigation: Review or fix hard-coded paths before relying on custom paths, and run the skill from the intended isolated workspace. <br>
-Risk: Cron entries enable recurring background monitoring and log writes. <br>
-Mitigation: Add cron jobs only when recurring monitoring is intended, and review the schedule and log paths before enabling them. <br>
+## Use Case:
 
+Developers and external users use this skill to monitor cryptocurrency prices, generate market and economic-data reports, update released economic values, and receive analysis-oriented guidance for market context.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/KJjjj0/crypto-market-publish) <br>
-- [Installation guide](INSTALL.md) <br>
-- [Quick reference](references/quick-reference.md) <br>
-- [Economic data types](references/data-types.md) <br>
-- [Usage examples](references/usage-examples.md) <br>
-- [CoinGecko markets API](https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={ids}&order=market_cap_desc&sparkline=true&price_change_percentage=1h,24h,7d,30d) <br>
-- [CoinGecko global API](https://api.coingecko.com/api/v3/global) <br>
-- [Binance 24hr ticker API](https://api.binance.com/api/v3/ticker/24hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and local JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local actual-value data and log files in the configured crypto workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Financial and economic-data analysis may be incomplete, generated, or unsuitable as a sole basis for trading decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market and economic data independently before acting on the reports or analysis.
+
+Risk: Hard-coded root paths and import behavior may fail in normal environments or encourage unnecessary privileged execution.
+
+Mitigation: Install in an isolated workspace, avoid sudo, and fix paths and imports before running or scheduling the scripts.
+
+Risk: Cron-based monitoring repeatedly fetches public market data and writes local JSON data and logs.
+
+Mitigation: Review cron entries, filesystem paths, permissions, and logging locations before enabling scheduled execution.
+
+## Reference(s):
+
+- [Installation Guide](INSTALL.md)
+- [Quick Reference](references/quick-reference.md)
+- [Economic Data Types](references/data-types.md)
+- [Usage Examples](references/usage-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/kjjjj0/skills/crypto-market-publish)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/kjjjj0)
+- [CoinGecko Markets API](https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids={ids}&order=market_cap_desc&sparkline=true&price_change_percentage=1h,24h,7d,30d)
+- [CoinGecko Global API](https://api.coingecko.com/api/v3/global)
+- [Binance 24hr Ticker API](https://api.binance.com/api/v3/ticker/24hr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, json data, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, text reports, and local JSON data updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public market data, writes local JSON data and logs, and can be scheduled with cron after local paths are reviewed.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

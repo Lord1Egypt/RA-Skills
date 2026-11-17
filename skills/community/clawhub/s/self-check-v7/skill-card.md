@@ -1,43 +1,54 @@
-## Description: <br>
-Self-Check System v7 guides agents through mandatory critical thinking, task decomposition, quality control, role separation, checkpoint logging, behavior tracking, and cross-agent memory synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-check system with multi-dimensional critical thinking, task-decompose, quality-control, collaboration, mandatory checkpoint logging, behavior tracking, and cross-agent memory sync.
 
-## Publisher: <br>
-[eita19](https://clawhub.ai/user/eita19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eita19](https://clawhub.ai/user/eita19)
 
-## Use Case: <br>
-Developers and agent operators use this skill to enforce a structured self-check workflow before delivery, including challenge prompts, alternatives comparison, quality gates, checkpoint logs, behavior tracking, and memory synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on checkpoint logging and behavior tracking can record task summaries, inferred preferences, and other interaction metadata. <br>
-Mitigation: Confirm storage location, access, retention, deletion process, and whether logging can be disabled or scoped before installing. <br>
-Risk: External memory synchronization through Bitable can share remembered items outside the local workspace. <br>
-Mitigation: Require explicit consent for sync, verify the destination and access controls, and disable external sync when it is not needed. <br>
-Risk: The mandatory governance workflow can change normal agent behavior for all tasks. <br>
-Mitigation: Install only in environments that intentionally want strict pre-delivery checks, role separation, and review gates. <br>
+## Use Case:
 
+Developers and agent operators use this skill to impose a structured self-check workflow before task execution and delivery, including critical-thinking prompts, task decomposition, quality gates, checkpoint logging, behavior tracking, and memory sync procedures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eita19/self-check-v7) <br>
-- [Y7 Framework reference](https://github.com/Y7-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with checklist templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require local checkpoint logs, behavior-tracker entries, and external memory-sync records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill requires persistent behavior tracking and self-check logs that can record task summaries, inferred preferences, and confidence notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where persistent logging is acceptable, and review retention, deletion, and scope controls before use.
+
+Risk: The skill describes cross-agent memory synchronization through a Bitable relay when users ask the agent to remember information.
+
+Mitigation: Use only with explicit user consent for memory sharing, and limit synchronized content to information the user intended to store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eita19/skills/self-check-v7)
+- [Y7 Framework](https://github.com/Y7-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with checklist templates and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require persistent local logging and cross-agent memory synchronization when followed by an agent.]
+
+## Skill Version(s):
+
+7.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

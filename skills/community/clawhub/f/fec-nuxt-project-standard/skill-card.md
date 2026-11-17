@@ -1,41 +1,50 @@
-## Description: <br>
-Use when creating or reviewing Nuxt 3 projects, file routes, pages, layouts, SSR/SSG/SPA behavior, Nuxt data fetching, route middleware, plugins, modules, server routes, or Nuxt-specific Vue 3 conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents creating or reviewing Nuxt 3 projects on routing, rendering, data fetching, middleware, plugins, and server routes.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create or review Nuxt 3 projects, especially routing, layouts, rendering mode, data fetching, middleware, plugins, modules, server routes, and Nuxt-specific Vue 3 conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence guidance notes that related local CLI, review tooling, moderation, or publishing commands should only run with intended accounts and targets. <br>
-Mitigation: Review command targets and reasons before use; avoid broad default access modes when they are not needed. <br>
-Risk: Applying Nuxt guidance without checking runtime boundaries can introduce browser-only APIs into server-rendered code or cause hydration mismatches. <br>
-Mitigation: Review SSR, SSG, and SPA choices, keep browser APIs behind client-only boundaries, and verify data fetching with Nuxt hydration behavior. <br>
+## Use Case:
 
+Developers use this skill to structure and review Nuxt 3 and Vue 3 projects, including rendering modes, file-based routing, data fetching, and server/client boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-nuxt-project-standard) <br>
-- [Frontend Craft repository](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with Nuxt, Vue, TypeScript, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file-route structure, SSR/SSG/SPA recommendations, Nuxt data-fetching choices, middleware notes, and server/client boundary guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata, metadata.json, package.json, README.md) <br>
+Risk: Broad Nuxt-related activation may give shallow advice on specialized authentication or data-fetching tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated route-protection or data-fetching skill when those topics need deeper guidance.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-nuxt-project-standard)
+- [Project homepage (package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with Nuxt and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated project changes before use.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

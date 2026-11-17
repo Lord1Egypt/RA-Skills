@@ -1,46 +1,61 @@
-## Description: <br>
-Multi-language license compliance audit powered by Trivy that detects GPL, AGPL, LGPL, MPL, BSL, and other risky licenses across common application stacks and can output terminal, Markdown, HTML, JSON, Feishu Doc, and Feishu Base reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-language license compliance audit powered by Trivy that detects GPL, AGPL, LGPL, MPL, BSL, and other risky licenses across Node.js, Python, Java, C#/.NET, Go, Rust, Ruby, PHP, and C/C++ projects.
 
-## Publisher: <br>
-[theosunny](https://clawhub.ai/user/theosunny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theosunny](https://clawhub.ai/user/theosunny)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan local or remote repositories for dependency license risk before release, procurement review, or CI/CD enforcement. It is aimed at multi-language projects that need summarized license findings and optional team-review outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install Trivy by running a remote installer when Trivy is missing. <br>
-Mitigation: Install and verify Trivy separately before running the skill, or run it only in an environment where that automatic installation behavior is acceptable. <br>
-Risk: Private repository URLs may contain credentials if users pass tokens directly in the URL. <br>
-Mitigation: Avoid embedding Git tokens in URLs; prefer credential helpers, scoped temporary credentials, or pre-cloned local repositories. <br>
-Risk: NuGet enrichment and Feishu outputs can send dependency or report data to external services. <br>
-Mitigation: Use --no-enrich for offline NuGet scans and enable Feishu output only for repositories whose dependency data may be uploaded to the configured Feishu account. <br>
+## Use Case:
 
+Developers, engineering teams, and compliance reviewers use this skill to scan local projects or Git repositories for dependency license risk and produce reviewable reports for commercial open-source compliance decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theosunny/license-audit) <br>
-- [Trivy](https://github.com/aquasecurity/trivy) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Code review checklist](references/code-review-checklist.md) <br>
-- [Known license table](references/known-licenses.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Markdown, HTML, JSON, Feishu Doc, or Feishu Base records depending on selected options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports classify license findings by risk tier and may include NuGet enrichment for C#/.NET projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports that the skill can automatically run an unverified Trivy installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Trivy separately through a trusted, pinned method before invoking the skill, and avoid running it where installation to /usr/local/bin is allowed unintentionally.
+
+Risk: The security review notes that private repository tokens can be exposed in logs if users place credentials in repository URLs.
+
+Mitigation: Use SSH, a credential helper, or short-lived read-only credentials instead of embedding tokens in URLs, and avoid printing authenticated repository URLs.
+
+Risk: Feishu output can upload dependency inventory to Feishu.
+
+Mitigation: Use Feishu output only for intended internal sharing, preferably with a dedicated low-scope internal app and approved scopes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theosunny/skills/license-audit)
+- [Trivy](https://github.com/aquasecurity/trivy)
+- [Feishu developer console](https://open.feishu.cn)
+- [Code Review Checklist](references/code-review-checklist.md)
+- [Known License Table](references/known-licenses.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, Markdown, HTML, JSON, Feishu Doc, or Feishu Base report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports summarize dependency license tiers as HIGH, MEDIUM, LOW, or UNKNOWN; file outputs can use generated timestamped filenames when no output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

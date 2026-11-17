@@ -1,39 +1,52 @@
-## Description: <br>
-Helps review important communications before sending by checking purpose, recipients, clarity, tone, attachments, sensitive data, timing, and recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send helps users review and prepare important emails, messages, files, proposals, campaigns, and other communications before they are sent.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-Employees, external users, and teams use this skill to run a structured pre-send review for important emails, messages, files, proposals, campaigns, and sensitive communications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used for bulk, legal, HR, medical, confidential, or otherwise high-stakes communications. <br>
-Mitigation: Invoke it deliberately as a pre-send review checklist and keep human approval for high-stakes communications. <br>
-Risk: The skill provides communication guidance but has no authority to send, recall, or verify delivery of messages. <br>
-Mitigation: Use it for review only, and confirm recipients, attachments, permissions, sensitive data handling, and final sending actions in the actual communication system. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/AGImodel/send) <br>
+## Use Case:
 
+Employees, external users, and teams use this skill to assess readiness for high-stakes communications, including recipient fit, clarity, tone, attachments, sensitive-data checks, send timing, and correction steps.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown checklist and structured communication guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only pre-send review guidance; it does not send messages or execute workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may be invoked for broad outbound communication tasks, including sensitive or high-stakes messages.
+
+Mitigation: Use it as a review aid and keep final human control over recipients, attachments, sensitive data, and any actual sending workflow.
+
+Risk: Checklist guidance can miss context-specific legal, privacy, organizational, or relationship concerns.
+
+Mitigation: Apply organizational review before sending sensitive, regulated, or unusually consequential communications.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agimodel/skills/send)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and checklist-style recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tools, persistence, or hidden actions are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

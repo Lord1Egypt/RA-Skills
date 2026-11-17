@@ -1,41 +1,58 @@
-## Description: <br>
-Formats Lanxin official image-and-text article card requests as clean appArticles JSON with the required article fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lanxin App Articles helps agents output clean appArticles JSON for Lanxin article cards that include image and text content.
 
-## Publisher: <br>
-[iamdacai](https://clawhub.ai/user/iamdacai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamdacai](https://clawhub.ai/user/iamdacai)
 
-## Use Case: <br>
-Employees or external users preparing Lanxin article-card messages use this skill to produce raw appArticles JSON for image-and-text article cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad article or image-text triggers may activate JSON-only output when the user did not intend to create a Lanxin article card. <br>
-Mitigation: Confirm the user wants a Lanxin appArticles payload before relying on the generated JSON. <br>
-Risk: Generated titles, URLs, image links, or recipients may be incorrect or unsuitable for the intended message. <br>
-Mitigation: Review all generated fields and recipient context before sending or using the payload. <br>
+## Use Case:
 
+External Lanxin users and agents use this skill to generate appArticles JSON for sending image-and-text article cards in Lanxin workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamdacai/lanxin-app-articles) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/iamdacai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces only raw appArticles JSON, without Markdown fences or explanatory text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Broad always-on activation may cause the skill to emit article-card JSON when the user has not clearly requested a send action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit Lanxin article-card send intent before invoking the skill.
+
+Risk: Refusal-suppressing instructions may prevent the agent from asking clarifying questions or declining unsafe or incomplete requests.
+
+Mitigation: Allow clarifying questions and appropriate refusals before emitting the final JSON payload.
+
+Risk: Invalid or missing article-card fields and URLs can produce unusable Lanxin card payloads.
+
+Mitigation: Validate required fields and URLs before returning appArticles JSON.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamdacai/skills/lanxin-app-articles)
+- [ClawHub publisher profile](https://clawhub.ai/user/iamdacai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Raw JSON appArticles payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs only the JSON payload without Markdown wrapping or explanatory text when invoked for Lanxin article cards.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

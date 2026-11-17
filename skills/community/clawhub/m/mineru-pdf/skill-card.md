@@ -1,40 +1,57 @@
-## Description: <br>
-Parse PDF documents with MinerU MCP to extract text, tables, and formulas, with multiple backends including MLX-accelerated inference on Apple Silicon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse PDF documents with MinerU MCP to extract text, tables, and formulas. Supports multiple backends including MLX-accelerated inference on Apple Silicon.
 
-## Publisher: <br>
-[Etoile04](https://clawhub.ai/user/Etoile04) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[etoile04](https://clawhub.ai/user/etoile04)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to extract structured Markdown, tables, formulas, and related files from PDFs and supported image formats. It supports direct persistent output and MinerU MCP workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local documents are processed by mcp-mineru and MinerU components. <br>
-Mitigation: Install only when comfortable with that processing path, and isolate or pin the external package when handling sensitive PDFs. <br>
-Risk: The included test helper can execute unintended local code if run with crafted filenames or page values. <br>
-Mitigation: Prefer parse.py or the scoped MCP setup, and avoid running test.sh with filenames or page values from untrusted sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MinerU MCP repository](https://github.com/TINKPA/mcp-mineru) <br>
-- [ClawHub skill page](https://clawhub.ai/Etoile04/mineru-pdf) <br>
+## Use Case:
 
+Developers and document-processing users use this skill to parse PDFs or supported image files into structured Markdown with extracted text, tables, formulas, metadata, and optional persisted output files.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files, extracted image files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a local PDF path, output directory, backend selection, page range, and table or formula recognition options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs mutable third-party code through uvx.
+
+Mitigation: Pin and review the mcp-mineru package version before use, and run it in an isolated environment.
+
+Risk: The test script can turn untrusted arguments into executable Python.
+
+Mitigation: Do not run test.sh with untrusted input; prefer the direct parser interface with validated file paths and numeric page arguments.
+
+Risk: Parsed documents may contain sensitive or unauthorized content.
+
+Mitigation: Use only documents the operator is authorized to process and choose output directories appropriate for the document sensitivity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etoile04/skills/mineru-pdf)
+- [MinerU MCP repository](https://github.com/TINKPA/mcp-mineru)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Structured Markdown text with optional persisted Markdown files and extracted image assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports page ranges, backend selection, table and formula toggles, and persistent output directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

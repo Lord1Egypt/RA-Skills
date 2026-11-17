@@ -1,41 +1,52 @@
-## Description: <br>
-A Chinese writing assistant that scans AI-writing patterns, rewrites creative text, applies mono no aware-style literary revision, and returns scoring plus change notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向中文创意写作的文本改写技能，用分层检查、净化、重建和物哀写作方法输出重写文本、评分和修改说明。
 
-## Publisher: <br>
-[teddy-0313](https://clawhub.ai/user/teddy-0313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[teddy-0313](https://clawhub.ai/user/teddy-0313)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Writers and creative-content editors use this skill to revise Chinese fiction, scripts, supernatural or fantasy prose, and late-night emotional writing. It diagnoses AI-like writing patterns, rewrites the text, and returns a score with change notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage fake or semi-fictional provenance cues and anti-detection writing patterns that obscure authorship.
+
+Mitigation: Use it only for reviewed creative rewriting, and require real, disclosed sources and authorship claims for factual, academic, professional, legal, or public-facing work.
+
+Risk: Rewrites can change tone, meaning, or factual grounding while making text appear more human-authored.
+
+Mitigation: Review every generated change against the original intent and remove unsupported claims before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers and editors use this skill to revise Chinese creative writing, especially fiction, fantasy, scripts, and late-night emotional prose. It helps identify AI-like phrasing, reshape rhythm and sensory detail, and produce a rewritten draft with a score and concise explanation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill explicitly teaches anti-AI-detection and human-authorship simulation techniques. <br>
-Mitigation: Use it for transparent creative editing and revision, not for academic dishonesty, fake provenance, impersonation, or bypassing platform or institutional authorship rules. <br>
-Risk: The skill may read or modify writing files during an editing workflow. <br>
-Mitigation: Limit the files the agent can access or edit, and review proposed rewrites before accepting changes. <br>
+**Output Format:** [Markdown sections with scoring, major changes, rewritten text, and optional modification notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teddy-0313/zhixiang-writer-pro) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Produces prose transformations and review guidance; no executable code is included in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with score breakdown, major changes, rewritten Chinese text, and optional revision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces human-facing editorial guidance and rewritten prose; users should review outputs before use.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

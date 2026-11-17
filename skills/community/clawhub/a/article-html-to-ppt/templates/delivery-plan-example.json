@@ -1,0 +1,42 @@
+{
+  "deprecated": "example only; generate real delivery plans with scripts/resolve_component_delivery.py",
+  "schema_version": "1.0",
+  "ppt_ir_ref": ".ppt-work/contracts/ppt-ir.json",
+  "style_contract_ref": ".ppt-work/contracts/style-contract.json",
+  "component_registry_ref": "references/component-registry.json",
+  "capability_report_ref": ".ppt-work/capability-report.json",
+  "profile": "premium",
+  "builder": {
+    "requested": "auto",
+    "selected": "pptxgenjs",
+    "version": "4.0.1",
+    "selection_score": 0.92,
+    "selection_reasons": ["BUILDER_SELECTED_BY_SCORE"],
+    "candidates": [],
+    "warnings": [],
+    "errors": []
+  },
+  "slides": [
+    {
+      "slide_id": "S08",
+      "objects": [
+        {
+          "slide_id": "S08",
+          "object_id": "diagram-01",
+          "component_type": "ecosystem_map",
+          "preferred_route": "native_diagram",
+          "selected_route": "hybrid_overlay",
+          "decision": "fallback",
+          "reason_codes": ["DELIVERY_COMPLEXITY_EXCEEDS_NATIVE_LIMIT", "DELIVERY_FALLBACK_SELECTED"],
+          "editable_core": ["title", "node_labels", "legend", "key_annotations"],
+          "rasterized_parts": [],
+          "svg_parts": [],
+          "native_overlay_parts": ["title", "node_labels", "legend", "key_annotations"],
+          "qa_checks": ["DIAGRAM_NODE_OVERLAP", "DIAGRAM_EDGE_CROSSING", "DIAGRAM_MAIN_PATH", "EDITABLE_LABEL_RATIO", "COLOR_CONTRACT"],
+          "fallback_chain": ["hybrid_overlay", "svg_component"]
+        }
+      ]
+    }
+  ],
+  "summary": {"total_objects": 1, "fallback_count": 1, "unsupported_count": 0, "risk_codes": ["DELIVERY_COMPLEXITY_EXCEEDS_NATIVE_LIMIT", "DELIVERY_FALLBACK_SELECTED"]}
+}

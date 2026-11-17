@@ -1,39 +1,52 @@
-## Description: <br>
-Helps an agent use quiet-hour heartbeat time for freeform creative exploration and save local notes for later human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dreaming lets an agent use quiet heartbeat periods for freeform exploratory thinking, returning topics and capturing later-reviewable notes.
 
-## Publisher: <br>
-[briancolinger](https://clawhub.ai/user/briancolinger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[briancolinger](https://clawhub.ai/user/briancolinger)
 
-## Use Case: <br>
-Developers and agent users can add this skill to a heartbeat routine so an agent occasionally generates reflective or creative markdown notes during quiet hours. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The heartbeat routine can create local creative notes during quiet hours, which may retain speculative or sensitive context. <br>
-Mitigation: Enable it only when this behavior is desired, review the heartbeat snippet before use, and periodically review or clean memory/dreams/. <br>
-Risk: Local state and topic configuration influence when the skill runs and what prompts it uses. <br>
-Mitigation: Keep data/dream-state.json and data/dream-config.json limited to trusted, reviewed settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/briancolinger/dreaming) <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn low-activity heartbeat windows into reflective topic generation and Markdown notes for later human review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes and shell command snippets, with a topic string emitted by the quiet-hours gate script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local state JSON and dream notes under configured workspace directories.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Modified local state can abuse dreamChance handling to execute arbitrary Python code.
+
+Mitigation: Constrain dreamChance to a numeric value before use and keep data/dream-state.json writable only by trusted components.
+
+Risk: Dream notes may capture sensitive private, client, or workspace information.
+
+Mitigation: Avoid storing sensitive information in dream files and review generated notes before sharing or committing them.
+
+## Reference(s):
+
+- [Dreaming on ClawHub](https://clawhub.ai/briancolinger/skills/dreaming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Topic string output, Markdown note guidance, shell command snippets, and JSON state/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local dream state under data/ and expects dream notes under memory/dreams/.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

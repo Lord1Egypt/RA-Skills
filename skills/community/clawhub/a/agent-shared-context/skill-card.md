@@ -1,40 +1,57 @@
-## Description: <br>
-Cross-agent context sharing via shared files so agents can write trends, highlights, and signals that other agents read before acting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Shared Context helps OpenClaw agents coordinate by writing trends, highlights, and signals to shared local JSON files that other agents can read before acting.
 
-## Publisher: <br>
-[Gum97](https://clawhub.ai/user/Gum97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gum97](https://clawhub.ai/user/gum97)
 
-## Use Case: <br>
-Developers and operators running multi-agent OpenClaw setups use this skill to share local trends and highlights between agents through JSON files. It is useful for coordination across agents on the same machine, but not for real-time chat or direct agent-to-agent messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared context may influence posting, engagement, moderation, or business-impacting decisions without enough review. <br>
-Mitigation: Validate shared context or require human review before using it for public, moderation, or business-impacting actions. <br>
-Risk: Local shared files may expose secrets or private data if untrusted agents can write to them. <br>
-Mitigation: Limit write access to trusted agents and avoid storing secrets or private data in shared context files. <br>
+## Use Case:
 
+Developers and operators of multi-agent OpenClaw setups use this skill to let agents share recently found trends and highlights through local files so later agent runs can take that context into account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gum97/agent-shared-context) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local shared JSON files for trends and highlights; no network access, credential use, or hidden behavior is reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Shared local context can let one agent influence later actions by another agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted agent groups, treat shared entries as untrusted context, and require separate approval for public posting or sensitive actions.
+
+Risk: The shared files do not provide provenance or trust controls for individual entries.
+
+Mitigation: Add per-agent write paths, entry provenance, length limits, and audit controls before using the skill in automated cron-driven workflows.
+
+Risk: Old trends and highlights can remain available and affect future decisions.
+
+Mitigation: Run the cleanup command on a regular schedule and choose retention windows that match the workflow's tolerance for stale context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gum97/skills/agent-shared-context)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI text output and shared JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads local shared trends and highlights JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,3774 @@
+{
+ "_meta": {
+  "schema": 2,
+  "description": "Curated palettes harvested from public palette community charts (trending/popular/latest, 48 each; style-filter URLs proved to be SEO fallback clones of popular — do not use). tier = crowd signal (3>=50K likes, 2>=20K, 1>0, 0 new/unranked); occurrences = cross-page recurrence; computed_styles from HSL stats; flags from objective gates (CB-COLLISION-RISK / SLOP-SIGNATURE / NARROW-LIGHTNESS). Gates reject only broken architecture, never judge beauty — final judgment happens in context at use time.",
+  "harvested": "2026-10-15",
+  "counts": {
+   "kept": 119,
+   "rejected": 29
+  },
+  "style_vocab": [
+   "warm",
+   "cool",
+   "dark",
+   "light",
+   "mid",
+   "pastel",
+   "vivid",
+   "monochromatic",
+   "multihue",
+   "deep"
+  ]
+ },
+ "palettes": [
+  {
+   "name": "Wildberry Atelier",
+   "hexes": [
+    "EA526F",
+    "E76B74",
+    "D7AF70",
+    "937D64",
+    "585B56"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.316,
+    "max_contrast": 3.37,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_demo"
+   ]
+  },
+  {
+   "name": "Deep Pine",
+   "hexes": [
+    "01161E",
+    "124559",
+    "598392",
+    "AEC3B0",
+    "EFF6E0"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.861,
+    "max_contrast": 16.68,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-palette",
+   "hexes": [
+    "246A73",
+    "368F8B",
+    "F3DFC1",
+    "DDBEA8"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.559,
+    "max_contrast": 4.77,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-9",
+   "hexes": [
+    "8D6B94",
+    "B185A7",
+    "C3A29E",
+    "E8DBC5",
+    "FFF4E9"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.457,
+    "max_contrast": 4.15,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-8",
+   "hexes": [
+    "000000",
+    "FFFFFF",
+    "494949",
+    "7C7A7A",
+    "FF5D73"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 1.0,
+    "max_contrast": 21.0,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-7",
+   "hexes": [
+    "A63A50",
+    "F0E7D8",
+    "AB9B96",
+    "A1674A",
+    "BA6E6E"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "pastel",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.455,
+    "max_contrast": 5.12,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-6",
+   "hexes": [
+    "E0F2E9",
+    "CEB5A7",
+    "A17C6B",
+    "5B7B7A",
+    "3C887E"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.529,
+    "max_contrast": 3.96,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-5",
+   "hexes": [
+    "757780",
+    "D2CCA1",
+    "387780",
+    "DBD4D3",
+    "E83151"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.482,
+    "max_contrast": 3.49,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-4",
+   "hexes": [
+    "FBC2B5",
+    "FFA8A9",
+    "F786AA",
+    "A14A76",
+    "CDB2AB"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.386,
+    "max_contrast": 3.59,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-3",
+   "hexes": [
+    "DD614A",
+    "F48668",
+    "F4A698",
+    "C5C392",
+    "73A580"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.227,
+    "max_contrast": 1.97,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-2",
+   "hexes": [
+    "584B53",
+    "9D5C63",
+    "D6E3F8",
+    "FEF5EF",
+    "E4BB97"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.647,
+    "max_contrast": 7.67,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-15",
+   "hexes": [
+    "B47EB3",
+    "FDF5BF",
+    "FFD5FF",
+    "92D1C3",
+    "8BB8A8"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "light",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.318,
+    "max_contrast": 2.89,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-14",
+   "hexes": [
+    "32373B",
+    "4A5859",
+    "F4D6CC",
+    "F4B860",
+    "C83E4D"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.665,
+    "max_contrast": 8.79,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-13",
+   "hexes": [
+    "222E50",
+    "007991",
+    "439A86",
+    "BCD8C1",
+    "E9D985"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.569,
+    "max_contrast": 9.35,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-12",
+   "hexes": [
+    "B09E99",
+    "FEE9E1",
+    "FAD4C0",
+    "64B6AC",
+    "C0FDFB"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.386,
+    "max_contrast": 2.28,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-11",
+   "hexes": [
+    "AF4D98",
+    "D66BA0",
+    "E5A9A9",
+    "F4E4BA",
+    "9DF7E5"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.349,
+    "max_contrast": 3.89,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-1017",
+   "hexes": [
+    "F7D09C",
+    "C179F7",
+    "DBB076",
+    "795396",
+    "69DBAA"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "light",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.333,
+    "max_contrast": 4.14,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-10",
+   "hexes": [
+    "C7EAE4",
+    "A7E8BD",
+    "FCBCB8",
+    "EFA7A7",
+    "FFD972"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.131,
+    "max_contrast": 1.52,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-1",
+   "hexes": [
+    "E5DFF2",
+    "664147",
+    "7E5EBF",
+    "638A83",
+    "F5BAC4"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid",
+    "pastel"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.584,
+    "max_contrast": 6.7,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-018",
+   "hexes": [
+    "FAB6C6",
+    "B407E8",
+    "03A37E",
+    "F00A3F",
+    "3A054A"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.692,
+    "max_contrast": 9.67,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-014",
+   "hexes": [
+    "E3143E",
+    "E83F61",
+    "43DEBF",
+    "E3143E",
+    "065242"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.406,
+    "max_contrast": 5.42,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "fav-013",
+   "hexes": [
+    "0B3954",
+    "087E8B",
+    "BFD7EA",
+    "FF5A5F",
+    "C81D25"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.647,
+    "max_contrast": 8.18,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "001",
+   "hexes": [
+    "EDAE49",
+    "D1495B",
+    "00798C",
+    "30638E",
+    "003D5B"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.429,
+    "max_contrast": 5.91,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "004",
+   "hexes": [
+    "E0BAD7",
+    "61D095",
+    "48BF84",
+    "439775",
+    "2A4747"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.582,
+    "max_contrast": 5.82,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "002",
+   "hexes": [
+    "EF6F6C",
+    "465775",
+    "56E39F",
+    "59C9A5",
+    "5B6C5D"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.314,
+    "max_contrast": 4.47,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "003",
+   "hexes": [
+    "FFBA49",
+    "20A39E",
+    "EF5B5B",
+    "23001E",
+    "A4A9AD"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.592,
+    "max_contrast": 11.35,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "007",
+   "hexes": [
+    "333333",
+    "48E5C2",
+    "FCFAF9",
+    "F3D3BD",
+    "5E5E5E"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.782,
+    "max_contrast": 12.14,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "011",
+   "hexes": [
+    "FFAC81",
+    "FF928B",
+    "FEC3A6",
+    "EFE9AE",
+    "CDEAC0"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "light",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.082,
+    "max_contrast": 1.74,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "15",
+   "hexes": [
+    "555B6E",
+    "89B0AE",
+    "BEE3DB",
+    "FAF9F9",
+    "FFD6BA"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "light",
+    "pastel"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.596,
+    "max_contrast": 6.43,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "12",
+   "hexes": [
+    "D8A47F",
+    "EF8354",
+    "EE4B6A",
+    "DF3B57",
+    "0F7173"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.418,
+    "max_contrast": 2.63,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:user_accepted"
+   ]
+  },
+  {
+   "name": "GLM黄蓝(glm-deck定案)",
+   "hexes": [
+    "70A0D0",
+    "2B5C8F",
+    "D79D55",
+    "9C6B2A",
+    "F7F4EC"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.582,
+    "max_contrast": 6.31,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:glm-deck"
+   ]
+  },
+  {
+   "name": "Bees&Honey(IEI系列定案)",
+   "hexes": [
+    "FFA69E",
+    "FAF3DD",
+    "B8F2E6",
+    "AED9E0",
+    "5E6472"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 3,
+   "origin": "house",
+   "computed_styles": [
+    "cool",
+    "light",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "flags": [],
+   "metrics": {
+    "lightness_span": 0.516,
+    "max_contrast": 5.34,
+    "cb_min_separation": null
+   },
+   "sources": [
+    "house:iei-cover"
+   ]
+  },
+  {
+   "name": "Sunny Beach Day",
+   "hexes": [
+    "264653",
+    "2A9D8F",
+    "E9C46A",
+    "F4A261",
+    "E76F51"
+   ],
+   "text_hint": [
+    "E9C46A",
+    "F4A261"
+   ],
+   "likes": 124400,
+   "tier": 3,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.431,
+    "max_contrast": 6.03,
+    "cb_min_separation": 0.064
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Olive Garden Feast",
+   "hexes": [
+    "606C38",
+    "283618",
+    "FEFAE0",
+    "DDA15E",
+    "BC6C25"
+   ],
+   "text_hint": [
+    "FEFAE0",
+    "DDA15E"
+   ],
+   "likes": 97400,
+   "tier": 3,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.784,
+    "max_contrast": 12.24,
+    "cb_min_separation": 0.104
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Summer Ocean Breeze",
+   "hexes": [
+    "E63946",
+    "F1FAEE",
+    "A8DADC",
+    "457B9D",
+    "1D3557"
+   ],
+   "text_hint": [
+    "F1FAEE",
+    "A8DADC"
+   ],
+   "likes": 79100,
+   "tier": 3,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.729,
+    "max_contrast": 11.56,
+    "cb_min_separation": 0.134
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Refreshing Summer Fun",
+   "hexes": [
+    "8ECAE6",
+    "219EBC",
+    "023047",
+    "FFB703",
+    "FB8500"
+   ],
+   "text_hint": [
+    "8ECAE6",
+    "FFB703"
+   ],
+   "likes": 67800,
+   "tier": 3,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.586,
+    "max_contrast": 7.93,
+    "cb_min_separation": 0.116
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Black & Gold Elegance",
+   "hexes": [
+    "000000",
+    "14213D",
+    "FCA311",
+    "E5E5E5",
+    "FFFFFF"
+   ],
+   "text_hint": [
+    "FCA311",
+    "E5E5E5",
+    "FFFFFF"
+   ],
+   "likes": 54400,
+   "tier": 3,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 1.0,
+    "max_contrast": 21.0,
+    "cb_min_separation": 0.078
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Ocean Pearl Delight",
+   "hexes": [
+    "006D77",
+    "83C5BE",
+    "EDF6F9",
+    "FFDDD2",
+    "E29578"
+   ],
+   "text_hint": [
+    "83C5BE",
+    "EDF6F9",
+    "FFDDD2"
+   ],
+   "likes": 52200,
+   "tier": 3,
+   "computed_styles": [
+    "cool",
+    "light",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.72,
+    "max_contrast": 5.54,
+    "cb_min_separation": 0.055
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Earthy Forest Hues",
+   "hexes": [
+    "DAD7CD",
+    "A3B18A",
+    "588157",
+    "3A5A40",
+    "344E41"
+   ],
+   "text_hint": [
+    "DAD7CD",
+    "A3B18A"
+   ],
+   "likes": 48900,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.575,
+    "max_contrast": 6.31,
+    "cb_min_separation": 0.041
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Warm Autumn Glow",
+   "hexes": [
+    "003049",
+    "D62828",
+    "F77F00",
+    "FCBF49",
+    "EAE2B7"
+   ],
+   "text_hint": [
+    "FCBF49",
+    "EAE2B7"
+   ],
+   "likes": 48100,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.675,
+    "max_contrast": 10.57,
+    "cb_min_separation": 0.11
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Neutral Harmony Bliss",
+   "hexes": [
+    "F4F1DE",
+    "E07A5F",
+    "3D405B",
+    "81B29A",
+    "F2CC8F"
+   ],
+   "text_hint": [
+    "F4F1DE",
+    "F2CC8F"
+   ],
+   "likes": 48100,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.616,
+    "max_contrast": 8.87,
+    "cb_min_separation": 0.077
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Soft Lavender",
+   "hexes": [
+    "22223B",
+    "4A4E69",
+    "9A8C98",
+    "C9ADA7",
+    "F2E9E4"
+   ],
+   "text_hint": [
+    "C9ADA7",
+    "F2E9E4"
+   ],
+   "likes": 45600,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.739,
+    "max_contrast": 12.91,
+    "cb_min_separation": 0.122
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Ocean Blue Serenity",
+   "hexes": [
+    "03045E",
+    "023E8A",
+    "0077B6",
+    "0096C7",
+    "00B4D8",
+    "48CAE4",
+    "90E0EF",
+    "ADE8F4",
+    "CAF0F8"
+   ],
+   "text_hint": [
+    "48CAE4",
+    "90E0EF",
+    "ADE8F4",
+    "CAF0F8"
+   ],
+   "likes": 41200,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "monochromatic",
+    "vivid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.692,
+    "max_contrast": 14.65,
+    "cb_min_separation": 0.043
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Earthy Green",
+   "hexes": [
+    "CAD2C5",
+    "84A98C",
+    "52796F",
+    "354F52",
+    "2F3E46"
+   ],
+   "text_hint": [
+    "CAD2C5"
+   ],
+   "likes": 38200,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.569,
+    "max_contrast": 7.13,
+    "cb_min_separation": 0.052
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Watermelon Sorbet",
+   "hexes": [
+    "EF476F",
+    "FFD166",
+    "06D6A0",
+    "118AB2",
+    "073B4C"
+   ],
+   "text_hint": [
+    "FFD166",
+    "06D6A0"
+   ],
+   "likes": 36200,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.537,
+    "max_contrast": 8.38,
+    "cb_min_separation": 0.117
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Fiery Ocean",
+   "hexes": [
+    "780000",
+    "C1121F",
+    "FDF0D5",
+    "003049",
+    "669BBC"
+   ],
+   "text_hint": [
+    "FDF0D5"
+   ],
+   "likes": 34900,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.771,
+    "max_contrast": 12.25,
+    "cb_min_separation": 0.124
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Cool Coastal Vibes",
+   "hexes": [
+    "2B2D42",
+    "8D99AE",
+    "EDF2F4",
+    "EF233C",
+    "D90429"
+   ],
+   "text_hint": [
+    "EDF2F4"
+   ],
+   "likes": 34300,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.729,
+    "max_contrast": 11.95,
+    "cb_min_separation": 0.103
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Dark Sunset",
+   "hexes": [
+    "335C67",
+    "FFF3B0",
+    "E09F3E",
+    "9E2A2B",
+    "540B0E"
+   ],
+   "text_hint": [
+    "FFF3B0",
+    "E09F3E"
+   ],
+   "likes": 31300,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.659,
+    "max_contrast": 13.07,
+    "cb_min_separation": 0.091
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Autumn Harvest",
+   "hexes": [
+    "EDE0D4",
+    "E6CCB2",
+    "DDB892",
+    "B08968",
+    "7F5539",
+    "9C6644"
+   ],
+   "text_hint": [
+    "EDE0D4",
+    "E6CCB2",
+    "DDB892"
+   ],
+   "likes": 30900,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.52,
+    "max_contrast": 4.97,
+    "cb_min_separation": 0.056
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Ocean Breeze",
+   "hexes": [
+    "03045E",
+    "0077B6",
+    "00B4D8",
+    "90E0EF",
+    "CAF0F8"
+   ],
+   "text_hint": [
+    "90E0EF",
+    "CAF0F8"
+   ],
+   "likes": 28700,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "monochromatic",
+    "vivid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.692,
+    "max_contrast": 14.65,
+    "cb_min_separation": 0.088
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Fiery Red Sunset",
+   "hexes": [
+    "03071E",
+    "370617",
+    "6A040F",
+    "9D0208",
+    "D00000",
+    "DC2F02",
+    "E85D04",
+    "F48C06",
+    "FAA307",
+    "FFBA08"
+   ],
+   "text_hint": [
+    "FAA307",
+    "FFBA08"
+   ],
+   "likes": 28600,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.451,
+    "max_contrast": 11.66,
+    "cb_min_separation": 0.054
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Coastal Vibes",
+   "hexes": [
+    "3D5A80",
+    "98C1D9",
+    "E0FBFC",
+    "EE6C4D",
+    "293241"
+   ],
+   "text_hint": [
+    "98C1D9",
+    "E0FBFC"
+   ],
+   "likes": 28400,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.725,
+    "max_contrast": 11.91,
+    "cb_min_separation": 0.148
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Fiery Palette",
+   "hexes": [
+    "5F0F40",
+    "9A031E",
+    "FB8B24",
+    "E36414",
+    "0F4C5C"
+   ],
+   "text_hint": [],
+   "likes": 27600,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.353,
+    "max_contrast": 5.41,
+    "cb_min_separation": 0.079
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Deep Sea",
+   "hexes": [
+    "0D1B2A",
+    "1B263B",
+    "415A77",
+    "778DA9",
+    "E0E1DD"
+   ],
+   "text_hint": [
+    "E0E1DD"
+   ],
+   "likes": 27600,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.767,
+    "max_contrast": 13.24,
+    "cb_min_separation": 0.052
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Purple Raindrops",
+   "hexes": [
+    "F72585",
+    "B5179E",
+    "7209B7",
+    "560BAD",
+    "480CA8",
+    "3A0CA3",
+    "3F37C9",
+    "4361EE",
+    "4895EF",
+    "4CC9F0"
+   ],
+   "text_hint": [
+    "4CC9F0"
+   ],
+   "likes": 25300,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.276,
+    "max_contrast": 6.2,
+    "cb_min_separation": 0.011
+   },
+   "flags": [
+    "CB-COLLISION-RISK",
+    "SLOP-SIGNATURE"
+   ],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Gradient Blues",
+   "hexes": [
+    "7400B8",
+    "6930C3",
+    "5E60CE",
+    "5390D9",
+    "4EA8DE",
+    "48BFE3",
+    "56CFE1",
+    "64DFDF",
+    "72EFDD",
+    "80FFDB"
+   ],
+   "text_hint": [
+    "48BFE3",
+    "56CFE1",
+    "64DFDF",
+    "72EFDD",
+    "80FFDB"
+   ],
+   "likes": 25300,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.39,
+    "max_contrast": 7.08,
+    "cb_min_separation": 0.045
+   },
+   "flags": [
+    "SLOP-SIGNATURE"
+   ],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Fresh Greens",
+   "hexes": [
+    "D8F3DC",
+    "B7E4C7",
+    "95D5B2",
+    "74C69D",
+    "52B788",
+    "40916C",
+    "2D6A4F",
+    "1B4332",
+    "081C15"
+   ],
+   "text_hint": [
+    "D8F3DC",
+    "B7E4C7",
+    "95D5B2",
+    "74C69D"
+   ],
+   "likes": 25000,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "monochromatic"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.829,
+    "max_contrast": 14.97,
+    "cb_min_separation": 0.061
+   },
+   "flags": [],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Ocean Sunset",
+   "hexes": [
+    "001219",
+    "005F73",
+    "0A9396",
+    "94D2BD",
+    "E9D8A6",
+    "EE9B00",
+    "CA6702",
+    "BB3E03",
+    "AE2012",
+    "9B2226"
+   ],
+   "text_hint": [
+    "94D2BD",
+    "E9D8A6",
+    "EE9B00"
+   ],
+   "likes": 24700,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.733,
+    "max_contrast": 13.48,
+    "cb_min_separation": 0.028
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Golden Twilight",
+   "hexes": [
+    "000814",
+    "001D3D",
+    "003566",
+    "FFC300",
+    "FFD60A"
+   ],
+   "text_hint": [
+    "FFC300",
+    "FFD60A"
+   ],
+   "likes": 24500,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "dark",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.48,
+    "max_contrast": 14.24,
+    "cb_min_separation": 0.032
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Bold Hues",
+   "hexes": [
+    "F72585",
+    "7209B7",
+    "3A0CA3",
+    "4361EE",
+    "4CC9F0"
+   ],
+   "text_hint": [
+    "4CC9F0"
+   ],
+   "likes": 23200,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.276,
+    "max_contrast": 6.2,
+    "cb_min_separation": 0.045
+   },
+   "flags": [
+    "SLOP-SIGNATURE"
+   ],
+   "sources": [
+    "popular"
+   ]
+  },
+  {
+   "name": "Fresh Greens",
+   "hexes": [
+    "386641",
+    "6A994E",
+    "A7C957",
+    "F2E8CF",
+    "BC4749"
+   ],
+   "text_hint": [
+    "A7C957",
+    "F2E8CF"
+   ],
+   "likes": 23000,
+   "tier": 2,
+   "computed_styles": [
+    "cool",
+    "mid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.571,
+    "max_contrast": 5.48,
+    "cb_min_separation": 0.063
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Autumn Harvest",
+   "hexes": [
+    "6F1D1B",
+    "BB9457",
+    "432818",
+    "99582A",
+    "FFE6A7"
+   ],
+   "text_hint": [
+    "FFE6A7"
+   ],
+   "likes": 22800,
+   "tier": 2,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.649,
+    "max_contrast": 11.01,
+    "cb_min_separation": 0.021
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Light Steel",
+   "hexes": [
+    "F8F9FA",
+    "E9ECEF",
+    "DEE2E6",
+    "CED4DA",
+    "ADB5BD",
+    "6C757D",
+    "495057",
+    "343A40",
+    "212529"
+   ],
+   "text_hint": [
+    "F8F9FA",
+    "E9ECEF",
+    "DEE2E6",
+    "CED4DA",
+    "ADB5BD"
+   ],
+   "likes": 19200,
+   "tier": 1,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "monochromatic",
+    "pastel"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.831,
+    "max_contrast": 14.63,
+    "cb_min_separation": 0.03
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Rustic Charm",
+   "hexes": [
+    "FFFCF2",
+    "CCC5B9",
+    "403D39",
+    "252422",
+    "EB5E28"
+   ],
+   "text_hint": [
+    "FFFCF2",
+    "CCC5B9"
+   ],
+   "likes": 18400,
+   "tier": 1,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.835,
+    "max_contrast": 15.11,
+    "cb_min_separation": 0.103
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Meadow Green",
+   "hexes": [
+    "D9ED92",
+    "B5E48C",
+    "99D98C",
+    "76C893",
+    "52B69A",
+    "34A0A4",
+    "168AAD",
+    "1A759F",
+    "1E6091",
+    "184E77"
+   ],
+   "text_hint": [
+    "D9ED92",
+    "B5E48C",
+    "99D98C",
+    "76C893"
+   ],
+   "likes": 17400,
+   "tier": 1,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "vivid"
+   ],
+   "occurrences": 2,
+   "metrics": {
+    "lightness_span": 0.471,
+    "max_contrast": 6.88,
+    "cb_min_separation": 0.045
+   },
+   "flags": [],
+   "sources": [
+    "popular",
+    "trending"
+   ]
+  },
+  {
+   "name": "Purple Sunset",
+   "hexes": [
+    "390099",
+    "9E0059",
+    "FF0054",
+    "FF5400",
+    "FFBD00"
+   ],
+   "text_hint": [
+    "FFBD00"
+   ],
+   "likes": 17300,
+   "tier": 1,
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.2,
+    "max_contrast": 7.67,
+    "cb_min_separation": 0.113
+   },
+   "flags": [
+    "NARROW-LIGHTNESS"
+   ],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Leafy Green Garden",
+   "hexes": [
+    "132A13",
+    "31572C",
+    "4F772D",
+    "90A955",
+    "ECF39E"
+   ],
+   "text_hint": [
+    "ECF39E"
+   ],
+   "likes": 17100,
+   "tier": 1,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "monochromatic"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.667,
+    "max_contrast": 13.07,
+    "cb_min_separation": 0.116
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Bold Berry",
+   "hexes": [
+    "F9DBBD",
+    "FFA5AB",
+    "DA627D",
+    "A53860",
+    "450920"
+   ],
+   "text_hint": [
+    "F9DBBD",
+    "FFA5AB"
+   ],
+   "likes": 13100,
+   "tier": 1,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.706,
+    "max_contrast": 12.11,
+    "cb_min_separation": 0.112
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Coastal Blues",
+   "hexes": [
+    "012A4A",
+    "013A63",
+    "01497C",
+    "014F86",
+    "2A6F97",
+    "2C7DA0",
+    "468FAF",
+    "61A5C2",
+    "89C2D9",
+    "A9D6E5"
+   ],
+   "text_hint": [
+    "89C2D9",
+    "A9D6E5"
+   ],
+   "likes": 12600,
+   "tier": 1,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "monochromatic",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.633,
+    "max_contrast": 9.39,
+    "cb_min_separation": 0.022
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Midnight Sky",
+   "hexes": [
+    "00296B",
+    "003F88",
+    "00509D",
+    "FDC500",
+    "FFD500"
+   ],
+   "text_hint": [
+    "FDC500",
+    "FFD500"
+   ],
+   "likes": 12000,
+   "tier": 1,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.29,
+    "max_contrast": 9.66,
+    "cb_min_separation": 0.03
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Earthy Tones",
+   "hexes": [
+    "2C6E49",
+    "4C956C",
+    "FEFEE3",
+    "FFC9B9",
+    "D68C45"
+   ],
+   "text_hint": [
+    "FEFEE3",
+    "FFC9B9"
+   ],
+   "likes": 11800,
+   "tier": 1,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.641,
+    "max_contrast": 5.97,
+    "cb_min_separation": 0.111
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Fiery Red",
+   "hexes": [
+    "220901",
+    "621708",
+    "941B0C",
+    "BC3908",
+    "F6AA1C"
+   ],
+   "text_hint": [
+    "F6AA1C"
+   ],
+   "likes": 11300,
+   "tier": 1,
+   "computed_styles": [
+    "dark",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.469,
+    "max_contrast": 9.65,
+    "cb_min_separation": 0.07
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Cherry Blossom Bloom",
+   "hexes": [
+    "590D22",
+    "800F2F",
+    "A4133C",
+    "C9184A",
+    "FF4D6D",
+    "FF758F",
+    "FF8FA3",
+    "FFB3C1",
+    "FFCCD5",
+    "FFF0F3"
+   ],
+   "text_hint": [
+    "FF8FA3",
+    "FFB3C1",
+    "FFCCD5",
+    "FFF0F3"
+   ],
+   "likes": 11000,
+   "tier": 1,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.771,
+    "max_contrast": 12.63,
+    "cb_min_separation": 0.053
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Deep Sea Blue",
+   "hexes": [
+    "0466C8",
+    "0353A4",
+    "023E7D",
+    "002855",
+    "001845",
+    "001233",
+    "33415C",
+    "5C677D",
+    "7D8597",
+    "979DAC"
+   ],
+   "text_hint": [],
+   "likes": 10400,
+   "tier": 1,
+   "computed_styles": [
+    "cool",
+    "dark",
+    "monochromatic",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.533,
+    "max_contrast": 6.82,
+    "cb_min_separation": 0.037
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Unnamed (724319…)",
+   "hexes": [
+    "724319",
+    "D88180",
+    "F7B1B0",
+    "FEEAC7",
+    "CAD182"
+   ],
+   "text_hint": [
+    "F7B1B0",
+    "FEEAC7",
+    "CAD182"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "light",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.616,
+    "max_contrast": 7.03,
+    "cb_min_separation": 0.065
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Cherry Blossom",
+   "hexes": [
+    "FFD9DA",
+    "EA638C",
+    "89023E",
+    "30343F",
+    "1B2021"
+   ],
+   "text_hint": [
+    "FFD9DA"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.808,
+    "max_contrast": 12.7,
+    "cb_min_separation": 0.033
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Unnamed (f4f1ec…)",
+   "hexes": [
+    "F4F1EC",
+    "D8D3CD",
+    "AA0E28",
+    "970C23",
+    "BACEEB",
+    "223382",
+    "192262",
+    "101041"
+   ],
+   "text_hint": [
+    "F4F1EC",
+    "D8D3CD",
+    "BACEEB"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.782,
+    "max_contrast": 15.9,
+    "cb_min_separation": 0.027
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Sunset Gradient",
+   "hexes": [
+    "FFEDD8",
+    "F3D5B5",
+    "E7BC91",
+    "D4A276",
+    "BC8A5F",
+    "A47148",
+    "8B5E34",
+    "6F4518",
+    "603808",
+    "583101"
+   ],
+   "text_hint": [
+    "FFEDD8",
+    "F3D5B5",
+    "E7BC91",
+    "D4A276"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.749,
+    "max_contrast": 9.9,
+    "cb_min_separation": 0.027
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Summer Sunset",
+   "hexes": [
+    "FF6B35",
+    "F7C59F",
+    "EFEFD0",
+    "004E89",
+    "1A659E"
+   ],
+   "text_hint": [
+    "F7C59F",
+    "EFEFD0"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.608,
+    "max_contrast": 7.31,
+    "cb_min_separation": 0.081
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Autumn Glow",
+   "hexes": [
+    "780116",
+    "F7B538",
+    "DB7C26",
+    "D8572A",
+    "C32F27"
+   ],
+   "text_hint": [
+    "F7B538"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.357,
+    "max_contrast": 6.4,
+    "cb_min_separation": 0.094
+   },
+   "flags": [],
+   "sources": [
+    "trending"
+   ]
+  },
+  {
+   "name": "Unnamed (fac8cd…)",
+   "hexes": [
+    "FAC8CD",
+    "D7BCC8",
+    "98B6B1",
+    "84AE95",
+    "495D63"
+   ],
+   "text_hint": [
+    "FAC8CD",
+    "D7BCC8",
+    "98B6B1"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "light",
+    "multihue",
+    "pastel"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.545,
+    "max_contrast": 4.69,
+    "cb_min_separation": 0.046
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (fff6d2…)",
+   "hexes": [
+    "FFF6D2",
+    "87BD44",
+    "FFD000",
+    "416031",
+    "C77194"
+   ],
+   "text_hint": [
+    "FFF6D2",
+    "87BD44",
+    "FFD000"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.627,
+    "max_contrast": 6.58,
+    "cb_min_separation": 0.152
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (240519…)",
+   "hexes": [
+    "240519",
+    "8D5356",
+    "A2A290",
+    "7B8E7F",
+    "485B58"
+   ],
+   "text_hint": [],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.52,
+    "max_contrast": 7.3,
+    "cb_min_separation": 0.054
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (4a051c…)",
+   "hexes": [
+    "4A051C",
+    "F7EDF0",
+    "F4CBC6",
+    "FDBD0D",
+    "FF0054"
+   ],
+   "text_hint": [
+    "F7EDF0",
+    "F4CBC6",
+    "FDBD0D"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.794,
+    "max_contrast": 13.78,
+    "cb_min_separation": 0.083
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (2c625b…)",
+   "hexes": [
+    "2C625B",
+    "BA6730",
+    "FFF1E0",
+    "56B042",
+    "FF8737"
+   ],
+   "text_hint": [
+    "FFF1E0"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.661,
+    "max_contrast": 6.29,
+    "cb_min_separation": 0.072
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (0c0a3e…)",
+   "hexes": [
+    "0C0A3E",
+    "7B1E7A",
+    "F15A22",
+    "F3C677",
+    "F2E5D7"
+   ],
+   "text_hint": [
+    "F3C677",
+    "F2E5D7"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.755,
+    "max_contrast": 15.03,
+    "cb_min_separation": 0.113
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (ad6de3…)",
+   "hexes": [
+    "AD6DE3",
+    "EC68CA",
+    "014670",
+    "E5D4CE"
+   ],
+   "text_hint": [
+    "E5D4CE"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.631,
+    "max_contrast": 6.93,
+    "cb_min_separation": 0.067
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (592941…)",
+   "hexes": [
+    "592941",
+    "F7EDF0",
+    "F4CBC6",
+    "FDBD0D",
+    "FF0054"
+   ],
+   "text_hint": [
+    "F7EDF0",
+    "F4CBC6",
+    "FDBD0D"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.694,
+    "max_contrast": 10.08,
+    "cb_min_separation": 0.074
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (352208…)",
+   "hexes": [
+    "352208",
+    "643A71",
+    "E0D0C1",
+    "A76D60",
+    "596F62"
+   ],
+   "text_hint": [
+    "E0D0C1"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.698,
+    "max_contrast": 10.09,
+    "cb_min_separation": 0.08
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (592941…)",
+   "hexes": [
+    "592941",
+    "F7EDF0",
+    "F4CBC6",
+    "FDBD0D",
+    "F4AFAB"
+   ],
+   "text_hint": [
+    "F7EDF0",
+    "F4CBC6",
+    "FDBD0D",
+    "F4AFAB"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "light",
+    "monochromatic",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.694,
+    "max_contrast": 10.08,
+    "cb_min_separation": 0.063
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "F1B838",
+    "EADECF",
+    "2E6171",
+    "556F7A"
+   ],
+   "text_hint": [
+    "F1B838",
+    "EADECF"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.553,
+    "max_contrast": 5.17,
+    "cb_min_separation": 0.075
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (352208…)",
+   "hexes": [
+    "352208",
+    "571F4E",
+    "E0D0C1",
+    "A76D60",
+    "596F62"
+   ],
+   "text_hint": [
+    "E0D0C1"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.698,
+    "max_contrast": 10.09,
+    "cb_min_separation": 0.08
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "F1B838",
+    "EADECF",
+    "313628",
+    "1C3A13"
+   ],
+   "text_hint": [
+    "F1B838",
+    "EADECF"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.714,
+    "max_contrast": 9.52,
+    "cb_min_separation": 0.027
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (f5e0b8…)",
+   "hexes": [
+    "F5E0B8",
+    "E99675",
+    "BE634B",
+    "899070",
+    "353F62"
+   ],
+   "text_hint": [
+    "F5E0B8",
+    "E99675"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.545,
+    "max_contrast": 7.96,
+    "cb_min_separation": 0.064
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "F1B838",
+    "EADECF",
+    "322E18",
+    "7284A8"
+   ],
+   "text_hint": [
+    "F1B838",
+    "EADECF"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.72,
+    "max_contrast": 10.29,
+    "cb_min_separation": 0.151
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (02483a…)",
+   "hexes": [
+    "02483A",
+    "FADE51",
+    "B82E1C"
+   ],
+   "text_hint": [
+    "FADE51"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.504,
+    "max_contrast": 7.85,
+    "cb_min_separation": 0.156
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (ad6de3…)",
+   "hexes": [
+    "AD6DE3",
+    "EC68CA",
+    "014670",
+    "F5E3A3"
+   ],
+   "text_hint": [
+    "F5E3A3"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.578,
+    "max_contrast": 7.77,
+    "cb_min_separation": 0.067
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (1a213e…)",
+   "hexes": [
+    "1A213E",
+    "CEBEBE",
+    "ECE2D0",
+    "D5B9B2",
+    "A26769"
+   ],
+   "text_hint": [
+    "CEBEBE",
+    "ECE2D0",
+    "D5B9B2"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "pastel",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.698,
+    "max_contrast": 12.29,
+    "cb_min_separation": 0.016
+   },
+   "flags": [
+    "CB-COLLISION-RISK"
+   ],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (1a213e…)",
+   "hexes": [
+    "1A213E",
+    "DDFFF7",
+    "93E1D8",
+    "FFA69E",
+    "AA4465"
+   ],
+   "text_hint": [
+    "DDFFF7",
+    "93E1D8",
+    "FFA69E"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.761,
+    "max_contrast": 14.82,
+    "cb_min_separation": 0.078
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (1a213e…)",
+   "hexes": [
+    "1A213E",
+    "B9BAA3",
+    "D6D5C9",
+    "A22C29",
+    "902923"
+   ],
+   "text_hint": [
+    "B9BAA3",
+    "D6D5C9"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.641,
+    "max_contrast": 10.68,
+    "cb_min_separation": 0.027
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (fdc200…)",
+   "hexes": [
+    "FDC200",
+    "84A2AA",
+    "566B5C",
+    "C37D3D",
+    "572E13"
+   ],
+   "text_hint": [
+    "FDC200"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.384,
+    "max_contrast": 7.14,
+    "cb_min_separation": 0.132
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (1a213e…)",
+   "hexes": [
+    "1A213E",
+    "8DA7BE",
+    "CDE6F5",
+    "87919E",
+    "E08D79"
+   ],
+   "text_hint": [
+    "CDE6F5"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.71,
+    "max_contrast": 12.2,
+    "cb_min_separation": 0.064
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "F1B838",
+    "587B7F",
+    "1E2019",
+    "394032"
+   ],
+   "text_hint": [
+    "F1B838"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "dark",
+    "multihue"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.471,
+    "max_contrast": 9.13,
+    "cb_min_separation": 0.107
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "F1B838",
+    "5C9EAD",
+    "FFFFFF",
+    "326273"
+   ],
+   "text_hint": [
+    "F1B838",
+    "FFFFFF"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.676,
+    "max_contrast": 6.71,
+    "cb_min_separation": 0.122
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (533a71…)",
+   "hexes": [
+    "533A71",
+    "FF5964",
+    "7698B3",
+    "F8F991",
+    "EEC0C6"
+   ],
+   "text_hint": [
+    "F8F991",
+    "EEC0C6"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.508,
+    "max_contrast": 8.57,
+    "cb_min_separation": 0.113
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "F1B838",
+    "3581B8",
+    "FFFFFF",
+    "EEE5E9"
+   ],
+   "text_hint": [
+    "F1B838",
+    "FFFFFF",
+    "EEE5E9"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "light",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.602,
+    "max_contrast": 6.53,
+    "cb_min_separation": 0.07
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (fff6d2…)",
+   "hexes": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B",
+    "3A5A12",
+    "A192AE"
+   ],
+   "text_hint": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.7,
+    "max_contrast": 7.3,
+    "cb_min_separation": 0.094
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (fff6d2…)",
+   "hexes": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B",
+    "405920",
+    "A192AE"
+   ],
+   "text_hint": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.675,
+    "max_contrast": 7.26,
+    "cb_min_separation": 0.094
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (f1b838…)",
+   "hexes": [
+    "F1B838",
+    "241E4E",
+    "960200",
+    "CE6C47",
+    "EADAA2"
+   ],
+   "text_hint": [
+    "F1B838",
+    "EADAA2"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.565,
+    "max_contrast": 10.98,
+    "cb_min_separation": 0.103
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (ed7b84…)",
+   "hexes": [
+    "ED7B84",
+    "731963",
+    "41051C",
+    "FDBD0D",
+    "FFF9FB"
+   ],
+   "text_hint": [
+    "FDBD0D",
+    "FFF9FB"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.851,
+    "max_contrast": 15.99,
+    "cb_min_separation": 0.154
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (384d48…)",
+   "hexes": [
+    "384D48",
+    "6E7271",
+    "3F0D12",
+    "DDE0BD",
+    "E54B4B"
+   ],
+   "text_hint": [
+    "DDE0BD"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.661,
+    "max_contrast": 12.11,
+    "cb_min_separation": 0.068
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (fff6d2…)",
+   "hexes": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B",
+    "405920",
+    "A2A3A5"
+   ],
+   "text_hint": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.675,
+    "max_contrast": 7.26,
+    "cb_min_separation": 0.094
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (08415c…)",
+   "hexes": [
+    "08415C",
+    "FDD661",
+    "FFF0C6",
+    "F9A03F",
+    "B85F00",
+    "690500",
+    "0A3323"
+   ],
+   "text_hint": [
+    "FDD661",
+    "FFF0C6",
+    "F9A03F"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.769,
+    "max_contrast": 12.27,
+    "cb_min_separation": 0.05
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (fff6d2…)",
+   "hexes": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B",
+    "405920",
+    "9E9FBB"
+   ],
+   "text_hint": [
+    "FFF6D2",
+    "CEE196",
+    "E7B63B"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue",
+    "vivid"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.675,
+    "max_contrast": 7.26,
+    "cb_min_separation": 0.094
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a594f9…)",
+   "hexes": [
+    "A594F9",
+    "32021F",
+    "EA9E8D",
+    "D64550",
+    "462255"
+   ],
+   "text_hint": [
+    "EA9E8D"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.676,
+    "max_contrast": 8.4,
+    "cb_min_separation": 0.139
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "3E5641",
+    "282B28",
+    "83BCA9",
+    "F0A202"
+   ],
+   "text_hint": [
+    "83BCA9",
+    "F0A202"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "cool",
+    "mid",
+    "multihue"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.463,
+    "max_contrast": 6.73,
+    "cb_min_separation": 0.059
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (a73724…)",
+   "hexes": [
+    "A73724",
+    "321325",
+    "FCDC4D",
+    "C1A5A9",
+    "F08CAE"
+   ],
+   "text_hint": [
+    "FCDC4D",
+    "C1A5A9",
+    "F08CAE"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.61,
+    "max_contrast": 12.33,
+    "cb_min_separation": 0.013
+   },
+   "flags": [
+    "CB-COLLISION-RISK"
+   ],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (e3b5a4…)",
+   "hexes": [
+    "E3B5A4",
+    "F5E9E2",
+    "4F5D75",
+    "4A051C",
+    "780116"
+   ],
+   "text_hint": [
+    "E3B5A4",
+    "F5E9E2"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "multihue",
+    "vivid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.769,
+    "max_contrast": 13.26,
+    "cb_min_separation": 0.052
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  },
+  {
+   "name": "Unnamed (cfa5b4…)",
+   "hexes": [
+    "CFA5B4",
+    "98395A",
+    "D0CD94",
+    "444444",
+    "C7EF00"
+   ],
+   "text_hint": [
+    "CFA5B4",
+    "D0CD94",
+    "C7EF00"
+   ],
+   "likes": 0,
+   "tier": 0,
+   "computed_styles": [
+    "mid",
+    "warm"
+   ],
+   "occurrences": 1,
+   "metrics": {
+    "lightness_span": 0.463,
+    "max_contrast": 7.32,
+    "cb_min_separation": 0.063
+   },
+   "flags": [],
+   "sources": [
+    "latest"
+   ]
+  }
+ ]
+}

@@ -1,45 +1,58 @@
-## Description: <br>
-Create autonomous AI agents for OpenClaw with guided discovery that clarifies purpose, personality, skills, channels, automation, and security before generating a configured agent workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create autonomous AI agents for OpenClaw with guided discovery that clarifies purpose, personality, skills, channels, automation, and security before generating a configured agent workspace.
 
-## Publisher: <br>
-[anhnt224](https://clawhub.ai/user/anhnt224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anhnt224](https://clawhub.ai/user/anhnt224)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to design and create autonomous OpenClaw agents through a guided requirements flow, then generate workspace files, gateway configuration, optional heartbeat automation, and optional cron jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent autonomous OpenClaw agents with broad access. <br>
-Mitigation: Start with tier1 autonomy, explicit tool allow and deny lists, and sandboxing for any agent that may process untrusted input. <br>
-Risk: Gateway configuration changes may grant agents broader model, tool, sandbox, heartbeat, or workspace access than intended. <br>
-Mitigation: Review the printed gateway config patch before applying it and confirm the workspace, tool policy, sandbox mode, and heartbeat settings. <br>
-Risk: Heartbeat, cron, external channel bindings, and bot credentials can increase persistence and exposure. <br>
-Mitigation: Enable automation and external channel bindings only when necessary, and store any required credentials securely. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to design and create autonomous agents through a guided requirements flow, then generate the agent workspace, configuration guidance, and setup commands needed to activate the agent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anhnt224/agent-maker-2) <br>
-- [Publisher profile](https://clawhub.ai/user/anhnt224) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON configuration patches, and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw agent workspace files and configuration updates when the creation script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated agents may be persistent and active with broad access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated agent before activation, set explicit tool allowlists, choose sandbox all for untrusted inputs, and avoid tier3 unless standing automation is required.
+
+Risk: The creation script can overwrite files at a user-supplied workspace path.
+
+Mitigation: Use a dedicated workspace under an expected OpenClaw directory and avoid existing or symlinked directories.
+
+Risk: Channel tokens or other secrets may be needed for messaging integrations.
+
+Mitigation: Handle tokens through a proper secret store rather than chat or generated files.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [Agent Maker on ClawHub](https://clawhub.ai/anhnt224/skills/agent-maker-2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash, JSON, and TypeScript command examples; generated workspace files are Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create OpenClaw agent workspace files, memory directories, skill directories, gateway configuration, heartbeat settings, and optional channel or cron setup instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

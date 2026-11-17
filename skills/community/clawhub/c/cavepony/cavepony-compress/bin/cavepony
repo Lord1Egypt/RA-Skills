@@ -1,0 +1,128 @@
+#!/usr/bin/env node
+
+// Cavepony CLI tool - compress files with pony magic 🦄
+
+const fs = require('fs');
+const path = require('path');
+const { compress } = require('../compress.js');
+
+function main() {
+  const args = process.argv.slice(2);
+  
+  if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
+    showHelp();
+    return;
+  }
+  
+  if (args[0] === '--version' || args[0] === '-v') {
+    console.log('🏍️ Cavepony v0.1.0 (Pony-themed token compression)');
+    return;
+  }
+  
+  const command = args[0];
+  const modeArg = args.find(arg => arg.startsWith('--mode=')) || '--mode=full';
+  const mode = modeArg.replace('--mode=', '');
+  
+  if (command === 'compress') {
+    const filePath = args[1];
+    if (!filePath) {
+      console.error('❌ Error: No file specified');
+      console.error('Usage: cavepony compress <file> [--mode=pony|full|lite|ultra]');
+      process.exit(1);
+    }
+    
+    compressFile(filePath, mode);
+  } else if (command === 'text') {
+    const text = args.slice(1).join(' ');
+    console.log(compress(text, mode));
+  } else if (command === 'demo') {
+    runDemo(mode);
+  } else {
+    console.error(`❌ Unknown command: ${command}`);
+    showHelp();
+    process.exit(1);
+  }
+}
+
+function compressFile(filePath, mode) {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const compressed = compress(content, mode);
+    
+    // Create backup
+    const backupPath = filePath.replace(/\.md$/, '.original.md') || `${filePath}.original`;
+    fs.writeFileSync(backupPath, content);
+    
+    // Write compressed version
+    fs.writeFileSync(filePath, compressed);
+    
+    const origWords = content.split(/\s+/).length;
+    const newWords = compressed.split(/\s+/).length;
+    const reduction = Math.round((1 - newWords / origWords) * 100);
+    
+    console.log(`✅ Compressed ${filePath} in ${mode} mode`);
+    console.log(`   Backup saved to: ${backupPath}`);
+    console.log(`   Words: ${origWords} → ${newWords} (${reduction}% reduction)`);
+    
+  } catch (error) {
+    console.error(`❌ Error: ${error.message}`);
+    process.exit(1);
+  }
+}
+
+function runDemo(mode) {
+  console.log(`\n🏍️ CAVEPONY ${mode.toUpperCase()} MODE DEMO 🦄\n`);
+  
+  const demos = [
+    "Hello human! I'd be happy to help you fix this code. Let me take a look.",
+    "The authentication middleware has issues with token expiry validation.",
+    "Every person in New York loves Christmas, especially the children!",
+    "Could you please take a look at this configuration? I think it might have problems."
+  ];
+  
+  demos.forEach((text, i) => {
+    console.log(`${i + 1}. Original: "${text}"`);
+    console.log(`   Cavepony: "${compress(text, mode)}"`);
+    console.log('');
+  });
+}
+
+function showHelp() {
+  console.log(`
+🏍️ Cavepony CLI - Pony-themed token compression 🦄
+
+Usage:
+  cavepony <command> [options]
+
+Commands:
+  compress <file>      Compress a file (makes backup with .original.md)
+  text <text>          Compress text from arguments
+  demo                 Run demo with various examples
+  --help, -h           Show this help
+  --version, -v        Show version
+
+Options:
+  --mode=<mode>        Compression mode: pony, full, lite, ultra (default: full)
+
+Examples:
+  cavepony compress CLAUDE.md --mode=pony
+  cavepony text "Hello human!" --mode=pony
+  cavepony demo --mode=ultra
+
+Modes:
+  pony      - Full compression + pony word substitutions 🦄
+  full      - Default cavepony (drop articles, fragments)
+  lite      - Light compression (only remove filler)
+  ultra     - Maximum telegraphic compression
+  canterlot - Fancy expansion (opposite of compression!) 🏰
+
+Homepage: https://github.com/cavepony/cavepony
+`);
+}
+
+// Make it executable-friendly
+if (require.main === module) {
+  main();
+}
+
+module.exports = { main };

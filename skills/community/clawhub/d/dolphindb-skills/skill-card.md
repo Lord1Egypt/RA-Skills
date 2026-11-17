@@ -1,49 +1,64 @@
-## Description: <br>
-Dolphindb Skills helps agents work with DolphinDB databases, Docker deployment, CRUD workflows, quantitative finance analysis, and streaming-computation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dolphindb Skills helps an agent work with DolphinDB databases, including environment setup, Docker deployment, database CRUD operations, quantitative finance workflows, streaming computation, and Python SDK usage.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers, data engineers, and quantitative-finance practitioners use this skill to prepare DolphinDB environments, generate database operation examples, and plan analytics or streaming workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup workflows can install Python packages into local environments. <br>
-Mitigation: Review setup scripts first and use --no-install, a dedicated virtual environment, or a container unless package changes are explicitly approved. <br>
-Risk: Shell wrappers source scripts and evaluate generated export commands. <br>
-Mitigation: Use the bundled wrappers only from trusted artifact files and avoid eval/source workflows with untrusted files. <br>
-Risk: Generated DolphinDB examples may include default credentials or destructive database operations. <br>
-Mitigation: Replace default credentials and require explicit confirmation before DELETE, DROP, bulk write, Docker install, or subskill-update actions. <br>
+## Use Case:
 
+Developers, data engineers, and quantitative engineering teams use this skill to prepare a DolphinDB Python environment, connect to DolphinDB, create and manage databases and tables, deploy local Docker instances, and draft DolphinDB/Python examples for finance and streaming workloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ugpoor/dolphindb-skills) <br>
-- [USAGE_GUIDE.md](artifact/USAGE_GUIDE.md) <br>
-- [MIGRATION_GUIDE.md](artifact/MIGRATION_GUIDE.md) <br>
-- [DolphinDB documentation center](https://docs.dolphindb.cn/zh/) <br>
-- [DolphinDB Docker deployment](https://docs.dolphindb.cn/zh/deploy/docker/docker_deployment.html) <br>
-- [DolphinDB distributed database operations](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/create_db_tb.html) <br>
-- [DolphinDB quantitative finance examples](https://docs.dolphindb.cn/zh/tutorials/quant_finance_examples.html) <br>
-- [DolphinDB streaming data tutorial](https://docs.dolphindb.cn/zh/stream/str_intro.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Python, and DolphinDB code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include environment setup steps, database commands, Docker commands, and workflow recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: ClawHub release evidence and target metadata; artifact documentation references v1.4.0) <br>
+Risk: The setup flow can automatically install packages and make persistent environment changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup scripts before installation, use a dedicated virtual environment, disable or avoid automatic installation, and pin the dolphindb package and Docker image.
+
+Risk: Wrapper scripts evaluate generated shell export output, which creates command-execution risk if the generated output is unsafe.
+
+Mitigation: Avoid sourcing wrappers that eval generated output until reviewed or fixed, and inspect generated export statements before applying them.
+
+Risk: Examples use default DolphinDB credentials and include database delete/drop operations.
+
+Mitigation: Replace admin/123456 with least-privileged credentials and require explicit confirmation before delete/drop operations, Docker deployment, or package installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/dolphindb-skills)
+- [DolphinDB website](https://www.dolphindb.cn/)
+- [DolphinDB documentation center](https://docs.dolphindb.cn/zh/)
+- [DolphinDB Docker deployment documentation](https://docs.dolphindb.cn/zh/deploy/docker/docker_deployment.html)
+- [DolphinDB database and table creation documentation](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/create_db_tb.html)
+- [DolphinDB query documentation](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/queries.html)
+- [DolphinDB quantitative finance examples](https://docs.dolphindb.cn/zh/tutorials/quant_finance_examples.html)
+- [DolphinDB streaming tutorial](https://docs.dolphindb.cn/zh/stream/str_intro.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python, DolphinDB, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment setup steps, wrapper commands, database scripts, Docker commands, and operational cautions.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

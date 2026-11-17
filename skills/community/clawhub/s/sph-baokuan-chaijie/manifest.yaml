@@ -1,0 +1,64 @@
+# Skill Manifest - 视频号爆款拆解流水线
+# 上架到 WorkBuddy SkillHub / ClawHub 必需文件
+
+name: sph-baokuan-chaijie
+slug: sph-baokuan-chaijie
+version: 1.0.0
+author: 心明增长实验室
+author_contact: 公众号「心明增长实验室」
+category: 营销运营
+license: MIT
+
+description: |
+  视频号爆款拆解流水线。给一条或多条视频号分享链接，自动下载视频→提取音频→Whisper转录文案→提取元数据（标题/标签/互动数据/账号信息），然后按七维分析框架拆解爆款逻辑（标题公式/标签漏斗/内容结构/互动数据/爆款逻辑/跨视频对比/可执行策略），输出综合HTML报告。
+
+long_description: |
+  这是目前市面上少有的「视频号全自动拆解」工具。
+  
+  核心能力：
+  1. 给一条视频号分享链接，自动下载原视频（无水印）
+  2. 用 ffmpeg 提取音频，再用 Whisper 本地转录为完整文案（无需API Key）
+  3. 自动提取元数据：标题、标签、点赞/评论/转发/收藏数据、账号名、封面URL
+  4. 按七维分析框架拆解爆款逻辑
+  5. 支持多条链接批量处理，自动发现更多视频链接
+  6. 生成综合HTML报告
+  
+  前置条件：
+  - 需要安装 wx-video-download 技能并完成腾讯元宝登录
+  - 需要安装 ffmpeg
+  - 需要安装 openai-whisper（本地转录，无需API Key）
+
+triggers:
+  - 视频号拆解
+  - 爆款分析
+  - 视频号文案提取
+  - 视频号账号分析
+  - sph拆解
+  - 视频号爆款
+  - 视频号爆款拆解
+
+tags:
+  - 视频号
+  - 爆款分析
+  - 文案提取
+  - 内容拆解
+  - GEO
+  - AI营销
+  - 内容运营
+
+requires:
+  - wx-video-download
+  - ffmpeg
+  - openai-whisper
+
+permissions:
+  - 文件读写（下载视频、保存转录文案）
+  - 网络访问（下载视频文件）
+  - 浏览器自动化（腾讯元宝会话）
+
+icon: assets/icon.png
+screenshots:
+  - assets/screenshot-1.png
+  - assets/screenshot-2.png
+  - assets/screenshot-3.png
+  - assets/screenshot-4.png

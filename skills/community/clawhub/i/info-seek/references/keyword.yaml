@@ -1,0 +1,59 @@
+# infoseek 领域关键词触发词（唯一真源）
+# v1.7.5：从 scripts/domain_router.py 的 DOMAIN_TRIGGERS 迁移（消除代码内嵌双源）
+# 消费：domain_router._load_domain_triggers()
+#       缺失/损坏 → 内置 _BUILTIN_TRIGGERS 兜底；env INFOSEEK_KEYWORD_YAML 可覆盖路径
+version: "1.0"
+
+domains:
+  tech-research:
+    weight: 1.0
+    keywords: ["工艺", "分切", "轧制", "退火", "热处理", "冷轧", "热轧", "模具",
+               "圆盘刀", "重叠量", "压辊", "张力", "缺陷", "毛刺", "钢卷", "带钢",
+               "不锈钢", "合金", "精度", "公差", "工艺参数", "设备", "工序",
+               "process", "rolling", "annealing", "tolerance", "defect",
+               "alloy", "precision", "manufacturing", "slitting", "coiling",
+               "模型", "开源", "技术", "算法", "软件", "代码", "芯片", "架构",
+               "大模型", "人工智能", "深度学习", "机器学习", "训练", "推理",
+               "framework", "open source", "software", "algorithm", "chip",
+               "architecture", "deep learning", "machine learning", "llm",
+               "training", "inference", "api", "模型", "微调", "部署",
+               # P0-OPEN-05：AI 产品/实体词（修「GPT-5」路由返回 None）
+               "gpt", "gpt5", "gpt-5", "chatgpt", "openai", "claude", "gemini",
+               "agent", "智能体", "aigc", "生成式"]
+
+  market-research:
+    weight: 1.0
+    keywords: ["市场", "行业", "规模", "增速", "CAGR", "渗透率", "用户画像",
+               "消费", "需求", "行业研究", "市场规模", "细分", "增长",
+               "market", "industry", "segment", "TAM", "SAM", "SOM", "user persona",
+               "consumer", "demand", "growth"]
+
+  finance-research:
+    weight: 1.0
+    keywords: ["股票", "基金", "债券", "期货", "外汇", "期权", "行情", "K线",
+               "MACD", "KDJ", "RSI", "布林带", "财报", "估值", "PE", "PB",
+               "市净率", "市盈率", "回测", "策略", "持仓", "杠杆", "做空",
+               "stock", "equity", "bond", "futures", "forex", "technical analysis",
+               "valuation", "backtest", "portfolio", "leverage"]
+    # DEF-16（v2.1.1 P2）：中文无空格词边界，2 字短词「回测」裸子串会误嵌进常用
+    # 多字词（铁证：「工业来回测试平台」因「来回测」被判 finance-research）。
+    # strict_keywords 中的 2 字中文词命中时，若每次出现都被 false_compounds
+    # （含该词的非金融常用多字词）覆盖则不命中；至少一次干净出现才命中。
+    # 仅收录经实证的高置信项；长词（≥3 字，市盈率/布林带）误嵌概率低保留子串。
+    # 与 scripts/domain_router.py 的 _BUILTIN_TRIGGERS 双源保持一致（本文件缺失时走内置）。
+    strict_keywords: ["回测"]
+    false_compounds: ["来回测试", "回测设备"]
+
+  policy-research:
+    weight: 1.0
+    keywords: ["政策", "法规", "标准", "合规", "监管", "国标", "GB ", "ISO",
+               "工信部", "发改委", "证监会", "银保监", "国务院", "指导意见",
+               "通知", "办法", "条例", "规定",
+               "policy", "regulation", "compliance", "standard", "governance",
+               "regulatory", "mandate", "directive"]
+
+  competitor-intel:
+    weight: 1.0
+    keywords: ["竞品", "对比", "差异化", "竞争对手", "市场份额", "产品矩阵",
+               "功能比较", "vs ", " versus", "alternative", "competitor",
+               "comparison", "feature parity", "head-to-head"]

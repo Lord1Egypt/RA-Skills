@@ -1,0 +1,6 @@
+{
+  "action": "search",
+  "file": "samples/notice.txt",
+  "query": "截止",
+  "limit": 20
+}

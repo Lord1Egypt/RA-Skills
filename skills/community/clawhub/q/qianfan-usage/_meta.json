@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn74qjcbtc0c542gmd6v3dznbx82a838",
-  "slug": "qianfan-usage",
-  "version": "1.0.2",
-  "publishedAt": 1773336198725
+  "name": "qianfan-usage",
+  "version": "1.1.0",
+  "description": "查询百度千帆 Coding Plan 用量和额度",
+  "author": "xiaolong",
+  "tags": [
+    "qianfan",
+    "baidu",
+    "usage",
+    "quota",
+    "billing",
+    "coding-plan"
+  ],
+  "commands": [
+    {
+      "name": "qianfan-usage",
+      "description": "查询百度千帆 Coding Plan 用量详情",
+      "script": "qianfan-usage.sh"
+    }
+  ],
+  "env": [
+    {
+      "name": "QIANFAN_PHONE",
+      "description": "百度账号手机号",
+      "required": true
+    }
+  ],
+  "dependencies": {
+    "agent-browser": ">=1.0.0",
+    "python3": ">=3.8"
+  },
+  "license": "MIT"
 }

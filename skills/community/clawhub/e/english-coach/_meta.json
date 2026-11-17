@@ -1,0 +1,12 @@
+{
+  "name": "english-coach",
+  "version": "1.0.0",
+  "displayName": "English Coach",
+  "description": "基于语块（chunk）教学法的英语教练 skill。像母语者朋友一样陪练英语对话、批改材料，对话/批改后结构化回顾学习成果。",
+  "author": "KennethG128",
+  "license": "MIT",
+  "tags": ["english", "coach", "language-learning", "spoken"],
+  "categories": ["education"],
+  "homepage": "",
+  "repository": ""
+}

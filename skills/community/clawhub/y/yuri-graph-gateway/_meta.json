@@ -1,6 +1,14 @@
 {
   "ownerId": "kn74v7svs52dtsm7pxkexqq1ss8300aw",
   "slug": "yuri-graph-gateway",
-  "version": "1.0.10",
-  "publishedAt": 1773987754245
+  "version": "1.0.8",
+  "publishedAt": 1773849059757,
+  "primaryCredential": "YURI_TOKEN",
+  "env": {
+    "YURI_TOKEN": {
+      "description": "API Token from the baiz.ai Yuri dashboard (API Management). Format: yuri_sk_XXXXX. Replaces the Facebook access_token parameter; use a least-privilege test token.",
+      "required": true,
+      "sensitive": true
+    }
+  }
 }

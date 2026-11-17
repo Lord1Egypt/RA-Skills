@@ -1,38 +1,52 @@
-## Description: <br>
-Trigger Gitea/Forgejo workflow_dispatch via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger Gitea or Forgejo Actions workflow_dispatch events through the API.
 
-## Publisher: <br>
-[Qizhou-Guo](https://clawhub.ai/user/Qizhou-Guo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qizhou-guo](https://clawhub.ai/user/qizhou-guo)
 
-## Use Case: <br>
-Developers and engineers use this skill to trigger a selected Gitea or Forgejo workflow_dispatch action for a repository, with optional ref, workflow inputs, and dry-run checking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger workflows that run code, consume runner resources, use workflow secrets, or deploy changes depending on repository configuration. <br>
-Mitigation: Use a dedicated least-privilege Gitea or Forgejo token limited to the intended repositories and actions, and use dryRun when unsure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Qizhou-Guo/gitea-workflow-dispatch) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Qizhou-Guo) <br>
+## Use Case:
 
+Developers and release engineers use this skill to trigger Gitea or Forgejo workflow_dispatch runs for a repository, optionally passing a ref and workflow inputs or using dry-run mode to inspect the request.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON] <br>
-**Output Format:** [JavaScript object containing dispatch status, response, and request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a dry-run request preview without sending the API call.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A Gitea API token can be sent to a configured endpoint while triggering remote workflows.
+
+Mitigation: Use a narrowly scoped token, set GITEA_URL to HTTPS, and avoid plaintext HTTP except in isolated local testing.
+
+Risk: The skill can trigger remote automation that may deploy, publish, or access private repositories depending on token permissions.
+
+Mitigation: Review token permissions and target workflow behavior before installing or running the skill in sensitive repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qizhou-guo/skills/gitea-workflow-dispatch)
+
+## Skill Output:
+
+**Output Type(s):** [JSON]
+
+**Output Format:** [JSON object with dispatch status, response, and request details; Markdown guidance may include shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, GITEA_URL, and GITEA_TOKEN; supports owner, repo, workflow, ref, inputs, and dryRun inputs.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

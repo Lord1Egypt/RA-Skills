@@ -1,44 +1,56 @@
-## Description: <br>
-Dida365 (dida365.com) skill for reading, creating, updating, and deleting Dida365 data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dida365 (dida365.com). Use this skill for ANY Dida365 request — reading, creating, updating, and deleting data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to manage Dida365 tasks, projects, and habits through an OOMOL-connected account, including read, write, and delete workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and destructive actions can change or remove Dida365 tasks, projects, or habit data. <br>
-Mitigation: Confirm the exact payload, target identifiers, and user approval before running actions tagged write or destructive. <br>
-Risk: Using the skill requires installing or signing into the OOMOL oo CLI and connecting a Dida365 account. <br>
-Mitigation: Approve setup only when the user trusts OOMOL and intends to let an agent manage Dida365 data through that connection. <br>
-Risk: Connector inputs may differ by action or change over time. <br>
-Mitigation: Fetch the live action schema with the oo CLI before constructing each payload. <br>
+## Use Case:
 
+People using Dida365 through an OOMOL-connected account use this skill to read and manage projects, tasks, habits, and check-ins, including creating, updating, completing, moving, and deleting records.
 
-## Reference(s): <br>
-- [Dida365 homepage](https://dida365.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-dida365) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing JSON payloads; connector responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Setup directs the agent to run downloaded CLI code whose installer contents and remote connector behavior were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, preferably using a verified, pinned release.
+
+Risk: Automatic skill synchronization can write skill files, and account actions can change or delete connected Dida365 data.
+
+Mitigation: Review automatic synchronization and disable it with OO_SKILLS_SYNC_DISABLED if needed. Require approval for exact account changes and deletion targets.
+
+## Reference(s):
+
+- [Dida365 homepage](https://dida365.com)
+- [Dida365 API documentation](https://developer.dida365.com/docs/index.html)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Dida365 ClawHub skill page](https://clawhub.ai/oomol/skills/oo-dida365)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with oo CLI commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Connector responses may contain task, project, or habit data.]
+
+## Skill Version(s):
+
+1.0.9 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

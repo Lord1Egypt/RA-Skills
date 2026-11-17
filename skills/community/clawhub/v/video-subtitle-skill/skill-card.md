@@ -1,44 +1,59 @@
-## Description: <br>
-Generates subtitles for video or audio with SenseAudio ASR, including multilingual transcription, optional translation, speaker diarization, and video burn-in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates subtitles for video and audio files, with multilingual recognition, translation, speaker separation, and optional subtitle burn-in.
 
-## Publisher: <br>
-[QWERTY0205](https://clawhub.ai/user/QWERTY0205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwerty0205](https://clawhub.ai/user/qwerty0205)
 
-## Use Case: <br>
-External users and developers use this skill in Claude Code to turn local video or audio files into subtitle files, transcripts, optional translations, and optionally a subtitled video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user media to SenseAudio for transcription. <br>
-Mitigation: Require explicit user confirmation before remote upload and avoid confidential, regulated, or third-party media unless the user is allowed to send it to SenseAudio. <br>
-Risk: The API-key check can expose the SenseAudio API key in terminal output. <br>
-Mitigation: Use a redacted presence check for SENSEAUDIO_API_KEY instead of printing the secret value. <br>
-Risk: Generated transcripts and subtitled videos may contain sensitive media content. <br>
-Mitigation: Use a dedicated output folder and review retention or cleanup expectations before processing sensitive files. <br>
+## Use Case:
 
+Developers, media teams, and agents use this skill to transcribe video or audio into subtitle and transcript files, optionally translate captions, distinguish speakers, and produce videos with burned-in subtitles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QWERTY0205/video-subtitle-skill) <br>
-- [SenseAudio](https://senseaudio.cn) <br>
-- [SenseAudio transcription API endpoint](https://api.senseaudio.cn/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated agent artifacts include SRT, VTT, TXT, JSON, and optionally MP4 files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+, requests, ffmpeg, fonts-noto-cjk for CJK burn-in, and SENSEAUDIO_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Selected audio or video content is uploaded to SenseAudio for cloud transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with media that is approved for SenseAudio processing, and avoid confidential or regulated recordings unless that service is approved for the use case.
+
+Risk: API keys may be exposed by commands that print SENSEAUDIO_API_KEY or by passing the key directly as a command-line argument.
+
+Mitigation: Do not run commands that echo the API key; prefer a protected environment variable or secret store and avoid the --senseaudio-api-key argument.
+
+Risk: Generated transcripts, subtitle files, detailed JSON, and burned-in videos may persist sensitive content locally.
+
+Mitigation: Review and manage the output directory after each run, and remove sensitive generated files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qwerty0205/skills/video-subtitle-skill)
+- [Publisher profile](https://clawhub.ai/user/qwerty0205)
+- [SenseAudio](https://senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated subtitle, transcript, JSON, and optional video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SRT, VTT, TXT, detailed JSON, extracted audio, and optionally burned-in video outputs in a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

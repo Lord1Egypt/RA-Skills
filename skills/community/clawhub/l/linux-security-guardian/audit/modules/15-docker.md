@@ -68,6 +68,60 @@ cat /etc/docker/daemon.json 2>/dev/null
 - Check against latest stable
 - > 3 major versions behind → HIGH
 
+### Docker Daemon Security Defaults (daemon.json)
+Check /etc/docker/daemon.json for security settings:
+```bash
+cat /etc/docker/daemon.json 2>/dev/null || echo "{} or not found"
+```
+
+#### Checks
+| Parameter | Secure Value | Severity if Missing/Wrong |
+|-----------|-------------|--------------------------|
+| userns-remap | "default" or a dedicated user | HIGH (containers run as root by default) |
+| no-new-privileges | true | MEDIUM (prevents privilege escalation via suid) |
+| seccomp-profile | /etc/docker/seccomp.json or "default" | MEDIUM (seccomp restricts syscalls) |
+| live-restore | true | LOW (containers survive daemon restart) |
+| log-driver | "json-file" or "journald" | LOW (no logging = no forensics) |
+| log-opts.max-size | "10m" | LOW (unbounded logs fill disk) |
+| log-opts.max-file | "3" | LOW |
+| icc (inter-container comms) | false (unless needed) | MEDIUM |
+| iptables | true | HIGH (Docker manages its own firewall rules) |
+| ip-forward | true (if Docker needs it) | LOW |
+| bip (bridge IP) | custom private range | LOW (default 172.17.0.1/16 is fine) |
+| default-ulimits | set (nofile, nproc) | LOW |
+| exec-opts | native.cgroupdriver=systemd | MEDIUM (cgroupfs vs systemd) |
+
+#### Recommended daemon.json
+```json
+{
+  "userns-remap": "default",
+  "no-new-privileges": true,
+  "live-restore": true,
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  },
+  "icc": false,
+  "iptables": true,
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}
+```
+
+#### ⚠️ Important: userns-remap implications
+- Enabling userns-remap remaps UIDs/GIDs inside containers
+- Existing container volumes may have permission issues after enabling
+- Requires Docker daemon restart
+- Confirm required before applying
+
+#### Output Format (daemon.json)
+```
+[HIGH] 15-docker: daemon_userns_remap | userns-remap: not set | containers run as root | action_id: ACT-YYYYMMDD-XXX
+[MEDIUM] 15-docker: daemon_no_new_privs | no-new-privileges: not set | action_id: ACT-YYYYMMDD-XXX
+[MEDIUM] 15-docker: daemon_seccomp | seccomp-profile: not set | action_id: ACT-YYYYMMDD-XXX
+[PASS] 15-docker: daemon_live_restore | live-restore: true ✓
+```
+
 ### Exposed Container Ports
 - Ports bound to 0.0.0.0 unexpectedly → cross-check with module 08
 

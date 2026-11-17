@@ -1,43 +1,60 @@
-## Description: <br>
-Freshness Judge classifies normalized evidence as current, background, stale, undated, or malformed against a canonical time window to reduce the risk of treating old material as current. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Freshness Judge labels normalized evidence against a canonical time window as current, background, stale, undated, or malformed and produces a freshness profile for downstream use.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Developers and agents use this skill after evidence normalization to separate current evidence from background, stale, undated, or malformed material for time-sensitive news, policy, market, and research tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compensation queries can increase search cost, external network use, or privacy exposure if run automatically. <br>
-Mitigation: Cap extra searches and require review before running required or recommended compensation queries in sensitive workflows. <br>
-Risk: Freshness classifications may be mistaken for final conclusions about the underlying evidence. <br>
-Mitigation: Use the classifications as time-context signals and keep downstream review responsible for final factual judgments. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill after evidence normalization to separate current evidence from background, stale, undated, or malformed material for news, policy, market analysis, and other time-sensitive tasks.
 
-## Reference(s): <br>
-- [Freshness Judge ClawHub Page](https://clawhub.ai/z1one0415/freshness-judge) <br>
-- [Freshness Rules](references/freshness-rules.md) <br>
-- [Time Window Examples](references/time-window-examples.md) <br>
-- [Freshness Judgment Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, guidance] <br>
-**Output Format:** [JSON object with evidence freshness buckets, a freshness profile, risk flags, and optional compensation queries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; compensation queries are proposals for an orchestrator to review or run under budget and privacy controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Suggested compensation_queries could trigger unnecessary or biased follow-up searches if treated as automatic actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat compensation_queries as recommendations and require orchestrator or user approval unless automatic follow-up search is intentionally enabled.
+
+Risk: Chinese-only documentation may be unsuitable for users who need English or multilingual operating instructions.
+
+Mitigation: Confirm language fit before deployment or provide reviewed translated documentation for the target user group.
+
+Risk: Undated or boundary evidence can make older material appear more current than it is when downstream systems ignore freshness labels.
+
+Mitigation: Preserve the freshness buckets and review freshness_profile risk_flags before using outputs in final analysis or decisions.
+
+## Reference(s):
+
+- [Freshness Judge on ClawHub](https://clawhub.ai/z1one0415/skills/freshness-judge)
+- [Freshness Rules](references/freshness-rules.md)
+- [Time Window Examples](references/time-window-examples.md)
+- [Judgment Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object with freshness buckets, a freshness_profile, risk_flags, and optional compensation_queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retains stale and undated evidence in categorized outputs; compensation_queries should be treated as recommendations unless automatic follow-up search is intentionally enabled.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

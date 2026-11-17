@@ -1,44 +1,58 @@
-## Description: <br>
-Backup OpenClaw data to desktop with quick backups that exclude skills or full backups that include skills, and support scheduled automatic backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup OpenClaw data to desktop - quick backup (without skills, ~100MB) or full backup (with skills, ~500MB+). Supports scheduled automatic backups.
 
-## Publisher: <br>
-[Sen-platotech](https://clawhub.ai/user/Sen-platotech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sen-platotech](https://clawhub.ai/user/sen-platotech)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to back up local OpenClaw state for safekeeping or migration, then restore that state on the same or another machine. It is intended for user-created archives that may include conversations, memory, configuration, encrypted credentials, and optionally installed skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore can replace active OpenClaw state and extract an unvalidated archive into the home directory. <br>
-Mitigation: Use restore only with backups you created and trust, inspect archives from shared storage or other people before restoring, and keep the existing-data backup created during restore. <br>
-Risk: Backups may contain sensitive credentials, conversation history, memory, and configuration data. <br>
-Mitigation: Store backup archives in an encrypted or private location and limit access to trusted operators. <br>
-Risk: Restore may sync skills after extraction, changing the local OpenClaw environment. <br>
-Mitigation: Review restored state and synced skills before using the restored OpenClaw installation for sensitive work. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to create portable backups of local OpenClaw data and restore that data during migration, recovery, or machine replacement.
 
-## Reference(s): <br>
-- [ClawHub listing for OpenClaw Backup](https://clawhub.ai/Sen-platotech/sen-openclaw-backup) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local backup archive paths and environment variables such as INCLUDE_SKILLS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release evidence; artifact frontmatter reports 1.1.1) <br>
+Risk: A restore archive can overwrite files under the user's OpenClaw home data when extracted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore only backups created by the user from trusted systems, and review the archive contents before extraction when provenance is uncertain.
+
+Risk: Backup archives may contain sensitive OpenClaw data such as chat history, memory, identity data, configuration, and credential files.
+
+Mitigation: Store backups on encrypted, access-controlled media and avoid placing them in shared or untrusted cloud locations.
+
+Risk: The release has no server-resolved source provenance for this version.
+
+Mitigation: Review the packaged files and publisher profile before installation, and do not infer external repository provenance from skill text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sen-platotech/skills/sen-openclaw-backup)
+- [Publisher profile](https://clawhub.ai/user/sen-platotech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and backup or restore guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run local backup and restore scripts that create or extract gzip-compressed tar archives.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata; artifact frontmatter lists 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

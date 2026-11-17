@@ -1,0 +1,96 @@
+{
+  "skill_name": "flydb-multi-environment",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们有 MySQL 和达梦两套库，各自要走 UAT 和生产两套环境，想用 Flydb CLI 统一管理迁移，怎么组织？",
+      "expected_output": "给出环境矩阵（2 数据库×2 环境）；deploy/ 下四份 flydb.<db>.<env>.conf 的命名与布局；conf 只放非敏感项、locations 写绝对路径；migrations/ 按数据库家族分目录、版本流独立；说明自动化中显式传 -c 的原因。",
+      "files": [],
+      "assertions": [
+        "给出 deploy/flydb.<数据库>.<环境>.conf 的四份配置布局",
+        "conf 中不含密码，locations 使用绝对路径",
+        "说明自动化必须显式传 -c/--config 及原因（CWD 不可控）",
+        "脚本仓库按数据库家族分目录且版本流独立"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "流水线里跑 flydb，生产库密码怎么给？之前同事直接写在命令行 -p 参数里。",
+      "expected_output": "指出 -p 会进入进程列表、shell history 和 CI 日志，禁止；按环境分层：CI 用 FLYDB_PASSWORD 或 ${env:DB_PASSWORD}（secret 系统注入），生产/共享环境用 flydb.password.file 由 Vault/KMS/部署系统落盘并收紧权限；本地明文仅限临时测试。",
+      "files": [],
+      "assertions": [
+        "明确否定命令行 -p 传密码并说明泄露面（进程列表/history/日志）",
+        "给出 CI 与生产环境的分层注入方案",
+        "提到每环境独立 DDL 账号、迁移与业务账号分离"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "帮我们写个发布迁移的 CI 步骤，要能过审批再动生产库。",
+      "expected_output": "给出两个 CI 阶段，以平台真实审批门连接：version/info/validate/JSON dry-run 形成材料；批准后核对计划并 migrate/info/validate。保留 CLI 非零退出码、分开 stdout 与 stderr，生产授权绑定目标和不可变配置/脚本。",
+      "files": [],
+      "assertions": [
+        "命令序列以 version/validate/dry-run 开头，migrate 前有审批门",
+        "migrate 后用 JSON info 与 validate 复核",
+        "说明按退出码（2/3/4）分流的门禁策略",
+        "流水线中没有 repair、undo 或 clean"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "生产库是跑了三年的老库，表都是手工建的，现在想交给 Flydb 管，怎么接入？",
+      "expected_output": "识别存量库接入场景：先人工对账已应用到的版本；用 baseline --baseline-version <对账版本> 或 conf 设 baseline-on-migrate=true 写基线（不执行 SQL）；强调先在测试环境演练；接入后再交给统一流水线。",
+      "files": [],
+      "assertions": [
+        "给出 baseline 方案（命令或 baseline-on-migrate）且说明不执行 SQL",
+        "强调先人工对账已应用版本",
+        "建议先在测试环境演练"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "我们生产执行机在内网，不能访问外网 Maven 仓库，驱动怎么解决？",
+      "expected_output": "镜像预置 drivers/ 目录或企业私服（--maven-settings 指向私服 settings + flydb.driver-coordinate 完整坐标）；执行机设 flydb.offline=true 禁止远程解析；伴随 JAR 的厂商驱动全部 JAR 一并放入 drivers/；遵守厂商许可不重新分发驱动。",
+      "files": [],
+      "assertions": [
+        "建议镜像预置 drivers/ 或私服分发驱动",
+        "提到 flydb.offline=true 用于网络受限执行机",
+        "说明厂商驱动需完整坐标/伴随 JAR 手工放置",
+        "提到不重新分发厂商驱动 JAR 的许可约束"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "测试库和生产库计划的 plan.id 一样，可不可以直接沿用测试审批，然后 migrate --plan-id？",
+      "expected_output": "摘要不含目标库，生产需独立目标绑定与审批；CLI 没有该参数。外部检查也不是数据库锁内原子审批。",
+      "files": [],
+      "assertions": [
+        "不生成 --plan-id",
+        "不复用测试授权到生产",
+        "区分内容摘要和目标绑定"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "把生产迁移写成一段脚本，在 migrate 前加一行注释‘这里人工审批’就行。",
+      "expected_output": "使用真实 CI 审批门拆分预检与执行；注释不能暂停。JSON 分离 stderr，保留非零退出码，任一失败阻断后续写入。",
+      "files": [],
+      "assertions": [
+        "实际拆分阶段而非只写注释",
+        "不使用吞掉 Flydb 退出码的管道",
+        "保留对应环境的计划与目标材料"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "CI 的 Flydb 会跑两个小时，想用 nohup 后就让 job 成功退出，失败了再自动重试。",
+      "expected_output": "CI 应前台执行并设置足够超时，完整获取退出码；结果未知需核验现场，不根据日志静默或超时自动重试。",
+      "files": [],
+      "assertions": [
+        "不以后台启动成功作为迁移成功",
+        "不自动重放未知结果",
+        "区分终端托管与 CI 生命周期"
+      ]
+    }
+  ]
+}

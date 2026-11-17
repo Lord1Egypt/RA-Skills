@@ -1,43 +1,58 @@
-## Description: <br>
-Helps an agent create, view, delete, convert, and sync reminders based on Chinese lunar-calendar dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按农历日期设置提醒（生日、节日等）。当用户需要：(1) 按农历添加提醒事件 (2) 查看农历事件列表 (3) 农历日期与公历日期转换 (4) 设置农历生日/节日提醒 时使用此 skill。
 
-## Publisher: <br>
-[xiaoyuanhao](https://clawhub.ai/user/xiaoyuanhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyuanhao](https://clawhub.ai/user/xiaoyuanhao)
 
-## Use Case: <br>
-External users and their agents use this skill to manage local reminders for lunar birthdays, festivals, and date conversions, then optionally sync reminder notifications to OpenClaw cron jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder details are stored locally in the skill directory and may include personal dates or notes. <br>
-Mitigation: Use simple reminder names, avoid sensitive notes, and review or delete local event data when it is no longer needed. <br>
-Risk: Synced cron reminders can continue firing until removed. <br>
-Mitigation: Periodically review OpenClaw cron jobs and remove stale lunar_<event name> jobs. <br>
-Risk: Scheduled notifications use the Asia/Shanghai timezone. <br>
-Mitigation: Confirm Asia/Shanghai is the intended timezone before relying on reminder timing. <br>
+## Use Case:
 
+External users and agents use this skill to manage lunar-calendar reminders, convert dates between lunar and Gregorian calendars, and synchronize reminders into OpenClaw cron tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoyuanhao/lunar-reminder) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoyuanhao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown responses with shell command snippets and local JSON event data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Asia/Shanghai for scheduled reminder notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; package.json lists 1.0.0) <br>
+Risk: Documented cron commands can run unsafe shell input from reminder names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted reminder names and sanitize shell-sensitive characters before creating or removing cron reminders.
+
+Risk: Cron deletion and creation can change scheduled reminders.
+
+Mitigation: Review generated OpenClaw cron commands and confirm intended reminder names before execution.
+
+Risk: The skill uses the lunar-javascript dependency declared in metadata and package.json.
+
+Mitigation: Install dependencies from trusted package sources and pin or review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoyuanhao/skills/lunar-reminder)
+- [Publisher profile](https://clawhub.ai/user/xiaoyuanhao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON reminder data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reminder records for data/events.json and OpenClaw cron command guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

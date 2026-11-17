@@ -1,0 +1,3 @@
+[
+  {"label": "btnResetT", "event": "onClick", "script": "SetValue(aT, 0)\nSetValue(k, 3)"}
+]

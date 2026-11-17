@@ -1,51 +1,67 @@
-## Description: <br>
-Creates a daily voice quote with generated audio, a cover-image static video, and an optional HeyGen avatar video for delivery to a recipient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a daily spoken quotation using a selected voice, combines it with optional cover or avatar video media, and sends the resulting media to the configured recipient.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-External users and automation builders use this skill to prepare and send a daily motivational quote as cloned-voice audio, a static video, and optionally an avatar video. It is intended for scheduled personal or audience-facing messaging workflows where the voice and face subject has approved the media use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning and avatar generation can misuse a person's voice or likeness. <br>
-Mitigation: Use the skill only after the voice and face subject has explicitly approved cloning, avatar training, hosting, and automated delivery. <br>
-Risk: Public media URLs can expose generated audio or video beyond the intended recipient. <br>
-Mitigation: Prefer short-lived or access-controlled URLs, and verify recipient IDs before automated messaging. <br>
-Risk: API tokens for ElevenLabs, HeyGen, messaging, hosting, or image generation can grant access to paid services or private media. <br>
-Mitigation: Use dedicated keys with the narrowest available access, keep them in environment configuration, and rotate them if exposed. <br>
-Risk: Media providers and hosting services may retain uploaded samples, generated media, or delivery metadata. <br>
-Mitigation: Confirm provider storage and deletion behavior before uploading voice samples, face media, or generated assets. <br>
+## Use Case:
 
+External users and developers use this skill to automate a daily inspirational voice quote workflow, including quote selection, voice generation, media formatting, and delivery through a configured messaging channel.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/daaab/daily-voice-quote) <br>
-- [Publisher profile](https://clawhub.ai/user/daaab) <br>
-- [Holiday reference list](references/holidays.md) <br>
-- [Quote reference list](references/quotes.md) <br>
-- [ElevenLabs voice API example](https://api.elevenlabs.io/v1/voices/add) <br>
-- [HeyGen](https://www.heygen.com/?sid=rewardful&via=clawhub) <br>
-- [LINE Messaging API push endpoint](https://api.line.me/v2/bot/message/push) <br>
-- [Google AI Studio](https://aistudio.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and commands for audio, image, video, subtitle, scheduling, and message-delivery workflows; generated media files and API calls are created by the agent environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill uses cloned-voice media and personal photo or avatar material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with explicit consent for the voice and image material, and limit access to the workspace and generated media.
+
+Risk: The workflow depends on ElevenLabs, LINE, optional HeyGen or Gemini credentials, and public media URLs.
+
+Mitigation: Use narrowly scoped tokens, avoid printing secrets, rotate credentials when exposed, and prefer short-lived signed URLs with unguessable names.
+
+Risk: Scheduled sends can deliver media to the wrong recipient or at the wrong cadence if configuration is incorrect.
+
+Mitigation: Confirm recipient IDs, hosting URLs, and cron configuration with a test run before enabling recurring execution.
+
+Risk: The required sag executable is identified as an unpinned dependency.
+
+Mitigation: Pin or verify the dependency source before installation and review updates before use.
+
+## Reference(s):
+
+- [Daily Voice Quote ClawHub listing](https://clawhub.ai/daaab/skills/daily-voice-quote)
+- [Publisher profile](https://clawhub.ai/user/daaab)
+- [Holiday and special-date reference](references/holidays.md)
+- [Quotation reference pool](references/quotes.md)
+- [ElevenLabs voice setup](https://try.elevenlabs.io/clawhub)
+- [HeyGen avatar video setup](https://www.heygen.com/?sid=rewardful&via=clawhub)
+- [Google AI Studio for optional image generation](https://aistudio.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or guides creation of audio files, static video files, optional avatar video, captions, and messaging payloads.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

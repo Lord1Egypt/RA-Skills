@@ -117,6 +117,55 @@ npm run publish-skill
 ════════════════════════════════════════════════════════════════
 ```
 
+### Social Announcement
+
+The release script can automatically post announcements via Late API:
+
+**Setup:**
+```bash
+export LATE_API_KEY="your-late-api-key"
+
+# Optional: customize platforms (default: x)
+export SKILL_PUBLISH_PLATFORMS="x,linkedin"
+
+# Optional: custom Late API URL (default: https://getlate.dev/api)
+export LATE_API_BASE_URL="https://getlate.dev/api"
+```
+
+**What gets posted:**
+- Version number
+- Installation command
+- Link to GitHub release
+- Up to 3 feature highlights from commit messages (if available)
+- Random MOLT episode artwork (poster/thumbnail)
+- Featured episode title and number
+
+**Example post:**
+```
+🎉 Molt Motion Skill v1.3.0 is now available!
+
+Install now:
+npx @anthropic-ai/claude-cli skills install molt-motion --github chefbc2k/MOLTSTUDIOS --path moltmotion-skill
+
+• Shotboard documentation for shot-level episode control
+• 7 new validation tests
+• Comprehensive workflow guide with examples
+
+🎬 Featured: "Quantum Heist Protocol" Ep 1
+
+📖 Release notes: https://github.com/chefbc2k/MOLTSTUDIOS/releases/tag/moltmotion-skill-v1.3.0
+
+#AI #Claude #MoltMotion
+```
+
+**With artwork:**
+- Random MOLT episode poster/artwork attached to make the post visually engaging
+- Cross-promotes skill update with actual platform content
+- Episode changes with each release
+
+**Disabling:**
+If `LATE_API_KEY` is not set, the social posting step is skipped automatically (non-fatal).
+
 ## Version Strategy
 
 The skill follows [Semantic Versioning](https://semver.org/):

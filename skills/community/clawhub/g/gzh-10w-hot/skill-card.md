@@ -1,46 +1,60 @@
-## Description: <br>
-Finds and analyzes WeChat Official Account articles that reached 100k+ reads, supports category-based hot article queries and subscriptions, and can generate visual HTML ranking reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全网持续收录每日超过1000+公众号10w+文章内容，向用户推送公众号达到10w+阅读的热门文章，并支持全领域、特定领域和每日订阅场景。
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-WeChat operators, content creators, editors, and marketing teams use this skill to find recent 100k+ read articles, compare vertical categories, analyze viral content patterns, and create shareable ranking reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and contacts redfox.hk. <br>
-Mitigation: Configure REDFOX_API_KEY through environment variables or a platform secret mechanism, and do not expose the key in shell startup files, prompts, logs, or generated output. <br>
-Risk: Generated HTML reports store article metadata locally and load a PDF-export library from cdnjs when opened. <br>
-Mitigation: Review report contents before sharing and open reports only in an environment where the external CDN dependency is acceptable. <br>
-Risk: Daily subscription behavior may trigger scheduled pushes in the host platform. <br>
-Mitigation: Review subscription settings before enabling daily pushes. <br>
+## Use Case:
 
+External content operators, editors, marketers, and researchers use this skill to retrieve WeChat Official Account articles that reached 10w+ reads, compare category rankings, analyze viral patterns, and generate shareable ranking reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/gzh-10w-hot) <br>
-- [API specification](references/api-spec.md) <br>
-- [Category mapping](references/category-mapping.md) <br>
-- [RedFox API endpoint](https://redfox.hk/story/api/cozeSkill/getWxDataByCategoryAndTime) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, HTML files, guidance] <br>
-**Output Format:** [Markdown analysis and tables, shell command examples, configuration guidance, and generated HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may be exported to PDF by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill requires a REDFOX_API_KEY and may expose sensitive credential context through logs, prompts, or generated outputs if handled casually.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable API key; configure it only as an environment variable; avoid hard-coding it; and avoid sharing logs from runs of this skill.
+
+Risk: Generated HTML reports include external article data and load a third-party PDF-export script, so the rendered page should be treated as untrusted content.
+
+Mitigation: Review generated reports before sharing, open them in a constrained browser context when possible, and avoid using the HTML output with sensitive browsing sessions.
+
+Risk: Server security evidence marks the release as suspicious, so deployment without review may miss credential-handling or report-rendering risks.
+
+Mitigation: Review the skill before installing or enabling it for users, with particular attention to credential handling and generated report behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/gzh-10w-hot)
+- [API interface specification](artifact/references/api-spec.md)
+- [Category mapping reference](artifact/references/category-mapping.md)
+- [RedFoxHub](https://redfox.hk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown rankings and analysis, with optional generated HTML report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured REDFOX_API_KEY and may create a temporary article data JSON file plus an HTML report when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

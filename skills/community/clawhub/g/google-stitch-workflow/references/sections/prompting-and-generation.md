@@ -10,9 +10,9 @@ Stitch offers multiple generation modes. Pick based on where you are in the proc
 
 | Mode | When to use |
 |------|------------|
-| **Gemini Flash** (`GEMINI_3_FLASH`) | Fast exploratory passes, cheap/small edits, density and copy adjustments |
-| **Gemini 3.1 Pro Thinking** (`GEMINI_3_1_PRO`) | First canonical screen, complex structure, native-app handoff targets, fixes where Flash keeps missing constraints |
-| **Gemini Pro** (`GEMINI_3_PRO`) | Use only when this is the available Pro identifier in the active MCP surface |
+| **Flash** (MCP `GEMINI_3_8_FLASH`) | Default for first screens, complex structure, and most edits |
+| **Flash-Lite** (MCP `GEMINI_3_5_FLASH_LITE`) | Fast exploratory passes, cheap/small edits, density and copy adjustments |
+| **Pro / Thinking** (browser) | Browser product modes; not exposed as an MCP `modelId` in the 2026-11-08 schema |
 | **Redesign** | You have a screenshot or existing site to work from |
 | **ID8** | You only have a vague problem statement; Stitch helps you construct a plan |
 | **Live** | Real-time conversational editing; changes appear as you chat (voice-based, AI sees your screen) |
@@ -22,9 +22,9 @@ Stitch offers multiple generation modes. Pick based on where you are in the proc
 - the design has complex multi-region composition
 - you need the output to match a specific structure, not just a general vibe
 
-**Usage budget rule:** Default to Flash for inexpensive exploration and small preservation edits. Spend Pro/Thinking on the first canonical screen, difficult constraint-following, or a final consolidation pass after the direction is clear.
+**Usage budget rule:** Default to Flash-Lite for inexpensive exploration and small preservation edits and Flash for canonical screens. When a browser Pro/Thinking mode is available and the user wants it, use it in the browser for the first canonical screen or difficult constraint-following.
 
-**MCP mapping:** In direct MCP calls, set `modelId` explicitly when model choice matters. The current direct identifiers may include `GEMINI_3_FLASH`, `GEMINI_3_PRO`, and `GEMINI_3_1_PRO`; verify against the active tool schema because names can change over time.
+**MCP mapping:** In direct MCP calls, set `modelId` only when model choice matters. On 2026-11-08 the schema offered `GEMINI_3_8_FLASH` and `GEMINI_3_5_FLASH_LITE`; older `GEMINI_3_FLASH` / `GEMINI_3_PRO` / `GEMINI_3_1_PRO` were gone. Verify against the active tool schema because names change.
 
 ### Component isolation
 

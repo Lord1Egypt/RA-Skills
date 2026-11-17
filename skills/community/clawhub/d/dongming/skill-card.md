@@ -1,45 +1,63 @@
-## Description: <br>
-洞明 is an AI strategy insight agent that uses Rumelt-style diagnosis, guiding policy, coherent action, hypothesis-driven validation, and red-team critique to produce strategic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+洞明 is a Chinese-language strategic analysis agent that uses a Rumelt-style diagnosis, guiding policy, and coherent action structure with hypothesis-driven validation and red-team critique.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Strategy teams, operators, founders, and analysts use this skill for strategy analysis, market and industry research, competitive analysis, market entry evaluation, business model analysis, growth strategy, portfolio decisions, and organization diagnostics. It is designed for higher-stakes strategic questions where the user wants a judgment-first report with explicit assumptions, tradeoffs, validation plans, and red-team review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on implicit strategic intent and may produce a full strategic analysis when a lightweight business answer was intended. <br>
-Mitigation: Invoke it explicitly for strategy work and confirm scope before relying on the analysis. <br>
-Risk: Strategic recommendations may be misleading if assumptions, market evidence, or organizational constraints are incomplete. <br>
-Mitigation: Review assumptions, validate critical evidence, and use the skill's red-team critique before making decisions. <br>
+## Use Case:
 
+External users and teams use this skill to analyze strategy, markets, competition, business models, growth choices, market entry, portfolio questions, and strategy-aligned organization diagnosis. It helps produce judgment-first strategy reports with hypotheses, validation plans, coherent actions, and red-team review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/dongming) <br>
-- [Core principles](artifact/references/core-principles.md) <br>
-- [Hypothesis-driven insight generation](artifact/references/insight-generation.md) <br>
-- [Output specification](artifact/references/output-spec.md) <br>
-- [Red-team protocol](artifact/references/red-team-protocol.md) <br>
-- [Scheduling protocol](artifact/references/scheduling-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy report with Mermaid diagrams when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executive summaries, diagnosis, guiding policy, coherent actions, validation plans, assumptions, tradeoffs, and red-team critique.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and skill metadata) <br>
+Risk: Strategic recommendations may be incorrect, overconfident, or misleading when market, customer, financial, or organizational evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target market, time horizon, data sources, confidentiality expectations, and decision constraints; review the hypotheses, validation plan, and red-team record before relying on the recommendation.
+
+Risk: The skill tends to prioritize China-market examples and may not fit other geographies without explicit direction.
+
+Mitigation: State the intended geography and require region-specific evidence, comparable cases, and assumptions in the final report.
+
+Risk: Optional expert routing can broaden analysis scope or expose sensitive business context to additional agent workflows.
+
+Mitigation: Clarify whether expert delegation is allowed and limit shared context to the information needed for the selected analysis dimension.
+
+## Reference(s):
+
+- [Core Principles](references/core-principles.md)
+- [Hypothesis-Driven Insight Generation](references/insight-generation.md)
+- [Output Specification](references/output-spec.md)
+- [Red-Team Protocol](references/red-team-protocol.md)
+- [Expert Scheduling Protocol](references/scheduling-protocol.md)
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/dongming)
+- [Publisher profile](https://clawhub.ai/user/tuobadaidai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown strategy report with tables, Mermaid diagrams, validation plans, and red-team records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route complex questions to optional expert subskills; outputs should state assumptions, evidence needs, and residual strategic risks.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

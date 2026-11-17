@@ -1,43 +1,60 @@
-## Description: <br>
-ALAPI integration assistant that helps developers search ALAPI endpoints, read documentation, extract parameters, generate integration code, and make confirmed token-based ALAPI calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ALAPI 接口对接助手，帮助开发者搜索 ALAPI 接口、读取 ALAPI 文档、提取参数、生成 ALAPI 对接代码，并在用户明确提供 token 且确认后调用 ALAPI 接口。
 
-## Publisher: <br>
-[anhao](https://clawhub.ai/user/anhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anhao](https://clawhub.ai/user/anhao)
 
-## Use Case: <br>
-Developers and engineers use this skill to find ALAPI endpoints, understand parameters and response shapes, generate minimal integration code, and perform live ALAPI tests only when a token and explicit confirmation are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated ALAPI calls may use an ALAPI token from the local environment instead of only a freshly supplied token. <br>
-Mitigation: Review before installing when ALAPI_TOKEN is set locally, prefer explicit confirmation before authenticated network calls, and avoid exposing the raw token in prompts, commands, logs, or final responses. <br>
-Risk: Generated integration code could place ALAPI credentials in client-side applications or hard-coded source. <br>
-Mitigation: Keep ALAPI_TOKEN in server-side environment or configuration, use a backend proxy for frontend projects, and use placeholders rather than real token values in generated code. <br>
+## Use Case:
 
+Developers and engineers use this skill to find ALAPI endpoints, read API documentation and OpenAPI specs, identify required parameters and response fields, and generate integration code. It can also perform a live ALAPI call only when the user explicitly requests it and a token is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anhao/alapi) <br>
-- [ALAPI base API](https://v3.alapi.cn) <br>
-- [ALAPI documentation pattern](https://www.alapi.cn/api/{id}/introduction) <br>
-- [Code examples](references/code-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, JSON, Guidance, API Calls] <br>
-**Output Format:** [Markdown with code blocks, JSON summaries, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live ALAPI responses only after explicit user request and token availability; should not echo raw tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live calls may send ALAPI_TOKEN and request parameters to ALAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make live calls only after explicit user request, prefer environment or server-side token storage, avoid token-bearing shell history or shareable snippets, and rotate any token that may have been logged.
+
+Risk: Installing from an untrusted or moving source may change the skill behavior.
+
+Mitigation: Install only from a trusted source and pin the reviewed source revision before deployment.
+
+Risk: Incomplete API documentation could lead to incorrect parameters, response assumptions, or generated code.
+
+Mitigation: Treat undocumented parameters and response fields as unconfirmed, present uncertainties to the user, and avoid fabricating defaults or fields.
+
+## Reference(s):
+
+- [ALAPI code examples](references/code-examples.md)
+- [ALAPI API documentation pattern](https://www.alapi.cn/api/{id}/introduction)
+- [ALAPI API base URL](https://v3.alapi.cn)
+- [ClawHub skill page](https://clawhub.ai/anhao/skills/alapi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON summaries and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live API-call results may include ALAPI response summaries; tokens should not be echoed in final responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

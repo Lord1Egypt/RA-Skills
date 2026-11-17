@@ -1,43 +1,54 @@
-## Description: <br>
-Framework core engineer skill for ORM conventions, schema annotations, query patterns, and cross-module data access contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework core engineer skill for ORM conventions, schema annotations, query patterns, and cross-module data access contracts.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill when changing Weline ORM models, schema annotations, query chains, pagination, query providers, or cross-module data access contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database and schema changes can create incorrect or unintended diffs. <br>
-Mitigation: Review generated database and schema diffs carefully before applying them. <br>
-Risk: Query or ORM changes can break data access paths without immediate visibility. <br>
-Mitigation: Run targeted tests or checks that exercise the affected query flow. <br>
-Risk: Setup upgrades against shared or production databases can cause operational impact. <br>
-Mitigation: Use normal approval, backup, and rollback procedures before running setup upgrades in shared or production environments. <br>
+## Use Case:
 
+Developers and engineers working in the Weline codebase use this skill to keep ORM models, schema annotations, query chains, pagination, and cross-module query-provider contracts aligned with framework conventions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/core-orm-model) <br>
-- [Publisher profile](https://clawhub.ai/user/aiweline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with code changes, shell commands, and validation notes when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes schema synchronization, query correctness, and cross-module contract validation expectations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide ORM model, schema annotation, query-provider, and database-flow changes that may affect data behavior across Weline modules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code changes before applying them, run setup:upgrade when schema annotations change, and execute focused tests or checks for the affected query path.
+
+Risk: The skill is scoped to Weline ORM and data-model conventions and may be inappropriate outside that codebase.
+
+Mitigation: Install and use it only for Weline database-model work, as recommended by the provided security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/core-orm-model)
+- [Publisher profile](https://clawhub.ai/user/aiweline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code and command recommendations when implementation work is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation evidence, compatibility notes, and cross-module contract impact summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

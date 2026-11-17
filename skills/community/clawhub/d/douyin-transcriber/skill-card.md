@@ -1,40 +1,56 @@
-## Description: <br>
-Transcribe speech from audio or video files by extracting media audio and converting it to text with Docker Whisper ASR for Douyin/TikTok workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes speech from audio or video files, automatically extracting audio and converting it to text using Docker Whisper ASR for Douyin/TikTok media.
 
-## Publisher: <br>
-[don068589](https://clawhub.ai/user/don068589) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[don068589](https://clawhub.ai/user/don068589)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to set up local transcription workflows for Douyin/TikTok or other audio/video media. It guides extraction, transcription, language selection, model choice, and result parsing with Docker Whisper ASR.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run an unpinned third-party Docker Whisper ASR service.
+
+Mitigation: Use a pinned image digest and verify the container source before processing recordings.
+
+Risk: The Docker port mapping may expose the local transcription endpoint more broadly than intended.
+
+Mitigation: Bind the service to 127.0.0.1 and apply network and resource controls before use.
+
+Risk: Sensitive recordings could be processed by a container whose logging behavior has not been verified.
+
+Mitigation: Avoid sensitive recordings until container behavior, logging, and retention are reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content-processing agents use this skill to turn Douyin/TikTok audio or video files into transcribed text using a local Docker Whisper ASR service. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Media submitted for transcription can contain private or sensitive speech. <br>
-Mitigation: Only submit files intentionally selected for transcription, keep the ASR service bound to localhost, and stop or remove the container when finished. <br>
-Risk: The transcription workflow depends on a Docker Whisper ASR image that must be trusted before use. <br>
-Mitigation: Confirm the image source before installing and consider pinning a specific version or digest instead of using a floating tag. <br>
+**Output Format:** [Markdown guidance with shell commands and JSON response examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/don068589/douyin-transcriber) <br>
+**Other Properties Related to Output:** [Produces transcription workflow instructions; actual transcription output depends on the local Whisper ASR container and selected model.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local transcription workflows; ASR responses may include transcript text, timed segments, and detected language.] <br>
+1.0.5 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

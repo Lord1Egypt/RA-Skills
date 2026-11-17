@@ -1,41 +1,53 @@
-## Description: <br>
-limtdesign helps agents turn visual creative requests into structured AI image-generation prompts for posters, banners, product imagery, social media graphics, concept art, branding materials, and related visual assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+limtdesign helps agents turn visual design requests into structured AI image-generation prompts for posters, banners, product images, social media graphics, concept art, brand visuals, and related creative assets.
 
-## Publisher: <br>
-[hitlmt](https://clawhub.ai/user/hitlmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hitlmt](https://clawhub.ai/user/hitlmt)
 
-## Use Case: <br>
-Creative, marketing, product, and design teams use this skill to guide an agent from a visual brief to a richer image-generation prompt. It covers common commercial visual formats, including ecommerce images, posters, brand visuals, packaging concepts, social media assets, infographics, entertainment posters, concept art, photography styles, event visuals, and interior concepts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users who do not read Chinese may misunderstand the skill's prompt-generation guidance. <br>
-Mitigation: Have a Chinese reader review generated creative direction before using it in production or translate the guidance before handoff. <br>
-Risk: User-supplied product, model, scene, or style images may be sent to a downstream image-generation service. <br>
-Mitigation: Only provide images that are approved for the downstream service and do not contain sensitive or restricted material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hitlmt/limtdesign) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Scene guidance index](artifact/scenes/) <br>
+## Use Case:
 
+External users and creative teams use this skill to convert rough or specific visual material requests into richer image-generation prompts and visible design direction. It supports common commercial creative scenarios including ecommerce, promotions, products, brand visuals, social content, posters, packaging, photography, events, and interiors.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text creative direction with structured image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance; prompts may reference user-provided product, model, scene, or style images when supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated prompts or visual direction may be inaccurate, unsuitable for a brand, or misleading if used without review.
+
+Mitigation: Review the proposed creative direction and prompts before using them in production or sending them to downstream image-generation systems.
+
+Risk: Prompt workflows may involve uploaded product, model, or reference images that could contain sensitive or proprietary content.
+
+Mitigation: Confirm that any images or references are approved for use before sharing them with downstream image-generation services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hitlmt/skills/limtdesign)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured image prompt sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces Chinese-language creative direction and prompt-writing guidance for downstream image-generation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

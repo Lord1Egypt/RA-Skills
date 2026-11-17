@@ -1,44 +1,59 @@
-## Description: <br>
-Upload videos and Shorts to YouTube using Boring with support for titles, descriptions, tags, thumbnails, and captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload videos and Shorts to YouTube using Boring with support for titles, descriptions, tags, thumbnails, and captions.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External creators and operators use this skill to publish videos or Shorts to a connected YouTube channel through Boring, including metadata, thumbnails, and captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP Connector URL contains an embedded authentication token. <br>
-Mitigation: Keep the connector URL private, treat it like a password, and regenerate it if it may have been exposed. <br>
-Risk: The skill can publish videos publicly to YouTube through Boring. <br>
-Mitigation: Verify the target channel, title, description, media, thumbnail, captions, and desired visibility before publishing. <br>
-Risk: Video and thumbnail files may be uploaded or re-hosted so YouTube can access them. <br>
-Mitigation: Confirm the media is appropriate to share with Boring and to make accessible for the upload workflow. <br>
+## Use Case:
 
+External users and creators use this skill to upload videos or Shorts to a connected YouTube channel through Boring, including metadata, thumbnails, and captions.
 
-## Reference(s): <br>
-- [Boring MCP documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring documentation](https://boring-doc.aiagent-me.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/snoopyrain/boring-youtube-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, text] <br>
-**Output Format:** [Markdown guidance with MCP tool-call examples and publishing status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a private MCP Connector link and a connected YouTube account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The MCP connector URL contains an embedded authentication token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the connector URL like a password, avoid sharing it in chats or public places, and rotate or revoke it if exposed.
+
+Risk: The skill can publish YouTube videos publicly without an explicit confirmation step in the instructions.
+
+Mitigation: Manually confirm the target account, media, title, description, captions, and visibility before calling the publish tool.
+
+Risk: Video files, thumbnails, captions, and post metadata are sent through Boring and YouTube services.
+
+Mitigation: Use only media the user intends to upload, avoid sensitive unpublished content unless approved, and confirm the connected account before upload.
+
+## Reference(s):
+
+- [Boring MCP Setup](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring Documentation](https://boring-doc.aiagent-me.com)
+- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/skills/boring-youtube-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with MCP tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for account selection, media preparation, upload, publishing, and reporting.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-A MiniMax music-generation skill that uses text prompts, optional lyrics, and a MiniMax API key to create music with Music-2.5, Music-2.5+, or Music-02 models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates music from text prompts and optional lyrics using MiniMax music models with a MINIMAX_API_KEY.
 
-## Publisher: <br>
-[skydream9527-ctrl](https://clawhub.ai/user/skydream9527-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skydream9527-ctrl](https://clawhub.ai/user/skydream9527-ctrl)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to generate music from natural-language prompts and optional lyrics through the MiniMax API, saving the resulting audio file locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts, optional lyrics, and request metadata are sent to MiniMax. <br>
-Mitigation: Avoid sensitive or confidential prompt text and use a dedicated MiniMax API key where possible. <br>
-Risk: The skill writes the generated audio to a caller-selected local path. <br>
-Mitigation: Choose an output path that is safe to create or overwrite before running the command. <br>
-Risk: The helper script depends on the Python requests package. <br>
-Mitigation: Install requests from a trusted Python environment. <br>
+## Use Case:
 
+Developers and external creators use this skill to call MiniMax's music-generation API from Python, choose a supported model, provide a text prompt and optional lyrics, and save the generated audio file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skydream9527-ctrl/minimax-music-gyh) <br>
-- [MiniMax API host](https://api.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, Configuration instructions] <br>
-**Output Format:** [CLI command output with a generated audio file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the requests package, and MINIMAX_API_KEY; saves audio to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/_meta.json) <br>
+Risk: Prompts, lyrics, and request metadata are sent to MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive unpublished lyrics or confidential prompts, and use the skill only when MiniMax processing is acceptable for the intended content.
+
+Risk: MINIMAX_API_KEY grants access to the configured MiniMax account.
+
+Mitigation: Set the API key only for authorized users and prefer environment or secret-management controls that limit exposure.
+
+Risk: The skill downloads generated audio from a provider-returned URL.
+
+Mitigation: Run it from a network environment where that download flow cannot expose private internal services.
+
+Risk: The Python dependency is installed manually and may drift over time.
+
+Mitigation: Use a virtual environment with pinned dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skydream9527-ctrl/skills/minimax-music-gyh)
+- [MiniMax API endpoint](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and an audio file output path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, the requests package, and MINIMAX_API_KEY; generated audio is saved to the requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

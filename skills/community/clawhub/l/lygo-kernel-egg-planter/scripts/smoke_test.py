@@ -27,7 +27,8 @@ def main() -> int:
     steps = [
         ("preflight.py", root_args),
         ("verify_eggs.py", root_args),
-        ("retrieve_egg.py", ["--list", *root_args]),
+        # list requires consent after v1.3 SkillSpector harden
+        ("retrieve_egg.py", ["--i-consent", "--list", *root_args]),
     ]
     for name, extra in steps:
         rc = run(name, extra)

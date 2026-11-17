@@ -1,47 +1,55 @@
-## Description: <br>
-Set up and start mining AGENT tokens on Base L2 using apow-cli. Easy Mode uses x402 for RPC, LLM, and GPU grinding with no config beyond wallet funding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up APoW Easy Mode on a supported assistant runtime, verify secure wallet recovery before funding, and use x402 remote GPU grinding.
 
-## Publisher: <br>
-[agentoshi](https://clawhub.ai/user/agentoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentoshi](https://clawhub.ai/user/agentoshi)
 
-## Use Case: <br>
-External users and developers use this skill to configure apow-cli, fund a fresh Base wallet, mint a Mining Rig NFT, and start or monitor AGENT token mining. It supports Easy Mode x402 setup and advanced manual configuration with RPC, LLM, wallet, and grinder options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to create or export wallet private keys and operate a funded crypto wallet. <br>
-Mitigation: Use a fresh, low-balance hot wallet only; avoid main wallets and require explicit approval before any key export or wallet-funded action. <br>
-Risk: The skill can initiate paid x402 services, bridge or swap flows, minting, and mining loops that spend ETH or USDC. <br>
-Mitigation: Require explicit approval before bridge, swap, mint, mining loop, or paid x402 operations, and keep balances limited to the intended experiment. <br>
-Risk: The skill may handle plaintext wallet import helpers or scan local wallet files during dashboard setup. <br>
-Mitigation: Prefer encrypted keystore backups, avoid plaintext private-key storage when possible, and approve dashboard scans only for intended directories. <br>
+## Use Case:
 
+For users of supported assistant runtimes who want guidance for setting up APoW remote GPU mining. It covers runtime checks, independent wallet recovery, funding approval, and starting and monitoring the documented Easy Mode flow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/agentoshi/apow-mining) <br>
-- [APoW CLI](https://github.com/Agentoshi/apow-cli) <br>
-- [APoW Core](https://github.com/Agentoshi/apow-core) <br>
-- [APoW Grind](https://github.com/Agentoshi/apow-grind) <br>
-- [x402 payment protocol](https://www.x402.org/) <br>
-- [Squid Router](https://squidrouter.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and environment variable snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user-facing funding handoff guidance and local configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: release evidence) <br>
+Risk: The security scan flags an unpinned CLI reference, and setup invokes an external package through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency before running it and use the documented apow-cli@0.12.3 commands; do not substitute latest.
+
+Risk: Easy Mode can use wallet funds and submit ongoing Base mining transactions until its runner is stopped.
+
+Mitigation: Require explicit approval for the spending scope, verify an off-device restore of the same wallet, set an approved budget, and confirm a reliable stop method before starting.
+
+## Reference(s):
+
+- [APoW personal assistant profiles](https://apow.io/docs/technical/assistants)
+- [APoW Cloud Mining status](https://apow.io/docs/technical/managed-mining)
+- [APoW Mining release on ClawHub](https://clawhub.ai/agentoshi/skills/apow-mining)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Version-specific setup and safety guidance; no mining result is implied by setup instructions.]
+
+## Skill Version(s):
+
+0.12.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

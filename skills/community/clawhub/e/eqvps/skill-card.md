@@ -1,44 +1,64 @@
-## Description: <br>
-Rent and operate a no-KYC cloud VPS over MCP - pick a plan, deploy, get root SSH. Pay with crypto (USDC/USDT) or card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rent and manage a no-KYC VPS through EQVPS over MCP, including plan selection, deployment, root SSH access, billing, and server lifecycle operations.
 
-## Publisher: <br>
-[poiuyhje](https://clawhub.ai/user/poiuyhje) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poiuyhje](https://clawhub.ai/user/poiuyhje)
 
-## Use Case: <br>
-Developers and operators use Eqvps to connect an agent to EQVPS's MCP service, check account state, fund a prepaid balance, choose VPS plans, deploy servers, retrieve SSH access details, and manage server lifecycle tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects the agent to a remote paid VPS service where funding an account, paying invoices, or ordering servers can spend money. <br>
-Mitigation: Show prices, require explicit user confirmation before each paid action, and do not proceed until the user confirms funding or purchase intent. <br>
-Risk: The workflow can expose EQVPS API tokens and root SSH credentials. <br>
-Mitigation: Treat API tokens and root credentials as private secrets and avoid logging, reposting, or sharing them outside the user-facing handoff. <br>
-Risk: The service is described as no-KYC VPS hosting, which may not fit every organization's procurement, compliance, or abuse-prevention requirements. <br>
-Mitigation: Install and use the skill only when the organization accepts EQVPS as a paid no-KYC hosting provider. <br>
+## Use Case:
 
+Developers and external users use this skill to rent, fund, deploy, inspect, and manage EQVPS virtual private servers for persistent workloads such as bots, websites, and scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/poiuyhje/eqvps) <br>
-- [EQVPS homepage](https://eqvps.com) <br>
-- [EQVPS MCP endpoint](https://mcp.eqvps.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before paid actions; API tokens and root credentials must be treated as secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can initiate paid account funding, invoice payment, and VPS orders through a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show prices and obtain explicit user confirmation before calling topup_balance, pay_invoice, or order_vps.
+
+Risk: The hosted MCP service gives an agent controlled access to an EQVPS account and root-server operations.
+
+Mitigation: Connect only when the user accepts EQVPS account access, inspect tool inputs before use, and avoid destructive or paid operations unless requested and confirmed.
+
+Risk: API tokens and root credentials may be exposed if copied into logs or shared channels.
+
+Mitigation: Treat EQVPS_API_TOKEN and root credentials as secrets, share them only with the user, and do not post or log them elsewhere.
+
+Risk: Unused VPS instances may continue billing against the prepaid balance.
+
+Mitigation: Review active servers with list_vps and cancel services that are no longer needed.
+
+## Reference(s):
+
+- [EQVPS homepage](https://eqvps.com)
+- [EQVPS MCP server endpoint](https://mcp.eqvps.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/poiuyhje/skills/eqvps)
+- [Publisher profile](https://clawhub.ai/user/poiuyhje)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, API calls]
+
+**Output Format:** [Markdown prose with JSON configuration snippets and MCP tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prices, checkout links, account status, VPS status, API tokens, and root credentials returned by the EQVPS MCP service.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

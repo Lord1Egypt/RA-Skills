@@ -1,43 +1,58 @@
-## Description: <br>
-Connect to remote Linux servers through SSH and execute commands non-interactively. Covers password authentication, key authentication, file transfer, and cross-platform usage on Windows with Git Bash, macOS, and Linux. Use when the user needs remote server login or remote command execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to remote Linux servers through SSH for non-interactive login, command execution, password or key authentication, and file transfer across Windows Git Bash, macOS, and Linux.
 
-## Publisher: <br>
-[agilebuilder](https://clawhub.ai/user/agilebuilder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agilebuilder](https://clawhub.ai/user/agilebuilder)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare SSH, SCP, key-authentication, and remote-command workflows for Linux servers from non-interactive agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote SSH guidance can target the wrong host, user, or command if connection details are not reviewed. <br>
-Mitigation: Review every hostname, username, and command before execution, and prefer non-root accounts where possible. <br>
-Risk: Bypassing host key checks can expose a connection to man-in-the-middle risk. <br>
-Mitigation: Verify host keys for production servers and reserve host-key bypass options for temporary access where the user accepts the risk. <br>
-Risk: Plaintext passwords in temporary scripts or command lines can be exposed. <br>
-Mitigation: Prefer SSH keys for long-term access, avoid hard-coded passwords, restrict temporary password files, and delete them immediately after use. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need an agent to propose SSH connection commands, execute remote Linux commands non-interactively, transfer files, or set up SSH key-based access. It is intended for operational SSH workflows where users can review commands before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/ssh-remote) <br>
-- [Server-resolved GitHub provenance](https://github.com/agilebuilder/dev-skills/tree/master/skills/ssh-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes SSH host key, password handling, and temporary file safety guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Examples that bypass host key checking can expose SSH sessions to host impersonation or man-in-the-middle attacks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer verified known_hosts entries, confirm host fingerprints for first-time connections, and reserve host-key bypass options for temporary access where the user accepts the risk.
+
+Risk: Password-based examples can leak credentials through temporary scripts, command history, process listings, or copied production use.
+
+Mitigation: Prefer SSH keys managed by an agent, avoid hard-coding passwords, remove temporary password files immediately, and review credential-handling commands before execution.
+
+Risk: Remote SSH guidance can create or modify persistent access on target systems.
+
+Mitigation: Use non-root accounts where possible, scope commands to the intended host and account, and review proposed remote commands before running them.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/agilebuilder/dev-skills/tree/master/skills/ssh-remote)
+- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/ssh-remote)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with shell and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SSH options, known_hosts guidance, authentication setup, file transfer commands, and security caveats.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

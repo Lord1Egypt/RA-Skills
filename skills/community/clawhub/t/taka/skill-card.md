@@ -1,49 +1,66 @@
-## Description: <br>
-Taka creative tools CLI generates AI images, videos, emails, and flyers for small businesses from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taka creative tools CLI -- generate AI images, videos, emails, and flyers for small businesses from the command line.
 
-## Publisher: <br>
-[danielokaninm](https://clawhub.ai/user/danielokaninm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielokaninm](https://clawhub.ai/user/danielokaninm)
 
-## Use Case: <br>
-External users, developers, and AI agents use Taka to create and manage small-business marketing content such as Instagram posts, emails, flyers, logos, blog posts, images, and videos from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to run shell commands that create, update, or delete creative projects and may call the Taka service. <br>
-Mitigation: Review generated commands before execution, authenticate with the intended Taka account, and use listing or retrieval commands to confirm affected creative IDs before update or delete operations. <br>
-Risk: Generated marketing assets can be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Have a human review generated images, videos, emails, and flyer content before publishing or sending it to customers. <br>
-Risk: The CLI stores local access and refresh tokens in the user's Taka config file. <br>
-Mitigation: Use the documented logout command when access should be removed and protect the local account environment where the token file is stored. <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to install and operate the Taka CLI for creating and managing marketing creatives such as Instagram posts, email campaigns, flyers, logos, blog content, images, and videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielokaninm/taka) <br>
-- [Publisher profile](https://clawhub.ai/user/danielokaninm) <br>
-- [Taka website](https://taka.ai) <br>
-- [Taka CLI npm package](https://www.npmjs.com/package/taka-cli) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [HOW_TO_RUN.md](artifact/HOW_TO_RUN.md) <br>
-- [QUICK_START.md](artifact/QUICK_START.md) <br>
-- [Examples](artifact/examples/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown instructions with bash command examples and JSON-oriented CLI workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Taka CLI commands described by the skill generally return JSON for agent parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill relies on an external CLI package that may be installed without a pinned reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a reviewed taka-cli version and avoid npx for login or other authenticated actions.
+
+Risk: Authentication stores local access and refresh tokens for the Taka service.
+
+Mitigation: Use a limited Taka account where possible, verify local credential permissions, and log out when the agent no longer needs access.
+
+Risk: Creative management commands can update or delete business creative content.
+
+Mitigation: Review target creative IDs and command arguments before running update, rename, or delete commands.
+
+Risk: The TAKA_SERVER_URL setting can redirect authentication and API traffic to a custom endpoint.
+
+Mitigation: Confirm TAKA_SERVER_URL before authenticating and prefer the documented production endpoint unless staging or self-hosted use is intentional.
+
+## Reference(s):
+
+- [ClawHub Taka Skill Page](https://clawhub.ai/danielokaninm/skills/taka)
+- [Taka Website](https://taka.ai)
+- [taka-cli npm Package](https://www.npmjs.com/package/taka-cli)
+- [README.md](README.md)
+- [HOW_TO_RUN.md](HOW_TO_RUN.md)
+- [examples/EXAMPLES.md](examples/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON-oriented CLI outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent through Taka CLI commands that install taka-cli, authenticate to Taka, create or update creative projects, and parse JSON command output.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

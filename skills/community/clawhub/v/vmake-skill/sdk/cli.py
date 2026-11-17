@@ -48,12 +48,27 @@ def _handle(func):
         return 1
 
 
-def run_task(ak: str, sk: str, task: str, source: str, params: str = None) -> int:
+def run_task(
+    ak: str,
+    sk: str,
+    task: str,
+    source: str,
+    params: str = None,
+    profile: str = None,
+) -> int:
     """Run a task (upload, consume quota, submit job, poll until done)."""
     def _do():
         client = SkillClient(ak=ak, sk=sk)
         p = json.loads(params) if params else {}
-        result = client.run_task(task_name=task, image_path=source or "", params=p)
+        input_profile = json.loads(profile) if profile else None
+        if input_profile is not None and not isinstance(input_profile, dict):
+            raise ValueError("--profile must be a JSON object")
+        result = client.run_task(
+            task_name=task,
+            image_path=source or "",
+            params=p,
+            profile=input_profile,
+        )
         _print(result)
         return 0 if _task_succeeded(result) else 1
     return _handle(_do)
@@ -90,6 +105,10 @@ def main() -> int:
     p.add_argument("--task", required=True, help="Task name")
     p.add_argument("--input", default="", help="Input file or URL")
     p.add_argument("--params", help="Params (JSON)")
+    p.add_argument(
+        "--profile",
+        help="Input profile JSON object overriding the server-provided profile",
+    )
 
     # query-task: poll status only (no upload / consume)
     p = sub.add_parser("query-task", help="Query task status")
@@ -104,7 +123,9 @@ def main() -> int:
         parser.error("--ak and --sk required (or MT_AK/MT_SK env vars)")
 
     if args.cmd == "run-task":
-        return run_task(args.ak, args.sk, args.task, args.input, args.params)
+        return run_task(
+            args.ak, args.sk, args.task, args.input, args.params, args.profile
+        )
     elif args.cmd == "query-task":
         return query_task(args.ak, args.sk, args.task_id)
     elif args.cmd == "list-tasks":

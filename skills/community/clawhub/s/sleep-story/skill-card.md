@@ -1,49 +1,67 @@
-## Description: <br>
-Creates warm, calming sleep stories that combine gentle narrative patterns with relaxation techniques such as mindful breathing, progressive muscle relaxation, visualization, safe-place imagery, gratitude recall, and sleep-oriented suggestion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates warm sleep stories that combine relaxation methods such as progressive muscle relaxation, mindful breathing, visualization, safe-place imagery, gratitude recall, and hypnotic sleep suggestions.
 
-## Publisher: <br>
-[soyof](https://clawhub.ai/user/soyof) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soyof](https://clawhub.ai/user/soyof)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate personalized bedtime stories for relaxation, stress reduction, and sleep preparation. The skill can tailor story type, tone, length, recurring series, and preference history while avoiding stimulating or distressing story elements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store sleep-related preferences and feedback that users could treat as sensitive health-adjacent information. <br>
-Mitigation: Use the skill only with clear local data review and deletion practices, and avoid recording sensitive health details unless the user has explicitly chosen to keep them. <br>
-Risk: The release carries crypto and purchase capability tags that are unrelated to sleep-story generation. <br>
-Mitigation: Do not grant crypto, wallet, payment, or purchase permissions when installing or running this skill. <br>
-Risk: Sleep-support content can be mistaken for medical advice or treatment. <br>
-Mitigation: Present generated stories as relaxation support only, and direct users with persistent insomnia, distress, or health concerns to qualified professionals. <br>
+## Use Case:
 
+External users ask the agent for a calming bedtime story when they want gentle narrative support for relaxation or sleep. The skill guides story type selection, non-stimulating content constraints, personalization, and optional series continuity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soyof/sleep-story) <br>
-- [Server-resolved project homepage](https://github.com/SoyooSkills/sleep-story) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Integration guide](INTEGRATION.md) <br>
-- [Research evidence](references/research-evidence.md) <br>
-- [Personalization system](references/personalization-system.md) <br>
-- [Feedback loop system](references/feedback-loop-system.md) <br>
-- [Story templates](references/story-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Plain text bedtime stories with optional Markdown guidance and JSON-like preference or history records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typical story output is 1000-2500 Chinese characters or words, with optional local preference and story-history updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Hypnotic-style sleep content may not be appropriate for every user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with user awareness and comfort, and keep the interaction easy to stop.
+
+Risk: Sleep metrics and preference tracking can expose sensitive personal patterns.
+
+Mitigation: Require explicit opt-in, avoid storing unnecessary sleep metrics, keep profiles local and reviewable, and provide a simple way to delete all history and preferences.
+
+Risk: Persistent personalization may store user preferences beyond a single story session.
+
+Mitigation: Do not write preferences to shared agent memory such as TOOLS.md; store only local user-approved profile data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soyof/skills/sleep-story)
+- [ClawDis Homepage](https://github.com/SoyooSkills/sleep-story)
+- [README](artifact/README.md)
+- [Integration Guide](artifact/INTEGRATION.md)
+- [Psychology Techniques](artifact/references/psychology-techniques.md)
+- [Story Templates](artifact/references/story-templates.md)
+- [Story Types](artifact/references/story-types.md)
+- [Research Evidence](artifact/references/research-evidence.md)
+- [Personalization System](artifact/references/personalization-system.md)
+- [Feedback Loop System](artifact/references/feedback-loop-system.md)
+- [History Tracking](artifact/references/history-tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown story content with optional JSON preference and history records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stories target 1000-2500 Chinese characters; personalization should remain local, reviewable, opt-in, and deletable.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

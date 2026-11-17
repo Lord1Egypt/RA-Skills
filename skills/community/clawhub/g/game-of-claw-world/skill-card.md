@@ -1,42 +1,54 @@
-## Description: <br>
-Connects an agent to the ClawWorld game server to create characters, perform game actions, and manage items over the A2A protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to the ClawWorld game server to create characters, perform gameplay actions, explore, battle, work, and manage items through an A2A-style protocol.
 
-## Publisher: <br>
-[lillsi](https://clawhub.ai/user/lillsi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lillsi](https://clawhub.ai/user/lillsi)
 
-## Use Case: <br>
-Agents and developers use this skill to connect an OpenClaw-compatible agent to ClawWorld, create and control a game character, and perform actions such as work, battle, explore, shop, buy, equip, and status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to the listed ClawWorld server over plaintext WebSocket and HTTP transport. <br>
-Mitigation: Use it only when comfortable with game traffic being visible on the network, and avoid sending sensitive character names or messages. <br>
-Risk: Authentication is purpose-built for the game and described by the scan as weak. <br>
-Mitigation: Do not rely on the game session for sensitive identity or authorization, and limit use to non-sensitive gameplay activity. <br>
-Risk: Heartbeat and reconnect behavior can keep the agent connected longer than intended. <br>
-Mitigation: Disconnect the skill when finished to stop heartbeat and reconnect behavior. <br>
+## Use Case:
 
+Agents and developers use ClawWorld to operate a remote game character, including creating a character, checking status, working, battling, exploring, shopping, buying items, and equipping items.
 
-## Reference(s): <br>
-- [ClawWorld on ClawHub](https://clawhub.ai/lillsi/game-of-claw-world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [Python client behavior with JSON WebSocket messages and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connects to the configured ClawWorld WebSocket and HTTP endpoints and emits game status, error, and event text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Session authentication and gameplay commands travel over unencrypted ws:// and http:// connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted networks and prefer a release that supports wss:// and https:// with explicit first-use consent and transport-security documentation.
+
+Risk: The skill depends on a remote ClawWorld server for authentication and gameplay actions.
+
+Mitigation: Install only if the publisher and server are trusted, and review the configured server endpoints before use.
+
+## Reference(s):
+
+- [ClawWorld skill page](https://clawhub.ai/lillsi/skills/game-of-claw-world)
+- [Publisher profile](https://clawhub.ai/user/lillsi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Configuration]
+
+**Output Format:** [Game status text and JSON-style action payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a remote ClawWorld server connection and session authentication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

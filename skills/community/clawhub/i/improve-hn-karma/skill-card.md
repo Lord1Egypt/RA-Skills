@@ -1,40 +1,53 @@
-## Description: <br>
-Generates daily batches of tailored Hacker News comment drafts and posting guidance for active threads in the user's expertise areas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily batches of tailored Hacker News comments in a user's expertise area for manual posting on active, high-visibility threads.
 
-## Publisher: <br>
-[rabgpt](https://clawhub.ai/user/rabgpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rabgpt](https://clawhub.ai/user/rabgpt)
 
-## Use Case: <br>
-External users can use this skill to prepare a daily manual Hacker News participation plan. It helps select relevant active threads, identify underexplored technical angles, and draft comments for human review before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted public comments could be used for spam, coordinated manipulation, or low-quality reputation building on Hacker News. <br>
-Mitigation: Review every draft manually, post only genuine contributions, avoid coordinated activity, and use preview-only output when appropriate. <br>
-Risk: The generated plan may encourage comments that fit optimization criteria but miss platform norms or thread context. <br>
-Mitigation: Check each selected thread and top comments before posting, remove self-promotion, and skip drafts that do not add a clear technical contribution. <br>
+## Use Case:
 
+Developers, founders, and technical operators use this skill to identify relevant Hacker News discussions and draft concise, authentic comments for manual review and posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rabgpt/improve-hn-karma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with copy-paste-ready comment drafts and posting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a dated karma plan filename, thread metadata, reply targets, posting order, spacing guidance, and a manual review checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill is designed to optimize public Hacker News engagement, which can be misused for spam or reputation gaming.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authentic comments the user stands behind, manually review every draft, and avoid coordinated or automated posting.
+
+Risk: Generated plans may include usernames, quoted comments, or other public thread details that are unnecessary to retain.
+
+Mitigation: Omit usernames or long quotes from saved plans unless they are needed for context, and keep only the minimum thread evidence required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rabgpt/skills/improve-hn-karma)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown plan with ready-to-post comment drafts and posting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes thread metadata, reply targets, rationale, posting order, spacing guidance, and a quality checklist.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Guides developers through using the simple-csc repository for Chinese Spelling Correction and Chinese Character Error Correction with large language models in a training-free workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the simple-csc repository to perform Chinese Spelling Correction and Chinese Character Error Correction with large language models in a training-free workflow.
 
-## Publisher: <br>
-[Jacob-Zhou](https://clawhub.ai/user/Jacob-Zhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacob-zhou](https://clawhub.ai/user/jacob-zhou)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and operate simple-csc for Chinese text correction, including local environment setup, LMCorrector API usage, REST API serving, batch experiments, and evaluation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced setup scripts and dataset/model downloads come from an external repository rather than bundled code. <br>
-Mitigation: Review the external repository before execution and run setup inside an isolated virtual environment. <br>
-Risk: The REST API server can expose text correction endpoints if bound beyond localhost. <br>
-Mitigation: Keep the service bound to 127.0.0.1 unless intentional network exposure has been reviewed and secured. <br>
-Risk: Large language model execution may require substantial GPU memory and compatible CUDA support. <br>
-Mitigation: Confirm NVIDIA GPU, CUDA, Python version, and VRAM requirements before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate the simple-csc repository for Chinese spelling correction, C2EC experiments, LMCorrector API usage, local API serving, and evaluation workflows.
 
-## Reference(s): <br>
-- [Simple CSC ClawHub page](https://clawhub.ai/Jacob-Zhou/simple-csc) <br>
-- [Simple CSC repository](https://github.com/Jacob-Zhou/simple-csc) <br>
-- [Detailed reference](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline Python, shell, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include localhost API examples, setup commands, model selection guidance, dataset and evaluation instructions, and cautions for external repository scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill directs users to run unpinned third-party setup scripts and dependencies that were not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository and scripts before execution, use a pinned commit and pinned package versions, and run in an isolated environment without production credentials or broad host filesystem access.
+
+Risk: Correction requests may contain sensitive text sent to a local API or model server.
+
+Mitigation: Avoid sending sensitive text unless you control the running model and server environment.
+
+## Reference(s):
+
+- [Simple CSC ClawHub release page](https://clawhub.ai/jacob-zhou/skills/simple-csc)
+- [simple-csc repository](https://github.com/Jacob-Zhou/simple-csc)
+- [Simple CSC detailed reference](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, JSON, YAML, and curl examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local setup commands, API request examples, corrected text examples, and evaluation output descriptions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

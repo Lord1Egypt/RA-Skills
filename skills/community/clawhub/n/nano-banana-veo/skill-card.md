@@ -1,39 +1,50 @@
-## Description: <br>
-Generate images with Nano Banana (Gemini 3 Pro Image) and animate them into videos with Veo 3.1 for websites, landing pages, and marketing materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with Nano Banana (Gemini 3 Pro Image) and animate them into videos with Veo 3.1 for websites, landing pages, and marketing assets.
 
-## Publisher: <br>
-[bermyboystechsolutions](https://clawhub.ai/user/bermyboystechsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bermyboystechsolutions](https://clawhub.ai/user/bermyboystechsolutions)
 
-## Use Case: <br>
-Developers, designers, and marketing teams use this skill to generate static visual assets and optional short videos from prompts using Gemini and Veo APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Gemini API key and sends prompts or images to Google Gemini/Veo services. <br>
-Mitigation: Use a limited-scope API key in an isolated environment and review the script before running it. <br>
-Risk: The security summary flags under-scoped handling of the Gemini API key, including video download host validation. <br>
-Mitigation: Patch or review host validation before forwarding the API key during video download. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate static image assets and optionally animate them into short MP4 videos through the Gemini API.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated image or MP4 file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and Google Gemini/Veo API access; image output is PNG or JPG and optional video output is MP4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The video download path can expose a Gemini API key to an unvalidated URL returned by a remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted Gemini API key with tight quotas and billing controls, avoid sensitive prompts or assets, and prefer a fixed version or patched release that validates video download hosts and redirects before attaching credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bermyboystechsolutions/skills/nano-banana-veo)
+- [Veo 3.1 predictLongRunning API endpoint](https://generativelanguage.googleapis.com/v1beta/models/veo-3.1-generate-preview:predictLongRunning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated image or video file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved as PNG or JPG files, and optional videos are saved as MP4 files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

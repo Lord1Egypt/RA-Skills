@@ -1,43 +1,58 @@
-## Description: <br>
-Backs up AI agent workspace files to a private GitHub repository through guided setup, manual runs, and scheduled backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Backup GitHub backs up AI agent workspace files to a private GitHub repository through manual setup or scheduled OpenClaw Cron backups.
 
-## Publisher: <br>
-[ziqi-jin](https://clawhub.ai/user/ziqi-jin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziqi-jin](https://clawhub.ai/user/ziqi-jin)
 
-## Use Case: <br>
-Developers and AI agent users use this skill to preserve OpenClaw, Claude Code, Cursor, and similar workspaces by committing selected workspace files to a private GitHub repository and scheduling repeat backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow asks for a GitHub token and the shell script can place that token in a git remote URL. <br>
-Mitigation: Do not paste tokens into chat or store them in remote URLs; prefer GitHub CLI, a credential helper, or a narrowly scoped token stored outside conversation history. <br>
-Risk: Backups may upload sensitive workspace files to GitHub. <br>
-Mitigation: Use a private repository and review the exact backup set for secrets before the first push and after backup-scope changes. <br>
-Risk: Restore commands may overwrite local workspace state. <br>
-Mitigation: Keep a current local copy and review restored files before replacing active workspace content. <br>
+## Use Case:
 
+Developers and AI agent users use this skill to configure, run, schedule, check, and restore backups of selected workspace files in a private GitHub repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziqi-jin/workspace-backup-github) <br>
-- [Publisher profile](https://clawhub.ai/user/ziqi-jin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with setup prompts and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides GitHub repository, token, backup schedule, status, and restore workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence, created 2026-03-16) <br>
+Risk: A GitHub token may be exposed through chat, command history, or the Git remote URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained token or credential helper, avoid pasting broad tokens into chat, and revoke or rotate any token that may have been exposed.
+
+Risk: Backups may include sensitive agent memory, identity, user, tool, and skill files.
+
+Mitigation: Use a private repository, review every staged file and ignore rules before pushing, and limit repository access.
+
+Risk: Restoring directly from a backup repository can overwrite local workspace files.
+
+Mitigation: Restore only from a verified commit into a staging directory first, then review and merge selected files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziqi-jin/skills/workspace-backup-github)
+- [GitHub token settings](https://github.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Git/OpenClaw configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute Git and OpenClaw Cron commands that push selected workspace files to a private GitHub repository.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence, released 2026-03-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Tech Radar Daily scans GitHub Trending, Product Hunt, Hacker News, and Awesome Lists to identify, score, de-duplicate, archive, and send a daily digest of selected technology intelligence to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tech Radar Daily discovers and scores daily technical intelligence from GitHub Trending, Product Hunt, Hacker News, and Awesome Lists, then sends selected items to Feishu.
 
-## Publisher: <br>
-[dereklu515](https://clawhub.ai/user/dereklu515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dereklu515](https://clawhub.ai/user/dereklu515)
 
-## Use Case: <br>
-Developers, founders, and technical operators use this skill to monitor public technology sources and receive a daily Feishu digest of notable tools, trends, and monetizable projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security evidence flags an under-documented Feishu chat-listing helper that can use Feishu app credentials to read organization chat metadata. <br>
-Mitigation: Review or remove scripts/test-feishu-chat.js unless chat listing is intended, and only provide Feishu app credentials with the minimum required permissions. <br>
-Risk: Normal runs fetch public technology sources, save local cache/report/log files, and can send the generated digest to a configured Feishu webhook. <br>
-Mitigation: Use a dedicated Feishu webhook, review digest contents before broad distribution, and understand what local data the skill writes before scheduling it. <br>
-Risk: The skill can use a GitHub token and proxy settings during collection. <br>
-Mitigation: Use a least-privilege GitHub token, configure only trusted proxies, and keep environment variables out of committed files and shared logs. <br>
+## Use Case:
 
+Developers, founders, and technology analysts use this skill to collect, score, de-duplicate, archive, and optionally push a daily digest of noteworthy developer tools, technical trends, and monetizable projects to Feishu.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dereklu515/tech-radar-daily) <br>
-- [Awesome Lists source catalog](references/awesome-lists.md) <br>
-- [Search query catalog](references/search-queries.md) <br>
-- [GitHub Trending daily source](https://github.com/trending?since=daily) <br>
-- [Product Hunt source](https://www.producthunt.com) <br>
-- [Hacker News API source](https://hacker-news.firebaseio.com/v0/topstories.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, API Calls] <br>
-**Output Format:** [Markdown daily digest and Feishu text message, with JSON cache and stats files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to 7-9 selected items in normal runs; Feishu delivery requires FEISHU_WEBHOOK_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: evidence release, target metadata, and SKILL.md frontmatter; package.json reports 1.0.0) <br>
+Risk: The workflow can post generated reports to a configured Feishu webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test mode first, configure only the intended FEISHU_WEBHOOK_URL, and review report content before enabling scheduled delivery.
+
+Risk: The artifact includes a Feishu tenant chat-discovery script that uses app credentials.
+
+Mitigation: Do not run scripts/test-feishu-chat.js or provide FEISHU_APP_ID and FEISHU_APP_SECRET unless tenant chat discovery is intentional.
+
+Risk: Proxy and PAC dependencies may affect network routing in sensitive environments.
+
+Mitigation: Review proxy-agent behavior and update or remove the proxy dependency chain before using the skill on restricted networks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dereklu515/skills/tech-radar-daily)
+- [Awesome Lists Reference](references/awesome-lists.md)
+- [Search Queries Reference](references/search-queries.md)
+- [Report Template](assets/report_template.md)
+- [Product Hunt](https://www.producthunt.com)
+- [Hacker News API](https://hacker-news.firebaseio.com/v0/topstories.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration, Shell commands]
+
+**Output Format:** [Markdown daily report, JSON stats/cache files, and optional Feishu webhook message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and FEISHU_WEBHOOK_URL for webhook delivery; GITHUB_TOKEN and proxy environment variables are optional.]
+
+## Skill Version(s):
+
+1.0.9 (source: SKILL.md frontmatter and server release evidence; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

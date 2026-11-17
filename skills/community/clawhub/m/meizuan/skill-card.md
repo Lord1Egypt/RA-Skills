@@ -1,39 +1,54 @@
-## Description: <br>
-美赚社交电商返利与任务平台工具，提供多平台购物返利查询和推广任务奖励，支持自购省钱和分享赚钱。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+美赚社交电商返利与任务平台工具，提供多平台购物返利查询和推广任务奖励，支持自购省钱和分享赚钱。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External users use this skill to query expected shopping rebates across supported e-commerce platforms, estimate promotional task rewards, and format cashback lookup results for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rebate, commission, task reward, or withdrawal amounts may be estimates rather than confirmed platform balances. <br>
-Mitigation: Verify amounts on the relevant shopping or cashback platform before making purchasing, promotion, or withdrawal decisions. <br>
-Risk: Future account or platform integrations could request credentials or account access. <br>
-Mitigation: Do not share account credentials unless a future version clearly discloses a trusted, scoped integration and the requested access has been reviewed. <br>
+## Use Case:
 
+Shoppers and promotion agents can use this skill to produce Chinese-language rebate lookup responses for platforms such as Taobao, JD.com, and Pinduoduo. The skill is intended for self-purchase savings, sharing-based promotion, task reward messaging, and commission summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted rebate lookup summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include product name, platform, sale price, rebate percentage, and estimated rebate amount.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may discuss shopping rebates, promotion links, commissions, and withdrawals in ways that users could mistake for a completed financial workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as informational text unless a future implementation clearly identifies the provider, requested permissions, and explicit user-confirmation steps.
+
+Risk: Users may be prompted to provide marketplace account credentials or approve financial actions while using rebate or withdrawal guidance.
+
+Mitigation: Do not provide account credentials or approve financial actions through this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/meizuan)
+- [Publisher profile](https://clawhub.ai/user/fangshan101-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown-style rebate query response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product name, platform, price, rebate rate, estimated rebate, promotion-task context, sharing materials, commission summaries, and withdrawal-related guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

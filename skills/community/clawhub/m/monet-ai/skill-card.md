@@ -1,45 +1,61 @@
-## Description: <br>
-Monet AI is an AI content generation API guide for agents covering video, image, and music generation workflows across supported models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monet AI provides agent-facing guidance for using the monet.vision API to generate video, images, and music across multiple AI generation models.
 
-## Publisher: <br>
-[seekton](https://clawhub.ai/user/seekton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seekton](https://clawhub.ai/user/seekton)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create workflows that submit authenticated Monet AI generation jobs for video, image, and music outputs, poll task status, and retrieve generated asset URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Monet account API key to submit generation jobs. <br>
-Mitigation: Store MONET_API_KEY in an environment variable, avoid hardcoding it, and set clear approval or budget expectations before use. <br>
-Risk: Prompts and uploaded media are sent to monet.vision for generation. <br>
-Mitigation: Do not upload private files, secrets, proprietary media, personal data, or sensitive prompts unless sharing them with monet.vision is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Monet AI ClawHub listing](https://clawhub.ai/seekton/monet-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/seekton) <br>
-- [Monet AI](https://monet.vision) <br>
-- [Monet API keys](https://monet.vision/skills/keys) <br>
-- [Create async task endpoint](https://monet.vision/api/v1/tasks/async) <br>
-- [Create streaming task endpoint](https://monet.vision/api/v1/tasks/sync) <br>
-- [Upload file endpoint](https://monet.vision/api/v1/files) <br>
+## Use Case:
 
+Developers and AI agent builders use this skill to create authenticated monet.vision API requests for video, image, music, file upload, and task-status workflows. It is intended for content-generation pipelines that need concise model options, request formats, and polling guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash, TypeScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MONET_API_KEY and sends prompts or media to monet.vision for generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.9 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, reference media, audio, uploaded files, and task metadata are sent to a third-party Monet service.
+
+Mitigation: Install and use the skill only when third-party processing by monet.vision is acceptable for the data involved.
+
+Risk: Authenticated verbose curl output can expose request details or credentials in logs.
+
+Mitigation: Remove the -v flag from authenticated examples unless logs are controlled and redacted; rotate MONET_API_KEY if verbose output may have been shared.
+
+Risk: Repeated task creation can duplicate generation requests if retries do not use an idempotency key.
+
+Mitigation: Use a unique idempotency_key, such as a UUID, for task creation requests.
+
+## Reference(s):
+
+- [Monet AI Skill Page](https://clawhub.ai/seekton/skills/monet-ai)
+- [Monet Website](https://monet.vision)
+- [Monet API Key Management](https://monet.vision/skills/keys)
+- [Monet Async Task API](https://monet.vision/api/v1/tasks/async)
+- [Monet Streaming Task API](https://monet.vision/api/v1/tasks/sync)
+- [Monet File Upload API](https://monet.vision/api/v1/files)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, TypeScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MONET_API_KEY; generated requests send prompts, metadata, and uploaded media to monet.vision.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

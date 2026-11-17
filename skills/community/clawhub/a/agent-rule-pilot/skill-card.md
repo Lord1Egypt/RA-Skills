@@ -1,40 +1,50 @@
-## Description: <br>
-Say 'sync my agent configs' to write coding rules once and sync to Claude Code, Cursor, Copilot, Windsurf, and 4 more agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Say 'sync my agent configs' to write coding rules once and sync to Claude Code, Cursor, Copilot, Windsurf, and 4 more agents.
 
-## Publisher: <br>
-[singggggyee](https://clawhub.ai/user/singggggyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[singggggyee](https://clawhub.ai/user/singggggyee)
 
-## Use Case: <br>
-Developers and engineers use this skill to maintain shared agent rules in one RULES.md file, check configuration drift, convert between agent config formats, and synchronize rules across supported coding agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration sync can propagate incorrect or overly broad rules across multiple coding agents. <br>
-Mitigation: Review the generated diffs before writing changes and keep agent-specific sections that should not be overwritten. <br>
-Risk: The skill is intended for development or maintainer contexts where the agent may inspect repository files and use project tooling. <br>
-Mitigation: Install it only in trusted workspaces and use normal sandbox prompts when you do not want broad command execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep AI-agent rule files synchronized from a shared RULES.md, check configuration drift, create starter rule files, and convert rules between supported agent formats.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/SingggggYee/dotpilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, diffs, and agent configuration file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update RULES.md and supported agent configuration files after showing diffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; SKILL.md frontmatter lists 3.0.0) <br>
+Risk: The skill may update AI-agent rule and configuration files in the current project, which can influence later agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the displayed diffs before accepting changes, and validate generated JSON or YAML where applicable.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/SingggggYee/dotpilot)
+- [ClawHub skill page](https://clawhub.ai/singggggyee/skills/agent-rule-pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [Markdown with configuration file content, diffs, and inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose updates to project AI-agent rule files after showing diffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

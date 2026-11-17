@@ -1,41 +1,57 @@
-## Description: <br>
-Fund administration and finance operations skillset for GL reconciliation, break tracing, accrual schedules, roll-forwards, variance commentary, and NAV tie-out. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial Admin helps fund administration and finance operations teams run GL reconciliations, trace breaks, prepare accruals and roll-forwards, write variance commentary, and perform NAV tie-outs.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Finance operations, fund accounting, and controller teams use this skill during daily reconciliation and month-end close to prepare schedules, trace breaks, draft journal-entry support, write variance commentary, and flag NAV tie-out issues for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated journal entries, suppress or adjust recommendations, variance commentary, and NAV flags could affect financial records or statements if treated as final. <br>
-Mitigation: Treat all generated outputs as drafts for controller or finance operations review before any ledger posting, statement change, or business action. <br>
-Risk: The skill is intended to work with finance systems and documents that may contain sensitive accounting data. <br>
-Mitigation: Install and run it only in environments where the agent is authorized to read the relevant finance systems and documents. <br>
+## Use Case:
 
+Finance operations and fund accounting teams use this skill during daily and month-end fund administration to reconcile GL and subledger data, trace breaks, prepare accrual and roll-forward schedules, draft variance commentary, and tie LP statements to NAV packs. Outputs are review artifacts and draft recommendations for controller or operations approval, not posted financial changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/financial-admin-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/paudyyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown tables, narrative summaries, JSON objects, and draft journal-entry blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft review artifacts and do not post ledger entries, edit statements, or make final business decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill may work with sensitive fund accounting, general ledger, subledger, NAV, LP statement, invoice, or vendor data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where the agent is authorized to read fund accounting data, and keep connected finance MCP permissions scoped as narrowly and read-only as practical.
+
+Risk: Draft journal entries, action labels, variance explanations, or reconciliation flags could be mistaken for approved financial actions.
+
+Mitigation: Treat all outputs as recommendations that require normal controller, accounting, or operations approval before posting, adjustment, suppression, or distribution.
+
+Risk: Untrusted financial extracts and supporting documents may contain incorrect data or embedded instructions.
+
+Mitigation: Use those files only as data sources, cite support for calculations, compare against authoritative systems such as GL or NAV packs, and surface unclear drivers instead of inventing explanations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/financial-admin-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown tables and narratives, with JSON objects for traced reconciliation breaks and draft journal-entry text where applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review artifacts, flags, draft journal entries, and action recommendations; it does not post entries or make financial adjustments.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata, release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

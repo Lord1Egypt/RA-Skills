@@ -1,42 +1,55 @@
-## Description: <br>
-文心审 is a Chinese humanities-paper reading assistant for graduate students in literature, history, philosophy, linguistics, and related fields, producing an eight-dimension structured review that cites source locations and separates author claims from reading judgments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文心审 is a Chinese-language humanities paper review assistant that helps graduate students and researchers deeply read Chinese academic articles by producing an eight-dimension structured review with source locations, evidence-strength labels, and separated author claims and reader judgments.
 
-## Publisher: <br>
-[yuzliya](https://clawhub.ai/user/yuzliya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzliya](https://clawhub.ai/user/yuzliya)
 
-## Use Case: <br>
-Graduate students and humanities researchers use this skill to deeply read, critique, and review Chinese academic papers. It helps them assess research questions, evidence strength, methodological reproducibility, related-work positioning, argument robustness, and the gap between narrative claims and actual contribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewing a local PDF path or URL may expose the selected document or page contents to the agent during analysis. <br>
-Mitigation: Provide only documents and URLs that are appropriate for the active agent environment, and review the generated critique before relying on it. <br>
-Risk: A structured humanities review can still contain mistaken judgments about evidence strength, citations, or disciplinary context. <br>
-Mitigation: Use the report as an aid to reading and verify important claims against the original paper and relevant source material. <br>
+## Use Case:
 
+External users, especially humanities graduate students and researchers, use this skill to review Chinese-language academic papers in literature, history, philosophy, linguistics, and adjacent humanities fields. It supports pasted paper text, local PDF paths, or URLs and returns a structured reading report for deeper critique and reading decisions.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/yuzliya/wenxin-review) <br>
-- [人文学科审稿参考：常见论证漏洞模式](references/common-fallacies.md) <br>
-- [人文学科审稿参考：学科差异速查](references/discipline-differences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Eight-dimension review with source-location annotations, evidence-strength labels, a final assessment, and a reading recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may read a local PDF path or fetch a URL when the user provides one.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only submit documents, paths, and links that the user intends the agent to process.
+
+Risk: The generated paper critique may contain incorrect or overconfident academic judgments.
+
+Mitigation: Use the report as reading support and verify important claims, citations, and evidence assessments against the original paper and relevant literature.
+
+## Reference(s):
+
+- [ClawHub Skill Page: 文心审](https://clawhub.ai/yuzliya/skills/wenxin-review)
+- [人文学科审稿参考：常见论证漏洞模式](artifact/references/common-fallacies.md)
+- [人文学科审稿参考：学科差异速查](artifact/references/discipline-differences.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown structured as an eight-part reading report with tables, source-location notes, evidence-strength labels, a final overall assessment, and a reading recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each review point is expected to identify the original location and distinguish author claims from reader judgments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-4-stage content pipeline orchestrator: Research -> Ideate -> Write -> Queue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Pipeline orchestrates research, angle selection, draft writing, and queue management for creator content workflows.
 
-## Publisher: <br>
-[runesleo](https://clawhub.ai/user/runesleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[runesleo](https://clawhub.ai/user/runesleo)
 
-## Use Case: <br>
-Creators and content teams use this skill to turn a topic or URL into researched, review-ready content drafts and maintain a local queue for review, approval, adaptation, publishing, and archiving. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update local queue and research files. <br>
-Mitigation: Use it only in workspaces where content-queue.json and research/ file changes are expected, and review generated drafts before publishing. <br>
-Risk: The URL workflow may retrieve and process links supplied by the user. <br>
-Mitigation: Avoid private intranet, authenticated, or sensitive URLs unless you explicitly want that content processed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Content Pipeline skill page](https://clawhub.ai/runesleo/runesleo-content-pipeline) <br>
+## Use Case:
 
+Creators and content developers use this skill to turn a topic, URL, or seed idea into researched drafts and managed queue entries for review, adaptation, approval, and publishing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, guidance] <br>
-**Output Format:** [Markdown responses, JSON queue entries, and local research markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update content-queue.json and dated files under research/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests broad shell and sub-agent capabilities.
+
+Mitigation: Install only in a sandboxed workspace with minimal filesystem and network access, and prefer a version that removes Bash and Agent unless those tools are specifically reviewed.
+
+Risk: Topics, URLs, and fetched web content can contain untrusted or misleading input.
+
+Mitigation: Treat external content as untrusted, avoid internal or private URLs, and verify claims against cited sources before approving drafts.
+
+Risk: The skill can create or update queue and research files in the workspace.
+
+Mitigation: Review changes to content-queue.json and research files before publication or downstream automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runesleo/skills/runesleo-content-pipeline)
+- [Publisher profile](https://clawhub.ai/user/runesleo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown research notes, JSON queue data, and plain-text status or draft responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update content-queue.json and files under research/ in the active workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

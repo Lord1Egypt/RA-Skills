@@ -1,0 +1,10 @@
+# Mounted automatically by DeepSeek Harness when this npm package is added as a bundle.
+- insert:
+    - id: advanced-human-writing-mcp
+      name: 'dsh-advanced-human-writing'
+      config:
+        root: !!js process.cwd()
+        pythonCommand: !!js process.env.PYTHON ?? 'python'
+        serverName: 'human-writing'
+        toolCallTimeoutMs: 60000
+        generationGuidance: true

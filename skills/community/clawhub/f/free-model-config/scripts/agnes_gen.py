@@ -8,17 +8,22 @@ Agnes AI 多模态生成工具（图像/视频）。
 
 用法:
   # 基本命令
-  python agnes_gen.py image --prompt "描述" [--size 1024x768] [--output result.png]
-  python agnes_gen.py video --prompt "描述" [--width 1152] [--height 768] [--frames 121] [--fps 24]
+  python agnes_gen.py image --prompt "描述" [--size 2K] [--ratio 16:9] [--output result.png]
+  python agnes_gen.py video --prompt "描述" [--seconds 5] [--size 720P] [--aspect-ratio 16:9]
   python agnes_gen.py concat --inputs a.mp4 b.mp4 c.mp4 --output long.mp4
 
   # 复杂命令（由基本命令组合）
-  python agnes_gen.py long-video --prompt "描述" --segments 3 --output long.mp4
+  python agnes_gen.py long-video --prompt "描述" --segments 3 --segment-seconds 10 --output long.mp4
   python agnes_gen.py images-video --images img1.png img2.png --prompt "描述" --output result.mp4
   python agnes_gen.py story-video --storyboard storyboard.json --output story.mp4
 
 环境变量:
-  AGNES_API_KEY  - API 密钥（可选，优先从 ~/.workbuddy/models.json 读取）
+  AGNES_API_KEY      - API 密钥（优先）
+  FREE_MODEL_CONFIG  - 通用台账路径（默认 ~/.free-model-config/models.json）
+
+说明:
+  Video 2.5 接口以「秒 + 分辨率档位」表达时长与画质；
+  旧的 --width/--height/--frames/--fps 仍可传入，但会自动换算并告警。
 """
 
 import argparse
@@ -42,15 +47,47 @@ if sys.platform == 'win32':
 
 API_BASE = "https://apihub.agnes-ai.com"
 
-# 帧数限制表：(分辨率描述, 宽, 高, 最大帧数)
-FRAME_LIMITS = [
-    ("1080p", 1920, 1080, 169),
-    ("1080p", 1920, 1200, 169),
-    ("720p",  1088, 832,  409),
-    ("720p",  1280, 720,  409),
-    ("480p",  854,  480,  961),
-    ("480p",  640,  480,  961),
-]
+# 当前现役模型 ID（基线以 SKILL.md 平台表为准；平台升级后只需改这里）
+MODEL_TEXT = "agnes-3.0-flash"
+MODEL_IMAGE = "agnes-image-2.5-flash"
+MODEL_VIDEO = "agnes-video-2.5"
+MODEL_VIDEO_FAST = "agnes-video-2.5-flash"
+
+# Video 2.5 只接受档位名与秒数，不再接受 width/height/fps/num_frames
+VIDEO_SIZES = ("720P", "1080P", "1K", "2K")
+VIDEO_ASPECTS = ("16:9", "9:16", "1:1", "4:3", "3:4", "2:3", "3:2", "21:9")
+VIDEO_SECONDS_MIN = 4
+VIDEO_SECONDS_MAX = 12
+
+
+def normalize_seconds(value, default="5"):
+    """把任意输入规整为 4–12 的字符串秒数"""
+    try:
+        n = int(float(str(value).strip()))
+    except (TypeError, ValueError):
+        return default
+    n = max(VIDEO_SECONDS_MIN, min(VIDEO_SECONDS_MAX, n))
+    return str(n)
+
+
+def normalize_size(value, default="720P"):
+    """把旧式像素值/小写档位规整为合法档位"""
+    if not value:
+        return default
+    text = str(value).strip()
+    if text.upper() in VIDEO_SIZES:
+        return text.upper()
+    return default
+
+
+def legacy_geometry_to_size(width=None, height=None, default="720P"):
+    """把旧的 width/height 近似映射到分辨率档位"""
+    if not width or not height:
+        return default
+    short_edge = min(int(width), int(height))
+    if short_edge >= 1000:
+        return "1080P"
+    return "720P"
 
 
 def api_request(method, path, body=None, api_key=None, timeout=300, exit_on_error=True):
@@ -134,12 +171,14 @@ def upload_image_to_url(local_path):
     sys.exit(1)
 
 
-def _poll_video(task_id, api_key, output_path=None):
-    """轮询视频任务状态，返回视频 URL"""
-    print(f"等待视频生成（轮询间隔 10 秒）...", file=sys.stderr)
+def _poll_video(video_id, model_name, api_key, output_path=None):
+    """轮询视频任务（video_id + model_name），返回视频 URL"""
+    print("等待视频生成（轮询间隔 2 秒）...", file=sys.stderr)
+    query = urllib.parse.urlencode({"video_id": video_id, "model_name": model_name})
+    path = f"/agnesapi?{query}"
     while True:
-        time.sleep(10)
-        status_result = api_request("GET", f"/v1/videos/{task_id}", api_key=api_key, timeout=30, exit_on_error=False)
+        time.sleep(2)
+        status_result = api_request("GET", path, api_key=api_key, timeout=30, exit_on_error=False)
         if not status_result:
             print("轮询请求失败，重试...", file=sys.stderr)
             continue
@@ -148,63 +187,43 @@ def _poll_video(task_id, api_key, output_path=None):
         print(f"状态: {status} ({progress}%)", file=sys.stderr)
 
         if status == "completed":
-            video_url = ""
-            for k in ["url", "video_url", "result", "output", "video", "remixed_from_video_id"]:
-                val = status_result.get(k)
-                if val and isinstance(val, str) and val.startswith("http"):
-                    video_url = val
-                    break
-            if not video_url:
-                result_data = status_result.get("result", {})
-                if isinstance(result_data, dict):
-                    for k in ["url", "video_url", "output", "video"]:
-                        val = result_data.get(k)
-                        if val and isinstance(val, str) and val.startswith("http"):
-                            video_url = val
-                            break
-            if not video_url:
-                result_data = status_result.get("result", {})
-                if isinstance(result_data, str) and result_data.startswith("http"):
-                    video_url = result_data
+            video_url = status_result.get("url") or ""
             if output_path and video_url:
                 urllib.request.urlretrieve(video_url, output_path)
                 print(f"视频已下载: {output_path}", file=sys.stderr)
             return video_url
-        elif status == "failed":
-            error = status_result.get("error", "未知错误")
+        if status == "failed":
+            error = status_result.get("error") or "未知错误"
             print(f"视频生成失败: {error}", file=sys.stderr)
             return None
 
 
-def _create_video_task(args_dict, api_key):
-    """创建视频生成任务，返回 task_id"""
+def _create_video_task(body, api_key):
+    """创建视频生成任务，返回 (video_id, model_name)"""
     print("正在创建视频任务...", file=sys.stderr)
-    result = api_request("POST", "/v1/videos", args_dict, api_key, timeout=600)
-    task_id = result.get("task_id") or result.get("id")
+    result = api_request("POST", "/v1/videos", body, api_key, timeout=600)
+    video_id = result.get("video_id")
+    model_name = result.get("model") or body.get("model")
     seconds = result.get("seconds", "unknown")
     size = result.get("size", "unknown")
-    print(f"任务已创建: task_id={task_id}, 时长={seconds}秒, 分辨率={size}", file=sys.stderr)
-    return task_id
-
-
-def get_max_frames(width, height):
-    """根据分辨率确定最大帧数"""
-    for _, w, h, mf in FRAME_LIMITS:
-        if width <= w and height <= h:
-            return mf
-    return 121  # 默认
+    if not video_id:
+        print(f"错误: 创建响应中没有 video_id: {result}", file=sys.stderr)
+        sys.exit(1)
+    print(f"任务已创建: video_id={video_id}, 时长={seconds}秒, 分辨率={size}", file=sys.stderr)
+    return video_id, model_name
 
 
 # ============================================================
 # 基本命令（原子操作）
 # ============================================================
 
-def generate_image_core(prompt, image=None, size="1024x768", seed=None, output=None, api_key=None):
-    """核心图像生成函数，返回图像路径或URL"""
+def generate_image_core(prompt, image=None, size="1K", ratio="1:1", seed=None, output=None, api_key=None):
+    """核心图像生成函数（Image 2.5），返回图像路径或URL"""
     body = {
-        "model": "agnes-image-2.0-flash",
+        "model": MODEL_IMAGE,
         "prompt": prompt,
         "size": size,
+        "ratio": ratio,
     }
     extra = {}
     if image:
@@ -212,8 +231,7 @@ def generate_image_core(prompt, image=None, size="1024x768", seed=None, output=N
         extra["image"] = images
     if extra:
         body["extra_body"] = extra
-    if seed is not None:
-        body["seed"] = seed
+    # 注意：Image 2.5 官方参数表不含 seed，传入可能被拒，这里保留参数但不下发
 
     print("正在生成图像...", file=sys.stderr)
     result = api_request("POST", "/v1/images/generations", body, api_key)
@@ -238,37 +256,67 @@ def generate_image_core(prompt, image=None, size="1024x768", seed=None, output=N
     return None
 
 
-def generate_video_core(prompt, image=None, width=1152, height=768, frames=121, fps=24, 
-                       seed=None, negative_prompt=None, output=None, api_key=None):
-    """核心视频生成函数，返回视频路径或URL"""
-    # 处理本地图片
-    image_url = None
+def generate_video_core(prompt, image=None, seconds="5", size="720P", aspect_ratio="16:9",
+                        mode=None, first_frame=None, last_frame=None, images=None,
+                        audios=None, videos=None, model=MODEL_VIDEO, seed=None,
+                        output=None, api_key=None):
+    """核心视频生成函数（Video 2.5），返回视频路径或URL"""
+    seconds = normalize_seconds(seconds)
+    size = normalize_size(size)
+    if aspect_ratio not in VIDEO_ASPECTS:
+        print(f"警告: aspect_ratio {aspect_ratio} 不受支持，回退 16:9", file=sys.stderr)
+        aspect_ratio = "16:9"
+
+    # 单图入口视为首帧（keyframe）
     if image:
         img_input = image[0] if isinstance(image, list) else image
         if img_input.startswith(("http://", "https://")):
-            image_url = img_input
+            first_frame = first_frame or img_input
         else:
-            print(f"检测到本地图片，正在上传...", file=sys.stderr)
-            image_url = upload_image_to_url(img_input)
+            print("检测到本地图片，正在上传...", file=sys.stderr)
+            first_frame = first_frame or upload_image_to_url(img_input)
+
+    if not mode:
+        if images or audios or videos:
+            mode = "reference"
+        elif first_frame or last_frame:
+            mode = "keyframe"
+        else:
+            mode = "text"
 
     body = {
-        "model": "agnes-video-v2.0",
+        "model": model,
         "prompt": prompt,
-        "width": width,
-        "height": height,
-        "num_frames": frames,
-        "frame_rate": fps,
+        "mode": mode,
+        "seconds": seconds,
+        "size": size,
+        "aspect_ratio": aspect_ratio,
     }
-    if image_url:
-        body["image"] = image_url
+
+    if mode == "keyframe":
+        if not (first_frame or last_frame):
+            print("错误: keyframe 模式需要 first_frame 或 last_frame", file=sys.stderr)
+            sys.exit(1)
+        if first_frame:
+            body["first_frame"] = first_frame
+        if last_frame:
+            body["last_frame"] = last_frame
+    elif mode == "reference":
+        if not any([images, audios, videos]):
+            print("错误: reference 模式需要 images / audios / videos", file=sys.stderr)
+            sys.exit(1)
+        if images:
+            body["images"] = images
+        if audios:
+            body["audios"] = audios
+        if videos:
+            body["videos"] = [v if isinstance(v, dict) else {"url": v} for v in videos]
+
     if seed is not None:
         body["seed"] = seed
-    if negative_prompt:
-        body["negative_prompt"] = negative_prompt
 
-    task_id = _create_video_task(body, api_key)
-    video_url = _poll_video(task_id, api_key, output)
-    return video_url
+    video_id, model_name = _create_video_task(body, api_key)
+    return _poll_video(video_id, model_name, api_key, output)
 
 
 def concat_videos_core(inputs, output):
@@ -388,6 +436,7 @@ def cmd_image(args):
         prompt=args.prompt,
         image=args.image,
         size=args.size,
+        ratio=args.ratio,
         output=args.output,
         api_key=args.api_key
     )
@@ -397,15 +446,29 @@ def cmd_image(args):
 
 def cmd_video(args):
     """视频生成命令"""
+    size = args.size
+    seconds = args.seconds
+
+    # 兼容旧参数：width/height → 档位；frames/fps → 秒数
+    if getattr(args, "width", None) or getattr(args, "height", None):
+        size = legacy_geometry_to_size(args.width, args.height, default=size)
+        print(f"提示: --width/--height 已废弃，按 {size} 档处理", file=sys.stderr)
+    if getattr(args, "frames", None):
+        fps = getattr(args, "fps", None) or 24
+        seconds = normalize_seconds(int(round(args.frames / fps)), default=seconds)
+        print(f"提示: --frames/--fps 已废弃，按 {seconds} 秒处理", file=sys.stderr)
+
     result = generate_video_core(
         prompt=args.prompt,
         image=args.image,
-        width=args.width,
-        height=args.height,
-        frames=args.frames,
-        fps=args.fps,
+        seconds=seconds,
+        size=size,
+        aspect_ratio=args.aspect_ratio,
+        mode=args.mode,
+        first_frame=args.first_frame,
+        last_frame=args.last_frame,
+        model=args.model,
         seed=args.seed,
-        negative_prompt=args.negative_prompt,
         output=args.output,
         api_key=args.api_key
     )
@@ -427,15 +490,14 @@ def cmd_concat(args):
 
 def cmd_long_video(args):
     """长视频命令：多次video + concat"""
-    width = args.width
-    height = args.height
-    fps = args.fps
     segments = args.segments
-    max_frames = get_max_frames(width, height)
+    seconds = normalize_seconds(args.segment_seconds, default="10")
+    size = normalize_size(args.size)
+    aspect_ratio = args.aspect_ratio
 
     print(f"=== 长视频生成 ===", file=sys.stderr)
-    print(f"分辨率: {width}x{height}, 帧率: {fps}fps", file=sys.stderr)
-    print(f"分段数: {segments}, 每段 {max_frames} 帧 ({max_frames/fps:.1f}秒)", file=sys.stderr)
+    print(f"分辨率档位: {size}, 画幅: {aspect_ratio}", file=sys.stderr)
+    print(f"分段数: {segments}, 每段 {seconds} 秒 (合计 {int(seconds) * segments} 秒)", file=sys.stderr)
 
     temp_dir = tempfile.mkdtemp(prefix="agnes_video_")
     segment_files = []
@@ -448,12 +510,11 @@ def cmd_long_video(args):
         video_url = generate_video_core(
             prompt=args.prompt,
             image=args.image,
-            width=width,
-            height=height,
-            frames=max_frames,
-            fps=fps,
+            seconds=seconds,
+            size=size,
+            aspect_ratio=aspect_ratio,
+            model=args.model,
             seed=args.seed,
-            negative_prompt=args.negative_prompt,
             output=seg_path,
             api_key=args.api_key
         )
@@ -492,16 +553,13 @@ def cmd_images_video(args):
     images = args.images
     shared_prompt = args.prompt
     per_prompts = args.prompts
-    width = args.width
-    height = args.height
-    fps = args.fps
+    seconds = normalize_seconds(args.seconds)
+    size = normalize_size(args.size)
+    aspect_ratio = args.aspect_ratio
     seed = args.seed
 
-    max_frames = get_max_frames(width, height)
-    frames = args.frames if args.frames > 0 else max_frames
-
     print(f"=== 锚点图片 → 视频 ===", file=sys.stderr)
-    print(f"图片数: {len(images)}, 每段 {frames} 帧, 分辨率: {width}x{height}", file=sys.stderr)
+    print(f"图片数: {len(images)}, 每段 {seconds} 秒, 档位: {size}, 画幅: {aspect_ratio}", file=sys.stderr)
 
     if per_prompts and len(per_prompts) != len(images):
         print(f"错误: --prompts 数量 ({len(per_prompts)}) 必须与 --images 数量 ({len(images)}) 一致", file=sys.stderr)
@@ -531,10 +589,10 @@ def cmd_images_video(args):
         video_url = generate_video_core(
             prompt=scene_prompt,
             image=[image_input] if image_input else None,
-            width=width,
-            height=height,
-            frames=frames,
-            fps=fps,
+            seconds=seconds,
+            size=size,
+            aspect_ratio=aspect_ratio,
+            model=args.model,
             seed=seed,
             output=seg_path,
             api_key=args.api_key
@@ -581,10 +639,9 @@ def cmd_story_video(args):
     base_prompt = storyboard.get("base_prompt", "")
     style = storyboard.get("style", "")
     seed = args.seed or storyboard.get("seed")
-    anchor_size = storyboard.get("image_size", "1024x768")
-    width = args.width
-    height = args.height
-    fps = args.fps
+    anchor_size = storyboard.get("image_size", "2K")
+    aspect_ratio = args.aspect_ratio or storyboard.get("aspect_ratio", "16:9")
+    size = normalize_size(args.size)
 
     prefix_parts = []
     if base_prompt:
@@ -593,10 +650,8 @@ def cmd_story_video(args):
         prefix_parts.append(style)
     shared_prefix = ", ".join(prefix_parts) + ", " if prefix_parts else ""
 
-    max_frames = get_max_frames(width, height)
-
     print(f"=== 故事板视频生成 ===", file=sys.stderr)
-    print(f"场景数: {len(scenes)}, 分辨率: {width}x{height}", file=sys.stderr)
+    print(f"场景数: {len(scenes)}, 档位: {size}, 画幅: {aspect_ratio}", file=sys.stderr)
 
     temp_dir = tempfile.mkdtemp(prefix="agnes_story_")
 
@@ -630,6 +685,7 @@ def cmd_story_video(args):
             result = generate_image_core(
                 prompt=full_prompt,
                 size=anchor_size,
+                ratio=aspect_ratio,
                 seed=seed,
                 output=img_path,
                 api_key=args.api_key
@@ -650,7 +706,11 @@ def cmd_story_video(args):
 
     for i, scene in enumerate(scenes):
         scene_prompt = scene.get("prompt", "")
-        scene_frames = scene.get("frames", max_frames)
+        scene_seconds = scene.get("seconds")
+        if scene_seconds is None and scene.get("frames"):
+            # 兼容旧故事板：按 24fps 折算成秒
+            scene_seconds = int(round(scene["frames"] / 24))
+        scene_seconds = normalize_seconds(scene_seconds, default="5")
         full_prompt = f"{shared_prefix}{scene_prompt}" if shared_prefix else scene_prompt
 
         print(f"\n场景 {i+1}/{len(scenes)}: {scene_prompt[:40]}...", file=sys.stderr)
@@ -668,10 +728,10 @@ def cmd_story_video(args):
         video_url = generate_video_core(
             prompt=full_prompt,
             image=[image_input] if image_input else None,
-            width=width,
-            height=height,
-            frames=min(scene_frames, max_frames),
-            fps=fps,
+            seconds=scene_seconds,
+            size=size,
+            aspect_ratio=aspect_ratio,
+            model=args.model,
             seed=seed,
             output=seg_path,
             api_key=args.api_key
@@ -705,29 +765,42 @@ def cmd_story_video(args):
     print(f"\n故事板视频生成完成: {args.output}", file=sys.stderr)
 
 
-def load_api_key_from_models(model_name):
-    """从 ~/.workbuddy/models.json 文件中读取 API Key"""
+def _read_models(path):
+    """读取配置台账，兼容 list 与 {"models": [...]} 两种结构"""
     try:
-        models_path = os.path.expanduser("~/.workbuddy/models.json")
-        if not os.path.exists(models_path):
-            return None
-        
-        with open(models_path, "r", encoding="utf-8") as f:
-            models = json.load(f)
-        
-        for model in models:
-            if model.get("id") == model_name or model.get("name") == model_name:
-                return model.get("apiKey")
-        
-        for model in models:
-            model_id = model.get("id", "")
-            if model_name in model_id or model_id in model_name:
-                return model.get("apiKey")
-        
-        return None
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
     except Exception as e:
-        print(f"警告: 读取 models.json 失败: {e}", file=sys.stderr)
-        return None
+        print(f"警告: 读取 {path} 失败: {e}", file=sys.stderr)
+        return []
+    if isinstance(data, list):
+        return data
+    if isinstance(data, dict):
+        return data.get("models") or data.get("providers") or []
+    return []
+
+
+def load_api_key(model_name):
+    """从通用台账读取 API Key（FREE_MODEL_CONFIG 可覆盖默认路径）"""
+    env_path = os.environ.get("FREE_MODEL_CONFIG")
+    candidates = []
+    if env_path:
+        candidates.append(env_path)
+    candidates.append(os.path.expanduser("~/.free-model-config/models.json"))
+
+    for path in candidates:
+        if not os.path.exists(path):
+            continue
+        for model in _read_models(path):
+            mid = model.get("id") or model.get("model") or model.get("name") or ""
+            url = model.get("url") or model.get("base_url") or ""
+            key = model.get("apiKey") or model.get("api_key")
+            if not key:
+                continue
+            if mid == model_name or (mid and (model_name in mid or mid in model_name)) or "agnes" in url:
+                print(f"从 {path} 读取到 API Key", file=sys.stderr)
+                return key
+    return None
 
 
 def main():
@@ -738,21 +811,29 @@ def main():
     # 基本命令：图像生成
     img = sub.add_parser("image", help="图像生成（基本命令）")
     img.add_argument("--prompt", required=True, help="图像描述")
-    img.add_argument("--image", nargs="+", help="输入图片 URL（图生图）")
-    img.add_argument("--size", default="1024x768", help="分辨率，如 1024x768")
+    img.add_argument("--image", nargs="+", help="输入图片 URL（图生图/多图合成）")
+    img.add_argument("--size", default="1K", help="分辨率档位：1K/2K/3K/4K（默认 1K）")
+    img.add_argument("--ratio", default="1:1", help="画幅比例，如 16:9（默认 1:1）")
     img.add_argument("--output", "-o", help="输出文件路径")
 
     # 基本命令：视频生成
     vid = sub.add_parser("video", help="视频生成（基本命令）")
     vid.add_argument("--prompt", required=True, help="视频描述")
-    vid.add_argument("--image", nargs="+", help="输入图片 URL 或本地路径（图生视频）")
-    vid.add_argument("--width", type=int, default=1152, help="视频宽度")
-    vid.add_argument("--height", type=int, default=768, help="视频高度")
-    vid.add_argument("--frames", type=int, default=121, help="总帧数（8n+1）")
-    vid.add_argument("--fps", type=int, default=24, help="帧率 1-60")
+    vid.add_argument("--image", nargs="+", help="首帧图片 URL 或本地路径")
+    vid.add_argument("--seconds", default="5", help="时长 4-12 秒（默认 5）")
+    vid.add_argument("--size", default="720P", help="档位：720P/1080P/1K/2K（默认 720P）")
+    vid.add_argument("--aspect-ratio", dest="aspect_ratio", default="16:9", help="画幅（默认 16:9）")
+    vid.add_argument("--mode", choices=["text", "keyframe", "reference"], help="生成模式（默认自动判断）")
+    vid.add_argument("--first-frame", dest="first_frame", help="keyframe 模式首帧 URL")
+    vid.add_argument("--last-frame", dest="last_frame", help="keyframe 模式尾帧 URL")
+    vid.add_argument("--model", default=MODEL_VIDEO, help=f"视频模型（默认 {MODEL_VIDEO}）")
     vid.add_argument("--seed", type=int, help="随机种子")
-    vid.add_argument("--negative-prompt", dest="negative_prompt", help="负面提示词")
     vid.add_argument("--output", "-o", help="输出视频文件路径")
+    # 已废弃参数：仅用于兼容旧脚本
+    vid.add_argument("--width", type=int, default=None, help=argparse.SUPPRESS)
+    vid.add_argument("--height", type=int, default=None, help=argparse.SUPPRESS)
+    vid.add_argument("--frames", type=int, default=None, help=argparse.SUPPRESS)
+    vid.add_argument("--fps", type=int, default=None, help=argparse.SUPPRESS)
 
     # 基本命令：拼接
     cat = sub.add_parser("concat", help="拼接多个视频文件（基本命令）")
@@ -762,33 +843,33 @@ def main():
     # 复杂命令：长视频（由video + concat组合）
     long = sub.add_parser("long-video", help="同 prompt 自动分段长视频（= video × N + concat）")
     long.add_argument("--prompt", required=True, help="视频描述")
-    long.add_argument("--image", nargs="+", help="输入图片 URL 或本地路径")
-    long.add_argument("--width", type=int, default=1088, help="视频宽度")
-    long.add_argument("--height", type=int, default=832, help="视频高度")
-    long.add_argument("--fps", type=int, default=24, help="帧率 1-60")
+    long.add_argument("--image", nargs="+", help="首帧图片 URL 或本地路径")
     long.add_argument("--segments", type=int, required=True, help="分段数量")
+    long.add_argument("--segment-seconds", dest="segment_seconds", default="10", help="每段时长 4-12 秒（默认 10）")
+    long.add_argument("--size", default="720P", help="档位（默认 720P）")
+    long.add_argument("--aspect-ratio", dest="aspect_ratio", default="16:9", help="画幅（默认 16:9）")
+    long.add_argument("--model", default=MODEL_VIDEO, help=f"视频模型（默认 {MODEL_VIDEO}）")
     long.add_argument("--seed", type=int, help="随机种子")
-    long.add_argument("--negative-prompt", dest="negative_prompt", help="负面提示词")
     long.add_argument("--output", "-o", required=True, help="输出视频文件路径")
 
     # 复杂命令：批量图片视频（由video + concat组合）
     iv = sub.add_parser("images-video", help="批量图 → 批量视频 → 拼接（= video × N + concat）")
-    iv.add_argument("--images", "-i", nargs="+", required=True, help="锚点图片列表")
+    iv.add_argument("--images", "-i", nargs="+", required=True, help="锚点图片列表（逐张作为首帧）")
     iv.add_argument("--prompt", required=True, help="视频描述（所有图片共享）")
     iv.add_argument("--prompts", nargs="+", help="每张图片的独立描述（可选）")
-    iv.add_argument("--width", type=int, default=1088, help="视频宽度")
-    iv.add_argument("--height", type=int, default=832, help="视频高度")
-    iv.add_argument("--fps", type=int, default=24, help="帧率 1-60")
-    iv.add_argument("--frames", type=int, default=0, help="每段帧数（0=自动使用最大值）")
+    iv.add_argument("--seconds", default="5", help="每段时长 4-12 秒（默认 5）")
+    iv.add_argument("--size", default="720P", help="档位（默认 720P）")
+    iv.add_argument("--aspect-ratio", dest="aspect_ratio", default="16:9", help="画幅（默认 16:9）")
+    iv.add_argument("--model", default=MODEL_VIDEO, help=f"视频模型（默认 {MODEL_VIDEO}）")
     iv.add_argument("--seed", type=int, help="随机种子")
     iv.add_argument("--output", "-o", required=True, help="输出视频文件路径")
 
     # 复杂命令：故事板视频（由image + video + concat组合）
     story = sub.add_parser("story-video", help="故事板全流程（= image × N + video × N + concat）")
     story.add_argument("--storyboard", "-s", required=True, help="故事板 JSON 文件路径")
-    story.add_argument("--width", type=int, default=1088, help="视频宽度")
-    story.add_argument("--height", type=int, default=832, help="视频高度")
-    story.add_argument("--fps", type=int, default=24, help="帧率 1-60")
+    story.add_argument("--size", default="720P", help="视频档位（默认 720P）")
+    story.add_argument("--aspect-ratio", dest="aspect_ratio", default="16:9", help="画幅（默认 16:9）")
+    story.add_argument("--model", default=MODEL_VIDEO, help=f"视频模型（默认 {MODEL_VIDEO}）")
     story.add_argument("--seed", type=int, help="随机种子")
     story.add_argument("--output", "-o", required=True, help="输出视频文件路径")
 
@@ -801,16 +882,14 @@ def main():
 
     # 其他命令需要 API Key
     if not args.api_key:
-        model_name = "agnes-2.0-flash"
-        api_key = load_api_key_from_models(model_name)
+        api_key = load_api_key(MODEL_TEXT)
         if api_key:
             args.api_key = api_key
-            print(f"从 ~/.workbuddy/models.json 读取到 API Key", file=sys.stderr)
         else:
-            print("错误: 未设置 AGNES_API_KEY。请通过以下方式之一提供：", file=sys.stderr)
+            print("错误: 未提供 AGNES_API_KEY。以下任一方式均可：", file=sys.stderr)
             print("  1. 命令行参数: --api-key YOUR_KEY", file=sys.stderr)
             print("  2. 环境变量: export AGNES_API_KEY=YOUR_KEY", file=sys.stderr)
-            print("  3. 配置文件: ~/.workbuddy/models.json 中对应模型的 apiKey 字段", file=sys.stderr)
+            print("  3. 通用台账: ~/.free-model-config/models.json（FREE_MODEL_CONFIG 可覆盖）", file=sys.stderr)
             sys.exit(1)
 
     # 分发到对应命令

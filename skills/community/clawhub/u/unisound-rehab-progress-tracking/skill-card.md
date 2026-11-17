@@ -1,43 +1,63 @@
-## Description: <br>
-Tracks patient-side postoperative rehabilitation progress by summarizing completion, pain, function, phase progress, and attention items for display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks post-operative rehabilitation progress for patient-facing use by analyzing task completion records, pain scores, functional self-assessments, and phase progress.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Patients and care teams can use this skill to turn rehabilitation task records, pain scores, and functional self-assessments into structured progress data and readable summaries. It is intended for progress tracking and visualization, not diagnosis, treatment decisions, or rehabilitation prescription changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rehabilitation progress information is sent to a named external medical-model API using an app key. <br>
-Mitigation: Use only when that external API is acceptable for the data involved, protect the app key, and avoid direct patient identifiers where possible. <br>
-Risk: Document and image inputs increase parsing surface through optional local parsers, converters, or OCR tools. <br>
-Mitigation: Prefer JSON input for routine use and process only trusted documents or images when expanded input support is needed. <br>
-Risk: Generated summaries could be mistaken for medical advice. <br>
-Mitigation: Treat summaries as informational progress tracking and have qualified clinicians review conclusions before making care decisions. <br>
+## Use Case:
 
+External patient-facing care teams and developers use this skill to summarize rehabilitation task completion, pain trends, functional trends, phase progress, and items needing attention for post-operative recovery tracking. It supports record summarization and progress visualization, not treatment-effect diagnosis or replacement of a rehabilitation professional's assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-rehab-progress-tracking) <br>
-- [Referenced rehabilitation analyzer skill](https://agent-skills.md/skills/huifer/WellAlly-health/rehabilitation-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [UTF-8 JSON with structured progress fields and Markdown or natural-language summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local completion and trend fields; model-generated text is informational and should be reviewed before clinical use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive rehabilitation records are sent to the disclosed hivoice medical-model API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid patient identifiers and unnecessary free text, provide the minimum JSON fields needed for progress analysis, and confirm external API handling requirements before use.
+
+Risk: The API credential is accepted as a command-line argument.
+
+Mitigation: Provide credentials through a secret manager or controlled runtime injection and avoid exposing keys in shell history, logs, or shared scripts.
+
+Risk: Document conversion and OCR for untrusted files can process complex external content.
+
+Mitigation: Run preprocessing for PDFs, office documents, and images in a sandbox and keep optional parsers and external tools patched.
+
+Risk: Generated rehabilitation commentary could be mistaken for a clinical assessment.
+
+Mitigation: Use the output for record summaries and trend display only, and require rehabilitation professional review for treatment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-rehab-progress-tracking)
+- [Referenced rehabilitation-analyzer progress analysis source](https://agent-skills.md/skills/huifer/WellAlly-health/rehabilitation-analyzer)
+- [Disclosed hivoice medical-model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Files]
+
+**Output Format:** [UTF-8 JSON containing structured trend data and Markdown narrative text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write an output JSON file and, when requested, a prepared JSON input artifact for debugging.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

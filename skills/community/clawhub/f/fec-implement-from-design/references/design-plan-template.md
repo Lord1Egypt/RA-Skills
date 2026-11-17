@@ -1,36 +1,36 @@
-# 设计实现计划模板
+# Design implementation plan template
 
 ```markdown
-# 设计实现计划
+# Design implementation plan
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 评审工具: frontend-craft
-> 设计工具: Figma / Sketch / MasterGo / Pixso / 墨刀 / 摹客
+> Generation time: YYYY-MM-DD HH:mm
+> Review tool: frontend-craft
+> Design tools: Figma / Sketch / MasterGo / Pixso / Ink Knife / Mockup
 
-## 实现概要
-- 设计稿来源: ...
-- 目标页面/组件: ...
+## Implementation Summary
+- Source of design draft: ...
+- Target page/component: ...
 
-## 复用的组件
+## Reused components
 - ...
 
-## 新建的组件
+## New component
 - ...
 
-## 组件拆分方案
+## Component splitting plan
 - ...
 
-## 状态/数据流
+## Status/data flow
 - ...
 
-## 与设计稿的偏差
+## Deviation from the design draft
 - ...
 
-## 缺失的资源 / Token / 交互细节
+## Missing resources/Token/Interaction details
 - ...
 
-## 变更文件清单
+## Change file list
 - ...
 ```
 
-实现计划确定后，将报告保存到 `reports/design-plan-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After the implementation plan is determined, save the report to `reports/design-plan-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.

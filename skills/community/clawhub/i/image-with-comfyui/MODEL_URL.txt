@@ -1,0 +1,236 @@
+# image-with-comfyui — SFW model download sources
+#
+# This file lists clean / official download sources for the model weights
+# required by the image-with-comfyui skill. Everything here is SFW.
+#
+# Common prefix: https://huggingface.co/
+# File path = "{prefix}/{repo}/{path}"
+#
+# Format legend:
+#   ✓  = file/weight verified to exist
+#   ★  = repo may require login (HTTP 401 without an authenticated HF account);
+#        download on a machine where you are logged in.
+#
+# -----------------------------------------------------------------
+# FILENAME CAVEAT (read before deploying)
+# -----------------------------------------------------------------
+# The SFW weights below usually have DIFFERENT filenames than what the bundled
+# workflow's loader nodes expect. The script does NOT rename model files for
+# you. If you deploy the SFW weights you must make the workflow match the
+# on-disk filenames, EITHER by:
+#   (a) renaming the downloaded files to match the workflow node's
+#       unet_name / ckpt_name, OR
+#   (b) editing that node's unet_name / ckpt_name to the actual filenames.
+# For Qwen-Image 2.1 the loader node is node 17 in
+#   workflows/qwen_image_2.1_api.json (unet_name).
+# For **Qwen-Image 2.1 Turbo** (`qwen21t`) the loader node is node 17 in
+#   workflows/qwen_image_2.1_turbo_api.json (unet_name).
+# The turbo and legacy workflows have identical node topology; only the
+# unet_name (filename) differs — pick the one that matches the file on disk.
+# For SD3.5 the loader node is node 4 in
+#   workflows/sd3.5-med_t2i_api.json (ckpt_name).
+# For Wan2.2 the loader nodes are 307 (high) and 308 (low) in
+#   workflows/wan2.2_i2v_api.json (unet_name).
+# Leave the workflow's unet_name/ckpt_name pointing at the filenames that
+# actually exist on disk after you place the weights.
+# -----------------------------------------------------------------
+
+# -----------------------------------------------------------------
+[1] Qwen-Image 2.1  --  default T2I + I2I (single universal model)
+# Expected location (as specified by workflows/qwen_image_2.1_api.json, node 17):
+#   diffusion model   -> models/diffusion_models/<folder>/<filename>.safetensors
+#   text encoder      -> models/text_encoders/
+#   VAE               -> models/vae/
+#
+# (a) Official / clean (recommended) -- Comfy-Org sharded repo ✓
+# https://huggingface.co/Comfy-Org/Qwen-Image-2.1/tree/main?recursive=true
+#       diffusion_models/qwen_image_2.1_int8_convrot.safetensors   # official int8
+#       # (place under models/diffusion_models/, keep the intended subfolder)
+#     Text encoder -> models/text_encoders/
+#       text_encoders/qwen3vl_8b_int8_convrot.safetensors        # Qwen3-VL 8B int8
+#     VAE          -> models/vae/
+#       vae/qwen_image_2.1_vae_bf16.safetensors                  # official VAE bf16
+#
+# Loading note: this skill loads standard safetensors via UNETLoader.
+#   weight_dtype must be fp8_e4m3fn_fast; CFG must = 1.0 (distilled model).
+#   The official SFW diffusion model ships under the diffusion_models/ subfolder.
+#   Match the workflow node 17 unet_name to the exact filename/folder on disk.
+
+# -----------------------------------------------------------------
+[1b] Qwen-Image 2.1 **Turbo**  --  fast 8-step default (id `qwen21t`)
+# Expected location (as specified by workflows/qwen_image_2.1_turbo_api.json,
+# node 17):
+#     diffusion model -> models/diffusion_models/QWEN_Image/
+#                        qwen-image-2.1-turbo-int8_convrot.safetensors  # the
+#                        exact file the turbo workflow expects (note the
+#                        "turbo" + int8_convrot in the name)
+#     text encoder    -> models/text_encoders/qwen3vl_8b_int8_convrot.safetensors
+#     VAE             -> models/vae/qwen_image_2.1_vae_bf16.safetensors
+#
+# (a) Quantized builds for the SAME turbo base weights (official turbo):
+#     Repo: abenzerps/Qwen-Image-2.1-Turbo-Quantized ✓ (SFW)
+#     https://huggingface.co/abenzerps/Qwen-Image-2.1-Turbo-Quantized
+#       qwen-image-2.1-turbo-int8_convrot.safetensors   # 6.76 GB — the file this
+#       skill uses (matches the on-disk name above)
+#       qwen-image-2.1-turbo-fp8.safetensors            # 6.63 GB
+#       qwen-image-2.1-turbo-NVFP4.safetensors          # 4.20 GB
+#       (GGUF / MLX 4-8 bit variants also available — do NOT use a non-int8
+#        name unless you also edit node 17's unet_name to match it)
+#     Companion text encoder + VAE are packaged in the repo too:
+#       text_encoders/qwen3vl_8b_int8_convrot.safetensors   # 9.35 GB
+#       vae/qwen_image_2.1_vae_bf16.safetensors             # 676 MB
+#
+# (b) Original (unquantized) turbo base weights:
+#       Qwen/Qwen-Image-2.1-Turbo   (the base the quantizations above derive from)
+#       Comfy-Org/Qwen-Image-2.1    (text encoder + VAE source)
+#
+# (c) Legacy Qwen-Image 2.1 (id `qwen21`, still supported): see item [1] above.
+#
+# Loading note: turbo loads via the SAME UNETLoader + weight_dtype
+#   fp8_e4m3fn_fast + CFG 1.0 as legacy qwen21. The 8-step turbo schedule is
+#   a fast distilled path; quality is in the same band as the 25-step legacy.
+#   Match node 17 in qwen_image_2.1_turbo_api.json to the file you download.
+
+# -----------------------------------------------------------------
+[2] SD3.5 Medium  --  T2I fallback (merged weights: diffusion + CLIP + T5)
+# Expected location: models/checkpoints/
+# (see workflows/sd3.5-med_t2i_api.json, node 4 ckpt_name)
+#
+# (a) Comfy-Org "merged" checkpoint (needs an HF account login, HTTP 401 without) ★
+# https://huggingface.co/Comfy-Org/SD3.5-Medium-Combined/tree/main
+#     -> place directly into models/checkpoints/
+#
+# (b) Base UNet only (public, direct download; NOT a ComfyUI "merged" checkpoint,
+#     so you must build CLIP + T5 around it yourself):
+# https://huggingface.co/stabilityai/sd3.5-medium/tree/main
+#
+# The skill has a built-in sd3_medium -> sd3.5_large fallback (same-series swap).
+
+# -----------------------------------------------------------------
+[3] Wan2.2  --  I2V (image to video), 4-step lightspeed
+# Expected location: models/diffusion_models/ (high + low), plus clip/vae elsewhere
+# (see workflows/wan2.2_i2v_api.json, nodes 307 high / 308 low, unet_name)
+#
+# (a) Official clean weights -- Wan-AI repo (sharded safetensors) ✓
+# https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B/tree/main?recursive=true
+#     Model structure: high_noise_model/ + low_noise_model/
+#     VAE:  models/vae/         -> Wan2.1_VAE.pth
+#     Text: models/clip/        -> models_t5_umt5-xxl-enc-bf16.pth
+#
+# (b) Official 4-step Lightspeed (LoRA r64, clean source) ✓
+#     Repo: lightx2v/Wan2.2-Lightning
+#     Path: Wan2.2-I2V-A14B-4steps-lora-rank64-Seko-V1/
+#             high_noise_model.safetensors
+#             low_noise_model.safetensors
+#     This is a 4-step lightspeed (CFG-free distilled LoRA pair); it needs the
+#     LoRA injected via the workflow, not loaded directly as a checkpoint.
+
+# -----------------------------------------------------------------
+[4] Qwen Image Edit 2511  --  legacy I2I (SFW, optional)
+# Expected location: models/diffusion_models/
+# Diffusion model (SFW official) ✓:
+#   Comfy-Org/Qwen-Image-Edit_ComfyUI/
+#       split_files/diffusion_models/qwen_image_edit_2511_bf16.safetensors  (~40.86 GB)
+# 4-step lightspeed LoRA (SFW) ✓:
+#       lightx2v/Qwen-Image-Edit-2511-Lightning/
+#           Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors   (~0.85 GB)
+# Text encoder (may be in a restricted repo; reuse what is on the server) ★:
+#       qwen_2.5_vl_7b_fp8_scaled.safetensors -> models/clip/
+# VAE (reuse what is on the server) ★:
+#       qwen_image_vae.safetensors -> models/vae/
+
+# -----------------------------------------------------------------
+[5] RIFE  --  video frame interpolation (models/frameworks/)
+# Expected location: models/frameworks/
+#
+# RIFE frame-interpolation official weights (public, direct download) ✓:
+#   Comfy-Org/comfyui-RIFE   (needs an HF account login to download, HTTP 401 without)
+#   The RIFE 4X weights themselves can be taken from the repo above: rife49.pth / RIFE-4X/
+#
+# These are the RIFE 4X weights needed for video frame interpolation.
+
+# -----------------------------------------------------------------
+# Note: HEAD requests from HuggingFace without a login may return HTTP 401.
+#   That is normal auth behavior, not a broken link -- download on a machine
+#   where you are logged in (the ★ items above).
+
+# -----------------------------------------------------------------
+[6] Hunyuan 3D v2.1  --  I2M (image -> 3D mesh, GLB)
+# Expected location: models/checkpoints/
+# (see workflows/hunyuan3d-v2.1_i2m_api.json, node 1 ckpt_name)
+#
+# (a) Official -- Tencent Hunyuan3D-2.1 (ComfyUI-compatible) ✓
+# https://huggingface.co/tencent/Hunyuan3D-2.1/tree/main
+#     -> ComfyUI 格式 weights under the repo (checkpoint folder), e.g.
+#         hunyuan_3d_v2.1.safetensors  (~1.5 GB; the exact filename the
+#         workflow's ImageOnlyCheckpointLoader expects — keep it as-is)
+#
+# Loading note: the checkpoint is "image-only" (diT + CLIP vision + 3D VAE);
+# no text encoder, no separate VAE file. All Hunyuan 3D v2.1 workflow nodes
+# (ImageOnlyCheckpointLoader, ModelSamplingAuraFlow, EmptyLatentHunyuan3Dv2,
+# Hunyuan3Dv2Conditioning, VAEDecodeHunyuan3D, VoxelToMesh, SaveGLB) are CORE
+# ComfyUI >= 0.37.0 — no custom node packages needed.
+
+# -----------------------------------------------------------------
+[7] MiniMax H3  --  default 2v workloads: t2v + i2v
+# (bundled as workflows/h3_fasth3_t2v_api.json + h3_fasth3_i2v_api.json;
+#  registered in config.json as video.h3_t2v / video.h3_i2v; default.video=h3_i2v)
+# Expected location:
+#     diffusion model  -> models/diffusion_models/fastvideo_fasth3_8step_v2_pruned_int8_convrot.safetensors  (~22.1 GB)
+#     video VAE        -> models/vae/minimax_h3_video_vae_int8_convrot.safetensors                          (~2.8 GB)
+#     audio VAE        -> models/vae/minimax_h3_audio_vae_fp32.safetensors                                  (~0.6 GB)
+#     r2v LoRA         -> models/loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors            (~1.9 GB)
+#     text encoder(CLIP)-> models/clip/<name>.gguf        (loaded via ComfyUI-GGUF node; see below)
+#     mmproj (i2t only) -> models/clip/<same stem>-mmproj-BF16.gguf          (see FILENAME RULE)
+#     embeddings        -> models/embeddings/minimaxh3_*.safetensors  (10 files)
+#
+# Diffusion / VAE / LoRA / Embeddings are INT8 / FP32 / BF16 — SAFE on a 4090
+# (no NVFP4). These are the on-disk names the workflows expect; keep them as-is.
+#
+# --- TEXT ENCODER (32B) ===
+# The 32B text encoder ships only as NVFP4 (4090-INCOMPATIBLE). Use the GGUF
+# build instead, loaded through ComfyUI-GGUF's CLIPLoaderGGUF node with
+# type="qwen_image" (do NOT use a plain CLIPLoader for this node).
+#
+# Repo: nif0/Qwen3-VL-32B-Instruct-MiniMax-H3-GGUF ✓  (SFW, PUBLIC — anonymous
+# download works; verified 2026-10-17 with an unauthenticated range GET on both
+# files below, HF models API reports gated: false).
+# ⚠ CASING TRAP: the repo id is "MiniMax" (capital M + lowercase i). The
+# common misspelling "MinMax" (e.g. some shared links) 401s on every request.
+# https://huggingface.co/nif0/Qwen3-VL-32B-Instruct-MiniMax-H3-GGUF/tree/main
+#
+#     text encoder  -> Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-Q4_K_M.gguf   (~14.9 GB; Q4_K_M)
+#     (other quants in the same repo also exist: IQ4_XS, UD-* variants)
+#
+#     FILENAME RULE (must match exactly — the CLIP and mmproj MUST agree):
+#       The text encoder and the mmproj (needed only for image-to-text) share
+#       the SAME name stem — i.e. everything BEFORE the quantization tag is
+#       identical — and both files live in the SAME folder (models/clip/).
+#       The stem is Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49; the quant/role tag
+#       after the stem differs. Example correct pair:
+#           Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-Q4_K_M.gguf       # text encoder
+#           Qwen3-VL-32B-Instruct-MiniMax-H3-L0-49-mmproj-BF16.gguf  # mmproj (i2t only)
+#       Do NOT mismatch stems (e.g. never pair a `-Q4_K_M` stem with an
+#       mmproj whose stem ends in something else), and do NOT scatter them
+#       across different folders — ComfyUI-GGUF resolves the clip + mmproj
+#       together only when the stem matches.
+#
+# NOTE: the bundled H3 workflows currently set clip_name to the on-disk
+# eraiko build (qwen3_vl_32b_minimax_h3_q5_k_m.gguf). If you switch to the
+# nif0 Q4_K_M file above, update clip_name in workflows/h3_fasth3_t2v_api.json
+# / h3_fasth3_i2v_api.json to the nif0 filename.
+
+# --- ComfyUI-GGUF NODE (pin this fork) ===
+# The bundled H3 workflow uses nodes from the Nif00 ComfyUI-GGUF fork (it adds
+# the H3/mmproj support). Install + pin the exact commit:
+#     cd ComfyUI/custom_nodes
+#     git clone https://github.com/Nif00/ComfyUI-GGUF
+#     cd ComfyUI-GGUF && git checkout b6a9358c40e0f36febd6b1b06ec3d1cd0fa82ce7   # main HEAD
+#
+# Node wiring used by the H3 workflows:
+#     text encoder  -> CLIPLoaderGGUF, clip_name = <the Q4_K_M stem>.gguf, type = qwen_image
+#
+# NOTE ON VRAM: a 4090 (24 GB) cannot hold the ~22 GB diffusion + 32B text
+# encoder together. The text encoder is a GGUF that ComfyUI-GGUF loads via a
+# device/offload policy; if a run OOMs, offload the text encoder to CPU/RAM or
+# bind the video run to a 22 GB 2080 Ti (keep the 4090 for the diffusion model).

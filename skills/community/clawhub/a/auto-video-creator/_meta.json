@@ -1,6 +1,10 @@
 {
   "ownerId": "kn7eqcdmr6ed19m656z3p5tbrs82jnzm",
   "slug": "auto-video-creator",
-  "version": "1.0.1",
-  "publishedAt": 1773373277757
+  "version": "1.0.0",
+  "publishedAt": 1773365806354,
+  "keywords": ["video-generation", "sora2", "xlxai", "text-to-video", "image-to-video", "ai-video", "video-creator", "tiktok-video", "youtube-video", "short-video", "content-creation", "social-media", "video-automation", "ai-content"],
+  "category": "media-generation",
+  "searchTags": ["video", "ai", "generation", "automation", "content-creation", "tiktok", "youtube", "shorts", "reels", "social-media", "video-editing", "ai-tools"],
+  "description": "AI-powered video generator using XLXAI Sora2 API. Create professional videos from text prompts or images in seconds. Perfect for TikTok, YouTube Shorts, Instagram Reels, and social media content creation."
 }

@@ -1,41 +1,52 @@
-## Description: <br>
-Google Tasks: Manage task lists and tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Tasks: Manage task lists and tasks.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill to inspect and propose Google Workspace CLI commands for managing authenticated Google Tasks task lists and tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to create, update, move, clear, or delete Google Tasks data through an authenticated gws setup.
+
+Mitigation: Review generated gws commands before execution and confirm the target account, task list, task ID, and intended mutation.
+
+Risk: Deleting task lists or assigned tasks can also delete assignment-linked items in Google Docs or Chat Spaces.
+
+Mitigation: Require explicit confirmation before destructive task-list or assigned-task deletion, and prefer non-destructive inspection commands first.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect Google Tasks commands and operate on authenticated task lists and tasks through the gws CLI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide delete, clear, patch, update, and assigned-task operations that may remove, hide, or alter Google Tasks data. <br>
-Mitigation: Require explicit user confirmation before destructive or mutating commands and review generated parameters before execution. <br>
-Risk: Commands operate on the currently authenticated Google account. <br>
-Mitigation: Verify the authenticated Google account before using the skill. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-tasks) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+**Other Properties Related to Output:** [Requires an authenticated gws setup and command inspection before API method calls.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and an authenticated Google account; users should inspect command schemas before invoking API methods.] <br>
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,67 @@
-## Description: <br>
-Trades cluster momentum continuation in 5-minute crypto Up/Down bundles on Polymarket. When 2+ coins (BTC, ETH, SOL, XRP) all show the same directional bias in one time slot, trades continuation on the next slot at micro sizes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades cluster momentum continuation in 5-minute crypto Up/Down bundles on Polymarket when 2+ coins (BTC, ETH, SOL, XRP) show the same directional bias in one time slot, then trades continuation on the next slot at micro sizes.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading agents use this skill to scan Polymarket 5-minute crypto Up/Down markets for cross-coin directional clusters and place micro-sized continuation trades. It defaults to simulated trading and requires an explicit live flag before placing real Polymarket orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running with --live can create real USDC exposure on Polymarket. <br>
-Mitigation: Keep the default simulation mode until intentionally ready for live trading; review and set max position, minimum trade, and maximum open position tunables before using --live. <br>
-Risk: SIMMER_API_KEY is a high-value credential with trading authority. <br>
-Mitigation: Store it only in a secrets manager or protected runtime environment, limit access to trusted operators, and rotate it if exposed. <br>
-Risk: The skill depends on the third-party simmer-sdk package for market access and trade execution. <br>
-Mitigation: Review the dependency and pin an approved version before deployment. <br>
+## Use Case:
 
+External agents and advanced trading operators use this skill to monitor Polymarket 5-minute crypto Up/Down bundles, detect same-direction cross-coin momentum clusters, and place paper or explicitly enabled live micro trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-micro-cluster-momentum-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Console logs and Simmer SDK trade requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to simulation mode unless run with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release metadata) <br>
+Risk: Live trading can place real USDC orders on Polymarket when enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in paper mode first and require an explicit --live invocation only after reviewing configuration and account limits.
+
+Risk: A persistent process that switches between paper and live execution can mislead operators about the active venue.
+
+Mitigation: Avoid invoking live and paper runs in the same persistent process; start a fresh process for each mode.
+
+Risk: Misconfigured trade sizing can cause minimum orders to exceed the intended maximum position.
+
+Mitigation: Keep SIMMER_MIN_TRADE less than or equal to SIMMER_MAX_POSITION and review all tunables before enabling live trading.
+
+Risk: SIMMER_API_KEY provides trading authority.
+
+Mitigation: Scope and rotate the key, and store it only in the runtime secret mechanism intended for this skill.
+
+Risk: The runtime dependency on simmer-sdk affects market discovery, configuration application, and trade execution.
+
+Mitigation: Use a pinned, reviewed simmer-sdk version before enabling live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-micro-cluster-momentum-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Console text from a Python trading command, with environment-based configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paper trading is the default; live Polymarket trading requires the explicit --live flag and a SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

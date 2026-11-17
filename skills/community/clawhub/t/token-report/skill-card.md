@@ -1,37 +1,47 @@
-## Description: <br>
-Generates a Token usage dashboard screenshot and sends it to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a token-usage dashboard screenshot and sends it to Feishu.
 
-## Publisher: <br>
-[yorha59](https://clawhub.ai/user/yorha59) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yorha59](https://clawhub.ai/user/yorha59)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare a token-usage dashboard, capture it as a screenshot, and send the report to a specified Feishu chat group. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Token and context usage data may be posted to an unintended Feishu group or shared before approval. <br>
-Mitigation: Confirm the Feishu chat ID and data-sharing approval before sending; use a preview or confirmation step when accidental posting would matter. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yorha59/token-report) <br>
+## Use Case:
+
+Workspace operators use this skill to present token and context usage for named sessions as an HTML dashboard, capture a Canvas screenshot, and send it to a predefined Feishu group.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Token and context usage details for named sessions may be sent to a hard-coded Feishu chat.
+
+Mitigation: Install only in the intended workspace after confirming the Feishu recipient is authorized; avoid use elsewhere unless the destination is configurable and confirmed at runtime.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [code, guidance, configuration, API calls] <br>
-**Output Format:** [Markdown instructions with an embedded HTML dashboard template and tool-action parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a dashboard screenshot workflow for Feishu delivery.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with an embedded HTML dashboard template and tool command parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

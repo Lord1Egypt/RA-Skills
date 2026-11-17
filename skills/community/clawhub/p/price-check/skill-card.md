@@ -1,41 +1,67 @@
-## Description: <br>
-Searches major Chinese ecommerce platforms for current prices, filters noisy or mismatched listings, recommends whether to buy, and records local price history for later comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Price-check searches major Chinese e-commerce platforms for live product prices, filters noisy listings, tracks local price history, and returns a buy-or-wait recommendation with purchase links.
 
-## Publisher: <br>
-[yuxiaoyang2007-prog](https://clawhub.ai/user/yuxiaoyang2007-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuxiaoyang2007-prog](https://clawhub.ai/user/yuxiaoyang2007-prog)
 
-## Use Case: <br>
-OpenClaw users use this skill to compare product prices across Taobao/Tmall, JD, PDD, Suning, Vipshop, Kaola, Douyin, Kuaishou, and 1688, then receive a buy, wait, or insufficient-data recommendation. It also supports local SQLite price history and optional Feishu Bitable sync for users who want cross-device tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub price-check skill page](https://clawhub.ai/yuxiaoyang2007-prog/price-check) <br>
-- [Report template](references/report-template.md) <br>
-- [Configuration example](config.example.json) <br>
-- [shopmind-price-compare source acknowledgement](https://clawhub.ai/skills/shopmind-price-compare) <br>
-- [Upstream author profile](https://clawhub.ai/users/xiaohaook) <br>
+External users and shopping agents use this skill to compare prices across Chinese e-commerce marketplaces, screen out noisy or mismatched listings, and decide whether a product is worth buying now.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the CLI plus a human-facing Markdown shopping report rendered by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product verdicts, filtered candidate listings, search links, local SQLite history summaries, and optional Feishu sync records; product search terms are sent to the maishou88.com price API.] <br>
+Global
 
-## Skill Version(s): <br>
-0.6.4 (source: server release evidence and CHANGELOG, released 2026-04-26) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Product searches may be sent to maishou88.com.
+
+Mitigation: Use the skill only for queries acceptable to share with that external service, and avoid sensitive procurement or personal shopping searches.
+
+Risk: Local query history is retained in a SQLite database.
+
+Mitigation: Review retention needs before deployment, clear the local data directory when needed, or configure the history provider to noop if local retention is not acceptable.
+
+Risk: Optional Feishu sync can send shopping queries and results to a Feishu workspace and relies on plaintext local configuration.
+
+Mitigation: Keep Feishu sync disabled unless explicitly approved, restrict Bitable permissions, and protect the local config file containing Feishu tokens or table identifiers.
+
+Risk: The skill attempts to control the agent's final response by requiring exact rendering of its report field.
+
+Mitigation: Treat the report as data to preserve where useful, while still applying the agent platform's policy, security, and user-context requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuxiaoyang2007-prog/skills/price-check)
+- [Project homepage](https://github.com/yuxiaoyang2007-prog/price-check)
+- [Report template](references/report-template.md)
+- [Configuration example](config.example.json)
+- [shopmind-price-compare dependency attribution](https://clawhub.ai/skills/shopmind-price-compare)
+- [Upstream author profile](https://clawhub.ai/users/xiaohaook)
+- [OpenClaw runtime](https://openclaw.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON with a human-facing Markdown report field; --report emits Markdown only.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live price candidates, filtering details, verdicts, purchase/search links, local history summaries, and optional Feishu sync records.]
+
+## Skill Version(s):
+
+0.6.4 (source: server release evidence and CHANGELOG, released 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

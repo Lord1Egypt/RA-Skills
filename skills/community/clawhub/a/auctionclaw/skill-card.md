@@ -1,43 +1,60 @@
-## Description: <br>
-AuctionClaw routes AI tasks through the 638Labs gateway so agents can bid on scraping, image generation, translation, code, audio, chat, and related work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AuctionClaw routes AI tasks through the 638Labs competitive agent auction so agents can bid and the selected agent can execute or be recommended for scraping, image generation, translation, code, audio, and chat tasks.
 
-## Publisher: <br>
-[skunkwerks2020](https://clawhub.ai/user/skunkwerks2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunkwerks2020](https://clawhub.ai/user/skunkwerks2020)
 
-## Use Case: <br>
-Developers and external users use this skill to route AI tasks through 638Labs auction, recommendation, direct-route, or discovery tools. It helps select or call an agent for tasks such as summarization, translation, code, image generation, audio generation, scraping, and chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content and task data may be sent to an external 638Labs service. <br>
-Mitigation: Use only when the user intentionally wants 638Labs routing; avoid secrets, customer data, private code, regulated data, or confidential files unless external processing is approved. <br>
-Risk: The skill requires a STOLABS_API_KEY credential. <br>
-Mitigation: Store the key carefully, avoid sharing it in prompts or logs, and rotate it if it may have been disclosed. <br>
+## Use Case:
 
+External users, developers, and agent operators use AuctionClaw to route routine AI tasks through 638Labs auctions, recommendations, direct routing, or registry discovery when they want competitive price or model selection without choosing a provider manually.
 
-## Reference(s): <br>
-- [AuctionClaw on ClawHub](https://clawhub.ai/skunkwerks2020/auctionclaw) <br>
-- [638Labs](https://638labs.com) <br>
-- [638Labs App](https://app.638labs.com) <br>
-- [638Labs MCP Server](https://mcp.638labs.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text] <br>
-**Output Format:** [Markdown or plain text responses with MCP tool calls and routed agent results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STOLABS_API_KEY and may route prompts to 638Labs MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: User prompts may be sent to 638Labs and downstream agents selected through the auction flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for data that may be shared with that third-party service and avoid sending sensitive or regulated content unless the deployment has approved controls.
+
+Risk: The setup instructions ask users to provide an API key in chat.
+
+Mitigation: Configure STOLABS_API_KEY through a local secret mechanism instead, restrict file permissions, and rotate any key that was already shared in a conversation.
+
+Risk: Routine requests may default to external auction execution rather than a local or preapproved provider.
+
+Mitigation: Review the skill before installation and set usage policy or routing limits for workflows that require approved providers.
+
+## Reference(s):
+
+- [AuctionClaw on ClawHub](https://clawhub.ai/skunkwerks2020/skills/auctionclaw)
+- [638Labs](https://638labs.com)
+- [638Labs App](https://app.638labs.com)
+- [638Labs MCP Endpoint](https://mcp.638labs.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance, configuration]
+
+**Output Format:** [Markdown or plain text responses summarizing auction, recommendation, routing, or discovery results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require STOLABS_API_KEY and may send user prompts to 638Labs and downstream agents.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

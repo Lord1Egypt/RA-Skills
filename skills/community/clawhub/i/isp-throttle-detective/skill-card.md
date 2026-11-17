@@ -1,42 +1,58 @@
-## Description: <br>
-Run speed tests to multiple endpoints, log results, and detect ISP throttling patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs multi-endpoint download and upload speed tests, logs timestamped results, and produces analyses and Markdown evidence reports for ISP throttling patterns.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Consumers, support-focused users, and network engineers use this skill to collect repeated multi-endpoint speed measurements, analyze peak/off-peak and CDN differences, and generate evidence reports for ISP support conversations or plan decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs active bandwidth tests that download and upload data to configured endpoints. <br>
-Mitigation: Review endpoint URLs, byte limits, timeouts, and any cron or launchd schedule before running, especially on metered or constrained connections. <br>
-Risk: Local logs and reports retain timestamps and network performance history. <br>
-Mitigation: Limit, rotate, or delete the ~/.isp-throttle-detective log and report directory when that history should not be retained. <br>
+## Use Case:
 
+External users and developers use this skill to collect repeated internet speed measurements, compare peak and off-peak behavior, detect CDN or endpoint-specific slowdowns, and prepare evidence for ISP support conversations or plan decisions.
 
-## Reference(s): <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Example Configuration](assets/config.example.json) <br>
-- [ClawHub Release Page](https://clawhub.ai/newageinvestments25-byte/isp-throttle-detective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON analysis, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local JSONL logs, machine-readable JSON summaries, and Markdown evidence reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scheduled tests create recurring third-party network traffic and can consume bandwidth through repeated downloads and uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured endpoints, byte limits, timeout settings, and cron or launchd schedule before enabling recurring runs, especially on metered, enterprise, or sensitive networks.
+
+Risk: Timestamped local speed-test history may reveal usage patterns or network performance details.
+
+Mitigation: Store logs only where appropriate, review generated reports before sharing them, and delete ~/.isp-throttle-detective when the history is no longer needed.
+
+Risk: Throttling conclusions depend on sufficient samples across multiple hours or days and may be misleading with sparse data.
+
+Mitigation: Collect enough measurements across peak and off-peak periods before relying on the generated analysis or report.
+
+## Reference(s):
+
+- [Setup Guide](references/setup-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/isp-throttle-detective)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON test results, JSONL logs, human-readable analysis text, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local history under ~/.isp-throttle-detective and reports under ~/.isp-throttle-detective/reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

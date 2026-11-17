@@ -1,45 +1,60 @@
-## Description: <br>
-Microsoft SharePoint and OneDrive integration with managed OAuth for managing sites, lists, libraries, files, folders, permissions, content types, and SharePoint operations via Microsoft Graph API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft SharePoint and OneDrive integration with managed OAuth. Manage sites, lists, libraries, files, folders, permissions, content types, and SharePoint operations via Microsoft Graph API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Employees, developers, and site administrators use this skill to work with SharePoint and OneDrive content through ClawLink-managed Microsoft OAuth, including site discovery, list and library operations, file workflows, permissions, sharing links, search, and site management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access to the connected Microsoft account and can access SharePoint and OneDrive resources available to that account. <br>
-Mitigation: Use a least-privileged Microsoft account where possible and review requested Microsoft permissions during OAuth connection. <br>
-Risk: The skill supports write, delete, sharing-link, and permission-change operations that can alter content or access controls. <br>
-Mitigation: Confirm the target resource and intended effect before writes, deletes, sharing-link creation, or permission changes. <br>
+## Use Case:
 
+Employees, external collaborators, and developers use this skill to connect an agent to SharePoint and OneDrive through ClawLink-managed OAuth, then discover sites, manage lists and document libraries, work with files and folders, and perform permissions or content operations.
 
-## Reference(s): <br>
-- [ClawHub SharePoint Skill](https://clawhub.ai/hith3sh/sharepoint-sites) <br>
-- [ClawLink Dashboard](https://claw-link.dev/dashboard?add=sharepoint) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [Microsoft Graph SharePoint API](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint) <br>
-- [Microsoft Graph List Resource](https://learn.microsoft.com/en-us/graph/api/resources/list) <br>
-- [SharePoint Permissions](https://learn.microsoft.com/en-us/sharepoint/how-to-set-up-and-configure-sharepoint-add-ins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include SharePoint and OneDrive operational guidance, ClawLink setup commands, and JSON-style parameters for live tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release evidence) <br>
+Risk: The skill depends on an unpinned external plugin that handles Microsoft OAuth and SharePoint requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin and OAuth consent before installing, and install only if the hosted third-party integration is acceptable for the environment.
+
+Risk: The connected account may expose broad SharePoint write, delete, sharing, and permission operations.
+
+Mitigation: Use an account with the minimum SharePoint permissions needed, and confirm every write, delete, sharing, or permission-changing action before execution.
+
+## Reference(s):
+
+- [ClawHub SharePoint Skill](https://clawhub.ai/hith3sh/skills/sharepoint-sites)
+- [Microsoft Graph SharePoint API](https://learn.microsoft.com/en-us/graph/api/resources/sharepoint)
+- [SharePoint REST API](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-in/set-up-a-sharepoint-add-in-development-environment)
+- [SharePoint Permissions](https://learn.microsoft.com/en-us/sharepoint/how-to-set-up-and-configure-sharepoint-add-ins)
+- [Working with Lists and List Items](https://learn.microsoft.com/en-us/graph/api/resources/list)
+- [Sharing and Permissions in SharePoint](https://learn.microsoft.com/en-us/graph/api/resources/permission)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, OAuth connection, SharePoint operation guidance, and confirmation guidance for write or permission-changing actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

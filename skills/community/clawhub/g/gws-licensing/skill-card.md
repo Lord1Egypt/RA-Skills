@@ -1,36 +1,49 @@
-## Description: <br>
-Google Workspace Enterprise License Manager: Manage product licenses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Enterprise License Manager: Manage product licenses.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Google Workspace administrators and automation engineers use this skill to inspect and run gws licensing commands for assigning, revoking, listing, and updating user product licenses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable account-impacting Google Workspace license assignment, revocation, or reassignment without built-in confirmation or scoping safeguards. <br>
-Mitigation: Use least-privilege credentials, verify the active tenant and account before each command, and require clear human confirmation before any license assignment, revocation, or reassignment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Administrators and developers use this skill to guide Google Workspace Enterprise License Manager operations through the gws CLI, including assigning, revoking, listing, and updating product license assignments.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and shared Google Workspace authentication prerequisites.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: License assignment, revocation, patch, and update commands can change or remove user access.
+
+Mitigation: Review proposed gws licensing commands before approving execution, and inspect method parameters with gws schema before building params or JSON flags.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-licensing)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and shared Google Workspace authentication prerequisites.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

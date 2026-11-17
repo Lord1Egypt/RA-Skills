@@ -1,39 +1,58 @@
-## Description: <br>
-Fetches ZoneBourse stock slugs, categorized news article links, and article metadata and content using local Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch stock slugs, retrieve categorized ZoneBourse news article links, and read article metadata and content through local Python scripts.
 
-## Publisher: <br>
-[fredguile](https://clawhub.ai/user/fredguile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredguile](https://clawhub.ai/user/fredguile)
 
-## Use Case: <br>
-Developers and market-analysis users can use this skill to look up ZoneBourse stock identifiers, retrieve recent news links by category, and extract article dates, titles, content, and paywall status for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to export and persist ZoneBourse session cookies in a local plaintext file. <br>
-Mitigation: Treat cookies.txt like a password: do not share it, commit it, back it up to shared storage, or leave it readable by other users; rotate or log out the ZoneBourse session if the file may have been exposed. <br>
+## Use Case:
 
+Developers and market-analysis agents use this skill to look up ZoneBourse stock slugs, collect categorized market-news links for a stock, and extract article dates, titles, content, and paywall status.
 
-## Reference(s): <br>
-- [Zonebourse skill page](https://clawhub.ai/fredguile/zonebourse) <br>
-- [Publisher profile](https://clawhub.ai/user/fredguile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts return stock slugs, categorized article URLs, and article fields including date, title, content, paywall status, URL, and errors when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Subscriber session cookies can expose account access if stored or shared insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only cookies for an account you control, treat cookies.txt as a password-equivalent secret, restrict file permissions, and never commit cookie files.
+
+Risk: The article reader accepts a URL argument and sends the cookie header with the request.
+
+Mitigation: Run read_article.py only with verified ZoneBourse HTTPS article links and add hostname allowlisting before relying on subscriber cookies.
+
+Risk: Automated requests may be rate limited or blocked by the external site.
+
+Mitigation: Follow the documented 2-5 second delay between requests and expect access failures or paywall-only teaser responses.
+
+## Reference(s):
+
+- [ClawHub Zonebourse skill page](https://clawhub.ai/fredguile/skills/zonebourse)
+- [ZoneBourse](https://www.zonebourse.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Article extraction may return full content or a teaser depending on subscriber access; full article content is truncated by the helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

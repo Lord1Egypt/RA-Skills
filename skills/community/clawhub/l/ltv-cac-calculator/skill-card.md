@@ -1,40 +1,54 @@
-## Description: <br>
-Compare ecommerce LTV and CAC using realistic order, margin, and retention assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare ecommerce LTV and CAC using realistic order, margin, and retention assumptions so teams can judge whether acquisition compounds value or buys fragile revenue.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Growth, ecommerce, and finance teams use this skill to clarify LTV and CAC assumptions, estimate customer value against acquisition cost, and decide whether channels or campaigns are healthy enough to scale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated calculations or Python code may reflect incomplete assumptions or an incorrect LTV/CAC definition. <br>
-Mitigation: Review the assumptions, formulas, and generated script before using the results for budget or retention decisions. <br>
-Risk: LTV/CAC analysis can involve sensitive business metrics such as margins, acquisition costs, refunds, and retention. <br>
-Mitigation: Use sanitized or approved data when possible and avoid sharing confidential metrics unless the assistant session is approved for that data. <br>
+## Use Case:
 
+External ecommerce operators, growth teams, and analysts use this skill to clarify LTV/CAC assumptions, calculate ratios and payback, and decide whether to scale, hold, or improve retention first.
 
-## Reference(s): <br>
-- [LTV CAC Calculator Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with assumptions, LTV/CAC results, risk commentary, recommendations, and reusable Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calculations depend on user-provided lifecycle window, profit basis, CAC scope, and retention assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Financial assumptions may be incomplete or inconsistent, leading to misleading LTV/CAC recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the lifecycle window, profit basis, CAC inclusions, refund or fulfillment costs, and sensitive inputs before using results for budget decisions.
+
+Risk: Most source instructions are in Chinese, which may reduce reviewer comprehension for non-Chinese readers.
+
+Mitigation: Review translated prompts and expected outputs before deployment when reviewers or users do not read Chinese.
+
+## Reference(s):
+
+- [LTV CAC Calculator Output Template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/ltv-cac-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with tables, concise financial analysis, and reusable Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumptions, LTV/CAC summary, health check, recommendation, risk commentary, and a reusable Python script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

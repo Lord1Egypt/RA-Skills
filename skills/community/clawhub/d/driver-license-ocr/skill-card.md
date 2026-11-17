@@ -1,46 +1,56 @@
-## Description: <br>
-Extracts structured fields from Chinese driver license main and secondary pages using the Sugon-Scnet OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes driver's license main and secondary pages and extracts structured fields such as name, certificate number, driving class, issue date, validity period, archive number, and record information.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to submit local driver license images or PDFs to Scnet's OCR service and receive extracted identity, license, archive, validity, and record fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload sensitive driver-license images or PDFs to an external OCR API. <br>
-Mitigation: Confirm the exact file path and document type before each run, and use it only when sending the document to Scnet's OCR service is acceptable. <br>
-Risk: The skill requires an SCNET_API_KEY credential. <br>
-Mitigation: Store the key in a local configuration file with restrictive permissions and avoid pasting credentials into chat. <br>
-Risk: Broad auto-trigger guidance could cause unintended files to be processed. <br>
-Mitigation: Require explicit user confirmation of the target document path before invoking the OCR command. <br>
+## Use Case:
 
+Agents use this skill to submit driver's license images to Scnet's OCR service and return structured JSON fields for document processing workflows. It is intended for cases where the user has permission to process the identity document.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API Documentation Summary](references/api-docs.md) <br>
-- [Driver License OCR Field Summary](assets/templates/fields-summary.md) <br>
-- [Scnet Website](https://www.scnet.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/driver-license-ocr) <br>
-- [Publisher Profile](https://clawhub.ai/user/scnet-sugon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON on standard output with text error messages on failure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JSON data contains OCR recognition results and field-level confidence information where returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.yaml, changelog, and server release metadata) <br>
+Risk: Driver's license images contain sensitive identity information and are uploaded to Scnet's remote OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with the document subject's permission and require explicit confirmation before each upload.
+
+Risk: The API endpoint is configurable and the skill sends the API key with each OCR request.
+
+Mitigation: Verify config/.env or environment variables point only to the intended HTTPS Scnet API endpoint, and store SCNET_API_KEY outside chat logs with restricted file permissions.
+
+## Reference(s):
+
+- [Sugon-Scnet OCR API documentation](references/api-docs.md)
+- [Driver license output fields](assets/templates/fields-summary.md)
+- [Scnet website](https://www.scnet.cn)
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/driver-license-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON printed to standard output, with text error messages for setup, authentication, network, rate-limit, or API failures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and optionally SCNET_API_BASE; sends the input file to the configured Scnet OCR API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, skill.yaml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Pixshop MCP connects Claude-compatible clients to Pixshop creative tools for image generation, photo editing, video creation, virtual try-on, face swap, style transfer, and visual effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pixshop MCP integrates 28+ Pixshop AI creative tools for image generation, photo editing, video creation, virtual try-on, face swap, style transfer, and creative effects in Claude-compatible MCP clients.
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-Creators, designers, marketers, and developers use this skill to call Pixshop media-generation and editing tools from Claude Desktop, Cursor, or other MCP clients. It supports workflows such as prompt-assisted image generation, product imagery, portrait transformations, video generation, and publishing Pixshop content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill configures a persistent remote MCP service that can receive prompts, image URLs, portraits, product assets, and generated media. <br>
-Mitigation: Use it only with media you are allowed to send to Pixshop, avoid confidential or sensitive images unless Pixshop's privacy and retention terms have been reviewed, and limit client permissions where supported. <br>
-Risk: Creative-media operations can spend Pixshop credits, including higher-cost video and generation workflows. <br>
-Mitigation: Require explicit user confirmation before invoking credit-consuming actions and monitor account credit usage. <br>
-Risk: The skill includes publishing and remix workflows that may make generated content visible on Pixshop. <br>
-Mitigation: Confirm publication intent, title, description, and rights to source media before using publishing or remix tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/lizhijun/pixshop-mcp) <br>
-- [Pixshop](https://pixshop.app) <br>
-- [Pixshop MCP endpoint](https://pixshop.app/api/mcp) <br>
-- [Pixshop apps](https://pixshop.app/apps) <br>
-- [Pixshop prompt library](https://pixshop.app/prompt-library) <br>
-- [Pixshop pricing](https://pixshop.app/pricing) <br>
+## Use Case:
 
+External users and developers use this skill to configure and operate Pixshop's MCP endpoint from Claude-compatible clients for image generation, image editing, video generation, product media, prompt discovery, and publishing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration and natural-language tool usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference remote Pixshop media URLs, prompts, account credits, and generated image or video assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports broad local Bash and file-read authority that is not needed for the remote Pixshop image and video workflow.
+
+Mitigation: Review requested permissions before installation and prefer a version that removes unnecessary Bash and local file-read permissions.
+
+Risk: Using the workflow may send prompts, image URLs, portraits, product images, and publishable media to Pixshop and backend providers it uses.
+
+Mitigation: Avoid confidential or regulated content unless Pixshop's terms, privacy practices, and provider handling meet the user's requirements.
+
+## Reference(s):
+
+- [Pixshop](https://pixshop.app)
+- [Pixshop MCP endpoint](https://pixshop.app/api/mcp)
+- [Nano Banana Apps](https://pixshop.app/apps)
+- [Pixshop Prompt Library](https://pixshop.app/prompt-library)
+- [Pixshop Effects](https://pixshop.app/effects)
+- [Pixshop Design Agent](https://pixshop.app/agent)
+- [Pixshop Pricing](https://pixshop.app/pricing)
+- [ClawHub skill page](https://clawhub.ai/lizhijun/skills/pixshop-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON MCP configuration and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include prompts, image URLs, video workflow guidance, and Pixshop MCP tool invocations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

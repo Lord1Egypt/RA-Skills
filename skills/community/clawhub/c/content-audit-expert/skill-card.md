@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze and audit content for readability, tone, and sentiment with AI-powered insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and audit content for readability, tone, and sentiment with AI-powered insights.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Content teams, marketers, copywriters, and publishers use this skill to audit drafts and published content for readability, tone, sentiment, SEO performance, audience alignment, and repurposing opportunities. It supports human-reviewed content improvement across channels such as WordPress, Medium, LinkedIn, Slack, and Google Drive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audited drafts may be shared with OpenAI or connected services such as Google Docs, Slack, or WordPress. <br>
-Mitigation: Avoid confidential, regulated, customer-sensitive, or unpublished material unless those services are approved for that data. <br>
-Risk: The skill analyzes content structure and style but does not verify factual accuracy, citations, legal compliance, medical claims, or cultural sensitivity. <br>
-Mitigation: Keep human review in the publishing workflow and consult qualified subject matter experts for regulated or high-impact content. <br>
+## Use Case:
 
+Content teams, marketers, copywriters, and publishers use this skill to audit written content for readability, tone, sentiment, SEO performance, audience alignment, and repurposing opportunities before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/content-audit-expert) <br>
-- [OpenAI API keys](https://platform.openai.com/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown with structured audit reports, recommendations, examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY for AI analysis; optional settings include AUDIT_TEMPERATURE and AUDIT_DEPTH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Sensitive unpublished content may be sent through the configured AI or integration services during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive drafts unless the user has approved that data flow and the configured services meet the user's privacy requirements.
+
+Risk: API keys can be exposed when bearer tokens are placed directly in shell command arguments.
+
+Mitigation: Use a safer API-key verification method and avoid commands that expose credentials through shell history, process listings, or logs.
+
+Risk: Audit recommendations can be incomplete for factual accuracy, plagiarism, regulated claims, or cultural context.
+
+Mitigation: Require human editorial or subject-matter review before using recommendations for publication, legal, medical, or culturally sensitive content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ncreighton/skills/content-audit-expert)
+- [OpenAI API Keys](https://platform.openai.com/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style audit reports with scores, findings, and actionable recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include readability metrics, tone and sentiment classifications, SEO suggestions, audience alignment notes, before/after copy examples, and repurposing ideas.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

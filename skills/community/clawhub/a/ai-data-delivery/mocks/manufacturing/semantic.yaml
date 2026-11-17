@@ -1,0 +1,193 @@
+version: mock-manufacturing-1.0
+domain: 制造·设备与生产
+datasets:
+- name: production_run
+  source: production_run
+  cn: 生产批次事实表
+  grain: 一行一个生产批次
+  primary_key: run_id
+  ai:
+    instructions: 能答产量/不良率/产线分布统计；必带时间围栏（prod_date）
+  fields:
+  - name: run_id
+    role: pk
+    cn: 批次编号
+  - name: prod_date
+    role: time
+    cn: 生产日期
+  - name: line
+    role: dim
+    cn: 产线
+    enum:
+    - A线
+    - B线
+    - C线
+  - name: product
+    role: dim
+    cn: 产品
+    enum:
+    - 零件甲
+    - 零件乙
+    - 零件丙
+  - name: qty
+    role: measure
+    cn: 产量
+  - name: defect_qty
+    role: measure
+    cn: 不良数量
+  ontology_ref: 生产批次
+- name: equipment
+  source: equipment
+  cn: 设备维度表
+  grain: 一行一台设备
+  primary_key: device_id
+  ai:
+    instructions: 能答设备状态/类型/所属产线统计；不做故障预测（超出数据支撑范围应拒答）
+  fields:
+  - name: device_id
+    role: pk
+    cn: 设备编号
+  - name: device_type
+    role: dim
+    cn: 设备类型
+    enum:
+    - 冲压机
+    - 焊接机
+    - 组装线
+  - name: status
+    role: dim
+    cn: 设备状态
+    enum: &id001
+    - 运行
+    - 停机
+    - 检修
+  - name: line
+    role: dim
+    cn: 所属产线
+    enum: &id002
+    - A线
+    - B线
+    - C线
+  - name: last_maintenance_date
+    role: time
+    cn: 最近保养日期
+  ontology_ref: 设备
+relationships:
+- from: equipment
+  to: production_run
+  join_key: line
+  cardinality: 1:N
+  traversable: true
+  ontology_ref: 设备->生产批次:产出
+concepts:
+- term: 关键产线
+  synonyms:
+  - 主力产线
+  expand:
+    dataset: production_run
+    field: line
+    values:
+    - A线
+    - B线
+metrics:
+- id: total_qty
+  name: 总产量
+  synonyms:
+  - 产量合计
+  - 总产出
+  - 生产了多少件
+  type: sum
+  dataset: production_run
+  structured: true
+  status: 已发布
+  expr: SUM(qty)
+  time_field: prod_date
+  unit: 件
+  caliber:
+    note: 全部批次产量合计
+    basis: mock 内部约定
+- id: defect_rate
+  name: 不良率
+  synonyms:
+  - 次品率
+  - 不良品率
+  - 次品占比
+  type: ratio
+  dataset: production_run
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(defect_qty)
+  denominator:
+    expr: SUM(qty)
+  time_field: prod_date
+  unit: '%'
+  caliber:
+    note: 不良数量占总产量（SUM/SUM 加权，禁行级平均）
+    basis: mock 内部约定
+  on_zero_denominator: 'null'
+- id: line_a_qty
+  name: A线产量
+  synonyms:
+  - A线产出
+  - A线生产量
+  - 一号线产量
+  type: sum
+  dataset: production_run
+  structured: true
+  status: 已发布
+  expr: SUM(qty)
+  filters:
+  - field: line
+    values:
+    - A线
+  time_field: prod_date
+  unit: 件
+  caliber:
+    note: A 产线产量合计
+    basis: mock 内部约定
+- id: stopped_device_count
+  name: 停机设备数
+  synonyms:
+  - 停机台数
+  - 停机设备有多少台
+  - 停机数量
+  type: count
+  dataset: equipment
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: status
+    values:
+    - 停机
+  time_field: last_maintenance_date
+  unit: 台
+  caliber:
+    note: 状态为停机的设备数
+    basis: mock 内部约定
+ontology:
+  entities:
+  - name: 生产批次
+    attributes: []
+    note: 一行一个生产批次
+    uid: ent_production_batch
+    evidence:
+      source: data_observed
+  - name: 设备
+    attributes:
+    - name: 设备状态
+      value_type: enum
+      values: *id001
+    - name: 所属产线
+      value_type: enum
+      values: *id002
+    note: 一行一台设备
+    uid: ent_equipment
+    evidence:
+      source: owner_confirmed
+  relations:
+  - from: 设备
+    to: 生产批次
+    predicate: 产出
+    mapping: equi_key

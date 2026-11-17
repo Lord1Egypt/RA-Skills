@@ -1,0 +1,63 @@
+part: nRF7002
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: "Nordic nRF7002 \u2014 WiFi 6 companion IC (pairs with nRF52/53/54)"
+main_page: https://www.nordicsemi.com/Products/nRF7002
+datasheet_path_expected: ../../embedded_dev/nordic/datasheet/nRF7002_datasheet.pdf
+datasheet_source_url: https://www.farnell.com/datasheets/4393752.pdf
+datasheet_source_note: Farnell mirror of Nordic nRF7002 Product Specification v1.2 (2024-07-04, 69 pages, 2.1 MB). nordicsemi.com
+  is Cloudflare-gated as of 2026-06; Farnell /datasheets/ serves the same PDF directly.
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  wireless:
+  - Wi-Fi 6 (802.11ax)
+  - Wi-Fi 5 (802.11ac)
+  - Wi-Fi 4 (802.11n)
+  - Dual-band 2.4 + 5 GHz
+  - 20 MHz channel bandwidth
+  - "Target Wake Time (TWT) \u2014 Wi-Fi 6 power-saving"
+  - OFDMA (Downlink and Uplink)
+  - WPA3 Personal and Enterprise
+  cores: Companion IC (no host CPU; pairs with nRF52/nRF53/nRF54 via SPI/QSPI)
+  tx_power_dbm_max: 20
+  supply_voltage_v_min: 2.9
+  supply_voltage_v_max: 4.5
+  operating_temp_c_min: -40
+  operating_temp_c_max: 85
+  package:
+  - QFN48 (6x6 mm)
+  - WLCSP81 (3.8x3.4 mm)
+  host_interface: SPI / QSPI
+  paired_with:
+  - "nRF52840 (BLE SoC + Wi-Fi via nRF7002 \u2192 Matter over Wi-Fi)"
+  - "nRF5340 (BLE SoC + Wi-Fi via nRF7002 \u2192 Matter border router)"
+  - nRF54L15 (BLE + Thread/Zigbee SoC + Wi-Fi via nRF7002)
+  use_case_tier: Matter border router, smart home gateway, IoT with Wi-Fi + BLE
+  security:
+  - Advanced coexistence with BLE/Thread/Zigbee
+  - WPA3 security suite
+unverified:
+- exact RX sensitivity per band/MCS index
+- exact current consumption in TWT sleep / active modes
+notes:
+- Promoted from placeholder to verified on 2026-06-28 (datasheet). Enriched on 2026-06-30 with marketing-level Wi-Fi 6 features
+  (TWT, OFDMA, WPA3) from nordicsemi.com product page via Firecrawl.
+- "nRF7002 \u2014 Nordic WiFi 6 companion IC. Pairs with nRF52840 / nRF5340 / nRF54L15 for Matter over WiFi."
+- 'Use case: Matter border router, smart home gateway, IoT with WiFi + BLE.'
+- 'Cross-reference: comparable to TI CC3300 in Matter border router design tier.'
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify against local datasheet PDF: 21/23 spec fields matched
+  (91%). Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-28T09:39:20+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

@@ -1,0 +1,135 @@
+{
+  "_what_this_is": "Measured output-token counts from real, paid calls to POST /v1/images/generations. ofox-image.sh reads this file to produce the ROUGH estimate that --dry-run prints. A model with no measurement here gets no estimate at all — the script says it cannot predict the cost and why, rather than borrowing another model's token count. Borrowed numbers look like measurements and are not.",
+  "_why_it_is_needed": "An image bills per output token (cost = input_tokens * pricing.input + output_tokens * pricing.output_image) and the token counts only exist once the response comes back. Unlike video, where duration is an input and the price is exact before submitting, the only thing that makes a pre-flight image estimate possible at all is a previously measured token count for that same model.",
+  "_how_to_add_a_row": "Run one real generation with the model, take USAGE_OUTPUT_TOKENS straight from the printed output (never a derived or rounded figure), and record it with the date and the exact prompt/size used — plus the `quality` and `size` the call passed, which are not optional metadata: see _what_the_count_does_depend_on for the run that proved a row without them prices a different request 26x wrong. A second pair for a model that already has a row goes in additional_measurements rather than overwriting the first, because both are true, each for its own pair. Then update references/pricing.md's anchor table to match. ⚠️ CAPTURE THE OUTPUT AS YOU RUN IT: ofox-image.sh writes NO sidecar, unlike ofox-video.sh which saves a .json next to every mp4. The numbers this rule asks for exist only on your terminal and are gone when the shell closes. Pipe the run through `tee` to a log, or copy the figures here immediately. This is not hypothetical — the 1792x1008 edit anchor below was first written up as 'output tokens unrecorded and unrecoverable', with a never-under-quote disclosure published on that premise, purely because the output had scrolled away; it was recovered from a session transcript, not from disk. Adding a sidecar to the script is a separate change and has not been made.",
+  "_what_the_count_does_not_depend_on": "Prompt content. Measured 2026-09-02: two unrelated prompts ('A simple red apple on a white table' and 'A wooden sailboat on a calm lake at sunrise, wide shot') at --quality low --size 1024x1024 produced byte-identical usage on both mai-image-2.5-flash (14 in / 1024 out) and gpt-image-2 (14 in / 196 out). Combined with gemini's three 1120s at input lengths 8, 51 and 79, the working model is: output_tokens is fixed by model + size + quality, not by what is being drawn. That is exactly why a single measured anchor can price a later run with a different prompt — the anchor would be worthless otherwise. It is two samples per model, not a proof; a count that moves with the prompt would falsify it, so record the counterexample here if one ever shows up.",
+  "_what_the_count_does_depend_on": "Quality and size — and by a factor large enough to wreck a cost table. Measured 2026-09-04: openai/gpt-image-2 at --quality high --size 1792x1024 reported 5063 output tokens and a reported IMAGE_COST of 0.154035 USD (15.4 cents), against the 196 output tokens and ~0.6 cents the same model's anchor was measured at (--quality low --size 1024x1024). That is ~26x, on one model, from changing nothing but the two flags. The estimate this repo printed before that run was the 196-token one, because the anchor row carried no record of the pair it was measured at and the script's lookup (.anchors[model].output_tokens) never sees what was requested. Hence the `quality` and `size` fields now on every anchor: AN ANCHOR IS ONLY VALID FOR THE QUALITY+SIZE PAIR IT WAS MEASURED AT. Read those two fields before relaying a --dry-run figure, and when the caller is generating at a different pair, say so instead of passing the number along — for gpt-image-2, the high/1792x1024 entry in additional_measurements is the honest figure for a large, high-quality frame. What CHANGED on 2026-09-05, and it is the fix this note asked for: the lookup is pair-aware. ofox-image.sh's anchor_measurements() flattens each model's own row plus its additional_measurements into a list of measured points, and print_estimate() quotes the point whose quality and size match the request. When none does — including whenever quality or size is 'auto' or the size flag is omitted, since the API then picks and no pair can be named — it quotes the DEAREST point that model has, labelled ROUGH UPPER BOUND and carrying the pair it came from, so the ceiling is visible as a ceiling. Nothing is ever interpolated between two measured points, and no count is ever borrowed from another model. This was raised with the repo owner the way this note required and approved on 2026-09-05; it is not a quiet change. Consequence for adding rows: a measurement WITHOUT a quality and size can no longer be priced against a request at all, so the two fields are now load-bearing rather than documentation — references/test/dryrun.test.sh fails if any measured point lacks them.",
+  "_cost_is_not_the_same_claim_as_tokens": "output_tokens is observed. The dollar figure beside it is the formula's output, and the formula (output tokens bill entirely at output_image, not at the $3/M `output` rate) has been checked against a real invoice for exactly ONE model. cost_invoice_checked says which. This distinction is not pedantry: reading the model page alone left two readings 20x apart, and only an invoice line settled it — see references/pricing.md. Do not flip a false to true without an invoice.",
+  "anchors": {
+    "google/gemini-3.1-flash-image": {
+      "output_tokens": 1120,
+      "quality": "low",
+      "size": "512x512",
+      "input_tokens_observed": [
+        8,
+        51,
+        79
+      ],
+      "measured": "2026-08-29",
+      "samples": 3,
+      "cost_per_image": "0.06723950",
+      "cost_invoice_checked": true,
+      "note": "1120 on all three observed calls, with input tokens of 8, 51 and 79 — the output count did not move with prompt length. This model ignores --size and always renders 1024x1024, so the count does not vary with the requested size either. The cost is the one figure in this file an actual invoice line confirmed (2026-08-31, 0.06723950 USD for in=79 out=1120, matching to eight decimals). The quality/size fields record the 2026-08-29 call's flags (--quality low --size 512x512); the two 2026-08-31 calls' flags were not written down at the time, and since this model ignores --size outright, 1120 has held across whatever they were. Treat the pair as the one documented call's, not as a claim about all three.",
+      "source": "references/pricing.md"
+    },
+    "microsoft/mai-image-2.5-flash": {
+      "output_tokens": 1024,
+      "quality": "low",
+      "size": "1024x1024",
+      "input_tokens_observed": [
+        14,
+        14
+      ],
+      "measured": "2026-09-02",
+      "samples": 2,
+      "cost_per_image": "0.020038",
+      "cost_per_image_rate_history": "0.026694 until 2026-09-15, at output_image 0.000026. Ofox moved the rate to 0.0000195 and the recorded figure went stale in the OVER-quoting direction, by 33%, which is the harmless direction and is exactly why nobody noticed for days. Found by refreshing models-snapshot.json: a hardcoded dollar figure derived from a vendor's rate is a copy of a fact this repo does not own, and the imagecost suite failed at HEAD on the same cause. The TOKEN COUNTS above (14 in / 1024 out) are the measurement and did not move; only the multiplication did. When a rate moves again, recompute rather than remeasure — and check pricing.md's per-image table and SKILL.md's chain table, which quote the same figure in cents.",
+      "cost_invoice_checked": false,
+      "note": "The chain's second model. Two calls at --quality low --size 1024x1024 with unrelated prompts both reported 14 in / 1024 out. ofox-image.sh printed IMAGE_COST 0.026694 for them at the rate in force that day (14*0.000005 + 1024*0.000026); at the current 0.0000195 rate the same token counts come to 0.020038, which is what cost_per_image now holds. That figure is the formula's, not an invoice's — the formula itself was invoice-verified on gemini-3.1-flash-image only, so applying it here is an assumption that a real bill has not yet been held up against. The quality/size fields say what those two calls passed. Nothing here measures this model at a larger size or a higher quality, and gpt-image-2's 2026-09-04 run (see _what_the_count_does_depend_on) is the reason not to assume 1024 travels: the three 1792x1024 runs a scenario skill made with this model never had their token counts recorded, so the count for that pair is simply unknown.",
+      "source": "references/pricing.md"
+    },
+    "openai/gpt-image-2": {
+      "output_tokens": 196,
+      "quality": "low",
+      "size": "1024x1024",
+      "input_tokens_observed": [
+        14,
+        14,
+        14
+      ],
+      "measured": "2026-09-02",
+      "samples": 3,
+      "cost_per_image": "0.00595",
+      "cost_invoice_checked": false,
+      "additional_measurements": [
+        {
+          "output_tokens": 5063,
+          "quality": "high",
+          "size": "1792x1024",
+          "measured": "2026-09-04",
+          "samples": 1,
+          "cost_per_image": "0.154035",
+          "cost_invoice_checked": false,
+          "note": "One real, paid run made through a scenario skill: STATUS completed, MODEL_SOURCE request, SIZE 1792x1024, USAGE_OUTPUT_TOKENS 5063, IMAGE_COST 0.154035 (15.4 cents). The dollar figure is the job's own reported IMAGE_COST, not an invoice line — cost_invoice_checked is false here for the same reason it is false above, the formula has only ever been reconciled against a real bill on google/gemini-3.1-flash-image. This run is also the first evidence that gpt-image-2 honours --size exactly: the request, the response's own SIZE echo and the saved file's real pixels all read 1792x1024, unlike gemini (two-way mismatch) and mai-image-2.5-flash (three-way). Honouring the request is not the same as a usable ratio though — 1792x1024 is 1.75, not 16:9, and the frame still had to be cropped to 1792x1008 before it could be attached to a Seedance job. See references/pricing.md."
+        }
+      ],
+      "note": "Second in the priority chain. Three calls at --quality low --size 1024x1024 (two with unrelated prompts, one after the fix below) all reported 14 in / 196 out. 196 is genuinely that much lower than mai-flash's 1024 — observed three times, so do not 'correct' it toward the others. 0.00595 is what ofox-image.sh itself now prints as IMAGE_COST (as a bare number, no currency symbol), but it is still the FORMULA's output, NOT invoice-checked: the formula (output tokens bill entirely at output_image) was settled by a real invoice on gemini-3.1-flash-image only. History worth keeping: the first two runs printed no cost at all, because this model's response carries no `model` field and the code looked the literal string 'unknown' up in the rate table. Fixed 2026-09-02 — the requested id is used when the response omits one, while a response that echoes a DIFFERENT id is reported as-is (upstream may route elsewhere, and hiding that would misprice the run). Verified by a third real call. 2026-09-04 — a fourth call, at --quality high --size 1792x1024, reported 5063 output tokens and IMAGE_COST 0.154035, about 26x this row's ~0.6 cents; it is in additional_measurements rather than replacing the numbers above, because 196 is still correct for the pair it was measured at. What that run exposed is how the row was written, not a wrong count: with no quality/size qualifier on it, ~0.6 cents got quoted for a high-quality 1792x1024 frame and the bill came in 26x higher. The same run also had a first attempt refused — this model does not accept --quality standard (HTTP 400, upstream message: Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'), nothing billed — so any future anchor for gpt-image-2 can only be measured at one of those four values, and `standard`, which mai-image-2.5-flash accepts, is not one of them.",
+      "source": "references/pricing.md"
+    }
+  },
+  "_edit_anchors_are_a_separate_section_on_purpose": "edit_anchors below holds measurements from POST /v1/images/edits. They are NOT in `anchors` and are not read by the same code path, because an edit's token counts are not a generation's and mixing them would be the borrowed-number mistake this whole file exists to refuse. Same model, same day, 2026-09-15: openai/gpt-image-2 spent 196 output tokens on a 1024x1024 generation and 301 on an edit. More importantly an edit ALSO bills the image you upload — 576 of its 608 input tokens were the picture — a cost component a generation has no equivalent of, priced off the catalog's separate `pricing.image` key rather than `pricing.prompt`. An edit anchor therefore carries input_tokens and input_size as first-class fields, which generation anchors do not need.",
+  "_an_edit_anchor_is_matched_on_the_INPUT_image_not_on_quality_and_size": "This is the one place an edit anchor differs structurally from a generation anchor, and getting it backwards would rebuild the 26x defect on the other endpoint. A generation anchor is matched on the (quality, size) PAIR THE REQUEST SENDS. An edit anchor is matched on the INPUT IMAGE'S SIZE, because that is what the measurements say drives it. Two of the three points on record share a model, a quality, and a byte-for-byte identical 1672x941 output size, and still report 301 against 129 output tokens — so (model, quality, output size) does not determine an edit's token count, and an estimate keyed on it would be keyed on the wrong thing. What the points do track is the upload: 576 input image tokens for an 854x480 input, 240 for 320x180, 256 for 256x256, 1508 for 1792x1008. NOTE WHAT THE FOURTH POINT DID TO THE ARGUMENT: the OUTPUT token counts are 129/229/301/129 ordered by input pixels, so they do not track the input either — the largest input ties the smallest for the lowest count. Matching on input_size is still the right key, but for a narrower reason than this note originally gave: it is the INPUT IMAGE token count that moves with the file, and at large sizes that term is most of the bill (1508*0.000008 = 74% of the 1792x1008 run's 0.016249). The conclusion held and its stated reason had to be narrowed. ofox-image.sh's print_edit_estimate therefore measures the caller's own --image with ffprobe and quotes the point measured at that input size; with no match it quotes the DEAREST point, labelled ROUGH UPPER BOUND, and never interpolates between them. WITHDRAWN on the third sample: the first two points had output tokens at roughly half the input image tokens (0.523, 0.538) and that was written down as a pattern worth testing rather than a law worth encoding. It was tested on 2026-09-15 with a 256x256 input and came back 229/256 = 0.895, so the ratio is not a ratio. Recording it as a pattern and keeping it out of the code is the only reason its collapse cost nothing — had print_edit_estimate interpolated on it, every unmatched input size would now be quoted at roughly half of what it bills.",
+  "edit_anchors": {
+    "openai/gpt-image-2": {
+      "output_tokens": 301,
+      "input_tokens": 608,
+      "input_image_tokens": 576,
+      "input_text_tokens": 32,
+      "input_size": "854x480",
+      "output_size": "1672x941",
+      "quality": "low",
+      "measured": "2026-09-15",
+      "samples": 1,
+      "cost_per_edit": "0.013798",
+      "cost_invoice_checked": false,
+      "additional_measurements": [
+        {
+          "output_tokens": 129,
+          "input_tokens": 273,
+          "input_image_tokens": 240,
+          "input_text_tokens": 33,
+          "input_size": "320x180",
+          "output_size": "1672x941",
+          "quality": "low",
+          "measured": "2026-09-15",
+          "samples": 2,
+          "cost_per_edit": "0.005955",
+          "cost_invoice_checked": false,
+          "note_on_the_second_sample": "Reproduced on a third real edit the same day, same 320x180 input, DIFFERENT prompt ('Change the red square to a yellow circle of the same size and position') and with --target-aspect 16:9. input_image_tokens 240 and output_tokens 129 came back IDENTICAL; only input_text_tokens moved, 33 to 27, with the prompt's own length. So at a fixed input size the image and output token counts are stable and the prompt does not move them — the same shape as the generation-side finding in _what_the_count_does_not_depend_on, keyed on the input rather than the output. cost_per_edit for that run was 0.005925, the difference being the six text tokens. That run is also what verified the crop path end to end: 1672x941 delivered, centre-cropped to 1664x936, which is 16/9 exactly rather than approximately.",
+          "note": "Second real edit, run through ofox-image.sh's own edit subcommand rather than by hand: a 320x180 PNG of a red square on a pale background, prompt 'Change the red square to blue. Do not move it, do not resize it, and leave the background exactly as it is.' The square came back blue, in the same fractional position and at the same fractional size, on the same background. An edit, replicated on a second input. Two things this point establishes that the first could not, and both contradict what a reader would carry over from the generations anchors above. (1) THE OUTPUT SIZE IS DERIVED FROM THE INPUT'S ASPECT RATIO, NOT ITS PIXEL COUNT: 854x480 and 320x180 are both 16:9 and both returned exactly 1672x941. (2) OUTPUT TOKENS ARE NOT FIXED BY (model, size, quality) ON THIS ENDPOINT. Same model, same quality, identical 1672x941 output — and 301 output tokens for the first edit against 129 for this one. The generation-side working model in _what_the_count_does_not_depend_on does not hold here. What the two points do line up on is the input: 301/576 = 0.523 and 129/240 = 0.538, so output tokens look like roughly half the input image tokens. TWO SAMPLES, ONE MODEL — that is a pattern to test, not a rule to quote, and it is written here rather than into any code. TESTED AND FALSE, see the 256x256 point below: 229/256 = 0.895."
+        },
+        {
+          "output_tokens": 229,
+          "input_tokens": 289,
+          "input_image_tokens": 256,
+          "input_text_tokens": 33,
+          "input_size": "256x256",
+          "output_size": "1254x1254",
+          "quality": "low",
+          "measured": "2026-09-15",
+          "samples": 1,
+          "cost_per_edit": "0.009083",
+          "cost_invoice_checked": false,
+          "note": "The first edit at a ratio other than 16:9, run during review specifically because the two points above could not support the claim that was written from them. Same prompt and same subject as the 320x180 point, on a 256x256 (1:1) input. The square came back blue, same position, same fractional size, same background — a third confirmation that this endpoint edits rather than redraws, and the first at a new ratio. Two results, one of which overturns a claim and one of which finally establishes one. (1) OUTPUT SIZE REALLY DOES FOLLOW THE INPUT'S ASPECT RATIO: a 1:1 input returned 1254x1254. The two points above could not show this and were over-read as if they had — both were 16:9, so 'the output follows the input ratio' and 'the output is a fixed 1672x941 for this model at this quality' fit them equally well, and only a different ratio could separate them. What the three points together say is sharper than either: the output pixel COUNT is near-constant at about 1.57 megapixels (1254x1254 = 1572516, 1672x941 = 1573352, 0.05% apart) and the endpoint spends that budget on whatever shape the input has. (2) OUTPUT TOKENS ARE NOT ROUGHLY HALF THE INPUT IMAGE TOKENS. 229/256 = 0.895 against 0.523 and 0.538. The ratio was recorded as a pattern to test rather than a law to encode, it was tested here, and it is false — which is the whole value of having written it down that way, since nothing in the script had to change. Note also that input image tokens do not track input pixels linearly either: 256x256 (65536 px) bills 256 image tokens while 320x180 (57600 px, 12% fewer) bills 240, but 854x480 (409920 px, 6.3x the 256x256) bills only 576, 2.25x."
+        },
+        {
+          "output_tokens": 129,
+          "input_tokens": 1571,
+          "input_image_tokens": 1508,
+          "input_text_tokens": 63,
+          "input_size": "1792x1008",
+          "output_size": "1672x941",
+          "quality": "low",
+          "measured": "2026-09-16",
+          "samples": 1,
+          "cost_per_edit": "0.016249",
+          "cost_invoice_checked": false,
+          "note": "The largest input measured on this endpoint and the first REAL PHOTOGRAPH rather than a synthetic flat-colour test image: a 1792x1008 product shot asked for a seamless white background, run through image-edit's own documented flow. Every figure here is straight from the printed output (USAGE_INPUT_TOKENS 1571 / USAGE_INPUT_IMAGE_TOKENS 1508 / USAGE_INPUT_TEXT_TOKENS 63 / USAGE_OUTPUT_TOKENS 129 / USAGE_TOTAL_TOKENS 1700 / EDIT_COST 0.016249), and it self-checks three ways: 1508+63=1571, 1571+129=1700, and 63*0.000005 + 1508*0.000008 + 129*0.00003 = 0.016249 exactly, matching the reported EDIT_COST to six decimals. TWO FINDINGS. (1) THE ~1.57 MP OUTPUT BUDGET IS A BUDGET, NOT AN UPSAMPLE FLOOR: 1792x1008 is 1,806,336 px, LARGER than the 1672x941 it came back as, and the output did not grow. The three earlier points were all smaller than the output, so 'spends ~1.57 MP on the input's shape' and 'upsamples everything to ~1.57 MP' fitted them equally well; only an input above the budget separates them. (2) OUTPUT TOKENS DO NOT TRACK THE INPUT SIZE, AND THIS POINT IS WHAT SHOWS IT. Ordered by input pixels the output counts run 129 (320x180), 229 (256x256), 301 (854x480), 129 (1792x1008) — not monotonic, and the largest input ties the smallest for the LOWEST count. What does track the upload is the INPUT IMAGE token count: 240, 256, 576, 1508. So at large input sizes the bill is dominated by the input term (1508*0.000008 = 0.012064 of this run's 0.016249, i.e. 74%), not by output tokens. CONSEQUENCE WORTH RAISING BEFORE ANOTHER POINT IS ADDED: print_edit_estimate picks its 'dearest' point by output_tokens alone, so it would pick the 854x480 point (301 out, computed 0.013894) over THIS one (129 out, computed 0.016438) for any unmatched input — quoting the cheaper of the two as an upper bound. That is invisible while an exact input_size match exists, and it is why the selection key, not this row, is the thing to fix. Raised rather than changed, per _chain_order_history."
+        }
+      ],
+      "note": "The first real edit this repo has made. An 854x480 PNG UI screenshot in, prompt 'Change only the blue Upgrade plan button to green. Leave every other pixel, all text and the layout exactly as they are.', no --quality and no --size passed. The response echoed quality 'low', output_format 'png', background 'opaque' and size '1672x941' — an input-derived size that appears in no enum, and 1.777, i.e. the 16:9 that the generations endpoint's size enum cannot express at all. The artifact was checked against the source rather than against STATUS completed: every string survived verbatim ('Billing Settings', '$29.00', 'Seats included 3') and mean absolute difference was 5.27/255 overall against 84.27 inside the button region, which is 1.1% of the frame and carried 58% of all substantially changed pixels. It edits the image; it does not redraw the prompt. cost_per_edit is the DEARER of two readings and is the formula's output, not an invoice line: 32*0.000005 + 576*0.000008 + 301*0.00003 = 0.013798, against 608*0.000005 + 301*0.00003 = 0.01207 if every input token bills at the prompt rate. 13% apart, unsettled, quoted high by the never-under-quote rule.",
+      "source": "references/pricing.md"
+    }
+  },
+  "_chain_order_history": "Read this before 'fixing' the chain order. This note used to be titled '_why_the_cheapest_measured_model_is_not_first', because through 2026-09-02 MODEL_CHAIN put microsoft/mai-image-2.5-flash first even though the anchors above show openai/gpt-image-2 costs several times less per image ($0.00595 against $0.020038 at the rates current on 2026-09-15; it was $0.026694, i.e. ~4.5x, at the rates that decision was actually made under): gpt-image-2 needs 196 output tokens where mai-flash needs 1024, which more than cancels out mai-flash's lower per-token rate. That ordering was a deliberate product decision by the repo owner on 2026-09-02, made with these measurements already in front of them — not an oversight, and not a leftover from the per-token-rate comparison that originally (and wrongly) suggested mai-flash was cheapest. The instruction that went with it: if you think the order should change, raise it; do not quietly reorder it because the numbers here look lopsided. On 2026-09-04 the repo owner did exactly that — raised it themselves, in person, and asked for openai/gpt-image-2 first instead. MODEL_CHAIN in ofox-image.sh and the chain table in SKILL.md now reflect that request, so the title above is no longer literally true (the cheapest measured model IS first again, just via the opposite reorder from the one this note originally guarded against). The rule itself is unchanged and still binding: cost is one input to this choice, not the only one, and the next person who wants to reorder the chain again should still raise it first rather than doing it quietly because the numbers look lopsided either way."
+}

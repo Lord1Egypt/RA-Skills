@@ -1,0 +1,11 @@
+{
+  "slug": "medical-mindmap",
+  "name": "medical-mindmap",
+  "version": "1.1.0",
+  "description": "神经病学/脑电图知识图谱系统，支持医学实体管理和脑电图波形分析，输出模板包含核心要点、对比、临床意义、鉴别诊断价值、异常提示、本质总结",
+  "author": "斓光",
+  "tags": ["knowledge-graph", "mindmap", "医学", "神经病学", "脑电图", "EEG", "学习"],
+  "license": "MIT",
+  "homepage": "https://github.com/languang/medical-mindmap",
+  "installedAt": "2026-07-26"
+}

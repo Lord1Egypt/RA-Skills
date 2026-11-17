@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes the top 10 leading enterprises in an industry by market value or revenue and produces a sourced Markdown ranking table with per-company deep dives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes the top 10 leading enterprises in a given industry by market value or revenue and produces a sourced Markdown ranking table with per-company deep dives.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to research the leading companies in a specified industry, compare them by market value or revenue, and generate a cited Top 10 company report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated report may contain incorrect or outdated market, revenue, valuation, or company ranking data. <br>
-Mitigation: Review the cited public sources and the stated sorting basis before relying on the report for business decisions. <br>
-Risk: The skill writes or updates files under an industry output directory. <br>
-Mitigation: Run it in an expected workspace and review changes to the generated Markdown report and session.json before using them downstream. <br>
+## Use Case:
 
+External users, analysts, and agent operators use this skill to research leading companies in an industry and generate a sourced Top 10 report. It can run standalone or as the first stage of an industry-analysis workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrxparley/industry-analyzer-top-enterprise) <br>
-- [Top 10 output template](artifact/references/top-10-template.md) <br>
-- [Publisher profile](https://clawhub.ai/user/zrxparley) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Research guidance, Configuration] <br>
-**Output Format:** [Markdown report plus session.json status and source updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/{industry-slug}/01-top-enterprise.md and updates output/{industry-slug}/session.json when a session is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Industry names, scope, time window, and search terms may be sent to external web services during research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential inputs and review the intended search scope before running the skill.
+
+Risk: Company rankings, market values, revenue, and market-share details may be stale, incomplete, or uncertain.
+
+Mitigation: Require the report to state the ranking basis, data time window, and sources, and to explicitly mark unresolved or uncertain findings.
+
+Risk: The skill writes a Markdown report and may update a session status file under the selected output directory.
+
+Mitigation: Confirm the output directory before execution and review changed files after the skill completes.
+
+## Reference(s):
+
+- [Top 10 output template](references/top-10-template.md)
+- [ClawHub skill release](https://clawhub.ai/zrxparley/skills/industry-analyzer-top-enterprise)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, configuration]
+
+**Output Format:** [Markdown report with a ranking table and per-company sections, plus a session JSON status update when session state is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes output/{industry-slug}/01-top-enterprise.md and updates output/{industry-slug}/session.json; uncertain findings are expected to be explicitly marked.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

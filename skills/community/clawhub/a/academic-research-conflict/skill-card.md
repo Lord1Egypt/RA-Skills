@@ -1,44 +1,59 @@
-## Description: <br>
-Search academic papers and conduct literature reviews using OpenAlex API, including topic, author, DOI, citation-chain, metadata, open-access, and synthesis workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search academic papers and conduct literature reviews using OpenAlex API (free, no key needed).
 
-## Publisher: <br>
-[Feiyang2007](https://clawhub.ai/user/Feiyang2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feiyang2007](https://clawhub.ai/user/feiyang2007)
 
-## Use Case: <br>
-Researchers, analysts, students, and developer agents use this skill to find scholarly papers, inspect citation context, gather structured paper metadata, and produce literature-review summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, author names, and DOIs may be sent to external academic APIs. <br>
-Mitigation: Avoid confidential or sensitive research queries unless the external API use is acceptable for the task. <br>
-Risk: Literature-review runs can cache paper metadata locally in /tmp/litreview_cache. <br>
-Mitigation: Clear /tmp/litreview_cache when cached paper metadata should not remain on the system. <br>
-Risk: Server evidence reports unavailable provenance for this version. <br>
-Mitigation: Review the publisher profile and release evidence before relying on the skill in higher-trust workflows. <br>
+## Use Case:
 
+External users and developers use this skill to search scholarly works by topic, author, or DOI, inspect citation chains, and generate literature-review drafts with paper metadata and thematic summaries.
 
-## Reference(s): <br>
-- [OpenAlex API](https://api.openalex.org) <br>
-- [ClawHub skill page](https://clawhub.ai/Feiyang2007/academic-research-conflict) <br>
-- [Topanga](https://topanga.ludwitt.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, JSON records, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search outputs can include paper titles, authors, abstracts, citation counts, DOIs, open access URLs, source venues, thematic clusters, and synthesized literature reviews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated literature reviews may be used as academic or professional deliverables without enough human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review search results, citations, abstracts, and synthesized claims against source papers before relying on the output.
+
+Risk: The skill contacts OpenAlex and Unpaywall, sends a hard-coded contact email in API requests, caches data under /tmp/litreview_cache, and can write reports to a user-provided path.
+
+Mitigation: Use it in environments where those outbound requests, cache behavior, attribution, and file writes are acceptable.
+
+Risk: Markdown reports insert Topanga attribution by default.
+
+Mitigation: Check generated reports for required attribution, disclosure, and branding treatment before distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/feiyang2007/skills/academic-research-conflict)
+- [OpenAlex API](https://api.openalex.org)
+- [Unpaywall API](https://api.unpaywall.org/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, files]
+
+**Output Format:** [Plain text search results, Markdown literature reviews, structured JSON metadata, and optional user-specified output files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include titles, authors, abstracts, citation counts, DOIs, open access URLs, thematic clusters, and generated review summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

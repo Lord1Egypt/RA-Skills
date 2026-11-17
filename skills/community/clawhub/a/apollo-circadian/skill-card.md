@@ -1,43 +1,53 @@
-## Description: <br>
-Helps an agent choose suitable work rhythms by identifying when to do deep thinking, routine work, or cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent align work timing with a circadian schedule by reporting the current phase, recommending task types, and suggesting when to defer deep work.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Agents and users use this skill to align task selection with a configured circadian schedule, including deep-work windows, low-effort periods, cleanup windows, and emergency-only hours. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers and heartbeat integration may cause the skill to influence routine task scheduling more often than intended. <br>
-Mitigation: Review the configured triggers and heartbeat behavior before enabling the skill in shared or high-volume agent environments. <br>
-Risk: The skill uses a hardcoded Asia/Shanghai personal schedule, which may produce unsuitable recommendations for other users or time zones. <br>
-Mitigation: Confirm the schedule and time zone match the intended user before relying on the recommendations. <br>
-Risk: The helper writes local phase-state data under a root-oriented workspace path. <br>
-Mitigation: Review the state path before use in non-root or shared environments and adjust deployment permissions accordingly. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent assess the current time against a configured circadian schedule, recommend suitable work types, and flag low-energy or maintenance windows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/apollo-circadian) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style circadian reports, shell command output, and local JSON phase-state metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured Asia/Shanghai schedule and reports the current phase, recommended task class, efficiency match, and time until the next phase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad heartbeat and time-related triggers may cause the agent to apply scheduling guidance when the user did not explicitly request it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger configuration before deployment and require clear user or workspace policy approval before deferring active work.
+
+Risk: Late-night or maintenance windows may lead the agent to pause non-emergency tasks or suggest invoking another workflow.
+
+Mitigation: Treat workflow invocation as advisory unless the deployment policy explicitly permits automatic handoff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/apollo-circadian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style status report with optional shell command output and JSON state fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports circadian phase, recommended task category, efficiency match, time until next phase, and optional maintenance-window guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

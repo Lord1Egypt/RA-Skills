@@ -1,43 +1,56 @@
-## Description: <br>
-扫描 React、TSX 和 HTML 项目中的无障碍标签问题，生成审查报告，并可自动修复缺失或错误的 aria-label、role、alt、label、dialog 和 live-region 标注。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans React, TSX, and HTML projects for missing or incorrect accessibility labels and can report or repair issues such as unlabeled icon buttons, non-semantic click targets, weak image alt text, unlabeled form controls, dialog labeling gaps, live-region issues, and cross-platform ARIA compatibility risks.
 
-## Publisher: <br>
-[ityhg](https://clawhub.ai/user/ityhg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ityhg](https://clawhub.ai/user/ityhg)
 
-## Use Case: <br>
-Developers and accessibility reviewers use this skill to audit React, Next.js, TSX, HTML, Tauri, browser extension, and WebView-based front-end projects for WCAG-oriented labeling issues and cross-platform assistive-technology compatibility gaps. It can produce a file-by-file report and apply code edits for common fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically edit source files across a broad default scope. <br>
-Mitigation: Use it on a branch, specify exact files or folders, request report-only mode first, and review diffs plus lint or test results before accepting fixes. <br>
-Risk: Accessibility labels and compatibility fixes may be inferred from context and can be inaccurate for the product's actual user experience. <br>
-Mitigation: Review generated labels with product context, validate important flows with assistive technologies, and check target WebView or browser environments before release. <br>
+## Use Case:
 
+Developers and front-end engineers use this skill to audit React, TSX, HTML, Next.js, Tauri, browser extension, and embedded WebView projects for accessibility-label defects. It helps produce grouped audit findings and candidate code fixes for WCAG-oriented accessibility improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ityhg/a11y-label-audit) <br>
-- [Reference guide](artifact/reference.md) <br>
-- [Fix examples](artifact/examples.md) <br>
-- [Usage guide](artifact/USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown audit report with file and line tables, suggested fixes, and optional source-code edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify project files when automatic fixes are applied; review diffs and run lint or tests before accepting changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, clawhub.json, CHANGELOG released 2026-04-10) <br>
+Risk: The skill can automatically change accessibility-related code across a broad default scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit target paths, request report-only or dry-run behavior first, and review diffs before accepting changes.
+
+Risk: Automatically inferred aria-label or alt text can misrepresent UI intent.
+
+Mitigation: Review generated labels and alt text with product context before merging code changes.
+
+## Reference(s):
+
+- [Detailed Rule Reference](artifact/reference.md)
+- [Repair Examples](artifact/examples.md)
+- [Usage Guide](artifact/USAGE.md)
+- [ClawHub Skill Listing](https://clawhub.ai/ityhg/skills/a11y-label-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit reports with tables, suggested fixes, and candidate code edits or commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit project files when asked to apply fixes; review generated diffs before accepting changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, clawhub.json, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

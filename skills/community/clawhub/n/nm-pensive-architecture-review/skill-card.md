@@ -1,43 +1,49 @@
-## Description: <br>
-Assesses architecture decisions, ADR compliance, and coupling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses architecture decisions, ADR compliance, and coupling
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review system design changes, refactors, new modules, dependency restructuring, ADR compliance, coupling, invariants, and architectural trade-offs before merging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as architecture, design, ADR, coupling, patterns, and principles may activate the skill during general design discussions. <br>
-Mitigation: Disable the skill or narrow triggers when architecture review should run only on explicit review requests. <br>
-Risk: The skill can produce architectural recommendations that may be incomplete or unsuitable for a specific repository context. <br>
-Mitigation: Treat findings as review guidance and require human engineering review before relying on recommendations or changing design decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to review system design changes, refactoring, and dependency restructuring. It helps assess ADR compliance, module interactions, design principles, and architecture risks before changes are merged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-architecture-review) <br>
-- [Night Market pensive plugin](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
-- [FPF Framework](https://github.com/ailev/FPF) <br>
-- [quint-code](https://github.com/m0n0x41d/quint-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with checklists, diagrams, tables, recommendations, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ADR audit results, coupling analysis, invariant conflict options, principle checks, risk summaries, and follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The security evidence reports behavior beyond architecture review, and scanner coverage is partial because three local references were missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the listed configuration dependencies and any available local references, then limit repository and data access to what the architecture review needs.
+
+## Reference(s):
+
+- [FPF Framework](https://github.com/ailev/FPF)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON]
+
+**Output Format:** [Structured Markdown architecture review with optional JSON findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are expected to include file locations and supporting code anchors.]
+
+## Skill Version(s):
+
+1.10.3 (source: SKILL.md frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Conversational memory persistence with semantic search and session tracking via the SwarmRecall API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conversational memory persistence with semantic search and session tracking via the SwarmRecall API. Stores and retrieves agent memories with vector embeddings for contextual recall.
 
-## Publisher: <br>
-[waydelyle](https://clawhub.ai/user/waydelyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waydelyle](https://clawhub.ai/user/waydelyle)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent store, search, update, and recall conversational memories across sessions through the SwarmRecall API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory content and session summaries may include personal or sensitive information stored on SwarmRecall servers. <br>
-Mitigation: Obtain user consent before storing user-provided content and avoid sending secrets or sensitive data unless the user explicitly approves. <br>
-Risk: The SwarmRecall API key grants access to the agent's memory operations. <br>
-Mitigation: Keep SWARMRECALL_API_KEY in the environment and do not write the key to disk or shared files without user consent. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent persistent conversational memory, semantic memory search, session tracking, and optional shared-pool recall through the SwarmRecall API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/waydelyle/swarmrecall-memory) <br>
-- [Publisher Profile](https://clawhub.ai/user/waydelyle) <br>
-- [SwarmRecall Homepage](https://www.swarmrecall.ai) <br>
-- [SwarmRecall API Base URL](https://swarmrecall-api.onrender.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API request examples and memory recall text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY or self-registration; memory content is stored on SwarmRecall servers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Persistent memories are stored remotely and may include personal or sensitive conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get user consent before storing such content and install only when remote storage on SwarmRecall servers is acceptable.
+
+Risk: A leaked API key or untrusted SWARMRECALL_API_URL value could expose or redirect memory operations.
+
+Mitigation: Keep SWARMRECALL_API_KEY in a protected environment variable and avoid untrusted API base URL overrides.
+
+Risk: Shared-pool memories can influence future responses with content from pool members.
+
+Mitigation: Treat recalled shared-pool content as context to verify, not as instructions to obey.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/waydelyle/skills/swarmrecall-memory)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/waydelyle)
+- [SwarmRecall Homepage](https://www.swarmrecall.ai)
+- [SwarmRecall API Base URL](https://swarmrecall-api.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY for authenticated requests; the skill may self-register and should keep credentials in protected environment variables.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-BugPack - AI-powered bug tracking and fixing toolkit. List bugs, view bug details with screenshots, and fix bugs automatically. Includes three workflows: list-bugs, view-bug, fix-bug. Requires BugPack server running locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BugPack - AI-powered bug tracking and fixing toolkit. List bugs, view bug details with screenshots, and fix bugs automatically. Includes three workflows: list-bugs, view-bug, fix-bug. Requires BugPack server running locally.
 
-## Publisher: <br>
-[duhuazhu](https://clawhub.ai/user/duhuazhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duhuazhu](https://clawhub.ai/user/duhuazhu)
 
-## Use Case: <br>
-Developers and engineers use BugPack to inspect locally tracked bugs, review screenshots and related files, apply fixes, and update bug status through a local BugPack server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit source code and update local bug status. <br>
-Mitigation: Review source-code diffs and BugPack status updates before relying on a bug as fixed. <br>
-Risk: The workflow starts a local helper through npx bugpack-mcp. <br>
-Mitigation: Verify the npm package and consider pinning a trusted version before running it. <br>
+## Use Case:
 
+Developers and engineers use BugPack to list tracked bugs, inspect bug context with screenshots and related files, apply fixes, and update bug status through a local BugPack server.
 
-## Reference(s): <br>
-- [BugPack on ClawHub](https://clawhub.ai/duhuazhu/bugpack) <br>
-- [duhuazhu publisher profile](https://clawhub.ai/user/duhuazhu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with API examples, shell commands, and code-change guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-code edits and local BugPack status updates after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks users to run an unpinned npm server package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin bugpack-mcp to a reviewed version before use.
+
+Risk: The skill can lead an agent to edit code and update bug status without explicit safety gates.
+
+Mitigation: Review proposed code diffs before permitting the agent to PATCH bug status or update descriptions.
+
+## Reference(s):
+
+- [BugPack ClawHub Skill Page](https://clawhub.ai/duhuazhu/skills/bugpack)
+- [BugPack Publisher Profile](https://clawhub.ai/user/duhuazhu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with HTTP examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce code edits and bug status updates based on BugPack server responses.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

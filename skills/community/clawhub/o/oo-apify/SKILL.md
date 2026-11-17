@@ -1,11 +1,11 @@
 ---
 name: oo-apify
-description: "Apify (apify.com). Use this skill for ANY Apify request — searching and reading data. Whenever a task involves Apify, use this skill instead of calling the API directly."
+description: "Apify (apify.com). Use this skill for ANY Apify request — reading, creating, and updating data. Whenever a task involves Apify, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Apify"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["apify"]
   icon: "https://static.oomol.com/logo/third-party/Apify.svg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_current_user` — Retrieve the currently authenticated Apify user account.
 - `get_dataset_items` — Retrieve JSON items from one Apify dataset.
 - `get_run` — Retrieve the current status and storage identifiers for one Apify actor run.
-- `run_actor` — Start one Apify actor run with an optional JSON input payload.
+- `run_actor` — Start one Apify actor run with an optional JSON input payload. [write]
 
 ## Safety
 
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Apify is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=apify
+  https://console.oomol.com/connections/apify
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Apify homepage: https://apify.com
+- API documentation: https://docs.apify.com/api/v2

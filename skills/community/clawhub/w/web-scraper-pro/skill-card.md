@@ -1,46 +1,66 @@
-## Description: <br>
-Intelligent web scraper that fetches URLs and returns clean Markdown content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Scraper Pro fetches user-provided URLs through multiple web-to-Markdown services and returns clean Markdown content.
 
-## Publisher: <br>
-[CodeHourra](https://clawhub.ai/user/CodeHourra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codehourra](https://clawhub.ai/user/codehourra)
 
-## Use Case: <br>
-External users and developers use this skill to extract readable Markdown from web pages through a layered fetch strategy. It is suited for public web content where the user accepts the per-fetch charge and external service handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can charge 0.001 USDT through a third-party billing service before each fetch. <br>
-Mitigation: Use only when the pricing and billed SkillPay user ID are understood, and prefer platform-managed billing or stronger publisher documentation before deployment. <br>
-Risk: URLs, search queries, and page content may be sent to external scraping and conversion services. <br>
-Mitigation: Avoid private, authenticated, internal, or token-containing links, and use the skill only for content that may be shared with those services. <br>
-Risk: Embedded billing credentials and stealth scraping behavior increase operational and trust risk. <br>
-Mitigation: Review the skill before installing, restrict use to permitted sites, and require clear publisher documentation for billing and scraping behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeHourra/web-scraper-pro) <br>
-- [SkillPay](https://skillpay.me) <br>
-- [markdown.new](https://markdown.new/) <br>
-- [defuddle.md](https://defuddle.md/) <br>
-- [Jina Reader](https://r.jina.ai/) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
+## Use Case:
 
+External users and developers use this skill to fetch webpages and convert extracted content into Markdown for reading, summarization, or downstream analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown content with fetch status and payment guidance when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URL, source service, character count, and top-up guidance if payment is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Off-platform crypto billing uses a hardcoded SkillPay API key.
+
+Mitigation: Remove hardcoded credentials, disclose the payment provider and cost before use, and require explicit user consent before billing.
+
+Risk: The scraper may fetch confidential, tokenized, internal, or private-network URLs.
+
+Mitigation: Restrict use to public URLs and block private-network and metadata address ranges before any request.
+
+Risk: Stealth anti-bot scraping can bypass site controls or terms.
+
+Mitigation: Disable stealth bypass behavior by default and require policy review and user authorization for any site-specific scraping.
+
+Risk: Unpinned scraping dependencies may change behavior or supply-chain risk over time.
+
+Mitigation: Pin and review dependencies before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codehourra/skills/web-scraper-pro)
+- [Publisher Profile](https://clawhub.ai/user/codehourra)
+- [SkillPay](https://skillpay.me)
+- [markdown.new](https://markdown.new/)
+- [defuddle.md](https://defuddle.md/)
+- [Jina Reader](https://r.jina.ai/)
+- [Scrapling](https://github.com/D4Vinci/Scrapling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command snippets; fetched page content is returned as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Charges 0.001 USDT per fetch through SkillPay; long fetched content may be truncated around 50000 characters.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

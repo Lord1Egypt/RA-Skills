@@ -1,41 +1,59 @@
-## Description: <br>
-Generates video from a text prompt plus first-frame and tail-frame image inputs using supported image-to-video models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates video from first-frame and tail-frame images, using a text prompt and a selected supported video model to control the starting and ending visuals.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-External users and developers use this skill to submit a prompt with first and final frame media to supported video generation models and inspect the returned generation result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the configured credential and selected prompt, image, or video inputs to a remote service endpoint. <br>
-Mitigation: Use a scoped TEAM_API_KEY, confirm TEAM_BASE_URL is unset or points to the intended provider, and avoid sensitive media unless the provider's handling and retention are acceptable. <br>
-Risk: The release requires direct Python execution and a configurable remote endpoint, which increases trust requirements for the local script and environment. <br>
-Mitigation: Review the script before installation or execution and run it only in an environment where the credential and outbound network destination are acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to call a remote video-generation API with a prompt plus first and tail frame images when they need a video whose opening and closing frames are constrained.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrshu/lrshuai-first-tail-frame-to-video) <br>
-- [Default remote video-generation endpoint](https://dlazy.com/api/ai/tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Text, JSON] <br>
-**Output Format:** [Console text with JSON responses from the remote video-generation API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, TEAM_API_KEY, a model ID, a prompt, and first-frame or tail-frame media inputs; may poll until generation completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can upload local frame images or videos to a remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive media files and confirm the configured remote endpoint before execution.
+
+Risk: The skill depends on TEAM_API_KEY and optionally TEAM_BASE_URL for remote API access.
+
+Mitigation: Store credentials outside prompts and allow only trusted TEAM_BASE_URL values.
+
+Risk: The polling loop can continue without a fixed timeout while waiting for generation status.
+
+Mitigation: Run with supervision or add a timeout before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrshu/skills/lrshuai-first-tail-frame-to-video)
+- [Publisher profile](https://clawhub.ai/user/lrshu)
+- [Configured remote API endpoint](https://dlazy.com/api/ai/tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Terminal text and JSON returned by the remote API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEAM_API_KEY and may use TEAM_BASE_URL to select the remote service endpoint.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

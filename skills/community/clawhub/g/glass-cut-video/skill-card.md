@@ -1,46 +1,55 @@
-## Description: <br>
-Generate satisfying vertical short videos of glass cutting and shattering with WeryAI, either from text prompts or by animating a glass photo into cuts, crack spread, and break motion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical WeryAI short videos of glass cutting and shattering from text prompts or public HTTPS glass images.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agent users use this skill to prepare and run WeryAI text-to-video or image-to-video jobs for vertical glass cutting, cracking, and shattering ASMR clips. The skill helps collect parameters, expand prompts, validate supported video settings, and return generated video URLs or actionable failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WERYAI_API_KEY and sends generation requests to an external WeryAI API. <br>
-Mitigation: Use a dedicated or limited API key, keep it out of committed files, and install only when the publisher is trusted with that credential. <br>
-Risk: Confirmed generation runs may consume paid WeryAI credits. <br>
-Mitigation: Review the generated prompt and parameter table before confirming a run, and use dry-run behavior when validating request shape. <br>
-Risk: Prompts and public image URLs may expose sensitive creative briefs or private imagery to the external provider. <br>
-Mitigation: Avoid confidential prompts and private images; use only public HTTPS image URLs that are intended for external processing. <br>
-Risk: Unsupported model parameters or local image paths can cause API failures. <br>
-Mitigation: Validate model, duration, aspect ratio, resolution, audio settings, and image URL constraints before submitting a job. <br>
+## Use Case:
 
+External creators and developers use this skill to turn a glass-cutting brief or public HTTPS image into a 9:16 WeryAI video prompt, confirmed parameters, and generated video URLs.
 
-## Reference(s): <br>
-- [Glass Cut Video on ClawHub](https://clawhub.ai/zoucdr/glass-cut-video) <br>
-- [WeryAI video generation API host](https://api.weryai.com) <br>
-- [WeryAI video model registry host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command payloads; runtime CLI output is JSON containing task status, errors, and video URLs when generation succeeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and WERYAI_API_KEY. Image inputs must be public HTTPS URLs. Confirmed generation runs use paid WeryAI credits and call fixed external API hosts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Prompt text interpolated into a documented --json shell command can become local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass JSON through a shell-free argument array, stdin, or a temporary JSON file instead of building a shell command string from user text.
+
+Risk: The skill uses a required WERYAI_API_KEY, network calls, and paid WeryAI credits.
+
+Mitigation: Run it in a short-lived environment containing only the required API key, keep the key out of the skill package, and confirm parameters before paid wait runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/glass-cut-video)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI models API host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown response with parameter tables, command snippets, and returned video URLs or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access, public HTTPS image URLs for image-to-video, and paid WeryAI credits for successful wait runs.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

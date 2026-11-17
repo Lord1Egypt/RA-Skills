@@ -1,7 +1,7 @@
 ---
-name: travel-expense-tracker
-display_name: 旅行记账助手
-description: 多币种记录旅行消费、汇率自动换算、分类统计与预算管理，旅行花钱心里有数。
+name: 旅行记账助手
+display_name: "旅行记账助手"
+description: 多币种记录旅行消费、汇率自动换算、分类统计与预算管理，旅行花钱心里有数。暑期旅行开销记录，AA记账轻松分摊
 tags: [旅行记账, 多币种, 汇率换算, 预算管理, 消费统计]
 tools:
   - name: track_expense

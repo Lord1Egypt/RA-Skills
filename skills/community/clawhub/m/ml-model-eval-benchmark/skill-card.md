@@ -1,42 +1,57 @@
-## Description: <br>
-Compare model candidates using weighted metrics and deterministic ranking outputs. Use for benchmark leaderboards and model promotion decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare model candidates using weighted metrics and deterministic ranking outputs.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Developers and evaluation engineers use this skill to rank model candidates from weighted metrics, produce benchmark leaderboards, and support model promotion decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Benchmark inputs or generated artifacts may contain sensitive evaluation data. <br>
-Mitigation: Use non-sensitive or approved evaluation data where possible and review generated JSON, Markdown, or CSV artifacts before sharing. <br>
-Risk: The benchmark script writes to the output path supplied by the user. <br>
-Mitigation: Review the output path before running the script and write artifacts to an intended project or scratch directory. <br>
-Risk: Large or repeated benchmark runs may consume local compute or storage. <br>
-Mitigation: Keep inputs scoped to the benchmark need, use the script's bounded input behavior, and monitor generated artifact size. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Benchmarking Guide](artifact/references/benchmarking-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/0x-Professor/ml-model-eval-benchmark) <br>
+## Use Case:
 
+Developers and ML engineers use this skill to rank model candidates from weighted evaluation metrics, generate benchmark leaderboards, and support model promotion decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON, Markdown, or CSV benchmark artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records metric weights, ranked model candidates, recommended model, and dry-run status when using the bundled benchmark script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled script writes benchmark output files and may create parent directories or overwrite an existing output path.
+
+Mitigation: Run it in a controlled workspace, choose an explicit output path, and review existing files before execution.
+
+Risk: The dry-run flag is reported in output but does not prevent file creation or overwrite.
+
+Mitigation: Do not rely on --dry-run for side-effect prevention until the script behavior is fixed and re-reviewed.
+
+Risk: CSV exports can carry untrusted model names into spreadsheet software.
+
+Mitigation: Use trusted or reviewed input data and inspect CSV output before opening it in spreadsheet tools.
+
+## Reference(s):
+
+- [Benchmarking Guide](references/benchmarking-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/0x-professor/skills/ml-model-eval-benchmark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated benchmark artifacts in JSON, Markdown, or CSV]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a weighted leaderboard, recommended model, applied metric weights, and output artifact path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

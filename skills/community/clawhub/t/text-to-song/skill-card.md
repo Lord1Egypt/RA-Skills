@@ -1,42 +1,55 @@
-## Description: <br>
-AI music generation assistant powered by MakebestMusic for creating AI-generated music, songs, and audio tracks from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI music generation assistant powered by MakebestMusic for creating AI-generated music, songs, and audio tracks from user prompts.
 
-## Publisher: <br>
-[sthk-mbm](https://clawhub.ai/user/sthk-mbm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sthk-mbm](https://clawhub.ai/user/sthk-mbm)
 
-## Use Case: <br>
-External users, content creators, musicians, and developers use this skill to generate custom songs or instrumental audio tracks from text prompts and check generation status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Song descriptions and generation identifiers are sent to MakebestMusic using the configured API key. <br>
-Mitigation: Avoid sensitive personal or proprietary information in prompts and use a dedicated, revocable API key where possible. <br>
-Risk: The skill can use an alternate API endpoint when MBM_API_BASE is set. <br>
-Mitigation: Set MBM_API_BASE only when you intentionally trust the alternate endpoint. <br>
+## Use Case:
 
+External users and creators use this skill to request custom songs, instrumental tracks, or other generated audio from MakebestMusic and check generation status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sthk-mbm/text-to-song) <br>
-- [MakeBestMusic website](https://makebestmusic.com/?pid=PIDcLjhgCXUQ) <br>
-- [MakeBestMusic API endpoint](https://api.makebestmusic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured MakeBestMusic API key and may return generation IDs, status values, and hosted music links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.2.0) <br>
+Risk: The skill transmits user prompts and an API key to a third-party music-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated MakeBestMusic key with limited exposure and avoid submitting private or confidential text in prompts.
+
+Risk: The endpoint can be overridden with MBM_API_BASE, which could redirect prompts and credentials to an untrusted service.
+
+Mitigation: Run the skill only in environments where MBM_API_BASE is unset or controlled by a trusted administrator.
+
+## Reference(s):
+
+- [ClawHub Text to Song Skill Page](https://clawhub.ai/sthk-mbm/skills/text-to-song)
+- [MakeBestMusic](https://makebestmusic.com/?pid=PIDcLjhgCXUQ)
+- [MakeBestMusic API Base](https://api.makebestmusic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an apiKey environment value and returns music identifiers, task status, and shared music URLs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

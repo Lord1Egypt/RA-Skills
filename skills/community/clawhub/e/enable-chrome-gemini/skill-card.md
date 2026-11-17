@@ -1,40 +1,53 @@
-## Description: <br>
-Set up or repair Gemini in Chrome (Glic) on Windows, macOS, or Linux when enabling it for the first time outside the US or when the sidebar, floating panel, Alt+G shortcut, or top-bar entry disappears. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up or repair Gemini in Chrome (Glic) on Windows, macOS, or Linux when enabling it for the first time outside the US or when the sidebar, floating panel, Alt+G shortcut, or top-bar entry disappears.
 
-## Publisher: <br>
-[at386369-ai](https://clawhub.ai/user/at386369-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[at386369-ai](https://clawhub.ai/user/at386369-ai)
 
-## Use Case: <br>
-Developers and users use this skill to enable or repair native Gemini/Glic in Chrome profiles on Windows, macOS, or Linux by backing up and patching Chrome Local State, then checking the required flags and language settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The repair script changes Chrome Local State, including Gemini eligibility, region, experiment flags, and language settings. <br>
-Mitigation: Run --dry-run first, confirm the Chrome profile path, close Chrome before applying changes, avoid --force unless necessary, and keep the generated backup. <br>
-Risk: Managed Chrome profiles or enterprise policy may block the setup. <br>
-Mitigation: Stop and report the policy constraint instead of changing unrelated Chrome profile files. <br>
+## Use Case:
 
+Developers and technical users use this skill to guide setup or repair of Chrome Gemini/Glic by backing up and patching Chrome Local State, then checking the relevant flags and language settings.
 
-## Reference(s): <br>
-- [Enable Chrome Gemini on ClawHub](https://clawhub.ai/at386369-ai/enable-chrome-gemini) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides execution of a Python repair script that supports dry-run, profile path, force, and language options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill deliberately changes Chrome Local State to make Gemini/Glic appear eligible, including region fields and default language normalization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script with --dry-run first, close Chrome before writing, keep the generated backup, and use --language "" when language normalization is not desired.
+
+Risk: Managed Chrome profiles or unsupported-region behavior may prevent the setup from working or may create policy and account-environment problems.
+
+Mitigation: Avoid running it on managed or primary profiles when those changes would be disruptive, and stop if policy management blocks the setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/at386369-ai/skills/enable-chrome-gemini)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and Python script execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chrome Local State repair instructions, dry-run guidance, backup guidance, and platform-specific profile path handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

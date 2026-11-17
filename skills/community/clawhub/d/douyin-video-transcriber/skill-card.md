@@ -1,45 +1,59 @@
-## Description: <br>
-Transcribes one or more Douyin videos by downloading video media, extracting audio with ffmpeg, and running local Whisper speech-to-text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes one or more Douyin videos by downloading each video through TikHub, extracting audio with ffmpeg, and running local Whisper transcription.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-Developers, analysts, and content operations teams can use this skill to convert Douyin video speech into text for review, content analysis, or copy extraction. It is intended for batch transcription workflows where the user supplies Douyin links and local runtime dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a TikHub API token to download Douyin video data. <br>
-Mitigation: Keep the token out of source control and logs, and provide it only through the supported local config or environment variable. <br>
-Risk: The optional output-file path can overwrite files that the user account can write. <br>
-Mitigation: Use a dedicated workspace output path and review the destination before running batch jobs. <br>
-Risk: The release has no server-resolved GitHub import provenance. <br>
-Mitigation: Verify the publisher and source before deployment, especially because the artifact text contains a placeholder repository URL. <br>
+## Use Case:
 
+Developers and content analysts use this skill to turn Douyin video links into text transcripts for content review, analysis, or copy extraction. It supports batch inputs and writes a Markdown report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ahsbnb/douyin-video-transcriber) <br>
-- [Publisher profile](https://clawhub.ai/user/ahsbnb) <br>
-- [ffmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [TikHub Douyin video API endpoint](https://api.tikhub.io/api/v1/douyin/web/fetch_one_video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown transcription report plus a printed output path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report contains one section per input video and may include per-video error details when processing fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The downloader can contact unexpected network targets when resolving or retrieving video URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with trusted Douyin URLs, validate resolved destinations before download, and restrict network egress where possible.
+
+Risk: The workflow uses a TikHub token to retrieve video download URLs.
+
+Mitigation: Use a token intended for this workflow, avoid shared or privileged environments, and rotate the token if exposure is suspected.
+
+Risk: Temporary media files may be written in shared temporary locations.
+
+Mitigation: Use private temporary directories, limit downloaded file size, and confirm cleanup behavior before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahsbnb/skills/douyin-video-transcriber)
+- [ffmpeg downloads](https://ffmpeg.org/download.html)
+- [TikHub Douyin video API endpoint](https://api.tikhub.io/api/v1/douyin/web/fetch_one_video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown transcription report with plain-text transcript sections and status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one or more --url values and an optional --output-file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

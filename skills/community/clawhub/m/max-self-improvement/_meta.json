@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn78exweayeca2x815yc768rqn83p8wt",
-  "slug": "max-self-improvement",
+  "id": "max-self-improvement-001",
   "version": "1.0.1",
-  "publishedAt": 1777382601797
+  "author": "Matrix Agent",
+  "description": "MiniMax Agent self-evolution system with 5-layer memory architecture and continuous learning capabilities",
+  "tags": ["memory", "self-improvement", "evolution", "learning"],
+  "created": "2026-04-28"
 }

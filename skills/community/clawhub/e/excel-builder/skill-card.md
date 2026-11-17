@@ -1,39 +1,53 @@
-## Description: <br>
-Build .xlsx files with formulas, merged cells, data validation, conditional formatting, pivot tables, and charts. Use when creating Excel spreadsheets, financial tables, data entry forms, or any structured .xlsx deliverable requiring formulas or formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build .xlsx files with formulas, merged cells, data validation, conditional formatting, pivot tables, and charts.
 
-## Publisher: <br>
-[jimmy974](https://clawhub.ai/user/jimmy974) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmy974](https://clawhub.ai/user/jimmy974)
 
-## Use Case: <br>
-Developers and analysts use this skill to generate structured Excel workbooks for reports, financial tables, budgets, invoices, data entry forms, and pivot-ready datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workbook generation can overwrite or modify existing spreadsheets when the output path targets an existing file. <br>
-Mitigation: Confirm the absolute output path before saving, use a copy when modifying existing workbooks, and report path conflicts before returning results. <br>
-Risk: Formulas and workbook content depend on user-provided data and instructions and may be inaccurate if left unreviewed. <br>
-Mitigation: Review generated formulas, ranges, validation rules, and chart references before sharing or using the workbook for decisions. <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to create structured Excel workbooks such as spreadsheets, financial tables, data entry forms, and formatted reports with formulas, validation, pivot-ready data, and charts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance, Shell commands] <br>
-**Output Format:** [Markdown guidance with Python code snippets and generated .xlsx workbook paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the absolute path to the saved workbook and, for multi-sheet workbooks, a brief summary of sheet names and row counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can cause an agent to create or modify Excel files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended output path and review generated workbooks before using or sharing them.
+
+Risk: The artifact suggests installing openpyxl or xlsxwriter without pinned versions when dependencies are missing.
+
+Mitigation: Install pinned dependency versions in a dedicated virtual environment before running generated workbook code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmy974/skills/excel-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, and generated .xlsx file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify Excel files on disk and return sheet names, row counts, and absolute output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

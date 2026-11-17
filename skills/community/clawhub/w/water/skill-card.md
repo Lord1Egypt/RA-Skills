@@ -1,41 +1,60 @@
-## Description: <br>
-Auto-learns your hydration habits. Tracks water intake from casual mentions without precise measuring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks daily water intake from casual mentions and sets hydration targets from weight, exercise, heat, and health context.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill with an agent to track hydration from casual conversation and related context, estimate container sizes, and maintain local notes about hydration habits, preferences, and signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can passively accumulate hydration and health-adjacent habits from ordinary conversation. <br>
-Mitigation: Install only when users are comfortable with passive hydration memory, and periodically review ~/water/memory.md to remove entries they do not want retained. <br>
-Risk: Persisted local notes may include sensitive signals such as headaches, fatigue, illness, caffeine, alcohol, or exercise context. <br>
-Mitigation: Avoid using the skill around sensitive health discussions unless those signals may be retained, and keep remembered entries limited to hydration tracking needs. <br>
+## Use Case:
 
+External users use this skill to log water and other non-alcoholic fluid intake, estimate hydration status, and receive context-aware hydration guidance for exercise, heat, illness, travel, and declared medical constraints.
 
-## Reference(s): <br>
-- [Water Tracker on ClawHub](https://clawhub.ai/ivangdavila/water) <br>
-- [Container Size Reference](artifact/containers.md) <br>
-- [Common Hydration Patterns](artifact/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and brief natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists learned hydration preferences and patterns in ~/water/memory.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can persist hydration, routine, exercise, weight, and health-related context in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local retention of that journal is acceptable; review or delete ~/Clawic/data/water/ when that history should not be retained.
+
+Risk: Hydration guidance may be unsafe for serious symptoms or for users with fluid restrictions.
+
+Mitigation: Do not rely on the skill as a substitute for medical care; follow the documented red flags and defer fluid targets to a clinician when restrictions or serious symptoms apply.
+
+Risk: Overdrinking during endurance events can worsen suspected exercise-associated hyponatremia.
+
+Mitigation: Use the skill's red-flag checks before recommending more fluid, and avoid additional water when the documented hyponatremia signals are present.
+
+## Reference(s):
+
+- [ClawHub Water Tracker Skill Page](https://clawhub.ai/ivangdavila/skills/water)
+- [Clawic Water Tracker Skill Page](https://clawic.com/skills/water)
+- [Setup Guide](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or concise plain text with local log and configuration file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local files under ~/Clawic/data/water/ for logs, memory, and configuration.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

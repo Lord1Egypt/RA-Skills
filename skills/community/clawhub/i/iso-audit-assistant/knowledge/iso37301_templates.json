@@ -1,0 +1,23 @@
+{
+  "standard": "ISO 37301:2021 合规管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-CM-001", "name": "合规义务管理程序", "name_en": "Compliance Obligations Procedure", "clause": "4.3",
+     "meta": {"owner": "合规部", "frequency": "年度/法规变更时"},
+     "sections": [
+       {"title": "1 目的", "content": "系统识别、获取并维护组织适用的合规义务。"},
+       {"title": "2 适用范围", "content": "适用于{org}全部业务领域的合规义务管理。"},
+       {"title": "3 职责", "content": "3.1 合规部归口管理；3.2 各部门识别本领域义务；3.3 法务审核。"},
+       {"title": "4 工作程序", "content": "4.1 识别法律法规/监管/ contractual义务；4.2 建立《合规义务清单》；4.3 评估对业务的影响；4.4 传达至相关岗位；4.5 动态更新（新法/变更）。"}
+     ],
+     "high_voltage_check": ["hv-cm-obligation"]},
+    {"id": "SP-CM-002", "name": "举报与调查管理程序", "name_en": "Whistleblowing & Investigation", "clause": "8.2/8.3",
+     "meta": {"owner": "合规部/审计", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "建立保密举报渠道，及时调查不合规并保护举报人。"},
+       {"title": "2 适用范围", "content": "适用于{org}全体员工及相关方对违规行为的举报。"},
+       {"title": "3 职责", "content": "3.1 合规部受理与保密；3.2 调查组独立调查；3.3 管理层处置。"},
+       {"title": "4 工作程序", "content": "4.1 公布多渠道保密举报途径；4.2 登记与初审；4.3 独立调查并取证；4.4 处置与整改；4.5 保护举报人、反报复；4.6 统计分析与预防。"}
+     ],
+     "high_voltage_check": ["hv-cm-whistle"]}
+  ]
+}

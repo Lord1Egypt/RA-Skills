@@ -1,37 +1,49 @@
-## Description: <br>
-commit and push all local changes to remote repo <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+commit and push all local changes to remote repo
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide an agent through reviewing local repository changes, preparing a Conventional Commits message, staging the intended files, committing, pushing to the configured remote, and verifying the branch is caught up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may push secrets, private files, unrelated changes, or work to the wrong remote or branch if the repository state is not reviewed. <br>
-Mitigation: Review `git status`, staged files, the target branch, and configured remotes before push; verify the branch is caught up afterward. <br>
+## Use Case:
 
+Developers and engineers use this skill to review local repository changes, write a Conventional Commit message, commit the intended files, push to the configured remote, and verify the branch is synchronized.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review of git status, staged files, branch, remote, and upstream sync before and after push.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server-resolved release metadata) <br>
+Risk: Pushing sends selected local code to the configured remote repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the diff, staged files, remote URL, branch, and absence of secrets or private work-in-progress before allowing the push.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/commit-push)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed Conventional Commit messages and git command sequences for staging, committing, pushing, and verification.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Whisper Local Api helps agents install and run a local OpenAI-compatible Whisper transcription endpoint for speech-to-text workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Whisper Local Api helps agents install, start, health-check, and smoke-test a local OpenAI-compatible Whisper transcription endpoint for private speech-to-text workflows.
 
-## Publisher: <br>
-[Hantok](https://clawhub.ai/user/Hantok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hantok](https://clawhub.ai/user/hantok)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install, start, health-check, and smoke-test a local Whisper ASR service for OpenClaw-compatible voice transcription workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs unpinned external backend code and dependencies. <br>
-Mitigation: Review the backend repository and dependencies before installation, and prefer pinning WHISPER_REPO_URL to a trusted commit or controlled fork. <br>
-Risk: Offline and privacy claims may be overstated if the service or configured URLs are exposed beyond the local host. <br>
-Mitigation: Keep the service local unless remote access is intentional, and add firewalling, HTTPS, and authentication before exposing it. <br>
-Risk: Environment overrides can redirect repository or API traffic to untrusted hosts. <br>
-Mitigation: Set WHISPER_REPO_URL and WHISPER_API_URL only to hosts that have been reviewed and trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Hantok/whisper-local-api) <br>
-- [Configured backend repository](https://github.com/Hantok/local-whisper-backend.git) <br>
+## Use Case:
 
+Developers and operators use this skill to run a local speech-to-text service that accepts OpenAI Whisper-compatible transcription requests. It is intended for private agent voice-command and audio transcription workflows where audio should stay on local infrastructure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and local HTTP endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scripts for bootstrap, service startup, health checks, and audio-file smoke testing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable remote code and Python dependencies can change between installs.
+
+Mitigation: Review the upstream repository and dependency set before installation, and pin or vendor the backend where practical.
+
+Risk: A transcription service exposed beyond the local host could allow unauthenticated access to audio transcription endpoints.
+
+Mitigation: Bind the service to 127.0.0.1 by default; if exposure is required, place it behind authentication and TLS.
+
+Risk: Smoke tests can submit sensitive audio to whichever endpoint is configured.
+
+Mitigation: Use non-sensitive test audio unless the endpoint has been confirmed to be local and loopback-only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hantok/skills/whisper-local-api)
+- [ClawHub publisher profile](https://clawhub.ai/user/hantok)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and endpoint configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides local service setup and validation; generated commands may clone remote code, install Python dependencies, start a local server, and send a local audio file to the configured transcription endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

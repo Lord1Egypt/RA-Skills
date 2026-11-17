@@ -1,43 +1,57 @@
-## Description: <br>
-日本のECプラットフォーム向けに、AIっぽさを排除した自然で購買率の高い販売コピーに書き直します。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+日本のECプラットフォーム向けに、AIっぽさを排除した自然で購買率の高い販売コピーに書き直します。
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and sellers use this skill to turn stiff or AI-sounding Japanese product, ad, review, social, live, email, and SMS copy into more natural platform-aware ecommerce copy while preserving sales points and flagging risky claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ecommerce copy may include inaccurate or non-compliant factual, health, beauty, discount, ranking, or performance claims. <br>
-Mitigation: Review generated copy against source facts and Japanese advertising compliance requirements before publication. <br>
+## Use Case:
 
+External e-commerce sellers, marketers, and support teams use this skill to rewrite Japanese product, advertising, social, review-reply, live-commerce, email, and SMS copy into more natural, conversion-focused text for Japan-market platforms. It also helps identify risky promotional language and suggest safer alternatives before publication.
 
-## Reference(s): <br>
-- [Published ClawHub skill page](https://clawhub.ai/leooooooow/ecommerce-copy-humanizer-jp) <br>
-- [日本語AIコピーの典型パターン集](artifact/references/ai-patterns-jp.md) <br>
-- [出力形式テンプレート](artifact/references/output-template.md) <br>
-- [ECプラットフォーム別文体ガイド — 日本](artifact/references/platform-guide-jp.md) <br>
-- [景品表示法・コンプライアンスチェックリスト — 日本](artifact/references/risk-checklist-jp.md) <br>
-- [書き直し品質自己確認リスト](artifact/assets/rewrite-checklist.md) <br>
+### Deployment Geography for Use:
 
+Japan
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with rewritten Japanese copy, diagnostics, alternatives, risk substitutions, and usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or credential access; generated marketing copy should be reviewed for factual accuracy and Japanese advertising compliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated copy may preserve or introduce unsupported factual, numeric, discount, certification, testimonial, health, cosmetic, or performance claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each claim against current evidence, platform rules, and applicable advertising requirements before publishing.
+
+Risk: The skill is not a substitute for legal, medical, financial, or advertising compliance review.
+
+Mitigation: Route regulated product categories and high-risk promotional language to qualified reviewers before use.
+
+## Reference(s):
+
+- [Japanese AI Copy Patterns](references/ai-patterns-jp.md)
+- [Japan E-Commerce Platform Style Guide](references/platform-guide-jp.md)
+- [Japan Promotional Risk Checklist](references/risk-checklist-jp.md)
+- [Output Template](references/output-template.md)
+- [Rewrite Quality Checklist](assets/rewrite-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an input summary, problem diagnosis, main rewrite, alternative versions, risk substitutions, and channel-specific usage notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+name: ai-literacy-expert-v8.2.0-aipc
+version: 8.2.0-aipc
+release_codename: V8.2-AIPC
+build_date: 2026-08-25 00:30:00
+release_tag: GA (General Availability)
+codename: AIPC 端云协同 + 双轨学科 AI 模块（北师港浸会大学博雅智能学院专项）
+format: SemVer 2.0
+changelog: CHANGELOG.md
+readme: README.md
+skill_entry: run.ps1 (Windows) / run.sh (Linux/macOS)
+env_install: install-env.ps1 (Windows) / install-env.sh (Linux/macOS)
+runtime_config: info.json
+meta: meta.json
+tests: ≈ 174 unit tests (V8.2-AIPC, 12 files; 100% pass for isolated modules)
+audit_grade: A+ (local-ai-skill-authoring-main)
+audit_rounds: 3
+author: AI Literacy Expert Team
+new_in_v82_aipc: Module H 双轨学科 AI（8 md + 10 JSON + 4 tests，新增约 26 项测试用例）—— 服务北师港浸会大学博雅智能学院
+new_in_v81_aipc: tests/test_p5js_interactive.py - p5.js 课件/游戏每个互动控件 27 项完整性门控 (B1-B9 + S/Se/I/C/K/T/D)
+new_in_v80_aipc: tests/test_p5js_buttons.py - p5.js 课件/游戏每个按钮 9 项功能完整性门控 (B1-B9)
+new_in_v74_aipc: work_summary.py - 每次工作后自动输出本地 vs 云端对比
+audit_fixes_round1: run.ps1 / install-env.ps1 $Root 路径 bug + SKILL.md frontmatter name v7.3A → v8.1.0-aipc
+audit_fixes_round2: SKILL.md §3.4 EdgeCloudClient API 示例重写 + setup_text_model.py docstring 修正 + 文件计数 78 → 82
+audit_fixes_round3: VERSION.txt name v7.3A → v8.1.0-aipc + CHANGELOG 三处错误 + README.md 整篇 V7.2 → V8.1-AIPC 重写 + manifest.json 完整重生成 (top-level + 7 categories + 84 files SHA256)
+audit_fixes_round4: 8.1.0-aipc → 8.2.0-aipc 全面升级 + Module H 双轨 + 22 个新文件（8 md + 10 JSON + 4 tests）+ manifest.json 重生成

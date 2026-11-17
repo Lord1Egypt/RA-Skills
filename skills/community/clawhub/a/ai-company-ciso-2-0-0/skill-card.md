@@ -1,43 +1,55 @@
-## Description: <br>
-AI Company CISO is a security-governance advisor for STRIDE threat modeling, incident response, compliance review, zero-trust controls, AI gateway oversight, NHI policy, and executive crisis approval workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CISO governance guidance for AI-company security workflows, including STRIDE threat modeling, incident response, AI gateway governance, zero-trust controls, crisis-channel approval, audit, and license-compliance review.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Security, governance, and incident-response teams use this skill to draft CISO-style assessments, approval guidance, risk mitigations, crisis response controls, and compliance review recommendations for AI company workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes automatic containment and executive crisis actions that could affect real systems if connected to operational APIs without approved playbooks. <br>
-Mitigation: Before deployment, define who can approve containment, which systems may be isolated or shut down, and how rollback and audit review work. <br>
-Risk: Broad routing and inconsistent approval limits could create unclear authority during crisis workflows. <br>
-Mitigation: Document the approval chain, CEO timeout escalation rules, CISO or dual-approval requirements, and white-listed operations before granting production access. <br>
-Risk: The release is tagged as requiring sensitive credentials. <br>
-Mitigation: Use least-privilege scoped credentials and keep production credentials unavailable until the skill and incident-response workflow have been reviewed. <br>
+## Use Case:
 
+Employees and governance or security teams use this skill to request CISO-style security assessments, incident-response plans, STRIDE reviews, and risk mitigations for AI-company operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsmithfan/ai-company-ciso-2-0-0) <br>
-- [STRIDE assessment for CEO-EXEC crisis channel](references/stride-assessment-crisis-channel.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or structured security assessment, incident response, and risk mitigation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe approval workflows, containment choices, audit expectations, and rollback considerations for security governance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Emergency approval paths for powerful crisis actions may conflict, especially around timeout handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production use; make timeouts fail closed or route to an independent backup security approver rather than treating timeout as approval.
+
+Risk: The skill can affect production, public communications, or agent operations when adopted into governance workflows.
+
+Mitigation: Narrow activation to explicit CISO governance requests and require human review before installation in workflows that can trigger operational changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-ciso-2-0-0)
+- [AI Company CISO homepage](https://clawhub.com/skills/ai-company-ciso)
+- [STRIDE assessment - CEO-EXEC crisis channel](artifact/references/stride-assessment-crisis-channel.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with security assessment, incident response, and risk mitigation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured security_assessment, incident_response, and risk_mitigation fields when used through its declared interface.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

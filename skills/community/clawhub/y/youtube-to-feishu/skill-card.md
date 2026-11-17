@@ -1,46 +1,62 @@
-## Description: <br>
-Download YouTube video audio and upload to Feishu cloud storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads YouTube video audio as MP3 and prepares it for Feishu cloud upload and messaging in an OpenClaw workflow.
 
-## Publisher: <br>
-[yanghuicode](https://clawhub.ai/user/yanghuicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanghuicode](https://clawhub.ai/user/yanghuicode)
 
-## Use Case: <br>
-OpenClaw users use this skill to turn a YouTube video into an MP3, prepare it for Feishu Drive upload, and send Feishu message details back to the user. It is suited for personal or workflow automation where the user controls the source URL and Feishu authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and yt-dlp commands to fetch YouTube metadata and download audio. <br>
-Mitigation: Install only from a trusted publisher, review the requested YouTube URL before execution, and run it in an environment appropriate for local downloads. <br>
-Risk: Feishu upload and message steps require Feishu Drive and message permissions, and the security evidence notes that completion claims may not match every execution path. <br>
-Mitigation: Confirm the file actually appears in Feishu, verify message delivery, and treat returned upload or send status as operational output that needs checking. <br>
-Risk: Downloaded MP3 files can remain in the temporary directory after a run. <br>
-Mitigation: Review and remove leftover temporary audio files after use, especially on shared machines. <br>
-Risk: Downloading media can raise copyright or terms-of-use issues. <br>
-Mitigation: Use the skill only for content the user is authorized to download and store. <br>
+## Use Case:
 
+External users and developers use this skill to download audio from a YouTube URL, convert it to MP3, and hand the file off for Feishu cloud storage or message delivery. Review the Feishu upload behavior before relying on it as an end-to-end uploader.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanghuicode/youtube-to-feishu) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Progress text and JSON status objects with video metadata, downloaded file details, and Feishu next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, yt-dlp, FEISHU_USER_ID, and Feishu Drive/message permissions; the documented Feishu file-size limit is 100 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The released code may not complete the promised Feishu upload and message flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the current release as a local YouTube audio downloader until Feishu upload and send success are implemented and reported only after completion.
+
+Risk: URL handling is broad and may accept inputs outside the intended YouTube-only use case.
+
+Mitigation: Parse and allowlist supported YouTube URL forms before invoking yt-dlp.
+
+Risk: Temporary MP3 files may remain on disk after use.
+
+Mitigation: Use per-run temporary directories and deterministic cleanup after confirmed upload or failure.
+
+Risk: Runtime environment and dependency handling may expose more variables or variability than needed.
+
+Mitigation: Pass only required environment variables and pin runtime dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanghuicode/skills/youtube-to-feishu)
+- [ClawHub publisher profile](https://clawhub.ai/user/yanghuicode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with progress text and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local MP3 files and Feishu upload or messaging guidance; Feishu actions require OpenClaw integration and authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

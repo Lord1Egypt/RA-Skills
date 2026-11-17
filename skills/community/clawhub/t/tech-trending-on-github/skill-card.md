@@ -1,38 +1,54 @@
-## Description: <br>
-Analyzes GitHub Trending repositories and produces Chinese or English reports covering popular projects, notable changes, innovative open-source work, and technology trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public GitHub Trending pages to summarize popular repositories, highlight innovative open-source projects, and report technology trends.
 
-## Publisher: <br>
-[MeituSkills](https://clawhub.ai/user/MeituSkills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituskills](https://clawhub.ai/user/meituskills)
 
-## Use Case: <br>
-Developers, engineering leaders, and open-source observers use this skill to fetch GitHub Trending data and summarize current project momentum, language distribution, innovation signals, and practical technology directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad questions about what is popular today when the user did not specifically mean GitHub or open-source trends. <br>
-Mitigation: Clarify whether the request is about GitHub, open-source projects, or general popularity before using the trend report. <br>
+## Use Case:
 
+Developers and technical users use this skill to fetch public GitHub Trending data, compare current or weekly trends, and generate concise reports on notable repositories, innovation signals, and technology directions.
 
-## Reference(s): <br>
-- [GitHub Trending](https://github.com/trending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report in Chinese or English] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository names, links, languages, stars, forks, contributor signals, trend changes, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trend-related trigger wording may activate the skill for general technology-trend questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger wording before deployment if the host environment needs the skill to activate only for explicit GitHub or open-source trend requests.
+
+Risk: Reports depend on public GitHub Trending pages that change over time.
+
+Mitigation: Treat generated reports as point-in-time summaries and refresh the data when current trend accuracy matters.
+
+## Reference(s):
+
+- [GitHub Trending](https://github.com/trending)
+- [GitHub Trending for Python](https://github.com/trending/python)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report in Chinese or English, selected from the user's query language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports typically include repository summaries, language distribution, star and fork signals, trend changes, innovation highlights, and technology recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

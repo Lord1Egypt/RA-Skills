@@ -1,41 +1,52 @@
-## Description: <br>
-Audit AWS resource tagging compliance and identify unallocatable spend for FinOps teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit AWS resource tagging compliance and identify unallocatable spend for FinOps teams.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-FinOps teams, cloud governance reviewers, and AWS operators use this skill to analyze exported AWS resource, tag, and cost data for tagging compliance, unallocatable spend, and remediation planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS tag, resource, and cost exports may include sensitive operational or billing details. <br>
-Mitigation: Share only the exports needed for the audit and review data before pasting it into the chat session. <br>
-Risk: Generated SCPs, AWS Config rules, or tagging commands may affect AWS account behavior if applied without review. <br>
-Mitigation: Manually review proposed policies, rules, and commands before applying them to an AWS account. <br>
-Risk: Credentials or secret keys could be accidentally included when users provide raw AWS data. <br>
-Mitigation: Do not provide AWS credentials or secret keys, and confirm pasted data excludes credentials before analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/tagging-auditor) <br>
+## Use Case:
 
+FinOps teams and cloud engineers use this skill to review user-provided AWS resource and cost exports, score tag compliance, identify unallocatable spend, and draft remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with scoring, tables, JSON snippets, policy snippets, and AWS CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output based on user-supplied AWS exports or descriptions; does not access AWS directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AWS cost and resource exports can reveal internal infrastructure, resource inventory, and spend patterns.
+
+Mitigation: Use sanitized exports where appropriate and avoid sharing credentials, access keys, secret keys, or unnecessary sensitive account details.
+
+Risk: Generated AWS Config rules, SCP snippets, and remediation commands could affect account governance if applied without review.
+
+Mitigation: Review generated rules, policies, and commands with the responsible cloud or security owner before applying them in an AWS account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmolnagpal/skills/tagging-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, JSON snippets, policy snippets, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyzes user-provided AWS exports and descriptions; does not access AWS accounts directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

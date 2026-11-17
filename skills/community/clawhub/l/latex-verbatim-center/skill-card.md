@@ -1,43 +1,62 @@
-## Description: <br>
-Provides LaTeX guidance for centering verbatim code blocks and ASCII art by wrapping the verbatim environment with varwidth and center. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redefines LaTeX verbatim blocks with varwidth and center environments so code blocks and ASCII diagrams can be horizontally centered.
 
-## Publisher: <br>
-[bg1avd](https://clawhub.ai/user/bg1avd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bg1avd](https://clawhub.ai/user/bg1avd)
 
-## Use Case: <br>
-Document editors and developers use this skill when LaTeX verbatim blocks, code samples, or ASCII diagrams need to be horizontally centered in TeX Live documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provided snippet globally changes LaTeX verbatim behavior and may affect documents that rely on default verbatim formatting or compatible packages. <br>
-Mitigation: Review the snippet before applying it, test the document output, and avoid combining it with conflicting verbatim packages unless you adapt the configuration. <br>
-Risk: The guidance includes package installation and compilation commands that may change a user's local TeX environment or build output. <br>
-Mitigation: Run any tlmgr or LaTeX compilation command yourself in the intended project environment and inspect the generated PDF before relying on it. <br>
+## Use Case:
 
+Document editors, technical writers, and developers use this skill to fix LaTeX documents where verbatim code blocks or ASCII diagrams stay left-aligned despite center formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bg1avd/latex-verbatim-center) <br>
-- [README.md](README.md) <br>
-- [QUICKREF.md](QUICKREF.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with LaTeX snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a global verbatim redefinition that users should review before applying.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Package-manager commands such as tlmgr install can change the local TeX installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them and install only the required package through trusted TeX Live tooling.
+
+Risk: Example absolute paths may expose user-specific local file paths if redistributed.
+
+Mitigation: Replace local paths with generic placeholders before sharing or publishing derived documentation.
+
+Risk: Global verbatim redefinition may conflict with fancyvrb or existing verbatim customizations.
+
+Mitigation: Test in a copy of the document first, or create a separate centered verbatim environment when compatibility matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bg1avd/skills/latex-verbatim-center)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Quick reference](artifact/QUICKREF.md)
+- [Creation report](artifact/report.md)
+- [CTAN varwidth package documentation](https://ctan.org/pkg/varwidth)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with LaTeX configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package checks, preamble configuration, compile guidance, validation checklist, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

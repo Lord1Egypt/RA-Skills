@@ -1,46 +1,68 @@
-## Description: <br>
-Runs a cross-exchange funding-rate arbitrage strategy that opens delta-neutral perpetual futures positions across Hyperliquid and Binance, with opportunity scanning, stability checks, atomic execution, health checks, and auto-switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross Funding Arb helps an agent operate a Hyperliquid and Binance perpetual-futures funding-rate arbitrage workflow with opportunity scanning, stability checks, order execution, health monitoring, and reports.
 
-## Publisher: <br>
-[synththoughts](https://clawhub.ai/user/synththoughts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[synththoughts](https://clawhub.ai/user/synththoughts)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run an automated Hyperliquid and Binance funding-rate arbitrage bot that scans opportunities, validates risk controls, executes paired futures trades, monitors position health, and reports status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trade live crypto futures accounts unattended and uses sensitive exchange credentials. <br>
-Mitigation: Use testnet first, create restricted trading-only API keys with withdrawals disabled, set explicit small budgets instead of relying on full balances, and protect the .env file before enabling cron. <br>
-Risk: Financial notifications may reuse local Discord or Telegram credentials. <br>
-Mitigation: Review or disable Discord and Telegram credential fallback behavior before enabling scheduled execution. <br>
+## Use Case:
 
+External users and developers use this skill to configure and operate a delta-neutral funding-rate arbitrage workflow across Hyperliquid and Binance Futures, including periodic ticks, status checks, and daily reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/synththoughts/cross-funding-arb) <br>
-- [Funding arbitrage algorithm](references/funding-arb-algorithm.md) <br>
-- [Runtime configuration](references/config.json) <br>
-- [Python trading script](references/cross_funding.py) <br>
-- [Python requirements](references/requirements.txt) <br>
-- [VarFunding API endpoint](https://varfunding.xyz/api/funding?exchanges=hyperliquid,binance) <br>
-- [Binance signed endpoint security](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/public-api-definitions#signed-trade-and-user_data-endpoint-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration guidance, and text status or report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 plus Hyperliquid and Binance futures credentials; intended commands include tick, status, and report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release metadata and skill metadata) <br>
+Risk: Automated live futures trading can place real orders using high-impact exchange credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege exchange credentials with withdrawals disabled, prefer testnet or small explicit budgets first, and monitor initial runs closely.
+
+Risk: Scheduled execution can repeatedly act on market signals and amplify configuration or runtime mistakes.
+
+Mitigation: Review configuration before enabling cron, keep alerting enabled, and use status and report commands to confirm behavior after deployment.
+
+Risk: Security guidance warns not to rely on the documented 50% budget limit until the implementation is fixed.
+
+Mitigation: Set small explicit budgets and verify actual order sizing on testnet before using mainnet credentials.
+
+Risk: Sourcing .env files in shell or cron can broaden credential exposure.
+
+Mitigation: Use dedicated credential injection for exchange keys and notification tokens, and avoid reusing daemon credentials for notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/synththoughts/skills/cross-funding-arb)
+- [README](README.md)
+- [Funding arbitrage algorithm](references/funding-arb-algorithm.md)
+- [Configuration defaults](references/config.json)
+- [Entrypoint source](references/cross_funding.py)
+- [Python requirements](references/requirements.txt)
+- [VarFunding funding API](https://varfunding.xyz/api/funding?exchanges=hyperliquid,binance)
+- [Binance signed endpoint security](https://developers.binance.com/docs/binance-spot-api-docs/rest-api/public-api-definitions#signed-trade-and-user_data-endpoint-security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON/Python reference files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, exchange credentials, and optional notification credentials; ClawHub metadata lists darwin and linux support.]
+
+## Skill Version(s):
+
+2.8.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

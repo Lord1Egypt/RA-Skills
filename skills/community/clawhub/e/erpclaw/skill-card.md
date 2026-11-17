@@ -1,42 +1,62 @@
-## Description: <br>
-AI-native ERP system for accounting, invoicing, inventory, purchasing, tax, billing, HR, payroll, advanced accounting, and financial reporting across ERP domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ERPClaw is an AI-native ERP agent for accounting, invoicing, inventory, purchasing, tax, billing, HR, payroll, advanced accounting, and financial reporting across local business records.
 
-## Publisher: <br>
-[mailnike](https://clawhub.ai/user/mailnike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GNU General Public License v3 <br>
+## Publisher:
 
+[mailnike](https://clawhub.ai/user/mailnike)
 
-## Use Case: <br>
-Business users and operators use this skill to let an agent manage local ERP workflows such as company setup, invoices, payments, inventory, payroll, reporting, and period-close tasks while keeping accounting records in an ERP database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GNU GPL v3
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority over sensitive accounting, payroll, banking, modules, and local files. <br>
-Mitigation: Install only for a trusted ERP environment, start with a test database, keep backups, restrict roles, and require explicit human approval for posting, imports, payroll, key restore, credential changes, module updates, customer emails, and period-close workflows. <br>
-Risk: Incorrect or under-reviewed financial actions can affect books of record. <br>
-Mitigation: Review module sources before install or update, protect payroll and ACH outputs, avoid arbitrary CSV paths, and require human confirmation for high-impact actions. <br>
+## Use Case:
 
+Small business operators and their agents use ERPClaw to set up companies, maintain books, issue invoices, manage inventory and purchasing, run payroll, and produce accounting reports from natural-language requests. Developers can also use its MCP and command surfaces to route ERP actions through local Python tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mailnike/erpclaw) <br>
-- [ERPClaw website](https://www.erpclaw.ai) <br>
-- [ERPClaw docs](https://www.erpclaw.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Plain-language responses with command-backed ERP actions and structured JSON results from local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and git on darwin or linux; optional ERPCLAW_DB_PATH controls the local database path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.8.0 (source: SKILL.md frontmatter, CHANGELOG, and server release metadata) <br>
+Risk: The skill can control local business records, payroll data, credentials, backups, and persistent modules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where this level of local ERP control is acceptable, and avoid real production data until the deployment has been reviewed.
+
+Risk: Module installation and onboarding paths create meaningful remote-code and sensitive-data exposure risk.
+
+Mitigation: Treat installed expansion modules as code with ERP-process privileges and review module sources before enabling them.
+
+Risk: Registry verification and module source restrictions are identified as areas needing tightening.
+
+Mitigation: Defer production module onboarding until registry verification and source restrictions meet the operator's risk tolerance.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mailnike/skills/erpclaw)
+- [ERPClaw website](https://www.erpclaw.ai)
+- [ERPClaw documentation](https://www.erpclaw.ai/docs)
+- [Stripe Marketplace listing](https://marketplace.stripe.com/apps/erpclaw-accounting)
+- [OpenClaw](https://openclaw.org)
+- [Pattern catalog](scripts/erpclaw-os/references/pattern_catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON responses with optional shell-command execution through local ERP tooling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May mutate local ERP data through confirmed actions; read-only discovery and reporting actions return structured results.]
+
+## Skill Version(s):
+
+4.15.0 (source: server release evidence, SKILL.md frontmatter, CHANGELOG released 2026-08-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

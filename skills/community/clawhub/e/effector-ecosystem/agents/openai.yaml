@@ -1,0 +1,4 @@
+interface:
+  display_name: "Effector Ecosystem"
+  short_description: "Effector, Farfetched, Atomic Router, @effector/next, React binding, Scope, and testing"
+  default_prompt: "Use $effector-ecosystem to design, review, refactor, or deeply audit Effector/Farfetched/Atomic Router/React workflow semantics. Use $effector-fsd for FSD structure and ownership."

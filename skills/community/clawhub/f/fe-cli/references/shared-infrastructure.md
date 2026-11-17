@@ -872,7 +872,7 @@ export default function AppProvider({ children }: AppProviderProps) {
 
 **`src/layouts/AppLayout.tsx`**:
 ```tsx
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import styles from './AppLayout.module.scss';
@@ -894,7 +894,7 @@ export default function AppLayout() {
 
 **`src/layouts/Header.tsx`**:
 ```tsx
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useTheme } from '@/theme';
 import { useUserStore } from '@/store';
 import styles from './Header.module.scss';
@@ -934,7 +934,7 @@ export default function Header() {
 
 **`src/layouts/Sidebar.tsx`**:
 ```tsx
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router';
 import { useAppStore } from '@/store';
 import styles from './Sidebar.module.scss';
 
@@ -1012,7 +1012,7 @@ export default function GlobalLoading() {
 
 **`src/components/AuthGuard.tsx`** (React):
 ```tsx
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router';
 import { useUserStore } from '@/store';
 
 interface AuthGuardProps {
@@ -1107,7 +1107,7 @@ export const HTTP_STATUS = {
 **`src/config/routes.tsx`** (React):
 ```tsx
 import { lazy } from 'react';
-import type { RouteObject } from 'react-router-dom';
+import type { RouteObject } from 'react-router';
 import AuthGuard from '@/components/AuthGuard';
 import AppLayout from '@/layouts/AppLayout';
 import { ROUTE_PATHS } from './index';
@@ -1204,7 +1204,7 @@ src/
 ├── services/
 │   ├── request.ts            # Fetch wrapper
 │   ├── logger.ts             # Structured logger
-│   ├── log-export.ts         # Log export & submit
+│   ├── log-export.ts         # Log export (local download)
 │   └── api/index.ts          # API endpoints
 ├── styles/
 │   ├── global.scss           # CSS variables + global styles

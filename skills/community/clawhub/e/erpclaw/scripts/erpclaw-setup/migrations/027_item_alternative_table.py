@@ -19,12 +19,16 @@ is read, never written, by manufacturing.
 
 Pure CREATE TABLE / CREATE INDEX IF NOT EXISTS. Idempotent, dialect-aware, no
 rebuild / no FK-rewrite trap. Columns match init_schema exactly. SIM-0-validated
-(planning/sap_challenger/_sim0_wave2_rehearsal.py, _DDL_027_ITEM_ALTERNATIVE):
+(wave rehearsal harness, _DDL_027_ITEM_ALTERNATIVE):
 creation, FK targets, idempotency, cross-dialect shape all PASS.
 """
 import argparse
 import os
 import sqlite3
+
+# M102: adds tables / columns / indexes only — nothing a row held before this
+# run is different afterwards.
+MIGRATION_DATA_CLASS = "none"
 
 DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 

@@ -1,42 +1,50 @@
-## Description: <br>
-Create a topic-specific GitHub awesome-list repository scaffold with a polished README, concise contribution rules, AI-agent instructions, URL verification, license, and reusable templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a topic-specific GitHub awesome-list repository scaffold with a polished README, concise contribution rules, AI-agent instructions, URL verification, license, and reusable templates.
 
-## Publisher: <br>
-[zjsxply](https://clawhub.ai/user/zjsxply) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjsxply](https://clawhub.ai/user/zjsxply)
 
-## Use Case: <br>
-Developers and maintainers use this skill to create a focused awesome-list repository from a topic, optional taxonomy, inclusion criteria, and seed entries. It helps draft the repository structure, README, contribution guidance, agent instructions, URL verification script, and reusable templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local repository files and can overwrite generated files when --force is used. <br>
-Mitigation: Use a dedicated empty output directory and use --force only when overwriting scaffold files is intentional. <br>
-Risk: Generated README entries, AGENTS.md, templates, and verify_urls.py may need review before publication. <br>
-Mitigation: Review generated content before publishing and run the URL verifier when the README includes external links. <br>
-Risk: The workflow may research seed entries when the user does not provide them, which can introduce stale or unsuitable resources. <br>
-Mitigation: Confirm the taxonomy, inclusion criteria, and seed resources before treating the generated repository as publication-ready. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to create an initial awesome-list repository for a chosen topic, including taxonomy, contribution guidance, agent instructions, templates, and a URL verification script.
 
-## Reference(s): <br>
-- [Awesome Repository Structure](references/awesome-repo-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Generated repository files plus concise Markdown status notes and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local scaffold files under a user-selected output directory; the generated URL verifier performs HTTP checks only when the user runs it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The generated URL verifier can make unrestricted outbound HTTP(S) requests from the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the verifier only on trusted README content, or sandbox network access and add controls for private addresses, redirects, and explicit consent before use in CI or corporate networks.
+
+## Reference(s):
+
+- [Awesome Repository Structure](references/awesome-repo-structure.md)
+- [ClawHub Skill Page](https://clawhub.ai/zjsxply/skills/awesome-repo-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON spec, shell command, and generated repository files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files include README.md, CONTRIBUTING.md, AGENTS.md, LICENSE, .gitignore, verify_urls.py, and reusable Markdown templates.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

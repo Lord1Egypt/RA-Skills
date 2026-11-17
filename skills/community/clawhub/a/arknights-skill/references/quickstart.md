@@ -16,6 +16,16 @@ skills add git+https://github.com/morandot/arknights-skill.git --skill arknights
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/morandot/arknights-skill/main/install.sh)"
 ```
 
+This runs a script fetched from GitHub. To review it first:
+
+```bash
+curl -fsSL -o /tmp/arknights-install.sh https://raw.githubusercontent.com/morandot/arknights-skill/main/install.sh
+less /tmp/arknights-install.sh   # inspect the script
+bash /tmp/arknights-install.sh   # run after review
+```
+
+To pin a released version instead of `main`, set `REPO_REF` (e.g. `REPO_REF=v1.5.0`).
+
 **Claude Code:**
 Tell your agent: "Install the skill `arknights-skill` from https://github.com/morandot/arknights-skill"
 

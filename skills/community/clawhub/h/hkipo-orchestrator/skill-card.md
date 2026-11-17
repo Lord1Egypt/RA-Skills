@@ -1,48 +1,64 @@
-## Description: <br>
-Coordinate the end-to-end Hong Kong IPO workflow across discovery, snapshot extraction, personalization, scoring, and review optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate the end-to-end Hong Kong IPO workflow across discovery, snapshot extraction, personalization, scoring, and review optimization. Use when the user wants one skill to choose the next step across the full HK IPO research loop.
 
-## Publisher: <br>
-[hackstoic](https://clawhub.ai/user/hackstoic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hackstoic](https://clawhub.ai/user/hackstoic)
 
-## Use Case: <br>
-External users and agent operators use this skill to route Hong Kong IPO research tasks across discovery, data extraction, profile and watchlist management, scoring, decision-card generation, batch review, and outcome feedback. It supports research and decision preparation, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make public market-data requests and the resulting data may be incomplete, stale, or degraded. <br>
-Mitigation: Review source data and degraded-data notices before relying on outputs, and treat scores as research support rather than financial advice. <br>
-Risk: Profile, watchlist, scoring, and review-history files may reveal investment preferences or activity. <br>
-Mitigation: Keep the HKIPO home directory and configuration files out of shared folders, public artifacts, and version control. <br>
-Risk: Commands that save parameters or accept imported suggestions can change local scoring rules and future review behavior. <br>
-Mitigation: Review parameter changes and imported suggestions before accepting them, and preserve prior versions for comparison. <br>
+## Use Case:
 
+Developers, analysts, and IPO researchers use this skill to coordinate a Hong Kong IPO research loop, selecting the next step across market discovery, snapshot extraction, profile and watchlist setup, scoring, decision-card generation, and review optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hackstoic/hkipo-orchestrator) <br>
-- [Runtime README](runtime/hkipo-next/README.md) <br>
-- [AiPO API Documentation](runtime/hkipo-next/references/aipo-api.md) <br>
-- [API Guide](runtime/hkipo-next/references/api-guide.md) <br>
-- [Analysis Guide](runtime/hkipo-next/references/analysis-guide.md) <br>
-- [IPO Mechanism Guide](runtime/hkipo-next/references/ipo-mechanism.md) <br>
-- [Risk Preferences Guide](runtime/hkipo-next/references/risk-preferences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise text or markdown for users, JSON for machine steps, and shell commands for CLI workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read public market data and may write local profile, watchlist, scoring, and review-history state under the configured HKIPO home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, pyproject.toml, server release metadata) <br>
+Risk: The skill stores watchlists, risk preferences, scoring parameters, decisions, notes, and outcomes under ~/.hkipo-next as local plaintext data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted machines, restrict filesystem permissions on ~/.hkipo-next, and treat exported review files as sensitive financial history.
+
+Risk: The workflow contacts public market-data sites, so source availability or partial data can affect research quality.
+
+Mitigation: Review degraded or partial data warnings and verify important IPO facts against source materials before acting.
+
+Risk: Repeated score or batch jobs can create additional review records.
+
+Mitigation: Confirm before running repeated scoring or batch operations when preserving a clean decision history matters.
+
+## Reference(s):
+
+- [hkipo-next README](runtime/hkipo-next/README.md)
+- [AiPO API Documentation](runtime/hkipo-next/references/aipo-api.md)
+- [Analysis Guide](runtime/hkipo-next/references/analysis-guide.md)
+- [API Guide](runtime/hkipo-next/references/api-guide.md)
+- [IPO Mechanism Reference](runtime/hkipo-next/references/ipo-mechanism.md)
+- [Risk Preferences Reference](runtime/hkipo-next/references/risk-preferences.md)
+- [AiPO Data Source](https://aipo.myiqdii.com)
+- [AASTOCKS IPO Market Data](https://www.aastocks.com/tc/stocks/market/ipo/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, text, or Markdown with concise shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route to companion HK IPO skills and may update local profile, watchlist, parameter, or review-history files when the user confirms state-changing steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, pyproject.toml, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

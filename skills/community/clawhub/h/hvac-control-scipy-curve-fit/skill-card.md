@@ -1,40 +1,52 @@
-## Description: <br>
-Use scipy.optimize.curve_fit for nonlinear least squares parameter estimation from experimental data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use scipy.optimize.curve_fit for nonlinear least squares parameter estimation from experimental data.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for guidance and Python examples when fitting nonlinear models, especially first-order step-response models, to experimental data with SciPy.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Curve-fitting examples can produce misleading parameter estimates when applied to invalid data, poor initial guesses, inappropriate bounds, or a system that does not match the model.
+
+Mitigation: Validate input data, choose physically meaningful initial guesses and bounds, and review fit quality metrics such as R-squared and RMSE before using fitted parameters.
+
+Risk: The examples require NumPy and SciPy in the agent environment.
+
+Mitigation: Confirm the required Python packages are installed before following or executing the generated code examples.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on fitting nonlinear models to experimental data with SciPy, including first-order step-response parameter estimation and fit-quality checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Example fitting code may produce misleading parameters if the user's data, units, model form, or bounds are inappropriate. <br>
-Mitigation: Review and adapt the model, initial guesses, bounds, and fit-quality checks before using the guidance on real experimental data. <br>
-Risk: Using NumPy or SciPy from untrusted package sources can introduce supply-chain risk. <br>
-Mitigation: Install NumPy and SciPy only from trusted package repositories and verify dependency provenance in the target environment. <br>
+**Output Format:** [Markdown guidance with Python code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/hvac-control-scipy-curve-fit) <br>
+**Other Properties Related to Output:** [Provides example NumPy and SciPy snippets for curve fitting, initial guesses, bounds, and fit quality metrics.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples require user adaptation to local data and model assumptions.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

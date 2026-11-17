@@ -1,0 +1,8 @@
+# mu-mbti-job 依赖说明
+# 核心功能零第三方依赖：score.py / build_quiz_page.py 仅用 Python 标准库。
+# 以下为 PDF 报告的可选增强依赖（generate_report.py 三级回退，缺失时自动降级）：
+#   tier 1: weasyprint  —— 最优排版（pip install weasyprint）
+#   tier 3: reportlab   —— 纯 Python 兜底（pip install reportlab）
+# 不安装任何依赖时，脚本会自动使用系统浏览器 headless 模式（tier 2）生成 PDF。
+weasyprint>=61.0
+reportlab>=4.0

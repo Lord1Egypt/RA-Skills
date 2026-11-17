@@ -1,48 +1,59 @@
-## Description: <br>
-Transcribe, diarize, translate, post-process, and structure audio or video with AssemblyAI-oriented workflows for local files or URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe, diarise, translate, post-process, and structure audio/video with AssemblyAI-oriented workflows, producing agent-friendly transcript outputs for downstream AI tasks.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and AI agents use this skill to transcribe recordings, add speaker labels or translations, and produce transcript bundles for downstream automation. It is most useful when the workflow needs AssemblyAI-specific speech-to-text, LLM Gateway extraction, subtitles, or normalized agent JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio or video files, transcript text, prompts, schemas, and related metadata may be sent through the SkillBoss/HeyBoss API hub rather than only AssemblyAI-branded services. <br>
-Mitigation: Review backend, retention, region, and compliance terms before use; avoid confidential, regulated, or customer recordings until those terms are verified. <br>
-Risk: The skill requires sensitive credentials through SKILLBOSS_API_KEY. <br>
-Mitigation: Inject credentials through the execution environment, avoid exposing keys in chat logs or output files, and rotate credentials if they may have been disclosed. <br>
-Risk: Transcription, upload, and LLM requests can send data to external services and may create costs or persistent outputs. <br>
-Mitigation: Use dry-run first when practical, choose explicit output paths, and inspect generated bundles before sharing them downstream. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local or remote audio/video, add speaker labels or names, translate and post-process transcripts, and package results for review or downstream automation. It is most relevant when AssemblyAI-specific transcription, Speech Understanding, LLM extraction, subtitle output, or normalized transcript JSON is needed.
 
-## Reference(s): <br>
-- [AssemblyAI documentation](https://www.assemblyai.com/docs) <br>
-- [Capabilities reference](references/capabilities.md) <br>
-- [Workflow recipes](references/workflows.md) <br>
-- [Output formats](references/output-formats.md) <br>
-- [Speaker mapping reference](references/speaker-mapping.md) <br>
-- [LLM Gateway notes](references/llm-gateway.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI outputs Markdown, JSON, text, SRT/VTT, and bundle manifest files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write bundle directories containing transcript Markdown, normalized agent JSON, raw JSON, subtitles, paragraphs, sentences, and manifests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Security evidence says the documentation and runtime disagree about who receives sensitive audio, transcript text, prompts, schemas, and URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid confidential or regulated recordings until the publisher aligns documentation and runtime behavior, and use only when sending selected data to SkillBoss API Hub and possibly downstream services is acceptable.
+
+Risk: Security guidance flags endpoint overrides, uploads, and deletion behavior as areas needing explicit review.
+
+Mitigation: Restrict endpoint overrides, require explicit confirmation for uploads and deletion, and keep API keys out of prompts and logs.
+
+## Reference(s):
+
+- [AssemblyAI Documentation](https://www.assemblyai.com/docs)
+- [Capabilities](references/capabilities.md)
+- [Workflow Recipes](references/workflows.md)
+- [Output Formats](references/output-formats.md)
+- [Speaker Mapping Reference](references/speaker-mapping.md)
+- [LLM Gateway Notes](references/llm-gateway.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown transcripts, normalized agent JSON, raw JSON, plain text, paragraph and sentence exports, SRT/VTT subtitles, bundle manifests, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create multi-file transcript bundles and sidecar outputs for downstream agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; artifact frontmatter metadata.version is 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

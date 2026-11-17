@@ -1,45 +1,60 @@
-## Description: <br>
-A context-compaction agent that monitors conversation context, applies HOT/WARM/COLD layered compression, and helps reduce token use while preserving important session information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Compactor monitors and compresses long OpenClaw session context with HOT/WARM/COLD tiers, token and message-count triggers, local storage, and status reporting.
 
-## Publisher: <br>
-[geoshan](https://clawhub.ai/user/geoshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geoshan](https://clawhub.ai/user/geoshan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage long-running OpenClaw sessions by monitoring context growth, compacting conversation history, and retaining decisions, tasks, and preferences for later use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a local background context-management service that reads and stores OpenClaw workspace memory. <br>
-Mitigation: Install only when a local background service is intended, review scripts before use, and back up context_compactor.db before cleanup or maintenance commands. <br>
-Risk: The localhost API and monitor scripts can expose or modify compaction state if access is not controlled. <br>
-Mitigation: Keep the API bound to localhost, restrict local access, and avoid auto-start or cron deployment until the service behavior has been reviewed. <br>
-Risk: Notification examples or external integrations could disclose context-management information if enabled without review. <br>
-Mitigation: Remove or replace external notification examples before use and confirm any integration destinations are approved. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reduce token use and preserve important session history during long OpenClaw conversations. It supports manual and automatic compaction, monitoring, and local reports for context-management workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/geoshan/subagent-context-compactor) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw context management](https://docs.openclaw.ai/context-management) <br>
-- [OpenClaw token optimization](https://docs.openclaw.ai/token-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, JSON configuration, and local service status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local context summaries, compaction reports, monitoring status, and API responses when its scripts or service are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence says the skill persistently monitors the workspace and can read and store sensitive OpenClaw memory and agent-instruction data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in approved workspaces, restrict file permissions on generated databases and logs, and define retention, deletion, and access controls before enabling monitoring.
+
+Risk: The artifact includes automatic monitoring, cron examples, and local retention of original context data.
+
+Mitigation: Disable cron jobs and auto-start behavior unless explicitly needed, and periodically purge or rotate stored status, log, and SQLite data.
+
+Risk: The security guidance calls out hard-coded outbound alert examples and plaintext original-context retention as review items.
+
+Mitigation: Remove outbound alert examples and plaintext original-context retention unless they are required and covered by documented operational controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/geoshan/skills/subagent-context-compactor)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Context Management](https://docs.openclaw.ai/context-management)
+- [OpenClaw Token Optimization](https://docs.openclaw.ai/token-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, Python code snippets, and local status or report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local SQLite history, JSON status data, logs, API responses, and human-readable compression reports when the runtime scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

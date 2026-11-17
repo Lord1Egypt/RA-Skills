@@ -1889,7 +1889,7 @@ body.dark .task-card.status-failed {
 }
 
 /* 浠诲姟璇︽儏寮圭獥 */
-.task-detail-modal-content {
+.taREDACTED-SECRET {
     max-width: 380px;
     padding: 0;
     position: relative;
@@ -1897,7 +1897,7 @@ body.dark .task-card.status-failed {
     overflow: hidden;
 }
 
-.task-detail-modal-content .modal-close {
+.taREDACTED-SECRET .modal-close {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -1916,7 +1916,7 @@ body.dark .task-card.status-failed {
     z-index: 10;
 }
 
-.task-detail-modal-content .modal-close:hover {
+.taREDACTED-SECRET .modal-close:hover {
     background: rgba(255, 255, 255, 0.3);
 }
 

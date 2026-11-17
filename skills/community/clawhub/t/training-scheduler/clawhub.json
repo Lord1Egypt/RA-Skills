@@ -1,0 +1,13 @@
+{
+  "name": "training-scheduler",
+  "displayName": "培训计划编排",
+  "version": "1.0.0",
+  "description": "培训全流程计划编排工具：时间排期、讲师邀约、课程设计、教材准备、场地酒店预订，自动生成筹备日程表和进度甘特图。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "scheduling", "planning", "event-management", "education"],
+  "minOpenClawVersion": "1.2.0"
+}

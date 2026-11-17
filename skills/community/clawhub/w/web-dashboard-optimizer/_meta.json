@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn71xx5bq03w0522ateft6t89582d3qe",
   "slug": "web-dashboard-optimizer",
-  "version": "1.0.0",
-  "publishedAt": 1773995405202
+  "displayName": "Web Dashboard Optimizer",
+  "description": "Web dashboard optimization best practices for AI Agents. Smart refresh, scroll position keeping, modal interaction, auto-restart service.",
+  "author": "OpenClaw Community",
+  "license": "MIT-0",
+  "tags": ["dashboard", "web", "ui", "optimizer", "monitor", "frontend"],
+  "repository": "https://github.com/openclaw/openclaw",
+  "homepage": "https://clawhub.com/skills/web-dashboard-optimizer",
+  "bugs": "https://github.com/openclaw/openclaw/issues",
+  "meta": {
+    "emoji": "📊",
+    "requires": {
+      "bins": ["node"]
+    }
+  },
+  "category": "UI/UX",
+  "difficulty": "Beginner",
+  "estimatedTime": "10 minutes"
 }

@@ -1,40 +1,58 @@
-## Description: <br>
-Provides ready-to-use automation templates for n8n, Make.com, and Zapier with pre-built workflows for common use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ready-to-use automation templates for n8n, Make.com, and Zapier workflows across email, CRM, data sync, notifications, and e-commerce use cases.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers, operators, and automation builders use this skill to find, customize, and generate starter workflows for n8n, Make.com, and Zapier covering email, CRM, data sync, notifications, and e-commerce. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated automation workflows can trigger external effects when activated with real credentials, webhooks, CRM targets, Slack channels, or email recipients. <br>
-Mitigation: Review each workflow node by node, use test data and least-privilege credentials, confirm endpoints and recipients, and activate only after verifying expected effects and rollback steps. <br>
-Risk: Template variables include API keys, webhook URLs, and destination placeholders that may be misconfigured during customization. <br>
-Mitigation: Replace placeholders deliberately, keep credentials out of shared artifacts, and validate generated JSON or YAML in the target automation platform before production use. <br>
+## Use Case:
 
+Developers and operations teams use this skill to find, customize, and generate workflow templates for common automation tasks in n8n, Make.com, and Zapier.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-automation-templates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or YAML workflow configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workflows may contain placeholder credentials, webhook URLs, recipients, channels, and service targets that require review before activation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: Generated automation workflows can connect to external systems and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each destination, use least-privilege credentials or platform secret managers, and test with non-production data before activation.
+
+Risk: The CLI can write generated templates or workflows to user-provided output paths.
+
+Mitigation: Choose output paths deliberately and review existing files before writing generated workflow content.
+
+Risk: Templates adapted across n8n, Make.com, and Zapier may require platform-specific adjustments.
+
+Mitigation: Validate generated workflow structure and platform settings before connecting production services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-automation-templates)
+- [ClawHub publisher profile](https://clawhub.ai/user/neckr0ik)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflows may be written to user-specified output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, artifact/claw.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

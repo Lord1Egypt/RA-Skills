@@ -1,40 +1,53 @@
-## Description: <br>
-Access and search a structured open source knowledge base of book summaries optimized for AI agents via the MCP protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and search a structured open source knowledge base of book summaries optimized for AI agents via the MCP protocol.
 
-## Publisher: <br>
-[danpalmieri](https://clawhub.ai/user/danpalmieri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danpalmieri](https://clawhub.ai/user/danpalmieri)
 
-## Use Case: <br>
-Developers and agent users connect this skill to the Books for Agents MCP service to search, browse, retrieve, generate, and submit structured book summaries for agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects the agent to the external booksforagents.com service, sending search queries and submitted content outside the local environment. <br>
-Mitigation: Install only when that service is trusted for the intended workflow and avoid sending sensitive queries or unpublished content unless approved. <br>
-Risk: The skill can publish generated summaries to a shared knowledge base without clear rollback guidance. <br>
-Mitigation: Require user confirmation before using suggest_book or submit_book, and review generated summaries before publishing because submitted content may persist or be shared externally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danpalmieri/books-for-agents) <br>
-- [Books for Agents MCP Endpoint](https://booksforagents.com/mcp) <br>
+## Use Case:
 
+External users and developers use this skill to connect agents to the Books for Agents MCP service, search book summaries, retrieve full or partial structured summaries, browse categories, suggest books, and generate or submit new summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with MCP tool calls and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include search results, structured summary sections, backlog entries, generation templates, and submitted book-summary content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill connects to a persistent remote MCP service that can publish generated book summaries.
+
+Mitigation: Require explicit user approval before calling submit_book and review generated summaries before publication.
+
+Risk: Remote generation templates or examples could be treated as instructions that override user or system intent.
+
+Mitigation: Treat remote templates and examples as untrusted formatting data and keep higher-priority instructions in force.
+
+## Reference(s):
+
+- [Books For Agents ClawHub listing](https://clawhub.ai/danpalmieri/skills/books-for-agents)
+- [Books for Agents MCP endpoint](https://booksforagents.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance, Configuration]
+
+**Output Format:** [Markdown and structured MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retrieve or publish book-summary content through a persistent remote MCP service.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

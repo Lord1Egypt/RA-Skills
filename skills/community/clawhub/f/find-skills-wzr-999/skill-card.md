@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask for installable functionality or ways to extend agent capabilities.
 
-## Publisher: <br>
-[Dawnwangzi](https://clawhub.ai/user/Dawnwangzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dawnwangzi](https://clawhub.ai/user/dawnwangzi)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for installable skills that match a requested task, compare options, and optionally install a selected skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad triggering for skill discovery and could suggest installing third-party skills when the user did not intend to change their environment. <br>
-Mitigation: Use it only after explicit user intent to search for skills, and confirm the selected source before installation. <br>
-Risk: The example global auto-confirmed install command can persistently modify the user's skill environment. <br>
-Mitigation: Do not run global auto-confirmed installs until the user approves, the source has been reviewed, and the installation impact is understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skills CLI catalog](https://skills.sh/) <br>
-- [Example skill listing](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices) <br>
+## Use Case:
 
+Developers and agent users use this skill to search the open skills ecosystem, compare relevant skills, and install selected skills with the Skills CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose skill search and install commands; review installation commands before running them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest unpinned remote CLI commands or global skill installation with confirmations skipped.
+
+Mitigation: Require explicit user approval, prefer pinned CLI and skill versions, install project-locally where possible, and review skill source before execution.
+
+Risk: Search results and installation targets may point to third-party skills with different trust and maintenance profiles.
+
+Mitigation: Review the publisher, source, license, and security posture of each suggested skill before installation.
+
+## Reference(s):
+
+- [Skills ecosystem browser](https://skills.sh/)
+- [ClawHub skill page](https://clawhub.ai/dawnwangzi/skills/find-skills-wzr-999)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include install commands for third-party skills that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

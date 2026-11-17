@@ -3493,8 +3493,7 @@ async function upsertCoolifyConfig(configPath, { baseUrl, tokenEnv = 'COOLIFY_AP
     await writeJsonFile(configPath, config);
     return true;
 }
-const ASC_PRIVATE_KEY_BEGIN = '-----BEGIN PRIVATE KEY-----';
-const ASC_PRIVATE_KEY_END = '-----END PRIVATE KEY-----';
+const ASC_PRIVATE_KEY_BEGIN = 'REDACTED-SECRET';
 const BRACKETED_PASTE_START = new RegExp(`${String.fromCharCode(27)}\\[200~`, 'g');
 const BRACKETED_PASTE_END = new RegExp(`${String.fromCharCode(27)}\\[201~`, 'g');
 function formatPemBase64(value) {

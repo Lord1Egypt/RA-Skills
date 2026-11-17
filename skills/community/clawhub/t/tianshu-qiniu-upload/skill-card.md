@@ -1,42 +1,49 @@
-## Description: <br>
-Uploads local files such as images, HTML pages, documents, and other artifacts to Qiniu Cloud storage, then returns a publicly accessible CDN URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local files such as images, HTML pages, and documents to Qiniu Cloud storage and returns a publicly accessible CDN URL.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need an agent to publish a selected local file to a configured Qiniu bucket and return a shareable URL. It is intended for Qiniu uploads only, not for other storage providers or file generation without sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish selected local files to a public or externally reachable Qiniu URL. <br>
-Mitigation: Verify the exact local path and the bucket access policy before upload; do not upload private documents, credentials, or personal data unless the bucket policy is appropriate. <br>
-Risk: The upload workflow requires Qiniu access credentials. <br>
-Mitigation: Use least-privilege Qiniu keys stored in environment or skill configuration, and keep secrets out of chat transcripts and source files. <br>
+## Use Case:
 
+Developers and external users use this skill when they need an agent to upload a reviewed local file to a configured Qiniu Cloud bucket and return a shareable public URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-qiniu-upload) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text URL with optional Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the uploaded file URL after the Node.js script completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata and clawhub.json) <br>
+Risk: Configured Qiniu credentials allow uploads to the target bucket, and uploaded files become publicly accessible through the configured domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact local path and intended destination before upload; do not upload secrets, private documents, tokens, internal reports, or unreviewed files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangshengli0421/skills/tianshu-qiniu-upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text URL with optional Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QINIU_ACCESS_KEY, QINIU_SECRET_KEY, QINIU_BUCKET, and QINIU_DOMAIN; QINIU_PREFIX is optional and defaults to uploads.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

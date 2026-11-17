@@ -4,6 +4,16 @@
 
 ---
 
+## 不支持矩阵题型
+
+**本 Skill 不支持创建或导入矩阵类题型**（含矩阵单选、矩阵多选、矩阵打分、矩阵填空等；`en_name` 含 `MATRIX` 或 `question_type` 为 4 / 5 / 7 / 100，以及带 `matrixrow_list` 的题目）。
+
+- **不要**在 `question_list` 中写入 `QUESTION_TYPE_MATRIX_SINGLE`、`QUESTION_TYPE_MATRIX_MULTIPLE` 等矩阵题型。
+- 用户需要「对多个维度分别评价」时，改为 **多道量表题 / 评价题 / 打分题**，或 **多道单选题**；也可告知用户在问卷网编辑器中手动添加矩阵题。
+- `fetch_project` 可能读到已有矩阵题结构，但 **不得**通过本 Skill 新建或批量导入矩阵题。
+
+---
+
 ## 一、项目根结构 (project_json)
 
 ```json
@@ -18,7 +28,7 @@
   "import_type": "0" | "1",    // 可选，0=创建项目(默认), 1=导入到已有项目
   "project_id": "string",      // 条件，import_type=1时必填
   "folder_id": "string",       // 可选，文件夹ID
-  "ai_source": 12,             // 可选，AI创建标识，固定12
+  "ai_source": 12,             // Agent 按 SKILL.md 通过 --ai-source 传入；JS 未传时兼容默认12
   "survey_result": "string"    // 可选，结束语设置，JSON字符串转义
 }
 ```
@@ -58,7 +68,7 @@
 | `title` | string | ✅ | 题目内容 |
 | `en_name` | string | ✅ | 题型标识（见题型对照表） |
 | `custom_attr` | object | ✅ | 自定义属性（可为空对象 `{}`） |
-| `option_list` | array | ✅ | 选项列表（无选项传空数组 `[]`）；**矩阵类题型**另有 **`matrixrow_list`**（见 §6 / §7） |
+| `option_list` | array | ✅ | 选项列表（无选项传空数组 `[]`） |
 
 ### 选项结构 (option_list 元素)
 
@@ -83,7 +93,7 @@
 > **参考样例项目（线上下落）**：以下「`edit_project` 返回」字段来自问卷网编辑接口实测，用于与「导入 JSON 写 `option_list: []`」对照。  
 > - 普通问卷：`project_id` **`69d257be4d1e8d523899937b`**（`survey`，14 题）  
 > - 考试测评：`project_id` **`69d2570bef3af30a3376fd24`**（`assess`，15 题）  
-> - **矩阵评价（矩阵单选 + `matrixrow_list`）**：`project_id` **`69e4d0a6ef3af30a18db16c3`** — 请在本机登录后执行 `fetch_project` 拉取该题完整字段（行/列与 `question_type`）  
+> - **打分题、量表题、评价题、NPS**：均为 `QUESTION_TYPE_SCORE`（`question_type: 50`），各自结构见 §4 ·5 / §4 ·6 / §4 ·7 / §4 ·8  
 > 汇总表见 **第十二节**。
 
 ### 1. 单选题 (QUESTION_TYPE_SINGLE)
@@ -108,6 +118,8 @@
   "custom_attr": {
     "disp_type": "judge",
     "show_seq": "on",
+    "calculation": "only_one",
+    "answer_score": "on",
     "total_score": 5
   },
   "option_list": [
@@ -120,15 +132,18 @@
 **示例（普通单选）**：
 ```json
 {
-  "title": "您的性别是？",
+  "title": "您是从哪里了解到我们的？",
   "en_name": "QUESTION_TYPE_SINGLE",
-  "custom_attr": {},
+  "custom_attr": { "show_seq": "on", "show_option_number": "on" },
   "option_list": [
-    {"title": "男", "is_open": false, "custom_attr": {}},
-    {"title": "女", "is_open": false, "custom_attr": {}}
+    {"title": "搜索引擎", "is_open": false, "custom_attr": {}},
+    {"title": "朋友推荐", "is_open": false, "custom_attr": {}},
+    {"title": "社交媒体", "is_open": false, "custom_attr": {}}
   ]
 }
 ```
+
+性别题请用 `QUESTION_TYPE_SEX`（见 §5.2），不要用普通单选冒充。
 
 ---
 
@@ -150,6 +165,9 @@
   "title": "您喜欢哪些颜色？（可多选）",
   "en_name": "QUESTION_TYPE_MULTIPLE",
   "custom_attr": {
+    "calculation": "select",
+    "show_seq": "on",
+    "show_option_number": "on",
     "min_answer_num": 1,
     "max_answer_num": 3
   },
@@ -170,13 +188,13 @@
 
 **规则**：
 - **兼容**：`option_list` 可传 `[]`（历史写法）。
-- **线上下落**：`question_type: 6`，**始终有 1 条**占位选项（常见 `title` 为「填空1」），`custom_attr` 含 `text_row`、`text_col`；**测评**中该选项常带 **`score`**（与项目 `69d2570b…` 一致）。
+- **线上下落**：`question_type: 6`，**始终有 1 条**占位选项（常见 `title` 为「填空1」），`custom_attr` 含 `text_row`、`text_col`；**测评填空**的标准答案写在该选项的 **`correct_answer`**，并带 `score`。填空题不使用 `is_correct`。
 - 通过 `custom_attr.blank_type` 区分单行/多行
 
 **custom_attr 可选值**：
 - `blank_type`: `"single"` (单行) | `"multiple"` (多行)
 
-**导入 JSON 推荐（与线上一致）**：单行/多行均带 **1 项** `option_list`，并设置 `text_row` / `text_col`；测评再加选项级 `score`。
+**导入 JSON 推荐（与线上一致）**：单行/多行均带 **1 项** `option_list`，并设置 `text_row` / `text_col`；测评再加选项级 `correct_answer` 和 `score`。
 
 **示例**：
 ```json
@@ -198,13 +216,28 @@
   "option_list": []
 }
 
-// 测评填空（单空 + 分值）
+// 测评填空（单空 + 标准答案 + 分值）
 {
-  "title": "填空",
+  "title": "Python 的输出函数是______",
   "en_name": "QUESTION_TYPE_BLANK",
-  "custom_attr": {"blank_type": "single", "show_seq": "on", "total_score": 5},
+  "custom_attr": {
+    "blank_type": "single",
+    "show_seq": "on",
+    "answer_score": "on",
+    "total_score": 5,
+    "answer_match": "complete_same"
+  },
   "option_list": [
-    {"title": "填空1", "is_open": false, "custom_attr": {"score": 5, "text_row": 1, "text_col": 20}}
+    {
+      "title": "填空1",
+      "is_open": false,
+      "custom_attr": {
+        "correct_answer": "print",
+        "score": 5,
+        "text_row": 1,
+        "text_col": 20
+      }
+    }
   ]
 }
 ```
@@ -237,38 +270,23 @@
 
 ### 5. 打分题 (QUESTION_TYPE_SCORE)
 
-**适用场景**：评分、NPS 评分
+**适用场景**：编辑器「打分」。用户说「打分 / 评分 / 几分 / 星级」时用本题型。给**一个对象**打 1～5 分。
 
 **规则**：
-- **兼容**：`option_list` 可传 `[]`。
-- **线上下落**：`question_type: 50`，**固定 1 条**占位选项（常见 `title`「选项1」），具体刻度由题目 `custom_attr` 控制。
-- NPS：`custom_attr.disp_type = "nps_score"`，常见 **`min_answer_num: 0`**、**`max_answer_num: 10`**（项目 `69d257be…`）。
-- 普通量表（如 1～5 星）：常见 **`min_answer_num: 1`**、**`max_answer_num: 5`**，可有 **`magnitude_scale: 1`**（项目 `69d257be…`）。
+- `en_name` 必须是 **`QUESTION_TYPE_SCORE`**，`question_type: 50`
+- `option_list` **固定 1 条**占位项，`title` 为「选项1」
+- `custom_attr` **只有这 4 个字段**：`min_answer_num`、`max_answer_num`、`magnitude_scale`、`show_seq`
+- **不要**写 `disp_type`、`score_display`、`scale_tag`、`desc_left`、`desc_right`、`open_eval`、`label_data`
 
-**导入 JSON 推荐**：
+**导入 JSON 推荐（打分题）**：
 ```json
-// NPS（0–10）
-{
-  "title": "您向朋友或同事推荐我们的可能性有多大？",
-  "en_name": "QUESTION_TYPE_SCORE",
-  "custom_attr": {
-    "disp_type": "nps_score",
-    "show_seq": "on",
-    "min_answer_num": 0,
-    "max_answer_num": 10
-  },
-  "option_list": [
-    {"title": "选项1", "is_open": false, "custom_attr": {}}
-  ]
-}
-
-// 普通打分（如 1～5 分）
 {
   "title": "请给本项打分",
   "en_name": "QUESTION_TYPE_SCORE",
+  "question_type": 50,
   "custom_attr": {
-    "show_seq": "on",
     "min_answer_num": 1,
+    "show_seq": "off",
     "max_answer_num": 5,
     "magnitude_scale": 1
   },
@@ -280,69 +298,123 @@
 
 ---
 
-### 6. 矩阵单选题 (QUESTION_TYPE_MATRIX_SINGLE)
+### 6. 量表题 (QUESTION_TYPE_SCORE)
 
-**适用场景**：矩阵单选（典型「满意度评价」：多**行**维度 × 多**列**等级）
-
-**规则（与编辑接口 / `fetch_project` 一致）**：
-- **`matrixrow_list`**：**矩阵行** = 评价维度（如「服务态度」「产品质量」），每项一条，**至少 1 行**；行内字段与 `option_list` 元素相同（`title`、`is_open`、`custom_attr`）。
-- **`option_list`**：**矩阵列** = 评价等级/刻度（如「非常不满意」～「非常满意」），**至少 2 列**。
-- **常见错误**：只写 `option_list`、不写 **`matrixrow_list`** —— 导入后往往只有「列」没有「行」，题面不完整或不符合预期；**评价题必须同时提供行、列两组列表**（参考项目 **`69e4d0a6ef3af30a18db16c3`**，请 `fetch_project` 对照）。
-- **线上下落**：`question_type: **4**`（见 `references/fetch_project.md`「题目类型代码」）。
-
-**示例**：
-```json
-{
-  "title": "请对以下方面进行满意度评价",
-  "en_name": "QUESTION_TYPE_MATRIX_SINGLE",
-  "custom_attr": { "show_seq": "on" },
-  "matrixrow_list": [
-    {"title": "服务态度", "is_open": false, "custom_attr": {}},
-    {"title": "产品质量", "is_open": false, "custom_attr": {}},
-    {"title": "物流速度", "is_open": false, "custom_attr": {}}
-  ],
-  "option_list": [
-    {"title": "非常不满意", "is_open": false, "custom_attr": {}},
-    {"title": "不满意", "is_open": false, "custom_attr": {}},
-    {"title": "一般", "is_open": false, "custom_attr": {}},
-    {"title": "满意", "is_open": false, "custom_attr": {}},
-    {"title": "非常满意", "is_open": false, "custom_attr": {}}
-  ]
-}
-```
-
----
-
-### 7. 矩阵多选题 (QUESTION_TYPE_MATRIX_MULTIPLE)
-
-**适用场景**：矩阵多选（行 × 列，每格可多选列）
+**适用场景**：编辑器「量表」。用户说「量表 / 量表题」时用本题型。1～5 圆点量表，左右两端有描述。
 
 **规则**：
-- 与矩阵单选相同：**必须同时提供 `matrixrow_list`（行）与 `option_list`（列）**，语义同上。
-- **线上下落**：`question_type: **7**`（矩阵多选 / 部分场景下称矩阵打分，仍以接口返回为准）。
+- `en_name` 必须是 **`QUESTION_TYPE_SCORE`**，`question_type: 50`
+- `option_list` **固定 1 条**占位项，`title` 为「选项1」
+- `custom_attr` **必须带齐**：`disp_type: "scale"`、`score_display: "circle"`、`scale_tag`、`desc_left`、`desc_right`、`min_answer_num`、`max_answer_num`、`magnitude_scale`、`answer_score`、`show_seq`
+- **不要**写成打分题最小结构（缺 `disp_type/scale_tag/desc_left/desc_right`）
+- **不要**写成评价题（不要「分数/标签」、不要 `open_eval`）
 
-**示例**：
+**导入 JSON 推荐（量表题）**：
 ```json
 {
-  "title": "以下方面中，您使用过哪些？（可多选）",
-  "en_name": "QUESTION_TYPE_MATRIX_MULTIPLE",
-  "custom_attr": { "show_seq": "on" },
-  "matrixrow_list": [
-    {"title": "功能A", "is_open": false, "custom_attr": {}},
-    {"title": "功能B", "is_open": false, "custom_attr": {}},
-    {"title": "功能C", "is_open": false, "custom_attr": {}}
-  ],
+  "title": "您对本次服务的整体满意度",
+  "en_name": "QUESTION_TYPE_SCORE",
+  "question_type": 50,
+  "custom_attr": {
+    "scale_tag": 2,
+    "score_display": "circle",
+    "min_answer_num": 1,
+    "max_answer_num": 5,
+    "answer_score": "off",
+    "desc_right": "非常满意",
+    "desc_left": "非常不满意",
+    "magnitude_scale": 1,
+    "disp_type": "scale",
+    "show_seq": "off"
+  },
   "option_list": [
-    {"title": "从未使用", "is_open": false, "custom_attr": {}},
-    {"title": "偶尔使用", "is_open": false, "custom_attr": {}},
-    {"title": "经常使用", "is_open": false, "custom_attr": {}}
+    {"title": "选项1", "is_open": false, "custom_attr": {}}
   ]
 }
 ```
 
 ---
 
-### 8. 排序题 (QUESTION_TYPE_SORT)
+### 7. 评价题 (QUESTION_TYPE_SCORE)
+
+**适用场景**：编辑器「评价」。用户说「评价 / 评价题」时用本题型。对**一个对象**打 1～5 星，并带各分值标签。
+
+**规则**：
+- `en_name` 必须是 **`QUESTION_TYPE_SCORE`**，`question_type: 50`
+- `option_list` **固定 2 项**：「分数」「标签」；标签项必须带完整 `label_data`（每档 `score_desc` + 非空 `label_list`）
+- `custom_attr` 必须含 `disp_type: "evaluation"`、`score_display: "star"`、`open_eval: "on"`、`base_on: "service"`、`min/max_answer_num`、`show_seq`
+- **不是**打分题、**不是**量表题
+
+**导入 JSON 推荐（评价题）**：
+```json
+{
+  "title": "请评价本次服务",
+  "en_name": "QUESTION_TYPE_SCORE",
+  "question_type": 50,
+  "custom_attr": {
+    "disp_type": "evaluation",
+    "score_display": "star",
+    "open_eval": "on",
+    "min_answer_num": 1,
+    "show_seq": "off",
+    "max_answer_num": 5,
+    "base_on": "service"
+  },
+  "option_list": [
+    { "title": "分数", "is_open": false, "custom_attr": {} },
+    {
+      "title": "标签",
+      "is_open": false,
+      "custom_attr": {
+        "label_data": {
+          "1": { "score_desc": "非常不满意", "label_list": ["态度冷淡", "推销多", "技术差"] },
+          "2": { "score_desc": "比较不满意", "label_list": ["速度慢", "仪表乱", "不专业"] },
+          "3": { "score_desc": "一般", "label_list": ["无互动", "不积极", "业务不精"] },
+          "4": { "score_desc": "比较满意", "label_list": ["文明礼貌", "速度快", "较专业"] },
+          "5": { "score_desc": "非常满意", "label_list": ["热情好客", "敬业精神", "技能专业"] }
+        }
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 8. NPS评分题 (QUESTION_TYPE_SCORE)
+
+**适用场景**：编辑器「NPS」。用户说「NPS / NPS题 / 净推荐值 / 向朋友或同事推荐的可能性」时用本题型。0～10 分推荐意愿。
+
+**规则**：
+- `en_name` 必须是 **`QUESTION_TYPE_SCORE`**，`question_type: 50`
+- `custom_attr.disp_type` **必须**是 `"nps_score"`
+- `custom_attr.min_answer_num` **必须**是 `0`，`max_answer_num` **必须**是 `10`
+- `option_list` **固定 1 条**占位项，`title` 为「选项1」
+- **不要**写成打分题（打分无 `disp_type`，且是 1～5 分）
+- **不要**写成量表题（不要 `disp_type: "scale"`、不要 `score_display: "circle"`、不要 `scale_tag` / `desc_left` / `desc_right`）
+- **不要**写成评价题（不要「分数/标签」、不要 `open_eval`）
+
+**导入 JSON 推荐（NPS题）**：
+```json
+{
+  "title": "您向朋友或同事推荐我们的可能性有多大？",
+  "en_name": "QUESTION_TYPE_SCORE",
+  "question_type": 50,
+  "custom_attr": {
+    "disp_type": "nps_score",
+    "show_seq": "off",
+    "min_answer_num": 0,
+    "max_answer_num": 10
+  },
+  "option_list": [
+    {"title": "选项1", "is_open": false, "custom_attr": {}}
+  ]
+}
+```
+
+---
+
+### 9. 排序题 (QUESTION_TYPE_SORT)
 
 **适用场景**：拖拽排序
 
@@ -367,7 +439,7 @@
 
 ---
 
-### 9. 文字说明题 (QUESTION_TYPE_DESC)
+### 10. 文字说明题 (QUESTION_TYPE_DESC)
 
 **适用场景**：问卷说明、段落文字
 
@@ -387,7 +459,7 @@
 
 ---
 
-### 10. 下拉级联题 (QUESTION_TYPE_CASCADE)
+### 11. 下拉级联题 (QUESTION_TYPE_CASCADE)
 
 **适用场景**：省市区三级联动等
 
@@ -409,7 +481,7 @@
 
 ---
 
-### 11. 上传题 (QUESTION_TYPE_UPLOAD)
+### 12. 上传题 (QUESTION_TYPE_UPLOAD)
 
 **适用场景**：文件上传、图片上传
 
@@ -443,7 +515,7 @@
 
 ---
 
-### 12. 地址题 (QUESTION_TYPE_ADDRESS)
+### 13. 地址题 (QUESTION_TYPE_ADDRESS)
 
 **适用场景**：地址填写
 
@@ -470,7 +542,7 @@
 
 ---
 
-### 13. 手写签名题 (QUESTION_TYPE_SIGNATURE)
+### 14. 手写签名题 (QUESTION_TYPE_SIGNATURE)
 
 **适用场景**：电子签名
 
@@ -492,7 +564,7 @@
 
 ---
 
-### 14. 分页题 (QUESTION_TYPE_SPLIT_PAGE)
+### 15. 分页题 (QUESTION_TYPE_SPLIT_PAGE)
 
 **适用场景**：问卷分页
 
@@ -685,13 +757,23 @@
 **规则**：
 - `p_type` 必须为 `2`
 - `type_id` 使用考试测评类型
+- **必须显式给出正确答案**：
+  - 单选/多选/判断题：正确选项的 `custom_attr.is_correct` 为 `"1"`
+  - 填空题：填空项的 `custom_attr.correct_answer` 为标准答案；**不要**使用 `is_correct`
+  - 禁止只写答案解析、不提供上述正确答案字段
 - 每题设置 `custom_attr`：
-  - `calculation`: `"auto_score"` (自动计分)
-  - `answer_analysis`: 答案解析文本
-  - `answer_score`: `"on"` (开启计分)
+  - `answer_score`: `"on"`（开启计分）
   - `total_score`: 题目总分
-- 选项设置 `custom_attr.is_correct`: `"1"` (正确) / `"0"` (错误)
-- 选项设置 `custom_attr.score`: 选项分值
+  - `answer_analysis`: 答案解析文本（可选，**不能替代正确答案**）
+  - `calculation` **只能用线上真实值**，**禁止** `"auto_score"`（该计分方式不存在）：
+    - 单选题 / 判断题：`"only_one"`
+    - 多选题：`"select"`
+    - 填空题：**不要写** `calculation`
+- 选择题选项设置 `custom_attr.is_correct`: `"1"` (正确) / `"0"` (错误)
+- 填空题填空项设置 `custom_attr.correct_answer`: 标准答案；多个可接受答案可用分号分隔，并配合 `answer_match`
+- 选项/填空项设置 `custom_attr.score`: 分值
+
+导入前会按题型校验正确答案；选择题缺少 `is_correct: "1"`，或填空题缺少 `correct_answer` 时，流程都会报错并停止创建/发布，不会从解析文本猜测答案。
 
 **单选题示例**：
 ```json
@@ -699,7 +781,7 @@
   "title": "Python的创建者是？",
   "en_name": "QUESTION_TYPE_SINGLE",
   "custom_attr": {
-    "calculation": "auto_score",
+    "calculation": "only_one",
     "answer_analysis": "Python由Guido van Rossum于1991年创建",
     "answer_score": "on",
     "total_score": 10
@@ -719,7 +801,7 @@
   "title": "以下哪些是Python的数据类型？",
   "en_name": "QUESTION_TYPE_MULTIPLE",
   "custom_attr": {
-    "calculation": "auto_score",
+    "calculation": "select",
     "answer_analysis": "list、dict、tuple是Python基础数据类型",
     "answer_score": "on",
     "total_score": 10
@@ -740,13 +822,22 @@
   "en_name": "QUESTION_TYPE_BLANK",
   "custom_attr": {
     "blank_type": "single",
-    "calculation": "auto_score",
     "answer_analysis": "print是Python的输出函数",
     "answer_score": "on",
-    "total_score": 5
+    "total_score": 5,
+    "answer_match": "complete_same"
   },
   "option_list": [
-    {"title": "print", "is_open": false, "custom_attr": {"is_correct": "1"}}
+    {
+      "title": "填空1",
+      "is_open": false,
+      "custom_attr": {
+        "correct_answer": "print",
+        "score": 5,
+        "text_row": 1,
+        "text_col": 20
+      }
+    }
   ]
 }
 ```
@@ -776,10 +867,11 @@
 
 **输入需求**：
 > 创建一个客户满意度调查问卷，包含：
-> 1. 性别（单选）
+> 1. 性别（性别题 QUESTION_TYPE_SEX）
 > 2. 年龄段（下拉单选）
-> 3. 满意度评价（矩阵单选）
-> 4. 建议（多行填空）
+> 3. 服务态度满意度（量表题，QUESTION_TYPE_SCORE + disp_type=scale）
+> 4. 整体满意度（量表题，QUESTION_TYPE_SCORE + disp_type=scale）
+> 5. 建议（多行填空）
 
 **生成输出**：
 ```json
@@ -813,15 +905,43 @@
       ]
     },
     {
-      "title": "请评价以下各项满意度",
-      "en_name": "QUESTION_TYPE_MATRIX_SINGLE",
-      "custom_attr": {},
+      "title": "您对服务态度的满意度",
+      "en_name": "QUESTION_TYPE_SCORE",
+      "question_type": 50,
+      "custom_attr": {
+        "scale_tag": 2,
+        "score_display": "circle",
+        "min_answer_num": 1,
+        "max_answer_num": 5,
+        "answer_score": "off",
+        "desc_right": "非常满意",
+        "desc_left": "非常不满意",
+        "magnitude_scale": 1,
+        "disp_type": "scale",
+        "show_seq": "off"
+      },
       "option_list": [
-        {"title": "非常不满意", "is_open": false, "custom_attr": {}},
-        {"title": "不满意", "is_open": false, "custom_attr": {}},
-        {"title": "一般", "is_open": false, "custom_attr": {}},
-        {"title": "满意", "is_open": false, "custom_attr": {}},
-        {"title": "非常满意", "is_open": false, "custom_attr": {}}
+        {"title": "选项1", "is_open": false, "custom_attr": {}}
+      ]
+    },
+    {
+      "title": "您对本次服务的整体满意度",
+      "en_name": "QUESTION_TYPE_SCORE",
+      "question_type": 50,
+      "custom_attr": {
+        "scale_tag": 2,
+        "score_display": "circle",
+        "min_answer_num": 1,
+        "max_answer_num": 5,
+        "answer_score": "off",
+        "desc_right": "非常满意",
+        "desc_left": "非常不满意",
+        "magnitude_scale": 1,
+        "disp_type": "scale",
+        "show_seq": "off"
+      },
+      "option_list": [
+        {"title": "选项1", "is_open": false, "custom_attr": {}}
       ]
     },
     {
@@ -849,9 +969,9 @@
 - [ ] `en_name` 使用正确的题型标识
 - [ ] 单选/多选题 `option_list` 至少有 2 个选项
 - [ ] 普通填空题可用 `[]` 作兼容；**与线上一致**时建议 1 项占位 + `text_row`/`text_col`（见 §3、第十二节）
-- [ ] **身份证**按 §5.1；**打分 / 上传 / 签名 / 日期**等建议按 §4 各小节与第十二节带占位选项
+- [ ] **身份证**按 §5.1；**打分题见 §4 ·5、量表题见 §4 ·6、评价题见 §4 ·7、NPS 见 §4 ·8**；上传 / 签名 / 日期等建议按各小节与第十二节带占位选项
 - [ ] **判断题（测评）**须 2 项且含 `is_correct`/`score`（见 §4 ·1）
-- [ ] **地址题**建议 4 项（省/市/区/详细）（见 §4 ·12）
+- [ ] **地址题**建议 4 项（省/市/区/详细）（见 §4 ·13）
 - [ ] 考试题 `p_type = 2` 且选项有 `is_correct` 标记
 - [ ] `survey_result` 是 JSON 字符串（非对象）
 
@@ -868,10 +988,10 @@
 | 单行填空 | QUESTION_TYPE_BLANK + blank_type: single |
 | 多行填空 | QUESTION_TYPE_BLANK + blank_type: multiple |
 | 多项填空（多个输入框） | QUESTION_TYPE_MULTIPLE_BLANK |
-| 打分（星星） | QUESTION_TYPE_SCORE + **1 项**占位选项（见 §5 打分题） |
-| NPS评分（0-10） | QUESTION_TYPE_SCORE + disp_type: nps_score + **1 项** + min/max 0～10 |
-| 矩阵单选 | QUESTION_TYPE_MATRIX_SINGLE |
-| 矩阵多选 | QUESTION_TYPE_MATRIX_MULTIPLE |
+| 打分题 | QUESTION_TYPE_SCORE + **仅** min/max_answer_num + magnitude_scale + show_seq + **1 项**占位「选项1」（见 §4 ·5；**不要** disp_type） |
+| 量表题 | QUESTION_TYPE_SCORE + disp_type: scale + score_display: circle + scale_tag + desc_left/right + **1 项**占位「选项1」（见 §4 ·6） |
+| 评价题 | QUESTION_TYPE_SCORE + disp_type: evaluation + score_display: star + open_eval: on + base_on: service + **分数/标签**两项（见 §4 ·7） |
+| NPS题 | QUESTION_TYPE_SCORE + disp_type: nps_score + **1 项**占位「选项1」+ min 0 / max 10（见 §4 ·8） |
 | 拖拽排序 | QUESTION_TYPE_SORT |
 | 文字说明 | QUESTION_TYPE_DESC |
 | 省市区级联 | QUESTION_TYPE_CASCADE + disp_type: cascader |
@@ -898,17 +1018,18 @@
 | 章节 | en_name（或条件） | 说明 |
 |------|-------------------|------|
 | 四 ·3 填空 | `QUESTION_TYPE_BLANK`（普通单行/多行） | 兼容 `[]`；**推荐 1 项**，见 §3 |
-| 四 ·5 打分 | `QUESTION_TYPE_SCORE` | 兼容 `[]`；**推荐 1 项**，见 §5 小节 |
-| 四 ·9 说明 | `QUESTION_TYPE_DESC` | 仅展示文案，通常无答题选项 |
-| 四 ·10 级联 | `QUESTION_TYPE_CASCADE` + `disp_type: cascader` | 级联数据由平台加载 |
-| 四 ·11 上传 | `QUESTION_TYPE_UPLOAD` / `QUESTION_TYPE_IMAGE_UPLOAD` | 兼容 `[]`；**推荐各 1 项**，见 §11 |
-| 四 ·12 地址 | `QUESTION_TYPE_ADDRESS` | 兼容 `[]`；**推荐 4 项**，见 §12 |
-| 四 ·13 签名 | `QUESTION_TYPE_SIGNATURE` | 兼容 `[]`；**推荐 1 项**，见 §13 |
-| 四 ·14 分页 | `QUESTION_TYPE_SPLIT_PAGE` + `disp_type: page_break` | 分页符 |
+| 四 ·5 打分题 | `QUESTION_TYPE_SCORE` | 推荐 1 项占位，见 §4 ·5 |
+| 四 ·6 量表题 | `QUESTION_TYPE_SCORE` | 推荐 1 项占位，见 §4 ·6 |
+| 四 ·10 说明 | `QUESTION_TYPE_DESC` | 仅展示文案，通常无答题选项 |
+| 四 ·11 级联 | `QUESTION_TYPE_CASCADE` + `disp_type: cascader` | 级联数据由平台加载 |
+| 四 ·12 上传 | `QUESTION_TYPE_UPLOAD` / `QUESTION_TYPE_IMAGE_UPLOAD` | 兼容 `[]`；**推荐各 1 项**，见 §4 ·12 |
+| 四 ·13 地址 | `QUESTION_TYPE_ADDRESS` | 兼容 `[]`；**推荐 4 项**，见 §4 ·13 |
+| 四 ·14 签名 | `QUESTION_TYPE_SIGNATURE` | 兼容 `[]`；**推荐 1 项**，见 §4 ·14 |
+| 四 ·15 分页 | `QUESTION_TYPE_SPLIT_PAGE` + `disp_type: page_break` | 分页符 |
 | 五、预设 | 手机/邮箱/日期等 | 兼容 `[]`；**推荐**见 §5.2 |
 | 五、预设 | `QUESTION_TYPE_ID_CARD`（仅兼容） | 见 §5.1 **推荐非空** |
 
-**须带选项（节选）**：普通单选/多选（含 **判断题 2 项**）、多项填空、矩阵单选/多选、排序题；第六节考试填空；§5.2 性别/年龄/学历多选项。
+**须带选项（节选）**：普通单选/多选（含 **判断题 2 项**）、多项填空、排序题；第六节考试填空；§5.2 性别/年龄/学历多选项。
 
 ---
 
@@ -935,8 +1056,10 @@
 | 性别 | `2` | **2** | `disp_type: sex`，`content_type: sex` | 男/女；测评 `score` |
 | 年龄 | `2` | **多** | `disp_type: age`，`content_type: age` | 各档 + 测评 `score` |
 | 学历 | `2` | **多** | `disp_type: education` | 各档 + 测评 `score` |
-| NPS | `50` | **1** | `disp_type: nps_score`，`min/max_answer_num` | 占位项 |
-| 量表打分（如 1～5） | `50` | **1** | `min_answer_num: 1`，`max: 5`，`magnitude_scale` 等 | 占位项 |
+| NPS题 | `50` | **1** | `disp_type: nps_score`，`min_answer_num: 0`，`max_answer_num: 10` | 占位「选项1」 |
+| 打分题 | `50` | **1** | **无** `disp_type`；`min/max_answer_num`、`magnitude_scale`、`show_seq` | 占位「选项1」 |
+| 量表题 | `50` | **1** | `disp_type: scale`，`score_display: circle`，`scale_tag`，`desc_left/right` | 占位「选项1」 |
+| 评价题 | `50` | **2** | `disp_type: evaluation`，`score_display: star`，`open_eval`，`base_on` | 「分数」「标签」+ `label_data` |
 | 文件上传 | `95` | **1** | `disp_type: upload_file` | `title` 如「选择文件上传」 |
 | 图片上传 | `95` | **1** | `disp_type: image_upload` | `title` 如「请上传图片」 |
 | 日期 | `95` | **1** | `disp_type: date` | 常为 `{}` |

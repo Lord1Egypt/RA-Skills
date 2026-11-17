@@ -1,0 +1,7 @@
+interface:
+  display_name: "USA Business Migration Planner"
+  short_description: "Helps with People repeatedly need a practical, repeatable way..."
+  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle 关于 vibe coding 如何提升代码效率和质量的技巧之 skill."
+
+policy:
+  allow_implicit_invocation: true

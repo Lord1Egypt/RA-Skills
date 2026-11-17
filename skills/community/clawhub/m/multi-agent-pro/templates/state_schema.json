@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pipeline State Schema",
+  "description": "多Agent协作编排引擎 - 状态文件格式规范 v5.0",
+  "type": "object",
+  "required": ["pipeline_id", "pipeline_name", "status", "nodes", "created_at", "updated_at"],
+  "properties": {
+    "pipeline_id": {
+      "type": "string",
+      "description": "流水线唯一标识符，格式：{name}_{timestamp}"
+    },
+    "pipeline_name": {
+      "type": "string",
+      "description": "流水线名称"
+    },
+    "version": {
+      "type": "string",
+      "description": "DAG 定义版本号",
+      "default": "5.0"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "创建时间（ISO 8601）"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "最后更新时间（ISO 8601）"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["initialized", "running", "completed", "aborted"],
+      "description": "流水线总体状态"
+    },
+    "nodes": {
+      "type": "object",
+      "description": "节点状态映射表，key 为节点 id",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status", "depends_on", "retry_count"],
+        "properties": {
+          "name": {"type": "string"},
+          "role": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["task", "approval", "condition", "switch", "for-each", "while-loop", "pipeline"],
+            "description": "节点类型：task=普通任务，approval=人工审批，condition=if-else 分支，switch=多路分支，for-each=动态节点，while-loop=循环重试，pipeline=子流水线引用",
+            "default": "task"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "running", "completed", "failed", "skipped"]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "retry_count": {"type": "integer", "minimum": 0},
+          "max_retry": {"type": "integer", "default": 3},
+          "timeout": {"type": "number", "default": 60},
+          "fallback": {
+            "type": "string",
+            "enum": ["retry", "skip", "default", "abort"],
+            "default": "abort"
+          },
+          "inputs": {"type": "array", "items": {"type": "string"}},
+          "outputs": {"type": "array", "items": {"type": "string"}},
+          "output_data": {"type": "object"},
+          "condition": {"type": "string", "description": "condition/while-loop 节点的条件表达式"},
+          "on_true": {"type": "array", "items": {"type": "string"}, "description": "condition 节点：条件为真执行的分支节点"},
+          "on_false": {"type": "array", "items": {"type": "string"}, "description": "condition 节点：条件为假执行的分支节点"},
+          "switch": {"type": "string", "description": "switch 节点的取值表达式"},
+          "cases": {"type": "object", "description": "switch 节点：值→节点id数组的映射"},
+          "default": {"type": "array", "items": {"type": "string"}, "description": "switch 节点：无命中时的默认分支"},
+          "items": {"type": "string", "description": "for-each 节点：求值得到列表的表达式"},
+          "template": {"type": "object", "description": "for-each 节点：子节点模板"},
+          "join": {"type": "array", "items": {"type": "string"}, "description": "for-each 节点：汇合节点，改依赖所有子节点"},
+          "loop_body": {"type": "array", "items": {"type": "string"}, "description": "while-loop 节点：需重跑的循环体节点"},
+          "max_iterations": {"type": "integer", "description": "while-loop 节点：最大迭代次数"},
+          "iteration": {"type": "integer", "description": "while-loop 节点：当前迭代轮次"},
+          "item": {"description": "for-each 动态子节点：当前迭代的数据项"},
+          "item_index": {"type": "integer", "description": "for-each 动态子节点：迭代序号"},
+          "pipeline_ref": {"type": "string", "description": "pipeline 节点：引用的子流水线名称"},
+          "params": {"type": "object", "description": "pipeline 节点：传递给子流水线的参数"},
+          "outputs": {"type": "object", "description": "pipeline 节点：子流水线输出到父上下文的映射"},
+          "error": {"type": ["string", "null"]},
+          "started_at": {"type": ["string", "null"]},
+          "completed_at": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}

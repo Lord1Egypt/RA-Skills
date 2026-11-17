@@ -1,42 +1,54 @@
-## Description: <br>
-Generate escalating payment reminder emails that match days-past-due. Four stages: friendly, firm, urgent, final notice. Supports contractor, professional, and general business verticals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate escalating payment reminder emails that match days-past-due, with friendly, firm, urgent, and final notice stages for contractor, professional, and general business contexts.
 
-## Publisher: <br>
-[josh4hire](https://clawhub.ai/user/josh4hire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josh4hire](https://clawhub.ai/user/josh4hire)
 
-## Use Case: <br>
-Small-business operators, contractors, and professional service providers use this skill to draft concise payment reminder emails for overdue invoices, including staged escalation from friendly reminders through final notices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill drafts payment reminders that may affect client relationships or collections posture. <br>
-Mitigation: Review every generated email before sending and confirm that the tone, facts, dates, and requested payment terms match the business context. <br>
-Risk: The skill requests local file read and write access without a clearly scoped file workflow. <br>
-Mitigation: Grant file access only for specific invoice files or draft locations, and avoid persisting sensitive billing details unless necessary. <br>
+## Use Case:
 
+External business users, contractors, and accounts-receivable teams use this skill to draft concise payment reminder emails and escalation sequences from invoice details they provide.
 
-## Reference(s): <br>
-- [Invoice Chaser Pro on ClawHub](https://clawhub.ai/josh4hire/invoice-chaser-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/josh4hire) <br>
-- [Project homepage](https://gaffneyits.com/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown email draft with stage, vertical, days overdue, subject, and body sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate a single reminder or a four-stage sequence; each email is intended to stay under 150 words.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill works with invoice and client payment details, which can be sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly in finance workflows and grant file access only to user-selected invoice or template files.
+
+Risk: Collections language can be mistaken for legal advice or overstate available remedies.
+
+Mitigation: Keep outputs to reminder emails, require human review before sending, and consult a collections attorney for legal remedies.
+
+## Reference(s):
+
+- [OpenClaw homepage](https://gaffneyits.com/openclaw)
+- [ClawHub skill page](https://clawhub.ai/josh4hire/skills/invoice-chaser-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown email draft with stage, vertical, days-overdue, subject, and body sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a single reminder or a four-stage sequence; email bodies are intended to stay under 150 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

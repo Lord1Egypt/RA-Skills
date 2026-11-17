@@ -1,7 +1,7 @@
 ---
 name: k-factor-viral
 description: "Activate when: user says 'viral coefficient,' 'K-factor,' 'going viral,' 'our product is viral,' 'referral program,' 'invite mechanic,' 'built in sharing,' growth plateauing despite viral elements, or a growth forecast is being justified by virality without a K calculation.
-  Do NOT activate when: product is B2B enterprise (sales-led growth); focus is engagement/retention not new-user acquisition; product has not yet achieved PMF."
+  Do NOT activate when: product is B2B enterprise (sales-led growth); focus is engagement/retention not new-user acquisition; product has not yet achieved PMF. More: deciqai.com/c/k-factor-viral"
 ---
 
 # K-Factor and Viral Coefficient
@@ -12,7 +12,7 @@ description: "Activate when: user says 'viral coefficient,' 'K-factor,' 'going v
 
 Codified by Steve Jurvetson (DFJ) via the Hotmail case (1996); formalized by Andrew Chen, David Skok, and early Facebook/LinkedIn growth teams.
 
-Composes with [`aarrr-pirate-metrics`](../aarrr-pirate-metrics/SKILL.md) (K sits in Referral), [`network-effects`](../network-effects/SKILL.md) (value vs. user count — different things), [`mvp`](../mvp/SKILL.md) (smoke tests cannot establish K), [`feedback-loops`](../feedback-loops/SKILL.md) (K > 1 is a specific reinforcing-loop condition).
+Composes with `aarrr-pirate-metrics` (K sits in Referral), `network-effects` (value vs. user count — different things), `mvp` (smoke tests cannot establish K), `feedback-loops` (K > 1 is a specific reinforcing-loop condition).
 
 ## When to Use
 
@@ -117,4 +117,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/k-factor-viral** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/k-factor-viral.json*

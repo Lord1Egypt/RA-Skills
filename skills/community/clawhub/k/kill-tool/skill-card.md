@@ -1,38 +1,48 @@
-## Description: <br>
-Terminate processes by sending signals. Use for stopping unresponsive programs, managing background tasks, and process lifecycle control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Terminate processes by sending signals. Use for stopping unresponsive programs, managing background tasks, and process lifecycle control.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to stop running processes by PID, including graceful SIGTERM termination and forceful SIGKILL termination when needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Force-killing a process can discard unsaved work or prevent normal cleanup.
+
+Mitigation: Prefer graceful termination first, confirm the target PID, and use SIGKILL only when a process will not stop normally.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to terminate local processes by PID, including graceful shutdown of unresponsive programs and forceful termination when needed. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Terminating the wrong local process can interrupt work or lose unsaved state, especially when SIGKILL is used. <br>
-Mitigation: Confirm the PID and process name before execution, prefer graceful termination first, and reserve SIGKILL for unresponsive processes. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/kill-tool) <br>
+**Other Properties Related to Output:** [May propose process termination commands that should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on local process IDs and may send SIGTERM or SIGKILL.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

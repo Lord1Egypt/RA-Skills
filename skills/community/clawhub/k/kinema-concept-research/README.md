@@ -1,105 +1,61 @@
----
+# Concept Research | 概念现状调研
 
-name: concept-research
-description: |
-  调查某个概念是否已被实现及实现现状。使用多语言关键词、多引擎交叉验证、多维度搜索。
-  当用户提出一个想法或概念时，通过系统化的搜索流程调研其现有解决方案。
-  触发条件：用户询问"有没有人做过"、"查一下xxx的现状"、"调研xxx"等。
----
-
-# Concept Research - 概念现状调研
-
-> **ClawHub**: https://clawhub.ai/leeshunee/kinema-concept-research | `clawhub install kinema-concept-research`
-> **GitHub**: https://github.com/KinemaClawWorkspace/kinema-concept-research
-
-调查一个概念是否已被实现、做成什么样子。彻底搜索，输出摘要清单。
+调查一个概念是否已被实现、做成什么样子。通过多语言关键词、多引擎交叉验证、多维度搜索，系统化调研现有解决方案。
 
 ## 工作流
 
-### 阶段 1: 概念澄清（对话）
+1. **概念澄清** — 多轮对话明确用户意图、核心功能、目标用户、差异化期望
+2. **关键词拆解** — 核心词变体、技术栈词、场景词、组合词（中英文双语）
+3. **广度搜索** — 逐批搜索关键词组，记录链接，标记相关性
+4. **深度探索** — 挑选 3-5 个高相关性结果深入分析
+5. **输出报告** — 生成摘要清单（链接、概述、基本思路、异同分析）
 
-通过多轮对话明确：
-- 用户想做什么
-- 核心功能是什么
-- 目标用户是谁
-- 差异化期望是什么
+## 适用场景
 
-**产出**: 一句话概念定义
+- 验证创意是否已有实现
+- 调研某领域的现有工具和方案
+- 竞品分析和技术选型参考
 
-### 阶段 2: 关键词拆解
+## 使用方式
 
-基于概念定义，拆解为多组关键词：
+本 skill 支持 Codex、Claude Code 和 OpenClaw，安装后可通过对话触发：
 
-1. 核心词变体 - 同义词、近义词、不同表述
-2. 技术栈词 - 涉及的技术、框架、协议
-3. 场景词 - 使用场景、解决的问题
-4. 组合词 - 核心词 + 技术/场景
+```
+有没有人做过 xxx？
+调研一下 xxx 的现状
+查一下 xxx 有哪些现有方案
+```
 
-每组生成中英文版本。
+依赖 [searxng-search-cli](https://github.com/KinemaClawWorkspace/searxng-search-cli) 作为搜索工具。
 
-### 阶段 3: 广度搜索
+## Codex 安装
 
-使用 searxng-search 逐批搜索：
+```powershell
+codex plugin marketplace add https://github.com/KinemaClawWorkspace/kinema-skills-marketplace.git
+codex plugin add kinema-concept-research@kinema-skills-marketplace
+```
 
-1. 每组关键词搜索 1-2 页结果
-2. 记录所有相关链接
-3. 根据标题/摘要初步标记相关性
+同时安装 `searxng-search-cli`，然后新开一个 Codex 对话。
 
-时间过滤（如搜索引擎支持）:
-- 五年之前、两年之前、一年之前、三个月之前、最近三个月
-
-### 阶段 4: 深度探索
-
-从高相关性结果中挑选 3-5 个进行深度探索：
-
-1. Web 页面: 使用 web_fetch 抓取内容
-2. GitHub Repo: 克隆到本地，阅读 README
-3. PDF/论文: 下载阅读
-
-探索内容记录：
-- 核心功能
-- 技术实现
-- 优缺点
-- 与用户概念的异同
-
-### 阶段 5: 输出报告
-
-生成摘要清单：
-
-| 字段 | 说明 |
-|------|------|
-| 链接 | 原始 URL |
-| 概述 | 是什么，做了什么 |
-| 基本思路 | 核心技术方案 |
-| 相同点 | 与用户概念的共性 |
-| 不同点 | 与用户概念的差异 |
-| 分析 | 机会点、改进空间 |
-
-## 项目目录
-
-所有文件保存在：`projects/research-{uuid}/`
+## 项目输出结构
 
 ```
 projects/research-{uuid}/
-├── concepts/
-│   └── definition.md
-├── keywords/
-│   └── keywords.md
-├── search/
-│   ├── broad/
-│   └── deep/
-├── repos/
-├── papers/
-└── report.md
+├── concepts/       # 概念定义
+├── keywords/       # 关键词拆解
+├── search/         # 搜索结果
+│   ├── broad/      # 广度搜索
+│   └── deep/       # 深度探索
+├── repos/          # 克隆的仓库
+├── papers/         # 下载的论文
+└── report.md       # 最终报告
 ```
 
-## 搜索工具
+## 作者
 
-优先使用 searxng-search。如 SearXNG 未部署，可使用 ddg-search。
+- **Author**: [LeeShunEE](https://github.com/LeeShunEE)
+- **Organization**: [KinemaClawWorkspace](https://github.com/KinemaClawWorkspace)
 
----
+## 许可证
 
-## 相关文档
-
-- searxng-search skill
-- skill-creator skill
+[GNU General Public License v3.0](LICENSE)

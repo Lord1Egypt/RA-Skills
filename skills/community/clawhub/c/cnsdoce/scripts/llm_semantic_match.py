@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-LLM语义匹配脚本 (2026-05, v3)
+✅ v2.0.0 已修复（2026-08-26）：端点/模型已从已下线的旧混元迁移至 TokenHub：
+   - 端点：https://tokenhub.tencentmaas.com/v1/chat/completions（旧 api.hunyuan.cloud.tencent.com 已下线）
+   - 模型：hy3-preview（旧 hunyuan-lite/turbo/standard 全部下线）
+   - 密钥：TokenHub 重新创建的 sk- Key（旧 Key 在新端点报 Incorrect API key）
+任何旧端点/旧模型引用均视为失效项。
+
+LLM语义匹配脚本 (v3, TokenHub迁移版)
 功能：使用腾讯混元/字节豆包API增强定额语义理解
 用法：python llm_semantic_match.py "热泵安装" "第2册热力设备"
 
-默认模型：腾讯混元 Hunyuan-Lite（免费，无限制）
+默认模型：腾讯混元 hy3-preview（TokenHub）
 备选模型：字节豆包（按需开启，需设置 LLM_PROVIDER=doubao）
 
 所有模型统一走 OpenAI 兼容接口（HTTP + requests），无需SDK依赖。
@@ -24,14 +30,15 @@ from pathlib import Path
 # API配置
 # ============================================================
 
-# 默认使用混元（免费），豆包作为备选
+# 默认使用混元（TokenHub），豆包作为备选
 USE_PROVIDER = os.getenv("LLM_PROVIDER", "hunyuan")  # "hunyuan"（默认）或 "doubao"
 
-# --- 腾讯混元配置（默认，免费）---
+# --- 腾讯混元配置（默认，TokenHub）---
 HUNYUAN_SECRET_ID = os.getenv("HUNYUAN_SECRET_ID", "")
 HUNYUAN_SECRET_KEY = os.getenv("HUNYUAN_SECRET_KEY", "")
-HUNYUAN_API_KEY = os.getenv("HUNYUAN_API_KEY", "")  # 可选：混元OpenAI兼容接口的API Key（sk-开头）
-HUNYUAN_MODEL = "hunyuan-lite"
+HUNYUAN_API_KEY = os.getenv("HUNYUAN_API_KEY", "")  # TokenHub创建的API Key（sk-开头）
+HUNYUAN_MODEL = os.getenv("HUNYUAN_MODEL", "hy3-preview")
+HUNYUAN_URL = os.getenv("HUNYUAN_URL", "https://tokenhub.tencentmaas.com/v1/chat/completions")
 
 # --- 豆包配置（备选，按需开启）---
 DOUBAO_API_KEY = os.getenv("DOUBAO_API_KEY", "")
@@ -199,16 +206,16 @@ def _generate_hunyuan_token(secret_id: str, secret_key: str) -> str:
 
 
 def call_hunyuan_api(user_input: str, volume_hint: str = "") -> Optional[Dict]:
-    """调用腾讯混元API（Hunyuan-Lite，完全免费）"""
-    # 优先使用 OpenAI 兼容接口（需要 sk- 开头的 HUNYUAN_API_KEY）
+    """调用腾讯混元API（TokenHub 端点 + hy3-preview，2026-08 迁移）"""
+    # 优先使用 OpenAI 兼容接口（需要 sk- 开头的 HUNYUAN_API_KEY，TokenHub 创建）
     if HUNYUAN_API_KEY:
         return _call_openai_compatible(
-            url="https://api.hunyuan.cloud.tencent.com/v1/chat/completions",
+            url=HUNYUAN_URL,
             api_key=HUNYUAN_API_KEY,
             model=HUNYUAN_MODEL,
             user_input=user_input,
             volume_hint=volume_hint,
-            provider_name="混元"
+            provider_name="混元(TokenHub)"
         )
 
     # 降级：使用腾讯云 SDK 方式调用（需要 CAM 权限）

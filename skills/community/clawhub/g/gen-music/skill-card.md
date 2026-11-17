@@ -1,40 +1,53 @@
-## Description: <br>
-Generate songs from prompts or lyrics through an ACE-Step-compatible API backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate songs from prompts or lyrics through an ACE-Step-compatible API backend.
 
-## Publisher: <br>
-[twocode](https://clawhub.ai/user/twocode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twocode](https://clawhub.ai/user/twocode)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit text-to-music or lyrics-to-song jobs to an ACE-Step-compatible backend, save generated audio files, and optionally hand the saved files to Clawatch playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured backend can influence output file locations and remote fetches. <br>
-Mitigation: Use only a local or trusted HTTPS ACE-Step-compatible backend and inspect generated output paths before sharing or playback. <br>
-Risk: Prompts, lyrics, and API keys may be sent to the configured backend. <br>
-Mitigation: Avoid private lyrics or sensitive prompts with unknown services and use a scoped API key when authentication is required. <br>
+## Use Case:
 
+Developers and external users use this skill to generate music from prompts or lyrics through an existing ACE-Step-compatible backend, save stable audio files, and optionally route the saved result to Clawatch playback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twocode/gen-music) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands plus saved audio files and a JSON manifest] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is saved to a stable output directory; the skill requires a separate ACE-Step-compatible backend and Python 3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Prompts, lyrics, and any configured ACESTEP_API_KEY may be sent to the configured ACE-Step backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted backends, prefer local or HTTPS endpoints, and use a narrowly scoped API key.
+
+Risk: Backend-controlled output URLs can expose local files or bearer tokens.
+
+Mitigation: Avoid untrusted remote or plaintext HTTP backends, and review generated output folders and manifests before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twocode/skills/gen-music)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, saved audio file paths, and a JSON manifest]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a separately configured ACE-Step-compatible API backend.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

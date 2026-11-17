@@ -1,44 +1,59 @@
-## Description: <br>
-Generate a playful or sharp daily roast of recent Strava activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a playful or sharp daily roast of recent Strava activity.
 
-## Publisher: <br>
-[ranasalalali](https://clawhub.ai/user/ranasalalali) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ranasalalali](https://clawhub.ai/user/ranasalalali)
 
-## Use Case: <br>
-External users and agents use this skill to fetch recent Strava activity and produce concise, humorous daily workout recaps with configurable tone and intensity. It supports deterministic summaries, JSON context and prompt generation, and a fallback roast path when runtime model generation is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Strava OAuth credentials and can process private workout names, metrics, and recent activity history. <br>
-Mitigation: Use it only in trusted workspaces, keep Strava app credentials and token files private, and avoid exposing generated prompts, context JSON, or roast state where workout details are sensitive. <br>
-Risk: The security evidence reports an under-scoped reauthorization path that may execute a local Python helper script from a configurable workspace path. <br>
-Mitigation: Review and control the reauthorization helper path before use, and only allow helper scripts that are owned and trusted in the local OpenClaw workspace. <br>
-Risk: Runtime model generation could invent workout stats or produce unsuitable roast wording if used without checks. <br>
-Mitigation: Build deterministic context first, sanity-check generated paragraphs for factual grounding and style, and fall back to the deterministic roast output when generation is unavailable or weak. <br>
+## Use Case:
 
+External users and agents use this skill to fetch recent Strava activity, summarize a selected day, and produce a concise roast-style recap with configurable tone and spice. It supports deterministic CLI output and an OpenClaw runtime path that can use a connected model for one final paragraph with deterministic fallback.
 
-## Reference(s): <br>
-- [Daily Strava Roast design notes](references/design.md) <br>
-- [Daily Strava Roast V2](docs/V2.md) <br>
-- [Daily Strava Roast ClawHub page](https://clawhub.ai/ranasalalali/daily-strava-roast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus CLI text or JSON outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roasts are intended to be short, fact-grounded paragraphs; context and summary modes can emit machine-readable JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: pyproject.toml, CHANGELOG, server release evidence) <br>
+Risk: The skill reads Strava activity data and OAuth token files, then may refresh tokens during normal operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest Strava scopes that satisfy the workflow, keep token and config files owner-readable only, and run the skill away from unrelated secrets.
+
+Risk: The reauthorization flow can execute a local helper script when the helper path exists.
+
+Mitigation: Inspect or remove the reauth helper before use, and pass only a trusted helper path when reauthorization is required.
+
+Risk: Model-assisted roast generation could introduce invented stats or react to untrusted activity titles.
+
+Mitigation: Use deterministic data preparation, treat activity names as labels only, sanity-check generated paragraphs, and fall back to deterministic roast output when grounding or style checks fail.
+
+## Reference(s):
+
+- [Daily Strava Roast design notes](references/design.md)
+- [Daily Strava Roast V2](docs/V2.md)
+- [ClawHub skill page](https://clawhub.ai/ranasalalali/skills/daily-strava-roast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON payloads and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roasts are intended to be concise, grounded in supplied Strava activity, and limited to one short paragraph when using the model-assisted runtime path.]
+
+## Skill Version(s):
+
+0.2.5 (source: server evidence, pyproject.toml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

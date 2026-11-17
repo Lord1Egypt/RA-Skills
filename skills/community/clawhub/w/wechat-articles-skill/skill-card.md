@@ -1,42 +1,57 @@
-## Description: <br>
-Fetches WeChat public account articles from mp.weixin.qq.com links and converts them into clean Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat public-account articles from mp.weixin.qq.com links and saves article metadata, content, and image references as Markdown.
 
-## Publisher: <br>
-[hunkguo](https://clawhub.ai/user/hunkguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunkguo](https://clawhub.ai/user/hunkguo)
 
-## Use Case: <br>
-External users and developers use this skill to save WeChat public account articles as Markdown, including article metadata and optional image references, after providing a WeChat article URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided WeChat article URLs and writes Markdown files to disk. <br>
-Mitigation: Use only links the user intends to fetch and choose the output directory deliberately before running the script. <br>
-Risk: Generated Markdown may retain remote image URLs instead of fully local image copies. <br>
-Mitigation: Review generated Markdown before sharing or publishing it, especially when remote image references are not desired. <br>
-Risk: The skill relies on Python packages and a Playwright browser runtime. <br>
-Mitigation: Install dependencies from trusted sources and keep the browser runtime updated. <br>
+## Use Case:
 
+Developers and content operators use this skill to capture WeChat public-account articles from provided mp.weixin.qq.com URLs and convert them into local Markdown files for review, archiving, or downstream editing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hunkguo/wechat-articles-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter and local or remote image references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The output path is chosen by the user or defaults to the current directory; generated Markdown may reference remote image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill launches Chromium against a user-provided URL with host network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted https://mp.weixin.qq.com links and run the skill in an isolated environment when possible.
+
+Risk: Fetched article content and generated Markdown files are saved locally.
+
+Mitigation: Specify an intended output directory and review saved content before sharing or publishing it.
+
+Risk: Dependencies are installed from unpinned package names in the artifact documentation.
+
+Mitigation: Pin Playwright and BeautifulSoup dependency versions before installation in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/hunkguo/skills/wechat-articles-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter and local image references, plus terminal status text from the fetch script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create an images/ subdirectory when image handling is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

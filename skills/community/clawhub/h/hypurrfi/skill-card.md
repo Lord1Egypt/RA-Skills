@@ -1,49 +1,64 @@
-## Description: <br>
-HypurrFi helps agents manage DeFi lending on Hyperliquid by checking positions and health, depositing assets for yield, borrowing against collateral, withdrawing, and repaying. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HypurrFi helps agents manage DeFi lending on Hyperliquid by depositing assets for yield, borrowing against collateral, and checking positions across supported markets.
 
-## Publisher: <br>
-[lastandy](https://clawhub.ai/user/lastandy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lastandy](https://clawhub.ai/user/lastandy)
 
-## Use Case: <br>
-External users, developers, and DeFi treasury operators use this skill to manage HypurrFi lending workflows on Hyperliquid, including wallet setup, position review, deposits, withdrawals, borrowing, repayment, and liquidation-risk checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates or uses a persistent plaintext hot-wallet private key for DeFi transactions. <br>
-Mitigation: Use a dedicated low-balance wallet, restrict filesystem access to the wallet file, and avoid reusing keys that protect significant funds. <br>
-Risk: The skill can authorize real deposits, withdrawals, borrows, repayments, and token approvals. <br>
-Mitigation: Review previews before execution, avoid unattended --yes usage, start with small amounts, and revoke token allowances after repayment or testing. <br>
-Risk: Borrowing can increase liquidation risk if collateral value falls or health factor is low. <br>
-Mitigation: Check health factor before borrowing, keep conservative collateral buffers, and monitor positions regularly. <br>
-Risk: Some documented markets, rate checks, and contract addresses are unsupported or incomplete in this version. <br>
-Mitigation: Verify contract addresses independently and treat Prime, Yield, Vault, and rates examples as unsupported until validated. <br>
+## Use Case:
 
+External developers and agent operators use this skill to manage HypurrFi lending positions on Hyperliquid, including deposits, withdrawals, borrowing, repayment, position checks, and health-factor monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lastandy/hypurrfi) <br>
-- [Publisher profile](https://clawhub.ai/user/lastandy) <br>
-- [HypurrFi homepage](https://hypurr.fi) <br>
-- [HypurrFi app](https://app.hypurr.fi) <br>
-- [HypurrFi docs](https://docs.hypurr.fi) <br>
-- [Hyperliquid explorer](https://explorer.hyperliquid.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce wallet setup details, transaction previews, transaction hashes, position summaries, health-factor reports, and error guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates and stores a raw wallet private key locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, protect or replace ~/.hyperliquid-wallet.json, and avoid sharing the wallet file.
+
+Risk: The skill can sign high-impact on-chain lending and borrowing transactions.
+
+Mitigation: Review transaction previews before execution, use --yes only after review, start with small amounts, and monitor health factor regularly.
+
+Risk: Persistent ERC-20 approvals may remain after transactions.
+
+Mitigation: Check and revoke allowances after repayments or when the wallet no longer needs protocol access.
+
+Risk: Some advertised markets or token addresses are incomplete in the artifact.
+
+Mitigation: Verify supported markets and contract addresses before using Prime, Yield, Vault, or placeholder-address assets.
+
+## Reference(s):
+
+- [HypurrFi homepage](https://hypurr.fi)
+- [HypurrFi app](https://app.hypurr.fi)
+- [HypurrFi docs](https://docs.hypurr.fi)
+- [Hyperliquid explorer](https://explorer.hyperliquid.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-capable command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a locally configured Hyperliquid wallet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Kuaishou helps agents summarize public Kuaishou videos, author pages, and hot-list performance data for lightweight analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides content retrieval and performance summaries for public Kuaishou videos, author pages, topics, and lists.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve and summarize public Kuaishou search, author, and hot-list information for lightweight content analysis and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill for login-only content, downloads, bulk scraping, API reverse engineering, or attempts to bypass platform verification or rate limits could violate platform rules. <br>
-Mitigation: Limit use to explicit, small-scale analysis of public Kuaishou pages and avoid downloads, reverse engineering, bulk collection, and verification or rate-limit bypass attempts. <br>
+## Use Case:
 
+Developers and analysts use this skill to summarize publicly visible Kuaishou video, author, topic, keyword, and list performance data for lightweight analysis and reminders.
 
-## Reference(s): <br>
-- [Kuaishou Skill Page](https://clawhub.ai/CodeKungfu/kuaishou) <br>
-- [Kuaishou Homepage](https://www.kuaishou.com/) <br>
-- [Kuaishou Search](https://www.kuaishou.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable code, credential use, persistence, or hidden install behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Public-page automation or bulk collection may conflict with Kuaishou rules or trigger platform controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use manual and lightweight; avoid account actions, downloads, API probing, interface bypass, and bulk collection; verify compliance with Kuaishou rules before use.
+
+Risk: Dynamic page loading and anti-bot controls can make extracted public-page data incomplete or stale.
+
+Mitigation: Open pages manually when needed, wait for visible content to load, and review summarized metrics before relying on them.
+
+## Reference(s):
+
+- [Kuaishou Homepage](https://www.kuaishou.com/)
+- [Kuaishou Search](https://www.kuaishou.com/search)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/kuaishou)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries may include public video IDs, titles, authors, links, engagement counts, publish times, topics, and trend observations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

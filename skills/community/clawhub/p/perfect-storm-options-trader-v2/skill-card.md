@@ -1,44 +1,64 @@
-## Description: <br>
-Autonomous but risk-bounded options trading agent spec for the Perfect Storm strategy in paper-trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous but risk-bounded paper-trading options agent spec for the Perfect Storm strategy, covering OpenClaw setup, Alpaca paper execution constraints, liquid long call/put selection, conservative sizing, daily risk controls, and auditable trade decisions.
 
-## Publisher: <br>
-[essam9009](https://clawhub.ai/user/essam9009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[essam9009](https://clawhub.ai/user/essam9009)
 
-## Use Case: <br>
-Developers and traders use this skill to configure, operate, or evaluate an OpenClaw-based paper options trader that scans an approved universe, scores PS+/PS- setups, selects liquid long call or put contracts, enforces risk limits, and journals decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow could be pointed at live brokerage credentials or a live trading endpoint. <br>
-Mitigation: Use Alpaca paper credentials only, verify the base URL is the paper endpoint, and halt if any live endpoint or live credential signal appears. <br>
-Risk: Options strategy outputs can be financially risky, incomplete, or unsuitable for real capital decisions. <br>
-Mitigation: Use the skill for paper trading, enforce the provided risk limits, review every decision object, and treat no-trade outcomes as valid. <br>
-Risk: Journals and decision records may contain sensitive account, order, or strategy information. <br>
-Mitigation: Keep generated journals private and review storage or sharing practices before using them outside the paper-trading environment. <br>
+## Use Case:
 
+External developers and trading-system operators use this skill to configure or evaluate an OpenClaw paper-trading options agent that scans an approved universe, scores PS+/PS- setups, selects liquid contracts, sizes positions conservatively, and journals each decision.
 
-## Reference(s): <br>
-- [Skill specification](artifact/SKILL.md) <br>
-- [Strategy rulebook](artifact/AGENTS.md) <br>
-- [Risk configuration](artifact/risk_config_openclaw_best_practices.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with JSON decision objects and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paper-trading decisions include risk checks, blockers, confidence scores, and journal notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An autonomous agent may receive broker credentials and order authority while the paper-only boundary is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only paper Alpaca credentials and enforce the exact origin https://paper-api.alpaca.markets before every authenticated request.
+
+Risk: A live-trading toggle or confirmation bypass could weaken the intended paper-trading boundary.
+
+Mitigation: Remove live-trading toggles and confirmation bypasses before installation or execution.
+
+Risk: Skipped, rejected, or failed symbols may be lost from the audit trail if decision states are not aligned.
+
+Mitigation: Align decision states and log every skipped or rejected symbol consistently, including blockers and journal notes.
+
+Risk: Options execution can amplify losses when data, spreads, or broker state are stale or uncertain.
+
+Mitigation: Keep the configured halts for stale data, abnormal spread expansion, broker uncertainty, daily loss limits, weekly loss limits, portfolio heat, and consecutive losses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/essam9009/skills/perfect-storm-options-trader-v2)
+- [AGENTS.md strategy rulebook](artifact/AGENTS.md)
+- [OpenClaw best-practices risk configuration](artifact/risk_config_openclaw_best_practices.yaml)
+- [Alpaca paper API endpoint](https://paper-api.alpaca.markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON trade-decision objects and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trade decisions include action, symbol, direction, setup type, confidence score, regime, thesis, contract candidate, entry plan, stop plan, target plan, position size, risk checks, blockers, and journal note.]
+
+## Skill Version(s):
+
+2.0.0 (source: artifact/SKILL.md frontmatter; server release version: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

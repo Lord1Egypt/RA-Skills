@@ -1,38 +1,53 @@
-## Description: <br>
-Automated academic writing assistant based on a three-layer architecture: Framework Layer, Summary Layer, and Body Layer. Organizes all files in a structured project directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated academic writing assistant based on a three-layer architecture: Framework Layer, Summary Layer, and Body Layer.
 
-## Publisher: <br>
-[MRchenkuan](https://clawhub.ai/user/MRchenkuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrchenkuan](https://clawhub.ai/user/mrchenkuan)
 
-## Use Case: <br>
-Students, researchers, and academic-writing teams use this skill to organize long-form papers, process references, generate document frameworks, write section drafts, and keep framework, summary, and body layers synchronized. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and overwrite local thesis project files, including draft body files and synchronization data. <br>
-Mitigation: Use a dedicated project directory with backups or version control, and review changes before allowing body generation or synchronization. <br>
-Risk: Synchronization can replace existing draft content when framework, summary, or body layers change. <br>
-Mitigation: Inspect proposed edits and keep recoverable checkpoints before synchronizing modified sections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to structure long-form papers, process references, generate framework and summary layers, draft Markdown body sections, and synchronize changes across those layers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON project files, and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update files under the selected academic-writing project directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can write or overwrite academic project files while drafting body sections or synchronizing layers.
+
+Mitigation: Set an explicit project directory, keep backups of thesis drafts, and ask for a preview before operations that may overwrite body files.
+
+Risk: The skill may use networking for literature search and attempted downloads.
+
+Mitigation: Review requested searches and downloaded source material before incorporating it into the paper.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrchenkuan/skills/paper-engineering-assistant)
+- [Publisher profile](https://clawhub.ai/user/mrchenkuan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON project files, project directories, and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update academic project files, including structs.json, summaries.json, document_body Markdown files, processed reference notes, and literature review reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

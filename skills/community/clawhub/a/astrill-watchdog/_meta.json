@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn735qmnbgtrx146bs5d5necsh81p2zt",
-  "slug": "astrill-watchdog",
+  "id": "astrill-watchdog",
   "version": "2.0.0",
-  "publishedAt": 1772891954007
+  "name": "Astrill VPN Watchdog",
+  "description": "Monitors Astrill StealthVPN on Ubuntu and auto-restarts it when the tunnel drops. Uses tun0 + ping detection and setsid relaunch with full Wayland environment. No sudo required.",
+  "platform": "linux",
+  "distro": "ubuntu",
+  "requires": ["ping", "ip", "pgrep", "pkill", "setsid"],
+  "sudo_required": false,
+  "files": [
+    "astrill-watchdog.sh",
+    "setup.sh",
+    "SKILL.md",
+    "CHANGELOG.md"
+  ]
 }

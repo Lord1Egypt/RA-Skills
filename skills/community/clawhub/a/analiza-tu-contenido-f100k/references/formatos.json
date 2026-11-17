@@ -1,0 +1,2418 @@
+{
+ "generado": "2026-09-15",
+ "fuente": "Biblioteca de formatos del Grimorio",
+ "total": 186,
+ "formatos": [
+  {
+   "id": "ia-antes-despues",
+   "nombre": "IA: Antes y Después",
+   "categoria": "ia",
+   "queEs": "Pones lado a lado (o en secuencia) un input pobre y el output potenciado por IA: una foto mala → una foto pro, un texto plano → un copy vendedor. Ideal para demostrar el poder de una herramienta sin explicar la teoría.",
+   "anatomia": [
+    "Gancho 0-3s: muestra el \"antes\" feo/aburrido con un texto que promete el salto (\"Mira lo que la IA hizo con esto\").",
+    "Transición rápida (corte seco, swipe o barrido) hacia el \"después\".",
+    "Revela el resultado transformado dejándolo en pantalla 1-2s para que el cerebro lo procese.",
+    "Micro-explicación: nombra la herramienta y el prompt/acción exacta.",
+    "CTA: \"Guarda esto\" o \"Comenta X y te paso el prompt\"."
+   ]
+  },
+  {
+   "id": "infografia-ia",
+   "nombre": "Infografía de IA",
+   "categoria": "ia",
+   "queEs": "Carrusel infográfico que condensa información compleja (cómo funciona una IA, mapa de herramientas, flujo de un agente) en un diseño visual escaneable, slide por slide. El valor es la curaduría visual: ordenas el caos. S",
+   "anatomia": [
+    "Slide 1: título-promesa con número y el mapa completo en miniatura (\"Las 7 IAs que reemplazan a tu equipo de marketing\").",
+    "Slide 2: la leyenda del mapa — qué significa cada color o ícono — antes de entrar al detalle.",
+    "Slides 3 a 8: un bloque por slide con ícono, nombre y para qué sirve en una línea. Nada de párrafos.",
+    "Numera los bloques y conéctalos con flechas en el orden en que se usan, para que el mapa se lea como un recorrido.",
+    "Penúltima slide: el mapa completo otra vez, ya legible, para capturarlo de una."
+   ]
+  },
+  {
+   "id": "comparacion",
+   "nombre": "Comparación",
+   "categoria": "comparacion",
+   "queEs": "Contrastas A vs B (herramienta vieja vs nueva, método amateur vs pro, tú vs la competencia) en 2 o 3 rondas, cada una con su criterio y su ganador, hasta un veredicto final. Funciona porque el cerebro decide más rápido p",
+   "anatomia": [
+    "Gancho 0-3s: nombra las dos opciones con tensión, una a cada lado de la pantalla (\"¿Canva o Claude para tus carruseles?\"). Los dos nombres quedan rotulados todo el video.",
+    "Anuncia las rondas antes de empezar: 2 o 3 criterios que a tu audiencia le importan de verdad (tiempo, costo, resultado), escritos en pantalla como un marcador vacío.",
+    "Ronda por ronda: muestra las dos opciones haciendo lo mismo, o su dato lado a lado, y marca en el marcador quién gana esa ronda.",
+    "Haz que al menos una ronda la gane la opción que tu audiencia no esperaba: sin sorpresa, el veredicto se adivina y nadie se queda.",
+    "Veredicto final con postura clara y una razón contundente. \"Depende\" no es un veredicto."
+   ]
+  },
+  {
+   "id": "split-screen-versus",
+   "nombre": "Pantalla dividida (Split screen versus)",
+   "categoria": "comparacion",
+   "queEs": "Divides el frame en dos (arriba/abajo o izquierda/derecha) y muestras simultáneamente dos procesos, dos resultados o dos personas. La comparación es literal y visual, no narrada.",
+   "anatomia": [
+    "Gancho: el split ya está armado en el segundo 0 con etiquetas claras en cada mitad.",
+    "Ambos lados ejecutan la misma tarea al mismo tiempo.",
+    "Se evidencia la diferencia (uno termina antes, uno se ve mejor).",
+    "Zoom o resalte al lado ganador en el clímax.",
+    "CTA sobre cuál replicar."
+   ]
+  },
+  {
+   "id": "antes-despues-ia",
+   "nombre": "Antes vs Después con IA",
+   "categoria": "ia",
+   "queEs": "Cuentas el \"antes\" (cómo trabajabas/te veías sin IA) y el \"después\" (con IA), combinando demostración visual + relato. Más emocional que el antes/después puro.",
+   "anatomia": [
+    "Gancho 0-3s: el dolor del antes con su número exacto, dicho y en pantalla (\"Pasaba 6 horas editando un video\").",
+    "Muestra ese antes en un clip real: la pantalla llena de pestañas, el domingo perdido, la agenda tachada.",
+    "Nombra la herramienta de IA y el momento exacto en que la metiste en tu proceso, con su interfaz en pantalla.",
+    "Muestra el después haciendo LA MISMA tarea, con el mismo encuadre que el antes y el número nuevo encima (\"Ahora me toma 20 minutos\").",
+    "Deja las dos cifras juntas en pantalla un segundo: la diferencia es la prueba."
+   ]
+  },
+  {
+   "id": "ranking-elementos",
+   "nombre": "Ranking de elementos",
+   "categoria": "rankings",
+   "queEs": "Tomas 3-7 ítems del mismo tipo (herramientas, estrategias, errores) y los rankeas. El valor es tu criterio experto: le ahorras al espectador la prueba y error.",
+   "anatomia": [
+    "Gancho: anuncia el ranking y el criterio (\"Las 5 IAs para crear contenido, de peor a mejor\").",
+    "Sube posición por posición creando suspenso hacia el #1.",
+    "Justifica cada puesto con una frase (\"Esta pierde porque...\").",
+    "Revela el #1 como clímax con énfasis visual.",
+    "CTA: \"¿Cambiarías el orden? Dímelo en comentarios\"."
+   ]
+  },
+  {
+   "id": "formula",
+   "nombre": "Formato Fórmula",
+   "categoria": "formulas",
+   "queEs": "Empaquetas tu método como una fórmula visual sumando componentes. Hace que algo abstracto (cómo crecer, cómo vender) se sienta concreto, replicable y \"científico\".",
+   "anatomia": [
+    "Gancho: promete el resultado de la fórmula (\"La fórmula para un reel que vende\").",
+    "Presenta cada componente como un sumando con su ícono/etiqueta.",
+    "Va construyendo la ecuación en pantalla, elemento por elemento.",
+    "Muestra el \"=\" y el resultado final.",
+    "CTA: \"Guarda la fórmula y aplícala hoy\"."
+   ]
+  },
+  {
+   "id": "carrusel-noticias",
+   "nombre": "Carrusel de noticias",
+   "categoria": "noticias",
+   "queEs": "Carrusel que reporta una novedad (un lanzamiento de IA, un cambio de algoritmo) con diseño tipo medio de comunicación. Te posiciona como fuente al día de tu nicho.",
+   "anatomia": [
+    "Slide 1: titular de impacto + etiqueta \"ÚLTIMA HORA\" o fecha.",
+    "Slide 2-3: qué pasó, en lenguaje simple.",
+    "Slide 4-5: por qué te importa a ti (el espectador) — la bajada práctica.",
+    "Slide final: tu opinión/recomendación + CTA."
+   ]
+  },
+  {
+   "id": "niveles",
+   "nombre": "Formato Niveles",
+   "categoria": "rankings",
+   "queEs": "Estructura tipo videojuego o escala: nivel 1, 2, 3… (o del 1 al 10, o las etapas hacia una meta) donde cada escalón se reconoce por una señal concreta. El espectador quiere ubicarse y ver hasta dónde llega. Absorbe lo qu",
+   "anatomia": [
+    "Gancho 0-3s: la escala entera y la pregunta de ubicación (\"Los 4 niveles de [X], ¿en cuál estás?\"), con los niveles numerados en pantalla desde el primer frame.",
+    "Nivel por nivel, de abajo hacia arriba: cada uno con su nombre en pantalla y UNA señal concreta que lo delata — algo que la persona hace, no un adjetivo.",
+    "Marca el nivel donde se atasca la mayoría y di qué la deja ahí.",
+    "En cada salto, una acción concreta para subir al siguiente nivel.",
+    "Cierra en el nivel más alto: lo aspiracional que pocos alcanzan, mostrado y no descrito."
+   ]
+  },
+  {
+   "id": "condicional",
+   "nombre": "Formato Condicional",
+   "categoria": "formulas",
+   "queEs": "Usas condicionales (\"Si tu reel no pasa de 1000 views, es por esto\") para diagnosticar el problema del espectador y dar la solución. Se siente personalizado. Tiene dos velocidades: PROFUNDO (un solo \"si\" desarrollado con",
+   "anatomia": [
+    "Gancho 0-3s: el condicional como diagnóstico, dicho y en pantalla (\"Si publicas y nadie comenta, esto te pasa a ti\").",
+    "Describe la condición con un detalle que solo reconoce quien la vive, para que se identifique antes de oír la causa.",
+    "Revela la causa (el \"entonces\") en una sola frase.",
+    "Entrega la corrección como una acción concreta que se pueda hacer hoy.",
+    "CTA hacia más ayuda: \"Si lo tuyo es otra cosa, comenta [palabra]\"."
+   ]
+  },
+  {
+   "id": "micro-tutorial",
+   "nombre": "Micro tutorial",
+   "categoria": "tutoriales",
+   "queEs": "Tutorial ultra condensado que abre por el final: muestras el resultado YA logrado y recién entonces los pasos. Tres pasos, una frase cada uno, la acción en pantalla mientras hablas, cero teoría. Un mini-tutorial perfecto",
+   "anatomia": [
+    "Gancho 0-3s: el resultado final PRIMERO, ya terminado en pantalla, y la promesa \"cómo lograr [X] en [N] pasos sin [el obstáculo]\".",
+    "Rotula cada paso con un número grande en pantalla (\"Paso 1 · Paso 2 · Paso 3\") y usa un corte por paso.",
+    "Cada paso es una frase, y la acción se ve mientras la dices: manos, pantalla o producto, nunca solo tu cara.",
+    "Cierra con el resultado terminado otra vez, igual que en el gancho, para que se vea que los pasos llegan ahí.",
+    "CTA de guardado: \"Guárdalo para cuando lo necesites\"."
+   ]
+  },
+  {
+   "id": "que-tipo-eres",
+   "nombre": "Carrusel \"¿Qué tipo de X eres?\"",
+   "categoria": "identidad",
+   "queEs": "Carrusel que describe tipos/perfiles y el espectador se identifica con uno. Activa el ego y la participación: todos quieren saber \"cuál soy yo\" y compartirlo.",
+   "anatomia": [
+    "Slide 1: la pregunta-gancho (\"¿Qué tipo de creador de contenido eres?\").",
+    "Slides 2-N: un arquetipo por slide con nombre, descripción y un rasgo reconocible.",
+    "Tono divertido y específico para que cada quien se reconozca.",
+    "Slide final: CTA (\"Comenta cuál eres\" / \"Etiqueta a quien es el tipo 3\")."
+   ]
+  },
+  {
+   "id": "multi-angulos",
+   "nombre": "Formato Multi-ángulos",
+   "categoria": "tutoriales",
+   "queEs": "Cortas entre múltiples ángulos de la misma acción (cenital, frontal, detalle) para mantener el ojo enganchado. Sube el valor de producción percibido y la retención.",
+   "anatomia": [
+    "Gancho con un ángulo potente (detalle o cenital).",
+    "Corte a otro ángulo cada 1-2 segundos sincronizado con el ritmo.",
+    "Cada ángulo aporta información nueva, no repite.",
+    "Clímax en el ángulo más espectacular.",
+    "CTA."
+   ]
+  },
+  {
+   "id": "metafora-visual",
+   "nombre": "Metáfora visual",
+   "categoria": "narrativos",
+   "queEs": "Usas una metáfora visual (vasos que se llenan, fichas de dominó, una semilla creciendo) para hacer tangible una idea compleja. El símbolo hace memorable el mensaje.",
+   "anatomia": [
+    "Gancho: presenta el objeto-metáfora generando intriga (\"Tu contenido es como estos vasos\").",
+    "Desarrolla la analogía paso a paso, conectando símbolo ↔ concepto.",
+    "Revela el insight que la metáfora ilumina.",
+    "Aterriza en la lección práctica.",
+    "CTA."
+   ]
+  },
+  {
+   "id": "no-hagas-x-haz-y",
+   "nombre": "Formato Carteles",
+   "categoria": "disrupcion",
+   "queEs": "Señalas algo que \"todos hacen mal\" (X) y das la versión correcta (Y). Combina disrupción + utilidad: rompes una creencia y entregas la solución en el mismo video.",
+   "anatomia": [
+    "Gancho disruptivo: \"Deja de hacer X\" (rompe la inercia/expectativa).",
+    "Explica brevemente por qué X falla.",
+    "Presenta Y como la alternativa superior.",
+    "Muestra la diferencia de resultado.",
+    "CTA: \"Guárdalo para no volver a cometer el error\"."
+   ]
+  },
+  {
+   "id": "frecuencia",
+   "nombre": "Formato Frecuencia",
+   "categoria": "tutoriales",
+   "queEs": "Resuelves la duda de cadencia/frecuencia de una acción (\"¿Cada cuánto publicar?\", \"¿Cada cuánto cambiar tu oferta?\"). Da estructura y tranquilidad: el espectador busca una regla.",
+   "anatomia": [
+    "Gancho: la pregunta de frecuencia (\"¿Cada cuánto deberías publicar para crecer?\").",
+    "Descarta el mito común (\"No, no son 3 veces al día\").",
+    "Da tu recomendación con número concreto.",
+    "Justifica con la lógica/dato detrás.",
+    "CTA."
+   ]
+  },
+  {
+   "id": "ejemplo-directo",
+   "nombre": "Ejemplo directo",
+   "categoria": "tutoriales",
+   "queEs": "Tomas un concepto y lo demuestras con un ejemplo real y específico en vivo, sin abstracciones. \"Te lo muestro, no te lo cuento\". Prueba tangible de que tu método funciona.",
+   "anatomia": [
+    "Gancho: anuncia el ejemplo concreto (\"Te muestro cómo convertí ESTE comentario en una venta\").",
+    "Presenta el caso real con datos/capturas.",
+    "Recorre el proceso aplicado a ese caso específico.",
+    "Muestra el resultado.",
+    "CTA: \"¿Quieres que lo haga con tu caso?\"."
+   ]
+  },
+  {
+   "id": "rapido-vs-lento",
+   "nombre": "Rápido vs Lento",
+   "categoria": "comparacion",
+   "queEs": "Comparas dos caminos al mismo resultado enfatizando el tiempo: el método lento (lo que hace todo el mundo) vs el atajo inteligente que propones. Vende eficiencia.",
+   "anatomia": [
+    "Gancho: plantea el contraste de tiempo (\"Esto te toma 3 horas... o 3 minutos\").",
+    "Muestra el método lento, exagerando su tedio.",
+    "Corte al método rápido, mostrando lo simple que es.",
+    "Revela la diferencia de tiempo de forma explícita.",
+    "CTA hacia la herramienta/sistema rápido."
+   ]
+  },
+  {
+   "id": "calificacion",
+   "nombre": "Formato Calificación",
+   "categoria": "identidad",
+   "queEs": "Asignas puntajes a cosas: herramientas, estrategias, o incluso perfiles/contenido de seguidores (\"rate my...\"). El juicio experto entretiene y la participación se dispara si invitas a ser calificado.",
+   "anatomia": [
+    "Gancho: anuncia que vas a calificar (\"Califico tus bios de Instagram del 1 al 10\").",
+    "Presenta cada elemento y dale una nota justificada.",
+    "Sé honesto/picante para generar reacción.",
+    "Da el tip de mejora junto a la nota.",
+    "CTA: \"Pon tu [X] en comentarios y te califico\"."
+   ]
+  },
+  {
+   "id": "analizando-x",
+   "nombre": "Formato \"Analizando X\"",
+   "categoria": "tutoriales",
+   "queEs": "Tomas un caso que tu audiencia ya conoce (un viral, una campaña, un perfil) y lo analizas como experto, señalando en pantalla los mecanismos que lo hicieron funcionar. La diferencia con una reacción es el cierre: aquí se",
+   "anatomia": [
+    "Gancho 0-5s: presenta el caso y promete el patrón (\"analicé por qué [caso] hizo [resultado]: hay un patrón que puedes copiar\").",
+    "Pon el caso de fondo (captura o pantalla verde) y comenta encima: se tiene que ver lo que analizas.",
+    "Desarma 2 o 3 cosas concretas que ESE caso hizo distinto, numeradas en pantalla y señaladas con flechas o círculos.",
+    "Entrega la lección para quien mira: cómo aplica ese patrón en su propio nicho.",
+    "CTA de guardado + \"¿quieres que analice el tuyo?\", y nombra la serie si la haces seguido."
+   ]
+  },
+  {
+   "id": "cosas-mal-con-x",
+   "nombre": "\"Cosas que hacemos mal con X\"",
+   "categoria": "disrupcion",
+   "queEs": "Enumeras 3-5 errores frecuentes en una práctica. Combina disrupción (rompes creencias) + utilidad (corriges) + identificación (el espectador se reconoce cometiéndolos).",
+   "anatomia": [
+    "Gancho 0-3s: \"[N] cosas que haces mal con [tema] sin darte cuenta\" + \"la última casi nadie la nota\".",
+    "Rotula cada error con su número grande en pantalla (\"Error #1\").",
+    "Error y corrección en dos frases: el problema y la solución, sin ejemplos largos.",
+    "Guarda el error más sorprendente para el último: es la deuda que sostiene la retención.",
+    "CTA doble: \"¿Cuál cometías? Guárdalo\"."
+   ]
+  },
+  {
+   "id": "pov-texto",
+   "nombre": "POV con texto en pantalla",
+   "categoria": "narrativos",
+   "queEs": "Video sin hablar (o con audio trending) donde el texto \"POV: [situación]\" coloca al espectador como protagonista de una escena emocional o cotidiana. Ideal para identificación rápida, bajo esfuerzo de grabación y humaniz",
+   "anatomia": [
+    "Frame 0-1s: texto grande \"POV: [situación concreta de tu nicho]\", fijo arriba todo el video.",
+    "Actúa la situación con una acción que se entienda sin sonido: la cara al ver la notificación, el gesto al abrir la agenda vacía.",
+    "Monta sobre un audio en tendencia cuyo cambio caiga justo en el giro de la escena.",
+    "A mitad, el giro visible: una segunda línea de texto o un corte que cambia el sentido de la primera.",
+    "Cierra con la reacción final y una línea que invite a identificarse (\"comenta si ya lo viviste\")."
+   ]
+  },
+  {
+   "id": "dia-en-mi-vida",
+   "nombre": "Día en mi vida",
+   "categoria": "proceso",
+   "queEs": "Vlog comprimido que muestra la rutina real de crear contenido o llevar un negocio, de la mañana a la noche. Ideal para nutrición, cercanía y mostrar que detrás de la marca hay una persona real (clave para vender alto tic",
+   "anatomia": [
+    "Gancho 0-3s: \"Acompáñame un día como creadora de contenido y mamá\".",
+    "Primera escena con la hora en pantalla.",
+    "4-6 micro-clips de tareas reales.",
+    "Un momento de tensión/caos honesto.",
+    "Reflexión de cierre + CTA suave a seguir."
+   ]
+  },
+  {
+   "id": "metodo-encubierto",
+   "nombre": "Método encubierto",
+   "categoria": "proceso",
+   "queEs": "Un tutorial que no se anuncia como tutorial. Abre mostrando el resultado ya conseguido, rebobina al principio de un día normal y reparte los pasos del método a lo largo de las horas. Se distingue de «Día en mi vida», don",
+   "anatomia": [
+    "Apertura en frío con el resultado ya conseguido, antes de que aparezca la primera hora en pantalla.",
+    "La frase-contrato: \"esto no se decide el día que [X], se decide en un [día] cualquiera\".",
+    "Cada hora en placa es un paso del método, ejecutado en cámara con un objeto real que se pueda sostener con la mano.",
+    "A los dos tercios, una derrota sin editar: el intento que falló, el rechazo, el error del día.",
+    "El paso más valioso se guarda para el final del cuerpo, porque es el que la gente comparte."
+   ]
+  },
+  {
+   "id": "tier-list",
+   "nombre": "Tier list (S/A/B/C/F)",
+   "categoria": "rankings",
+   "queEs": "Arrastras un set de cosas (plataformas, estrategias, herramientas) a los niveles de una tier list mientras explicas el porqué. Ideal para contenido de autoridad con opinión fuerte y para provocar debate.",
+   "anatomia": [
+    "Gancho 0-3s: \"Tier list de las redes para vender en 2026\".",
+    "Muestra la tabla vacía.",
+    "Coloca el primer ítem en S con una razón contundente.",
+    "Un ítem polémico baja a F.",
+    "Deja UNA posición \"a decisión de ustedes\" para forzar comentarios."
+   ]
+  },
+  {
+   "id": "expectativa-realidad",
+   "nombre": "Expectativa vs Realidad",
+   "categoria": "comparacion",
+   "queEs": "Contrastas lo que la gente CREE que es algo contra lo que realmente es, con un corte seco o pantalla partida y tono de humor honesto. Ideal para romper mitos del nicho y desmitificar la \"vida perfecta\" del creador.",
+   "anatomia": [
+    "Texto \"Expectativa\" sobre clip pulido/glamoroso 0-2s.",
+    "Corte seco a \"Realidad\" con la versión caótica.",
+    "Contraste exagerado para el humor.",
+    "Audio trending que marca el bajón.",
+    "Caption que valida (\"a quién le pasa\")."
+   ]
+  },
+  {
+   "id": "tres-cosas",
+   "nombre": "3 cosas que aprendí / desearía saber",
+   "categoria": "tutoriales",
+   "queEs": "Entregas exactamente 3 lecciones accionables sobre un tema (vender, emprender, crear) con un corte por cada punto. Ideal para valor empaquetado, guardable, que posiciona experiencia en poco tiempo.",
+   "anatomia": [
+    "Gancho 0-3s: \"3 cosas que desearía saber antes de emprender\".",
+    "\"Número 1…\" con corte.",
+    "Cada punto = una frase + ejemplo de 1 línea.",
+    "El #3 es el más fuerte/contraintuitivo.",
+    "CTA \"guárdalo para cuando arranques\"."
+   ]
+  },
+  {
+   "id": "storytime-fracaso",
+   "nombre": "Storytime de fracaso",
+   "categoria": "narrativos",
+   "queEs": "Relato en primera persona de un error o fracaso emprendedor, tipo confesión, a menudo grabado mientras te maquillas/caminas/empacas. Ideal para humanizar y enseñar desde la cicatriz, no desde el pedestal.",
+   "anatomia": [
+    "Arranca haciendo una tarea cotidiana en cuadro (maquillarte, empacar pedidos, cocinar) y no la sueltes en todo el video: la historia se cuenta mientras las manos trabajan.",
+    "Gancho 0-3s dicho a cámara sin parar la tarea: \"Storytime de [el fracaso concreto]\", con el texto encima.",
+    "Contexto breve de la apuesta: qué intentaste y qué esperabas que pasara.",
+    "El momento en que todo se cayó, con la cifra o el detalle concreto de lo que perdiste.",
+    "La lección que aplicas hoy, dicha justo cuando terminas la tarea en cuadro."
+   ]
+  },
+  {
+   "id": "lei-x-libros",
+   "nombre": "Leí X libros y esto aprendí",
+   "categoria": "tutoriales",
+   "queEs": "Recomiendas un puñado de libros (marketing, ventas, mentalidad) y das la idea-clave aplicable de cada uno, mostrando portadas. Ideal para autoridad, guardable, que te posiciona como alguien que estudia y filtra.",
+   "anatomia": [
+    "Gancho 0-3s: \"Leí 40 libros de marketing al año y estos 4 valen cada página\".",
+    "Libro 1 + su idea accionable \"esta semana\".",
+    "Repite con portada en pantalla.",
+    "El último es el más subestimado.",
+    "CTA \"guárdalo / comenta cuál leíste\"."
+   ]
+  },
+  {
+   "id": "transicion-setup",
+   "nombre": "Transición de outfit / setup",
+   "categoria": "proceso",
+   "queEs": "Video centrado en una transición (chasquido, giro, tapar la cámara) que pasa de un estado a otro: setup montándose, outfit cambiando, el detrás de cámaras volviéndose el resultado final. Alto valor de producción percibid",
+   "anatomia": [
+    "Estado A \"desordenado/casual\" 0-2s.",
+    "Gatillo de transición sincronizado al beat.",
+    "Revelación del estado B pulido.",
+    "Micro-detalle satisfactorio.",
+    "Loop perfecto que invita a re-ver."
+   ]
+  },
+  {
+   "id": "antes-de-publicar",
+   "nombre": "\"Antes de publicar haz esto\"",
+   "categoria": "tutoriales",
+   "queEs": "Tutorial corto que enumera acciones concretas previas a publicar (gancho, primer comentario, hora, hashtags) con demostración en pantalla. Contenido utilitario altamente guardable para otros creadores/emprendedores.",
+   "anatomia": [
+    "Gancho 0-3s: \"Haz esto antes de publicar tu video si quieres irte viral\".",
+    "Paso 1 mostrado en pantalla.",
+    "Pasos 2-3 rápidos con screen recording.",
+    "El truco menos conocido al final.",
+    "CTA \"guárdalo y úsalo en tu próximo post\"."
+   ]
+  },
+  {
+   "id": "asmr-proceso",
+   "nombre": "ASMR de proceso (empacar pedidos)",
+   "categoria": "proceso",
+   "queEs": "Video sin narración donde se ve y escucha el proceso completo (preparar/empacar un pedido: papel, stickers, sellado) con sonido satisfactorio. Ideal para producto físico o merch; genera prueba social y altísimo re-watch.",
+   "anatomia": [
+    "Frame 0-2s: producto + texto \"Pedido para [nombre]\".",
+    "Sonidos limpios al doblar/envolver.",
+    "Detalle estético (tarjeta, sticker de marca).",
+    "Sellado satisfactorio.",
+    "Producto final listo para enviar como cierre."
+   ]
+  },
+  {
+   "id": "entrevista-calle",
+   "nombre": "Entrevista de calle (\"¿cuánto ganas?\")",
+   "categoria": "interaccion",
+   "queEs": "Microentrevista en exteriores donde haces una pregunta concreta y provocadora (cuánto facturas, cuánto te costó empezar) y la respuesta espontánea es el contenido. Ideal para prueba social real, debate y curiosidad sobre",
+   "anatomia": [
+    "Gancho 0-3s: la pregunta directa con micrófono \"¿Sabes cuánto ganaste ayer?\".",
+    "Reacción cruda del entrevistado.",
+    "Cifra o confesión sorprendente.",
+    "Repregunta que profundiza.",
+    "Cierre que invita a responder en comentarios."
+   ]
+  },
+  {
+   "id": "carta-yo-pasado",
+   "nombre": "Carta a mi yo del pasado",
+   "categoria": "narrativos",
+   "queEs": "Pieza emocional donde te diriges a tu \"yo de hace X tiempo\" (cuando empezabas, cuando dudabas) con la sabiduría de hoy. Ideal para conexión profunda, cierres de etapa y para inspirar a quien está donde tú estuviste.",
+   "anatomia": [
+    "Gancho 0-3s: \"Querido yo del pasado, esto es lo que necesitabas oír\".",
+    "Reconoces el dolor/duda de esa etapa.",
+    "Revelas el aprendizaje que cambió todo.",
+    "Un mensaje directo de aliento.",
+    "CTA \"comenta [palabra] si tú también estás en ese punto\"."
+   ]
+  },
+  {
+   "id": "carrusel-checklist",
+   "nombre": "Carrusel Checklist Guardable",
+   "categoria": "carruseles",
+   "queEs": "Carrusel que entrega una checklist accionable, un punto por slide, sobre una tarea concreta. El valor es 100% utilitario: se guarda como herramienta de consulta recurrente, no para leerlo una vez.",
+   "anatomia": [
+    "Slide 1 (gancho): promesa de revisión + miedo a equivocarse (\"Antes de publicar… revisa todo esto\").",
+    "Slide 2: por qué importa / qué te juegas si lo saltas.",
+    "Slides 3-7: un ítem de checklist por slide, cada uno con casilla mental ✓.",
+    "Penúltima: el error que casi todos cometen.",
+    "Final (CTA): \"Guárdalo para tu próxima publicación\" + seguir."
+   ]
+  },
+  {
+   "id": "carrusel-secreto",
+   "nombre": "Carrusel \"Lo que nadie te dice de X\"",
+   "categoria": "disrupcion",
+   "queEs": "Carrusel construido sobre el vacío de información: revela las \"verdades que nadie cuenta\" sobre emprender/crear contenido. Mezcla consejo práctico con honestidad emocional para diferenciarse del consejo genérico.",
+   "anatomia": [
+    "Slide 1: \"Lo que nadie te dice de [tema deseado]\" + a quién le hablas (\"antes de lanzarte a emprender…\").",
+    "Slide 2: lo que SÍ te dicen todos, en una frase entre comillas. Es el contraste que hace valer lo que viene.",
+    "Slides 3 a 7: una verdad por slide, con \"Lo que te dicen:\" arriba y \"Lo que pasa:\" abajo, y un detalle concreto de tu experiencia.",
+    "Penúltima slide: la verdad más incómoda, sola y en letra grande.",
+    "Última slide: una línea de alivio (\"y aun así vale la pena si…\") + guardar o comentar."
+   ]
+  },
+  {
+   "id": "carrusel-recursos",
+   "nombre": "Carrusel de Recursos / Herramientas",
+   "categoria": "carruseles",
+   "queEs": "Carrusel que enumera herramientas (de IA, diseño, etc.) con su función en una línea. Máxima utilidad percibida: se guarda como \"biblioteca\" de consulta.",
+   "anatomia": [
+    "Slide 1 (gancho): \"Herramientas de IA que nos salvan (literal) en el día a día\".",
+    "Slides 2-6: una herramienta por slide con nombre + para qué sirve + caso de uso.",
+    "Penúltima: cómo combinarlas en un flujo.",
+    "Final (CTA): \"Comenta [palabra] y te mando la biblioteca completa\"."
+   ]
+  },
+  {
+   "id": "carrusel-glosario",
+   "nombre": "Carrusel Glosario / Diccionario",
+   "categoria": "carruseles",
+   "queEs": "Carrusel tipo diccionario donde cada slide define un término técnico (HOOK, CTA, copy, engagement). Resuelve la frustración del principiante que no entiende la jerga y se guarda como referencia.",
+   "anatomia": [
+    "Slide 1 (gancho): la jerga que confunde, nombrada (\"¿No entiendes qué es un HOOK, un CTA o el engagement? Este es tu glosario\").",
+    "Slides 2-7: un término por slide, con el término grande arriba y su definición en una frase debajo.",
+    "Bajo cada definición, un mini-ejemplo de tu rubro en letra más chica: la definición sin ejemplo no se entiende.",
+    "Final (CTA): \"Guárdalo para no perderte nunca más\" + seguir."
+   ]
+  },
+  {
+   "id": "carrusel-caso-estudio",
+   "nombre": "Carrusel Mini-Caso de Estudio",
+   "categoria": "tutoriales",
+   "queEs": "Carrusel donde analizas un resultado concreto de tu propia cuenta (de dónde vienen tus mejores resultados, qué cambió) y extraes la lección replicable. Combina prueba social con enseñanza.",
+   "anatomia": [
+    "Slide 1 (gancho): \"Ya no es casualidad: mis mejores resultados no vienen de los Reels…\".",
+    "Slide 2: el dato/resultado concreto que observaste.",
+    "Slides 3-6: qué hiciste distinto + por qué funcionó.",
+    "Final (CTA): la lección replicable + guardar/seguir."
+   ]
+  },
+  {
+   "id": "carrusel-plantilla",
+   "nombre": "Carrusel Plantilla / Template",
+   "categoria": "formulas",
+   "queEs": "Carrusel que entrega un molde replicable de tu oficio —un mensaje para cobrar, un guion de llamada, una ficha de cliente— con el texto fijo escrito y los huecos marcados. El valor es que quien lee se ahorra crear desde c",
+   "anatomia": [
+    "Slide 1: la promesa del molde con lo que ahorra (\"El mensaje que uso para cobrar sin rodeos, listo para copiar\").",
+    "Slide 2: el resultado que salió de usarlo, en una captura o un número real.",
+    "Slides 3 a 6: un bloque del molde por slide, con el texto fijo escrito y los huecos entre [corchetes] resaltados en color.",
+    "Debajo de cada bloque, un ejemplo ya relleno en letra más chica, para que se entienda qué va en el hueco.",
+    "Última slide: CTA de palabra clave para recibir el molde completo en texto copiable."
+   ]
+  },
+  {
+   "id": "carrusel-swipe-embudo",
+   "nombre": "Carrusel Swipe-Reveal (embudo de deslizamiento)",
+   "categoria": "carruseles",
+   "queEs": "Carrusel donde cada slide termina en una frase cortada a la mitad que solo se completa en la siguiente. La frase partida es el formato: convierte cada swipe en el pago de una deuda pequeña y lleva al lector hasta la últi",
+   "anatomia": [
+    "Slide 1: una afirmación que reencuadra el tema y termina cortada (\"El problema no es tu precio, es…\").",
+    "Cada slide siguiente abre completando la frase de la anterior y cierra dejando otra cortada.",
+    "Pon el corte siempre en el mismo lugar (abajo a la derecha, con puntos suspensivos o una flecha), para que el ojo aprenda dónde está la deuda.",
+    "Guarda la revelación completa para la penúltima slide: la única que no termina cortada.",
+    "Última slide: CTA que cobra la tensión (\"Comenta [palabra] y te mando la estructura\")."
+   ]
+  },
+  {
+   "id": "carrusel-storytelling",
+   "nombre": "Carrusel Storytelling (hilo narrativo)",
+   "categoria": "narrativos",
+   "queEs": "Carrusel que cuenta UNA historia real por etapas —la tuya o la de un cliente— en lugar de dar una lista: cada slide es un momento con su fecha o su etapa, y el arco va de la tensión al giro y a la lección. El lector se q",
+   "anatomia": [
+    "Slide 1: el momento más tenso de la historia, en una frase y con su fecha o etapa (\"2022: cerré el local con 40 pedidos pendientes\").",
+    "Slides 2-3: cómo se llegó ahí, un momento por slide, cada uno con un hecho concreto y no un sentimiento.",
+    "Slide del giro: la decisión o el descubrimiento que lo cambió, sola y en letra más grande que el resto.",
+    "Slides siguientes: lo que pasó después, cada una con una prueba (una foto, un número, una captura).",
+    "Penúltima slide: la lección en una frase, traducida a quien lee."
+   ]
+  },
+  {
+   "id": "carrusel-frases",
+   "nombre": "Carrusel de Frases / Citas",
+   "categoria": "interaccion",
+   "queEs": "Carrusel donde cada slide es una frase potente (motivacional/de mentalidad) sobre un tema. Bajo en texto, alto en impacto emocional; funciona como contenido de identidad que el seguidor reenvía.",
+   "anatomia": [
+    "Slide 1 (gancho): promesa de impulso con número (\"5 frases que te impulsarán a dar el primer paso\").",
+    "Slides 2-6: una frase por slide, grande, con mucho aire alrededor y la misma tipografía en todas.",
+    "Resalta en color una sola palabra de cada frase: la que carga el sentido.",
+    "Final (CTA): \"¿Cuál te quedas? Coméntalo\" + guardar."
+   ]
+  },
+  {
+   "id": "carrusel-paso-a-paso",
+   "nombre": "Carrusel Proceso paso a paso",
+   "categoria": "tutoriales",
+   "queEs": "Carrusel tutorial donde cada slide es un paso secuencial para lograr un resultado concreto (crear un carrusel, montar una historia que venda). Reemplaza al video tutorial con un formato consultable y guardable.",
+   "anatomia": [
+    "Slide 1 (gancho): promesa de resultado + facilidad (\"Vende más en tus historias con storytelling, paso a paso\").",
+    "Slide 2: qué vas a lograr al final.",
+    "Slides 3-6: Paso 1, Paso 2, Paso 3… cada uno autocontenido.",
+    "Final (CTA): \"Guárdalo y aplícalo hoy\" + comentar/seguir."
+   ]
+  },
+  {
+   "id": "falso-podcast",
+   "nombre": "Falso Podcast (clip de estudio)",
+   "categoria": "nativosia",
+   "queEs": "Clip que imita el corte de un podcast real: una persona frente a un micro de brazo, mirada lateral, subtítulos. Es 2026 puro: la estética \"studio podcast\" se democratizó (micro + aro de luz + voz/avatar IA) y el feed la ",
+   "anatomia": [
+    "Gancho hablado en 2-3s (\"La gente cree que necesita más seguidores… y se equivoca\").",
+    "Montaje tipo podcast: micro al frente, mirada lateral, caption karaoke.",
+    "Un solo argumento por clip (no toda la charla).",
+    "Mini-tensión o desacuerdo (\"ahí es donde todos fallan\").",
+    "Cierre con frase citable + CTA suave."
+   ]
+  },
+  {
+   "id": "ia-geo",
+   "nombre": "Lo que la IA dice de tu negocio (GEO)",
+   "categoria": "nativosia",
+   "queEs": "Muestras en pantalla la consulta a una IA sobre el negocio/nicho y reaccionas al output. 100% 2026: la gente ya \"le pregunta a la IA\" en vez de Google (GEO = Generative Engine Optimization), y \"tu negocio no apareció\" es",
+   "anatomia": [
+    "Gancho de miedo/curiosidad (\"Le pregunté a ChatGPT cuál es el mejor [rubro]… y tu negocio no salió\").",
+    "Captura/pantalla de la consulta real.",
+    "Reacción a lo que la IA respondió.",
+    "La implicación (\"si la IA no te conoce, para ese cliente no existes\").",
+    "CTA: comenta una palabra para diagnóstico."
+   ]
+  },
+  {
+   "id": "avatar-ia",
+   "nombre": "Avatar IA hablando (faceless)",
+   "categoria": "nativosia",
+   "queEs": "Video talking-head donde el \"presentador\" es un avatar IA (Synthesia, HeyGen, Veo) sincronizado con voz. Dominante en 2026 por las marcas faceless: produces a diario sin grabarte, en cualquier idioma.",
+   "anatomia": [
+    "Avatar mirando a cámara con gancho hablado.",
+    "Caption karaoke sincronizado.",
+    "Cuerpo: 3 puntos rápidos con b-roll IA.",
+    "Meta-gancho: \"esto es IA\" (el morbo de si es real o no).",
+    "CTA: comenta \"PROMPTS\" para la receta."
+   ]
+  },
+  {
+   "id": "construyendo-en-publico",
+   "nombre": "Construyendo en público (Día 1/??)",
+   "categoria": "narrativos",
+   "queEs": "Serie episódica que narra crear algo (un SaaS, un negocio, una comunidad) desde cero, mostrando avances y tropiezos reales. Muy 2026 por la ola \"vibe coding\" + indie hacking: la gente sigue el viaje, no el resultado.",
+   "anatomia": [
+    "\"Día X/?? construyendo [proyecto]\" como gancho de serie.",
+    "Estado actual honesto (incluye lo que falla).",
+    "Avance concreto del día.",
+    "Mini-cliffhanger (\"mañana resuelvo el pago\").",
+    "CTA: \"sígueme para no perderte el día X\"."
+   ]
+  },
+  {
+   "id": "respondiendo-comentarios",
+   "nombre": "Respondiendo comentarios",
+   "categoria": "interaccion",
+   "queEs": "Usas la función \"responder a comentario\" para abrir con la duda/objeción real de un seguidor y la respondes a fondo. Actual en 2026: el algoritmo premia participación activa y co-creación por encima del consumo pasivo.",
+   "anatomia": [
+    "Burbuja del comentario real en pantalla como gancho.",
+    "Validas la pregunta (\"excelente duda\").",
+    "Respuesta estructurada (2-3 pasos).",
+    "Giro de valor inesperado.",
+    "CTA: \"déjame tu pregunta y la respondo\"."
+   ]
+  },
+  {
+   "id": "opiniones-impopulares",
+   "nombre": "Opiniones impopulares (contrarian)",
+   "categoria": "disrupcion",
+   "queEs": "Declaras posturas contracorriente sobre tu industria (\"publicar todos los días te hace invisible\"). Vigente en 2026 como combustible de comentarios en feeds saturados, donde la postura fuerte gana a lo neutro.",
+   "anatomia": [
+    "Gancho-etiqueta: \"Opinión impopular sobre [nicho]:\".",
+    "La afirmación que duele, sin rodeos.",
+    "El argumento que la sostiene (1 razón fuerte).",
+    "La prueba o ejemplo (caso real).",
+    "CTA provocador: \"¿de acuerdo o me odias? comenta\"."
+   ]
+  },
+  {
+   "id": "split-3-pantallas",
+   "nombre": "Split de 3 pantallas",
+   "categoria": "comparacion",
+   "queEs": "Composición editada que muestra 3 ventanas de video al mismo tiempo. Tendencia técnica 2026 (tutoriales de CapCut/Meitu) porque la densidad visual frena el scroll y da \"más por segundo\".",
+   "anatomia": [
+    "Las 3 pantallas arrancan juntas con texto-gancho arriba.",
+    "Pantalla central = foco; laterales = contexto/prueba.",
+    "Sincronía con un beat de audio trending.",
+    "Pico visual coordinado en los 3 frames.",
+    "Cierre y CTA."
+   ]
+  },
+  {
+   "id": "audio-tendencia-texto",
+   "nombre": "Audio en tendencia + texto",
+   "categoria": "tendencia",
+   "queEs": "Tomas un sonido viral del momento y le pones overlay de texto que traduce el audio a tu nicho (sin hablar). Clave en 2026: la vía más rápida de entrar al \"river\" de distribución de un audio caliente con costo de producci",
+   "anatomia": [
+    "Primer beat del audio: texto-gancho grande que conecta lo que dice el sonido con una situación de tu nicho.",
+    "Graba una sola toma simple que acompañe el texto: tu cara reaccionando, tus manos trabajando o el producto.",
+    "Hasta el drop, deja una sola línea de texto en pantalla: la construcción del audio sostiene la tensión.",
+    "En el drop, cambia el texto por el giro: la línea que le da la vuelta a la primera.",
+    "Remata en el último segundo del sonido y deja el CTA para el caption, no encima del video."
+   ]
+  },
+  {
+   "id": "subtitulos-karaoke",
+   "nombre": "Subtítulos karaoke (captions cinéticos)",
+   "categoria": "tendencia",
+   "queEs": "Los captions resaltan/llenan de color cada palabra justo cuando se dice, sincronizados con el audio. Estándar de retención en 2026 (CapCut/SubtitlesFast lo hacen en 1 clic): el ojo persigue la palabra activa y no suelta ",
+   "anatomia": [
+    "Voz/guion con frases cortas y punchy.",
+    "Caption karaoke con la palabra activa resaltada.",
+    "Énfasis de color/escala en la palabra-clave de cada frase.",
+    "Ritmo de corte alineado a la cadencia.",
+    "Cierre con la frase citable en grande."
+   ]
+  },
+  {
+   "id": "ia-consultora",
+   "nombre": "Le pregunté a la IA sobre mi negocio",
+   "categoria": "tutoriales",
+   "queEs": "Documentas en pantalla cómo usas la IA para resolver un problema real de negocio (estudio de mercado, validación, prompt perfecto) y entregas el método. Muy 2026: la audiencia quiere \"cómo usar la IA de verdad\", no solo ",
+   "anatomia": [
+    "Gancho: \"Así le pedí a la IA que validara mi negocio en 5 min\".",
+    "Muestra el prompt exacto (rol + contexto + tarea + formato).",
+    "La respuesta de la IA en pantalla.",
+    "Tu interpretación / qué harías con eso.",
+    "CTA: \"comenta para el prompt\"."
+   ]
+  },
+  {
+   "id": "escalada-en-vivo",
+   "nombre": "Escalada en vivo: \"¿en qué nivel te pierdo?\"",
+   "categoria": "rankings",
+   "queEs": "No EXPLICAS un error: se lo HACES en vivo. Repites una sola idea en 4 niveles de dificultad creciente (LV1 simple → LV4 jerga pura) mientras un marcador en pantalla muestra en qué nivel va. El espectador deja de entender",
+   "anatomia": [
+    "Gancho 0-3s: la pregunta-reto fija arriba (\"¿En qué nivel dejas de entenderme?\") — no promete valor, promete un test.",
+    "HUD permanente: barra de niveles LV1 · LV2 · LV3 · LV4 con el nivel activo resaltado y un marcador que avanza. Es la barra de progreso que sostiene la retención.",
+    "LV1: la idea en lenguaje de niño, 1 frase. Todos entienden — engancha por facilidad.",
+    "LV2 y LV3: la MISMA idea, con más términos y frases más largas. El grado sube parejo con el color/la música.",
+    "LV4: jerga extrema e ilegible a propósito. Aquí se pierde casi todo el mundo (ese es el punto)."
+   ]
+  },
+  {
+   "id": "construccion-visual",
+   "nombre": "Construcción visual (el tablero se llena mientras hablas)",
+   "categoria": "visual",
+   "queEs": "Hablas a cámara en la mitad de abajo del encuadre; en la mitad de arriba vive un tablero vacío con 2 zonas rotuladas. Cada vez que nombras un ítem, su recorte entra volando y se queda pegado en la zona que le toca. Al te",
+   "anatomia": [
+    "Parte el encuadre en dos: el tablero ocupa el tercio superior, tú quedas del pecho para abajo. Plano fijo y trípode: si la cámara se mueve, el tablero baila.",
+    "Rotula las dos zonas ANTES de empezar (ej. \"DENTRO\" / \"FUERA\") y déjalas visibles todo el video: son las reglas del juego.",
+    "Por cada ítem: el recorte entra GRANDE encima de ti medio segundo (te tapa a propósito), y recién ahí se encoge y aterriza en su zona del tablero.",
+    "Nunca borres: todo lo colocado se queda. El tablero acumula y el avance se ve — esa es la barra de progreso del video.",
+    "Deja para el final el ítem que la gente clasifica mal (el que va a generar el \"¿en serio?\"), y remata con el tablero completo en pantalla + tu CTA."
+   ]
+  },
+  {
+   "id": "sketch-dos-personajes",
+   "nombre": "Sketch: tú interpretas a los dos personajes",
+   "categoria": "narrativos",
+   "queEs": "Una sola persona, dos personajes, un diálogo. Interpretas al que pide (tu audiencia) y al que responde (el mercado, el algoritmo, tu yo del futuro, el Universo). Cada personaje tiene su vestuario, su fondo y su rótulo, y",
+   "anatomia": [
+    "Define dos personajes con roles opuestos: uno PIDE (deseo ingenuo) y el otro RESPONDE (la verdad incómoda).",
+    "Diferencia cada uno con tres señales al mismo tiempo: vestuario, fondo y un rótulo fijo en pantalla con su nombre. Sin las tres, el espectador se pierde.",
+    "Grábalos por separado en el mismo plano y corta alternando; el rótulo cambia en el mismo frame que la cara.",
+    "Fija arriba un rótulo de contexto que NO se mueve en todo el video (\"POV: ...\"), para que quien llegue tarde entienda la escena.",
+    "Estructura el diálogo en escalada: el que responde no da la solución, devuelve preguntas cada vez más incómodas."
+   ]
+  },
+  {
+   "id": "lista-visual-senalada",
+   "nombre": "Lista visual señalada (el índice completo alrededor de ti)",
+   "categoria": "visual",
+   "queEs": "Al revés de la construcción visual: aquí NADA se acumula, todo está desde el principio. Dos columnas de miniaturas con etiqueta te enmarcan (izquierda el síntoma/problema, derecha la causa/solución), y tú, en el centro, ",
+   "anatomia": [
+    "Arma la lista en pares: columna izquierda = lo que la persona NOTA (con foto real de cada cosa), columna derecha = lo que lo CAUSA (con ícono limpio).",
+    "Muéstralas todas juntas desde el frame 1, dejando el centro libre para tu cuerpo. Nada entra ni sale durante el video.",
+    "Señala con la mano hacia la miniatura que estás nombrando y hazla crecer un poco en ese momento: el gesto sincronizado es lo que evita que el cuadro se sienta saturado.",
+    "Recorre los pares en orden, de arriba abajo, sin volver atrás: 2-3 segundos por par, máximo.",
+    "Quita TODO el overlay para el cierre y remata mirando a cámara con el CTA, en cuadro limpio."
+   ]
+  },
+  {
+   "id": "stop-motion-pizarra",
+   "nombre": "Pizarra que se escribe sola (stop motion)",
+   "categoria": "visual",
+   "queEs": "No sales en cámara casi nada: el protagonista es una pizarra que se va escribiendo sola en stop motion mientras tu voz narra. Vas dibujando un mapa de etapas con flechas y colores hasta que el esquema completo explica el",
+   "anatomia": [
+    "Gancho 0-3s: apareces sosteniendo la pizarra con la frase-conclusión ya escrita (la promesa), y de ahí cortas al esquema en blanco.",
+    "Escribe el esquema en pasos numerados por etapas (ETAPA 1 → 5), fotografiando después de cada par de palabras: al reproducirlo, el texto brota solo.",
+    "Usa el color como jerarquía y no como decoración: un color para los títulos, otro para lo que funciona, rojo para lo que se rompe.",
+    "Marca el punto de quiebre con un círculo hecho a mano encima (la etapa donde todo se tuerce): es el frame que la gente captura.",
+    "Deja el esquema completo 2 segundos en pantalla antes de cortar: ese es el frame que se comparte."
+   ]
+  },
+  {
+   "id": "framework-academico",
+   "nombre": "Framework académico en papel",
+   "categoria": "visual",
+   "queEs": "Conviertes tu idea en un modelo con forma de teoría: un diagrama a mano en una hoja, con título subrayado, partes rotuladas y flechas entre ellas. Lo sostienes en cuadro TODO el video y vas narrando cada zona. Deja de se",
+   "anatomia": [
+    "Dibuja el modelo en una hoja con título subrayado arriba, 3-4 partes rotuladas y flechas que las conecten. A mano y en blanco y negro: si parece Canva, pierde el aura de tesis.",
+    "Sostén la hoja a la altura del pecho, quieta, durante todo el video; tu cara queda arriba. La hoja no se mueve ni se acerca: es un ancla, no un objeto.",
+    "Narra recorriendo el diagrama en orden y nombrando cada parte con su etiqueta exacta, para que el espectador la lea y la oiga a la vez.",
+    "Corta a fondo negro con una animación mínima (puntos que se conectan, un bucle) justo en la frase abstracta, y vuelve al papel al terminarla.",
+    "Subtítulos palabra por palabra, con UNA sola palabra en color en todo el video: la que quieres que se repita."
+   ]
+  },
+  {
+   "id": "ejercicio-guiado",
+   "nombre": "Ejercicio manual guiado (hazlo conmigo)",
+   "categoria": "visual",
+   "queEs": "El video no habla de una herramienta: ES la herramienta. Cámara desde arriba sobre una libreta, tus manos con un marcador, y una consigna que se ejecuta en vivo — dibuja tres casillas, rotúlalas, llena cada una. Quien mi",
+   "anatomia": [
+    "Encuadre cenital fijo sobre la libreta; solo entran manos y marcador. Tu cara aparece únicamente en los cortes de respiro.",
+    "Primera instrucción en imperativo y en 3 segundos (\"dibuja tres casillas\"), para que quien mira pueda pausar y empezar ya.",
+    "Rotula las casillas en cámara: el nombre de cada una es el framework y se queda grabado por repetición.",
+    "Llena cada casilla escribiendo de verdad, y usa una fundida entre paso y paso — nunca un salto seco, que rompería la continuidad de la hoja.",
+    "Intercala 2-3 planos de vida real (caminando, un primer plano, una sombra) entre los pasos: son el respiro que evita que el cenital se vuelva monótono."
+   ]
+  },
+  {
+   "id": "lista-cartas",
+   "nombre": "Lista con cartas de colección",
+   "categoria": "rankings",
+   "queEs": "Una lista normal envasada como mazo: por cada ítem aparece una carta de color en la parte baja del cuadro, con nombre, etiquetas tipo juego (categoría · dificultad · puntos) y dos líneas de descripción. Arriba flota una ",
+   "anatomia": [
+    "Título-promesa en el frame 1 con número y adjetivo extremo (\"10/10 hábitos que te van a volver insoportablemente inteligente\").",
+    "Diseña UNA plantilla de carta y repítela: nombre, 3 etiquetas (tipo · dificultad · puntos) y descripción de 2 líneas. Cambia solo el color entre cartas.",
+    "Coloca la carta a la altura de tus manos, como si la sostuvieras, y déjala en pantalla los 3-4 segundos que dura la explicación.",
+    "Suma arriba una imagen cuadrada distinta por ítem: es lo que hace que la lista se recuerde visualmente en vez de sonar a enumeración.",
+    "Numera la serie (\"Parte 3\") aunque el video se entienda solo: convierte la lista en algo que se colecciona y arrastra a los videos anteriores."
+   ]
+  },
+  {
+   "id": "infografia-explicada",
+   "nombre": "Infografía explicada (analizada o construida)",
+   "categoria": "visual",
+   "queEs": "La infografía deja de ser el resultado y pasa a ser el guion. Dos variantes de la misma mecánica: (A) ANÁLISIS — tomas una infografía, estudio o esquema que ya existe y lo recorres zona por zona con tu lectura encima; (B",
+   "anatomia": [
+    "Decide la variante antes de grabar: analizas una infografía ajena (y entonces la muestras entera primero) o construyes la tuya (y entonces empieza vacía).",
+    "Gancho: la infografía completa en pantalla 2 segundos con una frase que promete la lectura (\"esto explica por qué X\"). El cuadro denso ES el gancho visual.",
+    "Recorre el gráfico por zonas, no por párrafos: haz zoom o señala cada bloque y explícalo en una frase antes de pasar al siguiente.",
+    "Si la construyes: agrega una capa por idea (primero los ejes, después los bloques, al final las flechas) y no borres nada — el esquema tiene que crecer.",
+    "Deja la infografía completa y limpia los últimos 2-3 segundos: ese es el frame que se captura y se guarda."
+   ]
+  },
+  {
+   "id": "galeria-curada",
+   "nombre": "Galería (mosaico curado + tú flotando encima)",
+   "categoria": "visual",
+   "queEs": "No es b-roll suelto: es una GALERÍA. La pantalla entera se llena con un mosaico de 2 a 4 imágenes elegidas con criterio de museo (misma paleta, misma época, misma textura) y tú vas recortada sin fondo, chiquita, al centr",
+   "anatomia": [
+    "Elige la espina antes de buscar una sola imagen: lista numerada (\"concepto uno, dos, tres...\") o tesis narrativa (\"tu infancia predijo tu carrera\"). Sin espina, la galería se vuelve collage sin dirección.",
+    "Gancho 0-2s: rótulo de título fijo arriba sobre el primer mosaico (\"Tu infancia predijo tu carrera\", \"10 conceptos que tienes que entender\"). El mosaico denso ES el gancho visual.",
+    "Una frase = un mosaico. Por cada línea del guion cambia el set completo de imágenes: ese recambio constante es lo que sostiene la retención.",
+    "Tú vas recortada (sin fondo) y PEQUEÑA, al centro: no ocupes más de un tercio de la pantalla. Si creces, vuelve a ser talking head y el formato se cae.",
+    "Curaduría de una sola estética: o todo grabado antiguo y papers, o todo foto de infancia cálida, o todo blanco y negro cinematográfico. Mezclar estilos es lo que hace que un mosaico se vea barato."
+   ]
+  },
+  {
+   "id": "esquema-decision",
+   "nombre": "Esquema de decisión",
+   "categoria": "formulas",
+   "queEs": "Conviertes una decisión que tu gente toma a ciegas (\"¿me lo compro?\", \"¿grabo esto?\", \"¿le respondo?\") en un diagrama de ramas que ya está dibujado en una pizarra u hoja ANTES de grabar. Cada nodo es una pregunta cerrada",
+   "anatomia": [
+    "Dibuja el árbol COMPLETO antes de grabar: 3-5 nodos numerados en círculo (①②③④), preguntas cerradas de sí/no de 2-4 palabras, y cada rama terminando en un veredicto con nombre propio (\"gasto pendejo\" / \"buena compra\"). Un árbol improvisado se nota y se cae.",
+    "Gancho 0-2s: NO hables a cámara. Un plano tuyo casi quieto en pose de duda (mano en la barbilla, mirada arriba) con el rótulo-título en mayúsculas encima — y la voz en off ya arrancó. El rótulo promete una GUÍA cerrada, no una opinión.",
+    "Un solo corte en todo el video: del plano de duda al esquema. De ahí en adelante es un plano continuo y la cámara se mueve siguiendo tu dedo — el movimiento de cámara ES el montaje, no cortes.",
+    "Recorre nodo por nodo: levanta el número de dedos de la pregunta (\"segunda pregunta\" = dos dedos) ANTES de señalarla, lee la pregunta, y baja por las dos ramas nombrando el veredicto de cada una. Cada nodo son 4-5 segundos, sin adornos.",
+    "Código de dos colores fijo en todo el árbol: uno para la respuesta que salva y otro para la que condena (azul/rojo). Los números y las preguntas van en negro. Si el color cambia de significado a media rama, el esquema deja de leerse."
+   ]
+  },
+  {
+   "id": "explicacion-con-objeto",
+   "nombre": "Explicación con objeto real",
+   "categoria": "visual",
+   "queEs": "En vez de rótulos animados, el número o el concepto lo muestra un OBJETO físico frente a la cámara: una calculadora real que tecleas en vivo, una balanza, un vaso que se llena, un reloj. Alrededor, tarjetas escritas a ma",
+   "anatomia": [
+    "Monta la mesa ANTES de grabar: superficie lisa (madera clara), cámara cenital fija, y un solo objeto protagonista capaz de mostrar el dato de verdad (calculadora, balanza, vaso medidor, reloj). Al lado, el juego completo de tarjetas escritas a mano con marcador negro —una por concepto— y una figura pequeña que hace de espectador.",
+    "Gancho 0-3s sin cara y sin intro: el plano abre con la tarjeta de la premisa (\"Si ahorras $2,000 al mes…\"), el objeto en cero y dinero real en cuadro. La mesa ya hizo la pregunta antes de que hables.",
+    "La mano entra y cambia la tarjeta por la pregunta que abre la deuda (\"¿Cuánto tendrías a los 65 años?\") y coloca la figurita. Cada cambio de tarjeta es un cambio de capítulo: NUNCA dos tarjetas a la vez, el cuadro se lee de un vistazo o no se lee.",
+    "El objeto ejecuta el dato en vivo: los dedos teclean la cifra en la calculadora real y el número se queda en pantalla mientras narras. Esto es lo que separa el formato de una infografía — el espectador ve que nadie animó el número.",
+    "Repite el ciclo con cada opción cambiando SOLO la tarjeta y el número (7% → 5,249,000 · 9% → 9,362,000). Mismo encuadre, mismo objeto, mismas manos: la única variable que se mueve es la que estás comparando, así el cerebro compara sin esfuerzo."
+   ]
+  },
+  {
+   "id": "muro-post-its",
+   "nombre": "Muro de post-its",
+   "categoria": "visual",
+   "queEs": "La lista más barata que existe: post-its amarillos escritos con marcador que tus manos van pegando en una pared lisa, uno por idea, mientras la voz en off los explica. Arriba va el post-it de título; abajo se arma una cu",
+   "anatomia": [
+    "Escribe TODOS los post-its antes de grabar: marcador negro, mayúsculas, máximo 3-4 palabras por línea. Uno de TÍTULO (el que promete la lista) y 3-5 de ítems. Escribir en cámara mata el ritmo y no cabe en 12 segundos.",
+    "Pared o cartulina lisa y clara, cámara fija de frente, luz plana y NADA más en cuadro. El amarillo del post-it es el único color del video: por eso frena el scroll sin necesidad de rótulos ni efectos.",
+    "Gancho 0-2s: la mano entra y pega el post-it de TÍTULO arriba al centro, aplastándolo con dos dedos. Ese gesto —aparece papel donde no había nada— ES el gancho visual, y la voz en off ya está diciendo la promesa mientras se pega.",
+    "Un post-it por punto, siempre en el mismo orden de armado (fila por fila, de izquierda a derecha): la mano lo pega, lo aplana y lo SEÑALA con el índice mientras la voz lo explica en una sola frase. Unos 2 segundos por ítem, ni uno más.",
+    "Nunca quites nada: el muro solo crece. La cuadrícula a medio llenar es una promesa visual permanente de que faltan ítems — es lo que impide que deslicen a la mitad."
+   ]
+  },
+  {
+   "id": "reto-con-restriccion",
+   "nombre": "Reto con restricción",
+   "categoria": "storytelling",
+   "queEs": "Conviertes una recomendación aburrida (lugares, herramientas, compras, pasos) en un reto con final abierto: primero anuncias la restricción —un presupuesto, un tiempo, un número de intentos— y después el espectador se qu",
+   "anatomia": [
+    "Gancho 0-3s: anuncia el reto con el límite EXACTO, en voz y en pantalla (\"una cita completa con 50 soles\").",
+    "Muestra el límite físicamente si puedes: el billete en la mano, el cronómetro corriendo, la cuenta en cero. El objeto hace verificable la promesa.",
+    "Recorre los pasos en orden y pon el costo de cada uno en pantalla: esos números son los marcadores de avance que impiden el scroll.",
+    "Suma algo gratis o inesperado a mitad de camino: rompe la monotonía de la lista y da sensación de hallazgo.",
+    "Cierra con el total real y el veredicto (\"terminé gastando X y sí alcanzó\"). El veredicto es el pago del contrato que abrió el gancho."
+   ]
+  },
+  {
+   "id": "meta-numerica-exacta",
+   "nombre": "Meta numérica exacta (el resultado primero, el precio después)",
+   "categoria": "storytelling",
+   "queEs": "Te propusiste un número concreto por un motivo emocional y este es el video del día en que lo alcanzas. La estructura va al revés del storytelling clásico: primero el resultado con decimales, después el inventario de sac",
+   "anatomia": [
+    "Gancho 0-3s: di la cifra final EXACTA, con decimales (\"estoy en 6,504.38\"). Redondear mata la credibilidad.",
+    "Nombra el motivo emocional en una frase: para qué era ese número. Sin motivo es una métrica; con motivo es una historia.",
+    "Retrocede al punto cero: qué tenías el día que empezaste.",
+    "Enumera los obstáculos REALES en ráfaga y sin adornar: me quedé sin dinero, grabé hasta medianoche, me enfermé, perdí el trabajo. Van como prueba, no como queja.",
+    "Vuelve al presente y cierra con el día N y la cifra alcanzada."
+   ]
+  },
+  {
+   "id": "terceros-como-prueba",
+   "nombre": "Historias de terceros como prueba",
+   "categoria": "storytelling",
+   "queEs": "Nombras una incomodidad que el espectador ya siente pero no sabe defender (necesitar estar solo, trabajar raro, no encajar) y en vez de argumentar, la validas con casos reconocibles: Tesla caminando de noche, Jobs desapa",
+   "anatomia": [
+    "Gancho: enfrenta el deseo con su precio (\"todos quieren el resultado, nadie quiere la condición que lo produce\").",
+    "Nombra la conducta incómoda con precisión: la que el espectador esconde.",
+    "Trae 3-4 personas reconocibles que la practicaban, en secuencia rápida y con imagen de archivo. Reconocibles de verdad: si hay que explicar quién es, el formato se cae.",
+    "Reencuadra en una frase: no es un defecto, es la condición.",
+    "Cierra devolviendo permiso en imperativo corto (\"deja de disculparte\")."
+   ]
+  },
+  {
+   "id": "historia-ajena-sistema",
+   "nombre": "Historia ajena (el resultado de otro abre tu oferta)",
+   "categoria": "storytelling",
+   "queEs": "No arrancas por lo tuyo: arrancas por el caso de alguien más que sonó fuerte. Usas la reacción que ese caso generó como justificación para hacer este video, y recién ahí desglosas tu oferta como un recorrido con etapas. ",
+   "anatomia": [
+    "Gancho: \"hace poco [persona] dijo que [resultado extraordinario]\". El resultado va con número o con etiqueta fuerte.",
+    "Trae la prueba social de la reacción: cuántos comentarios, cuánta gente lo pidió. Eso justifica que este video exista.",
+    "Di qué conseguiste tú a raíz de eso: el sistema, el currículum completo, el acceso.",
+    "Desglosa la oferta como recorrido y no como lista de características: qué pasa la semana 1, la 2, la 3.",
+    "CTA de una palabra en comentarios: convierte la curiosidad en una lista de nombres."
+   ]
+  },
+  {
+   "id": "historia-de-seguidor",
+   "nombre": "Historia de un seguidor",
+   "categoria": "storytelling",
+   "queEs": "Alguien te escribió contando lo que le pasó y ese mensaje abre el video. Muestras la captura en pantalla —eso lo hace verificable— y solo después generalizas al principio que tú defiendes. Al final la nombras o la etique",
+   "anatomia": [
+    "Gancho: la frase textual del mensaje, dicha o en pantalla (\"no puedo creer lo que me escribió\").",
+    "Muestra la captura real, con el nombre difuminado si hace falta. Sin captura es una anécdota; con captura es prueba.",
+    "Cuenta la situación difícil en la que estaba: eso es lo que hace que el resultado pese.",
+    "Di qué hizo y qué consiguió, con número.",
+    "Generaliza al principio que tú defiendes — recién aquí aparece tu método."
+   ]
+  },
+  {
+   "id": "pov-arruinando",
+   "nombre": "POV: arruinando algo",
+   "categoria": "storytelling",
+   "queEs": "En vez de decir \"vendimos todo\", dices que te dolió tener que decirle que no a la gente. El video detalla lo que hiciste distinto para evitarlo, muestra el producto justo cuando ya se acabó —ahí nace el deseo— y usa ese ",
+   "anatomia": [
+    "Rótulo POV con el problema que se te repite (\"arruinando el día de la madre otra vez\").",
+    "Cuenta qué hiciste distinto ESTE año para evitarlo: los cambios concretos son lo que hace que el desenlace duela.",
+    "Revela que pasó igual, con el dato temporal exacto (planifiqué hasta el domingo, el miércoles ya no quedaba nada).",
+    "Nombra la consecuencia HUMANA, no la comercial: a quién tuviste que decirle que no.",
+    "Muestra el producto en su mejor momento justo cuando ya está agotado."
+   ]
+  },
+  {
+   "id": "linea-de-tiempo",
+   "nombre": "Línea de tiempo",
+   "categoria": "storytelling",
+   "queEs": "Una vida contada por años con el año grande en pantalla: 2016, 2016-2020, 2022, 2023. No hablas — el texto y el archivo del celular hacen todo el trabajo. La fuerza está en el contraste entre la fachada (\"por fuera hice ",
+   "anatomia": [
+    "Frame 1 con el año grande y lo que se suponía que era el éxito (\"2016: me gradué y pensé que la vida sería fácil\").",
+    "Una etapa por bloque, siempre con su año en pantalla: el año es lo que hace sentir el paso del tiempo.",
+    "Contrasta fachada e interior dentro del mismo bloque: por fuera todo bien, por dentro esto.",
+    "Coloca el punto de quiebre con fecha propia: el despido, la mudanza, la ruptura.",
+    "Cierra con un cara a cara entre tu vida de hoy y tu yo de aquel año."
+   ]
+  },
+  {
+   "id": "cadena-resultados-ajenos",
+   "nombre": "Cadena de resultados ajenos",
+   "categoria": "storytelling",
+   "queEs": "Uno tras otro y sin respirar: primer video viral, primera colaboración pagada, primera marca de lujo. Cuando ya demostraste resultados, revelas la oferta y la defiendes con un argumento propio. Se distingue de \"Historia ",
+   "anatomia": [
+    "Gancho: el primer nombre con su resultado, sin preámbulo (\"Vale consiguió su primer video viral\").",
+    "Encadena 3-4 casos más en ráfaga, cada uno con nombre y con un tipo de logro distinto. Si se repite el logro, se lee como relleno.",
+    "Muestra la prueba en pantalla mientras hablas: capturas de mensajes, de métricas, de la marca.",
+    "Revela el punto en común: tu programa. Recién aquí aparece la oferta.",
+    "Defiéndelo con un argumento propio, no con características (\"las redes cambian todos los días, esto se aprende en vivo y en comunidad, no en un curso grabado\")."
+   ]
+  },
+  {
+   "id": "anecdota-cotidiana",
+   "nombre": "Anécdota cotidiana",
+   "categoria": "storytelling",
+   "queEs": "El calor, el lunes, el sueño, la fila. Una incomodidad que todo el mundo está sintiendo hoy abre el video, y esa incomodidad se convierte en el puente natural hacia lo que quieres mostrar. El producto entra tarde, contad",
+   "anatomia": [
+    "Gancho: la queja cotidiana en voz alta, sin relación aparente con tu tema (\"me estoy muriendo de calor\").",
+    "Exagera un poco la incomodidad: es lo que hace que el espectador se reconozca.",
+    "Construye el puente en una sola frase lógica (\"si no puedo tener frío afuera, me lo invento adentro\").",
+    "Entra el producto o el tema, contado en tono de conversación y no de anuncio.",
+    "Da una señal de que eres de verdad: algo que solo haría alguien que lo usa."
+   ]
+  },
+  {
+   "id": "incredulidad",
+   "nombre": "Incredulidad (\"yo tampoco lo hubiera creído\")",
+   "categoria": "storytelling",
+   "queEs": "Cada afirmación difícil de tragar va en primera persona y en pasado incrédulo, y detrás va la producción real que la sostiene: las bandejas, los insumos, el horno, la cola de gente. Así el espectador se sube a tu escepti",
+   "anatomia": [
+    "Gancho en pasado incrédulo: \"yo tampoco hubiera creído que se puede [logro improbable] sin [lo que todos asumen necesario]\".",
+    "Sube la apuesta con un beneficio extra que suene imposible (\"ni que además tuviera hierro\").",
+    "Cada afirmación va acompañada de su prueba física en el mismo frame. Sin prueba, la frase se cae.",
+    "Mete la prueba social ANTES de la dirección o el link: la gente haciendo cola vale más que el mapa.",
+    "No salgas del lugar: cocina, taller, escritorio. El cambio de set rompe el argumento."
+   ]
+  },
+  {
+   "id": "album-de-recuerdos",
+   "nombre": "Álbum de recuerdos",
+   "categoria": "storytelling",
+   "queEs": "No cuentas la historia con palabras: la cuentas apilando fotos reales de tu archivo, cada una con su rótulo. Ninguna imagen sola dice nada; la emoción está en la progresión y en el salto entre una foto y la siguiente. Se",
+   "anatomia": [
+    "Frame 1: la foto más incómoda o más antigua, con su rótulo corto (\"2013: mis papás se divorciaron por teléfono\").",
+    "Una foto por momento, con rótulo de una línea. Nunca dos ideas en la misma imagen.",
+    "Ordena por tiempo y deja que el salto entre dos fotos haga el trabajo de la explicación.",
+    "Reserva la foto del cambio para el tramo final: es el pago del recorrido.",
+    "Cierra con el resultado o la reflexión de hoy, en una sola frase."
+   ]
+  },
+  {
+   "id": "experiencia-narrada",
+   "nombre": "Experiencia narrada (voz en off + B-roll)",
+   "categoria": "storytelling",
+   "queEs": "Cuentas una experiencia personal en voz en off mientras el B-roll muestra los lugares, los momentos y las acciones de lo que estás contando. En vez de explicar todo frente a cámara, el espectador siente que te acompaña. ",
+   "anatomia": [
+    "Graba primero la voz, suelta y de corrido: la narración manda y el B-roll se corta después contra ella.",
+    "Gancho hablado en la primera frase (\"estaba en X cuando pasó Y\").",
+    "Cambia de imagen cada 2-3 segundos y que cada plano muestre exactamente lo que se está diciendo. Si el plano no ilustra, sobra.",
+    "Marca el problema o el acontecimiento con el plano más concreto que tengas.",
+    "Di la decisión que tomaste y después el aprendizaje, en ese orden."
+   ]
+  },
+  {
+   "id": "sketch-situacion",
+   "nombre": "Sketch de una situación",
+   "categoria": "storytelling",
+   "queEs": "Tomas una situación que tu público vive y la conviertes en escena: personaje, diálogo y algo de exageración. El espectador se reconoce y se queda a ver cómo termina la interacción. Se distingue de \"Sketch: tú interpretas",
+   "anatomia": [
+    "Rótulo de contexto fijo desde el frame 1 (\"POV: puedes viajar en el tiempo, pero solo un minuto\"). Quien llega tarde tiene que entender la escena sin voz.",
+    "Define qué quiere el personaje en la primera acción, no en un párrafo.",
+    "Mete el problema u objeción como obstáculo físico, algo que se vea.",
+    "Escala la situación: cada intento sale peor que el anterior.",
+    "Giro o remate: la línea que reencuadra todo lo actuado."
+   ]
+  },
+  {
+   "id": "sketch-mas-narracion",
+   "nombre": "Sketch + narración",
+   "categoria": "storytelling",
+   "queEs": "Un híbrido: el sketch abre y genera identificación y curiosidad; la narración toma el relevo, explica el problema y conduce a la conclusión. Sirve cuando la escena sola daría risa pero no dejaría nada, y la explicación s",
+   "anatomia": [
+    "Abre actuando y sin contexto verbal: la escena tiene que reconocerse en menos de dos segundos.",
+    "Deja que el conflicto llegue a su punto más incómodo antes de hablar.",
+    "Entra la narración justo en el pico: \"esto que acabas de ver tiene nombre\".",
+    "Explica por qué ocurre, no solo qué ocurre. La causa es lo que da autoridad.",
+    "Vuelve a la escena una vez, ya con el marco puesto: se relee distinta."
+   ]
+  },
+  {
+   "id": "serie-de-vida",
+   "nombre": "Secuencia de día (serie con voz en off)",
+   "categoria": "storytelling",
+   "queEs": "El tono es de narrador de serie, no de vlog: presenta la situación, desarrolla lo que ocurre y deja al espectador queriendo el capítulo siguiente. Se distingue de \"Construyendo en público\", donde lo documentado es un pro",
+   "anatomia": [
+    "Rótulo de serie desde el frame 1: \"Día N de [transformación]\". El número es lo que promete que hay más.",
+    "Narra en voz en off con tono de episodio, no de conversación.",
+    "Avanza por acontecimientos y no por horas: lo que pasó, no la rutina.",
+    "Deja un cabo suelto explícito antes de cerrar (\"mañana tengo que decirle a mi jefa\").",
+    "Cierra el capítulo, no la historia."
+   ]
+  },
+  {
+   "id": "draw-my-life",
+   "nombre": "Efecto Draw My Life",
+   "categoria": "storytelling",
+   "queEs": "Una historia larga se vuelve seguible porque cada momento clave tiene su dibujo: situación inicial, acontecimientos, dificultades, cambio, situación actual. El dibujo no tiene que ser bueno — tiene que ser rápido y liter",
+   "anatomia": [
+    "Empieza por el punto de partida dibujado, no por el resultado.",
+    "Un dibujo por momento clave, apareciendo a la velocidad del relato.",
+    "Dibuja lo literal y no lo simbólico: una casa es una casa. Los símbolos obligan a descifrar y ahí se pierde el espectador.",
+    "Marca la dificultad con el dibujo más feo o más grande: el contraste hace de acento.",
+    "La decisión de cambio va sola en su frame."
+   ]
+  },
+  {
+   "id": "cuento-con-moraleja",
+   "nombre": "Cuento con moraleja",
+   "categoria": "storytelling",
+   "queEs": "Una situación concreta con su conflicto y su consecuencia, y al final la moraleja. Funciona porque el aprendizaje nace de una experiencia y no de un consejo suelto: llega cuando el espectador ya está dentro de la escena.",
+   "anatomia": [
+    "Gancho con lo que ocurrió, en concreto y sin adelantar la moraleja (\"el perro que estaba en la jaula\").",
+    "Desarrolla el conflicto: quién quería qué y qué se lo impedía.",
+    "Cuenta la decisión que tomaste y la consecuencia real, aunque te deje mal parada.",
+    "Recién ahí revela la enseñanza, en una frase.",
+    "Tradúcela al mundo de quien mira (\"esto es exactamente lo que te pasa cuando...\")."
+   ]
+  },
+  {
+   "id": "ruptura-de-expectativa",
+   "nombre": "Ruptura de expectativa",
+   "categoria": "storytelling",
+   "queEs": "Los primeros segundos hacen creer al espectador que ya sabe qué video está viendo —un tutorial, una rutina, una confesión— y entonces el giro lo lleva a una idea o conclusión que no esperaba. Se queda porque necesita ent",
+   "anatomia": [
+    "Monta la expectativa con los códigos del género que vas a romper: si finges rutina de mañana, que se vea como una rutina de mañana.",
+    "Sostén la convención el tiempo suficiente para que el espectador se relaje. Romper demasiado pronto no sorprende, confunde.",
+    "Gira: una acción, una frase o un plano que no encaja.",
+    "Explica qué estaba pasando realmente. El giro sin explicación se lee como error.",
+    "Revela la idea o el resultado que justifica todo lo anterior."
+   ]
+  },
+  {
+   "id": "fabula-aplicada",
+   "nombre": "Fábula aplicada",
+   "categoria": "storytelling",
+   "queEs": "Érase una vez alguien que quería algo. La historia tiene inicio, conflicto y resolución como cualquier cuento, pero el desenlace está construido para transmitir una idea de tu tema. El espectador sigue la trama por curio",
+   "anatomia": [
+    "Abre en tono de cuento y presenta al personaje por su deseo (\"érase una vez alguien que quería...\").",
+    "Mete el problema pronto: sin obstáculo no hay trama y el formato se cae en tres segundos.",
+    "Muestra el intento de solución, el que cualquiera haría.",
+    "Gira con la consecuencia inesperada: aquí es donde el cuento se gana el final.",
+    "Revela la lección en el desenlace, ya traducida a tu tema."
+   ]
+  },
+  {
+   "id": "lead-magnet-impreso",
+   "nombre": "El lead magnet impreso",
+   "categoria": "visual",
+   "queEs": "Grabas un POV donde \"encuentras\" tu propio lead magnet —una guía, un PDF, una plantilla— pero impreso y en la mano, no como archivo. El papel es todo el truco: un PDF en pantalla es una promesa más; un tocho de 60 página",
+   "anatomia": [
+    "Gancho 0-2s: \"POV: encontraste [recurso] que le está enseñando a todos a [logro potente]\". El texto va sobre la toma, no después.",
+    "Muestra el recurso impreso moviéndolo hacia la cámara: se tiene que ver el grosor y las hojas pasando. En tablet pierde la mitad del efecto.",
+    "Refuerza con una línea que reconozca el gesto: \"lo imprimiste para sentirlo real…\".",
+    "Prueba de que funciona 0:04-0:07: gráfica, captura de resultados o testimonio, con el dedo señalando el número.",
+    "Cierre 0:07-0:10 con la palabra clave: \"comenta [PALABRA] si tú también lo quieres\". Una sola palabra, fácil de escribir en el celular."
+   ]
+  },
+  {
+   "id": "doble-gancho-broll",
+   "nombre": "Doble gancho con B-roll",
+   "categoria": "narrativos",
+   "queEs": "Te grabas haciendo algo llamativo relacionado con el resultado —saliendo de un lugar, mostrando algo físico, señalando una métrica— y encima va el primer gancho: \"Cómo logro [beneficio] con [acción inesperada]\". Justo cu",
+   "anatomia": [
+    "Elige la acción del B-roll antes que el texto: tiene que entenderse sin explicación en dos segundos.",
+    "Gancho 1 (0-2s): \"Cómo logro [beneficio específico] con [acción inesperada o atractiva]\".",
+    "Gancho 2 (3-6s): \"Tuve que hacer [dato o truco] que casi nadie conoce\". Aquí se gana o se pierde la retención.",
+    "Enseña una pista del proceso, no el proceso entero, mientras el B-roll sigue corriendo.",
+    "CTA 7-9s: \"si quieres que te comparta [recurso], comenta [palabra]\", o manda a la descripción."
+   ]
+  },
+  {
+   "id": "hecho-de-impacto",
+   "nombre": "El hecho de impacto",
+   "categoria": "storytelling",
+   "queEs": "Abres con una frase larga en minúsculas —\"todavía no puedo creer lo que pasó en las últimas 48 horas\"— rematada con un emoji que no pega nada (una rana, un aguacate) para romper el patrón visual. Debajo sigues haciendo a",
+   "anatomia": [
+    "Gancho 0-3s en minúsculas y en frase larga: \"todavía no puedo creer lo que pasó en las últimas [X horas]\". Las minúsculas importan: en mayúsculas suena a anuncio.",
+    "Cierra el gancho con un emoji inesperado. Cuanto menos tenga que ver con el tema, mejor funciona.",
+    "Sigue grabándote haciendo algo cotidiano mientras el texto se mantiene: el contraste es el mensaje.",
+    "Mete la prueba 0:05-0:07: captura del pago, el gráfico, el testimonio o el antes y después.",
+    "Déjala UN segundo y quítala. Si se queda tres, no hay replay."
+   ]
+  },
+  {
+   "id": "pov-la-espera",
+   "nombre": "POV de la espera",
+   "categoria": "narrativos",
+   "queEs": "\"pov: estás esperando que [resultado] llegue de una vez por todas…\". No hay consejo ni método: solo el limbo entre hacer el trabajo y ver el resultado, que es donde vive la mayoría de tu audiencia. Y entonces, en el rema",
+   "anatomia": [
+    "Gancho 0-3s: \"pov: estás esperando que [beneficio] llegue de una vez\" o \"pov: cuando aplicas [estrategia] y esperas ver si funciona\".",
+    "Deja el texto quieto sobre una toma tuya sin hacer nada especial. La quietud es el formato; si te mueves mucho, se pierde.",
+    "Aguanta. La espera tiene que durar lo suficiente para incomodar un poco.",
+    "Remate 0:07-0:10 con frase corta y en minúsculas: \"…y entonces pasa\" / \"y sí funcionó\" / \"y llegó. finalmente\".",
+    "La prueba entra junto al remate: foto, número, testimonio o antes y después."
+   ]
+  },
+  {
+   "id": "escalera-de-oferta",
+   "nombre": "La escalera de oferta",
+   "categoria": "interaccion",
+   "queEs": "Te grabas haciendo algo cotidiano y cercano —trabajando, sirviendo café, mirando tus notas— y encima corre una escalera de textos cortos que sube un escalón cada dos segundos: pregunta amigable, promesa concreta, valor a",
+   "anatomia": [
+    "Escalón 1 — sobre una toma tranquila que no cambia en todo el video, entrada amigable en forma de pregunta: \"¿Quieres que te ayude con [problema que resuelves]?\". La escalera es lo único que se mueve.",
+    "Escalón 2 — invitación clara con el beneficio directo: \"Te enseñaré exactamente cómo [resultado]\".",
+    "Escalón 3 — valor adicional: \"Además, resolveré tus dudas en vivo\".",
+    "Escalón 4 — bonus sin presión: \"Y no solo eso, también te daré [bonus]\".",
+    "Escalón 5 — CTA concreto con una sola palabra: \"Comenta [PALABRA] y te mando los detalles\"."
+   ]
+  },
+  {
+   "id": "me-dijeron-que",
+   "nombre": "Me dijeron que…",
+   "categoria": "disrupcion",
+   "queEs": "Abres citando textualmente el mito o la frase desmotivante que te dijeron —\"nadie paga por aprender eso\", \"eso no es una carrera real\"— y a los tres segundos la tumbas con una sola línea (\"qué mentira\") y una captura que",
+   "anatomia": [
+    "Gancho 0-3s: \"Me dijeron que [mito o frase desmotivante]\", citado tal cual en voz y en pantalla, sin suavizarlo.",
+    "Remate de una línea: \"Qué mentira\" / \"Miren esto\" / \"Y aun así…\".",
+    "Prueba en pantalla: resultados, estadística, testimonio, número de ventas o de seguidores. Una sola, grande y legible, señalada con el dedo o con un círculo.",
+    "Deja la prueba el tiempo justo para leer el número y vuelve a tu cara.",
+    "CTA a palabra clave, y en la descripción cuenta el resto: quién te lo dijo y qué hiciste."
+   ]
+  },
+  {
+   "id": "atajo-prohibido",
+   "nombre": "El atajo prohibido",
+   "categoria": "disrupcion",
+   "queEs": "Un gancho con aire de travesura —\"ayer le hice una jugada al algoritmo\", \"cómo engaño al sistema para conseguir X\", \"encontré una función oculta y en 20 minutos logré Y\"— seguido de la prueba de que funcionó y un CTA a p",
+   "anatomia": [
+    "Elige la variante de gancho: la travesura (\"le hice una jugada a…\"), la conspiración (\"cómo engaño al sistema para…\") o el hallazgo (\"encontré una función oculta y en X minutos…\").",
+    "Usa las palabras del formato: hack, truco, jugué con, me salí con la mía, función oculta. Sin ese vocabulario se convierte en un tutorial más.",
+    "Fondo llamativo o en movimiento durante el gancho: el formato pide energía visual, no plano fijo.",
+    "Prueba 0:04-0:06: captura de la reacción, del resultado o de la conversación. Puede llevar sonido tipo pop.",
+    "Frase de refuerzo corta: \"no puedo creer que funcionó tan rápido\"."
+   ]
+  },
+  {
+   "id": "objecion-respondida",
+   "nombre": "La objeción respondida",
+   "categoria": "interaccion",
+   "queEs": "Tres clips encadenados. En el primero aparece la objeción escrita como si te la dijeran a ti por tu nombre: \"Pero, Clara, ¿y si invierto y no recupero mi dinero?\". En el segundo respondes tranquila y enseñas tus PRIMEROS",
+   "anatomia": [
+    "Clip 1: la objeción en pantalla, redactada con tu nombre dentro. Que se lea como un mensaje real, porque lo es.",
+    "Saca la objeción de tus DMs o comentarios, no de tu cabeza: la que inventas no le suena a nadie.",
+    "Clip 2: respuesta calmante en una línea (\"confía en mí, vas a estar bien\") + prueba de tus PRIMEROS resultados. Que se vean modestos: ahí está la credibilidad.",
+    "Clip 3: \"pero cambié [X] y logré [Y]\" + prueba de los resultados de ahora.",
+    "Cierre que quita la prisa: \"no te rindas si te demoras\"."
+   ]
+  },
+  {
+   "id": "escalera-de-negaciones",
+   "nombre": "Escalera de negaciones",
+   "categoria": "disrupcion",
+   "queEs": "Frases cortas que entran de a una, más o menos una por segundo: \"No era el algoritmo\". \"No era tener seguidores\". \"No era editar perfecto\". \"Era…\". Cada negación tumba una creencia que el espectador tiene, y la última lí",
+   "anatomia": [
+    "Elige tres o cuatro creencias que tu audiencia tenga de verdad. Escríbelas antes de grabar nada.",
+    "Cada negación entra sola, en frase corta y empezando por \"No era…\". Una por segundo, ni más rápido.",
+    "Ordénalas de la más obvia a la menos obvia: la última negación tiene que doler un poco.",
+    "Cierra con \"Era…\" y deja un respiro antes de revelar. Ese silencio es el formato.",
+    "La verdad final tiene que ser poco glamorosa y concreta. Si suena a frase de coach, se cae."
+   ]
+  },
+  {
+   "id": "carrusel-errores-propios",
+   "nombre": "Carrusel de errores propios",
+   "categoria": "carruseles",
+   "queEs": "Un carrusel donde el que se equivocó eres tú: \"¿Qué errores cometí como [tu profesión] cuando empecé?\". Cada slide es una confesión concreta, con la situación incómoda contada de verdad, no suavizada. Se distingue de \"Co",
+   "anatomia": [
+    "Slide 1: la pregunta con tu profesión dentro (\"¿Qué errores cometí como nutricionista cuando empecé?\") + foto tuya real, en pausa, no posada.",
+    "Slides 2-3: la confesión concreta. Fecha, situación, qué hiciste. Sin generalizar: el detalle es lo que hace que se lea.",
+    "Usa MAYÚSCULAS para la parte clave de cada confesión: le da ritmo visual al carrusel.",
+    "Cierra cada confesión con una frase de peso: \"este fue, sin duda, uno de mis peores momentos\".",
+    "Slide de reflexión: \"estos errores me dolieron, pero me hicieron mejor\" + \"ojalá alguien me hubiera contado esto antes\"."
+   ]
+  },
+  {
+   "id": "carrusel-confesion-personal",
+   "nombre": "Carrusel confesión personal",
+   "categoria": "carruseles",
+   "queEs": "Arranca con una conversación real: \"Ayer hablé con [alguien] y me preguntó algo que nunca había considerado…\". La pregunta es íntima y sobre tu oficio (\"¿tú también te das atracones a veces?\", \"¿alguna vez has tenido mie",
+   "anatomia": [
+    "Slide 1: la conversación + la pregunta. La pregunta es el gancho, no tu respuesta.",
+    "La pregunta tiene que ser una que a ti te dé un poco de pudor contestar. Si es cómoda, el formato no sirve.",
+    "Slides 2-4: la situación cotidiana que contrasta con lo que esperaban de ti, contada en primera persona.",
+    "Valida la objeción de quien lee: \"y entiendo que te sientas así, porque [objeción común del rubro]\".",
+    "Slide de aprendizaje: dos consejos concretos y numerados que salgan de lo que acabas de contar."
+   ]
+  },
+  {
+   "id": "carrusel-de-a-a-b",
+   "nombre": "Carrusel de A a B",
+   "categoria": "carruseles",
+   "queEs": "Un carrusel de guía que promete el camino de A a B —\"cómo pasar de no tener clientes a ingresos constantes\"— pero antes de los pasos dedica tres slides a validar la emoción y a explicar por qué la mayoría falla. Esa ante",
+   "anatomia": [
+    "Slide 1: \"Cómo ir de [problema frecuente] a [resultado deseado]\" + la promesa honesta: \"una guía realista, sin hacks mágicos\".",
+    "Slides 2-3: validación emocional (\"esto es lo más difícil del proceso\") y por qué le cuesta a la mayoría: tres razones, ninguna que culpe al lector.",
+    "Slide 4 — marco de aplicación: \"esta guía funciona mejor si estás en [situación inicial típica]\". Descarta a quien no aplica.",
+    "Slides intermedias: los pasos, ultra específicos y ejecutables. Uno por slide.",
+    "Slide de reencuadre: \"no necesitas hacerlo perfecto, solo empezar con [acción pequeña] y repetirlo [X tiempo]\"."
+   ]
+  },
+  {
+   "id": "reloj-desfasado",
+   "nombre": "El reloj desfasado",
+   "categoria": "artistas",
+   "queEs": "Una sola ilusión con cuatro variantes: congelado (todos quietos menos tú), cámara lenta, acelerado y marcha atrás. Tu interpretación se mantiene a tiempo real mientras el entorno va a otra velocidad. Es el formato que má",
+   "anatomia": [
+    "Elige la variante según lo que dice la canción: congelado para una letra de estancamiento, acelerado para una de \"el mundo siguió sin mí\", marcha atrás para arrepentimiento, cámara lenta para el peso de un recuerdo.",
+    "Planta la cámara en un trípode y NO la muevas: la ilusión se rompe si el encuadre viaja.",
+    "Graba una toma larga en un sitio con gente en movimiento real (calle, estación, patio de comidas) para que el contraste tenga con qué compararse.",
+    "Pide a los figurantes que sostengan la variante elegida durante toda la toma; tú cantas siempre a tiempo real y en el centro del cuadro.",
+    "En edición aplica el efecto SOLO al fondo y deja tu interpretación intacta, con el audio sincronizado a tus labios."
+   ]
+  },
+  {
+   "id": "teletransporte-al-beat",
+   "nombre": "Teletransporte al beat",
+   "categoria": "artistas",
+   "queEs": "Mantienes exactamente la misma posición, postura y tamaño en pantalla mientras la localización detrás de ti salta en el golpe del beat. Cada salto es un re-gancho: el espectador que ya iba a deslizar recibe información n",
+   "anatomia": [
+    "Marca tu posición: misma distancia a la cámara, misma altura de lente y mismo encuadre en todas las localizaciones (usa una referencia en el suelo y una captura de la primera toma).",
+    "Graba la misma frase de la canción en 4 a 8 sitios visualmente distintos entre sí — no sirven cuatro paredes blancas.",
+    "Canta siempre la MISMA porción del tema en todas, para que los labios peguen al montar.",
+    "Corta cada cambio de fondo exactamente sobre el golpe, nunca entre golpes.",
+    "Acelera la cadencia hacia el final: los últimos saltos van más seguidos que los primeros."
+   ]
+  },
+  {
+   "id": "clon-en-plano",
+   "nombre": "Clon en el mismo plano",
+   "categoria": "artistas",
+   "queEs": "Con la cámara fija grabas varias pasadas ocupando zonas distintas del encuadre y las fusionas en una sola imagen. Sirve para poner en escena las voces internas de la canción: el que se va y el que se queda, la estrofa y ",
+   "anatomia": [
+    "Trípode obligatorio y bloqueo de exposición y enfoque: si la cámara respira, la fusión se nota.",
+    "Divide el cuadro mentalmente en zonas y asigna una a cada clon; que no se pisen.",
+    "Graba una pasada por clon con la misma iluminación y sin que nadie cruce entre zonas.",
+    "Dale a cada clon un rasgo distinto de vestuario o postura para que se lean como personajes, no como un error.",
+    "Fusiona con máscaras por zona y deja que uno mire al otro en algún momento: la mirada cruzada es lo que vende el truco."
+   ]
+  },
+  {
+   "id": "rejilla-de-performance",
+   "nombre": "Rejilla de performance",
+   "categoria": "artistas",
+   "queEs": "Una cuadrícula de dos, cuatro o seis celdas, todas con material tuyo del mismo tema: una cantando, otra tocando, otra bailando, otra de detrás de cámara. Las celdas se encienden o cambian al ritmo, y el conjunto se lee c",
+   "anatomia": [
+    "Graba cada celda por separado con el mismo encuadre y la misma escala de plano, para que la rejilla se vea ordenada y no un collage.",
+    "Sincroniza todas las pasadas al mismo audio: la rejilla se cae si los labios de las celdas van desfasados.",
+    "Arranca con una sola celda ocupando el cuadro y abre las demás en el primer golpe fuerte.",
+    "Enciende y apaga celdas al ritmo en vez de dejarlas todas fijas: el movimiento entre celdas es el gancho.",
+    "Deja una celda que rompa el patrón (un plano corto de tu cara, o algo cotidiano) para que el ojo tenga dónde volver."
+   ]
+  },
+  {
+   "id": "doble-iphone",
+   "nombre": "Doble teléfono",
+   "categoria": "artistas",
+   "queEs": "Montas dos teléfonos en la misma escena (uno general y uno cerrado, o uno frontal y uno cenital) y grabas una sola pasada. Al montar alternas entre los dos, así que consigues un video con varias cámaras sin equipo ni seg",
+   "anatomia": [
+    "Coloca el teléfono A en plano general con trípode y el B pegado a tu cara, al instrumento o a la boca del micro.",
+    "Da una palmada al empezar en el campo de ambos: ese pico de audio es lo que te va a sincronizar en edición.",
+    "Haz la interpretación completa de una sola vez, sin cortar, para que las dos cámaras cuenten lo mismo.",
+    "Alinea por la palmada y alterna entre A y B en los cambios de sección (estrofa a estribillo), no al azar.",
+    "Guarda el plano cerrado para la línea que quieres que la gente se lleve."
+   ]
+  },
+  {
+   "id": "cambio-de-angulo",
+   "nombre": "Cambio de ángulo",
+   "categoria": "artistas",
+   "queEs": "Grabas la misma frase varias veces desde ángulos claramente diferentes (frontal, picado, contrapicado, perfil) y las cortas seguidas. No es multicámara de un directo: es la misma interpretación repetida a propósito para ",
+   "anatomia": [
+    "Elige una sola frase de cuatro a ocho segundos: este formato no se sostiene sobre un tema entero.",
+    "Grábala tres o cuatro veces cambiando la posición de la cámara de forma evidente entre pasadas — un ángulo tímido se ve como un error de continuidad.",
+    "Repite la misma energía y los mismos gestos en cada pasada para que el corte sea invisible.",
+    "Corta en la misma sílaba en todas las versiones, siempre sobre el acento.",
+    "Ordena de menos a más cercano: el plano más íntimo va al final."
+   ]
+  },
+  {
+   "id": "glitch-al-golpe",
+   "nombre": "Glitch al golpe",
+   "categoria": "artistas",
+   "queEs": "Distorsión digital (desplazamiento de color, barras, píxel roto, salto de señal) colocada solo en los golpes del beat. No es un filtro aplicado a todo el video: es puntería. El glitch continuo cansa; el glitch en el golp",
+   "anatomia": [
+    "Marca en la línea de tiempo los tres o cuatro golpes donde de verdad quieres el efecto y no toques el resto.",
+    "Graba la base limpia y bien iluminada: el glitch tiene que leerse como decisión, no como video malo.",
+    "Aplica el efecto en tramos de dos a cuatro fotogramas, nunca más largos.",
+    "Acompaña cada glitch con un microsalto de audio o un silencio de un instante para que el oído confirme lo que vio el ojo.",
+    "Reserva el glitch más agresivo para la entrada del drop."
+   ]
+  },
+  {
+   "id": "stutter-de-silaba",
+   "nombre": "Stutter de sílaba",
+   "categoria": "artistas",
+   "queEs": "Tomas un fragmento mínimo (una palabra, un gesto, un golpe de cabeza) y lo repites tres o cuatro veces seguidas, imagen y sonido a la vez, antes de dejar correr el tema. Convierte una palabra cualquiera en el punto de an",
+   "anatomia": [
+    "Elige la palabra más marcada del estribillo, la que la gente ya repite sola.",
+    "Aísla su fragmento exacto: no valen medias sílabas, el corte tiene que caer en el ataque del sonido.",
+    "Repite ese fragmento tres o cuatro veces —menos no se percibe, más se vuelve molesto.",
+    "Acorta cada repetición un poco respecto a la anterior para generar aceleración.",
+    "Suelta el tema a velocidad normal justo después de la última repetición, sin transición."
+   ]
+  },
+  {
+   "id": "silueta-a-contraluz",
+   "nombre": "Silueta a contraluz",
+   "categoria": "artistas",
+   "queEs": "Te colocas entre la cámara y la única fuente de luz, de modo que quedas en negro y solo se lee tu contorno. Funciona sin maquillaje, sin buen decorado y sin cámara buena, y sirve especialmente a quien todavía no se sient",
+   "anatomia": [
+    "Busca una fuente única y potente detrás de ti: ventana a contraluz, atardecer, un foco, los faros de un coche.",
+    "Apaga o tapa cualquier luz que te dé de frente; la silueta se arruina con relleno.",
+    "Bloquea la exposición sobre la parte más brillante del fondo para que tu figura caiga a negro.",
+    "Trabaja el contorno: el gesto tiene que leerse solo por la forma, así que exagera brazos, cabeza y micrófono.",
+    "Deja que algo se mueva en el fondo luminoso (humo, gente, coches, agua) para que la imagen no sea un cartón."
+   ]
+  },
+  {
+   "id": "linterna-de-telefono",
+   "nombre": "Linterna del teléfono",
+   "categoria": "artistas",
+   "queEs": "Grabas a oscuras iluminado únicamente por la linterna de un teléfono, que sostienes tú o alguien más y que se mueve durante la toma. El resultado tiene aspecto de sesión clandestina y se distingue de inmediato del carrus",
+   "anatomia": [
+    "Apaga toda la luz de la habitación: cualquier lámpara de fondo mata el efecto.",
+    "Sostén la linterna por debajo o al lado de tu cara, nunca de frente y plana.",
+    "Mueve la fuente durante la toma —acércala en la frase íntima, aléjala en el estribillo— para que la luz respire con la canción.",
+    "Deja zonas de la cara en sombra total: lo que no se ilumina es parte del encuadre.",
+    "Graba la voz aparte o usa el tema mezclado; el micro del teléfono a oscuras suele sonar sucio."
+   ]
+  },
+  {
+   "id": "gadget-music-video",
+   "nombre": "Video musical con gadget",
+   "categoria": "artistas",
+   "queEs": "Un aparato cotidiano o raro se vuelve el eje del video: una cámara de vigilancia, una webcam vieja, un tocadiscos, una consola, una cámara de acción en un objeto en movimiento. El gadget no decora, sostiene la idea enter",
+   "anatomia": [
+    "Elige un objeto que tenga que ver con la letra o con tu mundo, no el que esté de moda.",
+    "Decide su papel: o graba él (y heredas su textura de imagen) o aparece él como protagonista del plano.",
+    "Conserva sus defectos —grano, retardo, marca de agua, fecha en pantalla—: eso es lo que lo hace creíble.",
+    "Construye un solo plano largo alrededor del objeto en vez de picar mucho: el gadget es el gancho, no el montaje.",
+    "Mete tu cara al menos una vez para que el video venda al artista y no solo al truco."
+   ]
+  },
+  {
+   "id": "material-de-la-vida-real",
+   "nombre": "Material de la vida real → corte seco al tema",
+   "categoria": "artistas",
+   "queEs": "Los primeros segundos son material que el espectador lee como real y no como promoción: un timbre con cámara, la cámara de un taxi, un video reenviado por mensajería, una grabación de pantalla. Cuando ya bajó la guardia,",
+   "anatomia": [
+    "Abre con material de aspecto crudo y vertical: interfaz visible, calidad imperfecta, sin rótulos ni marca.",
+    "Que en esos segundos pase algo humano y concreto —una discusión, una llegada, una despedida—, no un plano de relleno.",
+    "No pongas texto de marketing en la apertura: cualquier rótulo delata que es contenido y devuelve la guardia.",
+    "Corta en seco al tema en el momento de máxima tensión de la escena, sin fundido.",
+    "Haz que la letra que entra comente lo que se acaba de ver: ahí está el remate."
+   ]
+  },
+  {
+   "id": "escena-de-pelicula-cantada",
+   "nombre": "Escena de película cantada",
+   "categoria": "artistas",
+   "queEs": "Montas y actúas una escena con lenguaje de película —encuadre, vestuario, luz, silencio antes del golpe— y tu tema entra como banda sonora de ese momento. Ojo con la trampa: pegarle tu canción a un fragmento ajeno de pel",
+   "anatomia": [
+    "Elige una escena o un tipo de escena que la gente reconozca de inmediato: la llamada bajo la lluvia, el coche parado en la carretera, la discusión en la cocina.",
+    "Recréala con tu cuerpo y tu cara dentro del plano; si no apareces, es material de recopilación y no vende nada tuyo.",
+    "Roba de la escena original solo el encuadre y la luz, no el metraje.",
+    "Deja dos segundos de silencio o de sonido ambiente antes de que entre tu canción: el contraste es el gancho.",
+    "Sincroniza la frase más fuerte del tema con el gesto más fuerte de la escena."
+   ]
+  },
+  {
+   "id": "localizacion-legendaria",
+   "nombre": "Localización legendaria",
+   "categoria": "artistas",
+   "queEs": "Grabas en un lugar con carga propia: la esquina que sale en tu letra, un estudio histórico, un mirador que todo el mundo identifica, el barrio del que hablas. La localización hace la mitad del trabajo narrativo y da al c",
+   "anatomia": [
+    "Elige un sitio con significado real para el tema o para ti; un sitio bonito y vacío de historia no aporta nada.",
+    "Deja que el lugar se identifique en el primer segundo con un plano amplio antes de acercarte.",
+    "Graba a la hora en que ese sitio se ve como se recuerda: amanecer, hora punta, noche cerrada.",
+    "Interactúa físicamente con el sitio —apóyate, camina, toca— para no parecer pegado encima de un fondo.",
+    "Nombra el lugar en el texto en pantalla o en el pie: es lo que dispara el comentario local."
+   ]
+  },
+  {
+   "id": "performance-en-publico",
+   "nombre": "Performance en público",
+   "categoria": "artistas",
+   "queEs": "Interpretación en la calle, el metro, una plaza o un local, con público no avisado. Lo que se filma no es solo tu voz: es el riesgo, la gente que frena y la que sigue de largo. Es el formato que más convierte en oyentes,",
+   "anatomia": [
+    "Elige un sitio con paso natural de gente y con acústica soportable, y ve con alguien que grabe.",
+    "Empieza a cantar antes de que la cámara esté acomodada: el arranque incómodo es parte del material.",
+    "Coloca la cámara de forma que entren tú y la reacción en el mismo cuadro, o alterna con una segunda.",
+    "No cortes los momentos en que nadie te mira: el contraste con el que sí frena es la historia.",
+    "Guarda el momento en que se junta gente y súbelo al final como remate."
+   ]
+  },
+  {
+   "id": "reaccion-de-desconocidos",
+   "nombre": "Reacción de desconocidos",
+   "categoria": "artistas",
+   "queEs": "Paras a personas en la calle, les pasas los auriculares y filmas su primera escucha sin decirles que el tema es tuyo. El material que importa es la cara de los primeros segundos, no lo que digan después.",
+   "anatomia": [
+    "Prepara el fragmento más fuerte del tema, no el principio: tienes una sola oportunidad de quince segundos.",
+    "Pide permiso para grabar y no digas que la canción es tuya hasta después de la reacción.",
+    "Encuadra la cara en plano cerrado y deja la cámara quieta: el micro-gesto es todo el contenido.",
+    "Deja correr el silencio mientras escucha; no metas tu voz encima.",
+    "Revela que eres tú al final y filma el segundo gesto, que suele ser mejor que el primero."
+   ]
+  },
+  {
+   "id": "reaccion-de-multitud",
+   "nombre": "Reacción de multitud",
+   "categoria": "artistas",
+   "queEs": "Giras la cámara hacia el público y dejas que se vea y se oiga a la gente cantando tu tema. Vale en un concierto, en una fiesta o en un ensayo con veinte personas; lo que se demuestra es que la canción ya vive fuera de ti",
+   "anatomia": [
+    "Apunta al público, no al escenario, durante la parte que más se corea.",
+    "Deja el audio ambiente arriba, con las voces de la gente por encima de la pista.",
+    "Busca caras concretas en primer término en vez de un plano general anónimo.",
+    "Aparece tú un instante en el borde del cuadro para que quede claro de quién es el tema.",
+    "Sostén la toma sin cortar durante toda la frase coreada: el corte rompe la credibilidad."
+   ]
+  },
+  {
+   "id": "escucha-en-grupo",
+   "nombre": "Escucha en grupo",
+   "categoria": "artistas",
+   "queEs": "Una sesión de escucha con amigos, colegas o seguidores, grabada como acontecimiento: el antes, el momento de darle a reproducir y las caras durante. Convierte un lanzamiento en un evento con fecha, en vez de un archivo q",
+   "anatomia": [
+    "Reúne a un grupo pequeño y real; ocho personas creíbles valen más que un salón lleno de figurantes.",
+    "Graba la antesala —los nervios, el cable, el \"dale ya\"— porque ahí está la tensión.",
+    "Filma el instante exacto de darle a reproducir en plano cerrado a la mano o al botón.",
+    "Cambia el foco a las caras durante los primeros segundos y quédate ahí.",
+    "Recoge una sola frase dicha por alguien del grupo, la más honesta, y úsala como cierre."
+   ]
+  },
+  {
+   "id": "efecto-bandwagon",
+   "nombre": "Efecto bandwagon",
+   "categoria": "artistas",
+   "queEs": "Tomas un formato, un sonido o una conversación que ya tiene tracción esta semana y lo ejecutas con tu material, entrando mientras la ola sube y no cuando ya reventó. No es copiar: es usar la distribución que la tendencia",
+   "anatomia": [
+    "Abre con el patrón de la tendencia reconocible en el primer segundo: el mismo encuadre, el mismo texto o el mismo audio que la gente ya vio esta semana.",
+    "Sigue el esqueleto de la tendencia al pie de la letra —ritmo de corte, chiste, estructura— y cambia solo el contenido por el tuyo.",
+    "Mete tu canción exactamente donde la tendencia pone su remate.",
+    "Añade una vuelta de tuerca visible que solo tú harías: un objeto, un lugar o un gesto de tu mundo.",
+    "Cierra con el nombre del tema en pantalla sobre el último plano."
+   ]
+  },
+  {
+   "id": "secuestro-de-fanbase",
+   "nombre": "Secuestro de fanbase",
+   "categoria": "artistas",
+   "queEs": "Construyes una pieza dirigida a los seguidores de un artista concreto: su referencia, su estética, su debate. No es una versión de su canción: es entrar en su conversación con material tuyo, para que su público te encuen",
+   "anatomia": [
+    "Primer segundo: nombra en texto y en voz el detalle que la comunidad del otro artista reconoce entre ellos —una referencia, un tic, un debate abierto.",
+    "Usa el código visual que esa comunidad ya asocia (la estética, el meme, el encuadre) sin fingir que es tuyo.",
+    "Da tu aporte al debate en una frase: tu opinión o tu versión, no una imitación.",
+    "Haz entrar tu tema como la respuesta, en el punto más fuerte del fragmento.",
+    "Cierra sin pedir nada, ni seguir ni escuchar: solo el nombre del tema en pantalla."
+   ]
+  },
+  {
+   "id": "captura-de-streams",
+   "nombre": "Captura de streams",
+   "categoria": "artistas",
+   "queEs": "Grabación de pantalla de tus cifras verdaderas —oyentes mensuales, reproducciones de un tema, el salto de una semana— usada como contenido en sí, no como presunción. Sirve tanto arriba como abajo: el salto impresiona y e",
+   "anatomia": [
+    "Graba la pantalla de verdad, con la interfaz de la plataforma visible; una cifra escrita a mano no prueba nada.",
+    "Muestra el punto de partida antes del resultado: sin el antes, el después no significa nada.",
+    "Deja el número en pantalla los segundos necesarios para que se lea sin pausar.",
+    "Di en voz alta qué hiciste esa semana para mover esa cifra: el dato sin causa es solo presumir.",
+    "Pon tu cara al menos una vez para que el video sume a ti y no solo al gráfico."
+   ]
+  },
+  {
+   "id": "valla-publicitaria",
+   "nombre": "Valla publicitaria",
+   "categoria": "artistas",
+   "queEs": "Colocas el nombre del sencillo o tu cara en un soporte físico del mundo real —una valla, una pared, un cartel pegado, una pantalla de la calle, un coche— y grabas el momento en que alguien se lo encuentra. El contenido n",
+   "anatomia": [
+    "Elige un soporte y un sitio con paso real de gente, aunque sea pequeño; una valla en medio de la nada no genera hallazgo.",
+    "Deja el mensaje en lo mínimo: nombre del tema y nada más, para que se lea de un vistazo.",
+    "Graba primero la instalación —pegar, colgar, montar— porque el proceso es la mitad del video.",
+    "Filma a distancia a gente real encontrándoselo, sin avisarles.",
+    "Métete en el plano al final, para que se una tu cara al cartel."
+   ]
+  },
+  {
+   "id": "efecto-desvalido",
+   "nombre": "Efecto desvalido",
+   "categoria": "artistas",
+   "queEs": "Contenido que muestra tu punto real de partida —el cuarto, el equipo prestado, las cifras pequeñas, las salas medio vacías— sin queja y sin pedir lástima, con la intención declarada de llegar a algún sitio. El espectador",
+   "anatomia": [
+    "Enseña el punto de partida con un dato concreto y comprobable en pantalla: la cifra exacta, la sala con quince personas, el equipo que tienes.",
+    "Di en voz alta a dónde quieres llegar y en cuánto tiempo, con el número y la fecha escritos encima.",
+    "Muestra en planos reales el trabajo de esta semana: qué estás haciendo para acercarte, no la intención.",
+    "Deja sonar tu tema mientras se ve ese trabajo, para que el intento y la canción queden unidos.",
+    "Cierra invitando a acompañar el camino, no a comprar nada."
+   ]
+  },
+  {
+   "id": "proceso-de-la-cancion",
+   "nombre": "El proceso de la canción",
+   "categoria": "artistas",
+   "queEs": "El nacimiento del tema convertido en contenido: la nota de voz original, el primer acorde, la línea que se cayó, la capa que lo cambió todo. Es el formato que más fideliza porque hace que la versión final se escuche dist",
+   "anatomia": [
+    "Empieza por el material más crudo que tengas: la nota de voz del móvil, el borrador feo, el cuaderno.",
+    "Añade una capa por corte y deja oír cada una sola antes de sumarla.",
+    "Cuenta la decisión que casi arruina el tema o el elemento que estuvo a punto de quedar fuera.",
+    "Guarda el estribillo final para el último tercio: el video vive de esa espera.",
+    "Cierra con la versión terminada sonando entera unos segundos, sin hablar encima."
+   ]
+  },
+  {
+   "id": "bts-vs-la-toma",
+   "nombre": "Detrás de cámara vs. la toma",
+   "categoria": "artistas",
+   "queEs": "Enfrentas el detrás de cámara con el resultado: el montaje improvisado contra la imagen que parece cara, la calle cortada contra el plano limpio. El contraste vende dos cosas a la vez, que sabes hacerlo y que se puede ha",
+   "anatomia": [
+    "Encarga a alguien que grabe el detrás mientras se rueda: si no se captura en el momento, no existe después.",
+    "Elige un plano final que impresione y busca el material de detrás MÁS precario que lo produjo.",
+    "Ponlos juntos, en pantalla partida o en corte directo, sin narración encima.",
+    "Empieza por el detrás y remata con el plano final, nunca al revés.",
+    "Rotula con una sola palabra cada lado; el texto largo mata el contraste."
+   ]
+  },
+  {
+   "id": "inauguracion-simbolica",
+   "nombre": "Inauguración simbólica",
+   "categoria": "negocios",
+   "queEs": "Tomas el ritual más solemne que existe —cortar la cinta de una inauguración— y lo ejecutas completamente en serio sobre un objeto que no lo merece: la pantalla de un celular, un perchero, una vitrina. El humor nace del d",
+   "anatomia": [
+    "Escribe a mano en una tira de papel lo que estás inaugurando y pégala como cinta sobre el objeto.",
+    "Encuadra cerrado: la cinta tiene que ocupar el centro del cuadro desde el segundo 0.",
+    "Entra a cuadro con tijeras y una cara absolutamente seria, sin guiños a cámara.",
+    "Corta la cinta y deja que caiga; ese es el único momento que la gente comparte.",
+    "Corta seco a lo que hay detrás: el local, la colección, el producto nuevo."
+   ]
+  },
+  {
+   "id": "entrevista-al-mostrador",
+   "nombre": "Entrevista al mostrador",
+   "categoria": "negocios",
+   "queEs": "Una persona se acerca al mostrador y le hace al empleado UNA pregunta que el cliente también se hace: cuál es el más vendido, cuál pide todo el mundo, cuál se acaba primero. En cuanto lo nombra, corte inmediato al produc",
+   "anatomia": [
+    "Graba en vertical, primero a quien pregunta y después al trabajador cuando responde.",
+    "Haz UNA sola pregunta, corta y concreta, sobre lo más pedido de la semana.",
+    "Corta al producto en el instante exacto en que lo nombra, sin dejar que termine la frase.",
+    "Encadena planos rápidos de la preparación: el paso más visual primero.",
+    "Cierra con el producto terminado y a alguien probándolo."
+   ]
+  },
+  {
+   "id": "hallazgo-con-precio",
+   "nombre": "Hallazgo con precio a la vista",
+   "categoria": "negocios",
+   "queEs": "El video se comporta como un descubrimiento, no como un anuncio: \"Encontré un [tipo de negocio] nuevo en [zona] y tiene precios desde [cifra]\". El mismo gancho va dicho y escrito, y detrás entra una ráfaga de clips de un",
+   "anatomia": [
+    "Escribe el gancho en pantalla con la ZONA y el precio de entrada, y dilo igual en voz alta.",
+    "Encadena clips de un segundo de los productos: variedad por encima de belleza.",
+    "Rotula cada plato con su nombre y su precio exacto mientras aparece.",
+    "Muestra la carta completa en un plano fijo para que se pueda pausar.",
+    "Cuenta qué pediste y muestra tu reacción al probarlo, sin adjetivos genéricos."
+   ]
+  },
+  {
+   "id": "habilidad-extraordinaria",
+   "nombre": "Habilidad extraordinaria",
+   "categoria": "negocios",
+   "queEs": "Alguien de tu equipo hace algo con las manos que el espectador no sabría replicar: lanzar un ingrediente desde lejos y acertar, girar la masa en el aire, cambiar de herramienta sin mirar. No presentas a nadie ni explicas",
+   "anatomia": [
+    "Empieza el video con el movimiento ya en marcha; nada de introducción.",
+    "Encuadra para que se vea el gesto completo, no la cara de quien lo hace.",
+    "Grábalo varias veces y quédate con la toma donde sale limpio a la primera.",
+    "Deja el sonido real del gesto: el golpe, el chasquido, la sartén.",
+    "Repite el momento clave una segunda vez si dura menos de un segundo."
+   ]
+  },
+  {
+   "id": "falsa-denuncia",
+   "nombre": "Falsa denuncia",
+   "categoria": "negocios",
+   "queEs": "Copias la estética de un medio de noticias —rótulo rojo, tipografía de titular, cámara en mano— y montas una queja furiosa de un cliente contra el local. A mitad de camino se revela que era un anuncio y la queja se convi",
+   "anatomia": [
+    "Abre con el rótulo tipo noticiero y una palabra de indignación en pantalla.",
+    "Graba en cámara en mano al cliente reclamando de verdad, sin sonrisa.",
+    "Intercala reacciones del encargado y planos del local para sostener la mentira.",
+    "Rompe el tono con una frase que revela el truco y cambia la música.",
+    "Convierte el motivo de la queja en el motivo para venir."
+   ]
+  },
+  {
+   "id": "crisis-abierta",
+   "nombre": "La crisis abierta del negocio",
+   "categoria": "negocios",
+   "queEs": "El dueño habla a cámara y arranca por lo peor: \"Me clausuraron el local por [motivo]\". La historia tiene un villano externo —un vecino, una norma, una denuncia— y sigue abierta cuando el video termina. Se distingue del \"",
+   "anatomia": [
+    "Abre con la frase más dura, dicha como un titular, en los primeros dos segundos.",
+    "Habla directo a cámara desde el propio local, sin decorado.",
+    "Cuenta la cronología en orden: qué hacías, qué pasó, quién lo denunció.",
+    "Muestra el lugar exacto del conflicto mientras lo narras.",
+    "Di en qué punto está hoy, sin fingir un final que no existe."
+   ]
+  },
+  {
+   "id": "recorrido-de-detalles",
+   "nombre": "Recorrido de detalles",
+   "categoria": "negocios",
+   "queEs": "No enseñas el sitio entero de golpe: lo recorres como quien va encontrando cosas. Un vaso raro, una instrucción escrita a mano, una manera distinta de recibir al cliente. Cada hallazgo se muestra con su plano de apoyo in",
+   "anatomia": [
+    "Abre anunciando que hay varias cosas que no esperabas, sin decir cuáles.",
+    "Muestra un detalle por vez y ponle su rótulo corto en pantalla.",
+    "Corta al plano cerrado del objeto en cuanto lo nombras.",
+    "Guarda el detalle más raro para el último tercio del video.",
+    "Cierra invitando a venir a verlo, no a comprarlo."
+   ]
+  },
+  {
+   "id": "producto-que-habla",
+   "nombre": "El producto habla",
+   "categoria": "negocios",
+   "queEs": "El producto deja de ser un objeto y pasa a ser el personaje: dos personas se ocultan dentro de dos prendas, dos cajas o dos disfraces y sostienen un diálogo entre ellas. Se distingue del \"Sketch: tú interpretas a los dos",
+   "anatomia": [
+    "Elige dos unidades del producto con personalidades opuestas y escríbeles el diálogo antes.",
+    "Oculta todo el cuerpo que puedas: si se ven los pies, se rompe.",
+    "Pon la cámara a la altura del producto, nunca desde arriba.",
+    "Sincroniza un movimiento pequeño con cada frase para que se vea quién habla.",
+    "Haz que la pelea sea sobre una objeción real de compra: el precio, la comodidad, el uso."
+   ]
+  },
+  {
+   "id": "pov-inmersivo",
+   "nombre": "POV inmersivo (a la altura de los ojos)",
+   "categoria": "negocios",
+   "queEs": "Cámara a la altura de la mirada, un rótulo fijo que anuncia la premisa —\"Voy a comer a una pastelería que no tiene clientes\"— y a partir de ahí todo se filma en primera persona: lo que ves, lo que te dicen, lo que pides.",
+   "anatomia": [
+    "Escribe la premisa en un rótulo fijo que se queda en pantalla todo el video.",
+    "Sostén el celular a la altura de los ojos y no lo bajes ni para hablar.",
+    "No muestres tu cara de frente: se ven tus manos y lo que pasa delante.",
+    "Deja las conversaciones reales con subtítulos, sin voz en off que las explique.",
+    "Muestra los precios y lo que recibes tal cual, sin corregir nada."
+   ]
+  },
+  {
+   "id": "prueba-de-resistencia",
+   "nombre": "Prueba de resistencia",
+   "categoria": "negocios",
+   "queEs": "Planteas un experimento con una sola pregunta —cuánto aguanta— y lo ejecutas delante de la cámara sobre el producto barato y sobre el tuyo, en igualdad de condiciones. Se distingue de \"Comparación\" y \"Versus\", donde tú a",
+   "anatomia": [
+    "Enuncia la prueba concreta antes de hacerla, en una frase.",
+    "Muestra primero el producto genérico y somételo a la prueba en plano cerrado.",
+    "Repite exactamente la misma prueba con el tuyo, sin cambiar el encuadre.",
+    "Deja ver el resultado sin cortes: el rayón, la marca, el golpe.",
+    "Pon los dos resultados lado a lado en el mismo cuadro al final."
+   ]
+  },
+  {
+   "id": "puesta-en-escena-del-producto",
+   "nombre": "Puesta en escena del producto",
+   "categoria": "negocios",
+   "queEs": "Todo se filma desde la silla del cliente, y lo que se cataloga es la ENTREGA: el recipiente inesperado, el humo, la luz que se apaga, el objeto que se abre. No empiezas explicando dónde estás — empiezas por la cosa rara,",
+   "anatomia": [
+    "Abre con el objeto extraño ya en cuadro, antes de decir dónde estás.",
+    "Filma a la altura de la mesa, como si el espectador estuviera sentado ahí.",
+    "Deja el momento de apertura completo y sin cortes: es el clímax.",
+    "Reacciona con la cara, no con adjetivos.",
+    "Encadena el resto de los detalles teatrales del sitio en planos cortos."
+   ]
+  },
+  {
+   "id": "ia-sobre-desconocidos",
+   "nombre": "Transformación con IA sobre desconocidos",
+   "categoria": "negocios",
+   "queEs": "Sales a la calle, pides permiso, tomas la foto y la IA devuelve a esa misma persona con tu ropa, tus lentes o tu corte. Se distingue de \"IA: Antes y Después\", que trabaja sobre material tuyo: aquí el antes es una persona",
+   "anatomia": [
+    "Escribe la premisa en un rótulo fijo: qué vas a cambiarle a la gente.",
+    "Pide permiso y toma la foto de cuerpo entero en la vereda.",
+    "Muestra la foto original un segundo antes de la transformación.",
+    "Encadena la versión con tu producto usando siempre la misma transición.",
+    "Repite el ciclo con cinco o seis personas distintas, cada vez más rápido."
+   ]
+  },
+  {
+   "id": "producto-salva-el-dia",
+   "nombre": "El producto salva el día",
+   "categoria": "negocios",
+   "queEs": "La escena se disfraza de material captado por casualidad: cámara en mano, calle real, un rótulo desde el segundo 0 que hace creer que algo salió mal. Aparece un problema, y el producto entra como quien resuelve, no como ",
+   "anatomia": [
+    "Pon desde el primer segundo un rótulo que sugiera que la cosa salió mal.",
+    "Graba en la calle, con ruido real y cámara en mano, sin encuadre bonito.",
+    "Deja que el conflicto se vea antes de que aparezca ninguna solución.",
+    "Haz entrar el producto como una reacción natural de alguien que estaba ahí.",
+    "Muestra el producto funcionando de verdad, no una foto de catálogo."
+   ]
+  },
+  {
+   "id": "confesionario-del-jefe",
+   "nombre": "El confesionario del jefe",
+   "categoria": "negocios",
+   "queEs": "Una dinámica de grupo con una sola regla dicha en voz alta: se puede confesar cualquier cosa y no pasa nada. El equipo va contando faltas pequeñas y reales del día a día, y el dueño reacciona en vivo. Lo que se cataloga ",
+   "anatomia": [
+    "Reúne al equipo en el local y enuncia la regla a cámara antes de empezar.",
+    "Deja que cada persona confiese una sola cosa, corta y concreta.",
+    "No cortes las reacciones del jefe: ahí está la mitad del humor.",
+    "Ordena las confesiones de menor a mayor gravedad.",
+    "Guarda la más fuerte para el final y no la resuelvas del todo."
+   ]
+  },
+  {
+   "id": "actuacion-mala-a-proposito",
+   "nombre": "Actuación mala a propósito",
+   "categoria": "negocios",
+   "queEs": "Montas un comercial deliberadamente malo: el dueño dice la frase de venta más exagerada que se le ocurra mientras el equipo, detrás, hace una escenificación ridícula. El remate es reconocerlo en voz alta —\"la actuación m",
+   "anatomia": [
+    "Escribe la frase más exagerada que podrías decir de tu producto y dila en serio.",
+    "Pon al equipo detrás haciendo la escenificación literal de esa frase.",
+    "Deja la cámara fija, como un comercial de televisión barato.",
+    "Rompe el tono mirando a cámara y admitiendo que la actuación es mala.",
+    "Cierra con el producto en primer plano y la invitación al local."
+   ]
+  },
+  {
+   "id": "lugar-tematico",
+   "nombre": "Lugar temático",
+   "categoria": "negocios",
+   "queEs": "El gancho no es la comida ni el precio, es el traslado: entrar a un sitio que se siente de otro país. Muestras rápido el elemento que hace evidente el tema —la decoración, los letreros, la vajilla, la música— y recién de",
+   "anatomia": [
+    "Nombra el destino en el gancho, dicho y escrito: \"parece que estás en [país]\".",
+    "Entra al local grabando y muestra en los primeros segundos el elemento más delator.",
+    "Alterna planos del ambiente con primeros planos de los productos típicos.",
+    "Incluye el sonido del lugar: la música, el idioma, el ambiente.",
+    "Graba tu reacción al probar, dentro del decorado."
+   ]
+  },
+  {
+   "id": "regalando-en-la-calle",
+   "nombre": "Regalando producto en la calle",
+   "categoria": "negocios",
+   "queEs": "Llevas el producto fuera del local y se lo ofreces gratis a desconocidos. No se trata de la degustación sino de la REACCIÓN: la cara de sorpresa del primer bocado es el contenido. Funciona mejor con gente trabajando —obr",
+   "anatomia": [
+    "Prepara varias unidades y sal con la bandeja a un lugar con gente real.",
+    "Filma el acercamiento completo: la sorpresa empieza antes del bocado.",
+    "Entrega el producto y quédate en la cara, no en la comida.",
+    "Corta apenas termina la reacción y pasa a la siguiente persona.",
+    "Encadena cinco o seis reacciones distintas, cada una más corta."
+   ]
+  },
+  {
+   "id": "objeto-magico",
+   "nombre": "El objeto mágico",
+   "categoria": "negocios",
+   "queEs": "Alguien recibe un objeto con una regla: mientras lo tenga, la otra persona no puede negarse a nada. Es una serie de micro-situaciones encadenadas por una sola mecánica de juego, y tu producto aparece dentro de una de las",
+   "anatomia": [
+    "Graba el momento en que entregas el objeto y enuncias la regla en voz alta.",
+    "Encadena peticiones de menor a mayor, cada una con su reacción.",
+    "Deja las reacciones sin editar: la duda antes del sí es lo que se ve.",
+    "Mete tu producto en una de las peticiones del medio, sin subrayarlo.",
+    "Sube la apuesta en la última petición para cerrar con la más grande."
+   ]
+  },
+  {
+   "id": "pedido-absurdo",
+   "nombre": "El pedido absurdo",
+   "categoria": "negocios",
+   "queEs": "Un cliente hace, completamente en serio, un pedido que no tiene sentido: cien kilos, cinco mil pares, el local entero. El shock de quien atiende funciona de gancho, y a partir de ahí el video vive del misterio: para qué ",
+   "anatomia": [
+    "Haz el pedido en el primer segundo, con la cara más seria posible.",
+    "Quédate en la reacción de quien atiende sin cortar.",
+    "Deja que empiece a hacer preguntas y no des la respuesta todavía.",
+    "Intercala planos del producto mientras la conversación sigue.",
+    "Sube el absurdo con cada respuesta en vez de resolverlo."
+   ]
+  },
+  {
+   "id": "personaje-3d-recurrente",
+   "nombre": "Personaje 3D recurrente (IA)",
+   "categoria": "faceless",
+   "queEs": "Creas un personaje visual con IA —un esqueleto, un muñeco, una figura— y lo mantienes idéntico en todos los videos: misma ropa, mismo fondo, mismo estilo. Cada pieza es una mini historia visual de 20 a 30 segundos armada",
+   "anatomia": [
+    "Diseña el personaje una vez y guarda la referencia: la misma ropa, fondo y apariencia en todas las escenas de todos los videos.",
+    "Escribe la pieza como 4 a 6 escenas con una acción cada una, siguiendo un arco: situación, problema, intento, resultado.",
+    "Genera cada escena por separado y encadénalas con cortes secos, sin transiciones.",
+    "Graba la voz en off aparte y ajusta la duración de cada escena a su frase.",
+    "Resalta en pantalla la palabra clave de cada frase, grande y en color."
+   ]
+  },
+  {
+   "id": "la-mascara",
+   "nombre": "La máscara",
+   "categoria": "faceless",
+   "queEs": "En lugar de esconderte detrás de las manos o de un plano cenital, te pones una máscara reconocible y grabas de cuerpo completo: caminas, señalas, sostienes objetos, gesticulas. La máscara se convierte en la identidad de ",
+   "anatomia": [
+    "Elige una máscara que se vea igual en cualquier plano y úsala siempre la misma.",
+    "Pon el celular en trípode y graba muchas tomas cortas desde ángulos distintos.",
+    "Incluye plano entero, plano medio y detalle de manos en cada video.",
+    "Actúa con el cuerpo: la máscara no gesticula, así que el gesto lo hacen los brazos.",
+    "Graba la voz aparte y móntala encima, sin intentar sincronizar labios."
+   ]
+  },
+  {
+   "id": "solo-manos",
+   "nombre": "Mostrando solo las manos",
+   "categoria": "faceless",
+   "queEs": "La voz en off lleva todo el contenido y la imagen es una sucesión de planos cortos donde unas manos manipulan exactamente lo que se está diciendo: cortan, señalan, comparan, sostienen. La regla es una sola: cada frase ti",
+   "anatomia": [
+    "Escribe primero el guion y marca qué objeto ilustra cada frase.",
+    "Graba cada objeto en un plano corto, desde arriba o de lado, con fondo limpio.",
+    "Cuida la luz: sin cara en cuadro, lo único que sostiene la imagen es la textura.",
+    "Deja cada plano solo los segundos que dura su frase, nunca más.",
+    "Resalta en pantalla la palabra que estás diciendo en ese plano."
+   ]
+  },
+  {
+   "id": "edicion-protagonista",
+   "nombre": "La edición como protagonista",
+   "categoria": "faceless",
+   "queEs": "El video se sostiene entero sobre el montaje. Sobre un fondo de color plano, cada palabra enfatizada aparece grande y cambia de tamaño, color o posición, y con ella entra un recurso —una foto, una captura, una ilustració",
+   "anatomia": [
+    "Fija una paleta y una tipografía y no las cambies entre videos.",
+    "Graba la narración limpia primero y marca qué palabras vas a enfatizar.",
+    "Consigue un recurso visual por cada palabra marcada antes de empezar a editar.",
+    "Haz entrar cada palabra grande justo en el instante en que se dice.",
+    "Que cada recurso entre con movimiento propio, nunca en corte plano."
+   ]
+  },
+  {
+   "id": "hoja-de-papel-senalada",
+   "nombre": "La hoja de papel señalada",
+   "categoria": "faceless",
+   "queEs": "Imprimes el documento del que vas a hablar, lo pones bajo la cámara y una mano entra con un lapicero a señalar cada parte mientras la voz en off explica. No se escribe ni se corrige nada: solo se señala. Se distingue del",
+   "anatomia": [
+    "Imprime el documento entero y colócalo bajo una luz pareja, sin sombras.",
+    "Fija la cámara en cenital de modo que la hoja ocupe casi todo el cuadro.",
+    "Graba la voz en off aparte, explicando sección por sección en orden.",
+    "Que la mano con el lapicero entre solo para señalar lo que se está diciendo.",
+    "Rotula en pantalla el nombre de cada sección cuando llegas a ella."
+   ]
+  },
+  {
+   "id": "tablet-corregida",
+   "nombre": "La tablet corregida en vivo",
+   "categoria": "faceless",
+   "queEs": "Un diagnóstico visual de errores: muestras tres versiones malas de lo mismo, las descartas con una X grande hecha con el lápiz y vuelves sobre cada una encerrando el problema exacto. Se distingue de \"La hoja de papel señ",
+   "anatomia": [
+    "Reúne tres ejemplos reales y malos por motivos distintos, no tres versiones del mismo error.",
+    "Graba la tablet en cenital y muéstralos rápido, uno por uno, en los primeros segundos.",
+    "Enuncia la consecuencia en el gancho: \"si se ve así, [lo que pierdes]\".",
+    "Haz una X grande sobre la pantalla con el lápiz para descartar el bloque.",
+    "Acércate a cada zona problemática y enciérrala o táchala mientras la explicas."
+   ]
+  },
+  {
+   "id": "producto-girado-en-mano",
+   "nombre": "El producto girado en la mano",
+   "categoria": "faceless",
+   "queEs": "Una reseña sin reseña: nadie habla, nadie opina y no aparece ninguna cara. Solo una mano que sostiene el producto y lo va girando —el frente, el lateral, la trasera con los ingredientes, el tapón abriéndose— hasta termin",
+   "anatomia": [
+    "Fondo liso y luz lateral dura: la sombra marcada es lo que hace que el envase se vea caro.",
+    "Primer plano de la mano sosteniéndolo, y giro lento hasta enseñar el frente completo.",
+    "Dale su propio plano a la trasera, la de la letra pequeña: es donde mira quien duda antes de comprar.",
+    "Abre el producto en cuadro —el tapón, la tapa, el precinto— sin cortar el movimiento.",
+    "Cierra con una pizca sobre el dorso de la otra mano para que se vea la textura de verdad."
+   ]
+  },
+  {
+   "id": "broll-con-frase-que-avanza",
+   "nombre": "B-roll con una frase que avanza",
+   "categoria": "faceless",
+   "queEs": "Clips cortísimos de cosas cotidianas —la cortina, el café cayendo, unas gafas al sol, unos tulipanes— montados al ritmo de la música, con una frase que NO se queda quieta: entra por partes y se completa según avanza el v",
+   "anatomia": [
+    "Escribe la frase entera primero y pártela en tres tramos que se puedan leer sueltos.",
+    "Graba quince o veinte clips de un segundo de cosas, no de personas: manos, objetos, luz, texturas.",
+    "Baja la exposición y tira a luz cálida: la estética es la mitad del formato.",
+    "Monta los clips al ritmo de la música y saca el tramo siguiente de la frase cada cinco o seis planos.",
+    "Cierra con el plano más quieto de todos, ya con la frase completa en pantalla."
+   ]
+  },
+  {
+   "id": "vlog-sin-cara",
+   "nombre": "Vlog sin cara",
+   "categoria": "faceless",
+   "queEs": "La rutina filmada a ras de mesa —el escritorio, la taza, la tablet, el cuaderno, la cama sin hacer— con un rótulo que se queda SIEMPRE en el mismo sitio y le pone dueño al día: «vlog de un introvertido». Se distingue del",
+   "anatomia": [
+    "Decide de quién es el día y escríbelo en tres palabras: ese rótulo no cambia ni de sitio ni de letra en toda la serie.",
+    "Graba ocho o diez momentos en orden cronológico, siempre a la altura de la mesa y sin levantar la cámara a la cara.",
+    "Dale un plano a lo que se toca: la mano sobre el cuaderno, el lápiz, la taza que se mueve.",
+    "Deja los planos algo largos y con movimiento lento; la prisa rompe la calma, que es lo que se vende.",
+    "Termina donde empezó el día, para que el bucle se sienta cerrado."
+   ]
+  },
+  {
+   "id": "asmr-unboxing",
+   "nombre": "ASMR de unboxing",
+   "categoria": "faceless",
+   "queEs": "Un paquete que LLEGA, filmado en cenital y abierto por capas: los golpecitos de uña sobre el cartón, el precinto rasgándose, el lazo, el papel, y cada pieza saliendo de una en una hasta los swatches sobre el antebrazo. S",
+   "anatomia": [
+    "Cenital fijo sobre una superficie clara y blanda, que amortigua y deja limpio el sonido.",
+    "Antes de abrir nada, golpea la caja con las uñas y rasga el precinto: ese es el gancho y va en el primer segundo.",
+    "Abre por capas y que cada capa tenga su plano — la tapa, el lazo, el papel, la bandeja.",
+    "Saca las piezas de una en una y con las dos manos, sin prisa y sin decir nada.",
+    "Cierra probando el producto sobre la piel: los swatches en el antebrazo son la prueba de color."
+   ]
+  },
+  {
+   "id": "tutorial-con-avatar-ilustrado",
+   "nombre": "Tutorial con avatar ilustrado",
+   "categoria": "faceless",
+   "queEs": "Captura de pantalla del paso a paso, cortada a toda velocidad con un personaje ilustrado ESTÁTICO que aparece en distintas poses —señalando, pensando, sorprendido— y con el texto dentro de un bocadillo. Se distingue del ",
+   "anatomia": [
+    "Dibuja o encarga tu personaje en cuatro poses fijas: señalar, pensar, sorprenderse y celebrar. Con eso se monta la serie entera.",
+    "Abre por el número de la entrega y la promesa concreta del día: «día 5 · a poner presets».",
+    "Mete la captura de un comentario real pidiendo justo eso — es la excusa que justifica el tutorial.",
+    "Alterna grabación de pantalla y avatar cada dos o tres segundos, sin dejar ninguna toma respirar.",
+    "Termina enseñando el resultado montado, no el último paso del menú."
+   ]
+  },
+  {
+   "id": "cara-difuminada",
+   "nombre": "La cara difuminada",
+   "categoria": "faceless",
+   "queEs": "Todo se rueda como cualquier contenido de producto llevado puesto —posas, giras, enseñas la caída de la tela, la cuelgas, la despliegas— y en edición la cara queda tapada por una mancha difuminada del tono de la piel que",
+   "anatomia": [
+    "Graba el video completo como lo grabarías dando la cara: cuerpo entero, giros y planos de detalle de la prenda.",
+    "Aplica la mancha en un tono cercano al de la piel, nunca un pixelado ni una barra negra, que se leen como censura.",
+    "Comprueba que la mancha sigue la cabeza en todos los planos: un fotograma con la cara al aire tira el formato entero.",
+    "Rotula arriba lo que se está enseñando y mantenlo fijo, porque es lo único que orienta al que entra a mitad.",
+    "Reserva un plano a la prenda sola, colgada, para que se vea el corte sin cuerpo debajo."
+   ]
+  },
+  {
+   "id": "prueba-cruda-insertada-a-mitad-del-relato",
+   "nombre": "Prueba cruda a mitad del relato",
+   "categoria": "storytelling",
+   "queEs": "Un storytime largo contado como siempre —a cámara, maquillándote, caminando— que en el momento de más duda corta a la PRUEBA cruda: la captura del documento, el clip que grabaste esa noche, la foto del objeto. La prueba ",
+   "anatomia": [
+    "Rotula la pieza como capítulo desde el primer segundo (\"Mi experiencia en X · parte 1\").",
+    "Cuenta la historia en tu montaje de siempre y avisa que tienes pruebas.",
+    "En el punto donde el espectador dudaría, corta a la prueba cruda a pantalla completa: documento, captura o clip de ese día.",
+    "Déjala en cuadro el tiempo suficiente para leerla y vuelve al relato sin comentarla de más.",
+    "Cierra con un cartón negro de \"parte 2\" en vez de moraleja."
+   ]
+  },
+  {
+   "id": "vigilia-con-hora-en-pantalla-contra-un-rival",
+   "nombre": "Vigilia con la hora en pantalla contra un rival",
+   "categoria": "storytelling",
+   "queEs": "Plano fijo en un lugar público, un desconocido marcado con un círculo rojo y una premisa de duelo (\"estudiando hasta que este se vaya\"). La hora REAL va en pantalla y salta de un momento a otro mientras tu postura se der",
+   "anatomia": [
+    "Plantea el duelo en el primer cuadro: marca al rival con un círculo rojo y escribe la premisa.",
+    "Deja la cámara fija en el mismo encuadre durante todo el reto.",
+    "Pon la hora real en pantalla y salta entre momentos, dejando que se vea cómo cambia tu postura.",
+    "Añade rótulos cortos de tu estado físico a medida que avanza (\"tengo hambre\", \"necesito ir al baño\").",
+    "Rompe el plano al final: acércate a ver qué hace el rival y cierra con esa revelación."
+   ]
+  },
+  {
+   "id": "tira-de-papel-cortada-que-revela-el-perfil",
+   "nombre": "Tira de papel cortada que revela el perfil",
+   "categoria": "storytelling",
+   "queEs": "Plano cenital: tu teléfono con tu perfil abierto, envuelto en una tira de papel con paneles escritos a mano. Unas tijeras cortan panel por panel, y cada corte descubre la siguiente frase de una micro-historia (\"dejé mi t",
+   "anatomia": [
+    "Escribe tu historia en 3 o 4 frases muy cortas; la última es la petición.",
+    "Abre tu perfil en el teléfono y envuélvelo con una tira de papel, un panel por frase.",
+    "Graba en cenital, con la cámara fija y buena luz sobre la mesa.",
+    "Corta un panel a la vez y deja leer cada frase antes del siguiente corte.",
+    "Remata cortando el último panel para que se vea tu perfil entero en la pantalla."
+   ]
+  },
+  {
+   "id": "mini-documental-del-integrante-atipico",
+   "nombre": "Mini-documental del integrante atípico del equipo",
+   "categoria": "storytelling",
+   "queEs": "Un negocio cuenta la historia de UNA persona del equipo que contrasta con los demás (\"cuando eres el único hombre en la oficina\"). Abre con un rótulo de situación sobre una escena real del día, sigue con su testimonio se",
+   "anatomia": [
+    "Elige a una persona del equipo con un contraste claro y ponle un rótulo de situación (\"cuando eres el único X en Y\").",
+    "Abre con una escena real del día donde ese contraste se vea sin explicarlo.",
+    "Graba su testimonio sentado a cámara, presentándose con nombre y área.",
+    "Intercala sus frases con reacciones cortas de compañeros y escenas que prueben lo que dice.",
+    "Cierra con un momento cómplice del grupo, no con la marca."
+   ]
+  },
+  {
+   "id": "incidente-contado-con-su-propio-metraje",
+   "nombre": "Incidente contado con su propio metraje",
+   "categoria": "storytelling",
+   "queEs": "Un accidente pequeño —el teléfono cae al mar y graba nueve minutos bajo el agua— se cuenta usando SOLO el metraje que la cámara registró durante el incidente, sin voz. Encima van rótulos de cronista en pasado (\"pensé que",
+   "anatomia": [
+    "Rescata lo que la cámara grabó sola durante el incidente, sin recortar lo raro.",
+    "Abre con el plano previo y un rótulo de exceso de confianza (\"pensé que era buena idea…\").",
+    "Monta el incidente en orden y narra cada tramo con rótulos cortos en pasado, en tono de cronista.",
+    "Dale voz a lo inesperado que aparece en cuadro (los peces, la gente) con un rótulo propio.",
+    "Cierra con el desenlace y su costo real en cifra."
+   ]
+  },
+  {
+   "id": "relato-con-meme-ajeno-por-frase",
+   "nombre": "Relato con un meme ajeno por frase",
+   "categoria": "storytelling",
+   "queEs": "Cuentas una historia propia en voz en off y cada frase tiene su propia imagen: un meme, sticker o gif ajeno que ilustra la EMOCIÓN de ese momento, no el hecho. La frase va escrita debajo en letra chica. Cuando la histori",
+   "anatomia": [
+    "Abre con la frase más escandalosa de la historia y promete la evidencia.",
+    "Escribe el relato frase por frase y asigna a cada una un meme o sticker que muestre la emoción, no el hecho.",
+    "Pon la frase en letra chica debajo de cada imagen y cambia de imagen en cada frase.",
+    "En el pico de la historia corta la cadena y enseña la prueba real a pantalla completa.",
+    "Vuelve a los memes para el desenlace y cierra preguntando si quieren la parte 2."
+   ]
+  },
+  {
+   "id": "conversacion-con-tu-yo-de-archivo",
+   "nombre": "Conversación con tu yo de archivo",
+   "categoria": "storytelling",
+   "queEs": "Pantalla partida en horizontal: arriba, un video REAL tuyo de hace años (webcam, videollamada, historia vieja) con su año rotulado; abajo, tú hoy con el año actual. El montaje hace que conversen: el yo de archivo pregunt",
+   "anatomia": [
+    "Busca un video tuyo de hace años hablando a cámara y rotúlalo con su año.",
+    "Escribe las preguntas que ese yo te haría hoy y recórtalas de su audio o regrábalas con ropa y luz parecidas.",
+    "Graba tus respuestas actuales en otro espacio y rotúlalas con el año de hoy.",
+    "Monta en pantalla partida, arriba el pasado y abajo el presente, alternando pregunta y respuesta.",
+    "Deja para el final la pregunta que duele (\"¿fue un error?\") y responde con la frase que resume la historia."
+   ]
+  },
+  {
+   "id": "anecdota-actuada-con-recortes-sobre-la-locacion",
+   "nombre": "Anécdota actuada con recortes sobre la locación",
+   "categoria": "storytelling",
+   "queEs": "Narras a cámara con un micrófono de mano y, entre tus planos, la anécdota se escenifica con personajes RECORTADOS —caricaturas, avatares, un maniquí, un personaje de videojuego— pegados sobre fotos del lugar real donde p",
+   "anatomia": [
+    "Asigna a cada persona de la anécdota un recorte fijo (caricatura, avatar, objeto) y úsalo siempre igual.",
+    "Consigue fotos del lugar real donde pasó la historia, sin gente.",
+    "Graba la narración a cámara con micrófono de mano, en tu espacio de siempre.",
+    "Alterna tú contando con los recortes pegados sobre la foto del lugar, actuando la frase que acabas de decir.",
+    "Mantén el subtítulo palabra a palabra encima de todo, también sobre las escenas de recortes."
+   ]
+  },
+  {
+   "id": "relato-oral-con-iconos-que-brotan-por-palabra",
+   "nombre": "Relato oral con íconos que brotan sobre la cabeza",
+   "categoria": "storytelling",
+   "queEs": "Cuentas una leyenda o una historia a cámara, en plano medio fijo, y encima de tu cabeza —en el espacio vacío del fondo— aparece una imagen pequeña cada vez que dices una palabra clave: el cartel del pueblo, un calendario",
+   "anatomia": [
+    "Graba la historia completa a cámara en un plano medio fijo, dejando aire vacío sobre tu cabeza.",
+    "Marca en el guion las palabras clave concretas: lugar, fecha, objeto, personaje.",
+    "Pon una imagen pequeña de cada palabra clave sobre tu cabeza justo cuando la dices y quítala con la siguiente.",
+    "Usa números grandes para fechas o cantidades en lugar de foto.",
+    "Cierra con un rótulo de crédito: \"relato de: [quien te lo contó]\"."
+   ]
+  },
+  {
+   "id": "plano-quieto-del-habito-que-estalla-en-vida",
+   "nombre": "Plano quieto del hábito que estalla en vida",
+   "categoria": "storytelling",
+   "queEs": "Dos bloques y un solo corte. Primero, un plano fijo y largo de ti atrapada en el hábito —sentada en la cama mirando el teléfono— con un rótulo que plantea la elección. Después, corte seco a un montaje rápido de vida vivi",
+   "anatomia": [
+    "Graba un plano fijo, sin cortes, de ti haciendo el hábito que quieres cuestionar, sin actuar.",
+    "Ponle encima un rótulo que plantee la elección (\"tendrás que elegir entre X y tu vida\").",
+    "Aguanta el plano quieto varios segundos más de lo cómodo.",
+    "Corta en seco a un montaje rápido de clips de tu archivo donde se vea lo que ganas al dejarlo.",
+    "Cambia el rótulo por la decisión en primera persona y deja que la música suba en el corte."
+   ]
+  },
+  {
+   "id": "privacion-sensorial-simulada",
+   "nombre": "Privación sensorial simulada",
+   "categoria": "storytelling",
+   "queEs": "Un rótulo inicial pide un pacto de tiempo (\"imagínate por 15 segundos que fueras…\"). Primer bloque: clips alegres de tu archivo SIN audio, con el rótulo \"Sordo\". Segundo bloque: pantalla negra con solo el audio de esos m",
+   "anatomia": [
+    "Abre con un rótulo que pida un pacto corto de imaginación (\"imagínate por 15 segundos…\").",
+    "Monta clips de momentos felices de tu archivo y quítales el audio por completo.",
+    "Rotula ese bloque con el sentido que falta (\"Sordo\").",
+    "Pasa a pantalla negra con solo el audio de esos momentos y el rótulo del otro sentido (\"Ciego\").",
+    "No expliques la moraleja: deja que el contraste la diga y, si acaso, ponla en el caption."
+   ]
+  },
+  {
+   "id": "frase-tachada-y-reescrita-sobre-vidrio",
+   "nombre": "Frase tachada y reescrita sobre vidrio",
+   "categoria": "visual",
+   "queEs": "Escribes una pregunta o queja con marcador sobre un vidrio o espejo, frente a cámara. Mientras hablas, tachas UNA palabra y escribes la sustituta encima, y luego otra, hasta que la misma frase dice lo contrario (\"¿POR qu",
+   "anatomia": [
+    "Escribe sobre un vidrio o espejo la frase de queja tal como la piensa tu audiencia, grande y legible.",
+    "Colócate detrás o al lado del vidrio para que se lea sin taparla.",
+    "Tacha una sola palabra y escribe la sustituta encima mientras explicas el cambio.",
+    "Repite con la segunda palabra hasta que la frase entera diga lo contrario.",
+    "Cierra con un gesto o un dibujo pequeño que deje la frase nueva como imagen final."
+   ]
+  },
+  {
+   "id": "storytelling-de-presentacion",
+   "nombre": "Storytelling de presentación",
+   "categoria": "storytelling",
+   "queEs": "El video con el que abres una cuenta: declaras quién eres y qué empiezas, cuentas EL detonante honesto —el día que dijiste basta— y prometes documentar el viaje entero, lo bueno y lo feo. Es el Viaje del Héroe comprimido",
+   "anatomia": [
+    "Grábate en tu espacio real, plano medio. NO fondo neutro: que se vea tu mundo, porque el mundo es parte de la promesa.",
+    "Texto en pantalla fijo arriba durante todo el video: \"Día 1. Empezando de cero.\"",
+    "0-3s identidad + decisión: \"Soy ___ y hoy empiezo ___ desde cero. Te voy a mostrar todo.\"",
+    "3-15s el detonante honesto: el momento exacto que te empujó. Aquí va la vulnerabilidad, y es el bloque que hace el trabajo.",
+    "15-30s la promesa del viaje: \"voy a mostrar TODO, lo bueno y lo feo\" + CTA de seguir."
+   ]
+  },
+  {
+   "id": "metodo-con-nombre",
+   "nombre": "Tu método, con nombre propio",
+   "categoria": "disrupcion",
+   "queEs": "Un Versus Estratégico entre lo que todo el mundo recomienda en tu nicho y lo que tú haces. Lo que lo convierte en autoridad y no en un tip más es que tu método lleva NOMBRE: \"el Método Cápsula 3×3\", \"la Regla de los 6 es",
+   "anatomia": [
+    "0-4s gancho versus: nombra el consejo común que TODOS dan y di que ahí está el error.",
+    "4-12s por qué falla: UNA razón clara y simple. Si das cinco, no se recuerda ninguna.",
+    "12-35s tu método CON NOMBRE: bautízalo y explícalo en 2-3 pasos concretos.",
+    "35-45s el resultado que produce + \"guárdalo\".",
+    "En pantalla, partido en dos: \"Lo que todos hacen ❌\" / \"Lo que funciona ✅\", con un corte marcado y un golpe de audio justo en el cruce."
+   ]
+  },
+  {
+   "id": "mito-polemico",
+   "nombre": "El mito polémico",
+   "categoria": "disrupcion",
+   "queEs": "Un gancho controversial: \"todo lo que te dijeron sobre ___ es mentira, y por eso sigues estancada\". Después UN argumento contundente, no cinco, y el cierre diciendo qué es lo que SÍ es cierto. La regla que lo hace o lo r",
+   "anatomia": [
+    "0-4s suelta el mito como verdad incómoda: \"Todo lo que te dijeron sobre ___ es mentira.\"",
+    "Remata el gancho con la consecuencia personal: \"y por eso sigues ___\".",
+    "4-18s desármalo con UN solo argumento fuerte. Cinco razones diluyen; una se recuerda.",
+    "18-30s lo que SÍ es cierto + pide comentar con una palabra concreta.",
+    "Un solo plano fijo, directo a cámara, SIN cortes: la ausencia de edición es lo que transmite seguridad."
+   ]
+  },
+  {
+   "id": "detras-de-camaras-invitacion",
+   "nombre": "Detrás de cámaras + invitación",
+   "categoria": "storytelling",
+   "queEs": "El cierre de un tramo —una semana, un mes—: un montaje corto de clips reales de esos días con tu voz en off encima. El formato funciona como espejo porque el primer bloque no habla de ti, habla de lo que quien te ve sien",
+   "anatomia": [
+    "0-5s vuelve al inicio: \"todo empezó con una idea y muchas dudas\". Estás describiendo el día 1 de quien te ve.",
+    "5-18s qué cambió: 1-2 aprendizajes reales y honestos de los días que llevas. Vale nombrar lo que te costó.",
+    "18-28s la invitación: \"esto recién empieza, ven conmigo\" + CTA de seguir.",
+    "Montaje de clips reales de esos días (B-roll) con tu voz en off, y el texto en pantalla \"[N] días después…\".",
+    "Cortes al beat con la música subiendo hacia el final. 15-30 s: aquí el audio emotivo es medio formato."
+   ]
+  },
+  {
+   "id": "clip-broll-imagenes",
+   "nombre": "Clip B-roll con imágenes",
+   "categoria": "visual",
+   "queEs": "Grabas hablando —a cámara o en voz en off— y sobre tu toma van entrando imágenes, capturas y clips cortos que ILUSTRAN literalmente lo que estás diciendo en ese segundo. No es adorno: cada apoyo entra cuando se nombra y ",
+   "anatomia": [
+    "Gancho: la primera imagen entra en el segundo 0, antes incluso de que termines la frase.",
+    "Escribe primero el guion completo y solo después subraya qué palabra pide apoyo visual.",
+    "Un apoyo por idea, no por palabra: si entran tres imágenes en cinco segundos, nadie ve ninguna.",
+    "Cada apoyo se queda entre 1,5 y 3 segundos y sale con corte seco, no con transición.",
+    "Alterna: captura de pantalla, foto real, clip de archivo. Tres imágenes del mismo tipo seguidas aplanan el video."
+   ]
+  },
+  {
+   "id": "carrusel-comparativo",
+   "nombre": "Carrusel comparativo (A vs B por slide)",
+   "categoria": "carruseles",
+   "queEs": "La comparación llevada al carrusel: cada slide enfrenta A y B en UN solo criterio, con la misma maqueta partida de principio a fin. Sirve para el versus de herramientas, para \"lo lento vs lo rápido\" y para la tabla \"lo q",
+   "anatomia": [
+    "Slide 1: las dos opciones nombradas con tensión, una a cada lado, y la promesa del veredicto (\"Hacerlo a mano vs con plantilla: quién gana en 5 rondas\").",
+    "Fija una maqueta partida y no la cambies: A siempre del mismo lado y con el mismo color, B siempre del otro.",
+    "Slides 2 a 6: un criterio por slide, con su nombre arriba y el dato concreto de cada lado (minutos, pesos, resultado), no adjetivos.",
+    "Marca el ganador de cada slide con el mismo sello en el mismo lugar, y deja que al menos uno lo gane la opción inesperada.",
+    "Penúltima slide: la tabla resumen con todos los criterios y su ganador, lista para capturar."
+   ]
+  },
+  {
+   "id": "linea-de-tiempo-anclada",
+   "nombre": "Película muda: la línea de tiempo anclada",
+   "categoria": "storytelling",
+   "queEs": "Un reel sin voz donde cada clip lleva encima una línea de texto que empieza por un ancla de tiempo — «a los 19», «el segundo año», «siete meses después» — y avanza un capítulo completo de tu vida de principio a fin. No e",
+   "anatomia": [
+    "Elige UN capítulo con antes, durante y después. Un hilo: la carrera, o la maternidad, o el dinero. Nunca los tres juntos.",
+    "Escríbelo como 5 a 8 momentos. Cada momento = un ancla de tiempo + un hecho que se puede filmar. Sin adjetivos.",
+    "Reparte los momentos: 2-3 al Problema, 1-2 al Proceso, 2-3 al Premio. Ese reparto es el que hace que se sienta un recorrido y no una queja.",
+    "Asigna un clip a cada momento, en el mismo orden. Si tienes material de la época, úsalo; si no, graba hoy una acción simple que cargue la misma sensación.",
+    "Monta sobre un audio con construcción y caída: la construcción sostiene el Problema y el Proceso, la caída cae sobre el primer clip del Premio."
+   ]
+  },
+  {
+   "id": "confesion-un-plano",
+   "nombre": "La confesión de un solo plano",
+   "categoria": "storytelling",
+   "queEs": "El video no cuenta nada: es un plano tuyo haciendo algo con movimiento —caminando, montando la cámara, entrando a un sitio— con una sola línea de texto que se queda fija los ocho segundos y que confiesa algo que normalme",
+   "anatomia": [
+    "Escribe primero la confesión: una frase que te dé un poco de pudor publicar. Si no te da nada, todavía no bajaste al peldaño crudo.",
+    "Graba 7 a 10 segundos de un plano con movimiento natural: caminar, sentarte, encuadrar la cámara. El movimiento es lo que frena el dedo, no la cara.",
+    "Deja la frase FIJA encima todo el video. No aparece ni desaparece: está desde el primer cuadro.",
+    "En el caption escribe 5 a 8 reflexiones sobre eso mismo, una por línea, cada una con un detalle que solo puedas escribir tú.",
+    "Cierra diciendo qué estás aprendiendo, soltando o aceptando ahora mismo. En presente, no en pasado resuelto."
+   ]
+  },
+  {
+   "id": "antes-despues-actuado",
+   "nombre": "Yo antes / yo ahora, actuado",
+   "categoria": "storytelling",
+   "queEs": "Un reel de dos tomas donde interpretas la conducta vieja y la nueva, con una etiqueta encima de cada una. Lo que se compara no es un antes/después de aspecto: es un comportamiento concreto que cambió. El video muestra lo",
+   "anatomia": [
+    "Nombra la conducta, no el estado. «Reescribía los mensajes cinco veces para que nadie se molestara», no «era insegura».",
+    "Graba el «yo antes» actuando esa conducta, un poco exagerada para que se lea de un vistazo.",
+    "Graba el «yo ahora» haciendo lo mismo de otra manera. Cambia algo visible: expresión, postura, ropa, luz.",
+    "Etiqueta cada lado con la frase concreta. Si tapas el texto, la imagen sola ya debería contar la mitad.",
+    "Corta del uno al otro justo en el cambio del audio: el cambio se tiene que oír y ver a la vez."
+   ]
+  },
+  {
+   "id": "split-dos-elecciones",
+   "nombre": "Pantalla partida: dos elecciones, el mismo día",
+   "categoria": "storytelling",
+   "queEs": "Un split horizontal donde las dos mitades corren en paralelo mostrando la misma franja del día resuelta de dos maneras distintas. No son dos historias: es una sola idea partida en dos, y la fuerza está en que las dos sea",
+   "anatomia": [
+    "Elige UNA creencia y busca las dos conductas que produce en el mismo momento del día.",
+    "Graba los dos lados con el mismo encuadre y la misma distancia: si uno está más cerca, el ojo cree que es el importante.",
+    "Empareja las acciones. Cada par arriba/abajo es el mismo momento resuelto distinto, no dos escenas sueltas.",
+    "Pon una etiqueta fija en cada lado y no la muevas más. El espectador tiene que dejar de leer y ponerse a comparar.",
+    "Cambia los pares al pulso del audio cuando el ritmo lo pida; si no, deja que corran."
+   ]
+  },
+  {
+   "id": "pov-causa-efecto",
+   "nombre": "POV de una sola causa",
+   "categoria": "storytelling",
+   "queEs": "La versión más corta posible de una transformación: el video es un solo B-roll con un texto fijo de tres frases que dice el problema, UNA causa y el resultado. La simplicidad es a propósito — no estás explicando todo lo ",
+   "anatomia": [
+    "Elige una transformación con un antes y un después que se puedan nombrar en cinco palabras cada uno.",
+    "Elige UNA sola causa. Si nombras tres, el espectador no se lleva ninguna.",
+    "Escribe las tres frases: «POV: [problema], y entonces [la causa]. Ahora [resultado]».",
+    "Graba un solo plano de 7 a 10 segundos donde se vea el resultado, con movimiento natural.",
+    "Deja el texto fijo todo el video. No hay cortes que sincronizar."
+   ]
+  },
+  {
+   "id": "un-problema-muchas-pruebas",
+   "nombre": "Un problema, muchas pruebas",
+   "categoria": "storytelling",
+   "queEs": "Una película muda partida en dos tiempos desiguales: un clip largo con el peor momento fechado, y después una ráfaga de clips cortos con las cosas que hoy existen y antes no. El video nunca dice cómo se pasó de una cosa ",
+   "anatomia": [
+    "Elige el punto más bajo de un capítulo y féchalo: «2022: [lo que pasaba]».",
+    "Grábalo o recréalo en un solo clip que dure lo suficiente para que pese.",
+    "Lista de 3 a 5 pruebas actuales: cosas concretas que existen hoy y antes no. Nada de sentimientos.",
+    "Monta las pruebas en ráfaga sobre la caída del audio, una por clip, cortas.",
+    "El video termina ahí. No expliques nada: el hueco es a propósito."
+   ]
+  },
+  {
+   "id": "pelicula-muda-larga",
+   "nombre": "La película muda larga",
+   "categoria": "storytelling",
+   "queEs": "La versión larga y cinematográfica de la línea de tiempo: en vez de moverse por anclas de tiempo, se mueve por escenas. Empieza con una fecha y un hecho duro, construye el problema con hechos y frases honestas, marca el ",
+   "anatomia": [
+    "Elige un capítulo con suficiente cambio como para sostener tres actos, y un solo hilo dentro de él.",
+    "Abre con un ancla de tiempo y el hecho más duro. No adornes: el hecho hace el trabajo.",
+    "Construye el problema con tres o cuatro momentos, mezclando lo que pasó con lo que pensabas.",
+    "Marca el giro con una sola frase y un cambio visible de imagen. Es el eje del video.",
+    "Muestra lo repetido: lo que hiciste una y otra vez. No un montaje de éxito, un montaje de insistencia."
+   ]
+  },
+  {
+   "id": "conversacion-con-tu-yo-pasada",
+   "nombre": "Conversación con tu yo de antes",
+   "categoria": "storytelling",
+   "queEs": "Un split vertical donde arriba está la versión tuya de hace años y abajo la de hoy, y conversan. La de arriba pregunta lo que de verdad te preguntabas entonces; la de abajo responde sin dar todas las respuestas. La ilusi",
+   "anatomia": [
+    "Elige la versión de ti con la que hablarías si pudieras, y ponle fecha.",
+    "Escribe primero sus preguntas: las que de verdad te hacías, no las que suenan bien.",
+    "Graba primero a la del pasado. Después escucha esa grabación mientras grabas a la de hoy, para que las pausas caigan donde caerían.",
+    "Cambia algo visible: ropa, pelo, sitio, luz. Sin eso, el espectador no sabe a quién está mirando.",
+    "Pasado arriba, presente abajo. Siempre igual: es la convención que hace que se entienda sin explicar."
+   ]
+  },
+  {
+   "id": "respuesta-con-credencial",
+   "nombre": "La respuesta con credencial",
+   "categoria": "storytelling",
+   "queEs": "Un formato de reacción: arranca con un clip ajeno que enuncia un problema que tu gente ya reconoce, y a los pocos segundos apareces tú sobre pantalla verde con un rótulo que dice quién eres. No estás opinando: estás poni",
+   "anatomia": [
+    "Busca un clip que enuncie el problema en menos de cinco segundos y sin necesitar contexto.",
+    "Pon un rótulo desde el cuadro uno: «[tu credencial] responde». Anuncia que viene algo.",
+    "Corta el clip ajeno en cuanto se entiende el problema. Ni un segundo más.",
+    "Entra nombrando lo que está pasando: ponle su nombre técnico si lo tiene. Nombrar es la mitad del valor.",
+    "Desarrolla en dos o tres puntos, no en veinte."
+   ]
+  },
+  {
+   "id": "lista-vacia-que-se-llena",
+   "nombre": "La lista vacía que se va llenando",
+   "categoria": "storytelling",
+   "queEs": "Hablas a cámara, desplazada del centro, y al lado hay una lista numerada con los números puestos y las líneas en blanco. Cada punto aparece cuando llegas a él. La lista vacía es el motor: se ve que faltan cuatro y por es",
+   "anatomia": [
+    "Elige un recorrido que tu gente vive y del que solo se cuenta la versión resumida.",
+    "Escribe las fases reales, incluidas las feas. La fase que da vergüenza es la que hace el video.",
+    "Abre con un título que use la palabra «de verdad»: promete la versión que falta.",
+    "Colócate a un lado del cuadro y deja el otro libre para la lista, con los números ya puestos.",
+    "Revela cada punto solo cuando llegas a él, y dale de cinco a diez segundos."
+   ]
+  },
+  {
+   "id": "duelo-de-mentalidades",
+   "nombre": "Duelo de mentalidades",
+   "categoria": "storytelling",
+   "queEs": "Un split donde cada lado es una mentalidad, no una época: la que te tenía atrapada y la que tienes hoy. Se responden línea por línea sobre la misma situación, y cada intercambio destapa una capa más de lo que cambió. El ",
+   "anatomia": [
+    "Nombra las dos mentalidades con una etiqueta cada una. No «antes/después»: nómbralas.",
+    "Escribe las frases del lado viejo primero, tal como sonaban de verdad.",
+    "Escribe las respuestas de forma que cada una conteste a la anterior, no como monólogo suelto.",
+    "Ordena los intercambios de menos a más profundo: el último es la frase que resume todo.",
+    "Graba cada lado por separado, con algo visible que los distinga."
+   ]
+  },
+  {
+   "id": "misma-escena-dos-veces",
+   "nombre": "La misma escena, dos veces",
+   "categoria": "storytelling",
+   "queEs": "Un video a cámara con estructura de espejo: primero narras una situación tal como se vive sin cierta creencia, disciplina o práctica, y después la misma situación con ella. No es un antes/después de tu vida: son dos lect",
+   "anatomia": [
+    "Elige un valor o práctica tuya que cambie de verdad cómo vives algo.",
+    "Elige una situación concreta y repetible donde se note.",
+    "Cuenta la versión sin el valor: qué piensas, qué haces, cómo acaba.",
+    "Cuenta la misma situación con el valor, con la misma estructura y casi las mismas palabras.",
+    "Que las dos versiones sean creíbles: si una es una caricatura, se cae."
+   ]
+  },
+  {
+   "id": "la-cuenta-del-intento",
+   "nombre": "La cuenta del intento",
+   "categoria": "storytelling",
+   "queEs": "Un video a cámara donde pones la cuenta encima de la mesa —dinero, horas, intentos, puertas cerradas— de algo que sigues persiguiendo sin haber llegado. La honestidad de no tener el final es el formato entero: el premio ",
+   "anatomia": [
+    "Elige algo que sigues persiguiendo y que todavía no ha dado el resultado.",
+    "Haz la cuenta de verdad: dinero, meses, intentos, puertas cerradas. Números exactos, no aproximados.",
+    "Abre con la cifra total y la promesa de contar qué te dio. Deja el bucle abierto.",
+    "Ve soltando los costes uno a uno, con su texto en pantalla, en un color que resalte.",
+    "Di lo que NO ha pasado. Sin esa frase el video es una humildad de escaparate."
+   ]
+  },
+  {
+   "id": "voz-en-off-una-escena",
+   "nombre": "Voz en off sobre una sola escena",
+   "categoria": "storytelling",
+   "queEs": "Una historia contada en voz en off sobre B-roll: la voz lleva el recorrido interno, las imágenes llevan lo que se ve. Abre con una pregunta o una tensión concreta, atraviesa lo que hiciste, y aterriza en un significado. ",
+   "anatomia": [
+    "Elige UNA experiencia con un cambio emocional claro. No un año: un episodio.",
+    "Escribe el guion completo antes de tocar la cámara.",
+    "Abre con una pregunta o una imagen que meta a quien escucha dentro de la situación.",
+    "Deja respirar el recorrido: lo que no sabías, lo que te dio miedo, lo que decidiste.",
+    "Graba la voz primero, entera y de corrido, para que el tono no se corte."
+   ]
+  }
+ ]
+}

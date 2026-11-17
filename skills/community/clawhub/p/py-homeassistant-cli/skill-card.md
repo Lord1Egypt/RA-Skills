@@ -1,42 +1,54 @@
-## Description: <br>
-Tiny and short Python CLI tool to control Home Assistant devices and automations via the REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiny and short Python CLI tool to control Home Assistant devices and automations via the REST API.
 
-## Publisher: <br>
-[xwings](https://clawhub.ai/user/xwings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwings](https://clawhub.ai/user/xwings)
 
-## Use Case: <br>
-Developers and Home Assistant users can use this skill to let an agent inspect devices, read smart-home state, and call Home Assistant services through a Python CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Home Assistant token allows the skill to read and control smart-home devices and automations. <br>
-Mitigation: Install only for agents that should access the Home Assistant instance, protect HA_TOKEN carefully, and prefer the least-privilege credentials available. <br>
-Risk: Commands can affect security-sensitive devices and automations such as locks, alarms, garage doors, gates, and generic service calls. <br>
-Mitigation: Require explicit user approval before security device actions, automation changes, generic service calls, notifications, TTS, or vehicle-location commands. <br>
-Risk: Presence, calendar, history, logbook, and location commands can expose sensitive household or personal information. <br>
-Mitigation: Limit use to appropriate contexts and confirm before querying or sharing sensitive Home Assistant data. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to let an agent inspect and control Home Assistant entities, automations, notifications, templates, history, and related device services through a Python command-line tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwings/py-homeassistant-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, API Calls, Guidance] <br>
-**Output Format:** [CLI stdout and stderr, often formatted JSON from the Home Assistant REST API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.6+, network access to a Home Assistant instance, HA_URL, and HA_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill can exercise broad Home Assistant authority, including sensitive services such as locks, alarms, garage doors, presence, device trackers, templates, and location-related commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Home Assistant token, require explicit user intent for sensitive actions, and review commands before execution.
+
+Risk: Home Assistant tokens and alarm codes may be exposed if passed directly on the command line or used over an unprotected connection.
+
+Mitigation: Prefer secure environment-based secret handling, avoid passing tokens or alarm codes in visible command arguments, and use HTTPS for the Home Assistant endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xwings/skills/py-homeassistant-cli)
+- [xwings publisher profile](https://clawhub.ai/user/xwings)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HA_URL and HA_TOKEN or equivalent command-line arguments to reach a Home Assistant instance.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

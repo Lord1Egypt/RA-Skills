@@ -1,44 +1,55 @@
-## Description: <br>
-Random Password Generator Quantum helps an agent generate high-entropy passwords with configurable length, character classes, ambiguity exclusion, and quantum or standard cryptographically secure randomness through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates high-entropy passwords with configurable length, character classes, ambiguity filtering, and quantum or standard randomness through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to request secure generated passwords for credential generation, password rotation, onboarding, system accounts, and high-security authentication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentPMT is the remote service that generates and returns passwords. <br>
-Mitigation: Use the skill only when remote password generation is acceptable, and avoid it for policies that require locally generated secrets. <br>
-Risk: The skill handles generated credentials. <br>
-Mitigation: Invoke it only for explicit password-generation tasks and avoid placing account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
-Risk: Discovery keywords are broader than ideal. <br>
-Mitigation: Confirm activation is tied to the specific password-generation task before making remote calls. <br>
+## Use Case:
 
+Developers, operators, and credential-management workflows use this skill to request configurable passwords for onboarding, rotation, system accounts, authentication, and other security-sensitive setup tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/random-password-generator-quantum) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/random-password-generator-quantum) <br>
-- [schema.md](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON call examples and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated response includes a password, length, randomness source, and enabled character types.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated passwords for high-value systems may be visible to the third-party remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when policy allows AgentPMT to process the generated credential; prefer local generation for secrets that must be known only to the requester.
+
+Risk: Remote setup details, schemas, or endpoints may change after installation.
+
+Mitigation: Refresh or reinstall the skill before production use and fetch live schema details when parameters or response fields are unclear.
+
+## Reference(s):
+
+- [Random Password Generator Quantum schema](artifact/schema.md)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/random-password-generator-quantum)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/random-password-generator-quantum)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote tool responses include the generated password, character count, randomness source, and enabled character types.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

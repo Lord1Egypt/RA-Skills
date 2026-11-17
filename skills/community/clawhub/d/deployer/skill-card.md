@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Deployer concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Deployer concepts, quickstarts, implementation patterns, and best practices.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Deployer as a quick reference for deployment-related devtools concepts, quickstart steps, patterns, debugging, performance, security, migration, and command cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review describes powerful repository, review, and moderation workflows that can affect public ClawHub state or run nested review with broad local access. <br>
-Mitigation: Install only when the publisher context is trusted and review the moderation and autoreview helpers before use. <br>
+## Use Case:
 
+Developers and engineers use Deployer as a plain-text reference for deployer concepts, setup, patterns, troubleshooting, performance, security, migration, and quick-reference guidance in devtools workflows.
 
-## Reference(s): <br>
-- [Deployer ClawHub Skill Page](https://clawhub.ai/xueyetianya/deployer) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, or network access are required by the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence; artifact frontmatter reports 2.0.2 and script reports 2.0.1) <br>
+Risk: The reference text discusses credentials in general deployment best-practice contexts, which could lead users to handle secrets unsafely if copied directly into real workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply organization credential-management policies separately and do not place secrets into commands or configuration based only on this reference.
+
+Risk: The skill provides static reference guidance that may not reflect a user's specific deployment environment or current operational policy.
+
+Mitigation: Review the guidance against the target environment, current platform documentation, and internal change-control requirements before applying it.
+
+## Reference(s):
+
+- [Deployer on ClawHub](https://clawhub.ai/xueyetianya/skills/deployer)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables emitted by shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference topics include intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.]
+
+## Skill Version(s):
+
+2.0.3 (source: ClawHub release metadata; artifact frontmatter says 2.0.2 and script says 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

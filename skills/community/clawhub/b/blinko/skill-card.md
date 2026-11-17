@@ -1,39 +1,60 @@
-## Description: <br>
-Play Blinko on-chain Plinko headlessly on Abstract chain, including game stats, leaderboards, honey rewards, API authentication, on-chain game creation, simulation, and settlement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Blinko (on-chain Plinko) headlessly on Abstract chain, including game play, stats, leaderboards, honey rewards, API authentication, on-chain game creation, simulation, and settlement.
 
-## Publisher: <br>
-[tolibear](https://clawhub.ai/user/tolibear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tolibear](https://clawhub.ai/user/tolibear)
 
-## Use Case: <br>
-External users and agent operators use this skill to play Blinko games from a hot wallet, inspect account game history, check leaderboards, and view honey balances on Abstract. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses hot-wallet authority to sign on-chain transactions that can spend real ETH and incur gas costs. <br>
-Mitigation: Install only with a dedicated low-balance wallet, review commands before execution, confirm transaction amounts and destination contracts, and avoid autonomous use without strict confirmations and spending limits. <br>
+## Use Case:
 
+External users and agents use this skill to play Blinko on-chain Plinko games with a wallet-backed hot wallet and to inspect profile, game, leaderboard, and honey reward data.
 
-## Reference(s): <br>
-- [ClawHub Blinko listing](https://clawhub.ai/tolibear/blinko) <br>
-- [Blinko website](https://blinko.gg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with command examples and console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WALLET_PRIVATE_KEY for play actions; stats commands can run with a wallet address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can give an agent wallet-backed authority to spend ETH and gas on an on-chain gambling game without per-transaction approval or cumulative limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a dedicated hot wallet funded with the maximum amount the user is willing to lose, and require explicit approval for each gameplay transaction where possible.
+
+Risk: Gameplay invocations may repeatedly spend funds through autonomous agent use.
+
+Mitigation: Set daily or session limits outside the skill, keep read-only stats workflows separate from gameplay, and avoid using a main wallet private key.
+
+Risk: Transaction parameters returned by the external API influence on-chain game creation and settlement.
+
+Mitigation: Review transaction details before signing and prefer versions that validate API-returned transaction parameters before submission.
+
+## Reference(s):
+
+- [ClawHub Blinko skill page](https://clawhub.ai/tolibear/skills/blinko)
+- [Blinko game site](https://blinko.gg)
+- [Abstract RPC endpoint](https://api.abs.xyz)
+- [Blinko API endpoint](https://api.blinko.gg)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Gameplay requires WALLET_PRIVATE_KEY and can submit real ETH transactions; stats commands can run with a wallet address.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

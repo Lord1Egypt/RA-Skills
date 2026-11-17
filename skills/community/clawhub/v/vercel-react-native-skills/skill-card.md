@@ -1,46 +1,65 @@
-## Description: <br>
-React Native and Expo best practices for building performant mobile apps, including components, list performance, animations, and native modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React Native and Expo best practices for building performant mobile apps, including guidance for components, list performance, animations, native modules, UI patterns, and platform-specific optimization.
 
-## Publisher: <br>
-[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde)
 
-## Use Case: <br>
-Developers and engineers use this skill when building, maintaining, or refactoring React Native and Expo apps. It guides agents toward performance, animation, navigation, UI, state, rendering, monorepo, and configuration practices backed by rule-specific examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changes may affect dependencies, package-manager overrides, Expo config, or native rebuild steps. <br>
-Mitigation: Review generated mobile-development changes before applying them, especially dependency edits, config changes, and native rebuild instructions. <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to generate, review, and refactor React Native and Expo code with opinionated performance, animation, navigation, UI, state, monorepo, and configuration guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xaiohuangningde/vercel-react-native-skills) <br>
-- [React Native documentation](https://reactnative.dev) <br>
-- [Expo documentation](https://docs.expo.dev) <br>
-- [React documentation](https://react.dev) <br>
-- [React Native Reanimated documentation](https://docs.swmansion.com/react-native-reanimated) <br>
-- [React Native Gesture Handler documentation](https://docs.swmansion.com/react-native-gesture-handler) <br>
-- [Legend List documentation](https://legendapp.com/open-source/legend-list) <br>
-- [Galeria](https://github.com/nandorojo/galeria) <br>
-- [Zeego](https://zeego.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for agent-assisted React Native and Expo development] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill provides opinionated React Native and Expo recommendations that may be overbroad or imperfect for a specific app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated changes against the app's scale, platform targets, and existing architecture before applying them.
+
+Risk: Some guidance may add libraries or run Expo prebuild, which can change native project files and dependency posture.
+
+Mitigation: Review dependency additions and native project diffs before committing or releasing the result.
+
+Risk: Broad performance rules may be unsuitable for small lists, locale-sensitive formatting, or existing navigation constraints.
+
+Mitigation: Apply these recommendations selectively and verify behavior with app-specific tests or manual review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xaiohuangningde/skills/vercel-react-native-skills)
+- [React Documentation](https://react.dev)
+- [React Native Documentation](https://reactnative.dev)
+- [Expo Documentation](https://docs.expo.dev)
+- [React Native Reanimated Documentation](https://docs.swmansion.com/react-native-reanimated)
+- [React Native Gesture Handler Documentation](https://docs.swmansion.com/react-native-gesture-handler)
+- [Legend List Documentation](https://legendapp.com/open-source/legend-list)
+- [Galeria](https://github.com/nandorojo/galeria)
+- [Zeego](https://zeego.dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; generated changes should be reviewed before applying broad performance recommendations, adding libraries, or running Expo prebuild.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

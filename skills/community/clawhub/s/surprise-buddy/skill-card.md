@@ -1,44 +1,62 @@
-## Description: <br>
-Look up curated gift ideas from the Surprise Buddy database: country-scoped product cards with title, image, price, and a ready-to-click product link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surprise Buddy helps agents look up curated, country-scoped gift ideas with product titles, prices, images, fit rationale, and marketplace links.
 
-## Publisher: <br>
-[sebastian1747](https://clawhub.ai/user/sebastian1747) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastian1747](https://clawhub.ai/user/sebastian1747)
 
-## Use Case: <br>
-External users and agent developers use this skill to find curated gift ideas for a recipient when the country is known and filters such as occasion, age, interests, profession, color, or budget are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gift searches can involve personal details about recipients and returned product links may include marketplace tracking or affiliate-style query parameters. <br>
-Mitigation: Avoid entering highly sensitive personal details about recipients, and review returned marketplace links before clicking or sharing them. <br>
+## Use Case:
 
+External users and agent developers use this skill to help people find gift ideas by country, occasion, age, interests, profession, budget, and color preferences. The agent returns curated product options with marketplace links instead of performing a generic web search.
 
-## Reference(s): <br>
-- [Surprise Buddy MCP endpoint](https://www.surprise-buddy.com/api/mcp) <br>
-- [Surprise Buddy](https://www.surprise-buddy.com) <br>
-- [OpenAPI 3.1 specification](https://www.surprise-buddy.com/openapi.yaml) <br>
-- [MCP discovery manifest](https://www.surprise-buddy.com/.well-known/mcp.json) <br>
-- [LLMs.txt](https://www.surprise-buddy.com/llms.txt) <br>
-- [Developer landing page](https://www.surprise-buddy.com/en/agents) <br>
-- [ClawHub skill page](https://clawhub.ai/sebastian1747/surprise-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and marketplace links returned by the MCP service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a country code for gift searches; product prices are not live price quotes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Gift preference filters are sent to an external MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal details beyond the country, occasion, age range, budget, and preference filters needed for the gift search.
+
+Risk: Returned marketplace URLs may contain query parameters needed for link function or attribution.
+
+Mitigation: Preserve product URLs exactly as returned and review links before presenting them to users.
+
+Risk: The curated database is not a generic web search or live price oracle.
+
+Mitigation: Tell users that empty results are valid, prices may reflect last verification, and filters may need to be widened.
+
+## Reference(s):
+
+- [Surprise Buddy skill page](https://clawhub.ai/sebastian1747/skills/surprise-buddy)
+- [Surprise Buddy developer landing page](https://www.surprise-buddy.com/en/agents)
+- [Surprise Buddy MCP endpoint](https://www.surprise-buddy.com/api/mcp)
+- [Surprise Buddy MCP discovery manifest](https://www.surprise-buddy.com/.well-known/mcp.json)
+- [Surprise Buddy OpenAPI 3.1 spec](https://www.surprise-buddy.com/openapi.yaml)
+- [Surprise Buddy LLMs.txt](https://www.surprise-buddy.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown gift cards with product details and links, backed by JSON MCP tool responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Country is required; returned product URLs should be preserved exactly as provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

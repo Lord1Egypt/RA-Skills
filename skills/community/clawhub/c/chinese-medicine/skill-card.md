@@ -1,46 +1,63 @@
-## Description: <br>
-Guides users through Chinese Medicine body constitution self-assessment, symptom pattern exploration, acupressure points, herbal knowledge, and formula context with wellness-focused safety disclaimers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through Chinese Medicine body constitution self-assessment, symptom pattern exploration, acupressure, herbs, formulas, and safety checks with educational wellness framing.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External users use this skill to learn Chinese Medicine wellness concepts, assess constitution tendencies, explore herbs and acupressure, and receive non-diagnostic lifestyle guidance with professional-care reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational Chinese Medicine pattern or herb information as medical diagnosis or treatment advice. <br>
-Mitigation: Keep guidance educational, include the required medical disclaimer for health guidance, avoid diagnosis and dosage instructions, and recommend qualified healthcare or licensed TCM consultation. <br>
-Risk: Herb, formula, or acupressure suggestions may be unsafe for pregnancy, medication interactions, liver conditions, or other contraindications. <br>
-Mitigation: Check the contraindication and safety reference data before presenting options, flag high-risk cases clearly, and advise professional review before use. <br>
+## Use Case:
 
+External users can use this skill to explore Chinese Medicine concepts, constitution tendencies, acupressure points, herb and formula background, and safety considerations. The skill frames outputs as educational wellness guidance and directs users to qualified healthcare professionals for health concerns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/chinese-medicine) <br>
-- [acupoints.json](references/acupoints.json) <br>
-- [constitution_db.json](references/constitution_db.json) <br>
-- [contraindications.json](references/contraindications.json) <br>
-- [formulas.json](references/formulas.json) <br>
-- [herbs_db.json](references/herbs_db.json) <br>
-- [syndrome_rules.json](references/syndrome_rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance with structured assessment results, safety notes, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational and cultural wellness guidance only; responses should avoid diagnosis, treatment claims, dosages, or medication changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reference data may expose herbal dosing, formula quantities, moxibustion, and acupuncture needling information despite educational safety framing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use guardrails that prevent dosage, self-needling, moxibustion, labor-induction, or individualized treatment instructions; present general education and refer users to qualified practitioners.
+
+Risk: Pregnancy-sensitive points, contraindicated herbs, hepatotoxicity warnings, and drug interaction information could be misused without clinical context.
+
+Mitigation: Require conservative safety screening, avoid recommending pregnancy-sensitive or high-risk interventions, and direct users with pregnancy, medication, liver disease, or serious symptoms to licensed healthcare professionals.
+
+Risk: Symptom pattern exploration may be mistaken for medical diagnosis or treatment advice.
+
+Mitigation: Keep outputs explicitly non-diagnostic, use tendency-focused language, include health disclaimers, and advise professional evaluation for health concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/chinese-medicine)
+- [Constitution database](artifact/references/constitution_db.json)
+- [Syndrome rules](artifact/references/syndrome_rules.json)
+- [Acupoints reference](artifact/references/acupoints.json)
+- [Herbs database](artifact/references/herbs_db.json)
+- [Formulas reference](artifact/references/formulas.json)
+- [Contraindications reference](artifact/references/contraindications.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with educational summaries, wellness recommendations, safety notes, and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Health-related responses should remain non-diagnostic, avoid individualized treatment or dosing instructions, and recommend qualified healthcare consultation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Build and run Python-based AI agents using the AWS Strands SDK for autonomous agents, multi-agent workflows, custom tools, MCP integrations, and provider-specific agent scaffolding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run Python-based AI agents using the AWS Strands SDK.
 
-## Publisher: <br>
-[TrippingKelsea](https://clawhub.ai/user/TrippingKelsea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trippingkelsea](https://clawhub.ai/user/trippingkelsea)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, configure, and run Python-based Strands agents across local, direct API, Bedrock, and MCP-backed workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated agents can receive broad local file and shell access through the scaffolded tools. <br>
-Mitigation: Review generated code before running it, remove or constrain shell and file-write tools, and run agents in a sandboxed project directory or container. <br>
-Risk: Provider credentials and cloud permissions may be available to agents at runtime. <br>
-Mitigation: Use least-privilege API and cloud credentials and avoid exposing unrelated environment variables to the agent process. <br>
-Risk: MCP servers or imported agent files can extend the agent's effective capability surface. <br>
-Mitigation: Connect only trusted MCP servers and load only reviewed local agent files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TrippingKelsea/strands) <br>
-- [Strands SDK repository](https://github.com/strands-agents/sdk-python) <br>
-- [Strands SDK Cheatsheet](references/cheatsheet.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to create, configure, and run Python Strands agents with local, hosted, or AWS-backed model providers. It also supports custom tools, MCP integration, multi-agent patterns, session persistence, and generated agent scaffolds.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; scaffolded Python files and configuration when helper scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated agents may include local file-read, file-write, and shell-command tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated agents can be scaffolded with broad file and shell access.
+
+Mitigation: Run generated agents in a sandbox or disposable workspace, inspect generated Python before execution, and avoid granting access to credentials or private files.
+
+Risk: Untrusted prompts, model IDs, or MCP servers can change agent behavior or expand the effective tool surface.
+
+Mitigation: Use trusted inputs, pin dependency and MCP server versions, and review provider and MCP configuration before running an agent.
+
+## Reference(s):
+
+- [Strands SDK repository](https://github.com/strands-agents/sdk-python)
+- [Strands SDK Cheatsheet](references/cheatsheet.md)
+- [ClawHub skill page](https://clawhub.ai/trippingkelsea/skills/strands)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python and shell examples; helper scripts can generate Python project files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated agent scaffolds may include file-read, file-write, and shell-command tools.]
+
+## Skill Version(s):
+
+2.0.3 (source: ClawHub release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

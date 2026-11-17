@@ -1,45 +1,57 @@
-## Description: <br>
-Maintain a large ClawHub skill portfolio with a quality-first and AI-assisted upgrade lens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain a large ClawHub skill portfolio with a quality-first and AI-assisted upgrade lens.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and ClawHub publishers use this skill to audit public skill portfolios, prioritize maintenance, generate approval-gated cleanup or upgrade plans, and build local dashboard reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated approval boards and shell command previews can affect public skill visibility or publishing if executed without review. <br>
-Mitigation: Require explicit approval for each batch, review generated boards first, and treat hide, merge, publish, and rescan operations as account-impacting actions. <br>
-Risk: Partial or failed skill-detail data can lead to incorrect cleanup, maintenance, or candidate decisions. <br>
-Mitigation: Move failed detail fetches to data_unavailable, exclude them from decisions for that run, and refresh collection later instead of retrying aggressively. <br>
-Risk: Merge operations may be difficult to reverse. <br>
-Mitigation: Review the canonical target before approving merge batches and prefer reversible hide or unhide workflows before deletion-oriented cleanup. <br>
+## Use Case:
 
+Developers and maintainers use this skill to audit ClawHub skill portfolios, prioritize high-quality skills, identify stale or partial data, prepare AI-assisted maintenance candidates, and gate cleanup or publishing actions behind explicit approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skill-maintainer) <br>
-- [Publisher Profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Repository URL from artifact metadata](https://github.com/harrylabsj/clawhub-skill-maintainer) <br>
-- [Issue Tracker from artifact metadata](https://github.com/harrylabsj/clawhub-skill-maintainer/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, CSV, JSON, HTML, shell command previews, and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local reports, dashboards, approval packets, and maintainer prompts; account-impacting commands are gated by explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release evidence and package metadata) <br>
+Risk: Untrusted skill metadata can influence generated dashboards and AI maintainer prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated dashboards and prompts before use, treat prompt content as untrusted input, and avoid opening dashboards from untrusted portfolio data until the script-context escaping issue is fixed.
+
+Risk: The opt-in --apply-safe mode can modify local skill files based on resolved source paths.
+
+Mitigation: Use --apply-safe only after verifying each resolved source path and reviewing the planned edits.
+
+Risk: Hide, merge, publish, or delete actions can affect public ClawHub skills.
+
+Mitigation: Keep real visibility, merge, publish, and deletion commands behind explicit human approval and do not execute generated command previews blindly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/skill-maintainer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and references to generated JSON, CSV, and HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces evidence-backed maintenance queues, approval boards, dashboard reports, and AI maintainer prompts; generated commands require human approval before execution.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release metadata, package.json, clawhub.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,62 @@
-"""Script-level configuration for Kaipai AI skill.
-
-This module imports base configuration from SDK and adds script-specific settings.
-"""
 import os
-import sys
-from pathlib import Path
 
-# Add SDK to path if needed
-SDK_DIR = Path(__file__).resolve().parent.parent / "sdk"
-if str(SDK_DIR) not in sys.path:
-    sys.path.insert(0, str(SDK_DIR))
+# V2 config and consume requests use the same gateway.
+WAPI_ENDPOINT = 'webapi-action-skill.meitu.com'
 
-# Import base configuration from SDK
-from sdk.core.config import (
-    WAPI_ENDPOINT,
-    GID_CACHE_FILE,
-    VERSION,
-    USER_AGENT,
-    URL_DOWNLOAD_MAX_BYTES_DEFAULT,
-    URL_DOWNLOAD_CONNECT_TIMEOUT_DEFAULT,
-    URL_DOWNLOAD_READ_TIMEOUT_DEFAULT,
-    url_download_max_bytes,
-    url_download_connect_timeout,
-    url_download_read_timeout,
-    url_download_timeout_tuple,
-)
+# GID cache (persistent on disk, no TTL in this skill)
+GID_CACHE_FILE = '~/.cache/kaipai/gid_cache.json'
 
-# Script-specific configuration
-SCRIPTS_DIR = Path(__file__).parent
+VERSION = "v2.0.2"
+# USER_AGENT_NAME identifies this branded Skill distribution in HTTP requests.
+# Domestic distributions only need to replace this value.
+USER_AGENT_NAME = 'kaipai-skill'
+USER_AGENT = f"{USER_AGENT_NAME}-{VERSION}"
+
+# Config schemas this Skill can parse, in preference order.
+SUPPORTED_SCHEMAS = ("v2", "v1")
+
+# HTTP(S) input download (run-task --input URL and resolve-input --url); overridable via env.
+URL_DOWNLOAD_MAX_BYTES_DEFAULT = 100 * 1024 * 1024
+URL_DOWNLOAD_CONNECT_TIMEOUT_DEFAULT = 15
+URL_DOWNLOAD_READ_TIMEOUT_DEFAULT = 120
+
+
+def url_download_max_bytes() -> int:
+    raw = os.environ.get("MT_AI_URL_MAX_BYTES", "").strip()
+    if raw:
+        try:
+            return max(1, int(raw))
+        except ValueError:
+            pass
+    return URL_DOWNLOAD_MAX_BYTES_DEFAULT
+
+
+def url_download_connect_timeout() -> int:
+    raw = os.environ.get("MT_AI_URL_CONNECT_TIMEOUT", "").strip()
+    if raw:
+        try:
+            return max(1, min(int(raw), 300))
+        except ValueError:
+            pass
+    return URL_DOWNLOAD_CONNECT_TIMEOUT_DEFAULT
+
+
+def url_download_read_timeout() -> int:
+    raw = os.environ.get("MT_AI_URL_READ_TIMEOUT", "").strip()
+    if raw:
+        try:
+            return max(1, min(int(raw), 3600))
+        except ValueError:
+            pass
+    return URL_DOWNLOAD_READ_TIMEOUT_DEFAULT
+
+
+def url_download_timeout_tuple() -> tuple[int, int]:
+    return (url_download_connect_timeout(), url_download_read_timeout())
 
 # Region map (overwritten by server config when fetched)
-REGIONS = {}
+REGIONS = {
+}
 
 # Invoke presets (overwritten by server config when fetched)
 INVOKE = {}

@@ -1,44 +1,62 @@
-## Description: <br>
-Trade crypto (Binance, Upbit, Hyperliquid, Lighter) and prediction markets (Polymarket), backtest strategies with 80+ indicators using Signal DSL, get market data, place and manage orders, subscribe to live trading signals, and compete on the community arena leaderboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates HeyTraders through its live browser command catalog to inspect, navigate, configure, and manage the application.
 
-## Publisher: <br>
-[alstja98](https://clawhub.ai/user/alstja98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heytraders](https://clawhub.ai/user/heytraders)
 
-## Use Case: <br>
-External developers, trading agents, and HeyTraders users use this skill to access HeyTraders market data, backtesting, live signal, account, and order-management APIs for crypto and prediction-market workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide account-linked reads and trading actions, including placing and canceling live orders. <br>
-Mitigation: Keep access research-only unless account reads or trading are deliberately needed; require user confirmation before claim-code requests, orders, cancellations, live subscriptions, public posts, and webhook changes. <br>
-Risk: Claimed agents and API keys may retain access after a task is complete. <br>
-Mitigation: Revoke claimed agents or API keys when finished, and verify claimed-agent permissions before using read or trade scopes. <br>
-Risk: Trading, backtesting, and strategy output may be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as user-reviewed trading tooling, not financial advice; review strategy assumptions, exchange account selection, symbols, amounts, and order parameters before execution. <br>
+## Use Case:
 
+OpenClaw operators use this skill to inspect and manage HeyTraders, guide exchange onboarding, and review or share completed backtests through the HeyTraders plugin.
 
-## Reference(s): <br>
-- [HeyTraders Homepage](https://hey-traders.com) <br>
-- [HeyTraders API Base](https://hey-traders.com/api/v1) <br>
-- [HeyTraders Dashboard Exchange Settings](https://hey-traders.com/dashboard/settings/exchanges) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alstja98/heytraders) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for documented shell examples; API responses use JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: Trading actions, wallet approvals, deposits, and strategy starts can have significant financial consequences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator approval for each action and verify the resulting state before reporting success.
+
+Risk: Credentials or wallet secrets may be exposed if entered in chat or tool arguments.
+
+Mitigation: Use only the secure browser or venue surface specified by the live guide; never pass secrets in chat or CLI arguments.
+
+Risk: Anyone with an unlisted backtest share URL can view the report.
+
+Mitigation: Share the link only with the intended operator; revoke future access when requested.
+
+Risk: The skill requires browser access through the HeyTraders OpenClaw plugin.
+
+Mitigation: Confirm the operator intends to install and enable the plugin and grant access to the managed browser session.
+
+## Reference(s):
+
+- [HeyTraders skill release](https://clawhub.ai/heytraders/skills/heytraders)
+- [HeyTraders OpenClaw plugin installation guide](https://github.com/heytraders/HeyTraders-OpenClaw/blob/main/README.md#install-in-an-existing-openclaw-environment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown text with links and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Completed backtest reports may include an unlisted, read-only share link.]
+
+## Skill Version(s):
+
+2.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

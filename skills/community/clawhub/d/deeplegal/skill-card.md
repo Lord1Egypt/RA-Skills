@@ -1,45 +1,60 @@
-## Description: <br>
-DeepLegal Chinese Contract provides business legal counsel for contract drafting, review, negotiation support, and legal risk assessment across PRC, US, and Hong Kong contexts in Chinese, English, or bilingual formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepLegal Chinese Contract helps agents draft, review, negotiate, and assess contracts across PRC, US, and Hong Kong contexts, including Chinese, English, and bilingual agreements with case-aware legal reasoning and DOCX review output.
 
-## Publisher: <br>
-[hekuangviolet-ai](https://clawhub.ai/user/hekuangviolet-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hekuangviolet-ai](https://clawhub.ai/user/hekuangviolet-ai)
 
-## Use Case: <br>
-Employees, external counsel, and business teams use this skill to draft, review, mark up, and assess commercial contracts with jurisdiction-specific legal references, case-informed comments, and business-oriented negotiation positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential contract text. <br>
-Mitigation: Use it only in an environment appropriate for confidential legal materials, and redact sensitive information when full disclosure to the agent is unnecessary. <br>
-Risk: Generated contract analysis or drafting may be incomplete or unsuitable for a specific jurisdiction or transaction. <br>
-Mitigation: Treat outputs as legal drafting assistance and have important contracts reviewed by qualified counsel in the relevant jurisdiction. <br>
-Risk: The skill can create local JSON and DOCX files during review or drafting workflows. <br>
-Mitigation: Review generated files before sharing them externally and manage them according to the user's document-retention and confidentiality requirements. <br>
+## Use Case:
 
+External users and legal operations teams use this skill to review, draft, and negotiate Chinese, cross-border, and offshore contracts with practical legal risk assessment. The skill can produce contract review markup, clean drafts, negotiation positions, and concise supporting summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hekuangviolet-ai/deeplegal) <br>
-- [Contract clauses reference](artifact/contract-clauses.md) <br>
-- [Legal reference jurisdiction guide](artifact/legal-reference.md) <br>
-- [Litigation cases and judicial precedents](artifact/litigation-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON structures for DOCX generation, and Word (.docx) files with tracked changes or clean drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON and DOCX files for contract review or drafting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Contracts and generated JSON or DOCX files may contain confidential deal terms or legal positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment for sensitive matters, limit access to generated files, and delete temporary input files after document generation.
+
+Risk: Legal outputs may be incomplete, jurisdiction-specific, or unsuitable for reliance without professional review.
+
+Mitigation: Have qualified counsel verify legal analysis, clause language, and final documents before using them in business decisions or negotiations.
+
+Risk: The DOCX generator depends on Python packages that must be installed in the execution environment.
+
+Mitigation: Pin and audit the Python dependencies before installation or use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hekuangviolet-ai/skills/deeplegal)
+- [Legal Reference - Jurisdiction Guide](artifact/legal-reference.md)
+- [Key Litigation Cases & Judicial Precedents](artifact/litigation-cases.md)
+- [Standard Contract Clauses Reference](artifact/contract-clauses.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance, JSON document-generation input, shell commands, and generated DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON and DOCX files containing contract text, legal comments, and deal terms.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

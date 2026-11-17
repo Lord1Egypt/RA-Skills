@@ -1,46 +1,56 @@
-## Description: <br>
-Creates polished Reveal.js HTML presentations with layouts, styling guidance, charts, speaker notes, and validation helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Reveal.js HTML presentations for decks, reports, and teaching slides, with guidance for layouts, themes, charts, speaker notes, and browser-based playback.
 
-## Publisher: <br>
-[cao-yuu](https://clawhub.ai/user/cao-yuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cao-yuu](https://clawhub.ai/user/cao-yuu)
 
-## Use Case: <br>
-Developers, content creators, and presentation authors use this skill to generate browser-based Reveal.js slide decks, customize their visual design, and check charts or slide overflow before sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks may fetch Reveal.js, Chart.js, fonts, or other browser assets from CDNs when opened. <br>
-Mitigation: Use the skill only when CDN loading is acceptable, or review generated HTML and replace external assets with approved local copies before distribution. <br>
-Risk: Generated output paths can overwrite existing presentation files. <br>
-Mitigation: Choose explicit output paths and review target filenames before running scaffold or validation commands. <br>
-Risk: Browser-based checking steps use Puppeteer or decktape against HTML decks. <br>
-Mitigation: Run those checks only on decks you created or otherwise trust. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate browser-run Reveal.js slide decks for presentations, reports, and teaching materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cao-yuu/ppt-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/cao-yuu) <br>
-- [Advanced Reveal.js Features](revealjs/references/advanced-features.md) <br>
-- [Adding Charts to Reveal.js Presentations](revealjs/references/charts.md) <br>
-- [Base Reveal.js Styles](revealjs/references/base-styles.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local presentation files and validation commands for Reveal.js decks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Generated presentations are active HTML and may load mutable third-party scripts or CDN resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML, CSS, and JavaScript before use, prefer pinned or local dependencies, and open outputs in a low-privilege browser context.
+
+Risk: Helper scripts may process user-provided titles, stylesheet names, and output paths.
+
+Mitigation: Use the skill only in a workspace where presentation files can be safely created, and avoid untrusted paths or untrusted presentation metadata.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cao-yuu/skills/ppt-skill)
+- [Advanced Features Reference](revealjs/references/advanced-features.md)
+- [Charts Reference](revealjs/references/charts.md)
+- [Base Styles CSS](revealjs/references/base-styles.css)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets; generated presentation files are HTML and CSS.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces browser-runnable Reveal.js presentations and may use Node.js helper scripts for scaffolding and checks.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter and package.json: 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

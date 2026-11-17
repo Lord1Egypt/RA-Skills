@@ -1,45 +1,62 @@
-## Description: <br>
-知乎数据查询助手。覆盖用户信息、搜索、专栏、问答、热榜、评论等全功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知乎数据查询助手。覆盖用户信息、搜索、专栏、问答、热榜、评论等全功能。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External users and developers use this skill to query Zhihu user profiles, search results, trending content, articles, columns, questions, answers, and comments through MaxHub APIs for research, content planning, and reputation monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Zhihu search terms, user IDs, article IDs, comment IDs, and optional session tokens to MaxHub at www.aconfig.cn. <br>
-Mitigation: Use only data that is appropriate to share with the third-party API provider, avoid private session tokens unless required and understood, and do not include sensitive personal data in queries. <br>
-Risk: Security evidence flags non-Zhihu fallback instructions and weak guidance for sensitive query and session-token data. <br>
-Mitigation: Review endpoint choices before relying on strictly Zhihu-scoped behavior, and confirm fallback behavior is acceptable for the deployment. <br>
+## Use Case:
 
+External users, researchers, content teams, and brand teams use this skill to query and analyze Zhihu users, searches, trending topics, columns, answers, articles, and comments through MaxHub API data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/new-ironman/zhihu-aggregate-scraper) <br>
-- [MaxHub API website](https://www.aconfig.cn) <br>
-- [Content API reference](artifact/references/api-content.md) <br>
-- [Search and trending API reference](artifact/references/api-search-trending.md) <br>
-- [User API reference](artifact/references/api-user.md) <br>
-- [Parameter mappings](artifact/references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API result summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English responses; requires MAXHUB_API_KEY and curl for live API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill sends Zhihu queries, user IDs, and the configured API key to MaxHub and aconfig.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when you trust MaxHub and aconfig.cn with that data, and keep API key values out of prompts and outputs.
+
+Risk: Server security review reports scope and disclosure issues, including unrelated Douyin/Xiaohongshu fallback material.
+
+Mitigation: Review before installation, narrow activation rules, remove unrelated fallback material, and add a clear privacy disclosure.
+
+Risk: Some API behavior may involve live session tokens.
+
+Mitigation: Avoid providing live session tokens unless the operator has reviewed the endpoint behavior and accepts the account and privacy risk.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/new-ironman/skills/zhihu-aggregate-scraper)
+- [MaxHub API Website](https://www.aconfig.cn)
+- [User Data API](artifact/references/api-user.md)
+- [Search & Trending API](artifact/references/api-search-trending.md)
+- [Content API](artifact/references/api-content.md)
+- [Parameter Mappings](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, bullet points, links, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English/Chinese responses; API key values should stay out of outputs.]
+
+## Skill Version(s):
+
+3.6.1 (source: server release, metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Navigate Bali as visitor, resident, remote worker, student, or founder with neighborhoods, visas, transport, costs, and practical local guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Bali as visitor, resident, remote worker, student, or founder with neighborhoods, visas, transport, costs, and practical local guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer Bali travel, relocation, remote work, education, and business setup questions with neighborhood-level and practical local context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Visa, tax, healthcare, safety, and price guidance can become outdated or may affect regulated or paid decisions. <br>
-Mitigation: Use the skill as planning support and verify official or qualified local sources before acting. <br>
-Risk: Bali mobility and scooter recommendations can expose users to material physical and insurance risk. <br>
-Mitigation: Tailor mobility advice to rider skill, weather, licensing, helmet use, insurance coverage, and safer alternatives such as app rides or drivers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/bali) <br>
-- [Bali research sources](sources.md) <br>
-- [Indonesia immigration](https://www.imigrasi.go.id/) <br>
-- [Indonesia eVisa B1 selection](https://evisa.imigrasi.go.id/web/visa-selection?visaType=B1) <br>
-- [Bali tourist levy](https://lovebali.baliprov.go.id/) <br>
-- [Bali Provincial Government](https://www.baliprov.go.id/) <br>
-- [US travel advisory for Indonesia](https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/indonesia-travel-advisory.html) <br>
-- [Denpasar cost of living benchmark](https://www.numbeo.com/cost-of-living/in/Denpasar) <br>
+## Use Case:
 
+External users use this skill for Bali travel, relocation, remote work, education, and business setup questions. It helps agents provide practical, neighborhood-aware guidance with legal, cultural, cost, transport, safety, and source-checking context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, persistence, or hidden authority requests; guidance should be checked against official sources for legal, medical, immigration, safety, tax, and paid decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Visa, tax, tourist levy, legal, and business setup details can change and may affect travel spending or compliance decisions.
+
+Mitigation: Have the agent re-check official Indonesian and Bali sources before users spend money, book travel, extend a stay, or make legal or business decisions.
+
+Risk: Cost, housing, transport, and climate guidance may become stale or vary significantly by neighborhood and season.
+
+Mitigation: Use dated ranges, confirm current local prices, and validate neighborhood fit before committing to bookings, leases, or long-stay plans.
+
+Risk: Scooter use, road conditions, drugs, overstay, and immigration misuse carry material safety or legal exposure.
+
+Mitigation: Preserve the skill's safety posture: recommend license, insurance, helmet, sobriety, official-source checks, and professional local advice for high-stakes situations.
+
+## Reference(s):
+
+- [Bali skill page](https://clawhub.ai/ivangdavila/skills/bali)
+- [Skill homepage](https://clawic.com/skills/bali)
+- [Bali Research Sources](sources.md)
+- [Indonesia immigration](https://www.imigrasi.go.id/)
+- [eVisa visa selection](https://evisa.imigrasi.go.id/web/visa-selection?visaType=B1)
+- [Bali tourist levy](https://lovebali.baliprov.go.id/)
+- [US Indonesia travel advisory](https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/indonesia-travel-advisory.html)
+- [Australia Indonesia travel advice](https://www.smartraveller.gov.au/destinations/asia/indonesia)
+- [UK Indonesia foreign travel advice](https://www.gov.uk/foreign-travel-advice/indonesia)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown prose with tables, checklists, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, credential handling, persistence, or destructive behavior was found in the inspected artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

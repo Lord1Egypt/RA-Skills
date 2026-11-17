@@ -1,41 +1,54 @@
-## Description: <br>
-查询大众点评餐厅信息，包括餐厅评分、人均消费、地址、菜系或区域推荐，以及附近美食推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询大众点评餐厅信息，包括评分、人均消费、地址、菜系或区域推荐，并提示使用城市 URL/ID 处理定位问题。
 
-## Publisher: <br>
-[newaiguy](https://clawhub.ai/user/newaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newaiguy](https://clawhub.ai/user/newaiguy)
 
-## Use Case: <br>
-External users use this skill to guide an agent through browser-based Dianping restaurant lookup workflows, including searches by restaurant name, cuisine, city, and area. The skill helps collect restaurant cards with ratings, average spend, address, highlights, recommended dishes, and review summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require use of an authenticated Dianping browser session, including phone or SMS verification if the user is not logged in. <br>
-Mitigation: Only enter a phone number or SMS verification code when you intentionally want the agent to use that Dianping account for the lookup. <br>
-Risk: Restaurant search results can depend on city URL, city ID, account location, and dynamically loaded page content. <br>
-Mitigation: Use the city-specific Dianping URL or explicit city search terms, then review extracted restaurant details against the visible page before relying on them. <br>
+## Use Case:
 
+External users can use this skill to guide an agent through Dianping restaurant searches by name, cuisine, area, or nearby recommendations, then summarize restaurant cards with ratings, average spend, addresses, highlights, and review snippets.
 
-## Reference(s): <br>
-- [OpenClaw大众点评 ClawHub release](https://clawhub.ai/newaiguy/openclaw-dianping) <br>
-- [Dianping Hangzhou](https://www.dianping.com/hangzhou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text restaurant lookup results and browser workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: If the user is logged in, restaurant searches and page views may use the user's Dianping session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when browser-based Dianping searches are intended, and have the user enter any phone or SMS verification themselves.
+
+Risk: Restaurant details depend on live Dianping pages and may vary by city URL, city ID, account location, or page loading state.
+
+Mitigation: Confirm the target city in the URL or query, review extracted restaurant details before relying on them, and scroll when needed to load complete results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/newaiguy/skills/openclaw-dianping)
+- [Dianping Hangzhou](https://www.dianping.com/hangzhou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries with restaurant details and browser navigation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on live Dianping page content, login state, city URL or city ID, and user-entered SMS verification when required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

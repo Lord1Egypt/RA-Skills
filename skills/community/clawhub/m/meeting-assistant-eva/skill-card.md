@@ -1,52 +1,74 @@
-## Description: <br>
-Meeting Assistant joins Google Meet, Zoom, or Teams meetings as an AI participant to capture audio and chat, provide real-time transcription, answer meeting-chat questions, and generate meeting summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Assistant lets an agent join supported online meetings, monitor chat and transcripts, answer participant questions, and produce meeting notes or summaries.
 
-## Publisher: <br>
-[zeron-G](https://clawhub.ai/user/zeron-G) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeron-g](https://clawhub.ai/user/zeron-g)
 
-## Use Case: <br>
-Developers and meeting operators use this skill to let an agent join supported remote meetings, monitor transcript and chat activity, send AI-assisted replies, and produce meeting notes. It also includes a medical-assistant mode for summarizing and explaining medical consultations, which requires human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records, transcribes, analyzes, and stores sensitive meeting content. <br>
-Mitigation: Use only with explicit participant consent, disable recording or transcription when it is not needed, and define retention and deletion rules for recordings, transcripts, screenshots, logs, and summaries. <br>
-Risk: Bundled configuration and documentation include live-looking tokens or credentials. <br>
-Mitigation: Replace and rotate all bundled tokens and secrets before use, and keep production credentials outside the skill package. <br>
-Risk: Local services and meeting-bot APIs can capture or post broader meeting content than users expect. <br>
-Mitigation: Restrict local service ports, limit API access to trusted users, and review chat-posting behavior before joining real meetings. <br>
-Risk: Medical mode can generate live explanations or summaries in a high-stakes context. <br>
-Mitigation: Use medical mode only as an assistive note-taking workflow and require review by a qualified human before acting on medical content. <br>
+## Use Case:
 
+Developers and meeting participants use this skill to run an AI meeting assistant that can join a meeting, monitor conversation, respond through meeting chat, capture transcripts, and generate summaries. It also includes a medical assistant mode for consultation support where appropriate privacy and compliance controls are in place.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zeron-G/meeting-assistant-eva) <br>
-- [Developer Documentation](docs/README.md) <br>
-- [Architecture Overview](docs/architecture.md) <br>
-- [Setup Guide](docs/setup.md) <br>
-- [Agent Usage Guide](docs/agent-usage.md) <br>
-- [API Reference](docs/api-reference.md) <br>
-- [Troubleshooting Guide](docs/troubleshooting.md) <br>
-- [Integration Guide](references/integration-guide.md) <br>
-- [Medical Terms Guide](references/medical-terms-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Meeting chat messages, JSON transcripts and logs, screenshots, audio recordings, and Markdown summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive meeting content and should be retained only under an explicit retention and deletion policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled reusable-looking credentials or tokens may expose meeting services or external APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all bundled tokens and secrets before installation, rotate any values that may have been used, and keep credentials in environment-specific secret storage.
+
+Risk: Meeting services exposed broadly can allow unintended access to bot controls, transcripts, chats, or recordings.
+
+Mitigation: Bind services to localhost or an isolated Docker network and restrict access to trusted operators.
+
+Risk: Recordings, screenshots, transcripts, summaries, and Docker volumes can contain sensitive personal or business information.
+
+Mitigation: Obtain participant consent and define retention, encryption, storage, and deletion rules before running the assistant.
+
+Risk: Automatic chat replies can send inappropriate, inaccurate, or sensitive responses into live meetings.
+
+Mitigation: Disable or review automatic replies for sensitive meetings and require human review where mistakes would have material impact.
+
+Risk: Medical assistant mode may process protected health information or be mistaken for clinical advice.
+
+Mitigation: Use medical mode only in environments with appropriate privacy and compliance controls, and keep outputs informational rather than a substitute for professional judgment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zeron-g/skills/meeting-assistant-eva)
+- [Publisher Profile](https://clawhub.ai/user/zeron-g)
+- [Developer Documentation](docs/README.md)
+- [Setup Guide](docs/setup.md)
+- [Agent Usage Guide](docs/agent-usage.md)
+- [API Reference](docs/api-reference.md)
+- [Architecture](docs/architecture.md)
+- [Troubleshooting Guide](docs/troubleshooting.md)
+- [Integration Guide](references/integration-guide.md)
+- [Medical Terms Guide](references/medical-terms-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Meeting chat responses, transcript text, JSON logs, Markdown summaries, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local recordings, screenshots, transcript logs, suggestion logs, and meeting summaries during operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

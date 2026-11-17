@@ -1,47 +1,60 @@
-## Description: <br>
-Inkwell bootstraps a three-layer OpenClaw memory system with PARA knowledge files, QMD search setup, daily consolidation, transcript verification, and sign-off workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inkwell bootstraps a three-layer OpenClaw memory system with PARA Markdown structure, QMD search guidance, daily consolidation, transcript verification, and sign-off workflows.
 
-## Publisher: <br>
-[davidkim01](https://clawhub.ai/user/davidkim01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidkim01](https://clawhub.ai/user/davidkim01)
 
-## Use Case: <br>
-Developers and OpenClaw operators use Inkwell to initialize a persistent local memory workspace, organize knowledge with PARA, configure QMD search, and add optional daily consolidation, transcript verification, and sign-off routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory, transcript storage, and session indexing can retain sensitive conversations or operational details. <br>
-Mitigation: Decide what data may be captured before enabling automation, avoid storing secrets, keep transcripts local and gitignored, and periodically delete old transcript and memory files. <br>
-Risk: Daily consolidation can promote incorrect or overbroad session details into long-term memory. <br>
-Mitigation: Review the cron prompt and memory updates, restrict consolidation scope where possible, and correct or remove inaccurate entries during routine maintenance. <br>
-Risk: The QMD setup guide includes a curl-to-bash installer path for Bun. <br>
-Mitigation: Inspect installer commands before use or replace them with a verified package manager or organization-approved installation method. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to initialize a local agent memory workspace, organize knowledge with PARA Markdown files, configure searchable memory, and add optional daily consolidation and sign-off routines.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davidkim01/inkwell) <br>
-- [QMD Setup Guide](references/qmd-setup.md) <br>
-- [Daily Consolidation](references/consolidation.md) <br>
-- [Transcript Verification System](references/transcripts.md) <br>
-- [Sign-Off Routine](references/sign-off.md) <br>
-- [Bun Installer](https://bun.sh/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or guides creation of local memory files, PARA folders, QMD configuration, cron setup, transcript handling, and sign-off routines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Persistent transcript and session indexing can retain sensitive conversations or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep transcript storage opt-in and local, preserve gitignore protections, avoid storing secrets in memory files, and apply a retention limit.
+
+Risk: Scheduled consolidation can write incorrect or sensitive session details into long-term memory.
+
+Mitigation: Configure consolidation to produce reviewable updates, use private delivery channels, and review memory changes before relying on them.
+
+Risk: Third-party installation commands for QMD can introduce supply-chain risk.
+
+Mitigation: Review the skill before installation and replace broad install commands with pinned, verified installation methods where possible.
+
+## Reference(s):
+
+- [QMD Setup Guide](references/qmd-setup.md)
+- [Daily Consolidation](references/consolidation.md)
+- [Transcript Verification System](references/transcripts.md)
+- [Sign-Off Routine](references/sign-off.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or proposes local Markdown memory files and optional scheduled consolidation and transcript workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Rename image datasets and corresponding annotation files with custom patterns, prefixes, suffixes, and sequential numbering, including preview support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rename image datasets and matching annotation files with custom patterns, prefixes, suffixes, sequential numbering, preview mode, and undo support.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers and dataset curators use this skill to rename image datasets and matching annotation files before training, labeling, or organizing computer vision assets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can rename local dataset files in place and can overwrite files when force mode is used. <br>
-Mitigation: Run preview first, keep a separate backup, review target names for collisions, and avoid force mode unless overwrites are intentional. <br>
-Risk: The release advertises undo support, but the security evidence says the script does not create a restore backup before renaming. <br>
-Mitigation: Do not rely on restore until the tool is fixed to create backups; maintain external backups or versioned copies before applying changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Batch Rename page](https://clawhub.ai/Mingo-318/batch-rename) <br>
-- [Publisher profile](https://clawhub.ai/user/Mingo-318) <br>
+## Use Case:
 
+Developers and dataset maintainers use this skill to rename image datasets and corresponding annotation files with sequential numbers, prefixes, suffixes, or custom patterns. It is suited to dataset cleanup workflows where users need to preview filename changes before applying them.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may lead to local in-place file renames; preview mode is available before applying changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rename operations can move files in ways that are hard to reverse if the user applies changes without checking the preview.
+
+Mitigation: Use preview mode first and review proposed filename changes before confirming the rename.
+
+Risk: Using --force can overwrite existing files in the target image or annotation directories.
+
+Mitigation: Avoid --force unless an independent backup exists and filename conflicts have been checked.
+
+Risk: The restore command depends on a .rename_backup.json file in the target directory, which can be unsafe if the directory or backup manifest is untrusted.
+
+Mitigation: Run restore only in trusted directories with a backup manifest created and validated for that dataset.
+
+## Reference(s):
+
+- [Batch Rename ClawHub page](https://clawhub.ai/mingo-318/skills/batch-rename)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes preview-first usage guidance and cautions for restore and overwrite operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Analyze videos with Google Gemini API for summaries, Q&A, timestamped transcription, scene and timeline detection, clipping, FPS control, multi-video comparison, and YouTube URL analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze videos with Google Gemini API (summaries, Q&A, transcription with timestamps + visual context, scene/timeline detection, video clipping, FPS control, multi-video comparison, and YouTube URL analysis).
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and video-analysis practitioners use this skill to guide Gemini API workflows that summarize videos, answer timestamped questions, produce transcripts, detect scenes, compare videos, and analyze public YouTube URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may send selected videos, prompts, clips, or YouTube URLs to Google Gemini and requires handling a Gemini API key. <br>
-Mitigation: Use only authorized media, protect GEMINI_API_KEY, and review Google privacy, retention, and billing terms before use. <br>
-Risk: Generated summaries, transcripts, timestamps, or event timelines may be incomplete or inaccurate for long, clipped, low-FPS, or visually dense videos. <br>
-Mitigation: Review outputs against the source media, request strict MM:SS formatting, chunk long videos when needed, and validate important events before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Google Gemini video analysis workflows for local video files and public YouTube URLs, including summaries, timestamped Q&A, transcription, scene timelines, clipping, FPS control, and structured JSON output.
 
-## Reference(s): <br>
-- [Gemini Video API Docs](https://ai.google.dev/gemini-api/docs/video-understanding) <br>
-- [Google AI Studio API Key](https://aistudio.google.com/apikey) <br>
-- [Gemini API Pricing](https://ai.google.dev/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with Python code examples and a JSON output schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key and may process user-selected video files, clips, prompts, or public YouTube URLs through Google Gemini.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Video files or public YouTube URLs analyzed with this skill are sent to Google Gemini for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized media and avoid private, regulated, confidential, or third-party content unless provider retention and privacy terms have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/pedestrian-traffic-counting-gemini-video-understanding)
+- [Google Gemini Video API Docs](https://ai.google.dev/gemini-api/docs/video-understanding)
+- [Google AI Studio API Key](https://aistudio.google.com/apikey)
+- [Google Gemini API Pricing](https://ai.google.dev/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets and optional structured JSON output schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include warnings about clipping, public YouTube availability, timestamp uncertainty, rate limits, or model context limits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact version history states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

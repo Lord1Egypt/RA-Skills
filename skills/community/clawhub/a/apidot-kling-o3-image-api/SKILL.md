@@ -20,6 +20,15 @@ This skill is for routing Kling O3 Image questions to the right APIDot docs, mod
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Kling O3 Image model page: https://apidot.ai/models/kling-o3-image
+- Read Kling O3 Image API docs: https://apidot.ai/docs/kling-o3-image
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

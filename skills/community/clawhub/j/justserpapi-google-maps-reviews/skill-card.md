@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/v1/google/maps/reviews for Google SERP Maps Reviews through Just Serp API with data_id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/maps/reviews for Google SERP Maps Reviews through Just Serp API with data_id.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Google Maps reviews through Just Serp API for reputation analysis and review monitoring. It requires a Google Maps location data_id and can apply optional language, sorting, pagination, result count, and topic filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, data_id values, filters, and the configured API key are sent to the third-party Just Serp API service. <br>
-Mitigation: Confirm JustSerpAPI is the intended provider, keep the key in JUST_SERP_API_KEY, and avoid private or regulated search inputs unless the provider and account terms are acceptable. <br>
-Risk: The external API can fail because of invalid credentials, insufficient credits, quota exhaustion, upstream service errors, or network issues. <br>
-Mitigation: Check the returned status and backend payload, preserve the operation ID for troubleshooting, and handle authentication or quota errors before retrying. <br>
+## Use Case:
 
+External developers and agents use this skill to fetch Google Maps reviews from Just Serp API for a specific data_id. It supports reputation analysis and review monitoring by summarizing ratings and reviewer metadata before returning raw JSON.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justserpapi/justserpapi-google-maps-reviews) <br>
-- [Just Serp API Homepage](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_reviews&utm_content=project_link) <br>
-- [Just Serp API Documentation](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_reviews&utm_content=project_link) <br>
-- [Just Serp API Base URL](https://api.justserpapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and sends endpoint parameters to Just Serp API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill requires a Just Serp API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide JUST_SERP_API_KEY through the environment or --api-key and avoid pasting key values into chat messages, screenshots, or logs.
+
+Risk: Responses can include third-party reviews and reviewer metadata.
+
+Mitigation: Treat returned review data as third-party API data and avoid unnecessary logging or sharing.
+
+## Reference(s):
+
+- [Just Serp API Project Site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_reviews&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_maps_reviews&utm_content=project_link)
+- [Google SERP Maps Reviews Operations](generated/operations.md)
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-maps-reviews)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with raw JSON and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and data_id; returned data may include third-party reviews and reviewer metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

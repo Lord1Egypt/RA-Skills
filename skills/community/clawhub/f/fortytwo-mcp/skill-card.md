@@ -1,48 +1,67 @@
-## Description: <br>
-Fortytwo MCP lets an agent query Fortytwo Prime, a paid collective multi-agent inference service, for high-stakes or complex questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fortytwo MCP helps an agent query Fortytwo Prime, a paid collective multi-agent inference service, for high-stakes, contested, or cross-domain questions.
 
-## Publisher: <br>
-[inikitin](https://clawhub.ai/user/inikitin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inikitin](https://clawhub.ai/user/inikitin)
 
-## Use Case: <br>
-Developers and agent users use this skill to route explicit or confirmed paid requests to Fortytwo Prime and return the full answer. It also guides wallet setup, preflight checks, session reuse, and troubleshooting for x402 payments using USDC on Base or Monad. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local EVM private key to authorize USDC escrow payments. <br>
-Mitigation: Use a dedicated low-value wallet, keep the key in the shell environment rather than chat, avoid shared machines and exposed shell histories, and run preflight before paid calls. <br>
-Risk: Paid calls may reserve escrow funds without strong in-code spend controls. <br>
-Mitigation: Confirm the selected network and escrow amount before running the query script, and use the service only when the user has explicitly requested or confirmed a paid Fortytwo Prime call. <br>
-Risk: A saved billing session can be reused until it expires or the budget is exhausted. <br>
-Mitigation: Delete /tmp/.fortytwo_session when finished, use --no-session when a new payment boundary is desired, and include needed context in each query because sessions are billing-only. <br>
+## Use Case:
 
+Developers and agent users use this skill to route paid questions to Fortytwo Prime when a user explicitly asks for Fortytwo, needs deeper review, or asks a contested or multi-domain question. The skill also guides wallet setup, payment preflight checks, session reuse, troubleshooting, and optional streaming calls.
 
-## Reference(s): <br>
-- [Fortytwo Prime](https://platform.fortytwo.network/prime) <br>
-- [ClawHub Skill Page](https://clawhub.ai/inikitin/fortytwo-mcp) <br>
-- [Setup & Wallet Configuration](references/setup.md) <br>
-- [x402 Payment](references/payment.md) <br>
-- [Session Lifecycle](references/session.md) <br>
-- [MCP Streaming](references/streaming.md) <br>
-- [x402](https://www.x402.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text answers with Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the full Fortytwo Prime answer when paid calls succeed; diagnostics are separate from answer text, and follow-up calls may reuse a saved billing session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Paid calls sign on-chain payment authorizations without sufficient local spending controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, require explicit confirmation before paid calls, and add local spending limits plus expected token and recipient validation before broader use.
+
+Risk: Reusable paid-session state is stored insecurely.
+
+Mitigation: Avoid shared hosts for paid sessions, remove saved session state after use, and store session identifiers in a permission-restricted location.
+
+Risk: User questions are sent to Fortytwo for inference.
+
+Mitigation: Do not submit confidential, regulated, or sensitive data unless the user and deployment owner have approved that data flow.
+
+Risk: Runtime dependencies are not pinned.
+
+Mitigation: Pin and review dependency versions for eth-account and web3 before production deployment.
+
+## Reference(s):
+
+- [Fortytwo Prime](https://platform.fortytwo.network/prime)
+- [ClawHub skill page](https://clawhub.ai/inikitin/skills/fortytwo-mcp)
+- [Setup and wallet configuration](references/setup.md)
+- [x402 payment signing](references/payment.md)
+- [Session lifecycle](references/session.md)
+- [MCP streaming via progressToken](references/streaming.md)
+- [x402](https://www.x402.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus plain-text Fortytwo Prime answers returned by the query script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stderr diagnostics, a saved session identifier, and incremental text deltas when the optional SSE flow is used.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

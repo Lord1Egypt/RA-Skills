@@ -1,0 +1,8 @@
+interface:
+  display_name: "Diagram Generator"
+  short_description: "Generate polished standalone HTML/SVG technical diagrams"
+  brand_color: "#60A5FA"
+  default_prompt: "Use the diagram-generator skill to create or revise a standalone HTML technical diagram from the provided system description or existing artifact. Read the shared resources first, inspect the current diagram before editing, choose the correct lens and output mode, preserve unrelated content when revising, replace placeholders with concrete content or clearly labeled assumptions, and run the final audit before returning the file."
+
+policy:
+  allow_implicit_invocation: true

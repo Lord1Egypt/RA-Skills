@@ -1,42 +1,58 @@
-## Description: <br>
-AWS VPC networking audit covering CIDR architecture, Security Group and NACL rule analysis, Transit Gateway connectivity, VPC Flow Log forensics, Route Table validation, and ENI/EIP resource optimization using read-only AWS CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AWS VPC networking audit covering CIDR architecture, Security Group and NACL rule analysis, Transit Gateway connectivity, VPC Flow Log forensics, Route Table validation, and ENI/EIP resource optimization using read-only AWS CLI commands.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Developers, cloud engineers, and security reviewers use this skill to audit AWS VPC architecture, security filtering, Transit Gateway and peering connectivity, VPC Flow Logs, route tables, and unused networking resources with read-only AWS CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to read sensitive AWS networking configuration and VPC Flow Log data. <br>
-Mitigation: Use a dedicated least-privilege read-only role and restrict account, region, VPC, and log-query time ranges. <br>
-Risk: The release declares an AWS networking MCP dependency. <br>
-Mitigation: Review and approve the declared MCP dependency before use. <br>
+## Use Case:
 
+Developers, cloud engineers, security teams, and auditors use this skill to review AWS VPC architecture, security filtering, connectivity, VPC Flow Logs, route tables, and unused networking resources with read-only AWS CLI commands.
 
-## Reference(s): <br>
-- [AWS CLI Reference - VPC Networking Audit Commands](references/cli-reference.md) <br>
-- [AWS VPC Architecture Reference](references/vpc-architecture.md) <br>
-- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/aws-networking-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit guidance with inline read-only AWS CLI commands and a findings report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses sensitive but disclosed read-only AWS networking and Flow Log queries; scope should be bounded by account, region, VPC, and time range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: AWS credentials or assumed roles could expose infrastructure beyond the intended audit scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only with intentionally read-only permissions scoped to the accounts, regions, VPCs, and log groups being audited.
+
+Risk: VPC Flow Logs and network inventory can reveal sensitive infrastructure topology and traffic patterns.
+
+Mitigation: Treat generated audit notes and command output as sensitive infrastructure data and limit storage and sharing to authorized reviewers.
+
+Risk: Audit findings may lead to remediation actions that change AWS networking behavior outside the skill's read-only workflow.
+
+Mitigation: Review proposed remediation separately and apply changes through normal change-control or infrastructure-as-code review before modifying AWS resources.
+
+## Reference(s):
+
+- [AWS CLI Reference - VPC Networking Audit Commands](references/cli-reference.md)
+- [AWS VPC Architecture Reference](references/vpc-architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and structured audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only AWS CLI command guidance and report templates for scoped VPC networking audits.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

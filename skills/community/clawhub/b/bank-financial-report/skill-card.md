@@ -1,44 +1,54 @@
-## Description: <br>
-Provides bank analysts and credit officers with financial statement analysis covering three-statement review, ratio analysis, DuPont decomposition, Altman Z-Score, cash-flow quality, peer comparison, and red-flag identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes bank financial statements, including balance sheets, income statements, cash flows, peer comparisons, and potential financial risks.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank analysts, credit officers, investment researchers, and portfolio managers use this skill to review company financial statements, benchmark peers, identify financial red flags, and draft preliminary credit or investment analysis. Outputs should be treated as analytical support rather than audit assurance, legal advice, final lending approval, or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis output could be mistaken for audit assurance, legal or compliance advice, final lending approval, or investment advice. <br>
-Mitigation: Treat outputs as preliminary analysis, independently verify source data, and route final decisions through qualified finance, lending, legal, or audit reviewers. <br>
-Risk: Users may provide confidential company financials during analysis. <br>
-Mitigation: Supervise use with sensitive data and follow organizational confidentiality, data handling, and retention policies. <br>
-Risk: Broad finance triggers may activate the skill for requests beyond its intended financial statement review scope. <br>
-Mitigation: Use the skill for conversational financial statement review only and do not rely on it for automatic actions or unsupervised decisions. <br>
+## Use Case:
 
+Bank analysts, investment researchers, credit officers, and portfolio managers use the skill to examine financial statements, calculate ratios, compare peers, and identify potential risks. Its reports support analysis; they are not audit opinions or final lending or investment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bank-financial-report) <br>
-- [README](README.md) <br>
-- [Skill source](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style financial analysis reports, scorecards, tables, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conversational output based on user-provided financial data; no automatic actions, data access, persistence, or hidden code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security review was partial, so its benign verdict does not establish that all issues were detected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill source and resolve the noted manifest and local-reference review gaps before installation.
+
+Risk: Incomplete, inaccurate, or outdated financial data can lead to misleading analysis, risk flags, or recommendations.
+
+Mitigation: Verify the data, sources, and dates independently; use the output as analysis support rather than as an audit opinion or final lending or investment decision.
+
+## Reference(s):
+
+- [Source repository (server-resolved provenance)](https://github.com/gechengling/bank-financial-report)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/bank-financial-report)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Narrative analysis and Markdown tables or report sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis is based on supplied financial data and stated assumptions.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

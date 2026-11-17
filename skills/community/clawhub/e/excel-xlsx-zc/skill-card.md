@@ -1,41 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Excel Xlsx Zc helps agents create, inspect, and edit Microsoft Excel workbooks and spreadsheet files with attention to formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Developers, analysts, and other spreadsheet authors use this skill when an agent needs to create, inspect, or edit Excel workbooks while preserving formulas, dates, data types, formatting, workbook structure, and recalculation reliability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet edits can introduce incorrect formulas, formatting changes, stale recalculation results, or workbook-structure regressions. <br>
-Mitigation: Work on copies or backups and review formula, formatting, and recalculation changes before relying on the output. <br>
-Risk: Important workbook behavior can depend on hidden sheets, named ranges, merged cells, validations, macros, or viewer-specific Excel compatibility. <br>
-Mitigation: Inspect workbook structure and compatibility-sensitive features before delivery, especially for important or template-based workbooks. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to guide agents through reliable creation, inspection, and editing of Excel workbooks and spreadsheet files when formulas, formatting, workbook structure, or compatibility matter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lean-zhouchao/excel-xlsx-zc) <br>
-- [Skill Homepage](https://clawic.com/skills/excel-xlsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No required external binaries are declared; supports linux, darwin, and win32 according to metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and _meta.json report 1.0.2) <br>
+Risk: Spreadsheet edits can introduce incorrect formulas, stale calculated values, or hidden-sheet and data-validation issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workbook changes before relying on them, especially formulas, hidden sheets, macros, and data validation.
+
+Risk: Macro-enabled or legacy workbook formats may carry behavior that is not visible from cell values alone.
+
+Mitigation: Inspect macros, workbook structure, and compatibility-sensitive features before delivering or trusting modified files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/excel-xlsx-zc)
+- [Skill homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional code, formula, configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook-editing plans, spreadsheet formulas, validation notes, and file-change guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

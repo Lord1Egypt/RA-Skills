@@ -1,41 +1,58 @@
-## Description: <br>
-AI-powered fashion model pose transfer tool. Generate pose variations of a model/product image using reference pose images while keeping clothing and background consistent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered fashion model pose transfer tool. Generate pose variations of a model/product image using reference pose images while keeping clothing and background consistent.
 
-## Publisher: <br>
-[3cpj](https://clawhub.ai/user/3cpj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3cpj](https://clawhub.ai/user/3cpj)
 
-## Use Case: <br>
-External developers and fashion-commerce teams use this skill to generate model or product image pose variations from local source and reference pose images through fal.ai, saving image outputs and a JSON result summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads selected original and reference images to fal.ai for processing. <br>
-Mitigation: Use a dedicated fal.ai API key with spending limits, and avoid uploading confidential, regulated, or unreleased commercial images unless fal.ai processing is approved. <br>
-Risk: The downloader disables normal HTTPS certificate verification when saving generated outputs. <br>
-Mitigation: Fix the downloader to use standard HTTPS certificate verification before relying on saved outputs. <br>
+## Use Case:
 
+Developers and content production teams use this skill to generate fashion model pose variations from an original model or product image and one to four reference pose images. It can keep the original background or request a white studio background while preserving clothing and accessories.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/3cpj/pose-transfer) <br>
-- [fal.ai API keys](https://www.fal.ai/dashboard/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Command-line output with generated JPEG files and a generation_results.json manifest] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FAL_KEY, Python 3.8+, fal-client, one original image, and one to four pose reference images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated image downloads disable TLS certificate verification, which can expose outputs to tampering in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a constrained virtual environment and prefer a fixed release that restores standard TLS verification before production use.
+
+Risk: Input model and pose images are sent to fal.ai for remote image generation.
+
+Mitigation: Use only images approved for third-party processing and avoid confidential or sensitive imagery unless the external service terms and controls are acceptable.
+
+Risk: The dependency requirement is unpinned beyond a minimum fal-client version.
+
+Mitigation: Pin and review dependencies in the deployment environment before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3cpj/skills/pose-transfer)
+- [fal.ai API key dashboard](https://www.fal.ai/dashboard/keys)
+
+## Skill Output:
+
+**Output Type(s):** [Images, JSON, Shell commands, Guidance]
+
+**Output Format:** [Generated JPEG files, generation_results.json, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FAL_KEY and sends source and reference images to fal.ai for generation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

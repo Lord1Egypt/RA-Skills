@@ -1,42 +1,55 @@
-## Description: <br>
-Benchmark Email (benchmarkemail.com). Use this skill for ANY Benchmark Email request - searching and reading data. Whenever a task involves Benchmark Email, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Benchmark Email account summaries, contact lists, and contact details through the connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent read Benchmark Email account, contact list, and contact details through an OOMOL-connected Benchmark Email account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected Benchmark Email account and can read account, contact, and list information. <br>
-Mitigation: Install only when agents should have read access to that Benchmark Email data through the user's OOMOL connection. <br>
-Risk: First-time setup may require installing the oo CLI or signing in before connector commands can run. <br>
-Mitigation: Run installation, login, or connection steps only when a command fails with the matching setup or authentication error. <br>
+## Use Case:
 
+External users can use this skill to retrieve account summaries and search or inspect Benchmark Email contact lists and contact details through their connected account.
 
-## Reference(s): <br>
-- [Benchmark Email homepage](https://www.benchmarkemail.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing guidance for read-only Benchmark Email connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup executes downloaded code without integrity verification or a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and authorize CLI installation separately, including automatic installation and synchronization of agent skills; prefer a verified installation.
+
+Risk: The connected OOMOL account can access Benchmark Email contact data.
+
+Mitigation: Connect only the intended Benchmark Email account.
+
+## Reference(s):
+
+- [Benchmark Email](https://www.benchmarkemail.com)
+- [Benchmark API Getting Started Guide](https://www.benchmarkemail.com/download/Benchmark-API-Getting-Started-Guide.pdf)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured JSON account and contact data, with concise textual guidance when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only account and contact information.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

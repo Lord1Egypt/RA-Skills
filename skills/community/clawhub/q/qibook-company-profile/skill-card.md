@@ -1,45 +1,58 @@
-## Description: <br>
-Queries QiBook for Chinese company registration details and person-company relationships, then returns Chinese Markdown results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries QiBook for Chinese business-registration details and person-company relationships, then returns Chinese Markdown results for company, entity, and personnel lookups.
 
-## Publisher: <br>
-[chinadaas-department](https://clawhub.ai/user/chinadaas-department) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinadaas-department](https://clawhub.ai/user/chinadaas-department)
 
-## Use Case: <br>
-External users and agents use this skill to identify companies and retrieve Chinese business registration, shareholder, executive, investment, legal representative, and person-affiliation information from QiBook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company names, person names, and optional province information are sent to the configured QiBook API endpoint. <br>
-Mitigation: Install and invoke the skill only when this external lookup is intended, and avoid submitting data that should not be shared with the QiBook service. <br>
-Risk: A misconfigured QIBOOK_BASE_URL could direct lookup requests and credentials to an untrusted endpoint. <br>
-Mitigation: Set QIBOOK_BASE_URL only to the official trusted QiBook endpoint before use. <br>
-Risk: QIBOOK_ACCESS_KEY is an API credential used for lookup requests. <br>
-Mitigation: Store and handle QIBOOK_ACCESS_KEY like other secrets, and do not expose it in prompts, logs, or shared outputs. <br>
-Risk: Casual company, owner, shareholder, executive, legal representative, or person-affiliation requests may trigger the skill. <br>
-Mitigation: Review the user intent before invocation and keep the query scope limited to the requested company, person, or province. <br>
+## Use Case:
 
+External users and business researchers use this skill to look up Chinese company registration records, shareholders, executives, legal representatives, outward investments, and person-to-company associations through the QiBook API.
 
-## Reference(s): <br>
-- [Qibook Company Profile on ClawHub](https://clawhub.ai/chinadaas-department/qibook-company-profile) <br>
-- [QiBook API Access Portal](https://skill.qibook.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Chinese Markdown with tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QIBOOK_ACCESS_KEY and QIBOOK_BASE_URL; uses company name, person name, and optional province inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The skill sends API credentials and user query data to a configurable external base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted QiBook base URL, require HTTPS, and prefer the official host where possible.
+
+Risk: Person-name lookups can disclose or transmit personnel association queries to an external API.
+
+Mitigation: Avoid casual person-name lookups unless the user clearly requests business-registry or personnel-association data.
+
+Risk: The security verdict is suspicious because the network destination is configurable and network scope is not clearly declared.
+
+Mitigation: Review the skill before installation and confirm destination, credential handling, and intended lookup scope before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinadaas-department/skills/qibook-company-profile)
+- [QiBook API credential portal](https://skill.qibook.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown with headings, bullet lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus QIBOOK_ACCESS_KEY and QIBOOK_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

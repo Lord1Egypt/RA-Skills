@@ -1,44 +1,58 @@
-## Description: <br>
-MeetingClaw transcribes uploaded meeting audio with Volcengine speech recognition and generates structured Markdown meeting minutes with summaries, key points, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MeetingClaw transcribes uploaded meeting audio with Volcengine recording recognition and uses OpenClaw to generate structured meeting minutes.
 
-## Publisher: <br>
-[MaginaAa2023](https://clawhub.ai/user/MaginaAa2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maginaaa2023](https://clawhub.ai/user/maginaaa2023)
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this skill to turn meeting recordings into structured minutes, summaries, key points, and follow-up tasks. It is intended for audio files that may be sent to Volcengine and the configured OpenClaw/model provider under the user's data handling policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting audio and transcript content may be sent to Volcengine and the configured OpenClaw/model provider. <br>
-Mitigation: Use this skill only for recordings approved for those processors, and avoid highly confidential or regulated meetings unless policy allows the transfer. <br>
-Risk: API credentials are required for Volcengine services. <br>
-Mitigation: Use limited-purpose API keys and rotate or revoke them according to organizational credential policy. <br>
-Risk: Cleanup behavior can remove saved meeting files from the workspace. <br>
-Mitigation: Keep backups of generated minutes or adjust retention before processing recordings that must be preserved. <br>
+## Use Case:
 
+Employees and teams use this skill to turn authorized meeting recordings into concise Markdown minutes with summaries, key points, and action items. It is intended for audio files that may be sent to Volcengine for transcription and then summarized by OpenClaw.
 
-## Reference(s): <br>
-- [MeetingClaw ClawHub release page](https://clawhub.ai/MaginaAa2023/meeting-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/MaginaAa2023) <br>
-- [Standard mode guide](references/standard_mode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown meeting minutes and local workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Volcengine API credentials and a compatible OpenClaw model provider; supports common audio files and defaults to fast transcription mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill can send readable local audio file paths to Volcengine and OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with recordings you are authorized to process with those services, and avoid passing arbitrary or unrelated local paths.
+
+Risk: The MeetingClaw workspace cleanup behavior may remove older local files beyond what users expect.
+
+Mitigation: Keep unrelated files out of the MeetingClaw workspace and review local retention behavior before running the skill.
+
+Risk: Volcengine credentials are required for transcription.
+
+Mitigation: Use narrowly scoped credentials and rotate or revoke them if they may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maginaaa2023/skills/meeting-claw)
+- [Standard mode guide](references/standard_mode.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown meeting minutes and local saved files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured minutes may include a meeting topic, basic information, summary, key points, action items, and other important notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

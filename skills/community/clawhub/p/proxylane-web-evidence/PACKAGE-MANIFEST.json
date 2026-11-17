@@ -1,0 +1,151 @@
+{
+  "files": [
+    {
+      "bytes": 60,
+      "path": ".gitignore",
+      "sha256": "86ab2cc0c4c46c0a6dc4dd4d64dbee4e0d4048f89a8b7c6b26e4aa311fa1fb79"
+    },
+    {
+      "bytes": 7703,
+      "path": "SKILL.md",
+      "sha256": "4d9850cea1e1ab14f210353db7391196bda3bdb1661cabb2113f049e79ea0c15"
+    },
+    {
+      "bytes": 13274,
+      "path": "examples/fixture-output.json",
+      "sha256": "c5edebaf691c185ee871cafab393214e39e6289e1d482a19559afd673104d2b6"
+    },
+    {
+      "bytes": 511,
+      "path": "examples/google-dom-contract.json",
+      "sha256": "d31dd2200edd8e2464b2bd675522580a731d5fdde027cfe69dcf13e05c8d360e"
+    },
+    {
+      "bytes": 3664,
+      "path": "examples/live-proof-summary.json",
+      "sha256": "e1d9507cd2dd7397191aa75617ce84b5bad264f46cc018d9eb200793051b771e"
+    },
+    {
+      "bytes": 3729,
+      "path": "examples/runtime-smoke.json",
+      "sha256": "ca3a64b23a88270eaf28bd504313273fb74f569029693d0a34cee05a7be94485"
+    },
+    {
+      "bytes": 1277,
+      "path": "examples/test-results.json",
+      "sha256": "23bda5b052e652efa9be84cb8b2c01bd1819801277688c85f508f67bf17f00b6"
+    },
+    {
+      "bytes": 763,
+      "path": "fixtures/google-citations.json",
+      "sha256": "31167cebc64ff3473b3a18a14de45aff441d54f0bac3d58e0234d511484fef55"
+    },
+    {
+      "bytes": 649,
+      "path": "fixtures/price.json",
+      "sha256": "a857577a7d7de999db1731ce85dff93f48c9694e4d3ca7b6ee6183b6870b33ab"
+    },
+    {
+      "bytes": 565,
+      "path": "fixtures/xiaohongshu.json",
+      "sha256": "0bde3122095e2f0e69ba8f10ce39ddad03285a278a44ccc80d1160905da593fe"
+    },
+    {
+      "bytes": 589,
+      "path": "fixtures/youtube-comments.json",
+      "sha256": "f911bad10eea562669d625c8d1bde0949e36b22b7953aeddfb219e0d48b2e34b"
+    },
+    {
+      "bytes": 481,
+      "path": "fixtures/youtube-transcript.json",
+      "sha256": "4f5faea15ec7e933b4cccf6d22c3270dfb73f8e3cfd9ec3e1001a7e86d18bd3f"
+    },
+    {
+      "bytes": 3098,
+      "path": "references/KNOWN_GAPS.md",
+      "sha256": "eaffd94bfd8f4abbb18d7cc06e6b18d301b1575ec8aa0da559e14c5c7bb1844d"
+    },
+    {
+      "bytes": 3737,
+      "path": "references/output-contract.md",
+      "sha256": "40f189dc2df28a5e9c707303d64cc8556bebe880f8c92763e790edef07790048"
+    },
+    {
+      "bytes": 1134,
+      "path": "references/routing-proposal.json",
+      "sha256": "1b24a9fd95155ebbd0d73c0330dcab63cf8ef7417f9820b483fa0d8d5044df4f"
+    },
+    {
+      "bytes": 6309,
+      "path": "references/running.md",
+      "sha256": "fb7d427124c72845e4823c02c92e8c84cf3f6199d9123786536342de0f0e0c49"
+    },
+    {
+      "bytes": 4889,
+      "path": "references/source-modes.md",
+      "sha256": "5d18f8076c97c69fdc891efef4d82665059754a58a679eb4024631cd2cbec252"
+    },
+    {
+      "bytes": 4814,
+      "path": "references/verification.md",
+      "sha256": "34c059ac2d230a1de564bd44fbaca5f0c09ef67da749b9839ea764791c6b8cbc"
+    },
+    {
+      "bytes": 106,
+      "path": "requirements-comments.txt",
+      "sha256": "549a53204f7ce7bae56af116923da8b6b5c3403371802de283e61d5a5e13ba51"
+    },
+    {
+      "bytes": 249,
+      "path": "requirements.txt",
+      "sha256": "75f9e9746d8518b99a35930d6827747a543284f61de218a263d10ce654d688db"
+    },
+    {
+      "bytes": 1576,
+      "path": "routing-eval.jsonl",
+      "sha256": "60573fb9fc909526b149f59918ff21ac44af68bb4bcf53ab252ddbb364a298e8"
+    },
+    {
+      "bytes": 43963,
+      "path": "scripts/collect.py",
+      "sha256": "56055258ffdcc3ba907758f77a606dfd167a2911d35aefb418ab1b78d34b82d2"
+    },
+    {
+      "bytes": 5018,
+      "path": "scripts/package_candidate.py",
+      "sha256": "e85d5966569205e4a2118df3d98c468772d221a72652c977e839bedd3826743d"
+    },
+    {
+      "bytes": 942,
+      "path": "scripts/proxylane-web-evidence.mjs",
+      "sha256": "2b4906b3c617e4a1b9c21c4d035afa7eb7757ccfc7d1841fe1ef5b1627ad08f7"
+    },
+    {
+      "bytes": 896,
+      "path": "scripts/route.py",
+      "sha256": "c3ff2389867818015f360acb2b2e463361391bff86b80587ceff443b76a98603"
+    },
+    {
+      "bytes": 18175,
+      "path": "tests/test_collect.py",
+      "sha256": "f8a92c481c474dee90896cd4b260e06a07cc95a5df9b57c271a7c4c08744de7c"
+    },
+    {
+      "bytes": 10004,
+      "path": "tests/test_integration.py",
+      "sha256": "1b77123d9bc922a1144eaf0dbdf79b492d4ac485643d662fe2f1fa5209f7c44a"
+    },
+    {
+      "bytes": 2417,
+      "path": "tests/test_package.py",
+      "sha256": "ae6d92055e8619fe324c571c57075f957cdf942452de4b92fc53c8803b35392a"
+    },
+    {
+      "bytes": 2530,
+      "path": "tests/test_routing.py",
+      "sha256": "165d9863631ffb6fa82d735a6ab80d498af50eaa4d6c645dd9590f4bdf8d15d2"
+    }
+  ],
+  "schema_version": "1.0",
+  "skill": "proxylane-web-evidence"
+}

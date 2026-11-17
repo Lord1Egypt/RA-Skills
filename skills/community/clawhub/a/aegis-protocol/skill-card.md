@@ -1,42 +1,62 @@
-## Description: <br>
-Self-healing stability monitor for AI agents - 5 core checks + 15 extended checks, auto-recovery, health scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-healing stability monitor for AI agents with core and extended checks, auto-recovery, and health scoring.
 
-## Publisher: <br>
-[ankechenlab-node](https://clawhub.ai/user/ankechenlab-node) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ankechenlab-node](https://clawhub.ai/user/ankechenlab-node)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor AI agent and host stability, inspect service health, calculate health scores, and initiate configured recovery actions when sessions, services, memory, disk, or context checks fail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically kill sessions, restart services, and compact context when recovery actions are invoked. <br>
-Mitigation: Run `status` or `check` before `heal`, review the source and configuration, and validate thresholds and whitelists before enabling unattended recovery on production systems. <br>
-Risk: The skill inspects broad host state and full mode can make external network probes. <br>
-Mitigation: Use standard checks unless full diagnostics are required, review configured targets, and confirm that external probes are acceptable for the deployment environment. <br>
-Risk: The server security verdict is suspicious despite no specific risk findings. <br>
-Mitigation: Treat the skill as requiring additional review before deployment and follow the server guidance for source review and staged execution. <br>
+## Use Case:
 
+Developers, operators, and AI agent maintainers use this skill to monitor OpenClaw host and session health, generate health summaries, and perform local recovery actions such as restarting services, killing stuck sessions, or compacting context.
 
-## Reference(s): <br>
-- [Aegis Protocol ClawHub listing](https://clawhub.ai/ankechenlab-node/aegis-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented status output with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local configuration and log files when invoked for initialization, checks, or recovery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.12.9 (source: ClawHub release evidence) <br>
+Risk: The skill can run shell diagnostics and unattended recovery actions on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when host-level OpenClaw watchdog behavior is intended, and review the heal path before production use.
+
+Risk: Automatic recovery can disrupt active work by killing sessions or restarting services.
+
+Mitigation: Tune thresholds, cooldowns, and whitelists before scheduled use; run with the least privileges practical.
+
+Risk: The server security verdict is suspicious because the skill can run shell commands and may perform external network checks.
+
+Mitigation: Review the source, security evidence, and scanner guidance before installing; constrain or disable network checks where they are not required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ankechenlab-node/skills/aegis-protocol)
+- [README](artifact/README.md)
+- [Security Information](artifact/SECURITY.md)
+- [Security Audit](artifact/SECURITY_AUDIT.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [VirusTotal Report](https://www.virustotal.com/gui/file/1a7561a744e840a167c5f70d9ff5e455d5a86cd77250b6b566c0e946413a8d59)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-oriented text with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration files, health summaries, logs, and recovery guidance depending on the invoked command.]
+
+## Skill Version(s):
+
+0.12.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

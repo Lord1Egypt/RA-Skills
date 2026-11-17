@@ -1,41 +1,50 @@
-## Description: <br>
-Generates professional cover letters for journal submissions and job applications in medical and academic contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional cover letters for journal submissions and job applications in medical and academic contexts.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, clinicians, academics, and applicants use this skill to draft cover letters for journal submissions, academic or medical job applications, and fellowships from recipient details and key points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional output path can save generated cover-letter content to disk, including sensitive manuscript or application details. <br>
-Mitigation: Use a trusted workspace path and a new filename, and avoid saving sensitive details in shared directories. <br>
-Risk: Generated letters may need context-specific review before use in journal, employment, or fellowship submissions. <br>
-Mitigation: Review and edit the generated letter for accuracy, recipient fit, and disclosure requirements before sending. <br>
+## Use Case:
 
+External users, researchers, and academic professionals use this skill to draft journal submission, job application, and fellowship cover letters from recipient details and key points.
 
-## Reference(s): <br>
-- [Cover Letter Drafter on ClawHub](https://clawhub.ai/AIPOCH-AI/cover-letter-drafter) <br>
-- [Cover Letter Drafter References](artifact/references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [JSON object containing cover_letter, purpose, and word_count; optionally written to a user-specified file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write output to a user-directed path when --output is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The optional output path can overwrite arbitrary writable files because the script does not enforce path limits or overwrite protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace output filename and avoid existing files, absolute paths, parent-directory paths, and symlinked destinations until path validation and overwrite protection are added.
+
+## Reference(s):
+
+- [Cover Letter Drafter Guidelines](references/guidelines.md)
+- [Cover Letter Drafter on ClawHub](https://clawhub.ai/aipoch-ai/skills/cover-letter-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [JSON containing a cover letter, purpose, and word count; optionally saved as a JSON file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output path is user supplied when file output is requested.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

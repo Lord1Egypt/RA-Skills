@@ -1,49 +1,61 @@
-## Description: <br>
-Huawei Cloud ECS monitoring skill using Cloud Eye Service (CES) for querying and analyzing Elastic Cloud Server CPU, memory, disk, network, and system metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Huawei Cloud ECS instances with Cloud Eye Service by querying current and historical CPU, memory, disk, network, and system metrics.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect Huawei Cloud ECS instance health, query CES metrics, analyze utilization trends, and troubleshoot performance issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Huawei Cloud CLI with cloud credentials. <br>
-Mitigation: Use the minimum read-only IAM policy, configure credentials outside the chat session, and do not paste secrets into the conversation. <br>
-Risk: Some documentation includes privileged installation steps and broad optional permissions. <br>
-Mitigation: Review curl, bash, sudo, and permission-expanding commands before execution, and avoid full-access policies unless explicitly required. <br>
+## Use Case:
 
+Developers and cloud operations engineers use the skill to inspect ECS resource utilization, review metric history, and troubleshoot performance issues.
 
-## Reference(s): <br>
-- [Huawei Cloud CES Metrics Reference for ECS](references/ces-metrics-reference.md) <br>
-- [Huawei Cloud KooCLI Installation Guide](references/cli-installation-guide.md) <br>
-- [IAM Policies for Huawei Cloud ECS Monitoring](references/iam-policies.md) <br>
-- [Huawei Cloud CLI Command Reference](references/related-commands.md) <br>
-- [Huawei Cloud ECS Monitoring Troubleshooting Guide](references/troubleshooting-guide.md) <br>
-- [Huawei Cloud ECS Monitoring Best Practices](references/best-practices.md) <br>
-- [Huawei Cloud ECS Documentation](https://support.huaweicloud.com/usermanual-ecs/ecs_03_1001.html) <br>
-- [Huawei Cloud CLI Documentation](https://support.huaweicloud.com/function-hcli/index.html) <br>
-- [Huawei Cloud CES API Reference](https://support.huaweicloud.com/api-ces/ces_03_0041.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huaweiclouddev/huawei-cloud-ces-ecs-monitoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with Huawei Cloud CLI command examples and monitoring report tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include metric summaries, trend analysis, troubleshooting recommendations, and command snippets for CES and ECS queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The security review flags permissions that extend to server control and account-user information, which exceed basic metric monitoring needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, project-scoped role with only the minimum read-only monitoring permissions; authorize server actions and alarm or tag changes separately when needed.
+
+Risk: The external CLI installer and image payloads mentioned in the guidance were not reviewed in the security evidence.
+
+Mitigation: Verify installer and image provenance before use, and keep saved profiles and inventory caches private.
+
+## Reference(s):
+
+- [CES Metrics Reference](artifact/references/ces-metrics-reference.md)
+- [IAM Policies](artifact/references/iam-policies.md)
+- [KooCLI Command Reference](artifact/references/related-commands.md)
+- [KooCLI Installation Guide](artifact/references/cli-installation-guide.md)
+- [Monitoring Best Practices](artifact/references/best-practices.md)
+- [Troubleshooting Guide](artifact/references/troubleshooting-guide.md)
+- [Huawei Cloud ECS User Guide](https://support.huaweicloud.com/usermanual-ecs/ecs_03_1001.html)
+- [Huawei Cloud KooCLI Documentation](https://support.huaweicloud.com/function-hcli/index.html)
+- [ClawHub Skill Release](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-ces-ecs-monitoring)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with metric summaries and inline hcloud command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected ECS instances, metrics, region, and time range.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Help users access Syft News for AI pre-recalled by-topic news pools, keyword search, and news extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users to access the global news pipeline of Syft News, which offers AI pre-recalled and summarized by-topic news pools, free keyword search and news extraction.
 
-## Publisher: <br>
-[solatrader](https://clawhub.ai/user/solatrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solatrader](https://clawhub.ai/user/solatrader)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve personalized and global Syft News pools, build profile-aware briefings, search recent stories, and organize news into reusable profiles, briefings, and storylines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Syft CLI uses the user's Syft account, followed topics, and personalized news access. <br>
-Mitigation: Install only when comfortable using Syft account data for personalized news workflows, and run account commands such as syft status, syft login, and syft logout intentionally. <br>
-Risk: Generated profiles, briefings, storylines, or guidance files may reveal interests or editorial preferences. <br>
-Mitigation: Review generated artifacts before sharing or persisting them, especially profile and guidance files. <br>
-Risk: Some retrieval features require a paid Syft account. <br>
-Mitigation: Check account status and plan before relying on paid commands such as syft global-search or reranked search. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve Syft News topics, searches, and top-story pools, then turn them into profile-aware briefings, storyline trees, backfills, or durable editorial guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solatrader/syft-news-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/solatrader) <br>
-- [Syft news skills repository](https://github.com/Solatrader/syft-news-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline CLI commands and optional Markdown, HTML, or JSON artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local profile, briefing, storyline, and guidance files when the user asks for reusable artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill installs and relies on an unpinned third-party Syft CLI that can access account-linked news and profile data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Syft CLI dependency before installation and prefer a pinned or otherwise verified CLI version.
+
+Risk: The skill can produce or update local profile, briefing, storyline, and guidance artifacts.
+
+Mitigation: Ask the agent to confirm before writing or overwriting saved files.
+
+Risk: Some Syft commands depend on login state, followed topics, local saved profile data, or paid account features.
+
+Mitigation: Confirm account status and command requirements with `syft status` and relevant command output before relying on results.
+
+## Reference(s):
+
+- [Syft News Pool (CLI) on ClawHub](https://clawhub.ai/solatrader/skills/syft-news-cli)
+- [solatrader Publisher Profile](https://clawhub.ai/user/solatrader)
+- [@orionarm/syft-cli package](https://www.npmjs.com/package/@orionarm/syft-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional Markdown, HTML, or JSON artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create reusable profile, briefing, storyline, and guidance artifacts when the user requests saved outputs.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

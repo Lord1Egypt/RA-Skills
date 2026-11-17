@@ -1,41 +1,56 @@
-## Description: <br>
-Fetch webpage content as clean Markdown with Jina AI Reader, or search the web with Jina AI Search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches webpage content as clean Markdown through Jina AI Reader API and searches the web through Jina AI Search API.
 
-## Publisher: <br>
-[claudy-my-laudy](https://clawhub.ai/user/claudy-my-laudy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claudy-my-laudy](https://clawhub.ai/user/claudy-my-laudy)
 
-## Use Case: <br>
-Agents and developers use this skill to inspect URLs, extract article or documentation content, summarize links, and retrieve web search results in LLM-friendly formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs, search queries, and any configured JINA_API_KEY may be sent to Jina AI as part of normal operation. <br>
-Mitigation: Avoid confidential internal links, signed URLs, secrets, and sensitive personal data; use a dedicated JINA_API_KEY when needed and unset it when authenticated requests are not intended. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve readable page Markdown from URLs, extract web content for summarization or analysis, and run Jina-backed web searches with rich result content.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/claudy-my-laudy/jina-ai-skill) <br>
-- [Jina AI API dashboard](https://jina.ai/api-dashboard) <br>
-- [Jina Reader endpoint](https://r.jina.ai/) <br>
-- [Jina Search endpoint](https://s.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON, with shell commands when using the bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can omit images to reduce output size; uses JINA_API_KEY when present for authenticated Jina requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Requested URLs, search terms, and any configured JINA_API_KEY are sent to Jina AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when third-party processing is acceptable; avoid private internal URLs, token-bearing URLs, sensitive personal data, and confidential research queries.
+
+Risk: Jina Search requires a JINA_API_KEY, so search workflows may fail when no key is configured.
+
+Mitigation: Configure JINA_API_KEY for search usage or use an approved fallback search skill when a key is unavailable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/claudy-my-laudy/skills/jina-ai-skill)
+- [Jina AI API Dashboard](https://jina.ai/api-dashboard)
+- [Jina Reader API Endpoint](https://r.jina.ai/)
+- [Jina Search API Endpoint](https://s.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON responses, with shell command examples and Python script usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reader requests can strip images; search returns up to five results by default and can be trimmed with --results for JSON output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

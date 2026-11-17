@@ -1,44 +1,55 @@
-## Description: <br>
-Multi-algorithm hash generator for files, strings, stdin, and manifests using MD5, SHA-1, SHA-256, SHA-512, and BLAKE2b with deterministic local execution and no external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-algorithm hash generator for MD5, SHA-1, SHA-256, SHA-512, and BLAKE2b that hashes files, strings, stdin, or manifests with deterministic local execution.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers, DevOps engineers, and security practitioners use this skill to compute and compare hashes for local files, strings, stdin streams, and manifest entries. It is useful for integrity checks, deduplication, cross-verification across algorithms, and scriptable hash output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MD5 and SHA-1 are legacy algorithms and are not strong integrity or security guarantees for adversarial use. <br>
-Mitigation: Use SHA-256, SHA-512, or BLAKE2b for normal integrity checks, and reserve MD5 or SHA-1 for legacy compatibility only. <br>
-Risk: Hashing is not a substitute for password hashing, HMAC authentication, or cryptographic signatures. <br>
-Mitigation: Use bcrypt or Argon2 for passwords, HMAC for keyed message authentication, and signing tools such as GPG or age when signatures are required. <br>
-Risk: The tool reads local paths and manifests supplied by the user, and stress tests create temporary large files and invoke local system tools. <br>
-Mitigation: Run it only on files and manifests intended for inspection, and run stress tests only in a development environment. <br>
+## Use Case:
 
+Developers, DevOps engineers, and security practitioners use this skill to generate and compare file or string hashes across multiple algorithms, verify expected digests, and check manifest entries during local integrity workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/axiom-hash-multi) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI and Python examples, plus plain-text or JSON hash results when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit single-algorithm or multi-algorithm digest results and comparison or manifest verification status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server evidence release.version) <br>
+Risk: Manifest verification can read files outside the user's intended target set when manifest entries are untrusted or crafted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted manifests and prefer a patched version that confines entries to an intended base directory.
+
+Risk: Hashing device files, FIFOs, arbitrary symlinks, or streams can read unexpected content or run indefinitely.
+
+Mitigation: Avoid special files and arbitrary symlinks; prefer a patched version that rejects non-regular files by default.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiom-hash-multi)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, plain-text digest output, and optional JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce single-digest strings, multi-algorithm digest maps, comparison status, or manifest verification summaries.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

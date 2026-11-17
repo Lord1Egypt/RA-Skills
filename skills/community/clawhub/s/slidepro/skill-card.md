@@ -1,44 +1,59 @@
-## Description: <br>
-Creates, reads, edits, validates, and visually reviews PowerPoint presentations using PPTX files, Office XML, pptxgenjs, and local conversion tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent read, create, edit, validate, and visually review PowerPoint .pptx presentations using local Office and presentation tooling.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Anthropic Proprietary Terms <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Developers, analysts, and content creators use this skill to create, inspect, edit, QA, and convert PowerPoint presentations. It supports both template-based Office XML workflows and from-scratch deck generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Anthropic proprietary terms
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local conversion tools and mutate Office package contents. <br>
-Mitigation: Use it in a single-user or sandboxed environment and review generated or modified presentations before sharing. <br>
-Risk: The security review flagged broader Office/document code and an unused browser automation dependency. <br>
-Mitigation: Before broad deployment, remove or justify unused dependencies and document whether non-PPTX Office helpers are intentionally supported. <br>
-Risk: The security review flagged a LibreOffice shim that compiles and preloads code from a shared temporary path. <br>
-Mitigation: Replace the shared temporary shim path with a private safely created temporary directory or a vetted packaged component. <br>
+## Use Case:
 
+Developers, employees, and external users use this skill when an agent needs to inspect existing slide decks, create new presentations, modify templates, or run quality checks on PowerPoint files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/slidepro) <br>
-- [Editing Presentations](artifact/editing.md) <br>
-- [PptxGenJS Tutorial](artifact/pptxgenjs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets; generated artifacts may include .pptx files, PDFs, JPEG thumbnails, and extracted text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Office and presentation tooling for conversion, thumbnailing, and visual QA workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs local Office conversion tools and processes Office files, which can be risky with untrusted decks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on copies of presentations, avoid untrusted Office files until archive limits are added, and review generated files before use.
+
+Risk: The skill mutates unpacked presentation files as part of its editing workflow.
+
+Mitigation: Keep original decks separate, work in a temporary or versioned directory, and validate packed outputs before distributing them.
+
+Risk: JavaScript dependency practices and the LibreOffice LD_PRELOAD shim were flagged for review.
+
+Mitigation: Prefer pinned local dependency installation and remove or redesign the LD_PRELOAD shim before shared or sensitive-environment use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/slidepro)
+- [Presentation editing guide](artifact/editing.md)
+- [PptxGenJS tutorial](artifact/pptxgenjs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify presentation files and generated visual review images when the required local tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

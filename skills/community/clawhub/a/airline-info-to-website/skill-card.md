@@ -1,48 +1,61 @@
-## Description: <br>
-Scrapes airline aircraft seatmap data, organizes related images, and generates structured website-ready airline and aircraft documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents collect airline aircraft and seat-map data from seatmaps.com, classify downloaded images, remove duplicate images, and create Markdown content for website display.
 
-## Publisher: <br>
-[wangxinyu123](https://clawhub.ai/user/wangxinyu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxinyu123](https://clawhub.ai/user/wangxinyu123)
 
-## Use Case: <br>
-Developers and content operators use this skill to collect airline aircraft information from seatmaps.com, classify downloaded images, deduplicate assets, and prepare Markdown data for a website. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation recommends broad permission-bypass execution and persistent Claude permission changes. <br>
-Mitigation: Run it only in a dedicated project folder, avoid permission-bypass startup and persistent global settings, and grant only the minimum file access needed for the selected output directory. <br>
-Risk: The deduplication workflow can delete duplicate image files. <br>
-Mitigation: Run deduplication with --dry-run first, review the report, and keep backups or version control for generated image directories before allowing deletions. <br>
-Risk: The scraper fetches third-party seatmap data and images from seatmaps.com. <br>
-Mitigation: Confirm that the intended use complies with the source site's terms and review generated content before publication. <br>
+## Use Case:
 
+Developers and content operators use this skill to gather aircraft seat-map data, organize related images, and produce structured Markdown assets for airline information websites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxinyu123/airline-info-to-website) <br>
-- [Publisher profile](https://clawhub.ai/user/wangxinyu123) <br>
-- [Reference manual](references/reference.md) <br>
-- [Examples](references/examples.md) <br>
-- [Aircraft detail template](references/template.md) <br>
-- [Scripts README](scripts/README.md) <br>
-- [seatmaps.com airline index](https://seatmaps.com/zh-CN/airlines/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation, image directories, classification reports, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes scraped aircraft data under FlightData/ by default and may delete duplicate images when deduplication is run without --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The artifact asks users to bypass agent permissions and grant broad shell and file-write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a constrained project directory and do not use permission bypass or broad persistent settings.
+
+Risk: The scraper downloads external content and writes generated files into the selected output directory.
+
+Mitigation: Use dry-run and limit options first, confirm the target output path, and restrict scraping to trusted seatmaps.com URLs.
+
+Risk: The deduplication script can delete duplicate image files when not run in dry-run mode.
+
+Mitigation: Back up downloaded data and run deduplication with --dry-run before allowing file deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxinyu123/skills/airline-info-to-website)
+- [Reference manual](references/reference.md)
+- [Examples](references/examples.md)
+- [Scripts README](scripts/README.md)
+- [Seatmaps airline directory](https://seatmaps.com/zh-CN/airlines/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces airline data folders, downloaded image assets, Markdown aircraft detail files, and classification or deduplication reports.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,953 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "华中",
+ "city": "郑州",
+ "zone": "03-区",
+ "zone_climate": "IV南部暖温带落叶阔叶林区",
+ "cities": [
+  "青岛",
+  "烟台",
+  "郑州",
+  "连云港"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#03-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "日本冷杉",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "云杉",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "五针松",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本金松",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂枝圆柏",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红豆杉",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "广玉兰",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桂花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枇杷",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺桂",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "棕榈",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蚊母",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水杉",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杂种鹅掌楸",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "星花玉兰",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "厚朴",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "凹叶厚朴",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "响叶杨",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "涤(绦tao)柳",
+   "aliases": [
+    "绦tao"
+   ],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银牙柳",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "华榛",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青檀",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "榔榆",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "朴树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苦楝",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄连木",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本槭",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青榨槭",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡爪槭",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红羽毛枫",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红枫",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛泡桐",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "楸叶泡桐",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "灰楸",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "梓树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "楸树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国皂荚",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "悬铃木",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木瓜",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "湖北海棠",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东京樱花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "连香树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枳椇",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "乌桕",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "油桐",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "梧桐",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "车梁木",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "四照花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "流苏树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "七叶树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "天师栗",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "翠柏",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "孔雀柏",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "凤尾柏",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "女贞",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石楠",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枸骨",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海桐",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄杨",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "凤尾兰",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丝兰",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "八角金盘",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "十大功劳",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桃叶珊瑚",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小蜡",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "夹竹桃",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金丝桃",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "火棘",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蔓常（长）春花",
+   "aliases": [
+    "长"
+   ],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山茶花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枸桔",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "溲疏",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花园锥绣球",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东陵八仙花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "棣棠",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金钟花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海仙花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木本绣球",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "荚蒾",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蝴蝶树",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "结香",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "芫花",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "醉鱼草",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "欧李",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三桠绣球（三裂绣线菊）",
+   "aliases": [
+    "三裂绣线菊"
+   ],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "竹叶椒（竹叶花椒）",
+   "aliases": [
+    "竹叶花椒"
+   ],
+   "region": "华中",
+   "city": "郑州",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "孝顺竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "罗汉竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桂竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刚竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "菲白竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫竹",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "铁线莲",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "盘叶忍冬",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "中华常春藤",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "洋常春藤",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫藤",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红花酢浆草",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马蹄金",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "马尼拉结缕草",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "双穗雀稗",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫萼",
+   "aliases": [],
+   "region": "华中",
+   "city": "郑州",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#03-区",
+   "confidence": "medium"
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "ai-gce-rules/core-generator.md",
+  "name": "Session-End Compliance Sweep",
+  "version": "1.0.0",
+  "description": "Tier B (agentStop): Fires the session-end-compliance-agent (SEC__) after every agent session. Consolidates all advisory checks into one pass. Disable this hook to switch to manual-only invocation via SEC__.",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Execute the Session-End Compliance Agent (SEC__) as defined in `.kiro/agents/session-end-compliance-agent.md`. Run all applicable Tier B checks against files modified during this session and produce the consolidated report. Follow the agent's full protocol (territory exclusion → phase/tier check → 6 checks → output → compliance log)."
+  }
+}

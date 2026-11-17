@@ -1,41 +1,58 @@
-## Description: <br>
-Uses HeyGen to generate digital avatar videos from written scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate HeyGen digital avatar videos from text scripts using local HeyGen API credentials.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and content creators use this skill to prepare HeyGen avatar video generation requests, check generation status, and retrieve completed video URLs for greetings, marketing shorts, product introductions, and batch video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The HeyGen API key is stored in a local credentials file. <br>
-Mitigation: Restrict the credentials file to the current user account and rotate the key if the file is exposed. <br>
-Risk: Scripts sent through this skill are submitted to HeyGen and may consume paid API credits. <br>
-Mitigation: Review script content before sending it to HeyGen and confirm account limits, rate limits, and expected costs. <br>
+## Use Case:
 
+Developers and external users can use this skill to create digital-avatar videos, greetings, marketing shorts, product introductions, and batch video jobs through HeyGen.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/huo15-heygen) <br>
-- [HeyGen API base URL](https://api.heygen.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local HeyGen credential file and may return HeyGen video IDs or download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a local HeyGen credentials file containing an API key and avatar ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep heygen_creds.json protected, do not commit or share it, and restrict access to approved local users.
+
+Risk: Text scripts are sent to HeyGen and API calls may be billed.
+
+Mitigation: Review scripts before generation, avoid secrets or regulated data unless approved, and monitor HeyGen usage and costs.
+
+Risk: Generated videos may depend on HeyGen processing time, service limits, and API rate limits.
+
+Mitigation: Use polling with timeouts, handle failed statuses, and respect HeyGen rate-limit guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-heygen)
+- [HeyGen API base URL](https://api.heygen.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated code uses local HeyGen credentials and can return video IDs, generation status, and video URLs when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

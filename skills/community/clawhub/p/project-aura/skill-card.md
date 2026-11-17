@@ -1,45 +1,54 @@
-## Description: <br>
-Project Aura adds seven emotional personality modules and adaptive local phrase weighting to AI companions for more personalized emotional interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Aura adds seven emotional personality modules and adaptive feedback-based phrase selection to AI companion interactions.
 
-## Publisher: <br>
-[bryanchen3777](https://clawhub.ai/user/bryanchen3777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryanchen3777](https://clawhub.ai/user/bryanchen3777)
 
-## Use Case: <br>
-Developers and agent builders use Project Aura to add configurable emotional phrase selection, feedback-based weighting, and companion-style response variation to AI companion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for romantic or emotionally intense AI companion phrasing. <br>
-Mitigation: Review or replace the bundled phrase JSON before use so the companion tone matches the deployment context. <br>
-Risk: Phrase counts and ratings persist locally in JSON. <br>
-Mitigation: Treat the local phrase store as user-specific data and clear or rotate it when persistence is not desired. <br>
-Risk: The optional yua-memory integration may introduce longer-term retention beyond this skill. <br>
-Mitigation: Evaluate the separate memory project before enabling any long-term memory or indefinite retention behavior. <br>
+## Use Case:
 
+Developers and agent builders use Project Aura to add emotional phrase selection, feedback-tuned ratings, combo responses, and local JSON persistence to AI companion workflows.
 
-## Reference(s): <br>
-- [Project Aura on ClawHub](https://clawhub.ai/bryanchen3777/project-aura) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
-- [yua-memory Integration Notes](artifact/yua_memory_README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python strings, JSON-backed configuration, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Phrase counts and ratings are persisted locally in JSON when the selector is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata and changelog, released 2026-03-29) <br>
+Risk: The skill can produce intimate or romantic AI companion preset phrases that may be inappropriate for some deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents where that companion style is intended, and review phrase libraries before use.
+
+Risk: Local phrase and feedback data can contain private user-created content.
+
+Mitigation: Keep green_tea_modules.json private, avoid storing secrets in phrases or feedback, and delete or edit the file to reset learned ratings and counts.
+
+## Reference(s):
+
+- [Project Aura on ClawHub](https://clawhub.ai/bryanchen3777/skills/project-aura)
+- [Publisher Profile](https://clawhub.ai/user/bryanchen3777)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON persistence for phrase counts, ratings, and cooldown timestamps.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release evidence and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

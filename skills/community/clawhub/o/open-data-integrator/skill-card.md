@@ -1,45 +1,55 @@
-## Description: <br>
-Integrate open construction datasets. Combine open data sources for enhanced analysis <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates open construction datasets by combining government, industry, weather, geospatial, material price, labor rate, permit, energy, and economic sources for enhanced analysis.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Developers and construction analytics teams use this skill to combine project data with open construction datasets, including material prices, labor rates, weather, geospatial, permit, energy, and economic data. It supports enrichment, cost-index lookup, weather-risk assessment, structured reporting, and export-oriented analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests filesystem and network access for data integration workflows. <br>
-Mitigation: Grant access only to the project files and external data sources needed for the current task, and review any requested exports before sharing sensitive business data. <br>
-Risk: External open datasets or provider APIs may return incomplete, stale, or misleading construction data. <br>
-Mitigation: Validate inputs, review source metadata and update timing, and treat generated findings as analysis support rather than authoritative construction or financial advice. <br>
-Risk: Provider credentials may be needed for some data sources. <br>
-Mitigation: Use limited-scope provider keys where possible and provide only the API keys needed for a specific task. <br>
+## Use Case:
 
+Construction data analysts, estimators, and project teams use this skill to enrich project inputs with open construction-related data and produce structured findings about costs, labor, permits, and weather risk.
 
-## Reference(s): <br>
-- [Open Data Integrator on ClawHub](https://clawhub.ai/datadrivenconstruction/open-data-integrator) <br>
-- [datadrivenconstruction Publisher Profile](https://clawhub.ai/user/datadrivenconstruction) <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [OpenWeatherMap API Base URL](https://api.openweathermap.org/data/2.5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured tables, summary statistics, key findings, Python examples, and export guidance for Excel, CSV, or JSON when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May present fetched records, enriched project data, cost indices, weather-risk summaries, data availability reports, validation errors, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata; artifact claw.json states 2.0.0) <br>
+Risk: Sample connector values for prices, labor rates, permits, and weather may be mistaken for verified live data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or verify connectors against authoritative data sources and independently validate outputs before using them for business decisions.
+
+Risk: Filesystem access to user-supplied project files and network access for open-data lookups can expose sensitive project data or unapproved endpoints.
+
+Mitigation: Limit file access to intended project inputs, use approved data endpoints, validate inputs, and review generated results before deployment.
+
+## Reference(s):
+
+- [DataDrivenConstruction website](https://datadrivenconstruction.io)
+- [OpenWeatherMap API](https://api.openweathermap.org/data/2.5)
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/open-data-integrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured tables, code snippets, and optional export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summary statistics, key findings, validation errors, and suggested follow-up analysis.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

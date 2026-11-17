@@ -1,38 +1,53 @@
-## Description: <br>
-Register, manage, and protect domain names with practical DNS and security guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register, manage, and protect domain names with practical DNS and security guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, site operators, and business owners use this skill for practical guidance on registering, managing, securing, transferring, and renewing domain names. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Domain-management mistakes can have operational or financial consequences. <br>
-Mitigation: Verify registrar, DNS, trademark, transfer, and renewal decisions before acting on the guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/domains) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users, developers, and operators use this skill for practical guidance on registering, configuring DNS for, transferring, and protecting domain names.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only domain-management advice; no executable code, account access, credential collection, or autonomous actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Registrar credentials and EPP authorization codes are sensitive; mishandling them can enable unauthorized domain transfers or account compromise.
+
+Mitigation: Treat registrar credentials and EPP codes like secrets, use two-factor authentication, keep registrar lock enabled, and share transfer codes only through trusted channels.
+
+Risk: DNS record changes can interrupt web or email service if records, TTLs, or migration timing are wrong.
+
+Mitigation: Plan DNS migrations, lower TTLs before changes, verify A, CNAME, MX, and DNSSEC settings, and keep rollback details available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/domains)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Configuration]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational guidance; no tool, credential, persistence, or elevated-access behavior is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

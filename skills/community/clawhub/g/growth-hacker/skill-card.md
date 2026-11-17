@@ -1,45 +1,56 @@
-## Description: <br>
-Drive explosive user growth through rapid experimentation, viral loops, and data-driven tactics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive explosive user growth through rapid experimentation, viral loops, and data-driven tactics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External product teams, founders, and growth practitioners use this skill to plan acquisition experiments, viral loops, channel tests, and funnel optimization work for startups and products seeking rapid growth. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Growth tactics may require analytics, email, ads, social accounts, or public posting tools if an agent is later asked to execute them. <br>
-Mitigation: Review each external integration separately and require human approval for campaigns, outreach, or public posting. <br>
-Risk: Aggressive outreach, referral, or viral tactics can create spam, dark-pattern, regulatory, or platform-enforcement risk. <br>
-Mitigation: Follow platform rules, consent requirements, unsubscribe expectations, anti-spam regulations, and the artifact guidance to avoid forced sharing, misleading invites, and address book harvesting. <br>
-Risk: Poorly designed experiments can lead to misleading growth conclusions or wasted spend. <br>
-Mitigation: Use explicit hypotheses, guardrail metrics, adequate sample sizes, statistical significance checks, and documented decisions before scaling a tactic. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/growth-hacker) <br>
-- [Skill homepage](https://clawic.com/skills/growth-hacker) <br>
-- [Channel Playbooks](artifact/channels.md) <br>
-- [Experiments Framework](artifact/experiments.md) <br>
-- [Viral Loops](artifact/viral-loops.md) <br>
+## Use Case:
 
+External product teams, founders, and growth marketers use this skill to plan rapid acquisition experiments, design viral loops, compare channel playbooks, and optimize AARRR funnel metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, checklists, experiment plans, and growth playbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credentials, external access, or persistence are required by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Growth tactics can create brand, privacy, or legal exposure when applied to referral, cold email, or social posting campaigns.
+
+Mitigation: Review proposed campaigns for brand fit, consent, privacy, platform rules, and applicable marketing laws before implementation.
+
+Risk: Applying the guidance through separate tools could require analytics, advertising, email, or social account access.
+
+Mitigation: Do not grant account access to this guidance-only skill; review and approve each separate integration before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/growth-hacker)
+- [Skill Homepage](https://clawic.com/skills/growth-hacker)
+- [Channel Playbooks](artifact/channels.md)
+- [Experiments Framework](artifact/experiments.md)
+- [Viral Loops](artifact/viral-loops.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with experiment templates, channel playbooks, formulas, and tactical checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not execute campaigns, access accounts, call APIs, or transmit data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

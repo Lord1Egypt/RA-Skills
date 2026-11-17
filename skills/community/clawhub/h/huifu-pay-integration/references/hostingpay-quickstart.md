@@ -53,7 +53,7 @@
 <dependency>
     <groupId>com.huifu.bspay.sdk</groupId>
     <artifactId>dg-java-sdk</artifactId>
-    <version>3.0.38</version>
+    <version>3.0.41</version>
 </dependency>
 ```
 
@@ -75,7 +75,7 @@ huifu:
 
 关键注意点：
 - **Spring Boot 3.x** 用户需将 `javax.*` 替换为 `jakarta.*`
-- SDK 产品号方法名为 `setProductId()`，与 `dg-java-sdk 3.0.38` 源码保持一致
+- SDK 产品号方法名为 `setProductId()`，与 `dg-java-sdk 3.0.41` 源码保持一致
 
 ### 第 5 步：开始调用业务接口
 

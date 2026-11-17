@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents operate browser workflows with real UI interactions, reliable text entry, page-state verification, and refresh-based recovery when pages become stuck or stale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through browser workflows that need human-like navigation, reliable real-event text entry, front-end state checks, and clean recovery for stuck or stale pages.
 
-## Publisher: <br>
-[shuxinyang111](https://clawhub.ai/user/shuxinyang111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuxinyang111](https://clawhub.ai/user/shuxinyang111)
 
-## Use Case: <br>
-Developers and agents use this skill during browser-based workflows that require reliable form entry, visible-control interaction, front-end state checks, and recovery from blank, stale, or desynchronized pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive text could be pasted into an untrusted website during browser workflows. <br>
-Mitigation: Avoid using the skill to paste secrets into untrusted websites and review the target page before text entry. <br>
-Risk: Refresh-based recovery can clear fields or discard page state when a page appears stuck or out of sync. <br>
-Mitigation: Confirm that refresh or retry is acceptable before recovery steps, then re-check the page's own indicators after re-entry. <br>
+## Use Case:
 
+Developers and external agent users use this skill to make browser automation interact through visible UI controls, real paste/input events, page state checks, and recovery refreshes when pages become stale or inconsistent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuxinyang111/smooth-browser-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline browser-operation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only browser helper; no executable code or credential references were detected in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow may place task text on the system clipboard, which can overwrite or expose clipboard contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clipboard-based entry only where clipboard use is acceptable and avoid sensitive text unless policy permits it.
+
+Risk: Refresh-based recovery can discard unsaved page state.
+
+Mitigation: Confirm important state is saved or reproducible before refreshing, then restart from the page's clean state after reload.
+
+## Reference(s):
+
+- [Smooth Browser Use on ClawHub](https://clawhub.ai/shuxinyang111/skills/smooth-browser-use)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown guidance with ordered workflows, checks, and browser recovery steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to use clipboard paste, visible controls, state inspection, and page refresh recovery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

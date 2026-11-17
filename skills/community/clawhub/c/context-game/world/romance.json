@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "name": "锦城情局",
+    "tone_family": "romance",
+    "tone_variant": "婚变",
+    "version": 1
+  },
+  "continents": [
+    { "id": "continent_jincheng", "name": "锦城", "summary": "一座把婚约当生意、把朋友圈当情报网的城市，两家人隔着一张婚书对峙，新旧两段情在窗外拉扯。" }
+  ],
+  "nations": [
+    {
+      "id": "nation_linshi", "name": "林氏家族", "continent": "continent_jincheng",
+      "summary": "女主所在的家族企业，文化与地产结合，表面体面，实则在婚约与继承上把女儿当筹码。",
+      "tension_seeds": [
+        "林家欲借与周家联姻稳住地产融资，女儿意愿被家委会'代议'",
+        "林家旧账：主角早年与沈家的那段被沈氏旧部握着把柄，随时可引爆"
+      ]
+    },
+    {
+      "id": "nation_zhoushi", "name": "周氏家族", "continent": "continent_jincheng",
+      "summary": "男方家族，实业起家资金雄厚但家风保守，把婚约视为门面与接班人考验。",
+      "tension_seeds": [
+        "周家要求婚前房产公证与归属分明，林家觉受辱，两家人就'谁出房'僵持",
+        "周家接班人位悬而未决，婚约进度被拿来当站队筹码"
+      ]
+    },
+    {
+      "id": "nation_shenshi", "name": "沈氏旧部", "continent": "continent_jincheng",
+      "summary": "女主前任沈家的余部——旧情人、前任的现任与当年共同朋友圈，因一段未清旧账悬在婚约头顶。",
+      "tension_seeds": [
+        "沈氏旧部手握林绾早年与沈家的私密往来，以曝光相逼不许退婚",
+        "前任的现任借闺蜜圈散播'林绾旧情未了'，搅乱两家人信任"
+      ]
+    },
+    {
+      "id": "nation_gushi", "name": "顾氏新盟", "continent": "continent_jincheng",
+      "summary": "女主当前新暧昧对象顾家的圈子——新欢、顾家亲友与利益关联方，看似救赎实为另一场围猎。",
+      "tension_seeds": [
+        "顾家以'懂你、不捆绑'接近林绾，实为吞并林家地产板块铺路",
+        "顾氏新盟内部有人同时替周家与沈家当眼线，信息被多方倒卖"
+      ]
+    },
+    {
+      "id": "nation_zhiyou", "name": "挚友圈", "continent": "continent_jincheng",
+      "summary": "主角的闺蜜与男方兄弟组成的朋友圈，本应避风港，却因各自立场成了传声筒与泄密口。",
+      "tension_seeds": [
+        "闺蜜中有人被周家与沈家分别收买，林绾的私房话两端外流",
+        "兄弟圈里有人替周牧盯梢，却把情报顺手卖给沈氏旧部"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_tanxin", "name": "谈心室", "continent": "continent_jincheng",
+    "summary": "城市里的心理咨询室，人人都来倾诉，保密例外条款让它成了只进不出的信息黑洞，是各方秘密的中立交汇点。"
+  },
+  "faction_matrix": {
+    "nation_gushi|nation_linshi": { "relation": 52, "note": "顾家以'不捆绑'温柔逼近林绾，看似救她出婚约；但顾家姑妈已握沈家凭证复印件，接近是为压价收购林家地产" },
+    "nation_gushi|nation_shenshi": { "relation": -63, "note": "新欢家与前任家是直接的情敌，顾辰每进一步都踩在沈砚的旧伤上" },
+    "nation_gushi|nation_zhoushi": { "relation": -30, "note": "顾家被周家视为撬墙角的第三者，周烨私下评估过'备胎亲家'却不肯明说" },
+    "nation_gushi|nation_zhiyou": { "relation": 28, "note": "顾家拉拢闺蜜苏蓉，想从朋友圈内部打开林绾的防线" },
+    "nation_gushi|port_tanxin": { "relation": 35, "note": "顾家借谈心室做局，让咨询师无意间把林绾的脆弱说给他们听" },
+    "nation_linshi|nation_shenshi": { "relation": -55, "note": "林家早年替沈家背的账，原始凭证在沈砚手里，沈氏旧部以此不许林绾退婚" },
+    "nation_linshi|nation_zhoushi": { "relation": -38, "note": "两家人因房产公证与婚约代议互相猜忌，婚书未撕却已离心" },
+    "nation_linshi|nation_zhiyou": { "relation": 12, "note": "闺蜜兄弟是林绾的依靠，但她不知道最信任的苏蓉已被沈菲买通" },
+    "nation_linshi|port_tanxin": { "relation": -15, "note": "林绾在谈心室倾诉的旧情秘密，正被兼职接待戚越整理成小抄外售" },
+    "nation_shenshi|nation_zhoushi": { "relation": -52, "note": "男方家与前任家是情敌遗留的死敌，周牧一听沈砚名字就冷下脸" },
+    "nation_shenshi|nation_zhiyou": { "relation": -20, "note": "沈氏旧部渗透挚友圈，借闺蜜之口放料搅局" },
+    "nation_shenshi|port_tanxin": { "relation": 5, "note": "沈家把旧情证据透露给咨询师，想借专业之口坐实'林绾旧情未了'" },
+    "nation_zhoushi|nation_zhiyou": { "relation": 18, "note": "周家与兄弟圈表面一致，但江浩把盯梢记录同时卖给了沈氏旧部" },
+    "nation_zhoushi|port_tanxin": { "relation": -8, "note": "周家派人去谈心室打探林绾口风，被咨询师一句'保密'挡回" },
+    "nation_zhiyou|port_tanxin": { "relation": -42, "note": "挚友圈本应在谈心室卸下心防，却成了泄密前线，信任早已千疮百孔" }
+  }
+}

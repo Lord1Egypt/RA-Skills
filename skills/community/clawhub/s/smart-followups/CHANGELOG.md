@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.2.0] - 2026-08-31
+
+### Fixed
+- Corrected slash command in docs: `/smart-followups` (OpenClaw 2.0 derives the command name from the `name` field). `/followups` and the aliases `/fu`, `/suggestions`, `/next` do not exist.
+- Corrected config path in examples: `skills.entries.smart-followups`. A top-level `skills.smart-followups` key is ignored.
+
+### Changed
+- Rewrote the button claims: the skill generates 3 suggestions; buttons appear only on channels that support them and only when the agent builds them. OpenClaw does not load `handler.js` as a command handler.
+
 ## [2.1.8] - 2026-03-27
 
 ### Fixed

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Unit Test Coverage Helper"
+  short_description: "Helps with Teams need repeatable help adding useful unit test..."
+  default_prompt: "Use $unit-test-coverage-helper to help me Teams need repeatable help adding useful unit tests and raising test coverage for existing codebases."
+
+policy:
+  allow_implicit_invocation: true

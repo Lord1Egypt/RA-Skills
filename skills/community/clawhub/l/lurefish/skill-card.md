@@ -1,44 +1,55 @@
-## Description: <br>
-Lurefish helps anglers plan lure-fishing trips, record catches, check weather and tides, choose lures, and summarize catch history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lurefish helps anglers plan lure-fishing trips, record catches, check weather and tides, choose lures, and review catch statistics.
 
-## Publisher: <br>
-[jeansgit](https://clawhub.ai/user/jeansgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeansgit](https://clawhub.ai/user/jeansgit)
 
-## Use Case: <br>
-External users and fishing hobbyists use this skill to decide when and where to fish, select suitable lure-fishing bait, record catch details, and review catch statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Catch logs can include fishing locations, notes, dates, and statistics stored locally under ~/lurefish. <br>
-Mitigation: Avoid entering sensitive locations or notes, and review or delete ~/lurefish when records should no longer be retained. <br>
-Risk: Weather, tide, map, or spot recommendations may use online lookups and can disclose query locations to external services. <br>
-Mitigation: Provide weather or tide information manually when privacy matters, and review suggested searches before running them. <br>
-Risk: Fishing guidance can be incomplete or inaccurate for local law, access restrictions, safety conditions, or species rules. <br>
-Mitigation: Check current local regulations, site access, weather, water conditions, and safety requirements before fishing. <br>
+## Use Case:
 
+External users use this skill as a lure-fishing assistant for trip planning, catch logging, location-aware spot research, lure selection, tide checks, and catch trend review.
 
-## Reference(s): <br>
-- [Lure Knowledge](references/lures.md) <br>
-- [Target Species](references/species.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/jeansgit/lurefish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON catch records and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and read local JSON files under ~/lurefish when scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Catch details such as dates, locations, lures, and notes may be stored locally under ~/lurefish/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of this fishing history is acceptable, and avoid recording sensitive location or personal details.
+
+Risk: Weather, tide, map, or location-based searches may send query details to external services.
+
+Mitigation: Provide weather or location details manually when privacy matters, and prefer HTTPS-backed lookup services.
+
+## Reference(s):
+
+- [Lurefish Skill Page](https://clawhub.ai/jeansgit/skills/lurefish)
+- [Lure Knowledge](references/lures.md)
+- [Target Species](references/species.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and locally stored JSON catch records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local catch data under ~/lurefish/ when the helper scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

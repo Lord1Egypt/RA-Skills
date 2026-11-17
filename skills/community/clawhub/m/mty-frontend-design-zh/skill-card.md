@@ -1,40 +1,52 @@
-## Description: <br>
-创建具有高设计质量、独特且可用于生产的前端界面，当用户要求构建 Web 组件、页面、海报或应用时使用，生成有创意、精致的代码与 UI 设计并避免通用 AI 审美。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create distinctive, production-ready frontend interfaces for web components, pages, posters, applications, and UI redesign work while avoiding generic AI visual patterns.
 
-## Publisher: <br>
-[maotianyuan](https://clawhub.ai/user/maotianyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[maotianyuan](https://clawhub.ai/user/maotianyuan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and designers use this skill to guide agents in building polished frontend UI code with a clear visual concept, strong typography, purposeful color, animation, layout, and production-oriented detail.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact frontmatter references LICENSE.txt, but the artifact evidence does not include that file while server evidence reports MIT-0.
+
+Mitigation: Confirm the release license text against the publisher's authoritative package or profile before redistribution.
+
+Risk: The skill guides generation of production frontend code, which may include accessibility, dependency, browser support, or application security choices that need project-specific review.
+
+Mitigation: Review generated UI code for accessibility, browser compatibility, dependency policy, and application security before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and designers use this skill to guide agents in creating distinctive, polished frontend pages, components, dashboards, layouts, and web UI code. It emphasizes context-specific visual direction, production-ready implementation, typography, color, layout, animation, and avoiding generic AI-styled interfaces. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code could introduce unsafe dependencies, third-party fonts, external assets, or accessibility regressions. <br>
-Mitigation: Review generated code, dependencies, assets, and accessibility behavior before production use. <br>
-Risk: Design guidance may prioritize distinctive aesthetics over product constraints if the user prompt lacks context. <br>
-Mitigation: Provide audience, purpose, technical constraints, accessibility requirements, and brand constraints before applying generated UI code. <br>
+**Output Format:** [Markdown with frontend code blocks and design guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maotianyuan/mty-frontend-design-zh) <br>
+**Other Properties Related to Output:** [May include HTML, CSS, JavaScript, React, Vue, component structure, styling direction, and design rationale.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with frontend code when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no scripts, credential access, persistence, or hidden behavior were reported by security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

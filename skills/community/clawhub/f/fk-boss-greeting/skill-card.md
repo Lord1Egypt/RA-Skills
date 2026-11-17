@@ -1,45 +1,59 @@
-## Description: <br>
-fk-boss-greeting helps an agent search Boss Zhipin for Java-oriented roles, filter excluded companies and job types, and send one-at-a-time recruiter greetings while tracking duplicates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Boss Zhipin job searches and one-by-one HR greetings for Java-related roles using configured company and job filters, deduplication, and rate limits.
 
-## Publisher: <br>
-[huguiqi](https://clawhub.ai/user/huguiqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huguiqi](https://clawhub.ai/user/huguiqi)
 
-## Use Case: <br>
-Job seekers and their agents use this skill to find Java-related Boss Zhipin postings, apply blacklist and keyword filters, and send controlled recruiter greetings through the external boss CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Chrome Boss Zhipin login session to act as the user and send recruiter greetings. <br>
-Mitigation: Review the external boss CLI source and package, confirm the active login and target recipient list, and run only when the user intends to send greetings. <br>
-Risk: Scheduled or repeated runs can send many greetings without clear confirmation controls. <br>
-Mitigation: Avoid scheduled runs unless they are monitored and can be disabled quickly; keep per-run limits and one-at-a-time sending enabled. <br>
-Risk: Local logs may contain sensitive job-search history and recruiter interaction identifiers. <br>
-Mitigation: Treat generated logs and tracking files as sensitive local data and remove or protect them according to the user's privacy needs. <br>
+## Use Case:
 
+External job seekers and developers use this skill to search Boss Zhipin for Java-related roles, filter out configured companies and unrelated postings, and send greetings to HR contacts one at a time.
 
-## Reference(s): <br>
-- [filter-rules.json](references/filter-rules.json) <br>
-- [kabi-boss-cli](https://github.com/jackwener/boss-cli) <br>
-- [Boss Zhipin](https://www.zhipin.com) <br>
-- [ClawHub release page](https://clawhub.ai/huguiqi/fk-boss-greeting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke an external CLI that searches jobs, sends greetings, and writes local job-search logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses browser login state for Boss Zhipin, which can expose a real account to unintended automated actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Boss Zhipin account or browser profile and review the login scope before running the skill.
+
+Risk: Automated greetings or scheduled runs can contact HR accounts before the user has checked the selected postings.
+
+Mitigation: Require a visible candidate review and approval step before any greeting is sent or scheduled.
+
+Risk: Dependency and update instructions can install or refresh CLI code that has not been reviewed.
+
+Mitigation: Pin and verify the CLI dependency, and avoid pull-and-reinstall updates until the source has been reviewed.
+
+## Reference(s):
+
+- [Filter rules configuration](references/filter-rules.json)
+- [kabi-boss-cli](https://github.com/jackwener/boss-cli)
+- [Boss Zhipin](https://www.zhipin.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute account actions through the Boss Zhipin CLI and write local greeting logs when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -4,7 +4,25 @@ Wire IdentyClaw Passport metadata and webhooks to an OpenClaw gateway so inbound
 
 **MCP resource URI:** `doc:reference:openclaw-integration-guide`
 
-**Related:** `doc:discovery`, `doc:reference:collaboration-envelope`, [`login-authentication.md`](login-authentication.md) (webhook signature verification), [`token-metadata.md`](token-metadata.md) (`webhook_url` field).
+**Related:** `doc:discovery`, `doc:reference:collaboration-envelope`, [`openclaw-passport-value.md`](openclaw-passport-value.md) (why Passport vs static secrets), [`login-authentication.md`](login-authentication.md) (webhook signature verification), [`token-metadata.md`](token-metadata.md) (`webhook_url` field).
+
+---
+
+## Why Passport for OpenClaw (not just webhooks)
+
+A minimal OpenClaw deployment can use a static webhook token and fixed peer URLs. Passport adds value when peers must be **identities**, not hostnames:
+
+- **Stable `tokenId`** — peers resolve your live gateway via `GET /api/identity/token/{tokenId}/full` → `metadata.webhook_url`; redeploy without re-sharing secrets.
+- **Split auth** — A2A wire JWT (`POST /a2a`), webhook origin signatures (`/hooks/wake`, `/hooks/agent`), and IdentyClaw API session JWT are separate surfaces.
+- **Three channels** — use A2A for multi-turn work, webhooks for cheap signed wake/heartbeat, API/HOLA for discovery and first-contact trust.
+
+| Channel | Good for |
+| --- | --- |
+| **A2A** (`POST /a2a`) | Tasks, files, multi-turn dialogue — P2P RODiT JWT via `@identyclaw/openclaw-a2a-plugin` |
+| **Webhooks** (`/hooks/wake`, `/hooks/agent`) | Signed liveness nudge or identity-driven automation — this guide |
+| **API / HOLA** | Discovery (`GET /api/agents`), verify unknown agents (`POST /api/identity/verify`) |
+
+Full operator rationale, use cases, and “when to skip Passport”: [`openclaw-passport-value.md`](openclaw-passport-value.md).
 
 ---
 
@@ -12,13 +30,14 @@ Wire IdentyClaw Passport metadata and webhooks to an OpenClaw gateway so inbound
 
 ```text
 Skill (workflows):     openclaw skills install clawhub:identyclaw
-Plugin (tools):        openclaw plugins install clawhub:@identyclaw/openclaw-identyclaw-plugin
+Plugin (API + HOLA):   openclaw plugins install clawhub:@identyclaw/openclaw-identyclaw-plugin
+Plugin (A2A P2P):      openclaw plugins install clawhub:@identyclaw/openclaw-a2a-plugin
 MCP (docs):            https://api.identyclaw.com/mcp
 Discovery index:       doc:discovery
 Cheat sheet:           doc:skills
 ```
 
-The **plugin** covers outbound API calls (verify HOLA, list agents, fetch identity). This guide covers **inbound** events from IdentyClaw to your gateway.
+The **identyclaw-tools** plugin covers outbound API calls (multi-API sessions, verify HOLA, list agents, fetch identity) — prefer its tools over curl login. This guide covers **inbound** events from IdentyClaw to your gateway.
 
 ---
 

@@ -1,40 +1,56 @@
-## Description: <br>
-Text-to-speech conversion tool. Use when converting text to speech audio files (opus or mp3 format). Supports macOS native 'say' command and Google TTS (gTTS) service with ffmpeg audio conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech conversion tool. Use when converting text to speech audio files (opus or mp3 format). Supports macOS native 'say' command and Google TTS (gTTS) service with ffmpeg audio conversion.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert text into Opus or MP3 speech audio, using macOS native speech output when available or Google TTS when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Text sent through gTTS may be processed by a third-party service. <br>
-Mitigation: Prefer the local macOS say path for private text when available, and do not send secrets, credentials, regulated data, or confidential content through gTTS unless third-party processing is acceptable. <br>
-Risk: Audio conversion depends on local ffmpeg and Python package installations. <br>
-Mitigation: Install ffmpeg, gtts, and pywayne dependencies only from trusted sources and verify they are available before relying on the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/tts-2) <br>
-- [FFmpeg](https://ffmpeg.org) <br>
+## Use Case:
 
+Developers and external users can use this skill to convert text into Opus or MP3 speech audio through pywayne.tts, using macOS native speech where available or Google TTS with ffmpeg conversion.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for generating Opus or MP3 audio files; actual audio output depends on ffmpeg, platform support, and gTTS availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using gTTS sends converted text to Google's TTS service.
+
+Mitigation: Use macOS native 'say' when appropriate, and avoid sending sensitive text to gTTS unless that service use is acceptable.
+
+Risk: Audio conversion depends on ffmpeg and may prompt users to install or configure local tools.
+
+Mitigation: Review installation prompts and install ffmpeg from trusted package managers or the official ffmpeg site before running conversions.
+
+Risk: Generated audio files require write access to the selected output directory.
+
+Mitigation: Choose an output directory with appropriate permissions and review file paths before writing audio.
+
+## Reference(s):
+
+- [ffmpeg](https://ffmpeg.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for creating Opus or MP3 audio files and checking required local tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

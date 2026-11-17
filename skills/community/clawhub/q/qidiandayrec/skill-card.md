@@ -1,46 +1,67 @@
-## Description: <br>
-Recommends Qidian web novels from Sanjiang new-book lists and classic high-subscription titles, with SBTI-style personalization, Markdown-ready summaries, source links, and local caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+起点中文网好书推荐 skill，可从三江榜新书和万订/十万均订经典网文中生成 SBTI 个性化推荐，并附书籍链接、推荐理由、IP 衍生品和海外影响力信息。
 
-## Publisher: <br>
-[drow931](https://clawhub.ai/user/drow931) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drow931](https://clawhub.ai/user/drow931)
 
-## Use Case: <br>
-External users and agents use this skill to generate personalized Qidian web-novel recommendations from current Sanjiang selections or classic high-subscription works. The skill can return concise recommendation reports with SBTI-style fit, book metadata, Qidian links, and optional IP or overseas-popularity notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install unpinned Python packages during normal use. <br>
-Mitigation: Review dependencies first, use an isolated virtual environment, and preinstall reviewed pinned packages instead of allowing runtime pip installs. <br>
-Risk: The scripts may contact qidiantu.com or Qidian and write local cache and recommendation-history files. <br>
-Mitigation: Run the skill only in environments where those outbound requests and local cache or history files are acceptable. <br>
-Risk: Recommendation links preserve an attribution query parameter. <br>
-Mitigation: Keep the parameter when attribution is desired, and review link handling if attribution tags are not appropriate for the deployment. <br>
+## Use Case:
 
+External readers and agents use this skill to generate Chinese web novel recommendations from Qidian-related data sources, including daily Sanjiang picks, classic high-subscription titles, and SBTI-personalized selections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drow931/qidiandayrec) <br>
-- [Qidian data guide](artifact/references/qidian_data_guide.md) <br>
-- [Qidiantu Sanjiang list data source](https://www.qidiantu.com/bang/1/6/{date}) <br>
-- [Qidiantu 100k subscription badge data source](https://www.qidiantu.com/badge/shiwanjunding) <br>
-- [Qidiantu 10k subscription badge data source](https://www.qidiantu.com/badge/wanrenzhuipeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendation reports or JSON records generated from local Python scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Qidian URLs with the _trace=qidiandayrec_skill attribution parameter and local cache or history effects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Helper scripts can automatically install Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only in an isolated environment where automatic pip installs are acceptable.
+
+Risk: Helper scripts can write local cache and recommendation history files.
+
+Mitigation: Use the skill only where local cache and history writes are acceptable, and inspect or clear generated files according to local retention expectations.
+
+Risk: The skill can create recurring daily recommendation automation.
+
+Mitigation: Enable daily automation only when recurring runs are explicitly desired.
+
+Risk: Generated Qidian links include a skill attribution trace parameter.
+
+Mitigation: Inform users that recommendation links include attribution and review whether tracked links are appropriate for the deployment context.
+
+## Reference(s):
+
+- [Qidian Data Guide](references/qidian_data_guide.md)
+- [ClawHub skill page](https://clawhub.ai/drow931/skills/qidiandayrec)
+- [Qidiantu Sanjiang list pattern](https://www.qidiantu.com/bang/1/6/{date})
+- [Qidiantu book detail pattern](https://www.qidiantu.com/info/{book_id})
+- [Qidiantu 100k subscription badge](https://www.qidiantu.com/badge/shiwanjunding)
+- [Qidiantu 10k subscription badge](https://www.qidiantu.com/badge/wanrenzhuipeng)
+- [Qidian book link pattern](https://www.qidian.com/book/{book_id}/?_trace=qidiandayrec_skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown recommendation report or structured JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations include Qidian book links with a skill attribution trace parameter; local cache and history files may be written by the scripts.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Helps agents design, create, modify, test, and manage n8n workflows through the n8n REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+N8n Operator helps agents design, create, modify, test, and administer n8n workflows through the n8n REST API.
 
-## Publisher: <br>
-[lujun2508](https://clawhub.ai/user/lujun2508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujun2508](https://clawhub.ai/user/lujun2508)
 
-## Use Case: <br>
-Developers, automation engineers, and DevOps users use this skill to plan n8n workflow architecture, generate workflow JSON, call n8n API endpoints, validate workflow structure, and manage activation or execution after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use API-level control over an n8n instance, including workflow activation, execution, deletion, and credential-related endpoints. <br>
-Mitigation: Use a test n8n instance first, scope the API key to the intended instance, and review generated workflow IDs, API requests, and workflow JSON before execution. <br>
-Risk: The security summary flags under-scoped guidance for persistent local cron changes and host-mounted Desktop writes. <br>
-Mitigation: Do not allow cron edits or host-mounted Desktop writes unless persistent local automation is explicitly intended and rollback steps are understood. <br>
+## Use Case:
 
+Developers, automation engineers, and DevOps users use this skill to plan, create, update, validate, activate, and troubleshoot n8n workflows against an n8n instance they administer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lujun2508/n8n-operator) <br>
-- [n8n API reference](references/references/api.md) <br>
-- [n8n node templates](references/node-templates.md) <br>
-- [n8n workflow patterns](references/workflow-patterns.md) <br>
-- [n8n desktop file write notes](references/desktop-write.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON workflow snippets, Python or shell command examples, and API call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow IDs, webhook URLs, validation summaries, and generated n8n workflow JSON for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill can guide live create, update, delete, activate, deactivate, and execute operations on n8n workflows using an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an n8n instance and API key the operator is comfortable letting the agent administer, and require explicit confirmation before any mutating or execution action.
+
+Risk: The security evidence flags persistent local scheduled jobs and host file write examples as high-impact behavior.
+
+Mitigation: Avoid the direct OpenClaw jobs.json cron approach and do not use the root Desktop bind-mount example on sensitive host data; prefer scoped paths, HTTPS or loopback-only HTTP, and reviewed n8n scheduling.
+
+## Reference(s):
+
+- [n8n API Reference](references/references/api.md)
+- [n8n Node Templates](references/node-templates.md)
+- [n8n Workflow Patterns](references/workflow-patterns.md)
+- [n8n Windows Desktop Write Guidance](references/desktop-write.md)
+- [ClawHub skill page](https://clawhub.ai/lujun2508/skills/n8n-operator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include n8n workflow JSON, REST API calls, validation findings, and operational instructions.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

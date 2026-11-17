@@ -1,50 +1,63 @@
-## Description: <br>
-Implement Google Pay for web and Android with tokenization safety, gateway alignment, and production-ready checkout operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement Google Pay for web and Android with tokenization safety, gateway alignment, and production-ready checkout operations.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, implement, validate, launch, and operate Google Pay integrations for web, Android, PSP-mediated checkout, and recurring payment flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Checkout and payment changes can affect live authorizations, captures, refunds, and customer conversion. <br>
-Mitigation: Use test mode first, verify backend or PSP behavior before release, and require the launch and validation checklists before production rollout. <br>
-Risk: PSP secrets or raw Google Pay token payloads could be exposed if copied into chat, logs, screenshots, or local notes. <br>
-Mitigation: Keep PSP secrets and raw payment tokens out of chat and local notes; store only minimal metadata such as request id, status, amount, and currency. <br>
-Risk: Local project state under ~/google-pay may retain integration decisions, validation evidence, or incident notes. <br>
-Mitigation: Review or delete ~/google-pay when retained project state is no longer wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Pay Skill Page](https://clawhub.ai/ivangdavila/google-pay) <br>
-- [Google Pay](https://pay.google.com) <br>
-- [Google Pay JavaScript Client Library](https://pay.google.com/gp/p/js/pay.js) <br>
-- [Google Pay Developer Documentation](https://payments.developers.google.com) <br>
-- [setup.md](artifact/setup.md) <br>
-- [implementation-playbook.md](artifact/implementation-playbook.md) <br>
-- [validation-checklist.md](artifact/validation-checklist.md) <br>
-- [launch-playbook.md](artifact/launch-playbook.md) <br>
-- [failure-handling.md](artifact/failure-handling.md) <br>
-- [recurring-payments.md](artifact/recurring-payments.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Google Pay checkout, subscription, and PSP-mediated payment flows with safe token handling, environment validation, rollout checks, and incident response guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, implementation notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local project notes under ~/google-pay when the user approves setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Raw payment tokens, private keys, or PSP secrets could be exposed through chat, logs, screenshots, or local notes.
+
+Mitigation: Keep token handling minimal, never ask for secrets in chat, and store only short validation evidence and non-sensitive metadata in local notes.
+
+Risk: Client-side totals, currency, or gateway configuration could diverge from server and PSP records.
+
+Mitigation: Use the server as the source of truth for charge amount and currency, align gateway identifiers by environment, and validate PSP mapping before rollout.
+
+Risk: Retries or timeout recovery could create duplicate authorizations.
+
+Mitigation: Require stable idempotency keys for authorization, capture, refund, and void operations, then verify retry behavior in the validation checklist.
+
+Risk: A production release could fail if merchant readiness, fallback checkout, observability, or rollback gates are incomplete.
+
+Mitigation: Keep integrations in test mode until validation passes, use a staged rollout, monitor payment metrics, and pause launch when hard-stop conditions occur.
+
+## Reference(s):
+
+- [Google Pay skill page](https://clawhub.ai/ivangdavila/skills/google-pay)
+- [Google Pay](https://pay.google.com)
+- [Google Pay JavaScript client](https://pay.google.com/gp/p/js/pay.js)
+- [Google Pay developer documentation](https://payments.developers.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with checklists, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, GOOGLE_PAY_MERCHANT_ID, and access to the relevant Google Pay business console and PSP account.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

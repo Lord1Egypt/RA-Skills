@@ -1,41 +1,56 @@
-## Description: <br>
-Minimal Python CLI for secure upload, download, list, and delete operations on Cloudflare R2 storage using AWS Signature V4 authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimal Python CLI for secure upload, download, list, and delete operations on Cloudflare R2 storage using AWS Signature V4 authentication.
 
-## Publisher: <br>
-[zororaka00](https://clawhub.ai/user/zororaka00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zororaka00](https://clawhub.ai/user/zororaka00)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent prepare and run Cloudflare R2 object storage operations, including upload, download, listing, and deletion, from a minimal Python CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage objects in the configured Cloudflare R2 bucket, including destructive delete operations. <br>
-Mitigation: Use a dedicated least-privilege R2 key and double-check upload and delete commands before running them. <br>
-Risk: The skill depends on R2 credentials supplied through environment variables. <br>
-Mitigation: Keep credentials out of source control, use a secret manager or temporary shell environment, and rotate keys regularly. <br>
-Risk: The CLI depends on defusedxml for hardened XML parsing. <br>
-Mitigation: Install defusedxml from a trusted package source before using list operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zororaka00/r2-cli) <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Cloudflare R2 object storage from a Python command-line workflow. It supports bucket object upload, download, listing, and deletion with credentials supplied through environment variables.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python command examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Cloudflare R2 environment variables and produces commands that may read, write, list, or delete bucket objects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles powerful Cloudflare R2 credentials and can perform write or delete actions on remote objects.
+
+Mitigation: Use narrowly scoped R2 keys, avoid broad delete or write permissions unless needed, and rotate or revoke credentials according to the deployment policy.
+
+Risk: Download paths and delete commands can overwrite local files or remove remote objects immediately.
+
+Mitigation: Review target file paths and object keys before running download or delete operations, especially in automated agent workflows.
+
+Risk: Dependencies and CLI execution can affect the local runtime environment.
+
+Mitigation: Install dependencies in an isolated environment and review the skill before installing or executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zororaka00/skills/r2-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and Python CLI usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Cloudflare R2 environment variables for account ID, access key, secret key, bucket, and optional region.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

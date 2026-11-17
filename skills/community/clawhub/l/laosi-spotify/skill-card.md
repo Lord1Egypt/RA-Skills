@@ -1,41 +1,53 @@
-## Description: <br>
-Spotify控制技能 - 终端控制Spotify播放、搜索、管理播放列表。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spotify控制技能 - 终端控制Spotify播放、搜索、管理播放列表。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and developers use this skill to control Spotify playback from a terminal, including play/pause, track navigation, search, playlist operations, current playback display, and volume changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Playback, volume, or playlist changes may occur unintentionally if commands are run without clear user intent. <br>
-Mitigation: Require explicit confirmation before issuing commands that change playback state, volume, or playlists. <br>
-Risk: The required command-line tool may differ between metadata and examples. <br>
-Mitigation: Verify the locally installed Spotify CLI and command syntax before running generated commands. <br>
+## Use Case:
 
+Users and agents use this skill to control Spotify from the terminal, including playback state, search, playlist actions, current-track display, and volume changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-spotify) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-formatted Spotify status or search results when the local CLI returns structured output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The required dependency evidence names spotifyd and spotify-cli, while the artifact installation and examples use spicetify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Spotify CLI before installation and install it from a trusted source.
+
+Risk: Broad trigger phrases and state-changing controls could change playback, playlists, or volume unexpectedly.
+
+Mitigation: Require explicit user confirmation before playlist, playback, or volume changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-spotify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include terminal commands that change Spotify playback, playlists, or volume.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

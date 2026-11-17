@@ -1,42 +1,59 @@
-## Description: <br>
-Converts Classical Chinese texts to modern vernacular Chinese while preserving supported e-book and HTML formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates Classical Chinese text into modern vernacular Chinese while preserving supported e-book and XHTML/HTML structure and adding specialized terminology explanations.
 
-## Publisher: <br>
-[mrfengcn](https://clawhub.ai/user/mrfengcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrfengcn](https://clawhub.ai/user/mrfengcn)
 
-## Use Case: <br>
-External users and developers use this skill to translate Classical Chinese source texts into readable modern Chinese and to process full e-book or chapter batches while keeping document structure intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release has inaccurate capability tags for crypto and purchases even though the reviewed code does not perform those actions. <br>
-Mitigation: Review the publisher and source before deployment and treat those tags as inaccurate until the release metadata is corrected. <br>
-Risk: The translator reads and writes local e-book or HTML files, so incorrect paths or malformed inputs can affect user files. <br>
-Mitigation: Run the tool on copies of files inside a scoped working directory and validate output before replacing originals. <br>
+## Use Case:
 
+Developers and language-focused users use this skill to translate Classical Chinese source texts, especially philosophical or e-book material, into modern Chinese with terminology explanations and preserved document structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrfengcn/classical-chinese-translator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mrfengcn) <br>
-- [Daoist terminology dictionary](references/daoist_terminology.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and translated UTF-8 text, HTML, XHTML, or e-book files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local input paths and writes translated output files; scanner evidence reports no hidden network, credential, persistence, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: A crafted EPUB or XHTML document may cause local file contents to appear in generated output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted input files, or run it in a sandbox without sensitive local files.
+
+Risk: The documentation overstates safety relative to the server security summary.
+
+Mitigation: Review the skill before installation and rely on the server security guidance when deciding deployment controls.
+
+Risk: Unpinned runtime dependencies can change behavior across environments.
+
+Mitigation: Pin and review dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrfengcn/skills/classical-chinese-translator)
+- [English documentation](artifact/classical-chinese-translator/README-en.md)
+- [Daoist terminology reference](artifact/classical-chinese-translator/references/daoist_terminology.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and generated EPUB, XHTML, or HTML output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local files and terminology dictionaries; review generated translations and formatted outputs before release.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

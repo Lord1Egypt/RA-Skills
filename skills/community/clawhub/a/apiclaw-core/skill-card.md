@@ -1,48 +1,63 @@
-## Description: <br>
-APIClaw provides agent-facing access to 11 Amazon commerce data endpoints for category browsing, market metrics, product search, competitor lookup, realtime ASIN detail, AI review analysis, price band analysis, brand intelligence, and product history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZooData is an API endpoint reference and bundled client for agent access to ZooData commerce and keyword-intelligence data, including endpoint inputs, response fields, authentication, credit tracking, and local review-toolkit behavior.
 
-## Publisher: <br>
-[apiclaw](https://clawhub.ai/user/apiclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apiclaw](https://clawhub.ai/user/apiclaw)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect APIClaw capabilities, configure API access, and call Amazon commerce data endpoints for product, market, competitor, review, pricing, brand, and history analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend API credits and sends Amazon product keywords, ASINs, categories, competitor context, and market research inputs to APIClaw. <br>
-Mitigation: Use APICLAW_API_KEY explicitly, monitor returned credit usage, and avoid submitting sensitive proprietary research unless APIClaw is trusted for that processing. <br>
-Risk: Composite analysis and monitoring commands can perform broader API activity than a simple endpoint reference lookup. <br>
-Mitigation: Review the command scope before execution and use narrower endpoint-specific commands when only targeted data is needed. <br>
-Risk: Storing API keys in shared local configuration can expose credentials. <br>
-Mitigation: Prefer environment-variable configuration for APICLAW_API_KEY and avoid keeping keys in shared local config files. <br>
+## Use Case:
 
+Developers and agents use this skill to understand and call ZooData endpoints for Amazon product, market, competitor, review, price-band, brand, history, and keyword-intelligence lookups. It is suited for data-backed commerce analysis workflows that require endpoint selection, parameter guidance, API-key authentication, and credit-aware execution.
 
-## Reference(s): <br>
-- [APIClaw ClawHub release page](https://clawhub.ai/apiclaw/apiclaw-core) <br>
-- [APIClaw publisher profile](https://clawhub.ai/user/apiclaw) <br>
-- [APIClaw API Quick Reference](references/openapi-reference.md) <br>
-- [Market Entry Analyzer API Field Reference](references/reference.md) <br>
-- [APIClaw OpenAPI specification](https://apiclaw.io/api/v1/openapi-spec) <br>
-- [APIClaw API documentation](https://api.apiclaw.io/api-docs) <br>
-- [APIClaw homepage](https://apiclaw.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APICLAW_API_KEY; API calls consume credits and may return live or delayed Amazon commerce data depending on endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Live API calls use a user-provided ZooData API key and may spend account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials intentionally, prefer ZOODATA_API_KEY for short sessions, and ask the agent to estimate and confirm cost before broad or ambiguous multi-call scans.
+
+Risk: Persisted credentials in ~/.zoodata/config.json could be exposed if local file permissions are too broad.
+
+Mitigation: Keep the local credential file private and use restrictive directory and file permissions when persistent storage is needed.
+
+Risk: Endpoint parameters and live API field names may change, causing failed calls or misleading analysis if stale schemas are used.
+
+Mitigation: Use the bundled references and current ZooData OpenAPI specification for endpoint selection, supported parameters, and response-field interpretation.
+
+## Reference(s):
+
+- [ZooData skill page](https://clawhub.ai/apiclaw/skills/zoodata)
+- [ZooData API keys](https://zoodata.ai/en/api-keys)
+- [ZooData OpenAPI specification](https://zoodata.ai/api/v1/openapi-spec)
+- [ZooData Skills homepage](https://github.com/SerendipityOneInc/ZooData-Skills)
+- [CLI contract](references/cli-contract.md)
+- [OpenAPI reference](references/openapi-reference.md)
+- [ZooData API field reference](references/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOODATA_API_KEY for live API calls; each API call may consume ZooData account credits.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

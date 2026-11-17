@@ -1,43 +1,56 @@
-## Description: <br>
-Xhsfenxi guides agents through Xiaohongshu creator-account analysis, including archetype classification, viral topic formula extraction, creator comparison, and business DOCX deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhsfenxi guides agents through public-evidence-based Xiaohongshu/RED creator analysis, archetype classification, viral topic formula extraction, creator comparisons, and business-ready report deliverables.
 
-## Publisher: <br>
-[cosmofang](https://clawhub.ai/user/cosmofang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmofang](https://clawhub.ai/user/cosmofang)
 
-## Use Case: <br>
-External content strategists, marketers, and creator-research agents use this skill to analyze public Xiaohongshu/RED accounts, classify creator archetypes, extract repeatable topic formulas, compare creators, and prepare business-facing DOCX reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide private credentials or unrelated personal files while gathering creator evidence. <br>
-Mitigation: Use public pages, user-provided screenshots, and relevant links only; do not provide private credentials or unrelated personal files. <br>
-Risk: Referenced local DOCX helper scripts are not included in this package. <br>
-Mitigation: Inspect and approve any external DOCX generation scripts separately before executing them. <br>
-Risk: Blocked or limited public page access can lead to unsupported post-level claims. <br>
-Mitigation: State access limits, grade evidence quality, and request representative screenshots or links for deep post-level analysis. <br>
+## Use Case:
 
+External users, developers, and content strategy teams use this skill to analyze public Xiaohongshu/RED creator accounts, classify creator archetypes, extract reusable topic formulas, compare benchmark creators, and produce structured DOCX reports.
 
-## Reference(s): <br>
-- [Workflow Reference](references/workflow.md) <br>
-- [Templates Reference](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Structured text or Markdown guidance plus DOCX report deliverables and command plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Standard workflows produce single-account reports, topic-formula reports, or multi-creator comparison deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence.json release and package.json) <br>
+Risk: The release security summary flags that Word-generation guidance can lead agents or users to run unsafe external shell commands built from creator names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public Xiaohongshu/RED creator analysis, quote or sanitize creator names and filenames, choose a dedicated output directory, and review generated commands before execution.
+
+Risk: External DOCX build or repair scripts may be invoked from paths outside the packaged skill.
+
+Mitigation: Verify any external build_docx, inspect_docx, or fix scripts before use and require confirmation before creating or repairing Word files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cosmofang/skills/xhsfenxi)
+- [Workflow Reference](references/workflow.md)
+- [Templates Reference](references/templates.md)
+- [Package Metadata](package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Node.js script output, shell command suggestions, and DOCX report plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces public-evidence analysis plans and report structures; standard deliverables are DOCX files for single-creator reports, viral topic formulas, and multi-creator comparisons.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

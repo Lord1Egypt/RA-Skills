@@ -1,47 +1,62 @@
-## Description: <br>
-Translate editable PowerPoint decks into Chinese, English, Japanese, and other target languages while preserving layout, glossary consistency, and editability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeckLingo for PPTX helps agents translate editable PowerPoint decks across languages while preserving layout, glossary consistency, speaker notes, and editability.
 
-## Publisher: <br>
-[Neabigmo](https://clawhub.ai/user/Neabigmo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neabigmo](https://clawhub.ai/user/neabigmo)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to translate editable PPTX decks while preserving layout and terminology. It is suited for presentation localization workflows that need optional speaker-note, layout, master, glossary, skip-pattern, dry-run, scan, and verification support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Editable slide text, speaker notes, layouts, or masters may be sent to a Google-backed translation dependency. <br>
-Mitigation: Use only with decks approved for external translation, add an explicit consent step before translation, and avoid confidential, regulated, or customer-sensitive decks unless data handling is reviewed. <br>
-Risk: Unpinned runtime dependencies may change behavior over time. <br>
-Mitigation: Pin and review dependencies before deploying the skill in controlled or commercial environments. <br>
-Risk: Translated output can preserve layout imperfectly or leave source-language text in inherited editable objects. <br>
-Mitigation: Run the scan or dry-run workflow first, choose the required slide, note, layout, and master scope, and re-scan the translated deck before delivery. <br>
+## Use Case:
 
+Developers, localization teams, and presentation authors use this skill to scan and translate editable PPTX slides, speaker notes, layouts, or masters while applying glossaries and checking for remaining source-language text.
 
-## Reference(s): <br>
-- [DeckLingo for PPTX homepage](https://github.com/Neabigmo/DeckLingo-for-PPTX) <br>
-- [ClawHub skill page](https://clawhub.ai/Neabigmo/decklingo-pptx) <br>
-- [Glossary Schema](references/glossary-schema.md) <br>
-- [Translation Modes](references/translation-modes.md) <br>
-- [Platform Compatibility](references/platform-compatibility.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON reports, and PPTX file outputs from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce translated PPTX files, scan summaries, dry-run output, and optional machine-readable translation reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and changelog) <br>
+Risk: Selected deck text can be sent to Google through deep-translator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing on confidential decks and use only when sending selected PPTX text to Google is acceptable.
+
+Risk: The security summary reports world-writable presentation files.
+
+Mitigation: Run the skill in a private or isolated directory and adjust output file permissions before sharing translated decks.
+
+Risk: Untrusted PPTX files are processed locally as ZIP/XML containers.
+
+Mitigation: Avoid untrusted PPTX inputs or inspect them in an isolated environment before translating.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neabigmo/skills/decklingo-pptx)
+- [Project Homepage](https://github.com/Neabigmo/DeckLingo-for-PPTX)
+- [Glossary Schema](references/glossary-schema.md)
+- [Translation Modes](references/translation-modes.md)
+- [Platform Compatibility](references/platform-compatibility.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, translated PPTX files, and optional JSON scan or translation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write output decks, backup files, and report files when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

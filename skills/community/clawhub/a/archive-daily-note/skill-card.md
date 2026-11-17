@@ -1,41 +1,55 @@
-## Description: <br>
-Automatically moves yesterday's Obsidian daily note into a past-days/ archive folder using the Obsidian CLI move command to preserve wiki-links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically moves yesterday's Obsidian daily note into a past-days/ archive folder using the Obsidian CLI move command to preserve wiki-links.
 
-## Publisher: <br>
-[madebydia](https://clawhub.ai/user/madebydia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madebydia](https://clawhub.ai/user/madebydia)
 
-## Use Case: <br>
-Obsidian users and automation operators use this skill to archive the previous day's daily note into a past-days folder while preserving wiki-links through the Obsidian CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify files in an Obsidian vault by moving a daily note and allowing obsidian move to update internal links. <br>
-Mitigation: Run it only in the intended vault after confirming the daily note naming format and the past-days folder. <br>
+## Use Case:
 
+External users and developers use this skill to schedule nightly Obsidian vault maintenance that archives the prior day's daily note while preserving wiki-links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/madebydia/archive-daily-note) <br>
-- [Publisher profile](https://clawhub.ai/user/madebydia) <br>
-- [Project homepage](https://github.com/madebydia/archive-daily-note) <br>
-- [OpenClaw](https://openclaw.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and cron configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify files in the active Obsidian vault by moving one daily note and updating internal links through obsidian move.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill modifies an Obsidian vault by moving a daily note and updating wiki-links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only after confirming the vault's daily-note naming format, archive folder, and Obsidian CLI behavior match the documented assumptions.
+
+Risk: A missing or mismatched archive folder or note naming convention can cause the scheduled task to skip the intended note.
+
+Mitigation: Create the past-days/ folder and verify the MM-DD-YYYY DayOfWeek.md naming convention before enabling cron execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/madebydia/skills/archive-daily-note)
+- [Project homepage](https://github.com/madebydia/archive-daily-note)
+- [OpenClaw](https://openclaw.app)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command references and cron configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the obsidian binary and an Obsidian vault using the documented daily-note naming convention and past-days/ archive folder.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,7 +3,7 @@ name: polymarket-fast-loop
 description: Trade Polymarket BTC 5-minute and 15-minute fast markets using CEX price momentum signals via Simmer API. Default signal is Binance BTC/USDT klines. Use when user wants to trade sprint/fast markets, automate short-term crypto trading, or use CEX momentum as a Polymarket signal.
 metadata:
   author: Simmer (@simmer_markets)
-  version: "1.7.0"
+  version: "1.7.4"
   displayName: Polymarket FastLoop Trader
   difficulty: advanced
 ---
@@ -269,6 +269,6 @@ All trades are tagged with `source: "sdk:fastloop"`. This means:
 - Do NOT attempt to sign orders manually or modify the skill code — the SDK handles it
 
 **"Balance shows $0 but I have funds on Polygon"**
-- Polymarket V2 (live 2026-04-28) uses **pUSD** (PolyUSD, 1:1 backed by USDC.e). If your wallet holds USDC.e, migrate at [simmer.markets/dashboard](https://simmer.markets/dashboard) with one click (~30s)
+- Polymarket V2 (live 2026-04-28) uses **pUSD** (PolyUSD, 1:1 backed by USDC.e). If your wallet holds USDC.e, migrate at [simmer.markets/dashboard](https://simmer.markets/dashboard?ref=sdk-skill&utm_campaign=sdk-skill) with one click (~30s)
 - If you bridged native USDC (Circle), swap to USDC.e first, then migrate to pUSD
 - Full migration guide: [docs.simmer.markets/v2-migration](https://docs.simmer.markets/v2-migration)

@@ -1,0 +1,127 @@
+{
+  "name": "ecloud-mem0-memory-service",
+  "version": "1.0.0",
+  "description": "基于 mem0 自部署服务器的长期记忆系统，支持语义搜索和完整 CRUD 操作",
+  "author": "he3ai",
+  "license": "MIT",
+  "keywords": ["memory", "mem0", "search", "long-term", "self-hosted", "crud"],
+  "runtime": "node",
+  "main": "memory.js",
+  "setup": "setup.js",
+  "api": {
+    "functions": [
+      {
+        "name": "save_memory",
+        "description": "存储记忆到 mem0 服务器",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "用户原话或需要记忆的内容"
+            }
+          },
+          "required": ["message"]
+        }
+      },
+      {
+        "name": "search_memory",
+        "description": "语义搜索 mem0 记忆",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "搜索关键词或语义描述"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "返回结果数量，默认5",
+              "default": 5
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      {
+        "name": "list_all",
+        "description": "列出当前用户的所有记忆",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "get_memory",
+        "description": "获取单条记忆详情",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "记忆 ID"
+            }
+          },
+          "required": ["id"]
+        }
+      },
+      {
+        "name": "update_memory",
+        "description": "更新记忆内容",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "记忆 ID"
+            },
+            "text": {
+              "type": "string",
+              "description": "新的记忆内容"
+            }
+          },
+          "required": ["id", "text"]
+        }
+      },
+      {
+        "name": "delete_memory",
+        "description": "删除单条记忆",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "记忆 ID"
+            }
+          },
+          "required": ["id"]
+        }
+      },
+      {
+        "name": "delete_all",
+        "description": "删除当前用户的所有记忆（谨慎使用）",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    ]
+  },
+  "environment_variables": [
+    {
+      "name": "MEM0_BASE_URL",
+      "description": "mem0 服务器地址（必须以 http:// 或 https:// 开头）",
+      "required": true
+    },
+    {
+      "name": "MEM0_USER_ID",
+      "description": "用户 ID",
+      "required": true
+    },
+    {
+      "name": "MEM0_API_KEY",
+      "description": "API Key（m0sk_ 前缀）",
+      "required": true
+    }
+  ]
+}

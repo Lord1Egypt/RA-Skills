@@ -1,0 +1,154 @@
+{
+ "_chart_type": "rob",
+ "_command": "python3 scripts/gen_figure.py -t rob -d examples/realworld/evidence_rob1_cochrane_rct.json -o evidence_rob1_cochrane_rct.png --cjk",
+ "_note": "真实数据：robvis R 包 data_rob1（Cochrane ROB1 旧版工具示例评估，9 项 RCT×7 域+Overall；McGuinness & Higgins 2019, JOSS）。Unclear 判定归入顾虑档（黄色）渲染。",
+ "domains": [
+  {
+   "key": "Random.sequence.generation",
+   "label": "随机序列生成"
+  },
+  {
+   "key": "Allocation.concealment",
+   "label": "分配隐藏"
+  },
+  {
+   "key": "Blinding.of.participants.and.personnel",
+   "label": "受试者与施试者盲法"
+  },
+  {
+   "key": "Blinding.of.outcome.assessment",
+   "label": "结局评估盲法"
+  },
+  {
+   "key": "Incomplete.outcome.data",
+   "label": "结局数据不完整"
+  },
+  {
+   "key": "Selective.reporting",
+   "label": "选择性报告"
+  },
+  {
+   "key": "Other.sources.of.bias",
+   "label": "其他偏倚来源"
+  }
+ ],
+ "studies": [
+  {
+   "name": "Study 1",
+   "judgements": {
+    "Random.sequence.generation": "Low",
+    "Allocation.concealment": "Low",
+    "Blinding.of.participants.and.personnel": "Low",
+    "Blinding.of.outcome.assessment": "Low",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "Low",
+    "Overall": "Low"
+   }
+  },
+  {
+   "name": "Study 2",
+   "judgements": {
+    "Random.sequence.generation": "Unclear",
+    "Allocation.concealment": "Low",
+    "Blinding.of.participants.and.personnel": "Low",
+    "Blinding.of.outcome.assessment": "Low",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "Unclear",
+    "Overall": "Unclear"
+   }
+  },
+  {
+   "name": "Study 3",
+   "judgements": {
+    "Random.sequence.generation": "Unclear",
+    "Allocation.concealment": "Low",
+    "Blinding.of.participants.and.personnel": "Low",
+    "Blinding.of.outcome.assessment": "Unclear",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "Low",
+    "Overall": "Unclear"
+   }
+  },
+  {
+   "name": "Study 4",
+   "judgements": {
+    "Random.sequence.generation": "Low",
+    "Allocation.concealment": "Low",
+    "Blinding.of.participants.and.personnel": "Low",
+    "Blinding.of.outcome.assessment": "High",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Unclear",
+    "Other.sources.of.bias": "High",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 5",
+   "judgements": {
+    "Random.sequence.generation": "High",
+    "Allocation.concealment": "High",
+    "Blinding.of.participants.and.personnel": "High",
+    "Blinding.of.outcome.assessment": "Low",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Unclear",
+    "Other.sources.of.bias": "Unclear",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 6",
+   "judgements": {
+    "Random.sequence.generation": "Low",
+    "Allocation.concealment": "High",
+    "Blinding.of.participants.and.personnel": "High",
+    "Blinding.of.outcome.assessment": "Unclear",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "Unclear",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 7",
+   "judgements": {
+    "Random.sequence.generation": "Low",
+    "Allocation.concealment": "Unclear",
+    "Blinding.of.participants.and.personnel": "Unclear",
+    "Blinding.of.outcome.assessment": "Unclear",
+    "Incomplete.outcome.data": "High",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "No information",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 8",
+   "judgements": {
+    "Random.sequence.generation": "Low",
+    "Allocation.concealment": "Unclear",
+    "Blinding.of.participants.and.personnel": "Unclear",
+    "Blinding.of.outcome.assessment": "Low",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "Low",
+    "Overall": "Unclear"
+   }
+  },
+  {
+   "name": "Study 9",
+   "judgements": {
+    "Random.sequence.generation": "Low",
+    "Allocation.concealment": "Low",
+    "Blinding.of.participants.and.personnel": "Low",
+    "Blinding.of.outcome.assessment": "High",
+    "Incomplete.outcome.data": "Low",
+    "Selective.reporting": "Low",
+    "Other.sources.of.bias": "Low",
+    "Overall": "High"
+   }
+  }
+ ]
+}

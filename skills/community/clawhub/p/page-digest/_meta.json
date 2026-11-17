@@ -1,0 +1,8 @@
+{
+  "name": "page-digest",
+  "version": "1.0.0",
+  "description": "Fetch a web page and produce a structured markdown digest",
+  "tags": ["summarization", "web", "digest", "briefing"],
+  "author": "terrycarter1985",
+  "license": "MIT"
+}

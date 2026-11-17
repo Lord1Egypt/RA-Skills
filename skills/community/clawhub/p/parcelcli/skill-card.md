@@ -1,42 +1,53 @@
-## Description: <br>
-Track parcels locally with parcelcli for Evri, Royal Mail, UPS, FedEx, and DHL. Use when the user asks to track a package, detect a carrier, check delivery status, watch a parcel, or summarize courier tracking without sending tracking data to third-party aggregators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track parcels locally with parcelcli for Evri, Royal Mail, UPS, FedEx, and DHL.
 
-## Publisher: <br>
-[cavit99](https://clawhub.ai/user/cavit99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cavit99](https://clawhub.ai/user/cavit99)
 
-## Use Case: <br>
-External users and developers use this skill to track parcels with a local parcelcli installation, detect carriers, summarize normalized tracking status, and manage local delivery watches without sending tracking data to third-party aggregators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external local parcelcli Go module and browser-driven carrier pages. <br>
-Mitigation: Install only if the external module is trusted, keep Chrome available or provide a Chrome path, and retry timeouts or WAF failures once later rather than looping. <br>
-Risk: Tracking numbers, postcodes, and saved parcel watches can expose delivery information. <br>
-Mitigation: Provide tracking numbers and postcodes only for parcels the user wants checked, do not infer postcodes from memory, keep watch state local, and remove saved watches when monitoring is no longer needed. <br>
+## Use Case:
 
+Developers and external users use this skill to track parcels locally, detect carriers, watch delivery status, and summarize normalized carrier tracking results without relying on third-party parcel aggregation services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cavit99/parcelcli) <br>
-- [parcelcli homepage](https://github.com/cavit99/parcelcli) <br>
-- [Go install module](github.com/cavit99/parcelcli/cmd/parcelcli@v1.0.3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and summarized JSON fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should use normalized parcel status fields and avoid raw carrier page text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Tracking numbers, postcodes, and parcel watch state can be sensitive personal delivery data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tracking data local, use postcodes only when provided or explicitly requested, and remove local watches when monitoring is no longer needed.
+
+Risk: Carrier pages may return unsupported, credential-required, timeout, or WAF failure states.
+
+Mitigation: Report unsupported or credential-required states plainly, and retry timeout or WAF failures once later instead of looping.
+
+## Reference(s):
+
+- [parcelcli GitHub homepage](https://github.com/cavit99/parcelcli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and summarized JSON fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should use normalized parcel status fields and avoid raw carrier page text.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

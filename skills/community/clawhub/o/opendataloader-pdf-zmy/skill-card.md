@@ -1,43 +1,61 @@
-## Description: <br>
-Parse PDFs into Markdown, JSON, HTML, or text with OCR, table extraction, bounding boxes, and AI-enriched descriptions for RAG pipelines and knowledge bases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenDataLoader PDF parses PDFs into Markdown, JSON, HTML, or text for RAG pipelines, table extraction with bounding boxes, OCR workflows, and AI-enriched descriptions.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Developers and data engineers use this skill to convert PDFs into LLM-ready content for RAG systems, knowledge bases, structured data extraction, OCR workflows, and citation-aware document processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using a remote hybrid backend may send PDF contents outside the local machine. <br>
-Mitigation: Use a trusted or local hybrid backend for sensitive documents, and avoid sending confidential PDFs to an unknown backend. <br>
-Risk: Extracted PDF content may include prompt-injection text that can affect downstream RAG or agent workflows. <br>
-Mitigation: Use the documented sanitize option and review extracted content before embedding it or passing it into agent prompts. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert PDFs into LLM-ready text, Markdown, JSON, or HTML for knowledge bases, citation-aware extraction, and RAG pipelines. It is especially relevant for structured PDFs such as reports, academic papers, invoices, scanned documents, and medical-style records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zmy1006-sudo/opendataloader-pdf-zmy) <br>
-- [API Reference](references/api-reference.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; parser outputs Markdown, JSON, HTML, or text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output may include page numbers and bounding boxes; hybrid mode can add OCR, formula extraction, and chart or image descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive PDF content may be exposed when converted text is sent to remote, AI-backed, or embedding services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat converted PDF content as sensitive, use localhost or trusted authenticated hybrid backends, and review third-party embedding use before processing confidential documents.
+
+Risk: Untrusted PDFs can introduce prompt-injection content into downstream RAG or agent workflows.
+
+Mitigation: Enable sanitization for untrusted PDFs and review extracted content before indexing it or passing it to an LLM.
+
+Risk: Pointing OPENDATALOADER_HYBRID_URL at an untrusted service can expose source documents or extracted text.
+
+Mitigation: Keep OPENDATALOADER_HYBRID_URL on localhost or a trusted authenticated backend.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [CLI Reference](references/cli-reference.md)
+- [Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/zmy1006-sudo/skills/opendataloader-pdf-zmy)
+- [Publisher Profile](https://clawhub.ai/user/zmy1006-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes usage patterns for local parsing, hybrid parsing, OCR, sanitization, and downstream RAG workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

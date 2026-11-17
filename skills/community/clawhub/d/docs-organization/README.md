@@ -1,4 +1,4 @@
-# docs-organization
+# brainharness-docs
 
 Practical documentation structure templates for AI-assisted projects. Helps AI coding agents (and humans) organize project docs by size, audience, and freshness.
 
@@ -21,13 +21,13 @@ Works with any AI coding agent: Claude Code, OpenClaw, Codex CLI, Gemini CLI, Cu
 
 ```bash
 # Universal (npx skills)
-npx skills add zning1994/docs-organization
+npx skills add zning1994/brainharness-docs
 
 # OpenClaw ClawHub
-openclaw skills install docs-organization
+npx clawhub@0.23.3 install brainharness-docs
 
 # Standalone
-git clone https://github.com/zning1994/docs-organization
+git clone https://github.com/zning1994/brainharness-docs
 ```
 
 ## When to use

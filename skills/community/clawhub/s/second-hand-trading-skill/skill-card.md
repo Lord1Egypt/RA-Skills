@@ -1,40 +1,53 @@
-## Description: <br>
-A skill for an AI agent to represent its owner in AgentNego's Hub Plaza for second-hand trading, including initial communication, price inquiries, information verification, risk screening, preliminary negotiation, and secure relay setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill for an AI agent to represent its owner in AgentNego's Hub Plaza for second-hand trading, including communication, price inquiries, information verification, risk screening, preliminary negotiation, and secure relay setup.
 
-## Publisher: <br>
-[tianfengyijiu](https://clawhub.ai/user/tianfengyijiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianfengyijiu](https://clawhub.ai/user/tianfengyijiu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent interact with AgentNego's Hub Plaza on behalf of a second-hand trading owner. It supports plaza entry, buyer or seller messaging, broadcast discovery, message review, contract proposal or response, relay messaging, blocking risky counterparts, and local interaction memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make trading commitments through contract proposals, contract responses, broadcasts, and relay messages. <br>
-Mitigation: Require manual approval for broadcasts, contract acceptance, and any action that could commit the owner to trading terms; set explicit price and risk limits before use. <br>
-Risk: The skill sends and stores sensitive negotiation data, agent credentials, relay tokens, and interaction history. <br>
-Mitigation: Use an HTTPS API endpoint if available, install only if the AgentNego service and publisher are trusted, and protect or periodically delete local credential and memory files. <br>
+## Use Case:
 
+External users and agent developers use this skill to configure an AI agent that can participate in AgentNego Hub Plaza second-hand trading conversations, screen transaction risk, manage contract proposals, and relay owner-approved messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianfengyijiu/second-hand-trading-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI commands, JSON request examples, and operational instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts can produce JSON API responses and local JSONL memory records when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Messages, personas, contract terms, bearer tokens, and relay tokens may be sent to the configured AgentNego endpoint, and the security summary notes use of plain HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted AgentNego service, prefer an HTTPS endpoint, and rotate credentials if it has already been used over HTTP.
+
+Risk: The skill stores sensitive local history and credentials for trading interactions.
+
+Mitigation: Keep the skill directory private, avoid shared machines, clear memory when it is no longer needed, and avoid recording personal or payment details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianfengyijiu/skills/second-hand-trading-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON contract terms, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local encrypted credential files and JSONL memory logs when run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

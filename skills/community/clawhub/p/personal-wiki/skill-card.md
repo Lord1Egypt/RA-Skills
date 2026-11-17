@@ -1,45 +1,66 @@
-## Description: <br>
-Personal Wiki helps an agent ingest IMA notes, Evernote notes, and local files into a structured local Markdown wiki, then query, lint, and generate demo scripts from that wiki. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Wiki helps an agent ingest IMA notes, Evernote notes, and local files into a local ~/wiki knowledge base, query and lint wiki pages, visualize the knowledge graph, and generate customized demo scripts.
 
-## Publisher: <br>
-[heavenchenggong](https://clawhub.ai/user/heavenchenggong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heavenchenggong](https://clawhub.ai/user/heavenchenggong)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to maintain a local Markdown knowledge base from private note sources and user-provided files, then retrieve, clean up, or repurpose that knowledge for responses and demo scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private IMA or Evernote notes and local files placed in the wiki raw folder. <br>
-Mitigation: Install only for workflows where that access is intended, keep credentials private, and avoid ingesting secrets that should not be reused by the agent. <br>
-Risk: The skill persists extracted knowledge into local Markdown files, which may include sensitive source content. <br>
-Mitigation: Keep the wiki directory private and review generated wiki updates before relying on or sharing them. <br>
-Risk: Generated wiki pages or demo scripts may contain incorrect summaries or stale information. <br>
-Mitigation: Review generated pages, index updates, log entries, and demo outputs before operational use. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to maintain a local personal wiki from note services and local documents, then search, clean up, visualize, and reuse that knowledge for demo scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heavenchenggong/personal-wiki) <br>
-- [IMA agent interface](https://ima.qq.com/agent-interface) <br>
-- [Evernote developer token](https://app.yinxiang.com/api/DeveloperToken.action) <br>
-- [Wiki schema template](wiki-template/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell and Python code blocks plus local Markdown wiki files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read private note content or local raw files and may write or update local wiki pages, index, and ingest log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill requires access to IMA, Evernote, and local ~/wiki content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that credential and content access is acceptable, and keep tokens out of chat transcripts and shared logs.
+
+Risk: The artifact documents persistent Evernote token storage in a shell startup file.
+
+Mitigation: Prefer an environment-specific secret store or short-lived terminal export, and rotate the token if it has been pasted or logged.
+
+Risk: The documented dependency setup uses global Python package installation and a local package patch.
+
+Mitigation: Use an isolated virtual environment and review dependencies before running ingestion or visualization commands.
+
+Risk: The generated wiki graph HTML may expose sensitive imported content and uses browser-rendered markdown with remote scripts.
+
+Mitigation: Avoid opening generated graph files for sensitive wiki content unless the viewer sanitizes markdown and avoids untrusted remote scripts.
+
+## Reference(s):
+
+- [ClawHub Personal Wiki skill page](https://clawhub.ai/heavenchenggong/skills/personal-wiki)
+- [IMA list_note_by_folder_id endpoint](https://ima.qq.com/openapi/note/v1/list_note_by_folder_id)
+- [IMA get_doc_content endpoint](https://ima.qq.com/openapi/note/v1/get_doc_content)
+- [Yinxiang Developer Token page](https://app.yinxiang.com/api/DeveloperToken.action)
+- [Cytoscape.js distribution](https://cdn.jsdelivr.net/npm/cytoscape@3.28.1/dist/cytoscape.min.js)
+- [Marked distribution](https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets; may create markdown wiki pages, log entries, demo scripts, and a single-file HTML graph.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local ~/wiki files plus IMA and Evernote credentials when the user requests ingestion or synchronization.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

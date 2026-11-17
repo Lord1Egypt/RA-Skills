@@ -1,45 +1,54 @@
-## Description: <br>
-Swimlane Arch helps agents generate editable Draw.io XML for horizontal or vertical swimlane diagrams and layered system architecture diagrams from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swimlane Arch turns natural-language requests into editable Draw.io XML for horizontal or vertical swimlane diagrams and layered architecture diagrams.
 
-## Publisher: <br>
-[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it)
 
-## Use Case: <br>
-Business analysts, product teams, developers, and workflow owners use this skill to turn process or architecture descriptions into editable diagrams for business flows, government approval processes, cross-team handoffs, and system architecture design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional ProcessOn/PingCode export can send diagram content to a third-party cloud service. <br>
-Mitigation: Leave PROCESSON_API_KEY unset for local-only Draw.io output, and only enable cloud export for data approved for that service. <br>
-Risk: Generated .drawio files may contain sensitive business process or system architecture details. <br>
-Mitigation: Review generated files and storage locations before sharing or uploading diagrams outside the local workspace. <br>
+## Use Case:
 
+Developers, architects, process analysts, and business teams use this skill to draft business process swimlanes, government approval flows, cross-department workflows, and system architecture diagrams from brief natural-language descriptions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leslietong2046-ship-it/swimlane-arch-skill) <br>
-- [Swimlane Horizontal Template](artifact/references/swimlane-template.xml) <br>
-- [Swimlane Vertical Template](artifact/references/swimlane-vertical-template.xml) <br>
-- [Architecture Template](artifact/references/arch-template.xml) <br>
-- [diagrams.net](https://app.diagrams.net) <br>
-- [PingCode Graph API](https://open.pingcode.com/v1/graph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [Draw.io XML in .drawio files, with concise user guidance and an optional ProcessOn/PingCode cloud link when configured.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to local .drawio generation; optional cloud export requires PROCESSON_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release evidence; artifact frontmatter lists 1.1.5) <br>
+Risk: Diagram content may leave the local environment when PROCESSON_API_KEY is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default local Draw.io output for confidential diagrams, unset PROCESSON_API_KEY unless cloud export is intentional, and verify the external endpoint before sending sensitive content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leslietong2046-ship-it/skills/swimlane-arch-skill)
+- [diagrams.net](https://app.diagrams.net)
+- [ProcessOn API endpoint](https://open.pingcode.com/v1/graph)
+- [Architecture diagram template](artifact/references/arch-template.xml)
+- [Horizontal swimlane template](artifact/references/swimlane-template.xml)
+- [Vertical swimlane template](artifact/references/swimlane-vertical-template.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Draw.io XML (.drawio) with concise completion text and an optional ProcessOn link when cloud export is configured]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to local editable Draw.io XML; when PROCESSON_API_KEY is set, diagram content may be sent to an external ProcessOn-compatible endpoint.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+{
+  "name": "aiflc-pdlc-dashboard",
+  "displayName": "AIFLC PDLC Dashboard",
+  "description": "Interactive lifecycle dashboard for AI-* PDLC Family projects — chain diagram, progress cards, management framework, ideas kanban.",
+  "version": "0.4.0",
+  "publisher": "aiflc",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Visualization"],
+  "activationEvents": [
+    "onCommand:aiflc-pdlc-dashboard.open",
+    "workspaceContains:**/data/REGISTRY.json"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiflc-pdlc-dashboard.open",
+        "title": "AIFLC: Open Dashboard",
+        "category": "AIFLC"
+      },
+      {
+        "command": "aiflc-pdlc-dashboard.refresh",
+        "title": "AIFLC: Refresh Dashboard",
+        "category": "AIFLC"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

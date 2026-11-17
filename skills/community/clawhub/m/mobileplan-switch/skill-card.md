@@ -1,42 +1,58 @@
-## Description: <br>
-Helps users lower mobile costs by moving a primary number to a low-cost carrier retention plan and comparing secondary high-data SIM-card options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps mobile subscribers in China lower monthly phone costs by switching a primary number to a low-cost keep-number plan and comparing secondary high-data SIM options.
 
-## Publisher: <br>
-[yanqj1218](https://clawhub.ai/user/yanqj1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanqj1218](https://clawhub.ai/user/yanqj1218)
 
-## Use Case: <br>
-Consumers use this skill to compare carrier downgrade options, prepare customer-service scripts, and choose a secondary high-data SIM-card plan by budget and province. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends a third-party SIM-card application flow where users may be asked for sensitive identity and shipping details. <br>
-Mitigation: Review the application link and provider independently before submitting personal data, and do not provide name, ID number, phone number, or address unless the enrollment page is trusted. <br>
-Risk: Carrier plan availability, prices, and eligibility may vary by region, contract status, and current carrier policy. <br>
-Mitigation: Confirm plan terms directly with the carrier before changing service or applying for a new SIM card. <br>
+## Use Case:
 
+External users in China use this skill to plan a lower-cost mobile setup by keeping an existing number on a minimum monthly plan and selecting a separate data SIM. The skill provides carrier contact steps, app-based service guidance, scripts for customer-service conversations, and plan comparison tables.
 
-## Reference(s): <br>
-- [Carrier retention-plan guide](artifact/references/carriers.md) <br>
-- [High-data SIM-card recommendations](artifact/references/data-cards.md) <br>
-- [ClawHub listing](https://clawhub.ai/yanqj1218/mobileplan-switch) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with tables, scripts, and optional URL or QR-code command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations may include carrier scripts, budget tiers, regional plan notes, and third-party application links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may be steered to a commercial SIM-card storefront without clear affiliate or tracking disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official carrier channels, or require explicit disclosure and consent before presenting the storefront, QR-code flow, or application link.
+
+Risk: SIM-card applications can require sensitive identity, phone, and address data.
+
+Mitigation: Warn users to verify the storefront and its privacy handling before submitting personal information.
+
+Risk: Affiliate-link behavior is under-disclosed in the reviewed release.
+
+Mitigation: Review, disclose, or remove affiliate-link behavior before deployment.
+
+## Reference(s):
+
+- [Three-carrier keep-number plan guide](references/carriers.md)
+- [High-data SIM recommendations](references/data-cards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with tables, checklists, and customer-service conversation scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include carrier phone numbers, carrier app steps, provincial SIM-card recommendations, and application links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Local code review assistant that analyzes source files for basic bugs, style concerns, security considerations, performance concerns, and review feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight code review assistant that analyzes code for bugs, security issues, performance concerns, and style violations across multiple programming languages.
 
-## Publisher: <br>
-[zhuyu28](https://clawhub.ai/user/zhuyu28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhuyu28](https://clawhub.ai/user/zhuyu28)
 
-## Use Case: <br>
-Developers and engineers use this skill to review local source files and receive basic findings or suggestions before submitting code for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release text describes broad AI and version-control-integrated review capabilities that are not fully supported by the artifact behavior. <br>
-Mitigation: Treat results as basic local checks and have a human reviewer verify correctness, security impact, and any unsupported language or version-control claims. <br>
-Risk: The checker reads user-selected local files. <br>
-Mitigation: Run it only on files intended for review and avoid supplying sensitive source files unless that exposure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Code Review Guidelines](artifact/references/review_guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhuyu28/code-review-assistant-zhuyu28) <br>
+## Use Case:
 
+Developers and engineers use this skill as a lightweight review aid for code snippets, files, and pull request feedback, especially to surface basic correctness, style, security, performance, and testing suggestions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON from the local checker, with prose guidance when used by an agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reviews local files selected by the user; no credential, persistence, destructive, or network behavior was identified by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat the skill's findings as a comprehensive security or version-control review.
+
+Mitigation: Use it only as a lightweight review aid and confirm important decisions with dedicated review, test, and security tools.
+
+Risk: The skill may miss issues or produce incomplete guidance for important code changes.
+
+Mitigation: Require human review and project-specific tests before accepting suggested changes.
+
+## Reference(s):
+
+- [Code Review Guidelines](references/review_guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhuyu28/skills/code-review-assistant-zhuyu28)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, JSON]
+
+**Output Format:** [Markdown feedback and JSON issue summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are basic suggestions and should be reviewed with dedicated testing, review, and security tools for important code decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

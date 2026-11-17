@@ -15,12 +15,12 @@ try:
 except Exception as _e:
     _MD = None
     HAS_MISTUNE = False
-    print(f"[WARN] mistune 不可用，退回内置正则渲染: {_e}", file=sys.stderr)
+    print(f"[WARN] mistune unavailable, falling back to built-in regex renderer: {_e}", file=sys.stderr)
 
 try:
     from themes._loader import load_theme_css, list_themes
 except Exception as _e:
-    print(f"[ERROR] 主题加载器导入失败: {_e}", file=sys.stderr)
+    print(f"[ERROR] Theme loader import failed: {_e}", file=sys.stderr)
     sys.exit(1)
 
 # Cache file: XDG-compliant under ~/.cache/skill-introduction/
@@ -45,7 +45,7 @@ def save_cache(cache: dict):
         CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
         CACHE_FILE.write_text(_json.dumps(cache, indent=2, ensure_ascii=False))
     except Exception as e:
-        print(f"[WARN] 缓存写入失败: {e}")
+        print(f"[WARN] Cache write failed: {e}", file=sys.stderr)
 
 def extract_dashboard_id(output: str) -> str:
     m = re.search(r'dashboardId=([A-Fa-f0-9]{32})', output)
@@ -82,7 +82,7 @@ def _pick_source_file(skill_dir: Path, source: str = "") -> tuple:
     if source:
         p = (skill_dir / source) if not Path(source).is_absolute() else Path(source)
         if not p.exists():
-            print(f"[ERROR] 找不到指定源文件: {p}", file=sys.stderr); sys.exit(1)
+            print(f"[ERROR] Source file not found: {p}", file=sys.stderr); sys.exit(1)
         return p, False, p.name
     usage = skill_dir / "USAGE.md"
     if usage.exists():
@@ -90,7 +90,7 @@ def _pick_source_file(skill_dir: Path, source: str = "") -> tuple:
     skill = skill_dir / "SKILL.md"
     if skill.exists():
         return skill, True, "SKILL.md"
-    print(f"[ERROR] 找不到源文件（USAGE.md / SKILL.md）: {skill_dir}", file=sys.stderr); sys.exit(1)
+    print(f"[ERROR] No source file found (need USAGE.md or SKILL.md) in: {skill_dir}", file=sys.stderr); sys.exit(1)
 
 
 def parse_skill(skill_dir: Path, source: str = "") -> dict:
@@ -271,7 +271,7 @@ def process_content(content_lines: list) -> str:
             raw = _MD(text)
             return _postprocess_mistune_html(raw)
         except Exception as e:
-            print(f"[WARN] mistune 渲染失败，回退 legacy: {e}", file=sys.stderr)
+            print(f"[WARN] mistune render failed, falling back to legacy renderer: {e}", file=sys.stderr)
     return _legacy_process(content_lines)
 
 
@@ -738,14 +738,21 @@ def main():
     p.add_argument("--theme", default="light", choices=list_themes(), help=f"主题，默认 light；可选: {', '.join(list_themes())}")
     p.add_argument("--subtitle", default="", help="英雄区副标题（一句宣传语）；不传则截断 description")
     args = p.parse_args()
+
+    def log(level: str, msg: str):
+        """Unified logging: all messages go to stderr with flush, keeps stdout
+        clean for piping (e.g. deploy hook URL) and avoids buffer-order races."""
+        print(f"[{level}] {msg}", file=sys.stderr, flush=True)
+
     skill_dir = Path(args.skill_dir).expanduser().resolve()
     if not skill_dir.is_dir():
-        print(f"[ERROR] 目录不存在: {skill_dir}", file=sys.stderr); sys.exit(1)
-    print(f"[INFO] 读取 skill: {skill_dir}")
+        log("ERROR", f"Skill directory not found: {skill_dir}")
+        sys.exit(1)
+    log("INFO", f"Reading skill: {skill_dir}")
     si = parse_skill(skill_dir, source=args.source)
-    print(f"[INFO] Skill: {si['name']} (source: {si.get('source_name','')}, theme: {args.theme})")
+    log("INFO", f"Skill: {si['name']} (source: {si.get('source_name','')}, theme: {args.theme})")
     if si.get("from_skill_md"):
-        print("[WARN] 内容取自 SKILL.md，建议补 USAGE.md（详见页面顶部提示）")
+        log("WARN", "Source is SKILL.md (AI-trigger-oriented). Add USAGE.md for a user-facing intro.")
     author = args.author or si.get("author", "") or get_current_user()
     html = generate_html(si, hub_url=args.hub_url, author=author, theme=args.theme, subtitle_override=args.subtitle)
     if args.output:
@@ -758,38 +765,70 @@ def main():
         out = out_dir / f"{safe}-intro.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
-    print(f"[OK] HTML generated: {out}")
+    log("OK", f"HTML generated: {out}")
     if not args.no_deploy:
         # Pluggable deploy hook. Set SKILL_INTRO_DEPLOY_CMD to a script that
         # accepts the HTML path as $1 and returns a public URL on stdout.
+        # ⚠️ Security: this command runs with full shell-style argument splitting
+        # and inherits your environment. Only point it at trusted local scripts.
         deploy_cmd = _os.environ.get(DEPLOY_CMD_ENV, "").strip()
         if deploy_cmd:
             import subprocess, shlex
+            try:
+                cmd_parts = shlex.split(deploy_cmd)
+            except ValueError as e:
+                log("ERROR", f"Invalid {DEPLOY_CMD_ENV} (shlex parse failed): {e}")
+                log("INFO", f"Local file (deploy skipped): {out}")
+                return
+            if not cmd_parts:
+                log("ERROR", f"{DEPLOY_CMD_ENV} is empty after parsing")
+                log("INFO", f"Local file (deploy skipped): {out}")
+                return
             cache = load_cache()
             cache_key = si["name"]
             existing_id = args.update_id or cache.get(cache_key, "")
             env = _os.environ.copy()
             if existing_id:
                 env["SKILL_INTRO_UPDATE_ID"] = existing_id
-                print(f"[INFO] Updating existing page ({existing_id}) via deploy hook...")
+                log("INFO", f"Updating existing page ({existing_id}) via deploy hook...")
             else:
-                print("[INFO] First deployment via deploy hook...")
-            cmd = shlex.split(deploy_cmd) + [str(out)]
-            r = subprocess.run(cmd, capture_output=True, text=True, env=env)
+                log("INFO", "First deployment via deploy hook...")
+            cmd = cmd_parts + [str(out)]
+            try:
+                r = subprocess.run(cmd, capture_output=True, text=True, env=env, timeout=180)
+            except FileNotFoundError:
+                log("ERROR", f"Deploy hook executable not found: {cmd_parts[0]}")
+                log("INFO", f"Local file (deploy skipped): {out}")
+                return
+            except PermissionError:
+                log("ERROR", f"Deploy hook is not executable (chmod +x?): {cmd_parts[0]}")
+                log("INFO", f"Local file (deploy skipped): {out}")
+                return
+            except subprocess.TimeoutExpired:
+                log("ERROR", "Deploy hook timed out after 180s")
+                log("INFO", f"Local file (deploy skipped): {out}")
+                return
+            except OSError as e:
+                log("ERROR", f"Deploy hook failed to launch: {e}")
+                log("INFO", f"Local file (deploy skipped): {out}")
+                return
             if r.returncode == 0:
                 output_text = r.stdout.strip()
+                # Hook URL goes to stdout (logs to stderr); easy to capture downstream
                 print(output_text)
                 new_id = extract_dashboard_id(output_text)
                 if new_id:
                     cache[cache_key] = new_id
                     save_cache(cache)
-                    print(f"[INFO] Cache updated: {cache_key} -> {new_id}")
+                    log("INFO", f"Cache updated: {cache_key} -> {new_id}")
+                else:
+                    log("WARN", "Deploy hook returned no dashboardId=<32hex>; cache not updated, future runs will create a new page instead of update.")
             else:
-                print(f"[WARN] Deploy hook failed:\n{r.stderr}")
-                print(f"[INFO] Local file: {out}")
+                log("WARN", f"Deploy hook exited with code {r.returncode}:\n{r.stderr}")
+                log("INFO", f"Local file: {out}")
         else:
-            print(f"[INFO] No deploy hook configured (set {DEPLOY_CMD_ENV} env to enable).")
-            print(f"[INFO] Local file: {out}")
+            log("INFO", f"No deploy hook configured (set {DEPLOY_CMD_ENV} env to enable).")
+            log("INFO", f"Local file: {out}")
 
 if __name__ == "__main__":
     main()

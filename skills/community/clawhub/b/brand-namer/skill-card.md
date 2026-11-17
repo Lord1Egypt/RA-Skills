@@ -1,43 +1,55 @@
-## Description: <br>
-Generate brand names with domain checks and analysis. Use when naming a startup, checking domain availability, or brainstorming product names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate brand names with domain checks and analysis. Use when naming a startup, checking domain availability, or brainstorming product names.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use this skill to brainstorm product or startup names, check likely domain availability, analyze name readability, and manage a local shortlist of candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain checks may disclose unreleased name ideas through DNS lookups. <br>
-Mitigation: Avoid checking highly confidential names unless DNS lookup exposure is acceptable; use a separate manual review process for sensitive naming work. <br>
-Risk: Saved shortlists and command history remain on the local machine under the configured Brand Namer data directory. <br>
-Mitigation: Set BRAND_NAMER_DIR to an appropriate private location and remove saved shortlist or history files when they are no longer needed. <br>
-Risk: A missing DNS A record is only a weak signal and does not prove that a domain, trademark, or social handle is available. <br>
-Mitigation: Confirm availability with a registrar, trademark search, and social account checks before relying on a generated name. <br>
+## Use Case:
 
+External founders, product teams, and developers use this skill to brainstorm brand-name candidates, check basic domain signals, analyze readability and language fit, and manage a shortlist.
 
-## Reference(s): <br>
-- [Brand Namer on ClawHub](https://clawhub.ai/ckchzh/brand-namer) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with optional txt, csv, or json shortlist exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform DNS lookups for domain checks and may write shortlist and history files under the configured local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: frontmatter and server release evidence) <br>
+Risk: A malicious or untrusted generate count argument could run local commands before the script validates it as a bounded integer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not pass untrusted or generated text as the count argument until integer bounds validation is added.
+
+Risk: Domain checks are public network lookups and may disclose candidate names.
+
+Mitigation: Avoid checking confidential pre-launch names unless that disclosure is acceptable.
+
+## Reference(s):
+
+- [Brand Namer skill page](https://clawhub.ai/ckchzh/skills/brand-namer)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Brand naming tips](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal text, with optional txt, csv, or json shortlist exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local shell scripts, optional DNS lookups, and a configurable local data directory.]
+
+## Skill Version(s):
+
+3.0.3 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,53 @@
-## Description: <br>
-Code Reviewer helps review code changes, pull requests, or repositories across major programming languages for security, performance, code quality, error handling, testing, and documentation issues, with optional local HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Reviewer helps review code changes, pull requests, or repositories across security, performance, code quality, error handling, testing, and documentation, with optional static analysis and HTML reporting.
 
-## Publisher: <br>
-[nameused](https://clawhub.ai/user/nameused) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nameused](https://clawhub.ai/user/nameused)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review diffs, pull requests, single files, or repositories before merge and to triage security, quality, performance, testing, documentation, and error-handling issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated review reports may include source snippets or exposed secrets from the reviewed project. <br>
-Mitigation: Scope reviews to intended files or directories and keep generated reports private. <br>
-Risk: Automated scans and AI review can produce false positives or miss context-dependent issues. <br>
-Mitigation: Confirm findings against the actual code context before acting on them or blocking a release. <br>
+## Use Case:
 
+Developers and engineers use this skill to review pull requests, diffs, files, or repositories and receive prioritized findings with remediation guidance. It can combine deterministic script output with checklist-driven reasoning for security, performance, quality, error handling, test, and documentation review.
 
-## Reference(s): <br>
-- [Code Reviewer Skill Page](https://clawhub.ai/nameused/code-reviewer) <br>
-- [Code Review Checklist](references/checklist.md) <br>
-- [Security Vulnerability Detection Rules](references/security-rules.md) <br>
-- [Language-Specific Best Practices](references/best-practices.md) <br>
-- [Severity Classification Guide](references/severity-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown findings and recommendations, optional JSON analysis results, and optional local HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are severity-ranked and may include file paths, line numbers, snippets, and remediation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The optional HTML report can execute injected browser code when generated from untrusted finding data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open generated HTML reports cautiously for untrusted repositories or findings, or fix the escaping issue before using that report path.
+
+## Reference(s):
+
+- [Code Review Checklist](artifact/references/checklist.md)
+- [Security Rules](artifact/references/security-rules.md)
+- [Language-Specific Best Practices](artifact/references/best-practices.md)
+- [Severity Guide](artifact/references/severity-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/nameused/skills/code-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured findings, optional JSON inputs, inline shell commands, and optional HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are grouped by severity and category; optional HTML reports should be treated cautiously for untrusted input.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

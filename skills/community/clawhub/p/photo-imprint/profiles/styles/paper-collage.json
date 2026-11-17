@@ -1,0 +1,57 @@
+{
+  "profile_type": "style",
+  "id": "paper-collage",
+  "version": "1.0.0",
+  "reference_status": "pending-selection",
+  "references": [],
+  "positive_prompt": "Editorial paper collage assembled from cut and torn matte papers, restrained ephemera-like line fragments, visible fiber and gentle overlap, shallow physical depth, warm archival palette, intentional negative space.",
+  "negative_prompt": "No copied historical ornament, copied handwriting, readable source text, scrapbook page replica, glossy sticker effect, photorealistic drop shadow, generated typography, route line, marker, or watermark.",
+  "line": {
+    "weight": "mixed",
+    "character": "printed fragments and drawn accents",
+    "color": "charcoal and faded sepia"
+  },
+  "color": {
+    "saturation": "low-to-medium",
+    "transparency": "opaque-paper",
+    "temperature": "warm"
+  },
+  "edges": {
+    "subject": "cut-and-torn",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "keep layer seams intentional",
+    "use shallow shadows consistently",
+    "derive structure, not motifs, from the reference"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "intentional cut or torn paper edges",
+      "consistent shallow physical overlap"
+    ],
+    "negative_space_rules": [
+      "preserve intentional open paper around collage pieces"
+    ],
+    "fill_tonal_rules": [
+      "collage pieces remain opaque",
+      "shadows stay shallow and consistent"
+    ],
+    "background_cleanliness": [
+      "transparent outside collage pieces",
+      "no accidental full-page backing rectangle"
+    ],
+    "frame_border_policy": "forbid accidental plate frames; intentional piece edges are allowed",
+    "abstraction_level": "editorial collage simplification without copying reference motifs",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "alpha-required",
+    "enabled": true,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 0,
+    "frame_policy": "forbid-plate-frame-allow-subject-edges",
+    "max_empty_area_noise_ratio": 0.003,
+    "max_corner_alpha_mean": 8
+  }
+}

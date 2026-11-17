@@ -1,0 +1,15 @@
+<div class="zh-answer__author">
+  <div class="zh-answer__author-avatar">
+    <img src="{avatar_url}" alt="{name}头像" width="44" height="44" style="border-radius:50%;display:block">
+  </div>
+  <div class="zh-author__meta">
+    <div class="zh-author__name">{name}</div>
+    <div class="zh-author__bio">{bio}</div>
+  </div>
+  <button class="zh-btn--follow" type="button">关注</button>
+</div>
+
+- avatar_url 来自阶段 4.5 答主映射表（本地 ./images/ 路径）
+- name: 答主名（与章节领域匹配）
+- bio: 一句话简介
+- 若未提供头像，用 <div class="zh-avatar" aria-hidden="true">{首字}</div> 兜底

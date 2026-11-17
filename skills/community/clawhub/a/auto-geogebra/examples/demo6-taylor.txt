@@ -1,0 +1,12 @@
+# 泰勒多项式逼近 sin(x)——交互升级版（展开点 + 阶数 + 重置按钮）
+f(x) = sin(x)
+aT = Slider(-4, 4, 0.1)
+SetValue(aT, 0)
+k = Slider(0, 10, 1)
+SetValue(k, 3)
+polyT = TaylorPolynomial(f, aT, k)
+txtT = Text("展开点 a = " + aT + "，阶数 k = " + k, (2.2, 2.6), true, true)
+SetColor(f, 0.2, 0.6, 0.2)
+SetColor(polyT, 1, 0.3, 0)
+btnResetT = Button("重置")
+SetCoords(btnResetT, 420, 70)

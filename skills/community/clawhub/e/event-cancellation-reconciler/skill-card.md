@@ -1,42 +1,53 @@
-## Description: <br>
-Standard Operating Procedure (SOP) to autonomously detect cancelled events and sync the calendar state using atomic nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard Operating Procedure (SOP) to autonomously detect cancelled events and sync the calendar state using atomic nodes.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Employees and calendar-management agents use this skill to reconcile Google Calendar entries after receiving cancellation or reschedule notices by extracting event details, searching the calendar, and marking or removing the affected event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete calendar events based on email-derived information without a clear user confirmation step. <br>
-Mitigation: Add or enforce a manual preview and confirmation step before calendar writes. <br>
-Risk: A weak event match could reconcile the wrong calendar entry. <br>
-Mitigation: Require strong matching by title, organizer, date, and time before marking or deleting an event. <br>
-Risk: Deleting events can remove useful audit context. <br>
-Mitigation: Prefer marking events cancelled over deleting them when possible. <br>
+## Use Case:
 
+People who manage calendars use this skill to reconcile Google Calendar events after receiving cancellation or reschedule emails. The skill guides an agent through extracting event details, locating the matching calendar event, deleting or marking it cancelled, and reporting the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/event-cancellation-reconciler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown instructions with inline shell commands and a final confirmation message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog command-line tool and calendar write authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can delete or modify Google Calendar events based on email content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact email, matched calendar event, organizer or attendee evidence, and proposed action, then obtain explicit user confirmation before deleting or marking an event cancelled.
+
+Risk: Incorrect extraction or event matching could change the wrong calendar event.
+
+Mitigation: Stop when extraction fails or no clear matching event is found, and ask the user for clarification before taking calendar action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zvirb/skills/event-cancellation-reconciler)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown-style procedural guidance with command examples and confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and Google Calendar access configured outside the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

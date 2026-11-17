@@ -25,10 +25,6 @@ sys.path.insert(0, str(PROJECT_ROOT))
 LOG_DIR = PROJECT_ROOT / "logs"
 LOCK_FILE = PROJECT_ROOT / ".heartbeat.lock"
 
-HEARTBEAT_INTERVAL = 1800   # 期望心跳间隔：30 分钟
-CHECK_TOLERANCE    = 90     # 容差：90 秒（防止边界跳过）
-MARKER_FILE        = PROJECT_ROOT / "workspace" / ".last_heartbeat"
-
 
 def setup_logging():
     """配置日志：控制台 + 文件轮转（保留7天）"""
@@ -87,14 +83,6 @@ def release_lock(lock_fd):
             pass
 
 
-def should_beat() -> bool:
-    """检查是否需要执行心跳（基于标记文件 mtime）"""
-    if not MARKER_FILE.exists():
-        return True
-    elapsed = time.time() - MARKER_FILE.stat().st_mtime
-    return elapsed >= (HEARTBEAT_INTERVAL - CHECK_TOLERANCE)
-
-
 def _mark_daily_task_done(keyword: str):
     """将 daily.md 中包含 keyword 的未完成任务标记为完成"""
     import re
@@ -113,97 +101,11 @@ def _mark_daily_task_done(keyword: str):
     tmp.rename(daily_path)
 
 
-def _notify_discord_heartbeat(score, health_info, alerts, upcoming_result, daily_result, todo_result):
-    """将心跳状态推送到 Discord #💓-心跳 频道"""
-    import subprocess, json as _json
-    from pathlib import Path as _Path
-    import yaml as _yaml
-
-    cfg_path = _Path(__file__).parent.parent / "config" / "settings.yaml"
-    try:
-        cfg = _yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
-    except Exception:
-        cfg = {}
-
-    discord_cfg = cfg.get("discord_notify", {})
-    if not discord_cfg.get("enabled", True):
-        return
-
-    token = discord_cfg.get("bot_token", "")
-    channel_id = discord_cfg.get("heartbeat_channel_id", "1476378850819575882")
-
-    # 从 openclaw.json 读取 token（若 settings.yaml 未配置）
-    if not token:
-        oc_cfg_path = _Path.home() / ".openclaw" / "openclaw.json"
-        try:
-            oc = _json.loads(oc_cfg_path.read_text(encoding="utf-8"))
-            token = oc.get("channels", {}).get("discord", {}).get("token", "")
-        except Exception:
-            pass
-
-    if not token or not channel_id:
-        return
-
-    # 构建状态消息
-    now = datetime.now().strftime("%m-%d %H:%M")
-    score_val = score if isinstance(score, int) else score.get("score", 0)
-    streak = health_info.get("streak", 0)
-
-    # 分数 emoji
-    if score_val >= 90:   s_emoji = "🟢"
-    elif score_val >= 70: s_emoji = "🟡"
-    elif score_val >= 50: s_emoji = "🟠"
-    else:                 s_emoji = "🔴"
-
-    # daily 完成情况
-    daily_done  = daily_result.get("done", 0) if isinstance(daily_result, dict) else 0
-    daily_total = daily_result.get("total", 0) if isinstance(daily_result, dict) else 0
-
-    # todo 情况
-    todo_pending  = todo_result.get("pending", 0) if isinstance(todo_result, dict) else 0
-    todo_overdue  = todo_result.get("overdue", 0) if isinstance(todo_result, dict) else 0
-
-    # upcoming 紧急事件
-    upcoming_urgent = []
-    if upcoming_result and isinstance(upcoming_result, dict):
-        for ev in upcoming_result.get("events", []):
-            if ev.get("urgency") in ("🔴", "🟡"):
-                upcoming_urgent.append(f"{ev.get('urgency')} {ev.get('date','')} {ev.get('title','')[:30]}")
-
-    lines = [
-        f"**{s_emoji} Eva 心跳** `{now} EST`",
-        f"健康度 **{score_val}** 分 · 连续 {streak} 次 ✅",
-        f"📋 今日任务 {daily_done}/{daily_total} · 待办 {todo_pending} 条" + (f" ⚠️ 超期 {todo_overdue}" if todo_overdue else ""),
-    ]
-    if upcoming_urgent:
-        lines.append("📅 近期事项: " + " | ".join(upcoming_urgent[:3]))
-    if alerts:
-        lines.append("⚠️ 告警: " + " | ".join(alerts[:2]))
-
-    content = "\n".join(lines)
-
-    # 发送
-    _log = logging.getLogger("heartbeat")
-    try:
-        subprocess.run([
-            "curl", "-s", "-X", "POST",
-            f"https://discord.com/api/v10/channels/{channel_id}/messages",
-            "-H", f"Authorization: Bot {token}",
-            "-H", "Content-Type: application/json",
-            "-H", "User-Agent: DiscordBot (https://github.com/discord/discord-api-docs, 10)",
-            "-d", _json.dumps({"content": content}),
-        ], capture_output=True, timeout=10)
-        _log.info("  Discord 心跳已推送 → #💓-心跳")
-    except Exception as e:
-        _log.warning("  Discord 推送失败: %s", e)
-
-
 def cmd_beat():
     """
     执行一次心跳
 
     流程:
-    0. 检查 .last_heartbeat 标记文件，距上次 < 30 分钟则静默退出（v1.2.0 watchdog）
     1. 检查 daily.md
     2. 检查 todo.md（含超期告警）
     3. 检查 ongoing.json（含智能超时分析）
@@ -216,10 +118,6 @@ def cmd_beat():
     10. 全绿 → HEARTBEAT_OK；有问题 → 告警
     """
     logger = logging.getLogger("heartbeat.beat")
-
-    if not should_beat():
-        logger.debug("距上次心跳未到30分钟，跳过本次触发")
-        return True  # 静默成功退出
     logger.info("===== 心跳开始 =====")
     start_time = time.time()
 
@@ -368,12 +266,6 @@ def cmd_beat():
         upcoming_result=upcoming_result,
     )
     write_master(master_content)
-
-    # 10. Discord 心跳状态推送
-    _notify_discord_heartbeat(score, health_info, alerts, upcoming_result, daily_result, todo_result)
-
-    # 更新标记文件
-    MARKER_FILE.touch()
 
     # 最终状态
     elapsed = time.time() - start_time

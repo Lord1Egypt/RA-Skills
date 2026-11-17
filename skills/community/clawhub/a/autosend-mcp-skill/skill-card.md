@@ -1,47 +1,60 @@
-## Description: <br>
-Connect to AutoSend email MCP server from OpenClaw using mcporter for managing email campaigns, templates, contacts, and senders via AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw to the AutoSend email MCP server through mcporter for managing email campaigns, templates, contacts, and senders via AI.
 
-## Publisher: <br>
-[shindebhau](https://clawhub.ai/user/shindebhau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shindebhau](https://clawhub.ai/user/shindebhau)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw to the AutoSend MCP server through mcporter. It supports setup, OAuth authentication, testing, and agent-assisted management of email templates, campaigns, senders, contacts, and analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent create, update, duplicate, or delete AutoSend email resources and generate email content. <br>
-Mitigation: Use agent confirmation for create, update, duplicate, or delete actions and review generated email content before sending. <br>
-Risk: AutoSend OAuth tokens are stored locally by mcporter and can grant access to email-management capabilities. <br>
-Mitigation: Keep mcporter OAuth credential files private with user-only filesystem permissions and re-authenticate when credentials are invalid or expired. <br>
-Risk: Installing mcporter from an untrusted source could compromise the connector workflow. <br>
-Mitigation: Install mcporter from a trusted source before configuring the AutoSend MCP server. <br>
+## Use Case:
 
+Developers and email operations teams use this skill to configure an AutoSend MCP connection in OpenClaw and manage email campaigns, templates, contacts, senders, and analytics through AI-assisted MCP tool calls.
 
-## Reference(s): <br>
-- [AutoSend MCP Docs](https://docs.autosend.com/ai/mcp-server) <br>
-- [AutoSend](https://autosend.com) <br>
-- [mcporter GitHub](https://github.com/steipete/mcporter) <br>
-- [mcporter on ClawHub](https://clawhub.ai/steipete/mcporter) <br>
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/) <br>
-- [AutoSend MCP Skill on ClawHub](https://clawhub.ai/shindebhau/autosend-mcp-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter, an AutoSend account, and OAuth authentication before agent calls can manage AutoSend resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: OAuth tokens are stored locally in ~/.mcporter/autosend/tokens.json and could grant account access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the token file like a password: keep it out of repositories, logs, shared folders, and insecure backups, restrict local file access where possible, and revoke or re-authenticate after suspected exposure.
+
+Risk: The setup installs mcporter without a pinned package version.
+
+Mitigation: Install only if you trust the mcporter package and, where policy requires, pin or review the package before use.
+
+Risk: The exposed MCP tools can create, update, duplicate, and delete AutoSend campaign and template assets.
+
+Mitigation: Review agent-proposed changes before execution, especially actions that modify or delete campaign content, templates, or sender-related configuration.
+
+## Reference(s):
+
+- [AutoSend MCP Docs](https://docs.autosend.com/ai/mcp-server)
+- [mcporter GitHub](https://github.com/steipete/mcporter)
+- [mcporter on ClawHub](https://clawhub.ai/steipete/mcporter)
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AutoSend account, mcporter, OAuth authentication, and local token storage.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

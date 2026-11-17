@@ -1,43 +1,58 @@
-## Description: <br>
-Search web content such as webpages, images, and videos using the /web-search API with an Access Token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search web content such as webpages, images, and videos using the /web-search API with an Access Token.
 
-## Publisher: <br>
-[fchange](https://clawhub.ai/user/fchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fchange](https://clawhub.ai/user/fchange)
 
-## Use Case: <br>
-Developers and agents use this skill to run authenticated web, image, and video searches through Gitee AI, then parse the returned JSON to answer information lookup and recent-content discovery requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Gitee AI under the user's API key. <br>
-Mitigation: Confirm users are comfortable sending the query to Gitee AI before use, and avoid submitting sensitive queries unless approved for that service. <br>
-Risk: API keys can be exposed when passed directly on a command line. <br>
-Mitigation: Prefer the GITEEAI_API_KEY environment variable over the --api-key argument. <br>
-Risk: The script depends on the Python requests package. <br>
-Mitigation: Install dependencies from a trusted Python environment before running the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to run web, image, or video searches through the Gitee AI web-search API and summarize the returned JSON results for a user.
 
-## Reference(s): <br>
-- [Moark Web Search on ClawHub](https://clawhub.ai/fchange/moark-web-search) <br>
-- [Gitee AI web-search API endpoint](https://ai.gitee.com/v1/web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result JSON is emitted after SEARCH_RESULTS_JSON; result count is limited to 1-50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to the Gitee AI web-search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when that service is trusted and sending the intended queries to it is acceptable.
+
+Risk: Passing the API key on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Prefer setting GITEEAI_API_KEY in a protected environment instead of using --api-key.
+
+Risk: Runtime dependencies may change if installed without pinning.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fchange/skills/moark-web-search)
+- [Gitee AI web-search endpoint](https://ai.gitee.com/v1/web-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GITEEAI_API_KEY access token; search result count is limited to 1-50 by the bundled script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

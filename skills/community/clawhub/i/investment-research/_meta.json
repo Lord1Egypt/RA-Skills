@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7e2nnxa9ek7xkydk1t97rz7s826xra",
+  "ownerId": "local",
   "slug": "investment-research",
-  "version": "0.2.1",
-  "publishedAt": 1774002668481
+  "version": "0.3.0",
+  "name": "A股投资助手",
+  "description": "适合中国A股的投研分析专业技能，用于公司/股票/ETF/行业的专业分析",
+  "homepage": "https://github.com/CaiJichang212/investment-research",
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "bins": [],
+        "env": [
+          "QVERIS_API_KEY",
+          "TAVILY_API_KEY"
+        ],
+        "config": [
+          "tools.entries.qveris-official",
+          "tools.entries.tavily-search"
+        ]
+      },
+      "primaryEnv": "",
+      "os": ["darwin", "linux", "win32"]
+    }
+  }
 }

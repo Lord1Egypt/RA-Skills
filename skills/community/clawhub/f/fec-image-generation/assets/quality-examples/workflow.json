@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Order approval and recovery"
+  },
+  "lanes": [
+    {
+      "id": "user",
+      "label": "User submission"
+    },
+    {
+      "id": "ops",
+      "label": "Approval and handling"
+    },
+    {
+      "id": "sys",
+      "label": "System execution"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lane": "user",
+      "col": 0,
+      "label": "Submit order request",
+      "type": "start"
+    },
+    {
+      "id": "check",
+      "lane": "ops",
+      "col": 1,
+      "label": "Check order completeness and approval eligibility",
+      "type": "decision"
+    },
+    {
+      "id": "approve",
+      "lane": "ops",
+      "col": 2,
+      "label": "Review manually and record the decision",
+      "type": "backend"
+    },
+    {
+      "id": "retry",
+      "lane": "user",
+      "col": 1,
+      "label": "Add missing evidence and resubmit",
+      "type": "waiting"
+    },
+    {
+      "id": "save",
+      "lane": "sys",
+      "col": 3,
+      "label": "Save approval and notify the applicant asynchronously",
+      "type": "database"
+    },
+    {
+      "id": "done",
+      "lane": "sys",
+      "col": 4,
+      "label": "Completed",
+      "type": "success"
+    }
+  ],
+  "edges": [
+    {
+      "from": "start",
+      "to": "check",
+      "label": "Submit for review"
+    },
+    {
+      "from": "check",
+      "to": "approve",
+      "label": "Complete information"
+    },
+    {
+      "from": "check",
+      "to": "retry",
+      "label": "More evidence needed",
+      "variant": "dashed"
+    },
+    {
+      "from": "retry",
+      "to": "check",
+      "label": "Review again"
+    },
+    {
+      "from": "approve",
+      "to": "save",
+      "label": "Approved"
+    },
+    {
+      "from": "save",
+      "to": "done",
+      "label": "Notification sent"
+    }
+  ]
+}

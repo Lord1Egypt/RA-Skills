@@ -1,40 +1,49 @@
-## Description: <br>
-Web scraping via SkillBoss API Hub. Use for fetching full page content with JavaScript rendering. Handles complex pages with dynamic content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping via SkillBoss API Hub for fetching full page content with JavaScript rendering, including complex pages with dynamic content.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch rendered web page content and return clean markdown or JSON for pages that need JavaScript rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs and page-derived data are sent to SkillBoss/HeyBoss for scraping. <br>
-Mitigation: Avoid private, signed, internal, or authenticated URLs unless approved for that data flow. <br>
-Risk: The skill requires a sensitive SkillBoss API key. <br>
-Mitigation: Use a dedicated key where possible and manage it through approved secret storage with rotation and revocation controls. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve rendered web page content and convert scrape results into clean markdown or JSON for downstream analysis, summarization, or documentation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abe-crawl-for-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Markdown by default; pretty-printed JSON when the --json option is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and the SKILLBOSS_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Requested URLs and scrape results are sent through SkillBoss API Hub using the user's SKILLBOSS_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private intranet pages, regulated data, and URLs containing tokens unless SkillBoss handling and retention terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abe-crawl-for-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown or JSON returned from a command-line Node.js scraper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and SKILLBOSS_API_KEY; default output is clean markdown and --json returns the full JSON response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

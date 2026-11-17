@@ -38,7 +38,7 @@ metadata:
 ```python
 import urllib.request, json, os, time
 
-API_KEY = os.getenv("DASHSCOPE_API_KEY", "sk-46dec88b0761409dbd416405d53f73a5")
+API_KEY = os.getenv("DASHSCOPE_API_KEY", "REDACTED-SECRET")
 
 def transcribe_meeting(file_path: str) -> dict:
     # Step 1: 上传CDN获取公开URL（通过upload_to_cdn工具）

@@ -1,41 +1,56 @@
-## Description: <br>
-Manage Routstr balance by checking balance, creating Lightning invoices for top-up, and checking invoice payment status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Routstr balance by checking balance, creating Lightning invoices for top-up, and checking invoice payment status.
 
-## Publisher: <br>
-[sh1ftred](https://clawhub.ai/user/sh1ftred) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[sh1ftred](https://clawhub.ai/user/sh1ftred)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and Routstr users use this skill to check account balance and usage, create Lightning invoices for top-ups, check invoice status, and submit Cashu tokens for balance top-up.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The scripts handle Routstr API keys and payment tokens for balance-management actions.
+
+Mitigation: Run only on a trusted machine and use a Routstr API key you are comfortable exposing to these scripts.
+
+Risk: Cashu tokens are placed in a request URL, where they may be logged or visible in process metadata.
+
+Mitigation: Avoid using Cashu tokens with this version until the top-up flow sends the token through a safer channel.
+
+Risk: Invoice amount handling needs validation and unit alignment before relying on it for payments.
+
+Mitigation: Review and fix the invoice script to validate amounts and confirm expected units before payment use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and Routstr users use this skill to inspect account balance and usage, create Lightning invoices for top-ups, check invoice payment status, and redeem Cashu tokens into a Routstr account. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a Routstr API key and account details. <br>
-Mitigation: Keep ~/.openclaw/openclaw.json protected, confirm it uses a trusted HTTPS Routstr endpoint, and avoid sharing command lines, logs, or outputs that may expose account information. <br>
-Risk: Lightning invoices and Cashu token redemption can move or redeem value. <br>
-Mitigation: Verify invoice amounts before payment and only pass Cashu tokens you are willing to redeem. <br>
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sh1ftred/routstr-balance-management) <br>
-- [Publisher profile](https://clawhub.ai/user/sh1ftred) <br>
+**Other Properties Related to Output:** [Reads Routstr API configuration from ~/.openclaw/openclaw.json and prints balance, invoice, payment-status, or top-up results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, guidance] <br>
-**Output Format:** [Terminal text and JSON responses from shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads Routstr base URL and API key from ~/.openclaw/openclaw.json and may print balances, usage totals, invoices, payment status, or top-up results.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

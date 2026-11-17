@@ -1,44 +1,55 @@
-## Description: <br>
-AI-powered operations knowledge management. Search process documentation, capacity plans, resource allocation data, and KPI dashboards with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered operations knowledge management. Search process documentation, capacity plans, resource allocation data, and KPI dashboards with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Operations teams, managers, and authorized employees use this skill to search organizational process documentation, SOPs, runbooks, capacity plans, vendor SLAs, incident records, and KPI data through UPLO. It supports incident response, capacity planning, operational reviews, onboarding, and documentation maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an assistant broad access to sensitive company operations data. <br>
-Mitigation: Install only for authorized users, use a least-privilege UPLO token, and respect classification tiers for confidential or restricted records. <br>
-Risk: Org-context export, incident or directive retrieval, conversation logging, and knowledge-base updates may expose or persist sensitive operational information. <br>
-Mitigation: Require user confirmation before exporting org context, retrieving sensitive incident or directive data, logging conversations, or changing knowledge-base records. <br>
-Risk: A misconfigured or untrusted MCP package or UPLO instance could route requests to the wrong service. <br>
-Mitigation: Verify the npm MCP package and UPLO instance URL before deployment. <br>
+## Use Case:
 
+Operations teams and managers use this skill to search organization-specific SOPs, runbooks, incident postmortems, capacity plans, vendor SLAs, KPI definitions, and operational dashboards through UPLO-backed MCP tools. It supports incident response, capacity planning, operational reviews, documentation maintenance, and process improvement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-operations) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with MCP tool calls, search guidance, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include organization-specific operations data retrieved through the configured UPLO MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill runs an unpinned third-party npm MCP server with a sensitive UPLO token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source, use a least-privilege UPLO MCP token, pin or otherwise control the MCP server version where possible, and run it in a restricted environment.
+
+Risk: The skill can expose broad organizational context, including confidential strategic operational plans and cost models.
+
+Mitigation: Respect classification tiers, avoid broad exports or persistent logs unless authorized, and minimize or redact sensitive content before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-operations)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with MCP tool calls, search guidance, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an UPLO MCP token and returns organization-specific operations context according to the connected knowledge base and access controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Simulates a 3CC cell activation workflow for checking readiness, drafting a configuration plan, assembling scripts, executing configuration steps, and evaluating results. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Demonstrates a 3CC cell setup workflow covering readiness checks, configuration planning, script assembly, simulated execution, and result evaluation.
 
-## Publisher: <br>
-[tivy-hz](https://clawhub.ai/user/tivy-hz) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tivy-hz](https://clawhub.ai/user/tivy-hz)
 
-## Use Case: <br>
-Telecom engineers and reviewers can use this demo to walk through the stages of a 3CC cell setup workflow. It should not be used to make production network changes or validate real provisioning decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fixed success messages for a high-impact telecom configuration workflow may be mistaken for real provisioning validation. <br>
-Mitigation: Treat the output as a simulated demo only and require real inputs, scoped targets, explicit approvals, audit logs, verification, and rollback procedures before any production use. <br>
-Risk: The artifact presents configuration execution and result evaluation without evidenced safety guardrails. <br>
-Mitigation: Use it only as walkthrough guidance unless it is rewritten to enforce authorization, target scoping, operational checks, and independent post-change validation. <br>
+## Use Case:
 
+Telecom engineers and developers can use this skill to review a simulated 3CC activation flow for training, workflow walkthroughs, or demonstration. Its output should not be used as evidence that a real cell is ready for 3CC or that any network configuration was applied.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tivy-hz/cmcc-3cc-cellsetup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with a Python demo script and simulated console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Simulated success messages only; no real network inputs, scoped targets, approvals, audit logs, verification, or rollback behavior are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can falsely report that 3CC readiness checks, configuration execution, and result evaluation succeeded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a non-operational demonstration only; production use would require real device integration, explicit operator approval, validation evidence, error handling, and rollback planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tivy-hz/skills/cmcc-3cc-cellsetup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python code blocks and console-style output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-operational demonstration output with simulated progress indicators and success messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

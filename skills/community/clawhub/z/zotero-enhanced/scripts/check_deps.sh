@@ -12,14 +12,14 @@ Usage: $0
 Check that all dependencies for Zotero Enhanced are installed.
 
 Environment variables checked (not required to be set):
-  ZOTERO_USER_ID, ZOTERO_API_KEY, WEBDAV_URL, WEBDAV_USER, WEBDAV_PASS
+  ZOTERO_USER_ID, ZOTERO_API_KEY, ZOTERO_WEBDAV_URL, ZOTERO_WEBDAV_USER, ZOTERO_WEBDAV_PASS
 
-Version: zotero-enhanced check_deps.sh v1.3.8
+Version: zotero-enhanced check_deps.sh v1.3.14
 EOF
         exit 0
         ;;
     --version)
-        echo "zotero-enhanced check_deps.sh v1.3.8"
+        echo "zotero-enhanced check_deps.sh v1.3.14"
         exit 0
         ;;
 esac
@@ -69,10 +69,10 @@ else
     echo "  ⚠️  ZOTERO_API_KEY is not set (required for all operations)"
 fi
 
-if [ -n "$WEBDAV_URL" ] && [ -n "$WEBDAV_USER" ] && [ -n "$WEBDAV_PASS" ]; then
+if [ -n "$ZOTERO_WEBDAV_URL" ] && [ -n "$ZOTERO_WEBDAV_USER" ] && [ -n "$ZOTERO_WEBDAV_PASS" ]; then
     echo "  ✅ WebDAV variables are set (will use WebDAV storage)"
-elif [ -n "$WEBDAV_URL" ] || [ -n "$WEBDAV_USER" ] || [ -n "$WEBDAV_PASS" ]; then
-    echo "  ⚠️  Partial WebDAV variables set (missing: $( [ -z "$WEBDAV_URL" ] && echo "WEBDAV_URL " ; [ -z "$WEBDAV_USER" ] && echo "WEBDAV_USER " ; [ -z "$WEBDAV_PASS" ] && echo "WEBDAV_PASS" )) - will fall back to Zotero cloud storage"
+elif [ -n "$ZOTERO_WEBDAV_URL" ] || [ -n "$ZOTERO_WEBDAV_USER" ] || [ -n "$ZOTERO_WEBDAV_PASS" ]; then
+    echo "  ⚠️  Partial WebDAV variables set (missing: $( [ -z "$ZOTERO_WEBDAV_URL" ] && echo "ZOTERO_WEBDAV_URL " ; [ -z "$ZOTERO_WEBDAV_USER" ] && echo "ZOTERO_WEBDAV_USER " ; [ -z "$ZOTERO_WEBDAV_PASS" ] && echo "ZOTERO_WEBDAV_PASS" )) - will fall back to Zotero cloud storage"
 else
     echo "  ℹ️  No WebDAV variables set (will use Zotero cloud storage)"
 fi

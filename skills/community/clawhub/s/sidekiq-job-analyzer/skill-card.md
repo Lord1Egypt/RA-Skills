@@ -1,39 +1,48 @@
-## Description: <br>
-Analyze Sidekiq job configurations for reliability, performance, queue design, retry policies, and memory safety - optimize Ruby background processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Sidekiq job configurations for reliability, performance, queue design, retry policies, and memory safety — optimize Ruby background processing.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to review Ruby Sidekiq workers, queues, retry behavior, memory usage, monitoring, and Redis configuration when background jobs are slow, unreliable, or resource intensive.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads Sidekiq worker code and configuration files and may recommend changes to payment, retry, queue, and Redis behavior.
+
+Mitigation: Review findings before applying fixes, especially for payment processing, retry policies, queue routing, and Redis configuration.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to review Sidekiq workers, queues, retry behavior, Redis configuration, monitoring, and memory patterns in Ruby background job systems. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sidekiq and Redis analysis can expose private infrastructure details, URLs, queue names, or secrets from configuration files. <br>
-Mitigation: Install only for repositories the agent may inspect, and review or redact generated analysis before sharing it. <br>
-Risk: The suggested read-only discovery commands inspect application and configuration files that may contain sensitive operational details. <br>
-Mitigation: Run the analysis in an appropriate repository context and avoid pasting sensitive command output into public channels. <br>
+**Output Format:** [Markdown analysis with inline shell commands and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Structured findings grouped by critical issues, improvements, queue health, and good practices.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, structured findings, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis guidance; no executable skill code is bundled.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

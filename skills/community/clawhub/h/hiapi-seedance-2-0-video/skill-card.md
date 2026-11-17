@@ -1,45 +1,61 @@
-## Description: <br>
-Generate videos with HiAPI's seedance-2-0 model via the HiAPI unified async task API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos with HiAPI's seedance-2-0 model via the HiAPI unified async task API.
 
-## Publisher: <br>
-[hiapiai](https://clawhub.ai/user/hiapiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hiapiai](https://clawhub.ai/user/hiapiai)
 
-## Use Case: <br>
-Developers and external agent users use this skill to generate Seedance 2.0 text-to-video and image-to-video outputs through HiAPI, including first/last-frame and multimodal reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media URLs or data URIs, and generation settings may be sent to HiAPI with the user's API key. <br>
-Mitigation: Use only trusted HiAPI endpoints and avoid submitting secrets or private media unless approved for that workflow. <br>
-Risk: Generated videos may be saved locally under outputs/ or returned as remote URLs. <br>
-Mitigation: Review output locations and remote links before sharing generated media outside the intended audience. <br>
-Risk: The npx installer can replace an existing local copy of the skill folder. <br>
-Mitigation: Back up locally modified skill files before running the installer. <br>
+## Use Case:
 
+External developers and agent users use this skill to generate Seedance 2.0 videos from text prompts, first or last frame images, and multimodal reference material through HiAPI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hiapiai/hiapi-seedance-2-0-video) <br>
-- [HiAPI Documentation](https://docs.hiapi.ai) <br>
-- [HiAPI Seedance 2.0 Video API](references/api.md) <br>
-- [Output Handling](references/output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [JSON with generated video file paths or remote URLs, plus concise Markdown guidance for setup and failures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads generated HTTP(S) videos to outputs/ when possible; otherwise returns the remote video URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Mutable remote install or update sources may influence persistent agent files and user-run commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OpenClaw's controlled install path or a pinned commit, and review update commands before running them.
+
+Risk: A custom HIAPI_BASE_URL can redirect requests and API keys to an untrusted endpoint.
+
+Mitigation: Keep HIAPI_BASE_URL unset unless the endpoint is fully trusted.
+
+Risk: Generated videos downloaded to local storage can consume disk space.
+
+Mitigation: Use a constrained output directory with available disk space.
+
+## Reference(s):
+
+- [HiAPI Seedance 2.0 Video API](references/api.md)
+- [Output Handling](references/output.md)
+- [HiAPI Docs](https://docs.hiapi.ai)
+- [HiAPI Pricing](https://www.hiapi.ai/en/pricing)
+- [ClawHub Skill Page](https://clawhub.ai/hiapiai/skills/hiapi-seedance-2-0-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can return a downloaded video file path or a remote video URL when download is not possible.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

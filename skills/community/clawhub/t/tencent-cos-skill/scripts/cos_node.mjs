@@ -4,20 +4,62 @@
  * 基于 cos-nodejs-sdk-v5，覆盖 COS 存储 + 数据万象(CI) 全部能力
  *
  * 依赖：npm install cos-nodejs-sdk-v5
- * 凭证通过环境变量读取：
- *   TENCENT_COS_SECRET_ID / TENCENT_COS_SECRET_KEY / TENCENT_COS_REGION / TENCENT_COS_BUCKET
- *   TENCENT_COS_TOKEN（可选，STS 临时凭证）
- *   TENCENT_COS_DATASET_NAME（可选，MetaInsight 数据集名称）
+ * KIKI=1 时启用严格模式并隐藏部分功能。
+ * 凭证来源与模式无关：
+ *   本地凭证：TENCENT_COS_SECRET_ID / TENCENT_COS_SECRET_KEY / TENCENT_COS_TOKEN
+ *   运行时凭证：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY / TENCENTCLOUD_TOKEN
+ *   通用配置：TENCENT_COS_REGION / TENCENT_COS_BUCKET / TENCENT_COS_DATASET_NAME
  *
  * 用法：node cos_node.mjs <action> [options]
  */
 
+import { randomBytes } from 'node:crypto';
 import { createRequire } from 'module';
 import { createReadStream, createWriteStream, existsSync, readFileSync, statSync, writeFileSync, unlinkSync, chmodSync } from 'fs';
 import { basename, resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pipeline } from 'stream/promises';
-import crypto from 'crypto';
+import {
+  assertActionAllowed,
+  assertCredentials,
+  decryptEnvBuffer,
+  encryptEnvBuffer,
+  getHiddenActions,
+  getRuntimeCredentials,
+  getRuntimeMode,
+  isStrictMode,
+} from './lib/ci_client.mjs';
+import { assertCiActivationRequestAllowed, getCiActivationRequestService } from './lib/ci_activation.mjs';
+import { evaluateBillingNotice } from './lib/billing_notice.mjs';
+import {
+  createAsyncContentRecognitionBucket,
+  createAsyncImageProcessBucket,
+  createCiService,
+  deleteAsyncContentRecognitionBucket,
+  deleteAsyncImageProcessBucket,
+  deleteCiService,
+  describeAsyncContentRecognitionBuckets,
+  describeAsyncImageProcessBuckets,
+} from './lib/ci_service_lifecycle.mjs';
+
+const requestedAction = process.argv[2];
+const requestedArgs = process.argv.slice(3);
+const requestedMethodIndex = requestedArgs.indexOf('--method');
+const requestedMethod = requestedMethodIndex >= 0
+  ? requestedArgs[requestedMethodIndex + 1]
+  : undefined;
+try {
+  assertActionAllowed(requestedAction, process.env, { method: requestedMethod });
+} catch (err) {
+  console.error(JSON.stringify({
+    success: false,
+    action: requestedAction,
+    mode: getRuntimeMode(),
+    error: err.message || String(err),
+    code: err.code,
+  }));
+  process.exit(1);
+}
 
 const require = createRequire(import.meta.url);
 const COS = require('cos-nodejs-sdk-v5');
@@ -28,85 +70,27 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const envPath = resolve(__dirname, '..', '.env');
 const envEncPath = resolve(__dirname, '..', '.env.enc');
 
-// 基于机器特征派生 AES-256 密钥（hostname + username + 项目绝对路径）
-// 同一台机器、同一用户、同一项目目录才能解密，防止 .env.enc 被拷贝到其他环境后解密
-function deriveKeySync() {
-  const os = require('os');
-  const seed = `${os.hostname()}:${os.userInfo().username}:${resolve(__dirname, '..')}`;
-  return crypto.createHash('sha256').update(seed).digest();
+// ========== 统一运行时凭证 ==========
+// KIKI=1 只控制功能隐藏；凭证按运行环境中实际存在的变量自动选择。
+
+const runtimeMode = getRuntimeMode();
+const credentials = getRuntimeCredentials();
+
+try {
+  assertCredentials(credentials);
+} catch (err) {
+  console.error(JSON.stringify({
+    success: false,
+    error: `缺少凭证：${err.message}。Region/Bucket 可通过环境变量或 --region/--bucket 参数指定。`,
+    code: err.code,
+    mode: runtimeMode,
+  }));
+  process.exit(1);
 }
 
-function encryptEnv(plaintext) {
-  const key = deriveKeySync();
-  const iv = crypto.randomBytes(12);
-  const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
-  const encrypted = Buffer.concat([cipher.update(plaintext, 'utf-8'), cipher.final()]);
-  const authTag = cipher.getAuthTag();
-  // 格式：iv(12) + authTag(16) + ciphertext
-  return Buffer.concat([iv, authTag, encrypted]);
-}
-
-function decryptEnv(encBuffer) {
-  const key = deriveKeySync();
-  const iv = encBuffer.subarray(0, 12);
-  const authTag = encBuffer.subarray(12, 28);
-  const ciphertext = encBuffer.subarray(28);
-  const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
-  decipher.setAuthTag(authTag);
-  return decipher.update(ciphertext, undefined, 'utf-8') + decipher.final('utf-8');
-}
-
-function parseEnvContent(content) {
-  for (const line of content.split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) {
-      continue;
-    }
-    const eqIndex = trimmed.indexOf('=');
-    if (eqIndex === -1) {
-      continue;
-    }
-    const key = trimmed.slice(0, eqIndex).trim();
-    let value = trimmed.slice(eqIndex + 1).trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-      value = value.slice(1, -1);
-    }
-    // 环境变量优先，.env 文件仅做兜底
-    if (!process.env[key]) {
-      process.env[key] = value;
-    }
-  }
-}
-
-// ========== 加载凭证 ==========
-// 优先级：环境变量 > .env.enc（加密） > .env（明文，兼容旧版）
-// .env.enc 解密失败时自动 fallback 到 .env（兼容老用户迁移场景）
-
-let _credentialSource = 'env';
-
-if (existsSync(envEncPath)) {
-  try {
-    const encBuffer = readFileSync(envEncPath);
-    const plaintext = decryptEnv(encBuffer);
-    parseEnvContent(plaintext);
-    _credentialSource = 'env.enc';
-  } catch {
-    // .env.enc 解密失败，可能是跨机器/用户拷贝的，fallback 到 .env
-    if (existsSync(envPath)) {
-      parseEnvContent(readFileSync(envPath, 'utf-8'));
-      _credentialSource = 'env(fallback)';
-    }
-  }
-} else if (existsSync(envPath)) {
-  parseEnvContent(readFileSync(envPath, 'utf-8'));
-  _credentialSource = 'env';
-}
-
-// ========== 环境变量 ==========
-
-const SecretId = process.env.TENCENT_COS_SECRET_ID;
-const SecretKey = process.env.TENCENT_COS_SECRET_KEY;
-const Token = process.env.TENCENT_COS_TOKEN;
+const SecretId = credentials.secretId;
+const SecretKey = credentials.secretKey;
+const Token = credentials.token;
 
 // 默认值（可被 --bucket / --region / --dataset-name 等参数覆盖）
 let Region = process.env.TENCENT_COS_REGION;
@@ -115,14 +99,6 @@ let DatasetName = process.env.TENCENT_COS_DATASET_NAME;
 const Domain = process.env.TENCENT_COS_DOMAIN;
 const ServiceDomain = process.env.TENCENT_COS_SERVICE_DOMAIN;
 const Protocol = process.env.TENCENT_COS_PROTOCOL;
-
-if (!SecretId || !SecretKey) {
-  console.error(JSON.stringify({
-    success: false,
-    error: '缺少环境变量，需要：TENCENT_COS_SECRET_ID, TENCENT_COS_SECRET_KEY。Region/Bucket 可通过环境变量或 --region/--bucket 参数指定。',
-  }));
-  process.exit(1);
-}
 
 const cosOptions = { SecretId, SecretKey };
 cosOptions.UserAgent = "skills/node_sdk_cos";
@@ -179,6 +155,23 @@ function cosPromise(method, params) {
 
 function cosRequestPromise(params) {
   return new Promise((resolveP, rejectP) => {
+    // 严格模式兜底拦截：任何走 COS SDK 的 DELETE 请求一律拒绝，防止绕过入口检查
+    const method = String(params?.Method || '').trim().toUpperCase();
+    if (isStrictMode(process.env) && method === 'DELETE') {
+      const err = new Error('DELETE requests are not allowed in strict mode');
+      err.code = 'ActionDenied';
+      rejectP(err);
+      return;
+    }
+    if (params.Url) {
+      const target = new URL(params.Url);
+      try {
+        assertCiActivationRequestAllowed({ method, host: target.hostname, pathname: target.pathname });
+      } catch (error) {
+        rejectP(error);
+        return;
+      }
+    }
     cos.request(params, (err, data) => {
       if (err) {
         rejectP(err);
@@ -191,15 +184,15 @@ function cosRequestPromise(params) {
 
 function generateCode(length = 6) {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
-  const randomBytes = crypto.randomBytes(length);
+  const bytes = randomBytes(length);
   let code = '';
   for (let i = 0; i < length; i++) {
-    code += chars[randomBytes[i] % chars.length];
+    code += chars[bytes[i] % chars.length];
   }
   return code;
 }
 
-function generateOutputFileId(objectKey) {
+function generateOutputFileId(objectKey, options = {}) {
   const now = new Date();
   const date = [
     now.getFullYear(),
@@ -209,7 +202,13 @@ function generateOutputFileId(objectKey) {
   if (objectKey) {
     const lastDot = objectKey.lastIndexOf('.');
     const base = lastDot === -1 ? objectKey : objectKey.substring(0, lastDot);
-    return encodeURIComponent(`${date}_${base}_${generateCode()}`);
+    let ext = '';
+    if (options.ext) {
+      ext = options.ext.startsWith('.') ? options.ext : `.${options.ext}`;
+    } else if (options.keepExt !== false && lastDot !== -1) {
+      ext = objectKey.substring(lastDot);
+    }
+    return encodeURIComponent(`${date}_${base}_${generateCode()}${ext}`);
   }
   return encodeURIComponent(`${date}_${generateCode()}`);
 }
@@ -300,7 +299,12 @@ async function download(opts) {
 async function list(opts) {
   const prefix = opts.prefix || '';
   const maxKeys = parseInt(opts['max-keys'], 10) || 100;
-  const data = await cosPromise('getBucket', { Prefix: prefix, MaxKeys: maxKeys });
+  const marker = opts.marker || '';
+  const params = { Prefix: prefix, MaxKeys: maxKeys };
+  if (marker) {
+    params.Marker = marker;
+  }
+  const data = await cosPromise('getBucket', params);
   const files = (data.Contents || []).map(item => ({
     key: item.Key,
     size: parseInt(item.Size, 10),
@@ -308,7 +312,18 @@ async function list(opts) {
     etag: item.ETag,
     storageClass: item.StorageClass,
   }));
-  output({ success: true, action: 'list', prefix, count: files.length, isTruncated: data.IsTruncated === 'true', files });
+  const isTruncated = data.IsTruncated === 'true';
+  let nextMarker;
+  if (isTruncated) {
+    // SDK 未返回 NextMarker 时，用最后一条 key 作为续页 marker
+    nextMarker = data.NextMarker || (files.length ? files[files.length - 1].key : '');
+  }
+  output({
+    success: true, action: 'list', prefix, count: files.length,
+    isTruncated,
+    nextMarker,
+    files,
+  });
 }
 
 async function signUrl(opts) {
@@ -371,14 +386,6 @@ async function head(opts) {
 
 // ========== COS 存储桶管理 ==========
 
-// 安全防护：禁止删除和清空存储桶
-const FORBIDDEN_ACTIONS = ['deleteBucket'];
-function guardBucketSafety(action) {
-  if (FORBIDDEN_ACTIONS.includes(action)) {
-    throw new Error(`🚫 安全限制：禁止执行 ${action} 操作。删除/清空存储桶操作被本技能明确禁止。`);
-  }
-}
-
 async function listBuckets(opts) {
   const data = await new Promise((resolveP, rejectP) => {
     cos.getService({ Region: opts.region || '' }, (err, data) => err ? rejectP(err) : resolveP(data));
@@ -412,7 +419,7 @@ async function headBucket(opts) {
   output({ success: true, action: 'head-bucket', bucket: bucketName, region, data });
 }
 
-async function getBucketAcl(opts) {
+async function getBucketAcl() {
   const data = await cosPromise('getBucketAcl', {});
   output({ success: true, action: 'get-bucket-acl', data });
 }
@@ -423,7 +430,7 @@ async function putBucketAcl(opts) {
   output({ success: true, action: 'put-bucket-acl', acl, data });
 }
 
-async function getBucketCors(opts) {
+async function getBucketCors() {
   const data = await cosPromise('getBucketCors', {});
   output({ success: true, action: 'get-bucket-cors', data });
 }
@@ -437,7 +444,7 @@ async function putBucketCors(opts) {
   output({ success: true, action: 'put-bucket-cors', data });
 }
 
-async function getBucketTagging(opts) {
+async function getBucketTagging() {
   try {
     const data = await cosPromise('getBucketTagging', {});
     output({ success: true, action: 'get-bucket-tagging', data });
@@ -459,12 +466,12 @@ async function putBucketTagging(opts) {
   output({ success: true, action: 'put-bucket-tagging', data });
 }
 
-async function getBucketVersioning(opts) {
+async function getBucketVersioning() {
   const data = await cosPromise('getBucketVersioning', {});
   output({ success: true, action: 'get-bucket-versioning', data });
 }
 
-async function getBucketLifecycle(opts) {
+async function getBucketLifecycle() {
   try {
     const data = await cosPromise('getBucketLifecycle', {});
     output({ success: true, action: 'get-bucket-lifecycle', data });
@@ -477,7 +484,7 @@ async function getBucketLifecycle(opts) {
   }
 }
 
-async function getBucketLocation(opts) {
+async function getBucketLocation() {
   const data = await cosPromise('getBucketLocation', {});
   output({ success: true, action: 'get-bucket-location', data });
 }
@@ -501,7 +508,239 @@ async function deleteMultipleObjects(opts) {
   output({ success: true, action: 'delete-multiple', count: keys.length, data });
 }
 
+// ========== COS 补充只读操作 ==========
+
+function requireCosReadOption(opts, name) {
+  const value = opts[name];
+  if (value === undefined || value === true || value === '') {
+    throw new Error(`缺少 --${name} 参数`);
+  }
+  return value;
+}
+
+function compactCosReadParams(params) {
+  return Object.fromEntries(
+    Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== '')
+  );
+}
+
+function parseCosReadInteger(opts, name) {
+  if (opts[name] === undefined) {
+    return undefined;
+  }
+  const value = Number(opts[name]);
+  if (!Number.isInteger(value)) {
+    throw new Error(`--${name} 必须是整数`);
+  }
+  return value;
+}
+
+function createCosSdkReadAction(action, method, buildParams = () => ({})) {
+  return async opts => {
+    const data = await cosPromise(method, buildParams(opts));
+    output({ success: true, action, data });
+  };
+}
+
+function createCosSubresourceReadAction(action, subresource, buildRequest = () => ({})) {
+  return async opts => {
+    const request = buildRequest(opts);
+    const data = await cosRequestPromise({
+      Bucket,
+      Region,
+      Method: 'GET',
+      Key: request.Key || '',
+      Action: subresource,
+      Query: request.Query,
+    });
+    output({ success: true, action, data });
+  };
+}
+
+async function getBucketObjectLock() {
+  const action = 'get-bucket-object-lock';
+  try {
+    const data = await cosRequestPromise({
+      Bucket,
+      Region,
+      Method: 'GET',
+      Key: '',
+      Action: 'object-lock',
+    });
+    output({ success: true, action, data });
+  } catch (err) {
+    if (err.code !== 'NoSuchBucketObjectLockConfiguration') {
+      throw err;
+    }
+    output({
+      success: true,
+      action,
+      data: {
+        configured: false,
+        objectLockEnabled: false,
+        emptyCode: err.code,
+      },
+    });
+  }
+}
+
+const cosBucketReadActions = {
+  'get-bucket-policy': createCosSdkReadAction('get-bucket-policy', 'getBucketPolicy'),
+  'get-bucket-replication': createCosSdkReadAction('get-bucket-replication', 'getBucketReplication'),
+  'get-bucket-website': createCosSdkReadAction('get-bucket-website', 'getBucketWebsite'),
+  'get-bucket-referer': createCosSdkReadAction('get-bucket-referer', 'getBucketReferer'),
+  'get-bucket-domain': createCosSdkReadAction('get-bucket-domain', 'getBucketDomain'),
+  'get-bucket-origin': createCosSdkReadAction('get-bucket-origin', 'getBucketOrigin'),
+  'get-bucket-logging': createCosSdkReadAction('get-bucket-logging', 'getBucketLogging'),
+  'get-bucket-inventory': createCosSdkReadAction('get-bucket-inventory', 'getBucketInventory', opts => ({
+    Id: requireCosReadOption(opts, 'id'),
+  })),
+  'list-bucket-inventory': createCosSdkReadAction('list-bucket-inventory', 'listBucketInventory', opts => compactCosReadParams({
+    ContinuationToken: opts['continuation-token'],
+  })),
+  'get-bucket-accelerate': createCosSdkReadAction('get-bucket-accelerate', 'getBucketAccelerate'),
+  'get-bucket-encryption': createCosSdkReadAction('get-bucket-encryption', 'getBucketEncryption'),
+  'get-bucket-intelligent-tiering': createCosSubresourceReadAction('get-bucket-intelligent-tiering', 'intelligent-tiering', opts => ({
+    Query: compactCosReadParams({ id: opts.id }),
+  })),
+  'get-bucket-access-monitor': createCosSubresourceReadAction('get-bucket-access-monitor', 'accessmonitor'),
+  'get-bucket-logging-analysis': createCosSubresourceReadAction('get-bucket-logging-analysis', 'logginganalysis'),
+  'get-bucket-notification': createCosSubresourceReadAction('get-bucket-notification', 'notification'),
+  'get-bucket-object-lock': getBucketObjectLock,
+  'get-bucket-domain-certificate': createCosSubresourceReadAction('get-bucket-domain-certificate', 'domaincertificate', opts => ({
+    Query: { domainname: requireCosReadOption(opts, 'domain') },
+  })),
+  'get-bucket-strict-signature': createCosSubresourceReadAction('get-bucket-strict-signature', 'strict-signature'),
+  'get-bucket-bandwidth-quota': createCosSubresourceReadAction('get-bucket-bandwidth-quota', 'bandwidth-quota'),
+  'get-bucket-response-control': createCosSubresourceReadAction('get-bucket-response-control', 'response-control'),
+};
+
+const cosObjectReadActions = {
+  'list-object-versions': createCosSdkReadAction('list-object-versions', 'listObjectVersions', opts => compactCosReadParams({
+    Prefix: opts.prefix,
+    Delimiter: opts.delimiter,
+    KeyMarker: opts['key-marker'],
+    VersionIdMarker: opts['version-id-marker'],
+    MaxKeys: parseCosReadInteger(opts, 'max-keys'),
+    EncodingType: opts['encoding-type'],
+  })),
+  'get-object-acl': createCosSdkReadAction('get-object-acl', 'getObjectAcl', opts => compactCosReadParams({
+    Key: requireCosReadOption(opts, 'key'),
+    VersionId: opts['version-id'],
+  })),
+  'get-object-tagging': createCosSdkReadAction('get-object-tagging', 'getObjectTagging', opts => compactCosReadParams({
+    Key: requireCosReadOption(opts, 'key'),
+    VersionId: opts['version-id'],
+  })),
+  'get-object-retention': createCosSubresourceReadAction('get-object-retention', 'retention', opts => ({
+    Key: requireCosReadOption(opts, 'key'),
+    Query: compactCosReadParams({ versionId: opts['version-id'] }),
+  })),
+  'get-symlink': createCosSubresourceReadAction('get-symlink', 'symlink', opts => ({
+    Key: requireCosReadOption(opts, 'key'),
+    Query: compactCosReadParams({ versionId: opts['version-id'] }),
+  })),
+  'list-multipart-uploads': createCosSdkReadAction('list-multipart-uploads', 'multipartList', opts => compactCosReadParams({
+    Prefix: opts.prefix,
+    Delimiter: opts.delimiter,
+    KeyMarker: opts['key-marker'],
+    UploadIdMarker: opts['upload-id-marker'],
+    MaxUploads: parseCosReadInteger(opts, 'max-uploads'),
+    EncodingType: opts['encoding-type'],
+  })),
+  'list-multipart-parts': createCosSdkReadAction('list-multipart-parts', 'multipartListPart', opts => compactCosReadParams({
+    Key: requireCosReadOption(opts, 'key'),
+    UploadId: requireCosReadOption(opts, 'upload-id'),
+    PartNumberMarker: opts['part-number-marker'],
+    MaxParts: parseCosReadInteger(opts, 'max-parts'),
+    EncodingType: opts['encoding-type'],
+  })),
+  'options-object': createCosSdkReadAction('options-object', 'optionsObject', opts => ({
+    Key: requireCosReadOption(opts, 'key'),
+    Origin: requireCosReadOption(opts, 'origin'),
+    AccessControlRequestMethod: requireCosReadOption(opts, 'request-method').toUpperCase(),
+    AccessControlRequestHeaders: opts['request-headers'] || '',
+    Headers: {},
+  })),
+};
+
+// ========== CI 服务生命周期 ==========
+
+function outputCiServiceLifecycleResult(action, result) {
+  if (!result.ok) {
+    const error = new Error(result.error?.message || 'CI 服务生命周期请求失败');
+    error.code = result.error?.code || 'RequestFailed';
+    error.request = result.request;
+    throw error;
+  }
+  const { ok, action: apiAction, ...data } = result;
+  output({
+    ...(result.operation === 'precheck' ? { ok, tool: action } : {}),
+    success: ok, action, apiAction, ...data,
+  });
+}
+
+function createCiServiceLifecycleAction(action, operation, service) {
+  return async (opts) => {
+    const handler = operation === 'create' ? createCiService : deleteCiService;
+    const result = await handler({
+      service,
+      bucket: Bucket,
+      region: Region,
+      creds: credentials,
+      ...(operation === 'create' && Object.hasOwn(opts, 'activation-confirmation')
+        ? { activationConfirmation: opts['activation-confirmation'] } : {}),
+    });
+    outputCiServiceLifecycleResult(action, result);
+  };
+}
+
 // ========== CI 图片基础处理 ==========
+
+function outputAsyncImageProcessResult(action, result) {
+  if (!result.ok) {
+    const error = new Error(result.error?.message || '图片处理异步服务请求失败');
+    error.code = result.error?.code || 'RequestFailed';
+    error.request = result.request;
+    throw error;
+  }
+  const { ok, action: apiAction, ...data } = result;
+  output({
+    ...(result.operation === 'precheck' ? { ok, tool: action } : {}),
+    success: ok, action, apiAction, ...data,
+  });
+}
+
+async function describeAsyncImageProcessBucketsAction(opts) {
+  const result = await describeAsyncImageProcessBuckets({
+    region: Region,
+    bucketNames: opts['bucket-names'] || Bucket,
+    bucketName: opts['bucket-name'],
+    pageNumber: opts['page-number'] || 1,
+    pageSize: opts['page-size'] || 10,
+    creds: credentials,
+  });
+  outputAsyncImageProcessResult('describe-async-image-process-buckets', result);
+}
+
+async function createAsyncImageProcessBucketAction(opts) {
+  const result = await createAsyncImageProcessBucket({
+    bucket: Bucket,
+    region: Region,
+    creds: credentials,
+    ...(Object.hasOwn(opts, 'activation-confirmation') ? { activationConfirmation: opts['activation-confirmation'] } : {}),
+  });
+  outputAsyncImageProcessResult('create-async-image-process-bucket', result);
+}
+
+async function deleteAsyncImageProcessBucketAction() {
+  const result = await deleteAsyncImageProcessBucket({
+    bucket: Bucket,
+    region: Region,
+    creds: credentials,
+  });
+  outputAsyncImageProcessResult('delete-async-image-process-bucket', result);
+}
 
 async function imageInfo(opts) {
   const { key } = opts;
@@ -567,7 +806,7 @@ async function aiPicMatting(opts) {
   if (!key) {
     throw new Error('缺少 --key 参数');
   }
-  const outFileId = generateOutputFileId(key);
+  const outFileId = generateOutputFileId(key, { ext: 'png' });
   let rule = 'ci-process=AIImageCrop';
   if (width) {
     rule += `&width=${width}`;
@@ -740,8 +979,9 @@ async function describeMediaJob(opts) {
 
 // ========== CI MetaInsight ==========
 //
-// 三种检索需要不同模板的数据集：
+// 检索需要不同模板的数据集：
 //   图片检索 → Official:ImageSearch  → TENCENT_COS_DATASET_IMAGE_SEARCH
+//   视频检索 → Official:VideoSearch  → TENCENT_COS_DATASET_VIDEO_SEARCH
 //   人脸搜索 → Official:FaceSearch   → TENCENT_COS_DATASET_FACE_SEARCH
 //   元数据检索 → Official:COSBasicMeta → TENCENT_COS_DATASET_META
 // 兼容：TENCENT_COS_DATASET_NAME 作为通用兜底
@@ -749,13 +989,14 @@ async function describeMediaJob(opts) {
 
 const DatasetImageSearch = process.env.TENCENT_COS_DATASET_IMAGE_SEARCH || DatasetName;
 const DatasetFaceSearch = process.env.TENCENT_COS_DATASET_FACE_SEARCH;
+const DatasetVideoSearch = process.env.TENCENT_COS_DATASET_VIDEO_SEARCH;
 const DatasetMeta = process.env.TENCENT_COS_DATASET_META;
 const MetaInsightRegion = process.env.TENCENT_COS_METAINSIGHT_REGION;
 const METAINSIGHT_REGIONS = ['ap-chengdu', 'ap-beijing', 'ap-shanghai'];
 const _regionCache = {};
 
 function resolveDataset(opts, envValue, label) {
-  const ds = opts.dataset || envValue;
+  const ds = opts['dataset-name'] || opts.dataset || envValue;
   if (!ds) {
     throw new Error(`缺少数据集名称。通过 --dataset 参数指定，或设置对应环境变量。${label}`);
   }
@@ -786,7 +1027,7 @@ async function resolveMetaInsightRegion(datasetName) {
       // 此 region 不可用，继续下一个
     }
   }
-  throw new Error(`数据集 "${datasetName}" 在支持的 region (${METAINSIGHT_REGIONS.join(', ')}) 中未找到。可通过 TENCENT_COS_METAINSIGHT_REGION 环境变量指定。`);
+  throw new Error(`数据集 "${datasetName}" 在支持的地域（北京 ap-beijing / 上海 ap-shanghai / 成都 ap-chengdu）中未找到。可通过 TENCENT_COS_METAINSIGHT_REGION 环境变量指定地域后重试。`);
 }
 
 async function miRequest(datasetName, apiKey, body) {
@@ -821,7 +1062,7 @@ async function imageSearchText(opts) {
   output({ success: true, action: 'image-search-text', dataset: ds, data });
 }
 
-// 人脸搜索（需 Official:FaceSearch 数据集）
+// 兼容旧人脸搜索接口（需 Official:FaceSearch 数据集）；当前人脸粗搜使用 ci_api.mjs face-search。
 async function faceSearch(opts) {
   const { uri } = opts;
   if (!uri) {
@@ -848,22 +1089,40 @@ async function datasetSimpleQuery(opts) {
   if (query) {
     bodyObj.Query = query;
   }
+  if (opts['next-token']) {
+    bodyObj.NextToken = opts['next-token'];
+  }
   if (sort) {
     bodyObj.Sort = sort;
   }
   const data = await miRequest(ds, 'datasetquery/simple', bodyObj);
-  output({ success: true, action: 'dataset-simple-query', dataset: ds, data });
+  output({
+    success: true, action: 'dataset-simple-query', dataset: ds,
+    nextToken: data?.NextToken || undefined,
+    hasMore: Boolean(data?.NextToken),
+    data,
+  });
 }
 
-// 多模态检索 — 文档检索（hybridsearch）
+// 多模态检索（hybridsearch）：文档/图片/视频统一入口
+//   --templates 决定数据集模板：DocSearch（文档，仅文搜）/ VideoSearch（视频，仅文搜）/ ImageSearch（图片，文搜或图搜）
+//   --mode text 文搜 / --mode pic 图搜（仅 ImageSearch 支持，需 --uri）
 async function hybridSearch(opts) {
-  const { text } = opts;
-  if (!text) {
+  const mode = opts.mode || 'text';
+  const { text, uri } = opts;
+  const templates = opts.templates || 'DocSearch';
+  // 图搜仅 ImageSearch 支持；DocSearch / VideoSearch 不支持以图检索
+  if (mode === 'pic' && templates !== 'ImageSearch') {
+    throw new Error(`以图搜（--mode pic）仅支持 ImageSearch 数据集（图片检索），${templates} 不支持图搜，请改用 --mode text 文搜`);
+  }
+  if (mode === 'pic') {
+    if (!uri) {
+      throw new Error('图搜（--mode pic）需要 --uri 参数（cos:// 或 https 图片地址）');
+    }
+  } else if (!text) {
     throw new Error('缺少 --text 参数（检索文本）');
   }
   const ds = resolveDataset(opts, DatasetMeta || DatasetImageSearch || DatasetName, '多模态检索需要数据集名称（--dataset 或 TENCENT_COS_DATASET_META）');
-  const templates = opts.templates || 'DocSearch';
-  const mode = opts.mode || 'text';
   const limit = parseInt(opts.limit, 10) || 10;
   const offset = parseInt(opts.offset, 10) || 0;
   const threshold = parseInt(opts.threshold, 10) || 1;
@@ -872,11 +1131,18 @@ async function hybridSearch(opts) {
     DatasetName: ds,
     Mode: mode,
     Templates: templates,
-    SearchText: text,
     Offset: offset,
     Limit: limit,
     MatchThreshold: threshold,
   };
+  if (mode === 'pic') {
+    bodyObj.URI = uri;
+    bodyObj.URIs = uri;
+    bodyObj.SearchURIs = uri;
+  } else {
+    bodyObj.Text = text;
+    bodyObj.SearchText = text;
+  }
 
   if (opts.filter) {
     try {
@@ -887,7 +1153,38 @@ async function hybridSearch(opts) {
   }
 
   const data = await miRequest(ds, 'datasetquery/hybridsearch', bodyObj);
-  output({ success: true, action: 'hybrid-search', dataset: ds, templates, data });
+  output({ success: true, action: 'hybrid-search', dataset: ds, templates, mode, data });
+}
+
+// 视频检索 — 以文搜视频片段（需 Official:VideoSearch 数据集；视频检索仅支持文搜，不支持图搜）
+async function videoSearch(opts) {
+  const { text } = opts;
+  if (!text) {
+    throw new Error('缺少 --text 参数（检索语句，视频检索仅支持以文搜视频片段）');
+  }
+  const ds = resolveDataset(opts, DatasetVideoSearch, '视频检索需要 Official:VideoSearch 模板数据集（TENCENT_COS_DATASET_VIDEO_SEARCH）');
+  const limit = parseInt(opts.limit, 10) || 10;
+  const threshold = parseInt(opts['match-threshold'], 10) || 80;
+
+  const bodyObj = {
+    DatasetName: ds,
+    Mode: 'text',
+    Templates: 'VideoSearch',
+    Text: text,
+    SearchText: text,
+    Limit: limit,
+    MatchThreshold: threshold,
+  };
+  if (opts.filter) {
+    try {
+      bodyObj.Filter = JSON.parse(opts.filter);
+    } catch {
+      throw new Error('--filter 参数必须是有效的 JSON 字符串');
+    }
+  }
+
+  const data = await miRequest(ds, 'datasetquery/hybridsearch', bodyObj);
+  output({ success: true, action: 'video-search', dataset: ds, data });
 }
 
 // 列出数据集
@@ -934,7 +1231,11 @@ async function createDataset(opts) {
     throw new Error('缺少 --name 参数（数据集名称）');
   }
   const tpl = template || 'Official:COSBasicMeta';
-  const miRegion = MetaInsightRegion || METAINSIGHT_REGIONS[0];
+  // 地域必须显式指定，未指定时报错并询问用户，不默认任何地域
+  const miRegion = opts['mi-region'] || opts.region || MetaInsightRegion;
+  if (!miRegion) {
+    throw new Error('未指定 MetaInsight 地域：目前仅支持北京（ap-beijing）、上海（ap-shanghai）、成都（ap-chengdu）。请通过 --mi-region 显式指定（需与要绑定的存储桶同地域），或设置 TENCENT_COS_METAINSIGHT_REGION 环境变量。');
+  }
   const key = 'dataset';
   const host = `${appId()}.ci.${miRegion}.myqcloud.com`;
   const url = `https://${host}/${key}`;
@@ -1075,8 +1376,11 @@ async function createKnowledgeBase(opts) {
     throw new Error('缺少 --name 参数（知识库名称，将用于存储桶和数据集命名）');
   }
 
-  // MetaInsight 仅支持部分 region，桶和数据集必须在同一 region
-  const kbRegion = opts.region || MetaInsightRegion || 'ap-chengdu';
+  // MetaInsight 仅支持部分 region，桶和数据集必须在同一 region；地域必须显式指定，不默认任何地域
+  const kbRegion = opts.region || MetaInsightRegion;
+  if (!kbRegion) {
+    throw new Error('未指定知识库地域：目前 MetaInsight 仅支持北京（ap-beijing）、上海（ap-shanghai）、成都（ap-chengdu）。请通过 --region 显式指定，或设置 TENCENT_COS_METAINSIGHT_REGION 环境变量。');
+  }
   const kbBucket = `${name}-${appId()}`;
   const kbDataset = opts.dataset || `${name}-docsearch`;
 
@@ -1194,7 +1498,7 @@ async function encryptEnvAction() {
     chmodSync(backupPath, 0o600);
   }
 
-  const encBuffer = encryptEnv(plaintext);
+  const encBuffer = encryptEnvBuffer(plaintext);
   writeFileSync(envEncPath, encBuffer);
   chmodSync(envEncPath, 0o600);
   // 删除明文 .env
@@ -1241,7 +1545,7 @@ async function decryptEnvAction() {
   const encBuffer = readFileSync(envEncPath);
   let plaintext;
   try {
-    plaintext = decryptEnv(encBuffer);
+    plaintext = decryptEnvBuffer(encBuffer);
   } catch (err) {
     throw new Error(`解密失败：密钥不匹配或文件损坏。可能是在其他机器/用户下创建的加密文件。${err.message}`);
   }
@@ -1320,7 +1624,7 @@ async function imageFormat(opts) {
   }
   const fmt = format || 'webp';
   const rule = `imageMogr2/format/${fmt}`;
-  const outFileId = generateOutputFileId(key);
+  const outFileId = generateOutputFileId(key, { ext: fmt });
   const data = await cosRequestPromise({
     Bucket, Region, Key: key, Method: 'POST', Action: 'image_process',
     Headers: { 'Pic-Operations': JSON.stringify({ is_pic_info: 1, rules: [{ fileid: outFileId, rule }] }) },
@@ -1444,7 +1748,7 @@ async function speechRecognitionJob(opts) {
           FilterModal: 1,
           ConvertNumMode: 0,
         },
-        Output: { Bucket, Region, Object: `asr_result/${generateOutputFileId(key)}.txt` },
+        Output: { Bucket, Region, Object: `asr_result/${generateOutputFileId(key, { keepExt: false })}.txt` },
       },
     },
   });
@@ -1493,7 +1797,7 @@ async function noiseReductionJob(opts) {
       Tag: 'NoiseReduction',
       Input: { Object: key },
       Operation: {
-        Output: { Bucket, Region, Object: `noise_result/${generateOutputFileId(key)}.mp3` },
+        Output: { Bucket, Region, Object: `noise_result/${generateOutputFileId(key, { keepExt: false })}.mp3` },
       },
     },
   });
@@ -1595,6 +1899,51 @@ async function describeFileJob(opts) {
 }
 
 // ========== CI 内容识别 ==========
+
+function outputAiProcessResult(action, result) {
+  if (!result.ok) {
+    const error = new Error(result.error?.message || 'AI 内容识别异步服务请求失败');
+    error.code = result.error?.code || 'RequestFailed';
+    error.request = result.request;
+    throw error;
+  }
+  const { ok, action: apiAction, ...data } = result;
+  output({
+    ...(result.operation === 'precheck' ? { ok, tool: action } : {}),
+    success: ok, action, apiAction, ...data,
+  });
+}
+
+async function describeAsyncContentRecognitionBucketsAction(opts) {
+  const result = await describeAsyncContentRecognitionBuckets({
+    region: Region,
+    bucketNames: opts['bucket-names'] || Bucket,
+    bucketName: opts['bucket-name'],
+    pageNumber: opts['page-number'] || 1,
+    pageSize: opts['page-size'] || 10,
+    creds: credentials,
+  });
+  outputAiProcessResult('describe-ai-process-buckets', result);
+}
+
+async function createAsyncContentRecognitionBucketAction(opts) {
+  const result = await createAsyncContentRecognitionBucket({
+    bucket: Bucket,
+    region: Region,
+    creds: credentials,
+    ...(Object.hasOwn(opts, 'activation-confirmation') ? { activationConfirmation: opts['activation-confirmation'] } : {}),
+  });
+  outputAiProcessResult('create-ai-process-bucket', result);
+}
+
+async function deleteAsyncContentRecognitionBucketAction() {
+  const result = await deleteAsyncContentRecognitionBucket({
+    bucket: Bucket,
+    region: Region,
+    creds: credentials,
+  });
+  outputAiProcessResult('delete-ai-process-bucket', result);
+}
 
 async function recognizeImage(opts) {
   const { key } = opts;
@@ -1730,6 +2079,20 @@ async function ciRequest(opts) {
       throw new Error('--query 参数必须是有效的 JSON 字符串');
     }
   }
+  if (isStrictMode(process.env)) {
+    const target = new URL(url);
+    const service = getCiActivationRequestService({ method, host: target.hostname, pathname: target.pathname });
+    if (service) {
+      if (target.searchParams.has('unbind') || Object.hasOwn(reqParams.Query || {}, 'unbind')) {
+        const error = new Error('CI unbinding is not allowed in strict mode');
+        error.code = 'ActionDenied';
+        throw error;
+      }
+      const result = await createCiService({ service, bucket: Bucket, region: Region, creds: credentials });
+      outputCiServiceLifecycleResult(result.tool, result);
+      return;
+    }
+  }
   const data = await cosRequestPromise(reqParams);
   output({ success: true, action: 'ci-request', path, method, data });
 }
@@ -1760,6 +2123,7 @@ const actions = {
   'sign-url': signUrl,
   delete: deleteObject,
   head,
+  ...cosObjectReadActions,
 
   // COS 存储桶管理
   'list-buckets': listBuckets,
@@ -1776,8 +2140,24 @@ const actions = {
   'get-bucket-location': getBucketLocation,
   'copy-object': copyObject,
   'delete-multiple': deleteMultipleObjects,
+  ...cosBucketReadActions,
+
+  // CI 服务生命周期
+  'create-ci-bucket': createCiServiceLifecycleAction('create-ci-bucket', 'create', 'ci'),
+  'delete-ci-bucket': createCiServiceLifecycleAction('delete-ci-bucket', 'delete', 'ci'),
+  'create-doc-process-bucket': createCiServiceLifecycleAction('create-doc-process-bucket', 'create', 'document'),
+  'delete-doc-process-bucket': createCiServiceLifecycleAction('delete-doc-process-bucket', 'delete', 'document'),
+  'create-media-bucket': createCiServiceLifecycleAction('create-media-bucket', 'create', 'media'),
+  'delete-media-bucket': createCiServiceLifecycleAction('delete-media-bucket', 'delete', 'media'),
+  'create-asr-bucket': createCiServiceLifecycleAction('create-asr-bucket', 'create', 'voice'),
+  'delete-asr-bucket': createCiServiceLifecycleAction('delete-asr-bucket', 'delete', 'voice'),
+  'create-file-process-bucket': createCiServiceLifecycleAction('create-file-process-bucket', 'create', 'file'),
+  'delete-file-process-bucket': createCiServiceLifecycleAction('delete-file-process-bucket', 'delete', 'file'),
 
   // CI 图片基础处理
+  'describe-async-image-process-buckets': describeAsyncImageProcessBucketsAction,
+  'create-async-image-process-bucket': createAsyncImageProcessBucketAction,
+  'delete-async-image-process-bucket': deleteAsyncImageProcessBucketAction,
   'image-info': imageInfo,
   'image-thumbnail': imageThumbnail,
   'image-crop': imageCrop,
@@ -1792,6 +2172,9 @@ const actions = {
   'ai-qrcode': aiQrcode,
 
   // CI 内容识别
+  'describe-ai-process-buckets': describeAsyncContentRecognitionBucketsAction,
+  'create-ai-process-bucket': createAsyncContentRecognitionBucketAction,
+  'delete-ai-process-bucket': deleteAsyncContentRecognitionBucketAction,
   'recognize-image': recognizeImage,
   'ocr-general': ocrGeneral,
 
@@ -1843,6 +2226,7 @@ const actions = {
   'face-search': faceSearch,
   'dataset-simple-query': datasetSimpleQuery,
   'hybrid-search': hybridSearch,
+  'video-search': videoSearch,
 
   // CI 通用 request（扩展入口）
   'ci-request': ciRequest,
@@ -1855,43 +2239,101 @@ const actions = {
   'decrypt-env': decryptEnvAction,
 };
 
+const hiddenActions = getHiddenActions(process.env, Object.keys(actions));
+const availableActions = Object.keys(actions).filter(item => !hiddenActions.includes(item));
+
 if (!action || !actions[action]) {
   output({
     success: false,
     error: `未知操作：${action || '(空)'}`,
-    availableActions: Object.keys(actions),
+    mode: runtimeMode,
+    availableActions,
     usage: 'node cos_node.mjs <action> [--option value ...]',
     categories: {
-      '存储操作': ['upload', 'put-string', 'download', 'list', 'sign-url', 'delete', 'delete-multiple', 'head', 'copy-object'],
-      '存储桶管理': ['list-buckets', 'create-bucket', 'head-bucket', 'get-bucket-acl', 'put-bucket-acl', 'get-bucket-cors', 'put-bucket-cors', 'get-bucket-tagging', 'put-bucket-tagging', 'get-bucket-versioning', 'get-bucket-lifecycle', 'get-bucket-location'],
-      '图片基础处理': ['image-info', 'image-thumbnail', 'image-crop', 'image-rotate', 'image-format', 'watermark-font'],
+      '存储操作': [
+        'upload', 'put-string', 'download', 'list', 'sign-url', 'delete', 'delete-multiple', 'head', 'copy-object',
+        ...Object.keys(cosObjectReadActions),
+      ]
+        .filter(item => !hiddenActions.includes(item)),
+      '存储桶管理': [
+        'list-buckets', 'create-bucket', 'head-bucket', 'get-bucket-acl', 'put-bucket-acl', 'get-bucket-cors',
+        'put-bucket-cors', 'get-bucket-tagging', 'put-bucket-tagging', 'get-bucket-versioning',
+        'get-bucket-lifecycle', 'get-bucket-location', ...Object.keys(cosBucketReadActions),
+      ],
+      'CI服务绑定': [
+        'create-ci-bucket', 'delete-ci-bucket',
+      ].filter(item => !hiddenActions.includes(item)),
+      '图片基础处理': [
+        'describe-async-image-process-buckets',
+        'create-async-image-process-bucket',
+        'delete-async-image-process-bucket',
+        'image-info', 'image-thumbnail', 'image-crop', 'image-rotate', 'image-format', 'watermark-font',
+      ].filter(item => !hiddenActions.includes(item)),
       'AI图片处理': ['assess-quality', 'ai-super-resolution', 'ai-pic-matting', 'ai-qrcode'],
-      '内容识别': ['recognize-image', 'ocr-general'],
-      '文档处理': ['create-doc-to-pdf-job', 'describe-doc-job', 'doc-preview', 'doc-preview-html-url'],
-      '媒体处理': ['create-media-smart-cover-job', 'describe-media-job', 'media-transcode-job', 'media-snapshot', 'media-info'],
+      '内容识别': [
+        'describe-ai-process-buckets', 'create-ai-process-bucket', 'delete-ai-process-bucket',
+        'recognize-image', 'ocr-general',
+      ].filter(item => !hiddenActions.includes(item)),
+      '文档处理': [
+        'create-doc-process-bucket', 'delete-doc-process-bucket',
+        'create-doc-to-pdf-job', 'describe-doc-job', 'doc-preview', 'doc-preview-html-url',
+      ].filter(item => !hiddenActions.includes(item)),
+      '媒体处理': [
+        'create-media-bucket', 'delete-media-bucket',
+        'create-media-smart-cover-job', 'describe-media-job', 'media-transcode-job', 'media-snapshot', 'media-info',
+      ].filter(item => !hiddenActions.includes(item)),
       '内容审核': ['audit-image', 'audit-image-job', 'audit-video-job', 'audit-audio-job', 'audit-text-job', 'audit-document-job', 'describe-audit-job'],
-      '智能语音': ['speech-recognition-job', 'tts-job', 'noise-reduction-job', 'voice-separate-job'],
-      '文件处理': ['file-hash', 'file-compress-job', 'file-uncompress-job', 'describe-file-job'],
+      '智能语音': [
+        'create-asr-bucket', 'delete-asr-bucket',
+        'speech-recognition-job', 'tts-job', 'noise-reduction-job', 'voice-separate-job',
+      ].filter(item => !hiddenActions.includes(item)),
+      '文件处理': [
+        'create-file-process-bucket', 'delete-file-process-bucket',
+        'file-hash', 'file-compress-job', 'file-uncompress-job', 'describe-file-job',
+      ].filter(item => !hiddenActions.includes(item)),
       'MetaInsight数据集管理': ['list-datasets', 'create-dataset', 'describe-dataset', 'create-dataset-binding', 'describe-dataset-bindings'],
-      'MetaInsight索引管理': ['create-file-meta-index', 'describe-file-meta-index', 'delete-file-meta-index'],
-      'MetaInsight检索': ['image-search-pic', 'image-search-text', 'face-search', 'dataset-simple-query', 'hybrid-search'],
+      'MetaInsight索引管理': ['create-file-meta-index', 'describe-file-meta-index', 'delete-file-meta-index']
+        .filter(item => !hiddenActions.includes(item)),
+      'MetaInsight检索': ['image-search-pic', 'image-search-text', 'face-search', 'dataset-simple-query', 'hybrid-search', 'video-search'],
       '通用CI请求': ['ci-request'],
       '🚀快捷功能': ['create-knowledge-base'],
-      '🔐凭证管理': ['encrypt-env', 'decrypt-env'],
-      '⚠️禁止操作': ['不允许删除存储桶(deleteBucket)', '不允许清空存储桶'],
+      ...(runtimeMode === 'public' ? { '🔐凭证管理': ['encrypt-env', 'decrypt-env'] } : {}),
+      '⚠️禁止操作': [
+        '不允许删除存储桶(deleteBucket)',
+        '不允许清空存储桶',
+      ],
     },
   });
   process.exit(1);
 }
 
 try {
+  assertActionAllowed(action, process.env, opts);
+  // 严格模式首次使用计费类动作时暂停并下发计费提示交互；有效确认回执记录后放行原动作。
+  const billingGate = evaluateBillingNotice({
+    action,
+    confirmation: opts['billing-confirmation'],
+  });
+  if (billingGate && billingGate.billingStatus === 'requires_confirmation') {
+    output({
+      success: false,
+      action,
+      mode: runtimeMode,
+      billingStatus: billingGate.billingStatus,
+      clientAction: billingGate.clientAction,
+      message: '数据万象（CI）与智能检索为按量计费服务，首次使用前需确认已知悉计费规则；确认后原样回填回执并重试原命令。',
+    });
+    process.exit(0);
+  }
   await actions[action](opts);
 } catch (err) {
   output({
     success: false,
     action,
+    mode: runtimeMode,
     error: err.message || String(err),
     code: err.code,
+    ...(err.request ? { request: err.request } : {}),
   });
   process.exit(1);
 }

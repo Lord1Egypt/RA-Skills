@@ -32,6 +32,10 @@
 
 无法提取时 PID 填 `null`。
 
+## 来源 URL 记录
+
+确定题目来源 URL 后记之，写 problem.yaml 时把该 URL 填入 `source` 字段（详见 05-config.md）。
+
 ## 重命名工作目录（关键！）
 
 提取到 PID 后，**立即重命名工作目录**，使其包含题目标识：
@@ -39,8 +43,9 @@
 ### 如果当前目录是 `work`（即初始化时PID未知）：
 
 ```bash
-mv work work_{PID}
-# {WORK_DIR} = work_{PID}
+BASE_DIR=$(detect_desktop)
+mv $BASE_DIR/work $BASE_DIR/work_{PID}
+# {WORK_DIR} = $BASE_DIR/work_{PID}
 ```
 
 ### 如果当前目录已经是 `work_{PID}`（即初始化时已用PID）：

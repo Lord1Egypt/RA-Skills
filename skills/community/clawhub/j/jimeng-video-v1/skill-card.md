@@ -1,43 +1,55 @@
-## Description: <br>
-Jimeng Video helps agents generate text-to-video and image-to-video content with optional AI-generated audio through the Volcengine/Dreamina API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jimeng Video helps agents generate audio-enabled AI videos through the Volcengine/Dreamina API, supporting text-to-video, image-to-video, multiple models, batch generation, and task status checks.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External creators, content operators, and developers use this skill to generate short videos with optional AI-generated sound, manage generation tasks, and retrieve remote generation results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, uploaded images, videos, audio, and generated outputs may be sent to Volcengine/Seedance for remote processing. <br>
-Mitigation: Use only with organization-approved data and avoid secrets, private personal data, or confidential business assets unless that remote processing is approved. <br>
-Risk: The skill requires Volcengine API credentials to create and query generation tasks. <br>
-Mitigation: Store credentials in the documented credentials file or secret manager, avoid pasting keys into prompts or shared logs, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+External creators, content operators, advertisers, and developers use this skill to ask an agent for short-form AI video generation with optional generated audio, then create, batch, monitor, and retrieve Volcengine/Dreamina generation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/jimeng-video-v1) <br>
-- [Volcengine Ark content generation tasks API](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, API calls, files] <br>
-**Output Format:** [Markdown with inline bash commands, curl examples, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or retrieve MP4 video files from remote task URLs when run with Volcengine credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Prompts, uploaded images, credentials, and generated task data may be sent to the Volcengine/Dreamina cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped API credentials, keep secrets private, and avoid sending sensitive prompts or images unless the external service use is acceptable.
+
+Risk: Broad video-generation requests could activate third-party API usage unexpectedly.
+
+Mitigation: Confirm user intent before invoking Volcengine/Dreamina generation tasks and review generated outputs before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/jimeng-video-v1)
+- [Volcengine content generation tasks API](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks)
+- [Publisher profile](https://clawhub.ai/user/onlyloveher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or retrieve video task outputs through the Volcengine/Dreamina service when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,69 @@
-## Description: <br>
-Browser automation via Playwright MCP for navigating websites, clicking elements, filling forms, taking screenshots, extracting rendered data, debugging browser workflows, and authoring Playwright tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via Playwright MCP for navigating sites, filling forms, taking screenshots, extracting data, writing tests, and debugging real browser workflows.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to decide when to use Playwright MCP, direct Playwright scripts, or Playwright tests for real-browser workflows such as forms, screenshots, downloads, rendered-page extraction, debugging, and CI automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags a bundled review helper that can grant a nested reviewer broad local access. <br>
-Mitigation: Review that helper before installation or use, run it without yolo mode unless broad access is intentional, and require confirmation before moderation or write actions. <br>
-Risk: Browser automation can send requests, cookies, form input, uploads, and page interactions to user-requested websites. <br>
-Mitigation: Limit automation to the user's requested targets, use staging or local environments for sensitive flows, and get explicit confirmation before destructive, financial, medical, production, or other high-stakes actions. <br>
-Risk: Optional Playwright or Playwright MCP installation downloads packages from npm. <br>
-Mitigation: Install only in environments where npm package traffic is acceptable and the packages are trusted for the task. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose and apply Playwright, Playwright MCP, and related testing patterns for browser automation, UI debugging, screenshots, downloads, CI test runs, and rendered-page extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbo405/xiaomolong-playwright) <br>
-- [Publisher profile](https://clawhub.ai/user/linbo405) <br>
-- [Skill homepage](https://clawic.com/skills/playwright) <br>
-- [npm package registry](https://registry.npmjs.org) <br>
-- [Selector strategy and frame handling](artifact/selectors.md) <br>
-- [Failure analysis, traces, logs, and headed runs](artifact/debugging.md) <br>
-- [Test architecture, mocks, auth, and assertions](artifact/testing.md) <br>
-- [CI defaults, retries, workers, and failure artifacts](artifact/ci-cd.md) <br>
-- [Rendered-page extraction, pagination, and respectful throttling](artifact/scraping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JavaScript or TypeScript code examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser actions that create screenshots, PDFs, downloads, traces, and temporary browser state in the workspace or system temp directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter reports 1.0.3) <br>
+Risk: Optional npm installs can introduce supply-chain drift if package versions are not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned Playwright and Playwright MCP versions or a reviewed lockfile before installation.
+
+Risk: Browser automation can send cookies, form input, uploads, and page interactions to user-requested web origins.
+
+Mitigation: Run only against intended targets, prefer staging or local environments for sensitive flows, and avoid entering secrets unless required and approved.
+
+Risk: Screenshots, traces, videos, PDFs, downloads, and CI artifacts can expose authenticated or confidential page content.
+
+Mitigation: Keep browser artifacts scoped, temporary, and access-controlled; avoid broad uploads for confidential workflows.
+
+Risk: Saved browser sessions can preserve credentials or privileged state across tasks.
+
+Mitigation: Keep saved browser state temporary unless session reuse is intentional and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linbo405/skills/xiaomolong-playwright)
+- [Skill homepage](https://clawic.com/skills/playwright)
+- [Playwright npm package](https://registry.npmjs.org/playwright)
+- [Playwright MCP npm package](https://registry.npmjs.org/@playwright%2fmcp)
+- [Selector strategy reference](artifact/selectors.md)
+- [Debugging guide](artifact/debugging.md)
+- [Testing patterns](artifact/testing.md)
+- [CI/CD defaults](artifact/ci-cd.md)
+- [Rendered-page extraction patterns](artifact/scraping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JavaScript, TypeScript, YAML, and Dockerfile examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; may propose Playwright commands, MCP browser actions, test code, CI configuration, screenshots, traces, PDFs, or extraction steps depending on the user's task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

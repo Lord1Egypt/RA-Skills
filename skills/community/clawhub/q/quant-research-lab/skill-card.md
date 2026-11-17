@@ -1,46 +1,59 @@
-## Description: <br>
-A multi-agent quantitative strategy research workflow that helps coding agents design, backtest, risk-assess, optimize, and document trading strategies across specialized role templates. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Quant Research Lab is a multi-agent quantitative strategy research skill that helps coding agents design, backtest, risk-manage, optimize, and document trading strategy workflows through 15 specialized role prompts.
 
-## Publisher: <br>
-[yili1992](https://clawhub.ai/user/yili1992) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yili1992](https://clawhub.ai/user/yili1992)
 
-## Use Case: <br>
-External developers and quantitative researchers use this skill to structure strategy research through role-based pipelines for strategy design, backtesting, risk management, factor modeling, execution design, and compliance review. Outputs are research drafts and should not be treated as financial, investment, or trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive broker credentials, API keys, account numbers, confidential trading plans, or user-provided strategy context may be captured in local research context or passed to subagents. <br>
-Mitigation: Do not provide broker credentials, API keys, account numbers, or confidential trading plans unless the user accepts that they may be stored in the project state file and shared with subagents. <br>
-Risk: Generated strategies, backtests, risk models, execution logic, and trading-system code may be incomplete, incorrect, or unsuitable for live trading. <br>
-Mitigation: Treat outputs as research drafts requiring independent testing, compliance review, and paper trading before any real use. <br>
-Risk: The skill can activate from natural-language quant research requests and may process unintended inputs. <br>
-Mitigation: Prefer explicit /quant-research-lab invocation and review the intended market, capital, and research focus before running pipelines. <br>
+## Use Case:
 
+Developers, researchers, and quantitative strategy teams use this skill to structure LLM-assisted research across strategy design, backtesting, factor modeling, risk review, execution planning, portfolio optimization, and compliance-oriented review. It supports both individual role prompts and sequenced pipeline tracks for end-to-end quantitative research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yili1992/quant-research-lab) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Claude Code](https://github.com/anthropics/claude-code) <br>
-- [Hermes Agent](https://hermes.nousresearch.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, formulas, pseudocode, code blocks, and QAGATE summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce strategy drafts, backtest designs, risk checks, execution plans, compliance notes, and local research-context summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated trading, market-data, or execution-system snippets may be treated as production-ready infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the outputs as design guidance and add authentication, authorization, rate limiting, compliance review, and testing before deployment.
+
+Risk: Pipeline state can retain sensitive strategy details in state/research-context.md.
+
+Mitigation: Review and remove retained local state before sharing the workspace or publishing derived materials.
+
+Risk: Quantitative research outputs can be inaccurate, incomplete, or unsuitable as financial advice.
+
+Mitigation: Perform independent due diligence, data validation, backtesting, and risk review before relying on any strategy output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yili1992/skills/quant-research-lab)
+- [Claude Code](https://github.com/anthropics/claude-code)
+- [Hermes Agent](https://hermes.nousresearch.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured sections, formulas, pseudocode, QAGATE blocks, and occasional shell commands or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pipeline workflows may persist local research context in state/research-context.md; generated strategy, market-data, and execution-system material requires review before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

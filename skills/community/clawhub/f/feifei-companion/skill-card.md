@@ -1,43 +1,57 @@
-## Description: <br>
-A bilingual K12 learning companion that coordinates three tutor personas for subject help, personalized study planning, parent-child communication, and learning reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FeiFei Companion is a bilingual Trinity AI learning companion that routes K12 tutoring, study planning, learning reports, parent-child communication, and emotional support across three specialized tutor personas.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-Students, parents, and learning coaches use this skill for bilingual K12 tutoring, study planning, emotional learning support, parent-child communication, and progress reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may collect or summarize sensitive information about children through student profiles, long-term tracking, emotional support, and parent-facing reports. <br>
-Mitigation: Use it only where consent, memory, report sharing, deletion, and retention settings are explicit and controlled; avoid entering sensitive family, mental-health, school-account, identity, or other protected details. <br>
-Risk: Parent-facing summaries and learning reports may expose student information beyond the intended audience. <br>
-Mitigation: Review report content before sharing, minimize personal details, and share only with authorized parents, guardians, or educators. <br>
-Risk: The writing-polish behavior includes reducing AI-generated-content detection, which may conflict with academic authorship rules. <br>
-Mitigation: Do not use the polishing feature to evade AI-detection, authorship, citation, or academic integrity requirements. <br>
+## Use Case:
 
+Students, parents or guardians, and educators use this skill for bilingual K12 subject tutoring, personalized learning paths, learning reports, study planning, and parent-child communication support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonstang/feifei-companion) <br>
-- [Publisher profile](https://clawhub.ai/user/simonstang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain-text tutoring guidance, plans, report templates, and communication drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no API keys, MCP tools, or credential environment variables were detected in the bundled discovery output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence); artifact frontmatter reports 4.0.0 <br>
+Risk: The skill asks to build long-term profiles of children and share learning reports without clear privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit student or guardian consent, minimize stored data, isolate each student profile, use short retention, and provide controls to disable or delete profiling.
+
+Risk: Learning reports or parent-facing communications may expose sensitive student information or reach unintended recipients.
+
+Mitigation: Require report previews, human approval before sharing, and verified parent or guardian recipients.
+
+Risk: The security guidance identifies an AIGC-detection-evasion feature as inappropriate for use.
+
+Mitigation: Remove the feature from the deployed skill or instruct agents to ignore it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/simonstang/skills/feifei-companion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English responses; may include tutoring explanations, study plans, learner-profile summaries, reports, and parent-child communication drafts.]
+
+## Skill Version(s):
+
+4.0.0 (source: artifact/SKILL.md frontmatter; ClawHub release metadata version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

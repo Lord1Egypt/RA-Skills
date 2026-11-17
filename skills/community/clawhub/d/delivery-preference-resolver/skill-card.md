@@ -1,38 +1,50 @@
-## Description: <br>
-Determines user intent, destination, known and missing fields, and whether follow-up is needed as strict JSON for delivery preference resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Determines user intent, destination, known and missing fields, and whether follow-up is needed for delivery preference resolution.
 
-## Publisher: <br>
-[donigwapo](https://clawhub.ai/user/donigwapo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donigwapo](https://clawhub.ai/user/donigwapo)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn delivery requests into a deterministic routing plan before sending output to email, Notion, Google Sheets, Slack, download, or an unknown destination. It is useful when an agent must identify missing delivery fields and ask one concise follow-up question before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A remembered or previously selected delivery destination may be stale or incorrect before an agent sends email, posts to Slack, saves to Notion, or updates a sheet. <br>
-Mitigation: Confirm the destination and required target fields before using the JSON output to perform an external write or delivery action. <br>
+## Use Case:
 
+Agents use this skill to normalize delivery requests into a strict JSON plan that identifies the requested action, destination, known details, missing fields, and any required follow-up question.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donigwapo/delivery-preference-resolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [Strict JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only JSON with action, template, destination, follow-up state, known fields, and missing fields; no markdown, code fences, or explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Structured destination details could be used by downstream automation without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the JSON output before another automation uses it to deliver or send content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/donigwapo/skills/delivery-preference-resolver)
+- [Skill Artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Strict JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns only JSON with no markdown, code fences, explanations, or surrounding text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

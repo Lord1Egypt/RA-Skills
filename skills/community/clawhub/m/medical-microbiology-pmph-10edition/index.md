@@ -127,7 +127,7 @@
 | [adenovirus-structure-transmission-and-disease-spectrum](adenovirus-structure-transmission-and-disease-spectrum/SKILL.md) | 评估腺病毒感染可能性并指导初步诊断与防控措施 | 当患者出现咽结膜热三联征、游泳后暴发性结膜炎，或集体单位发生聚集性病例时 |
 | [coxsackievirus-a-b-classification](coxsackievirus-a-b-classification/SKILL.md) | 对已分离柯萨奇病毒株进行A组或B组血清型分类 | 当需对疑似柯萨奇病毒进行血清型分组以指导临床诊断或实验室鉴定时 |
 | [ev-a71-severe-risk-assessment](ev-a71-severe-risk-assessment/SKILL.md) | 快速识别EV-A71感染患儿重症高危征象并评估是否需转入ICU | 当6个月至5岁手足口病患儿确诊EV-A71感染并出现神经系统症状时 |
-| [hev-infection-risk-assessment-in-special-populations](hev-infection-risk-assessment-in-special-populations/SKILL.md) | 评估戊型肝炎病毒（HEV）感染高危人群的重症风险与慢性化可能性 | 当患者确诊或疑似HEV感染且属于孕妇、慢性肝病患者、老年人或免疫功能低下者时 |
+| [hev-infection-riREDACTED-SECRET](hev-infection-riREDACTED-SECRET/SKILL.md) | 评估戊型肝炎病毒（HEV）感染高危人群的重症风险与慢性化可能性 | 当患者确诊或疑似HEV感染且属于孕妇、慢性肝病患者、老年人或免疫功能低下者时 |
 | [antiviral-gene-therapy-agent-design](antiviral-gene-therapy-agent-design/SKILL.md) | 选择并设计抗病毒基因治疗剂（反义寡核苷酸、siRNA或核酶）以抑制病毒活性 | 当病毒关键序列已知、具备核酸递送能力且应用场景为非临床实验研究时 |
 | [coronavirus-classification-structure-pathogenicity](coronavirus-classification-structure-pathogenicity/SKILL.md) | 依据病毒属、受体类型和临床表现判断冠状病毒感染类型并评估重症风险 | 当患者出现呼吸道感染症状且需鉴别是否为冠状病毒感染时 |
 | [hdv-infection-type-assessment](hdv-infection-type-assessment/SKILL.md) | 鉴别HDV感染类型（联合感染 vs. 重叠感染）并评估临床风险 | 当慢性乙肝患者出现肝炎急性加重或病情突然恶化时 |
@@ -247,7 +247,7 @@
 - adenovirus-structure-transmission-and-disease-spectrum  
 - coxsackievirus-a-b-classification  
 - ev-a71-severe-risk-assessment  
-- hev-infection-risk-assessment-in-special-populations  
+- hev-infection-riREDACTED-SECRET  
 - antiviral-gene-therapy-agent-design  
 - coronavirus-classification-structure-pathogenicity  
 - hdv-infection-type-assessment  

@@ -1,38 +1,50 @@
-## Description: <br>
-Set up a new Google Tasks list with initial tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a new Google Tasks list with initial tasks.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees, external users, and developers can use this recipe to create a Google Tasks task list and seed it with initial planning tasks through the Google Workspace CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands will create a real Google Tasks task list and sample tasks in the Google account currently authenticated through gws. <br>
-Mitigation: Confirm that gws is authenticated to the intended Google account and replace the sample list title, task names, notes, and due date before running the commands. <br>
+## Use Case:
 
+Employees and Google Workspace users use this skill to create a Google Tasks list, add initial tasks, and review the resulting list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-create-task-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and the gws-tasks skill; commands create a task list, add sample tasks, and list the resulting tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence); artifact metadata version 0.22.5 <br>
+Risk: The recipe can create tasks in the wrong Google account or with unintended titles, notes, or due dates if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm gws is authenticated to the intended Google account and review the task list title, task titles, notes, and due date before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-create-task-list)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the gws command-line tool and requires the gws-tasks skill.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata); skill metadata version 0.22.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

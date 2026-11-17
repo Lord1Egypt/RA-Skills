@@ -1,0 +1,47 @@
+backtrader是基于Python的量化框架平台，内置了talib指标库、analyzer分析库等功能，具有回测速度快、易用性高以及扩展性好等特点。相较于网上已有教程，本教程从数据至分析进行了全面的介绍，着重阐述了数据清洗以及框架调整等部分，点出了backtrader的某些不足并提供了解决方法。
+
+GitHub地址：https://github.com/ZoeQuant/backtrader_tutorial/blob/main/tutorial.ipynb
+
+
+叁玖：backtrader教程（三）- 单（多）品种策略篇
+18 赞同 · 3 评论 文章
+4. 策略评估
+下图较为详细得展示了各个买入点和卖出点，方便我们进行买入卖出点的直观判断
+
+cerebro.plot(style='candlestick')
+
+展示夏普、年化收益率以及最大回撤等。本策略以日为单位进行计算，所以取252作为基准进行指标计算。同理可推，如果是以月为基准，则将252修改为12。
+
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+thestrat = thestrats[0]
+pyfolio = thestrat.analyzers._pyfolio.get_analysis()
+def plot_strategy(pyfolio):
+    returns = pyfolio['returns'].values()
+    returns = pd.DataFrame(list(zip(pyfolio['returns'].keys(),pyfolio['returns'].values())), columns=['date','total_value'])
+    
+
+    sharpe = np.round(np.sqrt(252) * returns['total_value'].mean() / returns['total_value'].std(), 4)
+    returns['total_value']=returns['total_value']+1
+    returns['total_value'] = returns['total_value'].cumprod()
+    annal_rtn = np.round(returns['total_value'].iloc[-1]**(252/len(returns))-1, 4)*100
+    dd = 1-returns['total_value']/np.maximum.accumulate(returns['total_value'])
+    end_idx = np.argmax(dd)
+    start_idx = np.argmax(returns['total_value'].iloc[:end_idx])
+    maxdd_days = end_idx-start_idx
+    maxdd = np.round(max(dd), 4)*100
+    
+    returns = returns.set_index('date')
+    ax=returns.plot(y='total_value')
+    plt.text(0.01,0.8, f'sharpe: {sharpe:.2f}', transform=ax.transAxes)
+    plt.text(0.01,0.75, f'maxdd: {maxdd:.2f}%', transform=ax.transAxes)
+    plt.text(0.01,0.7, f'maxdd_days: {maxdd_days:}days', transform=ax.transAxes)
+    plt.text(0.01,0.65, f'annal_rtn: {(annal_rtn):.2f}%', transform=ax.transAxes)
+    plt.scatter([returns.index[start_idx], returns.index[end_idx]], [returns.iloc[start_idx], returns.iloc[end_idx]],
+                s = 80, c = 'g', marker = 'v', label = 'MaxDrawdown Duration')
+    plt.title('portfolio')
+    plt.show()
+
+plot_strategy(pyfolio)

@@ -27,21 +27,60 @@ Resolve base: `charter_enrich_url` → `hifleet_charter_api_base` + `/enrich-row
 
 ## Request body (vessel row)
 
-Map API list row → parse-schema-like object (minimum **`船名`**, **`载重吨`**, **`OPEN位置`**, **`IMO`** if present):
+### 标准格式（与 `CHARTER_ENRICH_API.md` / 邮件解析 2.4 一致）
+
+**`source` 固定 `parse_schema`**，`row` 用中文键；**`IMO` 可 null**（后端用 `api_key` 按船名+载重吨 lookup）。
 
 ```json
 {
   "kind": "vessel",
+  "source": "parse_schema",
+  "include_archive": true,
   "row": {
-    "船名": "MV EXAMPLE",
-    "IMO": "9123456",
-    "载重吨": 58000,
-    "OPEN位置": "SINGAPORE",
-    "船型": "Bulk Carrier"
-  },
-  "query_port": "Tianjin"
+    "船名": "ZHONG XING MEN",
+    "IMO": null,
+    "载重吨": 55408,
+    "船型": "杂货船",
+    "OPEN位置": "Singapore",
+    "是否有船吊": 1,
+    "吊机数量": 4,
+    "是否可装危险品": 0,
+    "租船类型": "OPEN"
+  }
 }
 ```
+
+**Query**：`?api_key={密钥}`（必填，用于 IMO lookup 与 ship-archive）。
+
+**不要**在 `row.IMO` 或顶层 `imo` 填占位/错误 IMO（如 `9123456`）——后端会直接用该 IMO 查档案与 tags，查不到则返回：
+
+```json
+{
+  "ok": true,
+  "partial": true,
+  "imo": "9123456",
+  "data": { "tags": "", "dwt": null, "YearOfBuild": null, "shiptype": null, "minotype": null },
+  "warnings": [{ "step": "archive", "detail": "ship-archive unavailable or empty" }]
+}
+```
+
+行内 **无 IMO** 且 **Query 带 api_key** 时，才会按 `船名`+`载重吨` 自动补齐真实 IMO。
+
+**船名**：去掉 **`MV` / `M.V.` / `MT`** 前缀后再传入（skill 自动处理，如 `MV WILSON NEWPORT` → `WILSON NEWPORT`）。
+
+### 公开船盘列表行（C/D 路由）
+
+若 `row` 来自 `vessels/search` 的 `data[]`（英文字段），须映射后再调 enrich，或由 CLI 自动映射：
+
+| Public API field | Maps to `row` |
+|------------------|---------------|
+| `ShipName` | `船名` |
+| `imo` | `row.IMO`（须为真实 7 位 IMO，勿用占位符） |
+| `dwt` | `载重吨` |
+| `type` | `船型` |
+| `openPort` / `destination` | `OPEN位置` |
+
+CLI：`opentonnages_tool.py enrich --kind vessel --file row.json`
 
 | Field | Purpose |
 |-------|---------|
@@ -82,4 +121,5 @@ Map API list row → parse-schema-like object (minimum **`船名`**, **`载重�
 
 ## Reference
 
-Detailed enrich semantics align with **`hifleet-mytonnages/CHARTER_ENRICH_API.md`** (portid decoupling, archive columns) — reuse field names when merging into replies.
+Enrich semantics: portid decoupling and archive column names — reuse field names when merging into replies.
+

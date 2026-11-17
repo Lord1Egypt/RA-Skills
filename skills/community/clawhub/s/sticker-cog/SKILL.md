@@ -1,6 +1,6 @@
 ---
-name: sticker-cog
-description: "AI sticker pack generation powered by CellCog. Custom stickers, emoji sets, WhatsApp stickers, Telegram stickers, Discord emoji, Slack reactions. Character-consistent expressions, transparent backgrounds, batch generation, platform-ready packaging."
+name: sticker-generator-cellcog
+description: "AI sticker generator and pack creation powered by CellCog. Custom stickers, emoji sets, WhatsApp stickers, Telegram stickers, Discord emoji, Slack reactions. Character-consistent expressions, transparent backgrounds, batch generation, platform-ready packaging."
 metadata:
   openclaw:
     emoji: "✨"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Sticker Cog - One Character, Twenty Expressions, Perfect Consistency
+# Sticker Generator - One Character, Twenty Expressions, Perfect Consistency
 
 **One character. Twenty expressions. Every sticker looks like the same person.** That's the hard part — and that's what CellCog does better than anyone.
 
@@ -203,16 +203,16 @@ Tell CellCog which platform you're targeting and it handles the formatting autom
 
 ---
 
-## Chat Mode for Sticker Packs
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single sticker pack (10-20 stickers), emoji sets | `"agent"` |
-| Multiple coordinated packs, brand sticker system, large sets (30+) | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Sticker packs | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Brand sticker systems, very large sets (30+) | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most sticker work.** A single pack with 10-20 stickers executes well in agent mode.
+**The core tier is the default and handles most sticker generation well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
 
-**Use `"agent team"` for brand-level sticker systems** — when you need multiple packs that share a design language, or very large sets where consistency across 30+ stickers benefits from deeper creative planning.
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for sticker generation.
 
 ---
 
@@ -288,6 +288,7 @@ Tell CellCog which platform you're targeting and it handles the formatting autom
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

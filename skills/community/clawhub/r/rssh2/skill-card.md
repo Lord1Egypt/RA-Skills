@@ -1,45 +1,61 @@
-## Description: <br>
-SSH远程自动化工具 - 会话管理、隧道、文件传输。使用场景：需要远程执行命令、建立SSH隧道、传输文件时。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rssh2 helps agents automate SSH workflows, including session management, SSH tunneling, and SFTP file transfer.
 
-## Publisher: <br>
-[YKaiXu](https://clawhub.ai/user/YKaiXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ykaixu](https://clawhub.ai/user/ykaixu)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to automate SSH sessions, run approved remote commands, create SSH tunnels, and transfer files with SFTP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent run commands and transfer files on remote machines. <br>
-Mitigation: Use a least-privilege SSH account, avoid root access, and approve each command and file operation before execution. <br>
-Risk: SSH credentials or private keys may be exposed if hardcoded into code or test configuration. <br>
-Mitigation: Store secrets in environment variables or key files, avoid passwords where possible, and do not commit real host, user, password, or key material. <br>
-Risk: Remote port forwarding can expose services more broadly than intended. <br>
-Mitigation: Review every tunnel request, bind forwarded ports narrowly, and verify the remote bind address before enabling remote forwarding. <br>
-Risk: Host identity is not proven by this context. <br>
-Mitigation: Verify SSH server fingerprints outside the agent workflow before allowing the skill to connect. <br>
+## Use Case:
 
+Developers and operators use Rssh2 to automate SSH sessions against hosts they control, including running remote commands, creating SSH tunnels, and transferring files through SFTP.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YKaiXu/rssh2) <br>
-- [ssh2 dependency package](https://registry.npmjs.org/ssh2/-/ssh2-1.17.0.tgz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code snippets and SSH/SFTP operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces remote command results, tunnel configuration guidance, and file transfer operation outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can execute remote commands on SSH hosts, including commands that may restart services or change production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on hosts you control, review every command before execution, and run through a least-privilege account rather than root.
+
+Risk: The skill opens SSH tunnels that could expose internal services if bound too broadly.
+
+Mitigation: Prefer local-only tunnel bindings, avoid remote wildcard binds unless explicitly required, and restrict network access with firewall rules.
+
+Risk: SFTP sync and delete operations can overwrite, move, or remove files on remote systems.
+
+Mitigation: Review source and destination paths, back up important files, and require confirmation for destructive sync or delete operations.
+
+Risk: The security evidence notes missing key SSH safety controls, including host-key verification.
+
+Mitigation: Add or require SSH host-key verification before using the skill with sensitive systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ykaixu/skills/rssh2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples, shell command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose production-impacting SSH commands, tunnels, file transfers, and file deletion operations that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

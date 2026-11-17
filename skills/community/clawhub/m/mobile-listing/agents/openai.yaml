@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 移动端 Listing 优化"
+  short_description: "检查移动端阅读路径和信息优先级"
+  default_prompt: "使用 $amazon-mobile-listing-optimizer 检查 Amazon Listing 的移动端阅读体验并提出优化建议。"

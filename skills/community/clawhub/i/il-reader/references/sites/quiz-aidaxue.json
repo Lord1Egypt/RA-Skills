@@ -1,0 +1,156 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-aidaxue",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:08:38.392Z",
+  "entry": {
+    "url": "https://www.aidaxue.com/",
+    "final_url": "https://www.aidaxue.com/",
+    "title": "AI大学堂",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:08:38.392Z",
+    "identity": {
+      "declared_name": "科大讯飞 AI大学堂",
+      "hostname": "www.aidaxue.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "系统学习AI+大模型相关技术理论，精解大模型企业项目应用实战，助力企业员工成长与业务智能化提升。\n体系化人工智能学习框架\n讯飞1+N行业项目实例\n全场景AI技术与工具资源\n产学研用各界大咖导师\n线上线下多形式灵活授课",
+        "href": "https://www.aidaxue.com/enterprise",
+        "target": "_blank"
+      },
+      {
+        "text": "推荐课程",
+        "href": "https://www.aidaxue.com/course/courseList",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "登录 / 注册 ›",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "登录 / 注册 ›",
+        "exact": true
+      },
+      "observed_url": "https://www.aidaxue.com/",
+      "observed_at": "2026-10-09T09:08:34.388Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-aidaxue:product-capability",
+      "source_id": "quiz-aidaxue",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.aidaxue.com/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "登录 / 注册 ›",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "登录 / 注册 ›",
+            "exact": true
+          },
+          "observed_url": "https://www.aidaxue.com/",
+          "observed_at": "2026-10-09T09:08:34.388Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [],
+    "example_ids": [
+      "PT1-Q28"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:38.392Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-aidaxue-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-aidaxue-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

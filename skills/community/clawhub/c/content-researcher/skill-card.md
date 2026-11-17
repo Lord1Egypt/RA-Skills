@@ -1,43 +1,57 @@
-## Description: <br>
-Content Researcher searches, collects, and summarizes articles, videos, and news into a structured material library with keyword and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Researcher batch-searches articles, videos, and news, optionally summarizes results, deduplicates by URL, and writes structured content research reports.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Content creators, researchers, and developers use this skill to run multi-keyword web research, deduplicate search results, and produce structured Markdown or JSON reports with optional AI summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords and snippets may be sent to the configured search and summarization services. <br>
-Mitigation: Avoid confidential keywords or sensitive snippets unless those services are approved for that data. <br>
-Risk: The report is written to the requested output path and can overwrite an existing file. <br>
-Mitigation: Choose a dedicated output path and review it before running the skill. <br>
-Risk: The skill depends on local claw and summarize commands. <br>
-Mitigation: Install and run the skill only in environments where those local tools are trusted. <br>
+## Use Case:
 
+External content creators, marketers, and researchers use this skill to gather current web materials across multiple keywords and turn the results into structured Markdown or JSON research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utopiabenben/content-researcher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/utopiabenben) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json] <br>
-**Output Format:** [Markdown report or JSON document written to a user-selected output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally include AI-generated summaries for each search result when the summarize dependency is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Search keywords are sent to the configured web search tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review keywords before running the skill and avoid submitting sensitive or confidential terms to unapproved search providers.
+
+Risk: When summarization is enabled, result snippets are sent to the summarization provider.
+
+Mitigation: Disable summarization for sensitive research or use only an approved summarization provider and model.
+
+Risk: The report writer creates or overwrites the file specified by the user.
+
+Mitigation: Review the output path before execution and avoid pointing it at important existing files unless replacement is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utopiabenben/skills/content-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files]
+
+**Output Format:** [Markdown or JSON report written to a user-selected file, plus console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include search result titles, sources, links, snippets, optional AI summaries, and URL-deduplicated results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

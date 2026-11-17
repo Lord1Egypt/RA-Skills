@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "nginx",
-  "version": "1.0.1",
-  "publishedAt": 1771005388901
+  "displayName": "Nginx",
+  "latest": {
+    "version": "1.0.5",
+    "publishedAt": 1785068764890
+  },
+  "history": [
+    {
+      "version": "1.0.4",
+      "publishedAt": 1784843936921
+    },
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784814695009
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784802917583
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771005388901
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770684924517
+    }
+  ]
 }

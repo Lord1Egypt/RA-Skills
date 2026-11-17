@@ -1,0 +1,96 @@
+{
+  "reportType": "aba-kw-heat-dashboard",
+  "version": "1.1",
+  "expert": "关键词热度分析专家 / ABA关键词热度分析师",
+  "changelog": [
+    "v1.1 default main view = small multiples (one chart per keyword)",
+    "focus chart: click table/bar/tile to highlight 1 keyword; others dimmed",
+    "full overlay spaghetti moved behind optional toggle (off by default)",
+    "tier badges: hot <50k / mid <200k / tail"
+  ],
+  "layout": [
+    {
+      "id": "summary_cards",
+      "type": "metric_cards",
+      "bind": "summary"
+    },
+    {
+      "id": "trend_small_multiples",
+      "type": "small_multiples_line",
+      "title": "SFR 多周趋势 · 一词一图（默认）",
+      "bind": "chart_series",
+      "x": "date",
+      "y": "sfr",
+      "sharedX": true,
+      "yInverted": true,
+      "logY": true,
+      "default": true
+    },
+    {
+      "id": "trend_focus",
+      "type": "line_chart_focus",
+      "title": "焦点趋势（点选高亮）",
+      "bind": "chart_series",
+      "focusBind": "default_focus",
+      "dimOthers": true,
+      "yInverted": true,
+      "logY": true
+    },
+    {
+      "id": "trend_overlay",
+      "type": "line_chart_overlay",
+      "title": "全量叠线（高级可选，默认隐藏）",
+      "bind": "chart_series",
+      "optional": true,
+      "defaultVisible": false,
+      "maxSeries": 12
+    },
+    {
+      "id": "latest_bars",
+      "type": "bar_horizontal",
+      "title": "最新周热度条形（点击选焦点）",
+      "bind": "metrics_table",
+      "interactive": "set_focus"
+    },
+    {
+      "id": "yoy_overlay",
+      "type": "line_chart_yoy",
+      "title": "同比周对齐",
+      "bind": "yoy_pairs",
+      "optional": true
+    },
+    {
+      "id": "heatmap",
+      "type": "heatmap",
+      "title": "升降温热力图（周环比 ΔSFR）",
+      "bind": "chart_series"
+    },
+    {
+      "id": "metrics",
+      "type": "data_table",
+      "title": "同比与趋势指标（点击行选焦点）",
+      "bind": "metrics_table",
+      "interactive": "set_focus"
+    }
+  ],
+  "interactions": [
+    "click small-multiple tile / bar / table row -> set focus keyword",
+    "focus chart dims non-focus series",
+    "toggle #chkOverlay to show full spaghetti overlay"
+  ],
+  "defaults": {
+    "region": "US",
+    "mainView": "small_multiples",
+    "overlayOff": true,
+    "max_lines_overlay": 12
+  },
+  "test_keywords": [
+    "babydoll dress",
+    "bodycon dress",
+    "fringe dress",
+    "satin slip dress",
+    "floral mini dress",
+    "shirtdress",
+    "polka dot midi dress"
+  ]
+}

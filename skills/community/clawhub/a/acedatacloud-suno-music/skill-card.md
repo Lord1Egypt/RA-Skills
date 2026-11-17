@@ -1,43 +1,63 @@
-## Description: <br>
-Generate AI music with Suno via AceDataCloud API for songs from prompts, generated lyrics, track extension, covers, vocal extraction, voice personas, custom styles, and multi-format output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in generating and editing music through AceDataCloud's Suno API, including lyrics, covers, stems, and multitrack projects.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-External users, developers, and music creators use this skill to generate and transform music through AceDataCloud's Suno API, including prompt-based songs, custom lyrics and styles, song extensions, covers, format conversion, and vocal separation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts, lyrics, uploaded audio, voice/persona material, and related metadata may be sent to AceDataCloud/Suno. <br>
-Mitigation: Use a scoped, revocable API token and avoid submitting confidential, copyrighted, or sensitive voice/persona material unless the provider's terms and retention controls are acceptable. <br>
-Risk: The optional MCP package or hosted endpoint introduces third-party tool-use and token-handling risk. <br>
-Mitigation: Verify the MCP package or hosted endpoint before use, keep the API token in an environment variable, and review generated requests before execution. <br>
+## Use Case:
 
+Creators and developers use this skill to direct an agent to generate songs and lyrics, transform authorized audio, and manage music projects through AceDataCloud's Suno API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Germey/acedatacloud-suno-music) <br>
-- [AceDataCloud Platform](https://platform.acedata.cloud) <br>
-- [AceDataCloud Suno Audio API](https://api.acedata.cloud/suno/audios) <br>
-- [AceDataCloud Suno MCP Endpoint](https://suno.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include asynchronous task-polling guidance and generated API request payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, lyrics, audio URLs, and project data sent to the external service may contain sensitive material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content and obtain rights to uploaded audio before submission; avoid sending sensitive material without approval.
+
+Risk: Generation and custom-model operations may incur charges, and retries may repeat billable work.
+
+Mitigation: Confirm costs and paid operations beforehand; check existing task status before retrying.
+
+Risk: An exposed API token can allow unauthorized use of the service.
+
+Mitigation: Use a scoped key where possible and keep it out of prompts and repositories.
+
+Risk: Installing the optional MCP package introduces an additional software dependency.
+
+Mitigation: Verify the package before choosing to install it.
+
+## Reference(s):
+
+- [Suno Music on ClawHub](https://clawhub.ai/acedatacloud/skills/suno)
+- [AceDataCloud authentication guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud asynchronous task guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audio links and task results depend on the external service; verify task completion before presenting them as final.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; bundled frontmatter says 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

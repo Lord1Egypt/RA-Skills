@@ -1,53 +1,69 @@
-## Description: <br>
-Autonomous full-cycle app builder - PRD, architecture, code, deployment, testing, and bug fixing from a natural language description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous full-cycle app builder that turns a natural-language request into a PRD, architecture, code, deployment, tests, and fix iterations while remembering user preferences and development pitfalls.
 
-## Publisher: <br>
-[hanningwang](https://clawhub.ai/user/hanningwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanningwang](https://clawhub.ai/user/hanningwang)
 
-## Use Case: <br>
-Developers use this skill when they explicitly want an agent to autonomously plan, build, deploy, test, and fix an application from a natural language request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously create, run, deploy, and test local applications. <br>
-Mitigation: Use disposable project directories and review generated files, commands, and reports before relying on the result. <br>
-Risk: Generated builds or tests may touch sensitive data or production-like services if pointed at them. <br>
-Mitigation: Avoid production databases and real customer data during builds and tests. <br>
-Risk: LLM/API app builds may require credentials or API-key environment variables. <br>
-Mitigation: Review required environment variables before running and provide only credentials appropriate for the test project. <br>
-Risk: Cloud E2E mode may send screenshots and task descriptions to cloud VLA providers. <br>
-Mitigation: Use cloud E2E only after explicit configuration, or choose local mode or skip E2E when project data should remain local. <br>
+## Use Case:
 
+Developers and engineers use mano-afk to autonomously build and verify an application from a natural-language description, including product requirements, architecture, generated source code, deployment scripts, test execution, fix loops, and a final build report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanningwang/mano-afk) <br>
-- [Publisher profile](https://clawhub.ai/user/hanningwang) <br>
-- [Skill homepage](https://github.com/Mininglamp-AI/mano-afk) <br>
-- [Build pipeline reference](references/build-pipeline.md) <br>
-- [Project structure reference](references/project-structure.md) <br>
-- [PRD template](references/prd-template.md) <br>
-- [README template](references/readme-template.md) <br>
-- [Report template](references/report-template.md) <br>
-- [Build rules](references/rules.md) <br>
-- [User preferences](references/preferences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with generated project files, shell commands, reports, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update project files, deployment scripts, test reports, rules, and preferences within the skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The skill grants broad autonomous build, dependency, deployment, and test authority in generated app workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in disposable or clearly separated app-build workspaces and avoid connecting it to production databases or production services.
+
+Risk: The Homebrew install path is third-party maintained.
+
+Mitigation: Review the Homebrew tap and source before installing or executing the associated command-line tool.
+
+Risk: Cloud E2E mode can transmit screenshots and task descriptions to external model providers.
+
+Mitigation: Use local E2E mode or leave E2E disabled unless the project screenshots and task descriptions are acceptable to share with the configured cloud provider.
+
+Risk: Learned rules and preferences can persist and influence future generated projects.
+
+Mitigation: Inspect references/rules.md and references/preferences.md after runs and remove any unreviewed or unwanted guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanningwang/skills/mano-afk)
+- [Homepage](https://github.com/Mininglamp-AI/mano-afk)
+- [Build Pipeline](references/build-pipeline.md)
+- [PRD Template](references/prd-template.md)
+- [README Template](references/readme-template.md)
+- [Report Template](references/report-template.md)
+- [Project Structure Template](references/project-structure.md)
+- [Build Rules](references/rules.md)
+- [User Preferences](references/preferences.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PRD.md, README.md, report.md, source files, deploy scripts, local logs, and persistent rules or preferences within the skill and generated project workspace.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

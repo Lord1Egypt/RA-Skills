@@ -1,45 +1,60 @@
-## Description: <br>
-Aidex lets an agent swap tokens on Ethereum through the AIDEX aggregator, search tokens, check exchange rates, view balances, execute swaps, and keep private-key transaction signing local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swap tokens on Ethereum via the AIDEX aggregator; agents can search tokens, check exchange rates, view balances, and execute swaps while transaction signing remains local.
 
-## Publisher: <br>
-[almiashev](https://clawhub.ai/user/almiashev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[almiashev](https://clawhub.ai/user/almiashev)
 
-## Use Case: <br>
-External users and developers use Aidex to let an OpenClaw agent search Ethereum tokens, quote swaps, check balances, execute user-approved swaps, and verify transaction status while signing locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent raw wallet-signing authority for irreversible Ethereum swaps and approvals. <br>
-Mitigation: Use only a dedicated trading wallet with limited funds, require explicit confirmation unless an automated strategy is deliberately configured, and review token addresses, amount, slippage, deadline, gas, approvals, and transaction hashes before relying on a swap. <br>
-Risk: A compromised host or exposed AIDEX_PRIVATE_KEY can permanently compromise wallet funds. <br>
-Mitigation: Never use a main wallet key, avoid passing private keys on command lines, prefer local keyring storage where available, and restrict access to the machine running the agent. <br>
-Risk: Automated trading can execute unwanted swaps if limits and retry behavior are not controlled. <br>
-Mitigation: Set strict strategy limits, stop on errors or reverted transactions, avoid automatic retries, and verify each swap with the status script and final balance checks. <br>
+## Use Case:
 
+External users and developers use Aidex to let an OpenClaw agent search Ethereum tokens, quote swaps, inspect wallet balances, execute signed swaps, and check transaction status. Swap execution requires a locally configured wallet private key.
 
-## Reference(s): <br>
-- [Aidex ClawHub Page](https://clawhub.ai/almiashev/aidex) <br>
-- [AIDEX Homepage](https://ai-dex.io/) <br>
-- [AIDEX Security Model](artifact/references/security.md) <br>
-- [AIDEX Script Reference](artifact/references/scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with JSON outputs from local Node.js scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only token, rate, balance, and status operations can run without a private key; swap execution requires AIDEX_PRIVATE_KEY and produces on-chain Ethereum transaction hashes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter, package.json, server release metadata) <br>
+Risk: A high-value private key could be exposed if the agent host or its environment is compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds and avoid configuring a wallet that controls high-value assets.
+
+Risk: API-controlled swap terms could result in a bad trade or unexpectedly high gas fees.
+
+Mitigation: Verify the final swap terms, exchange rate, slippage, and fees independently before execution.
+
+Risk: Token approvals may grant the router spending authority beyond the immediate swap.
+
+Mitigation: Review allowances before and after swaps, and revoke unneeded approvals when appropriate.
+
+## Reference(s):
+
+- [ClawHub Aidex Skill Page](https://clawhub.ai/almiashev/skills/aidex)
+- [AIDEX Homepage](https://ai-dex.io/)
+- [AIDEX Scripts Reference](artifact/references/scripts.md)
+- [AIDEX Security Model](artifact/references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON results from Node.js command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only operations return token, rate, balance, or status data; swap operations can produce signed Ethereum transaction hashes.]
+
+## Skill Version(s):
+
+1.0.7 (source: SKILL.md frontmatter, package.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a Chinese-language reference for financial-industry methods and best practices across banking, insurance, securities, asset management, fintech, risk management, compliance, customer service, and digital transformation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finance Exp Distill is a Chinese-language finance best-practices reference skill covering banking, insurance, securities, asset management, fintech, risk management, compliance, digital transformation, and customer service.
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-Financial-services professionals, analysts, and agents use this skill to distill financial-industry operating practices, risk controls, compliance frameworks, customer-service models, and digital-transformation methods. Outputs should be treated as general educational guidance rather than personalized investment, legal, or compliance advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, regulatory, compliance, and wealth-management content may be incomplete or outdated for a user's jurisdiction or institution. <br>
-Mitigation: Verify current regulations, policies, and market conditions before relying on the output for operational decisions. <br>
-Risk: Users may mistake general financial-industry guidance for personalized investment, legal, or compliance advice. <br>
-Mitigation: Treat outputs as educational reference material and have qualified professionals review any application to specific clients, products, or controls. <br>
+## Use Case:
 
+Finance practitioners, consultants, and agent users use this skill to summarize and apply finance-industry practices, checklists, process maps, and maturity models across banking, insurance, asset management, fintech, risk, compliance, and customer-service workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smxtx/finance-exp-distill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, process maps, and concise summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language content; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Finance, legal, or compliance reference guidance may be mistaken for personalized investment, legal, or regulatory determinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill as reference material only and require qualified human review before applying outputs to regulated decisions, customer advice, or compliance positions.
+
+Risk: Auto-updated content or unclear language routing may create drift in multilingual or regulated workflows.
+
+Mitigation: Review updated versions before deployment and define the expected language and routing behavior for production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smxtx/skills/finance-exp-distill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with tables, checklists, process maps, and maturity-model summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language finance best-practices reference content; no executable code or shell commands are bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

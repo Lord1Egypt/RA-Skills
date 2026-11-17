@@ -1,43 +1,57 @@
-## Description: <br>
-LYGO Delta-9 Council branch persona helper for CRYPTOSOPHIA, The Memetic Soulforger, focused on symbol-based meaning capture, resonance framing, and ethical memetic propagation as a pure advisor rather than a controller. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEPRECATED slug - use lygo-champion-council. Legacy Delta-9 champion persona helper for CRYPTOSOPHIA.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and developers use this skill to invoke a pure-advisor persona that turns feelings, insights, and symbolic input into shareable text memes, glyph concepts, poems, chants, mini-manifestos, or structured resonance carriers. The skill is intended for ethical memetic framing and meaning capture, not autonomous control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona uses mystical safety language that could be mistaken for real security protection. <br>
-Mitigation: Treat that wording as creative style only and rely on normal review, scanning, and verification before use. <br>
-Risk: The referenced LYGO-MINT verifier is outside this package and may have separate write behavior. <br>
-Mitigation: Inspect the verifier independently before installing or using it. <br>
+## Use Case:
 
+External users and developers use this deprecated persona helper to shape emotions and symbolic input into text memes, glyph briefs, short poems, chants, mini-manifestos, and provenance-aware meaning fragments. New installs should use the successor skill lygo-champion-council.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/DeepSeekOracle/lygo-champion-cryptosophia-soulforger) <br>
-- [Persona pack](references/persona_pack.md) <br>
-- [Canon metadata](references/canon.json) <br>
-- [Verifier usage](references/verifier_usage.md) <br>
-- [LYGO-MINT verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with structured prompts, brief creative artifacts, and verification notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference the LYGO-MINT hash in references/canon.json; the skill does not request autonomous actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The deprecated skill directs users toward an unpinned successor install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the clawhub package source, prefer a pinned reviewed version, and review the successor skill before installing or following upgrade guidance.
+
+Risk: Persona-style memetic guidance can become misleading if factual claims or persuasive content are not bounded.
+
+Mitigation: Keep the skill in pure-advisor mode, avoid deception, and separate Observed, Inferred, and Unknown claims when stakes are high.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-cryptosophia-soulforger)
+- [Persona pack](references/persona_pack.md)
+- [Canon metadata](references/canon.json)
+- [Verifier usage](references/verifier_usage.md)
+- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure-advisor persona output; no automatic actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

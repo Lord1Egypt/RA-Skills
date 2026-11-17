@@ -1,0 +1,16 @@
+slug: backup-sync
+name: backup-sync
+description: Intelligent file backup with compression, manifest tracking, verification, and deduplication. ⚠️ Destructive restore/sync. Always dry-run first.
+version: 1.0.5
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - backup
+  - sync
+  - deduplication
+  - compression
+  - agent
+entry: SKILL.md
+owner: jlacroix82
+dependencies: []

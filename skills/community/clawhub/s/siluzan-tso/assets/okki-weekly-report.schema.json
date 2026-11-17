@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "siluzan-tso/okki-weekly-report.schema.json",
+  "title": "OkkiWeeklyReport",
+  "description": "OKKI 周报 JSON（对齐 okki-weekly-google-client.md）。Agent 只写 meta + narrative；tables/kpis 由 google-analysis okki-render --snapshot-dir 合并。render 校验 5 Sheet 表末分析 + 账户 Sheet 固定 5 维数据复盘，缺项拒绝出 xlsx。",
+  "type": "object",
+  "required": ["meta", "narrative"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["accountId"],
+      "properties": {
+        "accountId": { "type": "string" },
+        "accountName": { "type": "string" },
+        "startDate": { "type": "string", "format": "date" },
+        "endDate": { "type": "string", "format": "date" },
+        "currency": { "type": "string" }
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "required": ["sheetAnalysis", "review"],
+      "properties": {
+        "sheetAnalysis": {
+          "type": "object",
+          "description": "每个 Sheet 表末「分析」；表为空也必须写",
+          "required": ["campaigns", "keywords", "searchTerms", "devices", "geo"],
+          "properties": {
+            "campaigns": { "$ref": "#/$defs/sheetAnalysis" },
+            "keywords": { "$ref": "#/$defs/sheetAnalysis" },
+            "searchTerms": { "$ref": "#/$defs/sheetAnalysis" },
+            "devices": { "$ref": "#/$defs/sheetAnalysis" },
+            "geo": { "$ref": "#/$defs/sheetAnalysis" }
+          }
+        },
+        "review": {
+          "type": "object",
+          "description": "账户 Sheet 底部「数据复盘」固定 5 维，每维 overview + summary + suggestion",
+          "required": ["account", "keywords", "searchTerms", "devices", "geo"],
+          "properties": {
+            "account": { "$ref": "#/$defs/reviewBlock" },
+            "keywords": { "$ref": "#/$defs/reviewBlock" },
+            "searchTerms": { "$ref": "#/$defs/reviewBlock" },
+            "devices": { "$ref": "#/$defs/reviewBlock" },
+            "geo": { "$ref": "#/$defs/reviewBlock" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sheetAnalysis": {
+      "type": "object",
+      "required": ["summary", "suggestions"],
+      "properties": {
+        "summary": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "suggestions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "reviewBlock": {
+      "type": "object",
+      "required": ["overview", "summary", "suggestion"],
+      "properties": {
+        "overview": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "suggestion": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

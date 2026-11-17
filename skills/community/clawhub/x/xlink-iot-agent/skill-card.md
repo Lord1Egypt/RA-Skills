@@ -1,44 +1,61 @@
-## Description: <br>
-Xlink IoT Agent - Query IoT devices and events via Xlink Gateway API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XLink IoT Agent helps agents query XLink IoT devices, monitor events and alerts, retrieve device attributes, and invoke device-control services through the XLink Gateway API.
 
-## Publisher: <br>
-[xlink-iot](https://clawhub.ai/user/xlink-iot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xlink-iot](https://clawhub.ai/user/xlink-iot)
 
-## Use Case: <br>
-Developers and IoT operations teams use this skill to query XLink device status, device lists, event instances, alert statistics, and supported device-control operations through the XLink Gateway API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send live IoT device-control commands. <br>
-Mitigation: Use least-privilege or read-only XLink credentials where possible, restrict credentials to approved devices and services, and require external human approval before running device-control commands. <br>
-Risk: Production IoT environments may be affected by mis-scoped queries or commands. <br>
-Mitigation: Review commands before execution, test with non-production credentials or the TEST stage when available, and monitor XLink API usage for anomalies. <br>
+## Use Case:
 
+Developers and IoT operators use this skill to inspect XLink device status, query event and alert data, fetch latest or historical attributes, and issue reviewed XLink device-control commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xlink-iot/xlink-iot-agent) <br>
-- [API authentication](references/api-auth.md) <br>
-- [API documentation](references/api-doc.md) <br>
-- [CLI reference](references/cli-reference.md) <br>
-- [Response schema](references/response-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XLINK_APP_ID, XLINK_APP_SECRET, and XLINK_API_GROUP environment variables; XLINK_BASE_URL defaults to https://api-gw.xlink.cn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can send live IoT device-control commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before any device-control command is run, especially commands that change device state.
+
+Risk: The skill signs requests to a configurable gateway host.
+
+Mitigation: Keep XLINK_BASE_URL pinned to the official HTTPS gateway or a trusted internal gateway.
+
+Risk: Credentials and command payloads may be sensitive.
+
+Mitigation: Use least-privilege XLink credentials, protect XLINK_APP_SECRET, and avoid debug logs when sensitive command payloads are present.
+
+## Reference(s):
+
+- [XLink IoT Agent release page](https://clawhub.ai/xlink-iot/skills/xlink-iot-agent)
+- [CLI reference](references/cli-reference.md)
+- [Gateway authentication](references/api-auth.md)
+- [API documentation](references/api-doc.md)
+- [Response schemas](references/response-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, Python snippets, and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live XLink API response data when commands are executed with valid credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

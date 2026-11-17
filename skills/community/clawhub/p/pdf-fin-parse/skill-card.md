@@ -1,50 +1,68 @@
-## Description: <br>
-Parses finance-industry PDF documents such as annual reports, 10-K filings, and prospectuses into structured Markdown and schema-compliant JSON with financial table post-processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses financial PDF documents, including annual reports, 10-K filings, and prospectuses, into structured Markdown and schema-compliant JSON with financial table post-processing.
 
-## Publisher: <br>
-[xcbc](https://clawhub.ai/user/xcbc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xcbc](https://clawhub.ai/user/xcbc)
 
-## Use Case: <br>
-Developers and analysts use this skill to extract structured Markdown and JSON from financial PDFs, especially documents with dense numeric tables, multi-level headers, borderless tables, and cross-page tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive PDFs and extracted financial content may be sent to Volcano LAS, TOS, and configured VLM providers. <br>
-Mitigation: Use dedicated low-privilege API keys, a separate TOS bucket, and only process documents whose retention and external-service handling are acceptable. <br>
-Risk: Bucket names, object URLs, or related operational details may appear in logs or output metadata. <br>
-Mitigation: Review logs and generated outputs before sharing them, and manually delete uploaded TOS objects when they are no longer needed. <br>
-Risk: Financial extraction and business-rule validation are best effort and may produce warnings or incorrect normalized values. <br>
-Mitigation: Review validation warnings and source page references in the generated JSON before relying on results for financial decisions. <br>
+## Use Case:
 
+Developers, engineers, and financial document analysts use this skill to convert finance-heavy PDFs into Markdown and structured JSON tables. It is designed for cross-page tables, borderless tables, multi-level headers, dense numeric values, and business-rule validation warnings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xcbc/pdf-fin-parse) <br>
-- [Publisher profile](https://clawhub.ai/user/xcbc) <br>
-- [Command reference](artifact/references/commands.md) <br>
-- [API and prompt conventions](artifact/references/api.md) <br>
-- [Configuration guide](artifact/references/configuration.md) <br>
-- [Output JSON schema](artifact/assets/output_schema.json) <br>
-- [Financial terms glossary](artifact/references/finance_terms.md) <br>
-- [Financial table patterns](artifact/references/table_patterns.md) <br>
-- [FAQ](artifact/references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated Markdown and schema-compliant JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include document metadata, per-page Markdown, extracted tables, normalized numeric values, source page references, and validation warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Sensitive financial PDFs may be uploaded to external LAS and TOS services during parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-handling requirements before use, avoid confidential documents unless approved, and use dedicated least-privilege credentials.
+
+Risk: Uploaded cloud objects may remain available if bucket cleanup is not configured.
+
+Mitigation: Use a dedicated TOS bucket with short lifecycle expiration and review upload retention before processing documents.
+
+Risk: The install flow references dependencies from a parent manifest that is not included and pinned inside the skill package.
+
+Mitigation: Review and pin the dependency manifest before running pip install or deploying the skill.
+
+Risk: Custom API or storage endpoints could route documents to untrusted services.
+
+Mitigation: Use only controlled endpoints and verify LAS/TOS endpoint configuration before running the parser.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xcbc/skills/pdf-fin-parse)
+- [Command Reference](references/commands.md)
+- [API and Prompt Contract](references/api.md)
+- [Configuration Guide](references/configuration.md)
+- [Output JSON Schema](assets/output_schema.json)
+- [Finance Terms Glossary](references/finance_terms.md)
+- [Financial Table Patterns](references/table_patterns.md)
+- [FAQ](references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and file-based Markdown/JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary outputs include output.json, output.md, meta.json, raw LAS response data, per-page Markdown, source-page traces, and validation warnings.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Operate the LeadGenius Pro Automation API and lgp CLI for ICP management, FSD pipeline automation, lead generation, enrichment, scoring, user provisioning, territory analysis, webhooks, and email platform integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the LeadGenius Pro Automation API and lgp CLI - ICP management, FSD pipeline automation, lead generation/enrichment/scoring, user provisioning, territory analysis, webhooks, and email platform integration.
 
-## Publisher: <br>
-[thierryteisseire](https://clawhub.ai/user/thierryteisseire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thierryteisseire](https://clawhub.ai/user/thierryteisseire)
 
-## Use Case: <br>
-Sales operations teams, revenue operations engineers, and agent developers use this skill to operate LeadGenius Pro lead-management workflows through API calls and lgp CLI commands. It supports customer onboarding, ICP setup, lead generation, enrichment, scoring, campaign delivery, administrative provisioning, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents privileged administrative, identity, database, transfer, deletion, backup, and purchasing operations. <br>
-Mitigation: Use least-privilege API keys, test first against non-production data, and require explicit human approval before deletes, transfers, purchases, backups, or other privileged actions. <br>
-Risk: The workflows may involve sensitive credentials such as LGP_ADMIN_KEY, Epsimo tokens, browser cookies, and account passwords. <br>
-Mitigation: Keep privileged keys, tokens, cookies, and real passwords out of routine agent sessions; provide them only through approved secret-handling mechanisms when needed. <br>
+## Use Case:
 
+Sales operations teams, developers, and AI agents use this skill to operate LeadGenius Pro lead-management workflows, including ICP setup, lead generation, enrichment, scoring, qualification, user provisioning, webhook handling, and email-platform delivery.
 
-## Reference(s): <br>
-- [LeadGenius CLI project homepage](https://github.com/thierryteisseire/leadgenius-cli) <br>
-- [LeadGenius Pro API](https://api.leadgenius.app) <br>
-- [LeadGenius Pro documentation](https://api.leadgenius.app/docs) <br>
-- [API Endpoints Reference](references/api_endpoints.md) <br>
-- [LeadGenius Pro CLI Reference](references/cli_reference.md) <br>
-- [Business Use Cases](references/use_cases.md) <br>
-- [Workflow Reference](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, HTTP examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; requires a LeadGenius Pro API key and separately obtained lgp CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill teaches broad admin, deletion, backup, credential-handling, role, and cross-company operations over LeadGenius production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted agents and users; test destructive table, user, company, backup, and PITR operations in staging before using them on production data.
+
+Risk: The optional LGP_ADMIN_KEY grants elevated behavior including rate-limit bypass and privileged admin workflows.
+
+Mitigation: Do not grant LGP_ADMIN_KEY unless admin backup, restore, role, or cross-company operations are required.
+
+Risk: Token and password handling appears in documented commands and API examples.
+
+Mitigation: Prefer environment variables or a secret manager over command-line token or password flags, and avoid token query parameters.
+
+## Reference(s):
+
+- [LeadGenius CLI ClawHub Skill Page](https://clawhub.ai/thierryteisseire/skills/leadgenius-cli)
+- [ClawHub Metadata Homepage](https://github.com/thierryteisseire/leadgenius-cli)
+- [LeadGenius Pro API Documentation](https://api.leadgenius.app/docs)
+- [API Endpoints Reference](references/api_endpoints.md)
+- [CLI Reference](references/cli_reference.md)
+- [Business Use Cases](references/use_cases.md)
+- [Workflow Reference](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown guidance with CLI commands, API examples, and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; the lgp CLI is not included and LeadGenius API access requires LGP_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

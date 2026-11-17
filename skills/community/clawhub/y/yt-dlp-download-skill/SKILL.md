@@ -1,238 +1,76 @@
 ---
-name: yt-dlp-downloader
-description: Download videos from YouTube, Bilibili, Twitter, and thousands of other sites using yt-dlp. Use when the user provides a video URL and wants to download it, extract audio (MP3), download subtitles, or select video quality. Triggers on phrases like "下载视频", "download video", "yt-dlp", "YouTube", "B站", "抖音", "提取音频", "extract audio".
+name: yt-dlp-download-skill
+description: yt-dlp-powered downloader for YouTube, Bilibili, X (Twitter), TikTok/Douyin, and more. Given a video URL, download video (720p/1080p/best), extract MP3/audio-only, fetch subtitles (specify languages), and optionally download playlists; auto-merges audio/video.
+metadata:
+  openclaw:
+    emoji: "⬇️"
+    os: ["darwin", "linux", "win32"]
+    requires:
+      bins: ["yt-dlp"]
+      anyBins: ["ffmpeg"]
+    install:
+      - id: uv-yt-dlp
+        kind: uv
+        package: "yt-dlp"
+        bins: ["yt-dlp"]
+        label: "Install yt-dlp (uv/pipx)"
+      - id: brew-ffmpeg
+        kind: brew
+        formula: "ffmpeg"
+        bins: ["ffmpeg"]
+        os: ["darwin"]
+        label: "Install ffmpeg (brew)"
 ---
 
-# yt-dlp Video Downloader
+# yt-dlp Video Downloader (OpenClaw)
 
-Download videos from thousands of websites using yt-dlp.
+Use yt-dlp to download videos from thousands of sites.
+
+## When to use
+- User shares a video URL and asks to download
+- User requests audio-only (MP3) extraction
+- User needs subtitles or specific quality
+
+## Safety and authorization
+- Download only the URL and media requested by the user. Default to a single video; enable playlists only when requested.
+- Announce the network download and destination before execution. A download request authorizes these ordinary effects, not access to browser sessions or unrelated files.
+- Use the helper script below. It passes arguments as a Bash array, accepts HTTP(S) URLs, and ignores local yt-dlp configuration. Never build commands with `eval` or interpolate untrusted text into shell source.
+- Default to anonymous access. Do not read browser profiles, cookies, credentials, or environment secrets automatically, including after a 403 error.
+- If authentication is needed, explain that browser cookies contain sensitive session data and that using them sends matching cookies to the requested service. Obtain explicit authorization for the browser/profile and target before a separate authenticated invocation. Never print, export, or upload cookie stores. The helper intentionally has no authentication option.
+- Use the existing sandbox with access to the output directory and required network endpoints. Do not request blanket permissions, elevated execution, or change permissions to bypass a failure.
+- Do not install dependencies, change startup files, create scheduled jobs, or modify this skill during a download. If dependencies are missing, explain the required installation and its local changes; install only when authorized.
 
 ## Prerequisites
+`yt-dlp` must be installed. MP3 extraction requires `ffmpeg`; merging separate video/audio streams also requires it. Installer metadata describes available installation methods, not permission to run them automatically.
 
-Before downloading, verify dependencies are installed:
-
-```bash
-# Check yt-dlp
-which yt-dlp || echo "yt-dlp not installed. Install with: pip install yt-dlp"
-
-# Check ffmpeg (required for audio extraction and format merging)
-which ffmpeg || echo "ffmpeg not installed. Install with: brew install ffmpeg"
-```
-
-If not installed, install them first:
-```bash
-pip install yt-dlp
-brew install ffmpeg  # macOS
-```
-
-## Quick Start
-
-### Basic Download (Best Quality)
+## Common commands
+Run the bundled helper from this skill's directory, passing each argument separately through the execution tool (or properly shell-quoting literal values).
 
 ```bash
-yt-dlp -P "~/Downloads/yt-dlp" "VIDEO_URL"
-```
-
-### YouTube Download (Recommended - with cookies)
-
-YouTube often blocks direct downloads with 403 errors. Always use browser cookies for YouTube:
-
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" --cookies-from-browser chrome "YOUTUBE_URL"
-```
-
-Supported browsers: `chrome`, `firefox`, `safari`, `edge`, `brave`, `opera`
-
-### Download with Custom Output Path
-
-```bash
-yt-dlp -P "/path/to/save" -o "%(title)s.%(ext)s" "VIDEO_URL"
-```
-
-## Common Tasks
-
-### 1. Download Video (Default - Best Quality)
-
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" "VIDEO_URL"
-```
-
-### 2. Extract Audio Only (MP3)
-
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" -x --audio-format mp3 "VIDEO_URL"
-```
-
-### 3. Download with Subtitles
-
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" --write-subs --sub-langs all "VIDEO_URL"
-```
-
-### 4. Download Specific Quality
-
-**720p:**
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" -f "bestvideo[height<=720]+bestaudio/best[height<=720]" "VIDEO_URL"
-```
-
-**1080p:**
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" "VIDEO_URL"
-```
-
-**Best available:**
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" -f "bestvideo+bestaudio/best" "VIDEO_URL"
-```
-
-### 5. List Available Formats (Before Download)
-
-```bash
-yt-dlp -F "VIDEO_URL"
-```
-
-Then download specific format by ID:
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" -f FORMAT_ID "VIDEO_URL"
-```
-
-### 6. Download Playlist
-
-```bash
-# Download entire playlist
-yt-dlp -P "~/Downloads/yt-dlp" -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "PLAYLIST_URL"
-
-# Download specific range (e.g., items 1-5)
-yt-dlp -P "~/Downloads/yt-dlp" -I 1:5 "PLAYLIST_URL"
-```
-
-### 7. Download with Thumbnail
-
-```bash
-yt-dlp -P "~/Downloads/yt-dlp" --write-thumbnail "VIDEO_URL"
+# Best available quality, single video
+bash scripts/download.sh -- "https://example.com/video"
+# MP3 audio
+bash scripts/download.sh --audio -- "https://example.com/video"
+# Subtitles
+bash scripts/download.sh --subs -- "https://example.com/video"
+# Maximum height; use 1080 for 1080p
+bash scripts/download.sh --quality 720 -- "https://example.com/video"
+# Explicit output directory
+bash scripts/download.sh --path "$HOME/Downloads/yt-dlp" -- "https://example.com/video"
+# List formats without writing downloads
+bash scripts/download.sh --list -- "https://example.com/video"
+# Playlist, only when requested
+bash scripts/download.sh --playlist -- "https://example.com/playlist"
 ```
 
 ## Workflow
-
-When user provides a video URL:
-
-1. **Identify the platform**:
-   - YouTube/YouTube Music → **Always use `--cookies-from-browser chrome`**
-   - Other sites → Try without cookies first
-
-2. **Ask what they want** (if not specified):
-   - Just download the video?
-   - Extract audio only?
-   - Need subtitles?
-   - Specific quality?
-
-3. **Construct the command** based on requirements
-   - Accept only `http://` or `https://` URLs
-   - Do not build shell from untrusted text or use `eval`
-
-4. **Execute the download** using Shell tool with `required_permissions: ["all", "network"]`
-
-5. **Handle errors**:
-   - 403 Forbidden → Retry with `--cookies-from-browser`
-   - Connection issues → yt-dlp auto-resumes, just retry
-   - Format unavailable → Use `-F` to list formats, then select
-
-6. **Report the result** - file location and any errors
-
-## Example Interaction
-
-User: "帮我下载这个视频 https://www.youtube.com/watch?v=xxx"
-
-Response:
-```bash
-# YouTube - use cookies to avoid 403 errors
-yt-dlp -P "~/Downloads/yt-dlp" --cookies-from-browser chrome "https://www.youtube.com/watch?v=xxx"
-```
-
-User: "下载这个视频的音频 https://www.bilibili.com/video/xxx"
-
-Response:
-```bash
-# Bilibili - extracting audio as MP3
-yt-dlp -P "~/Downloads/yt-dlp" -x --audio-format mp3 "https://www.bilibili.com/video/xxx"
-```
-
-User: "下载这个 Twitter 视频 https://twitter.com/xxx/status/123"
-
-Response:
-```bash
-# Twitter/X - direct download usually works
-yt-dlp -P "~/Downloads/yt-dlp" "https://twitter.com/xxx/status/123"
-```
-
-## Supported Sites
-
-yt-dlp supports thousands of sites including:
-- YouTube, YouTube Music
-- Bilibili (B站)
-- Twitter/X
-- TikTok, Douyin (抖音)
-- Vimeo
-- Twitch
-- And many more...
-
-Full list: https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md
+1. Resolve the requested video/audio, subtitles, quality and destination; ask only if needed.
+2. Check dependencies and announce the destination and network access.
+3. Invoke the helper with the requested options and exactly one HTTP(S) URL. Pass the configured `download_path` through `--path` when set.
+4. Report the saved location or error. Do not claim success if the command fails.
 
 ## Troubleshooting
-
-### Common Errors and Solutions
-
-| Error | Cause | Solution |
-|-------|-------|----------|
-| HTTP 403 Forbidden | YouTube blocks unauthenticated requests | Use `--cookies-from-browser chrome` |
-| Video unavailable | Geo-restricted or private | Use cookies or VPN |
-| Download interrupted | Network issues | Retry - yt-dlp auto-resumes |
-| Format not available | Requested format doesn't exist | Use `-F` to list formats |
-
-### Error: "yt-dlp: command not found"
-```bash
-pip install yt-dlp
-```
-
-### Error: "ffmpeg not found" (for audio extraction)
-```bash
-brew install ffmpeg  # macOS
-```
-
-### Error: HTTP 403 Forbidden (YouTube)
-
-This is the most common YouTube error. **Always use cookies for YouTube:**
-
-```bash
-# Recommended approach for YouTube
-yt-dlp -P "~/Downloads/yt-dlp" --cookies-from-browser chrome "YOUTUBE_URL"
-```
-
-Supported browsers: `chrome`, `firefox`, `safari`, `edge`, `brave`, `opera`
-
-### Error: Video unavailable or geo-restricted
-```bash
-# Try with cookies from browser
-yt-dlp --cookies-from-browser chrome "VIDEO_URL"
-
-# Or use a specific format
-yt-dlp -F "VIDEO_URL"  # List formats first
-yt-dlp -f FORMAT_ID "VIDEO_URL"
-```
-
-### Error: Download keeps failing
-```bash
-# Update yt-dlp to latest version
-pip install -U yt-dlp
-
-# Force IPv4 (sometimes helps with connection issues)
-yt-dlp -4 "VIDEO_URL"
-```
-
-### Best Practices
-
-1. **YouTube downloads**: Always use `--cookies-from-browser chrome`
-2. **Large files**: yt-dlp auto-resumes, just retry if interrupted
-3. **Keep yt-dlp updated**: `pip install -U yt-dlp`
-4. **Check formats first**: Use `-F` before downloading if unsure
+- 403 or login required: report the access failure. Do not automatically retry with browser cookies; follow the authentication authorization rule above.
+- Missing dependency: explain what is needed and seek installation authorization if not already provided.
+- Interrupted download: one retry with the same anonymous options is reasonable; stop if it fails again.
+- Format unavailable: list formats, then choose one consistent with the requested quality.

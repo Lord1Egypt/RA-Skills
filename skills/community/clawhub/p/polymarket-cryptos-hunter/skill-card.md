@@ -1,41 +1,56 @@
-## Description: <br>
-Runs an HFT market-making bot for Polymarket with live execution through Web3 and the CLOB API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HFT Market Making bot for Polymarket. Live execution via Web3 and CLOB API.
 
-## Publisher: <br>
-[thony32](https://clawhub.ai/user/thony32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[thony32](https://clawhub.ai/user/thony32)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and trading operators use this skill to start a continuous Polymarket market-making bot for cryptocurrency up/down markets. The bot reads wallet balance on Polygon, posts live CLOB orders, manages open positions, and records local trade audit data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill starts live real-money trading with broad wallet authority.
+
+Mitigation: Use only an isolated wallet funded with money you are prepared to lose, and require explicit confirmation before allowing live trading.
+
+Risk: The documented command runs the bot indefinitely in the background, reducing visibility into active orders and losses.
+
+Mitigation: Run it in the foreground first, set hard runtime and exposure limits, and confirm how to cancel all open orders before starting.
+
+Risk: Wallet and Polymarket API secrets are required for operation.
+
+Mitigation: Avoid project-local secrets and use narrowly scoped credentials where available.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users who intentionally operate Polymarket trading automation use this skill to start a continuous market-making bot for crypto up/down markets with live wallet and CLOB connectivity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous live-money trading can place orders and affect a funded wallet without step-by-step user approval. <br>
-Mitigation: Review the code, wallet setup, position sizing, risk limits, and stop procedure before installation; prefer paper trading or a dry-run environment first. <br>
-Risk: The artifact is designed to run continuously in the background, which can reduce operator visibility while the process is active. <br>
-Mitigation: Run only when the process can be monitored and stopped promptly, and avoid loading private keys or funded wallets unless active supervision is available. <br>
+**Output Format:** [Markdown instructions with bash commands and Python runtime behavior]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thony32/polymarket-cryptos-hunter) <br>
-- [Publisher profile](https://clawhub.ai/user/thony32) <br>
+**Other Properties Related to Output:** [Produces a long-running live trading process, terminal status output, log files, and a local SQLite audit database.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing instructions for starting a continuous background trading process.] <br>
+2.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

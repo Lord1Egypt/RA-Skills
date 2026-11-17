@@ -1,37 +1,56 @@
-## Description: <br>
-Use this skill to produce a Remotion short video through an audio-driven pipeline: script to audio to SRT to timeline to scenes.json to render to CapCut handoff, with human gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to produce a Remotion short video through an audio-driven pipeline: script to audio to SRT to timeline to scenes.json to render to CapCut handoff, with human gates.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and creators use this skill to run a repeatable Remotion knowledge or explainer short-video workflow with narration, subtitles, scene timing, and a CapCut handoff. It helps agents preserve script approvals and audio-derived timing before rendering.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Chosen TTS or STT tools may require API keys or separate trust review.
+
+Mitigation: Review those tools separately, keep API keys outside the skill, and avoid logging or echoing credentials.
+
+Risk: Timeline, audio, or asset files may be overwritten during production.
+
+Mitigation: Confirm before overwriting existing scenes.json, audio, SRT, asset, or composition files.
+
+Risk: SRT timestamps can drift from the final audio and cause visual timing issues.
+
+Mitigation: Use the final audio as the master timeline, generate SRT from that audio, and preview alignment before full rendering.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and video creators use this skill to run a repeatable audio-first workflow for Remotion short videos with narration, subtitles, structured timeline data, rendering, and a manual CapCut handoff. It is scoped to Remotion pipelines and delegates composition code to a dedicated Remotion skill. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown guidance with JSON timeline data and checklist-style handoff instructions]
 
-## Reference(s): <br>
-- [Remotion Video Pipeline on ClawHub](https://clawhub.ai/archlab-space/remotion-video-pipeline) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Produces scripts, storyboards, SRT-derived timing guidance, scenes.json timeline data, Remotion handoff guidance, and CapCut checklist text.]
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, code] <br>
-**Output Format:** [Markdown guidance with checklists and JSON timeline data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scripts, storyboards, SRT-derived timing guidance, scenes.json data, render handoff instructions, and overwrite/credential handling reminders.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog, released 2026-06-11) <br>
+0.1.0 (source: changelog, released 2026-06-11; server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

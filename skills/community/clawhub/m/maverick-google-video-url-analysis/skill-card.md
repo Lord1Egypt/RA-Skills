@@ -1,37 +1,57 @@
-## Description: <br>
-Send a public video URL directly to a Google Gemini model for analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a public video URL directly to a Google Gemini model so Codex can summarize video content, answer questions, or extract key points without local download or file upload steps.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze publicly accessible video URLs with Google Gemini, including summarization, Q&A, timeline extraction, moderation-oriented review, and key point extraction without local downloads or uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/maverick/maverick-google-video-url-analysis) <br>
+Developers and engineers use this skill to analyze publicly accessible video URLs with Gemini and return summaries, answers, key points, or timestamp-oriented reports from agent workflows.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown returned by the Gemini analysis command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Google Gemini API key and a publicly accessible video URL. Avoid private URLs, embedded access tokens, internal links, or confidential prompts unless permitted by the user's data policy.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Video URLs and prompts are sent to Gemini for processing.
+
+Mitigation: Use only public video URLs and prompts that are appropriate to send to the configured Gemini service.
+
+Risk: Passing API keys on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Configure credentials with MAVERICK_GEMINI_API_KEY or MAVERICK_GOOGLE_API_KEY instead of the --api-key flag when possible.
+
+Risk: Installing dependencies from an untrusted or unpinned environment can introduce supply-chain risk.
+
+Mitigation: Install google-genai from a trusted, pinned Python environment before use.
+
+## Reference(s):
+
+- [Google Video URL Analysis on ClawHub](https://clawhub.ai/maverick/skills/maverick-google-video-url-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text analysis with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a public video URL, a task-specific prompt, the google-genai dependency, and a Gemini API key provided through environment variables or the optional CLI flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

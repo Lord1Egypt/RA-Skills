@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>Tally</title>
+<style>
+/*设置标准字体*/body {font-family:'微软雅黑', sans-serif !important;}
+/*设置衬线字体*/.serif {font-family:'宋体', serif !important;}
+/*设置无衬线字体*/.sans-serif {font-family:'微软雅黑', sans-serif !important;}
+</style>
+</head>
+<body><div id="app" v-cloak><router-view></router-view></div></body>
+
+<template id="norights_home">
+<q-layout view="hHh lpr fFf">
+  <q-header>
+   <q-toolbar>
+    <q-avatar><img src="./favicon.png"></q-avatar>
+    <q-toolbar-title>{{tags.app_name}}</q-toolbar-title>
+   </q-toolbar>
+  </q-header>
+  <q-page-container><q-page class="q-pa-sm">
+   {{tags.noRights}}
+  </q-page></q-page-container>
+</q-layout>
+</template>
+
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script src="/assets/v3/echarts.js"></script>
+<script type="module">
+import Language from "./language.js"
+import Vip from "./vip.js"
+import Vips from "./vips.js"
+import Orders from "./orders.js"
+import Services from "./services.js"
+import MyTasks from "./mytasks.js"
+import Brokerages from "./brokerages.js"
+import MyBrokerage from "./mybrokerage.js"
+import Reports from "./reports.js"
+import Settings from "./settings.js"
+
+import DateInput from "/assets/v3/components/date_input.js"
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+import ConfirmDialog from "/assets/v3/components/confirm_dialog.js"
+import UserInput from "/assets/v3/components/user_input.js"
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+
+const norightsHomeTpl=document.getElementById('norights_home');
+const Norights = {
+  inject:['tags'],
+  template:norightsHomeTpl.innerHTML
+}
+
+//router定义
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+  {path:'/vip', component:Vip},
+  {path:'/orders', component:Orders},
+  {path:'/services', component:Services},
+  {path:'/mytasks', component:MyTasks},
+  {path:'/brokerages', component:Brokerages},
+  {path:'/mybrokerage', component:MyBrokerage}
+]});
+
+//service定义
+const service = {name:"tally",NUM_PER_PAGE:10,NUM_PER_SMPG:5,
+template:{}, //模板定义
+getTemplate() {
+    if(Object.keys(this.template).length > 0) {
+        return new Promise(resolve=>{
+            resolve(this.template);
+        });
+    }
+    return request({method:"GET", url:"/getVipTmpl"}, this.name).then(resp=>{
+        if(resp.code != RetCode.OK) {
+            return {};
+        }
+        if(resp.data&&resp.data.template) {
+            this.template=resp.data.template; //{'name1':val1,...}
+        } else {
+            this.template={}
+        }
+        return this.template;
+    });
+},
+role:'',
+account:'',
+getRole() {
+    if(this.role) {
+        return new Promise(resolve=>{
+            resolve(this.role);
+        })
+    }
+    
+    var url="/power/getrole?service="+this.name;
+    return request({method:"GET", url:url}, SERVICE_USER).then(resp=>{
+        if(resp.code!=RetCode.OK) {
+            Console.warn("request "+url+" failed:" + resp.code + ",info:" + resp.info);
+            this.role='';
+        } else {
+            this.role=resp.data.role;
+            this.account=resp.data.account;
+        }
+        return this.role;
+    })
+},
+formatNum(n,accuracy) {
+  if(n % 1 === 0) {// 如果是整数
+    return n;
+  }
+  //如果有小数位，则保留两位小数
+  return parseFloat(n.toFixed(accuracy));
+},
+runtime:{},//运行时
+setRt(k,v) {
+    this.runtime[router.currentRoute.value.path+':'+k]=v;
+},
+getRt(k,def) {
+    var v=this.runtime[router.currentRoute.value.path+':'+k];
+    return v?v:def;
+},
+back() { //返回，在页面中通过service.go_back调用
+    router.back();
+},
+goto(url) {
+    router.push(url)
+}
+};
+//app主体定义
+const app = Vue.createApp({
+provide:{tags:tags, service:service},
+mounted(){
+    service.getRole().then(role=>{
+        if(role=='admin'||role=='sales') {
+            this.$router.addRoute({path:"/home", component:Vips});
+            if(role=='admin') {
+                this.$router.addRoute({path:'/reports', component:Reports});
+            }
+        } else if(role=='worker') {
+            this.$router.addRoute({path:"/home", component:MyTasks});
+        } else {
+            this.$router.addRoute({path:"/home", component:Norights});
+        }
+        if(service.account=='admin') {
+            this.$router.addRoute({path:'/settings', component:Settings});
+        }
+        this.$router.push('/home').catch(err => {err})
+    })
+    window.sys_go_back = this.sysGoBack;//给webview调用
+},
+methods:{
+sysGoBack() {
+    //声明全局函数，在webview中调用，
+    //实现按回退按钮回退历史页面，如果无历史，则退出activity或应用
+    if(this.$router.currentRoute.value.path==="/home") {
+        return false;
+    }
+    this.$router.back();
+    return true;
+}
+}
+});
+
+app.use(Quasar);
+app.use(router);
+//注册全局组件
+app.component('component-alert-dialog', AlertDialog);
+app.component('component-confirm-dialog', ConfirmDialog);
+app.component('component-date-input', DateInput);
+app.component('component-user-input', UserInput);
+//启动APP
+app.mount('#app');
+</script>
+</html>

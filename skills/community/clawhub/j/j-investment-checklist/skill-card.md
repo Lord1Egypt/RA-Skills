@@ -1,38 +1,50 @@
-## Description: <br>
-Provides a structured Chinese-language investment decision checklist for buy, hold, sell, and no-invest reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+投资决策清单，每次买入/卖出前必须走一遍，确保决策质量
 
-## Publisher: <br>
-[jearrylee](https://clawhub.ai/user/jearrylee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jearrylee](https://clawhub.ai/user/jearrylee)
 
-## Use Case: <br>
-Investors and assistants use this skill to walk through disciplined buy, hold, sell, and no-invest checklists before making stock decisions. It supports structured thinking and review, not professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat checklist output as professional financial advice or rely on stale market and company data. <br>
-Mitigation: Treat the output as a decision checklist, verify market and company data independently, and consult qualified financial advice where appropriate. <br>
+## Use Case:
 
+External users can use this Chinese-language checklist to ask an agent for structured buy, hold, and sell reviews before making investment decisions. It helps organize business, valuation, risk, position sizing, timing, and psychology checks, but does not replace independent financial, legal, or tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jearrylee/j-investment-checklist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown checklist and scoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only checklist output; users should verify financial data independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may over-rely on checklist scores or buy/sell wording as professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as personal decision support only, verify important investment decisions independently, and seek qualified financial, legal, or tax advice where needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jearrylee/skills/j-investment-checklist)
+- [ClawHub publisher profile](https://clawhub.ai/user/jearrylee)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown checklist guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include scored investment-review tables and buy, hold, or sell checklist responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

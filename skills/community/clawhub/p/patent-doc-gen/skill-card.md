@@ -1,42 +1,52 @@
-## Description: <br>
-根据技术论文撰写中国专利技术交底书，用户需要提供技术论文或资料，以及至少一篇同领域的专利作为参考。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据技术论文撰写中国专利技术交底书，用户需要提供技术论文或资料，以及至少一篇同领域的专利作为参考。
 
-## Publisher: <br>
-[auto-dog](https://clawhub.ai/user/auto-dog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[auto-dog](https://clawhub.ai/user/auto-dog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+专利研发人员、发明人和技术团队使用该技能，根据技术论文和至少一篇同领域参考专利生成中国专利技术交底书草稿，并整理技术问题、技术方案、技术效果、附图建议和参考文献信息。
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated patent disclosure content may be legally or technically incomplete or inaccurate.
+
+Mitigation: Have qualified patent and technical reviewers verify the draft before filing or sharing it.
+
+Risk: User-supplied invention materials may contain confidential information.
+
+Mitigation: Avoid uploading confidential invention materials unless processing them in the host agent environment is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Patent drafters, researchers, and technical teams use this skill to turn a source paper and at least one related patent reference into Chinese patent technical disclosure drafts. It helps structure the disclosure around prior art, unresolved technical problems, proposed technical solutions, effects, protected points, drawing guidance, and cited references. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Patent materials may include confidential invention details. <br>
-Mitigation: Use the skill only in an environment where uploading and processing those documents is acceptable. <br>
-Risk: Chinese-only output can make review difficult for teams that work in another language. <br>
-Mitigation: Request a bilingual or translated companion draft when needed for review. <br>
+**Output Format:** [Markdown patent disclosure drafts, with one annotated version and one clean version when files can be written]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/auto-dog/patent-doc-gen) <br>
-- [thu专利交底书模板.md](templates/thu专利交底书模板.md) <br>
-- [CNIPA patent conventional search](https://pss-system.cponline.cnipa.gov.cn/conventionalSearch) <br>
+**Other Properties Related to Output:** [Chinese patent-disclosure style; includes source-location annotations, GB/T 7714 references, and suggested drawing content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, guidance] <br>
-**Output Format:** [Markdown patent technical disclosure drafts, with one annotated draft and one clean draft when files are written] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese patent-disclosure style; includes source-position annotations, GB/T 7714 references, and suggested drawing content.] <br>
+1.0.1 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

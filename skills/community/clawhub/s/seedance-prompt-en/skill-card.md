@@ -1,43 +1,60 @@
-## Description: <br>
-Write effective prompts for Jimeng Seedance 2.0 multimodal AI video generation using text, images, videos, audio inputs, and the @ reference system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write effective prompts for Jimeng Seedance 2.0 multimodal AI video generation using text, image, video, and audio references.
 
-## Publisher: <br>
-[dexhunter](https://clawhub.ai/user/dexhunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dexhunter](https://clawhub.ai/user/dexhunter)
 
-## Use Case: <br>
-Creators, marketers, educators, and agent users use this skill to draft Seedance/Jimeng video-generation prompts for text, image, video, and audio inputs. It helps assign asset roles, structure timed scenes, specify camera movement, plan effects, and include audio direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad video-prompting requests outside Seedance-specific work. <br>
-Mitigation: Use it intentionally for Seedance or Jimeng workflows and confirm the target platform before relying on generated prompt guidance. <br>
-Risk: Generated prompts can contain inaccurate, unsuitable, or misleading video-generation guidance. <br>
-Mitigation: Review generated prompts before submitting them to any video platform, especially prompts involving uploaded media, people, brands, or regulated topics. <br>
+## Use Case:
 
+External users and developers use this skill to draft Seedance 2.0 video prompts for ads, short dramas, music-synced videos, educational clips, video extension, editing, and multimodal reference workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dexhunter/seedance-prompt-en) <br>
-- [Jimeng Seedance 2.0](https://jimeng.jianying.com/) <br>
-- [Seedance 2.0 User Manual](https://bytedance.larkoffice.com/wiki/A5RHwWhoBiOnjukIIw6cu5ybnXQ) <br>
-- [Seedance 2.0 Real-world Cases](https://bytedance.larkoffice.com/wiki/LJXzwehluiFdzKkb1recZdfonZg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt drafts and concise explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Seedance @reference assignments, timed shot breakdowns, camera direction, effects notes, and audio cues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The README includes an unpinned npx installation command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual installation, or verify the package version and publisher before using the npx command.
+
+Risk: Some prompt templates include fictional violence or intense dramatic scenarios.
+
+Mitigation: Review generated prompts before use and keep platform content policies and safety rules in place.
+
+Risk: Seedance 2.0 blocks uploaded images or videos with realistic human faces.
+
+Mitigation: Check user assets against the skill's stated input constraints before writing prompts that depend on those references.
+
+## Reference(s):
+
+- [Jimeng Seedance 2.0](https://jimeng.jianying.com/)
+- [Seedance 2.0 User Manual](https://bytedance.larkoffice.com/wiki/A5RHwWhoBiOnjukIIw6cu5ybnXQ)
+- [Seedance 2.0 Real-world Cases](https://bytedance.larkoffice.com/wiki/LJXzwehluiFdzKkb1recZdfonZg)
+- [ClawHub Skill Page](https://clawhub.ai/dexhunter/skills/seedance-prompt-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt drafts with concise explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include @ reference assignments, time-segmented video structure, camera and audio direction, style modifiers, and constraint checks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

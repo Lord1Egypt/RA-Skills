@@ -1,6 +1,6 @@
 ---
 name: confirmation-bias
-description: "Activate when: user says 'we keep finding evidence that supports our view,' 'the team is all aligned on this,' 'I've done the research and it checks out,' or a decision moves forward with only supporting evidence cited. Do NOT activate when: context is explicit advocacy (legal brief, pitch deck) where one-sided argument is the design; or stakes are too low to justify structured disconfirmation."
+description: "Activate when: user says 'we keep finding evidence that supports our view,' 'the team is all aligned on this,' 'I've done the research and it checks out,' or a decision moves forward with only supporting evidence cited. Do NOT activate when: context is explicit advocacy (legal brief, pitch deck) where one-sided argument is the design; or stakes are too low to justify structured disconfirmation. More: deciqai.com/c/confirmation-bias"
 ---
 
 # Confirmation Bias
@@ -11,7 +11,7 @@ description: "Activate when: user says 'we keep finding evidence that supports o
 
 The canonical proof: Wason's 1960 "2-4-6 task" showed ~80% of subjects (including PhD scientists) confidently announced a wrong rule after testing only sequences they expected to confirm — never proposing a sequence designed to refute the hypothesis.
 
-Composes with [`critical-thinking`](../critical-thinking/SKILL.md), [`bayesian-reasoning`](../bayesian-reasoning/SKILL.md), [`abductive-reasoning`](../abductive-reasoning/SKILL.md), and [`metacognition`](../metacognition/SKILL.md).
+Composes with `critical-thinking`, `bayesian-reasoning`, `abductive-reasoning`, and `metacognition`.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ Composes with [`critical-thinking`](../critical-thinking/SKILL.md), [`bayesian-r
 - You feel confident about a claim and haven't looked for evidence against it
 - Research or due diligence keeps "validating" existing beliefs
 - Someone says "cherry-picking," "echo chamber," or "looking for what you want to see"
+- A team is committing to an AI thesis (AI capex, AI valuations, or AI adoption) by citing confirming demos and adoption while discounting failed eval results
 
 **Not when:** explicit advocacy context; very low-stakes decision; cost of disconfirmation exceeds value of decision.
 
@@ -62,7 +63,8 @@ Countermeasure: [type] / Owner:
 Update conditions: trigger / re-examination date:
 ```
 
-*→ Method in Action: [Peter Wason's 2-4-6 Task, 1960](examples/peter-wasons-2-4-6-task-1960.md)*
+*→ Method in Action: [Peter Wason's 2-4-6 Task, 1960](examples/peter-wasons-2-4-6-task-1960.md) · [The FBI Mayfield Fingerprint Misidentification, 2004](examples/2004-fbi-mayfield-fingerprint-misidentification.md)*
+*→ 2026 lens: [The AI Thesis War (2023–2026)](examples/ai-thesis-confirmation-2023-2026.md)*
 
 ## Pack: Confirmation Bias Patterns
 
@@ -104,4 +106,6 @@ Update conditions: trigger / re-examination date:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/confirmation-bias** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/confirmation-bias.json*

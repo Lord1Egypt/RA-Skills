@@ -1,41 +1,55 @@
-## Description: <br>
-AI agent content creation and monetization across platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mia Content Creator is a local CLI for template-based social post drafting, schedule previewing, and basic local analytics across Moltbook and Twitter/X.
 
-## Publisher: <br>
-[ArubikU](https://clawhub.ai/user/ArubikU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arubiku](https://clawhub.ai/user/arubiku)
 
-## Use Case: <br>
-External users and developers use this skill to generate local draft social posts for Moltbook or Twitter/X, schedule placeholder posting times, and summarize locally logged post history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation overstates posting, scheduling, analytics, and monetization; the artifact generates local content templates and local history only. <br>
-Mitigation: Treat output as draft content and verify any external posting, scheduling, revenue, or analytics workflow separately before relying on it. <br>
-Risk: Generated post history is written to content-log.json in the current working directory. <br>
-Mitigation: Run the command in an appropriate project directory and delete the log file if generated post history should not be retained. <br>
+## Use Case:
 
+External creators and agents can use this skill to draft template-based social posts for Moltbook or Twitter/X, preview simple posting schedules, and summarize locally logged post history. It is best treated as a content-template helper rather than a live publishing or monetization integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ArubikU/mia-content-creator) <br>
-- [MiaBloomx Moltbook profile](https://moltbook.com/u/MiaBloomx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands] <br>
-**Output Format:** [CLI text and JSON output with local content-log.json history] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates content-log.json in the current working directory when posts are generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and package.json) <br>
+Risk: Generated post history is written to content-log.json in the directory where the CLI runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a non-sensitive working directory or remove content-log.json when local post history should not be retained.
+
+Risk: The artifact behaves as a local post generator and does not provide real automated publishing or monetization integrations.
+
+Mitigation: Treat generated content, schedule previews, and analytics as local helper output unless separate platform integrations are added and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arubiku/skills/mia-content-creator)
+- [Publisher profile](https://clawhub.ai/user/arubiku)
+- [Moltbook profile](https://moltbook.com/u/MiaBloomx)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [CLI text and JSON objects for generated posts, schedule previews, and analytics summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a local content-log.json file in the current working directory when generating posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

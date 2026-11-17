@@ -1,0 +1,26 @@
+name: shop-shipping-policy-compare-free
+slug: shop-shipping-policy-compare-free
+display_name: 店铺配送政策对照
+description: "在用户指定的 Easy WebBridge 浏览器环境中，只读核对 2–3 个公开配送或售后政策页，交付发货时效、适用地区、费用条件与缺失条款的可追溯对照表。适用于选店、运营核查与客服资料准备；页面条件无法归属店铺、相互矛盾或资料不全时明确标注，不推断运费、送达或交易结论。"
+version: 1.0.1
+author: xxjrq
+license: MIT-0
+repository: https://github.com/xxjrq/shop-shipping-policy-compare-free
+icon: icon-512.png
+tags:
+  - 配送政策
+  - 运费条件
+  - 店铺对比
+  - 网页核查
+  - 售后政策
+trigger_words:
+  - 配送政策对比
+  - 运费规则核对
+  - 发货时效整理
+interface:
+  display_name: 店铺配送政策对照
+  short_description: 读取公开政策页，输出可追溯配送条件对照、冲突提示与缺项
+  default_prompt: "请用我指定的 browserId，只读对照以下 2–3 个公开配送或售后政策页：{urls}。输出发货时效、适用地区、费用条件和缺失条款；保留来源，不推断运费、送达或交易结论。"
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: node scripts/self-test.mjs

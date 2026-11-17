@@ -1,42 +1,61 @@
-## Description: <br>
-Control Devialet Phantom speakers via HTTP API for play/pause, volume control, mute/unmute, source selection, and speaker status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Devialet Phantom speakers via HTTP API for play/pause, volume control, mute/unmute, source selection, and speaker status on supported Devialet firmware.
 
-## Publisher: <br>
-[JGM2025](https://clawhub.ai/user/JGM2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jgm2025](https://clawhub.ai/user/jgm2025)
 
-## Use Case: <br>
-External users and developers use this skill to control Devialet Phantom, Dialog, and Mania speakers on a trusted local network, including playback, volume, source selection, status checks, and optional Spotify playback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control local Devialet speaker playback and volume over unauthenticated HTTP on the local network. <br>
-Mitigation: Use it only on a trusted local network and verify the configured speaker IP before running commands. <br>
-Risk: Spotify integration stores Spotify credentials and tokens in local configuration files. <br>
-Mitigation: Protect the Spotify config and token files, use the least necessary Spotify scopes, and revoke the Spotify app token when it is no longer needed. <br>
-Risk: Search-based Spotify playback may use desktop automation through xdotool. <br>
-Mitigation: Prefer direct Spotify URIs or the scoped Spotify API helper when possible, and review desktop automation behavior before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Devialet HTTP API Reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/JGM2025/devialet) <br>
+## Use Case:
 
+External users and developers use this skill to control Devialet Phantom, Reactor, Dialog, and Mania speakers on a trusted local network, including playback, volume, source, status, and optional Spotify playback workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local network HTTP API calls, Spotify desktop controls, or Spotify Web API calls when the user runs the provided scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control Spotify playback and automate a local Spotify desktop session.
+
+Mitigation: Install it only if Spotify playback-control access is acceptable, and remove or avoid spotify.sh when Spotify integration is not needed.
+
+Risk: Spotify token handling is flagged as insecure by the security evidence.
+
+Mitigation: Store credentials and tokens with restrictive file permissions and review token storage before using the skill in automation.
+
+Risk: Devialet speaker control uses unauthenticated HTTP on the local network.
+
+Mitigation: Use the skill only on a trusted LAN and avoid exposing Devialet control endpoints beyond the local network.
+
+Risk: Volume input validation needs review before automated use.
+
+Mitigation: Constrain volume values to the documented 0-100 range in any agent workflow that calls the scripts.
+
+## Reference(s):
+
+- [Devialet HTTP API Reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/jgm2025/skills/devialet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local-network HTTP API commands and Spotify setup guidance; users must supply their own speaker IP address and optional Spotify credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

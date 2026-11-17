@@ -1,41 +1,60 @@
-## Description: <br>
-Guides an agent through Umeng CLI calls to create and list promotion campaign links for mini-program, H5, and mini-game properties. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理通过 umeng-cli 调用友盟 OpenAPI，为小程序、H5 和小游戏创建推广链接，并查询推广活动或渠道清单。
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-Developers and operators managing Umeng mini-program, H5, or mini-game promotion assets use this skill to create campaign links and list existing campaigns or channels through umeng-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external Umeng CLI login and sends trace telemetry that can include the skill name and appkey. <br>
-Mitigation: Install and authenticate the CLI only in trusted environments, and review telemetry expectations before using the skill with a real appkey. <br>
-Risk: The createCampaign workflow performs a real write action and the resulting promotion link is described as irreversible. <br>
-Mitigation: Confirm the appkey, campaign name, channel name, and optional path with the user before execution, and do not automatically retry failed write calls. <br>
+## Use Case:
 
+External users and developers use this skill to manage Umeng mini program campaign links from an agent session, including creating a campaign link after confirmation and listing existing campaign or channel records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squall0925/uapp-campaign) <br>
-- [Umeng CLI project](https://github.com/umeng/umeng-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires umeng-cli, Umeng login, and a mini-program dataSourceId/appkey for business API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Mutable or unsafe CLI installation methods could install unreviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted, pinned umeng-cli version and avoid the curl-to-shell installer.
+
+Risk: The skill requests telemetry that can include an application AppKey.
+
+Mitigation: Do not allow AppKey telemetry unless sharing application identifiers through the CLI is acceptable.
+
+Risk: createCampaign creates irreversible campaign links in the user's account.
+
+Mitigation: Manually confirm every createCampaign request and do not automatically retry failed writes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/squall0925/skills/uapp-campaign)
+- [umeng-cli Project](https://github.com/umeng/umeng-cli)
+- [Umeng OpenAPI Gateway](https://gateway.open.umeng.com/openapi)
+- [Umeng Web Console](https://web.umeng.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Umeng OpenAPI response JSON; campaign creation guidance requires explicit user confirmation before execution.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

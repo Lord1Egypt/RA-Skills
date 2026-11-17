@@ -1,48 +1,62 @@
-## Description: <br>
-Generate professional draw.io diagrams for ERDs, database tables, UML class diagrams, sequence diagrams, flowcharts, and architecture diagrams, then export them as PNG. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional draw.io diagrams (ERD/database tables, class diagrams, sequence diagrams, flowcharts, architecture diagrams) and export them as PNG.
 
-## Publisher: <br>
-[romanmeclazcke](https://clawhub.ai/user/romanmeclazcke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[romanmeclazcke](https://clawhub.ai/user/romanmeclazcke)
 
-## Use Case: <br>
-Developers, engineers, and technical teams use this skill to turn requests for ERDs, UML class diagrams, sequence diagrams, flowcharts, and architecture overviews into draw.io XML and exported diagram images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local draw.io executable and runs export commands for generated diagrams. <br>
-Mitigation: Install draw.io from an official or trusted source and review export commands before execution. <br>
-Risk: The skill writes local diagram files under ./diagrams and may create PNG, SVG, or PDF outputs. <br>
-Mitigation: Run it in an appropriate workspace and confirm requested output formats before generating files. <br>
-Risk: Ambiguous prompts can lead to the wrong diagram type or export behavior. <br>
-Mitigation: Use clear prompts that state the desired diagram type and whether an actual draw.io export is wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Draw.io Professional Diagrams on ClawHub](https://clawhub.ai/romanmeclazcke/drawio) <br>
-- [romanmeclazcke publisher profile](https://clawhub.ai/user/romanmeclazcke) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [ERD diagram reference](artifact/ERD.md) <br>
-- [UML class diagram reference](artifact/CLASS.md) <br>
-- [Sequence diagram reference](artifact/SEQUENCE.md) <br>
-- [Flowchart reference](artifact/FLOWCHART.md) <br>
-- [Architecture diagram reference](artifact/LAYOUT.md) <br>
+## Use Case:
 
+Developers, analysts, and technical writers use this skill to create structured draw.io diagrams for database models, UML classes, sequences, process flows, and system architectures.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with draw.io XML, shell commands, and local diagram files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates ./diagrams/*.drawio and exports PNG first; SVG and PDF exports are optional when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates local diagram artifacts and exports images automatically under ./diagrams.
+
+Mitigation: Confirm the desired filenames and formats before generation when automatic local file creation is not wanted.
+
+Risk: Broad diagram-related trigger terms may activate the skill for requests that only mention diagrams in passing.
+
+Mitigation: Confirm that the user wants a draw.io diagram before creating files or running the exporter.
+
+Risk: The skill depends on a local draw.io command-line exporter.
+
+Mitigation: Verify the drawio binary is installed and available before attempting PNG, SVG, or PDF export.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romanmeclazcke/skills/drawio)
+- [Skill instructions](artifact/SKILL.md)
+- [ERD diagram reference](artifact/ERD.md)
+- [Class diagram reference](artifact/CLASS.md)
+- [Sequence diagram reference](artifact/SEQUENCE.md)
+- [Flowchart reference](artifact/FLOWCHART.md)
+- [Architecture diagram reference](artifact/LAYOUT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with draw.io XML, shell commands, and generated diagram files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local .drawio diagram files and PNG exports under ./diagrams when the draw.io command-line exporter is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

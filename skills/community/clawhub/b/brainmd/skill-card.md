@@ -1,41 +1,59 @@
-## Description: <br>
-Neuroplastic self-modifying runtime for AI agents. Creates a file-based 'brain' that learns from interactions: reflexes (fast-path responses), habits (learned patterns), weighted pathways (reinforcement), and a cortex (self-review loop). Use when: setting up adaptive agent behavior, creating learning loops, building persistent behavioral memory, or making an agent that improves over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neuroplastic self-modifying runtime for AI agents that creates a file-based brain for reflexes, habits, weighted pathways, reinforcement, and a cortex self-review loop.
 
-## Publisher: <br>
-[p0lish](https://clawhub.ai/user/p0lish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[p0lish](https://clawhub.ai/user/p0lish)
 
-## Use Case: <br>
-Developers and agent operators use brainmd to add persistent behavioral reinforcement to an AI agent through file-based pathway weights, outcome recording, review cycles, and mutation logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic learning loops can reshape future agent behavior without strong boundaries or rollback guidance. <br>
-Mitigation: Use it only where an adaptive behavior layer is intentional, inspect the brain directory and mutation logs, disable heartbeat automation for sensitive workflows, and keep a reset or rollback process available. <br>
-Risk: The skill writes persistent local state and mutation logs that can influence later decisions. <br>
-Mitigation: Review generated pathway files before relying on them and avoid deploying the state directory into production or sensitive contexts without approval. <br>
+## Use Case:
 
+Developers and agent operators use brainmd to add persistent file-based behavioral memory to an AI agent, record outcomes as weighted pathways, and run review cycles that strengthen, weaken, decay, or prune behavior patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/p0lish/brainmd) <br>
-- [ClawHub brainmd listing](https://clawhub.ai/skills/brainmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operating guidance for local files, scripts, pathway state, and mutation logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill is designed to create persistent self-modifying agent behavior and the server security verdict is suspicious because safeguards for unattended use are limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent behavioral memory is intentional; keep the brain directory private and require human approval before enabling heartbeat or cron automation.
+
+Risk: Pathway records can influence future actions if raw notes or untrusted pathway text are incorporated into prompts.
+
+Mitigation: Review and sanitize pathway notes before use, avoid placing raw notes in system or developer prompts, and require manual approval for new behavior pathways that affect future decisions.
+
+Risk: Review and prune operations can mutate or remove behavior state.
+
+Mitigation: Review and back up pathways.json before automated review cycles or pruning, and preserve mutation logs for auditability.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/p0lish/skills/brainmd)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript snippets, JSON examples, and generated local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Initializes and updates a local file-based brain directory, including pathway state and mutation logs.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

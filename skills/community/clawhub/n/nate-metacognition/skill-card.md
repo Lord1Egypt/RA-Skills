@@ -1,44 +1,63 @@
-## Description: <br>
-Self-reflection engine for AI agents. Extracts patterns from session transcripts into a weighted graph with Hebbian learning and time decay. Compiles a token-budgeted lens of active self-knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection engine for AI agents. Extracts patterns from session transcripts into a weighted graph with Hebbian learning and time decay. Compiles a token-budgeted lens of active self-knowledge.
 
-## Publisher: <br>
-[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain local reflective memory from session transcripts, reinforce recurring insights, and compile a concise lens that can guide later agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent summaries of session history and notes can influence future agent behavior or retain sensitive information. <br>
-Mitigation: Inspect memory/metacognition.json and scripts/metacognition-lens.md periodically, and edit or delete entries that are sensitive, stale, or misleading. <br>
-Risk: Reflective text can be sent to an environment-controlled embeddings endpoint. <br>
-Mitigation: Leave EMBEDDINGS_URL unset unless a trusted local endpoint is intentionally configured and reviewed. <br>
-Risk: Scheduled extraction can reinforce incorrect or low-quality insights without human review. <br>
-Mitigation: Review the workflow before enabling cron and check generated insights before relying on them for future behavior. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain cross-session self-knowledge by extracting recurring patterns from transcripts, reinforcing or decaying insights, and compiling a compact metacognition lens for future agent behavior.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joeycacciatore3/nate-metacognition) <br>
-- [Project Homepage](https://github.com/meimakes/metacognition) <br>
-- [OpenClaw](https://openclaw.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown lens file, JSON memory store, and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent memory/metacognition.json and scripts/metacognition-lens.md; optional embeddings should use a trusted local endpoint only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Persistent cross-session memory can preserve conversation-derived behavior rules that influence future agent responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated insights before allowing them to shape future behavior, and periodically prune entries that are stale, incorrect, or sensitive.
+
+Risk: The cron workflow can repeatedly add or reinforce self-reflection entries without direct review.
+
+Mitigation: Enable scheduled runs only in trusted workspaces and require review of newly generated insights before continued use.
+
+Risk: Security evidence reports that extracted text may be sent to an environment-chosen embeddings URL despite localhost-only claims.
+
+Mitigation: Constrain EMBEDDINGS_URL to trusted local services, or leave embeddings disabled when processing sensitive content.
+
+Risk: The extract command may read sensitive files if path restrictions and destination validation are not sufficient.
+
+Mitigation: Avoid running extract on sensitive paths and restrict the workspace and readable memory paths before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joeycacciatore3/skills/nate-metacognition)
+- [Project Homepage](https://github.com/meimakes/metacognition)
+- [OpenClaw](https://openclaw.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown lens, CLI text output, and JSON-backed memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes memory/metacognition.json and scripts/metacognition-lens.md; the compiled lens is token-budgeted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

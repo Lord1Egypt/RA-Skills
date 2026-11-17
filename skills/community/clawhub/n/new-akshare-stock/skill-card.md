@@ -1,41 +1,56 @@
-## Description: <br>
-A股量化数据分析工具，基于AkShare库获取A股行情、财务数据、板块信息等。用于回答关于A股股票查询、行情数据、财务分析、选股等问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share quantitative data analysis skill that helps agents use AkShare to retrieve market quotes, historical K-line data, financial data, sector information, and related stock research data.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-External users and developers use this skill to query China A-share market data through AkShare, including real-time quotes, historical K-line data, financial indicators, sector information, fund flow, IPO, and margin trading data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AkShare is a third-party dependency and the skill retrieves market data over the network. <br>
-Mitigation: Review and pin the AkShare dependency version before deployment, and run the skill in an environment with appropriate network controls. <br>
-Risk: Market data may be delayed, unavailable, or unsuitable for investment decisions. <br>
-Mitigation: Use outputs as research data only and verify important results against authoritative market-data sources. <br>
-Risk: The bundled fund-flow command may need a code fix before it works. <br>
-Mitigation: Test the CLI paths in a local environment and fix the fund-flow helper before relying on that command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/new-akshare-stock) <br>
+## Use Case:
 
+External developers and analysts use this skill to ask an agent for AkShare-based A-share quotes, historical prices, financial indicators, sector data, fund flows, IPO data, and related research workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and text guidance with Python and shell command examples; the bundled CLI emits JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AkShare as a third-party market-data dependency; results depend on network access and upstream data availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Financial market data may be delayed, unavailable, inaccurate, or unsuitable for investment decisions.
+
+Mitigation: Treat results as research data, verify important outputs against authoritative financial sources, and do not rely on the skill as investment advice.
+
+Risk: AkShare and upstream financial data websites can change, causing package, network, or interface failures.
+
+Mitigation: Install dependencies in a dedicated virtual environment, pin and review AkShare before use, and add exception handling and retry logic around data calls.
+
+Risk: Some documented features or helper script paths may require fixes before they work reliably.
+
+Mitigation: Review and test commands in a local environment before using the skill in repeatable workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/new-akshare-stock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks; CLI examples can return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require network access to financial data sources; results are research data and not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

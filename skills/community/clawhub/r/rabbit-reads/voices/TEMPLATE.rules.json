@@ -1,0 +1,92 @@
+{
+  "voice": "<name>",
+  "description": "Mechanically checkable subset of voices/<name>.md. Judgment rules stay in the markdown; only put a rule here if a regex can decide it.",
+  "default_priority": "P0",
+
+  "_how_to_use": [
+    "Copy to voices/<name>.rules.json and edit. Delete every underscore-prefixed key.",
+    "default_priority sets the tier for entries that do not name one. P0 = a hit is a defect.",
+    "Anything you leave out is simply not enforced. An empty file is valid.",
+    "Run: scan.py draft.md --voice-rules voices/<name>.rules.json"
+  ],
+
+  "mechanics": {
+    "_options": {
+      "em_dash": "forbid | allow | limit",
+      "double_hyphen": "forbid | allow",
+      "semicolon": "forbid | allow",
+      "emoji": "forbid | allow",
+      "curly_quotes": "forbid | allow",
+      "oxford_comma": "require | forbid | allow  (advisory: always reported at P2, never at default_priority, because no regex tells a list from a compound sentence)",
+      "one_word_sentence": "forbid | allow",
+      "max_paragraph_sentences": "integer, or omit",
+      "max_avg_sentence_words": "integer, or omit",
+      "max_sentence_words": "integer, or omit. Per-sentence cap, replacing the STE 20/25 caps while it is set. The average cap above tolerates one long sentence in a piece of short ones; this one does not.",
+      "max_em_dashes_per_1000w": "number, used when em_dash is 'limit'",
+      "date_format": "dmy | mdy | iso | any"
+    },
+    "em_dash": "allow",
+    "semicolon": "allow",
+    "emoji": "allow",
+    "curly_quotes": "allow",
+    "oxford_comma": "allow",
+    "one_word_sentence": "allow",
+    "date_format": "any"
+  },
+
+  "_mechanics_by_register_note": "Optional. What changes off the clock. Merged over `mechanics` key by key for the register being scanned, so an entry names only what moves. This is not the register relaxing your rule: --profile cannot soften anything on its own, it selects among rules you wrote. Register names must exist in scripts/registers.json or validate.py fails, because a typo here is a rule that silently stops applying. The list is rendered into references/context.md, and restating it here is how this note once named four registers that do not exist.",
+  "_mechanics_by_register_example": {
+    "chat": {"one_word_sentence": "allow", "curly_quotes": "allow"}
+  },
+  "mechanics_by_register": {},
+
+  "_banned_words_note": "Single words, matched case-insensitively on word boundaries. An entry is a string, or an object naming one: {\"word\": \"synergy\", \"inflect\": true} also bans the regular s/es/ed/ing forms. Opt-in per entry, so a deliberately narrow ban stays narrow. Irregulars (run/ran), consonant doubling (ship/shipping), and derivations (leader/leadership) are not covered: list those by hand.",
+  "_banned_words_example": ["piggyback", {"word": "synergy", "inflect": true}],
+  "banned_words": [],
+
+  "_banned_phrases_note": "Multi-word strings. Whitespace between words matches any run of whitespace, so a phrase still matches across a line break. Takes the same object form, under \"word\" or \"phrase\", and inflects one word at a time at every position: {\"phrase\": \"thought leader\", \"inflect\": true} reaches 'thought leaders', and 'circle back' reaches 'circling back'.",
+  "_banned_phrases_example": [{"phrase": "thought leader", "inflect": true}],
+  "banned_phrases": [],
+
+  "_banned_regex_note": "Full control. Each entry needs id, label, rx. Optional: priority (P0/P1/P2), max_allowed (flag only past N hits, for overuse rather than a ban), note, applies_to_registers (a list of register names; the entry is skipped everywhere else, and omitting it means everywhere), example.",
+  "_banned_regex_example_note": "`example` is a line this pattern has to catch, and it is the only way anything can prove the rule works: a regex cannot be run backwards into text. build_voice.py --check runs it through scan.py and reports an entry without one as unproven rather than passing it. With max_allowed set, the example needs one more hit than the cap or the entry is allowed to stay quiet.",
+  "banned_regex": [
+    {
+      "id": "example-rule",
+      "label": "Example, delete this",
+      "rx": "(?i)\\bexample phrase you never write\\b",
+      "priority": "P0",
+      "example": "Here is an example phrase you never write.",
+      "note": "Shown so the shape is obvious. Delete it."
+    }
+  ],
+
+  "_required_when_note": "Advisory presence checks. Fires when none of any_of_rx matches. Keep these at P2: a fragment of a longer document legitimately has no greeting or sign-off.",
+  "required_when": [],
+
+  "_signature_moves_note": "banned_regex pointed the other way: a move you make on purpose, with a ceiling and optionally a floor. Each entry needs id, label, rx, and at least one of max_allowed (absolute), max_per_1000w (rate), min_per_1000w (rate floor). Optional: note, applies_to_registers. Give both ceilings when you want both: a rate cap alone fires on a 200-word email that used the move twice, and a count cap alone lets a 6,000-word piece use it thirty times. Under-use is opt-in and only checked past 250 words, because a rate floor on a short document is measuring the length. Everything here is reported at P2 whatever default_priority says, and that is not negotiable: an editor made to satisfy a P0 would insert the move until the check passed, which is the tic references/voice.md warns about and the voice SKILL.md guardrail 2 forbids installing.",
+  "_signature_moves_example": [
+    {
+      "id": "sig-one-line-verdict",
+      "label": "One-line verdict paragraph",
+      "rx": "(?m)^[A-Z][^.!?\\n]{4,60}\\.\\s*$",
+      "max_allowed": 6,
+      "max_per_1000w": 3.0,
+      "min_per_1000w": 0.5,
+      "applies_to_registers": ["blog", "chat"],
+      "note": "The short verdict line after a long paragraph. Two or three a piece. More is a tic."
+    }
+  ],
+  "signature_moves": [],
+
+  "_preferred_substitutions_note": "Enforced by scan.py --apply-safe: each key is rewritten to its value through fixes.py, whole-word and case-insensitive, with no part-of-speech awareness. Only a value that is itself a replacement (one to three words, not opening with an instruction verb like cut or rephrase) is applied. A key with more than one sense is rewritten in every sense it matches, so keys must be unambiguous words. 'utilize' to 'use' is safe and 'state' to 'say' turns 'state machine' into 'say machine'.",
+  "preferred_substitutions": {},
+
+  "_engine_exemptions_note": "Optional profile-level standing exemptions for measured engine false positives: {\"pattern-id\": \"reason why this writer uses this pattern\"}. Applied like inline rabbit-allow comments (findings are reported as suppressed with justification and stand down --check). The safety band cannot be exempted.",
+  "_engine_exemptions_example": {
+    "chatbot-artifact": "attested conversational style in published review essays"
+  },
+  "engine_exemptions": {},
+
+  "contrastive_pairs": []
+}

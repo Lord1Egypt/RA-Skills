@@ -1,42 +1,54 @@
-## Description: <br>
-Check Dutch train schedules, departures, disruptions, and plan journeys using the NS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Dutch train schedules, departures, disruptions, and plan journeys using the NS API.
 
-## Publisher: <br>
-[eggressive](https://clawhub.ai/user/eggressive) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eggressive](https://clawhub.ai/user/eggressive)
 
-## Use Case: <br>
-External users and developers can use this skill to ask an agent for Dutch train journey planning, station lookup, arrivals, departures, active disruptions, and commute checks backed by the official NS API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Station names, routes, and optional commute locations are sent to the NS API and may reveal travel intent. <br>
-Mitigation: Use the skill only when sharing those queries with the NS API is acceptable; avoid setting NS_HOME_STATION or NS_WORK_STATION if persistent commute locations are sensitive. <br>
-Risk: The NS subscription key is required for API access and could be exposed if committed or pasted into shared logs. <br>
-Mitigation: Provide NS_SUBSCRIPTION_KEY through a runtime secret mechanism, do not commit it, and rotate the key in the NS API portal if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/eggressive/ns-trains) <br>
-- [NS API Portal](https://apiportal.ns.nl/) <br>
-- [NS API Starter Guide](https://apiportal.ns.nl/startersguide) <br>
-- [Security Notes](artifact/SECURITY.md) <br>
+## Use Case:
 
+External users and agents use this skill to look up Dutch rail journeys, station arrivals and departures, current disruptions, station matches, and commute options through the NS API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output with setup guidance and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an NS_SUBSCRIPTION_KEY environment variable; optional commute shortcuts use NS_HOME_STATION and NS_WORK_STATION.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The NS subscription key could be exposed through the redirect-related risk identified by the security evidence.
+
+Mitigation: Use a low-privilege or free-tier NS key, inject it through a runtime secret mechanism, monitor or rotate it if exposed, and tighten redirect handling before using a valuable subscription.
+
+Risk: The skill requires outbound access to the NS API gateway and a valid NS subscription key.
+
+Mitigation: Run it only in environments where HTTPS access to gateway.apiportal.ns.nl is expected, and keep NS_SUBSCRIPTION_KEY out of committed files and shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eggressive/skills/ns-trains)
+- [NS API Portal](https://apiportal.ns.nl/)
+- [NS API Starter Guide](https://apiportal.ns.nl/startersguide)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with train times, delays, platforms, transfers, disruptions, station matches, and commute options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and an NS subscription key supplied through NS_SUBSCRIPTION_KEY; legacy NS_API_KEY is supported.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

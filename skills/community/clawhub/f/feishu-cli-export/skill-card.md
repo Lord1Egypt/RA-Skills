@@ -1,40 +1,58 @@
-## Description: <br>
-Exports Feishu or Lark cloud documents and wiki pages to Markdown, PDF, or Word through feishu-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports Feishu or Lark cloud documents and wiki pages to local Markdown files, with documented options for PDF and Word export.
 
-## Publisher: <br>
-[GISwilson](https://clawhub.ai/user/GISwilson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[giswilson](https://clawhub.ai/user/giswilson)
 
-## Use Case: <br>
-Developers and operators use this skill to export Feishu or Lark documents and wiki pages into local Markdown for review, editing, or version control, and to trigger PDF or Word exports when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flagged the release as suspicious because it includes an under-disclosed workflow that can upload local files into Feishu. <br>
-Mitigation: Use only a trusted feishu-cli, grant least-privilege Feishu credentials, and do not run import-file behavior unless you intentionally want to upload a local file. <br>
-Risk: The skill can export documents and download assets from Feishu or Lark workspaces, which may include sensitive content. <br>
-Mitigation: Use it only with documents you are authorized to export and store generated files in an appropriate local path. <br>
+## Use Case:
 
+Developers, operators, and document owners use this skill to export Feishu/Lark documents or wiki pages into local Markdown, PDF, or Word files for review, processing, archiving, or migration workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GISwilson/feishu-cli-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and exported Markdown, PDF, or Word files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read exported files and show file size and content previews; optional image downloads can write local asset files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires Feishu document access and can write exported documents, images, and assets to local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the Feishu scopes needed for the export task and treat generated files and cached tokens as sensitive.
+
+Risk: The security evidence flags a documented local-file upload/import workflow that is outside the main export purpose.
+
+Mitigation: Avoid local-file import or upload actions unless that capability is explicitly intended and confirmed before execution.
+
+Risk: Exported tables or directory nodes may be incomplete or placeholder-like according to the artifact documentation.
+
+Mitigation: Review exported content, especially tables and wiki directory nodes, before relying on it for downstream processing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/giswilson/skills/feishu-cli-export)
+- [Publisher Profile](https://clawhub.ai/user/giswilson)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create exported Markdown, PDF, Word, image, and asset files on the local filesystem.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

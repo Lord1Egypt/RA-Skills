@@ -1,45 +1,60 @@
-## Description: <br>
-Extract & classify key clauses from contract PDFs into a structured risk summary -- with bilingual (CN/EN) support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract & classify key clauses from contract PDFs into a structured risk summary with bilingual CN/EN support.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, legal operations teams, and developers can use this skill to extract contract clauses, classify them into standard categories, compare agreements, and produce bilingual risk summaries for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents mock contract-analysis output as real legal risk extraction. <br>
-Mitigation: Treat it as a scaffold or demo unless the publisher replaces canned outputs with document-derived parsing and clearly labels confidence and limitations. <br>
-Risk: Contract summaries, translations, risk scores, and negotiation suggestions may be mistaken for legal advice. <br>
-Mitigation: Require qualified legal review before contractual decisions and keep the automated-extraction disclaimer visible in generated reports. <br>
+## Use Case:
 
+External users and legal operations teams use this skill to extract contract clauses, classify them into standard categories, compare contract versions, and produce bilingual risk summaries for review. Its outputs should support triage and discussion, not replace qualified legal counsel.
 
-## Reference(s): <br>
-- [Contract Clause Risk Categories](references/risk-categories.json) <br>
-- [Input Schema](schemas/input.schema.json) <br>
-- [Output Schema](schemas/output.schema.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/contract-clause-extractor) <br>
-- [OpenClaw Input Schema](https://openclaw.dev/skills/contract-clause-extractor/input.schema.json) <br>
-- [OpenClaw Output Schema](https://openclaw.dev/skills/contract-clause-extractor/output.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, structured JSON-compatible summaries, bilingual tables, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include a legal-advice disclaimer and should be reviewed before use on real agreements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release metadata) <br>
+Risk: Security evidence reports that the script can produce canned legal-risk conclusions without actually reading contract content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as triage only; verify every extracted clause and risk rating against the source contract with a real parser, reviewer, and qualified legal counsel.
+
+Risk: Automated summaries and negotiation suggestions can be mistaken for legal advice.
+
+Mitigation: Include the legal-review disclaimer in user-facing outputs and require qualified counsel before contractual decisions.
+
+Risk: Contracts may contain confidential or personal information.
+
+Mitigation: Avoid storing source documents or sensitive identifiers in generated summaries unless the user explicitly requests it and the handling environment is appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/contract-clause-extractor)
+- [Contract Clause Risk Categories](references/risk-categories.json)
+- [Input schema](schemas/input.schema.json)
+- [Output schema](schemas/output.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, structured JSON, comparison tables, bilingual extraction tables, and CLI command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include clause categories, risk levels, hidden-risk alerts, modification suggestions, glossary entries, and legal-review disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

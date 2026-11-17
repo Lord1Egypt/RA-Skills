@@ -1,43 +1,61 @@
-## Description: <br>
-Unbounce API integration with managed OAuth for building and managing landing pages, tracking leads, and analyzing conversion data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Unbounce landing pages and leads through a connected account, with optional scheduled or event-driven automation.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operators use this skill to access Unbounce through Maton-managed OAuth, inspect accounts and pages, manage OAuth connections, track leads, and prepare approved create, update, or delete API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Maton API key and managed OAuth to access an Unbounce account, including landing page and lead data. <br>
-Mitigation: Keep MATON_API_KEY private, install only when Maton is trusted to broker the intended Unbounce account, and review Maton's handling of lead data before use. <br>
-Risk: Create, update, or delete API calls can change Unbounce connections, pages, leads, or related account resources. <br>
-Mitigation: Confirm the exact account, page, lead, connection, and intended effect with the user before any write or delete action. <br>
+## Use Case:
 
+Marketing teams and developers use this skill to retrieve leads and manage Unbounce landing pages through an authorized connection; they can also configure related automations with separate approval.
 
-## Reference(s): <br>
-- [ClawHub Unbounce skill page](https://clawhub.ai/byungkyu/unbounce) <br>
-- [Maton](https://maton.ai) <br>
-- [Unbounce API Documentation](https://developer.unbounce.com/api_reference/) <br>
-- [Maton Community](https://discord.com/invite/dBfFAcefs2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, and HTTP endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MATON_API_KEY and Maton-managed OAuth; write and delete actions require explicit user approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Overbroad account access or unapproved changes to landing pages and leads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum needed OAuth scopes and confirm each write or new connection with the user.
+
+Risk: Automations or third-party destinations could forward lead data continuously.
+
+Mitigation: Review trigger destinations and ongoing data flow; approve each automation step separately.
+
+Risk: Exposed Maton credentials could permit unauthorized access.
+
+Mitigation: Keep API keys and stored credentials private; never embed them in destinations or output.
+
+## Reference(s):
+
+- [ClawHub Unbounce skill release](https://clawhub.ai/byungkyu/skills/unbounce)
+- [Unbounce API documentation](https://developer.unbounce.com/api_reference/)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Maton homepage](https://maton.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with commands and API response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authorized reads, writes, and automation setup for a connected account.]
+
+## Skill Version(s):
+
+1.2.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

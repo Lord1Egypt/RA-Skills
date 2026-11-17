@@ -1,45 +1,55 @@
-## Description: <br>
-SendFox helps agents read, create, update, and delete SendFox contact and contact-list data through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to SendFox to read, create, update, and delete contacts and contact lists through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate SendFox accounts from an agent, including contact lookup, list management, contact creation, updates, unsubscribes, and soft-delete workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected SendFox account and may use sensitive credentials through OOMOL-managed connector access. <br>
-Mitigation: Grant only the account access needed for the intended task and avoid adding extra tools or credentials beyond the documented oo CLI connector flow. <br>
-Risk: Write and destructive actions can change SendFox contacts, list memberships, unsubscribe status, or soft-delete contacts and lists. <br>
-Mitigation: Confirm the exact target, payload, and expected effect with the user before running any action marked write or destructive. <br>
-Risk: Connector schemas and account connection state can change outside the skill text. <br>
-Mitigation: Fetch the live action schema before building payloads and use first-time setup steps only after an authentication, connection, scope, or billing error occurs. <br>
+## Use Case:
 
+Developers and agents use this skill to manage contacts and contact lists in a SendFox account connected through OOMOL.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/oomol/oo-sendfox) <br>
-- [SendFox homepage](https://sendfox.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue oo CLI commands that return JSON responses from SendFox connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup may execute an unverified CLI release and add persistent agent skills during startup synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release before use; set OO_SKILLS_SYNC_DISABLED=1 when only SendFox functionality is needed.
+
+Risk: The OOMOL service handles the SendFox connection and contact data.
+
+Mitigation: Understand OOMOL's role in connection and contact-data handling before use.
+
+## Reference(s):
+
+- [SendFox](https://sendfox.com)
+- [SendFox API documentation](https://sendfox.com/developer/docs/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON connector responses with text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read, create, update, or remove contact data; writes and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

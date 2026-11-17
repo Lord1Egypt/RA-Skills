@@ -1,41 +1,59 @@
-## Description: <br>
-Helps an agent generate Giggle.pro videos, short films, narration videos, and short drama projects from a user's story or script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Giggle.pro AI videos from user-provided stories, with modes for episodes, narration videos, and short films.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Giggle.pro video generation, including mode selection, optional style lookup, project submission, progress polling, payment handling, and returning the final signed download URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default workflow can automatically spend Giggle account credits when payment is pending. <br>
-Mitigation: Before running execute_workflow or pay, have the agent show project details and expected credit or money cost, then obtain explicit confirmation for that specific job. <br>
-Risk: The skill requires a Giggle API key and sends authenticated requests to the Giggle.pro API. <br>
-Mitigation: Install only when the publisher is trusted and the user is comfortable providing GIGGLE_API_KEY for this skill's video-generation workflow. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through creating Giggle.pro video projects from stories, selecting generation modes or styles, and returning completed video download links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/patches429/giggle-generation-drama) <br>
-- [Giggle.pro](https://giggle.pro/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with Python examples, shell setup commands, JSON API responses, and signed video download URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, network access to Giggle.pro, and GIGGLE_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.10 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The workflow can automatically pay for pending Giggle.pro video-generation tasks using the account's available credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of budget, selected mode, duration, and payment before running the workflow or any payment action.
+
+Risk: The skill requires a Giggle API key and returns signed private video download URLs.
+
+Mitigation: Store the API key only in the GIGGLE_API_KEY environment variable, avoid logging credentials, and share signed download URLs only with the intended user.
+
+Risk: Video generation depends on external Giggle.pro API calls and may run for an extended period.
+
+Mitigation: Confirm setup before use, report API errors directly, and make the user aware that the workflow can poll for up to one hour.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patches429/skills/giggle-generation-drama)
+- [Publisher profile](https://clawhub.ai/user/patches429)
+- [Giggle.pro](https://giggle.pro/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python API calls, shell setup snippets, JSON response examples, and signed video download URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, and a GIGGLE_API_KEY environment variable; successful workflows may block while polling for up to one hour.]
+
+## Skill Version(s):
+
+0.0.10 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

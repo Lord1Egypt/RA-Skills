@@ -1,0 +1,98 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * color-system / tokens-template.css
+ *
+ * Base scaffold for a light-first color token system with automatic
+ * dark-mode support.  Copy this file, swap the hex values for your
+ * chosen palette, and you have a production-ready tokens.css.
+ *
+ * Usage
+ *   1. Paste the :root block into the first <style> of your artifact.
+ *   2. Reference tokens via var(--name) from then on.
+ *   3. Dark mode flips automatically via prefers-color-scheme.
+ *   4. Add class="dark" to <html> for a manual toggle.
+ *
+ * Design decisions encoded here
+ *   - Light mode is the default (:root).
+ *   - Dark mode overrides only what actually changes (surface, fg, borders).
+ *   - Accent hue is preserved across modes; only its surrounding neutrals flip.
+ *   - Hover / active states invert their mix direction (black → white).
+ *   - Borders become semi-transparent white on dark surfaces.
+ *   - Pure black (#000) and pure white (#fff) are never used.
+ * ─────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Surface (3 levels) ──────────────────────────────────────── */
+  --bg: #fafafa; /* page canvas — never pure white */
+  --surface: #ffffff; /* elevated cards, panels */
+  --surface-warm: var(--surface);
+
+  /* ─── Foreground ramp (4 levels) ──────────────────────────────── */
+  --fg: #111111; /* primary text — never pure black */
+  --fg-2: var(--fg); /* secondary emphasis (schema slot) */
+  --muted: #6b6b6b; /* placeholders, metadata */
+  --meta: var(--muted);
+
+  /* ─── Border (2 levels) ───────────────────────────────────────── */
+  --border: #e5e5e5;
+  --border-soft: var(--border);
+
+  /* ─── Accent ──────────────────────────────────────────────────── */
+  --accent: #2f6feb;
+  --accent-on: #ffffff; /* fg when accent is the bg */
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+
+  /* ─── Semantic ────────────────────────────────────────────────── */
+  --success: #17a34a;
+  --warn: #eab308;
+  --danger: #dc2626;
+}
+
+/* ─── Dark mode (automatic) ─────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f0f0f; /* not pure black */
+    --surface: #1a1a1a;
+    --surface-warm: var(--surface);
+
+    --fg: #f0f0f0; /* not pure white */
+    --fg-2: var(--fg);
+    --muted: #888888;
+    --meta: var(--muted);
+
+    --border: rgba(255, 255, 255, 0.08);
+    --border-soft: rgba(255, 255, 255, 0.05);
+
+    /* Accent stays the same hue, but hover/active lighten instead of darken */
+    --accent-hover: color-mix(in oklab, var(--accent), white 12%);
+    --accent-active: color-mix(in oklab, var(--accent), white 20%);
+
+    /* Semantic colors often need slight desaturation on dark */
+    --success: #27a644;
+    --warn: #f5c518;
+    --danger: #ff5c5c;
+  }
+}
+
+/* ─── Dark mode (manual toggle) ─────────────────────────────────── */
+.dark,
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --surface-warm: var(--surface);
+
+  --fg: #f0f0f0;
+  --fg-2: var(--fg);
+  --muted: #888888;
+  --meta: var(--muted);
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.05);
+
+  --accent-hover: color-mix(in oklab, var(--accent), white 12%);
+  --accent-active: color-mix(in oklab, var(--accent), white 20%);
+
+  --success: #27a644;
+  --warn: #f5c518;
+  --danger: #ff5c5c;
+}

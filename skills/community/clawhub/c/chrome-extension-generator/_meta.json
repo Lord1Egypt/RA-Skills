@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "chrome-extension-generator",
+  "schema_version": "1",
+  "name": "chrome-extension-generator",
   "version": "1.0.0",
-  "publishedAt": 1772451012244
+  "description": "一键生成 Chrome 扩展程序模板",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["chrome-extension", "generator", "browser-extension", "template"],
+  "license": "MIT"
 }

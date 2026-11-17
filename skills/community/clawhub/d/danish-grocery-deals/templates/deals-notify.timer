@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly tilbudsavis notification (Sundays 09:00)
+
+[Timer]
+OnCalendar=Sun *-*-* 09:00:00 Europe/Copenhagen
+Persistent=true
+Unit=deals-notify.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,1 @@
+A person is crossing the street illegally. You must choose between saving a child or avoiding a collision with a car ahead. Estimate time to catch up and decide on overtaking based on the calculation. The response must first explain the trade-off before stating the final decision. Write pseudocode x

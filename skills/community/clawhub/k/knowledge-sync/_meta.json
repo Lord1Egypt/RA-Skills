@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7545cdqbn524tp2szvsm4w9h82zhdp",
-  "slug": "knowledge-sync",
+  "name": "knowledge-sync",
   "version": "1.0.0",
-  "publishedAt": 1773573243034
+  "slug": "knowledge-sync",
+  "description": "知识库实时同步机制 - inotifywait 监听/Git 自动备份/多端一致",
+  "author": "虾球 🦐",
+  "license": "MIT",
+  "tags": ["sync", "knowledge", "git", "realtime", "backup"],
+  "category": "automation",
+  "features": [
+    "inotifywait 实时监听（3-10 秒）",
+    "Git 自动备份（5 分钟 push/1 小时 pull）",
+    "多端同步（服务器→坚果云→Mac）",
+    "冲突检测和解决",
+    "systemd 服务守护"
+  ],
+  "scripts": [
+    "sync-realtime.sh",
+    "git-auto-push.sh",
+    "git-auto-pull.sh"
+  ]
 }

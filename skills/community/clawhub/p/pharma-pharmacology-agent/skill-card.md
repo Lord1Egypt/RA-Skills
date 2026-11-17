@@ -1,40 +1,52 @@
-## Description: <br>
-Pharmacology agent for ADME/PK profiling of drug candidates from SMILES, including drug-likeness rules, QED, SA Score, rule-based ADME predictions, PAINS alerts, and chemistry-query chaining. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pharmacology agent for ADME/PK profiling of drug candidates from SMILES, including drug-likeness rules, QED, SA Score, ADME predictions, PAINS alerts, and chaining from chemistry-query input.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers and research teams use this skill to profile candidate molecules from SMILES strings and produce structured ADME, drug-likeness, and risk-triage outputs for downstream chemistry workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rule-based pharmacology estimates can be misleading if treated as clinical, regulatory, or safety-critical conclusions. <br>
-Mitigation: Use the output for research triage only and require expert review and validated assays before medical, clinical, regulatory, or safety decisions. <br>
-Risk: The bundled Python script depends on a trusted local RDKit setup and optional RDKit components for some checks. <br>
-Mitigation: Run it in a controlled Python environment with a trusted RDKit installation and review warnings or missing optional checks in the JSON output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ADME Prediction Rules Reference](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Cheminem/pharma-pharmacology-agent) <br>
+## Use Case:
 
+Developers and cheminformatics users use this agent to profile drug-candidate SMILES strings for ADME/PK properties, drug-likeness, PAINS alerts, and rule-based pharmacology risks before chaining results to toxicology or IP workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a SMILES string or chained chemistry-query output and returns descriptors, rule-based ADME predictions, risk flags, recommended next agents, confidence, warnings, and a timestamp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rule-based ADME and drug-likeness results may be mistaken for validated clinical, safety, regulatory, or medical advice.
+
+Mitigation: Treat outputs as approximate screening heuristics and require qualified review before using results for clinical, safety, regulatory, or medical decisions.
+
+Risk: Automatic recommendations to continue into toxicology or IP workflows could pass preliminary pharmacology results downstream too broadly.
+
+Mitigation: Keep downstream chaining to toxicology or IP workflows under explicit user control and review the JSON output before invoking follow-on agents.
+
+## Reference(s):
+
+- [ADME Prediction Rules Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, analysis, guidance]
+
+**Output Format:** [Structured JSON with descriptors, rule checks, ADME predictions, risk flags, warnings, confidence, and recommended next agents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces success and error responses as JSON; results are rule-based heuristics and should not be treated as clinical, safety, regulatory, or medical advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and artifact changelog, released 2026-02-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

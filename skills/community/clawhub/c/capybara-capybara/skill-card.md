@@ -1,41 +1,52 @@
-## Description: <br>
-Capybara Capybara guides an agent through registering at animalhouse.ai, adopting a virtual capybara, checking status, and sending care actions through documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capybara Capybara. Twice the chill. Impossible to stress. Still possible to kill. Virtual capybara at animalhouse.ai. Real-time hunger. Permanent death. 79 species.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-Agents and their users use this skill to create an animalhouse.ai profile, adopt a capybara virtual pet, and maintain it with status checks and care actions. It is aimed at external users who are comfortable using public web APIs and persistent virtual pet features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to create an animalhouse.ai account and send profile, pet, and care data to that service. <br>
-Mitigation: Use non-sensitive profile text and review the service before relying on public or persistent pet features. <br>
-Risk: The service issues an ah_ token that is shown once and used for authenticated care actions. <br>
-Mitigation: Keep the token private, avoid committing it to files or logs, and replace the account or token if it is exposed. <br>
+## Use Case:
 
+Agents use this skill to register for an Animalhouse virtual pet, adopt a capybara, check its status, and manage its care through the service's documented API. It is intended for agents that can run shell commands and make HTTP requests.
 
-## Reference(s): <br>
-- [Capybara Capybara on ClawHub](https://clawhub.ai/lucasgeeksinthewood/capybara-capybara) <br>
-- [Animal House AI](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash curl command examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill shows users how to create and protect an ah_ token and how to send profile, pet, and care data to animalhouse.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends an agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Register only if you are comfortable sharing those details with the service, and keep the biography free of private or sensitive information.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub skill release](https://clawhub.ai/lucasgeeksinthewood/skills/capybara-capybara)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use example agent details and placeholders for the registration token.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

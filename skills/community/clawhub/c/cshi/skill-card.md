@@ -1,42 +1,57 @@
-## Description: <br>
-Extracts query parameters from a given URL and saves them into a MySQL database for later processing or analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts query parameters from a provided URL and saves them into a MySQL database for later processing or analysis.
 
-## Publisher: <br>
-[lin-shiwu](https://clawhub.ai/user/lin-shiwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lin-shiwu](https://clawhub.ai/user/lin-shiwu)
 
-## Use Case: <br>
-Developers and operators use this skill to extract URL query parameters and persist them to a MySQL table for later processing or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores URL query data in MySQL with weak scoping and unsafe dynamic SQL behavior. <br>
-Mitigation: Review database writes before deployment, prefer a fixed schema or strict parameter allowlist, and test against expected URL parameter names. <br>
-Risk: URL query strings may contain tokens or personal data. <br>
-Mitigation: Avoid processing URLs that contain secrets or personal data unless the target database and retention controls are approved for that data. <br>
-Risk: Database permissions may be broader than needed for saving URL parameters. <br>
-Mitigation: Use a dedicated low-privilege MySQL user and a dedicated database for this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to parse URL query strings and persist the extracted parameters in MySQL for later processing or analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lin-shiwu/cshi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with Python command examples and database configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes one URL at a time and writes extracted query parameters to the url_parameters MySQL table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: URL parameter names are used to build dynamic SQL for table creation and inserts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed schema or validate parameter names before processing untrusted URLs.
+
+Risk: Default MySQL credentials use root/root.
+
+Mitigation: Override defaults with a least-privileged MySQL account and do not use root credentials.
+
+Risk: Stored URLs or query parameters may contain sensitive data.
+
+Mitigation: Avoid sensitive URLs and use a dedicated database with appropriate access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lin-shiwu/skills/cshi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown with inline shell commands and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes parsed URL parameters to a MySQL table named url_parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

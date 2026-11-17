@@ -1,40 +1,53 @@
-## Description: <br>
-Resolve relative paths and symbolic links to absolute canonical paths. Use for getting the full, unambiguous file path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve relative paths and symbolic links to absolute canonical paths.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to resolve supplied filesystem paths into canonical absolute paths before passing paths to scripts, commands, or diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resolving a user-supplied path can reveal absolute filesystem locations in agent output. <br>
-Mitigation: Use the tool only for paths that are appropriate to disclose in the current workspace or conversation. <br>
-Risk: The documentation lists options that the bundled script does not implement. <br>
-Mitigation: Verify behavior before relying on option flags, or use the host system's realpath command when those options are required. <br>
+## Use Case:
 
+Developers and agents use this skill to resolve a relative path, symlinked path, or ambiguous filesystem path into a canonical absolute path before using it in scripts or instructions.
 
-## Reference(s): <br>
-- [ClawHub listing for Realpath Tool](https://clawhub.ai/dinghaibin/realpath-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text path output with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints one canonical path for the provided path argument; the bundled implementation does not implement every documented option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The helper may expose absolute filesystem paths for inputs supplied to it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for paths whose absolute locations are acceptable to disclose, and avoid sharing outputs that contain sensitive directory names.
+
+Risk: The included script is simpler than the documented CLI and does not implement the listed options.
+
+Mitigation: Verify behavior in the target environment before relying on documented flags or multi-path usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/realpath-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text path output, with Markdown shell command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one canonical absolute path for the provided path argument; defaults to the current directory when no path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

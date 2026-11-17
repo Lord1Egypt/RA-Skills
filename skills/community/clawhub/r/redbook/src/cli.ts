@@ -8,8 +8,9 @@
  *   redbook search "Claude Code" --cookie-source chrome --json
  *   redbook read <url> --cookie-source chrome --json
  *   redbook comments <url> --cookie-source chrome --json
- *   redbook user <user-id> --cookie-source chrome --json
- *   redbook user-posts <user-id> --cookie-source chrome --json
+ *   redbook user <user-id-or-profile-url> --cookie-source chrome --json
+ *   redbook user-posts <user-id-or-profile-url> --cookie-source chrome --json
+ *   redbook account-report <user-id-or-profile-url...> --cookie-source chrome --json
  *   redbook feed --cookie-source chrome --json
  *   redbook post --title "..." --body "..." --images img1.jpg --cookie-source chrome
  *   redbook topics "keyword" --cookie-source chrome
@@ -27,10 +28,25 @@
 
 import { Command } from "commander";
 import kleur from "kleur";
-import { readFileSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
+import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
-import { extractCookies, parseCookieString, type CookieSource } from "./lib/cookies.js";
+import { dirname, isAbsolute, join, resolve } from "node:path";
+import {
+  extractCookies,
+  parseCookieString,
+  type CookieSource,
+  type XhsCookies,
+} from "./lib/cookies.js";
+import { resolvePlatform, type PlatformId } from "./lib/platform.js";
+import { detectPlatform, detectPlatformForCookies } from "./lib/detect.js";
 import { XhsClient, XhsApiError } from "./lib/client.js";
 import { analyzeViral, formatViralAnalysis } from "./lib/analyze.js";
 import {
@@ -47,6 +63,8 @@ import { buildWebUrl, enrichWithWebUrl } from "./lib/url.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(join(__dirname, "..", "package.json"), "utf-8"));
+const REDBOOK_DIR = join(homedir(), ".redbook");
+const DEFAULT_COOKIE_FILE = join(REDBOOK_DIR, "cookies.json");
 
 const program = new Command();
 
@@ -70,6 +88,14 @@ function addCookieOption(cmd: Command): Command {
     .option(
       "--cookie-string <cookies>",
       'Manual cookie string: "a1=VALUE; web_session=VALUE" (from Chrome DevTools)'
+    )
+    .option(
+      "--platform <name>",
+      "Force backend: 'xhs' (mainland xiaohongshu.com) or 'rednote' (global rednote.com). Default: auto-detect from your login."
+    )
+    .option(
+      "--global",
+      "Force the global RedNote backend (shorthand for --platform rednote)"
     );
 }
 
@@ -77,21 +103,225 @@ function addJsonOption(cmd: Command): Command {
   return cmd.option("--json", "Output as JSON");
 }
 
-async function getClient(cookieSource: string, chromeProfile?: string, cookieString?: string): Promise<XhsClient> {
-  if (cookieString) {
-    const cookies = parseCookieString(cookieString);
-    if (!cookies.a1 || !cookies.web_session) {
-      console.error(kleur.red(
-        "Cookie string must contain at least 'a1' and 'web_session'. " +
-        "Copy them from Chrome DevTools > Application > Cookies > xiaohongshu.com"
-      ));
-      process.exit(1);
-    }
-    console.error(kleur.dim("Using manual cookie string."));
-    return new XhsClient(cookies);
+function addUserPageOptions(cmd: Command): Command {
+  return cmd
+    .option("--xsec-token <token>", "xsec_token from a user profile URL or search result")
+    .option("--xsec-source <source>", "xsec_source paired with the user profile token");
+}
+
+interface LoadedCookieFile {
+  path: string;
+  cookies: XhsCookies;
+  platform?: PlatformId;
+  createdAt?: string;
+}
+
+interface SavedCookieSummary {
+  path: string;
+  platform: PlatformId | null;
+  createdAt: string | null;
+  keyCount: number;
+  keys: string[];
+  hasA1: boolean;
+  hasWebSession: boolean;
+}
+
+function expandHomePath(filePath: string): string {
+  if (filePath === "~") return homedir();
+  if (filePath.startsWith("~/")) return join(homedir(), filePath.slice(2));
+  return filePath;
+}
+
+function resolveCookieFilePath(filePath?: string): string {
+  const raw = expandHomePath(filePath || process.env.REDBOOK_COOKIE_FILE || DEFAULT_COOKIE_FILE);
+  return isAbsolute(raw) ? raw : resolve(process.cwd(), raw);
+}
+
+function defaultCookieFileForRead(): string | null {
+  if (process.env.REDBOOK_COOKIE_FILE) {
+    return resolveCookieFilePath(process.env.REDBOOK_COOKIE_FILE);
   }
-  const cookies = await extractCookies(cookieSource as CookieSource, chromeProfile);
-  return new XhsClient(cookies);
+  return existsSync(DEFAULT_COOKIE_FILE) ? DEFAULT_COOKIE_FILE : null;
+}
+
+function parsePlatformId(value: unknown, source: string): PlatformId | undefined {
+  if (value == null || value === "") return undefined;
+  if (typeof value !== "string") {
+    throw new Error(`${source} has an invalid platform value.`);
+  }
+  const raw = value.toLowerCase();
+  if (raw === "xhs" || raw === "xiaohongshu" || raw === "mainland") return "xhs";
+  if (raw === "rednote" || raw === "global") return "rednote";
+  throw new Error(`${source} platform must be 'xhs' or 'rednote'.`);
+}
+
+function validateCookieMap(cookies: XhsCookies, source: string): XhsCookies {
+  if (!cookies.a1 || !cookies.web_session) {
+    throw new Error(
+      `${source} must contain at least 'a1' and 'web_session'. ` +
+      "Copy them from Chrome DevTools > Application > Cookies."
+    );
+  }
+  return cookies;
+}
+
+function cookieMapFromRecord(record: Record<string, unknown>, source: string): XhsCookies {
+  const cookies: Record<string, string> = {};
+  for (const [key, value] of Object.entries(record)) {
+    if (typeof value === "string") cookies[key] = value;
+  }
+  return validateCookieMap(cookies as XhsCookies, source);
+}
+
+function parseManualCookies(cookieString: string, source: string): XhsCookies {
+  return validateCookieMap(parseCookieString(cookieString), source);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value));
+}
+
+function loadSavedCookieFile(filePath?: string): LoadedCookieFile {
+  const path = resolveCookieFilePath(filePath);
+  const raw = readFileSync(path, "utf-8").trim();
+  if (!raw) throw new Error(`Cookie file is empty: ${path}`);
+
+  if (!raw.startsWith("{")) {
+    return {
+      path,
+      cookies: parseManualCookies(raw, `Cookie file ${path}`),
+    };
+  }
+
+  const parsed = JSON.parse(raw) as unknown;
+  if (!isRecord(parsed)) throw new Error(`Cookie file must be a JSON object: ${path}`);
+
+  const platform = parsePlatformId(parsed.platform, `Cookie file ${path}`);
+  const createdAt = typeof parsed.createdAt === "string" ? parsed.createdAt : undefined;
+
+  if (typeof parsed.cookieString === "string") {
+    return {
+      path,
+      platform,
+      createdAt,
+      cookies: parseManualCookies(parsed.cookieString, `Cookie file ${path}`),
+    };
+  }
+
+  if (isRecord(parsed.cookies)) {
+    return {
+      path,
+      platform,
+      createdAt,
+      cookies: cookieMapFromRecord(parsed.cookies, `Cookie file ${path}`),
+    };
+  }
+
+  return {
+    path,
+    platform,
+    createdAt,
+    cookies: cookieMapFromRecord(parsed, `Cookie file ${path}`),
+  };
+}
+
+function writeSavedCookieFile(filePath: string, cookies: XhsCookies, platform: PlatformId): LoadedCookieFile {
+  const path = resolveCookieFilePath(filePath);
+  validateCookieMap(cookies, "Cookie data");
+  mkdirSync(dirname(path), { recursive: true });
+  const createdAt = new Date().toISOString();
+  const sortedCookies = Object.fromEntries(
+    Object.entries(cookies).sort(([a], [b]) => a.localeCompare(b))
+  );
+  writeFileSync(
+    path,
+    JSON.stringify(
+      {
+        version: 1,
+        platform,
+        createdAt,
+        cookies: sortedCookies,
+      },
+      null,
+      2
+    ) + "\n",
+    { mode: 0o600 }
+  );
+  try {
+    chmodSync(path, 0o600);
+  } catch {
+    // Best effort on platforms/filesystems that do not support POSIX modes.
+  }
+  return { path, cookies, platform, createdAt };
+}
+
+function summarizeCookieFile(loaded: LoadedCookieFile): SavedCookieSummary {
+  const keys = Object.keys(loaded.cookies).sort();
+  return {
+    path: loaded.path,
+    platform: loaded.platform ?? null,
+    createdAt: loaded.createdAt ?? null,
+    keyCount: keys.length,
+    keys,
+    hasA1: Boolean(loaded.cookies.a1),
+    hasWebSession: Boolean(loaded.cookies.web_session),
+  };
+}
+
+function printCookieSummary(summary: SavedCookieSummary, verb: string): void {
+  console.log(kleur.green(`${verb}: ${summary.path}`));
+  console.log(`  Platform: ${summary.platform ?? "not stored"}`);
+  console.log(`  Keys: ${summary.keys.join(", ")}`);
+  if (summary.createdAt) console.log(`  Created: ${summary.createdAt}`);
+}
+
+function optionPlatform(opts: { global?: boolean; platform?: string }): string | undefined {
+  return opts.global ? "rednote" : opts.platform;
+}
+
+async function getClient(cookieSource: string, chromeProfile?: string, cookieString?: string, platform?: string): Promise<XhsClient> {
+  // An explicit choice (--platform / --global / REDBOOK_PLATFORM) skips detection.
+  const explicit = platform || process.env.REDBOOK_PLATFORM;
+  const cookieStringInput = cookieString || process.env.REDBOOK_COOKIE_STRING;
+
+  // ── Manual cookie string ──
+  if (cookieStringInput) {
+    const cookies = parseManualCookies(
+      cookieStringInput,
+      cookieString ? "--cookie-string" : "REDBOOK_COOKIE_STRING"
+    );
+    console.error(kleur.dim(cookieString ? "Using manual cookie string." : "Using REDBOOK_COOKIE_STRING."));
+    const cfg = explicit ? resolvePlatform(explicit) : await detectPlatformForCookies(cookies);
+    return new XhsClient(cookies, cfg);
+  }
+
+  // ── Saved cookie file ──
+  const savedCookiePath = defaultCookieFileForRead();
+  if (savedCookiePath) {
+    const saved = loadSavedCookieFile(savedCookiePath);
+    const cfg = explicit
+      ? resolvePlatform(explicit)
+      : saved.platform
+        ? resolvePlatform(saved.platform)
+        : resolvePlatform();
+    console.error(kleur.dim(`Using saved cookie file: ${saved.path}`));
+    return new XhsClient(saved.cookies, cfg);
+  }
+
+  // ── Explicit platform ──
+  if (explicit) {
+    const cfg = resolvePlatform(explicit);
+    if (cfg.id === "rednote") console.error(kleur.dim("Platform: RedNote (global, rednote.com)."));
+    const cookies = await extractCookies(cookieSource as CookieSource, chromeProfile, cfg.cookieUrl);
+    return new XhsClient(cookies, cfg);
+  }
+
+  // ── Auto-detect (default): find whichever of xiaohongshu.com / rednote.com
+  //    the user is actually logged into. ──
+  const det = await detectPlatform(cookieSource as CookieSource, chromeProfile);
+  const cookies = det.cookies
+    ?? await extractCookies(cookieSource as CookieSource, chromeProfile, det.platform.cookieUrl);
+  return new XhsClient(cookies, det.platform);
 }
 
 function output(data: unknown, json: boolean): void {
@@ -102,7 +332,7 @@ function output(data: unknown, json: boolean): void {
   }
 }
 
-function handleError(err: unknown): never {
+function handleError(err: unknown): void {
   if (err instanceof XhsApiError) {
     console.error(kleur.red(`Error: ${err.message}`));
     if (err.code) console.error(kleur.dim(`Code: ${err.code}`));
@@ -111,7 +341,9 @@ function handleError(err: unknown): never {
   } else {
     console.error(kleur.red("Unknown error"));
   }
-  process.exit(1);
+  // exitCode instead of process.exit(): exiting while fetch sockets are still
+  // closing trips a libuv assertion on Windows (UV_HANDLE_CLOSING).
+  process.exitCode = 1;
 }
 
 // ─── whoami ─────────────────────────────────────────────────────────────────
@@ -122,17 +354,137 @@ addJsonOption(whoamiCmd);
 
 whoamiCmd.action(async (opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const info = await client.getSelfInfo();
     if (opts.json) {
       output(info, true);
     } else {
       const user = info as Record<string, unknown>;
-      console.log(kleur.green("Connected to Xiaohongshu"));
+      console.log(kleur.green(`Connected to ${client.platformLabel}`));
       console.log(`  User: ${kleur.bold(String(user.nickname ?? user.nick_name ?? "unknown"))}`);
       console.log(`  ID:   ${user.user_id ?? "unknown"}`);
       if (user.red_id) console.log(`  RedID: ${user.red_id}`);
     }
+  } catch (err) {
+    handleError(err);
+  }
+});
+
+// ─── auth ──────────────────────────────────────────────────────────────────
+
+const authCmd = program
+  .command("auth")
+  .description("Manage saved cookies for cloud/CI environments");
+
+const authPathCmd = authCmd
+  .command("path")
+  .description("Print the default saved cookie file path");
+addJsonOption(authPathCmd);
+
+authPathCmd.action((opts) => {
+  const data = { path: resolveCookieFilePath() };
+  if (opts.json) output(data, true);
+  else console.log(data.path);
+});
+
+const authSaveCmd = authCmd
+  .command("save")
+  .description("Save a manual cookie string to a reusable cookie file")
+  .requiredOption(
+    "--cookie-string <cookies>",
+    'Cookie string from Chrome DevTools, e.g. "a1=VALUE; web_session=VALUE"'
+  )
+  .option("--output <path>", "Cookie file to write (default: ~/.redbook/cookies.json)")
+  .option(
+    "--platform <name>",
+    "Cookie backend: 'xhs' (mainland xiaohongshu.com) or 'rednote' (global rednote.com)",
+    "xhs"
+  )
+  .option("--global", "Save as global RedNote cookies (shorthand for --platform rednote)");
+addJsonOption(authSaveCmd);
+
+authSaveCmd.action((opts) => {
+  try {
+    const cfg = resolvePlatform(optionPlatform(opts));
+    const cookies = parseManualCookies(opts.cookieString, "--cookie-string");
+    const saved = writeSavedCookieFile(resolveCookieFilePath(opts.output), cookies, cfg.id);
+    const summary = summarizeCookieFile(saved);
+    if (opts.json) output(summary, true);
+    else printCookieSummary(summary, "Saved cookie file");
+  } catch (err) {
+    handleError(err);
+  }
+});
+
+const authExportCmd = authCmd
+  .command("export [output]")
+  .description("Export browser cookies to a reusable cookie file")
+  .option("--output <path>", "Cookie file to write (default: ~/.redbook/cookies.json)")
+  .option(
+    "--cookie-source <browser>",
+    "Browser to read cookies from (chrome, safari, firefox)",
+    "chrome"
+  )
+  .option(
+    "--chrome-profile <name>",
+    'Chrome profile directory name (e.g., "Profile 1")'
+  )
+  .option(
+    "--platform <name>",
+    "Force backend: 'xhs' (mainland xiaohongshu.com) or 'rednote' (global rednote.com). Default: auto-detect."
+  )
+  .option("--global", "Force the global RedNote backend (shorthand for --platform rednote)");
+addJsonOption(authExportCmd);
+
+authExportCmd.action(async (outputPath: string | undefined, opts) => {
+  try {
+    const explicit = optionPlatform(opts);
+    const source = opts.cookieSource as CookieSource;
+    const cfg = explicit ? resolvePlatform(explicit) : undefined;
+    const detected = cfg ? null : await detectPlatform(source, opts.chromeProfile);
+    const platform = cfg ?? detected!.platform;
+    const cookies = detected?.cookies ?? await extractCookies(
+      source,
+      opts.chromeProfile,
+      platform.cookieUrl
+    );
+    const saved = writeSavedCookieFile(resolveCookieFilePath(outputPath || opts.output), cookies, platform.id);
+    const summary = summarizeCookieFile(saved);
+    if (opts.json) output(summary, true);
+    else printCookieSummary(summary, "Exported cookie file");
+  } catch (err) {
+    handleError(err);
+  }
+});
+
+const authInspectCmd = authCmd
+  .command("inspect [file]")
+  .description("Inspect a saved cookie file without printing secret values");
+addJsonOption(authInspectCmd);
+
+authInspectCmd.action((file: string | undefined, opts) => {
+  try {
+    const summary = summarizeCookieFile(loadSavedCookieFile(file));
+    if (opts.json) output(summary, true);
+    else printCookieSummary(summary, "Cookie file");
+  } catch (err) {
+    handleError(err);
+  }
+});
+
+const authClearCmd = authCmd
+  .command("clear [file]")
+  .description("Remove a saved cookie file");
+addJsonOption(authClearCmd);
+
+authClearCmd.action((file: string | undefined, opts) => {
+  try {
+    const path = resolveCookieFilePath(file);
+    const existed = existsSync(path);
+    if (existed) unlinkSync(path);
+    const result = { path, removed: existed };
+    if (opts.json) output(result, true);
+    else console.log(existed ? kleur.green(`Removed: ${path}`) : kleur.yellow(`Not found: ${path}`));
   } catch (err) {
     handleError(err);
   }
@@ -151,7 +503,7 @@ addJsonOption(searchCmd);
 
 searchCmd.action(async (keyword, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const sortMap: Record<string, "general" | "popularity_descending" | "time_descending"> = {
       general: "general",
       popular: "popularity_descending",
@@ -205,7 +557,7 @@ addJsonOption(readCmd);
 
 readCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId, xsecToken } = parseNoteUrl(url);
 
     let result: unknown;
@@ -229,6 +581,19 @@ readCmd.action(async (url, opts) => {
     if (result && typeof result === "object" && xsecToken) {
       const r = result as Record<string, unknown>;
       if (!r.webUrl) r.webUrl = buildWebUrl(noteId, xsecToken, "pc_share");
+    }
+
+    const isEmptyResult =
+      !result ||
+      (typeof result === "object" &&
+        !Array.isArray(result) &&
+        Object.keys(result as Record<string, unknown>).length === 0);
+    if (isEmptyResult && !xsecToken) {
+      console.error(kleur.yellow(
+        "Note returned empty. This usually means the request needs an xsec_token.\n" +
+        "Tip: use a full note URL from search results or the browser address bar, e.g.:\n" +
+        `  redbook read "https://www.xiaohongshu.com/explore/${noteId}?xsec_token=TOKEN&xsec_source=pc_search"`
+      ));
     }
 
     if (opts.json) {
@@ -263,7 +628,7 @@ addJsonOption(commentsCmd);
 
 commentsCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId, xsecToken } = parseNoteUrl(url);
 
     const allComments: unknown[] = [];
@@ -303,15 +668,17 @@ commentsCmd.action(async (url, opts) => {
 // ─── user ───────────────────────────────────────────────────────────────────
 
 const userCmd = program
-  .command("user <userId>")
+  .command("user <user>")
   .description("Get user profile info");
 addCookieOption(userCmd);
 addJsonOption(userCmd);
+addUserPageOptions(userCmd);
 
-userCmd.action(async (userId, opts) => {
+userCmd.action(async (userArg, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
-    const info = await client.getUserInfo(userId);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
+    const user = parseUserProfileArg(userArg, opts);
+    const info = await client.getUserInfo(user.userId, user);
     output(info, opts.json ?? false);
   } catch (err) {
     handleError(err);
@@ -321,24 +688,26 @@ userCmd.action(async (userId, opts) => {
 // ─── user-posts ─────────────────────────────────────────────────────────────
 
 const userPostsCmd = program
-  .command("user-posts <userId>")
+  .command("user-posts <user>")
   .description("List a user's posted notes");
 addCookieOption(userPostsCmd);
 addJsonOption(userPostsCmd);
+addUserPageOptions(userPostsCmd);
 userPostsCmd.option("--cursor <cursor>", "Resume pagination from a cursor (last note_id)");
 userPostsCmd.option("--all", "Fetch all pages (paginate until no more results)");
 userPostsCmd.option("--delay <ms>", "Delay in ms between page fetches (default: 3000)", "3000");
 
-userPostsCmd.action(async (userId, opts) => {
+userPostsCmd.action(async (userArg, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
+    const user = parseUserProfileArg(userArg, opts);
 
     if (opts.all) {
       let cursor: string = opts.cursor ?? "";
       const allNotes: Array<Record<string, unknown>> = [];
       let page = 1;
       while (true) {
-        const res = (await client.getUserNotes(userId, cursor)) as {
+        const res = (await client.getUserNotes(user.userId, cursor, user)) as {
           notes?: Array<Record<string, unknown>>;
           has_more?: boolean;
           cursor?: string;
@@ -365,7 +734,7 @@ userPostsCmd.action(async (userId, opts) => {
       return;
     }
 
-    const result = await client.getUserNotes(userId, opts.cursor ?? "");
+    const result = await client.getUserNotes(user.userId, opts.cursor ?? "", user);
     enrichWithWebUrl(result, "pc_user");
     if (opts.json) {
       output(result, true);
@@ -385,6 +754,77 @@ userPostsCmd.action(async (userId, opts) => {
   }
 });
 
+// ─── account-report ─────────────────────────────────────────────────────────
+
+const accountReportCmd = program
+  .command("account-report [users...]")
+  .alias("creator-report")
+  .description("Summarize posting activity and engagement for one or more accounts");
+addCookieOption(accountReportCmd);
+addJsonOption(accountReportCmd);
+addUserPageOptions(accountReportCmd);
+accountReportCmd.option("--file <path>", "Read account IDs/profile URLs from a newline-separated file");
+accountReportCmd.option("--month <yyyy-mm>", "Month to count posts for (default: current month)");
+accountReportCmd.option("--all", "Fetch all pages for each account");
+accountReportCmd.option("--max-pages <n>", "Max pages per account when --all is not set (default: 1)");
+accountReportCmd.option("--delay <ms>", "Delay in ms between page/account fetches (default: 3000)");
+
+accountReportCmd.action(async (users: string[] | undefined, opts) => {
+  try {
+    const inputs = collectAccountInputs(users ?? [], opts.file);
+    if (inputs.length === 0) {
+      console.error(kleur.red("Provide at least one account ID/profile URL, or use --file <path>."));
+      process.exitCode = 1;
+      return;
+    }
+
+    const month = parseReportMonth(opts.month);
+    const delayMs = Math.max(0, parseInt(opts.delay ?? "3000", 10) || 0);
+    const maxPages = opts.all
+      ? Number.POSITIVE_INFINITY
+      : Math.max(1, parseInt(opts.maxPages ?? "1", 10) || 1);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
+    const reports: AccountReport[] = [];
+    const errors: Array<{ input: string; userId?: string; error: string }> = [];
+
+    for (let idx = 0; idx < inputs.length; idx++) {
+      const input = inputs[idx];
+      let userId: string | undefined;
+      try {
+        const user = parseUserProfileArg(input, opts);
+        userId = user.userId;
+        const report = await buildAccountReport(client, input, user, month, maxPages, delayMs);
+        reports.push(report);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        errors.push({ input, userId, error: message });
+        console.error(kleur.red(`Failed ${userId ?? input}: ${message}`));
+      }
+
+      if (idx < inputs.length - 1 && delayMs > 0) {
+        await sleep(delayMs);
+      }
+    }
+
+    const result = {
+      month: month.label,
+      generatedAt: new Date().toISOString(),
+      accounts: reports,
+      errors,
+    };
+
+    if (opts.json) {
+      output(result, true);
+    } else {
+      printAccountReport(result);
+    }
+
+    if (errors.length > 0) process.exitCode = 1;
+  } catch (err) {
+    handleError(err);
+  }
+});
+
 // ─── feed ───────────────────────────────────────────────────────────────────
 
 const feedCmd = program
@@ -396,7 +836,7 @@ addJsonOption(feedCmd);
 
 feedCmd.action(async (opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const result = await client.getHomeFeed(opts.category);
     enrichWithWebUrl(result, "pc_feed");
     output(result, opts.json ?? false);
@@ -420,12 +860,13 @@ addJsonOption(postCmd);
 
 postCmd.action(async (opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const imageFiles: string[] = opts.images ?? [];
 
     if (imageFiles.length === 0) {
       console.error(kleur.red("At least one image is required. Use --images <path>"));
-      process.exit(1);
+      process.exitCode = 1;
+      return;
     }
 
     // Upload images
@@ -493,7 +934,7 @@ addJsonOption(topicsCmd);
 
 topicsCmd.action(async (keyword, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const result = await client.searchTopics(keyword);
     if (opts.json) {
       output(result, true);
@@ -522,14 +963,15 @@ addJsonOption(favoritesCmd);
 
 favoritesCmd.action(async (userId, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
 
     if (!userId) {
       const me = (await client.getSelfInfo()) as Record<string, unknown>;
       userId = String(me.user_id ?? "");
       if (!userId) {
         console.error(kleur.red("Could not determine current user ID"));
-        process.exit(1);
+        process.exitCode = 1;
+        return;
       }
     }
 
@@ -579,7 +1021,7 @@ addJsonOption(collectCmd);
 
 collectCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId } = parseNoteUrl(url);
     const result = await client.collectNote(noteId);
     if (opts.json) {
@@ -602,7 +1044,7 @@ addJsonOption(uncollectCmd);
 
 uncollectCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId } = parseNoteUrl(url);
     const result = await client.uncollectNote(noteId);
     if (opts.json) {
@@ -626,7 +1068,7 @@ addJsonOption(likeCmd);
 
 likeCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId } = parseNoteUrl(url);
     if (opts.undo) {
       const result = await client.unlikeNote(noteId);
@@ -651,7 +1093,7 @@ addJsonOption(followersCmd);
 
 followersCmd.action(async (userId, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const allUsers: unknown[] = [];
     let cursor = "";
     let hasMore = true;
@@ -694,7 +1136,7 @@ addJsonOption(followingCmd);
 
 followingCmd.action(async (userId, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const allUsers: unknown[] = [];
     let cursor = "";
     let hasMore = true;
@@ -736,7 +1178,7 @@ addJsonOption(deleteCmd);
 
 deleteCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId } = parseNoteUrl(url);
     const result = await client.deleteNote(noteId);
     if (opts.json) {
@@ -759,7 +1201,7 @@ addJsonOption(boardsCmd);
 
 boardsCmd.action(async (userId, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     let uid = userId;
     if (!uid) {
       const me = (await client.getSelfInfo()) as Record<string, string>;
@@ -797,7 +1239,7 @@ addJsonOption(boardCmd);
 
 boardCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const boardId = parseBoardUrl(url);
 
     console.error(kleur.dim(`Fetching board ${boardId}...`));
@@ -882,7 +1324,7 @@ addJsonOption(healthCmd);
 
 healthCmd.action(async (opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
 
     // Fetch notes from creator backend (v2 endpoint returns hidden level field)
     console.error(kleur.dim("Fetching notes from creator backend..."));
@@ -974,7 +1416,7 @@ addJsonOption(analyzeViralCmd);
 
 analyzeViralCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId, xsecToken } = parseNoteUrl(url);
 
     // 1. Fetch the note (same pattern as `read` — prefer HTML, API when xsec_token present)
@@ -1001,7 +1443,8 @@ analyzeViralCmd.action(async (url, opts) => {
 
     if (!userId) {
       console.error(kleur.red("Could not extract author user_id from note"));
-      process.exit(1);
+      process.exitCode = 1;
+      return;
     }
 
     // 2. Fetch comments, author posts, and author info in parallel
@@ -1090,10 +1533,11 @@ viralTemplateCmd.action(async (urls: string[], opts) => {
   try {
     if (urls.length > 3) {
       console.error(kleur.red("Maximum 3 URLs allowed"));
-      process.exit(1);
+      process.exitCode = 1;
+      return;
     }
 
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const commentPages = Math.min(parseInt(opts.commentPages) || 3, 10);
     const analyses = [];
 
@@ -1176,7 +1620,8 @@ viralTemplateCmd.action(async (urls: string[], opts) => {
 
     if (analyses.length === 0) {
       console.error(kleur.red("No notes could be analyzed"));
-      process.exit(1);
+      process.exitCode = 1;
+      return;
     }
 
     const template = extractTemplate(analyses);
@@ -1202,7 +1647,7 @@ addJsonOption(commentCmd);
 
 commentCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId } = parseNoteUrl(url);
     const result = await client.postComment(noteId, opts.content);
     if (opts.json) {
@@ -1228,7 +1673,7 @@ addJsonOption(replyCmd);
 
 replyCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId } = parseNoteUrl(url);
     const result = await client.replyComment(noteId, opts.commentId, opts.content);
     if (opts.json) {
@@ -1257,7 +1702,7 @@ addJsonOption(batchReplyCmd);
 
 batchReplyCmd.action(async (url, opts) => {
   try {
-    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString);
+    const client = await getClient(opts.cookieSource, opts.chromeProfile, opts.cookieString, opts.global ? "rednote" : opts.platform);
     const { noteId, xsecToken } = parseNoteUrl(url);
     const strategy = opts.strategy as StrategyName;
     const max = Math.min(parseInt(opts.max) || 10, MAX_REPLIES_HARD_CAP);
@@ -1377,6 +1822,67 @@ renderCmd.action(async (file, opts) => {
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
+interface ParsedUserProfileArg {
+  userId: string;
+  xsecToken: string | null;
+  xsecSource: string | null;
+}
+
+interface ReportMonth {
+  label: string;
+  start: Date;
+  end: Date;
+}
+
+interface AccountReportNote {
+  noteId: string;
+  title: string;
+  type: string;
+  publishedAt: string | null;
+  likes: number;
+  comments: number;
+  collects: number;
+  shares: number;
+  totalEngagement: number;
+  webUrl?: string;
+}
+
+interface AccountReport {
+  input: string;
+  userId: string;
+  month: string;
+  fetchedPosts: number;
+  postsInMonth: number;
+  pagesFetched: number;
+  complete: boolean;
+  hasMore: boolean;
+  nextCursor: string | null;
+  totals: {
+    likes: number;
+    comments: number;
+    collects: number;
+    shares: number;
+    totalEngagement: number;
+  };
+  monthTotals: {
+    likes: number;
+    comments: number;
+    collects: number;
+    shares: number;
+    totalEngagement: number;
+  };
+  averages: {
+    likes: number;
+    comments: number;
+    collects: number;
+    shares: number;
+    totalEngagement: number;
+  };
+  topByLikes: AccountReportNote | null;
+  topByEngagement: AccountReportNote | null;
+  notes: AccountReportNote[];
+}
+
 function parseBoardUrl(url: string): string {
   if (url.includes("xiaohongshu.com/board/")) {
     const urlObj = new URL(url);
@@ -1409,6 +1915,310 @@ function parseNoteUrl(url: string): {
   }
 
   return { noteId, xsecToken };
+}
+
+function parseUserProfileArg(
+  input: string,
+  opts: { xsecToken?: string; xsecSource?: string } = {}
+): ParsedUserProfileArg {
+  let userId = input;
+  let xsecToken: string | null = opts.xsecToken ?? null;
+  let xsecSource: string | null = opts.xsecSource ?? null;
+
+  try {
+    const url = new URL(input);
+    const pathParts = url.pathname.split("/").filter(Boolean);
+    const profileIdx = pathParts.findIndex((part) => part === "profile");
+    userId = profileIdx >= 0 && pathParts[profileIdx + 1]
+      ? pathParts[profileIdx + 1]
+      : pathParts[pathParts.length - 1] ?? input;
+    xsecToken = url.searchParams.get("xsec_token") ?? xsecToken;
+    xsecSource = url.searchParams.get("xsec_source") ?? xsecSource;
+  } catch {
+    // Raw user id; optional token/source may still come from flags.
+  }
+
+  // Red IDs (小红书号) are all digits; the API needs the 24-char hex user ID.
+  if (/^\d+$/.test(userId)) {
+    throw new Error(
+      `"${userId}" looks like a 小红书号 (Red ID), not a user ID. ` +
+      "Use the 24-character ID from the profile URL (/user/profile/<id>), or pass the full profile URL."
+    );
+  }
+
+  if (xsecToken && !xsecSource) xsecSource = "pc_search";
+
+  return { userId, xsecToken, xsecSource };
+}
+
+function collectAccountInputs(users: string[], file?: string): string[] {
+  const fromFile = file
+    ? readFileSync(file, "utf-8")
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0 && !line.startsWith("#"))
+    : [];
+
+  const seen = new Set<string>();
+  const inputs: string[] = [];
+  for (const input of [...users, ...fromFile]) {
+    const trimmed = input.trim();
+    if (!trimmed || seen.has(trimmed)) continue;
+    seen.add(trimmed);
+    inputs.push(trimmed);
+  }
+  return inputs;
+}
+
+function parseReportMonth(input?: string): ReportMonth {
+  const now = new Date();
+  const label = input ?? `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  const match = /^(\d{4})-(\d{2})$/.exec(label);
+  if (!match) {
+    throw new Error("Invalid --month. Use YYYY-MM, for example 2026-07.");
+  }
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  if (month < 1 || month > 12) {
+    throw new Error("Invalid --month. Month must be 01-12.");
+  }
+
+  return {
+    label,
+    start: new Date(year, month - 1, 1),
+    end: new Date(year, month, 1),
+  };
+}
+
+async function buildAccountReport(
+  client: XhsClient,
+  input: string,
+  user: ParsedUserProfileArg,
+  month: ReportMonth,
+  maxPages: number,
+  delayMs: number
+): Promise<AccountReport> {
+  const rawNotes: Array<Record<string, unknown>> = [];
+  let cursor = "";
+  let pagesFetched = 0;
+  let hasMore = false;
+  let nextCursor: string | null = null;
+
+  while (pagesFetched < maxPages) {
+    const res = (await client.getUserNotes(user.userId, cursor, user)) as {
+      notes?: Array<Record<string, unknown>>;
+      has_more?: boolean;
+      cursor?: string;
+    };
+
+    const notes = res.notes ?? [];
+    enrichWithWebUrl(notes, "pc_user");
+    rawNotes.push(...notes);
+    pagesFetched++;
+
+    hasMore = Boolean(res.has_more);
+    nextCursor = typeof res.cursor === "string" && res.cursor.length > 0
+      ? res.cursor
+      : null;
+
+    if (!hasMore || !nextCursor || notes.length === 0) break;
+    if (pagesFetched >= maxPages) break;
+
+    cursor = nextCursor;
+    if (delayMs > 0) await sleep(delayMs);
+  }
+
+  const notes = rawNotes.map(normalizeAccountReportNote);
+  const monthNotes = notes.filter((note) => isInReportMonth(note.publishedAt, month));
+  const totals = sumReportNotes(notes);
+  const monthTotals = sumReportNotes(monthNotes);
+
+  return {
+    input,
+    userId: user.userId,
+    month: month.label,
+    fetchedPosts: notes.length,
+    postsInMonth: monthNotes.length,
+    pagesFetched,
+    complete: !hasMore || !nextCursor,
+    hasMore,
+    nextCursor,
+    totals,
+    monthTotals,
+    averages: averageReportNotes(totals, notes.length),
+    topByLikes: topReportNote(notes, "likes"),
+    topByEngagement: topReportNote(notes, "totalEngagement"),
+    notes,
+  };
+}
+
+function normalizeAccountReportNote(note: Record<string, unknown>): AccountReportNote {
+  const interactInfo = (note.interact_info ?? {}) as Record<string, unknown>;
+  const likes = metricNumber(interactInfo.liked_count ?? note.liked_count);
+  const comments = metricNumber(interactInfo.comment_count ?? note.comment_count);
+  const collects = metricNumber(interactInfo.collected_count ?? note.collected_count);
+  const shares = metricNumber(interactInfo.share_count ?? note.share_count);
+  const noteId = String(note.note_id ?? note.noteId ?? "");
+  const title = String(note.display_title ?? note.title ?? note.desc ?? "(no title)");
+  const publishedAt = parseNotePublishedAt(note);
+  const webUrl = typeof note.webUrl === "string"
+    ? note.webUrl
+    : typeof note.url === "string"
+      ? note.url
+      : undefined;
+
+  return {
+    noteId,
+    title,
+    type: String(note.type ?? "unknown"),
+    publishedAt: publishedAt ? publishedAt.toISOString() : null,
+    likes,
+    comments,
+    collects,
+    shares,
+    totalEngagement: likes + comments + collects + shares,
+    ...(webUrl ? { webUrl } : {}),
+  };
+}
+
+function parseNotePublishedAt(note: Record<string, unknown>): Date | null {
+  for (const key of [
+    "time",
+    "create_time",
+    "createTime",
+    "timestamp",
+    "publish_time",
+    "publishTime",
+    "last_update_time",
+    "lastUpdateTime",
+  ]) {
+    const parsed = parseTimestampValue(note[key]);
+    if (parsed) return parsed;
+  }
+  return null;
+}
+
+function parseTimestampValue(value: unknown): Date | null {
+  if (typeof value === "number") return timestampNumberToDate(value);
+  if (typeof value !== "string") return null;
+
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  if (/^\d+$/.test(trimmed)) {
+    return timestampNumberToDate(Number(trimmed));
+  }
+
+  const parsed = Date.parse(trimmed);
+  return Number.isNaN(parsed) ? null : new Date(parsed);
+}
+
+function timestampNumberToDate(value: number): Date | null {
+  if (!Number.isFinite(value) || value <= 0) return null;
+  const ms = value < 1_000_000_000_000 ? value * 1000 : value;
+  const date = new Date(ms);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function isInReportMonth(isoDate: string | null, month: ReportMonth): boolean {
+  if (!isoDate) return false;
+  const date = new Date(isoDate);
+  return date >= month.start && date < month.end;
+}
+
+function metricNumber(value: unknown): number {
+  if (typeof value === "number") return Number.isFinite(value) ? value : 0;
+  if (typeof value !== "string") return 0;
+
+  const s = value.trim().replace(/,/g, "");
+  if (!s) return 0;
+  if (s.endsWith("万")) {
+    const n = parseFloat(s.slice(0, -1));
+    return Number.isNaN(n) ? 0 : Math.round(n * 10000);
+  }
+  if (s.endsWith("亿")) {
+    const n = parseFloat(s.slice(0, -1));
+    return Number.isNaN(n) ? 0 : Math.round(n * 100000000);
+  }
+  const n = parseFloat(s);
+  return Number.isNaN(n) ? 0 : Math.round(n);
+}
+
+function sumReportNotes(notes: AccountReportNote[]): AccountReport["totals"] {
+  return notes.reduce(
+    (acc, note) => ({
+      likes: acc.likes + note.likes,
+      comments: acc.comments + note.comments,
+      collects: acc.collects + note.collects,
+      shares: acc.shares + note.shares,
+      totalEngagement: acc.totalEngagement + note.totalEngagement,
+    }),
+    { likes: 0, comments: 0, collects: 0, shares: 0, totalEngagement: 0 }
+  );
+}
+
+function averageReportNotes(
+  totals: AccountReport["totals"],
+  count: number
+): AccountReport["averages"] {
+  if (count === 0) {
+    return { likes: 0, comments: 0, collects: 0, shares: 0, totalEngagement: 0 };
+  }
+  return {
+    likes: round2(totals.likes / count),
+    comments: round2(totals.comments / count),
+    collects: round2(totals.collects / count),
+    shares: round2(totals.shares / count),
+    totalEngagement: round2(totals.totalEngagement / count),
+  };
+}
+
+function topReportNote(
+  notes: AccountReportNote[],
+  field: "likes" | "totalEngagement"
+): AccountReportNote | null {
+  if (notes.length === 0) return null;
+  return notes.reduce((best, note) => note[field] > best[field] ? note : best, notes[0]);
+}
+
+function printAccountReport(result: {
+  month: string;
+  accounts: AccountReport[];
+  errors: Array<{ input: string; userId?: string; error: string }>;
+}): void {
+  console.log(kleur.bold(`Account report (${result.month})`));
+  for (const account of result.accounts) {
+    const partial = account.complete ? "" : kleur.yellow(" partial");
+    const top = account.topByLikes
+      ? `${formatNumber(account.topByLikes.likes)} likes - ${account.topByLikes.title}`
+      : "n/a";
+    console.log(
+      `${kleur.bold(account.userId)}${partial}  ` +
+        `posts:${account.fetchedPosts}  month:${account.postsInMonth}  ` +
+        `likes:${formatNumber(account.totals.likes)}  ` +
+        `avg:${formatNumber(account.averages.likes)}  top:${top}`
+    );
+  }
+
+  if (result.errors.length > 0) {
+    console.log(kleur.red(`\n${result.errors.length} account(s) failed:`));
+    for (const err of result.errors) {
+      console.log(`  ${err.userId ?? err.input}: ${err.error}`);
+    }
+  }
+}
+
+function formatNumber(value: number): string {
+  return value.toLocaleString("en-US");
+}
+
+function round2(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 program.parse();

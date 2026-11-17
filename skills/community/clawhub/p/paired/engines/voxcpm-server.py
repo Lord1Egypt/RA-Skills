@@ -21,7 +21,7 @@ except Exception:
     pass
 
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 from voxcpm import VoxCPM
 
@@ -79,7 +79,13 @@ class SynthRequest(BaseModel):
 
 
 @app.post("/synth")
-def synth(req: SynthRequest):
+def synth(req: SynthRequest, request: Request):
+    # Optional shared-secret gate. If VOXCPM_TOKEN is set and non-empty, /synth
+    # requires an X-Paired-Token header matching it; otherwise open (localhost-
+    # only bind via VOXCPM_BIND already removes network exposure).
+    token = os.environ.get("VOXCPM_TOKEN", "")
+    if token and request.headers.get("X-Paired-Token") != token:
+        raise HTTPException(401, "Invalid or missing X-Paired-Token")
     if MODEL is None:
         if MODEL_LOADING:
             raise HTTPException(503, "Model still loading, retry in 60s")
@@ -127,4 +133,6 @@ def synth(req: SynthRequest):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8056, timeout_keep_alive=600)
+    # Default to localhost only; override with VOXCPM_BIND=0.0.0.0 to expose.
+    bind = os.environ.get("VOXCPM_BIND", "127.0.0.1")
+    uvicorn.run(app, host=bind, port=8056, timeout_keep_alive=600)

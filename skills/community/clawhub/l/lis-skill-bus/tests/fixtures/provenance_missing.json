@@ -1,0 +1,6 @@
+{
+  "schema": "cad-contract/v1",
+  "contract_id": "manual-no-provenance",
+  "coordinate_unit": "mm",
+  "contract": {"items": [{"name": "来源缺失示例", "qty": 1}]}
+}

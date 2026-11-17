@@ -1,41 +1,56 @@
-## Description: <br>
-Provides AI agents with web search, page and PDF extraction, YouTube transcripts, summarization, semantic search, and automated research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI agents with web search, page and PDF extraction, YouTube transcript retrieval, summarization, semantic search, and automated research workflows.
 
-## Publisher: <br>
-[nishant-clawit](https://clawhub.ai/user/nishant-clawit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nishant-clawit](https://clawhub.ai/user/nishant-clawit)
 
-## Use Case: <br>
-Developers and agent builders use this MCP skill to let agents search the web, extract content from pages and PDFs, retrieve YouTube transcripts, summarize text, store searchable text, and run multi-step research workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A transcript tool can pass a user-supplied URL into a local shell command. <br>
-Mitigation: Review before installing; use only trusted inputs, replace shell command construction with argument-array execution or a safer transcript library, and avoid passing internal or sensitive URLs. <br>
-Risk: Search queries and fetched web content are sent to external sites. <br>
-Mitigation: Do not pass secrets in search queries or web content, validate or allowlist URLs, and add request limits before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nishant-clawit/openclaw-web-search-mcp) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [MCP tool manifest](artifact/mcp.json) <br>
+## Use Case:
 
+Developers and agent operators use this MCP skill to let agents search the web, extract web and PDF content, retrieve YouTube transcripts, summarize text, perform semantic search, and run multi-step research workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool outputs may include external search results, extracted text capped by the artifact, transcript segments, summaries, embedding storage status, semantic search matches, and research findings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unvalidated URLs may allow requests to private or internal destinations.
+
+Mitigation: Run only in a sandbox with restricted network egress and trusted callers until URL validation and private-network blocking are added.
+
+Risk: The YouTube transcript path uses shell command execution and may run local commands if input is unsafe.
+
+Mitigation: Replace shell execution with argument-based process execution, or disable the transcript tool until that fix is made.
+
+Risk: Network extraction can consume excessive time or data without explicit limits.
+
+Mitigation: Add request timeouts, response size limits, dependency updates, and review steps before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nishant-clawit/skills/openclaw-web-search-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON responses containing search results, extracted content, transcripts, summaries, embeddings, semantic matches, or research findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-dependent outputs; extracted page, PDF, and transcript content may be truncated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

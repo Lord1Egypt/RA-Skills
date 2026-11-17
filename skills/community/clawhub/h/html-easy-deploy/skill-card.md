@@ -1,41 +1,58 @@
-## Description: <br>
-Instantly deploy a single self-contained HTML page to htmlcode.fun for quick live URLs, with versioned updates, required descriptions, and liked-version protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instantly deploy a single self-contained HTML page to htmlcode.fun for quick live URLs. Alias of html-deploy, with versioned updates, description-required deploys, and liked-version protection.
 
-## Publisher: <br>
-[520xiaomumu](https://clawhub.ai/user/520xiaomumu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[520xiaomumu](https://clawhub.ai/user/520xiaomumu)
 
-## Use Case: <br>
-Developers and agents use this skill to publish, inspect, update, and manage single-file HTML pages on htmlcode.fun when fast sharing is more important than full project hosting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill publishes HTML pages to a public service, which can expose secrets, private data, or unfinished content if the page is not reviewed before deployment. <br>
-Mitigation: Review page content before deployment and avoid including secrets or private data. <br>
-Risk: Overwrite, unpublish, delete, set-current, and local output-file actions can change public versions or replace local files. <br>
-Mitigation: Explicitly confirm sensitive version actions and any --output path before running them. <br>
+## Use Case:
 
+Developers and agents use this skill to publish, update, inspect, fetch, and manage single-file HTML pages on htmlcode.fun when fast sharing is more important than full project hosting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/520xiaomumu/html-easy-deploy) <br>
-- [htmlcode.fun live guide](https://www.htmlcode.fun/s/htmlcode-fun-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports deployment URLs, version metadata, preserve hints, and troubleshooting fields returned by htmlcode.fun.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server-resolved release metadata) <br>
+Risk: Publishing or version-management commands can change public htmlcode.fun content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before deploy, overwrite, unpublish, delete, switch-current, or append operations, and confirm destructive or public-content changes with the user.
+
+Risk: Fetching deployed content with --output can overwrite a local file path supplied to the script.
+
+Mitigation: Check the output path before running get --output, especially when reusing filenames in the workspace.
+
+Risk: Overwriting, unpublishing, or deleting an existing version can affect preserved work if the wrong version is targeted.
+
+Mitigation: Inspect version history first and rely on the likeCount preflight; append a new version when the target version is liked or should be preserved.
+
+## Reference(s):
+
+- [htmlcode.fun live guide](https://www.htmlcode.fun/s/htmlcode-fun-guide)
+- [htmlcode.fun service](https://www.htmlcode.fun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results from the bundled deployment script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write fetched HTML content to a user-specified local output path when using the get command.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

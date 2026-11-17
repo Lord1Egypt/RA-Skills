@@ -1,44 +1,59 @@
-## Description: <br>
-量子密信即时通讯渠道插件。将 OpenClaw 接入量子密信平台，实现 AI 智能回复、多账号管理、安全配对等功能。支持文本、图片、文件、图文消息，群聊和私聊。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+量子密信即时通讯渠道插件，将 OpenClaw 接入量子密信平台，实现 AI 智能回复、多账号管理、安全配对，并支持文本、图片、文件、图文消息以及群聊和私聊。
 
-## Publisher: <br>
-[mildniu](https://clawhub.ai/user/mildniu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mildniu](https://clawhub.ai/user/mildniu)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw agents to Quantum IM for direct and group conversations, AI replies, multi-account routing, and controlled private-message access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The webhook can be exposed to inbound network traffic and handles private messages. <br>
-Mitigation: Run the webhook behind HTTPS or a trusted reverse proxy, restrict who can reach the port, and keep dmSecurity set to pairing or allowlist unless open access is intentional. <br>
-Risk: The connector depends on a robot key for outbound Quantum IM API calls. <br>
-Mitigation: Protect and rotate the robot key, avoid logging secrets, and review Quantum IM message-data handling before production use. <br>
-Risk: Evidence reports vulnerable dev dependencies may exist for production deployment. <br>
-Mitigation: Update or skip vulnerable dev dependencies before deploying the plugin in production. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to connect an OpenClaw agent to the Quantum IM messaging platform for direct and group chat replies, multi-account operation, and text or media message handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mildniu/quantum-im-bot) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub marketplace](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance for a Node-based OpenClaw channel plugin that handles text, image, file, and news messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and package.json) <br>
+Risk: The skill exposes an inbound webhook that can dispatch messages to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the webhook with authentication or signatures, require HTTPS, and enforce pairing or allowlist checks before agent dispatch.
+
+Risk: Credentials and message data may be sent through configurable HTTP endpoints or plaintext URL parameters.
+
+Mitigation: Use HTTPS for inbound and outbound traffic and treat existing keys as sensitive secrets that should not be exposed in logs or URLs.
+
+Risk: Media uploads can read local file paths and send files to the Quantum IM API.
+
+Mitigation: Restrict media uploads to an approved directory or opaque media IDs and keep request size and rate limits in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mildniu/skills/quantum-im-bot)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub plugin marketplace](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Quantum IM robot credentials; supports direct and group chats plus text, image, file, and news messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

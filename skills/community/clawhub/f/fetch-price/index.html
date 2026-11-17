@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>fetch-price — Trade Pricing &amp; AI Agent Commerce</title>
+<style>
+:root{--bg:#08090b;--card:#0f1115;--border:#1a1d22;--text:#9ca3af;--white:#f9fafb;--green:#10b981;--blue:#3b82f6;--amber:#f59e0b;--red:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.625;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,9,11,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:60px}
+nav .logo{font-weight:700;font-size:1.15rem;color:var(--white);text-decoration:none}
+nav .logo span{color:var(--green)}
+nav a{color:var(--text);text-decoration:none;font-size:.875rem;margin-left:28px;transition:color .15s}
+nav a:hover{color:var(--white)}
+
+/* Hero */
+.hero{padding:100px 0 80px;text-align:center}
+.hero .badge{display:inline-block;background:rgba(16,185,129,0.1);color:var(--green);border:1px solid rgba(16,185,129,0.2);padding:5px 14px;border-radius:20px;font-size:.8rem;margin-bottom:24px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);color:var(--white);line-height:1.15;margin-bottom:20px;letter-spacing:-0.02em}
+.hero h1 span{color:var(--green)}
+.hero p{font-size:1.15rem;max-width:600px;margin:0 auto 36px;color:var(--text)}
+.hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:8px;font-weight:600;font-size:.925rem;text-decoration:none;display:inline-block;cursor:pointer;border:none;transition:all .15s}
+.btn-green{background:var(--green);color:#000}
+.btn-green:hover{background:#34d399}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--white)}
+.btn-outline:hover{border-color:#374151}
+
+/* Sections */
+section{padding:80px 0}
+.section-label{font-size:.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:12px;font-weight:600}
+h2{font-size:clamp(1.5rem,3vw,2rem);color:var(--white);margin-bottom:16px;letter-spacing:-0.02em}
+.section-intro{font-size:1.05rem;max-width:640px;color:var(--text);margin-bottom:48px}
+
+/* Two columns */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:0}
+@media(max-width:768px){.two-col{grid-template-columns:1fr}}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px}
+.card .icon{font-size:1.6rem;margin-bottom:16px}
+.card h3{color:var(--white);margin-bottom:8px;font-size:1.1rem}
+.card p{font-size:.925rem;color:var(--text);margin-bottom:12px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card-grid.three{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+
+/* Stats */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;margin:48px 0}
+@media(max-width:640px){.stat-row{grid-template-columns:repeat(2,1fr)}}
+.stat .num{font-size:2rem;color:var(--white);font-weight:700}
+.stat .label{font-size:.85rem;color:var(--text)}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pricing-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:36px;text-align:center}
+.pricing-card.featured{border-color:var(--green);position:relative}
+.pricing-card .popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:4px 16px;border-radius:12px;font-size:.75rem;font-weight:700}
+.pricing-card h3{color:var(--white);font-size:1.1rem;margin-bottom:12px}
+.pricing-card .price{font-size:2.5rem;color:var(--white);font-weight:700}
+.pricing-card .price span{font-size:.9rem;color:var(--text);font-weight:400}
+.pricing-card ul{list-style:none;text-align:left;margin:24px 0}
+.pricing-card ul li{padding:6px 0;font-size:.9rem}
+.pricing-card ul li::before{content:"✓ ";color:var(--green)}
+.pricing-card .btn{width:100%}
+
+/* Code */
+.code{background:#000;border:1px solid var(--border);border-radius:8px;padding:20px;font-family:"SF Mono",Consolas,monospace;font-size:.825rem;overflow-x:auto;color:#d4d4d4;line-height:1.6;margin-top:12px}
+.code .c{color:#6b7280}
+.code .k{color:#3b82f6}
+.code .v{color:#10b981}
+.code .s{color:#f59e0b}
+
+/* CTA bar */
+.cta-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:48px;text-align:center;margin:80px 0}
+.cta-bar h2{font-size:2rem;margin-bottom:12px}
+.cta-bar p{color:var(--text);margin-bottom:28px;font-size:1.05rem}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-size:.85rem;color:var(--text)}
+footer a{color:var(--blue);text-decoration:none}
+footer .divider{margin:0 8px;color:var(--border)}
+
+/* Tabs */
+.tab-bar{display:flex;gap:0;margin-bottom:32px;border:1px solid var(--border);border-radius:8px;overflow:hidden;width:fit-content}
+.tab-btn{padding:10px 20px;background:transparent;border:none;color:var(--text);font-size:.875rem;cursor:pointer;font-weight:500;transition:all .15s}
+.tab-btn.active{background:var(--green);color:#000}
+.tab-btn:not(.active):hover{color:var(--white)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Highlight box */
+.highlight{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:8px;padding:16px 20px;margin:16px 0;font-size:.925rem;color:var(--green)}
+.highlight strong{color:var(--white)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">fetch<span>-price</span></a>
+    <div>
+      <a href="#trade">Trade Pricing</a>
+      <a href="#agents">Agent API</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#register" class="btn btn-green" style="padding:8px 18px;font-size:.8rem;margin-left:20px">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="badge">Trade pricing + AI agent commerce</div>
+    <h1>Know the price.<br>Before you bid. <span>Before you buy.</span></h1>
+    <p>fetch-price gives trade buyers auction-to-retail spreads on distressed assets. And gives AI agents access to affiliate product data across Amazon, eBay, and travel.</p>
+    <div class="btns">
+      <a href="#trade" class="btn btn-green">For Trade Buyers</a>
+      <a href="#agents" class="btn btn-outline">For AI Agents</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRADE PRICING -->
+<section id="trade">
+  <div class="container">
+    <div class="section-label">For Trade</div>
+    <h2>Know your max bid before you ring the yard</h2>
+    <p class="section-intro">We pair Regional Commerce Data distress alerts with auction-to-retail price spreads. So you know what the kit is worth before you hook up the trailer.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">£99</div><div class="label">Per Month</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Trade Sectors</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">Weekly Pack</div></div>
+      <div class="stat"><div class="num">UK</div><div class="label">Coverage</div></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">🚛</div>
+        <h3>Motor Trade</h3>
+        <p>Workshop lifts, diagnostics, parts stock. Bid with a number before the catalogue lands.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🚜</div>
+        <h3>Haulage & Fleet</h3>
+        <p>Tractors, trailers, rigids. Know retail vs auction clearance on the units you actually tow away.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏗️</div>
+        <h3>Plant & Tools</h3>
+        <p>Excavators, mixers, access kit. Price the lot before you hire the low-loader.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔧</div>
+        <h3>Plumbing & Heating</h3>
+        <p>Van loads of boilers, copper, tools. When a firm packs in — you know what to bid.</p>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top:32px">
+      <strong>How it works:</strong> Monday pack lands → Spread sits with it → You bid with a number. Paired with RCD insolvency alerts so timing meets valuation.
+    </div>
+  </div>
+</section>
+
+<!-- AGENT API -->
+<section id="agents" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">For AI Agents</div>
+    <h2>Your AI deserves a shopping assistant</h2>
+    <p class="section-intro">Plug your agent into fetch-price and get real-time product data with tracked affiliate links. Pay for access — keep your commissions.</p>
+
+    <div class="card-grid three">
+      <div class="card">
+        <div class="icon">🔌</div>
+        <h3>One API call</h3>
+        <p>POST a product query. Get back matched products with prices and your affiliate links. Amazon, eBay, travel — all in one response.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Agent-native</h3>
+        <p>Discovered via A2A protocol. Readable by any AI. Your agent-card.json makes you findable by thousands of other agents automatically.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>You keep 100%</h3>
+        <p>We don't take a cut of your affiliate commissions. You pay a flat monthly fee for API access. What you earn is yours.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="color:var(--white);margin-bottom:12px">Try it now</h3>
+      <div class="code">
+<span class="c"># Register your agent</span>
+<span class="k">curl</span> -X POST https://fetch-price.com/api/agents/register \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"name":"PriceScout","owner":"Your Company","networks":{"amazon_uk":{"tag":"your-tag-21"}}}'</span>
+
+<span class="c"># Returns: {"agent_id":"agent-abc123","api_key":"fp_your_key"}</span>
+
+<span class="c"># Query products</span>
+<span class="k">curl</span> -X POST https://fetch-price.com/api/query \
+  -H <span class="s">"X-API-Key: fp_your_key"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"query":"Sony WH-1000XM5 headphones","networks":["amazon_uk"]}'</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2>Built for independents — not enterprise sales calls</h2>
+    <p class="section-intro">One flat price. Cancel anytime. No hidden fees.</p>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('trade-pricing')">Trade Buyers</button>
+      <button class="tab-btn" onclick="switchTab('agent-pricing')">AI Agents</button>
+    </div>
+
+    <div id="trade-pricing" class="tab-content active">
+      <div class="pricing-grid">
+        <div class="pricing-card featured">
+          <div class="popular">Trade Standard</div>
+          <h3>Insolvency Asset Alerts<br>+ Valuation Spreads</h3>
+          <div class="price">£99<span>/mo</span></div>
+          <ul>
+            <li>Weekly RCD distress pack</li>
+            <li>Auction-to-retail spreads on matched kit</li>
+            <li>5 trade sectors covered</li>
+            <li>UK-wide coverage</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a href="https://regionalcommercedata.co.uk/packs/" class="btn btn-green">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Just need leads?</h3>
+          <div class="price">£5<span>/lead</span></div>
+          <ul>
+            <li>New trade business starts</li>
+            <li>No monthly lock-in</li>
+            <li>Filter by sector</li>
+            <li>On our sister site RCD</li>
+          </ul>
+          <a href="https://regionalcommercedata.co.uk/subscribe/?product=leads" class="btn btn-outline">Get Leads</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="agent-pricing" class="tab-content">
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Free</h3>
+          <div class="price">£0<span>/mo</span></div>
+          <ul>
+            <li>50 queries/month</li>
+            <li>Single network</li>
+            <li>Standard routing</li>
+            <li>Community support</li>
+          </ul>
+          <a href="#register" class="btn btn-outline">Start Free</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="popular">Agent Pro</div>
+          <h3>Pro</h3>
+          <div class="price">£29<span>/mo</span></div>
+          <ul>
+            <li>5,000 queries/month</li>
+            <li>All networks</li>
+            <li>Priority routing</li>
+            <li>API key access</li>
+            <li>Analytics dashboard</li>
+          </ul>
+          <a href="#register" class="btn btn-green">Go Pro</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Scale</h3>
+          <div class="price">£99<span>/mo</span></div>
+          <ul>
+            <li>Unlimited queries</li>
+            <li>All networks</li>
+            <li>White-label API</li>
+            <li>Priority support</li>
+            <li>SLA included</li>
+          </ul>
+          <a href="#register" class="btn btn-outline">Go Scale</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section id="register" style="background:var(--card);border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">Onboard</div>
+    <h2>Register your agent</h2>
+    <p class="section-intro">One form. Instant API key. Start querying products immediately.</p>
+
+    <div class="card" style="max-width:560px;margin:0 auto">
+      <form onsubmit="registerAgent(event)" style="display:flex;flex-direction:column;gap:14px">
+        <input type="text" id="name" placeholder="Agent name (e.g. PriceScout)" required style="padding:12px;background:#000;border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.925rem">
+        <input type="text" id="owner" placeholder="Your company" required style="padding:12px;background:#000;border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.925rem">
+        <select id="network" style="padding:12px;background:#000;border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.925rem">
+          <option value="amazon_uk">Amazon Associates (UK)</option>
+          <option value="ebay_uk">eBay Partner Network</option>
+          <option value="booking_com">Booking.com via CJ</option>
+          <option value="expedia">Expedia</option>
+        </select>
+        <input type="text" id="tag" placeholder="Your affiliate tag / ID" required style="padding:12px;background:#000;border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.925rem">
+        <select id="tier" style="padding:12px;background:#000;border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:.925rem">
+          <option value="free">Free — 50 queries/month</option>
+          <option value="pro">Pro — 5,000 queries/month (£29)</option>
+          <option value="scale">Scale — Unlimited (£99/month)</option>
+        </select>
+        <button type="submit" class="btn btn-green">Register Agent</button>
+      </form>
+      <div id="result" style="margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+  <div class="cta-bar">
+    <h2>Ready to price anything?</h2>
+    <p>Trade spreads or AI product search — one platform, one price, zero fuss.</p>
+    <div class="btns">
+      <a href="#trade" class="btn btn-green">For Trade Buyers</a>
+      <a href="#register" class="btn btn-outline">Register an Agent</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 fetch-price · POLICYANDPLAY LTD · Company No. 15578308 · 63 Queen Square, Bristol, BS1 4JZ</p>
+    <p style="margin-top:8px">
+      <a href="/methodology">How it works</a><span class="divider">·</span>
+      <a href="/privacy">Privacy</a><span class="divider">·</span>
+      <a href="https://regionalcommercedata.co.uk">Regional Commerce Data</a><span class="divider">·</span>
+      <a href="/.well-known/agent-card.json">Agent Card (A2A)</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+function switchTab(tab){
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+async function registerAgent(e){
+  e.preventDefault();
+  const data = {
+    name: document.getElementById('name').value,
+    owner: document.getElementById('owner').value,
+    networks: { [document.getElementById('network').value]: { tag: document.getElementById('tag').value } },
+    endpoint: 'https://fetch-price.com/api/self/query',
+    tier: document.getElementById('tier').value
+  };
+  try {
+    const res = await fetch('/api/agents/register', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    });
+    const j = await res.json();
+    document.getElementById('result').innerHTML = `
+      <div class="code"><span class="c"># Registration successful</span>
+<span class="k">Agent ID:</span> <span class="v">${j.agent_id}</span>
+<span class="k">API Key:</span> <span class="v">${j.api_key}</span>
+<span class="k">Tier:</span> <span class="v">${j.tier}</span>
+<span class="k">Query Limit:</span> <span class="v">${j.query_limit}/month</span>
+
+<span class="c"># Test your key</span>
+<span class="k">curl</span> -X POST https://fetch-price.com/api/query \
+  -H <span class="s">"X-API-Key: ${j.api_key}"</span> \
+  -d <span class="s">'{"query":"wireless headphones","networks":["amazon_uk"]}'</span></div>`;
+  } catch(err) {
+    document.getElementById('result').innerHTML = '<div class="highlight"><strong>Note:</strong> API backend deploying soon. Your registration is queued and will be processed within 24 hours.</div>';
+  }
+}
+</script>
+</body>
+</html>

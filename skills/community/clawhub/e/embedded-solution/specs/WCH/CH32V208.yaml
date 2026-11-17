@@ -1,0 +1,71 @@
+part: CH32V208
+link_status: verified_2026-07-02 (datasheet-pdf-mirror-extracted)
+expected_family: "WCH CH32V208 \u2014 RISC-V MCU with BLE 5.3 + Ethernet MAC+PHY"
+main_page: https://www.wch-ic.com/products/CH32V208.html
+datasheet_path_expected: ../../datasheets/ch32v208.pdf
+datasheet_source_note: "CH32V208 family datasheet (CH32V208DS0.PDF) is available at wch-ic.com/downloads/CH32V208DS0_PDF.html.\
+  \ EVT reference at CH32V20xEVT.ZIP. The CH32V208 is unique among WCH CH32V20x family for integrating BLE 5.3 + 10M Ethernet\
+  \ \u2014 no other WCH part has both wireless + wired."
+specs:
+  cores:
+  - QingKe V4C RISC-V @ up to 144 MHz (zero-wait, MPU, hardware div)
+  memory:
+    sram: 64 KB
+    flash: 128 KB
+  wireless:
+    ble_version: '5.3'
+  peripherals:
+    ethernet: 10M MAC + PHY integrated
+    usb: USB 2.0 FS (host/device + device)
+    can: 1x CAN 2.0B active
+    opamps: 2x OPA
+    uart: 4x USART
+    i2c: 2x I2C
+    spi: 2x SPI
+    adc: 16-channel 12-bit ADC + 16-channel TouchKey
+    timers: 5 sets
+    io_pins: 53
+    external_interrupts: 16 (mappable)
+  power:
+    supply_voltage_v: 2.5/3.3
+    modes:
+    - Sleep
+    - Stop
+    - Standby
+  features:
+  - POR/PDR + Programmable Voltage Detector (PVD)
+  - 96-bit unique ID
+  - CRC calculation unit
+  - 2-wire serial debug
+  packages:
+  - LQFP64M
+  - QFN68
+  - QFN48
+  - QFN28
+unverified:
+- exact_package_pin_count
+- operating_temperature_c
+- ble_tx_power_dbm_max
+- ble_rx_sensitivity_dbm
+- ethernet_phy_signaling_10base_t_only_or_also_100base_tx (datasheet confirms 10M only)
+- exact_active_mode_current_per_mhz
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from wch-ic.com CH32V208 family page via Firecrawl\
+  \ (8.4KB raw \u2192 5.2KB clean). Note: wch-ic.com CH32V208 product page had previously been \u23F3 in product_families.md;\
+  \ this promotion also marks it \u2705."
+- 'Use case: industrial IoT gateways needing both wireless (BLE for commissioning) and wired (Ethernet for backhaul) in single
+  chip. Replaces designs that previously needed 2 chips (e.g. CH32V203 + external Ethernet PHY + external BLE module).'
+- "Family differentiator vs CH32V203: V208 adds BLE 5.3 + integrated Ethernet MAC+PHY, doubles Flash (64\u2192128KB) and SRAM\
+  \ (20\u219264KB)."
+- 'Family differentiator vs CH32V303: V208 adds wireless; V303 adds FPU + more UARTs/timers + SDIO/FSMC. Choose by wireless-vs-compute
+  needs.'
+- 'Cost note: BLE + Ethernet combo on RISC-V at ~$1.50 in qty 100 is competitive vs alternatives like STM32WB55 + external
+  PHY.'
+- 'Re-labeled verified_2026-07-02 via Tavily-found mirror PDF: 25/27 spec fields matched (93%). Source: https://static.chipdip.ru/lib/423/DOC050423417.pdf
+  . Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-30T00:48:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of wch-ic.com product page markdown
+extraction_source: references/semiconductor-vendor/WCH/firecrawl-snapshots/CH32V208_clean.md
+extraction_credits_used: 0 (cache hit from 2026-06-29 run)
+datasheet_source_url: https://static.chipdip.ru/lib/423/DOC050423417.pdf

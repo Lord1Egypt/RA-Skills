@@ -1,0 +1,4 @@
+interface:
+  display_name: "MiniMax H3 Video Editing Prompt"
+  short_description: "Write H3 Ref2VA editing prompts for masked-region and any-object replacement"
+  default_prompt: "Use $h3-video-editing-prompt to write the H3 editing prompt for this source video and reference material."

@@ -1,6 +1,6 @@
 # @stellar/mpp charge mode — wire format
 
-Source: local SDK at `/Users/happyfish/workspace/stellar/stellar-mpp-sdk`.
+Source: local SDK at `~/workspace/stellar/stellar-mpp-sdk`.
 - Schema: `sdk/src/charge/Methods.ts`
 - Client: `sdk/src/charge/client/Charge.ts`
 - Server: `sdk/src/charge/server/Charge.ts`

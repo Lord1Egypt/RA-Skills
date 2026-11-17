@@ -1,41 +1,53 @@
-## Description: <br>
-Finds relevant marketplaces, niche platforms, regional ecommerce channels, and listing opportunities for cross-border products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find relevant marketplaces, niche platforms, regional ecommerce channels, and listing opportunities for cross-border products.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and consultants use this skill to identify and prioritize marketplace listing opportunities for a product, target region, channel goal, and operational constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace recommendations may be incomplete or misleading if platform rules, fees, legal requirements, demand signals, or operational constraints are not checked. <br>
-Mitigation: Verify platform requirements, costs, legal obligations, demand evidence, and operational fit before launching listings. <br>
-Risk: Shortlists based on public signals can miss niche channels or include weak-fit platforms. <br>
-Mitigation: Use the output as a prioritized research starting point and validate each candidate against current market evidence and launch constraints. <br>
+## Use Case:
 
+External users use this skill to identify, compare, and prioritize marketplace channels for a product, category, or target geography. It supports expansion planning by surfacing platform fit, supporting signals, operational risks, and launch test angles.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/Leooooooow/find-marketplaces) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown shortlist with reasoning, evidence signals, risks, and recommended next actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, credential access, or persistence are indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Marketplace recommendations can be inaccurate or incomplete if platform fees, seller eligibility, regional availability, or listing requirements have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify business details against current marketplace documentation before acting on recommendations.
+
+Risk: Public marketplace signals may not be sufficient to confirm channel fit for a specific product or region.
+
+Mitigation: Treat the shortlist as a prioritization aid and validate the highest-ranked options with small launch tests or direct platform checks.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shortlist with reasoning, supporting signals, risks or unknowns, and recommended next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or hidden behavior found in security evidence]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

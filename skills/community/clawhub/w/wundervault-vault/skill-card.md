@@ -1,44 +1,62 @@
-## Description: <br>
-Read passwords, API keys, and credentials from a Wundervault zero-knowledge, multi-agent vault, and run authorized shell commands with secrets injected without exposing them in chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the owner's API keys, SSH keys, wallets and signing keys without ever holding them. A Wundervault broker on this computer makes web calls, SSH commands, x402 payments and signatures for you and returns the result with the secret removed. Free account at wundervault.com.
 
-## Publisher: <br>
-[snoweman](https://clawhub.ai/user/snoweman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoweman](https://clawhub.ai/user/snoweman)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Wundervault, list permitted vault entries, run authorized commands with scoped secrets injected, and write secrets to approved config files without exposing plaintext in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to use scoped vault credentials for commands, configuration files, SSH, and deployment tasks. <br>
-Mitigation: Install only when that access is intended, verify the npm package and onboarding script checksum or signature before setup, and keep vault grants least-privilege. <br>
-Risk: Environment-file injection can place secrets on disk where they persist outside burn-on-read vault workflows. <br>
-Mitigation: Enable .env injection only for workflows where the impact is understood, review target paths, and manage file permissions for written secret files. <br>
-Risk: Tier 2 secrets and deployment actions can affect production systems if granted too broadly. <br>
-Mitigation: Use server-side Tier 2 enablement only for approved workflows and limit each agent to the entries required for its task. <br>
+## Use Case:
 
+Developers using an agent with Wundervault configured can make approved web API calls, run SSH operations, make x402 payments, and request signatures using credentials held by the local broker.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snoweman/wundervault-vault) <br>
-- [Wundervault](https://wundervault.com) <br>
-- [Wundervault Install Verification](https://wundervault.com/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline tool-call examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide MCP tool calls that inject vaulted credentials without returning plaintext secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: server evidence) <br>
+Risk: Installation uses an external package and may require administrator commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and installer before running administrator commands, as the security guidance recommends.
+
+Risk: Agent access can enable actions with credentials, SSH keys, wallets, or signing keys; agents under the same operating-system account can access one another's broker tokens.
+
+Mitigation: Grant only needed credentials and hosts, require approval for sensitive actions, set payment limits, and run agents with different trust levels under separate operating-system accounts.
+
+Risk: The security review covers the skill instructions and does not verify the external broker's security guarantees.
+
+Mitigation: Review Wundervault's verification and limitations references and inspect the installer before setup.
+
+## Reference(s):
+
+- [Wundervault MCP tool reference](https://wundervault.com/mcp)
+- [Wundervault security verification](https://wundervault.com/verify)
+- [Wundervault limitations](https://wundervault.com/limitations)
+- [Computer setup guide](https://wundervault.com/help/computer)
+- [Installation and upgrade guide](https://wundervault.com/install)
+- [Wundervault](https://wundervault.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance, Text]
+
+**Output Format:** [Structured tool requests and text responses; Markdown setup guidance with shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the owner's configured entries and approvals; the skill instructions say tools return results without secret values.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved release metadata, artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

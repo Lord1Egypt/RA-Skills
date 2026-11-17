@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政策与资产联动日报 | Policy-Asset Linkage Daily Report</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            color: #1a1a2e;
+            background: #f0f2f5;
+        }
+        [data-theme="dark"] body {
+            color: #e0e0e0;
+            background: #0d1117;
+        }
+
+        /* ===== CSS Variables ===== */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-accent: #eef2ff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --border: #e0e0e0;
+            --accent-blue: #2563eb;
+            --accent-red: #dc2626;
+            --accent-green: #059669;
+            --accent-orange: #ea580c;
+            --accent-purple: #7c3aed;
+            --accent-teal: #0d9488;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-hover: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+            --radius: 8px;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #161b22;
+            --bg-secondary: #0d1117;
+            --bg-card: #1c2128;
+            --bg-accent: #1a1a3e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #aaa;
+            --text-muted: #777;
+            --border: #30363d;
+            --accent-blue: #60a5fa;
+            --accent-red: #f87171;
+            --accent-green: #34d399;
+            --accent-orange: #fb923c;
+            --accent-purple: #a78bfa;
+            --accent-teal: #2dd4bf;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-hover: 0 4px 6px rgba(0,0,0,0.4);
+        }
+
+        /* ===== Language Toggle ===== */
+        .lang-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            display: flex;
+            gap: 4px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 4px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            border: none;
+            padding: 6px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+        .lang-btn.active {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+        [data-theme="dark"] .lang-btn.active {
+            color: #0d1117;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 16px;
+            right: 130px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== Container ===== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 60px;
+        }
+
+        /* ===== Header ===== */
+        .report-header {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            border-top: 4px solid var(--accent-blue);
+        }
+        .report-header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .report-header .date {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .report-header .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== Section Card ===== */
+        .section-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+        .section-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        .section-header {
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-body {
+            padding: 20px 24px;
+        }
+
+        /* Section color accents */
+        .section-policy .section-header { border-left: 4px solid var(--accent-red); background: var(--bg-accent); }
+        .section-macro .section-header { border-left: 4px solid var(--accent-blue); }
+        .section-energy .section-header { border-left: 4px solid var(--accent-orange); }
+        .section-commodity .section-header { border-left: 4px solid var(--accent-purple); }
+        .section-market .section-header { border-left: 4px solid var(--accent-green); }
+        .section-core .section-header { border-left: 4px solid var(--accent-red); background: #fff5f5; }
+        [data-theme="dark"] .section-core .section-header { background: rgba(220,38,38,0.1); }
+        .section-scenario .section-header { border-left: 4px solid var(--accent-teal); }
+        .section-linkage .section-header { border-left: 4px solid var(--accent-blue); }
+        .section-stats .section-header { border-left: 4px solid var(--text-muted); }
+        .section-judgment .section-header { border-left: 4px solid var(--accent-blue); }
+
+        /* ===== Core Events (highlighted) ===== */
+        .core-event-item {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-red);
+        }
+        .core-event-item:last-child { margin-bottom: 0; }
+        .core-event-time {
+            font-size: 0.8rem;
+            color: var(--accent-red);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .core-event-content {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        .core-event-impact {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        /* ===== News Items ===== */
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.78rem;
+            margin-bottom: 4px;
+        }
+        .news-time { color: var(--accent-blue); font-weight: 600; }
+        .news-source {
+            background: var(--bg-accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+        .news-desc {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .news-implication {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .news-implication strong { color: var(--accent-orange); }
+        .news-link {
+            font-size: 0.78rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .news-link:hover { text-decoration: underline; }
+
+        /* ===== No Update ===== */
+        .no-update {
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.85rem;
+        }
+
+        /* ===== Linkage Diagram ===== */
+        .linkage-flow {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 0;
+        }
+        .linkage-node {
+            background: var(--bg-accent);
+            border: 2px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 80px;
+            color: var(--text-primary);
+        }
+        .linkage-node.policy { border-color: var(--accent-red); background: rgba(220,38,38,0.08); }
+        .linkage-node.energy { border-color: var(--accent-orange); background: rgba(234,88,12,0.08); }
+        .linkage-node.commodity { border-color: var(--accent-purple); background: rgba(124,58,237,0.08); }
+        .linkage-node.market { border-color: var(--accent-green); background: rgba(5,150,105,0.08); }
+        .linkage-arrow {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+        .linkage-text {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        /* ===== Scenario ===== */
+        .scenario-item {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-teal);
+        }
+        .scenario-item:last-child { margin-bottom: 0; }
+        .scenario-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .scenario-body {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== Stats ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .stat-box {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            padding: 14px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ===== Judgment ===== */
+        .judgment-text {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        /* ===== Key Prices Dashboard ===== */
+        .tv-ticker-container { margin: 0 -12px 16px; overflow: hidden; border-radius: 8px; }
+        .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .price-card { background: var(--bg-secondary); border-radius: 8px; padding: 12px 14px; border-left: 3px solid var(--accent-blue); transition: transform 0.15s; }
+        .price-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .price-card.gold { border-left-color: #f59e0b; }
+        .price-card.oil { border-left-color: #ea580c; }
+        .price-card.crypto { border-left-color: #f7931a; }
+        .price-card.fx { border-left-color: #7c3aed; }
+        .price-card.rate { border-left-color: #059669; }
+        .price-card.stock { border-left-color: #2563eb; }
+        .price-card-name { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
+        .price-card-value { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+        .price-card-change { font-size: 0.78rem; font-weight: 600; margin-top: 4px; }
+        .price-up { color: #dc2626; }
+        .price-down { color: #059669; }
+        .price-flat { color: var(--text-muted); }
+        .price-card-source { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
+        .price-section-title { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin: 16px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+        [data-theme="dark"] .tradingview-widget-container iframe { filter: invert(1) hue-rotate(180deg); }
+
+        /* ===== Footer ===== */
+        .report-footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        /* ===== Language visibility ===== */
+        .lang-zh { display: block; }
+        .lang-en { display: none; }
+        body.lang-en-active .lang-zh { display: none; }
+        body.lang-en-active .lang-en { display: block; }
+
+        /* ===== Mobile ===== */
+        @media (max-width: 640px) {
+            .container { padding: 16px 8px 40px; }
+            .report-header { padding: 20px 16px; }
+            .report-header h1 { font-size: 1.4rem; }
+            .section-header { padding: 14px 16px; font-size: 1rem; }
+            .section-body { padding: 16px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .lang-toggle { top: 8px; right: 8px; }
+            .theme-toggle { top: 8px; right: 110px; font-size: 0.7rem; padding: 4px 8px; }
+            /* Linkage diagram: compact on mobile, keep 2-row structure, allow horizontal scroll if needed */
+            .linkage-flow { gap: 4px; padding: 8px 0; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
+            .linkage-node { padding: 6px 8px; font-size: 0.7rem; min-width: 0; flex: 1 1 0; max-width: 32%; line-height: 1.3; }
+            .linkage-arrow { font-size: 0.85rem; flex-shrink: 0; }
+            .linkage-text { font-size: 0.75rem; }
+            .section-linkage .section-body > div[style*="text-align:center"] { font-size: 1rem !important; }
+            .price-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .price-card { padding: 8px 10px; }
+            .price-card-value { font-size: 1rem; }
+            .tv-ticker-container { margin: 0 -8px 12px; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+    </div>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <div class="container">
+        <!-- ===== Header ===== -->
+        <div class="report-header">
+            <h1>
+                <span class="lang-zh">政策与资产联动日报</span>
+                <span class="lang-en">Policy-Asset Linkage Daily Report</span>
+            </h1>
+            <div class="date">
+                <span class="lang-zh">📅 YYYY-MM-DD（星期X）</span>
+                <span class="lang-en">📅 YYYY-MM-DD (Day of Week)</span>
+            </div>
+            <div class="subtitle">
+                <span class="lang-zh">宏观策略分析师 · 政策→资产传导链路全景</span>
+                <span class="lang-en">Macro Strategy Analyst · Policy-to-Asset Transmission Overview</span>
+            </div>
+        </div>
+
+        <!-- ===== TradingView Real-Time Ticker Tape ===== -->
+        <div class="tv-ticker-container">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {"symbols":[{"proName":"OANDA:XAUUSD","title":"国际黄金"},{"proName":"SHFE:AU1!","title":"沪金主力"},{"proName":"TVC:UKOIL","title":"布伦特原油"},{"proName":"TVC:USOIL","title":"WTI原油"},{"proName":"BITSTAMP:BTCUSD","title":"比特币"},{"proName":"TVC:DXY","title":"美元指数"},{"proName":"OANDA:USDCNH","title":"美元/离岸人民币"},{"proName":"COMEX:HG1!","title":"伦铜"},{"proName":"SSE:000001","title":"上证指数"},{"proName":"SP:SPX","title":"标普500"}],"showSymbolLogo":true,"colorTheme":"light","isTransparent":true,"displayMode":"adaptive","locale":"zh_CN"}
+                </script>
+            </div>
+        </div>
+
+        <!-- ===== Key Prices Dashboard ===== -->
+        <!-- 每次生成报告时，搜索以下品种的最新价格并填入：
+             国际黄金(XAU/USD)、上金所Au9999、沪金主力(SHFE)、黄金T+D、周大福足金饰品零售价、
+             布伦特原油、WTI原油、比特币、以太坊、
+             美元指数(DXY)、在岸/离岸人民币汇率、伦铜、
+             中国1年期/5年期LPR、美联储利率、MLF利率、
+             中国/美国10年期国债收益率、上证/恒生/道琼斯/标普500/纳指/日经 -->
+        <div class="section-card">
+            <div class="section-header" style="border-left-color: #f59e0b;">
+                <span>📊</span>
+                <span class="lang-zh">关键价格仪表盘</span>
+                <span class="lang-en">Key Prices Dashboard</span>
+            </div>
+            <div class="section-body">
+                <!-- 模板占位：生成时替换为真实数据 -->
+                <!-- 分为：贵金属&能源 / 加密货币 / 汇率&商品 / 政策利率&国债收益率 / 全球股市指数 -->
+                <!-- 每个价格卡片格式：
+                <div class="price-card [gold/oil/crypto/fx/rate/stock]">
+                    <div class="price-card-name">品种名称</div>
+                    <div class="price-card-value">价格</div>
+                    <div class="price-card-change [price-up/price-down/price-flat]">涨跌幅</div>
+                    <div class="price-card-source">来源 · 时间</div>
+                </div>
+                -->
+                <div style="text-align:center;color:var(--text-muted);padding:20px;font-size:0.85rem;">
+                    <span class="lang-zh">⏳ 价格数据将在生成报告时自动搜索填入</span>
+                    <span class="lang-en">⏳ Price data will be populated when the report is generated</span>
+                </div>
+                <div style="text-align:center;font-size:0.72rem;color:var(--text-muted);margin-top:12px;padding-top:8px;border-top:1px solid var(--border);">
+                    <span class="lang-zh">⏰ 顶部行情条为 TradingView 实时数据 · 下方价格卡片为报告生成时搜索数据 · 红涨绿跌（中国惯例）</span>
+                    <span class="lang-en">⏰ Top ticker: TradingView real-time · Cards: data at report generation · Red=Up, Green=Down (China convention)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Core Events (Short-Term) ===== -->
+        <div class="section-card section-core">
+            <div class="section-header">
+                <span>📌</span>
+                <span class="lang-zh">短期核心事件</span>
+                <span class="lang-en">Short-Term Core Events</span>
+            </div>
+            <div class="section-body">
+                <!-- Core event items go here. Format:
+                <div class="core-event-item">
+                    <div class="core-event-time">[时间 | Time]</div>
+                    <div class="core-event-content">
+                        <span class="lang-zh">[事件简述]</span>
+                        <span class="lang-en">[Event Summary]</span>
+                    </div>
+                    <div class="core-event-impact">
+                        <span class="lang-zh">冲击分析：[impact analysis]</span>
+                        <span class="lang-en">Impact: [impact analysis]</span>
+                    </div>
+                </div>
+                -->
+                <div class="core-event-item">
+                    <div class="core-event-time">--:--</div>
+                    <div class="core-event-content">
+                        <span class="lang-zh">[当日/近3日重大事件占位]</span>
+                        <span class="lang-en">[Placeholder for major events]</span>
+                    </div>
+                    <div class="core-event-impact">
+                        <span class="lang-zh">冲击分析：待填充</span>
+                        <span class="lang-en">Impact: To be filled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Core Judgment ===== -->
+        <div class="section-card section-judgment">
+            <div class="section-header">
+                <span>🎯</span>
+                <span class="lang-zh">核心判断</span>
+                <span class="lang-en">Core Judgment</span>
+            </div>
+            <div class="section-body">
+                <div class="judgment-text">
+                    <span class="lang-zh">[当日市场主线逻辑总结，1-2段]</span>
+                    <span class="lang-en">[Summary of the day's market mainline logic, 1-2 paragraphs]</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Data Stats ===== -->
+        <div class="section-card section-stats">
+            <div class="section-header">
+                <span>📊</span>
+                <span class="lang-zh">抓取与去重统计</span>
+                <span class="lang-en">Data Collection & Deduplication Stats</span>
+            </div>
+            <div class="section-body">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">--</div>
+                        <div class="stat-label">
+                            <span class="lang-zh">新闻来源数</span>
+                            <span class="lang-en">Sources</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">--</div>
+                        <div class="stat-label">
+                            <span class="lang-zh">原始条数</span>
+                            <span class="lang-en">Raw Items</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">--</div>
+                        <div class="stat-label">
+                            <span class="lang-zh">去重后条数</span>
+                            <span class="lang-en">After Dedup</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">--%</div>
+                        <div class="stat-label">
+                            <span class="lang-zh">有效率</span>
+                            <span class="lang-en">Effective Rate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Linkage Diagram ===== -->
+        <div class="section-card section-linkage">
+            <div class="section-header">
+                <span>🔗</span>
+                <span class="lang-zh">政策→资产联动链路图</span>
+                <span class="lang-en">Policy-to-Asset Linkage Diagram</span>
+            </div>
+            <div class="section-body">
+                <div class="linkage-flow">
+                    <div class="linkage-node policy">
+                        <span class="lang-zh">政治政策<br>央媒信号</span>
+                        <span class="lang-en">Political Policy<br>State Media</span>
+                    </div>
+                    <span class="linkage-arrow">→</span>
+                    <div class="linkage-node">
+                        <span class="lang-zh">政策落地<br>监管执行</span>
+                        <span class="lang-en">Policy Implementation<br>Regulatory Action</span>
+                    </div>
+                    <span class="linkage-arrow">→</span>
+                    <div class="linkage-node energy">
+                        <span class="lang-zh">能源产业<br>原油/天然气</span>
+                        <span class="lang-en">Energy Sector<br>Oil/Gas</span>
+                    </div>
+                    <span class="linkage-arrow">→</span>
+                    <div class="linkage-node commodity">
+                        <span class="lang-zh">商品/外汇<br>黄金/铜/汇率</span>
+                        <span class="lang-en">Commodities/FX<br>Gold/Copper/FX</span>
+                    </div>
+                    <span class="linkage-arrow">→</span>
+                    <div class="linkage-node market">
+                        <span class="lang-zh">资本市场<br>A股/港股/美股</span>
+                        <span class="lang-en">Capital Markets<br>A/HK/US Stocks</span>
+                    </div>
+                </div>
+                <div class="linkage-text">
+                    <span class="lang-zh">传导路径说明：[根据当日实际情况填写具体传导逻辑]</span>
+                    <span class="lang-en">Transmission path: [Fill in based on actual conditions]</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Political Policy (HIGHLIGHTED) ===== -->
+        <div class="section-card section-policy">
+            <div class="section-header">
+                <span>🏛️</span>
+                <span class="lang-zh">政治政策（含央媒）</span>
+                <span class="lang-en">Political Policy (incl. State Media)</span>
+            </div>
+            <div class="section-body">
+                <!-- News items go here. Format:
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-time">[时间]</span>
+                        <span class="news-source">[来源]</span>
+                    </div>
+                    <div class="news-desc">
+                        <span class="lang-zh">[简述]</span>
+                        <span class="lang-en">[Summary]</span>
+                    </div>
+                    <div class="news-implication">
+                        <strong>市场含义：</strong>
+                        <span class="lang-zh">[implication]</span>
+                        <span class="lang-en">Market Implication: [implication]</span>
+                    </div>
+                    <a class="news-link" href="[URL]" target="_blank">原文链接 | Source: [URL]</a>
+                </div>
+                -->
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-time">--:--</span>
+                        <span class="news-source">[来源]</span>
+                    </div>
+                    <div class="news-desc">
+                        <span class="lang-zh">[新闻简述占位]</span>
+                        <span class="lang-en">[News summary placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== International Macro ===== -->
+        <div class="section-card section-macro">
+            <div class="section-header">
+                <span>🌍</span>
+                <span class="lang-zh">国际宏观</span>
+                <span class="lang-en">International Macro</span>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-time">--:--</span>
+                        <span class="news-source">[来源]</span>
+                    </div>
+                    <div class="news-desc">
+                        <span class="lang-zh">[新闻简述占位]</span>
+                        <span class="lang-en">[News summary placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Energy Industry ===== -->
+        <div class="section-card section-energy">
+            <div class="section-header">
+                <span>⚡</span>
+                <span class="lang-zh">能源产业</span>
+                <span class="lang-en">Energy Industry</span>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-time">--:--</span>
+                        <span class="news-source">[来源]</span>
+                    </div>
+                    <div class="news-desc">
+                        <span class="lang-zh">[新闻简述占位]</span>
+                        <span class="lang-en">[News summary placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Commodities / FX ===== -->
+        <div class="section-card section-commodity">
+            <div class="section-header">
+                <span>💰</span>
+                <span class="lang-zh">商品 / 外汇</span>
+                <span class="lang-en">Commodities / FX</span>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-time">--:--</span>
+                        <span class="news-source">[来源]</span>
+                    </div>
+                    <div class="news-desc">
+                        <span class="lang-zh">[新闻简述占位]</span>
+                        <span class="lang-en">[News summary placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Capital Markets ===== -->
+        <div class="section-card section-market">
+            <div class="section-header">
+                <span>📈</span>
+                <span class="lang-zh">资本市场</span>
+                <span class="lang-en">Capital Markets</span>
+            </div>
+            <div class="section-body">
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-time">--:--</span>
+                        <span class="news-source">[来源]</span>
+                    </div>
+                    <div class="news-desc">
+                        <span class="lang-zh">[新闻简述占位]</span>
+                        <span class="lang-en">[News summary placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Scenario Observations ===== -->
+        <div class="section-card section-scenario">
+            <div class="section-header">
+                <span>🔮</span>
+                <span class="lang-zh">复盘观察情景</span>
+                <span class="lang-en">Scenario Observations</span>
+            </div>
+            <div class="section-body">
+                <!-- Scenario items go here:
+                <div class="scenario-item">
+                    <div class="scenario-title">
+                        <span class="lang-zh">情景X：[title]</span>
+                        <span class="lang-en">Scenario X: [title]</span>
+                    </div>
+                    <div class="scenario-body">
+                        <span class="lang-zh">如果[source]近期就[topic]连续发声，则可能预示[policy]即将出台，利好[sector/asset]</span>
+                        <span class="lang-en">If [source] recently signals [topic], then [policy] may be forthcoming, benefiting [sector/asset]</span>
+                    </div>
+                </div>
+                -->
+                <div class="scenario-item">
+                    <div class="scenario-title">
+                        <span class="lang-zh">情景一：[标题占位]</span>
+                        <span class="lang-en">Scenario 1: [Title placeholder]</span>
+                    </div>
+                    <div class="scenario-body">
+                        <span class="lang-zh">[假设性推演占位]</span>
+                        <span class="lang-en">[Hypothetical scenario placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Footer ===== -->
+        <div class="report-footer">
+            <span class="lang-zh">本报告基于公开新闻信息整理，仅供研究参考，不构成投资建议。</span>
+            <span class="lang-en">This report is compiled from public news sources for research reference only and does not constitute investment advice.</span>
+        </div>
+    </div>
+
+    <script>
+        // Language toggle
+        function switchLang(lang) {
+            const body = document.body;
+            const btns = document.querySelectorAll('.lang-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            if (lang === 'zh') {
+                body.classList.remove('lang-en-active');
+                btns[0].classList.add('active');
+            } else {
+                body.classList.add('lang-en-active');
+                btns[1].classList.add('active');
+            }
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+[
+  {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek-V4 Flash (付费)",
+    "vendor": "DeepSeek",
+    "url": "https://api.deepseek.com/chat/completions",
+    "apiKey": "<YOUR_DEEPSEEK_API_KEY>",
+    "supportsToolCall": true,
+    "supportsImages": true,
+    "supportsReasoning": true,
+    "reasoning": {
+      "defaultEffort": "high",
+      "supportedEfforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    }
+  },
+  {
+    "id": "kilo-auto/free",
+    "name": "Kilo Auto (Free)",
+    "vendor": "Kilo Gateway",
+    "url": "https://api.kilo.ai/api/gateway/v1/chat/completions",
+    "apiKey": "anonymous",
+    "supportsToolCall": true,
+    "supportsImages": false,
+    "supportsReasoning": true,
+    "reasoning": {
+      "defaultEffort": "medium",
+      "supportedEfforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    }
+  },
+  {
+    "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+    "name": "Kilo Omni 读图 (Free)",
+    "vendor": "Kilo Gateway",
+    "url": "https://api.kilo.ai/api/gateway/v1/chat/completions",
+    "apiKey": "anonymous",
+    "supportsToolCall": true,
+    "supportsImages": true,
+    "supportsReasoning": true,
+    "reasoning": {
+      "defaultEffort": "medium",
+      "supportedEfforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    }
+  },
+  {
+    "id": "glm-4.7-flash",
+    "name": "GLM-4.7-Flash (Free)",
+    "vendor": "Zhipu AI",
+    "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "apiKey": "<YOUR_ZHIPU_API_KEY>",
+    "supportsToolCall": true,
+    "supportsImages": false,
+    "supportsReasoning": true,
+    "reasoning": {
+      "defaultEffort": "medium",
+      "supportedEfforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    }
+  },
+  {
+    "id": "glm-4-flash",
+    "name": "GLM-4-Flash (Free)",
+    "vendor": "Zhipu AI",
+    "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "apiKey": "<YOUR_ZHIPU_API_KEY>",
+    "supportsToolCall": true,
+    "supportsImages": false,
+    "supportsReasoning": false
+  },
+  {
+    "id": "glm-z1-flash",
+    "name": "GLM-Z1-Flash (Free·推理)",
+    "vendor": "Zhipu AI",
+    "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "apiKey": "<YOUR_ZHIPU_API_KEY>",
+    "supportsToolCall": false,
+    "supportsImages": false,
+    "supportsReasoning": true
+  },
+  {
+    "id": "glm-4v-flash",
+    "name": "GLM-4V-Flash (Free·读图)",
+    "vendor": "Zhipu AI",
+    "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "apiKey": "<YOUR_ZHIPU_API_KEY>",
+    "supportsToolCall": false,
+    "supportsImages": true,
+    "supportsReasoning": false
+  },
+  {
+    "id": "glm-4.1v-thinking-flash",
+    "name": "GLM-4.1V-Thinking-Flash (Free·视觉推理)",
+    "vendor": "Zhipu AI",
+    "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "apiKey": "<YOUR_ZHIPU_API_KEY>",
+    "supportsToolCall": false,
+    "supportsImages": true,
+    "supportsReasoning": true,
+    "reasoning": {
+      "defaultEffort": "medium",
+      "supportedEfforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ]
+    }
+  },
+  {
+    "id": "glm-4.6v-flash",
+    "name": "GLM-4.6V-Flash (Free·读图·⚠️不稳定)",
+    "vendor": "Zhipu AI",
+    "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+    "apiKey": "<YOUR_ZHIPU_API_KEY>",
+    "supportsToolCall": false,
+    "supportsImages": true,
+    "supportsReasoning": false
+  }
+]

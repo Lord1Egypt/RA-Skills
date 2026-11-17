@@ -1,45 +1,68 @@
-## Description: <br>
-Call EngageLab Web Push REST APIs to send web push notifications and in-app messages, manage tags and aliases, create scheduled tasks, delete users, query statistics, and configure callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use EngageLab Web Push REST APIs for browser notifications, in-app messages, tags, aliases, schedules, user deletion, statistics, and callback configuration.
 
-## Publisher: <br>
-[devengagelab](https://clawhub.ai/user/devengagelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devengagelab](https://clawhub.ai/user/devengagelab)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare or run EngageLab Web Push API calls for browser push notifications, audience targeting, scheduled sends, callback verification, and delivery/statistics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web push sends, broadcasts, scheduled tasks, and registration_id deletion can affect real users or remove user data. <br>
-Mitigation: Preview exact recipients, message bodies, schedules, and deletion targets before execution, and require explicit confirmation for broadcasts, schedule changes, and deletion actions. <br>
-Risk: EngageLab AppKey, Master Secret, group credentials, and callback secrets are sensitive credentials. <br>
-Mitigation: Keep credentials out of generated artifacts and logs, use placeholders when credentials are not provided, and treat callback secrets as production secrets. <br>
-Risk: Unverified callback requests can lead to incorrect delivery or click analytics. <br>
-Mitigation: Use callback signature verification with the X-CALLBACK-ID header and HMAC-SHA256 for production callback endpoints. <br>
+## Use Case:
 
+Developers and operators use this skill to generate API calls, client code, and configuration guidance for sending EngageLab Web Push messages and managing web push devices, schedules, statistics, and callbacks.
 
-## Reference(s): <br>
-- [EngageLab Web Push Skill Page](https://clawhub.ai/devengagelab/engagelab-web-push) <br>
-- [Callback API](references/callback-api.md) <br>
-- [Web Push API Error Codes](references/error-codes.md) <br>
-- [HTTP Status Code](references/http-status-code.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, JSON request examples, curl commands, and language-specific API snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include EngageLab Web Push request payloads, endpoint choices, authentication placeholders, and callback verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: The skill can help send broad web push broadcasts and create or change scheduled sends.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before broadcasts or schedule changes, including message content, target scope, send time, and data center.
+
+Risk: The skill covers user deletion by registration_id, which the artifact describes as irreversible.
+
+Mitigation: Verify registration_id values and require explicit confirmation before generating or executing any deletion request.
+
+Risk: EngageLab AppKey, Master Secret, GroupKey, and group master secret are sensitive credentials.
+
+Mitigation: Use placeholders in generated examples unless credentials are intentionally supplied, and keep real secrets out of prompts, logs, and committed files.
+
+Risk: Callback endpoints can be spoofed or replayed if signature checks are skipped.
+
+Mitigation: Treat HMAC-SHA256 callback verification with timestamp and nonce replay checks as mandatory for production callbacks.
+
+Risk: Changing the API base URL can route authenticated requests away from intended EngageLab hosts.
+
+Mitigation: Restrict clients and generated commands to official HTTPS EngageLab Web Push hosts unless the user explicitly validates another endpoint.
+
+## Reference(s):
+
+- [Callback API](references/callback-api.md)
+- [Web Push API Error Codes](references/error-codes.md)
+- [HTTP Status Code](references/http-status-code.md)
+- [ClawHub Skill Page](https://clawhub.ai/devengagelab/skills/engagelab-web-push)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline JSON, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request bodies, endpoint paths, authentication placeholders, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

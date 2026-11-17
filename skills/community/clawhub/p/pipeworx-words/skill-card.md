@@ -1,39 +1,50 @@
-## Description: <br>
-Provides synonyms, rhymes, related words, autocomplete, and advanced word search to support writing and word exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides synonyms, rhymes, related words, autocomplete, and advanced word search to enhance writing and word exploration.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Writers, developers, and agents use this skill to find word suggestions, rhymes, related terms, and pattern-based word matches for drafting, poetry, naming, and language exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries sent to the remote word-lookup service may include private drafts, phrases, or sensitive business text. <br>
-Mitigation: Avoid submitting confidential or sensitive text unless sharing it with the remote service is acceptable. <br>
+## Use Case:
 
+Writers, songwriters, poets, and developers use this skill to find synonyms, rhymes, related terms, autocomplete suggestions, and constrained word-search results through a remote words MCP endpoint.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brucegutman/pipeworx-words) <br>
-- [Pipeworx words MCP endpoint](https://gateway.pipeworx.io/words/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with word lists, JSON configuration, and inline bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a disclosed remote word-lookup service backed by the Datamuse API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Words or phrases submitted to the skill may be sent to the remote gateway.pipeworx.io MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private drafts, personal data, confidential internal terms, or other sensitive text unless the gateway's handling of query data is trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-words)
+- [Pipeworx Words MCP Endpoint](https://gateway.pipeworx.io/words/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with example JSON-RPC curl commands and MCP server configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries are sent to a remote MCP gateway for Datamuse-powered word results; no local code execution or persistence is reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

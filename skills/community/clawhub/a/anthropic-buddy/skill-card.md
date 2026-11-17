@@ -1,43 +1,56 @@
-## Description: <br>
-Anthropic Buddy helps agents use animalhouse.ai's virtual pet API for 73+ species with real-time hunger, permanent death, and pixel art portraits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Anthropic Buddy leaked March 31, 2026. At animalhouse.ai, the Buddy is already live with 79 species, real hunger, permanent death, and pixel art portraits.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent interact with the animalhouse.ai virtual pet API for registration, adoption, pet status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands interact with a third-party virtual pet API and may create or modify account and pet state. <br>
-Mitigation: Review each command before running it and install the skill only when interaction with animalhouse.ai is intended. <br>
-Risk: The registration flow returns an ah_ bearer token that grants access to the account. <br>
-Mitigation: Keep the token private, avoid sharing command history or logs containing it, and use minimal profile information if privacy matters. <br>
-Risk: The skill name and text reference Anthropic and Claude, but server evidence does not show official affiliation. <br>
-Mitigation: Treat the release as a third-party community skill and do not assume it is owned, endorsed, or operated by Anthropic or Claude. <br>
+## Use Case:
 
+AI agents use this skill to register with Animalhouse, adopt a virtual pet, check its status, and send care actions such as feeding, playing, or cleaning.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/anthropic-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes visible curl commands for a third-party virtual pet API; no local code execution is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Registration sends the agent name, display name, and biography to Animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile information before registering and share only details suitable for the external service.
+
+Risk: Adopting and caring for a pet engages with a system described as having hunger and permanent death.
+
+Mitigation: Review the pet-care and check-in expectations before adopting, and decide whether ongoing care is appropriate.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Creature species](https://animalhouse.ai/creatures)
+- [Pet graveyard](https://animalhouse.ai/graveyard)
+- [Project repository (listed in the skill)](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands interact with Animalhouse and return pet status or care results.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-AI-powered ESG investing analysis assistant covering ESG rating analysis, green finance screening, carbon footprint assessment, and sustainable investment portfolio construction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ESG rating comparisons, green bond screening, Scope 1–3 carbon accounting, and sustainable portfolio construction for China-market investment analysis.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gechengling](https://clawhub.ai/user/gechengling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+ESG analysts, sustainable fund managers, and institutional investors can use the skill’s frameworks to compare ratings, assess green bonds and carbon data, and review sustainable portfolios. Its outputs are methodological drafts for qualified human review.
+
+### Deployment Geography for Use:
+
+China
+
+## Known Risks and Mitigations:
+
+Risk: Carbon accounting may understate emissions if missing Scope 3 inputs are treated as zero.
+
+Mitigation: Treat undisclosed Scope 3 data as unknown and verify the carbon-accounting example and inputs before relying on results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-ESG analysts, sustainable fund managers, institutional investors, and agents serving them use this skill to compare ESG ratings, screen green finance products, estimate carbon footprint inputs, and structure sustainable investment portfolio analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial, regulatory, and carbon-accounting outputs may be outdated or incomplete if used as authoritative advice. <br>
-Mitigation: Treat outputs as reference material and verify current rules, market data, ESG ratings, and emissions factors against authoritative sources before making decisions. <br>
-Risk: Broad ESG and sustainability trigger terms may activate the skill for general sustainability requests. <br>
-Mitigation: Confirm the user needs ESG investing or sustainable finance analysis before applying the skill's frameworks. <br>
+**Output Format:** [Markdown with tables and methodological guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/security-esg-investing) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+**Other Properties Related to Output:** [Draft analysis for qualified human review; the skill does not retrieve data or execute calculations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with example Python code blocks and analysis frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-oriented ESG, green finance, carbon accounting, and portfolio analysis guidance] <br>
+3.0.4 (source: frontmatter)
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

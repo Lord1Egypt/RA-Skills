@@ -1,46 +1,50 @@
-## Description: <br>
-Floreo is an autonomous compounding journal for local-first life logging, activity detection, compound metrics, cross-domain correlations, and optional external service sync with privacy controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Floreo helps agents create and analyze local life-journal entries across work, health, learning, relationships, creativity, and reflection, with optional automation and service integrations.
 
-## Publisher: <br>
-[coidea](https://clawhub.ai/user/coidea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coidea](https://clawhub.ai/user/coidea)
 
-## Use Case: <br>
-External users and developers use Floreo to structure personal journaling, health and productivity tracking, imports, privacy-screened exports, and optional automated analysis across local files and connected services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous monitoring can observe sensitive folders, repositories, calendars, or services beyond the user's intended scope. <br>
-Mitigation: Confirm exactly which locations and services are watched before enabling automation, and keep watchers or cron jobs disabled unless they are needed. <br>
-Risk: Broad local imports and life-log entries can collect sensitive personal, health, work, or relationship data. <br>
-Mitigation: Preview bulk imports, use privacy tiers deliberately, and review entries before exporting or syncing them. <br>
-Risk: Optional external sync can expose private journal data or service credentials. <br>
-Mitigation: Leave external sync off by default, use least-privilege API keys, store tokens securely, and document how to revoke tokens and remove synced data. <br>
-Risk: Scheduled automation may persist after the user stops actively using the skill. <br>
-Mitigation: Maintain a clear disable path for cron jobs, file watchers, stored tokens, and imported data. <br>
+## Use Case:
 
+External users and developers use Floreo to maintain a local-first personal journal, record life-domain metrics, and generate Markdown entries, reports, exports, and shell-command workflows for reflection and personal analytics.
 
-## Reference(s): <br>
-- [Floreo ClawHub listing](https://clawhub.ai/coidea/floreo) <br>
-- [Floreo project homepage](https://github.com/openclaw/floreo) <br>
-- [Release notes v0.2.0](RELEASE_v0.2.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file-path conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local journal entries, reports, exports, and optional sync/setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence, clawhub.json, _meta.json, and SKILL.md) <br>
+Risk: Conflicting privacy and automation claims may cause users to enable cron jobs, background monitoring, or external sync without fully understanding persistence, data scope, or privacy impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual/local mode by default, review the skill before installation, and enable integrations, broad imports, cron jobs, or watchers only after confirming data scope, credential storage, privacy filtering, and removal steps.
+
+## Reference(s):
+
+- [Floreo on ClawHub](https://clawhub.ai/coidea/skills/floreo)
+- [OpenClaw Floreo Repository](https://github.com/openclaw/floreo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML frontmatter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local-file journaling workflows and optional setup guidance for cron, watchers, and external sync.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

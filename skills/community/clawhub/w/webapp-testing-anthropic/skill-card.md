@@ -1,40 +1,54 @@
-## Description: <br>
-Toolkit for interacting with and testing local web applications using Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect, automate, and verify local web applications with Playwright, including static HTML and dynamic apps that need a local development server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper workflow can run local shell commands to start application servers. <br>
-Mitigation: Use the skill only with trusted projects and server commands, and do not pass commands derived from untrusted input. <br>
-Risk: Screenshots, DOM dumps, and console logs can capture sensitive data from authenticated or production-like sessions. <br>
-Mitigation: Avoid collecting full-page browser artifacts from sensitive sessions unless there is a plan to redact and delete them. <br>
+## Use Case:
 
+Developers and engineers use this skill to test local static and dynamic web applications with Playwright, including UI verification, rendered DOM inspection, screenshots, browser log capture, and server lifecycle management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pupuking723/webapp-testing-anthropic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser screenshots, console logs, DOM inspection notes, and local automation scripts when the agent follows the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The server helper can run local dev-server commands supplied from project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands passed to --server and run the helper only for trusted projects and expected local ports.
+
+Risk: Screenshots and browser logs captured during testing can contain sensitive page content.
+
+Mitigation: Avoid using the skill on pages containing secrets unless necessary, and treat saved screenshots or logs as sensitive artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupuking723/skills/webapp-testing-anthropic)
+- [Publisher profile](https://clawhub.ai/user/pupuking723)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Playwright scripts, helper command invocations, browser screenshots, and browser console logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

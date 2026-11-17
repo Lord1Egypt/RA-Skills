@@ -1,45 +1,62 @@
-## Description: <br>
-Spatially-routed LLM inference at $0.004/req. Routes to cheapest, greenest energy. 200+ models. OpenAI-compatible. Onchain attestations on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windfall Inference provides an OpenAI-compatible, spatially routed LLM inference gateway that routes requests by cost and carbon intensity, supports 200+ models, and records EAS attestations on Base.
 
-## Publisher: <br>
-[papa-raw](https://clawhub.ai/user/papa-raw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Business Source License 1.1 <br>
+## Publisher:
 
+[papa-raw](https://clawhub.ai/user/papa-raw)
 
-## Use Case: <br>
-External developers and agents use Windfall Inference as an OpenAI-compatible gateway for paid LLM chat completions with routing modes for lower cost, lower carbon intensity, or a balanced tradeoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Business Source License 1.1
 
-## Known Risks and Mitigations: <br>
-Risk: Windfall is a third-party remote inference and billing service that may involve routing, caching, logging, OpenRouter forwarding, and onchain attestations. <br>
-Mitigation: Do not send secrets or regulated data unless those service behaviors are acceptable for the workflow. <br>
-Risk: The authoritative security evidence says the dashboard and top-up pages store API keys or wallet sessions in browser localStorage and that top-up copy gives a false assurance about API key handling. <br>
-Mitigation: Use dedicated low-privilege Windfall keys, avoid shared browsers, clear browser storage after use, and verify payment and API-key behavior before sensitive use. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to configure agents to send OpenAI-compatible chat completion requests through Windfall for model routing, caching, payment, and energy/carbon attestations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/papa-raw/windfall-inference) <br>
-- [Windfall homepage](https://windfall.ecofrontiers.xyz) <br>
-- [OpenAI-compatible API base](https://windfall.ecofrontiers.xyz/v1) <br>
-- [Chat completions endpoint](https://windfall.ecofrontiers.xyz/v1/chat/completions) <br>
-- [Dashboard](https://windfall.ecofrontiers.xyz/dashboard) <br>
-- [Status](https://windfall.ecofrontiers.xyz/status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [OpenAI-compatible chat completion JSON plus Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WINDFALL_API_KEY for API-key authentication, or x402/Base wallet payment for keyless paid requests; max_tokens is capped at 8192 and the documented rate limit is 60 requests per minute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; package.json reports 0.1.0) <br>
+Risk: Windfall is a third-party inference proxy that can see prompts and route them to OpenRouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid production secrets and confidential prompts until the proxy handling and downstream routing risks have been reviewed.
+
+Risk: The security evidence flags review-worthy issues around wallet-linked accounts, dashboard XSS, and browser credential storage.
+
+Mitigation: Review wallet authentication and dashboard flows before using sensitive wallets, accounts, or API keys.
+
+Risk: The security evidence flags payment/proxy trust, dependency, and deployment-script concerns.
+
+Mitigation: Address those issues and deploy in a controlled environment before relying on the service for sensitive or production workloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/papa-raw/skills/windfall-inference)
+- [Publisher profile](https://clawhub.ai/user/papa-raw)
+- [Windfall homepage](https://windfall.ecofrontiers.xyz)
+- [Windfall chat completions endpoint](https://windfall.ecofrontiers.xyz/v1/chat/completions)
+- [Testing guide](testing-guide.md)
+- [License](LICENSE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, environment variables, and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WINDFALL_API_KEY for API-key use; x402 payment is also described for wallet-based requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-GrabGrab helps an agent download video or audio from user-provided URLs across supported media platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to download a public video or GIF from X (Twitter), or a public video from TikTok, Vimeo, or Facebook. Trigger when they say "download this tweet", "save this X video", "grab this GIF", or paste an x.com, twitter.com, TikTok, Vimeo, or Facebook video URL. Do not use it for YouTube, Instagram, or Bilibili.
 
-## Publisher: <br>
-[xuxizhen](https://clawhub.ai/user/xuxizhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxizhen](https://clawhub.ai/user/xuxizhen)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to submit a media URL to GrabGrab, parse the service response, and download the returned video, audio, or selected media items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided media URLs are sent to GrabGrab for processing. <br>
-Mitigation: Avoid private, internal, expiring, or token-bearing URLs unless the user intends to share them with the service. <br>
-Risk: Returned downloads may be saved to a local path chosen during the workflow. <br>
-Mitigation: Use a safe download directory and filename, and review or scan downloaded files before opening them. <br>
-Risk: Proxy download URLs require short-lived signatures and may fail if reconstructed manually. <br>
-Mitigation: Use only the signed proxyUrl field returned by the GrabGrab API response. <br>
+## Use Case:
 
+External users can provide a public video link to retrieve media from X, TikTok, Vimeo, or Facebook, including animated GIFs from X. The skill reports the resulting file and where it was saved.
 
-## Reference(s): <br>
-- [GrabGrab](https://www.grabgrab.fun) <br>
-- [GrabGrab download API endpoint](https://www.grabgrab.fun/api/download) <br>
-- [ClawHub skill page](https://clawhub.ai/xuxizhen/grabgrab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Markdown status text with JSON response handling and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save returned video, audio, or photo files to the current working directory or a user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Video URLs may contain tracking or other sensitive query parameters, and submitted links are shared with the GrabGrab service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public links you are comfortable sharing with GrabGrab, and remove unnecessary tracking or sensitive query parameters before submitting them.
+
+Risk: The service's live behavior has not been independently verified, and the optional CLI is not included in this release package.
+
+Mitigation: Use the documented service methods, review the service before sending links, and do not rely on the optional CLI being available in this package.
+
+## Reference(s):
+
+- [GrabGrab](https://www.grabgrab.fun)
+- [GrabGrab developer documentation](https://www.grabgrab.fun/en/developers)
+- [GrabGrab assistant notes](https://www.grabgrab.fun/llms.txt)
+- [GrabGrab MCP endpoint](https://www.grabgrab.fun/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Files, Guidance]
+
+**Output Format:** [JSON service responses, downloaded video files, and concise Markdown or plain-text status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloaded media depends on the selected public link and available quality; private or deleted posts cannot be retrieved.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Use this skill when the user wants to put a Binance trade thesis on trial, review whether a long or short idea deserves risk, get an APPROVE / REVIEW / REJECT verdict, inspect the three juror opinions, receive an execution playbook, or generate a Binance Trade Jury share card link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to put a Binance trade thesis on trial, review whether a long or short idea deserves risk, get an APPROVE / REVIEW / REJECT verdict, inspect the three juror opinions, receive an execution playbook, or generate a Binance Trade Jury share card link.
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-External users and developers use this skill to submit a Binance trade idea for a verdict, juror-style review, and execution playbook before deciding whether to take risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's trade thesis, symbol, side, and optional bankroll amount to an external API. <br>
-Mitigation: Do not include API keys, account identifiers, private balances, or sensitive portfolio details in the trade thesis. <br>
-Risk: The returned verdict and playbook could be mistaken for trading advice. <br>
-Mitigation: Treat the verdict as informational and review it independently before making any trade decision. <br>
+## Use Case:
 
+External users use this skill to review Binance long or short trade ideas before acting on them. It returns a verdict, juror-style rationale, concerns, approval conditions, an execution playbook, and an optional share-card link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richard7463/binance-trade-jury) <br>
-- [Review API endpoint](https://binance-trade-jury.vercel.app/api/trade-jury) <br>
-- [Share image endpoint](https://binance-trade-jury.vercel.app/api/trade-jury/share-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline verdict, juror opinions, execution guidance, and optional share-card URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may call an external API with the trade symbol, side, thesis, and optional bankroll amount.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Trade thesis text and any bankroll amount are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only when the user accepts that data sharing, and avoid sending confidential strategy, account, or portfolio details.
+
+Risk: The documented curl example embeds user-supplied trade text in a shell command.
+
+Mitigation: Use structured HTTP and JSON serialization from the agent runtime instead of interpolating raw user text into shell commands.
+
+Risk: The skill produces trading guidance that may be incorrect or incomplete.
+
+Mitigation: Treat verdicts and execution playbooks as decision support, not financial advice or authorization to place trades.
+
+## Reference(s):
+
+- [Binance Trade Jury skill page](https://clawhub.ai/richard7463/skills/binance-trade-jury)
+- [Binance Trade Jury Review API](https://binance-trade-jury.vercel.app/api/trade-jury)
+- [Binance Trade Jury Share Image API](https://binance-trade-jury.vercel.app/api/trade-jury/share-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with verdict, juror opinions, execution playbook, and optional share-card URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses returned JSON from the public review API and may include a generated share-image link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

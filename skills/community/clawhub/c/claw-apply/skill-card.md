@@ -1,45 +1,64 @@
-## Description: <br>
-Automates LinkedIn and Wellfound job searches, AI-assisted filtering, application submission, and unanswered-form question handling for a configured job seeker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Apply automates job search, AI filtering, and job application submission for LinkedIn and Wellfound.
 
-## Publisher: <br>
-[MattJackson](https://clawhub.ai/user/MattJackson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0-or-later <br>
+## Publisher:
 
+[mattjackson](https://clawhub.ai/user/mattjackson)
 
-## Use Case: <br>
-External users or developers use Claw Apply to configure a Node.js job-application automation workflow that searches LinkedIn and Wellfound, filters roles with AI, and can submit applications from authenticated sessions. It is best suited for users who can review and constrain automated application behavior before enabling scheduled runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically submit real job applications using authenticated LinkedIn and Wellfound sessions. <br>
-Mitigation: Start in preview mode, keep the applier cron disabled until reviewed, and set max_applications_per_run conservatively. <br>
-Risk: Profile and resume-derived data may be shared with Anthropic, Telegram, Kernel, and job sites during filtering, answering, notifications, browser execution, and submission. <br>
-Mitigation: Install only after reviewing the configured services, credentials, and data flows; treat local logs and answers.json as sensitive personal data. <br>
-Risk: Debug and test scripts can run browser flows against real accounts or job pages. <br>
-Mitigation: Avoid running debug or test scripts against real accounts unless the behavior has been reviewed and constrained. <br>
+## Use Case:
 
+Developers and job seekers use this skill to configure an agent that searches LinkedIn and Wellfound, scores matching roles, submits supported applications, and collects answers for unknown application questions.
 
-## Reference(s): <br>
-- [Claw Apply ClawHub page](https://clawhub.ai/MattJackson/claw-apply) <br>
-- [OpenClaw](https://openclaw.dev) <br>
-- [Kernel](https://kernel.sh) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke browser automation, API calls, local configuration files, and scheduled jobs when the user runs the provided commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: ClawHub release evidence, claw.json, package.json) <br>
+Risk: The skill can submit real job applications using authenticated LinkedIn and Wellfound sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in preview mode, set a low max_applications_per_run, and keep application crons disabled until reviewed and tested.
+
+Risk: Candidate profile data, application questions, and suggested answers may be sent to Anthropic and Telegram.
+
+Mitigation: Use only the data needed for applications, review provider exposure before enabling optional AI and Telegram features, and disable integrations that are not required.
+
+Risk: Reusable answers, logs, local configuration, and credentials can contain sensitive candidate or account data.
+
+Mitigation: Protect .env, config files, answers.json, and data logs as sensitive files; review answers.json regularly and do not commit private runtime data.
+
+Risk: Aggressive automation can affect platform accounts or application quality.
+
+Mitigation: Respect documented pacing, keep max_applications_per_run low, and review queued jobs and generated answers before unattended operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mattjackson/skills/claw-apply)
+- [Kernel](https://kernel.sh)
+- [OpenClaw](https://openclaw.dev)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can trigger browser automation, network calls, Telegram messages, local state updates, and job application submissions when the user runs the provided scripts.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata, claw.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

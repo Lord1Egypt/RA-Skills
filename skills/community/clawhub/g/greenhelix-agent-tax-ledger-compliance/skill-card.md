@@ -1,44 +1,59 @@
-## Description: <br>
-Agent Tax & Ledger Compliance Playbook. Reconcile, report, and stay audit-ready when autonomous agents execute thousands of transactions without human review. Covers 1099-DA, multi-ledger reconciliation, and tax estimation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Tax & Ledger Compliance Playbook helps teams reconcile, report, and maintain audit-ready records for autonomous agent transactions, covering 1099-DA, multi-ledger reconciliation, and tax estimation.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and operators of agent commerce systems use this guide to design tax attribution, ledger reconciliation, 1099-DA reporting, tax estimation, and audit-readiness workflows for autonomous transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide asks for wallet, signing, and payment credentials. <br>
-Mitigation: Use sandbox or test credentials first, scope any real credentials to the minimum required permissions, and avoid providing production keys until every referenced API call has been reviewed. <br>
-Risk: Examples include live financial API actions such as payment intents, ledger changes, identity claim submissions, and cross-agent searches. <br>
-Mitigation: Require manual approval before state-changing financial actions and verify each request against the intended taxpayer, wallet, and ledger context. <br>
-Risk: Tax and reporting guidance may be incomplete for a user's jurisdiction or current filing obligations. <br>
-Mitigation: Treat the material as educational guidance and have qualified tax or legal professionals review filing positions before relying on them. <br>
+## Use Case:
 
+Developers and operators of agent commerce systems use this guide to design tax attribution, ledger reconciliation, 1099-DA support, tax estimation, and audit-readiness practices for autonomous transactions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-agent-tax-ledger-compliance) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with illustrative Python examples and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; examples may reference wallet, signing, and payment credentials that users supply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: release evidence and frontmatter) <br>
+Risk: The guide references sensitive payment, signing, wallet, taxpayer, and ledger data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized sandbox data for evaluation, avoid live Stripe keys, signing keys, taxpayer identifiers, and production wallet or account details, and scope any credentials before adapting examples.
+
+Risk: Examples can send tax or financial data or create payment intents when adapted into running code.
+
+Mitigation: Add explicit human approvals, allowlisted endpoints, idempotency controls, and audit logging before using payment or ledger-writing patterns in production.
+
+Risk: Tax guidance can become stale or may not fit a user's facts or jurisdiction.
+
+Mitigation: Treat the guide as technical compliance support, verify current requirements with qualified tax counsel or tax authorities, and document reviewer approval before filing or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-tax-ledger-compliance)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with explanatory text, tables, checklists, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples reference payment, signing, wallet, and ledger workflows.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

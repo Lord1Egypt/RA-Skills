@@ -1,47 +1,65 @@
-## Description: <br>
-Alibaba Cloud AnalyticDB for MySQL Operations and Diagnosis Assistant that supports cluster information queries, performance monitoring, slow query diagnosis, running SQL analysis, and table-level optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud AnalyticDB for MySQL Operations & Diagnosis Assistant that supports cluster information queries, performance monitoring, slow query diagnosis, running SQL analysis, and table-level optimization suggestions.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers, database administrators, and cloud operations teams use this skill to inspect Alibaba Cloud AnalyticDB for MySQL clusters and run guided diagnosis for performance, SQL, storage, and table-modeling issues through aliyun CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive live Alibaba Cloud AnalyticDB for MySQL API calls and send diagnostic context to Alibaba Cloud services. <br>
-Mitigation: Use a least-privilege read-only RAM role or short-lived STS credentials, confirm region and cluster parameters before execution, and review generated CLI commands before running them. <br>
-Risk: Cluster metadata, connection details, diagnostic prompts, and credential status may be sensitive. <br>
-Mitigation: Do not place long-lived access keys in chat, command lines, or logs; treat cluster and diagnostic outputs as sensitive operational data. <br>
-Risk: The workflow changes aliyun CLI AI-mode and plugin settings and may install or update CLI plugins. <br>
-Mitigation: Review installer and plugin-update commands before use and disable AI-mode when the workflow exits. <br>
+## Use Case:
 
+External developers and Alibaba Cloud operators use this skill to inspect ADB MySQL clusters, review performance and storage status, and request slow-query or table-modeling diagnostics through Alibaba Cloud CLI/API workflows.
 
-## Reference(s): <br>
-- [Cluster Information Query](references/cluster-info.md) <br>
-- [Cluster Intelligent Diagnosis](references/cluster-diagnosis.md) <br>
-- [RAM Policy](references/ram-policies.md) <br>
-- [Region List](references/region-list.md) <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Alibaba Cloud CLI Credential Configuration](https://help.aliyun.com/zh/cli/configure-credentials) <br>
+### Deployment Geography for Use:
 
+Global, where the referenced Alibaba Cloud ADB MySQL regions are available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and diagnostic tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Alibaba Cloud CLI commands, summarized API results, option-card choices, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: Setup instructions include unverified install or update paths for Aliyun CLI components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted package manager or a pinned, verified Aliyun CLI release, and avoid automatic plugin installation or unpinned plugin updates.
+
+Risk: The skill requires authenticated Alibaba Cloud access and may interact with persistent cloud credentials.
+
+Mitigation: Use least-privilege read-only RAM permissions, prefer temporary or role-based credentials, and do not paste cloud secrets into commands or agent conversations.
+
+Risk: Diagnostic requests can send cluster IDs, region information, and diagnostic questions to Alibaba Cloud endpoints.
+
+Mitigation: Confirm the target region and cluster before execution, review generated commands, and avoid including unnecessary sensitive business details in diagnostic questions.
+
+## Reference(s):
+
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [Cluster Intelligent Diagnosis](references/cluster-diagnosis.md)
+- [Cluster Information Query](references/cluster-info.md)
+- [RAM Policy - ADB MySQL Operations and Diagnosis Assistant](references/ram-policies.md)
+- [Alibaba Cloud Region ID List](references/region-list.md)
+- [Verification Methods](references/verification-method.md)
+- [Alibaba Cloud CLI credential configuration documentation](https://help.aliyun.com/zh/cli/configure-credentials)
+- [Aliyun CLI plugin repository](https://github.com/aliyun/aliyun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with command strings, CLI snippets, diagnostic summaries, and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Aliyun CLI profile and ADB MySQL region or cluster context for instance-level diagnostics.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn70kara6bdhn470qyb1aasx9h825m66",
-  "slug": "sina-stock",
-  "version": "0.1.0",
-  "publishedAt": 1772457594944
+  "name": "sina-stock",
+  "version": "1.0.0",
+  "description": "获取 A 股实时股票行情数据（上证指数、深证成指、创业板指等），使用新浪财经 API",
+  "author": "User",
+  "license": "MIT",
+  "keywords": ["stock", "finance", "A 股", "行情", "新浪"],
+  "requires": {
+    "bins": ["python3"],
+    "env": []
+  },
+  "scripts": {
+    "get_stock": "scripts/get_stock.py"
+  }
 }

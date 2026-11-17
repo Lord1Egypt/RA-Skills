@@ -1,40 +1,62 @@
-## Description: <br>
-Guides agents in creating, auditing, and optimizing XML sitemaps for search engine URL discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, audit, and optimize sitemap.xml files for search engine URL discovery.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, site maintainers, and SEO practitioners use this skill to produce sitemap.xml guidance, choose between a single sitemap and a sitemap index, and declare the sitemap in robots.txt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sitemap guidance may produce an oversized single sitemap or inaccurate sitemap metadata if applied without review. <br>
-Mitigation: Review generated sitemap output before publishing, and use a sitemap index with split sub-sitemaps for sites over 50,000 URLs or 50MB uncompressed. <br>
+## Use Case:
 
+Developers, site maintainers, and SEO practitioners use this skill to generate or review XML sitemaps, sitemap indexes, robots.txt declarations, and related URL-discovery guidance for websites.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kostja94/xml-sitemap) <br>
-- [sitemaps.org protocol](https://www.sitemaps.org/protocol.html) <br>
-- [Google Search Central: Build and submit a sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with XML examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sitemap XML, sitemap index examples, robots.txt declarations, and framework-specific implementation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Incorrect sitemap guidance or generated examples could publish missing, non-canonical, or unintended URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated sitemap entries against the project's canonical URL source before publishing.
+
+Risk: Large sites can exceed single-sitemap limits if URL counts are not checked.
+
+Mitigation: Use a sitemap index and split sub-sitemaps when the site approaches or exceeds 50,000 URLs or 50MB uncompressed.
+
+Risk: Inaccurate lastmod values can reduce trust in the sitemap.
+
+Mitigation: Use page metadata or content modification timestamps, and omit lastmod where reliable modification data is unavailable.
+
+Risk: Multilingual sitemap output can be wrong if locale alternates are guessed.
+
+Mitigation: Derive locale URLs and hreflang alternates from project configuration and verify every language version self-references and cross-references the others.
+
+## Reference(s):
+
+- [sitemaps.org Protocol](https://www.sitemaps.org/protocol.html)
+- [Google Search Central: Build and Submit a Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with XML, TypeScript, configuration, and robots.txt examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for site-specific URL coverage, canonical host correctness, and accurate lastmod values before publishing.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

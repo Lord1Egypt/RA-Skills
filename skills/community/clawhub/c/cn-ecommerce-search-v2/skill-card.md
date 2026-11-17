@@ -1,40 +1,54 @@
-## Description: <br>
-Searches major Chinese e-commerce platforms for products, product links, and price comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports product search and price comparison across Taobao, Tmall, JD.com, Pinduoduo, Xianyu, Xiaohongshu, Douyin, and 1688 with specific product links.
 
-## Publisher: <br>
-[vince199907](https://clawhub.ai/user/vince199907) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vince199907](https://clawhub.ai/user/vince199907)
 
-## Use Case: <br>
-Users ask an agent to search Taobao, Tmall, JD, Pinduoduo, Goofish, Xiaohongshu, Douyin, and 1688 for a product, compare prices, and summarize buying considerations before any purchase decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches may open multiple third-party shopping sites and expose product interests or account session context. <br>
-Mitigation: Keep login, address, payment, and order placement under explicit user confirmation, and avoid entering sensitive information unless required. <br>
-Risk: Prices, seller status, and authenticity claims can vary across platforms and may change after the agent gathers results. <br>
-Mitigation: Verify the final product page, seller reputation, current price, and platform protections before purchasing. <br>
+## Use Case:
 
+External shoppers, sourcing users, and agents use this skill to collect product listings from major Chinese e-commerce platforms, compare prices, and present purchase-oriented recommendations. It is intended for search and comparison support, not autonomous checkout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vince199907/cn-ecommerce-search-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables with product links, prices, platform notes, and short recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires web browsing across eight named Chinese shopping platforms before summarizing results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent may move from shopping comparison into order placement, account changes, or use of saved payment methods.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require separate explicit confirmation from the user for each transaction, account change, or payment action.
+
+Risk: Listings, prices, availability, seller claims, and authenticity signals may be incomplete, stale, or gated behind platform login.
+
+Mitigation: Verify final product pages, seller details, and checkout terms directly on the platform before relying on the recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vince199907/skills/cn-ecommerce-search-v2)
+- [Publisher profile](https://clawhub.ai/user/vince199907)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown price comparison tables with product links and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser or web-search access to supported shopping platforms; prices, stock, authenticity, and seller terms should be verified at time of use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents create structured context handoffs when switching models or agents so task history, status, constraints, decisions, and next steps carry forward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create structured context handoffs when switching models or transferring work, preserving task status, decisions, constraints, and next steps.
 
-## Publisher: <br>
-[lujun2508](https://clawhub.ai/user/lujun2508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujun2508](https://clawhub.ai/user/lujun2508)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to summarize an ongoing task before switching models or handing work to another agent. The handoff captures project background, progress, blockers, constraints, decisions, file paths, tools, team roles, warnings, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Context handoffs may include credentials, customer data, private file contents, or other sensitive details. <br>
-Mitigation: Redact tokens, passwords, customer data, private file contents, and unnecessary file paths before sharing a handoff; share summaries only with trusted models or agents. <br>
-Risk: A receiving model or agent may rely on incomplete, stale, or misleading task status captured in a handoff. <br>
-Mitigation: Review the generated handoff before use and confirm current blockers, constraints, decisions, and next steps with the user when accuracy matters. <br>
+## Use Case:
 
+Developers and agent operators use this skill to summarize project state, completed work, active blockers, constraints, team roles, and next actions when handing work from one model or agent to another.
 
-## Reference(s): <br>
-- [Quick Transfer Template](artifact/references/quick-transfer-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lujun2508/model-context-transfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown CONTEXT_TRANSFER handoff text or a context_transfer.md file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task status, completed work, in-progress work, pending items, blockers, key decisions, constraints, file paths, tools, team roles, next steps, and warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and artifact _meta.json) <br>
+Risk: Sensitive credentials or private context may be copied into CONTEXT_TRANSFER or MEMORY.md during handoff.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prohibit raw passwords, tokens, API keys, cookies, private keys, and recovery codes; use secret-manager references or environment variable names instead.
+
+Risk: A handoff may be sent to another model or agent without clear user control.
+
+Mitigation: Require explicit user approval before any handoff content is shared with another model or agent.
+
+## Reference(s):
+
+- [Quick Transfer Template](references/quick-transfer-template.md)
+- [ClawHub skill page](https://clawhub.ai/lujun2508/skills/model-context-transfer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown CONTEXT_TRANSFER summaries and optional generated Markdown handoff files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project state, file paths, API/tool references, team roles, warnings, and prioritized next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

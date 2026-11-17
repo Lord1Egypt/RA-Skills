@@ -1,49 +1,62 @@
-## Description: <br>
-Smart Code Search helps agents and developers find code and documentation by semantic meaning using local ColGREP and NextPlaid indexing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Code Search helps agents and developers find code and documentation by semantic meaning using local ColGREP and NextPlaid search.
 
-## Publisher: <br>
-[brettmhammond](https://clawhub.ai/user/brettmhammond) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brettmhammond](https://clawhub.ai/user/brettmhammond)
 
-## Use Case: <br>
-Developers and coding agents use this skill to search unfamiliar or large codebases by concept, find implementations and patterns, and navigate related project documentation when exact keywords are not known. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the separately installed ColGREP Homebrew package. <br>
-Mitigation: Install it only from a trusted source and verify the colgrep binary before using it in sensitive repositories. <br>
-Risk: Indexing creates a local .colgrep/ directory that may contain searchable metadata for the project. <br>
-Mitigation: Run indexing only in projects intended for semantic search and add .colgrep/ to .gitignore. <br>
-Risk: Optional agent integration can cause coding agents to use semantic search automatically in indexed projects. <br>
-Mitigation: Enable the integration only in agent environments where automatic semantic code search is acceptable. <br>
+## Use Case:
 
+Developers and coding agents use this skill to search unfamiliar codebases, locate implementations or patterns, and find related documentation when exact keywords or file paths are unknown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brettmhammond/smart-code-search) <br>
-- [Publisher profile](https://clawhub.ai/user/brettmhammond) <br>
-- [Advanced Usage and Architecture](references/advanced.md) <br>
-- [ColGREP and NextPlaid on GitHub](https://github.com/lightonai/next-plaid) <br>
-- [LateOn-Code benchmark notes](https://lighton.ai/lighton-blogs/lateon-code-colgrep-lighton) <br>
-- [NextPlaid local-first multi-vector database](https://lighton.ai/lighton-blogs/introducing-lighton-nextplaid) <br>
-- [BrowseComp-Plus retrieval results](https://lighton.ai/lighton-blogs/the-bloated-retriever-era-is-over) <br>
-- [Reason-ModernColBERT retrieval notes](https://lighton.ai/lighton-blogs/lighton-releases-reason-colbert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples and optional JSON output from ColGREP.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the colgrep binary; creates and updates a local .colgrep/ index inside each searched project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Indexing creates a local .colgrep/ directory that may be accidentally committed or created in the wrong project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run indexing only from the intended project directory and add .colgrep/ to .gitignore.
+
+Risk: Agent integration commands modify local agent configuration to make ColGREP available as a search tool.
+
+Mitigation: Run integration commands intentionally after reviewing the target agent and restart the agent only after setup is complete.
+
+Risk: The rebuild command removes an existing local ColGREP index.
+
+Mitigation: Use rm -rf .colgrep/ only when a full re-index is intended for the current project.
+
+## Reference(s):
+
+- [Advanced Usage & Architecture](references/advanced.md)
+- [ColGREP and NextPlaid on GitHub](https://github.com/lightonai/next-plaid)
+- [NextPlaid: Local-First Multi-Vector Database](https://lighton.ai/lighton-blogs/introducing-lighton-nextplaid)
+- [LateOn-Code: ColGREP and LightOn](https://lighton.ai/lighton-blogs/lateon-code-colgrep-lighton)
+- [The Bloated Retriever Era Is Over](https://lighton.ai/lighton-blogs/the-bloated-retriever-era-is-over)
+- [Reason-ModernColBERT: Reasoning-Intensive Retrieval](https://lighton.ai/lighton-blogs/lighton-releases-reason-colbert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ColGREP query examples, installation commands, indexing commands, and agent integration commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn7b3js61fwjr917hemskh3mrn81rfk3",
+  "owner": "francisque",
   "slug": "radarr-fixed",
-  "version": "1.0.4",
-  "publishedAt": 1771933436836
+  "displayName": "Radarr (Fixed)",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": null,
+    "commit": null
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": null,
+      "commit": null,
+      "changes": "Fixed metadata to properly declare required credentials, config paths, and env vars"
+    }
+  ],
+  "fork": {
+    "originalOwner": "jordyvandomselaar",
+    "originalSlug": "radarr",
+    "originalUrl": "https://clawhub.com/jordyvandomselaar/radarr",
+    "reason": "Fixed metadata to properly declare required credentials and config paths"
+  }
 }

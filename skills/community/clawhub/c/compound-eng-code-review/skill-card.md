@@ -1,54 +1,60 @@
-## Description: <br>
-Structured code reviews with severity-ranked findings and deep multi-agent mode for reviewing code, auditing code quality, or critiquing PRs, MRs, and diffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs structured code reviews with severity-ranked findings and deep multi-agent workflows for code, pull requests, merge requests, diffs, and patches.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to perform structured code reviews, verify PR intent, identify correctness, security, reliability, performance, and test-coverage issues, and produce severity-ranked review feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use a local repository and authenticated GitHub context for review work. <br>
-Mitigation: Confirm the target repository, PR, and requested action before allowing comments, labels, proof publishing, or test commands. <br>
-Risk: Review findings and proposed commands may be incorrect or incomplete. <br>
-Mitigation: Treat the output as review guidance, verify findings against the code and tests, and review commands before execution. <br>
+## Use Case:
 
+Developers use this skill to review source changes, pull requests, merge requests, and diffs for correctness, security, and reliability, then receive severity-ranked findings with supporting evidence.
 
-## Reference(s): <br>
-- [ia-code-review Specification](SPEC.md) <br>
-- [Scope & comparison-range resolution](references/scope-resolution.md) <br>
-- [Deep Review Process](references/deep-review.md) <br>
-- [Severity Levels and Confidence Rubric](references/severity-and-confidence.md) <br>
-- [What to Check - Review Category Checklists](references/check-categories.md) <br>
-- [Language-Specific Review Profiles](references/language-profiles.md) <br>
-- [Security Detection Patterns](references/security-patterns.md) <br>
-- [Security Test Coverage Checklist](references/security-test-coverage.md) <br>
-- [Reliability Patterns](references/reliability-patterns.md) <br>
-- [False Positive Suppression](references/false-positive-suppression.md) <br>
-- [Action Routing - 4-Tier Fix Classification](references/action-routing.md) <br>
-- [PR sizing and large-diff strategy](references/pr-sizing.md) <br>
-- [Driving a long-running external reviewer subprocess](references/external-review-subprocess.md) <br>
-- [Review Traps Catalog](references/review-traps-catalog.md) <br>
-- [ClawHub skill page](https://clawhub.ai/iliaal/compound-eng-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with severity-ranked findings and optional command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include severity, confidence score, file and line evidence, residual risks, and a merge-readiness verdict.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.4 (source: ClawHub release evidence) <br>
+Risk: The server security assessment marks this release suspicious, citing an isolation warning, a possible mismatch between its review purpose and some evaluation commands, and one partially analyzed reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the flagged command mismatch. Avoid running reviewed project tests or setup steps on systems with sensitive files or credentials unless authorized and isolated in a disposable environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/iliaal/skills/compound-eng-code-review)
+- [Standard Review Process](references/standard-review-process.md)
+- [Scope Resolution](references/scope-resolution.md)
+- [Deep Review](references/deep-review.md)
+- [Severity and Confidence](references/severity-and-confidence.md)
+- [Reviewer Trust Boundary](references/reviewer-trust-boundary.md)
+- [Security Test Coverage](references/security-test-coverage.md)
+- [Composer Review](references/composer-review.md)
+- [CVSS 3.1 Specification](https://www.first.org/cvss/v3.1/specification-document)
+- [Composer Schema](https://getcomposer.org/doc/04-schema.md)
+- [Composer Configuration](https://getcomposer.org/doc/06-config.md)
+- [Composer Repository Priorities](https://getcomposer.org/doc/articles/repository-priorities.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown]
+
+**Output Format:** [Markdown code review with severity-ranked findings and supporting evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports scope, coverage, residual risks, and observed checks as applicable.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

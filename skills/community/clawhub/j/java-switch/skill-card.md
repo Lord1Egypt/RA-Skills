@@ -1,40 +1,54 @@
-## Description: <br>
-Java Switch helps agents install and switch Java versions on macOS using Homebrew, /usr/libexec/java_home, and shell environment updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Java Switch helps agents install and switch Java versions on macOS using Homebrew and /usr/libexec/java_home while configuring JAVA_HOME and PATH.
 
-## Publisher: <br>
-[LongFer](https://clawhub.ai/user/LongFer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longfer](https://clawhub.ai/user/longfer)
 
-## Use Case: <br>
-Developers and macOS users use this skill to have an agent install a requested OpenJDK version, switch JAVA_HOME and PATH for the current session, and persist the Java configuration in ~/.zshrc. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Homebrew or OpenJDK on the user's machine. <br>
-Mitigation: Review Homebrew prompts before approving installation and consider installing Homebrew separately if tighter control is needed. <br>
-Risk: The skill can permanently change shell Java configuration by editing ~/.zshrc. <br>
-Mitigation: Review the added JAVA_HOME and PATH lines after execution, especially when maintaining a custom shell profile. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent to switch to a requested Java version, install it with Homebrew when needed, and update macOS shell environment settings.
 
-## Reference(s): <br>
-- [Java Switch ClawHub page](https://clawhub.ai/LongFer/java-switch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute or propose local shell commands that install Homebrew/OpenJDK and edit ~/.zshrc.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install Homebrew or OpenJDK packages on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands before execution and run installation steps only after explicit user approval.
+
+Risk: The skill can persistently modify ~/.zshrc and change JAVA_HOME/PATH behavior for future shells.
+
+Mitigation: Back up shell configuration, inspect the planned changes, and prefer simple numeric Java versions before applying persistent updates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/longfer/skills/java-switch)
+- [Publisher Profile](https://clawhub.ai/user/longfer)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install OpenJDK with Homebrew and persist JAVA_HOME/PATH updates in ~/.zshrc.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

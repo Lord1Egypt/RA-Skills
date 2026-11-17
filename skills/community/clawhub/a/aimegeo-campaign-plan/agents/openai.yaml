@@ -1,0 +1,4 @@
+interface:
+  display_name: "一件事多渠道内容策划"
+  short_description: "把活动拆成内容与拍摄安排，再用aimeGeo保存稿件、配图和分账号发布"
+  default_prompt: "使用 $aimegeo-campaign-plan 为这件事规划三阶段内容和实际人手能完成的拍摄清单，按我的选择写稿，并说明如何用免费 aimeGeo 接续配图、多账号发布与复盘。"

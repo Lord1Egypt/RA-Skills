@@ -1,44 +1,63 @@
-## Description: <br>
-Comprehensive TikTok Shop market intelligence - analyze products, shops, and categories with GMV, sales trends, reviews, creator attribution, and competitive ranking data across the full e-commerce ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive TikTok Shop market intelligence - analyze products, shops, and categories with GMV, sales trends, reviews, creator attribution, and competitive ranking data across the full e-commerce ecosystem.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, market researchers, and e-commerce analysts use this skill to query KeyAPI's TikTok Shop MCP tools, inspect product, shop, category, creator, video, and livestream commerce data, and synthesize market intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist a KeyAPI bearer token and cached business data locally. <br>
-Mitigation: Set KEYAPI_TOKEN only for the active session when possible, do not commit .env files, and periodically delete .keyapi-cache and output files containing market data. <br>
-Risk: Authenticated requests can be redirected by KEYAPI_SERVER_URL. <br>
-Mitigation: Leave KEYAPI_SERVER_URL unset unless the endpoint is fully trusted. <br>
-Risk: Cached market research results may contain sensitive commercial analysis. <br>
-Mitigation: Use --no-cache for sensitive research or store outputs only in approved locations. <br>
+## Use Case:
 
+Developers and business analysts use this skill to gather TikTok Shop market intelligence for product research, shop benchmarking, category analysis, review analysis, creator attribution, and live-commerce performance reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lycici/keyapi-tiktok-ecommerce) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI MCP Server](https://mcp.keyapi.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON cache files and optional output files containing TikTok Shop market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a KeyAPI token and can load credentials from environment variables or a local .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped token, set KEYAPI_TOKEN only for the current command when possible, and do not commit or share .env files.
+
+Risk: The skill can cache API responses locally, which may contain market research outputs or other sensitive working data.
+
+Mitigation: Review cached files before sharing the workspace and do not commit or publish .keyapi-cache.
+
+Risk: The security summary flags broader MCP access than the description suggests.
+
+Mitigation: Review requested tool schemas and commands before execution, and only use KEYAPI_SERVER_URL with trusted endpoints.
+
+Risk: The runner requires npm dependency installation before use.
+
+Mitigation: Install dependencies in a contained environment and review dependency changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-tiktok-ecommerce)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI MCP server](https://mcp.keyapi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cached API response files under .keyapi-cache when the runner is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

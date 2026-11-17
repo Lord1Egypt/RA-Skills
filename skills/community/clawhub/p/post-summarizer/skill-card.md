@@ -1,40 +1,58 @@
-## Description: <br>
-Reads public news and article pages from mainstream Chinese and English sources, then produces concise Simplified Chinese summaries, comparisons, or news briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全网新闻/文章阅读总结助手。支持从主流新闻网站（钛媒体、36氪、虎嗅、华尔街见闻、腾讯新闻、新浪财经、Reuters、BBC、NYT 等）读取最新文章并深度总结。当用户说"帮我看XX新闻"、"总结这篇"、"最新XX资讯"、"搜索XX关键词新闻"、"对比这几篇文章"等类似需求时触发。
 
-## Publisher: <br>
-[shaohaojie1](https://clawhub.ai/user/shaohaojie1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaohaojie1](https://clawhub.ai/user/shaohaojie1)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize individual news articles, search for recent coverage by keyword, compare multiple articles, or generate quick briefings from public news sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad news-summary trigger phrases may activate on underspecified requests. <br>
-Mitigation: Use explicit news sources, article URLs, or clear keywords before invoking the workflow. <br>
-Risk: Article summaries can be misleading when source pages are unavailable, incomplete, or stale. <br>
-Mitigation: Use only fetched public content, include source and time fields when available, and state retrieval failures rather than inventing missing details. <br>
+## Use Case:
 
+External users and agents use this skill to fetch, summarize, and compare public news articles from specified sources, keyword searches, or provided URLs. It is designed for Simplified Chinese news briefings, article summaries, and cross-article comparison reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaohaojie1/post-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, comparison tables, or briefing lists in Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source and time fields when available; relies on fetched public web content and should report fetch failures instead of filling gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad news prompts may cause the agent to fetch several external public sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep browsing scoped to the user's requested source, URL, or keyword set, and summarize only retrieved content.
+
+Risk: News summaries can become misleading if source retrieval fails or article timing is unclear.
+
+Mitigation: Include source and time fields when available, retry with nearby sources after fetch failures, and state when no reliable result was found.
+
+Risk: The skill is configured to answer in Simplified Chinese, which may not match every deployment's language expectations.
+
+Mitigation: Confirm that Simplified Chinese output is appropriate for the intended users before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaohaojie1/skills/post-summarizer)
+- [Publisher profile](https://clawhub.ai/user/shaohaojie1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Simplified Chinese Markdown summaries, comparison reports, and news briefings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include source and time fields when available and are grounded in fetched or searched public article content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

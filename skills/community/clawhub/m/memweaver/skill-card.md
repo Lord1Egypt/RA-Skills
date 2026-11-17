@@ -1,41 +1,64 @@
-## Description: <br>
-Memory Profiler - Mine hidden patterns from your Agent's memory, confirm via interactive quiz, and generate a structured user profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Profiler: mines hidden patterns from an agent user's memory, confirms findings through an interactive quiz, and generates a structured user profile.
 
-## Publisher: <br>
-[fret774](https://clawhub.ai/user/fret774) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fret774](https://clawhub.ai/user/fret774)
 
-## Use Case: <br>
-Developers and agent users use MemWeaver to analyze local CodeBuddy memory and recent daily logs, ask confirmation questions about inferred patterns, and produce a structured user profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes sensitive personal and work-pattern memory content. <br>
-Mitigation: Run it only in trusted local workspaces and use a narrow day range when less context is sufficient. <br>
-Risk: Generated YAML profiles and backups may contain sensitive inferences. <br>
-Mitigation: Review profile files before sharing or relying on them, and delete generated profiles or backups when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent users use MemWeaver to analyze local OpenClaw memory files, validate inferred preferences and behavioral patterns through a questionnaire, and produce a structured YAML profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fret774/memweaver) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fret774) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON collection output, interactive questionnaire text, and YAML profile configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects local memory content and writes profile_YYYYMMDD.yaml; users can reduce the day range to limit analyzed content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill analyzes private memory logs and may infer sensitive personal traits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on memories the user intentionally wants analyzed, and review the .codebuddy files before collection.
+
+Risk: Memory files may contain secrets or untrusted pasted instructions.
+
+Mitigation: Remove secrets and suspicious content before analysis, and treat memory-derived findings as user-reviewed drafts.
+
+Risk: Generated profiles and backups can expose sensitive personal data.
+
+Mitigation: Store output profiles carefully and delete generated profile files and backups when they are no longer needed.
+
+Risk: Custom input or output paths broaden local file access.
+
+Mitigation: Use default paths when possible, and use custom --profile, --workspace, or --output paths only when the target path is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fret774/skills/memweaver)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Profile dimensions](artifact/config/dimensions.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands, JSON memory collection output, and YAML profile files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local memory files and writes dated profile YAML files with backup behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

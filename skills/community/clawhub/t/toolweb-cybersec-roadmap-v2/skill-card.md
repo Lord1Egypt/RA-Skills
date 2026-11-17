@@ -1,41 +1,52 @@
-## Description: <br>
-Generates personalized cybersecurity learning paths based on experience level, goals, and learning preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized cybersecurity learning paths based on experience level, goals, and learning preferences.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External learners, security professionals, career changers, and training teams use this skill to request structured cybersecurity roadmaps, specialization options, milestones, certifications, and learning resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learner assessment details and identifiers are sent to a third-party API operator. <br>
-Mitigation: Use pseudonymous session IDs, avoid sensitive employer or personal details in assessment fields, and confirm privacy and retention practices before organizational use. <br>
+## Use Case:
 
+External learners, security professionals, career changers, and training teams use this skill to request structured cybersecurity learning roadmaps with phased milestones, certifications, and recommended resources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cybersec-roadmap-v2) <br>
-- [CyberSec Roadmap API Docs](https://api.mkkpro.com:8109/docs) <br>
-- [CyberSec Roadmap API Route](https://api.mkkpro.com/career/cybersec-roadmap-v2) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, API Calls] <br>
-**Output Format:** [JSON responses containing roadmap milestones, specialization paths, certifications, learning resources, and estimated durations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Inputs may include learner experience level, goals, prior knowledge, learning preferences, time commitment, session ID, optional user ID, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Assessment answers and request identifiers may be sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive personal, employer-confidential, or credential information, and use pseudonymous session or user identifiers when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cybersec-roadmap-v2)
+- [Cyber Security Roadmap API Docs](https://api.mkkpro.com:8109/docs)
+- [Cyber Security Roadmap API Route](https://api.mkkpro.com/career/cybersec-roadmap-v2)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON API responses containing roadmap milestones, certifications, learning resources, specializations, and learning path catalog data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on assessment inputs such as experience level, goals, time commitment, learning preferences, session identifier, optional user identifier, and timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-Register as a verified AI agent on the FormPass network. Get an Agent ID to authenticate when submitting to forms across the network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register as a verified AI agent on the FormPass network. Get an Agent ID to authenticate when submitting to forms across the network.
 
-## Publisher: <br>
-[jezjsa](https://clawhub.ai/user/jezjsa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jezjsa](https://clawhub.ai/user/jezjsa)
 
-## Use Case: <br>
-External users and developers use this skill to register an AI agent with FormPass, obtain an Agent ID, and configure bearer-token authentication for verified form submissions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent IDs can authorize verified FormPass submissions if exposed. <br>
-Mitigation: Treat the Agent ID as a secret, store it securely, and avoid sharing it in transcripts or public logs. <br>
-Risk: Form submissions may send personal or sensitive data to FormPass endpoints. <br>
-Mitigation: Confirm the user approves the destination, form ID, and submitted data before running the curl examples. <br>
-Risk: Using the wrong FormPass form ID or endpoint can submit data to an unintended destination. <br>
-Mitigation: Verify the form ID and destination URL before submitting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FormPass homepage](https://form-pass.com) <br>
-- [FormPass agent registration](https://form-pass.com/dashboard/agents/new) <br>
-- [FormPass agent integration docs](https://form-pass.com/docs/agent-integration) <br>
-- [FormPass discovery docs](https://form-pass.com/docs/discovery) <br>
-- [ClawHub skill page](https://clawhub.ai/jezjsa/formpass-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/jezjsa) <br>
+## Use Case:
 
+External developers and AI agent operators use this skill to register an agent with FormPass, obtain an Agent ID, and apply that ID when submitting data to FormPass-enabled forms.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples; the skill itself is instruction-only and does not generate files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Agent ID is used as an authorization credential for FormPass submissions.
+
+Mitigation: Store the Agent ID securely, avoid exposing it in shared logs or prompts, and rotate it if disclosure is suspected.
+
+Risk: The skill can guide agents to submit user-provided form data to FormPass endpoints.
+
+Mitigation: Confirm the destination form, domain, and user-approved data before sending any submission.
+
+## Reference(s):
+
+- [FormPass homepage](https://form-pass.com)
+- [FormPass agent registration](https://form-pass.com/dashboard/agents/new)
+- [FormPass agent integration documentation](https://form-pass.com/docs/agent-integration)
+- [FormPass discovery documentation](https://form-pass.com/docs/discovery)
+- [ClawHub skill page](https://clawhub.ai/jezjsa/skills/formpass-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/jezjsa)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes FormPass dashboard links, curl examples, and environment variable guidance for storing an Agent ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Get TRC20 token lists on TRON with price, 24h change, 24h volume, market cap, and holder-count signals for token discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets TRC20 token lists on TRON with price, 24h change, 24h volume, market cap, holder count, and hot or trending token signals.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-External users and developers use this skill to query TronScan MCP token-list tools, compare TRC20 tokens by price, change, volume, market cap, and holders, and discover hot or popular TRON tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external TronScan MCP endpoint for public TRON token-list lookups. <br>
-Mitigation: Confirm the MCP endpoint is the intended TronScan service before use. <br>
-Risk: Configuring a TronScan API key for rate limits could expose credentials if pasted into chat. <br>
-Mitigation: Store API keys in the MCP configuration and avoid sharing them in conversation. <br>
-Risk: Token-list results may include assets marked by TronScan fields as suspicious, unsafe, or not suitable to show. <br>
-Mitigation: Flag tokens with tokenCanShow false or tokenLevel 3 or 4 before recommending further analysis. <br>
+## Use Case:
 
+External users and developers use this skill to query TronScan MCP for TRON token lists, priced tokens, hot searches, and follow-up token details for market-data discovery and review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sshnii/tronscan-token-list) <br>
-- [TronScan MCP server](https://mcp.tronscan.org/mcp) <br>
-- [TronScan MCP guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls] <br>
-**Output Format:** [Markdown text with referenced TronScan MCP tool calls and token metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pagination, sorting, and token risk flags from TronScan fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Token rankings, hot-search results, and quality-project sorting can be mistaken for investment recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the data as public market information and tell users to perform separate due diligence before relying on it.
+
+Risk: An API key may be configured for higher TronScan API limits.
+
+Mitigation: Store API keys only through the MCP configuration mechanism and avoid exposing them in prompts, logs, or skill files.
+
+Risk: Some listed tokens may be flagged as hidden, suspicious, or unsafe by TronScan fields.
+
+Mitigation: Flag tokens with tokenCanShow false or tokenLevel 3 or 4 as potentially risky before recommending further analysis.
+
+## Reference(s):
+
+- [TronScan MCP Server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+- [ClawHub Skill Page](https://clawhub.ai/sshnii/skills/tronscan-token-list)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown, Guidance]
+
+**Output Format:** [MCP tool calls with plain text or Markdown summaries of token-market data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include token price, 24h change, 24h volume, market cap, holder count, ranking, pagination, and risk-status fields.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

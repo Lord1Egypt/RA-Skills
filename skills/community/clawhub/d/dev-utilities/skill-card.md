@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Dev Utilities concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and quick-reference topics.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference for devtools concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated reference text may be generic or incomplete for a specific production environment. <br>
-Mitigation: Use the guidance as a starting point and verify operational changes against project-specific documentation, tests, and review processes. <br>
-Risk: Version signals differ between server release metadata, skill frontmatter, and the shell script. <br>
-Mitigation: Treat the server release version as the release version and review source version fields during maintenance. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick devtools reference for common workflow topics such as setup, debugging, performance, security, migration, and best-practice patterns.
 
-## Reference(s): <br>
-- [Dev Utilities on ClawHub](https://clawhub.ai/ckchzh/dev-utilities) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Risk: The skill provides generic reference documentation rather than a functional devtools integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a quick reference and verify concrete commands, configurations, and operational steps against the target project's own documentation before applying them.
+
+Risk: The server release version differs from versions declared inside the artifact files.
+
+Mitigation: Treat the server release version as the published version and verify packaged metadata before distributing or documenting the release.
+
+## Reference(s):
+
+- [Dev Utilities on ClawHub](https://clawhub.ai/ckchzh/skills/dev-utilities)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific topics include intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence; artifact frontmatter lists 2.0.3 and script output lists 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

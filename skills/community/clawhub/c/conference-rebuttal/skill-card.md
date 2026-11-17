@@ -1,41 +1,53 @@
-## Description: <br>
-Use when writing or planning rebuttals for peer-reviewed conference papers (ICML, NeurIPS, ICLR, CVPR, etc.). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing or planning rebuttals for peer-reviewed conference papers (ICML, NeurIPS, ICLR, CVPR, etc.).
 
-## Publisher: <br>
-[lancezpf](https://clawhub.ai/user/lancezpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lancezpf](https://clawhub.ai/user/lancezpf)
 
-## Use Case: <br>
-Researchers, authors, and academic teams use this skill to analyze peer-review feedback, plan response strategy, draft conference rebuttals, and self-check that responses are concise, evidence-based, and complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewer comments, unpublished manuscripts, or experimental results may be confidential. <br>
-Mitigation: Use the skill as drafting guidance only in environments appropriate for the paper's confidentiality requirements. <br>
-Risk: A rebuttal draft may include inaccurate factual claims, citations, section references, or experimental numbers. <br>
-Mitigation: Verify all claims and numbers against the manuscript, reviews, appendices, and completed experiments before submission. <br>
+## Use Case:
 
+External researchers and academic authors use this skill to plan, draft, refine, and self-check conference rebuttals. It helps structure responses to reviewers, prioritize reviewer concerns, and keep rebuttal prose evidence-focused and constructive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lancezpf/conference-rebuttal) <br>
-- [Publisher profile](https://clawhub.ai/user/lancezpf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, structured outlines, reviewer-response tables, and rebuttal drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May incorporate confidential review comments or unpublished paper details supplied by the user; factual claims, citations, section references, and experimental numbers should be independently verified before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated rebuttals may include unsupported claims, invented evidence, or inaccurate references to the paper or reviews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every rebuttal against the paper, review text, and actual experiment results; do not include claims that are not supported by evidence.
+
+Risk: Strategic rebuttal framing may become too adversarial or may misrepresent reviewer intent.
+
+Mitigation: Have a human author check tone and wording before submission, keeping responses constructive and fact-based.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lancezpf/skills/conference-rebuttal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose, tables, and structured rebuttal draft sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated rebuttal content should be reviewed by the author for factual accuracy, evidence support, and tone.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

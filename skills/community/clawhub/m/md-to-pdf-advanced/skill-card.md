@@ -1,42 +1,60 @@
-## Description: <br>
-Convert Markdown files to PDF using WeasyPrint, Pandoc, or wkhtmltopdf with support for syntax highlighting, tables, images, custom CSS themes, and page styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to PDF with multiple backend options (WeasyPrint, Pandoc, wkhtmltopdf), including syntax highlighting, tables, images, custom CSS themes, and page styling.
 
-## Publisher: <br>
-[20181112523](https://clawhub.ai/user/20181112523) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[20181112523](https://clawhub.ai/user/20181112523)
 
-## Use Case: <br>
-Developers and agents use this skill to convert Markdown documents into PDF reports with selectable rendering backends, themes, page layout options, and image/table support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release may install unpinned Python packages during normal use. <br>
-Mitigation: Use a virtual environment or container and preinstall reviewed, pinned dependencies before running conversions. <br>
-Risk: Rendering Markdown may fetch network resources or process local file references. <br>
-Mitigation: Avoid converting untrusted Markdown unless remote URLs and local file references have been reviewed, and run with restricted network and filesystem access where practical. <br>
+## Use Case:
 
+Developers and document authors use this skill to convert Markdown files into styled PDF documents for reports, papers, and generated documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/20181112523/md-to-pdf-advanced) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Markdown to PDF Script](artifact/scripts/md_to_pdf.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PDF files plus Markdown usage guidance and shell or Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes PDF output to a specified path; may use WeasyPrint, Pandoc, or wkhtmltopdf depending on installed dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can change the Python environment when dependencies are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated virtual environment or container and preinstall pinned dependencies before use.
+
+Risk: Markdown, CSS, or rendered document resources can be controlled by the input document.
+
+Mitigation: Avoid untrusted Markdown or CSS unless local file access and outbound network access are sandboxed.
+
+Risk: The conversion writes PDF output to a specified filesystem path.
+
+Mitigation: Use a dedicated output directory with least-privilege permissions and review output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/20181112523/skills/md-to-pdf-advanced)
+- [Publisher profile](https://clawhub.ai/user/20181112523)
+- [Bundled skill definition](artifact/SKILL.md)
+- [Conversion script](artifact/scripts/md_to_pdf.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python command examples; the bundled script writes PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write PDF output to a user-specified path and may use local CSS themes or optional conversion backends.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-MongoDB 文档数据库管理技能。通过自然语言查询、管理 MongoDB，支持文档查询、聚合操作、索引管理、地理空间查询等功能。当用户提到 MongoDB、NoSQL、文档数据库时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MongoDB 文档数据库管理技能。通过自然语言查询、管理 MongoDB，支持文档查询、聚合操作、索引管理、地理空间查询等功能。
 
-## Publisher: <br>
-[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini)
 
-## Use Case: <br>
-Developers, data analysts, and backend engineers use this skill to draft MongoDB queries, aggregation pipelines, document updates, geospatial queries, index operations, and backup or restore commands from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated MongoDB guidance can include bulk updates, deletes, index drops, restores, or schema-changing actions that affect live data. <br>
-Mitigation: Review generated commands before execution, use read-only or least-privilege accounts by default, avoid exploratory prompts against production databases, and require explicit confirmation plus backups or matched-count review before destructive operations. <br>
-Risk: Database credentials or connection strings could be exposed through prompts or shell history. <br>
-Mitigation: Keep credentials out of prompts and command history, and use sanitized connection strings or environment-specific secret handling. <br>
+## Use Case:
 
+Developers, data analysts, and backend engineers use this Chinese-language skill to translate MongoDB administration requests into queries, aggregation pipelines, document updates, index operations, geospatial queries, and backup or restore commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ryanlee-gemini/mongodb-skill) <br>
-- [MongoDB Official Documentation](https://www.mongodb.com/docs/) <br>
-- [MongoDB Query Operators](https://www.mongodb.com/docs/manual/reference/operator/) <br>
-- [MongoDB Aggregation Pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with MongoDB query examples, JavaScript snippets, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review before executing generated database-changing commands] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated MongoDB write, restore, transaction, or index commands can change or remove production data if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated command before execution, test on non-production data when possible, and keep a verified backup before destructive or restore operations.
+
+Risk: Database credentials used with generated commands may have broader access than the task requires.
+
+Mitigation: Use least-privilege MongoDB users and avoid exposing credentials in shared prompts, logs, or shell history.
+
+Risk: Unpinned client dependencies can reduce reproducibility across environments.
+
+Mitigation: Install dependencies in an isolated environment and pin PyMongo or MongoDB client versions when repeatable behavior is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryanlee-gemini/skills/mongodb-skill)
+- [MongoDB Documentation](https://www.mongodb.com/docs/)
+- [MongoDB Query Operators](https://www.mongodb.com/docs/manual/reference/operator/)
+- [MongoDB Aggregation Pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, shell command, and connection-string examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are command and query proposals that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

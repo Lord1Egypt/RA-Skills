@@ -1,41 +1,60 @@
-## Description: <br>
-Draft and publish posts to Xiaohongshu/RED, including content drafting, cover image generation, review, and browser-based publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Xiaohongshu/RED posts, generates cover images, routes drafts for approval, and supports browser-based or manual publishing.
 
-## Publisher: <br>
-[vinplezhang](https://clawhub.ai/user/vinplezhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vinplezhang](https://clawhub.ai/user/vinplezhang)
 
-## Use Case: <br>
-Creators, marketers, and automation operators use this skill to draft Xiaohongshu posts, generate 1080x1440 cover images, route drafts for approval, and publish through a logged-in browser session or a manual fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Xiaohongshu creator session and publish content through browser automation. <br>
-Mitigation: Review the final title, body, hashtags, and cover image before approving any live publish action; use cron only to prepare drafts unless a separate explicit approval process is in place. <br>
+## Use Case:
 
+Creators, content teams, and agents assisting them use this skill to prepare Xiaohongshu posts, generate platform-sized covers, collect user approval, and publish through a controlled browser session or manual fallback.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vinplezhang/vinplezhang-xiaohongshu-publisher) <br>
-- [Browser Publishing Guide](references/browser-publish.md) <br>
-- [Xiaohongshu Content Guide](references/content-guide.md) <br>
-- [Xiaohongshu Creator Portal](https://creator.xiaohongshu.com/publish/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, generated draft text, cover image file paths, and browser publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a 1080x1440 PNG cover image and formatted manual-posting content when browser automation is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: The skill can use a logged-in browser session to publish content to Xiaohongshu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every draft, cover image, and hashtag set before approval; keep per-post approval explicit and avoid cron configurations that publish without fresh approval.
+
+Risk: Browser automation, login state, or image upload behavior may fail during publishing.
+
+Mitigation: Verify the browser target and login state before publishing, and use the documented manual copy-paste fallback when automation or uploads fail.
+
+Risk: Generated public social content may be inaccurate, inappropriate, or off-brand.
+
+Mitigation: Have the user review all text, claims, visuals, and tags before any publishing action.
+
+## Reference(s):
+
+- [Content Guide](references/content-guide.md)
+- [Browser Publishing Guide](references/browser-publish.md)
+- [Xiaohongshu Creator Portal](https://creator.xiaohongshu.com/publish/publish)
+- [ClawHub Skill Page](https://clawhub.ai/vinplezhang/skills/vinplezhang-xiaohongshu-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown drafts, shell commands, generated PNG cover files, and browser publishing guidance or actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before publishing and supports manual copy-paste fallback when browser automation is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

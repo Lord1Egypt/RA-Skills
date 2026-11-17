@@ -1,0 +1,1 @@
+# 无强制第三方依赖（纯标准库 urllib/json/ssl/uuid）；httpx 可选（存在时使用，否则自动回退 urllib）

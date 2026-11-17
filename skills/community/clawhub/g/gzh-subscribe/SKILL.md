@@ -1,6 +1,6 @@
 ---
 name: gzh-subscribe
-description: 微信公众号文章订阅 — 每天 9 点，盯梢竞对、同类、关注账号，一份你订阅的公众号文章推送。
+description: 微信公众号文章订阅 — 每天 6 点，盯梢竞对、同类、关注账号，一份你订阅的公众号文章推送。当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 ---
 
 # 公众号订阅追踪
@@ -24,13 +24,15 @@ description: 微信公众号文章订阅 — 每天 9 点，盯梢竞对、同�
 配置完成后，即可使用：
 
 ```bash
-# 1. 添加订阅（只需公众号名称即可）
-python3 "$SKILL_PATH/assets/subscribe.py" add "示例公众号" --category "竞对账号"
+# 1. 添加订阅（需提供账号 ID，支持三种格式）
+# 以「红狐数据」公众号为例：
+python3 "$SKILL_PATH/assets/subscribe.py" add "红狐数据" --id "redfoxdata1" --category "关注账号"
 
-# 如果有公众号微信号（如 WebNotes），可以一并提供以精确定位
-python3 "$SKILL_PATH/assets/subscribe.py" add "示例公众号" --id "WebNotes"
+# 也可用 wxId 或 bizInfo 格式
+python3 "$SKILL_PATH/assets/subscribe.py" add "红狐数据" --id "gh_53301f7745f3"
+python3 "$SKILL_PATH/assets/subscribe.py" add "红狐数据" --id "MzY4ODI4ODc2MA=="
 
-# 2. 拉取今日发文
+# 2. 拉取发文
 python3 "$SKILL_PATH/assets/subscribe.py" fetch
 
 # 3. 生成并打开日报
@@ -53,18 +55,22 @@ HTML 日报保存在 `~/Downloads/QoderGzhReports/` 目录，自动在浏览器�
 
 ## 功能特点
 
-- **收件箱式订阅**：像订阅 Newsletter 一样订阅公众号，最多 20 个，名称即可，微信号可选
-- **每日 9 点准时推送**：一键安装定时任务，每天早上一份精排日报，自动打开浏览器
+- **收件箱式订阅**：像订阅 Newsletter 一样订阅公众号，最多 20 个，需提供账号 ID（支持 account / wxId / bizInfo 三种格式）
+- **每日 6 点准时推送**：一键安装定时任务，每天早上一份精排日报，自动打开浏览器（广域库 T+1，拉取昨天及近 7 天发文）
 - **三类分组管理**：「竞对账号」盯对手、「同类账号」找灵感、「关注账号」追大神
 - **关键数据一屏尽览**：发文日期、标题、简介、阅读数、点赞数，原文链接一键直达
 - **终端 + 日报双模式**：命令行实时查表，HTML 日报适合分享存档
+
+> **数据覆盖说明**：本 Skill 基于红狐广域库，覆盖范围更广。
+> 如在广域库中仍搜不到目标账号，可联系红狐数据获取定制支持：
+> **redfoxdata@proton.me**
 
 ---
 
 ## 适用场景
 
 ### 每日晨报
-开启 `--subscribe`，每天 09:00 自动拉取所有订阅公众号的发文，
+开启 `--subscribe`，每天 06:00 自动拉取所有订阅公众号的发文，
 生成 HTML 日报并自动打开浏览器。像收邮件一样，每天早上收到一份
 专属的公众号文章推送。
 
@@ -88,14 +94,24 @@ HTML 日报保存在 `~/Downloads/QoderGzhReports/` 目录，自动在浏览器�
 
 ### 管理订阅
 
+> **账号 ID 说明**：新接口基于红狐广域库，必须提供账号 ID 才能查询。
+> 支持以下三种格式（三选一即可），以「红狐数据」公众号为例：
+>
+> - **account** — 公众号标识，最容易获取，如 `redfoxdata1`
+> - **wxId** — 微信号，格式 `gh_` 开头，仅限**自己的公众号后台**查看，如 `gh_53301f7745f3`
+> - **bizInfo** — 文章链接中的 biz 编码，通过**手机端默认浏览器**打开任意文章，从链接地址中提取，如 `MzY4ODI4ODc2MA==`
+>
+> 三种格式提供任意一种即可，推荐优先使用 account 格式。
+
 ```bash
-# 添加订阅（只需公众号名称即可）
-python3 "$SKILL_PATH/assets/subscribe.py" add "公众号名称" --category "竞对账号"
+# 添加订阅（账号名称 + 账号 ID 均为必填）
+python3 "$SKILL_PATH/assets/subscribe.py" add "公众号名称" --id "redfoxdata1" --category "竞对账号"
 
-# 添加订阅时附带公众号微信号
-python3 "$SKILL_PATH/assets/subscribe.py" add "公众号名称" --id "WebNotes"
+# 支持三种账号 ID 格式
+python3 "$SKILL_PATH/assets/subscribe.py" add "公众号名称" --id "gh_53301f7745f3"
+python3 "$SKILL_PATH/assets/subscribe.py" add "公众号名称" --id "MzY4ODI4ODc2MA=="
 
-# 取消订阅（支持用名称或微信号）
+# 取消订阅（支持用名称或 ID）
 python3 "$SKILL_PATH/assets/subscribe.py" remove "公众号名称"
 python3 "$SKILL_PATH/assets/subscribe.py" remove "WebNotes"
 
@@ -129,7 +145,7 @@ python3 "$SKILL_PATH/assets/subscribe.py" report --date 2026-05-26 --output-dir 
 ### 每日自动推送
 
 ```bash
-# 开启每日 09:00 自动推送
+# 开启每日 06:00 自动推送
 python3 "$SKILL_PATH/assets/subscribe.py" --subscribe
 
 # 取消每日自动推送
@@ -141,7 +157,7 @@ python3 "$SKILL_PATH/assets/subscribe.py" --unsubscribe
 | 命令 | 参数 | 说明 |
 |------|------|------|
 | `add` | `accountName` | 公众号名称（必填） |
-| | `--id` | 公众号 ID（可选） |
+| | `--id` | 账号 ID（必填），支持 account / wxId / bizInfo |
 | | `--category` | 分类标签：竞对账号 / 同类账号 / 关注账号 |
 | `remove` | `identifier` | 公众号名称 或 公众号 ID |
 | `list` | — | 列出所有订阅 |
@@ -150,7 +166,7 @@ python3 "$SKILL_PATH/assets/subscribe.py" --unsubscribe
 | `report` | `--date` | 指定日期 YYYY-MM-DD（默认今天） |
 | | `--output-dir` | 输出目录（默认 ~/Downloads/QoderGzhReports） |
 | 全局 | `--api-key` | 指定 API Key |
-| | `--subscribe` | 安装每日定时任务（09:00） |
+| | `--subscribe` | 安装每日定时任务（06:00） |
 | | `--unsubscribe` | 卸载定时任务 |
 
 ### 依赖安装
@@ -161,10 +177,25 @@ python3 "$SKILL_PATH/assets/subscribe.py" --unsubscribe
 
 ---
 
+## 💳 积分不足充值（支付宝接管）
+
+当脚本以**退出码 3** 结束、并在 stdout 打印 `===PAYMENT_REQUIRED_JSON_START===` 区块时，表示当前 API Key 积分不足（接口 `code=3210`，兼容 `3201`）。响应体 `data` 内含结构化支付信息：`cashierUrl`（支付宝收银台链接）、`amount`（订单金额，元）、`goodsName`（商品名称）、`outTradeNo`（订单号）。
+
+脚本退出码说明：`0` 正常返回；`1` 参数/鉴权/接口错误或未获取到文章；`3` **积分不足，需要充值**（按下述流程处理）。
+
+完整的前置检查、`alipay-bot trigger-payment-signal` → `submit-payment` → `poll-payment-status` 编排步骤、钱包绑定处理、支付接管规则与失败处理，统一见 **[references/alipay-recharge.md](references/alipay-recharge.md)**（通用流程，可被其他 skill 复用）。`submit-payment` 后由 Agent 用 `poll-payment-status --out-shake-no <查询单号>` **自动监听支付回调到账**，无需用户再手动确认；到账（`outcome=success`）后自动用用户原始的查询参数重新运行 `assets/subscribe.py` 输出结果。
+
+---
+
 ## 常见问题
 
-**Q：公众号 ID（微信号）是什么？必须提供吗？**
-A：公众号的微信号（如 `WebNotes`），可在公众号主页 → 基础信息中查看。**非必填**，仅用公众号名称也能完成订阅和拉取发文。提供微信号可以让 API 更精确地定位到目标公众号。
+**Q：账号 ID 是什么？支持哪些格式？**
+A：本 Skill 使用红狐广域库，**必须提供账号 ID** 才能查询。支持三种格式（三选一即可）：
+- **account**：公众号标识，最容易获取（如 `redfoxdata1`）
+- **wxId**：微信号，格式 `gh_` 开头，仅限**自己的公众号后台**查看（如 `gh_53301f7745f3`）
+- **bizInfo**：文章链接中的 biz 编码，通过**手机端默认浏览器**打开任意文章，从链接地址中提取（如 `MzY4ODI4ODc2MA==`）
+
+提供其中任意一种即可，推荐优先使用 account 格式。
 
 **Q：最多能订阅多少个公众号？**
 A：最多 20 个。这是保证 API 调用效率和合理使用的上限。
@@ -189,6 +220,9 @@ A：日报展示的是标题+简介+数据。如需对文章做摘要改写或�
 
 **Q：额度用完了怎么办？**
 A：前往 [redfox.hk](https://redfox.hk/settings/api-keys?source=clawhub) 注册获取 API Token。
+
+**Q：为什么有些公众号查不到？**
+A：本 Skill 使用红狐**广域库**，覆盖范围较广。如确认账号 ID 正确但仍查不到，请联系红狐数据获取定制支持：**redfoxdata@proton.me**。
 
 ---
 

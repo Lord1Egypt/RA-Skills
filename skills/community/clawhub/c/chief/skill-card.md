@@ -1,50 +1,76 @@
-## Description: <br>
-Chief is an HR deep organizational diagnosis agent that turns complex people, culture, compensation, readiness, and talent review questions into structured diagnostic reports using a seven-step analysis flow, Socratic audit, and an iceberg model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chief is an HR organizational diagnosis skill that uses a seven-step method, Socratic audit, and iceberg model to turn ambiguous team, culture, compensation, attrition, and talent questions into structured diagnostic reports.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-HR leaders, HRBPs, and organization consultants use this skill for deep diagnosis of ambiguous or multi-factor HR issues such as attrition, culture gaps, leadership assessment, compensation benchmarking, change readiness, and talent review. It is not intended for routine HR Q&A, policy lookup, template generation, or email drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive HR case details and internal analysis through case memory or failure-taxonomy records. <br>
-Mitigation: Use only with clear local file boundaries, opt-in storage, raw reasoning retention disabled, and documented retention and deletion controls. <br>
-Risk: HR diagnostics may involve identifiable employee, compensation, misconduct, legal, or leadership-risk information. <br>
-Mitigation: Minimize and de-identify inputs, avoid sensitive details unless access controls are acceptable, and require human review for legal, layoff, arbitration, major compensation, leadership-risk, or organization-change outputs. <br>
-Risk: External search, meeting analytics, or HR integrations could expose organizational data outside the local environment. <br>
-Mitigation: Require explicit approval before any external tool or integration receives organizational data, and skip unavailable external skills rather than silently broadening data sharing. <br>
+## Use Case:
 
+HR leaders, HRBPs, and organizational consultants use Chief to analyze complex people and organization issues such as team dysfunction, attrition, culture adoption, change readiness, talent review, and compensation benchmarking. The skill produces prioritized recommendations with confidence checks, adversarial review, and citation validation.
 
-## Reference(s): <br>
-- [Chief ClawHub release page](https://clawhub.ai/tuobadaidai/chief) <br>
-- [DiTing skill definition](artifact/SKILL.md) <br>
-- [Enhanced HR analysis frameworks](artifact/references/enhanced-frameworks.md) <br>
-- [Evaluator quality specification](artifact/references/evaluator-spec.md) <br>
-- [Few-shot output examples](artifact/references/few-shot-examples.md) <br>
-- [Multi-agent aggregation strategy](artifact/references/multi-agent-aggregation.md) <br>
-- [State pruning specification](artifact/references/state-pruning-spec.md) <br>
-- [XML scaffold specification](artifact/references/xml-scaffold-spec.md) <br>
-- [Architecture validation record](artifact/references/v6-architecture-validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and concise guidance, with optional JSON case-memory records and shell commands for setup or citation checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include confidence labels, citations, risk flags requiring human review, and prioritized P0/P1/P2 recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The workflow may store sensitive HR case, compensation, investigation, or legal-risk details in local knowledge-base files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated knowledge-base path, redact personal or confidential data before analysis, and require explicit approval before writing case or taxonomy records.
+
+Risk: External search or imported skill use may expose sensitive organizational context or return unsupported guidance.
+
+Mitigation: Disable or gate external searches for confidential matters and review all retrieved evidence before using it in employee-facing or legal-risk decisions.
+
+Risk: The initializer supports overwrite behavior that can replace existing knowledge-base files.
+
+Mitigation: Avoid the overwrite option unless replacement is intended, and back up the knowledge base before initialization or migration.
+
+Risk: Citation validation is part of the workflow but was called out for review in the security guidance.
+
+Mitigation: Review or fix the citation checker before relying on it for policy, legal, compensation, or investigation reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/chief)
+- [Publisher profile](https://clawhub.ai/user/tuobadaidai)
+- [Step 1 Define](references/step-1-define.md)
+- [Step 2 Decompose](references/step-2-decompose.md)
+- [Step 3 Prioritize](references/step-3-prioritize.md)
+- [Step 4 Plan](references/step-4-plan.md)
+- [Step 5 Analyze](references/step-5-analyze.md)
+- [Step 6 Synthesize](references/step-6-synthesize.md)
+- [Step 7 Communicate](references/step-7-communicate.md)
+- [Evaluator Specification](references/evaluator-spec.md)
+- [XML Scaffold Specification](references/xml-scaffold-spec.md)
+- [State Pruning Specification](references/state-pruning-spec.md)
+- [Multi-Agent Aggregation](references/multi-agent-aggregation.md)
+- [Enhanced Frameworks](references/enhanced-frameworks.md)
+- [V6 Architecture Validation](references/v6-architecture-validation.md)
+- [Few-Shot Examples](references/few-shot-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnostic reports, structured XML state, JSONL case records, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize local HR knowledge-base files and validate report citations against a configured knowledge-base path.]
+
+## Skill Version(s):
+
+5.0.1 (source: ClawHub release evidence; bundled frontmatter reports 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

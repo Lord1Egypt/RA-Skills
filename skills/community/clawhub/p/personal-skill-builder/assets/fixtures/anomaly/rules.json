@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "revision": "r1",
+  "source": "合成夹具说明",
+  "profiles": {
+    "main": {
+      "id_field": "id",
+      "group_field": "group",
+      "groups": [
+        {
+          "name": "before",
+          "when": {
+            "field": "day",
+            "op": "lt",
+            "type": "date",
+            "value": {
+              "param": "cutoff"
+            }
+          }
+        },
+        {
+          "name": "on-or-after",
+          "when": {
+            "field": "day",
+            "op": "ge",
+            "type": "date",
+            "value": {
+              "param": "cutoff"
+            }
+          }
+        },
+        {
+          "name": "unknown",
+          "default": true
+        }
+      ],
+      "sort_keys": [
+        {
+          "field": "quantity",
+          "type": "number",
+          "direction": "desc",
+          "unknowns": "last"
+        },
+        {
+          "field": "day",
+          "type": "date",
+          "direction": "asc",
+          "unknowns": "last"
+        }
+      ],
+      "check_fields": [
+        {
+          "field": "quantity",
+          "type": "number",
+          "min": 0,
+          "on_invalid": "unknown"
+        },
+        {
+          "field": "day",
+          "type": "date",
+          "on_invalid": "unknown"
+        }
+      ],
+      "parameters": {
+        "cutoff": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}

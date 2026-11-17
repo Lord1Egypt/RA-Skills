@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    数据流图模板
+    数据源 → 处理 → 存储 → 消费，每条箭头标注数据类型（stream/batch/query）
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    语义形状：外部服务=虚线边框矩形，工具/函数=带⚙的矩形，
+    长期记忆=实线圆柱体，消息队列=横向管道
+    LLM 生成时参考此结构，自由增减节点和数据流。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="arrow-stream" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT_COLOR}}"/>
+    </marker>
+    <marker id="arrow-batch" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT2_COLOR}}"/>
+    </marker>
+    <marker id="arrow-query" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT3_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="38" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 阶段标签 -->
+  <text x="110" y="65" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT_COLOR}}">{{STAGE_1_LABEL}}</text>
+  <text x="350" y="65" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT2_COLOR}}">{{STAGE_2_LABEL}}</text>
+  <text x="570" y="65" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{STAGE_3_LABEL}}</text>
+  <text x="790" y="65" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT_COLOR}}">{{STAGE_4_LABEL}}</text>
+
+  <!-- 阶段分隔线 -->
+  <line x1="225" y1="55" x2="225" y2="430" stroke="{{BORDER_COLOR}}" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="460" y1="55" x2="460" y2="430" stroke="{{BORDER_COLOR}}" stroke-width="1" stroke-dasharray="6,4"/>
+  <line x1="680" y1="55" x2="680" y2="430" stroke="{{BORDER_COLOR}}" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- ====== 数据源 1（外部服务：虚线边框矩形） ====== -->
+  <rect x="35" y="90" width="150" height="55" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#shadow)"/>
+  <text x="110" y="115" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{SOURCE_1}}</text>
+  <text x="110" y="133" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{SOURCE_1_DESC}}</text>
+
+  <!-- 数据源 2 -->
+  <rect x="35" y="170" width="150" height="55" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#shadow)"/>
+  <text x="110" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{SOURCE_2}}</text>
+  <text x="110" y="213" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{SOURCE_2_DESC}}</text>
+
+  <!-- 数据源 3 -->
+  <rect x="35" y="250" width="150" height="55" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#shadow)"/>
+  <text x="110" y="275" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{SOURCE_3}}</text>
+  <text x="110" y="293" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{SOURCE_3_DESC}}</text>
+
+  <!-- ====== 消息队列/Ingestion（横向管道） ====== -->
+  <rect x="255" y="100" width="180" height="35" rx="17"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="345" y="122" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">{{INGESTION}}</text>
+
+  <!-- 处理器 1（⚙ 工具矩形） -->
+  <rect x="260" y="165" width="170" height="50" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="345" y="188" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{PROCESSOR_1}}</text>
+  <text x="345" y="205" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{PROCESSOR_1_DESC}}</text>
+
+  <!-- 处理器 2 -->
+  <rect x="260" y="240" width="170" height="50" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="345" y="263" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{PROCESSOR_2}}</text>
+  <text x="345" y="280" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{PROCESSOR_2_DESC}}</text>
+
+  <!-- Source → Processing (stream 实线) -->
+  <line x1="185" y1="115" x2="253" y2="115" stroke="{{ACCENT_COLOR}}" stroke-width="2" marker-end="url(#arrow-stream)"/>
+  <text x="219" y="108" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" font-weight="bold" fill="{{ACCENT_COLOR}}">stream</text>
+
+  <line x1="185" y1="195" x2="258" y2="190" stroke="{{ACCENT2_COLOR}}" stroke-width="2"
+        stroke-dasharray="8,4" marker-end="url(#arrow-batch)"/>
+  <text x="222" y="186" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" font-weight="bold" fill="{{ACCENT2_COLOR}}">batch</text>
+
+  <line x1="185" y1="275" x2="258" y2="265" stroke="{{ACCENT_COLOR}}" stroke-width="2" marker-end="url(#arrow-stream)"/>
+  <text x="222" y="262" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" font-weight="bold" fill="{{ACCENT_COLOR}}">stream</text>
+
+  <!-- Ingestion → Processor -->
+  <line x1="345" y1="135" x2="345" y2="163" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ====== 存储层 ====== -->
+
+  <!-- 存储 1（圆柱体） -->
+  <ellipse cx="545" cy="100" rx="55" ry="13" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <rect x="490" y="100" width="110" height="50" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="545" cy="150" rx="55" ry="13" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="545" y="130" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_1}}</text>
+
+  <!-- 存储 2（圆柱体） -->
+  <ellipse cx="545" cy="195" rx="55" ry="13" fill="{{ACCENT2_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <rect x="490" y="195" width="110" height="50" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="545" cy="245" rx="55" ry="13" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <text x="545" y="225" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_2}}</text>
+
+  <!-- 存储 3（圆柱体） -->
+  <ellipse cx="545" cy="285" rx="55" ry="13" fill="{{ACCENT3_COLOR}}" fill-opacity="0.15"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <rect x="490" y="285" width="110" height="50" fill="{{NODE_FILL}}"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <ellipse cx="545" cy="335" rx="55" ry="13" fill="{{NODE_FILL}}"
+           stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="545" y="315" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STORE_3}}</text>
+
+  <!-- Processing → Storage -->
+  <line x1="430" y1="115" x2="488" y2="115" stroke="{{ACCENT_COLOR}}" stroke-width="2" marker-end="url(#arrow-stream)"/>
+  <text x="459" y="108" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT_COLOR}}">stream</text>
+
+  <line x1="430" y1="190" x2="488" y2="215" stroke="{{ACCENT2_COLOR}}" stroke-width="2"
+        stroke-dasharray="8,4" marker-end="url(#arrow-batch)"/>
+  <text x="459" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT2_COLOR}}">batch</text>
+
+  <line x1="430" y1="265" x2="488" y2="300" stroke="{{ACCENT_COLOR}}" stroke-width="2" marker-end="url(#arrow-stream)"/>
+
+  <!-- ====== 消费层 ====== -->
+
+  <!-- 消费者 1（矩形） -->
+  <rect x="710" y="90" width="160" height="50" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="790" y="113" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{CONSUMER_1}}</text>
+  <text x="790" y="130" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{CONSUMER_1_DESC}}</text>
+
+  <!-- 消费者 2 -->
+  <rect x="710" y="170" width="160" height="50" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="790" y="193" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{CONSUMER_2}}</text>
+  <text x="790" y="210" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{CONSUMER_2_DESC}}</text>
+
+  <!-- 消费者 3 -->
+  <rect x="710" y="250" width="160" height="50" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="790" y="273" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{CONSUMER_3}}</text>
+  <text x="790" y="290" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{CONSUMER_3_DESC}}</text>
+
+  <!-- Storage → Consumer (query 箭头) -->
+  <line x1="600" y1="120" x2="708" y2="115" stroke="{{ACCENT3_COLOR}}" stroke-width="2" marker-end="url(#arrow-query)"/>
+  <text x="654" y="110" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" font-weight="bold" fill="{{ACCENT3_COLOR}}">query</text>
+
+  <line x1="600" y1="220" x2="708" y2="200" stroke="{{ACCENT_COLOR}}" stroke-width="2" marker-end="url(#arrow-stream)"/>
+  <text x="654" y="205" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" font-weight="bold" fill="{{ACCENT_COLOR}}">stream</text>
+
+  <line x1="600" y1="310" x2="708" y2="275" stroke="{{ACCENT3_COLOR}}" stroke-width="2" marker-end="url(#arrow-query)"/>
+  <text x="654" y="285" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" font-weight="bold" fill="{{ACCENT3_COLOR}}">query</text>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="440" width="450" height="50" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="460" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+
+  <!-- stream -->
+  <line x1="30" y1="478" x2="60" y2="478" stroke="{{ACCENT_COLOR}}" stroke-width="2" marker-end="url(#arrow-stream)"/>
+  <text x="70" y="482" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">stream 实时流</text>
+
+  <!-- batch -->
+  <line x1="158" y1="478" x2="188" y2="478" stroke="{{ACCENT2_COLOR}}" stroke-width="2"
+        stroke-dasharray="8,4" marker-end="url(#arrow-batch)"/>
+  <text x="198" y="482" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">batch 批处理</text>
+
+  <!-- query -->
+  <line x1="288" y1="478" x2="318" y2="478" stroke="{{ACCENT3_COLOR}}" stroke-width="2" marker-end="url(#arrow-query)"/>
+  <text x="328" y="482" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">query 查询</text>
+
+  <!-- 外部源 -->
+  <rect x="390" y="471" width="22" height="14" rx="3"
+        fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="420" y="482" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">外部数据源</text>
+</svg>

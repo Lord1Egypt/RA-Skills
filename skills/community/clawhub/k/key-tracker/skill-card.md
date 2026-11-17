@@ -1,42 +1,55 @@
-## Description: <br>
-智能关键信息记录技能：从对话和报告中自动捕获时间节点、遗留问题、决策点、承诺事项等16类关键信息。外置大脑，不遗漏重要信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Key Tracker helps an agent capture deadlines, open issues, decisions, commitments, progress, dependencies, insights, and stakeholders from work conversations and reports.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Employees, developers, and project contributors use this skill to capture deadlines, milestones, issues, blockers, risks, decisions, commitments, dependencies, learnings, insights, context, and stakeholders from work conversations or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected work conversation and report details may be saved as long-term local notes. <br>
-Mitigation: Use the skill only for information you are comfortable storing locally under ~/.openclaw/workspace/.keyrecords/. <br>
-Risk: Secrets, regulated data, or highly confidential discussions could be captured if they match tracking patterns. <br>
-Mitigation: Avoid using the skill for sensitive discussions and periodically review and delete stored records as needed. <br>
+## Use Case:
 
+External users and developers use this skill as a Chinese-language work memory aid that detects and records important project facts from conversations and reports, then helps query those records later.
 
-## Reference(s): <br>
-- [Detection Pattern Library](references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/key-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with local JSON record entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records are intended to be stored locally under ~/.openclaw/workspace/.keyrecords/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can persist conversation and report excerpts in plaintext local records across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the .keyrecords directory as sensitive, avoid secrets or regulated data, apply local file permissions, and review or delete records regularly.
+
+Risk: Automatic capture is documented without clear consent, redaction, or deletion controls.
+
+Mitigation: Enable the skill only where local memory capture is expected, and add explicit deletion or redaction practices before use in sensitive workflows.
+
+## Reference(s):
+
+- [Detection Pattern Library](artifact/references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/vincentlau2046-sudo/skills/key-tracker)
+- [Project Homepage Listed in Artifact](https://github.com/vincentlau2046-sudo/key-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON record examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documented behavior stores captured records as local plaintext JSON files under .keyrecords.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

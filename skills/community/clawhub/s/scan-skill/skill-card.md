@@ -1,38 +1,57 @@
-## Description: <br>
-Deep security analysis of an individual skill before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep security analysis of an individual skill before installation.
 
-## Publisher: <br>
-[itsnishi](https://clawhub.ai/user/itsnishi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itsnishi](https://clawhub.ai/user/itsnishi)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to inspect a skill directory before installation or review, producing severity-ranked findings and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package names found during scans may be checked against PyPI or npm, which can expose confidential internal dependency names. <br>
-Mitigation: Run the skill only on directories intended for review, and avoid scanning private skills with confidential dependency names when registry lookups are unacceptable. <br>
+## Use Case:
 
+Developers and security reviewers use this skill before installing or accepting a skill to analyze its SKILL.md and supporting files for injection, shell, obfuscation, persistence, and supply-chain risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itsnishi/scan-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with severity-ranked findings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs against one skill directory path at a time; package names found during scans may be checked against PyPI or npm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The scanner can read outside the selected skill directory through symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox or on a copy of the target skill with symlinks removed.
+
+Risk: Reports may reproduce unsafe text from hostile skills.
+
+Mitigation: Treat generated reports as untrusted data and review excerpts before reusing them.
+
+Risk: Package-install findings may trigger outbound checks to PyPI or npm.
+
+Mitigation: Run scans only where those network checks are acceptable, or restrict network access when registry verification is not needed.
+
+## Reference(s):
+
+- [Scan Skill on ClawHub](https://clawhub.ai/itsnishi/skills/scan-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with severity-ranked findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes frontmatter analysis and supporting file inventory.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

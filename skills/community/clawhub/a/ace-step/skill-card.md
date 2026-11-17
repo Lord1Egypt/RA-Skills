@@ -1,46 +1,63 @@
-## Description: <br>
-Generate, inpaint, and outpaint music with ACE Step on RunComfy via the runcomfy CLI, using tag-driven composition, multilingual lyrics with section markers, and 5-second to 4-minute stereo output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, inpaint, and outpaint music with ACE Step on RunComfy via the runcomfy CLI.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to generate new music, repair a time range in an existing track, or extend audio through RunComfy-hosted ACE Step endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a paid external RunComfy service and a RunComfy token, so runs can consume credits and expose submitted prompts, lyrics, or audio to that service. <br>
-Mitigation: Install only if RunComfy and the @runcomfy/cli package are trusted, review endpoint and duration choices before execution, and avoid submitting confidential lyrics, unreleased audio, or private client material unless RunComfy processing is acceptable. <br>
-Risk: Generated music may include user-supplied lyrics or source audio whose rights are unclear. <br>
-Mitigation: Confirm the operator has rights to supplied lyrics and audio before generation, inpainting, or outpainting. <br>
+## Use Case:
 
+Developers, creative technologists, and external users use this skill to generate music from tags and lyrics, regenerate time ranges inside tracks, or extend existing tracks through RunComfy ACE Step endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/ace-step) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step) <br>
-- [ACE Step text-to-audio](https://www.runcomfy.com/models/acestep-ai/ace-step/text-to-audio?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step) <br>
-- [ACE Step 1.5 text-to-audio](https://www.runcomfy.com/models/acestep-ai/ace-step-1.5/text-to-audio?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step) <br>
-- [ACE Step audio-inpaint](https://www.runcomfy.com/models/acestep-ai/ace-step/audio-inpaint?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step) <br>
-- [ACE Step audio-outpaint](https://www.runcomfy.com/models/acestep-ai/ace-step/audio-outpaint?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated audio files downloaded by the RunComfy CLI into the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Unpinned @runcomfy/cli install examples can introduce supply-chain uncertainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or lockfile-backed @runcomfy/cli version and avoid running npm as an administrator.
+
+Risk: RUNCOMFY_TOKEN can expose account access if copied into prompts, logs, or committed files.
+
+Mitigation: Keep RUNCOMFY_TOKEN out of prompts and logs, and use the configured RunComfy credential path or environment variable only where needed.
+
+Risk: Inpaint and outpaint workflows depend on user-supplied audio URLs.
+
+Mitigation: Use only audio URLs intentionally provided for the current task and treat unexpected output divergence as a reason to inspect the source audio.
+
+## Reference(s):
+
+- [ClawHub ACE Step skill page](https://clawhub.ai/permew/skills/ace-step)
+- [RunComfy](https://www.runcomfy.com)
+- [ACE Step text-to-audio](https://www.runcomfy.com/models/acestep-ai/ace-step/text-to-audio?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step)
+- [ACE Step 1.5 text-to-audio](https://www.runcomfy.com/models/acestep-ai/ace-step-1.5/text-to-audio?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step)
+- [ACE Step audio-inpaint](https://www.runcomfy.com/models/acestep-ai/ace-step/audio-inpaint?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step)
+- [ACE Step audio-outpaint](https://www.runcomfy.com/models/acestep-ai/ace-step/audio-outpaint?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=ace-step)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce RunComfy CLI commands that download generated audio files to the requested output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

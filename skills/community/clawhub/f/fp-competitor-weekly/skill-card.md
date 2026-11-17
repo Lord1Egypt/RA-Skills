@@ -1,44 +1,57 @@
-## Description: <br>
-Generates a Chinese weekly competitor social-media report by combining Socialinsider IG, TikTok, and Facebook CSV exports with Agent-Reach YouTube data, emphasizing insights, charts, and actionable FridayParts recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 Socialinsider 导出的 IG/TikTok/Facebook 竞品 CSV 与 Agent-Reach YouTube 数据合并分析，生成包含排名、Top 内容、评论洞察、图表建议和行动建议的中文运营周报。
 
-## Publisher: <br>
-[zhuxirui677](https://clawhub.ai/user/zhuxirui677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuxirui677](https://clawhub.ai/user/zhuxirui677)
 
-## Use Case: <br>
-Marketing and operations teams use this skill to turn weekly competitor social-media exports into a structured Chinese operations report. It ranks audience growth and engagement, summarizes top posts and videos, extracts comment and content-strategy insights, recommends charts, and proposes concrete FridayParts actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided social-media exports may contain confidential or sensitive business data. <br>
-Mitigation: Only paste exports approved for processing in the active agent environment. <br>
-Risk: Incomplete or stale CSV and YouTube inputs can lead to misleading competitor conclusions. <br>
-Mitigation: Review the generated report against the provided exports and use the bundled quality checklist before relying on recommendations. <br>
+## Use Case:
 
+FridayParts marketing and operations teams use this skill to turn weekly competitor social-media exports into a decision-ready Chinese competitor report. It helps compare account growth, engagement, top content, comments, content strategy, visualization needs, and next-week actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-competitor-weekly) <br>
-- [README](artifact/README.md) <br>
-- [Import guide](artifact/docs/如何导入GetClawHub.md) <br>
-- [Example weekly competitor report](artifact/examples/example_competitor_weekly.md) <br>
-- [Output quality checklist](artifact/reference/输出质量checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown report with ranked lists, analysis sections, chart suggestions, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output; expects user-provided Socialinsider CSV and Agent-Reach YouTube JSON inputs; configured max_tokens is 2000.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The report may process social-media export data that was not obtained under the user's organizational authorization, platform terms, or privacy requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization and privacy compliance for Socialinsider exports and Agent-Reach YouTube data before using them as skill inputs.
+
+Risk: Competitor analysis can produce misleading recommendations if required fields such as comments, engagement, views, or platform source labels are missing.
+
+Mitigation: Use the included output checklist and require the report to label missing data rather than filling gaps with unsupported claims.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhuxirui677/skills/fp-competitor-weekly)
+- [README.md](artifact/README.md)
+- [Import Guide](artifact/docs/如何导入GetClawHub.md)
+- [Example Competitor Weekly Report](artifact/examples/example_competitor_weekly.md)
+- [Output Quality Checklist](artifact/reference/输出质量checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown report with ranked sections, bullet insights, chart recommendations, and action recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected to use user-provided Socialinsider CSV data and Agent-Reach YouTube data; configured for concise report generation with max_tokens 2000.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

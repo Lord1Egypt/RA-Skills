@@ -1,43 +1,57 @@
-## Description: <br>
-Baidu Web Search lets agents retrieve real-time web search results through SkillBoss API Hub for fact-checking, news, and other up-to-date information requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Web Search uses the SkillBoss API Hub to run real-time web searches and return structured results for agents.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers, agents, and end users use this skill when a response needs current web information, source-backed fact checking, latest news, or verification of people, products, places, and events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user search queries to SkillBoss for web retrieval. <br>
-Mitigation: Do not use it for confidential, personal, internal, or credential-containing queries. <br>
-Risk: The skill requires a SkillBoss API key. <br>
-Mitigation: Configure the key through the platform or a private local config and avoid exposing it in public chats, screenshots, recordings, or logs. <br>
-Risk: Broad auto-use wording may trigger searches more often than expected. <br>
-Mitigation: Confirm search intent before using the skill for sensitive or ambiguous requests. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve current web results for fact-checking, latest-news questions, and queries about events, people, products, or places that need live verification.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/abeltennyson/abe-baidu-web-search) <br>
-- [Publisher profile](https://clawhub.ai/user/abeltennyson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results for the agent, with Markdown-facing guidance and shell command examples in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, URL, snippet, total, and query fields; result count defaults to 20 and is capped at 50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to SkillBoss/HeyBossAI with the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that external query handling is acceptable, prefer platform-managed SKILLBOSS_API_KEY, and avoid committing local credential files.
+
+Risk: The documented shell invocation can expose users to command-injection risk if raw user input is interpolated into a shell command.
+
+Mitigation: Invoke the search script with an argument-array execution path and validate the result count instead of constructing shell strings from user text.
+
+Risk: Dependency and local installation handling need review before use.
+
+Mitigation: Pin dependencies, add a lockfile, and verify credential-file ignore rules before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abe-baidu-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, guidance]
+
+**Output Format:** [JSON search results for agent use, with downstream answers typically written as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result count defaults to 20 and is capped at 50; results include title, URL, snippet, total, query, and engine fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package.json reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

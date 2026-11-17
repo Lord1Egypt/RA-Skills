@@ -1,44 +1,61 @@
-## Description: <br>
-一个文学气质的聆听者与记录者，通过分层提问帮用户把真实经历写成散文日记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个文学气质的聆听者与记录者，通过分层提问帮用户把真实经历写成不虚构的散文日记。
 
-## Publisher: <br>
-[justzerox](https://clawhub.ai/user/justzerox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justzerox](https://clawhub.ai/user/justzerox)
 
-## Use Case: <br>
-External users use this skill to turn personal experiences, daily reflections, travel memories, emotional notes, and optional photo context into concise literary diary prose. The skill guides the user with layered questions, preserves user-provided facts, and avoids inventing relationships, dialogue, causes, or emotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Photo metadata may include EXIF timestamps, camera model information, or GPS coordinates that expose private location details. <br>
-Mitigation: Strip EXIF from photos before use when location privacy matters, or provide time and place manually instead of sharing original image metadata. <br>
-Risk: The optional EXIF helper can install Python image libraries when runtime auto-install is enabled. <br>
-Mitigation: Install dependencies explicitly with requirements.txt and review dependency installation before allowing runtime auto-install. <br>
+## Use Case:
 
+External users use this skill to turn diary prompts, travel memories, life fragments, emotional reflections, or photo-backed moments into concise prose diary entries after a short, layered interview.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justzerox/my-literary-moment) <br>
-- [style-anchors.md](references/style-anchors.md) <br>
-- [writing-rules.md](references/writing-rules.md) <br>
-- [writing-samples.md](references/writing-samples.md) <br>
-- [requirements.txt](requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown prose with occasional shell commands for optional EXIF extraction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional photo EXIF metadata for chronology and scene context, while keeping the diary content grounded in user-provided text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Photo EXIF metadata may include precise location, capture time, and device details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Strip location metadata before sharing photos, or provide approximate time and place manually instead of allowing EXIF extraction.
+
+Risk: The optional auto-install path can install Python packages during use.
+
+Mitigation: Keep auto-install disabled unless the package source is trusted; install reviewed, pinned dependencies in an isolated environment.
+
+Risk: Diary writing can place personal experiences and emotional content into the agent context.
+
+Mitigation: Avoid submitting unnecessary sensitive details, and review generated text before sharing it outside the conversation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/justzerox/skills/my-literary-moment)
+- [Skill instructions](artifact/SKILL.md)
+- [Style anchors](artifact/references/style-anchors.md)
+- [Writing rules](artifact/references/writing-rules.md)
+- [Writing samples](artifact/references/writing-samples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with optional shell commands for EXIF extraction]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can optionally read image EXIF metadata to help order photos by capture time; core diary writing works without external packages.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

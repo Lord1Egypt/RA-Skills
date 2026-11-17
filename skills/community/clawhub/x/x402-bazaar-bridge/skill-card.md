@@ -1,42 +1,59 @@
-## Description: <br>
-Discover, pay, and fetch data from x402-enabled APIs on the Coinbase x402 Bazaar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, pay, and fetch data from x402-enabled APIs on the Coinbase x402 Bazaar. Supports search, x402 payment signing, caching, and daily budget enforcement.
 
-## Publisher: <br>
-[cariohca-ux](https://clawhub.ai/user/cariohca-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cariohca-ux](https://clawhub.ai/user/cariohca-ux)
 
-## Use Case: <br>
-Developers and agents use this skill to search Coinbase x402 Bazaar resources, fetch paid API responses, and monitor daily spend while using a Base USDC wallet for x402 payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend Base USDC from a configured wallet on user-invoked paid x402 API requests. <br>
-Mitigation: Use a low-balance wallet, set DAILY_BUDGET_USD conservatively, and treat fetch or resolve commands as spending actions. <br>
-Risk: Request URLs and query data are sent to external x402 services. <br>
-Mitigation: Avoid sending sensitive URLs, wallet context, or confidential query data unless the selected provider is trusted. <br>
-Risk: A private wallet key is required for payment signing. <br>
-Mitigation: Store WALLET_KEY only in local environment configuration, keep the file out of git, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover x402 resources, fetch paid API data, sign Base USDC payment authorizations, and monitor local daily spend.
 
-## Reference(s): <br>
-- [x402 Bazaar Bridge on ClawHub](https://clawhub.ai/cariohca-ux/x402-bazaar-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and fetch commands may call external x402 services, sign payment payloads when WALLET_KEY is configured, cache responses, and track daily budget state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: The skill handles a wallet private key and can sign Base USDC payment authorizations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance dedicated wallet, keep the key out of version control, and install only when payment signing from the local environment is acceptable.
+
+Risk: The skill can make paid network requests, and the local budget file should not be treated as the only spending control.
+
+Mitigation: Set a conservative daily budget and enforce wallet-side balance or allowance limits outside the skill.
+
+Risk: The resolve command can choose and fetch an endpoint based on a search result.
+
+Mitigation: Avoid resolve for untrusted queries; review selected endpoints before using payment-enabled fetches.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cariohca-ux/skills/x402-bazaar-bridge)
+- [Coinbase x402 Discovery API](https://api.cdp.coinbase.com/platform/v2/x402/discovery)
+- [btcnode.uk x402 API example](https://btcnode.uk/api/fees)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may make paid network requests and require wallet configuration for payment-enabled mode.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

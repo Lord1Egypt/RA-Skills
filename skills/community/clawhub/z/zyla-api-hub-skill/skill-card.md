@@ -1,42 +1,59 @@
-## Description: <br>
-Zyla API Hub Skill turns an OpenClaw AI agent into a real-world operator with access to 10,000+ production-ready APIs from Zyla API Hub, including weather, finance, translation, email validation, geolocation, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zyla API Hub Skill connects an OpenClaw agent to Zyla API Hub so it can discover and call production APIs for weather, finance, translation, email validation, geolocation, and related tasks.
 
-## Publisher: <br>
-[alebrega](https://clawhub.ai/user/alebrega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alebrega](https://clawhub.ai/user/alebrega)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent discover and call Zyla API Hub services for tasks such as weather lookup, currency conversion, email validation, geolocation, and other API-backed workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize broad, billable calls to Zyla APIs and may send user request data to Zyla or downstream API providers. <br>
-Mitigation: Use a dedicated API key, monitor billing and usage, avoid sensitive inputs unless needed, and require explicit approval before paid or mutating API calls. <br>
-Risk: The skill handles a Zyla API key for authenticated calls. <br>
-Mitigation: Configure the key through OpenClaw configuration or environment variables, do not paste it into chat, and avoid logging or sharing the raw key. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent search Zyla API Hub, configure a Zyla API key, call selected APIs, and review quota or billing status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alebrega/zyla-api-hub-skill) <br>
-- [Zyla OpenClaw Connect](https://zylalabs.com/openclaw/connect) <br>
-- [Zyla API Hub](https://zylalabs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Zyla API response data, rate-limit metadata, setup steps, and API-key configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server-resolved release metadata) <br>
+Risk: The skill requires a Zyla API key for authenticated third-party API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key in protected configuration or a secret store, avoid pasting it into chat, and rotate it if it appears in logs or conversation history.
+
+Risk: The hub URL can be configured, which changes the network destination used for catalog and API requests.
+
+Mitigation: Review the configured hub URL before use and keep it pointed at the expected Zyla API Hub endpoint.
+
+Risk: API calls may process sensitive personal or financial data and may incur pay-as-you-go charges.
+
+Mitigation: Send only data needed for the task, confirm the API and endpoint before high-volume use, and monitor quota, rate-limit, and billing status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alebrega/skills/zyla-api-hub-skill)
+- [Zyla OpenClaw Connect](https://zylalabs.com/openclaw/connect)
+- [Zyla API Hub](https://zylalabs.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON API results and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API response data and rate-limit or usage fields returned by Zyla.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence; artifact package.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

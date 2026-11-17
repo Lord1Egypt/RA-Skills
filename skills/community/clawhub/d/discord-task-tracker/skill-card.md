@@ -1,43 +1,58 @@
-## Description: <br>
-Track tasks in Discord using natural language commands to add, list, complete, and delete tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track tasks in Discord using natural language. Add, list, complete, and delete tasks via chat commands.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Discord users and teams use this skill to manage lightweight task lists from chat commands. It supports adding, listing, completing, and deleting tasks while storing task text locally in the skill directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task text is stored locally in tasks.json within the skill directory. <br>
-Mitigation: Install only when local storage of task text in the skill directory is acceptable. <br>
-Risk: Natural language triggers in a busy Discord channel could accidentally create, complete, or delete tasks. <br>
-Mitigation: Use explicit prefixes or slash commands when connecting the skill to Discord. <br>
-Risk: Completed and deleted tasks are removed from the list, and task IDs may shift after changes. <br>
-Mitigation: List tasks before completing or deleting an item to confirm the current task number. <br>
+## Use Case:
 
+Discord users and workspace maintainers use this skill to maintain a lightweight task list from chat commands, including adding, listing, completing, and deleting tasks.
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/discord-task-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown/plain text command responses plus JSON task storage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates tasks.json in the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A shared local task file can expose or mix tasks across Discord users or channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use for personal or single-channel task lists unless per-user or per-channel task ownership is added.
+
+Risk: Completion and deletion remove tasks from the active list, which can cause accidental data loss.
+
+Mitigation: Make completion and deletion permanence clear before use and keep backups if task history matters.
+
+Risk: Task text is echoed back into Discord-formatted responses.
+
+Mitigation: Escape or sanitize Discord-formatted task text before using the skill in a multi-user Discord environment.
+
+## Reference(s):
+
+- [Command Reference](references/commands.md)
+- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/skills/discord-task-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Discord-ready text and Markdown responses with optional command-line invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores task state in a local JSON file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

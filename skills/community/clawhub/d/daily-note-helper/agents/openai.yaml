@@ -1,0 +1,7 @@
+interface:
+  display_name: "Daily Note Helper"
+  short_description: "整理零散日常记录并生成摘要、待办和明日计划"
+  default_prompt: "Use $daily-note-helper to turn my rough notes into a concise daily summary."
+
+policy:
+  allow_implicit_invocation: true

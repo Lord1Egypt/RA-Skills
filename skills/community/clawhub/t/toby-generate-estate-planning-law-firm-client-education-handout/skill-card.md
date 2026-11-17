@@ -1,42 +1,55 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for an estate planning law firm handling client education work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates polished estate planning law firm handouts with visuals, FAQs, and clear next steps for client education and engagement.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Estate planning attorneys, law firm operators, and client education staff use this skill to draft client-facing explainer handouts with FAQs, visuals, and next steps. Outputs require human review before client delivery or any legal use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated client education material may be incomplete, inaccurate, or unsuitable as legal advice. <br>
-Mitigation: Have qualified law firm staff review and approve every handout before client delivery or legal use. <br>
-Risk: The skill declares Bash access, so installation or workflow commands could affect the local environment if executed without review. <br>
-Mitigation: Review proposed shell commands before execution and run the skill only in trusted workspaces. <br>
+## Use Case:
 
+External law firm staff use this skill to create client education handouts for estate planning topics, including explanatory copy, visuals, FAQs, and next steps. Human review is needed before sending outputs to clients or relying on them as legal guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-estate-planning-law-firm-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-estate-planning-law-firm-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual guidance, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use chat and image generation APIs; human review is required before client delivery or legal reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and server release evidence) <br>
+Risk: The skill requests broad Bash and filesystem-read capability for a handout generation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, restrict runtime permissions where possible, and prefer a version that removes Bash/Read unless those tools are required.
+
+Risk: Estate planning handouts can be mistaken for legal advice or can contain jurisdiction-specific inaccuracies.
+
+Mitigation: Have a qualified legal professional review all handouts before sharing them with clients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-estate-planning-law-firm-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-estate-planning-law-firm-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text handout draft with suggested visuals, FAQs, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include client-facing educational language that requires legal and professional review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

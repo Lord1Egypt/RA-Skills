@@ -1,39 +1,49 @@
-## Description: <br>
-Generate comprehensive test cases and quality assurance documentation from SwiftUI iOS code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive test cases and quality assurance documentation from SwiftUI iOS code.
 
-## Publisher: <br>
-[tc1993](https://clawhub.ai/user/tc1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tc1993](https://clawhub.ai/user/tc1993)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to turn SwiftUI iOS application code and PRD context into XCTest coverage, QA documentation, quality metrics, and release-readiness guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may write generated test files or QA reports into the active workspace. <br>
-Mitigation: Run it in a repository where file changes can be reviewed, and inspect diffs before keeping generated files. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to analyze SwiftUI iOS application code and produce test strategies, XCTest coverage, QA documentation, quality metrics, and release-readiness guidance.
 
-## Reference(s): <br>
-- [Qa Skill on ClawHub](https://clawhub.ai/tc1993/qa-skill) <br>
-- [Publisher profile: tc1993](https://clawhub.ai/user/tc1993) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown with XCTest Swift code examples and QA documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create test files and QA reports in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill reads project requirements and code, then writes generated QA artifacts under qa-output/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated XCTest files and reports before adding them to a production project, and inspect existing qa-output/ contents before accepting generated files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tc1993/skills/qa-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown documentation, Swift/XCTest code, QA reports, and generated files under qa-output/]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates test plans, test files, quality metrics, recommendations, and release-readiness checklists.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

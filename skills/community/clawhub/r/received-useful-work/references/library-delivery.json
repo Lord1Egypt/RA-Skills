@@ -1,0 +1,90 @@
+{
+  "schema": "neomorphic.received-library-delivery.v1",
+  "entries": [
+    {
+      "id": "maintained-useful-delivery",
+      "current": "/downloads/maintained-useful-delivery/current.json",
+      "publicationCurrent": "/downloads/maintained-useful-delivery/current.json",
+      "publicationVersion": "0.2.0",
+      "publicationArchive": "/downloads/maintained-useful-delivery/0.2.0/maintained-useful-delivery-0.2.0.tar.gz",
+      "publicationSha256": "5865c8124c6380ccf5a73c0d6983f1fde4e1f4cdc9d37b23b6385e1db358f96e",
+      "publicationBytes": 37526,
+      "staged": true,
+      "hostedAcquisitionVerified": false,
+      "version": "0.3.1",
+      "source": "experiments/integrated-delivery-100344/exports/3a89afce6155374bd3fb65e53acd641adbe6224d/maintained-useful-delivery",
+      "consumer": "bin/maintained-useful-delivery.mjs",
+      "top": "maintained-useful-delivery-0.3.1",
+      "prior": "0.2.0",
+      "machineEntry": "/downloads/maintained-useful-delivery/0.3.1/machine-entry.json",
+      "archive": "/downloads/maintained-useful-delivery/0.3.1/maintained-useful-delivery-0.3.1.tar.gz",
+      "sha256": "0963ce3be29185a82c0cc11aec0a8eaa3fde7d7a94a9fc6a4e9de4c3513578e5",
+      "bytes": 52069,
+      "dependencies": [
+        {
+          "id": "maintained-operations",
+          "archive": "/downloads/maintained-operations/0.1.0/maintained-operations-0.1.0.tar.gz",
+          "sha256": "b68024a3b359b354b6869cfdc4621f1eb2947cb40311bf7bafcbd546b0cdabc9",
+          "bytes": 104792,
+          "extractTop": "maintained-operations-0.1.0",
+          "env": "MAINTAINED_OPERATIONS_ROOT"
+        },
+        {
+          "id": "customer-retained-operations",
+          "archive": "/downloads/customer-retained-operations/0.1.0/customer-retained-operations-0.1.0.tar.gz",
+          "sha256": "b4afc27eff621b63dd668973706bb3c13dc4a960662c0283da43e0018e09899d",
+          "bytes": 23797,
+          "extractTop": "customer-retained-operations-0.1.0",
+          "env": "CUSTOMER_RETAINED_ROOT"
+        }
+      ]
+    },
+    {
+      "id": "task-economics-delivery",
+      "current": "/downloads/task-economics-delivery/current.json",
+      "version": "0.1.1",
+      "source": "321751879896a61c79bbb9887ac73314dba8d8c1:public/downloads/task-economics-delivery/0.1.1",
+      "consumer": "experiments/taREDACTED-SECRET/bin/delivery.mjs",
+      "top": "taREDACTED-SECRET.1.1",
+      "prior": "0.1.0",
+      "archive": "/downloads/task-economics-delivery/0.1.1/taREDACTED-SECRET.1.1.tar.gz",
+      "sha256": "e8c7b256986dcaedd8122e997170a021e97e54aa08660da09f388b4cea321e0d",
+      "bytes": 129337,
+      "dependencies": []
+    },
+    {
+      "id": "task-distribution",
+      "current": "/downloads/task-distribution/current.json",
+      "version": "0.1.0",
+      "source": "experiments/integrated-delivery-100344/exports/3a89afce6155374bd3fb65e53acd641adbe6224d/task-distribution",
+      "consumer": "scripts/cli.mjs",
+      "top": null,
+      "prior": null,
+      "archive": "/downloads/task-distribution/0.1.0/task-distribution-0.1.0.tar.gz",
+      "sha256": "2495cf95765c62ec64c2413aee541ca55ca4b23d7efe6a267ec3cfb9bedfed8a",
+      "bytes": 15745,
+      "dependencies": [
+        {
+          "id": "seller-repair-external-consumer",
+          "version": "0.4.1",
+          "acquisition": "owning-current-descriptor",
+          "publicationOwner": "Root336",
+          "hostedAcquisitionVerified": false
+        }
+      ]
+    },
+    {
+      "id": "evidence-referral-consumer",
+      "current": "/downloads/evidence-referral-consumer/current.json",
+      "version": "0.1.1",
+      "source": "e2491196f84792d445db7087713e39719e24f020:experiments/evidence-referral-100347/candidate/0.1.1",
+      "consumer": "bin/referral.mjs",
+      "top": "evidence-referral-consumer",
+      "archive": "/downloads/evidence-referral-consumer/0.1.1/evidence-referral-consumer-0.1.1.tar.gz",
+      "sha256": "77e278cd1567d0c739abb750aeffba33970712e928793770044d5c0cf90fc8b9",
+      "bytes": 24845,
+      "dependencies": []
+    }
+  ],
+  "composition": "task-economics qualification does not establish seller task compatibility, maintenance authority or payment"
+}

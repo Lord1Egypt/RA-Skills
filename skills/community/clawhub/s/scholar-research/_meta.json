@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn784ynp7s8e5g3m275wzpt8rs820h8a",
-  "slug": "scholar-research",
+  "name": "scholar-research",
   "version": "1.0.0",
-  "publishedAt": 1772262365539
+  "description": "Search, analyze, and summarize peer-reviewed academic papers with credibility scoring",
+  "author": "bigclaw",
+  "tags": ["research", "academic", "papers", "journals", "summarization", "credibility"],
+  "license": "MIT",
+  "dependencies": {
+    "requests": ">=2.25.0",
+    "beautifulsoup4": ">=4.9.0",
+    "PyPDF2": ">=3.0.0",
+    "matplotlib": ">=3.5.0"
+  },
+  "features": {
+    "multi_source_search": true,
+    "credibility_scoring": true,
+    "custom_weights": true,
+    "timeline_generation": true,
+    "figure_extraction": true,
+    "visualization": true
+  }
 }

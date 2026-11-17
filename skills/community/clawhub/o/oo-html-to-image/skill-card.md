@@ -1,45 +1,59 @@
-## Description: <br>
-HTML to Image helps an agent capture public webpage screenshots or convert raw HTML and optional CSS into hosted image output through the OOMOL HTML to Image connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OOMOL's HTML to Image service to capture webpages or convert supplied HTML and CSS into images.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill when they need to generate image URLs from public webpages or supplied HTML/CSS without calling the HTML to Image API directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup path includes an installer command that runs local shell code. <br>
-Mitigation: Review the OOMOL CLI installer or use the official install guide before installing the CLI. <br>
-Risk: HTML, CSS, and URLs sent to the connector may contain sensitive information and outputs are hosted image URLs. <br>
-Mitigation: Use only the intended HTML to Image account or API key, and avoid sending private secrets in HTML, CSS, or URLs. <br>
+## Use Case:
 
+Developers can use the skill to capture a public webpage or turn supplied HTML and optional CSS into an image through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-html-to-image) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [HTML to Image homepage](https://html2img.com) <br>
-- [OOMOL CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Skill icon](https://static.oomol.com/logo/third-party/html_to_image.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses return JSON containing data and meta.executionId; image outputs are hosted URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Setup may execute unverified remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer contents and preinstall a verified CLI version.
+
+Risk: The CLI's documented startup skill synchronization can affect other agent installations.
+
+Mitigation: Check and control this synchronization before enabling the skill.
+
+Risk: HTML and CSS submitted for rendering are processed by OOMOL and the rendering provider.
+
+Mitigation: Send only HTML and CSS you intend those services to process.
+
+## Reference(s):
+
+- [HTML to Image](https://html2img.com)
+- [HTML to Image API documentation](https://html2img.com/docs/getting-started/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Image URLs, Text, Shell commands]
+
+**Output Format:** [Image URLs and text; Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns generated image URLs from capture or conversion actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

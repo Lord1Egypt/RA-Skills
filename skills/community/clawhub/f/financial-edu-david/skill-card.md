@@ -1,47 +1,62 @@
-## Description: <br>
-Financial Edu David helps agents analyze A-share listed companies by collecting annual reports, extracting financial statements, calculating indicators, creating HTML dashboards, and cross-checking results against public financial data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial Edu David guides agents through A-share listed-company financial analysis, from annual report collection and financial statement extraction to metrics, data cross-checking, and HTML dashboard generation.
 
-## Publisher: <br>
-[davidyin1976](https://clawhub.ai/user/davidyin1976) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidyin1976](https://clawhub.ai/user/davidyin1976)
 
-## Use Case: <br>
-Developers, analysts, and education-focused agents use this skill to guide A-share financial analysis workflows for a specified company over a recent multi-year period. It supports annual-report download, PDF table extraction, financial metric calculation, dashboard generation, and public-data cross-checking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public Chinese financial-data websites and downloads annual-report PDFs. <br>
-Mitigation: Run it in a dedicated project directory with expected network access, and review downloaded files and source URLs before using the results. <br>
-Risk: PDF table extraction can miss or misread financial line items because annual-report layouts vary. <br>
-Mitigation: Cross-check generated financial data against Eastmoney F10 or another trusted public data source before relying on the analysis. <br>
-Risk: Generated dashboards and financial conclusions may be incomplete or misleading if source data is stale, unavailable, or parsed incorrectly. <br>
-Mitigation: Treat outputs as analysis aids, verify important figures manually, and avoid using the generated content as sole financial advice. <br>
+## Use Case:
 
+Developers, analysts, and education users use this skill to analyze public A-share company financial reports over a 3-5 year period and produce structured data, metric calculations, validation checks, and local visualization dashboards. Outputs should support financial education and analysis workflows, not replace independent investment review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davidyin1976/skills/financial-edu-david) <br>
-- [CNINFO API Reference](references/cninfo_api.md) <br>
-- [Eastmoney F10 Data Interface](references/eastmoney_api.md) <br>
-- [Financial Metrics Guide](references/metrics_guide.md) <br>
-- [CNINFO announcement query](https://www.cninfo.com.cn/new/hisAnnouncement/query) <br>
-- [Eastmoney F10 data endpoint](https://datacenter-web.eastmoney.com/api/data/v1/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, Python scripts, and generated PDF, XLSX, JSON, and HTML analysis artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact public Chinese financial-data websites and write generated reports, spreadsheets, JSON data, and dashboards to a user-provided directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated financial dashboards may include unescaped or unsafely embedded data and external chart libraries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat dashboards as local analysis artifacts unless the HTML is hardened with escaping, safer JSON embedding, and trusted or bundled chart libraries.
+
+Risk: Downloaded reports, extracted statements, and computed metrics can contain parsing errors or source-data mismatches.
+
+Mitigation: Cross-check key financial data against official public sources and independently verify results before relying on the analysis.
+
+Risk: Running collection and extraction scripts in a shared environment can mix generated files with unrelated data.
+
+Mitigation: Install dependencies in a virtual environment and run the workflow in a dedicated output folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidyin1976/skills/financial-edu-david)
+- [CNInfo API reference](references/cninfo_api.md)
+- [Eastmoney F10 API reference](references/eastmoney_api.md)
+- [Financial metrics guide](references/metrics_guide.md)
+- [CNInfo annual report query](https://www.cninfo.com.cn/new/hisAnnouncement/query)
+- [Eastmoney F10 data API](https://datacenter-web.eastmoney.com/api/data/v1/get)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, Python scripts, Excel workbooks, JSON data files, and local HTML dashboards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local analysis artifacts including downloaded PDFs, collection logs, extracted XLSX statements, core-data JSON, metrics JSON, and an ECharts-based HTML dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

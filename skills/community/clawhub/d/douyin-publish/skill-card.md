@@ -1,39 +1,56 @@
-## Description: <br>
-Helps an agent log in to Douyin Creator Platform, upload videos, publish them, manage tags, and check publishing status through configured MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates login, upload, and publishing of videos to the Douyin Creator Platform, including tag management and login status checks.
 
-## Publisher: <br>
-[gonghaiquan](https://clawhub.ai/user/gonghaiquan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gonghaiquan](https://clawhub.ai/user/gonghaiquan)
 
-## Use Case: <br>
-Creators and operators use this skill to publish videos to Douyin from an agent conversation after configuring the required MCP server and account login. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent publish content through a real Douyin account. <br>
-Mitigation: Use a dedicated creator account where possible and require final human confirmation before upload or publish actions. <br>
-Risk: The workflow relies on a referenced external MCP server and persistent login cookies. <br>
-Mitigation: Install only if the MCP server is trusted, pin or review the server, and protect or delete saved cookie files when they are not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gonghaiquan/douyin-publish) <br>
+## Use Case:
 
+Creators and account operators use this skill to have an agent prepare and publish videos to Douyin, including titles, descriptions, tags, and login status checks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Douyin MCP server and an authenticated Douyin creator account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables public posting through an external MCP server package that is not pinned in the evidence.
+
+Mitigation: Pin and verify the MCP server package before installation, and review it before granting account access.
+
+Risk: The skill can publish to a Douyin account on the user's behalf.
+
+Mitigation: Confirm the target account, title, description, tags, and final publishing action before each post.
+
+Risk: The workflow persists Douyin login cookies.
+
+Mitigation: Protect saved cookies with least practical local access and delete them when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gonghaiquan/skills/douyin-publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include account status, publishing details, tag lists, and result links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

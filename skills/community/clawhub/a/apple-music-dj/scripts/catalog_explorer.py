@@ -4,11 +4,13 @@ catalog_explorer.py — Album Deep Dive, Artist Rabbit Hole, Catalog Gap Analysi
 
 Subcommands:
   gap-analysis     Find albums you're missing from artists you love
+                   (--add-missing N previews adding the newest N to your library;
+                   add --yes to actually write to your library)
   album-dive       Deep dive into a specific album
   rabbit-hole      Interactive artist-to-artist exploration chain
 
 Usage:
-  python3 catalog_explorer.py gap-analysis <profile.json> <storefront>
+  python3 catalog_explorer.py gap-analysis <profile.json> <storefront> [--add-missing N [--yes]]
   python3 catalog_explorer.py album-dive <storefront> <album_name_or_id> [--artist <name>]
   python3 catalog_explorer.py rabbit-hole <profile.json> <storefront> <start_artist>
 
@@ -16,9 +18,9 @@ Requires: APPLE_MUSIC_DEV_TOKEN and APPLE_MUSIC_USER_TOKEN env vars.
 """
 
 import sys
-if sys.version_info < (3, 9):
+if sys.version_info < (3, 10):
     sys.exit(
-        f"ERROR: Python 3.9+ is required (you have "
+        f"ERROR: Python 3.10+ is required (you have "
         f"{sys.version_info.major}.{sys.version_info.minor}). Please upgrade."
     )
 
@@ -27,7 +29,6 @@ import json
 from pathlib import Path
 
 from _common import call_api, load_profile, search_artist, search_album, get_album_tracks
-from typing import Optional, Union
 
 SCRIPT_DIR = Path(__file__).parent
 
@@ -122,7 +123,7 @@ def cmd_gap_analysis(profile: dict, sf: str) -> dict:
 
 # ── Album Deep Dive ──────────────────────────────────────────────
 
-def cmd_album_dive(sf: str, album_query: str, artist_hint: Optional[str] = None) -> dict:
+def cmd_album_dive(sf: str, album_query: str, artist_hint: str | None = None) -> dict:
     """Deep dive into a specific album."""
     query = f"{album_query} {artist_hint}" if artist_hint else album_query
     album = search_album(sf, query)
@@ -307,6 +308,44 @@ def cmd_rabbit_hole(profile: dict, sf: str, start_artist: str, depth: int = 4) -
     }
 
 
+# ── Add missing albums to the library ────────────────────────────
+
+ADD_BATCH_SIZE = 10
+
+
+def plan_missing_albums(gap_result: dict, count: int) -> list[dict]:
+    """The newest `count` missing albums across all analyzed artists."""
+    missing = [
+        {"artist": r["artist"], "name": a["name"], "id": a["id"], "release_date": a.get("release_date", "")}
+        for r in gap_result.get("results", [])
+        for a in r.get("albums_missing", [])
+        if a.get("id")
+    ]
+    missing.sort(key=lambda a: a["release_date"], reverse=True)
+    return missing[:count]
+
+
+def add_albums_to_library(albums: list[dict]) -> dict:
+    """Add albums to the user's library in small batches. This WRITES to the account."""
+    added, failed = [], []
+    for i in range(0, len(albums), ADD_BATCH_SIZE):
+        batch = albums[i:i + ADD_BATCH_SIZE]
+        # raw=True: Apple answers 202 with an empty body, which isn't JSON.
+        # "" means success; None means the call failed.
+        resp = call_api("add-to-library", "albums", ",".join(a["id"] for a in batch), "--yes", raw=True)
+        (failed if resp is None else added).extend(batch)
+    return {"added": added, "failed": failed}
+
+
+def run_add_missing(gap_result: dict, count: int, confirmed: bool) -> dict:
+    """Preview (default) or perform adding the newest missing albums to the library."""
+    albums = plan_missing_albums(gap_result, count)
+    if not confirmed:
+        return {"dry_run": True, "albums": albums,
+                "note": "Nothing was added. Re-run with --yes to add these albums to your library."}
+    return {"dry_run": False, "albums": albums, **add_albums_to_library(albums)}
+
+
 # ── Main ─────────────────────────────────────────────────────────
 
 def main():
@@ -316,6 +355,10 @@ def main():
     p_gap = sub.add_parser("gap-analysis", help="Find missing albums from favorite artists")
     p_gap.add_argument("profile", help="Path to taste profile JSON")
     p_gap.add_argument("storefront", help="Storefront code (e.g., us)")
+    p_gap.add_argument("--add-missing", type=int, default=None, metavar="N",
+                       help="Add the newest N missing albums to your library (preview unless --yes)")
+    p_gap.add_argument("--yes", action="store_true",
+                       help="Confirm that --add-missing should write to your library")
 
     p_album = sub.add_parser("album-dive", help="Deep dive into an album")
     p_album.add_argument("storefront", help="Storefront code")
@@ -331,8 +374,14 @@ def main():
     args = parser.parse_args()
 
     if args.command == "gap-analysis":
+        if args.add_missing is not None and args.add_missing < 1:
+            parser.error("--add-missing must be at least 1")
+        if args.yes and args.add_missing is None:
+            parser.error("--yes only applies together with --add-missing")
         profile = load_profile(args.profile)
         result = cmd_gap_analysis(profile, args.storefront)
+        if args.add_missing is not None:
+            result["add_missing"] = run_add_missing(result, args.add_missing, args.yes)
     elif args.command == "album-dive":
         query = " ".join(args.album)
         result = cmd_album_dive(args.storefront, query, args.artist)

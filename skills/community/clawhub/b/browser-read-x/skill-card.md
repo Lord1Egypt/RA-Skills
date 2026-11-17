@@ -1,41 +1,49 @@
-## Description: <br>
-Extract the main X/Twitter post or article content from a page that is already open in the browser (using browser act evaluate). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract the main X/Twitter post or article content from a page that is already open in the browser.
 
-## Publisher: <br>
-[bill492](https://clawhub.ai/user/bill492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bill492](https://clawhub.ai/user/bill492)
 
-## Use Case: <br>
-Developers and agents use this skill to extract cleaned main text from an already open X/Twitter post or article when direct web fetching is blocked, noisy, or not focused on the main content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extractor can read and return text from the currently open browser page, including sensitive content if run on the wrong page. <br>
-Mitigation: Run it only on the intended public X/Twitter post or article, and avoid private messages, email, account settings, internal tools, and other sensitive pages. <br>
-Risk: X/Twitter page structure changes or non-X fallback behavior may return incomplete or noisy text. <br>
-Mitigation: Review the returned title, URL, status, and content before relying on the extracted text. <br>
+## Use Case:
 
+Developers and agents use this skill to extract the main post or article text from an already-open X/Twitter page when normal web fetching is blocked, authenticated, or too noisy. It is suited for pulling the central content body while reducing surrounding UI chrome, prompts, reaction metrics, and promotional blocks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bill492/browser-read-x) <br>
-- [Publisher profile](https://clawhub.ai/user/bill492) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [JSON object containing title, content, excerpt, byline, siteName, length, url, and status fields; content is cleaned markdown-like text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs against the currently open browser page and may use a generic fallback on non-X pages or extraction errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read and return text from the browser page where it is executed, including logged-in or authenticated X/Twitter pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on pages whose contents are intended to be shared with the agent, and review extracted content before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bill492/skills/browser-read-x)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [JSON object containing extracted page text and page metadata fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes title, content, excerpt, byline, siteName, length, url, and extraction status when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

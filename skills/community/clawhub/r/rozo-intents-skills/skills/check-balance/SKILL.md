@@ -4,14 +4,24 @@ description: >
   Check wallet USDC and USDT balances across all supported chains via the
   Rozo balance API. Supports EVM wallets (Ethereum, Arbitrum, Base, BSC,
   Polygon), Solana, and Stellar (G-wallet and C-wallet). Use when user
-  says "check balance", "how much do I have", "show my balance", "wallet
-  balance", or "what's my USDC balance". Auto-detects chain from address.
+  asks to check a crypto wallet balance — "check my wallet balance",
+  "how much USDC/USDT do I have", "what's my USDC balance" — or provides
+  a wallet address. NOT for bank-account or fiat balance questions.
+  Auto-detects chain from address.
 metadata:
   author: rozo
   version: 0.1.0
 ---
 
 # Check Wallet Balance
+
+## Runtime
+
+All `node scripts/dist/*.js` commands below MUST run from the **plugin root**
+(the directory containing `.claude-plugin/plugin.json`), not from this
+skill's directory. When installed as a Claude Code plugin, the plugin root
+is `${CLAUDE_PLUGIN_ROOT}`. If that env var isn't set, `cd` to the directory
+that contains `scripts/dist/`, `skills/`, and `.claude-plugin/`.
 
 ## Instructions
 
@@ -65,3 +75,11 @@ User: "What's my balance?" (wallet known from context)
 User: "Show balance for GC56BXCNEWL6JSGKHD3RJ5HJRNKFEJQ53D3YY3SMD6XK7YPDI75BQ7FD"
 
 1. Fetch → display USDC on Stellar
+
+
+## Data sent to Rozo
+
+A balance check transmits the wallet address you supply to Rozo's public
+balance API (`api-balance.rozo-deeplink.workers.dev`). A wallet address is
+financial metadata — it can be correlated with holdings and history — so do
+not send an address the user has not explicitly asked you to check.

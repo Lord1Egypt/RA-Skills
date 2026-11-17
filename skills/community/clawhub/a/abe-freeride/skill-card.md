@@ -1,44 +1,64 @@
-## Description: <br>
-Manages AI models from SkillBoss API Hub for OpenClaw, ranks models by quality, configures fallbacks for rate-limit handling, and updates openclaw.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages AI models from SkillBoss API Hub for OpenClaw, ranks free models by quality, configures fallbacks for rate-limit handling, and updates openclaw.json.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure free AI model routing, ranked fallback models, and model status checks when they want to reduce model costs or recover from rate limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes OpenClaw default and fallback model routing. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before running setup commands, review the resulting model configuration, and verify the active model after restarting OpenClaw. <br>
-Risk: Provider and API-key instructions are inconsistent between SkillBoss/HeyBossAI and OpenRouter. <br>
-Mitigation: Confirm the intended provider for this release and use only the matching API key. <br>
-Risk: Watcher commands are documented, but the provided watcher artifact has no implementation content. <br>
-Mitigation: Avoid watcher or daemon commands until the maintainer clarifies the implementation and stop behavior. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to discover free model options, configure a primary model, and maintain fallback models when rate limits interrupt work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abe-freeride) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [OpenRouter API keys](https://openrouter.ai/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide edits to OpenClaw model routing and API-key configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The executable code sends SKILLBOSS_API_KEY to api.heybossai.com while README.md describes OpenRouter credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended service identity before use and use only a limited SkillBoss key you are comfortable sending to that endpoint.
+
+Risk: Mutating commands persistently change ~/.openclaw/openclaw.json model defaults, fallback models, and model allowlist entries.
+
+Mitigation: Back up openclaw.json and review the proposed model configuration before restarting the OpenClaw gateway.
+
+Risk: Installation uses editable Python packaging with an unpinned requests dependency.
+
+Mitigation: Install in an isolated environment, pin dependencies for managed deployments, and avoid running installation as root or administrator.
+
+Risk: The optional freeride-watcher command is advertised, but artifact/watcher.py is empty.
+
+Mitigation: Do not rely on watcher-based auto-rotation until the publisher ships and validates that implementation.
+
+## Reference(s):
+
+- [abe-freeride ClawHub listing](https://clawhub.ai/abeltennyson/skills/abe-freeride)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [OpenRouter keys](https://openrouter.ai/keys)
+- [SkillBoss API endpoint used by artifact](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw model configuration and local model cache when CLI commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and setup.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

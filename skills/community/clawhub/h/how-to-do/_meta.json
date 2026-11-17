@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77zzg9p845zanvy6vrf76k7d81mcnm",
+  "ownerId": "ou_1cda33ed7b11a18a47a76e34b82a6486",
   "slug": "how-to-do",
   "version": "1.0.0",
-  "publishedAt": 1773353012497
+  "publishedAt": 1773081780000,
+  "tags": ["openclaw", "tutorial", "beginner", "chinese", "guide"],
+  "compatibility": {
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": []
 }

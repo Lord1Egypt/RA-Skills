@@ -1,0 +1,11 @@
+{"_chart_type": "flow", "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow.json -o flow.png --cjk --gate strict", "_note": "场景：RCT 患者流程（CONSORT 式语义 JSON，零坐标）。--gate strict=三层 bbox 断言（节点×边标签×箭头），任何重叠 exit 2 拒绝交付。layout=chain|layered，direction=TB|LR，回边自动 lane 绕行+虚线。", "title": "患者入组与随访流程", "layout": "layered", "direction": "TB", "nodes": [
+  {"id": "scr", "label": "筛查评估", "sublabel": "n=486", "color": "#2E5E8F"},
+  {"id": "rnd", "label": "随机分组", "sublabel": "1:1 分层随机", "color": "#FFB627"},
+  {"id": "trt", "label": "干预组", "sublabel": "新方案 12周", "color": "#6BA776"},
+  {"id": "ctl", "label": "对照组", "sublabel": "标准治疗 12周", "color": "#5BA0A0"},
+  {"id": "fup", "label": "随访终点", "sublabel": "48周主要终点", "color": "#9B7BB8"}
+ ], "edges": [
+  {"from": "scr", "to": "rnd", "label": "合格 n=240"},
+  {"from": "rnd", "to": "trt"}, {"from": "rnd", "to": "ctl"},
+  {"from": "trt", "to": "fup"}, {"from": "ctl", "to": "fup"}
+ ]}

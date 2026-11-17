@@ -1,38 +1,54 @@
-## Description: <br>
-Miki Language Dev helps assess vocabulary, comprehension, and language delay risk for children aged 12-30 months and suggests language-support activities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miki language-development assessment helps evaluate vocabulary, comprehension, and potential language-delay warning signs for children aged 12 to 30 months.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Caregivers and parenting-support agents use this skill to structure a 12-30 month child language screening from caregiver-provided vocabulary, comprehension, and communication observations, then generate an educational report with warning signs and language-support activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the screening output as a diagnosis or as ruling out language delay, hearing issues, autism-related concerns, or other developmental conditions. <br>
-Mitigation: Present the output as educational screening guidance only and direct caregivers to consult a pediatrician, child health clinic, audiologist, or speech-language professional for warning signs, regression, caregiver concern, or uncertainty. <br>
+## Use Case:
 
+External caregivers and child-development support agents use this skill to structure a 12-30 month language-development screening conversation, summarize expressive and receptive language signals, and suggest follow-up activities. It is an educational screening aid and should not be used as a medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/04-language-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured assessment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; produces educational guidance and does not run code, issue shell commands, or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Caregivers may treat the skill's developmental screening output as a medical diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as informational screening only and direct users to pediatric, child-development, hearing, or speech-language professionals when warning signs, regression, hearing concerns, or persistent caregiver concern are present.
+
+Risk: The prompt may provide overconfident guidance when user-provided age, vocabulary, comprehension, or communication details are incomplete.
+
+Mitigation: Ask for missing screening details before assessing risk and include uncertainty in the report when inputs are incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/04-language-dev)
+- [Publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured Markdown assessment report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes vocabulary range comparison, receptive-language and communication-behavior analysis, warning signs, language-promotion activities, and suggested follow-up timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

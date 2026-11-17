@@ -1,40 +1,61 @@
-## Description: <br>
-OpenClaw安全审计与防护 helps agents record sensitive operations, generate audit reports, inspect operation history, analyze security risks, require two-stage confirmation, scan external content, and verify skill file integrity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw安全审计与防护 helps agents log sensitive operations, generate audit reports, analyze risky operation chains, enforce two-stage confirmations, scan external content, and check skill integrity.
 
-## Publisher: <br>
-[yangdongmingisok](https://clawhub.ai/user/yangdongmingisok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangdongmingisok](https://clawhub.ai/user/yangdongmingisok)
 
-## Use Case: <br>
-Developers and operators use this skill to add audit logging, high-risk operation review, activity reports, content checks, rate monitoring, operation-chain analysis, URL allowlisting, and skill integrity checks to OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive audit, approval, and alert data to fixed Feishu accounts using embedded credentials and recipient identifiers. <br>
-Mitigation: Replace embedded Feishu credentials and recipient or chat IDs with secure runtime configuration, disable external reporting by default, and redact sensitive fields before sending notifications. <br>
-Risk: Confirmation replies may be ambiguous if they are not bound to a unique request ID. <br>
-Mitigation: Require approval replies to include the unique confirmation request ID, reject stale or unmatched replies, and expire pending confirmations on a short timeout. <br>
+## Use Case:
 
+Developers and operators use this skill to add audit logging, daily or weekly audit reporting, high-risk operation confirmation, content and URL checks, rate monitoring, operation-chain analysis, and skill integrity checks to OpenClaw workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangdongmingisok/openclaw-audit-log) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSONL audit records, Markdown audit reports, Feishu notification content, confirmation state files, hash baselines, URL allowlist checks, and security-review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Embedded Feishu credentials can be exposed or reused if the skill is installed as-is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded secret, rotate the Feishu credential, and load deployment-owned credentials from secure configuration before use.
+
+Risk: Sensitive audit details may be sent to a fixed external recipient without deployment-specific control.
+
+Mitigation: Replace recipient IDs with deployment-owned configuration, disable external alerts by default, and redact sensitive audit details before sending notifications.
+
+Risk: Confirmation replies may be ambiguous if they are not bound to the exact high-risk request.
+
+Mitigation: Bind each confirmation to an exact per-request nonce and reject stale, ambiguous, or mismatched replies.
+
+Risk: URL scanning can reach unsafe or unintended destinations.
+
+Mitigation: Restrict URL scanning to safe allowed destinations controlled by the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangdongmingisok/skills/openclaw-audit-log)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON/JSONL audit records, shell command snippets, Python usage snippets, and plain-text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local audit state and send Feishu notifications when deployment-controlled credentials and recipients are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

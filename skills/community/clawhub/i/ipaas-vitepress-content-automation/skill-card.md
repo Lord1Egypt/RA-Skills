@@ -1,44 +1,55 @@
-## Description: <br>
-Generates B2B integration solution Markdown and deploys the resulting VitePress site over SSH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically drafts B2B system-integration solution Markdown and deploys the resulting VitePress documentation site over SSH.
 
-## Publisher: <br>
-[evan-ch](https://clawhub.ai/user/evan-ch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evan-ch](https://clawhub.ai/user/evan-ch)
 
-## Use Case: <br>
-Developers and content automation teams use this skill to draft system integration case studies, update VitePress documentation, and publish the generated site to a configured SSH target. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local documentation and VitePress navigation from a broad content request. <br>
-Mitigation: Require manual review and explicit approval before file write steps are applied. <br>
-Risk: The skill can publish the generated site over SSH to the configured server and remote directory. <br>
-Mitigation: Use a restricted non-root deployment account, verify SERVER_IP and REMOTE_DIR before deployment, and require explicit approval before running deployment. <br>
-Risk: The artifact references a deployment script path that may not match the packaged script location. <br>
-Mitigation: Fix the deploy script path mismatch before relying on automated deployment. <br>
+## Use Case:
 
+Developers and content operators use this skill to create B2B iPaaS integration case-study pages, update a VitePress site's navigation, and publish the built documentation to a configured server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evan-ch/ipaas-vitepress-content-automation) <br>
-- [Taobao Open Platform API documentation](https://open.taobao.com/doc.htm) <br>
-- [Kingdee Cloud API documentation](https://open.jdy.com/#/files/api/detail?index=3&categrayId=3cc8ee9a663e11eda5c84b5d383a2b93) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content, VitePress configuration updates, and shell deployment commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pnpm, rsync, ssh, SSH key authentication, and SERVER_IP/REMOTE_DIR deployment environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: ClawHub release metadata; artifact frontmatter declares 1.2.0) <br>
+Risk: SSH deployment can create persistent remote access or publish to an unintended remote path when deployment settings are misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege deployment account, verify SSH host-key fingerprints out of band, restrict the authorized key and remote write directory, validate SERVER_PORT and REMOTE_DIR, and require explicit manual confirmation before deployment.
+
+Risk: The skill can modify local VitePress content and navigation files before publishing.
+
+Mitigation: Review generated Markdown and configuration diffs before running the deployment step.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evan-ch/skills/ipaas-vitepress-content-automation)
+- [Taobao Open Platform API documentation](https://open.taobao.com/doc.htm)
+- [Kingdee Cloud Xingchen API documentation](https://open.jdy.com/#/files/api/detail?index=3&categrayId=3cc8ee9a663e11eda5c84b5d383a2b93)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown documents, VitePress configuration edits, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local VitePress docs and config files and may run an SSH/rsync deployment when invoked.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact frontmatter states 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

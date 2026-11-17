@@ -1,40 +1,54 @@
-## Description: <br>
-Provides internal audit reference guidance based on IIA 2024-2026 standards, competency frameworks, learning catalogs, and Chinese practice cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language internal audit reference guidance based on IIA 2024 standards, 2025 competency frameworks, 2025-2026 learning catalogs, and Chinese practice case material.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Internal audit professionals, risk and compliance teams, and agents assisting them use this skill to retrieve structured guidance on IIA standards, competency assessment, audit lifecycle practices, QAIP, and related learning topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Internal audit guidance may be mistaken for authoritative legal, regulatory, certification, or company policy advice. <br>
-Mitigation: Verify important audit decisions against current official sources and the user's organization policies. <br>
+## Use Case:
 
+Internal audit practitioners, audit leaders, and governance/risk professionals use this skill to obtain Chinese-language reference guidance for audit standards, competency planning, QAIP, audit lifecycle practices, and digital audit topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/internal-audit-mastery) <br>
-- [Artifact skill source](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference guidance with structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no executable behavior or sensitive access based on security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Professional standards, jurisdictional expectations, and audit practices may change or require local interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify IIA standards, applicable laws, and organization-specific requirements before relying on the guidance for formal audit work.
+
+Risk: The skill is framed in Chinese and includes Chinese practice examples, which may not fit every audit environment.
+
+Mitigation: Confirm that the language, jurisdictional framing, and example set match the intended organization and deployment context.
+
+## Reference(s):
+
+- [Internal Audit Mastery ClawHub Skill Page](https://clawhub.ai/yjkj999999/skills/internal-audit-mastery)
+- [WANG DONG JIE ClawHub Publisher Profile](https://clawhub.ai/user/yjkj999999)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; content should be independently verified before formal audit use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

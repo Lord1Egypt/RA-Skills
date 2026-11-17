@@ -1,45 +1,62 @@
-## Description: <br>
-AI提示词变现工作流，将提示词产品化并通过多平台分发 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI提示词变现工作流，将提示词产品化并通过多平台分发。
 
-## Publisher: <br>
-[155143783](https://clawhub.ai/user/155143783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[155143783](https://clawhub.ai/user/155143783)
 
-## Use Case: <br>
-External creators, marketers, and agents use this skill to design, package, check, and publish monetizable prompt products across commerce, social, and community platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports embedded account credentials and an instruction to read a local secret file. <br>
-Mitigation: Remove embedded credentials and secret-file access instructions before installation, rotate any real exposed credentials, and avoid storing platform passwords in skill text. <br>
-Risk: The security evidence reports guidance to automate third-party logins and platform actions such as sale listings, public posts, and private messages. <br>
-Mitigation: Require explicit user confirmation before any login, sale listing, public post, or private-message action, and keep platform authentication under user control. <br>
+## Use Case:
 
+External creators, marketers, and operators use this skill to package AI prompts into sellable products, check quality and compliance, prepare product pages, and plan distribution across content and commerce platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/155143783/zaizai-prompt-money) <br>
-- [Skill Workflow](artifact/SKILL.md) <br>
-- [Prompt Quality Checklist](artifact/quality-checklist.md) <br>
-- [Publishing Guide](artifact/publish-guide.md) <br>
-- [Basic Prompt Templates](artifact/templates/basic-templates.md) <br>
-- [Test Report](artifact/test-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown prompt workflows, templates, checklists, and product-copy drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-publishing guidance; review credentials, claims, and user intent before login, sale listing, public post, or private-message actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The artifact includes real-looking platform credentials and references automated login behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove exposed credentials, rotate any affected accounts, and use user-provided or managed secret handles instead.
+
+Risk: Automated login or posting can target the wrong platform or happen without clear user approval.
+
+Mitigation: Require explicit confirmation before login or posting and verify the exact platform domain before filling credentials.
+
+Risk: Private-channel lead collection can create privacy and compliance obligations.
+
+Mitigation: Add privacy and compliance guidance before collecting or moving users into private channels.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/155143783/skills/zaizai-prompt-money)
+- [Publisher Profile](https://clawhub.ai/user/155143783)
+- [Skill Workflow](artifact/SKILL.md)
+- [Quality Checklist](artifact/quality-checklist.md)
+- [Publish Guide](artifact/publish-guide.md)
+- [Basic Templates](artifact/templates/basic-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow materials for prompt product packaging, quality review, compliance review, publishing, and private-channel conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

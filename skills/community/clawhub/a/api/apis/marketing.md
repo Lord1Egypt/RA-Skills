@@ -2,13 +2,13 @@
 
 | API | Line |
 |-----|------|
-| Drift | 2 |
-| Crisp | 108 |
-| Front | 207 |
-| Customer.io | 296 |
-| Braze | 395 |
-| Iterable | 509 |
-| Klaviyo | 624 |
+| Drift | 15 |
+| Crisp | 121 |
+| Front | 220 |
+| Customer.io | 309 |
+| Braze | 408 |
+| Iterable | 522 |
+| Klaviyo | 637 |
 
 ---
 

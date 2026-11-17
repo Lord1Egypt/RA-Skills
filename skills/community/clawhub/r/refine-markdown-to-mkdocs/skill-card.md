@@ -1,41 +1,54 @@
-## Description: <br>
-Refines raw reading notes by merging similar ideas, removing noise, and summarizing key points into structured MkDocs Material-style Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refines raw reading notes by merging similar ideas, removing noise, and summarizing key points into MkDocs Material-style Markdown.
 
-## Publisher: <br>
-[smilingwayne](https://clawhub.ai/user/smilingwayne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smilingwayne](https://clawhub.ai/user/smilingwayne)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn scattered study or reading notes into dense, structured Markdown for MkDocs knowledge bases. It supports category-specific clustering, rewriting, pruning, formatting, and traceable refinement reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refinement can merge, rewrite, or omit low-value note material. <br>
-Mitigation: Review the generated refinement plan before approving the final rewrite, especially deletion and merger decisions. <br>
-Risk: Generated refined files could overwrite or supersede important originals in a note workflow. <br>
-Mitigation: Keep important source notes backed up and inspect the completion report listing changed, merged, and deleted content. <br>
+## Use Case:
 
+External users and knowledge-base maintainers use this skill to turn scattered reading or study notes into structured, high-density MkDocs Material-style Markdown. It supports category confirmation, semantic clustering, user-approved reconstruction, and completion reporting for traceability.
 
-## Reference(s): <br>
-- [notes_classify.md](references/notes_classify.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smilingwayne/refine-markdown-to-mkdocs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown files and concise completion reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a refinement plan, a refined Markdown file, and a summary of merged or deleted content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may rewrite, merge, or omit material while producing a refined copy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated refinement plan before approval and check the final refined Markdown against the source notes.
+
+Risk: The skill writes plan, refined output, and backup files near the selected note file.
+
+Mitigation: Use it on intended note files and confirm the expected output locations before proceeding.
+
+## Reference(s):
+
+- [Notes by Category](references/notes_classify.md)
+- [ClawHub Skill Page](https://clawhub.ai/smilingwayne/skills/refine-markdown-to-mkdocs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown plan, refined Markdown notes, and completion report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a refinement plan file, a refined note file, backups, and deletion summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

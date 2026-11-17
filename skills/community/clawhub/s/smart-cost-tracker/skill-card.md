@@ -1,41 +1,56 @@
-## Description: <br>
-Smart Cost Tracker helps an agent estimate and report AI usage costs, budgets, trends, and local spending history when the user enables tracking or asks about spending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track AI agent spending in real time with cost summaries, budget alerts, daily and weekly reports, and cost-per-task breakdowns.
 
-## Publisher: <br>
-[vanthienha199](https://clawhub.ai/user/vanthienha199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[vanthienha199](https://clawhub.ai/user/vanthienha199)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to estimate AI-agent usage costs, review spending over time, configure budget thresholds, and receive alerts when estimated spend approaches or exceeds limits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill stores estimated spending history locally, which may include task labels and usage patterns.
+
+Mitigation: Use the explicit start and stop tracking commands, and delete ~/.openclaw/cost-log.json to clear stored history.
+
+Risk: Broad budget-related wording may cause the skill to activate when the user is discussing costs or billing.
+
+Mitigation: Keep tracking disabled unless active cost logging is wanted, and use explicit enable or disable commands to control logging.
+
+Risk: Cost values are estimates when exact token counts are unavailable.
+
+Mitigation: Label approximated values as estimated and review pricing assumptions before relying on the totals for billing decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and AI agent users use this skill to track estimated model spend, review cost reports, set budget limits, and receive budget alerts while keeping spending history local. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad spending and budget triggers may invoke the skill when the user only intended to discuss spending generally. <br>
-Mitigation: Confirm whether cost tracking or reporting is intended before reading or updating the cost log for ambiguous spending questions. <br>
-Risk: The skill may store or update spending records under ~/.openclaw/cost-log.json. <br>
-Mitigation: Keep tracking user-controlled, disclose the local storage path, and tell users they can delete the file to clear history. <br>
-Risk: Costs may be estimates when exact token counts are unavailable. <br>
-Mitigation: Label approximated values as estimated and use exact token counts when the agent runtime provides them. <br>
+**Output Format:** [Markdown and plain text summaries with local JSON cost-log updates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces estimated cost reports, budget alerts, trend summaries, and local cost-log updates when tracking is enabled.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, files] <br>
-**Output Format:** [Markdown and plain text responses with local JSON cost-log updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces estimated costs unless exact token counts are available; writes spending history to ~/.openclaw/cost-log.json only when tracking is enabled.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup guidance for Responsive Tester concepts, best practices, troubleshooting, performance, security, migration, and cheat-sheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Responsive Tester concepts, best practices, troubleshooting, performance, security, migration, and command cheatsheets.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a static Responsive Tester reference while working in devtools contexts. It helps agents provide concise guidance on setup, patterns, debugging, performance, security, migration, and quick-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a Bash script, so users may want assurance that running it will not affect their environment. <br>
-Mitigation: The reviewed security evidence says the script only prints reference text and shows no network access, credential use, persistence, or data-changing behavior; review the script before installation in managed environments. <br>
-Risk: Generic reference guidance can be incomplete or unsuitable for a specific project. <br>
-Mitigation: Treat the output as guidance and validate any responsive testing, security, migration, or performance recommendation against the target application before applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference scaffold for responsive testing concepts and devtools-oriented guidance. It returns generic reference text for common topics rather than performing live responsive testing.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no API keys, credentials, network access, file changes, or persistence indicated by the reviewed evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill provides generic reference documentation rather than a complete responsive testing tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a quick local reference and confirm testing procedures against project-specific requirements before relying on the guidance.
+
+Risk: Release evidence notes minor documentation inaccuracies and the artifact has a version mismatch between SKILL.md and the shell script output.
+
+Mitigation: Review displayed command names and version output during validation before publishing or deploying the skill.
+
+## Reference(s):
+
+- [Responsive Tester Skill Page](https://clawhub.ai/xueyetianya/skills/responsive-tester)
+- [Publisher Profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are required according to the release evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

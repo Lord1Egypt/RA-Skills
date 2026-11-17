@@ -1,41 +1,63 @@
-## Description: <br>
-OpenServ Client guides developers through using @openserv-labs/client to manage OpenServ agents, workflows, triggers, tasks, authentication, x402 payments, ERC-8004 identity, and the Platform API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using @openserv-labs/client to manage OpenServ agents, workflows, triggers, tasks, provisioning, authentication, x402 payments, ERC-8004 identity, and Platform API calls.
 
-## Publisher: <br>
-[issa-me-sush](https://clawhub.ai/user/issa-me-sush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[issa-me-sush](https://clawhub.ai/user/issa-me-sush)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision OpenServ agents, configure workflows and triggers, manage platform credentials, and integrate payment or on-chain identity flows for deployed agent services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles API keys, auth tokens, wallet private keys, and public webhook URLs that could expose accounts or agent endpoints if copied into logs or source control. <br>
-Mitigation: Use a test account or wallet first, keep .env and .openserv.json out of source control, avoid logging secrets or full webhook URLs, and rotate credentials if they are exposed. <br>
-Risk: Provisioning, ERC-8004 registration, cleanup, and wallet deletion examples can affect real OpenServ resources, wallet material, or on-chain identity records. <br>
-Mitigation: Back up wallet material before registration, confirm the target agent and workflow IDs before cleanup, and run destructive commands only after verifying the intended resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenServ Client API Reference](reference.md) <br>
-- [OpenServ Client Troubleshooting](troubleshooting.md) <br>
-- [Example Environment File](examples/env.example.txt) <br>
+## Use Case:
 
+Developers and engineers use this skill to provision and manage OpenServ Platform agents, workflows, triggers, credentials, payments, and on-chain identity from TypeScript projects.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and environment configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, provisioning, API usage, troubleshooting, and cleanup guidance for OpenServ client workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet private keys, API tokens, auth tokens, and webhook URLs may grant access to OpenServ resources if exposed.
+
+Mitigation: Use a dedicated low-value wallet, keep .env and .openserv.json out of source control and logs, and treat generated webhook URLs as secrets.
+
+Risk: Provisioning and PlatformClient examples create or update remote agents, workflows, triggers, credentials, and payment-enabled endpoints.
+
+Mitigation: Review the requested resources, pin package and skill versions, and test with non-production accounts before applying changes to production projects.
+
+Risk: Cleanup examples can delete OpenServ workflows and agents, including bulk deletion with --all.
+
+Mitigation: Run cleanup commands only after verifying the authenticated account and target resource IDs.
+
+Risk: ERC-8004 identity registration uses a funded Base wallet and may incur on-chain costs.
+
+Mitigation: Fund only the intended wallet with limited ETH, wrap registration in error handling, and confirm chain and workflow details before submitting transactions.
+
+## Reference(s):
+
+- [OpenServ Client Skill Source](artifact/SKILL.md)
+- [OpenServ Client API Reference](artifact/reference.md)
+- [OpenServ Client Troubleshooting](artifact/troubleshooting.md)
+- [OpenServ Client ClawHub Release](https://clawhub.ai/issa-me-sush/skills/openserv-client)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment-variable guidance, PlatformClient usage patterns, provisioning flows, trigger configuration, and cleanup commands.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

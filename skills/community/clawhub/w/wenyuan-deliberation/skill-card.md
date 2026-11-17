@@ -1,43 +1,53 @@
-## Description: <br>
-Three-seat deliberation protocol for complex decisions: exposes assumptions, compares options, and identifies risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three-seat deliberation protocol for complex decisions: exposes assumptions, compares options, and identifies risks.
 
-## Publisher: <br>
-[gordonlu](https://clawhub.ai/user/gordonlu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gordonlu](https://clawhub.ai/user/gordonlu)
 
-## Use Case: <br>
-Developers, product leaders, architects, and other decision makers use this skill to structure complex decisions with explicit assumptions, trade-offs, risks, disagreement, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deliberation protocol can make answers longer and more elaborate than needed. <br>
-Mitigation: Use Quick Mode for brief answers and keep each section concise. <br>
-Risk: A single agent may appear to provide independent multi-party deliberation when it is only using structured perspectives. <br>
-Mitigation: State that it is prompt-only deliberation unless an external Wenyuan runtime or multi-model system is explicitly available. <br>
-Risk: Decision recommendations may be misleading when facts, constraints, or assumptions are missing. <br>
-Mitigation: Label missing information as assumptions or unresolved issues, preserve serious disagreement, and provide concrete next actions for validation. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to structure complex decisions with meaningful uncertainty, trade-offs, or long-term consequences. It helps expose assumptions, compare options, preserve useful disagreement, identify risks, and recommend concrete next actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gordonlu/skills/wenyuan-deliberation) <br>
-- [Project homepage](https://github.com/gordonlu/wenyuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown by default; valid JSON only when the user explicitly requests Deep Mode JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English outputs follow the user's language; prompt-only with no external APIs, credentials, binaries, or tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Users may mistake the structured three-seat deliberation for independent multi-model analysis or formal expert review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Describe it as a prompt-only structured perspective method and require qualified human review for high-stakes decisions.
+
+Risk: Deliberative framing can overcomplicate simple factual questions, trivial choices, direct translation, or pure rewriting tasks.
+
+Mitigation: Use the skill only when the request involves meaningful uncertainty, trade-offs, risks, or long-term consequences.
+
+## Reference(s):
+
+- [Wenyuan homepage](https://github.com/gordonlu/wenyuan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown deliberation report; JSON only when explicitly requested for deep mode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only; no external APIs, credentials, binaries, tools, persistence, or external execution required.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter says 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

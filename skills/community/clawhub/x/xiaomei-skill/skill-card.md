@@ -1,45 +1,58 @@
-## Description: <br>
-Xiaomei Skill provides a local OpenClaw companion agent for emotional companionship, persona simulation, memory-backed conversations, and optional LLM-assisted responses. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Xiaomei Skill is an OpenClaw emotional companion agent that provides persona-driven conversational companionship with local memory, affection tracking, safety interception, and optional LLM-assisted response generation.
 
-## Publisher: <br>
-[xavier7803](https://clawhub.ai/user/xavier7803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xavier7803](https://clawhub.ai/user/xavier7803)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a companion subagent that can respond conversationally, maintain persona state, store local memories, and expose status or developer-mode diagnostics. The artifact describes public testing and non-commercial learning use rather than a production commercial release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive local memories, chat history, and logs. <br>
-Mitigation: Install only when local storage of companion memories and logs is acceptable, and review how to inspect, disable, or delete those files. <br>
-Risk: Privacy, network-use, logging, and packaging disclosures are inconsistent. <br>
-Mitigation: Treat local-only claims cautiously, disable external LLM or API mode unless needed, and verify downloaded runtime scripts before running them. <br>
-Risk: The release is flagged as suspicious by the authoritative security evidence. <br>
-Mitigation: Review the skill before installation and confirm credential handling, network configuration, and logging behavior in the installed environment. <br>
+## Use Case:
 
+External users and agent developers use this skill to add a virtual companion agent for lightweight emotional support, persona-based conversation, local memory, and OpenClaw command interactions.
 
-## Reference(s): <br>
-- [ClawHub Xiaomei Skill page](https://clawhub.ai/xavier7803/xiaomei-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xavier7803) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [Artifact support link](https://github.com/xavier7803/xiaomei-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Conversational text with command responses and optional structured local logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local persona, memory, chat history, and developer log files when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata) <br>
+Risk: Privacy claims conflict with optional external LLM use and local storage of conversations, persona details, memory, and developer logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration controls before installation, disable external LLM calls when local-only operation is required, and treat local memory and logs as sensitive data.
+
+Risk: Security evidence reports inconsistent privacy, identity, permissions, and package-completeness signals.
+
+Mitigation: Do not install this release until the complete package, referenced code, hooks, and installer have been reviewed and scanned.
+
+Risk: License evidence is inconsistent between the server release metadata and artifact documentation.
+
+Mitigation: Confirm the authoritative license terms with the publisher before redistribution or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xavier7803/skills/xiaomei-skill)
+- [Publisher profile](https://clawhub.ai/user/xavier7803)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown command responses, with configuration and shell command examples in documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The installed skill may write local persona, memory, session, and log data, and may use an external LLM when configured.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Readme Maker is a README-themed local CLI that records, lists, searches, and exports README-related notes and command inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Readme Maker helps agents design, validate, generate, format, and review GitHub profile READMEs and project documentation.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers can use this skill as a local activity log for README-related checks, notes, and exports. Do not treat it as a substantive README generator or validator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User inputs may include secrets, private repository text, or unreleased business details that are stored locally and can later be searched or exported. <br>
-Mitigation: Use the skill only for non-sensitive README notes, and avoid passing tokens, credentials, private source content, or confidential project details. <br>
-Risk: The skill presents README generation and validation commands, but security evidence says the implemented behavior is primarily logging and exporting raw inputs. <br>
-Mitigation: Review any README guidance independently and use a real README generator, markdown linter, or validator when correctness matters. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to draft, lint, validate, format, compare, preview, and report on README content from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/readme-maker) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and local export files in JSON, CSV, or TXT] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command inputs locally under ~/.local/share/readme-maker and can later search or export those entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: User-provided README text and project notes can be stored in plaintext logs under ~/.local/share/readme-maker/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass secrets, tokens, private project notes, unreleased details, or sensitive README drafts to the skill.
+
+Risk: Search and export commands can expose previously logged README content.
+
+Mitigation: Review exported files before sharing them and periodically delete local readme-maker logs when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/readme-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command inputs, history, search results, and exports may be persisted as local plaintext files by the bundled CLI.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Use when an agent needs to operate RapidX through MCP or CLI for portfolio reads, market reads, order preview, order submit/replace/cancel, position management, algo orders, or explicit live trading verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs to operate RapidX through MCP or CLI for portfolio reads, market reads, order preview, order submit/replace/cancel, position management, algo orders, or explicit live trading verification.
 
-## Publisher: <br>
-[liquiditytech](https://clawhub.ai/user/liquiditytech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liquiditytech](https://clawhub.ai/user/liquiditytech)
 
-## Use Case: <br>
-Developers and external users use this skill to guide an agent through RapidX market, portfolio, order, position, algo-order, automation, and live-verification workflows after RapidX configuration has been verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent operating a real RapidX trading account. <br>
-Mitigation: Use least-privilege API keys, start with read-only checks, and require exact preview confirmation before order, cancel, leverage, position-mode, close-position, or automation actions. <br>
-Risk: Credentials could be exposed through chat, logs, or command output. <br>
-Mitigation: Keep credentials in the agent host's secret store and do not echo secrets. <br>
-Risk: Uncertain write results or timeouts could lead to duplicate or incorrect trading actions. <br>
-Mitigation: Query account, order, position, or algo state before retrying and read back final state after each submitted write. <br>
+## Use Case:
 
+External users, developers, and trading operators use this skill to guide an agent through RapidX portfolio reads, market reads, previewed order actions, position management, algo order workflows, automation sessions, and explicit live trading verification.
 
-## Reference(s): <br>
-- [Capability Overview](references/capability-overview.md) <br>
-- [Best Practices](references/best-practices.md) <br>
-- [ClawHub release page](https://clawhub.ai/liquiditytech/ltp-rapidx-trading) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, text] <br>
-**Output Format:** [Markdown guidance with inline MCP tool names, CLI commands, JSON response expectations, and final status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires observed tool or command evidence for trading claims; live writes require preview evidence, consent, and readback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide agents that have scoped access to live trading credentials and real trade-write authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted RapidX CLI publisher, prefer a pinned and reviewed CLI version, use the host secret store, begin with read-only checks, and keep trading scope narrow.
+
+Risk: Automation sessions can authorize multiple order lifecycle actions within the approved scope.
+
+Mitigation: Enable automation only with explicit authorization for symbols, notional caps, duration, allowed actions, and allowed order types; use short sessions and stop automation when it is no longer needed.
+
+## Reference(s):
+
+- [RapidX Capability Overview](references/capability-overview.md)
+- [RapidX Skills / CLI / MCP Best Practices](references/best-practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline command and tool examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trade-write guidance requires preview evidence, explicit consent or scoped automation authorization, and readback before final claims.]
+
+## Skill Version(s):
+
+1.0.17 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

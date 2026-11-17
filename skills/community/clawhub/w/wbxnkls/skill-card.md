@@ -1,43 +1,57 @@
-## Description: <br>
-漫客软件法律专家 reviews software code and product documents for legal compliance risks under Chinese and international regulations, including administrative and criminal liability considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对软件代码或产品文档进行法律合规审查，识别违反中国及国际法律法规的风险点，并输出结构化整改建议。
 
-## Publisher: <br>
-[zk3151463](https://clawhub.ai/user/zk3151463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zk3151463](https://clawhub.ai/user/zk3151463)
 
-## Use Case: <br>
-Developers, product teams, and compliance reviewers use this skill to perform AI-assisted compliance checks on code repositories, PRDs, privacy policies, and user agreements. It produces risk findings, legal references, potential consequences, and remediation guidance for software-related legal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect sensitive source code, product documents, privacy policies, or user agreements during compliance review. <br>
-Mitigation: Use it only with information the agent is authorized to access, and review outputs before sharing them outside the intended audience. <br>
-Risk: The skill provides AI-assisted legal compliance screening and may produce incomplete, outdated, or jurisdiction-specific interpretations. <br>
-Mitigation: Treat outputs as a checklist and verify cited laws, penalties, and final conclusions with qualified legal counsel. <br>
+## Use Case:
 
+Developers, product teams, and compliance reviewers use this skill to screen code repositories, PRDs, privacy policies, and user agreements for China and international software compliance risks before formal legal review.
 
-## Reference(s): <br>
-- [China Regulations](references/china_regulations.md) <br>
-- [International Regulations](references/international_regulations.md) <br>
-- [Review Methodology](references/review_methodology.md) <br>
-- [Report Templates](references/report_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown compliance review reports, structured checklists, and executive summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include cited regulatory provisions, risk levels, legal consequence summaries, remediation suggestions, and an AI-assisted review disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Legal compliance findings may be incomplete, jurisdiction-specific, or affected by changing law.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary screening and verify current law, jurisdiction choices, and final conclusions with qualified counsel.
+
+Risk: User-provided code, PRDs, privacy policies, or agreements may contain sensitive or confidential information.
+
+Mitigation: Provide only materials the user is authorized to submit for AI review and redact unnecessary secrets or personal data before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zk3151463/skills/wbxnkls)
+- [中国法律法规合规检查要点](references/china_regulations.md)
+- [国际法律法规合规检查要点](references/international_regulations.md)
+- [合规审查方法论](references/review_methodology.md)
+- [合规审查报告模板](references/report_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown compliance reports, structured checklists, and concise summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk ratings, cited regulation references, legal consequence summaries, remediation suggestions, and an AI-assisted legal-review disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

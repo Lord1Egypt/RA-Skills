@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn72a3kqhw330jbwe6g1q9hen582whqp",
-  "slug": "web-automation-helper",
-  "version": "1.0.1",
-  "publishedAt": 1774068474227
+  "name": "web-automation-helper",
+  "version": "1.0.0",
+  "description": "浏览器自动化助手 - Chrome远程调试+Playwright自动化操作",
+  "author": "dxie48892-jpg",
+  "license": "MIT",
+  "created": "2026-03-21",
+  "updated": "2026-03-21",
+  "tags": ["browser", "automation", "playwright", "web", "scraping", "chrome"],
+  "features": [
+    "Chrome远程调试连接",
+    "网页自动化操作",
+    "数据抓取与提取",
+    "表单自动填写",
+    "定时任务支持"
+  ]
 }

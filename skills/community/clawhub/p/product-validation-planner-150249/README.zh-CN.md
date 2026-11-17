@@ -1,0 +1,49 @@
+# Product Validation Planner
+
+## 需求
+
+Validated demand: Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facing positioning. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+
+目标用户：solo founders, product managers, makers, and small teams who need to test whether a product idea is worth building before spending heavily
+
+分类：`业务与运营`
+
+需求评分：100/100
+
+证据覆盖：12 条信号，覆盖 3 个来源类型。
+
+## 来源证据
+
+- github-issues：[RFC-0002 Slice 14/17: certify Lotus Idea data-product, trust telemetry, and canonical proof in platform gates](https://github.com/sgajbi/lotus-platform/issues/598)
+- github-issues：[Follow-up: extend meta validation config across the CMS](https://github.com/novaramedia/novaramedia-com/issues/572)
+- github-issues：[my-product-designer](https://github.com/MyThingsLab/my-idea/issues/49)
+- hacker-news-search：[Punch yourself in the face with reality](https://news.ycombinator.com/item?id=48912524)
+- hacker-news-search：[Harness Engineering](https://news.ycombinator.com/item?id=48964576)
+- hacker-news-search：[Starlink unlimited aviation plan to rise from $10k/month to $20k](https://news.ycombinator.com/item?id=48923996)
+- hacker-news-search：[Rayfish, Peer-to-peer mesh VPN with no server to trust](https://news.ycombinator.com/item?id=48809563)
+- github-issues：[MVP validation boilerplate — build map](https://github.com/ventsislavnikolov/concierge-mvp-boilerplate/issues/1)
+- github-issues：[Explore incremental refresh via unfiltered recent search](https://github.com/HanClinto/tcgjson/issues/4)
+- github-issues：[create-idea script (clone/strip/rename, locale defaults)](https://github.com/ventsislavnikolov/concierge-mvp-boilerplate/issues/20)
+- csdn-search：[24 Idea Validation - Save Yourself Time and Money](https://wenku.csdn.net/doc/7fnjuwdtp5?ops_request_misc=elastic_search_misc&request_id=e00694ad72c845388e0be22ea9f8d39d&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-1-7fnjuwdtp5-null-null.142^v102^pc_search_result_base3&utm_term=product%20idea%20validation)
+- csdn-search：[debugging-and- validation](https://wenku.csdn.net/doc/62or4vx1j7?ops_request_misc=elastic_search_misc&request_id=e00694ad72c845388e0be22ea9f8d39d&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-3-62or4vx1j7-null-null.142^v102^pc_search_result_base3&utm_term=product%20idea%20validation)
+
+## 这个技能如何满足需求
+
+Transforms the live request into a repeatable workflow that clarifies the user's context, produces a concrete deliverable, checks the result against the original need, and keeps execution feasible on ordinary CPU or family GPU hardware.
+
+## 使用方式
+
+关键词：`business-and-operations`, `product idea`, `validation`, `prototype`, `saas`, `startup`
+
+触发句：
+
+- `Help me Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin.`
+- `I need a practical workflow for Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin.`
+- `Use $product-validation-planner to handle Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin.`
+
+## 文件
+
+- `SKILL.md`：英文版技能说明。
+- `SKILL.zh-CN.md`：中文版技能说明。
+- `README.md`：英文版用户说明。
+- `README.zh-CN.md`：中文版用户说明。

@@ -1,41 +1,58 @@
-## Description: <br>
-Power terminal for deep financial research on US public equities — reason through investment theses, screen for ideas, map supply chains, do forensic accounting, pull earnings call quotes, model financials, and more in plain English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Power terminal for deep financial research on US public equities — reason through investment theses, screen for ideas, map supply chains, do forensic accounting, pull earnings call quotes, model financials, and more in plain English.
 
-## Publisher: <br>
-[yx9966](https://clawhub.ai/user/yx9966) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yx9966](https://clawhub.ai/user/yx9966)
 
-## Use Case: <br>
-External financial researchers, analysts, and investors use this skill to ask natural-language questions about US public equities, including screens, SEC filing lookup, earnings call analysis, peer tables, valuation work, event research, and financial modeling support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts are sent to the drillr external API. <br>
-Mitigation: Do not include secrets, credentials, account-specific data, or nonpublic business information in prompts. <br>
-Risk: Financial research output may contain incorrect or stale investment-relevant facts. <br>
-Mitigation: Verify material figures, quotes, and conclusions against primary sources such as SEC filings and earnings materials before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to ask plain-English financial research questions about US public equities, including screening, filing lookup, earnings call quote retrieval, peer comparisons, forensic accounting, and financial modeling support.
 
-## Reference(s): <br>
-- [drillr homepage](https://drillr.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/yx9966/drillr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional markdown tables printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams Server-Sent Events from a single external API request; queries are capped at 8 KB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The documented inline invocation can turn a crafted user question into locally executed Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the companion query.py script with the question passed as an argument, or fix and review the inline invocation before use.
+
+Risk: Each research question is sent to the drillr.ai public API endpoint.
+
+Mitigation: Avoid sending confidential, personal, or restricted financial research prompts unless the endpoint and data handling are approved for that use.
+
+Risk: The API returns AI-generated financial research that may contain incorrect figures or interpretations.
+
+Mitigation: Verify material figures and conclusions against primary SEC filings, company disclosures, or other authoritative sources before acting on them.
+
+## Reference(s):
+
+- [drillr homepage](https://drillr.ai)
+- [ClawHub skill page](https://clawhub.ai/yx9966/skills/drillr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown text printed to stdout, with generated tables rendered as markdown when returned by the API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The companion script caps queries at 8 KB, sends one HTTPS POST to the public drillr API, streams SSE responses, and does not persist local state.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

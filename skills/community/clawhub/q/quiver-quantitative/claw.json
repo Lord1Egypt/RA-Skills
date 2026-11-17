@@ -1,0 +1,18 @@
+{
+  "name": "quiver-quantitative",
+  "version": "1.0.0",
+  "description": "Access alternative financial data from Quiver Quantitative — Congress trading disclosures, corporate lobbying, government contracts, and insider transactions. Track what politicians are buying/selling, who's lobbying Washington, and corporate insider activity. No equivalent in the ClawHub marketplace. Requires free Quiver Quantitative API key.",
+  "author": "bisonquant",
+  "license": "MIT",
+  "permissions": ["network"],
+  "entry": "instructions.md",
+  "tags": ["congress-trading", "insider-trading", "lobbying", "alternative-data", "quiver", "stocks", "finance", "dc-intel"],
+  "category": "finance-trading",
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0",
+  "price": 15,
+  "currency": "USD",
+  "scripts": {
+    "query_quiver": "scripts/query_quiver.py"
+  }
+}

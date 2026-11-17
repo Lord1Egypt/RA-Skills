@@ -1,38 +1,48 @@
-## Description: <br>
-Extract text, metadata, pages, and basic transformations from local PDF files using pypdf. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text, metadata, and pages from PDF files using pypdf. Use for tasks such as reading PDF content, extracting specific pages, splitting or merging PDFs, reading document metadata, and rotating or transforming pages.
 
-## Publisher: <br>
-[Maverick-AI-Tech](https://clawhub.ai/user/Maverick-AI-Tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-ai-tech](https://clawhub.ai/user/maverick-ai-tech)
 
-## Use Case: <br>
-Developers and document-workflow users use this skill to inspect local PDFs, extract text or selected pages, split or merge files, and rotate pages through deterministic CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PDF text or metadata extracted by the tool may contain sensitive document content. <br>
-Mitigation: Use the skill only on intended local PDFs and review extracted stdout or redirected files before sharing them. <br>
-Risk: Commands that write PDFs can create directories or overwrite user-chosen output files. <br>
-Mitigation: Choose input and output paths deliberately and inspect destination paths before running write operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to inspect PDFs, extract text or selected pages, split or merge documents, and rotate pages through deterministic local commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI stdout text and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local file paths and 0-indexed page numbers; commands require python3 and the pypdf package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing an unpinned pypdf dependency or processing unintended local PDF paths can affect package trust and file-access scope.
+
+Mitigation: Install pypdf in an isolated environment from a pinned, trusted package source, and run commands only on intended input files and output locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-ai-tech/skills/pypdf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, stdout text, and generated PDF file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses 0-indexed page arguments; PDF-writing commands require explicit output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

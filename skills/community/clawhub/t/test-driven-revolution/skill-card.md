@@ -1,46 +1,60 @@
-## Description: <br>
-Test-Driven Revolution implements an AI-driven iterative code workflow for planning, executing, testing, reviewing, and auditing software tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test-Driven Revolution implements an AI-driven iterative code evolution system with automated coding, testing, auditing, and controlled task workflows.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when a user explicitly requests TDR for multi-step code generation, bug fixing, documentation updates, or security-sensitive changes that benefit from planning, execution, review, and audit loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run task-provided shell commands automatically, which may modify code or execute unsafe actions if instructions are not reviewed. <br>
-Mitigation: Install only in a disposable or tightly isolated workspace, restrict the executor, and inspect next_instructions before applying review output. <br>
-Risk: Cron heartbeats can repeatedly execute queued tasks with more authority than the documented safety checks can fully control. <br>
-Mitigation: Do not enable cron heartbeats until the execution environment and permissions have been reviewed and limited. <br>
-Risk: Task JSON and review output can influence execution and may expose or misuse sensitive project data. <br>
-Mitigation: Treat task JSON and review output as code, avoid secrets in task files, and avoid use on repositories or machines with sensitive credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn explicit TDR requests into planned, reviewed, executed, and audited coding tasks for complex feature work, refactors, documentation updates, and bug fixes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cjboy007/test-driven-revolution) <br>
-- [Publisher profile](https://clawhub.ai/user/cjboy007) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Model configuration](artifact/config/models.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON task files, shell commands, and code or configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce iterative task state, review output, audit output, and event logs in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill can run model- or review-provided shell commands on a recurring schedule without a real sandbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enable cron jobs or heartbeat execution in workspaces with secrets or valuable files until the executor is replaced with a real sandbox.
+
+Risk: Generated commands and task paths may affect workspace files if inputs are not tightly controlled.
+
+Mitigation: Strictly validate task IDs and paths, schema-check review inputs, and require approval or a safe allowlist for generated commands.
+
+Risk: Review inputs can steer execution if they are unauthenticated or untrusted.
+
+Mitigation: Authenticate review sources and inspect each generated instruction before applying it to a task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/test-driven-revolution)
+- [Skill documentation](artifact/SKILL.md)
+- [Quick start](artifact/README.md)
+- [Model and role configuration](artifact/config/models.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON task and review files, code changes, shell commands, and JSONL event logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task workflows may update workspace files, task JSON, locks, and append-only event logs.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

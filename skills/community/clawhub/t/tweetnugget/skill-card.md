@@ -1,45 +1,56 @@
-## Description: <br>
-A random inspirational tweet from curated collections of hand-picked wisdom by tech leaders, founders, and philosophers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A random inspirational tweet from curated collections of hand-picked wisdom by tech leaders, founders, and philosophers.
 
-## Publisher: <br>
-[acailic](https://clawhub.ai/user/acailic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acailic](https://clawhub.ai/user/acailic)
 
-## Use Case: <br>
-External users and developers use Tweetnugget to retrieve a concise inspirational quote from bundled curated collections, optionally filtered by topic or selected from a random collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad requests for inspiration or wisdom. <br>
-Mitigation: Use it in contexts where quote-style responses are acceptable and confirm intent when the user's request is ambiguous. <br>
-Risk: User-added quote collections may display unreviewed text directly. <br>
-Mitigation: Review added JSON quote collections for attribution, tone, and content quality before deployment. <br>
+## Use Case:
 
+External users and agents use Tweetnugget to return a concise inspirational quote selected from local curated JSON collections, optionally filtered by a requested topic tag.
 
-## Reference(s): <br>
-- [Tweetnugget ClawHub page](https://clawhub.ai/acailic/tweetnugget) <br>
-- [Publisher profile](https://clawhub.ai/user/acailic) <br>
-- [clawhub.json](clawhub.json) <br>
-- [references/swlw-tweets.json](references/swlw-tweets.json) <br>
-- [references/twitter-quotes.json](references/twitter-quotes.json) <br>
-- [references/stoic-quotes.json](references/stoic-quotes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown quote text with attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a source link when a quote URL is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and clawhub.json) <br>
+Risk: A user-supplied topic may be interpolated into a Bash command for tag filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Quote or validate topic input before execution, map requests to known tags, or call the Python script with argument arrays rather than shell-interpolated command text.
+
+Risk: Curated quote content may be inaccurate, misattributed, or outdated.
+
+Mitigation: Review collection entries and source URLs before relying on quote attribution or adding new collections.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acailic/skills/tweetnugget)
+- [Software Lead Weekly quote collection](references/swlw-tweets.json)
+- [Twitter Wisdom quote collection](references/twitter-quotes.json)
+- [Stoic Quotes collection](references/stoic-quotes.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown quote text with attribution; setup and operation guidance may include inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quote selection is local and randomized; filtered mode performs partial tag matching and falls back to a random quote when no tag matches.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

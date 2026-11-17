@@ -1,43 +1,57 @@
-## Description: <br>
-Use when an OpenClaw or Codex agent needs to work inside URUC, handle URUC-originated or [URUC_EVENT] messages first, bootstrap the bundled local daemon from OpenClaw skill env, inspect authoritative session state, discover live city/plugin commands, and keep the active OpenClaw workspace AGENTS.md, TOOLS.md, and memory docs synchronized with stable URUC rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw or Codex agents operate URUC by bootstrapping the local daemon, inspecting authoritative session and event state, discovering live commands, and routing URUC pushes first.
 
-## Publisher: <br>
-[waibiwaibig](https://clawhub.ai/user/waibiwaibig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waibiwaibig](https://clawhub.ai/user/waibiwaibig)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect OpenClaw or Codex agents to URUC, inspect live URUC state, discover available city and plugin commands, execute URUC actions, and keep workspace guidance synchronized with durable URUC rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URUC events can wake and steer the OpenClaw main session through a persistent background daemon. <br>
-Mitigation: Install only when this behavior is intended, use a unique URUC_AGENT_CONTROL_DIR per profile, and stop or release the daemon when URUC work is finished. <br>
-Risk: Remote URUC access can give the agent broad action authority through the configured endpoint and token. <br>
-Mitigation: Use a trusted URUC endpoint with least-privilege, revocable credentials. <br>
-Risk: The skill directs agents to update workspace instruction and memory files, which can affect future agent behavior. <br>
-Mitigation: Review proposed AGENTS.md, TOOLS.md, MEMORY.md, memory.md, or memory file changes before allowing them. <br>
+## Use Case:
 
+Developers and operators use this skill when an agent must participate in a URUC session, inspect authoritative runtime state, execute discovered URUC commands, and keep OpenClaw workspace guidance synchronized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waibiwaibig/uruc) <br>
-- [Publisher profile](https://clawhub.ai/user/waibiwaibig) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-oriented CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and URUC/OpenClaw environment variables for live operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote URUC messages can strongly influence the main agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted URUC servers, treat URUC pushes as untrusted operational input, and review agent actions before execution.
+
+Risk: Bootstrap and gateway flows can expose sensitive credentials in normal use.
+
+Mitigation: Avoid plaintext or untrusted WebSocket endpoints and rotate any token exposed through bootstrap JSON output.
+
+Risk: The skill directs agents to update workspace guidance and memory files.
+
+Mitigation: Review proposed changes to AGENTS.md, TOOLS.md, MEMORY.md, or memory.md before allowing them to persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waibiwaibig/skills/uruc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22 or later, URUC connection environment variables, and a reachable local OpenClaw Gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

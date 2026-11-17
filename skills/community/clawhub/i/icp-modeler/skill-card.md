@@ -1,41 +1,58 @@
-## Description: <br>
-Generate research-backed Ideal Customer Profiles (ICPs) for mortgage and real estate products, including buyer personas, Meta and Google ad targeting parameters, trigger phrases, content tone, and platform routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate research-backed Ideal Customer Profiles (ICPs) for mortgage and real estate products. Returns full buyer personas, Meta/Google ad targeting parameters, trigger phrases, content tone, and platform routing - no generic demographics, only actionable targeting intelligence.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-Marketing, mortgage, real estate, and financial-services practitioners use this skill to generate ICP profiles, ad-targeting guidance, trigger phrases, and ICP-specific content direction for campaign planning. The optional content-generation mode can draft ICP-tuned marketing copy when an Anthropic API key and LLM backend are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional generated content can send prompts to a third-party AI/API service and may incur API costs. <br>
-Mitigation: Use offline profile and JSON modes when API transmission is not acceptable; enable --generate-content only with an approved Anthropic API key and expected cost controls. <br>
-Risk: Ad targeting recommendations for housing, mortgage, credit, or veteran audiences may have platform or legal compliance constraints. <br>
-Mitigation: Review output against applicable ad-platform policies and legal requirements before using recommendations in live campaigns. <br>
+## Use Case:
 
+External mortgage and real estate marketers use this skill to generate actionable buyer profiles, ad targeting guidance, trigger phrases, and platform routing for specific customer segments. The free paths provide offline ICP profiles and JSON exports; the premium path can generate ICP-tuned marketing content when an Anthropic API key is configured.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/drivenautoplex1/icp-modeler) <br>
-- [Project homepage](https://github.com/drivenautoplex1/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Plain text or structured JSON, with optional generated marketing copy in text form] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline profile modes do not require an API key; --generate-content uses a third-party AI/API feature and may transmit prompts or incur API costs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter, server release metadata) <br>
+Risk: The premium content path can load undeclared Python code from local or external paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use premium content generation only in an environment where the imported generate.py module is trusted.
+
+Risk: Premium content generation uses an API key for LLM-backed output.
+
+Mitigation: Limit API key exposure and avoid sharing credentials with untrusted environments.
+
+Risk: Generated mortgage, VA-loan, credit-repair, or real-estate ad copy can create legal or compliance issues if published without review.
+
+Mitigation: Review all generated copy for accuracy and applicable advertising, lending, and compliance requirements before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/skills/icp-modeler)
+- [Project homepage from ClawHub metadata](https://github.com/drivenautoplex1/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [CLI text or JSON, with optional generated marketing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline profiles cover five ICPs; premium content generation requires ANTHROPIC_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

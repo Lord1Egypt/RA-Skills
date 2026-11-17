@@ -1,37 +1,49 @@
-## Description: <br>
-Applies a visual design director workflow to improve OneDay visual outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides design-director guidance that helps agents polish OneDay visual outputs such as pages, dashboards, reports, presentations, and data visualizations.
 
-## Publisher: <br>
-[justmywyw](https://clawhub.ai/user/justmywyw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justmywyw](https://clawhub.ai/user/justmywyw)
 
-## Use Case: <br>
-Agents use this skill when creating presentations, dashboards, HTML pages, reports, spreadsheets, PDFs, data visualizations, or UI components for OneDay so visual work is reviewed against typography, color, layout, hierarchy, data visualization, and polish criteria before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make simple visual requests more styled or refined than intended. <br>
-Mitigation: Disable it for minimal or strictly functional tasks, or review outputs against the user's requested level of visual polish. <br>
+## Use Case:
 
+Developers and creators use this skill to have an agent apply structured visual design review and polish when producing OneDay visual artifacts, including HTML pages, dashboards, reports, presentations, spreadsheets, PDFs, React UI, and data visualizations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance and, when the user request calls for it, visual artifacts such as HTML, UI code, reports, or configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution, credentials, persistence, or sensitive access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad visual-design activation can influence tasks where the user expected minimal design intervention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation rules or explicitly ask the agent to preserve a simpler style when strict task separation matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justmywyw/skills/mywyw-test-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown, prose guidance, and code-oriented visual artifact recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May influence visual-output tasks through design critique, visual standards, and polish guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

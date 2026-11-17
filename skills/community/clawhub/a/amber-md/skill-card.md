@@ -1,45 +1,55 @@
-## Description: <br>
-Official-style Amber24 molecular dynamics workflow guide for proteins with an end-to-end procedure, command templates, input-file templates, and a manual example from PDB download through RMSD/RMSF analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official-style Amber24 molecular dynamics workflow guide for proteins, including a standard end-to-end procedure, command templates, input-file templates, and a manual worked example from PDB download through RMSD/RMSF analysis.
 
-## Publisher: <br>
-[ning-kun](https://clawhub.ai/user/ning-kun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ning-kun](https://clawhub.ai/user/ning-kun)
 
-## Use Case: <br>
-External users, developers, and scientific researchers use this skill as a manual Amber24 and AmberTools24 workflow reference for preparing protein systems, running minimization, heating, equilibration, production MD, and analyzing trajectories with cpptraj. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide contains shell commands that create files, run Amber tools, and can consume local compute and storage. <br>
-Mitigation: Run commands deliberately in a dedicated project directory and confirm expected paths, runtime, and storage before starting MD jobs. <br>
-Risk: Incorrect or untrusted Amber or AmberTools installations could affect reproducibility or system integrity. <br>
-Mitigation: Verify Amber and AmberTools installation sources and environment configuration before using the workflow. <br>
-Risk: Unsupported ligands, cofactors, metal centers, or nonstandard residues can make the baseline protein-only workflow scientifically invalid. <br>
-Mitigation: Inspect structures before simulation and either remove unsupported components for a protein-only baseline or parameterize them with appropriate Amber workflows. <br>
+## Use Case:
 
+Scientists, educators, and technical users use this skill to plan and manually run reproducible Amber protein molecular dynamics workflows, from structure preparation through trajectory analysis. It provides workflow guidance, command templates, and quality checks rather than executable automation.
 
-## Reference(s): <br>
-- [Amber MD Parameter Guide](references/amber_parameter_guide.md) <br>
-- [cpptraj Analysis Guide](references/cpptraj_analysis_guide.md) <br>
-- [RCSB PDB 1AKI Download](https://files.rcsb.org/download/1AKI.pdb) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ning-kun/amber-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and input-file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable automation scripts are bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence and artifact _meta.json) <br>
+Risk: Amber simulations can consume substantial compute or GPU time and create local output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, validate with the documented 1 ns workflow first, and run in an appropriate project directory with expected storage and compute capacity.
+
+Risk: Scientific results can be misleading if input structures, ligands, atom masks, or imaging choices are inappropriate.
+
+Mitigation: Follow the documented quality checks, remove or parameterize unsupported ligands, use consistent atom masks, and apply trajectory imaging correction before interpreting RMSD or RMSF.
+
+## Reference(s):
+
+- [Amber Parameter Guide](references/amber_parameter_guide.md)
+- [cpptraj Analysis Guide](references/cpptraj_analysis_guide.md)
+- [1AKI PDB Download](https://files.rcsb.org/download/1AKI.pdb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and Amber input-file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; users review and run commands manually in their Amber environment.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

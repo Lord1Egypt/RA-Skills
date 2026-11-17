@@ -1,39 +1,52 @@
-## Description: <br>
-Helps agents run Chrome on Linux servers in headless or Xvfb-backed headed modes and connect Chrome DevTools MCP for browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through running Chrome on Linux servers with headless mode or Xvfb, including Chrome DevTools MCP automation setup.
 
-## Publisher: <br>
-[CodingLink](https://clawhub.ai/user/CodingLink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codinglink](https://clawhub.ai/user/codinglink)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to launch Chrome on Linux servers without a GUI, configure Xvfb display settings, and connect Chrome DevTools MCP for scraping, screenshots, debugging, and browser automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Chrome automation on a shared Linux server can expose browser state or DevTools controls if profiles, users, or ports are reused. <br>
-Mitigation: Use an isolated container or dedicated host, run Chrome as an unprivileged user, keep DevTools bound to localhost, avoid logged-in personal profiles, and create per-task profile directories. <br>
-Risk: Process-kill examples can stop unrelated Chrome or Xvfb sessions on shared systems. <br>
-Mitigation: Review killall and pkill commands before use, and scope process management to task-specific ports, displays, or profile directories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodingLink/xvfb-chrome) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to configure Chrome for scraping, screenshots, browser debugging, and Chrome DevTools MCP workflows on Linux servers without a GUI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with bash command examples and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Chrome launch modes, Xvfb display setup, DevTools MCP connection details, profile directory usage, and screen resolution guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chrome automation guidance includes unsafe browser and process-management defaults, including --no-sandbox examples and broad killall/pkill cleanup patterns.
+
+Mitigation: Run under a dedicated unprivileged account, use unique temporary browser profiles, avoid --no-sandbox unless isolation requires it, and replace broad cleanup commands with PID-scoped cleanup.
+
+Risk: A Chrome DevTools debugging endpoint can allow browser control if exposed beyond the local host.
+
+Mitigation: Bind DevTools explicitly to 127.0.0.1 and avoid using personal or production-authenticated browser profiles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codinglink/skills/xvfb-chrome)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides operational command examples for Chrome, Xvfb, and Chrome DevTools MCP; does not generate executable files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

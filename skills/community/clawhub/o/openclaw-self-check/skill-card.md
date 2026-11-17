@@ -1,40 +1,53 @@
-## Description: <br>
-Checks an OpenClaw environment for configuration, file integrity, gateway status, backups, log errors, disk usage, permissions, and API key presence, then reports issues with suggested manual fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks an OpenClaw workspace for environment setup, file integrity, gateway status, backup status, log errors, disk usage, permissions, and related issues, then reports findings and suggested manual fixes.
 
-## Publisher: <br>
-[tangsuann](https://clawhub.ai/user/tangsuann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangsuann](https://clawhub.ai/user/tangsuann)
 
-## Use Case: <br>
-Developers and operators use this skill to run local OpenClaw health checks before troubleshooting, after environment changes, or during routine maintenance. It reports findings and suggested commands without automatically modifying files, services, or configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The diagnostic report can reveal local services, logs, paths, backups, permissions, and whether API keys are present. <br>
-Mitigation: Review the report before sharing it outside the trusted operating context. <br>
-Risk: Suggested fix commands may be inappropriate for a specific OpenClaw installation if applied without review. <br>
-Mitigation: Treat fixes as recommendations and execute them only after user confirmation and environment-specific review. <br>
+## Use Case:
 
+Developers and operators use this skill to run local health checks before troubleshooting, after environment updates, or during periodic OpenClaw maintenance. It is intended to inspect and report problems without automatically modifying configuration, installing packages, or restarting services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangsuann/openclaw-self-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with pass, warning, and issue sections plus inline suggested shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports whether sensitive credentials are configured but does not display secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The security scan reports broad local shell checks and a command-injection risk through log filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in trusted OpenClaw workspaces, and harden log-reading command construction to avoid shell interpretation before use on shared or untrusted systems.
+
+Risk: The diagnostic script reads local OpenClaw configs, logs, selected skill files, environment-variable presence, disk paths, and backup paths.
+
+Mitigation: Use it only when local diagnostic access to those paths is acceptable, and avoid running it in environments where untrusted users can influence inspected files or filenames.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangsuann/skills/openclaw-self-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with pass, warning, issue, and suggested manual fix sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports whether API keys are configured without displaying their values.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

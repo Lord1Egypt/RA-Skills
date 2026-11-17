@@ -1,42 +1,53 @@
-## Description: <br>
-Manage OpenClaw agent configurations, update models, modify bindings, and test configuration changes with validation and rollback support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw agent configurations, update model assignments, modify bindings, and test configuration changes with validation, backup, restore, and rollback support.
 
-## Publisher: <br>
-[cheben77](https://clawhub.ai/user/cheben77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheben77](https://clawhub.ai/user/cheben77)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect, validate, and update OpenClaw agent configuration, including model assignments and channel bindings. It is also useful for testing configuration changes before applying them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration backups may copy sensitive OpenClaw settings to /tmp. <br>
-Mitigation: Review backup file permissions, avoid sharing backup paths, and remove stale backups after confirming rollback is no longer needed. <br>
-Risk: The documentation references helper scripts that are not bundled in this artifact. <br>
-Mitigation: Verify a referenced script exists in the installed artifact before asking an agent to run it. <br>
-Risk: Model or binding changes can route agent traffic differently than intended. <br>
-Mitigation: Use validation or dry-run workflows first, review the proposed changes, and restart OpenClaw services only after approval. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw agents, update their model assignments, validate configuration structure, and prepare configuration changes before applying them.
 
-## Reference(s): <br>
-- [Agent Config Manager on ClawHub](https://clawhub.ai/cheben77/agent-config-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local shell commands that read, validate, back up, or update OpenClaw configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can persistently change OpenClaw agent behavior by modifying local agent configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed model and binding changes before applying them, run validation or dry-run checks first, and keep a known-good configuration backup for rollback.
+
+Risk: Configuration backups may include sensitive API-key-bearing content and may be written under shared temporary paths.
+
+Mitigation: Use the skill only in a trusted local environment, restrict access to generated backups, and prefer secure temporary files or protected backup locations before relying on it.
+
+## Reference(s):
+
+- [Agent Config Manager on ClawHub](https://clawhub.ai/cheben77/skills/agent-config-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local OpenClaw configuration workflows and may include commands that read or modify /data/.openclaw/openclaw.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

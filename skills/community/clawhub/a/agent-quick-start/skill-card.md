@@ -1,39 +1,57 @@
-## Description: <br>
-Quick start templates for OpenClaw agents. Boilerplate code for research bots, content generators, task automation, and more. Jumpstart your development with ready-to-use templates. Use when starting new OpenClaw projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick start templates for OpenClaw agents, including boilerplate for research bots, content generators, task automation, and related starter projects.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers use this skill to list and create starter OpenClaw agent projects for research, content generation, task automation, customer support, and data processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated research bot template can execute unsafe shell commands derived from user input. <br>
-Mitigation: Review generated projects before use and replace shell-string execution with argument-based process execution. <br>
-Risk: A generated research bot template can silently save research topics to another memory skill. <br>
-Mitigation: Remove memory saving or make it an explicit opt-in before using the template with untrusted or sensitive topics. <br>
+## Use Case:
 
+Developers use this skill to list and create starter OpenClaw agent projects for research, content generation, and task automation. It produces files and setup guidance that can be customized before running the generated agent.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Console text plus generated project files containing Markdown and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates template files in a user-specified project path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The generated research bot uses shell commands with research topics supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid untrusted research topics, and update the generated research helper to pass arguments without shell interpolation.
+
+Risk: The generated research bot automatically saves research topics to memory.
+
+Mitigation: Require user confirmation before saving research topics and run the skill only in a disposable or intended new project directory.
+
+Risk: Installing with an unpinned package command can change behavior over time.
+
+Mitigation: Prefer a version-pinned install command for reproducible installation.
+
+## Reference(s):
+
+- [Agent Quick Start ClawHub listing](https://clawhub.ai/yang1002378395-cmyk/skills/agent-quick-start)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Generated project files with Markdown instructions and JavaScript helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template selection and target project path determine the generated files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

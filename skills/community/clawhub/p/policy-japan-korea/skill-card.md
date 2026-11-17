@@ -1,40 +1,50 @@
-## Description: <br>
-Provides intelligent lookup and analysis for Japan and Korea market policies, regulations, and investment conditions, with multilingual and multi-source configuration and no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供日韩市场政策、法规及投资环境的智能查询与分析，支持多语言和多数据源配置。无需API Key，安装即用。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-External trade businesses, cross-border ecommerce teams, and policy researchers use this skill to ask about Japan and Korea tariffs, customs requirements, regulatory constraints, and investment-policy context for products or HS codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trade-policy, customs, and legal conclusions may be outdated, incomplete, or unsuitable for a specific transaction. <br>
-Mitigation: Use outputs as research assistance and verify legal, customs, and tariff decisions against current official sources before acting. <br>
-Risk: Sensitive credentials could be shared unnecessarily if a future version asks for them. <br>
-Mitigation: Do not provide API keys, tokens, or account credentials unless a future version clearly explains why they are needed. <br>
+## Use Case:
 
+External trade teams, cross-border ecommerce operators, and policy researchers use this skill to look up Japan and Korea market policy, customs rules, tariff context, and compliance considerations for product names or HS codes. Its outputs are informational and should be checked against current official notices before business, legal, or trade decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/policy-japan-korea) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text policy summaries, tables, risk notes, and suggested next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Trade, tariff, and legal-policy outputs may be outdated, incomplete, or unsuitable as final advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational and verify current policy against official government sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/policy-japan-korea)
+- [ClawHub publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include tariff rates, policy basis, exemption terms, license requirements, special rules, risk notes, and response strategy.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

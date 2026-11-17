@@ -1,41 +1,54 @@
-## Description: <br>
-面向上市公司的企业人事管理技能包，覆盖招聘、入离职、薪酬计算、五险一金、考勤假期、劳动合同、个税社保、人事报表等全流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向上市公司的企业人事管理技能包，覆盖招聘、入离职、薪酬计算、五险一金、考勤假期、劳动合同、个税社保、人事报表等全流程。为HR/人事/薪酬专员提供专业的计算公式、法规依据和操作指引。
 
-## Publisher: <br>
-[aolikeji](https://clawhub.ai/user/aolikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aolikeji](https://clawhub.ai/user/aolikeji)
 
-## Use Case: <br>
-HR, personnel, and payroll staff use this Chinese-language reference skill for recruiting, onboarding and offboarding, payroll, social insurance and housing fund calculations, attendance and leave handling, labor contract workflows, performance management, HR reporting, and Excel-based templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Labor-law, tax, social-insurance, and payroll formulas can become stale or vary by city, province, and company policy. <br>
-Mitigation: Verify calculations and procedures against current local rules and internal policies before using them for HR or payroll decisions. <br>
-Risk: HR templates and reports may contain employee personal data if users fill them with real records. <br>
-Mitigation: Apply company privacy controls, limit access, and remove unnecessary personal data before sharing generated templates or reports. <br>
+## Use Case:
 
+HR, people operations, and payroll staff use this Chinese-language skill as a reference for recruiting, onboarding, offboarding, payroll, social insurance and housing fund calculations, attendance, leave, contracts, performance, HR reporting, and Excel automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-hr-management) <br>
-- [Project homepage from release metadata](https://github.com/AOLIKEJI/finance-hr-management) <br>
+### Deployment Geography for Use:
 
+China (PRC)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with tables, formulas, reusable HR templates, and Excel/VBA snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users should verify legal, tax, social-insurance, and payroll details before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: Payroll, attendance, legal, and benefits guidance may be incomplete, outdated, or mismatched to a user's locality or company policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify local law, company policy, payroll calculations, social insurance and housing fund rules, and attendance formulas before using outputs for employment decisions.
+
+Risk: Templates and Excel/VBA snippets may be applied to employee data without adequate review.
+
+Mitigation: Treat templates and snippets as drafts, review them before execution, and apply normal controls for sensitive employee information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aolikeji/skills/finance-hr-management)
+- [Project homepage](https://github.com/AOLIKEJI/finance-hr-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with tables, formulas, templates, and Excel/VBA snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, PRC-oriented HR reference content; verify local law, company policy, payroll formulas, attendance formulas, and employee-data handling before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

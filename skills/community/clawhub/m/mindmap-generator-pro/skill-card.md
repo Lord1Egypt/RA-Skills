@@ -1,42 +1,48 @@
-## Description: <br>
-Mindmap Generator Pro helps agents respond to mindmap requests with guidance, code, configuration, and validation support for visual diagrams and related documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mindmap Generator Pro helps agents turn text or outlines into mind maps and visual-content guidance for diagrams, charts, presentations, and documentation.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bingze00000](https://clawhub.ai/user/bingze00000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill to guide agents in generating mind maps from text or outlines and applying visual-content best practices. It can also help draft code, shell commands, configuration, and validation steps for diagram-oriented workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad auto-activation wording and declared Bash/file-editing tools may cause the skill to be applied more widely than intended.
+
+Mitigation: Review trigger wording and generated commands or edits before installation or use; tighten triggers if only narrow mindmap rendering is needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, content creators, and external users use this skill to turn text, outlines, or mindmap-related requests into structured mind map and visual diagram outputs. It can provide step-by-step guidance, code, configuration, shell command suggestions, and validation checks for diagram work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use local file and shell tools when invoked. <br>
-Mitigation: Keep work limited to files selected for the task and review any proposed shell commands before running them. <br>
-Risk: Activation wording is broader than necessary for a focused mindmap helper. <br>
-Mitigation: Invoke it only for mindmap, diagram, chart, presentation, or visual documentation tasks. <br>
-Risk: Publisher and requirements metadata contain mismatched signals that may matter for provenance or paid-skill setup. <br>
-Mitigation: Confirm the server-resolved publisher, paid release metadata, and OpenAI requirement before relying on provenance-sensitive deployment details. <br>
+**Output Format:** [Markdown with code blocks and command or configuration suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bingze00000/mindmap-generator-pro) <br>
+**Other Properties Related to Output:** [Generated commands, code, and file-editing guidance should be reviewed before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with optional code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file edits or shell commands when invoked; review proposed commands before execution.] <br>
+1.0.0 (source: server release and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, target metadata, SKILL.md frontmatter, _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

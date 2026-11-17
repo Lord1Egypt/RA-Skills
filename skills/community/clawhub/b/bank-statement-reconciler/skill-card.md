@@ -1,44 +1,62 @@
-## Description: <br>
-Bank Statement Reconciler uploads bank statements in CSV, Excel, or PDF format with orders or invoices, applies automatic matching, and returns matched transactions, differences, unclaimed funds, and unmatched orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bank Statement Reconciler helps agents parse bank statements and order or invoice records, match transactions, and report matched items, differences, unclaimed funds, and unmatched orders.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Finance and operations users use this skill to reconcile bank, payment-platform, and e-commerce statement files against orders or invoices and produce reviewable discrepancy reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive bank, payment, order, and invoice files and may persist reconciliation reports locally. <br>
-Mitigation: Test with non-production data first, control the report output directory, and remove exported reconciliation files when they are no longer needed. <br>
-Risk: PDF inputs rely on an external document parser for financial data extraction. <br>
-Mitigation: Prefer CSV, Excel, or JSON inputs when possible, and use PDF inputs only when the parser is trusted and isolated. <br>
-Risk: Feishu card output can share reconciliation summaries outside the local workspace. <br>
-Mitigation: Do not send Feishu cards containing real bank or customer data until sharing and retention behavior is documented and approved. <br>
+## Use Case:
 
+Finance teams, operators, and agents use this skill to reconcile bank, payment platform, and ecommerce transaction files against orders or invoices. It supports exact, fuzzy, and tier-gated semantic matching, then summarizes matched records, differences, unclaimed payments, and unpaid orders.
 
-## Reference(s): <br>
-- [Supported Formats](references/supported-formats.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiji0802/bank-statement-reconciler) <br>
-- [Publisher Profile](https://clawhub.ai/user/qiji0802) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Guidance] <br>
-**Output Format:** [Reconciliation summaries, structured result dictionaries, Excel or CSV report files, and Feishu card payloads where enabled] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include matched transactions, differences, unclaimed funds, unmatched orders, summary statistics, and an optional exported report path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.json release.version) <br>
+Risk: The skill handles sensitive bank, customer, invoice, and order data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and control how financial files are processed, and restrict access to reconciliation inputs and outputs.
+
+Risk: Generated spreadsheets from untrusted inputs may create spreadsheet-export safety risk until formula neutralization is added.
+
+Mitigation: Avoid opening generated spreadsheets from untrusted inputs, and sanitize or neutralize formulas before distribution.
+
+Risk: Duplicate or repeated amounts can produce incorrect reconciliation matches.
+
+Mitigation: Manually verify matches, especially repeated amounts, differences, unclaimed funds, and unmatched orders.
+
+Risk: Sharing output to Feishu or another external service can expose sensitive reconciliation results.
+
+Mitigation: Require explicit approval before sending reconciliation data to Feishu or any external service.
+
+## Reference(s):
+
+- [Supported Formats](artifact/references/supported-formats.md)
+- [ClawHub Skill Page](https://clawhub.ai/qiji0802/skills/bank-statement-reconciler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Configuration]
+
+**Output Format:** [Structured reconciliation results with optional Excel or CSV exports, JSON dictionaries, and Feishu interactive card payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tier settings control statement limits, export formats, platform support, semantic matching, and Feishu card availability.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

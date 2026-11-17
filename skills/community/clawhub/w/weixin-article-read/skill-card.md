@@ -1,40 +1,58 @@
-## Description: <br>
-Reads article text from WeChat Official Account pages on mp.weixin.qq.com for extraction, summarization, and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+读取微信公众平台文章内容（mp.weixin.qq.com）。当用户发送微信文章链接、需要读取微信文章内容、提取公众号文章时自动激活。支持突破微信反爬限制，获取完整文章文本。
 
-## Publisher: <br>
-[lcwatergm-afk](https://clawhub.ai/user/lcwatergm-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lcwatergm-afk](https://clawhub.ai/user/lcwatergm-afk)
 
-## Use Case: <br>
-Developers and agents use this skill when a user provides a WeChat article URL and needs the article body extracted for review, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that a crafted URL can trigger unintended shell command execution. <br>
-Mitigation: Before routine use, replace shell=True with a safe HTTP client or a subprocess argument list and accept only HTTPS mp.weixin.qq.com URLs. <br>
-Risk: The skill depends on outbound network access and a local HTML parsing dependency. <br>
-Mitigation: Document the network and beautifulsoup4 requirements and review fetched content before relying on extracted text. <br>
+## Use Case:
 
+Agents and users use this skill to fetch readable text from WeChat public-platform article links for summarization, extraction, and analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lcwatergm-afk/weixin-article-read) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Plain text or Markdown article content emitted by a Python command-line script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to mp.weixin.qq.com and the beautifulsoup4 Python dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A crafted URL could cause unintended shell command execution in the helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate HTTPS mp.weixin.qq.com URLs and avoid shell=True when fetching article pages.
+
+Risk: The helper could contact non-WeChat network targets through user-supplied or redirected URLs.
+
+Mitigation: Reject off-domain redirects and enforce the expected WeChat host before network access.
+
+Risk: Some WeChat articles may be inaccessible or incomplete because of permissions or anti-crawling controls.
+
+Mitigation: Ask the user to confirm extracted content before using it for downstream analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lcwatergm-afk/skills/weixin-article-read)
+- [Example WeChat article URL from skill documentation](https://mp.weixin.qq.com/s/kItlJmjOnq6p6tXtYGHrGQ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style article text or plain text printed by a helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one WeChat article URL and returns extracted article content when accessible.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Universal Server-Side Web Freedom Toolkit. Harmonizes Scrapling (Self-Healing Fetch), curl_cffi (TLS Impersonation), and DrissionPage (D-Mode) for undetectable browsing on restricted VPS environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Server-Side Web Freedom Toolkit that harmonizes Scrapling self-healing fetches, curl_cffi TLS impersonation, and DrissionPage browser automation for restricted VPS environments.
 
-## Publisher: <br>
-[Biogod2020](https://clawhub.ai/user/Biogod2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biogod2020](https://clawhub.ai/user/biogod2020)
 
-## Use Case: <br>
-Developers and operators use this skill to fetch web content and run browser automation in restricted server environments, including TLS impersonation, stealth fetching, and full Chromium interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad browser automation, browser takeover, and local relay capabilities that are riskier than ordinary web fetching. <br>
-Mitigation: Run it only in an isolated environment such as a VM or disposable container, and avoid using browser profiles that contain accounts, cookies, or sensitive local state. <br>
-Risk: Scripts may attach to local Chromium DevTools endpoints, forward local ports, launch Chromium with no-sandbox flags, make outbound web requests, and write local report files. <br>
-Mitigation: Review the scripts and execution commands before enabling them, restrict allowed targets and outbound network access, and monitor local ports and generated files during use. <br>
-Risk: The release is marked suspicious by the server security evidence because its stealth-oriented web automation behavior can be misused. <br>
-Mitigation: Install only when the intended workflow specifically requires high-risk browser automation and keep model invocation disabled unless a human has approved each action. <br>
+## Use Case:
 
+Developers and security researchers use this skill for authorized server-side web automation across stealth fetch, TLS impersonation, and controlled Chromium interaction modes. It is intended for environments where JavaScript-heavy pages or anti-bot controls require stronger automation than ordinary HTTP fetching.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Biogod2020/web-freedom-toolkit) <br>
-- [Security Explained](SECURITY_EXPLAINED.md) <br>
-- [ClawHub Standards](CLAW_HUB_STANDARDS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON/text outputs from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON reports under the skill assets directory when scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: High-risk browser evasion and takeover capabilities may be misused or affect unintended targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for authorized anti-bot or browser automation research in a disposable, isolated container or VM with restricted outbound and internal network access.
+
+Risk: The DevTools relay, no-sandbox browser mode, and takeover scripts can expose browser control and session-sensitive behavior.
+
+Mitigation: Run with no sensitive environment variables and no logged-in browser profile; review these scripts as high-risk items before execution.
+
+Risk: Sensitive capabilities are disclosed but overbroad and weakly controlled according to the authoritative security summary.
+
+Mitigation: Require explicit human approval before execution and keep model invocation disabled for this release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biogod2020/skills/web-freedom-toolkit)
+- [Publisher profile](https://clawhub.ai/user/biogod2020)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact security explanation](artifact/SECURITY_EXPLAINED.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text automation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome, Xvfb, dbus, and Python packages for Scrapling, curl_cffi, DrissionPage, and lxml; model invocation is disabled in release metadata.]
+
+## Skill Version(s):
+
+8.0.0 (source: server release, artifact _meta.json, artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

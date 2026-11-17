@@ -1,44 +1,59 @@
-## Description: <br>
-Assist e-commerce sellers in sourcing from 1688.com, calculating profit margins, and creating multi-platform product listings efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist e-commerce sellers in sourcing from 1688.com, calculating profit margins, and creating multi-platform product listings efficiently.
 
-## Publisher: <br>
-[wymanwong](https://clawhub.ai/user/wymanwong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wymanwong](https://clawhub.ai/user/wymanwong)
 
-## Use Case: <br>
-Solo sellers, micro e-commerce operators, and dropshippers use this skill to research products on 1688.com, evaluate suppliers, estimate landed margins, plan reorders, and draft listing content for channels such as Take.app, Shopify, Instagram, TikTok, and XiaoHongShu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use or request sensitive 1688 seller metrics, including customer or geography details. <br>
-Mitigation: Use only with data access you are comfortable granting, avoid sharing unnecessary customer or store data, and review provider privacy expectations before use. <br>
-Risk: Profit calculations may rely on approximate exchange rates, fees, duties, or shipping assumptions. <br>
-Mitigation: Verify live exchange rates, platform fees, duties, and shipping costs before making pricing or purchasing decisions. <br>
-Risk: Supplier recommendations and listing drafts can be misleading if supplier claims or product quality are not independently checked. <br>
-Mitigation: Request samples, compare backup suppliers, review supplier ratings and transaction history, and use quality control for larger orders. <br>
+## Use Case:
 
+E-commerce sellers, dropshippers, and micro-commerce operators use this skill to find 1688 suppliers, evaluate sourcing options, estimate profit margins, plan reorders, and draft listings for Take.app, Shopify, Instagram, TikTok, and XiaoHongShu.
 
-## Reference(s): <br>
-- [1688 Sourcing Assistant on ClawHub](https://clawhub.ai/wymanwong/1688-sourcing) <br>
-- [1688](https://www.1688.com) <br>
-- [XE Currency Converter](https://www.xe.com/currencyconverter/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with tables, checklists, search links, product listing drafts, and supplier message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approximate currency conversions, bilingual supplier outreach text, and platform-specific product copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Approximate currency conversions or cost assumptions may be stale or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify live exchange rates, shipping, customs, platform fees, and payment fees before pricing or ordering.
+
+Risk: Supplier ratings, transaction volume, product claims, and inventory availability may not reflect current reality.
+
+Mitigation: Validate supplier claims directly on 1688, request samples, confirm order terms, and consider quality inspection for larger orders.
+
+Risk: Generated product listings and social captions may need localization, platform compliance review, or brand-specific edits.
+
+Mitigation: Review output before publishing and adjust language, claims, hashtags, pricing, and platform-specific requirements.
+
+## Reference(s):
+
+- [1688 Supplier Search](https://s.1688.com/selloffer/offerlist.htm)
+- [1688](https://www.1688.com)
+- [XE Currency Converter](https://www.xe.com/currencyconverter/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, links, checklists, and message or listing templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include approximate currency conversions, supplier evaluation criteria, profit breakdowns, reorder calculations, and multi-platform listing drafts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Be a steady presence for those who need someone to talk to, without expectations or professional pretense. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Be a steady presence for those who need someone to talk to, without expectations or professional pretense.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to provide warm, low-pressure companionship for people who want someone to talk to, especially older adults, people in recovery, or anyone experiencing loneliness. The skill emphasizes listening, continuity through local notes, and referral to professional or emergency support when a conversation is outside companionship. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps local notes that may include personal details such as relationships, routines, mood, or health context. <br>
-Mitigation: Tell users where notes are stored, avoid recording details they do not want retained, and periodically review or delete files under ~/companion/. <br>
-Risk: Users may seek medical, therapeutic, crisis, or emergency help from a companionship skill. <br>
-Mitigation: Keep boundaries clear, avoid diagnosis or treatment advice, and encourage professional, crisis-line, or emergency support when safety or health concerns arise. <br>
-Risk: A companion experience can encourage over-reliance if it becomes a user's only source of support. <br>
-Mitigation: Position the skill as a supplement to human connection and gently encourage contact with family, friends, neighbors, community resources, or trained professionals when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/companion) <br>
-- [Being Present](artifact/presence.md) <br>
-- [Conversation](artifact/conversation.md) <br>
-- [Memory System Guide](artifact/memory-guide.md) <br>
-- [Safety and Limits](artifact/safety.md) <br>
+## Use Case:
 
+External users use this skill to guide an agent in offering warm, non-clinical companionship for people who want someone to talk to, especially around loneliness, illness, recovery, or everyday conversation. The skill helps the agent listen, remember relevant personal context, and redirect emergencies or clinical needs to appropriate professional support.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Conversational text and markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local markdown notes under ~/companion/ for continuity.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs the agent to maintain local plaintext companion memory that may include sensitive personal, health, location, caregiver, routine, and relationship details.
+
+Mitigation: Decide what may be remembered before use, inspect ~/companion/ periodically, delete unwanted entries, and avoid recording sensitive details unless that persistence is intentional.
+
+Risk: Users may treat the companion interaction as a substitute for clinical, medical, crisis, or human support.
+
+Mitigation: Keep the role explicitly non-professional, encourage appropriate emergency or professional help for crisis and health situations, and reinforce human contact when isolation appears unsafe.
+
+## Reference(s):
+
+- [Companion ClawHub listing](https://clawhub.ai/ivangdavila/skills/companion)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Companion skill definition](artifact/SKILL.md)
+- [Conversation guidance](artifact/conversation.md)
+- [Memory system guide](artifact/memory-guide.md)
+- [Presence guidance](artifact/presence.md)
+- [Safety and limits](artifact/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Conversational text and Markdown memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local Markdown files under ~/companion/ when the agent follows the skill's memory workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

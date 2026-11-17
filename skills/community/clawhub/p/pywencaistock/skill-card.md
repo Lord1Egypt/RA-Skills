@@ -1,46 +1,61 @@
-## Description: <br>
-Uses the pywencai library to retrieve Tonghuashun Wencai stock data, including real-time quotes, financial indicators, Dragon Tiger List data, capital flows, and A-share market queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the pywencai library to retrieve Tonghuashun Wencai stock data, including live quotes, financial indicators, Dragon-Tiger list data, capital flows, individual stock details, and sector or concept stock lists.
 
-## Publisher: <br>
-[nnzenw](https://clawhub.ai/user/nnzenw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nnzenw](https://clawhub.ai/user/nnzenw)
 
-## Use Case: <br>
-Developers, analysts, and agent builders use this skill to query Chinese stock-market data through natural-language pywencai searches and receive structured results for reporting, screening, and analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-query text is sent to pywencai and Tonghuashun Wencai. <br>
-Mitigation: Avoid submitting proprietary trading research, sensitive watchlists, or other confidential market-analysis prompts. <br>
-Risk: The documentation mentions an SSL workaround that disables certificate verification. <br>
-Mitigation: Do not disable certificate verification; fix certificates or dependency versions instead. <br>
-Risk: The example script prepends /tmp/mootdx to the Python import path. <br>
-Mitigation: Run examples only in an environment where that path cannot be controlled by another user. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to query China A-share market data from Wencai with natural-language stock questions and receive tabular results for reports, screening, monitoring, or downstream analysis.
 
-## Reference(s): <br>
-- [PyWenCai API Reference](references/pywencai-api.md) <br>
-- [PyWenCai Query Examples](references/query_examples.md) <br>
-- [pywencai GitHub](https://github.com/stephanj/pywencai) <br>
-- [Tonghuashun Wencai](https://www.iwencai.com/) <br>
-- [PyWenCai Stock on ClawHub](https://clawhub.ai/nnzenw/pywencaistock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance, data] <br>
-**Output Format:** [Python pandas DataFrame results with optional CSV, Excel, JSON, or Markdown table conversion guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returned columns depend on the pywencai query and Tonghuashun Wencai response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Example and troubleshooting code include unsafe execution patterns, including an SSL verification bypass.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the core search wrapper in a dedicated virtual environment, avoid running example.py as written, and do not disable SSL verification.
+
+Risk: Unpinned or unreviewed dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin and review dependency versions before installing or deploying the skill.
+
+Risk: Stock data depends on upstream Wencai and pywencai behavior and may fail, change shape, or require cookies.
+
+Mitigation: Handle query failures, validate returned columns before downstream use, and review upstream API changes before relying on automated outputs.
+
+## Reference(s):
+
+- [PyWenCai API Reference](references/pywencai-api.md)
+- [PyWenCai Query Examples](references/query_examples.md)
+- [pywencai GitHub](https://github.com/stephanj/pywencai)
+- [Tonghuashun Wencai](https://www.iwencai.com/)
+- [ClawHub Skill Page](https://clawhub.ai/nnzenw/skills/pywencaistock)
+
+## Skill Output:
+
+**Output Type(s):** [Structured data, Text, Code]
+
+**Output Format:** [pandas DataFrame returned by Python helper functions, with examples for CSV, Excel, and JSON export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result columns vary by Wencai query; some queries may require cookies or be affected by upstream API changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,48 @@
 {
-  "ownerId": "kn7eag7808pwjcwsa9mw5hwkr582djk3",
-  "slug": "long-task-handler",
+  "name": "long-task-handler",
+  "displayName": "Long Task Handler",
+  "description": "长任务处理技能 - 后台执行、进度反馈、不阻塞队列",
   "version": "1.0.0",
-  "publishedAt": 1774950776702
+  "author": "Frankie 助理",
+  "license": "MIT",
+  "keywords": ["task", "background", "queue", "long-running", "progress"],
+  "repository": "https://github.com/openclaw/openclaw",
+  "homepage": "https://clawhub.com/skills/long-task-handler",
+  "bugs": "https://github.com/openclaw/openclaw/issues",
+  "publishDate": "2026-03-31",
+  "openclaw": {
+    "minVersion": "1.0.0",
+    "requires": {
+      "tools": ["exec", "process", "message", "sessions_spawn"]
+    },
+    "config": {
+      "skills.long-task-handler.enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "启用长任务处理技能"
+      },
+      "skills.long-task-handler.defaultTimeoutSeconds": {
+        "type": "number",
+        "default": 3600,
+        "description": "默认超时时间 (秒)"
+      },
+      "skills.long-task-handler.pollIntervalSeconds": {
+        "type": "number",
+        "default": 30,
+        "description": "进度轮询间隔 (秒)"
+      },
+      "skills.long-task-handler.maxConcurrentLongTasks": {
+        "type": "number",
+        "default": 3,
+        "description": "最大并发长任务数"
+      }
+    }
+  },
+  "files": [
+    "SKILL.md",
+    "task-manager.js"
+  ],
+  "changelog": {
+    "1.0.0": "Initial release - 长任务处理机制、后台执行、进度反馈、完成通知"
+  }
 }

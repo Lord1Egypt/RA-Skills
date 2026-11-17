@@ -1,0 +1,104 @@
+{
+  "name": "dsh-capability-loop",
+  "version": "2.9.5",
+  "released": "2026-11-13",
+  "lineage": [
+    "session-0d908c48-92d7-432e-9303-966161df7a81",
+    "session-3ef140c9-2ed3-4857-a7ad-9374b9107949",
+    "session-0c9d9e1c-4907-4356-8e4d-1c9bf7269717",
+    "session-5fdc8714-11d9-4d77-853e-bf7d81f771c9",
+    "session-b7993a14-086e-4120-9415-292b1c2e30ba"
+  ],
+  "purpose": "把 DSH 自身升级治理与项目接入/需求/设计/测试/交接/自对抗/验收合并为一条可重复、可度量、可回滚、可迭代的闭环。",
+  "store": {
+    "channel": "skillhub",
+    "publish_registry": "clawhub",
+    "id": "<handle>/dsh-capability-loop",
+    "install_dir": "<handle>--dsh-capability-loop",
+    "update_owner": "market",
+    "auto_update": false,
+    "package_tool": "scripts/package-skill.ps1",
+    "publish_tool": "clawhub skill publish",
+    "publish_doc": "references/95-store-publish.md",
+    "version_source": "version.json",
+    "declared_version": "SKILL.md frontmatter version（技能市场据此显示已安装版本，必须与 version.json 一致）",
+    "latest_version_field": "panel.json.installed[].latestVersion"
+  },
+  "compatibility": {
+    "powershell": "5.1+ (UTF-8 BOM scripts)",
+    "dsh": "0.2.1-rc.x (源环境实测)",
+    "node": "22.13+ 或 24+（clawhub CLI，engines ^22.13.0 || >=24）；本 skill 检查脚本以 PowerShell 为主（`module-preflight.py` 需 Python3）",
+    "python": ">=3.11（scripts/module-preflight.py 交接预检需要；文档总览工具另需 markdown，可选）"
+  },
+  "scripts": {
+    "capability-audit.ps1": "九组只读体检 + 与上次漂移对比 + 版本/更新检查；-Strict 时有 FAIL 返回 1",
+    "loop-gate.ps1": "聚合门禁：design（含 design-context 硬门）/requirement/test + -Environment；-RequireGrill 使 grill 缺失变 FAIL",
+    "product-context.ps1": "扫描工程产出产品/设计上下文线索（框架/组件库/主题/规模）",
+    "trae-status.ps1": "Trae CLI/进程/当前打开工程匹配/交接包进度；-RequireMatch 不匹配 exit 1（只读）",
+    "skill-status.ps1": "商店优先的版本检查（panel.json latestVersion + installed.json + 源目录回退；不自动更新）",
+    "visual-qa-check.ps1": "视觉验收能力探测：A 路径可用性 + 权限受限时显式提示 A/B/C（exit 0/2/1）",
+    "handoff-smoke.ps1": "交接链路冒烟（临时工程：建包/门禁/取证/唤起解析/工程匹配）",
+    "package-skill.ps1": "上架包生成（校验 frontmatter/version/CHANGELOG + manifest + SHA256 + ZIP + 发布说明）",
+    "module-preflight.py": "交接前置模块/路由预检：0=NONE 新建 / 1=EXISTS 需确认 / 3=WEAK 需确认；Python3，输出 Markdown 报告",
+    "handoff-audit.py": "交接包体检：A 包完整性 / B 材料是否都在工程内可读 / C 证据引用与 evidence 对账 / D 批次与任务粒度 / E 设计依据 / F API 网关前缀一致性（前缀只取 src/api/**、排除 *.test/*.spec/mocks/fixtures 与 `api` 段；仅出现 1 次的段→F-prefix-weak WARN；反向指令按**位置序**判定：否定词须在「/png…前缀」之前）；0=可交 1=有FAIL 3=仅WARN 2=参数错"
+  },
+  "external_scripts": {
+    "send-to-trae-prompt.ps1": "feature-handoff/scripts/send-to-trae-prompt.ps1：填指令（Click/CDP 模式，默认不发送；见 references/60-handoff.md）",
+    "trae-cdp.mjs": "feature-handoff/scripts/trae-cdp.mjs：CDP 驱动（--remote-debugging-port=9333；见 references/60-handoff.md）"
+  },
+  "references": [
+    "05-intake.md",
+    "00-baseline.md",
+    "10-audit.md",
+    "20-runtime-fix.md",
+    "30-requirement.md",
+    "40-testing.md",
+    "50-design-team.md",
+    "55-design-intake.md",
+    "60-handoff.md",
+    "70-playbook.md",
+    "75-grill.md",
+    "80-evolution.md",
+    "85-ux-memory.md",
+    "90-provenance.md",
+    "95-store-publish.md"
+  ],
+  "templates": [
+    "project-profile.md",
+    "intake-questions.md",
+    "design-context.md",
+    "design-driven-acceptance.md",
+    "design-handoff-smoke.md",
+    "grill-design.md",
+    "grill-requirement.md",
+    "grill-testing.md",
+    "grill-checklist.md",
+    "retro.md"
+  ],
+  "breaking_changes": [
+    "v2.0.0：loop-gate 的 design 类别默认要求 design-context*.md（缺失即 FAIL）；可用 -AllowMissingDesignContext 显式跳过",
+    "v2.0.1：grill 默认仍为 WARN；需要硬门时显式 -RequireGrill（未改变任何退出码语义）",
+    "v2.1.0：无破坏性变更；新增 trae-status -RequireMatch、商店优先 skill-status、publish 打包脚本",
+    "v2.2.0：无破坏性变更；新增 README.md 与 references/95-store-publish.md（上架流程），修正 P2 口径",
+    "v2.2.1：无破坏性变更；ZIP 结构校验改为 FAIL（不合格包不再只 WARN）、新增 frontmatter version 一致性校验；文档口径清理（N1/R1/R2）、SKILL.md 声明 version（N5）",
+    "v2.3.0：无破坏性变更；新增 scripts/module-preflight.py（交接前模块/路由预检）与 SKILL.md 不变式 17、references/60-handoff.md 步骤 1.5；Python3 为可选依赖（仅该脚本需要）",
+    "v2.4.0–v2.7.0：无破坏性变更；交接自动化脚本（send-to-trae-prompt.ps1 / trae-cdp.mjs）在 feature-handoff，本 skill 仅同步 references/60-handoff.md 接线文档与版本记录（保留原版本编号以保持追溯）",
+    "v2.7.1：无破坏性变更；文档口径打磨（CHANGELOG 笔误/归属说明、60-handoff 统一指路、compatibility 与 README 退出码约定）",
+    "v2.8.0：新增 scripts/handoff-audit.py（交接包体检）与交接纪律：材料随行到工程内 materials/、tasks.md 批次段（一批 ≤3 任务）、交接前 audit 必过；60-handoff 增加 1.6/1.7/1.8 与 §5.1 设计前置可执行要求。无破坏性变更（只收紧交接纪律，不改 loop-gate/audit 退出码语义）",
+    "v2.8.1：收紧 handoff-audit（批次规模校验、证据递归对账、默认不落盘、E-noctx-file 升 FAIL）；无破坏性接口变更",
+    "v2.9.0：新增 handoff-audit F 组（API 网关前缀一致性）+ 60-handoff 1.9 接口契约核对 + SKILL 不变式 19；交接纪律收紧",
+    "v2.9.1：F 组口径修正（前缀集合只取 src/api/**、页面路由排除、反向指令识别扩到「不含/不写死/硬编码」并覆盖 5 个文档、正向措辞与历史行不误报）；无破坏性变更",
+    "v2.9.2：F 组两处修正（页面路由豁免改为精确匹配，修掉「路由父级豁免导致子路径漏检」的假绿；反向指令判定要求否定词与 `/png` 相邻并剥离「不写 host/不含 /api」宾语，修掉正确措辞被误报；`漏写` 视为正向）；前缀阈值降为 ≥1 避免整项被静默关闭；计数不含页面路由。无破坏性变更",
+    "v2.9.3：F 组反向指令判定改为**分句**（去 `**`/反引号装饰后按 ，、。；切分；「不得漏写」视为正向，「不写 host」「不含 /api」「不是同一前缀」不误报），修掉 v2.9.2 漏检事故原文（`**不要**写 /api 或 /png 前缀`）的回归；前缀集合补取 proxy/vite-config 里声明的前缀；路径分句符补 ，、。无破坏性变更",
+    "v2.9.4：F 组修两处边界（①真实工程 `/api/...` 事故形态不再被放行——前缀集合排除 test/mock 与 `api` 段，proxy 来源取消；②括号/顿号写法：不含 `/png` 的括号剥离、含 `/png` 的保留内容，不按 `、` 切分；`不需要写` 纳入否定词）",
+    "v2.9.5：F 组反向指令改**位置序**（否定词须在「/png…前缀」之前；只按 。；切句），同时满足「不要写 /api、/png 前缀」要 FAIL 与「必写、host 不写」不误报；全 weak 工程不再静默 F-skip（改出 F-prefix-weak WARN / 缺陷路径仍 FAIL）；测试文件排除改为精确后缀 + 目录（不再用子串，避免 special.ts 被误排）"
+  ],
+  "health_targets": {
+    "catalog_chars": "不增长（源环境约 3673 字符）",
+    "dead_skills": 0,
+    "session_search": true,
+    "gate": "任务完成前 PASS",
+    "drift": "与上次体检相比无未解释变化",
+    "ux": "用户纠正/返工次数趋势下降"
+  }
+}

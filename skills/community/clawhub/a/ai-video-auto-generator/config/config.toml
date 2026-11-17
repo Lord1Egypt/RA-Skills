@@ -1,0 +1,32 @@
+# ============================================================================
+# 本文件仅保留「非敏感」配置。
+# 所有 API 密钥已迁出，改由以下外部文件 / 环境变量提供（优先级高于本文件）：
+#   ~/.agnes-api-key          (或 AGNES_API_KEY)
+#   ~/.github-pat             (或 GITHUB_PAT)
+#   ~/.freesound-api-key      (或 FREESOUND_API_KEY)
+#   ~/.feishu-base-token      (或 FEISHU_BASE_TOKEN)
+# 切勿把真实密钥写回本文件——会被密钥扫描器标记为泄露。
+# ============================================================================
+
+[agnes]
+api_base = "https://apihub.agnes-ai.com/v1"
+default_image_model = "agnes-image-2.1-flash"
+
+[github]
+repo = "JinXuchen2020/video-images"
+branch = "master"
+
+[feishu]
+table_id = "tbl0vSW1EXsfja3j"
+workflow_table_id = "tbl6KBDtwKu84No0"
+
+[img_host]
+provider = "github"
+
+# VLM（视觉语言模型）可选 QA — project_generate.py verify --vlm 时启用
+# 取消注释并填入你的 VLM API Key 即可启用：
+# [vlm]
+# api_key = "<VLM_API_KEY>"                # 必须
+# api_base = "https://api.openai.com/v1"  # 可选，默认 OpenAI
+# model = "gpt-4o-mini"                    # 可选
+# 支持任意 OpenAI 兼容 chat/completions API（GPT-4o / Gemini / Qwen-VL 等）

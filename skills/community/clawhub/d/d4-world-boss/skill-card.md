@@ -1,39 +1,53 @@
-## Description: <br>
-Tracks Diablo IV world boss spawn countdowns from the Caimogu map and prompts for a reminder when a boss is upcoming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Diablo IV world boss countdown and status data from the Caimogu map site, then asks whether to set a reminder when a future spawn is pending.
 
-## Publisher: <br>
-[Crazzies](https://clawhub.ai/user/Crazzies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crazzies](https://clawhub.ai/user/crazzies)
 
-## Use Case: <br>
-Diablo IV players can ask an agent for the current world boss, spawn status, and countdown. When the boss is not active, the skill guides the agent to ask whether the user wants a reminder before the expected spawn time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes a public web request to retrieve current Diablo IV world boss timing data. <br>
-Mitigation: Install only if that request is acceptable in the user's environment and treat the external timing data as informational. <br>
-Risk: Reminder behavior may create scheduled notifications when the user asks for them. <br>
-Mitigation: Review any reminder entries after creation so the user knows when they run and how to remove them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Caimogu Diablo IV map](https://map.caimogu.cc/d4.html) <br>
+## Use Case:
 
+External Diablo IV players use this skill to check the current world boss, spawn status, and countdown. When the boss is not already active, the agent may offer reminder guidance before the expected spawn window.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown-like plain text with boss name, status, countdown, source link, and reminder prompt.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public map data at query time; reminder setup is suggested only when countdown or waiting status is reported.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional cron reminders can create persistent host changes.
+
+Mitigation: Before allowing a reminder, require the agent to show the exact cron entry, confirm it is one-time or bounded, and provide the removal command.
+
+Risk: The skill depends on live data fetched from map.caimogu.cc.
+
+Mitigation: Treat unavailable or malformed responses as a failed lookup and avoid acting on reminder prompts when the countdown cannot be verified.
+
+## Reference(s):
+
+- [Caimogu Diablo IV Map Data Source](https://map.caimogu.cc/d4.html)
+- [ClawHub Skill Page](https://clawhub.ai/crazzies/skills/d4-world-boss)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text status report with optional reminder guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user before creating a cron-based reminder.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-A Chinese-language guide to momentum and reversal investing, including behavioral finance concepts, A-share market characteristics, and practical strategy parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+动量与反转策略指南，包括行为金融学基础、动量反转效应的成因和A股量化策略。适用于需要理解和实施动量/反转投资策略的场景。
 
-## Publisher: <br>
-[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai)
 
-## Use Case: <br>
-External users and finance-focused agents use this skill to explain momentum and reversal strategy concepts, compare short-term and medium-term effects, and summarize practical considerations for A-share quantitative investing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Investment strategy discussion may be mistaken for personalized financial advice or a guarantee of returns. <br>
-Mitigation: Treat the material as educational guidance and require user review, independent validation, and appropriate financial advice before applying it to trading decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhengxinjipai/momentum-reversal-cn) <br>
+## Use Case:
 
+External users and agents use this skill for Chinese-language educational guidance on momentum and reversal investing concepts, including A-share market behavior, strategy parameters, and practical considerations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown educational finance guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, data access, persistence, or hidden behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat educational strategy notes as personalized financial advice or as an instruction to trade automatically.
+
+Mitigation: Use the skill as general educational material only, and review any investment decisions with appropriate financial judgment before acting.
+
+Risk: Momentum and reversal effects can change with transaction costs, liquidity, timing, and market environment.
+
+Mitigation: Evaluate assumptions against current market conditions and avoid relying on the guide as a complete trading system.
+
+## Reference(s):
+
+- [Momentum Reversal Skill Page](https://clawhub.ai/zhengxinjipai/skills/momentum-reversal-cn)
+- [Publisher Profile](https://clawhub.ai/user/zhengxinjipai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational finance content; no code execution, data access, persistence, or hidden agent-control behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Turn scripts into publishable voiceovers with Voice.ai TTS, including segments, chapters, captions, and video muxing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn scripts into publishable voiceovers with Voice.ai TTS, including segments, chapters, captions, and video muxing.
 
-## Publisher: <br>
-[gizmoGremlin](https://clawhub.ai/user/gizmoGremlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gizmogremlin](https://clawhub.ai/user/gizmogremlin)
 
-## Use Case: <br>
-Creators, developers, and content teams use this skill to turn Markdown or text scripts into Voice.ai narration with reusable templates, captions, chapters, review pages, and optional video audio replacement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Script text is sent to Voice.ai for TTS, and generated outputs may include the original script content. <br>
-Mitigation: Use only content approved for Voice.ai processing and handle output directories as content-bearing artifacts. <br>
-Risk: Generated ffmpeg helper scripts can turn specially crafted media file paths into shell commands if a user runs those scripts. <br>
-Mitigation: Prefer installing ffmpeg and using the direct CLI path; inspect generated helper scripts and quote or rename unusual media paths before running them. <br>
+## Use Case:
 
+External creators, content teams, and developers use this skill to turn Markdown or text scripts into creator voiceover assets with Voice.ai TTS. It can generate segmented audio, captions, chapters, review pages, metadata, and optional video audio replacement workflows.
 
-## Reference(s): <br>
-- [Skill Documentation](SKILL.md) <br>
-- [Voice.ai API Reference](references/VOICEAI_API.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Voice.ai](https://voice.ai) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [CLI-generated audio/video files, SRT captions, chapter text, HTML review pages, JSON metadata, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOICE_AI_API_KEY for live Voice.ai TTS; mock mode can generate placeholder audio without API calls; ffmpeg is optional for stitching, MP3 encoding, normalization, and muxing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence; artifact frontmatter and package.json report 0.2.1) <br>
+Risk: The Voice.ai API base URL can be redirected through VOICEAI_API_BASE, which could send scripts and API credentials to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave VOICEAI_API_BASE unset unless the endpoint is trusted, and use a dedicated Voice.ai API key with appropriate access limits.
+
+Risk: When ffmpeg is unavailable, the skill can generate helper shell or PowerShell scripts for later execution.
+
+Mitigation: Review generated ffmpeg helper scripts and input/output paths before running them, especially when filenames or output paths are untrusted.
+
+Risk: Script text is sent to Voice.ai for TTS generation during non-mock runs.
+
+Mitigation: Avoid sending sensitive or confidential scripts unless the user is comfortable sharing that content with Voice.ai.
+
+## Reference(s):
+
+- [Voice.ai API Reference](references/VOICEAI_API.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [Voice.ai Developer API](https://dev.voice.ai/api/v1)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with CLI commands and generated project files such as WAV or MP3 audio, HTML review pages, SRT captions, JSON manifests, and text metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20 or newer, a Voice.ai API key for real TTS calls, and ffmpeg for master stitching, MP3 encoding, normalization, and video muxing.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter and package.json report 0.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

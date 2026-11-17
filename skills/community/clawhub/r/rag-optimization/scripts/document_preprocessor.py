@@ -236,17 +236,24 @@ class DataCleaner:
         # 仅在数字上下文中替换
         for wrong, correct in ocr_fixes.items():
             # 检查是否在数字上下文
+            # 用 \g<1> 命名组引用，避免 correct 以数字开头时 \1 与数字粘连成组引用（如 \11）
             text = re.sub(
                 rf'(\d){wrong}(\d)',
-                rf'\1{correct}\2',
+                rf'\g<1>{correct}\g<2>',
                 text
             )
         
         return text
     
     def _normalize_punctuation(self, text: str) -> str:
-        """统一标点符号"""
-        # 英文标点转中文（或反之）
+        """中文标点 → 英文标点的单向替换（H22 注释更正）。
+
+        原注释写「英文标点转中文（或反之）」「根据语言选择方向」，
+        但实现是无条件的 中文→英文 映射（，→, 。→. ……），既没有反向
+        替换，也没有任何语言检测逻辑。注释与行为不符会让后续维护者
+        误以为该函数会保留中文标点。按勘查结论选择「改注释、不动行为」：
+        行为已被下游依赖，贸然反转方向风险高。
+        """
         replacements = {
             '，': ',',
             '。': '.',
@@ -260,10 +267,9 @@ class DataCleaner:
             '】': ']',
         }
         
-        # 根据语言选择方向
+        # 无条件单向替换：中文标点 → 英文标点（无语言检测，见 docstring）
         for cn, en in replacements.items():
-            # 这里保持原文标点，可根据需求调整
-            pass
+            text = text.replace(cn, en)
         
         return text
 
@@ -510,7 +516,7 @@ class TextExtractor:
         
         return DocumentMetadata(
             source=file_path,
-            title=os.path.basename(file_path),
+            doc_type=os.path.basename(file_path).rsplit('.', 1)[-1] if '.' in os.path.basename(file_path) else "",
             file_size=stat.st_size,
             created_at=datetime.fromtimestamp(stat.st_ctime).isoformat(),
             modified_at=datetime.fromtimestamp(stat.st_mtime).isoformat()

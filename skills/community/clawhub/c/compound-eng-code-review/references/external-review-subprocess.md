@@ -5,7 +5,7 @@ take many minutes (`codex` review, `claude -p`, a slow test/`--parallel-tests`
 reviewer, a `/code-review ultra` cloud run), the failure mode is operational, not
 analytical: the reviewer gets killed or re-run prematurely.
 
-## Heartbeat tolerance -- don't kill a quiet-but-alive review
+## Heartbeat tolerance: don't kill a quiet-but-alive review
 
 Treat progress lines like `review still running: elapsed=… pid=…` as healthy, not
 a hang. A long reviewer goes quiet for minutes between heartbeats while a model
@@ -18,12 +18,127 @@ Inspect or kill only after: multiple *missed* expected heartbeats, the budget is
 exceeded, or the subprocess has obviously failed (nonzero exit, broken pipe).
 Capture stdout/stderr to a file so a quiet tail isn't mistaken for a dead process.
 
-## Closeout loop -- run until clean, then stop
+## Closeout loop: run until clean or capped, then stop
 
 - Keep iterating (fix → re-run the external review) until it returns **no
-  accepted/actionable findings** -- a structured exit 0, not a prose "looks good".
+  accepted/actionable findings**: a structured exit 0, not a prose "looks good".
+- Treat a finding with a verified `FP-*` disposition or an explicitly
+  owner-approved `ACCEPTED-RISK` tradeoff under `ia-receiving-code-review` as
+  non-actionable for closeout. Bind
+  that disposition to the frozen diff bundle; a repeat of the same finding
+  without new evidence does not require another fix-and-review round. Reassess
+  when new evidence or changed bytes invalidate the disposition. Report retained
+  risks explicitly; an accepted risk is not proof that no defect exists.
 - Stop as soon as it exits clean. Do **not** run one extra review just to get a
-  nicer "all clear" summary -- that burns time/tokens and risks new churn.
-- Bind the review to one frozen diff bundle (`base SHA … head SHA`) so every
-  iteration reviews the same surface; don't re-derive scope mid-loop (see
-  "Base-branch resolution for branch reviews" in the main skill).
+  nicer "all clear" summary; that burns time/tokens and risks new churn.
+- Keep the comparison base and selected scope stable across the loop. After
+  each authorized fix, freeze a fresh diff bundle using the new head SHA or
+  workspace-content fingerprint. Bind that iteration's findings and verdict to
+  those exact bytes; an earlier snapshot cannot verify a later fix. Reconcile
+  changed paths before dispatch, and return any required scope expansion to the
+  caller instead of silently widening the review.
+- If a failure diagnostic proves the peer never reviewed the diff (usage/session
+  quota, an unsupported CLI option), report `unavailable` immediately without a
+  retry. Otherwise report the observed failure without claiming whether review
+  occurred.
+- **For other failures, cap the loop at two consecutive `unavailable` results**: the initial run
+  plus one retry. "Clean" is not the only exit: a reviewer broken for a reason
+  unrelated to the diff (auth outage, vendor incident, tool bug) returns
+  `unavailable` forever, so stop after the second failure instead of iterating.
+  Report the external review as unavailable, naming the reviewer attempted, the
+  number of attempts, and what happened on each (exit status, elapsed time, the
+  first line of any error output). Giving up does not convert the result: an
+  `unavailable` pass is still never "clean" and never an input to a
+  merge-readiness verdict.
+- **An `incomplete` pass (see below) gets one re-run** with the missing context
+  supplied or the packet partitioned. A second consecutive `incomplete`, or any
+  mix of `incomplete` and `unavailable` results reaching two in a row, stops the
+  loop. Report the uncovered scope by path; `incomplete` is never "clean" and
+  never an input to a merge-readiness verdict.
+
+## A failed external review is not a clean one
+
+An external reviewer's output counts as a completed pass only when it carries
+the completion markers its own contract defines: a structured verdict, a
+severity set, or a recommendation line. Refusal, empty output, malformed output,
+a timeout, or a nonzero exit makes the pass `unavailable`: never "clean", never
+"PASS", and never an input to a merge-readiness verdict. Distinguish an
+operator's explicit `disabled` opt-out from a failure-driven `unavailable`; both
+are reported, and neither is a pass. On failure, do not silently substitute a
+different external provider; report which reviewer was attempted and what
+happened (exit status, elapsed time, the first line of any error output).
+When this skill writes the reviewer's prompt, require it to end with exactly
+`VERDICT: CLEAN` or `VERDICT: FINDINGS` as its last line, and read a clean pass
+only from the raw last non-empty line. A missing verdict line (a prose
+no-findings sentence in its place), any text after the verdict line, or
+`VERDICT: CLEAN` beside listed findings makes the pass `unavailable`.
+
+Ask the reviewer to state its scope coverage. A structured verdict that reports
+missing context, inaccessible inputs, truncated input, or an unfinished
+assessment is `incomplete`, never clean; when the reviewer says nothing about
+coverage, treat coverage as unverified rather than complete. The reviewer's
+sandbox starts empty, so supply the unchanged files each change depends on, and
+never truncate or cap the packet silently: partition a large input so every
+change is reviewed against all the context it needs.
+
+## Egress consent: the packet leaves this machine
+
+Delegating to an external CLI sends the diff, and often surrounding source, to
+another vendor's backend. The tool being configured is not consent to transmit a
+particular packet. Before the first dispatch in a session, state what goes out
+(which files, whether full file bodies or diff hunks only, whether logs or fixtures
+are included) and get an explicit go-ahead. Configuration is a capability;
+approval is per-packet. If the diff touches anything the project treats as
+restricted (customer data in fixtures, credentials in config, regulated content),
+name that specifically rather than describing the packet by size. Ask through the
+channel the main skill establishes (`AskUserQuestion` in Claude Code,
+`request_user_input` in Codex, numbered options in chat as the fallback).
+An answer that auto-continued on idle, or a result saying the user may be away
+or nobody answered, is not consent: send nothing, report the dispatch as
+awaiting a decision, and re-ask when the user returns.
+
+**Hard exclusion of credential-bearing paths.** Exclude known credential-bearing
+paths from any external dispatch, unconditionally. Unlike ordinary noise
+exclusions (lockfiles, vendored or generated code), a user override cannot
+re-admit them. This exclusion is specific to egress: the local coverage ledger
+in [scope-resolution.md](./scope-resolution.md) still selects these paths for
+local review. The set:
+
+- the `.env` family (`.env`, `.env.*`), except template variants
+  `.env.example`, `.env.sample`, and `.env.template`
+- SSH private keys: `**/.ssh/**`, `id_rsa`, `id_dsa`, `id_ecdsa`, `id_ed25519`,
+  `id_ecdsa_sk`, `id_ed25519_sk`, `id_xmss`, and any extensionless name ending
+  in `_rsa` or `_ed25519`
+- `.netrc`, `.npmrc`, `.pypirc`, `.dockercfg`, `.pgpass`, `.git-credentials`
+- a file named exactly `credentials` (the AWS and gcloud CLI convention)
+- Claude Code's exact basenames `.credentials.json` and `.claude.json` at any
+  path depth; these can contain sign-in tokens, saved API keys, or MCP server secrets
+
+Decide on the path alone; never read the file's content to make the call. For a
+rename or copy, test the old path as well as the new one: a file moved away from
+a secret-shaped name still carries the secret.
+Report each excluded path in the packet description so the operator knows it
+was withheld.
+
+## Label independence honestly
+
+An external reviewer is only a second opinion to the extent it is a different
+model family behind a different vendor. Report the relationship, not just the tool
+name:
+
+| Host | External reviewer | Label |
+|------|-------------------|-------|
+| Anthropic model | OpenAI-backed CLI (or the reverse) | cross-provider |
+| OpenAI model | OpenAI-backed CLI | same-provider |
+| Unknown or unresolvable | either | provider relationship unverified |
+
+A same-provider pass reported as an independent second opinion is a specific,
+checkable false claim, and it inflates confidence exactly where the two reviewers'
+blind spots overlap most. The consequence matches what
+[deep-review.md](./deep-review.md) applies to inline lens execution (a reviewer
+that is not independent earns no confidence boost and is named as such in the
+report), but the test differs. There, independence means a separate dispatched
+context; here it means a separate model family behind a separate vendor. The label
+produced here is also not an input to that file's merge algorithm, which sizes
+groups by dispatched context and never reads a provider field: carry this
+judgement in the report prose, not as a boost the merge rules will apply.

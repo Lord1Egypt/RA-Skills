@@ -1,0 +1,91 @@
+# PM Master v2 · Install-time configuration (policy / guardrail layer)
+# ------------------------------------------------------------------
+# This file is filled in by the organization/admin when installing the skill. It defines the
+# "capability switches + safety guardrails + email backend".
+# Project-level data (stakeholder contact book, send cadence, in-project approval overrides) lives
+# under the communication: block of project.yaml; see references/project-schema.md for details.
+#
+# Design principle: layering (policy / data separation).
+#   - Install time = capabilities and safety guardrails (especially "hard" guardrails for irreversible
+#     actions such as "external sends require approval").
+#   - Project time = data (who receives email, at what frequency).
+# Safety guardrails such as requires_send_approval are "hard guardrails" — project-level config may only
+# tighten them, never loosen or disable them.
+
+# ---- Execution mode configuration ----
+execution:
+  # Sub-agent dispatch strategy
+  subagent_mode: team          # team (parallel via TeamCreate) | fork (context hand-off) | direct (main agent does it)
+  subagent_timeout_minutes: 15 # Sub-agent timeout (minutes)
+  max_parallel_agents: 5       # Maximum number of parallel sub-agents
+
+  # Expert dispatch
+  expert_dispatch: true        # Whether to enable domain-expert dispatch (WBS leaf-package decomposition)
+  granularity_threshold_days: 10  # Max person-days for a leaf package (must be decomposed if exceeded)
+
+# ---- Quality gate configuration ----
+quality_gate:
+  consistency_check_strict: false   # true = warnings also block delivery
+  require_baseline_before_exec: true  # waterfall/hybrid must be baselined before entering execution
+  require_5x5_risk_calibration: true  # Risks must be 5x5 calibrated
+
+# ---- Email configuration ----
+# Email is OFF by default. Enable it only after configuring a trusted backend AND a
+# non-empty approver allowlist; comm_send.py rejects every send while enabled=false.
+email:
+  enabled: false                # Whether to enable the external-email capability; if false, comm_send.py rejects sending outright
+  backend: agent-mail           # Email backend: agent-mail | himalaya | gog | smtp
+  default_from: ""              # Default sender; falls back to project.yaml communication.from if blank
+  requires_send_approval: true  # Hard guardrail: any outbound email must pass --approve <approver>, else exit 1; cannot be disabled by project
+  # Authorization boundary (ClawHub T09-1): an approver MUST be an admin-listed
+  # identity below (or in governance.approver_identities). Approval authority is NEVER
+  # derived from project.yaml (project.pm / project.sponsor are caller-modifiable data,
+  # not policy). Self-approval is forbidden. Leave approvers empty to refuse all sends.
+  approvers: []                 # e.g. ["ZhangSan", "LiSi"] -- identities authorized to approve outbound email
+  sponsor_approvers: []         # Subset authorized to co-sign mail with EXTERNAL recipients when require_sponsor_cosign=true
+  trust_env_requester: false   # If true, $PM_MASTER_REQUESTER may set requester attribution (default false). Untrusted audit label only; never affects authorization.
+
+  smtp:
+    host: ""
+    port: 587
+    user: ""
+    use_tls: true
+
+# ---- Stage gate configuration ----
+stage_gates:
+  # Hard gates (cannot be skipped; require sponsor approval)
+  hard_gates:
+    - G1→2   # planning -> execution (control gate)
+    - G3→4   # monitoring -> closeout (closeout gate)
+  # Soft gates (PM approval)
+  soft_gates:
+    - G0→1   # initiation -> planning
+    - G2→3   # execution -> monitoring (concurrent within operational)
+
+# ---- Operational control configuration ----
+operational_control:
+  default_cadence_days: 7       # Default inspection cadence (days)
+  schedule_slip_warn_pct: 15    # Schedule variance warning threshold (%)
+  spi_warn: 0.95                # SPI warning threshold
+  cpi_warn: 0.95                # CPI warning threshold
+  open_change_high: 2           # Open change-request high-water mark
+
+# ---- Governance / approval authority configuration ----
+# Authorization boundary for stage-gate transitions (ClawHub T09-2). An approver must
+# be listed below OR be the project's declared project.pm / project.sponsor.
+# Leaving this list empty is safe: the project's own pm/sponsor still authorize, and a
+# project declaring neither will have every approval rejected (fail-closed).
+governance:
+  approver_identities: []       # e.g. ["ZhangSan", "LiSi"] -- identities authorized to approve stage-gate transitions
+  forbid_self_approval: true    # Hard guardrail: the requester cannot approve their own request
+
+# ---- Confidentiality / pre-publish leak scan configuration ----
+# Org-specific sensitive identifiers consumed by scripts/confidentiality_check.py.
+# Deliberately empty by default: a distributed skill must never ship real customer,
+# vendor or personal identifiers. Populate at install time with the tokens that
+# must not appear in any published artifact.
+confidentiality:
+  high_tokens: []               # Literal tokens, word-boundary matched, e.g. ["ACME", "ACME-DW"]
+  high_patterns: []             # Or explicit regex + label:
+                                #   - pattern: "acme[-_]?dw"
+                                #     label: "ACME data warehouse"

@@ -1,51 +1,53 @@
-## Description: <br>
-Build high-quality Agent Skills for Claude following official Anthropic best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opinionated best practices for building Agent Skills - SKILL.md structure, frontmatter, description writing, progressive disclosure, testing, distribution. Use when creating or reviewing a skill, or debugging why one will not trigger.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, review, troubleshoot, and publish Agent Skills with clearer structure, descriptions, progressive disclosure, tests, and distribution guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger language can activate the skill for general skill-building requests where only a narrower answer is needed. <br>
-Mitigation: Use it as reference guidance and confirm the requested target surface before applying surface-specific recommendations. <br>
-Risk: Server-displayed capability tags may overstate runtime risk because the docs mention payments, tokens, credentials, and transactions as examples. <br>
-Mitigation: Treat the submitted artifact as documentation-only and review any generated skill or command separately before use. <br>
+## Use Case:
 
+Developers and skill authors use this guide when creating or reviewing Agent Skills, improving their structure and descriptions, and planning validation, testing, and distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/skills-best-practices) <br>
-- [Homepage](https://github.com/tenequm/skills/tree/main/skills/skills-best-practices) <br>
-- [Agent Skills Spec](https://agentskills.io/specification) <br>
-- [Claude Code Skills Docs](https://code.claude.com/docs/en/skills) <br>
-- [API Skills Guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide) <br>
-- [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) <br>
-- [Anthropic Skills Repo](https://github.com/anthropics/skills) <br>
-- [Description writing guide](references/description-guide.md) <br>
-- [Patterns and workflows](references/patterns.md) <br>
-- [Claude Code features](references/claude-code-features.md) <br>
-- [Quality checklist](references/checklist.md) <br>
-- [ClawHub publishing](references/clawhub-publishing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with examples, YAML frontmatter snippets, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable scripts are included in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: evidence.json release version, SKILL.md metadata, and CHANGELOG.md released 2026-06-05) <br>
+Risk: The suggested external validator was not executed or audited and carries a routine dependency risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, pinned validator version in a limited project environment.
+
+## Reference(s):
+
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Claude Code skills documentation](https://code.claude.com/docs/en/skills)
+- [ClawHub skill page](https://clawhub.ai/tenequm/skills/skills-best-practices)
+- [Skill homepage](https://github.com/tenequm/skills/tree/main/skills/skills-best-practices)
+- [ClawHub publishing reference](references/clawhub-publishing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with examples, YAML frontmatter, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content varies with the skill authoring or review task and the target agent platform.]
+
+## Skill Version(s):
+
+0.9.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

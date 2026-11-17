@@ -1,0 +1,4 @@
+interface:
+  display_name: "租赁-货找船"
+  short_description: "根据货主装卸港、货物吨位和装货日期智能匹配内外贸空船数据"
+  default_prompt: "使用 $find-vessel-for-cargo 根据我的货物、装卸港、货量和预计装货日期匹配空船。"

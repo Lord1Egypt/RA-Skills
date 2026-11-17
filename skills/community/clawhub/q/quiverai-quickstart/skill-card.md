@@ -1,46 +1,60 @@
-## Description: <br>
-QuiverAI Quickstart guides users through creating a QuiverAI account, configuring an API key, installing the Node.js SDK, and sending SVG generation requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QuiverAI Quickstart guides agents through configuring a QuiverAI API key, installing the Node.js SDK, and making SVG generation requests.
 
-## Publisher: <br>
-[charmmm718](https://clawhub.ai/user/charmmm718) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[charmmm718](https://clawhub.ai/user/charmmm718)
 
-## Use Case: <br>
-Developers and external users use this skill to learn the basic QuiverAI SVG generation workflow, including account setup, API key configuration, SDK installation, REST calls, error handling, and credit usage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: QuiverAI API keys could be exposed if copied into source control, chat logs, or shared transcripts. <br>
-Mitigation: Store QUIVERAI_API_KEY in a secure environment variable or secrets manager and use revocable keys when possible. <br>
-Risk: Installing @quiverai/sdk without verification could introduce package supply-chain risk. <br>
-Mitigation: Verify the package name and source before installation and use normal dependency review controls. <br>
-Risk: QuiverAI API calls may consume account credits. <br>
-Mitigation: Review prompts and request volume before execution, and monitor account credit usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QuiverAI Homepage](https://quiver.ai) <br>
-- [QuiverAI Start](https://quiver.ai/start) <br>
-- [QuiverAI API Reference](https://docs.quiver.ai/api-reference/introduction) <br>
-- [QuiverAI Pricing](https://docs.quiver.ai/api/pricing) <br>
-- [Text to SVG Model](https://docs.quiver.ai/models/text-to-svg) <br>
-- [Image to SVG Model](https://docs.quiver.ai/models/image-to-svg) <br>
+## Use Case:
 
+Developers and external agents use this skill to set up QuiverAI credentials, install the SDK, and make first SVG generation requests through the SDK or REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands, JavaScript snippets, REST examples, and JSON error examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QUIVERAI_API_KEY for live API use; successful API calls may consume account credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to QuiverAI's API and successful calls may consume account credits.
+
+Mitigation: Use the skill only with an intended QuiverAI account, review prompts before sending, and monitor account credit usage.
+
+Risk: The skill requires a bearer API key in QUIVERAI_API_KEY.
+
+Mitigation: Store the key in environment or secret management, never commit it, and rotate it if exposed.
+
+Risk: The quickstart installs @quiverai/sdk from npm.
+
+Mitigation: Verify the package source and version before installing in controlled environments.
+
+## Reference(s):
+
+- [QuiverAI Homepage](https://quiver.ai)
+- [QuiverAI API Reference](https://docs.quiver.ai/api-reference/introduction)
+- [QuiverAI Pricing](https://docs.quiver.ai/api/pricing)
+- [QuiverAI Text to SVG Model](https://docs.quiver.ai/models/text-to-svg)
+- [QuiverAI Image to SVG Model](https://docs.quiver.ai/models/image-to-svg)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, code]
+
+**Output Format:** [Markdown with inline shell and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QUIVERAI_API_KEY and may describe requests that consume QuiverAI account credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

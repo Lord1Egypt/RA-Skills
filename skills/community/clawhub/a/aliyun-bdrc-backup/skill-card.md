@@ -1,43 +1,56 @@
-## Description: <br>
-Use when managing Alibaba Cloud Backup and Disaster Recovery Center (BDRC) via OpenAPI/SDK, including backup and disaster-recovery inventory, policy or configuration changes, status checks, and troubleshooting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Alibaba Cloud Backup and Disaster Recovery Center (BDRC) via OpenAPI/SDK, including the user needs backup/disaster-recovery resource operations, including inventory, policy/configuration changes, status checks, and troubleshooting BDRC workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud Backup and Disaster Recovery Center resources through OpenAPI or SDK workflows, including inventory, configuration changes, status checks, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use Alibaba Cloud credentials and call BDRC APIs, including mutating operations. <br>
-Mitigation: Use a least-privilege RAM user or temporary role and confirm the account, region, resource IDs, and whether each action is read-only or mutating before execution. <br>
-Risk: Generated local output files may contain API inventory details or response summaries that should not be shared broadly. <br>
-Mitigation: Review files under output/aliyun-bdrc-backup/ before sharing or committing them. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to manage Alibaba Cloud Backup and Disaster Recovery Center resources, including inventory, policy or configuration changes, status checks, and troubleshooting workflows.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud BDRC OpenAPI product page](https://api.aliyun.com/product/BDRC) <br>
-- [BDRC API list metadata](https://api.aliyun.com/meta/v1/products/BDRC/versions/2023-08-08/api-docs.json) <br>
-- [BDRC single API metadata template](https://api.aliyun.com/meta/v1/products/BDRC/versions/2023-08-08/apis/{ApiName}/api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python helper code, and optional JSON or Markdown inventory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated API inventory artifacts are written under output/aliyun-bdrc-backup/ when the helper script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill can guide high-impact Alibaba Cloud backup configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege BDRC credentials, require explicit human approval for Create, Update, Modify, and Set operations, and record rollback steps before applying changes.
+
+Risk: The helper script has an output-path validation flaw when product code or version overrides are untrusted.
+
+Mitigation: Avoid untrusted product-code or version overrides until filenames are validated and writes are constrained to output/aliyun-bdrc-backup/.
+
+## Reference(s):
+
+- [Alibaba Cloud BDRC OpenAPI product page](https://api.aliyun.com/product/BDRC)
+- [BDRC 2023-08-08 API metadata list](https://api.aliyun.com/meta/v1/products/BDRC/versions/2023-08-08/api-docs.json)
+- [BDRC single API metadata template](https://api.aliyun.com/meta/v1/products/BDRC/versions/2023-08-08/apis/{ApiName}/api.json)
+- [Artifact sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write API inventory artifacts under output/aliyun-bdrc-backup/ when the helper script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

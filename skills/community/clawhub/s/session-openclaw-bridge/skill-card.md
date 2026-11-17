@@ -1,45 +1,60 @@
-## Description: <br>
-Configure, validate, and troubleshoot a Session Messenger to n8n to OpenClaw bridge for two-way text messaging and image exchange when the hosted relay supports attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure, validate, and troubleshoot a Session Messenger to n8n to OpenClaw bridge for two-way text messaging and image exchange when the hosted relay supports attachments.
 
-## Publisher: <br>
-[droidhackzor](https://clawhub.ai/user/droidhackzor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[droidhackzor](https://clawhub.ai/user/droidhackzor)
 
-## Use Case: <br>
-Developers and operators use this skill to set up or repair the n8n/OpenClaw side of a Session relay, validate relay endpoints, import or patch the n8n workflow, and confirm attachment support before publication or activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relay URLs and API keys may expose private messaging infrastructure if copied into unsafe places. <br>
-Mitigation: Use HTTPS endpoints you control, store API keys in secret management or environment variables, and avoid placing secrets in command history. <br>
-Risk: The n8n workflow polls the relay and can send replies through Session once activated. <br>
-Mitigation: Review the workflow, replace all placeholders, restrict allowed senders, and confirm the OpenClaw endpoint and payload shape before enabling the polling loop. <br>
-Risk: Attachment support depends on the deployed relay implementation. <br>
-Mitigation: Use the relay health and attachment endpoint checks to confirm capability before relying on image or file exchange. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure, validate, and troubleshoot the n8n and OpenClaw side of a Session Messenger relay. It helps import or patch an n8n workflow, verify relay endpoints, check attachment support, and prepare the bridge for reuse or publication.
 
-## Reference(s): <br>
-- [Session OpenClaw Bridge on ClawHub](https://clawhub.ai/droidhackzor/session-openclaw-bridge) <br>
-- [openclaw-session-relay-workflow.json](references/openclaw-session-relay-workflow.json) <br>
-- [release.md](references/release.md) <br>
-- [validate_relay.py](scripts/validate_relay.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline commands, JSON workflow guidance, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include relay readiness summaries and endpoint validation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and references/release.md) <br>
+Risk: Relay API keys and message content may be sent over under-scoped or plaintext network paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS relay and OpenClaw endpoints, and store relay API keys in a credential manager instead of command lines or exported workflow JSON.
+
+Risk: The relay validator can make a real test POST to /send.
+
+Mitigation: Run validation against non-production systems, or only when a test send to the target relay is acceptable.
+
+Risk: An enabled n8n workflow can poll messages and send replies through the relay.
+
+Mitigation: Enable the workflow only after confirming the allowed sender, relay host, credential scope, OpenClaw endpoint payload, and message-sending behavior.
+
+## Reference(s):
+
+- [Session OpenClaw Bridge ClawHub Page](https://clawhub.ai/droidhackzor/skills/session-openclaw-bridge)
+- [OpenClaw Session Relay Workflow](references/openclaw-session-relay-workflow.json)
+- [Release Notes](references/release.md)
+- [Relay Validation Script](scripts/validate_relay.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON workflow references and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include relay readiness summaries, endpoint checks, n8n workflow configuration guidance, and packaging steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and references/release.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

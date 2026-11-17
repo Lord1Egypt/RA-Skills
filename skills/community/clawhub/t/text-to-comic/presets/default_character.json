@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "source_doc": "characters/protagonist.md",
+  "reference_image": "characters/protagonist-ref.png",
+  "notes": "默认主角卡的结构化版本。character_bible 缺失或缺失硬锚点时，compile_prompt.py 会用它兜底注入，避免跨会话漂移。修改角色设定请同时更新 characters/protagonist.md（人类可读）与本文件（机器可读）。",
+  "character": {
+    "character_id": "char_xiaohei",
+    "name": "小嘿",
+    "appearance": {
+      "age_presentation": "young adult woman, mid-20s",
+      "hair": "short black hair, chin-length inward bob",
+      "face": "soft oval face",
+      "eyewear": "round-framed dark thin-rimmed glasses, never removed",
+      "outfit": "cream knit top and dark trousers",
+      "accent_color": "terracotta orange (accessories and small background props)",
+      "build": "slim, slender frame",
+      "vibe": "gentle, curious, slightly bookish explorer"
+    },
+    "must_keep": [
+      "short black hair",
+      "round glasses",
+      "slim"
+    ]
+  },
+  "hard_anchors": [
+    {
+      "key": "hair",
+      "label_zh": "黑色短发",
+      "must_keep_value": "short black hair",
+      "must_match": ["black hair", "黑色短发", "black bob"]
+    },
+    {
+      "key": "eyewear",
+      "label_zh": "圆框眼镜",
+      "must_keep_value": "round glasses",
+      "must_match": ["round glasses", "round-framed", "round frame", "圆框眼镜"]
+    },
+    {
+      "key": "build",
+      "label_zh": "纤细体型",
+      "must_keep_value": "slim",
+      "must_match": ["slim", "slender", "纤细"]
+    }
+  ]
+}

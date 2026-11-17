@@ -1,0 +1,16 @@
+{
+  "name": "00001-grid-trading-bot",
+  "version": "1.0.0",
+  "description": "Local demo-only grid trading lab with ephemeral credentials",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/security.test.js"
+  },
+  "dependencies": {
+    "ccxt": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "undici": "^6.23.0"
+  }
+}

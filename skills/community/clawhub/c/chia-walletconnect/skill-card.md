@@ -1,49 +1,70 @@
-## Description: <br>
-Telegram Web App for Chia wallet verification via WalletConnect and Sage that enables cryptographic proof of wallet ownership through signature verification using MintGarden API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram Web App for Chia wallet verification via WalletConnect and Sage. Enables cryptographic proof of wallet ownership through signature verification using MintGarden API.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-External developers and Telegram community operators use this skill to verify Chia wallet ownership for NFT-gated groups, airdrop eligibility, DAO voting, and Web3-style authentication flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The wallet verification flow links Chia addresses to Telegram users with weak disclosure. <br>
-Mitigation: Add an explicit consent and privacy notice before collecting or storing wallet and Telegram identity data. <br>
-Risk: The included WalletConnect Project ID is a reference value and may not be appropriate for production. <br>
-Mitigation: Create and configure an operator-owned WalletConnect Project ID before production deployment. <br>
-Risk: Sensitive wallet, signature, or identity data may be exposed through console logging or broad service access. <br>
-Mitigation: Remove sensitive console logging, restrict CORS to trusted origins, and authenticate or remove the status endpoint. <br>
-Risk: Client-supplied Telegram user IDs can be spoofed if used directly for access or airdrop eligibility decisions. <br>
-Mitigation: Bind verification decisions to trusted Telegram bot context instead of trusting user IDs supplied by client JSON. <br>
+## Use Case:
 
+External users and developers use this skill to connect a Sage wallet in Telegram, sign a challenge, and verify Chia wallet ownership for gated groups, airdrop eligibility, authentication, DAO voting, or proof-of-holdings workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Koba42Corp/chia-walletconnect) <br>
-- [MintGarden API documentation](https://api.mintgarden.io/docs) <br>
-- [WalletConnect documentation](https://docs.walletconnect.com/) <br>
-- [Telegram Web Apps documentation](https://core.telegram.org/bots/webapps) <br>
-- [Sage Wallet](https://www.sagewallet.io/) <br>
-- [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and runnable Node.js assets for a Telegram Web App, CLI, and optional Express service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Wallet-to-Telegram binding may be unsafe if challenges are generated or accepted without server-side state, single-use nonces, and strict timestamp handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate and store challenges server-side, make nonces single-use, reject future or expired timestamps, and bind each challenge to the expected Telegram user before granting access.
+
+Risk: Telegram identity can be spoofed or misbound if Web App initData is not verified.
+
+Mitigation: Verify Telegram Web App initData on the server before accepting wallet signatures or linking a wallet address to a Telegram account.
+
+Risk: Verification endpoints and status lookups can expose or modify sensitive verification state if unauthenticated.
+
+Mitigation: Authenticate status and verification endpoints, add rate limits, restrict CORS to the deployed domain, and avoid using the skill for access control until these controls are in place.
+
+Risk: Wallet addresses, signatures, public keys, and Telegram identifiers may create privacy exposure when logged or sent to external verification services.
+
+Mitigation: Minimize sensitive logging, disclose that MintGarden receives verification material, and clearly tell users when their Telegram identity may be linked with wallet data.
+
+Risk: Remote frontend dependencies or outdated packages can weaken the verification flow.
+
+Mitigation: Bundle or integrity-pin remote scripts and update dependency issues before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/koba42corp/skills/chia-walletconnect)
+- [MintGarden API](https://api.mintgarden.io/docs)
+- [WalletConnect Documentation](https://docs.walletconnect.com/)
+- [Telegram Web Apps](https://core.telegram.org/bots/webapps)
+- [Sage Wallet](https://www.sagewallet.io/)
+- [CHIP-0002](https://github.com/Chia-Network/chips/blob/main/CHIPs/chip-0002.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Telegram Web App setup guidance, CLI commands, integration snippets, configuration examples, and verification workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

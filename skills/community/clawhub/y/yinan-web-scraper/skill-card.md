@@ -1,44 +1,61 @@
-## Description: <br>
-Extract structured data from websites using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from websites with browser automation for single pages and paginated flows, saving results as CSV, JSON, or XLSX.
 
-## Publisher: <br>
-[yinanping-CPU](https://clawhub.ai/user/yinanping-CPU) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinanping-cpu](https://clawhub.ai/user/yinanping-cpu)
 
-## Use Case: <br>
-Developers and operators use this skill to extract structured data from websites, including product listings, articles, contact information, prices, job posts, and real estate listings. It supports single-page and paginated scraping workflows and can save results as CSV, JSON, or XLSX files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect website data from targets where scraping is not permitted. <br>
-Mitigation: Confirm the target site permits scraping before use and follow site terms and robots.txt expectations. <br>
-Risk: Scraping workflows may collect personal or sensitive data. <br>
-Mitigation: Avoid collecting personal or sensitive data unless there is a lawful basis and an approved use case. <br>
-Risk: Anti-scraping workarounds such as proxies or CAPTCHA-bypass services can create legal, policy, or abuse concerns. <br>
-Mitigation: Do not use proxy rotation, CAPTCHA-bypass tactics, or similar measures unless they are clearly authorized. <br>
-Risk: User-provided output paths determine where scraped data is written. <br>
-Mitigation: Review the output path before running the scripts and store scraped data only in approved locations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CSS Selector Reference](references/css-selectors.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yinanping-CPU/yinan-web-scraper) <br>
+## Use Case:
 
+Developers, data analysts, and operations teams use this skill to extract structured fields from authorized web pages, product listings, articles, job postings, and directories for downstream analysis or monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown instructions with inline bash commands; scraper runs can produce CSV, JSON, or XLSX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include requested fields plus scrape metadata such as source URL and scrape timestamp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can target broad web content and may be used on sites or data the user is not authorized to scrape.
+
+Mitigation: Use it only for authorized sites and data, and review site terms, robots.txt, and applicable law before running a scrape.
+
+Risk: Anti-blocking guidance mentions proxies, IP rotation, and CAPTCHA services.
+
+Mitigation: Do not use those techniques to bypass access controls, rate limits, or explicit site restrictions.
+
+Risk: CSV and XLSX outputs can contain formula-like values from scraped pages.
+
+Mitigation: Treat generated spreadsheets as untrusted and sanitize formula-like values before opening or sharing them.
+
+Risk: Scraping may collect personal data that is unnecessary for the task.
+
+Mitigation: Minimize personal data collection and confirm privacy obligations before storing or using extracted data.
+
+## Reference(s):
+
+- [CSS Selector Reference](references/css-selectors.md)
+- [ClawHub Skill Page](https://clawhub.ai/yinanping-cpu/skills/yinan-web-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; scraper runs can produce CSV, JSON, or XLSX files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local scripts with CSS selector field definitions and writes extracted data to user-selected output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

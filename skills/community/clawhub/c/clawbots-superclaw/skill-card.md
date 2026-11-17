@@ -1,40 +1,51 @@
-## Description: <br>
-Structured development workflow for OpenClaw agents - Brainstorm, Plan, Execute, Review. Brings systematic software development with TDD, clear specs, and subagent collaboration to ChatClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured development workflow for OpenClaw agents - Brainstorm, Plan, Execute, Review. Brings systematic software development with TDD, clear specs, and subagent collaboration to ChatClaw agents.
 
-## Publisher: <br>
-[Clawbotsai](https://clawhub.ai/user/Clawbotsai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbotsai](https://clawhub.ai/user/clawbotsai)
 
-## Use Case: <br>
-Developers and engineers use Superclaw to guide agent-assisted software work through brainstorming, planning, execution, and review phases with TDD-oriented checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may create project design or plan documents and may lead an agent to make Git commits. <br>
-Mitigation: Use the skill on the correct branch, review plans before execution, and inspect commits before merging. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide OpenClaw agents through structured software work: brainstorming requirements, writing implementation plans, executing with TDD, and reviewing code against the plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Clawbotsai/clawbots-superclaw) <br>
-- [Skill homepage](https://chatclaw.com/skills/superclaw) <br>
-- [Superpowers methodology](https://github.com/obra/superpowers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with proposed project files, task plans, code changes, shell commands, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create design and plan documents and may guide Git commit workflow when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may create planning documents and guide repository changes, including git commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans before execution and inspect proposed repository changes before accepting commits.
+
+## Reference(s):
+
+- [Superclaw Skill Page](https://clawhub.ai/clawbotsai/skills/clawbots-superclaw)
+- [Superclaw Homepage](https://chatclaw.com/skills/superclaw)
+- [Superpowers](https://github.com/obra/superpowers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with planning documents, review notes, and inline commands where needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create planning documents under docs/superclaw and guide git commits during implementation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Automates packaging, pushing to GitHub, and publishing OpenClaw skills to ClawHub, managing versions and sync across platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate packaging, pushing to GitHub, and publishing OpenClaw skills to ClawHub, managing versions and sync across platforms.
 
-## Publisher: <br>
-[zerozlw](https://clawhub.ai/user/zerozlw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zerozlw](https://clawhub.ai/user/zerozlw)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill maintainers use this skill to prepare OpenClaw skill folders for release, push them to GitHub, publish them to ClawHub, and manage versioned updates or forks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Publishing commands can commit, push, and publish an entire selected skill folder.
+
+Mitigation: Review the folder contents for secrets and unintended files before use, and run the workflow from a clean repository.
+
+Risk: The workflow can invoke an unpinned ClawHub CLI during publishing.
+
+Mitigation: Prefer a pinned or preinstalled ClawHub CLI and verify authentication before running publish commands.
+
+Risk: Network publishing may have broad effects once commands are executed.
+
+Mitigation: Use a manifest preview or manual confirmation step before pushing to GitHub or publishing to ClawHub.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to validate skill folders, push releases to GitHub, publish versions to ClawHub, and keep distribution across both platforms aligned. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The publish and GitHub scripts can stage and push all files in the target skill folder. <br>
-Mitigation: Inspect the target folder, run git status, and remove private files or secrets before running the push or full publish workflow. <br>
-Risk: A release can be published to the wrong GitHub repository or ClawHub slug if command arguments are incorrect. <br>
-Mitigation: Confirm the target repository, version, slug, and ClawHub account before executing the publish commands. <br>
+**Output Format:** [Markdown guidance with inline bash command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zerozlw/skill-release-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/zerozlw) <br>
+**Other Properties Related to Output:** [The skill may propose commands that commit, push, and publish a selected skill folder.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell scripts and external CLIs such as gh and npx clawhub when the user chooses to run the release workflow.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

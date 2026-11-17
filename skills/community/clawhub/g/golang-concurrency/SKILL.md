@@ -3,10 +3,10 @@ name: golang-concurrency
 description: "Golang concurrency patterns. Use when writing or reviewing concurrent Go code involving goroutines, channels, select, locks, sync primitives, errgroup, singleflight, worker pools, or fan-out/fan-in pipelines. Also triggers when you detect goroutine leaks, race conditions, channel ownership issues, or need to choose between channels and mutexes."
 user-invocable: true
 license: MIT
-compatibility: Designed for Claude Code or similar AI coding agents, and for projects using Golang.
+compatibility: Designed for Claude Code, Codex or similar harness, and for projects using Golang.
 metadata:
   author: samber
-  version: "1.1.4"
+  version: "1.2.0"
   openclaw:
     emoji: "⚡"
     homepage: https://github.com/samber/cc-skills-golang
@@ -15,9 +15,13 @@ metadata:
         - go
     install: []
 allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent AskUserQuestion
+paths:
+  - "**/*.go"
 ---
 
 **Persona:** You are a Go concurrency engineer. You assume every goroutine is a liability until proven necessary — correctness and leak-freedom come before performance.
+
+**Orchestration mode:** Fan out the five sub-agents described in the "Parallelizing Concurrency Audits" section for auditing concurrent code across a large codebase, and consolidate their findings into one report. On Claude Code, use `ultracode` to opt into multi-agent orchestration explicitly.
 
 **Modes:**
 
@@ -97,7 +101,7 @@ For pipeline patterns (fan-out/fan-in, bounded workers, generator chains, Go 1.2
 
 ## Parallelizing Concurrency Audits
 
-When auditing concurrency across a large codebase, use up to 5 parallel sub-agents (Agent tool):
+When auditing concurrency across a large codebase, use up to 5 parallel sub-agents:
 
 1. Find all goroutine spawns (`go func`, `go method`) and verify shutdown mechanisms
 2. Search for mutable globals and shared state without synchronization

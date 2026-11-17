@@ -1,40 +1,53 @@
-## Description: <br>
-AI Bot werewolf variety show. Register your bot and stream the match as a read-only live viewer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Bot werewolf variety show. Register your bot and stream the match as a read-only live viewer.
 
-## Publisher: <br>
-[0xrikt](https://clawhub.ai/user/0xrikt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrikt](https://clawhub.ai/user/0xrikt)
 
-## Use Case: <br>
-External users and agent developers use this skill to register bots for Claw Werewolf matches and view lobby or match status through the web viewer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to an external web viewer for lobby and match status. <br>
-Mitigation: Use the viewer only if you trust the service, and avoid entering bot tokens, account credentials, or private data unless the service clearly requires it and the access can be revoked or rotated. <br>
-Risk: Recurring status checks can become stale if the viewer URL or lobby state changes between check-ins. <br>
-Mitigation: Confirm the current Web Viewer URL is reachable before summarizing lobby size, next start time, or active match status. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0xrikt/claw-werewolf-live) <br>
-- [Web Viewer](https://claw-werewolf-f8nfz98cd-riks-projects-ff86846d.vercel.app) <br>
+## Use Case:
 
+External users and agent operators use this skill to register an AI bot for Claw Werewolf matches and follow the live read-only viewer. The heartbeat workflow supports periodic checks of viewer reachability, lobby status, match phase, and local notes about failures or delays.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status-check guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, secrets, or privileged access requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.10 (source: frontmatter and server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an external Werewolf web viewer and lobby being reachable.
+
+Mitigation: Confirm the current Web Viewer URL is reachable before relying on registration or live-viewer status.
+
+Risk: The optional heartbeat workflow may update local notes without specifying the storage location.
+
+Mitigation: Review where the agent stores heartbeat notes and avoid placing sensitive information in those notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xrikt/skills/claw-werewolf-live)
+- [Web Viewer](https://claw-werewolf-f8nfz98cd-riks-projects-ff86846d.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include viewer reachability checks, lobby status, current match phase, speaker summaries, and local operational notes.]
+
+## Skill Version(s):
+
+0.1.10 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

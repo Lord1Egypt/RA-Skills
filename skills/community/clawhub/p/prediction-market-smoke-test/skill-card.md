@@ -1,39 +1,53 @@
-## Description: <br>
-A minimal test skill for prediction-market workflows that helps evaluate a market question, draft a thesis, or validate installation from ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a lightweight checklist for evaluating prediction-market questions, drafting a trading thesis, and validating ClawHub skill installation.
 
-## Publisher: <br>
-[ssj124](https://clawhub.ai/user/ssj124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssj124](https://clawhub.ai/user/ssj124)
 
-## Use Case: <br>
-Developers, evaluators, and prediction-market users use this skill to sanity-check whether a market is well formed, outline possible mispricing, and produce a short bullish and bearish thesis before making their own decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill structures prediction-market reasoning but does not verify live market data, resolution sources, deadlines, or trading conditions. <br>
-Mitigation: Independently confirm the market page, resolution source, deadline, ambiguity, liquidity, and financial risk before relying on the generated thesis. <br>
-Risk: A concise thesis can overstate confidence or miss material counterarguments. <br>
-Mitigation: Use the output as a checklist and draft analysis only, then review the bull case, bear case, and final checklist against external evidence. <br>
+## Use Case:
 
+External users and developers use this skill to sanity-check prediction-market questions, confirm resolution criteria, outline possible mispricing, and draft bullish and bearish theses before deciding whether to act.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist and market-analysis template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute code, access sensitive data, fetch live market data, or place trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can produce an incomplete or misleading market thesis if the market question or resolution criteria are ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should independently verify the market resolution source, YES criteria, deadline, and major ambiguities before acting on the thesis.
+
+Risk: Prediction-market reasoning may be mistaken for financial advice.
+
+Mitigation: Treat generated theses as decision-support notes only, not as financial advice or a substitute for independent judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssj124/skills/prediction-market-smoke-test)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown checklist and short prose sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or external access required.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

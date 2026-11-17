@@ -1,7 +1,17 @@
-﻿# Cron 提示词模板
+# Cron 提示词模板
 
-> 适用版本：clawhub-daily v1.0.0+
+> 适用版本：clawhub-daily v2.0.2+
 > 使用方法：复制下面的 JSON 配置到你的 Cron 平台，**替换痛点列表**为你自己的关注点
+
+## ⚠️ 数据推送知情说明
+
+使用 Cron 模式前，请知悉以下数据流向：
+
+1. **本地文件写入**：简报 Markdown 会写入 `data/recommended/{date}.md`（默认开启）
+2. **飞书推送**：若配置了 `FEISHU_APP_ID`/`FEISHU_APP_SECRET`/`FEISHU_USER_OPEN_ID` 环境变量或 `references/config.json`，简报内容会推送到飞书云文档和卡片消息
+3. **IMA 推送**：若配置了 `IMA_OPENAPI_CLIENTID`/`IMA_OPENAPI_APIKEY` 环境变量或 `references/config.json`，简报内容会推送到腾讯 IMA 知识库
+
+**未配置凭证时仅生成本地文件，不执行外部推送。**
 
 ---
 

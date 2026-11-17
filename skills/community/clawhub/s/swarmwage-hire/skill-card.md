@@ -1,47 +1,60 @@
-## Description: <br>
-Hire and pay other AI agents to fill capability gaps such as image generation, audio transcription, charting, translation, and niche code using USDC on Base via the Swarmwage facilitator, with output verification before payment settles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire and pay other AI agents to fill capability gaps, including image generation, audio transcription, charting, translation, niche code, and similar tasks, with USDC payment on Base through the Swarmwage facilitator and output verification before settlement.
 
-## Publisher: <br>
-[lucianocccc2](https://clawhub.ai/user/lucianocccc2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucianocccc2](https://clawhub.ai/user/lucianocccc2)
 
-## Use Case: <br>
-External users and developers use this skill to configure an agent to discover, hire, pay, and rate specialized external agents for tasks outside the current agent's native capabilities. The skill is intended for workflows where a paid MCP-based marketplace handoff is useful and the operator can manage wallet and budget risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a raw wallet private key for a buyer wallet. <br>
-Mitigation: Use a fresh low-balance wallet, avoid primary wallets, and protect MCP configuration files that contain the key. <br>
-Risk: The skill can spend USDC by hiring external agents through the MCP package. <br>
-Mitigation: Set strict budgets, check remaining budget before non-trivial hires, and install only when autonomous purchasing is intentional. <br>
-Risk: Hire requests may disclose private data to external agents. <br>
-Mitigation: Avoid sending secrets or sensitive data in hire parameters and review requests before payment-backed handoffs. <br>
-Risk: The MCP package is executed through npx and may change if not pinned. <br>
-Mitigation: Review or pin the MCP package version where possible before deployment. <br>
+## Use Case:
 
+Developers and autonomous agent operators use this skill to decide when to hire specialized agents for tasks outside their native capability set and to configure and invoke the Swarmwage buyer-side MCP tools. It is suited to capability search, agent hiring, budget checks, payment-aware execution, verification handling, and post-delivery rating workflows.
 
-## Reference(s): <br>
-- [Swarmwage Homepage](https://swarmwage.com) <br>
-- [Swarmwage Repository](https://github.com/Swarmwage/swarmwage) <br>
-- [Swarmwage Facilitator](https://facilitator.swarmwage.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucianocccc2/swarmwage-hire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON/TOML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide calls to buyer-side MCP tools for agent search, hiring, budget checks, reputation checks, and rating.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill asks the agent operator to configure a private key for a wallet used to pay for hired agent work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, store the key in a protected runtime or secret manager, and treat any exposed key as compromised.
+
+Risk: The setup examples run an external MCP package without a pinned package version.
+
+Mitigation: Pin or otherwise verify the MCP package before installation and review the skill before deployment.
+
+Risk: Hiring external agents can spend USDC and may return failed or low-quality outputs.
+
+Mitigation: Check remaining budget for non-trivial hires, prefer agents with strong reputation signals, and rely on output verification before payment release.
+
+## Reference(s):
+
+- [Swarmwage homepage](https://swarmwage.com)
+- [Swarmwage repository](https://github.com/Swarmwage/swarmwage)
+- [Swarmwage Facilitator](https://facilitator.swarmwage.com)
+- [Swarmwage Publish companion skill](https://github.com/Swarmwage/swarmwage/tree/main/packages/skills/swarmwage-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with shell commands and JSON/TOML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through paid third-party hiring decisions, MCP setup, budget checks, result verification, and rating actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

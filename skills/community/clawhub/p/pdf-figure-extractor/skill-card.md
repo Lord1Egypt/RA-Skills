@@ -1,39 +1,53 @@
-## Description: <br>
-Extracts clean figures from academic PDF papers by analyzing document structure, locating captions, cropping figure regions, and validating output image quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts figure images from academic PDFs by analyzing page structure, locating captions, cropping clean figures, and validating image quality.
 
-## Publisher: <br>
-[438061781](https://clawhub.ai/user/438061781) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[438061781](https://clawhub.ai/user/438061781)
 
-## Use Case: <br>
-Developers, researchers, and academic writers use this skill to guide agents through extracting clean figure images from local academic PDFs for manuscripts, Word documents, and academic communications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cropped figure images may accidentally include captions, surrounding body text, or sensitive PDF content. <br>
-Mitigation: Use the skill only on PDFs intended for analysis, choose a safe output location, and review generated images before reuse. <br>
-Risk: Incorrect crop boundaries can omit subfigures, axes, labels, or other parts of the intended figure. <br>
-Mitigation: Analyze PDF text blocks and caption coordinates before cropping, then verify that each extracted image is complete. <br>
+## Use Case:
 
+Developers, researchers, and academic writers use this skill to guide an agent through extracting clean figure images from PDF papers for documents, manuscripts, and related writing workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, files] <br>
-**Output Format:** [Markdown guidance with Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in PNG figure files saved to a user-specified local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Extracted figures may include captions, body text, or incomplete subfigures if crop boundaries are selected incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every extracted image before use and adjust crop coordinates based on the PDF text-block and caption analysis.
+
+Risk: The workflow processes local academic PDFs supplied to the agent.
+
+Mitigation: Use intentionally provided PDF files only and confirm the document is appropriate for this extraction workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/438061781/skills/pdf-figure-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with Python code blocks and extraction checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for local PDF figure extraction, coordinate selection, image cropping, and manual quality review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

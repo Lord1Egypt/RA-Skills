@@ -1,42 +1,50 @@
-## Description: <br>
-Idiom Dictionary provides offline lookup for a small Chinese idiom collection with meanings and learning-oriented commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese idiom dictionary with search, listing, random idiom selection, and documented language-learning commands for stories, chain play, quizzes, usage examples, and category browsing.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users, developers, and language learners use this skill to look up Chinese idioms, browse a compact idiom list, and generate command-line dictionary output for study or reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled helper can store local command data and private notes in a configured data directory. <br>
-Mitigation: Avoid entering secrets or private notes, and inspect or clear the configured local data directory when needed. <br>
-Risk: The helper's remove command should not be relied on to delete stored entries. <br>
-Mitigation: Manually inspect or delete entries from the configured local data directory for reliable cleanup. <br>
+## Use Case:
 
+External users and developers use this skill to query and browse Chinese idioms for language learning, writing support, examples, and lightweight command-line lookup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/idiom-dictionary) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local command-line output and may read or write a user-configured local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A bundled command behaves as a generic local data logger and persistently records command arguments, which is broader than the documented idiom dictionary behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid passing secrets as command arguments, and keep IDIOM_DICTIONARY_DIR pointed at a private user-owned directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/idiom-dictionary)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys are required; some bundled utility commands can write persistent local files under the configured idiom-dictionary data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

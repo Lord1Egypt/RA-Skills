@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn74j2svcaa5yxhcdngv7cx74n82ft30",
+  "ownerId": "local",
   "slug": "model-usage-stats",
   "version": "1.0.0",
-  "publishedAt": 1776049362042
+  "publishedAt": 1776047993090,
+  "description": "模型消耗统计技能，用于统计和展示不同会话、不同模型的 token 使用量、成本统计和消耗报告，通过飞书消息卡片进行可视化展示。",
+  "name": "模型消耗统计"
 }

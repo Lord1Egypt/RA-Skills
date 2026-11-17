@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "project": "production-project.json",
+  "targets": [
+    "speaker"
+  ],
+  "selections": {},
+  "timing": {
+    "opening": {
+      "output": "speaker",
+      "evidence": "speaker-v1.timing.json",
+      "at_seconds": 0
+    }
+  }
+}

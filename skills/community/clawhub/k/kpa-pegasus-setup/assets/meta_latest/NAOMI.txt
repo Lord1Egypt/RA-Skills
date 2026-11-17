@@ -1,0 +1,65 @@
+collection: NAOMI
+sort-by: 10
+shortname: naomi
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/flycast_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: alienfnt
+file: alienfnt.zip
+assets.box_front: Imgs/alienfnt.png
+description: 《alienfnt》，世嘉 Naomi 街机 平台。
+game: csmash
+file: csmash.zip
+assets.box_front: Imgs/csmash.png
+description: 《csmash》，世嘉 Naomi 街机 平台。
+game: ggram2
+file: ggram2.zip
+assets.box_front: Imgs/ggram2.png
+description: 《ggram2》，世嘉 Naomi 街机 平台。
+game: ggx
+file: ggx.zip
+assets.box_front: Imgs/ggx.png
+description: 《ggx》，世嘉 Naomi 街机 平台。
+game: mushi2k5
+file: mushi2k5.zip
+assets.box_front: Imgs/mushi2k5.png
+description: 《mushi2k5》，世嘉 Naomi 街机 平台。
+game: qmegamis
+file: qmegamis.zip
+assets.box_front: Imgs/qmegamis.png
+description: 《qmegamis》，世嘉 Naomi 街机 平台。
+game: sgtetris
+file: sgtetris.zip
+assets.box_front: Imgs/sgtetris.png
+description: 《sgtetris》，世嘉 Naomi 街机 平台。
+game: toyfight
+file: toyfight.zip
+assets.box_front: Imgs/toyfight.png
+description: 《toyfight》，世嘉 Naomi 街机 平台。
+game: virnba
+file: virnba.zip
+assets.box_front: Imgs/virnba.png
+description: 《virnba》，世嘉 Naomi 街机 平台。
+game: vonot
+file: vonot.zip
+assets.box_front: Imgs/vonot.png
+description: 《vonot》，世嘉 Naomi 街机 平台。
+game: vs2_2k
+file: vs2_2k.zip
+assets.box_front: Imgs/vs2_2k.png
+description: 《vs2_2k》，世嘉 Naomi 街机 平台。
+game: wldkicks
+file: wldkicks.zip
+assets.box_front: Imgs/wldkicks.png
+description: 《wldkicks》，世嘉 Naomi 街机 平台。
+game: wrungp
+file: wrungp.zip
+assets.box_front: Imgs/wrungp.png
+description: 《wrungp》，世嘉 Naomi 街机 平台。
+game: wwfroyal
+file: wwfroyal.zip
+assets.box_front: Imgs/wwfroyal.png
+description: 《wwfroyal》，世嘉 Naomi 街机 平台。
+game: zombrvn
+file: zombrvn.zip
+assets.box_front: Imgs/zombrvn.png
+description: 《zombrvn》，世嘉 Naomi 街机 平台。

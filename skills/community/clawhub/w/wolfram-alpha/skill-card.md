@@ -1,40 +1,53 @@
-## Description: <br>
-Perform complex mathematical calculations, physics simulations, data analysis, and scientific queries via the Wolfram|Alpha LLM API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform complex mathematical calculations, physics simulations, data analysis, and scientific queries via the Wolfram|Alpha LLM API.
 
-## Publisher: <br>
-[Robert-Janssen](https://clawhub.ai/user/Robert-Janssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robert-janssen](https://clawhub.ai/user/robert-janssen)
 
-## Use Case: <br>
-Developers and agent users use this skill to send mathematical, scientific, data, unit conversion, and factual quantitative queries to Wolfram|Alpha and receive exact API-backed answers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to Wolfram Alpha with the configured WOLFRAM_APP_ID. <br>
-Mitigation: Do not include secrets, private personal data, or confidential business information in queries unless sharing that information with Wolfram Alpha is acceptable for the use case. <br>
-Risk: The skill depends on a configured API credential and network access to the Wolfram|Alpha API. <br>
-Mitigation: Set WOLFRAM_APP_ID in the runtime environment and verify outbound access before relying on the skill in an agent workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wolfram|Alpha LLM API endpoint](https://www.wolframalpha.com/api/v1/llm-api) <br>
-- [ClawHub release page](https://clawhub.ai/Robert-Janssen/wolfram-alpha) <br>
+## Use Case:
 
+Developers and agents use this skill to send quantitative, scientific, data, unit-conversion, and factual queries to Wolfram|Alpha and return exact text answers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text returned by the Wolfram|Alpha API, with setup and usage guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, and a WOLFRAM_APP_ID environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries, including sensitive user input, are sent to Wolfram|Alpha.
+
+Mitigation: Avoid submitting confidential queries unless that external processing is acceptable for the deployment context.
+
+Risk: The WOLFRAM_APP_ID is a credential and may be exposed through verbose URL logging or diagnostics.
+
+Mitigation: Redact appid values in logs and diagnostics, monitor quota use, and rotate the app ID if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robert-janssen/skills/wolfram-alpha)
+- [Wolfram|Alpha LLM API endpoint](https://www.wolframalpha.com/api/v1/llm-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text returned by the Wolfram|Alpha LLM API, with shell command and environment configuration guidance in documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, and a WOLFRAM_APP_ID environment variable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

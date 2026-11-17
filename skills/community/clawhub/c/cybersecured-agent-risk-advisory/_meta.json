@@ -1,6 +1,40 @@
 {
-  "ownerId": "kn74tyz2e93f3kdg6tne1b5gsn86mqjv",
-  "slug": "cybersecured-agent-risk-advisory",
+  "name": "cybersecured-agent-risk-advisory",
   "version": "1.0.16",
-  "publishedAt": 1780848371542
+  "description": "为 AI智能体 配置龙行无忧风险管家服务，完成智能体绑定、安全扫描、风险评估、服务申请和事故信息提交",
+  "author": "厚锋科技",
+  "website": "https://www.cybersecured.cn/ai",
+  "license": "GPL-3.0",
+  "tags": ["risk-advisory", "security", "ai-agent", "cybersecurity", "risk-assessment"],
+  "requirements": [
+    "用户需在 https://ai.cybersecured.cn 注册并获取 API Key",
+    "Python 3.8+",
+    "cybersecured-agent-cli >= 2.1.0 (PyPI: uv tool install cybersecured-agent-cli)"
+  ],
+  "triggers": [
+    "配置龙行无忧",
+    "给我的AI智能体申请服务",
+    "查看申请状态",
+    "我要提交事故信息"
+  ],
+  "entry_point": "SKILL.md",
+  "references_dir": "references",
+  "compatible_with": [
+    "OpenClaw",
+    "Hermes",
+    "Kimi CLI",
+    "OpenCode",
+    "Codex",
+    "Codex Desktop",
+    "Claude Code",
+    "OpenAI Codex CLI"
+  ],
+  "dependencies": [
+    {
+      "name": "cybersecured-agent-cli",
+      "source": "pypi",
+      "version": ">=2.1.0",
+      "install": "uv tool install cybersecured-agent-cli"
+    }
+  ]
 }

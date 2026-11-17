@@ -1,0 +1,39 @@
+{
+  "_comment": "Copy to ebay-lister.config.json (gitignored) and edit. Every key is optional; the values below are the built-in defaults.",
+
+  "cdpUrl": "http://127.0.0.1:18800",
+
+  "bestOffer": "off",
+
+  "format": {
+    "default": "auction",
+    "startingBid": 0.99,
+    "durationDays": 7
+  },
+
+  "shipping": {
+    "service": "USPS Ground Advantage",
+    "fillService": false
+  },
+
+  "categoryIds": {
+    "video game": 139973,
+    "memory card": 18871,
+    "usb flash drive": 51071,
+    "cell phone": 171485
+  },
+
+  "notifyCommand": null,
+
+  "_docs": {
+    "cdpUrl": "Chrome DevTools endpoint of an already-running, eBay-logged-in Chrome. Override per-run with EBAY_LISTER_CDP_URL.",
+    "bestOffer": "'off' forces eBay's Allow-offers toggle off and scrubs offer language from the description. 'leave' means don't touch it.",
+    "format.default": "'auction' or 'fixed' — used when the payload omits format.",
+    "format.startingBid": "Auction opening bid when the payload omits startingBid.",
+    "format.durationDays": "Auction length in days (1/3/5/7/10) when the payload omits durationDays.",
+    "shipping.service": "Preferred service class; applied to payload.shipping.service when absent.",
+    "shipping.fillService": "Opt-in. true also tries to SET the service on the form — the selector varies by category and is unverified, so it is off by default.",
+    "categoryIds": "keyword -> eBay category id. If the payload has no categoryId, the longest keyword found in categoryQuery/title wins. Pins the category so the prelist can't land somewhere silly.",
+    "notifyCommand": "Shell command run after a publish/draft/block. The report arrives on stdin and as $EBAY_LISTER_MESSAGE. null = never notify."
+  }
+}

@@ -1,42 +1,53 @@
-## Description: <br>
-Convert documents and files to Markdown using markitdown for LLM processing or text analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert documents and files to Markdown using markitdown for LLM processing or text analysis.
 
-## Publisher: <br>
-[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to convert common document, data, web, media, archive, and URL inputs into Markdown for LLM processing or text analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Azure Document Intelligence and YouTube inputs may send content to external services. <br>
-Mitigation: Avoid confidential documents unless the chosen conversion path is approved for that data, and prefer local conversion for sensitive files. <br>
-Risk: Third-party plugins can change conversion behavior or expand the trusted code surface. <br>
-Mitigation: Enable plugins only when the installed plugins are trusted and needed for the conversion task. <br>
-Risk: Complex PDFs, OCR, and transcription outputs can be incomplete or inaccurate. <br>
-Mitigation: Review the generated Markdown before using it for analysis, automation, or downstream LLM processing. <br>
+## Use Case:
 
+Developers and agents use this skill to convert common document, data, media, archive, and web inputs into Markdown for LLM processing or text analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/markdown-converter-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown instructions with bash command examples; converted content is Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The converter can write Markdown to stdout or an output file and may use optional plugins or external services when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill asks agents to fetch and run the current markitdown package at use time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive or controlled workflows, use a pinned and reviewed markitdown version in a restricted environment.
+
+Risk: Optional plugin, URL, audio, and Azure Document Intelligence modes may involve untrusted extensions or external processing.
+
+Mitigation: Use plugins only after review, and treat URL, audio, and Azure-backed conversions as external-processing paths for data-handling decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangyingzhuangk/skills/markdown-converter-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; converted content is Markdown text or Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write converted Markdown to stdout or an output file; optional Azure Document Intelligence and plugin modes may change processing behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

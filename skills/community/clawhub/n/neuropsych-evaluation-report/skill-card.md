@@ -1,45 +1,63 @@
-## Description: <br>
-Drafts comprehensive neuropsychological evaluation reports from clinician-provided intake data, behavioral observations, validity findings, test scores, interpretations, diagnostic formulation, and recommendations for licensed neuropsychologist review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts comprehensive neuropsychological evaluation reports from intake data, behavioral observations, performance validity information, standardized test results, clinical interpretation, diagnostic formulation, and functional recommendations for licensed neuropsychologist review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Licensed neuropsychologists, post-doctoral fellows, and clinical neuropsychology trainees use this skill to organize neuropsychological intake information, test results, validity findings, interpretations, and recommendations into a draft report. The draft is intended for licensed doctoral-level neuropsychologist review and signature before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft neuropsychological reports may contain preliminary diagnostic formulations or clinical recommendations that are not ready for release. <br>
-Mitigation: Require review, correction, and signature by a licensed doctoral-level neuropsychologist before release to referral sources, patients, insurers, or other clinical users. <br>
-Risk: Clinical inputs may include patient-identifying or regulated health information. <br>
-Mitigation: Use initials plus case number only, avoid full names, dates of birth, and MRNs, and verify institutional HIPAA compliance and business associate agreement status before using external AI systems. <br>
-Risk: Missing or invalid test scores can lead to misleading interpretations. <br>
-Mitigation: Do not fabricate or estimate scores; preserve explicit placeholders for missing data and resolve open items from testing records before final review. <br>
-Risk: Performance validity concerns can make subsequent cognitive interpretations unreliable. <br>
-Mitigation: Gate interpretation on performance validity findings and include the required validity warning when any PVT fails or is atypical. <br>
+## Use Case:
 
+Licensed neuropsychologists, post-doctoral fellows, and clinical neuropsychology trainees use this skill to turn evaluation history, observations, validity results, and test battery scores into a structured draft report. The draft is intended for licensed neuropsychologist review, correction, signature, and compliance checks before any clinical, educational, insurance, or patient-facing release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/neuropsych-evaluation-report) <br>
-- [Open-Skill-Hub issues](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown draft report with labeled clinical sections, tables, warnings, open items, and a review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft clinical documentation only; missing scores remain as placeholders and diagnostic content is preliminary pending licensed review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and changelog, released 2026-05-31) <br>
+Risk: Draft report content may contain incorrect clinical interpretations, diagnostic language, codes, or recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a licensed neuropsychologist verify language factors, performance validity, diagnostic formulation, DSM-5-TR or ICD-11 codes, and recommendations before release.
+
+Risk: Patient-identifying information could be exposed if users enter full names, dates of birth, MRNs, or other protected health information into an unapproved AI environment.
+
+Mitigation: Use initials plus case number only, avoid DOBs and MRNs, and enter identifying patient data only in institutionally approved HIPAA-covered environments.
+
+Risk: Missing or fabricated test scores could make the draft misleading.
+
+Mitigation: Use only user-provided scores and leave explicit placeholders for missing scores until testing records are inserted and reviewed.
+
+Risk: Invalid or atypical performance validity results could undermine subsequent cognitive interpretation.
+
+Mitigation: Apply the validity warning when any PVT fails or is atypical, reference that limitation in summary and formulation sections, and require clinician review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/neuropsych-evaluation-report)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft report with labeled sections, tables, warnings, open items, and review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft clinical documentation only; requires licensed neuropsychologist review and signature before release.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-05-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

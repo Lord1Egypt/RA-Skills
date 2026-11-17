@@ -1,0 +1,97 @@
+{
+  "video": "billett.mp4",
+  "edited": "edited.mp4",
+  "bytes": 180303268,
+  "seconds_before": 399.6,
+  "seconds_after": 357.0,
+  "cuts": 12,
+  "punch_ins": 3,
+  "summary": "6:39 -> 5:57 (11% shorter; 9 s from inside the talking, 34 s from long gaps, cards, opening and ending). 12 cuts, pace 183 words per minute. Removed: 1 ending (24 s), 4 long gap or title card (9 s), 7 pause (5 s), 1 filler (4 s)",
+  "captions": "captions.srt",
+  "cut_sheet": "cuts.jpg",
+  "chapters": [
+    [
+      0.0,
+      "Planning the mission with the science team"
+    ],
+    [
+      33.3,
+      "Flying in microgravity around Bennu"
+    ],
+    [
+      101.7,
+      "A spacecraft built to observe an asteroid"
+    ],
+    [
+      158.4,
+      "Bennu was rockier than expected"
+    ],
+    [
+      197.3,
+      "Changing how to touch the surface"
+    ],
+    [
+      267.9,
+      "Rehearsal: within two meters"
+    ],
+    [
+      307.7,
+      "Redesigning the mission as it flies"
+    ]
+  ],
+  "kept_spans": [
+    [
+      0.0,
+      3.5
+    ],
+    [
+      7.367,
+      40.633
+    ],
+    [
+      46.267,
+      86.767
+    ],
+    [
+      87.4,
+      90.4
+    ],
+    [
+      91.333,
+      112.7
+    ],
+    [
+      112.933,
+      116.433
+    ],
+    [
+      117.967,
+      171.233
+    ],
+    [
+      171.667,
+      210.533
+    ],
+    [
+      211.667,
+      239.767
+    ],
+    [
+      240.2,
+      282.7
+    ],
+    [
+      283.833,
+      287.333
+    ],
+    [
+      288.7,
+      324.9
+    ],
+    [
+      325.9,
+      375.367
+    ]
+  ],
+  "warnings": []
+}

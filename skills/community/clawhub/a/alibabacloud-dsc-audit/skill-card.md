@@ -1,44 +1,61 @@
-## Description: <br>
-Query and handle security risk events from Alibaba Cloud Data Security Center. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and handle security risk events from Alibaba Cloud Data Security Center, including unprocessed-risk listing and manual handling workflows.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud security operators and engineers use this skill to inspect unprocessed Alibaba Cloud Data Security Center risk events and manually mark confirmed events with an audit note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alibaba Cloud credentials and profiles are sensitive, and over-permissive credentials could expose more cloud access than this workflow needs. <br>
-Mitigation: Use a dedicated RAM user or role with only yundun-sddp:DescribeRiskRules and, when handling is required, yundun-sddp:PreHandleAuditRisk; do not paste access keys into chat, shell history, or logs. <br>
-Risk: Handling a RiskId performs a manual action on a Data Security Center risk event. <br>
-Mitigation: Confirm the active profile, exact RiskId, and handling note before running the handling script; use the read-only RAM policy when the agent should only query events. <br>
+## Use Case:
 
+Developers and cloud security operators use this skill to inspect Alibaba Cloud Data Security Center risk events, page through processed or unprocessed findings, and manually record handling decisions for a confirmed RiskId.
 
-## Reference(s): <br>
-- [Data Security Center API Reference](references/related-apis.md) <br>
-- [Data Security Center RAM Permission Configuration](references/ram-policies.md) <br>
-- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Alibaba Cloud Python SDK Generic Invocation Documentation](https://help.aliyun.com/zh/sdk/developer-reference/generalized-call-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The query script prints risk event summaries; the handling script prints validation, operation status, and request identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server evidence release.version) <br>
+Risk: Setup guidance includes a curl-to-bash installer and automatic Aliyun CLI plugin changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the Aliyun CLI and plugins through reviewed, trusted, and pinned methods before using the skill.
+
+Risk: Handling a risk event can change Alibaba Cloud Data Security Center risk-event state.
+
+Mitigation: Use a least-privilege RAM role and grant PreHandleAuditRisk only to users approved to change risk-event status.
+
+Risk: Cloud operations require credentials and can expose sensitive account access if run in an overprivileged profile.
+
+Mitigation: Confirm credential status without printing secrets and prefer scoped temporary or role-based credentials for agent sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-dsc-audit)
+- [Data Security Center API Reference](artifact/references/related-apis.md)
+- [Data Security Center RAM Permission Configuration](artifact/references/ram-policies.md)
+- [Aliyun CLI Installation and Configuration Guide](artifact/references/cli-installation-guide.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires confirmed Alibaba Cloud parameters, a valid session-scoped user agent identifier, and explicit RiskId and HandleDetail values before handling risk events.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

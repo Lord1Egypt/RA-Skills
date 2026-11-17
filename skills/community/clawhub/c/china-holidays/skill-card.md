@@ -1,42 +1,55 @@
-## Description: <br>
-China Holidays retrieves and summarizes official Chinese national public holiday schedules, including holiday dates and make-up workdays, for requested years. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides China national statutory holiday schedules, including holiday dates and makeup workday adjustments, defaulting to the current year when no year is specified.
 
-## Publisher: <br>
-[xzxiaoshan](https://clawhub.ai/user/xzxiaoshan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xzxiaoshan](https://clawhub.ai/user/xzxiaoshan)
 
-## Use Case: <br>
-External users and agents use this skill to answer questions about China's official public holiday schedules, make-up workdays, and year-to-year holiday comparisons. It is useful for travel planning, workforce scheduling, and checking whether an official notice has already been cached. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fresh or missing holiday data may require outbound requests to gov.cn and local cache writes inside the skill assets directory. <br>
-Mitigation: Use cached yearly notices by default, and refresh only when the user asks for the latest official notice or the requested year is not cached. <br>
-Risk: Future-year holiday notices may not be available until the official government notice is published. <br>
-Mitigation: When a requested year is unavailable, explain that the official notice may not yet be published and suggest querying an already published year or retrying later. <br>
+## Use Case:
 
+External users and employees use this skill to retrieve China holiday schedules, makeup workday adjustments, specific holiday details, custom-formatted summaries, and cross-year comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xzxiaoshan/china-holidays) <br>
-- [Official 2026 China holiday notice](https://www.gov.cn/gongbao/2025/issue_12406/202511/content_7048922.html) <br>
-- [Official 2025 China holiday notice](https://www.gov.cn/zhengce/zhengceku/202411/content_6986383.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Chinese prose, Markdown tables or lists, or JSON when requested, with shell commands for cache retrieval or refresh.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses cached yearly Markdown notices by default and may fetch from gov.cn when fresh or missing data is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: A forced refresh can retrieve and cache a URL selected from remote search results without confirming that it remains on the expected government site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer cached holiday data when possible; when forcing a refresh, confirm the returned URL is an expected gov.cn notice before relying on or sharing the result.
+
+Risk: Network refresh writes new cached notice files inside the skill assets directory.
+
+Mitigation: Review cache changes after refresh and keep the bundled official notices as the preferred baseline for normal use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xzxiaoshan/skills/china-holidays)
+- [China Government Website](https://www.gov.cn/)
+- [2026 State Council Holiday Notice](https://www.gov.cn/gongbao/2025/issue_12406/202511/content_7048922.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain text or Markdown summaries, with JSON, tables, or lists when requested by the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use cached official notices when available and may refresh from the network when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

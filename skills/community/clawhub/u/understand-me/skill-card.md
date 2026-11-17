@@ -1,36 +1,56 @@
-## Description: <br>
-Understand Me helps an agent challenge and refine user ideas by building a decision tree, asking one focused question at a time, recommending an answer, and continuing until shared understanding is reached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks the agent to understand, challenge, refine, interrogate, or co-design their ideas, thoughts, proposals, strategies, plans, designs, documents, or vague intuitions.
 
-## Publisher: <br>
-[guitenbay](https://clawhub.ai/user/guitenbay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[guitenbay](https://clawhub.ai/user/guitenbay)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and product or strategy teams use this skill to pressure-test ideas, plans, designs, and documents through a decision-tree workflow that asks one focused question at a time until shared understanding is reached.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may engage during broad brainstorming because its trigger covers many idea-refinement scenarios.
+
+Mitigation: Use it when a structured critique workflow is desired, and disable or avoid it for casual brainstorming where one-question-at-a-time interrogation is not appropriate.
+
+Risk: The skill may read user-provided documents or files to avoid asking redundant questions.
+
+Mitigation: Provide only materials that are appropriate for the agent to inspect, and review citations or summaries against the supplied source material.
+
+Risk: The skill's critique and recommendations may be incomplete or too forceful for sensitive decisions.
+
+Mitigation: Treat outputs as decision-support guidance and have a human reviewer confirm important assumptions, rejected branches, and final consensus.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill when they want a rigorous thinking partner to clarify ideas, strategies, designs, plans, or documents before moving into execution. It is especially suited to decisions that need assumptions, dependencies, tradeoffs, and missing requirements made explicit. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown with structured decision trees, focused questions, recommended answers, and concise reasoning]
 
-## Reference(s): <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [May cite user-provided materials when they are searched before asking a question.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with a decision-tree delta, one question, a recommended answer, and rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One focused question per turn; searches user-provided materials before asking when relevant.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.0.0 (source: release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

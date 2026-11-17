@@ -1,41 +1,62 @@
-## Description: <br>
-Urlopnik helps employees in Poland calculate leave days, prepare vacation request content, generate leave-request PDFs, and identify useful leave dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Urlopnik helps employees in Poland calculate leave days, generate leave-request text or PDF files, and identify favorable leave dates.
 
-## Publisher: <br>
-[tomasz-pedzierski-infinity](https://clawhub.ai/user/tomasz-pedzierski-infinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomasz-pedzierski-infinity](https://clawhub.ai/user/tomasz-pedzierski-infinity)
 
-## Use Case: <br>
-Employees in Poland can use this skill to estimate remaining leave, count working days for planned time off, and produce a leave request in text or PDF form. It is also useful for planning dates around Polish public holidays and long weekends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Poland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF generation can change the local Python environment by installing a dependency when it is missing. <br>
-Mitigation: Review before installing and use the skill only where automatic pip installs are acceptable, or preinstall reportlab in a controlled environment. <br>
-Risk: Handling of employee leave details and email-sending behavior is unclear. <br>
-Mitigation: Do not use real employee leave details unless the recipient, contents, retention behavior, and deletion path have been verified. <br>
+## Use Case:
 
+Employees and workplace assistants use this skill to plan Polish leave requests, calculate business days against Polish holidays, and prepare leave-request forms for review or submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomasz-pedzierski-infinity/urlopnik) <br>
-- [Publisher profile](https://clawhub.ai/user/tomasz-pedzierski-infinity) <br>
+### Deployment Geography for Use:
 
+Poland
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown-style leave request text and PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses leave dates, leave type, and employee details as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: release evidence) <br>
+Risk: The PDF path can automatically install an unpinned reportlab dependency at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a pinned reportlab version through an approved setup process before enabling PDF generation.
+
+Risk: The skill handles employee names, roles, departments, contact details, leave balances, and leave dates, and the documentation says employee data may be remembered.
+
+Mitigation: Use only approved employee data and confirm where remembered data is stored and how it can be deleted.
+
+Risk: Generated leave-request PDFs may contain personal data and can be written to local paths.
+
+Mitigation: Restrict PDF output to an approved folder and review files before sharing or sending them.
+
+Risk: The documentation describes sending leave requests by email.
+
+Mitigation: Confirm the recipient and message contents before sending any leave request outside the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomasz-pedzierski-infinity/skills/urlopnik)
+- [Publisher profile](https://clawhub.ai/user/tomasz-pedzierski-infinity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional generated PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local leave-request PDFs and may prompt for employee leave details.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

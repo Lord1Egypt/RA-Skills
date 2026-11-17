@@ -1,0 +1,88 @@
+{
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "files": {
+    "pilc-data.json": {
+      "path": "pdlc-ws/data/pilc-data.json",
+      "schema": ".kiro/pdlc/ai-pilc-rule-details/data-schema/pilc-data.schema.json",
+      "package": "ai-pilc",
+      "family": "pdlc"
+    },
+    "adlc-data.json": {
+      "path": "pdlc-ws/data/adlc-data.json",
+      "schema": ".kiro/pdlc/ai-adlc-rule-details/data-schema/adlc-data.schema.json",
+      "package": "ai-adlc",
+      "family": "pdlc"
+    },
+    "polc-data.json": {
+      "path": "pdlc-ws/data/polc-data.json",
+      "schema": ".kiro/pdlc/ai-polc-rule-details/data-schema/polc-data.schema.json",
+      "package": "ai-polc",
+      "family": "pdlc"
+    },
+    "uxd-data.json": {
+      "path": "pdlc-ws/data/uxd-data.json",
+      "schema": ".kiro/pdlc/ai-uxd-rule-details/data-schema/uxd-data.schema.json",
+      "package": "ai-uxd",
+      "family": "pdlc"
+    },
+    "dwg-data.json": {
+      "path": "pdlc-ws/data/dwg-data.json",
+      "schema": ".kiro/pdlc/ai-dwg-rule-details/data-schema/dwg-data.schema.json",
+      "package": "ai-dwg",
+      "family": "pdlc"
+    },
+    "gce-data.json": {
+      "path": "pdlc-ws/data/gce-data.json",
+      "schema": ".kiro/pdlc/ai-gce-rule-details/data-schema/gce-data.schema.json",
+      "package": "ai-gce",
+      "family": "pdlc"
+    },
+    "tge-data.json": {
+      "path": "pdlc-ws/data/tge-data.json",
+      "schema": ".kiro/pdlc/ai-tge-rule-details/data-schema/tge-data.schema.json",
+      "package": "ai-tge",
+      "family": "pdlc"
+    },
+    "ppm-data.json": {
+      "path": "pdlc-ws/data/ppm-data.json",
+      "schema": ".kiro/pdlc/ai-ppm-rule-details/data-schema/ppm-data.schema.json",
+      "package": "ai-ppm",
+      "family": "pdlc"
+    },
+    "flo-data.json": {
+      "path": "pdlc-ws/data/flo-data.json",
+      "schema": ".kiro/pdlc/ai-flo-rule-details/data-schema/flo-data.schema.json",
+      "package": "ai-flo",
+      "family": "pdlc"
+    },
+    "ilc-data.json": {
+      "path": "pdlc-ws/data/ilc-data.json",
+      "schema": ".kiro/pdlc/ai-ilc-rule-details/data-schema/ilc-data.schema.json",
+      "package": "ai-ilc",
+      "family": "pdlc"
+    },
+    "dfe-data.json": {
+      "path": "pdlc-ws/data/dfe-data.json",
+      "schema": ".kiro/pdlc/ai-dfe-rule-details/data-schema/dfe-data.schema.json",
+      "package": "AI-DFE",
+      "family": "pdlc"
+    },
+    "dashboard-data.json": {
+      "path": "pdlc-ws/data/dashboard-data.json",
+      "schema": "pdlc-ws/data/dashboard-data.schema.json",
+      "package": "AI-DFE",
+      "family": "pdlc",
+      "consumer": "AIFLC-PDLC-Dashboard"
+    },
+    "family-status.json": {
+      "path": "pdlc-ws/data/family-status.json",
+      "schema": "pdlc-ws/data/family-status.schema.json",
+      "package": "AI-DFE",
+      "family": "pdlc",
+      "consumer": "family-status"
+    }
+  },
+  "cross-family": {}
+}

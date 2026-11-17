@@ -1,0 +1,4 @@
+interface:
+  display_name: "DefiLlama yield screen"
+  short_description: "Screen yields by token, chain and base return"
+  default_prompt: "Use $galleon-defillama-yield-screen to complete the requested provider workflow with concrete evidence and unresolved gaps."

@@ -2,7 +2,7 @@
 name: response-compression
 description: |
   Compresses verbose responses by removing filler and framing to save 200-400 tokens
-version: 1.9.8
+version: 1.10.3
 triggers:
   - tokens
   - efficiency
@@ -14,18 +14,8 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Elimination Rules](#elimination-rules)
-- [Before/After Transformations](#beforeafter-transformations)
-- [Termination Guidelines](#termination-guidelines)
-- [Directness Guidelines](#directness-guidelines)
-- [Quick Reference Checklist](#quick-reference-checklist)
-- [Token Impact](#token-impact)
-- [Integration](#integration)
 
 # Response Compression
 
@@ -136,6 +126,19 @@ End response immediately after:
 | "Hope this helps!" | Remove always |
 | Bullet recaps | Remove (redundant) |
 
+### Override: action-first-output
+
+When `Skill(conserve:action-first-output)` is active, two rows above
+are overridden:
+
+- **"Next steps:"**: one single-line next action is required, not
+  removed. The ban still holds for multi-item "Next steps:" blocks.
+- **Bullet recaps**: a position marker ("step 3 of 5 done") is
+  required every turn. The ban still holds for recapping content the
+  reader just read.
+
+See the Precedence table in that skill for the full resolution.
+
 ### Exceptions (When Summaries Help)
 
 - Multi-part tasks with many changes
@@ -217,4 +220,19 @@ Over 1000 responses: 150k-350k tokens saved.
 This skill works with:
 - `conserve:token-conservation` - Budget tracking
 - `conserve:context-optimization` - MECW management
-- `sanctum:code-review` - Review feedback
+- `sanctum:pr-review` - Review feedback
+
+## Exit Criteria
+
+- [ ] Response contains none of the banned openers: "Great question!",
+  "I'd be happy to help", "Let's dive in", "Furthermore",
+  "Additionally", "In conclusion"
+- [ ] Response contains no trailing filler: "Let me know if...",
+  "Feel free to...", "Hope this helps!", "Next steps:" (unless
+  safety-critical)
+- [ ] Token count of final response is 150-400 tokens lower than a
+  naive version of the same content would be, verified by comparing
+  before/after examples when token impact is measurable
+- [ ] Safety warnings, technical precision, and factual uncertainty
+  markers are preserved intact; only decorative and conversational
+  content is removed

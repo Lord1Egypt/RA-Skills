@@ -1,0 +1,456 @@
+{
+  "skill_name": "li_vibe_codebase-audit",
+  "version": "2.0.0",
+  "description": "Enhanced security auditing for AI-generated codebases with agent integration, multi-provider support, and comprehensive security checks",
+  "author": "Vibe Coding Community",
+  "license": "MIT",
+  "tags": ["security", "audit", "vibe-coding", "multi-model", "ai-generated-code", "agent-native", "dependency-scan"],
+  
+  "tools": [
+    {
+      "name": "vibe_audit_scan",
+      "description": "Fast local security scan using pattern matching and static analysis. Detects API keys, secrets, personal data, security vulnerabilities, and code quality issues.",
+      "category": "security",
+      "priority": "high",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to the project directory to audit"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown", "console"],
+            "default": "json"
+          },
+          "severity_threshold": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 3
+          },
+          "custom_patterns": {
+            "type": "object",
+            "description": "Custom security patterns to check"
+          }
+        },
+        "required": ["project_path"]
+      }
+    },
+    {
+      "name": "vibe_audit_multi_model",
+      "description": "Multi-model AI consensus audit using Claude, GPT-4, and Gemini. Requires OpenRouter API key.",
+      "category": "security",
+      "priority": "medium",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to the project directory to audit"
+          },
+          "models": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["claude", "gpt4", "gemini"]
+            },
+            "default": ["claude", "gpt4", "gemini"]
+          },
+          "openrouter_api_key": {
+            "type": "string",
+            "description": "OpenRouter API key"
+          },
+          "consensus_mode": {
+            "type": "string",
+            "enum": ["conservative", "average"],
+            "default": "conservative"
+          }
+        },
+        "required": ["project_path"]
+      }
+    },
+    {
+      "name": "vibe_audit_full",
+      "description": "Complete security workflow - automated scan + multi-model audit + fix suggestions",
+      "category": "security",
+      "priority": "high",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to the project directory to audit"
+          },
+          "auto_fix_suggestions": {
+            "type": "boolean",
+            "default": true
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown", "html"],
+            "default": "json"
+          }
+        },
+        "required": ["project_path"]
+      }
+    },
+    {
+      "name": "vibe_audit_enhanced",
+      "description": "Enhanced audit with agent integration, multi-provider support, dependency scanning, and caching. RECOMMENDED for best results.",
+      "category": "security",
+      "priority": "highest",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to project directory"
+          },
+          "primary_provider": {
+            "type": "string",
+            "enum": ["agent_llm", "openai", "claude", "ollama", "deepseek", "qwen"],
+            "default": "agent_llm",
+            "description": "Primary LLM provider (agent_llm = use current agent's LLM, no API key needed)"
+          },
+          "fallback_provider": {
+            "type": "string",
+            "description": "Fallback provider if primary fails"
+          },
+          "enable_dependency_scan": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable dependency vulnerability scanning"
+          },
+          "enable_config_scan": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable configuration security scanning"
+          },
+          "use_cache": {
+            "type": "boolean",
+            "default": true,
+            "description": "Use cached results when available"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown", "html"],
+            "default": "json"
+          }
+        },
+        "required": ["project_path"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "project": {"type": "string"},
+          "timestamp": {"type": "string"},
+          "file_audit": {"type": "object"},
+          "dependency_scan": {"type": "object"},
+          "config_scan": {"type": "object"},
+          "summary": {"type": "object"}
+        }
+      },
+      "features": [
+        "✅ Agent-native LLM integration (no API key needed)",
+        "✅ Multi-provider support (OpenAI, Claude, Ollama, DeepSeek, Qwen)",
+        "✅ Dependency vulnerability scanning",
+        "✅ Configuration security checks",
+        "✅ Smart caching for performance",
+        "✅ Parallel processing"
+      ],
+      "examples": [
+        {
+          "description": "Use current agent's LLM (no setup required)",
+          "input": {
+            "project_path": "/path/to/project",
+            "primary_provider": "agent_llm"
+          }
+        },
+        {
+          "description": "Use OpenAI API with dependency scan",
+          "input": {
+            "project_path": "/path/to/project",
+            "primary_provider": "openai",
+            "enable_dependency_scan": true,
+            "enable_config_scan": true
+          }
+        },
+        {
+          "description": "Use local Ollama model",
+          "input": {
+            "project_path": "/path/to/project",
+            "primary_provider": "ollama"
+          }
+        }
+      ]
+    },
+    {
+      "name": "vibe_audit_incremental",
+      "description": "Incremental audit - only audit changed files between branches. Perfect for CI/CD and large projects.",
+      "category": "security",
+      "priority": "medium",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to project directory"
+          },
+          "base_branch": {
+            "type": "string",
+            "default": "main",
+            "description": "Base branch for comparison"
+          },
+          "compare_branch": {
+            "type": "string",
+            "default": "HEAD",
+            "description": "Branch to compare"
+          }
+        },
+        "required": ["project_path"]
+      },
+      "features": [
+        "✅ Git integration",
+        "✅ Only scan changed files",
+        "✅ Faster for large projects",
+        "✅ Perfect for PR reviews"
+      ],
+      "use_cases": [
+        "CI/CD pipeline integration",
+        "Pull request security review",
+        "Large codebase optimization"
+      ]
+    },
+    {
+      "name": "vibe_audit_diff",
+      "description": "Compare security state between two Git commits. Track security improvements over time.",
+      "category": "security",
+      "priority": "low",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to project directory"
+          },
+          "base_commit": {
+            "type": "string",
+            "description": "Base commit hash"
+          },
+          "head_commit": {
+            "type": "string",
+            "default": "HEAD",
+            "description": "Head commit hash"
+          }
+        },
+        "required": ["project_path", "base_commit"]
+      },
+      "features": [
+        "✅ Track security improvements",
+        "✅ Compare before/after changes",
+        "✅ Historical analysis"
+      ]
+    }
+  ],
+  
+  "providers": {
+    "agent_llm": {
+      "name": "Agent LLM",
+      "description": "Use current agent's LLM connection (OpenCode, Hermes, OpenClaw)",
+      "setup": "No setup required! Automatically detected",
+      "cost": "Uses agent's existing connection",
+      "best_for": "Seamless integration with agent workflow"
+    },
+    "openai": {
+      "name": "OpenAI Compatible API",
+      "description": "OpenAI GPT-4, GPT-4-turbo, and compatible APIs",
+      "setup": "Set OPENAI_API_KEY environment variable",
+      "cost": "Pay-per-use",
+      "best_for": "High-quality analysis with GPT-4"
+    },
+    "claude": {
+      "name": "Claude API",
+      "description": "Anthropic's Claude models",
+      "setup": "Set ANTHROPIC_API_KEY environment variable",
+      "cost": "Pay-per-use",
+      "best_for": "Thoughtful, detailed analysis"
+    },
+    "ollama": {
+      "name": "Ollama Local Models",
+      "description": "Run models locally (Llama2, Mistral, etc.)",
+      "setup": "Install Ollama and pull model: ollama pull llama2",
+      "cost": "Free (runs locally)",
+      "best_for": "Privacy-sensitive projects, no API costs"
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "description": "Cost-effective alternative to GPT-4",
+      "setup": "Set DEEPSEEK_API_KEY environment variable",
+      "cost": "Lower cost than GPT-4",
+      "best_for": "Budget-conscious teams"
+    },
+    "qwen": {
+      "name": "Qwen/Tongyi",
+      "description": "Alibaba's Qwen models",
+      "setup": "Set DASHSCOPE_API_KEY environment variable",
+      "cost": "Pay-per-use",
+      "best_for": "Chinese language support, cost-effective"
+    }
+  },
+  
+  "security_checks": {
+    "secrets_detection": {
+      "name": "Secrets & Credentials Detection",
+      "items": [
+        "API keys (OpenAI, Anthropic, AWS, GitHub, etc.)",
+        "Authentication tokens",
+        "Database credentials",
+        "SSH keys",
+        "JWT secrets",
+        "AWS credentials pattern"
+      ]
+    },
+    "vulnerability_detection": {
+      "name": "Security Vulnerabilities",
+      "items": [
+        "SQL injection",
+        "Command injection",
+        "Path traversal",
+        "XSS patterns",
+        "CSRF issues",
+        "Weak cryptography"
+      ]
+    },
+    "dependency_scanning": {
+      "name": "Dependency Security (NEW)",
+      "items": [
+        "Known CVE vulnerabilities",
+        "Outdated packages",
+        "License compliance",
+        "npm, pip, maven, cargo, go mod support"
+      ]
+    },
+    "config_security": {
+      "name": "Configuration Security (NEW)",
+      "items": [
+        "Exposed .env files",
+        "CORS misconfiguration",
+        "Debug mode enabled",
+        "SSL verification disabled",
+        "Authentication config issues"
+      ]
+    }
+  },
+  
+  "performance_features": {
+    "caching": {
+      "description": "Smart caching of audit results",
+      "benefit": "Avoid re-scanning unchanged files",
+      "default_enabled": true
+    },
+    "incremental_audit": {
+      "description": "Only audit changed files",
+      "benefit": "Perfect for CI/CD and large projects",
+      "use_git": true
+    },
+    "parallel_processing": {
+      "description": "Multi-threaded scanning",
+      "benefit": "Faster scanning for large codebases",
+      "default_workers": 4
+    },
+    "diff_audit": {
+      "description": "Compare security between commits",
+      "benefit": "Track security improvements over time"
+    }
+  },
+  
+  "configuration": {
+    "file": ".vibe-audit.yaml or .vibe-audit.json",
+    "example": "See vibe-audit-config.yaml for full configuration options",
+    "custom_rules": "See custom-rules-example.yaml for custom security rules"
+  },
+  
+  "agent_compatibility": {
+    "opencode": {
+      "integration": "Native skill",
+      "setup": "Auto-discovered",
+      "best_practice": "Use vibe_audit_enhanced with primary_provider='agent_llm'"
+    },
+    "hermes": {
+      "integration": "Plugin",
+      "setup": "Add to plugins directory",
+      "triggers": ["pre_commit", "pre_publish"]
+    },
+    "openclaw": {
+      "integration": "Module import",
+      "setup": "from vibe_audit_enhanced import vibe_audit_enhanced",
+      "usage": "Call functions directly"
+    },
+    "mcp": {
+      "integration": "MCP protocol",
+      "setup": "Configure as MCP server",
+      "protocol_version": "1.0"
+    }
+  },
+  
+  "comparison": {
+    "tools": [
+      {
+        "tool": "vibe_audit_enhanced",
+        "speed": "Medium-Fast",
+        "accuracy": "High",
+        "features": "All features",
+        "best_for": "Production use",
+        "requires_api_key": "Optional"
+      },
+      {
+        "tool": "vibe_audit_scan",
+        "speed": "Fast",
+        "accuracy": "Medium",
+        "features": "Basic scanning",
+        "best_for": "Quick checks",
+        "requires_api_key": "No"
+      },
+      {
+        "tool": "vibe_audit_multi_model",
+        "speed": "Slow",
+        "accuracy": "Highest",
+        "features": "AI consensus",
+        "best_for": "Critical projects",
+        "requires_api_key": "Yes"
+      },
+      {
+        "tool": "vibe_audit_incremental",
+        "speed": "Very Fast",
+        "accuracy": "Medium",
+        "features": "Git-aware",
+        "best_for": "CI/CD",
+        "requires_api_key": "Optional"
+      }
+    ]
+  },
+  
+  "migration": {
+    "from_v1_to_v2": {
+      "old_tool": "vibe_audit_multi_model",
+      "new_tool": "vibe_audit_enhanced",
+      "benefits": [
+        "No API key needed with agent_llm",
+        "Dependency scanning included",
+        "Configuration checks included",
+        "Better caching",
+        "More provider options"
+      ]
+    }
+  },
+  
+  "quick_start": {
+    "step1": "Choose your tool: vibe_audit_enhanced (recommended)",
+    "step2": "Set project_path",
+    "step3": "Set primary_provider='agent_llm' (no API key needed!)",
+    "step4": "Run audit",
+    "step5": "Review findings and fix suggestions"
+  }
+}

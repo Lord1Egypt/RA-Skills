@@ -1,0 +1,2 @@
+Package   Current  Wanted  Latest  Location
+httpie    3.2.2    3.2.2   3.2.3   global

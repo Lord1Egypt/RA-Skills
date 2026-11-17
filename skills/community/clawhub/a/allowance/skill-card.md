@@ -1,46 +1,60 @@
-## Description: <br>
-Allowance agent purchase wallet. Use when the user asks to buy something, make a purchase, order an item, book travel, reserve something, pay, or spend money on their behalf. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Allowance agent purchase wallet. Use when the user asks to buy something, make a purchase, order an item, book travel, reserve something, pay, or spend money on their behalf.
 
-## Publisher: <br>
-[useallowance](https://clawhub.ai/user/useallowance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[useallowance](https://clawhub.ai/user/useallowance)
 
-## Use Case: <br>
-External users and their agents use this skill to request scoped spending approval, receive limited virtual cards, complete checkout, and report purchase outcomes without exposing the user's real card. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can complete real purchases after scoped user approval. <br>
-Mitigation: Install only when an agent should be able to spend money on the user's behalf, and use strict spending caps with clear item, merchant, variant, and shipping constraints. <br>
-Risk: After phone approval, the agent is instructed to submit checkout without a second confirmation when the purchase remains within the approved scope. <br>
-Mitigation: Require a new user decision when the total exceeds the approved cap, the item or variant materially changes, or checkout needs details the agent cannot retrieve from Allowance-scoped commands. <br>
-Risk: Virtual card details and scoped personal details are sensitive checkout data. <br>
-Mitigation: Type card details directly into the merchant checkout form, never reveal them in chat, and request identity or address details only when the merchant form requires them. <br>
-Risk: Local checkout automation requires browser control that may be unavailable in some agent sessions. <br>
-Mitigation: Verify the current session can navigate, click, type, and inspect a local browser before creating an approval request. <br>
+## Use Case:
 
+External users and their agents use this skill to request scoped spending approval, issue limited virtual cards, complete checkout, and report purchase outcomes without exposing the user's real card.
 
-## Reference(s): <br>
-- [Allowance homepage](https://useallowance.com) <br>
-- [Canonical hosted skill file](https://useallowance.com/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/useallowance/allowance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers approval requests, browser checkout requirements, virtual card handling, MCP setup when explicitly requested, and outcome reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill gives an agent real-money checkout authority after user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a concrete merchant, item, total cap, and shipping expectations, and require a new approval when the realized total or item materially differs.
+
+Risk: The setup flow installs mutable external CLI code globally.
+
+Mitigation: Prefer pinned and verified versions of both the skill and Allowance CLI before enabling purchase flows.
+
+Risk: Checkout can expose one-time virtual card details inside the browser session.
+
+Mitigation: Type card details directly into merchant forms only and do not paste, summarize, or reveal card number, CVV, expiry, or last four in chat.
+
+## Reference(s):
+
+- [Allowance homepage](https://useallowance.com)
+- [Canonical hosted skill file](https://useallowance.com/SKILL.md)
+- [ClawHub skill listing](https://clawhub.ai/useallowance/skills/allowance)
+- [Publisher profile](https://clawhub.ai/user/useallowance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires concrete purchase details, an approved spend cap, and local browser control before checkout.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

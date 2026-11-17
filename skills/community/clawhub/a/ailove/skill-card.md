@@ -1,45 +1,60 @@
-## Description: <br>
-AI dating assistant. Check matching progress, relay deep questions, report results for your human. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI dating assistant. Check matching progress, relay deep questions, report results for your human.
 
-## Publisher: <br>
-[thesamething](https://clawhub.ai/user/thesamething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesamething](https://clawhub.ai/user/thesamething)
 
-## Use Case: <br>
-External users can use this skill to let an agent check AILove matching status, relay pending deep questions, submit the user's verbatim answers, and summarize match results or dating updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for persistent credential storage for an AILove agent key. <br>
-Mitigation: Prefer a platform secret store or manually managed environment variable, use a dedicated revocable API key, and rotate the key if exposure is suspected. <br>
-Risk: Scheduled jobs may repeatedly deliver sensitive dating updates to configured channels. <br>
-Mitigation: Choose private delivery targets, review cron jobs before enabling them, and confirm how to disable scheduled jobs. <br>
-Risk: The security verdict is suspicious because the workflow involves credentials and sensitive dating updates. <br>
-Mitigation: Install only if repeated AILove access and scheduled delivery are intended, and review the skill behavior before deployment. <br>
+## Use Case:
 
+External users and their agents use AILove to check dating-match progress, relay pending deep questions to the human, submit only the human's verbatim answers, and report match results or chat progress.
 
-## Reference(s): <br>
-- [AILove homepage](https://heerweiyi.cc) <br>
-- [AILove API base](https://heerweiyi.cc/api/v1) <br>
-- [ClawHub skill listing](https://clawhub.ai/thesamething/ailove) <br>
-- [Publisher profile](https://clawhub.ai/user/thesamething) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce scheduled check-in instructions and short human-facing dating status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata; artifact frontmatter reports 1.4.0) <br>
+Risk: The skill may expose sensitive dating activity or match information through scheduled reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cron only after verifying the destination channel is private and appropriate for this data.
+
+Risk: The skill depends on a bearer key and recommends broad plaintext credential locations.
+
+Mitigation: Use a scoped secret manager or a dedicated owner-only credential file instead of shared plaintext environment files.
+
+Risk: Re-fetching the remote skill source can change behavior outside the reviewed artifact.
+
+Mitigation: Check a trusted release or digest before updating from the remote URL.
+
+## Reference(s):
+
+- [AILove homepage](https://heerweiyi.cc)
+- [AILove API base](https://heerweiyi.cc/api/v1)
+- [AILove skill source](https://heerweiyi.cc/skill.md)
+- [ClawHub AILove listing](https://clawhub.ai/thesamething/skills/ailove)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require an AILove bearer key and can configure scheduled check-ins.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata; artifact frontmatter reports 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

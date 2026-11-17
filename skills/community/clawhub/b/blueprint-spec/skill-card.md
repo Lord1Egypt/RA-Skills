@@ -1,41 +1,57 @@
-## Description: <br>
-Requirements blueprint workflow for transforming vague task descriptions into high-quality, implementation-ready Spec and RFC documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Requirements blueprint workflow for transforming vague task descriptions into high-quality, implementation-ready Spec and RFC documents.
 
-## Publisher: <br>
-[XadillaX](https://clawhub.ai/user/XadillaX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xadillax](https://clawhub.ai/user/xadillax)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn ambiguous implementation requests into structured requirements, technical design, validation, and optional implementation flow. It is suited for planning complex changes before code is written. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can proceed from planning into code changes after Spec and RFC confirmation. <br>
-Mitigation: State explicitly whether code changes are authorized, or request "only Spec/RFC" when planning output is the desired endpoint. <br>
-Risk: The skill instructs the agent not to pause once implementation starts, which can reduce opportunities to catch new ambiguity, safety issues, or permission changes. <br>
-Mitigation: Require the agent to pause for newly discovered ambiguity, safety concerns, permission changes, or material scope changes before continuing. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn vague or complex implementation requests into structured requirements, a Spec, and an RFC before code changes are made. It is intended for tasks that need clarification, design analysis, validation, and explicit approval before implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/XadillaX/blueprint-spec) <br>
-- [Publisher profile](https://clawhub.ai/user/XadillaX) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown prose with structured Spec and RFC sections, questions, validation notes, and implementation guidance or code changes when authorized] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts response language to the user and may continue into implementation after confirmed Spec and RFC unless the user requests Spec/RFC only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad design requests can become code changes after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For design-only work, explicitly request only the Spec/RFC and require a separate scoped authorization before any code changes.
+
+Risk: Once implementation starts, the skill directs the agent to continue until completion, which can amplify unresolved ambiguity.
+
+Mitigation: Resolve TBD items, confirm scope, and review the planned tests before authorizing implementation.
+
+Risk: Generated requirements, RFC content, code, or commands may be incomplete or incorrect for the target system.
+
+Mitigation: Review the Spec/RFC, inspect any code diff, and run the relevant tests before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xadillax/skills/blueprint-spec)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown Spec and RFC text, with code, commands, or configuration when implementation is authorized]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts response language to the user and requires confirmation before moving from design to implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

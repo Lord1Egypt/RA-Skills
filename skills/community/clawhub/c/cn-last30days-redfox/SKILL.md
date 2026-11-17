@@ -1,6 +1,6 @@
 ---
 name: cn-last30days
-version: "2.0.0"
+version: "2.1.0"
 description: "中国社媒平台话题研究工具。从小红书、抖音、公众号三大平台搜索近30天真实讨论，跨平台对比分析舆情趋势。当用户需要研究中国社交媒体热点话题、分析舆情趋势、对比品牌口碑时使用。触发词：小红书热点、抖音趋势、公众号舆情、跨平台分析、社媒研究、话题分析、舆情监测。"
 argument-hint: 'cn-last30days AI视频工具 | cn-last30days 大模型 | cn-last30days 小红书运营'
 allowed-tools: Bash, Read, Write, AskUserQuestion, WebSearch
@@ -42,7 +42,7 @@ Last 30 Days—CN版 是中国社交媒体话题研究工具，从小红书、�
 
 | 功能模块 | 能力描述 | 核心价值 |
 |---------|---------|---------|
-| 三平台数据源 | 小红书、抖音、公众号真实数据 | 多维度舆情视角 |
+| 三平台数据源 | 小红书/公众号统一接口 + 抖音广域库接口数据 | 多维度舆情视角 |
 | 关键词研究 | 支持多词组合查询（英文逗号分隔） | 灵活话题覆盖 |
 | 跨平台对比 | 自动综合三平台数据生成洞察 | 发现差异化趋势 |
 | 对比 | A vs B 结构化对比分析 | 辅助决策判断 |
@@ -51,13 +51,13 @@ Last 30 Days—CN版 是中国社交媒体话题研究工具，从小红书、�
 
 ## 🔑 鉴权
 
-脚本内置免费公共 Key，开箱即用。如需更高额度，从 [红狐数据](https://www.redfox.hk/settings/api-keys?source=clawhub) 获取个人 Key 并配置环境变量：
+脚本需配置 API Key 使用。从 [红狐数据](https://www.redfox.hk/settings/api-keys?source=clawhub) 获取个人 Key 并配置环境变量：
 
 ```bash
 export REDFOX_API_KEY=ak_你的密钥
 ```
 
-优先级：命令行 `--api-key` > 内置公共 Key > `REDFOX_API_KEY` / `X_API_KEY` 环境变量。
+优先级：命令行 `--api-key` > `REDFOX_API_KEY` / `X_API_KEY` 环境变量 > 配置文件。
 
 ---
 
@@ -86,8 +86,8 @@ export REDFOX_API_KEY=ak_你的密钥
 
 ### 1. 环境检查
 
-脚本内置公共 Key 有免费额度，直接使用即可。如内置 Key 不可用且无 `REDFOX_API_KEY` / `X_API_KEY` 环境变量，提示用户：
-> 请配置 API Key：`export REDFOX_API_KEY=ak_你的密钥`，注册地址 https://www.redfox.hk/login
+运行前需确保已配置 API Key（环境变量 `REDFOX_API_KEY` 或 `--api-key` 参数）。如未配置，提示用户：
+> 请配置 API Key：`export REDFOX_API_KEY=ak_你的密钥`，注册地址 https://www.redfox.hk/login?source=clawhub
 
 ### 2. 关键词质量检查
 
@@ -128,24 +128,25 @@ python3 scripts/cn_last30days.py "{TOPIC},{SUBTOPIC}" \
 ### 7. 综合输出
 
 按 [输出规则](references/output-rules.md) 生成研究报告。核心原则：
+- **徽章之后、「我的发现」之前**，必须输出「数据速览」模块：按公众号→小红书→抖音顺序，每平台展示 TOP5 作品表格（标题作为可点击超链接、作者、平台专属互动指标分列展示（公众号阅读/点赞/转发，小红书点赞/收藏/评论，抖音点赞/评论/分享）），模块末尾展示数据总量和 HTML 报告提示
 - 按话题/故事综合，非按平台罗列
 - 多平台交叉验证的结论置信度最高
 - 高互动内容权重最高（含真实用户信号）
 - 每个叙事段落以粗体标题开头，后跟 ` - ` 和正文
 - 引用必须为可点击的 Markdown 链接
 
-综合报告完成后，询问用户是否需要 HTML。如需要：
+综合报告完成后，**自动执行**以下步骤生成 HTML 报告（无需询问用户）：
 
 ```bash
-# 1. 写入 Markdown 报告
-cat > "${CN_LAST30DAYS_MEMORY_DIR:-$HOME/Documents/CnLast30Days}/cn30days_{TOPIC}_report.md" << 'REPORT_EOF'
-{综合报告全文}
-REPORT_EOF
-
-# 2. 从 JSON + 报告生成 HTML（不调 API）
-python3 scripts/cn_last30days.py --from-json "JSON文件路径" --report-file "报告Markdown路径" \
+# 直接从 JSON 生成 HTML（不调 API，不写入 Markdown）
+python3 scripts/cn_last30days.py --from-json "JSON文件路径" \
   --output-dir="${CN_LAST30DAYS_MEMORY_DIR:-$HOME/Documents/CnLast30Days}"
+
+# 自动打开 HTML 报告
+open "HTML文件路径"
 ```
+
+脚本会输出 HTML 文件路径，自动打开后将路径告知用户即可。
 
 ---
 

@@ -1,42 +1,58 @@
-## Description: <br>
-A Chinese-language skill for screening mutual funds, analyzing candidates with a five-dimension framework, building portfolios, and planning dollar-cost averaging reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens and analyzes mutual funds using a five-dimension framework for performance, managers, style, holdings, and institutional flows, then supports portfolio construction and DCA tracking.
 
-## Publisher: <br>
-[cr330326](https://clawhub.ai/user/cr330326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cr330326](https://clawhub.ai/user/cr330326)
 
-## Use Case: <br>
-External users and agents use this skill to screen Chinese mutual funds, compare individual funds, configure fund portfolios, and maintain dollar-cost averaging review records. Outputs should be treated as decision support, not licensed financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce fund screening or DCA guidance that users could mistake for licensed financial advice. <br>
-Mitigation: Confirm assumptions, risk tolerance, fees, tax context, and source data independently before acting on any output. <br>
-Risk: Fund rankings, ratings, manager data, holdings, and flows can become stale or vary across data providers. <br>
-Mitigation: Use current source data from the cited fund platforms and verify candidate funds before making portfolio decisions. <br>
+## Use Case:
 
+External users and finance-focused agent operators use this skill to screen Chinese mutual funds, compare individual funds, build fund portfolios, and track DCA execution. Outputs should be treated as informational and reviewed before investment decisions.
 
-## Reference(s): <br>
-- [Five-Dimension Analysis Standard](references/five-dimensions.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cr330326/fund-screening) <br>
-- [Publisher Profile](https://clawhub.ai/user/cr330326) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown tables, structured scorecards, portfolio guidance, and optional XLSX file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a required investment-advice disclaimer when discussing specific fund recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fund screening outputs may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as informational only, review them independently, and include the required disclaimer when discussing specific funds.
+
+Risk: The skill can save or update local Markdown or XLSX investment records.
+
+Mitigation: Confirm before allowing writes or updates to local investment records and keep generated files in the documented results location.
+
+Risk: Processing XLSX files introduces dependency and file-handling risk.
+
+Mitigation: Use a locked or sandboxed Python environment when opening XLSX files.
+
+## Reference(s):
+
+- [Five-Dimension Analysis Standard](artifact/references/five-dimensions.md)
+- [ClawHub Skill Page](https://clawhub.ai/cr330326/skills/fund-screening)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Chinese Markdown with tables and scorecards, optional XLSX files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Specific fund recommendations must include an informational-only investment disclaimer; saved result files use Markdown or XLSX formats with YYYYMMDD dates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

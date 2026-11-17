@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "project-init123",
+  "name": "project-init",
   "version": "1.0.0",
-  "publishedAt": 1777470368004
+  "description": "自动初始化 Gitea 科研项目仓库，生成标准目录结构、基础文档和启动期 Issue",
+  "main": "main.js",
+  "author": "HKU-AIFusion",
+  "keywords": ["gitea", "repo", "init", "project", "automation"]
 }

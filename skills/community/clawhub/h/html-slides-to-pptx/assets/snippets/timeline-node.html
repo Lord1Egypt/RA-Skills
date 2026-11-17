@@ -1,0 +1,32 @@
+<!--
+  timeline-node.html — 时间线节点(渐变圆 + 旋转年份 + 说明)
+  用法:沿虚线轴排列多个节点,上下交替。
+  ⚠️ 默认用原型 14(实线+圆点+正立字,见 page-archetypes.md);本片段仅在用户明确要求"活泼风"时使用。
+  参数:
+    X / Y             — 圆心位置(节点 60×60)
+    GRAD_FROM         — 渐变起始色
+    GRAD_TO           — 渐变结束色
+    YEAR              — 年份文字(如 2024)
+    YEAR_ROTATE       — 旋转角度(如 -8deg 或 8deg)
+    TITLE             — 节点标题(如 产品发布)
+    SUB               — 节点副标题(如 首个 AI 工作流)
+    SIDE              — 上下方向:up(年份在节点上方)或 down(下方)
+  z 序:圆节点 z-index:5 → 连接线 z-index:3 → 文字 z-index:10
+  提示:虚线轴用独立 shape(border-top:3px dashed)水平贯穿
+-->
+<!-- 渐变圆节点 -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:{{X}};top:{{Y}};width:60px;height:60px;border-radius:50%;
+            background:linear-gradient(135deg,{{GRAD_FROM}},{{GRAD_TO}});
+            box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:5;"></div>
+<!-- 旋转年份(根据 SIDE 调整 top) -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} - 50px);top:calc({{Y}} {{SIDE_UP_DOWN}});width:160px;height:50px;
+            font-size:32px;font-weight:800;color:{{GRAD_FROM}};text-align:center;line-height:50px;
+            transform:rotate({{YEAR_ROTATE}});z-index:10;">{{YEAR}}</div>
+<!-- 节点说明 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} - 80px);top:calc({{Y}} {{SIDE_TITLE_DOWN}});width:220px;height:60px;
+            font-size:22px;color:var(--text-primary);text-align:center;line-height:1.5;z-index:10;">
+  <b>{{TITLE}}</b><br><span style="font-size:16px;color:var(--text-tertiary);">{{SUB}}</span>
+</div>

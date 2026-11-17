@@ -1,40 +1,53 @@
-## Description: <br>
-Provides strict guidance for occasional HEARTBEAT.md updates, requiring a single replacement status block at most once per hour. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to keep HEARTBEAT.md updates brief, single-entry, replacement-only, and no more frequent than once per hour.
 
-## Publisher: <br>
-[quratus](https://clawhub.ai/user/quratus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quratus](https://clawhub.ai/user/quratus)
 
-## Use Case: <br>
-Developers and agents use this skill to keep HEARTBEAT.md concise by replacing it with a single short status block when an update is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Updating HEARTBEAT.md replaces the file and can remove useful context if the wrong path or stale state is used. <br>
-Mitigation: Confirm the target file path and use normal safeguards such as version control or backups before allowing the overwrite. <br>
-Risk: Frequent or appended heartbeat updates can clutter the status file and confuse downstream heartbeat handling. <br>
-Mitigation: Check the last update time, update at most once per hour, and keep only one short status block. <br>
+## Use Case:
 
+Developers and agent operators use this skill when a repository relies on HEARTBEAT.md for coordination and they need agents to write one concise status block without clutter.
 
-## Reference(s): <br>
-- [Breadcrumb Writer on ClawHub](https://clawhub.ai/quratus/breadcrumb-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown status block or concise editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden code, installs, credentials, or network behavior found in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using the skill in projects that do not use HEARTBEAT.md can create irrelevant coordination guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the project uses HEARTBEAT.md for task coordination before installing or invoking the skill.
+
+Risk: Frequent or append-only updates can clutter HEARTBEAT.md and confuse coordination.
+
+Mitigation: Replace the file with one short block and skip updates if HEARTBEAT.md changed within the last 60 minutes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quratus/skills/breadcrumb-writer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Concise Markdown status guidance for HEARTBEAT.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replacement-only status block; avoid repeated sections and skip updates if HEARTBEAT.md changed within the last 60 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

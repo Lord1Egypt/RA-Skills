@@ -1,52 +1,61 @@
-## Description: <br>
-Select superior mathematical modeling contest problems and modeling-solution routes for CUMCM A/B/C, MCM, ICM, and similar contests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Select superior mathematical modeling contest problems and modeling-solution routes for CUMCM A/B/C, MCM, ICM, and similar contests.
 
-## Publisher: <br>
-[y3519712124-ui](https://clawhub.ai/user/y3519712124-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[y3519712124-ui](https://clawhub.ai/user/y3519712124-ui)
 
-## Use Case: <br>
-External contest participants, coaches, and modeling teams use this skill to compare contest topics, select feasible modeling routes, test alternatives, and plan validation and fallback paths for stronger papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Topic and route recommendations can be misleading when contest statements, team skills, data availability, or validation evidence are incomplete. <br>
-Mitigation: Provide full problem statements and team constraints, review assumptions and scoring evidence, and use the skill's baseline, refutation, and fallback checks before relying on a recommendation. <br>
-Risk: The bundled scoring script depends on user-provided JSON and selected output paths. <br>
-Mitigation: Review scoring JSON before execution and choose output paths deliberately; the security scan found no credential requirement, hidden data access, exfiltration, or unsafe automatic actions. <br>
+## Use Case:
 
+External contest participants, students, and modeling teams use this skill to compare CUMCM A/B/C, MCM, ICM, and similar problem choices, then select feasible modeling routes with baselines, validation plans, fallback triggers, and paper-ready justification.
 
-## Reference(s): <br>
-- [Award Method Distillation](references/award-method-distillation.md) <br>
-- [Award-Style Question Decomposition](references/award-question-decomposition.md) <br>
-- [Award Route Pattern Library](references/award-route-pattern-library.md) <br>
-- [Contest Archives](references/contest-archives.md) <br>
-- [Engineering Feasibility](references/engineering-feasibility.md) <br>
-- [Method Map](references/method-map.md) <br>
-- [Paper Scoring Framework](references/paper-scoring-framework.md) <br>
-- [Problem Taxonomy](references/problem-taxonomy.md) <br>
-- [Refutation and Model Choice](references/refutation-and-model-choice.md) <br>
-- [Selection Rubric](references/selection-rubric.md) <br>
-- [CUMCM Official Site](https://www.mcm.edu.cn/) <br>
-- [CUMCM Historical Problem Archive](https://www.mcm.edu.cn/html_cn/node/a53a84ead7b2e5087dc59954d440219a.html) <br>
-- [COMAP MCM/ICM Contest Matrix](https://www.contest.comap.com/undergraduate/contests/matrix/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with structured comparisons, JSON scoring data, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local scoring script when valid scoring JSON is provided; recommendations should be reviewed against the full contest statements and team constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to run a bundled Python scoring script that writes a Markdown report when an output path is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only in workspaces where creating contest-planning files is acceptable, and review the output path before execution.
+
+## Reference(s):
+
+- [Award Method Distillation](references/award-method-distillation.md)
+- [Award-Style Question Decomposition](references/award-question-decomposition.md)
+- [Award Route Pattern Library](references/award-route-pattern-library.md)
+- [Contest Archives And Historical Scope](references/contest-archives.md)
+- [Engineering Feasibility For Modeling Routes](references/engineering-feasibility.md)
+- [Method Map](references/method-map.md)
+- [Paper Scoring Framework](references/paper-scoring-framework.md)
+- [Problem Taxonomy For Topic Selection](references/problem-taxonomy.md)
+- [Refutation And Model-Choice Workflow](references/refutation-and-model-choice.md)
+- [Topic And Method Route Selection Rubric](references/selection-rubric.md)
+- [CUMCM official site](https://www.mcm.edu.cn/)
+- [CUMCM historical problem archive](https://www.mcm.edu.cn/html_cn/node/a53a84ead7b2e5087dc59954d440219a.html)
+- [COMAP MCM/ICM contest matrix](https://www.contest.comap.com/undergraduate/contests/matrix/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown analysis with optional shell command and JSON scoring-input guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scoring script reads contest-ranking JSON and prints Markdown to stdout or writes a Markdown report when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

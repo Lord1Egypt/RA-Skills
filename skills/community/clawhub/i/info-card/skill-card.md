@@ -1,43 +1,54 @@
-## Description: <br>
-Info Card helps an agent generate 900x1200 PNG social-media information cards, knowledge cards, and posters from local HTML/CSS templates using Python and Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 900x1200 PNG information cards, knowledge cards, and poster-style visuals from HTML/CSS templates using Playwright.
 
-## Publisher: <br>
-[rivercrab26](https://clawhub.ai/user/rivercrab26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rivercrab26](https://clawhub.ai/user/rivercrab26)
 
-## Use Case: <br>
-Developers and content creators use this skill to turn structured JSON card data into polished vertical PNG assets for social posts, explainers, checklists, comparisons, reports, and other visual knowledge-card formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generator may require installing Playwright and Chromium and then running a local headless browser. <br>
-Mitigation: Install browser dependencies in a controlled environment and review generated files before sharing or deploying them. <br>
-Risk: Card data can include remote image or avatar URLs and rendered pages may fetch remote fonts or image resources. <br>
-Mitigation: Use trusted URLs or local assets when rendering sensitive content, and avoid untrusted external resources in restricted environments. <br>
-Risk: Untrusted JSON input can influence rendered HTML content and output files. <br>
-Mitigation: Treat incoming card data as untrusted, inspect it before rendering, and avoid running the generator on unknown payloads without isolation. <br>
+## Use Case:
 
+Content creators, marketers, educators, and developers use this skill to turn structured JSON content into shareable social-media-style PNG cards for tutorials, reports, comparisons, profiles, FAQs, timelines, and promotional visuals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rivercrab26/info-card) <br>
-- [Info-Card design specifications](artifact/references/design-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [PNG image files and optional HTML, with command output showing the generated file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a 900x1200 3:4 PNG written to /tmp or a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill renders user-provided card data in an active browser, which can expose sensitive content or trigger unexpected network requests when image URLs are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted card JSON, avoid remote or internal image URLs, and run generation in an isolated environment with restricted network access for sensitive content.
+
+Risk: Browser screenshot output may vary across Playwright or Chromium versions.
+
+Mitigation: Pin Playwright and Chromium versions for reproducible rendering.
+
+## Reference(s):
+
+- [Info Card skill page](https://clawhub.ai/rivercrab26/skills/info-card)
+- [Design specs](artifact/references/design-specs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [PNG image file path on stdout, with optional generated HTML for debugging]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is /tmp/info_card_{timestamp}.png unless an output path is provided; image content is rendered from template data and screenshots.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

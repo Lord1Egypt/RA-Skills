@@ -1,43 +1,58 @@
-## Description: <br>
-TypeScript CLI for Unraid Server GraphQL API. 12 command groups for system, arrays, disks, containers, VMs, shares, logs, and diagnostics. Built for humans and AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TypeScript CLI for Unraid Server GraphQL API with command groups for system, arrays, disks, containers, VMs, shares, logs, diagnostics, and other Unraid operations.
 
-## Publisher: <br>
-[ingodibella](https://clawhub.ai/user/ingodibella) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ingodibella](https://clawhub.ai/user/ingodibella)
 
-## Use Case: <br>
-Developers, engineers, and AI agents use this skill to inspect and manage Unraid servers through the ucli command-line interface. It supports health checks, resource summaries, array and disk inspection, container and VM operations, shares, logs, services, network status, and diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses UNRAID_API_KEY to access an Unraid server. <br>
-Mitigation: Treat the API key as a secret, avoid exposing diagnostics output unless secrets are redacted, and prefer isolated profiles or explicit host and API-key settings for automation. <br>
-Risk: The CLI can perform lifecycle or destructive server actions. <br>
-Mitigation: Run read-only inspection commands first, require explicit identifiers for mutations, use --yes only in deliberate automation paths, and re-fetch state after changes. <br>
-Risk: The skill depends on the external npm package unraid-cli. <br>
-Mitigation: Install only when the npm package and repository are trusted for the target environment. <br>
+## Use Case:
 
+External developers, operators, and agents use this skill to operate Unraid servers through a stateless CLI with structured output for health checks, resource inspection, log retrieval, and managed actions on containers, VMs, arrays, disks, shares, services, and network state.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ingodibella/unraid-cli) <br>
-- [Artifact-declared project homepage](https://github.com/Ingodibella/unraid-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers ucli JSON output with --quiet, --fields, --filter, and --sort for agent-readable results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server-resolved release and SKILL.md frontmatter) <br>
+Risk: The external npm CLI is unpinned and receives Unraid API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned or otherwise verified CLI release before giving it access to an Unraid server.
+
+Risk: The documented examples include API-key use and plaintext HTTP host URLs.
+
+Mitigation: Use HTTPS with certificate validation, avoid passing API keys on the command line, and keep any config file restricted to the owner.
+
+Risk: The CLI can perform operational mutations such as restarting containers and managing VMs or arrays.
+
+Mitigation: Start with read-only commands, use explicit identifiers for mutations, reserve --yes for deliberate automation, and re-fetch state after every change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ingodibella/skills/unraid-cli)
+- [Project homepage](https://github.com/Ingodibella/unraid-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes JSON output, quiet mode, explicit identifiers, exit-code checks, and state refresh after mutations.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

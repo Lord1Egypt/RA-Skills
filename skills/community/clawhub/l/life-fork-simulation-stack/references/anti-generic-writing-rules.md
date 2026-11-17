@@ -1,5 +1,7 @@
 # Anti Generic Writing Rules / 反车轱辘写作规则
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：防止报告停留在“身份、现金流、机会、路径、网络”等抽象词。所有默认用户报告都要通过本规则。
 
 ## 每段必检

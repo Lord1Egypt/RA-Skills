@@ -1,41 +1,50 @@
-## Description: <br>
-Reviews conversations at session end, captures key decisions, lessons, insights, and unresolved issues, and turns them into actionable long-term memory notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically debriefs conversations, captures decisions, lessons, insights, and unresolved issues, and records reusable cognition deposits in long-term memory.
 
-## Publisher: <br>
-[liujw0214](https://clawhub.ai/user/liujw0214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujw0214](https://clawhub.ai/user/liujw0214)
 
-## Use Case: <br>
-External users and developers use this skill to preserve reusable lessons, decisions, and open questions from conversations so similar future work can reuse the reasoning instead of restarting from scattered context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation summaries may automatically persist sensitive personal, business, legal, medical, or credential-bearing information into long-term memory. <br>
-Mitigation: Use the skill only where memory persistence is intended, and require review, edit, delete, and disable controls before storing conversation-derived content. <br>
-Risk: Stored lessons and decisions can preserve outdated or context-specific reasoning that later appears broadly applicable. <br>
-Mitigation: Keep entries concrete, label unresolved items clearly, and review memory entries before reusing them for future decisions. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to turn conversation outcomes into reusable decision records, lessons, insights, and unresolved-issue notes. It is intended for sessions where the user asks for a debrief, summary, or cognition upgrade, and it may also run automatically at session end.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liujw0214/cognition-evolution) <br>
-- [Publisher Profile](https://clawhub.ai/user/liujw0214) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown memory entries with sections for decisions, lessons, insights, and unresolved issues] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conversation-derived content may be written into long-term memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically convert conversation content into long-term memory without clear approval, scoping, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only where automatic memory creation is acceptable; prefer explicit confirmation, sensitive-data exclusion, source tracking, and review or deletion controls before deployment.
+
+## Reference(s):
+
+- [Cognition Evolution ClawHub listing](https://clawhub.ai/liujw0214/skills/cognition-evolution)
+- [Publisher profile](https://clawhub.ai/user/liujw0214)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections for decisions, lessons, insights, and unresolved issues.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

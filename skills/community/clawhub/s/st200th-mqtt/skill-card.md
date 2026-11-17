@@ -1,43 +1,58 @@
-## Description: <br>
-立控 ST200TH 温湿度变送器全功能管理技能——查询温湿度/气压/海拔、查看设备信息(IP/型号/固件)、修改配置、补偿校准、重启设备、OTA升级。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages LIKONG ST200TH temperature and humidity transmitters over MQTT, including telemetry queries, configuration changes, calibration, restart, factory reset, and HTTP OTA updates.
 
-## Publisher: <br>
-[shodan1q](https://clawhub.ai/user/shodan1q) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shodan1q](https://clawhub.ai/user/shodan1q)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to let an agent query and administer LIKONG ST200TH temperature and humidity transmitters over MQTT, including sensor readings, device configuration, calibration, restart, reset, and OTA update workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change device configuration, restart devices, restore factory settings, and start OTA updates. <br>
-Mitigation: Confirm the exact target MAC address before writes and require an explicit user confirmation for reset, OTA, and other maintenance-window operations. <br>
-Risk: MQTT passwords, network details, and device identifiers may be exposed during configuration or troubleshooting. <br>
-Mitigation: Avoid sharing credentials or network details in chat or logs, and use the skill only on trusted networks where device administration is intended. <br>
-Risk: OTA and HTTP configuration paths rely on HTTP-only URIs. <br>
-Mitigation: Use OTA and HTTP configuration only on an isolated trusted network and verify the firmware URI before sending the command. <br>
+## Use Case:
 
+IoT operators, facilities engineers, and developers use this skill to monitor and administer ST200TH transmitters they own or manage. It supports reading sensor and device state, maintaining local device selections, changing protocol configuration, calibrating readings, and triggering live maintenance actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shodan1q/st200th-mqtt) <br>
-- [LIKONG ST200TH MQTT protocol documentation](https://docv2.likong-iot.com/products/transmitters/ST200TH/mqtt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus optional plain text or JSON command output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can query device state, persist a local device list, and send MQTT-based configuration or maintenance actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can send live device-changing MQTT commands, including reset, restart, calibration, protocol configuration, and OTA update actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Operate only on devices you own or administer, confirm the exact MAC address before each live action, and require explicit user confirmation for reset and OTA workflows.
+
+Risk: MQTT communication and HTTP OTA workflows are weakly protected, and firmware updates can alter device behavior.
+
+Mitigation: Use the skill only on isolated, trusted networks and avoid OTA firmware unless the firmware source and integrity have been independently verified.
+
+Risk: Incorrect calibration or protocol configuration can degrade telemetry quality or disconnect devices until corrected.
+
+Mitigation: Review requested compensation values and network settings before sending them, then verify device readings and connectivity after changes.
+
+## Reference(s):
+
+- [LIKONG ST200TH MQTT protocol documentation](https://docv2.likong-iot.com/products/transmitters/ST200TH/mqtt)
+- [ClawHub skill page](https://clawhub.ai/shodan1q/skills/st200th-mqtt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands; the CLI can emit plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store local device MAC/name mappings and send live MQTT commands to selected devices.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

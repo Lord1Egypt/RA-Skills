@@ -1,42 +1,59 @@
-## Description: <br>
-Convert Markdown to Notion blocks with full format support. Handles bold, italic, strikethrough, inline code, headings, lists, tables, callouts, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown to Notion blocks with full format support. Handles bold, italic, strikethrough, inline code, headings, lists, tables, callouts, and more.
 
-## Publisher: <br>
-[maweis1981](https://clawhub.ai/user/maweis1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maweis1981](https://clawhub.ai/user/maweis1981)
 
-## Use Case: <br>
-Developers and agents use this skill to create or append Notion pages from Markdown content while preserving common formatting such as headings, lists, tables, code blocks, callouts, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Notion integration token can grant access to workspace pages shared with the integration. <br>
-Mitigation: Use a least-privilege Notion token, share only required pages with the integration, and protect or avoid the local API-key file. <br>
-Risk: Markdown content processed by the skill may be stored in Notion. <br>
-Mitigation: Avoid uploading sensitive documents unless they are intended to be stored in the connected Notion workspace. <br>
+## Use Case:
 
+Developers, workspace operators, and content authors use this skill to create or append Notion pages from Markdown while preserving common Markdown formatting as Notion blocks.
 
-## Reference(s): <br>
-- [Notion block API reference](https://developers.notion.com/reference/block) <br>
-- [Notion integrations](https://www.notion.so/my-integrations) <br>
-- [ClawHub skill page](https://clawhub.ai/maweis1981/notion-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Notion page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses NOTION_API_KEY and optional NOTION_PARENT_PAGE_ID for Notion workspace access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A Notion integration token can expose or modify workspace content if it has broader access than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Notion integration token with the smallest required permissions, share only target pages with it, and store it in an environment variable or secret manager.
+
+Risk: Create and append commands write content to Notion pages.
+
+Mitigation: Run with --dry-run before modifying important workspace content and verify the parent or target page ID before execution.
+
+Risk: A plaintext ~/.config/notion/api_key file can expose the Notion API key to other local users.
+
+Mitigation: Restrict the config file permissions to the current user when file-based credential storage is used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maweis1981/skills/notion-md)
+- [Notion block API reference](https://developers.notion.com/reference/block)
+- [Notion integrations setup](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create, append, list, or preview Notion page operations when configured with a Notion API key and parent page ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

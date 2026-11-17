@@ -1,43 +1,64 @@
-## Description: <br>
-Research Paper Monitor helps researchers track academic papers from sources such as arXiv, PubMed, CNKI, Google Scholar, IEEE Xplore, and Semantic Scholar, score papers against configured keywords, generate Chinese summaries, archive results, and optionally send Feishu notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors academic papers for user-selected keywords, generates Chinese summaries and local Markdown reports, with live arXiv support and optional notification workflows.
 
-## Publisher: <br>
-[wiltonMotta](https://clawhub.ai/user/wiltonMotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wiltonmotta](https://clawhub.ai/user/wiltonmotta)
 
-## Use Case: <br>
-External researchers, graduate students, instructors, and research teams use this skill to monitor recent academic papers, filter them by research interests, generate Chinese summaries, and create local Markdown reports or optional notification digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification settings and external integration examples may expose sensitive webhook URLs, SMTP passwords, Zotero API keys, or research-profile data if copied into shared configuration files. <br>
-Mitigation: Review notification settings before installation, treat webhook URLs and credentials as secrets, and avoid sharing or syncing ~/.openclaw/research-monitor/config.json unless its contents have been reviewed. <br>
-Risk: The documentation includes Feishu webhook examples that should not be reused as live endpoints. <br>
-Mitigation: Replace any documented webhook with a user-controlled endpoint or leave notifications disabled. <br>
+## Use Case:
 
+Researchers, graduate students, teachers, and research teams use this skill to configure keyword-based literature monitoring, archive matching papers, and generate Chinese daily or weekly digests for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wiltonMotta/research-paper-monitor) <br>
-- [Configuration Guide](references/configuration.md) <br>
-- [Data Sources Guide](references/data-sources.md) <br>
-- [Advanced Usage Guide](references/advanced-usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, JSON configuration, Markdown paper notes, daily or weekly digest Markdown files, and command-line usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When scripts are run, local configuration and paper records are written under user-configured paths such as ~/.openclaw/research-monitor and ~/.openclaw/research-papers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The release evidence says the skill overstates some capabilities and several listed data sources are incomplete or dependent on external access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each enabled source in a test run before relying on it; treat non-arXiv sources as requiring review or completion unless local testing proves otherwise.
+
+Risk: Webhook URLs, research interests, user profile fields, and paper metadata may be stored locally or sent to external services when optional integrations are enabled.
+
+Mitigation: Protect ~/.openclaw/research-monitor/config.json with owner-only permissions, rotate any real webhook copied from documentation, and enable Feishu, email, Zotero, cron, or backup integrations only after reviewing data-sharing expectations.
+
+Risk: The security guidance calls out arXiv access over HTTP.
+
+Mitigation: Change arXiv API access to HTTPS before production use.
+
+## Reference(s):
+
+- [Detailed Configuration](references/configuration.md)
+- [Academic Data Sources](references/data-sources.md)
+- [Advanced Usage](references/advanced-usage.md)
+- [arXiv](https://arxiv.org/)
+- [arXiv API](http://export.arxiv.org/api/)
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
+- [Google Scholar](https://scholar.google.com/)
+- [CNKI](https://www.cnki.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON configuration and index files, Python command lines, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local paper archives and digest reports under configured paths, with optional outbound notification payloads when enabled.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

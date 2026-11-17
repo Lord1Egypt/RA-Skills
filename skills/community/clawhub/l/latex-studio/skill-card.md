@@ -1,41 +1,54 @@
-## Description: <br>
-LaTeX document generator for academic papers and technical reports. Use when user needs to create professional academic papers, theses, or technical documents with math formulas, tables, and citations. Generates publication-ready .tex files compatible with Overleaf and all LaTeX compilers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LaTeX document generator for academic papers and technical reports. Use when user needs to create professional academic papers, theses, or technical documents with math formulas, tables, and citations. Generates publication-ready .tex files compatible with Overleaf and all LaTeX compilers.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, researchers, students, and technical writers use this skill to draft English LaTeX source for academic papers, theses, technical reports, white papers, and conference papers with math, tables, citations, and standard document structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated academic or technical content may contain inaccurate claims, weak citations, or formatting that does not meet a target venue's requirements. <br>
-Mitigation: Review generated content, citations, and formatting before submission or publication. <br>
-Risk: The skill focuses on English LaTeX output and may not satisfy other language requirements without explicit direction. <br>
-Mitigation: Provide language requirements in the prompt and review the resulting document for terminology, style, and localization needs. <br>
-Risk: PDF generation requires a local or hosted LaTeX environment; the skill only generates source content. <br>
-Mitigation: Compile the generated .tex file with Overleaf, TeX Live, MiKTeX, or another LaTeX toolchain and resolve any package or build errors. <br>
+## Use Case:
 
+External users, developers, and technical writers use this skill to create English LaTeX drafts for academic papers, theses, technical reports, white papers, and conference papers with math, tables, citations, and publication-oriented structure.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, guidance] <br>
-**Output Format:** [Markdown response containing LaTeX source and document guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated .tex content should be reviewed for accuracy, citation quality, formatting requirements, and compiled in a LaTeX environment when PDF output is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release metadata) <br>
+Risk: The skill is intended for LaTeX academic documents and may default toward English academic writing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly request another language, document type, or non-LaTeX workflow when that is needed.
+
+Risk: Generated LaTeX source may not compile to PDF without a compatible LaTeX environment and required packages.
+
+Mitigation: Validate generated documents in the intended compiler, such as Overleaf, TeX Live, or MiKTeX, before relying on the final PDF.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/latex-studio)
+- [ClawHub publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown and LaTeX source text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces LaTeX-oriented document drafts and templates; PDF compilation requires a LaTeX environment such as Overleaf, TeX Live, or MiKTeX.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

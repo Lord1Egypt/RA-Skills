@@ -1,40 +1,57 @@
-## Description: <br>
-Uses a Playwright persistent browser context to scrape login-required sites including YouTube, GitHub, Hugging Face, Reddit, Kaggle, and X/Twitter, and triggers when users request external web search or specify those sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent Browser Scraper uses Playwright persistent browser context to extract text from login-required sites such as YouTube, GitHub, Hugging Face, Reddit, Kaggle, and X/Twitter.
 
-## Publisher: <br>
-[ckncg](https://clawhub.ai/user/ckncg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckncg](https://clawhub.ai/user/ckncg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to gather plain-text content from authenticated or JavaScript-heavy websites through a persistent Playwright browser profile. It is intended for workflows where the operator has authorized access to the target site and needs text extraction rather than screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reuses a persistent authenticated browser profile and may access logged-in content automatically. <br>
-Mitigation: Use a dedicated low-privilege browser profile, confirm each authenticated site before use, and avoid private messages, settings, billing pages, or profiles active in another browser session. <br>
-Risk: Broad automatic triggers for external search and popular sites can scrape more authenticated content than intended. <br>
-Mitigation: Limit invocation to explicitly approved domains and review the target URL and selector before running the browser workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to browse authenticated or JavaScript-rendered web pages with a persistent browser profile and return extracted page text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckncg/persistent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples plus extracted plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a persistent authenticated browser profile and site-specific wait times before returning page text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: Authenticated browsing with a persistent logged-in profile can expose the main identity and session state to broad browsing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated automation profile and require explicit confirmation before browsing authenticated content.
+
+Risk: Deleting browser profile lock files can interfere with an active profile.
+
+Mitigation: Do not delete SingletonLock unless you have verified the profile is not in use.
+
+Risk: Launching Chromium with --no-sandbox reduces browser isolation.
+
+Mitigation: Remove --no-sandbox unless the execution environment specifically requires it and compensating controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckncg/skills/persistent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; runtime result is extracted plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers plain-text extraction over screenshots.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

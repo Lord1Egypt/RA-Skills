@@ -1,12 +1,44 @@
 {
   "name": "ai-subtitle-remover",
-  "version": "1.0.1",
-  "description": "基于 550W AI 平台的 AI 视频去字幕能力，智能识别并无痕擦除视频中的硬字幕、水印、台标、Logo",
-  "platforms": ["SkillHub", "ClawHub"],
-  "agents": ["OpenClaw", "Hermes"],
-  "actions": ["uploadVideo", "submitTask", "taskDetail", "taskList", "queryCredits", "workflow"],
+  "version": "2.0.0",
+  "displayName": "550W AI Subtitle & Watermark Remover",
+  "displayNameEn": "550W AI Subtitle & Watermark Remover",
+  "description": "Remove hardcoded video subtitles, watermarks from TikTok and other supported short-video share links, and image watermarks or unwanted text; check tasks and credits. Copy a video share link in the app to use it.",
+  "descriptionEn": "Remove hardcoded video subtitles, watermarks from TikTok and other supported short-video share links, and image watermarks or unwanted text; check tasks and credits. Copy a video share link in the app to use it.",
+  "platforms": [
+    "ClawHub",
+    "Agent Skills"
+  ],
+  "agents": [
+    "WorkBuddy",
+    "OpenClaw",
+    "Hermes"
+  ],
+  "actions": [
+    "configureCredentials",
+    "uploadVideo",
+    "submitTask",
+    "taskDetail",
+    "taskList",
+    "deleteTask",
+    "queryCredits",
+    "removeVideoWatermark",
+    "removeImageWatermark",
+    "imageWatermarkTaskDetail",
+    "workflow"
+  ],
   "credentials": {
-    "required": ["userNo", "apiKey"],
-    "applyUrl": "https://qzm.550wai.cn"
+    "required": [
+      "userNo",
+      "apiKey"
+    ],
+    "applyUrl": "https://eraser.550wai.com/api/",
+    "applyUrlEn": "https://eraser.550wai.com/api/"
+  },
+  "distribution": {
+    "region": "global",
+    "locale": "en",
+    "market": "ClawHub and all non-domestic Agent Skills stores",
+    "credentialUrl": "https://eraser.550wai.com/api/"
   }
 }

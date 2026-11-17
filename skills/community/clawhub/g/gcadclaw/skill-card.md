@@ -1,46 +1,57 @@
-## Description: <br>
-Generates, modifies, validates, and repairs 2D GstarCAD drawings through pygcadwin, including DWG automation, screenshot feedback, and before/after entity validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, modify, validate, and repair 2D GstarCAD engineering drawings from natural-language requirements using pygcadwin, with DWG output, screenshot evidence, and entity feedback.
 
-## Publisher: <br>
-[dolphindz](https://clawhub.ai/user/dolphindz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gstarcad](https://clawhub.ai/user/gstarcad)
 
-## Use Case: <br>
-Developers and CAD engineers use this skill to turn natural-language mechanical drawing requirements into GstarCAD 2D DWG outputs with documented assumptions, validation artifacts, screenshots, and repair steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to let an agent control GstarCAD and write local drawing artifacts. <br>
-Mitigation: Run it only in a Windows environment where GstarCAD automation is expected, and use a dedicated project or output folder. <br>
-Risk: Generated DWG files, screenshots, and entity exports may contain sensitive design information. <br>
-Mitigation: Review the DWG, PNG, JSON, and feedback files before sharing them outside the intended project context. <br>
-Risk: Drawing execution depends on local Windows, Python, pygcadwin, and GstarCAD COM availability. <br>
-Mitigation: Validate the Python environment and inspect feedback artifacts before treating a drawing task as complete. <br>
+## Use Case:
 
+Developers, CAD automation users, and engineering teams use this skill to create or modify 2D GstarCAD DWG drawings for mechanical parts, assemblies, and engineering layouts from natural-language prompts. The skill also guides the agent to capture before/after entity evidence, screenshots, and repair notes before reporting completion.
 
-## Reference(s): <br>
-- [Gcadclaw ClawHub Listing](https://clawhub.ai/dolphindz/gcadclaw) <br>
-- [pygcadwin PyPI Package](https://pypi.org/project/pygcadwin/) <br>
-- [2D pygcadwin Workflow](references/2d-pygcadwin-workflow.md) <br>
-- [Feedback Loop](references/feedback-loop.md) <br>
-- [Python Package Manifest](references/python_package_manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands, plus generated DWG files, JSON entity feedback, PNG screenshots, and summary reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, Python, pygcadwin, and a live GstarCAD installation for drawing execution and screenshot validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The setup script installs or upgrades pygcadwin from PyPI without exact version or hash verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the pygcadwin dependency before setup, run installation from a non-elevated terminal, and install only inside a project/work directory intended for skill writes.
+
+Risk: Drawing execution depends on a live Windows GstarCAD COM environment, so missing registration or unavailable CAD software can prevent completion.
+
+Mitigation: Validate the environment with scripts/validate_env.py before use and report partial completion if GstarCAD, COM access, save, entity capture, or screenshot validation fails.
+
+## Reference(s):
+
+- [GcadClaw Skill Page](https://clawhub.ai/gstarcad/skills/gcadclaw)
+- [pygcadwin PyPI Project](https://pypi.org/project/pygcadwin/)
+- [2D pygcadwin workflow](references/2d-pygcadwin-workflow.md)
+- [Feedback loop](references/feedback-loop.md)
+- [Python package manifest](references/python_package_manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and code-oriented instructions that may produce DWG files, JSON feedback artifacts, PNG screenshots, and shell commands during use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, Python, live GstarCAD registered as a COM server, and the pygcadwin package from PyPI for drawing execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, changelog, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

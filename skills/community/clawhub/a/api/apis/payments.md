@@ -2,19 +2,19 @@
 
 | API | Line |
 |-----|------|
-| Stripe | 2 |
-| PayPal | 95 |
-| Square | 179 |
-| Plaid | 249 |
-| Chargebee | 320 |
-| Paddle | 388 |
-| Lemon Squeezy | 461 |
-| Recurly | 537 |
-| Wise | 610 |
-| Coinbase | 683 |
-| Binance | 769 |
-| Alpaca | 836 |
-| Polygon | 913 |
+| Stripe | 21 |
+| PayPal | 114 |
+| Square | 198 |
+| Plaid | 268 |
+| Chargebee | 339 |
+| Paddle | 407 |
+| Lemon Squeezy | 480 |
+| Recurly | 556 |
+| Wise | 629 |
+| Coinbase | 702 |
+| Binance | 788 |
+| Alpaca | 855 |
+| Polygon | 932 |
 
 ---
 
@@ -416,7 +416,7 @@ https://api.paddle.com
 Sandbox: `https://sandbox-api.paddle.com`
 
 ## Authentication
-Bearer token with API key. Keys are 69 characters, prefixed with `pdl_`.
+Bearer token with API key, prefixed with `pdl_`.
 
 ```bash
 curl -X GET "https://api.paddle.com/products" \

@@ -1,40 +1,55 @@
-## Description: <br>
-Guides developers through using AINative Echo to register, set markup rates, check earnings and payouts, connect Stripe, and bill customers for API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through using AINative Echo APIs to register for the Echo Developer Program, configure markups, check earnings, and manage Stripe Connect payouts.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers use this skill to understand the Echo Developer Program, configure monetization through markup rates, and work with earnings, payouts, and Stripe Connect onboarding flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide covers real financial account actions, including markup changes, Stripe onboarding, manual payouts, and auto-payout settings. <br>
-Mitigation: Verify official AINative and Stripe endpoints, account identity, payout amount, schedule, and token handling before using real credentials. <br>
-Risk: The examples use bearer-token API requests for account and payout operations. <br>
-Mitigation: Treat tokens as sensitive credentials and confirm authorization scopes before running or adapting the examples. <br>
+## Use Case:
 
+Developers building applications on AINative use this skill to understand Echo developer account setup, markup configuration, earnings, payout, and Stripe Connect API flows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/urbantech/echo-developer-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls, Configuration] <br>
-**Output Format:** [Markdown with Python code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users should verify endpoints and account-impacting actions before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The examples include payout, markup, Stripe onboarding, and auto-payout API calls that can change an Echo developer account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run those calls only against the intended account and environment after confirming the target AINative API domain.
+
+Risk: The examples use a JWT bearer token for authenticated API requests.
+
+Mitigation: Treat JWT tokens as sensitive credentials and avoid pasting them into untrusted logs, shared code, or public transcripts.
+
+## Reference(s):
+
+- [Echo Developer Guide on ClawHub](https://clawhub.ai/urbantech/skills/echo-developer-guide)
+- [Developer payouts guide](docs/guides/DEVELOPER_PAYOUTS_GUIDE.md)
+- [Echo developer guide](docs/projects/ainative-developer-studio/guides/ECHO_DEVELOPER_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, API calls, configuration]
+
+**Output Format:** [Markdown with Python code examples and endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authenticated API examples for account registration, markup settings, earnings, payouts, and Stripe Connect onboarding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

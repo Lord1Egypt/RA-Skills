@@ -1,43 +1,56 @@
-## Description: <br>
-Pause your agent for human approval before high-risk actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pause your agent for human approval before high-risk actions.
 
-## Publisher: <br>
-[mrchop](https://clawhub.ai/user/mrchop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrchop](https://clawhub.ai/user/mrchop)
 
-## Use Case: <br>
-Developers use this skill to pause an agent before sensitive actions and require a human approver to accept or reject the request by email before the agent continues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approval details, approver email addresses, and provided context are sent to VetoAPI. <br>
-Mitigation: Avoid secrets or regulated data in approval titles or context, protect VETO_API_KEY, and review VetoAPI suitability before production use. <br>
-Risk: The approval request blocks while polling for a decision. <br>
-Mitigation: Add operational timeouts or cancellation handling around agent workflows that cannot wait indefinitely. <br>
+## Use Case:
 
+Developers and agent builders use this skill to pause automated workflows before sensitive actions and wait for a human approver to approve or reject by email.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mrchop/veto-approval) <br>
-- [VetoAPI API Reference](https://vetoapi.com/docs) <br>
-- [VetoAPI API key setup](https://vetoapi.com/get-key) <br>
-- [VetoAPI homepage](https://vetoapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance, API Calls] <br>
-**Output Format:** [Python function return value, command-line status text, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns True when approved and False when rejected or on request errors; polls VetoAPI until a decision is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Approval requests send the approver email, action title, optional context, and VetoAPI key to vetoapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that this data sharing is acceptable for the workflow, and avoid putting secrets, regulated data, or unnecessary business details in approval context.
+
+Risk: The approval wait can be indefinite because the skill polls until a decision is returned.
+
+Mitigation: Add a timeout, maximum wait period, and failure handling before using the skill in automated production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrchop/skills/veto-approval)
+- [VetoAPI API Reference](https://vetoapi.com/docs)
+- [Get VetoAPI Key](https://vetoapi.com/get-key)
+- [VetoAPI](https://vetoapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a boolean approval result to the calling agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

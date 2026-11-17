@@ -1,39 +1,57 @@
-## Description: <br>
-Reviews application code in the current workspace for concrete security issues and provides proportionate, actionable fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews application code in the current workspace for concrete security issues and provides proportionate fixes for risks such as injection, authorization flaws, sensitive data leaks, unsafe file handling, and command execution.
 
-## Publisher: <br>
-[sf0799](https://clawhub.ai/user/sf0799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sf0799](https://clawhub.ai/user/sf0799)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit application code for security issues such as injection, authorization flaws, path traversal, XSS, command execution, and sensitive data leaks, then receive prioritized fixes or code suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to inspect workspace code, which may expose secrets or sensitive code to the agent context. <br>
-Mitigation: Use it only on repositories you are comfortable having an agent inspect, and scope reviews to specific files or directories when sensitive material is present. <br>
-Risk: Generated security findings and patches may be incomplete or incorrect. <br>
-Mitigation: Review and test proposed fixes before merging, and follow up on any residual risks the skill identifies. <br>
+## Use Case:
 
+Developers and engineers use this skill to review code for realistic security risks and receive prioritized findings, impact explanations, and actionable remediation guidance. It is especially suited to focused reviews of input handling, secrets, authentication, authorization, file access, logging, and command execution paths.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown security review with risk levels, impact notes, fixes, and code suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include actionable patches or residual risk notes when a risk cannot be fully closed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Security review output can miss issues or overstate low-confidence findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat findings as review assistance and validate important conclusions against the affected code, tests, and threat model before deployment.
+
+Risk: Patch suggestions may change behavior or introduce regressions if applied without project-specific review.
+
+Mitigation: Review proposed changes, run the relevant test suite, and apply patches only after confirming they fit the application architecture.
+
+Risk: The skill may answer or present prompts in Chinese by default.
+
+Mitigation: Set the desired response language explicitly when a different review language is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sf0799/skills/code-security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown security review with risk levels, impact notes, remediation steps, and patch or code suggestions when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May answer in Chinese by default based on the skill text and interface prompts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

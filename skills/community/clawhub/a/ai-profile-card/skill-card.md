@@ -1,39 +1,54 @@
-## Description: <br>
-Generates AI assistant profile cards with unique IDs, automatic age calculation, and multilingual profile-table output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates multilingual AI assistant profile cards with unique IDs, age calculation, and formatted profile tables.
 
-## Publisher: <br>
-[uhang](https://clawhub.ai/user/uhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uhang](https://clawhub.ai/user/uhang)
 
-## Use Case: <br>
-External users and agent builders use this skill to create formatted identity/profile cards for AI assistants from supplied profile details such as name, role, personality, birth date, and motto. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated profile cards can include personal details supplied by the user, such as real names, birth dates, roles, and mottos. <br>
-Mitigation: Only provide personal details that are appropriate to include in the generated conversation output. <br>
+## Use Case:
 
+Developers, creators, and agent users use this skill to turn supplied AI assistant attributes into a polished identity/profile card in the requested or detected language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uhang/ai-profile-card) <br>
-- [Publisher profile](https://clawhub.ai/user/uhang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown profile table with generated identifier and localized field labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a unique profile ID, calculated age, and localized output based on detected input language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Profile prompts may include sensitive personal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal details that are not needed for the profile card.
+
+Risk: Automatic language detection may not match the desired output language.
+
+Mitigation: Specify the preferred output language when automatic language handling is not suitable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uhang/skills/ai-profile-card)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown profile card or table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a generated unique ID and calculated age based on supplied profile data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

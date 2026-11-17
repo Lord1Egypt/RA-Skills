@@ -1,40 +1,54 @@
-## Description: <br>
-Talos Lite generates a 1-week posting schedule for one platform with 3 captions as a free preview of Talos Pro's broader content strategy workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talos Lite - Social Calendar (Free) generates a 1-week posting schedule for one platform with 3 captions as a free preview of Talos Pro's full content strategy.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Creators and marketers use this skill to generate a lightweight one-week social media calendar and sample captions for a selected platform based on a brand topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented install command adds the Rich Python package and uses --break-system-packages. <br>
-Mitigation: Install in a virtual environment or another isolated Python environment before running the preview. <br>
-Risk: Generated captions are draft marketing copy and may not match brand, legal, or platform requirements. <br>
-Mitigation: Review and edit the calendar and captions before publishing. <br>
+## Use Case:
 
+External creators and marketers use this skill to generate a lightweight one-week social posting calendar for a brand topic on a single platform.
 
-## Reference(s): <br>
-- [Talos Lite on ClawHub](https://clawhub.ai/occupythemilkyway/talos-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash and Python code blocks, plus terminal table and caption text when run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAND_TOPIC; PLATFORM is optional and defaults to twitter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The install command can modify the system Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dependency installation inside an isolated virtual environment before executing the skill.
+
+Risk: The skill output promotes a paid external upgrade skill and Ko-fi purchase links.
+
+Mitigation: Treat Talos Pro installation and Ko-fi purchases as separate commercial actions outside this reviewed Lite skill.
+
+## Reference(s):
+
+- [Talos Lite ClawHub listing](https://clawhub.ai/occupythemilkyway/skills/talos-lite)
+- [Talos Lite homepage](https://clawhub.ai/occupythemilkyway/talos-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a console-rendered weekly calendar and sample captions based on BRAND_TOPIC and PLATFORM.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

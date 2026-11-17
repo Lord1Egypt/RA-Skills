@@ -1,45 +1,56 @@
-## Description: <br>
-StockEarning provides an OpenClaw skill suite for querying stock market data, reviewing portfolio performance, and recording stock trades through the StockEarning.cn API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+StockEarning helps agents query stock market data, review portfolio performance, and record stock trades through the StockEarning REST API.
 
-## Publisher: <br>
-[hareluya](https://clawhub.ai/user/hareluya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hareluya](https://clawhub.ai/user/hareluya)
 
-## Use Case: <br>
-External users and developers use this skill to connect an AI assistant to StockEarning.cn for stock price lookup, portfolio summaries, position review, and user-confirmed trade or position updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit trade and position updates to the remote StockEarning.cn system. <br>
-Mitigation: Review the confirmation checklist and approve write actions only when the symbol, market, quantity, price, fees, and trade date are correct. <br>
-Risk: Portfolio and trade details are sent to mystockearning.cn. <br>
-Mitigation: Install only when StockEarning.cn is the intended portfolio system of record and use a dedicated API key. <br>
-Risk: The local API key grants access to portfolio operations. <br>
-Mitigation: Store the API key in the generated local env file with private permissions and avoid sharing it in prompts, logs, or shell history. <br>
+## Use Case:
 
+External users and developers use StockEarning to connect an AI assistant to mystockearning.cn for stock lookup, portfolio summaries, profit/loss review, broker fee checks, and user-confirmed trade record updates.
 
-## Reference(s): <br>
-- [StockEarning Skill Page](https://clawhub.ai/hareluya/secn) <br>
-- [StockEarning.cn](https://www.mystockearning.cn) <br>
-- [Source Repository](https://github.com/hareluya/stock-earning-cn-skills) <br>
-- [Release Notes](https://github.com/hareluya/stock-earning-cn-skills/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown responses with shell command execution and JSON API results summarized for the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STOCK_API_KEY and sends portfolio, market, and trade data to mystockearning.cn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The skill can change financial account records by creating trade records or editing position quantities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every trade or position-adjustment confirmation carefully before allowing write actions, and verify portfolio data after corrections.
+
+Risk: The skill handles an API key, portfolio data, and transaction payloads, and the security evidence flags unsafe shell handling around credentials and transaction data.
+
+Mitigation: Use a least-privilege API key when available, keep the API-key file private with restrictive permissions, and prefer a version that parses credentials safely and serializes JSON with a proper encoder.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hareluya/skills/secn)
+- [StockEarning Website](https://www.mystockearning.cn)
+- [Root Skill Instructions](artifact/SKILL.md)
+- [Plugin Manifest](artifact/plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and tables, with shell commands and JSON API responses when scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke HTTPS REST API calls requiring STOCK_API_KEY; trade and position changes require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

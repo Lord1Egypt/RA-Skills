@@ -1,41 +1,58 @@
-## Description: <br>
-飞猪租车智能推荐助手。根据用户出行需求（人数、目的地、时间、品牌偏好）推荐最适合的租车车型，支持调用飞猪租车Mtop API查询实时库存。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞猪租车智能推荐助手根据用户的目的地、出行时间、人数和品牌偏好推荐适合的飞猪租车车型，并可查询实时库存。
 
-## Publisher: <br>
-[maqianqiandegithup](https://clawhub.ai/user/maqianqiandegithup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maqianqiandegithup](https://clawhub.ai/user/maqianqiandegithup)
 
-## Use Case: <br>
-External travelers use this skill to describe a rental-car trip and receive ranked vehicle recommendations with prices, provider details, and booking links. The agent collects destination, rental dates, passenger count, and optional brand preference, then queries Fliggy/Mtop inventory and presents the top matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip details such as destination, rental dates, passenger count, and filter preferences may be sent to Fliggy/Mtop to retrieve live inventory and pricing. <br>
-Mitigation: Collect only the trip details needed for search, and do not provide account cookies, payment information, identity documents, or unrelated personal data through the skill. <br>
-Risk: Vehicle availability and prices are real-time values and may change before checkout. <br>
-Mitigation: Confirm the final provider, price, fees, and booking terms on the trusted OTA page before completing a reservation. <br>
+## Use Case:
 
+Travel shoppers and agents use this skill to collect rental-car trip requirements, query Fliggy rental-car availability, and present a concise shortlist of suitable vehicles with prices and booking links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maqianqiandegithup/rent-skill) <br>
-- [Fliggy rental car OTA page](https://outfliggys.m.taobao.com/app/trip/rx-vehicle-ota/pages/home) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations with tables, vehicle images or links when available, inline API query examples, and OTA booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are based on live inventory and pricing returned by Fliggy/Mtop and may change before booking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Trip details such as city, dates, passenger count, and filters may be sent to Fliggy/Taobao APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the trip details needed for the rental search and review the platform's privacy and booking terms before proceeding.
+
+Risk: Rental prices, inventory, fees, and booking terms can change before purchase.
+
+Mitigation: Confirm the final price, availability, cancellation policy, and rental terms on the official booking page before buying.
+
+Risk: The skill may generate OTA booking links from API response data.
+
+Mitigation: Check that booking links open the expected Fliggy/Taobao destination and verify vehicle and merchant details before entering payment information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maqianqiandegithup/skills/rent-skill)
+- [Fliggy rental-car OTA page](https://outfliggys.m.taobao.com/app/trip/rx-vehicle-ota/pages/home)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Chinese-language Markdown recommendations with vehicle details, prices, images, and booking links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Fliggy/Taobao OTA booking links and rental-car query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

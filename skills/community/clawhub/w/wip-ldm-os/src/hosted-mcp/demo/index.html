@@ -18,7 +18,7 @@
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD",
-    "description": "Demo with $5.00 simulated wallet"
+    "description": "Demo with $10.00 simulated wallet"
   },
   "author": {
     "@type": "Organization",
@@ -68,6 +68,10 @@ html, body {
   color: var(--text);
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+}
+
+body.chat-active {
+  background: #FFFFFF;
 }
 
 @media (min-width: 768px) {
@@ -200,6 +204,7 @@ html, body {
   bottom: 0;
   max-width: 600px;
   margin: 0 auto;
+  background: #FFFFFF;
 }
 
 .chat-header {
@@ -210,7 +215,7 @@ html, body {
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   flex-shrink: 0;
-  background: rgba(255, 253, 245, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
@@ -285,6 +290,22 @@ html, body {
   font-size: 15px;
   color: var(--text-muted);
   margin-top: 6px;
+}
+
+.bubble a,
+.bubble .chat-link-button {
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.bubble .chat-link-button {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 /* Camera preview circle */
@@ -477,7 +498,7 @@ html, body {
   padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--input-border);
   flex-shrink: 0;
-  background: var(--bg);
+  background: #FFFFFF;
 }
 
 .chat-input-row {
@@ -574,7 +595,7 @@ html, body {
 <!-- ── CHAT PAGE ── -->
 <div class="chat-page" id="chatPage">
   <div class="chat-header" style="position:relative;">
-    <a id="kscopeIcon" onclick="sessionStorage.clear();location.reload();" style="cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;align-items:center;"></a>
+    <button id="kscopeIcon" type="button" onclick="logoutAndSignBackIn()" aria-label="Log out and sign back in" style="cursor:pointer;position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;align-items:center;border:0;background:transparent;padding:0;"></button>
     <div class="chat-header-name">Kaleidoscope</div>
     <div class="chat-header-sub"></div>
   </div>
@@ -593,6 +614,20 @@ html, body {
 <canvas id="photoCanvas" style="display:none;"></canvas>
 
 <script>
+// Direct /demo entry is not the public start path. The login handoff writes
+// lesa-token before replacing into /demo, so authenticated continuations pass.
+(function gateDirectDemoEntry() {
+  var hasDemoToken = false;
+  try {
+    hasDemoToken = !!sessionStorage.getItem('lesa-token');
+  } catch (err) {
+    hasDemoToken = false;
+  }
+  if (!hasDemoToken) {
+    location.replace('/login?next=/demo');
+  }
+})();
+
 // ── WebAuthn Helpers ──
 
 function b64urlToBytes(b64url) {
@@ -687,6 +722,7 @@ async function doCreateAccount() {
     if (result.success) {
       sessionStorage.setItem('lesa-token', result.apiKey);
       sessionStorage.setItem('lesa-agent', result.agentId);
+      if (result.tenantId) sessionStorage.setItem('lesa-tenant', result.tenantId);
       sessionStorage.setItem('lesa-new-account', 'true');
       setLoginStatus('Account created.', 'success');
       setTimeout(function() { showChat(); }, 400);
@@ -757,6 +793,7 @@ async function doSignIn() {
     if (result.success) {
       sessionStorage.setItem('lesa-token', result.apiKey);
       sessionStorage.setItem('lesa-agent', result.agentId);
+      if (result.tenantId) sessionStorage.setItem('lesa-tenant', result.tenantId);
       setLoginStatus('Signed in.', 'success');
       setTimeout(function() { showChat(); }, 400);
     } else {
@@ -867,7 +904,7 @@ function showAuthButton() {
   btn.innerHTML = '<span style="filter:brightness(0) invert(1);">🫆</span> Authorize';
   btn.onclick = function() {
     container.remove();
-    addMessage('Authorized', 'user');
+    addMessage('Authorizing', 'user');
     doFaceIDAuth();
   };
   container.appendChild(btn);
@@ -878,17 +915,52 @@ function showAuthButton() {
 
 // ── Settings ──
 
-var WALLET_BALANCE = "$5.00";
+var WALLET_BALANCE = "$10.00";
 var IMAGE_COST = "$0.01";
-var IMAGE_BALANCE_AFTER = "$4.99";
+var IMAGE_BALANCE_AFTER = "$9.99";
 var IMAGE_API_NAME = "Grok Imagine";
 var IMAGE_API_PROVIDER = "xAI";
+var IS_RETURNING_USER_FLOW = false;
+
+async function getWalletSummary() {
+  var walletBalance = WALLET_BALANCE;
+  var walletCost = IMAGE_COST;
+  try {
+    var token = sessionStorage.getItem('lesa-token');
+    if (!token) return { balance: walletBalance, cost: walletCost };
+    var wRes = await fetch('/demo/api/wallet', { headers: { 'Authorization': 'Bearer ' + token } });
+    var wData = await wRes.json();
+    if (wData.balance) walletBalance = wData.balance;
+    if (wData.cost) walletCost = wData.cost;
+  } catch {}
+  return { balance: walletBalance, cost: walletCost };
+}
+
+function currentAccountLabel() {
+  return sessionStorage.getItem('lesa-agent') || 'this account';
+}
+
+function canonicalAccountId(value) {
+  if (typeof value !== 'string') return null;
+  var trimmed = value.trim();
+  if (!trimmed) return null;
+  return trimmed.indexOf('acct:') === 0 ? trimmed.slice(5) : trimmed;
+}
+
+function isSameAccountAuthorization(result, activeToken, activeTenant) {
+  var sessionAccount = canonicalAccountId(activeTenant);
+  var resultAccount = canonicalAccountId(result && result.tenantId);
+  if (sessionAccount && resultAccount) {
+    return sessionAccount === resultAccount;
+  }
+  return !!(activeToken && result && result.apiKey === activeToken);
+}
 
 // ── Image Prompts ──
 
-var PROMPT_PHOTO = "kaleidoscope pattern made from mirrored and reflected colors and shapes derived from a photograph, shot on expired 35mm film with heavy grain and light leaks, warm analog color bleed, faded and sun-bleached, symmetrical radial reflections but organic and imperfect, no face visible just abstracted colors and textures, washed out like a Boards of Canada album cover, square format, lo-fi analog photography aesthetic, slight overexposure, nostalgic and haunting, no digital sharpness, no CGI, no illustration, no fingers, no text";
+var PROMPT_PHOTO = "Create an abstract kaleidoscope image from the colors, light, and shapes in the user's photo. Use mirrored radial symmetry, analog film grain, warm color bleed, soft exposure, organic imperfections, and no text.";
 
-var PROMPT_NO_PHOTO = "abstract kaleidoscope pattern viewed through a real kaleidoscope, shot on expired 35mm film with heavy grain and light leaks, warm amber and deep red analog color palette, faded and sun-bleached, symmetrical radial reflections but organic and imperfect, washed out like the Geogaddi album cover, square format, lo-fi analog photography aesthetic, slight overexposure, nostalgic and haunting, no digital sharpness, no CGI, no illustration, no faces, no fingers, no text";
+var PROMPT_NO_PHOTO = "Create an abstract kaleidoscope image with mirrored radial symmetry, analog film grain, warm color bleed, soft exposure, organic imperfections, and no text.";
 
 // ── Demo Flow ──
 
@@ -896,16 +968,19 @@ async function startDemo() {
   await delay(600);
   var isNew = sessionStorage.getItem('lesa-new-account') === 'true';
   sessionStorage.removeItem('lesa-new-account');
-  await lesaSays("Hi, I'm L\u0113sa. Welcome to Kaleidoscope.", 1200);
-  await delay(1000);
   if (isNew) {
-    await lesaSays("You just created an account with a passkey. It lives on this device.", 1200);
+    IS_RETURNING_USER_FLOW = false;
+    await lesaSays("Hi, I'm L\u0113sa. Welcome to Kaleidoscope.", 1200);
+    await delay(1000);
+    await lesaSays("You just created an account with a passkey. The passkey lives on your phone.", 1200);
+    await lesaSays("Going forward, you can use your phone to log into any Work in Progress Computer service.", 1500);
+    await lesaSays("Anytime I need your permission to do something, I'll ask, and you authorize with your fingerprint or face. No passwords. Ever.", 1500);
+    await lesaSays("Want to see it in action? I'll try to do something that costs money, and you decide whether to let me.", 1200);
   } else {
-    await lesaSays("You just logged in with your passkey.", 1200);
+    IS_RETURNING_USER_FLOW = true;
+    await lesaSays("Hi, " + currentAccountLabel() + ". Welcome back to Kaleidoscope.", 1200);
+    await lesaSays("Do you want to try giving me permission with your device to create something that costs money?", 1200);
   }
-  await lesaSays("Going forward, you can use this passkey to log into any Work in Progress Computer service.", 1500);
-  await lesaSays("And I can use it too. Anytime I need your permission to do something, I'll ask, and you authorize with your fingerprint or face. No passwords. Ever.", 1500);
-  await lesaSays("Want to see it in action? I'll try to do something that costs money, and you decide whether to let me.", 1200);
 
   showChoiceButtons([
     { label: 'Yes, show me', primary: true, action: demoYesShowMe },
@@ -916,22 +991,16 @@ async function startDemo() {
 // ── "Yes, show me" path ──
 
 async function demoYesShowMe() {
-  var walletBalance = WALLET_BALANCE;
-  var walletCost = IMAGE_COST;
-  try {
-    var token = sessionStorage.getItem('lesa-token');
-    var wRes = await fetch('/demo/api/wallet', { headers: { 'Authorization': 'Bearer ' + token } });
-    var wData = await wRes.json();
-    if (wData.balance) walletBalance = wData.balance;
-    if (wData.cost) walletCost = wData.cost;
-  } catch {}
-  await lesaSays("I have a wallet with " + walletBalance + ". Do I have your permission to spend " + walletCost + " on image generation using the " + IMAGE_API_PROVIDER + " " + IMAGE_API_NAME + " API?", 1000);
+  var wallet = await getWalletSummary();
+  await lesaSays("I have a wallet with " + wallet.balance + ". Do I have your permission to spend " + wallet.cost + " on image generation using the " + IMAGE_API_PROVIDER + " " + IMAGE_API_NAME + " API?", 1000);
 
   showAuthButton();
 }
 
 async function doFaceIDAuth() {
   showTyping();
+  var activeToken = sessionStorage.getItem('lesa-token');
+  var activeTenant = sessionStorage.getItem('lesa-tenant');
 
   try {
     var optRes = await fetch('/webauthn/auth-options', {
@@ -979,6 +1048,13 @@ async function doFaceIDAuth() {
     if (!result.success) {
       removeTyping();
       await lesaSays("Authorization failed. " + (result.error || "Please try again."), 600);
+      showAuthButton();
+      return;
+    }
+
+    if (!isSameAccountAuthorization(result, activeToken, activeTenant)) {
+      removeTyping();
+      await lesaSays("That passkey belongs to a different account. This onboarding session is using " + currentAccountLabel() + ". Restart if you want to switch accounts.", 600);
       showAuthButton();
       return;
     }
@@ -1081,13 +1157,32 @@ async function demoJustMakeOne() {
 // ── "No thanks" path (skip permissions entirely) ──
 
 async function demoNoThanks() {
-  await lesaSays("No problem. Let me make you something beautiful.", 1000);
-  await generateKaleidoscope(false);
+  await showNoThanksFlow();
+}
+
+async function showNoThanksFlow() {
+  if (IS_RETURNING_USER_FLOW) {
+    await showReturningUserNoThanksFlow();
+    return;
+  }
+  await lesaSays("No problem. Let me show you something beautiful.", 1000);
+  await generateKaleidoscope(false, { showWalletReceipt: false, showOutro: false });
+  await showApprovedOutro();
+}
+
+async function showReturningUserNoThanksFlow() {
+  await lesaSays("No problem. You can come back anytime.", 1000);
+  await lesaSays("At Work in Progress Computer, we are building the future of AI and human interaction.", 1500);
+  await lesaSaysHTML('We look forward to providing you a streamlined experience across all the AIs you use. Follow us on X <a href="https://x.com/wipcomputer" target="_blank" rel="noopener">@wipcomputer</a> to keep up to date on when we release new features.', 1800);
+  await lesaSays("Made in California by WIP Computer, Inc. Learning Dreaming Machines.", 1200);
 }
 
 // ── Image generation ──
 
-async function generateKaleidoscope(isPhotoPath) {
+async function generateKaleidoscope(isPhotoPath, options) {
+  options = options || {};
+  var showWalletReceipt = options.showWalletReceipt !== false;
+  var showDefaultOutro = options.showOutro !== false;
   var prompt = isPhotoPath ? PROMPT_PHOTO : PROMPT_NO_PHOTO;
 
   // If photo path, analyze the photo with vision to extract colors/mood
@@ -1104,7 +1199,7 @@ async function generateKaleidoscope(isPhotoPath) {
       });
       var analyzeData = await analyzeRes.json();
       if (analyzeData.description) {
-        prompt = "abstract kaleidoscope pattern, dominant colors: " + analyzeData.description + ", symmetrical radial reflections, mirrored geometric shapes in these exact colors, shot on expired 35mm film with heavy grain and light leaks, warm analog color bleed, faded and sun-bleached like a Boards of Canada album cover, no face, no person, no fingers, no spheres, no beads, no text, just abstract color and light";
+        prompt = "Create an abstract kaleidoscope image from these visual details in the user's photo: " + analyzeData.description + ". Use mirrored radial symmetry, analog film grain, warm color bleed, soft exposure, organic imperfections, and no text.";
       }
     } catch (e) {
       // Vision analysis failed... fall back to original PROMPT_PHOTO
@@ -1146,10 +1241,12 @@ async function generateKaleidoscope(isPhotoPath) {
     genBubble.innerHTML = '<img class="kaleidoscope-img" src="' + data.url + '" alt="Your kaleidoscope">';
     scrollToBottom();
 
-    var cost = data.cost || IMAGE_COST;
-    var balance = data.balance || IMAGE_BALANCE_AFTER;
-    await lesaSays("Cost: " + cost + ". Balance: " + balance + ".", 800);
-    await showOutro();
+    if (showWalletReceipt) {
+      var cost = data.cost || IMAGE_COST;
+      var balance = data.balance || IMAGE_BALANCE_AFTER;
+      await lesaSays("Cost: " + cost + ". Balance: " + balance + ".", 800);
+    }
+    if (showDefaultOutro) await showOutro();
 
   } catch (err) {
     loadingDiv.remove();
@@ -1161,14 +1258,36 @@ async function generateKaleidoscope(isPhotoPath) {
 }
 
 async function showOutro() {
-  await lesaSays("At Work in Progress Computer we are building the future of AI and human interaction.", 1500);
-  showTyping(); await delay(2000); removeTyping();
-  await lesaSays("We believe permission is a conversation. Your AI asks. You decide. One glance, one tap.", 2000);
-  showTyping(); await delay(2000); removeTyping();
-  await lesaSays("To see how passkeys work across devices, open wip.computer/demo in any web browser on any computer. And use this device to authenticate.", 2000);
-  showTyping(); await delay(2000); removeTyping();
-  await lesaSays("Made in California by WIP Computer, Inc. Learning Dreaming Machines.", 1500);
-  await lesaSays("This is the end of the demo. Tap icon or refresh page to start over.", 1200);
+  if (IS_RETURNING_USER_FLOW) {
+    await showReturningUserOutro();
+    return;
+  }
+  await showApprovedOutro();
+}
+
+async function showApprovedOutro() {
+  await lesaSays("At Work in Progress Computer, we are building the future of AI and human interaction.", 1500);
+  await lesaSays("We believe permission is a conversation. Your AI asks. You decide. One glance, one tap.", 1800);
+  await lesaSaysHTML('To see how passkeys work across devices, open <a href="https://wip.computer/demo" target="_blank" rel="noopener">https://wip.computer/demo</a> in any web browser on any computer and use your phone to authenticate.', 1800);
+  await lesaSays("You can also click the icon at the top of this chat to log out, and then you can immediately log back in with your phone too.", 1800);
+  await lesaSaysHTML('We look forward to providing you a streamlined experience across all the AIs you use. Follow us on X <a href="https://x.com/wipcomputer" target="_blank" rel="noopener">@wipcomputer</a> to keep up to date on when we release new features.', 1800);
+  await lesaSays("Your passkey will keep working after you leave.", 1200);
+  await lesaSays("Made in California by WIP Computer, Inc. Learning Dreaming Machines.", 1200);
+}
+
+async function showReturningUserOutro() {
+  await lesaSays("At Work in Progress Computer, we are building the future of AI and human interaction.", 1500);
+  await lesaSays("We believe permission is a conversation. Your AI asks. You decide. One glance, one tap.", 1800);
+  await lesaSaysHTML('We look forward to providing you a streamlined experience across all the AIs you use. Follow us on X <a href="https://x.com/wipcomputer" target="_blank" rel="noopener">@wipcomputer</a> to keep up to date on when we release new features.', 1800);
+  await lesaSays("Made in California by WIP Computer, Inc. Learning Dreaming Machines.", 1200);
+}
+
+function logoutAndSignBackIn() {
+  sessionStorage.removeItem('lesa-token');
+  sessionStorage.removeItem('lesa-agent');
+  sessionStorage.removeItem('lesa-tenant');
+  sessionStorage.removeItem('lesa-new-account');
+  window.location.href = '/login?next=/demo';
 }
 
 async function doGameAuth() {
@@ -1191,7 +1310,7 @@ async function doGameAuth() {
         removeTyping();
         await lesaSays("You are not authorized to play war games with me.", 1200);
       }
-      await lesaSays("This is the end of the demo. To try again, refresh this page.", 1500);
+      await lesaSays("Your passkey will continue to work.", 1500);
 }
 
 function showAuthButtonForGame() {
@@ -1203,7 +1322,7 @@ function showAuthButtonForGame() {
   btn.innerHTML = '<span style="filter:brightness(0) invert(1);">🫆</span> Authorize';
   btn.onclick = function() {
     container.remove();
-    addMessage('Authorized', 'user');
+    addMessage('Authorizing', 'user');
     doGameAuth();
   };
   container.appendChild(btn);
@@ -1223,6 +1342,9 @@ function showCSSKaleidoscope(bubble) {
 
 function showChat() {
   document.getElementById('loginPage').style.display = 'none';
+  document.body.classList.add('chat-active');
+  var footer = document.getElementById('kscope-footer');
+  if (footer) footer.style.display = 'none';
   var chatPage = document.getElementById('chatPage');
   chatPage.style.display = 'flex';
   startDemo();
@@ -1233,13 +1355,9 @@ if (sessionStorage.getItem('lesa-token')) {
   showChat();
 }
 
-// If user has an account (created at /login), show sign-in mode
-if (localStorage.getItem('kscope-has-account') && !sessionStorage.getItem('lesa-token')) {
-  document.getElementById('createBtn').textContent = 'Enter the Kaleidoscope';
-  document.getElementById('createBtn').onclick = function() { doSignIn(); };
-  document.getElementById('handleInputWrap').style.display = 'none';
-  document.getElementById('signInBtn').parentElement.style.display = 'none';
-}
+// /demo/ always shows the original create-account UI. Do not key off
+// localStorage["kscope-has-account"] to swap into sign-in mode here;
+// that coupled /login state to /demo/ rendering.
 
 // Handle send (not used in demo flow, but wired up)
 function handleSend() {

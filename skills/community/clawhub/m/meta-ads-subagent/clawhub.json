@@ -1,0 +1,26 @@
+{
+  "schema": "v1",
+  "name": "meta-ads-subagent",
+  "displayName": "Meta Ads Autonomous Subagent & Traffic Manager",
+  "version": "1.2.0",
+  "description": "Autonomous AI Marketing Subagent for Meta Ads Graph API v24.0. Features 3-level naming hierarchy, SVG 1080x1080 creative generator, bid tuning, CPA audit, and Habilis MCP Gateway integration.",
+  "author": "Rafa Martins <rafacpti@gmail.com>",
+  "category": "productivity",
+  "tags": [
+    "meta-ads",
+    "facebook-ads",
+    "instagram-ads",
+    "marketing",
+    "traffic-management",
+    "paid-ads",
+    "creatives",
+    "habilis"
+  ],
+  "entrypoint": "SKILL.md",
+  "platforms": [
+    "linux",
+    "darwin",
+    "windows"
+  ],
+  "homepage": "https://xvix.com.br"
+}

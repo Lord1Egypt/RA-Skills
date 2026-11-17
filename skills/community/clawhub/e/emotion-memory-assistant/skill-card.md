@@ -1,39 +1,50 @@
-## Description: <br>
-自动追踪用户情绪变化，在合适的时机关心用户。检测对话情绪、记忆历史、主动关心、周报生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+情感记忆助手自动检测用户对话中的正向、负向或中性情绪，记录历史情绪，并在合适时生成关心消息和周报。
 
-## Publisher: <br>
-[786793119](https://clawhub.ai/user/786793119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[786793119](https://clawhub.ai/user/786793119)
 
-## Use Case: <br>
-External users and developers use this skill to detect emotional tone in conversation text, keep local mood history, send care-oriented messages after negative signals, and generate weekly mood summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local mood history and short analyzed message snippets may contain sensitive personal information. <br>
-Mitigation: Install only when local retention is acceptable, and periodically inspect or delete ~/.memory/emotions/history.json to remove retained history. <br>
+## Use Case:
 
+Users and agents can use this skill to classify Chinese-language conversation snippets by emotion, store recent emotional history, surface care messages after negative sentiment, and generate weekly emotion summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/786793119/emotion-memory-assistant) <br>
-- [Skill-declared homepage](https://github.com/786793119/miya-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Python dictionaries and text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local mood history to ~/.memory/emotions/history.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, ClawHub release evidence) <br>
+Risk: The skill stores sensitive emotional classifications and short message excerpts in plaintext on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit opt-in, apply restrictive permissions to ~/.memory/emotions/history.json, and add retention limits plus a deletion path before broad use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/786793119/skills/emotion-memory-assistant)
+- [Skill-declared Homepage](https://github.com/786793119/miya-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON-like Python dictionaries with text fields and a markdown-style weekly report string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists emotion history locally at ~/.memory/emotions/history.json]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

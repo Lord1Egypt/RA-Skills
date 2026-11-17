@@ -51,7 +51,7 @@ Don't have an account? Sign up at [cyberlensai.com](https://cyberlensai.com).
 After any scan, choose how you want results delivered:
 
 - **In chat** via `generate_report` (formatted markdown)
-- **As a PDF** via `export_report_pdf` (colour-coded, professional layout)
+- **As a PDF** via `export_report_pdf` (Security Assessment Dossier with an executive assessment, severity ledger, and complete technical evidence)
 
 ---
 

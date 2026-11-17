@@ -1,39 +1,51 @@
-## Description: <br>
-Use when performing video/audio processing tasks including transcoding, filtering, streaming, metadata manipulation, or complex filtergraph operations with FFmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when performing video/audio processing tasks including transcoding, filtering, streaming, metadata manipulation, or complex filtergraph operations with FFmpeg.
 
-## Publisher: <br>
-[liudu2326526](https://clawhub.ai/user/liudu2326526) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liudu2326526](https://clawhub.ai/user/liudu2326526)
 
-## Use Case: <br>
-Developers, editors, and media engineers use this skill to choose and adapt FFmpeg or FFprobe commands for local video and audio processing, including transcoding, extraction, filtering, metadata edits, inspection, and complex filtergraph work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: FFmpeg and FFprobe command suggestions may overwrite files, process large local directories, or produce unsuitable outputs if used without review. <br>
-Mitigation: Review commands, paths, overwrite flags, codecs, stream mappings, and file scope before execution; test important operations on copies or small samples first. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liudu2326526/ffmpeg-master) <br>
-- [Publisher Profile](https://clawhub.ai/user/liudu2326526) <br>
-- [Artifact: SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers, engineers, and media operators use this skill to draft and review FFmpeg or FFprobe commands for video and audio processing, inspection, transcoding, filtering, streaming, and metadata tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated FFmpeg commands can overwrite existing files or write to unintended output paths.
+
+Mitigation: Review output filenames, paths, and overwrite flags such as -y before running commands.
+
+Risk: Large media-processing or batch commands can consume significant local compute and storage.
+
+Mitigation: Check command scope and test on a small sample before running large jobs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, guidance] <br>
-**Output Format:** [Markdown with FFmpeg and FFprobe command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for review and adaptation before execution on local media files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated FFmpeg commands before execution, especially paths, batch operations, and overwrite flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

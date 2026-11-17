@@ -1,42 +1,57 @@
-## Description: <br>
-Start every day focused with a morning briefing that summarizes overdue tasks, today's priorities, calendar overview, and context from recent meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-External users and productivity-focused teams use this skill to ask an assistant for a concise daily or weekly briefing assembled from available task lists, meeting notes, calendar context, and memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daily briefings may surface private tasks, meeting notes, calendar events, or memory context in chat. <br>
-Mitigation: Review before installing, invoke explicitly, and disable or avoid calendar, memory, or meeting-note sources when they may contain confidential information. <br>
+## Use Case:
 
+Employees and individual operators use this skill to turn workspace to-dos, recent meeting notes, calendar context, and optional memory files into a concise daily or weekly planning briefing. It helps identify overdue work, today's priorities, schedule context, and a single focus item.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/quincy-ai-daily-briefing) <br>
-- [Creator homepage](https://jeffjhunter.com) <br>
-- [Quick Start](examples/quick-start.md) <br>
-- [Preferences Template](assets/PREFERENCES-template.md) <br>
-- [Example Output](examples/output-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown briefing with structured sections and task lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single chat response and may ask setup questions when no task, meeting-note, calendar, or memory sources are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Daily briefings may expose private workspace to-dos, recent meeting notes, calendar details, memory files, or user preference files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that context is appropriate for briefing use, invoke the skill explicitly, and avoid storing secrets or unrelated sensitive facts in files the skill may read.
+
+Risk: Priority and focus recommendations may be incomplete when the workspace lacks current to-do, meeting, calendar, or memory context.
+
+Mitigation: Treat the briefing as planning guidance and verify high-impact deadlines, meetings, and obligations against authoritative sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/quincygunter/skills/quincy-ai-daily-briefing)
+- [Author homepage](https://jeffjhunter.com)
+- [Quick Start: AI Daily Briefing](artifact/examples/quick-start.md)
+- [Example Output: Daily Briefing](artifact/examples/output-example.md)
+- [Briefing Preferences](artifact/assets/PREFERENCES-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown briefing with ordered sections, checklists, bullets, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize workspace tasks, recent meeting notes, calendar details, and optional memory or preference files when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

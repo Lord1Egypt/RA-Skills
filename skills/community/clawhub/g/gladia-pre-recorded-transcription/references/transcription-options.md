@@ -29,7 +29,6 @@ const result = await client.preRecorded().transcribe(audioInput, {
   summarization_config: { type: "bullet_points" },
   sentiment_analysis: true,
   named_entity_recognition: true,
-  chapterization: true,
   subtitles: true,
   subtitles_config: { formats: ["srt", "vtt"] },
   pii_redaction: true,
@@ -65,7 +64,6 @@ result = client.prerecorded().transcribe("audio.mp3", {
     "summarization_config": {"type": "bullet_points"},
     "sentiment_analysis": True,
     "named_entity_recognition": True,
-    "chapterization": True,
     "subtitles": True,
     "subtitles_config": {"formats": ["srt", "vtt"]},
     "pii_redaction": True,
@@ -97,7 +95,6 @@ result = client.prerecorded().transcribe("audio.mp3", {
 | `summarization_config.type`             | `string`   | `bullet_points` or `paragraph`          |
 | `sentiment_analysis`                    | `bool`     | Per-utterance sentiment                 |
 | `named_entity_recognition`              | `bool`     | Entity extraction                       |
-| `chapterization`                        | `bool`     | Chapter segmentation                    |
 | `subtitles`                             | `bool`     | Generate subtitle files                 |
 | `subtitles_config.formats`              | `string[]` | `srt`, `vtt`                            |
 | `pii_redaction`                         | `bool`     | Redact PII                              |

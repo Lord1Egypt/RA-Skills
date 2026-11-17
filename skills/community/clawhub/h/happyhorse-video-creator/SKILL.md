@@ -102,7 +102,7 @@ C) 首尾帧 - 提供首帧+尾帧图片
 
 ### 阿里百炼 HappyHorse API
 
-**API Key**: `sk-d05aba5a2dae4453b97ed07fdb983e5a`
+**API Key**: `REDACTED-SECRET`
 
 #### 图生视频（首帧模式）✅ 已验证
 
@@ -113,7 +113,7 @@ url = "https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/vide
 
 headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer sk-d05aba5a2dae4453b97ed07fdb983e5a",
+    "Authorization": "Bearer REDACTED-SECRET",
     "X-DashScope-Async": "enable"  # ⚠️ 必须设置
 }
 
@@ -176,7 +176,7 @@ payload = {
 
 ```python
 status_url = f"https://dashscope.aliyuncs.com/api/v1/tasks/{task_id}"
-headers = {"Authorization": "Bearer sk-d05aba5a2dae4453b97ed07fdb983e5a"}
+headers = {"Authorization": "Bearer REDACTED-SECRET"}
 response = requests.get(status_url, headers=headers, timeout=30)
 result = response.json()
 

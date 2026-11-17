@@ -1,43 +1,58 @@
-## Description: <br>
-Integrates RunningHub AI workflows for face swap, motion transfer, dance video generation, digital human video, mouth-sync, lip-sync, and image comparison tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RunningHub AI workflow integration for image face swap, Wan2.2 motion transfer, advanced motion transfer, HD dance video, digital human, comparison, and lip-sync workflows.
 
-## Publisher: <br>
-[lygjoey](https://clawhub.ai/user/lygjoey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lygjoey](https://clawhub.ai/user/lygjoey)
 
-## Use Case: <br>
-Developers and external users can use this skill to guide agents through RunningHub media workflows that transform images, faces, voices, and videos into generated image or video outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill evidence includes an exposed RunningHub API key. <br>
-Mitigation: Remove and rotate the exposed key before release, and require users to provide their own credential through an environment variable or secret store. <br>
-Risk: The skill asks agents to run referenced local scripts that are not included in the artifact evidence. <br>
-Mitigation: Provide the scripts for review and scan them before installation or execution. <br>
-Risk: The workflows process sensitive face, voice, image, and video media. <br>
-Mitigation: Use only media that the user has rights and consent to process, and add explicit privacy and consent guidance before deployment. <br>
+## Use Case:
 
+Developers and external users can use this skill to select and run RunningHub image and video generation workflows for face swap, motion transfer, dance video generation, digital-human narration, media comparison, and lip-sync tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lygjoey/shell-image-video) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lygjoey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides calls to external RunningHub workflows that may return JSON containing generated media URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact includes a plaintext RunningHub API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the key as compromised, remove it from the skill, rotate it, and require users to supply RUNNINGHUB_API_KEY from their own environment.
+
+Risk: Face, voice, image, video, and audio inputs may be sent to RunningHub workflows.
+
+Mitigation: Avoid private or sensitive media unless the user has consent and accepts the external processing risk.
+
+Risk: The skill tells agents to run local Node scripts that are not bundled in the submitted artifact.
+
+Mitigation: Review the scripts, dependencies, and target workspace before execution, and run only in an appropriate sandbox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lygjoey/skills/shell-image-video)
+- [ClawHub publisher profile](https://clawhub.ai/user/lygjoey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents toward RunningHub workflow calls that may return JSON, image URLs, GIFs, or videos through the referenced local scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

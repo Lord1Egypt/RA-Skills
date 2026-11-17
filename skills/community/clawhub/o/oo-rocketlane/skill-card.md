@@ -1,44 +1,52 @@
-## Description: <br>
-Use Rocketlane through OOMOL's oo CLI connector to read projects, tasks, and users from a connected Rocketlane account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Rocketlane project, task, and user data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and customer-facing teams use this skill to retrieve Rocketlane project, task, and user records through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected Rocketlane account. <br>
-Mitigation: Use an account with appropriate Rocketlane permissions and reconnect only when the connector reports an authentication or scope error. <br>
-Risk: The skill executes oo CLI commands on behalf of the agent. <br>
-Mitigation: Review command payloads before execution and inspect the live connector schema before building JSON input. <br>
-Risk: The security guidance notes that some related workflows can modify accounts, project files, or run review tools with broad local access. <br>
-Mitigation: Approve only the Rocketlane read actions needed for the task and review any command that appears to perform deployment, moderation, package installation, or autoreview work. <br>
+## Use Case:
 
+Rocketlane users use this skill to search for and retrieve project, task, and user information through their connected Rocketlane account.
 
-## Reference(s): <br>
-- [ClawHub Rocketlane skill page](https://clawhub.ai/oomol/oo-rocketlane) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Rocketlane homepage](https://www.rocketlane.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Rocketlane get and list actions; live action schemas should be inspected before connector payloads are built.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup can execute unverified downloaded software without clear user approval; the remote installers were not inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, prefer a pinned and verified release, and review any automatic changes to other agent skills.
+
+## Reference(s):
+
+- [Rocketlane API Authentication Documentation](https://developer.rocketlane.com/docs/authentication)
+- [oo CLI Repository](https://github.com/oomol-lab/oo-cli)
+- [Rocketlane Homepage](https://www.rocketlane.com)
+- [Rocketlane Skill Release](https://clawhub.ai/oomol/skills/oo-rocketlane)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses with concise textual summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only retrieval of project, task, and user information.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

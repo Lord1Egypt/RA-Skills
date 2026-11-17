@@ -1,42 +1,58 @@
-## Description: <br>
-This skill helps agents parse GPX or KML track files and generate static JPG route maps or interactive HTML route visualizations with elevation profiles and route statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualizes GPS track routes from KML or GPX files by parsing route points, computing route statistics, and generating static JPG maps or interactive HTML maps.
 
-## Publisher: <br>
-[ziemen](https://clawhub.ai/user/ziemen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziemen](https://clawhub.ai/user/ziemen)
 
-## Use Case: <br>
-Developers, engineers, and external users can use this skill to convert recorded GPS tracks into route maps, elevation profiles, and statistics for running, cycling, hiking, or GIS-style review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release bundles a real-looking route sample and local personal file path that may expose precise location or personal context. <br>
-Mitigation: Review or remove bundled route samples before installation, sharing, or reuse, and avoid preserving source filenames when processing sensitive tracks. <br>
-Risk: Interactive HTML maps can make external tile requests when opened. <br>
-Mitigation: Open generated HTML only when external map tile requests are acceptable for the route being visualized. <br>
-Risk: Generated outputs can preserve filenames and precise coordinates from trusted GPX or KML inputs. <br>
-Mitigation: Use trusted input files and redact or avoid sharing generated outputs that contain sensitive route locations. <br>
+## Use Case:
 
+Developers and external users use this skill to turn GPX or KML route data into route maps, elevation profiles, and summary statistics for hiking, running, cycling, and other GPS track workflows.
 
-## Reference(s): <br>
-- [KML / GPX File Format Reference](references/formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, JPG, or HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces parsed track JSON, static route images, or interactive HTML maps depending on the requested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: GPX, KML, and generated track JSON can expose precise locations, route habits, and local file path metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat route inputs and generated outputs as sensitive, remove or replace real sample route data before broad distribution, and avoid sharing generated files unless location data has been reviewed.
+
+Risk: Interactive HTML maps may contact external map tile services when opened.
+
+Mitigation: Use the interactive HTML output only when external tile requests are acceptable, or prefer static JPG output for offline review.
+
+Risk: Generated HTML from untrusted track JSON may carry content into a browser context.
+
+Mitigation: Avoid opening generated HTML from untrusted inputs and run the workflow in an isolated Python environment with pinned dependencies.
+
+## Reference(s):
+
+- [KML / GPX File Format Reference](references/formats.md)
+- [ClawHub skill page](https://clawhub.ai/ziemen/skills/gpx-kml-visualizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file output guidance for JSON, JPG, and HTML artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated interactive maps may request external map tiles, and generated route files can contain precise GPS data.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

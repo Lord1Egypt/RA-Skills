@@ -1,50 +1,65 @@
-## Description: <br>
-Provides agent-facing CreditClaw payment workflows for purchases, checkout pages, encrypted card checkout, wallets, spending guardrails, and owner approvals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent shop on Amazon with guardrailed wallets and owner approval.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users and agent operators use this skill to let an agent register with CreditClaw, request spending approval, manage balances, and execute purchases or payment collection through CreditClaw APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release title and shopping framing may understate the broad CreditClaw spending, card-handling, payment-collection, invoicing, and storefront authority documented by the artifact. <br>
-Mitigation: Install only when broad CreditClaw payments authority is intended, and review enabled rails and workflows before use. <br>
-Risk: The CreditClaw API key can authorize payment actions and should be treated as sensitive spending authority. <br>
-Mitigation: Store CREDITCLAW_API_KEY in a secrets manager, never send it outside creditclaw.com API requests, and rotate it if exposure is suspected. <br>
-Risk: Auto-spend, seller, invoice, and payment recipient workflows can move or collect funds without sufficient human review if configured too broadly. <br>
-Mitigation: Use ask-for-everything approval by default, verify all recipients and domains, and avoid auto-spend or seller/invoice features unless explicitly needed. <br>
-Risk: Encrypted card checkout can expose decrypted card details if run in a logging or persistent-context environment. <br>
-Mitigation: Avoid the encrypted-card rail unless checkout can run in an isolated no-log environment with ephemeral handling of decrypted card data. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent register with CreditClaw, check spending permissions, request owner-approved Amazon purchases, track wallet state, and create checkout or payment flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TripleHippo/taxes) <br>
-- [CreditClaw homepage](https://creditclaw.com) <br>
-- [Main CreditClaw skill file](https://creditclaw.com/amazon/skill.md) <br>
-- [CreditClaw checkout guide](https://creditclaw.com/amazon/checkout.md) <br>
-- [CreditClaw encrypted card guide](https://creditclaw.com/amazon/encrypted-card.md) <br>
-- [CreditClaw spending guide](https://creditclaw.com/amazon/spending.md) <br>
-- [CreditClaw Stripe x402 wallet guide](https://creditclaw.com/amazon/stripe-x402-wallet.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown instructions with curl commands and JSON API payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY; workflows may involve owner approval, spending guardrails, payment recipient verification, and secret handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles real spending and card data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly sandboxed agent, a scoped CreditClaw API key, and explicit owner approval for purchases; treat decrypted card output, webhook payloads, buyer data, and shipping data as highly sensitive.
+
+Risk: Server-delivered instructions and code can influence checkout execution.
+
+Mitigation: Do not execute remotely delivered decrypt scripts or follow free-form remote instructions; use integrity-checked and version-pinned skill files.
+
+Risk: A main-agent card decryption fallback could expose decrypted card details in the main context.
+
+Mitigation: Use an ephemeral checkout sub-agent for card decryption and checkout, and do not store or log decrypted card data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triplehippo/skills/taxes)
+- [CreditClaw Amazon skill](https://creditclaw.com/amazon/skill.md)
+- [CreditClaw checkout guide](https://creditclaw.com/amazon/checkout.md)
+- [CreditClaw encrypted card guide](https://creditclaw.com/amazon/encrypted-card.md)
+- [CreditClaw spending permissions](https://creditclaw.com/amazon/spending.md)
+- [CreditClaw wallet management](https://creditclaw.com/amazon/management.md)
+- [CreditClaw heartbeat guide](https://creditclaw.com/amazon/heartbeat.md)
+- [CreditClaw Stripe x402 wallet guide](https://creditclaw.com/amazon/stripe-x402-wallet.md)
+- [CreditClaw Crossmint wallet guide](https://creditclaw.com/amazon/crossmint-wallet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with curl examples and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and may handle highly sensitive card, webhook, buyer, and shipping data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

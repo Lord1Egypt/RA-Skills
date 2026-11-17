@@ -1,0 +1,29 @@
+{
+  "command": "python3 -m unittest discover -s tests -v",
+  "cross_modal_authoritative_pass": false,
+  "cross_modal_gate": "explicit first-release waiver after inconclusive attempt",
+  "elapsed_seconds": 12.679,
+  "external_target_calls_from_tests": false,
+  "global_resolver_registration_verified": false,
+  "live_source_proof": "See separately bounded examples/live-proof-summary.json, not tests",
+  "llm_routing_evaluation": false,
+  "observed_on": "2026-10-07",
+  "routing_case_count": 13,
+  "schema_version": "1.0",
+  "skipped": 0,
+  "status": "PASS",
+  "tests_run": 35,
+  "verification_scope": [
+    "semantic source identity and required fields",
+    "bounded comments/captions and no-data",
+    "credential/token redaction and private artifact modes",
+    "Google reviewed contract and answer-scoped visible source filtering",
+    "Amazon identity/variants/currency boundary and strict JSON-LD Offer",
+    "real local HTTP/SSE MCP discovery/read-only id-token mapping",
+    "actual local HTTP CONNECT407 refusal",
+    "real process deadline and descendant/private-config cleanup",
+    "CLI fixture pipelines and Node bridge",
+    "proposed exact phrase routing and trigger-to-fixture artifact side effect",
+    "package allowlist and non-echoing secret scanner"
+  ]
+}

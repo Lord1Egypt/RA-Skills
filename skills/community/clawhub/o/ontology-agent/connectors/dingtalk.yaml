@@ -1,0 +1,29 @@
+# connectors/dingtalk.yaml — DingTalk connection placeholder (stub)
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `dingtalk.zh.yaml`.
+# Status: stub (not yet implemented). To be filled in with a real implementation in Phase 6 when
+# enterprise customers appear.
+# Design principle: define only the integration contract, not a concrete implementation, to avoid
+# over-engineering at the MVP stage.
+
+meta:
+  connector: dingtalk
+  status: stub
+  trigger: "Fill in the implementation when enterprise customers appear and real people + IM need to be connected"
+
+integration:
+  type: robot_webhook          # DingTalk custom robot / internal enterprise app
+  webhook_env: DINGTALK_WEBHOOK
+  secret_env: DINGTALK_SECRET  # signing secret
+  message_types: [text, markdown, action_card]
+
+bindings:
+  - role: employee             # binds to the employee role in roles.yaml
+    scope: "department/{dept}/shared"
+  - event: task_assigned       # task assignment pushed to the corresponding employee in DingTalk
+  - event: approval_request    # approval requests (e.g. tax filing) pushed to the owner
+
+note: >
+  Connecting enterprise people = creating an employee role for each real employee (see roles.yaml);
+  messages are pushed to their DingTalk via webhook; the enterprise instance is then "an instance
+  where multiple employees each have a different scope".

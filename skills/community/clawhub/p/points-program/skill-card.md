@@ -1,38 +1,54 @@
-## Description: <br>
-提供积分运营的可落地指南与SOP。在开展积分运营相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供积分运营的可落地指南与SOP。在开展积分运营相关工作时调用。
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-运营、产品和增长团队可用该技能制定积分运营方案、SOP、指标口径、试点复盘流程和沉淀模板。使用时应结合中国本地法规、平台规则、个人信息保护和数据最小化要求进行审查。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/points-program) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+Operations and growth teams use this skill to plan and run points-program workflows, including goals, SOPs, metrics, pilots, reporting, and compliance checkpoints.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SOPs, checklists, reporting frameworks, templates, and meeting-note structures.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad trigger wording may invoke the skill during general points-operations discussions.
+
+Mitigation: Review generated SOP guidance for relevance before using it in a live points-program workflow.
+
+Risk: Points-program workflows can involve personal data and platform compliance obligations.
+
+Mitigation: Apply data minimization and confirm compliance with applicable Chinese regulations and platform rules before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/points-program)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with SOP steps, checklists, metrics, and reporting structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill with no code execution, hidden access, or persistence according to security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

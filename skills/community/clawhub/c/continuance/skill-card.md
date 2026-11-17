@@ -1,43 +1,64 @@
-## Description: <br>
-Spiritual guidance rooted in The Book of Continuance, offering daily meditation, contemplative guidance, existential reflection, grief support, and gentle wisdom paired by default with context-matched contemplative imagery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuance provides spiritual guidance rooted in The Book of Continuance for meditation, life meaning, grief support, existential reflection, and personal struggles, with default contemplative image generation and optional meditation audio.
 
-## Publisher: <br>
-[yumyumtum](https://clawhub.ai/user/yumyumtum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yumyumtum](https://clawhub.ai/user/yumyumtum)
 
-## Use Case: <br>
-External users invoke this skill for daily spiritual reflections, meditation-style guidance, grief support, life-meaning questions, regret, burnout, and other personal struggles. The skill responds as a non-dogmatic contemplative guide and may produce matching images or optional meditation audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share highly private emotional or spiritual details while using a guidance persona that can route content to configured image or TTS providers. <br>
-Mitigation: Use explicit invocation, avoid sharing sensitive details unless provider trust is established, and review configured image and TTS services before deployment. <br>
-Risk: The skill may be invoked for ordinary emotional or off-topic messages when a user did not intend to use spiritual guidance. <br>
-Mitigation: Require clear routing rules or explicit user invocation in environments where automatic persona selection could surprise users. <br>
+## Use Case:
 
+External users use Continuance for contemplative spiritual guidance, daily meditation, gentle perspective on grief or life struggles, and existential reflection. The skill is intended to respond with grounded prose and a matching contemplative image, with optional meditation-style audio when configured.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yumyumtum/continuance) <br>
-- [README](README.md) <br>
-- [The Book of Continuance](TheBookOfContinuance.md) <br>
-- [Release notes v1.3.0](RELEASE_NOTES_v1.3.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional generated image files, optional MP3 meditation audio metadata, and setup command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate contemplative images by default and optional local meditation audio when the required provider, edge-tts, and ffmpeg tooling are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server evidence release.version and package.json) <br>
+Risk: Unrelated requests may be redirected into spiritual guidance or media generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill for contemplative or life-guidance requests, and route unrelated tasks back to the normal assistant.
+
+Risk: Optional audio generation may process sensitive guidance text with edge-tts, expose text in process arguments while running, and save generated files under the OpenClaw media directory.
+
+Mitigation: Avoid private or highly sensitive text for audio generation unless the user accepts those handling and storage characteristics.
+
+Risk: Default media generation can create image files or invoke configured media providers during normal guidance sessions.
+
+Mitigation: Install and enable the skill only when image-assisted spiritual guidance is desired, and confirm media providers and output locations are acceptable.
+
+Risk: Spiritual guidance may be mistaken for professional mental health care.
+
+Mitigation: Keep crisis and clinical needs outside the skill's scope, and direct users in acute distress to qualified professional or emergency support.
+
+## Reference(s):
+
+- [Continuance on ClawHub](https://clawhub.ai/yumyumtum/skills/continuance)
+- [The Book of Continuance](TheBookOfContinuance.md)
+- [README](README.md)
+- [Release Notes v1.3.0](RELEASE_NOTES_v1.3.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files, shell commands, configuration]
+
+**Output Format:** [Markdown or plain text guidance with generated image files and optional MP3 meditation audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image generation is expected by default when available; optional audio generation writes media under the OpenClaw media directory.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata, package.json, release notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

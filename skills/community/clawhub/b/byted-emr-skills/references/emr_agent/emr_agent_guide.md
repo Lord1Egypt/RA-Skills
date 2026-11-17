@@ -128,6 +128,31 @@ python ./scripts/emr_agent/emr_agent_manager.py --action ListChats --body "{\"Pa
 |--------|----------|----------|-----------------------------------------------------------|
 | ReportId | String | 否 | 报告ID（格式为：emr-report-8f0fc069-0bf0-44d3-959b-329f6c73328f) |
 
+### ListTradeInstances
+**接口描述**  
+查询当前账号在当前 Region 下的 EMR Agent 实例状态。
+
+**Action**： `ListTradeInstances`
+
+**body**
+
+无
+
+**返回字段**
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| Instances | list[InstanceDetail] | 实例详情列表 |
+| InstanceDetail.InstanceId | String | 火山平台实例ID |
+| InstanceDetail.AccountId | String | 火山平台账户ID |
+| InstanceDetail.Status | String | 实例状态，如 `active`、`overdue`、`deleted` |
+| InstanceDetail.CreatedAt | String | 创建时间（ISO 8601） |
+| InstanceDetail.UpdatedAt | String | 最后更新时间（ISO 8601） |
+
+**状态判断规则**
+- `Instances` 为空：说明当前账号在当前 Region 下未开通 EMR Agent，应返回开通文档链接引导用户先开通。
+- `Instances` 只有 1 个元素：根据 `Status` 判断实例状态。
+- 当前实现兼容火山平台账号与实例一对多的底层返回；若返回多个实例，则透出列表并提示人工确认。
 
 # Requirements
 - 不要去读脚本内容，按照格式执行即可

@@ -1,44 +1,57 @@
-## Description: <br>
-115 Publish helps agents manage 115 cloud-drive accounts through QR login, file browsing and search, share transfer, offline downloads, smart organization, and capacity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages 115 cloud-drive workflows through QR login, file browsing, search, share transfer, offline download, smart organization, cleanup recommendations, and capacity queries.
 
-## Publisher: <br>
-[sukris](https://clawhub.ai/user/sukris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sukris](https://clawhub.ai/user/sukris)
 
-## Use Case: <br>
-External users and agents use this skill to operate a 115 cloud-drive account from chat, including login, browsing, searching, share transfer, offline download tasks, organization, cleanup advice, and capacity checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR login creates a reusable local session for a 115 account. <br>
-Mitigation: Install only for accounts where local session reuse is acceptable, review cookie retention behavior, and clear stored cookies when access is no longer needed. <br>
-Risk: File organization and transfer features can make broad account-side changes. <br>
-Mitigation: Test on a small folder first, back up important data, and require explicit preview and confirmation before bulk move, transfer, or delete operations. <br>
-Risk: The security guidance calls out a preference for normal TLS verification. <br>
-Mitigation: Prefer a version that uses normal TLS verification for all network flows before use on important accounts. <br>
+## Use Case:
 
+External users and developers use this skill to operate a 115 cloud-drive account from an agent, including login, browsing, search, transfers, offline downloads, organization, cleanup advice, and storage checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sukris/115-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/sukris) <br>
-- [115 service homepage](https://115.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown status messages, file lists, operation summaries, and QR-code image payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return account-side operation results and user prompts for login or confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version, package.json) <br>
+Risk: The skill stores reusable 115 account cookies and uses them to access account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if account access is acceptable, keep the cookie file private, and clear saved cookies after use or before sharing the environment.
+
+Risk: An alternate web authentication path disables TLS certificate validation.
+
+Mitigation: Avoid that web-auth flow until TLS validation is fixed; prefer authentication paths that preserve certificate validation.
+
+Risk: File organization and file-operation features can immediately change cloud files.
+
+Mitigation: Require explicit user confirmation and manually review source files, destination folders, and any dry-run results before enabling write operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sukris/skills/115-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style chat responses with file lists, status summaries, progress messages, and optional QR-code image delivery during login.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform cloud-file actions through the connected 115 account after user-directed workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

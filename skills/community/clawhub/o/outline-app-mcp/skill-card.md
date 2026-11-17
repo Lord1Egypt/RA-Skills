@@ -1,41 +1,60 @@
-## Description: <br>
-Model Context Protocol (MCP) bridge for Outline (getoutline.com). Enables AI agents to search, read, create, and manage documents, collections, and comments in an Outline workspace via SSE transport. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model Context Protocol bridge that lets AI agents search, read, create, update, move, comment on, and upload content in an Outline workspace over SSE transport.
 
-## Publisher: <br>
-[samuellie](https://clawhub.ai/user/samuellie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samuellie](https://clawhub.ai/user/samuellie)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to let an agent work with Outline knowledge bases: search and read documents, create or update content, manage collections, and collaborate through comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can read local files for upload and send them to the configured Outline workspace. <br>
-Mitigation: Install only where the agent is trusted, run from a host account with limited file access, and monitor or restrict upload and bulk-sync usage. <br>
-Risk: Authenticated tool calls can modify Outline documents, collections, and comments. <br>
-Mitigation: Use the least-privileged Outline API key available and review agent activity for unexpected workspace changes. <br>
+## Use Case:
 
+Developers and teams using Outline can give an agent controlled access to workspace documents, collections, comments, and user directory data. The skill is suited for documentation search, document drafting, updates, collaboration workflows, and media upload assistance.
 
-## Reference(s): <br>
-- [Outline MCP on ClawHub](https://clawhub.ai/samuellie/outline-app-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/samuellie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and JSON responses with command-line configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OUTLINE_API_KEY, OUTLINE_URL, node, and npm; can use local files for Outline uploads when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: server release evidence, frontmatter metadata, package.json) <br>
+Risk: The upload helper can read any file that the OpenClaw process can read and send it to an agent-supplied URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with least-privileged filesystem access, restrict readable paths, review agent upload requests, and avoid enabling upload or bulk-sync workflows unless local file upload is required.
+
+Risk: A broad Outline API key can expose or modify workspace documents, collections, comments, and user data.
+
+Mitigation: Use a minimally scoped Outline API key tied to the intended workspace permissions and rotate it if logs or behavior indicate unexpected access.
+
+Risk: An untrusted OUTLINE_URL could redirect authenticated requests or uploads away from the intended Outline origin.
+
+Mitigation: Configure only a trusted HTTPS Outline MCP endpoint and use URL allowlisting before routine deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samuellie/skills/outline-app-mcp)
+- [ClawHub publisher profile](https://clawhub.ai/user/samuellie)
+- [Outline](https://www.getoutline.com/)
+- [Model Context Protocol SDK package](https://registry.npmjs.org/@modelcontextprotocol/sdk/-/sdk-1.27.1.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API responses]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON responses from Outline and MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OUTLINE_API_KEY, OUTLINE_URL, Node.js, and npm; file upload paths can read local files available to the OpenClaw process.]
+
+## Skill Version(s):
+
+1.3.4 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

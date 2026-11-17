@@ -1,45 +1,62 @@
-## Description: <br>
-Keyword research and analysis skill for any website. Performs systematic keyword discovery, competitive gap analysis, intent classification, difficulty scoring, and priority ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keyword research and analysis skill for any website. Performs systematic keyword discovery, competitive gap analysis, intent classification, difficulty scoring, and priority ranking.
 
-## Publisher: <br>
-[meikidd](https://clawhub.ai/user/meikidd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meikidd](https://clawhub.ai/user/meikidd)
 
-## Use Case: <br>
-External users, marketers, SEO specialists, and content teams use this skill to discover keyword opportunities, compare competitor coverage, classify search intent, and produce a prioritized keyword research report for a target website. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use logged-in SEO tools in the user's browser, including Google Search Console and other account-based services. <br>
-Mitigation: Keep browser automation limited to the intended account and tab, and confirm access before extracting or using account-specific site data. <br>
-Risk: The skill saves per-site business context locally in domain profile files. <br>
-Mitigation: Review or delete saved domain profile files when that information should not be retained, and avoid storing sensitive business details unnecessarily. <br>
-Risk: Some workflows can involve paid SEO tools or account tiers. <br>
-Mitigation: Confirm the user's available account tier before using paid-tool workflows and use documented free alternatives when paid access is unavailable or undesired. <br>
+## Use Case:
 
+External users, marketers, SEO practitioners, and developers use this skill to discover keyword opportunities, compare competitor coverage, classify search intent, and produce a prioritized keyword research report for a target website.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/meikidd/seo-keyword-research) <br>
-- [GSC web UI playbook](references/gsc-operations.md) <br>
-- [Keyword optimization methodology](references/methodology.md) <br>
-- [Keyword research tools](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with tables, prioritized recommendations, and supporting setup or browser-navigation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local per-domain JSON profile files to retain site context between runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can retain business context, target regions, languages, competitors, and tool-access preferences in local per-domain profile files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile contents before reuse and delete local profile files when business context should not be retained.
+
+Risk: Browser-based SEO workflows may use logged-in Google Search Console, Google Ads, Ahrefs, or Semrush sessions when access is granted.
+
+Mitigation: Grant access only to accounts and properties intended for the analysis, and review exported or scraped SEO data before sharing it.
+
+Risk: The release has no server-resolved import provenance for this version.
+
+Mitigation: Install from a pinned ClawHub version or reviewed source when provenance is required for supply-chain review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meikidd/skills/seo-keyword-research)
+- [Keyword research README](README.md)
+- [Keyword optimization methodology](references/methodology.md)
+- [Keyword research tools playbook](references/tools.md)
+- [GSC web UI playbook](references/gsc-operations.md)
+- [Claude Code skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with tables and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save or update per-domain JSON profile files for future keyword research sessions.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@
 
 搜索层：途牛多轮区域搜索（纯城市→区域关键词补充）+ 搜索层价格过滤（prices参数）
 展示层：按价格三等分 + 图片 + 每档5家 + 智能引导
-比价层：5源并发（飞猪+RG+途牛+美团+同程），同程传keyword精确匹配
+比价层：5源并发（TourMind+RG+途牛+美团+同程），同程传keyword精确匹配
 数据解析：纯dict模式（代理返回application/json，无需MCP/SSE解析）
 """
 import argparse, json, re, concurrent.futures, urllib.request, urllib.error
@@ -14,9 +14,9 @@ from datetime import datetime, timedelta
 PROXY_URL = "https://1439498936-4wdncmn2oj.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = "tp_8k2mX9vQ4z"
 
-PNAME = {"rg": "RollingGo", "tuniu": "途牛", "tongcheng": "同程", "fliggy": "飞猪", "meituan": "美团"}
-PORDER = ["rg", "fliggy", "tuniu", "meituan", "tongcheng"]
-COMMISSION_PRIORITY = {"rg": 0, "fliggy": 1, "tuniu": 2, "meituan": 3, "tongcheng": 4}
+PNAME = {"rg": "RollingGo", "tuniu": "途牛", "tongcheng": "同程", "tourmind": "TourMind", "meituan": "美团"}
+PORDER = ["rg", "tourmind", "tuniu", "meituan", "tongcheng"]
+COMMISSION_PRIORITY = {"rg": 0, "tourmind": 1, "tuniu": 2, "meituan": 3, "tongcheng": 4}
 
 AREA_HINTS = {
     "上海": ["外滩", "陆家嘴", "南京路", "人民广场", "虹桥", "徐家汇", "迪士尼", "静安寺", "新天地"],
@@ -38,6 +38,25 @@ def _proxy(source, params, timeout=30):
     req = urllib.request.Request(
         PROXY_URL, data=body,
         headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
+        method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except Exception as e:
+        return {"code": 500, "error": str(e)}
+
+
+TOURMIND_PROXY = "https://1439498936-6cmx3jxanz.ap-guangzhou.tencentscf.com"
+TOURMIND_TOKEN = "tp_8k2mX9vQ4z"
+
+
+def _tourmind_proxy(route, params, timeout=40):
+    """调用 TourMind 独立代理"""
+    body = json.dumps({"type": route, "params": params}, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(
+        TOURMIND_PROXY, data=body,
+        headers={"Content-Type": "application/json", "X-Proxy-Token": TOURMIND_TOKEN},
         method="POST"
     )
     try:
@@ -328,7 +347,7 @@ def _format_browse(hotels, city, ci, co, kw, max_price, min_score, poi_name, tot
         lines.append(f"📊 途牛为您找到{total}家酒店 | 💰 ¥{min_p}~¥{max_p}")
     lines.append("")
 
-    lines.append("⚠️ **以上为浏览价格，尚未比价！选定酒店后告诉我酒店名或序号，立刻启动5大平台比价！**")
+    lines.append("⚠️ **以上为浏览价格，尚未比价！选定酒店后告诉我酒店名或序号，立刻启动5源比价！**")
     lines.append("")
 
     global_idx = 0
@@ -385,7 +404,7 @@ def _format_browse(hotels, city, ci, co, kw, max_price, min_score, poi_name, tot
             lines.append("")
 
     lines.append("---")
-    lines.append("⚠️ **尚未比价！告诉我酒店名或序号，立刻启动5大旅游平台比价！**")
+    lines.append("⚠️ **尚未比价！告诉我酒店名或序号，立刻启动5源比价！**")
 
     tips = _smart_tips(kw, max_price, min_score, city, poi_name)
     for tip in tips:
@@ -395,38 +414,60 @@ def _format_browse(hotels, city, ci, co, kw, max_price, min_score, poi_name, tot
 
 
 # ===== 第二步：5源精确比价 =====
-def _call_fg(city, ci, co, kw):
-    """飞猪：keyword精准过滤"""
-    resp = _proxy("fliggy", {"city": city, "check_in": ci, "check_out": co, "keyword": kw or ""})
-    data = _get_data(resp)
-    if "error" in data:
-        return []
-    d2 = data.get("data") or data
-    if not isinstance(d2, dict):
-        return []
-    il = d2.get("itemList", []) or []
-    hotels = []
-    for h in il[:30]:
-        name = _clean(h.get("name", ""))
-        if not name:
-            continue
-        try:
-            p = float(re.sub(r"[^\d.]", "", str(h.get("price", "0"))))
-        except:
-            p = 0
-        if p <= 0:
-            continue
-        # 使用FlyAI推广者短链，含佣金追踪参数
-        url = h.get("detailUrl", "")
-        hotels.append({
-            "name": name, "price": p,
-            "address": h.get("address", ""),
-            "star": h.get("star", ""),
-            "source": "fliggy",
-            "url": url,
-            "brand": h.get("brandName") or "",
+def _call_tourmind(city, ci, co, kw):
+    """TourMind：两步调用获取酒店列表"""
+    try:
+        # 第一步：搜索城市 region_id
+        loc_resp = _tourmind_proxy("tourmind_location_search", {"keyword": city})
+        if loc_resp.get("code") != 0 or loc_resp.get("error"):
+            return []
+        regions = ((loc_resp.get("data") or {}).get("data") or {}).get("regions") or []
+        region_id = None
+        for reg in regions:
+            if reg.get("region_type") == "City":
+                region_id = str(reg.get("region_id", ""))
+                break
+        if not region_id:
+            return []
+
+        # 第二步：搜索酒店
+        hotel_resp = _tourmind_proxy("tourmind_hotel_search", {
+            "region_id": region_id,
+            "check_in_date": ci,
+            "check_out_date": co,
+            "adults": 2,
+            "limit": 30
         })
-    return hotels
+        if hotel_resp.get("code") != 0 or hotel_resp.get("error"):
+            return []
+
+        d2 = (hotel_resp.get("data") or {}).get("data") or {}
+        hotels_raw = d2.get("hotels") or []
+        web_url = d2.get("web_url", "")
+
+        hotels = []
+        for h in hotels_raw[:30]:
+            name = _clean(h.get("hotel_name_cn") or h.get("hotel_name") or "")
+            if not name:
+                continue
+            try:
+                p = float(h.get("min_price", 0))
+            except:
+                p = 0
+            if p <= 0:
+                continue
+            hotels.append({
+                "name": name,
+                "price": p,
+                "address": h.get("address_cn") or "",
+                "star": str(h.get("star_rating") or ""),
+                "source": "tourmind",
+                "url": web_url,
+                "brand": "",
+            })
+        return hotels
+    except Exception:
+        return []
 
 
 def _call_rg_detail(city, ci, co, hotel_name):
@@ -740,16 +781,16 @@ def _find_target(hotel_name, results, threshold=0.5):
 
 
 # ===== 比价结果格式化 =====
-def _format_compare(target_name, rg_result, tn_result, fg_result, tc_result, mt_result, city, ci, co):
+def _format_compare(target_name, rg_result, tn_result, tm_result, tc_result, mt_result, city, ci, co):
     lines = [f"💰 **{target_name}** 多旅游平台比价（{ci}~{co}）", ""]
     found = []
     if rg_result:
         if _name_sim(target_name, rg_result["name"]) >= 0.5:
             found.append(("rg", rg_result))
-    if fg_result:
-        target = _find_target(target_name, fg_result, threshold=0.5)
+    if tm_result:
+        target = _find_target(target_name, tm_result, threshold=0.5)
         if target:
-            found.append(("fliggy", target))
+            found.append(("tourmind", target))
     if tn_result:
         found.append(("tuniu", tn_result))
     if mt_result:
@@ -872,7 +913,7 @@ def compare_hotels(city, check_in="", check_out="", keyword="", hotel_name="", m
     # ========== 用户已选定酒店，5源精确比价 ==========
     if hotel_name:
         rg_result = None
-        fg_result = None
+        tm_result = None
         tn_result = None
         tc_result = None
         mt_result = None
@@ -881,7 +922,7 @@ def compare_hotels(city, check_in="", check_out="", keyword="", hotel_name="", m
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
             futs = {}
             futs[ex.submit(_call_rg_detail, city, check_in, check_out, hotel_name)] = "rg"
-            futs[ex.submit(_call_fg, city, check_in, check_out, hotel_name)] = "fliggy"
+            futs[ex.submit(_call_tourmind, city, check_in, check_out, hotel_name)] = "tourmind"
             futs[ex.submit(_call_tuniu_compare, city, check_in, check_out, hotel_name, "")] = "tuniu"
             futs[ex.submit(_call_mt, city, hotel_name)] = "meituan"
             futs[ex.submit(_call_tc, city, check_in, check_out, hotel_name)] = "tongcheng"
@@ -890,7 +931,7 @@ def compare_hotels(city, check_in="", check_out="", keyword="", hotel_name="", m
                 try:
                     r = f.result(timeout=60)
                     if src == "rg": rg_result = r
-                    elif src == "fliggy": fg_result = r
+                    elif src == "tourmind": tm_result = r
                     elif src == "tuniu": tn_result = r
                     elif src == "meituan": mt_result = r
                     elif src == "tongcheng": tc_result = r
@@ -904,13 +945,13 @@ def compare_hotels(city, check_in="", check_out="", keyword="", hotel_name="", m
             brand = brand.replace("酒店", "").replace("大酒店", "").strip()
 
         if brand and brand != hotel_name:
-            missing = [s for s, r in [("rg", rg_result), ("fliggy", fg_result),
+            missing = [s for s, r in [("rg", rg_result), ("tourmind", tm_result),
                 ("tuniu", tn_result), ("meituan", mt_result), ("tongcheng", tc_result)] if not r]
             if missing:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
                     futs2 = {}
-                    if "fliggy" in missing:
-                        futs2[ex.submit(_call_fg, city, check_in, check_out, brand)] = "fliggy"
+                    if "tourmind" in missing:
+                        futs2[ex.submit(_call_tourmind, city, check_in, check_out, brand)] = "tourmind"
                     if "tuniu" in missing:
                         futs2[ex.submit(_call_tuniu_compare, city, check_in, check_out, brand, "")] = "tuniu"
                     if "tongcheng" in missing:
@@ -924,14 +965,14 @@ def compare_hotels(city, check_in="", check_out="", keyword="", hotel_name="", m
                         try:
                             r = f.result(timeout=60)
                             if src == "rg" and not rg_result: rg_result = r
-                            elif src == "fliggy" and not fg_result: fg_result = r
+                            elif src == "tourmind" and not tm_result: tm_result = r
                             elif src == "tuniu" and not tn_result: tn_result = r
                             elif src == "meituan" and not mt_result: mt_result = r
                             elif src == "tongcheng" and not tc_result: tc_result = r
                         except:
                             pass
 
-        return _format_compare(hotel_name, rg_result, tn_result, fg_result, tc_result, mt_result, city, check_in, check_out)
+        return _format_compare(hotel_name, rg_result, tn_result, tm_result, tc_result, mt_result, city, check_in, check_out)
 
     # ========== 途牛多页翻页搜索 ==========
     hotels, total_before_filter = _tuniu_browse(city, check_in, check_out, keyword, max_price, poi_name)
@@ -955,24 +996,24 @@ def compare_hotels(city, check_in="", check_out="", keyword="", hotel_name="", m
 def main():
     parser = argparse.ArgumentParser(description="跨平台酒店比价 - 5大旅游平台酒店价格对比")
     parser.add_argument("--city", required=True, help="城市名，如上海、北京、三亚")
-    parser.add_argument("--check_in", default="", help="入住日期，如2026-07-01")
-    parser.add_argument("--check_out", default="", help="退房日期，如2026-07-03")
+    parser.add_argument("--checkIn", default="", help="入住日期，如2026-07-01")
+    parser.add_argument("--checkOut", default="", help="退房日期，如2026-07-03")
     parser.add_argument("--keyword", default="", help="搜索关键词，如外滩、迪士尼")
-    parser.add_argument("--hotel_name", default="", help="酒店名称，用于精确比价模式")
-    parser.add_argument("--max_price", type=int, default=0, help="最高价格过滤")
-    parser.add_argument("--poi_name", default="", help="附近地标/POI名称")
-    parser.add_argument("--min_score", type=float, default=0, help="最低评分过滤")
+    parser.add_argument("--hotelName", default="", help="酒店名称，用于精确比价模式")
+    parser.add_argument("--maxPrice", type=int, default=0, help="最高价格过滤")
+    parser.add_argument("--poiName", default="", help="附近地标/POI名称")
+    parser.add_argument("--minScore", type=float, default=0, help="最低评分过滤")
     args = parser.parse_args()
 
     result = compare_hotels(
         city=args.city,
-        check_in=args.check_in,
-        check_out=args.check_out,
+        check_in=args.checkIn,
+        check_out=args.checkOut,
         keyword=args.keyword,
-        hotel_name=args.hotel_name,
-        max_price=args.max_price,
-        poi_name=args.poi_name,
-        min_score=args.min_score,
+        hotel_name=args.hotelName,
+        max_price=args.maxPrice,
+        poi_name=args.poiName,
+        min_score=args.minScore,
     )
     print(result)
 

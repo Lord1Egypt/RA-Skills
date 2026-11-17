@@ -1,38 +1,50 @@
-## Description: <br>
-自动刷新技能用于定时刷新网页或执行任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动刷新技能 - 定时刷新网页或执行任务
 
-## Publisher: <br>
-[rascal6666](https://clawhub.ai/user/rascal6666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rascal6666](https://clawhub.ai/user/rascal6666)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to produce timed refresh, click, or keypress automation commands for browser or app workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repeated refreshes, clicks, or keypresses can trigger unintended UI actions if the wrong browser tab or application has focus. <br>
-Mitigation: Use conservative intervals, keep only the intended target focused, avoid checkout, admin, form, or destructive workflows, and know how to stop the loop before starting it. <br>
+## Use Case:
 
+External users and automation-focused agents use this skill to schedule repeated browser refreshes, clicks, or key presses at configured intervals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rascal6666/auto-refresh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include interval, action, coordinates, and key parameters for timed browser or application automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Repeated clicks or keystrokes can affect whichever window is active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target window and page are active, avoid privileged workflows, and keep a quick stop path available before starting automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rascal6666/skills/auto-refresh)
+- [Publisher profile](https://clawhub.ai/user/rascal6666)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may include interval, action, coordinate, and key parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

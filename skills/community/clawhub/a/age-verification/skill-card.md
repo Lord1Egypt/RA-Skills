@@ -1,39 +1,52 @@
-## Description: <br>
-Helps agents guide age verification using self-reporting, document checks, face-based age estimation, third-party services, and parental consent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan age-verification and age-appropriate access controls using self-reporting, document checks, face-based estimation, third-party providers, and parental consent workflows.
 
-## Publisher: <br>
-[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi)
 
-## Use Case: <br>
-Developers and product teams use this skill to plan age gates, age-restricted access, and parental control flows for applications that need age-appropriate content handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Age verification can involve sensitive identity, document, or face data. <br>
-Mitigation: Use clear consent, minimal data collection, secure storage and transport, short retention, and documented deletion procedures. <br>
-Risk: Third-party verification providers or packages may introduce privacy, security, or supply-chain risk. <br>
-Mitigation: Inspect the referenced npm package, pin a trusted version, and vet providers before deploying a real verification flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/raghulpasupathi/age-verification) <br>
+## Use Case:
 
+Developers and product teams can use this skill when designing age gates, parental controls, and age-restricted access flows for applications that must separate users by age eligibility.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference third-party age verification providers and privacy-sensitive verification flows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release evidence flags unreviewed npm installation guidance for highly sensitive ID, passport, face image, and parental-consent data.
+
+Mitigation: Require a reviewed package version, source provenance, dependency integrity data, and isolated evaluation before using production credentials or real user identity data.
+
+Risk: The skill references third-party verification services and sensitive API workflows without privacy, retention, or key-handling details.
+
+Mitigation: Confirm privacy and retention requirements, credential handling, and provider contracts before deploying any age-verification integration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/raghulpasupathi/skills/age-verification)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May discuss sensitive identity, face, and parental-consent workflows that require human review before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

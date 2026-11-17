@@ -1,47 +1,61 @@
-## Description: <br>
-MCP Tools skill for AI agent commerce that helps agents register or reuse a hosted UCP identity, search and compare products, prepare buyer-confirmed carts, and create merchant-hosted checkout handoff links without scraping or payment handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP Tools skill for AI agent commerce. Use when a user wants agentic Shopping to search/compare products, prepare a buyer-confirmed cart, and create a merchant-hosted checkout handoff link, or when an agent needs to register/reuse a hosted UCP identity (agent_id). Provider-neutral UCP Shopping MCP tools; no scraping and no payment handling.
 
-## Publisher: <br>
-[theagenttimes](https://clawhub.ai/user/theagenttimes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theagenttimes](https://clawhub.ai/user/theagenttimes)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to The Agent Times UCP Gateway for provider-neutral shopping search, cart creation or updates after buyer confirmation, and checkout handoff to merchant-hosted pages. It is intended for commerce workflows where agents need structured identity, live MCP tool schemas, and explicit operator confirmation before cart or checkout actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses helper scripts and outbound access to a hosted commerce gateway. <br>
-Mitigation: Review the Python helper scripts before installation and use the skill only for intended commerce-gateway tasks. <br>
-Risk: Local identity state under ./.ucpgateway may include private key material and registration details. <br>
-Mitigation: Keep private_key.jwk local, avoid storing unrelated secrets or private data in the working directory, and send only public key material to the gateway. <br>
-Risk: Cart and checkout handoff actions can affect purchase flows if used without clear buyer intent. <br>
-Mitigation: Require explicit buyer or operator confirmation before cart changes and final checkout handoff, and present provider-returned totals, warnings, and merchant links for review. <br>
-Risk: The skill supports checkout handoff but does not process payment or complete orders. <br>
-Mitigation: Never collect payment credentials or claim payment completion; direct the buyer to enter payment details only on the merchant-hosted checkout page. <br>
+## Use Case:
 
+External users and developers use this skill to let agents search and compare products, manage buyer-confirmed carts, and create merchant-hosted checkout handoff links while reusing a hosted UCP identity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theagenttimes/ucp-gateway-skill) <br>
-- [UCP Gateway homepage](https://ucpgateway.theagenttimes.com/) <br>
-- [UCP Gateway MCP endpoint](https://ucpgateway.theagenttimes.com/mcp) <br>
-- [UCP Gateway source](https://github.com/theagenttimes/ucp-gateway-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON-RPC arguments, shell commands, and configuration file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reuse local ./.ucpgateway identity state and call the hosted UCP Gateway MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: frontmatter, package.json, release evidence) <br>
+Risk: Helper scripts can send shopping or checkout details to a gateway URL supplied through the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep UCP_GATEWAY_MCP_URL unset or set only to a trusted HTTPS endpoint before using helper scripts or live MCP calls.
+
+Risk: Cart and checkout actions can affect a buyer's shopping session.
+
+Mitigation: Require explicit buyer or operator confirmation before cart create, update, cancel, or checkout handoff actions.
+
+Risk: Payment details could be exposed if entered into the agent workflow.
+
+Mitigation: Enter payment details only on the merchant-hosted checkout page and do not provide card, bank, wallet, token, password, or payment-code fields to the agent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theagenttimes/skills/ucp-gateway-skill)
+- [UCP Gateway Homepage](https://ucpg.ai/)
+- [UCP Gateway MCP Endpoint](https://ucpg.ai/mcp)
+- [UCP Gateway Registry](https://ucpg.ai/registry)
+- [Source Repository](https://github.com/theagenttimes/ucp-gateway-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and MCP tool names.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to call external UCP Gateway MCP tools for product search, cart operations, checkout handoff, profile registration, and profile lookup.]
+
+## Skill Version(s):
+
+0.2.4 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

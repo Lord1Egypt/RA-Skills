@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "fasting",
-  "version": "1.0.1",
-  "publishedAt": 1771181959424
+  "displayName": "Fasting Tracker",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1784843620568
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784801555326
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771181959424
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770834979634
+    }
+  ]
 }

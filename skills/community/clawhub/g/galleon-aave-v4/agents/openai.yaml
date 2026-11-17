@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aave V4 positions"
+  short_description: "Aave V4 positions workflow and evidence"
+  default_prompt: "Use $galleon-aave-v4 to complete the requested protocol workflow and return the observed decision record."

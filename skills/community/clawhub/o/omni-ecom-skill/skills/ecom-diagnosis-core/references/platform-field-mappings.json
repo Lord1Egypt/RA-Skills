@@ -1,0 +1,34 @@
+{
+  "schema_version": "2.0",
+  "artifact_type": "platform_field_mapping_registry",
+  "contract_name": "omni-ecom.platform-field-mappings",
+  "contract_version": "2.0",
+  "mapping_version": "2.0.3",
+  "last_reviewed": "2026-09-08",
+  "authenticity_boundary": "package_owned_aliases_not_platform_schema_authentication",
+  "normalization": "Unicode NFKC, trim whitespace, remove punctuation and case-fold Latin letters",
+  "aliases": {
+    "period": ["period", "date", "统计日期", "日期", "统计时间", "月份", "周次", "统计周期", "时间范围", "时间"],
+    "gmv": ["gmv", "成交金额", "成交金额（元）", "成交金额(元)", "成交总额", "支付金额", "支付金额（元）", "支付金额(元)", "商品总额", "销售额"],
+    "visitors": ["visitors", "uv", "店铺访客数", "店铺商品访客数", "商品访客数", "访客数", "访问人数", "访客", "浏览人数"],
+    "buyers": ["buyers", "成交买家数", "支付买家数", "买家数", "成交客户数", "支付客户数", "成交人数", "客户数"],
+    "orders": ["orders", "成交订单数", "支付订单数", "订单数", "成交订单", "支付订单"],
+    "refund_amount": ["refund_amount", "退款金额", "退款金额（元）", "退款金额(元)", "退款总额", "售后退款金额", "退款"],
+    "ad_spend": ["ad_spend", "广告花费", "广告费", "推广花费", "推广费用", "投放花费", "消耗", "花费", "总花费"],
+    "gross_margin_rate": ["gross_margin_rate", "毛利率", "毛利率（%）", "毛利率(%)"],
+    "commission_rate": ["commission_rate", "佣金率", "平台佣金率", "扣点率", "佣金占比"],
+    "fulfillment_cost_per_order": ["fulfillment_cost_per_order", "单订单履约成本", "履约成本/单", "平均履约成本", "物流成本/单"],
+    "refund_loss_rate": ["refund_loss_rate", "退款货损率", "退款损失率", "货损率"],
+    "search_gmv": ["search_gmv", "搜索成交金额", "搜索GMV", "自然搜索成交金额", "搜索支付金额"],
+    "search_visitors": ["search_visitors", "搜索访客数", "搜索UV", "自然搜索访客数", "搜索访问人数"],
+    "search_buyers": ["search_buyers", "搜索成交买家数", "搜索买家数", "自然搜索成交买家数", "搜索支付买家数"],
+    "observed_cpc": ["observed_cpc", "实际CPC", "平均点击成本", "点击成本", "实际点击成本"]
+  },
+  "platform_notes": {
+    "tmall": "天猫/生意参谋导出常见字段；支付金额与净支付金额必须由用户确认主口径",
+    "jd": "京东商智导出常见字段；商品访客数在主表与SPU明细可能是不同去重层级",
+    "douyin": "抖音电商/巨量千川导出常见字段；支付、成交、归因窗口需单独声明",
+    "wechat": "视频号/微信小店导出常见字段；自然与付费来源不要跨表直接相加",
+    "xiaohongshu": "小红书聚光/生意通导出常见字段；种草指标不可直接等同成交归因"
+  }
+}

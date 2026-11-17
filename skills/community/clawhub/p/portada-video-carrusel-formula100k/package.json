@@ -1,0 +1,13 @@
+{
+  "name": "portada-video-carrusel-formula100k",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Genera la portada en VIDEO (cinemagraph) de un carrusel: anima la foto gancho con Higgsfield y compone el titulo en HTML transparente sobre el video.",
+  "main": "overlay_export.js",
+  "scripts": {
+    "overlay": "node overlay_export.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.42.0"
+  }
+}

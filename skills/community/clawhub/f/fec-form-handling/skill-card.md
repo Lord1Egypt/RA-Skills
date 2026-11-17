@@ -1,41 +1,51 @@
-## Description: <br>
-Guides agents building or reviewing substantial frontend forms with schema validation, dynamic fields, controlled inputs, file upload, multi-step flows, dependent validation, and performance considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through building and reviewing complex frontend forms with typed validation, dynamic fields, accessible errors, uploads, and reliable submission flows.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or review non-trivial frontend forms with runtime validation, accessible field errors, robust submit handling, and performance-aware field updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording is broad and may activate for simple form-related or Chinese-language requests that do not need this workflow. <br>
-Mitigation: Apply the skill only when the task involves substantial form behavior such as runtime validation, dynamic fields, file upload, multi-step flow, dependent validation, or performance concerns. <br>
-Risk: Generated form guidance can be incomplete if it ignores the project's existing framework, form library, schema library, or component library conventions. <br>
-Mitigation: Confirm the existing stack first and prefer established project patterns before introducing or recommending another form system. <br>
+## Use Case:
 
+Frontend developers use this skill to design or review substantial React or Vue forms, including runtime validation, dynamic and controlled fields, file uploads, accessibility, and submission error handling.
 
-## Reference(s): <br>
-- [Advanced form patterns](references/advanced-form-patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/bovinphang/fec-form-handling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with TypeScript and framework-specific code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include form library selection guidance, validation schema examples, accessibility notes, and submit-state handling patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.1 (source: server release metadata) <br>
+Risk: Broad form-related triggers may activate this skill for simple forms that do not need a form library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use native form state for trivial forms; narrow trigger wording if more precise routing is needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-form-handling)
+- [Advanced form patterns](references/advanced-form-patterns.md)
+- [Project homepage (listed in package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Guidance]
+
+**Output Format:** [TypeScript/TSX examples and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers typed validation, accessible field errors, dynamic fields, uploads, and submission states.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

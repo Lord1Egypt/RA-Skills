@@ -1,46 +1,59 @@
-## Description: <br>
-Token on-chain analysis via Gate-Info MCP for holder distribution, on-chain activity, and large or unusual transfers, with Smart Money analysis explicitly unavailable in this version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token on-chain analysis via Gate-Info MCP: holder distribution, on-chain activity, and large or unusual transfers for supported tokens.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers use this skill to request token-level on-chain summaries for holders, activity, and transfers. The skill produces informational crypto analysis and routes unsupported requests, such as single-address tracking or Smart Money analysis, to other capabilities or graceful fallback guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat informational on-chain analysis as financial advice or a trading signal. <br>
-Mitigation: Keep reports neutral and explicitly state that the output is not investment advice or a prediction of future prices. <br>
-Risk: The skill depends on the Gate-Info MCP server and its returned data. <br>
-Mitigation: Install only when the Gate-Info MCP server is trusted; if tools are unavailable or fail, degrade gracefully and label missing data. <br>
-Risk: Large-transfer or holder data may include wallet addresses and labels that can be misread or over-attributed. <br>
-Mitigation: Shorten addresses, avoid doxxing, and describe exchange or entity labels as best-effort. <br>
-Risk: Smart Money analysis is not supported in this version. <br>
-Mitigation: State the limitation directly and offer holder distribution, activity, and transfer analysis instead. <br>
+## Use Case:
 
+External users and agents use this skill to request token-level on-chain reports that summarize holder distribution, on-chain activity, and large or unusual transfers using Gate-Info MCP data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-info-tokenonchain-staging) <br>
-- [Gate Info Token Onchain Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational crypto analysis only; sections may be omitted or marked unavailable when tool data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: On-chain summaries may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present reports as informational financial context and include the skill's no-investment-advice posture.
+
+Risk: Results depend on the Gate-Info MCP server available in the runtime environment.
+
+Mitigation: Verify the intended Gate-Info MCP server is installed and available before using the skill.
+
+Risk: Unsupported Smart Money or unavailable MCP data could lead to overstatement.
+
+Mitigation: Clearly state unavailable dimensions, skip missing sections, and avoid approximating unsupported data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaixianggeng/skills/gate-info-tokenonchain-staging)
+- [gate-runtime-rules.md](references/gate-runtime-rules.md)
+- [info-news-runtime-rules.md](references/info-news-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are informational and should avoid fabricated on-chain data, speculative price predictions, and buy/sell advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

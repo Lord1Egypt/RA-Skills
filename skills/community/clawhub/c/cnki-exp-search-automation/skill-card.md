@@ -1,43 +1,64 @@
-## Description: <br>
-CNKI literature-search automation skill that uses browser automation to search CNKI, collect result lists, and extract article metadata and abstracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates CNKI advanced literature search in a browser to collect result lists, article metadata, and abstracts, with headful browser use recommended when anti-bot checks appear.
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Researchers and agents use this skill to run CNKI advanced or expert searches, gather bibliographic result lists, and extract article details for literature reviews and academic research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automating CNKI in a browser can encounter CAPTCHAs, anti-bot checks, access restrictions, or service-term constraints. <br>
-Mitigation: Use a dedicated browser profile, solve verification challenges manually, keep request frequency modest, and follow CNKI access terms. <br>
-Risk: Extracted bibliographic data or abstracts may be incomplete or incorrect when page structure changes or access requires login. <br>
-Mitigation: Review extracted results against the CNKI page before relying on them and retry with updated selectors when extraction returns empty fields. <br>
+## Use Case:
 
+Researchers, analysts, and developers use this skill to guide browser-based CNKI searches, collect literature metadata, and extract article abstracts for literature reviews or dataset preparation.
 
-## Reference(s): <br>
-- [CNKI Advanced Search](https://kns.cnki.net/kns8s/AdvSearch?type=expert) <br>
-- [CNKI Search Field Reference](references/cnki-fields.md) <br>
-- [CNKI Query Examples](references/query-examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/killgfat/cnki-exp-search-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, text] <br>
-**Output Format:** [Markdown instructions with browser actions, JavaScript snippets, and JSON or CSV result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces extracted literature metadata and abstracts when used with a browser tool and CNKI access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata; skill frontmatter reports 0.0.3) <br>
+Risk: The skill automates CNKI access and may interact with rate limits, anti-bot checks, or site terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorized CNKI access, keep request rates reasonable, and pause for manual verification when CAPTCHA or slider checks appear.
+
+Risk: Using a logged-in browser profile may expose account session context during browsing.
+
+Mitigation: Use only the intended browser profile, avoid sharing session-derived exports without review, and close or isolate unrelated authenticated sessions when practical.
+
+Risk: Exported literature metadata or abstracts may include sensitive research context or licensed content.
+
+Mitigation: Review JSON or CSV exports before sharing and apply the user's institutional CNKI licensing and data-handling rules.
+
+Risk: CNKI page structure changes can cause selectors or extraction snippets to miss fields or return incomplete results.
+
+Mitigation: Validate a sample of extracted records against the browser page before relying on bulk results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/killgfat/skills/cnki-exp-search-automation)
+- [CNKI advanced search](https://kns.cnki.net/kns8s/AdvSearch?type=expert)
+- [CNKI professional search fields](references/cnki-fields.md)
+- [CNKI professional search query examples](references/query-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser-action examples, JavaScript extraction snippets, and JSON or CSV data-shape examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces agent guidance for browser automation and extracted bibliographic data; it does not embed a standalone executable.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata; artifact frontmatter reports 0.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Claw Chat AI messaging assistant for enhancing conversations, managing message threads, drafting smart replies, summarizing chat history, and setting up AI-assisted communication workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Chat AI messaging assistant for enhancing conversations, managing message threads, drafting smart replies, summarizing chat history, and setting up AI-assisted communication workflows.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-Claw Chat users use this skill to draft replies, summarize conversation threads, identify action items, adjust message tone, and track follow-ups in messaging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process chat content and generate replies, summaries, reminders, or tags that could be inaccurate or expose sensitive conversation details. <br>
-Mitigation: Review generated content before use and avoid providing chat content that should not be processed by the assistant. <br>
-Risk: Broad activation phrases may cause the skill to be invoked for general messaging requests. <br>
-Mitigation: Use the skill only for Claw Chat-focused messaging assistance and confirm the intended context before acting on its output. <br>
+## Use Case:
 
+External users and teams use this skill to improve Claw Chat conversations by drafting replies, summarizing threads, identifying action items, adjusting tone, and tracking follow-ups.
 
-## Reference(s): <br>
-- [Claw Chat release page](https://clawhub.ai/jiwenbing/claw-chat) <br>
-- [Publisher profile](https://clawhub.ai/user/jiwenbing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce summaries, suggested replies, action items, reminders, tags, and tone-adjusted message drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad trigger wording may invoke the skill for general chat-assistance requests outside intended Claw Chat context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or enable the skill where Claw Chat assistance is intended, and review responses before relying on summaries, reply drafts, or follow-up suggestions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/claw-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance, summaries, reply drafts, action items, and follow-up suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls are evidenced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

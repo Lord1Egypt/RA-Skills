@@ -1,41 +1,58 @@
-## Description: <br>
-Get current weather and forecasts via wttr.in or Open-Meteo for location-based weather, temperature, and forecast questions without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather conditions and forecasts for named locations via wttr.in or Open-Meteo without an API key.
 
-## Publisher: <br>
-[shaojie66](https://clawhub.ai/user/shaojie66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaojie66](https://clawhub.ai/user/shaojie66)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer current weather, temperature, rain, and short forecast questions for a city, region, or airport code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather requests contact wttr.in and can reveal the queried location plus normal request metadata such as IP address. <br>
-Mitigation: Use city, region, or airport codes instead of exact home addresses or sensitive travel details. <br>
-Risk: The Open-Meteo capability is mentioned in the skill description but not documented in the provided commands. <br>
-Mitigation: Expect wttr.in behavior unless the publisher updates the skill with explicit Open-Meteo usage. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to answer current weather, rain, temperature, and forecast questions for a named city, region, or airport code. It supports quick travel-planning weather checks but excludes historical weather, severe alerts, climate analysis, and specialized aviation or marine forecasts.
 
-## Reference(s): <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [ClawHub skill page](https://clawhub.ai/shaojie66/shaojie66-weather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, images] <br>
-**Output Format:** [Markdown guidance with curl commands that return text summaries, detailed forecasts, JSON, or PNG weather output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and sends weather queries to wttr.in; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Weather lookup commands may use non-HTTPS wttr.in URLs in examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer https://wttr.in URLs when adapting or executing commands.
+
+Risk: Simple weather lookups may be inappropriate for severe weather, aviation, marine, or other safety-critical decisions.
+
+Mitigation: Use official alerting sources or specialized weather services for those decisions.
+
+Risk: Public weather services may rate limit repeated requests.
+
+Mitigation: Throttle or cache repeated lookups instead of issuing high-volume curl requests.
+
+## Reference(s):
+
+- [wttr.in Help](https://wttr.in/:help)
+- [ClawHub Skill Page](https://clawhub.ai/shaojie66/skills/shaojie66-weather)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, text weather summaries, and optional JSON or PNG weather outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl. No API key is required. Prefer HTTPS wttr.in URLs and avoid use for safety-critical weather decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

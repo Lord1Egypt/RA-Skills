@@ -1,42 +1,56 @@
-## Description: <br>
-MailboxValidator helps agents validate email deliverability and check disposable or free email status through an OOMOL-connected MailboxValidator account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MailboxValidator (mailboxvalidator.com). Use this skill for ANY MailboxValidator request — searching and reading data. Whenever a task involves MailboxValidator, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to validate a single email address and check whether it belongs to a disposable or free provider through MailboxValidator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email addresses are personal data sent through OOMOL to MailboxValidator for validation. <br>
-Mitigation: Submit only email addresses the user is authorized to process, and follow applicable privacy and data-handling requirements. <br>
-Risk: The skill requires an OOMOL-connected MailboxValidator account and may require first-time CLI installation or account connection. <br>
-Mitigation: Review first-time installation, sign-in, and connection steps before allowing them, and do not expose raw credentials or API tokens. <br>
+## Use Case:
 
+Developers using an OOMOL-connected account can check whether email addresses are disposable or free and validate a single address's deliverability signals through MailboxValidator.
 
-## Reference(s): <br>
-- [MailboxValidator homepage](https://www.mailboxvalidator.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MailboxValidator connector output in JSON when actions are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence metadata and release) <br>
+Risk: Setup can execute installer code and startup synchronization can make persistent changes to installed agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing, use a verified oo CLI release, and set OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization.
+
+Risk: Email addresses submitted for validation pass through OOMOL to MailboxValidator.
+
+Mitigation: Submit only addresses you are authorized to process and account for both services' data handling practices.
+
+## Reference(s):
+
+- [MailboxValidator](https://www.mailboxvalidator.com)
+- [MailboxValidator single validation API documentation](https://www.mailboxvalidator.com/api-single-validation)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [MailboxValidator ClawHub release](https://clawhub.ai/oomol/skills/oo-mailbox-validator)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Email validation results depend on the selected action and its live input schema.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

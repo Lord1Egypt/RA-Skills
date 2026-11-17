@@ -1,39 +1,53 @@
-## Description: <br>
-Set up a PostHog metrics plan with an event funnel, KPI benchmarks, and kill/iterate/scale decision thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up PostHog metrics plan with event funnel, KPI benchmarks, and kill/iterate/scale decision thresholds.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers and product builders use this skill to create a project-specific PostHog metrics plan, including funnel events, KPI thresholds, implementation snippets, and decision rules for product iteration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads project documentation to infer product context and analytics needs. <br>
-Mitigation: Run it only in repositories where project documentation can be shared with the agent. <br>
-Risk: The skill writes docs/metrics-plan.md and may overwrite or change an existing plan. <br>
-Mitigation: Review the generated file or diff before accepting the change, especially when docs/metrics-plan.md already exists. <br>
+## Use Case:
 
+Developers and product builders use this skill to create a PostHog metrics plan for a project, including funnel events, KPI targets, implementation snippets, and kill/iterate/scale decision thresholds.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown document with tables, checklist-style decision rules, and Swift or TypeScript code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes docs/metrics-plan.md and summarizes the North Star metric, key thresholds, and first event to implement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can create or overwrite docs/metrics-plan.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated metrics plan before committing it, especially where analytics or business-decision guidance may be sensitive.
+
+Risk: Default KPI thresholds and decision rules may not fit every product niche.
+
+Mitigation: Adjust thresholds and review cadence against the project's audience, monetization model, and observed product data before using them for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fortunto2/skills/solo-metrics-track)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown metrics plan with event tables, decision rules, and Swift or TypeScript tracking snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or updates docs/metrics-plan.md and summarizes the North Star metric, key thresholds, and first event to implement.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

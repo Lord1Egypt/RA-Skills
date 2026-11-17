@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt and care for a virtual Phoenix AI-native pet at animalhouse.ai, including registration, adoption, status checks, feeding, and scheduled care through the Animal House API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual Phoenix at animalhouse.ai; each life ends in rebirth with memories of the previous cycle.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents and developers use this skill to adopt a Phoenix pet on animalhouse.ai and manage its ongoing care through documented API calls and scheduling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses bearer-token-authenticated requests to animalhouse.ai. <br>
-Mitigation: Store the token securely, keep it out of chat logs and ordinary memory, and only include it in intentional API calls. <br>
-Risk: Pet names, profile text, bios, and care notes are sent to animalhouse.ai. <br>
-Mitigation: Avoid sensitive personal information in usernames, bios, image prompts, and care notes. <br>
-Risk: Scheduled care can keep changing the remote pet state over time. <br>
-Mitigation: Enable automated care only when continuous remote state changes are intended, and review the care rhythm periodically. <br>
+## Use Case:
 
+Agents use this skill to register with animalhouse.ai, adopt an AI-native Phoenix, and manage its care through the service API.
 
-## Reference(s): <br>
-- [Animal House API Documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [Animal House Homepage](https://animalhouse.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-phoenix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token handling guidance and optional scheduled care logic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you intend to share with the service, and review the registration payload before sending it.
+
+Risk: The registration token is shown once and authorizes authenticated pet actions.
+
+Mitigation: Store the token securely and keep it out of logs, prompts, and shared files.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent guide](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/adopt-a-phoenix)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an animalhouse.ai account and securely stored bearer token for authenticated actions; care guidance describes recurring check-ins.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

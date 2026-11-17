@@ -1,41 +1,57 @@
-## Description: <br>
-Reads a local OpenCode SQLite database to query sessions, inspect messages, and review schema details across project directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads local OpenCode SQLite databases to list sessions, inspect message JSON, and check schema details across projects.
 
-## Publisher: <br>
-[wufei-png](https://clawhub.ai/user/wufei-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufei-png](https://clawhub.ai/user/wufei-png)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local OpenCode sessions, messages, projects, and schema information with read-only SQLite queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local OpenCode database queries can expose private conversations, tokens, credentials, or other sensitive session data. <br>
-Mitigation: Keep queries scoped to session, message, part, and project inspection; avoid account and control_account tables unless explicitly administering credentials, and do not paste raw dumps or secrets into shared chats or logs. <br>
-Risk: Direct database modification can damage local OpenCode state. <br>
-Mitigation: Use sqlite3 read-only mode for inspection and create a backup before any intentional administrative database work. <br>
+## Use Case:
 
+Developers and engineers use this skill to query local OpenCode session history, retrieve message JSON for a selected session, and inspect schema details without writing to the database.
 
-## Reference(s): <br>
-- [OpenCode SQLite Schema Reference](references/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wufei-png/opencode-session-reader-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local database inspection guidance; generated queries and message dumps may contain private session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose local OpenCode conversation history, prompts, code, command output, file paths, or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation, approve the target project and session before reading message bodies, and avoid sharing retrieved message contents without review.
+
+Risk: Implicit invocation can broaden access to local session data beyond the user's immediate intent.
+
+Mitigation: Confirm the scope of each query before retrieving message bodies and prefer narrow project, session, and time filters.
+
+Risk: OpenCode account-related tables may contain sensitive credentials or account data.
+
+Mitigation: Avoid querying account or control_account tables.
+
+## Reference(s):
+
+- [OpenCode SQLite Schema Reference](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and SQL command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only SQLite query guidance for local OpenCode databases.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

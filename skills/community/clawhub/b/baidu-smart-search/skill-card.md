@@ -1,44 +1,51 @@
-## Description: <br>
-Call Baidu Qianfan web search APIs to search the live web with AppBuilder credentials and return structured results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Baidu Qianfan web search APIs with AppBuilder credentials to search the live web and return structured results for Chinese web-heavy, site-filtered, or recency-filtered retrieval.
 
-## Publisher: <br>
-[windrunner20](https://clawhub.ai/user/windrunner20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windrunner20](https://clawhub.ai/user/windrunner20)
 
-## Use Case: <br>
-Developers and agents use this skill when they need Baidu Qianfan-backed live web search, especially for Chinese web-heavy retrieval, site-filtered search, recency-filtered search, or raw API response inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and request metadata are sent to the configured Baidu Qianfan endpoint. <br>
-Mitigation: Use the skill only for queries appropriate for Baidu Qianfan and avoid sending sensitive or confidential information. <br>
-Risk: The AppBuilder API key could be exposed if passed on the command line or committed in local files. <br>
-Mitigation: Store the key in QIANFAN_APPBUILDER_API_KEY or an untracked local environment file, and verify secret files are excluded before publishing. <br>
-Risk: The --url override can redirect requests and credentials to an untrusted endpoint. <br>
-Mitigation: Use --url only with endpoints you fully trust. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run Baidu Qianfan web searches through a reusable local wrapper, especially for Chinese web retrieval, site-limited search, recent results, and optional image or video result requests.
 
-## Reference(s): <br>
-- [Baidu Qianfan Search API reference](references/api.md) <br>
-- [Baidu Qianfan web search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
-- [ClawHub skill page](https://clawhub.ai/windrunner20/baidu-smart-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output from the bundled search script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default mode prints normalized JSON with query, count, items, and raw_keys; --raw prints the upstream JSON response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The wrapper can send the user's Qianfan API key to an arbitrary URL when invoked with --url.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing keys on the command line, do not let untrusted prompts or automation supply --url, and allowlist the exact Qianfan HTTPS endpoint before routine use.
+
+## Reference(s):
+
+- [Baidu Qianfan Search API Reference](references/api.md)
+- [Baidu Qianfan web search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+- [ClawHub skill page](https://clawhub.ai/windrunner20/skills/baidu-smart-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default script output normalizes results into query, count, items, and raw_keys; --raw returns the upstream JSON.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

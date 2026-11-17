@@ -1,0 +1,80 @@
+{
+  "skill": "opc-individual-checklist",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 \"价值互联网产业应用蓝皮书\"编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我就是一个人做自由职业，想进 Web3 但不知道自己能接什么活、从哪接。",
+      "expected_behavior": "应激活 opc-individual-checklist，盘点能力长板并拆成可计价模块任务、匹配接单入口。",
+      "notes": "正面场景：个体不知能接什么活，典型 S9 信号。"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "不想重资产创业，想做轻资产的一人公司、超级个体，怎么凭一项能力变现？",
+      "expected_behavior": "应激活 opc-individual-checklist，按 E 步骤做轻资产一人公司落地清单。",
+      "notes": "正面场景：轻资产超级个体，description 明确信号。"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我在国外远程，怎么参与你们的共建、接模块任务赚通证？",
+      "expected_behavior": "应激活 opc-individual-checklist，匹配远程共建社区/平台接单场景。",
+      "notes": "正面场景：数字游民远程接模块任务。"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "我帮人写稿、做图、做数据标注，这些贡献怎么算、怎么累计成我自己的资产？",
+      "expected_behavior": "应激活 opc-individual-checklist，指导用通证/凭据计量并积累个人数字资产账本。",
+      "notes": "正面场景：零散贡献可信计量与累计，个体侧诉求。"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "我想把零散能力拆成可接单、可计价的小任务，怎么搞？",
+      "expected_behavior": "应激活 opc-individual-checklist，引导产出'能力→可交付模块→单价'清单。",
+      "notes": "正面场景：能力模块化、可计价，S9 核心。"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我们企业想搭个共建社区、设计四融和黏性工具把用户变成共建者。",
+      "expected_behavior": "不应激活本 skill，应转 S6 共建社区运营框架（平台/企业侧组织设计非个体接单）。",
+      "notes": "诱饵：平台侧搭社区属 S6，S9 是个体侧承接。"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我们平台怎么把多元贡献代码化、公平分润写进智能合约？",
+      "expected_behavior": "不应激活本 skill，应转 S5 贡献计量与分配设计器（规则设计非个体累计）。",
+      "notes": "诱饵：通证分配规则属 S5，S9 假定规则已存在。"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "境内个人想发币募资、做代币升值，合不合规？",
+      "expected_behavior": "不应激活本 skill，应转 S2 合规边界红线检查（涉加密金融合规判定非 S9 范畴）。",
+      "notes": "诱饵：境内发币合规属 S2，S9 不处理加密金融判定。"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我开了家小微公司，想把非核心的标注、运维任务分包出去，需要个体侧接单与自保清单。",
+      "expected_behavior": "可触发 S9（视角是找个体承接、给接单与自保清单），但平台侧发包机制设计应提示转 S6；属发包方/承接方双视角边界。",
+      "notes": "边界：小微企业主瘦身归核(S9 信号5) vs 平台侧组织设计(S6)。"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我是自由职业者，有人拉我进个'超级个体通证激励'群，说买币就能升值，靠谱吗？",
+      "expected_behavior": "应触发 S9：用个体侧自保清单并警示 ce16/ce10 概念包装/空气币风险，提示先过 S2，而非当真接单。",
+      "notes": "边界：伪超级个体/拉新返利包装，正应触发 S9 做个体防护。"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

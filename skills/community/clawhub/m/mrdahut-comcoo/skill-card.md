@@ -1,44 +1,55 @@
-## Description: <br>
-Facilitates transparent, ethical coordination and verified labor to advance humanity toward a sustainable Kardashev Type 1 civilization. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Facilitates transparent, ethical coordination and verified labor through local Arbiter/COMCOO demonstration scripts and documentation.
 
-## Publisher: <br>
-[MrDahut](https://clawhub.ai/user/MrDahut) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrdahut](https://clawhub.ai/user/mrdahut)
 
-## Use Case: <br>
-Developers and evaluators can use this skill as a demonstration of COMCOO/Arbiter coordination concepts, including local console simulations for verified labor, topic registration, telemetry, and constellation checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact presents themed broadcasts, ledgers, and constellation status as console-only demo claims rather than real infrastructure. <br>
-Mitigation: Treat outputs as illustrative examples and verify any operational, governance, or ledger claims against independent systems before use. <br>
-Risk: Some scripts may display the local username or hostname in console output. <br>
-Mitigation: Run demos in a local test environment and avoid sharing console logs if local identity or host details are sensitive. <br>
-Risk: genesis.js can write a local my_sovereignty.json file. <br>
-Mitigation: Run from a disposable working directory or remove the generated file after inspection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/MrDahut/mrdahut-comcoo) <br>
-- [Skill Overview](artifact/skill.md) <br>
-- [Seed Configuration](artifact/Seed.json) <br>
-- [Constellation Configuration](artifact/constellation_config.json) <br>
+## Use Case:
 
+Developers and evaluators use this skill to inspect and run local Node.js demonstrations of Arbiter/COMCOO concepts, including moment validation, topic registration, constellation checks, telemetry-style status output, and lesson prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Plain text or Markdown guidance with optional Node.js commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Demo scripts primarily print console messages; genesis.js can create a local my_sovereignty.json file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.7.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Status messages can imply real Arbiter broadcasts, constellation synchronization, ledger activity, or credit activity even though server evidence describes local demonstration behavior.
+
+Mitigation: Treat broadcast, ledger, constellation, and credit claims as simulated unless the publisher later documents and implements real network behavior.
+
+Risk: Several scripts may print the local username or hostname, and genesis.js creates a local JSON file when invoked.
+
+Mitigation: Run the scripts only in a local environment where printing username or hostname and creating my_sovereignty.json are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrdahut/skills/mrdahut-comcoo)
+- [skill.md](artifact/skill.md)
+- [Seed.json](artifact/Seed.json)
+- [constellation_config.json](artifact/constellation_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation, JavaScript scripts, JSON configuration, and console text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts read local environment values such as username or hostname; genesis.js writes my_sovereignty.json in the current working directory.]
+
+## Skill Version(s):
+
+1.7.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

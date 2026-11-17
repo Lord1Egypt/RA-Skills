@@ -1,48 +1,63 @@
-## Description: <br>
-Use when adding authentication (login, logout, protected routes) to Express.js web applications - integrates express-openid-connect for session-based auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when adding authentication (login, logout, protected routes) to Express.js web applications - integrates express-openid-connect for session-based auth.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Auth0-backed, session-based login, logout, protected routes, and API-token usage patterns to Express.js web applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: A setup path downloads and runs an Auth0 CLI installer without a complete verification step. <br>
-Mitigation: Prefer a trusted package manager, or verify the downloaded installer before execution. <br>
-Risk: The skill can append Auth0 credentials and secrets to env files. <br>
-Mitigation: Require explicit user confirmation before env-file writes, avoid reading env-file contents, and keep env files out of version control. <br>
-Risk: Some examples return raw tokens or full profile data. <br>
-Mitigation: Use those examples only for local testing, minimize returned user data, and never expose ID tokens, access tokens, refresh tokens, or full profile objects in production responses. <br>
+## Use Case:
 
+Developers and engineers use this skill to add session-based Auth0 login, logout, callback handling, protected routes, and related Express.js authentication patterns to web applications.
 
-## Reference(s): <br>
-- [Setup Guide](references/setup.md) <br>
-- [Integration Guide](references/integration.md) <br>
-- [API Reference](references/api.md) <br>
-- [Auth0 Express OpenID Connect Documentation](https://auth0.com/docs/libraries/express-openid-connect) <br>
-- [Auth0 Express Quickstart](https://auth0.com/docs/quickstart/webapp/express) <br>
-- [Express OpenID Connect SDK Repository](https://github.com/auth0/express-openid-connect) <br>
-- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript, shell, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Auth0 CLI commands and env-file configuration steps that require user confirmation before writing credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup instructions may install the Auth0 CLI through a downloaded shell installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and verified package manager or release; review any downloaded installer before execution and avoid administrator privileges unless necessary.
+
+Risk: Environment-file setup writes Auth0 credentials and placeholders that may expose secrets if mishandled.
+
+Mitigation: Require explicit confirmation before writing .env or .env.local, never read existing secret files into the agent context, replace placeholders manually, and confirm the file is ignored by version control.
+
+Risk: Example routes may expose raw tokens or render user claims directly if copied without review.
+
+Mitigation: Avoid returning raw access, ID, or refresh tokens to clients and escape or template user profile claims before rendering them.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Integration Guide](references/integration.md)
+- [API Reference](references/api.md)
+- [OpenClaw homepage](https://github.com/auth0/agent-skills)
+- [Express OpenID Connect Documentation](https://auth0.com/docs/libraries/express-openid-connect)
+- [Auth0 Express Quickstart](https://auth0.com/docs/quickstart/webapp/express)
+- [express-openid-connect GitHub Repository](https://github.com/auth0/express-openid-connect)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript, shell, and environment configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, Auth0 CLI setup, Express middleware changes, protected route examples, and environment variable configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

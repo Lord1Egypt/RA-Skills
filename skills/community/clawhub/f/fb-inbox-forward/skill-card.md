@@ -1,42 +1,58 @@
-## Description: <br>
-Forwards Facebook Page inbox messages to a configured OpenClaw channel in real time with an opt-in PowerShell listener that avoids writing message content to disk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FB Inbox Forward helps an agent configure and optionally run a PowerShell listener that polls Facebook Page inbox messages and forwards inbound sender names, message text, and conversation IDs to a configured OpenClaw destination.
 
-## Publisher: <br>
-[seph1709](https://clawhub.ai/user/seph1709) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seph1709](https://clawhub.ai/user/seph1709)
 
-## Use Case: <br>
-Developers and operators use this skill to forward inbound Facebook Page messages into a chosen OpenClaw channel or target. It is suited for teams that need opt-in, continuous inbox notification while keeping credentials in local config files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Full Facebook Page message text is forwarded to the configured OpenClaw destination. <br>
-Mitigation: Confirm the destination is trusted before starting the listener and inform the user that message text, sender name, and conversation ID will be transmitted. <br>
-Risk: Facebook Page credentials and forwarding configuration are sensitive local files. <br>
-Mitigation: Use a least-privileged Page token, keep config files permission-restricted, and do not commit runtime config files to version control. <br>
-Risk: The optional background listener continuously polls and forwards messages until stopped. <br>
-Mitigation: Start the listener only after explicit user request and stop it when continuous forwarding is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seph1709/fb-inbox-forward) <br>
-- [Publisher profile](https://clawhub.ai/user/seph1709) <br>
+## Use Case:
 
+External users and developers use this skill to forward Facebook Page inbox activity into a selected OpenClaw channel while keeping the listener opt-in and destination-configured.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, listener control, status, logging, and troubleshooting guidance for forwarding Facebook Page inbox messages through OpenClaw.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata and artifact _meta.json, published 2026-03-01) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads a Facebook Page token and forwards full inbound message text to a configured OpenClaw destination.
+
+Mitigation: Install only for trusted pages and destinations, confirm the forwarding target before starting the listener, and protect the credential and config files with restrictive permissions.
+
+Risk: The security evidence reports insecure token and runtime handling in a persistent listener.
+
+Mitigation: Review or patch token transmission, error logging, worker-script integrity, and message-delivery bounds before running the listener.
+
+Risk: The listener polls continuously once explicitly started.
+
+Mitigation: Start it only on user request, monitor its status and logs, and stop the process when forwarding is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seph1709/skills/fb-inbox-forward)
+- [Publisher profile](https://clawhub.ai/user/seph1709)
+- [Facebook Graph API endpoint](https://graph.facebook.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces opt-in listener setup, status, stop, logging, credential-test, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

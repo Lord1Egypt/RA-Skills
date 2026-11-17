@@ -1,41 +1,50 @@
-## Description: <br>
-Syncs package.json project metadata such as name, version, description, license, author, and repository into marked README, SPEC, and similar Markdown sections, with i18n and dry-run support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync Metadata helps agents update README, SPEC, and similar Markdown documents from package.json metadata, including localized package.nls.json values and dry-run checks.
 
-## Publisher: <br>
-[guoqw7](https://clawhub.ai/user/guoqw7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoqw7](https://clawhub.ai/user/guoqw7)
 
-## Use Case: <br>
-Developers use this skill to keep repeated project metadata in README, SPEC, and similar Markdown documentation aligned with package.json after releases or metadata changes. It can report stale values in dry-run mode or update marked sections after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan Markdown files and propose updates across a project, which could change documentation in more places than expected. <br>
-Mitigation: Use dry-run or review mode first, inspect the proposed diff, and approve writes only for intended files and fields. <br>
-Risk: Incorrect package.json or i18n metadata can be propagated into README, SPEC, or similar documentation. <br>
-Mitigation: Confirm package.json and package.nls values before syncing, especially before release documentation updates. <br>
+## Use Case:
 
+Developers and maintainers use this skill to keep repeated project metadata, such as name, version, description, license, repository URL, and author, synchronized across Markdown documentation after package.json changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guoqw7/sync-metadata) <br>
-- [Project Homepage](https://github.com/guoqw7/claude-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown file updates and text change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run checks and user-confirmed writes to marked Markdown sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may update marked README, SPEC, or other Markdown sections using package metadata, which could overwrite stale but intentional text inside sync markers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the documented dry-run or check mode first and review the proposed synchronization report before confirming writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqw7/skills/sync-metadata)
+- [Project homepage](https://github.com/guoqw7/claude-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown synchronization report with optional Markdown file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports check-only dry-run behavior and user confirmation before writing changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

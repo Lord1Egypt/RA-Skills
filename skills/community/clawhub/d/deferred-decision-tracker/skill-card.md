@@ -1,44 +1,56 @@
-## Description: <br>
-Capture decisions that are intentionally deferred, assign a review date and owner, and prevent them from silently disappearing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture decisions that are intentionally deferred, assign a review date and owner, and prevent them from silently disappearing.
 
-## Publisher: <br>
-[indianavegas](https://clawhub.ai/user/indianavegas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[indianavegas](https://clawhub.ai/user/indianavegas)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, operators, planners, and project teams use this skill to record deferred decisions with clear owners, review dates, triggers, and follow-up artifacts so important choices are revisited at the right time.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Deferred-decision registers may contain sensitive personal, financial, business, security, or strategic information.
+
+Mitigation: Store registers in a private or user-approved project location, and do not place sensitive decisions in public documents, shared folders, examples, or published artifacts unless explicitly requested.
+
+Risk: Follow-up actions such as calendar events, notifications, email, purchases, billing changes, or access/security changes may affect external systems or other people.
+
+Mitigation: Require explicit user approval before taking those actions, and prefer local or private reminder mechanisms by default.
+
+Risk: Poorly scoped reminders can create noise or make stale decisions resurface without new information.
+
+Mitigation: Use specific review dates and trigger conditions, and avoid surfacing stale items repeatedly unless a review point has arrived or something material has changed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, teams, and agents use this skill to capture deferred decisions with an owner, review date, trigger condition, status, and future decision artifact. It is intended for planning and operational workflows where postponed decisions need to return at the right time without noisy reminders. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Deferred-decision registers can contain sensitive personal, financial, business, security, or strategic context. <br>
-Mitigation: Store registers in private or user-approved project locations and avoid public or shared documents unless the user explicitly asks. <br>
-Risk: External reminders, notifications, calendar events, purchases, billing changes, or access/security changes could affect people or systems outside the current workspace. <br>
-Mitigation: Require explicit user approval before taking external action, modifying access, or changing security-sensitive settings. <br>
-Risk: Stale deferred decisions can keep sensitive context around longer than needed or create repeated noise. <br>
-Mitigation: Review items at the stated review point, update the next review date when still blocked, and retire decisions that are no longer relevant. <br>
+**Output Format:** [Markdown register entries and decision board guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/indianavegas/deferred-decision-tracker) <br>
-- [indianavegas Publisher Profile](https://clawhub.ai/user/indianavegas) <br>
-- [Agent-Facing Skill Documentation](SKILL.md) <br>
+**Other Properties Related to Output:** [May create or update a private deferred-decision register and should request explicit approval before external reminders, notifications, purchases, billing changes, or access/security changes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown register entries, decision board templates, and concise review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a private deferred-decision register and may use durable reminders only when available and appropriate.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Opc Os Core helps an agent operator structure a one-person AI company with seven autonomous departments, governance files, cron-style operations, communication protocols, and a revenue funnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opc Os Core helps an agent set up an AI-native one-person company operating system with autonomous departments, governance templates, cron orchestration, a revenue funnel, and inter-agent communication patterns.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-External users and developers use this skill as a blueprint for organizing autonomous agent departments, scheduled operating routines, governance rules, and internal communications for a one-person AI company workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages public posting and skill publishing automation that could affect external accounts if run without approval controls. <br>
-Mitigation: Require human approval before public posts or skill publishing, and keep maintenance jobs in dry-run or report-only mode until reviewed. <br>
-Risk: Unattended automation can overreach if credentials are broad or shared across platforms. <br>
-Mitigation: Scope credentials per platform, limit permissions to the minimum needed, and confirm rollback steps before enabling scheduled jobs. <br>
-Risk: Scheduled workflows can fail silently or produce actions that are hard to audit. <br>
-Mitigation: Enable logging, monitor reports, and review security findings before installing or activating cron jobs. <br>
+## Use Case:
 
+Developers and solo operators use this skill to configure a multi-agent operating model with department workspaces, governance rules, scheduled maintenance, reporting, and communication protocols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/opc-os-core) <br>
-- [Communication protocols](references/communication-protocols.md) <br>
-- [Cron orchestration](references/cron-orchestration.md) <br>
-- [Governance template](references/governance-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and structured configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent operating guidance, governance templates, cron schedules, and communication patterns for adaptation by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent autonomous publishing or public posting could publish unintended content without adequate approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before publish or public-post actions, and make the monthly SkillHub maintenance job report-only.
+
+Risk: Cloud-document fallback can expose operational or sensitive data if destinations, permissions, and retention are not defined.
+
+Mitigation: Disable cloud-document fallback until approved destinations, access controls, retention rules, and sensitive-data handling rules are documented.
+
+Risk: Scheduled automation may run with broader credentials or authority than the operator intended.
+
+Mitigation: Use least-privilege credentials, scope each cron job to its required workspace and task, and review generated cron templates before enabling them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ygq19901001/skills/opc-os-core)
+- [Publisher Profile](https://clawhub.ai/user/ygq19901001)
+- [Communication Protocols](references/communication-protocols.md)
+- [Cron Orchestration](references/cron-orchestration.md)
+- [Governance Templates](references/governance-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and structured configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose cron schedules, workspace layouts, governance documents, reporting flows, and publishing workflows for human review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog reference 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

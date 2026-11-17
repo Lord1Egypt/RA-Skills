@@ -1,41 +1,57 @@
-## Description: <br>
-AI自我改进与记忆系统 - 让AI从错误中学习，越用越聪明 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI自我改进与记忆系统 - 让AI从错误中学习，越用越聪明
 
-## Publisher: <br>
-[AndyLue](https://clawhub.ai/user/AndyLue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andylue](https://clawhub.ai/user/andylue)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent memory routines that record errors, user corrections, best practices, and knowledge gaps so future agent work can check and apply prior context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may capture broad user, command, project, or error context in long-lived local files. <br>
-Mitigation: Use the skill only when persistent memory is intended, avoid it around secrets or sensitive project output, and review ~/.openclaw/memory/self-improving regularly. <br>
-Risk: Project-level syncing could write memory-derived content into CLAUDE.md or AGENTS.md. <br>
-Mitigation: Require explicit review before allowing any memory entry to be copied into project instruction files. <br>
+## Use Case:
 
+Developers and agent users use this skill to add a local memory workflow that records errors, user corrections, best practices, and knowledge gaps so future agent responses can reuse prior lessons.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AndyLue/ai-self-learning) <br>
-- [Publisher Profile](https://clawhub.ai/user/AndyLue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSONL memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists memory entries and an index under the user's local OpenClaw memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact skill metadata declares 2.0.0) <br>
+Risk: Persistent memory can save sensitive details from commands, errors, user corrections, and project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with deliberate consent, avoid secrets or private context, and gate or redact memory writes before storage.
+
+Risk: Stored memories can steer future agent behavior across projects.
+
+Mitigation: Scope memory per project where possible and review retrieved memories before applying them to a new task.
+
+Risk: The artifact describes syncing important memories into project instruction files.
+
+Mitigation: Require explicit review before allowing the skill to modify CLAUDE.md, AGENTS.md, or similar project instruction files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andylue/skills/ai-self-learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and optional text or JSON tool output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSONL memory files for errors, corrections, best practices, knowledge gaps, and an index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact declares 2.0.0 in SKILL.md and skill.json
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

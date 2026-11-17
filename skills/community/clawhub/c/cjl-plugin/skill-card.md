@@ -1,45 +1,61 @@
-## Description: <br>
-CJL Skills Collection is a personal Claude Code plugin with 17 production skills for reading papers, creating content cards, designing presentations, analyzing relationships, improving writing, researching travel, learning vocabulary, investment analysis, and related workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CJL Skills Collection is a personal Claude Code plugin with 17 production skills for paper analysis, content cards, presentation design, relationship analysis, writing, travel research, vocabulary learning, and related workflows.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-Developers and Claude Code users use this plugin to invoke specialized personal workflow skills for research, writing, visual content generation, presentations, travel planning, investment analysis, relationship analysis, and media download tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Several workflows automatically save generated notes, visuals, presentations, or media into fixed local folders, which can persist sensitive content. <br>
-Mitigation: Review or override save paths before execution and ask the agent not to save sensitive outputs unless the destination is explicitly approved. <br>
-Risk: Relationship and investment analysis workflows may process and save sensitive personal, business, or financial material. <br>
-Mitigation: Avoid providing confidential inputs unless local file creation is acceptable, and require explicit approval before writing analysis files. <br>
-Risk: The X/Twitter download workflow can use Chrome browser cookies for authenticated downloads, exposing local browser-session access to the agent workflow. <br>
-Mitigation: Do not allow Chrome cookie access unless authenticated media download is required and the user understands the browser-session exposure. <br>
+## Use Case:
 
+External users and developers use this skill collection in Claude Code to run focused workflows for research, writing, visual content, presentations, travel preparation, investment analysis, vocabulary learning, and media download tasks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/0xcjl/cjl-plugin) <br>
-- [Publisher profile](https://clawhub.ai/user/0xcjl) <br>
-- [CJL Plugin GitHub repository](https://github.com/0xcjl/cjl-plugin) <br>
-- [Adapted source skills](https://github.com/lijigang/ljg-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown and org-mode reports, generated HTML or presentation assets, PNG/media files, shell commands, and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Several skills write generated notes, visuals, presentations, or downloaded media to local folders such as ~/Documents/notes/ or ~/Downloads/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill collection includes broad file-writing workflows that can create notes and outputs under ~/Documents/notes and ~/Downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested workflow and confirm output paths before allowing file writes.
+
+Risk: The X/Twitter downloader includes a browser-cookie fallback for yt-dlp.
+
+Mitigation: Use the Chrome-cookie fallback only when the user explicitly intends to allow yt-dlp to read browser session cookies.
+
+Risk: Some workflows rely on mutable dependency installation or remote scripts, including Playwright setup and CDN-hosted Chart.js.
+
+Mitigation: Pin dependencies where possible and check remote scripts before sharing or deploying generated cards and slides.
+
+Risk: Generated cards and slides may contain hardcoded attribution or output that needs human review.
+
+Mitigation: Inspect generated visual outputs for attribution, accuracy, and suitability before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xcjl/skills/cjl-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown and org-mode text with inline shell commands, generated HTML/PPTX guidance, PNG visual files, and downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Several workflows write files under ~/Documents/notes or ~/Downloads.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

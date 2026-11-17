@@ -1,0 +1,30 @@
+{
+  "name": "cqccjy",
+  "deployment": "current",
+  "owner_user_id": 2,
+  "base_url": "https://cnki.cqccjy.cn",
+  "channel": "pcnki",
+  "pages": {
+    "home": "https://cnki.cqccjy.cn/",
+    "entry": "https://cnki.cqccjy.cn/pzw",
+    "payment": "https://cnki.cqccjy.cn/pzw?orderNo={order_no}&stage=payment",
+    "progress": "https://cnki.cqccjy.cn/pzw/check?orderNo={order_no}&stage=progress",
+    "report": "https://cnki.cqccjy.cn/pzw/check?orderNo={order_no}",
+    "verify_funnel": "https://vpcs.cqccjy.cn/pwp/verify",
+    "verify_official": "https://check7.cnki.net/codeverify/"
+  },
+  "api": {
+    "config": "/api/paper/cnki/public/config",
+    "presign": "/api/paper/cnki/public/upload/presign",
+    "create": "/api/paper/cnki/public/order/create",
+    "order": "/api/paper/cnki/public/order/{order_no}",
+    "order_query": "/api/paper/cnki/public/order/query",
+    "card_settlement": "/api/paper/cnki/public/order/{order_no}/settlement/card",
+    "pay": "/api/paper/cnki/public/order/{order_no}/pay",
+    "pay_qr": "/api/paper/cnki/public/order/{order_no}/pay/qr",
+    "pay_qr_status": "/api/paper/cnki/public/order/{order_no}/pay/qr",
+    "report_download_url": "/api/paper/cnki/public/order/{order_no}/report-download-url",
+    "report_download": "/api/paper/cnki/public/order/{order_no}/report-download",
+    "delete": "/api/paper/cnki/public/order/{order_no}/delete"
+  }
+}

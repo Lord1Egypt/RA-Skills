@@ -1,0 +1,30 @@
+# ============================================================
+# docx-writer 模板：news（清华新闻网体例 / 简讯）
+# ============================================================
+name: news
+base_docx: null
+page:
+  size: A4
+  margin: { top: 2.54cm, bottom: 2.54cm, left: 3.18cm, right: 3.18cm }
+
+styles:
+  title:    { cn: 黑体, en: Arial,           size: 15pt, bold: true, align: center, indent: 0,      line_spacing: 1.5 }
+  subtitle: { cn: 楷体, en: Times New Roman, size: 12pt, align: center, indent: 0,      line_spacing: 1.5 }
+  body:     { cn: 宋体, en: Times New Roman, size: 10.5pt, align: justify, indent: 0.74cm, line_spacing: 1.5 }
+  h1:       { cn: 黑体, en: Arial,           size: 12pt, bold: true, align: left,   indent: 0.74cm, line_spacing: 1.5 }
+  caption:  { cn: 宋体, en: Times New Roman, size: 9pt, color: "595959", align: center, indent: 0, line_spacing: 1.5 }
+  image:    { align: center, width: 13cm }
+  formula:  { align: center, indent: 0, scale: 0.90, line_spacing: 1.5 }
+  signature: { cn: 宋体, en: Times New Roman, size: 10.5pt, align: right, indent: 0,      line_spacing: 1.5 }
+  table:
+    mode: three_line
+    word_style: Table Grid
+    header: { cn: 黑体, en: Arial,           size: 9pt, bold: true, align: center }
+    cell:   { cn: 宋体, en: Times New Roman, size: 9pt, align: center }
+
+footnote:
+  enabled: false
+
+features:
+  fix_quotes: true
+  superscript_footnotes: false

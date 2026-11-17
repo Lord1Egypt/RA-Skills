@@ -1,0 +1,30 @@
+name: 标后履约合规审查官（Post-Award Compliance Reviewer）
+slug: bid-post-award-compliance-reviewer
+display_name: 标后履约合规审查官（Post-Award Compliance Reviewer）
+emoji: "📋"
+version: 1.3.0
+version_stage: "GA"
+author: "一线评标专家&ChesaraM"
+license: 内部使用
+agent_created: true
+description: 标后履约合规审查官（Post-Award Compliance Reviewer）。面向工程建设项目与政府采购项目的中标后全生命周期（合同签订→履约→变更→索赔→验收→结算→质保→审计→争议），通过招标/投标/合同/变更/验收等文件的贯穿式比对，做变更合规评估、合同一致性比对、关键人员履约核查、转包/分包/挂靠识别、工程量与造价偏差监测、验收合规审查、索赔合规审查、阈值红线监控与审计应对。内置招投标法体系与政府采购法体系双轨知识基座、2024–2026新规与阈值红线表，每个风险点给出合规/灰区/违规明确判定并附完整证据链。模型无关指令包，安装即用。
+feedback:
+  channel: github
+  account: "一线评标专家&ChesaraM"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"
+changelog:
+  - version: 1.3.0
+    date: 2026-07-28
+    change: "按 clawhub.ai NVIDIA SkillSpector 反馈整改：①项目档案由『默认自动落盘 + 跨会话读取』改为『会话内维护、落盘需用户显式 opt-in（知情同意 + 数据最小化 + 可删除 + 不启动扫描）』，消除静默留存敏感数据风险（F1/F2/F4-F8）；②触发词『新建项目』收窄为『开始标后履约合规审查/建立履约档案』，消除误激活（F3）；③移除 SKILL.md/output-templates/constraints/system_prompt 中强制署名注入，署名仅保留 manifest author 与 README 落款，符合 clawhub 内容注入红线。功能与知识基座不变。"
+  - version: 1.2.1
+    date: 2026-07-28
+    change: "按 SkillHub 发布「四件套」规范补齐：references/output-templates.md 全部功能模板（B–J）输出范式与场景示例；挂载知识库维持现状（KB-L 仍属可选补充）。打包即装即用。（注：原该版在模板末尾附加的强制署名，已于 v1.3.0 按 clawhub 内容注入红线移除，署名仅保留 manifest author 与 README 落款。）"
+  - version: 1.2.0
+    date: 2026-07-27
+    change: "按用户 IMA「我发布的」知识库截图收窄挂载清单：核心白名单对齐截图可见的「我发布的」库（KB-A/F/T/C + KB-B 招投标评标否决AI），将 KB-L 法律-法律案例（属「我加入的」库、不在图内）由「强制」降级为「可选补充」；同步更新 system_prompt.md / SKILL.md Step 0 / README 挂载清单 / kb_routing.md / ima_kb_catalog.md 的 KB-L 表述与路由（→ (KB-L)）；不引入截图外的噪声库。"
+  - version: 1.1.0
+    date: 2026-07-27
+    change: "接入 IMA 实时检索（活源版）：新增 references/ima_kb_catalog.md（白名单+INCLUDE/EXCLUDE+工具签名+知识治理层）、references/kb_routing.md（意图→库路由单一事实源）、references/system_prompt.md（运行时 XML 注入）；SKILL.md 新增 Step 0 动态核验知识库、案例对照强制走 KB-L、IMA 不可用降级内置 knowledge-base.md 快照；README 增加挂载清单（KB-A/F/T/C/L + 投诉/异议/国企）。模型无关指令包，安装即用。"
+  - version: 1.0.0
+    date: 2026-07-27
+    change: "新建标后履约合规审查官：覆盖 A–N 全部功能（建档/文档登记/变更评估/合同一致性/人员履约/转包分包挂靠/造价偏差/验收/索赔/阈值仪表盘/审计应对/争议/汇总报告）；内置招投标法+政府采购法双轨知识基座、2024–2026新规、阈值红线表与两法分轨铁律；文件化项目档案跨会话持久化；输出模板与场景示例内置；每次报告附免责声明与统一署名。模型无关指令包，安装即用。"

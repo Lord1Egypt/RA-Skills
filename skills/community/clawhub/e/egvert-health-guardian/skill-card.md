@@ -1,44 +1,62 @@
-## Description: <br>
-Proactive health monitoring for AI agents. Apple Health integration, pattern detection, anomaly alerts. Built for agents caring for humans with chronic conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive health monitoring for AI agents with Apple Health integration, pattern detection, and anomaly alerts for agents caring for humans with chronic conditions.
 
-## Publisher: <br>
-[CTsolutionsdev](https://clawhub.ai/user/CTsolutionsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ctsolutionsdev](https://clawhub.ai/user/ctsolutionsdev)
 
-## Use Case: <br>
-External users and agents use this skill to import Apple Health export data, analyze recent health readings, and generate alerts or summaries for humans with chronic conditions or caregiver workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive health data and may store imported readings locally. <br>
-Mitigation: Install only with explicit consent from the person whose health data is involved, and protect the local data directory with appropriate filesystem permissions and access controls. <br>
-Risk: The privacy claim that nothing leaves the machine may not hold if external alert channels such as Telegram are enabled. <br>
-Mitigation: Disable external notifications by default, or tightly limit alert content and recipients before enabling any external alert channel. <br>
-Risk: Automated cron imports and alerts can create medical-safety risk if configuration paths, thresholds, or notification behavior are wrong. <br>
-Mitigation: Verify the import directory, configuration, and alert thresholds before enabling automation, and treat outputs as monitoring aids rather than medical advice. <br>
-Risk: Importer and analyzer behavior is inconsistent: the importer writes vitals-style records while the analyzer expects readings organized by metric and timestamp. <br>
-Mitigation: Fix and test the importer/analyzer data schema before relying on summaries, anomaly detection, or alerts. <br>
+## Use Case:
 
+External users and agent developers use this skill to import Apple Health exports, monitor health patterns, and surface configurable anomaly alerts for caregiver-style workflows. Alerts should be treated as informational rather than medical advice.
 
-## Reference(s): <br>
-- [Health Auto Export](https://apps.apple.com/app/health-auto-export/id1115567069) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console text with JSON configuration and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local health-data imports, anomaly alerts, and human-readable summaries when configured with user health export data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The skill handles sensitive health-derived data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with informed consent, restrict which Apple Health files it can read, and protect the local data directory.
+
+Risk: Health alerts may be mistaken for medical advice.
+
+Mitigation: Treat alerts as informational and require appropriate human or clinical review before acting on them.
+
+Risk: Third-party alert channels can expose health-derived information.
+
+Mitigation: Disable external alerts or use only approved channels that the monitored person accepts.
+
+Risk: Persistent monitoring can run beyond the user's intended scope.
+
+Mitigation: Review cron or heartbeat automation before enabling it and document who receives alerts.
+
+## Reference(s):
+
+- [Health Guardian ClawHub release](https://clawhub.ai/ctsolutionsdev/skills/egvert-health-guardian)
+- [Health Auto Export](https://apps.apple.com/app/health-auto-export/id1115567069)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with JSON configuration and local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local health readings, summaries, and alert text from Apple Health export files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

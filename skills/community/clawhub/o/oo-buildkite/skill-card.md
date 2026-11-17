@@ -1,43 +1,56 @@
-## Description: <br>
-Buildkite helps agents read and manage Buildkite organizations, pipelines, and builds through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for Buildkite requests to inspect organizations, pipelines, and builds, or to create, rebuild, or cancel builds through the OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and CI operators use this skill to let an agent inspect Buildkite account, organization, pipeline, and build data, and to perform approved build operations such as create, cancel, and rebuild. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform state-changing Buildkite operations such as creating, canceling, or rebuilding builds. <br>
-Mitigation: Confirm the exact organization, pipeline, build number, payload, and intended effect with the user before running state-changing actions. <br>
-Risk: The skill depends on an OOMOL-connected Buildkite account and can use sensitive credentials through that connection. <br>
-Mitigation: Install and use it only when the user intends to let an agent operate Buildkite through OOMOL, and have the user approve oo CLI installation, sign-in, and connection steps. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to inspect Buildkite organizations, pipelines, and builds, and to create, rebuild, or cancel builds through an OOMOL-connected account. It requires checking the action schema first and confirming state-changing actions as described by the skill.
 
-## Reference(s): <br>
-- [ClawHub Buildkite skill page](https://clawhub.ai/oomol/oo-buildkite) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Buildkite homepage](https://buildkite.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute Buildkite connector actions through the oo CLI when the user has connected an OOMOL account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup can execute unverified code, and startup synchronization can make lasting changes to other agents’ skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing, use a verified CLI release, grant only necessary Buildkite permissions, and set OO_SKILLS_SYNC_DISABLED if cross-agent skill changes should be disabled.
+
+Risk: Creating, rebuilding, or canceling a Buildkite build changes project state.
+
+Mitigation: Confirm the exact payload and effect before write actions, and get explicit approval before destructive actions.
+
+## Reference(s):
+
+- [Buildkite](https://buildkite.com)
+- [Buildkite REST API documentation](https://buildkite.com/docs/apis/rest-api)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads and JSON action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Buildkite read and write action results; state-changing actions require confirmation as described by the skill.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

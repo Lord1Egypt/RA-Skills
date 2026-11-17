@@ -1,39 +1,59 @@
-## Description: <br>
-Generates structured Chinese press release and public relations copy for product launches, funding announcements, events, and crisis statements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates press-release and public-relations drafts for product launches, funding announcements, events, and crisis statements.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Employees, external communications teams, and developers use this skill to draft structured press release templates and public relations guidance from terminal prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generic press-release command may retain potentially confidential launch, funding, event, or crisis details in local data and history files. <br>
-Mitigation: Prefer the visible template generator for sensitive drafts, avoid entering confidential business or legal details until storage behavior is documented or changed, and review or clear the configured data directory before deployment. <br>
+## Use Case:
 
+External communications teams, founders, and developers use this skill to draft press-release and PR templates for launches, financing announcements, events, and crisis responses. The generated drafts are primarily Chinese and include placeholders intended for user review and completion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/press-release) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style press release templates with shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes placeholders for company, product, funding, event, contact, and legal review details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled utility can retain user-supplied text and command arguments in plaintext under the user's data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, confidential announcements, financing details, incident-response drafts, or contact data unless local retention is acceptable; use a controlled PRESS_RELEASE_DIR and clear stored logs when needed.
+
+Risk: Generated press releases and crisis statements may affect legal, financial, or public communications.
+
+Mitigation: Have communications, legal, and business owners review and complete all placeholders before publication.
+
+Risk: The generated output is primarily Chinese, which may not match English-only workflows.
+
+Mitigation: Confirm language requirements before use and review or translate generated drafts for the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/press-release)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text templates, primarily Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bracketed placeholders for user-supplied details; one bundled utility can log command arguments and stored entries locally in plaintext.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

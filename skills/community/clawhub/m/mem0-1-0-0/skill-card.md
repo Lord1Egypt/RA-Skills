@@ -1,44 +1,58 @@
-## Description: <br>
-Intelligent memory layer for Clawdbot using Mem0 that provides semantic search and automatic storage of user preferences, patterns, and context across conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mem0 adds a conversational memory layer for Clawdbot that stores, searches, lists, and deletes user preferences, patterns, and context through Mem0-backed scripts.
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-Developers and agents use this skill to search, add, list, and delete persistent conversational memories so responses can adapt to user preferences, patterns, and prior context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores conversational memories persistently, which can retain personal context longer than a single session. <br>
-Mitigation: Enable it deliberately, avoid storing secrets or sensitive personal data, and periodically review stored memories with the list command. <br>
-Risk: Memory add and search workflows use OpenAI-backed processing through OPENAI_API_KEY. <br>
-Mitigation: Confirm users understand that memory content may be processed by OpenAI and configure the API key only in deployments where that processing is acceptable. <br>
-Risk: The delete script supports deleting all memories for a user without an interactive confirmation prompt. <br>
-Mitigation: Use the --all deletion flag carefully and verify the target user ID before running deletion commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give Clawdbot persistent conversational memory for recalling user preferences, prior context, and interaction patterns. It supports memory search, creation, listing, deletion, and configuration guidance.
 
-## Reference(s): <br>
-- [Mem0 Integration Patterns](references/integration-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Sieyer/mem0-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/Sieyer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script output can include a ---JSON--- marker when JSON_OUTPUT is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Conversation-derived memories are stored persistently and may include personal or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive personal data, and keep memory writes limited to explicit user requests or clearly useful preferences and context.
+
+Risk: Memory text and search queries are processed through OpenAI-backed services.
+
+Mitigation: Install only where that processing is acceptable for the user and organization, and ensure OPENAI_API_KEY access is controlled.
+
+Risk: The scripts expose user-selectable memory access and bulk deletion controls.
+
+Mitigation: Restrict who can invoke the scripts, remove or lock down the --user option, and add confirmation before bulk deletion.
+
+## Reference(s):
+
+- [Mem0 integration patterns](references/integration-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/sieyer/skills/mem0-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can emit JSON when JSON_OUTPUT is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

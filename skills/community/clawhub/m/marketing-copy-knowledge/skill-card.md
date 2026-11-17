@@ -1,47 +1,63 @@
-## Description: <br>
-Marketing Copy Knowledge helps agents generate Meta Ads, Google Ads, and social post copy using a FABE x SPIN marketing knowledge base by 邱煜庭（小黑老師）, with freemium and paid API-key usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marketing Copy Knowledge helps agents generate Meta Ads, Google Ads, and social-post copy using a FABE x SPIN marketing knowledge base designed by the listed marketing instructor.
 
-## Publisher: <br>
-[backtrue](https://clawhub.ai/user/backtrue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[backtrue](https://clawhub.ai/user/backtrue)
 
-## Use Case: <br>
-External agents and developers use this skill to request marketing-copy generation or query a curated FABE x SPIN knowledge base for Meta Ads, Google Ads, and social posts. It is intended for non-sensitive marketing prompts and product descriptions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Marketing prompts, product descriptions, or user-provided context may be sent to a third-party service. <br>
-Mitigation: Use only non-sensitive marketing content; do not send secrets, credentials, private customer data, raw payment details, or other confidential material. <br>
-Risk: The paid flow can purchase credits and use an API key. <br>
-Mitigation: Require explicit operator authorization before purchase, keep payment details out of prompts, and protect any issued X-Api-Key as a credential. <br>
-Risk: Generated marketing copy or knowledge chunks may be inaccurate, misleading, or unsuitable for a regulated campaign. <br>
-Mitigation: Review generated copy before publication and use returned attribution fields when citing the knowledge source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/backtrue/marketing-copy-knowledge) <br>
-- [Publisher Profile](https://clawhub.ai/user/backtrue) <br>
-- [Think with Black Homepage](https://thinkwithblack.com) <br>
-- [FABE x SPIN Book Page](https://fabe.thinkwithblack.com/) <br>
-- [Service OpenAPI Specification](https://toldyou-lobstermind.backtrue.workers.dev/openapi.json) <br>
-- [Service llms.txt](https://toldyou-lobstermind.backtrue.workers.dev/llms.txt) <br>
-- [MCP Server Card](https://toldyou-lobstermind.backtrue.workers.dev/.well-known/mcp/server-card.json) <br>
+## Use Case:
 
+External users and agents use this skill to generate marketing copy for Meta Ads, Google Ads, and social posts, or to query a curated FABE x SPIN marketing knowledge base. It is most relevant when product or service descriptions can be safely sent to the listed external service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with REST examples; service responses return marketing copy or attributed knowledge chunks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a third-party service; paid generation can require an X-Api-Key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Marketing prompts and product descriptions are sent to the listed external service.
+
+Mitigation: Do not use the skill with secrets, private customer data, sensitive business plans, or other confidential content.
+
+Risk: The skill includes a paid purchase flow and API-key based usage.
+
+Mitigation: Require explicit operator approval before purchasing credits, submitting payment-related data, or using a paid API key.
+
+Risk: Generated marketing copy or retrieved knowledge may be inaccurate or unsuitable for a campaign.
+
+Mitigation: Review output for factual accuracy, claims substantiation, platform policy compliance, and brand fit before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/backtrue/skills/marketing-copy-knowledge)
+- [Publisher profile](https://clawhub.ai/user/backtrue)
+- [Homepage](https://thinkwithblack.com)
+- [FABE x SPIN book page](https://fabe.thinkwithblack.com/)
+- [Service endpoint](https://toldyou-lobstermind.backtrue.workers.dev)
+- [OpenAPI specification](https://toldyou-lobstermind.backtrue.workers.dev/openapi.json)
+- [LLMs text](https://toldyou-lobstermind.backtrue.workers.dev/llms.txt)
+- [MCP server card](https://toldyou-lobstermind.backtrue.workers.dev/.well-known/mcp/server-card.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline REST and MCP examples; service responses may include generated copy or attributed knowledge chunks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports freemium use and paid API-key usage for higher limits.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

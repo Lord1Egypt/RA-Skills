@@ -1,43 +1,56 @@
-## Description: <br>
-Analyze sentiment, emotions (joy/anger/sadness/fear), and intent from any text. Pay $0.01 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze sentiment, emotions (joy/anger/sadness/fear), and intent from any text. Pay $0.01 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and agents use this skill to submit text for paid sentiment, emotion, and intent analysis through the ntriq x402 API. It is suited for workflows that need structured sentiment labels, confidence, emotion scores, intent classification, and a short summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for analysis is sent to a third-party API endpoint. <br>
-Mitigation: Do not submit secrets, credentials, regulated personal data, or confidential business text unless the provider's data handling is approved for that data. <br>
-Risk: Each API call initiates a paid x402 request using USDC on Base mainnet. <br>
-Mitigation: Confirm the $0.01 USDC cost, payment header, wallet, and network before enabling automated or repeated calls. <br>
+## Use Case:
 
+Developers and agents use this skill to call ntriq's paid x402 sentiment API for sentiment, emotion, intent, confidence, and short-summary analysis of supplied text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/ntriq-x402-sentiment) <br>
-- [ntriq x402 Homepage](https://x402.ntriq.co.kr) <br>
-- [ntriq Sentiment Endpoint](https://x402.ntriq.co.kr/sentiment) <br>
-- [x402 Protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON sentiment response with Markdown and shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires text input, optional language code, and an x402 payment header; each request costs $0.01 USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The analyzed text is sent to ntriq's external sentiment-analysis service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the text is appropriate to share with the external service before calling the API, and avoid sensitive content unless the deployment policy permits it.
+
+Risk: Each API call requires a $0.01 USDC payment through x402 on Base mainnet.
+
+Mitigation: Verify the payment header, network, and expected usage volume before enabling automated calls.
+
+## Reference(s):
+
+- [Ntriq x402 homepage](https://x402.ntriq.co.kr)
+- [Ntriq x402 service listing](https://x402.ntriq.co.kr/services)
+- [x402 protocol](https://x402.org)
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-sentiment)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with HTTP examples, curl command examples, and JSON response shape]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The external API response includes sentiment, confidence, emotion scores, intent classification, and a one-sentence summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

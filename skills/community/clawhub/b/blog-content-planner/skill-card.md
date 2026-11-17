@@ -1,39 +1,48 @@
-## Description: <br>
-Blog Content Planner helps agents create blog content calendars, topic clusters, content pillar plans, and editorial workflows for SEO-oriented content planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blog Content Planner helps users create three-month blog content plans with topic clusters, content pillars, calendars, and editorial workflow structure.
 
-## Publisher: <br>
-[cofi295](https://clawhub.ai/user/cofi295) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cofi295](https://clawhub.ai/user/cofi295)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users such as bloggers, content marketers, SEO specialists, and businesses use this skill to ask an agent for blog content calendars, topic clusters, post ideas, and editorial workflow plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill embeds a visible paid upgrade pitch and payment links in its instructions.
+
+Mitigation: Review the payment promotion before installation and install only if that embedded promotion is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Use this skill when an agent needs to plan three months of blog content, organize pillar and cluster topics, generate post ideas, or structure a quarterly editorial calendar. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global; the evidence does not state geography-specific deployment constraints. <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation includes unrelated payment and crypto upsell text that users could mistake for a requirement. <br>
-Mitigation: Treat the upsell as advertising; the core planning prompt skill should not require paying through links embedded in the skill file. <br>
+**Output Format:** [Markdown or plain text planning output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cofi295/blog-content-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/cofi295) <br>
+**Other Properties Related to Output:** [Produces content planning guidance; the provided artifact contains no executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured content calendars, topic cluster outlines, content pillar plans, post idea lists, and editorial workflow guidance.] <br>
-**Output Parameters:** [User-provided blog niche, topic, audience, timeframe, quarter, business goals, SEO focus, and distribution needs.] <br>
-**Other Properties Related to Output:** [Outputs are planning guidance for review and adaptation before publication.] <br>
+1.2.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.2.0 <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

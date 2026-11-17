@@ -1,45 +1,59 @@
-## Description: <br>
-Production-grade persistent memory for AI agents with hybrid SQLite and vector search, decay classes, episodic memory, cognitive profiles, and an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade persistent memory for AI agents with hybrid SQLite and vector search, decay classes, episodic memory, cognitive profiles, and an MCP server.
 
-## Publisher: <br>
-[marlandoj](https://clawhub.ai/user/marlandoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlandoj](https://clawhub.ai/user/marlandoj)
 
-## Use Case: <br>
-External developers and agent operators use this skill to add persistent local memory, hybrid recall, episodic records, cognitive profiles, and MCP-accessible memory tools to Node.js-based AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memory can persist locally and may include sensitive facts if users save them. <br>
-Mitigation: Review the database path and avoid storing secrets or confidential data unless persistent storage is intended. <br>
-Risk: Optional Ollama and OpenAI features can send memory text and queries to configured model endpoints. <br>
-Mitigation: Enable vector search, HyDE expansion, or reranking only when the configured endpoint is approved for the memory content. <br>
-Risk: Delete and prune commands can remove stored records. <br>
-Mitigation: Confirm record IDs, retention needs, and backups before running destructive memory commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add durable local memory, recall, and profile-aware retrieval to Node.js agents through a CLI, MCP server, or programmatic API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marlandoj/zouroboros-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/marlandoj) <br>
-- [Zouroboros OpenClaw repository](https://github.com/AlaricHQ/zouroboros-openclaw) <br>
-- [Memory OpenClaw example](https://github.com/AlaricHQ/zouroboros-openclaw-examples/tree/main/examples/memory-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, code] <br>
-**Output Format:** [CLI text or JSON output, MCP tool responses, and TypeScript API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and retrieves local SQLite-backed memory records; optional vector search, HyDE expansion, and reranking depend on configured Ollama or OpenAI endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter; package.json reports 4.0.0) <br>
+Risk: The skill stores sensitive long-term agent memory in a local database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private database path with restrictive file permissions and avoid storing secrets, regulated data, or other high-sensitivity content.
+
+Risk: Configured embedding, reranking, or HyDE features can send queries and memory snippets to local or external model services.
+
+Mitigation: Keep OLLAMA_URL pointed only at a trusted local or HTTPS service and enable OpenAI, reranker, or HyDE features only when that data sharing is acceptable.
+
+Risk: Installing or running through npm or npx can execute package code from the selected release.
+
+Mitigation: Pin npm or npx versions and review the package before deployment in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marlandoj/skills/zouroboros-memory)
+- [OpenClaw Zouroboros Repository](https://github.com/AlaricHQ/zouroboros-openclaw)
+- [Memory OpenClaw Example](https://github.com/AlaricHQ/zouroboros-openclaw-examples/tree/main/examples/memory-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON-like configuration snippets, TypeScript code examples, shell commands, and MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write a local SQLite memory database and may call configured embedding, reranking, or generation services when enabled.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter and ClawHub release evidence; package.json reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

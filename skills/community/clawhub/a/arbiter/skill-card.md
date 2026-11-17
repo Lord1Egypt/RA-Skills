@@ -1,44 +1,55 @@
-## Description: <br>
-Push decisions to Arbiter Zebu for async human review when human input is needed on plans, architectural choices, or approvals before proceeding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Push decisions to Arbiter Zebu for async human review when an agent needs human input on plans, architectural choices, or approval before proceeding.
 
-## Publisher: <br>
-[5hanth](https://clawhub.ai/user/5hanth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[5hanth](https://clawhub.ai/user/5hanth)
 
-## Use Case: <br>
-Developers and agent operators use Arbiter to send structured decision plans to a human reviewer, track review status, and retrieve completed answers before continuing blocked work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted agent name may cause review files to be written outside the intended Arbiter queue directory. <br>
-Mitigation: Use trusted agent and session identifiers only, and prefer a fixed release that sanitizes agent values and verifies writes remain under ~/.arbiter/queue/pending. <br>
-Risk: Decision content is persisted in local queue files and may be visible to the Arbiter bot and human review channel. <br>
-Mitigation: Do not include secrets, credentials, or sensitive internal data in decision titles, context, options, or answers. <br>
-Risk: The skill depends on local Arbiter queue files and a running Arbiter Zebu workflow. <br>
-Mitigation: Confirm the Arbiter Zebu bot and ~/.arbiter/queue directories are configured before relying on the skill for blocked work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to submit structured decisions for asynchronous human review, then check status or retrieve completed answers before continuing blocked work.
 
-## Reference(s): <br>
-- [Arbiter ClawHub Release](https://clawhub.ai/5hanth/arbiter) <br>
-- [Arbiter Zebu Bot](https://github.com/5hanth/arbiter-zebu) <br>
-- [Arbiter Zebu Architecture](https://github.com/5hanth/arbiter-zebu/blob/main/ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON CLI responses and Markdown queue files with shell-command usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes decision plans under ~/.arbiter/queue/pending and reads pending or completed queue files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Risk: Local queue handling can write or expose decision files more broadly than users are told.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only on a trusted single-user machine, and fix path validation, ownership checks, serialization handling, and file permissions before broader deployment.
+
+Risk: Decision requests may contain secrets, personal data, regulated data, or sensitive internal plans.
+
+Mitigation: Do not send secrets, credentials, personal data, regulated data, or sensitive internal plans through this skill.
+
+## Reference(s):
+
+- [ClawHub Arbiter Skill](https://clawhub.ai/5hanth/skills/arbiter)
+- [Arbiter Zebu Bot](https://github.com/5hanth/arbiter-zebu)
+- [Arbiter Zebu Architecture](https://github.com/5hanth/arbiter-zebu/blob/main/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON CLI arguments and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads local decision queue files under the user's Arbiter directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

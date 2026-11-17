@@ -1,42 +1,59 @@
-## Description: <br>
-Generate animated conversation videos with multi-voice TTS audio and timed text overlays. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate animated conversation videos with multi-voice TTS audio and timed text overlays.
 
-## Publisher: <br>
-[pratyushchauhan](https://clawhub.ai/user/pratyushchauhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratyushchauhan](https://clawhub.ai/user/pratyushchauhan)
 
-## Use Case: <br>
-Developers and content builders use this skill to turn dialogue manifests into podcast-style or interview-style conversation videos with synthesized multi-speaker audio, timed captions, and optional Remotion animation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audio, timing JSON, terminal logs, and temporary WAV files may contain transcript text or other sensitive spoken content. <br>
-Mitigation: Review transcript contents before use and handle generated media, timing files, logs, and temporary files according to the sensitivity of the source dialogue. <br>
-Risk: The skill runs local media-generation commands and may require npm install for the optional Remotion template. <br>
-Mitigation: Install and run it only in an environment where local command execution and package installation are acceptable, and review dependencies before rendering. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn dialogue transcripts into synchronized conversation videos with speaker labels, generated voice audio, and either ffmpeg or Remotion rendering paths.
 
-## Reference(s): <br>
-- [FFmpeg Text Overlay Guide](references/ffmpeg-guide.md) <br>
-- [Remotion Patterns Reference](references/remotion-patterns.md) <br>
-- [Conversation Video on ClawHub](https://clawhub.ai/pratyushchauhan/conversation-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON manifest examples, Python and ffmpeg commands, and optional Remotion code edits; executed scripts produce WAV audio, JSON timing data, and MP4 video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local ffmpeg and Supertonic TTS for the audio path; the optional Remotion path requires Node.js and npm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill runs local Python, ffmpeg, npm, and Remotion code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean project or sandbox and review generated commands before execution.
+
+Risk: The security summary flags imports from an unrelated local environment and unpinned package execution.
+
+Mitigation: Pin Python and npm dependencies before use and avoid the browser-use virtualenv fallback.
+
+Risk: Transcript and timing manifests influence generated speech, overlays, and renderer command construction.
+
+Mitigation: Render only trusted transcript and timing manifests.
+
+## Reference(s):
+
+- [Conversation Video skill page](https://clawhub.ai/pratyushchauhan/skills/conversation-video)
+- [FFmpeg Text Overlay Guide](references/ffmpeg-guide.md)
+- [Remotion Patterns Reference](references/remotion-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON manifest examples, shell commands, and generated audio/video file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces transcript timing manifests, WAV audio, and MP4 video outputs when its local scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and Remotion package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

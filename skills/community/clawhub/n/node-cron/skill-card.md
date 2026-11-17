@@ -1,40 +1,53 @@
-## Description: <br>
-Node.js cron job scheduling guidance for using the `cron` npm package to create recurring tasks, validate cron expressions, and manage timed callbacks in Node.js or TypeScript projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Node.js cron job scheduling with the `cron` npm package.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to schedule recurring Node.js tasks, choose correct six-field cron expressions, and manage CronJob behavior in Node.js or TypeScript projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled callbacks can run with broader side effects than intended if production jobs are copied without review. <br>
-Mitigation: Keep callbacks narrowly scoped, add error handling, and ensure jobs can be stopped or disabled before deployment. <br>
-Risk: The generated examples depend on the external `cron` npm package. <br>
-Mitigation: Verify the dependency, pin versions, and keep the package updated according to the project's dependency policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to schedule recurring Node.js or TypeScript tasks, validate cron expressions, configure timed callbacks, and avoid common second-precision cron pitfalls.
 
-## Reference(s): <br>
-- [Node Cron Full API Reference](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no credentials, hidden commands, or data access are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: Scheduled callback code runs with the permissions of the Node.js process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review callback behavior before deployment and run jobs with the least privileges needed for the scheduled task.
+
+Risk: Unreviewed dependency versions or timezone mistakes can cause unreliable scheduling behavior.
+
+Mitigation: Use an exact reviewed `cron` package version with a lockfile and confirm the intended IANA timezone.
+
+## Reference(s):
+
+- [Node Cron API Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

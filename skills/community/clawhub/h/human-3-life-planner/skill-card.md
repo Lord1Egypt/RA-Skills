@@ -1,47 +1,62 @@
-## Description: <br>
-Conducts adaptive Chinese-language HUMAN 3.0 life development assessments across Mind, Body, Spirit, and Vocation, then produces structured development guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts adaptive Chinese-language HUMAN 3.0 life development assessments across mind, body, spirit, and vocation, then generates structured development reports with transformation strategies.
 
-## Publisher: <br>
-[nikowq](https://clawhub.ai/user/nikowq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikowq](https://clawhub.ai/user/nikowq)
 
-## Use Case: <br>
-External users and developers use this skill to run a structured personal-development interview in Chinese, identify life-pattern archetypes, and receive a practical development report. It is intended for reflective planning and coaching-style guidance, not professional medical, financial, or mental-health advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata declares crypto and purchase capabilities that do not match the text-only assessment behavior. <br>
-Mitigation: Review platform permissions before installation and do not grant crypto or purchase permissions unless the publisher provides a clear operational need. <br>
-Risk: The interview can elicit sensitive personal-development, relationship, health, career, and money details. <br>
-Mitigation: Avoid sharing confidential or identifying information and review generated conclusions before acting on them. <br>
-Risk: The skill discusses high-risk accelerants such as AI dependence, psychedelics, and extreme life changes as part of its framework. <br>
-Mitigation: Treat outputs as reflective guidance only and consult qualified professionals before making health, financial, legal, or safety-critical decisions. <br>
+## Use Case:
 
+External users use this skill for a Chinese-language personal-development assessment that interviews them across four life quadrants and returns coaching-style guidance. It is suited to life planning, identifying development patterns, and producing an actionable HUMAN 3.0 report, not medical or mental-health advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nikowq/human-3-life-planner) <br>
-- [HUMAN 3.0 framework article](https://letters.thedankoe.com/p/a-complete-knowledge-base-of-human) <br>
-- [HUMAN 3.0 Complete Knowledge Base](artifact/references/knowledge-base.md) <br>
-- [HUMAN 3.0 Interview Questions](artifact/references/interview-questions.md) <br>
-- [HUMAN 3.0 False Transformation Patterns](artifact/references/false-transformation-patterns.md) <br>
-- [HUMAN 3.0 Assessment Report Template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language conversational prompts and Markdown assessment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sequential interview flow with one question at a time and a structured final report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks about sensitive personal-development topics including health, relationships, work, finances, AI use, obsessive focus, and extreme life changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses and outputs as sensitive coaching context, and avoid entering information the user is not comfortable sharing.
+
+Risk: The output may resemble personal, health, or mental-health guidance.
+
+Mitigation: Use the report as coaching-style guidance only, and seek qualified professional support for medical, mental-health, financial, legal, or safety-critical decisions.
+
+Risk: Artifact behavior discusses high-risk accelerants such as AI dependency, psychedelics, and extreme lifestyle changes.
+
+Mitigation: Review any acceleration-related recommendation conservatively and do not act on high-risk changes based only on the skill output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nikowq/skills/human-3-life-planner)
+- [HUMAN 3.0 source framework](https://letters.thedankoe.com/p/a-complete-knowledge-base-of-human)
+- [HUMAN 3.0 Complete Knowledge Base](references/knowledge-base.md)
+- [HUMAN 3.0 Interview Questions](references/interview-questions.md)
+- [HUMAN 3.0 False Transformation Patterns](references/false-transformation-patterns.md)
+- [HUMAN 3.0 Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language conversational text and structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sequential interview flow with one question at a time; final reports avoid exposing internal numerical scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

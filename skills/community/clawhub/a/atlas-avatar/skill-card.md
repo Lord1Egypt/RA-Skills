@@ -1,44 +1,65 @@
-## Description: <br>
-Create realtime passthrough AI avatar sessions with LiveKit WebRTC, view-only viewer tokens for multi-viewer watch, and offline lip-sync avatar videos using the Atlas API by North Model Labs, with optional Discord delivery of offline MP4 renders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create realtime passthrough AI avatar sessions, view-only viewer tokens, and offline lip-sync avatar videos using the Atlas API by North Model Labs.
 
-## Publisher: <br>
-[eric-prog](https://clawhub.ai/user/eric-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric-prog](https://clawhub.ai/user/eric-prog)
 
-## Use Case: <br>
-Developers and agents use this skill to create Atlas realtime avatar sessions, issue viewer tokens, manage session lifecycle actions, and generate offline lip-sync videos from image and audio inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires API credentials and may write them into local viewer configuration. <br>
-Mitigation: Use scoped, revocable keys, keep generated .env.local files out of source control, and avoid optional viewer setup on shared machines. <br>
-Risk: Face images, audio, prompts, and rendered videos may be sent to Atlas or optional third-party services. <br>
-Mitigation: Upload only media and prompts that are approved for those services, and review the data flow before enabling Discord, ElevenLabs, Anthropic/LLM, or S3 integrations. <br>
+## Use Case:
 
+Developers and agent users use this skill to create and manage Atlas realtime avatar sessions, generate viewer tokens, run offline lip-sync video jobs, and prepare local viewer configuration. It is intended for workflows where the user supplies speech, LLM, or TTS components and Atlas renders the avatar output.
 
-## Reference(s): <br>
-- [Atlas API reference](references/api-reference.md) <br>
-- [North Model Labs API documentation](https://www.northmodellabs.com/api) <br>
-- [North Model Labs examples](https://www.northmodellabs.com/examples) <br>
-- [Atlas realtime example app](https://github.com/NorthModelLabs/atlas-realtime-example) <br>
-- [ClawHub release page](https://clawhub.ai/eric-prog/atlas-avatar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Atlas API requests, LiveKit viewer tokens, local viewer setup files, and presigned offline render result links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: frontmatter and server release metadata) <br>
+Risk: The setup workflow can clone or update external repositories and run npm install while API secrets are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege API keys, inspect or pin external repositories before setup, and avoid pointing ATLAS_AGENT_REPO or ATLAS_REALTIME_EXAMPLE_GIT at untrusted paths or URLs.
+
+Risk: Atlas and optional LLM or ElevenLabs credentials may be written to a local .env.local file.
+
+Mitigation: Keep the viewer checkout private, restrict file permissions, remove local secret files after use, and avoid optional secrets unless the workflow requires them.
+
+Risk: Realtime viewer tokens and presigned result URLs can expose session access or generated media if shared broadly.
+
+Mitigation: Mint viewer tokens only for intended viewers, avoid posting raw tokens in public channels, and treat generated result URLs as sensitive until they expire.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/eric-prog/skills/atlas-avatar)
+- [Atlas API reference](references/api-reference.md)
+- [North Model Labs API docs](https://www.northmodellabs.com/api)
+- [North Model Labs hosted examples](https://www.northmodellabs.com/examples)
+- [Atlas realtime example app](https://github.com/NorthModelLabs/atlas-realtime-example)
+- [Atlas React package](https://www.npmjs.com/package/@northmodellabs/atlas-react)
+- [LiveKit client package](https://www.npmjs.com/package/livekit-client)
+- [North Model Labs dashboard](https://dashboard.northmodellabs.com/dashboard/keys)
+- [OpenClaw install docs](https://docs.openclaw.ai/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, Python CLI usage, curl examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLAS_API_KEY and optional Atlas, LLM, and ElevenLabs environment variables depending on the workflow.]
+
+## Skill Version(s):
+
+1.0.9 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Fill and edit Word .docx templates on Windows using Microsoft Word automation while preserving formatting, images, underlines, and layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fill and edit Word .docx templates on Windows using Microsoft Word automation to preserve formatting, images, underlines, page breaks, and table layout.
 
-## Publisher: <br>
-[winezzz999](https://clawhub.ai/user/winezzz999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winezzz999](https://clawhub.ai/user/winezzz999)
 
-## Use Case: <br>
-Developers and document automation users on Windows use this skill to fill cover fields, append answers, insert page breaks, update section fields, and replace text in .docx templates while preserving Word layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debug instructions include a taskkill command that can forcibly close all open Microsoft Word documents. <br>
-Mitigation: Save and close Word documents before debugging; avoid taskkill unless necessary and prefer closing only the Word instance created for the task. <br>
+## Use Case:
 
+Developers and document automation agents use this skill to fill or edit local Word templates on Windows while keeping the original document layout intact. It is best suited for structured reports, cover fields, table answers, page breaks, and targeted find-and-replace operations in .docx files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/winezzz999/skills/win32-word-filler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash and Python examples; generated .docx files from the bundled CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, Microsoft Word, and pywin32; users provide input and output .docx paths plus CLI options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Word automation acts on local .docx files and depends on a Windows machine with Microsoft Word installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted local documents in a compatible Windows environment and review the output document before sharing it.
+
+Risk: The documented debug step can force-close every running Word process.
+
+Mitigation: Avoid the `taskkill /f /im WINWORD.EXE` debug command unless all Word documents are saved and you intentionally want to close every Word process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/winezzz999/skills/win32-word-filler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and Python CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance and commands for local .docx template filling; generated documents are written by the bundled CLI when run in a compatible Windows environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

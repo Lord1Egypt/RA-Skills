@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitLab Meeting Assistant"
+  short_description: "Capture meeting features and bugs on explicit request"
+  default_prompt: "Use $gitlab-meeting-assistant for our GitLab planning meeting. Use the project I select and create issues only when I explicitly ask."

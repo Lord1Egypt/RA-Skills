@@ -1,42 +1,59 @@
-## Description: <br>
-Payclaw is a CLI skill for OpenClaw agents to configure Circle wallet workflows, send or request testnet USDC, and manage local payment, escrow, and agent directory records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-to-Agent USDC payments. Create wallets, send/receive payments, escrow between agents. Built for the USDC Hackathon on Moltbook.
 
-## Publisher: <br>
-[rojasjuniore](https://clawhub.ai/user/rojasjuniore) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rojasjuniore](https://clawhub.ai/user/rojasjuniore)
 
-## Use Case: <br>
-External developers and agent operators use Payclaw to add testnet USDC wallet, payment request, payment history, and agent-directory workflows to OpenClaw agent experiments. It is most appropriate for trusted test environments where recipients, amounts, and release decisions can be manually verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says Payclaw has escrow claims and should not be treated as real escrow. <br>
-Mitigation: Use it only in a trusted test environment and manually verify every escrow recipient, amount, and release or refund decision. <br>
-Risk: The security review flags shell-based command execution and insufficient input validation around wallet names, addresses, amounts, memos, and API-key strings. <br>
-Mitigation: Avoid untrusted inputs and use a low-risk Circle testnet API key until command construction and validation are fixed. <br>
+## Use Case:
 
+Developers and OpenClaw agent builders use Payclaw to configure Circle-backed testnet wallets, create payment requests, send USDC testnet payments, and coordinate local agent-to-agent escrow workflows.
 
-## Reference(s): <br>
-- [Payclaw ClawHub listing](https://clawhub.ai/rojasjuniore/payclaw) <br>
-- [Payclaw homepage](https://github.com/rojasjuniore/payclaw) <br>
-- [Moltbook profile](https://moltbook.com/u/JuniorClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text output and Markdown documentation with bash and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON files under the user's OpenClaw configuration directory and delegates wallet operations to the circle-wallet command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: Command execution and payment arguments may expose users to unintended wallet actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only testnet credentials, manually verify every destination and amount before sending, and harden command execution before any paid or production use.
+
+Risk: Payment credentials are stored and passed through local CLI workflows.
+
+Mitigation: Avoid real payment credentials until secret storage is improved; keep credentials scoped to testnet or disposable environments.
+
+Risk: The escrow feature can be mistaken for locked or trustless escrow.
+
+Mitigation: Treat escrow records as local bookkeeping only unless the implementation is changed to lock funds and verify releases or refunds.
+
+## Reference(s):
+
+- [Payclaw ClawHub Skill](https://clawhub.ai/rojasjuniore/skills/payclaw)
+- [Payclaw homepage](https://github.com/rojasjuniore/payclaw)
+- [Moltbook publisher page](https://moltbook.com/u/JuniorClaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output, local JSON configuration files, and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local wallet configuration, transaction history, agent directory records, and escrow bookkeeping files for the Payclaw CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

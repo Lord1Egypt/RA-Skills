@@ -1,43 +1,57 @@
-## Description: <br>
-Reviews FastAPI code for routing patterns, dependency injection, validation, and async handlers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews FastAPI code for routing patterns, dependency injection, validation, and async handlers.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review FastAPI applications for routing, dependency injection, validation, async handler behavior, and evidence-backed findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's example snippets include network calls and API endpoint placeholders. <br>
-Mitigation: Treat snippets as review examples only, and review real endpoints, credentials, and application context before adapting any code. <br>
-Risk: FastAPI review findings can be misleading if they are reported without route, dependency, validation, or async-handler evidence. <br>
-Mitigation: Anchor findings to file and line evidence and complete the FastAPI-specific gates before reporting. <br>
+## Use Case:
 
+Developers and engineers use this skill to review FastAPI applications for route design, dependency injection, validation, authentication checks, async handler behavior, and evidence-backed findings.
 
-## Reference(s): <br>
-- [Async](references/async.md) <br>
-- [Dependencies](references/dependencies.md) <br>
-- [Routes](references/routes.md) <br>
-- [Validation](references/validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown review findings with file and line references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to be grounded in FastAPI-specific checks before reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill may affect code review conclusions if findings are reported without enough FastAPI-specific evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's gates for each FastAPI-related finding and require file:line evidence before reporting.
+
+Risk: Example network URLs in reference snippets could be mistaken for runtime behavior.
+
+Mitigation: Treat the URLs as illustrative examples; server security evidence reports no executables or hidden network behavior.
+
+## Reference(s):
+
+- [FastAPI Code Review skill page](https://clawhub.ai/anderskev/skills/fastapi-code-review)
+- [Routes](references/routes.md)
+- [Dependencies](references/dependencies.md)
+- [Validation](references/validation.md)
+- [Async](references/async.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review guidance and evidence-backed code review findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Encourages file:line anchoring and FastAPI-specific verification gates before reporting findings.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

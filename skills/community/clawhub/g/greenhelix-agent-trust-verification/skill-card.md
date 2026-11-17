@@ -1,44 +1,59 @@
-## Description: <br>
-A buyer-side guide for verifying AI agent identity, auditing performance claims, and evaluating cryptographic reputation signals with GreenHelix API examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides buyers through verifying AI agent identity, auditing performance claims, and building trust scores with GreenHelix cryptographic reputation APIs.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers, enterprises, and agent operators use this skill to evaluate whether another AI agent is trustworthy before sharing data, delegating work, or committing funds. It provides due-diligence patterns for identity checks, verified metrics, Merkle claim chains, reputation scores, escrow history, disputes, and continuous monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide includes runnable examples that can create escrow contracts and lock funds if copied into an autonomous workflow. <br>
-Mitigation: Use sandbox or test defaults first, require explicit human approval for escrow creation, and apply spending limits before any production use. <br>
-Risk: The skill references sensitive credentials, including a GreenHelix API key and an agent signing key. <br>
-Mitigation: Use least-privilege credentials and avoid providing a real signing key unless the specific workflow requires it. <br>
-Risk: The security verdict is suspicious even though the artifact is described as a non-executable educational guide. <br>
-Mitigation: Treat the examples as reference material, review each API action before running it, and do not copy escrow or hiring examples into an agent without human approval. <br>
+## Use Case:
 
+Developers, enterprises, and autonomous-agent operators use this guide to automate buyer-side due diligence before sharing data, delegating work, or committing funds to an AI agent.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mirni/greenhelix-agent-trust-verification) <br>
-- [GreenHelix sandbox API endpoint](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API reference and tool catalog](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guide; examples reference GREENHELIX_API_KEY and AGENT_SIGNING_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and artifact frontmatter) <br>
+Risk: Powerful GreenHelix credentials may be exposed to workflows derived from the guide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, keep AGENT_SIGNING_KEY out of integrations unless explicitly reviewed, and separate sandbox from production secrets.
+
+Risk: Escrow sample code could lock funds without sufficient safeguards.
+
+Mitigation: Require explicit user confirmation, validate payee and amount, enforce spending limits and idempotency, and complete verification before escrow creation.
+
+Risk: Documentation examples may be copied into production workflows without review.
+
+Mitigation: Review and scan adapted code before deployment, especially code that signs requests, uses credentials, or moves funds.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-agent-trust-verification)
+- [GreenHelix API Reference](https://api.greenhelix.net/docs)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GREENHELIX_API_KEY for authenticated examples and references AGENT_SIGNING_KEY for signing-key workflows.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

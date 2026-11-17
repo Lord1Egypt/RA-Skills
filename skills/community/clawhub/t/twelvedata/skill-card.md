@@ -1,47 +1,69 @@
-## Description: <br>
-Official Twelve Data integration for OpenClaw and ClawHub that helps agents retrieve real-time and historical financial market data, quotes, time series, technical indicators, fundamentals, symbol search results, and portfolio or research outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twelve Data Official equips agents to retrieve and summarize real-time and historical financial market data for stocks, forex, crypto, ETFs, indices, fundamentals, technical indicators, and portfolio research workflows.
 
-## Publisher: <br>
-[twelvedata](https://clawhub.ai/user/twelvedata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twelvedata](https://clawhub.ai/user/twelvedata)
 
-## Use Case: <br>
-External users, developers, analysts, traders, and investors use this skill to ask an agent for Twelve Data-backed market data, technical analysis, fundamentals, symbol lookup, and portfolio research. It is suited for workflows that need current or historical data across stocks, forex, crypto, ETFs, indices, mutual funds, commodities, and related instruments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Financial market data can be delayed, unavailable, plan-limited, or incomplete for a requested instrument or venue. <br>
-Mitigation: Validate symbols, note timezones and data availability, handle missing values clearly, and avoid presenting outputs as investment advice. <br>
-Risk: API keys can be exposed through prompts, shared code, shell history, or URLs. <br>
-Mitigation: Use the MCP server or header/environment-based secret handling, keep keys out of generated text, and rotate any key that may have been exposed. <br>
+## Use Case:
 
+External users, analysts, traders, and developers use this skill to answer market-data questions, validate symbols, retrieve prices and time series, inspect fundamentals, request technical indicators, and prepare concise financial research summaries.
 
-## Reference(s): <br>
-- [Twelve Data Website](https://twelvedata.com) <br>
-- [Twelve Data ClawHub Repository](https://github.com/twelvedata/twelvedata-clawhub) <br>
-- [Twelve Data API Documentation](https://twelvedata.com/docs) <br>
-- [Twelve Data LLM Documentation Index](references/llms-index.md) <br>
-- [Market Data Reference](references/market-data.md) <br>
-- [Technical Indicators Reference](references/technical-indicators.md) <br>
-- [Fundamentals Reference](references/fundamentals.md) <br>
-- [MCP Server Reference](references/ai/ai-mcp-server.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, summaries, inline code, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite Twelve Data as the data source and may include API or MCP setup guidance when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup examples may expose API keys in command lines, URLs, generated code, logs, shell history, or shared prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass credentials through protected environment variables or headers where supported, and avoid placing real API keys in prompts, URLs, logs, or shell history.
+
+Risk: Unpinned package execution or installation can change behavior between runs.
+
+Mitigation: Install only from trusted Twelve Data package sources, prefer pinned package versions, and review packages before deployment.
+
+Risk: The MCP server can access a Twelve Data API key and consume paid quota.
+
+Mitigation: Run the server with least privilege and use it only where access to the API key and quota is acceptable.
+
+## Reference(s):
+
+- [Twelve Data Official ClawHub Page](https://clawhub.ai/twelvedata/skills/twelvedata)
+- [Twelve Data Publisher Profile](https://clawhub.ai/user/twelvedata)
+- [Twelve Data Website](https://twelvedata.com)
+- [Twelve Data API Documentation](https://twelvedata.com/docs)
+- [Twelve Data LLM Documentation Index](https://twelvedata.com/docs/llms.txt)
+- [Twelve Data MCP Server](https://github.com/twelvedata/mcp)
+- [Twelve Data Python SDK](https://github.com/twelvedata/twelvedata-python)
+- [LLM Reference Index](references/llms-index.md)
+- [Market Data Reference](references/market-data.md)
+- [Technical Indicators Reference](references/technical-indicators.md)
+- [Fundamentals Reference](references/fundamentals.md)
+- [WebSocket Overview](references/websocket/ws-overview.md)
+- [AI MCP Server Reference](references/ai/ai-mcp-server.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and tables, JSON API responses, code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a Twelve Data API key and may consume paid API quota.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

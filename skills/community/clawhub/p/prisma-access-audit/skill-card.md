@@ -1,43 +1,60 @@
-## Description: <br>
-Palo Alto Prisma Access SASE audit for security policy evaluation across mobile users and remote networks, GlobalProtect Cloud Service configuration review, service connection validation, threat prevention profile assessment, and Strata Cloud Manager posture analysis across Prisma Access tenants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Palo Alto Prisma Access SASE audit for security policy evaluation across mobile users and remote networks, GlobalProtect Cloud Service configuration review, service connection validation, threat prevention profile assessment, and Strata Cloud Manager posture analysis across Prisma Access tenants.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Security engineers, network security teams, and auditors use this skill to review Prisma Access tenant posture, identify policy and profile gaps, validate tunnel and service connection health, and prepare remediation guidance for SASE environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Prisma Access tenant credentials and may expose authorization headers or user, device, tenant, and network telemetry in audit notes or shared reports. <br>
-Mitigation: Use a dedicated Auditor or View-Only service account, store tokens in an approved secret store, and redact Authorization headers plus sensitive tenant telemetry before sharing outputs. <br>
-Risk: Running the audit against the wrong tenant or endpoint could produce misleading security findings for the organization. <br>
-Mitigation: Confirm the tenant, TSG ID, publisher-approved scope, and Palo Alto endpoints before use. <br>
+## Use Case:
 
+Security engineers and network security teams use this skill to audit Prisma Access SASE posture, including mobile user policies, remote network tunnels, threat prevention profile coverage, service connections, decryption, and logging visibility.
 
-## Reference(s): <br>
-- [Prisma Access API Reference](references/api-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/prisma-access-audit) <br>
-- [Prisma Access configuration API endpoint](https://api.sase.paloaltonetworks.com/sse/config/v1) <br>
-- [Prisma Access OAuth token endpoint](https://auth.apps.paloaltonetworks.com/oauth2/access_token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline API request examples, audit checklists, threshold tables, decision trees, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit guidance that depends on authorized Prisma Access API credentials and tenant context supplied by the operator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill frontmatter) <br>
+Risk: The skill requires Prisma Access API credentials and can read tenant configuration and operational telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege audit account, avoid sharing secrets in chat or URLs, redact tokens from logs, and rotate credentials if exposure is suspected.
+
+Risk: Audit output may include sensitive tenant topology, policy, tunnel, route, and logging details.
+
+Mitigation: Restrict report distribution and redact tenant IDs, routes, tunnel endpoints, user regions, and security policy details before sharing externally.
+
+Risk: Findings may be incomplete if the wrong management plane is queried or the audit account lacks required read permissions.
+
+Mitigation: Confirm whether Strata Cloud Manager or legacy Panorama Cloud Services is authoritative and use a view-only account with the required tenant scope.
+
+## Reference(s):
+
+- [Prisma Access API Reference](artifact/references/api-reference.md)
+- [ClawHub skill release page](https://clawhub.ai/vahagn-madatyan/skills/prisma-access-audit)
+- [Strata Cloud Manager API endpoint](https://api.sase.paloaltonetworks.com/sse/config/v1)
+- [Prisma Access Insights API endpoint](https://pa-<region>.api.prismaaccess.com/api/sase/v2.0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration review]
+
+**Output Format:** [Markdown with inline HTTP request examples and audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit workflow requiring Prisma Access API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

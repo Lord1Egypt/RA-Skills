@@ -1,45 +1,60 @@
-## Description: <br>
-Fetches real-time FOREX news and market data from Yahoo Finance for major currency pairs (EUR/USD, GBP/USD, USD/JPY, etc.). Analyzes sentiment and provides trading context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time FOREX news and market data from Yahoo Finance for major currency pairs (EUR/USD, GBP/USD, USD/JPY, etc.). Analyzes sentiment and provides trading context.
 
-## Publisher: <br>
-[nazimboudeffa](https://clawhub.ai/user/nazimboudeffa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nazimboudeffa](https://clawhub.ai/user/nazimboudeffa)
 
-## Use Case: <br>
-External users and agents use this skill to fetch Yahoo Finance market data and recent news for seven major FOREX pairs, then summarize rates, headlines, keyword sentiment, and trading context. BUY, SELL, and HOLD labels should be treated as educational sentiment indicators, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script installs and imports the external yfinance package and makes network requests for Yahoo Finance market data. <br>
-Mitigation: Review the dependency and run the script only in environments where outbound market-data requests are acceptable. <br>
-Risk: BUY, SELL, and HOLD outputs may be mistaken for financial advice. <br>
-Mitigation: Present these labels as educational keyword-sentiment signals and require independent research before any trading decision. <br>
-Risk: Keyword-based headline sentiment can miss nuance, source quality, and whether news is already priced in. <br>
-Mitigation: Cross-check headlines, timestamps, market context, and technical or fundamental analysis before relying on the signal. <br>
+## Use Case:
 
+External users and agent developers use this skill to fetch Yahoo Finance data for supported major FOREX pairs, summarize current rates and recent headlines, and interpret keyword-based sentiment as trading context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nazimboudeffa/yahoo-finance-forex) <br>
-- [API Examples](references/api-examples.md) <br>
-- [FOREX Pairs Reference](references/forex-pairs.md) <br>
-- [Sentiment Analysis Guide](references/sentiment-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON data from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include current rate, percent change, recent Yahoo Finance news, timestamp, keyword sentiment score, and BUY/SELL/HOLD label.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server-resolved release metadata) <br>
+Risk: BUY/SELL/HOLD labels for FOREX pairs may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as informational sentiment signals only and require independent financial analysis before any trading decision.
+
+Risk: Yahoo Finance data, headlines, and keyword-based sentiment may be delayed, unavailable, incomplete, or missing market context.
+
+Mitigation: Cross-check rates, timestamps, headlines, and market drivers with authoritative financial sources before relying on the output.
+
+Risk: The skill installs yfinance>=0.2.40 without an upper pin and makes outbound Yahoo Finance requests.
+
+Mitigation: Run it only where outbound Yahoo Finance access and review of dependency versions are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nazimboudeffa/skills/yahoo-finance-forex)
+- [API Examples](references/api-examples.md)
+- [FOREX Pairs Reference](references/forex-pairs.md)
+- [Sentiment Analysis Guide](references/sentiment-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports one selected major FOREX pair per script run and a news limit from 1 to 50.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

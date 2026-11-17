@@ -1,47 +1,70 @@
-## Description: <br>
-Encrypted credential vault and persistent memory for AI agents that helps install and manage AgentVault, sandbox agent access to secrets, store and query encrypted memory, run an MCP server, and audit credential access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypted credential vault and persistent memory for AI agents. Install from npm, sandbox agent access to secrets, store and query encrypted memory, run an MCP server, and audit every credential access.
 
-## Publisher: <br>
-[maheen-sajjad](https://clawhub.ai/user/maheen-sajjad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maheen-sajjad](https://clawhub.ai/user/maheen-sajjad)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up and operate a local encrypted credential and memory vault for agents, including read-only inspection, profile previews, secret and memory workflows, MCP configuration, and audit review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Secret retrieval, vault export, plaintext export, signing, and wallet or private-key commands can expose sensitive material if run without clear user intent. <br>
-Mitigation: Require explicit user approval before retrieving secret values, exporting vault data, using plaintext export, signing, or touching wallet/private-key commands. <br>
-Risk: Starting MCP broadens agent access to vault tools and may expose sensitive operations to connected clients. <br>
-Mitigation: Connect MCP only to trusted local clients and ask before starting the server. <br>
-Risk: The workflow depends on an external npm package for the actual vault implementation. <br>
-Mitigation: Install only when the user trusts the package and has a concrete need for an agent-facing credential vault. <br>
+## Use Case:
 
+Developers and agent operators use Agentvault to manage encrypted local credentials and persistent memory for AI agents, configure sandboxed command execution, expose local MCP vault tools, and audit credential access.
 
-## Reference(s): <br>
-- [AgentVault documentation](https://agentvault.inflectiv.ai/documentation) <br>
-- [AgentVault website](https://agentvault.inflectiv.ai) <br>
-- [npm package](https://www.npmjs.com/package/@inflectiv-ai/agentvault) <br>
-- [Agent Vault Protocol specification](https://agentvaultprotocol.org/) <br>
-- [Command reference](references/commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/maheen-sajjad/agentvault) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for user approval before write, install, export, server-start, secret retrieval, signing, wallet, or destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill metadata) <br>
+Risk: The skill handles credentials, vault exports, memory exports, and audit data that may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for secret writes, imports, exports, audit clearing, memory writes, and vault operations; treat all exported vault, memory, and audit files as sensitive.
+
+Risk: The install path uses npm or npx without a pinned package version.
+
+Mitigation: Audit the package before installation and pin the intended @inflectiv-ai/agentvault version.
+
+Risk: Autonomous persistent-memory reads can reveal stored local context.
+
+Mitigation: Limit autonomous use to read-only queries only when appropriate, and require confirmation or disable autonomous memory queries for sensitive environments.
+
+Risk: Weak passphrase choices or --skip-passphrase can weaken protection for real vault data.
+
+Mitigation: Use a strong passphrase for real data and avoid --skip-passphrase outside development.
+
+Risk: Passing private keys directly on the command line can expose them through shell history or process metadata.
+
+Mitigation: Avoid command-line private key arguments; use safer secret import and storage workflows.
+
+## Reference(s):
+
+- [AgentVault Command Reference](references/commands.md)
+- [AgentVault Documentation](https://agentvault.inflectiv.ai/documentation)
+- [AgentVault Website](https://agentvault.inflectiv.ai)
+- [npm Package](https://www.npmjs.com/package/@inflectiv-ai/agentvault)
+- [AVP Specification](https://agentvaultprotocol.org/)
+- [ClawHub Skill Page](https://clawhub.ai/maheen-sajjad/skills/agentvault)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local CLI, MCP, vault, memory, and audit operations; write, export, install, and server-start actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

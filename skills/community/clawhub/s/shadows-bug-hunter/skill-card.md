@@ -1,42 +1,58 @@
-## Description: <br>
-Structured debugging with 4 techniques: Log Injection, Screenshot Analysis, Manual Trace, and Test-Driven Fix for errors, broken UI, regressions, and runtime issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured debugging with four techniques: Log Injection, Screenshot Analysis, Manual Trace, and Test-Driven Fix.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and engineers use this skill to triage bugs, choose an investigation technique, apply focused fixes, and verify that regressions and debug artifacts are cleared. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may edit repository files while debugging. <br>
-Mitigation: Review generated diffs before committing and confirm that injected debug artifacts have been removed. <br>
-Risk: Project test suites can execute arbitrary repository code. <br>
-Mitigation: Use a sandbox when applying the skill to unfamiliar or untrusted codebases. <br>
+## Use Case:
 
+Developers and engineers use this skill to triage runtime errors, UI defects, regressions, unclear test failures, and performance issues, then select a structured debugging technique to investigate, fix, verify, and clean up.
 
-## Reference(s): <br>
-- [Shadows Bug Hunter Skill Page](https://clawhub.ai/NakedoShadow/shadows-bug-hunter) <br>
-- [Publisher Profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [ClawHub Homepage](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown bug report with root cause, fix, and verification sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file and line references, test results, and cleanup confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill documentation) <br>
+Risk: Some JavaScript test commands can download and run unverified tools from a package registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted repositories or sandboxes, and prefer local-only runner commands such as npm exec --no-install or direct node_modules binaries.
+
+Risk: Project test suites execute repository code.
+
+Mitigation: Run tests only in trusted repositories or within a sandboxed environment.
+
+Risk: Log Injection temporarily modifies source files and can leave debug artifacts behind.
+
+Mitigation: Perform the cleanup pass described by the skill and verify injected logs or debug markers are removed before completion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nakedoshadow/skills/shadows-bug-hunter)
+- [Publisher Homepage](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown bug report with root cause, fix details, file references, and verification checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed or applied code changes and local test commands depending on host agent capabilities.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

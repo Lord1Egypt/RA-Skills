@@ -1,42 +1,56 @@
-## Description: <br>
-Call the coze-js-api Douyin transcription endpoint and return transcript-ready results from Douyin URLs or share text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the coze-js-api Douyin transcription endpoint to return transcript-ready results from Douyin URLs or copied share text.
 
-## Publisher: <br>
-[kyriswu](https://clawhub.ai/user/kyriswu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyriswu](https://clawhub.ai/user/kyriswu)
 
-## Use Case: <br>
-External users and developers use this skill to transcribe or extract subtitles from Douyin/TikTok China share links. It normalizes copied share text, runs the bundled shell wrapper, and reports transcript API results or practical troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill transmits Douyin link/share text and DOUYIN_TRANSCRIBE_API_KEY to the devtool.uk transcription service. <br>
-Mitigation: Use it only when the user trusts that service with the provided link and credential, and keep the key in the DOUYIN_TRANSCRIBE_API_KEY environment variable. <br>
-Risk: Command output or troubleshooting logs could expose sensitive API key material if copied verbatim. <br>
-Mitigation: Redact API key values before sharing logs or command output, consistent with the skill's safety guidance. <br>
+## Use Case:
 
+External users and developers use this skill to transcribe or extract subtitles from Douyin/TikTok China videos by passing a share link or copied share text through a configured transcription API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyriswu/douyin-transcribe-api) <br>
-- [Douyin transcription API endpoint](https://coze-js-api.devtool.uk/transcribe-douyin) <br>
-- [API key purchase and renewal page](https://devtool.uk/plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DOUYIN_TRANSCRIBE_API_KEY; redact API key values when sharing command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill sends Douyin share text and the service API key to the external devtool.uk transcription service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where sharing that data with the service is approved, store the key in DOUYIN_TRANSCRIBE_API_KEY, and redact secrets from logs or shared output.
+
+Risk: Missing or invalid API keys can stop execution and surface purchase or renewal messaging.
+
+Mitigation: Confirm a valid key is configured before running the skill and present the purchase or renewal link only when key handling requires it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyriswu/skills/douyin-transcribe-api)
+- [Publisher profile](https://clawhub.ai/user/kyriswu)
+- [Douyin transcription API endpoint](https://coze-js-api.devtool.uk/transcribe-douyin)
+- [API key purchase or renewal page](https://devtool.uk/plugin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and concise API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include success or failure status, selected response fields, and a practical next step.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

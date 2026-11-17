@@ -1,39 +1,57 @@
-## Description: <br>
-Operate and maintain the persistent MUD agent for OpenClaw. Use when running MUD engine commands, smoke-testing mud state behavior, validating save/restore, diagnosing MUD data issues, or handling MUD deployment operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate and maintain the persistent MUD agent for OpenClaw, including engine commands, smoke tests, save/restore validation, data diagnostics, deployment operations, and configured image-generation checks.
 
-## Publisher: <br>
-[andrew-goetz-com](https://clawhub.ai/user/andrew-goetz-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andrew-goetz-com](https://clawhub.ai/user/andrew-goetz-com)
 
-## Use Case: <br>
-Developers and operators use this skill to run local OpenClaw MUD engine commands, smoke-test state behavior, validate save and restore flows, diagnose data issues, and handle deployment operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local MUD game state when it runs engine commands. <br>
-Mitigation: Verify the target mud-agent directory and database path before running commands, and use a demo campaign or explicit test database for smoke tests when live state should not change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MUD on ClawHub](https://clawhub.ai/andrew-goetz-com/mud) <br>
-- [MUD Commands](references/commands.md) <br>
-- [MUD Ops Runbook](references/ops.md) <br>
+## Use Case:
 
+Developers and operators use this skill to run local OpenClaw MUD engine commands, validate persistent game state, perform save/restore checks, troubleshoot deployments, and exercise configured image-generation commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output from the MUD runner.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local MUD engine commands and print command results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate a local MUD engine and change persistent game state.
+
+Mitigation: Install and run it only when agents are intended to perform MUD operations; snapshot state before manual investigation or risky changes.
+
+Risk: Image-generation commands may send prompts through the configured runtime image pipeline.
+
+Mitigation: Avoid placing secrets, personal data, or sensitive unpublished content in image prompts or game commands.
+
+Risk: A custom MUD directory changes the engine code the wrapper executes.
+
+Mitigation: Review the target mud_agent.py before using --mud-dir with a custom location.
+
+## Reference(s):
+
+- [MUD Commands](references/commands.md)
+- [MUD Ops Runbook](references/ops.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples; command execution may return JSON or text from the local MUD engine.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run local MUD engine commands and modify game state when executed by an agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

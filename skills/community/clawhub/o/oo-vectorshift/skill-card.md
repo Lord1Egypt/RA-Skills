@@ -1,45 +1,55 @@
-## Description: <br>
-Operate VectorShift through an OOMOL-connected account to list, fetch, and run VectorShift pipelines with schema-checked JSON inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate VectorShift pipelines through an OOMOL-connected account to list, retrieve, and run pipelines.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to work with VectorShift pipelines through OOMOL's connected VectorShift connector, including listing accessible pipelines, fetching pipeline details, and running single or bulk pipeline executions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The first-time setup path includes an installer command that downloads and executes a remote script. <br>
-Mitigation: Use OOMOL's documented install path or review the oo CLI installer source before running the setup command. <br>
-Risk: Running VectorShift pipelines may send payload data to connected services and may affect account usage or billing. <br>
-Mitigation: Install and use the skill only when OOMOL is intended as an intermediary for VectorShift, and confirm pipeline payloads before execution. <br>
-Risk: Pipeline actions depend on the current connector schema and connected account state. <br>
-Mitigation: Fetch the live connector schema before constructing payloads and retry setup only when authentication, connection, or billing errors indicate it is needed. <br>
+## Use Case:
 
+People using a connected VectorShift account can discover pipelines, retrieve a pipeline, and run one or more pipeline instances. Run actions can change state, so review the requested operation and payload before execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-vectorshift) <br>
-- [VectorShift Homepage](https://vectorshift.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution so payloads match the current VectorShift action contract.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The setup fallback directs users to run a downloaded installer, and the installer contents were unavailable for verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup behavior first; install a reviewed, version-fixed CLI separately and require approval before running any downloaded installer.
+
+Risk: Automatic agent-skill synchronization and the VectorShift permissions granted to OOMOL may affect the user's environment or connected account.
+
+Mitigation: Review synchronization behavior and grant only the VectorShift permissions needed for the requested work.
+
+## Reference(s):
+
+- [VectorShift API documentation](https://docs.vectorshift.ai/api-reference/overview)
+- [VectorShift](https://vectorshift.ai)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON results with natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: skill frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,70 @@
-## Description: <br>
-botlearn-assessment runs a five-dimension BotLearn capability self-assessment covering reasoning, retrieval, creation, execution, and orchestration, then scores the run and generates reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+botlearn-assessment is a BotLearn five-dimension capability self-assessment skill for reasoning, retrieval, creation, execution, and orchestration.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to benchmark an agent's reasoning, retrieval, content creation, execution, and tool orchestration capabilities and to track results over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment prompts, answers, and generated history files may contain sensitive or proprietary information. <br>
-Mitigation: Avoid using sensitive prompts or proprietary data in assessments, and review generated reports before sharing them. <br>
-Risk: Generated HTML or SVG reports may be unsafe if the underlying JSON was manually edited or came from an untrusted source. <br>
-Mitigation: Open generated reports only when the report data was produced locally or otherwise trusted. <br>
-Risk: Questions that require unavailable tools are skipped and receive a score of 0, which can affect benchmark interpretation. <br>
-Mitigation: Review skipped-question status and tool availability before comparing results across runs. <br>
+## Use Case:
 
+External users and developers use this skill to run autonomous agent capability assessments, review per-dimension scores, and track results over time through generated reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvinxhk/botlearn-assessment) <br>
-- [README](README.md) <br>
-- [Full exam flow](flows/full-exam.md) <br>
-- [Exam execution flow](flows/exam-execution.md) <br>
-- [Report generation flow](flows/generate-report.md) <br>
-- [Scoring strategy](strategies/scoring.md) <br>
-- [Exam report schema](assets/exam-report-schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses plus generated Markdown, HTML, JSON, and SVG report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Node.js report renderers when available and writes assessment history under results/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill may perform autonomous assessment steps, including searches or local report generation, after broad assessment-related triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, and narrow triggers or add confirmation steps before use in shared agent environments.
+
+Risk: The skill saves detailed Markdown, HTML, JSON, and SVG assessment results that may include sensitive prompt, answer, or scoring content.
+
+Mitigation: Review result files before sharing, clean up saved reports when no longer needed, and avoid running assessments with confidential material unless storage is acceptable.
+
+Risk: Generated HTML and SVG reports may carry report-rendering safety concerns.
+
+Mitigation: Review or patch the bundled report generators before opening reports in sensitive contexts or distributing generated HTML/SVG files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-assessment)
+- [README](README.md)
+- [Skill entry point](SKILL.md)
+- [Full exam flow](flows/full-exam.md)
+- [Dimension exam flow](flows/dimension-exam.md)
+- [Exam execution flow](flows/exam-execution.md)
+- [Report generation flow](flows/generate-report.md)
+- [Scoring strategy](strategies/scoring.md)
+- [Exam report schema](assets/exam-report-schema.json)
+- [D1 Reasoning questions](questions/d1-reasoning.md)
+- [D2 Retrieval questions](questions/d2-retrieval.md)
+- [D3 Creation questions](questions/d3-creation.md)
+- [D4 Execution questions](questions/d4-execution.md)
+- [D5 Orchestration questions](questions/d5-orchestration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown, HTML, JSON, SVG, and inline text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates assessment result files under results/ and may invoke bundled Node.js report generators when available.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter and README list 0.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

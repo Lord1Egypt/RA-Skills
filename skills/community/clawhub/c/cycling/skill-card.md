@@ -1,36 +1,55 @@
-## Description: <br>
-Cycling training, bike fit, power zones, nutrition, safety, and maintenance essentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cycling training, bike fit, power zones, nutrition, safety, and maintenance essentials.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill for cycling training, bike-fit, nutrition, safety, maintenance, indoor training, and event-preparation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cycling training, bike-fit, nutrition, and caffeine guidance may be inappropriate for users with health conditions, medication interactions, pregnancy, injuries, or stimulant sensitivity. <br>
-Mitigation: Treat recommendations as general guidance and seek qualified medical or professional coaching advice before making health-sensitive training, nutrition, caffeine, or equipment-fit decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Cyclists, coaches, and fitness-focused agents use this skill to provide concise cycling guidance across training structure, bike fit, power zones, ride nutrition, safety, maintenance, indoor training, racing, and event preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cycling, nutrition, and bike-fit guidance could be mistaken for medical, rehabilitation, or professional bike-fit advice.
+
+Mitigation: Present recommendations as general guidance and encourage users with pain, injuries, medical conditions, or persistent fit issues to consult qualified professionals.
+
+Risk: Training and fueling targets may not suit every rider's fitness level, health status, climate, route, or event demands.
+
+Mitigation: Adapt intensity, volume, hydration, and carbohydrate guidance to the rider's context, and use conservative progression when individual constraints are unknown.
+
+Risk: Maintenance and safety advice may not cover equipment-specific requirements or local riding conditions.
+
+Mitigation: Have users follow manufacturer instructions, inspect equipment before rides, and seek a qualified mechanic for uncertain or safety-critical repairs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides static cycling guidance; it does not execute code or access external data.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain cycling guidance; no code execution, tool use, credential access, persistence, or generated files are described by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

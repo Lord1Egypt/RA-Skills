@@ -1,42 +1,54 @@
-## Description: <br>
-Guides immutable OS management for Fedora Atomic and Bazzite systems using rpm-ostree layering, rollbacks, rebasing, and system upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Immutable OS management for Fedora Atomic / Bazzite — rpm-ostree layering, rollbacks, rebasing, and system upgrades.
 
-## Publisher: <br>
-[silverod](https://clawhub.ai/user/silverod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silverod](https://clawhub.ai/user/silverod)
 
-## Use Case: <br>
-Developers, Linux workstation users, and system administrators use this skill to inspect, update, layer packages on, roll back, clean up, and rebase Fedora Atomic or Bazzite rpm-ostree systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested rpm-ostree commands can make privileged system-management changes. <br>
-Mitigation: Review commands before execution, inspect current deployments first, and run them only on intended rpm-ostree systems. <br>
-Risk: Remote RPM installs or rebase targets can change the trusted system base. <br>
-Mitigation: Verify remote RPM sources, signing expectations, and rebase image references before applying them. <br>
-Risk: Cleanup, rollback, upgrade, or rebase operations can affect bootable deployments and require rebooting. <br>
-Mitigation: Keep a recovery or rollback option available and confirm pending deployments before cleanup or reboot. <br>
+## Use Case:
 
+Developers, administrators, and Linux power users use this skill to manage Fedora Atomic, Bazzite, Silverblue, and related rpm-ostree systems with package layering, upgrades, rollbacks, rebasing, cleanup, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/silverod/rpm-ostree-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands often require root or wheel privileges and may require rebooting to apply rpm-ostree deployment changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: High-impact rpm-ostree commands can change deployments, kernel arguments, cleanup state, or trigger reboots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed command before execution and run only commands that match the user's update, recovery, or configuration goal.
+
+Risk: Installing RPMs from URLs or rebasing to another image can introduce untrusted or incompatible system content.
+
+Mitigation: Verify package and image sources, confirm branch and hardware compatibility, and keep a known-good deployment pinned when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silverod/skills/rpm-ostree-toolkit)
+- [Publisher profile](https://clawhub.ai/user/silverod)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command guidance is intended for Linux systems with rpm-ostree and root or wheel privileges.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

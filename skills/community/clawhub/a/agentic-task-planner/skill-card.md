@@ -1,41 +1,57 @@
-## Description: <br>
-临床科研任务总调度器，将研究任务拆解为多步执行计划，并依次调度证据检索、数据映射、统计分析和导出治理等步骤。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Coordinates full clinical research analysis tasks by breaking them into staged evidence retrieval, cohort mapping, statistical analysis, export governance, and completion steps.
 
-## Publisher: <br>
-[emergenceronearth](https://clawhub.ai/user/emergenceronearth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergenceronearth](https://clawhub.ai/user/emergenceronearth)
 
-## Use Case: <br>
-Clinical research platform users and developers use this skill to run a complete mock research-analysis workflow, from task planning through evidence grounding, cohort mapping, statistical summary, and export-governance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow is designed around local mock_data files and a localhost monitoring endpoint, so it may fail or produce misleading results if those demo resources are missing or replaced with unsupported data. <br>
-Mitigation: Use it only in an environment with the expected mock_data files and monitoring service, and verify any substituted data before acting on results. <br>
-Risk: Clinical research workflows can expose institutional or patient-related details if real data is used without controls. <br>
-Mitigation: Confirm authorization before using real institutional or patient-related data, and ensure the local reporting endpoint does not store sensitive task details. <br>
+## Use Case:
 
+Developers and research operations teams use this skill to run a complete demo clinical research workflow with staged progress updates, mock data reads, evidence grounding, cohort analysis, statistical summaries, and export governance review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergenceronearth/agentic-task-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/emergenceronearth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown with inline shell commands and progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local mock data files and reports workflow progress to a localhost monitoring endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+Risk: Using the workflow with real patient data could create privacy, consent, de-identification, or export-governance exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in the intended demo environment unless patient-data handling and monitoring-log controls are governed separately.
+
+Risk: Progress updates posted to a local monitoring service may expose workflow status or research context in local logs.
+
+Mitigation: Review the monitoring endpoint, access controls, and log-retention policy before deployment.
+
+Risk: The skill coordinates downstream research steps, so stale mock data or incomplete downstream outputs could lead to misleading summaries.
+
+Mitigation: Have qualified reviewers validate evidence, cohort mappings, statistical results, and export decisions before relying on outputs.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/emergenceronearth/skills/agentic-task-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown with staged summaries and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports progress to a local monitoring endpoint and reads fixed mock clinical research files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

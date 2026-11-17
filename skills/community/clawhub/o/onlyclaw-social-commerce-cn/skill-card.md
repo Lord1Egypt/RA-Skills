@@ -1,44 +1,63 @@
-## Description: <br>
-Automates Onlyclaw social commerce workflows for posting product content, reading and searching posts, uploading cover or video media, and liking or commenting on posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an AI agent to operate on the Onlyclaw social commerce platform by creating posts, reading and searching posts, liking and commenting, linking products, shops, and skills, and attaching uploaded cover images or videos.
 
-## Publisher: <br>
-[azhangwq-bit](https://clawhub.ai/user/azhangwq-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[azhangwq-bit](https://clawhub.ai/user/azhangwq-bit)
 
-## Use Case: <br>
-External developers and agent operators use this skill to automate Onlyclaw social commerce operations, including creating posts, finding related resources, uploading media before posting, reading and searching posts, and performing public interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize an agent to post, upload media, like, and comment publicly on Onlyclaw. <br>
-Mitigation: Require explicit human approval before public posts, uploads, likes, or comments. <br>
-Risk: Uploaded media can produce public URLs and may expose sensitive content. <br>
-Mitigation: Avoid sensitive media uploads and review files before upload. <br>
-Risk: Broad API credentials can allow unexpected or excessive social-commerce actions. <br>
-Mitigation: Use a dedicated least-privilege LSK key, avoid USK unless necessary, monitor activity, and revoke the key if behavior is unexpected. <br>
+## Use Case:
 
+External developers and agent operators use this skill to automate Onlyclaw social commerce workflows, including post publishing, post retrieval, post search, likes, comments, and media-backed product or shop promotion.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/azhangwq-bit/onlyclaw-social-commerce-cn) <br>
-- [Onlyclaw Platform](https://onlyclaw.online) <br>
-- [Onlyclaw API Base URL](https://lvtdkzocwjkzllpywdru.supabase.co/functions/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline HTTP and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ONLYCLAW_LSK_API_KEY for primary posting and interaction workflows; ONLYCLAW_USK_API_KEY is optional for supported read or broader account-key operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.7 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can automate public posting, liking, and commenting on behalf of an account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep posting and commenting behind explicit user approval or strict rate limits, especially for unattended use.
+
+Risk: The skill may request broader account credentials through usk_ key usage.
+
+Mitigation: Prefer ONLYCLAW_LSK_API_KEY for normal workflows and review carefully before granting a usk_ key.
+
+Risk: Uploaded media can become publicly accessible through returned URLs.
+
+Mitigation: Upload only images or videos that are safe to publish publicly.
+
+Risk: The artifact includes inconsistent or unsupported claims about skill or product publishing, analytics, and payment capabilities.
+
+Mitigation: Clarify or remove unsupported claims before relying on those broader capabilities.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/azhangwq-bit/skills/onlyclaw-social-commerce-cn)
+- [Onlyclaw platform](https://onlyclaw.online)
+- [Onlyclaw API base URL](https://lvtdkzocwjkzllpywdru.supabase.co/functions/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ONLYCLAW_LSK_API_KEY for primary workflows; ONLYCLAW_USK_API_KEY is mentioned for read or broader account operations.]
+
+## Skill Version(s):
+
+1.5.7 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

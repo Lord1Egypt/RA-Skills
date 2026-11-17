@@ -1,42 +1,58 @@
-## Description: <br>
-Run a calibration report on a Simmer trade journal, with win rate and expected value broken down by strategy, time of day, price band, and market type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a calibration report on a Simmer trade journal, breaking win rate and expected value down by strategy, time of day, price band, day of week, and market type.
 
-## Publisher: <br>
-[DjDyll](https://clawhub.ai/user/DjDyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-External developers and traders use this skill to analyze Simmer JSONL trade journals and identify where trading performance is strongest or weakest. It summarizes recent resolved trades across strategy, time, price band, day of week, and market type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default sim mode can unexpectedly read live trading history if sim journal data is not found. <br>
-Mitigation: Set CALIB_JOURNAL_PATH to the exact JSONL journal intended for analysis and confirm the selected file before running reports. <br>
-Risk: The skill may process sensitive trading journal data. <br>
-Mitigation: Review the skill before installation, run it only in a trusted workspace, and do not enable the daily cron until the journal path has been confirmed. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Simmer JSONL trading journals and identify where trading performance is strongest or weakest. It supports sim or live journal files and reports analytics only.
 
-## Reference(s): <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/DjDyll/simmer-calibration-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text report with setup and configuration commands; managed runs can also emit a compact JSON automaton summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires simmer-sdk and SIMMER_API_KEY. Reads a configured or auto-detected JSONL trade journal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The security summary says the skill asks for a trading API key that is not needed for its local analytics behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable providing SIMMER_API_KEY; avoid live credentials unless the skill is revised to require them.
+
+Risk: The security summary says the skill can read live journal data unexpectedly.
+
+Mitigation: Set CALIB_JOURNAL_PATH explicitly to the intended JSONL journal and review the selected path before scheduled runs.
+
+Risk: The security guidance recommends dependency review for simmer-sdk.
+
+Mitigation: Use a pinned trusted simmer-sdk version before enabling scheduled execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djdyll/skills/simmer-calibration-report)
+- [ClawHub publisher profile](https://clawhub.ai/user/djdyll)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain-text console report with optional JSON automaton summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable by environment variables for journal path, minimum trades, lookback window, and unresolved-trade inclusion.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

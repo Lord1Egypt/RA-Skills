@@ -1,43 +1,54 @@
-## Description: <br>
-Produce, consume, and manage Kafka topics with lag monitoring and data export for publishing messages, consuming topics, and monitoring consumer lag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produce, consume, and manage Kafka topics with lag monitoring and data export.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to inspect Kafka clusters, manage topics, produce and consume messages, check consumer group lag, and review offsets from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can consume messages from Kafka topics, which may expose sensitive data. <br>
-Mitigation: Use least-privilege Kafka credentials and require explicit review before consuming sensitive topics. <br>
-Risk: The skill can produce messages, delete topics, and increase partitions when those commands are invoked. <br>
-Mitigation: Point KAFKA_BOOTSTRAP and KAFKA_CONFIG_FILE only at the intended cluster and require explicit production review before mutating Kafka state. <br>
+## Use Case:
 
+Developers and operators use this skill to run Kafka CLI workflows for topic management, message production and consumption, consumer group lag checks, cluster status review, and offset inspection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/kafka) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
-- [Apache Kafka downloads](https://kafka.apache.org/downloads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Kafka CLI tools and caller-provided Kafka connection configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can read topic data and expose messages or offsets from Kafka clusters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Kafka credentials and avoid consuming production topics unless authorized.
+
+Risk: Administrative commands can change cluster state, including topic creation, topic deletion, and partition increases.
+
+Mitigation: Review administrative commands before execution; confirm destructive operations and treat partition increases as irreversible.
+
+## Reference(s):
+
+- [BytesAgain](https://bytesagain.com)
+- [Apache Kafka Downloads](https://kafka.apache.org/downloads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of local Kafka CLI commands against the configured Kafka bootstrap server.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

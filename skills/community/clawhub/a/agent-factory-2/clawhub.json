@@ -1,0 +1,47 @@
+{
+  "$schema": "https://clawhub.ai/schemas/skill-manifest.v1.json",
+  "name": "agent-factory",
+  "displayName": "Agent Factory (Self-Specializing Sub-Agents)",
+  "version": "1.0.0",
+  "description": "Autonomous sub-agent factory for OpenClaw: recurring load detection, sandboxed synthesis, 4D adversarial benchmark evaluation, vector semantic routing, and continuous drift monitoring.",
+  "author": {
+    "name": "samajesteduroyaume"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samajesteduroyaume/Agent-Factory.git"
+  },
+  "keywords": [
+    "openclaw",
+    "clawhub",
+    "agent-factory",
+    "subagents",
+    "self-evolving",
+    "semantic-routing",
+    "benchmarking",
+    "drift-detection"
+  ],
+  "entrypoint": "SKILL.md",
+  "categories": [
+    "orchestration",
+    "developer-tools",
+    "autonomous-agents"
+  ],
+  "openclaw": {
+    "minVersion": "0.4.0",
+    "requires": {
+      "python": ">=3.9",
+      "tools": [
+        "read_file",
+        "write_file",
+        "run_command",
+        "search_web"
+      ]
+    },
+    "permissions": {
+      "filesystem": "workspace-only",
+      "sandbox": "isolated"
+    }
+  }
+}

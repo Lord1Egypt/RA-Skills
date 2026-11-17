@@ -1,45 +1,54 @@
-## Description: <br>
-Automated reporting and alerts from Google Sheets data. Daily summaries with auto-detected metrics, configurable threshold alerts, and weekly multi-sheet digest emails. 3 production-ready n8n workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated reporting and alerts from Google Sheets data through daily summaries, configurable threshold alerts, and weekly multi-sheet digest emails.
 
-## Publisher: <br>
-[mhmalvi](https://clawhub.ai/user/mhmalvi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[mhmalvi](https://clawhub.ai/user/mhmalvi)
 
-## Use Case: <br>
-Operations, sales, support, marketing, and finance teams use this skill to import n8n workflows that read Google Sheets, summarize metrics, check thresholds, and email scheduled reports or alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet contents are sent by email to the configured report recipient. <br>
-Mitigation: Install only for sheets whose contents are appropriate to email, and verify REPORT_EMAIL, SMTP credentials, and approved recipients before activation. <br>
-Risk: The imported workflows can run continuously on daily, hourly, or weekly schedules. <br>
-Mitigation: Disable schedules that should not run continuously and review alert thresholds before enabling the workflows. <br>
-Risk: Google Sheets access may expose more spreadsheet data than intended. <br>
-Mitigation: Use least-privilege Google Sheets credentials and avoid regulated or highly sensitive spreadsheets unless recipients are approved. <br>
+## Use Case:
 
+Operations, sales, support, marketing, and finance teams use this skill to turn Google Sheets data into scheduled n8n reports and threshold alerts sent by email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mhmalvi/google-sheets-reporting) <br>
-- [Daily summary workflow](artifact/workflows/01-daily-summary.json) <br>
-- [Threshold alerts workflow](artifact/workflows/02-threshold-alerts.json) <br>
-- [Weekly digest workflow](artifact/workflows/03-weekly-digest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, code, guidance] <br>
-**Output Format:** [JSON workflow files with Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires n8n, Google Sheets OAuth2, SMTP credentials, REPORT_EMAIL, and optional ALERT_THRESHOLDS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Automated emails may include Google Sheets data that is sensitive or not approved for reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved sheets, set REPORT_EMAIL deliberately, and scope Google Sheets and SMTP credentials to the minimum required.
+
+Risk: Generated report and alert emails include sheet-derived HTML content.
+
+Mitigation: HTML-escape sheet-derived fields or convert reports to plain text before production use.
+
+## Reference(s):
+
+- [Google Sheets Reporting on ClawHub](https://clawhub.ai/mhmalvi/skills/google-sheets-reporting)
+- [mhmalvi publisher profile](https://clawhub.ai/user/mhmalvi)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, guidance, json]
+
+**Output Format:** [n8n workflow JSON files with Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REPORT_EMAIL, optional ALERT_THRESHOLDS, Google Sheets OAuth2 credentials, and SMTP credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Document format converter for converting between Word, PDF, Markdown, and HTML formats, including docx-to-pdf, md-to-pdf, md-to-docx, and html-to-pdf workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document format converter for Word, PDF, Markdown, HTML, and related local document conversion workflows.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, engineers, and document authors use this skill to generate local conversion commands and code for transforming documents between DOCX, PDF, Markdown, HTML, and plain text formats while preserving common structure such as headings, lists, tables, and fonts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML-to-PDF conversion can include local files referenced by input HTML in the generated PDF. <br>
-Mitigation: Convert trusted HTML only, or run HTML-to-PDF conversion in a sandbox or controlled directory. <br>
-Risk: Local conversion requires installing Python packages and, for HTML-to-PDF, an optional system binary. <br>
-Mitigation: Install dependencies only in an environment where running local conversion commands is acceptable. <br>
+## Use Case:
 
+Developers, engineers, and document authors use this skill to generate conversion scripts and guidance for local document transformations between DOCX, PDF, Markdown, HTML, and text formats.
 
-## Reference(s): <br>
-- [Conversion Matrix](references/conversion-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local conversion guidance; HTML-to-PDF requires optional wkhtmltopdf.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and frontmatter) <br>
+Risk: The HTML-to-PDF path can enable unrestricted local-file access when rendering HTML with wkhtmltopdf.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted documents, disable local-file access by default, run conversions in a sandbox or allow-listed asset directory, and pin dependencies before production use.
+
+## Reference(s):
+
+- [Conversion Matrix](references/conversion-matrix.md)
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/document-converter-pro)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local conversion guidance and script snippets; generated files depend on the user's execution environment and installed dependencies.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

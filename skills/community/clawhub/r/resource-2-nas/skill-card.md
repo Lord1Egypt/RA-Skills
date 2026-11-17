@@ -1,46 +1,60 @@
-## Description: <br>
-Use when a user asks to search for movie, TV, animation, or other media resources; provides a Quark/Baidu share link to save; wants to verify saved resources through OpenList; wants to view/cancel OpenList transfer task progress; or wants to copy saved resources to NAS/SMB storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches media resources, saves Quark or Baidu share links, checks OpenList visibility and tasks, and helps copy saved resources to NAS or SMB-backed OpenList storage.
 
-## Publisher: <br>
-[leochens](https://clawhub.ai/user/leochens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leochens](https://clawhub.ai/user/leochens)
 
-## Use Case: <br>
-External users and agents use this skill to find Baidu or Quark media resource links, preview and save shared cloud-drive resources, verify saved content through OpenList, and copy selected resources into NAS/SMB-backed storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses cloud-drive cookies and an OpenList token that can grant broad account or storage access. <br>
-Mitigation: Treat these values as full credentials, keep them out of commits and shared logs, and prefer a dedicated or low-privilege OpenList token where possible. <br>
-Risk: Save, copy, cancel, raw_url download, and link-check actions can affect private links, cloud-drive state, or NAS-backed storage. <br>
-Mitigation: Require explicit confirmation after a preview before running any mutating or private-link operation. <br>
-Risk: Custom API bases or proxies can expose searches, links, or credentials to infrastructure the user does not control. <br>
-Mitigation: Use only trusted API bases and proxies, and avoid routing credentialed operations through untrusted services. <br>
+## Use Case:
 
+External users and developers use this skill to search for movie, TV, animation, and other media resources, then manage the path from cloud-drive share links through OpenList verification and NAS or SMB backup copies.
 
-## Reference(s): <br>
-- [Resource 2 NAS ClawHub Page](https://clawhub.ai/leochens/resource-2-nas) <br>
-- [README](artifact/README.md) <br>
-- [Sub-Agent Runbook](artifact/SUBAGENT.md) <br>
-- [PanSou Public Endpoint](https://so.252035.xyz/) <br>
-- [Configuration Guide](https://guantou.site/archives/N2CmhISt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and concise guidance, with JSON available from helper commands for agent workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are capped to the top 50 by default; save, copy, and cancel operations use preview-before-confirmation flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Scripts can send full cloud-session cookies or OpenList tokens to unsafe caller-controlled endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only official HTTPS Quark and Baidu endpoints, use HTTPS or loopback-only OpenList, and avoid endpoint or token override flags unless the destination is fully trusted.
+
+Risk: Save, copy, or cancellation actions can change cloud-drive or OpenList state if confirmation is skipped.
+
+Mitigation: Keep the preview-confirm-then---yes flow for every mutating operation and review the source, selected items, destination, and final naming before execution.
+
+Risk: Cookies and OpenList tokens in environment configuration grant account or service access.
+
+Mitigation: Keep real secrets out of commits and logs, rely on masked readiness and cookie checks, and refresh credentials after suspected exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leochens/skills/resource-2-nas)
+- [PanSou default search endpoint](https://so.252035.xyz/)
+- [PanSou API endpoint](https://so.252035.xyz/api)
+- [Resource 2 NAS setup guide](https://guantou.site/archives/N2CmhISt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or JSON with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are capped to the top 50 by default; mutating save, copy, and cancellation operations are designed to use preview and explicit confirmation before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

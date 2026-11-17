@@ -1,48 +1,59 @@
-## Description: <br>
-Search NCBI GEO/SRA, NGDC-GSA, and CNGB for biomedical datasets by disease, treatment, species, pathology subtype, and data type. Returns bold dataset ID, links, and article info in a structured table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search NCBI GEO/SRA, NGDC-GSA, and CNGB for biomedical datasets by disease, treatment, species, pathology subtype, and data type. Returns bold dataset ID, links, and article info in a structured table.
 
-## Publisher: <br>
-[gateswell](https://clawhub.ai/user/gateswell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gateswell](https://clawhub.ai/user/gateswell)
 
-## Use Case: <br>
-Researchers, clinicians, and biomedical data analysts use this skill to find public biomedical datasets matching disease, treatment, species, pathology subtype, and assay-type criteria across NCBI, NGDC, and CNGB sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Biomedical dataset or article metadata could be misleading if an external source returns no results or incomplete records. <br>
-Mitigation: Use only dataset IDs and article metadata returned by the queried APIs, leave unavailable fields blank, and report no matching public datasets when searches return no results. <br>
-Risk: CNGB searches may require an optional access token for controlled-access data. <br>
-Mitigation: Ask before using a token, pass it only for the CNGB request, and do not hardcode or log the token. <br>
-Risk: Search terms are sent to public biomedical data services. <br>
-Mitigation: Avoid logging raw query strings and disclose that searches use external NCBI, NGDC, and CNGB endpoints. <br>
+## Use Case:
 
+Researchers, developers, and analysts use this skill to find public biomedical datasets across NCBI GEO/SRA, NGDC-GSA, and CNGB from disease, treatment, species, subtype, and data type criteria.
 
-## Reference(s): <br>
-- [Biomed Dataset Finder on ClawHub](https://clawhub.ai/gateswell/biomed-dataset-finder) <br>
-- [NCBI E-utilities API Reference](references/ncbi_api.md) <br>
-- [NGDC GSA API Reference](references/ngdc_api.md) <br>
-- [CNGBdb API Reference](references/cngb_api.md) <br>
-- [NCBI E-utilities](https://www.ncbi.nlm.nih.gov/home/develop/api/) <br>
-- [NGDC](https://ngdc.cncb.ac.cn) <br>
-- [CNGBdb](https://db.cngb.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table with bold dataset IDs, article metadata, DOI links, and direct dataset links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dataset IDs and article details are expected to come from API responses; missing fields should remain blank rather than be filled from inference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Biomedical search terms are sent to NCBI, NGDC, and CNGB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending those search terms to the listed public dataset services is acceptable.
+
+Risk: A CNGB token provided on the command line may be exposed through shell history, process listings, terminal logs, or job-runner metadata.
+
+Mitigation: Prefer public-only search or skip CNGB when authenticated CNGB access is unnecessary; handle any token with appropriate local credential hygiene.
+
+Risk: Incorrect or fabricated dataset identifiers and article metadata could mislead biomedical research work.
+
+Mitigation: Use only dataset IDs and article fields returned by API responses, and leave missing response fields blank.
+
+## Reference(s):
+
+- [NCBI E-utilities API Reference](references/ncbi_api.md)
+- [NGDC GSA API Reference](references/ngdc_api.md)
+- [CNGBdb API Reference](references/cngb_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown table with dataset identifiers, article metadata, DOI links, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results must be grounded in returned API data; absent article fields are left blank rather than inferred.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,166 @@
+{
+ "schema": "cn-earnings-note/ledger@0.2.0-draft",
+ "run": "earnings-000333-2025AR",
+ "period": "2025AR",
+ "anchors": [
+  {
+   "id": "P1G",
+   "type": "dividend",
+   "status": "partial",
+   "source": "2025AR:S13",
+   "quote": "2025 年度每 10 股派现 43 元(中期5已实施+末期38)",
+   "next_check": {
+    "period": "2026H1",
+    "field": "中期每10股派息",
+    "operator": "==",
+    "threshold": 5
+   }
+  },
+  {
+   "id": "P2G",
+   "type": "guidance",
+   "status": "carried_forward",
+   "source": "2025AR:S34"
+  },
+  {
+   "id": "P3G",
+   "type": "buyback",
+   "status": "partial",
+   "source": "2025AR:S21",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "type": "amendment",
+     "ref": "2025AR:S25"
+    }
+   ]
+  },
+  {
+   "id": "P4G",
+   "type": "hedge_convergence",
+   "status": "unverifiable",
+   "trend": true,
+   "source": "2025AR:S38"
+  }
+ ],
+ "pending": [
+  {
+   "id": "P1",
+   "carry_from": "new",
+   "question": "货币资金重配科目定位",
+   "verdict": null
+  },
+  {
+   "id": "P2",
+   "carry_from": "new",
+   "question": "商誉新增来源与KAM参数",
+   "verdict": null
+  },
+  {
+   "id": "P3",
+   "carry_from": "new",
+   "question": "经营现金流×应收联查定性",
+   "verdict": null
+  },
+  {
+   "id": "P4",
+   "carry_from": "new",
+   "question": "域面缺位三项原文回补",
+   "verdict": null
+  },
+  {
+   "id": "P5",
+   "carry_from": "new",
+   "question": "L3 估算同比年报原文钉死",
+   "verdict": null
+  },
+  {
+   "id": "P6",
+   "carry_from": "new",
+   "question": "关联方专项报告与工具零命中对读",
+   "verdict": null
+  },
+  {
+   "id": "P7",
+   "carry_from": "new",
+   "question": "业绩说明会纪要获取",
+   "verdict": null
+  },
+  {
+   "id": "P8",
+   "carry_from": "new",
+   "question": "评级",
+   "verdict": null,
+   "exempt_from_gate": true
+  },
+  {
+   "id": "P9",
+   "carry_from": "new",
+   "question": "目标价",
+   "verdict": null,
+   "exempt_from_gate": true
+  }
+ ],
+ "risk_scan": {
+  "related_party_balance": {
+   "result": "MISS",
+   "evidence": "2025AR:S16",
+   "values": []
+  },
+  "restricted_cash": {
+   "result": "NO_TOOL",
+   "evidence": null,
+   "values": []
+  },
+  "contingent_guarantee": {
+   "result": "MISS",
+   "evidence": "2025AR:S17",
+   "values": []
+  },
+  "receivable_aging": {
+   "result": "NO_TOOL",
+   "evidence": "2025AR:S15",
+   "values": [
+    {
+     "metric": "accounts_receivable",
+     "value": 40450097,
+     "basis": {
+      "type": "year_end",
+      "period": "2025AR",
+      "unit": "人民币千元"
+     }
+    }
+   ]
+  },
+  "contract_liability": {
+   "result": "NO_TOOL",
+   "evidence": "2025AR:S4",
+   "values": [
+    {
+     "metric": "contract_liability",
+     "value": 46993060,
+     "basis": {
+      "type": "year_end",
+      "period": "2025AR",
+      "unit": "人民币千元"
+     }
+    }
+   ]
+  },
+  "goodwill_impairment": {
+   "result": "MISS",
+   "evidence": "2025AR:S8",
+   "values": [
+    {
+     "metric": "goodwill",
+     "value": 34256859,
+     "basis": {
+      "type": "year_end",
+      "period": "2025AR",
+      "unit": "人民币千元"
+     }
+    }
+   ]
+  }
+ }
+}

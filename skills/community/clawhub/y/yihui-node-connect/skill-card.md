@@ -1,38 +1,53 @@
-## Description: <br>
-Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-Developers and operators use this skill to troubleshoot OpenClaw node-to-gateway connectivity, setup-code routing, and device pairing problems across LAN, tailnet, public URL, and remote gateway setups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Device approval commands can authorize a pending OpenClaw device to connect. <br>
-Mitigation: Review the pending device and any proposed approval command before running it, especially openclaw devices approve --latest. <br>
+## Use Case:
 
+Developers and operators use this skill to troubleshoot OpenClaw gateway routes, QR or setup-code failures, pairing approvals, expired bootstrap tokens, and related Tailscale or public URL configuration issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1yihui/yihui-node-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Troubleshooting guidance asks for clarifying setup details when the connection route or app error is ambiguous.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: QR or setup-code JSON may expose sensitive OpenClaw pairing setup details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat setup payloads as sensitive and avoid sharing raw command output.
+
+Risk: Approving the latest pending device may authorize an unintended device.
+
+Mitigation: Require explicit verification of the pending device before approving any pairing request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1yihui/skills/yihui-node-connect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Enterprise-grade persistent memory for AI agents with rollback, audit trails, knowledge graph, governed actions, time-travel debugging, and 60+ Novyx Core commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade persistent memory for AI agents with rollback, audit trails, a knowledge graph, governed actions, time-travel debugging, and 60+ Novyx Core commands.
 
-## Publisher: <br>
-[novyxlabs](https://clawhub.ai/user/novyxlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[novyxlabs](https://clawhub.ai/user/novyxlabs)
 
-## Use Case: <br>
-Developers and agent builders use Novyx Memory to give agents persistent conversation memory, semantic recall, rollback, audit history, knowledge graph features, shared context spaces, and policy-controlled memory operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content and assistant responses may be sent to Novyx for persistent storage and future recall. <br>
-Mitigation: Avoid secrets, regulated data, customer records, and sensitive internal material unless Novyx retention, deletion, sharing, and access controls meet your requirements. <br>
-Risk: Automatic save and recall can persist or reuse context without an explicit command. <br>
-Mitigation: Review the deployment configuration and disable autoSave or autoRecall where persistent storage or context injection is not appropriate. <br>
-Risk: Rollback, delete, and share commands can alter or expose stored memory state. <br>
-Mitigation: Limit use of memory-changing and sharing commands to trusted operators and review their effects before using them in sensitive workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent, searchable memory to OpenClaw agents, including automatic save and recall, rollback, audit, shared context spaces, and governance workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/novyxlabs/novyx-memory) <br>
-- [Novyx Labs](https://novyxlabs.com) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown command responses, recalled memory context, JavaScript integration code, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOVYX_API_KEY; autoSave and autoRecall are enabled by default unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Conversation turns, assistant responses, search queries, traces, and memory operations may be sent to third-party Novyx storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data appropriate for third-party storage, redact sensitive content, and consider disabling autoSave and autoRecall by default.
+
+Risk: The NOVYX_API_KEY and optional NOVYX_API_URL control access to external memory operations.
+
+Mitigation: Store credentials in a secret manager or protected environment variables, rotate exposed keys, and avoid committing them to project files.
+
+Risk: Rollback, delete, share, and approval commands can change or expose stored memory state.
+
+Mitigation: Require explicit user confirmation for rollback, delete, share, and approval actions, and use preview commands before destructive changes when available.
+
+## Reference(s):
+
+- [Novyx Labs](https://novyxlabs.com)
+- [Novyx Memory on ClawHub](https://clawhub.ai/novyxlabs/skills/novyx-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with command responses, recalled context, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOVYX_API_KEY for API-backed memory operations; autoSave and autoRecall default to enabled.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

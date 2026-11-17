@@ -1,42 +1,55 @@
-## Description: <br>
-Guides Baidu Pan personal-app OAuth2 authorization, token exchange, token refresh, and scheduled refresh setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Baidu Pan OAuth 2.0 authorization-code token exchange, access-token refresh, and scheduled refresh guidance for personal applications.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and agents use this skill to authorize a Baidu Pan personal application, write access and refresh tokens to a local .env file, and refresh tokens before expiry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local .env file stores Baidu Pan app credentials and OAuth access and refresh tokens. <br>
-Mitigation: Keep the .env file out of version control and backups, restrict local file permissions where possible, and rotate or revoke Baidu credentials if the file is exposed. <br>
-Risk: Refreshing a token writes a new refresh token and invalidates the previous one. <br>
-Mitigation: Run refresh commands against the intended .env file and preserve the updated file after each refresh; re-authorize if the stored refresh token becomes invalid. <br>
+## Use Case:
 
+Developers and users maintaining Baidu Pan personal applications use this skill to exchange one-time authorization codes for access tokens, refresh expired tokens, and set up token refresh guidance.
 
-## Reference(s): <br>
-- [Baidu Pan Open Platform Documentation](https://pan.baidu.com/union/doc/al0rwqzzl) <br>
-- [Baidu Pan App Console](https://pan.baidu.com/union/console/applist) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ugpoor/baidu-pan-per-auth-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local .env file with OAuth access token, refresh token, scope, expiry, and authorization date fields when the bundled Python script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Baidu OAuth app secrets and refresh tokens may be stored in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated credential file with restrictive permissions and avoid exposing authorization codes, token URLs, secrets, or token values in command history or logs.
+
+Risk: An indefinite scheduled refresh job may keep credentials active longer than intended.
+
+Mitigation: Prefer manual refresh unless scheduling is needed; if a cron job is added, document how to remove it and review the schedule and credential path before enabling it.
+
+## Reference(s):
+
+- [Baidu Pan Open Platform OAuth documentation](https://pan.baidu.com/union/doc/al0rwqzzl)
+- [Baidu Pan Open Platform application console](https://pan.baidu.com/union/console/applist)
+- [ClawHub release page](https://clawhub.ai/ugpoor/skills/baidu-pan-per-auth-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, configuration values, and a Python helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local environment file for OAuth app credentials and token fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

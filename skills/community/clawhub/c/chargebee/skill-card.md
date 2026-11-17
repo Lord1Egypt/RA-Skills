@@ -1,49 +1,70 @@
-## Description: <br>
-Chargebee API integration with managed OAuth for administering customers, subscriptions, invoices, and billing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Chargebee customers, subscriptions, invoices, and billing workflows through an authorized Maton connection, with optional user-approved automation.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers, operators, and billing administrators use this skill to query and manage Chargebee customers, subscriptions, invoices, hosted pages, and portal sessions from an agent workflow. It is intended for environments where the user has a valid Maton API key and an authorized Chargebee connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change real Chargebee billing data through an authorized connection. <br>
-Mitigation: Use a least-privilege Chargebee/Maton connection, default to read-only checks, and approve only specific write actions after reviewing the target resource and financial impact. <br>
-Risk: Requests may target the wrong Chargebee account when multiple connections exist. <br>
-Mitigation: Always specify and verify the intended Maton-Connection value before each request, especially before write, update, cancel, or delete actions. <br>
-Risk: MATON_API_KEY and connection URLs are sensitive credentials. <br>
-Mitigation: Store credentials only in private secret management or environment variables, keep connection URLs private, and revoke unused connections promptly. <br>
+## Use Case:
 
+Billing administrators and developers use this skill to inspect and, with explicit approval, update Chargebee billing records or configure related automations through Maton.
 
-## Reference(s): <br>
-- [ClawHub Chargebee skill page](https://clawhub.ai/byungkyu/chargebee) <br>
-- [Chargebee API Overview](https://apidocs.chargebee.com/docs/api) <br>
-- [Chargebee Customers API](https://apidocs.chargebee.com/docs/api/customers) <br>
-- [Chargebee Subscriptions API](https://apidocs.chargebee.com/docs/api/subscriptions) <br>
-- [Chargebee Invoices API](https://apidocs.chargebee.com/docs/api/invoices) <br>
-- [Chargebee Hosted Pages API](https://apidocs.chargebee.com/docs/api/hosted_pages) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton settings](https://maton.ai/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with API endpoint descriptions and Python, JavaScript, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and an authorized Chargebee connection; supports documented read and write billing operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: Authorized calls can change customers, subscriptions, invoices, and other billing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to read-only access; confirm the connection ID, exact endpoint, account, resource, and consequence before each write.
+
+Risk: Hosted functions, triggers, and destinations can run actions or forward event data persistently.
+
+Mitigation: Require separate explicit approval for each automation or destination, including its target and data flow; use narrow scopes and least-privilege access.
+
+Risk: Billing connections and authentication material may expose sensitive customer information or credentials.
+
+Mitigation: Keep credentials in the approved credential store, avoid logging sensitive responses, and revoke unused connections promptly.
+
+## Reference(s):
+
+- [Chargebee skill release](https://clawhub.ai/byungkyu/skills/chargebee)
+- [Maton](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Chargebee API documentation](https://apidocs.chargebee.com/docs/api)
+- [Calendly trigger event reference](references/calendly/triggers.md)
+- [GitHub trigger event reference](references/github/triggers.md)
+- [Gmail trigger event reference](references/google-mail/triggers.md)
+- [HubSpot trigger event reference](references/hubspot/triggers.md)
+- [Linear trigger event reference](references/linear/triggers.md)
+- [Notion trigger event reference](references/notion/triggers.md)
+- [Slack trigger event reference](references/slack/triggers.md)
+- [Stripe trigger event reference](references/stripe/triggers.md)
+- [Scheduled trigger event reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with command and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Maton account and authorized Chargebee connection; billing writes and automation require explicit user approval.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

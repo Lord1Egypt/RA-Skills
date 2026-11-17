@@ -1,42 +1,56 @@
-## Description: <br>
-提供基于惠迈智能体架构的美国市场政策、法规及投资环境的多语言查询与分析服务。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides bilingual querying and analysis of U.S. market policies, regulations, and investment-environment information using configurable data sources.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Business users and developers can use this skill as a template for querying and summarizing United States market policy, regulatory, trade, tax, labor, environmental, and investment-environment information in Chinese or English. Because the release evidence describes it as a mock/template, outputs should support exploration only and not real legal, compliance, tax, investment, or business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says the skill overstates live policy and AI capabilities and should not be trusted for real policy decisions. <br>
-Mitigation: Use it only as a demo/template and verify legal, tax, compliance, investment, or business information against trusted sources before acting. <br>
-Risk: The skill may require API keys or data-source credentials. <br>
-Mitigation: Use environment variables, least-privilege credentials, and avoid providing real API keys or sensitive business context unless the skill is updated with trusted sources and clear credential-handling documentation. <br>
+## Use Case:
 
+External users, business analysts, and developers use this skill to ask an agent for U.S. policy, regulatory, trade, tax, labor, environmental, and investment-environment information in Chinese or English. It supports structured policy lookup and preliminary market-analysis workflows where configured data sources are reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/huimai-usa-policy) <br>
-- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
-- [Huimai documentation](https://docs.huimai.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JavaScript objects returned by the skill API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Multilingual Chinese and English responses; local cached mock policy data unless configured with trusted data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Configured API keys or sensitive data source values can appear in returned policy records, logs, or cache entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables and non-secret data-source identifiers where possible, and review or modify the implementation before configuring real API keys.
+
+Risk: Policy and investment-environment outputs may be incomplete or misleading if data sources remain placeholders or are not reviewed.
+
+Mitigation: Connect vetted data sources and require human review before relying on results for business, legal, or investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-usa-policy)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Huimai documentation](https://docs.huimai.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and structured JavaScript or JSON-like policy and analysis objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English output; result quality depends on configured data sources.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

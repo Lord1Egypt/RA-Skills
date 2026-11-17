@@ -1,44 +1,64 @@
-## Description: <br>
-Search Israeli restaurants, check table availability, view menus, and get booking links on Ontopo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find restaurants, menus, booking links, and table availability across Israeli Ontopo venues.
 
-## Publisher: <br>
-[alexpolonsky](https://clawhub.ai/user/alexpolonsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexpolonsky](https://clawhub.ai/user/alexpolonsky)
 
-## Use Case: <br>
-External users and developers use this skill to search Israeli restaurants, compare availability across dates and cities, inspect menus, and generate Ontopo booking links for manual reservation confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live network requests to an unofficial Ontopo integration, so service behavior, terms, rate limits, or availability data may change outside the skill owner's control. <br>
-Mitigation: Treat results as informational, avoid heavy automated use without checking Ontopo terms or rate limits, and verify important details on Ontopo directly. <br>
-Risk: The skill generates booking links but does not place reservations, and availability data may be delayed or inaccurate. <br>
-Mitigation: Complete and confirm any reservation manually on Ontopo before relying on the booking. <br>
+## Use Case:
 
+External users and agents use this skill to search Israeli restaurants, compare live availability, inspect menus, and obtain booking links for manual completion on Ontopo.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexpolonsky/ontopo) <br>
-- [Skill homepage](https://github.com/alexpolonsky/agent-skill-ontopo) <br>
-- [Ontopo website](https://ontopo.com) <br>
-- [Ontopo API endpoint](https://ontopo.com/api) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Israel
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs restaurant search results, availability checks, menu details, venue information, and booking URLs; live Ontopo availability should be treated as informational.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Restaurant searches, booking criteria, and venue lookups are sent to Ontopo's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use user-approved search criteria and avoid adding sensitive personal details to queries.
+
+Risk: Availability data may change or may not match final reservation availability.
+
+Mitigation: Treat availability as advisory and confirm details on Ontopo before relying on a booking time.
+
+Risk: The skill generates booking links but does not complete reservations.
+
+Mitigation: Complete any reservation manually on Ontopo's website after reviewing the venue, party size, date, and time.
+
+Risk: Installation resolves the current httpx package version.
+
+Mitigation: Install in a controlled environment or pin dependencies according to local release policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexpolonsky/skills/ontopo)
+- [Publisher profile](https://clawhub.ai/user/alexpolonsky)
+- [Ontopo website](https://ontopo.com)
+- [Ontopo API endpoint](https://ontopo.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Markdown, JSON, Guidance]
+
+**Output Format:** [CLI output as human-readable text or JSON envelopes, with booking URLs for manual follow-up.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not place reservations; raw upstream payloads are available with --raw when --json is used.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Discover trending tokens - screener, smart money holdings, Nansen indicators, and flow intelligence for promising finds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover trending tokens — screener, SM holdings, Nansen indicators, and flow intelligence for promising finds. Use when scanning for new tokens or screening what's hot.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and crypto analysts use this skill to shortlist trending tokens, inspect Nansen Score candidates, review smart money holdings, and confirm promising tokens with indicators and flow intelligence before deeper research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The allowed nansen CLI access is broader than the read-only token-screener workflow. <br>
-Mitigation: Review generated commands before execution and avoid login, wallet, trade, export, send, or payment operations unless explicitly intended. <br>
-Risk: The skill requires a sensitive NANSEN_API_KEY credential. <br>
-Mitigation: Use a least-privileged Nansen API key and keep funded wallets or trading credentials out of the same agent environment. <br>
-Risk: Flow intelligence can consume significant Nansen credits. <br>
-Mitigation: Run flow-intelligence only on finalist tokens after top-tokens, stablecoin filtering, and indicator review. <br>
+## Use Case:
 
+Crypto researchers and developers use this skill to screen tokens, review smart money holdings and Nansen indicators, and inspect token flows when deciding which assets merit further research.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nansen-devops/nansen-token-screener) <br>
-- [Nansen CLI package](https://www.npmjs.com/package/nansen-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/nansen-devops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NANSEN_API_KEY and the nansen CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The security review was partial because two local paths referenced by the skill were not included in the scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check whether the omitted local paths affect your use before installing.
+
+Risk: Research calls can incur x402 payments from the configured wallet, including calls made in loops.
+
+Mitigation: Review wallet authorization, payment policy, and spending limits before running calls; keep flow intelligence to promising candidates.
+
+Risk: Token scores and market indicators can be mistaken for investment recommendations, and some indicator data may be missing or stale.
+
+Mitigation: Use scores as screening signals, inspect individual indicators and their dates, and verify candidates independently before making financial decisions.
+
+## Reference(s):
+
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [Nansen Token Screener on ClawHub](https://clawhub.ai/nansen-devops/skills/nansen-token-screener)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured research results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on selected chain, timeframe, filters, account entitlements, and available indicator data.]
+
+## Skill Version(s):
+
+0.1.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

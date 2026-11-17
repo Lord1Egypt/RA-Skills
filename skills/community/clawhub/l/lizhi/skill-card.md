@@ -1,41 +1,55 @@
-## Description: <br>
-Provides lightweight summaries of public Lizhi FM program, podcast, ranking, and search-result data for trend and performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides summaries and lightweight analysis for public Lizhi FM program, podcast, search, and chart pages.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers, analysts, and content operators use this skill to summarize publicly accessible Lizhi FM shows, podcast pages, keyword results, and chart distributions. It is intended for lightweight, user-directed analysis and reminders, not downloads, bulk collection, or bypassing site controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use beyond public, user-directed pages could become bulk scraping, downloading, or attempts to bypass platform controls. <br>
-Mitigation: Keep use lightweight and compliant with Lizhi FM rules; avoid bulk collection, downloads, account-only content, reverse engineering, and bypass attempts. <br>
-Risk: Public page metrics can be incomplete, dynamically rendered, or affected by manual access requirements. <br>
-Mitigation: Treat summaries as lightweight analysis, preserve source links, and have a user review pages when human verification or page interaction is required. <br>
+## Use Case:
 
+Researchers, analysts, and operators use this skill to summarize public Lizhi FM search results, podcast pages, recent episode performance, and chart distributions for lightweight internal analysis and reminders.
 
-## Reference(s): <br>
-- [Lizhi FM homepage](https://www.lizhi.fm/) <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/lizhi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with links and public page metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include program names, podcast names, duration, publication time, play/favorite/comment counts, ranking labels, collection time, and source links when available from public pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Using the skill on restricted, logged-in, or high-volume workflows could violate platform rules or trigger anti-automation controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with publicly accessible Lizhi FM pages, keep request volume low, and do not use it for downloads, logged-in pages, API scraping, reverse engineering, or bypassing human verification.
+
+Risk: Dynamic rendering and human verification can make extracted program or chart data incomplete or stale.
+
+Mitigation: Have a human open or verify the relevant public page before relying on generated summaries, and keep source links with the extracted results.
+
+## Reference(s):
+
+- [Lizhi FM](https://www.lizhi.fm/)
+- [ClawHub Lizhi Skill](https://clawhub.ai/mikeclaw007/skills/lizhi)
+- [Publisher Profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries of public Lizhi FM page data and comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries may include program names, podcast names, durations, publish times, play counts, favorites, comments, source links, chart names, collection time, and topic distribution statistics.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

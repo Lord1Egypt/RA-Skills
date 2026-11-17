@@ -1,43 +1,54 @@
-## Description: <br>
-全流程项目管理工具，用于梳理项目关键节点、管理参与部门与任务排期、跟踪KPI完成度、生成定期报告、发送进度提醒邮件、创建可视化看板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A project-flow management skill for structuring milestones, departments, schedules, KPI tracking, recurring reports, reminder drafts, and Markdown or HTML project boards.
 
-## Publisher: <br>
-[jimmywangjimmy](https://clawhub.ai/user/jimmywangjimmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmywangjimmy](https://clawhub.ai/user/jimmywangjimmy)
 
-## Use Case: <br>
-Project managers, PMO staff, and cross-functional teams use this skill to structure projects, track departments, milestones, tasks, KPIs, and risks, and generate recurring project reports, visual boards, and reminder drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe project IDs or project JSON data can affect local files because the skill reads and writes project, report, board, and email-draft files on disk. <br>
-Mitigation: Use trusted project IDs and trusted project JSON only, and run the skill in a workspace where project-management output paths are expected. <br>
-Risk: Generated reports, boards, and email drafts may expose project status, assignees, blockers, KPIs, or recipient details. <br>
-Mitigation: Keep generated files private and review their contents before sharing or sending them outside the intended project audience. <br>
-Risk: Generated HTML boards may include unescaped project data. <br>
-Mitigation: Avoid opening HTML boards created from imported or shared project data until HTML escaping and path confinement issues are fixed. <br>
+## Use Case:
 
+Project managers, operations teams, and cross-functional contributors use this skill to create project records, add departments, milestones, and tasks, update progress, and generate status reports, reminder drafts, and visual boards.
 
-## Reference(s): <br>
-- [Project Flow Manager reference documentation](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jimmywangjimmy/project-flow-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON project files, HTML or Markdown boards, text email drafts, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local project-management files under project, report, board, and email-draft directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Unsafe project ID path handling may allow reads or writes outside the intended project folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use only trusted project IDs, and reject IDs containing slashes or '..'.
+
+Risk: Generated reports, boards, project JSON, and email drafts may contain sensitive business information.
+
+Mitigation: Use the skill only in trusted workspaces and review generated files before sharing or opening HTML output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmywangjimmy/skills/project-flow-manager)
+- [Publisher profile](https://clawhub.ai/user/jimmywangjimmy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples and generated local JSON, Markdown, HTML, and text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local project data, report files, board files, and email reminder drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

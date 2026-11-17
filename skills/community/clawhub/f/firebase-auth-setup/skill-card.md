@@ -1,43 +1,58 @@
-## Description: <br>
-Configures Firebase Authentication - providers, security rules, custom claims, and React auth hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures Firebase Authentication providers, security rules, custom claims, and React auth hooks.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guifav](https://clawhub.ai/user/guifav)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Firebase Authentication to Next.js App Router projects, including client auth hooks, provider UI, server-side token verification, custom claims, and Firebase-to-Supabase profile sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server-side Firebase Admin credentials and Supabase service-role keys can expose privileged access if placed in prompts, logs, or client code. <br>
-Mitigation: Keep private keys and service-role keys in server-only environment variables, never include real credential values in prompts or client bundles, and review generated environment examples before committing. <br>
-Risk: Auth middleware and custom-claim changes can lock out existing users or grant incorrect roles. <br>
-Mitigation: Review generated middleware and claim-setting code before applying it, test sign-in and role flows in staging, and preserve a fallback administrative path during rollout. <br>
-Risk: Firebase-to-Supabase profile synchronization can break user mapping or row-level security assumptions. <br>
-Mitigation: Verify Firebase UID to Supabase profile mapping and RLS behavior with test accounts before production deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Firebase Authentication to Next.js App Router projects, including client auth hooks, provider UI, server-side token verification, custom claims, and optional Supabase profile sync.
 
-## Reference(s): <br>
-- [Firebase Auth Setup on ClawHub](https://clawhub.ai/guifav/firebase-auth-setup) <br>
-- [Artifact homepage](https://github.com/guifav/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and TSX code blocks, setup steps, and security checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file changes for Next.js Firebase client/admin setup, middleware, auth routes, Supabase sync, and manual Firebase Console steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence; artifact manifest and changelog report 1.1.0) <br>
+Risk: The skill configures Firebase login and Supabase profile sync with service-role database access, which can expose identity data if implemented too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit sync opt-in, keep FIREBASE_PRIVATE_KEY and SUPABASE_SERVICE_ROLE_KEY server-only, and limit writes to the minimum profile fields needed.
+
+Risk: Auth middleware, token verification, or sync route changes could lock out users or break Firebase-to-Supabase profile mapping.
+
+Mitigation: Plan file changes before editing, verify tokens on the server for protected routes, compile after each change, and test the auth flow end to end when possible.
+
+Risk: The sync endpoint can be abused or leak implementation details if it lacks request controls.
+
+Mitigation: Add rate limiting, use generic error responses, and verify Firebase ID tokens before any Supabase write.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guifav/skills/firebase-auth-setup)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [Markdown with TypeScript code blocks and setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify Next.js, Firebase, Supabase, middleware, hook, provider, and environment example files.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

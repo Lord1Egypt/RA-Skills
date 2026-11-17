@@ -1,48 +1,67 @@
-## Description: <br>
-Convert Chinese academic papers to native-level publication-ready English with journal-aware academic writing, terminology, structure, and quality-control guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Chinese academic papers to publication-ready English for Nature, IEEE, ACM, APA, and general academic styles using semantic extraction, logical restructuring, and native English rewriting.
 
-## Publisher: <br>
-[xioahu1232](https://clawhub.ai/user/xioahu1232) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xioahu1232](https://clawhub.ai/user/xioahu1232)
 
-## Use Case: <br>
-Researchers, students, and academic authors use this skill to translate or polish Chinese manuscripts, abstracts, reviewer responses, and journal submissions into publication-ready English. It supports Nature, IEEE, ACM, APA, and general academic writing conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic translation and polishing can change meaning, omit nuance, or introduce journal-style claims that are not supported by the source manuscript. <br>
-Mitigation: Have the author review all rewritten text against the original manuscript, data, citations, and target journal requirements before submission. <br>
-Risk: Sensitive, unpublished, or confidential manuscripts may be shared during use. <br>
-Mitigation: Before using the skill, decide whether translation or editing only is needed and avoid sending confidential manuscript content unless the execution environment is approved for that data. <br>
+## Use Case:
 
+External researchers, graduate students, and academic authors use this skill to translate and polish Chinese manuscripts, abstracts, reviewer responses, and journal submissions into publication-ready English. It helps preserve meaning while adapting terminology, structure, citation style, and tone to the target academic venue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xioahu1232/sci-translation-polish) <br>
-- [Academic Writing Guide](references/academic_writing_guide.md) <br>
-- [Terminology Database](references/terminology_database.md) <br>
-- [Common Translation Errors](references/common_errors.md) <br>
-- [Nature Style Guide](references/nature_style_guide.md) <br>
-- [IEEE Style Guide](references/ieee_style_guide.md) <br>
-- [APA Style Guide](references/apa_style_guide.md) <br>
-- [Citation Styles](references/citation_styles.md) <br>
-- [Prompt Templates](references/prompt_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with terminology tables, outlines, rewritten manuscript text, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve bilingual terminology or source-target comparisons when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unpinned installation commands can resolve different package behavior over time or in sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from the verified publisher/source and avoid unpinned npx commands in sensitive environments.
+
+Risk: Manuscript text, reviewer correspondence, or unpublished research may be sensitive or restricted.
+
+Mitigation: Use the skill only on content the user is authorized to share with the agent and follow the user's confidentiality requirements.
+
+Risk: Full-paper rewrites can change nuance, claims, journal fit, or reviewer-response tone.
+
+Mitigation: Confirm the target journal, target language, and rewrite scope before large edits, then have a domain-aware human review the final text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xioahu1232/skills/sci-translation-polish)
+- [Academic writing guide](references/academic_writing_guide.md)
+- [Nature style guide](references/nature_style_guide.md)
+- [IEEE style guide](references/ieee_style_guide.md)
+- [APA style guide](references/apa_style_guide.md)
+- [Citation styles](references/citation_styles.md)
+- [Common translation errors](references/common_errors.md)
+- [Hedging strategies](references/hedging_strategies.md)
+- [Terminology database](references/terminology_database.md)
+- [Prompt templates](references/prompt_templates.md)
+- [Response letter guide](references/response_letter.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown with terminology tables, structured outlines, rewritten academic prose, and quality checklist notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include manuscript translations, abstract rewrites, journal-style edits, reviewer-response language, and terminology recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

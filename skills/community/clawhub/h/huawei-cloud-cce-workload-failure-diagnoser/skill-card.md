@@ -1,46 +1,58 @@
-## Description: <br>
-Diagnoses Huawei Cloud CCE workload rollout failures, replica shortages, probe readiness problems, and related workload evidence using a Python SDK dispatcher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Huawei Cloud CCE workload rollout failures, replica shortages, probe-related readiness failures, ReplicaSet creation blocks, and controller observation lag.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and cloud operations engineers use this skill to investigate Deployment, StatefulSet, and DaemonSet rollout failures in Huawei Cloud CCE, including unavailable replicas, blocked ReplicaSet creation, probe failures, and event-backed handoffs to related diagnostics. Review before installation because server security evidence describes the packaged code as broader than a narrow read-only diagnoser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence says the package is broader than a narrow read-only CCE workload diagnoser and exposes powerful cloud, cluster, credential, secret, and remediation actions. <br>
-Mitigation: Review the packaged actions before installation and prefer a split or patched version that exposes only the documented diagnostic actions. <br>
-Risk: Broad Huawei Cloud permissions could allow destructive or mutating operations if credentials are over-privileged or confirm=true is used. <br>
-Mitigation: Use a least-privilege IAM user that cannot delete or mutate clusters, nodes, workloads, addons, EIPs, AOM rules, HSS state, or Kubernetes secrets unless those powers are explicitly intended; avoid confirm=true unless a real production change is intended. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to investigate Huawei Cloud CCE Deployment, StatefulSet, and DaemonSet rollout failures using workload state, ReplicaSet ownership, Pod health, Events, logs, and metrics. It returns ranked causes and handoff recommendations for pod, node, network, storage, root-cause, or remediation follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-workload-failure-diagnoser) <br>
-- [Workflow](references/workflow.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Huawei Cloud CCE Documentation](https://support.huaweicloud.com/cce/index.html) <br>
-- [Huawei Cloud Python SDK CCE API Reference](https://support.huaweicloud.com/api-cce/cce_02_0113.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-shaped diagnostic outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces rollout summaries, evidence timelines, ranked top causes, warnings, and handoff recommendations; requires Huawei Cloud credentials and CCE identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security review reports that the skill presents as read-only diagnosis while shipping runnable cloud and Kubernetes mutation capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, restrict execution to the declared diagnosis actions, and use tightly scoped read-only Huawei Cloud IAM and Kubernetes RBAC credentials.
+
+Risk: The security review flags unsafe temporary credential-file handling and TLS verification issues.
+
+Mitigation: Do not provide admin or long-lived credentials; fix credential-file handling and TLS verification before production use.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Output Schema](references/output-schema.md)
+- [Risk Rules](references/risk-rules.md)
+- [Verification Method](references/verification-method.md)
+- [Huawei Cloud CCE Documentation](https://support.huaweicloud.com/cce/index.html)
+- [Huawei Cloud Python SDK Documentation](https://support.huaweicloud.com/api-cce/cce_02_0113.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON diagnosis outputs and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ranked top causes, evidence timelines, warnings, and handoff recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

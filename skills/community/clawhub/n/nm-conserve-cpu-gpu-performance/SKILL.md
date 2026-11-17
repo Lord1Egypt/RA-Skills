@@ -2,25 +2,13 @@
 name: cpu-gpu-performance
 description: |
   Establishes CPU/GPU baselines before resource-intensive operations. Use before builds, training runs, or any task that pins cores or GPUs for over a minute
-version: 1.9.8
+version: 1.10.3
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conserve", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When to Use](#when-to-use)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Step 1: Establish Current Baseline](#step-1-establish-current-baseline)
-- [Step 2: Narrow the Scope](#step-2-narrow-the-scope)
-- [Step 3: Instrument Before You Optimize](#step-3-instrument-before-you-optimize)
-- [Step 4: Throttle and Sequence Work](#step-4-throttle-and-sequence-work)
-- [Step 5: Log Decisions and Next Steps](#step-5-log-decisions-and-next-steps)
-- [Output Expectations](#output-expectations)
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # CPU/GPU Performance Discipline
@@ -36,7 +24,7 @@ source_plugin: conserve
 - Simple operations with no resource impact
 - Quick single-file operations
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `cpu-gpu-performance:baseline`
 2. `cpu-gpu-performance:scope`
 3. `cpu-gpu-performance:instrument`
@@ -78,7 +66,7 @@ source_plugin: conserve
     - framework timeline tracers
 - Capture kernel/ops timelines, memory footprints, and data pipeline latency
   so you have evidence when throttling or parallelizing.
-- Record hot paths + I/O bottlenecks in notes so future reruns can jump straight to the culprit.
+- Record hot paths and I/O bottlenecks in notes so future reruns can jump straight to the culprit.
 
 ## Step 4: Throttle and Sequence Work
 - Use `nice`, `ionice`, or Kubernetes/Slurm quotas to prevent starvation of shared nodes.
@@ -87,7 +75,7 @@ source_plugin: conserve
   - Then (optionally) escalate to the next-wider shard
   - Reserve the full suite for the final gate
 - Stagger GPU kernels (smaller batch sizes or gradient accumulation) when memory
-  pressure risks eviction; prefer checkpoint/restore over restarts.
+  pressure risks eviction. Prefer checkpoint/restore over restarts.
 
 ## Step 5: Log Decisions and Next Steps
 
@@ -107,3 +95,15 @@ adding a new test marker or profiling documentation, to simplify future sessions
 - Concrete example(s) of what ran (e.g.):
   - "reran `pytest tests/test_orders.py -k test_refund` instead of `pytest -m slow`"
   - "profiled `nvidia-smi dmon` output to prove GPU idle time before scaling"
+
+## Exit Criteria
+
+- [ ] `uptime` and `ps` baseline captured and recorded before any
+  build, training run, or test suite starts
+- [ ] Scope narrowed to diff-based or tag-based targets (e.g.,
+  `pytest -k`, `cargo test <module>`); full-suite justification
+  documented if selective approach was not feasible
+- [ ] Output summary includes: duration, CPU% or GPU% consumed, and
+  whether the run stayed within the per-task budget
+- [ ] Any follow-up tasks (new test markers, profiling docs) written
+  to a todo or issue so they survive the session

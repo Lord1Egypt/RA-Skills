@@ -1,42 +1,59 @@
-## Description: <br>
-Registers a Qimao Free Novel skill for organizing public product pages, book catalog entry points, membership information, and help content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public Qimao Free Novel website information, including reading-product pages, library entry points, membership explanations, help content, and activity pages.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Qimao website information, including book catalog links, rankings, membership rules, downloads, device support, help pages, activities, and FAQ content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Membership rules, availability, and activity details may change by region or date. <br>
-Mitigation: Verify important details on the official Qimao site before relying on them. <br>
-Risk: Requests may seek piracy, copyright bypass, account sharing, membership recharge abuse, or private account data. <br>
-Mitigation: Limit outputs to public Qimao information and refuse guidance for piracy, bypasses, shared accounts, API circumvention, or private reading and purchase records. <br>
+## Use Case:
 
+External users and agents use this skill to organize public Qimao website information, including book-library categories, rankings, reading entry points, membership benefits, subscription rules, device support, help-center answers, activity pages, copyright notices, and FAQs.
 
-## Reference(s): <br>
-- [Qimao official website](https://www.qimao.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/qimao) <br>
-- [Publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should identify public-source context and note that membership rules, availability, and activity details may vary by region and date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may provide Qimao account credentials or request private reading history, purchases, or other non-public account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a public website research helper only and do not request, store, or process account credentials or private account records.
+
+Risk: Users may ask for piracy, membership sharing, paid-content bypasses, packet capture, or interface-circumvention guidance.
+
+Mitigation: Refuse bypass or infringement requests and restrict outputs to public website information, official membership explanations, help content, and copyright notices.
+
+Risk: Membership rights, download rules, activities, and regional availability may change over time or vary by location.
+
+Mitigation: State the page context used for summaries and direct users back to current official Qimao pages for time-sensitive rules.
+
+## Reference(s):
+
+- [Qimao official website](https://www.qimao.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/qimao)
+- [ClawHub publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, tables, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Qimao page information and avoids account-specific data, private records, paid-content bypasses, and interface-circumvention guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

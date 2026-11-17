@@ -1,44 +1,51 @@
-## Description: <br>
-Dlazy Video Generate helps an agent select and run an appropriate dLazy CLI video model from a user prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically selects a dLazy CLI model for generating videos from text prompts, images, reference frames, and related media.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users, developers, and creative operators use this skill to route video-generation requests to dLazy CLI models for text-to-video, image-to-video, lip-sync, segmentation, and related video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses dLazy cloud services, so prompts and user-provided media paths may be uploaded for generation. <br>
-Mitigation: Use it only when uploading those prompts and media to dLazy is acceptable for the user's data-handling requirements. <br>
-Risk: The CLI requires a dLazy API key that may be saved in the local user configuration. <br>
-Mitigation: Prefer per-invocation credentials or rotate and revoke saved API keys when they are no longer needed. <br>
-Risk: Generation may consume paid dLazy credits. <br>
-Mitigation: Confirm account credit availability before running workflows that may incur cost. <br>
+## Use Case:
 
+Creators and developers use the skill to generate videos from prompts, images, and reference media through dLazy's video models. It returns generated media and result details through the dLazy CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-video-generate) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke cloud video generation and return dLazy-hosted media URLs through the CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security scan was partial and noted speech and image-processing capabilities beyond the stated video-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full instructions and install details, and confirm these additional capabilities fit your needs before installing.
+
+## Reference(s):
+
+- [dLazy CLI project (skill metadata)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Video, JSON, Shell commands]
+
+**Output Format:** [Generated video media with JSON result envelopes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is returned through hosted result URLs.]
+
+## Skill Version(s):
+
+1.4.42 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

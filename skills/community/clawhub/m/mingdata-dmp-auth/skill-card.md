@@ -1,43 +1,55 @@
-## Description: <br>
-Manages Mingdata DMP API credentials and provides a unified gateway for signing requests, validating credentials, and calling Mingdata DMP APIs for related skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mingdata DMP API credential management and unified API gateway for Access Key/Secret Key setup, request signing, and HTTP request handling across Mingdata DMP audience selection, insight, and delivery skills.
 
-## Publisher: <br>
-[mingri26](https://clawhub.ai/user/mingri26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingri26](https://clawhub.ai/user/mingri26)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Mingdata DMP access credentials and route related DMP audience, insight, and delivery skills through a shared authenticated API caller. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles long-lived Mingdata DMP credentials that could be exposed through chat, logs, persistent configuration, or local credential files. <br>
-Mitigation: Use a scoped secret manager or controlled environment variables, avoid pasting secrets into ordinary chat, restrict credential-file permissions to the owner, and rotate credentials if they may have been exposed. <br>
-Risk: Shared credentials may be reused across related DMP skills and sessions. <br>
-Mitigation: Use least-privileged DMP credentials, review installed dependent skills before enabling shared access, and remove or rotate credentials when the access is no longer needed. <br>
-Risk: The skill sends signed HTTP requests to Mingdata DMP endpoints based on caller-supplied endpoint paths and JSON payloads. <br>
-Mitigation: Review endpoint paths and request bodies before execution, confirm outbound access to open.mingdata.com is expected, and monitor API activity for unintended calls. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure Mingdata DMP credentials and route authenticated Mingdata DMP API calls through a shared request-signing helper.
 
-## Reference(s): <br>
-- [Mingdata Open Platform](https://open.mingdata.com) <br>
-- [Mingdata Dmp Auth release page](https://clawhub.ai/mingri26/mingdata-dmp-auth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses and command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Mingdata DMP credentials and outbound HTTPS access to open.mingdata.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The skill handles long-lived Mingdata DMP Access Key and Secret Key credentials with broad authenticated DMP access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, use the narrowest available DMP credentials, and rotate any production keys that were pasted into chat or shell commands.
+
+Risk: The artifact claims credential storage is local-only while recommending OpenClaw environment-variable injection.
+
+Mitigation: Confirm where OpenClaw stores env.DMP_AK and env.DMP_SK before relying on the local-only security claim.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingri26/skills/mingdata-dmp-auth)
+- [Mingdata Open Platform](https://open.mingdata.com)
+- [Mingdata DMP Open API base endpoint](https://open.mingdata.com/api/open-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Mingdata DMP Access Key and Secret Key credentials to sign requests and return API responses or error details.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

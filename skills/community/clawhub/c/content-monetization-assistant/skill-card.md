@@ -1,40 +1,52 @@
-## Description: <br>
-AI内容变现助手 helps creators and knowledge-commerce practitioners evaluate content value, choose monetization channels, plan pricing, and forecast revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI内容变现助手，帮助内容创作者、知识付费从业者评估内容价值、推荐变现渠道、制定定价策略、预测收入。当用户询问"如何变现"、"内容如何赚钱"、"知识如何变现"等内容变现相关问题时使用。
 
-## Publisher: <br>
-[nickyhu1699](https://clawhub.ai/user/nickyhu1699) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nickyhu1699](https://clawhub.ai/user/nickyhu1699)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External content creators, knowledge-commerce operators, freelancers, and side-business builders use this skill to assess monetization potential, choose channels, plan pricing, forecast revenue, and generate execution checklists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated reports include specific personal contact details that are not clearly disclosed in the skill documentation.
+
+Mitigation: Review generated reports before sharing them and remove or replace undisclosed contact details unless the publisher explicitly approves their inclusion.
+
+Risk: The report-saving helper can receive caller-provided filenames without path validation.
+
+Mitigation: Do not pass user-controlled filenames to save_report unless path validation or filename sanitization is added.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External content creators, knowledge-commerce practitioners, freelancers, and side-project builders use this skill to turn content, skills, or knowledge into monetization plans. It provides content value scoring, channel recommendations, pricing strategy, revenue forecasting, and staged execution guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local Python helper saves monetization reports under the user's OpenClaw workspace, which may contain private business plans, pricing assumptions, creator data, or publisher contact details. <br>
-Mitigation: Review inputs before running the helper, avoid confidential data unless local saved reports are acceptable, and inspect generated reports before sharing them. <br>
-Risk: Revenue forecasts and pricing recommendations can be inaccurate or misleading if treated as guaranteed financial outcomes. <br>
-Mitigation: Treat generated forecasts as planning estimates and validate assumptions against current audience, market, and business data before acting. <br>
+**Output Format:** [Markdown reports and conversational guidance with optional Python-generated report files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickyhu1699/content-monetization-assistant) <br>
+**Other Properties Related to Output:** [The bundled script writes generated Markdown reports to an OpenClaw workspace directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown report with pricing, channel, revenue forecast, and execution-plan sections; may include shell commands for running the local Python helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local helper saves generated reports under the user's OpenClaw workspace.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

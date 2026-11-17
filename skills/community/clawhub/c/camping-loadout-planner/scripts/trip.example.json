@@ -1,0 +1,26 @@
+{
+  "name": "Desert spring 3-nighter, 2 people",
+  "nights": 3,
+  "people": 2,
+  "forecast_low_f": 45,
+  "precip_pct": 10,
+  "bug_season": false,
+  "water_gap_mi": 7,
+  "altitude_ft": 3000,
+  "clear_sky": true,
+  "bear_country": null,
+  "fire_ban": true,
+  "trek_class": "lightweight",
+  "body_weight_lb": 165,
+  "gear": [
+    {"name": "30F comfort bag", "oz": 34, "essential": true},
+    {"name": "R-2.5 air pad", "oz": 15, "essential": true},
+    {"name": "1P tents x2", "oz": 58, "essential": true},
+    {"name": "canister stove", "oz": 3, "essential": true},
+    {"name": "water filter + tabs", "oz": 3.5, "essential": true},
+    {"name": "headlamp + spare batteries", "oz": 4, "essential": true},
+    {"name": "first-aid kit", "oz": 6, "essential": true},
+    {"name": "power bank 10Ah", "oz": 6.9, "essential": false},
+    {"name": "sun shelter / umbrella", "oz": 8, "essential": false}
+  ]
+}

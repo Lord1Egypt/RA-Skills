@@ -1,45 +1,52 @@
-## Description: <br>
-自媒体爆款标题生成技能，为小红书、微信公众号、抖音、知乎和 B 站创作者生成高点击率标题，并支持标题优化和改写。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为小红书、微信公众号、抖音、知乎、B 站等中文内容创作者生成和改写面向高点击率的社媒标题。
 
-## Publisher: <br>
-[changeworldy-cyber](https://clawhub.ai/user/changeworldy-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changeworldy-cyber](https://clawhub.ai/user/changeworldy-cyber)
 
-## Use Case: <br>
-External creators and content operators use this skill to draft, compare, and refine Chinese social-media titles for platforms such as Xiaohongshu, WeChat, Douyin, Zhihu, Bilibili, Kuaishou, and Weibo. It helps generate platform-specific title options, formulas, examples, and compliance-oriented wording reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated titles may overstate outcomes, rely on sensitive wording, or create clickbait that does not match the content. <br>
-Mitigation: Review each generated title against the target platform rules, the underlying content, and the bundled sensitive-word guidance before publishing. <br>
-Risk: Server evidence reports a clean scan but notes that the available scan signals did not independently review the actual skill artifacts. <br>
-Mitigation: Install only after reviewing the visible skill files and requested permissions, especially the bundled script, in the deployment environment. <br>
-Risk: The generator can produce examples involving money, health, body weight, or authority claims that may require substantiation. <br>
-Mitigation: Require human review for claims involving finance, health, quantified outcomes, or named authorities, and replace unsupported claims with verifiable language. <br>
+## Use Case:
 
+External Chinese social-media creators and marketers use this skill to draft, optimize, and compare platform-specific titles for Xiaohongshu, WeChat public accounts, Douyin, Kuaishou, Zhihu, Bilibili, and Weibo.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/changeworldy-cyber/viral-title-generator) <br>
-- [Title formulas](references/title-formulas.md) <br>
-- [Platform rules](references/platform-rules.md) <br>
-- [Viral title examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON title-generation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script accepts topic, platform, and count inputs and emits UTF-8 JSON containing generated titles and tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated titles can overstate results, cite authority, or imply financial or health outcomes that may not be supported by the content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each title before publication and remove unsupported claims, absolute terms, sensitive medical or financial wording, and platform-prohibited phrases.
+
+## Reference(s):
+
+- [Title formulas](artifact/references/title-formulas.md)
+- [Platform rules](artifact/references/platform-rules.md)
+- [Example title library](artifact/references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/changeworldy-cyber/skills/viral-title-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language title lists, platform-specific recommendations, and optional JSON from the bundled generation script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated titles should be reviewed for accuracy, compliance, and claim strength before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

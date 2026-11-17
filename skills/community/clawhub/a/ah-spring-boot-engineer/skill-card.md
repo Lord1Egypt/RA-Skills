@@ -1,40 +1,52 @@
-## Description: <br>
-Spring Boot engineering persona for Spring Boot 3+ cloud-native applications, specializing in microservices, reactive programming, Spring Cloud integration, and enterprise-ready implementation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Spring Boot engineer mastering Spring Boot 3+ with cloud-native patterns. Specializes in microservices, reactive programming, Spring Cloud integration, and enterprise solutions with focus on building scalable, production-ready applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to plan, implement, test, secure, and optimize Spring Boot 3+ applications, including microservices, reactive services, Spring Cloud integrations, and cloud deployment configurations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may propose changes to production deployment, CI/CD, or security configuration.
+
+Mitigation: Review proposed changes before applying them, and run normal project tests and security checks before deployment.
+
+Risk: Generated Spring Boot guidance or code may not match the target project's architecture, compliance needs, or runtime constraints.
+
+Mitigation: Validate recommendations against project requirements, architecture standards, and operational policies before merging changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, implement, review, and optimize Spring Boot 3+ applications across microservices, reactive systems, Spring Cloud integrations, security, testing, performance, and cloud deployment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code, shell commands, configuration, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Spring Boot project context can include production secrets, deployment credentials, or sensitive configuration. <br>
-Mitigation: Avoid sharing production secrets unless necessary; redact credentials and review any generated configuration before applying it. <br>
-Risk: Generated code, security settings, or deployment changes may affect application reliability or production behavior. <br>
-Mitigation: Review proposed changes, run tests and scans, and validate deployment updates in a controlled environment before release. <br>
+**Output Format:** [Markdown with code, shell command, and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-spring-boot-engineer) <br>
+**Other Properties Related to Output:** [May propose application code, tests, deployment configuration, security configuration, and architecture documentation for Spring Boot projects.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code, shell command, and configuration examples when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include architecture recommendations, implementation plans, review findings, tests, deployment guidance, and security hardening advice.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

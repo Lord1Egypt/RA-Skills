@@ -1,42 +1,53 @@
-## Description: <br>
-Converts Markdown analysis reports into presentation decks by proposing color schemes, splitting content into up to 20 slides, generating NanoBanana image prompts and images, and packaging the result as a PPTX for Feishu or QQ email delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown analysis reports into presentation-ready PPTX files by offering color schemes, planning up to 20 slides, generating nano-banana image prompts and images, assembling the deck, and routing delivery through Feishu or email based on file size.
 
-## Publisher: <br>
-[yunni123](https://clawhub.ai/user/yunni123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunni123](https://clawhub.ai/user/yunni123)
 
-## Use Case: <br>
-Report authors and agents use this skill to turn Markdown analysis reports into visual PPT decks with selected color schemes, generated slide images, progress updates, and final delivery through Feishu or QQ email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown report contents may be used in image-generation prompts and handled by external delivery channels. <br>
-Mitigation: Review report sensitivity before use and avoid processing confidential content unless those services are approved for the data. <br>
-Risk: Large PPT files are delivered by QQ email after the user provides a recipient address. <br>
-Mitigation: Ask the user for an explicit recipient address and verify it before sending attachments. <br>
-Risk: Generated images and PPT files are saved to a local output directory. <br>
-Mitigation: Remove generated local outputs after delivery when the source report or deck contains sensitive information. <br>
+## Use Case:
 
+External users and operators use this skill to turn Markdown reports into concise visual PPT presentations with generated slide images and progress updates. It is suited for report-to-deck workflows that need user-selected styling, PPTX assembly, and size-aware delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunni123/md-to-nanobanana-ppt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown progress updates, PPTX presentation files, and PNG slide images] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves outputs under ~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/, limits decks to 20 slides, and routes delivery based on a 30 MB file-size threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Markdown report contents may be sent to configured image-generation, Feishu, and email integrations during deck creation and delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user accepts those integrations before processing sensitive reports, and avoid highly sensitive inputs when that sharing is not acceptable.
+
+Risk: Large PPTX outputs require email delivery and a recipient address.
+
+Mitigation: Check the actual PPTX file size first, request an explicit recipient address only when the file is over 30 MB, and do not guess or reuse unclear addresses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunni123/skills/md-to-nanobanana-ppt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown outline and prompts plus generated PNG images and a PPTX file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits presentations to 20 slides; writes outputs under ~/.openclaw/media/ai-choise/md-to-nanobanana-ppt/ and routes PPTX delivery at a 30 MB threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Givebutter connector helper for searching and reading campaigns, chapters, contacts, funds, recurring plans, and transactions through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Givebutter (givebutter.com). Use this skill for ANY Givebutter request — searching and reading data. Whenever a task involves Givebutter, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill when a Givebutter task requires reading campaign, chapter, contact, fund, recurring plan, or transaction data through the oo CLI. The skill guides agents to inspect the live connector schema before constructing action payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected Givebutter accounts may expose donor, contact, campaign, recurring plan, and transaction records. <br>
-Mitigation: Install and use the skill only if OOMOL is trusted, and keep use to the documented read-only get and list actions unless a future release clearly documents additional operations. <br>
-Risk: CLI actions can fail when the oo CLI is missing, the user is not signed in, the Givebutter connection is expired or missing scopes, or OOMOL billing blocks execution. <br>
-Mitigation: Use the documented setup, login, connection, or billing recovery step only after the matching command failure occurs. <br>
+## Use Case:
 
+External users and developers can retrieve Givebutter campaigns, chapters, contacts, funds, recurring plans, and transactions through an OOMOL-connected account. The agent uses the returned records to answer search and read requests.
 
-## Reference(s): <br>
-- [Givebutter homepage](https://givebutter.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub Givebutter skill page](https://clawhub.ai/oomol/skills/oo-givebutter) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON payload conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector action responses are returned as JSON when the generated oo CLI command uses --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: Setup can execute unverified remote code without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately using a verified, fixed release; consider disabling automatic skill synchronization.
+
+Risk: Connecting Givebutter entrusts OOMOL with access to contact and transaction data.
+
+Mitigation: Connect only an account whose data access is appropriate for this use, and review the permissions granted to the connection.
+
+## Reference(s):
+
+- [Givebutter API authentication documentation](https://docs.givebutter.com/api-reference/authentication)
+- [Givebutter](https://givebutter.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON records interpreted and summarized in text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Givebutter records from get and list actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

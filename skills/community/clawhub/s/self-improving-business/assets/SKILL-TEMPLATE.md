@@ -9,7 +9,7 @@ Template for creating business-administration skills extracted from learnings an
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the business administration skill and trigger conditions."
+description: "Concise description of the business administration skill. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -52,12 +52,17 @@ It does not execute approvals, spending, vendor commitments, payroll, or legal a
 ```markdown
 ---
 name: skill-name-here
-description: "What this business skill does and when to use it."
+description: "What this business skill does and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [One-sentence problem statement]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Recommended Action
 

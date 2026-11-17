@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://workday-companion.local/schemas/card.schema.json",
+  "title": "Workday Companion Card",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["module", "route", "time_label", "title", "reason", "action", "footer", "alt_text", "share_safe"],
+  "properties": {
+    "module": {
+      "type": "string",
+      "enum": ["今日工作签", "午饭判官", "精神天气台", "下班放行单"]
+    },
+    "route": {
+      "type": "string",
+      "enum": ["sign-strip", "lunch-receipt", "mood-notice", "afterwork-pass"]
+    },
+    "time_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 18
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "action": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 8
+      },
+      "default": []
+    },
+    "corner": {
+      "type": "string",
+      "maxLength": 10,
+      "default": "重判"
+    },
+    "footer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16
+    },
+    "alt_text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "ratio": {
+      "type": "string",
+      "enum": ["9:16", "3:4"],
+      "default": "9:16"
+    },
+    "share_safe": {
+      "type": "boolean",
+      "const": true,
+      "description": "True only after public card privacy checks pass."
+    }
+  }
+}

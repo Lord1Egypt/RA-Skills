@@ -1,46 +1,59 @@
-## Description: <br>
-Long-term memory system for OpenClaw agents that manages entities, context summaries, and an Obsidian-backed knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AB-Agents-Memory provides a long-term memory system for OpenClaw agents, including entity management, context summaries, an AB-Archivus memory agent, and Obsidian vault templates.
 
-## Publisher: <br>
-[alexburrstudio](https://clawhub.ai/user/alexburrstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexburrstudio](https://clawhub.ai/user/alexburrstudio)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a persistent memory agent that organizes people, companies, topics, session context, and knowledge-base summaries in a local Obsidian vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent local memory agent and scheduled cron processing by default. <br>
-Mitigation: Review setup.sh before execution and run ./setup.sh --skip-cron unless scheduled processing is explicitly desired. <br>
-Risk: The skill stores long-term local memory and session data with weak consent and retention boundaries. <br>
-Mitigation: Use VAULT_DEST to choose an appropriate vault location, define retention expectations before use, and avoid storing sensitive data without user consent. <br>
-Risk: Installation may write to an existing Obsidian vault or memory workspace. <br>
-Mitigation: Back up existing vault and memory files before installation or before allowing the agent to write session summaries. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add persistent agent memory, organize people, companies, topics, and context summaries, and maintain an Obsidian-backed memory vault across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexburrstudio/ab-agents-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/alexburrstudio) <br>
-- [Homepage from ClawHub metadata](https://github.com/alexburrstudio/ab-agents-memory) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, local vault files, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local-file oriented and may update an Obsidian vault, OpenClaw agent workspace, and scheduled processing configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter lists 1.0.1 and package/config list 1.0.0) <br>
+Risk: The setup flow can create persistent nightly cron execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --skip-cron unless daily background processing is required, and inspect any generated cron entry before enabling it.
+
+Risk: The memory vault can collect broad local context and personal or business information.
+
+Mitigation: Choose a trusted fixed vault path and avoid storing secrets, credentials, private personal data, or regulated business data without access controls and retention rules.
+
+Risk: Running setup as root can create files and scheduled jobs with elevated ownership.
+
+Mitigation: Run setup as a regular user and review installed files, agent registration, and vault permissions after installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexburrstudio/skills/ab-agents-memory)
+- [Project homepage from Clawdis metadata](https://github.com/alexburrstudio/ab-agents-memory)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration details, and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install or update local Obsidian vault files, OpenClaw agent files, and optional cron-based nightly processing.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

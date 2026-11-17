@@ -1,45 +1,52 @@
-## Description: <br>
-Gist (gist.github.com). Use this skill for ANY Gist request, including reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gist (gist.github.com). Use this skill for ANY Gist request — reading, creating, updating, and deleting data. Whenever a task involves Gist, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to manage GitHub Gists through an OOMOL-connected account, including reading gist data and performing create, update, star, fork, comment, and delete workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, star, fork, comment on, and delete GitHub Gists through the user's connected account. <br>
-Mitigation: Review payloads and confirm the intended effect before approving write actions; require explicit approval for destructive actions. <br>
-Risk: Delete actions may remove gists or comments in a way that is difficult to reverse. <br>
-Mitigation: Confirm the exact target identifier and user intent before running delete_gist or delete_gist_comment. <br>
-Risk: The skill requires a connected OOMOL account with access to GitHub Gist. <br>
-Mitigation: Install it only when agents should manage GitHub Gists through that connected account. <br>
+## Use Case:
 
+Developers and agents use this skill to read and manage GitHub Gists through an OOMOL-connected account. It guides them to inspect each action's schema and obtain approval before making or deleting changes.
 
-## Reference(s): <br>
-- [Gist homepage](https://gist.github.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-gist) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector action responses are returned as JSON by the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The first-time setup fallback can execute downloaded CLI installer code without a separate installation approval step; startup synchronization may also install additional skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installer before running setup, prefer a reviewed fixed release, confirm OOMOL account permissions, and use OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization if it is not wanted.
+
+## Reference(s):
+
+- [Gist](https://gist.github.com)
+- [Gist API documentation](https://developers.getgist.com/api/)
+- [oo CLI source](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Gist results and action guidance, with shell commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write and destructive actions require user approval; deletion and overwrite actions are destructive.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

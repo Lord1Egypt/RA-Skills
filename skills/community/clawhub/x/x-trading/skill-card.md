@@ -1,46 +1,63 @@
-## Description: <br>
-Trade security tokens on the X platform by checking balances, placing confirmed orders, viewing market data, and reviewing trade history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade security tokens on the X platform \u2014 check balances, place orders, view market data, and review trade history.
 
-## Publisher: <br>
-[seineruo](https://clawhub.ai/user/seineruo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seineruo](https://clawhub.ai/user/seineruo)
 
-## Use Case: <br>
-External users with an X Trading API key use this skill to retrieve account, portfolio, market, order, and trade-history information and to place or cancel security-token orders after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive financial account, portfolio, trade-history, and transaction data. <br>
-Mitigation: Use the least-privilege API key possible, prefer read-only permissions when trading is not needed, and avoid requesting account history in shared contexts. <br>
-Risk: The skill can place or cancel security-token orders through the X trading account API. <br>
-Mitigation: Manually verify every order detail and require explicit confirmation before order execution. <br>
-Risk: An exposed or over-permissioned X_TRADING_API_KEY could allow unauthorized account access. <br>
-Mitigation: Store the API key only in the environment, never repeat it in responses, and rotate or restrict the key if exposure is suspected. <br>
+## Use Case:
 
+External users use this skill to manage X platform security-token trading workflows, including account review, market data lookup, order placement or cancellation, and trade-history reporting.
 
-## Reference(s): <br>
-- [Account & Portfolio API](artifact/api-account.md) <br>
-- [Market Data API](artifact/api-market.md) <br>
-- [Order Execution API](artifact/api-orders.md) <br>
-- [Trade History & Reports API](artifact/api-history.md) <br>
-- [X Trading API access](https://xtrading.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or text responses with API request guidance and JSON-shaped API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X_TRADING_API_KEY; order placement requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can access sensitive account, balance, position, order, transaction, and trade-history data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged API key and avoid granting account-history or trading permissions unless the workflow requires them.
+
+Risk: The skill can cancel orders and the release security summary notes missing explicit cancellation safeguards.
+
+Mitigation: Manually confirm order cancellations and other sensitive trading actions before allowing the agent to call the API.
+
+Risk: Trading actions can create financial loss if the requested symbol, side, type, quantity, or price is wrong.
+
+Mitigation: Require explicit confirmation of order details and apply the documented large-order warning before placing an order.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seineruo/skills/x-trading)
+- [X Trading API key application](https://xtrading.com/api)
+- [X Trading API base URL](https://api.xtrading.com/v1)
+- [Account and portfolio module](artifact/api-account.md)
+- [Market data module](artifact/api-market.md)
+- [Order execution module](artifact/api-orders.md)
+- [Trade history module](artifact/api-history.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API calls]
+
+**Output Format:** [Markdown responses with API request guidance and tabular account, market, order, or history summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires X_TRADING_API_KEY and may handle sensitive account, order, and transaction data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

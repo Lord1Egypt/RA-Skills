@@ -1,46 +1,56 @@
-## Description: <br>
-CopilotKit React best practices for agentic applications, covering provider setup, agent hooks, tool rendering, state management, chat UI, and suggestions for v1 and v2 CopilotKit APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CopilotKit React best practices for agentic applications that guide agents when writing, reviewing, or refactoring React code using CopilotKit hooks, providers, chat UI components, shared state, tools, or generative UI.
 
-## Publisher: <br>
-[GeneralJerel](https://clawhub.ai/user/GeneralJerel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[generaljerel](https://clawhub.ai/user/generaljerel)
 
-## Use Case: <br>
-Developers and engineers use this skill when writing, reviewing, or refactoring React applications that integrate CopilotKit providers, hooks, tools, shared agent state, chat components, and suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CopilotKit context may expose more application state than necessary. <br>
-Mitigation: Review useCopilotReadable and shared-state examples so only relevant, non-sensitive state is exposed to agents. <br>
-Risk: Generated tool handlers may perform sensitive mutations without enough user control. <br>
-Mitigation: Review CopilotKit tool handlers before deployment and require explicit user confirmation for sensitive actions. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to generate, review, and refactor CopilotKit React applications with consistent patterns for provider setup, agent hooks, tool rendering, context sharing, chat UI, and suggestions.
 
-## Reference(s): <br>
-- [CopilotKit documentation](https://docs.copilotkit.ai) <br>
-- [CopilotKit GitHub repository](https://github.com/CopilotKit/CopilotKit) <br>
-- [useCopilotReadable reference](https://docs.copilotkit.ai/reference/v1/hooks/useCopilotReadable) <br>
-- [useCopilotAction reference](https://docs.copilotkit.ai/reference/v1/hooks/useCopilotAction) <br>
-- [useFrontendTool reference](https://docs.copilotkit.ai/reference/v2/hooks/useFrontendTool) <br>
-- [useRenderTool reference](https://docs.copilotkit.ai/reference/v2/hooks/useRenderTool) <br>
-- [CopilotKit component reference](https://docs.copilotkit.ai/reference/v1/components/CopilotKit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and TSX code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact metadata version 2.0.0) <br>
+Risk: Following the context-sharing examples could expose sensitive app context such as secrets, tokens, customer data, private identifiers, or unnecessary user-role details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the minimum fields needed by the agent, and require clear consent plus server-side controls before exposing sensitive application data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/generaljerel/skills/copilotkit-react)
+- [CopilotKit documentation](https://docs.copilotkit.ai)
+- [CopilotKit project repository](https://github.com/CopilotKit/CopilotKit)
+- [useAgent hook](https://docs.copilotkit.ai/reference/v2/hooks/useAgent)
+- [useFrontendTool hook](https://docs.copilotkit.ai/reference/v2/hooks/useFrontendTool)
+- [useRenderTool hook](https://docs.copilotkit.ai/reference/v2/hooks/useRenderTool)
+- [useCopilotReadable hook](https://docs.copilotkit.ai/reference/v1/hooks/useCopilotReadable)
+- [CopilotKit provider](https://docs.copilotkit.ai/reference/v1/components/CopilotKit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with React and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for CopilotKit React v1 and v2 APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

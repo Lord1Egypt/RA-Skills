@@ -1,43 +1,59 @@
-## Description: <br>
-Enables OpenClaw to use the Gemini web interface for browser-based conversations, login reuse, file and image uploads, drafting, summarization, research support, image generation, and local downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Gemini Web lets an agent operate Gemini in a managed browser to reuse or complete login, continue or start Gemini threads, upload files for analysis, ask questions, draft or summarize content, generate images, and save downloads.
 
-## Publisher: <br>
-[etherstrings](https://clawhub.ai/user/etherstrings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etherstrings](https://clawhub.ai/user/etherstrings)
 
-## Use Case: <br>
-Developers and agents use this skill when they need OpenClaw to operate Gemini through a managed browser session rather than the Gemini API or CLI. It supports conversational tasks, file analysis, drafting, summarization, image generation, and downloading Gemini outputs to a stable local directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may operate a Gemini web session using login credentials or a TOTP seed when explicitly needed. <br>
-Mitigation: Prefer an already authenticated managed OpenClaw browser profile, use Gemini-specific GEMINI_WEB_* variables, avoid command-line secrets when possible, and never echo passwords or TOTP seeds in logs or summaries. <br>
-Risk: Google sign-in may present CAPTCHA, device confirmation, account recovery, or suspicious-login checks that are unsafe to automate. <br>
-Mitigation: Stop automation and leave the browser ready for the user to complete the challenge manually. <br>
-Risk: The TOTP JSON-file option could expose unrelated secrets if pointed at a broad secret store. <br>
-Mitigation: Use a Gemini-specific JSON file and key, and do not point the option at unrelated credential stores. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill when they want an agent to work through the Gemini web interface instead of the Gemini API or CLI. It supports browser-based Gemini conversations, file and image uploads, drafting, summarization, research assistance, image generation, and managed download handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/etherstrings/openclaw-gemini-web) <br>
-- [Gemini web interface](https://gemini.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown status summaries with optional shell command snippets and downloaded files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads default to ./output/gemini/YYYY-MM-DD/ unless the user provides another location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The skill may use existing Google login credentials and TOTP secrets during managed browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MFA secrets in controlled environment variables or local secret files, avoid pasting them into chat, and do not echo credentials or TOTP secrets in logs or summaries.
+
+Risk: Files uploaded through the skill are sent to Google's Gemini web service.
+
+Mitigation: Review files before upload and confirm that the user intends those materials to be processed by Gemini.
+
+Risk: Google login flows can present CAPTCHA, device review, phone verification, account recovery, lockout, or policy pages that should not be automated.
+
+Mitigation: Stop automation when those pages appear or when the login flow becomes unclear, leaving the browser ready for user takeover.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etherstrings/skills/openclaw-gemini-web)
+- [Gemini web app](https://gemini.google.com/)
+- [Project homepage](https://github.com/Etherstrings/openclaw-gemini-web-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, browser status notes, file paths, and optional downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are saved to a stable local directory when Gemini returns files; otherwise none.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence; artifact frontmatter lists 0.1.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

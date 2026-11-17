@@ -1,44 +1,54 @@
-## Description: <br>
-Chinese-language informational profile of Zhou Hongyi, founder of 360 Group, covering his security-industry background, entrepreneurship, AI work, public commentary, and related contact links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language profile of Zhou Hongyi, founder of 360 Group, with biographical highlights, career milestones, AI-related views, and public channels.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-Readers and agents use this skill as a concise Chinese-language profile of Zhou Hongyi and his public technology, entrepreneurship, security, and AI themes. It is useful for biographical lookup, profile drafting, and contextual summaries rather than executable automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotional links and contact details appear alongside the biography and may be mistaken for vetted endorsements. <br>
-Mitigation: Treat external links as ordinary references, verify destinations independently, and avoid presenting them as security, product, or publisher endorsements. <br>
-Risk: The profile is static informational content and may become outdated as roles, products, or public channels change. <br>
-Mitigation: Review public facts against authoritative sources before using the profile in current reporting or decision support. <br>
+## Use Case:
 
+Agents use this skill to answer in Chinese with a concise public profile of Zhou Hongyi, including 360 Group, internet security, entrepreneurship, and AI topics. It is suitable for informational profile and persona-context responses, not as verified biographical research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/zhouhongyi) <br>
-- [Publisher profile](https://clawhub.ai/user/LeoCryptoFlow) <br>
-- [360 company website](https://www.360.cn) <br>
-- [Aixin](https://aixin.chat) <br>
-- [OpenClaw resource navigation](https://Openclaw123.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown profile text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational content; no executable code, install hooks, credential access, or agent-control instructions were reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill includes an unrelated promotional footer and third-party contact or website references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the footer before use and treat those links and contact details as unverified third-party references.
+
+Risk: Static profile content may be outdated or incomplete for current biographical facts.
+
+Mitigation: Use the skill for general profile context and verify time-sensitive claims against authoritative sources before publishing or relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/zhouhongyi)
+- [Publisher profile](https://clawhub.ai/user/leocryptoflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown profile text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static profile content; external links and contact details should be treated as unverified third-party references.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Provides practical AI-assisted coding workflow guidance for project setup, PLAN/ACT separation, multi-agent collaboration, recovery, and security review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI-assisted software development with project kickoff practices, PLAN/ACT separation, multi-agent collaboration, recovery procedures, and security review checkpoints.
 
-## Publisher: <br>
-[russellfei](https://clawhub.ai/user/russellfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[russellfei](https://clawhub.ai/user/russellfei)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted software work, including planning, implementation handoff, multi-agent coordination, troubleshooting, and review of AI-generated code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recovery and automation snippets can discard, auto-commit, or auto-push project changes. <br>
-Mitigation: Require explicit approval before git reset, checkout rollback, hook creation, auto-commit timers, or git push; create a backup branch or stash first. <br>
-Risk: Project handoff, log, status, and memory files can expose secrets or private user data. <br>
-Mitigation: Avoid writing secrets or private user data into DESIGN, HANDOFF, LOG, status, or memory/task files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/russellfei/vibe-3k) <br>
-- [Quickstart: Core Concepts and Project Setup](references/01-quickstart.md) <br>
-- [Single-Agent Development](references/02-single-agent.md) <br>
-- [Multi-Agent Collaboration](references/03-multi-agent.md) <br>
-- [Emergency and Recovery Procedures](references/04-emergency.md) <br>
-- [Security and QA](references/05-security-qa.md) <br>
-- [Tool Recommendations](references/06-tools.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure AI-assisted coding work, including planning, execution handoff, multi-agent coordination, failure recovery, and acceptance review. It is most useful when starting a new project, setting up agent rules, debugging with agents, or reviewing AI-generated code.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow checklists, project-rule templates, recovery procedures, and security review guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Emergency procedures include destructive rollback commands that can discard local work.
+
+Mitigation: Check git status first, create a backup branch or stash, and confirm exactly what will be lost before using git reset --hard or git checkout .
+
+Risk: The artifact suggests a post-commit hook that can persistently auto-push future commits.
+
+Mitigation: Install that hook only when automatic pushes are intentional, the remote is verified, and the operator knows how to remove the hook.
+
+Risk: Verification examples use npx commands that may resolve moving tool versions.
+
+Mitigation: Prefer pinned local project tools or locked package versions when running automated checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/russellfei/skills/vibe-3k)
+- [Quickstart and Project Setup](references/01-quickstart.md)
+- [Single-Agent Workflow](references/02-single-agent.md)
+- [Multi-Agent Collaboration](references/03-multi-agent.md)
+- [Emergency Recovery](references/04-emergency.md)
+- [Security and QA](references/05-security-qa.md)
+- [Tool Selection](references/06-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with prompt templates, checklists, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Chinese-language guidance and time-sensitive tool notes current to 2026-02.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

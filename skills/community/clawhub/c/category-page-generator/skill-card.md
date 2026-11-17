@@ -1,41 +1,52 @@
-## Description: <br>
-Helps agents create, optimize, and audit e-commerce category and listing pages, including category structure, faceted navigation, on-page content, SEO metadata, schema, and audit checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, optimizing, and auditing e-commerce category pages and listing pages for structure, faceted navigation, content, SEO, and audit checklists.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, SEO practitioners, and e-commerce teams use this skill to structure category pages, manage faceted navigation, draft on-page content, prepare SEO metadata and schema, and produce category-page audit checklists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The activation wording may match broad category or listing-page discussions outside e-commerce.
+
+Mitigation: Use narrower activation criteria or confirm the user is working on an e-commerce category or listing page before applying the workflow.
+
+Risk: The skill can read optional local project context files to tailor catalog and site-structure guidance.
+
+Mitigation: Review local project context before use and avoid storing sensitive catalog, customer, or business information in files that agents may read.
+
+## Reference(s):
 
 
-## Use Case: <br>
-E-commerce operators, SEO practitioners, marketers, and developers use this skill to plan or audit category and listing pages for product discovery, search visibility, faceted navigation, and conversion-focused page content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Local project context files may contain catalog or site-structure information that should not be shared broadly. <br>
-Mitigation: Review project context files before use and include only catalog and site-structure information appropriate for the agent to use. <br>
-Risk: SEO and category-page recommendations can become outdated or may not match a specific storefront, market, or search-engine policy. <br>
-Mitigation: Review generated guidance against current SEO policy, analytics, and business requirements before publishing site changes. <br>
+**Output Format:** [Markdown guidance with structured sections, examples, tables, and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/category-page-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+**Other Properties Related to Output:** [May advise reading local project context files when available to tailor category and URL recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, structured recommendations, audit checklists, and SEO/content examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local project context files for catalog and site-structure details when available.] <br>
+1.0.1 (source: evidence.release.version, artifact frontmatter metadata.version)
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

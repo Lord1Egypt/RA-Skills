@@ -1,44 +1,58 @@
-## Description: <br>
-赏金猎人 helps Chinese-speaking technical users assess their skills, match freelance, translation, and authorized bug-bounty opportunities, and draft task recommendations, bid templates, delivery checks, and risk reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-speaking technical workers through assessing their skills, finding freelance, translation, and bug-bounty opportunities, screening tasks, and preparing proposal, delivery, and risk guidance.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users, developers, translators, designers, testers, writers, and other technical workers use this skill to evaluate their marketable skills, find suitable freelance or authorized bug-bounty work, prepare bids and deliverables, and identify payment, platform, copyright, privacy, and authorization risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Platform income numbers, fees, exchange rates, and rules may be outdated or inaccurate. <br>
-Mitigation: Verify current platform terms, fees, payment methods, and exchange rates directly before accepting work or quoting prices. <br>
-Risk: Freelance work can involve payment scams, deposits, off-platform payment requests, or weak client reputation signals. <br>
-Mitigation: Prefer platform escrow or trusted payment flows, avoid deposits and off-platform transfers, and screen employer reputation and payment history. <br>
-Risk: Bug-bounty guidance could be misused for unauthorized security testing. <br>
-Mitigation: Run security testing only inside programs and scopes where explicit permission is granted, and follow each platform's disclosure rules. <br>
-Risk: Tasks may involve copyright, privacy, or unlawful project requirements. <br>
-Mitigation: Reject gray-market, illegal, infringing, or privacy-invasive work and protect personal information when bidding. <br>
+## Use Case:
 
+External users and developers use this skill to convert existing technical, design, writing, testing, or translation abilities into task recommendations, proposal drafts, delivery checklists, and risk prompts for freelance marketplaces and bug-bounty programs.
 
-## Reference(s): <br>
-- [bounty-hunter 详细参考](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown with recommendation tables, bid templates, checklists, risk notes, and occasional shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance only; users should verify platform terms, income estimates, fees, payment safety, and authorization before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Bug-bounty guidance includes scanning and exploitation tools that could be misused outside authorized scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scanning guidance only on owned systems, lab targets, or targets explicitly authorized and in scope for a bounty program; review generated commands before acting.
+
+Risk: Freelance marketplace guidance can depend on changing platform fees, rules, exchange rates, client reputation, and payment protections.
+
+Mitigation: Verify current platform terms, rates, client history, task scope, and escrow or payout protections before bidding or accepting work.
+
+Risk: Proposal and task guidance may lead users to disclose personal details or portfolio material.
+
+Mitigation: Limit personally identifying information in proposals and share only portfolio material that is permitted for reuse.
+
+## Reference(s):
+
+- [Detailed platform guide](references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-bounty-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese Markdown with task recommendations, proposal templates, risk notes, and occasional shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for Chinese-language agent responses.]
+
+## Skill Version(s):
+
+1.4.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

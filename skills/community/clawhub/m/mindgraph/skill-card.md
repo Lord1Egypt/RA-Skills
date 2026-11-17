@@ -1,43 +1,54 @@
-## Description: <br>
-Mindgraph helps agents create, query, and maintain an Obsidian-style wikilink knowledge graph and reusable MindSkills in OpenClaw workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and query an Obsidian-style wikilink knowledge graph with learnable repeatable MindSkills for managing and analyzing workspace Markdown files.
 
-## Publisher: <br>
-[hulkworks](https://clawhub.ai/user/hulkworks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hulkworks](https://clawhub.ai/user/hulkworks)
 
-## Use Case: <br>
-Developers and agent users use Mindgraph to connect workspace Markdown files with wikilinks, query relationships, and store repeatable analysis processes with structured results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks to become a workspace-wide Markdown knowledge-graph convention. <br>
-Mitigation: Install it only when that convention is desired, review significant Markdown changes, and rebuild the index after intentional updates. <br>
-Risk: MindSkill execution and learning can create persistent process and result files. <br>
-Mitigation: Treat MindSkill execution and learning as opt-in, and review saved PROCESS.md files before reuse. <br>
-Risk: Untrusted or path-like MindSkill names may lead to unsafe file creation behavior. <br>
-Mitigation: Avoid untrusted or path-like names until the learn command validates names as safe slugs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hulkworks/mindgraph) <br>
-- [MindGraph Philosophy](artifact/references/philosophy.md) <br>
-- [Knockout Test Process](artifact/mindskills/knockout-test/PROCESS.md) <br>
+## Use Case:
 
+Developers and workspace agents use Mindgraph to index Markdown notes, query wikilink relationships, find disconnected knowledge, and run repeatable MindSkill processes that save structured Markdown results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated workspace Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local graph indexes, MindSkill process files, and MindSkill result files in the workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can influence ordinary Markdown edits across a workspace and create persistent files.
+
+Mitigation: Use it only in workspaces where Obsidian-style wikilinks are desired, and review generated Markdown and index updates before relying on them.
+
+Risk: The security evidence identifies an unbounded path-handling flaw in MindSkill commands.
+
+Mitigation: Avoid untrusted or path-like MindSkill names until path validation is added.
+
+## Reference(s):
+
+- [Mindgraph ClawHub skill page](https://clawhub.ai/hulkworks/skills/mindgraph)
+- [MindGraph Philosophy](artifact/references/philosophy.md)
+- [Knockout Test MindSkill Process](artifact/mindskills/knockout-test/PROCESS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Markdown files; CLI commands also produce plain text and JSON index files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates workspace Markdown files, MindSkill result files, and a persistent mindgraph.json index.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

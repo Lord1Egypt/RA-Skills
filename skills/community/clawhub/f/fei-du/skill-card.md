@@ -1,40 +1,52 @@
-## Description: <br>
-Fei Du analyzes data, identifies trends, compares items, and summarizes insights, patterns, and anomalies for decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fei Du helps agents extract insights, recognize patterns, identify anomalies, compare items, and summarize trends from supplied data.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lt8899789](https://clawhub.ai/user/lt8899789)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to perform Chinese-language data analysis workflows, including insight extraction, trend recognition, anomaly detection, and comparison reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask an agent to use separately installed aggregation skills for finance, search, GitHub, or image-analysis workflows.
+
+Mitigation: Review those separately installed skills and their data-access, reliability, and security properties before using them together.
+
+Risk: The bundled analysis behavior uses simple statistical and string-matching methods that can miss context or produce misleading conclusions for high-stakes decisions.
+
+Mitigation: Treat results as decision-support summaries and validate important findings against authoritative data and domain review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to perform lightweight local analysis over text, numeric lists, time series, and comparison inputs. It helps turn provided data into concise insights, trend estimates, anomaly notes, and recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, json, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The analysis is heuristic and may produce incomplete or misleading conclusions from sparse, malformed, or domain-sensitive data. <br>
-Mitigation: Review outputs before using them for decisions, and validate findings against source data or domain-specific tools. <br>
-Risk: Future versions that add real integrations with finance, GitHub, search, or image-reading skills would expand data access and operational risk. <br>
-Mitigation: Review security findings and requested integrations before upgrading or deploying a new release. <br>
+**Output Format:** [Markdown or JSON-style analysis summaries with insights, patterns, anomalies, trends, comparisons, and recommendations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/fei-du) <br>
+**Other Properties Related to Output:** [Outputs may include confidence values, forecasts, timestamps, and recommendation fields.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, code, shell commands, guidance] <br>
-**Output Format:** [JSON objects and Markdown guidance describing insights, patterns, anomalies, trends, comparisons, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output is JSON for analyze, trend, and compare commands; guidance should be treated as heuristic analysis.] <br>
+1.0.35 (source: server release evidence and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.35 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

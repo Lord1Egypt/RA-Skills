@@ -205,7 +205,7 @@ cp /Users/chao/.openclaw/workspace/skills/twitter-dance/.env .env.local
 ```bash
 export APIDANCE_API_KEY="y6rbeg46cndaijq3v0ieaa8wha8ku9"
 export TWITTER_AUTH_TOKEN="AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
-export KIMI_API_KEY="sk-JM5Ji1efm1IH0iUYAmm3Mn0pWDutMtaHlq5VMKO0taZ4OYW9"
+export KIMI_API_KEY="REDACTED-SECRET"
 ```
 
 ### 3. 验证配置

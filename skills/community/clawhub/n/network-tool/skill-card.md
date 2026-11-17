@@ -1,42 +1,56 @@
-## Description: <br>
-Display and manage network interfaces, connections, and routing information. Use for network diagnostics and configuration analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display and manage network interfaces, connections, and routing information. Use for network diagnostics and configuration analysis.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and operators use this skill to inspect network state and run diagnostics such as DNS lookups, connectivity checks, HTTP requests, port checks, and speed tests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented scope understates active network probing and arbitrary HTTP request capabilities.
+
+Mitigation: Review and approve the implemented command set before deployment, and update public documentation so users understand the actual network authority granted.
+
+Risk: Port scans and HTTP requests can affect systems that the user does not own or have permission to test.
+
+Mitigation: Require explicit consent, allowed target ranges, and rate or port-range limits before enabling active checks.
+
+Risk: Public IP and speed-test commands contact third-party services.
+
+Mitigation: Disclose third-party network calls and allow operators to disable those commands in restricted environments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and system operators use this skill to inspect network interfaces, active connections, routes, DNS resolution, public IP information, and basic connectivity behavior during diagnostics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound HTTP requests and active network probes can contact systems outside the user's environment. <br>
-Mitigation: Run curl, ping, DNS, speed-test, and public-IP checks only where outbound network testing is authorized. <br>
-Risk: Port checks and port-range scans can be inappropriate or disruptive when used against systems the user does not own or administer. <br>
-Mitigation: Limit port checks and scans to owned or explicitly authorized hosts and ranges. <br>
-Risk: The skill description under-discloses broader active probing and arbitrary HTTP request behavior. <br>
-Mitigation: Review the available commands before installation and document approved use boundaries for the target environment. <br>
+**Output Format:** [Plain text and terminal-style diagnostic output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Network Tool on ClawHub](https://clawhub.ai/dinghaibin/network-tool) <br>
+**Other Properties Related to Output:** [Network operations can contact user-specified hosts and third-party IP or speed-test services.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display network interface, routing, DNS, HTTP response, port, public IP, and speed-test information.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

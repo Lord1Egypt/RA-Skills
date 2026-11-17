@@ -1,43 +1,54 @@
-## Description: <br>
-IP2Proxy helps an agent inspect IP2Proxy requests by looking up whether an IPv4 or IPv6 address is a proxy through the OOMOL IP2Proxy connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IP2Proxy (ip2location.com). Use this skill for ANY IP2Proxy request — searching and reading data. Whenever a task involves IP2Proxy, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to check whether an IP address is associated with proxy usage through an OOMOL-connected IP2Proxy account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected OOMOL account and sensitive IP2Proxy credentials to run lookups. <br>
-Mitigation: Keep credentials scoped in the connected account, review each oo command before execution, and resolve authentication, scope, or billing errors only when command output requires it. <br>
-Risk: Incorrect connector payloads could send unintended lookup inputs or fail against the live IP2Proxy action contract. <br>
-Mitigation: Inspect the live action schema before constructing payloads and confirm any future write or destructive actions before running them. <br>
+## Use Case:
 
+Developers and analysts use this skill to check whether a single IPv4 or IPv6 address is associated with a proxy and read the IP2Proxy lookup result through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-ip2proxy) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [IP2Proxy homepage](https://www.ip2location.com/web-service/ip2proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema checks before running IP2Proxy lookup requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup fallback runs installation scripts whose payloads and live connector implementation were not verified, and installation may add other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an existing CLI installation; before setup, review and approve a verified installer and check whether it installs other skills.
+
+Risk: IP addresses submitted for lookup are shared with OOMOL and IP2Proxy.
+
+Mitigation: Submit only IP addresses that may be shared with both services.
+
+## Reference(s):
+
+- [IP2Proxy web service and API documentation](https://www.ip2location.com/web-service/ip2proxy)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [IP2Proxy lookup result with concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One IPv4 or IPv6 address per lookup.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

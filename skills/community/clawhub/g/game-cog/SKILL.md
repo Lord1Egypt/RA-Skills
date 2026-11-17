@@ -1,6 +1,6 @@
 ---
-name: game-cog
-description: "AI game development powered by CellCog. Character-consistent art, sprites, tilesets, music, UI, 3D models, GDDs, level design, game prototypes. Cohesive game assets across every modality from a single prompt."
+name: game-asset-generation-cellcog
+description: "AI game asset generation and game development powered by CellCog. Character-consistent art, sprites, tilesets, music, UI, 3D models, GDDs, level design, game prototypes. Cohesive game assets across every modality from a single prompt."
 metadata:
   openclaw:
     emoji: "🎮"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Game Cog - Build Game Worlds, Not Just Sprites
+# Game Asset Generation - Build Game Worlds, Not Just Sprites
 
 Game development assets and prototypes with character consistency across all assets.
 
@@ -136,7 +136,7 @@ CellCog handles the full pipeline — describe what you want, and it generates o
 
 GLB output works with Unity, Unreal, Godot, Three.js, and Blender. Specify poly count and PBR materials for your target platform.
 
-For dedicated 3D generation workflows, also check out `3d-cog`.
+For dedicated 3D generation workflows, also check out `3d-model-generation-cellcog`.
 
 ### Sprites & Animation
 
@@ -172,16 +172,16 @@ Make your game feel polished:
 
 ---
 
-## Chat Mode for Game Dev
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Individual assets, sprites, character designs, UI elements | `"agent"` |
-| Full game concepts, complex world building, narrative design | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Individual assets and small sets | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Full game concepts, complex world building, style-consistent asset fleets | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most game assets.** Characters, tilesets, UI elements execute well in agent mode.
+**The core tier is the default and handles most game asset generation well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
 
-**Use `"agent team"` for game design depth** - full GDDs, complex narratives, or when you need multiple creative angles explored.
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for game asset generation.
 
 ---
 
@@ -252,6 +252,7 @@ Make your game feel polished:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

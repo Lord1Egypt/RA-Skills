@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/platform-field-mappings-2.0.json",
+  "title": "Omni E-commerce Platform Field Mapping Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "mapping_version", "last_reviewed", "authenticity_boundary", "normalization", "aliases", "platform_notes"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "platform_field_mapping_registry"},
+    "contract_name": {"const": "omni-ecom.platform-field-mappings"},
+    "contract_version": {"const": "2.0"},
+    "mapping_version": {"type": "string", "pattern": "^2\\.[0-9]+\\.[0-9]+$"},
+    "last_reviewed": {"type": "string", "format": "date"},
+    "authenticity_boundary": {"const": "package_owned_aliases_not_platform_schema_authentication"},
+    "normalization": {"type": "string", "minLength": 1},
+    "aliases": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+    },
+    "platform_notes": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+  }
+}

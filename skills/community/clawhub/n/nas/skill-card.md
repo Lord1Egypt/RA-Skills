@@ -1,43 +1,56 @@
-## Description: <br>
-Configure, secure, and optimize network attached storage with proper backup strategy, remote access, and media serving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure, secure, and optimize network attached storage with proper backup strategy, remote access, and media serving.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, developers, and home lab administrators use this skill to plan NAS storage, backup, remote access, Docker application, and media-serving configurations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: NAS configuration advice can affect firewall rules, account access, backups, and remote access availability. <br>
-Mitigation: Review planned firewall, account, backup, and remote-access changes before applying them, and keep a recovery path available. <br>
-Risk: Incorrect backup assumptions can leave data exposed to deletion, ransomware, device loss, or failed restores. <br>
-Mitigation: Maintain off-site backups and perform periodic restore tests before relying on a backup strategy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/nas) <br>
-- [Backup Strategy](artifact/backup.md) <br>
-- [Security & Remote Access](artifact/security.md) <br>
-- [Docker & Applications](artifact/apps.md) <br>
-- [Media Server & Organization](artifact/media.md) <br>
+## Use Case:
 
+External users, developers, and home lab operators use this skill for NAS setup and administration guidance across backup planning, remote access, Docker applications, media organization, and security hardening.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with configuration examples and command-oriented checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code or credential handling was identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: NAS administration guidance can affect storage availability, backup reliability, firewall exposure, and account access.
+
+Mitigation: Apply changes deliberately to the user's own NAS environment, test backups before relying on them, and review network or account changes before deployment.
+
+Risk: Remote access guidance can create exposure if services are published directly to the internet.
+
+Mitigation: Prefer VPN or authenticated reverse proxy access, avoid exposing NAS administration ports publicly, and keep firewall rules limited to required services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/nas)
+- [backup.md](artifact/backup.md)
+- [security.md](artifact/security.md)
+- [apps.md](artifact/apps.md)
+- [media.md](artifact/media.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown guidance with checklists, tables, paths, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

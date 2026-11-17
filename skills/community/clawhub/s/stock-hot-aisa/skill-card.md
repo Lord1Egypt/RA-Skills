@@ -1,41 +1,53 @@
-## Description: <br>
-Scans trending stocks and crypto movers with live AISA market signals for requests about market momentum, top gainers, and news-driven movers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan trending stocks and crypto movers with live AISA market signals.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users and market analysts use this skill to request short market-mover scans for stocks and crypto, including momentum names, news catalysts, and watchlist ideas. The output is informational and not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a user-provided AISA_API_KEY for live market summaries. <br>
-Mitigation: Install only if you are comfortable providing that key, and manage the credential according to your organization's policy. <br>
-Risk: A custom AISA_BASE_URL can send requests to a non-default endpoint. <br>
-Mitigation: Leave AISA_BASE_URL unset unless you intentionally trust the custom endpoint. <br>
-Risk: Market summaries can be incorrect, incomplete, or mistaken for financial advice. <br>
-Mitigation: Treat results as informational analysis and verify market data before making financial decisions. <br>
+## Use Case:
 
+External users and market-focused agents use this skill to scan current stock and crypto momentum, top movers, and news-driven market activity. The output is informational only and not financial advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report, with an optional compact JSON summary when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; can focus on stocks, crypto, or both.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: An undocumented endpoint override can redirect the AISA_API_KEY to another server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default AISA endpoint unless a trusted AISA-compatible endpoint is intentionally configured.
+
+Risk: Runtime behavior can vary if dependencies are installed from an unpinned version range.
+
+Mitigation: Prefer a release that pins dependencies before deploying in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/stock-hot-aisa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with optional JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; can focus on stocks, crypto, or both.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

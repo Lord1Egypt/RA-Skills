@@ -1,47 +1,59 @@
-## Description: <br>
-Ensures any purchase, booking, or financial commitment is verified for item, price, terms, authorization, payment privacy, and reversibility before proceeding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures any purchase, booking, or financial commitment is verified for item, price, terms, authorization, payment privacy, and reversibility before proceeding.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Agents and their operators use this skill to review purchase, booking, reservation, subscription, renewal, cancellation, refund, bid, donation, transfer, and other financially binding workflows before final submission. It helps separate browsing and drafting from commitments, require explicit approval, and minimize sensitive payment and identity data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A separately configured tool could spend money, make a booking, change a subscription, or access payment data. <br>
-Mitigation: Keep those tools permissioned separately and require final confirmation of the exact cost, terms, and payment method before any binding action. <br>
-Risk: Purchase, booking, payment, identity, or reservation data could expose sensitive details. <br>
-Mitigation: Use minimal redacted summaries and avoid full payment numbers, bank details, credentials, identity documents, raw receipts, full reservation codes, and unrelated account history. <br>
-Risk: Ambiguous, high-value, recurring, non-refundable, legally binding, or third-party actions may create commitments the user did not intend. <br>
-Mitigation: Separate browsing and drafting from final submission, verify terms and reversibility, and ask for explicit approval or route to human review before proceeding. <br>
+## Use Case:
 
+Agents use this skill before purchases, bookings, subscriptions, renewals, transfers, or similar financial commitments to verify exact terms and obtain explicit user approval. It is especially useful for workflows that prepare carts, reservations, review payloads, or user-facing decision summaries without making unauthorized commitments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-purchase-booking-guardrail) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [manifest.json](artifact/manifest.json) <br>
-- [purchase-booking-review.schema.json](artifact/schemas/purchase-booking-review.schema.json) <br>
-- [redacted-purchase-booking-review.json](artifact/examples/redacted-purchase-booking-review.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with optional redacted JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guardrail; does not execute commands, call services, install dependencies, persist memory, or place orders by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Financial or booking actions may proceed with incomplete cost, terms, reversibility, or authorization details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact commitment, total price, fees, refund and cancellation terms, payment method, reversibility, and explicit user approval before final submission.
+
+Risk: Review payloads may expose sensitive payment, identity, reservation, or account data.
+
+Mitigation: Use minimal redacted summaries and omit full payment numbers, bank details, credentials, identity documents, full reservation codes, raw receipts, and unrelated purchase history.
+
+Risk: External checker integrations could be untrusted or misconfigured.
+
+Mitigation: Use only approved host tools, approved in-memory API connectors, or manual review, and keep review payloads redacted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-purchase-booking-guardrail)
+- [Review payload schema](artifact/schemas/purchase-booking-review.schema.json)
+- [Redacted review payload example](artifact/examples/redacted-purchase-booking-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown instructions with optional JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; review payloads should be minimal and redacted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

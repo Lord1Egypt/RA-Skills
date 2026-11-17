@@ -1,44 +1,63 @@
-## Description: <br>
-Wake or shut down LAN devices by sending WOL-plus packets from the agent host when the user provides the needed MAC address, network interface, broadcast address, or target IPv4 address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wake or shut down LAN devices by sending WOL-plus packets from the agent host when the user provides target network details.
 
-## Publisher: <br>
-[leeyeel](https://clawhub.ai/user/leeyeel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeyeel](https://clawhub.ai/user/leeyeel)
 
-## Use Case: <br>
-Developers, IT administrators, and advanced local-network users use this skill to wake devices or send compatible shutdown packets on a LAN. It also helps inspect and maintain a reusable device inventory for repeated power-control tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide package installation and service or configuration changes on LAN hosts. <br>
-Mitigation: Require explicit user approval before installing packages or changing services or configuration, and prefer user-provided instructions when direct access is not appropriate. <br>
-Risk: The WOL-plus Web UI has known default credentials in the provided evidence. <br>
-Mitigation: Change the Web UI password before exposing or relying on the service on the network. <br>
-Risk: Wake and shutdown packets affect local-network power state and may target the wrong host if device details are stale. <br>
-Mitigation: Use dry-run and list mode first, verify the resolved MAC address, host, broadcast address, UDP port, and extra data, then send only to intended devices. <br>
+## Use Case:
 
+Developers and operators use this skill to send wake and shutdown packets to known devices on a local network, inspect stored device inventory, and configure a compatible WOL-plus client when shutdown support is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leeyeel/wolp) <br>
-- [WOL-plus project](https://github.com/leeyeel/WOL-plus) <br>
-- [WOL-plus releases](https://github.com/leeyeel/WOL-plus/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update the local device inventory JSON after successful non-dry-run wake or shutdown actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can guide installation of a persistent third-party WOL-plus service and privileged packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the client only from trusted release sources, verify downloaded artifacts before installation, and confirm the service configuration after install.
+
+Risk: The client documentation includes default web credentials for the LAN Web UI.
+
+Mitigation: Change the default password before exposing or using the Web UI on the local network.
+
+Risk: The device inventory may store MAC addresses, IP addresses, extra data values, and recent action timestamps.
+
+Mitigation: Treat the inventory as local network configuration data and limit access to users who are authorized to control those devices.
+
+Risk: Packet transmission confirms only that a UDP packet was sent locally, not that the remote device changed power state.
+
+Mitigation: Use dry runs and follow-up verification, such as service status or Web UI checks, before reporting a completed wake or shutdown outcome.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leeyeel/skills/wolp)
+- [WOL-plus project](https://github.com/leeyeel/WOL-plus)
+- [WOL-plus releases](https://github.com/leeyeel/WOL-plus/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send UDP packets or update the local device inventory when the user requests a non-dry-run operation.]
+
+## Skill Version(s):
+
+0.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

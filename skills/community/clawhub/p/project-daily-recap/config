@@ -1,0 +1,30 @@
+# ============================================================
+# Project Daily Recap - 配置文件
+# ============================================================
+
+# 项目名称（会显示在提醒消息的标题中）
+PROJECT_NAME="工控自动化项目"
+
+# 今日进度（每天手动更新，不填则只显示复盘提示）
+TODAY_PROGRESS=""
+
+# 明日计划（每天手动更新）
+TOMORROW_PLAN=""
+
+# 需要提醒的检查项（逗号分隔，每项会显示为一条检查清单）
+CHECKLIST="发了技术内容?,有客户沟通?,项目有推进?"
+
+# 推送时间（24小时制，用 cron 格式）
+# 默认每晚 20:00，即小时=20 分钟=0
+PUSH_HOUR=20
+PUSH_MINUTE=0
+
+# ---------- 以下由 setup.sh 自动填写 ----------
+# 微信通道（openclaw-weixin 或 openclaw-wechat）
+WEIXIN_CHANNEL="openclaw-weixin"
+
+# 微信接收人 ID（格式: xxx@im.wechat）
+WEIXIN_TARGET="o9cq80yTg9YA6Y1jSYCcUpInWNbI@im.wechat"
+
+# OpenClaw 账号 ID
+WEIXIN_ACCOUNT="51fdf6380286-im-bot"

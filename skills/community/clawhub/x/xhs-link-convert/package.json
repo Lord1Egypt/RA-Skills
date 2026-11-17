@@ -1,0 +1,10 @@
+{
+  "name": "xhs-convert-url-pro",
+  "version": "2.0.1",
+  "private": true,
+  "description": "小红书笔记链接批量转链 Skill CLI (转换为携带 xsec_token 的可打开链接; 与小红书互动数采集 skill 同框架单凭证)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

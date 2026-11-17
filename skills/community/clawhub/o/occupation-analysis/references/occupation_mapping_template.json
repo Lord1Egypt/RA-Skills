@@ -1,0 +1,47 @@
+{
+  "_comment": "职业映射信息模板 - 用于步骤4输出，供 fetch_local.py 使用",
+  
+  "专业信息": {
+    "专业代码": "专业代码（如 510205）",
+    "专业名称": "专业名称（如 大数据技术）",
+    "教育层次": "教育层次：中等职业教育/高等职业教育/职业教育本科"
+  },
+  
+  "mapping_results": [
+    {
+      "_description": "职业映射结果数组",
+      "china_code": "中国职业代码（必需）：如 2-02-38-03",
+      "china_name": "中国职业名称（必需）：如 大数据工程技术人员",
+      "esco_code": "ESCO/ISCO代码（必需）：4位数字，如 2511",
+      "esco_name": "ESCO职业英文名称",
+      "onet_code": "O*NET代码（必需）：如 15-2051.01",
+      "onet_name": "O*NET职业英文名称",
+      "mapping_confidence": "映射置信度：high/medium/low"
+    }
+  ],
+  
+  "_usage_notes": {
+    "purpose": "此文件由大模型在步骤4生成，包含中国职业与国际标准的映射关系",
+    "input": "occupation_info.json - 从职业大典提取的职业信息",
+    "output": "international_data.json - 通过 fetch_local.py 查询本地文档",
+    "esco_code_format": "ISCO-08代码，4位数字，如 2511（软件开发商）、2131（数学家/统计学家）",
+    "onet_code_format": "O*NET SOC代码，格式 xx-xxxx.xx，如 15-2051.01（数据科学家）、15-2041.00（统计学家）",
+    "mapping_method": "由大模型根据职业定义和主要工作任务进行语义推断"
+  },
+  
+  "_example": {
+    "大数据技术专业": {
+      "mapping_results": [
+        {
+          "china_code": "2-02-38-03",
+          "china_name": "大数据工程技术人员",
+          "esco_code": "2511",
+          "esco_name": "Software developers",
+          "onet_code": "15-2051.01",
+          "onet_name": "Business Intelligence Analysts",
+          "mapping_confidence": "high"
+        }
+      ]
+    }
+  }
+}

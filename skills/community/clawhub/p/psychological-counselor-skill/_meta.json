@@ -1,6 +1,30 @@
+
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "psychological-counselor-skill",
+  "name": "create-psychological-counselor",
   "version": "1.0.0",
-  "publishedAt": 1775643230730
+  "author": "心理局内人",
+  "description": "创建心理咨询师AI技能，从教育背景/受训背景/咨询记录/访谈记录/督导记录构建心理咨询师数字分身，模拟咨询师风格，提供基础倾听与情绪支持",
+  "keywords": [
+    "心理咨询",
+    "心理师",
+    "数字分身",
+    "AI心理咨询",
+    "心理咨询模拟器",
+    "心理健康",
+    "情绪支持",
+    "倾听陪伴",
+    "psychological-counselor",
+    "counselor",
+    "AI-therapist",
+    "mental-health",
+    "emotional-support"
+  ],
+  "categories": [
+    "心理健康",
+    "心理咨询",
+    "AI应用",
+    "职业发展"
+  ],
+  "user-invocable": true,
+  "argument-hint": "[counselor-name-or-slug]"
 }

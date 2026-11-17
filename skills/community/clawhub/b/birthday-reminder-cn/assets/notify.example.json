@@ -31,7 +31,7 @@
     {
       "type": "slack",
       "enabled": false,
-      "webhook": "https://hooks.slack.com/services/xxxx"
+      "webhook": "REDACTED-SECRET"
     },
     {
       "type": "telegram",

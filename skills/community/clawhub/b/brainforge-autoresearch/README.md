@@ -1,12 +1,12 @@
-# brainforge-autoresearch
+# brainharness-autoresearch
 
-> **Renamed.** Previously published as `openclaw-autoresearch` on GitHub and `autoresearch` on ClawHub. The old GitHub URL redirects to this repo automatically; the ClawHub skill name is still `autoresearch` for now (rename pending).
+> Previously named `brainforge-autoresearch`; earlier names include `openclaw-autoresearch` and `autoresearch`. Use the current installation commands below.
 
 Autonomous skill prompt optimizer based on Karpathy's autoresearch methodology.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![ClawHub](https://img.shields.io/badge/ClawHub-autoresearch-blue)](https://clawhub.ai/zning1994/openclaw-autoresearch)
-[![brainforge](https://img.shields.io/badge/brainforge-marketplace-purple)](https://github.com/zning1994/brainforge)
+[![ClawHub](https://img.shields.io/badge/ClawHub-brainharness--autoresearch-blue)](https://clawhub.ai/zning1994/brainharness-autoresearch)
+[![brainharness](https://img.shields.io/badge/brainharness-marketplace-purple)](https://github.com/zning1994/brainharness)
 
 ## What it does
 
@@ -17,19 +17,19 @@ Based on [Andrej Karpathy's autoresearch](https://github.com/karpathy/autoresear
 ## Quick Start
 
 ```bash
-# Claude Code (via brainforge marketplace)
-/plugin marketplace add zning1994/brainforge
-/plugin install brainforge-autoresearch@brainforge
+# Claude Code (via brainharness marketplace)
+/plugin marketplace add zning1994/brainharness
+/plugin install brainharness-autoresearch@brainharness
 
 # Universal (npx skills)
-npx skills add zning1994/brainforge-autoresearch
+npx skills add zning1994/brainharness-autoresearch
 
-# OpenClaw ClawHub (skill name is still "autoresearch" until rename)
-openclaw skills install autoresearch
+# OpenClaw ClawHub
+npx clawhub@0.23.3 install brainharness-autoresearch
 
 # Standalone
-git clone https://github.com/zning1994/brainforge-autoresearch
-cd brainforge-autoresearch
+git clone https://github.com/zning1994/brainharness-autoresearch
+cd brainharness-autoresearch
 python autoresearch.py --target ./my-skill/SKILL.md --evals eval.json
 ```
 

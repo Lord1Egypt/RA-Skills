@@ -1,38 +1,48 @@
-## Description: <br>
-Display, set, and manage environment variables in shell sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display, set, and manage environment variables in shell sessions. Use when inspecting or modifying the runtime environment.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use Env Tool to inspect runtime environment variables and check specific values while troubleshooting shell sessions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Default all-variable listing can print raw environment values into terminal output, agent transcripts, or logs, exposing secrets.
+
+Mitigation: Prefer querying specific non-sensitive variables and avoid broad listings in environments that may contain credentials or tokens.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect environment variables in a shell session, including checking whether specific variables are set and reviewing the runtime environment for debugging. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Listing all environment variables can expose API keys, tokens, passwords, cloud credentials, or internal endpoints. <br>
-Mitigation: Query only specific non-sensitive variables when possible and avoid running full environment dumps in shells that may contain secrets. <br>
+**Output Format:** [Markdown with inline shell commands and plain text environment-variable output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Env Tool on ClawHub](https://clawhub.ai/dinghaibin/env-tool) <br>
+**Other Properties Related to Output:** [May include raw environment variable values; avoid broad output capture in logs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text environment-variable output with optional markdown shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print sensitive environment values when listing all variables.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

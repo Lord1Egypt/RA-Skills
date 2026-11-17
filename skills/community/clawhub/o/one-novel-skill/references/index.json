@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-07-03",
+  "total_documents": 136,
+  "categories": {
+    "writing-techniques": {
+      "path": "writing-techniques-allinone/",
+      "count": 116,
+      "description": "通用写作技法文献 — 涵盖叙事架构、题材分析、经典技法、读者心理、开篇设计、平台算法、AI检测对抗、对话潜台词、编辑视角、大纲规划、质量控制、命名指南、上下文管理、更新策略、出版流程等"
+    },
+    "de-ai": {
+      "path": "de-ai/",
+      "count": 14,
+      "description": "反AI检测基线 — 包含禁用词列表、真书统计基线(7698本)、检测配置、AI文本信号识别、人性化改写指南、QMAI检测等"
+    },
+    "batch-writing": {
+      "path": "batch-writing/",
+      "count": 3,
+      "description": "批处理写作策略 — 日更策略、中期乏力应对、卡文突破"
+    },
+    "review": {
+      "path": "review/",
+      "count": 3,
+      "description": "评审反馈 — 读者反馈闭环、长文一致性"
+    },
+    "platform": {
+      "path": "",
+      "count": 2,
+      "description": "平台策略 — 多平台差异化、AI优先架构规则"
+    }
+  },
+  "tags_index": {
+    "节奏": ["writing-techniques-allinone/pacing-guide.md"],
+    "开篇": ["writing-techniques-allinone/05-golden-three-chapters.md"],
+    "伏笔": ["writing-techniques-allinone/foreshadowing-design.md"],
+    "人设": ["writing-techniques-allinone/character-design.md"],
+    "世界观": ["writing-techniques-allinone/world-building.md"],
+    "对话": ["writing-techniques-allinone/dialogue-guide.md", "writing-techniques-allinone/08-dialogue-subtext.md"],
+    "读者黏性": ["writing-techniques-allinone/reader-engagement.md"],
+    "风格": ["writing-techniques-allinone/style-anchor.md"],
+    "场景": ["writing-techniques-allinone/scene-usage.md"],
+    "内容扩展": ["writing-techniques-allinone/content-expansion.md"],
+    "技法": ["writing-techniques-allinone/writing-craft.md", "writing-techniques-allinone/03-classic-techniques.md"],
+    "平台策略": ["platform-strategy.md", "writing-techniques-allinone/platform-analysis.md"],
+    "标签": ["writing-techniques-allinone/tomato-tags.md"],
+    "读者心理": ["writing-techniques-allinone/04-reader-psychology.md"],
+    "叙事架构": ["writing-techniques-allinone/01-narrative-architectures.md"],
+    "题材": ["writing-techniques-allinone/02-web-novel-genres.md"],
+    "大纲": ["writing-techniques-allinone/outline-planning.md", "writing-techniques-allinone/outline-review.md"],
+    "质量": ["writing-techniques-allinone/quality-check.md"],
+    "命名": ["writing-techniques-allinone/naming-guide.md"],
+    "上下文": ["writing-techniques-allinone/context-management.md"],
+    "编辑视角": ["writing-techniques-allinone/09-editor-perspective.md"],
+    "反AI": ["de-ai/anti-ai-instinct.md"],
+    "AI痕迹": ["de-ai/ai-text-signals.md"],
+    "人性化": ["de-ai/humanizer-zh.md"],
+    "去AI": ["de-ai/qmai-de-ai.md"],
+    "日更": ["batch-writing/daily-strategy.md"],
+    "中期乏力": ["batch-writing/mid-novel-slump.md"],
+    "卡文": ["batch-writing/writer-block.md"],
+    "读者反馈": ["review/reader-feedback-loop.md"],
+    "长文一致": ["review/long-form-consistency.md"],
+    "更新策略": ["writing-techniques-allinone/update-guide.md"],
+    "算法": ["writing-techniques-allinone/06-platform-algorithms.md"],
+    "反检测": ["writing-techniques-allinone/07-ai-detection-anti-strategies.md"],
+    "潜台词": ["writing-techniques-allinone/08-dialogue-subtext.md"],
+    "出版": ["writing-techniques-allinone/book-publishing-workflow.md"]
+  },
+  "platform_compatibility": {
+    "番茄": ["节奏", "开篇", "人设", "对话", "读者黏性", "风格", "场景", "内容扩展", "技法", "标签", "读者心理", "叙事架构", "题材", "反AI", "AI痕迹", "人性化", "去AI", "日更", "中期乏力", "卡文", "读者反馈", "更新策略", "算法", "反检测", "潜台词"],
+    "起点": ["节奏", "开篇", "伏笔", "人设", "世界观", "对话", "读者黏性", "风格", "场景", "技法", "读者心理", "叙事架构", "题材", "经典技法", "大纲", "大纲审核", "质量", "命名", "上下文", "编辑视角", "反AI", "AI痕迹", "长文一致", "更新策略", "算法", "潜台词", "出版"],
+    "七猫": ["开篇", "人设", "对话", "世界观", "内容扩展", "题材", "AI痕迹", "人性化", "去AI", "反检测"],
+    "飞卢": ["节奏", "对话", "内容扩展", "命名", "日更", "卡文"]
+  },
+  "chapter_position_guide": {
+    "开头": ["开篇", "节奏", "读者黏性", "读者心理", "叙事架构", "题材"],
+    "前期": ["人设", "世界观", "节奏", "对话", "经典技法", "反AI"],
+    "中期": ["伏笔", "场景", "风格", "叙事架构", "潜台词", "内容扩展", "读者反馈", "读者心理"],
+    "后期": ["伏笔", "长文一致", "上下文", "叙事架构", "大纲审核", "编辑视角", "出版"]
+  }
+}

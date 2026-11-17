@@ -25,9 +25,47 @@ A useful filter: **write tests for features, not for code.** A good test survive
 
 Watch for weak assertions. `assert!(count >= expected)` passes for buggy code that emits too much; a count-based assertion (`batches == 4`) goes stale the moment batching changes. Assert durable invariants and exact values.
 
+One assertion shape to never write: a **negative wall-clock property** - "less than 20 ms elapsed between these two calls", "the cached call was faster than the cold one". It is not a flaky test you can stabilize by loosening the threshold; it is structurally unsound, because nothing guarantees your thread is scheduled at all on a loaded CI runner compiling three other jobs. Assert the thing you actually meant instead: that the second call did not hit the backend (a counter on a fake), that the value came from the cache (an explicit flag), that the work happened once. If you genuinely need to test timing behaviour, control the clock - `tokio::time::pause` and `tokio::time::Instant`, covered in `async-basics.md`.
+
+A related trap hides in tests for shutdown and cancellation fixes. If the code has a backstop - drain for at most five seconds, then give up - a test that only checks "shutdown completed" passes whether or not the fix works, because the backstop finishes it either way. The test is guarding the fallback, not the fix. Make the backstop path observable (a flag, a counter on a fake) and assert it was *not* taken, or configure the backstop in the test to fail loudly when hit.
+
+## Running the tests you want
+
+The test harness has controls worth knowing on day 1, all from the Book's "Controlling How Tests Are Run":
+
+```rust
+#[test]
+#[should_panic(expected = "divide by zero")]   // passes only if it panics with that text
+fn rejects_zero() { divide(1, 0); }
+
+#[test]
+#[ignore = "needs a live database"]            // skipped unless asked for
+fn hits_real_db() { /* ... */ }
+```
+
+```sh
+cargo test parse            # only tests whose name contains "parse"
+cargo test -- --ignored     # only the #[ignore] tests
+cargo test -- --show-output # print stdout of passing tests too (captured by default)
+cargo test -- parse render  # several name filters: they go AFTER the --
+cargo test -- --exact parser::tests::parses_empty_input   # one test, full path
+```
+
+Flags after the `--` go to the test binary, not to cargo. Cargo itself accepts only one positional filter: `cargo test parse render` fails with "unexpected argument 'render' found".
+
+`cargo test -- --test-threads=1` runs tests one at a time, and it is the first thing people reach for when tests interfere with each other. Use it to *confirm* a shared-state problem, not to settle on - the interference is a real bug in the test or the code (see "Test isolation" below). `#[ignore]` is the honest home for a slow or environment-dependent test you still want runnable on demand; give it a reason string so the next reader knows what it needs.
+
 ## The reproduce-then-fix habit
 
 The single highest-ROI testing habit: when you find a bug, write the failing test *first*, watch it fail, then fix the bug. Confirm the test actually catches the bug by reverting the fix and seeing it go red again. A regression test that still passes when you delete the fix is worthless - and that happens more often than you would think.
+
+The ways it goes wrong are specific enough to check for:
+
+- **The fixture does not sit where old and new behavior differ.** A fixture of one row per page passes under both the buggy rule and the fixed one; pick inputs the old code gets wrong.
+- **The test tries to provoke a race by brute force.** Hammering threads or spawning processes until the bug shows up passes on broken code a good share of the time. Construct the state the race produces instead: to prove a lock is released while a child process holds an inherited descriptor, hold a `try_clone()` of the file handle - exactly what the child holds - release, and assert the lock can be taken again.
+- **The mutation did not apply.** When you break the code by hand (or with `sed`) to watch the test fail, check the edit landed - `cargo fmt` may have reflowed the line your pattern targets, and "still passes" then means nothing. `cargo-mutants` does this systematically.
+
+For a flaky test, measure before and after: run it N times in a loop (`for i in $(seq 25); do cargo test -q name || break; done`) and report the rate, such as 1 failure in 25 before and 0 in 25 after. One green rerun proves nothing, and "passed on three reruns, so it is flaky" is how a real race - a lock, an ordering assumption - stays in the code.
 
 ## Purity over "unit vs integration"
 
@@ -74,6 +112,8 @@ mod tests;          // lives in src/parser/tests.rs
 
 **Integration tests** live in `tests/`. Each file there is compiled as a *separate crate* that links your library and uses it through its public API only - the same surface your users see.
 
+That has a consequence for binaries. The Book: "If our project is a binary crate that only contains a _src/main.rs_ file and doesn't have a _src/lib.rs_ file, we can't create integration tests in the _tests_ directory". A private `fn` in `main.rs` is unreachable from `tests/` even when the crate has a `lib.rs` next to it. Keep `main.rs` to argument parsing and dispatch, put the logic in `lib.rs`, and test it in-process; reserve driving the built binary (`assert_cmd`) for what really is end-to-end.
+
 ```
 tests/
   api.rs            # one test binary
@@ -89,12 +129,14 @@ One refinement: for a **published library**, also keep at least one integration 
 
 Put test data files - sample inputs, golden outputs, config samples - in `tests/fixtures/` by default. Cargo's flat `tests/` discovery ignores subdirectories, so `tests/fixtures/` is a safe home for pure data; it is never compiled as a test binary. Mirror the source layout under it - `tests/fixtures/adapter/claude-code/` for `src/adapter/claude-code.rs` - so a fixture's path is predictable from the module it belongs to.
 
-Build fixture paths from `env!("CARGO_MANIFEST_DIR")`, the compile-time absolute path to the crate root. It resolves identically from a unit test in `src/` and an integration test in `tests/`, regardless of the process working directory - this is what lets a test co-located with the code load a shared `tests/fixtures/` file cleanly:
+Build fixture paths from the crate root read at **runtime**. Cargo runs every test and bench binary with `CARGO_MANIFEST_DIR` set and the working directory at the package root, so `"tests/fixtures/sample.json"` works as a plain relative path. Read the variable instead when something may change the process cwd (for example `figment::Jail`) or when the path goes to a child process:
 
 ```rust
-let path = concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/sample.json");
-let input = std::fs::read_to_string(path).unwrap();
+let root = std::path::PathBuf::from(std::env::var_os("CARGO_MANIFEST_DIR").unwrap());
+let input = std::fs::read_to_string(root.join("tests/fixtures/sample.json")).unwrap();
 ```
+
+Do not use `env!("CARGO_MANIFEST_DIR")` (or `env!("CARGO_BIN_EXE_<name>")`; read that at runtime too, Cargo 1.94+). `env!` bakes the absolute checkout path into the test binary, so a compiler cache (sccache, kache) keys it per checkout and every new git worktree recompiles it. Snapshot crates can do this behind your back: insta's assertion macros expand `env!("CARGO_MANIFEST_DIR")` unless `INSTA_WORKSPACE_ROOT` is set at compile time (its docs: "This can be useful to avoid including local paths in the binary"), while expect-test resolves paths at runtime. To enforce the rule, use a unit test that scans `src/`, `tests/` and `benches/` for `env!("CARGO_MANIFEST_DIR"` and friends: clippy's `disallowed_macros` cannot see an `env!` nested in `concat!`.
 
 The one justified exception: a small, rarely-changing fixture tied to one module can be co-located with the source and pulled in with `include_str!` / `include_bytes!` (which resolve relative to the current file). That bakes the data into the binary and forces a recompile whenever it changes, so keep it for small, stable fixtures only - and note `include_*!` cannot pull in a directory tree, so multi-file fixtures must live under `tests/fixtures/` regardless.
 
@@ -116,6 +158,27 @@ A slow suite is one developers stop running - then they push untested code, whic
 - Gate genuinely slow tests behind an environment variable so they run on CI but not in the local loop. Do not hide them with `#[cfg(...)]` - conditional compilation means they rot.
 - Doc tests are compile-checked documentation and run under `cargo test` - keep them for public-API examples. The 2024 edition merges compatible doctests into one compilation unit, so the old "doctests are slow to build" concern is largely gone (they still each run in their own process).
 
+  A doc comment is `///` above the item (or `//!` at the top of a file, documenting the file itself), and any Rust block inside it is compiled and run:
+
+  ````rust
+  /// Parses a config file.
+  ///
+  /// # Examples
+  ///
+  /// ```
+  /// let cfg = mycrate::parse("key = 1")?;
+  /// assert_eq!(cfg.key, 1);
+  /// # Ok::<(), mycrate::Error>(())
+  /// ```
+  ///
+  /// # Errors
+  ///
+  /// Returns [`Error::Syntax`] if the input is not valid TOML.
+  pub fn parse(input: &str) -> Result<Config, Error> { /* ... */ }
+  ````
+
+  Two mechanics worth knowing up front: a line prefixed with `# ` inside the block is compiled but hidden from the rendered docs, which is how you make an example that uses `?` compile without showing the boilerplate; and `cargo doc --open` renders the whole thing locally. Mark a block ```` ```no_run ```` to compile but not execute it, and ```` ```ignore ```` to do neither - reach for `ignore` rarely, since an unchecked example is exactly the one that rots.
+
 ## Async tests
 
 Use `#[tokio::test]`. For tests that need real concurrency (two tasks actually contending), use the multi-thread flavor:
@@ -136,11 +199,40 @@ Fire-and-forget concurrency (`spawn` something and drop the handle) is hard to t
 
 Tests run in parallel. Anything touching shared external state needs per-test isolation:
 
-- Filesystem: `tempfile::TempDir` gives each test its own directory, cleaned up on drop.
+- Filesystem: `tempfile::TempDir` gives each test its own directory, cleaned up on drop. So hold the binding for the whole test (`let dir = TempDir::new()?;`, then pass `dir.path()`): `let _ = TempDir::new()` deletes it on the same line, and `TempDir::keep()` (formerly `into_path`) persists it - an easy way to dodge the lifetime that leaks a directory on every run.
 - Databases: `#[sqlx::test]` creates and migrates a fresh database per test automatically.
 - In-memory resources keyed by name: generate a unique name per test (e.g. a UUID) so parallel tests do not collide.
 
+**Iteration order is not an API.** A test that takes "the first" entry of a `HashMap`, a `HashSet`, or a database scan with no `ORDER BY` passes or fails depending on the run - `HashMap`'s hasher is randomly seeded per process, so the order changes between runs of the same binary. Select the entry you mean by key, or sort before asserting.
+
 `cargo-nextest` runs each test in its own process, which makes isolation failures (tests that share a global, or call `std::env::set_var`) surface as real failures. Treat those as latent bugs to fix, not a reason to serialize the suite.
+
+**Environment variables are process-global, and `cargo test` runs tests as threads in one process.** So one test calling `std::env::set_var` corrupts any test that reads that variable - the classic "passes in isolation, fails in the suite" flake. (Rust 2024 makes `set_var` `unsafe` for exactly this reason.) The non-obvious half: isolating the test that *sets* the variable is not enough. **Every test that reads it** must be isolated too, or it will still see the polluted value in a parallel run. Either give each such test a jailed environment (`figment::Jail`, `temp-env`), or thread the config through as a parameter instead of reading the environment inside the code under test - which is the fix that makes the problem go away permanently.
+
+## Lints apply to test and bench code too
+
+`cargo clippy --all-targets` lints `tests/` and `benches/`, not just `src/`. That is what you want for real bugs, but the "smells in non-prototype code" lints from the skill's `[lints.clippy]` table - `print_stdout`, and `unwrap_used`/`expect_used` if you enabled them - fire constantly on code where printing and unwrapping are correct by design. Put a crate-level allow at the top of the file rather than sprinkling per-line ones or weakening the lint globally:
+
+```rust
+// benches/parse.rs
+#![allow(clippy::print_stdout, clippy::unwrap_used, clippy::expect_used)]
+```
+
+This is one place `#[allow]` beats the `#[expect]` the main skill recommends: a crate-level `expect` listing three lints warns as unfulfilled the day any one of them stops firing in that file.
+
+A `#[cfg(test)]` support module inside `src/` needs the same treatment, since it is part of the library crate.
+
+## Two profile traps in the test suite
+
+**`cargo test` builds with the `test` profile, which inherits `dev`** - so `debug-assertions` is on, and `--release` turns it off. That means a `debug_assert!` **inside a dependency** is live during your test suite and dead in production. A dependency asserting an invariant more strictly than it documents can fail your tests on input that works perfectly in a release build. When a test failure points into a dependency's internals, check whether it is a `debug_assert!` before assuming you found a bug in your own code.
+
+**`#![recursion_limit]` is a crate-root attribute, and every file in `tests/` is its own crate root.** When trait solving overflows (`E0275: overflow evaluating the requirement ... Send`, a real risk for deeply-nested async futures under `#[tracing::instrument]`), the attribute must go on the crate that actually overflows. If your library compiles fine but the integration binary does not, it belongs at the top of `tests/integration.rs` - putting it in `src/lib.rs` does nothing for the test crate. Related: an overflow that reproduces only in CI is often a clean-build-vs-incremental-cache difference, not a toolchain mismatch, and trait-solving limits can genuinely differ by target.
+
+## Platform-specific tests are not run on your machine
+
+A `#[cfg(windows)]` test is compiled out on macOS and Linux, so your local pass count does not change when you add one - nothing has run it. Run it in a real Windows CI job; `cargo check --tests --target x86_64-pc-windows-msvc` at least proves it compiles (and can still fail on build scripts that compile C).
+
+Windows path semantics are the usual reason those tests exist. `Path::is_absolute()` is false for `\data` and `/data`, which have no drive, and for the drive-relative `C:data` - "On Windows, a path is absolute if it has a prefix and starts with the root". And `Path` equality compares components exactly while NTFS is case-insensitive, so `TOOL.CMD` found through `PATHEXT` does not equal `tool.cmd`.
 
 ## Coverage is a diagnostic, not a target
 
@@ -154,14 +246,14 @@ Add as defaults:
 
 | Tool | Why |
 |---|---|
-| `cargo-nextest` | Faster runs and per-test process isolation for multi-binary workspaces. It does not run doctests - keep `cargo test --doc` as a separate step. Its `slow-timeout` with `terminate-after` auto-kills hung tests. |
+| `cargo-nextest` | Faster runs and per-test process isolation for multi-binary workspaces. It does not run doctests - keep `cargo test --doc` as a separate step. Its `slow-timeout` with `terminate-after` auto-kills hung tests, and `cargo nextest bench` now runs benchmark targets through the same runner. |
 | `rstest` | Parametrized tests: one `#[case(...)]` per row generates an independent, individually-named test. Genuinely cuts table-test boilerplate. |
 
 Reach for these when a specific need appears:
 
 | Tool | Use it when |
 |---|---|
-| `insta` | Output is large or structured (serializer output, API responses, CLI text). Review every diff with `cargo insta review`; never blind-run `cargo insta accept` - an unreviewed baseline certifies nothing. |
+| `insta` | Output is large or structured (serializer output, API responses, CLI text). Review every diff with `cargo insta review`; never blind-run `cargo insta accept` - an unreviewed baseline certifies nothing. On Rust 1.99+ use insta 1.49.0 or later: older serialized-snapshot macros used as a test's last line, with no trailing `;`, trip the new `semicolon_in_expressions_from_non_local_macros` warning, which fails the test build under `build.warnings = "deny"` (`assert_binary_snapshot!` still does in 1.49.0, so end it with `;`). Normalize what changes for reasons you do not care about - the version string, OS-specific default paths - before asserting, with `.replace()` or insta's opt-in `filters` feature; otherwise every release bump churns the snapshots and Windows CI fails on `%APPDATA%`. Plain `cargo test` stops at the first failing snapshot in a test; `cargo insta test` runs them all, then `cargo insta review`. |
 | `wiremock` | Your code calls a third-party HTTP API - run a real local mock server instead of mocking the HTTP client. |
 | `#[sqlx::test]` | Database code - per-test isolated database, lighter than `testcontainers`. |
 | `assert_cmd` + `predicates` | You ship a CLI binary and want to assert on exit code / stdout / stderr. |

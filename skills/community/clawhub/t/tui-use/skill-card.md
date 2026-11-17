@@ -1,40 +1,54 @@
-## Description: <br>
-Operate terminal user interface programs through the tui-agent CLI tool, including editors, system monitors, file managers, database clients, and other ncurses/TUI applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate terminal user interface programs through the tui-agent CLI tool by starting sessions, capturing screens, sending input, and stopping sessions.
 
-## Publisher: <br>
-[zbflcy](https://clawhub.ai/user/zbflcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbflcy](https://clawhub.ai/user/zbflcy)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate, automate, and test terminal-based programs through a capture-act-capture workflow with tui-agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external tui-agent helper is referenced but not included in the artifact. <br>
-Mitigation: Verify the tui-agent source and version before installing or using it. <br>
-Risk: The skill enables an agent to view and control terminal sessions, including sessions that may expose secrets or perform high-impact actions. <br>
-Mitigation: Use it only with intended terminal sessions, avoid displaying secrets, and confirm before edits, database changes, shell commands, or other high-impact actions. <br>
+## Use Case:
 
+Developers and agents use this skill to control terminal-based programs such as editors, system monitors, file managers, database clients, and ncurses applications through repeatable capture-and-input workflows.
 
-## Reference(s): <br>
-- [tui-agent source](https://github.com/zbflcy/tui-use/tree/main/tui-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides session-management, screen-capture, keyboard, mouse, waiting, and cleanup workflows for TUI automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill enables an agent to operate local terminal programs through a daemon-backed tui-agent workflow, including editors and shells.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit user direction for the target program and file paths, review changes before saving files, prefer scoped tools for simple shell commands, and stop tui-agent sessions when finished.
+
+Risk: The security summary classifies the release as suspicious because the automation scope is broad.
+
+Mitigation: Review the skill's scope before installation and apply the evidence guidance for supervised, task-specific use.
+
+## Reference(s):
+
+- [tui-agent source directory](https://github.com/zbflcy/tui-use/tree/main/tui-agent)
+- [ClawHub skill page](https://clawhub.ai/zbflcy/skills/tui-use)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes session lifecycle guidance, screen capture and wait patterns, keyboard and mouse commands, platform notes, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

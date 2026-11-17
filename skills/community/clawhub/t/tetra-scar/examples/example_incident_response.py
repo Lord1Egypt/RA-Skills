@@ -21,7 +21,7 @@ from scar_safety import safety_check, record_incident, load_safety_scars, reflex
 ACTIONS = {
     "commit_with_secret": (
         "git add config.py && git commit -m 'update config'\n"
-        "# config.py contains: API_KEY = 'sk-proj-abc123def456ghi789'"
+        "# config.py contains: API_KEY = 'REDACTED-SECRET'"
     ),
     "log_token": (
         "print(f'Debug: user token is {access_token}')\n"

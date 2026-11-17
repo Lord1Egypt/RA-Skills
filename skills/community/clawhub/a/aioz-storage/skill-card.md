@@ -1,45 +1,59 @@
-## Description: <br>
-Deploy static websites to AIOZ Storage with built-in templates or custom sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy static websites to AIOZ Storage with built-in templates or custom sites.
 
-## Publisher: <br>
-[vinhbui3004](https://clawhub.ai/user/vinhbui3004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vinhbui3004](https://clawhub.ai/user/vinhbui3004)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare, configure, and deploy static websites to AIOZ Storage using bundled templates or their own static site files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may involve account passwords, bucket seed phrases, root keys, S3 credentials, and grants. <br>
-Mitigation: Handle login, seed phrase, and key entry yourself where possible; avoid placing secrets in chat, shell history, process arguments, or temporary files. <br>
-Risk: Non-expiring, all-bucket, write, or delete grants can create high-impact access to AIOZ Storage resources. <br>
-Mitigation: Use short-lived per-bucket grants and grant only the permissions needed for the current task; avoid all-bucket and delete permissions unless explicitly required. <br>
-Risk: Website creation requires a read/list grant, while uploads require a separate read/write/list grant. <br>
-Mitigation: Use separate grants for upload and website creation, and review permissions before registering credentials or calling the website API. <br>
+## Use Case:
 
+Developers and site owners use this skill to prepare, upload, and publish static websites on AIOZ Storage using bundled templates or their own static files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vinhbui3004/aioz-storage) <br>
-- [AIOZ Storage bucket management documentation](https://aiozstorage.network/docs/tutorials/manage-buckets) <br>
-- [AIOZ Storage website template examples](https://github.com/AIOZStorage/aioz-storage-docs/tree/main/examples) <br>
-- [AIOZ Storage service](https://aiozstorage.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls] <br>
-**Output Format:** [Markdown with inline bash, JSON, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment steps, template customization guidance, grant generation commands, and S3/API usage instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and package.json) <br>
+Risk: AIOZ account, bucket, grant, and storage credentials can leak or persist longer than users expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an AIOZ account and bucket you control, avoid entering passwords or seed phrases in chat or shell history, and rotate any exposed ZKeys, grants, S3 keys, or bucket recovery phrases.
+
+Risk: The documented /tmp config-file workflow can leave sensitive grant inputs on disk.
+
+Mitigation: Prefer command-line or in-memory handling that avoids persistent config files; if a config file is used, delete it immediately and restrict access to the working environment.
+
+Risk: Long-lived or overly broad grants can retain access beyond the deployment task.
+
+Mitigation: Prefer short-lived, least-privilege grants and use the read/list-only website grant where the workflow requires it.
+
+## Reference(s):
+
+- [AIOZ Storage Skill on ClawHub](https://clawhub.ai/vinhbui3004/skills/aioz-storage)
+- [AIOZ Storage bucket management documentation](https://aiozstorage.network/docs/tutorials/manage-buckets)
+- [AIOZ Storage static website templates](https://github.com/AIOZStorage/aioz-storage-docs/tree/main/examples)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment guidance, API calls, grant-generation commands, S3 upload instructions, and website configuration steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

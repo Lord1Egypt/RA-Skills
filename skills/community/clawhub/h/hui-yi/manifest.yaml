@@ -1,13 +1,31 @@
 name: hui-yi
-version: 1.2.11
+version: 1.2.13
 description: >-
   Manage a file-based cold-memory archive under memory/cold/. Includes an
   optional, explicitly opt-in local hook: scripts/install_hook.py copies a
   bundled template into hooks/hui-yi-signal-hook/ and, only when run with
   --enable, turns the hook on in openclaw.json. The enabled hook listens on
-  message:preprocessed events and writes Session signals back to memory/cold/
-  notes and memory/cold/tags.json. No network access; no credential access.
+  message:preprocessed events with a trusted host Hui-Yi skill selection or an
+  explicit leading /hui-yi or /hui_yi text command in mapped context.body and
+  writes Session signals back to memory/cold/ notes and memory/cold/tags.json.
+  Native integration additionally enables host dreaming and primary-cache recall through the public SDK, with
+  guarded runtime compatibility and external-channel exclusions. Archive code
+  has no network transport or credential extraction. Optional enablement reads and
+  rewrites the whole existing OpenClaw config, which can contain credentials.
+release_status: stable
+provenance: >-
+  Version 1.2.13 builds on 1.2.11 with security and recall compatibility fixes.
+  Registry installation metadata is excluded from source releases. Verify
+  publication and independent security-review status with the registry.
+tool_scope: [Read, Write, Edit, 'Bash(python:*)', 'Bash(python3:*)', 'Bash(node:*)']
+permission_notice: >-
+  Tool/path declarations disclose intended operations; they are not runtime or
+  OS access-control enforcement. CLI overrides are trusted operator choices.
 required_paths:
+  - path: MEMORY.md and USER.md under the selected workspace
+    access: read_write
+    optional: true
+    description: Source-verified existing bullet text; explicit primary-cache annotation plans only, protected backup before apply; no new facts or counters
   - path: memory/cold/
     access: read_write
     description: Cold memory archive (notes, index.md, tags.json, retrieval-log.md)
@@ -18,24 +36,43 @@ required_paths:
     access: read_write
     optional: true
     description: >-
-      Optional hook install target plus its local hook.log. Written only when
-      the user explicitly runs scripts/install_hook.py. Default hook logging
-      stores no message content and only hashed scope identifiers; verbose
-      diagnostics require HUI_YI_HOOK_DEBUG=1.
+      Optional hook install target plus its local hook.log. Installation writes
+      require an explicit install command; the enabled hook subsequently writes
+      its log. Normal and debug logs retain only allowlisted lifecycle/count
+      diagnostics and hashed sessions, never raw text, ids, metadata, titles,
+      paths, or matching terms. HUI_YI_HOOK_DEBUG=1 adds lifecycle diagnostics.
   - path: ../openclaw.json
     access: read_write
     optional: true
     description: >-
       OpenClaw runtime config, one level above the workspace. Modified only
-      when the user explicitly runs scripts/install_hook.py --enable; the two
+      by explicitly applying scripts/configure_native_memory.py (native memory
+      settings and old-hook disablement; protected backup), or when running
+      scripts/install_hook.py --enable; the legacy installer
+      two
       keys set are hooks.internal.enabled and
       hooks.internal.entries.hui-yi-signal-hook.enabled. The installer prints
       a disclosure first and refuses to create the file if it does not exist.
+      The complete JSON config is read and rewritten; unrelated values are
+      preserved, including any secret-bearing fields, without extraction.
+  - path: operator-selected OpenClaw dist/extensions/active-memory/index.js
+    access: read_write
+    optional: true
+    description: Exact version and hash pinned runtime guard; modified only by patch_native_memory.py --apply with protected backup
+  - path: operator-selected context/config/archive paths
+    access: caller_selected
+    optional: true
+    description: >-
+      Explicit --memory-root, --context-file, --config, --heartbeat-path,
+      --target-dir, --template-dir, and --config-path arguments select local
+      resources. Input context is read only; archive/config outputs follow the
+      invoked operation. Relative overrides resolve from the working directory.
 permissions:
-  network: none
-  credentials: none
-  shell: none
-  environment: read_only  # reads OPENCLAW_WORKSPACE_DIR / HUI_YI_HOOK_DEBUG only
+  network: host_configured_model_and_embedding_services_for_optional_native_integration
+  credentials: no_extraction  # --enable handles the whole existing runtime config
+  shell: local_python_and_node_commands  # no shell evaluation of message content
+  subprocess: fixed_python_smoke_commands_and_read_only_windows_reparse_checks
+  environment: read_only  # hook flags and allowlisted smoke runtime variables
 user_warnings:
   - This skill creates and modifies persistent local files under memory/cold/
     (notes, index.md, tags.json, retrieval-log.md) and updates
@@ -44,22 +81,55 @@ user_warnings:
     (activation counters and hashed session fingerprints) from real
     conversations and persists them in memory/cold/ note files and tags.json.
     Session keys are stored only as truncated sha256 fingerprints.
+  - The enabled hook accepts trusted host selection or an exact leading
+    /hui-yi or /hui_yi command with a nonempty query in mapped context.body.
+    Commands are case-insensitive and require an ASCII space/tab separator;
+    leading whitespace, quoted/embedded/prefixed/empty commands and commands
+    only in bodyForAgent are rejected. Ordinary recall wording never activates
+    it. Loading the skill never installs a hook, schedules work, or authorizes cooling.
+  - OpenClaw 2026.9.5's native event mapper supplies no selection metadata.
+    The text-command path needs an unwrapped mapped body reaching the hook;
+    provider envelopes or intercepted native commands require explicit CLI or
+    adapter use. Isolated mapped-event tests are not channel end-to-end proof.
   - scripts/install_hook.py --enable modifies openclaw.json after printing a
     disclosure of the exact keys it sets. Review with --dry-run first.
-  - The hook's local hook.log rotates at 256 KB and by default contains no
-    message bodies and no raw user/chat identifiers.
+  - The hook's local hook.log rotates at 256 KB. Neither normal nor debug logs
+    retain raw message bodies, identifiers, metadata, note titles/paths, or
+    matching terms. Python detector/pipeline --include-sensitive is a separate
+    explicit diagnostic option; never use it with secrets or shared logs.
+  - review.py feedback deliberately persists supplied --query and --action in
+    memory/cold/retrieval-log.md. This archive record is separate from safe
+    diagnostics; provide only non-sensitive content intended for retention.
+  - File helpers reject links, junctions/reparse points, hard links, and special
+    files and recheck identity. Python stages atomic replacements and copies an
+    existing Windows DACL to the empty staging file before writing data. TS uses
+    staged atomic replacement on POSIX and for new Windows files; existing
+    Windows files use verified descriptor writes to preserve DACLs, with
+    best-effort rollback, and are not crash atomic. These checks are not a kernel sandbox
+    against a hostile same-account process concurrently replacing directories.
+    Workspaces and their parent directories must be trusted and OS-owned.
+  - One workspace shares one archive. Session hashes deduplicate activation;
+    they do not provide per-user permissions or tenant isolation.
   - Reference playbooks may suggest routing non-cold content to MEMORY.md,
     TOOLS.md, .learnings/, AGENTS.md, or SOUL.md; that routing is guidance
-    executed by the agent at the user's direction. Hui-Yi scripts themselves
-    never write those files.
+    executed by the agent at the user's direction. Archive scripts do not write
+    those files. annotate_primary_cache.py --apply can add native trigger
+    annotations to existing source/hash-verified MEMORY.md or USER.md entries,
+    preserving fact text and creating a protected backup before writing.
 creates_files: true
 modifies_files: true
 has_scripts: true
 scripts:
   - path: core/common.py
     description: Shared helpers
+  - path: core/safe_fs.py
+    description: Shared Python filesystem boundary and atomic writes
+  - path: templates/hook/safe-fs.ts
+    description: Shared TS filesystem boundary; packaged and installed beside handler.ts
   - path: scripts/create.py
     description: Create a cold memory note
+  - path: scripts/annotate_primary_cache.py
+    description: Preview or apply source-bound trigger annotations to existing primary facts
   - path: scripts/validate.py
     description: Validate notes and metadata
   - path: scripts/search.py
@@ -92,3 +162,28 @@ scripts:
     description: Workspace-side runtime probe
   - path: scripts/install_hook.py
     description: Install bundled Hui-Yi hook template
+  - path: scripts/scrub_metadata.py
+    description: Preview or apply legacy session-identifier cleanup
+  - path: core/matching.py
+    description: Shared relevance-gated Chinese and Latin lexical matching
+  - path: scripts/patch_native_memory.py
+    description: Version and SHA-256 guarded native webchat compatibility patch with backup
+  - path: templates/native-memory-plugin/index.mjs
+    description: Persistent private-WebChat adapter; disables recall on unverified runtime upgrades
+  - path: scripts/configure_native_memory.py
+    description: Preview or explicitly apply guarded native automatic-memory integration
+  - path: scripts/smoke_test.py
+    description: Read-only archive validation, search, and scheduler smoke
+
+native_integration:
+  reference: references/native-memory.md
+  runtime_version: 2026.9.5
+  default_scope: webchat_only_external_channels_excluded
+  cross_private_conversation_recall: false
+  background_model_calls: true
+  requires_persistent_version_pinned_adapter: true
+  adapter_conversation_access: explicit_host_grant_for_current_turn_recall
+  adapter_prompt_injection: source_bound_primary_cache_evidence_only
+  optional_diagnostics: counts_only_no_prompt_text_or_raw_identifiers
+  config_backup: required_preserve_source_permissions
+  update_behavior: adapter_skips_unknown_runtime_until_reaudited

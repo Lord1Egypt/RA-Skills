@@ -67,14 +67,14 @@ If pet ever lost, quickly generate:
 
 ## Photo Storage
 
-Store in ~/pets/{pet}/photos/:
+Store in ~/Clawic/data/pets/{pet}/photos/:
 - Original photos user shares
 - Created images with descriptive names
 - Organize by type or date
 
 Example:
 ```
-~/pets/luna/photos/
+~/Clawic/data/pets/luna/photos/
 ├── originals/
 │   └── 2024-01-15-park.jpg
 ├── cards/

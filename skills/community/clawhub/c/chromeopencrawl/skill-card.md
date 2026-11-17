@@ -1,41 +1,58 @@
-## Description: <br>
-Crawl JavaScript-rendered webpages through distributed real Chrome browsers without requiring a local browser installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawl JavaScript-rendered webpages through distributed Chrome browsers without requiring a local browser installation.
 
-## Publisher: <br>
-[hlyylly](https://clawhub.ai/user/hlyylly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hlyylly](https://clawhub.ai/user/hlyylly)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve rendered webpage text, run web searches, and inspect OpenCrawl account or platform status through the OpenCrawl API without installing a local browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default public OpenCrawl endpoint uses plain HTTP, which can expose API keys, crawled URLs, and search queries on the network. <br>
-Mitigation: Use a trusted self-hosted or HTTPS OpenCrawl endpoint, and avoid sending sensitive URLs or queries through the default public endpoint. <br>
-Risk: Crawl results are stored externally before the agent downloads them. <br>
-Mitigation: Treat crawled content as data shared with external infrastructure, and avoid private or regulated pages unless the endpoint and storage controls are trusted. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve rendered webpage text, extract selected page content, run web searches, and check OpenCrawl account or platform status through the OpenCrawl service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hlyylly/chromeopencrawl) <br>
-- [OpenCrawl homepage](https://github.com/hlyylly/OpenCrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from command-line tool execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Crawl output may be returned as extracted text or raw JSON that includes result download metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: API keys and browsing or search targets may be sent to a plaintext HTTP public endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a self-hosted HTTPS OpenCrawl server for normal operation, and do not send API keys or sensitive browsing targets to the public HTTP endpoint.
+
+Risk: Crawled content may be processed by remote workers and stored in R2.
+
+Mitigation: Avoid authenticated, internal, private, or otherwise sensitive pages unless the deployment and storage path have been reviewed.
+
+Risk: The tool trusts server-provided download URLs for crawl results.
+
+Mitigation: Review the service trust boundary before deployment and prefer a controlled self-hosted server for sensitive workloads.
+
+## Reference(s):
+
+- [OpenCrawl project homepage](https://github.com/hlyylly/OpenCrawl)
+- [ClawHub skill page](https://clawhub.ai/hlyylly/skills/chromeopencrawl)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [Plain text for crawled content, JSON for raw crawl/search/balance/status responses, and shell command examples for agent execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENCRAWL_API_KEY and optionally OPENCRAWL_API_URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

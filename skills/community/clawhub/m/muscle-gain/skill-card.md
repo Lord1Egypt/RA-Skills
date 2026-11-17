@@ -1,37 +1,47 @@
-## Description: <br>
-Track muscle building with weight progression, protein tracking, and strength milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track muscle building with weight progression, protein tracking, and strength milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill as fitness journaling guidance to track weight, body measurements, protein intake, strength progression, targets, and progress photos for muscle gain. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill text claims local encrypted storage for training logs and progress photos, but the security evidence warns not to rely on those privacy and encryption claims by default. <br>
-Mitigation: Keep sensitive fitness data and progress photos only in storage locations the user controls and can delete, and verify encryption behavior before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhillin8/muscle-gain) <br>
+## Use Case:
+
+External fitness users can use this skill with an agent to track body weight, measurements, protein intake, strength progression, bulking targets, and progress photos for muscle-gain planning and review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to work with sensitive fitness, body-measurement, nutrition, and progress-photo data while making unsupported local-only and encrypted-storage claims.
+
+Mitigation: Use only data you are comfortable exposing to the surrounding agent environment, and treat privacy or encryption claims as unverified unless separately documented and enforced by the platform.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown text with structured fitness logging prompts and tracking guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or external tool calls are included in the artifact.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text tracking prompts, summaries, trend analysis, reminders, and fitness guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sensitive fitness, body-measurement, nutrition, and progress-photo data supplied to the surrounding agent environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

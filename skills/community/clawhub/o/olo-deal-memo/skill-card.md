@@ -1,42 +1,55 @@
-## Description: <br>
-Investment memorandum generation for M&A - structured deal write-ups from the acquirer's perspective with data-backed analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment memorandum generation for M&A - structured deal write-ups from the acquirer's perspective with data-backed analysis.
 
-## Publisher: <br>
-[aniebyl](https://clawhub.ai/user/aniebyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aniebyl](https://clawhub.ai/user/aniebyl)
 
-## Use Case: <br>
-Deal teams, corporate development users, and investment professionals use this skill to draft structured acquisition memoranda from the acquirer's perspective, covering rationale, diligence findings, valuation, synergies, risks, transaction structure, and recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential diligence materials may be exposed if uploaded documents or web-research prompts are sent outside an approved workspace. <br>
-Mitigation: Keep confidential diligence materials in approved workspaces and review any web-research prompts before sending them externally. <br>
-Risk: Generated financial analysis, valuation outputs, or deal recommendations may be incomplete, incorrect, or unsuitable for investment committee use without review. <br>
-Mitigation: Verify financial figures, assumptions, source support, and recommendations before sharing or using the memo for decisions. <br>
+## Use Case:
 
+Deal teams, corporate development teams, and investment professionals use this skill to draft acquirer-perspective investment committee memoranda that synthesize diligence, market, financial, valuation, synergy, risk, transaction structure, and recommendation analysis.
 
-## Reference(s): <br>
-- [Olo Deal Memo on ClawHub](https://clawhub.ai/aniebyl/olo-deal-memo) <br>
-- [Publisher profile](https://clawhub.ai/user/aniebyl) <br>
-- [OloLand](https://ololand.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Structured investment memorandum content in Markdown, with stated support for PDF, PPTX, and Excel outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates facts, assumptions, and opinions; flags data gaps; expects financial figures and recommendations to be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill may use sensitive deal materials when the agent has access to diligence documents or internal deal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in approved deal workflows with appropriate access controls, and review generated materials before sharing.
+
+Risk: Financial projections, valuations, and deal recommendations can materially affect business decisions if inaccurate or unsupported.
+
+Mitigation: Require human review of assumptions, source support, reconciliations, valuation logic, and final recommendations before relying on outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aniebyl/skills/olo-deal-memo)
+- [Publisher profile](https://clawhub.ai/user/aniebyl)
+- [Author website](https://ololand.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Analysis, Guidance]
+
+**Output Format:** [Markdown, PDF, PPTX, and Excel]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates facts, assumptions, and opinions; flags data gaps; supports financial memo sections and model/sensitivity outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

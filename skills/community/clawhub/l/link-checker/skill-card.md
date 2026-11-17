@@ -1,41 +1,58 @@
-## Description: <br>
-Crawl web pages and detect broken links, redirects, and HTTP errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawl web pages and detect broken links, redirects, and HTTP errors. Use when auditing site links, finding 404 errors, validating URLs before launch.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, site maintainers, and content teams use this skill to audit URLs, scan documents for broken links, review redirect and HTTP error status, and export link-checking reports before or after publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checked URLs are contacted over the network, which can expose private, internal, or token-bearing URLs to remote servers. <br>
-Mitigation: Avoid scanning private files, internal endpoints, or URLs containing secrets unless that exposure is acceptable. <br>
-Risk: Full checked URLs are saved locally in history, reports, and exports under ~/.link-checker. <br>
-Mitigation: Delete local history, reports, or exports after use when URLs are sensitive. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to check individual URLs, scan documents for broken links, batch-check addresses, and export link health reports before or after publishing.
 
-## Reference(s): <br>
-- [BytesAgain](https://bytesagain.com) <br>
-- [Link Checker on ClawHub](https://clawhub.ai/xueyetianya/link-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and text, CSV, JSON, or TXT report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl-based HTTP checks, stores local history and reports under ~/.link-checker, and supports timeout, retry, and user-agent configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can make host-network requests to URLs found in scanned content, including private or internal URLs if provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before scanning, avoid checking private or token-bearing URLs unless intended, and install only in environments where outbound link checks are acceptable.
+
+Risk: The skill persists URL history, reports, exports, and configuration under ~/.link-checker.
+
+Mitigation: Clear ~/.link-checker when URL history should not persist and avoid using sensitive documents as scan inputs.
+
+Risk: Untrusted text could influence what URLs are checked or what configuration changes an agent proposes.
+
+Mitigation: Do not let untrusted content drive configuration changes, and review agent-proposed commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/link-checker)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files]
+
+**Output Format:** [Terminal text with optional TXT, CSV, or JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores check results, history, reports, exports, and configuration under ~/.link-checker.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

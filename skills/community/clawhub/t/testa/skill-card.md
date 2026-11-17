@@ -1,39 +1,54 @@
-## Description: <br>
-Generates comprehensive AIME user behavior analysis reports from user IDs or interaction logs, including interaction patterns, engagement, churn investigation, and service-quality analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates comprehensive AIME user behavior analysis reports from user IDs, interaction logs, and date ranges.
 
-## Publisher: <br>
-[HanYinBingReXue](https://clawhub.ai/user/HanYinBingReXue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanyinbingrexue](https://clawhub.ai/user/hanyinbingrexue)
 
-## Use Case: <br>
-Product analysts and AIME operations teams use this skill to turn per-user AIME Excel logs into behavior, engagement, churn-risk, investment-interest, and service-quality reports. It supports evidence-based review of user needs, market focus, model-response quality, and optimization opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive AIME conversation logs and reproduce detailed user interactions or profiling fields in reports. <br>
-Mitigation: Use only with authorized logs, restrict access to generated reports, redact sensitive personal or account details, and apply retention controls. <br>
-Risk: Generated user profiles and churn or demographic inferences may overstate conclusions from limited conversation evidence. <br>
-Mitigation: Require human review of analytical claims, preserve source timestamps and evidence, and label speculative findings clearly before sharing. <br>
+## Use Case:
 
+Developers, analysts, and product teams use this skill to analyze AIME conversation logs, user engagement, investment interests, service quality, and churn risk. It produces structured reports that support data-driven product and service improvements.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, optional Word documents, JSON data files, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are structured around user behavior, user questions, AIME service analysis, and a translated active-input question list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reports may reproduce sensitive user conversation data and inferred user attributes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized data, prefer redacted or aggregated outputs, and avoid including full raw query logs unless explicitly approved.
+
+Risk: The workflow may require local dependencies and user-provided files.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions and review the skill before installing or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanyinbingrexue/skills/testa)
+- [ClawHub publisher profile](https://clawhub.ai/user/hanyinbingrexue)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Files, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown reports, JSON data files, optional DOCX reports, and inline shell or Python commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include translated user questions, timestamped evidence, behavior summaries, service-quality findings, and model-quality matrices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

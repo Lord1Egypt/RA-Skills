@@ -1,47 +1,60 @@
-## Description: <br>
-Decision rubric for when an LM agent should write and run code for deterministic computation versus reason in natural language for judgment tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision rubric for when an LM agent should write and run code versus reason in natural language by classifying each step as deterministic-computable or judgment-oriented.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers, coder-agent authors, tool-use harness designers, and RAG or evaluation pipeline builders use this skill to decide whether an agent step should execute code for precise computation or stay in prose for judgment. It is most useful for arithmetic, parsing, data transforms, mixed compute-and-summary tasks, and debugging under-coding or over-coding behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence an agent to execute code for precise computations, which can be unsafe for untrusted inputs or unsandboxed REPLs. <br>
-Mitigation: Use sandboxed interpreters for untrusted inputs, and reserve unsandboxed REPL options for trusted local computation. <br>
-Risk: Misrouting a task can produce plausible but wrong prose calculations or unnecessary sandbox calls for judgment tasks. <br>
-Mitigation: Apply the single-verifiable-answer gate per step, decompose mixed tasks, and feed code results back into the agent before presenting the answer. <br>
+## Use Case:
 
+Developers and agent builders use this skill to decide when an agent step should delegate deterministic work such as arithmetic, parsing, sorting, counting, or data transformation to code execution, and when it should remain natural-language reasoning. It also helps diagnose under-coding and over-coding failures in tool-use workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentsope/agentsop-code-execution-decision) <br>
-- [Source evidence map](artifact/references/R1-source-evidence.md) <br>
-- [DSPy modules documentation](https://dspy.ai/learn/programming/modules/) <br>
-- [Program of Thoughts, arXiv 2211.12588](https://arxiv.org/abs/2211.12588) <br>
-- [Program-aided Language Models, arXiv 2211.10435](https://arxiv.org/abs/2211.10435) <br>
-- [OpenAI Code Interpreter documentation](https://platform.openai.com/docs/assistants/tools/code-interpreter) <br>
-- [Anthropic code execution tool documentation](https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/code-execution-tool) <br>
-- [LangChain Python REPL tool documentation](https://python.langchain.com/docs/integrations/tools/python/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with decision steps, routing criteria, and code-execution recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend sandboxed code execution, result capture, and bounded retry when a step has a deterministic, verifiable core.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill encourages code execution for exact computations, which can be unsafe when an agent has access to an unsandboxed runtime or untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pair code execution with a real sandbox and avoid exposing unsandboxed REPL tools to untrusted input.
+
+Risk: Over-coding judgment tasks can add cost and latency without improving correctness.
+
+Mitigation: Use the verifiable-answer gate and avoid sandbox execution for subjective or trivial tasks.
+
+## Reference(s):
+
+- [Source Evidence Map](references/R1-source-evidence.md)
+- [DSPy ProgramOfThought Modules](https://dspy.ai/learn/programming/modules/)
+- [Program of Thoughts](https://arxiv.org/abs/2211.12588)
+- [Program-aided Language Models](https://arxiv.org/abs/2211.10435)
+- [OpenAI Code Interpreter Documentation](https://platform.openai.com/docs/assistants/tools/code-interpreter)
+- [Anthropic Code Execution Tool Documentation](https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/code-execution-tool)
+- [LangChain Python REPL Tool Documentation](https://python.langchain.com/docs/integrations/tools/python)
+- [Aider Code in JSON Reference](https://aider.chat/2024/08/14/code-in-json.html)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with optional code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes each agent step to either code execution or prose reasoning; does not execute code itself.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

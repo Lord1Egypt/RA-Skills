@@ -1,40 +1,48 @@
-## Description: <br>
-Apophenia Guard is a cognitive bias interceptor for debugging sessions that helps agents detect pattern-seeking, red herrings, and confirmation bias during investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apophenia Guard is a cognitive bias interceptor for debugging sessions that detects unsupported pattern-matching, red herrings, and confirmation bias before they steer an investigation.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and debugging agents use this skill to challenge weak hypotheses, surface cognitive traps, and redirect investigations toward observed evidence before spending time on unsupported theories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bias-check interventions may slow or redirect debugging investigations. <br>
-Mitigation: Use the skill when a debugging session needs hypothesis review, especially after prolonged investigation or signs of confirmation bias. <br>
-Risk: Advisory prompts can challenge a correct hypothesis if the available evidence is incomplete. <br>
-Mitigation: Treat interventions as reasoning checks and compare them against observed facts before changing the debugging path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apophenia Guard ClawHub page](https://clawhub.ai/jcools1977/apophenia-guard) <br>
-- [Publisher profile: jcools1977](https://clawhub.ai/user/jcools1977) <br>
+## Use Case:
 
+Developers and engineers use this skill during debugging sessions to identify cognitive traps in their reasoning and receive concrete counter-actions such as inversion, control-case comparison, or restarting from the original symptom.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style advisory text with named traps, triggering evidence, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, data access, external calls, or persistence requested by the reviewed artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may flag a reasoning pattern as biased when the debugging evidence is still incomplete.
+
+Mitigation: Treat interventions as prompts for review, then validate claims against observed logs, tests, and control cases before changing code.
+
+## Reference(s):
+
+- [Apophenia Guard on ClawHub](https://clawhub.ai/jcools1977/skills/apophenia-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown intervention text with structured observations, trap labels, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API calls, code execution, local data access, settings persistence, or environment changes indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

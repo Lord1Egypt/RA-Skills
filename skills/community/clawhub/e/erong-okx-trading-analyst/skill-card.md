@@ -1,46 +1,64 @@
-## Description: <br>
-OKX Trading Analyst fetches OKX cryptocurrency market data, calculates technical indicators, and generates trading signal reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OKX cryptocurrency technical analysis tool that retrieves market data, calculates indicators including moving averages, MACD, RSI, Bollinger Bands, and ATR, and generates trading signals.
 
-## Publisher: <br>
-[erongcao](https://clawhub.ai/user/erongcao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erongcao](https://clawhub.ai/user/erongcao)
 
-## Use Case: <br>
-External users and developers use this skill to analyze OKX cryptocurrency pairs across multiple timeframes, inspect technical indicators, and receive formatted buy, sell, or watch signals. It is an analysis aid and does not place trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags unsafe and under-disclosed local code execution paths. <br>
-Mitigation: Review the included scripts before installation, avoid the Node wrapper unless it is needed and trusted, and prefer running the Python analyzer directly with explicit arguments. <br>
-Risk: The analyzer asks for OKX API credentials and could expose unnecessary account risk if privileged keys are used. <br>
-Mitigation: Use read-only OKX credentials at most, never provide trading or withdrawal permissions, and do not paste secrets into chat. <br>
-Risk: News collection can invoke separate local news integrations that are not fully disclosed by the skill documentation. <br>
-Mitigation: Run with --no-news unless those local news scripts and external news providers have been reviewed and approved. <br>
-Risk: Trading signals and suggested levels can be wrong or misleading in volatile crypto markets. <br>
-Mitigation: Treat output as technical analysis only, verify against current market data, and do not use it as financial advice or automated trading authorization. <br>
+## Use Case:
 
+External users and developers use this skill to analyze cryptocurrency pairs through OKX market data, technical indicators, and generated buy, sell, or hold-style signals. Its output is for market analysis and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erongcao/erong-okx-trading-analyst) <br>
-- [OKX market API base](https://www.okx.com) <br>
-- [NS3 news feed API](https://api.ns3.ai/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console and Markdown-style technical analysis reports with optional Python module output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include price data, indicator values, signal strength, suggested stop and target levels, news summaries, and local state for quick-change checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The server security summary classifies the skill as suspicious because of under-disclosed command execution paths and exchange secret handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the command-execution path before installation and run only vetted local scripts.
+
+Risk: The skill handles OKX API credentials even though market-data analysis should only need read access.
+
+Mitigation: Use read-only OKX credentials, avoid broad exchange permissions, and rotate credentials if they may have been exposed.
+
+Risk: Untrusted symbols or timeframes can increase command-execution risk through wrapper behavior.
+
+Mitigation: Pass only trusted symbols and timeframes, and validate inputs before invoking wrapper scripts.
+
+Risk: Trading signals and technical analysis can be wrong or misleading in volatile cryptocurrency markets.
+
+Mitigation: Treat outputs as informational analysis only and require human review before any trading decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erongcao/skills/erong-okx-trading-analyst)
+- [Publisher profile](https://clawhub.ai/user/erongcao)
+- [OKX API base URL](https://www.okx.com)
+- [NS3 feed API](https://api.ns3.ai/feed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style console reports with trading signal summaries, indicator details, and optional notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require OKX credentials and network access to OKX and news APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,17 @@
 # Video Podcast Maker — Design Guide
 
-> **When to load:** Claude loads this file when working on Step 9 (Remotion composition) or when the user asks about visual design.
+> **When to load:** Load this file when working on Step 9 (Remotion composition) or when the user asks about visual design.
+
+## Contents
+
+- [Visual Design Minimums (MUST follow)](#visual-design-minimums-must-follow) — text sizes, spacing, space utilization, visual richness
+- [Design Philosophy](#design-philosophy)
+- [Animation Safety (MUST follow)](#animation-safety-must-follow)
+- [Quality Checklists (MUST follow)](#quality-checklists-must-follow)
+- [Visual Design Reference (recommended)](#visual-design-reference-recommended)
+- [Animated Backgrounds (SHOULD use)](#animated-backgrounds-should-use)
+- [Section Layout Presets (SHOULD use)](#section-layout-presets-should-use)
+- [Animation Best Practices (SHOULD follow)](#animation-best-practices-should-follow)
 
 ---
 
@@ -44,7 +55,7 @@ Hard constraints for 1080p design space — prevents small text and empty layout
 
 ## Design Philosophy
 
-Templates (`templates/`) are **starting points, not blueprints**. Claude SHOULD customize visual design per video topic:
+Templates (`templates/`) are **starting points, not blueprints**. The agent SHOULD customize visual design per video topic:
 
 - **Color palette**: match the subject (tech → cool blues/grays, food → warm tones, finance → dark/gold)
 - **Section layouts**: create new component arrangements, don't repeat the same layout
@@ -69,6 +80,22 @@ When `user_prefs.visual.theme` is `"dark"`:
 - Text uses white/light colors.
 
 ---
+
+## Animation Safety (MUST follow)
+
+Hard limits to prevent strobing, flicker, and visual fatigue. These apply to every composition regardless of style.
+
+| Rule | Requirement |
+|------|-------------|
+| **Full-screen brightness change** | `opacity` of any full-bleed white/black overlay must NOT exceed `0.30` |
+| **Snap duration** | No light↔dark snap may complete in fewer than `10` frames (~0.33s @ 30fps) |
+| **Section transition flash** | Forbidden by default. Use color pulse (≤0.15 opacity) or simple cut instead. |
+| **Per-beat reveal flash** | If used (e.g. "kinetic flash" effect), peak opacity ≤ `0.15` and decay ≥ `12` frames |
+| **Strobe-frequency animation** | Forbidden. Any flicker faster than 3Hz risks accessibility issues (photosensitive viewers) |
+| **Background pulse** | Color/glow pulses on background layers ≤ `0.15` opacity, period ≥ `2s` |
+| **Text colour inversion** | Don't invert text colour on a flash beat — it disappears against the dark BG once flash decays |
+
+**Why**: full-screen flashes (even at 0.85 opacity for 6 frames) feel like camera-flash strobes when watched repeatedly during edit/preview. Most kinetic-typography references use *type motion* for punch, not background strobes. The visual energy should come from character pop / marker reveal / scale animations, not from the canvas blinking.
 
 ## Quality Checklists (MUST follow)
 
@@ -126,7 +153,7 @@ Thumbnails render at ~300px in feeds. Only bold, oversized elements survive at t
 
 ## Visual Design Reference (recommended)
 
-Production-verified sizes as recommended reference. Claude may adjust freely but MUST NOT go below Minimums.
+Production-verified sizes as recommended reference. The agent may adjust freely but MUST NOT go below Minimums.
 
 ### Typography Scale (1080p design space)
 
@@ -181,6 +208,23 @@ The full [Lucide icon library](https://lucide.dev/icons/) (1500+ icons) is avail
 - Prefer specific icons over generic ones (e.g., `shield-check` over `check` for "security verified")
 - Each card/section in a group should use a **different** icon — never repeat icons in parallel items
 
+### Brand Logos for AI / LLM Topics
+
+When the video topic involves specific AI companies, LLM models, or developer tools, use `@lobehub/icons` for **official brand logos** (OpenAI, Anthropic, Google, Meta, Mistral, Cohere, Hugging Face, LangChain, etc.). Lucide covers generic concepts; lobehub covers the brand mark itself.
+
+**Install (in the Remotion project root, not in `videos/{name}/`):**
+
+```bash
+npm i @lobehub/icons
+```
+
+**Upstream agent guidance:** read https://lobehub.com/icons/skill.md for the current import pattern and component API. The package evolves independently — always check the upstream skill doc rather than relying on cached examples here.
+
+**When to use which:**
+- Concept icon (shield, brain, zap) → Lucide
+- Brand mark (the OpenAI logo, the Claude logo) → lobehub
+- Never use both redundantly for the same item (e.g., a card titled "OpenAI" needs only the lobehub OpenAI mark, not lobehub + Lucide `sparkles`)
+
 ### Layout Patterns (recommended)
 
 | Pattern | Recommended |
@@ -229,7 +273,7 @@ Every section SHOULD include at least one animated background layer for depth. A
 
 ## Section Layout Presets (SHOULD use)
 
-Pre-built layouts from `SectionLayouts.tsx` — Claude SHOULD pick from these before creating custom layouts. Each includes animated backgrounds, proper spacing, and theme integration.
+Pre-built layouts from `SectionLayouts.tsx` — the agent SHOULD pick from these before creating custom layouts. Each includes animated backgrounds, proper spacing, and theme integration.
 
 | Layout | Visual | Best For |
 |--------|--------|----------|
@@ -291,7 +335,7 @@ Plus existing components: `ComparisonCard`, `Timeline`, `CodeBlock`, `QuoteBlock
 
 ### Layout Sequencing Rules (MUST follow)
 
-Claude MUST vary layouts across sections. Follow these rules to prevent visual monotony:
+The agent MUST vary layouts across sections. Follow these rules to prevent visual monotony:
 
 | Rule | Requirement |
 |------|-------------|

@@ -1,45 +1,59 @@
-## Description: <br>
-AgentTrust - Email, file storage, and instant messaging for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentTrust — Email, file storage, and instant messaging for AI agents. Send emails as your-agent@agenttrust.ai, store and share files, and chat with other agents.
 
-## Publisher: <br>
-[agenttrust](https://clawhub.ai/user/agenttrust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenttrust](https://clawhub.ai/user/agenttrust)
 
-## Use Case: <br>
-Developers and operators use this skill to let agents send and receive email, store and share files, and exchange task messages through AgentTrust using a verified identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send or forward email and share files with external recipients. <br>
-Mitigation: Verify recipients and shared file targets, and require approval before sending, forwarding, or sharing sensitive content. <br>
-Risk: The skill requires the AGENTTRUST_API_KEY credential. <br>
-Mitigation: Store the API key securely, avoid exposing it in logs or prompts, and rotate it if disclosure is suspected. <br>
-Risk: Inbound emails, attachments, and agent messages may contain untrusted content. <br>
-Mitigation: Treat inbound content as untrusted and review or sandbox attachments before acting on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent work with AgentTrust email, file storage, and agent-to-agent messaging through a verified identity.
 
-## Reference(s): <br>
-- [AgentTrust API](https://agenttrust.ai) <br>
-- [AgentTrust identity endpoint](https://agenttrust.ai/api/whoami) <br>
-- [ClawHub skill page](https://clawhub.ai/agenttrust/agenttrust) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/agenttrust) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON request and response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTTRUST_API_KEY and may send messages, share files, and retrieve inbound content through the AgentTrust API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The skill enables agents to send or forward email, share files, and communicate with other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user approval before sending, forwarding, sharing files, or opening attachments that may contain private or untrusted content.
+
+Risk: External email recipients or shared files may expose sensitive information if used without review.
+
+Mitigation: Use draft-only workflows for external recipients when review is needed before delivery.
+
+Risk: Downloaded attachments and inline file content may contain untrusted or private data.
+
+Mitigation: Review attachment source and sensitivity before opening, processing, or redistributing file contents.
+
+## Reference(s):
+
+- [AgentTrust API base URL](https://agenttrust.ai)
+- [AgentTrust whoami endpoint](https://agenttrust.ai/api/whoami)
+- [Agenttrust ClawHub skill page](https://clawhub.ai/agenttrust/skills/agenttrust)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTTRUST_API_KEY for authenticated AgentTrust API requests.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

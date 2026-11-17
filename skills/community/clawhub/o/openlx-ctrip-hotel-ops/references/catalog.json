@@ -1,0 +1,229 @@
+{
+  "name": "OpenLX 携程酒店运营助手",
+  "id": "openlx-ctrip-hotel-ops",
+  "website": "https://ctrip.openlx.cn",
+  "features": [
+    {
+      "id": "ADV-01",
+      "public_title": "专属Chrome，登录状态持续复用",
+      "promise": "独立Chrome配置文件、门店身份核对、会话失效提醒与人工续登。",
+      "legacy_coverage": "登录与账号",
+      "minimum_acceptance": [
+        "复用有效登录态，不承诺永久在线",
+        "不使用日常Chrome默认Profile，不上传Cookie",
+        "同一门店同一时刻只允许一个写执行器"
+      ]
+    },
+    {
+      "id": "ADV-02",
+      "public_title": "全店深度体检，先找真正的问题",
+      "promise": "资料、房型、房态、价格、订单、活动、点评一起检查，按影响和可执行性排优先级。",
+      "legacy_coverage": "经营体检",
+      "minimum_acceptance": [
+        "免费版完整显示已发现的问题和整改建议",
+        "缺失数据标注未知，不按零分或正常处理",
+        "评分明确是OpenLX内部诊断，不是携程官方评分"
+      ]
+    },
+    {
+      "id": "ADV-03",
+      "public_title": "完善门店资料，把特色变成卖点",
+      "promise": "酒店介绍、设施政策、房型文字、主图和图片顺序形成改良清单。",
+      "legacy_coverage": "酒店信息优化",
+      "minimum_acceptance": [
+        "只使用已核实设施与服务，不编造停车或接送等权益",
+        "支持修改前后对照与确认后执行",
+        "无法自动修改的字段给出位置和具体操作说明"
+      ]
+    },
+    {
+      "id": "ADV-04",
+      "public_title": "房型套餐与活动算账，看清实际到手",
+      "promise": "诊断早餐、取消政策、连住套餐、附加产品和优惠叠加，避免卖得多却赚得少。",
+      "legacy_coverage": "房型产品优化；营销活动",
+      "minimum_acceptance": [
+        "区分商家承担和平台承担的补贴",
+        "佣金基数和叠加规则不明时明确无法精算",
+        "有费用或新增承诺的活动不得未经授权自动报名"
+      ]
+    },
+    {
+      "id": "ADV-05",
+      "public_title": "房态巡检与策略，减少漏卖和超卖风险",
+      "promise": "检查未来房态、渠道库存、开关房和异常日期，按库存权威来源形成策略。",
+      "legacy_coverage": "房态管理",
+      "minimum_acceptance": [
+        "未接入PMS不得把携程库存当全店库存",
+        "维护房、自用房、渠道配额分别记录",
+        "无可靠权威库存不自动开房或接需承诺库存的订单"
+      ]
+    },
+    {
+      "id": "ADV-06",
+      "public_title": "有依据地调价，不做盲目降价机器人",
+      "promise": "结合本店预订进度、价格底线、可比同行、需求事件输出可解释的价格建议。",
+      "legacy_coverage": "房价管理；收益管理",
+      "minimum_acceptance": [
+        "标准版具备基础规则自动调价，至尊版具备多信号策略",
+        "底价、上下限、单次幅度、每日累计幅度和频次均可控",
+        "执行前重读、执行后回读，异常只暂停相关写任务"
+      ]
+    },
+    {
+      "id": "ADV-07",
+      "public_title": "锁定真正同行，持续跟踪可比价格",
+      "promise": "建立并维护竞争酒店集合，同日期、同权益、同条件对比和追踪。",
+      "legacy_coverage": "竞品监控",
+      "minimum_acceptance": [
+        "免费版保留手动比价能力；默认5家归属ADVISORY，销售前可说明理由调整。",
+        "记录入住离店、人数、早餐、取消、税费、优惠和采样时间",
+        "售罄、无权限、网络失败与未采到必须区分"
+      ],
+      "clarification_ref": "R01"
+    },
+    {
+      "id": "ADV-08",
+      "public_title": "跟着节日和周边需求提前做准备",
+      "promise": "节假日、演唱会、展会、考试、节庆及天气等形成需求日历和行动提示。",
+      "legacy_coverage": "需求信号扩展",
+      "minimum_acceptance": [
+        "每个事件保留来源、地点、日期和核验时间",
+        "没有实际数据不编造搜索增长百分比或需求指数",
+        "未经验证的事件只用于建议，不单独触发自动涨价"
+      ]
+    },
+    {
+      "id": "ADV-09",
+      "public_title": "订单异常提醒，生成今日接待清单",
+      "promise": "新单、取消、临近入住、连住、多房、接送和特殊要求形成运营任务。",
+      "legacy_coverage": "订单运营",
+      "minimum_acceptance": [
+        "接单与确认库存承诺分开",
+        "未接入全渠道库存时以提醒和人工确认接单为主",
+        "取消、退款、拒单及赔偿不默认自动执行"
+      ]
+    },
+    {
+      "id": "ADV-10",
+      "public_title": "好评自动回，差评先确认",
+      "promise": "基于真实点评、门店事实和口吻生成商家回复，同时提炼服务整改建议。",
+      "legacy_coverage": "点评与口碑",
+      "minimum_acceptance": [
+        "所有版本均可在授权后自动回复明确正向点评",
+        "任何差评、混合评价、争议和事实不明内容必须人工确认",
+        "五星含投诉也进入待确认，不冒充客人制造好评"
+      ]
+    },
+    {
+      "id": "ADV-11",
+      "public_title": "素材放进文件夹，持续产出携程笔记",
+      "promise": "至尊版读取授权素材，自动策划、写作、配图、搜索优化和发布；包年增加人设蒸馏。",
+      "legacy_coverage": "内容获客扩展",
+      "minimum_acceptance": [
+        "按现行携程笔记/图文入口开发，不开发已停运旧游记写入",
+        "至尊版自动发布必须完成目标账户授权和真实验证",
+        "包年人设蒸馏有结构化交付物且进入写作链路"
+      ]
+    },
+    {
+      "id": "ADV-12",
+      "public_title": "HTML运营报告，建议落实后继续复盘",
+      "promise": "从问题证据、动作清单到执行结果和趋势形成经营闭环；付费报告去推广署名。",
+      "legacy_coverage": "HTML报告；行动记录",
+      "minimum_acceptance": [
+        "免费版报告内容完整，不用付费遮挡已发现的风险",
+        "标准与至尊报告无OpenLX/法匠推广水印或可见推广署名",
+        "所有版本均保留证据来源、数据口径和必要标识"
+      ]
+    }
+  ],
+  "plans": {
+    "FREE": {
+      "display_name": "免费版",
+      "monthly_fen": 0,
+      "quarterly_fen": 0,
+      "annual_fen": 0,
+      "report_branding": "OPENLX_FAJIANG_VISIBLE_FOOTER",
+      "competitor_tracking": "MANUAL",
+      "confirmed_manual_operations": true,
+      "basic_automatic_pricing": false,
+      "advanced_automatic_pricing": false,
+      "content_autopublish": false,
+      "human_support": "SELF_SERVICE"
+    },
+    "STANDARD": {
+      "display_name": "标准版",
+      "monthly_fen": 1990,
+      "quarterly_fen": 3990,
+      "annual_fen": 9990,
+      "report_branding": "NO_PROMOTIONAL_BRANDING",
+      "basic_automatic_pricing": true,
+      "advanced_automatic_pricing": false,
+      "content_autopublish": false,
+      "human_support": "PRODUCT_ISSUE_TICKETS"
+    },
+    "SUPREME": {
+      "display_name": "至尊版",
+      "monthly_fen": 6990,
+      "quarterly_fen": 12990,
+      "annual_fen": 39999,
+      "report_branding": "NO_PROMOTIONAL_BRANDING",
+      "basic_automatic_pricing": true,
+      "advanced_automatic_pricing": true,
+      "automatic_inventory_requires_authoritative_source": true,
+      "content_autopublish": true,
+      "content_limit_note": "候选不是发布保底；按用户授权、账户能力、素材和平台限制执行。",
+      "initial_custom_service": {
+        "strategy_card": 1,
+        "text_revision": 1,
+        "redemption": "首次激活单店权益后首12个月一次；月/季续费不重复重置。"
+      },
+      "annual_persona_distillation": {
+        "per_paid_service_year": 1,
+        "revisions": 1,
+        "deliverables": [
+          "人物/品牌定位",
+          "语言风格",
+          "客群与场景",
+          "真实卖点库",
+          "内容禁区",
+          "30天选题",
+          "3篇示范稿",
+          "可复用配置"
+        ]
+      }
+    }
+  },
+  "defaults": {
+    "FREE": {
+      "compset_hotels": 5,
+      "competitor_date_samples_per_scan": 3,
+      "own_inventory_audit_horizon_days": 90
+    },
+    "STANDARD": {
+      "compset_hotels": 10,
+      "competitor_tracking_horizon_days": 30,
+      "competitor_date_samples_per_scan": 7,
+      "competitor_scan_windows_per_day": 2,
+      "own_inventory_audit_horizon_days": 90
+    },
+    "SUPREME": {
+      "compset_hotels": 20,
+      "competitor_tracking_horizon_days": 90,
+      "competitor_date_samples_per_scan": 7,
+      "competitor_scan_windows_per_day": 4,
+      "own_inventory_audit_horizon_days": 90,
+      "content_daily_candidate_limit": 1,
+      "content_monthly_candidate_limit": 31,
+      "remote_minutes": 30
+    }
+  },
+  "version": "0.1.1",
+  "commercial_modes": [
+    "FREE",
+    "PAID"
+  ],
+  "trial": false,
+  "coupons": false,
+  "vouchers": false
+}

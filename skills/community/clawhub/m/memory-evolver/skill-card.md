@@ -1,44 +1,57 @@
-## Description: <br>
-Memory Evolver helps agents diagnose local OpenClaw memory files, generate optimization plans, and maintain an optimization history for a three-layer memory workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Evolver diagnoses an OpenClaw three-layer memory setup, generates prioritized optimization plans, and records memory-system optimization cycles.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect and improve a local OpenClaw memory workspace by checking MEMORY.md, PROJECTS.md, daily logs, and knowledge graph state, then recording optimization cycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local OpenClaw memory and project files. <br>
-Mitigation: Back up important memory files before running it and review generated optimization log entries before relying on them. <br>
-Risk: The packaged script uses a hard-coded Administrator workspace path. <br>
-Mitigation: Confirm or adjust the workspace path for the target environment before execution. <br>
-Risk: The daily cron schedule can repeatedly modify local optimization history. <br>
-Mitigation: Enable scheduled execution only deliberately and monitor the first runs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect OpenClaw memory files, identify missing or thin memory artifacts, produce prioritized improvement guidance, and append an optimization-cycle log for a workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horizoncove/memory-evolver) <br>
-- [Publisher profile](https://clawhub.ai/user/horizoncove) <br>
-- [Packaged skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-oriented console text and optimization log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes an optimization log in the configured local OpenClaw memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill reads OpenClaw memory and project files from a hard-coded Administrator workspace path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a confirmed workspace and review or adjust the configured paths before installation or execution.
+
+Risk: The skill can write an optimization log to persistent memory and its documentation encourages scheduled unattended runs.
+
+Mitigation: Run it manually first, review the log output, and enable cron scheduling only after path scope and write behavior are accepted.
+
+Risk: The optimization log can report actions as completed without actually changing the underlying memory files.
+
+Mitigation: Treat the log as advisory and verify any claimed memory improvements before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horizoncove/skills/memory-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text with Markdown log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes an optimization log under the configured OpenClaw memory directory; generated plans should be treated as advisory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact config.json and SKILL.md state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

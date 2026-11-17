@@ -1,43 +1,56 @@
-## Description: <br>
-公文格式排版工具，将 doc/docx/wps/txt/md 文档按照公文排版习惯自动格式化，输出标准 docx。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats Chinese official documents from DOCX, DOC, WPS, TXT, and Markdown files and produces standardized DOCX output.
 
-## Publisher: <br>
-[cwyalpha](https://clawhub.ai/user/cwyalpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwyalpha](https://clawhub.ai/user/cwyalpha)
 
-## Use Case: <br>
-Developers, staff, and document operations users use this skill to format Chinese official documents, normalize headings, page layout, fonts, line spacing, attachments, tables, and batch document outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recursively read and process folders passed by the user, which may include more private documents than intended. <br>
-Mitigation: Pass only the specific files or narrow folders intended for formatting, and avoid broad private directories unless recursive processing is desired. <br>
-Risk: Generated DOCX files may not preserve every layout detail, especially for legacy Office or WPS inputs that require local Office or LibreOffice conversion. <br>
-Mitigation: Review generated documents before relying on them, with extra attention to titles, headings, attachments, page numbers, tables, and automatic numbering. <br>
+## Use Case:
 
+People preparing Chinese official documents can use this agent to standardize document layout, heading levels, typography, page settings, attachments, and batch conversions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cwyalpha/doc-format) <br>
-- [CLI Reference](artifact/references/cli-reference.md) <br>
-- [Config Reference](artifact/references/config-reference.md) <br>
-- [Formatting Rules](artifact/references/formatting-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated DOCX files and optional JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces formatted DOCX copies from explicitly provided input files or folders; successful output paths are printed to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The security summary reports that the skill may automatically accept tracked edits beyond formatting, which could change document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review tracked changes and compare the formatted copy with the source before relying on its content.
+
+Risk: The security summary flags opening untrusted legacy documents without disabling macros.
+
+Mitigation: Only process legacy documents from trusted sources, and disable macros when opening them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/cwyalpha/skills/doc-format)
+- [CLI Reference](artifact/references/cli-reference.md)
+- [Config Reference](artifact/references/config-reference.md)
+- [Formatting Rules](artifact/references/formatting-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Guidance, Configuration instructions]
+
+**Output Format:** [DOCX documents, with Markdown or shell-command guidance when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes formatted copies; supports single files and recursive batch processing, with configurable formatting and output locations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Bridges the WristClaw watch and OpenClaw agent by recognizing pairing payloads, registering the native WristClaw OpenClaw channel after explicit user confirmation, and keeping replies concise for the watch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridges the WristClaw watch and OpenClaw agent by recognizing pairing payloads, registering the native WristClaw channel after explicit confirmation, and keeping replies concise for the watch.
 
-## Publisher: <br>
-[salam](https://clawhub.ai/user/salam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[salam](https://clawhub.ai/user/salam)
 
-## Use Case: <br>
-External users and developers use this skill to pair an Apple Watch through WristClaw with an OpenClaw agent, then receive concise text, audio, and small-image replies for watch-originated requests. It also guides safe pairing, channel registration, reply formatting, local watch actions, and revocation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates an ongoing smartwatch control channel to the agent. <br>
-Mitigation: Require explicit confirmation before pairing, approve only payloads from a trusted account, bind the watch public key, and remove the channel when access is no longer wanted. <br>
-Risk: The external plugin, relay, or fallback installer could be inappropriate for a user's trust boundary. <br>
-Mitigation: Prefer the npm install path, inspect any fetched shell installer before execution, and use only relays the user trusts. <br>
-Risk: Watch-originated requests can touch sensitive or destructive agent capabilities. <br>
-Mitigation: Require explicit confirmation for destructive actions, limit sensitive reads to user-requested scope, and avoid live location lookups unless the request needs them. <br>
+## Use Case:
 
+External users and developers use WristClaw to pair an Apple Watch with an OpenClaw agent so watch-originated requests can be answered through a concise encrypted channel.
 
-## Reference(s): <br>
-- [WristClaw homepage](https://wristclaw.app) <br>
-- [ClawHub skill listing](https://clawhub.ai/salam/wristclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent replies on the watch are intended to be short plain text, with optional audio and small image delivery through the WristClaw channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata; artifact frontmatter reports 0.2.0) <br>
+Risk: A paired watch receives ongoing broad access to the OpenClaw agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, require explicit pairing confirmation, and revoke the channel with the documented remove command when no longer needed.
+
+Risk: The release installs a high-impact external plugin through mutable or unpinned paths.
+
+Mitigation: Prefer an exact audited package version, verify the package or release hash before global installation, and inspect the shell installer before running it.
+
+Risk: Custom relay URLs can change the trust boundary for session routing.
+
+Mitigation: Use the default allowlisted relay unless the user explicitly approves a custom relay.
+
+## Reference(s):
+
+- [WristClaw ClawHub listing](https://clawhub.ai/salam/skills/wristclaw)
+- [WristClaw homepage](https://wristclaw.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text guidance with shell commands and channel configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Watch-facing replies are expected to be concise plain text; the channel may carry text, audio, and small images.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

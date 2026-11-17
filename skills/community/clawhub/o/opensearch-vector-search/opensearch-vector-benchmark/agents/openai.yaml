@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenSearch Vector Benchmark"
+  short_description: "Plan reproducible OpenSearch vector benchmarks"
+  default_prompt: "Use $opensearch-vector-benchmark to plan a reproducible VectorDBBench run for my OpenSearch deployment."

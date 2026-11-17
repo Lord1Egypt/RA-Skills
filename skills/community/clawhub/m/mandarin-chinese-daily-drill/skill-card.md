@@ -1,39 +1,53 @@
-## Description: <br>
-Generates personalized Mandarin Chinese practice sessions by HSK level, covering vocabulary, grammar, characters, tones, reading, and speaking prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalised Mandarin Chinese practice session based on HSK level, covering vocabulary, grammar, characters, tones, reading, and speaking prompts.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-Mandarin learners and HSK students use this skill to generate a structured daily practice session tailored to their level. It supports vocabulary, grammar, character study, tone practice, reading, speaking prompts, quizzes, and a short cultural note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An optional memory setting could preserve an outdated HSK level across future sessions. <br>
-Mitigation: Use persistent memory only when the user wants it, and update or remove the stored level when their proficiency changes. <br>
+## Use Case:
 
+External Mandarin learners and HSK students use this skill to generate structured daily practice sessions with vocabulary, grammar, character study, tones, reading, speaking prompts, quizzes, and cultural notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/mandarin-chinese-daily-drill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tetsuakira-vk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown study session with Chinese text, pinyin, translations, prompts, and quiz answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include simplified Chinese characters, pinyin with tone marks, translations, memory tips, and quiz answer keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated Mandarin practice content may contain mistakes or become misleading for exam-critical study.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review important vocabulary, grammar, pronunciation, and HSK preparation guidance against trusted learning materials or an instructor.
+
+Risk: Installing the skill with a floating npx installer version can increase supply-chain exposure.
+
+Mitigation: Install from a trusted registry, avoid administrator privileges, and pin the installer version where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/mandarin-chinese-daily-drill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown practice session with Chinese text, pinyin, English explanations, prompts, and quiz answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Personalized by HSK level; fresh vocabulary, characters, and grammar are requested within a conversation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

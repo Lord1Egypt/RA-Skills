@@ -1,27 +1,33 @@
 {
   "_defaults": {
-    "full_front": {"width_ratio": 0.50, "x_center_ratio": 0.50, "y_top_ratio": 0.22, "rotation_deg": 0},
-    "left_chest": {"width_ratio": 0.14, "x_center_ratio": 0.33, "y_top_ratio": 0.22, "rotation_deg": 0},
-    "right_chest": {"width_ratio": 0.14, "x_center_ratio": 0.67, "y_top_ratio": 0.22, "rotation_deg": 0},
-    "full_back": {"width_ratio": 0.50, "x_center_ratio": 0.50, "y_top_ratio": 0.18, "rotation_deg": 0},
-    "back_yoke": {"width_ratio": 0.44, "x_center_ratio": 0.50, "y_top_ratio": 0.10, "rotation_deg": 0},
-    "sleeve": {"width_ratio": 0.14, "x_center_ratio": 0.10, "y_top_ratio": 0.30, "rotation_deg": 0},
-    "front": {"width_ratio": 0.40, "x_center_ratio": 0.50, "y_top_ratio": 0.35, "rotation_deg": 0}
+    "full_front": {"width_ratio": 0.5, "x_center_ratio": 0.5, "y_top_ratio": 0.22, "rotation_deg": 0, "side_pad_ratio": 0.06},
+    "left_chest": {"width_ratio": 0.14, "x_center_ratio": 0.65, "y_top_ratio": 0.24, "rotation_deg": 0},
+    "right_chest": {"width_ratio": 0.14, "x_center_ratio": 0.35, "y_top_ratio": 0.24, "rotation_deg": 0},
+    "full_back": {"width_ratio": 0.5, "x_center_ratio": 0.5, "y_top_ratio": 0.18, "rotation_deg": 0},
+    "back_yoke": {"width_ratio": 0.44, "x_center_ratio": 0.5, "y_top_ratio": 0.1, "rotation_deg": 0},
+    "front": {"width_ratio": 0.4, "x_center_ratio": 0.5, "y_top_ratio": 0.35, "rotation_deg": 0},
+    "center_chest": {"width_ratio": 0.2, "x_center_ratio": 0.5, "y_top_ratio": 0.24, "rotation_deg": 0},
+    "left_sleeve": {"width_ratio": 0.09, "x_center_ratio": 0.9, "y_top_ratio": 0.24, "rotation_deg": 0},
+    "right_sleeve": {"width_ratio": 0.09, "x_center_ratio": 0.1, "y_top_ratio": 0.24, "rotation_deg": 0},
+    "left_leg": {"width_ratio": 0.2, "x_center_ratio": 0.73, "y_top_ratio": 0.58, "rotation_deg": 0, "max_height_ratio": 0.22},
+    "right_leg": {"width_ratio": 0.2, "x_center_ratio": 0.27, "y_top_ratio": 0.58, "rotation_deg": 0, "max_height_ratio": 0.22}
   },
   "hoodie": {
-    "full_front": {"width_ratio": 0.55, "x_center_ratio": 0.50, "y_top_ratio": 0.22, "rotation_deg": 0, "max_height_ratio": 0.33},
-    "left_chest": {"width_ratio": 0.15, "x_center_ratio": 0.33, "y_top_ratio": 0.22, "rotation_deg": 0},
-    "full_back": {"width_ratio": 0.55, "x_center_ratio": 0.50, "y_top_ratio": 0.18, "rotation_deg": 0}
+    "full_front": {"width_ratio": 0.55, "x_center_ratio": 0.5, "y_top_ratio": 0.22, "rotation_deg": 0, "max_height_ratio": 0.33, "side_pad_ratio": 0.06},
+    "left_chest": {"width_ratio": 0.15, "x_center_ratio": 0.67, "y_top_ratio": 0.4, "rotation_deg": 0},
+    "full_back": {"width_ratio": 0.55, "x_center_ratio": 0.5, "y_top_ratio": 0.18, "rotation_deg": 0},
+    "right_chest": {"width_ratio": 0.15, "x_center_ratio": 0.33, "y_top_ratio": 0.4, "rotation_deg": 0}
   },
   "tee": {
-    "full_front": {"width_ratio": 0.50, "x_center_ratio": 0.50, "y_top_ratio": 0.20, "rotation_deg": 0},
-    "left_chest": {"width_ratio": 0.14, "x_center_ratio": 0.33, "y_top_ratio": 0.20, "rotation_deg": 0},
-    "full_back": {"width_ratio": 0.50, "x_center_ratio": 0.50, "y_top_ratio": 0.15, "rotation_deg": 0}
+    "full_front": {"width_ratio": 0.5, "x_center_ratio": 0.5, "y_top_ratio": 0.2, "rotation_deg": 0, "side_pad_ratio": 0.06},
+    "left_chest": {"width_ratio": 0.14, "x_center_ratio": 0.65, "y_top_ratio": 0.22, "rotation_deg": 0},
+    "full_back": {"width_ratio": 0.5, "x_center_ratio": 0.5, "y_top_ratio": 0.15, "rotation_deg": 0},
+    "right_chest": {"width_ratio": 0.14, "x_center_ratio": 0.35, "y_top_ratio": 0.22, "rotation_deg": 0}
   },
   "hat": {
-    "front": {"width_ratio": 0.35, "x_center_ratio": 0.50, "y_top_ratio": 0.40, "rotation_deg": 0}
+    "front": {"width_ratio": 0.35, "x_center_ratio": 0.5, "y_top_ratio": 0.4, "rotation_deg": 0}
   },
   "mug": {
-    "front": {"width_ratio": 0.40, "x_center_ratio": 0.50, "y_top_ratio": 0.30, "rotation_deg": 0}
+    "front": {"width_ratio": 0.4, "x_center_ratio": 0.5, "y_top_ratio": 0.3, "rotation_deg": 0}
   }
 }

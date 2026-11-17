@@ -1,0 +1,2496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>厨房战争：红色警戒</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#07080c;color:#d8d8e0;font-family:'Consolas','Microsoft YaHei',sans-serif;overflow:hidden;user-select:none;display:flex;align-items:center;justify-content:center}
+#wrap{display:flex;position:relative;transform-origin:center center}
+#gameWrap{position:relative}
+#gameCanvas{display:block;cursor:default;background:#0a0c10}
+/* ===== Red Alert style chrome ===== */
+#sidebar{width:210px;height:648px;background:linear-gradient(180deg,#26262e,#16161c);border-left:2px solid #4a4a55;display:flex;flex-direction:column;box-shadow:-3px 0 12px rgba(0,0,0,0.6)}
+#radarWrap{padding:6px 6px 5px;border-bottom:2px solid #0c0c10;background:linear-gradient(180deg,#2a2a34,#1a1a22);position:relative}
+#radarTit{color:#f0c84a;font-size:11px;font-weight:bold;margin-bottom:4px;letter-spacing:3px;text-shadow:0 0 6px rgba(240,200,74,0.4);text-align:center;font-family:'Microsoft YaHei',sans-serif}
+#radar{background:#05070a;border:2px solid #0a0a0c;display:block;cursor:crosshair;box-shadow:inset 0 0 14px rgba(0,0,0,0.8),0 0 6px rgba(80,120,200,0.25)}
+#stats{padding:6px 9px;border-bottom:2px solid #0c0c10;font-size:12px;background:linear-gradient(180deg,#1e1e26,#14141a)}
+.cashRow{display:flex;justify-content:space-between;align-items:baseline}
+.cashLbl{color:#8a8a9a;font-size:11px}
+.cash{color:#9ad24a;font-weight:bold;font-size:15px;text-shadow:0 0 5px rgba(120,200,60,0.4)}
+.powLow{color:#e0402a !important}
+.powOk{color:#9ad24a}
+#powerBar{height:7px;background:#1a0808;margin-top:4px;border:1px solid #000;box-shadow:inset 0 0 3px rgba(0,0,0,0.8)}
+#powerFill{height:100%;transition:width .3s,background .3s;background:#3a8a2a}
+#superWrap{margin-top:7px;border:1px solid #3a3a44;background:linear-gradient(180deg,#221a12,#15100a);padding:4px 5px}
+#superWrap .sTitle{font-size:10px;color:#f0c84a;letter-spacing:1px;display:flex;justify-content:space-between}
+#superBtn{margin-top:3px;width:100%;padding:5px 2px;font-size:11px;font-weight:bold;cursor:pointer;color:#1a1208;background:linear-gradient(180deg,#f0c84a,#c89a20);border:1px solid #8a6a10;text-shadow:0 1px 0 rgba(255,255,255,0.3);border-radius:2px}
+#superBtn:disabled{background:#2a2a30;color:#666;border-color:#1a1a20;cursor:not-allowed;text-shadow:none}
+#superBtn.ready{animation:superPulse .8s infinite alternate}
+@keyframes superPulse{from{box-shadow:0 0 4px rgba(240,200,74,0.4)}to{box-shadow:0 0 14px rgba(240,200,74,0.9)}}
+#superBar{height:5px;background:#100a04;margin-top:3px;border:1px solid #000}
+#superFill{height:100%;width:0;background:linear-gradient(90deg,#c89a20,#f0c84a)}
+#tabs{display:flex;border-bottom:2px solid #0c0c10;background:#0e0e12}
+.tab{flex:1;padding:7px 2px;text-align:center;font-size:11px;cursor:pointer;background:linear-gradient(180deg,#1c1c24,#121218);border-right:1px solid #0c0c10;color:#9a9aa8;transition:all .12s;font-weight:bold}
+.tab:last-child{border-right:none}
+.tab:hover{background:#2a2a36;color:#e8e8f0}
+.tab.active{background:linear-gradient(180deg,#3a2a10,#241808);color:#f0c84a;border-bottom:2px solid #f0c84a;box-shadow:inset 0 2px 6px rgba(240,200,74,0.15)}
+#buildGrid{flex:1;padding:4px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start;background:linear-gradient(180deg,#16161c,#101016)}
+.buildBtn{width:calc(50% - 2px);padding:4px 2px 5px;font-size:10px;text-align:center;background:linear-gradient(180deg,#2a2a32,#1c1c22);border:1px solid #3a3a46;border-radius:3px;cursor:pointer;color:#cfcfd8;transition:all .1s;min-height:54px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,0.06)}
+.buildBtn:hover:not(.disabled){background:linear-gradient(180deg,#33333e,#22222a);border-color:#6a6a8a;color:#fff;box-shadow:0 0 8px rgba(150,150,220,0.25)}
+.buildBtn.disabled{opacity:.5;cursor:not-allowed;background:linear-gradient(180deg,#241a1a,#181010);border-color:#4a2a2a;color:#9a8080}
+.buildBtn.placing{background:linear-gradient(180deg,#1a3a1a,#0f220f);border-color:#5aff5a;color:#5aff5a;box-shadow:0 0 10px rgba(90,255,90,0.4);animation:placingPulse .9s infinite alternate}
+@keyframes placingPulse{from{box-shadow:0 0 5px rgba(90,255,90,0.3)}to{box-shadow:0 0 16px rgba(90,255,90,0.75)}}
+.buildBtn .ic{font-size:22px;line-height:26px;height:26px;filter:drop-shadow(0 1px 1px rgba(0,0,0,0.6))}
+.buildBtn .nm{font-weight:bold;font-size:11px;pointer-events:none;margin-top:1px}
+.buildBtn .cost{display:block;color:#9ad24a;font-size:9px;margin-top:1px}
+.buildBtn.disabled .cost{color:#a66}
+.buildBtn .req{display:block;color:#ff9a40;font-size:8px;margin-top:1px;line-height:1.1;font-weight:bold}
+.buildBtn .prog{position:absolute;bottom:0;left:0;height:3px;background:#f0c84a;box-shadow:0 0 4px rgba(240,200,74,0.6);transition:width .15s}
+#bldActions{min-height:0;display:none;border-bottom:2px solid #0c0c10;background:linear-gradient(180deg,#221a12,#15100a);padding:4px}
+#bldActions .baBtn{flex:1;padding:5px 2px;font-size:11px;font-weight:bold;cursor:pointer;border-radius:2px;text-align:center}
+#bldActions .rep{background:linear-gradient(180deg,#2a4a2a,#163016);color:#9ad24a;border:1px solid #2a5a2a}
+#bldActions .rep.on{background:linear-gradient(180deg,#4a7a3a,#2a501a);box-shadow:0 0 8px rgba(120,220,80,0.5)}
+#bldActions .sell{background:linear-gradient(180deg,#4a2a2a,#301616);color:#e08060;border:1px solid #5a2a2a}
+#bldActions .row{display:flex;gap:4px}
+#queueArea{min-height:30px;border-top:1px solid #0c0c10;border-bottom:1px solid #0c0c10;padding:4px;display:flex;gap:3px;flex-wrap:wrap;background:#101016}
+.queueItem{width:26px;height:26px;background:#1a1a24;border:1px solid #3a3a4a;font-size:9px;display:flex;align-items:center;justify-content:center;position:relative;border-radius:2px;color:#cfcfd8}
+.queueItem .qprog{position:absolute;bottom:0;left:0;height:3px;background:#f0c84a;box-shadow:0 0 3px rgba(240,200,74,0.5)}
+#selInfo{padding:6px 9px;font-size:11px;min-height:46px;color:#9a9aa8;background:linear-gradient(180deg,#14141a,#0e0e12)}
+#selInfo .selname{color:#f0c84a;font-weight:bold;font-size:12px}
+#menuOverlay{position:absolute;top:0;left:0;width:970px;height:648px;background:radial-gradient(ellipse at center,#101018,#000);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10}
+#menuOverlay h1{color:#e23b3b;font-size:40px;margin-bottom:6px;text-shadow:0 0 24px #500,3px 3px 0 #300;letter-spacing:4px;font-family:'Microsoft YaHei',sans-serif}
+#menuOverlay .sub{color:#888;margin-bottom:18px;font-size:13px;max-width:520px;text-align:center;line-height:1.7}
+.selRow{display:flex;gap:8px;margin:6px 0;align-items:center}
+.selRow .lbl{color:#f0c84a;font-size:12px;width:46px;text-align:right;letter-spacing:1px}
+.opt{padding:7px 16px;font-size:13px;cursor:pointer;background:#1a1a26;color:#aaa;border:1px solid #3a3a5a;border-radius:3px;transition:all .12s}
+.opt:hover{background:#2a2a3e;border-color:#6a6aff;color:#fff}
+.opt.sel{background:#3a2a10;color:#f0c84a;border-color:#f0c84a;box-shadow:0 0 8px rgba(240,200,74,0.3)}
+#startBtn{margin-top:18px;padding:12px 54px;font-size:18px;font-weight:bold;cursor:pointer;background:linear-gradient(180deg,#e23b3b,#a01818);color:#fff;border:1px solid #f06060;border-radius:4px;letter-spacing:4px;box-shadow:0 0 18px rgba(226,59,59,0.4);font-family:'Microsoft YaHei',sans-serif}
+#startBtn:hover{background:linear-gradient(180deg,#f04040,#b81818);box-shadow:0 0 26px rgba(226,59,59,0.7)}
+#notifs{position:absolute;top:6px;left:8px;pointer-events:none;max-width:60%}
+.notif{background:rgba(10,10,16,.82);color:#9ad24a;padding:4px 11px;font-size:12px;margin:2px 0;border-left:3px solid #9ad24a;animation:notifIn .3s;font-family:'Microsoft YaHei',sans-serif;text-shadow:0 0 4px rgba(120,200,60,0.3)}
+.notif.warn{color:#f0a040;border-color:#f0a040}
+.notif.danger{color:#e23b3b;border-color:#e23b3b;text-shadow:0 0 4px rgba(226,59,59,0.4)}
+.notif.eva{color:#f0c84a;border-color:#f0c84a}
+@keyframes notifIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1}}
+#helpBar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(10,10,16,.4),rgba(10,10,16,.85));color:#7a7a8a;font-size:10px;padding:3px 8px;display:flex;justify-content:space-between;font-family:'Microsoft YaHei',sans-serif}
+#helpBar b{color:#9ad24a}
+#gameOverScreen{position:absolute;top:0;left:0;width:760px;height:648px;background:rgba(0,0,0,.88);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:5}
+#gameOverScreen h2{font-size:40px;margin-bottom:10px;letter-spacing:6px;font-family:'Microsoft YaHei',sans-serif}
+#gameOverScreen p{color:#aaa;font-size:14px}
+#gameOverScreen button{margin-top:18px;padding:10px 36px;font-size:15px;cursor:pointer;background:#1a1a26;color:#ccc;border:1px solid #3a3a5a;border-radius:3px}
+#gameOverScreen button:hover{background:#2a2a3e;border-color:#6a6aff;color:#fff}
+#tutBox{position:absolute;top:42px;left:50%;transform:translateX(-50%);max-width:540px;background:rgba(12,16,24,.93);border:2px solid #f0c84a;color:#f0e9c8;padding:9px 16px;font-size:13px;font-family:'Microsoft YaHei',sans-serif;border-radius:4px;display:none;z-index:6;box-shadow:0 0 18px rgba(240,200,74,0.35);text-align:center;line-height:1.5}
+#tutBox .tProg{color:#f0c84a;font-weight:bold;font-size:11px;margin-bottom:3px;letter-spacing:1px}
+#tutBox .tHint{color:#fff}
+#tutBox b{color:#9ad24a}
+#facLabel{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#aaa;margin-bottom:3px;padding:0 1px}
+#facLabel .fName{font-weight:bold;letter-spacing:1px}
+/* ===== 顶部工具条 / 弹窗 (留存与可达性) ===== */
+#topBar{position:absolute;top:0;left:0;right:0;height:22px;background:linear-gradient(180deg,rgba(10,10,16,.92),rgba(10,10,16,.6));display:flex;align-items:center;gap:4px;padding:0 6px;z-index:4;font-family:'Microsoft YaHei',sans-serif}
+#topBar .tb{font-size:11px;color:#9aa0b4;background:#1c1c28;border:1px solid #33334a;border-radius:3px;padding:1px 7px;cursor:pointer;user-select:none;line-height:14px}
+#topBar .tb:hover{background:#2a2a40;color:#fff;border-color:#5a5aff}
+#topBar .tb.on{background:#2e2a14;color:#ffcc44;border-color:#7a6a2a}
+#topBar .sp{flex:1}
+#topBar .lbl{font-size:10px;color:#5a5a6a}
+#pauseTag{font-size:11px;color:#ffcc44;font-weight:bold;display:none}
+.overlay{position:absolute;top:0;left:0;width:970px;height:648px;background:rgba(4,4,8,.93);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:20;color:#cfd4e6;font-family:'Microsoft YaHei',sans-serif;padding:20px;box-sizing:border-box}
+.overlay h2{font-size:26px;letter-spacing:3px;margin:0 0 14px;color:#9ad24a}
+.overlay .card{max-width:640px;background:#0e0e16;border:1px solid #2a2a3e;border-radius:6px;padding:18px 26px;line-height:1.9;font-size:13.5px}
+.overlay .card b{color:#ffcc44}
+.overlay .card .k{display:inline-block;min-width:54px;color:#7ad0ff;font-weight:bold}
+.overlay .closeBtn{margin-top:18px;padding:9px 32px;font-size:14px;cursor:pointer;background:#1a1a26;color:#ccc;border:1px solid #3a3a5a;border-radius:3px}
+.overlay .closeBtn:hover{background:#2a2a3e;color:#fff;border-color:#6a6aff}
+#achGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:680px;width:680px;margin-top:6px}
+.ach{display:flex;align-items:center;gap:10px;background:#101018;border:1px solid #26263a;border-radius:5px;padding:8px 12px;opacity:.55}
+.ach.un{opacity:1;border-color:#5a7a3a;background:#10180e}
+.ach .ic{font-size:20px;width:26px;text-align:center}
+.ach .tt{font-size:12.5px;color:#dfe4f0}
+.ach .dd{font-size:10.5px;color:#7a7a8a}
+.ach.un .tt{color:#9ad24a}
+#achPanelWrap .hd{display:flex;justify-content:space-between;align-items:center;width:680px;max-width:680px}
+#achPanelWrap .hd span{font-size:11px;color:#6a6a7a}
+</style>
+</head>
+<body>
+<div id="wrap">
+<div id="gameWrap">
+<canvas id="gameCanvas" width="760" height="648"></canvas>
+<div id="topBar">
+ <div class="tb" id="tbHelp" title="操作说明 (H)">? 帮助</div>
+ <div class="tb" id="tbSpeed" title="游戏速度">速度 1x</div>
+ <div class="tb" id="tbPause" title="暂停/继续 (空格)">暂停</div>
+ <div class="tb" id="tbMute" title="开关音效 (X)">♪ 音效</div>
+ <div class="tb" id="tbMusic" title="开关配乐 (M)">♫ 配乐</div>
+ <div class="tb" id="tbShot" title="截图分享">📷 截图</div>
+ <div class="sp"></div>
+ <div class="tb" id="tbAch" title="成就">🏆 成就</div>
+ <div id="pauseTag">⏸ 已暂停</div>
+</div>
+<div id="notifs"></div>
+<div id="tutBox"></div>
+<div id="gameOverScreen"><h2 id="goTitle"></h2><p id="goText"></p><button onclick="location.reload()">重新开始</button></div>
+<div id="helpBar"><span>左键选择/框选 · 右键移动/攻击 · 生产建筑选中后右键设<b>集结点</b> · WASD/边缘滚屏 · B建造 I步兵 V战车 · 空格暂停 · H帮助</span><span id="helpTip"></span></div>
+</div>
+<div id="sidebar">
+<div id="radarWrap"><div id="radarTit">雷达 · RADAR</div><canvas id="radar" width="176" height="128"></canvas></div>
+<div id="stats">
+<div id="facLabel"><span>阵营</span><span class="fName" id="facName">灶火盟</span></div>
+<div class="cashRow"><span class="cashLbl">食材</span><span class="cash" id="cashDisp">5000</span></div>
+<div class="cashRow" style="margin-top:3px"><span class="cashLbl">电力</span><span id="powerText" class="powOk">100/100</span></div>
+<div id="powerBar"><div id="powerFill" style="width:100%;background:#3a8a2a"></div></div>
+<div id="superWrap">
+<div class="sTitle"><span>超级武器</span><span id="superState">蓄能中</span></div>
+<button id="superBtn" disabled>烤鸭空袭</button>
+<div id="superBar"><div id="superFill"></div></div>
+</div>
+</div>
+<div id="tabs">
+<div class="tab active" data-tab="build">建造</div>
+<div class="tab" data-tab="infantry">步兵</div>
+<div class="tab" data-tab="vehicle">战车</div>
+</div>
+<div id="buildGrid"></div>
+<div id="bldActions"><div class="row"><div class="baBtn rep" id="repBtn">维修</div><div class="baBtn sell" id="sellBtn">拆除</div></div></div>
+<div id="queueArea"></div>
+<div id="selInfo">未选择单位</div>
+</div>
+</div>
+<div id="menuOverlay">
+<h1>厨房战争：红色警戒</h1>
+<p class="sub">深夜厨房，两军对垒。采集食材、建造基地、生产部队，摧毁敌方中央厨房即可获胜。<br>红警式 RTS：集结点 · 维修/拆除 · 工程师占领 · 超级武器 · 军衔晋升 · 科技树 · 战争迷雾 · 雷达</p>
+<div class="selRow"><span class="lbl">地图</span><div class="opt sel" data-k="map" data-v="0">夜厨房</div><div class="opt" data-k="map" data-v="1">双子岛</div><div class="opt" data-k="map" data-v="2">荒漠灶台</div></div>
+<div class="selRow"><span class="lbl">难度</span><div class="opt sel" data-k="diff" data-v="1">普通</div><div class="opt" data-k="diff" data-v="0">简单</div><div class="opt" data-k="diff" data-v="2">困难</div></div>
+<div class="selRow"><span class="lbl">阵营</span><div class="opt sel" data-k="fac" data-v="0">灶火盟</div><div class="opt" data-k="fac" data-v="1">冰锋营</div></div>
+<button id="startBtn" onclick="startGame()">开始战役</button>
+</div>
+<div id="helpOverlay" class="overlay"><h2>操作说明</h2><div class="card">
+<div><span class="k">目标</span>采集<b>食材</b>、建造基地、生产部队，摧毁敌方<b>中央厨房</b>即获胜。</div>
+<div><span class="k">左键</span>点选单位 / 拖拽框选多个单位</div>
+<div><span class="k">右键</span>指挥移动 / 攻击；选中生产建筑后右键设<b>集结点</b></div>
+<div><span class="k">WASD</span>移动视角 / 鼠标靠边滚屏</div>
+<div><span class="k">B / I / V</span>切换 建造 / 步兵 / 战车 面板</div>
+<div><span class="k">1~6</span>快捷选择建造面板的建筑</div>
+<div><span class="k">空格</span>暂停 / 继续　<span class="k">速度</span>按钮切换 1x/2x/3x</div>
+<div><span class="k">H</span>本说明　<span class="k">X</span>音效　<span class="k">M</span>配乐　<span class="k">📷</span>截图分享</div>
+<div style="margin-top:8px;color:#8a8a9a"><b>小贴士：</b>早期先造<b>冰箱仓库</b>扩建经济；电力不足会拖慢生产，记得造<b>配电箱</b>；<b>工程师</b>可占领敌方建筑；攒满<b>超级武器</b>可空袭。单位连杀会<b>晋升</b>变强。</div>
+</div><button class="closeBtn" id="helpCloseBtn">知道了</button></div>
+<div id="achPanelWrap" class="overlay"><div class="hd"><h2 style="margin:0">🏆 成就</h2><span id="achCount"></span></div><div id="achGrid"></div><button class="closeBtn" id="achCloseBtn">关闭</button></div>
+<script>
+'use strict';
+/* ===== CONFIG ===== */
+var TILE=32,MAP_W=42,MAP_H=32,CW=760,CH=648,RW=176,RH=128;
+var T_FLOOR=0,T_WALL=1,T_RES=2,T_WATER=3,T_STOVE=4;
+var SCROLL_SP=440,EDGE=18;
+
+/* ===== MAPS ===== */
+var MAPS=[
+ {name:'夜厨房',  p:[2,24], e:[36,2]},
+ {name:'双子岛',  p:[3,26], e:[36,3]},
+ {name:'荒漠灶台',p:[2,2],  e:[36,28]},
+];
+var DIFFS=[
+ {name:'简单',cashMult:0.7,reqArmy:6,attackEvery:78,subsidy:22},
+ {name:'普通',cashMult:1.0,reqArmy:4,attackEvery:54,subsidy:55},
+ {name:'困难',cashMult:1.4,reqArmy:3,attackEvery:36,subsidy:95},
+];
+var FACTIONS=[
+ {key:0,name:'灶火盟',hpMul:0.92,costMul:0.92,prodMul:0.85,bldHpMul:0.95,color:'#39c0ff',tag:'机动·廉价·快产'},
+ {key:1,name:'冰锋营',hpMul:1.18,costMul:1.00,prodMul:1.10,bldHpMul:1.15,color:'#ff5a4a',tag:'重甲·高血·慢产'},
+];
+var CRY={laser:'开火!',shield:'顶住!',flame:'烧!',freeze:'冻!',tank:'轰!',scout:'侦察!',mortar:'炮击!',bomber:'轰炸!',engineer:'占领!',harvester:''};
+var selMap=0,selDiff=1,selFac=0;
+
+/* ===== BUILDING DEFS ===== */
+var BLD={
+ yard:{name:'中央厨房',cost:0,power:0,hp:2800,w:3,h:3,desc:'基地核心，被摧毁即败'},
+ power:{name:'配电箱',cost:300,power:100,hp:420,w:2,h:2,desc:'提供100电力'},
+ refinery:{name:'冰箱仓库',cost:1400,power:-40,hp:850,w:3,h:2,desc:'加工食材，停靠采集兵'},
+ barracks:{name:'备菜台',cost:400,power:-20,hp:650,w:2,h:2,desc:'训练步兵'},
+ warfactory:{name:'灶台工厂',cost:1200,power:-30,hp:1100,w:3,h:3,desc:'生产战车'},
+ turret:{name:'微波塔',cost:600,power:-50,hp:520,w:1,h:1,desc:'自动防御塔',range:185,dmg:20,fireRate:0.95},
+ tech:{name:'科技烤箱',cost:1500,power:-60,hp:720,w:2,h:2,desc:'解锁高级兵种'},
+};
+
+/* ===== UNIT DEFS ===== */
+var UNT={
+ harvester:{name:'采集兵',cost:600,hp:260,speed:44,from:'refinery',r:10,dmg:0,range:0,fireRate:0,sight:5,cap:120,btime:6},
+ laser:{name:'激光兵',cost:200,hp:110,speed:60,from:'barracks',r:8,dmg:14,range:132,fireRate:0.7,sight:6,btime:2,proj:'laser'},
+ shield:{name:'盾卫',cost:300,hp:270,speed:40,from:'barracks',r:10,dmg:11,range:58,fireRate:0.9,sight:5,btime:3,proj:'bullet'},
+ flame:{name:'火焰厨师',cost:400,hp:130,from:'barracks',r:9,dmg:23,range:76,fireRate:1.4,sight:5,aoe:30,btime:4,proj:'flame',techReq:true},
+ freeze:{name:'冷冻兵',cost:350,hp:115,from:'barracks',r:9,dmg:7,range:118,fireRate:0.9,sight:6,slow:0.4,slowDur:2.5,btime:3.5,proj:'ice',techReq:true},
+ tank:{name:'铁锅坦克',cost:700,from:'warfactory',r:14,dmg:34,range:162,fireRate:1.8,sight:7,btime:7,proj:'shell',techReq:true},
+ scout:{name:'侦察车',cost:400,from:'warfactory',r:12,dmg:9,range:102,fireRate:0.4,sight:10,btime:4,proj:'bullet',techReq:true},
+ engineer:{name:'工程师',cost:500,from:'barracks',r:9,dmg:0,range:0,fireRate:0,sight:5,btime:3,capture:true,hp:90,speed:52},
+ mortar:{name:'高压锅炮车',cost:800,from:'warfactory',r:13,dmg:44,range:245,fireRate:3.0,sight:8,btime:8,proj:'shell',indirect:true,techReq:true,hp:300,speed:30},
+ bomber:{name:'烤鸭轰炸机',cost:1200,from:'warfactory',r:14,dmg:58,range:120,fireRate:1.2,sight:9,btime:10,proj:'bomb',flying:true,aoe:36,techReq:true,hp:330,speed:64},
+};
+
+/* ===== STATE ===== */
+var G=null;
+var canvas,ctx,radar,rctx;
+var buildGridEl,queueEl,selInfoEl,cashEl,powerTextEl,powerFillEl,notifsEl,menuOverlay,helpTipEl,facNameEl;
+var superBtnEl,superFillEl,superStateEl,repBtnEl,sellBtnEl,bldActionsEl;
+
+function initState(){
+ G={
+  mode:null,paused:false,over:false,winner:null,mapIdx:selMap,
+  map:null,built:null,fogP:null,
+  camX:0,camY:0,shake:0,
+  selUnits:[],selBuilding:null,boxSel:null,
+  placeMode:null,activeTab:'build',
+  player:createSide('player',selFac),enemy:createSide('enemy',selFac===0?1:0),
+  projectiles:[],effects:[],floats:[],notifs:[],particles:[],
+  hitstop:0,
+  tut:{step:0,harvested:false,producedCombat:0,enemyDamaged:false,completed:false,enabled:true},
+  mouseX:Math.floor(CW/2),mouseY:Math.floor(CH/2),mouseOver:false,keys:{},time:0,
+  fogTimer:0,aiTimer:0,attackTimer:30,notifsTimer:0,radarAngle:0,
+  mouseDownL:false,mouseDownR:false,
+  lowPowerWarnTimer:0,
+  super:{charge:0,max:160,ready:false,targeting:false,incoming:null},
+  speed:1,
+  stats:{produced:0,built:0,cashPeak:5000,captures:0,superKills:0},
+  diff:DIFFS[selDiff],
+ };
+}
+
+function createSide(s,fac){
+ var f=FACTIONS[fac];
+ return{side:s,cash:5000,buildings:[],units:[],buildQueue:{},power:0,powerUse:0,lowPower:false,harvestersSent:0,fac:f,name:f.name,facColor:f.color};
+}
+
+/* ===== MAP GEN ===== */
+function genMap(){
+ var idx=G.mapIdx;
+ if(idx===1)return genMap1();
+ if(idx===2)return genMap2();
+ return genMap0();
+}
+function blankMap(){
+ var m=[];
+ for(var y=0;y<MAP_H;y++){m[y]=[];for(var x=0;x<MAP_W;x++)m[y][x]=T_FLOOR;}
+ for(var x=0;x<MAP_W;x++){m[0][x]=T_WALL;m[MAP_H-1][x]=T_WALL;}
+ for(var y=0;y<MAP_H;y++){m[y][0]=T_WALL;m[y][MAP_W-1]=T_WALL;}
+ return m;
+}
+function rect(m,x,y,w,h,v){for(var dy=0;dy<h;dy++)for(var dx=0;dx<w;dx++)if(y+dy>0&&y+dy<MAP_H-1&&x+dx>0&&x+dx<MAP_W-1)m[y+dy][x+dx]=v;}
+
+function genMap0(){
+ var m=blankMap();
+ rect(m,20,14,4,5,T_WALL);
+ rect(m,6,11,7,1,T_WALL);
+ rect(m,29,20,7,1,T_WALL);
+ rect(m,33,7,1,6,T_WALL);
+ rect(m,8,22,1,5,T_WALL);
+ rect(m,15,4,5,1,T_WALL);
+ rect(m,22,27,5,1,T_WALL);
+ rect(m,27,24,4,3,T_WATER);
+ rect(m,37,12,3,3,T_STOVE);
+ rect(m,3,24,5,4,T_RES);
+ rect(m,33,3,5,4,T_RES);
+ rect(m,25,17,4,3,T_RES);
+ rect(m,13,8,4,3,T_RES);
+ return m;
+}
+function genMap1(){
+ var m=blankMap();
+ // central water band splitting the map diagonally
+ rect(m,15,12,13,9,T_WATER);
+ // two bridge gaps (floor) so units can cross
+ rect(m,15,14,13,1,T_FLOOR);
+ rect(m,15,18,13,1,T_FLOOR);
+ // a few stove clusters as cover near bridges
+ rect(m,19,11,2,1,T_STOVE);
+ rect(m,23,21,2,1,T_STOVE);
+ // resource fields: each base + one on a bridge
+ rect(m,3,28,5,3,T_RES);    // player
+ rect(m,34,2,5,3,T_RES);    // enemy
+ rect(m,20,14,3,1,T_RES);   // central (on bridge row)
+ rect(m,20,18,3,1,T_RES);
+ return m;
+}
+function genMap2(){
+ var m=blankMap();
+ // scattered stove/furniture obstacles (walls)
+ var obs=[[8,8,3,2],[30,8,3,2],[8,22,3,2],[30,22,3,2],[18,15,4,2],[14,5,2,4],[26,24,2,4],[20,28,3,1],[12,16,1,3],[29,15,1,3]];
+ for(var i=0;i<obs.length;i++)rect(m,obs[i][0],obs[i][1],obs[i][2],obs[i][3],T_WALL);
+ // central island
+ rect(m,19,14,4,4,T_WALL);
+ // resource patches scattered
+ rect(m,4,4,4,3,T_RES); rect(m,34,26,4,3,T_RES);
+ rect(m,18,8,4,3,T_RES); rect(m,20,22,4,3,T_RES);
+ rect(m,10,14,3,2,T_RES); rect(m,29,16,3,2,T_RES);
+ rect(m,20,16,2,2,T_RES); // center contested
+ return m;
+}
+
+function createFog(){
+ var f=[];
+ for(var y=0;y<MAP_H;y++){f[y]=[];for(var x=0;x<MAP_W;x++)f[y][x]=0;}
+ return f;
+}
+function revealArea(cx,cy,r){
+ for(var dy=-r;dy<=r;dy++)for(var dx=-r;dx<=r;dx++){
+  var tx=cx+dx,ty=cy+dy;
+  if(tx<0||tx>=MAP_W||ty<0||ty>=MAP_H)continue;
+  if(dx*dx+dy*dy<=r*r)G.fogP[ty][tx]=1;
+ }
+}
+function createBuiltGrid(){
+ var b=[];
+ for(var y=0;y<MAP_H;y++){b[y]=[];for(var x=0;x<MAP_W;x++)b[y][x]=null;}
+ return b;
+}
+
+/* ===== HELPERS ===== */
+function dist(x1,y1,x2,y2){return Math.hypot(x2-x1,y2-y1);}
+function clamp(v,a,b){ if(v!==v)v=a; return v<a?a:v>b?b:v; }
+function roundRect(x,y,w,h,r){
+ r=Math.min(r,w/2,h/2);
+ ctx.beginPath();
+ ctx.moveTo(x+r,y);
+ ctx.arcTo(x+w,y,x+w,y+h,r);
+ ctx.arcTo(x+w,y+h,x,y+h,r);
+ ctx.arcTo(x,y+h,x,y,r);
+ ctx.arcTo(x,y,x+w,y,r);
+ ctx.closePath();
+}
+function tileBlocked(tx,ty){
+ if(tx!==tx||ty!==ty)return true; // NaN -> treat as blocked (never throw)
+ if(tx<0||tx>=MAP_W||ty<0||ty>=MAP_H)return true;
+ var t=G.map[ty][tx];
+ if(t===T_WALL)return true;
+ if(t===T_WATER)return true;
+ if(G.built[ty][tx])return true;
+ return false;
+}
+function tileBlockedForBuild(tx,ty){
+ if(tx<0||tx>=MAP_W||ty<0||ty>=MAP_H)return true;
+ var t=G.map[ty][tx];
+ if(t!==T_FLOOR)return true;
+ if(G.built[ty][tx])return true;
+ return false;
+}
+
+/* ===== PATHFINDING (A*) ===== */
+function findPath(sx,sy,ex,ey){
+ var sgx=Math.floor(sx/TILE),sgy=Math.floor(sy/TILE);
+ var tgx=Math.floor(ex/TILE),tgy=Math.floor(ey/TILE);
+ if(sgx===tgx&&sgy===tgy)return[{x:ex,y:ey}];
+ if(tileBlocked(tgx,tgy)){
+  var bestD=1e9,bx=-1,by=-1;
+  for(var r=1;r<=6;r++){
+   for(var dy=-r;dy<=r;dy++)for(var dx=-r;dx<=r;dx++){
+    if(Math.abs(dx)<r&&Math.abs(dy)<r)continue;
+    var nx=tgx+dx,ny=tgy+dy;
+    if(!tileBlocked(nx,ny)){var d=dx*dx+dy*dy;if(d<bestD){bestD=d;bx=nx;by=ny;}}
+   }
+   if(bx>=0)break;
+  }
+  if(bx<0)return null;
+  tgx=bx;tgy=by;
+ }
+ var open=[{x:sgx,y:sgy,g:0,h:0,f:0,p:null}];
+ var closed={};
+ var key=function(x,y){return x+','+y;};
+ var iters=0;
+ while(open.length&&iters<3000){
+  iters++;
+  var bi=0;for(var i=1;i<open.length;i++){if(open[i].f<open[bi].f)bi=i;}
+  var cur=open.splice(bi,1)[0];
+  if(cur.x===tgx&&cur.y===tgy){
+   var path=[];var n=cur;
+   while(n){path.unshift({x:n.x*TILE+TILE/2,y:n.y*TILE+TILE/2});n=n.p;}
+   path.push({x:ex,y:ey});
+   return path;
+  }
+  closed[key(cur.x,cur.y)]=true;
+  for(var ddx=-1;ddx<=1;ddx++)for(var ddy=-1;ddy<=1;ddy++){
+   if(ddx===0&&ddy===0)continue;
+   var nx=cur.x+ddx,ny=cur.y+ddy;
+   if(nx<0||nx>=MAP_W||ny<0||ny>=MAP_H)continue;
+   if(closed[key(nx,ny)])continue;
+   if(tileBlocked(nx,ny))continue;
+   if(ddx!==0&&ddy!==0){if(tileBlocked(cur.x+ddx,cur.y)||tileBlocked(cur.x,cur.y+ddy))continue;}
+   var g=cur.g+(ddx!==0&&ddy!==0?1.41:1);
+   var h=Math.abs(nx-tgx)+Math.abs(ny-tgy);
+   var f=g+h;
+   var ex2=-1;
+   for(var j=0;j<open.length;j++){if(open[j].x===nx&&open[j].y===ny){ex2=j;break;}}
+   if(ex2>=0){if(open[ex2].g<=g)continue;open[ex2].g=g;open[ex2].h=h;open[ex2].f=f;open[ex2].p=cur;}
+   else open.push({x:nx,y:ny,g:g,h:h,f:f,p:cur});
+  }
+ }
+ return null;
+}
+
+/* ===== GAME START ===== */
+function startGame(){
+ initState();
+ G.mode='ai';
+ G.map=genMap();
+ G.built=createBuiltGrid();
+ G.fogP=createFog();
+ setupBase('player');
+ setupBase('enemy');
+ var yd=G.player.buildings[0];
+ G.camX=clamp(yd.x-CW/2,0,MAP_W*TILE-CW);
+ G.camY=clamp(yd.y-CH/2,0,MAP_H*TILE-CH);
+ revealArea(Math.floor(yd.x/TILE),Math.floor(yd.y/TILE),18);
+ revealArea(Math.floor(G.player.buildings[2].x/TILE),Math.floor(G.player.buildings[2].y/TILE),10);
+ menuOverlay.style.display='none';
+ hideHelp();hideAch();
+ if(facNameEl){facNameEl.textContent=G.player.fac.name;facNameEl.style.color=G.player.fac.color;}
+ var tb=document.getElementById('tutBox');if(tb)tb.style.display='none';
+ G.mouseOver=false;
+ startMusic();
+ updateFog();
+ updateSidebar();
+ notify('战役开始：建造基地，生产部队，摧毁敌方中央厨房！',5000,'eva');
+ notify('提示：选中「备菜台/灶台工厂」后右键地图可设集结点',4500);
+}
+
+function setupBase(side){
+ var sd=side==='player'?G.player:G.enemy;
+ var bp=MAPS[G.mapIdx][side==='player'?'p':'e'];
+ var ox=bp[0],oy=bp[1];
+ placeBuildingInstant('yard',ox,oy,sd);
+ placeBuildingInstant('power',ox+4,oy,sd);
+ placeBuildingInstant('refinery',ox,oy+4,sd);
+ spawnUnit('harvester',side,sd.buildings[2]);
+ spawnUnit('laser',side,sd.buildings[0]);
+ spawnUnit('laser',side,sd.buildings[0]);
+ clearBaseZone(sd);
+}
+/* Carve a buildable pad of T_FLOOR around a side's starting base so the player
+   always has room to place new buildings next to their base, regardless of what
+   obstacles the random/hand-authored map scattered there. Resource nodes just
+   outside the base footprint are preserved so harvesters still have work to do. */
+function clearBaseZone(sd){
+ var minx=999,miny=999,maxx=-1,maxy=-1;
+ for(var i=0;i<sd.buildings.length;i++){var b=sd.buildings[i];
+  minx=Math.min(minx,b.gx);miny=Math.min(miny,b.gy);
+  maxx=Math.max(maxx,b.gx+b.w);maxy=Math.max(maxy,b.gy+b.h);}
+ var R=4;
+ for(var y=miny-R;y<=maxy+R;y++)for(var x=minx-R;x<=maxx+R;x++){
+  if(x<1||y<1||x>=MAP_W-1||y>=MAP_H-1)continue;
+  var insideFootprint=(x>=minx&&x<maxx&&y>=miny&&y<maxy);
+  if(G.map[y][x]===T_RES)continue; // never wipe resource nodes — keep them adjacent to base so harvesters don't cross the whole map
+  G.map[y][x]=T_FLOOR;
+  if(!G.built[y][x])G.built[y][x]=null;
+ }
+ // re-stamp base buildings (in case the loop cleared their tiles)
+ for(var j=0;j<sd.buildings.length;j++){var b2=sd.buildings[j];
+  for(var dy=0;dy<b2.h;dy++)for(var dx=0;dx<b2.w;dx++){if(b2.gy+dy<MAP_H&&b2.gx+dx<MAP_W)G.built[b2.gy+dy][b2.gx+dx]=b2;}}
+}
+
+function placeBuildingInstant(type,gx,gy,sd){
+ var d=BLD[type];
+ var b={type:type,side:sd.side,gx:gx,gy:gy,w:d.w,h:d.h,
+  x:(gx+d.w/2)*TILE,y:(gy+d.h/2)*TILE,
+  hp:Math.round(d.hp*sd.fac.bldHpMul),maxHp:Math.round(d.hp*sd.fac.bldHpMul),constructing:1,queue:[],prodProgress:0,fireCD:0,
+  deployAnim:1,radius:Math.max(d.w,d.h)*TILE/2,repairing:false,rallyX:null,rallyY:null};
+ sd.buildings.push(b);
+ for(var dy=0;dy<d.h;dy++)for(var dx=0;dx<d.w;dx++){
+  if(gy+dy<MAP_H&&gx+dx<MAP_W)G.built[gy+dy][gx+dx]=b;
+ }
+ recalcPower(sd);
+ return b;
+}
+
+/* ===== BUILDING PLACEMENT ===== */
+function canPlace(type,gx,gy,sd){
+ var d=BLD[type];
+ if(sd.cash<d.cost)return false;
+ var unitOn=function(tx,ty){
+  var arrs=[G.player.units,G.enemy.units];
+  for(var a=0;a<2;a++)for(var i=0;i<arrs[a].length;i++){
+   var uu=arrs[a][i];
+   if(uu.hp>0&&Math.floor(uu.x/TILE)===tx&&Math.floor(uu.y/TILE)===ty)return true;
+  }
+  return false;
+ };
+ for(var dy=0;dy<d.h;dy++)for(var dx=0;dx<d.w;dx++){
+  var tx=gx+dx,ty=gy+dy;
+  if(tileBlockedForBuild(tx,ty))return false;
+  if(unitOn(tx,ty))return false;
+ }
+ for(var i=0;i<sd.buildings.length;i++){
+  var b=sd.buildings[i];
+  // Any owned building (finished or still deploying) may anchor new construction.
+  if(gx<b.gx-d.w||gx>b.gx+b.w||gy<b.gy-d.h||gy>b.gy+b.h)continue;
+  var cx1=Math.max(gx,b.gx),cx2=Math.min(gx+d.w,b.gx+b.w);
+  var cy1=Math.max(gy,b.gy),cy2=Math.min(gy+d.h,b.gy+b.h);
+  if(cx2>=cx1-1&&cy2>=cy1-1)return true;
+ }
+ return false;
+}
+/* Find the nearest valid placement tile to (gx,gy) within maxRad rings, searching
+   outward ring-by-ring. Returns {gx,gy} or null. Makes placement foolproof: the
+   player can click anywhere near the base and it snaps to a green tile. */
+function snapBuild(type,gx,gy,sd){
+ if(canPlace(type,gx,gy,sd))return {gx:gx,gy:gy};
+ for(var rad=1;rad<=8;rad++){
+  var best=null,bestD=1e9;
+  for(var oy=-rad;oy<=rad;oy++)for(var ox=-rad;ox<=rad;ox++){
+   if(Math.abs(ox)!==rad&&Math.abs(oy)!==rad)continue;
+   var nx=gx+ox,ny=gy+oy;
+   if(canPlace(type,nx,ny,sd)){var d=ox*ox+oy*oy;if(d<bestD){bestD=d;best={gx:nx,gy:ny};}}
+  }
+  if(best)return best;
+ }
+ return null;
+}
+
+function placeBuilding(type,gx,gy,sd){
+ var d=BLD[type];
+ sd.cash-=d.cost;
+ var b={type:type,side:sd.side,gx:gx,gy:gy,w:d.w,h:d.h,
+  x:(gx+d.w/2)*TILE,y:(gy+d.h/2)*TILE,
+  hp:Math.round(d.hp*sd.fac.bldHpMul),maxHp:Math.round(d.hp*sd.fac.bldHpMul),constructing:0,queue:[],prodProgress:0,fireCD:0,
+  deployAnim:0,radius:Math.max(d.w,d.h)*TILE/2,repairing:false,rallyX:null,rallyY:null};
+ sd.buildings.push(b);
+ for(var dy=0;dy<d.h;dy++)for(var dx=0;dx<d.w;dx++){
+  if(gy+dy<MAP_H&&gx+dx<MAP_W)G.built[gy+dy][gx+dx]=b;
+ }
+ recalcPower(sd);
+ if(sd.side==='player'){
+  notify(d.name+' 建造中…',2000);
+  beep(440,0.08,'square',0.05);
+ }
+ return b;
+}
+
+function sellBuilding(b){
+ if(b.type==='yard'){notify('中央厨房不可拆除！',2000,'warn');return;}
+ var sd=b.side==='player'?G.player:G.enemy;
+ var refund=Math.floor(BLD[b.type].cost*0.5);
+ sd.cash+=refund;
+ // refund queued units
+ if(sd.buildQueue[b.type]){
+  for(var i=0;i<sd.buildQueue[b.type].length;i++)sd.cash+=UNT[sd.buildQueue[b.type][i].type].cost;
+  delete sd.buildQueue[b.type];
+ }
+ var idx=sd.buildings.indexOf(b);
+ if(idx>=0)sd.buildings.splice(idx,1);
+ for(var dy=0;dy<d_h(b);dy++)for(var dx=0;dx<d_w(b);dx++){
+  if(b.gy+dy<MAP_H&&b.gx+dx<MAP_W)G.built[b.gy+dy][b.gx+dx]=null;
+ }
+ recalcPower(sd);
+ if(b===G.selBuilding)G.selBuilding=null;
+ if(sd.side==='player'){notify('已拆除 '+BLD[b.type].name+'，返还 '+refund+' 食材',2200);beep(300,0.1,'sine',0.05);}
+}
+function d_w(b){return b.w;} function d_h(b){return b.h;}
+
+function recalcPower(sd){
+ var pow=0,use=0;
+ for(var i=0;i<sd.buildings.length;i++){
+  var b=sd.buildings[i];
+  if(b.constructing<1)continue;
+  var d=BLD[b.type];
+  if(d.power>0)pow+=d.power;else use+=-d.power;
+ }
+ sd.power=pow;sd.powerUse=use;sd.lowPower=use>pow;
+}
+
+/* ===== PRODUCTION ===== */
+function hasTech(sd){
+ return sd.buildings.some(function(b){return b.type==='tech'&&b.constructing>=1;});
+}
+function techReqMet(type,sd){
+ if(!UNT[type].techReq)return true;
+ return hasTech(sd);
+}
+function tryQueueUnit(unitType,sd){
+ var def=UNT[unitType];
+ var hasBld=sd.buildings.some(function(b){return b.type===def.from&&b.constructing>=1;});
+ if(!hasBld){if(sd.side==='player')notify('需要'+BLD[def.from].name+'！',2000,'warn');return false;}
+ if(!techReqMet(unitType,sd)){if(sd.side==='player')notify('需要科技烤箱解锁！',2000,'warn');return false;}
+ if(sd.cash<def.cost){if(sd.side==='player')notify('食材不足！',1500,'warn');return false;}
+ sd.cash-=Math.round(def.cost*sd.fac.costMul);
+ if(!sd.buildQueue[def.from])sd.buildQueue[def.from]=[];
+ sd.buildQueue[def.from].push({type:unitType,progress:0,total:def.btime*sd.fac.prodMul});
+ if(sd.side==='player'){
+  if(unitType!=='harvester')G.tut.producedCombat++;
+  sfx('click');notify(def.name+' 加入生产队列',1500);
+ }
+ return true;
+}
+
+function updateProduction(sd,dt){
+ var slow=sd.lowPower?0.5:1.0;
+ for(var from in sd.buildQueue){
+  var q=sd.buildQueue[from];
+  if(!q.length){delete sd.buildQueue[from];continue;}
+  var bld=sd.buildings.find(function(b){return b.type===from&&b.constructing>=1;});
+  if(!bld){
+   for(var i=0;i<q.length;i++)sd.cash+=UNT[q[i].type].cost;
+   delete sd.buildQueue[from];
+   continue;
+  }
+  q[0].progress+=dt*slow;
+  if(q[0].progress>=q[0].total){
+   spawnUnit(q[0].type,sd.side,bld);
+   q.shift();
+   if(sd.side==='player'){sfx('produce');}
+  }
+ }
+}
+
+function spawnUnit(unitType,side,bld){
+ var def=UNT[unitType];
+ var sd=side==='player'?G.player:G.enemy;
+ var sx=bld.x, sy=(bld.gy+bld.h)*TILE+TILE/2;
+ var dirs=[[0,0],[0,-1],[1,0],[-1,0],[0,1],[1,-1],[-1,-1],[1,1],[-1,1],[0,-2],[2,0],[-2,0],[0,2]];
+ var unitOn=function(tx,ty){
+  for(var i=0;i<sd.units.length;i++){
+   var uu=sd.units[i];
+   if(uu.hp>0&&Math.floor(uu.x/TILE)===tx&&Math.floor(uu.y/TILE)===ty)return true;
+  }
+  return false;
+ };
+ var found=false;
+ for(var di=0;di<dirs.length;di++){
+  var tx=Math.floor(sx/TILE)+dirs[di][0];
+  var ty=Math.floor(sy/TILE)+dirs[di][1];
+  if(!tileBlocked(tx,ty)&&!unitOn(tx,ty)){sx=tx*TILE+TILE/2;sy=ty*TILE+TILE/2;found=true;break;}
+ }
+ if(!found){
+  for(var di=0;di<dirs.length;di++){
+   var tx=Math.floor(sx/TILE)+dirs[di][0];
+   var ty=Math.floor(sy/TILE)+dirs[di][1];
+   if(!tileBlocked(tx,ty)){sx=tx*TILE+TILE/2;sy=ty*TILE+TILE/2;break;}
+  }
+ }
+ var u={type:unitType,side:side,x:sx,y:sy,tx:sx,ty:sy,
+  path:[],hp:def.hp,maxHp:def.hp,facing:side==='player'?0:Math.PI,
+  speed:def.speed,fireCD:0,target:null,targetBld:null,
+  order:'stop',harvestTimer:0,cargo:0,slowTimer:0,
+  r:def.r||10,def:def,animPhase:Math.random()*6.28,
+  harvestTarget:null,returnTarget:null,destX:undefined,destY:undefined,repathCD:0,
+  vet:0,kills:0,selected:false,barked:false};
+ if(def.flying)u.path=null;
+ sd.units.push(u);
+ if(sd.side==='player'){G.stats.produced++;}
+ // rally point (skip harvesters which auto-mine)
+ if(bld.rallyX!=null&&unitType!=='harvester'){
+  u.destX=bld.rallyX;u.destY=bld.rallyY;
+  u.path=def.flying?null:(findPath(u.x,u.y,bld.rallyX,bld.rallyY)||[]);
+  u.order='move';u.target=null;
+ } else if(sd.side==='player'){
+  notify(def.name+' 就绪！',2000);
+ }
+}
+
+/* ===== COMBAT ===== */
+function vetDmgMul(v){return v===2?1.6:v===1?1.3:1;}
+function vetSpdMul(v){return v===2?1.4:v===1?1.2:1;}
+
+function fireProjectile(from,target,ownerOverride){
+ var def=from.def||from;
+ var owner=ownerOverride!==undefined?ownerOverride:(from.type?from:null);
+ var dmg=def.dmg;
+ if(owner&&owner.vet)dmg=Math.round(dmg*vetDmgMul(owner.vet));
+ var proj={x:from.x,y:from.y,tx:target,
+  dmg:dmg,speed:520,type:def.proj||'bullet',
+  aoe:def.aoe||0,slow:def.slow||0,slowDur:def.slowDur||0,
+  side:from.side,life:3,owner:owner};
+ G.projectiles.push(proj);
+ if(owner&&owner.side==='player'&&!owner.barked){
+  owner.barked=true;
+  var cw=CRY[owner.type]||'';
+  if(cw)G.floats.push({x:owner.x,y:owner.y-18,text:cw,life:0.9,color:'#f0c84a'});
+  beep(520+Math.random()*180,0.08,'square',0.035);
+ }
+}
+
+function damage(target,amt,fromSide){
+ if(!target||target.hp<=0)return;
+ if(fromSide==='player'&&target.side==='enemy')G.tut.enemyDamaged=true;
+ target.hp-=amt;
+ target.hitFlash=0.15;
+ if(target.hp<=0){
+  target.hp=0;
+  G.effects.push({type:'death',x:target.x,y:target.y,r:target.r||16,life:0.5,maxLife:0.5});
+  spawnParticles(target.x,target.y,target.side==='player'?'#ff7a5a':'#7ad0ff',13,90,0.55);
+  var sd=(target.side==='player')?G.player:G.enemy;
+  if(target.gx!==undefined){
+   var idx=sd.buildings.indexOf(target);
+   if(idx>=0){
+    sd.buildings.splice(idx,1);
+    for(var dy=0;dy<target.h;dy++)for(var dx=0;dx<target.w;dx++){
+     if(target.gy+dy<MAP_H&&target.gx+dx<MAP_W)G.built[target.gy+dy][target.gx+dx]=null;
+    }
+    recalcPower(sd);
+    spawnParticles(target.x,target.y,'#ffb060',26,150,0.9);
+    sfx('explode');
+    if(target.type==='yard'){
+     G.over=true;
+     G.winner=fromSide==='player'?'player':'enemy';
+     showGameOver();
+    }
+    if(fromSide==='player')notify('摧毁敌方'+BLD[target.type].name+'！',3000,'eva');
+    else if(target.type==='yard')notify('我方中央厨房被摧毁！',5000,'danger');
+    else notify(BLD[target.type].name+' 被摧毁！',2500,'danger');
+   }
+  }else{
+   var ui=sd.units.indexOf(target);
+   if(ui>=0){
+    sd.units.splice(ui,1);
+    var si=G.selUnits.indexOf(target);
+    if(si>=0)G.selUnits.splice(si,1);
+   spawnParticles(target.x,target.y,'#9ad0ff',12,80,0.5);
+   }
+  }
+ }
+}
+
+function updateProjectiles(dt){
+ for(var i=G.projectiles.length-1;i>=0;i--){
+  var p=G.projectiles[i];
+  p.life-=dt;
+  if(p.life<=0||!p.tx||p.tx.hp<=0){G.projectiles.splice(i,1);continue;}
+  var dx=p.tx.x-p.x,dy=p.tx.y-p.y;
+  var d=Math.hypot(dx,dy);
+  if(d<10){
+   if(p.owner&&p.owner.kills!==undefined&&p.tx.gx===undefined){
+    p.owner.kills++;
+    if(p.owner.kills>=2&&p.owner.vet===0)promote(p.owner);
+    else if(p.owner.kills>=5&&p.owner.vet===1)promote(p.owner);
+   }
+   damage(p.tx,p.dmg,p.side);
+   if(p.aoe>0){
+    var enemies=p.side==='player'?G.enemy:G.player;
+    for(var j=0;j<enemies.units.length;j++){
+     var eu=enemies.units[j];
+     if(eu===p.tx||eu.hp<=0)continue;
+     var ed=dist(p.x,p.y,eu.x,eu.y);
+     if(ed<p.aoe)damage(eu,p.dmg*0.5,p.side);
+    }
+    G.effects.push({type:'explosion',x:p.x,y:p.y,r:p.aoe,life:0.4,maxLife:0.4});
+    spawnParticles(p.x,p.y,'#ff8a3a',18,140,0.6);
+    G.shake=Math.max(G.shake,6);
+    G.hitstop=Math.max(G.hitstop,0.04);
+   }else{
+    G.effects.push({type:'hit',x:p.x,y:p.y,r:8,life:0.15,maxLife:0.15});
+    spawnParticles(p.x,p.y,'#ffd27a',5,70,0.3);
+   }
+   if(p.slow>0&&p.tx.slowTimer!==undefined)p.tx.slowTimer=p.slowDur;
+   G.floats.push({x:p.tx.x,y:p.tx.y-15,text:'-'+Math.round(p.dmg),life:0.6,color:'#ff6a4a'});
+   G.projectiles.splice(i,1);
+  }else{
+   p.x+=dx/d*p.speed*dt;
+   p.y+=dy/d*p.speed*dt;
+  }
+ }
+}
+
+function promote(u){
+ u.vet++;
+ u.maxHp=Math.round(u.maxHp*1.25);
+ u.hp=u.maxHp;
+ notify(u.def.name+' 晋升为'+(u.vet===1?'老兵 ★':'精英 ★★')+'！',2200,'eva');
+ if(u.side==='player'){G.stats.maxVet=Math.max(G.stats.maxVet||0,u.vet);}
+ sfx('promote');
+}
+
+/* ===== PARTICLES + TUTORIAL ===== */
+function spawnParticles(x,y,color,n,spd,life){
+ if(!G||!G.particles)return;
+ for(var i=0;i<n;i++){
+  var a=Math.random()*6.283, s=spd*(0.4+Math.random()*0.6);
+  G.particles.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:life*(0.6+Math.random()*0.4),maxLife:life,color:color,r:1.5+Math.random()*2.5});
+ }
+}
+function updateParticles(dt){
+ var p=G.particles;
+ for(var i=p.length-1;i>=0;i--){
+  var q=p[i];
+  q.life-=dt;
+  if(q.life<=0){p.splice(i,1);continue;}
+  q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=140*dt;q.vx*=0.96;
+ }
+}
+function drawParticles(){
+ var p=G.particles;
+ for(var i=0;i<p.length;i++){
+  var q=p[i],al=Math.max(0,Math.min(1,q.life/q.maxLife));
+  ctx.globalAlpha=al;
+  ctx.fillStyle=q.color;
+  ctx.beginPath();ctx.arc(q.x,q.y,q.r,0,6.283);ctx.fill();
+ }
+ ctx.globalAlpha=1;
+}
+
+var TUT_STEPS=[
+ {hint:'① 建造<b>备菜台</b>：点右侧「备菜台」按钮，在基地附近绿色虚影处点击放置（造兵的前提）',check:function(){return G.player.buildings.some(function(b){return b.type==='barracks';});}},
+ {hint:'② 生产<b>激光兵</b>：切到「步兵」标签，点「激光兵」加入生产队列',check:function(){return G.tut.producedCombat>=1;}},
+ {hint:'③ 扩建经济：再造一座<b>冰箱仓库</b>（点按钮放置），采集兵会运回更多食材',check:function(){return G.player.buildings.filter(function(b){return b.type==='refinery';}).length>=2;}},
+ {hint:'④ 科技升级：建造<b>科技烤箱</b>（点按钮放置），解锁火焰厨师/冷冻兵/坦克/轰炸机',check:function(){return G.player.buildings.some(function(b){return b.type==='tech';});}},
+ {hint:'⑤ 主动出击：选中部队，<b>右键</b>点敌人或敌方建筑发动进攻，摧毁敌方中央厨房！',check:function(){return G.tut.enemyDamaged;}},
+];
+function checkTutorial(){
+ if(!G.tut.enabled||G.tut.completed)return;
+ var box=document.getElementById('tutBox');
+ var step=-1;
+ for(var i=0;i<TUT_STEPS.length;i++){if(!TUT_STEPS[i].check()){step=i;break;}}
+ if(step<0){completeTutorial();return;}
+ G.tut.step=step;
+ if(box){
+  box.style.display='block';
+  box.innerHTML='<div class="tProg">新手教程 '+(step+1)+'/'+TUT_STEPS.length+'</div><div class="tHint">'+TUT_STEPS[step].hint+'</div>';
+ }
+}
+function completeTutorial(){
+ if(G.tut.completed)return;
+ G.tut.completed=true;
+ var box=document.getElementById('tutBox');
+ if(box)box.style.display='none';
+ G.player.cash+=500;
+ notify('教程完成！放手去摧毁敌方中央厨房吧，奖励 +500 食材',4000,'eva');
+ beep(880,0.2,'sine',0.06);
+}
+
+/* ===== UNIT UPDATE ===== */
+function updateUnits(sd,dt){
+ var enemySd=sd.side==='player'?G.enemy:G.player;
+ for(var i=0;i<sd.units.length;i++){
+  var u=sd.units[i];
+  if(u.hp<=0)continue;
+  if(u.hitFlash>0)u.hitFlash-=dt;
+  if(u.slowTimer>0)u.slowTimer-=dt;
+  if(u.type==='harvester'){
+   updateHarvester(u,dt,sd,enemySd);
+  }else if(u.def.capture){
+   updateEngineer(u,dt,sd,enemySd);
+  }else if(u.def.flying){
+   updateFlying(u,dt,sd,enemySd);
+  }else{
+   updateCombatUnit(u,dt,sd,enemySd);
+  }
+ }
+ for(var i=sd.units.length-1;i>=0;i--){if(sd.units[i].hp<=0){var _di=G.selUnits.indexOf(sd.units[i]);if(_di>=0)G.selUnits.splice(_di,1);sd.units.splice(i,1);}}
+}
+
+function updateHarvester(u,dt,sd,enemySd){
+ if(u.order==='move'){
+  if(u.path&&u.path.length){moveAlongPath(u,dt);return;}
+  else{u.order='stop';}
+ }
+ u.fireCD-=dt;
+ if(u.cargo>=u.def.cap){
+  var ref=sd.buildings.find(function(b){return b.type==='refinery'&&b.constructing>=1;});
+  if(!ref){u.order='stop';return;}
+  var rd=dist(u.x,u.y,ref.x,ref.y);
+  if(rd<TILE*2){
+   sd.cash+=u.cargo;
+   if(sd.side==='player'){if(u.cargo>0)G.floats.push({x:u.x,y:u.y-15,text:'+'+u.cargo,life:0.8,color:'#9ad24a'});G.tut.harvested=true;}
+   u.cargo=0;u.harvestTarget=null;u.path=[];u.order='stop';
+  }else{
+   if(!u.path||!u.path.length){u.path=findPath(u.x,u.y,ref.x,ref.y);if(!u.path){u.order='stop';return;}}
+   moveAlongPath(u,dt);
+  }
+ }else{
+  if(!u.harvestTarget){
+   u.harvestTarget=findNearestResource(u.x,u.y);
+   if(!u.harvestTarget){u.order='stop';return;}
+  }
+  var ht=u.harvestTarget;
+  var hx=ht.x*TILE+TILE/2,hy=ht.y*TILE+TILE/2;
+  var hd=dist(u.x,u.y,hx,hy);
+  if(hd<TILE*1.5){
+   u.harvestTimer+=dt;
+   if(u.harvestTimer>=0.4){u.cargo+=15;u.harvestTimer=0;u.facing+=0.3;}
+  }else{
+   if(!u.path||!u.path.length){u.path=findPath(u.x,u.y,hx,hy);if(!u.path){u.harvestTarget=null;u.order='stop';return;}}
+   moveAlongPath(u,dt);
+  }
+ }
+}
+
+function findNearestResource(px,py){
+ var best=null,bd=1e9;
+ for(var y=0;y<MAP_H;y++)for(var x=0;x<MAP_W;x++){
+  if(G.map[y][x]===T_RES){
+   var d=dist(px,py,x*TILE+TILE/2,y*TILE+TILE/2);
+   if(d<bd){bd=d;best={x:x,y:y};}
+  }
+ }
+ return best;
+}
+
+function updateEngineer(u,dt,sd,enemySd){
+ u.fireCD-=dt;
+ // find nearest enemy building
+ var eb=null,ebd=1e9;
+ for(var i=0;i<enemySd.buildings.length;i++){
+  var b=enemySd.buildings[i];
+  if(b.hp<=0||b.constructing<1)continue;
+  var d=dist(u.x,u.y,b.x,b.y);
+  if(d<ebd){ebd=d;eb=b;}
+ }
+ if(eb){
+  if(ebd<=TILE*1.4){
+   captureBuilding(u,sd,enemySd,eb);
+   return;
+  }
+  if(!u.path||!u.path.length){
+   u.destX=eb.x;u.destY=eb.y;
+   u.path=findPath(u.x,u.y,eb.x,eb.y);
+   if(!u.path){u.order='stop';return;}
+  }
+  moveAlongPath(u,dt);
+ }else if(u.order==='move'){
+  if(u.path&&u.path.length)moveAlongPath(u,dt);
+  else u.order='stop';
+ }
+}
+
+function captureBuilding(u,sd,enemySd,eb){
+ var idx=enemySd.buildings.indexOf(eb);
+ if(idx>=0)enemySd.buildings.splice(idx,1);
+ eb.side=sd.side;
+ eb.hp=Math.max(eb.hp,Math.round(eb.maxHp*0.5));
+ eb.constructing=1;eb.repairing=false;eb.queue=[];eb.rallyX=null;eb.rallyY=null;
+ sd.buildings.push(eb);
+ recalcPower(sd);recalcPower(enemySd);
+ if(sd.side==='player'){
+  notify('占领了敌方 '+BLD[eb.type].name+'！',3500,'eva');
+  G.stats.captures=(G.stats.captures||0)+1;
+  sfx('capture');
+ }else{
+  notify('我方 '+BLD[eb.type].name+' 被占领！',3000,'danger');
+ }
+ // consume engineer
+ u.hp=0;
+}
+
+function updateFlying(u,dt,sd,enemySd){
+ u.fireCD-=dt;
+ if(!u.target||u.target.hp<=0){
+  u.target=null;
+  var bestT=null,bd=u.def.range*1.3;
+  for(var i=0;i<enemySd.units.length;i++){var eu=enemySd.units[i];if(eu.hp<=0)continue;var d=dist(u.x,u.y,eu.x,eu.y);if(d<bd){bd=d;bestT=eu;}}
+  if(!bestT)for(var i=0;i<enemySd.buildings.length;i++){var eb=enemySd.buildings[i];if(eb.hp<=0||eb.constructing<1)continue;var d=dist(u.x,u.y,eb.x,eb.y);if(d<bd){bd=d;bestT=eb;}}
+  u.target=bestT;
+ }
+ if(u.target){
+  var td=dist(u.x,u.y,u.target.x,u.target.y);
+  if(td<=u.def.range){
+   u.facing=Math.atan2(u.target.y-u.y,u.target.x-u.x);
+   if(u.fireCD<=0){u.fireCD=u.def.fireRate/vetSpdMul(u.vet);fireProjectile(u,u.target);}
+   u.path=null;
+  }else{
+   moveDirect(u,dt,u.target.x,u.target.y);
+  }
+ }else if(u.order==='move'){
+  if(u.destX!==undefined)moveDirect(u,dt,u.destX,u.destY);
+  else u.order='stop';
+ }else if(u.order==='attackMove'){
+  var nb=null,nd=1e9;
+  for(var i=0;i<enemySd.buildings.length;i++){var eb2=enemySd.buildings[i];if(eb2.hp<=0||eb2.constructing<1)continue;var d2=dist(u.x,u.y,eb2.x,eb2.y);if(d2<nd){nd=d2;nb=eb2;}}
+  if(nb)moveDirect(u,dt,nb.x,nb.y);
+  else if(enemySd.units.length){var nu=null,nud=1e9;for(var i=0;i<enemySd.units.length;i++){var eu2=enemySd.units[i];if(eu2.hp<=0)continue;var d3=dist(u.x,u.y,eu2.x,eu2.y);if(d3<nud){nud=d3;nu=eu2;}}if(nu)moveDirect(u,dt,nu.x,nu.y);else u.order='stop';}
+  else u.order='stop';
+ }
+}
+
+function updateCombatUnit(u,dt,sd,enemySd){
+ u.fireCD-=dt;
+ if(u.repathCD>0){u.repathCD-=dt;if(u.repathCD<0)u.repathCD=0;}
+ // Acquire / refresh target (auto-engage nearby enemies — this is what lets a whole
+ // selected squad open fire together instead of just the one unit that was clicked).
+ if(!u.target||u.target.hp<=0||(u.target.side&&u.target.side===u.side)){
+  u.target=null;
+  var bestT=null,bd=u.def.range*1.2;
+  for(var i=0;i<enemySd.units.length;i++){
+   var eu=enemySd.units[i];if(eu.hp<=0)continue;
+   var d=dist(u.x,u.y,eu.x,eu.y);if(d<bd){bd=d;bestT=eu;}
+  }
+  if(!bestT){
+   for(var i=0;i<enemySd.buildings.length;i++){
+    var eb=enemySd.buildings[i];
+    if(eb.hp<=0||eb.constructing<1)continue;
+    var d=dist(u.x,u.y,eb.x,eb.y);if(d<bd){bd=d;bestT=eb;}
+   }
+  }
+  u.target=bestT;
+ }
+ if(u.target){
+  var td=dist(u.x,u.y,u.target.x,u.target.y);
+  // indirect artillery can't fire point-blank
+  var minR=u.def.indirect?100:0;
+  if(td<=u.def.range&&td>=minR){
+   u.facing=Math.atan2(u.target.y-u.y,u.target.x-u.x);
+   if(u.fireCD<=0){u.fireCD=u.def.fireRate/vetSpdMul(u.vet);fireProjectile(u,u.target);}
+   u.path=[];
+  }else{
+   u.destX=u.target.x;u.destY=u.target.y;
+   if(!u.path||!u.path.length){
+    if(u.repathCD<=0){u.repathCD=0.5;u.path=findPath(u.x,u.y,u.target.x,u.target.y);}
+    if(!u.path||!u.path.length){seekDirect(u,dt,u.target.x,u.target.y);return;}
+   }
+   moveAlongPath(u,dt);
+  }
+ }else if(u.order==='move'){
+  if(u.path&&u.path.length)moveAlongPath(u,dt);
+  else if(u.destX!==undefined)ensureMove(u,dt);
+  else u.order='stop';
+ }else if(u.order==='attackMove'){
+  // No enemy in acquisition range: advance toward the last attack-move destination
+  // (the point/unit we were told to attack) instead of freezing.
+  if(u.destX!==undefined)ensureMove(u,dt);
+  else u.order='stop';
+ }
+}
+
+function moveDirect(u,dt,tx,ty){
+ if(!isFinite(tx)||!isFinite(ty)){u.order='stop';return;}
+ var dx=tx-u.x,dy=ty-u.y,d=Math.hypot(dx,dy);
+ if(d<6){u.order='stop';return;}
+ var spd=u.speed*(u.slowTimer>0?0.5:1);
+ u.x+=dx/d*spd*dt;u.y+=dy/d*spd*dt;
+ u.facing=Math.atan2(dy,dx);
+ u.animPhase+=dt*8;
+}
+
+function moveAlongPath(u,dt){
+ if(!isFinite(u.x)||!isFinite(u.y)){u.order='stop';u.path=[];u.destX=undefined;u.destY=undefined;return;}
+ if(u.repathCD>0){u.repathCD-=dt;if(u.repathCD<0)u.repathCD=0;}
+ if(!u.path||!u.path.length)return;
+ var wp=u.path[0];
+ var dx=wp.x-u.x,dy=wp.y-u.y;
+ var d=Math.hypot(dx,dy);
+ if(d<5){
+  u.path.shift();
+  if(!u.path.length)u.order='stop';
+  return;
+ }
+ var spd=u.speed*(u.slowTimer>0?0.5:1);
+ var mx=dx/d*spd*dt,my=dy/d*spd*dt;
+ var cgx=Math.floor(u.x/TILE),cgy=Math.floor(u.y/TILE);
+ if(!tileBlocked(cgx,cgy)){
+  var ngx=Math.floor((u.x+mx)/TILE),ngy=Math.floor((u.y+my)/TILE);
+  if(tileBlocked(ngx,ngy)){
+   var sxOK=!tileBlocked(Math.floor((u.x+mx)/TILE),cgy);
+   var syOK=!tileBlocked(cgx,Math.floor((u.y+my)/TILE));
+   var slide=function(ax){ if(ax==='x'){u.x+=mx;}else{u.y+=my;} u.facing=Math.atan2(dy,dx); u.animPhase+=dt*8; };
+   if(sxOK&&syOK){ slide(Math.abs(dx)>=Math.abs(dy)?'x':'y'); return; }
+   if(sxOK){ slide('x'); return; }
+   if(syOK){ slide('y'); return; }
+   if(u.path.length>1){u.path.shift();}
+   else if(u.destX!==undefined&&u.destY!==undefined&&(u.repathCD||0)<=0){
+    u.repathCD=1.0;
+    var np=findPath(u.x,u.y,u.destX,u.destY);
+    if(np&&np.length){u.path=np;}else{u.path=[];u.order='stop';}
+   }else{u.path=[];u.order='stop';}
+   return;
+  }
+ }
+ u.x+=mx;u.y+=my;
+ u.facing=Math.atan2(dy,dx);
+ u.animPhase+=dt*8;
+}
+
+// Direct "seek" movement with obstacle sliding + 90° detour. Used as a robust fallback
+// whenever pathfinding fails, so a unit ALWAYS makes progress toward its goal instead of
+// freezing in place (the classic "moved a few times then got stuck" bug).
+function seekDirect(u,dt,tx,ty){
+ if(!isFinite(tx)||!isFinite(ty)||!isFinite(u.x)||!isFinite(u.y)){u.order='stop';u.path=[];return;}
+ var dx=tx-u.x,dy=ty-u.y,d=Math.hypot(dx,dy);
+ if(d<6){ if(u.order==='move'||u.order==='attackMove')u.order='stop'; u.path=[]; return; }
+ var spd=u.speed*(u.slowTimer>0?0.5:1);
+ var mx=dx/d*spd*dt,my=dy/d*spd*dt;
+ var cgx=Math.floor(u.x/TILE),cgy=Math.floor(u.y/TILE);
+ var ngx=Math.floor((u.x+mx)/TILE),ngy=Math.floor((u.y+my)/TILE);
+ if(!tileBlocked(ngx,ngy)){
+  u.x+=mx;u.y+=my;
+ }else{
+  var sxOK=!tileBlocked(Math.floor((u.x+mx)/TILE),cgy);
+  var syOK=!tileBlocked(cgx,Math.floor((u.y+my)/TILE));
+  if(sxOK&&syOK){ if(Math.abs(dx)>=Math.abs(dy))u.x+=mx; else u.y+=my; }
+  else if(sxOK)u.x+=mx;
+  else if(syOK)u.y+=my;
+  else{
+   // straight ahead fully blocked: try stepping perpendicular to slip around the corner
+   var rx=-dy,ry=dx,rl=Math.hypot(rx,ry)||1;
+   rx=rx/rl*spd*dt; ry=ry/rl*spd*dt;
+   if(!tileBlocked(Math.floor((u.x+rx)/TILE),Math.floor((u.y+ry)/TILE))){u.x+=rx;u.y+=ry;}
+   else if(!tileBlocked(Math.floor((u.x-rx)/TILE),Math.floor((u.y-ry)/TILE))){u.x-=rx;u.y-=ry;}
+  }
+ }
+ u.facing=Math.atan2(dy,dx);
+ u.animPhase+=dt*8;
+}
+
+// Move toward destX/destY: try pathfinding first, fall back to direct seek so the unit
+// can never get permanently stuck. Repath is throttled by u.repathCD.
+function ensureMove(u,dt){
+ if(u.path&&u.path.length){moveAlongPath(u,dt);return;}
+ if(u.destX===undefined||!isFinite(u.destX)||!isFinite(u.destY)){u.destX=undefined;u.destY=undefined;u.order='stop';return;}
+ if(u.repathCD<=0){
+  u.repathCD=0.6;
+  var p=findPath(u.x,u.y,u.destX,u.destY);
+  if(p&&p.length){u.path=p;moveAlongPath(u,dt);return;}
+ }
+ seekDirect(u,dt,u.destX,u.destY);
+}
+
+// Soft collision: push overlapping ground units apart (only into free tiles) so squads
+// don't stack into a single point — this is what makes group attacks/moves behave like
+// Red Alert instead of one unit hogging the click target while the rest jam behind it.
+function applySeparation(){
+ var all=G.player.units.concat(G.enemy.units);
+ for(var i=0;i<all.length;i++){
+  var a=all[i];if(a.hp<=0||(a.def&&a.def.flying))continue;
+  for(var j=i+1;j<all.length;j++){
+   var b=all[j];if(b.hp<=0||(b.def&&b.def.flying))continue;
+   var dx=b.x-a.x,dy=b.y-a.y;
+   var rr=a.r+b.r;
+   var d2=dx*dx+dy*dy;
+   if(d2>rr*rr)continue;
+   if(d2<0.0001){ a.x-=0.4;b.x+=0.4; continue; }
+   var d=Math.sqrt(d2);
+   // Cap the push WELL below a unit's per-frame movement (speed*dt ~1px) so separation
+   // only softens stacks — it can never perfectly oppose movement and deadlock a unit
+   // behind an ally (the "moved a few times then got stuck" bug). Capped units gently
+   // squeeze past / around each other instead of freezing in place.
+   var push=Math.min((rr-d)*0.5, 0.35);
+   var px=dx/d*push, py=dy/d*push;
+   var ax=a.x-px, ay=a.y-py;
+   if(!tileBlocked(Math.floor(ax/TILE),Math.floor(ay/TILE))){a.x=ax;a.y=ay;}
+   var bxp=b.x+px, byp=b.y+py;
+   if(!tileBlocked(Math.floor(bxp/TILE),Math.floor(byp/TILE))){b.x=bxp;b.y=byp;}
+  }
+ }
+}
+
+/* ===== BUILDING UPDATE ===== */
+function updateBuildings(sd,dt){
+ for(var i=0;i<sd.buildings.length;i++){
+  var b=sd.buildings[i];
+  if(b.constructing<1){
+   b.constructing+=dt/8;
+   if(b.constructing>1){
+    b.constructing=1;
+    if(sd.side==='player'){notify(BLD[b.type].name+' 建造完成！',2000,'eva');sfx('build');}
+   }
+   continue;
+  }
+  // player repair mode
+  if(b.repairing&&b.side==='player'&&b.hp<b.maxHp){
+   var cost=4*dt;
+   if(G.player.cash>=cost){
+    G.player.cash-=cost;
+    b.hp=Math.min(b.maxHp,b.hp+14*dt);
+    if(b.hp>=b.maxHp){b.hp=b.maxHp;b.repairing=false;notify(BLD[b.type].name+' 维修完成',1800);}
+   }else{b.repairing=false;}
+  }
+  if(b.type==='turret'){
+   b.fireCD-=dt;
+   if(b.fireCD<=0){
+    var enemySd=sd.side==='player'?G.enemy:G.player;
+    var best=null,bd=BLD.turret.range;
+    for(var j=0;j<enemySd.units.length;j++){
+     var eu=enemySd.units[j];if(eu.hp<=0)continue;
+     var d=dist(b.x,b.y,eu.x,eu.y);if(d<bd){bd=d;best=eu;}
+    }
+    if(best){
+     b.fireCD=BLD.turret.fireRate;
+     b.fireAngle=Math.atan2(best.y-b.y,best.x-b.x);
+     fireProjectile({x:b.x,y:b.y,side:sd.side,def:{dmg:BLD.turret.dmg,proj:'shell',fireRate:BLD.turret.fireRate}},best);
+     G.effects.push({type:'muzzle',x:b.x,y:b.y,r:10,life:0.1,maxLife:0.1,angle:b.fireAngle});
+    }
+   }
+  }
+ }
+}
+
+/* ===== FOG OF WAR ===== */
+function updateFog(){
+ for(var y=0;y<MAP_H;y++)for(var x=0;x<MAP_W;x++){
+  if(G.fogP[y][x]===2)G.fogP[y][x]=1;
+ }
+ for(var i=0;i<G.player.units.length;i++){
+  var u=G.player.units[i];
+  var sight=(u.def.sight||5);
+  var ux=Math.floor(u.x/TILE),uy=Math.floor(u.y/TILE);
+  for(var dy=-sight;dy<=sight;dy++)for(var dx=-sight;dx<=sight;dx++){
+   var tx=ux+dx,ty=uy+dy;
+   if(tx<0||tx>=MAP_W||ty<0||ty>=MAP_H)continue;
+   if(dx*dx+dy*dy<=sight*sight)G.fogP[ty][tx]=2;
+  }
+ }
+ for(var i=0;i<G.player.buildings.length;i++){
+  var b=G.player.buildings[i];
+  if(b.constructing<1)continue;
+  var bx=Math.floor(b.x/TILE),by=Math.floor(b.y/TILE);
+  var br=6;
+  for(var dy=-br;dy<=br;dy++)for(var dx=-br;dx<=br;dx++){
+   var tx=bx+dx,ty=by+dy;
+   if(tx<0||tx>=MAP_W||ty<0||ty>=MAP_H)continue;
+   if(dx*dx+dy*dy<=br*br)G.fogP[ty][tx]=2;
+  }
+ }
+}
+
+/* ===== SUPERWEAPON ===== */
+function detonateSuper(){
+ if(!G.super.incoming)return;
+ var x=G.super.incoming.x,y=G.super.incoming.y,R=175;
+ var enemySd=G.enemy;
+ var beforeU=enemySd.units.length,beforeB=enemySd.buildings.length;
+ for(var i=enemySd.units.length-1;i>=0;i--){
+  var u=enemySd.units[i];
+  if(u.hp>0&&dist(u.x,u.y,x,y)<R)damage(u,700,'player');
+ }
+ for(var i=enemySd.buildings.length-1;i>=0;i--){
+  var b=enemySd.buildings[i];
+  if(b.hp>0&&dist(b.x,b.y,x,y)<R+30)damage(b,1100,'player');
+ }
+ if((beforeU-enemySd.units.length)+(beforeB-enemySd.buildings.length)>0)G.stats.superKills=(G.stats.superKills||0)+1;
+ G.effects.push({type:'explosion',x:x,y:y,r:R,life:0.7,maxLife:0.7});
+ G.effects.push({type:'explosion',x:x,y:y,r:R*0.6,life:0.9,maxLife:0.9});
+ spawnParticles(x,y,'#ffb347',40,200,1.0);
+ spawnParticles(x,y,'#ff5a3a',24,160,0.8);
+ G.shake=16;
+ G.hitstop=Math.max(G.hitstop,0.09);
+ sfx('super');
+ notify('☢ 烤鸭空袭命中目标区域！',3000,'eva');
+ G.super.incoming=null;
+}
+
+/* ===== ENEMY AI ===== */
+function updateAI(dt){
+ G.aiTimer-=dt;
+ if(G.aiTimer>0)return;
+ G.aiTimer=3;
+ var ai=G.enemy;
+ ai.cash+=Math.round(G.diff.subsidy*G.diff.cashMult);
+ var have={};
+ for(var i=0;i<ai.buildings.length;i++){var b=ai.buildings[i];if(b.constructing>=1)have[b.type]=(have[b.type]||0)+1;}
+ recalcPower(ai);
+ G.attackTimer-=3;
+ if(G.attackTimer<=0){
+  var army=ai.units.filter(function(u){return u.type!=='harvester'&&u.hp>0;});
+  if(army.length>=G.diff.reqArmy){
+   var tgt=G.player.buildings[0];
+   if(tgt){
+    for(var i=0;i<army.length;i++){
+     army[i].order='attackMove';army[i].target=tgt;
+     army[i].destX=tgt.x;army[i].destY=tgt.y;
+     army[i].path=army[i].def.flying?null:(findPath(army[i].x,army[i].y,tgt.x,tgt.y)||[]);
+     army[i].repathCD=0;
+    }
+    notify('敌方部队进攻！',3000,'danger');
+    beep(200,0.3,'sawtooth',0.08);
+   }
+   G.attackTimer=G.diff.attackEvery;
+  }else{G.attackTimer=12;}
+ }
+ if(!have.power||ai.powerUse>ai.power*0.85){aiTryBuild('power',ai);return;}
+ if(!have.refinery){aiTryBuild('refinery',ai);return;}
+ if(!have.barracks){aiTryBuild('barracks',ai);return;}
+ var combatCount=ai.units.filter(function(u){return u.type!=='harvester';}).length;
+ if(combatCount<4&&ai.cash>=200){tryQueueUnit('laser',ai);return;}
+ if(!have.warfactory&&ai.cash>=1200){aiTryBuild('warfactory',ai);return;}
+ if(have.warfactory&&!have.tech&&ai.cash>=1500){aiTryBuild('tech',ai);return;}
+ var tanks=ai.units.filter(function(u){return u.type==='tank';}).length;
+ if(tanks<3&&ai.cash>=700){tryQueueUnit('tank',ai);return;}
+ var hcount=ai.units.filter(function(u){return u.type==='harvester';}).length;
+ if(hcount<3&&ai.cash>=600){tryQueueUnit('harvester',ai);return;}
+ if(ai.buildings.length>=5&&!have.turret&&ai.cash>=600){aiTryBuild('turret',ai);return;}
+}
+
+function aiTryBuild(type,ai){
+ var d=BLD[type];
+ if(ai.cash<d.cost)return false;
+ for(var bi=0;bi<ai.buildings.length;bi++){
+  var b=ai.buildings[bi];
+  for(var dy=-d.h;dy<=b.h;dy++)for(var dx=-d.w;dx<=b.w;dx++){
+   var gx=b.gx+dx,gy=b.gy+dy;
+   if(canPlace(type,gx,gy,ai)&&aiPlacementOK(type,gx,gy,ai)){
+    placeBuilding(type,gx,gy,ai);
+    return true;
+   }
+  }
+ }
+ return false;
+}
+
+function aiReachable(anchorX,anchorY){
+ var seen={};
+ if(anchorX<0||anchorY<0)return seen;
+ seen[anchorX+','+anchorY]=1;
+ var q=[[anchorX,anchorY]];
+ while(q.length){
+  var c=q.pop();
+  for(var k=0;k<4;k++){
+   var nx=c[0]+(k===0?1:k===1?-1:0),ny=c[1]+(k===2?1:k===3?-1:0);
+   var key=nx+','+ny;
+   if(nx<0||nx>=MAP_W||ny<0||ny>=MAP_H||seen[key])continue;
+   if(tileBlocked(nx,ny))continue;
+   seen[key]=1;q.push([nx,ny]);
+  }
+ }
+ return seen;
+}
+function aiFindAnchor(ai){
+ var yd=null;
+ for(var i=0;i<ai.buildings.length;i++){if(ai.buildings[i].type==='yard'&&ai.buildings[i].constructing>=1){yd=ai.buildings[i];break;}}
+ if(!yd)return -1;
+ for(var dy=-1;dy<=yd.h;dy++)for(var dx=-1;dx<=yd.w;dx++){
+  var gx=yd.gx+dx,gy=yd.gy+dy;
+  if(!tileBlocked(gx,gy))return {x:gx,y:gy};
+ }
+ return -1;
+}
+function aiPlacementOK(type,gx,gy){
+ var ai=G.enemy;
+ var anchor=aiFindAnchor(ai);
+ if(anchor===-1)return true;
+ var d=BLD[type];
+ var before=aiReachable(anchor.x,anchor.y);
+ var saved=[];
+ for(var dy=0;dy<d.h;dy++)for(var dx=0;dx<d.w;dx++){
+  var ty=gy+dy,tx=gx+dx;
+  saved.push(G.built[ty][tx]);
+  G.built[ty][tx]={sim:1};
+ }
+ var after=aiReachable(anchor.x,anchor.y);
+ for(var i=0;i<saved.length;i++){G.built[gy+Math.floor(i/d.w)][gx+i%d.w]=saved[i];}
+ for(var i=0;i<ai.units.length;i++){
+  var u=ai.units[i];if(u.hp<=0)continue;
+  var k=Math.floor(u.x/TILE)+','+Math.floor(u.y/TILE);
+  if(before[k]&&!after[k])return false;
+ }
+ var resBefore=0,resAfter=0;
+ for(var y=0;y<MAP_H;y++)for(var x=0;x<MAP_W;x++){
+  if(G.map[y][x]===T_RES&&!tileBlocked(x,y)){
+   var kk=x+','+y;if(before[kk])resBefore++;if(after[kk])resAfter++;
+  }
+ }
+ if(resBefore>0&&resAfter===0)return false;
+ var wBefore=false,wAfter=false;
+ for(var y=0;y<MAP_H&&!wAfter;y++)for(var x=0;x<6;x++){
+  var kk2=x+','+y;
+  if(!tileBlocked(x,y)){if(before[kk2])wBefore=true;if(after[kk2])wAfter=true;}
+  if(wAfter)break;
+ }
+ if(wBefore&&!wAfter)return false;
+ return true;
+}
+
+/* ===== RENDER: WORLD ===== */
+function render(){
+ ctx.clearRect(0,0,CW,CH);
+ if(!G.mode){return;}
+ var shx=0,shy=0;
+ if(G.shake>0){shx=(Math.random()-0.5)*G.shake;shy=(Math.random()-0.5)*G.shake;G.shake*=0.88;if(G.shake<0.3)G.shake=0;}
+ ctx.save();
+ ctx.translate(-Math.round(G.camX)+shx,-Math.round(G.camY)+shy);
+ drawMap();
+ drawBuildings();
+ drawUnits();
+ drawProjectiles();
+ drawEffects();
+ drawParticles();
+ drawFloats();
+ drawFog();
+ drawRally();
+ drawPlacementGhost();
+ drawSuperIncoming();
+ drawSelectionBox();
+ ctx.restore();
+}
+
+function drawMap(){
+ var sx=Math.floor(G.camX/TILE),sy=Math.floor(G.camY/TILE);
+ var ex=Math.min(MAP_W,sx+Math.ceil(CW/TILE)+1),ey=Math.min(MAP_H,sy+Math.ceil(CH/TILE)+1);
+ for(var y=Math.max(0,sy);y<ey;y++)for(var x=Math.max(0,sx);x<ex;x++){
+  var px=x*TILE,py=y*TILE;
+  var t=G.map[y][x];
+  if(t===T_FLOOR){
+   var chk=(x+y)%2===0;
+   ctx.fillStyle=chk?'#54483a':'#4a3e32';
+   ctx.fillRect(px,py,TILE,TILE);
+   ctx.strokeStyle='rgba(255,240,200,0.05)';
+   ctx.lineWidth=1;ctx.strokeRect(px+.5,py+.5,TILE-1,TILE-1);
+   ctx.fillStyle='rgba(0,0,0,0.12)';ctx.fillRect(px,py,TILE,1);ctx.fillRect(px,py,1,TILE);
+  }else if(t===T_WALL){
+   var g=ctx.createLinearGradient(px,py,px,py+TILE);
+   g.addColorStop(0,'#7a7a84');g.addColorStop(0.5,'#54545e');g.addColorStop(1,'#3a3a42');
+   ctx.fillStyle=g;ctx.fillRect(px,py,TILE,TILE);
+   ctx.fillStyle='rgba(255,255,255,0.20)';ctx.fillRect(px+2,py+2,TILE-4,3);
+   ctx.fillStyle='rgba(0,0,0,0.28)';ctx.fillRect(px+2,py+TILE-4,TILE-4,2);
+   ctx.fillStyle='rgba(200,200,220,0.14)';ctx.fillRect(px+10,py+12,4,4);ctx.fillRect(px+22,py+20,3,3);
+  }else if(t===T_RES){
+   ctx.fillStyle='#2e2412';ctx.fillRect(px,py,TILE,TILE);
+   ctx.fillStyle='#46341590';ctx.fillRect(px+2,py+2,TILE-4,TILE-4);
+   ctx.fillStyle='#8a6a3a';
+   roundRect(px+5,py+5,TILE-10,TILE-10,3);ctx.fill();
+   ctx.strokeStyle='#5a4020';ctx.lineWidth=1;ctx.stroke();
+   ctx.strokeStyle='rgba(80,55,25,0.5)';ctx.lineWidth=2;
+   ctx.beginPath();ctx.moveTo(px+8,py+8);ctx.lineTo(px+TILE-8,py+TILE-8);ctx.stroke();
+   ctx.beginPath();ctx.moveTo(px+TILE-8,py+8);ctx.lineTo(px+8,py+TILE-8);ctx.stroke();
+   var foods=[['#e0402a',12,10,4],['#7cba3a',20,12,3.5],['#f0c020',15,20,3],['#d06020',22,21,2.5]];
+   for(var vi=0;vi<foods.length;vi++){
+    ctx.fillStyle=foods[vi][0];
+    ctx.beginPath();ctx.arc(px+foods[vi][1],py+foods[vi][2],foods[vi][3],0,6.28);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,0.3)';
+    ctx.beginPath();ctx.arc(px+foods[vi][1]-1,py+foods[vi][2]-1,foods[vi][3]*0.35,0,6.28);ctx.fill();
+   }
+  }else if(t===T_WATER){
+   var wg=ctx.createLinearGradient(px,py,px,py+TILE);
+   wg.addColorStop(0,'#1c3a52');wg.addColorStop(1,'#12283a');
+   ctx.fillStyle=wg;ctx.fillRect(px,py,TILE,TILE);
+   ctx.fillStyle='rgba(120,180,230,0.25)';ctx.fillRect(px+3,py+3,TILE-6,TILE-6);
+   var shim=Math.sin(G.time*2+x*0.5+y*0.3)*0.5+0.5;
+   ctx.fillStyle='rgba(150,200,240,'+(0.12+shim*0.12)+')';
+   ctx.fillRect(px+5,py+TILE/2-1,TILE-10,2);
+   ctx.fillStyle='rgba(255,255,255,'+(0.05+shim*0.06)+')';
+   ctx.beginPath();ctx.arc(px+TILE*0.3,py+TILE*0.35,1.5,0,6.28);ctx.fill();
+  }else if(t===T_STOVE){
+   ctx.fillStyle='#241414';ctx.fillRect(px,py,TILE,TILE);
+   ctx.fillStyle='#3a1c14';ctx.beginPath();ctx.arc(px+TILE/2,py+TILE/2,TILE/2-2,0,6.28);ctx.fill();
+   var fl=0.35+Math.sin(G.time*5+x*1.3)*0.18;
+   ctx.fillStyle='rgba(255,140,30,'+fl+')';
+   ctx.beginPath();ctx.arc(px+TILE/2,py+TILE/2,TILE/3.5,0,6.28);ctx.fill();
+   ctx.fillStyle='rgba(255,220,80,'+(fl+0.2)+')';
+   ctx.beginPath();ctx.arc(px+TILE/2,py+TILE/2,TILE/6,0,6.28);ctx.fill();
+  }
+ }
+}
+
+function drawBuildings(){
+ var allBld=G.player.buildings.concat(G.enemy.buildings);
+ allBld.sort(function(a,b){return a.y-b.y;});
+ for(var i=0;i<allBld.length;i++){
+  var b=allBld[i];
+  if(b.side==='enemy'){
+   var gx=Math.floor(b.x/TILE),gy=Math.floor(b.y/TILE);
+   if(G.fogP[gy]&&G.fogP[gy][gx]<2)continue;
+  }
+  drawBuilding(b);
+ }
+}
+
+var BLD_ICONS={yard:'🍲',power:'⚡',refinery:'🧊',barracks:'🔪',warfactory:'🔥',turret:'📡',tech:'🔬'};
+
+function drawBuilding(b){
+ var px=b.gx*TILE,py=b.gy*TILE;
+ var pw=b.w*TILE,ph=b.h*TILE;
+ var team=b.side==='player'?'#e23b3b':'#3b7be2';
+ var teamDark=b.side==='player'?'#7a1e1e':'#1e3f7a';
+ var constructing=b.constructing<1;
+ var alpha=constructing?0.45+0.55*b.constructing:1;
+ ctx.fillStyle='rgba(0,0,0,0.35)';
+ ctx.fillRect(px+4,py+5,pw,ph);
+ ctx.globalAlpha=alpha;
+ roundRect(px,py,pw,ph,5);
+ var bg=ctx.createLinearGradient(px,py,px,py+ph);
+ bg.addColorStop(0,'#30303a');bg.addColorStop(1,'#181820');
+ ctx.fillStyle=bg;ctx.fill();
+ ctx.lineWidth=2.5;ctx.strokeStyle=team;ctx.stroke();
+ ctx.lineWidth=1;ctx.strokeStyle='rgba(255,255,255,0.12)';
+ roundRect(px+3,py+3,pw-6,ph-6,3);ctx.stroke();
+ if(constructing){
+  roundRect(px,py,pw,ph,5);ctx.clip();
+  var off=(G.time*30)%16;
+  ctx.strokeStyle='rgba(255,235,120,0.5)';ctx.lineWidth=3;
+  for(var s=-ph;s<pw;s+=16){ctx.beginPath();ctx.moveTo(px+s+off,py);ctx.lineTo(px+s+off-ph,py+ph);ctx.stroke();}
+  ctx.restore();ctx.globalAlpha=alpha;
+ }
+ ctx.save();
+ ctx.translate(px+pw/2,py+ph/2-2);
+ var iconSize=Math.min(pw,ph)*0.52;
+ ctx.font=iconSize+'px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.fillText(BLD_ICONS[b.type]||'🏠',0,0);
+ ctx.restore();
+ ctx.globalAlpha=alpha;
+ ctx.fillStyle='rgba(0,0,0,0.55)';ctx.fillRect(px+3,py+ph-13,pw-6,11);
+ ctx.fillStyle=team;ctx.font='bold 9px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+ var labels={yard:'中央厨房',power:'配电箱',refinery:'冰箱仓库',barracks:'备菜台',warfactory:'灶台工厂',turret:'微波塔',tech:'科技烤箱'};
+ ctx.fillText(labels[b.type]||'',px+pw/2,py+ph-7);
+ // repair indicator
+ if(b.repairing){ctx.fillStyle='rgba(120,220,80,0.9)';ctx.font='bold 10px sans-serif';ctx.fillText('维修中',px+pw/2,py+ph/2);}
+ var sd=b.side==='player'?G.player:G.enemy;
+ var q=sd.buildQueue[b.type];
+ if(q&&q.length>0){
+  var bw=pw-6;
+  var pct=Math.min(1,q[0].progress/q[0].total);
+  ctx.fillStyle='#1a1a2a';ctx.fillRect(px+3,py-8,bw,4);
+  ctx.fillStyle='#f0c84a';ctx.fillRect(px+3,py-8,bw*pct,4);
+  ctx.strokeStyle='rgba(240,200,74,0.5)';ctx.lineWidth=0.5;ctx.strokeRect(px+3,py-8,bw,4);
+ }
+ if(b.hp<b.maxHp){
+  var bw=pw-6,hr=b.hp/b.maxHp;
+  ctx.fillStyle='#300';ctx.fillRect(px+3,py-6,bw,4);
+  ctx.fillStyle=hr>0.5?'#3ad23a':hr>0.25?'#e0c020':'#e03030';
+  ctx.fillRect(px+3,py-6,bw*hr,4);
+ }
+ ctx.globalAlpha=1;
+ if(b===G.selBuilding){
+  ctx.strokeStyle='#39ff7a';ctx.lineWidth=2;
+  roundRect(px-2,py-2,pw+4,ph+4,6);ctx.stroke();
+  if(b.type==='turret'){
+   ctx.strokeStyle='rgba(255,180,60,0.35)';ctx.lineWidth=1.5;
+   ctx.beginPath();ctx.arc(b.x,b.y,BLD.turret.range,0,6.28);ctx.stroke();
+  }
+ }
+}
+
+function drawUnits(){
+ var allU=G.player.units.concat(G.enemy.units);
+ allU.sort(function(a,b){return a.y-b.y;});
+ for(var i=0;i<allU.length;i++){
+  var u=allU[i];
+  if(u.hp<=0)continue;
+  if(u.side==='enemy'){
+   var gx=Math.floor(u.x/TILE),gy=Math.floor(u.y/TILE);
+   if(G.fogP[gy]&&G.fogP[gy][gx]<2)continue;
+  }
+  drawUnit(u);
+ }
+}
+
+var UNIT_ICONS={harvester:'🧺',laser:'🔦',shield:'🛡️',flame:'🔥',freeze:'❄️',tank:'🍳',scout:'🛵',engineer:'🔧',mortar:'💣',bomber:'🦆'};
+
+function drawUnit(u){
+ var team=u.side==='player'?'#ff4a4a':'#4a9aff';
+ var teamDark=u.side==='player'?'#802020':'#205080';
+ var isVehicle=u.def.from==='warfactory';
+ var visR=u.r*1.65;
+ // flying shadow offset
+ var shY=u.def.flying?10:4;
+ ctx.fillStyle='rgba(0,0,0,0.30)';
+ ctx.beginPath();ctx.ellipse(u.x,u.y+shY,visR*0.95,visR*0.5,0,0,6.28);ctx.fill();
+ if(u.def.flying){ctx.fillStyle='rgba(0,0,0,0.18)';ctx.beginPath();ctx.ellipse(u.x,u.y+shY+6,visR*0.7,visR*0.35,0,0,6.28);ctx.fill();}
+ var bodyCol=u.hitFlash>0?'#ffffff':teamDark;
+ if(isVehicle){
+  ctx.save();ctx.translate(u.x,u.y);ctx.rotate(u.facing);
+  ctx.fillStyle='#1a1a1a';
+  ctx.fillRect(-visR-1,-visR*0.8,visR*2+2,4);
+  ctx.fillRect(-visR-1,visR*0.8-4,visR*2+2,4);
+  roundRect(-visR,-visR*0.62,visR*2,visR*1.24,5);
+  ctx.fillStyle=bodyCol;ctx.fill();
+  ctx.lineWidth=2.5;ctx.strokeStyle=team;ctx.stroke();
+  ctx.fillStyle=teamDark;ctx.beginPath();ctx.arc(0,0,visR*0.45,0,6.28);ctx.fill();
+  ctx.strokeStyle=team;ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(visR*1.05,0);ctx.stroke();
+  ctx.restore();
+ }else{
+  ctx.beginPath();ctx.arc(u.x,u.y,visR,0,6.28);
+  ctx.fillStyle=bodyCol;ctx.fill();
+  ctx.lineWidth=3;ctx.strokeStyle=team;ctx.stroke();
+  ctx.lineWidth=1.5;ctx.strokeStyle='rgba(255,255,255,0.35)';
+  ctx.beginPath();ctx.arc(u.x,u.y,visR-3,0,6.28);ctx.stroke();
+ }
+ ctx.fillStyle='rgba(255,255,255,0.92)';
+ ctx.beginPath();ctx.arc(u.x,u.y,visR*0.70,0,6.28);ctx.fill();
+ ctx.lineWidth=1;ctx.strokeStyle='rgba(0,0,0,0.25)';
+ ctx.beginPath();ctx.arc(u.x,u.y,visR*0.70,0,6.28);ctx.stroke();
+ ctx.font=(visR*1.45)+'px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.fillText(UNIT_ICONS[u.type]||'●',u.x,u.y+0.5);
+ // team pip
+ ctx.fillStyle=team;ctx.beginPath();ctx.arc(u.x,u.y-visR-5,3,0,6.28);ctx.fill();
+ ctx.fillStyle='rgba(255,255,255,0.85)';ctx.font='bold 7px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.fillText(u.side==='player'?'我':'敌',u.x,u.y-visR-5);
+ // veterancy chevrons
+ if(u.vet>=1){
+  ctx.fillStyle=u.vet===2?'#ffd24a':'#5ad24a';
+  ctx.beginPath();ctx.moveTo(u.x-4,u.y-visR-11);ctx.lineTo(u.x,u.y-visR-15);ctx.lineTo(u.x+4,u.y-visR-11);ctx.closePath();ctx.fill();
+  if(u.vet>=2){ctx.beginPath();ctx.moveTo(u.x-4,u.y-visR-16);ctx.lineTo(u.x,u.y-visR-20);ctx.lineTo(u.x+4,u.y-visR-16);ctx.closePath();ctx.fill();}
+ }
+ ctx.fillStyle=team;
+ var nx=u.x+Math.cos(u.facing)*(visR+4),ny=u.y+Math.sin(u.facing)*(visR+4);
+ var a1=u.facing+2.5,a2=u.facing-2.5;
+ ctx.beginPath();ctx.moveTo(nx,ny);ctx.lineTo(u.x+Math.cos(a1)*(visR+1.5),u.y+Math.sin(a1)*(visR+1.5));ctx.lineTo(u.x+Math.cos(a2)*(visR+1.5),u.y+Math.sin(a2)*(visR+1.5));ctx.closePath();ctx.fill();
+ if(u.type==='harvester'&&u.cargo>0){ctx.fillStyle='#9ad24a';ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText(u.cargo,u.x,u.y-visR-6);}
+ if(u.slowTimer>0){ctx.strokeStyle='rgba(120,210,255,0.8)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(u.x,u.y,visR+4,0,6.28);ctx.stroke();}
+ if(u.selected){
+  ctx.strokeStyle='#39ff7a';ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.arc(u.x,u.y,visR+5,0,6.28);ctx.stroke();
+  ctx.setLineDash([3,3]);ctx.strokeStyle='rgba(57,255,122,0.5)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.arc(u.x,u.y,visR+8,0,6.28);ctx.stroke();
+  ctx.setLineDash([]);
+  if(u.def.range>0){ctx.strokeStyle='rgba(255,200,80,0.35)';ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(u.x,u.y,u.def.range,0,6.28);ctx.stroke();}
+ }
+ if(u.hp<u.maxHp){
+  var bw=visR*2,hr=u.hp/u.maxHp;
+  ctx.fillStyle='#300';ctx.fillRect(u.x-visR,u.y-visR-8,bw,4);
+  ctx.fillStyle=hr>0.5?'#3ad23a':hr>0.25?'#e0c020':'#e03030';
+  ctx.fillRect(u.x-visR,u.y-visR-8,bw*hr,4);
+ }
+}
+
+function drawProjectiles(){
+ for(var i=0;i<G.projectiles.length;i++){
+  var p=G.projectiles[i];
+  if(p.type==='laser'){
+   ctx.strokeStyle='#f44';ctx.lineWidth=2;
+   var tx=p.tx?p.tx.x:p.x,ty=p.tx?p.tx.y:p.y;
+   ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x-(tx-p.x)*0.2,p.y-(ty-p.y)*0.2);ctx.stroke();
+   ctx.fillStyle='#f88';ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fill();
+  }else if(p.type==='shell'){
+   ctx.fillStyle='#ff4';ctx.beginPath();ctx.arc(p.x,p.y,3,0,6.28);ctx.fill();
+   ctx.strokeStyle='rgba(255,200,50,0.4)';ctx.lineWidth=2;
+   ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x-Math.cos(Math.atan2(p.ty?p.ty.y-p.y:0,p.tx?p.tx.x-p.x:0))*8,p.y-Math.sin(Math.atan2(p.ty?p.ty.y-p.y:0,p.tx?p.tx.x-p.x:0))*8);ctx.stroke();
+  }else if(p.type==='bomb'){
+   ctx.fillStyle='#222';ctx.beginPath();ctx.arc(p.x,p.y,4,0,6.28);ctx.fill();
+   ctx.fillStyle='#e23b3b';ctx.beginPath();ctx.arc(p.x,p.y-1,2,0,6.28);ctx.fill();
+   ctx.strokeStyle='rgba(255,200,50,0.4)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x,p.y-10);ctx.stroke();
+  }else if(p.type==='flame'){
+   ctx.fillStyle='rgba(255,120,0,0.8)';ctx.beginPath();ctx.arc(p.x,p.y,4+Math.random()*2,0,6.28);ctx.fill();
+   ctx.fillStyle='rgba(255,200,0,0.6)';ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fill();
+  }else if(p.type==='ice'){
+   ctx.fillStyle='rgba(100,200,255,0.8)';ctx.beginPath();ctx.arc(p.x,p.y,3,0,6.28);ctx.fill();
+  }else{
+   ctx.fillStyle='#dd0';ctx.beginPath();ctx.arc(p.x,p.y,2,0,6.28);ctx.fill();
+  }
+ }
+}
+
+function drawEffects(){
+ for(var i=G.effects.length-1;i>=0;i--){
+  var e=G.effects[i];
+  e.life-=1/60;
+  if(e.life<=0){G.effects.splice(i,1);continue;}
+  var a=e.life/e.maxLife;
+  if(e.type==='explosion'){
+   ctx.fillStyle='rgba(255,'+Math.round(150*a)+',0,'+a+')';
+   ctx.beginPath();ctx.arc(e.x,e.y,e.r*(1-a+0.3),0,6.28);ctx.fill();
+   ctx.strokeStyle='rgba(255,200,50,'+a+')';ctx.lineWidth=2;
+   ctx.beginPath();ctx.arc(e.x,e.y,e.r*(1-a+0.3),0,6.28);ctx.stroke();
+  }else if(e.type==='hit'){
+   ctx.fillStyle='rgba(255,255,100,'+a+')';ctx.beginPath();ctx.arc(e.x,e.y,e.r*a,0,6.28);ctx.fill();
+  }else if(e.type==='death'){
+   ctx.fillStyle='rgba(200,50,50,'+a+')';ctx.beginPath();ctx.arc(e.x,e.y,e.r*(2-a),0,6.28);ctx.fill();
+  }else if(e.type==='muzzle'){
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate(e.angle);
+   ctx.fillStyle='rgba(255,220,100,'+a+')';
+   ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(8,-3);ctx.lineTo(8,3);ctx.fill();
+   ctx.restore();
+  }
+ }
+}
+
+function drawFloats(){
+ for(var i=G.floats.length-1;i>=0;i--){
+  var f=G.floats[i];
+  f.life-=1/60;
+  if(f.life<=0){G.floats.splice(i,1);continue;}
+  var a=clamp(f.life/0.6,0,1);
+  ctx.fillStyle=f.color||'#fff';ctx.globalAlpha=a;
+  ctx.font='bold 11px sans-serif';ctx.textAlign='center';
+  ctx.fillText(f.text,f.x,f.y-(1-a)*15);
+  ctx.globalAlpha=1;
+ }
+}
+
+function drawFog(){
+ var sx=Math.floor(G.camX/TILE),sy=Math.floor(G.camY/TILE);
+ var ex=Math.min(MAP_W,sx+Math.ceil(CW/TILE)+1),ey=Math.min(MAP_H,sy+Math.ceil(CH/TILE)+1);
+ for(var y=Math.max(0,sy);y<ey;y++)for(var x=Math.max(0,sx);x<ex;x++){
+  var px=x*TILE,py=y*TILE,f=G.fogP[y][x];
+  if(f===0){
+   ctx.fillStyle='rgba(10,12,20,0.93)';
+   ctx.fillRect(px,py,TILE,TILE);
+   ctx.strokeStyle='rgba(60,70,100,0.14)';ctx.lineWidth=1;
+   ctx.strokeRect(px+0.5,py+0.5,TILE-1,TILE-1);
+   ctx.fillStyle='rgba(60,70,100,0.10)';ctx.fillRect(px+TILE/2-1,py+TILE/2-1,2,2);
+  }else if(f===1){
+   ctx.fillStyle='rgba(8,10,18,0.20)';
+   ctx.fillRect(px,py,TILE,TILE);
+   ctx.strokeStyle='rgba(0,0,0,0.08)';ctx.lineWidth=1;
+   ctx.strokeRect(px+0.5,py+0.5,TILE-1,TILE-1);
+  }
+ }
+}
+
+function drawRally(){
+ if(!G.selBuilding)return;
+ var b=G.selBuilding;
+ if(b.rallyX==null)return;
+ if(b.type!=='barracks'&&b.type!=='warfactory'&&b.type!=='refinery')return;
+ ctx.strokeStyle='rgba(240,200,74,0.7)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
+ ctx.beginPath();ctx.moveTo(b.x,b.y);ctx.lineTo(b.rallyX,b.rallyY);ctx.stroke();
+ ctx.setLineDash([]);
+ // flag
+ ctx.fillStyle='#f0c84a';ctx.fillRect(b.rallyX-1,b.rallyY-14,2,14);
+ ctx.beginPath();ctx.moveTo(b.rallyX+1,b.rallyY-14);ctx.lineTo(b.rallyX+10,b.rallyY-11);ctx.lineTo(b.rallyX+1,b.rallyY-8);ctx.closePath();ctx.fill();
+}
+
+function drawPlacementGhost(){
+ if(!G.placeMode)return;
+ var d=BLD[G.placeMode];
+ var gx=Math.floor((G.mouseX+G.camX)/TILE)-Math.floor(d.w/2);
+ var gy=Math.floor((G.mouseY+G.camY)/TILE)-Math.floor(d.h/2);
+ var spot=snapBuild(G.placeMode,gx,gy,G.player);
+ var valid=!!spot;
+ var tgx=(spot?spot.gx:gx), tgy=(spot?spot.gy:gy);
+ var px=tgx*TILE,py=tgy*TILE,pw=d.w*TILE,ph=d.h*TILE;
+ ctx.globalAlpha=0.55;
+ roundRect(px,py,pw,ph,5);
+ ctx.fillStyle=valid?'rgba(0,60,0,0.45)':'rgba(60,0,0,0.45)';
+ ctx.fill();
+ ctx.lineWidth=2.5;ctx.strokeStyle=valid?'#39ff7a':'#ff5050';ctx.stroke();
+ ctx.save();ctx.translate(px+pw/2,py+ph/2-2);
+ var iconSize=Math.min(pw,ph)*0.45;
+ ctx.font=iconSize+'px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.fillText(BLD_ICONS[G.placeMode]||'🏠',0,0);
+ ctx.restore();
+ ctx.fillStyle=valid?'rgba(57,255,122,0.9)':'rgba(255,80,80,0.9)';
+ ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.fillText(d.name,px+pw/2,py+ph-8);
+ ctx.globalAlpha=1;
+}
+
+function drawSuperIncoming(){
+ if(!G.super.incoming)return;
+ var x=G.super.incoming.x,y=G.super.incoming.y,t=G.super.incoming.t/G.super.incoming.delay;
+ var R=175;
+ ctx.strokeStyle='rgba(240,200,74,'+(0.4+0.5*Math.sin(G.time*12))+')';ctx.lineWidth=2;
+ ctx.beginPath();ctx.arc(x,y,R,0,6.28);ctx.stroke();
+ ctx.beginPath();ctx.arc(x,y,R*(1-t*0.6),0,6.28);ctx.stroke();
+ // crosshair
+ ctx.strokeStyle='rgba(226,59,59,0.9)';ctx.lineWidth=1.5;
+ ctx.beginPath();ctx.moveTo(x-20,y);ctx.lineTo(x+20,y);ctx.moveTo(x,y-20);ctx.lineTo(x,y+20);ctx.stroke();
+ // descending marker
+ var dy2=-200+200*t;
+ ctx.fillStyle='rgba(226,59,59,0.8)';
+ ctx.beginPath();ctx.moveTo(x,y+dy2);ctx.lineTo(x-6,y+dy2-10);ctx.lineTo(x+6,y+dy2-10);ctx.closePath();ctx.fill();
+}
+
+function drawSelectionBox(){
+ if(!G.boxSel)return;
+ var x1=Math.min(G.boxSel.x1,G.boxSel.x2);
+ var y1=Math.min(G.boxSel.y1,G.boxSel.y2);
+ var x2=Math.max(G.boxSel.x1,G.boxSel.x2);
+ var y2=Math.max(G.boxSel.y1,G.boxSel.y2);
+ ctx.strokeStyle='rgba(0,255,0,0.6)';ctx.lineWidth=1.5;
+ ctx.setLineDash([4,2]);ctx.strokeRect(x1,y1,x2-x1,y2-y1);ctx.setLineDash([]);
+}
+
+/* ===== RENDER: RADAR ===== */
+function renderRadar(){
+ rctx.clearRect(0,0,RW,RH);
+ if(!G.mode){rctx.fillStyle='#0b0c14';rctx.fillRect(0,0,RW,RH);return;}
+ var sx=RW/MAP_W,sy=RH/MAP_H;
+ for(var y=0;y<MAP_H;y++)for(var x=0;x<MAP_W;x++){
+  var f=G.fogP[y][x];
+  if(f===0){
+   rctx.fillStyle='#0b0c14';rctx.fillRect(x*sx,y*sy,sx+0.5,sy+0.5);
+   rctx.strokeStyle='rgba(60,70,100,0.16)';rctx.lineWidth=0.5;rctx.strokeRect(x*sx,y*sy,sx,sy);
+  }else{
+   var t=G.map[y][x];
+   if(t===T_FLOOR)rctx.fillStyle=f===2?'#5a5045':'#454038';
+   else if(t===T_WALL)rctx.fillStyle=f===2?'#8a8a92':'#5a5a62';
+   else if(t===T_RES)rctx.fillStyle=f===2?'#7a9a3a':'#4a6a2a';
+   else if(t===T_WATER)rctx.fillStyle=f===2?'#2a5a8a':'#1a3a5a';
+   else if(t===T_STOVE)rctx.fillStyle=f===2?'#8a3a1a':'#5a2a10';
+   else rctx.fillStyle='#333';
+   rctx.fillRect(x*sx,y*sy,sx+0.5,sy+0.5);
+  }
+ }
+ for(var i=0;i<G.player.buildings.length;i++){
+  var b=G.player.buildings[i];
+  rctx.fillStyle=b.constructing<1?'#f44':'#ff6060';
+  rctx.fillRect(b.gx*sx,b.gy*sy,b.w*sx,b.h*sy);
+ }
+ for(var i=0;i<G.enemy.buildings.length;i++){
+  var b=G.enemy.buildings[i];
+  var gx=Math.floor(b.x/TILE),gy=Math.floor(b.y/TILE);
+  if(G.fogP[gy]&&G.fogP[gy][gx]>=2){rctx.fillStyle='#4488ff';rctx.fillRect(b.gx*sx,b.gy*sy,b.w*sx,b.h*sy);}
+ }
+ for(var i=0;i<G.player.units.length;i++){
+  var u=G.player.units[i];
+  rctx.fillStyle=u.type==='harvester'?'#ccff00':'#00ff66';
+  rctx.fillRect(u.x*sx-1.5,u.y*sy-1.5,3,3);
+ }
+ for(var i=0;i<G.enemy.units.length;i++){
+  var u=G.enemy.units[i];
+  var gx=Math.floor(u.x/TILE),gy=Math.floor(u.y/TILE);
+  if(G.fogP[gy]&&G.fogP[gy][gx]>=2){rctx.fillStyle='#ff2222';rctx.fillRect(u.x*sx-1.5,u.y*sy-1.5,3,3);}
+ }
+ // sweep line
+ G.radarAngle+=0.02;
+ var cx=RW/2,cy=RH/2,R=Math.max(RW,RH);
+ var a=G.radarAngle;
+ var g=rctx.createLinearGradient(cx,cy,cx+Math.cos(a)*R,cy+Math.sin(a)*R);
+ g.addColorStop(0,'rgba(120,255,120,0.5)');g.addColorStop(1,'rgba(120,255,120,0)');
+ rctx.strokeStyle=g;rctx.lineWidth=2;
+ rctx.beginPath();rctx.moveTo(cx,cy);rctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);rctx.stroke();
+ // camera rect
+ rctx.strokeStyle='#ffdd00';rctx.lineWidth=1;
+ rctx.strokeRect(G.camX*sx,G.camY*sy,CW*sx,CH*sy);
+}
+
+/* ===== RENDER: SIDEBAR ===== */
+function updateSidebar(){
+ cashEl.textContent=Math.floor(G.player.cash);
+ recalcPower(G.player);
+ var surplus=G.player.power-G.player.powerUse;
+ var pct=G.player.powerUse>0?Math.min(1,G.player.power/G.player.powerUse):1;
+ powerTextEl.textContent=G.player.power+'/'+G.player.powerUse+' ('+(surplus>=0?'+'+surplus:surplus)+')';
+ powerTextEl.className=G.player.lowPower?'powLow':'powOk';
+ powerFillEl.style.width=(pct*100)+'%';
+ powerFillEl.style.background=G.player.lowPower?'#a01818':'#3a8a2a';
+ // superweapon
+ var sw=G.super;
+ if(sw.incoming){superStateEl.textContent='空袭中…';superBtnEl.disabled=true;superBtnEl.classList.remove('ready');superFillEl.style.width='100%';}
+ else if(sw.ready){superStateEl.textContent='就绪';superBtnEl.disabled=false;superBtnEl.classList.add('ready');superFillEl.style.width='100%';}
+ else{superStateEl.textContent='蓄能 '+Math.floor(sw.charge/sw.max*100)+'%';superBtnEl.disabled=true;superBtnEl.classList.remove('ready');superFillEl.style.width=(sw.charge/sw.max*100)+'%';}
+ // build grid — rebuild ONLY when the active tab changes. Rebuilding the buttons every
+ // frame destroyed the DOM element between mousedown and mouseup, so real (human-paced)
+ // clicks on the build buttons never fired onclick. Now we create the elements once per
+ // tab and only update their state classes per frame, so clicks always land.
+ if(G._sbLastTab!==G.activeTab){
+  G._sbLastTab=G.activeTab;
+  buildGridEl.innerHTML='';
+  var items=[];
+  if(G.activeTab==='build'){
+   items=['power','refinery','barracks','warfactory','turret','tech'].map(function(t){return{type:t,isBld:true,def:BLD[t]};});
+  }else if(G.activeTab==='infantry'){
+   items=['harvester','laser','shield','flame','freeze','engineer'].map(function(t){return{type:t,isBld:false,def:UNT[t]};});
+  }else if(G.activeTab==='vehicle'){
+   items=['tank','scout','mortar','bomber'].map(function(t){return{type:t,isBld:false,def:UNT[t]};});
+  }
+  var hasTechP=hasTech(G.player);
+  for(var i=0;i<items.length;i++){
+   var it=items[i];
+   var btn=document.createElement('div');
+   btn.className='buildBtn';
+   btn.dataset.type=it.type;
+   btn._isBld=it.isBld; btn._def=it.def;
+   if(!it.isBld){btn._reqBld=UNT[it.type].from; btn._techReq=!!UNT[it.type].techReq;}
+   var labels={yard:'中央厨房',power:'配电箱',refinery:'冰箱仓库',barracks:'备菜台',warfactory:'灶台工厂',turret:'微波塔',tech:'科技烤箱',
+    harvester:'采集兵',laser:'激光兵',shield:'盾卫',flame:'火焰厨师',freeze:'冷冻兵',engineer:'工程师',tank:'铁锅坦克',scout:'侦察车',mortar:'高压锅炮车',bomber:'烤鸭轰炸机'};
+   var icon=it.isBld?BLD_ICONS[it.type]:UNIT_ICONS[it.type];
+   btn.title=(labels[it.type]||it.type)+' ｜ '+it.def.cost+'食材';
+   btn.innerHTML='<div class="ic">'+(icon||'🏠')+'</div><div class="nm">'+(labels[it.type]||it.type)+'</div><span class="cost">'+it.def.cost+'食材</span>';
+   if(it.isBld){
+    var pr=document.createElement('div');pr.className='prog';pr.style.width='0%';btn.appendChild(pr);btn._prog=pr;
+   }
+   if(it.isBld){
+    btn.onclick=(function(t){return function(){G.placeMode=t;G.activeTab='build';updateSidebar();};})(it.type);
+   }else{
+    btn.onclick=(function(t){return function(){tryQueueUnit(t,G.player);updateSidebar();};})(it.type);
+   }
+   buildGridEl.appendChild(btn);
+  }
+ }
+ // per-frame: update button state WITHOUT rebuilding (keeps elements stable for clicks)
+ var hasTechP2=hasTech(G.player);
+ var ch=buildGridEl.children;
+ for(var i=0;i<ch.length;i++){
+  var btn=ch[i]; var t=btn.dataset.type;
+  var canAfford=G.player.cash>=btn._def.cost;
+  var hasReq=true,reqName='';
+  if(!btn._isBld){
+   hasReq=G.player.buildings.some(function(b){return b.type===btn._reqBld&&b.constructing>=1;});
+   reqName=BLD[btn._reqBld].name;
+   if(hasReq&&btn._techReq&&!hasTechP2){hasReq=false;reqName='科技烤箱';}
+  }
+  btn.classList.toggle('disabled',!canAfford||!hasReq);
+  btn.classList.toggle('placing',G.placeMode===t);
+  if(btn._prog){
+   var q=G.player.buildQueue[t];
+   btn._prog.style.width=(q&&q.length>0?(q[0].progress/q[0].total*100):0)+'%';
+  }else{
+   var sub=btn.querySelector('.req');
+   if(!hasReq){ if(!sub){sub=document.createElement('span');sub.className='req';btn.appendChild(sub);} sub.textContent='需'+reqName; }
+   else if(sub){ btn.removeChild(sub); }
+  }
+ }
+ // queue display
+ queueEl.innerHTML='';
+ for(var from in G.player.buildQueue){
+  var q=G.player.buildQueue[from];
+  for(var i=0;i<q.length;i++){
+   var qi=document.createElement('div');qi.className='queueItem';
+   var pct=i===0?q[0].progress/q[0].total:0;
+   qi.innerHTML='<span>'+UNT[q[i].type].name.charAt(0)+'</span><div class="qprog" style="width:'+(pct*100)+'%"></div>';
+   queueEl.appendChild(qi);
+  }
+ }
+ // building actions (repair / sell)
+ if(G.selBuilding){
+  bldActionsEl.style.display='block';
+  var b=G.selBuilding;
+  repBtnEl.style.display=b.hp<b.maxHp?'block':'block';
+  repBtnEl.classList.toggle('on',!!b.repairing);
+  repBtnEl.textContent=b.repairing?'维修中…':'维修';
+  sellBtnEl.style.display=b.type==='yard'?'none':'block';
+ }else{
+  bldActionsEl.style.display='none';
+ }
+ // selected info
+ if(G.selBuilding){
+  var b=G.selBuilding;var d=BLD[b.type];
+  selInfoEl.innerHTML='<div class="selname">'+d.name+'</div>'+
+   '<div>HP: '+Math.round(b.hp)+'/'+b.maxHp+'</div>'+
+   '<div style="color:#888;font-size:10px">'+d.desc+(b.type==='barracks'||b.type==='warfactory'?' ｜ 右键设集结点':'')+'</div>';
+ }else if(G.selUnits.length>0){
+  var u=G.selUnits[0];
+  var rank=u.vet===2?'精英★★':u.vet===1?'老兵★':'列兵';
+  selInfoEl.innerHTML='<div class="selname">'+u.def.name+(G.selUnits.length>1?' ×'+G.selUnits.length:'')+'</div>'+
+   '<div>HP: '+Math.round(u.hp)+'/'+u.maxHp+' ｜ '+rank+'</div>'+
+   '<div style="color:#888;font-size:10px">右键指挥移动/攻击</div>';
+ }else{
+  selInfoEl.textContent='未选择单位';
+ }
+}
+
+/* ===== NOTIFICATIONS ===== */
+function notify(msg,dur,type){
+ G.notifs.push({msg:msg,dur:dur||3000,type:type||'info',t:0});
+ if(type==='danger')beep(200,0.18,'sawtooth',0.05);
+}
+function updateNotifs(dt){
+ for(var i=G.notifs.length-1;i>=0;i--){
+  G.notifs[i].t+=dt*1000;
+  if(G.notifs[i].t>=G.notifs[i].dur)G.notifs.splice(i,1);
+ }
+ notifsEl.innerHTML='';
+ for(var i=0;i<G.notifs.length;i++){
+  var n=G.notifs[i];
+  var d=document.createElement('div');
+  d.className='notif'+(n.type==='warn'?' warn':n.type==='danger'?' danger':n.type==='eva'?' eva':'');
+  d.textContent=n.msg;
+  notifsEl.appendChild(d);
+ }
+}
+
+/* ===== SOUND ===== */
+var audioCtx=null,musicCtx=null,musicTimer=null,musicStep=0,musicOn=true;
+function beep(freq,dur,type,vol){
+ try{
+  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  var o=audioCtx.createOscillator();
+  var g=audioCtx.createGain();
+  o.type=type||'sine';o.frequency.value=freq;
+  g.gain.value=vol||0.05;
+  o.connect(g);g.connect(audioCtx.destination);
+  o.start();o.stop(audioCtx.currentTime+dur);
+ }catch(e){}
+}
+function startMusic(){
+ if(!musicOn)return;
+ try{
+  if(!musicCtx)musicCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(musicTimer)return;
+  musicStep=0;
+  musicTimer=setInterval(musicTick,230);
+ }catch(e){}
+}
+function musicTick(){
+ if(!musicCtx)return;
+ var seq=[0,3,7,10,12,10,7,3];
+ var base=110;
+ var note=base*Math.pow(2,seq[musicStep%seq.length]/12);
+ mTone(note,0.18,'triangle',0.022);
+ if(musicStep%4===0)mTone(base/2,0.32,'sawtooth',0.018);
+ musicStep++;
+}
+function mTone(freq,dur,type,vol){
+ try{
+  var o=musicCtx.createOscillator();var g=musicCtx.createGain();
+  o.type=type;o.frequency.value=freq;
+  g.gain.value=vol;o.connect(g);g.connect(musicCtx.destination);
+  o.start();o.stop(musicCtx.currentTime+dur);
+ }catch(e){}
+}
+function toggleMusic(){
+ musicOn=!musicOn;
+ if(!musicOn){if(musicTimer){clearInterval(musicTimer);musicTimer=null;}}
+ else{startMusic();}
+ notify(musicOn?'配乐：开':'配乐：关',1500);
+}
+
+/* ===== GAME OVER ===== */
+function showGameOver(){
+ var screen=document.getElementById('gameOverScreen');
+ var title=document.getElementById('goTitle');
+ var text=document.getElementById('goText');
+ if(G.winner==='player'){
+  title.textContent='战役胜利！';title.style.color='#9ad24a';
+  var mins=Math.floor(G.time/60),secs=Math.floor(G.time%60);
+  text.textContent='你成功摧毁了敌方中央厨房！用时 '+mins+'分'+secs+'秒';
+  var bit=1<<G.mapIdx;var mw=kwMapsWon();if(!(mw&bit))kwSetMapsWon(mw|bit);
+  sfx('victory');
+ }else{title.textContent='战役失败';title.style.color='#e23b3b';text.textContent='我方中央厨房被摧毁。';sfx('defeat');}
+ screen.style.display='flex';
+ checkAch();
+ if(musicTimer){clearInterval(musicTimer);musicTimer=null;}
+}
+
+/* ===== INPUT ===== */
+/* Scale the whole game to fit any viewport (letterbox) so the sidebar with all
+   build/produce controls is ALWAYS visible & clickable, even in a narrow panel. */
+function fitGame(){
+ var gw=970,gh=648;
+ var s=Math.min(window.innerWidth/gw,window.innerHeight/gh);
+ if(!(s>0))s=1; if(s>1.5)s=1.5;            // cap upscale to keep it crisp
+ var w=document.getElementById('wrap');
+ if(w)w.style.transform='scale('+s+')';
+}
+/* Map a client (screen) point to internal game coordinates, accounting for any
+   CSS scaling applied by fitGame(). Without this, clicks land in the wrong tile
+   once the canvas is scaled. */
+function clientToGame(cx,cy){
+ var r=canvas.getBoundingClientRect();
+ var sx=r.width?canvas.width/r.width:1;
+ var sy=r.height?canvas.height/r.height:1;
+ return {x:(cx-r.left)*sx,y:(cy-r.top)*sy};
+}
+function clientToRadar(cx,cy){
+ var r=radar.getBoundingClientRect();
+ return {x:(cx-r.left)*(radar.width/r.width),y:(cy-r.top)*(radar.height/r.height)};
+}
+function setupInput(){
+ canvas.addEventListener('mousemove',function(e){
+  var g=clientToGame(e.clientX,e.clientY);
+  G.mouseX=g.x;G.mouseY=g.y;G.mouseOver=true;
+  G.scrollL=G.mouseX<EDGE;G.scrollR=G.mouseX>CW-EDGE;
+  G.scrollU=G.mouseY<EDGE;G.scrollD=G.mouseY>CH-EDGE;
+  if(G.boxSel){G.boxSel.x2=G.mouseX+G.camX;G.boxSel.y2=G.mouseY+G.camY;}
+ });
+ canvas.addEventListener('mouseleave',function(){G.mouseOver=false;G.scrollL=G.scrollR=G.scrollU=G.scrollD=false;});
+ canvas.addEventListener('mousedown',function(e){
+  e.preventDefault();
+  var g=clientToGame(e.clientX,e.clientY);
+  G.mouseX=g.x;G.mouseY=g.y;
+  if(e.button===0){
+   G.mouseDownL=true;
+   G.boxSel={x1:G.mouseX+G.camX,y1:G.mouseY+G.camY,x2:G.mouseX+G.camX,y2:G.mouseY+G.camY};
+  }else if(e.button===2){
+   G.mouseDownR=true;handleRightClick();
+  }
+ });
+ canvas.addEventListener('mouseup',function(e){
+  if(e.button===0){
+   G.mouseDownL=false;
+   if(G.boxSel){
+    // Resolve placement (when in place mode / superweapon targeting) OR selection
+    // directly here, so building never depends on the separate `click` event
+    // (which mousedown's preventDefault can suppress in some browsers).
+    var g=clientToGame(e.clientX,e.clientY);
+    G.mouseX=g.x;G.mouseY=g.y;
+    if(G.placeMode||G.super.targeting){handleLeftClick();}
+    else{handleBoxSelect();}
+    G.boxSel=null;
+   }
+  }else if(e.button===2){G.mouseDownR=false;}
+ });
+ canvas.addEventListener('contextmenu',function(e){e.preventDefault();});
+ radar.addEventListener('click',function(e){
+  if(!G.mode)return;
+  var g=clientToRadar(e.clientX,e.clientY);
+  var rx=g.x/RW*MAP_W*TILE;
+  var ry=g.y/RH*MAP_H*TILE;
+  G.camX=clamp(rx-CW/2,0,MAP_W*TILE-CW);
+  G.camY=clamp(ry-CH/2,0,MAP_H*TILE-CH);
+ });
+ var tabs=document.querySelectorAll('.tab');
+ for(var i=0;i<tabs.length;i++){
+  tabs[i].onclick=function(){
+   for(var j=0;j<tabs.length;j++)tabs[j].classList.remove('active');
+   this.classList.add('active');G.activeTab=this.dataset.tab;updateSidebar();
+  };
+ }
+ superBtnEl.onclick=function(){
+  if(!G.super.ready||G.super.incoming)return;
+  G.super.targeting=true;
+  helpTipEl.textContent='超级武器：点击地图选择空袭目标';
+  notify('选择空袭目标…',2000,'eva');
+ };
+ repBtnEl.onclick=function(){
+  if(!G.selBuilding||G.selBuilding.side!=='player')return;
+  G.selBuilding.repairing=!G.selBuilding.repairing;
+  updateSidebar();
+ };
+ sellBtnEl.onclick=function(){
+  if(!G.selBuilding||G.selBuilding.side!=='player')return;
+  sellBuilding(G.selBuilding);updateSidebar();
+ };
+ window.addEventListener('keydown',function(e){
+  G.keys[e.code]=true;
+  if(e.code==='Escape'){G.placeMode=null;G.super.targeting=false;G.selUnits=[];G.selBuilding=null;updateSidebar();}
+  if(e.code==='KeyB'){G.activeTab='build';updateTabsUI();updateSidebar();}
+  if(e.code==='KeyI'){G.activeTab='infantry';updateTabsUI();updateSidebar();}
+  if(e.code==='KeyV'){G.activeTab='vehicle';updateTabsUI();updateSidebar();}
+  if(e.code==='KeyM'){toggleMusic();updateTopBar();}
+  if(e.code==='KeyX'){toggleSfx();}
+  if(e.code==='KeyH'){showHelp();}
+  if(e.code==='Space'){e.preventDefault();togglePause();}
+  if(e.code==='KeyP'){togglePause();}
+  if(e.code==='KeyF'){screenshot();}
+  if(e.code==='KeyS'&&G.selUnits.length>0){
+   for(var i=0;i<G.selUnits.length;i++){G.selUnits[i].order='stop';G.selUnits[i].path=[];G.selUnits[i].target=null;}
+  }
+  // 1-6: quick-select first 6 items of the build grid
+  if(/^Digit[1-6]$/.test(e.code)&&G.mode){
+   G.activeTab='build';updateTabsUI();updateSidebar();
+   var btns=document.querySelectorAll('#buildGrid .buildBtn');
+   var idx=parseInt(e.code.slice(5),10)-1;
+   if(btns[idx])btns[idx].click();
+  }
+ });
+ window.addEventListener('keyup',function(e){G.keys[e.code]=false;});
+}
+
+function updateTabsUI(){
+ var tabs=document.querySelectorAll('.tab');
+ for(var i=0;i<tabs.length;i++){tabs[i].classList.toggle('active',tabs[i].dataset.tab===G.activeTab);}
+}
+
+function handleRightClick(){
+ if(G.placeMode){G.placeMode=null;updateSidebar();return;}
+ // building selected: set rally point (producers)
+ if(G.selBuilding&&G.selBuilding.side==='player'){
+  var b=G.selBuilding;
+  if(b.type==='barracks'||b.type==='warfactory'||b.type==='refinery'){
+   var wx=G.mouseX+G.camX,wy=G.mouseY+G.camY;
+   b.rallyX=wx;b.rallyY=wy;
+   notify(BLD[b.type].name+' 集结点已设置',1500);
+   beep(520,0.05,'sine',0.03);
+   return;
+  }
+ }
+ commandUnits(G.mouseX+G.camX, G.mouseY+G.camY);
+}
+
+// Issue a move / attack command to the currently selected units. Used by BOTH right-click
+// and (as a fallback) left-click, so commanding units works even when the preview panel
+// swallows the right-click context menu.
+function commandUnits(wx,wy){
+ if(!G.selUnits.length)return;
+ if(!isFinite(wx)||!isFinite(wy))return;
+ var clickedEnemy=null;
+ for(var i=0;i<G.enemy.units.length;i++){
+  var eu=G.enemy.units[i];if(eu.hp<=0)continue;
+  if(dist(wx,wy,eu.x,eu.y)<eu.r+8){clickedEnemy=eu;break;}
+ }
+  if(!clickedEnemy){
+   for(var i=0;i<G.enemy.buildings.length;i++){
+    var eb=G.enemy.buildings[i];if(eb.hp<=0)continue;
+    if(wx>eb.gx*TILE-4&&wx<(eb.gx+eb.w)*TILE+4&&wy>eb.gy*TILE-4&&wy<(eb.gy+eb.h)*TILE+4){clickedEnemy=eb;break;}
+   }
+  }
+ for(var i=0;i<G.selUnits.length;i++){
+  var u=G.selUnits[i];
+  if(u.type==='harvester'){
+   var tx=Math.floor(wx/TILE),ty=Math.floor(wy/TILE);
+   if(ty>=0&&ty<MAP_H&&tx>=0&&tx<MAP_W&&G.map[ty][tx]===T_RES){u.harvestTarget={x:tx,y:ty};u.path=[];u.cargo=0;u.order='stop';}
+   else{u.destX=wx;u.destY=wy;u.path=findPath(u.x,u.y,wx,wy)||[];u.order='move';u.target=null;}
+  }else if(u.def.flying){
+   if(clickedEnemy){u.target=clickedEnemy;u.order='attackMove';}else{u.destX=wx;u.destY=wy;u.order='move';u.target=null;u.path=null;}
+  }else{
+   if(clickedEnemy){u.target=clickedEnemy;u.order='attackMove';u.destX=clickedEnemy.x;u.destY=clickedEnemy.y;u.path=findPath(u.x,u.y,clickedEnemy.x,clickedEnemy.y)||[];}
+   else{u.destX=wx;u.destY=wy;u.path=findPath(u.x,u.y,wx,wy)||[];u.order='move';u.target=null;}
+  }
+ }
+ G.effects.push({type:'hit',x:wx,y:wy,r:12,life:0.3,maxLife:0.3});
+ beep(300,0.05,'sine',0.03);
+}
+
+// Is the world point on a friendly unit or building? (used so a single click on your own
+// stuff re-selects it instead of commanding the current selection to walk onto itself)
+function pointOnOwn(wx,wy){
+ for(var i=0;i<G.player.units.length;i++){var u=G.player.units[i];if(u.hp>0&&dist(wx,wy,u.x,u.y)<u.r+10)return true;}
+ for(var i=0;i<G.player.buildings.length;i++){var b=G.player.buildings[i];if(wx>b.gx*TILE&&wx<(b.gx+b.w)*TILE&&wy>b.gy*TILE&&wy<(b.gy+b.h)*TILE)return true;}
+ return false;
+}
+
+function handleBoxSelect(){
+ var x1=Math.min(G.boxSel.x1,G.boxSel.x2);
+ var y1=Math.min(G.boxSel.y1,G.boxSel.y2);
+ var x2=Math.max(G.boxSel.x1,G.boxSel.x2);
+ var y2=Math.max(G.boxSel.y1,G.boxSel.y2);
+ var single=Math.abs(x2-x1)*Math.abs(y2-y1)<25;
+ // Web-friendly fallback: if units are already selected and you left-click empty ground,
+ // command them to move / attack there (mirrors right-click). This makes commanding units
+ // reliable even when the host preview swallows the right-click context menu.
+ if(single&&G.selUnits.length>0&&!pointOnOwn(x1,y1)){
+  commandUnits(x1,y1);
+  return;
+ }
+ for(var i=0;i<G.selUnits.length;i++)G.selUnits[i].selected=false;
+ G.selUnits=[];G.selBuilding=null;
+ bldActionsEl.style.display='none';
+ if(single){handleSingleSelect(x1,y1);}
+ else{
+  for(var i=0;i<G.player.units.length;i++){
+   var u=G.player.units[i];if(u.hp<=0)continue;
+   if(u.x>=x1&&u.x<=x2&&u.y>=y1&&u.y<=y2){u.selected=true;G.selUnits.push(u);}
+  }
+ }
+ updateSidebar();
+}
+
+function handleSingleSelect(wx,wy){
+ // Pick the nearest friendly unit within a generous radius — small units are easy
+ // to grab with a single click (Red Alert selects the unit under/nearest the cursor).
+ var best=null,bd=1e9;
+ for(var i=0;i<G.player.units.length;i++){
+  var u=G.player.units[i];if(u.hp<=0)continue;
+  var d=dist(wx,wy,u.x,u.y);
+  if(d<u.r+10&&d<bd){bd=d;best=u;}
+ }
+ if(best){best.selected=true;G.selUnits.push(best);return;}
+ for(var i=0;i<G.player.buildings.length;i++){
+  var b=G.player.buildings[i];
+  if(wx>b.gx*TILE&&wx<(b.gx+b.w)*TILE&&wy>b.gy*TILE&&wy<(b.gy+b.h)*TILE){G.selBuilding=b;return;}
+ }
+}
+
+/* ===== CAMERA ===== */
+function updateCamera(dt){
+ var sp=SCROLL_SP*dt;
+ if(G.mouseOver){
+  if(G.keys['KeyW']||G.keys['ArrowUp']||G.scrollU)G.camY-=sp;
+  if(G.keys['KeyS']||G.keys['ArrowDown']||G.scrollD)G.camY+=sp;
+  if(G.keys['KeyA']||G.keys['ArrowLeft']||G.scrollL)G.camX-=sp;
+  if(G.keys['KeyD']||G.keys['ArrowRight']||G.scrollR)G.camX+=sp;
+ }else{
+  if(G.keys['KeyW']||G.keys['ArrowUp'])G.camY-=sp;
+  if(G.keys['KeyS']||G.keys['ArrowDown'])G.camY+=sp;
+  if(G.keys['KeyA']||G.keys['ArrowLeft'])G.camX-=sp;
+  if(G.keys['KeyD']||G.keys['ArrowRight'])G.camX+=sp;
+ }
+ G.camX=clamp(G.camX,0,MAP_W*TILE-CW);
+ G.camY=clamp(G.camY,0,MAP_H*TILE-CH);
+}
+
+/* ===== LEFT CLICK (placement / superweapon) ===== */
+function handleLeftClick(){
+ if(G.super.targeting){
+  var wx=G.mouseX+G.camX,wy=G.mouseY+G.camY;
+  G.super.incoming={x:wx,y:wy,t:0,delay:2.4};
+  G.super.targeting=false;G.super.ready=false;G.super.charge=0;
+  helpTipEl.textContent='';
+  notify('烤鸭编队升空，目标锁定！',2500,'eva');
+  beep(330,0.2,'square',0.05);
+  return;
+ }
+ if(!G.placeMode)return;
+ var d=BLD[G.placeMode];
+ var gx=Math.floor((G.mouseX+G.camX)/TILE)-Math.floor(d.w/2);
+ var gy=Math.floor((G.mouseY+G.camY)/TILE)-Math.floor(d.h/2);
+ var spot=snapBuild(G.placeMode,gx,gy,G.player);
+ if(spot){
+  placeBuilding(G.placeMode,spot.gx,spot.gy,G.player);
+  G.placeMode=null;updateSidebar();sfx('build');G.stats.built=(G.stats.built||0)+1;
+ }else{
+  beep(150,0.1,'square',0.05);
+  notify('附近没有可建造的位置，请靠近基地再试',1800,'warn');
+ }
+}
+
+/* ===== GAME LOOP ===== */
+var lastTs=0;
+function loop(ts){
+ var dt=Math.min(0.033,(ts-(lastTs||ts))/1000)*(G.speed||1);
+ lastTs=ts;
+ G.time+=dt;
+ if(G.mode&&!G.paused&&!G.over){
+  if(G.hitstop>0){G.hitstop-=dt;if(G.hitstop<0)G.hitstop=0;}
+  else try{
+   updateCamera(dt);
+   updateBuildings(G.player,dt);
+   updateBuildings(G.enemy,dt);
+   updateProduction(G.player,dt);
+   updateProduction(G.enemy,dt);
+   updateUnits(G.player,dt);
+   updateUnits(G.enemy,dt);
+   applySeparation();
+   updateProjectiles(dt);
+   G.fogTimer-=dt;if(G.fogTimer<=0){G.fogTimer=0.3;updateFog();}
+   updateAI(dt);
+   // superweapon
+   if(G.super){
+    if(G.super.incoming){G.super.incoming.t+=dt;if(G.super.incoming.t>=G.super.incoming.delay)detonateSuper();}
+    else if(!G.super.ready){G.super.charge+=dt;if(G.super.charge>=G.super.max){G.super.ready=true;notify('☢ 超级武器就绪：烤鸭空袭！',4000,'eva');beep(660,0.25,'sawtooth',0.06);}}
+   }
+   if(G.player.lowPower){G.lowPowerWarnTimer-=dt;if(G.lowPowerWarnTimer<=0){G.lowPowerWarnTimer=15;notify('电力不足！建造配电箱！',3000,'warn');}}
+   updateParticles(dt);
+   checkTutorial();
+   updateNotifs(dt);
+   updateSidebar();
+   G.achTimer=(G.achTimer||0)-dt;if(G.achTimer<=0){G.achTimer=1;checkAch();}
+  }catch(err){console.error('Game loop error:',err);}
+ }
+ render();
+ renderRadar();
+ requestAnimationFrame(loop);
+}
+
+/* ===== SFX / 成就 / 速度 / 截图 / 帮助 (留存与可达性) ===== */
+var sfxOn=(function(){try{return localStorage.getItem('kw_sfx')!=='0';}catch(e){return true;}})();
+function sfx(name){
+ if(!sfxOn)return;
+ try{
+  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  var t=audioCtx.currentTime;
+  var mk=function(f,d,ty,v,delay){var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=ty;o.frequency.value=f;g.gain.value=0;o.connect(g);g.connect(audioCtx.destination);var st=t+(delay||0);g.gain.setValueAtTime(0,st);g.gain.linearRampToValueAtTime(v,st+0.008);g.gain.exponentialRampToValueAtTime(0.0001,st+d);o.start(st);o.stop(st+d+0.02);};
+  if(name==='build')mk(440,0.12,'triangle',0.05,0),mk(660,0.14,'triangle',0.045,0.06);
+  else if(name==='produce')mk(740,0.09,'sine',0.045,0),mk(990,0.1,'sine',0.04,0.05);
+  else if(name==='click')mk(520,0.04,'square',0.025,0);
+  else if(name==='select')mk(620,0.05,'sine',0.03,0);
+  else if(name==='explode')mk(120,0.35,'sawtooth',0.07,0),mk(80,0.4,'square',0.05,0.02);
+  else if(name==='super')mk(90,0.7,'sawtooth',0.09,0),mk(180,0.5,'square',0.05,0.05);
+  else if(name==='victory'){mk(523,0.18,'triangle',0.06,0);mk(659,0.18,'triangle',0.06,0.16);mk(784,0.32,'triangle',0.07,0.32);}
+  else if(name==='defeat'){mk(330,0.3,'sawtooth',0.06,0);mk(247,0.5,'sawtooth',0.06,0.22);}
+  else if(name==='promote')mk(880,0.1,'square',0.05,0),mk(1320,0.12,'square',0.045,0.07);
+  else if(name==='ach')mk(660,0.12,'triangle',0.05,0),mk(990,0.16,'triangle',0.05,0.1),mk(1320,0.2,'triangle',0.045,0.2);
+  else if(name==='capture')mk(660,0.1,'sine',0.05,0),mk(880,0.14,'sine',0.045,0.07);
+ }catch(e){}
+}
+function toggleSfx(){sfxOn=!sfxOn;try{localStorage.setItem('kw_sfx',sfxOn?'1':'0');}catch(e){}updateTopBar();notify(sfxOn?'音效：开':'音效：关',1200);}
+
+/* ---- 成就 ---- */
+var ACH=[
+ {id:'first',  ic:'🎖',name:'首战告捷',  desc:'赢得第一场战役',          test:function(){return G.over&&G.winner==='player';}},
+ {id:'speed',  ic:'⚡',name:'闪电战',    desc:'5分钟内取得胜利',          test:function(){return G.over&&G.winner==='player'&&G.time<=300;}},
+ {id:'survive',ic:'🛡',name:'绝地反击',  desc:'中央厨房血量低于30%时获胜', test:function(){var y=G.player.buildings.filter(function(b){return b.type==='yard';})[0];return G.over&&G.winner==='player'&&y&&y.hp<=y.maxHp*0.3;}},
+ {id:'tycoon', ic:'💰',name:'食材大亨',  desc:'单局积累食材达 10000',     test:function(){return G.stats.cashPeak>=10000;}},
+ {id:'army',   ic:'⚔',name:'千军万马',  desc:'单局生产 30 个单位',       test:function(){return G.stats.produced>=30;}},
+ {id:'fort',   ic:'🏗',name:'铜墙铁壁',  desc:'单局建造 10 座建筑',       test:function(){return G.stats.built>=10;}},
+ {id:'vet',    ic:'⭐',name:'老兵教官',  desc:'将一个单位晋升为精英★★',   test:function(){return G.stats.maxVet>=2;}},
+ {id:'cap',    ic:'🚩',name:'攻城略地',  desc:'用工程师占领敌方建筑',     test:function(){return G.stats.captures>=1;}},
+ {id:'super',  ic:'☢',name:'天降神兵',  desc:'用超级武器击杀敌方',       test:function(){return G.stats.superKills>=1;}},
+ {id:'maps',   ic:'🗺',name:'平定天下',  desc:'在三张地图上各获胜一次',   test:function(){return (kwMapsWon()&7)===7;}},
+];
+function kwMapsWon(){try{return parseInt(localStorage.getItem('kw_mapsWon')||'0',10)||0;}catch(e){return 0;}}
+function kwSetMapsWon(v){try{localStorage.setItem('kw_mapsWon',String(v));}catch(e){}}
+function loadAch(){try{var r=localStorage.getItem('kw_ach');return r?JSON.parse(r):{};}catch(e){return {};}}
+function saveAch(a){try{localStorage.setItem('kw_ach',JSON.stringify(a));}catch(e){}}
+var achState=loadAch();
+function unlockAch(id){
+ if(achState[id])return;
+ achState[id]=Date.now();saveAch(achState);
+ var a=ACH.filter(function(x){return x.id===id;})[0];if(!a)return;
+ notify('🏆 成就解锁：'+a.name,3200,'eva');
+ sfx('ach');
+}
+function checkAch(){
+ if(!G||!G.stats)return;
+ if(G.player.cash>G.stats.cashPeak)G.stats.cashPeak=G.player.cash;
+ for(var i=0;i<ACH.length;i++){try{if(ACH[i].test())unlockAch(ACH[i].id);}catch(e){}}
+}
+function renderAchPanel(){
+ var grid=document.getElementById('achGrid');if(!grid)return;
+ var html='';var un=0;
+ for(var i=0;i<ACH.length;i++){var a=ACH[i];var got=!!achState[a.id];if(got)un++;html+='<div class="ach'+(got?' un':'')+'"><div class="ic">'+a.ic+'</div><div><div class="tt">'+a.name+'</div><div class="dd">'+a.desc+(got?' · ✓ 已解锁':'')+'</div></div></div>';}
+ grid.innerHTML=html;
+ document.getElementById('achCount').textContent='已解锁 '+un+'/'+ACH.length;
+}
+
+/* ---- 速度 / 暂停 ---- */
+function cycleSpeed(){G.speed=(G.speed===1?2:(G.speed===2?3:1));updateTopBar();notify('游戏速度 '+G.speed+'x',1000);}
+function togglePause(){if(!G.mode||G.over)return;G.paused=!G.paused;updateTopBar();if(G.paused)notify('⏸ 已暂停',1500);}
+function updateTopBar(){
+ var sp=document.getElementById('tbSpeed');if(sp)sp.textContent='速度 '+G.speed+'x';
+ var mu=document.getElementById('tbMute');if(mu){mu.textContent=sfxOn?'♪ 音效':'♪̸ 静音';mu.classList.toggle('on',sfxOn);}
+ var mc=document.getElementById('tbMusic');if(mc){mc.textContent=musicOn?'♫ 配乐':'♫̸ 配乐';mc.classList.toggle('on',musicOn);}
+ var pt=document.getElementById('pauseTag');if(pt)pt.style.display=G.paused?'block':'none';
+ var pp=document.getElementById('tbPause');if(pp)pp.textContent=G.paused?'继续':'暂停';
+}
+
+/* ---- 帮助 / 截图 ---- */
+function showHelp(){var o=document.getElementById('helpOverlay');if(o)o.style.display='flex';}
+function hideHelp(){var o=document.getElementById('helpOverlay');if(o)o.style.display='none';}
+function showAch(){renderAchPanel();var o=document.getElementById('achPanelWrap');if(o)o.style.display='flex';}
+function hideAch(){var o=document.getElementById('achPanelWrap');if(o)o.style.display='none';}
+function screenshot(){
+ try{
+  var sc=document.createElement('canvas');sc.width=760;sc.height=648;
+  var sx=sc.getContext('2d');sx.drawImage(canvas,0,0);
+  sx.fillStyle='rgba(0,0,0,.5)';sx.fillRect(0,620,760,28);
+  sx.fillStyle='#ffcc44';sx.font='bold 13px "Microsoft YaHei",sans-serif';sx.textAlign='left';
+  sx.fillText('厨房战争：红色警戒  ·  '+MAPS[G.mapIdx].name+'  ·  '+G.diff.name+'难度',10,640);
+  sx.textAlign='right';sx.fillStyle='#9ad24a';
+  sx.fillText('食材 '+Math.floor(G.player.cash)+'  ·  用时 '+Math.floor(G.time/60)+'分'+Math.floor(G.time%60)+'秒',750,640);
+  var a=document.createElement('a');a.download='kitchen-war-'+Date.now()+'.png';a.href=sc.toDataURL('image/png');a.click();
+  notify('📷 截图已保存',1500);sfx('click');
+ }catch(e){notify('截图失败：'+e.message,2000);}
+}
+
+/* ===== INIT ===== */
+window.addEventListener('load',function(){
+ canvas=document.getElementById('gameCanvas');
+ ctx=canvas.getContext('2d');
+ radar=document.getElementById('radar');
+ rctx=radar.getContext('2d');
+ buildGridEl=document.getElementById('buildGrid');
+ queueEl=document.getElementById('queueArea');
+ selInfoEl=document.getElementById('selInfo');
+ cashEl=document.getElementById('cashDisp');
+ powerTextEl=document.getElementById('powerText');
+ powerFillEl=document.getElementById('powerFill');
+ notifsEl=document.getElementById('notifs');
+ menuOverlay=document.getElementById('menuOverlay');
+ helpTipEl=document.getElementById('helpTip');
+ facNameEl=document.getElementById('facName');
+ superBtnEl=document.getElementById('superBtn');
+ superFillEl=document.getElementById('superFill');
+ superStateEl=document.getElementById('superState');
+ repBtnEl=document.getElementById('repBtn');
+ sellBtnEl=document.getElementById('sellBtn');
+ bldActionsEl=document.getElementById('bldActions');
+ initState();
+ setupInput();
+ window.startGame=startGame;
+ fitGame();
+ window.addEventListener('resize',fitGame);
+ // 顶部工具条 & 弹窗
+ updateTopBar();
+ document.getElementById('tbHelp').onclick=showHelp;
+ document.getElementById('helpCloseBtn').onclick=hideHelp;
+ document.getElementById('tbAch').onclick=showAch;
+ document.getElementById('achCloseBtn').onclick=hideAch;
+ document.getElementById('tbSpeed').onclick=cycleSpeed;
+ document.getElementById('tbPause').onclick=togglePause;
+ document.getElementById('tbMute').onclick=toggleSfx;
+ document.getElementById('tbMusic').onclick=function(){toggleMusic();updateTopBar();};
+ document.getElementById('tbShot').onclick=screenshot;
+ // 首次访问展示操作说明
+ try{if(!localStorage.getItem('kw_seenHelp')){showHelp();localStorage.setItem('kw_seenHelp','1');}}catch(e){}
+ // menu selectors
+ var opts=document.querySelectorAll('.opt');
+ for(var i=0;i<opts.length;i++){
+  opts[i].onclick=function(){
+   var k=this.dataset.k,v=parseInt(this.dataset.v,10);
+   var sibs=document.querySelectorAll('.opt[data-k="'+k+'"]');
+   for(var j=0;j<sibs.length;j++)sibs[j].classList.remove('sel');
+   this.classList.add('sel');
+   if(k==='map')selMap=v;else if(k==='diff')selDiff=v;else if(k==='fac')selFac=v;
+  };
+ }
+ requestAnimationFrame(loop);
+ var tips=[
+  '造建筑：先点右侧按钮，再在地图绿色虚影处点击放置',
+  '出兵：先造备菜台/灶台工厂，再切到「步兵/战车」标签',
+  '采集兵自动采食材，多造加速经济',
+  '选中生产建筑右键地图=设集结点',
+  '激光兵射程远，盾卫血厚扛前排',
+  '工程师可占领敌方建筑（红警精髓）',
+  '科技烤箱解锁火焰厨师/冷冻兵/坦克/炮车/轰炸机',
+  '右键点敌方=攻击，点空地=移动',
+  '电力不足时生产变慢，记得造配电箱',
+  '雷达红点=敌人，绿点=我方，点击雷达可跳转',
+  '超级武器「烤鸭空袭」蓄能完毕后可点击投放',
+  '单位击杀敌人会晋升军衔，属性更强',
+ ];
+ var tipIdx=0;
+ setInterval(function(){tipIdx=(tipIdx+1)%tips.length;if(helpTipEl)helpTipEl.textContent=tips[tipIdx];},5000);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Weather Current Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Weather-style w..."
+  default_prompt: "Use $work-productivity-weather-current-workflow-helper to help me Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s."
+
+policy:
+  allow_implicit_invocation: true

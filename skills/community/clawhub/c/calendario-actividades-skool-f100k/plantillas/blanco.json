@@ -1,0 +1,37 @@
+{
+  "_instrucciones": "Plantilla en blanco para empezar DESDE 0. Llena 'comunidad', elige 'tema' (alquimista-f100k | minimalista-claro | oscuro-neon), pon 'mes' (1-12) y 'anio'. En 'rutinaSemanal' las llaves son el día de la semana: 0=Domingo, 1=Lunes ... 6=Sábado. Cada sesión usa un 'tipo' definido en 'catalogoTipos' (color del chip). 'eventos' son fechas puntuales (formato AAAA-MM-DD); pon 'atento': true y un 'fechaLabel' para que salga en el bloque 'Estáte atento a'. Base recomendada F100K: ancla un Q&A en vivo a media semana y un cierre de Wins el viernes; reparte la masterclass y el regalo del mes; arranca un reto mensual.",
+
+  "comunidad": "Mi Comunidad",
+  "mesLabel": "",
+  "tema": "alquimista-f100k",
+  "mes": 6,
+  "anio": 2026,
+  "logo": "",
+
+  "catalogoTipos": {
+    "ancla":    { "bg": "#1e3a8a", "fg": "#ffffff" },
+    "clase":    { "bg": "#7c3aed", "fg": "#ffffff" },
+    "accion":   { "bg": "#22c55e", "fg": "#0a2e12" },
+    "celebra":  { "bg": "#F4C84B", "fg": "#1a1a1a" },
+    "soporte":  { "bg": "#0a0a0a", "fg": "#ffffff" }
+  },
+
+  "rutinaSemanal": {
+    "1": [{ "sesion": "Lunes de metas", "tipo": "soporte", "icono": "🎯" }],
+    "2": [{ "sesion": "Q&A en vivo", "tipo": "ancla", "icono": "💬" }],
+    "3": [{ "sesion": "Mini-clase / recurso", "tipo": "clase", "icono": "📚" }],
+    "4": [{ "sesion": "Hot seat / auditoría", "tipo": "accion", "icono": "🔥" }],
+    "5": [{ "sesion": "Viernes de Wins", "tipo": "celebra", "icono": "🏆" }]
+  },
+
+  "horarios": {
+    "2": "7PM",
+    "5": "10AM"
+  },
+
+  "eventos": [
+    { "fecha": "2026-06-04", "titulo": "Inicio del reto del mes", "icono": "🚀", "fechaLabel": "4 de junio" },
+    { "fecha": "2026-06-18", "titulo": "Masterclass con invitado", "icono": "🎓", "fechaLabel": "18 de junio" },
+    { "fecha": "2026-06-27", "titulo": "Regalo del mes + cierre del reto", "icono": "🎁", "fechaLabel": "27 de junio" }
+  ]
+}

@@ -1,41 +1,53 @@
-## Description: <br>
-Provides physical and human geography expertise for checking climate, terrain, biomes, resources, settlement patterns, and worldbuilding coherence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in geography review and worldbuilding coherence.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-External users and developers use this skill to add geography review to agent workflows for maps, climate systems, settlements, resources, trade routes, and plausible fictional worlds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence answers whenever geography expertise seems relevant, including real-world geography, policy, engineering, or safety topics. <br>
-Mitigation: Verify important real-world claims against authoritative sources before relying on them. <br>
-Risk: Worldbuilding or geography analysis can overstate geographic determinism when explaining cultures or settlements. <br>
-Mitigation: Use the skill's stated constraint that geography shapes possibilities but does not dictate cultural outcomes. <br>
+## Use Case:
 
+External users and developers use this agent to review or design regions, maps, and fictional worlds for geographic coherence across climate, terrain, hydrology, resources, settlement patterns, and trade routes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-geographer) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text geographic analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable commands or configuration output are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate broadly when geography expertise is referenced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in contexts where geography or worldbuilding review is intended, and review its advice before relying on it for decisions.
+
+Risk: Geographic analysis can be incomplete or misleading if treated as authoritative.
+
+Mitigation: Validate important climate, terrain, hydrology, resource, and settlement claims against domain references or human expertise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-geographer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, analyses, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include geographic coherence reports, climate system designs, issue lists, and suggested corrections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

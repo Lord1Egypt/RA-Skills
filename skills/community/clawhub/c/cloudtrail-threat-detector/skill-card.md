@@ -1,42 +1,48 @@
-## Description: <br>
-Analyze AWS CloudTrail logs for suspicious patterns, unauthorized changes, and MITRE ATT&CK indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze AWS CloudTrail logs for suspicious patterns, unauthorized changes, and MITRE ATT&CK indicators.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Security analysts, incident responders, and cloud engineers use this skill to review user-provided AWS CloudTrail exports for suspicious activity, assemble an incident timeline, map events to MITRE ATT&CK cloud techniques, and identify containment steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CloudTrail exports can contain sensitive operational details or accidental secrets. <br>
-Mitigation: Export only the relevant account, region, and time window, and review logs before sharing them with the agent. <br>
-Risk: Users might paste AWS access keys, session tokens, or other credentials while providing incident data. <br>
-Mitigation: Provide exported logs or console output only, and remove any AWS keys, secret keys, or session tokens before analysis. <br>
-Risk: AWS CLI export commands require account access even though the skill itself does not access AWS. <br>
-Mitigation: Run any export commands yourself with a least-privilege read-only role limited to CloudTrail and CloudWatch log retrieval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/cloudtrail-threat-detector) <br>
-- [Publisher profile](https://clawhub.ai/user/anmolnagpal) <br>
+## Use Case:
 
+Security teams and developers use this skill to review user-provided AWS CloudTrail exports for suspicious activity, build an incident timeline, map findings to MITRE ATT&CK Cloud techniques, and identify containment actions.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown threat summary with timeline, findings table, attack narrative, containment actions, detection gaps, and optional inline shell commands for user-run exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-supplied CloudTrail, S3, CloudWatch Logs, or incident-description data only; the skill does not access AWS accounts directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented minimum AWS IAM policy is broader than the shown export workflow requires.
+
+Mitigation: Review and narrow the AWS IAM policy before use, grant only the specific read actions and log resources needed for the chosen export method, prefer a temporary role, and do not provide AWS credentials to the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmolnagpal/skills/cloudtrail-threat-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses only user-provided CloudTrail data; does not access AWS accounts directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

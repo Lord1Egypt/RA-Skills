@@ -1,40 +1,53 @@
-## Description: <br>
-将AI技术成果纳入法律保护框架，建立归属链，为Skill/Agent商业化奠定法律基础。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将AI技术成果纳入法律保护框架，建立归属链，为Skill/Agent商业化奠定法律基础
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-开发者和团队可用该 Skill 识别 Skill、Agent、知识库等 AI 资产对应的商标、著作权、专利、商业秘密和数据知识产权保护路径，并生成资产 IP 状态、风险等级与行动建议。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawHub security evidence flags the release as suspicious for use in trusted maintainer environments and for guidance that could affect real account, deployment, or moderation changes. <br>
-Mitigation: Install only where the publisher is trusted, review proposed actions before use, and avoid broad local access unless it is required. <br>
-Risk: IP protection guidance can be jurisdiction-specific and may not match the user's exact asset facts or filing requirements. <br>
-Mitigation: Use the output as planning guidance and have qualified counsel verify ownership, filings, confidentiality controls, and compliance before acting. <br>
+## Use Case:
 
+Skill and Agent builders use this Chinese-language checklist to map AI assets to intellectual property protections, record ownership status, and prioritize follow-up actions. It is oriented toward commercializing AI skills, agents, knowledge bases, prompts, code, brands, datasets, and technical workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/hutian-opc-ai-ip-protection-trial) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style assessment text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes asset name, current IP status, risk level, and prioritized recommended actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: The skill provides a general IP checklist and may be mistaken for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as planning guidance and verify legal requirements with qualified counsel before relying on it.
+
+Risk: Using the checklist may involve sensitive business assets such as prompts, source code, patents, trademarks, datasets, and trade secrets.
+
+Mitigation: Avoid sharing confidential details unless the agent environment is trusted and approved for that information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/hutian-opc-ai-ip-protection-trial)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Structured Chinese-language Markdown assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include asset name, current IP status, risk level, prioritized actions, materials to prepare, and an IP record template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

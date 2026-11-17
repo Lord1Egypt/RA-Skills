@@ -10,7 +10,7 @@ import zipfile
 import requests
 
 # 配置
-SKILLHUB_API_KEY = "sk-skillhubs-JNpqszhN_oGF3u3xGEAMpJIjG6V2_etC"
+SKILLHUB_API_KEY = "REDACTED-SECRET"
 SKILLHUB_BASE_URL = "https://www.skillhub.club/api/v1"
 SKILL_FOLDER = r"C:\Users\Administrator\.copaw\workspaces\default\skills\universal-autostart"
 

@@ -1,39 +1,55 @@
-## Description: <br>
-Curate multi-category prompt libraries in EN/ES with basic/pro levels and export in Markdown/JSON/CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curate multi-category prompt libraries in EN/ES with basic/pro levels and export in Markdown/JSON/CSV.
 
-## Publisher: <br>
-[nerdcuba](https://clawhub.ai/user/nerdcuba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nerdcuba](https://clawhub.ai/user/nerdcuba)
 
-## Use Case: <br>
-External users and developers use this skill to generate reusable prompt packs, catalogs, and templates across marketing, sales, development, design, SEO, productivity, HR, and finance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may adapt prompts with sensitive HR, finance, business, or personal data. <br>
-Mitigation: Review generated prompts before use and avoid entering sensitive data unless the target system is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Library Markdown Reference](references/prompts.md) <br>
-- [Prompt Library JSON Reference](references/prompts.json) <br>
-- [Prompt Library CSV Reference](references/prompts.csv) <br>
+## Use Case:
 
+External users, employees, and developers use this skill to generate reusable prompt packs across common business and creative categories in English and Spanish.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Guidance] <br>
-**Output Format:** [Markdown, JSON, or CSV prompt library content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports EN/ES prompts, Basic/Pro levels, reusable placeholders, and the default categories Marketing, Sales, Development, Design, SEO, Productivity, HR, and Finance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated finance, HR, or business prompts may be used for professional decisions without enough review.
+
+Mitigation: Review generated prompts and any model outputs before relying on them for professional or operational decisions.
+
+Risk: The bundled library is limited to English and Spanish prompt templates.
+
+Mitigation: Confirm language requirements before use and expand the prompt library when other languages are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerdcuba/skills/prompt-library-curator)
+- [prompts.md](references/prompts.md)
+- [prompts.json](references/prompts.json)
+- [prompts.csv](references/prompts.csv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Guidance]
+
+**Output Format:** [Markdown, JSON, or CSV prompt-library content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English and Spanish prompts at Basic and Pro levels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

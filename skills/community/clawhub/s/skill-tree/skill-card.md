@@ -1,40 +1,54 @@
-## Description: <br>
-Track learning across topics like an RPG skill tree with prerequisites, milestones, suggested next steps, and gamified learning paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track learning across topics like an RPG skill tree. Prerequisites, milestones, suggested next steps. Gamified learning path.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-External learners and developers use this skill to track study progress across prerequisite-based skill trees, mark completed topics, and ask the agent for suggested next skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local progress data remains on disk and may include personal learning details. <br>
-Mitigation: Keep the progress file in a trusted workspace, avoid storing sensitive personal details in skill names or notes, and remove the file when it is no longer needed. <br>
-Risk: Progress data can be lost or corrupted through local filesystem issues or user error. <br>
-Mitigation: Maintain independent backups of important learning progress data before relying on the tracker as a long-term record. <br>
+## Use Case:
 
+External users and developers use this skill to track learning progress, prerequisites, milestones, unlocked topics, and suggested next steps across customizable learning trees.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/skill-tree) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, files] <br>
-**Output Format:** [Plain text or Markdown progress summaries backed by local JSON progress data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local skill-tree.json progress file in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Progress data is stored locally in a JSON file and could be lost, corrupted, or exposed if the chosen file location is unsuitable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated data file path, apply normal local file permissions, and maintain backups for important learning records.
+
+Risk: Trading-themed learning paths or suggestions could be mistaken for financial advice.
+
+Mitigation: Treat trading curriculum suggestions as educational organization only, not financial, legal, trading, or professional advice.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/theshadowrose/skills/skill-tree)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown text with JSON-like progress and suggestion objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write a local JSON progress file configured by dataFile.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

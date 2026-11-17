@@ -1,41 +1,54 @@
-## Description: <br>
-Provides web, news, and image search through 360 Search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the 360 Search engine for web, news, and image results.
 
-## Publisher: <br>
-[feiyang2007](https://clawhub.ai/user/feiyang2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feiyang2007](https://clawhub.ai/user/feiyang2007)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve web, news, and image search results from 360 Search for query-driven research tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to an external search provider. <br>
-Mitigation: Do not submit secrets, credentials, private customer data, or sensitive internal terms through this skill. <br>
-Risk: The skill relies on Playwright and browser dependencies while its package documentation is incomplete. <br>
-Mitigation: Install and run it only in an environment where those dependencies can be reviewed, pinned, and isolated before use. <br>
+## Use Case:
 
+Developers and agents use this skill to issue web, news, and image searches against 360 Search and return result metadata for Chinese-language search workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/feiyang2007/360-search) <br>
-- [360 Search](https://www.so.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search result arrays and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include titles, links, snippets, source labels, timestamps, and image URLs depending on the search mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Search queries are sent to 360 Search/so.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sending the query terms to that external search service is acceptable.
+
+Risk: The scanner notes Chinese-only output and packaging rough edges, including missing or inconsistent examples.
+
+Mitigation: Review and test the packaged scripts in the target environment before relying on the results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feiyang2007/skills/360-search)
+- [360 Search](https://www.so.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON search-result records and Markdown usage notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search scripts accept a JSON argument with query and optional max_results fields.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

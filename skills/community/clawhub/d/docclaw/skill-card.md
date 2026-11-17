@@ -1,40 +1,57 @@
-## Description: <br>
-DocClaw is a documentation skill for OpenClaw that combines live docs search, direct markdown fetch, and offline local-doc fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DocClaw is a documentation skill for OpenClaw that combines live docs search, direct markdown fetch, and offline local-doc fallback.
 
-## Publisher: <br>
-[vibecodooor](https://clawhub.ai/user/vibecodooor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vibecodooor](https://clawhub.ai/user/vibecodooor)
 
-## Use Case: <br>
-Developers and engineers use DocClaw to answer OpenClaw documentation questions with canonical links, exact configuration keys, command flags, and local fallback search when live documentation is unavailable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes Python scripts that perform network fetches and write local documentation index or cache files. <br>
-Mitigation: Review the scripts before use when source provenance matters, run them as a normal user, and allow fetches only to docs.openclaw.ai. <br>
-Risk: Fetched documentation may be stale, incomplete, or inconsistent with installed OpenClaw behavior. <br>
-Mitigation: Treat fetched docs as reference material and verify behavior with openclaw command help when exact runtime behavior matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [DocClaw ClawHub listing](https://clawhub.ai/vibecodooor/docclaw) <br>
+## Use Case:
 
+Developers and engineers use DocClaw to answer OpenClaw documentation questions, find canonical docs links, fetch exact markdown pages, and fall back to local docs when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with documentation links, concise notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exact OpenClaw documentation links, fetched markdown references, and local search commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: changelog, released 2026-02-18) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to docs.openclaw.ai and writes a local docs index or cache.
+
+Mitigation: Install only where that network access and local caching are acceptable, and keep docs fetches restricted to docs.openclaw.ai.
+
+Risk: Redirect handling could allow an off-domain request if every redirect target is not verified.
+
+Mitigation: Require redirect targets to be verified before any off-domain request; this release also validates index-derived URLs and applies a trusted-host guard before fetches.
+
+Risk: Fetched documentation can be stale or differ from installed OpenClaw runtime behavior.
+
+Mitigation: Validate behavior-sensitive guidance with openclaw command help before acting on exact flags, keys, or paths.
+
+## Reference(s):
+
+- [DocClaw on ClawHub](https://clawhub.ai/vibecodooor/skills/docclaw)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include docs links, one-line relevance notes, fetched markdown paths, and local-doc search guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md version, CHANGELOG, server release evidence; released 2026-02-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

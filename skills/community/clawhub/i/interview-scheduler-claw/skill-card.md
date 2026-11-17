@@ -1,42 +1,55 @@
-## Description: <br>
-面试邀约自动化协调：根据候选人和面试官信息协调飞书日历空闲时间、创建面试会议，并生成或发送面试邀请邮件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+约面招聘协调虾 helps agents coordinate interview scheduling from candidate spreadsheets or natural-language requests by checking Feishu calendar availability, preparing confirmed meeting events, and drafting or sending interview emails.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Recruiting and HR teams use this skill to coordinate batches of candidate interviews from Excel, CSV, or natural-language requests. It helps identify interviewer availability, propose candidate-specific time slots, create Feishu video meetings after confirmation, and prepare invitation email text or send mail when SMTP is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real calendar, contact, email, and token access. <br>
-Mitigation: Scope Feishu and SMTP credentials tightly and review each calendar event, attendee list, candidate email, and meeting link before sending. <br>
-Risk: The fallback script caches Feishu tenant access tokens in a weak shared temporary-file location. <br>
-Mitigation: Prefer the OAuth-based Feishu plugin path; if the fallback script is used, change the cache to a private per-user location with restrictive permissions and remove cached tokens after use. <br>
+## Use Case:
 
+Recruiters and HR coordinators use this skill to process candidate interview batches, identify interviewer availability, confirm proposed slots, create Feishu video meeting events, and prepare candidate email invitations.
 
-## Reference(s): <br>
-- [Feishu Calendar API Reference](references/feishu-calendar-api.md) <br>
-- [Interview Email Templates](references/email-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tujinsama/interview-scheduler-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured summaries, JSON API examples, shell command examples, and email draft text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user confirmation before creating calendar events or sending email] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The fallback Feishu script handles powerful calendar credentials and stores a tenant token in a temporary cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the openclaw-lark OAuth plugin path, grant Feishu and SMTP permissions narrowly, and use the fallback script in shared environments only after moving the token cache to a private protected location or disabling it.
+
+Risk: The skill can mutate real calendars and send interview communications to candidates.
+
+Mitigation: Require explicit user confirmation before creating calendar events, adding attendees, or sending email invitations.
+
+## Reference(s):
+
+- [Feishu calendar API reference](references/feishu-calendar-api.md)
+- [Interview invitation email templates](references/email-templates.md)
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/interview-scheduler-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with optional bash commands, tool-call parameters, and email draft text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before calendar creation or email sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

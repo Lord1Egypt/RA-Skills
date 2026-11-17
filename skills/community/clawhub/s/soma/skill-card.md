@@ -1,53 +1,66 @@
-## Description: <br>
-Expert guide for participating in the SOMA network, a decentralized system that trains a foundation model through competition, with guidance for data submission, model training, reward claiming, SDK usage, CLI commands, and competitive strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guide for participating in the SOMA network, including data submission workflows, model training pipelines, reward claiming, SDK code generation, CLI command guidance, and competitive strategy optimization.
 
-## Publisher: <br>
-[cfuaqz](https://clawhub.ai/user/cfuaqz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cfuaqz](https://clawhub.ai/user/cfuaqz)
 
-## Use Case: <br>
-Developers and external contributors use this skill to participate in SOMA by configuring credentials, submitting data, training and publishing models, claiming rewards, and choosing competitive niches in the network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet keys and cloud credentials are required for signing, dataset access, and artifact storage. <br>
-Mitigation: Use throwaway or testnet wallet keys, never paste private keys into chats or logs, and restrict S3, HuggingFace, and Modal credentials to the minimum needed. <br>
-Risk: Live blockchain actions and serialized transactions can cause unintended signed activity. <br>
-Mitigation: Verify every transaction before signing and avoid executing serialized transactions from untrusted sources. <br>
-Risk: Submission data and encrypted model weights may be uploaded publicly for validator access. <br>
-Mitigation: Submit only data you are allowed to publish and screen datasets for secrets, PII, and regulated content before upload. <br>
-Risk: Remote installers and recurring Modal jobs can introduce execution and cost exposure. <br>
-Mitigation: Review the SOMA installer before use, then monitor or disable Modal cron jobs to control spending and ongoing activity. <br>
+## Use Case:
 
+Developers and external contributors use this skill to set up SOMA participation workflows, submit data, train models, claim rewards, and understand network strategy.
 
-## Reference(s): <br>
-- [SOMA documentation](https://docs.soma.org) <br>
-- [SOMA repository](https://github.com/soma-org/soma) <br>
-- [SOMA quickstart repository](https://github.com/soma-org/quickstart) <br>
-- [SOMA Network Architecture](references/architecture.md) <br>
-- [SOMA CLI Reference](references/cli-reference.md) <br>
-- [SOMA Data Strategies](references/data-strategies.md) <br>
-- [SOMA Model Strategies](references/model-strategies.md) <br>
-- [SOMA Quickstart Code Patterns](references/quickstart-patterns.md) <br>
-- [SOMA Python SDK Reference](references/sdk-reference.md) <br>
-- [SOMA Competitive Playbook](references/strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell commands, Python snippets, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include credential setup, cloud deployment, blockchain transaction, public upload, and reward-claiming instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and skill metadata) <br>
+Risk: The skill asks users to run installers and quickstart code before participating in the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer and quickstart source before execution, and pin trusted versions where possible.
+
+Risk: The workflows require sensitive wallet, Hugging Face, S3/R2, and Modal credentials.
+
+Mitigation: Use a dedicated testnet wallet with limited value, scope cloud tokens tightly, and avoid bulk-uploading unrelated .env values.
+
+Risk: Modal jobs, public S3/R2 uploads, staking, claiming, and cron deployments can create lasting cost, privacy, and blockchain effects.
+
+Mitigation: Confirm cost limits, public-upload expectations, cron schedules, and transaction effects before deploying or submitting.
+
+## Reference(s):
+
+- [SOMA Documentation](https://docs.soma.org)
+- [SOMA Repository](https://github.com/soma-org/soma)
+- [SOMA Quickstart Repository](https://github.com/soma-org/quickstart)
+- [SOMA Network Architecture](references/architecture.md)
+- [SOMA CLI Reference](references/cli-reference.md)
+- [SOMA Data Strategies](references/data-strategies.md)
+- [SOMA Model Strategies](references/model-strategies.md)
+- [SOMA Quickstart Code Patterns](references/quickstart-patterns.md)
+- [SOMA Python SDK Reference](references/sdk-reference.md)
+- [SOMA Competitive Playbook](references/strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup steps for credentials, cloud deployment, blockchain transactions, SDK usage, and model training workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

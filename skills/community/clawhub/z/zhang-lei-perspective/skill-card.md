@@ -1,49 +1,61 @@
-## Description: <br>
-Zhang Lei Perspective helps agents respond to business and investing questions through a Zhang Lei-inspired long-term value, moat, and first-principles lens while making clear that the response is based on public information and does not represent Zhang Lei. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language perspective skill that helps an agent analyze business decisions, investment questions, and long-term value through a Zhang Lei-inspired framework derived from public materials.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers and agent users can use this skill to frame business, investing, and strategy discussions through a long-term value-investing perspective. It is best suited for reflective analysis of moats, value creation, and durable business decisions rather than short-term trading calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers may activate the skill on generic questions about moats, long-term thinking, or value investing. <br>
-Mitigation: Confirm that the user wants a Zhang Lei-inspired perspective and keep the response clearly framed as a public-information-based model. <br>
-Risk: Investing-oriented responses could be mistaken for personal financial advice. <br>
-Mitigation: Avoid specific stock recommendations and short-term trading advice; encourage independent due diligence for investment decisions. <br>
-Risk: The release evidence and skill frontmatter disagree on license terms. <br>
-Mitigation: Verify the license with the publisher before reuse, modification, or redistribution. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent for Zhang Lei-style analysis of moats, long-termism, value creation, and business decisions. It should frame responses as a public-information-derived thinking model, not Zhang Lei's own statements or personalized financial advice.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Zhang Lei Writings and Articles](references/research/01-writings.md) <br>
-- [Zhang Lei Interviews and Conversations](references/research/02-conversations.md) <br>
-- [Expression DNA](references/research/03-expression-dna.md) <br>
-- [External Views](references/research/04-external-views.md) <br>
-- [Major Decisions](references/research/05-decisions.md) <br>
-- [Timeline](references/research/06-timeline.md) <br>
-- [Validation Report](references/validation-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text advisory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, or external data access; responses should avoid impersonation and specific short-term stock recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: release evidence) <br>
+Risk: The skill may be mistaken for Zhang Lei's own statements or personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use third-person framing, include the public-information-derived disclaimer, and avoid specific stock recommendations or short-term investment advice.
+
+Risk: Broad triggers around moats, long-term thinking, or value investing may activate on generic business prompts.
+
+Mitigation: Apply the Zhang Lei perspective only when relevant to the user's request, and clarify the framing for broad or ambiguous prompts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/skills/zhang-lei-perspective)
+- [README](artifact/README.md)
+- [Research: Writings](artifact/references/research/01-writings.md)
+- [Research: Conversations](artifact/references/research/02-conversations.md)
+- [Research: Expression DNA](artifact/references/research/03-expression-dna.md)
+- [Research: External Views](artifact/references/research/04-external-views.md)
+- [Research: Decisions](artifact/references/research/05-decisions.md)
+- [Research: Timeline](artifact/references/research/06-timeline.md)
+- [Validation Report](artifact/references/validation-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance in Chinese-language prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should include a disclaimer that the perspective is derived from public information and does not represent Zhang Lei's own views.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

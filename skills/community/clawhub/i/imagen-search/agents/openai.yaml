@@ -1,0 +1,4 @@
+interface:
+  display_name: "Imagen Search"
+  short_description: "Search free image links or unlock originals with credits"
+  default_prompt: "Use $imagen-search to find relevant free watermarked image links, or get an original with my Imagen API key and authorized credits."

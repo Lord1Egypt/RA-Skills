@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/imdb/title-more-like-this-query/v1 for IMDb Recommendations through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/imdb/title-more-like-this-query/v1 for IMDb Recommendations through JustOneAPI with an IMDb title ID.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch IMDb title recommendations from JustOneAPI for content discovery and recommendation analysis. It requires an IMDb title id and can optionally apply a language-country preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's JustOneAPI token and IMDb lookup request to JustOneAPI. <br>
-Mitigation: Install only when the user trusts JustOneAPI, pass the token through JUST_ONE_API_TOKEN, and avoid sharing token values in chat, screenshots, or logs. <br>
-Risk: The API token is transmitted as a query-string parameter and may appear in proxy, gateway, or error logs outside the skill. <br>
-Mitigation: Use a scoped token when available, rotate credentials if exposed, and review surrounding infrastructure logs and retention policies before production use. <br>
+## Use Case:
 
+Developers and agents use this skill to look up IMDb recommendations for a title ID through JustOneAPI and summarize related-title suggestion data for content discovery or recommendation analysis.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_more_like_this_query&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-imdb-title-more-like-this-query) <br>
-- [Generated Operation Reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and an IMDb title id; languageCountry is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token can leak through command metadata, shell history, request URLs, proxy logs, or server logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, easily rotated token; avoid command and request tracing; rotate the token if exposure is suspected.
+
+Risk: The skill depends on a live third-party API and may return backend errors or non-JSON responses.
+
+Mitigation: Surface the backend payload and operation ID when failures occur so the caller can retry or troubleshoot without exposing secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-imdb-title-more-like-this-query)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_more_like_this_query&utm_content=project_link)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_imdb_title_more_like_this_query&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and a JUST_ONE_API_TOKEN; the endpoint requires an IMDb title ID and supports an optional languageCountry value.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

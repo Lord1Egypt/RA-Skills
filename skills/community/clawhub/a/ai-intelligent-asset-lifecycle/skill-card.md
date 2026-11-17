@@ -1,40 +1,50 @@
-## Description: <br>
-Manages enterprise assets across purchasing, use, inventory checks, maintenance records, and disposal workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides asset lifecycle management for registration, usage tracking, inventory checks, maintenance records, and disposal workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Asset, IT, and operations teams use this skill to manage fixed assets, equipment, IT assets, and office assets from registration through disposal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package documents cloning and running an external Python repository that was not part of the reviewed artifact. <br>
-Mitigation: Review the external repository and its requirements before running the commands. <br>
-Risk: The asset-management domain can involve business asset records and retirement workflows. <br>
-Mitigation: Use appropriate access controls and review workflows before applying the skill to sensitive operational records. <br>
+## Use Case:
 
+External developers and asset operations teams use this skill to plan or set up an asset lifecycle management application for fixed assets, equipment, IT assets, and office assets. The package describes the intended workflow and points to an external repository for runnable implementation code.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-asset-lifecycle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is embedded in the reviewed release artifact; documented run steps reference an external repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Installation instructions point to unpinned external code that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository before installation, pin a verified commit or release, and run it in an isolated environment without sensitive credentials or broad filesystem access.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-asset-lifecycle)
+- [External repository named in installation instructions](https://github.com/openclaw-skills/ai-intelligent-asset-lifecycle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with bullet lists and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Descriptive guidance for an asset management app; no executable implementation is bundled in the reviewed package.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

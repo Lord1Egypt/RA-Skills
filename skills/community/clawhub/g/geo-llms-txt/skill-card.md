@@ -1,41 +1,51 @@
-## Description: <br>
-Generate, validate, and optimize llms.txt files for AI crawler accessibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, validates, and optimizes llms.txt files that help AI platforms understand website structure and prioritize content for citation.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-Developers, site owners, and content teams use this skill to create, validate, and improve llms.txt files that summarize important website pages for AI crawler discovery and citation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generator and validator can contact URLs from target sites or provided files. <br>
-Mitigation: Run them on public sites and files you trust, and use URL checking only when you are comfortable contacting the listed URLs. <br>
-Risk: Generated files may be written to a user-selected output path. <br>
-Mitigation: Review the output path before writing and inspect generated files before publishing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [llms.txt Standard](references/standard.md) <br>
-- [llms.txt Quality Guide](references/quality-guide.md) <br>
-- [llms.txt Examples Gallery](references/examples.md) <br>
+## Use Case:
 
+Developers, site owners, and marketing or SEO teams use this skill to create or improve llms.txt files from sitemaps, URL lists, or guided inputs, then validate structure, links, tone, and deployment readiness.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, HTML, Shell commands, Guidance] <br>
-**Output Format:** [Markdown llms.txt files, optional JSON data, HTML previews, and validation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch public website pages or sitemaps and may write to a user-selected output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generation and validation workflows may contact unexpected web addresses through URL lists, sitemaps, redirects, or live URL checks.
+
+Mitigation: Use trusted public sites, inspect URL lists and sitemaps before automated runs, or run the skill in a network-isolated environment when internal network access is possible.
+
+## Reference(s):
+
+- [The llms.txt Standard](references/standard.md)
+- [llms.txt Quality Guide](references/quality-guide.md)
+- [llms.txt Examples Gallery](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/skills/geo-llms-txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown llms.txt files, JSON data, HTML previews, validation reports, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are intended for public /llms.txt deployment; validation may include link and quality warnings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

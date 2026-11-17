@@ -1,48 +1,52 @@
-## Description: <br>
-Cargo Gtm routes GTM prospecting, enrichment, email and phone lookup, verification, scoring, sequencing, CRM sync, and signal-monitoring tasks through Cargo guides, recipes, and provider playbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports B2B go-to-market prospecting by finding, enriching, verifying, scoring, and monitoring business contacts and accounts, then preparing outreach for the user's sequencer.
 
-## Publisher: <br>
-[cargo-ai](https://clawhub.ai/user/cargo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cargo-ai](https://clawhub.ai/user/cargo-ai)
 
-## Use Case: <br>
-Sales, growth, and GTM operators use this skill to plan and execute Cargo workflows for building prospect lists, enriching accounts and contacts, verifying outreach data, monitoring buying signals, and preparing records for CRM or sequencer activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enrich personal data and send prospect, account, or deal data to Cargo and named third-party providers. <br>
-Mitigation: Use it only in authorized workspaces, minimize fields, confirm vendor and privacy requirements, and require explicit approval before enrichment, reverse lookup, visitor identification, or LLM analysis of internal data. <br>
-Risk: The skill can mutate CRM or sequencer records and send Slack or webhook notifications. <br>
-Mitigation: Require explicit user approval before writes or sends, verify mappings and suppression lists, and review generated records before activation. <br>
-Risk: Recurring monitoring can keep processing prospect or account data after the initial request. <br>
-Mitigation: Require approval for scheduled monitoring, document scope and cadence, and provide a clear stop or review path. <br>
+## Use Case:
 
+Revenue and go-to-market teams use this skill to research target accounts, build and verify business-contact lists, enrich and score leads, prepare personalized outreach for a separate sequencer, and sync findings to a CRM.
 
-## Reference(s): <br>
-- [Cargo Gtm on ClawHub](https://clawhub.ai/cargo-ai/cargo-gtm) <br>
-- [Cargo Skills Homepage](https://github.com/getcargohq/cargo-skills) <br>
-- [Stage Action Map](references/stage-action-map.md) <br>
-- [Credits Cost Table](references/credits-cost-table.md) <br>
-- [Waterfall Strategy](references/waterfall-strategy.md) <br>
-- [Output Retrieval](references/output-retrieval.md) <br>
-- [Alternative Provider Chains](references/alternatives.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow plans, provider/action selections, credit estimates, enrichment steps, output retrieval commands, and CRM or sequencer activation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: ClawScan reports a medium-confidence suspicious verdict related to privacy and consent concerns in some collection, contact, and engagement workflows; some files were only partially inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, review the intended workflows and external provider data sharing, confirm consent and suppression controls, and inspect portions not covered by the available scan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cargo-ai/skills/cargo-gtm)
+- [Cargo Skills project homepage (skill metadata)](https://github.com/getcargohq/cargo-skills)
+- [Acceptable use guidance](references/acceptable-use.md)
+- [Cost discipline guidance](references/cost-discipline.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, JSON, CSV]
+
+**Output Format:** [Markdown plans and reports, JSON command results, and CSV or JSON data exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected prospecting or enrichment workflow; contact and provider data may require review.]
+
+## Skill Version(s):
+
+2.8.1 (source: SKILL.md frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

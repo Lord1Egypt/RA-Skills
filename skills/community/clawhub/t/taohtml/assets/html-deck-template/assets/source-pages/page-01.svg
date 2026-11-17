@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title description">
+  <title id="title">Example source evidence page</title>
+  <desc id="description">A placeholder document showing where source evidence should appear in a TaoHtml deck.</desc>
+  <rect width="1280" height="720" fill="#fffdf5"/>
+  <g stroke="#050505" stroke-opacity="0.12" stroke-width="1">
+    <path d="M0 80h1280M0 160h1280M0 240h1280M0 320h1280M0 400h1280M0 480h1280M0 560h1280M0 640h1280"/>
+    <path d="M80 0v720M160 0v720M240 0v720M320 0v720M400 0v720M480 0v720M560 0v720M640 0v720M720 0v720M800 0v720M880 0v720M960 0v720M1040 0v720M1120 0v720M1200 0v720"/>
+  </g>
+  <rect x="68" y="64" width="1144" height="592" fill="#fffdf5" stroke="#050505" stroke-width="4"/>
+  <rect x="68" y="64" width="1144" height="64" fill="#050505"/>
+  <rect x="96" y="88" width="164" height="8" fill="#d8ff19"/>
+  <text x="284" y="101" fill="#fffdf5" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">SOURCE EVIDENCE</text>
+  <text x="104" y="216" fill="#050505" font-family="Arial, sans-serif" font-size="54" font-weight="800">Replace with a real source page</text>
+  <text x="104" y="260" fill="#656a6d" font-family="Arial, sans-serif" font-size="24">Keep the original readable, traceable, and packaged with the deck.</text>
+  <rect x="104" y="328" width="660" height="188" fill="#050505"/>
+  <text x="136" y="378" fill="#d8ff19" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">PROOF AREA</text>
+  <rect x="136" y="410" width="540" height="16" fill="#fffdf5" opacity="0.9"/>
+  <rect x="136" y="446" width="456" height="16" fill="#fffdf5" opacity="0.55"/>
+  <rect x="136" y="482" width="504" height="10" fill="#fffdf5" opacity="0.25"/>
+  <circle cx="970" cy="422" r="122" fill="#d8ff19"/>
+  <text x="970" y="414" text-anchor="middle" fill="#050505" font-family="Arial, sans-serif" font-size="24" font-weight="800">REAL</text>
+  <text x="970" y="446" text-anchor="middle" fill="#050505" font-family="Arial, sans-serif" font-size="24" font-weight="800">ARTIFACT</text>
+  <text x="104" y="610" fill="#656a6d" font-family="Arial, sans-serif" font-size="18">Template placeholder - replace or remove before delivery.</text>
+</svg>

@@ -1,43 +1,54 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[janeaaaa](https://clawhub.ai/user/janeaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[janeaaaa](https://clawhub.ai/user/janeaaaa)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate browser workflows, inspect page state, fill forms, extract structured page data, and test web interfaces through the agent-browser CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad control over web sessions, including authenticated pages, forms, cookies, localStorage, file uploads, and saved browser state. <br>
-Mitigation: Use a dedicated browser profile or test account, avoid exposing session files unless needed, and require explicit approval before submitting forms, uploading files, changing account data, or replaying authenticated sessions. <br>
-Risk: Screenshots, PDFs, recordings, traces, and saved auth state can contain private account data or credentials. <br>
-Mitigation: Do not commit auth.json, recordings, screenshots, PDFs, or traces from logged-in sessions; review generated files before sharing or publishing. <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser workflows such as navigation, page inspection, form filling, data extraction, UI testing, screenshots, PDFs, and session state management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/janeaaaa/agent-browser-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/janeaaaa) <br>
-- [agent-browser CLI repository](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser skill repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser screenshots, PDFs, recordings, traces, saved session state, and structured page snapshots through CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Saved browser state and generated artifacts may contain cookies, tokens, credentials, or private page data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auth.json, screenshots, PDFs, videos, and traces out of repositories and shared folders, and review them before sharing.
+
+Risk: Global installation of an unpinned browser automation CLI can introduce unexpected behavior as dependencies change.
+
+Mitigation: Install from a pinned, trusted agent-browser version when possible and avoid running installation as root or administrator.
+
+## Reference(s):
+
+- [Agent Browser ClawHub Skill Page](https://clawhub.ai/janeaaaa/skills/agent-browser-v2)
+- [agent-browser CLI repository](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown with inline shell commands and structured command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser artifacts such as screenshots, PDFs, videos, traces, cookies, and saved storage state when the documented commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

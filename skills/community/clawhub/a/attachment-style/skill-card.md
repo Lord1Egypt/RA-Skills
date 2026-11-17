@@ -1,44 +1,59 @@
-## Description: <br>
-Attachment Style is an AI attachment theory coach for people stuck in anxious, avoidant, or push-pull relationship patterns, helping them identify patterns, recognize triggers, understand partner dynamics, and practice safer communication, boundaries, and regulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Attachment Style is an AI attachment theory coach for people stuck in anxious, avoidant, or push-pull relationship patterns.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill for attachment-style coaching in dating and long-term relationships, including identifying relationship patterns, understanding triggers, and practicing communication and boundaries. It is a reflective coaching aid, not a mental-health diagnosis tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat attachment-style labels as mental-health diagnoses. <br>
-Mitigation: Present attachment theory as a reflective lens and encourage appropriate professional support for clinical concerns. <br>
-Risk: Users may share private chats or third-party relationship messages with the linked external service. <br>
-Mitigation: Avoid sharing sensitive personal data unless the user has reviewed and accepted the external service's privacy and data-handling practices. <br>
-Risk: Abusive relationship dynamics may be misread as ordinary attachment conflict. <br>
-Mitigation: Prioritize immediate safety and crisis resources when abuse, coercion, or danger is described. <br>
+## Use Case:
 
+External users use this skill to reflect on attachment patterns, relationship triggers, partner dynamics, and safer communication or boundary strategies in dating and long-term relationships.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imwyvern/attachment-style) <br>
-- [Publisher profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer relationship intelligence suite](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Markdown text with structured coaching sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and may include attachment-style labels, evidence, pattern summaries, strategies, and deeper context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may share sensitive relationship or chat-history details with an external service promoted by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ReplyHer privacy terms first and avoid submitting private chat histories or identifying relationship details unless comfortable with that disclosure.
+
+Risk: Relationship coaching output may be mistaken for diagnosis or professional mental health advice.
+
+Mitigation: Treat attachment labels as reflective guidance only, and seek qualified professional or safety support for abuse, trauma, crisis, or clinical concerns.
+
+Risk: An unpinned install command may install a different release later.
+
+Mitigation: Install only from trusted sources and prefer a pinned or verified ClawHub install command when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/attachment-style)
+- [Publisher profile](https://clawhub.ai/user/imwyvern)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Same-language responses; may include attachment style assessment, evidence, relationship pattern summary, strategies, and deeper context.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

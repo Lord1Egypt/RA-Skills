@@ -1,42 +1,54 @@
-## Description: <br>
-Jina DeepSearch API access via AIHubMix - use curl to call the HTTP API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jina DeepSearch API access via AIHubMix - use curl to call the HTTP API directly.
 
-## Publisher: <br>
-[ansatzX](https://clawhub.ai/user/ansatzX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ansatzx](https://clawhub.ai/user/ansatzx)
 
-## Use Case: <br>
-Developers and agents use this skill to configure an AIHubMix API key and call Jina DeepSearch with curl for search-oriented chat completions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AIHubMix API key and sends search prompts to AIHubMix/Jina. <br>
-Mitigation: Use a limited-purpose API key, monitor quota or billing, and avoid including secrets or sensitive private data in prompts. <br>
-Risk: The skill gives direct curl usage guidance for an external HTTP API. <br>
-Mitigation: Review commands before running them and confirm the endpoint, model, and headers match the intended environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ansatzX/jina-deepsearch) <br>
-- [Jina homepage](https://jina.ai/) <br>
-- [AIHubMix](https://aihubmix.com) <br>
-- [AIHubMix chat completions endpoint](https://aihubmix.com/v1/chat/completions) <br>
+## Use Case:
 
+Developers and agents use this skill to configure AIHUBMIX_API_KEY and call Jina DeepSearch through AIHubMix with curl for search-oriented chat completion requests.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and AIHUBMIX_API_KEY; search prompts are sent to AIHubMix/Jina.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and search queries are sent to AIHubMix's Jina DeepSearch API.
+
+Mitigation: Use the skill only when AIHubMix is an intended provider and avoid submitting secrets or sensitive personal data unless account terms and provider policies allow it.
+
+Risk: The API key is supplied through the AIHUBMIX_API_KEY environment variable.
+
+Mitigation: Keep AIHUBMIX_API_KEY private, avoid logging it, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [Jina AI](https://jina.ai/)
+- [AIHubMix](https://aihubmix.com)
+- [AIHubMix Chat Completions Endpoint](https://aihubmix.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and the AIHUBMIX_API_KEY environment variable.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

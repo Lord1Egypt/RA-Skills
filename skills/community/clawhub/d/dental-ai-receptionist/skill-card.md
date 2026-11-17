@@ -1,45 +1,57 @@
-## Description: <br>
-Complete AI voice receptionist system for dental practices, with workflows for inbound call routing, appointment booking, reminders, no-show follow-up, cancellation and waitlist handling, after-hours capture, patient recall, FAQ handling, staff escalation, CRM sync, daily reports, and SMS reply handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete AI voice receptionist system for dental practices with 12 workflows covering inbound call routing, appointment booking, reminders, no-show follow-up, cancellation and waitlist handling, after-hours capture, patient recall, FAQ handling, staff escalation, CRM sync, daily reports, and SMS reply handling.
 
-## Publisher: <br>
-[mhmalvi](https://clawhub.ai/user/mhmalvi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[mhmalvi](https://clawhub.ai/user/mhmalvi)
 
-## Use Case: <br>
-Dental practices, dental service organizations, and dental IT providers use this skill to configure an AI receptionist that handles patient calls, scheduling, reminders, recalls, and staff escalation through n8n workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflows can create, cancel, and refill appointments and contact patients automatically. <br>
-Mitigation: Require staff approval for cancellation, no-show, waitlist, and booking actions before using the skill with real patients. <br>
-Risk: The workflows process patient contact details, call summaries, appointment data, recordings, and CRM/PMS sync data. <br>
-Mitigation: Minimize PHI/PII collection and sharing, confirm vendor compliance, and run only with least-privilege credentials. <br>
-Risk: Webhook-triggered workflows may accept sensitive operational actions. <br>
-Mitigation: Use the skill only in a sandbox until webhook authentication and signature checks are verified for the deployed environment. <br>
-Risk: Automated SMS and voice outreach can contact patients without adequate consent or opt-out handling. <br>
-Mitigation: Enforce patient SMS and voice consent, opt-out handling, and clinic review of outbound messaging policies before activation. <br>
+## Use Case:
 
+Dental practice operators, dental IT providers, and automation developers use this skill to configure n8n workflows for AI-assisted phone reception, appointment scheduling, reminders, patient recall, staff escalation, and patient-system synchronization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mhmalvi/dental-ai-receptionist) <br>
-- [Publisher Profile](https://clawhub.ai/user/mhmalvi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, code, guidance] <br>
-**Output Format:** [Markdown instructions and n8n workflow JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 12 n8n workflow configurations and setup guidance requiring clinic, telephony, calendar, spreadsheet, AI, CRM, and PMS credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter and _meta.json report 1.2.0) <br>
+Risk: Public webhooks can expose patient-data and scheduling workflows if they are deployed without authentication or signature validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication or signature validation to every public webhook and limit accepted webhook sources before activation.
+
+Risk: The workflows share patient information across calendars, SMS, email, CRM, and optional practice-management APIs.
+
+Mitigation: Review third-party data flows for healthcare compliance and minimize patient information sent to external systems.
+
+Risk: Automated cancellation, no-show classification, waitlist outreach, and CRM or PMS writes can create high-impact patient or business changes.
+
+Mitigation: Require staff approval before destructive or high-impact actions and confirm consent and opt-out handling for patient communications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mhmalvi/skills/dental-ai-receptionist)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Guidance, Shell commands]
+
+**Output Format:** [Markdown instructions with environment variables, credential requirements, and workflow import guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance for n8n workflows that integrate Vapi or Retell, Twilio, Google Sheets, Google Calendar, OpenAI, email, and optional CRM or practice-management APIs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and _meta.json list 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

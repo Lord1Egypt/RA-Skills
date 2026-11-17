@@ -1,6 +1,8 @@
 # Scripts & Automation — Apple Search Ads
 
-Ready-to-use scripts for automating Apple Search Ads operations.
+Ready-to-use scripts for automating Apple Search Ads operations. Every mutation script respects `confirm_before_push` (SKILL.md Configuration): list the change, confirm, then run.
+
+Contents: Prerequisites · Authentication · Campaign Management · Keywords · Reports · Automation · Setup Scripts · Usage Examples
 
 ## Prerequisites
 
@@ -237,7 +239,7 @@ curl -s -X POST "https://api.searchads.apple.com/api/v5/campaigns/$CAMPAIGN_ID/n
 
 ### daily-report.sh
 
-Get yesterday's performance summary.
+Get yesterday's performance summary. Spend is final same-day; install and CPA columns for windows newer than 2 days are provisional (`measurement.md`) — use this for spend monitoring and the spend gate, not for bid decisions.
 
 ```bash
 #!/usr/bin/env bash
@@ -292,7 +294,7 @@ curl -s -X POST "https://api.searchads.apple.com/api/v5/reports/campaigns" \
 
 ### search-terms-report.sh
 
-Get search terms for a campaign.
+Get search terms for a campaign. For decisions, request windows ending ≥2 days back (`measurement.md`); `weekly-optimization.sh` below does this automatically.
 
 ```bash
 #!/usr/bin/env bash
@@ -402,7 +404,7 @@ curl -s -X POST "https://api.searchads.apple.com/api/v5/reports/campaigns/$CAMPA
 
 ### weekly-optimization.sh
 
-Automated weekly optimization routine.
+The graduate-and-negate cycle (SKILL.md Rules 4 and 7) as a script. Surfaces candidates; pushing them is a separate, confirmed step (`confirm_before_push`).
 
 ```bash
 #!/usr/bin/env bash
@@ -410,53 +412,43 @@ set -euo pipefail
 
 # SECURITY MANIFEST:
 # Environment variables accessed: ASA_ACCESS_TOKEN, ASA_ORG_ID
-# External endpoints called: https://api.searchads.apple.com/api/v5/reports/*
+# External endpoints called: https://api.searchads.apple.com/api/v5/campaigns, /reports/campaigns/{id}/searchterms
 # Local files read: none
-# Local files written: ~/apple-search-ads/reports/weekly-{date}.json
+# Local files written: ~/Clawic/data/apple-search-ads/reports/weekly-{date}.txt
 
 : "${ASA_ACCESS_TOKEN:?Set ASA_ACCESS_TOKEN}"
 : "${ASA_ORG_ID:?Set ASA_ORG_ID}"
 
-OUTPUT_DIR="${HOME}/apple-search-ads/reports"
+TARGET_CPA="${1:?Usage: $0 <target_cpa>}"   # target CPA in account currency; gates below derive from it
+
+OUTPUT_DIR="${HOME}/Clawic/data/apple-search-ads/reports"
 mkdir -p "$OUTPUT_DIR"
 
 DATE=$(date +%Y-%m-%d)
-OUTPUT_FILE="$OUTPUT_DIR/weekly-$DATE.json"
+OUTPUT_FILE="$OUTPUT_DIR/weekly-$DATE.txt"
 
-echo "🍎 Apple Search Ads Weekly Optimization Report"
-echo "Date: $DATE"
-echo ""
+# 7-day window ending 2 days back — newer rows are provisional (measurement.md)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  START=$(date -v-9d +%Y-%m-%d)
+  END=$(date -v-2d +%Y-%m-%d)
+else
+  START=$(date -d "9 days ago" +%Y-%m-%d)
+  END=$(date -d "2 days ago" +%Y-%m-%d)
+fi
 
-# Get all campaigns
+{
+echo "Apple Search Ads weekly optimization — $DATE (window $START..$END, target CPA $TARGET_CPA)"
+
 CAMPAIGNS=$(curl -s "https://api.searchads.apple.com/api/v5/campaigns" \
   -H "Authorization: Bearer $ASA_ACCESS_TOKEN" \
   -H "X-AP-Context: orgId=$ASA_ORG_ID" \
-  | jq -r '.data[] | select(.status == "ENABLED") | .id')
+  | jq -r '.data[] | select(.status == "ENABLED") | "\(.id)\t\(.name)"')
 
-echo "Active campaigns found: $(echo "$CAMPAIGNS" | wc -l | tr -d ' ')"
-echo ""
-
-# For each campaign, get search terms
-echo "📊 Search Term Analysis"
-echo "========================"
-
-for CAMPAIGN_ID in $CAMPAIGNS; do
-  CAMPAIGN_NAME=$(curl -s "https://api.searchads.apple.com/api/v5/campaigns/$CAMPAIGN_ID" \
-    -H "Authorization: Bearer $ASA_ACCESS_TOKEN" \
-    -H "X-AP-Context: orgId=$ASA_ORG_ID" \
-    | jq -r '.data.name')
-  
+while IFS=$'\t' read -r CAMPAIGN_ID CAMPAIGN_NAME; do
+  [ -n "$CAMPAIGN_ID" ] || continue
   echo ""
-  echo "Campaign: $CAMPAIGN_NAME"
-  
-  # Get search terms from last 7 days
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    START=$(date -v-7d +%Y-%m-%d)
-  else
-    START=$(date -d "7 days ago" +%Y-%m-%d)
-  fi
-  END=$(date +%Y-%m-%d)
-  
+  echo "Campaign: $CAMPAIGN_NAME ($CAMPAIGN_ID)"
+
   SEARCH_TERMS=$(curl -s -X POST "https://api.searchads.apple.com/api/v5/reports/campaigns/$CAMPAIGN_ID/searchterms" \
     -H "Authorization: Bearer $ASA_ACCESS_TOKEN" \
     -H "X-AP-Context: orgId=$ASA_ORG_ID" \
@@ -467,26 +459,26 @@ for CAMPAIGN_ID in $CAMPAIGNS; do
       "selector": {
         "conditions": [{"field": "impressions", "operator": "GREATER_THAN", "values": ["10"]}],
         "orderBy": [{"field": "impressions", "sortOrder": "DESCENDING"}],
-        "pagination": {"offset": 0, "limit": 50}
+        "pagination": {"offset": 0, "limit": 200}
       }
     }')
-  
-  # High performers (consider adding as exact)
-  echo "  ✅ High performers (add as exact):"
-  echo "$SEARCH_TERMS" | jq -r '.data.reportingDataResponse.row[] | 
-    select(.total.installs > 0) |
-    select((.total.localSpend.amount | tonumber) / .total.installs < 5) |
-    "    - \(.metadata.searchTermText) (CPA: $\(((.total.localSpend.amount | tonumber) / .total.installs | . * 100 | round / 100)))"'
-  
-  # Poor performers (consider adding as negative)
-  echo "  ❌ Poor performers (add as negative):"
-  echo "$SEARCH_TERMS" | jq -r '.data.reportingDataResponse.row[] | 
-    select(.total.impressions > 50) |
-    select(.total.installs == 0) |
-    "    - \(.metadata.searchTermText) (spend: $\(.total.localSpend.amount), 0 installs)"'
-done
 
-echo ""
+  # Graduates — Rule 4: >=2 installs AND CPA <= target
+  echo "  Graduate to exact (and negate at the source):"
+  echo "$SEARCH_TERMS" | jq -r --argjson t "$TARGET_CPA" '.data.reportingDataResponse.row[] |
+    select(.total.installs >= 2) |
+    select((.total.localSpend.amount | tonumber) / .total.installs <= $t) |
+    "    - \(.metadata.searchTermText) (CPA: \((.total.localSpend.amount | tonumber) / .total.installs * 100 | round / 100), installs: \(.total.installs))"'
+
+  # Spend gate — Rule 7: spend >= 2x target CPA with 0 installs
+  echo "  Spend-gate breaches (cut bid 30-50% or pause, negate if off-intent):"
+  echo "$SEARCH_TERMS" | jq -r --argjson t "$TARGET_CPA" '.data.reportingDataResponse.row[] |
+    select(.total.installs == 0) |
+    select((.total.localSpend.amount | tonumber) >= 2 * $t) |
+    "    - \(.metadata.searchTermText) (spend: \(.total.localSpend.amount), 0 installs)"'
+done <<< "$CAMPAIGNS"
+} | tee "$OUTPUT_FILE"
+
 echo "Report saved to: $OUTPUT_FILE"
 ```
 
@@ -504,20 +496,26 @@ set -euo pipefail
 # Environment variables accessed: none
 # External endpoints called: none
 # Local files read: none
-# Local files written: ~/apple-search-ads/*
+# Local files written: ~/Clawic/data/apple-search-ads/*
 
-BASE_DIR="${HOME}/apple-search-ads"
+BASE_DIR="${HOME}/Clawic/data/apple-search-ads"
 
 mkdir -p "$BASE_DIR"/{campaigns,reports,scripts}
 
-# Create initial memory file
+# One-time migration hint from pre-namespace locations
+for OLD in "${HOME}/apple-search-ads" "${HOME}/clawic/apple-search-ads"; do
+  if [[ -d "$OLD" ]]; then
+    echo "Found data at old location $OLD — move its contents to $BASE_DIR"
+  fi
+done
+
+# Create initial memory file (full format: memory-template.md)
 if [[ ! -f "$BASE_DIR/memory.md" ]]; then
-  cat > "$BASE_DIR/memory.md" << 'EOF'
+  cat > "$BASE_DIR/memory.md" << EOF
 # Apple Search Ads Memory
 
 ## Status
 status: ongoing
-version: 1.0.0
 last: $(date +%Y-%m-%d)
 integration: pending
 
@@ -535,7 +533,7 @@ integration: pending
 EOF
 fi
 
-echo "✅ Workspace initialized at $BASE_DIR"
+echo "Workspace initialized at $BASE_DIR"
 echo ""
 echo "Next steps:"
 echo "1. Set environment variables (ASA_CLIENT_ID, etc.)"
@@ -569,6 +567,6 @@ export ASA_ACCESS_TOKEN=$(./get-token.sh)
 # Add negative keyword
 ./add-negatives.sh 12345 "free meditation"
 
-# Run weekly optimization
-./weekly-optimization.sh
+# Run weekly optimization (target CPA $6 — yours comes from LTV / ltv_divisor)
+./weekly-optimization.sh 6
 ```

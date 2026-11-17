@@ -1,40 +1,49 @@
-## Description: <br>
-Define order lifecycle states, transition guards, and recovery paths for A2A transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define order lifecycle states, transition guards, and recovery paths for A2A transactions.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
 
-## Use Case: <br>
-Developers and engineers use this skill to define and validate an A2A market order lifecycle from quote acceptance through payment, fulfillment, completion, cancellation, and recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Order lifecycle guidance affects payment, fulfillment, cancellation, recovery, and reputation behavior. <br>
-Mitigation: Before production use, review the separately supplied runtime implementation and require tests or approvals for those transitions. <br>
-Risk: The supplied artifact is a design scaffold rather than the runtime implementation. <br>
-Mitigation: Treat generated contracts and paths as implementation guidance and validate actual runtime code separately. <br>
+## Use Case:
 
+Developers and engineers use this skill to design A2A order orchestration from quote acceptance through payment, fulfillment, completion, cancellation, and exception handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luoqianchenguni-max/a2a-market-order-state-machine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with implementation paths and lifecycle contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces state names, transition contracts, event guidance, recovery behavior, and suggested project layout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Order orchestration generated from this scaffold could mishandle payment, reputation, timeout recovery, or terminal-state behavior if adopted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated implementation and tests before deployment, with specific attention to payment transitions, reputation triggers, timeout recovery, and terminal states.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/luoqianchenguni-max/skills/a2a-market-order-state-machine)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with implementation contracts and code path examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on order states, legal transition checks, event triggers, timeout recovery, and runtime validation expectations.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

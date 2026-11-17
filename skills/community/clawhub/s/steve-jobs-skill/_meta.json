@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn786n7sn6wemzwmm38bpnm0dd829y94",
-  "slug": "steve-jobs-skill",
-  "version": "1.0.1",
-  "publishedAt": 1775481470894
+  "name": "steve-jobs-perspective",
+  "version": "1.0.0",
+  "description": "史蒂夫·乔布斯(Steve Jobs)思维视角 - 聚焦、产品美学、简单至上",
+  "author": "xiejianjun000",
+  "license": "MIT-0",
+  "tags": ["steve-jobs", "apple", "product", "focus", "simplicity"],
+  "category": "perspective"
 }

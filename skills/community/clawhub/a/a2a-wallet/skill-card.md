@@ -1,48 +1,68 @@
-## Description: <br>
-Use the a2a-wallet CLI to interact with A2A agents, discover registry entries, send or stream messages, manage tasks, sign x402 payments, and manage local wallets. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Use the a2a-wallet CLI to interact with A2A agents, discover agents in the registry, manage tasks, sign x402 payments, and manage local wallets.
 
-## Publisher: <br>
-[ost006](https://clawhub.ai/user/ost006) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ost006](https://clawhub.ai/user/ost006)
 
-## Use Case: <br>
-Developers and external users use this skill to operate the a2a-wallet CLI for A2A agent messaging, registry discovery, x402 payment signing, wallet setup, balance checks, faucet requests, and CLI configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installation flow can install mutable remote code through a curl-to-shell command. <br>
-Mitigation: Review and verify the installer before running it, and prefer pinned or release-verified artifacts where possible. <br>
-Risk: Local wallet keys may be stored as plaintext files on disk. <br>
-Mitigation: Use only fresh low-value wallets, never import a valuable wallet, and avoid storing significant assets in wallets managed by this tool. <br>
-Risk: The CLI can sign payments and perform wallet, registry, faucet, configuration, and update actions. <br>
-Mitigation: Require explicit user approval before every wallet creation, import, export, config change, CLI update, registry registration, faucet request, and payment-signing action. <br>
-Risk: Custodial wallet security depends on a third-party provider and web service. <br>
-Mitigation: Use custodial wallets only for small micro-payments and explain that key management is outside the user's direct control. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a2a-wallet CLI workflows for A2A messaging, registry discovery, task management, wallet setup, balance checks, and x402 payment signing for agents. It is appropriate for testing and development workflows involving small micro-payments, not production funds or significant on-chain assets.
 
-## Reference(s): <br>
-- [a2a-wallet repository](https://github.com/planetarium/a2a-x402-wallet) <br>
-- [A2A x402 specification](https://github.com/google-agentic-commerce/a2a-x402/blob/main/spec/v0.2) <br>
-- [a2a-wallet releases](https://github.com/planetarium/a2a-x402-wallet/releases/latest) <br>
-- [Privy](https://privy.io) <br>
-- [a2a-wallet installer script](https://raw.githubusercontent.com/planetarium/a2a-x402-wallet/main/scripts/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance should include explicit user approval before wallet creation, wallet import or export, payment signing, registry registration, faucet requests, config changes, and CLI updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence) <br>
+Risk: The skill drives an experimental wallet CLI for payment signing and wallet management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for testing and development with small micro-payment amounts, and do not import or fund wallets that hold significant assets.
+
+Risk: The documented macOS/Linux install path pipes a remote installer script into a shell.
+
+Mitigation: Review the installer or use a pinned and verified release before installation.
+
+Risk: Local wallets store private keys as plain files on disk under the user's home directory.
+
+Mitigation: Create dedicated low-value test wallets only, restrict filesystem access where possible, and avoid importing existing funded wallets.
+
+Risk: Wallet import/export, payment signing, configuration changes, and unknown agent URLs can expose funds or credentials to irreversible loss.
+
+Mitigation: Require explicit user confirmation before these actions and inspect the target agent card before sending messages or payments.
+
+Risk: Custodial wallet use depends on a third-party key-management service and the a2a-wallet web service.
+
+Mitigation: Treat custodial wallets as low-value test wallets and avoid relying on them for production funds.
+
+## Reference(s):
+
+- [a2a-wallet repository](https://github.com/planetarium/a2a-x402-wallet)
+- [a2a-x402 specification v0.2](https://github.com/google-agentic-commerce/a2a-x402/blob/main/spec/v0.2)
+- [a2a-wallet releases](https://github.com/planetarium/a2a-x402-wallet/releases/latest)
+- [Privy](https://privy.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands that interact with external A2A agents, registries, wallet services, and x402 payment signing flows.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

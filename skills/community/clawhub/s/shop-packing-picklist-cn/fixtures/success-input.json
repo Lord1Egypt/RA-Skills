@@ -1,0 +1,6 @@
+{
+  "orders": [{"id": "D-1001", "items": [{"sku": "SET-CUP-BRUSH", "quantity": 2, "unit": "套"}]}],
+  "kits": {"SET-CUP-BRUSH": [{"sku": "CUP-01", "quantity": 2, "unit": "个"}, {"sku": "BRUSH-01", "quantity": 1, "unit": "把"}]},
+  "gifts": [{"qualifying_sku": "SET-CUP-BRUSH", "min_order_quantity": 3, "min_order_unit": "套", "sku": "GIFT-CARD", "quantity": 1, "unit": "张"}],
+  "packaging_rules": ["杯子使用气泡膜包裹后入箱"]
+}

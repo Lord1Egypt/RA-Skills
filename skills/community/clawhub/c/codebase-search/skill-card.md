@@ -1,38 +1,57 @@
-## Description: <br>
-Builds a persistent semantic index of Python source files so agents can find relevant classes, functions, and modules with natural-language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a persistent ChromaDB semantic index over Python source files so agents can find relevant classes, functions, or modules with natural-language queries.
 
-## Publisher: <br>
-[ryno2390](https://clawhub.ai/user/ryno2390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryno2390](https://clawhub.ai/user/ryno2390)
 
-## Use Case: <br>
-Developers and coding agents use this skill to build and query a local semantic index for Python projects, especially when they need to locate relevant symbols by meaning before editing or delegating code work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent local index stores source-derived snippets, which may retain private code or secrets if sensitive files are indexed. <br>
-Mitigation: Install only in repositories intended for indexing, exclude sensitive paths, and add `.codebase_index/` to `.gitignore`. <br>
+## Use Case:
 
+Developers and coding agents use this skill to build and query a local semantic index for Python codebases, especially before implementing changes or delegating work to another agent.
 
-## Reference(s): <br>
-- [Integration Patterns](references/integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local semantic search guidance and code patterns; search calls return ranked symbol metadata and snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Indexing repositories that contain secrets or sensitive Python source can persist searchable snippets in a local .codebase_index/ directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only against repositories approved for local indexing, avoid broad home-directory targets, and exclude or remove secret-bearing files before building the index.
+
+Risk: The generated index is a local artifact that may be accidentally committed or shared.
+
+Mitigation: Add .codebase_index/ to .gitignore before use and keep the persistence directory out of source control and release packages.
+
+Risk: Installing an unpinned chromadb dependency can change behavior across environments.
+
+Mitigation: Use a virtual environment and pin chromadb and its transitive dependencies for repeatable deployments.
+
+## Reference(s):
+
+- [Integration Patterns for Codebase Search](references/integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; search results contain file paths, symbols, line numbers, docstrings, snippets, and relevance scores.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reuses a local .codebase_index/ ChromaDB persistence directory under the target repository unless a custom persist_dir is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

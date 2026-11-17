@@ -1,40 +1,64 @@
-## Description: <br>
-Generate a ready-to-use 1-on-1 brief for any engineer on your team from their GitHub activity, including patterns such as high output with low review participation, large PR sizes, and cross-repo collaboration signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a 1-on-1 brief from GitHub activity using a deterministic five-step agent pipeline.
 
-## Publisher: <br>
-[jacksync](https://clawhub.ai/user/jacksync) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacksync](https://clawhub.ai/user/jacksync)
 
-## Use Case: <br>
-Engineering managers use this skill to prepare for 1-on-1 meetings by turning a direct report's GitHub activity into a concise, scan-ready brief. The workflow gathers scoped GitHub activity, scores contribution patterns locally, prepares an LLM input, and finalizes a markdown brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GitHub token and may access private repository activity depending on token scope. <br>
-Mitigation: Use the narrowest GitHub token scope that still works and set GITHUB_ORG where possible to limit ingestion scope. <br>
-Risk: Generated .pullstar artifacts may contain private repository activity and PR discussion excerpts. <br>
-Mitigation: Treat .pullstar artifacts as sensitive local files and review llm_input before sending it to an AI provider, especially when PR insights are enabled. <br>
+## Use Case:
 
+Engineering managers and team leads use this skill to turn an engineer's GitHub pull request and review activity into a concise preparation brief for a 1-on-1. It supports data-backed conversation preparation without presenting the result as a performance review.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/jacksync/pullstar-1on1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown brief and JSON artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local .pullstar artifacts, including LLM input, LLM output, and final brief JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill handles GitHub tokens and can read repositories visible to the configured token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained token where possible, or a narrowly scoped classic token with GITHUB_ORG set to limit ingestion scope.
+
+Risk: PR insights mode may send private pull request discussion text to the configured LLM provider.
+
+Mitigation: Leave PR insights disabled unless raw PR discussions are appropriate for the provider, and review llm_input_<login>.json before inference.
+
+Risk: Local .pullstar artifacts may contain private engineering activity data.
+
+Mitigation: Review and delete generated .pullstar artifacts when they may contain private data.
+
+Risk: Runtime dependencies may change behavior if installed without version pinning.
+
+Mitigation: Use an isolated Python environment with pinned dependencies where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacksync/skills/pullstar-1on1)
+- [Publisher profile](https://clawhub.ai/user/jacksync)
+- [GitHub classic personal access tokens](https://github.com/settings/tokens)
+- [GitHub fine-grained personal access tokens](https://github.com/settings/personal-access-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown brief embedded in JSON artifacts, with command guidance for the agent workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local .pullstar artifacts for ingest, scoring, LLM input, LLM output, and final output; PR insights mode may include bounded raw PR discussion excerpts.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

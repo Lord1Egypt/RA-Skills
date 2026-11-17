@@ -1,41 +1,53 @@
-## Description: <br>
-Calculates biodiversity corridor connectivity and ecological value for clusters of H3 hexagonal land parcels using landscape ecology models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates biodiversity corridor connectivity and ecological value for clusters of H3 hexagonal land parcels using landscape ecology models.
 
-## Publisher: <br>
-[nikhilp1234567](https://clawhub.ai/user/nikhilp1234567) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nikhilp1234567](https://clawhub.ai/user/nikhilp1234567)
 
-## Use Case: <br>
-External users and conservation-planning agents use this skill to evaluate H3-indexed land parcels for corridor, stepping-stone, or regeneration potential and to retrieve surrounding land-cover context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Exact center coordinates and H3 parcel indices are sent to a third-party API. <br>
-Mitigation: Use public or synthetic locations first, avoid confidential conservation or property sites unless the service operator is trusted, and require approval before sending exact locations. <br>
-Risk: The API is rate-limited to about 5 requests per minute. <br>
-Mitigation: Wait before retrying after 429 responses and keep requests within the documented 50-hex limit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nikhilp1234567/biodiversity-corridor-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/nikhilp1234567) <br>
-- [Biodiversity Corridor Calculator API](https://www.nikhilp.online/biodiversity-corridor-calculator) <br>
+## Use Case:
 
+External users and developers use this skill to evaluate conservation project parcels represented as H3 indices, classify corridor value, and understand surrounding land cover and ecological resistance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API requests use center latitude, center longitude, and up to 50 resolution-9 H3 indices; callers should handle 429 rate-limit responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Project locations and H3 parcel indices may describe sensitive conservation sites and are sent to a third-party API.
+
+Mitigation: Submit only locations and parcel indices that the user has permission to share, and avoid confidential project sites unless disclosure is approved.
+
+Risk: The API is rate-limited to about 5 requests per minute, so repeated calls may fail with 429 responses.
+
+Mitigation: Throttle requests and wait before retrying after a 429 response.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nikhilp1234567/skills/biodiversity-corridor-calculator)
+- [Biodiversity Corridor Calculator API](https://www.nikhilp.online/biodiversity-corridor-calculator/api)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, JSON, guidance]
+
+**Output Format:** [JSON analysis results and concise markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include corridor classifications, priority values, resistance values, local and landscape nature scores, and surrounding context hexes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Persistent memory for AI agents with semantic search, association graphs, dream cycles, local-first offline operation, and MCP runtime support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clude Memory teaches AI agents how to use Clude for persistent memory with semantic search, association graphs, dream cycles, and local-first MCP runtime support.
 
-## Publisher: <br>
-[sebbsssss](https://clawhub.ai/user/sebbsssss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebbsssss](https://clawhub.ai/user/sebbsssss)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to add persistent memory through Clude MCP tools, recall long-term context by meaning, and manage memory locally or through optional cloud sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memories may include sensitive personal, project, or preference data. <br>
-Mitigation: Prefer local mode for private work, avoid storing secrets or sensitive personal details, and periodically review or delete memories. <br>
-Risk: Cloud mode can sync memory data outside the local machine. <br>
-Mitigation: Use cloud mode only when portability is needed and the data is appropriate for external syncing. <br>
-Risk: The installer uses npm and npx commands that can install packages and modify MCP configuration. <br>
-Mitigation: Review installation commands and MCP configuration before running them in environments where package installation is allowed. <br>
+## Use Case:
 
+Developers and agent users use Clude Memory to configure and operate a persistent MCP memory workflow for AI agents, including when to remember, recall, forget, and manage local or cloud memory.
 
-## Reference(s): <br>
-- [Clude Memory on ClawHub](https://clawhub.ai/sebbsssss/clude-memory) <br>
-- [Clude](https://clude.io) <br>
-- [clude-bot npm package](https://www.npmjs.com/package/clude-bot) <br>
-- [cludebot source repository](https://github.com/sebbsssss/cludebot) <br>
-- [Clude benchmark](https://clude.io/benchmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON MCP configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of MCP memory tools and installation commands after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: The installer runs mutable npm code for an MCP memory server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed clude-bot version before deployment, and review the installer behavior in the target environment.
+
+Risk: Persistent memory can retain personal context, secrets, or sensitive data if the agent stores them.
+
+Mitigation: Tell the agent not to store sensitive personal data or secrets unless explicitly approved, and review stored or imported memories before broad use.
+
+Risk: Cloud mode can sync memories beyond the local machine when intentionally enabled.
+
+Mitigation: Prefer local mode unless sync is required and the user understands the data handling implications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sebbsssss/skills/clude-memory)
+- [Publisher profile](https://clawhub.ai/user/sebbsssss)
+- [Clude](https://clude.io)
+- [npm: clude-bot](https://www.npmjs.com/package/clude-bot)
+- [Clude benchmark](https://clude.io/benchmark)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP tool usage guidance and installation commands for local and optional cloud modes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

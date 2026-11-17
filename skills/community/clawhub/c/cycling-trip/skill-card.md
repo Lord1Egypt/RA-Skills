@@ -1,44 +1,58 @@
-## Description: <br>
-Book flights for cycling trips and bike tours, with related travel-planning support for hotels, trains, attractions, itineraries, visas, insurance, and car rentals powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for cycling trips and bike tours, with related support for hotels, trains, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and more, powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search live flight options for cycling trips and bike tours, then present concise Markdown results with booking links. The skill also guides related travel planning such as hotels, train tickets, attraction tickets, itinerary planning, visa information, insurance, and car rentals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run a global third-party FlyAI CLI, which can modify the user's system. <br>
-Mitigation: Install CLI dependencies manually in a controlled environment and avoid automatic global npm installs. <br>
-Risk: Travel prices and booking links may change or be wrong if accepted without review. <br>
-Mitigation: Verify generated booking links, prices, and provider details directly before purchase. <br>
+## Use Case:
 
+External travelers use this skill to search current flight options for cycling trips and bike tours, then compare results with direct booking links. It can also guide related travel planning workflows that the FlyAI CLI supports.
 
-## Reference(s): <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live FlyAI CLI output and booking links; should not output raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security summary says the skill asks agents to install and run an unpinned global third-party FlyAI npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package before use, prefer a pinned or local install, and require explicit approval before installation or execution.
+
+Risk: The security summary says the skill forces travel results through one booking-link workflow.
+
+Mitigation: Treat booking links as external commercial actions and require user confirmation before opening links or proceeding with booking.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/xiejinsong/skills/cycling-trip)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with flight comparison tables and inline booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight results must come from FlyAI CLI output and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

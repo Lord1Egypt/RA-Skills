@@ -1,43 +1,53 @@
-## Description: <br>
-Web UI testing and browser automation using Playwright or Selenium to navigate pages, interact with elements, take screenshots, validate UI state, and generate E2E test scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Tester supports browser-based UI testing and automation with Playwright or Selenium, including page navigation, element interaction, screenshots, UI-state validation, and E2E test generation.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to test browser UI behavior, create Playwright or Selenium E2E scripts, capture screenshots, and check accessibility on web pages they are authorized to test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can be misused on sites or accounts where testing is not authorized. <br>
-Mitigation: Use the skill only on systems you are authorized to test, preferably in staging environments with test accounts. <br>
-Risk: Generated test scripts may perform unintended actions or use brittle selectors. <br>
-Mitigation: Review generated scripts before running them and prefer stable locators such as test IDs, roles, labels, or placeholders. <br>
-Risk: Screenshots and reports can capture secrets, personal data, production sessions, or internal pages. <br>
-Mitigation: Avoid storing or sharing sensitive screenshots or reports, and sanitize outputs before retaining them. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to create and run browser-based UI checks, generate Playwright or Selenium E2E tests, capture screenshots, and validate forms, navigation, accessibility, and cross-browser behavior.
 
-## Reference(s): <br>
-- [Web Tester release page](https://clawhub.ai/zhanghengyi1986-afk/web-tester) <br>
-- [Publisher profile](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated Playwright or Selenium test scripts, screenshot commands, locator guidance, and accessibility check examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Browser automation and package-install examples can affect live sites or local environments if run without controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use staging URLs and test accounts by default, and run Playwright or Selenium dependencies from a lockfile-managed project.
+
+Risk: Screenshots and generated reports may contain sensitive page content.
+
+Mitigation: Treat screenshots and reports as sensitive artifacts and avoid committing or storing them in shared locations unnecessarily.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanghengyi1986-afk/skills/web-tester)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with JavaScript, Python, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce test scripts, command examples, screenshot paths, and report-generation guidance for execution in the user's controlled test environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

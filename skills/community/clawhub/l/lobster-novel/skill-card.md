@@ -1,44 +1,53 @@
-## Description: <br>
-A self-evolving novel writing engine for OpenClaw agents that supports context preparation, chapter writing, multi-role review, continuity tracking, quality checks, foreshadowing management, character voice management, and token cost optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Novel helps OpenClaw agents plan, write, review, and export long-form Chinese fiction with continuity tracking, foreshadowing management, character voices, and token cost controls.
 
-## Publisher: <br>
-[awoo129](https://clawhub.ai/user/awoo129) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awoo129](https://clawhub.ai/user/awoo129)
 
-## Use Case: <br>
-Developers and writers use this skill to manage long-form Chinese fiction projects, generate chapter context or drafts, review chapters, track continuity, and export manuscript outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send unpublished manuscript, world-building, character notes, chapter plans, and rewrite inputs to third-party LLM providers. <br>
-Mitigation: Install and use it only when that data sharing is acceptable; avoid sensitive manuscript material unless the configured provider and account meet the user's privacy requirements. <br>
-Risk: The skill requires sensitive API credentials and includes paths that use SenseNova or DeepSeek API keys. <br>
-Mitigation: Use dedicated API keys, store them in environment variables or a reviewed secret manager, and rotate or revoke them if exposed. <br>
-Risk: Helper scripts and lesson sync features may run with project-directory access and external API behavior that should be reviewed before use. <br>
-Mitigation: Run the skill in a dedicated project directory and review DeepSeek helper scripts and lesson sync targets before executing them. <br>
+## Use Case:
 
+External developers and writers use this skill to manage long-form Chinese fiction projects, generate chapter context or drafts, review quality and continuity, and export manuscript outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/awoo129/lobster-novel) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/awoo129) <br>
-- [Project homepage](https://github.com/awoo129/lobster-novel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON-like project state, exported manuscript files, and CLI-oriented shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update local novel project files and may call third-party LLM APIs when API keys are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe project cache loading can execute code when opening an untrusted novel project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted project directories until the pickle RAG cache is replaced with a safe format or disabled.
+
+Risk: API-backed writing can disclose unpublished or sensitive manuscript content to the configured provider.
+
+Mitigation: Review provider privacy terms and avoid API-backed writing for sensitive manuscripts unless disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awoo129/skills/lobster-novel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, plain text, HTML, JSON-like status and review data, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are project-directory based and may use SenseNova API-backed writing when SENSENOVA_API_KEY is configured.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

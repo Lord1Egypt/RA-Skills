@@ -1,45 +1,58 @@
-## Description: <br>
-Plays internet radio streams through Foobar2000 by mapping moods to genres, selecting streams from the Internet Radio Music DB, and supporting playback controls and history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plays internet radio streams via Foobar2000 by mapping mood or genre requests to stations from the Internet Radio Music DB, with playback controls and history support.
 
-## Publisher: <br>
-[dynamicsalex](https://clawhub.ai/user/dynamicsalex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dynamicsalex](https://clawhub.ai/user/dynamicsalex)
 
-## Use Case: <br>
-OpenClaw users use this skill to play and control internet radio through Foobar2000 by mood or genre, using the Internet Radio Music DB as the stream source. It also supports playback status, navigation, and history review or export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts internet radio stream URLs while checking availability and starting playback. <br>
-Mitigation: Use it only with trusted stream database sources and apply normal network controls for outbound streaming traffic. <br>
-Risk: The skill can stop or switch the local Foobar2000 playback session. <br>
-Mitigation: Install it only when OpenClaw is expected to control Foobar2000, and avoid running play or stop commands during unrelated playback. <br>
-Risk: Playback history is stored locally and can be exported. <br>
-Mitigation: Review state.json and exported history files before sharing them, and clear local history when stream choices should remain private. <br>
-Risk: The required Internet Radio Music DB skill and optional web UI plugin are separate components. <br>
-Mitigation: Review and scan those components independently before using them with this player. <br>
+## Use Case:
 
+External users and developers use this skill to control internet radio playback from an agent, including mood-based station selection, playback controls, status checks, and listening history review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dynamicsalex/internet-radio-music-player) <br>
-- [Internet Radio Music WebUI Plugin](https://clawhub.ai/dynamicsAlex/internet-radio-music-webui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [CLI text output, local JSON state, and optional CSV, HTML, or JSON history exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Controls local Foobar2000 playback and records playback history in state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.3 (source: server release evidence) <br>
+Risk: The skill opens external stream URLs and performs outbound stream checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where outbound radio stream access is acceptable, and prefer explicit radio-specific requests to reduce accidental activation.
+
+Risk: The skill can control and force-stop local Foobar2000 processes.
+
+Mitigation: Use it on systems where agent-driven Foobar2000 control is expected, and avoid running it during unrelated manual Foobar2000 sessions.
+
+Risk: Playback history exports can include stream metadata in HTML or CSV formats.
+
+Mitigation: Sanitize exported history before opening files that contain untrusted stream metadata.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dynamicsalex/skills/internet-radio-music-player)
+- [Internet Radio Music WebUI Plugin](https://clawhub.ai/dynamicsAlex/internet-radio-music-webui)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text command output with optional CSV, HTML, or JSON history exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, Foobar2000, and the Internet Radio Music DB skill.]
+
+## Skill Version(s):
+
+2.5.3 (source: server release evidence; artifact frontmatter says 2.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

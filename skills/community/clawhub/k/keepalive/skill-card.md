@@ -1,40 +1,54 @@
-## Description: <br>
-Keeps the OpenClaw gateway running persistently on Windows, Linux, and macOS with service registration, restart, health-check, and power-management guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps keep the OpenClaw gateway running persistently on Windows, Linux, and macOS with service setup, monitoring, restart, sleep-prevention, and troubleshooting guidance.
 
-## Publisher: <br>
-[lgy2020](https://clawhub.ai/user/lgy2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgy2020](https://clawhub.ai/user/lgy2020)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw Gateway on a laptop or workstation use this skill to keep the gateway available across reboots, crashes, sleep events, and network interruptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional sleep-prevention and startup-service commands can change whole-machine power and boot behavior. <br>
-Mitigation: Prefer `openclaw gateway install` first, run elevated power or scheduler commands only on a trusted always-on machine, and confirm undo steps before applying them. <br>
-Risk: A persistent gateway can continue running after the terminal closes or the user session changes. <br>
-Mitigation: Use `openclaw gateway status`, `openclaw logs --follow`, and the stop or uninstall commands to monitor and disable continuous operation when it is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill when they need an OpenClaw gateway to survive reboot, terminal closure, sleep, crashes, or network interruptions on a workstation.
 
-## Reference(s): <br>
-- [Openclaw Keepalive on ClawHub](https://clawhub.ai/lgy2020/keepalive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; the skill provides commands and configuration guidance for the user or agent to review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent power and startup changes can alter host-wide behavior, especially on shared, managed, or battery-powered machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the machine is intended to act as an always-on OpenClaw gateway, and avoid disabling sleep or hibernation unless the user knows how to restore the prior settings.
+
+Risk: Startup tasks or external process supervisors may run with broader privileges than necessary or call an unexpected executable.
+
+Mitigation: Prefer the built-in OpenClaw service command first, avoid highest-privilege startup tasks unless required, and use absolute executable paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lgy2020/skills/keepalive)
+- [ClawHub publisher profile](https://clawhub.ai/user/lgy2020)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, PowerShell, and cmd code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OS-specific service setup, power-management, supervisor, troubleshooting, and healthcheck examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

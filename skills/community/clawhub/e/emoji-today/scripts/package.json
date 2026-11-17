@@ -1,12 +1,15 @@
 {
   "name": "emoji-voter-scripts",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
   "dependencies": {
-    "@x402/fetch": "^2.3.0",
-    "@x402/evm": "^2.3.0",
-    "viem": "^2.0.0",
-    "dotenv": "^16.0.0"
+    "@x402/fetch": "2.3.0",
+    "@x402/evm": "2.3.0",
+    "viem": "2.57.11",
+    "dotenv": "16.6.1"
   }
 }

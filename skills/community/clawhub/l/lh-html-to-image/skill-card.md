@@ -1,42 +1,53 @@
-## Description: <br>
-Convert HTML and CSS into PNG images via Chrome headless for accurate text layouts such as covers, posters, and info cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts HTML and CSS into PNG images by guiding an agent to create local HTML files and capture them with Chrome headless screenshots.
 
-## Publisher: <br>
-[liuhedev](https://clawhub.ai/user/liuhedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liuhedev](https://clawhub.ai/user/liuhedev)
 
-## Use Case: <br>
-Developers and content creators use this skill to turn local HTML and CSS layouts into PNG images with Chrome or Chromium headless screenshots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Untrusted HTML can render unwanted or misleading content during screenshot capture. <br>
-Mitigation: Use trusted local HTML files and review layouts in a regular browser before generating the final image. <br>
-Risk: Screenshot output paths can overwrite existing files. <br>
-Mitigation: Choose output paths deliberately and confirm the destination before running Chrome headless. <br>
-Risk: A custom CHROME_PATH can point the agent to an unexpected executable. <br>
-Mitigation: Use a trusted Chrome or Chromium installation and do not set CHROME_PATH to an unknown executable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liuhedev/lh-html-to-image) <br>
-- [Skill homepage](https://github.com/liuhedev/lh-openclaw-kit) <br>
+## Use Case:
 
+Developers and content creators use this skill to produce text-heavy visual assets such as covers, posters, info cards, quote cards, and comparison cards from controlled HTML/CSS layouts.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with HTML and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local HTML inputs and PNG screenshots; image dimensions depend on the Chrome window size and device scale factor.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation terms may cause the skill to appear for general poster or image requests where HTML/CSS screenshot rendering is not intended.
+
+Mitigation: Confirm that the task needs local HTML/CSS rendering before using the skill, and use an image generation tool instead for illustrations or photos.
+
+Risk: The workflow creates local HTML files and runs Chrome headless to render screenshots.
+
+Mitigation: Review generated HTML and file paths before execution, and run Chrome only against trusted local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuhedev/skills/lh-html-to-image)
+- [Project homepage](https://github.com/liuhedev/lh-openclaw-kit)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTML, CSS, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local HTML files and PNG screenshots using Chrome or Chromium headless execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

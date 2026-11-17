@@ -1,46 +1,57 @@
-## Description: <br>
-GitHub Action for automated security scanning of agent workspaces. Detects exposed secrets, prompt/shell injection, and data exfiltration patterns in PRs and commits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Action for automated security scanning of agent workspaces that detects exposed secrets, prompt or shell injection, and data exfiltration patterns in PRs and commits.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and security engineers use this GitHub Action in CI to scan agent workspaces for exposed secrets, prompt or shell injection patterns, and potential data exfiltration before changes land. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release downloads and runs mutable external Python scanner code in CI. <br>
-Mitigation: Prefer a version that vendors the scanners or pins immutable commits with checksum verification before running it in production CI. <br>
-Risk: The security review notes misleading local/no-network assurances compared with the action's runtime scanner downloads. <br>
-Mitigation: Review the action workflow and scanner repositories as executable CI dependencies, and only use it when those repositories are trusted. <br>
-Risk: Running scanner code in CI can expose repository contents, tokens, or secrets available to the workflow. <br>
-Mitigation: Run with least-privilege GitHub token permissions, limited secrets exposure, and narrow workflow triggers. <br>
+## Use Case:
 
+Developers and engineering teams use this GitHub Action in CI to scan agent skill repositories for secrets, injection patterns, and potential exfiltration behavior before changes are merged.
 
-## Reference(s): <br>
-- [OpenClaw Action on ClawHub](https://clawhub.ai/AtlasPA/openclaw-action) <br>
-- [OpenClaw Security Suite](https://github.com/AtlasPA/openclaw-security) <br>
-- [openclaw-sentry](https://github.com/AtlasPA/openclaw-sentry) <br>
-- [openclaw-bastion](https://github.com/AtlasPA/openclaw-bastion) <br>
-- [openclaw-egress](https://github.com/AtlasPA/openclaw-egress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Configuration] <br>
-**Output Format:** [GitHub Actions annotations, job summary Markdown, and CI output variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs finding counts and critical finding status; can fail CI when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The action fetches and runs mutable remote scanner code while making inaccurate trust claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a version that vendors the scanner code or pins each downloaded scanner to immutable commits with verified hashes.
+
+Risk: Downloaded scanner code runs in CI against repository contents.
+
+Mitigation: Run it in an isolated CI job with read-only repository permissions, no unrelated secrets, and the narrowest workspace path practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atlaspa/skills/openclaw-action)
+- [OpenClaw Security Suite](https://github.com/AtlasPA/openclaw-security)
+- [openclaw-sentry](https://github.com/AtlasPA/openclaw-sentry)
+- [openclaw-bastion](https://github.com/AtlasPA/openclaw-bastion)
+- [openclaw-egress](https://github.com/AtlasPA/openclaw-egress)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [GitHub Actions annotations, Markdown job summary, and action outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports findings-count and has-critical outputs; may fail the workflow when fail-on-findings is enabled and critical or high severity findings are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

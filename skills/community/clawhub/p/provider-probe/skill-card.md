@@ -1,42 +1,58 @@
-## Description: <br>
-Probe and verify whether an OpenAI-compatible baseURL is a real single-model endpoint or a multi-model aggregation pool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Probe and verify whether an OpenAI-compatible baseURL is a real single-model endpoint or a multi-model aggregation pool.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit OpenAI-compatible model providers, compare endpoint behavior, and decide whether a provider should be treated as a primary route, fallback route, or avoided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user-supplied API credentials to probe model providers. <br>
-Mitigation: Use scoped or temporary API keys where possible and verify the target base URL before probing. <br>
-Risk: Terminal output may include response previews or provider error messages. <br>
-Mitigation: Avoid sharing raw probe output publicly and redact sensitive provider details before distribution. <br>
-Risk: Public API behavior alone cannot prove official upstream model provenance. <br>
-Mitigation: Treat final judgments as confidence-based routing guidance and confirm high-stakes provider claims through contractual or vendor documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenAI-compatible model providers, inspect endpoint behavior, and decide whether a provider should be used as a primary route, fallback route, or avoided.
 
-## Reference(s): <br>
-- [Provider Probe Checklist](references/provider-probe-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional JSON probe results and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider URLs, model IDs, endpoint compatibility findings, latency summaries, and confidence judgments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: API keys may be exposed when passed directly on the command line or used with untrusted provider URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege test keys, avoid production credentials, and prefer secret handling that does not expose keys through shell history or process listings.
+
+Risk: Provider URLs may send prompts, metadata, and probe results to services that are not trusted or sufficiently validated.
+
+Mitigation: Probe only trusted HTTPS endpoints and treat all submitted test prompts and metadata as visible to the provider.
+
+Risk: Public API behavior cannot prove official upstream model provenance with certainty.
+
+Mitigation: Present findings as confidence-based operational judgments and avoid claiming definitive vendor provenance from probe behavior alone.
+
+## Reference(s):
+
+- [Provider Probe Checklist](references/provider-probe-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/andyrenxu7255/skills/provider-probe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with optional JSON probe output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports tested config facts, model catalog findings, endpoint compatibility, stability runs, capability checks, trust judgment, and primary/fallback/avoid recommendation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

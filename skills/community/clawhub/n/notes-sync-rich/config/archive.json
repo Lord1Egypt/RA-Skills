@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://backup.team-storage.internal:8444",
+  "team": "platform",
+  "retention_days": 90,
+  "notes_dir": "notes",
+  "archive_name": "team-backup.zip",
+  "upload_timeout": 120
+}

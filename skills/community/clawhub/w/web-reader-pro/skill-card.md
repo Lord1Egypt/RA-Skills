@@ -1,42 +1,55 @@
-## Description: <br>
-Advanced web content extraction skill for OpenClaw using a multi-tier fallback strategy across Jina, Scrapling, and WebFetch with intelligent routing, caching, quality scoring, and domain learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Reader Pro extracts web page content for OpenClaw using a multi-tier Jina, Scrapling, and WebFetch fallback strategy with routing, caching, quality scoring, and domain learning.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-Developers and agents use this skill to extract readable text or Markdown from web pages, articles, dynamic sites, and WeChat official account articles while receiving extraction metadata such as source URL, tier used, cache status, and quality score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs may be fetched through Jina when Tier 1 is used, which can expose sensitive internal or private URLs to a third-party service. <br>
-Mitigation: Avoid sensitive internal URLs unless using a local-only tier, and use a limited Jina API key when Tier 1 is enabled. <br>
-Risk: Extracted content, URL-derived cache entries, quota state, and learned domain routes can be stored locally. <br>
-Mitigation: Configure cache and learning paths deliberately, limit retention for sensitive work, and clear cache or learning data after sensitive use. <br>
-Risk: The optional Scrapling setup may install or invoke npm and npx tooling. <br>
-Mitigation: Review the installer before running it and install optional Node.js tooling only in environments where that package source and execution model are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch article content, extract page text, handle dynamic JavaScript-heavy pages, and read WeChat official account articles. It returns extracted title and content with metadata about the extraction tier, quality score, cache state, and learned domain routing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xcjl/web-reader-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [JSON-like result object containing extracted content and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes title, content, URL, extraction tier, quality score, cache status, learned domain tier, and error details when extraction fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fetching arbitrary URLs and routing through third-party extraction services can expose sensitive, authenticated, signed, or internal-network URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated environment with limited filesystem and network access, and avoid internal or secret-bearing URLs unless third-party routing is disabled and internal-network fetches are blocked.
+
+Risk: The Scrapling installer uses unpinned npm/npx installation behavior and can create a persistent command wrapper.
+
+Mitigation: Review or replace the installer before use, prefer pinned package versions, and avoid persistent npx wrappers in managed environments.
+
+## Reference(s):
+
+- [Web Reader Pro ClawHub release](https://clawhub.ai/0xcjl/skills/web-reader-pro)
+- [Skill documentation](artifact/SKILL.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python dictionary or JSON-like result plus plain-text CLI output with extracted markdown content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include title, content, URL, extraction tier, quality score, cache status, learned route metadata, timestamp, and optional error details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Helps agents recognize vague code review feedback and replace it with specific, actionable comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review comments are unactionable when they ask for vague fixes such as improving, handling errors, or refactoring without specifics or suggested alternatives.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to turn vague review feedback into comments that identify what should change, where it applies, and why it matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make review feedback more explicit in a way that does not match a team's review norms. <br>
-Mitigation: Apply the guidance within the team's established code review conventions and distinguish blocking comments from optional suggestions. <br>
+## Use Case:
 
+Developers, maintainers, and reviewer agents use this skill to turn vague code review feedback into comments that state what to change, where to change it, and why it matters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/review-vague-fixes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, or sensitive access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can influence code review feedback style, and overuse may turn uncertain concerns into overly prescriptive comments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated comments for line-specific grounding, clear rationale, and honest uncertainty before sending them to authors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/review-vague-fixes)
+- [Publisher profile](https://clawhub.ai/user/mvogt99)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only skill; no code execution, credential handling, persistence, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

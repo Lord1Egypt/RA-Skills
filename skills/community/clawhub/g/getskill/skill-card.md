@@ -1,40 +1,58 @@
-## Description: <br>
-GetSkill helps OpenClaw users search, install, update, list, and configure skills through the @workskills/getskill CLI and getskill.work skill repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GetSkill helps OpenClaw agents search, install, update, list, and configure skills from the getskill.work service by using CLI commands, Git repositories, and local OpenClaw skills directories.
 
-## Publisher: <br>
-[zlei9](https://clawhub.ai/user/zlei9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlei9](https://clawhub.ai/user/zlei9)
 
-## Use Case: <br>
-Developers and OpenClaw users use GetSkill to discover skills, install them into a local OpenClaw skills directory, update cached skill repositories, list installed skills, and configure API endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install and update workflows copy remote skill repository contents into the local OpenClaw skills directory, where copied skills can persist and affect agent behavior. <br>
-Mitigation: Install or update only from trusted publishers and repositories, and review or scan target skill source before deployment. <br>
-Risk: Custom API endpoints can direct the CLI to untrusted repositories or altered skill listings. <br>
-Mitigation: Use custom API endpoints only when the endpoint and the repositories it returns are trusted. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to discover remote skills, install or update them into an OpenClaw environment, inspect local skill paths, manage cached repositories, and configure the API endpoint used for skill lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlei9/getskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands and expected behavior for search, install, update, list, path, config, and clean workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can install or update remote skills into the active OpenClaw environment with limited provenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted package sources, trusted API endpoints, and reviewed repositories; inspect fetched skill contents before enabling them.
+
+Risk: Install and update workflows can copy remote repository contents into local skills directories.
+
+Mitigation: Require explicit confirmation before overwriting existing skills, and prefer pinned versions or reviewed commits for remote content.
+
+Risk: The setup guidance may involve global npm or pnpm installation of the getskill CLI.
+
+Mitigation: Avoid elevated global installs where possible and verify the npm package before installation.
+
+## Reference(s):
+
+- [ClawHub getskill Skill Page](https://clawhub.ai/zlei9/skills/getskill)
+- [Publisher Profile](https://clawhub.ai/user/zlei9)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands and command-output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in local OpenClaw skill files being installed, updated, listed, or left unchanged depending on the selected CLI operation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

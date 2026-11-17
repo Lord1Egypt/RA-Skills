@@ -1,46 +1,63 @@
-## Description: <br>
-Stock Deep Dive gathers ticker-level stock research signals, valuation summaries, conviction scoring, and concise report output for investor research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Deep Dive helps agents run modular stock and crypto research for a ticker, combining market analysis, fundamentals, dividend checks, valuation models, investor-rule review, and concise report output.
 
-## Publisher: <br>
-[cplog](https://clawhub.ai/user/cplog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cplog](https://clawhub.ai/user/cplog)
 
-## Use Case: <br>
-External users and developers use this skill to run ticker-level deep dives that combine stock analysis, fundamentals, dividends, valuation, investor-panel scoring, and report-style summaries. Outputs are intended for informational investment research, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Twitter/X social scanning may require reused browser session tokens and can expose broad environment secrets to an external CLI. <br>
-Mitigation: Avoid enabling Twitter/X scanning on a primary account; if used, protect .env like a password, never commit it, prefer a dedicated low-risk account, and review the external CLI before granting credentials or Full Disk Access. <br>
-Risk: The skill depends on external finance and news sources and may store portfolio data locally. <br>
-Mitigation: Install only if comfortable with those sources and local portfolio storage, and review generated research before using it in a decision workflow. <br>
-Risk: Investment research output can be incomplete, delayed, or misleading if treated as financial advice. <br>
-Mitigation: Use the output for informational research only and consult a licensed financial advisor before making investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for a deep stock or crypto review by ticker, including quantitative signals, fundamentals, valuation notes, investor-panel checks, caveats, and a concise final recommendation. Its outputs are informational research aids, not financial advice.
 
-## Reference(s): <br>
-- [Stock Deep Dive ClawHub Page](https://clawhub.ai/cplog/stock-deep-dive) <br>
-- [Publisher Profile](https://clawhub.ai/user/cplog) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Credits](artifact/references/CREDITS.md) <br>
-- [Stock Analysis Usage](artifact/stock-analysis/docs/USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style research summary with supporting JSON and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ticker analysis, conviction scoring, DCF/comparable valuation notes, risk notes, saved report metadata, and links when deployment steps are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.8 (source: server release metadata) <br>
+Risk: Optional X/Twitter integration handles live session tokens broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated environment, avoid unrelated secrets in the skill .env, and scope secret injection to AUTH_TOKEN and CT0 only.
+
+Risk: The skill depends on unpinned external tools or dependencies for some data collection paths.
+
+Mitigation: Pin and audit dependencies before installation, and avoid global bird installation unless the tool and source are trusted and verified.
+
+Risk: Generated financial analysis can be stale, incomplete, or misleading if market data sources lag or fail.
+
+Mitigation: Treat outputs as informational research only, review cited data manually, and consult a licensed financial advisor before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cplog/skills/stock-deep-dive)
+- [Credits](references/CREDITS.md)
+- [Stock Analysis README](stock-analysis/README.md)
+- [Hot Scanner documentation](stock-analysis/docs/HOT_SCANNER.md)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [SEC EDGAR](https://www.sec.gov/edgar)
+- [bird CLI](https://github.com/steipete/bird)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown and JSON-style analysis summaries with command snippets when setup or execution is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ticker recommendations, conviction scoring, caveats, valuation notes, dividend details, trend signals, and report or deployment status.]
+
+## Skill Version(s):
+
+1.3.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

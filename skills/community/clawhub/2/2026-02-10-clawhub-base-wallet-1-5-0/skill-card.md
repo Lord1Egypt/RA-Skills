@@ -1,45 +1,61 @@
-## Description: <br>
-Base Wallet creates and manages Base/Ethereum-compatible wallets for agents, including SIWE message signing, balance checks, and transaction workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Base Wallet helps AI agents create and manage Base/Ethereum-compatible wallets, sign SIWE messages, check balances, and send transactions without browser extensions.
 
-## Publisher: <br>
-[pin-alt](https://clawhub.ai/user/pin-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pin-alt](https://clawhub.ai/user/pin-alt)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create low-level wallet identity, sign SIWE authentication messages, check Base-chain balances, and initiate wallet-backed workflows for autonomous agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose or persist raw wallet private keys or mnemonics during wallet setup. <br>
-Mitigation: Use a fresh low-value wallet, prefer an external secret manager or tightly scoped environment variables, and avoid storing secrets in shell history, shared .env files, or committed files. <br>
-Risk: The skill can sign SIWE messages and register remote BaseMail accounts with an agent-accessible wallet. <br>
-Mitigation: Review the registration and signing flow before execution, confirm the remote service and message contents, and avoid funding the wallet beyond the amount you are prepared to lose. <br>
+## Use Case:
 
+Developers and agent builders use this skill to give AI agents command-line wallet operations on Base/Ethereum, including wallet creation, SIWE signing, balance checks, transactions, and BaseMail registration.
 
-## Reference(s): <br>
-- [BaseMail API Reference](references/basemail-api.md) <br>
-- [Base Mainnet RPC](https://mainnet.base.org) <br>
-- [Base Sepolia RPC](https://sepolia.base.org) <br>
-- [BaseMail API](https://api.basemail.ai) <br>
-- [Skill Release Page](https://clawhub.ai/pin-alt/2026-02-10-clawhub-base-wallet-1-5-0) <br>
-- [Publisher Profile](https://clawhub.ai/user/pin-alt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CLI-oriented wallet setup guidance and commands; generated wallet material may include private keys or mnemonics that require secure handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json reports 1.5.0, while package.json and the artifact changelog report 1.1.0) <br>
+Risk: Private keys, mnemonics, wallet files, .env entries, stdout, and audit logs can expose wallet control material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test wallets first, avoid funded wallets until review is complete, prefer secret-manager or environment-variable storage, restrict file permissions, and treat all wallet-related outputs and logs as sensitive.
+
+Risk: Signing, transaction, and BaseMail registration workflows can create durable blockchain or account-linking effects.
+
+Mitigation: Review every message, endpoint, recipient, chain, and transaction value before execution; run only intended registrations or transactions and start on test networks when possible.
+
+Risk: Managed wallet mode writes private keys and mnemonic backups to local files.
+
+Mitigation: Prefer environment-variable mode, inspect the configured wallet directory before use, keep managed files out of source control, and remove offline backup material from connected systems after secure backup.
+
+## Reference(s):
+
+- [BaseMail API Reference](references/basemail-api.md)
+- [ClawHub Skill Page](https://clawhub.ai/pin-alt/skills/2026-02-10-clawhub-base-wallet-1-5-0)
+- [Base Mainnet RPC Endpoint](https://mainnet.base.org)
+- [Base Sepolia RPC Endpoint](https://sepolia.base.org)
+- [BaseMail Service](https://basemail.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash and JavaScript examples; bundled scripts may emit shell exports, JSON, balances, transaction hashes, and registration status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Handles wallet secrets and network calls; generated keys, mnemonics, wallet files, .env files, and audit logs should be treated as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; package.json lists 1.1.0 and artifact/_meta.json lists 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,64 @@
-## Description: <br>
-Generates regression test story sets, risk levels, and priorities from historical issues for regression, testing, and QA workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates regression test story sets, risk levels, and priorities from historical issue inputs for regression, testing, and QA workflows.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-QA engineers, developers, and release reviewers use this skill to turn historical bug notes, affected modules, and release timing into review-ready regression stories, high-risk scenarios, priorities, triggers, acceptance signals, and follow-up data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill drafts regression plans and should not be treated as evidence that tests were executed. <br>
-Mitigation: Review the generated stories and run validation separately before using them as release evidence. <br>
-Risk: The helper script can write to a user-selected output path. <br>
-Mitigation: Use dry-run or stdout for review first, and choose an output path that is safe to create or overwrite. <br>
-Risk: Input may contain bug details, personal data, or sensitive release context. <br>
-Mitigation: Provide only intended or redacted input data before generating regression stories. <br>
+## Use Case:
 
+Developers, QA engineers, and release reviewers use this skill to turn historical bugs, affected modules, and release timing into reviewable regression stories, high-risk scenarios, priorities, triggers, acceptance signals, and supplementary data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/regression-story-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON report output from the local helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a user-chosen local output file when the helper script is used; dry-run or stdout output is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and server release metadata) <br>
+Risk: Input issue histories or test-planning files may contain private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with files intended for the local agent, and redact sensitive material before sharing or generating reports.
+
+Risk: The bundled script can write generated reports to a chosen output path.
+
+Mitigation: Prefer stdout or --dry-run while reviewing results, and provide an explicit output path only when file creation is intended.
+
+Risk: The package is Chinese-first and includes inactive broader audit routines.
+
+Mitigation: Review localized output for the target audience, and avoid using audit modes on broad private directories unless intentionally scoped.
+
+Risk: Regression stories may be mistaken for executed test results.
+
+Mitigation: Treat outputs as planning drafts and review checklists; do not represent them as completed test execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/regression-story-builder)
+- [Skill README](artifact/README.md)
+- [Output Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown report, with optional JSON output from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are reviewable drafts and checklists; the bundled script can print to stdout, dry-run, or write to a deliberate output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

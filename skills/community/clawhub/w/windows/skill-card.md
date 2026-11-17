@@ -1,39 +1,51 @@
-## Description: <br>
-Windows-specific patterns, security practices, and operational traps that cause silent failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows-specific patterns, security practices, and operational traps that cause silent failures.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Windows operations reference for PowerShell automation, credential handling, remoting, script signing, logging, file operations, service accounts, and other platform-specific failure modes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example commands may change credential, remoting, antivirus, logging, file, or service-account behavior if copied directly into a live Windows environment. <br>
-Mitigation: Review commands before use, scope changes to the target environment, test destructive operations with WhatIf where available, and avoid copying placeholder passwords into shell history or scripts. <br>
-Risk: PowerShell credential exports and remoting settings can be misunderstood outside their user, machine, and network-security context. <br>
-Mitigation: Confirm the intended user and machine context before relying on exported credentials, and apply remoting guidance only with the certificate, TrustedHosts, and transport settings required by the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/windows) <br>
+## Use Case:
+
+Developers, automation engineers, and Windows administrators use this skill for practical guidance on PowerShell scripting, credential handling, remoting, file operations, event logging, and service-account behavior on Windows systems.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: WinRM and TrustedHosts guidance can weaken administrative access controls if applied too broadly.
+
+Mitigation: Prefer HTTPS or Kerberos-protected remoting, keep TrustedHosts entries narrow, and review commands before applying them.
+
+Risk: Credential and system-configuration examples may be unsafe if copied with real secrets or broad exclusions.
+
+Mitigation: Use placeholders instead of real secrets, rely on Windows credential tooling, and keep Defender exclusions specific to the required automation paths.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with PowerShell and CMD examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only; no code executes on its own.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with PowerShell and Windows command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; examples should be reviewed before use in an environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

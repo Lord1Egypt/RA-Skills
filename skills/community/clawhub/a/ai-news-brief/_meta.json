@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn75qshf394mpzdgj3ek2rm46h840zh4",
-  "slug": "ai-news-brief",
+  "name": "ai-news-brief",
   "version": "1.5.1",
-  "publishedAt": 1775606393975
+  "description": "AI/算力/GPU/内存/政策资讯简报，支持摘要重试、分模块展示、PDF附件",
+  "author": "小美",
+  "tags": ["AI", "资讯", "简报", "GPU", "大模型", "内存", "政策", "算力"],
+  "homepage": "",
+  "license": "MIT"
 }

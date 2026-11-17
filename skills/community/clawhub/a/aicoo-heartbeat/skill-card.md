@@ -1,45 +1,62 @@
-## Description: <br>
-Runs or configures Aicoo's heartbeat loop so an agent can check workspace signals, summarize findings, inspect past runs, and manage heartbeat instructions or policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aicoo Heartbeat helps an agent run or configure a proactive heartbeat loop that checks workspace signals, manages heartbeat instructions and policy, reviews past runs, and reports concise summaries.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Aicoo users and their agents use this skill to trigger or configure periodic heartbeat checks across connected workspace data, then receive concise status summaries and run history. It is also used to view or edit HEARTBEAT.md instructions and choose the heartbeat policy tier. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heartbeat runs can access sensitive workspace data through connected email, calendar, todo, notes, and memory context. <br>
-Mitigation: Use only if you trust Aicoo with the connected workspace data and API key, and prefer the least-privileged credential available. <br>
-Risk: The read-only MESSAGES tier is documented inconsistently with write-capable tools such as todo, note, and memory writes. <br>
-Mitigation: Keep the default MESSAGES tier unless you are comfortable with autonomous state changes, and review HEARTBEAT.md before running. <br>
-Risk: External cron or loop scheduling can repeatedly trigger autonomous checks. <br>
-Mitigation: Avoid or tightly limit external scheduling until write permissions and tier behavior are clearly documented, and monitor past heartbeat runs for unexpected activity. <br>
+## Use Case:
 
+Developers and Aicoo users use this skill to trigger heartbeat runs, configure MESSAGES or ACTIONS policy, edit HEARTBEAT.md instructions, inspect run history, and set up recurring workspace checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xisen-w/aicoo-heartbeat) <br>
-- [Aicoo API base](https://www.aicoo.io/api/v1) <br>
-- [Heartbeat run endpoint](https://www.aicoo.io/api/v1/heartbeat/run) <br>
-- [Heartbeat status endpoint](https://www.aicoo.io/api/v1/heartbeat/status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AICOO_API_KEY or PULSE_API_KEY; heartbeat instructions are maintained as HEARTBEAT.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks for recurring access to private workspace data including email, calendar, notes, todos, and memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only when the user is comfortable with that scope, review HEARTBEAT.md before recurring runs, and keep the policy in MESSAGES for read-oriented summaries.
+
+Risk: The security evidence notes unclear boundaries around write-capable tools in a mode described as read-only.
+
+Mitigation: Avoid enabling ACTIONS until the available writes, review path, and undo process are understood.
+
+Risk: The skill uses bearer-token authentication for Aicoo API commands.
+
+Mitigation: Store API keys in environment variables or a secrets manager and do not paste them into heartbeat instructions, logs, or generated output.
+
+## Reference(s):
+
+- [Aicoo Heartbeat skill page](https://clawhub.ai/xisen-w/skills/aicoo-heartbeat)
+- [Aicoo API base URL](https://www.aicoo.io/api/v1)
+- [Heartbeat run endpoint](https://www.aicoo.io/api/v1/heartbeat/run)
+- [Heartbeat policy endpoint](https://www.aicoo.io/api/v1/heartbeat/policy)
+- [Heartbeat instructions endpoint](https://www.aicoo.io/api/v1/heartbeat/instructions)
+- [Heartbeat status endpoint](https://www.aicoo.io/api/v1/heartbeat/status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference AICOO_API_KEY or PULSE_API_KEY for authenticated API calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Skill Section Fixer repairs skill documentation by adding missing required SKILL.md sections and frontmatter fields, with single-skill, batch, dry-run, and skip modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Section Fixer repairs missing required sections and frontmatter fields in SKILL.md files, including batch repair for skill directories.
 
-## Publisher: <br>
-[xukaitai321300-ctrl](https://clawhub.ai/user/xukaitai321300-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xukaitai321300-ctrl](https://clawhub.ai/user/xukaitai321300-ctrl)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill maintainers use this skill to make WorkBuddy or ClawHub skill packages pass structural checks by adding missing SKILL.md sections and frontmatter fields. It is most useful for controlled maintenance of local skill directories before review or testing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can rewrite many installed SKILL.md files in place, especially when batch mode is used.
+
+Mitigation: Run dry-run first, use exact target paths, keep backups or version control, and review generated frontmatter and sections before accepting changes.
+
+Risk: Batch behavior is under-scoped and may touch more local skills than intended.
+
+Mitigation: Avoid broad batch mode unless the target directory has been reviewed and use the maximum-count option where appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to repair WorkBuddy or ClawHub skill packages so their SKILL.md files include required sections and metadata. It is intended for single-skill cleanup, batch repair of a skills directory, and dry-run previews before rewriting files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Batch mode can rewrite many installed skills without built-in confirmation or rollback. <br>
-Mitigation: Run dry-run first, inspect the planned file count and changes, and use it only on a backed-up, intended skills directory. <br>
-Risk: Generated repairs can add generic or inaccurate sections and metadata to skill documentation. <br>
-Mitigation: Review the edited SKILL.md files before deploying or publishing the repaired skills. <br>
+**Output Format:** [Markdown guidance with Python command examples and in-place file updates when executed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xukaitai321300-ctrl/skill-section-fixer) <br>
+**Other Properties Related to Output:** [Can run in dry-run mode for preview; batch mode may update multiple SKILL.md files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples; script execution produces terminal summaries and rewritten SKILL.md files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode previews planned changes; batch mode can rewrite many SKILL.md files.] <br>
+2.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

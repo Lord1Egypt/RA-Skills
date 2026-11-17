@@ -1,46 +1,59 @@
-## Description: <br>
-梅花易数起卦，根据上卦、下卦数字查六十四卦，给出卦名、动爻及详解链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+梅花易数起卦，根据上卦、下卦数字查六十四卦，给出卦名、动爻及详解链接。
 
-## Publisher: <br>
-[xiaobo1992](https://clawhub.ai/user/xiaobo1992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaobo1992](https://clawhub.ai/user/xiaobo1992)
 
-## Use Case: <br>
-External users use this skill to calculate an I Ching hexagram from upper and lower trigram numbers, then receive the hexagram name, moving line, a detail link, and brief Chinese interpretive guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python helper when invoked. <br>
-Mitigation: Review the bundled script before deployment and run it only in the normal agent execution sandbox. <br>
-Risk: The output may include external zhouyi.cc links for further reading. <br>
-Mitigation: Inspect links before opening them and avoid entering sensitive information on third-party sites. <br>
-Risk: Divination-style guidance can be misleading if treated as professional advice. <br>
-Mitigation: Use the interpretation for reflection or entertainment only, not for legal, medical, financial, safety, or other high-stakes decisions. <br>
+## Use Case:
 
+External users can use this Chinese-language skill to calculate a Meihua I Ching hexagram from upper and lower trigram numbers and receive a concise interpretive reading with a detail link.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaobo1992/gua-helper) <br>
-- [八卦对照表](references/bagua.md) <br>
-- [十二时辰与时序对照表](references/shichen.md) <br>
-- [六十四卦速查表](assets/64gua_table.md) <br>
-- [卦意链接来源](references/guas.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style Chinese text with calculated hexagram fields and a reference URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Python helper during invocation; no artifact evidence of package installation, persistence, or data transmission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Divination output may be mistaken for factual, financial, legal, medical, or safety-critical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present readings as interpretive entertainment or cultural guidance and require users to make consequential decisions using appropriate professional sources.
+
+Risk: Results vary with the current time and normalize inputs modulo 8, so users may see unexpected results for large numeric inputs or repeated runs at different times.
+
+Mitigation: Explain the time-dependent calculation and modulo normalization when users ask how a result was produced.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaobo1992/skills/gua-helper)
+- [Publisher profile](https://clawhub.ai/user/xiaobo1992)
+- [八卦对照表](references/bagua.md)
+- [十二时辰与时序对照表](references/shichen.md)
+- [六十四卦速查表](assets/64gua_table.md)
+- [卦意链接映射](references/guas.json)
+- [周易卦意参考](https://www.zhouyi.cc/zhouyi/yijing64/4103.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with calculated hexagram fields and a short Chinese interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on current local time and normalizes numeric inputs modulo 8.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

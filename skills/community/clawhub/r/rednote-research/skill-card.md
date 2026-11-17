@@ -1,53 +1,67 @@
-## Description: <br>
-Research RedNote/Xiaohongshu discussion signals for sentiment, reputation, updates, local recommendations, and post or media analysis using public-web mode by default with optional login-enhanced review when explicitly chosen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches RedNote/Xiaohongshu community signals through public-web review, optional user-approved login-enhanced browser review, query expansion, claim extraction, and concise evidence-aware reporting.
 
-## Publisher: <br>
-[Pippin1214](https://clawhub.ai/user/Pippin1214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pippin1214](https://clawhub.ai/user/pippin1214)
 
-## Use Case: <br>
-External users, analysts, and researchers use this skill to perform RedNote/Xiaohongshu-first community intelligence checks, including reputation scans, trend updates, local recommendation synthesis, account summaries, comment analysis, and multimodal post review. It helps separate inspectable evidence from rumor, snippet-only signals, and platform chatter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public-web RedNote coverage can be incomplete because indexed pages, snippets, account feeds, comments, and app-only media may be missing or stale. <br>
-Mitigation: State the access mode used, label snippet-only or partial evidence, and ask for seed links, screenshots, copied titles, or login-enhanced review when fuller coverage is needed. <br>
-Risk: Login-enhanced review exposes the agent to a user's active RedNote session and may reveal account-level or comment-level content beyond public-web results. <br>
-Mitigation: Use login-enhanced mode only after explicit user choice, have the user complete login through the normal site flow, avoid passwords in chat, and keep navigation limited to the research request. <br>
-Risk: Community chatter, repeated anecdotes, screenshots, OCR, subtitles, ASR, and clipped media can be mistaken for verified facts. <br>
-Mitigation: Separate direct evidence from interpretation, assign credibility and risk scores, cross-check material claims with official or reputable sources, and keep unsupported allegations at rumor level. <br>
+## Use Case:
 
+External users and developers use this skill to research RedNote/Xiaohongshu reputation, trends, controversies, local recommendations, creator activity, and multimodal discussion clues while keeping uncertainty and access limits visible.
 
-## Reference(s): <br>
-- [RedNote Access Modes](references/access-modes.md) <br>
-- [Login-Enhanced Workflow](references/login-enhanced-workflow.md) <br>
-- [Minimal User Input Paths](references/minimal-user-input-paths.md) <br>
-- [Account Summary Templates](references/account-summary-template.md) <br>
-- [RedNote Structured Claim Log](references/claim-log-schema.md) <br>
-- [RedNote Multimodal Capture Patterns](references/multimodal-capture.md) <br>
-- [RedNote Community Intelligence Output Patterns](references/output-patterns.md) <br>
-- [RedNote Public-Web Recovery Patterns](references/public-web-recovery.md) <br>
-- [RedNote Community Intelligence Scoring Rubric](references/scoring-rubric.md) <br>
-- [RedNote Community Intelligence Verification Patterns](references/verification-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Pippin1214/rednote-research) <br>
-- [Publisher Profile](https://clawhub.ai/user/Pippin1214) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with evidence bullets, optional JSON claim logs, and optional shell command examples for bundled helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state whether public-web or login-enhanced mode was used and should distinguish direct evidence from snippet-only or user-provided material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Private screenshots, chat logs, copied comments, subtitles, or OCR text may be turned into public search queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to crop or redact personal identifiers before providing sensitive material and show proposed external search terms before running them.
+
+Risk: Login-enhanced review may expose privacy-sensitive account or session content beyond the immediate research need.
+
+Mitigation: Use login only after explicit user opt-in, rely on site-native login flows, keep collection task-scoped, and avoid unrelated browsing or actions.
+
+Risk: Public-web RedNote evidence can be thin, delayed, snippet-only, or blocked, leading to overconfident conclusions.
+
+Mitigation: State the access mode, separate direct evidence from rumor or repeated anecdote, and mark conclusions inconclusive when evidence remains weak.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pippin1214/skills/rednote-research)
+- [RedNote Access Modes](references/access-modes.md)
+- [Login-Enhanced Workflow](references/login-enhanced-workflow.md)
+- [Minimal User Input Paths](references/minimal-user-input-paths.md)
+- [Account Summary Templates](references/account-summary-template.md)
+- [RedNote Structured Claim Log](references/claim-log-schema.md)
+- [RedNote Multimodal Capture Patterns](references/multimodal-capture.md)
+- [RedNote Community Intelligence Output Patterns](references/output-patterns.md)
+- [RedNote Public-Web Recovery Patterns](references/public-web-recovery.md)
+- [RedNote Community Intelligence Scoring Rubric](references/scoring-rubric.md)
+- [RedNote Community Intelligence Verification Patterns](references/verification-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, structured claim logs, JSON templates, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify whether evidence came from public-web mode or login-enhanced review and should label uncertain, snippet-only, or partially inspectable media claims.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

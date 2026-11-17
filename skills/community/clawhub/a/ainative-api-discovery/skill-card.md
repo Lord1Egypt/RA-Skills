@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents discover and navigate AINative REST API endpoints, including endpoint categories, authentication patterns, and Python, JavaScript/TypeScript, and curl examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover and navigate AINative's 89+ API endpoints, including endpoint categories, authentication patterns, and code examples.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to identify the right AINative API endpoint for a task, understand required authentication, and adapt example requests for supported workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example requests may expose API keys or send sensitive data if copied directly into real environments. <br>
-Mitigation: Use scoped test keys, avoid secrets or regulated data in exploratory calls, and review payloads before sending requests. <br>
-Risk: State-changing requests can affect billing, memory, files, developer payouts, accounts, or admin data. <br>
-Mitigation: Require explicit confirmation before POST, PUT, or DELETE calls and prefer test accounts for validation. <br>
+## Use Case:
 
+Developers and agents use this skill to identify AINative REST API endpoints, choose the right endpoint for a task, and draft example calls in Python, JavaScript/TypeScript, or curl.
 
-## Reference(s): <br>
-- [AINative API](https://api.ainative.studio) <br>
-- [ClawHub release page](https://clawhub.ai/urbantech/ainative-api-discovery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with endpoint tables and inline Python, JavaScript/TypeScript, and curl code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable install behavior is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Example API calls may send API keys, prompts, and request data to AINative services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only AINative API keys and data intended for AINative, and avoid including secrets or private data unless that is the intended use.
+
+Risk: Endpoint lists and examples may become stale as the AINative API changes.
+
+Mitigation: Confirm endpoint behavior against current AINative documentation before relying on examples in production workflows.
+
+## Reference(s):
+
+- [AINative API Base URL](https://api.ainative.studio)
+- [AINative Chat Completions Endpoint](https://api.ainative.studio/v1/public/chat/completions)
+- [Complete Endpoint Documentation](docs/api/API_REFERENCE.md)
+- [Full Endpoint Index](docs/api/API_ENDPOINTS_REFERENCE.md)
+- [ClawHub Skill Page](https://clawhub.ai/urbantech/skills/ainative-api-discovery)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with endpoint tables and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoint paths, authentication headers, and example HTTP requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

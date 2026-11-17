@@ -1,40 +1,57 @@
-## Description: <br>
-Learn Anything Pro recommends learning paths and resources from Learn-Anything.xyz for programming, AI, data science, finance, cryptocurrency, YouTube learning, and related topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Anything Pro recommends learning paths and resources from Learn-Anything.xyz for programming, AI, data science, personal finance, crypto, prompt engineering, and YouTube learning topics.
 
-## Publisher: <br>
-[pxyyqm626529-afk](https://clawhub.ai/user/pxyyqm626529-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pxyyqm626529-afk](https://clawhub.ai/user/pxyyqm626529-afk)
 
-## Use Case: <br>
-External learners and developers use this skill to ask for learning roadmaps, tutorial recommendations, tools, practice project ideas, and related topic extensions. It is intended for educational resource discovery, not investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A public secret-like API key is embedded in the skill text, creating unclear billing and account-authority risk for paid calls. <br>
-Mitigation: Do not rely on or reuse the embedded key; the publisher should remove and rotate it and document how paid calls are authorized. <br>
-Risk: The skill may provide educational resources for finance and cryptocurrency topics that users could mistake for investment advice. <br>
-Mitigation: Treat finance and cryptocurrency responses as educational resources only and review investment decisions independently. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Learn Anything](https://learn-anything.xyz/) <br>
-- [ClawHub release page](https://clawhub.ai/pxyyqm626529-afk/learn-anything-pro) <br>
+## Use Case:
 
+Learners, developers, and professionals use this skill to find study paths, tutorials, tools, and practical project ideas across technical, finance, crypto, and prompt engineering topics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text learning recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include learning routes, tutorials, courses, tools, practice project suggestions, and related topic extensions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version section) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact publishes a payment/API key in its instructions.
+
+Mitigation: The publisher should revoke the exposed key, remove it from public instructions, and replace it with a proper secret or placeholder before release.
+
+Risk: Paid SkillPay.me use is too loosely scoped.
+
+Mitigation: Users should require clear confirmation before any paid call and review the expected cost before invoking the skill.
+
+Risk: The skill covers personal finance and crypto topics that could be mistaken for investment advice.
+
+Mitigation: Treat finance and crypto responses as educational resource recommendations only and verify decisions with qualified sources.
+
+## Reference(s):
+
+- [Learn Anything](https://learn-anything.xyz/)
+- [Learn Anything Pro on ClawHub](https://clawhub.ai/pxyyqm626529-afk/skills/learn-anything-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text learning-resource guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include learning routes, recommended tutorials and courses, tools, project suggestions, and related topics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

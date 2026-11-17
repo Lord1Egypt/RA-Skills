@@ -1,48 +1,54 @@
-## Description: <br>
-A/B evaluates AI agent skills through three-role isolation, synthetic test tasks, baseline versus with-skill execution, scoring, attribution analysis, and structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A/B evaluates AI agent skills through three-role isolation, generating skill profiles, synthetic test tasks, baseline versus with-skill comparisons, attribution analysis, and structured reports.
 
-## Publisher: <br>
-[LuarAssassin](https://clawhub.ai/user/LuarAssassin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luarassassin](https://clawhub.ai/user/luarassassin)
 
-## Use Case: <br>
-Developers and skill maintainers use SkillProbe to evaluate whether an agent skill improves real task outcomes, compare versions, investigate regressions after installation, and generate structured evaluation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation runs may execute arbitrary target skills for real. <br>
-Mitigation: Run evaluations in controlled, disposable workspaces with test accounts, and disable write-capable or external tools when possible. <br>
-Risk: Target skill content and task prompts may be sent to the configured model provider. <br>
-Mitigation: Avoid evaluating confidential skills unless the configured model provider is approved for that content. <br>
-Risk: The optional helper script depends on a separately installed SkillProbe CLI or adjacent runtime. <br>
-Mitigation: Verify any separately installed SkillProbe CLI or local runtime before running the helper script. <br>
-Risk: The workflow can produce misleading conclusions if sub-agent isolation or dispatch evidence is missing. <br>
-Mitigation: Require separate baseline and with-skill sessions and inspect dispatch_evidence before relying on evaluation results. <br>
+## Use Case:
 
+Developers and skill maintainers use SkillProbe to decide whether an AI agent skill is worth installing, compare skill versions, investigate performance changes, and produce evidence-backed evaluation reports.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/LuarAssassin/skillprobe) <br>
-- [README](artifact/README.md) <br>
-- [Dispatch Protocol](artifact/DISPATCH_PROTOCOL.md) <br>
-- [Scoring Reference](artifact/SCORING_REFERENCE.md) <br>
-- [Evaluation helper script](artifact/scripts/evaluate.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with JSON sub-agent outputs and optional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The documented workflow requires separate baseline and with-skill sub-agent sessions and dispatch evidence for evaluation claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, README title, release changelog) <br>
+Risk: Tool-capable sub-agents may apply untrusted skill instructions while sensitive files, credentials, network tools, or write access are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run evaluations only in a sandboxed or low-privilege agent environment with separate containment and logging before evaluating unknown skills.
+
+Risk: Evaluation results can be invalid if skill content leaks into the baseline arm or the orchestrator executes test tasks itself.
+
+Mitigation: Use separate baseline and with-skill sub-agent sessions, keep the baseline prompt free of skill content, and require dispatch evidence with distinct session IDs.
+
+## Reference(s):
+
+- [SkillProbe ClawHub release](https://clawhub.ai/luarassassin/skills/skillprobe)
+- [Publisher profile](https://clawhub.ai/user/luarassassin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown evaluation reports, JSON task-result arrays, prompt templates, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include weighted scores, attribution notes, recommendation labels, and dispatch evidence when the workflow is followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

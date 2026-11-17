@@ -1,40 +1,53 @@
-## Description: <br>
-Interprets clinical laboratory test results by identifying abnormal values, flagging critical results, and providing clinical context without replacing clinical judgment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret clinical laboratory test results, identify abnormal values, flag critical results, and provide clinical context without replacing clinical judgment.
 
-## Publisher: <br>
-[anightmare2](https://clawhub.ai/user/anightmare2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anightmare2](https://clawhub.ai/user/anightmare2)
 
-## Use Case: <br>
-External users and agents use this skill to interpret adult clinical lab reports, identify abnormal or critical values, and provide plain-language context for follow-up with qualified clinicians. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat informational lab-result interpretation as diagnosis, treatment advice, or urgent medical triage. <br>
-Mitigation: Confirm abnormal, critical, or confusing results with a qualified clinician and do not rely on this skill alone for diagnosis, treatment, or urgent medical decisions. <br>
-Risk: Adult reference and critical-value ranges may not match a specific lab, population, pregnancy status, pediatric case, or clinical context. <br>
-Mitigation: Compare interpretations against the report's own reference ranges and patient-specific context before acting on the output. <br>
+## Use Case:
 
+Chinese-speaking users and agents can use this skill to interpret clinical lab report values, identify abnormal or critical results, and frame follow-up questions for a clinician. It is not a substitute for clinical judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anightmare2/lab-interpret) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise text or Markdown with abnormal-value flags, critical-value notes, and clinical context.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational medical guidance only; no code execution, credential access, network behavior, or persistence is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, clawhub.yaml, package.json) <br>
+Risk: Users may treat built-in reference ranges as authoritative medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Compare results with the reporting lab's reference intervals and units, and seek professional care for abnormal, urgent, or symptom-linked results.
+
+Risk: Critical or abnormal lab values may require urgent clinical follow-up.
+
+Mitigation: Use the skill only as interpretation support and escalate critical results to a qualified clinician.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anightmare2/skills/lab-interpret)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text clinical-lab interpretation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; guidance should be checked against the reporting lab's units and reference intervals.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence, clawhub.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

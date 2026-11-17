@@ -1,49 +1,65 @@
-## Description: <br>
-Drive hostile or full-screen terminal UIs through the `ht` CLI from montanaflynn/headless-terminal when an agent needs reliable PTY-backed interaction, screen snapshots, or deterministic wait/synchronization for tools like `vim`, `top`, `htop`, `git add -p`, SSH-driven TUIs, installers, auth prompts, or REPLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive hostile or full-screen terminal UIs through the `ht` CLI from montanaflynn/headless-terminal when an agent needs reliable PTY-backed interaction, screen snapshots, or wait/synchronization for tools like `vim`, `top`, `htop`, `git add -p`, SSH-driven TUIs, installers, auth prompts, or REPLs.
 
-## Publisher: <br>
-[inertia186](https://clawhub.ai/user/inertia186) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inertia186](https://clawhub.ai/user/inertia186)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when to control a real terminal UI through `ht`, send small keystroke sequences, wait for deterministic screen conditions, capture terminal state, and clean up sessions safely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unrelated or untrusted package named `ht` or `headless-terminal` could give the agent the wrong tool or introduce supply-chain risk. <br>
-Mitigation: Install from the named Montana Flynn headless-terminal project or another explicitly trusted source, and verify the installed CLI supports the expected `ht run`, `ht send`, and `ht view` commands. <br>
-Risk: PTY control over remote, authentication, or destructive terminal flows can quickly affect real systems or expose sensitive data. <br>
-Mitigation: Require deliberate approval for privacy-sensitive, remote, authentication, or destructive flows, send only small keystroke sequences, and inspect fresh terminal snapshots before continuing. <br>
-Risk: Screenshots, terminal recordings, and snapshots can capture secrets or private terminal contents. <br>
-Mitigation: Protect, redact, or delete captured terminal artifacts according to the sensitivity of the session. <br>
+## Use Case:
 
+Developers and engineers use this skill to decide when to drive redraw-heavy terminal programs through the `ht` CLI and how to synchronize, inspect, and clean up those sessions safely. It helps agents work with full-screen TUIs, REPLs, installers, SSH-driven terminal flows, and interactive commands that are unreliable under plain stdin/stdout control.
 
-## Reference(s): <br>
-- [Headless Terminal project](https://github.com/montanaflynn/headless-terminal) <br>
-- [Headless Terminal releases](https://github.com/montanaflynn/headless-terminal/releases) <br>
-- [Examples](references/examples.md) <br>
-- [Key notation](references/keys.md) <br>
-- [Wait strategies](references/waits.md) <br>
-- [Recipes](references/recipes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Asciicast v2 documentation](https://docs.asciinema.org/manual/asciicast/v2/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend text or PNG terminal snapshots and asciicast recordings when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and CHANGELOG) <br>
+Risk: Terminal screenshots, recordings, or session views can expose passwords, MFA prompts, tokens, production incidents, or confidential data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get approval before using `ht` for privacy-sensitive flows, avoid capturing secrets, and store or redact any screenshots or recordings safely.
+
+Risk: Installing an unrelated package named `ht` or `headless-terminal` can put a different tool on PATH than the skill expects.
+
+Mitigation: Install only the named Montana Flynn headless-terminal CLI from the Homebrew tap or official release artifacts, and verify support for commands such as `ht run`, `ht send`, and `ht view`.
+
+Risk: Automating a real PTY can quickly perform destructive actions in remote systems, installers, or interactive prompts.
+
+Mitigation: Use the smallest meaningful keystrokes, wait for deterministic screen conditions, inspect fresh views after state changes, and ask before destructive or remote TUI operations.
+
+## Reference(s):
+
+- [Headless Terminal Skill](SKILL.md)
+- [Examples](references/examples.md)
+- [Key Notation](references/keys.md)
+- [Recipes](references/recipes.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Wait Strategies](references/waits.md)
+- [montanaflynn/headless-terminal](https://github.com/montanaflynn/headless-terminal)
+- [headless-terminal releases](https://github.com/montanaflynn/headless-terminal/releases)
+- [asciicast v2 documentation](https://docs.asciinema.org/manual/asciicast/v2/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include terminal session commands, wait strategies, cleanup steps, and troubleshooting advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Generate AI videos via Pixmind API (text-to-video and image-to-video). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos via Pixmind API (text-to-video and image-to-video).
 
-## Publisher: <br>
-[fuyunzhishang](https://clawhub.ai/user/fuyunzhishang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuyunzhishang](https://clawhub.ai/user/fuyunzhishang)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to submit text-to-video or image-to-video generation requests to Pixmind, then poll for generated video and cover URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and image URLs to Pixmind for external processing and output hosting. <br>
-Mitigation: Avoid submitting confidential prompts, proprietary material, or private image URLs unless the user accepts Pixmind processing and hosting the generated outputs. <br>
-Risk: The skill requires a Pixmind API key that may incur credit usage. <br>
-Mitigation: Use a dedicated API key where possible and monitor Pixmind credit usage. <br>
+## Use Case:
 
+External users and developers use this skill to generate videos from text prompts or animate reference images through the Pixmind API, then poll task status for generated video and cover URLs.
 
-## Reference(s): <br>
-- [Pixmind](https://www.pixmind.io) <br>
-- [Pixmind API Keys](https://www.pixmind.io/api-keys) <br>
-- [Pixmind Video on ClawHub](https://clawhub.ai/fuyunzhishang/pixmind-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PIXMIND_API_KEY and returns Pixmind task status, video URL, and cover URL when generation completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill sends the Pixmind API key, prompts, task IDs, generation settings, and any reference image URLs to Pixmind's aihub-admin.aimix.pro gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when you trust Pixmind with that data; avoid confidential prompts or private image URLs, and rotate the API key if exposure is suspected.
+
+Risk: Video generation can fail when a model, resolution, aspect ratio, or duration is unsupported by the selected Pixmind model.
+
+Mitigation: Use the documented supported model table and validate required parameters, especially Seedance resolution and Sora duration, before submitting a generation request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuyunzhishang/skills/pixmind-video)
+- [Publisher profile](https://clawhub.ai/user/fuyunzhishang)
+- [Pixmind](https://www.pixmind.io)
+- [Pixmind API Platform dashboard](https://www.pixmind.io/api-platform/dashboard/keys)
+- [Pixmind API gateway](https://aihub-admin.aimix.pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Pixmind task IDs plus generated video and cover URLs when tasks complete.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

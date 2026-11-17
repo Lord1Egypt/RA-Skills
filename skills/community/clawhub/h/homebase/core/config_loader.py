@@ -14,7 +14,8 @@ Usage:
 from __future__ import annotations
 import json
 import os
-from typing import Dict, List, Optional
+import sys
+from typing import Dict, List
 
 SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,6 +37,11 @@ class Kid:
         self.age_months = data.get("age_months")
         self.age_desc   = data.get("age_desc", "")
         self.meals      = data.get("meals", {})
+        # School attribution: which classroom an email belongs to. The sender
+        # address is the strong signal; teacher names are the fallback, because
+        # teachers sometimes write from a shared or district address.
+        self.email_sender = data.get("email_sender", "")
+        self.teachers     = data.get("teachers", [])
 
     @property
     def emoji_char(self) -> str:
@@ -59,10 +65,6 @@ class Config:
         self._data = data
 
     # ── App ──────────────────────────────────────────────────────────────────
-
-    @property
-    def app_name(self) -> str:
-        return self._data.get("app", {}).get("name", "Homebase")
 
     @property
     def owner_phone(self) -> str:
@@ -90,11 +92,19 @@ class Config:
 
     @property
     def whatsapp_group(self) -> str:
-        return self._data.get("whatsapp", {}).get("group_id", "")
-
-    @property
-    def whatsapp_agent_number(self) -> str:
-        return self._data.get("whatsapp", {}).get("agent_number", "")
+        """Primary family group jid. Prefers the scalar `whatsapp.group_id`
+        for backward compatibility with existing readers; falls back to
+        `whatsapp.groups[0].id` when only the new shape is present.
+        """
+        wa = self._data.get("whatsapp", {})
+        scalar = wa.get("group_id", "")
+        if scalar:
+            return scalar
+        groups = wa.get("groups") or []
+        if groups and isinstance(groups, list):
+            first = groups[0] or {}
+            return first.get("id", "")
+        return ""
 
     # ── Family ────────────────────────────────────────────────────────────────
 
@@ -151,30 +161,20 @@ class Config:
             parts.append(f"from:{addr}")
         if not parts:
             return ""
-        return "(" + " OR ".join(parts) + ") newer_than:2d"
+        # 4 days, not 2. The school runner only fires Mon-Fri, so its last
+        # Friday run (20:07) sits ~60h before its first Monday one (08:07). A
+        # 2-day window reaches back only to Saturday morning, which left mail
+        # arriving Friday evening invisible on Monday and therefore forever.
+        # Widening costs nothing: dedup is by message id against
+        # processed_email_ids.json, so a longer result list re-surfaces only
+        # what was genuinely never handled.
+        return "(" + " OR ".join(parts) + ") newer_than:4d"
 
     # ── Stores ────────────────────────────────────────────────────────────────
 
     @property
     def indian_stores(self) -> List[str]:
         return self._data.get("stores", {}).get("indian", [])
-
-    @property
-    def bulk_stores(self) -> List[str]:
-        return self._data.get("stores", {}).get("bulk", ["Costco"])
-
-    @property
-    def all_store_keywords(self) -> Dict[str, List[str]]:
-        """Returns store keyword mapping for shopping_list.py."""
-        indian = [s.lower() for s in self.indian_stores]
-        bulk   = [s.lower() for s in self.bulk_stores]
-        return {
-            "costco":  bulk + ["costco", "cost co"],
-            "indian":  indian + ["indian", "desi", "indian store",
-                                  "indian grocery", "subzi", "bazaar"],
-            "target":  ["target", "walmart", "wal-mart", "safeway",
-                         "kroger", "vons", "ralphs"],
-        }
 
     # ── Meals ─────────────────────────────────────────────────────────────────
 
@@ -185,20 +185,6 @@ class Config:
     @property
     def dinner_options(self) -> List[str]:
         return self._data.get("meals", {}).get("dinner_options", [])
-
-    # ── Briefing ──────────────────────────────────────────────────────────────
-
-    @property
-    def briefing_time(self) -> str:
-        return self._data.get("briefing", {}).get("time", "07:00")
-
-    @property
-    def briefing_weather_enabled(self) -> bool:
-        return self._data.get("briefing", {}).get("weather", True)
-
-    @property
-    def briefing_positive_message(self) -> bool:
-        return self._data.get("briefing", {}).get("positive_message", True)
 
     # ── Validation ────────────────────────────────────────────────────────────
 
@@ -224,7 +210,20 @@ class Config:
 # ─── Loader ───────────────────────────────────────────────────────────────────
 
 def _load_config() -> Config:
-    """Load config.json, falling back to config.example.json."""
+    """Load config.json, falling back to config.example.json.
+
+    HOMEBASE_CONFIG overrides the path outright. The test suite sets it so the
+    suite runs against its own fixture instead of whatever config.json happens
+    to be on the machine — without it, `config` is an import-time singleton
+    bound to the maintainer's real household, and tests silently assert on real
+    children's names. A missing override file is fatal on purpose: falling back
+    to the real config is the failure mode this exists to prevent.
+    """
+    override = os.environ.get("HOMEBASE_CONFIG")
+    if override:
+        with open(override) as f:
+            return Config(json.load(f))
+
     config_path  = os.path.join(SKILL_DIR, "config.json")
     example_path = os.path.join(SKILL_DIR, "config.example.json")
 
@@ -232,8 +231,8 @@ def _load_config() -> Config:
         with open(config_path) as f:
             return Config(json.load(f))
     elif os.path.exists(example_path):
-        print("⚠️  config.json not found — using config.example.json (placeholders only)")
-        print("   Copy config.example.json to config.json and fill in your values.")
+        print("⚠️  config.json not found — using config.example.json (placeholders only)", file=sys.stderr)
+        print("   Copy config.example.json to config.json and fill in your values.", file=sys.stderr)
         with open(example_path) as f:
             return Config(json.load(f))
     else:

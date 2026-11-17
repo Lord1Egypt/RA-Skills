@@ -1,26 +1,26 @@
 ---
 name: financial-model-forecast-reviewer
 description: >-
-  Help users with Validated demand: Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expense forecasts, and turning spreadsheets into scenario plans. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for business-and-operations, financial model, forecast, scenario planning, runway, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
+  Help users with Validated demand: Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for work-productivity, weather, current, forecasts, api, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Financial Model Forecast Reviewer
 
 ## Requirement
 
-Use this skill to help startup founders, finance analysts, operators, consultants, and managers responsible for forecasts, runway planning, and spreadsheet models with:
+Use this skill to help AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows with:
 
-> Validated demand: Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expense forecasts, and turning spreadsheets into scenario plans. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
-Demand score: 90/100 (`70/70` demand, `30/30` local feasibility).
-Evidence: 11 signals across 2 source families.
+Demand score: 100/100 (`70/70` demand, `30/30` local feasibility).
+Evidence: 12 signals across 3 source families.
 
 Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 
 ## Workflow
 
 1. Restate the user's outcome, constraints, available inputs, and success criteria.
-2. Turn the operational problem into a repeatable process, checklist, template, or lightweight analysis.
+2. Create a concise work plan, template, automation outline, or decision aid that reduces manual coordination.
 3. Ask only for missing information that materially changes the output; otherwise make reasonable assumptions and continue.
 4. Keep the implementation local-hardware friendly: prefer scripts, templates, checklists, and small-model or CPU-safe workflows over cloud-only or large-training approaches.
 5. Produce the requested artifact, workflow, checklist, analysis, code change, or decision support.
@@ -41,10 +41,10 @@ Read `references/requirement-plan.md` when source evidence, planning details, or
 
 ## Triggers
 
-Keywords: `business-and-operations`, `financial model`, `forecast`, `scenario planning`, `runway`, `assumptions`
+Keywords: `work-productivity`, `weather`, `current`, `forecasts`, `api`, `key`, `required`, `popular-skill`, `users`, `bug fix`
 
 Example trigger sentences:
 
-- `Help me Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens.`
-- `I need a practical workflow for Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens.`
-- `Use $financial-model-forecast-reviewer to handle Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens.`
+- `Help me Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s.`
+- `I need a practical workflow for Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s.`
+- `Use $financial-model-forecast-reviewer to handle Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s.`

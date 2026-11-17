@@ -1,6 +1,6 @@
 ---
 name: qwen
-description: Call the Qwen text API (qwen3-next-80b-a3b-instruct) through RunAPI using the official OpenAI SDK or compatible clients. Use when the user asks for Qwen text chat, streaming completions, Anthropic or Gemini protocol compatibility, or when they want to point an existing OpenAI SDK setup at RunAPI as the base URL.
+description: Call the Qwen API (Qwen3.6, Qwen3.5, Qwen3-Coder-Next, and Qwen3-VL open-weight models) through RunAPI using OpenAI-compatible Chat Completions. Use for Qwen text chat, image understanding, streaming, or an existing compatibility client that needs the conditional reference.
 documentation: https://runapi.ai/models/qwen.md
 provider_page: https://runapi.ai/providers/alibaba.md
 catalog: https://runapi.ai/models.md
@@ -9,138 +9,83 @@ metadata:
     homepage: https://runapi.ai/models/qwen
     primaryEnv: OPENAI_API_KEY
     requires:
-      env:
-      - OPENAI_API_KEY
-      - OPENAI_BASE_URL
+      env: [OPENAI_API_KEY, OPENAI_BASE_URL]
     envVars:
-    - name: OPENAI_API_KEY
-      required: true
-      description: RunAPI API key used by OpenAI-compatible Qwen clients.
-    - name: OPENAI_BASE_URL
-      required: true
-      description: Set to https://runapi.ai/v1 for Qwen on RunAPI.
+    - {name: OPENAI_API_KEY, required: true, description: RunAPI API key used by OpenAI-compatible Qwen clients.}
+    - {name: OPENAI_BASE_URL, required: true, description: Set to https://runapi.ai/v1 for Qwen on RunAPI.}
 ---
 
-# Qwen Text on RunAPI
+# Qwen on RunAPI
 
-Use the official **OpenAI SDK** or any OpenAI-compatible HTTP client and switch
-the base URL to `https://runapi.ai/v1`. This skill covers Qwen **text** models.
-For Qwen image generation, install the separate Qwen 2 skill.
+Use OpenAI-compatible Chat Completions at `https://runapi.ai/v1` as the primary protocol.
 
-## Setup
+## Primary protocol recipe
 
-```dotenv
-OPENAI_API_KEY=YOUR_RUNAPI_TOKEN
-OPENAI_BASE_URL=https://runapi.ai/v1
-```
+### Authenticate
 
-Get a RunAPI API Key at <https://runapi.ai/api_keys>.
+Set `OPENAI_API_KEY` to a RunAPI API key and `OPENAI_BASE_URL` to `https://runapi.ai/v1`.
 
-## Core recipe - Chat Completions
+### Send request
 
 ```python
 from openai import OpenAI
-
-client = OpenAI(
-    api_key="YOUR_RUNAPI_TOKEN",
-    base_url="https://runapi.ai/v1",
-)
-
+client = OpenAI(api_key="YOUR_RUNAPI_TOKEN", base_url="https://runapi.ai/v1")
 response = client.chat.completions.create(
-    model="qwen3-next-80b-a3b-instruct",
-    messages=[{"role": "user", "content": "Write a concise API migration note."}],
+    model="qwen3.6-27b",
+    messages=[{"role": "user", "content": "Review this function for bugs."}],
 )
 print(response.choices[0].message.content)
 print(response.usage)
 ```
 
-```typescript
-import OpenAI from "openai";
+For long output, call the same method with `stream=True` and
+`stream_options={"include_usage": True}`; consume every chunk through `[DONE]`.
 
-const client = new OpenAI({
-  apiKey: "YOUR_RUNAPI_TOKEN",
-  baseURL: "https://runapi.ai/v1",
-});
+### Verify result
 
-const response = await client.chat.completions.create({
-  model: "qwen3-next-80b-a3b-instruct",
-  messages: [{ role: "user", content: "Write a concise API migration note." }],
-});
-```
+Require final assistant content, a terminal `finish_reason`, and authoritative
+`usage`. Thinking models may also return `reasoning_content`; use the final
+answer in `content`. A stream is complete only after its terminal usage chunk
+and `[DONE]`.
 
-## Streaming
+### Stop boundaries
 
-```python
-stream = client.chat.completions.create(
-    model="qwen3-next-80b-a3b-instruct",
-    messages=[{"role": "user", "content": "Write a compact implementation plan."}],
-    stream=True,
-)
-for chunk in stream:
-    delta = chunk.choices[0].delta.content
-    if delta:
-        print(delta, end="", flush=True)
-```
+Correct a rejected shape once using the structured error. Retry transport once
+only before any response or Usage and when replay is safe. Record a terminal
+error and stop without changing model or protocol. Send image input only on
+Chat Completions and only to a model whose row below lists image input. Keep
+`qwen3-coder-next` requests to text.
 
-Streaming runs through a regional edge proxy so the request does not hold a
-Rails/Puma thread. Long generations should always stream.
+## Compatibility protocols
 
-## Protocol compatibility
+Load [compatibility protocols](references/compatibility-protocols.md) only when an existing client requires OpenAI Responses, Anthropic Messages, or Gemini contents.
 
-Qwen text models are also available through RunAPI's Anthropic-compatible and
-Gemini `contents` client surfaces. RunAPI bridges those request and response
-shapes to the OpenAI-compatible chat request format, so use these protocol paths
-only when an existing tool expects those formats:
+## Capability boundary
 
-```bash
-curl -X POST "https://runapi.ai/v1/messages" \
-  -H "x-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "qwen3-next-80b-a3b-instruct",
-    "max_tokens": 1024,
-    "messages": [{"role": "user", "content": "Draft a concise answer."}]
-  }'
-```
-
-```bash
-curl -X POST \
-  "https://runapi.ai/v1beta/models/qwen3-next-80b-a3b-instruct:streamGenerateContent" \
-  -H "x-goog-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"contents":[{"role":"user","parts":[{"text":"Hello!"}]}]}'
-```
-
-For new app code, prefer the OpenAI-compatible setup.
-
-## List models
-
-```bash
-curl https://runapi.ai/v1/models \
-  -H "Authorization: Bearer YOUR_RUNAPI_TOKEN"
-```
+| Capability | Current behavior |
+|---|---|
+| Text history, sync, streaming | Supported through OpenAI-compatible Chat Completions |
+| Image input | Chat Completions only, for the Qwen3.6, Qwen3.5, and Qwen3-VL models |
+| Function tools | Chat Completions; verify each tool call before acting on it |
+| OpenAI Responses, Anthropic Messages, Gemini contents | Text requests; image input is rejected |
+| Usage | Preserve returned token fields; never infer missing details |
 
 ## Supported models
 
 | Model ID | Use when |
 |---|---|
-| `qwen3-next-80b-a3b-instruct` | Qwen text chat and instruction-following workloads |
+| `qwen3.6-27b` | Dense agentic coding and reasoning with image input |
+| `qwen3.6-35b-a3b` | Efficient MoE coding and reasoning with image input |
+| `qwen3.5-397b-a17b` | Largest Qwen3.5 open-weight model with image input |
+| `qwen3.5-122b-a10b` | Qwen3.5 MoE for text and image reasoning |
+| `qwen3.5-27b` | Dense Qwen3.5 text and image workloads |
+| `qwen3.5-35b-a3b` | Low-cost Qwen3.5 MoE workloads |
+| `qwen3-coder-next` | Text-only coding agents and repository work |
+| `qwen3-vl-235b-a22b-thinking` | Image reasoning with always-on thinking |
+| `qwen3-vl-235b-a22b-instruct` | Image understanding and OCR without thinking |
 
 ## References
 
-- Model overview, pricing, and rate limits: https://runapi.ai/models/qwen.md
-- Provider comparison: https://runapi.ai/providers/alibaba.md
-- Catalog: https://runapi.ai/models.md
-
-## Agent rules
-
-- Keep API keys in `OPENAI_API_KEY`, `RUNAPI_TOKEN`, or a secret manager; never
-  inline them in commits or shell history.
-- Default new integrations to the OpenAI-compatible client at
-  `https://runapi.ai/v1`.
-- Use streaming for responses longer than a few hundred tokens.
-- For Qwen image generation, use the Qwen 2 model skill instead of this text
-  LLM skill.
-- For pricing, rate-limit, and commercial-usage answers, link to
-  https://runapi.ai/models/qwen.md rather than copying values.
+- <https://runapi.ai/models/qwen.md>
+- <https://runapi.ai/providers/alibaba.md>
+- <https://runapi.ai/models.md>

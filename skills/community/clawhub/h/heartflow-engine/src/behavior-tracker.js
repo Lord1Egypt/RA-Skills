@@ -12,8 +12,9 @@
  * - 时间衰减 (旧目标自动降级)
  */
 
-const fs = require('fs');
+const fs = require('./utils/safe-fs');
 const path = require('path');
+const crypto = require('crypto');
 
 // ── 常量 ──────────────────────────────────────────────
 const MAX_GOALS = 100;
@@ -37,11 +38,11 @@ try {
   if (!fs.existsSync(resolvedDataDir)) {
     fs.mkdirSync(resolvedDataDir, { recursive: true });
   }
-} catch (e) {
-  console.error('[BehaviorTracker] Failed to create data directory:', e.message);
-}
+} catch (_) { /* [v5.9.18] intentional: graceful degradation */ }
 
 // ── 数据消毒 ──────────────────────────────────────────
+// [REFACTOR] TODO: _sanitize (518行) — 建议拆分为独立子函数
+
 function _sanitize(str, maxLen = 200) {
   if (typeof str !== 'string') return '';
   return str
@@ -105,12 +106,10 @@ const behaviorTracker = {
             if (!g.createdAt) g.createdAt = new Date().toISOString();
           });
         } else {
-          console.warn('[BehaviorTracker] Corrupted data structure, resetting');
           this.data = { version: DATA_VERSION, goals: [] };
         }
       }
     } catch (e) {
-      console.warn('[BehaviorTracker] Load failed (corrupted file?):', e.message);
       // 尝试备份恢复
       this._tryRecovery();
     }
@@ -128,18 +127,14 @@ const behaviorTracker = {
         const parsed = JSON.parse(raw);
         if (parsed && Array.isArray(parsed.goals)) {
           this.data = parsed;
-          console.error('[BehaviorTracker] Recovered from backup');
           // 写回主文件
           fs.writeFileSync(DATA_FILE, JSON.stringify(this.data, null, 2));
           return;
         }
       }
-    } catch (e) {
-      console.warn('[BehaviorTracker] Backup recovery failed:', e.message);
-    }
+    } catch (_) { /* [v5.9.18] intentional: graceful degradation */ }
     // 彻底失败，重置
     this.data = { version: DATA_VERSION, goals: [] };
-    console.warn('[BehaviorTracker] Data reset due to unrecoverable corruption');
   },
 
   // ── 保存 (含自动备份) ──
@@ -151,9 +146,7 @@ const behaviorTracker = {
       }
       fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
       fs.writeFileSync(DATA_FILE, JSON.stringify(this.data, null, 2));
-    } catch (e) {
-      console.warn('[BehaviorTracker] save failed:', e.message);
-    }
+    } catch (_) { /* [v5.9.18] intentional: graceful degradation */ }
     return this;
   },
 
@@ -195,7 +188,6 @@ const behaviorTracker = {
       });
       const removed = this.data.goals.splice(MAX_GOALS);
       removed.forEach(r => {
-        console.error(`[BehaviorTracker] Pruned stale goal: ${r.name || r.id}`);
       });
       changed = true;
     }
@@ -203,7 +195,7 @@ const behaviorTracker = {
     if (changed) this.save();
   },
 
-  _uuid() { return `goal-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`; },
+  _uuid() { return `goal-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`; },
 
   // ── 创建目标 ──
   createGoal({ name, description, targetDays = 30, category = '' }) {
@@ -256,7 +248,7 @@ const behaviorTracker = {
     }
 
     const record = {
-      id: `rec-${Date.now()}-${Math.random().toString(36).slice(2, 4)}`,
+      id: `rec-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`,
       type,
       note: _sanitize(note, 500),
       context: _sanitize(context, 200),

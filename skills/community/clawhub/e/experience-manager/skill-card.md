@@ -1,42 +1,58 @@
-## Description: <br>
-Experience Manager creates standard experience-package zip files from reusable agent practices, learns those packages into agent capabilities, and searches or publishes packages through Experience Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Experience Manager creates, learns, lists, searches, and publishes OpenClaw experience packages so agents can retain and share reusable practices.
 
-## Publisher: <br>
-[zlx](https://clawhub.ai/user/zlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlx](https://clawhub.ai/user/zlx)
 
-## Use Case: <br>
-Developers and agent operators use this skill to package, share, discover, and learn reusable OpenClaw agent experiences so practices can transfer across sessions and agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private OpenClaw memory and configuration while creating or learning experience packages. <br>
-Mitigation: Install only where that local access is acceptable and review package contents before learning or publishing. <br>
-Risk: Learning an untrusted local or remote package can permanently change agent behavior. <br>
-Mitigation: Use dry-run first, avoid --yes for untrusted packages, and do not learn packages from unknown URLs. <br>
-Risk: Using an agent-targeting option can modify another agent's persistent instructions. <br>
-Mitigation: Use --agent only when you administer the target agent and have reviewed the planned changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to package lessons learned into reusable OpenClaw experience ZIP files, apply experience packages to current or specified agents, and search or publish packages through Experience Hub.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zlx/experience-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown/text guidance with command examples, YAML experience metadata, reference Markdown files, and zip package files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or learn persistent experience packages under the user's OpenClaw experience directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Remote or arbitrary experience packages can be imported into persistent agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted OpenClaw environment, use dry-run, avoid --yes, and review every package reference before applying it.
+
+Risk: Generated ZIP packages may include or derive local memories and agent configuration.
+
+Mitigation: Review generated ZIP contents before publishing.
+
+Risk: Cross-agent operations can modify another agent workspace.
+
+Mitigation: Avoid cross-agent operations unless you explicitly intend to modify that agent workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlx/skills/experience-manager)
+- [Experience Hub API](https://www.expericehub.com:18080)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown and text guidance with shell commands, generated ZIP files, and OpenClaw configuration changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create experience ZIP packages, update local experience indexes, or apply learned content to agent instruction files after user confirmation.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release and skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

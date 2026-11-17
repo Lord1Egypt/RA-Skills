@@ -1,0 +1,57 @@
+{
+ "_chart_type": "cluster_heatmap",
+ "_command": "python3 scripts/gen_figure.py -t cluster_heatmap -d templates/cluster_heatmap.json -o cluster_heatmap.png",
+ "matrix": [
+  [
+   2.1,
+   0.3,
+   1.8,
+   0.1
+  ],
+  [
+   1.9,
+   0.2,
+   2.0,
+   0.3
+  ],
+  [
+   0.2,
+   2.2,
+   0.1,
+   1.9
+  ],
+  [
+   0.3,
+   2.0,
+   0.4,
+   2.1
+  ],
+  [
+   1.8,
+   0.4,
+   1.9,
+   0.2
+  ],
+  [
+   0.1,
+   1.8,
+   0.3,
+   2.0
+  ]
+ ],
+ "row_labels": [
+  "样本1",
+  "样本2",
+  "样本3",
+  "样本4",
+  "样本5",
+  "样本6"
+ ],
+ "col_labels": [
+  "基因A",
+  "基因B",
+  "基因C",
+  "基因D"
+ ],
+ "_note": "场景：6 行×4 列指标矩阵（模拟）按 Ward 层次聚类重排（行列顺序写入 stderr/alt）。色阶=数值标准化后映射；>3000 行自动降采样并告知。适合组学/多指标面板的全景模式发现。"
+}

@@ -1,0 +1,37 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate manifest.json
+        run: |
+          python3 -c "import json; json.load(open('manifest.json'))"
+          echo "manifest.json: valid JSON"
+
+      - name: Validate examples/*.json
+        run: |
+          for f in examples/*.json; do
+            python3 -c "import json; json.load(open('$f'))"
+            echo "$f: valid JSON"
+          done
+
+      - name: shellcheck install.sh
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          severity: warning
+
+      - name: markdownlint
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            *.md

@@ -1,0 +1,611 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/TaoGEO/TaoHtml/schemas/report-ir-v1.schema.json",
+  "title": "TaoHtml Report IR v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_ir_version",
+    "report",
+    "projection",
+    "chapters",
+    "narrative_units",
+    "blocks",
+    "pages",
+    "build_binding",
+    "traceability"
+  ],
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "report_ir_version": {"const": "1.0"}
+          },
+          "not": {"required": ["workflow_profile"]}
+        },
+        {
+          "properties": {
+            "report_ir_version": {"const": "1.1"}
+          },
+          "required": ["workflow_profile"]
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "report_ir_version": {"enum": ["1.0", "1.1"]},
+    "workflow_profile": {"$ref": "#/$defs/workflow_profile_binding"},
+    "report": {"$ref": "#/$defs/report"},
+    "projection": {"$ref": "#/$defs/projection"},
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/chapter"}
+    },
+    "narrative_units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/narrative_unit"}
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/block"}
+    },
+    "claims": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/claim"}
+    },
+    "evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "evidence_links": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence_link"}
+    },
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source"}
+    },
+    "datasets": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/dataset"}
+    },
+    "assets": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/asset"}
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/page"}
+    },
+    "speaker_notes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/speaker_note"}
+    },
+    "appendices": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/appendix"}
+    },
+    "build_binding": {"$ref": "#/$defs/build_binding"},
+    "traceability": {"$ref": "#/$defs/traceability"},
+    "extensions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/extension"}
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 96,
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$"
+    },
+    "short_text": {"type": "string", "minLength": 1, "maxLength": 500},
+    "long_text": {"type": "string", "minLength": 1, "maxLength": 12000},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "id_list": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/id"}
+    },
+    "workflow_profile_id": {
+      "enum": [
+        "formal-submission-writing",
+        "research-analysis-argumentation",
+        "periodic-operations-reporting",
+        "proposal-planning-decision",
+        "live-presentation-persuasion",
+        "teaching-training-knowledge-transfer",
+        "project-lifecycle-reporting",
+        "brand-communication-editorial-publishing",
+        "rule-response-application-defense"
+      ]
+    },
+    "workflow_profile_overlay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_profile_id",
+        "bounded_capability",
+        "reason",
+        "affected_scope"
+      ],
+      "properties": {
+        "source_profile_id": {"$ref": "#/$defs/workflow_profile_id"},
+        "bounded_capability": {"$ref": "#/$defs/short_text"},
+        "reason": {"$ref": "#/$defs/long_text"},
+        "affected_scope": {"$ref": "#/$defs/long_text"}
+      }
+    },
+    "workflow_profile_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_profile_id",
+        "definition_version",
+        "selection_basis",
+        "capability_overlays"
+      ],
+      "properties": {
+        "primary_profile_id": {"$ref": "#/$defs/workflow_profile_id"},
+        "definition_version": {"const": "2.0"},
+        "selection_basis": {"$ref": "#/$defs/long_text"},
+        "capability_overlays": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/workflow_profile_overlay"}
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "objective", "audience", "archetype", "evidence_rigor"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"$ref": "#/$defs/short_text"},
+        "objective": {"$ref": "#/$defs/long_text"},
+        "audience": {"$ref": "#/$defs/long_text"},
+        "archetype": {"$ref": "#/$defs/id"},
+        "evidence_rigor": {"enum": ["exploratory", "standard", "formal"]},
+        "language": {"type": "string", "minLength": 2, "maxLength": 35}
+      }
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "delivery_mode",
+        "information_density",
+        "motion_density",
+        "page_order"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "delivery_mode": {"enum": ["reading", "presentation", "hybrid"]},
+        "information_density": {"enum": ["low", "medium", "high"]},
+        "motion_density": {"enum": ["minimal", "moderate", "rich"]},
+        "interaction_level": {"enum": ["none", "low", "medium", "high"]},
+        "state_complexity": {"enum": ["static", "staged", "reflow", "scene"]},
+        "page_order": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        }
+      }
+    },
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "task", "narrative_unit_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"$ref": "#/$defs/short_text"},
+        "task": {"$ref": "#/$defs/long_text"},
+        "narrative_unit_refs": {"$ref": "#/$defs/id_list"},
+        "evidence_rigor": {"enum": ["exploratory", "standard", "formal"]}
+      }
+    },
+    "narrative_unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "question", "takeaway", "narrative_role", "claim_refs", "block_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "question": {"$ref": "#/$defs/long_text"},
+        "takeaway": {"$ref": "#/$defs/long_text"},
+        "narrative_role": {
+          "enum": ["orient", "assert", "prove", "explain", "compare", "synthesize", "decide", "act"]
+        },
+        "claim_refs": {"$ref": "#/$defs/id_list"},
+        "block_refs": {"$ref": "#/$defs/id_list"},
+        "prerequisite_unit_refs": {"$ref": "#/$defs/id_list"}
+      }
+    },
+    "content_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "label": {"$ref": "#/$defs/short_text"},
+        "value": {"$ref": "#/$defs/short_text"},
+        "detail": {"$ref": "#/$defs/long_text"},
+        "claim_refs": {"$ref": "#/$defs/id_list"},
+        "evidence_refs": {"$ref": "#/$defs/id_list"}
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "kind": {
+          "enum": [
+            "headline",
+            "body_text",
+            "claim",
+            "metric",
+            "data_visualization",
+            "table",
+            "image",
+            "quote",
+            "list",
+            "process",
+            "comparison",
+            "timeline",
+            "evidence_excerpt",
+            "methodology",
+            "caveat",
+            "call_to_action"
+          ]
+        },
+        "text": {"$ref": "#/$defs/long_text"},
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/content_item"}
+        },
+        "claim_refs": {"$ref": "#/$defs/id_list"},
+        "evidence_refs": {"$ref": "#/$defs/id_list"},
+        "dataset_ref": {"$ref": "#/$defs/id"},
+        "asset_ref": {"$ref": "#/$defs/id"},
+        "caption": {"$ref": "#/$defs/short_text"},
+        "alt": {"$ref": "#/$defs/short_text"},
+        "image_crop_position": {
+          "type": "string",
+          "pattern": "^(?:100(?:\\.0+)?|(?:[0-9]{1,2})(?:\\.[0-9]+)?)% (?:100(?:\\.0+)?|(?:[0-9]{1,2})(?:\\.[0-9]+)?)%$"
+        },
+        "image_aspect_ratio": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*(?:\\.[0-9]+)? / [1-9][0-9]*(?:\\.[0-9]+)?$"
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "statement", "kind", "status"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "statement": {"$ref": "#/$defs/long_text"},
+        "kind": {"enum": ["fact", "inference", "assumption", "recommendation", "definition", "simulation", "opinion"]},
+        "status": {"enum": ["verified", "pending_verification", "disputed", "unsupported"]},
+        "scope": {"$ref": "#/$defs/long_text"},
+        "limitation": {"$ref": "#/$defs/long_text"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "summary", "content_status", "source_refs", "dataset_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "summary": {"$ref": "#/$defs/long_text"},
+        "content_status": {"enum": ["verified", "illustrative", "pending_verification", "disputed"]},
+        "source_refs": {"$ref": "#/$defs/id_list"},
+        "dataset_refs": {"$ref": "#/$defs/id_list"},
+        "limitations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/long_text"}
+        }
+      }
+    },
+    "evidence_link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "claim_ref", "evidence_ref", "relation"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "claim_ref": {"$ref": "#/$defs/id"},
+        "evidence_ref": {"$ref": "#/$defs/id"},
+        "relation": {"enum": ["supports", "limits", "refutes", "contextualizes", "qualifies"]},
+        "note": {"$ref": "#/$defs/long_text"}
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"enum": ["project_relative", "url", "stable_locator"]},
+        "value": {"type": "string", "minLength": 1, "maxLength": 2048}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_role",
+        "locator",
+        "integrity_status",
+        "content_verification",
+        "claim_fit"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"$ref": "#/$defs/short_text"},
+        "author": {"$ref": "#/$defs/short_text"},
+        "publisher": {"$ref": "#/$defs/short_text"},
+        "published_date": {"$ref": "#/$defs/short_text"},
+        "page_locator": {"$ref": "#/$defs/short_text"},
+        "source_role": {"enum": ["original_customer_material", "external_public_evidence", "secondary_summary", "synthetic_fixture", "agent_generated_material"]},
+        "locator": {"$ref": "#/$defs/locator"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "integrity_status": {"enum": ["verified", "unverified", "missing", "not_applicable"]},
+        "content_verification": {"enum": ["verified", "unverified", "not_applicable"]},
+        "claim_fit": {"enum": ["verified", "unverified", "not_assessed", "not_applicable"]},
+        "limitation": {"$ref": "#/$defs/long_text"}
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "content_status", "source_refs", "unit", "method"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"$ref": "#/$defs/short_text"},
+        "content_status": {"enum": ["verified", "illustrative", "pending_verification", "disputed"]},
+        "source_refs": {"$ref": "#/$defs/id_list"},
+        "unit": {"$ref": "#/$defs/short_text"},
+        "time_range": {"$ref": "#/$defs/short_text"},
+        "geography": {"$ref": "#/$defs/short_text"},
+        "scope": {"$ref": "#/$defs/long_text"},
+        "method": {"$ref": "#/$defs/long_text"},
+        "transformations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/long_text"}
+        },
+        "records": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/data_record"}
+        }
+      }
+    },
+    "data_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "value"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "label": {"$ref": "#/$defs/short_text"},
+        "value": {"type": "number"},
+        "series": {"$ref": "#/$defs/short_text"},
+        "note": {"$ref": "#/$defs/short_text"}
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "locator", "content_status", "alt"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["image", "attachment", "icon", "document"]},
+        "locator": {"$ref": "#/$defs/locator"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "content_status": {"enum": ["verified", "illustrative", "pending_verification"]},
+        "alt": {"$ref": "#/$defs/short_text"},
+        "source_ref": {"$ref": "#/$defs/id"}
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_ref", "to_ref", "kind"],
+      "properties": {
+        "from_ref": {"$ref": "#/$defs/id"},
+        "to_ref": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["supports", "contrasts", "flows_to", "groups_with", "limits", "explains"]}
+      }
+    },
+    "visual_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_focus_ref", "reading_order", "relationships", "composition_family"],
+      "properties": {
+        "primary_focus_ref": {"$ref": "#/$defs/id"},
+        "reading_order": {"$ref": "#/$defs/id_list"},
+        "relationships": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/relationship"}
+        },
+        "composition_family": {"$ref": "#/$defs/id"},
+        "density_override": {"enum": ["low", "medium", "high"]},
+        "fallback_role": {"$ref": "#/$defs/id"},
+        "fallback_form": {"$ref": "#/$defs/id"}
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "visible_refs", "emphasized_refs", "transition_intent"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "visible_refs": {"$ref": "#/$defs/id_list"},
+        "emphasized_refs": {"$ref": "#/$defs/id_list"},
+        "focus_ref": {"$ref": "#/$defs/id"},
+        "transition_intent": {"enum": ["initial", "reveal", "focus", "reflow", "compare", "synthesize", "final"]}
+      }
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "chapter_ref",
+        "narrative_unit_refs",
+        "task",
+        "role",
+        "form",
+        "block_refs",
+        "visual_intent"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "chapter_ref": {"$ref": "#/$defs/id"},
+        "narrative_unit_refs": {"$ref": "#/$defs/id_list"},
+        "task": {"$ref": "#/$defs/long_text"},
+        "subtitle_ref": {"$ref": "#/$defs/id"},
+        "role": {"$ref": "#/$defs/id"},
+        "form": {"$ref": "#/$defs/id"},
+        "block_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "visual_intent": {"$ref": "#/$defs/visual_intent"},
+        "state_sequence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/state"}
+        },
+        "reading_final_state_ref": {"$ref": "#/$defs/id"},
+        "source_display": {"enum": ["none", "inline", "footer", "appendix", "hidden_manifest"]}
+      }
+    },
+    "speaker_note": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "page_ref", "text"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "page_ref": {"$ref": "#/$defs/id"},
+        "state_ref": {"$ref": "#/$defs/id"},
+        "text": {"$ref": "#/$defs/long_text"}
+      }
+    },
+    "appendix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "block_refs"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "title": {"$ref": "#/$defs/short_text"},
+        "block_refs": {"$ref": "#/$defs/id_list"},
+        "source_refs": {"$ref": "#/$defs/id_list"}
+      }
+    },
+    "theme_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": {"enum": ["built_in", "project_theme"]},
+        "ref": {"$ref": "#/$defs/id"},
+        "version": {"type": "string", "minLength": 1, "maxLength": 64}
+      }
+    },
+    "enterprise_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_ref", "profile_version", "shell_policy"],
+      "properties": {
+        "profile_ref": {"$ref": "#/$defs/id"},
+        "profile_version": {"type": "integer", "minimum": 1},
+        "shell_policy": {"enum": ["fidelity", "adapted"]}
+      }
+    },
+    "runtime_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_mode", "step_contract"],
+      "properties": {
+        "target_mode": {"enum": ["reading", "presentation"]},
+        "step_contract": {"const": "fragment-v1"},
+        "editor_enabled": {"type": "boolean"}
+      }
+    },
+    "build_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theme", "runtime"],
+      "properties": {
+        "theme": {"$ref": "#/$defs/theme_binding"},
+        "enterprise": {"$ref": "#/$defs/enterprise_binding"},
+        "runtime": {"$ref": "#/$defs/runtime_profile"}
+      }
+    },
+    "unresolved_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "entity_ref", "reason", "customer_action"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "entity_ref": {"$ref": "#/$defs/id"},
+        "reason": {"$ref": "#/$defs/long_text"},
+        "customer_action": {"$ref": "#/$defs/long_text"}
+      }
+    },
+    "traceability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision_id",
+        "design_brief_ref",
+        "design_brief_confirmation",
+        "pending_verification_required",
+        "unresolved_items",
+        "source_map_required"
+      ],
+      "properties": {
+        "revision_id": {"$ref": "#/$defs/id"},
+        "previous_revision_ref": {"$ref": "#/$defs/id"},
+        "design_brief_ref": {"type": "string", "minLength": 1, "maxLength": 1024},
+        "design_brief_sha256": {"$ref": "#/$defs/sha256"},
+        "design_brief_confirmation": {
+          "enum": ["confirmed", "reconfirmation_required"]
+        },
+        "pending_verification_required": {"type": "boolean"},
+        "unresolved_items": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/unresolved_item"}
+        },
+        "source_map_required": {"type": "boolean"}
+      }
+    },
+    "extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "version", "required", "fallback_role", "fallback_form", "payload"],
+      "properties": {
+        "namespace": {"type": "string", "pattern": "^x-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "version": {"type": "string", "minLength": 1, "maxLength": 64},
+        "required": {"type": "boolean"},
+        "fallback_role": {"$ref": "#/$defs/id"},
+        "fallback_form": {"$ref": "#/$defs/id"},
+        "payload": {"type": "object"}
+      }
+    }
+  }
+}

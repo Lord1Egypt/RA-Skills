@@ -1,0 +1,20 @@
+name: word-cursor-insert
+version: 1.0.2
+display_name: Word 光标插入
+description: >-
+  连接当前已打开的 Word 文档，把文本/段落或 Excel/CSV 表格精准插入光标处。
+  一次调用完成"有界上下文读取 + 插入"，自带幂等判重防重复；
+  禁盲移光标、禁冗余预检。适合写报告时把一段话或一个表格整合进 Word。
+  需 Windows + 已安装 Word + Python pywin32 / openpyxl。
+category: productivity-tools
+author: sun
+tags:
+  - word
+  - office
+  - cursor
+  - insert
+  - report
+os: windows
+dependencies:
+  - pywin32
+  - openpyxl

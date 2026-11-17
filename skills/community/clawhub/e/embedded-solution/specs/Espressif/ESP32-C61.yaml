@@ -1,0 +1,53 @@
+part: ESP32-C61
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ESP32-C61 \u2014 Affordable Wi-Fi 6 + BLE 5 SoC (no 802.15.4)"
+main_page: https://www.espressif.com/en/products/socs/esp32-c61
+datasheet_path_expected: ../../datasheets/esp32-c61_datasheet_en.pdf
+created_at: '2026-06-30T10:06:00+08:00'
+specs:
+  family: ESP32-C (cost-effective Wi-Fi 6 tier)
+  cores:
+  - RISC-V single-core (specific model not stated; likely ESP32-C6 platform)
+  wireless:
+    wifi_6:
+    - 802.11ax: 20 MHz bandwidth
+    - 802.11b/g/n: 20/40 MHz bandwidth
+    - 2.4 GHz single-band
+    - 802.11ax features: OFDMA, MU-MIMO, Target Wake Time (TWT)
+    bluetooth_le_5:
+    - Long-range via advertisement extension + coded PHY
+    - 2 Mbps high-throughput PHY
+    - Bluetooth Mesh 1.1
+  memory:
+    notes: Expanded memory options vs previous C-tier (exact size TBD).
+  use_cases:
+  - Cost-sensitive Wi-Fi 6 IoT (smart plugs, light switches)
+  - BLE Mesh 1.1 self-organizing networks
+  - Wi-Fi 6 mesh backhaul for IoT sensors
+  - TWT-driven ultra-low-power Wi-Fi devices
+unverified:
+- exact CPU core type
+- exact SRAM/Flash size
+- exact package options
+- exact operating voltage range
+- exact supply current
+- exact operating temperature range
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com ESP32-C61 product page via Firecrawl (9,789 bytes raw;\
+  \ single-H1 page)."
+- 'Family differentiator vs ESP32-C5 (existing yaml): C5 = dual-band Wi-Fi 6 + BLE 5 + 802.15.4; C61 = single-band Wi-Fi 6
+  + BLE 5 + Bluetooth Mesh 1.1 (no 802.15.4) = cheaper.'
+- 'Family differentiator vs ESP32-C6 (existing yaml): C6 has 802.15.4 + Thread/Zigbee/Matter; C61 drops 802.15.4 entirely.'
+- 'Cross-reference: comparable to NXP RW612 (single-band Wi-Fi 6 + BLE 5) in same cost-tier; C61 likely wins on price (ESP32
+  series typically cheaper than NXP).'
+- 'Use case: cost-optimized Wi-Fi 6 single-band IoT with BLE provisioning.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-c61.html: 4/14 spec fields matched (29%). Source: https://www.espressif.com/en/products/socs/esp32-c61
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via vendor-direct datasheet PDF (datasheets/esp32-c61_datasheet_en.pdf): 13/14 spec fields matched
+  (93%). Source: https://documentation.espressif.com/esp32-c61_datasheet_en.pdf.'
+extracted_at: '2026-06-30T10:06:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-C61-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-C61-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://documentation.espressif.com/esp32-c61_datasheet_en.pdf

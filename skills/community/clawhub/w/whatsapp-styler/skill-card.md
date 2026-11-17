@@ -1,37 +1,49 @@
-## Description: <br>
-Formats assistant messages with WhatsApp-specific text styling so mobile chat output stays clean and avoids Markdown bloat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill to ensure all messages sent to WhatsApp follow the platform's specific formatting syntax.
 
-## Publisher: <br>
-[rubenfb23](https://clawhub.ai/user/rubenfb23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rubenfb23](https://clawhub.ai/user/rubenfb23)
 
-## Use Case: <br>
-External users and developers use this skill when an assistant should prepare outgoing messages for WhatsApp using platform-specific bold, italic, list, quote, strikethrough, and monospace syntax. It is intended for chat presentation rather than code execution, data access, or external service integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: When active, the skill can suppress normal Markdown conventions such as headers and tables, which may reduce clarity for content that depends on those structures. <br>
-Mitigation: Use it for WhatsApp-targeted messages and review responses that require dense structure, tables, or conventional Markdown before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rubenfb23/whatsapp-styler) <br>
+## Use Case:
 
+External users and agent operators use this skill to format WhatsApp-bound responses with clean mobile-friendly syntax, avoiding Markdown headers, tables, and double-asterisk bold that may render poorly in WhatsApp.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [WhatsApp-compatible plain text with WhatsApp formatting markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Avoids Markdown headers, tables, horizontal rules, nested emphasis that may show raw characters, and double-asterisk bold when active.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally changes response formatting for WhatsApp-bound messages, which may remove standard Markdown structures such as headers and tables.
+
+Mitigation: Install it only for workflows where WhatsApp-compatible formatting is desired, and review generated messages when structured Markdown is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rubenfb23/skills/whatsapp-styler)
+- [ClawHub publisher profile](https://clawhub.ai/user/rubenfb23)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [WhatsApp-compatible text formatting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Avoids Markdown headers, tables, horizontal rules, and double-asterisk bold for WhatsApp-bound responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

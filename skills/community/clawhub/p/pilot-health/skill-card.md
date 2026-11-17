@@ -1,42 +1,51 @@
-## Description: <br>
-Network health monitoring for Pilot Protocol agents with latency, reachability, routing, throughput, daemon, connection, and peer checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network health monitoring with latency and reachability checks.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose Pilot Protocol connectivity issues, monitor network health, and inspect daemon, peer, and active connection status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Peer, connection, traceroute, and recent-contact checks may reveal internal network topology or operational metadata. <br>
-Mitigation: Run checks only on Pilot Protocol networks and agents you are authorized to inspect, and avoid sharing raw output that exposes internal topology. <br>
-Risk: Health results depend on pilotctl, the Pilot Protocol core skill, a running daemon, and reachable target agents. <br>
-Mitigation: Confirm pilotctl is available, the daemon is running, and targets are authorized and reachable before relying on the results. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose Pilot Protocol connectivity, latency, throughput, routing, daemon health, active connections, and known peers.
 
-## Reference(s): <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-health) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses pilotctl JSON command output for network health interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; SKILL.md frontmatter lists 1.0) <br>
+Risk: The skill can expose Pilot Protocol connection and known-peer metadata during diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where that metadata is not sensitive or where the operator is authorized to inspect it.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-health)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented diagnostic examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses pilotctl --json commands and assumes jq-style inspection in examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

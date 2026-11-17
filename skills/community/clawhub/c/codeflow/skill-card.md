@@ -1,46 +1,60 @@
-## Description: <br>
-Codeflow streams coding agent sessions (Claude Code, Codex, Gemini CLI, etc.) to Discord or Telegram in real-time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codeflow streams coding-agent CLI sessions to Discord or Telegram, showing tool calls, file writes, shell commands, results, and session summaries without additional LLM calls.
 
-## Publisher: <br>
-[subjadeites](https://clawhub.ai/user/subjadeites) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subjadeites](https://clawhub.ai/user/subjadeites)
 
-## Use Case: <br>
-Developers and engineers use codeflow to run coding-agent CLIs while streaming structured activity, command output, file changes, and completion summaries to Discord or Telegram for session observability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the release as suspicious because it can weaken agent permission controls and change OpenClaw plugin or gateway settings. <br>
-Mitigation: Install only for high-privilege relay/control workflows after reviewing enforcer install, restart, and allowlist changes. <br>
-Risk: Relay output may expose sensitive file previews, command output, or session details when sent to shared Discord or Telegram channels. <br>
-Mitigation: Use private targets, enable CODEFLOW_SAFE_MODE, and set CODEFLOW_STREAM_LOG to redacted or off for sensitive work. <br>
-Risk: Global Claude bypassPermissions or allow-all setup can reduce local safeguards on machines that hold important repositories or secrets. <br>
-Mitigation: Do not apply the global bypassPermissions or allow-all setup on machines that handle important codebases or secrets. <br>
+## Use Case:
 
+Developers and engineering teams use Codeflow to make local coding-agent runs observable in Discord or Telegram. It is suited for relaying implementation, debugging, code review, and parallel task sessions where teammates need to see agent activity and results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subjadeites/codeflow) <br>
-- [Setup guide](references/setup.md) <br>
-- [Discord and Telegram output reference](references/discord-output.md) <br>
-- [Advanced modes](references/advanced-modes.md) <br>
-- [Issue tracker](https://github.com/subjadeites/Skills/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown messages and shell commands with structured relay artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit Discord or Telegram session updates, stream.jsonl event logs, and delivery-summary.json delivery statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Detailed development-session content may be sent to Discord or Telegram and stored in local stream logs by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved channels, enable CODEFLOW_SAFE_MODE=true for shared channels, and set CODEFLOW_STREAM_LOG=redacted or off when sensitive content may appear.
+
+Risk: Agent permission boundaries can be weakened when users enable unrestricted agent modes or install persistent enforcement hooks.
+
+Mitigation: Review the workflow before installation, avoid global bypassPermissions or --dangerously-skip-permissions unless explicitly accepted, and treat enforcer installation as an administrative action.
+
+Risk: The enforcer install path changes OpenClaw plugin configuration and may restart the gateway.
+
+Mitigation: Limit install or update actions to trusted operators and expect the current conversation or thread to be interrupted during a gateway restart.
+
+## Reference(s):
+
+- [Codeflow ClawHub Page](https://clawhub.ai/subjadeites/skills/codeflow)
+- [First-Time Setup](references/setup.md)
+- [Advanced Modes](references/advanced-modes.md)
+- [Discord and Telegram Output](references/discord-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured Discord or Telegram relay messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can stream detailed development-session content; safe mode can suppress file previews and command output bodies.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,33 @@
+name: ssgep-single-sample-expression
+version: 1.0.0
+display_name: 单样本无重复表达谱技能 (SSGEP)
+description: >-
+  植物/梨属等转录组 RNA-seq 表达谱分析全流程技能：原始数据获取→质控定量→
+  差异基因(模式A单样本无重复/模式B有生物学重复)→GO/KEGG富集→WGCNA共表达→
+  SNP遗传分化→600DPI出图→论文三格式(HTML/DOCX/PPTX)+Shiny交互。
+  明确标注单样本无重复场景，含已知坑对策、最低硬件与腾讯云方案。
+triggers:
+  - 单样本表达谱
+  - 无重复转录组
+  - 表达谱分析
+  - SSGEP
+  - 梨转录组
+  - 差异基因 DEG
+  - WGCNA 共表达
+  - 出论文三格式
+category: research
+author: 丁保朋（山西大同大学 / Ding Baopeng, Shanxi Datong University）
+source: >-
+  山西大同大学 丁保朋（Ding Baopeng, Shanxi Datong University），基于梨属 5 品种 × 7 阶段
+  转录组表达谱分析及褪黑素功能基因挖掘研究整理并开源。
+tags:
+  - 转录组
+  - RNA-seq
+  - 差异基因
+  - WGCNA
+  - 论文写作
+  - 生信
+permissions:
+  - Read
+  - Bash
+  - Write

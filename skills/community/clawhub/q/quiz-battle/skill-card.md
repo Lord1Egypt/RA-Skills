@@ -1,37 +1,53 @@
-## Description: <br>
-Runs an interactive quiz over school subjects and programming topics using inline answer buttons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Интерактивная викторина по школьным предметам и программированию с inline кнопками.
 
-## Publisher: <br>
-[russianoracle](https://clawhub.ai/user/russianoracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[russianoracle](https://clawhub.ai/user/russianoracle)
 
-## Use Case: <br>
-External users and chat agents use this skill to host short quizzes on math, English, programming, science, and history, collect button responses, give instant feedback, and report a final score. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Quiz messages could be sent to the wrong conversation or channel when a message tool targets Telegram users. <br>
-Mitigation: Confirm the intended recipient or channel before sending quiz prompts, answer feedback, or final scores. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/russianoracle/quiz-battle) <br>
+## Use Case:
 
+External users use this skill to play Russian-language quiz games across school subjects and introductory programming topics. The agent presents subject choices, multiple-choice questions, instant feedback, scoring, and a final result.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON message examples and inline button labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces quiz prompts, answer options, feedback text, scoring guidance, and Telegram-style button configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is written for Russian-language quiz play and may not match users who expect multilingual prompts or activation.
+
+Mitigation: Adjust trigger language and user-facing quiz text before deploying to multilingual or non-Russian audiences.
+
+Risk: Agent-generated quiz questions or answers can be inaccurate if expanded beyond the provided examples.
+
+Mitigation: Review the question bank and answer keys before using the skill for graded or high-stakes learning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/russianoracle/skills/quiz-battle)
+- [Publisher profile](https://clawhub.ai/user/russianoracle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational quiz prompts with button configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language tone guidance, subject categories, sample questions, answer feedback, score summaries, and inline button layouts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

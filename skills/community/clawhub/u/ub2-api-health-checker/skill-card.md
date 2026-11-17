@@ -1,39 +1,52 @@
-## Description: <br>
-Tests API endpoints by sending requests, validating responses, measuring performance, handling authentication, and generating detailed health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tests API endpoints by sending requests, validating responses, measuring performance, handling authentication, and generating detailed health reports.
 
-## Publisher: <br>
-[underbench2-gif](https://clawhub.ai/user/underbench2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[underbench2-gif](https://clawhub.ai/user/underbench2-gif)
 
-## Use Case: <br>
-Developers and API operators use this skill to check endpoint availability, validate expected responses, measure latency, and produce health reports for API services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API checks can send authenticated requests to real services. <br>
-Mitigation: Use only endpoints intended for testing and prefer least-privilege or temporary credentials. <br>
-Risk: POST, PUT, or DELETE checks may change target API state. <br>
-Mitigation: Prefer read-only checks, staging environments, or explicit confirmation before running mutating requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/underbench2-gif/ub2-api-health-checker) <br>
+## Use Case:
 
+Developers and engineers use this skill to test API endpoints, validate expected responses, measure latency, and produce health reports with per-endpoint results and recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown health report with endpoint summaries, measurements, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include status codes, response times, pass/fail results, performance metrics, and recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make HTTP requests to user-specified APIs, including write-capable methods such as POST, PUT, or DELETE.
+
+Mitigation: Use test accounts or non-production environments for endpoints that may create, change, or delete data.
+
+Risk: Authentication headers or tokens may be needed for some checks.
+
+Mitigation: Provide sensitive tokens only when necessary and prefer scoped credentials for testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/underbench2-gif/skills/ub2-api-health-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown health report with endpoint status, response timing metrics, validation details, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP methods, URLs, expected status codes, timeouts, headers, request bodies, authentication details, and performance metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

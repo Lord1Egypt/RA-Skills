@@ -1,39 +1,49 @@
-## Description: <br>
-Semantic Memory Boost helps an agent improve context relevance and historical recall through intent analysis, tiered memory retrieval, semantic alignment, synthesis, and memory summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Memory Boost helps an agent improve context relevance by parsing intent, retrieving layered memory, aligning retrieved content, and synthesizing memory-aware responses.
 
-## Publisher: <br>
-[bkes994408-cmd](https://clawhub.ai/user/bkes994408-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bkes994408-cmd](https://clawhub.ai/user/bkes994408-cmd)
 
-## Use Case: <br>
-Developers and agents use this skill to answer complex, multi-temporal project questions by retrieving relevant session memory, long-term references, and reusable patterns before synthesizing a response. It is useful when planning from historical context or resolving conflicts between remembered guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable memory may capture secrets, credentials, regulated data, or private personal details if users provide them. <br>
-Mitigation: Use the skill only with non-sensitive context unless memory storage location, retention, and deletion controls have been reviewed. <br>
+## Use Case:
 
+Developers and agent users use this skill when they need memory-assisted answers for complex, multi-temporal decisions, project planning, or conflicts between historical context and current requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bkes994408-cmd/semantic-memory-boost) <br>
-- [Publisher profile](https://clawhub.ai/user/bkes994408-cmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with optional memory summary markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include [MEM_SUMMARY: ...] markers when an interaction produces reusable memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, ClawHub release evidence) <br>
+Risk: The skill directs the agent to read long-term memory and persist conversation insights, which can expose or retain sensitive information without clear consent, scope, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each memory write, keep memory project-scoped, and avoid storing credentials, private personal data, confidential business details, or instructions that could alter future agent behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bkes994408-cmd/skills/semantic-memory-boost)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown response with optional memory summary markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a [MEM_SUMMARY: ...] marker when the interaction produces reusable memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

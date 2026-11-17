@@ -277,7 +277,7 @@ describe('OSINT Threat Intelligence Patterns', () => {
     // Anthropic key v2
     it('SECRET_ANTHROPIC_KEY_V2: detects sk-ant-api key format', () => {
         assert.ok(matchPattern('SECRET_ANTHROPIC_KEY_V2',
-            'Authorization: Bearer sk-ant-api03-abcdefghijklmnopqrstuvwxyz0123456789ABCD'));
+            'Authorization: Bearer REDACTED-SECRET'));
     });
 
     // Moltbook API key leak

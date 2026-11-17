@@ -1,43 +1,55 @@
-## Description: <br>
-Use for RAGFlow dataset tasks: create, list, inspect, update, or delete datasets; upload, list, update, or delete documents; start or stop parsing; check parse status; retrieve chunks with search.py; and list configured models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for RAGFlow dataset tasks: create, list, inspect, update, or delete datasets; upload, list, update, or delete documents; start or stop parsing; check parse status; retrieve chunks with search.py; and list configured models.
 
-## Publisher: <br>
-[yingfeng](https://clawhub.ai/user/yingfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yingfeng](https://clawhub.ai/user/yingfeng)
 
-## Use Case: <br>
-Developers and operators use this skill to manage RAGFlow datasets, documents, parsing jobs, retrieval queries, and configured models through bundled command-line helpers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses RAGFLOW_API_KEY to manage RAGFlow resources. <br>
-Mitigation: Use the least-privileged RAGFlow credential available and rotate it if exposure is suspected. <br>
-Risk: Dataset or document deletion can remove RAGFlow content when exact IDs are supplied. <br>
-Mitigation: List the target items first, verify exact dataset or document IDs, and require explicit confirmation before deletion. <br>
-Risk: Document uploads send local files to the configured RAGFlow service. <br>
-Mitigation: Verify RAGFLOW_API_URL and upload only files that are intended for that RAGFlow instance. <br>
+## Use Case:
 
+Developers and operators use this skill to manage RAGFlow knowledge bases, documents, parsing jobs, retrieval checks, and configured models from an agent workflow.
 
-## Reference(s): <br>
-- [RAGFlow skill page](https://clawhub.ai/yingfeng/ragflow-skill) <br>
-- [Output Format Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RAGFLOW_API_URL and RAGFLOW_API_KEY; command output should preserve returned API fields exactly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The skill uses a RAGFlow API key against the server configured in RAGFLOW_API_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted RAGFlow servers, prefer HTTPS for remote servers, and use least-privilege API keys where possible.
+
+Risk: Dataset and document update or delete actions can modify or remove RAGFlow content.
+
+Mitigation: Review destructive actions carefully, list exact target items first, and proceed only with explicit dataset or document IDs after user confirmation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yingfeng/skills/ragflow-skill)
+- [Publisher Profile](https://clawhub.ai/user/yingfeng)
+- [Output Format Reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, tables, JSON code blocks, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Relays RAGFlow API fields exactly when JSON output is used; requires RAGFLOW_API_URL, RAGFLOW_API_KEY, and python3.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

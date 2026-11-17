@@ -1,39 +1,53 @@
-## Description: <br>
-Automatically identify Western Blot gel bands, perform densitometric analysis, and calculate normalized values relative to loading controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Python script intended to identify Western Blot gel bands, calculate band intensity, and report relative expression values against a control lane.
 
-## Publisher: <br>
-[Lyla0921](https://clawhub.ai/user/Lyla0921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyla0921](https://clawhub.ai/user/lyla0921)
 
-## Use Case: <br>
-Researchers, lab analysts, and developers can use this skill to inspect Western blot image data, estimate band intensities, and normalize observed band signals against a loading control. Outputs should be reviewed and independently validated before supporting scientific conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-trust the quantification results because the release description claims mature Western blot analysis capabilities while the bundled implementation is simplified demo code. <br>
-Mitigation: Treat outputs as provisional, review the implementation before use, validate against known control images, and avoid relying on results for scientific conclusions until corrected and independently tested. <br>
+## Use Case:
 
+Developers and lab analysts can use this skill as a starting point for Western Blot densitometry workflows and demo relative-expression calculations. Quantification results should be validated against known datasets before scientific use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Lyla0921/western-blot-quantifier) <br>
-- [Lyla0921 Publisher Profile](https://clawhub.ai/user/Lyla0921) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text console output, Python API examples, command-line examples, and CSV-style analysis results described in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script currently demonstrates simplified band detection on synthetic data unless extended and validated for real images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The documentation claims real Western Blot image analysis, but security review says the shipped code does not implement the described analysis of provided images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as non-authoritative until the implementation and documentation are corrected and validated against known Western Blot datasets.
+
+Risk: The skill runs local Python with scientific-image dependencies and local file input/output.
+
+Mitigation: Install in an isolated environment, pin and review dependencies, and check input and output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyla0921/skills/western-blot-quantifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python and bash examples; script output includes console text and CSV-style quantified band tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local image paths and may write result files; current evidence indicates real-image quantification should be validated before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

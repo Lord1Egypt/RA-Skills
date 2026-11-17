@@ -1,39 +1,39 @@
 {
-  "name": "strategy-consultant",
-  "version": "1.0.0",
-  "description": "战略顾问技能 - 提供外部洞察、战略分析、商业文档、专家库支持",
+  "name": "product-dev-ops-team",
+  "version": "3.1.0",
+  "description": "产品研发运营协作体系 v3.1 - 包含产品经理、架构师、开发助手、运营经理四角色的完整团队协作方案",
   "author": "Damon + OpenClaw",
   "license": "MIT",
   "main": "SKILL.md",
-  "index": "README.md",
+  "index": "INDEX.md",
   "commands": [
-    "interview",
-    "insights",
-    "market",
-    "compete",
-    "business",
-    "benchmark",
-    "bp",
-    "finance"
+    "start",
+    "resume",
+    "mode",
+    "status",
+    "archive",
+    "workshop",
+    "freeze"
   ],
   "agents": [
-    "strategy-consultant"
+    "product-manager",
+    "architect",
+    "dev-assistant",
+    "ops-manager"
   ],
   "templates": [
-    "external-interview",
-    "benchmark",
-    "bp",
-    "financial-model"
+    "api",
+    "prd",
+    "workshop"
   ],
   "keywords": [
-    "strategy",
-    "consultant",
-    "business",
-    "plan",
-    "benchmark",
-    "market",
-    "research",
-    "expert"
+    "product",
+    "development",
+    "operations",
+    "team",
+    "collaboration",
+    "workflow",
+    "workshop"
   ],
   "engines": {
     "openclaw": ">=2026.2.0"

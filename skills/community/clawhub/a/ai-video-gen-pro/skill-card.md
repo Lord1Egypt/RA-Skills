@@ -1,46 +1,58 @@
-## Description: <br>
-Generate AI videos with Google Veo, Seedance, Wan, Grok, and other inference.sh video models for text-to-video, image-to-video, lipsync, avatar animation, upscaling, and foley workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Video Gen Pro helps agents generate videos with Google Veo, Seedance, Wan, Grok, and other inference.sh CLI models for text-to-video, image-to-video, lipsync, avatar animation, upscaling, and foley workflows.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External users and developers use this skill to select and run inference.sh video generation commands for social videos, marketing content, explainers, product demos, avatars, media enhancement, and sound effects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, images, audio, video URLs, and generated media through inference.sh and selected third-party media models. <br>
-Mitigation: Install only if you trust inference.sh and are comfortable with the provider privacy, retention, and billing terms. <br>
-Risk: Private, regulated, copyrighted, non-consensual face, or non-consensual voice media may create privacy, compliance, or rights issues. <br>
-Mitigation: Do not submit sensitive or non-consensual media unless you have approval and understand the relevant service terms. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for inference.sh commands and configuration guidance for generating social media videos, marketing content, explainer videos, product demos, AI avatars, lipsync videos, upscaled videos, and foley sound.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/ai-video-gen-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/bingze00000) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI install instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md) <br>
-- [Running Apps](https://inference.sh/docs/apps/running) <br>
-- [Streaming Results](https://inference.sh/docs/api/sdk/streaming) <br>
-- [Content Pipeline Example](https://inference.sh/docs/examples/content-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON input payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the inference.sh CLI (`infsh`) and login; generated media is handled by inference.sh and selected model providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Prompts, image URLs, audio URLs, and video URLs may be sent to inference.sh or downstream external model services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive media and review the relevant service terms, privacy expectations, and data handling requirements before use.
+
+Risk: Related npx skills add examples can install mutable third-party skills that may change future agent behavior.
+
+Mitigation: Verify the source and pin or otherwise trust the exact skill version before installing related skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingze00000/skills/ai-video-gen-pro)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI Install Instructions](https://raw.githubusercontent.com/inference-sh/skills/refs/heads/main/cli-install.md)
+- [Running Apps](https://inference.sh/docs/apps/running)
+- [Streaming Results](https://inference.sh/docs/api/sdk/streaming)
+- [Content Pipeline Example](https://inference.sh/docs/examples/content-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing CLI examples and model/app ID guidance; generated media is produced by external inference.sh services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

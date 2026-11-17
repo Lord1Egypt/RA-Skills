@@ -1,43 +1,58 @@
-## Description: <br>
-Scrapes comments from all notes on a Xiaohongshu profile URL, saves them as local JSON files, and can generate an optional HTML analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu (Little Red Book) comment scraper that reacts to Xiaohongshu profile URLs, scrapes comments from the profile's notes, saves local JSON files, and can generate an HTML analysis report.
 
-## Publisher: <br>
-[liteli1987gmail](https://clawhub.ai/user/liteli1987gmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liteli1987gmail](https://clawhub.ai/user/liteli1987gmail)
 
-## Use Case: <br>
-External users and developers use this skill to collect Xiaohongshu profile note comments into local JSON files and, when requested, generate a local HTML analysis report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping profile comments can collect personal or sensitive commenter data. <br>
-Mitigation: Confirm the exact Xiaohongshu profile before running, respect platform rules and privacy laws, and delete generated JSON or HTML files when no longer needed. <br>
-Risk: The skill uses a logged-in browser session and writes local files. <br>
-Mitigation: Use a dedicated browser profile when possible, avoid elevated privileges, and clear the browser session and downloaded files after use. <br>
-Risk: High-frequency access may trigger Xiaohongshu captcha or anti-bot controls. <br>
-Mitigation: Pause and ask the user to complete any captcha manually in the browser; do not attempt to bypass platform controls. <br>
+## Use Case:
 
+External users and developers use this skill to collect Xiaohongshu note comments from a profile they provide, store per-note comment data locally, and optionally produce a local analysis report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liteli1987gmail/xhs-comment) <br>
-- [Publisher profile](https://clawhub.ai/user/liteli1987gmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, JSON, HTML] <br>
-**Output Format:** [Markdown guidance with browser actions, Python snippets, local JSON files, and optional HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes one JSON file per note to the user's Downloads xhs_comments folder and optional analysis files to Downloads xhs_comments_analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad authenticated browser automation against Xiaohongshu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for profiles and comments the user is authorized to collect, and confirm the scraping scope before starting.
+
+Risk: Generated JSON files and reports may contain personal or sensitive user-generated content.
+
+Mitigation: Store outputs only where appropriate, restrict sharing, and delete generated files when they are no longer needed.
+
+Risk: Generated HTML reports could expose users to unsafe rendering if untrusted comments are not escaped.
+
+Mitigation: Avoid opening generated HTML reports from untrusted comment data unless the report generator safely escapes displayed content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liteli1987gmail/skills/xhs-comment)
+- [Xiaohongshu profile URL pattern](https://www.xiaohongshu.com/user/profile/{userId})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with browser actions, Python snippets, JSON output files, and optional local HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one JSON file per note under the user's Downloads folder and may generate local analysis assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: extract-youtube-transcript
-version: 2.1.0
+version: 2.0.0
 description: Extract plain-text transcripts from YouTube videos using a local Python script. Use when the user wants to fetch, extract, or get a transcript from a YouTube video URL, analyze YouTube video content as text, or needs subtitles/captions from a video.
 ---
 

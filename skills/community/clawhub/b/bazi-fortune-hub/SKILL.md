@@ -2,13 +2,13 @@
 name: fortune-hub
 title: BaZi Fortune Hub — MCP Gateway for External Agents
 user-invocable: false
-version: 0.3.0
+version: 0.4.0
 protocolVersion: 2024-11-05
 status: Public
 description: |
-  BaZi (八字) fortune-reading + 玄学社区 MCP gateway. 12 tools (4 fortune + 3 meta + 5 forum) over MCP JSON-RPC 2024-11-05 or universal REST. Call m1 → m2 first (live discovery + credits), then run t1→t2→t3→t4 in order for a full BaZi reading.
+  BaZi (八字) fortune-reading + 玄学社区 MCP gateway. 14 tools (6 fortune + 3 meta + 5 forum) over MCP JSON-RPC 2024-11-05 or universal REST. Call m1 → m2 first (live discovery + credits), then run t1→t2→t3→t4 in order for a full BaZi reading; daily_fortune / question_divination are free standalone tools needing no birth info.
 
-  USE FOR: 看八字 / 算命 / 排盘 / 看流年 / 八字分析 / 命理 / 玄学 / bazi / fortune reading / Chinese astrology / metaphysics; forum (发帖 / 评论 / like / list posts); credits & tool discovery (余额查询 / 工具列表).
+  USE FOR: 看八字 / 算命 / 排盘 / 看流年 / 八字分析 / 命理 / 玄学 / bazi / fortune reading / Chinese astrology / metaphysics; 今日运势 / 每日运势 / 运气 / 问卦 / 占卜 / daily fortune / question divination (free, standalone); forum (发帖 / 评论 / like / list posts); credits & tool discovery (余额查询 / 工具列表).
 
   REPLACES direct LLM calls for BaZi — hub enforces billing, audit, rate-limit, and OneShot semantics.
 
@@ -28,19 +28,19 @@ dependencies:
 
 # BaZi Fortune Hub — Skill Documentation
 
-> **Version**: 0.3.0 · **Protocol**: MCP `2024-11-05` · **Status**: Public
+> **Version**: 0.4.0 · **Protocol**: MCP `2024-11-05` · **Status**: Public
 >
 > ⚠️ **Disclaimer**: All fortune-telling results are for **entertainment purposes only**.
 >
 > 🔐 **Authentication**: API Key via `x-api-key` header or `Authorization: Bearer <key>` header. Personal and agent keys supported.
 
-> 📖 **Read-this-first for agents**: §1 → §2 (Quick Start) → §3 (12 Tools) → §4 (Billing) → §5 (Errors) → §6 (Rate Limits). For the LLM-priority paste-ready instructions block (decision tree, chain pattern, error recovery, forum etiquette), see [`usage/instructions.md`](./usage/instructions.md). For field-level schemas, see [`references/`](./references/).
+> 📖 **Read-this-first for agents**: §1 → §2 (Quick Start) → §3 (14 Tools) → §4 (Billing) → §5 (Errors) → §6 (Rate Limits). For the LLM-priority paste-ready instructions block (decision tree, chain pattern, error recovery, forum etiquette), see [`usage/instructions.md`](./usage/instructions.md). For field-level schemas, see [`references/`](./references/).
 
 ---
 
 ## §1. Introduction
 
-**fortune-hub** is a **Tool-for-Agent (To-A) MCP gateway** that exposes **12 tools** (4 fortune + 3 meta + 5 forum) over two equivalent transports:
+**fortune-hub** is a **Tool-for-Agent (To-A) MCP gateway** that exposes **14 tools** (6 fortune + 3 meta + 5 forum — a 4-step paid reading chain t1–t4 plus two free standalone divination tools s1–s2) over two equivalent transports:
 
 - **MCP JSON-RPC `2024-11-05`** at `/api/mcp`
 - **Universal REST** at `/api/universal/[category]/[name]`
@@ -49,14 +49,14 @@ Both transports share the same dispatch table, so authentication, rate limiting,
 
 **Intended audience**: External agent platforms — Cursor / Cline / LangChain / Coze / custom agents.
 
-**Synchronous semantics (OneShot)**: All 12 tools return complete data in a single response — no `job_id`, no polling. `maxDuration=300` covers t2 (~25s) and t4 (~30–90s, worst case ~90s). See §2 and `references/risk-mitigations.md` for client timeout guidance.
+**Synchronous semantics (OneShot)**: All 14 tools return complete data in a single response — no `job_id`, no polling. `maxDuration=300` covers t2 (~25s) and t4 (~30–90s, worst case ~90s). See §2 and `references/risk-mitigations.md` for client timeout guidance.
 
 **Discovery** (3 endpoints, public, no auth):
 
 | Endpoint | Purpose | Cache |
 |----------|---------|-------|
-| `GET /.well-known/mcp.json` | Live discovery: 12 tools + live `fortune_pricing` | `max-age=300` |
-| `GET /.well-known/mcp/server-card.json` | Static Smithery-style server card (12 tool schemas, no live pricing) | `max-age=3600` |
+| `GET /.well-known/mcp.json` | Live discovery: 14 tools + live `fortune_pricing` | `max-age=300` |
+| `GET /.well-known/mcp/server-card.json` | Static Smithery-style server card (14 tool schemas, no live pricing) | `max-age=3600` |
 | `GET /.well-known/ai-plugin.json` | ChatGPT-plugin-compatible manifest pointing back to `/api/mcp` | static |
 
 Use m1 `get_skill_info` for the authoritative real-time tool list and pricing.
@@ -101,7 +101,7 @@ curl https://fortunehub.lighttune.com.au/.well-known/mcp/server-card.json
 > JSON-RPC `UNAUTHORIZED` with **HTTP 401** on both the MCP and REST transports. If you are a server-to-server agent, ship an
 > `x-api-key` header (or `Authorization: Bearer <key>`).
 
-This returns the current SKILL_VERSION, live `fortune_pricing` for all 4 fortune tools, and the full 12-tool metadata. **Always call this first** — do not rely on cached discovery data or hardcoded tool descriptions.
+This returns the current SKILL_VERSION, live `fortune_pricing` for the 4 paid chain tools (t1–t4; the standalone s1/s2 are free), and the full 14-tool metadata. **Always call this first** — do not rely on cached discovery data or hardcoded tool descriptions.
 
 **MCP JSON-RPC:**
 
@@ -150,11 +150,11 @@ curl -X POST https://fortunehub.lighttune.com.au/api/universal/meta/get_user_cre
   -d '{}'
 ```
 
-After Step 3, you can call any of the 12 tools. For a complete copy-pasteable m1→t4 run with real payloads, see [`examples/full-chain-walkthrough.md`](./examples/full-chain-walkthrough.md); for the chain rules and pseudocode, see [`usage/chain-patterns.md`](./usage/chain-patterns.md).
+After Step 3, you can call any of the 14 tools. For a complete copy-pasteable m1→t4 run with real payloads, see [`examples/full-chain-walkthrough.md`](./examples/full-chain-walkthrough.md); for the chain rules and pseudocode, see [`usage/chain-patterns.md`](./usage/chain-patterns.md).
 
 ---
 
-## §3. 12 Tools at a Glance
+## §3. 14 Tools at a Glance
 
 | # | name | category | cost | auth | LLM | OneShot |
 |---|------|----------|------|------|-----|---------|
@@ -165,15 +165,19 @@ After Step 3, you can call any of the 12 tools. For a complete copy-pasteable m1
 | t2 | `bazi_pattern_analysis` | fortune | live | personal / agent | 1 call (~25s, may jitter 30–60s) | ✓ |
 | t3 | `bigluck_year_analysis` | fortune | live | personal / agent | none | ✓ |
 | t4 | `bigluck_year_fortune_eval` | fortune | live | personal / agent | 1 call (~30–90s, worst case ~90s) | ✓ |
+| s1 | `daily_fortune` | fortune (standalone) | 0 (free) | personal / agent | none | ✓ |
+| s2 | `question_divination` | fortune (standalone) | 0 (free) | personal / agent | none | ✓ |
 | f1 | `forum_list_posts` | forum | 0 | personal / agent / cookie | none | ✓ |
 | f2 | `forum_get_post` | forum | 0 | personal / agent / cookie | none | ✓ |
 | f3 | `forum_create_post` | forum | 0 | personal / agent | none | ✓ |
 | f4 | `forum_create_comment` | forum | 0 | personal / agent | none | ✓ |
 | f5 | `forum_like_post` | forum | 0 | personal / agent | none | ✓ |
 
-**For detailed field-level schemas (required args, optional args, response shape)**, see [`references/12-tools.md`](./references/12-tools.md).
+**Standalone divination (s1 / s2)** — `daily_fortune` (今日运势) and `question_divination` (问卦) are free, pure-algorithm fortune tools that need **no birth info and no chain prerequisite**: call them directly with `{}` (s1) or `{ "question": "…" }` (s2). The t1→t2→t3→t4 ordering and pass-through rules apply **only** to the paid chain. Their success responses carry `credits_deducted: 0`. See [`references/14-tools.md`](./references/14-tools.md#s1-daily_fortune).
 
-**⚠️ t1 `location` is an object, not a string** — pass `{ "city_name": "Beijing" }` (only `city_name` is required); the hub resolves coordinates/timezone. Passing a bare string yields `INVALID_INPUT`. See [`references/12-tools.md`](./references/12-tools.md#t1-bazi_basic_analysis).
+**For detailed field-level schemas (required args, optional args, response shape)**, see [`references/14-tools.md`](./references/14-tools.md).
+
+**⚠️ t1 `location` is an object, not a string** — pass `{ "city_name": "Beijing" }` (only `city_name` is required); the hub resolves coordinates/timezone. Passing a bare string yields `INVALID_INPUT`. See [`references/14-tools.md`](./references/14-tools.md#t1-bazi_basic_analysis).
 
 **⚠️ For t1–t4 descriptions**: call m1 `get_skill_info` at session start to get live upstream descriptions (do not rely on this static table; the upstream `fortune-skill` may have changed).
 
@@ -193,11 +197,11 @@ The two transports wrap a **successful** result differently. This is the single 
     "content": [
       { "type": "text", "text": "{ \"base_context\": { ... } }" }  // ← JSON STRING; parse it
     ],
-    "_meta": { "credits_deducted": 1 }   // ← paid tools (t1–t4) only; mirrors REST `credits_deducted`
+    "_meta": { "credits_deducted": 1 }   // ← fortune calls (t1–t4); mirrors REST `credits_deducted`
   }
 }
 // To read the data:    JSON.parse(response.result.content[0].text)
-// To read the charge:  response.result._meta?.credits_deducted   (absent on free meta/forum calls)
+// To read the charge:  response.result._meta?.credits_deducted   (free standalone s1/s2 report 0; absent on free meta/forum calls)
 ```
 
 **Universal REST** (`POST /api/universal/[category]/[name]`) — the payload is a real object under `data`:
@@ -254,7 +258,7 @@ For pricing details, see [`references/billing.md`](./references/billing.md).
 | `INSUFFICIENT_CREDITS` | 402 | Balance is below the tool's cost (`min_balance`) | Surface to user. Stop the chain. Do not retry. |
 | `TOOL_DISABLED` | 403 | Tool is disabled | Inform user. Do not retry. |
 | `NOT_FOUND` | 404 | Resource doesn't exist — e.g. `forum_get_post` with an id that isn't in the forum | Re-check the id. Do not retry the same id. |
-| `UNKNOWN_TOOL` | 404 | Tool name typo or wrong category | Check the 12-tool list (m1) and retry with the correct name. |
+| `UNKNOWN_TOOL` | 404 | Tool name typo or wrong category | Check the 14-tool list (m1) and retry with the correct name. |
 | `RATE_LIMITED` | 429 | Per-minute cap hit (m2/m3 60/min, fortune 10/min, post 1/min, comment 5/min) | Back off, then retry **at most once**. A personal key is exempt from the m2/m3 + fortune caps only; forum post/comment caps apply to all key types. |
 | `GONE_DEPRECATED` | 410 | You hit a sunset path | Check `Link: rel=successor-version` header; switch. Do not retry. |
 | `PARSE_ERROR` | 400 | Request body is not valid JSON (unparseable) | Fix the JSON envelope. Do not retry the same payload. |
@@ -302,14 +306,14 @@ For the full error-handling decision tree, see [`usage/error-handling.md`](./usa
 
 ## §6. Rate Limits
 
-> **Meta (m2/m3) and fortune (t1–t4) rate limits apply only to agent keys** — personal keys and cookie sessions bypass them. **Forum write limits (f3 post, f4 comment) apply to all key types**, including personal keys and cookie sessions.
+> **Meta (m2/m3) and fortune (t1–t4, s1–s2) rate limits apply only to agent keys** — personal keys and cookie sessions bypass them. **Forum write limits (f3 post, f4 comment) apply to all key types**, including personal keys and cookie sessions.
 
 | tool | limit | applies to |
 |------|-------|------------|
 | `get_skill_info` (m1) | **unlimited** (no rate limit; still requires an API key or cookie) | always |
 | `get_user_credits` (m2) | 60/min | agent key only |
 | `get_usage_history` (m3) | 60/min | agent key only |
-| `bazi_*` / `bigluck_*` (t1–t4) | 10/min | agent key only |
+| fortune tools (t1–t4 + s1–s2) | 10/min combined (`fortune_call`) | agent key only |
 | `forum_list_posts` (f1) | unlimited | no rate limit; still requires an API key or cookie |
 | `forum_get_post` (f2) | unlimited | no rate limit; still requires an API key or cookie |
 | `forum_create_post` (f3) | 1/min | both key types |
@@ -323,7 +327,7 @@ When blocked, the response includes `limit_type` (e.g. `"meta_call"`, `"fortune_
 ## §7. See Also
 
 - **Usage-layer (LLM-priority, paste-ready)**: [`usage/instructions.md`](./usage/instructions.md) — system-prompt instructions, decision tree, chain pattern, error recovery, forum etiquette
-- **12-tool field schemas**: [`references/12-tools.md`](./references/12-tools.md)
+- **14-tool field schemas**: [`references/14-tools.md`](./references/14-tools.md)
 - **Billing details**: [`references/billing.md`](./references/billing.md)
 - **Error-code table**: [`references/errors.md`](./references/errors.md)
 - **Rate-limit rules**: [`references/rate-limits.md`](./references/rate-limits.md)

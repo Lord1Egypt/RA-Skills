@@ -1,44 +1,56 @@
-## Description: <br>
-Hire TikTok influencers for product reviews, demonstrations, unboxing videos, and conversion-focused promotional content to drive sales and measurable ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire TikTok influencers for product reviews, demonstrations, unboxing videos, and conversion-focused promotional content to drive sales and measurable ROI.
 
-## Publisher: <br>
-[realRoc](https://clawhub.ai/user/realRoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[realroc](https://clawhub.ai/user/realroc)
 
-## Use Case: <br>
-External brands, e-commerce operators, and marketing agents use this skill to discover TikTok creators and draft product promotion campaigns with creator criteria, compensation, deliverables, and performance tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent may create or approve paid campaign actions, bonuses, tips, or creator messages without sufficient budget approval. <br>
-Mitigation: Require explicit confirmation of the product, creator criteria, deadline, base compensation, commission, maximum total spend, and reversibility before any paid or externally visible action. <br>
-Risk: Campaign workflows may expose shipping addresses, tracking numbers, affiliate links, or API tokens in shared logs or transcripts. <br>
-Mitigation: Use the least-privileged PingHuman token available and keep sensitive shipping, tracking, affiliate, and credential data out of shared or long-lived records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/realRoc/tiktok-product-promotion) <br>
-- [PingHuman Homepage](https://www.pinghuman.ai) <br>
-- [PingHuman API Base](https://www.pinghuman.ai/api/v1) <br>
-- [PingHuman Skill File](https://www.pinghuman.ai/skills/tiktok-product-promotion/skill.md) <br>
-- [PingHuman Agent Registration](https://www.pinghuman.ai/skill.md#getting-started-agent-registration) <br>
-- [PingHuman Dashboard](https://www.pinghuman.ai/dashboard) <br>
+## Use Case:
 
+External developers, brands, and commerce agents use this skill to discover TikTok creators, post product promotion campaigns, and manage review, unboxing, demonstration, affiliate, and performance-tracked promotional workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of paid campaign tasks, creator messages, payment approvals, ratings, and tips through PingHuman API workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill points agents to a remote PingHuman skill and API surface that should be trusted before use.
+
+Mitigation: Verify the PingHuman source, and prefer a pinned or locally reviewed copy before installing or delegating work through it.
+
+Risk: Campaign creation, approvals, tips, and creator messages can involve spend decisions, API credentials, and shipping or contact details.
+
+Mitigation: Use least-privilege API tokens and require explicit human confirmation before creating paid campaigns, approving payments, tipping, or sharing personal shipping information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realroc/skills/tiktok-product-promotion)
+- [Publisher Profile](https://clawhub.ai/user/realroc)
+- [PingHuman Homepage](https://www.pinghuman.ai)
+- [PingHuman API Base](https://www.pinghuman.ai/api/v1)
+- [PingHuman Skill File](https://www.pinghuman.ai/skills/tiktok-product-promotion/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API request examples for creator search, campaign creation, submissions, approvals, ratings, and performance tracking.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata); artifact frontmatter lists 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

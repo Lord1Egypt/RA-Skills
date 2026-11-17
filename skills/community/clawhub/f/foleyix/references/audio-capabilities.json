@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "origin": "https://foleyix.com",
+  "creationModes": ["free", "narration", "dialogue", "podcast", "scene", "sfx", "ambience"],
+  "limits": {
+    "promptCodePoints": 3000,
+    "referenceSeconds": 30,
+    "referenceBytes": 10000000,
+    "references": 3,
+    "validatedOutputSeconds": 240
+  },
+  "types": [
+    { "id": "podcast", "name": "Podcast", "nameZh": "播客", "websitePath": "/podcast-generator", "standalone": true, "websiteMode": "podcast", "cliMode": "podcast", "guide": "speech.md", "input": "Complete host-labelled spoken script and delivery directions; music only when requested." },
+    { "id": "ambience", "name": "Ambient sound", "nameZh": "环境音", "websitePath": "/ambient-sound-generator", "standalone": true, "websiteMode": "free", "cliMode": "ambience", "guide": "sound-design.md", "input": "A sustained sound environment, foreground/background sources, distance and changes." },
+    { "id": "sound-effects", "name": "Sound effects", "nameZh": "音效", "websitePath": "/sound-effects", "standalone": true, "websiteMode": "free", "cliMode": "sfx", "guide": "sound-design.md", "input": "Sound source, action, material, texture, timing and decay." },
+    { "id": "dialogue", "name": "Dialogue", "nameZh": "多角色对白", "websitePath": "/dialogue-generator", "standalone": true, "websiteMode": "free", "cliMode": "dialogue", "guide": "speech.md", "input": "Stable speaker labels, exact lines and outside-the-lines performance directions." },
+    { "id": "background-music", "name": "AI music", "nameZh": "AI 音乐", "websitePath": "/ai-music-generator", "standalone": true, "websiteMode": "free", "cliMode": "free", "guide": "sound-design.md", "input": "Instrumental music: style, mood, instruments, rhythm, development and ending; no singing or lyrics." },
+    { "id": "song", "name": "Song", "nameZh": "人声歌曲", "websitePath": "/song-generator", "standalone": true, "websiteMode": "free", "cliMode": "free", "guide": "sound-design.md", "input": "Original vocal song: genre, singing/rap delivery, instruments, section order and exact lyrics to sing." },
+    { "id": "game-sound-effects", "name": "Game sound effects", "nameZh": "游戏音效", "websitePath": "/game-sound-effects-generator", "standalone": true, "websiteMode": "free", "cliMode": "sfx", "guide": "sound-design.md", "input": "Game action and sound progression. Single clips through CLI; batch, variants and selected ZIP through the website." },
+    { "id": "narration", "name": "Narration", "nameZh": "旁白与朗读", "websitePath": "/app", "standalone": false, "websiteMode": "free", "cliMode": "narration", "guide": "speech.md", "input": "Exact narration text and necessary delivery directions." },
+    { "id": "sound-scene", "name": "Sound scene", "nameZh": "广告、广播剧与声音场景", "websitePath": "/app", "standalone": false, "websiteMode": "free", "cliMode": "scene", "guide": "prompt-writing.md", "input": "Exact speech and requested effects, ambience or music in listening order." },
+    { "id": "character-voice", "name": "Character voice design", "nameZh": "角色音色设计", "websitePath": "/voice-library", "standalone": false, "websiteMode": null, "cliMode": null, "guide": "speech.md", "input": "Voice description and short preview text; saved reusable reference creation/import requires the website." }
+  ],
+  "features": {
+    "cli": ["prompt-writing", "audio-generation", "reference-voice-list", "reference-selection", "quota", "task-history-and-status", "private-wav-download"],
+    "websiteOnly": ["reference-upload", "saved-character-voice-preview-and-import", "audio-rate-and-volume-controls", "script-generator", "audio-to-text", "media-to-sound-script", "professional-segment-arrangement-and-export", "game-sfx-batch-variants-and-zip"]
+  }
+}

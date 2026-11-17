@@ -1,44 +1,56 @@
-## Description: <br>
-Resolve and list ADAHandles for the connected Cardano wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve and list ADAHandles for the connected Cardano wallet.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve ADAHandles owned by a connected Cardano wallet and present those handles as human-readable wallet identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected MCP package requires a wallet seed phrase, which can control the wallet. <br>
-Mitigation: Review the package before installation and prefer a low-value isolated wallet or public-address/read-only workflow for handle lookup. <br>
-Risk: Installing and running the configured Cardano MCP server may expose sensitive wallet context to third-party code. <br>
-Mitigation: Install only from a trusted package source, avoid using a main wallet seed phrase, and verify the MCP server behavior before use. <br>
+## Use Case:
 
+Developers and Cardano wallet users use this skill to retrieve ADAHandles owned by a connected wallet and present human-readable wallet identifiers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adacapo21/cardano-identity) <br>
-- [ADAHandle Concepts](references/concepts.md) <br>
-- [Identity MCP Tools Reference](references/mcp-tools.md) <br>
-- [Resolve ADAHandles](sub-skills/resolve-handles.md) <br>
-- [ADAHandle](https://handle.me/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown with ADAHandle strings and wallet-identity guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call MCP wallet tools that depend on SEED_PHRASE configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Cardano wallet seed phrase for read-only ADAHandle lookup, and exposure of a recovery phrase can compromise the wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external MCP package before installing, avoid using high-value wallets, and prefer a read-only credential such as a public address or stake address when available.
+
+Risk: The MCP dependency is referenced by package name without a pinned reviewed version in the release evidence.
+
+Mitigation: Pin the dependency to a reviewed version and re-run security review before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adacapo21/skills/cardano-identity)
+- [ADAHandle Concepts](references/concepts.md)
+- [Identity MCP Tools Reference](references/mcp-tools.md)
+- [ADAHandle](https://handle.me/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with ADAHandle lists and wallet identity guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running @indigoprotocol/cardano-mcp server and SEED_PHRASE environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

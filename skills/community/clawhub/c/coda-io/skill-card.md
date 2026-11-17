@@ -1,45 +1,55 @@
-## Description: <br>
-Interact with Coda.io docs, tables, rows, pages, and automations via the Coda REST API v1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Coda.io docs, tables, rows, pages, and automations via the Coda REST API v1.
 
-## Publisher: <br>
-[simonfunk](https://clawhub.ai/user/simonfunk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simonfunk](https://clawhub.ai/user/simonfunk)
 
-## Use Case: <br>
-Developers and operators use this skill to read, create, update, delete, share, and inspect Coda docs, tables, rows, pages, permissions, automations, and analytics through the Coda REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Coda through the user's API token. <br>
-Mitigation: Use the least-privileged token available, keep it out of files, logs, and chat, and rotate it if exposed. <br>
-Risk: The helper can change, delete, share, or trigger actions in Coda content. <br>
-Mitigation: Manually confirm doc IDs, table IDs, recipient emails, access levels, deletes, and automation triggers before execution. <br>
-Risk: Some helper commands build JSON from command arguments. <br>
-Mitigation: Avoid untrusted or quote-containing text in those arguments; use stdin JSON or properly encoded curl payloads for complex input. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coda API v1 Endpoint Reference](references/api-endpoints.md) <br>
-- [Coda REST API v1](https://coda.io/apis/v1) <br>
-- [Coda OpenAPI YAML](https://coda.io/apis/v1/openapi.yaml) <br>
-- [Coda OpenAPI JSON](https://coda.io/apis/v1/openapi.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/simonfunk/coda-io) <br>
+## Use Case:
 
+Developers and agents use this skill to read, write, update, and delete Coda docs, tables, rows, pages, permissions, publishing settings, automations, and analytics through the Coda REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CODA_API_TOKEN for authenticated Coda API access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can execute live Coda delete, sharing, publishing, permission, and automation actions.
+
+Mitigation: Manually confirm any destructive, permission-changing, publishing, sharing, or automation action before execution.
+
+Risk: The skill requires a Coda API token that may grant access to sensitive docs.
+
+Mitigation: Use the least-privilege token or account available and prefer read-first workflows before allowing writes.
+
+## Reference(s):
+
+- [Coda API v1 Endpoint Reference](artifact/references/api-endpoints.md)
+- [Coda REST API v1](https://coda.io/apis/v1)
+- [Coda API Token Settings](https://coda.io/account)
+- [ClawHub Skill Page](https://clawhub.ai/simonfunk/skills/coda-io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CODA_API_TOKEN environment variable and can produce live Coda API calls through the bundled shell helper.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

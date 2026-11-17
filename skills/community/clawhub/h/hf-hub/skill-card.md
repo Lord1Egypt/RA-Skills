@@ -1,40 +1,57 @@
-## Description: <br>
-Access Hugging Face Hub models, datasets, and spaces via the huggingface_hub Python library. Use when you need to list, search, download, or upload HF assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Hugging Face Hub models, datasets, and spaces via the huggingface_hub Python library.
 
-## Publisher: <br>
-[noesis-boss](https://clawhub.ai/user/noesis-boss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noesis-boss](https://clawhub.ai/user/noesis-boss)
 
-## Use Case: <br>
-Developers and agents use this skill to browse Hugging Face Hub models, datasets, and spaces, inspect model or dataset metadata, and move files to or from Hub repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Hugging Face token to access private resources or upload files. <br>
-Mitigation: Use a least-privilege HF token from the platform secret store and verify repository ownership, visibility, and target paths before upload. <br>
-Risk: Uploads may expose secrets, private datasets, regulated data, or files intended to remain local. <br>
-Mitigation: Review local paths and repository settings before upload, and do not upload sensitive data unless the repository and token permissions are appropriate. <br>
+## Use Case:
 
+Developers and engineers use this skill to browse Hugging Face Hub models, datasets, and spaces, inspect model or dataset metadata, and transfer files to or from Hub repositories.
 
-## Reference(s): <br>
-- [Hugging Face token settings](https://huggingface.co/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output with local downloaded files or Hugging Face Hub upload results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HF_TOKEN from the environment or platform secret store when authenticated Hub access is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: HF_TOKEN can authorize access to private Hugging Face resources or upload operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped token, store it only in the approved secret setting, and rotate or revoke it if exposure is suspected.
+
+Risk: The upload command can publish an unintended or sensitive local file to the selected Hugging Face repository.
+
+Mitigation: Check the local path, repository ID, repository type, and destination path before running upload-file.
+
+Risk: Live Hub content and library behavior can change across repositories, revisions, or huggingface_hub versions.
+
+Mitigation: Pin huggingface_hub where reproducibility matters and specify trusted repository IDs and revisions for critical downloads.
+
+## Reference(s):
+
+- [Hugging Face access tokens](https://huggingface.co/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads cache to ~/.cache/huggingface/; upload and download actions may transfer local or remote files using HF_TOKEN when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

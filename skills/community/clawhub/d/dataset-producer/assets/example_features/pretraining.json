@@ -1,0 +1,11 @@
+{
+  "text":           {"_type": "Value", "dtype": "string"},
+  "id":             {"_type": "Value", "dtype": "string"},
+  "source":         {"_type": "Value", "dtype": "string"},
+  "url":            {"_type": "Value", "dtype": "string"},
+  "date":           {"_type": "Value", "dtype": "string"},
+  "file_path":      {"_type": "Value", "dtype": "string"},
+  "language":       {"_type": "Value", "dtype": "string"},
+  "language_score": {"_type": "Value", "dtype": "float64"},
+  "token_count":    {"_type": "Value", "dtype": "int64"}
+}

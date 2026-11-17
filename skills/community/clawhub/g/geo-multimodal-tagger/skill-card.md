@@ -1,39 +1,51 @@
-## Description: <br>
-Generate AI-optimized Alt Text, file names, captions, and Schema markup for images, videos, and audio assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-optimized Alt Text, file names, captions, and Schema markup for images, videos, and audio assets.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-External users, marketers, content teams, and developers use this skill to draft media metadata that improves discoverability of images, videos, and audio assets across AI and search experiences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated filenames may contain path separators, newlines, or shell metacharacters if used directly in file operations. <br>
-Mitigation: Treat filenames as suggestions and sanitize them before using them to rename or create files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Asset Optimization Guide](references/asset-guide.md) <br>
-- [Schema.org](https://schema.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/geo-multimodal-tagger) <br>
+## Use Case:
 
+External users and developers use this skill to draft AI-friendly metadata for image, video, and audio assets, including alt text, filenames, captions, and structured data suggestions for discoverability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with text recommendations, Schema.org JSON examples, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated filenames should be treated as suggestions and sanitized before file operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release may overpromise multimedia metadata features that the bundled script does not fully implement.
+
+Mitigation: Use it as guidance for AI-friendly media metadata, and verify video, audio, captions, schema markup, keywords, and documented output behavior before relying on automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/skills/geo-multimodal-tagger)
+- [Publisher Profile](https://clawhub.ai/user/geoly-geo)
+- [Asset Optimization Guide](references/asset-guide.md)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text with example schema markup and command-line usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alt text, recommended filenames, captions, Schema.org markup, and discoverability scoring guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

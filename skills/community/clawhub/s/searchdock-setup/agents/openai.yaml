@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set up SearchDock"
+  short_description: "Connect read-only Google Search Console access"
+  default_prompt: "Use $searchdock-setup to connect my Google Search Console account."

@@ -1,37 +1,53 @@
-## Description: <br>
-Provides finance and settlement guidance for community group-buying operations, including profitability modeling, group leader commissions, supplier settlement, cash flow controls, and tax compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language finance and settlement guidance for community group-buying operations, including profitability models, group leader commissions, supplier settlement, cash flow management, and tax compliance.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Finance leads, operators, and platform managers use this skill to reason about community group-buying profit models, commission calculations, supplier settlement workflows, cash flow risks, and tax handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Settlement, benchmark, and tax guidance may be outdated or not applicable to a specific jurisdiction or business model. <br>
-Mitigation: Verify figures and legal assumptions against current local rules and qualified accounting, legal, or tax professionals before operational use. <br>
+## Use Case:
 
+Platform finance leaders, operations managers, and external advisors use this skill to reason about community group-buying profitability, commission settlement, supplier payments, cash-flow controls, and tax-compliance workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with formulas, examples, tables, and settlement SOPs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only reference content; no code execution or system access] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Finance, tax, and settlement examples may be jurisdiction-specific or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified finance, legal, or accounting reviewers validate the guidance before using it for live payments, tax filings, or compliance decisions.
+
+Risk: Profitability and settlement formulas can produce misleading results if users apply unsupported assumptions or stale benchmark values.
+
+Mitigation: Replace example rates, costs, account periods, and tax thresholds with current business data and approved policy values before decision-making.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/local-community-buying-09-finance-settlement)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown-style finance guidance with formulas, SOPs, comparison tables, and settlement examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference content; no executable code.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

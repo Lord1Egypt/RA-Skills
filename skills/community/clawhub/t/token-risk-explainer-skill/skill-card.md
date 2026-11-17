@@ -1,45 +1,54 @@
-## Description: <br>
-Explain crypto token risk in plain Chinese and English from Binance Web3 token audit and market metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain crypto token risk in plain Chinese and English from Binance Web3 token audit and market metadata.
 
-## Publisher: <br>
-[2663629531](https://clawhub.ai/user/2663629531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2663629531](https://clawhub.ai/user/2663629531)
 
-## Use Case: <br>
-External users, community managers, and content operators use this skill to turn token audit and market metadata into contract-level risk scores, bilingual explanations, token comparisons, watchlist triage, and community warning drafts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Normal analysis commands can trigger third-party SkillPay charges without a clear per-run confirmation step. <br>
-Mitigation: Confirm the price and billing owner before use, require explicit approval for billable runs, or pass --skip-billing for non-billable runs. <br>
-Risk: Billing sends a user_ref and uses SKILLPAY_APIKEY for charge requests. <br>
-Mitigation: Keep SKILLPAY_APIKEY in environment secrets, verify who controls it, and avoid sending sensitive user identifiers as user_ref. <br>
-Risk: Token queries are sent to Binance Web3 or a configured replacement endpoint. <br>
-Mitigation: Only submit contract or symbol queries that are acceptable to share with the configured token-data provider. <br>
-Risk: LOW risk output does not mean a token is safe or suitable for investment. <br>
-Mitigation: Treat results as research support, keep manual review in the loop, and do not present the output as investment advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2663629531/token-risk-explainer-skill) <br>
-- [Binance Web3 service endpoint](https://web3.binance.com) <br>
-- [SkillPay service endpoint](https://skillpay.me) <br>
+## Use Case:
 
+External users, community managers, content operators, and developers use this skill to explain contract-level token risk, compare tokens, triage watchlists, and draft neutral community warnings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON reports with bilingual plain-language summaries and draft community copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes risk score, risk level, risk factors, continue-research guidance, audit hits, links, billing status, and a disclaimer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Normal explain, compare, and watchlist runs can trigger live SkillPay billing calls.
+
+Mitigation: Use skip-billing or noop billing mode unless billing is intentionally enabled, and keep SKILLPAY_* settings in trusted deployment configuration.
+
+Risk: Token audit or market data may be unavailable or incomplete, so a low-risk result can be misunderstood as a safety guarantee.
+
+Mitigation: Treat results as current-snapshot triage, keep manual review in the loop, and do not present low risk as safe or as investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2663629531/skills/token-risk-explainer-skill)
+- [Binance Web3](https://web3.binance.com)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON reports with bilingual plain-text summaries and alert drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes risk scores, factor explanations, comparison or watchlist rankings, billing status, and disclaimer text.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

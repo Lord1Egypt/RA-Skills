@@ -1,41 +1,59 @@
-## Description: <br>
-Fetches the latest public foreign-exchange rates from supported Chinese banks for requested bank and currency names or ISO codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches current forex buy and sell rates from supported major Chinese banks by bank name and currency.
 
-## Publisher: <br>
-[lhmcn](https://clawhub.ai/user/lhmcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhmcn](https://clawhub.ai/user/lhmcn)
 
-## Use Case: <br>
-External users and developers use this skill to query current public forex rates from supported Chinese banks and return normalized CNY-per-100-unit buy and sell prices for selected currencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Node.js script makes outbound requests to supported Chinese bank sites for live exchange-rate data. <br>
-Mitigation: Run it only where outbound network access to those public bank sites is acceptable, and restrict egress to the documented bank domains in sensitive environments. <br>
-Risk: Live bank rate pages or APIs may be unavailable, delayed, or changed by the upstream banks. <br>
-Mitigation: Check the returned updateTime and verify rates against bank-published sources before relying on them for financial decisions. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve public forex rates from supported Chinese banks for selected currencies and return normalized JSON for comparison or reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lhmcn/chinese-bank-forex-rates) <br>
-- [Project homepage listed in package metadata](https://github.com/lhmcn/chinese-bank-forex-rates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, shell commands] <br>
-**Output Format:** [JSON object with bankName, updateTime, and a rates array.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rates are normalized to CNY per 100 units of foreign currency; unavailable source values may be returned as empty strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence and artifact/package.json) <br>
+Risk: The skill makes live requests to public Chinese bank sites, so results can be unavailable, delayed, stale, or affected by upstream page and API changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned rates as informational and confirm against the relevant bank source before using them for high-value financial decisions.
+
+Risk: The code enables a legacy TLS compatibility option for bank fetches.
+
+Mitigation: Install and run the skill only in environments where that TLS behavior is acceptable, and review outbound network destinations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lhmcn/skills/chinese-bank-forex-rates)
+- [Agricultural Bank of China exchange-rate source](https://ewealth.abchina.com/app/data/api/DataService/ExchangeRateV2)
+- [Bank of Communications exchange-rate source](https://www.bankcomm.com/SITE/queryExchangeResult.do)
+- [Bank of China exchange-rate source](https://www.boc.cn/sourcedb/whpj/)
+- [China Construction Bank exchange-rate source](https://www1.ccb.com/cn/home/news/jshckpj_new2.xml)
+- [China Merchants Bank exchange-rate source](https://fx.cmbchina.com/api/v1/fx/rate)
+- [Industrial and Commercial Bank of China exchange-rate source](https://papi.icbc.com.cn/exchanges/ns/getLatest)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object with bankName, updateTime, and rates entries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rates include currencyName, buyPrice, and sellPrice; numeric prices are standardized to CNY per 100 units of foreign currency and rounded to two decimal places.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

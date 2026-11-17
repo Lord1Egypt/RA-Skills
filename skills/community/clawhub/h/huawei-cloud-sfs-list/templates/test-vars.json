@@ -1,0 +1,72 @@
+{
+  "skill_name": "huawei-cloud-sfs-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "List SFS file systems via KooCLI (read-only, limit 1)",
+      "command": "hcloud SFSTurbo ListShares --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with a shares list (name/id/status/share_proto/size/availability_zone) and count",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "File system name list (script, names mode)",
+      "command": "python3 scripts/list_sfs.py --region {region} --names-only",
+      "expected": "Header + one '- <name>  (id: <id>)' line per file system, or a friendly empty message",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-03",
+      "name": "File system list as JSON (script)",
+      "command": "python3 scripts/list_sfs.py --region {region} --json",
+      "expected": "JSON array of file-system objects",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-04",
+      "name": "Default full-field table output (script)",
+      "command": "python3 scripts/list_sfs.py --region {region}",
+      "expected": "Aligned table with name/id/status/share_proto/size/availability_zone columns",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-05",
+      "name": "Name filter (client-side)",
+      "command": "python3 scripts/list_sfs.py --region {region} --name demo --names-only",
+      "expected": "Only file systems whose name/id contains 'demo'",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-06",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_sfs.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-07",
+      "name": "Availability-zone filter (client-side)",
+      "command": "python3 scripts/list_sfs.py --region {region} --az {region}a --names-only",
+      "expected": "Only file systems whose availability zone contains the given AZ",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-08",
+      "name": "Count-only output (script)",
+      "command": "python3 scripts/list_sfs.py --region {region} --count-only",
+      "expected": "Header plus a single '数量：<N>' count, no per-file-system rows",
+      "type": "readonly",
+      "executor": "sdk"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "只读操作（SFS ListShares），无资源创建/修改/删除风险。CLI 路径使用 hcloud SFSTurbo ListShares；SDK 回退使用 huaweicloudsdksfsturbo。名称/ID/状态/协议过滤为客户端过滤（SFS ListShares 请求仅接受 limit/offset）。"
+}

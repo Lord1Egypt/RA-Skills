@@ -1,0 +1,486 @@
+collection: NGP
+sort-by: 10
+shortname: ngp
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mednafen_ngp_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 21点
+file: 21点.ngc
+assets.box_front: Imgs/21点.png
+description: 《21点》，Neo Geo Pocket 平台。
+game: 98世界杯
+file: 98世界杯.ngp
+assets.box_front: Imgs/98世界杯.png
+description: 《98世界杯》，由 SNK 出品，体育类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+genre: Sports
+players: 2
+game: SNKVSCAPCOM-卡牌斗士们2-扩张版
+file: SNKVSCAPCOM-卡牌斗士们2-扩张版.ngc
+assets.box_front: Imgs/SNKVSCAPCOM-卡牌斗士们2-扩张版.png
+description: 《SNKVSCAPCOM-卡牌斗士们2-扩张版》，由 SNK 出品，2001 年发行，Card类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 2001
+genre: Card
+players: 2
+game: SNKVSCAPCOM-激突卡牌斗士们-CAPCOM版
+file: SNKVSCAPCOM-激突卡牌斗士们-CAPCOM版.ngc
+assets.box_front: Imgs/SNKVSCAPCOM-激突卡牌斗士们-CAPCOM版.png
+description: 《SNKVSCAPCOM-激突卡牌斗士们-CAPCOM版》，由 SNK 出品，2001 年发行，Card类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 2001
+genre: Card
+players: 2
+game: SNKVSCAPCOM-激突卡牌斗士们-SNK版
+file: SNKVSCAPCOM-激突卡牌斗士们-SNK版.ngc
+assets.box_front: Imgs/SNKVSCAPCOM-激突卡牌斗士们-SNK版.png
+description: 《SNKVSCAPCOM-激突卡牌斗士们-SNK版》，由 Capcom 出品，1999 年发行，策略类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: Capcom
+release: 1999
+genre: Strategy
+players: 2
+game: SNKVSCAPCOM-顶上决战-最强的战士们
+file: SNKVSCAPCOM-顶上决战-最强的战士们.ngc
+assets.box_front: Imgs/SNKVSCAPCOM-顶上决战-最强的战士们.png
+description: 《SNKVSCAPCOM-顶上决战-最强的战士们》，Neo Geo Pocket 平台。
+game: SNK少女格斗家
+file: SNK少女格斗家.ngc
+assets.box_front: Imgs/SNK少女格斗家.png
+description: 《SNK少女格斗家》，Neo Geo Pocket 平台。
+game: 上海迷你版
+file: 上海迷你版.ngc
+assets.box_front: Imgs/上海迷你版.png
+description: 《上海迷你版》，由 SNK 出品，1999 年发行，策略类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 1999
+genre: Strategy
+players: 2
+game: 下潜警报-吕贝卡篇
+file: 下潜警报-吕贝卡篇.ngc
+assets.box_front: Imgs/下潜警报-吕贝卡篇.png
+description: 《下潜警报-吕贝卡篇》，由 SNK 出品，1999 年发行，Role-playing (RPG)类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 1999
+genre: Role-playing (RPG)
+players: 2
+game: 下潜警报-巴恩篇
+file: 下潜警报-巴恩篇.ngc
+assets.box_front: Imgs/下潜警报-巴恩篇.png
+description: 《下潜警报-巴恩篇》，由 SNK 出品，1999 年发行，Role-playing (RPG)类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 1999
+genre: Role-playing (RPG)
+players: 2
+game: 侍魂
+file: 侍魂.ngp
+assets.box_front: Imgs/侍魂.png
+description: 《侍魂》，由 SNK 出品，格斗类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+genre: Fighting
+players: 1
+game: 侍魂2
+file: 侍魂2.ngc
+assets.box_front: Imgs/侍魂2.png
+description: 《侍魂2》，Neo Geo Pocket 平台。
+game: 加油,NGP君
+file: 加油,NGP君.ngc
+assets.box_front: Imgs/加油,NGP君.png
+description: 《加油,NGP君》，由 SNK 出品，2000 年发行，模拟类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 2000
+genre: Simulation
+players: 2
+game: 口袋恋爱-假如
+file: 口袋恋爱-假如.ngc
+assets.box_front: Imgs/口袋恋爱-假如.png
+description: 《口袋恋爱-假如》，由 Kindle Imagine Develop 出品，1999 年发行，模拟类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Kindle Imagine Develop
+release: 1999
+genre: Simulation
+players: 1
+game: 口袋战斗 - 侍魂
+file: 口袋战斗 - 侍魂.ngp
+assets.box_front: Imgs/口袋战斗 - 侍魂.png
+description: 《口袋战斗 - 侍魂》，Neo Geo Pocket 平台。
+game: 口袋网球
+file: 口袋网球.ngp
+assets.box_front: Imgs/口袋网球.png
+description: 《口袋网球》，Neo Geo Pocket 平台。
+game: 口袋黑白棋
+file: 口袋黑白棋.ngc
+assets.box_front: Imgs/口袋黑白棋.png
+description: 《口袋黑白棋》，Neo Geo Pocket 平台。
+game: 古惑轮滑
+file: 古惑轮滑.ngc
+assets.box_front: Imgs/古惑轮滑.png
+description: 《古惑轮滑》，由 SNK 出品，1999 年发行，动作类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 1999
+genre: Action
+players: 2
+game: 吃豆小精灵
+file: 吃豆小精灵.ngc
+assets.box_front: Imgs/吃豆小精灵.png
+description: 《吃豆小精灵》，由 SNK 出品，1999 年发行，动作类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 1999
+genre: Action
+players: 1
+game: 合金弹头-一号任务
+file: 合金弹头-一号任务.ngc
+assets.box_front: Imgs/合金弹头-一号任务.png
+description: 《合金弹头-一号任务》，Neo Geo Pocket 平台。
+game: 合金弹头-二号任务
+file: 合金弹头-二号任务.ngc
+assets.box_front: Imgs/合金弹头-二号任务.png
+description: 《合金弹头-二号任务》，Neo Geo Pocket 平台。
+game: 在此挑战!花札道场
+file: 在此挑战!花札道场.ngc
+assets.box_front: Imgs/在此挑战!花札道场.png
+description: 《在此挑战!花札道场》，由 Dyna 出品，1999 年发行，Board类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: Dyna
+release: 1999
+genre: Board
+players: 2
+game: 将棋的达人
+file: 将棋的达人.ngp
+assets.box_front: Imgs/将棋的达人.png
+description: 《将棋的达人》，由 SNK 出品，1998 年发行，Board类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 1998
+genre: Board
+players: 2
+game: 将棋达人
+file: 将棋达人.ngp
+assets.box_front: Imgs/将棋达人.png
+description: 《将棋达人》，由 SNK 出品，格斗类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+genre: Fighting
+players: 1
+game: 小萌的成长日记
+file: 小萌的成长日记.ngp
+assets.box_front: Imgs/小萌的成长日记.png
+description: 《小萌的成长日记》，Neo Geo Pocket 平台。
+game: 尼哥龙帕
+file: 尼哥龙帕.ngc
+assets.box_front: Imgs/尼哥龙帕.png
+description: 《尼哥龙帕》，Neo Geo Pocket 平台。
+game: 屠兽者-暗之生体兵器
+file: 屠兽者-暗之生体兵器.ngc
+assets.box_front: Imgs/屠兽者-暗之生体兵器.png
+description: 《屠兽者-暗之生体兵器》，Neo Geo Pocket 平台。
+game: 巴克拉牌
+file: 巴克拉牌.ngc
+assets.box_front: Imgs/巴克拉牌.png
+description: 《巴克拉牌》，由 Dyna Corp. 出品，2000 年发行，Gambling类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: Dyna Corp.
+release: 2000
+genre: Gambling
+players: 2
+game: 幕末浪漫特别篇-月华之剑士-月中芳华散缓树下
+file: 幕末浪漫特别篇-月华之剑士-月中芳华散缓树下.ngc
+assets.box_front: Imgs/幕末浪漫特别篇-月华之剑士-月中芳华散缓树下.png
+description: 《幕末浪漫特别篇-月华之剑士-月中芳华散缓树下》，Neo Geo Pocket 平台。
+game: 弯曲三角
+file: 弯曲三角.ngc
+assets.box_front: Imgs/弯曲三角.png
+description: 《弯曲三角》，Neo Geo Pocket 平台。
+game: 德比冠军赛马-大预想
+file: 德比冠军赛马-大预想.ngc
+assets.box_front: Imgs/德比冠军赛马-大预想.png
+description: 《德比冠军赛马-大预想》，Neo Geo Pocket 平台。
+game: 恋恋麻将
+file: 恋恋麻将.ngc
+assets.box_front: Imgs/恋恋麻将.png
+description: 《恋恋麻将》，由 Visco 出品，2000 年发行，Board类游戏，Neo Geo Pocket 平台。
+publisher: Visco
+release: 2000
+genre: Board
+game: 拳皇-战斗天堂
+file: 拳皇-战斗天堂.ngc
+assets.box_front: Imgs/拳皇-战斗天堂.png
+description: 《拳皇-战斗天堂》，由 SNK 出品，2000 年发行，Board类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 2000
+genre: Board
+players: 2
+game: 拳皇R-1
+file: 拳皇R-1.ngp
+assets.box_front: Imgs/拳皇R-1.png
+description: 《拳皇R-1》，由 SNK 出品，格斗类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+genre: Fighting
+players: 2
+game: 拳皇R-2
+file: 拳皇R-2.ngc
+assets.box_front: Imgs/拳皇R-2.png
+description: 《拳皇R-2》，Neo Geo Pocket 平台。
+game: 方块拼图
+file: 方块拼图.ngp
+assets.box_front: Imgs/方块拼图.png
+description: 《方块拼图》，由 SNK 出品，1998 年发行，益智类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+release: 1998
+genre: Puzzle
+players: 2
+game: 无尽的治疗
+file: 无尽的治疗.ngc
+assets.box_front: Imgs/无尽的治疗.png
+description: 《无尽的治疗》，由 Kindle Imagine Develop 出品，2000 年发行，冒险类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Kindle Imagine Develop
+release: 2000
+genre: Adventure
+players: 1
+game: 明星棒球
+file: 明星棒球.ngp
+assets.box_front: Imgs/明星棒球.png
+description: 《明星棒球》，Neo Geo Pocket 平台。
+game: 机甲世纪
+file: 机甲世纪.ngc
+assets.box_front: Imgs/机甲世纪.png
+description: 《机甲世纪》，Neo Geo Pocket 平台。
+game: 机甲世纪2
+file: 机甲世纪2.ngc
+assets.box_front: Imgs/机甲世纪2.png
+description: 《机甲世纪2》，Neo Geo Pocket 平台。
+game: 机皇杯足球98
+file: 机皇杯足球98.ngp
+assets.box_front: Imgs/机皇杯足球98.png
+description: 《机皇杯足球98》，Neo Geo Pocket 平台。
+game: 柏青哥必胜指南-掌上小店
+file: 柏青哥必胜指南-掌上小店.ngc
+assets.box_front: Imgs/柏青哥必胜指南-掌上小店.png
+description: 《柏青哥必胜指南-掌上小店》，Neo Geo Pocket 平台。
+game: 柏青嫂阿尔赛王国口袋版-E杯
+file: 柏青嫂阿尔赛王国口袋版-E杯.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-E杯.png
+description: 《柏青嫂阿尔赛王国口袋版-E杯》，由 Aruze Corp 出品，2001 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 2001
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-光之圣炬
+file: 柏青嫂阿尔赛王国口袋版-光之圣炬.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-光之圣炬.png
+description: 《柏青嫂阿尔赛王国口袋版-光之圣炬》，由 Aruze Corp 出品，2000 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 2000
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-大花火
+file: 柏青嫂阿尔赛王国口袋版-大花火.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-大花火.png
+description: 《柏青嫂阿尔赛王国口袋版-大花火》，由 Aruze Corp 出品，2000 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 2000
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-德卡黑尔2
+file: 柏青嫂阿尔赛王国口袋版-德卡黑尔2.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-德卡黑尔2.png
+description: 《柏青嫂阿尔赛王国口袋版-德卡黑尔2》，由 Aruze Corp 出品，2001 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 2001
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-德尔所尔2
+file: 柏青嫂阿尔赛王国口袋版-德尔所尔2.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-德尔所尔2.png
+description: 《柏青嫂阿尔赛王国口袋版-德尔所尔2》，由 Aruze Corp 出品，2000 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 2000
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-波卡诺2
+file: 柏青嫂阿尔赛王国口袋版-波卡诺2.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-波卡诺2.png
+description: 《柏青嫂阿尔赛王国口袋版-波卡诺2》，由 Aruze Corp 出品，2000 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 2000
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-花火
+file: 柏青嫂阿尔赛王国口袋版-花火.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-花火.png
+description: 《柏青嫂阿尔赛王国口袋版-花火》，由 Aruze Corp 出品，1999 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: Aruze Corp
+release: 1999
+genre: Gambling
+players: 1
+game: 柏青嫂阿尔赛王国口袋版-阿兹台克
+file: 柏青嫂阿尔赛王国口袋版-阿兹台克.ngc
+assets.box_front: Imgs/柏青嫂阿尔赛王国口袋版-阿兹台克.png
+description: 《柏青嫂阿尔赛王国口袋版-阿兹台克》，Neo Geo Pocket 平台。
+game: 棉花小魔女
+file: 棉花小魔女.ngc
+assets.box_front: Imgs/棉花小魔女.png
+description: 《棉花小魔女》，由 SNK 出品，2000 年发行，Shoot'em Up类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 2000
+genre: Shoot'em Up
+players: 1
+game: 樱桃大师
+file: 樱桃大师.ngc
+assets.box_front: Imgs/樱桃大师.png
+description: 《樱桃大师》，Neo Geo Pocket 平台。
+game: 水木茂的妖怪照相馆
+file: 水木茂的妖怪照相馆.ngc
+assets.box_front: Imgs/水木茂的妖怪照相馆.png
+description: 《水木茂的妖怪照相馆》，由 SNK 出品，1999 年发行，Role-playing (RPG)类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 1999
+genre: Role-playing (RPG)
+players: 1
+game: 法塞雷
+file: 法塞雷.ngc
+assets.box_front: Imgs/法塞雷.png
+description: 《法塞雷》，由 SNK 出品，1999 年发行，策略类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 1999
+genre: Strategy
+players: 1
+game: 泡泡龙迷你版
+file: 泡泡龙迷你版.ngc
+assets.box_front: Imgs/泡泡龙迷你版.png
+description: 《泡泡龙迷你版》，Neo Geo Pocket 平台。
+game: 洛克人-战斗和战士们
+file: 洛克人-战斗和战士们.ngc
+assets.box_front: Imgs/洛克人-战斗和战士们.png
+description: 《洛克人-战斗和战士们》，Neo Geo Pocket 平台。
+game: 爆裂弹头
+file: 爆裂弹头.ngc
+assets.box_front: Imgs/爆裂弹头.png
+description: 《爆裂弹头》，由 SNK 出品，体育类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SNK
+genre: Sports
+players: 2
+game: 电车向前走2
+file: 电车向前走2.ngc
+assets.box_front: Imgs/电车向前走2.png
+description: 《电车向前走2》，Neo Geo Pocket 平台。
+game: 皇家骑士团外传-赛诺比亚的皇子
+file: 皇家骑士团外传-赛诺比亚的皇子.ngc
+assets.box_front: Imgs/皇家骑士团外传-赛诺比亚的皇子.png
+description: 《皇家骑士团外传-赛诺比亚的皇子》，由 Quest 出品，2000 年发行，策略类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: Quest
+release: 2000
+genre: Strategy
+players: 2
+game: 目标!汉字王
+file: 目标!汉字王.ngc
+assets.box_front: Imgs/目标!汉字王.png
+description: 《目标!汉字王》，由 SNK 出品，2000 年发行，教育类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 2000
+genre: Educational
+players: 1
+game: 真实赌场 - 樱桃大师
+file: 真实赌场 - 樱桃大师.ngp
+assets.box_front: Imgs/真实赌场 - 樱桃大师.png
+description: 《真实赌场 - 樱桃大师》，Neo Geo Pocket 平台。
+game: 神机世界进化-无尽迷宫
+file: 神机世界进化-无尽迷宫.ngc
+assets.box_front: Imgs/神机世界进化-无尽迷宫.png
+description: 《神机世界进化-无尽迷宫》，由 SEGA 出品，2000 年发行，Role-playing (RPG)类游戏，Neo Geo Pocket 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 2000
+genre: Role-playing (RPG)
+players: 2
+game: 神秘的奖金
+file: 神秘的奖金.ngc
+assets.box_front: Imgs/神秘的奖金.png
+description: 《神秘的奖金》，由 SNK 出品，1999 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 1999
+genre: Gambling
+players: 1
+game: 秋之回忆-纯真
+file: 秋之回忆-纯真.ngc
+assets.box_front: Imgs/秋之回忆-纯真.png
+description: 《秋之回忆-纯真》，Neo Geo Pocket 平台。
+game: 索尼克-口袋冒险
+file: 索尼克-口袋冒险.ngc
+assets.box_front: Imgs/索尼克-口袋冒险.png
+description: 《索尼克-口袋冒险》，Neo Geo Pocket 平台。
+game: 绘画拼图
+file: 绘画拼图.ngc
+assets.box_front: Imgs/绘画拼图.png
+description: 《绘画拼图》，Neo Geo Pocket 平台。
+game: 职业摔角大赛
+file: 职业摔角大赛.ngc
+assets.box_front: Imgs/职业摔角大赛.png
+description: 《职业摔角大赛》，Neo Geo Pocket 平台。
+game: 职业棒球NGP版
+file: 职业棒球NGP版.ngc
+assets.box_front: Imgs/职业棒球NGP版.png
+description: 《职业棒球NGP版》，Neo Geo Pocket 平台。
+game: 胜利者2000-万岁!口袋节日!
+file: 胜利者2000-万岁!口袋节日!.ngc
+assets.box_front: Imgs/胜利者2000-万岁!口袋节日!.png
+description: 《胜利者2000-万岁!口袋节日!》，由 SEGA 出品，2000 年发行，冒险类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SEGA
+release: 2000
+genre: Adventure
+players: 1
+game: 舞会信件
+file: 舞会信件.ngc
+assets.box_front: Imgs/舞会信件.png
+description: 《舞会信件》，由 SNK 出品，1999 年发行，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 1999
+players: 1
+game: 超写真麻将
+file: 超写真麻将.ngc
+assets.box_front: Imgs/超写真麻将.png
+description: 《超写真麻将》，由 SETA Corporation 出品，2001 年发行，Board类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SETA Corporation
+release: 2001
+genre: Board
+players: 1
+game: 连结解谜方块
+file: 连结解谜方块.ngp
+assets.box_front: Imgs/连结解谜方块.png
+description: 《连结解谜方块》，Neo Geo Pocket 平台。
+game: 连结解谜方块2
+file: 连结解谜方块2.ngc
+assets.box_front: Imgs/连结解谜方块2.png
+description: 《连结解谜方块2》，Neo Geo Pocket 平台。
+game: 酷滑板口袋版
+file: 酷滑板口袋版.ngc
+assets.box_front: Imgs/酷滑板口袋版.png
+description: 《酷滑板口袋版》，Neo Geo Pocket 平台。
+game: 酷酷!杰姆
+file: 酷酷!杰姆.ngc
+assets.box_front: Imgs/酷酷!杰姆.png
+description: 《酷酷!杰姆》，Neo Geo Pocket 平台。
+game: 随身麻将
+file: 随身麻将.ngc
+assets.box_front: Imgs/随身麻将.png
+description: 《随身麻将》，由 ADK 出品，1999 年发行，Board类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: ADK
+release: 1999
+genre: Board
+players: 1
+game: 饿狼传说-初次接触
+file: 饿狼传说-初次接触.ngc
+assets.box_front: Imgs/饿狼传说-初次接触.png
+description: 《饿狼传说-初次接触》，Neo Geo Pocket 平台。
+game: 高尔夫大巡回赛
+file: 高尔夫大巡回赛.ngc
+assets.box_front: Imgs/高尔夫大巡回赛.png
+description: 《高尔夫大巡回赛》，Neo Geo Pocket 平台。
+game: 魔法宝石
+file: 魔法宝石.ngc
+assets.box_front: Imgs/魔法宝石.png
+description: 《魔法宝石》，Neo Geo Pocket 平台。
+game: 魔法气泡2
+file: 魔法气泡2.ngc
+assets.box_front: Imgs/魔法气泡2.png
+description: 《魔法气泡2》，Neo Geo Pocket 平台。
+game: 龙之荒野
+file: 龙之荒野.ngc
+assets.box_front: Imgs/龙之荒野.png
+description: 《龙之荒野》，由 SNK 出品，1999 年发行，Gambling类游戏，Neo Geo Pocket 平台，单人游玩。
+publisher: SNK
+release: 1999
+genre: Gambling
+players: 1

@@ -1,44 +1,65 @@
-## Description: <br>
-Beginner fishing skills covering licensing, gear, techniques, and catch-to-cook basics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beginner fishing skills covering licensing, gear, techniques, and catch-to-cook basics for people starting to fish for food, recreation, affordable outdoor activity, or a meditative physical practice.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to get beginner fishing guidance for licensing, affordable gear, simple rigs, fish handling, and basic catch-to-cook preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fishing laws, bag limits, size limits, seasons, and license requirements vary by jurisdiction and can change. <br>
-Mitigation: Verify current local regulations with official fish and wildlife sources before acting on the guidance. <br>
-Risk: Keeping or eating fish without checking species identity, water-body advisories, handling, refrigeration, sanitation, or cooking guidance can create health or legal risk. <br>
-Mitigation: Check official fish and wildlife or public-health sources before keeping or eating fish. <br>
+## Use Case:
 
+External users can use this skill to learn beginner fishing for food procurement, recreation, or a low-cost outdoor practice. It helps agents tailor guidance around licensing, starter gear, basic rigs, fishing locations, fish handling, and simple catch preparation.
 
-## Reference(s): <br>
-- [Take Me Fishing](https://www.takemefishing.org) <br>
-- [NOAA Recreational Fishing Data](https://www.fisheries.noaa.gov/topic/recreational-fishing-data) <br>
-- [Association of Fish & Wildlife Agencies](https://www.fishwildlife.org) <br>
-- [Field & Stream Beginner Guides](https://www.fieldandstream.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/fishing-basics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and step-by-step instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location-specific prompts to verify current fishing regulations and consumption advisories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Fishing licenses, seasons, size limits, bag limits, stocking schedules, and consumption advisories vary by jurisdiction and can change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rules and advisories with official fish and wildlife agencies before acting on location-specific guidance.
+
+Risk: The release declares filesystem tooling while the skill behavior expects live regulatory and stocking lookups.
+
+Mitigation: Review the runtime environment before use and ensure any required live lookup capability is explicitly available and controlled.
+
+Risk: The installer command uses an unpinned external CLI.
+
+Mitigation: Review the package source and resolved version before installation, and prefer a pinned or otherwise controlled installation path where possible.
+
+Risk: License-expiration reminders could store personal timing or licensing information.
+
+Mitigation: Only create or retain reminder data with explicit user consent.
+
+## Reference(s):
+
+- [Take Me Fishing](https://www.takemefishing.org)
+- [NOAA Recreational Fishing Data](https://www.fisheries.noaa.gov/topic/recreational-fishing-data)
+- [State Fish & Wildlife Agencies](https://www.fishwildlife.org)
+- [Field & Stream Beginner Guides](https://www.fieldandstream.com)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with lists and occasional inline reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include location-specific licensing, regulation, stocking, and fish-consumption advisory guidance when the user provides a jurisdiction or water body.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

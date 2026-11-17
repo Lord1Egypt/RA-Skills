@@ -1,39 +1,55 @@
-## Description: <br>
-Query and analyze website analytics from Plausible Analytics. Use when you need to check real-time visitors, get page views and visitor statistics for a time period, analyze traffic sources or top pages, examine geographic distribution, or generate analytics reports and insights for websites tracked with Plausible Analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze website analytics from Plausible Analytics. Use when you need to check real-time visitors, get page views and visitor statistics for a time period, analyze traffic sources or top pages, examine geographic distribution, or generate analytics reports and insights for websites tracked with Plausible Analytics.
 
-## Publisher: <br>
-[ChloePark85](https://clawhub.ai/user/ChloePark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, site operators, and analytics users use this skill to retrieve Plausible Analytics data for real-time visitors, aggregate traffic metrics, and breakdowns by page, source, device, browser, operating system, or country. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires PLAUSIBLE_API_KEY and sends it as a bearer token when calling Plausible Analytics. <br>
-Mitigation: Install only where that key may be exposed to the skill, prefer a limited or read-only key if available, and avoid sharing command output that could reveal credentials or account details. <br>
-Risk: Analytics results can include sensitive operational information such as referrers, pages, countries, and traffic counts. <br>
-Mitigation: Confirm the intended site ID before running commands and treat returned analytics as sensitive data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ChloePark85/plausible-analytics) <br>
+## Use Case:
 
+External teams, site owners, and developers use this skill to query Plausible Analytics for real-time visitor counts, aggregate traffic metrics, and breakdowns by page, source, device, browser, operating system, or country.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and PLAUSIBLE_API_KEY; accepts a Plausible site ID from PLAUSIBLE_SITE_ID or command arguments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses PLAUSIBLE_API_KEY to query Plausible Analytics for site IDs the key can access.
+
+Mitigation: Install only when agents are allowed to query those Plausible sites, and scope or rotate the API key according to local policy.
+
+Risk: Returned analytics can include visitors, pageviews, sources, pages, referrers, devices, browsers, operating systems, and countries in agent output.
+
+Mitigation: Review analytics reports before sharing them and avoid sending sensitive traffic data to untrusted channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chloepark85/skills/plausible-analytics)
+- [Plausible aggregate stats API endpoint](https://plausible.io/api/v1/stats/aggregate)
+- [Plausible realtime visitors API endpoint](https://plausible.io/api/v1/stats/realtime/visitors)
+- [Plausible breakdown stats API endpoint](https://plausible.io/api/v1/stats/breakdown)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON analytics responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PLAUSIBLE_API_KEY and an authorized Plausible site ID; scripts return current or historical analytics only for accessible sites.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

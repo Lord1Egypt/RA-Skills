@@ -1,42 +1,59 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[jau771](https://clawhub.ai/user/jau771) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jau771](https://clawhub.ai/user/jau771)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser navigation, interaction, form filling, UI testing, screenshots, PDFs, recordings, and page data extraction through the agent-browser CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can operate on sensitive logged-in accounts and saved session files. <br>
-Mitigation: Avoid using sensitive accounts unless necessary, treat auth state files and captured artifacts as secrets, and keep them out of logs and version control. <br>
-Risk: Automated browser actions can submit forms, upload files, change account settings, post content, or make purchases. <br>
-Mitigation: Supervise high-impact actions and review browser state before allowing the agent to proceed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to automate browser navigation, page inspection, form interaction, UI testing, screenshots, PDFs, recording, and session/state handling through the agent-browser CLI.
 
-## Reference(s): <br>
-- [Agent Browser Jau771 ClawHub page](https://clawhub.ai/jau771/agent-browser-jau771) <br>
-- [agent-browser CLI upstream repository](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI output may include text, JSON, screenshots, PDFs, and recordings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; browser automation can use saved state, cookies, local storage, screenshots, PDFs, and video artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad browser automation can navigate pages, interact with forms, upload files, and control sessions in ways that affect real accounts or services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts where possible, review commands before execution, and explicitly approve uploads, screenshots, PDFs, and recordings.
+
+Risk: Saved browser state files can contain session credentials.
+
+Mitigation: Protect or delete saved state files such as auth.json and avoid attaching the skill to a personal live browser through CDP.
+
+Risk: The release was flagged as suspicious because it gives agents broad browser and session control without enough safety framing.
+
+Mitigation: Install only when full browser automation is needed, prefer a pinned reviewed package version or commit, and avoid administrator privileges during install.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jau771/skills/agent-browser-jau771)
+- [Upstream agent-browser CLI repository](https://github.com/vercel-labs/agent-browser)
+- [Agent Browser Skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm; documented workflows may create saved state files, screenshots, PDFs, videos, and traces.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

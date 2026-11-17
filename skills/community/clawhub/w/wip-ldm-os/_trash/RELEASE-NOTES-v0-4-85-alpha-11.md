@@ -1,0 +1,1 @@
+Adds a real Remote Control E2EE restart regression that verifies persisted daemon public keys and daemon reconnect registration make bootstrap report E2EE availability after relay in-memory state is lost.

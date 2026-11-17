@@ -1,42 +1,54 @@
-## Description: <br>
-Helps agents handle Git worktree development tasks by identifying the current repository and request, checking worktree status, making scoped code changes, and summarizing results without crossing worktree boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Worktree guides agents through scoped parallel development in the current Git worktree, including repository and task identification, workspace checks, code changes, testing guidance, and commit-message suggestions.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and coding agents use this skill to manage parallel Git worktree development tasks, inspect the active worktree, make minimal scoped changes, and prepare implementation summaries or commit suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may propose or make code changes in the current Git worktree that are incorrect or broader than intended. <br>
-Mitigation: Review proposed file changes, diffs, and summaries before committing or relying on the result. <br>
-Risk: Git commands can affect local worktree state, especially destructive operations such as hard resets or cleans. <br>
-Mitigation: Only approve destructive Git commands when explicitly intended, and verify the branch and worktree status first. <br>
-Risk: Parallel worktree workflows can accidentally touch the wrong repository, branch, or request scope. <br>
-Mitigation: Confirm the current directory, branch, and parsed worktree purpose before allowing edits. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to work on one feature or fix inside the current Git worktree while preserving scope boundaries across parallel worktrees.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidongkl/git-worktree) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, file summaries, risk notes, and commit message suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should stay scoped to the current worktree and avoid unrelated repository or branch changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: User-directed code changes or commits may affect the current branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the agent plan, git status, and proposed changes before approving work or commits.
+
+Risk: Using the skill outside the intended worktree could modify unrelated code.
+
+Mitigation: Confirm the current worktree path, branch, and repository before starting, and keep changes scoped to the active task directory.
+
+## Reference(s):
+
+- [Git Worktree ClawHub Skill Page](https://clawhub.ai/weidongkl/skills/git-worktree)
+- [weidongkl ClawHub Publisher Profile](https://clawhub.ai/user/weidongkl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and commit-message suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include changed-file summaries, design rationale, risk notes, and testing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

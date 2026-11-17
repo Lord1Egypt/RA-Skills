@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from .exceptions import ConfigError
 
 DEFAULT_CONFIG_DIR = Path.home() / ".discogs-sync"
 DEFAULT_CONFIG_FILE = DEFAULT_CONFIG_DIR / "config.json"
+TOKEN_ENV_VAR = "DISCOGS_USER_TOKEN"
 
 
 def get_config_path() -> Path:
@@ -31,7 +33,7 @@ def save_config(config: dict) -> None:
     """Save configuration to disk."""
     path = get_config_path()
     try:
-        path.parent.mkdir(parents=True, exist_ok=True)
+        path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
         path.write_text(json.dumps(config, indent=2), encoding="utf-8")
         # Restrict permissions to owner-only on non-Windows platforms
         if sys.platform != "win32":
@@ -54,67 +56,25 @@ def get_cache_ttl() -> int:
         return 86400
 
 
-def get_auth_mode() -> str:
-    """Return the configured auth mode ('token' or 'oauth'). Defaults to 'token'."""
-    config = load_config()
-    return config.get("auth_mode", "oauth" if config.get("access_token") else "token")
-
-
 def get_tokens() -> dict | None:
-    """Return stored credentials, or None if not configured.
+    """Return the personal access token settings, or None if not configured.
 
-    Supports both personal access token and OAuth modes.
-    Legacy configs (no auth_mode key) are treated as OAuth.
+    The DISCOGS_USER_TOKEN environment variable takes precedence over the
+    token stored in the config file by the ``auth`` command.
     """
+    env_token = os.environ.get(TOKEN_ENV_VAR)
+    if env_token:
+        return {"auth_mode": "token", "user_token": env_token, "username": None}
+
     config = load_config()
-    auth_mode = config.get("auth_mode")
-
-    # Token mode
-    if auth_mode == "token":
-        user_token = config.get("user_token")
-        if user_token:
-            return {
-                "auth_mode": "token",
-                "user_token": user_token,
-                "username": config.get("username"),
-            }
-        return None
-
-    # OAuth mode (explicit or legacy config without auth_mode)
-    token = config.get("access_token")
-    secret = config.get("access_token_secret")
-    if token and secret:
+    user_token = config.get("user_token")
+    if user_token:
         return {
-            "auth_mode": "oauth",
-            "access_token": token,
-            "access_token_secret": secret,
-            "consumer_key": config.get("consumer_key", ""),
-            "consumer_secret": config.get("consumer_secret", ""),
+            "auth_mode": "token",
+            "user_token": user_token,
             "username": config.get("username"),
         }
     return None
-
-
-def save_tokens(
-    consumer_key: str,
-    consumer_secret: str,
-    access_token: str,
-    access_token_secret: str,
-    username: str | None = None,
-) -> None:
-    """Store OAuth tokens to config file."""
-    config = load_config()
-    config.update(
-        {
-            "auth_mode": "oauth",
-            "consumer_key": consumer_key,
-            "consumer_secret": consumer_secret,
-            "access_token": access_token,
-            "access_token_secret": access_token_secret,
-            "username": username,
-        }
-    )
-    save_config(config)
 
 
 def save_user_token(user_token: str, username: str | None = None) -> None:
@@ -131,7 +91,7 @@ def save_user_token(user_token: str, username: str | None = None) -> None:
 
 
 def clear_tokens() -> None:
-    """Remove all stored credentials (both token and OAuth)."""
+    """Remove all stored credentials, including keys left by older OAuth configs."""
     config = load_config()
     for key in [
         "auth_mode", "user_token",

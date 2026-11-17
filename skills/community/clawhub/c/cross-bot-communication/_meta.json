@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7ctn51g7anq93bwgz7gfckxs80c6ze",
-  "slug": "cross-bot-communication",
-  "version": "1.0.3",
-  "publishedAt": 1773296704630
+  "name": "cross-bot-communication",
+  "version": "0.1.0",
+  "description": "跨 Bot 通信的通用解决方案 - 解决 Telegram 群聊中 Bot 无法收到其他 Bot 消息的问题",
+  "author": "小溪",
+  "homepage": "https://github.com/adminlove520/cross-bot-communication",
+  "tags": ["telegram", "bot", "communication", "automation"],
+  "license": "MIT",
+  "enabled": true
 }

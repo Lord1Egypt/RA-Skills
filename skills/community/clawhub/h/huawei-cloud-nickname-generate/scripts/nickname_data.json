@@ -1,0 +1,93 @@
+{
+  "styles": ["中性", "文艺", "可爱", "简约"],
+  "lengths": {
+    "short": {
+      "label": "短",
+      "min": 2,
+      "max": 3,
+      "patterns": [
+        ["core"],
+        ["prefix", "core"]
+      ]
+    },
+    "medium": {
+      "label": "中",
+      "min": 4,
+      "max": 6,
+      "patterns": [
+        ["modifier", "core"],
+        ["prefix", "modifier", "core"],
+        ["modifier", "core", "suffix"]
+      ]
+    },
+    "long": {
+      "label": "长",
+      "min": 7,
+      "max": 10,
+      "patterns": [
+        ["prefix", "modifier", "core", "suffix"],
+        ["modifier", "modifier", "core", "suffix"],
+        ["prefix", "modifier", "modifier", "core", "suffix"]
+      ]
+    }
+  },
+  "parts": {
+    "prefix": [
+      {"name": "小", "styles": ["可爱", "中性"]},
+      {"name": "阿", "styles": ["中性", "可爱"]},
+      {"name": "星", "styles": ["文艺", "中性"]},
+      {"name": "云", "styles": ["文艺", "简约", "中性"]},
+      {"name": "月", "styles": ["文艺", "中性"]},
+      {"name": "甜", "styles": ["可爱"]},
+      {"name": "软", "styles": ["可爱", "简约"]},
+      {"name": "凉", "styles": ["简约", "中性"]},
+      {"name": "青", "styles": ["文艺", "简约"]},
+      {"name": "白", "styles": ["简约", "中性"]},
+      {"name": "柒", "styles": ["文艺"]},
+      {"name": "糖", "styles": ["可爱"]}
+    ],
+    "modifier": [
+      {"name": "薄荷", "styles": ["文艺", "简约"]},
+      {"name": "星河", "styles": ["文艺", "中性"]},
+      {"name": "晚风", "styles": ["文艺", "中性"]},
+      {"name": "碎冰", "styles": ["简约", "中性"]},
+      {"name": "软糖", "styles": ["可爱"]},
+      {"name": "云间", "styles": ["文艺", "简约"]},
+      {"name": "山茶", "styles": ["文艺", "简约"]},
+      {"name": "拾光", "styles": ["文艺", "中性"]},
+      {"name": "甜心", "styles": ["可爱"]},
+      {"name": "奶昔", "styles": ["可爱"]},
+      {"name": "极简", "styles": ["简约"]},
+      {"name": "素白", "styles": ["简约", "文艺"]},
+      {"name": "清晨", "styles": ["中性", "简约"]},
+      {"name": "微光", "styles": ["文艺", "中性"]}
+    ],
+    "core": [
+      {"name": "小猫", "styles": ["可爱"]},
+      {"name": "小鹿", "styles": ["可爱", "文艺"]},
+      {"name": "鲸鱼", "styles": ["文艺", "中性"]},
+      {"name": "旅人", "styles": ["文艺", "中性"]},
+      {"name": "少年", "styles": ["中性", "简约"]},
+      {"name": "星辰", "styles": ["文艺", "中性"]},
+      {"name": "茶柚", "styles": ["简约", "文艺"]},
+      {"name": "汽水", "styles": ["可爱"]},
+      {"name": "月亮", "styles": ["文艺", "中性"]},
+      {"name": "云朵", "styles": ["文艺", "可爱"]},
+      {"name": "岛屿", "styles": ["文艺", "简约"]},
+      {"name": "微澜", "styles": ["文艺", "简约"]}
+    ],
+    "suffix": [
+      {"name": "同学", "styles": ["中性", "简约"]},
+      {"name": "大人", "styles": ["中性"]},
+      {"name": "小生", "styles": ["中性", "文艺"]},
+      {"name": "酱酱", "styles": ["可爱"]},
+      {"name": "菇凉", "styles": ["可爱"]},
+      {"name": "君上", "styles": ["文艺", "中性"]},
+      {"name": "骑士", "styles": ["文艺", "中性", "简约"]},
+      {"name": "旅店", "styles": ["文艺"]},
+      {"name": "拾荒", "styles": ["文艺", "简约"]},
+      {"name": "一梦", "styles": ["文艺"]},
+      {"name": "微凉", "styles": ["简约", "文艺"]}
+    ]
+  }
+}

@@ -1,43 +1,57 @@
-## Description: <br>
-Automation Scripts helps agents work with common local automation tasks such as batch renaming, backups, scheduled jobs, web screenshots, and data scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides automation scripts for routine tasks such as bulk file renaming, backups, scheduled execution, screenshots, and data scraping.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Developers and external users use this skill to automate repetitive local tasks, including batch file renaming, backups, scheduled commands, web screenshots, and data scraping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local automation commands may affect files outside the intended scope if source, destination, or pattern arguments are too broad. <br>
-Mitigation: Review exact paths and patterns before execution, and prefer a small test directory before running bulk rename or backup commands. <br>
-Risk: Scheduled commands can repeatedly run broad, destructive, or privacy-sensitive tasks. <br>
-Mitigation: Confirm the cron expression and command payload before scheduling, and avoid unattended jobs until their behavior is verified. <br>
-Risk: Screenshot and scraping targets may expose private data or conflict with site terms. <br>
-Mitigation: Review target URLs for privacy, authorization, and terms-of-use concerns before capturing or scraping content. <br>
+## Use Case:
 
+Developers and operators use this skill to produce routine automation commands for file renaming, backups, scheduled tasks, screenshots, and data collection.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-automation-scripts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local paths, cron expressions, URLs, and commands that depend on curl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Automation commands can change files through rename and backup workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit source and destination paths, review proposed commands before execution, and keep backups for reversible changes.
+
+Risk: Scheduled tasks can create recurring execution that persists beyond a single session.
+
+Mitigation: Confirm how scheduled jobs are created, listed, and removed before enabling schedules; avoid elevated privileges.
+
+Risk: Screenshot and scraping workflows may access external websites.
+
+Mitigation: Use only URLs you are authorized to access and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-automation-scripts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Data Extractor helps agents parse JSON, CSV, logs, and mixed text into clean structured data, including malformed, nested, and large inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from unstructured sources by parsing JSON, CSV, logs, and mixed formats into clean, usable data while handling malformed data, nested structures, and large files efficiently.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[engsathiago](https://clawhub.ai/user/engsathiago)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data practitioners use this skill to extract and clean structured information from messy JSON, CSV, logs, and mixed text for downstream analysis or transformation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated CSV or Markdown based on untrusted input can be unsafe when shared, opened in spreadsheets, or rendered.
+
+Mitigation: Escape spreadsheet formulas and Markdown syntax before sharing or rendering outputs created from third-party data or logs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, data analysts, and operations teams use this skill to extract usable structured records from messy JSON, CSV, log, and text inputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Input files and logs may contain personal, business, or confidential data. <br>
-Mitigation: Only provide sources intended for analysis and handle extracted outputs according to applicable data-handling policies. <br>
-Risk: Malformed or ambiguous inputs can produce incomplete or incorrect extracted records. <br>
-Mitigation: Validate parsed output against expected schemas and preserve original inputs until the transformation is reviewed. <br>
+**Output Format:** [Markdown guidance with Python code snippets and examples of JSON, CSV, and Markdown outputs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/data-extractor) <br>
+**Other Properties Related to Output:** [Outputs may include generated CSV or Markdown from parsed data; escape untrusted values before sharing or rendering.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and structured JSON, CSV, and table examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parsing patterns, cleaning steps, validation guidance, and example transformed data.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

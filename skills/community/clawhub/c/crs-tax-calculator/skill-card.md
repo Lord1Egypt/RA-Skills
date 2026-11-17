@@ -1,42 +1,55 @@
-## Description: <br>
-CRS境外补税计算工具 - 上传券商月结单PDF/Excel，AI自动解析交易数据，FIFO/ACB成本法计算资本利得，生成Excel税务审计底稿。支持多文件年度汇总。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CRS Tax Calculator helps an agent submit brokerage statements to a remote tax-calculation service, calculate capital gains with FIFO or ACB methods, and generate Excel tax audit workbooks.
 
-## Publisher: <br>
-[Halleymagic](https://clawhub.ai/user/Halleymagic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halleymagic](https://clawhub.ai/user/halleymagic)
 
-## Use Case: <br>
-External users and tax preparers use this skill to process brokerage statements for China CRS back-tax calculations or Canada CRA capital-gains reporting. It guides the agent to configure an API key, run the bundled audit script, and summarize generated Excel audit workbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends complete tax or brokerage documents to a remote third-party API, and server evidence rates the release suspicious because disclosure and consent controls are incomplete. <br>
-Mitigation: Use only with documents the user is authorized to share; confirm the API destination, retention policy, logged metadata, and API-key handling before submitting files. <br>
+## Use Case:
 
+External users and agents use this skill to process annual brokerage statement files for China CRS supplementary tax calculations or Canada CRA tax reporting. The skill uploads PDF, Excel, CSV, or image statements to the provider service and returns concise audit results plus generated Excel workbooks.
 
-## Reference(s): <br>
-- [CRS Tax Calculator on ClawHub](https://clawhub.ai/Halleymagic/crs-tax-calculator) <br>
-- [Publisher profile: Halleymagic](https://clawhub.ai/user/Halleymagic) <br>
-- [CRS API homepage](https://wealthlplantation.com/api) <br>
-- [CRS API process endpoint](https://api.wealthlplantation.com/api/process) <br>
-- [Pricing](https://wealthlplantation.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, Excel files, text] <br>
-**Output Format:** [Markdown guidance with bash commands and generated Excel audit workbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CRS_API_KEY and python3; processes PDF, Excel, CSV, PNG, and JPG brokerage statement files through a third-party API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.0 (source: frontmatter and server release metadata) <br>
+Risk: The remote API can control generated output filenames, which may overwrite user-owned files outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill as a least-privileged user in an empty dedicated output directory until output filename handling is fixed.
+
+Risk: The skill uploads brokerage statements and uses CRS_API_KEY with the wealthlplantation.com service.
+
+Mitigation: Install and run it only if the user trusts wealthlplantation.com with full brokerage statements and the API key.
+
+## Reference(s):
+
+- [CRS Tax Calculator ClawHub listing](https://clawhub.ai/halleymagic/skills/crs-tax-calculator)
+- [WealthLPlantation API homepage](https://wealthlplantation.com/api)
+- [WealthLPlantation pricing](https://wealthlplantation.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and CRS_API_KEY; generated Excel filenames are returned by the remote service.]
+
+## Skill Version(s):
+
+3.4.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

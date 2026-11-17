@@ -1,0 +1,94 @@
+# packs/opc.yaml — One Person Company industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `opc.zh.yaml`.
+# Positioning: first reference implementation pack. Industry-specific entities / departments /
+# workflows are defined here; the base semantic layer comes from semantic.yaml. Base entities are
+# not redefined (follows template/instance separation + the packs extension contract).
+
+meta:
+  pack_id: opc
+  display_name: One Person Company
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [one person company, OPC, sole proprietor, sole ownership, individual-owned, micro enterprise, one-person business, single-member LLC]
+  description: >
+    For a limited liability company held by a single natural person with no (or very few) employees.
+    The legal representative and sole shareholder are the same person; tax and compliance are
+    relatively simple, making this the smallest complete slice for validating the four-layer
+    skeleton plus guided instantiation.
+
+# ── 1. Industry-specific entities (not covered by the base layer; types and relations must be explicit) ──
+# The core of a one-person company is "the owner is simultaneously the legal representative and the
+# sole shareholder", expressed with the base Person/Organization. Only derived views specific to the
+# OPC context are added here; no redundant entities are introduced.
+entities_extra:
+  - type: SoleProprietorView
+    extends: Person
+    note: "The legal representative is also the sole shareholder, role bound to owner (see roles.yaml); no separate shareholder entity"
+  - type: OpcTaxProfile
+    extends: Account
+    properties:
+      - { name: entity_type, type: enum, enum: [one-person LLC, sole proprietorship], required: true }
+      - { name: tax_category, type: enum, enum: [corporate income tax, individual business income tax], required: true }
+      - { name: region, type: string, example: "Heping District, Tianjin" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+
+# ── 2. Recommended departments (all 12 from department_actions) ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+
+# ── 3. Default workflow (references opc_build in logic.yaml) ──
+default_workflow: opc_build
+workflow_bindings:
+  opc_build:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [order intake, delivery, invoicing, bookkeeping, tax filing, review]
+
+# ── 4. Localization policy hooks (references compliance red lines in decision.yaml) ──
+policy_hooks:
+  region: Tianjin
+  reg_city: Heping District
+  redline_refs:
+    - compliance_redlines.tax                # invoices / tax certificates never stored in plain text; tax filing requires owner confirmation
+    - compliance_redlines.social_security    # no social insurance reduction for the legal representative personally
+    - compliance_redlines.company_reg        # a registered desk address is not a physical office
+  local_services:
+    - { name: Tiankai Heping Park · Model Innovation Community, note: "OPC-exclusive service package (the 'five ones'); if the registered carrier is not in the community, proactively confirm onboarding conditions" }
+    - { name: Heping District Tax Bureau, Nan Yingmen Office, note: "Competent tax authority" }
+
+# ── 5. Layer-B flavor (injected into personas as "industry red lines", keyed by department name, default as fallback) ──
+flavor:
+  default: >-
+    You serve a one-person limited liability company where the legal representative is also the sole
+    shareholder; the property-independence red line must be strictly observed (otherwise unlimited
+    joint liability may apply). Major operations such as invoicing, tax filing and contract signing
+    require second confirmation by the owner. Public business registration data such as the Unified
+    Social Credit Code may be recorded, but personal ID numbers, bank cards, social security numbers
+    and invoice images are PII and must never be stored in plain text.
+  finance: Confirm small-scale taxpayer status early to lock in preferences; invoicing → bookkeeping → filing must become an SOP; separate personal and corporate accounts as early as possible.
+  legal: A registered/co-working desk address is not a physical office — external disclosures must stay consistent; under the new Company Law a one-person company needs an even stronger evidence chain of property independence.
+  hr: The legal representative personally gets no special social insurance reduction; hiring employees can qualify for a 25% individual-contribution subsidy (valid through 2026-12-31).
+  strategy: Tianjin Heping District offers OPC-exclusive services at Tiankai Heping Park · Model Innovation Community; if the registered carrier is not in the community, proactively confirm onboarding conditions.
+
+# ── 6. Instantiation prompts (fill-in-the-blank items shown to the user during GUIDE onboarding) ──
+instance_prompts:
+  - "Please describe the enterprise type and legal form (one-person LLC / sole proprietorship)"
+  - "Please introduce the enterprise (industry, region, registration information, Unified Social Credit Code)"
+  - "Which departments do you want to build (all 12 by default, can add or remove)"
+  - "Core business logic (e.g. order intake → delivery → invoicing → bookkeeping → tax filing)"
+  - "Owner profile (decision style / risk appetite / communication tone / delegation boundaries / form of address / taboos)"
+  - "Company culture and brand tone, current stage and core product, customer types and tool stack"

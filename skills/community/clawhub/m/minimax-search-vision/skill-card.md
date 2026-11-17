@@ -1,45 +1,59 @@
-## Description: <br>
-MiniMax Search & Vision lets an agent run web searches and analyze images through the MiniMax Token Plan MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Search & Vision enables agents to search the web and analyze images through MiniMax Token Plan MCP tools.
 
-## Publisher: <br>
-[xiaolongliu1988](https://clawhub.ai/user/xiaolongliu1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaolongliu1988](https://clawhub.ai/user/xiaolongliu1988)
 
-## Use Case: <br>
-Developers and agent users use this skill to add MiniMax-backed web search and image understanding to an agent. It supports search-result retrieval and prompt-based analysis of HTTP/HTTPS image URLs or local image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, internal URLs, screenshots, local images, and other submitted content may be processed by the external MiniMax service. <br>
-Mitigation: Avoid confidential inputs unless external MiniMax processing is acceptable for the use case. <br>
-Risk: MiniMax API credentials could be exposed if stored or logged carelessly. <br>
-Mitigation: Use a scoped MiniMax API key, keep the credential file private, and rely on environment variables or the documented private credential file. <br>
-Risk: The skill depends on MiniMax, mcporter, and the MCP package it runs. <br>
-Mitigation: Install and use the skill only when those third-party services and packages are trusted for the deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to add MiniMax-backed web search and image understanding to an agent workflow. It is useful when an agent needs current search results, related search suggestions, or analysis of image URLs and local image files.
 
-## Reference(s): <br>
-- [MiniMax Platform](https://platform.minimaxi.com) <br>
-- [MiniMax API Reference](references/minimax_api.md) <br>
-- [Token Plan MCP Documentation](https://platform.minimaxi.com/docs/guides/token-plan-mcp-guide.md) <br>
-- [MiniMax API Overview](https://platform.minimaxi.com/docs/api-reference/api-overview.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search or vision results with Markdown/plain-text guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key and mcporter; image inputs support HTTP/HTTPS URLs or local files up to 20 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release depends on unpinned external mcporter and MiniMax MCP packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review external dependency versions before deployment, and install only in environments where that supply-chain exposure is acceptable.
+
+Risk: The scripts pass a broad local environment to external MCP tooling.
+
+Mitigation: Run with a narrowed environment containing only required MiniMax variables and avoid unrelated secrets in the execution context.
+
+Risk: Search queries, screenshots, private images, and local image files may be sent to external MiniMax services.
+
+Mitigation: Avoid sensitive queries and private images unless the data handling terms are approved for the intended use.
+
+## Reference(s):
+
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [MiniMax Token Plan MCP Guide](https://platform.minimaxi.com/docs/guides/token-plan-mcp-guide.md)
+- [MiniMax API Reference](artifact/references/minimax_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results and Markdown guidance with inline Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search returns result lists and related searches; image understanding returns structured analysis or raw model output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

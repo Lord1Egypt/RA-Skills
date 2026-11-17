@@ -1,47 +1,65 @@
-## Description: <br>
-Helps optimize publishable content for AI citation readiness across ChatGPT, Perplexity, Google AI Overviews, Gemini, Claude, and related answer surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes existing content for AI citation readiness across ChatGPT, Perplexity, AI Overviews, Gemini, Claude, and Copilot.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-Content, SEO, and marketing practitioners use this skill to audit and rewrite content so it is clearer, more quotable, better sourced, and easier for AI answer systems to cite. It can also produce AI Overview recovery plans for pages that lost click-through traffic after answer blocks appeared. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to activate for general AI-content requests where GEO optimization is not intended. <br>
-Mitigation: Confirm that the task is specifically about GEO, AI citation readiness, or AI-search visibility before applying the optimization workflow. <br>
-Risk: The artifact's platform-specific citation patterns are heuristic and may become stale. <br>
-Mitigation: Validate platform-specific claims with dated observations and current sources before publishing optimized content. <br>
+## Use Case:
 
+Marketing, SEO, and content teams use this skill to audit and transform existing content for AI-generated answer and citation surfaces. It produces GEO analysis, implementation-ready content changes, schema guidance, and handoff notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/geo-content-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/aaron-he-zhu) <br>
-- [Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Instructions Detail](references/instructions-detail.md) <br>
-- [GEO Optimization Techniques](references/geo-optimization-techniques.md) <br>
-- [AI Citation Patterns](references/ai-citation-patterns.md) <br>
-- [Quotable Content Examples](references/quotable-content-examples.md) <br>
-- [AI Overview Recovery Playbook](references/ai-overview-recovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with optional structured tables, JSON-LD snippets, schema examples, and handoff summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing content transformations, GEO analysis scores, implementation-ready recommendations, and reusable content summaries when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill asks for persistent memory updates that may store confidential launches, private URLs, client names, or sensitive campaign terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where memory writes are acceptable, confirm exactly what will be saved, and avoid entering confidential or client-sensitive material unless approved.
+
+Risk: The optional Tavily AI-citation probe can send a target query or URL to an external service.
+
+Mitigation: Skip the probe unless sharing that query or URL externally is acceptable; use provided evidence or local review instead when external sharing is not approved.
+
+Risk: The security scan reports that memory writes and the external Tavily probe are not clearly covered by the lite manifest.
+
+Mitigation: Review the behavior before installing and constrain use to the capabilities and data handling posture approved for the workspace.
+
+## Reference(s):
+
+- [Geo Content Optimizer on ClawHub](https://clawhub.ai/aaron-he-zhu/skills/geo-content-optimizer)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Instructions Detail](references/instructions-detail.md)
+- [GEO Optimization Techniques](references/geo-optimization-techniques.md)
+- [AI Citation Patterns](references/ai-citation-patterns.md)
+- [AI Overview Recovery Playbook](references/ai-overview-recovery.md)
+- [Medium and GitHub as AI-Citation Surfaces](references/medium-github-surfaces.md)
+- [Quotable Content Examples](references/quotable-content-examples.md)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional JSON-LD, HTML/schema snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes GEO analysis, before/after scores, AI Query Coverage, self-check results, and an optional memory handoff summary.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

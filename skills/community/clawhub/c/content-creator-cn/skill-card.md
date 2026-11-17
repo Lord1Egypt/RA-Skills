@@ -1,42 +1,54 @@
-## Description: <br>
-中文内容创作助手 - 一键生成掘金/知乎/公众号/小红书风格文章。适合：内容创作者、自媒体运营。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文内容创作助手 - 一键生成掘金/知乎/公众号/小红书风格文章。适合：内容创作者、自媒体运营。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to draft, adapt, and optimize Chinese-language posts for platforms such as Juejin, Zhihu, WeChat public accounts, Xiaohongshu, and Weibo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may contain factual errors or unsupported claims. <br>
-Mitigation: Review factual statements, data, and examples before publishing. <br>
-Risk: Generated drafts may include copyrighted, uncited, or platform-sensitive wording. <br>
-Mitigation: Check citations, copyright status, platform rules, and sensitive terms before publication. <br>
-Risk: Platform-specific style guidance may not match the user's brand voice or campaign constraints. <br>
-Mitigation: Edit drafts against the intended audience, brand guidelines, and channel requirements. <br>
+## Use Case:
 
+External content creators and social media operators use this skill to draft, adapt, and format Chinese-language posts for Juejin, Zhihu, WeChat public accounts, Xiaohongshu, and Weibo.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/content-creator-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text and platform-specific content drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific outlines, SEO suggestions, hashtags, source reminders, and publishing-readiness notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release evidence) <br>
+Risk: Generated posts may contain inaccurate, uncited, or insufficiently original claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content for accuracy, originality, and citations before publishing.
+
+Risk: Generated content may miss platform rules, sensitive-term restrictions, or image copyright requirements.
+
+Mitigation: Check each draft against the target platform's publishing rules, sensitive terms, and image rights before release.
+
+## Reference(s):
+
+- [Content Creator Cn Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/content-creator-cn)
+- [yang1002378395-cmyk Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and plain text content templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include platform-specific article structures, rewrite suggestions, SEO guidance, hashtags, and image suggestions.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

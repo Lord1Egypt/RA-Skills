@@ -1,44 +1,60 @@
-## Description: <br>
-Integrate RTK (Rust Token Killer) to reduce LLM token consumption by 60-90% on shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates RTK (Rust Token Killer) so agents can install RTK, check token savings, and use rtk-prefixed shell commands to reduce shell-output tokens before they enter the context window.
 
-## Publisher: <br>
-[DavydenkovM](https://clawhub.ai/user/DavydenkovM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davydenkovm](https://clawhub.ai/user/davydenkovm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install RTK, configure command filtering, and guide agents to use rtk-prefixed shell commands for lower context-window and token usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup path can run unpinned remote installation code and modify shell startup files. <br>
-Mitigation: Prefer Homebrew or a pinned, reviewed RTK release; review any shell profile changes before relying on the installed environment. <br>
-Risk: RTK filtering can hide complete command output needed for commits, pushes, installs, failures, or security-sensitive debugging. <br>
-Mitigation: Use raw commands when full output is required, especially for security review, failing commands, or operations where exact output affects the decision. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install RTK, configure command filtering, check token savings, and guide agents to use RTK-wrapped shell commands during development workflows.
 
-## Reference(s): <br>
-- [RTK Integration on ClawHub](https://clawhub.ai/DavydenkovM/rtk-integration) <br>
-- [RTK Command Reference](references/commands.md) <br>
-- [RTK Configuration Guide](references/config.md) <br>
-- [RTK GitHub Repository](https://github.com/rtk-ai/rtk) <br>
-- [RTK Releases](https://github.com/rtk-ai/rtk/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash and TOML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance favors compressed RTK command output and may omit full raw command details unless explicitly needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The setup flow can run an unverified remote installer and add RTK to the user's PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer a pinned and checksum-verified release or package-manager installation, and confirm shell profile changes.
+
+Risk: RTK can mediate broad shell activity and optional global hooks can alter how future commands are handled.
+
+Mitigation: Avoid global hooks until their behavior is understood, and initially limit RTK usage to read-only or low-risk commands.
+
+Risk: Compressed command output can omit details needed for debugging or review.
+
+Mitigation: Run commands without RTK when full raw output is required or when investigating unclear failures.
+
+## Reference(s):
+
+- [RTK Command Reference](references/commands.md)
+- [RTK Configuration Guide](references/config.md)
+- [RTK Releases](https://github.com/rtk-ai/rtk/releases)
+- [ClawHub Skill Page](https://clawhub.ai/davydenkovm/skills/rtk-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and TOML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose installing RTK, updating PATH, initializing optional hooks, and prefixing future shell commands with rtk.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

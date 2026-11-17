@@ -46,9 +46,17 @@ AI 会：
 
 ## 关于作者
 
-💡 更多实用 AI 效率工具和技能，关注公众号「桂皮AI实战」
+**桂皮 Guipi** — AI Agent 开发者 · 超级个体践行者
+专注 AI 效率工具与一人公司方法论，帮普通人用 AI 成为超级个体
 
-📱 加入自媒体&AI 副业变现交流群：https://e418e2e692454bfaa8b6206e3f0ba789.app.codebuddy.work
+| 平台 | 账号 |
+|------|------|
+| 📱 小红书 | [桂皮AI实战](https://www.xiaohongshu.com/user/profile/5a409dda44363b313b9d7e15) |
+| 🎬 抖音 | [桂皮AI实战](https://v.douyin.com/QJRjHGAtrvA/) |
+| 📺 视频号 | 微信内搜「桂皮AI实战」|
+| 💬 公众号 | 微信搜「桂皮AI实战」|
+| 🐙 GitHub | [guipi888](https://github.com/guipi888) |
+| 💬 微信 | guipi996（注明来意）|
 
 ## License
 

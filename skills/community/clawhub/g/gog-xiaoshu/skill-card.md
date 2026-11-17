@@ -1,43 +1,58 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[xiaomaju-888](https://clawhub.ai/user/xiaomaju-888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomaju-888](https://clawhub.ai/user/xiaomaju-888)
 
-## Use Case: <br>
-Developers and power users use this skill to operate Google Workspace resources through the gog CLI, including Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows. It is useful for scripted account setup, search, export, and data update tasks after OAuth configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth setup can grant access to sensitive Google Workspace data. <br>
-Mitigation: Grant only the Google services needed for the task and review the account configuration before use. <br>
-Risk: Commands can send email, create calendar events, or change and clear spreadsheet data. <br>
-Mitigation: Require confirmation before running write-capable commands and prefer --json plus --no-input for scripted read workflows. <br>
-Risk: The skill depends on the external gog CLI and its Homebrew source. <br>
-Mitigation: Install only from a trusted gog CLI distribution and verify the Homebrew tap before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to work with Google Workspace services through the gog CLI, including mail, calendar, files, contacts, Sheets, and Docs tasks after OAuth setup.
 
-## Reference(s): <br>
-- [gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaomaju-888/gog-xiaoshu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JSON output modes when the gog CLI supports --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill asks users to install an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the gogcli source and Homebrew formula before installing, and pin or otherwise control the installed package in managed environments.
+
+Risk: OAuth setup can grant broad Google Workspace access, including sensitive read and write operations.
+
+Mitigation: Authorize only the Google services needed for the task and revoke the OAuth grant when the tool is no longer needed.
+
+Risk: Some examples send email, create calendar events, or modify Sheets data.
+
+Mitigation: Confirm state-changing commands before execution and prefer --json plus --no-input for scripted workflows.
+
+## Reference(s):
+
+- [Gog CLI homepage](https://gogcli.sh)
+- [Gog Xiaoshu on ClawHub](https://clawhub.ai/xiaomaju-888/skills/gog-xiaoshu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup notes and examples; gog commands may emit JSON when run with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

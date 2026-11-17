@@ -1,44 +1,61 @@
-## Description: <br>
-Helps agents prepare and submit PoYo Kling Avatar 2.0 audio-driven avatar video jobs, then explain polling or webhook follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kling Avatar 2.0 video generation on PoYo via the PoYo submit API, including model selection, payload preparation, polling guidance, webhook guidance, and optional trusted-shell submission.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and operators use this skill to configure PoYo Kling Avatar 2.0 standard or pro jobs with one avatar image, one driving audio URL, optional prompt guidance, and optional webhook handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POYO_API_KEY could be exposed if included in browser code, repositories, logs, screenshots, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager and avoid echoing it in generated examples or live output. <br>
-Risk: Avatar images, audio URLs, prompts, or callback URLs may contain private or confidential information sent to PoYo or a callback receiver during live submissions. <br>
-Mitigation: Submit private media, prompts, and callback URLs only when the user trusts PoYo and the callback receiver, and avoid logging sensitive URLs. <br>
-Risk: Live generation requests may incur provider costs or be subject to provider terms. <br>
-Mitigation: Confirm user intent, provider terms, and expected costs before making live API calls. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo Kling Avatar 2.0 avatar-video requests from one reference image and one driving audio URL, then submit or explain follow-up polling and webhook handling.
 
-## Reference(s): <br>
-- [PoYo Kling Avatar 2.0 API Manual](https://docs.poyo.ai/api-manual/video-series/kling-avatar-2-0) <br>
-- [PoYo Kling Avatar 2.0 Model Page](https://poyo.ai/models/kling-avatar-2-0) <br>
-- [API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payloads and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the selected model id, payload summary, task_id after live submission, and the next polling or webhook step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: POYO_API_KEY can be exposed if copied into browser code, logs, repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid echoing it in generated examples or command output.
+
+Risk: Avatar images, driving audio, prompts, and callback URLs may contain private or sensitive data sent to PoYo or a callback receiver.
+
+Mitigation: Review the payload before submission and use private likenesses, confidential audio, private prompts, or private callback URLs only when the user trusts PoYo and the callback receiver.
+
+Risk: The helper script can make a live PoYo API request when run with a payload and valid API key.
+
+Mitigation: Run the script only after explicit user intent, from a trusted shell, with a reviewed JSON payload.
+
+## Reference(s):
+
+- [PoYo Kling Avatar 2.0 API Reference](references/api.md)
+- [PoYo Kling Avatar 2.0 model page](https://poyo.ai/models/kling-avatar-2-0)
+- [PoYo Kling Avatar 2.0 API docs](https://docs.poyo.ai/api-manual/video-series/kling-avatar-2-0)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-kling-avatar-2-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/coolhackboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON payloads, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model id, payload summary, media roles, optional prompt guidance, returned task_id, and next-step polling or webhook guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

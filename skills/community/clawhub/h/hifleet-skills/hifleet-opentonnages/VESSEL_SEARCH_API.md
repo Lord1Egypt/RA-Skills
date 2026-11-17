@@ -25,12 +25,11 @@ Resolve: `hifleet_charter_api_base` → `HIFLEET_CHARTER_API_BASE` → default.
 
 ## Port ID (when user names a port)
 
-Before filtering by load/open port:
+Before filtering by open/load/discharge port, resolve **`params.portid`** (and cargo **`params.dischargingPortid`**) via **`GET {liner}/ports/suggest`** only — see **`references/charter_port_suggest.md`**.
 
-1. **Port guide** (recommended): `GET https://api.hifleet.com/portguide/getPort/token?api_key=...&portName=...` → **`portCode`** / list `piuid` as needed (see `hifleet-skills/references/port_api.md`).
-2. **Liner suggest** (fallback): `GET {liner}/ports/suggest` from **`hifleet-schedule`** if port guide misses.
+**Do not** use `portguide/getPort/token` for this skill.
 
-Put resolved ID in **`params.portid`** or **`params.openPort`** per API behaviour.
+Put resolved **`portId`** in **`params.portid`** / **`params.dischargingPortid`**. Text port name in **`params.openPort`** only when API accepts name filter without id.
 
 ---
 
@@ -82,12 +81,83 @@ Put resolved ID in **`params.portid`** or **`params.openPort`** per API behaviou
 | `params.openDateStart` / `openDateEnd` | no | OPEN window (`yyyy-MM-dd`) |
 | `filterLabels` | no | Label filters from response **`stat`** (values mean **exclude** that bucket — see destination API pattern) |
 
-**Response**: **`total`**, **`stat`**, **`data[]`**. Typical fields: ship name, DWT, type, OPEN port/dates, `imo`, `tags`, **`id`**, owner/contact (often **masked** in list).
+**Response**: **`total`**, **`stat`**, **`data[]`**.
 
-**Output rules**:
+### Response envelope
 
-- Show **all non-empty non-sensitive** fields + **record `id`** per **`WORKFLOW_OUTPUT.md`**.
-- **Do not** present masked owner/phone/email as real data.
+| Field | Meaning |
+|-------|---------|
+| `total` | Matches after filters (must paginate until all rows fetched — **`FULL_LIST_POLICY.md`**) |
+| `stat` | Facet buckets for UI filters / `filterLabels` (see below) |
+| `data[]` | Vessel rows — **every non-empty, non-masked field must be showable** (full catalog below) |
+
+### `stat` dimensions (use labels for `filterLabels`)
+
+Each key has `total`, `label` (or `grouplabel`), and `statistics[]` with `label` / `count` / `countFilter` / `filter`.
+
+| Key | Meaning |
+|-----|---------|
+| `dwt` | DWT buckets |
+| `vesselAge` | Age buckets |
+| `sjdraught` | Design draught buckets |
+| `portRegion` | OPEN region |
+| `openDateDays` | OPEN date windows |
+| `type` | Ship type |
+| `holdCapacityCbm` | Hold capacity (m³) |
+| `openType` | Fixture type (SPOT / TCT / PERIOD / …) |
+| `tags` | Tag labels (Geared, Gearless, MPP, …) |
+
+When applying `filterLabels`, values mean **exclude** that bucket (same pattern as destination search).
+
+### `data[]` field catalog (show all non-empty unless marked sensitive)
+
+**Mandatory identity** (always surface when present):
+
+| Field | Notes |
+|-------|--------|
+| **`id`** | Record id — required for contact fetch; never omit |
+| `ShipName` / `particularShipName` | Vessel name(s); prefer `ShipName`, show both if differ |
+| `imo` / `mmsi` / `callsign` | Identifiers |
+| `type` / `minotype` / `dwtLabel` | Type / subtype / DWT class label |
+| `dwt` / `GrossTonnage` / `LENGTH` / `width` / `sjdraught` | Size & draught |
+| `YearOfBuild` / `vesselAge` | Build year / age |
+| `flagname` / `flagnameCN` / `flagcode` | Flag |
+| `tags[]` | `{label, color}` — show **labels**; color optional |
+| `openPort` / `portname` / `cnportname` / `portRegion` / `portid` | OPEN position (text + ids when present) |
+| `openDate` / `openEndDate` / `openDateDays` / `openEndDateDays` / `openType` / `duration` | OPEN / laycan window |
+| `eta` / `destination` / `openPortEta` | ETA / AIS destination hints |
+| `lat` / `lon` / `countrycodelrf` | Position / LRF country when present |
+| `dist` / `dischargingDist` / `dischargingPortid` | Distance / discharge filters when present |
+| `holdCapacityCbm` / `holdsCount` / `hatchSize` / `hatchCoverType` | Holds / hatch |
+| `isGeared` / `craneType` / `craneCount` / `craneCapacityTon` / `cargoEquipment` / `deckStrength` / `reeferPlugs` / `sprinklerSystem` / `dgApproved` / `imoEquipmentClass` / `fuelType` / `speedKnots` | Gear & outfit |
+| `tradingArea` / `group` | Trading / group |
+| `Shipbuilder` | Yard |
+| `isPublic` / `isDuplicate` / `isOwner` / `senderFlag` | Listing meta |
+| `purchased` / `requireUnLock` | Contact entitlement flags (drive unlock UX; do **not** say 「解锁」) |
+| `receivedTime` | Source mail time |
+| `matchCount` / `matcheIds` / `shipCargoMatchBo` | Cargo-match hints when non-empty |
+| `operator` / `registeredOwner` / `shipManager` / `vesselOwner` | Company names — show only if **not** masked (`******`); still **not** a substitute for contact unlock |
+
+**Sensitive / contact-related** (list API often returns `******` or redacted HTML — **do not** treat as real values; show after **`CONTACT_API.md`** only):
+
+| Field | Notes |
+|-------|--------|
+| `senderName` / `senderEmail` | Masked until unlock |
+| `senderInfoList[]` | `senderName`, `senderEmail`, `telephone`, `instantMessaging`, `receivedTime`, `id`, `userId` — masked until unlock |
+| `emailBody` | Often asterisk / redacted HTML — omit when empty or only `*` / noise |
+| `userId` | Internal; omit unless debugging |
+
+**Nested structures**:
+
+- `tags`: list of `{ "label": "Gearless", "color": "#FFDBEE" }` → display labels.
+- `shipCargoMatchBo`: `{ count, ids, matched }` → show when useful (`count` / `matched`).
+- `senderInfoList`: contacts; default list = masked.
+
+**Output rules** (see also **`WORKFLOW_OUTPUT.md`**):
+
+- Show **every non-empty, non-sensitive field** from the catalog above + **record `id`**. Do **not** summarize down to only name/DWT/OPEN and drop the rest.
+- Null / `"-"` / empty string / empty arrays may be omitted.
+- **Do not** present masked owner/phone/email/`******` as real data.
 - After list, **guide** user to request contacts by **record id** or **all** — see **`CONTACT_API.md`**.
 
 ---

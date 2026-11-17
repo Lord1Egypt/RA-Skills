@@ -1,41 +1,54 @@
-## Description: <br>
-Provides Chinese and English market analysis services for market trends, competitor analysis, user behavior insights, and deep analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+市场分析服务 | Market Analysis Service. 企业市场趋势分析 | Enterprise market trend analysis. 竞品分析 | Competitor analysis. 用户行为洞察 | User behavior insights. 触发词：市场分析、竞品分析、market analysis、趋势.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External users and business teams use this skill to request paid market trend, competitor, user behavior, and deep analysis reports for decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the skill unintentionally. <br>
-Mitigation: Use the skill only when the user explicitly requests market, competitor, trend, or user behavior analysis. <br>
-Risk: Analysis requests may consume paid quota or require payment. <br>
-Mitigation: Confirm the selected service tier and expected cost before running analyses. <br>
+## Use Case:
 
+External users and business analysts use this skill to request China-oriented market trend, competitor, user behavior, and deep analysis reports for business decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/market-analysis-cn-jarvis) <br>
-- [Publisher profile](https://clawhub.ai/user/bingze00000) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe paid service tiers and analysis request details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and _meta.json) <br>
+Risk: Users may share confidential business or market data with a third-party skill provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data appropriate for the provider relationship and avoid confidential inputs unless payment and data handling expectations are clear.
+
+Risk: Generated market analysis may be incomplete, outdated, or misleading for business decisions.
+
+Mitigation: Review the analysis against trusted market sources and internal business context before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/market-analysis-cn-jarvis)
+- [ClawHub publisher profile](https://clawhub.ai/user/bingze00000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market trends, market size, growth forecasts, competitor analysis, SWOT analysis, user behavior insights, strategic recommendations, action plans, and pricing information.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

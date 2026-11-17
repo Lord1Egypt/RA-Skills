@@ -1,41 +1,52 @@
-## Description: <br>
-Smart travel planner - custom itineraries with budget, route optimization, and contingency plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart travel planner - custom itineraries with budget, route optimization, and contingency plans.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Travelers and travel planners use Route Weaver to generate day-by-day itineraries from destination, trip length, budget, party type, interests, pace, and dietary needs. The skill helps compare budget, comfort, and luxury options with routing, budget allocation, contingency plans, packing checklists, and export-ready summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated PDFs, calendar files, and shareable summaries may include sensitive travel dates, lodging, routines, party details, or emergency contacts.
+
+Mitigation: Review and redact itinerary exports before sharing them externally.
+
+Risk: The skill may ask an agent to research trip details online before producing recommendations.
+
+Mitigation: Confirm what information will be researched and avoid providing unnecessary personal or sensitive travel details.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use Route Weaver to create customized travel itineraries from destination, trip length, budget, party type, pace, interests, and dietary needs. It produces day-by-day plans with routing, budget allocation, contingency options, packing checklists, and export-oriented summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Travel details such as opening hours, ticket prices, transport schedules, restaurant availability, and weather can change after an itinerary is generated. <br>
-Mitigation: Verify time-sensitive travel details before booking or traveling. <br>
-Risk: Exported or shared itineraries may include sensitive personal trip details. <br>
-Mitigation: Avoid including sensitive personal information in exported or shared itineraries unless the destination for that data is trusted. <br>
+**Output Format:** [Markdown or structured travel-planning text with itinerary exports such as PDF, shareable summaries, and calendar import details when requested.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Route Weaver on ClawHub](https://clawhub.ai/harrylabsj/route-weaver) <br>
-- [Publisher profile: harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+**Other Properties Related to Output:** [May include multi-version itinerary options, daily timelines, budget estimates, transport suggestions, packing checklists, and contingency plans.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown itinerary with structured daily schedules, budget breakdowns, checklists, and export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include up to three itinerary versions: budget, comfort, and luxury.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

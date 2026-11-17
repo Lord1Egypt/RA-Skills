@@ -10,7 +10,7 @@ from runtime_bootstrap import ensure_runtime
 
 ensure_runtime(["requests", "ddddocr", "PIL"])
 
-from oa_utils import build_session, load_credentials, login, query_time_entries, resolve_base_url, state_to_text
+from oa_utils import OAAuth, load_credentials, query_time_entries, resolve_base_url, state_to_text
 
 DEFAULT_CREDS = os.path.expanduser("~/.openclaw/workspace/memory/sn-work-record-credentials.md")
 
@@ -21,6 +21,7 @@ def main():
     parser.add_argument("--fill-date", dest="fill_date_flag", help="查询日期，格式 YYYY-MM-DD")
     parser.add_argument("--credentials", default=DEFAULT_CREDS)
     parser.add_argument("--base-url", dest="base_url", default=None)
+    parser.add_argument("--token", default=None, help="复用已有 OA token，跳过登录（配合 sn_oa_login.py 的 agent 识别流程）")
     parser.add_argument("--json", action="store_true", help="输出原始 JSON")
     args = parser.parse_args()
 
@@ -32,12 +33,10 @@ def main():
         username, password, base_url = load_credentials(args.credentials)
         base_url = resolve_base_url(base_url, args.base_url)
 
-        print("正在登录 OA 系统...", file=sys.stderr)
-        token = login(username, password, base_url)
+        auth = OAAuth(base_url, username, password, args.token)
 
         print(f"正在查询 {fill_date} 的工时...", file=sys.stderr)
-        session = build_session(token)
-        items, result = query_time_entries(session, base_url, fill_date)
+        items, result = auth.call(lambda s: query_time_entries(s, base_url, fill_date))
 
         if args.json:
             print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -1,49 +1,68 @@
-## Description: <br>
-Provides guidance for using the sorftime-cli package to call Sorftime ecommerce data APIs across Amazon, Shopee, and Walmart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sorftime helps agents generate sorftime-cli commands and scripts for Amazon, Shopee, and Walmart ecommerce data APIs, including product, keyword, category, review, subscription, and monitoring workflows.
 
-## Publisher: <br>
-[zhangfaguo](https://clawhub.ai/user/zhangfaguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangfaguo](https://clawhub.ai/user/zhangfaguo)
 
-## Use Case: <br>
-Developers, ecommerce operators, and data analysts use this skill to install and authenticate sorftime-cli, then compose CLI calls for bulk product, category, keyword, monitoring, account, and cross-platform analytics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Sorftime Account-SK credentials for authenticated API access. <br>
-Mitigation: Protect the Account-SK like a password, keep it out of shared logs or prompts, and verify the active profile before issuing commands. <br>
-Risk: Account-changing commands can delete profiles or monitoring subscriptions. <br>
-Mitigation: Require explicit user confirmation before deletions, subscription changes, or other account-state changes. <br>
-Risk: High-volume requests, monitoring subscriptions, and image uploads may consume paid credits or account quota. <br>
-Mitigation: Confirm the intended volume and check request or credit balance before running batch, monitoring, upload, or recurring workflows. <br>
+## Use Case:
 
+Developers, data analysts, and ecommerce operators use this skill to compose repeatable Sorftime CLI workflows for marketplace research, batch product and keyword lookup, review collection, and monitoring across Amazon, Shopee, and Walmart.
 
-## Reference(s): <br>
-- [Sorftime CLI quick reference](README.md) <br>
-- [Sorftime CLI skill guide](SKILL.md) <br>
-- [Common CLI reference, domain table, and error codes](resources/_common.md) <br>
-- [Account management endpoints](resources/account.md) <br>
-- [Amazon workflow recipes](resources/amazon-recipes.md) <br>
-- [Sorftime CLI GitHub repository](https://github.com/sorftime/sorftime-cli) <br>
-- [sorftime-cli npm package](https://www.npmjs.com/package/sorftime-cli) <br>
-- [Sorftime CLI account setup](https://www.sorftime.com/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint names, domain IDs, JSON request payloads, and credential-handling reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release metadata) <br>
+Risk: Credential exposure through API keys, Account-SK values, active profiles, shell history, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified sorftime-cli release, avoid placing real keys directly in commands, prefer secured secret storage, and confirm the active profile with whoami before requests.
+
+Risk: Remote account or marketplace-monitoring state can change through remove, delete, subscription, update, and monitoring operations.
+
+Mitigation: Require explicit user confirmation before account removal, delete commands, subscription changes, monitoring registration, or monitoring updates.
+
+Risk: Incorrect domain IDs, endpoint names, request payloads, or polling assumptions can produce failed requests, wasted quota, or misleading ecommerce analysis.
+
+Mitigation: Validate domain IDs and endpoint names against the common reference, check code and message fields after each call, and include retry or polling guidance for real-time and collection endpoints.
+
+Risk: Image-search workflows can transmit product images or derived base64 content to the remote service.
+
+Mitigation: Confirm the user intends to submit the image, avoid sensitive or unrelated images, and explain that base64 image payloads are sent to Sorftime for processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangfaguo/skills/sorftime)
+- [Sorftime CLI source repository](https://github.com/sorftime/sorftime-cli)
+- [sorftime-cli npm package](https://www.npmjs.com/package/sorftime-cli)
+- [Sorftime CLI account setup](https://www.sorftime.com/cli)
+- [Skill quick reference](artifact/README.md)
+- [Common Sorftime CLI reference](artifact/resources/_common.md)
+- [Amazon monitoring reference](artifact/resources/amazon-monitoring.md)
+- [Amazon workflow recipes](artifact/resources/amazon-recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and script examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Sorftime endpoint names, JSON request payloads, domain IDs, profile names, polling steps, and monitoring task IDs.]
+
+## Skill Version(s):
+
+0.1.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

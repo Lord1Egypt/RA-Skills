@@ -1,43 +1,54 @@
-## Description: <br>
-技能路由枢纽 helps OpenClaw reduce routing overhead from large skill sets by classifying tasks into scenario buckets, selecting the top relevant skills, and recording local routing outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+技能路由枢纽 helps OpenClaw route requests across many skills by grouping scenarios, selecting the top three relevant skills, and lowering priority for skills recorded as unsuccessful.
 
-## Publisher: <br>
-[freak30](https://clawhub.ai/user/freak30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freak30](https://clawhub.ai/user/freak30)
 
-## Use Case: <br>
-OpenClaw users and agent builders use this skill to route task requests across many installed skills by scene, returning a small set of relevant downstream skills instead of activating the full catalog. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task snippets are saved in a local routing_log.jsonl file. <br>
-Mitigation: Avoid routing secrets, credentials, sensitive business data, or personal details through the skill, and periodically review or delete the local routing log. <br>
-Risk: The router may select downstream skills that can perform high-impact actions. <br>
-Mitigation: Review selected downstream skills and require approval before allowing them to modify files, publish content, call external services, or use credentials. <br>
-Risk: The documented learning behavior is based on simple local routing history. <br>
-Mitigation: Treat selected skills as routing suggestions and verify that the chosen scene and skills fit the user request. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to classify a request into a scenario bucket and select a small set of relevant skills for the agent to activate. It is intended to reduce routing overhead when many skills are installed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freak30/skill-router-xiaoz) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/freak30) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with Python API examples, shell commands, and JSON-like routing results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes are based on local keyword scene buckets and recent local routing history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and skill documentation) <br>
+Risk: The router persistently logs snippets of routed request text in local plaintext history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid routing secrets, credentials, private code, or sensitive personal data through the skill unless logging is removed, minimized, or access-controlled.
+
+Risk: Routing history can influence future skill recommendations and returned skill IDs may be used by downstream activation systems.
+
+Mitigation: Validate selected skill IDs and require review before any downstream system automatically activates or executes returned skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freak30/skills/skill-router-xiaoz)
+- [Publisher profile](https://clawhub.ai/user/freak30)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and JSON-like route result objects, with Python and shell usage examples in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the request, detected scene, selected skill IDs, and routing reason; execution may append local routing history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

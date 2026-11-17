@@ -1,48 +1,62 @@
-## Description: <br>
-Textbook Virtual Simulator helps agents turn textbook content in text, PDF, or JSON formats into interactive educational simulation web applications with 3D scenes, quizzes, progress tracking, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Textbook Virtual Simulator converts textbook materials in text, PDF, or JSON formats into interactive educational simulation web applications with 3D scenes, learning components, and analytics.
 
-## Publisher: <br>
-[erich1566](https://clawhub.ai/user/erich1566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erich1566](https://clawhub.ai/user/erich1566)
 
-## Use Case: <br>
-Developers, educators, and learning-technology teams use this skill to parse teaching materials and generate deployable virtual simulation web applications for experiments, operational training, knowledge visualization, and other instructional scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated apps can persist learner activity, quiz results, progress, and session data in browser storage. <br>
-Mitigation: Disclose tracking before learner use, define retention expectations, and provide a clear way to export or clear stored data. <br>
-Risk: Generated web templates load third-party JavaScript, fonts, and icons from public CDNs. <br>
-Mitigation: Pin dependency versions, review CDN integrity and availability requirements, or vendor dependencies before deployment. <br>
-Risk: The skill generates deployable web application code from instructional materials. <br>
-Mitigation: Inspect generated code, test browser behavior, and review content rights before publishing or using the app in a learner-facing setting. <br>
+## Use Case:
 
+Developers and educators use this skill to turn textbook or training materials into deployable interactive simulation web apps for virtual experiments, operations training, knowledge graphs, and other instructional scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erich1566/skills/textbook-virtual-simulator) <br>
-- [Publisher profile](https://clawhub.ai/user/erich1566) <br>
-- [Metadata homepage](https://github.com/your-username/textbook-virtual-simulator) <br>
-- [3D Technologies Guide](references/3d_technologies.md) <br>
-- [Educational Simulation Best Practices](references/best_practices.md) <br>
-- [Simulation Types Guide](references/simulation_types.md) <br>
-- [Web Templates Guide](references/web_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus generated JSON, JavaScript, CSS, HTML, and deployable web application files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated web applications may include 3D scenes, interactive components, quiz logic, learner progress tracking, analytics dashboards, and deployment notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated web apps may process learner data and untrusted textbook content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize source materials, avoid sensitive or student-identifying content, and make analytics and progress storage explicit before deployment.
+
+Risk: Generated apps may rely on external dependencies or CDN-hosted assets.
+
+Mitigation: Review, pin, and host dependencies according to the deployment environment's security requirements.
+
+Risk: The release security verdict is suspicious because generated apps need careful review before production use.
+
+Mitigation: Harden and test the generated app before deployment, including privacy, dependency, and content-handling review.
+
+## Reference(s):
+
+- [Simulation Types Guide](references/simulation_types.md)
+- [3D Technology Selection Guide](references/3d_technologies.md)
+- [Web Templates Guide](references/web_templates.md)
+- [Educational Simulation Best Practices](references/best_practices.md)
+- [Basic Web Template README](assets/web-template/README.md)
+- [Project homepage from ClawHub metadata](https://github.com/your-username/textbook-virtual-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, markdown, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated web application source files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate deployable web app files with 3D scene, interactive component, progress tracking, and analytics modules.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

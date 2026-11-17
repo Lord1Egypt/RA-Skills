@@ -1,42 +1,54 @@
-## Description: <br>
-Deep Reader analyzes books, documents, and webpage articles using inspectional, analytical, and syntopical reading methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Reader analyzes books, long documents, and web articles with a layered reading methodology, producing structured interpretation of core ideas, arguments, evidence, and cross-text themes.
 
-## Publisher: <br>
-[ltryee](https://clawhub.ai/user/ltryee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltryee](https://clawhub.ai/user/ltryee)
 
-## Use Case: <br>
-Readers, researchers, students, and agents use this skill to turn user-provided books, documents, or article URLs into structured reading reports with summaries, argument analysis, comparisons, and critical evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and may quote user-provided books, PDFs, text files, or webpages, which can expose confidential or private content in generated reports. <br>
-Mitigation: Use only material the user is comfortable having read, summarized, and quoted; avoid confidential manuscripts, private PDFs, sensitive text files, and private webpages unless approved. <br>
-Risk: Analysis of books and webpages can produce incomplete, biased, or misleading interpretations when the source text is partial, low quality, or opinionated. <br>
-Mitigation: Review important conclusions against the original source, preserve source links or chapter locations, and treat the output as reading guidance rather than a substitute for human review. <br>
+## Use Case:
 
+External users and developers use Deep Reader to analyze books, long documents, or web articles. The skill supports quick structural scans, detailed argument analysis, and cross-book thematic comparison.
 
-## Reference(s): <br>
-- [Deep Reader README](README.md) <br>
-- [Reading Methodology Reference](references/reading-methodology.md) <br>
-- [Deep Reader ClawHub Release](https://clawhub.ai/ltryee/deep-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reading reports with structured notes, quotations, argument analysis, comparison tables, and critical evaluation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quoted excerpts from user-provided material and follow-up prompts for reader reflection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill processes user-provided books, documents, and URLs, which may contain sensitive or private content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only files and URLs that are appropriate for the agent to process in the configured environment.
+
+Risk: Broad trigger examples may cause the skill to activate for generic summary, comparison, or article-analysis requests.
+
+Mitigation: Require explicit skill invocation or review activation behavior before deployment in shared agent environments.
+
+## Reference(s):
+
+- [Reading Methodology Reference](artifact/references/reading-methodology.md)
+- [ClawHub Skill Page](https://clawhub.ai/ltryee/skills/deep-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reading reports with structured sections, quotations, critique, and optional source links for web articles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include structural notes, conceptual notes, dialectical notes, or web article analysis reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and supplied target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

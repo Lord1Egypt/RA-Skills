@@ -117,9 +117,8 @@ class BaiduDocAIClient:
         
         # 不同的API使用不同的查询参数
         if api_type in ["compare", "contract_review"]:
-            # 这些API需要 multipart/form-data 格式
-            # 使用 (None, value) 格式发送字符串作为multipart/form-data
-            response = requests.post(url, files={"taskId": (None, task_id)}, timeout=30)
+            # 这些API需要 multipart/form-data
+            response = requests.post(url, params={"taskId": task_id}, files={"taskId": task_id}, timeout=30)
         elif api_type == "convert":
             response = requests.post(url, params={"request_id": task_id}, data={"data": task_id}, timeout=30)
         else:

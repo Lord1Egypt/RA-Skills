@@ -1,40 +1,54 @@
-## Description: <br>
-Browser-based song creation with Suno, including gathering a song brief, generating lyrics, setting Persona/Custom mode, and producing new tracks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser-based song creation with Suno (suno.ai), including gathering a song brief, generating lyrics, setting Persona/Custom mode, and producing new tracks.
 
-## Publisher: <br>
-[machinesbefree](https://clawhub.ai/user/machinesbefree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[machinesbefree](https://clawhub.ai/user/machinesbefree)
 
-## Use Case: <br>
-External users and agents use this skill to create songs in Suno through a browser session by collecting a song brief, preparing lyrics and style tags, generating tracks, and sharing resulting links or files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may send song prompts, lyrics, personas, titles, and style tags to Suno under the user's account. <br>
-Mitigation: Review creative inputs before generation and use an appropriate Suno account and browser session. <br>
-Risk: The bundled workflow includes a hard-coded Anchor Protocol example that may not match the user's requested song. <br>
-Mitigation: Treat the Anchor Protocol values as an example only and replace them with the user's confirmed brief, persona, title, lyrics, and style tags. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Suno Browser Workflow](references/suno-workflow.md) <br>
-- [Suno](https://suno.ai) <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through browser-based Suno song creation, from collecting a song brief and drafting lyrics to operating Custom mode, reviewing generated tracks, and returning links or downloads.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with song titles, lyrics, style tags, browser steps, and resulting Suno links or file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser automation steps and user-provided creative inputs intended for Suno.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may submit lyrics, style tags, persona choices, and generation actions to Suno through a browser session.
+
+Mitigation: Confirm the user's intent before generation and avoid sending sensitive or private material in prompts, lyrics, or style instructions.
+
+Risk: Generated links or downloads may be shared outside the current workspace.
+
+Mitigation: Review generated links and downloaded files before distributing them more broadly.
+
+## Reference(s):
+
+- [Suno Browser Workflow](references/suno-workflow.md)
+- [Suno](https://suno.ai)
+- [ClawHub Skill Page](https://clawhub.ai/machinesbefree/skills/suno-browser-songmaking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown with song briefs, lyrics, style tags, browser guidance, links, and file paths when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party Suno track links or local download paths after browser generation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

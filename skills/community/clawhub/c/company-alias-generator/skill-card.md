@@ -1,42 +1,57 @@
-## Description: <br>
-Generates aliases for Chinese company names in Excel workbooks, prioritizing listed-company short names, preserving government organization names, filtering generic or regional terms, and supplementing aliases through web lookup behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业别名智能生成器为企业名单批量生成精准别名，支持上市公司股票简称、政府机构全称、通用词和地名过滤以及别名去重。
 
-## Publisher: <br>
-[hyqdq888](https://clawhub.ai/user/hyqdq888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyqdq888](https://clawhub.ai/user/hyqdq888)
 
-## Use Case: <br>
-Developers and data operations teams use this skill to standardize Chinese company names for entity matching, fuzzy search, and spreadsheet data-cleaning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet company names may be sent to Baidu during alias generation. <br>
-Mitigation: Use only non-sensitive company lists, or disable the lookup path and require explicit opt-in before any external query is made. <br>
-Risk: The script depends on an absolute external import path that is not bundled with the release artifact. <br>
-Mitigation: Bundle the dependency or replace the absolute import with a declared, reviewable module before deployment. <br>
-Risk: The published documentation describes web lookup as optional or disabled, while the artifact behavior can still invoke it. <br>
-Mitigation: Align documentation and runtime behavior so operators can reliably understand when network access occurs. <br>
+## Use Case:
 
+Developers and data operations teams use this skill to process Excel company lists and generate standardized company aliases for entity matching, fuzzy search, and data cleaning workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyqdq888/company-alias-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Excel .xlsx workbook with a generated alias column, pipe-delimited alias strings, and command-line progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and the openpyxl and requests packages; the bundled script may invoke curl for Baidu lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, artifact frontmatter, and artifact metadata) <br>
+Risk: Company names may be sent to Baidu during alias lookup, including when users expected network lookup to be disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove network lookup before processing confidential company lists, and run the skill in an environment without outbound network access when privacy is required.
+
+Risk: The script includes a hard-coded private fallback input path.
+
+Mitigation: Remove the fallback path and require explicit input and output file paths for every run.
+
+Risk: Alias generation depends on an external generate_alias module that is not bundled or pinned in the artifact.
+
+Mitigation: Bundle or pin the dependency to reviewed code before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyqdq888/skills/company-alias-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples and generated Excel .xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 with openpyxl and requests; network lookup behavior should be reviewed before use with confidential company lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

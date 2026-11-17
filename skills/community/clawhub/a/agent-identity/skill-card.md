@@ -1,44 +1,59 @@
-## Description: <br>
-Cryptographic identity for AI agents that can register on-chain identities, sign messages, verify other agents, link platform accounts, and stake USDC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides command-line workflows for AI agents to register cryptographic identities, sign and verify messages, link platform accounts, and manage USDC-backed reputation.
 
-## Publisher: <br>
-[rosepuppy](https://clawhub.ai/user/rosepuppy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rosepuppy](https://clawhub.ai/user/rosepuppy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give agents a cryptographic identity, sign and verify messages, connect platform accounts, and inspect on-chain identity records. It also supports USDC staking actions for registration and vouching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and uses a durable local private key for signing and blockchain transactions. <br>
-Mitigation: Use a fresh low-value key dedicated to this skill, protect the key file, and avoid importing a primary wallet key. <br>
-Risk: Registration, linking, and vouching can approve or stake USDC and submit on-chain transactions. <br>
-Mitigation: Require manual review before running transaction scripts, verify the registry contract and REGISTRY_ADDRESS, and do not allow these commands to run automatically. <br>
-Risk: Identity and reputation outputs depend on registry data and linked account claims. <br>
-Mitigation: Treat lookup and verification results as identity signals rather than absolute trust decisions, and corroborate high-impact actions through independent checks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create cryptographic agent identities, sign claims, verify counterparties, and link social or platform accounts before agent-to-agent interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rosepuppy/agent-identity) <br>
-- [Project homepage](https://github.com/g1itchbot8888-del/agent-identity) <br>
-- [Publisher profile](https://clawhub.ai/user/rosepuppy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local key file and may submit blockchain transactions when transaction scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, ClawHub release metadata) <br>
+Risk: JSON-mode register or vouch commands can bypass the intended transaction confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run register or vouch with --json unless the code is fixed to require explicit confirmation independently from output format.
+
+Risk: Signing keys are stored locally and can be overwritten or imported.
+
+Mitigation: Use a dedicated testnet or low-value identity key, protect the key file, and avoid importing private keys through --import.
+
+Risk: Incorrect contract or chain settings could direct identity actions or USDC approvals to the wrong target.
+
+Mitigation: Verify contract and chain settings before running registration, linking, or vouching commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rosepuppy/skills/agent-identity)
+- [Source homepage](https://github.com/g1itchbot8888-del/agent-identity)
+- [Publisher profile](https://clawhub.ai/user/rosepuppy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Node.js command scripts can create a local identity key file and submit blockchain transactions when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

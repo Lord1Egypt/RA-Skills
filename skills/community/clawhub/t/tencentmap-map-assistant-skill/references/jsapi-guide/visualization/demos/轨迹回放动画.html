@@ -8,7 +8,7 @@
   </head>
    <script
     charset="utf-8"
-    src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&libraries=geometry,visualization"
+    src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}&libraries=geometry,visualization"
   ></script>
   <style type="text/css">
     html,
@@ -81,7 +81,8 @@
         var map = new TMap.Map("container", {
           zoom: 17,
           mapStyleId: "style8",
-          pitch: 50,baseMap: {
+          pitch: 50,
+          baseMap: {
           type: "vector",
           features: ["base", "building3d"],
         },

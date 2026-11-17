@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "linkMan": "张经理",
+        "phone": "13800000000",
+        "phoneType": "手机"
+      },
+      {
+        "linkMan": "李主任",
+        "phone": "0755-88888888",
+        "phoneType": "固话"
+      }
+    ]
+  },
+  "success": true
+}

@@ -1,7 +1,7 @@
 ---
-name: travel-food-guide
-display_name: 旅行美食助手
-description: 帮旅行者找景点周边餐厅、当地必吃特色、生成多日餐饮计划，旅途中不踩雷、不错过当地特色。
+name: 旅行美食助手
+display_name: "旅行美食助手"
+description: 帮旅行者找景点周边餐厅、当地必吃特色、生成多日餐饮计划，旅途中不踩雷、不错过当地特色。暑期旅行美食探店，各地特色小吃推荐
 tags: [美食, 餐厅, 当地特色, 餐饮规划, 旅行美食]
 tools:
   - name: search_food

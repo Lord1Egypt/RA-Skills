@@ -70,7 +70,15 @@
   "source_coverage": ["TRACE", "Extra08", "skill-reviewer", "skill-quality-audit", "skill-creator"],
   "formula_check": "(10+10+10+10+9+9)*100/60=96.7 OK",
   "trigger_tests": {
-    "should_trigger": ["用户说法 1", "用户说法 2", "用户说法 3"],
-    "should_not_trigger": ["边界说法 1", "边界说法 2", "边界说法 3"]
+    "should_trigger": [
+      "给 example-skill 做 TRACE+ 全维评分",
+      "看看这个 SKILL.md 是否符合规范",
+      "批量评一下这个 skills 目录，找出低分项"
+    ],
+    "should_not_trigger": [
+      "帮我从零写一个新 skill",
+      "把这个 HTML demo 做得更好看",
+      "评审一下这个 PRD 能不能过会"
+    ]
   }
 }

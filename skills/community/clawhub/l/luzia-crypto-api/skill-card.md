@@ -1,49 +1,64 @@
-## Description: <br>
-Use this skill to help agents fetch cryptocurrency prices, stream real-time market data, list exchanges or markets, and retrieve historical OHLCV candlestick data through the Luzia API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using the Luzia REST and WebSocket APIs to fetch cryptocurrency prices, list exchanges and markets, retrieve historical OHLCV candlestick data, and build market-data integrations.
 
-## Publisher: <br>
-[hvasconcelos](https://clawhub.ai/user/hvasconcelos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hvasconcelos](https://clawhub.ai/user/hvasconcelos)
 
-## Use Case: <br>
-Developers and agents use this skill to integrate Luzia as a cryptocurrency market-data source for price lookups, exchange and market discovery, historical candles, streaming dashboards, trading bots, portfolio trackers, and price alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Luzia API keys could be exposed if copied into source code, logs, prompts, or shared configuration. <br>
-Mitigation: Store the API key in environment variables or a secrets manager, avoid hardcoding it, and redact it from logs and shared outputs. <br>
-Risk: WebSocket access and API usage are constrained by plan limits and rate limits. <br>
-Mitigation: Check the active Luzia plan before using streaming features, monitor usage, and handle rate-limit or subscription-limit errors explicitly. <br>
-Risk: Users may provide unrelated secrets such as exchange trading keys or wallet credentials. <br>
-Mitigation: Request only the Luzia API key needed for market data and reject exchange trading keys, wallet secrets, and unrelated credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to integrate with Luzia as a third-party cryptocurrency market-data provider for spot price lookup, exchange and market discovery, OHLCV history, WebSocket streaming, trading bots, portfolio trackers, and price alerts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hvasconcelos/luzia-crypto-api) <br>
-- [Luzia Homepage](https://luzia.dev) <br>
-- [Luzia Documentation](https://luzia.dev/docs) <br>
-- [Luzia API Documentation](https://api.luzia.dev/docs) <br>
-- [Luzia WebSocket Documentation](https://luzia.dev/docs/websocket) <br>
-- [Luzia TypeScript SDK](https://luzia.dev/docs/sdk) <br>
-- [Luzia Python SDK](https://luzia.dev/docs/python-sdk) <br>
-- [Luzia MCP Server](https://luzia.dev/docs/mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with endpoint references, code blocks, JSON examples, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST and WebSocket request patterns, SDK usage examples, authentication guidance, rate-limit notes, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires calls to Luzia as a third-party cryptocurrency market-data provider and uses Luzia API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Luzia is the intended data source, keep API keys in secure secret storage, and avoid hardcoding or logging credentials.
+
+Risk: Trading bots, portfolio trackers, or alerting tools built from the guidance could act on stale, rate-limited, or plan-restricted market data.
+
+Mitigation: Respect documented rate limits and plan requirements, use maxAge or equivalent freshness checks, handle API and WebSocket errors explicitly, and review outputs before connecting them to automated trading actions.
+
+Risk: Requests, symbols, logs, or generated code can expose unnecessary sensitive information when integrating with external services.
+
+Mitigation: Send only required market-data parameters, minimize request and error logging, and avoid including unrelated sensitive information in prompts or generated integration code.
+
+## Reference(s):
+
+- [Luzia homepage](https://luzia.dev)
+- [Luzia documentation](https://luzia.dev/docs)
+- [Luzia Swagger UI](https://api.luzia.dev/docs)
+- [Luzia WebSocket documentation](https://luzia.dev/docs/websocket)
+- [Luzia TypeScript SDK documentation](https://luzia.dev/docs/sdk)
+- [Luzia Python SDK documentation](https://luzia.dev/docs/python-sdk)
+- [Luzia MCP Server documentation](https://luzia.dev/docs/mcp-server)
+- [ClawHub skill page](https://clawhub.ai/hvasconcelos/skills/luzia-crypto-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code examples and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces integration guidance for REST and WebSocket API usage, including authentication, rate-limit handling, symbol formatting, and error handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

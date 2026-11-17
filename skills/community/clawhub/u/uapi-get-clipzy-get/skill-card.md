@@ -1,47 +1,62 @@
-## Description: <br>
-使用 UAPI 的“步骤2 (方法一): 获取加密数据”单接口 skill，处理 步骤2 (方法一): 获取加密数据、加密剪贴板、端到端加密文本、加密分享 等请求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 UAPI 的“步骤2 (方法一): 获取加密数据”单接口 skill，处理 步骤2 (方法一): 获取加密数据、加密剪贴板、端到端加密文本、加密分享 等请求。 Use when the user wants get clipzy get, api get, get, clipzy, or when you need to call GET /api/get directly.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and agents use this skill to decide when to call the UAPI Clipzy `GET /api/get` endpoint, confirm the required `id` query parameter, and interpret the documented success and error responses for encrypted clipboard retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording such as "get" could route unrelated requests to this skill. <br>
-Mitigation: Use it only when the user explicitly provides or requests a Clipzy/UAPI retrieval flow and an appropriate Clipzy id. <br>
-Risk: A UAPI Key may consume account quota if supplied unnecessarily. <br>
-Mitigation: Provide a UAPI Key only when account access is intended or quota-related errors require authenticated retry. <br>
-Risk: The endpoint returns encrypted data and does not perform client-side decryption. <br>
-Mitigation: Keep decryption keys outside the skill and decrypt only in the user's trusted client workflow. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve encrypted Clipzy clipboard data by ID through UAPI's GET /api/get endpoint, then handle client-side decryption with their own key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuakami/uapi-get-clipzy-get) <br>
-- [UAPI base URL](https://uapis.cn/api/v1) <br>
-- [UAPI account site](https://uapis.cn) <br>
-- [快速上手](references/quick-start.md) <br>
-- [步骤2 (方法一): 获取加密数据](references/operations/get-clipzy-get.md) <br>
-- [Clipzy 在线剪贴板 分类接口](references/resources/Clipzy-在线剪贴板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with endpoint, parameter, authentication, and response-code details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend a UAPI Key only when quota or account-related errors indicate it is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger terms such as "get" may cause an agent to select this skill for unrelated requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly by name or endpoint and confirm the user intends to use the Clipzy/UAPI encrypted data retrieval endpoint before proceeding.
+
+Risk: Requests may include sensitive identifiers, API keys, or decryption-related material.
+
+Mitigation: Review user-provided ids and credentials before sending them to UAPI, and keep decryption keys under the user's control.
+
+Risk: The endpoint returns encrypted and compressed data, not final plaintext.
+
+Mitigation: Make clear that the client must decrypt the response with the user's own key and verify that retrieving encrypted data is the desired intermediate step.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shuakami/skills/uapi-get-clipzy-get)
+- [快速上手](references/quick-start.md)
+- [步骤2 (方法一): 获取加密数据](references/operations/get-clipzy-get.md)
+- [Clipzy 在线剪贴板 分类接口](references/resources/Clipzy-在线剪贴板.md)
+- [UAPI](https://uapis.cn)
+- [UAPI API Base URL](https://uapis.cn/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API call instructions, Markdown]
+
+**Output Format:** [Markdown with endpoint details, parameter requirements, response codes, and credential guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents a single GET endpoint that requires an id query parameter and returns encrypted, compressed data for client-side decryption.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,63 +1,75 @@
-## Description: <br>
-Best practices and example-driven guidance for building SwiftUI views and components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices and example-driven guidance for building SwiftUI views and components.
 
-## Publisher: <br>
-[Dimillian](https://clawhub.ai/user/Dimillian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dimillian](https://clawhub.ai/user/dimillian)
 
-## Use Case: <br>
-Developers use this skill to create or refactor SwiftUI interfaces, including tab architectures, navigation flows, sheets, forms, settings, media views, and reusable UI components. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated networking, streaming, push-token, or persistence code may not match the app's real privacy and security requirements. <br>
-Mitigation: Review and adapt those code paths to the app's production privacy, authentication, data retention, and security requirements before shipping. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SwiftUI UI Patterns on ClawHub](https://clawhub.ai/Dimillian/swiftui-ui-patterns) <br>
-- [Components Index](references/components-index.md) <br>
-- [App wiring and dependency graph](references/app-wiring.md) <br>
-- [TabView](references/tabview.md) <br>
-- [NavigationStack](references/navigationstack.md) <br>
-- [Sheets](references/sheets.md) <br>
-- [Form](references/form.md) <br>
-- [macOS Settings](references/macos-settings.md) <br>
-- [Split views and columns](references/split-views.md) <br>
-- [List and Section](references/list.md) <br>
-- [ScrollView and Lazy stacks](references/scrollview.md) <br>
-- [Grids](references/grids.md) <br>
-- [Theming and dynamic type](references/theming.md) <br>
-- [Controls](references/controls.md) <br>
-- [Input toolbar](references/input-toolbar.md) <br>
-- [Top bar overlays](references/top-bar.md) <br>
-- [Overlay and toasts](references/overlay.md) <br>
-- [Focus handling and field chaining](references/focus.md) <br>
-- [Searchable](references/searchable.md) <br>
-- [Media](references/media.md) <br>
-- [Haptics](references/haptics.md) <br>
-- [Matched transitions](references/matched-transitions.md) <br>
-- [Deep links and navigation](references/deeplinks.md) <br>
-- [Title menus](references/title-menus.md) <br>
-- [Menu Bar](references/menu-bar.md) <br>
-- [Loading & Placeholders](references/loading-placeholders.md) <br>
-- [Lightweight Clients](references/lightweight-clients.md) <br>
+## Use Case:
 
+Developers and engineers use this skill when creating or refactoring SwiftUI UI, designing tab architecture with TabView, composing screens, and applying component-specific patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Swift code examples and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for agent-authored SwiftUI UI code; generated networking, streaming, push-token, and persistence examples require app-specific review before release.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated or adapted SwiftUI code may touch networking, push tokens, deep links, or persistence in ways that do not match the host app's permissions and privacy model.
+
+Mitigation: Review generated code against the app's existing permission, privacy, routing, and persistence rules before merging or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dimillian/skills/swiftui-ui-patterns)
+- [Components Index](artifact/references/components-index.md)
+- [App wiring and dependency graph](artifact/references/app-wiring.md)
+- [TabView](artifact/references/tabview.md)
+- [NavigationStack](artifact/references/navigationstack.md)
+- [Sheets](artifact/references/sheets.md)
+- [Form](artifact/references/form.md)
+- [macOS Settings](artifact/references/macos-settings.md)
+- [Split views and columns](artifact/references/split-views.md)
+- [List and Section](artifact/references/list.md)
+- [ScrollView and Lazy stacks](artifact/references/scrollview.md)
+- [Grids](artifact/references/grids.md)
+- [Theming and dynamic type](artifact/references/theming.md)
+- [Controls (Toggle, Slider, Picker)](artifact/references/controls.md)
+- [Input toolbar (bottom anchored)](artifact/references/input-toolbar.md)
+- [Top bar overlays (iOS 26+ and fallback)](artifact/references/top-bar.md)
+- [Overlay and toasts](artifact/references/overlay.md)
+- [Focus handling and field chaining](artifact/references/focus.md)
+- [Searchable](artifact/references/searchable.md)
+- [Media (images, video, viewer)](artifact/references/media.md)
+- [Haptics](artifact/references/haptics.md)
+- [Matched transitions](artifact/references/matched-transitions.md)
+- [Deep links and navigation](artifact/references/deeplinks.md)
+- [Title menus](artifact/references/title-menus.md)
+- [Menu Bar](artifact/references/menu-bar.md)
+- [Loading & Placeholders](artifact/references/loading-placeholders.md)
+- [Lightweight Clients (Closure-Based)](artifact/references/lightweight-clients.md)
+- [AppRouter](https://github.com/Dimillian/AppRouter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with Swift code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommendations and example snippets for SwiftUI UI patterns; the artifact itself does not install or run code.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

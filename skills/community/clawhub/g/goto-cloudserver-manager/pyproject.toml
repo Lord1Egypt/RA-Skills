@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "goto-cloudserver-manager"
-version = "1.0.4"
+version = "1.0.6"
 description = "多云服务器自动化运维 Skill，支持阿里云/腾讯云/华为云的数据库安装、表结构创建、监控巡检和健康报告"
 requires-python = ">=3.11"
 readme = "README.md"

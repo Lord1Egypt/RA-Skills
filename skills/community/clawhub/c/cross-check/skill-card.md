@@ -1,43 +1,57 @@
-## Description: <br>
-Inline assumption checker that challenges your agent's thinking before responding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross Check helps an agent surface assumptions, blind spots, and confidence notes, and can run lite, deep, or optional two-model verification when the user opts in.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-Developers and agent users use Cross Check to surface assumptions, blind spots, disagreements, and confidence notes before relying on a response. It is useful for complex decisions, long prompts where accuracy matters, and explicit requests for a second opinion or assumption challenge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Two-model verification can send the problem context and extracted assumptions to the configured verifier model or provider. <br>
-Mitigation: Avoid 2-model mode for highly sensitive prompts unless that provider and model are acceptable for the context. <br>
-Risk: Assumption checks and confidence notes can still be incomplete or misleading. <br>
-Mitigation: Use the generated challenge notes as review guidance and independently verify high-impact conclusions before acting. <br>
-Risk: Lite and deep modes increase token usage compared with a single response. <br>
-Mitigation: Use lite mode for routine checks and reserve deep or 2-model mode for higher-risk decisions. <br>
+## Use Case:
 
+External users and developers use Cross Check to challenge important responses, compare reasoning paths, and identify assumptions before acting on an answer.
 
-## Reference(s): <br>
-- [Cross Check ClawHub release page](https://clawhub.ai/tommot2/cross-check) <br>
-- [Cross Check homepage listed in artifact](https://clawhub.ai/skills/cross-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown confidence notes and compact verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default confidence note, lite summaries capped at 8 lines, and deep summaries capped at 15 lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Cross Check suggestions or confidence notes can interfere with workflows that require strict response formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Turn suggestions off with 'cross-check off' or leave HEARTBEAT auto-suggestions disabled when exact output shape matters.
+
+Risk: Optional two-model verification shares the problem context and extracted assumptions with a configured verifier model and uses additional tokens.
+
+Mitigation: Use two-model mode only when the configured verifier is acceptable for the task and the user explicitly requests it.
+
+Risk: Verification summaries may still miss important facts or overstate confidence.
+
+Mitigation: Treat Cross Check output as advisory and review conclusions before making high-impact decisions.
+
+## Reference(s):
+
+- [Cross Check ClawHub skill page](https://clawhub.ai/tommot2/skills/cross-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text confidence notes and compact verification summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compact by default; lite output is capped at 8 lines and deep output at 15 lines.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Run a structured paper-trading loop with SQLite-backed event logging, position tracking, and PnL review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a structured paper-trading loop with SQLite-backed event logging, position tracking, and PnL review.
 
-## Publisher: <br>
-[BRS999](https://clawhub.ai/user/BRS999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brs999](https://clawhub.ai/user/brs999)
 
-## Use Case: <br>
-External users and developers use this skill to record simulated trades, market snapshots, thesis notes, stop/take levels, and periodic portfolio reviews before committing live capital. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Simulated trades, strategy notes, and review data persist in a local SQLite database. <br>
-Mitigation: Use --db to choose a controlled storage location and avoid recording sensitive real-account details unless local persistence is intended. <br>
-Risk: Paper-trading status and review output depends on user-supplied snapshots and does not execute or verify live trades. <br>
-Mitigation: Treat outputs as journaling and review aids; verify market data and decisions separately before using real capital. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Paper Trader on ClawHub](https://clawhub.ai/BRS999/paper-trader) <br>
+## Use Case:
 
+External users and developers use Paper Trader to track simulated trades, journal trade theses, review open positions, and summarize realized and unrealized PnL before committing live capital.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output as text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local SQLite paper-trading database when commands are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores simulated trading records and notes locally in SQLite under ~/.openclaw unless a different database path is provided.
+
+Mitigation: Use --db to choose an appropriate local database path and apply normal local file access controls for trading notes.
+
+Risk: The skill does not place real trades or fetch market data automatically, so stale or user-entered prices can make PnL output misleading.
+
+Mitigation: Provide current prices explicitly, keep snapshots updated for open positions, and treat output as a paper-trading journal rather than financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brs999/skills/paper-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite database under ~/.openclaw by default unless --db is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

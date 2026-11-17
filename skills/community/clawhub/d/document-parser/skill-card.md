@@ -1,41 +1,57 @@
-## Description: <br>
-Extracts structured data from PDFs, images, and Word documents with layout analysis, table recognition, OCR, seal detection, and directory extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from PDFs, images, and Word files with layout analysis, table recognition, OCR, seal detection, and directory extraction.
 
-## Publisher: <br>
-[ankylala](https://clawhub.ai/user/ankylala) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ankylala](https://clawhub.ai/user/ankylala)
 
-## Use Case: <br>
-Developers and document-workflow users use this skill to parse PDFs, scanned images, and Word files into structured JSON or Markdown for downstream review, extraction, and automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parsed files may be uploaded to a configured remote document-parsing service, exposing document contents or metadata. <br>
-Mitigation: Use only a trusted HTTPS endpoint, avoid confidential or regulated documents unless you control or trust the service and its retention policy, and protect API keys through environment variables or config.json. <br>
+## Use Case:
 
+Developers and agents use this skill to parse PDFs, images, and Word documents into structured JSON or Markdown, including document elements such as paragraphs, tables, images, seals, formulas, and tables of contents.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/ankylala/document-parser) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [ClawHub package configuration](clawhub.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files] <br>
-**Output Format:** [Structured JSON and optional Markdown saved to a parsed result file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parsed pages, document elements, table content, OCR text, seal detections, formulas, table-of-contents entries, and task status responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Selected documents and optional API credentials may be sent to a configured remote parsing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted HTTPS endpoint, understand the operator's retention practices, and use revocable credentials.
+
+Risk: The default endpoint is plaintext HTTP, which is inappropriate for sensitive documents or API keys.
+
+Mitigation: Override the base URL with a trusted HTTPS endpoint before processing sensitive content.
+
+Risk: Runtime dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Pin or lock dependencies before deploying in a controlled environment.
+
+## Reference(s):
+
+- [Document Parser ClawHub Skill Page](https://clawhub.ai/ankylala/skills/document-parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Structured JSON and Markdown, typically saved as a parsed output file or returned as CLI status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include page metadata, document elements, request identifiers, elapsed time, and parser error codes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

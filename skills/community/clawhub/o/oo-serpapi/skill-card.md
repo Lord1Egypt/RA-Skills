@@ -1,43 +1,55 @@
-## Description: <br>
-SerpApi lets agents run Google web, news, and Maps searches through an OOMOL-connected SerpApi account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SerpApi (serpapi.com). Use this skill for ANY SerpApi request — searching and reading data. Whenever a task involves SerpApi, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to search SerpApi-backed Google web, news, and Maps data without directly handling raw SerpApi API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-time setup can require installing the oo CLI, signing in, connecting SerpApi credentials, or resolving billing before searches work. <br>
-Mitigation: Review and approve each first-time setup, connection, credential, or billing step before it is performed. <br>
-Risk: The skill requires sensitive credentials for SerpApi access through OOMOL. <br>
-Mitigation: Use the OOMOL-mediated connector flow so raw SerpApi tokens are not handled directly by the agent. <br>
+## Use Case:
 
+Developers and other users with an OOMOL-connected SerpApi account use this skill to run Google web, News, and Maps searches and retrieve search data through SerpApi.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-serpapi) <br>
-- [SerpApi homepage](https://serpapi.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs agents to inspect the live connector schema before constructing each SerpApi action payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: The first-time setup instructions include a remote CLI installer whose exact effects are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release yourself, and require approval before dependency setup or installation of additional agent skills.
+
+Risk: Search queries pass through OOMOL to SerpApi.
+
+Mitigation: Exclude secrets and unnecessary private information from search queries.
+
+## Reference(s):
+
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [SerpApi](https://serpapi.com)
+- [SerpApi Search API documentation](https://serpapi.com/search-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Search results and requested data returned as JSON, with summaries or guidance in text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search action schemas determine the available inputs and response fields.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

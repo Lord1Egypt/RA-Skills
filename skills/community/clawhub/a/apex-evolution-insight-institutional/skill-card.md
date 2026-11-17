@@ -1,40 +1,51 @@
-## Description: <br>
-Full institutional evolution report with strategy scoring and outlook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents that the APEX Runner institutional evolution signal is retired and unavailable.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External analysts and agent users use this skill to request a paid institutional crypto trading signal report for strategic alignment, long-horizon allocation advice, and performance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill lets an agent use an EVM wallet private key for paid x402 requests, and the security summary flags automatic $30 calls without clear confirmation or spending limits. <br>
-Mitigation: Use a dedicated low-balance Base wallet, require explicit approval before each paid request, and monitor call history and spend. <br>
+## Use Case:
 
+Agents and people reviewing APEX Runner listings can use this note to identify that the institutional evolution signal is retired and should not be called or purchased.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/apex-evolution-insight-institutional) <br>
-- [APEX Runner institutional signal](https://apexrunner.ai/signals/apex-evolution-insight-institutional) <br>
-- [APEX Runner pricing tiers](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON response with report week, strategy scores, and outlook.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and a funded Base wallet; paid requests are advertised at $30 per call before discounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An agent may try to call the retired endpoint and receive HTTP 410 Gone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure calls or payments for this signal; check the current listing for availability.
+
+## Reference(s):
+
+- [Retired institutional evolution signal](https://apexrunner.ai/signals/apex-evolution-insight-institutional)
+- [Current APEX Evolution Insight signal listing](https://apexrunner.ai/signals/apex-evolution-insight)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/apex-evolution-insight-institutional)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retirement status and availability guidance; no signal report is produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

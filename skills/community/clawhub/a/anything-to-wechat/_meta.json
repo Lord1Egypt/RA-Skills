@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7eq0sb14a4nrncm3sqhe4vmn89js83",
   "slug": "anything-to-wechat",
-  "version": "2.0.0",
-  "publishedAt": 1782729075102
+  "displayName": "Anything to WeChat",
+  "description": "One-step workflow: accept any file, folder, URL, or idea → generate polished HTML → auto-publish to WeChat Official Account draft box.",
+  "tags": ["wechat", "publishing", "content-creation", "document-conversion", "chinese"],
+  "prerequisites": ["html-anything"],
+  "scripts": [
+    "scripts/convert_for_wechat.py",
+    "scripts/publish_to_wechat.py"
+  ]
 }

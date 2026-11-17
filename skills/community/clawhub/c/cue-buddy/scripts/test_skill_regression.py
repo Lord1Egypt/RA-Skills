@@ -241,6 +241,11 @@ class Case5_ToolNameLeakRegexCoversAllFamilies(unittest.TestCase):
             "用 get_disclosure 拉公告",  # 原有 family,保持工作
             "调 list_companies",
             "find_recent_news",
+            # CJK-glued, no spaces — \b 不 fire,旧 regex 漏抓(Pz0sT5 上线泄漏)
+            "使用get_cninfo_disclosure_search工具",
+            "根据关键词搜索公告：使用get_cninfo_disclosure_search工具。",
+            "优先list_companies再深挖",
+            "调用search_tool_company查",
         ):
             with self.subTest(sample=sample):
                 self.assertRegex(sample, TOOL_NAME_LEAK_RE, f"未抓 {sample!r}")
@@ -649,6 +654,28 @@ class Case14_UpgradeSkillHelpers(unittest.TestCase):
         from update_skill import parse_version_from_md
         self.assertIsNone(parse_version_from_md("# just a body\nfoo\n"))
 
+    def test_load_cooldown_merges_legacy_taking_max(self) -> None:
+        """A CUE_HOME relocate must not reset the 24h timer. When the primary
+        (relocated) file has a stale expired timestamp and the legacy ~/.cue
+        file has a newer still-cooling one, _load_cooldown must take the MAX
+        (newer) - not primary-wins via setdefault - so the skill stays gated.
+        (codex round-2 finding: setdefault kept the expired primary value.)"""
+        import json
+        import tempfile
+        from unittest import mock
+        from update_skill import _load_cooldown, _cooldown_expired
+        with tempfile.TemporaryDirectory() as d:
+            primary = Path(d) / "last-update-check.json"
+            legacy = Path(d) / "legacy.json"
+            primary.write_text(json.dumps({"cue-buddy": 1000}), encoding="utf-8")   # expired
+            legacy.write_text(json.dumps({"cue-buddy": 90000}), encoding="utf-8")   # still cooling
+            with mock.patch("update_skill._LEGACY_COOLDOWN_PATH", legacy):
+                data = _load_cooldown(primary)
+                # max wins: 90000, not the primary's stale 1000
+                self.assertEqual(data.get("cue-buddy"), 90000)
+                # now=91000 -> 91000-90000=1000s < 86400s -> still cooling
+                self.assertFalse(_cooldown_expired("cue-buddy", 91000, path=primary))
+
     def test_detect_install_mode_git_when_dotgit_in_ancestor(self) -> None:
         import tempfile
         from update_skill import detect_install_mode
@@ -663,8 +690,23 @@ class Case14_UpgradeSkillHelpers(unittest.TestCase):
 
     def test_detect_install_mode_copy_when_no_dotgit(self) -> None:
         import tempfile
+        from unittest.mock import patch
         from update_skill import detect_install_mode
-        with tempfile.TemporaryDirectory() as tmp:
+        # TMPDIR may itself sit inside a git worktree (e.g. /fast/tmp has a
+        # stray .git, or a dev sets TMPDIR into a project dir). Since
+        # detect_install_mode walks ancestors looking for .git, a stray
+        # ancestor .git would make this return "git" and break the
+        # "no .git anywhere → copy" assertion. Force .git ancestor checks
+        # to miss so the test is robust regardless of where TMPDIR lives.
+        real_exists = Path.exists
+
+        def fake_exists(self):
+            if self.name == ".git":
+                return False
+            return real_exists(self)
+
+        with tempfile.TemporaryDirectory() as tmp, \
+             patch.object(Path, "exists", fake_exists):
             skill_dir = Path(tmp) / "cue-buddy"
             skill_dir.mkdir()
             mode, root = detect_install_mode(skill_dir)
@@ -852,6 +894,247 @@ class Case15_UpgradeGitBranchGuard(unittest.TestCase):
                 check=True,
             )
             self.assertEqual(git_current_branch(tmp_p), "feature/x")
+
+
+class Case16_NormalizeTemplateId(unittest.TestCase):
+    """A bare `<id>` (prefix dropped while copying from chat/notes) must
+    still resolve — both humans and agents hit the backend 404 "模板不存
+    在" this way. normalize_template_id is called at every template_id
+    entry point in cue_api (get/update/frequent/recommended-task) so
+    callers never need to pre-normalize. PR#29 only covered research_run's
+    CLI; this codifies the cue_api layer coverage."""
+
+    def _fn(self):
+        from cue_api import normalize_template_id
+        return normalize_template_id
+
+    def test_bare_suffix_gets_prefixed(self):
+        self.assertEqual(self._fn()("8qNgr5"), "template_8qNgr5")
+
+    def test_already_prefixed_is_untouched(self):
+        self.assertEqual(self._fn()("template_8qNgr5"), "template_8qNgr5")
+
+    def test_none_passes_through(self):
+        self.assertIsNone(self._fn()(None))
+
+    def test_double_underscore_id_not_mangled(self):
+        # `template__xWp8N` = prefix `template_` + suffix `_xWp8N` (double
+        # underscore) — already starts with template_, must stay as-is.
+        self.assertEqual(self._fn()("template__xWp8N"), "template__xWp8N")
+
+    def test_bare_double_underscore_suffix_gets_one_prefix(self):
+        # Bare `_xWp8N` → `template__xWp8N` (correct: one prefix prepended).
+        self.assertEqual(self._fn()("_xWp8N"), "template__xWp8N")
+
+    def test_long_slug_bare_form_gets_prefixed(self):
+        self.assertEqual(
+            self._fn()("corporate_credit_pre_due_diligence"),
+            "template_corporate_credit_pre_due_diligence",
+        )
+
+    def test_get_template_normalizes_bare_id_in_url(self):
+        from unittest.mock import patch
+        import cue_api
+        with patch.object(cue_api, "_request", return_value={}) as m:
+            cue_api.get_template("8qNgr5")
+        m.assert_called_once_with("GET", "/templates/template_8qNgr5")
+
+    def test_update_template_normalizes_bare_id_in_url(self):
+        from unittest.mock import patch
+        import cue_api
+        with patch.object(cue_api, "_request", return_value={"data": {}}) as m:
+            cue_api.update_template("fnig0i", {"title": "x"})
+        self.assertEqual(m.call_args.args[0], "PUT")
+        self.assertEqual(m.call_args.args[1], "/templates/template_fnig0i")
+
+    def test_set_template_frequent_normalizes_bare_id_in_body(self):
+        from unittest.mock import patch
+        import cue_api
+        # frequent endpoint URL has no id; the canonical id rides in body.
+        with patch.object(cue_api, "_request", return_value={"data": {}}) as m:
+            cue_api.set_template_frequent("Pz0sT5", True)
+        self.assertEqual(m.call_args.args[1], "/templates/frequent")
+        self.assertEqual(
+            m.call_args.kwargs["body"]["template_id"], "template_Pz0sT5"
+        )
+
+    def test_update_recommended_task_normalizes_bare_id_in_url(self):
+        from unittest.mock import patch
+        import cue_api
+        with patch.object(cue_api, "_request", return_value={"data": {}}) as m:
+            cue_api.update_template_recommended_task(
+                "7qiAwz", schedules=[{"type": "daily", "time": "09:00"}]
+            )
+        self.assertEqual(
+            m.call_args.args[1],
+            "/templates/template_7qiAwz/recommended-task",
+        )
+
+
+class Case17_ValidateTemplateId(unittest.TestCase):
+    """validate_template_id catches a pure-digit suffix (e.g. `142` →
+    `template_142`) — the agent grabbed the buddy's numeric DB `id` or a list
+    index, not the template_id string. Cue suffixes are base62 (verified
+    0/159 buddies have a pure-digit suffix), so this is a guaranteed 404;
+    fail fast instead of burning credits. normalize prepends the prefix,
+    validate checks the suffix."""
+
+    def _fn(self):
+        from cue_api import validate_template_id
+        return validate_template_id
+
+    def test_pure_digit_suffix_rejected(self):
+        # `142` → normalize → `template_142` → validate rejects.
+        self.assertIsNotNone(self._fn()("template_142"))
+
+    def test_bare_pure_digit_rejected(self):
+        # bare `142` (pre-normalize) also rejected — suffix is still pure-digit.
+        self.assertIsNotNone(self._fn()("142"))
+
+    def test_canonical_id_accepted(self):
+        self.assertIsNone(self._fn()("template_fnig0i"))
+
+    def test_double_underscore_id_accepted(self):
+        # `template__xWp8N` suffix `_xWp8N` has letters — not pure-digit.
+        self.assertIsNone(self._fn()("template__xWp8N"))
+
+    def test_long_slug_accepted(self):
+        self.assertIsNone(self._fn()("template_corporate_credit_pre_due_diligence"))
+
+    def test_none_accepted(self):
+        self.assertIsNone(self._fn()(None))
+
+    def test_error_message_names_the_id_and_hints_source(self):
+        msg = self._fn()("template_142")
+        self.assertIn("template_142", msg)
+        self.assertIn("template_id", msg)  # hints: use the template_id field
+
+
+class Case18_ExtractSources(unittest.TestCase):
+    """extract_sources pulls citation sources from tool_chunk events, aligning
+    with the cubemanus product: entry = {type, data, chunks}. search_snippet/
+    url class (search_tool, crawl) sources at data.{url,title,description};
+    scan-class output.rows[M] kept as compat for company+pdf+page precision."""
+
+    def _fn(self):
+        from sse_report import extract_sources
+        return extract_sources
+
+    def _chunk(self, idx, name, title, inp, out):
+        import json
+        return "tool_chunk", json.dumps({"chunk": {str(idx): {
+            "type": "mcp", "data": {"tool_name": name, "tool_title": title,
+                                     "input": inp, "output": out}}}})
+
+    def _chunk_snippet(self, idx, name, title, url, desc="", chunks=None):
+        import json
+        return "tool_chunk", json.dumps({"chunk": {str(idx): {
+            "type": "search_snippet",
+            "data": {"tool_name": name, "tool_title": title, "title": title,
+                     "url": url, "description": desc, "question": ""},
+            "chunks": chunks or ["正文切片"]}}})
+
+    def test_extracts_search_snippet_url_title_description(self):
+        # search_tool 走 crawl.py: 来源在 data.{url,title,description}, output=null
+        ev = [self._chunk_snippet(0, "search_tool", "网页搜索",
+                                  "http://a.pdf", "来源摘要", ["切片0"])]
+        s = self._fn()(ev)
+        self.assertEqual(len(s), 1)
+        self.assertEqual(s[0]["url"], "http://a.pdf")
+        self.assertEqual(s[0]["title"], "网页搜索")
+        self.assertEqual(s[0]["description"], "来源摘要")
+        self.assertEqual(s[0]["chunks"], ["切片0"])
+        self.assertEqual(s[0]["output_preview"], "")  # output null
+
+    def test_extracts_mcp_output_rows(self):
+        # scan 类: output.rows[M] = {company, title, summary, source.pdf_url, page_range}
+        import json
+        out = json.dumps({"rows": [
+            {"company": "002385", "title": "商誉减值", "summary": "大北农...",
+             "source": {"pdf_url": "http://a.pdf"}, "page_range": [10, 20]},
+            {"company": "600089", "title": "存货跌价", "summary": "特变电工...",
+             "source": {"pdf_url": "http://b.pdf"}, "page_range": [30, 40]},
+        ]})
+        ev = [self._chunk(0, "scan_x", "财报检索", {"query": "资产减值"}, out)]
+        s = self._fn()(ev)
+        self.assertEqual(len(s[0]["rows"]), 2)
+        r0 = s[0]["rows"][0]
+        self.assertEqual(r0["m"], 0)
+        self.assertEqual(r0["company"], "002385")
+        self.assertEqual(r0["pdf_url"], "http://a.pdf")
+        self.assertEqual(r0["page_range"], [10, 20])
+        self.assertIn("大北农", r0["summary"])
+
+    def test_sorted_by_index_with_gaps(self):
+        ev = [self._chunk(5, "t5", "", {}, ""), self._chunk(0, "t0", "", {}, "")]
+        out = self._fn()(ev)
+        self.assertEqual([s["index"] for s in out], [0, 5])
+
+    def test_non_tool_chunk_events_ignored(self):
+        ev = [("start_of_agent", '{"agent_name":"reporter"}'),
+              ("message", '{"delta":{"content":"x"}}')]
+        self.assertEqual(self._fn()(ev), [])
+
+    def test_empty_or_malformed_ignored(self):
+        ev = [("tool_chunk", ""), ("tool_chunk", "{not json"),
+              ("tool_chunk", '{"chunk":"not-a-dict"}'),
+              ("tool_chunk", '{"chunk":{"not-digit":{}}}')]
+        self.assertEqual(self._fn()(ev), [])
+
+    def test_nested_live_shape(self):
+        # live chat_stream wraps payload in {"data":{...}}; _event_data must unwrap.
+        import json
+        ev = [("tool_chunk", json.dumps({"data": {"chunk": {"0": {
+            "type": "search_snippet",
+            "data": {"tool_name": "t", "tool_title": "", "title": "x",
+                     "url": "http://a.pdf", "description": ""}}}}}))]
+        out = self._fn()(ev)
+        self.assertEqual(len(out), 1, "nested live shape must resolve via _event_data")
+        self.assertEqual(out[0]["url"], "http://a.pdf")
+
+    def test_rows_empty_for_truncated_output(self):
+        ev = [self._chunk(0, "get_section", "", {},
+                          '{"stock_code":"002385","summary":"...[已截断]')]
+        s = self._fn()(ev)
+        self.assertEqual(s[0]["rows"], [])
+
+    def test_rows_empty_for_no_rows_output(self):
+        ev = [self._chunk(0, "yearly_income", "", {}, "No valid data loaded")]
+        s = self._fn()(ev)
+        self.assertEqual(s[0]["rows"], [])
+
+
+class Case19_VersionConsistent(unittest.TestCase):
+    """cue-buddy and cue-research share a unified version number. Assert all
+    5 surfaces match so drift / forget-to-bump is caught at CI time:
+    cue-buddy SKILL.md, cue-research SKILL.md, cue-research/README.md Status,
+    README.md cue-buddy row, README.md cue-research row."""
+
+    def _all_versions(self) -> dict:
+        import re
+        repo = _HERE.parent.parent  # cue-buddy/scripts → cue-skills repo root
+        cb_md = (repo / "cue-buddy" / "SKILL.md").read_text(encoding="utf-8")
+        cr_md = (repo / "cue-research" / "SKILL.md").read_text(encoding="utf-8")
+        cr_readme = (repo / "cue-research" / "README.md").read_text(encoding="utf-8")
+        root_readme = (repo / "README.md").read_text(encoding="utf-8")
+        cb_skill = re.search(r'^\s*version:\s*"([^"]+)"', cb_md, re.M).group(1)
+        cr_skill = re.search(r'^\s*version:\s*"([^"]+)"', cr_md, re.M).group(1)
+        cr_status = re.search(r'Status:\s*v(\S+)', cr_readme).group(1)
+        cb_row = re.search(r'cue-buddy.*?\| v(\d+\.\d+\.\d+) \|', root_readme).group(1)
+        cr_row = re.search(r'cue-research.*?\| v(\d+\.\d+\.\d+) \|', root_readme).group(1)
+        return {
+            "cue-buddy/SKILL.md": cb_skill,
+            "cue-research/SKILL.md": cr_skill,
+            "cue-research/README.md Status": cr_status,
+            "README cue-buddy row": cb_row,
+            "README cue-research row": cr_row,
+        }
+
+    def test_all_five_surfaces_match(self):
+        vs = self._all_versions()
+        unique = set(vs.values())
+        self.assertEqual(len(unique), 1,
+                         f"version drift across surfaces: {vs}")
 
 
 if __name__ == "__main__":

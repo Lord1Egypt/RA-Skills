@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import { siteUrl, receiptUrl, requestOptions } from './receipt-url.mjs';
 
 function parseArgs(argv) {
   const args = new Map();
@@ -58,11 +59,18 @@ if (!password) die('missing_wordpress_application_password');
 if (!title) die('missing_title');
 if (!content) die('missing_content');
 
+const requestedStatus = args.get('status');
+if (!['draft', 'publish'].includes(requestedStatus)) die('explicit_status_required', { allowed: ['draft', 'publish'] });
+siteUrl(apiBase);
+const site = args.get('site-url') || env.WORDPRESS_SITE_URL || apiBase;
+siteUrl(site);
+
 const auth = 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64');
 
 async function wp(path, options = {}) {
   const res = await fetch(`${apiBase}${path}`, {
     ...options,
+    ...requestOptions(),
     headers: {
       Authorization: auth,
       'Content-Type': 'application/json',
@@ -81,17 +89,17 @@ async function wp(path, options = {}) {
 }
 
 const recent = await wp(`/posts?search=${encodeURIComponent(title)}&per_page=5&status=publish&_fields=id,date,link,status,title`);
-const duplicate = recent.find((post) => stripHtml(post.title?.rendered) === title);
+const duplicate = requestedStatus === 'publish' && recent.find((post) => stripHtml(post.title?.rendered) === title && Number.isInteger(post.id) && post.status === 'publish');
 if (duplicate && args.get('allow-duplicate') !== 'true') {
-  const publicRes = await fetch(duplicate.link, { method: 'GET' });
-  console.log(JSON.stringify({ ok: true, action: 'duplicate-skip', id: duplicate.id, status: duplicate.status, title, link: duplicate.link, publicStatus: publicRes.status }, null, 2));
+  const publicRes = await fetch(receiptUrl(duplicate.link, site), { method: 'GET', ...requestOptions() });
+  console.log(JSON.stringify({ ok: publicRes.status === 200, action: 'duplicate-skip', id: duplicate.id, status: duplicate.status, title, link: duplicate.link, publicStatus: publicRes.status }, null, 2));
   process.exit(publicRes.status === 200 ? 0 : 2);
 }
 
 const payload = {
   title,
   content,
-  status: args.get('status') || 'publish',
+  status: requestedStatus,
   comment_status: args.get('comment-status') || 'closed',
   ping_status: args.get('ping-status') || 'closed',
 };
@@ -99,8 +107,15 @@ if (author) payload.author = author;
 if (category) payload.categories = [category];
 
 const post = await wp('/posts', { method: 'POST', body: JSON.stringify(payload) });
+if (!Number.isInteger(post?.id) || post.id <= 0) die('invalid_created_post');
 const verified = await wp(`/posts/${post.id}?context=edit&_fields=id,status,link,author,categories,title`);
-const publicRes = await fetch(post.link, { method: 'GET' });
-const ok = verified.status === payload.status && publicRes.status === 200;
-console.log(JSON.stringify({ ok, action: 'published', id: post.id, status: verified.status, author: verified.author, categories: verified.categories, title, link: post.link, publicStatus: publicRes.status }, null, 2));
+if (verified.id !== post.id || verified.status !== requestedStatus) die('post_verification_mismatch');
+if (requestedStatus === 'draft') {
+  console.log(JSON.stringify({ ok: true, action: 'draft-created', id: post.id, status: verified.status, title, link: verified.link, publicStatus: null }, null, 2));
+  process.exit(0);
+}
+const url = receiptUrl(verified.link, site);
+const publicRes = await fetch(url, { method: 'GET', ...requestOptions() });
+const ok = publicRes.status === 200;
+console.log(JSON.stringify({ ok, action: 'published', id: post.id, status: verified.status, author: verified.author, categories: verified.categories, title, link: url, publicStatus: publicRes.status }, null, 2));
 if (!ok) process.exit(2);

@@ -1,46 +1,59 @@
-## Description: <br>
-Apifox Exporter automates Apifox API export with Playwright and converts exported OpenAPI JSON into organized plain-text interface documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apifox Exporter automates exporting OpenAPI JSON from Apifox and turns it into organized API documentation grouped by module.
 
-## Publisher: <br>
-[zzy05651666](https://clawhub.ai/user/zzy05651666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzy05651666](https://clawhub.ai/user/zzy05651666)
 
-## Use Case: <br>
-Developers and API teams use this skill to export Apifox project definitions, expand OpenAPI schemas, and generate module-grouped interface documentation for implementation or review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reuses a logged-in Apifox browser session and can export project API definitions. <br>
-Mitigation: Use explicit Apifox-specific commands, verify the browser is on the intended team and project, and delete the saved browser profile when it is no longer needed. <br>
-Risk: Default team and project values may point automation at the wrong Apifox workspace. <br>
-Mitigation: Change the default team and project values before running the skill, or pass explicit team and project parameters for each export. <br>
-Risk: Fallback export mode may process the newest JSON file in Downloads rather than the intended Apifox export. <br>
-Mitigation: Avoid fallback mode unless the intended export is confirmed as the newest Downloads JSON file. <br>
-Risk: Generated source JSON, debug screenshots, and Desktop documentation can contain sensitive API examples or project data. <br>
-Mitigation: Review exported content before sharing and delete raw source JSON, debug screenshots, and Desktop exports when no longer needed. <br>
+## Use Case:
 
+Developers and API teams use this skill to refresh Apifox API documentation by exporting a selected team/project and formatting the resulting OpenAPI data into a readable document. It also supports a fallback flow where the user supplies an exported Apifox JSON file for formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzy05651666/apifox-exporter) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text API documentation generated from OpenAPI JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a raw source JSON file and a Desktop text export; browser automation may also create a persistent browser profile and debug screenshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence, package.json, skill.yaml, SKILL.md) <br>
+Risk: The skill can automate an authenticated Apifox export and may export the wrong or sensitive project data if target selection is broad or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in accounts where exporting all visible Apifox project data is acceptable, and verify the selected team and project before export.
+
+Risk: Saved browser profiles, downloaded source JSON, generated documents, and debug screenshots may retain sensitive API data locally.
+
+Mitigation: Clear the saved chrome-profile, source JSON, generated desktop document, and debug screenshots after use when they contain sensitive information.
+
+Risk: The fallback flow may process an unintended JSON file if the expected source location contains stale or incorrect Apifox exports.
+
+Mitigation: Before using fallback mode, explicitly place the intended Apifox JSON at the expected source path and remove stale source files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zzy05651666/skills/apifox-exporter)
+- [Publisher Profile](https://clawhub.ai/user/zzy05651666)
+- [Apifox Web App](https://app.apifox.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text API documentation with structured sections and JSON examples; agent responses may include Markdown instructions and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes formatted API documentation to the user's Desktop and stores the source OpenAPI JSON in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence, skill.yaml, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

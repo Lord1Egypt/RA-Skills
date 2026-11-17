@@ -1,43 +1,55 @@
-## Description: <br>
-V19 Trust Engine explains a trust-scoring and VPAV validation model for agents, including weighted trust-score dimensions, certification thresholds, activity decay, and example calls to the V19 governance service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V19 Trust Engine documents a trust-scoring and certification workflow for agents, including weighted trust dimensions, VPAV validation, score thresholds, decay behavior, and registration calls.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-External agent developers use this documentation skill to understand how V19 calculates trust, validates declared capabilities against behavior, and gates certification status. It also provides example governance-service calls for health checks, trust-score lookup, and self-registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes example calls to an external governance service. <br>
-Mitigation: Verify the endpoint is trusted before running the curl examples. <br>
-Risk: Self-registration can return a Pro key and may send agent details to the service. <br>
-Mitigation: Avoid submitting sensitive agent details and keep any returned Pro key private. <br>
+## Use Case:
 
+External agent developers and operators use this skill to understand and test a V19 trust-score certification workflow, including registration, recurring audit calls, VPAV validation, and score decay.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuyanfeng1234/v19-trust-engine) <br>
-- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
-- [V19 Governance Dashboard](https://boat-atlas-spa-flexible.trycloudflare.com/governance/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; example API calls may return governance-service responses when run by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs users to register and make recurring trust calls through an unaudited temporary external service with unclear data and key handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send sensitive agent names, production identifiers, private audit data, or long-lived keys unless service ownership, stable domain, privacy and retention terms, and credential rotation and revocation procedures are verified.
+
+Risk: The documented workflow depends on external governance endpoints and an example public key.
+
+Mitigation: Review endpoint ownership and expected data handling before using the workflow with real agents or production audit data.
+
+## Reference(s):
+
+- [V19 Trust Engine on ClawHub](https://clawhub.ai/liuyanfeng1234/skills/v19-trust-engine)
+- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables and bash curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; includes external governance endpoints and an example public key.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

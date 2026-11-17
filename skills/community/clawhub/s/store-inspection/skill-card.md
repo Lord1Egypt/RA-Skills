@@ -1,41 +1,57 @@
-## Description: <br>
-连锁门店巡店管理全流程助手，覆盖巡店计划制定、巡店执行评分、营销方案生成和数据分析报告四个阶段。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+连锁门店巡店管理全流程助手，覆盖巡店计划制定、巡店执行评分、营销方案生成和数据分析报告，支持10维加权评分、交互式HTML报告、多门店对比和整改追踪闭环。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Retail operations teams, regional managers, and store supervisors use this skill to plan inspections, score store execution across ten weighted dimensions, generate corrective actions, and summarize results in reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports load Chart.js from a third-party CDN, which may be unsuitable for sensitive or network-restricted inspection data. <br>
-Mitigation: Avoid placing sensitive business data in generated reports when the CDN dependency is unacceptable, or review reports in an environment approved for that dependency. <br>
-Risk: Inspection plans, scoring results, marketing plans, and reports are written as local files that may contain store operations details. <br>
-Mitigation: Store and share generated files according to the organization's data handling rules, and review report contents before distribution. <br>
+## Use Case:
 
+Store operations teams and retail supervisors use this skill to plan inspections, score store execution, generate marketing improvement actions, and analyze inspection history across locations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/store-inspection) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with optional shell commands; the bundled script can write JSON data files and HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local script stores inspection plans, scoring results, marketing plans, and generated reports under its own data and output folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated HTML reports can run injected script from inspection data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted inspection data and avoid opening generated HTML reports built from untrusted store names or issue text.
+
+Risk: Generated reports load Chart.js from a remote CDN.
+
+Mitigation: Prefer a fixed version that bundles or pins Chart.js locally before production use.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Review this skill before installing it in a production or sensitive business workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/store-inspection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; script workflows generate JSON data files and interactive HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local data and output files for inspection plans, scoring results, marketing plans, demo data, and HTML analysis reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

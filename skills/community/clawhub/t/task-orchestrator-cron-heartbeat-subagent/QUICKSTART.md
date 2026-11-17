@@ -1,8 +1,6 @@
-# Task Orchestrator v2.3 - Quick Start Guide
+# Task Orchestrator v2.0 - Quick Start Guide
 
 > Get started in 5 minutes - Enable agents to learn task orchestration
-> 
-> **v2.3 New**: Channel Binding Configuration Guide - Ensure messages send from correct account
 
 ---
 
@@ -84,36 +82,14 @@ Please confirm and I'll create this scheduled task ✓
 **After Confirmation**:
 ```bash
 openclaw cron add \
-  --agentId "main" \
-  --session "main" \
   --name "Meeting Reminder" \
   --at "+10m" \
-  --session "main" \
+  --session isolated \
   --channel feishu \
   --to "user:ou_642f1cb74d63462d1037375caac5ea2d" \
-  --accountId "default" \
   --message "Reminder: Meeting in 10 minutes" \
   --tz "Asia/Shanghai" \
   --description "Remind meeting in 10 minutes"
-```
-
-**❗Important**:
-- `--agentId "main"` - Specify main agent executes
-- `--session "main"` - Use main's dedicated session (inherits channel binding)
-- `--accountId "default"` - Specify send from default account
-
-If it's kk agent's task, should use:
-```bash
-openclaw cron add \
-  --agentId "kk" \
-  --session "kk" \
-  --accountId "kk-feishu" \
-  ...
-```
-
-**Run Configuration Check**:
-```bash
-python3 ~/.openclaw/skills/task-orchestrator/scripts/check_cron_config.py
 ```
 
 ---

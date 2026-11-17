@@ -1,52 +1,65 @@
-## Description: <br>
-Use when the user wants an Abel causal read on what drives a market, company, asset, sector, or macro node, how two nodes connect, what changes under intervention, or how a career, education, housing, lifestyle, or investment decision with meaningful money, time, career-capital, or downside tradeoff should be evaluated through Abel proxy signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Causal Abel helps agents use Abel causal graph probes and web grounding to analyze market, macro, asset, career, housing, lifestyle, education, and investment decisions with meaningful tradeoffs.
 
-## Publisher: <br>
-[exenvitor](https://clawhub.ai/user/exenvitor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[exenvitor](https://clawhub.ai/user/exenvitor)
 
-## Use Case: <br>
-External users and agents use this skill to produce Abel-grounded causal analysis for market, business, macro, lifestyle, housing, education, career, and investment decisions involving meaningful money, time, career-capital, or downside risk. It supports direct graph questions and proxy-routed decision analysis, including web grounding when current facts matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Abel API key and may store it locally for authenticated probing. <br>
-Mitigation: Treat ABEL_API_KEY as a secret, keep .env.skill and .env out of commits and shared workspaces, and revoke or rotate the key if exposed. <br>
-Risk: Authenticated Abel probes involve an external service in finance, housing, career, business, or other high-impact decision advice. <br>
-Mitigation: Confirm the user wants Abel analysis before running probes on ambiguous high-impact questions, and frame outputs as decision support rather than causal proof. <br>
-Risk: Graph or proxy analysis can be misleading when premises are stale, unsupported, or graph-sparse. <br>
-Mitigation: Use the skill's freshness checks, web-grounding rules, contradiction search, and claim-strength caveats before presenting decision guidance. <br>
-Risk: OAuth handling can expose credentials if the agent asks for raw secrets or codes. <br>
-Mitigation: Use the documented OAuth handoff URL flow, never ask for an email address, OAuth code, or raw API key, and wait for authorization before probing. <br>
+## Use Case:
 
+Developers and external users use this skill to route meaningful financial, market, career, education, housing, lifestyle, and investment decisions through Abel causal graph analysis, web grounding, contradiction checks, and a concise decision report.
 
-## Reference(s): <br>
-- [Causal Abel on ClawHub](https://clawhub.ai/exenvitor/causal-abel) <br>
-- [Abel Skills Repository](https://github.com/Abel-ai-causality/Abel-skills) <br>
-- [Probe Usage](references/probe-usage.md) <br>
-- [Direct Graph Route](references/routes/direct-graph.md) <br>
-- [Proxy-Routed Route](references/routes/proxy-routed.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Web Grounding](references/web-grounding.md) <br>
-- [Rendering Rules](references/rendering.md) <br>
-- [Causal Abel Report Guide](assets/report-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with concise decision guidance and optional inline shell commands for setup or probe usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to the main answer only; probe traces, appendices, and raw graph details are omitted unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: frontmatter and server release metadata) <br>
+Risk: The skill connects to an Abel account and may store an Abel API key locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer session-only secrets or a real secret store, and avoid broad .env files near the skill.
+
+Risk: Custom Abel service endpoints could receive Abel credentials.
+
+Mitigation: Do not pass custom --base-url values with Abel credentials unless the endpoint is trusted and intended for that account.
+
+Risk: Graph probes may inform financial and life-decision advice while reusing stored profile details such as income or risk tolerance.
+
+Mitigation: Treat outputs as decision support, minimize stored personal profile details, and review advice before acting on meaningful money, career, housing, education, or downside-risk decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/exenvitor/skills/causal-abel)
+- [Source homepage](https://github.com/Abel-ai-causality/Abel-skills)
+- [Setup Guide](references/setup-guide.md)
+- [Probe Usage](references/probe-usage.md)
+- [Direct Graph Route](references/routes/direct-graph.md)
+- [Proxy-Routed Route](references/routes/proxy-routed.md)
+- [Web Grounding](references/web-grounding.md)
+- [Rendering Rules](references/rendering.md)
+- [Causal Abel Report Guide](assets/report-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown decision reports with optional shell command snippets, configuration guidance, and setup instructions when requested or required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is the main answer only; traces, appendices, probe transcripts, and raw graph details are omitted unless explicitly requested.]
+
+## Skill Version(s):
+
+1.1.6 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

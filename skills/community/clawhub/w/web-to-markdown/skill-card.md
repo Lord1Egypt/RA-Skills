@@ -1,44 +1,59 @@
-## Description: <br>
-Converts public web pages to Markdown, extracts image URLs, and batch-downloads page images using online conversion services and local fallback scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web to Markdown converts web pages to clean Markdown, extracts image URLs, and batch-downloads images from websites using conversion services and local fallback scripts.
 
-## Publisher: <br>
-[josephxie1](https://clawhub.ai/user/josephxie1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[josephxie1](https://clawhub.ai/user/josephxie1)
 
-## Use Case: <br>
-Developers, researchers, and content teams use this skill to convert public web content into readable Markdown, collect image URLs, and download webpage images for review or organization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private, authenticated, internal, signed, or token-bearing URLs may be sent to external conversion or scraping services. <br>
-Mitigation: Use the skill only with public webpages unless the user has explicitly accepted sending the URL and fetched content to the listed services. <br>
-Risk: Downloaded images can be written to local storage, including a default output directory. <br>
-Mitigation: Choose the output directory deliberately and review downloaded files before reusing or redistributing them. <br>
-Risk: The local fallback scraper requires installing Python dependencies. <br>
-Mitigation: Review dependencies before installation and install them only in an appropriate environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josephxie1/web-to-markdown) <br>
-- [markdown.new](https://markdown.new/) <br>
-- [defuddle.md](https://defuddle.md/) <br>
-- [r.jina.ai](https://r.jina.ai/) <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to turn web pages into readable Markdown and collect image URLs or image files for content review, article reading, image collection, and source organization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, extracted URL lists, and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write URL lists or downloaded images to user-selected local paths; image downloads default to ~/.openclaw/images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-supplied URLs may be sent to third-party conversion services.
+
+Mitigation: Avoid private, internal, authenticated, signed, or token-bearing URLs and get explicit confirmation before processing sensitive pages.
+
+Risk: The skill can fetch or download arbitrary web content.
+
+Mitigation: Run it in a constrained environment, review target URLs before execution, and apply download limits and destination controls.
+
+Risk: Downloaded images and scraped content may come from untrusted websites.
+
+Mitigation: Review downloaded files before reuse and keep normal malware scanning and content handling controls in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephxie1/skills/web-to-markdown)
+- [markdown.new conversion service](https://markdown.new/)
+- [defuddle.md conversion service](https://defuddle.md/)
+- [r.jina.ai conversion service](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and plain-text URL lists or downloaded image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external conversion services, make arbitrary web requests, and write downloaded images to local storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

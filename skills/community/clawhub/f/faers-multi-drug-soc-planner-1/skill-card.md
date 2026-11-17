@@ -1,40 +1,55 @@
-## Description: <br>
-Generates FAERS/OpenFDA comparative pharmacovigilance study plans for comparing multiple drugs within one System Organ Class or bounded adverse event domain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete FAERS-based multi-drug single-SOC safety comparison research designs from a user-provided drug set, comparator, and adverse event domain.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, pharmacovigilance analysts, and developers use this skill to draft comparative FAERS/OpenFDA safety study designs, including workload tiers, analysis workflow, figure plans, validation strategy, and publication upgrade paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical and statistical planning output could be mistaken for clinical, causal, or incidence evidence. <br>
-Mitigation: Treat outputs as research-planning guidance only, and review study design, assumptions, statistical methods, and any downstream analysis before relying on results. <br>
-Risk: FAERS/OpenFDA data limitations such as underreporting, sparse indication fields, duplicate cases, and drug-name misclassification can affect proposed studies. <br>
-Mitigation: Apply the skill's validation steps for normalization, duplicate handling, comparator suitability, case-count thresholds, sensitivity analysis, and explicit reporting-disproportionality caveats. <br>
+## Use Case:
 
+External researchers, developers, and pharmacovigilance analysts use this skill to plan comparative FAERS or OpenFDA safety-signal studies across multiple drugs within one MedDRA System Organ Class or bounded adverse-event domain.
 
-## Reference(s): <br>
-- [FDA FAERS Public Dashboard and Quarterly Data](https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research plan with comparison tables and workflow sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Always includes Lite, Standard, Advanced, and Publication+ configurations with risk review and validation sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated FAERS study plans could be mistaken for clinical advice or causal safety conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as medical research planning aids only, and review for non-causal wording before using them in publications or decisions.
+
+Risk: Study plans may depend on comparator suitability and known FAERS limitations such as reporting bias, sparse indications, and non-incidence disproportionality signals.
+
+Mitigation: Review comparator choice, require explicit FAERS limitations, and confirm that results are framed as reporting disproportionality rather than incidence or causal risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/faers-multi-drug-soc-planner-1)
+- [AIpoch publisher profile](https://clawhub.ai/user/aipoch-ai)
+- [FDA FAERS public dashboard and downloads](https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research plan with comparison tables and workflow sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always produces four workload configurations, a recommended primary plan, validation strategy, risk review, minimal executable version, and publication upgrade path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

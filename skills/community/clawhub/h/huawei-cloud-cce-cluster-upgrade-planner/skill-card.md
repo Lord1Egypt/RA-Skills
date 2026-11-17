@@ -1,50 +1,63 @@
-## Description: <br>
-Plans Huawei Cloud CCE Kubernetes cluster upgrades by assessing upgrade paths, pre-checks, addon compatibility, breaking changes, deprecated APIs, upgrade windows, migration strategy, and execution previews with two-step confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans Huawei Cloud CCE Kubernetes cluster upgrades by assessing upgrade paths, addon compatibility, pre-upgrade checks, version-specific risks, upgrade windows, and execution previews with two-step confirmation.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to plan Huawei Cloud CCE cluster upgrades, validate version and addon compatibility, estimate maintenance windows, and generate reviewable hcloud command previews before making production changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated hcloud upgrade commands can trigger high-impact Huawei CCE changes if executed. <br>
-Mitigation: Treat UpgradeCluster, UpgradeNodePool, UpdateAddonInstance, CreateUpgradeWorkFlow, pause, retry, continue, and cancel commands as production-changing guidance; manually verify exact hcloud behavior and explicitly approve execution. <br>
-Risk: Execution previews are protected by instruction-level two-step confirmation rather than an independently verified safe dry run. <br>
-Mitigation: Review every command, parameter, cluster ID, region, target version, addon operation, and node operation before running anything in a live environment. <br>
-Risk: Cloud credentials could be exposed if access keys are copied into prompts, commands, or outputs. <br>
-Mitigation: Use hcloud profile configuration or environment variables, and check only credential presence with hcloud configure list. <br>
+## Use Case:
 
+Developers and cloud platform engineers use this skill to plan Huawei Cloud CCE Kubernetes version upgrades, estimate maintenance windows, check compatibility, and generate reviewed hcloud command previews before changing clusters.
 
-## Reference(s): <br>
-- [Upgrade Workflow](references/upgrade-workflow.md) <br>
-- [Pre-Upgrade Checklist](references/pre-upgrade-checklist.md) <br>
-- [Addon Compatibility and Upgrade Order](references/addon-compatibility.md) <br>
-- [CCE Kubernetes Version Upgrade Path Matrix](references/k8s-version-matrix.md) <br>
-- [Upgrade Window Estimation](references/upgrade-window-estimation.md) <br>
-- [Risk Rules and Guardrails](references/risk-rules.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Huawei Cloud CCE cluster upgrade documentation](https://support.huaweicloud.com/usermanual-cce/cce_10_0197.html) <br>
-- [Huawei Cloud CCE pre-upgrade checks](https://support.huaweicloud.com/usermanual-cce/cce_10_0549.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON assessment sections and inline hcloud shell command previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated upgrade commands require manual review and explicit approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Preview sections include live hcloud upgrade commands that could change production CCE clusters if executed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only or least-privileged Huawei Cloud credentials for assessment and require explicit approval for the exact cluster, region, target version, and operation before running UpgradeCluster, CreateUpgradeWorkFlow, UpgradeNodePool, UpdateAddonInstance, pause, retry, continue, or cancellation commands.
+
+Risk: Incorrect upgrade-path, pre-check, or addon compatibility guidance could lead to failed upgrades or service interruption.
+
+Mitigation: Verify hcloud dry-run behavior and command help independently, run CCE pre-upgrade checks, follow supported version paths, and review rollback plus post-upgrade verification steps before execution.
+
+## Reference(s):
+
+- [Upgrade Workflow](references/upgrade-workflow.md)
+- [Pre-Upgrade Checklist](references/pre-upgrade-checklist.md)
+- [Addon Compatibility and Upgrade Order](references/addon-compatibility.md)
+- [CCE Kubernetes Version Upgrade Path Matrix](references/k8s-version-matrix.md)
+- [Upgrade Window Estimation](references/upgrade-window-estimation.md)
+- [Risk Rules and Guardrails](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+- [Huawei Cloud CCE Cluster Upgrade](https://support.huaweicloud.com/usermanual-cce/cce_10_0197.html)
+- [Huawei Cloud CCE Pre-Upgrade Checks](https://support.huaweicloud.com/usermanual-cce/cce_10_0549.html)
+- [Huawei Cloud CCE Version Lifecycle](https://support.huaweicloud.com/bulletin-cce/cce_bulletin_0043.html)
+- [Huawei Cloud CCE PSP Configuration](https://support.huaweicloud.com/usermanual-cce/cce_10_0466.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-style assessment reports with hcloud CLI command previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation-required execution previews, rollback planning, and post-upgrade verification guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn76hejqh1ja2ed3prseaeh5ed82zts2",
-  "slug": "workswith-claw",
-  "version": "1.0.3",
-  "publishedAt": 1773835919705
+  "name": "workswith-claw",
+  "version": "1.0.2",
+  "description": "为家，注入灵魂 - 智能家居中间件",
+  "author": "Fanyur-Wang",
+  "homepage": "https://github.com/workswith/claw",
+  "tags": ["homeassistant", "smart-home", "iot", "automation"],
+  "permissions": ["home_assistant", "local_storage"],
+  "requiredConfig": {
+    "HA_URL": "Home Assistant 地址，如 http://192.168.1.x:8123",
+    "HA_TOKEN": "Home Assistant 长期访问令牌"
+  }
 }

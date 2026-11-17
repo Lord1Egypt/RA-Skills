@@ -1,42 +1,54 @@
-## Description: <br>
-HubLinkPro GoHighLevel API helps agents manage contacts, pipelines, workflows, and messaging for Tri-Cities real estate lead generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HubLinkPro GoHighLevel API skill helps agents manage contacts, pipelines, workflows, and messaging for Tri-Cities real estate lead generation.
 
-## Publisher: <br>
-[mbright4497](https://clawhub.ai/user/mbright4497) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbright4497](https://clawhub.ai/user/mbright4497)
 
-## Use Case: <br>
-Real estate operations teams and their agents use this skill to prepare GoHighLevel API calls for lead intake, contact updates, pipeline opportunity work, notes, workflow triggers, and SMS follow-up for Tri-Cities campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States (Tri-Cities, Tennessee use case) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change GoHighLevel CRM records, opportunities, tags, notes, and workflows when commands are run. <br>
-Mitigation: Use a least-privilege API key, protect environment variables, verify contact, opportunity, pipeline, and workflow IDs, and require human confirmation before write actions. <br>
-Risk: The SMS command can send messages to contacts. <br>
-Mitigation: Confirm recipient consent, message content, and applicable messaging rules before sending SMS. <br>
+## Use Case:
 
+External users or developers supporting HubLinkPro use this skill to generate GoHighLevel API commands for Tri-Cities Tennessee real estate lead operations, including contact management, opportunity updates, notes, workflows, and SMS messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mbright4497/hlp-ghl-api) <br>
-- [Publisher profile](https://clawhub.ai/user/mbright4497) <br>
-- [LeadConnector API base URL](https://services.leadconnectorhq.com) <br>
+### Deployment Geography for Use:
 
+United States (Tri-Cities, Tennessee use case)
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with curl and jq command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GHL_API_KEY and GHL_LOCATION_ID; commands call the LeadConnector/GoHighLevel API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live CRM write and SMS commands can create or alter customer records, trigger workflows, or send messages without built-in approval safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege GoHighLevel API keys, separate read-only use from write and SMS actions, and require explicit human confirmation of the recipient, record, and payload before live actions.
+
+Risk: Inline shell JSON and query parameters can be malformed if values contain quotes or special characters.
+
+Mitigation: Harden production use with jq-built JSON payloads and proper URL encoding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mbright4497/skills/hlp-ghl-api)
+- [LeadConnector API base endpoint](https://services.leadconnectorhq.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl and jq shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require GHL_API_KEY, GHL_LOCATION_ID, curl, and jq; API responses are commonly piped through jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

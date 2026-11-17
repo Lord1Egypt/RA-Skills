@@ -1,41 +1,59 @@
-## Description: <br>
-Enterprise-grade security vetting protocol for AI agent skills with automated threat detection, quantified risk scoring, and zero-trust code analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade security vetting protocol for AI agent skills. Automated threat detection, quantified risk scoring, and zero-trust code analysis.
 
-## Publisher: <br>
-[r00tFe1](https://clawhub.ai/user/r00tFe1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[r00tfe1](https://clawhub.ai/user/r00tfe1)
 
-## Use Case: <br>
-Developers and AI agents use this skill to review third-party agent skills before installation, applying source, code, permissions, dependency, and behavior checks to produce a risk-informed install decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Security scoring may be over-trusted as an install or rejection authority. <br>
-Mitigation: Use the skill as a review aid and require human confirmation for high-impact install or rejection decisions. <br>
-Risk: Command examples could be run outside the intended candidate skill directory. <br>
-Mitigation: Review command snippets before running them and keep scans scoped to the candidate skill directory. <br>
+## Use Case:
 
+Developers and agent operators use this skill to vet third-party agent skills before installation by applying source, code, permission, dependency, and behavior checks. It produces a security-oriented recommendation and audit trail for installation decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/r00tFe1/aegis-skill-vetter) <br>
-- [Publisher profile](https://clawhub.ai/user/r00tFe1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, command examples, scoring tables, and audit report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory security review outputs; evidence.security says its scoring should not be treated as final authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Users may treat the skill's recommendation as an independent sandbox or final authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a review framework and verify generated recommendations before permitting installation or execution actions.
+
+Risk: Example commands may inspect local skill files or query public repository metadata.
+
+Mitigation: Run commands only against skill folders intended for review and confirm network-facing examples before use.
+
+Risk: The artifact contains scanner-triggering examples that describe threats rather than implemented behavior.
+
+Mitigation: Interpret scanner hits in context and rely on the server security verdict and summary for release risk.
+
+## Reference(s):
+
+- [Aegis skill source](artifact/skill.md)
+- [ClawHub skill page](https://clawhub.ai/r00tfe1/skills/aegis-skill-vetter)
+- [ClawHub publisher profile](https://clawhub.ai/user/r00tfe1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown security review reports with command snippets and decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk scores, critical and warning classifications, audit details, and recommended installation decisions.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

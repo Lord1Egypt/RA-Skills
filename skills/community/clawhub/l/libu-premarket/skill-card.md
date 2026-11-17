@@ -1,44 +1,58 @@
-## Description: <br>
-Libu Premarket generates an A-share pre-market stock screening map using capital-flow signals, financial filters, and technical indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Libu Premarket generates an A-share premarket map that combines capital-flow signals, financial filters, and technical indicators to identify sectors and stocks for review.
 
-## Publisher: <br>
-[ygbeyond](https://clawhub.ai/user/ygbeyond) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygbeyond](https://clawhub.ai/user/ygbeyond)
 
-## Use Case: <br>
-External users and agents use this skill to prepare a pre-market A-share market report, including global market context, sector flow analysis, selected stock candidates, and trading guidance for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad local file and environment access and reads payment and market-data credentials from environment variables. <br>
-Mitigation: Install only from a trusted publisher, run in an environment where those credentials may be read by the skill, and avoid exposing unrelated secrets. <br>
-Risk: The skill may load Python code from a separate local tushare-finance skill directory if that path exists. <br>
-Mitigation: Review any local tushare-finance files before running this skill, or run it in a clean environment without that local skill path. <br>
-Risk: The output includes stock-screening and trading guidance that may be incomplete, stale, or unsuitable for a user's risk profile. <br>
-Mitigation: Treat generated reports as data references only, verify market data independently, and require human investment review before acting. <br>
+## Use Case:
 
+External users and agents use this skill before A-share market open to prepare a data-backed watchlist and premarket report. It is intended for market research and decision support, not as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ygbeyond/libu-premarket) <br>
-- [Publisher profile](https://clawhub.ai/user/ygbeyond) <br>
-- [Tushare Pro](https://tushare.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text plus pre_market_data.json for agent-readable market report data; documentation also describes Markdown report content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python dependencies and payment credential setup; optionally uses TUSHARE_TOKEN for fresher market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-14.0.6 (source: server release, manifest.json, and changelog) <br>
+Risk: The skill requests broad file, network, and environment-variable access and may load code from another local skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the publisher, run in an environment where those permissions are acceptable, and avoid keeping an untrusted Tushare integration under ~/.openclaw/skills/tushare-finance/scripts/api_client.py.
+
+Risk: Payment and licensing checks are weak security boundaries.
+
+Mitigation: Treat payment validation as a convenience control, not a protection mechanism for sensitive data or trusted execution.
+
+Risk: Dependencies are not fully pinned.
+
+Mitigation: Review and pin dependency versions before use in managed or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ygbeyond/skills/libu-premarket)
+- [Tushare Pro](https://tushare.pro)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown report with a JSON data file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes pre_market_data.json and prints a premarket report; results depend on cached or live market data.]
+
+## Skill Version(s):
+
+14.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

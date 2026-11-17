@@ -2,8 +2,9 @@
 name: miaoda-app-builder
 description: >-
   Create, modify, generate, and deploy websites, web apps, dashboards, SaaS
-  products, internal tools, interactive web pages, Weixin mini program , games
-  on the Baidu Miaoda (秒哒) platform using natural-language instructions.
+  products, internal tools, interactive web pages, Weixin mini program, native
+  iOS / Android mobile apps, games on the Baidu Miaoda (秒哒) platform using
+  natural-language instructions.
 metadata:
   openclaw:
     requires:
@@ -12,7 +13,6 @@ metadata:
       env:
         - MIAODA_API_KEY
     primaryEnv: MIAODA_API_KEY
-disable-model-invocation: false
 ---
 
 # Miaoda (秒哒) App Builder
@@ -39,6 +39,9 @@ Typical outputs include:
 - landing pages
 - interactive web pages
 - browser games and mini games
+- Weixin mini programs
+- native iOS apps
+- native Android apps
 - research reports
 - data analysis documents
 - PPT / presentations
@@ -53,8 +56,6 @@ python scripts/miaoda_api.py <command> [options]
 ```
 
 Do **not** call platform APIs directly. Always use the CLI commands provided by this skill.
-
----
 
 # When to Use This Skill
 
@@ -71,6 +72,9 @@ Use this skill whenever the user wants to:
 * build an **interactive web page**
 * create a **browser game**
 * create a **mini game**
+* build a **native iOS app**
+* build a **native Android app**
+* build a **mobile app** (iOS / Android)
 * generate an **MVP web product**
 * modify an existing **Miaoda project**
 * publish or deploy a **Miaoda application**
@@ -97,6 +101,9 @@ Trigger this skill if the request includes concepts such as:
 * create a landing page
 * build a browser game
 * create a mini game
+* build a native iOS app
+* build a native Android app
+* build a mobile app
 * generate a web product
 * make a snake game webpage
 * build a todo web app
@@ -116,8 +123,47 @@ Examples that should route to this skill:
 * "Write a snake game webpage"
 * "Create a browser game"
 * "Build a mini web game"
+* "Build a native iOS habit-tracking app"
+* "Make an Android app for expense tracking"
+* "I want a mobile app that works on both iPhone and Android"
 * "Modify my Miaoda project"
 * "Publish this Miaoda app"
+
+---
+
+# Native Mobile Apps (iOS / Android)
+
+Miaoda can generate **native iOS and Android mobile applications**, not just web
+products. The output is a real mobile app project rather than a mobile-adapted
+web page.
+
+**How to request it:** state the target platform explicitly in the `chat` text.
+There is no separate CLI command or flag — the platform decides the output form
+from the natural-language description.
+
+```bash
+python scripts/miaoda_api.py chat --text "创建一个原生 iOS 记账 App，支持分类统计和月度报表"
+python scripts/miaoda_api.py chat --text "创建一个安卓原生 App，用于扫码记录仓库出入库"
+python scripts/miaoda_api.py chat --text "创建一个 iOS 和 Android 双端原生 App，功能是每日习惯打卡"
+```
+
+**Guidance for agents:**
+
+* Say **原生 App / native app** plus the platform (**iOS**, **Android**, or both)
+  in the first `chat` message. Vague wording like "做个 App" is often interpreted
+  as a web app.
+* Mention mobile-specific needs in the PRD stage — push notifications, camera /
+  scanning, offline storage, location, biometric login — so they land in the
+  generated project.
+* If the user only says "手机上能用" or "移动端", that usually means a
+  mobile-friendly **web** page. Confirm which one they want before committing:
+  a native app and a responsive web app are different deliverables.
+* The lifecycle is unchanged: `chat` → PRD refinement → `generate-app --watch`.
+  Publishing is a separate, user-initiated step — do not auto-publish after
+  generation; wait for the user to ask to deploy.
+* Distribution differs from web. For a native app, check `app-detail` and the
+  post-publish trajectory output for the download / distribution entry the
+  platform returns; do not assume or construct a web URL.
 
 ---
 
@@ -157,6 +203,10 @@ For a new application:
 
 Generation is required **only once** during the initial creation.
 
+Generation is the final step of creation. **Do not publish automatically after
+generation.** Publishing is a separate step triggered only by an explicit user
+request (see *Publishing* below).
+
 ---
 
 ## Multi-Round Modification
@@ -174,11 +224,28 @@ Normal chat messages modify the existing application.
 
 Publishing is allowed **after the application has been generated at least once**.
 
+**Publishing is user-initiated — never automatic.** `generate-app` is the terminal
+step of application creation. Do **not** chain `publish` after a successful
+`generate-app`. Only run `publish` when the user explicitly asks to publish /
+deploy / 上线 / 发布 the application in conversation. After generation completes,
+report that the app is generated and ready, and stop — wait for the user to
+request deployment.
+
 Rules:
 
 * Publishing does **not require another generation step**
 * Publishing may happen anytime after the first generation
+* Publishing is triggered **only** by an explicit user request, not as a routine
+  follow-up to `generate-app`
 * Publishing must be followed by **status polling** (or use `--wait` flag)
+* **Do not retry or repeat `publish` after a successful execution.** A publish is
+  successful when the CLI exits successfully and the final status is `SUCCESS`.
+  Missing or delayed downstream output, missing frontend events, an incomplete
+  conversation reply, or any other display/transport issue is **not** a publish
+  failure; investigate that separately instead of publishing again.
+* Retry `publish` only when the command itself fails or the final deployment
+  status is explicitly `FAILED`. Do not retry while the status is
+  `PROCESSING`, `RUNNING`, or `UNDER_RELEASE`; keep polling.
 
 Typical deployment flow:
 
@@ -217,49 +284,26 @@ Do **not** call `generate-app` for general tasks.
 
 # Application URLs
 
-Miaoda provides two types of URLs during the lifecycle.
+Publishing returns the application's public URL in the platform response. Use
+the value returned by the CLI; do not infer a URL from `appId`, because test and
+production environments use different domains.
 
----
+For a deployment that should wait for completion, use:
 
-## Project Preview (Editor / Development)
-
-After the application is created, the project can be accessed at:
-
+```bash
+python scripts/miaoda_api.py publish --app-id <app_id> --wait
 ```
-https://www.miaoda.cn/projects/<app_id>
-```
-
-This URL can be shared with the user for:
-
-* viewing the project
-* editing the application
-* previewing the generated result
-
-The preview URL becomes available once an `appId` is created.
-
----
-
-## Production Deployment URL
-
-After publishing succeeds, the application is accessible at:
-
-```
-https://<app_id>.appmiaoda.com
-```
-
-This is the **public production URL** of the deployed application.
-
-Only return this URL after publishing completes successfully.
-
----
 
 # Standard Workflow
 
 ## Create New Application
 
 ```
-chat → PRD refinement → generate-app --watch → publish --wait
+chat → PRD refinement → generate-app --watch → (stop; report app is ready)
 ```
+
+Generation is the final automatic step. **Do not publish here.** Publishing
+happens only when the user later asks to deploy (see *Deploy Application* below).
 
 ---
 
@@ -274,6 +318,8 @@ chat → chat → chat
 ---
 
 ## Deploy Application
+
+Run **only** when the user explicitly asks to publish / deploy / 上线 / 发布.
 
 ```
 publish → publish-status polling
@@ -301,7 +347,15 @@ No generate-app or publish step required.
 
 All commands are executed via the CLI script.
 
-**Important**: Always set the `MIAODA_API_KEY` environment variable before running commands.
+**Authentication**:
+
+* If `MIAODA_API_KEY` is set, the CLI uses it for direct Miaoda API access.
+* When running inside qianfan-desk without a key, the CLI automatically uses
+  the session-bound Miaoda proxy when `DUMATE_SESSION_ID` and the desktop
+  gateway/scheduler environment are available.
+* Outside qianfan-desk, set `MIAODA_API_KEY` explicitly before running commands.
+
+Examples below show the explicit-key form for clarity.
 
 ```bash
 export MIAODA_API_KEY="your_api_key_here"
@@ -377,11 +431,14 @@ After calling `app-detail`, check `data.appFocus` to determine whether publishin
 | `UNDER_CREATING` | Generation in progress | No — wait for generation to complete |
 | `CREATE_FAILED` | Generation failed | No — retry `generate-app` |
 | `DESIGNING` | Generated, ready to edit/deploy | **Yes** |
-| `RELEASED` | Already published | **Yes** (re-publish allowed) |
-| `RELEASE_FAILED` | Last publish failed | **Yes** (retry allowed) |
+| `RELEASED` | Already published | **Yes** (only for an intentional new deployment after changes; not for retrying a successful publish) |
+| `RELEASE_FAILED` | Last publish explicitly failed | **Yes** (retry allowed only after confirming the failed deployment) |
 | `UNDER_RELEASE` | Publish currently in progress | Wait — do not call publish again |
 
 **Rule:** Only proceed with `publish` when `appFocus` is `DESIGNING`, `RELEASED`, or `RELEASE_FAILED`.
+When `appFocus` is `RELEASED`, do not publish again merely because downstream
+UI output or frontend events are missing; check the existing publish result and
+the event/rendering path first.
 
 ---
 
@@ -486,6 +543,7 @@ python scripts/miaoda_api.py chat --text "description" [options]
 - `--fetch-timeout SECONDS`: Per-request timeout for each trajectory fetch (default: 10)
 - `--no-stream`: Return raw chat POST response without trajectory polling
 - `--prompt-generate`: After polling, interactively ask whether to submit app generation if text was returned
+- `--node-json JSON`: **LGUI mode** — pass a JSON string describing the currently-selected UI node (file path, line range, tag, current styles, etc.). When set, an extra `kind: "data"` part is appended to the request so the Agent can pinpoint the exact node instead of searching the codebase. See the **LGUI (Live-GUI) Node-Scoped Editing** section below.
 
 > **⚠️ IMPORTANT — `--app-id` and `--context-id` must always be used together.**
 >
@@ -526,11 +584,146 @@ python scripts/miaoda_api.py chat \
   --context-id conv-def456uvw
 ```
 
+**4. LGUI mode — modify one specific UI node:**
+
+```bash
+python scripts/miaoda_api.py chat \
+  --text "改成蓝底黑字" \
+  --app-id app-abc123xyz \
+  --context-id conv-def456uvw \
+  --node-json '{"type":"node","node":{"id":"src/pages/HomePage.tsx:30:8","path":"src/pages/HomePage.tsx","line":"30","endLine":"35","tag":"H1","content":{"text":"HelloWorld"},"style":{"color":"rgb(46, 26, 15)","backgroundColor":"rgba(0, 0, 0, 0)"}}}'
+```
+
 **Important Notes:**
 - Extract `appId` and `contextId` from the response and save them
 - Use these IDs for all subsequent operations on the same app
 - The first `chat` creates the app and starts PRD refinement
 - After generation, `chat` directly modifies the app (no `generate-app` needed)
+
+---
+
+# LGUI (Live-GUI) Node-Scoped Editing
+
+LGUI mode lets a `chat` message carry **the exact UI node the user is pointing
+at**, so the platform edits that node directly instead of inferring the target
+from natural language alone.
+
+## Difference from a plain chat
+
+A plain `chat` sends only text:
+
+```json
+"parts": [
+  {"kind": "text", "text": "把整体配色换成暖色调的橙粉渐变风格"}
+]
+```
+
+The Agent must search the codebase itself to work out what to change.
+
+LGUI appends one extra `kind: "data"` part alongside the text:
+
+```json
+"parts": [
+  {"kind": "text", "text": "改成蓝底黑字"},
+  {
+    "kind": "data",
+    "data": {
+      "type": "node",
+      "node": {
+        "id": "src/pages/HomePage.tsx:30:8",
+        "path": "src/pages/HomePage.tsx",
+        "line": "30",
+        "endLine": "35",
+        "isRoot": false,
+        "tag": "H1",
+        "content": {
+          "text": "HelloWorld",
+          "className": "gradient-text text-5xl font-bold",
+          "allowLink": true
+        },
+        "customAttr": {"href": null, "target": null},
+        "style": {
+          "color": "rgb(46, 26, 15)",
+          "fontSize": "72px",
+          "fontFamily": "\"Space Grotesk\"",
+          "margin": "0px",
+          "radius": "0px",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "backgroundImage": "linear-gradient(135deg, rgb(249, 115, 22), rgb(236, 72, 153))",
+          "borderColor": "rgb(245, 230, 214)",
+          "borderWidth": "0px",
+          "borderStyle": "solid"
+        }
+      }
+    }
+  }
+]
+```
+
+Everything else in the request — `contextId`, `metadata`, `queryMode`, the
+lifecycle, the trajectory polling — is identical to a plain `chat`. LGUI is
+purely additive.
+
+## Node fields
+
+| Field | Meaning |
+|-------|---------|
+| `id` | Node identifier, conventionally `<path>:<line>:<column>` |
+| `path` | Source file containing the node |
+| `line` / `endLine` | Line range of the node in that file |
+| `isRoot` | Whether this is the root node of the page |
+| `tag` | HTML/JSX tag name (e.g. `H1`, `DIV`, `BUTTON`) |
+| `content.text` | Current visible text |
+| `content.className` | Current class list |
+| `content.allowLink` | Whether the node may carry a link |
+| `customAttr` | Element attributes such as `href` / `target` |
+| `style` | Current computed styles (color, font, spacing, border, background…) |
+
+Only `path` plus a line range is strictly needed to locate a node; the more
+fields you supply, the less the Agent has to re-derive, and the more reliably a
+relative instruction ("改成蓝底黑字", "字号再小一点") resolves.
+
+## Usage
+
+```bash
+python scripts/miaoda_api.py chat \
+  --text "改成蓝底黑字" \
+  --app-id <app_id> \
+  --context-id <conversation_id> \
+  --node-json '<json>'
+```
+
+`--node-json` accepts either form:
+
+* the wrapper — `{"type":"node","node":{...}}`
+* the bare node object — `{"id":"...","path":"...","line":"30",...}` (the CLI
+  wraps it automatically)
+
+Invalid JSON, or JSON that is not an object, exits with an error before any
+request is sent.
+
+## When to use LGUI vs plain chat
+
+| Situation | Use |
+|-----------|-----|
+| User selected/clicked a specific element and you have its node data | `--node-json` |
+| Change is scoped to one element ("这个标题改成蓝底黑字") | `--node-json` |
+| Global change ("整体配色换成暖色调") | plain `chat` |
+| Change spans multiple pages or components | plain `chat` |
+| Adding a feature or new page | plain `chat` |
+| You do not have real node data | plain `chat` — **never fabricate a node** |
+
+**Do not invent node data.** A wrong `path` or line range points the Agent at
+the wrong code. Node data must come from an actual selection source (the Miaoda
+editor's element picker, or a caller that captured it). Without it, send a plain
+`chat` and let the platform locate the target.
+
+**Also note:**
+- LGUI applies to **generated** apps — it edits existing UI code, so there must
+  already be code to point at. It is not for the PRD stage.
+- `--node-json` carries **one** node. For several elements, send one `chat` per
+  node, updating `conversationId` from each response, or describe the change in
+  plain text.
 
 ---
 
@@ -608,7 +801,7 @@ When this button appears, PRD is ready and `generate-app` may be called.
 
 ## generate-app
 
-Submit app-generation confirmation and return immediately with `appId`/`conversationId`.
+Submit app-generation confirmation and return immediately with `appId`/`conversationId` plus the app name (`appName`).
 
 **Usage:**
 
@@ -641,6 +834,19 @@ python scripts/miaoda_api.py generate-app \
   --app-id app-abc123xyz \
   --context-id conv-def456uvw
 ```
+
+**Returns:** A JSON line on stdout with `appId`, `conversationId` and `appName`:
+
+```json
+{"appId": "app-abc123xyz", "conversationId": "conv-def456uvw", "appName": "待办事项应用"}
+```
+
+- With `--watch`, trajectory events are streamed to stdout first and this result line is printed last; without `--watch` it is the only stdout output.
+- `appName` is the app's `name`, fetched right after the confirmation (after
+  polling when `--watch` is set, so it reflects the finished app); omitted if
+  the name cannot be determined.
+- The name lookup is best-effort: on failure a warning is printed to stderr
+  and the command still succeeds with `appId`/`conversationId`.
 
 **Important:**
 - Only call this **once** during initial creation
@@ -693,7 +899,11 @@ This polls automatically and exits when deployment succeeds or fails.
 
 **Important:**
 - Application must be generated at least once before publishing
-- After successful publish, the app is live at: `https://<app_id>.appmiaoda.com`
+- After successful publish, use the public URL returned by the platform. Do not
+  construct it from `appId`.
+- A final `SUCCESS` status is terminal for this publish attempt. Do not invoke
+  `publish` again because downstream UI output or events were not observed.
+  Retry only after a command error or an explicit final `FAILED` status.
 
 ---
 
@@ -740,6 +950,128 @@ done
 
 ---
 
+## download-source
+
+Download the full generated application source ZIP.
+
+Use this command when the user asks for the complete source code of a Miaoda application, a source ZIP, or a local copy of the generated app project.
+
+**Usage:**
+
+```bash
+python scripts/miaoda_api.py download-source --app-id <app_id> [options]
+```
+
+**Required Parameters:**
+- `--app-id APP_ID`: Application ID
+
+**Optional Parameters:**
+- `--env ENV`: Source environment (default: DEV)
+- `--output PATH`: Save the ZIP to a specific local path
+- `--print-url`: Print the download URL without saving the file
+
+**Examples:**
+
+```bash
+export MIAODA_API_KEY="sk_xxxxx"
+
+# Download to an inferred local filename
+python scripts/miaoda_api.py download-source --app-id app-abc123xyz
+
+# Download to a specific local path
+python scripts/miaoda_api.py download-source --app-id app-abc123xyz --output ./source.zip
+
+# Only print the source ZIP download URL
+python scripts/miaoda_api.py download-source --app-id app-abc123xyz --print-url
+```
+
+**Returns:** JSON containing `appId`, `name`, `downloadUrl`, and `localPath` when a file is saved.
+
+**Rule:** Use `download-source` for complete application source code. Do not use Agent workspace file commands for this purpose.
+
+---
+
+## list-task-files
+
+List files in the Agent workspace task directory for an application.
+
+Use this command before downloading a specific Agent task artifact, especially when the exact filename is unknown.
+
+**Usage:**
+
+```bash
+python scripts/miaoda_api.py list-task-files --app-id <app_id> [--include-docs-dir]
+```
+
+**Required Parameters:**
+- `--app-id APP_ID`: Application ID
+
+**Optional Parameters:**
+- `--include-docs-dir`: Include docs directory files in the listing
+
+**Example:**
+
+```bash
+export MIAODA_API_KEY="sk_xxxxx"
+python scripts/miaoda_api.py list-task-files --app-id app-abc123xyz
+```
+
+**Returns:** JSON containing Agent workspace files, paths, sizes, update times, and source labels.
+
+---
+
+## download-task-file
+
+Download one file from the Agent workspace task directory.
+
+Use this command when the user asks for a specific Agent-generated task artifact, such as a report, image, document, JSON file, or other file listed by `list-task-files`.
+
+**Usage:**
+
+```bash
+python scripts/miaoda_api.py download-task-file --app-id <app_id> --filename <filename> [options]
+```
+
+**Required Parameters:**
+- `--app-id APP_ID`: Application ID
+- `--filename FILENAME`: File name or `/workspace/{appId}/tasks/...` path
+
+**Optional Parameters:**
+- `--output PATH`: Save the file to a specific local path
+- `--print-url`: Print the download URL without saving the file
+
+**Examples:**
+
+```bash
+export MIAODA_API_KEY="sk_xxxxx"
+
+# Download by filename
+python scripts/miaoda_api.py download-task-file --app-id app-abc123xyz --filename report.pdf --output ./report.pdf
+
+# Download by task path returned from list-task-files
+python scripts/miaoda_api.py download-task-file \
+  --app-id app-abc123xyz \
+  --filename /workspace/app-abc123xyz/tasks/report.pdf
+```
+
+**Returns:** JSON containing `appId`, `filename`, `downloadUrl`, `thumbnailUrl` for images, and `localPath` when a file is saved.
+
+**Rule:** Use `list-task-files` first when the user asks for Agent workspace artifacts but does not provide an exact filename.
+
+---
+
+# Download Generated Artifacts
+
+Agents must use these commands for generated artifact downloads:
+
+- Use `download-source` when the user wants the complete generated application source ZIP.
+- Use `list-task-files` and `download-task-file` when the user wants a specific Agent workspace artifact.
+- Do not call platform HTTP APIs directly.
+- Do not invent local paths. Only report a local file path after the CLI successfully saves the file and returns `localPath`.
+- If a generation or modification is still running, wait for completion before downloading the latest source ZIP.
+
+---
+
 # Complete Workflow Examples
 
 ## Example 1: Create and Deploy a New App
@@ -759,11 +1091,10 @@ python scripts/miaoda_api.py generate-app \
   --context-id $CONTEXT_ID \
   --watch
 
-# Step 3: Publish (with auto-wait)
-python scripts/miaoda_api.py publish --app-id $APP_ID --wait
+# App is now generated and ready. STOP here and report to the user.
+# Do NOT publish automatically — publish only when the user explicitly asks to deploy:
+# python scripts/miaoda_api.py publish --app-id $APP_ID --wait
 
-# Done! App is live at:
-echo "https://$APP_ID.appmiaoda.com"
 ```
 
 ---
@@ -809,7 +1140,8 @@ CHAT_RESULT=$(python scripts/miaoda_api.py chat \
   --context-id $CONTEXT_ID | head -1)
 CONTEXT_ID=$(echo $CHAT_RESULT | jq -r '.conversationId')   # ← UPDATE again
 
-# Step 4: Re-publish
+# Step 4: Re-publish ONLY when the user explicitly asks to deploy the changes.
+# Do not publish automatically after a modification.
 python scripts/miaoda_api.py publish --app-id $APP_ID --wait
 ```
 
@@ -857,7 +1189,14 @@ Call **once** during initial creation. Do not call again for modifications.
 
 Triggers application deployment.
 
+Run **only** when the user explicitly requests publishing / deployment (e.g.
+"发布/上线/部署这个应用"). Do **not** call it automatically after `generate-app`
+or after a modification `chat`.
+
 Use `--wait` flag to auto-poll status (recommended).
+
+Treat `SUCCESS` as terminal. Missing or malformed downstream output is not
+evidence that deployment failed and must not trigger another publish.
 
 ---
 
@@ -974,6 +1313,10 @@ Agents should handle the following situations:
 * failed deployment status
 * incorrect or missing parameter values
 
+After a publish command returns successfully, do not republish solely because
+downstream UI output or a frontend event is missing. Only a command-level
+failure or an explicit final `FAILED` deployment status permits a retry.
+
 If workflow state is unclear, inspect the trajectory or application detail before taking the next action.
 
 **Pro Tips:**
@@ -982,32 +1325,8 @@ If workflow state is unclear, inspect the trajectory or application detail befor
 - Save `appId` and `contextId` from first `chat` response
 - Only call `generate-app` once during initial creation
 - After generation, use `chat` directly for modifications
+- **Never publish automatically.** Treat `generate-app` as the end of creation
+  and publish only when the user explicitly asks to deploy / 发布 / 上线
 
-**Application Sharing Rule (IMPORTANT)**
-
-- You must share your application **only using the production deployment URL** (after it has been published). Do not share the editor (development) URL.
-
-Production deployment URL format:
-
-```
-https://<app_id>.appmiaoda.com
-```
-
-- If the application has **not been published**, you must publish it before sharing with others.
-
-Example publish command:
-
-```
-python scripts/miaoda_api.py publish --app-id <app_id> --wait
-```
-
-- The project editor URL (`https://www.miaoda.cn/projects/<app_id>`) is **visible only to yourself**. Other users cannot access your editor environment. Never use the editor URL for sharing with others.
-
-Editor URL is for:
-- your own development
-- preview
-- internal editing only
-
-Editor URL must NOT be used for:
-- external/public sharing
-- distribution to others or end users
+The final response rules are defined in **Final Output Contract** above. Do not
+add a second sharing rule or expose editor/production URLs in ordinary text.

@@ -1,6 +1,6 @@
 {
   "id": "fec-legacy-web-standard",
-  "name": "传统前端规范",
+  "name": "Traditional front-end specifications",
   "category": "legacy-migration",
   "tags": [
     "jquery",
@@ -8,8 +8,8 @@
     "legacy",
     "vanilla-js"
   ],
-  "summary": "Frontend Craft skill for 传统前端规范.",
-  "version": "2.4.0",
+  "summary": "Maintain and improve existing vanilla JavaScript, jQuery, or multipage frontend code safely.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -30,7 +30,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include 传统前端, 原生 JS, jQuery.",
+  "description": "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include traditional frontend, native JS, jQuery.",
   "source": "skills/fec-legacy-web-standard",
   "references": [
     "references/legacy-patterns.md"

@@ -1,0 +1,3 @@
+display_name: Influencer Campaign Monitoring
+short_description: Run monitoring tasks and convert live metrics into campaign decisions.
+default_prompt: Create or inspect monitoring tasks, fetch key monitoring metrics, and produce a campaign review with trend analysis, anomalies, and optimization recommendations.

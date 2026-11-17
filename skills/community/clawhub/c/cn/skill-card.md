@@ -1,43 +1,61 @@
-## Description: <br>
-Imports SillyTavern-compatible TavernAI V2/V3 character cards for roleplay across OpenClaw-supported chat platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+导入 SillyTavern 兼容的角色卡（TavernAI V2/V3 PNG 格式），在任意聊天平台上角色扮演.
 
-## Publisher: <br>
-[pearyj](https://clawhub.ai/user/pearyj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pearyj](https://clawhub.ai/user/pearyj)
 
-## Use Case: <br>
-OpenClaw users use this skill to import, manage, and activate community character cards for roleplay, companion-style chat, or temporary character preview sessions. It can modify persistent identity and memory files in play and soul modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported third-party character cards can persistently change the assistant's identity and memory. <br>
-Mitigation: Prefer temporary chat mode for untrusted cards, inspect card prompts before play or soul mode, and restore SOUL.md or clean MEMORY.md before returning to normal or sensitive tasks. <br>
-Risk: Arbitrary URL imports can bring in untrusted roleplay card content. <br>
-Mitigation: Import cards only from trusted sources and review downloaded card content before using persistent play or soul modes. <br>
+## Use Case:
 
+External OpenClaw users use this skill to import SillyTavern/TavernAI character cards from local files, URLs, or online card libraries, then chat or roleplay with the imported character across OpenClaw-supported messaging platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pearyj/cn) <br>
-- [Chub.ai character cards](https://chub.ai) <br>
-- [CharaVault character cards](https://charavault.net) <br>
-- [AI Character Cards](https://aicharactercards.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON character-card data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and may write character data, SOUL.md, and MEMORY.md in the user's OpenClaw directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Imported character cards are untrusted content that may influence identity, memory, and behavior when activated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect card contents before activation and prefer the non-persistent chat mode for new or unfamiliar cards.
+
+Risk: Persistent roleplay modes can alter OpenClaw identity and memory files.
+
+Mitigation: Review or clean ~/.openclaw/SOUL.md, ~/.openclaw/SOUL.md.backup, ~/.openclaw/MEMORY.md, and ~/.openclaw/characters after use.
+
+Risk: URL imports can retrieve arbitrary remote card files.
+
+Mitigation: Avoid arbitrary URLs and use trusted card sources where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pearyj/skills/cn)
+- [Chub.ai](https://chub.ai)
+- [AI Character Cards](https://aicharactercards.com)
+- [Character Tavern](https://charactertavern.com)
+- [CharaVault](https://charavault.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON character-card data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and may persist imported character data under the OpenClaw user directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

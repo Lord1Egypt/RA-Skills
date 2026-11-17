@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7b7bap20q2k2kwjhbnqzj5rx81xk7t",
-  "slug": "project-context-manager",
-  "version": "1.0.0",
-  "publishedAt": 1773798577963
-}
+{"name":"project-context-manager","version":"1.0.0","description":"Project-based agent context management system for maintaining long-term memory and project state across sessions. Enforces PROJECT_CONTEXT.md maintenance and safety protocols.","author":"engineer-musk","tags":["project-management","context","memory","multi-session","development"],"license":"MIT"}

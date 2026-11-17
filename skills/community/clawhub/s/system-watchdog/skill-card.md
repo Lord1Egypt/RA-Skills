@@ -1,37 +1,50 @@
-## Description: <br>
-System resource monitoring. Detects actionable anomalies (memory pressure, runaway processes, disk pressure) and reports only when something needs attention. Optimized for few, high-signal alerts. Works on both Linux and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Watchdog monitors Linux and macOS resource signals, detects actionable anomalies such as worsening memory pressure, runaway processes, sustained CPU burn, and disk pressure, and stays quiet when no issue needs attention.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local Linux or macOS resource check and receive a concise report only when memory pressure, runaway processes, sustained CPU burn, or disk pressure need attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persisted state can include full process command lines, which may expose secrets, tokens, or private paths. <br>
-Mitigation: Keep the state file in a protected location, avoid putting secrets in process command-line arguments, and use SYSTEM_WATCHDOG_STATE to place state in an access-controlled path when needed. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local watchdog check, parse JSON system health results, and receive a concise report only when resource anomalies need attention.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [JSON stdout from the watchdog script and concise Markdown or text reporting when anomalies are present] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists lightweight local state between runs to compare swap and process memory growth.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: The watchdog records full process command lines in its local state file, which can expose secrets passed as command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run without elevated privileges, store SYSTEM_WATCHDOG_STATE in a protected location, and redact or remove command fields before regular use on systems where command arguments may contain credentials.
+
+## Reference(s):
+
+- [System Watchdog Skill Page](https://clawhub.ai/brennerspear/skills/system-watchdog)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the watchdog script, followed by concise Markdown or text reports when anomalies are detected]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script persists local state between runs so the agent can detect resource deltas instead of reporting only point-in-time usage.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

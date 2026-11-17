@@ -1,41 +1,64 @@
-## Description: <br>
-A 股投研指挥官 orchestrates multiple A-share stock analysis skills into workflows for sector scanning, sector analysis, individual stock research, and portfolio review, then produces structured investment briefs and archives them to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A 股投研指挥官 orchestrates A-share stock analysis skills into workflows for sector scanning, sector analysis, single-stock deep dives, and portfolio checks, then produces structured investment briefs and Feishu archives.
 
-## Publisher: <br>
-[jioup777](https://clawhub.ai/user/jioup777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jioup777](https://clawhub.ai/user/jioup777)
 
-## Use Case: <br>
-External users and developers use this skill to coordinate A-share market research workflows, including hotspot discovery, sector research, single-stock deep dives, and portfolio health checks. It is intended to synthesize outputs from other analysis skills into readable briefs, research reports, debate summaries, and operational guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports can include real portfolio holdings, profit/loss details, client data, or private strategy notes and may be stored in the configured Feishu space. <br>
-Mitigation: Require manual confirmation before publishing to Feishu, or use a local-only/redacted workflow for sensitive holdings and strategy information. <br>
-Risk: Generated market research can be misread as final investment advice, especially when workflows produce ratings, target prices, and trading actions. <br>
-Mitigation: Label outputs as research support, review data freshness and assumptions, and require a human decision-maker before acting on the recommendations. <br>
+## Use Case:
 
+External users and developers use this skill to coordinate multiple A-share market analysis skills for opportunity scans, sector research, individual stock reports, and portfolio health checks. It is intended to assemble concise investment briefs, deeper research reports, debate summaries, and operational suggestions from configured market-data sources and companion skills.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jioup777/a-stock-orchestrator) <br>
-- [Sub-skill quick reference](artifact/references/sub-skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown reports with tables, links, command snippets, and optional chart image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create separate Feishu documents for the summary brief, deep research report, and bull-bear debate when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and artifact/package.json) <br>
+Risk: The skill can automatically save investment reports, charts, analyzed symbols, and portfolio details to a fixed Feishu workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with a controlled Feishu destination, restricted workspace tokens, and explicit approval before each Feishu upload or portfolio-analysis workflow.
+
+Risk: Portfolio health checks may expose sensitive holdings and trading intent to configured external services.
+
+Mitigation: Use local-only or confirmation-first workflows for portfolio inputs, redact holdings when possible, and avoid sharing reports outside approved workspaces.
+
+Risk: Generated market analysis may be incomplete, delayed, or misleading and should not be treated as financial advice.
+
+Mitigation: Require human review of data sources, assumptions, and recommendations before acting on any trading or portfolio suggestion.
+
+Risk: Optional third-party API integrations and dependency installs can broaden credential and supply-chain exposure.
+
+Mitigation: Pin dependencies, scope API tokens narrowly, keep optional tokens unset when not needed, and review all companion skill calls before execution.
+
+## Reference(s):
+
+- [Sub-skill Quick Reference](references/sub-skills.md)
+- [ClawHub Skill Page](https://clawhub.ai/jioup777/skills/a-stock-orchestrator)
+- [Configured Feishu Archive Space](https://vicyrpffceo.feishu.cn/wiki/EhQ6w2F5yiC0DKkxlzlcEMvIn2f)
+- [TradingAgents API](https://api.510168.xyz/v1/analyze)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown reports with tables, links, optional inline shell commands, and Feishu document output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a three-document report structure: summary brief, deep research report, and bull-bear debate report.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

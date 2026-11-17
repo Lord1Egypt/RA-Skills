@@ -1,44 +1,59 @@
-## Description: <br>
-Automates batch image-to-image generation on Tencent Hunyuan AI by uploading reference images, applying prompt keywords, generating multiple variants, and saving downloaded results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIDraw批量图生图 automates Tencent Hunyuan AI batch img2img workflows by uploading reference images, applying custom prompts, generating multiple variants, and saving the resulting images.
 
-## Publisher: <br>
-[chottomattekimkim-droid](https://clawhub.ai/user/chottomattekimkim-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chottomattekimkim-droid](https://clawhub.ai/user/chottomattekimkim-droid)
 
-## Use Case: <br>
-Developers and creative operators use this skill to automate Windows batch processing of reference images on timiai.woa.com, generate multiple prompt-guided variants, and download named PNG outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script saves browser login state and cookies for timiai.woa.com in a persistent local browser profile. <br>
-Mitigation: Run it only on a trusted machine and clear the saved browser profile after use if the session should not be retained. <br>
-Risk: Reference images are uploaded to timiai.woa.com during generation. <br>
-Mitigation: Use only images the user is authorized to upload and avoid sensitive or restricted content unless policy permits. <br>
-Risk: Hardcoded source folder, prompt text, and generation count can cause unintended uploads or excessive generation runs. <br>
-Mitigation: Review and edit these configuration values before each run. <br>
+## Use Case:
 
+Developers and creative operators use this skill to batch-process local reference images through timiai.woa.com, generate multiple image variants with reusable prompt templates, and download the results to an organized folder.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chottomattekimkim-droid/aidraw-batch-img2img) <br>
-- [Tencent Hunyuan AI image generation](https://timiai.woa.com/image-generation) <br>
-- [Keyword templates](references/keyword-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The automation script downloads generated images as PNG files named from the source image and sequence number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Corporate or sensitive source images may be uploaded to timiai.woa.com during batch generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a trusted environment and avoid confidential source folders unless upload is authorized.
+
+Risk: The automation uses saved browser session cookies and copies them into direct image download requests.
+
+Mitigation: Use a dedicated timiai browser profile or account, and constrain downloads to trusted timiai image hosts before relying on the script.
+
+Risk: The server security verdict is suspicious due to unsafe, under-scoped cookie handling.
+
+Mitigation: Review the script and security guidance before installation, especially for corporate workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chottomattekimkim-droid/skills/aidraw-batch-img2img)
+- [Tencent Hunyuan AI image generation](https://timiai.woa.com/image-generation)
+- [Keyword templates](references/keyword-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with shell commands and a Python automation script that produces local image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved as PNG files using source-name and sequence-number filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

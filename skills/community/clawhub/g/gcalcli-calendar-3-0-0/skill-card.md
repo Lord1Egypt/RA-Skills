@@ -1,43 +1,64 @@
-## Description: <br>
-Google Calendar via gcalcli: today-only agenda by default, bounded meaning-first lookup via agenda scans, and fast create/delete with verification--optimized for low tool calls and minimal output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Calendar via gcalcli: today-only agenda by default, bounded meaning-first lookup via agenda scans, and fast create/delete with verification--optimized for low tool calls and minimal output.
 
-## Publisher: <br>
-[mbright4497](https://clawhub.ai/user/mbright4497) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbright4497](https://clawhub.ai/user/mbright4497)
 
-## Use Case: <br>
-Developers and personal-assistant operators use this skill to let an agent read, search, create, and delete Google Calendar events through gcalcli after local OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can read calendar events across non-ignored calendars using the user's existing gcalcli Google Calendar permissions. <br>
-Mitigation: Install only where those gcalcli permissions are acceptable and rely on gcalcli's existing local OAuth setup. <br>
-Risk: Unambiguous delete or edit requests may be executed without an additional confirmation prompt. <br>
-Mitigation: For a more conservative workflow, edit the skill to require confirmation before every delete or edit. <br>
+## Use Case:
 
+External users and personal-assistant operators use this skill to let an agent read, search, create, and delete Google Calendar events through gcalcli. It is optimized for concise agenda lookups, bounded event matching, overlap checks, and post-delete verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mbright4497/gcalcli-calendar-3-0-0) <br>
-- [gcalcli project](https://github.com/insanum/gcalcli) <br>
-- [Google Calendar API endpoint](https://www.googleapis.com/calendar/) <br>
-- [Google OAuth2 token endpoint](https://oauth2.googleapis.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated gcalcli binary; no skill-managed credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json reports 3.0.0) <br>
+Risk: The skill can give an agent access to read and modify Google Calendar through gcalcli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for calendar accounts where that access is acceptable, and review the Google Calendar OAuth permissions before use.
+
+Risk: The documented action policy skips confirmation for unambiguous deletes and edits.
+
+Mitigation: Prefer adding a confirmation step for all deletes and edits before deployment, while keeping the existing post-delete verification behavior.
+
+Risk: Calendar titles, queries, or calendar names could be unsafe if interpolated into shell command strings.
+
+Mitigation: Ensure the execution path passes arguments safely instead of constructing shell strings from user or calendar content.
+
+Risk: The skill depends on the external gcalcli command-line tool.
+
+Mitigation: Pin and verify the gcalcli dependency before installing or updating the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mbright4497/skills/gcalcli-calendar-3-0-0)
+- [gcalcli project](https://github.com/insanum/gcalcli)
+- [Google Calendar API endpoint](https://www.googleapis.com/calendar/)
+- [Google OAuth2 token endpoint](https://oauth2.googleapis.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise natural-language responses with optional Markdown and shell commands when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Minimizes output by default and withholds command details unless explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

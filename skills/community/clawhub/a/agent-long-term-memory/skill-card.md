@@ -1,41 +1,61 @@
-## Description: <br>
-Agent Long-Term Memory gives AI agents a local three-tier memory layer for short-term turns, structured user facts, and episodic semantic recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Long-Term Memory provides three-tier persistent memory for AI agents, covering short-term conversation state, structured entity facts, and episodic semantic recall.
 
-## Publisher: <br>
-[exp007](https://clawhub.ai/user/exp007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[exp007](https://clawhub.ai/user/exp007)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local, cross-project memory to AI assistants, including structured profile facts, recent turns, and searchable conversation episodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may create cross-project user profiles in the default data directory. <br>
-Mitigation: Use a project-specific data_dir for sensitive work and periodically review or delete stored memories. <br>
-Risk: Conversation text may be sent to OpenAI for extraction or embeddings when OPENAI_API_KEY is configured. <br>
-Mitigation: Leave OPENAI_API_KEY unset for local regex-only extraction or review data handling before enabling remote extraction. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent memory to AI agents, including structured fact recall, recent conversation state, episodic search, and assembled prompt context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/exp007/agent-long-term-memory) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/exp007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or query local SQLite and ChromaDB memory stores when integrated by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The skill can persist and reuse sensitive conversations, source code, client data, or secrets across projects through its default shared memory store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure a project-specific data_dir, avoid archiving full conversations by default, and review stored memory before use in sensitive environments.
+
+Risk: When OPENAI_API_KEY is set, entity extraction can send conversation content to OpenAI.
+
+Mitigation: Unset OPENAI_API_KEY or modify the extraction path if strictly local processing is required.
+
+Risk: Long-lived memories can become stale, overbroad, or inappropriate for later prompts.
+
+Mitigation: Inspect and delete stored memories regularly, and use cleanup or forget workflows for low-confidence or outdated records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/exp007/skills/agent-long-term-memory)
+- [Publisher Profile](https://clawhub.ai/user/exp007)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Python Project Metadata](artifact/pyproject.toml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, configuration notes, and memory-context text strings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can persist memory in SQLite and ChromaDB under a shared default data directory unless a project-specific data_dir is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

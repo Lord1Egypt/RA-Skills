@@ -1,41 +1,59 @@
-## Description: <br>
-Create company-internal skills interactively for internal workflows, APIs, business processes, or tools by guiding users through requirements, documentation, scripts, references, validation, and packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates company-internal skills interactively by guiding users through requirements gathering, scaffolding, reference creation, validation, and packaging.
 
-## Publisher: <br>
-[opentouchtouch](https://clawhub.ai/user/opentouchtouch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[opentouchtouch](https://clawhub.ai/user/opentouchtouch)
 
-## Use Case: <br>
-Developers, engineers, and internal operations teams use this skill to turn company-specific process knowledge, API details, schemas, templates, and scripts into reusable agent skills. It is intended for creating and packaging internal workflow or integration skills while clearly flagging inferred information for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide live credentials, secrets, private connection strings, or sensitive production data while describing internal APIs or workflows. <br>
-Mitigation: Provide redacted documentation and authentication-flow descriptions instead of live secrets, and review generated files before installing or sharing the resulting skill. <br>
-Risk: Generated scripts, references, or trigger descriptions may contain inferred company-specific behavior that has not been verified by a subject matter expert. <br>
-Mitigation: Review and correct generated files, especially sections flagged for confirmation, before packaging or deploying the skill. <br>
+## Use Case:
 
+Developers, engineers, and internal enablement teams use this skill to turn company workflow, API, schema, and process knowledge into reusable agent skills. It helps collect source material, generate missing references or scripts, scaffold the skill structure, validate frontmatter, and package the result.
 
-## Reference(s): <br>
-- [Company Context Template](references/company-context.md) <br>
-- [Interviewer Agent](agents/interviewer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown skill files with supporting code, references, shell commands, and packaged skill artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content may include inferred sections that require user review before installation or sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads internal documentation or other company material supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide live credentials, private keys, or unnecessary sensitive content; limit inputs to material needed for the target skill.
+
+Risk: The skill writes generated files and may package skill directories.
+
+Mitigation: Use a dedicated output folder and review generated scripts, references, and packaged contents before installation or sharing.
+
+Risk: Packaging folders that contain symlinks may include unintended file content until helper scripts are hardened.
+
+Mitigation: Avoid packaging skill folders with symlinks and inspect package contents before distribution.
+
+## Reference(s):
+
+- [Company Context Template](artifact/references/company-context.md)
+- [Interviewer Agent](artifact/agents/interviewer.md)
+- [ClawHub Skill Page](https://clawhub.ai/opentouchtouch/skills/company-skill-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SKILL.md, reference files, scripts, asset templates, validation results, and .skill packages in user-selected output folders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

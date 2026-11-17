@@ -1,0 +1,10 @@
+{
+  "name": "ai-web-check",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Evidence-first, read-only checks for whether a website is usable by humans and AI agents.",
+  "bin": { "ai-web-check": "src/cli.mjs" },
+  "scripts": { "test": "node --test", "check": "node --check src/cli.mjs && node --check src/core.mjs" },
+  "engines": { "node": ">=20" }
+}

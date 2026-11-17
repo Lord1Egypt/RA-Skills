@@ -1,40 +1,56 @@
-## Description: <br>
-Downloads YouTube videos as high-quality MP4 files and registers them as local assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads YouTube videos as high-quality MP4 files, saves them as OpenClaw video assets, and records them in the asset registry.
 
-## Publisher: <br>
-[honeybee1130](https://clawhub.ai/user/honeybee1130) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honeybee1130](https://clawhub.ai/user/honeybee1130)
 
-## Use Case: <br>
-External users, employees, and developers use this skill when they want an agent to save a YouTube, youtu.be, or Shorts URL as a labeled MP4 asset. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local downloader can consume significant disk space when saving high-quality videos. <br>
-Mitigation: Confirm the requested download and monitor the OpenClaw assets video directory for storage growth. <br>
-Risk: The asset registry records downloaded URLs, labels, file paths, timestamps, and file sizes. <br>
-Mitigation: Treat the registry as a local activity log and avoid sensitive labels or URLs when possible. <br>
-Risk: Downloads depend on yt-dlp and may fail for private, deleted, live, or age-restricted videos. <br>
-Mitigation: Check script output for failures and only retry when the source video is accessible for the intended use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to download a provided YouTube URL, label the result, save it as an MP4 asset, and update the OpenClaw registry.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples; runtime output includes MP4 files and a JSON asset registry entry.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yt-dlp for downloading and jq for registry updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weak URL validation could allow crafted inputs to download from unintended sites.
+
+Mitigation: Validate hostnames against supported YouTube domains and accept only canonical YouTube video ID formats before invoking the downloader.
+
+Risk: Weak filename and path handling could allow files to be saved outside the intended video asset folder.
+
+Mitigation: Apply path containment checks after filename construction and reject outputs whose resolved path is not under the configured asset video directory.
+
+Risk: Untrusted or unusually large sources could create operational or storage risk.
+
+Mitigation: Add reasonable source and file-size controls before use with untrusted URLs or users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/honeybee1130/skills/yt-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, JSON]
+
+**Output Format:** [Shell command execution with MP4 file output and JSON registry entry]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves MP4 videos under ~/.openclaw/workspace/assets/videos and records downloads in registry.json when jq is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

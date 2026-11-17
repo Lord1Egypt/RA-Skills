@@ -1,46 +1,67 @@
-## Description: <br>
-Türkiye e-fatura ve e-arşiv bilgi asistanı for e-fatura mükellefiyeti checks, GİB mevzuatı, entegratör comparisons, zorunluluk timelines, and Turkish electronic invoicing questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Turkish e-invoicing assistant that provides e-fatura and e-arşiv guidance, taxpayer lookup support, GİB regulatory references, integrator comparisons, and obligation timing for SMEs and accountants.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External users, developers, accountants, and small businesses use this skill to understand Turkish e-fatura and e-arşiv obligations, compare GİB portal and integrator options, and run local checks for e-fatura taxpayer status by VKN, TCKN, or company name. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup commands can process VKN, TCKN, or company names and contact GİB services. <br>
-Mitigation: Run lookups only when authorized to process the submitted identifier or company name, and verify results against official GİB sources. <br>
-Risk: The lookup script can download a public GİB taxpayer list and create a local cache under the user's home directory. <br>
-Mitigation: Review the shell command before execution and clear the local cache if retaining downloaded taxpayer data is not appropriate. <br>
-Risk: Turkish e-invoicing thresholds and obligations change over time. <br>
-Mitigation: Confirm tax obligations against current GİB and Hazine ve Maliye Bakanlığı sources before making compliance decisions. <br>
+## Use Case:
 
+External businesses, accountants, and developers use this skill to answer Turkish e-fatura, e-arşiv, e-irsaliye, GİB portal, and electronic invoicing obligation questions. It can also propose shell commands for checking e-fatura taxpayer status by VKN, Turkish ID number, or company name.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayhanagirgol/efatura-tr) <br>
-- [E-Fatura ve E-Arşiv Rehberi](references/efatura_rehber.md) <br>
-- [GİB e-Belge Portal](https://ebelge.gib.gov.tr) <br>
-- [GİB E-Fatura Portal](https://efatura.gib.gov.tr) <br>
-- [Finhouse](https://finhouse.ai) <br>
+### Deployment Geography for Use:
 
+Turkey
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest running a local shell script that contacts GİB and caches a downloaded taxpayer list under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may run a local Bash lookup script that uses curl, unzip, and grep and caches a public GİB taxpayer CSV in the user's home cache directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before execution, ensure network access to GİB endpoints is acceptable, and remove or manage the local cache according to the user's data-handling expectations.
+
+Risk: Taxpayer lookup results and regulatory thresholds may be advisory or become outdated as GİB and Hazine ve Maliye Bakanlığı guidance changes.
+
+Mitigation: Confirm material decisions against official GİB sources and current mevzuat before relying on the output.
+
+Risk: The security guidance notes a bundled script function-order bug that can prevent normal lookup execution until fixed.
+
+Mitigation: Test the script in a controlled shell before operational use and fix execution ordering before depending on automated lookups.
+
+Risk: The skill includes Finhouse promotional mentions.
+
+Mitigation: Review responses for commercial bias and prefer official GİB sources for compliance conclusions.
+
+## Reference(s):
+
+- [E-Fatura ve E-Arşiv Rehberi](references/efatura_rehber.md)
+- [GİB e-Belge Portal](https://ebelge.gib.gov.tr)
+- [GİB e-Belge Mevzuat](https://ebelge.gib.gov.tr/mevzuat.html)
+- [GİB E-Fatura Portal](https://efatura.gib.gov.tr)
+- [GİB E-Fatura Taxpayer List](https://efatura.gib.gov.tr/listeleri/efatura_mf.zip)
+- [ClawHub Skill Page](https://clawhub.ai/ayhanagirgol/skills/efatura-tr)
+- [Publisher Profile](https://clawhub.ai/user/ayhanagirgol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cite Turkish GİB sources and may suggest a bundled Bash lookup script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

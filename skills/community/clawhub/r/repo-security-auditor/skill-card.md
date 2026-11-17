@@ -1,40 +1,57 @@
-## Description: <br>
-Audits GitHub repositories for security vulnerabilities, suspicious behavior, dependency risks, license compatibility, and clean reimplementation planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits GitHub repositories for security vulnerabilities, malicious code patterns, dependency risks, license concerns, and suspicious behavior, then generates a security report and may scaffold a clean reimplementation after safety checks.
 
-## Publisher: <br>
-[erickgrau](https://clawhub.ai/user/erickgrau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erickgrau](https://clawhub.ai/user/erickgrau)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess third-party repositories before adopting, forking, or reimplementing them. It helps identify suspicious code patterns, dependency vulnerabilities, license concerns, and whether a clean reimplementation is appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads repositories that may contain untrusted code and stores audit reports locally. <br>
-Mitigation: Run audits in a disposable or project-specific workspace, avoid executing cloned code unless separately trusted, and periodically clean up retained audit artifacts. <br>
-Risk: Security findings from automated scans can miss context or produce false positives. <br>
-Mitigation: Treat generated reports as review inputs and manually verify important findings before adopting or reimplementing a repository. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to assess third-party GitHub repositories before adoption, forking, dependency use, or clean reimplementation planning.
 
-## Reference(s): <br>
-- [Repo Security Auditor on ClawHub](https://clawhub.ai/erickgrau/repo-security-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON risk assessments, shell commands, and optional project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local audit artifacts and optional clean-scaffold files when a repository is judged safe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles untrusted repositories in ways that can copy or overwrite host files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a disposable sandbox or container with no host credentials, and use a trusted output directory outside the repository.
+
+Risk: The skill may invoke GitHub, npm, Snyk, or other network-backed scans without clear consent.
+
+Mitigation: Require explicit opt-in before network-backed scans and avoid the unpinned pip install step.
+
+Risk: The authoritative security verdict for this release is suspicious.
+
+Mitigation: Review the skill before installing or running it against untrusted or private repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erickgrau/skills/repo-security-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON risk assessments, shell commands, and scaffolded project files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save audit outputs, raw scan findings, inventory files, and clean reimplementation scaffolds when the reviewed repository passes safety checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

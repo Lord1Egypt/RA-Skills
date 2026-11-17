@@ -1,42 +1,59 @@
-## Description: <br>
-Polls mAICenter channels for incoming messages and sends replies over REST for short-lived agents that cannot keep a long-running channel plugin process alive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poll mAICenter channels for incoming messages and send replies over REST, with no plugin runtime required.
 
-## Publisher: <br>
-[maicenter](https://clawhub.ai/user/maicenter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maicenter](https://clawhub.ai/user/maicenter)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add REST-based polling and reply behavior for mAICenter channels in serverless, cron, or container-per-task agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: mAICenter channel messages and the MAICENTER_AGENT_KEY may be exposed through normal use of the service. <br>
-Mitigation: Protect MAICENTER_AGENT_KEY like a password, scope channel access appropriately, and avoid channels with sensitive or regulated data unless policy allows mAICenter processing. <br>
-Risk: An automated agent may send replies to channels where its behavior is not expected. <br>
-Mitigation: Use this only for intended mAICenter channel workflows, restrict the agent's channel participation, and review reply logic before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to poll mAICenter chat channels from short-lived OpenClaw agents and send replies from cron, serverless, or container-per-task workflows.
 
-## Reference(s): <br>
-- [mAICenter homepage](https://maicenter.org) <br>
-- [ClawHub skill page](https://clawhub.ai/maicenter/maicenter-channel-reply) <br>
-- [mAICenter publisher profile](https://clawhub.ai/user/maicenter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAICENTER_AGENT_KEY and mAICenter channel access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill uses MAICENTER_AGENT_KEY to read and send channel messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key as a secret, limit access to trusted runtime environments, and rotate it if exposed.
+
+Risk: Polling may process sensitive conversation content through scheduled agent workflows.
+
+Mitigation: Review mAICenter data handling and avoid routing sensitive conversations through the skill unless the deployment has appropriate controls.
+
+Risk: Cron or serverless polling can send repeated or unintended replies if scheduling and state tracking are not controlled.
+
+Mitigation: Keep the polling schedule under direct control and track processed message timestamps or IDs before posting replies.
+
+## Reference(s):
+
+- [mAICenter homepage](https://maicenter.org)
+- [ClawHub skill page](https://clawhub.ai/maicenter/skills/maicenter-channel-reply)
+- [mAICenter channel API](https://api.maicenter.org/agent/channels)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAICENTER_AGENT_KEY for authenticated mAICenter channel access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

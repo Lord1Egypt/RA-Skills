@@ -1,39 +1,56 @@
-## Description: <br>
-Perform web searches using Alibaba Cloud UnifiedSearch API with configurable search parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform web searches using Alibaba Cloud UnifiedSearch API. Provides advanced search capabilities with configurable parameters.
 
-## Publisher: <br>
-[leowing](https://clawhub.ai/user/leowing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leowing](https://clawhub.ai/user/leowing)
 
-## Use Case: <br>
-Developers and agents use this skill to query Alibaba Cloud UnifiedSearch/OpenSearch for web results with optional engine type, time range, category, city, or IP filters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Alibaba Cloud access keys may be exposed or over-permissioned if handled carelessly. <br>
-Mitigation: Use least-privilege credentials limited to UnifiedSearch/OpenSearch, keep secrets out of chats and committed files, and rotate keys periodically. <br>
-Risk: Search result links and snippets may contain untrusted or misleading web content. <br>
-Mitigation: Treat returned links and snippets as untrusted and verify them before opening, citing, or acting on the results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leowing/aliyun-search-1-0-0) <br>
+## Use Case:
 
+Developers and agents use this skill to run Alibaba Cloud UnifiedSearch queries and return formatted web search results with optional filters for engine type, time range, category, city, and IP.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions] <br>
-**Output Format:** [Plain text search results with setup and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Alibaba Cloud credentials in environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Alibaba Cloud credentials could be exposed or granted broader permissions than the search task requires.
+
+Mitigation: Store credentials in environment variables or a managed secret store, grant only the permissions needed for UnifiedSearch, and rotate keys according to local policy.
+
+Risk: Search queries and optional city or IP parameters are sent to Alibaba Cloud.
+
+Mitigation: Avoid sensitive queries or location parameters unless that data sharing is acceptable for the deployment context.
+
+Risk: Dependency installation can introduce unreviewed package versions.
+
+Mitigation: Install in a virtual environment, pin reviewed dependency versions, and remove the unused requests dependency if possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leowing/skills/aliyun-search-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text search results and Markdown setup/usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include titles, links, snippets, and published times.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+name: ruankao-spgm-qa
+version: 1.0.0
+display_name: 软考高级·系统规划与管理师智能问答
+description: 挂接 IMA 知识库的软考高级「系统规划与管理师」智能问答 Skill——针对考生关于考情政策/知识点/真题解析/备考方法/IT 服务管理理论等问题，检索主库（真题/范文/考试大纲/教程）与次库（真实项目案例）给出可溯源的专业解答。
+author: "一线评标专家&ChesaraM"
+tags:
+  - 软考
+  - 系统规划与管理师
+  - 智能问答
+  - 备考答疑
+  - IMA知识库
+category: 教育学习
+feedback:
+  channel: github
+  account: "https://github.com/ruankao-spgm/qa/issues"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"

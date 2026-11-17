@@ -1,5 +1,7 @@
 # Life Fork Grammar / 人生迁移语法
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：把任何“如果当年……”复盘问题，先拆成通用迁移结构，再进入事件冲击和报告生成。此文件优先于主题案例库使用。
 
 ## 总流程

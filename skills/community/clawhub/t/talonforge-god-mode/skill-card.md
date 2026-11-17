@@ -1,43 +1,60 @@
-## Description: <br>
-Enables OpenClaw agents to autonomously execute prioritized tasks on a heartbeat loop with logging, auditing, error handling, and workspace hygiene. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw agents to autonomously execute prioritized tasks on a heartbeat loop with logging, auditing, error handling, and workspace hygiene.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to run a recurring autonomous task queue with state tracking, heartbeat-driven execution, logs, self-audits, and workspace hygiene controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent autonomous execution can repeatedly act on queued tasks with broad workspace effects. <br>
-Mitigation: Install only in a tightly scoped workspace, keep TASKS.md limited to low-risk tasks, and require human approval for public posting, account actions, financial or business data changes, and other high-impact actions. <br>
-Risk: Workspace hygiene behavior can move, truncate, clean, or archive project files and logs. <br>
-Mitigation: Disable or require approval for hygiene actions, protect important logs and project files, and review archive and cleanup behavior before enabling scheduled heartbeats. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run an agent from a prioritized task queue on scheduled heartbeats, with state tracking, audit logs, and guardrails for autonomous cycles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/casperzinou/talonforge-god-mode) <br>
-- [HEARTBEAT-template.md](references/HEARTBEAT-template.md) <br>
-- [TASKS-template.md](references/TASKS-template.md) <br>
-- [god-mode-state-template.json](references/god-mode-state-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell setup commands and JSON state templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates workspace task, heartbeat, state, memory, and archive files when installed and run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Autonomous heartbeat cycles may execute broad tasks with limited human control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a dedicated workspace with limited tools and file permissions, and require manual approval for shell, network, external API, and out-of-queue tasks.
+
+Risk: Workspace hygiene behavior can move, delete, or truncate files if scoped too broadly.
+
+Mitigation: Disable or narrow the hygiene sweep before use, review HEARTBEAT.md and TASKS.md, and keep backups for workspaces where deletion or truncation would be harmful.
+
+Risk: Untrusted task queue entries can steer the agent into unsafe or unintended work.
+
+Mitigation: Keep TASKS.md under trusted human review and require explicit approval for red-line tasks such as money, contracts, irreversible actions, file deletion, log truncation, and external side effects.
+
+## Reference(s):
+
+- [God Mode ClawHub listing](https://clawhub.ai/casperzinou/skills/talonforge-god-mode)
+- [HEARTBEAT template](artifact/references/HEARTBEAT-template.md)
+- [TASKS template](artifact/references/TASKS-template.md)
+- [God Mode state template](artifact/references/god-mode-state-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or Markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace TASKS.md, HEARTBEAT.md, and memory state files when the setup script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

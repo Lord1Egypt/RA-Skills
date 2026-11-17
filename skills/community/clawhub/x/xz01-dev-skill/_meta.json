@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn709ac4cea693g2hg2p4p3sgn82vk9z",
-  "slug": "xz01-dev-skill",
+  "name": "xz01-dev-skill",
   "version": "1.0.44",
-  "publishedAt": 1779100324176
+  "description": "Hermes xz01 workflow skill updated to validate xz01_demo pagination with data-volume awareness: empty pagination is a failure only for multi-page eligible data, not for one-page/insufficient-data routes.",
+  "updated_at": "2026-05-18",
+  "changelog": "Added data-volume-aware pagination validation after non-rank list repair: do not misclassify one-page routes with empty page_code as defects, but still fail multi-page routes with empty pagination and never add custom fallback pagers."
 }

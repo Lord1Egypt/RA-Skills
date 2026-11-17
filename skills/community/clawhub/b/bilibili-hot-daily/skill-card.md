@@ -1,41 +1,63 @@
-## Description: <br>
-Fetches Bilibili's public popular-video list, prints a ranked report, and can save JSON or CSV exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Bilibili popular-video rankings, summarizes basic trend metrics, and can export the results as JSON or CSV.
 
-## Publisher: <br>
-[qq853632587](https://clawhub.ai/user/qq853632587) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkt-agents](https://clawhub.ai/user/mkt-agents)
 
-## Use Case: <br>
-External users and content analysts use this skill to fetch current Bilibili trending videos, inspect basic engagement metrics, and export the results for lightweight reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact documentation advertises AI summaries, scheduled daily runs, and messaging or email push integrations that are not evidenced in this release. <br>
-Mitigation: Treat this version as a public Bilibili hot-list fetcher and local exporter only unless those additional workflows are separately verified. <br>
-Risk: The --output option writes to the caller-supplied path and may overwrite an existing file. <br>
-Mitigation: Choose output paths deliberately, write to a temporary or dedicated report directory, and review existing files before reusing a path. <br>
+## Use Case:
 
+Developers, operators, and content analysts can use this skill to fetch current Bilibili trending-video data, inspect ranking metrics, generate a simple text summary, and save local JSON or CSV exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qq853632587/bilibili-hot-daily) <br>
-- [Bilibili popular API endpoint](https://api.bilibili.com/x/web-interface/popular) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, files] <br>
-**Output Format:** [Console text report, optional JSON file, or optional CSV file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs public Bilibili video ranking data and engagement metrics; optional --output writes to a caller-selected local path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: evidence.release.version) <br>
+Risk: The skill contacts Bilibili and can write local export files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when that network access is acceptable, choose explicit output paths, and review generated files before reuse.
+
+Risk: CSV exports may be unsafe to open directly in spreadsheet applications.
+
+Mitigation: Inspect CSV output as text first or sanitize fields before opening it in a spreadsheet.
+
+Risk: The release advertises AI summaries, scheduling, and push delivery beyond the reviewed script behavior.
+
+Mitigation: Treat those capabilities as unavailable unless a separate implementation is provided and reviewed.
+
+Risk: The package metadata includes an unnecessary npm python dependency.
+
+Mitigation: Prefer a pinned ClawHub installer version and review or remove that dependency before npm-based installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkt-agents/skills/bilibili-hot-daily)
+- [Bilibili popular API endpoint](https://api.bilibili.com/x/web-interface/popular)
+- [Bilibili website](https://www.bilibili.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON or CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; fetches public Bilibili data over HTTPS and writes export files only when an output path is supplied.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

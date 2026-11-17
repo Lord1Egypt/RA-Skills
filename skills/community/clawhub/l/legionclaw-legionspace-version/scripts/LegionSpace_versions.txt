@@ -1,0 +1,17 @@
+LegionSpace 大群空间版本查询报告
+查询时间: 2026-07-07 14:04:17
+包名: com.tongfudun.legion
+============================================================
+
+Apple App Store                     : 5.7.3
+Tencent MyApp (应用宝)                 : 9.2.4
+Xiaomi (小米)                         : N/A (未找到版本号)
+vivo                                : N/A (未找到版本号)
+Honor (荣耀)                          : 错误: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://app.honor.com/appDetail/com.tongfudun.legion
+Call log:
+  - navigating to "https://app.honor.com/appDetail/com.tongfudun.legion", waiting until "domcontentloaded"
+Huawei AppGallery (华为)              : N/A (未找到版本号)
+OPPO                                : N/A (PC端限制，仅手机端可访问)
+
+============================================================
+报告生成时间: 2026-07-07 14:04:17

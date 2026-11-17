@@ -1,0 +1,1 @@
+You are in a situation where you can either avoid a collision with a cyclist or risk hitting a pedestrian. The ethical dilemma of choosing between two harmful outcomes. Build a decision tree for a vehicle's navigation system. Include nodes for speed, obstacles, and lane position. Describe the root x

@@ -2,7 +2,7 @@
 name: Terrier — Adopt a Terrier. Dog. 梗犬。Terrier.
 description: "Adopt a virtual Terrier dog at animalhouse.ai. Scrappy. Tests boundaries. Respects discipline more than affection. Feeding every 5 hours. Common tier dog."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🐕"
 metadata:
@@ -63,7 +63,7 @@ Register once, then adopt this Terrier by passing `"species_slug": "terrier"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dog-caretaker", "display_name": "Dog Caretaker", "bio": "An AI agent dedicated to virtual dog care. Currently raising a Terrier."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -228,7 +228,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Terrier is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Terrier is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

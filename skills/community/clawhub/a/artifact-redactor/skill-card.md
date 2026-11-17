@@ -1,45 +1,54 @@
-## Description: <br>
-Public OpenClaw skill for redacting private paths, secret-like strings, private URLs, and common PII from Markdown, JSON, logs, and other text artifacts before sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public OpenClaw skill for redacting private paths, secret-like strings, private URLs, and common PII from Markdown, JSON, logs, and other text artifacts before sharing.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers, engineers, and release maintainers use this skill to scan local text artifacts, produce redacted copies, check the redacted output, and generate a concise report before sharing bug bundles, logs, manifests, traces, reports, or release notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Regex-based redaction can miss sensitive content or leave context that still identifies a person, system, or secret. <br>
-Mitigation: Re-scan the redacted output, inspect the generated report, and manually review any files or findings before sharing. <br>
-Risk: Unsupported or binary files such as screenshots, PDFs, videos, or non-text artifacts are not sanitized by the automatic pass. <br>
-Mitigation: Treat skipped files as manual-review items and do not present a bundle as cleared while skipped files remain unresolved. <br>
-Risk: Intermediate scan and redaction JSON reports can contain local absolute paths or other sensitive operational context. <br>
-Mitigation: Keep intermediate reports local unless reviewed, and share the redacted output directory plus final Markdown report instead of raw artifacts. <br>
-Risk: Running the tool over a broad directory can process more local material than intended. <br>
-Mitigation: Use a narrow --root that points only to the files or directory intended for review. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare text artifact bundles for sharing by scanning for obvious sensitive text, producing redacted copies, checking the redacted output, and generating a concise review report. It is aimed at Markdown, JSON, logs, YAML, CSV, shell output, and similar text files, with unsupported or binary files left for manual review.
 
-## Reference(s): <br>
-- [Artifact Redactor homepage](https://github.com/zack-dev-cm/artifact-redactor) <br>
-- [Artifact Redactor on ClawHub](https://clawhub.ai/zack-dev-cm/artifact-redactor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Files, Guidance] <br>
-**Output Format:** [Shell commands that produce JSON scan, redaction, and check reports, a redacted output directory, and a Markdown redaction report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes user-selected local files or directories; supported text files are copied with redactions, while unsupported or binary files are reported for manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release metadata) <br>
+Risk: Symlinks in the selected artifact tree may cause files outside that tree to be read and included in a share bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on artifact trees you control, check for symlinks before processing, and review the generated report and output tree before sharing.
+
+Risk: The redacted output may still require manual review, especially for skipped binary or unsupported files.
+
+Mitigation: Treat skipped files, symlinks, and any manual-review-required or fix-required check result as blockers before public sharing.
+
+## Reference(s):
+
+- [Artifact Redactor ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/artifact-redactor)
+- [Artifact Redactor Project Homepage](https://github.com/zack-dev-cm/artifact-redactor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; bundled scripts produce JSON reports, redacted text files, and a Markdown report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+. Automatic redaction is limited to supported text files; binary and unsupported files require manual review.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Gmail API integration with managed OAuth for reading, sending, and managing emails, threads, labels, and drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail Litiao helps agents access Gmail through Maton managed OAuth to read, send, and manage messages, threads, labels, and drafts.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Gmail through Maton-managed OAuth so it can inspect mail, manage labels and threads, draft messages, and send email through authenticated Gmail API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives a third-party gateway and an agent access to Gmail content and mailbox actions through MATON_API_KEY. <br>
-Mitigation: Install only when the user trusts Maton with Gmail access, use the user's own MATON_API_KEY, and revoke the OAuth connection when access is no longer needed. <br>
-Risk: Supported actions include sending mail, trashing messages, changing labels, creating drafts, and deleting OAuth connections. <br>
-Mitigation: Require explicit user confirmation before sending email, trashing messages, applying label changes in bulk, sending drafts, or deleting connections. <br>
-Risk: The examples include a connection UUID that could be copied accidentally. <br>
-Mitigation: Replace example identifiers with the user's own connection ID before executing requests. <br>
+## Use Case:
 
+Developers and external users can use this skill to guide Gmail mailbox operations through the Maton gateway, including reading messages, sending email, managing drafts, labels, threads, trash, and OAuth connections.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/litiao1224/gmail-litiao) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton Connection Management](https://ctrl.maton.ai) <br>
-- [Gmail API Overview](https://developers.google.com/gmail/api/reference/rest) <br>
-- [Gmail API Users Messages](https://developers.google.com/gmail/api/reference/rest/v1/users.messages) <br>
-- [Gmail API Users Drafts](https://developers.google.com/gmail/api/reference/rest/v1/users.drafts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, a valid MATON_API_KEY, and an authorized Gmail connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide high-impact mailbox actions such as sending drafts, modifying labels, and trashing messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review before sending email, sending drafts, modifying labels, deleting OAuth connections, or moving messages to trash.
+
+Risk: The skill depends on MATON_API_KEY and includes troubleshooting guidance that can print the credential.
+
+Mitigation: Avoid running or sharing commands that print MATON_API_KEY; verify configuration without exposing the token in logs or chat output.
+
+Risk: Connected Gmail mailboxes may contain sensitive personal or business email.
+
+Mitigation: Install and use the skill only for accounts where Maton API credential access to the connected mailbox is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/gmail-litiao)
+- [Gmail API REST reference](https://developers.google.com/gmail/api/reference/rest)
+- [Gmail users.messages.list](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/list)
+- [Gmail users.messages.get](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/get)
+- [Gmail users.messages.send](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/send)
+- [Gmail users.threads.list](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/list)
+- [Gmail users.labels.list](https://developers.google.com/gmail/api/reference/rest/v1/users.labels/list)
+- [Gmail users.drafts.create](https://developers.google.com/gmail/api/reference/rest/v1/users.drafts/create)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline HTTP examples and Python or JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and an active Gmail OAuth connection]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

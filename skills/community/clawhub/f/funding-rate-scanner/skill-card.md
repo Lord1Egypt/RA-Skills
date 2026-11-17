@@ -1,44 +1,56 @@
-## Description: <br>
-Scan crypto funding rates and find arbitrage opportunities. No API key needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan crypto funding rates and find arbitrage opportunities. No API key needed.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to inspect public Binance Futures funding rates, monitor selected symbols, and produce informational funding-rate analysis for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Funding-rate outputs and annualized return calculations may be stale, volatile, or misleading if used as trading advice. <br>
-Mitigation: Treat the output as informational only and verify market data independently before making financial decisions. <br>
-Risk: Connecting this informational scanner to exchange-account or trading tools could enable high-risk leveraged crypto trading. <br>
-Mitigation: Require explicit human approval before pairing the skill with tools that can place trades or access exchange accounts. <br>
+## Use Case:
 
+Developers and crypto market analysts use this skill to run Binance Futures funding-rate scans, monitor selected coins, and inspect recent funding-rate history. Its output should be treated as market-data screening support, not investment advice or validated arbitrage analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/funding-rate-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/dagangtj) <br>
-- [Binance Futures premium index endpoint](https://fapi.binance.com/fapi/v1/premiumIndex) <br>
-- [Binance Futures funding rate endpoint](https://fapi.binance.com/fapi/v1/fundingRate) <br>
-- [Binance Futures 24hr ticker endpoint](https://fapi.binance.com/fapi/v1/ticker/24hr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text terminal output with funding-rate rankings, monitored symbols, or single-symbol analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Binance Futures API responses and does not require an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Funding-rate screens and annualized return estimates may be mistaken for validated arbitrage analysis or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as market-data screening only, verify risks independently, and do not trade solely from the skill output.
+
+Risk: Funding rates can change quickly, and high leverage can amplify losses.
+
+Mitigation: Confirm current market conditions before acting and use appropriate risk controls such as position sizing and stop-losses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dagangtj/skills/funding-rate-scanner)
+- [Binance Futures Premium Index API](https://fapi.binance.com/fapi/v1/premiumIndex)
+- [Binance Futures Funding Rate API](https://fapi.binance.com/fapi/v1/fundingRate)
+- [Binance Futures 24hr Ticker API](https://fapi.binance.com/fapi/v1/ticker/24hr)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public Binance Futures market data without API keys; output is informational and requires independent verification before trading.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Meituan Bike is a bike-share travel assistant for ride planning, parking guidance, fee awareness, and green travel advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meituan Bike assistant for rental flow, pricing structure, ride-pass cost analysis, and parking-fee pitfalls for China's leading bike-sharing service.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users can use this skill to ask for Meituan Bike usage guidance, typical short-trip planning, fee considerations, and safe parking reminders. It is best suited for informational support and should defer current prices, service areas, and parking requirements to the official app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, service areas, station availability, and parking rules may vary by city and change over time. <br>
-Mitigation: Verify important trip, cost, service-area, and parking details in the official Meituan app before relying on the guidance. <br>
-Risk: The skill provides general travel advice and should not be treated as live operational data. <br>
-Mitigation: Use the skill for informational support and rely on authoritative app displays or local posted rules for current requirements. <br>
+## Use Case:
 
+External users and agents use this skill to explain Meituan Bike rental steps, compare ride-pass value, interpret billing anomalies, and guide parking or dispute workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/meituan-bike) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential use, persistence, or high-impact authority was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can give outdated or incomplete pricing, parking-zone, billing, or dispute information because it does not perform live account or pricing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Direct users to verify current city pricing, parking zones, billing details, and dispute handling in the Meituan app.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/meituan-bike)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or account actions.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

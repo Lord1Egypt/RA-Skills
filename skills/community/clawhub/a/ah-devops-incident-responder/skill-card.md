@@ -1,41 +1,48 @@
-## Description: <br>
-Expert incident responder specializing in rapid detection, diagnosis, and resolution of production issues, mastering observability tools, root cause analysis, and automated remediation with focus on minimizing downtime and preventing recurrence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert incident responder specializing in rapid detection, diagnosis, and resolution of production issues. Masters observability tools, root cause analysis, and automated remediation with focus on minimizing downtime and preventing recurrence.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations engineers use this skill to assess production incidents, coordinate response, diagnose root causes, improve monitoring, and define remediation work that reduces downtime and recurrence.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest production-impacting actions such as service restarts, traffic rerouting, database changes, feature disabling, customer communications, status updates, or auto-remediation workflows.
+
+Mitigation: Require explicit human approval before executing operational changes or external communications, and review proposed remediation against incident procedures.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to assess incident readiness, diagnose production issues, coordinate response, create runbooks, and recommend monitoring or remediation improvements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incident response recommendations may include production-impacting actions such as restarts, failovers, traffic shifts, cache clears, feature disables, or scaling. <br>
-Mitigation: Use the skill for assessment, runbook creation, and recommendations by default; require explicit human approval before live production actions. <br>
-Risk: Incident diagnosis can be misleading if architecture, monitoring, alerting, or incident history context is incomplete. <br>
-Mitigation: Validate recommendations against current telemetry, service ownership, runbooks, and escalation procedures before implementation. <br>
+**Output Format:** [Markdown with prose, checklists, commands, code snippets, and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-devops-incident-responder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [May propose production-impacting remediation actions that require human approval before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with incident analysis, runbook steps, recommended commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations should be reviewed under human change control before live production actions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

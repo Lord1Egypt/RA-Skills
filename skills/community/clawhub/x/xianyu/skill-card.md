@@ -1,40 +1,52 @@
-## Description: <br>
-提供闲鱼闲置交易、信用保障及捡漏攻略指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for Xianyu secondhand trading, credit protections, deal discovery, workflow entry points, status tracking, and safety reminders.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to ask an agent for concise Xianyu resale guidance, including how to navigate transaction scenarios, compare feature paths, avoid common risks, and understand privacy or authorization cautions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Guidance may lead users toward real account authorization or third-party services in a Xianyu workflow.
+
+Mitigation: Approve account authorization or third-party service actions only when the requested scope is clear and necessary.
+
+Risk: Secondhand marketplace guidance can involve sensitive personal or transaction information.
+
+Mitigation: Avoid sharing unnecessary personal data and review privacy-sensitive details before acting on agent suggestions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to get concise guidance for Xianyu second-hand trading workflows, including resale steps, feature highlights, deal-finding tips, status tracking, and privacy or authorization cautions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may involve Xianyu permissions, third-party interfaces, messages, or data sync. <br>
-Mitigation: Treat the recommendations as informational and only share personal data or grant account permissions when intentionally initiated and understood. <br>
-Risk: Xianyu app flows, offers, and feature availability may change outside the skill artifact. <br>
-Mitigation: Verify current in-app prompts, pricing, authorization requests, and transaction details before acting. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/xianyu) <br>
+**Other Properties Related to Output:** [Concise natural-language guidance with summaries, feature highlights, workflow notes, safety reminders, and caveats.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance in natural language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only; no executable code or external tool calls are included in the artifact.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

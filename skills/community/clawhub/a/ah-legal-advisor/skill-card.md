@@ -1,40 +1,48 @@
-## Description: <br>
-Expert legal advisor for technology law, compliance, contract drafting, intellectual property, data privacy, regulatory compliance, and business risk mitigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert legal advisor specializing in technology law, compliance, and risk mitigation. Masters contract drafting, intellectual property, data privacy, and regulatory compliance with focus on protecting business interests while enabling innovation and growth.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external business stakeholders can use this skill for legal-support tasks such as contract review, compliance planning, intellectual property guidance, privacy analysis, and risk mitigation. Outputs should be reviewed by qualified counsel for regulated, high-risk, or jurisdiction-specific decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may review confidential, privileged, personal, or jurisdiction-specific legal material.
+
+Mitigation: Share only the minimum necessary documents, redact privileged or personal information where possible, and involve qualified counsel for regulated, high-risk, or jurisdiction-specific decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and business teams use this skill to review legal context, draft and improve legal documents, assess compliance gaps, and plan practical risk mitigation for technology and business operations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Legal guidance may be incomplete, outdated, or jurisdiction-specific. <br>
-Mitigation: Use the skill for drafting and issue spotting, and verify jurisdiction-specific advice with qualified counsel before relying on it. <br>
-Risk: Legal documents can contain privileged, confidential, or regulated information. <br>
-Mitigation: Share only the documents needed for the task, redact unnecessary sensitive information, and follow organizational handling rules. <br>
+**Output Format:** [Markdown or plain text legal-support guidance, checklists, policy drafts, contract clauses, and risk summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-legal-advisor) <br>
+**Other Properties Related to Output:** [Non-executable advisory output; users should minimize confidential inputs and obtain qualified legal review for sensitive decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text legal analysis, checklists, clauses, policy drafts, and compliance guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; no code, install scripts, credentials, or hidden execution behavior found in release security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

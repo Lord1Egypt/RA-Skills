@@ -1,40 +1,54 @@
-## Description: <br>
-Apply VueUse composables where appropriate to build concise, maintainable Vue.js / Nuxt features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply VueUse composables where appropriate to build concise, maintainable Vue.js / Nuxt features.
 
-## Publisher: <br>
-[terrybenedict0515](https://clawhub.ai/user/terrybenedict0515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrybenedict0515](https://clawhub.ai/user/terrybenedict0515)
 
-## Use Case: <br>
-Developers building Vue 3 or Nuxt 3 features use this skill to select and apply VueUse composables for reactive state, browser APIs, element utilities, and sensor-driven UI behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage automatic use of sensitive browser capabilities such as permissions, file access, clipboard, location, screen capture, Bluetooth, notifications, injected scripts, workers, or persistent storage. <br>
-Mitigation: Review generated Vue/Nuxt code before applying it and require explicit user-facing consent before enabling permission-sensitive browser features. <br>
-Risk: A VueUse-first posture may choose composables aggressively even when project constraints or dependencies do not support them. <br>
-Mitigation: Confirm Vue 3 or Nuxt 3 compatibility and dependency availability before adopting a suggested composable. <br>
+## Use Case:
 
+Developers and engineers use this skill when writing Vue 3 or Nuxt 3 code to select appropriate VueUse composables and apply their documented usage patterns instead of custom utility code.
 
-## Reference(s): <br>
-- [VueUse Documentation](https://vueuse.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Vue/Nuxt code snippets and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend VueUse composables and permission-sensitive browser APIs; generated code should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may recommend VueUse composables that interact with local files, clipboard contents, notifications, screen or media capture, geolocation, devices, input tracking, script injection, or browser storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code for user-facing permission handling and limit privacy-sensitive browser API use to clearly requested, necessary behavior.
+
+Risk: Automatic recommendations can introduce an unsuitable composable or pattern for a specific Vue or Nuxt feature.
+
+Mitigation: Review suggested composables against project requirements, installed dependencies, and Vue 3 or Nuxt 3 compatibility before adopting the code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrybenedict0515/skills/antfu-vueuse-functions)
+- [VueUse documentation](https://vueuse.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown]
+
+**Output Format:** [Markdown guidance with Vue/Nuxt code examples when implementation is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is bundled with the skill; generated recommendations may involve privacy-sensitive browser APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

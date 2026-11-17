@@ -1,0 +1,6 @@
+interface:
+  display_name: "UI Foundry · 界面工坊"
+  short_description: "替你主导视觉与交互设计，减少无效输入，用真实渲染和操作审核成品"
+  default_prompt: "使用 $ui-foundry，替我确定服务人群、核心任务与设计方向，完成当前请求，并用实际界面和任务结果验证；让我只做重要决策。"
+policy:
+  allow_implicit_invocation: true

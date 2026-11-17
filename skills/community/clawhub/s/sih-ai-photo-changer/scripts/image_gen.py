@@ -10,7 +10,7 @@ import requests
 from pathlib import Path
 
 API_URL = "https://api.vwu.ai/v1/images/generations/"
-API_TOKEN = "sk-w4YfLvoXwIEM0I3uNcOOOclfHkBDiR19Md9ixabWv1XMNPhn"
+API_TOKEN = "REDACTED-SECRET"
 DEFAULT_MODEL = "sihai-image-27"
 
 

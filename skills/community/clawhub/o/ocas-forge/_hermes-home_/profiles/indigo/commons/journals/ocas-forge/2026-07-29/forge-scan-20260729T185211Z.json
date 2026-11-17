@@ -1,0 +1,13 @@
+{
+  "schema": "forge-journal-v1",
+  "run_id": "forge-scan-20260729T185211Z",
+  "timestamp": "2026-07-29T18:52:11.291319+00:00",
+  "action": {
+    "result": "no_op",
+    "findings": {
+      "unprocessed_proposals": 0
+    }
+  },
+  "outcome": "success",
+  "trigger": "dispatch"
+}

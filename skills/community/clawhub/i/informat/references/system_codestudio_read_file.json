@@ -1,0 +1,25 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_read_file",
+		"description": "Read the full content of a single source file in the AICodeStudio module; returns null if not found. Read before editing.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Module id."
+				},
+				"path": {
+					"type": "string",
+					"description": "Project-relative path, e.g. App.vue / components/Foo.vue / router/index.js."
+				}
+			},
+			"required": [
+				"moduleId",
+				"path"
+			],
+			"additionalProperties": false
+		}
+	}
+}

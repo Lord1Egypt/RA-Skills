@@ -1,41 +1,55 @@
-## Description: <br>
-Create and manage color palettes using color theory algorithms for UI design and brand color systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advertises color-palette generation and management for UI and brand color systems, but server security review says the bundled script behaves mainly as a local log, search, and status utility.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Designers and frontend developers use this skill to request palette creation, preview color sets, and export color assets for UI or brand systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence says the script mainly records command activity under ~/.palette and can search or export that retained local history. <br>
-Mitigation: Review before installing, avoid passing sensitive project details, tokens, or private prompts as arguments, and remove ~/.palette after testing if retained logs are not wanted. <br>
-Risk: Security evidence marks the release suspicious because implementation behavior differs from the claimed palette-generation capability. <br>
-Mitigation: Confirm the script behavior in a disposable environment before using it in normal workflows or relying on its palette outputs. <br>
+## Use Case:
 
+External designers and frontend developers may use the skill for palette-related command guidance and local palette records. Review the implementation before relying on it for actual palette generation or export workflows.
 
-## Reference(s): <br>
-- [Palette on ClawHub](https://clawhub.ai/ckchzh/palette) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and exported CSS, JSON, SVG, SCSS, or Tailwind configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read local files under ~/.palette and export palette data to the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Advertised palette generation and export behavior may not match the bundled implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or correct the implementation before using it in design, brand, or customer-facing workflows.
+
+Risk: The artifact can persist local command records under ~/.palette.
+
+Mitigation: Do not pass secrets, private prompts, customer names, or sensitive brand material unless storage and export behavior is documented and acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/palette)
+- [Publisher Profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local files under ~/.palette when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

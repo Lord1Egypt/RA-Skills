@@ -1,45 +1,64 @@
-## Description: <br>
-Integrates Zhipu Search, DuckDuckGo Search, and multi-model structured extraction into a complete search-to-summary workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Zhipu AI search, DuckDuckGo search, and multi-model structured extraction into a complete search-to-report workflow.
 
-## Publisher: <br>
-[luw2007](https://clawhub.ai/user/luw2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[luw2007](https://clawhub.ai/user/luw2007)
 
-## Use Case: <br>
-Developers and researchers use this skill to run web searches across configured providers, combine the retrieved snippets, and extract concise structured findings with a configured OpenAI-compatible model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and retrieved page snippets are sent to the configured search and model providers. <br>
-Mitigation: Install only when this data sharing is acceptable, keep API keys in environment variables where possible, and use trusted model base URLs and proxies. <br>
-Risk: Local output files may contain sensitive search queries, snippets, or extracted findings. <br>
-Mitigation: Delete generated output files after sensitive searches and avoid running sensitive queries in shared workspaces. <br>
-Risk: Unpinned dependencies or untrusted network configuration can change the behavior of provider calls. <br>
-Mitigation: Use a virtual environment with pinned dependencies and review configured provider endpoints and proxy settings before use. <br>
+## Use Case:
 
+Developers and agents use this skill to run configurable web searches across Zhipu AI Search and DuckDuckGo, then extract structured summaries, key points, facts, and source references from the combined results.
 
-## Reference(s): <br>
-- [Langextract Search ClawHub Listing](https://clawhub.ai/luw2007/langextract-search) <br>
-- [Search Parameter Configuration](references/search-params.md) <br>
-- [Workflow Details](references/workflow-details.md) <br>
-- [Google LangExtract](https://github.com/google/langextract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown result files, optional JSON result files, and terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped search results, extracted information, and workflow summaries under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: Search terms and retrieved content may be sent to configured search and model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential queries and review provider configuration before running the workflow.
+
+Risk: Generated reports may contain incomplete, stale, or provider-biased search and extraction results.
+
+Mitigation: Review generated Markdown and JSON outputs before relying on them for decisions.
+
+Risk: API keys can be exposed if literal credentials are stored in configuration.
+
+Mitigation: Keep API keys in environment variables instead of committing literal values to conf.json.
+
+Risk: Unpinned Python dependencies can introduce supply-chain or compatibility risk.
+
+Mitigation: Use pinned dependencies or a reviewed requirements file before deployment.
+
+## Reference(s):
+
+- [Search parameter configuration](references/search-params.md)
+- [Workflow details](references/workflow-details.md)
+- [Google LangExtract](https://github.com/google/langextract)
+- [Langextract Search on ClawHub](https://clawhub.ai/luw2007/skills/langextract-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown reports and optional JSON result files generated from search and extraction results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Zhipu search results, DuckDuckGo search results, extracted structured information, workflow summaries, and full JSON results when requested.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

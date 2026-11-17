@@ -1,42 +1,57 @@
-## Description: <br>
-生成加密货币早报PDF，包含行业动态、FDV排名、热点赛道和风险提示。数据来源于CoinGecko API。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese-language daily cryptocurrency briefing PDF with industry updates, FDV rankings, hot sectors, project watch items, and risk notes using CoinGecko market data.
 
-## Publisher: <br>
-[nihaovand](https://clawhub.ai/user/nihaovand) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nihaovand](https://clawhub.ai/user/nihaovand)
 
-## Use Case: <br>
-External users and analysts use this skill to generate a Chinese daily cryptocurrency morning report focused on altcoin FDV rankings, hot sectors, watchlist projects, and risk reminders. The workflow fetches public CoinGecko market data, creates an HTML/PDF report, and prepares it for Feishu delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public cryptocurrency market data and may create reports from volatile or incomplete data. <br>
-Mitigation: Review the generated report and confirm market figures before sharing or relying on it. <br>
-Risk: The skill creates temporary local files during report generation. <br>
-Mitigation: Inspect or clean temporary files after use when running in shared environments. <br>
-Risk: The finished report may be sent through Feishu to an unintended recipient or chat. <br>
-Mitigation: Confirm the Feishu recipient or chat before sending and avoid including private knowledge-base notes unless sharing is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nihaovand/check-hot-altcoins) <br>
-- [CoinGecko coins markets API](https://api.coingecko.com/api/v3/coins/markets) <br>
+## Use Case:
 
+External users and agents use this skill to compile a daily Chinese cryptocurrency morning report that ranks selected altcoins by FDV, summarizes sector movements, and prepares an HTML report for PDF export and optional sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [Chinese HTML/PDF report with supporting bash and Python workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public market data, writes temporary local files, and may send the finished report through Feishu.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Temporary report and data files may be written to shared paths.
+
+Mitigation: Use a private temporary directory with restrictive permissions and clean up generated files after the report is reviewed.
+
+Risk: Generated HTML report fields may include unescaped content.
+
+Mitigation: Escape all dynamic report fields before rendering HTML or exporting the PDF.
+
+Risk: A generated report may be sent to Feishu without clear confirmation, including knowledge-base content.
+
+Mitigation: Require explicit user confirmation before sending the report and review any sensitive or knowledge-base-derived content first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nihaovand/skills/check-hot-altcoins)
+- [CoinGecko coins markets API](https://api.coingecko.com/api/v3/coins/markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Chinese-language HTML report intended for PDF export, with supporting shell and Python command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CoinGecko market data, writes temporary JSON and HTML report files, and may share the generated report through Feishu after review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes a provided skill package and produces a four-part Markdown report with a functional summary, scenario analysis, workflow diagrams, and a rating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes user-provided skill packages and produces a Chinese-language Markdown report with a functional summary, scenario analysis, workflow diagrams, and a star-style assessment.
 
-## Publisher: <br>
-[opengjun](https://clawhub.ai/user/opengjun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[opengjun](https://clawhub.ai/user/opengjun)
 
-## Use Case: <br>
-Developers and skill reviewers use this skill to inspect uploaded files, links, or local paths for skill packages and receive a compact design critique with ASCII or Mermaid diagrams and a star rating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes user-provided packages, links, or paths, which may expose secrets or unrelated private files if broad archives or folders are supplied. <br>
-Mitigation: Provide only the specific package, link, or path intended for inspection and avoid inputs containing secrets or unrelated private content. <br>
-Risk: Generated summaries, critiques, diagrams, and ratings can be incomplete or misleading when the input package is missing documentation or uses an unfamiliar format. <br>
-Mitigation: Review the generated report against the original package before using it for publication, installation, or operational decisions. <br>
+## Use Case:
 
+Developers and skill authors use this skill to inspect skill packages, understand their design, and produce a concise review before reuse, publication, or handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/opengjun/analyze-skill) <br>
-- [Mermaid Live](https://mermaid.live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown report with ASCII diagrams and Mermaid code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional fifth example section when requested; concise sentence style.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill is designed to read user-provided skill archives, links, or local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the specific skill materials intended for analysis.
+
+Risk: The generated analysis can be incomplete when a package lacks documentation or uses an unsupported format.
+
+Mitigation: Treat the report as review guidance and verify important conclusions against the source package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/opengjun/skills/analyze-skill)
+- [Mermaid Live Editor](https://mermaid.live)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown report with ASCII previews and Mermaid diagram code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prose with four standard sections and an optional example section when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

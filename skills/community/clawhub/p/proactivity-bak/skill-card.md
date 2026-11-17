@@ -1,47 +1,59 @@
-## Description: <br>
-Anticipates needs, keeps work moving, and improves through use so the agent gets more proactive over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anticipates needs, keeps work moving, and improves through use so the agent gets more proactive over time.
 
-## Publisher: <br>
-[panwang813](https://clawhub.ai/user/panwang813) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panwang813](https://clawhub.ai/user/panwang813)
 
-## Use Case: <br>
-Developers and agent users install this skill to make an agent anticipate useful next steps, preserve local proactive state, recover context, and follow through within approved boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local state in ~/proactivity/ can retain sensitive user or project details if the agent writes them there. <br>
-Mitigation: Keep secrets and sensitive data out of proactivity state files, and delete or archive ~/proactivity/ to reset the behavior. <br>
-Risk: Optional workspace integration can alter AGENTS, TOOLS, SOUL, or HEARTBEAT guidance. <br>
-Mitigation: Review proposed snippets or diffs before approving edits outside ~/proactivity/. <br>
-Risk: Proactive suggestions can become noisy or cross user expectations when boundaries are unclear. <br>
-Mitigation: Record action boundaries and require approval for external communication, spending, deletion, scheduling, and commitments. <br>
+## Use Case:
 
+Developers and agent users use this skill to add proactive operating behavior, local follow-through state, boundary-aware suggestions, and recovery patterns to an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/panwang813/proactivity-bak) <br>
-- [Proactivity homepage](https://clawic.com/skills/proactivity) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Boundary learning](artifact/boundaries.md) <br>
-- [Execution patterns](artifact/execution.md) <br>
-- [Recovery flow](artifact/recovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and maintain local operating notes under ~/proactivity/ when installed and used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow stores local cross-session proactivity notes in ~/proactivity/, which may include sensitive personal or project context if users place it there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secrets and sensitive personal data out of proactivity files, and periodically review local notes for data that should not persist.
+
+Risk: Optional AGENTS, TOOLS, SOUL, and HEARTBEAT snippets can affect future agent behavior if approved without review.
+
+Mitigation: Review the exact proposed snippets before approving workspace integration, and require explicit approval for edits outside ~/proactivity/.
+
+Risk: Proactive suggestions or follow-up actions may be unwanted if they exceed the user's boundaries.
+
+Mitigation: Use the documented boundary ladder and ask before external communication, spending, deletion, scheduling, commitments, or workspace edits.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/panwang813/skills/proactivity-bak)
+- [Skill homepage](https://clawic.com/skills/proactivity)
+- [Publisher profile](https://clawhub.ai/user/panwang813)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local proactivity state under ~/proactivity/ when the user chooses to use the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

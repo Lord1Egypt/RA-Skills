@@ -1,42 +1,57 @@
-## Description: <br>
-DailyExpenseTracker API integration for recording expenses, checking balances, and managing transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DailyExpenseTracker API integration for recording expenses, checking balances, and managing transactions.
 
-## Publisher: <br>
-[gurpreetkaits](https://clawhub.ai/user/gurpreetkaits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gurpreetkaits](https://clawhub.ai/user/gurpreetkaits)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to DailyExpenseTracker for recording expenses, viewing transactions, checking wallet balances, and retrieving categories through the DailyExpenseTracker API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive expense data to DailyExpenseTracker and create or modify financial records. <br>
-Mitigation: Require explicit confirmation before POST or update actions that create or change expense records. <br>
-Risk: The DET bearer token grants access to the user's DailyExpenseTracker account. <br>
-Mitigation: Treat the token like a password, store it only in configuration, and confirm the destination domain before use. <br>
-Risk: Cached wallet IDs can become stale when accounts or wallets change. <br>
-Mitigation: Review and clear any local wallet-ID cache when accounts or wallets change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DailyExpenseTracker ClawHub release](https://clawhub.ai/gurpreetkaits/det) <br>
-- [DailyExpenseTracker API base URL](https://dailyexpensetracker.in/api) <br>
+## Use Case:
 
+OpenClaw users use this skill to record expenses, check wallet balances, and retrieve transactions or categories through the DailyExpenseTracker API.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a DET bearer token and may read or create DailyExpenseTracker wallet, category, and transaction records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send or modify sensitive financial records through an external DailyExpenseTracker API.
+
+Mitigation: Use it only with real financial data after reviewing the configuration and confirming that transaction details and balance queries may be sent to the service.
+
+Risk: Broad activation around expenses, spending, transactions, wallets, or DET could trigger API use in more situations than intended.
+
+Mitigation: Prefer explicit user requests before recording expenses, checking balances, or retrieving financial records.
+
+Risk: The DET token is stored in OpenClaw configuration.
+
+Mitigation: Protect the OpenClaw config file, rotate the token if exposed, and avoid embedding the token in skill text or command examples.
+
+## Reference(s):
+
+- [DailyExpenseTracker ClawHub skill page](https://clawhub.ai/gurpreetkaits/skills/det)
+- [DailyExpenseTracker API](https://dailyexpensetracker.in/api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a configured DET API token and may send transaction details, wallet queries, and category queries to the DailyExpenseTracker API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

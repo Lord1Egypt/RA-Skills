@@ -1,42 +1,57 @@
-## Description: <br>
-Consults ChatGPT through a browser session when a question is complex, outside the agent's knowledge, or explicitly requests ChatGPT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically or manually consults ChatGPT through a browser workflow to answer complex, current, or specialized user questions.
 
-## Publisher: <br>
-[mahaoxiong](https://clawhub.ai/user/mahaoxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahaoxiong](https://clawhub.ai/user/mahaoxiong)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to consult ChatGPT for technical, knowledge, creative, or complex questions and return the resulting answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user questions through a logged-in browser session, which may expose sensitive prompts to a third-party service. <br>
-Mitigation: Use only with non-sensitive questions, notify the user before consultation, and prefer a dedicated browser profile. <br>
-Risk: The included script builds a shell command from user-controlled text. <br>
-Mitigation: Do not run the script until command execution is changed to safe argument passing and reviewed before deployment. <br>
-Risk: The artifact references helper and configuration files that are not included for review. <br>
-Mitigation: Include and review the referenced helper script and configuration before installing or operating the skill. <br>
+## Use Case:
 
+Developers and agent users can use this skill to route complex, current, or specialist questions to ChatGPT when local model knowledge is insufficient or when the user explicitly asks for ChatGPT consultation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mahaoxiong/chatgpt-consultation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text with ChatGPT response text and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include third-party ChatGPT content and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Matched questions may be sent to ChatGPT through an existing browser session, which can expose sensitive prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive prompts and add explicit consent or redaction controls before broader deployment.
+
+Risk: The security evidence reports an unsafe shell command path that could execute unintended local commands.
+
+Mitigation: Fix the shell invocation and review the command path before running this skill in a privileged workspace.
+
+Risk: The artifact references missing runtime dependencies and browser configuration files.
+
+Mitigation: Supply and review the required scripts, configuration, and browser access before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mahaoxiong/skills/chatgpt-consultation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text response with possible command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ChatGPT consultation results, status notices, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

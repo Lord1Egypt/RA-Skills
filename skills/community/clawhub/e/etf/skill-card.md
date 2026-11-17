@@ -1,42 +1,54 @@
-## Description: <br>
-Etf is advertised for ETF analysis, but the submitted artifacts primarily provide a terminal utility for recording, searching, exporting, and summarizing locally stored text entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Etf is advertised for ETF holdings and fund metric analysis, but the reviewed artifacts implement a local terminal utility that records, searches, and exports user-entered command text.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and terminal users can use this skill as a local command-line logger for recording, searching, exporting, and summarizing text entries. Do not rely on it for ETF research or investment analysis unless the publisher adds real ETF functionality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advertised as an ETF analysis tool, but the artifacts implement a generic local logger. <br>
-Mitigation: Review the behavior before installation and treat outputs as local log records, not investment research or fund analysis. <br>
-Risk: Command inputs are saved locally under ~/.local/share/etf and can later be viewed, searched, or exported. <br>
-Mitigation: Avoid entering account numbers, portfolio details, proprietary research, credentials, or other sensitive text. <br>
+## Use Case:
 
+Developers and external users may invoke Etf as a local terminal utility to record, inspect, search, and export typed entries. Do not rely on it for ETF analysis without independent review because the security evidence says the artifacts implement a generic logger rather than ETF analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/etf) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [BytesAgain Feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal-output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The installed command writes user-entered text and activity history to ~/.local/share/etf and can export saved entries as JSON, CSV, or plain text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is advertised as ETF analysis, but the security evidence says the artifacts implement a generic local input logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review behavior before relying on ETF-related output, and require the publisher to narrow the description or implement actual ETF analysis.
+
+Risk: User-entered text may be retained in persistent plaintext history under ~/.local/share/etf.
+
+Mitigation: Avoid entering sensitive portfolio, account, or research data, and review or delete the local data directory after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/etf)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text terminal output with optional JSON, CSV, or text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist user-supplied command text and generated exports under ~/.local/share/etf.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

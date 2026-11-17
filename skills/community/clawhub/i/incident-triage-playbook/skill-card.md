@@ -1,38 +1,54 @@
-## Description: <br>
-Runbook-first incident triage workflow for service outages and high-error alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runbook-first incident triage workflow for service outages and high-error alerts.
 
-## Publisher: <br>
-[JiaranI](https://clawhub.ai/user/JiaranI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiarani](https://clawhub.ai/user/jiarani)
 
-## Use Case: <br>
-Incident responders, on-call engineers, and service owners use this skill to gather alert context, assign ownership, keep a concise timeline, and produce checklist and report artifacts during early incident triage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The playbook includes commands that may update owner and timeline state in a local incident-management workflow. <br>
-Mitigation: Confirm that the local triage and workflow commands are the intended tools before applying the playbook during a live incident. <br>
-Risk: The healthcheck helper prints a different skill name even though ClawScan did not classify it as harmful. <br>
-Mitigation: Treat the mismatch as a version-alignment issue and review helper output before relying on it for release or operational checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Operations teams and on-call engineers use this skill to run a consistent first-15-minute triage flow for service outages and high-error alerts, including intake, timeline capture, ownership, checklist execution, and incident reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown runbook guidance with command examples and reusable checklist and report templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes templates/checklist.md and templates/report.md; helper scripts only echo version or healthcheck text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The playbook references triage and workflow commands that may not exist in the installer's environment.
+
+Mitigation: Verify that the referenced commands are available and mapped to local incident-management procedures before relying on the skill during an incident.
+
+Risk: A healthcheck script reports a different skill label than the incident triage playbook.
+
+Mitigation: Use the skill frontmatter, release metadata, and file hashes as the authoritative identity signals, and update local healthcheck expectations before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiarani/skills/incident-triage-playbook)
+- [Operations checklist template](templates/checklist.md)
+- [Incident summary report template](templates/report.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with command examples and reusable incident checklist and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included scripts only echo version and healthcheck status.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

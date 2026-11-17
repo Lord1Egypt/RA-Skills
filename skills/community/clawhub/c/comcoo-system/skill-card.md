@@ -1,43 +1,52 @@
-## Description: <br>
-COMCOO Arbiter Meta-OS presents a conceptual coordination system for ethical labor, voluntary governance, and sustainability-oriented community protocols. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+COMCOO Arbiter Meta-OS is a local demonstration skill that presents simulated COMCOO Arbiter governance, credit, constellation, and topic-registration workflows.
 
-## Publisher: <br>
-[MrDahut](https://clawhub.ai/user/MrDahut) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrdahut](https://clawhub.ai/user/mrdahut)
 
-## Use Case: <br>
-Developers, reviewers, and community operators can use this skill to explore COMCOO governance concepts, simulated labor-credit flows, and configuration examples. It should be read as a conceptual or demonstration bundle, not as proof of real identity, labor, credit, infrastructure, or compliance verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake simulated console output for verified labor, identity, credit, governance, infrastructure, or compliance attestations. <br>
-Mitigation: Treat the bundle as conceptual guidance and demonstration code; require independent verification before relying on any operational, financial, governance, or compliance claim. <br>
-Risk: The artifact describes broad governance and sustainability claims that are not technically enforced by the included scripts. <br>
-Mitigation: Review claims against the server-provided security summary and use the scripts only as examples unless a real validation system is supplied. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/MrDahut/comcoo-system) <br>
-- [Publisher Profile](https://clawhub.ai/user/MrDahut) <br>
-- [Artifact Overview](artifact/skill.md) <br>
-- [Seed Configuration](artifact/Seed.json) <br>
-- [Constellation Configuration](artifact/constellation_config.json) <br>
+## Use Case:
 
+Developers and evaluators can use this skill to inspect local JavaScript and JSON examples that simulate COMCOO Arbiter concepts such as ethical work validation, shadow credit claims, constellation sync, and topic registration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JavaScript examples print simulated protocol status messages to the console.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses blockchain, credit, governance, and infrastructure language that could be mistaken for a verified real-world system.
+
+Mitigation: Treat the workflows and claims as conceptual demonstrations unless independently validated by the publisher.
+
+Risk: The package includes executable JavaScript files.
+
+Mitigation: Review the files before execution and run them in a local sandbox appropriate for demonstration code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrdahut/skills/comcoo-system)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown description plus JavaScript and JSON artifacts that produce local console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The release evidence reports local simulated output with no access to private data, network services, or persistent system state.]
+
+## Skill Version(s):
+
+1.6.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

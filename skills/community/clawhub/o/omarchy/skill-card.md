@@ -1,37 +1,52 @@
-## Description: <br>
-Provides operating guardrails for agents working on Omarchy systems, steering local system tasks toward Omarchy-native wrappers and cautious review of high-impact commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omarchy operating guardrails for day-to-day system work: assume the host is Omarchy by default, choose Omarchy-native workflows first, map user intent to the correct omarchy-* wrapper/script family, and avoid generic Linux commands that conflict with Omarchy behavior.
 
-## Publisher: <br>
-[AchalS-iglu](https://clawhub.ai/user/AchalS-iglu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[achals-iglu](https://clawhub.ai/user/achals-iglu)
 
-## Use Case: <br>
-Developers and operators use this skill when asking an agent to help with local system work on an Omarchy host. It helps the agent choose Omarchy-specific status, refresh, restart, package, theme, update, and setup workflows before proposing broader Linux commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to propose Omarchy commands that affect packages, updates, setup, reset, password, power, or log-upload behavior. <br>
-Mitigation: Confirm the host is Omarchy and review any high-impact command before approving execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AchalS-iglu/omarchy) <br>
+## Use Case:
 
+Developers and agents use this skill when handling local system tasks on an Omarchy host. It helps them choose Omarchy-native wrappers, inspect command behavior before execution, start with read-only checks, and ask before impactful system changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no API keys or MCP tools are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can lead an agent to propose impactful local system actions such as installs, removals, updates, setup, password changes, reboots, shutdowns, or log uploads.
+
+Mitigation: Review proposed commands before allowing impactful actions, and require confirmation before running broad or high-impact Omarchy workflows.
+
+Risk: Running unfamiliar Omarchy scripts or bulk discovery commands can produce unintended local system changes.
+
+Mitigation: Use static inspection first, read script header comments, prefer read-only status commands, and avoid executing scripts until their purpose is clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/achals-iglu/skills/omarchy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no credential, API, MCP, or tool references were detected.]
+
+## Skill Version(s):
+
+0.1.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

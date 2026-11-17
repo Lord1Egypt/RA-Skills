@@ -1,46 +1,55 @@
-## Description: <br>
-Deer helps users view booking guidance, submit appointment requests, contact online support, and check prices for Lumiin Dermatology through BeautsGO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deer helps users view booking guidance, submit appointment requests, contact online support, and query pricing for Lumiin Dermatology through BeautsGO.
 
-## Publisher: <br>
-[beautsgo](https://clawhub.ai/user/beautsgo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautsgo](https://clawhub.ai/user/beautsgo)
 
-## Use Case: <br>
-External patients and clinic customers use Deer to get booking guidance, submit appointment details, open BeautsGO consultation pages, and check treatment prices for Lumiin Dermatology in Seoul. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; service destination is Seoul, South Korea. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Appointment details, including a phone number when provided, can be sent to the BeautsGO booking service without a clear in-flow confirmation step. <br>
-Mitigation: Provide contact information only when booking follow-up is intended, and require an explicit confirmation step before submitting appointment data. <br>
-Risk: Service API tokens are embedded in the skill artifact. <br>
-Mitigation: Remove hardcoded tokens, rotate exposed credentials, and load service credentials from a managed secret store before deployment. <br>
-Risk: The skill relies on external BeautsGO, yestokr.com, and beise.com network services for booking, consultation, and price workflows. <br>
-Mitigation: Deploy only in environments where those external calls are acceptable, and review allowed domains and data-sharing expectations before installation. <br>
+## Use Case:
 
+External users use this skill to get Lumiin Dermatology booking guidance, submit requested appointment details, contact support, and check treatment pricing through BeautsGO.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/beautsgo/deer-clinic-booking) <br>
-- [BeautsGO Publisher Profile](https://clawhub.ai/user/beautsgo) <br>
-- [Lumiin Dermatology Booking Page](https://i.beautsgo.com/cn/hospital/lumiin-dermatology/skill) <br>
-- [Lumiin Dermatology BeautsGO Profile](https://i.beautsgo.com/cn/hospital/lumiin-dermatology?from=skill) <br>
-- [BeautsGO Website](https://www.beautsgo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open BeautsGO web pages and call external booking or price APIs when the user requests those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, skill.json, release evidence) <br>
+Risk: Appointment details may be sent to external BeautsGO/yestokr services without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit user confirmation before submitting contact or appointment details, and verify the clinic and platform identity before entering a phone number.
+
+Risk: The security review flags API, credential, URL-opening, and language-loading issues that should be reviewed before use.
+
+Mitigation: Review and fix those issues before deployment, then rescan the skill before enabling it for users.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/beautsgo/skills/deer-clinic-booking)
+- [BeautsGO Lumiin Dermatology booking page](https://i.beautsgo.com/cn/hospital/lumiin-dermatology/skill)
+- [BeautsGO Lumiin Dermatology details page](https://i.beautsgo.com/cn/hospital/lumiin-dermatology?from=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include booking submission status, pricing lookup results, support links, or app download links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Guides developers through intentional migrations from legacy JavaScript, jQuery, HTML/CSS, server-rendered templates, MPA frontend code, or older framework code toward a modern frontend stack while preserving behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through phased migration of legacy frontend applications to a modern stack while preserving behavior and visual consistency.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, execute, and verify legacy frontend migrations to React, Vue, Next.js, Nuxt, TypeScript, or a modernized MPA while keeping behavior, visuals, accessibility, and i18n requirements intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Migration guidance may lead an agent to make broad frontend code, dependency, build, or tooling changes in a production repository. <br>
-Mitigation: Review the migration plan, dependency changes, and generated code before applying them; run the recommended tests, browser checks, build, lint, or type-check validation before release. <br>
-Risk: A migration can unintentionally change behavior, visual layout, accessibility, or translated user-facing text. <br>
-Mitigation: Use the skill's behavior inventory, staged migration checklist, screenshot or manual visual review, i18n checks, and key-path verification before accepting each migrated unit. <br>
+## Use Case:
 
+Frontend developers and engineering teams use this skill to plan and implement incremental migration of jQuery, server-rendered, or older framework applications while checking functional equivalence and rollback options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-legacy-to-modern-migration) <br>
-- [migration-execution-checklist.md](references/migration-execution-checklist.md) <br>
-- [migration-report-template.md](references/migration-report-template.md) <br>
-- [migration-strategy-and-mapping.md](references/migration-strategy-and-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, implementation guidance, code changes, configuration updates, and verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a migration plan under reports/migration-plan-YYYY-MM-DD-HHmmss.md and recommend tests, browser checks, or build validation for migrated units.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release evidence, package.json, metadata.json, README.md) <br>
+Risk: Refactoring a legacy frontend may change business behavior or disrupt existing pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the migration plan before code changes; migrate in small units, compare critical user paths in a browser, and preserve a rollback path.
+
+## Reference(s):
+
+- [Migration strategy and mapping](references/migration-strategy-and-mapping.md)
+- [Migration execution checklist](references/migration-execution-checklist.md)
+- [Migration report template](references/migration-report-template.md)
+- [Project repository listed in package metadata](https://github.com/bovinphang/frontend-craft)
+- [ClawHub skill listing](https://clawhub.ai/bovinphang/skills/fec-legacy-to-modern-migration)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration guidance]
+
+**Output Format:** [Markdown migration plan with optional frontend code and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plan covers strategy, inventory, dependencies, phases, risks, validation, and rollback.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, README.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

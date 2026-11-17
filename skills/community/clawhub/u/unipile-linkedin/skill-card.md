@@ -1,43 +1,58 @@
-## Description: <br>
-Interact with LinkedIn via Unipile API - send messages, view profiles, manage connections, create posts, react to content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with LinkedIn via Unipile API - send messages, view profiles, manage connections, create posts, react to content.
 
-## Publisher: <br>
-[sudhanshu746](https://clawhub.ai/user/sudhanshu746) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sudhanshu746](https://clawhub.ai/user/sudhanshu746)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a Unipile-connected LinkedIn account for messaging, profile lookup, connection management, posting, commenting, and reactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send LinkedIn messages, invitations, posts, comments, reactions, and profile views that notify others. <br>
-Mitigation: Require explicit human review and approval before any outward-facing LinkedIn action is executed. <br>
-Risk: The skill depends on a Unipile access token that can operate a connected LinkedIn account. <br>
-Mitigation: Store UNIPILE_ACCESS_TOKEN outside prompts and logs, restrict access to trusted runtimes, and rotate the token if exposure is suspected. <br>
-Risk: Read commands can expose LinkedIn chats, contacts, profiles, and account data to the agent session. <br>
-Mitigation: Use the skill only in sessions where this account data is appropriate to process, and limit command scope with account IDs and result limits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sudhanshu746/unipile-linkedin) <br>
-- [Unipile API](https://www.unipile.com/) <br>
-- [Unipile dashboard](https://dashboard.unipile.com) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent interact with LinkedIn through the Unipile API for messaging, profile lookup, connection management, posting, commenting, and reactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with CLI commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses UNIPILE_DSN and UNIPILE_ACCESS_TOKEN to call the Unipile API for a connected LinkedIn account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send LinkedIn messages, invitations, posts, comments, reactions, and profile view notifications through a real account.
+
+Mitigation: Require explicit approval before running live-action commands such as send, start-chat, invite, cancel-invite, create-post, comment, react, or profile --notify.
+
+Risk: A Unipile access token can act on the user's LinkedIn account.
+
+Mitigation: Store the token only in a trusted environment, rotate it if exposure is suspected, and revoke it if endpoint or environment configuration may have been changed.
+
+Risk: A misconfigured or untrusted Unipile endpoint could route account actions or data to an unintended service.
+
+Mitigation: Use a trusted Unipile endpoint and verify the DSN before configuring the skill.
+
+## Reference(s):
+
+- [Unipile API](https://www.unipile.com/)
+- [Unipile Dashboard](https://dashboard.unipile.com)
+- [ClawHub Skill Page](https://clawhub.ai/sudhanshu746/skills/unipile-linkedin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform live LinkedIn account actions through a configured Unipile token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

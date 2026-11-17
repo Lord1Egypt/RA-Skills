@@ -1,43 +1,53 @@
-## Description: <br>
-Cn Percent Calculator helps agents calculate percentages, percentage values, growth rates, discounts, and VAT with a local Python tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Percent Calculator provides a pure-Python, local Chinese-language percentage calculator with no API key requirement.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to answer Chinese-language percentage questions and run local calculations for percentage shares, percentage values, growth rates, discounts, and VAT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags sensitive-credential handling as a release capability. <br>
-Mitigation: Install only in a trusted ClawHub or development environment and review any commands involving admin tokens or published proof artifacts before use. <br>
-Risk: Percentage, discount, growth, and VAT outputs depend on the supplied numbers and assumptions. <br>
-Mitigation: Review inputs, discount conventions, and tax-rate assumptions before using results for business or compliance decisions. <br>
-Risk: Natural-language parsing supports a limited set of Chinese percentage patterns. <br>
-Mitigation: Use explicit CLI arguments or verify the computed result when a request is ambiguous. <br>
+## Use Case:
 
+External users and developers use this skill to run a local Chinese-language percentage calculator for percent-of, value-of-percent, growth rate, discount, and VAT scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-percent-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON calculation output, with concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with the Python standard library and accepts supported Chinese natural-language prompts or explicit CLI arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Risk: Unrelated promotional links in the README may distract from the calculator workflow or lead users to a third-party site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid following promotional links unless the publisher and destination are trusted and relevant to the intended use.
+
+Risk: Percentage, discount, growth, and VAT results may be misleading if the input is ambiguous or entered with an unintended calculation type.
+
+Mitigation: Review the parsed calculation type and numeric inputs before relying on results for business or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-percent-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON from a local Python CLI, with concise Markdown guidance when used by an agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prompts and calculation output; no network or credential behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

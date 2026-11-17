@@ -1,42 +1,54 @@
-## Description: <br>
-Guides structured, in-depth research on a specific topic, industry, technology, product, market, person, organization, or domain-specific subject. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides structured, in-depth research on a topic, industry, technology, product, market, person, organization, or other domain-specific subject using multi-source evidence, counterevidence, confidence ratings, and transparent gap reporting.
 
-## Publisher: <br>
-[orzmicke-coder](https://clawhub.ai/user/orzmicke-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orzmicke-coder](https://clawhub.ai/user/orzmicke-coder)
 
-## Use Case: <br>
-External users, analysts, and decision makers use this skill to plan and produce balanced research reports with scoped objectives, multi-source evidence, counterevidence, confidence labels, and a concise summary card. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct broad web research on proprietary or sensitive topics. <br>
-Mitigation: Use it only in agent environments approved for the data involved and review browsing/tool access before providing sensitive research topics. <br>
-Risk: Research outputs can still be incomplete or misleading when sources are weak, outdated, or conflicting. <br>
-Mitigation: Review cited sources, credibility ratings, counterevidence, confidence labels, and information gaps before relying on the report for decisions. <br>
-Risk: Referenced report and summary templates are not bundled with the artifact. <br>
-Mitigation: Provide or confirm the desired output structure when exact formatting matters. <br>
+## Use Case:
 
+External users and professionals use this skill to plan and produce rigorous research reports with explicit scope, evidence quality ratings, counterevidence, conflicting-view handling, confidence levels, and a one-page summary card.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orzmicke-coder/chaoxiresearchskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report and one-page summary card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source credibility ratings, confidence levels, counterevidence, conflicting information, information gaps, and suggested next actions when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad research-like prompts may activate the skill when a lighter response would be sufficient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for requests that need structured, in-depth research, or explicitly ask the agent for a concise answer when full research framing is not desired.
+
+Risk: Reports may use Chinese section labels by default.
+
+Mitigation: Ask for the desired report language or section-label language when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orzmicke-coder/skills/chaoxiresearchskill)
+- [ClawHub publisher profile](https://clawhub.ai/user/orzmicke-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report and one-page summary card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source credibility ratings, counterevidence, conflict labels, information gaps, confidence levels, and suggested next actions where applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Memento provides local persistent memory for OpenClaw agents by capturing conversations, extracting structured facts via LLM, and auto-recalling relevant knowledge before each turn while storing data in local SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memento gives OpenClaw agents local persistent memory by capturing conversations, extracting structured facts via an LLM, and auto-recalling relevant knowledge before each turn.
 
-## Publisher: <br>
-[braibaud](https://clawhub.ai/user/braibaud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[braibaud](https://clawhub.ai/user/braibaud)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use Memento to give agents persistent local memory, extract durable facts from conversations, and recall relevant knowledge before future turns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Memento stores conversation history and extracted facts in a local long-term data store. <br>
-Mitigation: Protect or periodically delete the ~/.engram data store, and install only when local retention of conversation data is acceptable. <br>
-Risk: Conversation text may leave the machine when autoExtract or autoQueryPlanning uses a cloud LLM provider. <br>
-Mitigation: Keep autoExtract and autoQueryPlanning off for sensitive work, or configure a local Ollama model when data must remain on the machine. <br>
-Risk: Cross-agent recall can reuse shared facts across agent boundaries. <br>
-Mitigation: Disable crossAgentRecall when agent memories should remain isolated. <br>
-Risk: Migration and deep-consolidation CLIs can read configured local memory paths and alter the long-term store. <br>
-Mitigation: Review configured paths and run migration dry-runs before executing write operations. <br>
+## Use Case:
 
+External OpenClaw users, developers, and engineers use Memento to give agents persistent local memory, structured fact extraction, and pre-turn recall across conversations. It is suited for users who want long-term assistant continuity while keeping captured data on local storage unless optional LLM-backed extraction or query planning is enabled.
 
-## Reference(s): <br>
-- [Memento on ClawHub](https://clawhub.ai/braibaud/memento) <br>
-- [Memento repository declared in skill metadata](https://github.com/braibaud/Memento) <br>
-- [Project documentation](docs/PROJECT.md) <br>
-- [BGE-M3 GGUF model used for optional semantic search](https://huggingface.co/gpustack/bge-m3-GGUF/resolve/main/bge-m3-Q8_0.gguf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and injected text context with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists recalled facts locally in SQLite and can inject selected memory context before agent prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: frontmatter, package.json, release metadata) <br>
+Risk: Automatic extraction or query planning can send conversation content to configured LLM providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep autoExtract and autoQueryPlanning disabled for sensitive conversations, or configure a local Ollama model for extraction and planning.
+
+Risk: Long-term memory stores complete chats and extracted facts on local disk.
+
+Mitigation: Restrict filesystem permissions on the data directory and review or remove the SQLite database and JSONL backups when they are no longer needed.
+
+Risk: Cross-agent recall can expose private memories according to the security summary.
+
+Mitigation: Disable crossAgentRecall until the private-fact graph traversal issue is fixed and visibility behavior has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/braibaud/skills/memento)
+- [Publisher profile](https://clawhub.ai/user/braibaud)
+- [README](README.md)
+- [Project design document](docs/PROJECT.md)
+- [Declared project repository](https://github.com/braibaud/Memento)
+- [BGE-M3 model card](https://huggingface.co/BAAI/bge-m3)
+- [BGE-M3 GGUF download reference](https://huggingface.co/gpustack/bge-m3-GGUF/resolve/main/bge-m3-Q8_0.gguf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell command examples, and recalled memory context injected into agent prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores conversation segments, extracted facts, embeddings, and recall metadata in local SQLite and JSONL files.]
+
+## Skill Version(s):
+
+0.6.0 (source: frontmatter, package.json, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

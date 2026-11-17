@@ -1,43 +1,68 @@
-## Description: <br>
-Multi-source flight aggregation for tickets, nonstop and connecting routes, round trips, cabin classes, flight prices, and flight status without requiring user login or an API key. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Flyclaw Bak helps agents query and aggregate flight status, schedules, prices, routes, cabin options, nonstop filters, and real-time position data from multiple public flight sources without requiring a user account or API key for core use.
 
-## Publisher: <br>
-[qizha](https://clawhub.ai/user/qizha) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[qizha](https://clawhub.ai/user/qizha)
 
-## Use Case: <br>
-External users and developers use this skill to query flight status, schedules, prices, route options, cabin classes, and nonstop or connecting flights through an OpenClaw agent or Python CLI. It is suited for flight information lookup and comparison, with results requiring user verification before travel decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight search details are sent to third-party flight data services. <br>
-Mitigation: Use the skill only when sharing those query details with disclosed flight data services is acceptable. <br>
-Risk: The built-in Fliggy signing credential is a shared public integration credential, not a private user secret. <br>
-Mitigation: Do not treat the built-in credential as sensitive personal infrastructure, and avoid adding personal API keys to config.yaml unless the skill and local environment are trusted. <br>
-Risk: Flight prices, availability, and status can vary across public sources and regions. <br>
-Mitigation: Treat returned results as reference information and verify important itinerary or price details before booking or operational use. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for flight-number lookups, route searches, city-to-city flight options, round trips, cabin filters, direct or connecting flights, and price comparisons. The skill is most appropriate for exploratory travel search where public-provider availability and price variance are acceptable.
 
-## Reference(s): <br>
-- [Flyclaw Bak on ClawHub](https://clawhub.ai/qizha/flyclaw-bak) <br>
-- [FlyClaw GitHub Project](https://github.com/AI4MSE/FlyClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [JSON by default, with optional human-readable table output and stderr diagnostics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prices default to CNY; users can request USD or original currency when supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact source version 0.4.1) <br>
+Risk: Normal searches contact external flight providers, which may expose travel-query details or be unsuitable for agents running on sensitive internal networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in privacy-sensitive environments and restrict execution to contexts where outbound public flight-provider requests are acceptable.
+
+Risk: The airport-cache update feature can retrieve remote cache data.
+
+Mitigation: Use the cache update path only with trusted HTTPS URLs and review updated cache files before relying on them.
+
+Risk: The artifact includes an embedded Fliggy key described by the security evidence as a shared public client credential.
+
+Mitigation: Treat the value as non-secret shared client material, do not reuse it as a private credential, and rotate or replace it if deploying in a managed environment.
+
+Risk: Optional SerpAPI, MCP, or browser-related modes add extra dependency and network paths beyond the core zero-key workflow.
+
+Mitigation: Keep optional modes disabled unless their dependencies, credentials, and outbound network behavior have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qizha/skills/flyclaw-bak)
+- [ClawHub publisher profile](https://clawhub.ai/user/qizha)
+- [Skill documentation](artifact/SKILL_EN.md)
+- [README](artifact/README_EN.md)
+- [FlightRadar24 API endpoint](https://api.flightradar24.com/common/v1)
+- [Airplanes.live API endpoint](https://api.airplanes.live/v2)
+- [ADSB.lol API endpoint](https://api.adsb.lol/v2)
+- [Skiplagged MCP endpoint](https://mcp.skiplagged.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Text, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI results are JSON by default or a human-readable table when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prices default to CNY with optional USD conversion; stderr is used for errors and logs so JSON stdout remains parseable.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and pyproject.toml report source version 0.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

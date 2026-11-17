@@ -1,45 +1,55 @@
-## Description: <br>
-All-in-one AI content creation agent that writes blog posts, social media, newsletters, scripts, and product copy; generates images, video, and voiceovers; researches topics; extracts web content; and produces multimedia through x402 micropayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI content creation via Spraay x402 for blog posts, social media, newsletters, scripts, product copy, image generation, video, text-to-speech, speech-to-text, and web research, with prompts sent to external paid LLM and media APIs using USDC micropayments on Base or Solana.
 
-## Publisher: <br>
-[plagtech](https://clawhub.ai/user/plagtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plagtech](https://clawhub.ai/user/plagtech)
 
-## Use Case: <br>
-External users, content teams, and developers use this skill to plan, research, generate, and repurpose written, visual, audio, and video content through paid API-backed workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, URLs, fetched content, transcripts, audio, or other user-provided material to third-party paid services. <br>
-Mitigation: Use non-sensitive inputs, review content before submission, and avoid sending confidential data unless the third-party service is approved for that data. <br>
-Risk: The skill can initiate paid API calls and x402 micropayments. <br>
-Mitigation: Confirm endpoint costs before use and prefer a dedicated limited wallet, subscription key, or account with spending controls. <br>
-Risk: The security verdict is suspicious because the skill invokes shell setup and contacts paid external APIs. <br>
-Mitigation: Review the shell script and environment variables before execution, and install only in environments where external API access and payment behavior are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to research topics, draft marketing and editorial copy, generate or transform media, and assemble content workflows through paid Spraay x402 API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/plagtech/ai-content-creator-x402) <br>
-- [Publisher profile](https://clawhub.ai/user/plagtech) <br>
-- [Gateway service](https://gateway.spraay.app) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON API responses, shell command examples, generated text, media outputs, transcripts, and web research summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and python3, requires RESEARCH_API_KEY for the paid gateway, and may return generated media or externally fetched content depending on the endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Prompts, URLs, drafts, audio, and other media may be sent to external paid providers through the Spraay gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs and avoid proprietary, customer, legal, or confidential content unless external provider processing and retention are acceptable.
+
+Risk: Multi-step content workflows can trigger several paid calls and debit USDC from the agent wallet.
+
+Mitigation: Use a dedicated wallet with limited funds and confirm expected costs before chained workflows, especially video generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/plagtech/skills/ai-content-creator-x402)
+- [Publisher profile](https://clawhub.ai/user/plagtech)
+- [Spraay x402 gateway](https://gateway.spraay.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Generated media references]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON API payloads; endpoint responses may include generated content or media URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and curl; calls are sent to external paid APIs through Spraay x402 and may debit USDC per request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -625,7 +625,7 @@ guard-scannerはスキルスキャナーでありブラウザ防御ではない�
 ## References (Extension II)
 
 1. CSA. (2026-03-11). Image-Based Prompt Injection: Hijacking Multimodal LLMs Through Visually Embedded Adversarial Instructions. [Link](https://labs.cloudsecurityalliance.org/research/csa-research-note-image-prompt-injection-multimodal-llm-2026/)
-2. Mitiga Labs. (2026-02). AI Agent Supply Chain Risk: Silent Codebase Exfiltration via Skills. [Link](https://www.mitiga.io/blog/ai-agent-supply-chain-risk-silent-codebase-exfiltration-via-skills)
+2. Mitiga Labs. (2026-02). AI Agent Supply Chain Risk: Silent Codebase Exfiltration via Skills. [Link](https://www.mitiga.io/blog/ai-agent-supply-chain-riREDACTED-SECRET)
 3. Trend Micro. (2026-02-23). Malicious OpenClaw Skills Used to Distribute Atomic MacOS Stealer. [Link](https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html)
 4. The Hacker News. (2026-03-11). UNC6426 Exploits nx npm Supply-Chain Attack to Gain AWS Admin Access in 72 Hours. [Link](https://thehackernews.com/2026/03/unc6426-exploits-nx-npm-supply-chain.html)
 5. OpenAI. (2026-03-06). Codex Security (Research Preview). [Link](https://www.securityweek.com/openai-rolls-out-codex-security-vulnerability-scanner/)

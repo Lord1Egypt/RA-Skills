@@ -1,0 +1,91 @@
+{
+  "_chart_type": "nomogram",
+  "_command": "python3 scripts/gen_figure.py -t nomogram -d templates/nomogram.json -o nomogram.png --cjk",
+  "_note": "场景：肿瘤复发风险预测模型的列线图（模拟拟合结果）。顶部 Points 尺按各变量取值计分（连续变量线性、分类/非线性变量按 points_at 显式给分），合计 Total Points 后到下方结局尺查对应时点概率。points/points_at 须来自已拟合模型（R rms::nomogram、Python 统计包输出），引擎只做可视化；方法学口径（变量单位、计分区间、结局时点）写入论文统计方法段。",
+  "variables": [
+    {
+      "name": "年龄（岁）",
+      "ticks": [
+        40,
+        50,
+        60,
+        70,
+        80
+      ]
+    },
+    {
+      "name": "肿瘤大小（cm）",
+      "ticks": [
+        1,
+        2,
+        3,
+        5,
+        8
+      ],
+      "points_at": [
+        0,
+        25,
+        45,
+        70,
+        100
+      ]
+    },
+    {
+      "name": "分化程度",
+      "ticks": [
+        "高",
+        "中",
+        "低"
+      ],
+      "points_at": [
+        0,
+        35,
+        100
+      ]
+    },
+    {
+      "name": "淋巴结转移",
+      "ticks": [
+        "无",
+        "有"
+      ],
+      "points_at": [
+        0,
+        60
+      ]
+    }
+  ],
+  "outcome_scales": [
+    {
+      "label": "3 年无病生存",
+      "ticks": [
+        0.9,
+        0.7,
+        0.5,
+        0.3
+      ],
+      "points_at": [
+        55,
+        120,
+        190,
+        260
+      ]
+    },
+    {
+      "label": "5 年无病生存",
+      "ticks": [
+        0.9,
+        0.7,
+        0.5,
+        0.3
+      ],
+      "points_at": [
+        45,
+        100,
+        160,
+        230
+      ]
+    }
+  ],
+  "total_points_max": 320
+}

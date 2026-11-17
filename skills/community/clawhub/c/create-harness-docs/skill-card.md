@@ -1,40 +1,52 @@
-## Description: <br>
-Analyzes a repository and scaffolds Harness Engineering documentation for common web and backend project types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a project and generates Harness Engineering documentation for common backend and frontend stacks.
 
-## Publisher: <br>
-[zhangjiayu139](https://clawhub.ai/user/zhangjiayu139) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangjiayu139](https://clawhub.ai/user/zhangjiayu139)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to bootstrap repository documentation, architecture notes, quality grading, CI configuration, and optional architecture tests for projects using frameworks such as Spring Boot, React, Vue, NestJS, Express, Django, FastAPI, and Go Gin.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can overwrite repository policy, documentation, CI workflow, and Java architecture test files.
+
+Mitigation: Run it in a clean branch and review the diff before committing generated changes.
+
+Risk: Generated documentation and architecture layers may not match the project's actual structure.
+
+Mitigation: Review and edit generated docs, CI commands, and architecture tests before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize or validate repository-local Harness Engineering documentation, including AGENTS.md, architecture docs, quality grading docs, CI workflow configuration, and Java architecture tests when applicable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill modifies the current repository by creating or overwriting documentation, CI workflow, and Java architecture-test files. <br>
-Mitigation: Run it only from the intended repository and review the resulting diffs, especially AGENTS.md, docs/, .github/workflows/harness-ci.yml, and generated Java architecture tests before committing or allowing CI to run. <br>
+**Output Format:** [Markdown files, YAML workflow configuration, and optional Java test code]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Create Harness Docs on ClawHub](https://clawhub.ai/zhangjiayu139/create-harness-docs) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Generator script](artifact/scripts/create-harness-docs.js) <br>
+**Other Properties Related to Output:** [May create or overwrite repository documentation, CI workflow, and architecture test files in the current project.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Repository files plus command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes files in the current working directory; generated content varies by detected project type.] <br>
+2.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

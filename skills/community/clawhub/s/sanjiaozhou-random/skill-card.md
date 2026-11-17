@@ -1,44 +1,60 @@
-## Description: <br>
-三角洲行动随机地图 + 随机装备组合生成器 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates random maps and equipment loadouts for 三角洲行动 gameplay challenges.
 
-## Publisher: <br>
-[fushisanlang](https://clawhub.ai/user/fushisanlang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fushisanlang](https://clawhub.ai/user/fushisanlang)
 
-## Use Case: <br>
-External users can run this skill to generate a random 三角洲行动 map and equipment loadout for entertainment sessions, streaming interactions, or random challenge play. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends two HTTPS requests to sanjiaozhou.fushisanlang.cn each time it runs. <br>
-Mitigation: Use it only in environments where outbound access to that service is approved and expected. <br>
-Risk: The generated result depends on external API availability and response shape. <br>
-Mitigation: Expect the skill to return a failure JSON with an error message if either API is unavailable or changes format. <br>
-Risk: The skill requires installing the PyPI requests package. <br>
-Mitigation: Install dependencies from a trusted package index and apply the same dependency review used for other Python skills. <br>
+## Use Case:
 
+External players, streamers, and challenge hosts use this skill to generate randomized 三角洲行动 map and equipment combinations for entertainment, livestream interaction, and casual challenge modes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fushisanlang/sanjiaozhou-random) <br>
-- [Random map API endpoint](https://sanjiaozhou.fushisanlang.cn/api/random_map_status) <br>
-- [Random equipment API endpoint](https://sanjiaozhou.fushisanlang.cn/api/random_arm_equipment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON object with status, result text, and optional error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The result text is Chinese and depends on two external sanjiaozhou.fushisanlang.cn API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Each run contacts a custom third-party web service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the third-party service dependency before installation and run the skill only where sharing connection metadata with that service is acceptable.
+
+Risk: Randomizer content can change if the service changes or is compromised.
+
+Mitigation: Treat generated loadouts as entertainment guidance and review results before using them in hosted or public challenge contexts.
+
+Risk: Network calls may hang because no timeout is documented in the security evidence.
+
+Mitigation: Run the skill in an environment where stalled requests can be interrupted or supervised.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fushisanlang/skills/sanjiaozhou-random)
+- [Publisher profile](https://clawhub.ai/user/fushisanlang)
+- [Map randomizer API](https://sanjiaozhou.fushisanlang.cn/api/random_map_status)
+- [Equipment randomizer API](https://sanjiaozhou.fushisanlang.cn/api/random_arm_equipment)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object containing a status flag and generated result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs without user parameters and returns either generated game randomizer text or an error message.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Provides unified web search for current news, real-time information, and web lookup, using Tavily first and falling back to Zhipu web_search_prime when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs unified web search with Tavily as the primary engine and Zhipu web_search_prime as a fallback for current news, real-time information, and web lookups.
 
-## Publisher: <br>
-[mydearzsy](https://clawhub.ai/user/mydearzsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mydearzsy](https://clawhub.ai/user/mydearzsy)
 
-## Use Case: <br>
-Developers and agents use this skill to answer requests that require recent news, real-time information, or web research by running a Tavily search with Zhipu fallback when Tavily is unavailable or fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Zhipu fallback can reuse a provider API key from ~/.openclaw/openclaw.json when ZHIPU_API_KEY is not set. <br>
-Mitigation: Set explicit TAVILY_API_KEY and ZHIPU_API_KEY values, or remove the openclaw.json fallback if local provider credentials should not be reused. <br>
-Risk: Search queries are sent to external Tavily or Zhipu services and may include sensitive terms. <br>
-Mitigation: Avoid private, regulated, or confidential search terms unless the configured provider and account are approved for that data. <br>
-Risk: If neither provider key is configured, the skill returns an error instead of search results. <br>
-Mitigation: Configure at least one provider key before relying on the skill in an agent workflow. <br>
+## Use Case:
 
+Developers and agent users use this skill when an agent needs recent web search results, news lookup, or online source discovery through a command-line search helper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mydearzsy/tavily-zhipu-search) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [Zhipu web_search_prime MCP endpoint](https://open.bigmodel.cn/api/mcp/web_search_prime/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown-formatted search results with titles, excerpts, URLs, summaries, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY or ZHIPU_API_KEY; Tavily recency is controlled with --days and constrained to 1-7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically use a locally stored generic API key for Zhipu, which is broader than the documentation clearly explains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer dedicated TAVILY_API_KEY and ZHIPU_API_KEY values, and avoid relying on generic local credential lookup until it is removed or restricted.
+
+Risk: Search queries may contain secrets, private customer data, or proprietary terms that are sent to Tavily or Zhipu.
+
+Mitigation: Do not submit sensitive data as search queries unless the user is comfortable sending it to the selected provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mydearzsy/skills/tavily-zhipu-search)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [Zhipu web_search_prime MCP endpoint](https://open.bigmodel.cn/api/mcp/web_search_prime/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted search results and command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tavily or Zhipu API credentials; search queries are sent to the selected external search provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-物流管理技能，提供提单生成、报关单据生成、物流跟踪等功能。支持 OKKI 客户数据同步和自动化文档处理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage logistics records, generate bills of lading and customs documents, track shipment status, sync OKKI customer data, and prepare logistics reports.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Logistics and operations users can use this skill to create and manage logistics records, generate bills of lading and customs documents, track shipment status, send customer notifications, and optionally sync shipment follow-up records to OKKI CRM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated record, notification, CRM-sync, file, and subprocess capabilities could expose or alter logistics data if used as a public-facing API. <br>
-Mitigation: Install only in a controlled local environment unless authentication and role checks are added. <br>
-Risk: OKKI integration paths, subprocess execution, live sync during tests, and BOL file helpers require review before use. <br>
-Mitigation: Constrain OKKI integration paths, pass a minimal environment to subprocesses, gate live sync during tests, and restrict BOL read/delete helpers to the archive directory. <br>
+## Use Case:
 
+Operations teams, logistics coordinators, and developers use this skill to create shipment records, generate trade documents, archive bills of lading, send shipment notifications, and sync shipment follow-up data with OKKI CRM.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-logistics-manager) <br>
-- [End-to-end test report](artifact/test/e2e_test_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, CSV, and shell/CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local logistics records and document files; OKKI sync and notification behavior depend on environment configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: High-impact logistics and CRM actions may be exposed with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authentication and authorization for API and CLI workflows before use outside a controlled local environment.
+
+Risk: Customer notifications and OKKI sync actions can affect external recipients and CRM records.
+
+Mitigation: Validate recipients, review generated notification content, and restrict sync permissions to approved operators.
+
+Risk: Bill-of-lading uploads and archive operations can write, read, copy, or delete local files.
+
+Mitigation: Enforce upload size and type limits, sanitize filenames, and confine archive paths to an approved directory.
+
+Risk: Temporary execution and external OKKI helper paths can introduce integrity and execution risk.
+
+Mitigation: Use packaged or integrity-checked OKKI helpers and secure temporary-file handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/ssa-logistics-manager)
+- [E2E test report](artifact/test/e2e_test_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON data, code snippets, and generated logistics document files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local logistics records, document files, bill-of-lading archives, notification records, and OKKI sync logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, target metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

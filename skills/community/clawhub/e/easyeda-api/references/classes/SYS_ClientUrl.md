@@ -1,17 +1,16 @@
 # SYS\_ClientUrl class
 
-系统 / 外部请求类
+System / external request class
 
 ## Signature
 
 ```typescript
-declare class SYS_ClientUrl 
+class SYS_ClientUrl
 ```
 
 ## Remarks
 
-向外部服务器发起安全的 cURL 请求
-
+Make secure cURL requests to external servers
 
 ## Methods
 
@@ -19,30 +18,24 @@ declare class SYS_ClientUrl
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [request(url, method, data, options, succeedCallFn)](./SYS_ClientUrl.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-发起即时请求
-
+Make an immediate request
 
 </td></tr>
 </tbody></table>
@@ -55,17 +48,18 @@ Description
 
 # SYS\_ClientUrl.request() method
 
-发起即时请求
+Make an immediate request
 
 ## Signature
 
 ```typescript
-request(url: string, method?: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE' | 'PATCH', data?: string | Blob | FormData | URLSearchParams, options?: {
-        headers?: {
-            [header: string]: any;
-        };
-        integrity?: string;
-    }, succeedCallFn?: (data: Response) => void | Promise<void>): Promise<Response>;
+function request(
+	url: string,
+	method?: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE' | 'PATCH',
+	data?: string | Blob | FormData | URLSearchParams,
+	options?: { headers?: { [header: string]: any }; integrity?: string },
+	succeedCallFn?: (data: Response) => void | Promise<void>,
+): Promise<Response>;
 ```
 
 ## Parameters
@@ -74,112 +68,106 @@ request(url: string, method?: 'GET' | 'POST' | 'HEAD' | 'PUT' | 'DELETE' | 'PATC
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 url
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-请求地址
-
+Request URL
 
 </td></tr>
 <tr><td>
 
 method
 
-
 </td><td>
 
 'GET' \| 'POST' \| 'HEAD' \| 'PUT' \| 'DELETE' \| 'PATCH'
 
-
 </td><td>
 
-_(Optional)_ 请求方法
-
+_(Optional)_ Request method
 
 </td></tr>
 <tr><td>
 
 data
 
-
 </td><td>
 
 string \| Blob \| FormData \| URLSearchParams
 
-
 </td><td>
 
-_(Optional)_ 请求发送的数据，可以是直接数据或 [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams) 对象，如果 method 为 `HEAD` 或 `GET`<!-- -->，本参数将被忽略
-
+_(Optional)_ Data to be sent with the request, which can be direct data or a [URLSearchParams](https://developer.mozilla.org/docs/Web/API/URLSearchParams) object. If the method is `HEAD` or `GET`<!-- -->, this parameter will be ignored
 
 </td></tr>
 <tr><td>
 
 options
 
+</td><td>
+
+\{ headers?: \{ \[header: string\]: any \}; integrity?: string \}
 
 </td><td>
 
-\{ headers?: \{ \[header: string\]: any; \}; integrity?: string; \}
-
-
-</td><td>
-
-_(Optional)_ 请求参数
-
+_(Optional)_ Request options
 
 </td></tr>
 <tr><td>
 
 succeedCallFn
 
-
 </td><td>
 
 (data: Response) =&gt; void \| Promise&lt;void&gt;
 
-
 </td><td>
 
-_(Optional)_ 请求成功后回调的函数
-
+_(Optional)_ Function to call back after the request succeeds
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;Response&gt;
 
-Fetch 的返回结果
+The return result of Fetch
 
 ## Remarks
 
-请注意，需要在被请求的站点上允许跨源资源共享（CORS），否则接口将始终返回错误结果。
+Please note that the requested site must allow cross-origin resource sharing (CORS); otherwise, the API will always return an error result.
 
-更多信息，请查阅 [跨源资源共享 (CORS) - MDN](https://developer.mozilla.org/docs/Web/HTTP/CORS)<!-- -->。
+developer.mozilla.org/docs/Web/HTTP/CORS \| Cross-Origin Resource Sharing (CORS) - MDN<!-- -->}<!-- -->.
 
-注意：本接口需要使用者启用扩展的外部交互权限，如若未启用将始终 `throw Error`
+Note: This API requires the user to enable the extension external interaction permission, if not enabled, it will always `throw Error`
+
+## Example
+
+```javascript
+// 1. 发起 GET 请求（本例用本机桥接地址演示，实际使用时换成自己的服务地址）
+const response = await eda.sys_ClientUrl.request('http://localhost:49620/health', 'GET');
+
+// 2. 读取响应状态码
+console.log('状态码：', response.status);
+
+// 3. 读取响应内容（Response 是标准 fetch 返回值，用法与浏览器一致）
+const body = await response.text();
+console.log('响应内容：', body);
+```

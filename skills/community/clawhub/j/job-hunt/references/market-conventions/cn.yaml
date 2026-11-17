@@ -1,0 +1,419 @@
+# Market conventions — China (cn)
+#
+# Built 2026-08-09 from docs/superpowers/research/2026-08-09/
+# markets.json + review-cn.md. Every `published` URL in that research was fetched and
+# every "Verbatim:" string grepped against the fetched text on 2026-08-09.
+#
+# DROPPED
+#   (none — all ten cn entries ship)
+#
+# NEXT REVIEW — sourced facts the reviewer found MISSING. Do not write these into
+# conventions from this comment; a person must check the source first.
+#   1. 劳动合同法 第九条: an employer may not withhold your 居民身份证 or other documents,
+#      demand a guarantee, or collect property from you under any name. China-wide,
+#      invisible on any posting, and the legal hook for the 招转培 pattern entry 6 flags.
+#   2. 第八条 running the other way: the employer must 如实告知 工作内容、工作条件、
+#      工作地点、职业危害、安全生产状况、劳动报酬. Entry 8 ships only the candidate-side duty.
+#   3. The 国聘行动 notice bans 毕业院校 / 国（境）外学习经历 / 学习方式 / 本单位实习期限 as
+#      screening conditions — for participants in that campaign, not market-wide.
+#   4. Shanghai: a failed employer 落户 filing cannot be re-submitted by another employer
+#      in the same cycle.
+#   5. 劳动合同法 第十条: a written contract must be concluded within one month of starting.
+
+
+market: cn
+
+conventions:
+  - id: cn-boss-profile-is-the-screen
+    text_en: |-
+      On BOSS直聘 the recruiter does not see your CV file first. What they see is the
+      structured profile you filled in at registration — the operator's own SEC filing
+      calls it a mini resume — and your full CV and contact details reach them only on
+      mutual consent inside the chat. Treat those profile fields as the actual
+      screening document and write them for a reader who will decide from them alone.
+    text_zh: |-
+      在 BOSS 直聘上，招聘方一开始看不到你的简历附件，只能看到你注册时填写的在线简历；完整简历和
+      联系方式要等双方在聊天中互相同意后才会送达。所以真正被筛的是在线资料的那几栏，要按「对方只看
+      这些就下判断」来写。
+    applies_when: "Applying through BOSS直聘, on any track (社招, 校招 or 实习)."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: published
+      publisher: "Kanzhun Limited (operator of BOSS直聘), filed with the U.S. Securities and Exchange Commission"
+      title: "Annual Report on Form 20-F for the fiscal year ended December 31, 2025"
+      url: "https://www.sec.gov/Archives/edgar/data/1842827/000110465926050959/bz-20251231x20f.htm"
+      retrieved: "2026-08-09"
+      quote: "enterprise users on our platforms can only see a job seeker's mini resume that contains limited information. Enterprise users are not allowed to access job seekers' full resume or their contact information without job seekers' express consents"
+      also:
+        - publisher: "Kanzhun Limited"
+          title: "Annual Report on Form 20-F for the fiscal year ended December 31, 2025"
+          url: "https://www.sec.gov/Archives/edgar/data/1842827/000110465926050959/bz-20251231x20f.htm"
+          retrieved: "2026-08-09"
+          quote: "job seekers are required to provide basic personal and professional information, to create a mini resume which can be viewed by interested enterprise users"
+    why: |-
+      The posting shows a job description and a chat button. Nothing on it tells you
+      that the artefact being screened is your platform profile rather than the CV you
+      spent your effort on, so candidates optimise the wrong document.
+  - id: "cn-salary-expectation-declared-up-front"
+    text_en: |-
+      BOSS直聘 requires a salary expectation as part of the information you supply when you register
+      — before you have spoken to anyone. There is no holding the number back until an offer conversation
+      the way an apply-button market allows. Settle on it deliberately before you sign up, and
+      treat it as a figure the other side may already have when a chat opens.
+    text_zh: |-
+      BOSS 直聘在注册环节就要求填写期望薪资——那时你还没和任何人聊过。这里没有「等谈 offer 时
+      再说」的空间。所以注册前就要把这个数想清楚，并且默认对方在开聊时可能已经看到了它。
+    applies_when: "Registering on or applying through BOSS直聘; also relevant whenever a 期望薪资 field is mandatory before you can send a message."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "Kanzhun Limited, filed with the U.S. Securities and Exchange Commission"
+      title: "Annual Report on Form 20-F for the fiscal year ended December 31, 2025"
+      url: "https://www.sec.gov/Archives/edgar/data/1842827/000110465926050959/bz-20251231x20f.htm"
+      retrieved: "2026-08-09"
+      quote: "Job seekers are required to complete our mobile phone verification process by providing personal and professional information such as name, education background, employment status, recent employment, work experience, position desired, and salary expectation."
+      note: "The filing establishes that the field is mandatory at registration and nothing more. Its own named recommendation inputs do not include the salary figure, so this entry must not be read as a claim about matching."
+    why: |-
+      A posting quotes its own salary band and says nothing about the fact that you already declared
+      a number of your own at signup, or that the platform uses it for matching rather than treating
+      it as a private preference.
+  - id: "cn-campus-track-is-cohort-gated-and-early"
+    text_en: |-
+      校招 is a separate track from 社招 and is labelled by graduation cohort, and it opens long before
+      that cohort graduates — autumn campaigns for a cohort run in the academic year before its
+      graduation, with a spring round after. So check which cohort a posting names, not just how
+      junior it looks. Cohort labels are not always exclusive: some employers, state-owned ones
+      in particular, open a cohort's campaign to the previous cohort's graduates who are still
+      unplaced, and supplementary rounds happen. Read the eligibility line rather than assuming
+      either way.
+    text_zh: |-
+      校招和社招是彼此独立的通道，校招按「届」标注，而且开得很早：某一届的秋招在其毕业前的那个学年
+      就已经启动，之后还有春招。所以要看岗位写的是哪一届，而不只是看它「初不初级」。届别限制并非一
+      律排他：有些用人单位（尤其国企）会让某届校招同时面向上一届离校未就业的毕业生，也存在补录轮次
+      。别自行假设，直接读岗位的资格条件那一行。
+    applies_when: "You are a student or a recent graduate, or you are looking at a posting labelled 校园招聘 / 校招 / 管培生 / 仕官生."
+    added: "2026-08-09"
+    review_by: "2027-06-05"
+    source:
+      kind: "published"
+      publisher: "国家大学生就业服务平台 (operated by 教育部学生服务与素质发展中心)"
+      title: "2026届高校毕业生金秋启航校园招聘月"
+      url: "https://www.ncss.cn/ncss/zt/jqqh.shtml"
+      retrieved: "2026-09-05"
+      quote: "2026届高校毕业生金秋启航校园招聘月"
+      note: "The campaign page is a single-page application whose only rendered prose is its own title, so it carries the cohort-and-season labelling and nothing else; the cohort-to-academic-year mapping is read off that title, not stated on the page."
+      also:
+        - publisher: "国家大学生就业服务平台 (教育部学生服务与素质发展中心)"
+          title: "多省应届生政策调整，释放毕业生就业新空间"
+          url: "https://www.ncss.cn/ncss/zt/yjbyszc.shtml"
+          retrieved: "2026-09-05"
+          quote: "国有企业2026届校园招聘…许多国有企业同时面向26届和25届离校未就业高校毕业生。今年中国航天科技集团2026校招提前批招聘就面向26届高校毕业生和25届未就业高校毕业生。"
+        - publisher: "国家大学生就业服务平台 (教育部学生服务与素质发展中心)"
+          title: "多省应届生政策调整，释放毕业生就业新空间"
+          url: "https://www.ncss.cn/ncss/zt/yjbyszc.shtml"
+          retrieved: "2026-09-05"
+          quote: "企业秋招春招补录"
+        - publisher: "前程无忧"
+          title: "校园招聘 channel on the 51job.com homepage"
+          url: "https://www.51job.com/"
+          retrieved: "2026-09-05"
+          quote: "航天南湖2027届校园招聘"
+    why: |-
+      Postings seldom state that they are cohort-restricted; they just say 校招. A CV sent into the
+      wrong track is filtered on an eligibility field before any human reads it, and the candidate
+      reads the silence as rejection on merit.
+  - id: "cn-fresh-graduate-status-is-administrative"
+    text_en: |-
+      应届生 is an administrative status with eligibility rules attached, not a way of describing
+      yourself. There is a central baseline — the civil-service recruitment guide treats graduates
+      still within the official post-graduation job-seeking window as 应届 — and provinces have been
+      adjusting their own definitions on top of it, several of them recently dropping prior work
+      experience and social-insurance contributions as disqualifiers. Whole categories of posting
+      are open only to people who hold the status, so check the rule that governs the specific
+      intake you are applying to — the announcement's own eligibility text, or the current notice
+      from the relevant 人社 authority — rather than assuming you do or do not qualify.
+    text_zh: |-
+      「应届生」是一个有认定标准的行政身份，不是一句自我描述。全国层面有基准口径（公务员录用报考指
+      南把仍在国家规定择业期内的毕业生按应届对待），各省又在此之上各自调整，近年已有多地不再把有过
+      工作经历、缴过社保作为否定项。由于有大量岗位只面向具备该身份的人开放，别凭印象判断自己有没有
+      ：以你所投的那次招录的资格条款、或相关人社部门现行发布的通知为准。
+    applies_when: "You graduated recently; or a posting is marked 应届 / 面向应届毕业生; or you are considering 公务员 or state-enterprise intakes."
+    added: "2026-08-09"
+    review_by: "2027-06-05"
+    source:
+      kind: "published"
+      publisher: "国家大学生就业服务平台 (教育部学生服务与素质发展中心)"
+      title: "多省应届生政策调整，释放毕业生就业新空间"
+      url: "https://www.ncss.cn/ncss/zt/yjbyszc.shtml"
+      retrieved: "2026-09-05"
+      quote: "有过工作经历和缴纳社保情况不再作为应届毕业生的否定项"
+      note: "Genuinely province-specific on top of a central baseline, not a China-wide threshold: the sources establish that the definitions vary and are being loosened, not any single national number. Where the intake is a 公务员 one the governing definition comes from the recruitment guide, not a 人社 notice."
+      also:
+        - publisher: "国家大学生就业服务平台 (教育部学生服务与素质发展中心)"
+          title: "多省应届生政策调整，释放毕业生就业新空间, quoting 《中央机关及其直属机构2025年度考试录用公务员报考指南》"
+          url: "https://www.ncss.cn/ncss/zt/yjbyszc.shtml"
+          retrieved: "2026-09-05"
+          quote: "国家规定择业期为二年"
+        - publisher: "工人日报, republished by 新华网"
+          title: "缴纳过社保仍被认定为'应届毕业生'？这个可以有！"
+          url: "https://www.news.cn/politics/20250106/c7e5b8c3fb0240dca3038e4f8db19a6a/c.html"
+          retrieved: "2026-08-09"
+          quote: "不对高校毕业生是否有工作经历、缴纳社保作限制"
+    why: |-
+      A posting writes 应届生 and assumes the reader knows it is a status they administratively hold
+      or do not. It never says the definition is set provincially, nor that it has been moving,
+      so candidates self-screen out (or waste applications) on an out-of-date understanding.
+  - id: "cn-three-party-agreement-is-not-the-employment-contract"
+    text_en: |-
+      The 三方协议 signed during 校招 is not your employment contract. It is a civil agreement between
+      you, the employer and your school; your school has to approve the signing for it to complete,
+      and it lapses once you report for duty and sign an actual 劳动合同. Getting out of it is a formal
+      process, not an email: you need the employer's agreement, you may owe the liquidated damages
+      written into the document, and your school has to process the release before you can sign
+      with anyone else. Signing one therefore ends your search in practice, not just on paper.
+      The electronic version signed through the national platform has the same legal effect as
+      the paper one.
+    text_zh: |-
+      校招阶段签的三方协议不是劳动合同。它是你、用人单位和学校三方之间的民事协议，须经学校审核才算
+      签成，等你到岗并签订正式劳动合同后自动终止。想解约要走完整流程，不是发封邮件就行：需原单位同
+      意、可能要按协议约定支付违约金，并由学校办完解约手续，你才能重新签约。所以签下去等于实质上结
+      束了这一轮求职，而不只是形式上。通过全国网签平台签订的电子就业协议书，与纸质三方协议效力相同
+      。
+    applies_when: "You are in a 校招 process and an employer sends an offer together with a 就业协议书 / 三方协议, whether on paper or through the 网上签约平台."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "学职平台 (part of 学信网); 主办单位 教育部学生服务与素质发展中心"
+      title: "毕业生签订三方协议，这些事情要注意"
+      url: "https://xz.chsi.com.cn/xz/zyts/202412/20241211/2293348600.html"
+      retrieved: "2026-08-09"
+      quote: "三方协议虽不是劳动合同，但作为一种普通的民事合同，仍具有约定的法律效力"
+      note: "The article is 综合整理 — an official-platform explainer rather than a primary instrument — which matters because this entry leans on it for the liquidated-damages point."
+      also:
+        - publisher: "学职平台 (part of 学信网)"
+          title: "毕业生签订三方协议，这些事情要注意"
+          url: "https://xz.chsi.com.cn/xz/zyts/202412/20241211/2293348600.html"
+          retrieved: "2026-08-09"
+          quote: "毕业生一旦违约必须承担违约责任，在征得用人单位同意并支付违约金后才可重新签约"
+        - publisher: "教育部办公厅"
+          title: "关于推荐使用全国高校毕业生网上签约平台的公告"
+          url: "https://www.moe.gov.cn/jyb_xxgk/s5743/s5744/A15/202207/t20220706_643711.html"
+          retrieved: "2026-08-09"
+          quote: "网上签约电子就业协议书与纸质三方协议书效力相同；签约须经 毕业生同意、院校审核通过后"
+    why: |-
+      The offer email presents the 三方协议 as routine onboarding paperwork. Nothing in it tells you
+      your school is a party to it, that release is a multi-step process gated on the employer
+      and the school, or that it is a different instrument from the 劳动合同 you sign later.
+  - id: "cn-state-organised-recruitment-channel"
+    text_en: |-
+      Alongside the commercial apps there is a state-organised recruitment channel: an inter-ministry
+      campaign, reissued each cycle, that names its own official platforms and organises employers
+      — state-owned and private both — to publish vacancies there. Check whether the current cycle's
+      platforms carry anything your usual apps do not, because each cycle's notice names them,
+      so the list is lookup-able rather than guesswork.
+    text_zh: |-
+      在商业招聘 App 之外，还有一条国家组织的招聘通道：由多部门联合开展、按年度重新发文，指定
+      自己的官方招聘平台，并组织用人单位（国企和民企都在内）在那里发布岗位。值得去当期指定的平台上
+      核对一下，看有没有你常用 App 上没有的岗位——每年度的通知里都列明了平台名单，可以直接查
+      到，不用靠猜。
+    applies_when: "You are open to 国企 / 央企 / 事业单位 roles, or you want coverage of the market beyond the consumer job apps."
+    added: "2026-08-09"
+    review_by: "2027-06-05"
+    source:
+      kind: "published"
+      publisher: "教育部等八部门办公厅"
+      title: "关于联合开展2026年度高校毕业生等重点群体促就业'国聘行动'的通知（教就业厅函〔2026〕8号）"
+      url: "https://www.moe.gov.cn/srcsite/A15/s3265/202605/t20260522_1437356.html"
+      retrieved: "2026-09-05"
+      quote: "充分发挥国有企业就业引领作用和民营企业在稳就业中的重要作用"
+      note: "The https address redirects to the plain-http form, so a browser fetch may loop where curl follows it. The notice organises private employers as well as state-owned ones, and the verbs it uses are 鼓励 / 引导 / 组织动员 / 指导 — not a requirement to publish."
+      also:
+        - publisher: "教育部等八部门办公厅"
+          title: "关于联合开展2026年度高校毕业生等重点群体促就业'国聘行动'的通知（教就业厅函〔2026〕8号）"
+          url: "https://www.moe.gov.cn/srcsite/A15/s3265/202605/t20260522_1437356.html"
+          retrieved: "2026-09-05"
+          quote: "引导广大民营企业积极参与…组织行业头部企业在\"国聘行动\"平台发布更多岗位资源"
+    why: |-
+      A posting you never see cannot tell you it exists. Candidates default to two or three consumer
+      apps and never learn there is a parallel official channel where a large employer segment
+      concentrates.
+  - id: "cn-posting-salary-is-not-a-defined-quantity"
+    text_en: |-
+      A single monthly or annual figure in a posting is not a defined quantity. Chinese law does
+      not compel an employer to pay a year-end bonus at all; it becomes enforceable where the contract,
+      the offer or lawfully adopted company rules set out its conditions and amount, and where
+      an employer has paid one consistently year after year a claim can be argued on that established
+      practice. So the question to settle before you accept is not how much, but which parts are
+      contractual and which are the employer's discretion, and where each is written down.
+    text_zh: |-
+      招聘信息上那个月薪或年薪数字，并不是一个有明确定义的量。法律并不强制用人单位必须发年终奖；只
+      有当劳动合同、offer 或依法制定的规章制度写明了发放条件和金额时，它才是可强制执行的约定
+      ；若单位历年稳定发放，可以据既成惯例主张。所以接 offer 前要问清的不是「多少钱」，而是
+      「哪些是约定必付、哪些是公司自主决定，分别写在哪里」。
+    applies_when: "Any offer or salary discussion, 社招 or 校招, and when comparing two offers whose headline numbers look similar."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "武汉市人民政府门户网站, sourced to 湖北省总工会 / 武汉发布"
+      title: "年终奖来了，可以跨年发、打折发吗？"
+      url: "https://www.wuhan.gov.cn/hdjl/rdhy/202601/t20260109_2708659.shtml"
+      retrieved: "2026-08-09"
+      quote: "有发放惯例——可主张发"
+      note: "A municipal-portal explainer — official-adjacent commentary on 司法实践, not law. Its established-practice branch is a claim that can be asserted and is weighed by a court, which is why the text says a claim can be argued rather than that the money is owed."
+      also:
+        - publisher: "武汉市人民政府门户网站, sourced to 湖北省总工会 / 武汉发布"
+          title: "年终奖来了，可以跨年发、打折发吗？"
+          url: "https://www.wuhan.gov.cn/hdjl/rdhy/202601/t20260109_2708659.shtml"
+          retrieved: "2026-08-09"
+          quote: "法院会结合多年发放惯例综合判断"
+    why: |-
+      The posting shows one number. It cannot show which slice of it the employer is legally on
+      the hook for, and that distinction only bites months later, after you have already resigned
+      from somewhere else.
+  - id: "cn-what-an-employer-may-aREDACTED-SECRET"
+    text_en: |-
+      The employer's right to look into your background is statutory but bounded: it reaches the
+      basic circumstances directly related to the employment contract, and on those you have a
+      duty to answer truthfully. That cuts both ways. Categories the law treats as sensitive personal
+      information require your separate consent before they can be processed, so a request reaching
+      past job-relevant facts is not automatically one you must satisfy. On the other side, a material
+      misstatement about something job-relevant is not harmless polish: a contract entered into
+      by deception can be held invalid nationwide, and fake diplomas or identity documents are
+      listed in Beijing's court-and-arbitration guidance among the grounds for dismissing someone
+      during probation for not meeting the hiring conditions.
+    text_zh: |-
+      用人单位做背调的权利是法律赋予的，但有边界：它能了解的是「与劳动合同直接相关的基本情况」，对
+      这部分你负有如实说明的义务。反过来同样成立：法律列为敏感个人信息的内容，处理前需要你的单独同
+      意，因此超出岗位相关范围的索取，并不是你必须无条件配合的。另一面是，在与岗位相关的事项上作实
+      质性虚假陈述不是「美化」：以欺诈手段订立的劳动合同可被认定无效（全国适用），而伪造学历、身份
+      证件等，在北京法院与仲裁的裁审口径中被列为试用期「不符合录用条件」解除的情形之一。
+    applies_when: "Any 背调 / 背景调查 authorisation, entry paperwork (入职材料), or when deciding how to describe past titles, scope or reasons for leaving."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "国家市场监督管理总局, republishing 《中华人民共和国劳动合同法》"
+      title: "《中华人民共和国劳动合同法》第八条（as amended）"
+      url: "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/bgt/art/2023/art_0abfdd261c03417b949df19d869add8d.html"
+      retrieved: "2026-08-09"
+      quote: "用人单位招用劳动者时，应当如实告知劳动者工作内容、工作条件、工作地点、职业危害、安全生产状况、劳动报酬，以及劳动者要求了解的其他情况；用人单位有权了解劳动者与劳动合同直接相关的基本情况，劳动者应当如实说明。"
+      note: "Scope: the two statutes are China-wide; the Beijing 解答 below is guidance for Beijing courts and arbitration and must not be presented as a national rule. The 劳动合同法 copy cited here is a real official republication, though npc.gov.cn would be the more canonical home."
+      also:
+        - publisher: "国家市场监督管理总局, republishing 《中华人民共和国劳动合同法》"
+          title: "《中华人民共和国劳动合同法》第二十六条（as amended）"
+          url: "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/bgt/art/2023/art_0abfdd261c03417b949df19d869add8d.html"
+          retrieved: "2026-08-09"
+          quote: "下列劳动合同无效或者部分无效：（一）以欺诈、胁迫的手段或者乘人之危，使对方在违背真实意思的情况下订立或者变更劳动合同的…"
+        - publisher: "中央网络安全和信息化委员会办公室"
+          title: "《中华人民共和国个人信息保护法》第二十八条、第二十九条"
+          url: "https://www.cac.gov.cn/2021-08/20/c_1631050028355286.htm"
+          retrieved: "2026-08-09"
+          quote: "处理敏感个人信息应当取得个人的单独同意；法律、行政法规规定处理敏感个人信息应当取得书面同意的，从其规定。"
+        - publisher: "北京市人力资源和社会保障局"
+          title: "《北京市高级人民法院、北京市劳动人事争议仲裁委员会关于审理劳动争议案件解答（一）》（京高法发〔2024〕534号）, item 78"
+          url: "https://rsj.beijing.gov.cn/xxgk/tzgg/202404/t20240430_3648905.html"
+          retrieved: "2026-08-09"
+          quote: "提供虚假学历证书、假身份证、假护照等个人重要证件"
+    why: |-
+      A 背调 consent form is presented as a routine signature. It does not tell you where the employer's
+      entitlement stops, and no posting tells you that the truthfulness duty on your side has contract-invalidating
+      teeth rather than being a matter of taste.
+  - id: "cn-hukou-application-is-filed-by-the-employer"
+    text_en: |-
+      Where a city runs a settlement (落户) scheme for fresh graduates, the applying party can be
+      the employer rather than you — in Shanghai it is, the employer files the materials and only
+      an employer that itself qualifies under that year's municipal rules can file at all. Whether
+      a role can actually carry 落户 is therefore a fact about that specific employer and that year's
+      scheme, with its own application window; in Shanghai the employer must tell you truthfully,
+      when you sign the 就业协议, whether it qualifies. Ask before accepting, and read the operative
+      year's municipal notice — these are city-by-city, reissued annually, and not a nationwide
+      entitlement.
+    text_zh: |-
+      在设有应届生落户通道的城市，申请主体可能是用人单位而不是你本人——上海就是如此：材料由单位提
+      交，且只有本身符合该市当年规定条件的单位才有申报资格。所以一个岗位到底能不能落户，取决于这家
+      单位和该市当年的政策，还有各自的申请受理期；在上海，单位在与你签就业协议时须如实告知本单位是
+      否具备该资格。接受 offer 前就问，并以当年度的市级通知为准——此类政策按城市制定、逐年
+      重新发布，全国没有统一待遇。
+    applies_when: "You are weighing a role in a city whose 落户 matters to you, particularly as a fresh graduate; ask before, not after, accepting."
+    added: "2026-08-09"
+    review_by: "2027-06-05"
+    source:
+      kind: "published"
+      publisher: "上海交通大学电气工程学院"
+      title: "沪教委学〔2026〕13号, the operative-year 非上海生源应届普通高校毕业生进沪就业 notice, relayed on the school's student-notice page"
+      url: "https://see.sjtu.edu.cn/xsgz_tzgg/2395.html"
+      retrieved: "2026-09-05"
+      quote: "用人单位是非上海生源毕业生进沪就业申请落户的申请主体"
+      note: "The scheme is reissued each cycle under a new document number and the earlier notice this entry originally cited is superseded, so read the operative year's municipal notice rather than this relay. The employer-as-applicant mechanic is verified for Shanghai only; other cities run their own schemes that nobody has checked here."
+      also:
+        - publisher: "上海交通大学电气工程学院"
+          title: "沪教委学〔2026〕13号, relayed on the school's student-notice page"
+          url: "https://see.sjtu.edu.cn/xsgz_tzgg/2395.html"
+          retrieved: "2026-09-05"
+          quote: "须由用人单位一次性提交申请材料。如未通过落户申请，不再受理由其他用人单位提交的申请材料"
+        - publisher: "上海市人民政府门户网站"
+          title: "《关于做好2025年非上海生源应届普通高校毕业生进沪就业工作的通知》（沪教委学〔2025〕15号）"
+          url: "https://www.shanghai.gov.cn/gwk/search/content/9183a0b0d5664cc189937b5178e9711e"
+          retrieved: "2026-08-09"
+          quote: "用人单位在与高校毕业生签订就业协议时…应如实告知本单位是否具备为非上海生源毕业生申请本市户籍的资格"
+    why: |-
+      Postings either omit 落户 or say 协助办理, which conceals that the filing is the employer's to
+      make and that the employer must itself qualify to make it. Candidates discover the gap after
+      accepting.
+  - id: "cn-internship-is-usually-not-an-employment-relationship"
+    text_en: |-
+      An 实习 posting can read exactly like a job ad, but for a student still enrolled it generally
+      does not create an employment relationship: what you sign is an internship agreement rather
+      than a 劳动合同, and the protections attaching to employment do not automatically attach to it.
+      Courts look at substance, so an arrangement labelled 实习 that is really employment can be
+      found to be employment — but do not assume the label carries employment terms with it. Read
+      what the agreement itself provides on pay, hours and termination, because the statute will
+      not fill those gaps for you the way it does inside a 劳动合同.
+    text_zh: |-
+      实习岗位的招聘信息看起来和正式工作一模一样，但对仍在校的学生而言，一般不构成劳动关系：你签的
+      是实习协议而非劳动合同，劳动关系项下的保护不会自动适用。司法上看实质，名为实习实为用工的也可
+      能被认定为劳动关系——但不要默认「实习」两个字自带劳动合同待遇。要逐条看协议本身怎么约定报酬
+      、工时和解除，因为这些空白不会像劳动合同那样由法律替你补上。
+    applies_when: "Any posting labelled 实习 / 实习生 taken while you are still enrolled at a school."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "工人日报, republished by 新华网"
+      title: "签了实习协议，算不算劳动关系？"
+      url: "https://app.xinhuanet.com/news/article.html?articleId=1bacdef591a5718590029be878f7f3d0"
+      retrieved: "2026-08-09"
+      quote: "司法实践中，在校学生进入用人单位实习能否认定劳动关系，应当根据具体事实判断"
+      note: "Precision: the statutory sentence the article quotes covers spare-time 勤工助学, which is narrower than 实习 generally; the broad proposition rests on lawyer and judge commentary plus two contrasting court outcomes, not on that sentence. This is state-media reporting of an underlying labour-administration opinion, not the primary instrument, so the reporting is what is being stood behind. The same article notes a host still owes safety obligations, so the floor is not zero — it is simply not the 劳动合同 one."
+      also:
+        - publisher: "工人日报, republished by 新华网"
+          title: "签了实习协议，算不算劳动关系？"
+          url: "https://app.xinhuanet.com/news/article.html?articleId=1bacdef591a5718590029be878f7f3d0"
+          retrieved: "2026-08-09"
+          quote: "在校生利用业余时间勤工助学，不视为就业，未建立劳动关系"
+    why: |-
+      The posting advertises pay and hours in the same format as a permanent role and gives no
+      signal that the legal frame around it is different and thinner.
+
+# The lint reports WARN_UNVERIFIED_OVERLAP on the last note below, over the words
+# "contract", "established" and "practice". Read side by side, those words are in the
+# half of the note that says what WAS sourced, not in what it disclaims — the splits,
+# the 十三薪 conventions, the equity and the 五险一金 practice are absent from every
+# rendered field. The warning is the mechanical hint doing its job on a note that
+# happens to restate its own entry; it is not drift, and softening the note to silence
+# it would delete a real disclaimer.
+unverified:
+  - note: "背调 prevalence. I sourced what an employer is legally entitled to ask and what consent is required (see the cn-what-an-employer-may-ask entry), but NOT how commonly 背调 is actually run, at what stage, by whom, or on which segments. Do not let the legal entry be read as a claim about frequency."
+    disclaims: [cn-what-an-employer-may-aREDACTED-SECRET]
+  - note: "期望薪资 disclosure norms beyond the BOSS直聘 registration field. That the field is mandatory at signup is sourced from the 20-F. What a candidate should put in it, whether stating a range is read as weakness, and whether the declared figure caps the eventual offer are all unsourced."
+    disclaims: [cn-salary-expectation-declared-up-front]
+  - note: "薪资构成 detail. I sourced that bonus is a component of 工资总额 and that a year-end bonus binds only via contract, rules or established practice. I did NOT source anything about typical 基本工资 / 绩效 / 年终奖 splits, 十三薪 / 十四薪 conventions, equity or option practice, or 五险一金 base-setting practice. Any ratio or multiple stated anywhere downstream is not coming from this research."
+    disclaims: [cn-posting-salary-is-not-a-defined-quantity]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [contract, established, practice]

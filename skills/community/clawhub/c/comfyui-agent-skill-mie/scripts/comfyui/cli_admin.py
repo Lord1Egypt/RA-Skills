@@ -3,10 +3,17 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 
 from comfyui.config import SKILL_ROOT, check_server, get_comfyui_url, local_config_path, save_comfyui_url
-from comfyui.tools.import_workflow import import_workflow, validate_workflow_id
+from comfyui.tools.convert_ui_workflow import WorkflowFormatError
+from comfyui.tools.import_workflow import (
+    AmbiguousNodeTitleError,
+    import_workflow,
+    parse_prompt_node_spec,
+    validate_workflow_id,
+)
 
 
 def cmd_check() -> int:
@@ -89,14 +96,24 @@ def cmd_doctor() -> int:
             if isinstance(node, str)
         }
     )
-    missing_models = sorted(
-        {
-            model
-            for payload in workflows.values()
-            for model in (payload.get("preflight", {}).get("missing_models") or [])
-            if isinstance(model, str)
-        }
-    )
+    missing_models_raw = [
+        model
+        for payload in workflows.values()
+        for model in (payload.get("preflight", {}).get("missing_models") or [])
+        if isinstance(model, (str, dict))
+    ]
+    missing_models_seen: set[str] = set()
+    missing_models: list[dict | str] = []
+    for model in missing_models_raw:
+        if isinstance(model, dict):
+            key = json.dumps(model, ensure_ascii=True, sort_keys=True)
+        else:
+            key = model
+        if key in missing_models_seen:
+            continue
+        missing_models_seen.add(key)
+        missing_models.append(model)
+    missing_models.sort(key=lambda m: (m.get("path", "") if isinstance(m, dict) else m))
 
     success = bool(server.get("available")) and len(failed_workflows) == 0
     payload = {
@@ -136,19 +153,65 @@ def cmd_save_server() -> int:
 
 def cmd_import_workflow() -> int:
     p = argparse.ArgumentParser(
-        description="Import a ComfyUI workflow JSON into assets/workflows and generate a config template."
+        description="Import a ComfyUI API workflow JSON into the per-user registry and generate a config template."
     )
-    p.add_argument("path", help="Path to an exported ComfyUI workflow JSON (API format).")
+    p.add_argument(
+        "path",
+        help="Path to an exported ComfyUI workflow JSON. Must be API format: in ComfyUI, enable "
+        "Settings -> Enable Dev mode options, then use 'Save (API)' (not 'Save').",
+    )
     p.add_argument("--id", default=None, help="Optional workflow_id override (default: file stem).")
     p.add_argument("--force", action="store_true", help="Overwrite existing imported files.")
     p.add_argument(
+        "--into-project",
+        action="store_true",
+        help="Maintainer mode: import into the packaged project assets/workflows instead of the per-user registry.",
+    )
+    p.add_argument(
         "--skill-root",
         default=None,
-        help="Override skill root directory (advanced; defaults to detected SKILL_ROOT).",
+        help="Advanced override. With --into-project: override project root. Otherwise: override user data root.",
+    )
+    p.add_argument(
+        "--user-data-root",
+        default=None,
+        help="Override user data root directory (advanced). Default follows OS conventions.",
+    )
+    p.add_argument(
+        "--prompt-node",
+        default=None,
+        metavar='"TITLE:PARAM"',
+        help='Skip interactive prompt-node selection. Format: "node_title:param_name". '
+        "Use when the analyzer cannot auto-detect the prompt node (e.g. the prompt lives in a "
+        "non-CLIP string node). Without this flag, an interactive prompt appears in a TTY.",
+    )
+    p.add_argument(
+        "--no-interactive",
+        action="store_true",
+        help="Never prompt on stdin. When the prompt node cannot be auto-detected, surface "
+        "candidates + a re-run hint instead (use this in CI / scripts / subprocess calls).",
     )
     args = p.parse_args()
 
-    skill_root = Path(args.skill_root or os.environ.get("COMFYUI_SKILL_ROOT") or SKILL_ROOT).resolve()
+    # Validate --prompt-node syntax early so a malformed spec is a clean error,
+    # not a mid-import crash.
+    if args.prompt_node:
+        try:
+            parse_prompt_node_spec(args.prompt_node)
+        except ValueError as e:
+            print(
+                json.dumps(
+                    {
+                        "success": False,
+                        "workflow_id": "unknown",
+                        "error": {"code": "INVALID_PROMPT_NODE", "message": str(e)},
+                    },
+                    ensure_ascii=True,
+                    indent=2,
+                )
+            )
+            return 1
+
     raw_id = args.id
     derived_id = (raw_id if raw_id is not None else Path(args.path).stem or "").strip()
     try:
@@ -170,9 +233,13 @@ def cmd_import_workflow() -> int:
     try:
         payload = import_workflow(
             src_path=Path(args.path),
-            skill_root=skill_root,
             workflow_id=wid,
             force=bool(args.force),
+            into_project=bool(args.into_project),
+            user_data_root=Path(args.user_data_root or args.skill_root).resolve() if not args.into_project and (args.user_data_root or args.skill_root) else None,
+            project_root=Path(args.skill_root or os.environ.get("COMFYUI_SKILL_ROOT") or SKILL_ROOT).resolve() if args.into_project else None,
+            prompt_node=args.prompt_node,
+            interactive=(not args.no_interactive and sys.stdin.isatty()),
         )
     except FileNotFoundError as e:
         err = {"code": "WORKFLOW_FILE_NOT_FOUND", "message": str(e)}
@@ -182,8 +249,20 @@ def cmd_import_workflow() -> int:
         err = {"code": "WORKFLOW_ALREADY_EXISTS", "message": f"Workflow '{wid}' already exists. Use --force to overwrite."}
         print(json.dumps({"success": False, "workflow_id": wid, "error": err}, ensure_ascii=True, indent=2))
         return 1
+    except AmbiguousNodeTitleError as e:
+        err = {"code": "AMBIGUOUS_NODE_TITLE", "message": str(e)}
+        print(json.dumps({"success": False, "workflow_id": wid, "error": err}, ensure_ascii=True, indent=2))
+        return 1
+    except WorkflowFormatError as e:
+        err = {"code": "WORKFLOW_NOT_API_FORMAT", "message": str(e)}
+        print(json.dumps({"success": False, "workflow_id": wid, "error": err}, ensure_ascii=True, indent=2))
+        return 1
     except ValueError as e:
-        err = {"code": "WORKFLOW_JSON_INVALID", "message": str(e)}
+        msg = str(e)
+        code = "WORKFLOW_JSON_INVALID"
+        if "conflicts with built-in" in msg:
+            code = "WORKFLOW_ID_CONFLICTS_WITH_BUILTIN"
+        err = {"code": code, "message": msg}
         print(json.dumps({"success": False, "workflow_id": wid, "error": err}, ensure_ascii=True, indent=2))
         return 1
 

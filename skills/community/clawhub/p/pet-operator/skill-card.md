@@ -1,42 +1,59 @@
-## Description: <br>
-Delegate Aavegotchi petting rights to AAI's wallet on Base, generate approve and revoke transaction data, check approval, and maintain delegated wallet bookkeeping in pet-me-master config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate Aavegotchi petting rights to AAI's wallet on Base, generate approve and revoke transaction data, check approval, and maintain delegated wallet bookkeeping in pet-me-master config.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-External Aavegotchi users and operators use this skill to prepare pet-operator approval or revocation transactions on Base and keep local delegation bookkeeping aligned after on-chain approval changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A user may sign approval data for the wrong contract, operator address, network, or calldata. <br>
-Mitigation: Verify the Aavegotchi Diamond contract, AAI operator address, Base network, and decoded calldata in a wallet or trusted explorer before signing. <br>
-Risk: Bookkeeping scripts persistently edit the local pet-me-master configuration and create backup files. <br>
-Mitigation: Review PET_ME_CONFIG_FILE before running add or remove scripts, and inspect the generated backup if a local configuration change needs to be restored. <br>
+## Use Case:
 
+Aavegotchi users and operators use this skill to prepare pet-operator approval or revocation transactions on Base and keep local delegated-wallet records aligned after approval state changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaigotchi/pet-operator) <br>
-- [README](artifact/README.md) <br>
-- [Revocation Guide](artifact/REVOKE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and transaction details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires cast and jq; generated transaction data is intended for user review before signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and clawhub.json) <br>
+Risk: Generated approve or revoke calldata may use the default AAI operator if operator overrides are not reflected as expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decode or independently verify every generated transaction before signing, especially when overriding AAI_OPERATOR.
+
+Risk: Delegated-wallet scripts modify local pet-me-master configuration and create backup files.
+
+Mitigation: Confirm PET_ME_CONFIG_FILE points to the intended config and review the resulting configuration changes after add or remove operations.
+
+Risk: On-chain approval grants pet-operator rights for all gotchis owned by the wallet.
+
+Mitigation: Use the generated revoke transaction when delegation is no longer intended and confirm the transaction target, calldata, and Base network before signing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaigotchi/skills/pet-operator)
+- [Base Mainnet RPC](https://mainnet.base.org)
+- [MyEtherWallet Access](https://www.myetherwallet.com/wallet/access)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with transaction calldata, approval status, and configuration update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires cast and jq for chain reads and JSON configuration updates.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T6 - backdrop-filter 模糊背景</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 40px; }
+    .header { text-align: center; margin-bottom: 50px; color: white; }
+    .header h1 { font-size: 36px; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .header p { font-size: 16px; opacity: 0.9; }
+
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 32px;
+      color: white;
+    }
+    .card h3 { font-size: 22px; margin-bottom: 12px; }
+    .card p { font-size: 15px; opacity: 0.9; line-height: 1.7; }
+    .card .icon { font-size: 40px; margin-bottom: 16px; }
+
+    .card-3 { grid-column: 1 / -1; }
+    .card-3 h3 { text-align: center; }
+    .card-3 p { text-align: center; }
+
+    /* 测试点：backdrop-filter 是否被正确渲染，而不是显示为纯色或模糊失效 */
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔍 T6 - backdrop-filter 模糊测试</h1>
+    <p>验证毛玻璃效果是否正确渲染</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">✨</div>
+      <h3>毛玻璃效果 1</h3>
+      <p>背景模糊程度：20px。如果卡片背景是纯色而非半透明模糊，说明 backdrop-filter 未生效。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌈</div>
+      <h3>毛玻璃效果 2</h3>
+      <p>验证渐变背景透过卡片时的模糊效果是否正确渲染。</p>
+    </div>
+    <div class="card card-3">
+      <div class="icon">🎯</div>
+      <h3>关键测试点</h3>
+      <p>backdrop-filter 是 CSS 高级特性，在 Puppeteer/Chrome 中有时会因为 GPU 加速问题导致渲染异常。如果卡片显示为纯色背景而非半透明模糊，说明需要添加 <code>--disable-gpu</code> 或其他参数修复。</p>
+    </div>
+  </div>
+</body>
+</html>

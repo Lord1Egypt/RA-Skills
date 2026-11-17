@@ -1,0 +1,138 @@
+{
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "20260719-健康报告-评分62-C级-提取密度不达标"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "2026-07-19 · obsidian-loop v2.1 · 系统健康度 · 4 维度扫描 · 2 Critical / 1 Important"
+    },
+    "template": "red",
+    "icon": {
+      "tag": "standard_icon",
+      "token": "myai_colorful"
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**系统健康度总评：62 分（C 级）** ⚠️\n\n**核心结论**：编译轨主流程稳定，但提取密度严重不达标（2.7/千字 vs 10/千字门控），发芽机制 0 个 50-Seeds 追踪。需立即修复 2 个 Critical 项。"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "red-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "red-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🚨 **Critical 修复项（2 个）**\n\n**Critical 1**：提取密度 2.7/千字，远低于 10/千字门控\n▸ **现状**：今日 6 篇素材 18,000 字 → 仅提取 18 atoms\n▸ **根因**：C0 子代理未读 extraction-guide.md 母本，仍用旧 10 维度方法\n▸ **影响**：atom 池稀薄，下游 concept/融合/行动全部断流\n▸ **修复**：compile-track-v2.1.md C0 阶段加强制前置 Read + 硬阻断机制\n\n**Critical 2**：发芽机制 0 个 50-Seeds 追踪\n▸ **现状**：过去 7 天 0 个种子进入 50-Seeds 池\n▸ **根因**：发芽日报 cron 未触发 + 种子筛选标准过严\n▸ **影响**：obsidian-loop 失去「长期发芽」能力，沦为纯归档工具\n▸ **修复**：发芽日报 cron 重新启用 + 种子标准降为 3/4 命中即可入池"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "⚠️ **Important 警告项（1 个）**\n\n**Important 1**：主种子 concept-page 缺 4 字段\n▸ **现状**：`agent-negative-constraint` 主种子 22 字段中缺 4 个（cangjie_status / cross_domain_mapping / growth_log / related_meta_skills）\n▸ **影响**：concept-page 不达 v2.0 标准，无法升级 tree\n▸ **修复**：今日 16:00 前补齐 4 字段 + 验证脚本通过"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📊 **4 维度健康度**\n\n| 维度 | 分数 | 状态 |\n|------|------|------|\n| 归档完整性 | 95/100 | ✅ 优 |\n| 提取密度 | 27/100 | 🚨 Critical |\n| Concept 质量 | 78/100 | ⚠️ 待修 |\n| 发芽机制 | 0/100 | 🚨 Critical |\n\n**评分趋势**：7 日平均 58 分（D+），今日 62 分（C），环比 +4 分\n**7 日走势**：56 → 54 → 58 → 60 → 55 → 61 → 62"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "🔧 立即修复 Critical 项（关闭 TRB-008 + TRB-015）"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/fix-critical-items"
+          }
+        ]
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整健康报告（含 7 日趋势图）"
+        },
+        "type": "default",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/health-report"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 obsidian-loop v2.1 · 健康报告 · schema 2.0 · 红色告警系（red+yellow+grey）"
+      }
+    ]
+  }
+}

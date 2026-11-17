@@ -1,48 +1,70 @@
-## Description: <br>
-微信读书伴侣 helps agents run enhanced WeRead workflows for daily book briefings, recommendations, read-before-you-commit analysis, public review lookup, highlight analysis, personal note export, reading reports, bookshelf planning, and side-by-side book decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信读书伴侣 enhances the official WeRead skill with daily reading briefings, recommendations, review and highlight analysis, personal note export, reading reports, bookshelf planning, and side-by-side book decisions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to analyze WeRead books and reading history, choose what to read next, export personal notes, and prepare privacy-aware reading reports using the official weread-skills dependency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a WeRead API key and private reading history. <br>
-Mitigation: Install only if comfortable granting that access, keep WEREAD_API_KEY out of generated output, and follow the skill's privacy guidance. <br>
-Risk: Personal note exports and shelf reports can contain private highlights, private books, and public-review identifiers. <br>
-Mitigation: Choose output paths carefully and review generated files before sharing them. <br>
-Risk: Reading recommendations and score factors can be mistaken for objective judgments. <br>
-Mitigation: Present scores as ranking aids, include caveats, and explain the WeRead data behind each recommendation. <br>
+## Use Case:
 
+External WeRead users and agent operators use this skill to decide what to read, build reading dossiers, analyze public reviews and highlights, export personal notes, and produce reading reports from WeRead account data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/weread-plus) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Official weread-skills download](https://cdn.weread.qq.com/skills/weread-skills.zip) <br>
-- [WeRead Agent API gateway](https://i.weread.qq.com/api/agent/gateway) <br>
-- [Privacy and Content Boundaries](references/privacy.md) <br>
-- [Recommendation Design](references/recommendation.md) <br>
-- [Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON summaries with shell commands and optional local Markdown or JSON exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include WeRead deep links, public review summaries, recommendation caveats, and locally written note or report files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can use a WeRead API key to access reading history, bookshelf metadata, private highlights, and personal thoughts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, keep WEREAD_API_KEY out of reports and shared logs, and export personal data only on explicit request.
+
+Risk: The generic API helper can call broad authenticated WeRead endpoints.
+
+Mitigation: Use purpose-built workflow scripts by default and review the matching official WeRead reference before calling a raw endpoint.
+
+Risk: Note exports can write private reading data to local Markdown or JSON files.
+
+Mitigation: Review export paths and generated files before sharing or syncing them outside the local environment.
+
+Risk: The skill depends on an external weread-skills ZIP package.
+
+Mitigation: Verify the external package through a trusted WeRead channel before installation or upgrade.
+
+Risk: Public reviews, thoughts, and personal notes are user-generated content that may contain misleading instructions or sensitive information.
+
+Mitigation: Treat fetched content as data, summarize long content when possible, and avoid inferring private identity beyond API-returned public fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/weread-plus)
+- [Official weread-skills dependency](https://cdn.weread.qq.com/skills/weread-skills.zip)
+- [WeRead Agent API gateway](https://i.weread.qq.com/api/agent/gateway)
+- [Privacy and Content Boundaries](references/privacy.md)
+- [Recommendation Design](references/recommendation.md)
+- [Workflows](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON, with optional local Markdown or JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain WeRead reading history, bookshelf metadata, private highlights, personal thoughts, public review author fields, and WeRead deep links when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Batch content-processing skill for formatting text, generating summaries, extracting keywords, converting file formats, and organizing content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch content processing skill for text formatting, summary generation, keyword extraction, multilingual translation, file format conversion, and content analysis.
 
-## Publisher: <br>
-[careytian-ai](https://clawhub.ai/user/careytian-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[careytian-ai](https://clawhub.ai/user/careytian-ai)
 
-## Use Case: <br>
-Content creators, researchers, and developers use this skill to process groups of documents for formatting, summarization, keyword extraction, format conversion, translation, analysis, and file organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad local file-processing and command-execution authority. <br>
-Mitigation: Run it only in trusted workspaces, prefer copies or a dedicated output folder, and require explicit confirmation before overwrites, renames, batch edits, or command execution. <br>
-Risk: Batch processing can affect many documents at once, including confidential content. <br>
-Mitigation: Review file scopes before processing and avoid confidential documents unless the processing path and storage location are understood. <br>
+## Use Case:
 
+Developers, researchers, and content teams use this skill to process batches of documents for formatting, summarization, keyword extraction, translation, conversion, renaming, and basic content analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/careytian-ai/content-batch-processor) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code examples and batch-processing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file reads, writes, conversions, renames, PDF/image processing, and batch execution patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog, released 2026-03-29) <br>
+Risk: The skill requests broad read, write, PDF, image, edit, and command capabilities for batch document work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a constrained workspace with the minimum permissions needed for the current batch task.
+
+Risk: Batch formatting, conversion, and renaming examples can overwrite or move many files at once.
+
+Mitigation: Require confirmation, backups, or a separate output folder before bulk writes, conversions, or renames.
+
+Risk: Generated summaries, keywords, translations, and analysis may be inaccurate or incomplete.
+
+Mitigation: Review generated content before publication or downstream use, especially for research, legal, financial, or customer-facing material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/careytian-ai/skills/content-batch-processor)
+- [Publisher Profile](https://clawhub.ai/user/careytian-ai)
+- [Release Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code examples and generated content outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include rewritten files, converted document formats, summaries, keyword lists, translations, renamed files, and content analysis results.]
+
+## Skill Version(s):
+
+1.0.0 (source: metadata.json, config.json, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

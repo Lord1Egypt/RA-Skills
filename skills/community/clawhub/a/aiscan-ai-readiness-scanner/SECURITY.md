@@ -8,7 +8,7 @@ This skill is a documentation and integration package for AIScan.site. It teache
 
 ClawHub's scanner may flag this package because:
 
-1. It mentions `curl` commands for calling a public API.
+1. It mentions `curl`, `npx`, and CI commands for calling a public API and CLI.
 2. It documents a streamable HTTP MCP endpoint.
 3. It includes JSON reference assets and agent instructions.
 4. It discusses `robots.txt`, OAuth discovery, Web Bot Auth, AI crawler rules, and machine-readable `.well-known` files.
@@ -43,7 +43,7 @@ ClawHub's scanner may flag this package because:
 
 ## Credential Handling
 
-AIScan's public scan endpoint requires no authentication. The MCP server card declares `auth: none`. This package includes no secret material.
+AIScan's public scan endpoint and MCP tools can be used anonymously. Optional API keys lift the anonymous IP limit and enable account/plan features; the skill only documents the placeholder form `Authorization: Bearer <api-key>` and never stores, prints, or bundles a real key. The public MCP server card declares `auth: none`. This package includes no secret material.
 
 If a scanned website exposes authenticated APIs, agents must never put private credentials in `robots.txt`, `llms.txt`, API catalogs, MCP cards, or Agent Skill manifests.
 

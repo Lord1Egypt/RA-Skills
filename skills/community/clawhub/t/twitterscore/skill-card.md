@@ -1,44 +1,58 @@
-## Description: <br>
-Research, analyze, and track Twitter influence with the TwitterScore.io API, including account scores, follower analysis, growth history, and account comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research, analyze, and track Twitter influence with TwitterScore.io API. Get scores, analyze followers, track growth, and compare accounts.
 
-## Publisher: <br>
-[NikolayBohdanov](https://clawhub.ai/user/NikolayBohdanov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nikolaybohdanov](https://clawhub.ai/user/nikolaybohdanov)
 
-## Use Case: <br>
-Developers, analysts, and social intelligence teams use this skill to query TwitterScore.io for Twitter account influence, follower composition, follower growth, and bulk account comparisons. The skill is useful when an agent needs to propose CLI commands, API-backed analysis steps, or export workflows for TwitterScore data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried Twitter account names, IDs, and target lists are sent to TwitterScore.io. <br>
-Mitigation: Avoid submitting confidential target lists unless that disclosure is acceptable for the workflow. <br>
-Risk: The workflow requires a TwitterScore API key and may expose it if passed directly on shared command lines. <br>
-Mitigation: Use a dedicated revocable API key and prefer environment or agent configuration storage over command-line arguments. <br>
-Risk: The skill depends on the local twitterscore CLI and the external TwitterScore.io API. <br>
-Mitigation: Install and run it only in environments where those tools and services are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub TwitterScore release](https://clawhub.ai/NikolayBohdanov/twitterscore) <br>
-- [TwitterScore API documentation](https://twitterscore.gitbook.io/twitterscore/developers/api-documentation) <br>
-- [TwitterScore API pricing](https://twitterscore.io/api/prices?i=9720) <br>
-- [TwitterScore API base URL](https://twitterscore.io/api/v1) <br>
+## Use Case:
 
+External developers and analysts use this skill to query TwitterScore.io for Twitter/X account scores, follower analysis, growth history, bulk account comparisons, and API usage limits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON or CSV result formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TwitterScore API key and sends queried account names, IDs, and target lists to TwitterScore.io.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queried Twitter/X account identifiers and related API usage are sent to the third-party TwitterScore.io API.
+
+Mitigation: Use the skill only for approved targets and confirm that third-party API data sharing is acceptable for the investigation or workflow.
+
+Risk: The TwitterScore API key may persist locally when stored in OpenClaw configuration.
+
+Mitigation: Use a dedicated API key, keep it out of committed files, store it with approved secret-management practices, and rotate it if exposure is suspected.
+
+Risk: Bulk and repeated queries can hit TwitterScore.io rate or plan limits.
+
+Mitigation: Use bulk operations, pagination, caching for repeated lookups, and the limits command to monitor quota before high-volume use.
+
+## Reference(s):
+
+- [TwitterScore ClawHub skill page](https://clawhub.ai/nikolaybohdanov/skills/twitterscore)
+- [TwitterScore API Documentation](https://twitterscore.gitbook.io/twitterscore/developers/api-documentation)
+- [TwitterScore API pricing](https://twitterscore.io/api/prices?i=9720)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON, CSV]
+
+**Output Format:** [Markdown guidance with shell command examples and text, JSON, or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TwitterScore API key; supports pagination, filtering, bulk checks up to 50 accounts, and CSV exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

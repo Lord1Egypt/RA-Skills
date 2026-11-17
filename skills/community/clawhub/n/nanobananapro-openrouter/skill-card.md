@@ -1,41 +1,59 @@
-## Description: <br>
-Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image) via OpenRouter. Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images with Nano Banana Pro (Gemini 3 Pro Image) through OpenRouter, including text-to-image and image-to-image workflows at 1K, 2K, and 4K resolutions.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and agents use this skill to generate new images or edit existing images through OpenRouter using prompt text, optional input images, and selectable 1K, 2K, or 4K output resolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and supplied input images are sent to OpenRouter and its model providers. <br>
-Mitigation: Use only approved content for this workflow and avoid confidential, regulated, or personal images unless that use is explicitly authorized. <br>
-Risk: The skill requires an OpenRouter API key. <br>
-Mitigation: Prefer the OPENROUTER_KEY environment variable instead of passing keys in chat or command-line arguments. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate new PNG images or edit existing images through OpenRouter using prompt-driven workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liberalchang/nanobananapro-openrouter) <br>
-- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Image files, Shell commands, Guidance] <br>
-**Output Format:** [PNG files saved to disk with console status text and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text-to-image and image-to-image flows, optional custom output directory, and 1K, 2K, or 4K resolution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts and input images may be sent to OpenRouter for generation or editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that content with OpenRouter is acceptable, and avoid submitting sensitive or regulated data.
+
+Risk: API keys can be provided in command arguments, which may expose credentials in shell history or process listings.
+
+Mitigation: Set OPENROUTER_KEY in the environment instead of passing keys in chat or command arguments.
+
+Risk: Generated files can be written outside the default output directory when custom paths are used.
+
+Mitigation: Use simple filenames in the skill's output_images directory and review any custom output directory before execution.
+
+## Reference(s):
+
+- [OpenRouter chat completions API](https://openrouter.ai/api/v1/chat/completions)
+- [ClawHub skill page](https://clawhub.ai/liberalchang/skills/nanobananapro-openrouter)
+- [Publisher profile](https://clawhub.ai/user/liberalchang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved as PNG files, with default output in the skill's output_images directory unless a custom output directory is provided.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

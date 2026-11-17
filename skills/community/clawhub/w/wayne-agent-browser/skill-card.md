@@ -1,43 +1,54 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[wechatgpt798](https://clawhub.ai/user/wechatgpt798) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wechatgpt798](https://clawhub.ai/user/wechatgpt798)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to drive browser workflows through the agent-browser CLI, including navigation, ref-based interaction, page state checks, session isolation, screenshots, PDFs, storage, cookies, and network controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser sessions, cookies, local storage, and captured network data can contain sensitive information. <br>
-Mitigation: Treat saved auth JSON files and captured browser data as secrets; do not commit them, share them, or print them into logs. <br>
-Risk: Browser automation can perform actions against real accounts or live services. <br>
-Mitigation: Use least-privilege or test accounts where possible, and confirm that traffic mocking or network interception is authorized before use. <br>
-Risk: The skill depends on an external npm command named agent-browser. <br>
-Mitigation: Verify that the installed npm package is the intended agent-browser package before running the skill. <br>
+## Use Case:
 
+Developers and external agent users use this skill to drive headless browser workflows through the agent-browser CLI, including navigation, ref-based interaction, state checks, session isolation, screenshots, PDFs, and saved browser state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wechatgpt798/wayne-agent-browser) <br>
-- [agent-browser homepage](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that interact with browser state, saved sessions, cookies, storage, screenshots, PDFs, and captured network data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Saved auth state, cookies, and storage output can expose account credentials or session access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep saved browser state out of repositories and logs, restrict file permissions, use test or least-privilege accounts where possible, and delete saved auth files when no longer needed.
+
+Risk: The skill depends on an external browser automation CLI.
+
+Mitigation: Install only when browser automation is needed and the external agent-browser CLI source is trusted.
+
+## Reference(s):
+
+- [Wayne Agent Browser on ClawHub](https://clawhub.ai/wechatgpt798/skills/wayne-agent-browser)
+- [agent-browser CLI homepage](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the external agent-browser CLI; documented commands can save browser state, cookies, storage data, screenshots, and PDFs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,629 @@
+{
+  "business": {
+    "description": "演示资料：推广一款免费多账号内容工具，支持账号添加、素材导入和定时任务。三人团队目前用表格记录账号与发布计划；不提供免费额度、成员权限及自动重试规则。",
+    "audience": "3至5人的内容团队",
+    "goal": "帮助团队判断是否试用，并减少重复教程选题",
+    "inventory_status": "reviewed"
+  },
+  "summary": {
+    "input_questions": 12,
+    "canonical_questions": 10,
+    "merged_questions": 2,
+    "coverage": {
+      "gap": 5,
+      "partial": 2,
+      "covered": 3
+    },
+    "priorities": {
+      "P0": 2,
+      "P1": 5,
+      "P2": 3
+    }
+  },
+  "groups": [
+    {
+      "id": "Q10",
+      "merge_key": "compare-manual",
+      "question": "小团队继续用表格，还是试用多账号工具？",
+      "source_ids": [
+        "Q10"
+      ],
+      "variants": [
+        "小团队继续用表格，还是试用多账号工具？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "comparison",
+      "scope": "表格记录事项与工具账号及计划信息对照",
+      "theme": "工具选择",
+      "origins": [
+        {
+          "question_id": "Q10",
+          "question": "小团队继续用表格，还是试用多账号工具？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "表格目前记录账号与发布计划",
+          "status": "available",
+          "source": "演示业务介绍（仅说明记录事项，未提供具体操作流程）"
+        },
+        {
+          "need": "工具的账号身份与计划信息核对说明",
+          "status": "available",
+          "source": "教程 A1、A3 正文"
+        }
+      ],
+      "formats": [
+        "账号与发布计划信息对照表"
+      ],
+      "next_steps": [
+        "仅对照已知的表格记录事项与 A1、A3 的账号及计划信息；表格具体操作未提供，不比较完整流程或效率"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [],
+      "coverage": "gap",
+      "facts_ready": true,
+      "priority": "P0",
+      "priority_reason": "高决策影响且资料可用，安排新建或补充",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q11",
+      "merge_key": "pilot-checklist",
+      "question": "第一次试用，应该选哪些步骤验证工具是否适合团队？",
+      "source_ids": [
+        "Q11"
+      ],
+      "variants": [
+        "第一次试用，应该选哪些步骤验证工具是否适合团队？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "scope": "试用范围与可观察结果",
+      "theme": "试用验收",
+      "origins": [
+        {
+          "question_id": "Q11",
+          "question": "第一次试用，应该选哪些步骤验证工具是否适合团队？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "可试用的账号添加、导入与定时步骤",
+          "status": "available",
+          "source": "教程 A1、A2、A3 正文"
+        }
+      ],
+      "formats": [
+        "单次试用验收清单"
+      ],
+      "next_steps": [
+        "组合账号身份核对、导入原文核对和任务状态核对，形成试用清单"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [],
+      "coverage": "gap",
+      "facts_ready": true,
+      "priority": "P0",
+      "priority_reason": "高决策影响且资料可用，安排新建或补充",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q01",
+      "merge_key": "free-limits",
+      "question": "免费版能管理几个账号，有哪些平台和功能限制？",
+      "source_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "variants": [
+        "免费版能管理几个账号，有哪些平台和功能限制？",
+        "免费多账号工具的账号数量和平台限制是什么？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "scope": "免费权益与使用限制",
+      "theme": "试用边界",
+      "origins": [
+        {
+          "question_id": "Q01",
+          "question": "免费版能管理几个账号，有哪些平台和功能限制？",
+          "kind": "user_question",
+          "source": "演示输入的问题清单第1条"
+        },
+        {
+          "question_id": "Q02",
+          "question": "免费多账号工具的账号数量和平台限制是什么？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "免费账号额度、平台范围及功能限制",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "formats": [
+        "免费权益说明表"
+      ],
+      "next_steps": [
+        "向产品负责人核对免费权益及适用日期，再制作说明表"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [],
+      "coverage": "gap",
+      "facts_ready": false,
+      "priority": "P1",
+      "priority_reason": "先补事实资料，再决定新建或更新",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q07",
+      "merge_key": "retry-safely",
+      "question": "发布失败后能重试吗，怎么避免重复提交？",
+      "source_ids": [
+        "Q07"
+      ],
+      "variants": [
+        "发布失败后能重试吗，怎么避免重复提交？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "troubleshooting",
+      "scope": "重试条件与未知回执",
+      "theme": "失败恢复",
+      "origins": [
+        {
+          "question_id": "Q07",
+          "question": "发布失败后能重试吗，怎么避免重复提交？",
+          "kind": "user_question",
+          "source": "演示输入的问题清单第4条"
+        }
+      ],
+      "facts": [
+        {
+          "need": "错误与回执入口",
+          "status": "available",
+          "source": "教程 A4 正文"
+        },
+        {
+          "need": "可重试条件及未知回执防重规则",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "formats": [
+        "失败分流决策表"
+      ],
+      "next_steps": [
+        "先核对重试与防重规则，再在 A4 补充决策表"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [
+        {
+          "article_id": "A4",
+          "coverage": "partial",
+          "evidence": "在任务列表打开失败项，可查看错误信息和最近一次回执。",
+          "reason": "只说明查看记录，没有重试条件和防重规则"
+        }
+      ],
+      "coverage": "partial",
+      "facts_ready": false,
+      "priority": "P1",
+      "priority_reason": "先补事实资料，再决定新建或更新",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q09",
+      "merge_key": "revoke-access",
+      "question": "成员离职后，怎样撤销账号和内容访问权限？",
+      "source_ids": [
+        "Q09"
+      ],
+      "variants": [
+        "成员离职后，怎样撤销账号和内容访问权限？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "operation",
+      "scope": "离职撤权与数据交接",
+      "theme": "团队协作",
+      "origins": [
+        {
+          "question_id": "Q09",
+          "question": "成员离职后，怎样撤销账号和内容访问权限？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "成员撤权、平台授权及数据保留规则",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "formats": [
+        "撤权检查清单"
+      ],
+      "next_steps": [
+        "先核对成员撤权与平台授权的区别，再确定清单步骤"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [],
+      "coverage": "gap",
+      "facts_ready": false,
+      "priority": "P1",
+      "priority_reason": "先补事实资料，再决定新建或更新",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q08",
+      "merge_key": "team-permissions",
+      "question": "三个人协作时，怎样交接任务，谁能修改和发布内容？",
+      "source_ids": [
+        "Q08"
+      ],
+      "variants": [
+        "三个人协作时，怎样交接任务，谁能修改和发布内容？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "decision",
+      "scope": "任务交接、角色权限与发布责任",
+      "theme": "团队协作",
+      "origins": [
+        {
+          "question_id": "Q08",
+          "question": "三个人协作时，怎样交接任务，谁能修改和发布内容？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "任务交接清单与接收确认步骤",
+          "status": "available",
+          "source": "教程 A5 正文"
+        },
+        {
+          "need": "角色权限表和发布责任划分",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "formats": [
+        "角色权限矩阵"
+      ],
+      "next_steps": [
+        "核对当前角色权限后，在 A5 补充权限矩阵"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [
+        {
+          "article_id": "A5",
+          "coverage": "partial",
+          "evidence": "交接时先列出账号、素材和未完成任务，再由接收成员逐项确认。",
+          "reason": "正文可回答任务交接部分，仍缺角色权限与发布责任信息"
+        }
+      ],
+      "coverage": "partial",
+      "facts_ready": false,
+      "priority": "P1",
+      "priority_reason": "先补事实资料，再决定新建或更新",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q12",
+      "merge_key": "ai-retest",
+      "question": "能用同一组问题复测不同 AI 的回答吗？",
+      "source_ids": [
+        "Q12"
+      ],
+      "variants": [
+        "能用同一组问题复测不同 AI 的回答吗？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "information",
+      "scope": "同题回答保存与状态区分",
+      "theme": "后续验证",
+      "origins": [
+        {
+          "question_id": "Q12",
+          "question": "能用同一组问题复测不同 AI 的回答吗？",
+          "kind": "model_simulation",
+          "source": "Agent 本地推演的追问；没有运行任何模型查询"
+        }
+      ],
+      "facts": [
+        {
+          "need": "目标平台、同题输入及可用回答保存方式",
+          "status": "missing",
+          "source": ""
+        }
+      ],
+      "formats": [
+        "同题复测资料清单"
+      ],
+      "next_steps": [
+        "仅列待收集的问题、平台、时间和回答原文，不给引用率结论"
+      ],
+      "impact": "medium",
+      "impact_reasons": [
+        "为后续真实复测准备资料"
+      ],
+      "article_links": [],
+      "coverage": "gap",
+      "facts_ready": false,
+      "priority": "P1",
+      "priority_reason": "先补事实资料，再决定新建或更新",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q03",
+      "merge_key": "connect-account",
+      "question": "如何添加第一个账号？",
+      "source_ids": [
+        "Q03",
+        "Q04"
+      ],
+      "variants": [
+        "如何添加第一个账号？",
+        "如何添加第一个账号?"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "operation",
+      "scope": "首次添加账号",
+      "theme": "账号接入",
+      "origins": [
+        {
+          "question_id": "Q03",
+          "question": "如何添加第一个账号？",
+          "kind": "user_question",
+          "source": "演示输入的问题清单第2条"
+        },
+        {
+          "question_id": "Q04",
+          "question": "如何添加第一个账号?",
+          "kind": "user_question",
+          "source": "演示输入的问题清单第3条，与第2条字面重复"
+        }
+      ],
+      "facts": [
+        {
+          "need": "账号添加和身份核对步骤",
+          "status": "available",
+          "source": "教程 A1 正文"
+        }
+      ],
+      "formats": [
+        "已有教程入口"
+      ],
+      "next_steps": [
+        "复用 A1，在入门索引中增加入口"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [
+        {
+          "article_id": "A1",
+          "coverage": "full",
+          "evidence": "打开账号页，选择平台并按提示登录授权。保存后回到账号列表核对昵称与平台，再创建内容任务。",
+          "reason": "正文包含添加、授权、保存和身份核对步骤"
+        }
+      ],
+      "coverage": "covered",
+      "facts_ready": true,
+      "priority": "P2",
+      "priority_reason": "已有文章可回答，优先复用与维护",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q06",
+      "merge_key": "schedule",
+      "question": "怎样为已授权账号安排定时内容任务？",
+      "source_ids": [
+        "Q06"
+      ],
+      "variants": [
+        "怎样为已授权账号安排定时内容任务？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "operation",
+      "scope": "选择来源、账号及计划时间",
+      "theme": "任务安排",
+      "origins": [
+        {
+          "question_id": "Q06",
+          "question": "怎样为已授权账号安排定时内容任务？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "任务安排与回读步骤",
+          "status": "available",
+          "source": "教程 A3 正文"
+        }
+      ],
+      "formats": [
+        "已有教程入口"
+      ],
+      "next_steps": [
+        "复用 A3，不另开同题教程"
+      ],
+      "impact": "high",
+      "impact_reasons": [
+        "影响团队试用或持续使用的决策"
+      ],
+      "article_links": [
+        {
+          "article_id": "A3",
+          "coverage": "full",
+          "evidence": "选择已授权账号和已保存稿件，填写计划时间并保存。回到任务列表核对账号、来源稿件和计划时间；提交状态以平台回执为准。",
+          "reason": "正文给出了账号、稿件、时间和任务回读步骤"
+        }
+      ],
+      "coverage": "covered",
+      "facts_ready": true,
+      "priority": "P2",
+      "priority_reason": "已有文章可回答，优先复用与维护",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    },
+    {
+      "id": "Q05",
+      "merge_key": "import-material",
+      "question": "已有文章怎么导入，导入后会自动发布吗？",
+      "source_ids": [
+        "Q05"
+      ],
+      "variants": [
+        "已有文章怎么导入，导入后会自动发布吗？"
+      ],
+      "audience": "3至5人的内容团队",
+      "entity": "免费多账号内容工具",
+      "intent": "operation",
+      "scope": "本地文本导入及发布边界",
+      "theme": "素材复用",
+      "origins": [
+        {
+          "question_id": "Q05",
+          "question": "已有文章怎么导入，导入后会自动发布吗？",
+          "kind": "agent_hypothesis",
+          "source": "Agent 根据演示业务资料推导，需求待验证"
+        }
+      ],
+      "facts": [
+        {
+          "need": "导入步骤和不会自动发布的边界",
+          "status": "available",
+          "source": "教程 A2 正文"
+        }
+      ],
+      "formats": [
+        "已有教程入口"
+      ],
+      "next_steps": [
+        "复用 A2，将不会自动发布的说明放入索引摘要"
+      ],
+      "impact": "medium",
+      "impact_reasons": [
+        "帮助已有稿件迁移"
+      ],
+      "article_links": [
+        {
+          "article_id": "A2",
+          "coverage": "full",
+          "evidence": "在素材页选择本地文本文件，预览标题和正文后保存。导入后核对原文与图片引用，再分配给内容任务。导入不会自动发布。",
+          "reason": "正文明确导入、预览、保存及发布边界"
+        }
+      ],
+      "coverage": "covered",
+      "facts_ready": true,
+      "priority": "P2",
+      "priority_reason": "已有文章可回答，优先复用与维护",
+      "answer_statuses": [
+        "not_run"
+      ],
+      "search_volume": null
+    }
+  ],
+  "articles": [
+    {
+      "id": "A1",
+      "title": "添加第一个账号",
+      "material": "full_text",
+      "source": "演示输入的教程 A1",
+      "text": "打开账号页，选择平台并按提示登录授权。保存后回到账号列表核对昵称与平台，再创建内容任务。本文只讲账号添加，不说明免费额度和成员权限。"
+    },
+    {
+      "id": "A2",
+      "title": "导入已有素材",
+      "material": "full_text",
+      "source": "演示输入的教程 A2",
+      "text": "在素材页选择本地文本文件，预览标题和正文后保存。导入后核对原文与图片引用，再分配给内容任务。导入不会自动发布。"
+    },
+    {
+      "id": "A3",
+      "title": "安排定时任务",
+      "material": "full_text",
+      "source": "演示输入的教程 A3",
+      "text": "选择已授权账号和已保存稿件，填写计划时间并保存。回到任务列表核对账号、来源稿件和计划时间；提交状态以平台回执为准。"
+    },
+    {
+      "id": "A4",
+      "title": "查看失败记录",
+      "material": "full_text",
+      "source": "演示输入的教程 A4",
+      "text": "在任务列表打开失败项，可查看错误信息和最近一次回执。本文没有说明自动重试条件，也没有说明回执未知时如何防止重复提交。"
+    },
+    {
+      "id": "A5",
+      "title": "成员交接操作",
+      "material": "full_text",
+      "source": "演示输入的教程 A5",
+      "text": "交接时先列出账号、素材和未完成任务，再由接收成员逐项确认。本文没有角色权限表，也没有说明离职成员的授权撤销方式。"
+    }
+  ],
+  "answer_records": []
+}

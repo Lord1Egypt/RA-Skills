@@ -1,0 +1,4 @@
+interface:
+  display_name: "Copy Studio"
+  short_description: "Staged marketing-copy pipeline: strategy, framework, draft, polish, de-AI, with a confirm gate at each step."
+  default_prompt: "Use $copy-studio to take this copy job through its five staged steps, pausing for my approval at each gate."

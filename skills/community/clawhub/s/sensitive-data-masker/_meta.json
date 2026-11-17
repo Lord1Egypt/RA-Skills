@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn7cgh9mamggkv9yf5zma1jtq98217cy",
-  "slug": "sensitive-data-masker",
+  "name": "sensitive-data-masker",
   "version": "1.0.7",
-  "publishedAt": 1772553162688
+  "description": "智能敏感信息检测与脱敏 (Microsoft Presidio + SQLite)",
+  "author": "TK",
+  "created": "2026-03-03",
+  "entry": "sensitive-masker.py",
+  "commands": [
+    "test <text>",
+    "stats",
+    "cleanup",
+    "clear"
+  ],
+  "dependencies": {
+    "pip": [
+      "presidio-analyzer",
+      "presidio-anonymizer",
+      "spacy"
+    ],
+    "spacy_models": [
+      "zh_core_web_sm"
+    ]
+  },
+  "files": {
+    "database": "~/.openclaw/data/sensitive-masker/mapping.db",
+    "config": "~/.openclaw/data/sensitive-masker/config.json"
+  },
+  "performance": {
+    "hot_query": "< 0.1ms",
+    "cold_query": "~0.5ms",
+    "write": "< 2ms",
+    "max_records": "100,000+"
+  }
 }

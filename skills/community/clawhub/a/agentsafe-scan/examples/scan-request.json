@@ -1,0 +1,5 @@
+{
+  "agent_id": "your-agent-name",
+  "policy": "default",
+  "url": "https://agentsafe.up.railway.app/skill.md"
+}

@@ -1,43 +1,60 @@
-## Description: <br>
-Generate videos from text descriptions using AI models through OATDA's unified API, submitting asynchronous requests and polling for completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates asynchronous AI video requests from text prompts and public image URLs through OATDA's unified API across supported video models.
 
-## Publisher: <br>
-[devcsde](https://clawhub.ai/user/devcsde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devcsde](https://clawhub.ai/user/devcsde)
 
-## Use Case: <br>
-Developers and creative teams use this skill to submit text-to-video and image-to-video generation requests to OATDA, select supported providers and models, and poll returned task IDs until video generation completes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video prompts, model parameters, and public reference image URLs are sent to OATDA and may be shared with downstream model providers. <br>
-Mitigation: Avoid confidential prompts and private or signed media URLs; install only if this data sharing is acceptable. <br>
-Risk: The skill may read an API key from ~/.oatda/credentials.json when OATDA_API_KEY is not set. <br>
-Mitigation: Set OATDA_API_KEY directly when file-based credential access is not desired, and never print the full API key. <br>
+## Use Case:
 
+Developers and agent users use this skill to submit video generation jobs to OATDA, choose an available provider/model, pass model-specific parameters, and track asynchronous task status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/devcsde/oatda-generate-video) <br>
-- [OATDA homepage](https://oatda.com) <br>
-- [OATDA video models endpoint](https://oatda.com/api/v1/llm/models?type=video) <br>
-- [OATDA async video generation endpoint](https://oatda.com/api/v1/llm/generate-video?async=true) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, OATDA_API_KEY, and optionally ~/.oatda/credentials.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts and referenced public image URLs are sent to OATDA for video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content that is appropriate to share with OATDA and avoid including confidential or sensitive data in prompts or image URLs.
+
+Risk: OATDA_API_KEY is required and could be exposed through shell history, logs, or command output.
+
+Mitigation: Treat the API key as a secret, do not print full or partial key values, and prefer environment or credentials-file handling that keeps the key out of logs.
+
+Risk: Copy-paste shell examples can become unsafe if user-provided prompt text is substituted directly into command strings.
+
+Mitigation: Build request JSON with jq or another JSON encoder and validate or quote user-controlled values before execution.
+
+## Reference(s):
+
+- [OATDA](https://oatda.com)
+- [OATDA Video Models API](https://oatda.com/api/v1/llm/models?type=video)
+- [OATDA Generate Video API](https://oatda.com/api/v1/llm/generate-video?async=true)
+- [ClawHub Skill Page](https://clawhub.ai/devcsde/skills/oatda-generate-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces asynchronous task IDs, polling guidance, and model/provider request parameters; generated videos are returned by the external OATDA service.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

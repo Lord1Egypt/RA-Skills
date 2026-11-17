@@ -1,39 +1,53 @@
-## Description: <br>
-Gamifies coding tasks with speedrun mechanics such as timer splits, personal bests, categories, tricks, and self-competition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gamifies coding tasks with speedrun mechanics, including timer splits, personal bests, categories, and workflow optimization prompts.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn coding tasks into timed personal challenges with categories, split tracking, personal bests, and post-run analysis. It is best suited for personal productivity, learning, hackathons, and workflow reflection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The fastest category encourages skipping tests, review, documentation, or other quality gates, which can be inappropriate for serious or shared projects. <br>
-Mitigation: Use 100% or Glitchless categories for production, customer-facing, regulated, or shared repositories, and keep normal safeguards such as tests, code review, CI, deployment approval, and explicit confirmation before history-changing Git actions. <br>
-Risk: Gamified urgency can bias users toward speed over correctness. <br>
-Mitigation: Treat the skill as a personal productivity overlay and review completed work against the project requirements before relying on or shipping changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Speed Run on ClawHub](https://clawhub.ai/jcools1977/speed-run) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to add timer-based speedrun structure, split tracking, and personal-best comparison to coding tasks while reflecting on workflow bottlenecks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with timer layouts, category rules, split definitions, and run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, external dependencies, API calls, or credential requirements are described in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may bias an agent toward speed over quality controls, especially in its Any% category.
+
+Mitigation: Treat speed-focused categories as entertainment or personal workflow framing; keep tests, review, CI, provenance checks, and branch protections in place for real work.
+
+Risk: The artifact includes examples that frame force-pushes and skipped reviews as speedrun tactics.
+
+Mitigation: Require explicit human confirmation for destructive Git operations and follow repository policy before merging or rewriting history.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcools1977/skills/speed-run)
+- [Publisher Profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with timer summaries, split tables, category guidance, and workflow commentary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls or dependencies are indicated by the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

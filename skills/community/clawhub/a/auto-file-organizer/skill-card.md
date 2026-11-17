@@ -1,40 +1,52 @@
-## Description: <br>
-Helps users organize download folders and categorize local files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users organize download folders and categorize files.
 
-## Publisher: <br>
-[neutronstar238](https://clawhub.ai/user/neutronstar238) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[neutronstar238](https://clawhub.ai/user/neutronstar238)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+People using an agent to manage local files can invoke this skill to organize a specified download folder and classify files into categories.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad file tools could move or rewrite files in an unintended folder if the target location is ambiguous.
+
+Mitigation: Tell the agent the exact folder to organize and require a preview of proposed moves before any changes are made.
+
+Risk: The skill documentation is sparse and in Chinese, which may make behavior harder to review for some users.
+
+Mitigation: Install only when Chinese-language documentation is acceptable and review the skill behavior before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to organize download folders and categorize local files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad local file permissions for organizing files. <br>
-Mitigation: Name the exact folder to organize, request a preview or dry run first, and require explicit confirmation before any move, rename, edit, overwrite, or delete action. <br>
-Risk: The artifact describes planned work and does not include executable implementation or tests. <br>
-Mitigation: Review proposed behavior and test on non-critical files before relying on it for routine file organization. <br>
+**Output Format:** [Markdown guidance with proposed file-organization actions and optional shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neutronstar238/auto-file-organizer) <br>
+**Other Properties Related to Output:** [Should preview proposed file moves before changing files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-organization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file reads, moves, renames, edits, or shell commands; users should require a preview and explicit confirmation before changes.] <br>
+0.1.0 (source: server release metadata and frontmatter)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-A Chinese-language questioning coach that helps users analyze learning, reading, listening, or practice scenarios and generate deeper critical questions using cross-disciplinary questioning methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language question-coaching skill that helps users practice deeper questioning by analyzing learning content or generating training scenarios with interdisciplinary questioning methods.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External users and learners use this skill to turn content they are studying into five high-value questions, or to practice questioning through simulated training scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation may cause the skill to respond to general questioning or learning-related phrases when the user intended another workflow. <br>
-Mitigation: Enable it in contexts where Chinese-language questioning coaching is desired, and confirm user intent when the request is ambiguous. <br>
-Risk: Optional scheduled practice can create recurring exercises that users may not expect. <br>
-Mitigation: Avoid enabling scheduled practice unless the user explicitly wants recurring questioning drills. <br>
+## Use Case:
 
+External users use this skill to analyze material they are studying, hearing, or reading and generate high-value questions that reveal assumptions, evidence gaps, causes, and implications. It also supports practice scenarios for improving critical questioning habits.
 
-## Reference(s): <br>
-- [Methodology Library](references/methodology-library.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fangshan101-coder/art-of-questioning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured question lists, method labels, comparisons, and teaching summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses; practical mode and training mode produce five-stage questioning guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Broad trigger phrases may activate the skill during general requests for help with questions or deep thinking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only when question-coaching behavior is desired, and review generated questions for fit before using them.
+
+Risk: The artifact describes scheduled practice behavior that could create recurring prompts if enabled.
+
+Mitigation: Enable scheduled practice only when recurring questioning exercises are wanted.
+
+Risk: The skill is designed for Chinese-language output, which may be unsuitable for users expecting another language.
+
+Mitigation: Use it for Chinese-language coaching contexts or request translation/adaptation outside the skill's core behavior.
+
+## Reference(s):
+
+- [Methodology Library](references/methodology-library.md)
+- [ClawHub Skill Page](https://clawhub.ai/fangshan101-coder/skills/art-of-questioning)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown with structured question lists, method labels, comparisons, and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; may include collapsible detail sections when supported by the client.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

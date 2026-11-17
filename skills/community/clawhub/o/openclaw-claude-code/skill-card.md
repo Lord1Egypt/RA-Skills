@@ -1,43 +1,64 @@
-## Description: <br>
-Control Claude Code via MCP protocol to execute commands, read and write files, search code, and use Claude Code tools programmatically with agent team support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Claude Code via MCP protocol to execute commands, manage sessions, search and edit code, and coordinate agent teams for development workflows.
 
-## Publisher: <br>
-[Enderfga](https://clawhub.ai/user/Enderfga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[enderfga](https://clawhub.ai/user/enderfga)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to control Claude Code for multi-step coding work, code search, file edits, command execution, testing, code review, and coordinated agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give Claude Code broad authority to run commands, edit files, and continue autonomous sessions. <br>
-Mitigation: Use plan or default permission modes for sensitive work, restrict allowed tools and added directories, and stop persistent sessions when finished. <br>
-Risk: Bypass-style permission settings can remove review points before high-impact tool use. <br>
-Mitigation: Avoid bypassPermissions and skip-permissions except in trusted, isolated workspaces with intentionally limited scope. <br>
-Risk: Configured MCP servers and process environments can expose more local capabilities or ambient secrets than expected. <br>
-Mitigation: Run with a minimal environment, use only trusted and pinned MCP servers, and keep backend URLs local or controlled by the operator. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to delegate coding tasks to Claude Code, run shell and file operations, manage persistent coding sessions, and coordinate specialized agent roles across a project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Enderfga/openclaw-claude-code) <br>
-- [Publisher profile](https://clawhub.ai/user/Enderfga) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, JSON tool responses, streamed text, and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Claude Code session responses and tool results from configured MCP servers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The skill can invoke Claude Code tools that execute commands and read or write project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted, isolated project directories and prefer plan or default permission modes for review before changes are applied.
+
+Risk: Broad tool access or bypass-style permission modes can reduce operator control over file, command, and agent actions.
+
+Mitigation: Restrict allowed tools to the minimum needed and avoid skip-permissions or bypassPermissions modes.
+
+Risk: Custom backend URLs and MCP server subprocesses can expose work to untrusted services or packages.
+
+Mitigation: Use authenticated local or trusted HTTPS backends, pin MCP server packages, and run third-party MCP servers with a minimal environment.
+
+Risk: Example MCP configuration includes token-shaped placeholders for external services.
+
+Mitigation: Do not store real tokens in MCP JSON configs; supply secrets through an approved secret-management path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enderfga/skills/openclaw-claude-code)
+- [Publisher profile](https://clawhub.ai/user/enderfga)
+- [README](artifact/README.md)
+- [MCP configuration example](artifact/mcp_config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, command-line output, JSON tool responses, source code, configuration snippets, and file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stream session responses and may produce persistent project changes through Claude Code tools.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

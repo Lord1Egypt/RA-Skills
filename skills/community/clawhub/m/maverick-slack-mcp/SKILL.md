@@ -3,7 +3,7 @@ name: maverick-slack-mcp
 description: Search, read, and update Slack messages, channel history, canvases, and users via Slack's hosted MCP server. Thin pass-through to Slack's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Slack messages, channels, threads, canvases, users, or wants to send a Slack message.
 metadata:
   openclaw:
-    emoji: "💬"
+    emoji: '💬'
     homepage: https://docs.slack.dev/ai/slack-mcp-server/
     requires:
       bins:
@@ -14,7 +14,7 @@ metadata:
     install:
       - id: node
         kind: node
-        package: mcporter
+        package: mcporter@0.13.10
         bins:
           - mcporter
         label: Install mcporter (node)

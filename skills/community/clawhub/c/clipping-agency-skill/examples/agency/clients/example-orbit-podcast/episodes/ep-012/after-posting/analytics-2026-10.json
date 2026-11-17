@@ -1,0 +1,122 @@
+{
+ "note": "EXAMPLE ONLY: a made-up WoopSocial reply with invented ids and numbers",
+ "socialAccountPosts": [
+  {
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "platform": "TIKTOK",
+   "externalPostUrl": "https://www.tiktok.com/@example.orbit/video/70000000000000001",
+   "deliveryCompletedAt": "2026-10-06T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 18400,
+    "likes": 800,
+    "comments": 44,
+    "shares": 115
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-instagram",
+   "platform": "INSTAGRAM",
+   "externalPostUrl": "https://www.instagram.com/reel/EXAMPLEORBIT01/",
+   "deliveryCompletedAt": "2026-10-06T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 9100,
+    "likes": 395,
+    "comments": 22,
+    "shares": 56
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-youtube",
+   "platform": "YOUTUBE",
+   "externalPostUrl": "https://www.youtube.com/shorts/EXAMPLEorb01",
+   "deliveryCompletedAt": "2026-10-06T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 6200,
+    "likes": 269,
+    "comments": 15,
+    "shares": 38
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "platform": "TIKTOK",
+   "externalPostUrl": "https://www.tiktok.com/@example.orbit/video/70000000000000002",
+   "deliveryCompletedAt": "2026-10-08T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 42700,
+    "likes": 1856,
+    "comments": 104,
+    "shares": 266
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-instagram",
+   "platform": "INSTAGRAM",
+   "externalPostUrl": "https://www.instagram.com/reel/EXAMPLEORBIT02/",
+   "deliveryCompletedAt": "2026-10-08T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 15800,
+    "likes": 686,
+    "comments": 38,
+    "shares": 98
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-youtube",
+   "platform": "YOUTUBE",
+   "externalPostUrl": "https://www.youtube.com/shorts/EXAMPLEorb02",
+   "deliveryCompletedAt": "2026-10-08T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 11900,
+    "likes": 517,
+    "comments": 29,
+    "shares": 74
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "platform": "TIKTOK",
+   "externalPostUrl": "https://www.tiktok.com/@example.orbit/video/70000000000000003",
+   "deliveryCompletedAt": "2026-10-10T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 7300,
+    "likes": 317,
+    "comments": 17,
+    "shares": 45
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-instagram",
+   "platform": "INSTAGRAM",
+   "externalPostUrl": "https://www.instagram.com/reel/EXAMPLEORBIT03/",
+   "deliveryCompletedAt": "2026-10-10T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 3900,
+    "likes": 169,
+    "comments": 9,
+    "shares": 24
+   }
+  },
+  {
+   "socialAccountId": "example-acct-orbit-youtube",
+   "platform": "YOUTUBE",
+   "externalPostUrl": "https://www.youtube.com/shorts/EXAMPLEorb03",
+   "deliveryCompletedAt": "2026-10-10T16:30:21Z",
+   "metricsCollectedAt": "2026-10-31T06:00:00Z",
+   "metrics": {
+    "views": 2600,
+    "likes": 113,
+    "comments": 6,
+    "shares": 16
+   }
+  }
+ ]
+}

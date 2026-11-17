@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "name": "speaker_roster",
+    "version": "8.2.0-aipc",
+    "module": "module-h-bozhifang",
+    "section": "X1 嘉宾库",
+    "last_updated": "2026-08-24"
+  },
+  "description": "博智坊嘉宾资源库（外部专家 + 内部讲师）",
+  "internal_faculty": [
+    {
+      "id": "INT-001",
+      "name": "陈儒林",
+      "title": "SCC 计算媒介+N 课程主任",
+      "unit": "BNBU·SCC",
+      "topics": ["计算媒介", "AI 艺术", "数字创意"],
+      "reuse_scenarios": ["CM+N 课程主任", "跨学科 FYP 评审"]
+    }
+  ],
+  "external_speakers": [
+    {
+      "id": "EXT-001",
+      "name": "Dr. XXX",
+      "title": "SUTD 研究员",
+      "unit": "Singapore University of Technology and Design (SUTD)",
+      "background": ["曾任职腾讯天美实验室", "曾任职宝马研究中心（BMW Research Center）", "现专注于基于深度学习的计算设计研究"],
+      "topics": ["AI 数字化身", "网格压缩", "计算设计"],
+      "workshops": ["ws-3"],
+      "applicable_majors": ["CM+GD", "CM+AIM", "CM+MAD", "Math+AI"],
+      "reuse_scenarios": ["CM+N 课程邀请", "FYP 评审", "暑研推荐"]
+    },
+    {
+      "id": "EXT-002",
+      "name": "汤浩宇博士",
+      "title": "SUTD 研究员",
+      "unit": "Singapore University of Technology and Design (SUTD)",
+      "topics": ["3D 重建", "NeRF", "3D 高斯泼溅", "显式/隐式表达"],
+      "workshops": ["ws-5"],
+      "applicable_majors": ["CM+N", "Math+AI", "IST+ENVS"],
+      "reuse_scenarios": ["CM+N 课程邀请", "FYP 评审", "3D 重建研究合作"]
+    },
+    {
+      "id": "EXT-003",
+      "name": "邵俊博士",
+      "title": "AI 创业者",
+      "unit": "AI 创业公司",
+      "topics": ["AIGC 创业", "提示词工程", "从旁观者到实践者"],
+      "workshops": ["ws-4"],
+      "applicable_majors": ["CM+N", "DGC+N", "IBL+N"],
+      "reuse_scenarios": ["AIGC 课程邀请", "FYP 评审", "创业指导"]
+    }
+  ],
+  "industry_partners": [
+    {
+      "id": "IND-001",
+      "name": "金山 (Kingsoft)",
+      "activities": ["企业参访", "工程师面对面"],
+      "scenarios": ["走进金山参访", "实习推荐", "工程师讲座"]
+    }
+  ],
+  "total_speakers": 4,
+  "total_workshops_covered": 6
+}

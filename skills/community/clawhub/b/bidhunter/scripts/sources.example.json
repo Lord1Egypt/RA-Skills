@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "name": "my_gov_platform",
+      "mode": "json",
+      "url": "https://example.gov.cn/api/notice?date={DATE}&pageSize=50",
+      "headers": {},
+      "items_path": "data.list",
+      "fields": {"id": "id", "title": "title", "url": "url", "publish_time": "publishTime"},
+      "url_prefix": "https://example.gov.cn/notice/detail?id="
+    },
+    {
+      "name": "my_rss_feed",
+      "mode": "rss",
+      "url": "https://example.com/bid/rss.xml"
+    },
+    {
+      "name": "my_html_list",
+      "mode": "html",
+      "url": "https://example.com/bid/list"
+    }
+  ],
+  "_note": "复制本文件为 sources.json，按你的平台改 name/url/fields。bid_monitor.sh 运行时自动加载 sources.json（若存在）。"
+}

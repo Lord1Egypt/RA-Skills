@@ -1,49 +1,58 @@
-## Description: <br>
-Plan and execute incremental project rewrites to Rust with architecture mapping, parity verification, idiomatic Rust guidance, dependency preflight checks, and GitHub upstream synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and execute incremental project rewrites to Rust with architecture mapping, parity verification, idiomatic Rust guidance, dependency preflight checks, and GitHub upstream synchronization.
 
-## Publisher: <br>
-[dandandujie](https://clawhub.ai/user/dandandujie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dandandujie](https://clawhub.ai/user/dandandujie)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and carry out staged rewrites of existing projects into Rust while preserving behavior, validating parity, applying Rust design guardrails, and tracking upstream source changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends third-party helper skills or MCP repositories for search and GitHub workflows. <br>
-Mitigation: Review the linked helper repositories independently before installation, as recommended by the security guidance. <br>
-Risk: Bundled Python scripts can run local dependency checks and Git synchronization reports. <br>
-Mitigation: Approve the bundled scripts before running them and only use Git sync reporting on repositories where fetching and pruning origin and upstream remotes is acceptable. <br>
-Risk: Rewrite guidance can introduce behavior drift if migration batches are too broad or insufficiently tested. <br>
-Mitigation: Use the skill's required staged migration contract, parity validation, risk register, and rollback notes for each batch. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [rust-rebuilder ClawHub Page](https://clawhub.ai/dandandujie/rust-rebuilder) <br>
-- [dandandujie Publisher Profile](https://clawhub.ai/user/dandandujie) <br>
-- [Rust Backend Coding Guidelines](references/rust-backend-guidelines.md) <br>
-- [GitHub Upstream Synchronization](references/github-upstream-sync.md) <br>
-- [Rewrite Pitfalls and Antipatterns](references/rewrite-pitfalls-and-antipatterns.md) <br>
-- [Rust Language Update Playbook](references/rust-language-update-playbook.md) <br>
-- [grok-search Skill Repository](https://github.com/Frankieli123/grok-skill) <br>
-- [grok-search MCP Repository](https://github.com/GuDaStudio/GrokSearch) <br>
-- [github-helper Skill Repository](https://github.com/dandandujie/github-helper) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute staged rewrites of existing projects into Rust while preserving behavior, tracking upstream changes, and documenting verification strategy. It is especially relevant for backend migrations that need Rust design guardrails, parity checks, and GitHub synchronization notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include rewrite scope, equivalence strategy, Rust design decisions, risk register, and upstream sync notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mandatory, unpinned third-party skill or MCP dependencies can persistently change the agent environment.
+
+Mitigation: Install only trusted helper projects, prefer pinned and reviewed revisions, and review MCP permissions before enabling them.
+
+Risk: The skill may inspect local Codex configuration and run Git or GitHub synchronization commands on repositories selected by the user.
+
+Mitigation: Run it only against intended repositories, review remotes and branches before sync, and inspect generated upstream reports before acting on them.
+
+## Reference(s):
+
+- [Rust Backend Coding Guidelines](references/rust-backend-guidelines.md)
+- [GitHub Upstream Synchronization](references/github-upstream-sync.md)
+- [Rust Language Update Playbook](references/rust-language-update-playbook.md)
+- [Rewrite Pitfalls and Antipatterns](references/rewrite-pitfalls-and-antipatterns.md)
+- [grok-search skill dependency](https://github.com/Frankieli123/grok-skill)
+- [grok-search MCP dependency](https://github.com/GuDaStudio/GrokSearch)
+- [github-helper skill dependency](https://github.com/dandandujie/github-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and structured migration sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected sections include rewrite scope, equivalence strategy, Rust design decisions, risk register, and upstream sync notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

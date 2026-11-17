@@ -1,43 +1,63 @@
-## Description: <br>
-Provides guidance on pricing, dispatching, licensing, inventory, marketing, and growth strategies to run a profitable plumbing business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance on pricing, dispatching, licensing, inventory, marketing, and growth strategies to run a profitable plumbing business.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Plumbing company owners, service managers, and their AI agents use this skill to structure pricing, dispatching, compliance checks, inventory routines, marketing metrics, and growth planning for a plumbing business. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with U.S.-specific licensing, OSHA, EPA, insurance, and permitting examples that require local verification. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, licensing, OSHA, EPA, insurance, permitting, and compliance guidance may not match the user's jurisdiction or current professional requirements. <br>
-Mitigation: Verify local rules, contract obligations, and professional advice before relying on the guidance for business decisions. <br>
-Risk: External AfrexAI links in the artifact are optional promotional resources. <br>
-Mitigation: Treat those links as third-party resources and assess their relevance, terms, and cost separately before use. <br>
+## Use Case:
 
+Plumbing company owners, service managers, and agent users can use this skill to get operational guidance for pricing, estimating, dispatching, compliance planning, inventory, marketing, financial benchmarks, and growth planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-plumbing-business) <br>
-- [PHCC](https://phcc.org) <br>
-- [MCAA](https://www.mcaa.org) <br>
-- [International Code Council](https://www.iccsafe.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, workflows, and benchmark ranges] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only business reference; produces no code, credential access, persistence, or hidden system behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Pricing, licensing, code, permit, OSHA, EPA, and insurance guidance may vary by jurisdiction or change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify requirements with local authorities, qualified counsel, insurers, and current trade references before using the guidance in business operations.
+
+Risk: Market benchmarks and rate ranges may not fit a specific service area, labor market, or business cost structure.
+
+Mitigation: Validate rates, margins, and KPIs against current local costs, customer demand, vendor pricing, and company financials.
+
+Risk: The artifact includes visible AfrexAI promotional and resource links.
+
+Mitigation: Review outbound resources independently before adopting, purchasing, or recommending them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-plumbing-business)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+- [Plumbing-Heating-Cooling Contractors Association](https://phcc.org)
+- [Mechanical Contractors Association of America](https://www.mcaa.org)
+- [International Code Council](https://www.iccsafe.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, benchmarks, and example prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static business guidance; verify local legal, code, licensing, and market requirements before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

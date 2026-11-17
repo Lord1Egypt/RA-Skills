@@ -1,0 +1,8 @@
+{
+  "example_is_hypothetical": true,
+  "facts": [
+    {"id": "F1", "claim": "虚构工具 PineNote 可将一段文字整理成三条摘要", "source": "hypothetical://sample-product", "status": "verified"},
+    {"id": "F2", "claim": "示例演示输入是一段约 120 字的测试文本", "source": "hypothetical://sample-test", "status": "verified"},
+    {"id": "F3", "claim": "工具每天新增 1000 名用户", "source": "", "status": "unverified"}
+  ]
+}

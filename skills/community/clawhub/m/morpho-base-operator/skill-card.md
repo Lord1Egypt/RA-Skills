@@ -1,46 +1,65 @@
-## Description: <br>
-Operates a Base-first Morpho vault workflow with registry-based planning, external signature collection, pinned MCP execution, reconciliation, and report archival. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate a Base-first Morpho vault workflow with registry-gated planning, external authorization, MCP execution, reconciliation, and archived reporting.
 
-## Publisher: <br>
-[walioo](https://clawhub.ai/user/walioo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walioo](https://clawhub.ai/user/walioo)
 
-## Use Case: <br>
-Developers and DeFi operators use this skill to plan and execute registry-constrained Morpho vault operations on Base while keeping signing authority outside the agent host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact DeFi vault execution can move assets incorrectly if registry, market, or adapter data is wrong. <br>
-Mitigation: Use only a verified registry, reject unknown or paused markets before execution, and require explicit human approval for each transaction. <br>
-Risk: Under-specified signing boundaries could allow an agent host to gain excessive transaction authority. <br>
-Mitigation: Keep authority in an external signer or hardware wallet and never give the agent direct raw private-key control. <br>
-Risk: MCP execution boundaries could be unsafe if the runtime or tool surface is not pinned and trusted. <br>
-Mitigation: Use a trusted pinned MCP implementation, verify the required tool surface before execution, and reconcile receipts before archiving reports. <br>
+## Use Case:
 
+DeFi operators and engineers use this skill to run controlled Morpho vault operations on Base by loading a registry, validating addresses and market status, preparing deterministic plans, collecting external signatures, executing through the pinned MCP stack, and reconciling reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/walioo/morpho-base-operator) <br>
-- [Incident Response Reference](references/incident-response.md) <br>
-- [Policy](references/policy.md) <br>
-- [Registry](references/registry.md) <br>
-- [Runbook Reference](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with ordered operational steps and inline commands or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce deterministic plans, execution checklists, reconciliation notes, and archive/report guidance; does not include user secrets or signing keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Private keys or authority signatures may be exposed if handled inside the agent host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep signing outside the host, prefer hardware-backed or external signing, and provide local secrets outside the published skill bundle.
+
+Risk: Executing against an unknown, paused, disabled, or address-mismatched market could produce unsafe writes.
+
+Mitigation: Treat the registry as the source of truth, reject unsupported market state before execution, and stop on address or adapter mismatches.
+
+Risk: Mainnet execution can move assets before operator review is complete.
+
+Mitigation: Keep allowMainnetExecution false by default and require explicit operator signoff before enabling execution.
+
+Risk: A revert or ambiguous receipt can leave operation status unclear.
+
+Mitigation: Stop retries, reconcile the transaction outcome, preserve logs and reports under artifacts/, and archive the execution report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/walioo/skills/morpho-base-operator)
+- [Runbook Reference](references/runbook.md)
+- [Policy](references/policy.md)
+- [Incident Response Reference](references/incident-response.md)
+- [Registry](references/registry.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown operational guidance with ordered steps, risk checks, and configuration reminders.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires operator-supplied local RPC, signing key handling, registry data, and active vault identifiers outside the skill bundle.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 # V2 Migration Guide
 
-Comprehensive guide for migrating from `@modelcontextprotocol/sdk` v1 to v2. v2 is **beta-published on npm** (`2.0.0-beta.1`, npm `latest`, published 2026-06-30); v1.x remains recommended for production until v2 stable. Stable v2 is targeted to ship alongside the finalized spec revision on **2026-07-28**; the API is settling but can still change before then.
+Comprehensive guide for migrating from `@modelcontextprotocol/sdk` v1 to v2. **v2 is stable**: `2.0.0` shipped 2026-07-27 alongside the released 2026-07-28 spec revision, with all nine packages cut simultaneously (they have versioned independently since - see "2.0.0 -> 2.3.1"). v1.x is now the legacy line - it "continues to receive bug fixes and security updates for at least 6 months after v2's release", with source on the long-lived [`v1.x` branch](https://github.com/modelcontextprotocol/typescript-sdk/tree/v1.x) rather than `main`. Canonical v2 docs (tutorial, troubleshooting, generated API reference): [ts.sdk.modelcontextprotocol.io/v2](https://ts.sdk.modelcontextprotocol.io/v2/).
+
+> **Upgrading to v2 does not change your protocol revision.** v2 speaks the 2025-era wire by default; 2026-07-28 is opt-in via `versionNegotiation`. See "The Two Eras" in `SKILL.md` and `references/spec-2026-07-28.md`.
 
 ## Table of Contents
 - [Package Split](#package-split)
@@ -11,6 +13,7 @@ Comprehensive guide for migrating from `@modelcontextprotocol/sdk` v1 to v2. v2 
 - [Error Model](#error-model)
 - [Transport Changes](#transport-changes)
 - [Middleware Packages](#middleware-packages)
+- [2.0.0 -> 2.3.1](#200---231-2026-09-23--09-28--10-02--10-05)
 - [Migration Checklist](#migration-checklist)
 
 ## Package Split
@@ -26,8 +29,10 @@ v1 ships as a single package. v2 splits into focused packages:
 | - | `@modelcontextprotocol/express` | Express middleware + DNS rebinding protection |
 | - | `@modelcontextprotocol/hono` | Hono middleware |
 | - | `@modelcontextprotocol/fastify` | Fastify middleware (added 2.0.0-alpha.1, [PR #1536](https://github.com/modelcontextprotocol/typescript-sdk/pull/1536)) |
-| - | `@modelcontextprotocol/server-legacy` | Frozen v1 SSE transport + OAuth Authorization Server helpers, for v1->v2 migration (added 2.0.0-alpha.3, [PR #2206](https://github.com/modelcontextprotocol/typescript-sdk/pull/2206)) |
-| - | `@modelcontextprotocol/codemod` | CLI codemod for the mechanical migration: `npx @modelcontextprotocol/codemod@beta v1-to-v2 .` |
+| - | `@modelcontextprotocol/server-legacy` | Frozen v1 SSE transport + OAuth Authorization Server helpers, for v1->v2 migration (added 2.0.0-alpha.3, [PR #2206](https://github.com/modelcontextprotocol/typescript-sdk/pull/2206)). Deprecated upstream ("use StreamableHTTP and a dedicated OAuth server in production"), but it did ship `2.0.0` in the GA cut |
+| - | `@modelcontextprotocol/codemod` | CLI codemod for the mechanical migration: `npx @modelcontextprotocol/codemod v1-to-v2 .` |
+
+A tenth package, `@modelcontextprotocol/core-internal`, is **private** - `server` and `client` bundle it at build time, so it never appears in your dependency tree. Never depend on it directly.
 
 ## Import Changes
 
@@ -61,13 +66,13 @@ import { Client } from "@modelcontextprotocol/client";
 
 | Requirement | v1 | v2 |
 |-------------|----|----|
-| Module system | CJS + ESM | **ESM only** |
-| Node.js | 16+ | **20+** |
+| Module system | CJS + ESM | **ESM-first; CJS builds restored in 2.0.0-beta.2** ([PR #2405](https://github.com/modelcontextprotocol/typescript-sdk/pull/2405): every package emits `.mjs`/`.d.mts` and `.cjs`/`.d.cts` with a `require` exports condition) |
+| Node.js | 16+ | **20+** (Bun and Deno also supported) |
 | Schema library | Zod v3 or v4 (since v1.23) | Any [Standard Schema](https://standardschema.dev) library (Zod v4, Valibot, ArkType) - `zod` is no longer a peer dependency ([PR #1824](https://github.com/modelcontextprotocol/typescript-sdk/pull/1824)). For raw JSON Schema, use the `fromJsonSchema` adapter. |
 
 ### ESM Migration
 
-If your project uses CommonJS, you need to switch to ESM:
+ESM remains the primary target; since beta.2, CommonJS consumers can `require()` the packages directly. To switch a project to ESM:
 
 ```json
 // package.json
@@ -167,7 +172,8 @@ server.registerTool("my-tool", config, async (args, ctx) => {
     maxTokens: 100,
   });
 
-  // Elicitation (request user input)
+  // Elicitation (request user input) - 2025-era only: throws on a 2026-07-28
+  // connection. For both eras return inputRequired(...) instead (SKILL.md "Extensions").
   const input = await ctx.mcpReq.elicitInput({
     message: "Please confirm the operation",
     requestedSchema: { type: "object", properties: { confirm: { type: "boolean" } } },
@@ -276,41 +282,40 @@ import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 
 ### DNS Rebinding Protection
 
-`createMcpExpressApp()` and `createMcpHonoApp()` include Host header validation by default for localhost servers. This prevents DNS rebinding attacks where a malicious website could access your local MCP server.
+`createMcpExpressApp()` and `createMcpHonoApp()` validate `Host` and `Origin` by default for loopback binds. This prevents DNS rebinding attacks where a malicious website could access your local MCP server. The raw transport's `enableDnsRebindingProtection`/`allowedHosts`/`allowedOrigins` options are `@deprecated`, and `createMcpHandler` does no validation at all - guard it with `hostHeaderValidationResponse`/`originValidationResponse`.
 
 ## Middleware Packages
 
-### @modelcontextprotocol/hono
+The framework packages adapt one web-standard handler; they are not registration wrappers. `createMcpExpressApp(options)` / `createMcpHonoApp(options)` return a preconfigured app (JSON parsing + Host/Origin checks for loopback binds) and take **no** registration callback - register inside the `createMcpHandler` factory instead.
 
 ```typescript
+// Express: adapt once with toNodeHandler
+import { createMcpExpressApp } from "@modelcontextprotocol/express";
+import { toNodeHandler } from "@modelcontextprotocol/node";
+import { createMcpHandler, McpServer } from "@modelcontextprotocol/server";
+
+const handler = createMcpHandler(() => {
+  const server = new McpServer({ name: "my-server", version: "1.0.0" });
+  server.registerTool("my-tool", config, toolHandler);
+  return server;
+});
+
+const app = createMcpExpressApp();
+const node = toNodeHandler(handler);
+app.all("/mcp", (req, res) => void node(req, res, req.body));
+```
+
+```typescript
+// Hono: handler.fetch is already web-standard; forward the parsed body
+import type { Context } from "hono";
 import { createMcpHonoApp } from "@modelcontextprotocol/hono";
 
-const mcpApp = createMcpHonoApp(
-  (server) => {
-    server.registerTool("my-tool", config, handler);
-  },
-  { name: "my-server", version: "1.0.0" },
-);
-
-const app = new Hono();
-app.route("/mcp", mcpApp);
+const app = createMcpHonoApp();
+app.all("/mcp", (c: Context) => handler.fetch(c.req.raw, { parsedBody: c.get("parsedBody") }));
+export default app;
 ```
 
-### @modelcontextprotocol/express
-
-```typescript
-import { createMcpExpressApp } from "@modelcontextprotocol/express";
-
-const mcpApp = createMcpExpressApp(
-  (server) => {
-    server.registerTool("my-tool", config, handler);
-  },
-  { name: "my-server", version: "1.0.0" },
-);
-
-const app = express();
-app.use("/mcp", mcpApp);
-```
+Bound to a non-loopback host, pass `allowedHosts` (and `allowedOrigins` if browsers connect) explicitly - see `transport-patterns.md`.
 
 ## Alpha -> Beta Changes (2.0.0-beta.1)
 
@@ -319,9 +324,68 @@ v2 entered beta on 2026-06-30. Beta signals a settling (not frozen) API with sup
 - **`createMcpHandler` is now web-standards-only**, returning `{ fetch, close, notify, bus }`. The duck-typed `.node(req, res)` face is gone - wrap once with `toNodeHandler(handler)` from `@modelcontextprotocol/node` for Express/Node.
 - **`serveStdio(factory, options?)`** (`@modelcontextprotocol/server/stdio`) is the new stdio entry point; `ServerOptions.eraSupport` was removed (migrate `new McpServer(info, { eraSupport })` + `connect()` to `serveStdio(() => new McpServer(info))`).
 - **Default JSON Schema validator is now `Ajv2020`** (true 2020-12) instead of draft-07 - `$defs`, `prefixItems`, `unevaluatedProperties`, `dependentRequired` are now enforced.
-- **`CallToolResult.content` is required at the wire boundary** - a handler result without `content` is rejected with `-32602`. `CallToolResult.structuredContent` is widened to `unknown` (a deliberate source-level break for typed consumers).
+- **`CallToolResult.content` is required at the wire boundary** - a handler result without `content` is rejected with `-32602`. Softened in beta.3 ([PR #2456](https://github.com/modelcontextprotocol/typescript-sdk/pull/2456)): a legacy-era result without `content` is normalized to `content: []` instead of failing validation; 2026-era wire schemas stay strict. `CallToolResult.structuredContent` is widened to `unknown` (a deliberate source-level break for typed consumers).
 - **Protocol error codes renumbered**: `HeaderMismatch -32020`, `MissingRequiredClientCapability -32021`, `UnsupportedProtocolVersion -32022`; unknown-URI `resources/read` answers `-32602` with a typed `ResourceNotFoundError` (`data.uri`).
 - **TypeScript >= 6.0 consumers must set `"types": ["node"]`** in tsconfig or the `.d.mts` declarations fail under `skipLibCheck: false` ([PR #2394](https://github.com/modelcontextprotocol/typescript-sdk/pull/2394)).
+
+## Beta.1 -> Beta.3 Changes (2026-07-02 / 2026-07-09)
+
+beta.2 and beta.3 shipped for all v2 packages except `server-legacy` (frozen at beta.2, deprecated):
+
+- **CommonJS builds** ([PR #2405](https://github.com/modelcontextprotocol/typescript-sdk/pull/2405), beta.2) - see Runtime Requirements above.
+- **Post-dispatch `-32021` (`MissingRequiredClientCapability`) now returns HTTP 400** instead of riding HTTP 200 ([PR #2399](https://github.com/modelcontextprotocol/typescript-sdk/pull/2399), beta.2).
+- **Non-JSON POSTs rejected with `415 Unsupported Media Type`** - Content-Type is parsed, not substring-matched; new exported `isJsonContentType(header)` helper. Custom transports composing `classifyInboundRequest`/`PerRequestHTTPServerTransport` must apply it themselves ([PR #2441](https://github.com/modelcontextprotocol/typescript-sdk/pull/2441), beta.3).
+- **`inputRequired.elicit()` accepts a Standard Schema** (e.g. a Zod object) for `requestedSchema`; inexpressible shapes (nested objects, `.regex()`, exclusive bounds, literal unions) reject before anything is sent ([PR #2369](https://github.com/modelcontextprotocol/typescript-sdk/pull/2369), beta.3).
+- **SDK error classes brand-match across separately bundled SDK copies** (`Symbol.hasInstance` + a registry symbol), plus static `X.isInstance(value)` guards; `connect()` against an auth-gated server now rejects with the original `UnauthorizedError` instead of a wrapped `SdkError` ([PR #2384](https://github.com/modelcontextprotocol/typescript-sdk/pull/2384), beta.3).
+- **Streamable HTTP client session hygiene**: no session ID attached to `initialize` POSTs; `mcp-session-id` captured only from a successful initialize response; rotation only via 404 + re-initialize ([PR #2469](https://github.com/modelcontextprotocol/typescript-sdk/pull/2469), beta.3).
+- **Runtime-neutral auth helpers in `@modelcontextprotocol/server`**: `requireBearerAuth` for web-standard `fetch(request)` hosts (Cloudflare Workers, Deno, Bun, Hono) and `oauthMetadataResponse` serving the RFC 9728 / RFC 8414 metadata documents; the insecure-issuer escape hatch is now an explicit `dangerouslyAllowInsecureIssuerUrl` option ([PR #2420](https://github.com/modelcontextprotocol/typescript-sdk/pull/2420), [PR #2422](https://github.com/modelcontextprotocol/typescript-sdk/pull/2422), beta.3).
+- Fixes: version negotiation no longer drops pre-set transport handlers (PR #2455); CJS `validators/ajv` subpath crash fixed (PR #2431); legacy content-less `CallToolResult` tolerance (PR #2456, above).
+
+## Beta.3 -> 2.0.0 (2026-07-13 / 07-21 / 07-27)
+
+**If you piloted v2 on `2.0.0-beta.3`, upgrade - do not stay pinned.** beta.5 changed the 2026-07-28 wire shape, so a beta.3 build is incompatible with conforming modern peers.
+
+### The wire realignment (beta.5, breaking)
+
+[PR #2513](https://github.com/modelcontextprotocol/typescript-sdk/pull/2513) aligned the SDK with the *final* spec revision (spec PR #3002):
+
+- `serverInfo` **moves out of the `DiscoverResult` body into the result `_meta`**; new exported constant `SERVER_INFO_META_KEY` (`'io.modelcontextprotocol/serverInfo'`).
+- The per-request envelope's `clientInfo` **demotes from required to SHOULD** (`RequestMetaEnvelope.clientInfo` is now optional).
+- Breaking types: `DiscoverResult` no longer declares `serverInfo`.
+
+Why it matters concretely: before this, "the client hard-rejected a conforming server's `DiscoverResult` (missing body `serverInfo` failed parse, so the probe misclassified the server as legacy and attempted an `initialize` handshake against it - a hard connect failure against a modern-only server)", and "the server rejected conforming clients that omit `clientInfo`".
+
+### Structural changes (beta.4)
+
+- **Schema modules consolidated into `@modelcontextprotocol/core`** ([PR #2477](https://github.com/modelcontextprotocol/typescript-sdk/pull/2477)) - packages resolve them as a runtime dependency instead of bundling private copies, so an app importing more than one package "now evaluates a single shared schema graph with shared object identity". `core` gains a `./internal` subpath (SDK-internal; may change in any release), and the four core packages version together.
+- **The client response cache is now string-valued** ([PR #2468](https://github.com/modelcontextprotocol/typescript-sdk/pull/2468)) - **breaking for custom `ResponseCacheStore` implementations**: `CacheEntry.value` is now `string`; persist and return it verbatim, `JSON.parse` to inspect. Entries written by an older SDK "fail decode once (reported, dropped) and are rewritten on the next fetch".
+- **Startup cost moved off the hot path**: wire schemas and the Ajv engine are both built lazily on first validation ([PR #2476](https://github.com/modelcontextprotocol/typescript-sdk/pull/2476), [PR #2458](https://github.com/modelcontextprotocol/typescript-sdk/pull/2458)). For Cloudflare Workers, where lazy construction lands in the request path, call the new **`preloadSchemas()`** at module scope - the workerd export condition does it automatically ([PR #2483](https://github.com/modelcontextprotocol/typescript-sdk/pull/2483)).
+
+### Fixes worth knowing (beta.5 / 2.0.0)
+
+- **Auth failures are no longer treated as era evidence** ([PR #2564](https://github.com/modelcontextprotocol/typescript-sdk/pull/2564)) - a 401/403 on the `server/discover` probe now surfaces as a typed `SdkHttpError` (`ClientHttpAuthentication` / `ClientHttpForbidden`) carrying status, reason phrase, and response text, instead of triggering a legacy `initialize` fallback "which put a doomed `initialize` on the wire". If you gate your MCP endpoint behind auth, this is the fix that makes v2 clients report the real error.
+- **The default validator honors declared draft-07 / 2019-09 dialects** ([PR #2534](https://github.com/modelcontextprotocol/typescript-sdk/pull/2534)) - this unblocks every `zod-to-json-schema` user, whose default output is stamped `"$schema": "http://json-schema.org/draft-07/schema#"`. Schemas with no `$schema` still validate as 2020-12; unknown dialects produce a typed error listing the supported ones.
+- **stdio era probing runs on a disposable sibling process** ([PR #2514](https://github.com/modelcontextprotocol/typescript-sdk/pull/2514)) - some stdio servers exit on any pre-`initialize` request (rmcp-based servers do), which previously killed the server and hard-failed `connect()` under `mode: 'auto'`.
+- **`ConnectOptions.prior`** ([PR #2511](https://github.com/modelcontextprotocol/typescript-sdk/pull/2511)) accepts a cached era verdict via the exported `PriorDiscovery` type: `{ kind: 'modern', discover }` adopts a known `DiscoverResult` with zero round trips; `{ kind: 'legacy' }` skips the probe without pinning the client to `mode: 'legacy'`.
+- **`Protocol` and `mergeCapabilities` are re-exported** from the `client` and `server` package roots ([PR #2501](https://github.com/modelcontextprotocol/typescript-sdk/pull/2501)), restoring the v1 import for consumers that subclass `Protocol` (the MCP Apps SDK does). Each package bundles its own compiled copy - import from one package consistently within a process.
+- **SSE keep-alive frames** ([PR #2541](https://github.com/modelcontextprotocol/typescript-sdk/pull/2541)) - `createMcpHandler`'s `keepAliveMs` now applies to every HTTP SSE stream it serves.
+- The 2025-era `tasks/*` wire vocabulary is `@deprecated` and excluded from the typed method maps (`RequestMethod`, `RequestTypeMap`, `ResultTypeMap`, `NotificationTypeMap` have no `tasks/*` entries).
+
+## 2.0.0 -> 2.3.1 (2026-09-23 / 09-28 / 10-02 / 10-05)
+
+The nine packages stopped versioning in lockstep after 2.0.0: `server`/`client`/`core` are at 2.3.1, `node` 2.1.1, `express`/`hono` 2.0.2, `fastify` 2.0.1. Upgrade `express` together with `server` if you use its auth middleware - `express` 2.0.1 does not pass `expectedResource` on.
+
+**2.1.0** - everything previously "fixed on `main`" (4 MiB body limit + `413`, 100-message batch cap, `MCP-Protocol-Version` enforcement, `Mcp-Name` on tasks, request id `0`); `StdioServerTransport` closes on stdin EOF and aborts in-flight requests; per-primitive OAuth step-up via `scopeChallenge` / `requireScopes(...)` on `registerTool`/`registerResource`/`registerPrompt` (answers `403 insufficient_scope` before the handler runs); client DPoP (`OAuthClientProvider.dpop()`).
+
+**2.2.0** - fixes the `createMcpHandler` `onclose` stack overflow (#2607) and the empty-honored-set `subscriptions/listen` stream (#2650). Client: providers built without `expectedIssuer` are deprecated (GHSA-6qxp-vccf-f47h).
+
+**2.3.0 - a breaking change in a minor release:**
+
+> A `Server` or `McpServer` now serves one connection at a time, and a Streamable HTTP server transport without sessions (`sessionIdGenerator: undefined`) serves one request. An app that uses one server object, or one stateless transport, for every HTTP request fails on the second request after this upgrade.
+
+`createMcpHandler(() => sharedServer)` answers a request that overlaps another with `500` / `-32603`, reported only through `onerror`. A plain `node:http` listener without its own error handling gets an unhandled rejection that ends the process. Also in 2.3.0: `maxToolInputElements` and `expectedResource` (both off by default, both security-relevant - see `SKILL.md`); `allowedOrigins` accepts `<scheme>://*`; `registerTool` converts schemas lazily; `prompts/get` without `arguments` validates as `{}`; `tasks/get` / `tasks/cancel` servable on 2026-07-28 connections (register them only when `ctx.era === 'legacy'` if they are meant for 2025-era clients only); the client no longer follows cross-origin redirects (`redirectPolicy: 'follow'` restores it, GHSA-6prh-2h8m-c8cw).
+
+**On `main`, unreleased after 2.3.1**: `x-mcp-header` on a `number`-typed parameter is rejected, matching the spec.
 
 ## Migration Checklist
 
@@ -331,11 +395,11 @@ v2 entered beta on 2026-06-30. Beta signals a settling (not frozen) API with sup
 - [ ] Use `z.object()` wrappers (not raw shapes) for tool schemas
 - [ ] Set tool annotations on all tools
 - [ ] Use `isError: true` for all tool-level errors (not McpError for validation)
-- [ ] Bump to SDK v1.28.0 (catches plain JSON Schema errors, security fix)
+- [ ] Bump to SDK >= v1.32.0 (plain JSON Schema throws since 1.28.0; 1.32.0 is the current security floor)
 - [ ] Register all tools/resources before `connect()` ([#893](https://github.com/modelcontextprotocol/typescript-sdk/issues/893))
 - [ ] Ensure per-request server+transport pattern (not shared instances)
 
-### Phase 2: Migrate (when v2 is stable)
+### Phase 2: Migrate (v2 is stable - you can do this now)
 
 - [ ] Switch to ESM (`"type": "module"` in package.json)
 - [ ] Upgrade Node.js to 20+
@@ -347,17 +411,29 @@ v2 entered beta on 2026-06-30. Beta signals a settling (not frozen) API with sup
 - [ ] Update handler signatures: `extra` -> `ctx`
 - [ ] Remove any SSEServerTransport usage
 - [ ] Add `outputSchema` + `structuredContent` to tools
-- [ ] Switch to framework middleware if using Hono/Express
-- [ ] Test with `MCP-Protocol-Version: 2025-11-25` header
+- [ ] Replace per-request transport wiring with `createMcpHandler(factory)` (`toNodeHandler` for Express)
+- [ ] Decide your era explicitly: leave `versionNegotiation` absent to stay on the 2025 wire (recommended unless you control both ends), or set `'auto'` / `{ pin: '2026-07-28' }`
+- [ ] Test against the era you chose - `MCP-Protocol-Version: 2025-11-25` for the legacy wire, `2026-07-28` for the modern one
 
 ### Phase 3: Optimize (after migration)
 
 - [ ] Add `outputSchema` to all tools for typed outputs
 - [ ] Implement dynamic tool loading for large tool sets
 - [ ] Use `structuredContent` for all responses
-- [ ] Review DNS rebinding protection settings
+- [ ] Review DNS rebinding protection (guard `createMcpHandler`; set `allowedHosts` on non-loopback binds)
+- [ ] Set `expectedResource` on `requireBearerAuth` and `maxToolInputElements` on `McpServer` - both default off
 - [ ] Remove any Zod v3 compatibility shims
 
 ### Timeline
 
-v1.x gets 6 months of support after v2 stable ships. v2 stable is targeted for **2026-07-28** alongside the finalized spec revision; only pre-releases exist today (`2.0.0-beta.1`), so v1 remains the production choice. No rush to migrate, but write new code with v2 patterns in mind - and the `@modelcontextprotocol/codemod` `v1-to-v2` codemod handles the mechanical parts.
+v2 stable shipped **2026-07-27**, alongside the released 2026-07-28 spec revision. The support window is now written down in the SDK's own `ROADMAP.md`:
+
+> The `v1.x` branch (`@modelcontextprotocol/sdk`) continues to receive bug fixes and security updates for at least six months after the v2 release (2026-07-27). It targets the 2025-11-25 spec revision; new spec revisions are implemented on `main` only.
+
+The second sentence is the one that sets the real deadline: **v1 will never speak a revision past 2025-11-25** - the v1.x README now says it outright: *"Support for the 2026-07-28 spec is not planned for v1.x"*. Fixes for six-plus months, but no path to 2026-07-28 or anything after it, so "v1 still gets patches" is not a reason to stay if you need the modern wire. The repo also added `VERSIONING.md` and a `DEPENDENCY_POLICY.md` (including a 7-day `minimumReleaseAge` supply-chain cooldown on lockfile entries) alongside it.
+
+In practice the ecosystem is still on v1: the official reference servers (`server-filesystem`, `server-memory`, `server-everything`) were republished 2026-08-31 still pinning `"@modelcontextprotocol/sdk": "^1.30.0"`, which is why the v1 draft-07 defect in `sdk-bugs.md` has such a wide blast radius.
+
+New code should target v2; the `@modelcontextprotocol/codemod` `v1-to-v2` codemod handles the mechanical parts.
+
+Two reasons to move sooner rather than later, both v1-only defects with no backport: `z.union()`/`z.discriminatedUnion()` still produce empty schemas on every released v1 including 1.30.0 ([PR #2017](https://github.com/modelcontextprotocol/typescript-sdk/pull/2017) is still open), and the concurrent-transport-closure stack overflow ([#1699](https://github.com/modelcontextprotocol/typescript-sdk/issues/1699)) was fixed on the v2 line only.

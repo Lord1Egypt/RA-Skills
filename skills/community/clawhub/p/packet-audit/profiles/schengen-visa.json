@@ -1,0 +1,131 @@
+{
+  "id": "schengen-visa",
+  "title": "Schengen short-stay visa packet",
+  "date_order": "dmy",
+  "money_tolerance": 0.0,
+  "review_note": "Consulate checklists differ by country and by travel purpose. This profile covers the common short-stay tourism set; replace it with the consulate's own list for a real submission.",
+  "classify": [
+    {
+      "type": "passport",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["passport number", "place of issue", "date of issue", "date of expiry"]
+    },
+    {
+      "type": "travel_insurance",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["travel insurance", "medical repatriation", "insurance policy", "sum insured"]
+    },
+    {
+      "type": "bank_statement",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["opening balance", "closing balance", "account statement", "statement period"]
+    },
+    {
+      "type": "accommodation",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["booking confirmation", "reservation", "check-in", "check-out", "nights"]
+    },
+    {
+      "type": "itinerary",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["flight", "itinerary", "departure", "arrival"]
+    },
+    {
+      "type": "employment_letter",
+      "ext": [".txt", ".md", ".docx", ".pdf"],
+      "content": ["employment", "leave approved", "annual leave", "employer"]
+    },
+    {
+      "type": "passport",
+      "filename": ["passport"]
+    },
+    {
+      "type": "travel_insurance",
+      "filename": ["insurance", "policy"]
+    },
+    {
+      "type": "bank_statement",
+      "filename": ["statement", "\\bbank\\b"]
+    },
+    {
+      "type": "accommodation",
+      "filename": ["booking", "hotel", "reservation", "accommodation"]
+    },
+    {
+      "type": "itinerary",
+      "filename": ["itinerary", "flight", "ticket"]
+    }
+  ],
+  "fields": {
+    "full_name": {
+      "label": "Full name",
+      "normalizer": "name",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:surname and forenames|full name|name|applicant)[ \\t]*[:\\-][ \\t]*([A-Za-z][A-Za-z' .\\-]{1,60})$"}
+      ]
+    },
+    "passport_expiry": {
+      "label": "Passport expiry date",
+      "normalizer": "date",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:date of expiry|expiry date|expires|valid until)[ \\t]*[:\\-][ \\t]*([0-9]{1,4}[./\\-][0-9]{1,2}[./\\-][0-9]{1,4})$"}
+      ]
+    },
+    "date_of_birth": {
+      "label": "Date of birth",
+      "normalizer": "date",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:date of birth|dob|born)[ \\t]*[:\\-][ \\t]*([0-9]{1,4}[./\\-][0-9]{1,2}[./\\-][0-9]{1,4})$"}
+      ]
+    },
+    "insurance_expiry": {
+      "label": "Insurance end date",
+      "normalizer": "date",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:end of cover|cover ends|policy end|valid until)[ \\t]*[:\\-][ \\t]*([0-9]{1,4}[./\\-][0-9]{1,2}[./\\-][0-9]{1,4})$"}
+      ]
+    },
+    "bank_amount": {
+      "label": "Closing balance",
+      "normalizer": "money",
+      "patterns": [
+        {"regex": "^[ \\t]*(?:closing balance|balance on)[ \\t]*[:\\-][ \\t]*[$€£]?[ \\t]*([0-9][0-9,. ]*)$"}
+      ]
+    }
+  },
+  "document_fields": {
+    "passport": ["full_name", "passport_expiry", "date_of_birth"],
+    "travel_insurance": ["full_name", "insurance_expiry"],
+    "bank_statement": ["full_name", "bank_amount"],
+    "accommodation": ["full_name"],
+    "itinerary": ["full_name"],
+    "employment_letter": ["full_name"]
+  },
+  "required": [
+    {"type": "passport", "label": "passport"},
+    {"type": "travel_insurance", "label": "travel medical insurance"},
+    {"type": "accommodation", "label": "accommodation confirmation"},
+    {"type": "bank_statement", "label": "proof of funds", "alternates": []},
+    {"type": "itinerary", "label": "travel itinerary", "alternates": []}
+  ],
+  "validity": [
+    {
+      "doc_type": "passport",
+      "field": "passport_expiry",
+      "min_days_after_decision": 90,
+      "severity": "error",
+      "reason": "short-stay visas require validity at least three months beyond the intended departure"
+    },
+    {
+      "doc_type": "travel_insurance",
+      "field": "insurance_expiry",
+      "min_days_after_decision": 1,
+      "severity": "error",
+      "reason": "cover must still be active on the travel dates"
+    }
+  ],
+  "consistency": [
+    {"field": "full_name", "primary": "passport", "severity": "error"},
+    {"field": "date_of_birth", "primary": "passport", "severity": "error"}
+  ]
+}

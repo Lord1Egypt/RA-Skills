@@ -1,42 +1,58 @@
-## Description: <br>
-Logs daily mood entries to an Obsidian vault with fixed formatting, mood scores from 1 to 10, tags, optional notes, and weekly mood report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs daily mood entries to an Obsidian vault using a fixed format, with mood score, tags, optional notes, and weekly mood report generation.
 
-## Publisher: <br>
-[leo-zzl](https://clawhub.ai/user/leo-zzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo-zzl](https://clawhub.ai/user/leo-zzl)
 
-## Use Case: <br>
-Individuals and agents use Mood Logger to capture daily emotional check-ins, store them as Markdown journal files, and generate weekly mood summaries from those records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private mood summaries may be included in recurring weekly reporting and sent to a preset WeChat recipient. <br>
-Mitigation: Use local logging by default; enable scheduled delivery only after verifying the recipient, previewing the exact report content, and confirming how to disable the scheduled task. <br>
-Risk: Mood records are written to a hard-coded Obsidian/iCloud path from the artifact. <br>
-Mitigation: Change the vault path to the intended local Obsidian vault before use. <br>
+## Use Case:
 
+External users and agent operators use this skill to record daily mood scores, tags, and notes in Markdown, then generate weekly summaries of mood trends and tag frequency.
 
-## Reference(s): <br>
-- [Mood Logger ClawHub release](https://clawhub.ai/leo-zzl/mood-logger) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Weekly report setup](artifact/WEEKLY_REPORT_SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown files and console text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes mood entries and weekly reports to local files; scheduled delivery is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Mood records and notes may contain sensitive personal information and are stored in a hard-coded Obsidian/iCloud path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or change the storage path before use and avoid logging private notes in shared or synchronized vaults unless that storage is intended.
+
+Risk: Weekly reporting and scheduled sending can expose mood summaries outside the local vault, including through the configured WeChat recipient.
+
+Mitigation: Keep report generation manual unless recurring delivery is explicitly intended, and replace or remove the recipient before enabling scheduled sending.
+
+Risk: Temporary report outputs under /tmp may expose private mood data to other local processes or leave residual files.
+
+Mitigation: Write reports to a private directory with appropriate permissions or delete temporary reports immediately after use.
+
+## Reference(s):
+
+- [Mood Logger on ClawHub](https://clawhub.ai/leo-zzl/skills/mood-logger)
+- [Weekly Report Setup](artifact/WEEKLY_REPORT_SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown mood logs and weekly reports with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local Markdown files to a configured Obsidian daily-notes directory and can print or save weekly reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

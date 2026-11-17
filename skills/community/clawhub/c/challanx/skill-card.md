@@ -1,42 +1,55 @@
-## Description: <br>
-All-in-one RTO, challan, RC lookups and media downloader features for ChallanX. Accepts a single input - a URL, a free-text message, or an image - and returns concise, actionable results such as download links, summaries, or document analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ChallanX helps agents use the ChallanX OpenClaw API for RTO, challan, RC lookup, and media download workflows from a URL, message, or image.
 
-## Publisher: <br>
-[rajniwebdeveloper](https://clawhub.ai/user/rajniwebdeveloper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rajniwebdeveloper](https://clawhub.ai/user/rajniwebdeveloper)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to call or document the ChallanX OpenClaw API for media downloads, RTO/challan/RC-related lookups, and concise handling of URL, text, or image inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs, text, images, and vehicle or document details submitted through this skill are sent to ChallanX. <br>
-Mitigation: Install only if ChallanX is trusted with that data, and avoid sending private signed links, internal URLs, secrets, or highly sensitive documents unless disclosure is intended. <br>
-Risk: The skill requires CHALLANX_API_KEY for authenticated API requests. <br>
-Mitigation: Store CHALLANX_API_KEY as a runtime secret and do not hardcode it in the bundle, examples, or generated files. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to produce concise ChallanX API guidance, curl examples, response formats, and bootstrap reminders for media and vehicle lookup workflows.
 
-## Reference(s): <br>
-- [ChallanX API Reference](references/api.md) <br>
-- [ChallanX OpenClaw API](https://challanx.in/openclaw/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rajniwebdeveloper/challanx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, OpenClaw hook configuration, and expected JSON or media response descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CHALLANX_API_KEY as a runtime secret for x-api-key authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The plugin can inject ChallanX guidance into primary agent bootstrap sessions, beyond an explicit user-invoked lookup or download task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where ChallanX guidance should affect primary agent sessions, and review the injected reminder and instruction files before use.
+
+Risk: Submitted URLs, messages, or images may be sent to the ChallanX endpoint under the configured API key.
+
+Mitigation: Set CHALLANX_API_KEY as a runtime secret and submit only data approved for ChallanX processing.
+
+## Reference(s):
+
+- [ChallanX API Reference](artifact/references/api.md)
+- [ChallanX public OpenClaw API endpoint](https://challanx.in/openclaw/api)
+- [ClawHub skill page](https://clawhub.ai/rajniwebdeveloper/skills/challanx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference downloadable media filenames, content types, ChallanX status names, and x-api-key authentication requirements.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

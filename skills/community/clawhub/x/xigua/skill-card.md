@@ -1,42 +1,54 @@
-## Description: <br>
-Summarizes publicly available Xigua Video videos, short drama pages, and topic pages with titles, authors, engagement statistics, episode information, rankings, and update status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes publicly available videos and short drama pages from Xigua Video with metadata like titles, authors, engagement stats, and update status.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users, analysts, and operators use this skill to organize and summarize public Xigua Video search results, video pages, short drama pages, and ranking pages for lightweight analysis and alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used against login-gated, private, or non-public Xigua Video content. <br>
-Mitigation: Use it only with public Xigua Video pages and avoid private or access-controlled content. <br>
-Risk: The skill may be misused for downloads, hidden API access, reverse engineering, or bulk collection. <br>
-Mitigation: Follow platform rules, avoid media downloads and hidden interfaces, and keep collection lightweight and rate-limited. <br>
+## Use Case:
 
+External users and analysts use this skill to summarize public Xigua Video, short drama, and topic pages, including titles, authors, engagement stats, episode status, and ranking distributions.
 
-## Reference(s): <br>
-- [Xigua Video skill page](https://clawhub.ai/CodeKungfu/xigua) <br>
-- [Xigua Video homepage](https://www.ixigua.com/) <br>
-- [Xigua Video search](https://www.ixigua.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries with structured fields and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are limited to public page summaries and should not include downloaded media, hidden API results, or bulk-collected data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Use outside permitted public-page analysis could violate platform rules or user expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to public Xigua pages, follow platform rules, and do not download content, bypass platform protections, or extract private data.
+
+Risk: High-volume collection could become bulk scraping.
+
+Mitigation: Keep request volume low, avoid large-scale automation, and use human review for dynamic pages and verification prompts.
+
+## Reference(s):
+
+- [Xigua Video](https://www.ixigua.com/)
+- [Xigua Video Search](https://www.ixigua.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public-page metadata such as titles, authors, engagement counts, episode status, rankings, timestamps, and source links.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

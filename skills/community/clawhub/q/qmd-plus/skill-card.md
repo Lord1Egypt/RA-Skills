@@ -1,41 +1,54 @@
-## Description: <br>
-Enhanced QMD search with LLM-powered query expansion for improving recall and precision across multilingual markdown knowledge bases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QMD Plus enhances QMD search for local Markdown knowledge bases with LLM-powered query expansion to improve recall and precision for multilingual note and document lookup.
 
-## Publisher: <br>
-[thehappyboy](https://clawhub.ai/user/thehappyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thehappyboy](https://clawhub.ai/user/thehappyboy)
 
-## Use Case: <br>
-Developers and knowledge-base users use QMD Plus to search local markdown collections through QMD with generated lexical and semantic query variants. It is especially useful when the user wants multilingual query expansion before running local QMD CLI or MCP searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search prompts may disclose query text, collection names, or other sensitive context to an external LLM provider when the optional expansion workflow is used. <br>
-Mitigation: Avoid including secrets, private excerpts, API keys, confidential collection names, or other sensitive data in prompts sent to an LLM provider. <br>
-Risk: LLM-generated query expansions may be inaccurate or may search for unintended concepts. <br>
-Mitigation: Review the generated JSON response before executing the QMD search, especially in production or confidential knowledge bases. <br>
+## Use Case:
 
+Developers and knowledge-base users use this skill to search local Markdown collections through QMD with LLM-assisted query expansion for better multilingual recall and precision.
 
-## Reference(s): <br>
-- [QMD MCP Server Setup](references/mcp-setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/thehappyboy/qmd-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command snippets; helper scripts emit plain text prompts and QMD query output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QMD and, for optional query expansion, a user-selected external LLM workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Markdown collections and search queries may contain private or sensitive information, and LLM expansion can expose query text to an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated non-sensitive QMD collection and avoid secrets, credentials, private data, or confidential collection names in queries sent for LLM expansion.
+
+Risk: Broad command and MCP permissions, optional npx usage, and placeholder LLM commands can increase execution and data-access risk if installed carelessly.
+
+Mitigation: Pin reviewed package versions, restrict MCP access to intended collections, and remove broad npx or placeholder LLM command permissions unless they are explicitly required.
+
+## Reference(s):
+
+- [QMD MCP Server Setup](references/mcp-setup.md)
+- [QMD Plus on ClawHub](https://clawhub.ai/thehappyboy/skills/qmd-plus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local QMD queries, LLM expansion prompts, MCP setup guidance, and search workflow instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release; artifact frontmatter metadata says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

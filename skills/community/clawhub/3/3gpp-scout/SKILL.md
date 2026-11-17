@@ -1,7 +1,7 @@
 ---
 name: 3gpp-scout
-description: Semantic search over 3,200+ 3GPP technical specifications (TS/TR series, Rel-15 and Rel-19). Search text, diagrams, and figures across 904K+ vectors.
-version: 1.0.2
+description: Semantic search over the full 3GPP TS/TR corpus (Rel-15 through Rel-20, 8,700+ document versions). The hosted index stays current as 3GPP publishes new and revised specs. Search text, diagrams, and figures across 2.6M+ text vectors. Hosted MCP at https://api.3gppscout.com/mcp/.
+version: 1.2.0
 homepage: https://3gppscout.com
 metadata:
   openclaw:
@@ -26,11 +26,11 @@ in 3GPP standards documents (TS and TR series).
 **Terms of Service:** [3gppscout.com/terms](https://3gppscout.com/terms)
 **Privacy Policy:** [3gppscout.com/privacy](https://3gppscout.com/privacy)
 
-This is a **paid API service**. Each API call costs a small amount against
-your account's credit balance. New accounts receive free starter credits
-(worth a few hundred API calls) so you can evaluate the service before
-purchasing additional credits. You can view your balance, usage history,
-and buy additional credits at [dashboard.3gppscout.com](https://dashboard.3gppscout.com).
+Direct REST, MCP, and BYOK hosted-chat retrieval share a monthly request
+allowance. The **Explorer** plan includes 150 requests per UTC calendar month.
+**Founding Engineer** includes 1,000 requests per calendar month for
+**$8/month**. Enterprise limits follow the active agreement. View usage or upgrade at
+[dashboard.3gppscout.com/dashboard/billing](https://dashboard.3gppscout.com/dashboard/billing).
 
 ## Base URL
 
@@ -58,6 +58,45 @@ The key is included in every request as a Bearer token:
 Authorization: Bearer $SCOUT_API_KEY
 ```
 
+## MCP Agent Setup
+
+For Cursor, Claude, Codex, or another MCP client, fetch and follow:
+
+```
+https://api.3gppscout.com/agent-setup/prompt.md
+```
+
+The hosted Streamable HTTP MCP URL is:
+
+```
+https://api.3gppscout.com/mcp/
+```
+
+MCP uses OAuth 2.1, so no Scout API key belongs in the MCP configuration. The
+first connection or tool call opens a browser for sign-in. After authorization,
+verify the connection by calling `list_documents` with `doc_number="38.331"`
+and `release="Rel-19"`; keep both filters so verification returns a small list.
+
+## Monthly Quota Exhaustion
+
+REST API keys, OAuth-authenticated MCP tools, and BYOK hosted-chat retrieval
+share the same request allowance. Regular Scout-funded hosted chat uses
+prepaid credits instead. If a tool or endpoint returns HTTP `402`, inspect the error's
+`detail` object. The stable machine-readable code is
+`api_quota_exhausted`, and the response includes:
+
+- `current_plan`
+- `used`, `limit`, and `remaining`
+- `reset_at` as a UTC timestamp
+- `upgrade.plan` (`Founding Engineer`)
+- `upgrade.price` (`8 USD` per month)
+- `upgrade.requests_per_month` (`1000`)
+- `upgrade.url` (`https://dashboard.3gppscout.com/dashboard/billing`)
+
+Do not retry repeatedly while `remaining` is zero. Wait until `reset_at` or
+present the absolute `upgrade.url` to the user. FastMCP-generated tools expose
+the same FastAPI error payload.
+
 ## Available Endpoints
 
 ### POST /search/text
@@ -74,6 +113,7 @@ Semantic search over specification text. This is your primary tool.
 | rerank                 | bool   | true    | Rerank results for higher precision              |
 | rerank_top_k           | int    | 10      | Results to keep after reranking (1–50)           |
 | include_section_text   | bool   | true    | Include the full parent section text             |
+| deduplicate            | bool   | true    | Collapse duplicates across releases/versions; see `also_in` |
 | filter_release         | string | null    | e.g. "Rel-19", "Rel-15"                         |
 | filter_doc_type        | string | null    | "TS" or "TR"                                     |
 | filter_doc_number      | string | null    | e.g. "38.331", "23.501"                          |
@@ -98,6 +138,7 @@ Each **TextResult** contains:
 - `relevance_score` — reranker score (0–1), present when reranked
 - `section_text` — full parent section text (when include_section_text=true)
 - `section_token_count` — token count of the parent section
+- `also_in` — when deduplicate is true, other releases/versions that matched the same section (each entry has `release`, `version`, and scores)
 
 ### POST /search/images
 
@@ -110,6 +151,7 @@ Semantic search over figures, diagrams, and tables in specifications.
 | query              | string | —       | **Required.** Natural language query   |
 | match_count        | int    | 10      | Number of results (1–50)               |
 | match_threshold    | float  | 0.3     | Minimum similarity (0–1)               |
+| deduplicate        | bool   | true    | Collapse duplicates across releases/versions; see `also_in` |
 | filter_release     | string | null    | e.g. "Rel-19"                          |
 | filter_doc_number  | string | null    | e.g. "38.300"                          |
 | filter_series      | string | null    | e.g. "38"                              |
@@ -121,6 +163,7 @@ Each **ImageResult** contains:
 - `context_before`, `context_after` — surrounding text
 - `image_path` — path to the image file
 - `similarity` — semantic similarity score
+- `also_in` — when deduplicate is true, other releases/versions for the same figure (each entry has `release`, `version`, and `similarity`)
 
 ### POST /search/combined
 
@@ -177,13 +220,17 @@ Fetch full section text by section number.
 
 **Query parameters:**
 
-| Parameter       | Type   | Default | Description                                      |
-|-----------------|--------|---------|--------------------------------------------------|
-| section_number  | string | —       | **Required.** e.g. "5.3.3"                        |
-| doc_number      | string | null    | Document number — always provide this              |
-| version         | string | null    | e.g. "19.1.0"                                     |
-| release         | string | null    | e.g. "Rel-19"                                     |
-| prefix          | bool   | false   | Match sub-sections too (e.g. "5.4" gets "5.4.1") |
+| Parameter       | Type   | Default | Description                                                                            |
+|-----------------|--------|---------|----------------------------------------------------------------------------------------|
+| section_number  | string | —       | **Required.** Numeric (`5.3.3`), trailing-letter (`5.3.1a`), or annex (`A.1`, `B.2.3`) |
+| doc_number      | string | —       | **Required.** e.g. `38.331`, `23.501`                                                  |
+| version         | string | null    | e.g. `19.1.0`                                                                          |
+| release         | string | null    | e.g. `Rel-19`                                                                          |
+| prefix          | bool   | false   | Match sub-sections too — works for numeric (`5.4` → `5.4.1`) and annex (`A` → `A.1`)  |
+
+**Behavior on no match:** Returns HTTP 200 with an empty list `[]`. If you get an empty
+list, call `GET /sections/toc?doc_number=…` to see the document's actual section IDs —
+your section number may use a different form (e.g. annex letter case, or the doc isn't indexed yet).
 
 ### GET /sections/toc
 
@@ -211,10 +258,18 @@ Returns `image/png` on success, 404 if the image doesn't exist.
 
 ## Corpus Coverage
 
-The index currently covers:
-- **Rel-15** — 1,493 documents, 195K sections
-- **Rel-19** — 1,789 documents, 291K sections
-- **Total** — 3,282 documents, 486K sections
+The index covers **the full published TS/TR corpus for Rel-15 through Rel-20**
+— not a Rel-15 + Rel-19 subset. Production currently serves 8,700+ document
+versions, 1.3M+ sections, 2.6M+ text vectors, and 225K+ image vectors.
+
+The corpus is **kept current** with the 3GPP source: new and bumped
+specifications are discovered, processed, and merged into the live search
+index (incremental apply for spec updates; full Vertex rebuilds on a monthly
+cadence). Do not treat the index as frozen at an older release pair.
+
+The `/sections` artifacts for the production corpus were refreshed after the
+annex-heading parser fix, so annex sections such as `A.1` are available via
+`GET /sections` when the caller provides `doc_number`.
 
 Series 38 = NR/5G, 23 = system architecture, 24 = signaling protocols,
 36 = LTE, 33 = security, 29 = core network protocols.
@@ -233,7 +288,8 @@ Series 38 = NR/5G, 23 = system architecture, 24 = signaling protocols,
 
 1. Get the table of contents: `GET /sections/toc?doc_number=38.331`
 2. Fetch a specific section: `GET /sections?section_number=5.3.3&doc_number=38.331`
-3. Use `prefix=true` to get a section and all its sub-sections
+3. Annex sections work the same way: `GET /sections?section_number=A.1&doc_number=38.874`
+4. Use `prefix=true` to get a section and all its sub-sections
 
 ### Broad topic research
 
@@ -243,8 +299,8 @@ Series 38 = NR/5G, 23 = system architecture, 24 = signaling protocols,
 
 ### Comparing across releases
 
-1. Search with `filter_release: "Rel-15"` for the original version
-2. Search again with `filter_release: "Rel-19"` for the latest
+1. Search with `filter_release: "Rel-15"` for an earlier release
+2. Search again with `filter_release: "Rel-20"` (or another release) for a later version
 3. Compare the section text to see what changed
 
 ## Tips for Best Results

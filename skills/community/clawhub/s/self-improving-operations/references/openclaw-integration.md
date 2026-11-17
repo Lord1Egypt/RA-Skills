@@ -97,7 +97,7 @@ Is the learning service-specific?
 
 ## Inter-Agent Communication
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
+OpenClaw provides tools for cross-session communication. Do not send cross-session messages unless the user explicitly consents to that specific send. Keep payloads redacted.
 
 ### sessions_send
 

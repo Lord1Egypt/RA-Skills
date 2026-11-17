@@ -1,48 +1,63 @@
-## Description: <br>
-Agent self-healing engine for diagnosing and repairing OpenClaw execution issues such as cron failures, tool errors, workflow interruptions, and performance degradation, with ongoing self-evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dida Agent Optimizer helps diagnose OpenClaw agent execution failures across cron jobs, tool calls, interrupted workflows, performance degradation, and system health, then proposes repairs and captures reusable lessons.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw agent operations, diagnose cron, tool, sub-agent, and system-health failures, propose repairs, and record reusable troubleshooting patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad operational repair authority across cron jobs, service restarts, cleanup workflows, and sub-agent management. <br>
-Mitigation: Require explicit confirmation before deletion, Docker prune, service restart, cron update, or sub-agent kill actions. <br>
-Risk: Weekly self-update workflows can propose changes to reference files or SKILL.md. <br>
-Mitigation: Disable or manually approve weekly self-updates, and review every proposed reference or SKILL.md change before enabling it. <br>
-Risk: The release is flagged as requiring sensitive credentials and is intended for operational repair workflows. <br>
-Mitigation: Install only for OpenClaw operational repair use cases, and review diagnostic commands that inspect credentials, environment variables, or service permissions. <br>
+## Use Case:
 
+Developers and operators use this skill to triage OpenClaw runtime issues, inspect logs and health checks, prepare repair commands, and verify fixes after human approval.
 
-## Reference(s): <br>
-- [Dida Agent Optimizer on ClawHub](https://clawhub.ai/tuobadaidai/dida-agent-optimizer) <br>
-- [Trigger Integration](TRIGGER-INTEGRATION.md) <br>
-- [Anthropic Engineering Practice Patterns](references/anthropic-patterns.md) <br>
-- [OpenAI Agent Patterns](references/openai-patterns.md) <br>
-- [Error Taxonomy and Handling Strategy](references/error-taxonomy.md) <br>
-- [Common Fix Templates](references/fix-templates.md) <br>
-- [Self-Evolution Workflow](references/self-evolution.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with diagnostic steps, repair recommendations, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose operational changes that require user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and release changelog) <br>
+Risk: Scheduled self-update behavior can persistently change skill behavior or references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before enabling cron or heartbeat integration and review any web-derived update content before applying it.
+
+Risk: Repair commands can modify cron jobs, restart services, run Docker cleanup, or delete local files.
+
+Mitigation: Require explicit approval for service restarts, cron changes, Docker cleanup, SKILL.md or references changes, and any file deletion.
+
+Risk: Diagnostic or repair guidance may be incorrect for the local OpenClaw environment.
+
+Mitigation: Treat outputs as proposals, apply the smallest reversible change, and verify results with the listed health checks and run history.
+
+## Reference(s):
+
+- [Dida Agent Optimizer on ClawHub](https://clawhub.ai/tuobadaidai/skills/dida-agent-optimizer)
+- [Trigger Integration](TRIGGER-INTEGRATION.md)
+- [Anthropic Engineering Patterns](references/anthropic-patterns.md)
+- [OpenAI Agent Engineering Best Practices](references/openai-patterns.md)
+- [Error Taxonomy and Handling Strategies](references/error-taxonomy.md)
+- [Common Fix Templates](references/fix-templates.md)
+- [Self-Evolution Workflow](references/self-evolution.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic decision trees, repair proposals, verification steps, and concise reports.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact version table lists v1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

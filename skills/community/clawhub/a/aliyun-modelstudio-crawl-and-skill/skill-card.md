@@ -1,43 +1,55 @@
-## Description: <br>
-Refreshes the Alibaba Cloud Model Studio model crawl and regenerates derived summaries, coverage reports, and related `skills/ai/**` skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refreshes the Alibaba Cloud Model Studio models crawl and regenerates derived summaries and skills under `skills/ai/**`.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and maintainers use this skill to refresh Alibaba Cloud Model Studio model data, rebuild local model summaries, and check skill coverage before updating generated AI skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow executes a public webpage crawl through the `@just-every/crawl` npm package. <br>
-Mitigation: Run it only when refreshing Alibaba Cloud Model Studio model data, and review or pin the npm package before execution. <br>
-Risk: The scripts can create or update generated summaries, coverage reports, and `skills/ai/**` files. <br>
-Mitigation: Run from a clean, version-controlled worktree and review all generated changes before keeping or committing them. <br>
-Risk: Generated model identifiers or links could become stale if the source documentation changes. <br>
-Mitigation: Use only links found in the crawled Model Studio page and validate generated outputs before publishing downstream skills. <br>
+## Use Case:
 
+Developers and maintainers use this skill to crawl the Alibaba Cloud Model Studio models page, rebuild structured model summaries, scan skill coverage, and refresh generated AI skills and related documentation.
 
-## Reference(s): <br>
-- [Alibaba Cloud Model Studio models documentation](https://help.aliyun.com/zh/model-studio/models) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-modelstudio-crawl-and-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated Markdown, JSON, and skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces crawl output, cleaned summaries, structured model lists, coverage reports, and updates under `skills/ai/**`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Running an unpinned remote npm crawler can execute changing third-party code with broad local workspace access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a constrained workspace, and pin or vendor the crawler dependency before use.
+
+Risk: The release evidence says the skill overstates skill-generation behavior.
+
+Mitigation: Do not rely on generated skill modifications unless that behavior is separately implemented, reviewed, and validated.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio Models](https://help.aliyun.com/zh/model-studio/models)
+- [Source list](artifact/references/sources.md)
+- [ClawHub release page](https://clawhub.ai/cinience/skills/aliyun-modelstudio-crawl-and-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifacts include Markdown reports, JSON model lists, and skill files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to Alibaba Cloud documentation and local Node.js/Python tooling; outputs are written under `output/` and `skills/ai/**`.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

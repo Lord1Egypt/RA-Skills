@@ -1,43 +1,53 @@
-## Description: <br>
-Baby Record helps users capture baby-care observations from Chinese conversation or photographed paper forms, store them as daily local JSON records, and query recent summaries and trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records baby daily care data from paper form photos or conversational descriptions, including temperature, jaundice, bathing, weight, sleep, feeding, diaper changes, symptoms, and notes, then stores the data as local JSON files.
 
-## Publisher: <br>
-[cake-26](https://clawhub.ai/user/cake-26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cake-26](https://clawhub.ai/user/cake-26)
 
-## Use Case: <br>
-Caregivers and assistants use this skill to record temperature, jaundice, bathing, weight, sleep, feeding, diaper, symptom, and note data for a baby, then retrieve single-day records, date ranges, and trend summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baby-care and health details are stored in local JSON files. <br>
-Mitigation: Use the skill only where local storage of this information is acceptable, and document retention and privacy expectations before routine use. <br>
-Risk: The helper script can write or delete JSON files outside the intended data folder if custom directories or malformed date values are used. <br>
-Mitigation: Avoid custom data directories and require YYYY-MM-DD date values until strict date and path validation and deletion safeguards are added. <br>
-Risk: Photographed form extraction can misread health or care values. <br>
-Mitigation: Confirm extracted values with the user before saving, as the skill instructions require. <br>
+## Use Case:
 
+External users and caregivers use this skill in Chinese to capture, update, query, and summarize a baby's daily care records from natural-language notes or confirmed photo extraction.
 
-## Reference(s): <br>
-- [Baby Record release page](https://clawhub.ai/cake-26/baby-record) <br>
-- [Baby data schema reference](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Chinese conversational responses, Markdown tables or lists, shell commands, and JSON records or query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses one local JSON file per day and supports incremental updates for repeated entries on the same date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Local file handling can read, overwrite, or delete JSON files outside the intended data folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate dates and paths, confine file access to the configured data directory, and review filesystem behavior before installation.
+
+Risk: Permanent deletion of sensitive baby-care records is under-disclosed.
+
+Mitigation: Require explicit user confirmation before saving or deleting sensitive records and clearly disclose destructive actions.
+
+## Reference(s):
+
+- [Baby daily data field schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese conversational responses with JSON-backed local record files and occasional markdown tables or shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill saves one JSON file per day and can merge incremental updates into existing daily records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

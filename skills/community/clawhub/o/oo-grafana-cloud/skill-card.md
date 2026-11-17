@@ -1,43 +1,51 @@
-## Description: <br>
-Grafana Cloud helps agents search and read organization data through an OOMOL-connected Grafana Cloud account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Grafana Cloud organization usage, stack connectivity, regions, and stack listings through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Grafana Cloud organization information, including billed usage, stack connectivity, stack regions, and stacks, through the OOMOL `grafana_cloud` connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes `oo` CLI connector commands in a connected Grafana Cloud account context. <br>
-Mitigation: Install only when the publisher is trusted, review commands before approval, and require explicit user confirmation before any write or destructive action. <br>
-Risk: Authentication, connection scope, expired credentials, or billing state can block connector execution. <br>
-Mitigation: Use the documented setup and recovery steps only after a command fails with the matching auth, connection, or billing error. <br>
+## Use Case:
 
+Developers and operators use this skill to read Grafana Cloud organization usage, inspect stack connectivity, identify available regions, and list stacks through their OOMOL-connected account.
 
-## Reference(s): <br>
-- [Grafana Cloud homepage](https://grafana.com/products/cloud/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-grafana-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown with inline shell commands, JSON payload examples, and connector JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution and returns connector JSON responses when actions run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: First-time CLI setup can execute an unverified remote installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI version before use, use a read-only Grafana credential, and retain control over any additional agent skills it installs or synchronizes.
+
+## Reference(s):
+
+- [Grafana Cloud](https://grafana.com/products/cloud/)
+- [Grafana Cloud API documentation](https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON request payloads and JSON Grafana Cloud results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results reflect the connected Grafana Cloud organization and its current data.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

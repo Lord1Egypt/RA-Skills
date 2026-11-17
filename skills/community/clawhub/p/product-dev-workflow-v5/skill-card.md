@@ -1,40 +1,56 @@
-## Description: <br>
-Produces structured Chinese Markdown product development reports covering requirements analysis, technical research, solution design, material selection, test planning, and go-to-market strategy for early-stage industrial products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese-language, structured Markdown product development package covering requirements analysis, technical research, solution design, material selection, testing analysis, and GTM strategy for early-stage industrial product development.
 
-## Publisher: <br>
-[liuyu3049-web](https://clawhub.ai/user/liuyu3049-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liuyu3049-web](https://clawhub.ai/user/liuyu3049-web)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, founders, and industrial hardware teams use this skill to turn a product theme or development request into a complete Chinese Markdown report for early requirements, research, design, sourcing, validation, and launch planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger broadly on product-planning prompts and produce a full six-stage report without stepwise confirmation.
+
+Mitigation: Use it when a complete one-shot development plan is desired, and narrow the trigger or ask for staged confirmation if the workflow should run only after explicit approval.
+
+Risk: The workflow requires Chinese output and may not match non-Chinese language preferences.
+
+Mitigation: Modify the output-language instruction before deployment when teams need bilingual or non-Chinese reports.
+
+Risk: Generated market, patent, standards, sourcing, and financial planning content can be speculative if not checked against current product evidence.
+
+Mitigation: Validate business assumptions, compliance references, supplier options, and technical claims with current domain sources before using the report for product decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, hardware teams, and industrial product developers use this skill to generate a one-shot, six-stage Chinese development plan for a proposed product theme. It is aimed at early-stage planning for sensors, instrumentation, smart hardware, and similar industrial products. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad product-planning phrases and generate a long report without first asking clarifying questions. <br>
-Mitigation: Review the product scope before relying on the report and add clarifying requirements when the initial request is ambiguous. <br>
-Risk: Generated product plans may include unverified technical, market, patent, supplier, or regulatory assumptions. <br>
-Mitigation: Validate recommendations against customer interviews, current standards, supplier data, patent review, and engineering tests before making product decisions. <br>
+**Output Format:** [Structured Chinese Markdown report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuyu3049-web/skills/product-dev-workflow-v5) <br>
+**Other Properties Related to Output:** [One-shot six-stage workflow with fixed section order, required tables, gate criteria, and cross-stage consistency checks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Chinese Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One-shot six-stage report; output length is intentionally broad to preserve complete planning coverage.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

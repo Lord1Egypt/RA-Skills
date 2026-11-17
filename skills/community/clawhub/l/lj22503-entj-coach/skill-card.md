@@ -1,44 +1,59 @@
-## Description: <br>
-ENTJ Coach provides conversational coaching and concrete action plans for ENTJ users working through growth, career, learning, analysis-paralysis, and focus challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entj Coach helps ENTJ users work through growth, career, learning, focus, and analysis-paralysis questions using coaching-style prompts or concrete action plans.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as ENTJ use this skill for personal-growth, career, and learning coaching, switching between reflective questions and concrete action steps. It is not a substitute for professional mental health counseling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release contains an ENTJ/INTP identity mismatch that may cause mistargeted coaching guidance. <br>
-Mitigation: Confirm the user wants ENTJ-oriented coaching and review generated advice for type-specific fit before relying on it. <br>
-Risk: The skill describes personal-growth recordkeeping, which may capture sensitive workplace, relationship, or mental health details. <br>
-Mitigation: Do not share sensitive details unless the platform's memory, retention, and deletion controls are understood and accepted. <br>
-Risk: Coaching output may be mistaken for professional mental health or life advice. <br>
-Mitigation: Treat responses as general coaching support and seek qualified professional help for serious psychological or safety concerns. <br>
+## Use Case:
 
+External users who identify as ENTJ use this skill for coaching conversations about growth, career direction, learning direction, focus, and analysis paralysis. The agent alternates between exploratory questions and concise action-oriented guidance based on the user's needs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/lj22503-entj-coach) <br>
-- [ENTJ Traits Reference](references/entj-traits.md) <br>
-- [INTP Insights Reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational responses with questions, recommendations, action steps, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coach-mode responses are intended to be concise; consultant-mode responses provide short plans with concrete next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The release security summary flags inconsistent package identity, including an install command that does not match the reviewed skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm package identity and install only the reviewed lj22503-entj-coach release before deployment.
+
+Risk: The skill directs retention of personal coaching records, which may include sensitive goals, career concerns, and behavior patterns.
+
+Mitigation: Use memory or profile features only when the host provides explicit opt-in, review, deletion, and retention controls for saved coaching data.
+
+Risk: Coaching content may be mistaken for professional mental health advice.
+
+Mitigation: Frame outputs as general coaching support and direct severe mental health concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-entj-coach)
+- [ENTJ traits reference](references/entj-traits.md)
+- [INTP insights reference](references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown with short questions, options, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach-mode responses are intended to be brief; advisor-mode responses provide concise plans with action steps.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

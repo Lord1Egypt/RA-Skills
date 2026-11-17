@@ -1,41 +1,54 @@
-## Description: <br>
-Retrieve academic papers by structured metadata, perform semantic chunk search for RAG, and read byte-range content for citation-grade scientific literature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves academic literature and patents through structured metadata search, semantic chunk retrieval, and character-range content reading for citation-grounded agent workflows.
 
-## Publisher: <br>
-[sciverse](https://clawhub.ai/user/sciverse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciverse](https://clawhub.ai/user/sciverse)
 
-## Use Case: <br>
-External users, developers, and research agents use this skill to find academic papers, retrieve citation-grade snippets, inspect paper relationship lists, and fetch paper figure or table resources through Sciverse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Sciverse API token and sends search queries, document IDs, retrieval parameters, and requested resource names to Sciverse. <br>
-Mitigation: Configure the token through environment management, scope access where the service supports it, and avoid sensitive research topics unless Sciverse account, logging, and data-handling terms are acceptable. <br>
-Risk: Retrieved snippets, abstracts, relationship lists, and resource names may be incomplete or require additional context before citation use. <br>
-Mitigation: Use schema introspection, structured search metadata, and byte-range expansion to verify the surrounding context before relying on excerpts or citations. <br>
+## Use Case:
 
+External developers and researchers use this skill to find papers, authors, sources, and patents, retrieve relevant paper passages, and read source text for citation-grounded research workflows.
 
-## Reference(s): <br>
-- [Sciverse](https://sciverse.space) <br>
-- [ClawHub skill page](https://clawhub.ai/sciverse/skills/academic-retrieval) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, shell commands] <br>
-**Output Format:** [JSON API responses, Markdown text excerpts, base64-encoded image resources, and shell invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCIVERSE_API_TOKEN; SCIVERSE_BASE_URL is optional and defaults to the Sciverse API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.1 (source: server evidence and skill frontmatter) <br>
+Risk: Search queries and filters are sent to Sciverse, and its retention practices were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential query terms unless sharing is intended; review Sciverse's current data-handling terms before sensitive use.
+
+Risk: The API token authorizes requests to the Sciverse service.
+
+Mitigation: Keep the token protected in the SCIVERSE_API_TOKEN environment variable and do not expose it in shared logs or prompts.
+
+## Reference(s):
+
+- [Sciverse service](https://sciverse.space)
+- [ClawHub skill release](https://clawhub.ai/sciverse/skills/academic-retrieval)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Markdown, Image data]
+
+**Output Format:** [JSON search results, text and Markdown excerpts, and image data for referenced figures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may be paginated; full-text access depends on authorization.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: Hyperliquid Engineer
+  short_description: Build reliable Hyperliquid integrations
+  default_prompt: Use $hyperliquid-engineer to implement or review this Hyperliquid integration with current protocol evidence and failure tests.

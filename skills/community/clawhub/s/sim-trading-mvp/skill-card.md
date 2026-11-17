@@ -1,50 +1,71 @@
-## Description: <br>
-Run a paper-trading / simulated investing workflow with explicit style selection, fixed risk rules, three decision windows per trading day, optional cron setup, persistent account and trade logs, and a post-market daily recap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a disciplined paper-trading workflow with style selection, risk rules, daily decision windows, optional cron automation, persistent account logs, and truthful post-market recaps.
 
-## Publisher: <br>
-[QRG-cloud](https://clawhub.ai/user/QRG-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qrg-cloud](https://clawhub.ai/user/qrg-cloud)
 
-## Use Case: <br>
-External users and agent operators use this skill to run a disciplined simulated US stock and ETF trading account, make buy/sell/hold decisions during defined market windows, maintain account and trade logs, and produce concise post-market recaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent scheduled jobs can continue running trading-decision windows after setup. <br>
-Mitigation: Confirm automation is intentional, inspect existing cron entries first, use predictable job names, and document how to disable or replace the jobs. <br>
-Risk: The skill can modify ongoing account state and append trade-log records. <br>
-Mitigation: Confirm the project path and files before setup, review account and log changes, and keep trade records append-only where possible. <br>
-Risk: Simulated buy, sell, or hold decisions could be mistaken for financial advice. <br>
-Mitigation: Label the workflow as paper trading, keep decisions grounded in retrieved data, prefer HOLD when data is missing, and remind users not to treat simulated decisions as financial advice. <br>
-Risk: Market-data API keys may be needed for robust pricing and benchmark handling. <br>
-Mitigation: Store keys only in local runtime configuration such as a project .env file, and never publish, commit, hardcode, or echo user secrets. <br>
+## Use Case:
 
+External users use this skill to run and maintain a simulated US stock and ETF trading account with repeatable buy, sell, or hold decisions. Agents use it to set up local paper-account files, evaluate market context, enforce risk rules, record decisions, and produce concise post-market recaps.
 
-## Reference(s): <br>
-- [Sim Trading MVP on ClawHub](https://clawhub.ai/QRG-cloud/sim-trading-mvp) <br>
-- [Cron setup](references/cron-setup.md) <br>
-- [Trading log schema](references/log-schema.md) <br>
-- [Project notes](references/project-notes.md) <br>
-- [Project template](references/project-template.md) <br>
-- [Post-market report template](references/report-template.md) <br>
-- [Style profiles](references/style-profiles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON/JSONL records, shell command examples, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local account state, append trade-log entries, and propose cron automation when the user opts in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The workflow can create or update persistent local paper-account state and trade logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the project path with the user and read existing account and trade-log files before making decisions or updates.
+
+Risk: Optional cron automation can create recurring trading-decision and post-market jobs.
+
+Mitigation: Confirm that the user wants automation, inspect existing cron jobs first, and avoid duplicate scheduled jobs.
+
+Risk: Market-data API keys could be mishandled if placed in public skill files or echoed in reports.
+
+Mitigation: Keep API keys in local runtime configuration only and never publish, commit, or display them in skill artifacts.
+
+Risk: Account valuation can be misleading when position prices are missing.
+
+Mitigation: Label missing or incomplete market data clearly, prefer HOLD when data is unavailable, and avoid relying on valuation until missing-price handling is fixed.
+
+Risk: Users may mistake the workflow for real-money trading support.
+
+Mitigation: Present the workflow as simulated paper trading and confirm the user wants a simulated, not real-money, account.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qrg-cloud/skills/sim-trading-mvp)
+- [Project Template](references/project-template.md)
+- [Report Template](references/report-template.md)
+- [Trading Log Schema](references/log-schema.md)
+- [Cron Setup](references/cron-setup.md)
+- [Style Profiles](references/style-profiles.md)
+- [Project Notes](references/project-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON account state, JSONL trade log records, shell commands, and local configuration instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local paper-account files, append trade-log records, propose cron jobs, and produce a concise Chinese post-market recap.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,65 @@
-## Description: <br>
-Get current weather and forecasts, plus access to a broad SkillBoss API gateway for model, search, scraping, document, email, and SMS actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with curl-based guidance for using the SkillBoss API across chat, image, video, audio, search, document processing, email, SMS, and model discovery.
 
-## Publisher: <br>
-[AbelTennyson](https://clawhub.ai/user/AbelTennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agents use this skill to call SkillBoss-hosted weather, model, search, scraping, document, email, and SMS capabilities through one API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is labeled as weather-focused but exposes a broad external API gateway. <br>
-Mitigation: Install only when the agent is expected to access broad SkillBoss capabilities, not only weather. <br>
-Risk: The gateway can trigger sensitive or high-impact actions such as email, SMS, OTP, scraping, document processing, and paid model calls. <br>
-Mitigation: Require explicit approval before these actions and use restricted, revocable API keys where possible. <br>
-Risk: Prompts, files, audio, URLs, or other user data may be sent to external providers through the gateway. <br>
-Mitigation: Avoid sending sensitive data through the skill unless the deployment has approved the relevant providers and data handling terms. <br>
+## Use Case:
 
+Developers and external users can use this skill to have an agent discover SkillBoss models and prepare API calls for model execution, web search and scraping, document processing, media generation, and communication tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AbelTennyson/weather-hub) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [SkillBoss API base](https://api.heybossai.com/v1) <br>
-- [SkillBoss models endpoint](https://api.heybossai.com/v1/models) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for SkillBoss API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package is labeled as a weather skill, but the evidence describes a broad SkillBoss API gateway with model calls, scraping, document and media processing, email, and SMS capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review it as a broad API gateway and install it only when those capabilities are intended for the agent workflow.
+
+Risk: SkillBoss API calls require SKILLBOSS_API_KEY and can spend quota or access third-party provider capabilities.
+
+Mitigation: Store the key as an approved secret, scope access where possible, and require explicit approval before agent-initiated API calls.
+
+Risk: Email and SMS actions can contact external recipients.
+
+Mitigation: Require explicit user confirmation of recipients, message contents, and purpose before sending communication requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/weather-hub)
+- [SkillBoss website](https://www.skillboss.co)
+- [SkillBoss API base endpoint](https://api.heybossai.com/v1)
+- [Audio models](artifact/audio-models.md)
+- [Chat models](artifact/chat-models.md)
+- [Image models](artifact/image-models.md)
+- [Search and scraping models](artifact/search-models.md)
+- [Tool models](artifact/tools-models.md)
+- [Video models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated SkillBoss API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

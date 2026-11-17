@@ -1,50 +1,69 @@
-## Description: <br>
-FlowStitch turns a short website or app brief into prompts, design systems, generated screens, React/TypeScript components, quality checks, and deployment guidance using Google Stitch MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlowStitch guides an agent through Google Stitch workflows to turn a brief website or app idea into generated designs, React/TypeScript components, quality checks, and deployment commands.
 
-## Publisher: <br>
-[windseeker1111](https://clawhub.ai/user/windseeker1111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windseeker1111](https://clawhub.ai/user/windseeker1111)
 
-## Use Case: <br>
-Developers and designers use FlowStitch to turn product, brand, dashboard, mobile app, or competitor-analysis briefs into multi-page website or app builds. It guides prompt enhancement, design-system synthesis, Stitch screen generation, quality review, React/TypeScript export, and deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor analysis and scraping workflows may access third-party sites without enough scoping or approval. <br>
-Mitigation: Require explicit confirmation that the user is authorized to analyze the target site before any competitor scraping or browser-based collection. <br>
-Risk: Automated deployment workflows can publish generated projects publicly through Vercel, Netlify, or GitHub Pages. <br>
-Mitigation: Confirm the exact account, project, repository, deployment target, and public URL before publishing. <br>
-Risk: Generated .stitch metadata and downloaded assets may contain project details that should not be committed or published without review. <br>
-Mitigation: Review and sanitize .stitch metadata and generated assets before adding them to public repositories. <br>
-Risk: Broad website-building workflows can create or modify many local project files. <br>
-Mitigation: Review generated files and preview the site before deployment or handoff. <br>
+## Use Case:
 
+Developers, designers, and product teams use FlowStitch to prototype and ship websites, dashboards, and mobile app screens with Stitch-backed design generation, brand import, competitive analysis, React export, and deployment guidance.
 
-## Reference(s): <br>
-- [FlowStitch ClawHub Release](https://clawhub.ai/windseeker1111/flowstitch) <br>
-- [Google Stitch Prompting Guide](https://stitch.withgoogle.com/docs/learn/prompting/) <br>
-- [Design Mappings Reference](references/design-mappings.md) <br>
-- [Prompt Keywords Reference](references/prompt-keywords.md) <br>
-- [Stitch MCP Tool Schemas](references/tool-schemas.md) <br>
-- [Quality Rubric](resources/quality-rubric.md) <br>
-- [Architecture Checklist](resources/architecture-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON, shell commands, and TypeScript/HTML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local .stitch metadata, site files, React/TypeScript components, downloaded Stitch assets, and deployment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can direct an agent to install tools, write files, push code, and publish production deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a sandboxed project and require explicit approval before package installation, git push, or production deployment.
+
+Risk: Deployment steps can publish to the wrong account, project, or visibility setting.
+
+Mitigation: Confirm the deployment provider account, target project, and public/private visibility before running deployment commands.
+
+Risk: Competitive analysis workflows may scrape competitor sites.
+
+Mitigation: Only analyze sites when authorized and after checking applicable site terms and policies.
+
+Risk: Stitch download URLs may expose sensitive generated assets or expire unexpectedly.
+
+Mitigation: Treat download URLs as sensitive and restrict downloads to expected Stitch or Google Cloud Storage assets under the intended project directory.
+
+## Reference(s):
+
+- [FlowStitch Skill Page](https://clawhub.ai/windseeker1111/skills/flowstitch)
+- [Google Stitch Prompting Guide](https://stitch.withgoogle.com/docs/learn/prompting/)
+- [Design Mappings & Descriptors](references/design-mappings.md)
+- [UI/UX Keywords Reference](references/prompt-keywords.md)
+- [Stitch MCP Tool Schemas](references/tool-schemas.md)
+- [FlowStitch Quality Rubric](resources/quality-rubric.md)
+- [React Component Architecture Quality Gate](resources/architecture-checklist.md)
+- [Baton File Schema](resources/baton-schema.md)
+- [Remotion Composition Quality Gate](resources/composition-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, shell, HTML, and TypeScript examples plus project files created during workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write site, design, component, quality-log, and deployment-support files in the active project workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

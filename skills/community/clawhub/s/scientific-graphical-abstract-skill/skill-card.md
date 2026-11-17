@@ -1,45 +1,58 @@
-## Description: <br>
-Generate editable, publication-quality SVG graphical abstracts, charts, flowcharts, and scientific diagrams from prompts or CSV/JSON data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates editable SVG graphical abstracts, charts, flowcharts, and diagrams for scientific papers from prompts or structured CSV/JSON data.
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-Researchers, scientific authors, and technical teams use this skill to turn research descriptions or structured data into editable SVG graphical abstracts and publication figures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency changes or unexpected package versions can affect local generation behavior. <br>
-Mitigation: Install in a virtual environment and pin or review dependencies before use. <br>
-Risk: Prompts or data may contain confidential or unpublished research when provider-backed model workflows are enabled. <br>
-Mitigation: Do not provide confidential or unpublished research to external model providers unless that use is approved. <br>
-Risk: Generated SVG content may include labels or markup derived from untrusted input. <br>
-Mitigation: Review generated SVGs before embedding them on websites or publication pipelines. <br>
+## Use Case:
 
+Researchers, authors, and scientific developers use this skill to create editable graphical abstracts and common research visualizations for papers, presentations, and journal-specific figure workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JackKuo666/scientific-graphical-abstract-skill) <br>
-- [LLM Scientific Graphical Abstract Generator](https://github.com/JackKuo666/LLM-Scientific-Graphical-Abstract-Generator) <br>
-- [sci-data-extractor](https://github.com/JackKuo666/sci-data-extractor) <br>
-- [Semantic Scholar Search Skill](https://github.com/JackKuo666/semanticScholar-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI examples and generated SVG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are editable SVG graphics that may be converted to PNG, PDF, or other publication formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The documented install path includes a curl-to-shell installer for uv.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the documented built-in venv setup or another reviewed package-management path, and pin the skill and dependencies to reviewed versions.
+
+Risk: Generated SVG content can include text derived from untrusted prompts or data.
+
+Mitigation: Review and sanitize generated SVG text and attributes before embedding output in websites or publication systems.
+
+Risk: The documentation advertises optional AI-model support that the current implementation does not actually call.
+
+Mitigation: Treat generation as local template/SVG construction unless the implementation is updated to disclose and use provider calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackkuo666/skills/scientific-graphical-abstract-skill)
+- [Publisher Profile](https://clawhub.ai/user/jackkuo666)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with CLI examples and generated SVG/XML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated SVGs are editable and may be post-processed in SVG editors or converted to raster/document formats.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

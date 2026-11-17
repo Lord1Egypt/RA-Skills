@@ -1,49 +1,63 @@
-## Description: <br>
-AI-powered video highlight extraction that identifies engaging moments and generates social-ready video clips with configurable export options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered video highlight extraction that identifies the most engaging moments and generates viral-ready video clips from online URLs or local files, with export options for aspect ratios, caption styles, AI reframing, and AI-generated hooks.
 
-## Publisher: <br>
-[wayinvideo](https://clawhub.ai/user/wayinvideo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wayinvideo](https://clawhub.ai/user/wayinvideo)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to turn online video URLs or local video files into highlight clips for social media, reels, and long-to-short repurposing. Developers and operators use it through WayinVideo API scripts that submit jobs, poll for results, and return downloadable clip links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Videos, source URLs, or uploaded local files may be sent to WayinVideo for processing. <br>
-Mitigation: Use the skill only with content the user is authorized to send to WayinVideo, and avoid sensitive or private media unless that sharing is acceptable. <br>
-Risk: Generated JSON result files and temporary export links are saved locally and may expose clip data while accessible. <br>
-Mitigation: Store result files privately, avoid posting export links publicly, and refresh or regenerate links only when needed. <br>
-Risk: The skill requires a WayinVideo API credential. <br>
-Mitigation: Provide WAYIN_API_KEY through an environment variable or secure user context, and do not write it into prompts, files, or logs. <br>
-Risk: Optional progress system events can create background notifications during long polling jobs. <br>
-Mitigation: Do not enable progress events when background notifications are not desired. <br>
+## Use Case:
 
+External users, creators, marketers, and developers use this skill to submit videos to WayinVideo for highlight extraction and exported short-form clips. It is suited for social media clips, highlight reels, and long-to-short video repurposing where third-party media processing is acceptable.
 
-## Reference(s): <br>
-- [WayinVideo AI Clipping API documentation](https://wayin.ai/api-docs/ai-clipping/) <br>
-- [ClawHub skill page](https://clawhub.ai/wayinvideo/ai-clipping) <br>
-- [Supported languages](assets/supported_languages.md) <br>
-- [Platform duration guidance](assets/platform_duration.md) <br>
-- [Platform aspect ratio guidance](assets/platform_ratio.md) <br>
-- [Caption style templates](assets/caption_style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, files, guidance] <br>
-**Output Format:** [Markdown response with shell commands, result file paths, JSON artifacts, and downloadable clip links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WAYIN_API_KEY; API polling can take several minutes; exported clip links are temporary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill sends selected videos, supported video URLs, and related task metadata to the third-party WayinVideo service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with media and URLs approved for third-party processing, and avoid confidential recordings, private/internal URLs, or sensitive project names unless organizational review permits it.
+
+Risk: The security summary flags an under-scoped upload path that users should review before installation.
+
+Mitigation: Review local upload handling and destination validation before using the skill with sensitive media or high-trust environments.
+
+Risk: Polling can trigger host system event notifications when event polling is enabled.
+
+Mitigation: Enable system-event polling only when host notifications are desired and appropriate for the environment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/wayinvideo/skills/ai-clipping)
+- [WayinVideo AI Clipping API Documentation](https://wayin.ai/api-docs/ai-clipping/)
+- [WayinVideo API Dashboard](https://wayin.ai/wayinvideo/api-dashboard)
+- [Supported Languages](artifact/assets/supported_languages.md)
+- [Platform Duration Guidance](artifact/assets/platform_duration.md)
+- [Platform Ratio Guidance](artifact/assets/platform_ratio.md)
+- [Caption Style Templates](artifact/assets/caption_style.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and WAYIN_API_KEY; outputs project IDs, saved JSON result paths, and downloadable clip links when export is enabled.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

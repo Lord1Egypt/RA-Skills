@@ -1,41 +1,57 @@
-## Description: <br>
-Guides agents in creating, optimizing, or auditing glossary page content, term definitions, internal linking, and glossary SEO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, optimizes, and audits glossary page content, structure, internal linking, SEO metadata, and term definition templates.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External marketers, SEO practitioners, and content teams use this skill to plan glossary indexes, term-definition templates, internal links, metadata, and schema recommendations for glossary pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain secrets or sensitive customer details that should not be reflected in generated glossary content. <br>
-Mitigation: Review .claude/project-context.md and .cursor/project-context.md before use and remove sensitive details from context files. <br>
-Risk: Generated glossary definitions, SEO metadata, or internal linking recommendations may be inaccurate or misleading for the target domain. <br>
-Mitigation: Have a domain owner review generated glossary content and links before publishing. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to plan glossary pages, term definitions, internal links, SEO metadata, and structured data for glossary-style website content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/glossary-page-generator) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structure, term templates, internal linking plan, SEO metadata, and schema recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read .claude/project-context.md or .cursor/project-context.md for industry terms and customer language when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and skill metadata) <br>
+Risk: The skill may activate on generic requests for definitions or vocabulary when the user is not asking for website glossary content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the task is about glossary page content, glossary SEO, or term-page structure before applying the skill.
+
+Risk: Project context files may contain sensitive terminology, customer language, or internal notes.
+
+Mitigation: Review project-context content before using it in externally shared glossary copy or SEO recommendations.
+
+Risk: Glossary guidance can produce incorrect or misleading definitions if the domain terminology is not verified.
+
+Mitigation: Have a domain reviewer check definitions, examples, schema choices, and internal links before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/glossary-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with glossary structure, term templates, internal linking plans, SEO metadata, and schema recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, persistence, or hidden behavior is reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

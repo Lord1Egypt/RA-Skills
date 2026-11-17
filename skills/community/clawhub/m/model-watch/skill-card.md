@@ -1,43 +1,58 @@
-## Description: <br>
-Benchmark AI API models over time and detect quality degradation with a local CLI that runs standardized tests, stores score history, and alerts when recent scores drop against historical results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark AI API models over time and detect quality degradation with standardized reasoning, coding, writing, instruction-following, and hallucination checks.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to benchmark model outputs across reasoning, coding, writing, instruction-following, and hallucination checks, then monitor local score history for degradation alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted model outputs may contain secrets, proprietary data, or other sensitive content. <br>
-Mitigation: Review and redact model outputs before passing them to the CLI. <br>
-Risk: Command-line JSON submissions can be captured in shell history or briefly visible to local process observers. <br>
-Mitigation: Use sanitized inputs, avoid pasting sensitive outputs directly on shared systems, and clear shell history when needed. <br>
-Risk: The benchmark uses keyword-style scoring, so results can miss qualitative issues or overstate quality for responses that match expected terms. <br>
-Mitigation: Treat score trends as a lightweight signal and review sampled model outputs before making deployment or purchasing decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to run repeatable benchmark prompts against AI API model outputs, store score history locally, and identify potential quality regressions over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/model-watch) <br>
-- [Project homepage from metadata](https://github.com/minirr890112-byte/model-watch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI writes local score history to ~/.hermes/model-watch-history.json and reports trend and alert summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version; artifact frontmatter reports 1.2.0 and pyproject.toml reports 0.1.0) <br>
+Risk: The documented GitHub default-branch install command can fetch code that differs from the reviewed release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned commit, signed release, or reviewed package artifact before operational use.
+
+Risk: Submitted model outputs are saved locally in ~/.hermes/model-watch-history.json.
+
+Mitigation: Avoid submitting sensitive prompts, responses, customer data, credentials, or other confidential content.
+
+Risk: Benchmark scores use simple keyword and length heuristics, so results can be incomplete or misleading for model quality decisions.
+
+Mitigation: Review scored outputs manually and calibrate benchmark prompts and thresholds before relying on alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/model-watch)
+- [Project homepage](https://github.com/minirr890112-byte/model-watch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON alert output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores benchmark history locally at ~/.hermes/model-watch-history.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.2.0 and pyproject.toml lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

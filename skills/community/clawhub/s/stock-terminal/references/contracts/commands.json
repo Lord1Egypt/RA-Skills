@@ -1,0 +1,2076 @@
+{
+  "schemaVersion": "2.0",
+  "operations": [
+    {
+      "id": "resolve_security",
+      "kind": "local",
+      "requestCount": 0,
+      "requiredInputs": [
+        "query"
+      ],
+      "delegatesTo": "resolve",
+      "output": "canonical ticker or bounded candidates"
+    },
+    {
+      "id": "read_screen",
+      "kind": "local",
+      "requestCount": 0,
+      "requiredInputs": [],
+      "output": "current validated read model"
+    },
+    {
+      "id": "render_canvas",
+      "kind": "local",
+      "requestCount": 0,
+      "requiredInputs": [
+        "xml"
+      ],
+      "output": "validated canvas AST"
+    },
+    {
+      "id": "entity_search",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/kb/entities/search",
+      "query": {
+        "q": "{query}",
+        "type": "company",
+        "limit": "5"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "name",
+          "path": "[].name",
+          "label": "Name"
+        },
+        {
+          "key": "ticker",
+          "path": "[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "type",
+          "path": "[].type",
+          "label": "Type"
+        },
+        {
+          "key": "listing",
+          "path": "[].listingCoverage",
+          "label": "Listing"
+        }
+      ],
+      "asOf": {
+        "kind": "none",
+        "meaning": "Entity matches carry no result-set as-of time."
+      }
+    },
+    {
+      "id": "stock_quote",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/{ticker}/quote",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "currentPrice",
+          "path": "currentPrice",
+          "label": "Price"
+        },
+        {
+          "key": "changePercent",
+          "path": "changePercent",
+          "label": "Change %"
+        },
+        {
+          "key": "volume",
+          "path": "volume",
+          "label": "Volume"
+        },
+        {
+          "key": "marketCap",
+          "path": "marketCap",
+          "label": "Market cap"
+        },
+        {
+          "key": "listingStatus",
+          "path": "listingStatus",
+          "label": "Listing status"
+        },
+        {
+          "key": "delistedDate",
+          "path": "delistedDate",
+          "label": "Delisted date"
+        },
+        {
+          "key": "delistingReason",
+          "path": "delistingReason",
+          "label": "Delisting reason"
+        }
+      ],
+      "asOf": {
+        "kind": "market-observation",
+        "path": "priceAsOf",
+        "unit": "epoch-ms",
+        "meaning": "Market data observation time when supplied. timestamp is only the response serve time and must not replace a missing priceAsOf."
+      }
+    },
+    {
+      "id": "etf_quote",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/etfs/{ticker}/quote",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "currentPrice",
+          "path": "currentPrice",
+          "label": "Price"
+        },
+        {
+          "key": "changePercent",
+          "path": "changePercent",
+          "label": "Change %"
+        },
+        {
+          "key": "aum",
+          "path": "aum",
+          "label": "AUM"
+        },
+        {
+          "key": "expenseRatio",
+          "path": "expenseRatio",
+          "label": "Expense ratio"
+        }
+      ],
+      "asOf": {
+        "kind": "market-observation",
+        "path": "priceAsOf",
+        "unit": "epoch-ms",
+        "meaning": "Market data observation time when supplied. timestamp is only the response serve time and must not replace a missing priceAsOf."
+      }
+    },
+    {
+      "id": "stock_chart",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/chart",
+      "query": {
+        "ticker": "{ticker}",
+        "timeframe": "1M"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "timestamp",
+          "path": "[].timestamp",
+          "label": "Time"
+        },
+        {
+          "key": "open",
+          "path": "[].open",
+          "label": "Open"
+        },
+        {
+          "key": "high",
+          "path": "[].high",
+          "label": "High"
+        },
+        {
+          "key": "low",
+          "path": "[].low",
+          "label": "Low"
+        },
+        {
+          "key": "close",
+          "path": "[].close",
+          "label": "Close"
+        },
+        {
+          "key": "volume",
+          "path": "[].volume",
+          "label": "Volume"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].timestamp",
+        "unit": "epoch-ms",
+        "meaning": "Each bar carries its own market interval time; the list has no separate snapshot time."
+      }
+    },
+    {
+      "id": "score_series",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v2/metrics/entity/{ticker}/metric/sentisense",
+      "query": {
+        "startTime": "{epochMs30dAgo}"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "timestamp",
+          "path": "[].timestamp",
+          "label": "Time"
+        },
+        {
+          "key": "value",
+          "path": "[].value",
+          "label": "SentiSense Score"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].timestamp",
+        "unit": "epoch-ms",
+        "meaning": "Each metric point carries its own observation time; the list has no separate snapshot time."
+      }
+    },
+    {
+      "id": "sentiment_series",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v2/metrics/entity/{ticker}/metric/sentiment",
+      "query": {
+        "startTime": "{epochMs30dAgo}",
+        "endTime": "{epochMsNow}"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "timestamp",
+          "path": "[].timestamp",
+          "label": "Time"
+        },
+        {
+          "key": "value",
+          "path": "[].value",
+          "label": "Sentiment"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].timestamp",
+        "unit": "epoch-ms",
+        "meaning": "Each metric point carries its own observation time; the list has no separate snapshot time."
+      }
+    },
+    {
+      "id": "ticker_stories",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/documents/stories/ticker/{ticker}",
+      "query": {
+        "limit": "5"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "clusterId",
+          "path": "[].cluster.id",
+          "label": "Story ID"
+        },
+        {
+          "key": "title",
+          "path": "[].cluster.title",
+          "label": "Story"
+        },
+        {
+          "key": "sentiment",
+          "path": "[].cluster.averageSentiment",
+          "label": "Sentiment"
+        },
+        {
+          "key": "impact",
+          "path": "[].impactScore",
+          "label": "Impact"
+        },
+        {
+          "key": "clusteredAt",
+          "path": "[].cluster.clusteredAt",
+          "label": "Clustered"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].cluster.clusteredAt",
+        "unit": "epoch-sec",
+        "meaning": "Each story cluster carries its assembly time; the list supplies no top-level as-of."
+      }
+    },
+    {
+      "id": "story_detail",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/documents/stories/{clusterId}",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "id",
+          "path": "id",
+          "label": "Story ID"
+        },
+        {
+          "key": "title",
+          "path": "title",
+          "label": "Story"
+        },
+        {
+          "key": "averageSentiment",
+          "path": "averageSentiment",
+          "label": "Sentiment"
+        },
+        {
+          "key": "clusterSize",
+          "path": "clusterSize",
+          "label": "Sources"
+        },
+        {
+          "key": "isLive",
+          "path": "isLive",
+          "label": "Developing"
+        },
+        {
+          "key": "createdAt",
+          "path": "createdAt",
+          "label": "Created"
+        },
+        {
+          "key": "lastUpdatedAt",
+          "path": "lastUpdatedAt",
+          "label": "Content updated"
+        }
+      ],
+      "asOf": {
+        "kind": "dataset-generation",
+        "path": "lastUpdatedAt",
+        "unit": "epoch-ms",
+        "meaning": "Story content update time when supplied, including editorial edits. It does not date the underlying news; absence means unknown."
+      }
+    },
+    {
+      "id": "stories",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/documents/stories",
+      "query": {
+        "limit": "10"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "clusterId",
+          "path": "[].cluster.id",
+          "label": "Story ID"
+        },
+        {
+          "key": "title",
+          "path": "[].cluster.title",
+          "label": "Story"
+        },
+        {
+          "key": "sentiment",
+          "path": "[].cluster.averageSentiment",
+          "label": "Sentiment"
+        },
+        {
+          "key": "impact",
+          "path": "[].impactScore",
+          "label": "Impact"
+        },
+        {
+          "key": "clusteredAt",
+          "path": "[].cluster.clusteredAt",
+          "label": "Clustered"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].cluster.clusteredAt",
+        "unit": "epoch-sec",
+        "meaning": "Each story cluster carries its assembly time; the list supplies no top-level as-of."
+      }
+    },
+    {
+      "id": "raw_ticker_documents",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/documents/ticker/{ticker}",
+      "query": {
+        "limit": "8"
+      },
+      "responseEnvelope": "documents-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "optional": true,
+      "displayFields": [
+        {
+          "key": "source",
+          "path": "[].source",
+          "label": "Source"
+        },
+        {
+          "key": "sourceName",
+          "path": "[].sourceName",
+          "label": "Publisher"
+        },
+        {
+          "key": "published",
+          "path": "[].published",
+          "label": "Published"
+        },
+        {
+          "key": "averageSentiment",
+          "path": "[].averageSentiment",
+          "label": "Sentiment"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].published",
+        "unit": "epoch-sec",
+        "meaning": "Each document carries its publication time; the list has no separate source as-of."
+      }
+    },
+    {
+      "id": "stock_price",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/price",
+      "query": {
+        "ticker": "{ticker}"
+      },
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "currentPrice",
+          "path": "currentPrice",
+          "label": "Price"
+        },
+        {
+          "key": "changePercent",
+          "path": "changePercent",
+          "label": "Change %"
+        },
+        {
+          "key": "volume",
+          "path": "volume",
+          "label": "Volume"
+        },
+        {
+          "key": "listingStatus",
+          "path": "listingStatus",
+          "label": "Listing status"
+        },
+        {
+          "key": "delistedDate",
+          "path": "delistedDate",
+          "label": "Delisted date"
+        },
+        {
+          "key": "delistingReason",
+          "path": "delistingReason",
+          "label": "Delisting reason"
+        }
+      ],
+      "asOf": {
+        "kind": "market-observation",
+        "path": "priceAsOf",
+        "unit": "epoch-ms",
+        "meaning": "Market data observation time when supplied. timestamp is only the response serve time and must not replace a missing priceAsOf."
+      }
+    },
+    {
+      "id": "stock_profile",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/{ticker}/profile",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "name",
+          "path": "name",
+          "label": "Company"
+        },
+        {
+          "key": "sector",
+          "path": "sector",
+          "label": "Sector"
+        },
+        {
+          "key": "industry",
+          "path": "industry",
+          "label": "Industry"
+        },
+        {
+          "key": "listingStatus",
+          "path": "listingStatus",
+          "label": "Listing status"
+        },
+        {
+          "key": "delistedDate",
+          "path": "delistedDate",
+          "label": "Delisted date"
+        },
+        {
+          "key": "delistingReason",
+          "path": "delistingReason",
+          "label": "Delisting reason"
+        }
+      ],
+      "asOf": {
+        "kind": "dataset-generation",
+        "path": "lastUpdated",
+        "unit": "epoch-sec",
+        "meaning": "Time the cached company profile was last updated. It does not date a live price."
+      }
+    },
+    {
+      "id": "insider_trades",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/insider/trades/{ticker}",
+      "query": {
+        "lookbackDays": "90"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "insiderName",
+          "path": "[].insiderName",
+          "label": "Insider"
+        },
+        {
+          "key": "transactionDate",
+          "path": "[].transactionDate",
+          "label": "Transaction date"
+        },
+        {
+          "key": "transactionCode",
+          "path": "[].transactionCode",
+          "label": "Code"
+        },
+        {
+          "key": "transactionType",
+          "path": "[].transactionType",
+          "label": "Transaction"
+        },
+        {
+          "key": "sharesTransacted",
+          "path": "[].sharesTransacted",
+          "label": "Shares"
+        },
+        {
+          "key": "totalValue",
+          "path": "[].totalValue",
+          "label": "Value"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].transactionDate",
+        "unit": "date",
+        "meaning": "Each row is dated by the transaction date; filedDate is a separate disclosure date."
+      }
+    },
+    {
+      "id": "analyst_consensus",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/analyst/{ticker}/consensus",
+      "query": {},
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "consensusLabel",
+          "path": "consensusLabel",
+          "label": "Consensus"
+        },
+        {
+          "key": "targetLow",
+          "path": "targetLow",
+          "label": "Low target"
+        },
+        {
+          "key": "targetMean",
+          "path": "targetMean",
+          "label": "Mean target"
+        },
+        {
+          "key": "targetHigh",
+          "path": "targetHigh",
+          "label": "High target"
+        },
+        {
+          "key": "upsidePercent",
+          "path": "upsidePercent",
+          "label": "Upside %"
+        },
+        {
+          "key": "numberOfAnalysts",
+          "path": "numberOfAnalysts",
+          "label": "Target analysts"
+        }
+      ],
+      "asOf": {
+        "kind": "dataset-generation",
+        "path": "updatedAt",
+        "unit": "iso-8601",
+        "meaning": "Consensus snapshot refresh time. Its currentPrice and upsidePercent share this time and are not a live quote."
+      }
+    },
+    {
+      "id": "stock_insights",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/insights/stock/{ticker}",
+      "query": {},
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "insightType",
+          "path": "[].insightType",
+          "label": "Type"
+        },
+        {
+          "key": "insightText",
+          "path": "[].insightText",
+          "label": "Insight"
+        },
+        {
+          "key": "confidence",
+          "path": "[].confidence",
+          "label": "Confidence"
+        },
+        {
+          "key": "urgency",
+          "path": "[].urgency",
+          "label": "Urgency"
+        },
+        {
+          "key": "generatedAt",
+          "path": "[].generatedAt",
+          "label": "Generated"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].generatedAt",
+        "unit": "epoch-sec",
+        "meaning": "Each insight carries its own generation time; the feed has no separate as-of."
+      }
+    },
+    {
+      "id": "market_status",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/market-status",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "status",
+          "path": "status",
+          "label": "Market status"
+        },
+        {
+          "key": "timestamp",
+          "path": "timestamp",
+          "label": "Computed at"
+        }
+      ],
+      "asOf": {
+        "kind": "state-computed",
+        "path": "timestamp",
+        "unit": "epoch-ms",
+        "meaning": "Time the open or closed market state was computed."
+      }
+    },
+    {
+      "id": "market_mood",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v2/market-mood",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "currentScore",
+          "path": "market.currentScore",
+          "label": "Market Mood"
+        },
+        {
+          "key": "phase",
+          "path": "market.phase",
+          "label": "Phase"
+        },
+        {
+          "key": "weeklyChange",
+          "path": "market.weeklyChange",
+          "label": "Weekly change"
+        }
+      ],
+      "asOf": {
+        "kind": "none",
+        "meaning": "The current composite supplies no top-level as-of. History rows have dates, but they do not date the current headline fields."
+      }
+    },
+    {
+      "id": "market_summary",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/market-summary",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "headline",
+          "path": "headline",
+          "label": "Headline"
+        },
+        {
+          "key": "generatedAt",
+          "path": "generatedAt",
+          "label": "Generated"
+        }
+      ],
+      "asOf": {
+        "kind": "dataset-generation",
+        "path": "generatedAt",
+        "unit": "epoch-sec",
+        "meaning": "Time the analysis was generated. lastUpdated is only the response serve time."
+      }
+    },
+    {
+      "id": "market_insights",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/insights/market",
+      "query": {},
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "insightType",
+          "path": "[].insightType",
+          "label": "Type"
+        },
+        {
+          "key": "insightText",
+          "path": "[].insightText",
+          "label": "Insight"
+        },
+        {
+          "key": "urgency",
+          "path": "[].urgency",
+          "label": "Urgency"
+        },
+        {
+          "key": "generatedAt",
+          "path": "[].generatedAt",
+          "label": "Generated"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].generatedAt",
+        "unit": "epoch-sec",
+        "meaning": "Each insight carries its own generation time; the feed has no separate as-of."
+      }
+    },
+    {
+      "id": "index_prices",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/prices",
+      "query": {
+        "tickers": "SPY,QQQ,IWM,DIA"
+      },
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "currentPrice",
+          "path": "[].currentPrice",
+          "label": "Price"
+        },
+        {
+          "key": "changePercent",
+          "path": "[].changePercent",
+          "label": "Change %"
+        },
+        {
+          "key": "volume",
+          "path": "[].volume",
+          "label": "Volume"
+        },
+        {
+          "key": "listingStatus",
+          "path": "[].listingStatus",
+          "label": "Listing status"
+        },
+        {
+          "key": "delistedDate",
+          "path": "[].delistedDate",
+          "label": "Delisted date"
+        },
+        {
+          "key": "delistingReason",
+          "path": "[].delistingReason",
+          "label": "Delisting reason"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].priceAsOf",
+        "unit": "epoch-ms",
+        "meaning": "Each row may carry its own market observation time. A row timestamp is only its response serve time."
+      }
+    },
+    {
+      "id": "insider_cluster_buys",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/insider/cluster-buys",
+      "query": {
+        "lookbackDays": "{lookbackDays}"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "insiderCount",
+          "path": "[].insiderCount",
+          "label": "Insiders"
+        },
+        {
+          "key": "tradeCount",
+          "path": "[].tradeCount",
+          "label": "Trades"
+        },
+        {
+          "key": "totalValue",
+          "path": "[].totalValue",
+          "label": "Value"
+        },
+        {
+          "key": "lastBuyDate",
+          "path": "[].lastBuyDate",
+          "label": "Latest buy"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].lastBuyDate",
+        "unit": "date",
+        "meaning": "Each cluster is dated by its latest included purchase; firstBuyDate marks the start of that row's cluster window."
+      }
+    },
+    {
+      "id": "politician_activity",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/politicians/activity",
+      "query": {
+        "lookbackDays": "{lookbackDays}",
+        "limit": "500",
+        "offset": "{offset}"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "politicianName",
+          "path": "[].politicianName",
+          "label": "Member"
+        },
+        {
+          "key": "ticker",
+          "path": "[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "transactionType",
+          "path": "[].transactionType",
+          "label": "Transaction"
+        },
+        {
+          "key": "transactionDate",
+          "path": "[].transactionDate",
+          "label": "Transaction date"
+        },
+        {
+          "key": "amountRange",
+          "path": "[].amountRange",
+          "label": "Amount"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].transactionDate",
+        "unit": "date",
+        "meaning": "Each row is dated by the transaction date; disclosureDate is a separate filing date."
+      }
+    },
+    {
+      "id": "analyst_activity",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/analyst/activity",
+      "query": {
+        "lookbackDays": "{lookbackDays}",
+        "actionTypes": "UPGRADE",
+        "limit": "500",
+        "offset": "{offset}"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "actionDate",
+          "path": "[].actionDate",
+          "label": "Action date"
+        },
+        {
+          "key": "firm",
+          "path": "[].firm",
+          "label": "Firm"
+        },
+        {
+          "key": "actionType",
+          "path": "[].actionType",
+          "label": "Action"
+        },
+        {
+          "key": "toGrade",
+          "path": "[].toGrade",
+          "label": "To"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].actionDate",
+        "unit": "date",
+        "meaning": "Each analyst action carries its own action date; the page has no separate as-of."
+      }
+    },
+    {
+      "id": "screener_fields",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/screener/fields",
+      "query": {},
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "stockName",
+          "path": "stock[].name",
+          "label": "Stock field"
+        },
+        {
+          "key": "stockLabel",
+          "path": "stock[].label",
+          "label": "Label"
+        },
+        {
+          "key": "stockGroup",
+          "path": "stock[].group",
+          "label": "Group"
+        },
+        {
+          "key": "stockType",
+          "path": "stock[].type",
+          "label": "Type"
+        }
+      ],
+      "asOf": {
+        "kind": "none",
+        "meaning": "The field catalog supplies no as-of time."
+      }
+    },
+    {
+      "id": "screener_execute",
+      "kind": "api",
+      "method": "POST",
+      "path": "/api/v1/screener/execute",
+      "query": {},
+      "body": {
+        "plan": "{plan}",
+        "limit": "{limit}",
+        "tickers": "{tickers}"
+      },
+      "responseEnvelope": "direct-object",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "results[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "score7D",
+          "path": "results[].sentiSenseScore7D",
+          "label": "SentiSense 7D"
+        },
+        {
+          "key": "currentPrice",
+          "path": "results[].currentPrice",
+          "label": "Price"
+        },
+        {
+          "key": "changePercent",
+          "path": "results[].changePercent",
+          "label": "Change %"
+        },
+        {
+          "key": "analystUpside",
+          "path": "results[].analystTargetUpsidePct",
+          "label": "Analyst upside %"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "results[].lastUpdated",
+        "unit": "epoch-sec",
+        "meaning": "Each result row carries its own screener snapshot update time; the response has no separate as-of."
+      }
+    },
+    {
+      "id": "politician_filings",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/politicians/filings/{ticker}",
+      "query": {
+        "lookbackDays": "90"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "politicianName",
+          "path": "[].politicianName",
+          "label": "Member"
+        },
+        {
+          "key": "transactionType",
+          "path": "[].transactionType",
+          "label": "Transaction"
+        },
+        {
+          "key": "transactionDate",
+          "path": "[].transactionDate",
+          "label": "Transaction date"
+        },
+        {
+          "key": "disclosureDate",
+          "path": "[].disclosureDate",
+          "label": "Disclosure date"
+        },
+        {
+          "key": "amountRange",
+          "path": "[].amountRange",
+          "label": "Amount"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].transactionDate",
+        "unit": "date",
+        "meaning": "Each row is dated by the transaction date; disclosureDate is a separate filing date."
+      }
+    },
+    {
+      "id": "institutional_quarters",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/institutional/quarters",
+      "query": {},
+      "responseEnvelope": "bare-array",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "label",
+          "path": "[].label",
+          "label": "Quarter"
+        },
+        {
+          "key": "reportDate",
+          "path": "[].reportDate",
+          "label": "Report date"
+        },
+        {
+          "key": "pending",
+          "path": "[].pending",
+          "label": "Still filing"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].reportDate",
+        "unit": "date",
+        "meaning": "Each catalog row names a reporting quarter end; this is a reporting period, not a fetch or publication time."
+      }
+    },
+    {
+      "id": "institutional_holders",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/institutional/holders/{ticker}",
+      "query": {
+        "reportDate": "{reportDate}",
+        "limit": "10",
+        "sortBy": "shares",
+        "sortDir": "desc"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "filerName",
+          "path": "holders[].filerName",
+          "label": "Institution"
+        },
+        {
+          "key": "filerCategory",
+          "path": "holders[].filerCategory",
+          "label": "Category"
+        },
+        {
+          "key": "shares",
+          "path": "holders[].shares",
+          "label": "Shares"
+        },
+        {
+          "key": "valueUsd",
+          "path": "holders[].valueUsd",
+          "label": "Value"
+        },
+        {
+          "key": "changeType",
+          "path": "holders[].changeType",
+          "label": "Change"
+        },
+        {
+          "key": "sharesChangePct",
+          "path": "holders[].sharesChangePct",
+          "label": "Shares change %"
+        }
+      ],
+      "asOf": {
+        "kind": "report-period",
+        "path": "reportDate",
+        "unit": "date",
+        "meaning": "Quarter end actually served. It is a reporting period, not a fetch time, and may differ from the requested date."
+      }
+    },
+    {
+      "id": "analyst_actions",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/analyst/{ticker}/actions",
+      "query": {
+        "lookbackDays": "90"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "actionDate",
+          "path": "[].actionDate",
+          "label": "Action date"
+        },
+        {
+          "key": "firm",
+          "path": "[].firm",
+          "label": "Firm"
+        },
+        {
+          "key": "actionType",
+          "path": "[].actionType",
+          "label": "Action"
+        },
+        {
+          "key": "fromGrade",
+          "path": "[].fromGrade",
+          "label": "From"
+        },
+        {
+          "key": "toGrade",
+          "path": "[].toGrade",
+          "label": "To"
+        }
+      ],
+      "asOf": {
+        "kind": "row-time",
+        "path": "[].actionDate",
+        "unit": "date",
+        "meaning": "Each analyst action carries its own action date; the page has no separate as-of."
+      }
+    },
+    {
+      "id": "options_summary",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/stocks/{ticker}/options/summary",
+      "query": {},
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "sentiment",
+          "path": "sentiment",
+          "label": "Options sentiment"
+        },
+        {
+          "key": "ivRank",
+          "path": "context.ivRank1y",
+          "label": "IV rank (1y)"
+        },
+        {
+          "key": "putCallVolumePercentile",
+          "path": "context.pcVolPctl1y",
+          "label": "Put/call volume percentile (1y)"
+        },
+        {
+          "key": "putCallVolume",
+          "path": "latest.pcVol",
+          "label": "Put/call volume"
+        },
+        {
+          "key": "putCallOpenInterest",
+          "path": "latest.pcOi",
+          "label": "Put/call open interest"
+        },
+        {
+          "key": "atmIv",
+          "path": "latest.atmIv",
+          "label": "ATM IV"
+        },
+        {
+          "key": "maxPain",
+          "path": "oiWalls.maxPain",
+          "label": "Max pain"
+        }
+      ],
+      "preview": {
+        "shape": "flat",
+        "flattens": [
+          "latest",
+          "context",
+          "oiWalls"
+        ],
+        "fields": [
+          "asOf",
+          "sentiment",
+          "ivRank1y",
+          "atmIv",
+          "expectedMove1d",
+          "pcVol",
+          "pcVolPctl1y",
+          "maxPain"
+        ],
+        "meaning": "A headline preview (isPreview true) carries only these fields, directly under data. A display path under a flattened object reads its last key from data; a field outside this list is withheld by the preview, not missing from the market."
+      },
+      "asOf": {
+        "kind": "market-session",
+        "path": "asOf",
+        "unit": "date",
+        "meaning": "Prior trading session represented by the end-of-day dossier. It is not a live chain timestamp or a generation time."
+      }
+    },
+    {
+      "id": "earnings_calendar",
+      "kind": "api",
+      "method": "GET",
+      "path": "/api/v1/calendar/earnings",
+      "query": {
+        "week": "{week}",
+        "ticker": "{ticker}"
+      },
+      "responseEnvelope": "preview-envelope",
+      "cacheKey": "request-identity",
+      "requestCount": 1,
+      "displayFields": [
+        {
+          "key": "ticker",
+          "path": "earnings[].ticker",
+          "label": "Ticker"
+        },
+        {
+          "key": "companyName",
+          "path": "earnings[].companyName",
+          "label": "Company"
+        },
+        {
+          "key": "earningsDate",
+          "path": "earnings[].earningsDate",
+          "label": "Report date"
+        },
+        {
+          "key": "earningsTime",
+          "path": "earnings[].earningsTime",
+          "label": "Session"
+        },
+        {
+          "key": "estimatedEps",
+          "path": "earnings[].estimatedEps",
+          "label": "Estimated EPS"
+        }
+      ],
+      "asOf": {
+        "kind": "dataset-generation",
+        "path": "metadata.generatedAt",
+        "unit": "epoch-sec",
+        "meaning": "Calendar snapshot generation time. Each earningsDate is a scheduled event date, not the dataset as-of."
+      }
+    }
+  ],
+  "recipes": [
+    {
+      "id": "resolve",
+      "command": "resolve <COMPANY>",
+      "aliases": [
+        "find ticker for <COMPANY>"
+      ],
+      "requiredInputs": [
+        "query"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "text",
+      "steps": [
+        {
+          "operationId": "entity_search",
+          "bind": {
+            "query": "input.query"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 1,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "same normalized company query cached"
+      },
+      "exposure": "internal"
+    },
+    {
+      "id": "navigate",
+      "command": "<TICKER>",
+      "aliases": [
+        "show <TICKER>"
+      ],
+      "requiredInputs": [
+        "ticker",
+        "epochMs30dAgo"
+      ],
+      "optionalInputs": [
+        "assetType"
+      ],
+      "defaults": {
+        "assetType": "stock"
+      },
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationByInput": {
+            "input": "assetType",
+            "choices": {
+              "stock": "stock_quote",
+              "etf": "etf_quote"
+            }
+          },
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "stock_chart",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "score_series",
+          "bind": {
+            "ticker": "input.ticker",
+            "epochMs30dAgo": "input.epochMs30dAgo"
+          }
+        },
+        {
+          "operationId": "ticker_stories",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 4,
+        "warm": 0,
+        "optional": 1,
+        "retryMax": 0,
+        "warmAssumption": "all four requests for the same ticker, asset type, and window cached",
+        "optionalSteps": [
+          {
+            "operationId": "stock_profile",
+            "requiredInputs": [],
+            "bind": {
+              "ticker": "input.ticker"
+            }
+          }
+        ]
+      },
+      "exposure": "navigation"
+    },
+    {
+      "id": "open",
+      "command": "open <TICKER>",
+      "aliases": [
+        "brief me on <TICKER>",
+        "show me <TICKER>"
+      ],
+      "requiredInputs": [
+        "ticker",
+        "epochMs30dAgo",
+        "epochMsNow"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "stock_price",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "stock_profile",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "sentiment_series",
+          "bind": {
+            "ticker": "input.ticker",
+            "epochMs30dAgo": "input.epochMs30dAgo",
+            "epochMsNow": "input.epochMsNow"
+          }
+        },
+        {
+          "operationId": "insider_trades",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "analyst_consensus",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "stock_insights",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 6,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "all six requests for the same ticker and window cached"
+      },
+      "exposure": "command",
+      "help": "Research one ticker with price, profile, polarity, insiders, analyst consensus, and insights."
+    },
+    {
+      "id": "compare",
+      "command": "compare <A> <B>",
+      "aliases": [
+        "<A> vs <B>"
+      ],
+      "requiredInputs": [
+        "tickerA",
+        "tickerB",
+        "epochMs30dAgo",
+        "epochMsNow"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "recipeId": "open",
+          "forEachInput": [
+            "tickerA",
+            "tickerB"
+          ],
+          "bind": {
+            "ticker": "each",
+            "epochMs30dAgo": "input.epochMs30dAgo",
+            "epochMsNow": "input.epochMsNow"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 12,
+        "warm": 6,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "one ticker's six-call open snapshot cached"
+      },
+      "exposure": "command",
+      "help": "Compare the same six research surfaces for two tickers."
+    },
+    {
+      "id": "daily-brief",
+      "command": "daily brief",
+      "aliases": [
+        "what's hot today?",
+        "market brief"
+      ],
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "market_status",
+          "bind": {}
+        },
+        {
+          "operationId": "market_mood",
+          "bind": {}
+        },
+        {
+          "operationId": "market_summary",
+          "bind": {}
+        },
+        {
+          "operationId": "market_insights",
+          "bind": {}
+        },
+        {
+          "operationId": "index_prices",
+          "bind": {}
+        }
+      ],
+      "budget": {
+        "cold": 5,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "all five market snapshots cached"
+      },
+      "exposure": "command",
+      "help": "Read the market session, mood, summary, insights, and four index prices."
+    },
+    {
+      "id": "screen-smart-money",
+      "command": "screen smart-money",
+      "aliases": [
+        "smart money screen"
+      ],
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "insider_cluster_buys",
+          "bind": {
+            "lookbackDays": "literal.7"
+          }
+        },
+        {
+          "operationId": "politician_activity",
+          "bind": {
+            "lookbackDays": "literal.7",
+            "offset": "literal.0"
+          }
+        },
+        {
+          "operationId": "analyst_activity",
+          "bind": {
+            "lookbackDays": "literal.7",
+            "offset": "literal.0"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 3,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 3,
+        "warmAssumption": "all three seven-day feeds cached",
+        "retryRule": "Retry each empty leg once at 30 days only after a complete read; keep each leg's actual window visible. A preview slice (totalCount above the rows returned) is never widened.",
+        "pageRule": "Page the Congress and analyst legs with offset while offset + rows < totalCount on a full response, counting each extra page as a request beyond retryMax; a preview slice cannot be paged, so label it with totalCount instead."
+      },
+      "exposure": "command",
+      "help": "Find convergence across insider buys, congressional purchases, and analyst upgrades."
+    },
+    {
+      "id": "custom-screen",
+      "command": "screen <PLAN>",
+      "aliases": [
+        "find stocks matching <PLAN>"
+      ],
+      "requiredInputs": [
+        "plan"
+      ],
+      "optionalInputs": [
+        "limit",
+        "tickers"
+      ],
+      "defaults": {
+        "limit": 10,
+        "tickers": null
+      },
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "screener_fields",
+          "bind": {}
+        },
+        {
+          "operationId": "screener_execute",
+          "dependsOn": [
+            "screener_fields"
+          ],
+          "bind": {
+            "plan": "input.plan",
+            "limit": "input.limit",
+            "tickers": "input.tickers"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 2,
+        "warm": 1,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "field catalog cached; execution body is a miss"
+      },
+      "exposure": "command",
+      "help": "Validate a typed filter plan against the field catalog, then run the screen."
+    },
+    {
+      "id": "mood",
+      "command": "mood",
+      "aliases": [
+        "market mood",
+        "fear and greed"
+      ],
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "market_mood",
+          "bind": {}
+        }
+      ],
+      "budget": {
+        "cold": 1,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "same market-mood request cached"
+      },
+      "exposure": "command",
+      "help": "Read the market composite and sector sentiment."
+    },
+    {
+      "id": "holders",
+      "command": "holders <TICKER>",
+      "aliases": [
+        "who owns <TICKER>"
+      ],
+      "requiredInputs": [
+        "ticker"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "institutional_quarters",
+          "bind": {}
+        },
+        {
+          "operationId": "institutional_holders",
+          "dependsOn": [
+            "institutional_quarters"
+          ],
+          "bind": {
+            "ticker": "input.ticker",
+            "reportDate": "output.institutional_quarters.firstSettled.reportDate"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 2,
+        "warm": 1,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "settled-quarter catalog cached; ticker holders miss"
+      },
+      "exposure": "command",
+      "help": "Read institutional holders for the latest settled quarter."
+    },
+    {
+      "id": "flow",
+      "command": "flow <TICKER>",
+      "aliases": [
+        "smart money in <TICKER>"
+      ],
+      "requiredInputs": [
+        "ticker"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "insider_trades",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "politician_filings",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        },
+        {
+          "operationId": "institutional_quarters",
+          "bind": {}
+        },
+        {
+          "operationId": "institutional_holders",
+          "dependsOn": [
+            "institutional_quarters"
+          ],
+          "bind": {
+            "ticker": "input.ticker",
+            "reportDate": "output.institutional_quarters.firstSettled.reportDate"
+          }
+        },
+        {
+          "operationId": "analyst_actions",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 5,
+        "warm": 4,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "settled-quarter catalog cached; four ticker reads miss"
+      },
+      "exposure": "command",
+      "help": "Read dated insider, congressional, institutional, and analyst activity for a ticker."
+    },
+    {
+      "id": "options",
+      "command": "options <TICKER>",
+      "aliases": [
+        "options positioning for <TICKER>"
+      ],
+      "requiredInputs": [
+        "ticker"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "options_summary",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 1,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "same ticker options summary cached"
+      },
+      "exposure": "command",
+      "help": "Read end-of-day options positioning for a ticker."
+    },
+    {
+      "id": "news",
+      "command": "news <TICKER>",
+      "aliases": [
+        "stories about <TICKER>"
+      ],
+      "requiredInputs": [
+        "ticker"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "ticker_stories",
+          "bind": {
+            "ticker": "input.ticker"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 1,
+        "warm": 0,
+        "optional": 1,
+        "retryMax": 0,
+        "warmAssumption": "same ticker story list cached",
+        "optionalSteps": [
+          {
+            "operationId": "story_detail",
+            "requiredInputs": [
+              "clusterId"
+            ],
+            "bind": {
+              "clusterId": "input.clusterId"
+            }
+          }
+        ]
+      },
+      "exposure": "command",
+      "help": "Read ticker stories, then details only for a selected story."
+    },
+    {
+      "id": "stories",
+      "command": "stories",
+      "aliases": [
+        "top stories"
+      ],
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "stories",
+          "bind": {}
+        }
+      ],
+      "budget": {
+        "cold": 1,
+        "warm": 0,
+        "optional": 1,
+        "retryMax": 0,
+        "warmAssumption": "same market story list cached",
+        "optionalSteps": [
+          {
+            "operationId": "story_detail",
+            "requiredInputs": [
+              "clusterId"
+            ],
+            "bind": {
+              "clusterId": "input.clusterId"
+            }
+          }
+        ]
+      },
+      "exposure": "command",
+      "help": "Read market stories, then details only for a selected story."
+    },
+    {
+      "id": "earnings",
+      "command": "earnings [this|next]",
+      "aliases": [
+        "who reports next?"
+      ],
+      "requiredInputs": [],
+      "optionalInputs": [
+        "week",
+        "ticker"
+      ],
+      "defaults": {
+        "week": "this",
+        "ticker": null
+      },
+      "variantRules": [
+        {
+          "whenPresent": "ticker",
+          "unlessExplicit": "week",
+          "omit": "week"
+        }
+      ],
+      "shape": "canvas",
+      "steps": [
+        {
+          "operationId": "earnings_calendar",
+          "bind": {
+            "week": "input.week",
+            "ticker": "input.ticker"
+          }
+        }
+      ],
+      "budget": {
+        "cold": 1,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "same week or ticker calendar request cached"
+      },
+      "exposure": "command",
+      "help": "Read the earnings calendar for this week, next week, or a ticker."
+    },
+    {
+      "id": "help",
+      "command": "help",
+      "aliases": [
+        "commands"
+      ],
+      "requiredInputs": [],
+      "optionalInputs": [],
+      "defaults": {},
+      "shape": "text",
+      "steps": [],
+      "budget": {
+        "cold": 0,
+        "warm": 0,
+        "optional": 0,
+        "retryMax": 0,
+        "warmAssumption": "no API requests"
+      },
+      "exposure": "command",
+      "help": "List supported public command forms without an API read."
+    }
+  ],
+  "extensions": [
+    {
+      "id": "raw-news-links",
+      "operationId": "raw_ticker_documents",
+      "requiredInputs": [
+        "ticker"
+      ],
+      "optionalInputs": [],
+      "defaults": {},
+      "bind": {
+        "ticker": "input.ticker"
+      }
+    }
+  ],
+  "requestPolicy": {
+    "defaultCacheTtlMs": 300000,
+    "manualRefresh": "bypass",
+    "suppliedAbsoluteWindows": "preserve",
+    "relativeWindows": {
+      "epochMs30dAgo": {
+        "kind": "utc-day-floor-offset",
+        "days": -30
+      },
+      "epochMsNow": {
+        "kind": "utc-time-bucket",
+        "bucketMs": 300000
+      }
+    }
+  }
+}

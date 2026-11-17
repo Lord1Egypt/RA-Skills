@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify ChatGPT Answers"
+  short_description: "Collect ChatGPT answers and return results"
+  default_prompt: "Use $dataify-chatgpt-answer to complete the requested Dataify collection, wait for the asynchronous task, and return the final collected result. Stop at task submission only when I explicitly request no-wait behavior."
+
+policy:
+  allow_implicit_invocation: true

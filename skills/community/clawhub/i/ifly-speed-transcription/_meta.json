@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7ap5fct403gcj6xgy1aspf9181wg6c",
-  "slug": "ifly-speed-transcription",
+  "slug": "xfei-speed-transcription",
   "version": "1.0.0",
-  "publishedAt": 1773884620599
+  "author": "openclaw",
+  "tags": ["speech-recognition", "audio-transcription", "iflytek", "xfyun", "speed-transcription"],
+  "compatibility": {
+    "python": ">=3.8",
+    "dependencies": ["requests>=2.25.0", "urllib3>=1.26.0"]
+  },
+  "changelog": {
+    "1.0.0": [
+      "Initial release with ultra-fast speech transcription",
+      "Support for 202+ Chinese dialects",
+      "Speaker separation support",
+      "Domain-specific optimization (court, finance, medical, etc.)"
+    ]
+  }
 }

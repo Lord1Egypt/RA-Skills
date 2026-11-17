@@ -2,7 +2,10 @@
  * dedup.ts — 消息去重模块 (Phase 2)
  *
  * 功能：
- *   - 消息完整性校验：msg_hash = sha256(sender + receiver + content + nonce)
+ *   - 去重哈希 computeDedupHash = sha256(sender:receiver:content)：刻意【不含 nonce】，
+ *     仅用于检测完全相同的消息（防重复发送）
+ *   - 完整性哈希 computeMsgHash = sha256(sender:receiver:content:nonce)：【含 nonce】，
+ *     用于防篡改 + 客户端校验
  *   - per-sender 递增 nonce 管理（SQLite 持久化，Phase 2）
  *   - dedup_cache 表操作（isDuplicate / recordHash）
  *   - TTL 定时清理（15min）
@@ -15,7 +18,6 @@
  */
 import { createHash } from "crypto";
 import { db } from "./db.js";
-import { getRow } from "./utils.js";
 import { auditLog } from "./security.js";
 import { logError, logger } from "./logger.js";
 import { getErrorMessage } from "./types.js";
@@ -49,7 +51,7 @@ ensureNonceTable();
 export function nextNonce(senderId: string): number {
   const row = db
     .prepare(`SELECT last_nonce FROM sender_nonces WHERE sender_id = ?`)
-    .get(senderId) as { last_nonce: number } | undefined;
+    .get(senderId) as any;
 
   const last = row ? row.last_nonce : 0;
   const next = last + 1;
@@ -70,7 +72,7 @@ export function nextNonce(senderId: string): number {
 export function currentNonce(senderId: string): number {
   const row = db
     .prepare(`SELECT last_nonce FROM sender_nonces WHERE sender_id = ?`)
-    .get(senderId) as { last_nonce: number } | undefined;
+    .get(senderId) as any;
   return row ? row.last_nonce : 0;
 }
 
@@ -122,7 +124,7 @@ export function isDuplicate(msgHash: string): boolean {
   try {
     const row = db
       .prepare(`SELECT msg_hash FROM dedup_cache WHERE msg_hash = ?`)
-      .get(msgHash) as { created_at: number } | undefined;
+      .get(msgHash) as any;
     return !!row;
   } catch (err: unknown) {
     logError("dedup_isDuplicate_error", err);

@@ -1,0 +1,68 @@
+name: smart-procurement-expert
+display_name: 智慧招采专家
+version: 1.0.4
+author: 一线评标专家
+license: MIT-0
+emoji: "🧭"
+description: 投标人侧招投标与政府采购全周期合规导航助手：覆盖商机甄别、投标决策、任务分解、招标解析、章节初稿生成、文稿润色、图表占位、呈交终审、一致性审查、评标应对、质疑投诉救济与经验沉淀。内置两法分轨判定、三档安全护栏、前沿适配（电子招投标/中小企业/双信封/ESG/围串标）与 IMA 知识库联动，并集成已验证的深度能力（一致性严格审查、真实 docx 章节初稿生成+内容自动填充、价格分规则半自动抽取+自动算分引擎）。
+tags:
+  - 招投标
+  - 政府采购
+  - 投标导航
+  - 一致性审查
+  - 标书生成
+  - 合规
+  - 知识库联动
+feedback: 微信公众号「一线评标专家」
+linked_knowledge_bases:
+  - name: 招标文件、采购文件汇集
+    id: "7439473860155957"
+    role: 学习真实招标文件结构/格式/章节组织；招标解析与响应文件生成阶段定向检索
+  - name: 招投标评标否决AI知识库
+    id: "7460608999968055"
+    role: 识别否决雷区、反向规避格式/目录缺失导致的否决（跨法域共用）
+  - name: 招投标实务与合规
+    id: "7463402595160740"
+    role: 招投标法域法条解释、合规红线、典型案例
+  - name: 政府采购实务与合规
+    id: "7463496212028405"
+    role: 政府采购法域合规/实务（补强分轨）
+  - name: 招投标异议投诉处理
+    id: "7480160395744474"
+    role: 招投标法域救济路径、时限、异议函/投诉书
+  - name: 政府采购投诉AI知识库
+    id: "7450416392468005"
+    role: 政府采购法域财政部门投诉案例与流程
+  - name: 招投标、政府采购书籍
+    id: "7475417665522384"
+    role: 概念解释、法条体系化（用户问"为什么这样规定"时调用）
+platforms:
+  clawhub:
+    name: smart-procurement-expert
+    display_name: 智慧招采专家
+    description: 投标人侧招投标与政府采购全流程合规导航助手，集成一致性严格审查与真实 docx 同格式生成，联动 IMA 知识库。
+  skillhub:
+    name: smart-procurement-expert
+    display_name: 智慧招采专家
+    description: 投标人侧招投标与政府采购全流程合规导航助手，内置两法分轨判定、三档安全护栏与知识库联动。
+  cocoloop:
+    name: smart-procurement-expert
+    display_name: 智慧招采专家
+    description: 招投标与政府采购投标全流程合规导航，覆盖解析、决策、生成、一致性审查与救济。
+  coze:
+    name: smart-procurement-expert
+    display_name: 智慧招采专家
+    description: 投标人侧招采合规导航助手，联动知识库提升合规深度与救济能力。
+changelog:
+  - version: 1.0.4
+    date: 2026-07-17
+    change: 新增深度节点 C 上游工具——价格分规则半自动抽取脚本 scripts/extract_price_rules.py（评标办法 PDF 或文本→price_config.json 草稿 + 审阅报告，置信度+需人工确认项）；新增 references/price-rule-extraction.md 与 test_cases 用例 K；节点2评分建模接入抽取流。
+  - version: 1.0.3
+    date: 2026-07-17
+    change: 新增深度节点 C 价格分自动算分引擎（scripts/price_score.py，低价优先/基准价/区间三类算法，仅依赖标准库，结果标需人工复核）；新增响应文件内容自动填充管线（references/response-autofill.md + templates/autofill-map.md + scripts/autofill_prepare.py），实现 招标解析→content.json→章节初稿 docx 可复现流水线；节点2评分建模接入价格分引擎，节点5接入 autofill 流。
+  - version: 1.0.2
+    date: 2026-07-17
+    change: 全周期升级：流程扩为 4 阶段 12 节点（新增商机甄别/任务分解/润色去模板化/图表占位/呈交终审/经验沉淀）；深度节点 B 由骨架扩至章节初稿（body）+图表占位（chart）；新增前沿适配专章（电子招投标/中小企业/双信封/ESG/围串标）；评分建模补价格异常与 ESG；新增 test_cases 与 demo。
+  - version: 1.0.1
+    date: 2026-07-17
+    change: 内嵌文档生成深度节点 B 三脚本（scripts/），消除独立安装缺生成引擎的可移植缺口

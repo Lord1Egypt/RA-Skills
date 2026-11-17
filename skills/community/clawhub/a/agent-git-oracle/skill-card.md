@@ -1,42 +1,53 @@
-## Description: <br>
-Advanced repository analysis and refactoring guide that identifies technical debt and architectural anti-patterns using AI reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced repository analysis and refactoring guide. Identifies technical debt and architectural anti-patterns using AI reasoning.
 
-## Publisher: <br>
-[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit local git repositories for complexity, technical debt, possible logic leaks, and opportunities for agent-native refactoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects the repository path supplied by the user, which may include secrets, sensitive code, or sensitive history. <br>
-Mitigation: Run it only on a narrowly selected repository path and remove secrets or sensitive history before use when needed. <br>
-Risk: The invocation has a disclosed paid cost. <br>
-Mitigation: Confirm the 0.10 USDC fee on the Base network before running the skill. <br>
-Risk: Repository audit and refactoring guidance may be incomplete or unsuitable for a specific codebase. <br>
-Mitigation: Review recommendations before applying changes and validate any proposed refactor with normal tests and code review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tmstudio667-commits/agent-git-oracle) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/tmstudio667-commits) <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze local git repositories for technical debt, architectural anti-patterns, and refactoring opportunities.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with repository analysis, refactoring recommendations, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository-specific recommendations; no files are produced by the skill text itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented usage runs an unpinned external CLI package.
+
+Mitigation: Use a pinned, reviewed OpenClaw CLI version from a trusted registry or lockfile before running the skill.
+
+Risk: Repository contents may be processed by paid compute during analysis.
+
+Mitigation: Confirm how repository contents are handled before using the skill on private projects or code that may contain secrets.
+
+## Reference(s):
+
+- [Agent Git Oracle on ClawHub](https://clawhub.ai/tmstudio667-commits/skills/agent-git-oracle)
+- [tmstudio667-commits ClawHub profile](https://clawhub.ai/user/tmstudio667-commits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with repository analysis, refactoring guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May analyze repository contents through an external OpenClaw CLI invocation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

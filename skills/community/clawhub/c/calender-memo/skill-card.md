@@ -1,40 +1,58 @@
-## Description: <br>
-A local calendar memo skill for adding, viewing, completing, and deleting personal todos and schedule reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local personal calendar memo skill for adding, viewing, completing, deleting, and receiving reminders for todo items and scheduled events.
 
-## Publisher: <br>
-[qiyuxi24](https://clawhub.ai/user/qiyuxi24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiyuxi24](https://clawhub.ai/user/qiyuxi24)
 
-## Use Case: <br>
-Individuals using OpenClaw can manage a personal local schedule by adding tasks, checking today's or upcoming items, and marking items complete or deleted. The skill can also send reminder notifications before scheduled events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic Feishu reminder pushes may send schedule text outside the local memo context without clear install-time consent. <br>
-Mitigation: Install only when Feishu reminder delivery is intended, and avoid sensitive schedule details unless explicit opt-in and disable controls are added. <br>
-Risk: Reminder text is passed through a shell command when sending notifications. <br>
-Mitigation: Review the skill before installation and prefer safer argument-based command execution before handling untrusted or sensitive entries. <br>
+## Use Case:
 
+External users use this skill to manage a personal local schedule, including adding future events, checking today's agenda, listing open tasks, and marking items complete or deleted. It is intended for individual calendar and reminder workflows, not shared calendars or external information lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiyuxi24/calender-memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Text and Markdown replies, local JSON event records, and configured reminder messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores schedule data locally and checks for reminders periodically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private calendar titles and times may be sent through a configured Feishu/OpenClaw messaging channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this push behavior is acceptable, make external reminders opt-in, and provide clear disable controls before broad use.
+
+Risk: Reminder delivery uses unsafe shell command construction.
+
+Mitigation: Replace shell execution with argument-based process execution before broad use.
+
+Risk: The main skill description does not fully clarify automatic push behavior.
+
+Mitigation: Clarify reminder push behavior and messaging-channel requirements in the public skill description.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiyuxi24/skills/calender-memo)
+- [Publisher profile](https://clawhub.ai/user/qiyuxi24)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands]
+
+**Output Format:** [Markdown chat replies with local schedule records and reminder notifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores calendar data locally in MEMORY.md and may send reminder text through a configured Feishu/OpenClaw messaging channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

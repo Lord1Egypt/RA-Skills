@@ -1,42 +1,56 @@
-## Description: <br>
-Monitor Minimax Coding Plan usage to stay within API limits, fetch current usage stats, and provide status alerts for the 5-hour sliding window. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Minimax Coding Plan usage to stay within API limits, fetch current usage stats, provide status alerts, and show 5-hour sliding window status.
 
-## Publisher: <br>
-[lanhaixuan](https://clawhub.ai/user/lanhaixuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanhaixuan](https://clawhub.ai/user/lanhaixuan)
 
-## Use Case: <br>
-Developers and Minimax Coding Plan users use this skill to check remaining API quota, inspect 5-hour window status, and decide whether to proceed before large AI tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires MINIMAX_API_KEY to call the Minimax usage endpoint. <br>
-Mitigation: Use a dedicated or least-privilege key where possible, keep it out of shared logs, and provide it only in the environment where the quota check runs. <br>
-Risk: The optional cron example can create recurring background quota checks and log output. <br>
-Mitigation: Add cron scheduling only when intentional, and review the log path and any alert destination before enabling recurring checks. <br>
+## Use Case:
 
+Developers and operators use this skill to check Minimax Coding Plan quota, monitor remaining usage in the current 5-hour window, and decide whether to proceed with larger AI tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanhaixuan/minimax-usage-cn) <br>
-- [Minimax homepage](https://www.minimaxi.com) <br>
-- [Minimax Coding Plan usage endpoint](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text status output or JSON from a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and MINIMAX_API_KEY; supports --json/-j for programmatic output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill sends MINIMAX_API_KEY to www.minimaxi.com to retrieve quota information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust www.minimaxi.com with the API key and use the script only for quota checks.
+
+Risk: Cron examples can expose the API key to scheduled environments or write usage output to unsafe locations.
+
+Mitigation: Adapt cron paths, intentionally scope the API key for cron, choose a safe log location, and document how to remove the scheduled job.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanhaixuan/skills/minimax-usage-cn)
+- [Publisher Profile](https://clawhub.ai/user/lanhaixuan)
+- [Minimax Homepage](https://www.minimaxi.com)
+- [Minimax Coding Plan Usage Endpoint](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Human-readable terminal output or JSON from the usage-check script, with Markdown guidance in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and curl; supports --json/-j for programmatic output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

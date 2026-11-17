@@ -1,47 +1,63 @@
-## Description: <br>
-Connect to RDF triple stores and execute SPARQL queries for storing, retrieving, and managing semantic knowledge graph data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to RDF triple stores and execute SPARQL queries for storing, retrieving, and managing semantic knowledge graph data.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and knowledge graph engineers use this skill to connect agents to RDF triple stores, run SPARQL queries, manage triples and named graphs, and work with ontology or linked data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SPARQL update operations can change or remove graph data. <br>
-Mitigation: Use read-only credentials by default, require explicit review before INSERT, DELETE, UPDATE, or DROP operations, scope writes to named graphs, and keep production graph backups. <br>
-Risk: Federated SERVICE queries or non-HTTPS endpoints can expose query data to remote services. <br>
-Mitigation: Avoid federated SERVICE queries and non-HTTPS endpoints unless the remote service is trusted. <br>
-Risk: Authenticated endpoints may require sensitive credentials. <br>
-Mitigation: Use scoped credentials and avoid embedding secrets in prompts, files, or examples. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect agents to RDF triple stores, execute SPARQL queries, manage named graphs, and work with semantic knowledge graph data. It is suited for linked data integration, ontology-based applications, enterprise data integration, and RDF-backed knowledge representation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/rdf-triple-store-integration) <br>
-- [RDF SPARQL Design Patterns](references/rdf-sparql-patterns.md) <br>
-- [W3C SPARQL 1.1 Query Language](https://www.w3.org/TR/sparql11-query/) <br>
-- [RDF 1.1 Primer](https://www.w3.org/TR/rdf11-primer/) <br>
-- [OWL 2 Web Ontology Language Overview](https://www.w3.org/TR/owl2-overview/) <br>
-- [SPARQL By Example](https://www.w3.org/2009/sparql/wiki/SPARQL_By_Example) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with SPARQL, Python, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SPARQL endpoint configuration, credential handling guidance, query/update examples, and Python connector usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can guide agents to insert, update, delete, or drop RDF store data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only credentials by default, require explicit confirmation for INSERT, DELETE, DROP, and UPDATE operations, and test write operations against non-production graphs first.
+
+Risk: Federated SPARQL SERVICE calls can query external endpoints and may expose sensitive data or rely on untrusted services.
+
+Mitigation: Allow federated SERVICE calls only to approved endpoints and only with data that is safe to share externally.
+
+Risk: Dynamically constructed SPARQL can produce unsafe or unintended queries when untrusted input is copied into examples.
+
+Mitigation: Validate SPARQL before execution and avoid copying f-string query construction patterns with untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fisa712/skills/rdf-triple-store-integration)
+- [RDF SPARQL Design Patterns](artifact/references/rdf-sparql-patterns.md)
+- [RDF Triple Store Examples](artifact/examples/rdf-tripple-examples.md)
+- [W3C SPARQL 1.1 Query Language](https://www.w3.org/TR/sparql11-query/)
+- [W3C RDF 1.1 Primer](https://www.w3.org/TR/rdf11-primer/)
+- [W3C OWL 2 Overview](https://www.w3.org/TR/owl2-overview/)
+- [SPARQL By Example](https://www.w3.org/2009/sparql/wiki/SPARQL_By_Example)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with SPARQL, Python, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SPARQL queries that read from or modify RDF stores; review write operations before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

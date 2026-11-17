@@ -1,44 +1,61 @@
-## Description: <br>
-Discovers popular and highly rated attractions in a city using FlyAI CLI data, then presents POIs with ticket prices, opening hours, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover the most popular and highest-rated attractions in any city, including ticket prices, opening hours, and booking links powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travel users and agent operators use this skill to retrieve current attraction recommendations for a city through the FlyAI CLI. It formats CLI results into concise travel guidance with prices, hours, ratings, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an unpinned global FlyAI CLI through npm. <br>
-Mitigation: Review or perform the CLI installation yourself, and prefer a pinned or sandboxed install before use. <br>
-Risk: FlyAI/Fliggy may receive attraction queries, and the optional local execution log can retain raw travel queries. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and delete or disable .flyai-execution-log.json for sensitive travel requests. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to retrieve current attraction recommendations for a city, format comparison tables, and provide booking links from flyai CLI results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/top-attractions) <br>
-- [Output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallback handling](references/fallbacks.md) <br>
-- [Execution log schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown response with comparison tables, booking links, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should be derived from FlyAI CLI output, include booking links when available, and avoid raw JSON in the final user response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install an unpinned global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use an environment where global npm installs require explicit approval.
+
+Risk: CLI calls may mishandle user-provided travel queries if arguments are built unsafely.
+
+Mitigation: Execute flyai commands with structured arguments rather than shell interpolation.
+
+Risk: The runbook describes persisting raw user travel queries in a local execution log.
+
+Mitigation: Disable or minimize logging and avoid storing raw travel queries unless users have approved it.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/dingtom336-gif/skills/top-attractions)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown comparison tables with booking links and supporting CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI results and should not expose raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Builds new MCP Apps with React UI output using @modelcontextprotocol/ext-apps and the MCP SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build new MCP Apps (MCP servers with React UI output) using @modelcontextprotocol/ext-apps and the MCP SDK.
 
-## Publisher: <br>
-[hollaugo](https://clawhub.ai/user/hollaugo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hollaugo](https://clawhub.ai/user/hollaugo)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold or implement MCP App servers that return React UI resources, including tool schemas, server wiring, Vite single-file UI bundles, and host-theme-aware React components. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated MCP apps may later be connected to private APIs, business data, or public tunnels without sufficient access control. <br>
-Mitigation: Add authentication and origin restrictions before exposing generated apps or using sensitive data. <br>
-Risk: Template dependencies can drift or introduce supply-chain risk if installed without review. <br>
-Mitigation: Pin npm dependencies, commit a lockfile, and review dependency updates before deployment. <br>
-Risk: Tool-specific data sources added after scaffolding can change the security posture of the generated app. <br>
-Mitigation: Review each added data source and its handling of sensitive inputs before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MCP App Specification](artifact/references/mcp-app-spec.md) <br>
-- [Mcp App Builder on ClawHub](https://clawhub.ai/hollaugo/mcp-app-builder) <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold MCP Apps that expose MCP tools with React-based visual UIs. It provides workflow guidance, required dependency versions, server patterns, UI patterns, and a ready-to-copy template.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and scaffolded file contents.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve the exact MCP App dependency versions and server/UI patterns specified by the bundled reference.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated MCP app servers may be exposed too broadly if they bind beyond localhost or use unrestricted CORS.
+
+Mitigation: Bind generated servers to loopback by default, restrict CORS to trusted origins, and review network exposure before running outside local development.
+
+Risk: Public tunnels can expose MCP tools and sensitive data if used without access controls.
+
+Mitigation: Avoid public tunnels for sensitive workflows unless authentication, per-tool authorization, and dependency audits are in place.
+
+## Reference(s):
+
+- [MCP App Specification](references/mcp-app-spec.md)
+- [MCP App Builder on ClawHub](https://clawhub.ai/hollaugo/skills/mcp-app-builder)
+- [Prompt Circle ClawHub Profile](https://clawhub.ai/user/hollaugo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, React, JSON, YAML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify project files for MCP servers, React UI bundles, package configuration, and build scripts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and template package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

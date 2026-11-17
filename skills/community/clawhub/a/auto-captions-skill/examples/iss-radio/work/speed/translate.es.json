@@ -1,0 +1,54 @@
+{
+ "from": "en",
+ "to": "es",
+ "how": "Fill every 'text' with the translation of 'source': the same meaning in natural es, short enough to read in the cue's time; keep names and numbers. Optional 'emphasis': words to colour, as in fixes.json. Don't change i, start or end.",
+ "emphasis": [
+  "28 000 km/h",
+  "25 veces",
+  "9 o 10 minutos"
+ ],
+ "cues": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 1.317,
+   "source": "We won't have a lot of time to talk,",
+   "text": "No tendremos mucho tiempo,"
+  },
+  {
+   "i": 2,
+   "start": 1.4,
+   "end": 6.157,
+   "source": "because we'll be cruising over the ground station at 17,500 miles an hour.",
+   "text": "porque pasaremos sobre la estación terrestre a 28 000 km/h."
+  },
+  {
+   "i": 3,
+   "start": 6.24,
+   "end": 8.417,
+   "source": "That's 25 times the speed of sound.",
+   "text": "Eso es 25 veces la velocidad del sonido."
+  },
+  {
+   "i": 4,
+   "start": 8.5,
+   "end": 9.597,
+   "source": "So we'll actually only have",
+   "text": "Así que solo tendremos"
+  },
+  {
+   "i": 5,
+   "start": 9.68,
+   "end": 11.557,
+   "source": "about 9 or 10 minutes of good radio contact",
+   "text": "unos 9 o 10 minutos de contacto por radio"
+  },
+  {
+   "i": 6,
+   "start": 11.64,
+   "end": 13.78,
+   "source": "from the horizon to the horizon.",
+   "text": "de horizonte a horizonte."
+  }
+ ]
+}

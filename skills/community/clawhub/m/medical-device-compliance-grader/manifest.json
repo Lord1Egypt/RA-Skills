@@ -1,0 +1,44 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械合规评分器",
+  "version": "1.0.0",
+  "author": "注册老炮 (Regulatory Veteran)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:02:28.897148+00:00",
+  "timestamp_local": "2026-08-28T00:02:28.897156",
+  "package_fingerprint_sha256": "a3eb5f2d7495d572689ce93381c69a0dc841a7373211ac0bebd62375954793f7",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "37c67dc8c7399b06e6072f938fa1a9dcf96a4891cad1069a6435d7c094735e0b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "a4fcf27f6a49ea1b9d26586e87614275ace37fa8da5c9e406077492631d773ca"
+    },
+    {
+      "path": "medical-device-compliance-grader_security_test.py",
+      "sha256": "6582dc4da626fbffc055ed6a69960ef4ea2bed4d9f8b2ba293bd7baeeaf2cabd"
+    },
+    {
+      "path": "references/合规评分维度与标准.md",
+      "sha256": "2fd33ac9a85b1ad24e6d21252462f0c960f605db5da864aff714c17e10c25c82"
+    },
+    {
+      "path": "scripts/grade_compliance.py",
+      "sha256": "9938ba768c2fd20edb004418bf7188dcc7190225f715f9f33985a177d2bcaa37"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "54835b3bc897a198d9796bc94a47f8c9928481dbdd3b8f6704e98266b305684b"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "a3e719203e2d7cac3a1849eeafd58885700ea15450d3548cba797aff4aff6ae6"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "50eafdd4bceb180fa4d9c5e2842c99ba77caf905cd31e47c4f4300501ff68356"
+    }
+  ]
+}

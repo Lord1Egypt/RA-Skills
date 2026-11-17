@@ -1,0 +1,20 @@
+{
+  "name": "体育赛事查询助手",
+  "slug": "tencent-news-sports-schedule",
+  "version": "1.0.5",
+  "installedAt": 1792637804399,
+  "source": "marketplace",
+  "examples_zh": [
+    "本周英超赛事有哪些比赛？",
+    "nba今日比赛结果如何？",
+    "北京国安最近有哪些比赛？"
+  ],
+  "examples_en": [
+    "What Premier League matches are on this week?",
+    "How did today's NBA games finish?",
+    "What are Beijing Guoan's recent and upcoming matches?"
+  ],
+  "description_zh": "查询体育赛事和球队的赛程、对阵、比分与直播链接，支持按日期和球队筛选。",
+  "description_en": "Query sports schedules, fixtures, scores and live links by competition, team and date using Tencent News. Coverage follows the current competition list.",
+  "iconSource": "tencent-news-sports-schedule"
+}

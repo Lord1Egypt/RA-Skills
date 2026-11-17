@@ -1,11 +1,11 @@
 # IDMT\_SchematicItem interface
 
-原理图属性
+Schematic property
 
 ## Signature
 
 ```typescript
-interface IDMT_SchematicItem 
+interface IDMT_SchematicItem
 ```
 
 ## Properties
@@ -14,156 +14,124 @@ interface IDMT_SchematicItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [cbbSymbol?](./IDMT_SchematicItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ILIB\_SymbolItem](./ILIB_SymbolItem.md)
 
-
 </td><td>
 
-_(Optional)_ 复用模块原理图关联的模块符号
-
+_(Optional)_ The module symbol associated with the reuse block schematic
 
 </td></tr>
 <tr><td>
 
 [itemType](./IDMT_SchematicItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.SCHEMATIC](../enums/EDMT_ItemType.md) \| [EDMT\_ItemType.CBB\_SCHEMATIC](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_SchematicItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图名称
-
+Schematic name
 
 </td></tr>
 <tr><td>
 
 [page](./IDMT_SchematicItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[IDMT\_SchematicPageItem](./IDMT_SchematicPageItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-下属原理图图页
-
+Subordinate schematic sheet
 
 </td></tr>
 <tr><td>
 
-[parentBoardUuid?](./IDMT_SchematicItem.md)
-
+[parentBoardName?](./IDMT_SchematicItem.md)
 
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 所属板子 UUID
-
+_(Optional)_ Name of the board it belongs to
 
 </td></tr>
 <tr><td>
 
 [parentProjectUuid](./IDMT_SchematicItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属工程 UUID
-
+UUID of the project it belongs to
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_SchematicItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图 UUID
-
+Schematic UUID
 
 </td></tr>
 </tbody></table>
@@ -176,7 +144,7 @@ string
 
 # IDMT\_SchematicItem.cbbSymbol property
 
-复用模块原理图关联的模块符号
+The module symbol associated with the reuse block schematic
 
 ## Signature
 
@@ -188,7 +156,7 @@ cbbSymbol?: ILIB_SymbolItem;
 
 # IDMT\_SchematicItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -200,7 +168,7 @@ readonly itemType: EDMT_ItemType.SCHEMATIC | EDMT_ItemType.CBB_SCHEMATIC;
 
 # IDMT\_SchematicItem.name property
 
-原理图名称
+Schematic name
 
 ## Signature
 
@@ -212,7 +180,7 @@ name: string;
 
 # IDMT\_SchematicItem.page property
 
-下属原理图图页
+Subordinate schematic sheet
 
 ## Signature
 
@@ -220,23 +188,23 @@ name: string;
 page: Array<IDMT_SchematicPageItem>;
 ```
 
-### parentboarduuid
+### parentboardname
 
-# IDMT\_SchematicItem.parentBoardUuid property
+# IDMT\_SchematicItem.parentBoardName property
 
-所属板子 UUID
+Name of the board it belongs to
 
 ## Signature
 
 ```typescript
-parentBoardUuid?: string;
+parentBoardName?: string;
 ```
 
 ### parentprojectuuid
 
 # IDMT\_SchematicItem.parentProjectUuid property
 
-所属工程 UUID
+UUID of the project it belongs to
 
 ## Signature
 
@@ -248,7 +216,7 @@ parentProjectUuid: string;
 
 # IDMT\_SchematicItem.uuid property
 
-原理图 UUID
+Schematic UUID
 
 ## Signature
 

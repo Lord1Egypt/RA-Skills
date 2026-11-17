@@ -1,41 +1,57 @@
-## Description: <br>
-Guides structured help for Game Design Document using clear templates, checks, and safe defaults (category: Game Design). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Game Design Document using clear templates, checks, and safe defaults (category: Game Design).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Game designers, developers, and writers use this skill to turn a game design goal or draft notes into a concise plan, reusable checklist, next actions, and editable draft copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste private, proprietary, or sensitive game design material into the agent while using the skill. <br>
-Mitigation: Avoid pasting private or proprietary material unless you intend the agent to process it, keep personal data minimal, and follow the skill's instruction not to provide secrets. <br>
-Risk: The skill includes an optional PayPal donation link that sends users to an external payment site. <br>
-Mitigation: Treat the donation link as optional and review the destination before taking any external payment action. <br>
+## Use Case:
 
+External users, developers, and game design teams use this skill to structure game design document planning, critique drafts, and produce reusable checklists or editable draft copy without collecting secrets or private data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/game-design-document-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/abdullah944) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise plans, numbered checklists, short next-action lists, and optional editable draft copy blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json) <br>
+Risk: Users may paste secrets or private personal data into game design notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill instructs users to provide goals without secrets and to keep personal data minimal.
+
+Risk: Draft planning guidance may be incorrect, unclear, or unsuitable for a specific project.
+
+Mitigation: Use outputs as editable planning guidance and review plans, checklists, and draft copy before adoption.
+
+Risk: The donation link could be mistaken as required for the skill's core function.
+
+Mitigation: Treat the PayPal donation link as optional external support separate from using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah944/skills/game-design-document-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional editable draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; asks users to avoid secrets and keep personal data minimal.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

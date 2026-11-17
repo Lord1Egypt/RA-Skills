@@ -1,43 +1,62 @@
-## Description: <br>
-Create mathematical animations with synchronized voiceover narration and subtitles using Manim Community and manim-voiceover. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create mathematical animations with synchronized voiceover narration and subtitles using Manim Community and manim-voiceover.
 
-## Publisher: <br>
-[hzsunzixiang](https://clawhub.ai/user/hzsunzixiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hzsunzixiang](https://clawhub.ai/user/hzsunzixiang)
 
-## Use Case: <br>
-Developers, educators, and content creators use this skill to generate Manim scene code, rendering commands, and subtitle workflows for narrated mathematical or educational videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Manim scenes and pipeline commands run local Python, Manim, and ffmpeg tooling. <br>
-Mitigation: Review generated scene files and commands before rendering, and run them in a controlled workspace with expected dependencies installed. <br>
-Risk: Default gTTS voiceover can send narration text to Google TTS, which may be unsuitable for confidential or regulated content. <br>
-Mitigation: Use the offline pyttsx3 option for sensitive scripts or regulated content. <br>
-Risk: Rendered media, subtitles, and voiceover caches may retain sensitive narration or visual content. <br>
-Mitigation: Clear generated media and voiceover cache files after sensitive projects. <br>
+## Use Case:
 
+Developers, educators, and content creators use this skill to generate Manim scene code, render narrated mathematical or educational animations, and optionally produce synchronized subtitles.
 
-## Reference(s): <br>
-- [Manim Animation Technical Guide](references/manim_guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hzsunzixiang/manim-animation-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, bash, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local Manim scene files, video render commands, subtitles, and ffmpeg post-processing steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Cloud TTS providers such as gTTS may process narration text outside the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential narration with cloud TTS and use the offline pyttsx3 backend when privacy matters.
+
+Risk: Dependency installation can introduce package-source and environment risks.
+
+Mitigation: Install in a virtual environment or container and review package sources before adding optional TTS backends.
+
+Risk: Missing ffmpeg libx264 or libass support can prevent video rendering or subtitle burn-in.
+
+Mitigation: Run the provided environment check before rendering and install an ffmpeg build that includes libx264 and libass.
+
+Risk: Combining in-scene subtitles with SRT burn-in can create overlapping subtitle layers.
+
+Mitigation: Choose either in-scene subtitles or SRT burn-in for a given video, not both.
+
+## Reference(s):
+
+- [Manim Animation Technical Guide](references/manim_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/hzsunzixiang/skills/manim-animation-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, INI, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Manim scene files, manim.cfg settings, render commands, subtitle workflow guidance, and environment-check instructions.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

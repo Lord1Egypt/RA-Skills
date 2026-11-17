@@ -10,9 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const API_BASE = 'https://api.basemail.ai';
-const CONFIG_DIR = path.join(process.env.HOME, '.basemail');
-const TOKEN_FILE = path.join(CONFIG_DIR, 'token.json');
+const { API_BASE, CONFIG_DIR, getToken, apiFetch, describeError } = require('./token');
 const AUDIT_FILE = path.join(CONFIG_DIR, 'audit.log');
 
 function logAudit(action, details = {}) {
@@ -29,43 +27,12 @@ function logAudit(action, details = {}) {
   }
 }
 
-function getToken() {
-  // 1. Environment variable
-  if (process.env.BASEMAIL_TOKEN) {
-    return process.env.BASEMAIL_TOKEN;
-  }
-  
-  // 2. Token file
-  if (!fs.existsSync(TOKEN_FILE)) {
-    console.error('❌ 尚未註冊。請先執行 register.js');
-    process.exit(1);
-  }
-  
-  const data = JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
-  
-  // Check token age (warn if > 20 hours)
-  if (data.saved_at) {
-    const savedAt = new Date(data.saved_at);
-    const now = new Date();
-    const hoursSinceSaved = (now - savedAt) / 1000 / 60 / 60;
-    
-    if (hoursSinceSaved > 20) {
-      console.log('⚠️ Token 可能即將過期，如遇錯誤請重新執行 register.js');
-    }
-  }
-  
-  return data.token;
-}
 
 async function listInbox(token) {
-  const res = await fetch(`${API_BASE}/api/inbox`, {
-    headers: { 'Authorization': `Bearer ${token}` },
-  });
-  
-  const data = await res.json();
-  
-  if (data.error) {
-    console.error('❌ 錯誤:', data.error);
+  const { ok, status, data, headers } = await apiFetch('/api/inbox', {}, token);
+
+  if (!ok || data.error) {
+    console.error('❌ 錯誤:', describeError(status, data, headers));
     logAudit('inbox_list', { success: false });
     process.exit(1);
   }
@@ -93,14 +60,10 @@ async function listInbox(token) {
 }
 
 async function readEmail(token, emailId) {
-  const res = await fetch(`${API_BASE}/api/inbox/${emailId}`, {
-    headers: { 'Authorization': `Bearer ${token}` },
-  });
-  
-  const data = await res.json();
-  
-  if (data.error) {
-    console.error('❌ 錯誤:', data.error);
+  const { ok, status, data, headers } = await apiFetch(`/api/inbox/${encodeURIComponent(emailId)}`, {}, token);
+
+  if (!ok || data.error) {
+    console.error('❌ 錯誤:', describeError(status, data, headers));
     logAudit('inbox_read', { success: false });
     process.exit(1);
   }
@@ -119,7 +82,7 @@ async function readEmail(token, emailId) {
 
 async function main() {
   const emailId = process.argv[2];
-  const token = getToken();
+  const token = await getToken();
 
   if (emailId) {
     await readEmail(token, emailId);

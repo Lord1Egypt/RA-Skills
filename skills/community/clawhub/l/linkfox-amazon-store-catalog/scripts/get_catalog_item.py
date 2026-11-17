@@ -22,8 +22,7 @@ from _spapi_catalog_common import (
     emit_result,
     encode_path_segment,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
     load_cli_params,
     merge_success_json,
     norm_marketplace_ids,
@@ -71,12 +70,7 @@ def main() -> None:
     path = f"{catalog_items_path(version)}/{asin}"
     qs = _build_query(params)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_get(region, path, tokens["accessToken"], query_string=qs)
+    proxy = developer_proxy_get(region, path, seller_id, query_string=qs)
     out: dict = {
         "developerProxy": proxy,
         "resolvedPath": path,

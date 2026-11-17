@@ -101,7 +101,7 @@ describe('SecretDetector', () => {
     describe('AWS credentials', () => {
       it('should detect AWS access key ID (AKIA)', async () => {
         const detector = new SecretDetector(defaultConfig);
-        const text = 'AKIAIOSFODNN7EXAMPLE';
+        const text = 'REDACTED-SECRET';
 
         const findings = await detector.scan(text);
 
@@ -157,7 +157,7 @@ describe('SecretDetector', () => {
     describe('Slack tokens', () => {
       it('should detect Slack bot token (xoxb)', async () => {
         const detector = new SecretDetector(defaultConfig);
-        const text = 'xoxb-1111111111111-2222222222222-FAKE1EXAMPLE2TESTING3456';
+        const text = 'REDACTED-SECRET';
 
         const findings = await detector.scan(text);
 
@@ -168,7 +168,7 @@ describe('SecretDetector', () => {
 
       it('should detect Slack app token (xoxa)', async () => {
         const detector = new SecretDetector(defaultConfig);
-        const text = 'xoxa-1234567890123-1234567890123-xxxxxxxxxxxxxxxxxxxxxxxx';
+        const text = 'REDACTED-SECRET';
 
         const findings = await detector.scan(text);
 
@@ -178,7 +178,7 @@ describe('SecretDetector', () => {
 
       it('should detect Slack webhook URL', async () => {
         const detector = new SecretDetector(defaultConfig);
-        const text = 'https://hooks.slack.com/services/TFAKETEST1/BFAKETEST2/FAKE3EXAMPLE4TESTING56789';
+        const text = 'REDACTED-SECRET';
 
         const findings = await detector.scan(text);
 
@@ -375,7 +375,7 @@ describe('SecretDetector', () => {
         const text = `
           const openaiKey = "sk-${'x'.repeat(48)}";
           const githubToken = "ghp_${'y'.repeat(36)}";
-          const awsKey = "AKIAIOSFODNN7EXAMPLE";
+          const awsKey = "REDACTED-SECRET";
         `;
 
         const findings = await detector.scan(text);

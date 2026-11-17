@@ -1,44 +1,60 @@
-## Description: <br>
-Image Generation Agent helps agents create or edit images from text prompts and optional reference images through AgentPMT-hosted Google Gemini image generation actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Generation Agent provides AgentPMT-hosted remote tool calls for generating or editing images from prompts and optional reference images using Google Gemini image models.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Designers, marketers, e-commerce operators, content creators, and agents use this skill to generate or edit images from prompts and up to four reference images. It supports draft previews and 0.5K to 4K final renders for product visuals, social graphics, ad creative, concept art, icons, and brand assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference images, and public image URLs are sent to AgentPMT and its image provider. <br>
-Mitigation: Do not submit confidential, regulated, or private images unless account terms and retention controls fit the use case. <br>
-Risk: Generated files are returned through signed URLs and stored in AgentPMT File Manager for the configured expiration period. <br>
-Mitigation: Use the shortest practical expiration period and manage generated files according to the user's retention needs. <br>
-Risk: Using the tool may require AgentPMT account credentials or payment-related setup. <br>
-Mitigation: Use the setup skills for credential handling and never place secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
+## Use Case:
 
+External users, designers, marketers, e-commerce sellers, content creators, and agents use this skill to create draft or final image assets from text prompts, or to edit images with up to four reference photos.
 
-## Reference(s): <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/image-generation-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/image-generation-agent) <br>
-- [Action schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Images, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON tool-call responses with signed image URLs and file metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image bytes are saved to AgentPMT File Manager rather than returned inline; outputs include file_id, filename, signed URL, MIME type, size, width, and height.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Prompts and reference images are sent to AgentPMT's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated images unless organizational policy approves that use.
+
+Risk: Generated outputs are exposed through signed download URLs.
+
+Mitigation: Use the shortest practical expiration period and handle URLs as shareable access tokens until they expire.
+
+Risk: Companion setup examples may use mutable package installation commands.
+
+Mitigation: Prefer pinned or reviewed install paths for companion skills before using them in production workflows.
+
+## Reference(s):
+
+- [Image Generation Agent schema](artifact/schema.md)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/image-generation-agent)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/image-generation-agent)
+- [AgentPMT publisher profile](https://clawhub.ai/user/agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, Files, JSON]
+
+**Output Format:** [Markdown guidance with JSON request and response examples; successful tool calls return JSON metadata and signed image download URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image bytes are saved to AgentPMT File Manager rather than returned inline; signed URLs expire after the configured retention period.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

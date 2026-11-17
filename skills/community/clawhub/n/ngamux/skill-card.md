@@ -1,37 +1,51 @@
-## Description: <br>
-Build and modify web services using ngamux, a simple HTTP router for Go. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and modify web services using ngamux, a simple HTTP router for Go. Define routes, apply middleware, handle requests, and send responses efficiently.
 
-## Publisher: <br>
-[hadihammurabi](https://clawhub.ai/user/hadihammurabi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hadihammurabi](https://clawhub.ai/user/hadihammurabi)
 
-## Use Case: <br>
-Developers and engineers use this skill to define Ngamux HTTP routes, apply middleware, parse request data, build responses, configure router behavior, organize route groups, and debug Go web service routing issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or outdated Ngamux routing guidance could lead to broken route handling, middleware behavior, or request parsing in generated Go services. <br>
-Mitigation: Review generated code against the target Ngamux version and test route, middleware, request parsing, and response behavior before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hadihammurabi/ngamux) <br>
+## Use Case:
+
+Developers and engineers use this skill to build, modify, and debug Go web services that use the ngamux router for HTTP routes, middleware, request parsing, responses, and route grouping.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated route handlers or middleware may omit ordinary web security controls such as authentication, input validation, upload limits, or response escaping.
+
+Mitigation: Review generated Go code and configuration for the security controls called out in the ClawHub security guidance before deployment.
+
+Risk: The artifact is documentation-only and the scanner found no suspicious behavior, but its guidance can still lead to incorrect application code if applied without review.
+
+Mitigation: Treat outputs as implementation guidance and test handlers, middleware chains, request parsing, and responses in the target application.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Go code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable artifact files were provided.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline Go examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for Go HTTP routing, middleware, request handling, response construction, configuration, and debugging.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

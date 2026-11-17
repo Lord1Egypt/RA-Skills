@@ -1,43 +1,54 @@
-## Description: <br>
-Knowledge Habit Skill helps knowledge workers run a local, privacy-first habit and event tracker for focused work, timed sessions, node-candidate generation, and JSON backups across web, desktop, and Android overlay modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A privacy-first, offline-first knowledge work habit tracker that helps users focus on one active habit, record work events and timed sessions, generate node candidates, and run Web, Electron desktop, and Android overlay modes.
 
-## Publisher: <br>
-[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire)
 
-## Use Case: <br>
-Knowledge workers and developers use this skill to install, launch, and operate a local habit tracker that records focused work events, timer sessions, and exportable JSON backups. It is suited to privacy-conscious personal productivity workflows where habit data should remain under local user control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation may fetch and run unpinned external code that was not included in the reviewed artifact. <br>
-Mitigation: Review or trust the upstream repository and npm dependencies before installing, and prefer a pinned release or bundled source. <br>
-Risk: Habit history, work events, exported JSON backups, Electron data, browser storage, and local logs may contain sensitive work-history data. <br>
-Mitigation: Treat local storage, exported backups, and logs as private data and restrict access before sharing or deploying the skill. <br>
+## Use Case:
 
+External users, developers, and knowledge workers use this skill to install and run a local habit tracking app for recording focus time, knowledge work events, and JSON backups while keeping habit data on the user's device by default.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/puppetcat-fire/knowledge-habit-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/puppetcat-fire) <br>
-- [Dragon Palace Knowledge Hub](https://github.com/puppetcat-fire/dragon-palace-knowledge-hub) <br>
-- [OpenClaw skill issues](https://github.com/puppetcat-fire/openclaw-skills/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON backup files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, and bash; runtime data is described as local browser, Electron, backup, and log data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence, SKILL.md frontmatter, and package.json) <br>
+Risk: The installer can fetch mutable external Node/Electron code that was not bundled for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the target repository, pinning a trusted release or commit, and verifying a checksum or signature when available.
+
+Risk: npm install scripts and fallback install paths may execute code under the user's account.
+
+Mitigation: Review npm dependencies and lifecycle scripts before installation, and run setup in a constrained local environment when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/puppetcat-fire/skills/knowledge-habit-skill)
+- [Dragon Palace Knowledge Hub](https://github.com/puppetcat-fire/dragon-palace-knowledge-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON backup data produced by the installed local application]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, and bash; the installer may fetch external Node/Electron application code during setup.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-AI assistant for HVAC contractors managing dispatch, maintenance scheduling, seasonal prep, service estimates, customer follow-up, and inventory alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI assistant for HVAC contractors managing dispatch, maintenance scheduling, seasonal prep, service estimates, customer follow-up, and inventory alerts.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-HVAC contractors, office managers, and business owners use this skill to plan technician dispatch, preventive maintenance outreach, seasonal preparation, service proposals, customer follow-up, and operational metric tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer records, technician notes, and job details may contain sensitive business or personal information. <br>
-Mitigation: Limit exported fields to the minimum needed for each workflow and review generated dispatch, estimate, and follow-up content before use. <br>
-Risk: Outbound reminders, review requests, and referral messages may be sent without valid consent or opt-out checks. <br>
-Mitigation: Require human approval for outbound messages and verify consent, opt-out status, and applicable platform policies before sending. <br>
-Risk: Review management workflows could encourage review gating or noncompliant advertising practices. <br>
-Mitigation: Use neutral review request language and confirm campaigns comply with review platform, advertising, and local business rules. <br>
+## Use Case:
 
+HVAC contractors, office managers, and business owners use this skill to organize technician dispatch, preventive maintenance outreach, seasonal operations, replacement proposals, customer follow-up, and operating metrics.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and structured text templates for dispatch boards, outreach sequences, checklists, estimates, and dashboards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires business-specific inputs such as service area, team size, software stack, season, pricing, and customer or job data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Technician briefings, maintenance outreach, and follow-up workflows may use customer addresses, contact details, job history, or satisfaction data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit customer data to the minimum needed for each workflow, use approved business systems, and confirm SMS/email consent and opt-out status before outreach.
+
+Risk: Generated estimates, seasonal checklists, or marketing steps may be mistaken for a ready-made compliance policy.
+
+Mitigation: Review operational outputs against local regulations, company policy, and applicable privacy and marketing requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/skills/afrexai-hvac-operations)
+- [Publisher Profile](https://clawhub.ai/user/afrexai-cto)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown workflow plans, checklists, dispatch boards, outreach sequences, estimate templates, and metrics summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-supplied service area, team size, software stack, season, business goals, job details, and customer records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

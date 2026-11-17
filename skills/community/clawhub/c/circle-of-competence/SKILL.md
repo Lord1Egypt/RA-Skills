@@ -1,6 +1,6 @@
 ---
 name: circle-of-competence
-description: "Activate when: user says 'should I enter this market / make this hire / invest in this domain,' 'am I qualified to evaluate this,' 'stay in your lane,' 'stick to what you know,' or is about to make a consequential decision in an unfamiliar domain. Do NOT activate when: the decision is small and explicitly framed as a learning bet; the domain is genuinely frontier for everyone and no one has competence yet."
+description: "Activate when: user says 'should I enter this market / make this hire / invest in this domain,' 'am I qualified to evaluate this,' 'stay in your lane,' 'stick to what you know,' or is about to make a consequential decision in an unfamiliar domain. Do NOT activate when: the decision is small and explicitly framed as a learning bet; the domain is genuinely frontier for everyone and no one has competence yet. More: deciqai.com/c/circle-of-competence"
 ---
 
 # Circle of Competence
@@ -11,7 +11,7 @@ Every decision-maker has a domain where judgments are reliable (inside the circl
 
 Canonical source: Buffett (1996) — "The size of that circle is not very important; knowing its boundaries, however, is vital."
 
-Composes with [`dunning-kruger`](../dunning-kruger/SKILL.md) (cognitive mechanism the circle counters), [`metacognition`](../metacognition/SKILL.md) (self-monitoring the circle relies on), [`first-principles`](../first-principles/SKILL.md) (only reliable inside the circle), [`opportunity-cost`](../opportunity-cost/SKILL.md) (refusal has a real cost — measure it), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md) (calibration training establishes the boundary).
+Composes with `dunning-kruger` (cognitive mechanism the circle counters), `metacognition` (self-monitoring the circle relies on), `first-principles` (only reliable inside the circle), `opportunity-cost` (refusal has a real cost — measure it), `probabilistic-thinking` (calibration training establishes the boundary).
 
 ## When to Use
 
@@ -20,6 +20,7 @@ Composes with [`dunning-kruger`](../dunning-kruger/SKILL.md) (cognitive mechanis
 - A board member or investor is pushing you toward a domain outside your background
 - A founder is asked to take on a function (legal, finance, sales) without the relevant track record
 - Hiring senior roles in unfamiliar functions; allocating significant capital to a new business line
+- Investing in, or building on, AI you don't truly understand — "should I fund/build this AI product," "is this AI hype or real," AI adoption pushed by FOMO
 
 **Not when:** decision is small, reversible, and an explicit learning bet; refusing everything outside the current circle is genuinely worse than acting carefully; domain is genuinely frontier for everyone.
 
@@ -65,7 +66,8 @@ Boundary: current boundary | what would expand it
 Decision & rationale: | Re-evaluation date:
 ```
 
-*→ Method in Action: [Buffett's Tech-Stock Refusal, 1990s](examples/buffetts-tech-stock-refusal-1990s.md)*
+*→ Method in Action: [Buffett's Tech-Stock Refusal, 1990s](examples/buffetts-tech-stock-refusal-1990s.md) · [Quaker's Snapple Acquisition, 1994-1997](examples/quaker-snapple-acquisition-1994-1997.md)*
+*→ 2026 lens: [Funding and Building AI Outside Your Circle (2024–2026)](examples/ai-hype-outside-the-circle-2024-2026.md)*
 
 ## Pack: Application Patterns
 
@@ -93,7 +95,7 @@ Decision & rationale: | Re-evaluation date:
 |---|---|
 | [D] "How hard could it be?" | Reliably correlated with being outside the circle — use it as a red flag. |
 | [D] "I learn fast" | Learning fast still takes 12-36 months of structured feedback; it doesn't make tomorrow's decision reliable. |
-| [D] "I've read a lot about it" | Reading is exposure, not competence. Self-assessment after reading is consistently inflated (see [`dunning-kruger`](../dunning-kruger/SKILL.md)). |
+| [D] "I've read a lot about it" | Reading is exposure, not competence. Self-assessment after reading is consistently inflated (see `dunning-kruger`). |
 | [D] "Everyone is doing this; if I don't I'll miss out" | FOMO is exactly when circle discipline is most valuable. Booms produce concentrated losses for those acting outside their circle. |
 | [D] "I have a great gut for this" | Without calibration data, gut feel in a novel domain is uncalibrated. |
 | [D] "I'll figure it out as I go" | For consequential decisions, this is the empirical signature of operating outside the circle without acknowledging it. |
@@ -117,4 +119,6 @@ Decision & rationale: | Re-evaluation date:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 227 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/circle-of-competence** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/circle-of-competence.json*

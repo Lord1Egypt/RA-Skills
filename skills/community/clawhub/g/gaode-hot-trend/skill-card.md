@@ -1,43 +1,60 @@
-## Description: <br>
-Provides lightweight assistance for Gaode Maps public-page POI lookup, route-planning summaries, coordinate-system annotation, and report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports user-directed, lightweight Gaode/Amap public-page lookups for nearby POIs, route summaries, coordinate-system notes, and simple reports.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to collect and summarize low-volume, user-directed information from Gaode Maps public pages for travel planning, geographic data annotation, and concise reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automation guidance could be interpreted as permission to avoid human-verification controls. <br>
-Mitigation: Use only low-volume, user-directed workflows and do not use the skill to bypass CAPTCHA or other human-verification controls. <br>
-Risk: Location data may include sensitive private places or travel patterns. <br>
-Mitigation: Avoid sensitive private locations unless intentionally provided for the task, and include source links and coordinate-system notes in generated reports. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Gaode/Amap place and route information for travel planning, geodata labeling, and lightweight reporting. It should be used only for user-directed lookups that respect platform terms, rate limits, and verification controls.
 
-## Reference(s): <br>
-- [Gaode Maps home](https://www.amap.com/) <br>
-- [Gaode Maps route planning](https://www.amap.com/dir) <br>
-- [Gaode Maps place search](https://www.amap.com/place) <br>
-- [ClawHub release page](https://clawhub.ai/CodeKungfu/gaode-hot-trend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown, CSV-style summaries, and concise structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify the source links, generated time, and coordinate system where location data is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Automation could be used to bypass CAPTCHA, human verification, rate limits, or other platform controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use user-directed and lightweight; stop when verification or rate-limit controls appear and ask the user to continue through the normal site interface.
+
+Risk: Bulk collection or interface reverse engineering could violate platform terms or scraping limits.
+
+Mitigation: Use only public pages for limited information organization, avoid interface reverse engineering, and follow Gaode/Amap terms and crawler restrictions.
+
+Risk: GCJ-02 and WGS-84 coordinate differences can cause location errors if coordinates are reused without context.
+
+Mitigation: Label coordinate systems clearly and warn users to verify conversions before using coordinates for GPS or operational routing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/gaode-hot-trend)
+- [Gaode/Amap Homepage](https://www.amap.com/)
+- [Gaode/Amap Route Planning](https://www.amap.com/dir)
+- [Gaode/Amap Place Search](https://www.amap.com/place)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown summaries, CSV-style tabular data, and coordinate-system notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links, report generation time, route details, POI attributes, and coordinate-system labels when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

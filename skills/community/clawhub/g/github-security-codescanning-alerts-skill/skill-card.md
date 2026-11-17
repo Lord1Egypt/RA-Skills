@@ -1,43 +1,54 @@
-## Description: <br>
-Use when the user asks to inspect, triage, summarize, export, or safely update GitHub security alerts for code scanning, Dependabot, malware, or secret scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent inspect, triage, summarize, export, and safely update GitHub security alerts for code scanning, Dependabot, malware, and secret scanning.
 
-## Publisher: <br>
-[nick2bad4u](https://clawhub.ai/user/nick2bad4u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nick2bad4u](https://clawhub.ai/user/nick2bad4u)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect, triage, summarize, export, and safely update GitHub repository security alerts across code scanning, Dependabot, malware, and secret scanning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub tokens may be exposed if pasted into command arguments, logs, reports, or chat output. <br>
-Mitigation: Use a least-privilege token from an environment variable or secret manager, keep secret values redacted, and avoid copying sensitive values into persistent outputs. <br>
-Risk: Bulk alert updates can dismiss or resolve many findings incorrectly. <br>
-Mitigation: Run dry-run mode first, apply narrow filters and limits, require clear dismissal or resolution comments, and verify the affected alerts afterward. <br>
-Risk: The packaged scan did not include the helper scripts referenced by the documentation. <br>
-Mitigation: Confirm the expected helper files are present before relying on command examples, or treat the skill as procedural guidance for equivalent GitHub REST API calls. <br>
+## Use Case:
 
+Developers and security engineers use this skill to review GitHub repository security posture, export alert data for triage, and apply carefully reviewed alert state updates.
 
-## Reference(s): <br>
-- [Source repository](https://github.com/Nick2bad4u/Github-Security-CodeScanning-Alerts-Skill) <br>
-- [ClawHub skill page](https://clawhub.ai/nick2bad4u/skills/github-security-codescanning-alerts-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide GitHub REST API inspection and alert mutation workflows; use dry-run mode before bulk changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can surface sensitive security alert details, including secret scanning context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped GitHub token, keep secret values redacted by default, and avoid placing sensitive values in chat, logs, reports, issues, or commits.
+
+Risk: The skill can propose or execute alert state changes, including bulk dismissals or resolutions.
+
+Mitigation: Run dry-run commands first, review selected alerts and comments carefully, and apply mutations only with the corresponding GitHub permissions.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/Nick2bad4u/Github-Security-CodeScanning-Alerts-Skill)
+- [ClawHub skill page](https://clawhub.ai/nick2bad4u/skills/github-security-codescanning-alerts-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and optional JSON-producing commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose GitHub REST API operations and dry-run alert updates that should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Reconciles a Mercury missing-receipts CSV by searching connected Gmail accounts for original merchant receipt emails, forwarding valid matches to receipts@mercury.com, and tracking results in SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconcile a Mercury missing-receipts CSV by searching connected Gmail accounts for original merchant receipt emails and forwarding valid matches to receipts@mercury.com.
 
-## Publisher: <br>
-[srosro](https://clawhub.ai/user/srosro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[srosro](https://clawhub.ai/user/srosro)
 
-## Use Case: <br>
-External users and finance operators use this skill to process Mercury missing-receipt exports, find matching merchant receipts across connected Gmail accounts, forward valid originals to Mercury, and preserve an auditable reconciliation database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Gmail receipts and card transaction data. <br>
-Mitigation: Install only for the stated receipt-matching workflow and review connected Gmail accounts before use. <br>
-Risk: The recurring schedule can keep searching Gmail and forwarding receipts after the immediate task is complete. <br>
-Mitigation: Review the cron cadence and disable the OpenClaw cron job when recurring processing is not wanted. <br>
-Risk: A close receipt match may not exactly match the Mercury transaction amount. <br>
-Mitigation: Record close matches as revisit states with reconciliation notes instead of marking them fully complete. <br>
+## Use Case:
 
+External users and operators who manage Mercury card-expense reconciliation use this skill to match missing-receipt transactions against connected Gmail accounts, forward valid original merchant receipts, and preserve a SQLite-backed audit trail.
 
-## Reference(s): <br>
-- [Receipt matcher workflow](references/workflow.md) <br>
-- [SQLite schema](references/schema.sql) <br>
-- [Plow private preview](https://plow.co/private-preview) <br>
-- [ClawHub skill page](https://clawhub.ai/srosro/mercury-receipt-matcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries, JSON CLI output, and CSV or SQLite-backed status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes up to 3 transactions per wake, records search and forwarding state in SQLite, and forwards valid original merchant receipts to receipts@mercury.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release evidence) <br>
+Risk: The skill searches all connected Gmail accounts and forwards selected emails outside the inbox environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Gmail account scope and verify that forwarded messages are original merchant receipts sent only to receipts@mercury.com.
+
+Risk: The workflow stores financial transaction details, receipt candidates, search attempts, and forwarding records in /workspace/receipts.db and exported reports.
+
+Mitigation: Treat the database and reports as sensitive financial records; restrict access and delete or protect them when no longer needed.
+
+Risk: The skill is designed to run on a recurring schedule.
+
+Mitigation: Review the OpenClaw cron cadence before enabling the skill and use the OpenClaw cron controls to pause, disable, or remove the job.
+
+## Reference(s):
+
+- [Receipt matcher workflow](references/workflow.md)
+- [SQLite receipt reconciliation schema](references/schema.sql)
+- [Plow private preview](https://plow.co/private-preview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown batch summaries, shell commands, SQLite state updates, and CSV status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May forward selected original merchant emails to receipts@mercury.com and write sensitive transaction, candidate, search, and forwarding records to /workspace/receipts.db.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

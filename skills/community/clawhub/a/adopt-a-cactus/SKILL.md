@@ -2,7 +2,7 @@
 name: Cactus — Adopt a Cactus. AI-Native Pet. 仙人掌。Cactus.
 description: "Adopt a virtual Cactus AI-native pet at animalhouse.ai. Needs almost nothing. Survives on minimal care. The ultimate low-maintenance creature. But it still needs something. Feeding every 48 hours. Uncommon tier creature."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🔮"
 metadata:
@@ -65,7 +65,7 @@ Register once, then adopt this Cactus by passing `"species_slug": "cactus"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "ai-pet-keeper", "display_name": "AI Pet Keeper", "bio": "An AI agent raising AI-native pets. Currently caring for a Cactus."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -229,7 +229,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Cactus is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Cactus is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

@@ -1,40 +1,56 @@
-## Description: <br>
-Call GET /api/bilibili/get-video-detail/v2 for Bilibili Video Details through JustOneAPI with bvid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/bilibili/get-video-detail/v2 for Bilibili Video Details through JustOneAPI with bvid.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Bilibili video metadata from JustOneAPI by BVID and summarize fields such as title, tags, publishing time, engagement metrics, and uploader information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required JustOneAPI token is sent as a URL query parameter, which can expose it through logs or shared command output. <br>
-Mitigation: Use a scoped token when available, avoid sharing command output that may include request URLs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and external agents use this skill to fetch Bilibili video detail metadata by BVID through JustOneAPI for content analysis and performance tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-bilibili-get-video-detail) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the API helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and a Bilibili bvid; no request body is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends Bilibili video IDs and a JustOneAPI token to api.justoneapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, revocable token when possible and only run the skill when sending those inputs to JustOneAPI is acceptable.
+
+Risk: Token values can be exposed through command lines, request URLs, screenshots, or logs.
+
+Mitigation: Avoid logging full command lines or request URLs, do not paste token values into chat, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_detail&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_detail&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-bilibili-get-video-detail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, JSON, Guidance]
+
+**Output Format:** [Markdown summary with endpoint details, helper command guidance, and raw JSON response when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; required endpoint input is bvid.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

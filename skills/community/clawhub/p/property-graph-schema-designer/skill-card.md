@@ -1,43 +1,55 @@
-## Description: <br>
-Design property graph schemas for knowledge graph systems using Neo4j-style node labels, relationships, and properties based on domain descriptions or developer requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design property graph schemas for knowledge graph systems using Neo4j-style node labels, relationships, and properties based on domain descriptions or developer requirements.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data modelers use this skill to convert domain descriptions, system documentation, ER diagrams, relational schemas, API schemas, or business rules into Neo4j-style property graph schemas with labels, relationships, properties, constraints, indexes, and Cypher templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Cypher or schema recommendations may be inappropriate for a live Neo4j database if applied without review. <br>
-Mitigation: Review generated Cypher, constraints, and indexes before applying them to production data stores. <br>
-Risk: Example schemas or tests may expose real personal data if users paste sensitive domain examples into the workflow. <br>
-Mitigation: Use synthetic or sanitized examples unless privacy controls and approvals are in place. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn domain descriptions, ER diagrams, relational schemas, API schemas, and business rules into Neo4j-style property graph designs. It helps draft node labels, relationship types, properties, constraints, indexes, and Cypher templates for graph database projects.
 
-## Reference(s): <br>
-- [Property Graph Schema Design Patterns](references/schema-patterns.md) <br>
-- [Property Graph Schema Examples](examples/example-schemas.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/property-graph-schema-designer) <br>
-- [Publisher profile](https://clawhub.ai/user/fisa712) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Cypher and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include schema summaries, node and relationship definitions, constraints, index recommendations, and Cypher implementation templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Generated Cypher, labels, property names, constraints, or indexes may be incorrect for the target graph database or domain model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated schema elements and Cypher before applying them in Neo4j or another property graph system.
+
+Risk: Attacker-controlled schema names or domain inputs could lead to unsafe generated statements if used directly.
+
+Mitigation: Validate and sanitize externally supplied labels, relationship types, property names, and identifiers before using helper-script output.
+
+## Reference(s):
+
+- [Property Graph Schema Design Patterns](references/schema-patterns.md)
+- [Property Graph Schema Examples](examples/example-schemas.md)
+- [SchemaBuilder helper script](scripts/schema_builder.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Cypher and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Cypher and schema recommendations are drafts for review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>架构图</title>
+<style>
+  :root {
+    /* ── Surfaces ── */
+    --bg: #edebe1;
+    --bg-warm: #e8e5da;
+    --surface: #f5f3eb;
+    --surface-hover: #faf8f2;
+
+    /* ── Text ── */
+    --text-primary: #1a1a18;
+    --text-secondary: #6b6961;
+    --text-tertiary: #9c9a90;
+
+    /* ── Borders ── */
+    --border: #d4d1c7;
+    --border-light: #e0ddd4;
+
+    /* ── Accent palette (theme colors) ── */
+    --accent-blue: #3d5af1;
+    --accent-green: #2d8a56;
+    --accent-amber: #c47d1a;
+    --accent-purple: #7c4dff;
+    --accent-indigo: #4f57f1;
+    --accent-teal: #1a8a7a;
+    --accent-red: #d44332;
+    --accent-pink: #d1478a;
+
+    /* ── Tokens ── */
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 1px 3px rgba(26,26,24,0.04), 0 1px 2px rgba(26,26,24,0.03);
+    --shadow-md: 0 4px 16px rgba(26,26,24,0.06), 0 2px 6px rgba(26,26,24,0.04);
+    --shadow-lg: 0 12px 40px rgba(26,26,24,0.08), 0 4px 12px rgba(26,26,24,0.04);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* System-font fallback stack: no external CDN, offline/domestic safe */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+                 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 48px 32px 64px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Header ── */
+  .header { text-align: center; margin-bottom: 56px; }
+  .header h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+  .tagline { margin-top: 10px; color: var(--text-secondary); font-size: 15px; }
+
+  .canvas { max-width: 1060px; margin: 0 auto; }
+
+  /* ── User role row ── */
+  .users-row { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .user-card { display: flex; align-items: center; gap: 12px; background: var(--surface);
+    border: 1px solid var(--border-light); border-radius: var(--radius); padding: 12px 18px;
+    box-shadow: var(--shadow-sm); }
+  .user-avatar { width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(145deg, #3d5af1, #7c4dff); flex-shrink: 0; }
+  .avatar-api { background: linear-gradient(145deg, #2d8a56, #1a8a7a); }
+  .avatar-db { background: linear-gradient(145deg, #c47d1a, #d44332); }
+  .avatar-git { background: linear-gradient(145deg, #7c4dff, #4f57f1); }
+  .avatar-cli { background: linear-gradient(145deg, #4f57f1, #1a8a7a); }
+  .avatar-feishu { background: linear-gradient(145deg, #1a8a7a, #2d8a56); }
+  .user-name { font-weight: 600; font-size: 14px; }
+  .user-desc { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── Section (layer) ── */
+  .section { background: var(--surface); border: 1px solid var(--border-light);
+    border-radius: var(--radius); padding: 28px 24px 24px; margin-bottom: 36px;
+    box-shadow: var(--shadow-sm); position: relative; }
+  .section-tag { position: absolute; top: -12px; left: 24px; font-size: 12px; font-weight: 600;
+    padding: 4px 12px; border-radius: 999px; background: var(--accent-blue); color: #fff; }
+  .tag-api { background: var(--accent-green); }
+  .tag-db { background: var(--accent-amber); }
+  .tag-git { background: var(--accent-purple); }
+  .tag-cli { background: var(--accent-indigo); }
+  .tag-feishu { background: var(--accent-teal); }
+
+  /* ── Cards row ── */
+  .cards-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .card { width: 220px; background: var(--surface-hover); border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm); padding: 16px 18px; position: relative; overflow: hidden;
+    transition: var(--transition); box-shadow: var(--shadow-sm); }
+  .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent-blue); }
+  .card-web::before { background: var(--accent-blue); }
+  .card-api::before { background: var(--accent-green); }
+  .card-db::before { background: var(--accent-amber); }
+  .card-git::before { background: var(--accent-purple); }
+  .card-cli::before { background: var(--accent-indigo); }
+  .card-feishu::before { background: var(--accent-teal); }
+  .card-title { font-weight: 600; font-size: 15px; color: var(--accent-blue); margin-bottom: 4px; }
+  .card-web .card-title { color: var(--accent-blue); }
+  .card-api .card-title { color: var(--accent-green); }
+  .card-db .card-title { color: var(--accent-amber); }
+  .card-git .card-title { color: var(--accent-purple); }
+  .card-cli .card-title { color: var(--accent-indigo); }
+  .card-feishu .card-title { color: var(--accent-teal); }
+  .card-route { font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+  .card-list { list-style: none; font-size: 13px; color: var(--text-secondary); }
+  .card-list li { position: relative; padding-left: 16px; margin-bottom: 4px; }
+  .card-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--text-tertiary); }
+
+  /* ── Connectors ── */
+  .arrow-col { display: flex; justify-content: center; margin: 8px 0; }
+  .line { width: 2px; height: 28px; background: var(--border); position: relative; }
+  .arrow-head { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent;
+    border-top: 8px solid var(--border); margin: 0 auto; }
+  .h-connector { display: flex; align-items: center; gap: 8px; justify-content: center; margin: 10px 0; }
+  .h-line { height: 2px; width: 60px; background: var(--border); position: relative; }
+  .h-line::after { content: ""; position: absolute; right: -2px; top: -4px;
+    border-left: 7px solid var(--border); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+
+  /* ── Legend ── */
+  .legend { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 24px;
+    font-size: 13px; color: var(--text-secondary); }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  /* ── Animation ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .section { animation: fadeUp 0.5s ease both; }
+  .section-1 { animation-delay: 0.0s; }
+  .section-2 { animation-delay: 0.2s; }
+  .section-3 { animation-delay: 0.4s; }
+  .card { animation: fadeUp 0.4s ease both; }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .cards-row { flex-direction: column; align-items: center; }
+    .card { width: 100%; max-width: 320px; }
+    body { padding: 32px 16px 48px; }
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <!-- 头部 -->
+    <div class="header">
+      <h1>系统架构图</h1>
+      <div class="tagline">一句话描述本图聚焦的脉络与范围</div>
+    </div>
+
+    <!-- 用户角色行（可选） -->
+    <div class="users-row">
+      <div class="user-card">
+        <div class="user-avatar"></div>
+        <div>
+          <div class="user-name">终端用户</div>
+          <div class="user-desc">Web / 移动端访问</div>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-avatar avatar-api"></div>
+        <div>
+          <div class="user-name">运营后台</div>
+          <div class="user-desc">管理端操作</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图层 1 -->
+    <div class="section section-1">
+      <div class="section-tag">接入层</div>
+      <div class="cards-row">
+        <div class="card card-web">
+          <div class="card-title">API 网关</div>
+          <div class="card-route">/api/v1/*</div>
+          <ul class="card-list">
+            <li>鉴权与限流</li>
+            <li>路由转发</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 层间箭头 -->
+    <div class="arrow-col"><div class="line"></div><div class="arrow-head"></div></div>
+
+    <!-- 图层 2 -->
+    <div class="section section-2">
+      <div class="section-tag tag-api">应用层</div>
+      <div class="cards-row">
+        <div class="card card-api">
+          <div class="card-title">订单服务</div>
+          <div class="card-route">order-service</div>
+          <ul class="card-list">
+            <li>创建 / 查询订单</li>
+            <li>状态机驱动</li>
+          </ul>
+        </div>
+        <div class="card card-api">
+          <div class="card-title">支付服务</div>
+          <div class="card-route">pay-service</div>
+          <ul class="card-list">
+            <li>发起支付</li>
+            <li>回调校验</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 层间箭头 -->
+    <div class="arrow-col"><div class="line"></div><div class="arrow-head"></div></div>
+
+    <!-- 图层 3 -->
+    <div class="section section-3">
+      <div class="section-tag tag-db">数据层</div>
+      <div class="cards-row">
+        <div class="card card-db">
+          <div class="card-title">主数据库</div>
+          <div class="card-route">PostgreSQL</div>
+          <ul class="card-list">
+            <li>订单 / 用户表</li>
+            <li>主从复制</li>
+          </ul>
+        </div>
+        <div class="card card-db">
+          <div class="card-title">缓存</div>
+          <div class="card-route">Redis</div>
+          <ul class="card-list">
+            <li>会话 / 热点数据</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图例 -->
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--accent-blue)"></span>接入层</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--accent-green)"></span>应用层</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--accent-amber)"></span>数据层</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7dv0g117pmbnh42gaw2c259182s8sx",
-  "slug": "genviral-social-media",
+  "name": "GenViral Social Media",
+  "description": "AI powered viral SNS post generator",
   "version": "1.0.0",
-  "publishedAt": 1773420494341
+  "author": "bonbon0033",
+  "tags": ["sns","viral","content","ai","twitter","x"],
+  "license": "MIT",
+  "openclaw": {
+    "requires": {}
+  }
 }

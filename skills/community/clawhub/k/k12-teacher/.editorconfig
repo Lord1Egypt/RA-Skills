@@ -1,0 +1,92 @@
+# EditorConfig helps maintain consistent coding styles
+# Purpose: Define coding style rules (indentation, line endings, character set)
+#          to ensure consistency across different editors and IDEs.
+# Generated based on README_FOR_AI.md Section 5.1 specification.
+# Project: k12-teacher (K-12 Teacher Skill for AI)
+
+root = true
+
+# ============================================
+# Default settings (apply to all files)
+# ============================================
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+# ============================================
+# Markdown files (primary content format)
+# ============================================
+
+[*.{md}]
+indent_size = 4
+
+# ============================================
+# Shell scripts
+# ============================================
+
+[*.{sh}]
+indent_size = 4
+
+# ============================================
+# Text files
+# ============================================
+
+[*.{txt}]
+indent_size = 4
+
+# ============================================
+# Configuration files (YAML-like)
+# ============================================
+
+[*.{yml,yaml}]
+indent_size = 2
+
+# ============================================
+# JSON files (if any)
+# ============================================
+
+[*.{json}]
+indent_size = 2
+
+# ============================================
+# License file - preserve original formatting
+# ============================================
+
+[LICENSE]
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# ============================================
+# Git and EditorConfig files - no modifications
+# ============================================
+
+[.gitignore]
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+[.editorconfig]
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# ============================================
+# Exclude binary and downloaded content
+# ============================================
+
+# Binary files - no formatting
+[*.{png,jpg,jpeg,gif,bmp,ico,svg,woff,woff2,ttf,eot,otf}]
+charset = binary
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# Downloaded syllabus documents (external content, do not modify)
+[downloads/**]
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+# ============================================
+# End of .editorconfig
+# ============================================

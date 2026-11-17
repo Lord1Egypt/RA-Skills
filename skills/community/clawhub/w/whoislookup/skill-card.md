@@ -1,40 +1,52 @@
-## Description: <br>
-Look up domain WHOIS registration info, including registrar, creation date, expiry date, nameservers, and domain status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up domain WHOIS registration info, including registrar, creation date, expiry date, nameservers, and domain status.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operations teams, and external users use this skill to inspect WHOIS registration details for domains, including registrar, dates, nameservers, and status. It can return parsed text, raw WHOIS responses, or JSON from direct WHOIS queries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: WHOIS lookups require outbound network access and may be directed to arbitrary WHOIS servers through the --server option.
+
+Mitigation: Use trusted WHOIS servers, restrict arbitrary server overrides in shared environments, and review destinations before running the command.
+
+Risk: Large or slow WHOIS responses can consume time or memory in automated workflows.
+
+Mitigation: Add a response-size cap and overall deadline before using the skill in exposed or high-volume automation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and domain operators use this skill to check WHOIS registration details for one or more domains, including registrar, dates, nameservers, and status values. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: WHOIS queries disclose the queried domain name to the selected WHOIS server, including any custom server configured by the user. <br>
-Mitigation: Query only domains that are acceptable to disclose to the relevant WHOIS service, and avoid untrusted custom WHOIS servers. <br>
+**Output Format:** [Plain text or JSON with command-line examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rogue-agent1/whoislookup) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+**Other Properties Related to Output:** [Queries WHOIS servers over the network and may return raw registrar responses.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text summaries, raw WHOIS text, or parsed JSON from the CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries user-provided domains over WHOIS port 43; no external Python dependencies.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

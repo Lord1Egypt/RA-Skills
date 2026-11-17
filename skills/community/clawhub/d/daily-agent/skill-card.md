@@ -1,39 +1,51 @@
-## Description: <br>
-Daily Agent routes each conversation by classifying tasks, estimating complexity, matching skills, delegating execution, and running completion checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes long-running and complex agent tasks by classifying requests, assessing complexity, coordinating subagents, applying Hat-system phases, and performing completion checks.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and agent operators use Daily Agent as an always-on orchestration layer for routing user requests, choosing execution paths, matching specialized skills, and monitoring delegated work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on task routing can affect nearly every request and may route work to background agents, cron jobs, local scripts, or repository-changing workflows. <br>
-Mitigation: Install only when this orchestration behavior is intended, review the routing rules before deployment, and require explicit confirmation for spawn, cron, communication, persistence, and repository mutation actions. <br>
-Risk: The skill describes writing learning or memory files, extracting user profile facts, and committing selected repository directories. <br>
-Mitigation: Review or disable the profile extraction and git commit sections, and inspect generated files and commits before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route complex or long-chain tasks, delegate work to subagents, manage planning and review phases, and summarize completion status.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with decision tables and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes work by task type and complexity, with completion checks for browser state, learning records, memory updates, generated files, and selected repository changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release and SKILL.md frontmatter; package.json reports 2.2.0) <br>
+Risk: The skill broadly orchestrates task routing, local script use, memory/profile writes, and commits, which can create persistent changes without enough user control or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly controlled workspace after disabling automatic memory/profile writes, automatic commits, unbundled script execution, and always-on activation, or require explicit user approval and diff review for each persistent change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/daily-agent)
+- [LEARNING.md](LEARNING.md)
+- [meeting-minutes.md](templates/meeting-minutes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline plans, status updates, code blocks, shell commands, and structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include delegated task briefs, progress summaries, review results, and generated or modified local files when the host agent permits writes.]
+
+## Skill Version(s):
+
+2.18.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

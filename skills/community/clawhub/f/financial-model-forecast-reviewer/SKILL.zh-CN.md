@@ -1,26 +1,26 @@
 ---
 name: financial-model-forecast-reviewer
 description: >-
-  帮助用户处理“Validated demand: Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expense forecasts, and turning spreadsheets into scenario plans. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 business-and-operations, financial model, forecast, scenario planning, runway，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
+  帮助用户处理“Validated demand: Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.”。当用户提出 work-productivity, weather, current, forecasts, api，或需要围绕该需求获得实用流程、产物、检查清单、分析或实现支持时使用。
 ---
 
 # Financial Model Forecast Reviewer
 
 ## 需求
 
-使用这个技能帮助以下用户群体：startup founders, finance analysts, operators, consultants, and managers responsible for forecasts, runway planning, and spreadsheet models
+使用这个技能帮助以下用户群体：AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
 
-> Validated demand: Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expense forecasts, and turning spreadsheets into scenario plans. This requirement is supported by 11 separate online signals across 2 source families, so it represents broader demand rather than a single isolated request.
+> Validated demand: Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
-需求评分：90/100（需求强度 `70/70`，本地可执行性 `30/30`）。
-证据：11 条信号，覆盖 2 个来源类型。
+需求评分：100/100（需求强度 `70/70`，本地可执行性 `30/30`）。
+证据：12 条信号，覆盖 3 个来源类型。
 
 如需查看来源证据、执行计划或评审标准，请阅读 `references/requirement-plan.md`。
 
 ## 工作流程
 
 1. 重新说明用户想要的结果、限制、已有输入和成功标准。
-2. 把运营问题转化为可复用流程、检查清单、模板或轻量分析。
+2. 创建简洁的工作计划、模板、自动化思路或决策辅助，减少手动协调。
 3. 只有当缺失信息会明显改变输出时才提问；否则先做合理假设并继续推进。
 4. 保持本地硬件友好：优先使用脚本、模板、检查清单、小模型或 CPU 可承受的流程，避免依赖云端专用资源或大规模训练。
 5. 产出用户需要的文档、流程、清单、分析、代码修改或决策支持。
@@ -41,10 +41,10 @@ description: >-
 
 ## 触发方式
 
-关键词：`business-and-operations`, `financial model`, `forecast`, `scenario planning`, `runway`, `assumptions`
+关键词：`work-productivity`, `weather`, `current`, `forecasts`, `api`, `key`, `required`, `popular-skill`, `users`, `bug fix`
 
 示例触发句：
 
-- `Help me Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens.`
-- `I need a practical workflow for Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens.`
-- `Use $financial-model-forecast-reviewer to handle Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens.`
+- `Help me Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s.`
+- `I need a practical workflow for Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s.`
+- `Use $financial-model-forecast-reviewer to handle Agent users show strong demand for Weather-style workflows on Clawhub. They need practical help fixing bugs, hardening s.`

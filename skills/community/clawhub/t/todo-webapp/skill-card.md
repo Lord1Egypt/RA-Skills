@@ -1,43 +1,58 @@
-## Description: <br>
-Deploys a local TODO web app that reads and writes Markdown TODO files, serves a LAN-accessible interface, supports live updates, toggles task checkboxes, archives completed tasks, and can auto-start on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a local TODO web app that reads and writes a Markdown TODO.md file.
 
-## Publisher: <br>
-[jwhowa](https://clawhub.ai/user/jwhowa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwhowa](https://clawhub.ai/user/jwhowa)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and operate a private LAN web UI for viewing, editing, and archiving tasks stored in TODO.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The web app exposes an unauthenticated editor for local TODO files on the LAN. <br>
-Mitigation: Run it only on a trusted private network, or bind it to localhost or add authentication and origin checks before broader exposure. <br>
-Risk: The Archive Done action modifies TODO.md and appends completed tasks to TODO-done.md. <br>
-Mitigation: Review TODO.md sensitivity and keep backups before using archive operations. <br>
-Risk: The macOS launchd setup can keep the editor running persistently after boot or crashes. <br>
-Mitigation: Enable auto-start only when persistent access is intended and document how to unload or remove the LaunchAgent. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to deploy a local web UI for viewing, toggling, and archiving tasks stored in TODO.md from devices on a trusted LAN.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jwhowa/todo-webapp) <br>
-- [Preview screenshot](https://i.imgur.com/noOCejM.jpeg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance for a zero-dependency Node.js TODO web app that reads and writes local Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The web app exposes readable and writable TODO data on the LAN without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted network or bind it to localhost, and add authentication before broader LAN use.
+
+Risk: Persistent launchd startup can keep the service available after setup.
+
+Mitigation: Prefer manual startup until the launchd plist and service behavior have been reviewed.
+
+Risk: Rendered TODO content may include unsafe formatting if task text comes from other tools or people.
+
+Mitigation: Fix HTML escaping for formatted task text before using shared or untrusted TODO content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jwhowa/skills/todo-webapp)
+- [Preview Screenshot](https://i.imgur.com/noOCejM.jpeg)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operation guidance for a local Node.js TODO web app that reads and writes TODO.md and TODO-done.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Automatically extract patterns, best practices, and reusable knowledge from construction automation sessions to improve future performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extract patterns, best practices, and reusable knowledge from construction automation sessions to improve future performance.
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lovefromio](https://clawhub.ai/user/lovefromio)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Construction automation developers and teams use this skill to capture session learnings, reusable solution patterns, error resolutions, integration approaches, and code snippets for later construction estimation, BIM data processing, document processing, and workflow automation tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages persistent reuse of session and client- or project-specific construction data without clear consent, redaction, retention, or scope controls.
+
+Mitigation: Use only with explicit approval to save learnings, sanitize or generalize entries, isolate project or tenant knowledge bases, retain provenance, and provide review and deletion controls.
+
+Risk: Stored patterns may be treated as future instructions even when they are incomplete, stale, or specific to a prior project.
+
+Mitigation: Treat stored patterns as reference material that must be reviewed before reuse, especially for customer, bid, contract, credential, or proprietary project data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Construction automation teams and developers use this skill at the end of estimation, document processing, integration, and workflow sessions to extract reusable patterns, code snippets, decision rationales, and recommendations for future tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may preserve client or project-specific construction session knowledge without clear redaction, consent, or retention limits. <br>
-Mitigation: Require manual review before retaining learnings, and redact client names, project identifiers, pricing, bid strategy, credentials, documents, and personal data. <br>
-Risk: Reusable patterns and knowledge-base entries may mix sensitive context across clients or projects. <br>
-Mitigation: Keep separate knowledge bases for separate clients or projects and review exported knowledge before reuse. <br>
+**Output Format:** [Markdown guidance with YAML, Python, and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovefromio/lovefromio-continuous-learning) <br>
+**Other Properties Related to Output:** [Produces reusable learning prompts, pattern structures, knowledge-base layouts, suggested commands, and example implementation snippets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with example YAML, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent knowledge-base entries and session learning prompts.] <br>
+1.0.2 (source: ClawHub server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

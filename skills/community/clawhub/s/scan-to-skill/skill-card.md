@@ -1,41 +1,54 @@
-## Description: <br>
-Scan To Skill decodes QR images, extracts a ClawHub skill slug or install command, and helps install the referenced skill through the ClawHub CLI after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QR-based skill installer for ClawHub that decodes QR images, extracts a valid skill slug or install command, and installs via the ClawHub CLI after user confirmation.
 
-## Publisher: <br>
-[jackleeio](https://clawhub.ai/user/jackleeio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackleeio](https://clawhub.ai/user/jackleeio)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to scan QR images from chats, screenshots, or camera captures and turn them into a reviewed ClawHub install flow with decoded text, parsed slug, and install result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A QR code from an unfamiliar source may point to a skill the user did not intend to install. <br>
-Mitigation: Show the decoded text and parsed slug, require explicit confirmation before installation, and encourage reviewing the ClawHub skill page first. <br>
-Risk: Unsupported or non-ClawHub QR payloads may not identify a valid install target. <br>
-Mitigation: Accept only valid slugs, ClawHub install commands, or URLs on recognized ClawHub domains; reject unsupported payloads with a clear error. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to install a skill from a QR image, screenshot, or camera capture after reviewing the decoded target. It supports scan-to-install workflows where the agent should report the decoded text, parsed slug, install command, and result.
 
-## Reference(s): <br>
-- [Slug Parsing Rules](references/slug-parsing.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jackleeio/scan-to-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text with decoded QR content, parsed slug, install command, result, and next step] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Install execution is gated by explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: A QR payload may point to an unintended ClawHub skill or use plain command text that the user has not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show the decoded text and parsed slug before installation, require explicit confirmation, and recommend checking unfamiliar skills on ClawHub first.
+
+Risk: Installing a skill modifies the user's local ClawHub skill set.
+
+Mitigation: Use the dry-run default until the user confirms, and install only skills from sources the user trusts.
+
+## Reference(s):
+
+- [Slug Parsing Rules](references/slug-parsing.md)
+- [ClawHub skill page](https://clawhub.ai/jackleeio/skills/scan-to-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status output with decoded QR text, parsed slug, install command, result, and next-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installation remains gated by explicit user confirmation; dry-run and decode-only flows can report results without modifying the local ClawHub skill set.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

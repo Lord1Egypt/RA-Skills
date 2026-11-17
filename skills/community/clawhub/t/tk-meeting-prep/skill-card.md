@@ -1,39 +1,54 @@
-## Description: <br>
-Prepare for any meeting in 5 minutes: research attendees, company background, talking points, objection handling, and follow-up templates for sales calls, investor pitches, client meetings, and job interviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare for any meeting in 5 minutes - research attendees, company background, talking points, objection handling, and follow-up templates.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-Employees and external professionals use this skill to prepare for sales, investor, client, interview, partnership, and board meetings. It produces meeting-specific research, talking points, likely objections, strategic questions, follow-up copy, and a short pre-meeting cheat sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting research may include sensitive personal details or non-public profile information. <br>
-Mitigation: Limit inputs and generated research to public, relevant business information. <br>
-Risk: Attendee, company, or recent-news claims may be incomplete or incorrect. <br>
-Mitigation: Verify important claims before relying on the brief in a professional meeting. <br>
+## Use Case:
 
+Sales, recruiting, client-service, and business users use this skill to prepare concise meeting briefs with attendee research, company context, talking points, likely objections, questions, follow-up templates, and a final pre-meeting cheat sheet.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting-prep brief with lists, a table, and an email template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include attendee and company research, talking points, objections and responses, questions, follow-up templates, and a two-minute cheat sheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: Meeting briefs may include incorrect or outdated claims about people, companies, news, roles, or recent activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify generated claims against reliable sources before using them in a meeting or follow-up.
+
+Risk: The skill may process personal or sensitive meeting context when a user supplies attendee details, job history, pain points, or relationship notes.
+
+Mitigation: Use public, lawful, and relevant information, and avoid sensitive personal data unless there is a legitimate reason and appropriate consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/tk-meeting-prep)
+- [Publisher profile](https://clawhub.ai/user/tktk-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown meeting brief with sections, tables, numbered lists, and an email template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include research summaries, inferred objections, strategic questions, follow-up copy, and a short pre-meeting cheat sheet.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Analyzes fixed-camera reptile enclosure videos to report basking and hiding zone dwell time, movement frequency, activity rhythm, thermal preference labels, and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Through fixed enclosure cameras, the system analyzes behavior videos of reptiles (lizards, snakes, turtles) and detects movement frequency and dwell duration between the basking zone (heated area under the basking lamp) and the hiding zone (cave/cool side). | 通过爬宠箱固定摄像头，分析爬行动物（如蜥蜴、蛇、龟）的行为视频，检测宠物在晒点（加热灯下方高温区域）与躲避区（洞穴、冷区）之间的移动频次、停留时长以及活动节律。系统连续监测，生成每日温区利用报告，异常时推送提醒。
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users, developers, and reptile-care operators use this skill to analyze vivarium or breeding-enclosure video for thermal-zone usage, activity rhythm, and behavior-based warning signs. It supports structured reports and history queries for basking, hiding, cold-zone, and transition-zone behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reptile videos or URLs are sent to the LifeEmergence cloud service for analysis. <br>
-Mitigation: Use the skill only with videos the user is authorized to upload, and disclose cloud processing before analysis. <br>
-Risk: The skill maintains local identity or token state for cloud access. <br>
-Mitigation: Review local identity and token files before installation and remove any stale or unintended API key values. <br>
-Risk: History-report queries can run automatically when the user asks for past thermoregulation reports. <br>
-Mitigation: Prefer explicit confirmation before querying historical reports, especially in shared or multi-user environments. <br>
-Risk: Behavior analysis may be mistaken for veterinary diagnosis. <br>
-Mitigation: Present outputs as behavior-based observations and environmental guidance only; keep disease confirmation and treatment decisions with qualified reptile veterinarians. <br>
+## Use Case:
 
+Reptile keepers and operators of vivariums or breeding enclosures use this skill to review video-based dwell times, movement between basking and hiding areas, and daily activity patterns. It provides behavioral monitoring guidance and reports for husbandry review, not a veterinary diagnosis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-reptile-thermoregulation-behavior-analysis) <br>
-- [API Documentation](references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style structured analysis reports with report links; optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include thermal-zone dwell ratios, movement frequency, rhythm consistency, preference labels, alert levels, recommended actions, disclaimers, and cloud history-query results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.3) <br>
+Risk: The security review says export-only mode may still proceed to account or network activity, so private footage may be uploaded even when analysis is not requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use private footage until export-only mode is confirmed to stop before account or network activity.
+
+Risk: The security review says stored account credentials lack adequate protection; authenticated requests and sensitive HTTP logging also need safeguards.
+
+Mitigation: Protect stored tokens, restrict authenticated requests to approved HTTPS destinations, and disable automatic logging of sensitive HTTP data.
+
+Risk: Video leaves the device, and the provider's retention and deletion practices are not verified by this client review.
+
+Mitigation: Confirm retention and deletion practices with the provider before submitting sensitive footage.
+
+## Reference(s):
+
+- [API interface documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-reptile-thermoregulation-behavior-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [Structured behavior analysis and daily Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include zone dwell ratios, transitions per hour, activity rhythm, thermal preference labels, alerts, and husbandry suggestions.]
+
+## Skill Version(s):
+
+1.0.15 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

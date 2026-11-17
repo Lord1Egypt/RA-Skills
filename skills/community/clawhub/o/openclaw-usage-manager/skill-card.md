@@ -1,42 +1,61 @@
-## Description: <br>
-Monitors dual Claude Max accounts' 5-hour and 7-day usage, shows a local real-time dashboard, and can switch accounts when utilization exceeds 80%. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors dual Claude Max accounts' 5-hour and 7-day usage, shows a local real-time dashboard, and can auto-switch the active OpenClaw account when utilization exceeds 80%.
 
-## Publisher: <br>
-[Takao-Mochizuki](https://clawhub.ai/user/Takao-Mochizuki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[takao-mochizuki](https://clawhub.ai/user/takao-mochizuki)
 
-## Use Case: <br>
-Developers and OpenClaw users with two Claude Max accounts use this skill to monitor remaining capacity, view local usage status, and configure account switching before rate limits interrupt work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Claude account tokens and can change the active OpenClaw Anthropic account. <br>
-Mitigation: Review the scripts before installation, protect or avoid tokens.json, back up auth-profiles.json, and test manually before enabling cron. <br>
-Risk: The dashboard launch behavior can terminate local processes on port 18800. <br>
-Mitigation: Remove or modify the automatic port-kill behavior if port 18800 may be used by other local software. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to monitor two Claude Max accounts, review utilization windows, and prepare or run account switching when one account reaches its configured usage threshold.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Takao-Mochizuki/openclaw-usage-manager) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [1Password CLI documentation](https://developer.1password.com/docs/cli/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands, configuration steps, and JSON usage output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and operating guidance for a browser dashboard and account-switching script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill handles live Anthropic account tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted single-user machine, prefer 1Password or another secrets manager, keep token files permission-restricted, and rotate any tokens used during testing.
+
+Risk: The auto-switcher rewrites OpenClaw authentication state.
+
+Mitigation: Review the checker behavior before enabling cron, confirm the target auth profile path, and enable automatic switching only after accepting that it can change the active authentication profile.
+
+Risk: The dashboard launch flow and server behavior can terminate local processes on the configured port.
+
+Mitigation: Remove or modify the port-killing alias and server behavior if other local services may use the same port.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/takao-mochizuki/skills/openclaw-usage-manager)
+- [OpenClaw Usage Manager Setup Guide](https://github.com/Takao-Mochizuki/openclaw-usage-manager)
+- [OpenClaw](https://openclaw.ai)
+- [1Password CLI Documentation](https://developer.1password.com/docs/cli/)
+- [Original Author Post](https://x.com/5dmgmt/status/2032770037728113118)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, JavaScript code, JSON status output, and local dashboard configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and usage guidance for a localhost dashboard and an auto-switching checker that reads usage headers and updates OpenClaw authentication state.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

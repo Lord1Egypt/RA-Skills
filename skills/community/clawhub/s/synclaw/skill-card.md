@@ -1,41 +1,54 @@
-## Description: <br>
-SynClaw helps agents build psychological profiles from conversation history and find compatible people for romantic, business, friendship, or custom matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to find compatible people based on deep psychological profiling.
 
-## Publisher: <br>
-[ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivankoriako](https://clawhub.ai/user/ivankoriako)
 
-## Use Case: <br>
-External users ask their agent to find compatible people by creating a psychological profile, sending it for matching, and analyzing candidate compatibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to infer sensitive psychological and relationship traits from conversation history. <br>
-Mitigation: Use only with explicit user consent, let users review the profile before matching, and avoid sharing more history or personal detail than necessary. <br>
-Risk: The artifact says the profile is sent to a SynClaw server while also claiming user data stays local. <br>
-Mitigation: Treat data handling as unresolved until the publisher clearly documents what is uploaded, how consent works, and how profiles can be reviewed or deleted. <br>
+## Use Case:
 
+External users use Synclaw to ask an agent to build a psychological compatibility profile and find potential romantic partners, business co-founders, friends, or custom matches.
 
-## Reference(s): <br>
-- [Synclaw on ClawHub](https://clawhub.ai/ivankoriako/synclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/ivankoriako) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Text] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include compatibility reasoning and next-step guidance for relationship or collaborator matching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The described workflow analyzes sensitive psychological information from LLM conversation history and sends a profile to an unspecified matching server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after the publisher clarifies consent, exact data sent, retention and deletion terms, and gives users control to inspect and limit the profile before anything leaves the environment.
+
+Risk: The artifact claims user data stays local while also describing remote profile matching.
+
+Mitigation: Treat the privacy claim as unresolved until the publisher documents the local and remote data flow clearly.
+
+## Reference(s):
+
+- [Synclaw ClawHub skill page](https://clawhub.ai/ivankoriako/skills/synclaw)
+- [ivankoriako ClawHub profile](https://clawhub.ai/user/ivankoriako)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and compatibility analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact is documentation-only and marked coming soon.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

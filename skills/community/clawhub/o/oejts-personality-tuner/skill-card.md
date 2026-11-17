@@ -1,41 +1,54 @@
-## Description: <br>
-Administer and score the Open Extended Jungian Type Scales (OEJTS 1.2), map results to MBTI-style interaction preferences, and propose/apply personality-aware tuning updates to USER.md and SOUL.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Administer and score the Open Extended Jungian Type Scales (OEJTS 1.2), map results to MBTI-style interaction preferences, and propose or apply personality-aware tuning updates to USER.md and SOUL.md.
 
-## Publisher: <br>
-[salvagedeck](https://clawhub.ai/user/salvagedeck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[salvagedeck](https://clawhub.ai/user/salvagedeck)
 
-## Use Case: <br>
-Developers and agent users use this skill to run an OEJTS questionnaire, calculate an MBTI-style preference profile, and tune assistant behavior through reviewed USER.md and SOUL.md updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Questionnaire-derived interaction preferences can persist in USER.md and SOUL.md. <br>
-Mitigation: Run the dry-run first, review the managed blocks, and remove those blocks later if the personalization is no longer wanted. <br>
-Risk: Personality results may be overread as fixed identity rather than preference signals. <br>
-Mitigation: Treat OEJTS output as adjustable guidance and let explicit user feedback override the profile. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OEJTS 1.2 Reference](references/oejts-1.2.md) <br>
-- [Behavior Mapping](references/behavior-mapping.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/salvagedeck/oejts-personality-tuner) <br>
+## Use Case:
 
+Developers and agent users use this skill to run an OEJTS-style questionnaire, calculate an MBTI-style preference profile, and convert the result into assistant behavior guidance. It can preview or apply managed preference blocks for USER.md and SOUL.md.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown questionnaire output, JSON scoring output, and managed Markdown blocks for USER.md and SOUL.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode to preview managed workspace-file updates before applying them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persistently add or replace managed personality-tuning blocks in USER.md and SOUL.md.
+
+Mitigation: Run dry-run mode first, review the proposed blocks, and apply only when the user wants those assistant preference files changed.
+
+Risk: OEJTS results could be treated as a fixed identity rather than a preference signal.
+
+Mitigation: Use the profile as adjustable guidance, keep user override available, and prefer live user feedback when it conflicts with test output.
+
+## Reference(s):
+
+- [OEJTS 1.2 Reference](references/oejts-1.2.md)
+- [Behavior Mapping](references/behavior-mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/salvagedeck/skills/oejts-personality-tuner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and plain text with optional managed file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in dry-run mode to preview USER.md and SOUL.md changes before writing managed blocks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

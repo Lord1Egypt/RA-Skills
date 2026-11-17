@@ -1,37 +1,49 @@
-## Description: <br>
-Use this skill when implementing PID control loops for adaptive cruise control, vehicle speed regulation, throttle/brake management, or any feedback control system requiring proportional-integral-derivative control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents implement proportional-integral-derivative control loops for adaptive cruise control, vehicle speed regulation, throttle/brake management, and other feedback control systems.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise PID-control reference when designing adaptive cruise control, speed regulation, throttle/brake management, or related feedback-control logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PID example is a reference and may be unsafe if used directly in a real vehicle or other safety-critical system. <br>
-Mitigation: Add platform-specific bounds, sensor filtering, anti-windup behavior, failure handling, testing, and independent safety review before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill as reference guidance when asking an agent to implement and tune PID controllers for vehicle speed regulation or other feedback-control tasks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no commands, network calls, persistence, or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The included PID controller is reference material and may be incomplete for vehicles or other safety-critical systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require independent validation, bounded outputs, anti-windup handling, failsafes, and domain-specific testing before any safety-critical deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/adaptive-cruise-control-pid-controller)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Guidance]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides reference PID logic, tuning guidance, and anti-windup considerations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

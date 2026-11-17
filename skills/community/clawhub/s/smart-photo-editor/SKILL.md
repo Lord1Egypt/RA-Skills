@@ -6,7 +6,7 @@ description: |
 
 metadata:
   author: Team
-  version: "1.3.3"
+  version: "1.5.1"
   category: ai/image-editing
   compatibility: Requires Node.js 18+ and network access to VolcEngine Ark API (with Seedream model enabled) for AI features.
 ---
@@ -26,15 +26,49 @@ All-in-one intelligent photo editing skill - automatically selects the best tool
 - ✅ **Automatic Fallback** - Switches to backup tools if primary tool fails
 - ✅ **Large Image Auto-Handling** - Avoids "image too large" API errors
 
+## Feature Availability
+
+This skill provides two tiers of functionality:
+
+### ✅ Works out of the box (no extra dependencies)
+
+These features only require ImageMagick and/or OpenCV (both widely available on Linux/macOS):
+
+- **Resize / Crop / Smart-crop** — dimension changes, aspect-ratio-preserving scaling
+- **Color adjustment** — brightness, contrast, saturation, grayscale
+- **Perspective correction** — 4-point skew/warp correction
+- **Smart compression** — quality targeting, binary-search for target file size
+- **HDR tonemapping** — log/bilateral/shadow/highlight recovery
+- **Background removal (basic)** — solid-color background removal via ImageMagick
+- **Geometric inpainting** — wire/line/rect removal with known coordinates (`inpaint.py`)
+
+### 🔒 Requires Seedream skill (AI features)
+
+These features require the `byted-ark-seedream-skill` (VolcEngine Ark Agent Plan, managed skill):
+
+- **Object removal (natural language)** — remove objects described in text (people, vehicles, watermarks)
+- **Old photo restoration** — AI scratch/dust/fading repair
+- **Scene replacement (`replace-scene`)** — put subject into a new scene via multi-reference fusion
+- **Background removal (AI)** — rembg-based, or Seedream-based for complex edges
+
+> **Note:** The `byted-ark-seedream-skill` is an OpenClaw managed skill that requires a VolcEngine Ark account with the Seedream model enabled. Install with `openclaw skills install byted-ark-seedream-skill`.
+
+---
+
 ## Trigger Conditions
 
 Activates automatically when users mention keywords like:
 - photo editing, edit image, retouch, smart photo edit
-- remove object, delete object, erase
-- remove background, background removal, cutout
-- restore, fix, old photo restoration, repair
-- color adjustment, color correction, color grading
-- crop, resize, compress
+- remove object, delete object, erase, remove person, remove watermark, remove logo, 去除, 消除
+- remove background, background removal, cutout, 抠图, 换背景
+- restore, fix, old photo restoration, repair, 修复老照片, 老照片修复
+- portrait retouching, portrait edit, smooth skin, whiten teeth, enhance eyes, remove blemish, red eye, 美颜, 人像精修, 红眼
+- replace scene, change scene, put subject in, 换场景, 多图融合
+- color adjustment, color correction, color grading, brightness, 调色, 色彩调整
+- crop, resize, compress, auto crop, smart crop, 裁剪, 自动裁剪, 智能裁剪
+- perspective, fix skew, flatten, perspective correct, 透视矫正, 视角矫正
+- hdr, tonemap, highlight recovery, shadow recovery, 高动态, 阴影增强
+- sharpen, denoise, 锐化, 降噪
 
 ---
 
@@ -83,6 +117,7 @@ user explicitly forces a tool with --tool ...      → honored verbatim
 | `smart-compress` | **OpenCV** | Content-aware quality + format selection |
 | `perspective-correct` | **OpenCV** | Document/whiteboard correction |
 | `hdr-tonemap` | **OpenCV** | All four modes (auto / bilateral / log / shadows) are deterministic |
+| `replace-scene` | **Seedream** | AI-only; no deterministic fallback (would produce poor results). If Seedream is unavailable, returns error directing user to install the Seedream skill. |
 
 Override with `--tool seedream | opencv | imagemagick | rembg`.
 
@@ -94,22 +129,30 @@ Override with `--tool seedream | opencv | imagemagick | rembg`.
 `~/.openclaw/skills/smart-photo-editor/`
 
 ### Python Interpreter
-All Python scripts (`scripts/*.py`) carry a hard shebang pointing at the team
-virtual environment:
+All Python scripts (`scripts/*.py`) use a portable `#!/usr/bin/env python3` shebang.
 
-```
-#!/home/guoxh/.openclaw/venv-clawd/bin/python
-```
-
-**Always invoke them via the venv** (or run them directly with `./scripts/edit.py`).
-Running under system Python (`/usr/bin/python3 scripts/edit.py ...`) will report
-missing optional deps (`piexif`, `exif`, `rembg`) even when they are installed
-in the venv.
+You can run them directly:
 
 ```bash
-# Sanity check (the venv ships everything required + optional)
-/home/guoxh/.openclaw/venv-clawd/bin/python -c \
-  "import cv2, numpy, PIL, piexif, exif, rembg; print('ok')"
+./scripts/edit.py --help
+```
+
+Or explicitly with your Python of choice (e.g. a virtualenv where you have
+installed the dependencies below):
+
+```bash
+python3 scripts/edit.py --help
+```
+
+**Make sure the Python interpreter you use has the required dependencies**
+(OpenCV, Pillow, NumPy). Optional deps (`piexif`, `exif`, `rembg`) add extra
+features; the skill will gracefully skip those features if they are missing.
+
+```bash
+# Sanity check — required deps\python3 -c "import cv2, numpy, PIL; print('core deps ok')"
+
+# Sanity check — full deps (includes optional rembg/piexif/exif)
+python3 -c "import cv2, numpy, PIL, piexif, exif, rembg; print('all deps ok')"
 ```
 
 ### Required & Optional Dependencies
@@ -127,6 +170,30 @@ in the venv.
 source ~/.openclaw/venv-clawd/bin/activate
 pip install rembg piexif exif
 ```
+
+### Cloudflare R2 Upload (Large Reference Images)
+
+When a reference image (subject or scene image) exceeds **1.5 MB**, the skill can upload it to Cloudflare R2 instead of embedding it as a base64 data URI. This avoids hitting Seedream API payload size limits.
+
+**R2 is optional.** Without configuration, large images fall back to base64 data URI (which may fail for very large files due to CLI argument limits).
+
+**To enable R2 upload, deploy your own Cloudflare Worker:**
+
+1. Create a Cloudflare R2 bucket and a Worker that accepts PUT requests (see the [Cloudflare R2 documentation](https://developers.cloudflare.com/r2/))
+2. Set the following environment variables:
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `SEEDREAM_UPLOAD_TOKEN` | ✅ Yes | Bearer token for your R2 upload worker. |
+| `SEEDREAM_UPLOAD_WORKER_URL` | ✅ Yes | Your worker URL, e.g. `https://your-worker.your-subdomain.workers.dev`. |
+
+```bash
+# Add to your shell profile or ~/.openclaw/.env
+export SEEDREAM_UPLOAD_TOKEN="your-token-here"
+export SEEDREAM_UPLOAD_WORKER_URL="https://your-worker.your-subdomain.workers.dev"
+```
+
+Without both variables, large images gracefully fall back to the data URI path (works for most cases; may hit CLI arg limits for very large multi-image batches).
 
 ### VolcEngine Ark Setup
 For AI editing features (object removal, photo restoration), ensure:
@@ -463,11 +530,111 @@ HDR-style tone mapping to enhance dynamic range on single images. Uses bilateral
 
 ---
 
+### 11. Scene Replacement
+**Primary Tool:** Seedream multi-reference image fusion (AI-only, no deterministic fallback)
+
+Place a subject (portrait / pet / product) into a new scene using Seedream's
+multi-reference image fusion. Wraps 豆包 app's "多图融合" + "换场景" feature.
+
+**Requires:** the `byted-ark-seedream-skill` (this task is AI-only; an
+OpenCV/ImageMagick fallback would produce poor results and is intentionally
+omitted).
+
+**Usage:**
+```bash
+# 1) Subject + scene image (most common)
+./scripts/edit.py --task replace-scene \
+    --subject photo.jpg --scene cafe.png --output out.jpg
+
+# 2) Subject + text-only scene description
+./scripts/edit.py --task replace-scene \
+    --subject pet.jpg --scene-prompt "阳光下的草地" --output out.jpg
+
+# 3) Product photo into lifestyle scene
+./scripts/edit.py --task replace-scene \
+    --subject product.png --scene lifestyle.jpg --output out.jpg \
+    --subject-type product
+
+# 4) Custom prompt override (full artistic control)
+./scripts/edit.py --task replace-scene \
+    --subject portrait.jpg --scene beach.jpg --output out.jpg \
+    --prompt "把人物放在黄昏海边沙滩，长发随风，光线偏暖，景深虚化"
+
+# 5) Subject in center, close-up framing
+./scripts/edit.py --task replace-scene \
+    --subject portrait.jpg --scene studio.jpg --output out.jpg \
+    --position center --scale close
+
+# 6) Full-body shot, subject on the right
+./scripts/edit.py --task replace-scene \
+    --subject portrait.jpg --scene beach.jpg --output out.jpg \
+    --position right --scale full
+
+# 7) JSON batch with position/scale
+./scripts/edit.py --json < tasks.json
+```
+
+**Argument table:**
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `--subject` / `-S` | path | ✅ | — | Subject image (portrait / pet / product) |
+| `--scene` | path | ⚠️ one of | — | Target scene image |
+| `--scene-prompt` | string | ⚠️ one of | — | Target scene text description (used if no scene image) |
+| `--subject-type` | enum | ❌ | `auto` | `auto` / `portrait` / `pet` / `product`. Selects prompt template + reference_strength. |
+| `--prompt` / `-p` | string | ❌ | (from template) | Override the default prompt |
+| `--reference-strength` | float | ❌ | 0.85 (portrait/pet) / 0.90 (product) | How strongly Seedream must preserve the subject. Higher = stricter. |
+| `--watermark` | flag | ❌ | `false` | Add Seedream watermark. Default OFF (most uses are product / academic). |
+| `--position` | enum | ❌ | `center` | Horizontal subject placement: `left` / `center` / `right`. Feeds into the scene-prompt as positional hint.
+| `--scale` | enum | ❌ | `medium` | Subject framing: `close` (特写) / `medium` (中景) / `full` (全身). Feeds into the scene-prompt as framing hint.
+| `--output-format` | enum | ❌ | follow subject | `jpeg` / `png` / `webp` |
+| `--output` / `-o` | path | ❌ | auto | Output path |
+
+**Validation rules:**
+- `--subject` is required.
+- **Exactly one** of `--scene` / `--scene-prompt` is required (both → error).
+- If `--scene-prompt` is given, it must be at least 3 characters.
+- Subject image is auto-resized to 2048px max side (existing API limit helper).
+
+**Subject-type auto-detection:**
+When `--subject-type auto` is passed (default), the skill uses two heuristics:
+1. **Filename keyword** — `pet/cat/dog/...` → `pet`; `portrait/selfie/face/...` → `portrait`; `product/item/bottle/...` → `product`
+2. **Corner solidity check** — if all 4 corners are within 15 RGB units, classified as `product` (typical product shot on flat backdrop)
+
+If neither heuristic matches, falls back to `portrait` (most common case).
+For certainty, always pass `--subject-type` explicitly.
+
+**JSON batch format:**
+```json
+{
+  "operations": [
+    {"task": "replace-scene", "subject": "p1.jpg", "scene": "office.jpg",
+     "output": "p1_office.jpg", "subject-type": "portrait"},
+    {"task": "replace-scene", "subject": "p2.jpg", "scene-prompt": "雪山日落",
+     "output": "p2_mountain.jpg", "subject-type": "portrait"},
+    {"task": "replace-scene", "subject": "shoe.png", "scene": "running_track.jpg",
+     "output": "shoe_track.jpg", "subject-type": "product", "reference-strength": 0.9}
+  ]
+}
+```
+
+**JSON batch key naming:** JSON keys use **underscores** (Python identifier
+convention): `scene_prompt`, `subject_type`, `reference_strength`, etc. The
+CLI flags use dashes (`--scene-prompt`, `--subject-type`). The skill
+**automatically normalizes** dashed JSON keys to underscored ones, so both
+work; use whichever is more natural for your tooling.
+
+**Output:**
+The result JSON envelope includes a `generation_time_s` field (extracted from
+Seedream's own metadata) for quota tracking.
+
+---
+
 ## Unified API Interface
 
 | Parameter | Type | Default | Required | Description |
 |-----------|------|---------|----------|-------------|
-| `task` | string | - | ✅ | Task type: `remove-object` / `remove-background` / `restore` / `resize` / `crop` / `color-adjust` / `perspective-correct` / `smart-compress` / `hdr-tonemap` |
+| `task` | string | - | ✅ | Task type: `remove-object` / `remove-background` / `restore` / `resize` / `crop` / `color-adjust` / `perspective-correct` / `smart-compress` / `hdr-tonemap` / `replace-scene` |
 | `image` | string | - | ✅ | Input image path |
 | `prompt` | string | "" | ❌ | Object description/location (required for remove-object) |
 | `tool` | string | "auto" | ❌ | Force specific tool: `auto` / `seedream` / `imagemagick` / `opencv` / `rembg` |
@@ -626,6 +793,14 @@ The recommended entry point for all photo editing operations.
 | `--strength` | float | 1.0 | Enhancement strength 0.1-2.0 (hdr-tonemap) |
 | `--gamma` | float | 2.2 | Gamma value for log mode (hdr-tonemap) |
 | `--quality` | int | auto | Output quality 1-100 (jpeg/webp; ignored when `--target-kb` is set) |
+| `--position` | string | - | Horizontal placement for `replace-scene`: `left` / `center` / `right` |
+| `--scale` | string | - | Framing for `replace-scene`: `close` / `medium` / `full` |
+| `--subject` / `-S` | string | - | Subject image path (required for `replace-scene`) |
+| `--scene` | string | - | Scene image path (one of `--scene` or `--scene-prompt` for `replace-scene`) |
+| `--scene-prompt` | string | - | Scene text description (one of `--scene` or `--scene-prompt` for `replace-scene`) |
+| `--subject-type` | string | `auto` | Subject type for `replace-scene`: `auto` / `portrait` / `pet` / `product` |
+| `--reference-strength` | float | 0.85 | How strongly Seedream preserves the subject |
+| `--watermark` | flag | false | Add Seedream watermark (default OFF) |
 | `--json` | flag | false | Emit JSON result envelope on stdout. Combine with `--batch` (or piped stdin) for JSON batch input. |
 | `--batch` / `-b` | string | - | JSON file for batch operations |
 
@@ -645,6 +820,81 @@ The recommended entry point for all photo editing operations.
 
 ## Changelog
 
+### 1.5.0 — 2026-07-19
+
+**New `replace-scene` parameters**
+- `--position {left,center,right}` — controls horizontal placement of the subject in the generated scene. Feeds into the scene-prompt as a positional hint so Seedream places the subject accordingly.
+- `--scale {close,medium,full}` — controls subject framing (特写/中景/全身). Feeds into the scene-prompt as a framing hint.
+
+**R2 large-file upload for Seedream reference images**
+- When a reference image exceeds 1.5 MB, the skill can upload to Cloudflare R2 and pass the public URL to Seedream instead of embedding a base64 data URI.
+- Requires self-deployed Cloudflare R2 Worker + `SEEDREAM_UPLOAD_TOKEN` and `SEEDREAM_UPLOAD_WORKER_URL` env vars.
+- Without R2 configured, large images gracefully fall back to base64 data URI.
+
+### 1.4.0 — 2026-07-14
+
+**New feature: `replace-scene` task**
+Adds a new AI-driven task that places a subject (portrait / pet / product) into
+a new scene using Seedream's multi-reference image fusion. Wraps 豆包 app's
+"多图融合" + "换场景" feature.
+- New `--subject` (alias of `--image` for this task) + mutually-exclusive
+  `--scene` (image) or `--scene-prompt` (text) input pair.
+- `--subject-type {auto,portrait,pet,product}` selects a per-type prompt
+  template and reference_strength. `auto` uses filename keyword + corner
+  solidity heuristics.
+- `--watermark` defaults to OFF (most uses are product / academic).
+- New `_call_seedream(reference_images=...)` parameter — passes a JSON array
+  of data URIs to Seedream (which accepts up to 14 reference images).
+- Subject image is auto-resized to 2048px max side; temp files are cleaned up.
+- Returns `info.generation_time_s` extracted from Seedream's metadata for
+  quota tracking.
+
+**Bug fixes (incidental, surfaced by v1.4.0 testing)**
+- `process_batch` now normalizes dashed JSON keys (`scene-prompt` →
+  `scene_prompt`, `target-kb` → `target_kb`, `subject-type` → `subject_type`,
+  `no-maintain-aspect` → `no_maintain_aspect`) before unpacking into
+  `process(**op)`. Previously these were silently dropped into the trailing
+  `**kwargs` and the real parameter received its default — a very confusing
+  failure mode (especially for `target-kb` where the result was a wildly
+  different file size than requested).
+- `process()` now translates `no_maintain_aspect=True` (from JSON batch) to
+  `maintain_aspect=False` (the inverted semantics the `op_resize` function
+  expects), mirroring the same translation `main()` does for the CLI.
+
+**Docs**
+- New section 11 "Scene Replacement" with 6 worked examples, full argument
+  table, validation rules, auto-detection logic, and JSON batch format.
+- Updated Tool Selection Policy + Per-task defaults tables to include
+  `replace-scene`.
+- Updated Unified API Interface task list.
+
+### 1.3.4 — 2026-07-14
+
+**ImageMagick argument fix**
+- `op_resize` / `op_crop` / `op_color_adjust` / `op_remove_background` (ImageMagick fallback): all ImageMagick CLI arguments are now passed as separate list elements instead of single space-joined strings. Previously ImageMagick would reject commands like `-resize 800x800>` because the flag and value were concatenated into one string.
+
+**HDR bilateral saturation fix**
+- `_tonemap_bilateral` no longer performs a pseudo-HSV operation directly on BGR channels (which corrupted colors). Now uses proper `cv2.cvtColor(BGR→HSV)` → boost saturation → `cv2.cvtColor(HSV→BGR)`.
+
+**Background removal fallback fix**
+- `remove_bg.sh` ImageMagick fallback: corrected `matte` floodfill coordinates (was passing RGB values as coordinates; now uses `0,0`). Removed erroneous `-alpha extract` which turned output into a pure alpha mask.
+- `edit.py` ImageMagick fallback: replaced `-trim` (which merely cropped edges) with `-transparent <detected-bg-color>` so the result is actually a transparent-background image.
+
+**Runtime robustness**
+- `op_remove_background` now probes both `$PATH` and the team venv (`venv-clawd/bin/rembg`) for `rembg`, matching Laoguo's actual deployment environment.
+- `_call_seedream` guards against `shutil.copyfile(local, output_path)` when source and destination are the same file (would truncate to zero bytes).
+- `_save_with_quality` now derives the actual output format from the file extension, preventing OpenCV warnings when `--format` and `--output` disagree (e.g. `--output foo.webp --format png`).
+
+**CLI**
+- Added `--no-maintain-aspect` flag for `resize` task to allow non-proportional stretching.
+
+### 1.3.3 — 2026-06-13
+
+**Tool selection policy**
+- Codified the routing policy (see "Tool Selection Policy" near the top of this file): Seedream first for semantic / generative edits, deterministic tools first for mechanical edits.
+- `op_remove_object` no longer keyword-sniffs the prompt for "wire / cable / line / spot / dust / scratch" and silently routes to a stub. `--tool auto` now picks Seedream when available; the OpenCV branch surfaces an actionable redirect to `scripts/inpaint.py` for known-geometry cases.
+- The redirect message also lists the most common `inpaint.py` invocations (`--type spot`, `--type wire`, `--type rect`) so users have a clear next step instead of a guess.
+
 ### 1.3.2 — 2026-06-13
 
 **Bug fixes**
@@ -662,10 +912,3 @@ The previous integration referenced a non-existent `bin/generate.sh` and a non-e
 **Docs**
 - Added "Python Interpreter" section: all scripts hard-shebang the team venv (`~/.openclaw/venv-clawd/bin/python`); running them under system Python will spuriously report `piexif/exif/rembg` as missing.
 - `--quality` and `--json` table entries clarified.
-
-### 1.3.3 — 2026-06-13
-
-**Tool selection policy**
-- Codified the routing policy (see "Tool Selection Policy" near the top of this file): Seedream first for semantic / generative edits, deterministic tools first for mechanical edits.
-- `op_remove_object` no longer keyword-sniffs the prompt for "wire / cable / line / spot / dust / scratch" and silently routes to a stub. `--tool auto` now picks Seedream when available; the OpenCV branch surfaces an actionable redirect to `scripts/inpaint.py` for known-geometry cases.
-- The redirect message also lists the most common `inpaint.py` invocations (`--type spot`, `--type wire`, `--type rect`) so users have a clear next step instead of a guess.

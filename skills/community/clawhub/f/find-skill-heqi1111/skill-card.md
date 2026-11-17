@@ -1,39 +1,50 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask for specialized capabilities or ways to extend an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask for specialized capabilities or ways to extend an agent.
 
-## Publisher: <br>
-[kylinjackson](https://clawhub.ai/user/kylinjackson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylinjackson](https://clawhub.ai/user/kylinjackson)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for relevant installable agent skills, summarize options, and provide install commands when a user asks for specialized capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer broad requests toward global, silent installation of third-party skills without a clear consent checkpoint. <br>
-Mitigation: Require explicit user confirmation before installing any suggested skill, review the skill source first, and avoid silent global installs unless the user has approved that exact package. <br>
+## Use Case:
 
+Developers and agent users use this skill to search for installable skills, present relevant options, and optionally run Skills CLI installation commands after review.
 
-## Reference(s): <br>
-- [Find Skill HEQI on ClawHub](https://clawhub.ai/kylinjackson/find-skill-heqi1111) <br>
-- [Skills directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install commands and links for candidate skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can encourage unpinned external CLI execution and persistent global skill installation with skipped confirmations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted Skills CLI version, inspect target skill source before installation, avoid global installation unless needed, and avoid skipped confirmations unless the exact install has already been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kylinjackson/skills/find-skill-heqi1111)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search summaries, install commands, and links to discovered skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

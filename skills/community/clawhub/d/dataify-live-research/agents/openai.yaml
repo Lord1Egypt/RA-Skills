@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Live Research"
+  short_description: "Produce current, cited multi-source research briefs"
+  default_prompt: "Research this question with current public evidence and produce a cited brief."

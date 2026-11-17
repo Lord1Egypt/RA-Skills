@@ -1,40 +1,53 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents before installing skills from ClawHub, GitHub, or other sources, checking for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review third-party skills before installation, checking source trust, file behavior, permission scope, and security red flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Placeholder GitHub commands could be pointed at the wrong repository or skill path. <br>
-Mitigation: Replace OWNER, REPO, and SKILL_NAME carefully and confirm the listing and version before reviewing results. <br>
-Risk: A checklist-only review can miss behavior if not all skill files are inspected. <br>
-Mitigation: Read every file in the candidate skill and compare observed behavior against the requested permissions and security guidance. <br>
+## Use Case:
 
+Developers and AI agent users use this skill to review unfamiliar agent skills before installation, checking source, permissions, red flags, and risk level.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/asterisk622/xiaoding-skill-vetter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with checklist findings and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a skill vetting report covering source, author, version, files reviewed, red flags, permissions, risk level, verdict, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The vetting report could contain incorrect or misleading security conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill files and scanner evidence before acting on the verdict.
+
+Risk: Example GitHub curl commands could be pointed at an unintended repository or used with sensitive credentials.
+
+Mitigation: Confirm repository URLs before running commands and avoid pasting private tokens or credentials into the review process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asterisk622/skills/xiaoding-skill-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown checklist and vetting report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable risk classification, verdict, permissions summary, and notes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

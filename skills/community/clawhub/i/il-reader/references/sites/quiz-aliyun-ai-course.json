@@ -1,0 +1,115 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-aliyun-ai-course",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:08:40.729Z",
+  "entry": {
+    "url": "https://developer.aliyun.com/learning/roadmap/ai",
+    "final_url": "https://developer.aliyun.com/learning/roadmap/ai",
+    "title": "人工智能学习路线（学+测） - 阿里云开发者社区",
+    "status": "captcha_required",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:08:40.729Z",
+    "identity": {
+      "declared_name": "阿里云开发者社区人工智能学习路线",
+      "hostname": "developer.aliyun.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": [
+      {
+        "src": "https://www.aliyun.com/smarter-engine",
+        "id": "",
+        "name": "smarter-engine",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "quiz-aliyun-ai-course:product-capability",
+      "source_id": "quiz-aliyun-ai-course",
+      "task_kind": "product-capability",
+      "status": "blocked",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://developer.aliyun.com/learning/roadmap/ai",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "captcha_required",
+      "detail": "需在当前可见页面人工验证或授权；未确认可用检索。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [],
+    "example_ids": [
+      "KH-Q087"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:40.729Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-aliyun-ai-course-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-aliyun-ai-course-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

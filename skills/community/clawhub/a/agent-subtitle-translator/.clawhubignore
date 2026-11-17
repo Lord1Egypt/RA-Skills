@@ -1,0 +1,5 @@
+# Created inside the skill root by ClawHub's reusable GitHub Actions workflow.
+clawhub-source/
+
+# ClawHub stores extensionless files as binary even when their contents are text.
+LICENSE

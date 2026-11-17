@@ -1,37 +1,49 @@
-## Description: <br>
-Nạp liệu helps rewrite clean fiction into adult 18+ variants using small erotic additions while preserving plot and dialogue, and also guides lore integration through dialogue, conflict, and gradual reveals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nạp liệu helps agents transform clean fiction into adult-oriented Vietnamese/Chinese prose using 微加料 additions while preserving plot and dialogue, and integrate lore through dialogue, conflict, and gradual revelation.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-External writers and editors use this skill to transform clean fictional chapters into adult 18+ variants while preserving the original plot and dialogue. It also guides lore integration so worldbuilding appears through scenes, dialogue, conflict, and gradual reveals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for 18+ fiction rewriting and may sexualize scenes that were originally non-explicit. <br>
-Mitigation: Use it only on clearly adult, consenting fictional material and review outputs carefully before publication or reuse. <br>
+## Use Case:
 
+External writers and fiction-rewrite agents use this skill to add adult-oriented micro-edits to clean scenes while preserving the original plot and dialogue, and to weave worldbuilding into a story through contextual exposition.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with rewrite patterns, examples, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no shell commands, files, or API calls are specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is designed for adult-fiction transformation and can intensify mild scenes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the source content, characters, and context are clearly appropriate for adult sexualized rewriting, and review generated outputs before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-weijialiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and prose rewrite instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network use, credential access, or persistence; outputs should be reviewed for adult-content eligibility.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

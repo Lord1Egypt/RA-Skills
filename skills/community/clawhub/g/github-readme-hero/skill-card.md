@@ -1,38 +1,50 @@
-## Description: <br>
-GitHub-README Hero.skill helps developers, maintainers, and content authors restyle README pages, skill landing pages, or Markdown introductions into cover-like hero layouts while preserving the strongest original voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns ordinary GitHub README pages, skill landing pages, and Markdown intros into cover-like hero layouts with centered titles, quote-led openings, restrained badges, horizontal navigation, and preserved original voice.
 
-## Publisher: <br>
-[shaozrrr](https://clawhub.ai/user/shaozrrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaozrrr](https://clawhub.ai/user/shaozrrr)
 
-## Use Case: <br>
-Developers, maintainers, and content authors use this skill to improve the first screen of GitHub README files, ClawHub skill pages, or landing-style Markdown documents. It is especially suited to Chinese-first or bilingual repositories that need stronger visual hierarchy without losing the original introduction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: README or landing-page edits may change emphasis, remove nuance, or introduce broken anchors and links. <br>
-Mitigation: Review generated diffs before accepting changes and verify rendered Markdown, links, anchors, and section order in the target platform. <br>
+## Use Case:
 
+External developers and README authors use this skill to redesign the first screen of GitHub README pages, ClawHub skill pages, or landing-style Markdown documents while preserving the strongest original introduction. It is especially suited to Chinese-first or bilingual repositories that need a cleaner, more deliberate hero section.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaozrrr/github-readme-hero) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with renderer-safe HTML snippets and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or edit README-style Markdown; generated changes should preserve meaning, links, anchors, and section order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Implicit invocation is enabled and proposed README edits may alter wording or structure the user intended to preserve.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed edits before applying them, especially when exact wording, bilingual ordering, anchors, or section structure must remain unchanged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaozrrr/skills/github-readme-hero)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and proposed README edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces renderer-safe Markdown and minimal GitHub-compatible HTML such as centered divs, badges, anchors, and navigation links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

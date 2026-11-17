@@ -1,43 +1,59 @@
-## Description: <br>
-Enhances Chinese semantic understanding by analyzing wording, cultural context, dialect-sensitive expressions, ambiguity, idioms, slang, and domain terminology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zh Semantic Enhancer enriches Chinese-language user input with tokenization, entity detection, idiom and slang recognition, cultural context cues, ambiguity handling, and structured intent output.
 
-## Publisher: <br>
-[Andyxcg](https://clawhub.ai/user/Andyxcg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyxcg](https://clawhub.ai/user/andyxcg)
 
-## Use Case: <br>
-Developers and agents use this skill to normalize and enrich Chinese user input before intent handling, especially when idioms, slang, ambiguous phrasing, or culturally implicit language affect interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes billing-related code and local trial or credit records under ~/.openclaw. <br>
-Mitigation: Review billing behavior and local state paths before installation, and disclose or disable billing paths when they are not required. <br>
-Risk: An executable revenue optimization helper can rewrite installed skill files if run. <br>
-Mitigation: Avoid running scripts/revenue_optimize.py unless those modifications are intentional and can be reviewed or rolled back. <br>
-Risk: The server security verdict is suspicious because monetization and self-modifying code are under-scoped relative to the semantic analysis use case. <br>
-Mitigation: Install only after reviewing the security summary and limiting execution to the semantic analysis entry points needed by the agent. <br>
+## Use Case:
 
+Developers and agent builders use this skill to prepare Chinese-language requests for downstream agent workflows by producing normalized text, semantic annotations, confidence scores, and suggested actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Andyxcg/zh-semantic-enhancer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Andyxcg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, guidance] <br>
-**Output Format:** [JSON object with normalized text, tokens, entities, expressions, confidence, and suggested actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local trial or credit state under ~/.openclaw when billing-related paths are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Bundled monetization and self-rewriting utilities can alter installed skill code if run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled monetization scripts before installation and avoid running scripts/revenue_optimize.py unless code rewriting is intentional.
+
+Risk: The skill stores local trial and credit state under the user's home directory.
+
+Mitigation: Remove or fix the local persistence code before use in shared or production environments, and avoid using sensitive user identifiers.
+
+Risk: Promotional pricing copy is stale because the advertised offer ended on 2026-03-31.
+
+Mitigation: Update or remove expired pricing and trial claims before presenting the skill to users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andyxcg/skills/zh-semantic-enhancer)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes normalized text, tokens, entities, expression matches, domain classification, confidence, and suggested actions.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact files contain conflicting 1.3.0, 1.1.0, and 1.0.0 version strings)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

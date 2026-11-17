@@ -1,43 +1,56 @@
-## Description: <br>
-BTCPay Server lets an agent read, create, and update BTCPay Server data through the OOMOL btcpay_server connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BTCPay Server (btcpayserver.org). Use this skill for ANY BTCPay Server request — reading, creating, and updating data. Whenever a task involves BTCPay Server, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate BTCPay Server stores and invoice workflows from an agent, including store lookup, invoice creation, invoice listing, metadata updates, and manual invoice status changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write actions can change BTCPay Server invoice state or metadata. <br>
-Mitigation: Confirm the exact target, payload, and expected effect with the user before running actions tagged as write. <br>
-Risk: Connector access depends on signed-in OOMOL credentials, an active BTCPay Server connection, and available billing credit. <br>
-Mitigation: Use the documented first-time setup and retry steps only after an action fails with the matching authentication, connection, scope, expiration, app, or billing error. <br>
+## Use Case:
 
+External users and developers use the skill to read BTCPay Server stores and invoices, create invoices, or update invoice status and metadata through their connected account.
 
-## Reference(s): <br>
-- [BTCPay Server homepage](https://btcpayserver.org) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-btcpay-server) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return connector JSON responses when actions are executed with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup may run an unverified CLI installer or introduce broader persistent changes to agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, verified CLI release and disable additional skill synchronization if it is unwanted.
+
+Risk: The connected account can make invoice changes.
+
+Mitigation: Connect only the permissions needed and retain confirmation for invoice changes.
+
+## Reference(s):
+
+- [BTCPay Server](https://btcpayserver.org)
+- [BTCPay Server Greenfield API documentation](https://docs.btcpayserver.org/API/Greenfield/v1/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-btcpay-server)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads and operational guidance; action responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields depend on the selected BTCPay Server action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

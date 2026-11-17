@@ -1,39 +1,50 @@
-## Description: <br>
-中英互译工具 supports bidirectional translation between Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中英互译工具 supports bidirectional translation between Chinese and English.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to translate text between Chinese and English while preserving meaning, tone, and natural target-language phrasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad translation trigger words may invoke the skill during general translation conversations. <br>
-Mitigation: Use it for Chinese-English translation requests and confirm the language direction when the request is ambiguous. <br>
-Risk: Translation output can miss nuance, idioms, or domain-specific meaning. <br>
-Mitigation: Review important or specialized translations before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to translate Chinese text to English or English text to Chinese while preserving meaning, tone, idioms, and natural phrasing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown showing original text followed by translated text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve tone, idioms, proper nouns, and natural target-language phrasing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be invoked by broad trigger words like "translate" even when the request is not specifically Chinese-English.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended language pair before applying the skill when the source or target language is ambiguous.
+
+## Reference(s):
+
+- [Artifact skill definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/zh-en-translator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text translation, optionally shown as original text -> translated text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source meaning, tone, common idioms, and natural target-language expression.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

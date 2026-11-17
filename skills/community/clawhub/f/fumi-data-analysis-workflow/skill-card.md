@@ -1,45 +1,49 @@
-## Description: <br>
-Provides OpenClaw workspace templates for data analysis projects, including data-driven decision-making, exploratory data analysis, and model development principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+データ分析プロジェクトのためのOpenClawワークスペース設定テンプレート。データ駆動の意思決定、探索的データ分析（EDA）、モデル開発の原則。
 
-## Publisher: <br>
-[HiroFumiko](https://clawhub.ai/user/HiroFumiko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hirofumiko](https://clawhub.ai/user/hirofumiko)
 
-## Use Case: <br>
-Developers, analysts, and teams use this skill to create an OpenClaw workspace for repeatable data analysis and machine learning projects. It supplies Markdown templates for agent identity, operating rules, user preferences, monitoring, and data-analysis practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The copied workspace rules include autonomous-action language that may be broader than a user's operating policy. <br>
-Mitigation: Review AGENTS.md and HEARTBEAT.md before use, then narrow or remove the 'Don't ask permission' language where approvals are required. <br>
-Risk: Workspace memory files could accumulate sensitive project context if used without boundaries. <br>
-Mitigation: Keep MEMORY.md and daily notes limited to project context that is acceptable to reuse in future sessions. <br>
-Risk: Credential preferences or access notes could be written into Markdown workspace files. <br>
-Mitigation: Do not store raw API keys, database passwords, or other secrets in the generated templates or memory files. <br>
+## Use Case:
 
+Developers and data practitioners use this skill as an OpenClaw workspace starter template for data-analysis agents. It provides reusable SOUL, IDENTITY, AGENTS, USER, and HEARTBEAT templates for EDA, model development, experiment tracking, reporting, and reproducible analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HiroFumiko/fumi-data-analysis-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/HiroFumiko) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates with installation and customization commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace files for SOUL.md, IDENTITY.md, AGENTS.md, USER.md, and HEARTBEAT.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact frontmatter metadata.version) <br>
+Risk: The workspace template grants broad persistent memory and bootstrap authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit AGENTS.md before use; constrain the BOOTSTRAP.md rule, require confirmation for memory-derived actions and cleanup, avoid storing secrets in TOOLS.md, and periodically review persistent memory files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hirofumiko/skills/fumi-data-analysis-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance, Shell commands]
+
+**Output Format:** [Markdown templates with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace setup templates and guidance; users customize the generated markdown files before relying on them.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog released 2026-03-19, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

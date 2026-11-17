@@ -1,44 +1,62 @@
-## Description: <br>
-Trades cross-asset correlation divergences in 5-minute crypto "Up or Down" markets on Polymarket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies cross-asset correlation divergences in 5-minute crypto "Up or Down" markets on Polymarket and trades the outlier toward the group consensus with conviction-based sizing.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External agents and developers use this skill to scan short-duration Polymarket crypto markets for cross-asset divergence signals, then produce simulated or live trade actions according to configured limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place autonomous real-money USDC trades when run with --live. <br>
-Mitigation: Start in paper mode, use conservative position limits, and enable --live only when real-money trading is intended. <br>
-Risk: SIMMER_API_KEY grants trading authority. <br>
-Mitigation: Use a dedicated least-privilege key where available and protect it as a sensitive credential. <br>
-Risk: SIMMER_MIN_VOLUME is declared as a tunable, but the reviewed code does not appear to enforce a volume check. <br>
-Mitigation: Do not rely on SIMMER_MIN_VOLUME as an active liquidity guard; review market liquidity separately or update the implementation before live use. <br>
+## Use Case:
 
+External developers and trading operators can use this skill to identify and place simulated or live Polymarket trades based on short-window crypto market divergence signals. Live use requires independent strategy review, credential controls, and account-level trading limits.
 
-## Reference(s): <br>
-- [Polymarket 24h Cross Asset Sync Trader](https://clawhub.ai/diagnostikon/polymarket-24h-cross-asset-sync-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Console text and trade API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading unless explicitly run with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The security review reports that live-trading safeguards and signal logic do not fully match the user-facing description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode unless the strategy and safeguards have been independently reviewed and corrected.
+
+Risk: Running with --live can authorize automated real-money Polymarket orders.
+
+Mitigation: Require explicit operator approval for live mode, keep external account limits in place, and set conservative position tunables.
+
+Risk: SIMMER_API_KEY is a high-value trading credential.
+
+Mitigation: Scope the key as tightly as possible, store it only in the runtime secret store, and rotate it after testing or suspected exposure.
+
+Risk: The skill depends on simmer-sdk for market discovery and order execution.
+
+Mitigation: Pin or otherwise control the dependency version before deployment.
+
+## Reference(s):
+
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console logs and trading API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to simulated trading unless run with --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

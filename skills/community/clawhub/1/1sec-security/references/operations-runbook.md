@@ -107,7 +107,7 @@ PagerDuty, and Microsoft Teams.
 # In enforcement policy webhook actions:
 # Slack
 params:
-  url: "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+  url: "REDACTED-SECRET"
   template: "slack"
 
 # Discord

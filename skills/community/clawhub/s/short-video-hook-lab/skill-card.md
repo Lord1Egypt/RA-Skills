@@ -1,42 +1,58 @@
-## Description: <br>
-Generate, test, and refine short-video hooks for TikTok, Reels, and Shorts with retention-first structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, test, and refine short-video hooks for TikTok, Reels, and Shorts with retention-first structure.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0; commercial use requires a separate Razestar license <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External creators and marketers use this skill to generate and refine short-video opening hooks for TikTok, Instagram Reels, and YouTube Shorts before recording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt context may include confidential campaign strategy, unreleased product details, or private performance metrics. <br>
-Mitigation: Avoid sharing sensitive marketing details unless they are approved for use as prompt context. <br>
-Risk: Generated proof-first hooks or urgency claims could imply metrics or timing that are not verified. <br>
-Mitigation: Use real metrics only when verified and prefer non-fabricated wording when evidence is unavailable. <br>
-Risk: License evidence is inconsistent between server metadata and the artifact text. <br>
-Mitigation: Confirm the applicable license before commercial use; the artifact text says commercial use requires a separate Razestar license. <br>
+## Use Case:
 
+Creators, marketers, and content teams use this skill to turn a raw script or opening idea into ranked short-video hook variants, selection rationale, and concise execution notes before recording.
 
-## Reference(s): <br>
-- [Hook Patterns](references/hook-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with ranked hook variants, scores, rationale, and micro execution packs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes selected hooks with a 10-second flow, on-screen text, CTA line, and filming complexity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated hooks may include inaccurate marketing claims or implied performance metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fact-check claims before publishing and use precise metrics only when they are verified.
+
+Risk: Using the skill may require sharing scripts, target audience details, product angles, and campaign goals.
+
+Mitigation: Avoid providing confidential campaign, customer, or product information unless it is approved for the agent environment.
+
+Risk: The artifact license limits non-commercial reuse and requires a separate paid license for commercial use.
+
+Mitigation: Confirm the authoritative license terms and obtain commercial rights before using the skill in commercial workflows.
+
+## Reference(s):
+
+- [Hook Patterns (Quick Bank)](artifact/references/hook-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/short-video-hook-lab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with ranked hook variants, scores, rationale, and micro execution packs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, 1-5 scoring, Top 3 plus one backup, CTA lines, on-screen text, and filming complexity.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

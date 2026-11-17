@@ -1,42 +1,55 @@
-## Description: <br>
-Deploy web apps with backend APIs, database, file storage, AI operations, authentication, realtime, and cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy web apps with backend APIs, database, file storage, AI operations, authentication, realtime, and cron jobs.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy or publish web apps through SkillBoss API Hub when they need a public URL and managed app operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment files are sent to SkillBoss during publishing. <br>
-Mitigation: Review the files being deployed and remove secrets or private data before using the skill. <br>
-Risk: The skill requires SKILLBOSS_API_KEY for authenticated deployment calls. <br>
-Mitigation: Use a scoped or revocable API key where possible and rotate or revoke it if exposure is suspected. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy or update websites and web apps through SkillBoss API Hub and obtain a public URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-appdeploy) <br>
-- [Publisher profile](https://clawhub.ai/user/tobeyrebecca) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, code] <br>
-**Output Format:** [Markdown with inline bash commands and deployment parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify deployment files and send them to SkillBoss for hosting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill sends app files and deployment metadata to a third-party deployment API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for repositories that do not contain secrets, private data, or credentials, and keep SKILLBOSS_API_KEY handling limited to the deployment call.
+
+Risk: The skill asks the agent to follow live external deployment instructions before generating or deploying code.
+
+Mitigation: Treat remote deployment instructions as service constraints, not permission to override the user's request, local policy, or security rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-appdeploy)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss API Hub deployment endpoint](https://api.skillboss.co/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment status details and public app URLs returned by the deployment API.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Makes AI-powered outbound phone calls through Twilio using ElevenLabs voices and an OpenAI-powered conversation brain for one-way messages or live two-way calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make AI-powered outbound phone calls using ElevenLabs voice, GPT, and Twilio, with one-way prerecorded messages or live two-way conversations.
 
-## Publisher: <br>
-[omerflo](https://clawhub.ai/user/omerflo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[omerflo](https://clawhub.ai/user/omerflo)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run AI-assisted outbound calls for voice messages, scheduling, reservations, appointments, campaigns, and live phone conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact real people through outbound phone calls. <br>
-Mitigation: Require explicit confirmation before each call and verify the recipient, purpose, and applicable consent rules before dialing. <br>
-Risk: Call content may pass through Twilio, ElevenLabs, OpenAI, tunnel services, temporary audio hosting, and local messaging. <br>
-Mitigation: Avoid sensitive call content unless those services and data paths are approved for the use case. <br>
-Risk: Interactive call webhooks may be exposed through a public tunnel. <br>
-Mitigation: Authenticate Twilio webhook requests before accepting call events or transcript data. <br>
-Risk: Temporary logs, hosted audio, cron jobs, and automatic iMessage summaries may persist or run beyond the intended call. <br>
-Mitigation: Clean up temporary files and hosted audio, verify MASTER_PHONE, and disable scheduled jobs or automatic summaries when they are not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ElevenLabs Voice Reference](references/voices.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/omerflo/phone-caller) <br>
+## Use Case:
 
+Developers and operators use this skill to place AI-voiced outbound calls, leave voice messages, schedule calls, or conduct short interactive phone conversations for tasks such as reservations and appointments.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions that can trigger external side effects, including outbound calls, generated audio, webhook traffic, temporary files, and call summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real phone calls and consume paid Twilio, OpenAI, and ElevenLabs resources.
+
+Mitigation: Require explicit per-call confirmation, verify recipients and consent, and monitor account spend before execution.
+
+Risk: Interactive call webhooks may be exposed through a public tunnel without Twilio signature validation.
+
+Mitigation: Add Twilio request signature validation, restrict accepted call SIDs, and limit tunnel exposure before operational use.
+
+Risk: One-way call audio may be uploaded to public temporary hosting.
+
+Mitigation: Avoid sensitive content in hosted audio, prefer controlled storage, and define retention and deletion procedures.
+
+Risk: Generated audio and call transcripts may be written to temporary local files.
+
+Mitigation: Apply cleanup, access controls, and data retention rules for temporary audio and transcript files.
+
+Risk: Call summaries may be forwarded through iMessage.
+
+Mitigation: Confirm the destination number and avoid sending sensitive summaries unless the communication channel is approved.
+
+## Reference(s):
+
+- [ElevenLabs Voice Reference](references/voices.md)
+- [Phone Caller ClawHub Skill Page](https://clawhub.ai/omerflo/skills/phone-caller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, environment variable guidance, and concise operational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate real outbound calls through Twilio and generate call audio or summaries when executed with credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

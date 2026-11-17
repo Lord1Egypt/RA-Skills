@@ -1,48 +1,69 @@
-## Description: <br>
-Longbridge helps agents answer investment-analysis and developer questions using Longbridge market data, CLI workflows, SDK guidance, MCP setup, and LLM documentation references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Longbridge helps agents analyze markets and portfolios and build with Longbridge CLI, MCP, Python SDK, Rust SDK, and LLM documentation across HK, US, CN, SG, and crypto markets.
 
-## Publisher: <br>
-[longbridge](https://clawhub.ai/user/longbridge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longbridge](https://clawhub.ai/user/longbridge)
 
-## Use Case: <br>
-Developers, engineers, and external users use this skill to work with Longbridge financial data and trading tooling, including market analysis, portfolio queries, CLI commands, Python and Rust SDK examples, MCP configuration, and documentation ingestion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect an agent to brokerage data and trading workflows after authorization. <br>
-Mitigation: Use least-privilege OAuth scopes and avoid granting trading permissions for read-only analysis. <br>
-Risk: Agent-assisted order placement, replacement, or cancellation could affect real brokerage accounts. <br>
-Mitigation: Require explicit user confirmation before any order placement, replacement, or cancellation. <br>
-Risk: The CLI installation path includes a curl-to-shell command. <br>
-Mitigation: Inspect the installer before running it and prefer trusted package-manager installation where appropriate. <br>
+## Use Case:
 
+External developers, analysts, and finance-focused agents use this skill to retrieve Longbridge market data, inspect portfolio information, configure MCP access, and draft Python or Rust integrations for quote, content, and trade workflows.
 
-## Reference(s): <br>
-- [Longbridge ClawHub Skill Page](https://clawhub.ai/longbridge/developers) <br>
-- [Longbridge OpenAPI Documentation](https://open.longbridge.com) <br>
-- [Longbridge LLMs.txt](https://open.longbridge.com/llms.txt) <br>
-- [CLI Overview](references/cli/overview.md) <br>
-- [MCP Server](references/mcp.md) <br>
-- [Python SDK Overview](references/python-sdk/overview.md) <br>
-- [Rust SDK Overview](references/rust-sdk/overview.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, command examples, configuration snippets, and explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-analysis guidance, SDK examples, CLI commands, MCP setup steps, and Longbridge documentation references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide agents toward real brokerage account access, portfolio reads, or order submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege OAuth scopes, protect cached session files, and require explicit user confirmation before reading portfolio data or submitting any order.
+
+Risk: The artifact includes a curl-to-shell install path for the Longbridge terminal.
+
+Mitigation: Prefer verified package-manager installs or pinned releases, and review install scripts before execution.
+
+Risk: Market or portfolio guidance can be incomplete, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Treat analysis as decision support, verify live data and catalysts, and avoid presenting outputs as personalized financial advice.
+
+## Reference(s):
+
+- [Longbridge OpenAPI Documentation](https://open.longbridge.com)
+- [Longbridge llms.txt](https://open.longbridge.com/llms.txt)
+- [Longbridge Terminal GitHub](https://github.com/longbridge/longbridge-terminal)
+- [Setup and Authentication](references/setup.md)
+- [CLI Overview](references/cli/overview.md)
+- [MCP Server](references/mcp.md)
+- [LLM and AI Integration](references/llm.md)
+- [Python SDK Overview](references/python-sdk/overview.md)
+- [Python SDK QuoteContext](references/python-sdk/quote-context.md)
+- [Python SDK TradeContext](references/python-sdk/trade-context.md)
+- [Rust SDK Overview](references/rust-sdk/overview.md)
+- [Rust SDK QuoteContext](references/rust-sdk/quote-context.md)
+- [Rust SDK TradeContext](references/rust-sdk/trade-context.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and JSON or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial analysis, CLI command suggestions, SDK examples, MCP configuration, and confirmation prompts for sensitive trading actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

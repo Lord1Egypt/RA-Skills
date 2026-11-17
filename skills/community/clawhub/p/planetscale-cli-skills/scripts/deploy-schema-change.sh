@@ -39,6 +39,16 @@ EXIT CODES:
 EOF
 }
 
+require_option_value() {
+  local option="$1"
+  local value="${2-}"
+  if [[ -z "$value" ]] || [[ "$value" == --* ]]; then
+    echo "❌ Error: $option requires a value"
+    echo "Run with --help for usage"
+    exit 1
+  fi
+}
+
 # Validate that a value contains only safe characters for PlanetScale names
 validate_safe_name() {
   local value="$1"
@@ -58,10 +68,12 @@ ORG=""
 while [[ $# -gt 0 ]]; do
   case $1 in
     --database)
+      require_option_value "$1" "${2-}"
       DATABASE="$2"
       shift 2
       ;;
     --branch)
+      require_option_value "$1" "${2-}"
       BRANCH="$2"
       shift 2
       ;;
@@ -70,6 +82,7 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --org)
+      require_option_value "$1" "${2-}"
       ORG="$2"
       shift 2
       ;;
@@ -101,6 +114,11 @@ validate_safe_name "$BRANCH" "--branch"
 ORG_ARGS=()
 [[ -n "$ORG" ]] && ORG_ARGS=(--org "$ORG")
 
+if ! command -v jq >/dev/null 2>&1; then
+  echo "❌ Error: jq is required to parse pscale JSON output"
+  exit 1
+fi
+
 echo "🚀 Starting schema migration workflow..."
 echo "  Database: $DATABASE"
 echo "  Branch: $BRANCH"
@@ -110,10 +128,19 @@ echo ""
 # Step 1: Create deploy request
 echo "📝 Creating deploy request..."
 DR_OUTPUT=$(pscale deploy-request create "$DATABASE" "$BRANCH" "${ORG_ARGS[@]}" --format json)
-DR_NUMBER=$(echo "$DR_OUTPUT" | grep -oP '"number":\s*\K\d+' | head -1)
+if ! DR_NUMBER=$(printf '%s\n' "$DR_OUTPUT" | jq -er '
+  if type == "object" and (.number | type == "number") then
+    .number
+  else
+    empty
+  end
+'); then
+  echo "❌ Failed to read top-level deploy request number from pscale JSON output"
+  exit 1
+fi
 
-if [[ -z "$DR_NUMBER" ]]; then
-  echo "❌ Failed to create deploy request"
+if [[ ! "$DR_NUMBER" =~ ^[0-9]+$ ]]; then
+  echo "❌ Invalid deploy request number in pscale JSON output: $DR_NUMBER"
   exit 1
 fi
 
@@ -122,7 +149,10 @@ echo ""
 
 # Step 2: Show diff
 echo "📊 Deploy request diff:"
-pscale deploy-request diff "$DATABASE" "$DR_NUMBER" "${ORG_ARGS[@]}" || true
+if ! pscale deploy-request diff "$DATABASE" "$DR_NUMBER" "${ORG_ARGS[@]}"; then
+  echo "❌ Deploy request diff failed; aborting before any deployment"
+  exit 1
+fi
 echo ""
 
 # Step 3: Deploy if requested

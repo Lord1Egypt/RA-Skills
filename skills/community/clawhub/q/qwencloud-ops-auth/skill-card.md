@@ -1,48 +1,64 @@
-## Description: <br>
-Configures QwenCloud authentication, API key setup, endpoint selection, and 401 troubleshooting for agents and related QwenCloud skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures QwenCloud authentication, API-key setup, endpoint selection, and 401 troubleshooting for agent workflows.
 
-## Publisher: <br>
-[cuixiaoyang123](https://clawhub.ai/user/cuixiaoyang123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cuixiaoyang123](https://clawhub.ai/user/cuixiaoyang123)
 
-## Use Case: <br>
-Developers and agent users configuring QwenCloud-backed tools use this skill to set up standard DashScope API credentials, choose the correct endpoint and key type, verify authentication with curl, and avoid exposing secrets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles API keys and OSS credentials, so secrets could be exposed or persisted if users provide real values in chat or commit local configuration files. <br>
-Mitigation: Use placeholders in generated .env examples, keep real secrets out of chat and version control, mask diagnostic output, and rotate any exposed credentials. <br>
-Risk: The security evidence notes unrelated update and installation flows that can change local skill state. <br>
-Mitigation: Only allow .env edits, diagnostic output, agent-config registration, update checks, npx skill installation, or reminder-state changes when the user intentionally requests those local changes. <br>
-Risk: The skill can direct users toward paid QwenCloud resources and distinguishes key types that affect billing behavior. <br>
-Mitigation: Confirm the intended key type, endpoint, and billing model before running API verification or usage workflows that may incur charges. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure QwenCloud API credentials, distinguish standard API keys from Coding Plan keys, and troubleshoot authentication failures without exposing secrets.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/cuixiaoyang123/qwencloud-ops-auth) <br>
-- [Official Documentation URLs](references/sources.md) <br>
-- [Coding Plan vs Standard API Key](references/codingplan.md) <br>
-- [Custom OSS Storage](references/custom-oss.md) <br>
-- [Agent Compatibility](references/agent-compatibility.md) <br>
-- [QwenCloud API key management](https://home.qwencloud.com/api-keys) <br>
-- [QwenCloud OpenAI compatibility documentation](https://docs.qwencloud.com/api-reference/preparation/install-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and environment-variable names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local .env placeholder changes, diagnostic status, and auth verification outputs when the user authorizes them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The skill handles API keys, .env files, and OSS credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholders by default, avoid plaintext secret output, add .env files to .gitignore, and let the agent store real secrets only after explicit user approval.
+
+Risk: The skill includes an update-check path that may install or run other skills through unpinned commands.
+
+Mitigation: Inspect and pin the installer or source before running update installation commands, or skip that path unless skill modification is explicitly intended.
+
+Risk: Confusing Coding Plan keys with standard QwenCloud API keys can cause failed calls or unintended pay-as-you-go charges.
+
+Mitigation: Use standard sk- keys for API scripts, reserve sk-sp- keys for coding agents, and verify usage in the listed QwenCloud billing pages.
+
+## Reference(s):
+
+- [QwenCloud Authentication Skill](https://clawhub.ai/cuixiaoyang123/skills/qwencloud-ops-auth)
+- [Coding Plan vs Standard API Key](references/codingplan.md)
+- [Custom OSS Storage for File Uploads](references/custom-oss.md)
+- [Official Documentation URLs](references/sources.md)
+- [Agent Compatibility](references/agent-compatibility.md)
+- [QwenCloud API Key Management](https://home.qwencloud.com/api-keys)
+- [QwenCloud OpenAI Compatibility](https://docs.qwencloud.com/api-reference/preparation/install-sdk)
+- [QwenCloud Coding Plan Overview](https://docs.qwencloud.com/coding-plan/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to create local output under output/qwencloud-ops-auth/ for verification evidence.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

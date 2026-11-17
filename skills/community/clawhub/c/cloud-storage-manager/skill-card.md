@@ -1,45 +1,60 @@
-## Description: <br>
-Manage multiple cloud storage providers with file upload and download, bucket management, sync, multipart upload, cross-provider copy, and CDN integration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud Storage Manager helps agents manage multi-cloud storage operations across AWS S3, Aliyun OSS, Tencent COS, and Azure Blob Storage.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and operate multi-cloud object storage workflows across AWS S3, Aliyun OSS, Tencent COS, and Azure Blob. It supports agent guidance for uploads, downloads, listing, deletion, signed URLs, sync, and cross-provider transfer patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of cloud credentials for storage accounts. <br>
-Mitigation: Use least-privilege credentials scoped to specific buckets, containers, and prefixes, and avoid production-wide keys. <br>
-Risk: Sync and delete workflows can remove or overwrite stored data if configured incorrectly. <br>
-Mitigation: Test operations on non-critical data, review delete and sync options before execution, and keep recoverable backups for important data. <br>
-Risk: The submitted artifact references storage and sync modules that are not included in the submitted files. <br>
-Mitigation: Review the complete implementation package before relying on real cloud operations. <br>
+## Use Case:
 
+Developers and operations teams use this skill to generate guidance, code, commands, and configuration for upload, download, bucket management, sync, multipart upload, CDN URL, and cross-provider copy workflows across supported cloud storage services.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaiyuelv/cloud-storage-manager) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Basic usage example](artifact/examples/basic_usage.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include environment variable names, provider configuration examples, and cloud storage operation plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version fields) <br>
+Risk: Cloud storage actions can affect real buckets, containers, paths, and objects, including deletion or sync operations that may be irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials limited to the intended buckets or containers, verify source and destination paths before running actions, and treat delete_remote=True or delete() as destructive.
+
+Risk: Credential handling is required for supported cloud providers, and hardcoded secrets can expose cloud accounts.
+
+Mitigation: Load credentials from environment variables or a secret manager, avoid committing real secrets, and rotate any credential exposed during testing or examples.
+
+Risk: Dependencies are specified with lower bounds rather than pinned versions, which can change install behavior over time.
+
+Mitigation: Pin dependencies or install from a reviewed lockfile for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/cloud-storage-manager)
+- [Publisher profile](https://clawhub.ai/user/kaiyuelv)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cloud-provider environment variables, API examples, path selections, and sync options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

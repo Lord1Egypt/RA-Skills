@@ -1,43 +1,62 @@
-## Description: <br>
-为中文用户根据团队特点和活动类型生成团建横幅标语，并在生成前引导完成付费订单。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese team-building banner slogans from a team or activity description after completing the configured paid order flow.
 
-## Publisher: <br>
-[liulian822](https://clawhub.ai/user/liulian822) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liulian822](https://clawhub.ai/user/liulian822)
 
-## Use Case: <br>
-External users can use this skill to create short Chinese banner slogans for team-building, annual meetings, outdoor training, sales teams, and similar group activities after confirming the payment details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment records and identifiers may not match the advertised team-banner service. <br>
-Mitigation: Before paying, confirm the payee, amount, service slug, and order description match the expected team-banner service. <br>
-Risk: The artifact asks the agent to disclose its thought process. <br>
-Mitigation: Remove that instruction and provide only user-facing reasoning or results. <br>
-Risk: Order data is saved locally without documented cleanup. <br>
-Mitigation: Review stored order files and define a retention or cleanup process before deployment. <br>
+## Use Case:
 
+External users use this skill to request concise Chinese slogan text for team-building banners, annual meetings, outdoor events, sales teams, and training activities. The skill includes a paid order flow before returning the generated banner slogan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liulian822/team-banner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/liulian822) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese text with order status fields and a generated banner slogan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires payment/order confirmation before slogan generation; artifact behavior stores order data locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Poorly scoped payment handling and configurable payee information can route funds incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment flow before installation and verify the configured payee for the intended release.
+
+Risk: Broad credential and network permissions increase exposure if the skill is misconfigured or modified.
+
+Mitigation: Narrow permissions to the minimum required scope before use with real credentials.
+
+Risk: An unpinned payment dependency and inconsistent service identity markers can make payment behavior harder to verify.
+
+Mitigation: Require a pinned trusted payment dependency and fix the service identifier and configuration mismatch before production use.
+
+Risk: The source instructs the agent to disclose thought process during user interaction.
+
+Mitigation: Remove the thought-process disclosure instruction before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liulian822/skills/team-banner)
+- [Publisher profile](https://clawhub.ai/user/liulian822)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns payment status and a Chinese banner slogan; order creation stores local order files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

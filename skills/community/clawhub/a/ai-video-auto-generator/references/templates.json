@@ -1,0 +1,68 @@
+{
+  "short_drama": {
+    "character_cards": [
+      {
+        "name": "角色名",
+        "title": "角色称号",
+        "personality": "性格描述",
+        "age_range": "25-30岁",
+        "build": "身形描述",
+        "color_scheme": "配色方案",
+        "distinctive_mark": "标志性特征",
+        "appearance": {
+          "face": "面部描述",
+          "face_details": {
+            "face_shape": "脸型（如：鹅蛋脸型）",
+            "eyes": "眼睛描述（如：丹凤眼冷冽锐利）",
+            "eyebrows": "眉毛描述（如：剑眉英气）",
+            "nose": "鼻子描述",
+            "lips": "嘴唇描述（如：薄唇紧抿）",
+            "jaw": "下颌/颧骨描述（如：颧骨线条冷硬）"
+          },
+          "hair": "发型描述",
+          "armor/clothing": "服装铠甲描述",
+          "aura": "气质描述"
+        },
+        "weapons": ["剑", "弓"],
+        "actions": ["行礼", "战斗"]
+      }
+    ],
+    "scene_cards": [],
+    "troop_cards": [],
+    "shots": [],
+    "shot_groups": []
+  },
+  "travelogue": {
+    "character_cards": [
+      {
+        "name": "角色名",
+        "title": "角色称号",
+        "personality": "性格描述",
+        "age_range": "25-30岁",
+        "build": "身形描述",
+        "color_scheme": "配色方案",
+        "distinctive_mark": "标志性特征",
+        "appearance": {
+          "face": "面部描述",
+          "face_details": {
+            "face_shape": "脸型（如：鹅蛋脸型）",
+            "eyes": "眼睛描述（如：丹凤眼冷冽锐利）",
+            "eyebrows": "眉毛描述",
+            "nose": "鼻子描述",
+            "lips": "嘴唇描述",
+            "jaw": "下颌/颧骨描述"
+          },
+          "hair": "发型描述",
+          "armor/clothing": "服装铠甲描述",
+          "aura": "气质描述"
+        },
+        "weapons": [],
+        "actions": ["行走", "眺望"]
+      }
+    ],
+    "scene_cards": [],
+    "troop_cards": [],
+    "shots": [],
+    "shot_groups": []
+  }
+}

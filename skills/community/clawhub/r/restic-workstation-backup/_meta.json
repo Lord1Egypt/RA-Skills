@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7ef68kwkbpr82mv1hb31p18s81vzqe",
-  "slug": "restic-workstation-backup",
+  "ownerId": "kn70z2yg9n6gfvzm3k96zcpj7d816p67",
+  "slug": "restic-home-backup",
   "version": "2.0.0",
-  "publishedAt": 1773936185136
-}
+  "publishedAt": 1771188538209,
+  "description": "Production-grade encrypted restic home backup with systemd timers, retry logic, user-level installs, end-to-end validation, and multi-host rollout support.",
+  "keywords": ["restic", "backup", "systemd", "linux", "home", "sftp", "encryption"],
+  "scripts": {
+    "bootstrap": "scripts/bootstrap_restic_home.sh",
+    "userlevel": "scripts/install_userlevel_restic.sh",
+    "validate": "scripts/validate_restic_setup.sh"
+  },
+  "references": {
+    "runbook": "references/runbook.md",
+    "checklist": "references/ops-checklist.md"
+  },
+  "changelog": {
+    "2.0.0": "Major: SFTP transport, /etc/home-backup/ config dir, 14d/8w/12m retention, DST-safe scheduling (04:15/05:10/06:20 LA), retry logic with systemd-run, flock overlap protection, durable structured logging, email alerts, user-level install script, one-time restore audit timer, end-to-end validation script with failure drills, operator runbook, multi-host rollout guide.",
+    "1.0.2": "Initial release with basic local backup, simple systemd timers, and

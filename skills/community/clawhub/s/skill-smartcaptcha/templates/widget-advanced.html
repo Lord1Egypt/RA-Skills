@@ -1,0 +1,110 @@
+<!-- Шаблон: расширенный метод подключения SmartCaptcha — отложенная загрузка скрипта,
+     window.smartCaptcha.render с callback, отправка токена на бэкенд fetch'ем.
+     Подробности: docs/widget-advanced.md -->
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SmartCaptcha: расширенный метод</title>
+  </head>
+
+  <body>
+    <h1>Вход</h1>
+
+    <div>
+      <label for="username">Логин</label>
+      <input id="username" type="text" name="user" />
+    </div>
+    <div>
+      <label for="userpass">Пароль</label>
+      <input id="userpass" type="password" name="password" />
+    </div>
+
+    <!-- Контейнер для виджета. Высота 100px задана заранее,
+         чтобы избежать «скачка» вёрстки при загрузке виджета. -->
+    <div id="captcha-container" style="height: 100px"></div>
+
+    <!-- Кнопка заблокирована, пока callback не получит токен -->
+    <button id="submit-btn" disabled>Отправить</button>
+    <p id="status"></p>
+
+    <script>
+      var widgetId;
+      var captchaToken = null;
+
+      // Скрипт капчи вызовет эту функцию после загрузки
+      // (имя передано в параметре onload URL скрипта).
+      window.onloadFunction = function () {
+        if (!window.smartCaptcha) {
+          return;
+        }
+
+        widgetId = window.smartCaptcha.render('captcha-container', {
+          sitekey: '<ключ_клиента>',
+          hl: 'ru',
+          callback: onCaptchaSuccess,
+        });
+      };
+
+      // Вызывается при успешном прохождении проверки пользователем.
+      function onCaptchaSuccess(token) {
+        captchaToken = token;
+        document.getElementById('submit-btn').disabled = !token;
+      }
+
+      // Отправка токена на бэкенд без HTML-формы.
+      // Бэкенд обязан проверить токен запросом к /validate
+      // (см. docs/server-validation.md).
+      async function submitForm() {
+        var statusElement = document.getElementById('status');
+
+        if (!captchaToken) {
+          statusElement.textContent = 'Сначала пройдите проверку.';
+          return;
+        }
+
+        try {
+          var response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user: document.getElementById('username').value,
+              password: document.getElementById('userpass').value,
+              'smart-token': captchaToken,
+            }),
+          });
+
+          statusElement.textContent = response.ok
+            ? 'Запрос отправлен.'
+            : 'Сервер отклонил запрос: ' + response.status;
+        } catch (error) {
+          statusElement.textContent = 'Ошибка сети при отправке запроса.';
+        } finally {
+          // Токен одноразовый: после отправки сбрасываем виджет,
+          // чтобы при повторной попытке получить новый токен.
+          window.smartCaptcha.reset(widgetId);
+          captchaToken = null;
+          document.getElementById('submit-btn').disabled = true;
+        }
+      }
+
+      document
+        .getElementById('submit-btn')
+        .addEventListener('click', submitForm);
+
+      // Отложенная загрузка скрипта капчи: тег <script> создаётся динамически,
+      // ошибка загрузки обрабатывается в onerror.
+      function handleScriptLoadingError() {
+        document.getElementById('status').textContent =
+          'Не удалось загрузить SmartCaptcha. Обновите страницу.';
+      }
+
+      var scriptElement = document.createElement('script');
+      scriptElement.src =
+        'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction';
+      scriptElement.onerror = handleScriptLoadingError;
+      document.body.appendChild(scriptElement);
+    </script>
+  </body>
+</html>

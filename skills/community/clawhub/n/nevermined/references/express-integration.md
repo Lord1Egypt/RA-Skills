@@ -115,7 +115,7 @@ paymentMiddleware(payments, routes, {
   },
 
   onAfterSettle: (req, creditsUsed, settlement) => {
-    console.log(`Settled ${creditsUsed} credits, tx: ${settlement.txHash}`)
+    console.log(`Settled ${creditsUsed} credits, tx: ${settlement.transaction}`)
   },
 
   onPaymentError: (error, req, res) => {
@@ -189,4 +189,4 @@ PORT=3000
 
 ## Tutorial
 
-Complete working example: [github.com/nevermined-io/tutorials/tree/main/http-simple-agent](https://github.com/nevermined-io/tutorials/tree/main/http-simple-agent)
+Complete working example: [github.com/nevermined-io/tutorials/tree/main/http-simple-agent-ts](https://github.com/nevermined-io/tutorials/tree/main/http-simple-agent-ts)

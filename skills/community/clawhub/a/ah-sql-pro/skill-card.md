@@ -1,42 +1,48 @@
-## Description: <br>
-Expert SQL developer skill for complex query optimization, database design, and performance tuning across PostgreSQL, MySQL, SQL Server, and Oracle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert SQL developer specializing in complex query optimization, database design, and performance tuning across PostgreSQL, MySQL, SQL Server, and Oracle.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, data engineers, and database administrators use this skill to design SQL queries, review schemas and indexes, tune database performance, and plan migrations across major relational database systems.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated SQL, schema changes, migrations, indexes, or performance settings could alter data or degrade database behavior if applied without review.
+
+Mitigation: Review generated SQL carefully, test changes against non-production data where possible, and keep backups or rollback plans before applying database-changing work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and database engineers use this skill to review schemas, queries, indexes, and execution plans, then receive SQL design, optimization, migration, warehousing, and monitoring guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Database schemas, execution plans, logs, and sample rows can contain credentials, customer data, or sensitive production details. <br>
-Mitigation: Provide only the minimum context needed, remove credentials and private data, and review any production database content before sharing it with the agent. <br>
-Risk: SQL, index, migration, or tuning recommendations can harm correctness or performance if applied directly. <br>
-Mitigation: Review generated SQL, test it against representative data in a non-production environment, and keep rollback and backup plans for production changes. <br>
-Risk: The security review notes a scope-clarity issue for this database advisory skill. <br>
-Mitigation: Invoke the skill only for clearly database-related tasks and keep prompts constrained to SQL design, optimization, migration, warehousing, or monitoring work. <br>
+**Output Format:** [Markdown with SQL snippets, review notes, and database tuning recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-sql-pro) <br>
+**Other Properties Related to Output:** [May include SQL queries, index definitions, migration guidance, schema recommendations, and performance analysis notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with SQL snippets and advisory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files or external tool calls are required by the skill itself.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

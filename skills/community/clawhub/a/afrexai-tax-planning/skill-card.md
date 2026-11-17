@@ -1,42 +1,58 @@
-## Description: <br>
-Guides business owners through tax optimization by evaluating entity structure, maximizing deductions, planning compensation, and scheduling key tax deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides business owners through tax optimization by evaluating entity structure, deductions, compensation strategy, tax deadlines, year-end planning, and international considerations.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Small business owners, founders, freelancers, contractors, SMB finance teams, and accountants use this skill to structure tax-planning conversations, identify deductions, compare business entities, plan owner compensation, and prepare quarterly or year-end action lists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tax recommendations, thresholds, deadlines, and savings estimates may be outdated or unsuitable for a specific taxpayer. <br>
-Mitigation: Treat the skill as planning guidance and verify recommendations with a licensed CPA or tax advisor before acting. <br>
-Risk: The artifact includes generalized US, UK, and international tax examples that may not match the user's jurisdiction or filing status. <br>
-Mitigation: Confirm local rules, filing obligations, and entity-specific requirements before relying on any action list. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-tax-planning) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Small business owners, founders, freelancers, contractors, SMB finance teams, and accountants use this skill to structure an AI-assisted tax-planning conversation and produce a prioritized action list with estimated savings. The output should be treated as general planning guidance that requires review by a licensed tax professional.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown text with prioritized recommendations, checklists, calendars, and estimated savings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a caveat to consult a licensed CPA or tax advisor for the user's specific situation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives high-stakes tax-planning guidance with weak jurisdiction scoping.
+
+Mitigation: Use it only as a general checklist; confirm jurisdiction, tax year, and business structure, and require review by a licensed CPA or tax advisor before acting.
+
+Risk: Tax rates, deadlines, thresholds, and deductions may be incorrect or outdated for a user's specific situation.
+
+Mitigation: Validate recommendations against current official tax rules and the user's local obligations before presenting them as actionable advice.
+
+Risk: The skill may surface the publisher's embedded commercial links.
+
+Mitigation: Review linked resources before following, recommending, or purchasing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-tax-planning)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown action list with estimated savings and professional-advice caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jurisdiction, tax year, business structure, and user consent before applying any recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

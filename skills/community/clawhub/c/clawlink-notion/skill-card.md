@@ -1,45 +1,58 @@
-## Description: <br>
-Search pages and databases, update content, and manage Notion workspace data from chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search pages and databases, update content, and manage Notion workspace data from chat. Use this skill when users want to read, create, or modify Notion pages, query databases, manage sections, or automate Notion workflows via the Notion API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect a Notion workspace through ClawLink, search and read pages or databases, and prepare create, update, or delete operations for user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting a Notion account through ClawLink, which may expose pages and databases available to that connection. <br>
-Mitigation: Install only when the user is comfortable with the connected workspace scope and review the active Notion connection before use. <br>
-Risk: Create, update, or delete operations can change Notion workspace content. <br>
-Mitigation: Preview write actions and require explicit user confirmation before approving changes or deletions. <br>
+## Use Case:
 
+External users and developers use this skill to connect OpenClaw to Notion through ClawLink, then search, read, create, update, and manage Notion pages and databases from chat.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/notion-pages) <br>
-- [Notion API Documentation](https://developers.notion.com/) <br>
-- [Notion Integration Guide](https://www.notion.so/help/guides) <br>
-- [ClawLink](https://claw-link.dev) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ClawLink Notion tools; write operations should be previewed and explicitly confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and target metadata) <br>
+Risk: The skill enables an external OAuth-backed ClawLink plugin that can remain available in future OpenClaw chats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts ClawLink, review Notion permissions during authorization, and remove or disable the plugin when it is no longer needed.
+
+Risk: Connected Notion access may expose or modify pages, databases, and workspace content within the authorized scope.
+
+Mitigation: Share only the Notion pages or databases needed, use read/list/search calls before writes, and require explicit confirmation before create, update, or delete operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hith3sh/skills/notion-pages)
+- [Notion API Documentation](https://developers.notion.com/)
+- [Notion Integration Guide](https://www.notion.so/help/guides)
+- [ClawLink](https://claw-link.dev)
+- [ClawLink OpenClaw docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes setup, OAuth connection management, live tool discovery, confirmation before writes, and troubleshooting.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

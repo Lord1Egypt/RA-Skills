@@ -1,0 +1,196 @@
+{
+  "card_id": "WQ-EXP-002",
+  "source_type": "clinical_experience",
+  "source_file": "国医大师王琦从宗筋论治疗勃起功能障碍临证经验_郭怡阳.pdf",
+  "title": "国医大师王琦从宗筋论治疗勃起功能障碍临证经验",
+  "authors": [
+    "郭怡阳"
+  ],
+  "year": 2025,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "属于中医学的“阳痿”范畴。阴茎痿弱不起，临房举而不坚，或坚而不能持久是其主要表现。"
+  },
+  "treatment_approach": {
+    "main_formula": "二陈汤",
+    "related_formulas": [
+      "二陈汤"
+    ],
+    "principle": "活血化瘀、疏肝解郁",
+    "herbs": [
+      "当归",
+      "柴胡",
+      "甘草"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "经验并独具见解，在《宗筋论》一文中首次对宗筋的概念和生理功能进行了系统的论述，并提出了勃起功能障碍从宗筋论治的新理论。 体的性自尊和自我认同，对患者生活质量和身心健康可能产生显著的负面影响［１⁃２］。 为５型磷酸二酯酶抑制剂，虽能短期内起效，但长期使用会产生药物依赖性，并且具有多种不良反应［４⁃５］。《素问·痿论》曰：“宗筋弛纵，发为筋痿。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "患者因有性欲低下，头胸汗多，偶有清涕、鼻痒，打喷嚏等阳虚、气虚之候，勃起功能障碍不离肾虚，故合用王琦院士研制的国家级新药“疏肝益阳胶囊”，主要成分包括白蒺藜、石菖蒲、柴胡、五味子、九香虫、蛇床子、 水蛭、巴戟天、远志、肉苁蓉、地龙、紫梢花等药物，以加强补肾疏肝、活血化瘀、养护宗筋之功",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "患者自觉康复自行停药，鉴于患者体质尚弱，仍属肝郁质、 血瘀质，再加上工作压力未减，病情尚未巩固，性机能仍待完全恢复，故出现短期内病情反复的情况",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：属于中医学的“阳痿”范畴。阴茎痿弱不起，临房举而不坚，或坚而不能持久是其主要表现。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀、疏肝解郁。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为二陈汤。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括当归、柴胡、甘草。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "经验并独具见解，在《宗筋论》一文中首次对宗筋的概念和生理功能进行了系统的论述，并提出了勃起功能障碍从宗筋论治的新理论",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体的性自尊和自我认同，对患者生活质量和身心健康可能产生显著的负面影响［１⁃２］",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "血瘀质",
+    "气郁质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "患者因有性欲低下，头胸汗多，偶有清涕、鼻痒，打喷嚏等阳虚、气虚之候，勃起功能障碍不离肾虚，故合用王琦院士研制的国家级新药“疏肝益阳胶囊”，主要成分包括白蒺藜、石菖蒲、柴胡、五味子、九香虫、蛇床子、 水蛭、巴戟天、远志、肉苁蓉、地龙、紫梢花等药物，以加强补肾疏肝、活血化瘀、养护宗筋之功",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "患者自觉康复自行停药，鉴于患者体质尚弱，仍属肝郁质、 血瘀质，再加上工作压力未减，病情尚未巩固，性机能仍待完全恢复，故出现短期内病情反复的情况",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "血瘀质",
+      "气郁质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 4,
+    "sections": {
+      "discussion": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.085458",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.473881",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.473896"
+  }
+}

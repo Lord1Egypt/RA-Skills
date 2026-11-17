@@ -1,45 +1,66 @@
-## Description: <br>
-Canary provides local safety monitoring, tripwire detection, and audit reporting for AI agents through path checks, command checks, rate limits, decoy files, and logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safety monitoring and tripwire detection for AI agents. Protects against unauthorized file access, dangerous commands, and excessive activity. Auto-halts on critical violations. Honeypot tripwires detect snooping.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and operators use Canary to add a lightweight local safety layer around autonomous or multi-agent systems. It helps check proposed file and command actions, create decoy tripwires, and produce audit reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Canary is advisory and only works when the agent routes actions through its checks. <br>
-Mitigation: Use it as one layer in a broader control plan with containers, OS permissions, and auditing, and verify that agent file and command operations call Canary before execution. <br>
-Risk: Log and tripwire directories can expose audit history or decoy information if left broadly readable. <br>
-Mitigation: Restrict permissions on Canary logs and the .canary_tripwires directory, and avoid clearing logs when audit history is needed. <br>
-Risk: Tripwire configuration can create noise or unwanted files if pointed at unsuitable paths. <br>
-Mitigation: Use dedicated decoy paths only, test configuration in a sandbox, and confirm where tripwire files and logs are created before deployment. <br>
+## Use Case:
 
+Developers and engineers use Canary to add best-effort pre-execution checks, tripwire files, and audit reporting around AI agents that can access files or run commands.
 
-## Reference(s): <br>
-- [Canary README](README.md) <br>
-- [Canary Limitations](LIMITATIONS.md) <br>
-- [Example Configuration](config_example.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/canary-sr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, Python code snippets, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can export audit reports as JSON or Markdown and writes local log files when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release metadata) <br>
+Risk: Canary is a best-effort advisory monitor, not a sandbox or reliable security boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Route agent file and command actions through Canary, and pair it with OS permissions, containers, and system auditing for enforcement.
+
+Risk: Sensitive command strings or file paths can be written to plaintext logs and tripwire files.
+
+Mitigation: Avoid passing secrets in command strings, restrict permissions on log and tripwire directories, and apply retention or rotation controls.
+
+Risk: Regex-based command checks and tripwire access-time detection can miss obfuscated commands or filesystem-specific access behavior.
+
+Mitigation: Test protected-path and forbidden-pattern behavior in the target environment, add patterns for expected bypass attempts, and use OS audit tools where reliable detection is required.
+
+Risk: Rate-limit state is per session and can reset when Canary restarts.
+
+Mitigation: Persist rate-limit state or use external monitoring if cross-session limits are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/canary-sr)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [README.md](README.md)
+- [LIMITATIONS.md](LIMITATIONS.md)
+- [config_example.json](config_example.json)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Text, JSON, Markdown]
+
+**Output Format:** [Markdown guidance with Python and shell examples; runtime scripts emit text status, JSON logs, and JSON or Markdown audit reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Python 3.7+ standard library implementation with file-based configuration, logs, tripwire registry, and report exports.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

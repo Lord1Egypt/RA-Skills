@@ -1,38 +1,49 @@
-## Description: <br>
-Provides concise Git command guidance for commits, branching, merges, rebases, resets, stashes, history inspection, remotes, tags, diffs, and status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Git command reference for common workflows including commits, branches, merges, rebases, resets, stashes, remotes, tags, diffs, logs, and status checks.
 
-## Publisher: <br>
-[mickey0811](https://clawhub.ai/user/mickey0811) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mickey0811](https://clawhub.ai/user/mickey0811)
 
-## Use Case: <br>
-Developers and engineers use this skill to get quick Git command references and safe operating reminders while working with repository history, branches, remotes, tags, and local changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some Git commands shown by the skill can delete local work, rewrite history, or publish unintended repository changes if used carelessly. <br>
-Mitigation: Before running reset --hard, clean -fd, branch -D, rebase, or push commands, require status, branch, remotes, and relevant diffs, then confirm explicitly or create a backup branch or stash. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick Git command reference for everyday repository operations, including commits, branch management, merges, rebases, remote sync, history inspection, and undo workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mickey0811/git2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include destructive or history-rewriting Git commands as examples; users should review repository state and confirm before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Some referenced Git commands can discard local work or rewrite history when used in the wrong repository, branch, or working tree state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the current repository, branch, and uncommitted changes before using reset --hard, clean -fd, branch -D, rebase, or push, and prefer preview or backup steps where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mickey0811/skills/git2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language command reference; no API calls, files, or configuration are generated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

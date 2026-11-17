@@ -1,44 +1,58 @@
-## Description: <br>
-Summarizes Feishu group chats for a requested time range, reports activity statistics, and creates a Feishu document containing both the summary and complete text-message records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes Feishu group chats for a requested time range, reports participation and recent-message highlights, and creates a Feishu document containing the summary and full text-message records.
 
-## Publisher: <br>
-[glory904649854](https://clawhub.ai/user/glory904649854) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glory904649854](https://clawhub.ai/user/glory904649854)
 
-## Use Case: <br>
-Developers and operators use this skill to export and summarize authorized Feishu group chat history over a chosen time range, including active-member counts, recent-message previews, and complete text-message records in a Feishu document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exports sensitive Feishu group chat history, participant IDs, nicknames, timestamps, and message contents into persistent documents. <br>
-Mitigation: Run it only for groups where export is authorized, restrict the Feishu app to the required permissions, and verify the created document's sharing settings. <br>
-Risk: The script passes Feishu credentials to a local feishu-docs helper program. <br>
-Mitigation: Confirm the feishu-docs CLI source and integrity before use, and provide credentials through a least-privilege Feishu app. <br>
-Risk: Generated temporary or backup Markdown files may retain chat records locally. <br>
-Mitigation: Delete tmp_chat_summary.md and any chat_summary_*.md backup files after confirming the Feishu document output. <br>
+## Use Case:
 
+Teams using Feishu can use this skill to review recent group-chat activity, identify active participants, and preserve a readable document with both a concise summary and complete text-message records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/glory904649854/catfee-feishu-recorder) <br>
-- [Publisher profile](https://clawhub.ai/user/glory904649854) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Console text, Markdown summaries, and Feishu document links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET environment variables, a chat_id, and a time-range argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The skill reads Feishu group messages and exports identifiable chat content, including sender IDs, names, timestamps, and message text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped Feishu credentials, run only for approved chats and time ranges, and review generated Feishu documents before sharing them.
+
+Risk: The document-creation flow relies on a locally installed feishu-docs helper and may expose credentials or content if run in an untrusted environment.
+
+Mitigation: Run from a trusted working directory with a clean minimal environment and only vetted local helper tooling.
+
+Risk: If Feishu document creation fails, the skill can write a local Markdown backup containing sensitive chat records.
+
+Mitigation: Inspect and protect any local backup files, and remove them when retention is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/glory904649854/skills/catfee-feishu-recorder)
+- [Publisher profile](https://clawhub.ai/user/glory904649854)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown content written to a Feishu document, with a local Markdown backup when document creation fails.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu application credentials and the im:message:readonly and docx:document:create permissions.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

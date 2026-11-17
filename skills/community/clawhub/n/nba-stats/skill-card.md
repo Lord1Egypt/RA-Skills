@@ -1,42 +1,59 @@
-## Description: <br>
-Provides real-time and historical NBA data, including player statistics, game scores, team information, awards, and advanced analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个提供实时和历史NBA数据的模型上下文协议服务器，包括球员统计、比赛得分、球队信息和高级分析。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Agents use this skill to answer NBA data questions, resolve teams and players, retrieve scores and schedules, and summarize player, team, game, award, shooting, play-by-play, and advanced-statistics data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a third-party Xiaobenyang API key and stores it locally as XBY_APIKEY in a .env file. <br>
-Mitigation: Install only if that credential handling is acceptable; review or delete the .env file when rotating keys and avoid sharing it. <br>
-Risk: The scanner noted template residue in the documentation even though the inspected tools are NBA-focused. <br>
-Mitigation: Review the skill text and available tools before deployment so users understand the actual NBA data workflow. <br>
+## Use Case:
 
+Developers and NBA-data users can use this skill to query live and historical NBA scores, schedules, teams, players, standings, awards, and advanced statistics through XiaoBenYang API-backed tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/nba-stats) <br>
-- [Xiaobenyang API key site](https://xiaobenyang.com) <br>
-- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration guidance] <br>
-**Output Format:** [Markdown summaries with structured NBA data returned from tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Xiaobenyang API key before data queries can be completed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill saves the XiaoBenYang API key in plaintext in a workspace .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where plaintext local credential storage is acceptable, and prefer short-lived or restricted API keys when possible.
+
+Risk: The security scan reports mismatched gaokao/NBA configuration and an overridable credential-bearing API endpoint.
+
+Mitigation: Review the configuration before use, confirm the intended XiaoBenYang API origin, and avoid running the skill in shared or sensitive workspaces until the mismatch is resolved.
+
+Risk: Dependencies are declared with lower bounds rather than pinned versions.
+
+Mitigation: Pin and review dependencies before deployment in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/nba-stats)
+- [XiaoBenYang API key source](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration guidance]
+
+**Output Format:** [Markdown or text responses summarizing JSON API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY; tool calls return success, raw, and message fields before agent summarization.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

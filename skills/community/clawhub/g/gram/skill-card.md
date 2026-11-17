@@ -1,43 +1,58 @@
-## Description: <br>
-Instagram CLI for viewing feeds, posts, profiles, and engagement via cookies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instagram CLI for viewing feeds, posts, profiles, and engagement via cookies.
 
-## Publisher: <br>
-[arein](https://clawhub.ai/user/arein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arein](https://clawhub.ai/user/arein)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Instagram CLI commands and configuration guidance for viewing feeds, posts, profiles, comments, followers, search results, and account engagement through the gram CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The gram CLI uses Instagram session cookies and browser cookie profiles, which can expose account access if mishandled. <br>
-Mitigation: Treat sessionid, csrftoken, ds_user_id, and browser cookie profiles like passwords; avoid saving them in shared config files or shell history. <br>
-Risk: The CLI can change account state through actions such as like, comment, save, follow, and unfollow. <br>
-Mitigation: Require an explicit user request before proposing or running account-changing commands. <br>
-Risk: The skill depends on the third-party npm package @cyberdrk/gram handling Instagram session data. <br>
-Mitigation: Install and run the package only when the user trusts the package with their Instagram session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arein/gram) <br>
-- [gram GitHub repository](https://github.com/arein/gram) <br>
-- [npm package @cyberdrk/gram](https://www.npmjs.com/package/@cyberdrk/gram) <br>
+## Use Case:
 
+Developers and external users can use this skill to operate the gram CLI for Instagram feed, post, profile, search, and engagement workflows through an authenticated web session.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON output options and browser cookie authentication guidance for the gram CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs an unpinned third-party npm package with access to Instagram session cookies.
+
+Mitigation: Use only a trusted, pinned, verified package version and review the package before installation.
+
+Risk: Session cookies or browser profile access can expose the user's Instagram account session.
+
+Mitigation: Avoid storing cookies in plaintext configuration, pass credentials only when needed, and use a browser profile dedicated to this workflow where practical.
+
+Risk: Like, comment, save, follow, and unfollow commands perform immediate live account actions.
+
+Mitigation: Review generated commands before execution and require explicit user confirmation for engagement actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arein/skills/gram)
+- [gram project homepage](https://github.com/arein/gram)
+- [@cyberdrk/gram npm package](https://www.npmjs.com/package/%40cyberdrk%2Fgram)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gram binary and authenticated Instagram session cookies or browser profile access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

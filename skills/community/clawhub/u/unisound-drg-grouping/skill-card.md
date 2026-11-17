@@ -1,44 +1,53 @@
-## Description: <br>
-Helps doctors choose the most likely DRG grouping from discharge-document text and candidate DRG options using an internal medical language model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps select the most likely CHS-DRG group from supplied discharge-case text and candidate DRG options using a configured medical model endpoint.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Doctors, clinical coding teams, and evaluation engineers use this skill to submit complete DRG case prompts and receive a single candidate DRG selection for baseline comparison or pre-integration testing. It is an auxiliary grouping aid, not an official reimbursement or hospital grouping decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DRG prompts may contain real patient information that is sent to the configured model provider. <br>
-Mitigation: Use the skill only where that data transfer is approved, and de-identify patient data when required. <br>
-Risk: The required app key can be exposed through shared logs, command history, or mishandled configuration. <br>
-Mitigation: Protect the app key and avoid placing it in shared logs or shell history. <br>
-Risk: Changing the API URL can redirect case text to an untrusted endpoint. <br>
-Mitigation: Override the API URL only when the endpoint is trusted and approved. <br>
-Risk: The model output is an auxiliary grouping suggestion and may be mistaken for an official DRG or reimbursement decision. <br>
-Mitigation: Review outputs through the appropriate clinical coding or institutional workflow before use in operational decisions. <br>
+## Use Case:
 
+Clinicians, medical coding reviewers, and evaluation engineers use this skill to run DRG candidate selection against case prompts or datasets and compare model-selected groupings with expected results. The output is decision support only and is not a formal insurance settlement or hospital grouping conclusion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-drg-grouping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON by default, with optional plain-text answer output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a single DRG answer selected from candidates; batch JSONL runs emit NDJSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive medical case text or the API key could be exposed through the configured model endpoint or saved output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the documented default or another approved HTTPS endpoint, de-identify real patient data, protect the appkey, and store output files only in locations approved for medical data.
+
+Risk: The selected DRG is model-generated decision support and may be incorrect.
+
+Mitigation: Review results through the applicable clinical coding and hospital governance workflow before using them for reimbursement, settlement, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-drg-grouping)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files]
+
+**Output Format:** [JSON stdout by default, with optional plain text answer output or JSON/NDJSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include answer, question, meta, record_index, model, input_mode, and input_path fields; batch JSONL input emits NDJSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,6 @@
 # linkfox-shopee-store-voucher — 参数与字段参考
 
+> 单接口入参/响应说明已拆到 **`apis/`**（按 API 一份）；本文件保留模块总览与 Feedback。
 Shopee **Voucher 模块**全部 6 个 API，经 **`POST /shopee/developerProxy`** 转发。
 
 授权见 **`linkfox-shopee-store-auth`**。官方索引：[v2.voucher.add_voucher](https://open.shopee.com/documents/v2/v2.voucher.add_voucher?module=112&type=1)
@@ -16,12 +17,12 @@ Shopee **Voucher 模块**全部 6 个 API，经 **`POST /shopee/developerProxy`*
 
 | # | API | Method | path | 脚本 | 官方文档 |
 |---|-----|--------|------|------|----------|
-| 1 | add_voucher | POST | `api/v2/voucher/add_voucher` | `add_voucher.py` | [doc](https://open.shopee.com/documents/v2/v2.voucher.add_voucher?module=112&type=1) |
-| 2 | delete_voucher | POST | `api/v2/voucher/delete_voucher` | `delete_voucher.py` | [doc](https://open.shopee.com/documents/v2/v2.voucher.delete_voucher?module=112&type=1) |
-| 3 | end_voucher | POST | `api/v2/voucher/end_voucher` | `end_voucher.py` | [doc](https://open.shopee.com/documents/v2/v2.voucher.end_voucher?module=112&type=1) |
-| 4 | get_voucher | GET | `api/v2/voucher/get_voucher` | `get_voucher.py` | [doc](https://open.shopee.com/documents/v2/v2.voucher.get_voucher?module=112&type=1) |
-| 5 | get_voucher_list | GET | `api/v2/voucher/get_voucher_list` | `get_voucher_list.py` | [doc](https://open.shopee.com/documents/v2/v2.voucher.get_voucher_list?module=112&type=1) |
-| 6 | update_voucher | POST | `api/v2/voucher/update_voucher` | `update_voucher.py` | [doc](https://open.shopee.com/documents/v2/v2.voucher.update_voucher?module=112&type=1) |
+| 1 | add_voucher | POST | `api/v2/voucher/add_voucher` | `add_voucher.py` | [apis/add-voucher.md](./apis/add-voucher.md) |
+| 2 | delete_voucher | POST | `api/v2/voucher/delete_voucher` | `delete_voucher.py` | [apis/delete-voucher.md](./apis/delete-voucher.md) |
+| 3 | end_voucher | POST | `api/v2/voucher/end_voucher` | `end_voucher.py` | [apis/end-voucher.md](./apis/end-voucher.md) |
+| 4 | get_voucher | GET | `api/v2/voucher/get_voucher` | `get_voucher.py` | [apis/get-voucher.md](./apis/get-voucher.md) |
+| 5 | get_voucher_list | GET | `api/v2/voucher/get_voucher_list` | `get_voucher_list.py` | [apis/get-voucher-list.md](./apis/get-voucher-list.md) |
+| 6 | update_voucher | POST | `api/v2/voucher/update_voucher` | `update_voucher.py` | [apis/update-voucher.md](./apis/update-voucher.md) |
 通用入口：`voucher_api.py`（JSON 含 `"api": "<上表 API 名>"`）。
 
 ---
@@ -30,12 +31,12 @@ Shopee **Voucher 模块**全部 6 个 API，经 **`POST /shopee/developerProxy`*
 
 | API | 要点 |
 |-----|------|
-| `add_voucher` | 创建店铺优惠券；POST `body` |
-| `get_voucher_list` | 优惠券列表 |
-| `get_voucher` | 优惠券详情 |
-| `update_voucher` | 更新优惠券 |
-| `end_voucher` | 提前结束 |
-| `delete_voucher` | 删除优惠券 |
+| `add_voucher` | 创建店铺优惠券；POST `body` — [apis/add-voucher.md](./apis/add-voucher.md) |
+| `get_voucher_list` | 优惠券列表 — [apis/get-voucher-list.md](./apis/get-voucher-list.md) |
+| `get_voucher` | 优惠券详情 — [apis/get-voucher.md](./apis/get-voucher.md) |
+| `update_voucher` | 更新优惠券 — [apis/update-voucher.md](./apis/update-voucher.md) |
+| `end_voucher` | 提前结束 — [apis/end-voucher.md](./apis/end-voucher.md) |
+| `delete_voucher` | 删除优惠券 — [apis/delete-voucher.md](./apis/delete-voucher.md) |
 
 ---
 

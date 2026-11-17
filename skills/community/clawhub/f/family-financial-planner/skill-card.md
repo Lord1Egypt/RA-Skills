@@ -1,45 +1,63 @@
-## Description: <br>
-Family Financial Planner helps agents collect household financial details, model major life decisions such as resignation, entrepreneurship, relocation, full-time caregiving, or gap years, and produce an interactive single-file HTML dashboard with runway, scenario, and risk summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family Financial Planner helps agents collect household financial details, model China-specific financial scenarios for major life decisions, and produce an interactive single-file HTML dashboard with key findings.
 
-## Publisher: <br>
-[Ramos-dev](https://clawhub.ai/user/Ramos-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramos-dev](https://clawhub.ai/user/ramos-dev)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate household financial readiness for major life choices, especially resignation, entrepreneurship, career changes, caregiving, relocation, or gap years. It is tailored to China-focused household finance modeling with city-specific social insurance, housing fund, living-cost, tax, debt, inflation, and runway assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dashboards can contain sensitive household income, asset, debt, tax, and family-structure information. <br>
-Mitigation: Keep generated HTML files private, avoid unnecessary personal identifiers, and share outputs only with trusted recipients. <br>
-Risk: Free-text values inserted into an HTML dashboard could create unsafe or malformed output if not handled carefully. <br>
-Mitigation: Escape or sanitize user-provided free text before inserting it into the template. <br>
-Risk: The dashboard template may load Google Fonts, which is unsuitable for users who require a fully offline financial document. <br>
-Mitigation: Remove the Google Fonts link before generating or distributing an offline-only dashboard. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate family finances before resignation, entrepreneurship, relocation, full-time caregiving, gap-year, or similar major life decisions. It models assets, debts, cash flow, runway, stop-loss thresholds, and return-to-work salary needs using China-specific tax, social insurance, housing fund, and city cost assumptions.
 
-## Reference(s): <br>
-- [Financial Model Specification](artifact/references/financial-model-spec.md) <br>
-- [City Profiles](artifact/references/city-profiles.md) <br>
-- [Dashboard Template](artifact/assets/dashboard-template.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Ramos-dev/family-financial-planner) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Concise Markdown guidance plus generated single-file HTML dashboard code when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated dashboard may contain private household financial data and should be kept private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive household financial information may be embedded in generated executable HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated dashboard locally before sharing, avoid uploading it to third-party services, and remove or redact personal financial details when distribution is required.
+
+Risk: User-provided text and financial values may be inserted into HTML without a defined escaping step.
+
+Mitigation: Escape or safely serialize all user-provided values before opening the dashboard, especially names, notes, scenario descriptions, and free-form text.
+
+Risk: The dashboard template loads Google Fonts even though the report is otherwise described as local.
+
+Mitigation: Remove the Google Fonts import or replace it with local fonts when fully offline or private report generation is required.
+
+Risk: The built-in assumptions are China-specific and city data may become stale after annual July social insurance and housing fund adjustments.
+
+Mitigation: Use the skill for China-specific planning, verify current city parameters before relying on results, and adapt assumptions explicitly for other jurisdictions.
+
+## Reference(s):
+
+- [Financial Model Specification](references/financial-model-spec.md)
+- [City Profiles](references/city-profiles.md)
+- [ClawHub Skill Page](https://clawhub.ai/ramos-dev/skills/family-financial-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated single-file HTML dashboard code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The dashboard embeds user-specific household financial data in local HTML and may include inline JavaScript calculations.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

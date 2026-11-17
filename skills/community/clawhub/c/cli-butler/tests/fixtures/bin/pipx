@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# fake pipx
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+c1="${1:-}"; c2="${2:-}"
+case "$c1 $c2" in
+  "list --short") cat "${BUTLER_FAKE_PIPX_LIST:-$DATA/pipx-list.txt}" ;;
+  *) exit 64 ;;
+esac

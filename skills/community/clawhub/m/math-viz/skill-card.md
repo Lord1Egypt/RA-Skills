@@ -1,41 +1,52 @@
-## Description: <br>
-Math Viz helps an agent turn abstract math problems into interactive HTML visualizations for geometry, functions, dynamic points, and related topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Math Viz turns abstract math problems into interactive HTML visualizations for 2D geometry, 3D geometry, function graphs, moving-point loci, and live numeric exploration.
 
-## Publisher: <br>
-[abill6688](https://clawhub.ai/user/abill6688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abill6688](https://clawhub.ai/user/abill6688)
 
-## Use Case: <br>
-Developers, educators, and learning agents use this skill to generate interactive Chinese-language math visualizations that help students explore geometric relationships, function behavior, trajectories, and real-time numerical changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated local HTML previews can include private problem text or data and may load visualization libraries from public CDNs. <br>
-Mitigation: Review generated pages before previewing or sharing them, avoid placing sensitive private content in generated pages on shared machines, and use the skill only where public CDN loading is acceptable. <br>
-Risk: The included verifier script performs local execution checks and has temporary-file hygiene caveats. <br>
-Mitigation: Run the verifier only on files you intend to validate, avoid sensitive content until unique temporary files and cleanup are in place, and inspect results before relying on the visualization. <br>
+## Use Case:
 
+Teachers, students, and education-focused agents use this skill to generate Chinese-language interactive math visualizations that support exploration through dragging, sliders, animation, and real-time values.
 
-## Reference(s): <br>
-- [JSXGraph patterns](references/jsxgraph-patterns.md) <br>
-- [Three.js patterns](references/threejs-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML files and bash validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML may load JSXGraph or Three.js from public CDNs and should be checked with the included verifier before previewing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The local verification script can mishandle untrusted filenames or temporary files, which could run unintended commands or alter files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the verifier only on trusted generated HTML paths, avoid filenames containing quotes or shell metacharacters, and prefer a fixed verifier that passes paths as arguments and uses private temporary files.
+
+## Reference(s):
+
+- [Math Viz on ClawHub](https://clawhub.ai/abill6688/skills/math-viz)
+- [JSXGraph Patterns](artifact/references/jsxgraph-patterns.md)
+- [Three.js Patterns](artifact/references/threejs-patterns.md)
+- [Output Verification Script](artifact/scripts/verify_output.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Guidance]
+
+**Output Format:** [HTML files with embedded JavaScript and CSS, plus concise validation guidance and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated pages are intended to be verified with the bundled output checker before delivery.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

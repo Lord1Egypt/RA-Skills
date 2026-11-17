@@ -1,40 +1,50 @@
-## Description: <br>
-Master advanced Git workflows including rebasing, cherry-picking, bisect, worktrees, and reflog to maintain clean history and recover from any situation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master advanced Git workflows including rebasing, cherry-picking, bisect, worktrees, and reflog to maintain clean history and recover from any situation.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage complex Git history, prepare clean pull requests, apply selected commits, locate regressions, work across branches, and recover from Git mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: History-editing commands can rewrite or discard local work when used on the wrong branch or commit. <br>
-Mitigation: Verify the repository, branch, and remote before applying commands; create a backup branch before risky history edits; use --force-with-lease instead of force pushing blindly. <br>
-Risk: Automated bisect examples can run repository scripts that may have side effects. <br>
-Mitigation: Inspect repository scripts and confirm the test command is appropriate before using automated bisect. <br>
+## Use Case:
 
+Developers and engineers use this skill for advanced Git workflows such as cleaning feature branch history, cherry-picking fixes, bisecting regressions, using worktrees, and recovering lost commits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/git-advanced-workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: History-rewriting or reset examples can discard local work or rewrite remote branch history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before following commands involving git reset --hard, rebases, branch cleanup, or force-with-lease pushes, confirm the branch is yours to rewrite, check git status, and create a backup branch or stash.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/git-advanced-workflows)
+- [Declared skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/git-advanced-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

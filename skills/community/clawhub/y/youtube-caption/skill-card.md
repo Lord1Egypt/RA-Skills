@@ -1,52 +1,65 @@
-## Description: <br>
-Manage YouTube video captions by listing, inserting, updating, downloading, or deleting caption tracks with the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube video captions by listing, inserting, updating, downloading, or deleting caption tracks with the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-Developers and content operators use this skill to manage caption tracks for YouTube videos, including setup, listing, insertion, update, download, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload, update, publish, or delete captions through the user's Google account. <br>
-Mitigation: Confirm the Google account, video ID, caption ID, and local caption file before running insert, update, publish, or delete commands. <br>
-Risk: OAuth credential and token files can grant access to YouTube API operations if exposed. <br>
-Mitigation: Keep client_secret.json and youtube.token.json out of shared folders and source control. <br>
-Risk: The workflow depends on the external yutu CLI and YouTube API credentials. <br>
-Mitigation: Install yutu from trusted sources and grant only the YouTube access required for the intended caption workflow. <br>
+## Use Case:
 
+Developers, creators, and operations teams use this skill to manage YouTube caption tracks from an agent workflow after configuring Google OAuth credentials and the yutu CLI.
 
-## Reference(s): <br>
-- [Yutu project homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [Yutu README](https://github.com/eat-pray-ai/yutu#readme) <br>
-- [Yutu releases](https://github.com/eat-pray-ai/yutu/releases/latest) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [Caption Delete](references/caption-delete.md) <br>
-- [Caption Download](references/caption-download.md) <br>
-- [Caption Insert](references/caption-insert.md) <br>
-- [Caption List](references/caption-list.md) <br>
-- [Caption Update](references/caption-update.md) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local OAuth credential and token files required by yutu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: ClawHub release evidence) <br>
+Risk: OAuth client secrets and cached YouTube tokens can expose account access if committed or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep client_secret.json and youtube.token.json out of repositories and shared folders, restrict file permissions, and use the documented YUTU_CREDENTIAL and YUTU_CACHE_TOKEN paths carefully.
+
+Risk: Caption update and delete commands can alter or remove YouTube caption tracks.
+
+Mitigation: Verify video IDs and caption IDs before running update or delete commands, especially when acting on behalf of a content owner.
+
+Risk: The skill depends on the third-party yutu CLI for YouTube API operations.
+
+Mitigation: Install yutu only from a trusted source and review the CLI source or package provenance before use in sensitive environments.
+
+## Reference(s):
+
+- [Caption Delete](references/caption-delete.md)
+- [Caption Download](references/caption-download.md)
+- [Caption Insert](references/caption-insert.md)
+- [Caption List](references/caption-list.md)
+- [Caption Update](references/caption-update.md)
+- [Yutu Setup Guide](references/setup.md)
+- [yutu CLI](https://github.com/eat-pray-ai/yutu)
+- [yutu releases](https://github.com/eat-pray-ai/yutu/releases/latest)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read or modify YouTube caption resources through OAuth-authorized yutu CLI calls.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

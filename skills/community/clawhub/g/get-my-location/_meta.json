@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn75s192k98dtwr83bft4myd0582ytyg",
-  "slug": "get-my-location",
-  "version": "1.1.0",
-  "publishedAt": 1775294382934
+  "name": "get-my-location",
+  "displayName": "Get My Location",
+  "version": "1.0.0",
+  "description": "Get current IP geolocation with 3-tier fallback (freegeoip.app → api.ipbase.com → ip-api.com). No API key required.",
+  "author": "Etmnb",
+  "license": "MIT",
+  "keywords": ["ip", "geolocation", "location", "geoip", "free", "no-api-key"],
+  "python": {
+    "minVersion": "3.6",
+    "requiresPackages": false
+  },
+  "entryPoint": "scripts/location.py"
 }

@@ -1,45 +1,59 @@
-## Description: <br>
-Screens A-share stocks for N-pattern technical setups and returns stock signals with stage, strength, volume, stop-loss, target, and rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an A-share N-pattern stock-screening interface that returns structured stock candidates with pattern stage, volume, stop-loss, target, and rationale fields.
 
-## Publisher: <br>
-[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog)
 
-## Use Case: <br>
-External traders and technical-analysis users use this skill to request A-share N-pattern stock signals through a paid x402 API call. Outputs should be treated as unverified market information, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each use may trigger a 0.01 USDC paid x402 call to the disclosed Base wallet. <br>
-Mitigation: Install or invoke the skill only when the user accepts the disclosed payment amount, chain, and recipient. <br>
-Risk: Security evidence says the submitted code returns fixed stock recommendations rather than substantiating real-time market-data screening. <br>
-Mitigation: Treat outputs as unverified financial information and compare any signal against independent market data before acting. <br>
-Risk: The skill provides stock-selection guidance that could be mistaken for investment advice. <br>
-Mitigation: Use outputs only as informational screening support and apply independent risk controls and professional judgment. <br>
+## Use Case:
 
+External users interested in A-share technical analysis use this skill to request N-pattern stock candidates as trading-reference data. Agents can summarize the returned candidates, stages, volume signals, targets, stop losses, and rationale for user review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jinboh68-prog/a-stock-n-pattern) <br>
-- [Publisher Profile](https://clawhub.ai/user/jinboh68-prog) <br>
-- [Paid API Endpoint](https://a-stock-signals.vercel.app/n) <br>
-- [Service Base URL](https://a-stock-signals.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON stock-signal objects or text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes stock code, name, sector, N-pattern stage, strength rating, volume condition, stop-loss, target, rationale, and payment metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata; artifact frontmatter says 1.0.8) <br>
+Risk: Returned stocks, targets, stop losses, and volume data may be unverified static examples while appearing current.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all signals as reference-only until the publisher supplies auditable live-data provenance and source timestamps.
+
+Risk: The release describes x402 payment enforcement, but the provided API artifact does not show the documented enforcement behavior.
+
+Mitigation: Verify real payment enforcement before installing, paying for, or depending on the skill.
+
+Risk: Trading-reference output could be mistaken for personalized investment advice.
+
+Mitigation: Review outputs independently, apply risk controls, and avoid relying on the skill as the sole basis for financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinboh68-prog/skills/a-stock-n-pattern)
+- [Publisher profile](https://clawhub.ai/user/jinboh68-prog)
+- [Published API endpoint](https://a-stock-signals.vercel.app/n)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON data that an agent may summarize as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stock code, name, N-pattern stage, strength indicator, volume ratio, stop-loss level, target level, and rationale when returned by the API.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

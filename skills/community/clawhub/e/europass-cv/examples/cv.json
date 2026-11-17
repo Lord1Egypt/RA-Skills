@@ -1,0 +1,76 @@
+{
+  "language": "en",
+  "id": "example-0003",
+  "person": {
+    "givenName": "Giulia",
+    "familyName": "Rossi",
+    "email": "giulia.rossi.test@example.com",
+    "phones": ["+39 333 0000000"],
+    "address": { "line": "Via di Prova 1", "city": "Bologna", "postalCode": "40100", "country": "it" },
+    "nationality": "it",
+    "birthDate": "1990-05-12",
+    "socialMedia": [{ "type": "linkedin", "url": "https://www.linkedin.com/in/giulia-rossi-test" }],
+    "websites": ["https://github.com/giulia-test"],
+    "motherTongues": ["ita"]
+  },
+  "summary": "Accounting clerk with nine years of experience in manufacturing.\n\nI manage receivables and payables, bank reconciliations and the documents for the year-end closing.",
+  "workExperience": [
+    {
+      "title": "Accounting clerk",
+      "employer": "Meccanica Padana Srl",
+      "city": "Bologna",
+      "country": "it",
+      "sector": "C",
+      "start": "2019-09",
+      "current": true,
+      "activities": ["Bookkeeping and invoice processing.", "Monthly bank reconciliations.", "Year-end closing documentation."]
+    },
+    {
+      "title": "Junior accountant",
+      "employer": "Studio Bianchi & Associati",
+      "city": "Modena",
+      "country": "it",
+      "sector": "M",
+      "start": "2015-03",
+      "end": "2019-08",
+      "activities": ["Supplier and customer ledgers.", "Quarterly VAT returns."]
+    }
+  ],
+  "education": [
+    {
+      "qualification": "Bachelor in Business Administration",
+      "institution": "Università di Bologna",
+      "city": "Bologna",
+      "country": "it",
+      "start": "2010",
+      "end": "2014",
+      "eqf": 6,
+      "grade": "105/110",
+      "thesis": "Management control in small and medium enterprises"
+    },
+    {
+      "qualification": "Accounting diploma",
+      "institution": "ITC Rosa Luxemburg",
+      "city": "Bologna",
+      "country": "it",
+      "end": "2010",
+      "eqf": 4
+    }
+  ],
+  "languages": [
+    { "code": "eng", "listening": "B2", "reading": "B2", "spokenInteraction": "B1", "spokenProduction": "B1", "writing": "B2" },
+    { "code": "fra", "listening": "A2", "reading": "A2", "writing": "A2" }
+  ],
+  "digitalSkills": ["Excel (pivot tables, lookups)", "SAP FI", "TeamSystem", "E-mail and certified e-mail"],
+  "drivingLicences": ["B"],
+  "customSections": [
+    {
+      "title": "Personal skills",
+      "entries": [
+        { "title": "Communication", "description": "Daily contact with suppliers and the accountant; I explain figures to non-specialists." },
+        { "title": "Organisation", "description": "Payment schedule of 120 suppliers kept without a late payment for three years." }
+      ]
+    },
+    { "title": "Additional information", "entries": [{ "title": "Mobility", "description": "Available to travel within Emilia-Romagna." }] }
+  ]
+}

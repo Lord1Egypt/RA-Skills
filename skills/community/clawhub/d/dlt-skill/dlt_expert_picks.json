@@ -1,0 +1,589 @@
+{
+  "_meta": {
+    "description": "大乐透专家推荐数据 - 由WebSearch实时检索公开来源(新浪彩票/新浪体育/一定牛)得到, 未经核实。",
+    "target_period": "26096",
+    "last_updated": "2026-08-24 16:07",
+    "auto_scraped": true,
+    "source": "WebSearch: 新浪彩票(lotto.sina.cn)/新浪体育(sports.sina.com.cn)/一定牛(ydniu.com)",
+    "note": "诚信说明: 专家推荐号由WebSearch实时检索公开来源得到, 未经核实, 质量参差。大乐透近似完全随机, 任一5+2组合中奖概率恒为1/21,425,712, 专家推荐无预测力(no_edge), 仅作描述性/逆向信号, 绝不可据其认为某号更可能中奖。"
+  },
+  "experts": [
+    {
+      "expert": "威哥",
+      "front": [
+        2,
+        11,
+        12,
+        22,
+        27
+      ],
+      "back": [
+        4,
+        7
+      ],
+      "source": "text-parsed",
+      "scraped_at": "",
+      "type": "权威",
+      "platform": "今日头条",
+      "specialty": "三区比/龙头凤尾/重号"
+    },
+    {
+      "expert": "刘星",
+      "front": [
+        3,
+        15,
+        18,
+        19,
+        22,
+        23,
+        30,
+        31,
+        32
+      ],
+      "back": [
+        2,
+        5,
+        8
+      ],
+      "source": "新浪彩票名家汇总26096",
+      "scraped_at": "2026-08-23"
+    },
+    {
+      "expert": "江宏",
+      "front": [
+        7,
+        11,
+        14,
+        22,
+        34
+      ],
+      "back": [
+        1,
+        3
+      ],
+      "source": "text-parsed",
+      "scraped_at": ""
+    },
+    {
+      "expert": "王守礼",
+      "front": [
+        2,
+        9,
+        25,
+        28,
+        32
+      ],
+      "back": [
+        1,
+        12
+      ],
+      "source": "text-parsed",
+      "scraped_at": ""
+    },
+    {
+      "expert": "铁观音",
+      "front": [
+        2,
+        11,
+        25,
+        29,
+        31
+      ],
+      "back": [
+        4,
+        7
+      ],
+      "source": "一定牛质合结构分析26096",
+      "scraped_at": "2026-08-23"
+    }
+  ],
+  "updated_at": "2026-08-24 16:07",
+  "auto_scraped": true,
+  "source_count": 5,
+  "_catalog": {
+    "authoritative": [
+      {
+        "name": "上官博超",
+        "platform": "乐彩网",
+        "specialty": "综合定胆",
+        "followers": "高",
+        "verified": true,
+        "note": "乐彩网原创分析名家"
+      },
+      {
+        "name": "风花雪月",
+        "platform": "乐彩网",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "乐彩网原创分析"
+      },
+      {
+        "name": "六鬼神算",
+        "platform": "乐彩网",
+        "specialty": "杀号",
+        "followers": "中",
+        "verified": true,
+        "note": "乐彩网原创分析"
+      },
+      {
+        "name": "财兴源亨",
+        "platform": "乐彩网",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "乐彩网原创分析"
+      },
+      {
+        "name": "傲骨迎风",
+        "platform": "乐彩网",
+        "specialty": "定胆",
+        "followers": "中",
+        "verified": true,
+        "note": "乐彩网原创分析"
+      },
+      {
+        "name": "彩盘推手",
+        "platform": "乐彩网",
+        "specialty": "走势",
+        "followers": "中",
+        "verified": true,
+        "note": "乐彩网原创分析"
+      },
+      {
+        "name": "乐透老手",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "风飞扬",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "瑶冰魄",
+        "platform": "彩宝贝",
+        "specialty": "定胆",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "燕归空",
+        "platform": "彩宝贝",
+        "specialty": "杀号",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "倪克斯",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "江南燕",
+        "platform": "彩宝贝",
+        "specialty": "和值遗漏",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "独胆天涯",
+        "platform": "彩宝贝",
+        "specialty": "独胆",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "海宝",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝十大专家"
+      },
+      {
+        "name": "攀登者",
+        "platform": "彩宝贝",
+        "specialty": "复式",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝专家, 多维度战绩可见"
+      },
+      {
+        "name": "程远",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩宝贝人气指数榜首"
+      },
+      {
+        "name": "青云",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩宝贝人气榜"
+      },
+      {
+        "name": "蓝色妖姬",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩宝贝人气榜"
+      },
+      {
+        "name": "火烈鸟",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝人气榜"
+      },
+      {
+        "name": "江湖彩神",
+        "platform": "彩宝贝",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝人气榜/前区杀六榜"
+      },
+      {
+        "name": "看胆很准",
+        "platform": "彩宝贝",
+        "specialty": "定胆",
+        "followers": "中",
+        "verified": true,
+        "note": "彩宝贝人气榜"
+      },
+      {
+        "name": "楚天歌",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩经网名家, 前区三胆榜常客"
+      },
+      {
+        "name": "巴山蜀水",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "彩经网名家"
+      },
+      {
+        "name": "青城剑",
+        "platform": "彩经网",
+        "specialty": "杀号",
+        "followers": "高",
+        "verified": true,
+        "note": "彩经网前区独胆/杀三码榜常客"
+      },
+      {
+        "name": "吉林胆王",
+        "platform": "彩经网",
+        "specialty": "独胆",
+        "followers": "高",
+        "verified": true,
+        "note": "彩经网前区双胆/三胆榜常客"
+      },
+      {
+        "name": "夕水正太",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩经网名家"
+      },
+      {
+        "name": "蛇年胆",
+        "platform": "彩经网",
+        "specialty": "定胆",
+        "followers": "中",
+        "verified": true,
+        "note": "彩经网前区独胆榜常客"
+      },
+      {
+        "name": "显神威",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩经网多维度上榜"
+      },
+      {
+        "name": "赞口不绝",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩经网前区榜常客"
+      },
+      {
+        "name": "雁过留声",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩经网前区榜常客"
+      },
+      {
+        "name": "韩氏",
+        "platform": "彩经网",
+        "specialty": "综合",
+        "followers": "中",
+        "verified": true,
+        "note": "彩经网前区榜常客"
+      },
+      {
+        "name": "莫晨风",
+        "platform": "新浪爱彩",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪爱彩号码专家"
+      },
+      {
+        "name": "沈梦蝶",
+        "platform": "新浪爱彩",
+        "specialty": "综合",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪爱彩号码专家"
+      },
+      {
+        "name": "慕白",
+        "platform": "8300.cn",
+        "specialty": "定胆/杀号",
+        "followers": "高(20万粉)",
+        "verified": true,
+        "note": "金牌大师, 近10期多维度战绩可见"
+      },
+      {
+        "name": "头奖刺客",
+        "platform": "8300.cn",
+        "specialty": "综合",
+        "followers": "高(2049万总命中)",
+        "verified": true,
+        "note": "平台认证大师"
+      },
+      {
+        "name": "嘲风",
+        "platform": "中彩网",
+        "specialty": "定位走势",
+        "followers": "高",
+        "verified": true,
+        "note": "中彩网26088期定位走势分析, 前区10码+后区4码"
+      },
+      {
+        "name": "昭明",
+        "platform": "中彩网",
+        "specialty": "前区综合",
+        "followers": "高",
+        "verified": true,
+        "note": "中彩网26088期前区综合点评, 15码+三胆"
+      },
+      {
+        "name": "徐芬领",
+        "platform": "新浪彩票",
+        "specialty": "重号分析",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪26088期预测, 5+2=09,10,19,30,34+02,06"
+      },
+      {
+        "name": "崔现东",
+        "platform": "新浪彩票",
+        "specialty": "邻孤传分析",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪26088期预测, 5+2=09,10,19,21,25+01,04"
+      },
+      {
+        "name": "云龙",
+        "platform": "新浪彩票",
+        "specialty": "012路/大复式",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪26088期预测, 5+2=03,08,16,25,28+05,06"
+      },
+      {
+        "name": "刘爱洋",
+        "platform": "新浪彩票",
+        "specialty": "奇偶比分析",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪26088期预测, 5+2=03,10,12,16,21+05,09"
+      },
+      {
+        "name": "金大玄",
+        "platform": "乐彩论坛",
+        "specialty": "前后区综合",
+        "followers": "中",
+        "verified": false,
+        "note": "乐彩论坛26088期前后区综合分析"
+      },
+      {
+        "name": "草庐居士",
+        "platform": "彩吧助手",
+        "specialty": "四分区选号/后区胆",
+        "followers": "高",
+        "verified": true,
+        "note": "彩吧助手26095期: 前区四分区推荐(一区03,05,06,08 二区12-18 三区22,25,26,27 四区29,32), 后区三码04,08,09; 单挑06,13,17,26,32+04,09"
+      },
+      {
+        "name": "海天",
+        "platform": "彩吧助手",
+        "specialty": "四分区选号/后区四码",
+        "followers": "高",
+        "verified": true,
+        "note": "彩吧助手26095期: 前区12码03,06,09,14,16,18,22,23,26,30,32,33, 后区02,04,08,10; 单挑03,09,18,22,33+04,10"
+      },
+      {
+        "name": "蕉太狼",
+        "platform": "一定牛",
+        "specialty": "前后区重点/杀码",
+        "followers": "高",
+        "verified": true,
+        "note": "一定牛26095期: 后区重点02,11; 前区杀8码03,04,10,12,13,16,19,26; 5+2=01,03,18,19,22+02,11"
+      },
+      {
+        "name": "苏树鹏",
+        "platform": "新浪体育",
+        "specialty": "定位走势/复式",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪体育26095期: 依前区大小比0:1推算小数/大数混合, 15+5单挑07,18,20,22,35+01,04"
+      },
+      {
+        "name": "蒋利",
+        "platform": "新浪体育",
+        "specialty": "三区比/前后区三胆",
+        "followers": "高",
+        "verified": true,
+        "note": "新浪体育26095期: 前区三胆06,07,20, 后区三胆04,05,10; 5+2=04,06,07,20,30+04,10"
+      },
+      {
+        "name": "威哥",
+        "platform": "今日头条",
+        "specialty": "三区比/龙头凤尾/重号",
+        "followers": "高",
+        "verified": false,
+        "note": "头条26094期: 三区比2:2:1、大小比1:4、重号关注26、连号12,13; 15+5=02,05,07,09,10,12,13,15,17,19,22,24,26,33,35+03,04,09,10,12"
+      },
+      {
+        "name": "元宝",
+        "platform": "今日头条",
+        "specialty": "龙头凤尾/冷热",
+        "followers": "高",
+        "verified": false,
+        "note": "头条26094期: 龙头07、凤尾31、二区升温18,22,23; 5+2=07,18,22,23,31+04,08"
+      }
+    ],
+    "grassroots": [
+      {
+        "name": "蓝瘦香菇",
+        "platform": "乐彩论坛",
+        "specialty": "冷热转换/区间/和值",
+        "followers": "中",
+        "verified": false,
+        "note": "乐彩论坛原创: 三大选号攻略+专业技术选号法"
+      },
+      {
+        "name": "湖城白鸽",
+        "platform": "乐彩论坛",
+        "specialty": "012路/遗漏",
+        "followers": "中",
+        "verified": false,
+        "note": "乐彩论坛大乐透综合预判"
+      },
+      {
+        "name": "容若哥",
+        "platform": "一起彩",
+        "specialty": "逆向流(杀大众第一眼)",
+        "followers": "中",
+        "verified": false,
+        "note": "逆向思维: 斜连/超最大遗漏"
+      },
+      {
+        "name": "九维交叉杀号法",
+        "platform": "今日头条",
+        "specialty": "九维交叉(区间/尾数/奇偶/大小/和值/跨度/重号/连号/余数)",
+        "followers": "未知",
+        "verified": false,
+        "note": "头条野路子, 自认娱乐"
+      }
+    ],
+    "data_sources": [
+      {
+        "name": "中国体彩网",
+        "url": "https://www.lottery.gov.cn/zst/dlt/",
+        "type": "官方数据",
+        "note": "官方开奖史+走势+遗漏, 唯一真源"
+      },
+      {
+        "name": "体彩开奖接口",
+        "url": "https://webapi.sporttery.cn",
+        "type": "官方数据",
+        "note": "getHistoryPageListV1 返回JSON, 最适合程序化拉取(参数待核实)"
+      },
+      {
+        "name": "北京体彩网",
+        "url": "https://www.bjlot.com.cn/dlt/dlt_history.shtml",
+        "type": "官方数据",
+        "note": "省中心镜像, 结构简单易抓"
+      },
+      {
+        "name": "新浪彩票走势图",
+        "url": "https://view.lottery.sina.com.cn/lotto/pc_zst/index?lottoType=dlt",
+        "type": "官方数据",
+        "note": "带连线高清走势图"
+      },
+      {
+        "name": "彩吧助手",
+        "url": "https://kjh.55128.cn/dlt-history-120.htm",
+        "type": "官方数据",
+        "note": "已算好和值/奇偶/跨度, 表格规整"
+      },
+      {
+        "name": "中彩网图表",
+        "url": "https://tubiao.zhcw.com",
+        "type": "官方数据",
+        "note": "可按年份取, 含遗漏分层"
+      },
+      {
+        "name": "彩宝贝",
+        "url": "https://www.78500.cn/dlt/",
+        "type": "官方数据",
+        "note": "大乐透专家排行榜/杀号榜常客, 结构化易抓"
+      },
+      {
+        "name": "500彩票网",
+        "url": "https://datachart.500.com/dlt/",
+        "type": "官方数据",
+        "note": "带遗漏/和值/跨度历史表, 表格规整"
+      },
+      {
+        "name": "双彩网",
+        "url": "https://www.shuangcw.com/dlt/",
+        "type": "官方数据",
+        "note": "大乐透开奖+走势+专家点评聚合"
+      }
+    ]
+  }
+}

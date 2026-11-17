@@ -1,42 +1,54 @@
-## Description: <br>
-简历生成技能（W工作室） guides users through structured resume information collection and produces Reactive Resume v2 JSON that can be imported into aicv.weinuo.work to create a polished resume PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+简历生成技能（W工作室）通过结构化信息收集生成 Reactive Resume v2 JSON, 可导入 aicv.weinuo.work 创建 PDF 简历。
 
-## Publisher: <br>
-[xk103295870-alt](https://clawhub.ai/user/xk103295870-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xk103295870-alt](https://clawhub.ai/user/xk103295870-alt)
 
-## Use Case: <br>
-External users and job seekers use this skill to provide resume details in a guided flow, choose a resume theme, and generate Reactive Resume v2 JSON, a PDF preview, and a markdown information backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users for sensitive resume information and later directs them to upload generated resume JSON to an external website, despite a local-only privacy statement in the artifact. <br>
-Mitigation: Review before installing if real personal details will be entered, minimize or use placeholder data when appropriate, and delete local JSON, PDF, and markdown backup files when they are no longer needed. <br>
+## Use Case:
 
+External users use this skill to collect resume details, generate a Reactive Resume v2 JSON file, and prepare supporting resume outputs for review, import, or export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xk103295870-alt/resume-gen-ws) <br>
-- [AI resume platform](https://aicv.weinuo.work) <br>
-- [Reactive Resume schema](https://rxresu.me/schema.json) <br>
-- [Reactive Resume Schema v2.0 reference](references/schema.md) <br>
-- [Resume generation template reference](references/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, guidance] <br>
-**Output Format:** [Guided text plus generated Reactive Resume v2 JSON, PDF preview, and markdown backup files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated resume content can contain sensitive personal details and may be imported into an external resume website.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill states resume data is processed locally while also directing users to upload generated resume JSON to an external import site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated JSON before upload and use the external aicv.weinuo.work workflow only when sharing the contained personal resume data is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xk103295870-alt/skills/resume-gen-ws)
+- [AI resume platform](https://aicv.weinuo.work)
+- [Reactive Resume schema](https://rxresu.me/schema.json)
+- [Reactive Resume](https://rxresu.me)
+- [Local Reactive Resume schema reference](references/schema.md)
+- [Local resume template reference](references/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, markdown, files]
+
+**Output Format:** [Structured prompts and generated Reactive Resume v2 JSON, with optional Markdown backup and PDF output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Resume outputs can contain personal contact details, education, work history, and other sensitive profile data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

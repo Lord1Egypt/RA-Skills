@@ -1,40 +1,57 @@
-## Description: <br>
-BOM与SOP校对 compares BOM and SOP spreadsheets, flags material name/specification, reference designator, and quantity differences, annotates the SOP file, appends BOM data, and generates a reconciliation report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BOM与SOP对比校对技能。支持多个BOM文件合并后与SOP对比，检测名称规格、位号、数量差异，在SOP文件中标注差异、追加BOM数据并生成报告。
 
-## Publisher: <br>
-[2656255594](https://clawhub.ai/user/2656255594) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2656255594](https://clawhub.ai/user/2656255594)
 
-## Use Case: <br>
-Manufacturing, engineering, and operations users use this skill to compare BOM files against SOP workbooks, including merged multi-BOM inputs, and receive highlighted discrepancies plus a reconciliation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive BOM/SOP manufacturing data may be cached locally or retained as derived reports. <br>
-Mitigation: Use isolated per-user or per-task cache locations, minimize retained derived data, and make retention explicit or opt-in. <br>
-Risk: Result files may be uploaded and sent through Feishu using local credentials. <br>
-Mitigation: Use scoped credentials, validate recipients, and require explicit confirmation before external sends. <br>
+## Use Case:
 
+Manufacturing, operations, and quality teams use this skill to compare one or more BOM spreadsheets against an SOP workbook, mark differences, append BOM reference data, and generate a reconciliation report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/2656255594/bom-sop-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Analysis, Text] <br>
-**Output Format:** [Annotated Excel workbook and reconciliation report with human-readable status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes .xlsx BOM and SOP files; supports multiple BOM files after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: frontmatter and release evidence) <br>
+Risk: Sensitive BOM/SOP workbooks could be exposed through cached files or Feishu file-sending behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly controlled workspace, least-privileged Feishu credentials, trusted recipients only, and explicit user approval before upload.
+
+Risk: Untrusted large XLSX or ZIP inputs could create processing and cleanup risk.
+
+Mitigation: Avoid untrusted large archives until archive-size, path, and cleanup controls are verified.
+
+Risk: Cached BOM/SOP data retention may be broader than needed for routine reconciliation.
+
+Mitigation: Clarify retention requirements and shorten or automate cleanup for cached workbook-derived data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2656255594/skills/bom-sop-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with file-processing commands and generated spreadsheet/report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces annotated SOP workbooks and reconciliation reports when supplied with compatible BOM/SOP spreadsheet inputs.]
+
+## Skill Version(s):
+
+2.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

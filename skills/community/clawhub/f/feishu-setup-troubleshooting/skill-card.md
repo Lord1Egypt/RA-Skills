@@ -1,43 +1,58 @@
-## Description: <br>
-Set up and troubleshoot Feishu or Lark messaging integration with Hermes Agent, including connection checks, access control, and common failure modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and troubleshoot Feishu or Lark messaging integration with Hermes Agent, including connection checks, access control, and common failure modes.
 
-## Publisher: <br>
-[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and troubleshoot Hermes Agent Feishu or Lark messaging integrations, including gateway health, access control, connection settings, and common failure modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with Feishu/Lark app secrets, encrypt keys, verification tokens, and access-control settings. <br>
-Mitigation: Store credentials securely, never commit them, and prefer explicit user allowlists for production deployments. <br>
-Risk: Troubleshooting logs may contain sensitive integration details or user data. <br>
-Mitigation: Review and redact logs before sharing them outside the deployment team. <br>
-Risk: Misconfigured Feishu or gateway allow rules can unintentionally block or broaden user access. <br>
-Mitigation: Verify both Feishu-level and gateway-level access-control settings after configuration changes. <br>
+## Use Case:
 
+Developers and operators use this skill to connect Hermes Agent to Feishu or Lark and diagnose bot response, permission, gateway, and configuration failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/feishu-setup-troubleshooting) <br>
-- [Publisher profile](https://clawhub.ai/user/xuxuclassmate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References Hermes CLI diagnostics and Feishu/Lark environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: frontmatter and server release evidence) <br>
+Risk: Troubleshooting can expose Feishu/Lark app secrets, encryption keys, verification tokens, or gateway logs to the local agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use production allowlists, avoid sharing logs that contain sensitive values, and keep secrets out of committed files.
+
+Risk: Restarting the Hermes gateway applies configuration changes and can interrupt message handling.
+
+Mitigation: Restart the gateway only when configuration changes are intentional and expected.
+
+Risk: Broad user access settings can allow unintended Feishu or Lark users to interact with the gateway.
+
+Mitigation: Prefer explicit allowed-user settings over allow-all settings for production deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/skills/feishu-setup-troubleshooting)
+- [Publisher profile](https://clawhub.ai/user/xuxuclassmate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the hermes CLI and Feishu/Lark environment configuration.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

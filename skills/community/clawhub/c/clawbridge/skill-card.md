@@ -1,45 +1,55 @@
-## Description: <br>
-ClawBridge is a mobile-first dashboard for OpenClaw agents that monitors real-time activity, tracks token costs, and lets users control cron tasks from a phone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBridge provides a mobile-first dashboard for OpenClaw agents, including real-time activity monitoring, token cost tracking, cron task control, and optional Cloudflare Tunnel remote access.
 
-## Publisher: <br>
-[dreamwing](https://clawhub.ai/user/dreamwing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dreamwing](https://clawhub.ai/user/dreamwing)
 
-## Use Case: <br>
-Developers and OpenClaw users use ClawBridge to install and operate a local mobile dashboard for agent monitoring, token cost visibility, and cron task control. The skill supports optional remote access through a Cloudflare tunnel when users need dashboard access away from the local network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The install and update flow executes shell code retrieved from GitHub. <br>
-Mitigation: Review the remote installer and source before running it, and use trusted release versions where possible. <br>
-Risk: The optional Cloudflare tunnel can expose the dashboard beyond localhost. <br>
-Mitigation: Treat the generated ACCESS_KEY like a password, avoid sharing tunnel URLs publicly, and disable the tunnel when remote access is not needed. <br>
-Risk: ClawBridge installs a persistent user-level service and stores local configuration and analytics data. <br>
-Mitigation: Stop or disable the service when it is not needed, and protect the generated .env file and local data directory. <br>
+## Use Case:
 
+Developers and operators use ClawBridge to monitor OpenClaw agent activity from a phone, review token costs, and trigger scheduled tasks through a local dashboard. Teams may optionally expose the dashboard remotely through a Cloudflare Tunnel.
 
-## Reference(s): <br>
-- [ClawBridge ClawHub release](https://clawhub.ai/dreamwing/clawbridge) <br>
-- [dreamwing publisher profile](https://clawhub.ai/user/dreamwing) <br>
-- [ClawBridge homepage](https://clawbridge.app) <br>
-- [ClawBridge README](https://github.com/dreamwing/clawbridge/blob/master/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include service-management steps, local dashboard access details, and optional tunnel setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Installation executes an unverified remote script under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it and prefer a pinned, verifiable release.
+
+Risk: The persistent dashboard service can become internet-reachable when Cloudflare Tunnel or Quick Tunnel is enabled.
+
+Mitigation: Enable remote access only when needed, protect the generated access key, and confirm how to stop and remove the user-level systemd service.
+
+## Reference(s):
+
+- [ClawBridge ClawHub listing](https://clawhub.ai/dreamwing/skills/clawbridge)
+- [ClawBridge homepage](https://clawbridge.app)
+- [ClawBridge README](https://github.com/dreamwing/clawbridge/blob/master/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces install, update, service-management, authentication, and optional tunnel setup guidance for a local Node.js dashboard.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact SKILL.md declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

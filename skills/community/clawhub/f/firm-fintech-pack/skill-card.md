@@ -1,40 +1,56 @@
-## Description: <br>
-Curated skill bundle for fintech startups, neobanks, payment processors, and wealth-management platforms that activates Finance, Legal, Engineering, and Compliance agents for AML/KYC, financial modeling, regulatory reporting, and payment infrastructure workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curated skill bundle for fintech startups, neobanks, payment processors, and wealth-management platforms that activates Finance, Legal, Engineering, and Compliance agents for AML/KYC, financial modelling, regulatory reporting, and payment infrastructure workflows.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and fintech teams use this skill to configure a multi-department agent firm for financial services workflows, including AML/KYC review, pricing analysis, regulatory reporting, payment infrastructure, audit, and incident-response planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requests broad multi-session authority in a sensitive financial context.
+
+Mitigation: Only grant session history, session sending, and session spawning with explicit approval, tenant isolation, redaction of customer and financial data, and audit logging.
+
+Risk: The companion install commands use mutable latest-version package resolution.
+
+Mitigation: Use pinned, reviewed versions or an internal approved registry before production deployment.
+
+Risk: Financial and regulatory review workflows may expose tier-1 sensitive data.
+
+Mitigation: Run regulatory reviews in read-only mode with production security controls, immutable audit trails, and sandboxed non-main sessions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and developers in fintech organizations use this skill to configure coordinated agent workflows for AML/KYC review, financial modeling, regulatory reporting, payment infrastructure, and related compliance-oriented delivery. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Fintech workflows may involve sensitive financial, customer, AML/KYC, regulatory, payment, or production-impacting decisions. <br>
-Mitigation: Keep read-only mode, audit logging, anonymization, and non-main session sandboxing enabled, and require human approval before any AML/KYC, regulatory filing, payment, customer-account, or production-impacting action. <br>
-Risk: Agent orchestration can propagate incorrect assumptions across Finance, Legal, Engineering, and Compliance workstreams. <br>
-Mitigation: Review outputs before execution or filing and use the skill as workflow guidance rather than an autonomous authority for regulated decisions. <br>
+**Output Format:** [Markdown with inline shell commands, JSON configuration, and workflow prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/romainsantoli-web/firm-fintech-pack) <br>
+**Other Properties Related to Output:** [Includes department activation guidance, companion skill install commands, configuration overlay examples, and structured workflow prompts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples, JSON configuration snippets, and structured workflow prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow guidance for agent orchestration; human approval is expected before regulated, payment, customer-account, filing, or production-impacting actions.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

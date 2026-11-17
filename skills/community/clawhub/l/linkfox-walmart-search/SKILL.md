@@ -149,6 +149,20 @@ Apply multiple filters for precise results:
 **Boundary judgment**: When users say "product research" or "competitor analysis" in the context of Walmart, if their need involves searching for current product listings, prices, ratings, or seller information, then this skill applies. If they are asking about advertising strategy, account metrics, or historical sales data, it does not apply.
 
 
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
+## 积分消耗规则
+
+消耗 15 积分。
+
+> 用户会因积分消耗而支付费用。请充分评估：当需要高频调用本技能，或用户对积分消耗量预期不足时，务必提醒用户，由用户决定是否继续。
+
 **Feedback:**
 
 Auto-detect and report feedback via the Feedback API when any of the following apply:

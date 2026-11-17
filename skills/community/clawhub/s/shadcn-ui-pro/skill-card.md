@@ -1,41 +1,49 @@
-## Description: <br>
-Use when building UI with shadcn/ui components, Tailwind CSS layouts, form patterns with react-hook-form and zod, theming, dark mode, sidebar layouts, mobile navigation, or any shadcn component question. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building UI with shadcn/ui components, Tailwind CSS layouts, form patterns with react-hook-form and zod, theming, dark mode, sidebar layouts, mobile navigation, or any shadcn component question.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement shadcn/ui interfaces with Tailwind CSS, react-hook-form, zod, theming, responsive navigation, overlays, and data display patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest `npx` or `npm` commands that modify a project or install packages. <br>
-Mitigation: Review package commands and their target project before running them. <br>
-Risk: The skill may activate on generic UI terms and provide shadcn/ui-specific guidance when another UI stack is intended. <br>
-Mitigation: Confirm that shadcn/ui, Tailwind CSS, and the related React form libraries match the target project before applying the guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement production UI patterns with shadcn/ui, Tailwind CSS, react-hook-form, and zod, including forms, layouts, overlays, navigation, theming, and dark mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/shadcn-ui-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, TypeScript, JSX, and CSS code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only implementation guidance; suggested package commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Suggested npm or npx commands may install or generate code from unpinned package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin shadcn and dependency versions where practical, run generators in a normal project sandbox without production secrets, and review generated component diffs before committing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/shadcn-ui-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include npm or npx commands and generated React, TypeScript, Tailwind CSS, react-hook-form, and zod examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

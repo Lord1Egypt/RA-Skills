@@ -1,49 +1,64 @@
-## Description: <br>
-Rewrite Chinese AI-generated or AI-polished drafts into natural, credible, genre-appropriate text while preserving meaning, genre fit, author voice, and factual boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites Chinese AI-generated or AI-polished drafts into natural, credible, genre-appropriate prose while preserving meaning and flagging unsupported claims.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-External users, writers, editors, and developers use this skill to diagnose Chinese AI-style writing patterns and produce a publishable rewrite for business, content, professional, or personal writing. It is intended for editorial quality, authenticity, and genre fit, not detector evasion, factual research, or pure translation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Style edits can unintentionally change nuance in academic, legal, compliance, or fact-sensitive Chinese text. <br>
-Mitigation: Review outputs carefully, preserve terms, numbers, dates, citations, commitments, names, and qualifiers, and use minimal edits when precision matters more than style. <br>
-Risk: The skill could be misused as a detector-evasion or AI-score optimization tool. <br>
-Mitigation: Do not promise to bypass AI detectors or optimize detector scores; redirect requests toward clarity, specificity, author voice, and authenticity. <br>
-Risk: Humanizing sparse drafts can create pressure to invent data, sources, product facts, or personal experiences. <br>
-Mitigation: Narrow unsupported claims or mark gaps with a needed-evidence note instead of fabricating facts, sources, credentials, or experiences. <br>
+## Use Case:
 
+External users and employees use this skill to revise Chinese drafts for business, content, professional, academic, and personal genres. It diagnoses AI-like patterns, calibrates genre and author voice, rewrites the text, and marks gaps when facts, sources, or personal details are missing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarezoe/chinese-humanizer) <br>
-- [Chinese AI Tells](references/chinese-ai-tells.md) <br>
-- [Genre Playbook](references/genre-playbook.md) <br>
-- [Rewrite Strategies](references/rewrite-strategies.md) <br>
-- [Quality Rubric and Self-Audit](references/quality-rubric.md) <br>
-- [Safety and Integrity](references/safety-and-integrity.md) <br>
-- [Voice Calibration](references/voice-calibration.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Chinese diagnostic notes, a rewritten text version, concise edit rationale, and missing-evidence flags when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output only the rewrite when the user asks for direct editing without explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Rewrites may introduce unsupported facts, events, capabilities, sources, results, or personal details while attempting to add specificity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user-supplied evidence for added specifics, verify every new claim, and replace unsupported details with clear missing-information markers.
+
+Risk: Users may try to use the skill for detector evasion or academic-integrity violations.
+
+Mitigation: Keep the skill focused on clarity, specificity, voice, and authenticity; refuse requests to bypass AI detectors or fabricate credentials, experiences, or citations.
+
+Risk: High-stakes legal, compliance, academic, or technical text can be harmed if precise terms, numbers, citations, or qualifiers are loosened for style.
+
+Mitigation: Preserve exact terms, numbers, dates, citations, commitments, and qualifiers, and use minimal editing when precision is more important than style.
+
+## Reference(s):
+
+- [Chinese Humanizer ClawHub listing](https://clawhub.ai/clarezoe/skills/chinese-humanizer)
+- [Chinese AI Tells](references/chinese-ai-tells.md)
+- [Genre Playbook](references/genre-playbook.md)
+- [Rewrite Strategies](references/rewrite-strategies.md)
+- [Quality Rubric](references/quality-rubric.md)
+- [Voice Calibration](references/voice-calibration.md)
+- [Safety and Integrity](references/safety-and-integrity.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a concise diagnosis, a publishable Chinese rewrite, high-value edit notes, and missing-fact markers when needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

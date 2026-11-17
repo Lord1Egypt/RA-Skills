@@ -1,46 +1,62 @@
-## Description: <br>
-Expert skill for writing FreeCAD Python scripts, macros, and automation for FreeCAD models, parametric objects, Part, Mesh, Sketcher, GUI, workbench, and Coin3D tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert skill for writing FreeCAD Python scripts, macros, and automation for FreeCAD models, parametric objects, Part/Mesh/Sketcher scripts, workbench tools, PySide GUI dialogs, Coin3D scenegraph manipulation, and related FreeCAD Python API tasks.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate and review FreeCAD Python scripts, macros, parametric objects, GUI tools, workbenches, and CAD automation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated FreeCAD Python macros or workbench examples may write files, export models, install workbenches, or run at startup. <br>
-Mitigation: Review generated Python before execution and run only macros and workbenches from trusted sources. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate FreeCAD Python scripts, macros, and automation for CAD modeling, geometry creation, parametric objects, GUI tools, workbenches, and advanced FreeCAD workflows.
 
-## Reference(s): <br>
-- [FreeCAD Scripts on ClawHub](https://clawhub.ai/jhauga/freecad-scripts) <br>
-- [FreeCAD Scripting Fundamentals](references/scripting-fundamentals.md) <br>
-- [FreeCAD Geometry and Shapes](references/geometry-and-shapes.md) <br>
-- [FreeCAD Parametric Objects](references/parametric-objects.md) <br>
-- [FreeCAD GUI and Interface](references/gui-and-interface.md) <br>
-- [FreeCAD Workbenches and Advanced Topics](references/workbenches-and-advanced.md) <br>
-- [FreeCAD Python scripting tutorial](https://wiki.freecad.org/Python_scripting_tutorial) <br>
-- [FreeCAD scripting basics](https://wiki.freecad.org/FreeCAD_Scripting_Basics) <br>
-- [FreeCAD creating and manipulating geometry](https://wiki.freecad.org/Manual:Creating_and_manipulating_geometry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and FreeCAD scripting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FreeCAD Python macros, workbench snippets, GUI examples, CAD automation steps, and file import/export guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated or referenced FreeCAD macros can execute local Python code, including code loaded from macro paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated macros and macro paths before execution, and do not run macros from untrusted sources.
+
+Risk: Examples can save, export, delete objects, or install workbench files that run during FreeCAD startup.
+
+Mitigation: Run generated scripts first in a disposable FreeCAD document or isolated workspace, and inspect file-writing, object-deletion, export, and startup-install behavior before reuse.
+
+## Reference(s):
+
+- [FreeCAD Scripting Fundamentals](references/scripting-fundamentals.md)
+- [FreeCAD Geometry and Shapes](references/geometry-and-shapes.md)
+- [FreeCAD Parametric Objects](references/parametric-objects.md)
+- [FreeCAD GUI and Interface](references/gui-and-interface.md)
+- [FreeCAD Workbenches and Advanced Topics](references/workbenches-and-advanced.md)
+- [FreeCAD Python scripting tutorial](https://wiki.freecad.org/Python_scripting_tutorial)
+- [FreeCAD Scripting Basics](https://wiki.freecad.org/FreeCAD_Scripting_Basics)
+- [FreeCAD Creating and manipulating geometry](https://wiki.freecad.org/Manual:Creating_and_manipulating_geometry)
+- [FreeCAD Creating parametric objects](https://wiki.freecad.org/Manual:Creating_parametric_objects)
+- [FreeCAD Creating interface tools](https://wiki.freecad.org/Manual:Creating_interface_tools)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with FreeCAD Python code blocks, macro examples, shell commands, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include executable FreeCAD macros or scripts that should be reviewed before running.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

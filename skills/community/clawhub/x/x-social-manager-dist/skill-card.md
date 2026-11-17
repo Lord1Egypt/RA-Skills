@@ -1,53 +1,70 @@
-## Description: <br>
-Personal X/Twitter social media manager for crafting, reviewing, and optimizing posts, threads, replies, DMs, content strategy, engagement, growth, scheduling, and profile optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Social Manager Dist helps an agent craft, review, optimize, and schedule X/Twitter posts, threads, replies, DMs, and growth strategy with account research and local strategy memory.
 
-## Publisher: <br>
-[rabden](https://clawhub.ai/user/rabden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rabden](https://clawhub.ai/user/rabden)
 
-## Use Case: <br>
-External creators, developers, founders, and professionals use this skill to plan X/Twitter strategy, draft posts and replies, analyze engagement, manage outreach, and keep a personalized content memory. It can also operate twitter-cli after explicit approval for account actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, reply, DM, delete, like, follow, or schedule actions through an authenticated X/Twitter account. <br>
-Mitigation: Require fresh explicit approval for every account action and review the final text, character count, target account, and command before execution. <br>
-Risk: The skill depends on account-level authentication through twitter-cli, browser session state, or TWITTER_AUTH_TOKEN and TWITTER_CT0. <br>
-Mitigation: Preinstall and review uv and twitter-cli yourself, confirm which X account is authenticated, and avoid exposing credentials outside the local agent environment. <br>
-Risk: Persistent profile, memory, and real-replies archives can contain personal writing patterns, goals, performance data, and social graph details. <br>
-Mitigation: Review generated strategy files periodically, remove sensitive entries, and purge the memory and reply archive when the skill is no longer needed. <br>
-Risk: First-run setup may install CLI tooling and create or update local agent/sub-agent configuration. <br>
-Mitigation: Review proposed installs and local file changes before allowing setup to proceed, especially in shared or production workspaces. <br>
+## Use Case:
 
+External users, creators, developers, founders, and professionals use this skill to build and operate an X/Twitter content workflow, including onboarding, profile analysis, post and reply drafting, content planning, engagement review, and DM outreach. The skill can prepare public posting commands but requires explicit user approval before posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rabden/x-social-manager-dist) <br>
-- [Publisher profile](https://clawhub.ai/user/rabden) <br>
-- [Declared source repository](https://github.com/rabden/X-twitter-social-manager-skill) <br>
-- [README](README.md) <br>
-- [Twitter CLI Reference](references/cli-reference.md) <br>
-- [Content Strategy Reference](references/content-strategy.md) <br>
-- [Hook Library](references/hook-library.md) <br>
-- [X Algorithm Playbook](references/algorithm-playbook.md) <br>
-- [Voice Anti-Patterns](references/voice-anti-patterns.md) <br>
-- [Sub-Agent Definitions](references/subagent-definitions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with optional shell commands and local file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce drafts, reply cards, content plans, DM templates, research summaries, account analysis, and proposed CLI actions for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill can operate with an authenticated X account and prepare public posts, replies, likes, reposts, follows, or DMs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any public action, review all generated text and commands, and restrict activation to intended social-media tasks.
+
+Risk: The setup flow can install command-line tools and includes an automatic curl-to-shell installation path.
+
+Mitigation: Review or remove the automatic install path, install dependencies manually when possible, and pin or verify tool sources before use.
+
+Risk: The skill stores identity, voice, audience, reply history, leads, and performance notes in local plaintext markdown files.
+
+Mitigation: Inspect the generated files regularly, avoid storing unnecessary sensitive data, and delete or redact local memory and strategy files when no longer needed.
+
+Risk: Generated social strategy or engagement advice could be inaccurate, outdated, or misaligned with the user's brand.
+
+Mitigation: Treat drafts and analysis as proposals, verify claims before posting, and update the profile, memory, and strategy files with corrected preferences and outcomes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rabden/skills/x-social-manager-dist)
+- [README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+- [Twitter CLI Reference](artifact/references/cli-reference.md)
+- [Content Strategy Reference](artifact/references/content-strategy.md)
+- [Hook Library](artifact/references/hook-library.md)
+- [X Algorithm Playbook](artifact/references/algorithm-playbook.md)
+- [Voice Anti-Patterns](artifact/references/voice-anti-patterns.md)
+- [Memory Log](artifact/references/memory.md)
+- [User Profile](artifact/references/user-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands, structured post and reply drafts, character counts, approval prompts, and strategy-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local profile, memory, planning, and strategy files and may propose twitter-cli commands for approved actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Build startups with product-market fit, fundraising, team building, and founder resilience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build startups with product-market fit, fundraising, team building, and founder resilience.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders and startup operators use this skill for concise guidance on validating problems, finding product-market fit, fundraising, hiring, execution, pivoting, and resilience. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Startup, fundraising, hiring, financial, and company-building suggestions may be incomplete or unsuitable for a specific legal, tax, investment, employment, or business context. <br>
-Mitigation: Treat outputs as decision-support prompts and review them with qualified advisors and current company data before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/founder) <br>
+## Use Case:
 
+External users and startup founders use this skill for concise coaching on customer validation, product-market fit, fundraising, hiring, execution, pivots, runway management, and founder resilience.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and concise advisory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only; no code, tool use, credential access, network activity, or persistence according to ClawScan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Startup coaching may be mistaken for legal, tax, investment, employment compliance, or medical advice.
+
+Mitigation: Treat the skill's guidance as informal coaching and consult qualified professionals for regulated or health-related decisions.
+
+Risk: Broad fundraising, hiring, runway, and product-market-fit heuristics may not fit a specific company's context.
+
+Mitigation: Validate recommendations against current company data, customer feedback, runway, jurisdiction, and advisor input before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/founder)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown-style natural language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tools, data access, persistence, or hidden behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

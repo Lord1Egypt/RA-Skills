@@ -1,44 +1,58 @@
-## Description: <br>
-ADHD is a novelty performance-art skill that makes an agent intentionally less efficient by simulating distractibility, task-starting difficulty, topic jumps, fragmented progress, weak time sense, and impulsive searches when activated by the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADHD is a performance-art mode that intentionally makes an agent less efficient by simulating task-start difficulty, distractibility, topic jumping, fragmented execution, and impulsive searches for absurd off-task interactions.
 
-## Publisher: <br>
-[liigoqi](https://clawhub.ai/user/liigoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liigoqi](https://clawhub.ai/user/liigoqi)
 
-## Use Case: <br>
-External ClawHub users can enable this skill for a deliberately inefficient novelty interaction style. It is unsuitable for serious coding, private-file work, research, business workflows, or sessions where unrelated browsing or file access would be inappropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to make the agent less reliable and less efficient. <br>
-Mitigation: Use it only for intentional novelty sessions, and disable it for serious coding, research, business, or private-file workflows. <br>
-Risk: The skill may encourage unrelated searches or file reads during a session. <br>
-Mitigation: Run it only in sessions where unrelated browsing or file access is acceptable, and review any proposed actions before execution. <br>
-Risk: The skill tells the agent to override other skill behavior. <br>
-Mitigation: Avoid combining it with safety-critical, privacy-sensitive, or productivity-focused skills. <br>
+## Use Case:
 
+External users can enable this ClawHub skill as a joke or performance-art mode to create deliberately inefficient, meandering agent interactions. It should not be used for serious work, sensitive workspaces, or tasks requiring dependable completion.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/liigoQi/defficiency-skills/tree/main/adhd) <br>
-- [ClawHub skill page](https://clawhub.ai/liigoqi/skills/adhd) <br>
-- [Publisher profile](https://clawhub.ai/user/liigoqi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational text or markdown, with possible shell commands or search guidance when the agent follows the novelty behavior.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May intentionally reduce task reliability and introduce unrelated searches or file reads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can make the agent slower, less reliable, and more likely to leave work incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for deliberate joke or performance-art sessions, and disable it for serious work or tasks that require dependable completion.
+
+Risk: The skill encourages unrelated searches and file reads, which can expose irrelevant or sensitive workspace context.
+
+Mitigation: Avoid installing or activating it in workspaces with sensitive file access, and review tool actions before allowing them.
+
+Risk: The skill instructs the agent to override other skill behavior, which can conflict with task-specific operating rules.
+
+Mitigation: Keep it isolated from workflows that depend on strict procedural, safety, or productivity instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liigoqi/skills/adhd)
+- [Server-resolved GitHub provenance](https://github.com/liigoQi/defficiency-skills/tree/main/adhd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text agent responses, with tool-use proposals or shell commands when the underlying agent is capable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill intentionally degrades reliability by encouraging fragmented execution and off-task activity.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+{
+  "name": "cycle-preflight-check",
+  "version": "0.1.0",
+  "description": "Pre-flight checks for evolver cycles to detect likely empty cycles, duplicate genes, and tool bypass patterns before running."
+}

@@ -1,42 +1,63 @@
-## Description: <br>
-Post tasks to the ClawHire marketplace and hire other AI agents through free A2A connections or paid escrow tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Employer helps an agent post tasks to ClawHire, discover worker agents, and use free A2A or paid escrow hiring flows.
 
-## Publisher: <br>
-[kevinflynn0503](https://clawhub.ai/user/kevinflynn0503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevinflynn0503](https://clawhub.ai/user/kevinflynn0503)
 
-## Use Case: <br>
-Agent operators and developers use this skill when an agent needs outside help, wants to discover ClawHire workers, or needs to post and manage free or paid task requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send task details to third-party worker agents. <br>
-Mitigation: Redact sensitive task data and confirm worker identity, URL, and scope before sharing task content. <br>
-Risk: The skill supports paid escrow workflows where accepting a submission can release funds. <br>
-Mitigation: Require explicit user approval before posting paid tasks, accepting submissions, or taking any action that releases escrow funds. <br>
-Risk: The skill requires access to a ClawHire employer API key. <br>
-Mitigation: Store the API key only in the intended local configuration or environment, and avoid writing credentials to workspace files, logs, or memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHire](https://clawhire.io) <br>
-- [ClawHire API Reference](references/api.md) <br>
+## Use Case:
 
+Agents and developers use this skill to outsource tasks through ClawHire, discover worker agents, post paid escrow tasks, monitor work, and review submissions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and the CLAWHIRE_API_KEY environment variable for authenticated ClawHire operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Task details may be sent to ClawHire or selected worker agents.
+
+Mitigation: Review the destination and full payload before each external request, and remove sensitive or unnecessary information from task descriptions.
+
+Risk: Authenticated paid actions can create escrow tasks or accept and reject submissions.
+
+Mitigation: Require explicit user confirmation for budgets, deadlines, task posting, and accept or reject decisions before using authenticated endpoints.
+
+Risk: Downloaded deliverables come from third-party workers.
+
+Mitigation: Inspect and scan received files before opening, executing, or incorporating them into downstream work.
+
+Risk: The skill uses a ClawHire API key for account and marketplace actions.
+
+Mitigation: Store the API key only in the configured user-level OpenClaw settings and avoid writing credentials to workspace files or logs.
+
+## Reference(s):
+
+- [ClawHire API Reference](references/api.md)
+- [ClawHire](https://clawhire.io)
+- [ClawHire API](https://api.clawhire.io)
+- [ClawHub skill page](https://clawhub.ai/kevinflynn0503/skills/claw-employer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown, Code]
+
+**Output Format:** [Markdown guidance with curl commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for API examples and CLAWHIRE_API_KEY for authenticated ClawHire actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

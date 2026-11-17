@@ -1,40 +1,56 @@
-## Description: <br>
-Scores website leads from audit signals, assigns priority tiers, and writes the results to Google Sheets for lead-list workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores website leads from website audit signals using a weighted rubric, assigns Hot/Warm/Lukewarm/Cold priority tiers, and writes the results to Google Sheets.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Sales, growth, and operations teams use this skill to prioritize website leads after auditing and contact enrichment. It scores each lead, explains the matching issues, assigns a Hot/Warm/Lukewarm/Cold tier, and prepares Google Sheets output for follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a Google Sheet containing lead contact data and make it publicly writable. <br>
-Mitigation: Remove automatic public writer sharing, use a private pre-created spreadsheet or explicit named-account sharing, and confirm that storing lead emails and phone numbers in Google Sheets is acceptable for the workflow. <br>
-Risk: Google Sheets and Drive access uses a service account that can read or modify spreadsheet resources available to it. <br>
-Mitigation: Use a dedicated low-privilege Google service account and restrict the credentials to only the spreadsheets needed for this workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lead Scorer on ClawHub](https://clawhub.ai/maverick-software/lead-scorer-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/maverick-software) <br>
+## Use Case:
 
+Sales, marketing, and lead generation teams use this skill after website auditing and contact enrichment to prioritize website leads and export scored prospects to Google Sheets for follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces lead scores, priority tiers, issue labels, score breakdowns, and Google Sheets rows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: New Google Sheets may be created with public writer access.
+
+Mitigation: Keep sheets private or share only with specific trusted accounts, and remove any public anyone writer shares.
+
+Risk: Untrusted lead data can be interpreted as formulas when written to Google Sheets.
+
+Mitigation: Write lead values as RAW or sanitize formula prefixes before appending rows.
+
+Risk: Service-account credential files can expose Google Sheets and Drive access if stored in shared locations.
+
+Mitigation: Keep credential files outside shared folders and prefer narrower Google Drive permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/lead-scorer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration]
+
+**Output Format:** [Markdown guidance with Python code snippets and Google Sheets row data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google Sheets credentials and can append scored lead rows with tier labels and score breakdowns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

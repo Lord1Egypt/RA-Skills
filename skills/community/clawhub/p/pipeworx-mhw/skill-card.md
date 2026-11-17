@@ -1,42 +1,55 @@
-## Description: <br>
-MHW MCP — Monster Hunter World data (mhw-db.com, free, no auth) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MHW MCP - Monster Hunter World data (mhw-db.com, free, no auth).
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and external users can connect an agent to a remote MCP server for Monster Hunter World data lookups, including monsters, weapons, armor, and skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The remote MCP service may receive lookup requests and related context. <br>
-Mitigation: Use it for public Monster Hunter World lookups and avoid sending unrelated sensitive information. <br>
-Risk: The connection example installs mcp-remote@latest at setup time. <br>
-Mitigation: Pin a trusted mcp-remote package version in stricter environments. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Monster Hunter World data through the Pipeworx MHW MCP tools, including monsters, weapons, armor, and skills.
 
-## Reference(s): <br>
-- [Pipeworx MHW Pack](https://pipeworx.io/packs/mhw) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [Pipeworx MHW MCP Gateway](https://gateway.pipeworx.io/mhw/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [MCP tool responses and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; requests are handled by a remote MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup runs a mutable npm package through the MCP bridge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, use a lockfile or controlled install process, and review the package before installation.
+
+Risk: The MCP client may receive more local access than the connector needs.
+
+Mitigation: Run the MCP client with only the local access required for the Monster Hunter World data connector.
+
+## Reference(s):
+
+- [Pipeworx MHW Pack](https://pipeworx.io/packs/mhw)
+- [Pipeworx](https://pipeworx.io)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-mhw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON configuration block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is required; setup uses an npm-based MCP bridge.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

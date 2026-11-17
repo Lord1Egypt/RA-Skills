@@ -1,38 +1,55 @@
-## Description: <br>
-Monitors Vienna virus signals from wastewater and sentinel public health sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virus Monitor helps agents summarize public virus-monitoring signals for Vienna from Austrian wastewater and sentinel surveillance sources.
 
-## Publisher: <br>
-[pasogott](https://clawhub.ai/user/pasogott) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pasogott](https://clawhub.ai/user/pasogott)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve and summarize Vienna-focused SARS-CoV-2, influenza, and RSV monitoring signals from documented Austrian public health data sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A separate virus-monitor executable could fetch data or behave differently from the documented public health monitoring workflow. <br>
-Mitigation: Before running any executable, confirm its source and verify that it only retrieves the documented public Austrian health data sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pasogott/virus-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/pasogott) <br>
+## Use Case:
 
+Developers and external users can use this skill to monitor SARS-CoV-2, influenza, and RSV activity for Vienna using public Austrian health dashboards and reports. Its output should be treated as informational monitoring data, not medical advice or an official diagnosis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for a JSON virus-monitoring summary with source status and Vienna-specific respiratory virus fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter is 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake public virus-monitoring summaries for medical advice or official diagnosis.
+
+Mitigation: Present results as informational surveillance data and direct users to qualified health professionals or official public health guidance for decisions.
+
+Risk: External public health dashboards may be delayed, unavailable, or updated on different schedules.
+
+Mitigation: Communicate source freshness and reporting delays when summarizing trends.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pasogott/skills/virus-monitor)
+- [Nationales Abwassermonitoring](https://abwassermonitoring.at)
+- [MedUni Wien Sentinel System](https://viro.meduniwien.ac.at)
+- [AGES Abwasser Dashboard](https://abwasser.ages.at)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries depend on external public health dashboards that may update weekly or have reporting delays.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

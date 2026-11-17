@@ -1,47 +1,62 @@
-## Description: <br>
-飞书多维表格（Bitable）的创建、查询、编辑和管理工具，包含 27 种字段类型支持、高级筛选、批量操作和视图管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书多维表格（Bitable）的创建、查询、编辑和管理工具，包含 27 种字段类型支持、高级筛选、批量操作和视图管理。
 
-## Publisher: <br>
-[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3152557994-ship-it](https://clawhub.ai/user/a3152557994-ship-it)
 
-## Use Case: <br>
-Developers and operators use this skill to create, query, update, and manage Feishu Bitable apps, tables, fields, views, and records. It is especially useful for batch imports, schema-sensitive record updates, and troubleshooting common Bitable field-format errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents through data-changing Feishu Bitable operations, including bulk updates and deletes. <br>
-Mitigation: Use least-privilege Feishu access, confirm the target app and table before changes, and review bulk update or delete requests before execution. <br>
-Risk: Delete operations may be irreversible. <br>
-Mitigation: Treat deletes as permanent and prefer listing or exporting affected records before deletion. <br>
-Risk: Incorrect field value formats can cause failed writes or incorrect data. <br>
-Mitigation: List field metadata before writing records and follow the documented per-field value formats for people, dates, select fields, URLs, and attachments. <br>
+## Use Case:
 
+Developers and agents use this skill to create and manage Feishu Bitable apps, tables, fields, views, records, filters, batch operations, and attachment workflows. It is intended for workflows that need structured guidance for reading, writing, importing, updating, and deleting Bitable data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/a3152557994-ship-it/feishu-bitable-suite) <br>
-- [字段 Property 配置详解](references/field-properties.md) <br>
-- [记录值数据结构详解](references/record-values.md) <br>
-- [使用场景完整示例](references/examples.md) <br>
-- [飞书开放平台字段编辑指南](https://go.feishu.cn/s/672BSzVyo03) <br>
-- [飞书开放平台多维表格记录数据结构](https://go.feishu.cn/s/6lY28723w04) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, code] <br>
-**Output Format:** [Markdown with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Feishu Bitable operation guidance, request shapes, field-format rules, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide writes, deletes, batch operations, schema changes, and attachment uploads that persist changes to Feishu Bitable business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before executing those actions, confirm the exact app_token, table_id, records, fields, action, and file contents with the user.
+
+Risk: Delete operations may not be recoverable and default tables can contain empty records that pollute later imports.
+
+Mitigation: Review target record IDs before deletion and list records first when cleaning default table rows before importing data.
+
+Risk: Incorrect field value formats can cause failed writes or malformed records, especially for people, dates, select fields, URLs, and attachments.
+
+Mitigation: List field metadata before writing records, match each value to its field type, and use the bundled record value and field property references for validation.
+
+## Reference(s):
+
+- [字段 Property 配置详解](references/field-properties.md)
+- [记录值数据结构详解](references/record-values.md)
+- [使用场景完整示例](references/examples.md)
+- [飞书开放平台 - 字段编辑指南](https://go.feishu.cn/s/672BSzVyo03)
+- [飞书开放平台 - 多维表格记录数据结构](https://go.feishu.cn/s/6lY28723w04)
+- [飞书开放平台 - 多维表格文档](https://open.feishu.cn/document/server-docs/docs/bitable-v1/bitable-overview)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON request examples and parameter notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu Bitable tool names, action names, field schemas, record value formats, filters, batch-operation constraints, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

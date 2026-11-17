@@ -1,44 +1,59 @@
-## Description: <br>
-Automatically uploads selected local image files to Stardots.io cloud storage, lists stored files, and returns access links using configured API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically uploads local image files to Stardots.io cloud storage, lists uploaded files, and returns access links using configured Stardots API credentials.
 
-## Publisher: <br>
-[keepchen](https://clawhub.ai/user/keepchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keepchen](https://clawhub.ai/user/keepchen)
 
-## Use Case: <br>
-Developers and end users use this skill to back up explicitly selected image files to a configured Stardots.io space and retrieve uploaded file links or file listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are sent to Stardots.io, which can expose sensitive content depending on Stardots.io retention and link-sharing behavior. <br>
-Mitigation: Upload only intended non-sensitive images unless Stardots.io retention, access, and sharing controls have been reviewed. <br>
-Risk: Broad or generic file requests can lead the agent to list or upload unintended files. <br>
-Mitigation: Prefer explicit commands with specific image paths or list requests for the configured Stardots.io space. <br>
-Risk: The skill depends on Stardots.io API credentials for authenticated uploads and file listing. <br>
-Mitigation: Store API credentials only in the platform's secure configuration and rotate them if access is no longer needed. <br>
+## Use Case:
 
+Developers and end users can use this skill to back up selected local images to a configured Stardots.io space and inspect recently uploaded files from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keepchen/stardots-backup-skill) <br>
-- [Stardots.io](https://stardots.io) <br>
-- [Stardots.io API documentation](https://stardots.io/en/documentation/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like text responses with upload status, URLs, help text, and file-list entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include uploaded file URL, filename, file size, target space, or file-list data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Runtime HTTP dependencies have confirmed credential-handling and upload-related vulnerabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and update vulnerable runtime dependencies before relying on it in sensitive workflows.
+
+Risk: The skill uploads selected local image files to Stardots.io using the configured account and space.
+
+Mitigation: Confirm the local file path and destination space before upload, and avoid sensitive images unless the Stardots.io account and data handling are approved for that content.
+
+Risk: Uploads depend on API credentials stored in the agent configuration.
+
+Mitigation: Use scoped Stardots API credentials, rotate them if exposed, and restrict skill access to users allowed to upload to the configured space.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keepchen/skills/stardots-backup-skill)
+- [Stardots.io](https://stardots.io)
+- [Stardots OpenAPI documentation](https://stardots.io/en/documentation/openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, API calls]
+
+**Output Format:** [Plain text status messages with file metadata, URLs, and error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns upload success or failure details, uploaded file URLs, file lists, and suggested retry actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, skill.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

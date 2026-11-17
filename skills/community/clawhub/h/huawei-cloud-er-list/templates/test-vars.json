@@ -1,0 +1,36 @@
+{
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "ER ListEnterpriseRouters 企业路由器列表 (read-only)",
+      "command": "hcloud ER ListEnterpriseRouters --cli-region={region} --limit=1",
+      "expected": "JSON list of enterprise routers or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "own-script smoke: list_er.py --help",
+      "command": "python3 $PWD/scripts/list_er.py --help",
+      "expected": "usage text",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-03",
+      "name": "own-script syntax: ensure_cli.sh",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "own-script syntax: install_cli.sh",
+      "command": "bash -n $PWD/scripts/install_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ]
+}

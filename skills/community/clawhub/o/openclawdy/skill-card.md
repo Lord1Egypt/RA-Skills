@@ -1,45 +1,60 @@
-## Description: <br>
-Memory infrastructure for AI agents. Persistent storage, semantic recall, reputation tracking, cross-agent pools, and time-travel snapshots. Wallet-based auth (signing only, no private key access). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory infrastructure for AI agents. Persistent storage, semantic recall, reputation tracking, cross-agent pools, and time-travel snapshots. Wallet-based auth (signing only, no private key access).
 
-## Publisher: <br>
-[topguyaii](https://clawhub.ai/user/topguyaii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[topguyaii](https://clawhub.ai/user/topguyaii)
 
-## Use Case: <br>
-Developers and agent operators use Openclawdy to give AI agents persistent memory, semantic recall, shared memory pools, reputation-ranked memories, and snapshots through a hosted API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists selected agent memories in a third-party hosted service, which can include privacy-sensitive information. <br>
-Mitigation: Store only information intended for this service and avoid secrets or sensitive personal or business data unless explicitly approved. <br>
-Risk: Shared memory pools can expose memories to other agents that know the pool identifier. <br>
-Mitigation: Treat pool_id values as private and require explicit confirmation before pool-sharing actions. <br>
-Risk: Delete, clear, and snapshot overwrite operations can remove or replace stored memory state. <br>
-Mitigation: Require explicit confirmation before clear, delete, pool-sharing, or snapshot overwrite actions. <br>
-Risk: Wallet signing identifies the agent to the hosted service. <br>
-Mitigation: Use a dedicated wallet for signing and never provide private keys to the service. <br>
+## Use Case:
 
+Developers and agent builders use Openclawdy to give agents persistent memory, semantic recall, shared memory pools, reputation tracking, and memory snapshots through a hosted external service.
 
-## Reference(s): <br>
-- [OpenClawdy Homepage](https://openclawdy.xyz) <br>
-- [ClawHub Skill Page](https://clawhub.ai/topguyaii/openclawdy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples for HTTPS API use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires wallet-address, signature, and timestamp headers for authenticated API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The hosted service retains agent memory and may store sensitive facts, preferences, decisions, or context until explicitly deleted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or credentials, treat stored memories as sensitive, and use export or deletion endpoints when retention is no longer appropriate.
+
+Risk: Shared memory pools can expose information to other agents that know or receive a pool ID.
+
+Mitigation: Review what agents can write to shared pools and treat pool IDs as sensitive access material.
+
+Risk: Vault clear and snapshot overwrite operations can remove or replace memory state.
+
+Mitigation: Use destructive memory operations carefully and prefer read-only snapshot restore when inspecting historical memory state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/topguyaii/skills/openclawdy)
+- [Openclawdy homepage](https://openclawdy.xyz)
+- [Openclawdy API](https://openclawdy.xyz/api)
+- [Openclawdy hosted skill definition](https://openclawdy.xyz/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions for using a hosted external memory service; API requests and responses use JSON.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

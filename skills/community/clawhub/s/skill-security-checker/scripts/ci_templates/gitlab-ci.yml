@@ -1,0 +1,22 @@
+stages:
+  - security
+
+skill-security-scan:
+  stage: security
+  image: python:3.11-slim
+  script:
+    - python scripts/audit.py . --format json -o report.json --skip-update
+    - |
+      SCORE=$(python -c "import json; print(json.load(open('report.json'))['score'])")
+      echo "Quality Score: $SCORE"
+      if [ "$SCORE" -lt 70 ]; then
+        echo "Score below threshold (70), failing."
+        exit 1
+      fi
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+    when: always
+  only:
+    - merge_requests
+    - main

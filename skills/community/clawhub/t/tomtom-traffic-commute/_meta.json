@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn757rf32jcpb65marxajt0p6s88c8sg",
-  "slug": "tomtom-traffic-commute",
-  "version": "1.0.0",
-  "publishedAt": 1781083836727
+  "scripts": {
+    "tomtom-traffic.sh": "Main CLI tool — queries TomTom Routing API with traffic data"
+  },
+  "examples": {
+    "commute-email.sh": "Complete commute email workflow (TomTom + AgentMail)"
+  }
 }

@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn70tx725606ywwb5gfj0vpxjx83admr",
-  "slug": "payroll-data-audit",
+  "name": "payroll-data-audit",
   "version": "7.4.1",
-  "publishedAt": 1780650157485
+  "description": "工资数据审核系统，基于确定性规则引擎 + Python 脚本执行。全量对齐SOP v1.0（20260603文档）。v7.4: 交付流程加固 — 新增 deliver_to_feishu.py 自动化交付（验证文件完整性→上传11个文件到飞书云盘→创建飞书文档→生成交付消息），LLM不可干预/不可跳过。v7.3.1: 修复5个Agent bug — FR-001/FR-002浮点精度、RL-005 NaN比较、RL-007跨月匹配用姓名代号、POL-001/003/005逻辑反转、字段检查可选字段误报。v7.3: 全面对齐SOP。v7.2: _get_pay_month()中文日期支持。",
+  "author": "tuobadaidai",
+  "category": "data-apis",
+  "updated": "2026-06-05",
+  "architecture": "OOP (class PayrollRulesEngine) + 鲁棒性层 + SOP 对齐",
+  "dependencies": [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "openpyxl>=3.1.0"
+  ],
+  "tests": "scripts/tests/ (pytest + coverage ≥80%)",
+  "ci": ".github/workflows/test.yml",
+  "sop_coverage": "95% (41/43 items)",
+  "changelog": "v7.2.0: 修复P0日期解析bug — _get_pay_month() 支持中文格式（\"2026年4月\"/\"2026年04月\"/\"202604\"/\"2026/04\"），RL-003/RL-007排除逻辑完全生效。测试fixture改用真实中文日期格式，42测试全过 | v7.1.1: 修复v7.1.0未落地问题 — _check_red_line统一exclusion_mask追踪(所有分支)、RL-002/003/005全改用\"状态\"列优先、_build_judgment传入exclusion_mask使excluded计数正确、RL-004将_get_exemption_mask结果传给judgment、RL-007新员工+调薪转正排除计入exclusion_mask"
 }

@@ -1,44 +1,59 @@
-## Description: <br>
-Helps content creators, operators, marketers, and media teams turn Xiaohongshu topics, audiences, tone, and selling points into concise copywriting diagnostics, action suggestions, and reusable deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+爆款文案助手适合内容创作者、运营、市场营销、内容媒体在用户提出“小红书怎么写才有人看”这类问题，需要快速拆解目标、判断重点并形成可执行结果时使用，帮助基于输入材料生成摘要、诊断结论、行动建议和可复用交付物。
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-External content creators, marketing teams, and operations teams use this skill to prepare Xiaohongshu note ideas, titles, positioning, and next-step recommendations from a product, service, topic, audience, account persona, and selling point. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided Xiaohongshu copywriting inputs to ai-skills.ai using an AI Skills API key. <br>
-Mitigation: Use it only when that service's data handling is acceptable, and avoid submitting secrets, customer data, or confidential campaign material. <br>
-Risk: Generated copywriting advice may be incomplete, inaccurate, or misaligned with brand, platform, or regulatory requirements. <br>
-Mitigation: Review outputs before publishing and validate claims, promotional language, and platform compliance against the intended campaign context. <br>
+## Use Case:
 
+Content creators, operations teams, marketers, and media teams use this skill to turn a Xiaohongshu topic, audience, tone, note type, selling point, and account persona into copywriting summaries, diagnostic conclusions, action suggestions, and reusable deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/xhs-viral-copywriter) <br>
-- [AI Skills quick start](https://github.com/allinherog-star/ai-skills/tree/main#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B) <br>
-- [AI Skills](https://ai-skills.ai) <br>
-- [form-schema.json](references/form-schema.json) <br>
-- [skill.json](references/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [JSON result envelope containing generated copywriting summaries, items, and artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires topic input and can use optional tone, note type, audience, selling point, and account persona fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: User-provided topics, audience details, selling points, account persona, and enabled profile context are sent to the AI Skills service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS AISKILLS_BASE_URL and avoid submitting secrets, unpublished confidential plans, regulated personal data, or other sensitive material.
+
+Risk: The runner requires AISKILLS_API_KEY for authentication.
+
+Mitigation: Keep the API key private, provide it through environment variables, and do not paste it into prompts, logs, or shared configuration.
+
+Risk: Generated copywriting guidance may be incomplete, inaccurate, or unsuitable for a brand or regulated claim.
+
+Mitigation: Review generated summaries, recommendations, and publishable copy before external use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allinherog-star/skills/xhs-viral-copywriter)
+- [Form schema](artifact/references/form-schema.json)
+- [Skill metadata](artifact/references/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON runner responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runner responses use a ResultEnvelope contract expected to include summary, items, and artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

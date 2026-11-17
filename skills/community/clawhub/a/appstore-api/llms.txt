@@ -1,0 +1,42 @@
+# Apple App Store API — ReplyNodes
+
+Read-only Apple App Store data for AI agents. Search iOS apps and retrieve App Store metadata, iOS
+app ratings, App Store reviews, developer/publisher catalogs, privacy labels, similar apps and
+competitors as structured JSON. Use it for App Store search, ASO research, iOS app review analysis,
+ratings lookup, developer lookup, app competitor research and mobile app competitive analysis.
+
+Base URL: https://api.replynodes.com
+Auth: `Authorization: Bearer $REPLYNODES_API_KEY`, sent only to https://api.replynodes.com — the
+claim/poll protocol is embedded in `SKILL.md` (§Authentication).
+Discovery (no key): https://api.replynodes.com/v1/capabilities
+
+## Resolve first
+
+Users name apps, the API takes identifiers. Search, then use `data[].id` (`ios:app:<digits>`, strip the
+prefix for the numeric App Store ID) or `data[].bundle_id`. Never ask for a track ID when search can
+resolve it.
+
+## Intent → operation
+
+| Intent | Call |
+| --- | --- |
+| Find an app by name / keyword | `GET /v1/appstore/search?term=<query>&num=20` |
+| App metadata | `GET /v1/appstore/app?id=<id>` or `?appId=<bundleId>` |
+| Ratings + star histogram | `GET /v1/appstore/ratings?id=<id>` |
+| Reviews (analysis) | `GET /v1/appstore/reviews?id=<id>&page=1&sort=mostRecent` |
+| Developer / publisher | `GET /v1/appstore/developer?devId=<numeric id>` |
+| Privacy labels | `GET /v1/appstore/privacy?id=<id>` (degraded — see limitations) |
+| Similar apps / competitors | `GET /v1/appstore/similar?id=<id>` |
+| Keyword ideas (ASO) | `GET /v1/appstore/suggest?term=<seed>` |
+| Storefront collections | `GET /v1/appstore/list?collection=topfreeapplications&category=6017&country=us` (empty in testing) |
+
+## Limits that matter
+
+- Read-only public data: no writes, purchases, accounts, App Store Connect or review submission.
+- `reviews` page 1–10, `sort` `mostRecent`|`mostHelpful`, `search` `num` 1–50, `list` `num` 1–200.
+- `devId` must be numeric; path-style routes (`/v1/appstore/apps/{id}`) are not deployed (404).
+- Repeated identical requests return a replay envelope instead of the payload — vary an optional param.
+- `privacy` returned `502` and `list` returned `[]` in the 2026-09-12 live audit; report failures.
+- Missing counters are `null`, never `0`. No ranking/download/search-volume estimates.
+
+Full detail: `SKILL.md`, `references/endpoints.md`, `references/live-audit.md`.

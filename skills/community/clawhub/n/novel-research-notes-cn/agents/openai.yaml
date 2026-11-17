@@ -1,0 +1,8 @@
+interface:
+  display_name: "小说考据资料卡"
+  short_description: "将用户资料整理为可追溯的小说设定事实、写作建议与缺项清单"
+  default_prompt: "使用 $novel-research-notes-cn。请基于我提供的材料或官方链接，为这个设定问题生成一张带来源定位的小说考据资料卡；不要补造事实，资料不足请列出缺项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

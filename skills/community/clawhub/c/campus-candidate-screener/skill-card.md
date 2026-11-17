@@ -1,43 +1,58 @@
-## Description: <br>
-Screens campus recruiting candidates against role requirements and produces explainable shortlists with candidate details, match scores, recommendation levels, and review reasons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens campus recruiting candidates against a role's responsibilities, education, skills, and hiring requirements, then produces an explainable shortlist with candidate details, match scores, recommendation levels, and review reasons.
 
-## Publisher: <br>
-[linuoxu](https://clawhub.ai/user/linuoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuoxu](https://clawhub.ai/user/linuoxu)
 
-## Use Case: <br>
-HR teams and hiring reviewers use this skill to screen campus recruiting candidates against job responsibilities, education and major requirements, skills, and hiring constraints. It helps produce reviewable candidate rankings, recommendation levels, rejection or follow-up reasons, and next-step guidance for interview outreach or manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated shortlists may expose candidate contact details and other sensitive personal information if shared too broadly. <br>
-Mitigation: Install only for authorized recruiting use, restrict outputs to HR or hiring reviewers, and ask the agent to mask phone numbers or email addresses unless full details are needed for outreach. <br>
-Risk: Candidate ranking could reflect non-job-related or sensitive attributes if those are included in the input. <br>
-Mitigation: Use only role-related criteria such as education requirements, major, skills, projects, internships, certificates, language ability, and job responsibility match; route uncertain cases to human review. <br>
-Risk: Incomplete candidate information may be mistaken for a poor match. <br>
-Mitigation: Mark missing fields as not provided and classify potentially qualified candidates with missing evidence for follow-up or manual review rather than automatic rejection. <br>
+## Use Case:
 
+HR recruiters and hiring teams use this skill to compare campus candidates with role requirements and generate an explainable shortlist for interview outreach or human review.
 
-## Reference(s): <br>
-- [Campus Candidate Screener release page](https://clawhub.ai/linuoxu/campus-candidate-screener) <br>
-- [Campus candidate scoring rubric](references/scoring-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and concise narrative recommendations, typically in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role requirement parsing, candidate summaries, scores, recommendation levels, review reasons, missing-information flags, and HR next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Candidate records may include personal contact details and other sensitive hiring data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only candidate data the organization is authorized to process, and redact or omit phone and email until interview outreach is needed.
+
+Risk: Screening output could be mistaken for a final hiring decision.
+
+Mitigation: Keep final hiring decisions under human review and use the skill's recommendations only as explainable screening support.
+
+Risk: Incomplete candidate information could be misread as a poor match.
+
+Mitigation: Mark missing fields as not provided and route uncertain cases to supplemental information collection or manual review.
+
+## Reference(s):
+
+- [Campus Candidate Screener ClawHub page](https://clawhub.ai/linuoxu/skills/campus-candidate-screener)
+- [Scoring rubric](references/scoring-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and prose in Chinese by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes candidate summaries, match scores, recommendation levels, missing-information flags, and HR next-step guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

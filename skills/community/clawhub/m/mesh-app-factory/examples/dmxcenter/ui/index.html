@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>MsgCenter</title>
+</head>
+<body><div id="app" v-cloak><router-view></router-view></div></body>
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script type="module">
+import Language from "./language.js"
+import DateInput from "/assets/v3/components/date_input.js"
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+import ConfirmDialog from "/assets/v3/components/confirm_dialog.js"
+import UserSelector from "/assets/v3/components/user_selector.js"
+import MsgSender from "./msg_sender.js"
+import MsgDialog from "./msgdlg.js"
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+
+//router定义
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+{path:'/home', component:()=>import('./home.js')},
+{path:'/customer', component:()=>import('./customer.js')},
+{path:'/devices', component:()=>import('./devices.js')},
+{path:'/products', component:()=>import('./products.js')},
+{path:'/errreqs', component:()=>import('./errreqs.js')},
+{path:'/excess', component:()=>import('./excess.js')},
+{path:'/tmpls', component:()=>import('./tmpls.js')},
+{path:'/reports', component:()=>import('./reports.js')}
+]});
+
+//常量定义
+const icons={
+ customer:"svguse:/assets/imgs/meshicons.svg#company",
+ service:"svguse:/assets/imgs/meshicons.svg#build",
+ payment:"svguse:/assets/imgs/meshicons.svg#payment"
+};
+
+//service定义
+const service = {
+name:"dmxcenter",N_PAGE:15,icons:icons,
+role:'',/*在服务中的角色*/
+products:[],
+msgtmpls:[],
+custDtl:{},
+homePage:"/home",
+getTmpls(refresh){
+    if(!refresh){
+        return new Promise(resolve=>{
+            resolve(this.msgtmpls);
+        });
+    }
+
+    var url="/api/msgtpl/list";
+    return request({method:"GET",url:url}, this.name).then(resp=>{
+        if(resp.code!=RetCode.OK || !('data' in resp) || !('tpls' in resp.data)) {
+            Console.info("request templates failed:" + resp.code + ",info:" + resp.info);
+            this.msgtmpls=[];
+        } else {
+            this.msgtmpls=resp.data.tpls;
+        }
+        return this.msgtmpls;
+    });
+},
+getProducts(refresh){
+    if(!refresh){
+        return new Promise(resolve=>{
+            resolve(this.products);
+        });
+    }
+    
+    var url="/api/product/list";
+    return request({method:"GET",url:url}, this.name).then(resp=>{
+        if(resp.code!=RetCode.OK || !('data' in resp) || !('products' in resp.data)) {
+            Console.info("request products failed:" + resp.code + ",info:" + resp.info);
+            this.products=[];
+        } else {
+            var dt=new Date();
+            var prts=[];
+            for(var p of resp.data.products) {
+                dt.setTime(p.createAt*60000);
+                p.createAt=date2str(dt);
+                prts.push(p);
+            }
+            this.products=prts;
+        }
+        return this.products;
+    });
+},
+getRole() {
+    if(this.role) {
+        return new Promise(resolve=>{
+            resolve(this.role);
+        });
+    }
+    
+    var url="/power/getrole?service="+this.name;
+    return request({method:"GET", url:url}, SERVICE_USER).then(resp=>{
+        if(resp.code!=RetCode.OK) {
+            Console.warn("request "+url+" failed:" + resp.code + ",info:" + resp.info);
+            this.role='customer';
+        } else {
+            this.role=resp.data.role;
+        }
+        return this.role;
+    });
+},
+getCustDtl() {
+    if(this.custDtl.id&&this.custDtl.id>0) {
+        return new Promise(resolve=>{
+            resolve(this.custDtl);
+        });
+    }
+    
+    var url="/customer/detail";
+    return request({method:"GET",url:url}, this.name).then(resp =>{
+        if(resp.code!=RetCode.OK) {
+            this.custDtl={};
+            Console.warn("request "+url+" failed:" + resp.code + ",info:" + resp.info);
+        } else {
+            this.custDtl=resp.data;
+            var dt=new Date();
+            dt.setTime(resp.data.createAt*60000);
+            this.custDtl.createAt=date2str(dt);
+            this.homePage=this.custDtl.id==0?"/home":"/customer?id="+this.custDtl.id;
+        }
+        return this.custDtl;
+    })
+},
+go_back() { //返回，在页面中通过service.go_back调用
+    router.back();
+},
+jumpTo(url) {
+    router.push(url);
+}
+};
+
+//app主体定义
+const app = Vue.createApp({
+provide:{tags:tags, service:service, icons:icons},
+created(){
+    service.getCustDtl().then(dtl=> {
+        service.getRole().then(role=> {
+            console.info("dtl:" + dtl + ",role:" + role);
+            this.$router.push(service.homePage).catch(err => {err});
+        })
+    });
+},
+setup() {
+    //声明全局函数，在webview中调用，实现按回退按钮回退历史页面，如果无历史，则退出应用
+    window.sys_go_back = () => {
+        Console.info("current page:" + router.currentRoute.value.path);
+        if(router.currentRoute.value.path!=service.homePage) {
+            router.back();
+            return true;
+        }
+        return false;
+    }
+}
+});
+
+app.use(Quasar);
+app.use(router);
+//注册全局组件
+app.component('component-alert-dialog', AlertDialog);
+app.component('component-confirm-dialog', ConfirmDialog);
+app.component('component-date-input', DateInput);
+app.component('component-user-selector', UserSelector);
+app.component('component-msg-sender', MsgSender);
+app.component('component-msg-dialog', MsgDialog);
+
+//启动APP
+app.mount('#app');
+</script>
+<script src="/assets/v3/echarts.js"></script>
+</html>

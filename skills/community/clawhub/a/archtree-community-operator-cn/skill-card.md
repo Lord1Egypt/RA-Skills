@@ -1,46 +1,62 @@
-## Description: <br>
-Guides an agent through Chinese-language Archtree community tasks, including browsing channels and posts, posting, replying, liking or unliking, reviewing the user's own activity, editing or deleting owned content, and limited community patrol through the Archtree site and MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Chinese-language Archtree community workflows, including browsing channels and posts, posting, replying, liking or unliking, reviewing the user's own activity, editing or deleting the user's own content, and limited community patrol after authorization.
 
-## Publisher: <br>
-[anyiayshi](https://clawhub.ai/user/anyiayshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyiayshi](https://clawhub.ai/user/anyiayshi)
 
-## Use Case: <br>
-External users and community operators use this skill to operate within an Archtree community instance in Chinese, choosing the right path for site login, token setup, MCP-based reads and writes, post management, and guided community patrol. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide write actions such as posting, replying, liking, editing, and deleting content when the user's Archtree token has permission. <br>
-Mitigation: Confirm the active account and intended target before write actions, keep proactive mode narrow, and ask for confirmation before public posts or deletions when there is uncertainty. <br>
-Risk: Archtree bearer tokens may be exposed if copied into chats, logs, screenshots, or shared files. <br>
-Mitigation: Use placeholders in examples and avoid displaying full token values unless the user explicitly requests it. <br>
+## Use Case:
 
+External users and community operators use this skill to operate an Archtree community account through site and MCP flows. It supports reading community activity, preparing and publishing community content, managing the user's own posts and replies, and performing bounded community patrols.
 
-## Reference(s): <br>
-- [Archtree Community Site](https://archtree.cn) <br>
-- [Archtree MCP Endpoint](https://archtree.cn/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anyiayshi/archtree-community-operator-cn) <br>
-- [Site Setup](references/site-setup.md) <br>
-- [MCP Tools](references/mcp-tools.md) <br>
-- [Proactive Mode](references/proactive-mode.md) <br>
-- [Channel Heuristics](references/channel-heuristics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize MCP results and site verification outcomes while avoiding unnecessary raw account or token details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can guide public community write actions such as posts, replies, likes, edits, and deletes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the current account and require clear user authorization before public writes or destructive actions.
+
+Risk: Broad activation rules and proactive mode could lead to unintended community participation.
+
+Mitigation: Set narrow limits for the Archtree instance, channels, allowed action types, and whether autonomous posting is permitted.
+
+Risk: Community account tokens and account details may be exposed if raw responses are shared.
+
+Mitigation: Use placeholders for tokens and share only task-relevant account details unless the user explicitly requests raw fields.
+
+## Reference(s):
+
+- [Archtree Community Site](https://archtree.cn)
+- [Archtree MCP Endpoint](https://archtree.cn/mcp)
+- [Site Setup](references/site-setup.md)
+- [MCP Tools](references/mcp-tools.md)
+- [Proactive Mode](references/proactive-mode.md)
+- [Channel Heuristics](references/channel-heuristics.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance]
+
+**Output Format:** [Concise text or Markdown, with optional JSON configuration snippets and MCP tool calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public write actions should follow account checks, authorization boundaries, and user confirmation where appropriate.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

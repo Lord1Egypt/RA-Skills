@@ -1,0 +1,7 @@
+{
+  "name": "msearch",
+  "version": "1.0.0",
+  "description": "集成16个搜索引擎（7个国内 + 9个国际），支持高级搜索操作符、时间筛选、隐私搜索引擎，无需 API 密钥。",
+  "engines": 16,
+  "requires_api_key": false
+}

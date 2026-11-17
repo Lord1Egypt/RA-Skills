@@ -1,8 +1,8 @@
 ---
-name: pet-friendly-hotel
-display_name: 宠物友好酒店
+name: 宠物友好酒店
+display_name: "宠物友好酒店"
 description: 宠物友好酒店入住政策查询，覆盖亚朵/全季/桔子等连锁品牌，附带航司宠物托运、铁路携带政策和证件办理指南，零配置即装即用。暑期带宠旅行住宿，全国宠物友好酒店搜索
-version: 1.0.4
+version: 1.0.6
 tags: [宠物友好酒店, 带宠物住宿, 宠物托运, 宠物出行, 带猫带狗]
 tools:
   - name: check_pet_flight

@@ -1,43 +1,57 @@
-## Description: <br>
-Story generation pipeline skill for multi-episode continuous generation, graph management, AI quality checks, and human confirmation before continuation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Story generation pipeline skill. Supports multi-episode continuous generation, graph management, AI quality check + human confirmation dual control mechanism.
 
-## Publisher: <br>
-[hexidyg](https://clawhub.ai/user/hexidyg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexidyg](https://clawhub.ai/user/hexidyg)
 
-## Use Case: <br>
-External creators and developers use Shorts Builder to manage serialized story generation workflows, including episode prompts, quality review, story graph state, pause/resume, and human approval between episodes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted pipeline ID can cause local graph storage to write outside the intended graph folder. <br>
-Mitigation: Use only skill-generated pipeline IDs until the package validates pipeline_id against a safe identifier pattern and resolves graph paths under data/graphs. <br>
-Risk: Story pipeline state and generated content may include private or sensitive story material. <br>
-Mitigation: Avoid sensitive private material and review stored pipeline data before sharing or deploying the skill. <br>
-Risk: Stored story graph or pipeline data may be difficult to recover if modified or deleted unintentionally. <br>
-Mitigation: Add deletion confirmation or recovery before operational use, and keep backups of important pipeline state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexidyg/shorts-builder) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [AI quality review template](artifact/templates/review_template.md) <br>
+## Use Case:
 
+External creators and developers use Shorts Builder to plan and continue serialized short-form story episodes with graph-backed continuity, AI quality review prompts, and human confirmation before proceeding.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown prompts and previews with JSON status and review objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces story episode generation prompts, review prompts, pipeline status, and graph-backed continuity guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local graph storage can be misdirected through graph or pipeline ID handling to access JSON files outside the intended data folder.
+
+Mitigation: Restrict pipeline IDs to a safe allowlist and verify resolved graph paths remain under the graph storage directory before use in shared or automated environments.
+
+Risk: Generated story text is reused in later prompts and may contain untrusted or misleading instructions.
+
+Mitigation: Treat generated story content as untrusted context, review episode outputs before continuation, and avoid placing secrets or privileged instructions in story prompts.
+
+Risk: Story pipeline and review state are persisted locally.
+
+Mitigation: Avoid storing confidential story material or personal data unless local retention is acceptable, and clear pipeline state when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexidyg/skills/shorts-builder)
+- [Publisher profile](https://clawhub.ai/user/hexidyg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, guidance]
+
+**Output Format:** [Markdown story episode drafts, prompt text, and JSON review/status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local pipeline and graph state; prompts and example content are mostly Chinese-language unless directed otherwise.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.skills/cad-file-reader/schemas/qto-project-v1.schema.json",
+  "title": "qto-project/v1 联动契约（底座 cad-file-reader）",
+  "description": "在 cad-file-reader/v0 识别候选之上追加项目主键/草稿类型/专业与占位字段。旧 v0 输出无需本表；本表只约束新输出。",
+  "type": "object",
+  "required": ["qto_spec", "project_key", "draft_type", "specialty"],
+  "properties": {
+    "qto_spec": {"const": "qto-project/v1"},
+    "qto_version": {"type": "string"},
+    "project_key": {
+      "type": "object",
+      "required": ["project", "building", "floor", "zone", "room", "specialty", "source", "review_required"],
+      "properties": {
+        "project": {"type": "string"},
+        "building": {"type": "string"},
+        "floor": {"type": "string"},
+        "zone": {"type": "string"},
+        "room": {"type": "string"},
+        "specialty": {"type": "string"},
+        "source": {"enum": ["explicit", "auto", "file"]},
+        "review_required": {"type": "boolean"},
+        "source_evidence": {"type": ["object", "null"]}
+      }
+    },
+    "draft_type": {"enum": ["概算", "物资计划", "draft_type_pending"]},
+    "specialty": {"type": "string"},
+    "placeholder": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "object", "required": ["kind"], "properties": {"kind": {"enum": ["not_installed"]}, "note": {"type": "string"}}}
+      ]
+    },
+    "producer": {"type": "object"},
+    "contract": {
+      "type": "object",
+      "description": "cad-file-reader/v0 契约；由 scripts/cad_validate.py 与 qto_validate.py 具体校验"
+    }
+  },
+  "additionalProperties": true
+}

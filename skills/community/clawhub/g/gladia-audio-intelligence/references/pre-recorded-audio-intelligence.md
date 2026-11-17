@@ -12,7 +12,6 @@ Detailed configuration reference for all audio intelligence features available o
 - Subtitles (SRT/VTT)
 - Custom Vocabulary
 - PII Redaction
-- Chapterization
 - Summarization
 - Audio-to-LLM
 - Custom Spelling
@@ -31,7 +30,6 @@ Detailed configuration reference for all audio intelligence features available o
 | Subtitles (SRT/VTT)      |     Yes      |  No  | `subtitles`                |
 | Custom vocabulary        |     Yes      | Yes  | `custom_vocabulary`        |
 | PII redaction            |     Yes      |  No  | `pii_redaction`            |
-| Chapterization           |     Yes      | Yes  | `chapterization`           |
 | Summarization            |     Yes      | Yes  | `summarization`            |
 | Audio-to-LLM             |     Yes      |  No  | `audio_to_llm`             |
 | Custom spelling          |     Yes      | Yes  | `custom_spelling`          |
@@ -177,33 +175,6 @@ Automatically detects and redacts personally identifiable information. Pre-recor
 - `policy`: `mask` (replace with `[REDACTED]`) or `tag` (wrap with entity type markers)
 - `entities`: which PII types to redact
 
-## Chapterization
-
-Segments audio into chapters with headlines and summaries.
-
-```json
-{
-  "chapterization": true
-}
-```
-
-Result:
-
-```json
-{
-  "chapterization": {
-    "results": [
-      {
-        "headline": "Project status update",
-        "summary": "Team discussed progress on Q2 deliverables...",
-        "start": 0.0,
-        "end": 120.5
-      }
-    ]
-  }
-}
-```
-
 ## Summarization
 
 Generates concise summaries of the audio content.
@@ -238,6 +209,8 @@ Run custom LLM prompts against the transcript. Pre-recorded only.
 ```
 
 Result: `result.audio_to_llm.results[]` — one response per prompt.
+
+Chapterization is discontinued: the `chapterization` flag is accepted but ignored. To split audio into chapters, add a prompt such as "Split the transcript into chapters with a headline, a summary, and start/end timestamps for each".
 
 ## Custom Spelling
 
@@ -298,7 +271,6 @@ All features can be enabled simultaneously. Enable only what you need to minimiz
 - [Translation](https://docs.gladia.io/chapters/audio-intelligence/translation)
 - [Custom Vocabulary](https://docs.gladia.io/chapters/audio-intelligence/custom-vocabulary)
 - [Summarization](https://docs.gladia.io/chapters/audio-intelligence/summarization)
-- [Chapterization](https://docs.gladia.io/chapters/audio-intelligence/chapterization)
 - [Sentiment Analysis](https://docs.gladia.io/chapters/audio-intelligence/sentiment-analysis)
 - [NER](https://docs.gladia.io/chapters/audio-intelligence/named-entity-recognition)
 - [Subtitles](https://docs.gladia.io/chapters/audio-intelligence/subtitles)

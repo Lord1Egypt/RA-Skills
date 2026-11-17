@@ -1,46 +1,60 @@
-## Description: <br>
-Routes incoming tasks into six thinking scenarios, selects the highest-priority reasoning tools, and verifies whether the resulting conclusion is explainable, example-backed, and free of obvious gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes a user's task into one of six scenarios, applies a prioritized sequence of thinking frameworks, and checks whether the resulting conclusion is clear, example-backed, and logically sound.
 
-## Publisher: <br>
-[wukaifeng704-cell](https://clawhub.ai/user/wukaifeng704-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukaifeng704-cell](https://clawhub.ai/user/wukaifeng704-cell)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill as a task-routing layer for decision-making, learning, writing, prioritization, crisis response, and brainstorming. It helps an agent choose structured thinking methods such as first principles, inversion, SMART goals, quadrant prioritization, and SCQA before presenting conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes under-scoped handoffs to external workflow or memory systems. <br>
-Mitigation: Only enable Memory_Bus or layout/render integrations after confirming what data is sent, where it is stored, and how it can be inspected or deleted. <br>
-Risk: The crisis-mode workflow includes an approval-bypass instruction. <br>
-Mitigation: Keep confirmations in place for external actions, publishing, file or account changes, and irreversible steps. <br>
-Risk: As a thinking-framework skill, its output can influence decisions without independently proving correctness. <br>
-Mitigation: Use it as a reasoning aid and review conclusions before acting on them. <br>
+## Use Case:
 
+External users and agents use this skill to classify planning, learning, writing, prioritization, crisis, or ideation tasks and select an appropriate thinking framework sequence. It is most useful when a user wants structured reasoning guidance rather than a domain-specific tool integration.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/wukaifeng704-cell/scenario-first-thinking) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/wukaifeng704-cell) <br>
-- [Six Scenario Routing](artifact/references/six-scenario-routing.md) <br>
-- [SCQA Writing Template](artifact/references/scqa-template.md) <br>
-- [Eight Tool Handbook](artifact/references/tool-handbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text reasoning guidance with prioritized steps and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce task classifications, tool sequences, reasoning checks, SCQA outlines, prioritized task lists, and action recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill references memory and publishing/layout pipelines that are not defined in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before any persistent memory write, publishing action, or layout pipeline invocation.
+
+Risk: The crisis-mode guidance says to skip normal approval.
+
+Mitigation: Keep host approval gates in force and review proposed external commands or state-changing actions before execution.
+
+Risk: Installer behavior can change across ClawHub versions.
+
+Mitigation: Use a pinned ClawHub installer version when deploying the skill.
+
+## Reference(s):
+
+- [Scenario First Thinking on ClawHub](https://clawhub.ai/wukaifeng704-cell/skills/scenario-first-thinking)
+- [SCQA Template](references/scqa-template.md)
+- [Six Scenario Routing](references/six-scenario-routing.md)
+- [Tool Handbook](references/tool-handbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured plain text with task classification, selected frameworks, reasoning steps, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external APIs or MCP tools are identified in the artifact evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

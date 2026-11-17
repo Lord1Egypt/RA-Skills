@@ -1,41 +1,49 @@
-## Description: <br>
-Security scanner for OpenClaw skills that detects suspicious patterns before execution, assigns risk scores, and supports file integrity checks through static analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills. Detects malware and backdoors before execution, scores risk levels, and monitors file integrity through static code analysis.
 
-## Publisher: <br>
-[ParthGhumatkar](https://clawhub.ai/user/ParthGhumatkar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[parthghumatkar](https://clawhub.ai/user/parthghumatkar)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit installed OpenClaw skills before execution, identify risky patterns, and generate risk scores or SHA256 inventories for local review and CI checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads installed skill files and may report local paths, hashes, and risk flags that are sensitive in some environments. <br>
-Mitigation: Keep scan roots limited to directories intended for audit and avoid sharing full scan output unless paths and hashes are safe to disclose. <br>
-Risk: Static, pattern-based scanning can miss runtime behavior or flag legitimate code as suspicious. <br>
-Mitigation: Use results as one review signal alongside manual code review, trusted-source checks, and runtime controls for high-risk skills. <br>
+## Use Case:
 
+Developers and engineers use Claw-lint to run local static audits of installed OpenClaw skills before execution, review risk scores and audit flags, and generate text or JSON summaries for operational review.
 
-## Reference(s): <br>
-- [Claw-lint ClawHub page](https://clawhub.ai/ParthGhumatkar/claw-lint) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal table output or JSON scan results with optional SHA256 file inventory.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports filtering by skill name, minimum risk score, strict mode, and scan byte limits; JSON output requires Python 3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill may overstate its security guarantees, especially around documented SHA256 inventory output and CI/CD JSON examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as heuristic review signals, manually review high-impact skills, and verify the active implementation before relying on inventory baselines or CI/CD gates.
+
+## Reference(s):
+
+- [Claw-lint ClawHub skill page](https://clawhub.ai/parthghumatkar/skills/claw-lint)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Terminal text tables or JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON output requires Python 3; SHA256 inventory behavior should be verified before operational reliance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Create Korean AI podcast packages from QuickView trend notes, including dual-host script writing, Gemini multi-speaker TTS audio generation, subtitle timing and render fixes, thumbnail and MP4 packaging, and YouTube title and description output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Korean AI podcast packages from QuickView trend notes, including dual-host script writing, Gemini multi-speaker TTS audio, subtitle timing and rendering fixes, thumbnail and MP4 packaging, and YouTube title and description output for full or compressed editions.
 
-## Publisher: <br>
-[jeong-wooseok](https://clawhub.ai/user/jeong-wooseok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeong-wooseok](https://clawhub.ai/user/jeong-wooseok)
 
-## Use Case: <br>
-Content creators and automation-focused developers use this skill to turn QuickView trend notes into Korean podcast production packages with scripts, dual-speaker audio, subtitles, thumbnail assets, preview media, and publishing metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The thumbnail step runs an undeclared external helper with the user's environment and API key. <br>
-Mitigation: Review the nano-banana-pro helper and its dependencies before enabling thumbnail generation, or run packaging with image generation disabled until that helper is trusted. <br>
-Risk: Source notes and dialogue text may be sent to Gemini for text-to-speech or thumbnail generation. <br>
-Mitigation: Avoid confidential source notes and use a dedicated Gemini API key with limited quota. <br>
-Risk: Media generation commands can overwrite existing output files. <br>
-Mitigation: Choose output directories deliberately and review generated paths before running the build scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeong-wooseok/ai-podcast-pipeline) <br>
-- [Podcast Script Prompt Template](references/podcast_prompt_template_ko.md) <br>
-- [Thumbnail Guidelines](references/thumbnail_guidelines_ko.md) <br>
-- [Workflow Runbook](references/workflow_runbook.md) <br>
+## Use Case:
 
+Content creators and agent users use this skill to turn QuickView AI trend notes into Korean podcast production packages. It guides script generation, Gemini multi-speaker TTS, Korean subtitles, subtitled video rendering, thumbnails, and YouTube publishing metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated media or text file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces podcast scripts, MP3 audio, SRT subtitles, MP4 videos, thumbnail images, preview media, topic lists, YouTube title options, and descriptions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Thumbnail generation can invoke another local skill while passing an environment that may include credentials.
+
+Mitigation: Review the referenced image generator before use, run with --no-image when image generation is not needed, or isolate execution with only the required environment variables.
+
+Risk: TTS generation sends podcast script content to Google Gemini.
+
+Mitigation: Only process scripts that are acceptable to send to Gemini and remove sensitive content before running TTS.
+
+Risk: The skill requires API credentials and runs local media tooling.
+
+Mitigation: Provide API keys through environment variables, avoid exposing keys in prompts or logs, and review commands before execution.
+
+## Reference(s):
+
+- [Podcast Script Prompt Template](artifact/references/podcast_prompt_template_ko.md)
+- [Workflow Runbook](artifact/references/workflow_runbook.md)
+- [Thumbnail Guidelines](artifact/references/thumbnail_guidelines_ko.md)
+- [ClawHub Skill Page](https://clawhub.ai/jeong-wooseok/skills/ai-podcast-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands, file paths, and generated media assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce podcast scripts, MP3 audio, Korean SRT subtitles, subtitled MP4 video, PNG thumbnails, topic files, and YouTube title and description text.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

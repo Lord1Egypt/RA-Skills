@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Cal.com"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["cal"]
   icon: "https://static.oomol.com/logo/third-party/Cal.svg"
 ---
@@ -38,52 +38,52 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `add_attendee` — Add an attendee to a Cal.com booking. [write]
-- `cancel_booking` — Cancel a Cal.com booking by UID, optionally providing a cancellation reason. [write]
-- `cancel_booking_via_uid` — Compatibility alias for Composio's cancel-booking-via-uid action. Cancels a booking by UID. [write]
+- `cancel_booking` — Cancel a Cal.com booking by UID, optionally providing a cancellation reason. [destructive]
+- `cancel_booking_via_uid` — Compatibility alias for the cancel-booking-via-uid action name. Cancels a booking by UID. [destructive]
 - `confirm_booking_by_uid` — Confirm a Cal.com booking by UID. [write]
 - `create_booking` — Create a Cal.com booking. [write]
 - `create_event_type` — Create a Cal.com event type for the authenticated user. [write]
 - `create_schedule` — Create a schedule for the authenticated Cal.com user. [write]
-- `create_user_availability_schedule` — Compatibility alias for Composio's create-user-availability-schedule action. Creates a schedule. [write]
-- `decline_booking_with_reason` — Decline a Cal.com booking by UID with an optional reason. [write]
+- `create_user_availability_schedule` — Compatibility alias for the create-user-availability-schedule action name. Creates a schedule. [write]
+- `decline_booking_with_reason` — Decline a Cal.com booking by UID with an optional reason. [destructive]
 - `delete_event_type` — Delete a Cal.com event type by numeric ID. [destructive]
-- `delete_event_type_by_id` — Compatibility alias for Composio's delete-event-type-by-id action. Deletes a Cal.com event type by ID. [destructive]
+- `delete_event_type_by_id` — Compatibility alias for the delete-event-type-by-id action name. Deletes a Cal.com event type by ID. [destructive]
 - `delete_schedule` — Delete a schedule for the authenticated Cal.com user. [destructive]
-- `delete_schedule_by_id` — Compatibility alias for Composio's delete-schedule-by-id action. Deletes a schedule. [destructive]
-- `fetch_all_bookings` — Compatibility alias for Composio's fetch-all-bookings action. Lists bookings with optional filters and pagination.
-- `fetch_event_type_details` — Compatibility alias for Composio's fetch-event-type-details action. Gets a single Cal.com event type by ID.
-- `fetch_schedule_by_id` — Compatibility alias for Composio's fetch-schedule-by-id action. Gets a schedule by numeric ID. [write]
-- `get_available_slots_info` — Compatibility action for Composio's get-available-slots-info. Returns available slots for a user, team, or event type.
+- `delete_schedule_by_id` — Compatibility alias for the delete-schedule-by-id action name. Deletes a schedule. [destructive]
+- `fetch_all_bookings` — Compatibility alias for the fetch-all-bookings action name. Lists bookings with optional filters and pagination.
+- `fetch_event_type_details` — Compatibility alias for the fetch-event-type-details action name. Gets a single Cal.com event type by ID.
+- `fetch_schedule_by_id` — Compatibility alias for the fetch-schedule-by-id action name. Gets a schedule by numeric ID.
+- `get_available_slots_info` — Compatibility action for the get-available-slots-info action name. Returns available slots for a user, team, or event type.
 - `get_booking` — Get a Cal.com booking by booking UID.
-- `get_booking_references` — Compatibility alias for Composio's get-booking-references action. Lists booking references.
-- `get_default_schedule` — Get the default schedule for the authenticated Cal.com user. [write]
-- `get_default_schedule_details` — Compatibility alias for Composio's get-default-schedule-details action. Returns the default schedule for the authenticated user. [write]
+- `get_booking_references` — Compatibility alias for the get-booking-references action name. Lists booking references.
+- `get_default_schedule` — Get the default schedule for the authenticated Cal.com user.
+- `get_default_schedule_details` — Compatibility alias for the get-default-schedule-details action name. Returns the default schedule for the authenticated user.
 - `get_event_type` — Get a single Cal.com event type by its numeric ID.
 - `get_event_type_private_links` — List private links configured for a Cal.com event type.
 - `get_my_profile` — Get the current Cal.com user profile from the authenticated OAuth account.
-- `get_schedule` — Get a Cal.com schedule by numeric schedule ID. [write]
+- `get_schedule` — Get a Cal.com schedule by numeric schedule ID.
 - `list_attendees` — List attendees for a Cal.com booking by booking UID.
 - `list_booking_references` — List booking references for a Cal.com booking.
 - `list_bookings` — List bookings for the authenticated Cal.com user with optional date, attendee, and event-type filters.
 - `list_event_types` — List Cal.com event types for the authenticated user with optional pagination and status filters.
 - `list_schedules` — List schedules available to the authenticated Cal.com user.
 - `mark_booking_absent_for_uid` — Mark a Cal.com booking host or attendees absent. [write]
-- `post_new_booking_request` — Compatibility alias for Composio's post-new-booking-request action. Creates a booking. [write]
+- `post_new_booking_request` — Compatibility alias for the post-new-booking-request action name. Creates a booking. [write]
 - `reassign_booking_with_uid` — Reassign a round-robin booking to a specific host user ID. [write]
 - `reschedule_booking` — Reschedule a Cal.com booking by UID to a new start time. [write]
-- `reschedule_booking_by_uid` — Compatibility alias for Composio's reschedule-booking-by-uid action. Reschedules a booking by UID. [write]
-- `retrieve_booking_details_by_uid` — Compatibility alias for Composio's retrieve-booking-details-by-uid action. Gets a booking by UID.
-- `retrieve_calendar_busy_times` — Compatibility alias for Composio's retrieve-calendar-busy-times action. Returns busy ranges for specific calendars.
-- `retrieve_calendar_list` — Compatibility alias for Composio's retrieve-calendar-list action. Lists connected calendars and the selected destination calendar.
-- `retrieve_event_type_by_id` — Compatibility alias for Composio's retrieve-event-type-by-id action. Gets a single Cal.com event type by ID.
-- `retrieve_my_information` — Compatibility alias for Composio's retrieve-my-information action. Returns the authenticated Cal.com user's profile.
-- `retrieve_schedules_list` — Compatibility alias for Composio's retrieve-schedules-list action. Lists schedules for the authenticated user.
-- `update_destination_calendar_integration` — Compatibility alias for Composio's update-destination-calendar-integration action. Updates the destination calendar used for created events. [write]
+- `reschedule_booking_by_uid` — Compatibility alias for the reschedule-booking-by-uid action name. Reschedules a booking by UID. [write]
+- `retrieve_booking_details_by_uid` — Compatibility alias for the retrieve-booking-details-by-uid action name. Gets a booking by UID.
+- `retrieve_calendar_busy_times` — Compatibility alias for the retrieve-calendar-busy-times action name. Returns busy ranges for specific calendars.
+- `retrieve_calendar_list` — Compatibility alias for the retrieve-calendar-list action name. Lists connected calendars and the selected destination calendar.
+- `retrieve_event_type_by_id` — Compatibility alias for the retrieve-event-type-by-id action name. Gets a single Cal.com event type by ID.
+- `retrieve_my_information` — Compatibility alias for the retrieve-my-information action name. Returns the authenticated Cal.com user's profile.
+- `retrieve_schedules_list` — Compatibility alias for the retrieve-schedules-list action name. Lists schedules for the authenticated user.
+- `update_destination_calendar_integration` — Compatibility alias for the update-destination-calendar-integration action name. Updates the destination calendar used for created events. [write]
 - `update_event_type` — Update a Cal.com event type by numeric ID. [write]
 - `update_my_profile` — Update the current Cal.com user's profile fields such as name, bio, timezone, and branding. [write]
 - `update_schedule` — Update a schedule for the authenticated Cal.com user. [write]
-- `update_schedule_by_id` — Compatibility alias for Composio's update-schedule-by-id action. Updates a schedule. [write]
-- `update_user_profile_details` — Compatibility alias for Composio's update-user-profile-details action. Updates the authenticated Cal.com user's profile. [write]
+- `update_schedule_by_id` — Compatibility alias for the update-schedule-by-id action name. Updates a schedule. [write]
+- `update_user_profile_details` — Compatibility alias for the update-user-profile-details action name. Updates the authenticated Cal.com user's profile. [write]
 
 ## Safety
 
@@ -114,11 +114,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Cal.com is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=cal
+  https://console.oomol.com/connections/cal
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Cal.com homepage: https://cal.com
+- API documentation: https://cal.com/docs/api-reference/v2/introduction

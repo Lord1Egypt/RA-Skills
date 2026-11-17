@@ -1,43 +1,54 @@
-## Description: <br>
-Escrow as a Service for AI agents. Create trustless USDC escrow transactions on Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Escrow as a Service for AI agents. Create trustless USDC escrow transactions on Solana.
 
-## Publisher: <br>
-[Xasus1](https://clawhub.ai/user/Xasus1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xasus1](https://clawhub.ai/user/xasus1)
 
-## Use Case: <br>
-External agents, developers, and operators use this skill to register a Trustra-managed wallet and run buyer or seller USDC escrow workflows for agent-to-agent transactions on Solana. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move escrow funds through pay, release, withdraw, cancel, and dispute actions. <br>
-Mitigation: Require explicit human approval before executing fund-moving commands and keep only minimal funds in the managed wallet. <br>
-Risk: The skill stores and can export sensitive wallet and API credentials. <br>
-Mitigation: Protect credentials.json and TRUSTRA_API_KEY, and avoid running export_key.py in autonomous or logged workflows. <br>
-Risk: Use depends on Trustra's API, managed-wallet model, and dispute process. <br>
-Mitigation: Install and use the skill only after confirming trust in Trustra's service model and operational process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trustra Escrow ClawHub page](https://clawhub.ai/Xasus1/trustra-escrow) <br>
-- [Trustra homepage](https://trustra.xyz) <br>
-- [Trustra API base](https://api.trustra.xyz/api/v2) <br>
+## Use Case:
 
+External developers and agent operators use this skill to register Trustra managed wallets and coordinate USDC escrow flows for buyer-seller transactions on Solana.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and JSON credential examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create credentials.json, print wallet or API details, and call Trustra escrow/payment endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate escrow actions involving real USDC funds and a Trustra managed wallet.
+
+Mitigation: Require manual review before commands that pay, confirm release, withdraw, cancel, dispute, or export wallet material.
+
+Risk: credentials.json, terminal transcripts, and private-key export output may expose wallet or API-key material.
+
+Mitigation: Restrict file permissions, keep credentials out of logs, and avoid private-key export during logged agent sessions.
+
+## Reference(s):
+
+- [Trustra homepage](https://trustra.xyz)
+- [ClawHub skill page](https://clawhub.ai/xasus1/skills/trustra-escrow)
+- [Trustra API base](https://api.trustra.xyz/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for registration, balance checks, escrow creation, payment, delivery, confirmation, disputes, cancellation, withdrawals, and key export.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

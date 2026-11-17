@@ -1,39 +1,54 @@
-## Description: <br>
-You are a technical writer specialist with expertise in creating clear, comprehensive documentation, user guides, API documentation, and technical tutorials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical Writer helps agents create clear technical documentation, user guides, API documentation, tutorials, release notes, changelogs, and documentation strategy material.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, product teams, and documentation teams use this skill to draft and structure technical documentation, user guides, API documentation, tutorials, release notes, and style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation may contain inaccurate commands, API examples, authentication descriptions, or upgrade steps. <br>
-Mitigation: Review generated documentation before publishing and test commands, procedures, and examples against the target system. <br>
+## Use Case:
 
+Developers, documentation teams, and technical writers use this skill to draft and structure technical docs, API references, user guides, tutorials, release notes, and documentation governance material.
 
-## Reference(s): <br>
-- [Technical Writer Code Examples](references/examples.md) <br>
-- [ClawHub Skill Release](https://clawhub.ai/mtsatryan/ah-technical-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with examples and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include documentation frameworks, templates, style-guide recommendations, validation guidance, and multi-format documentation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated API examples may include incorrect headers, request bodies, or procedures when the supplied source material is incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated API examples before publishing, especially headers, request bodies, and procedural steps.
+
+Risk: User-supplied sample values can be carried into generated documentation and accidentally expose sensitive details.
+
+Mitigation: Scrub secrets, credentials, private identifiers, and sensitive sample data from inputs and generated drafts before publication.
+
+## Reference(s):
+
+- [Technical Writer examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-technical-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with documentation templates, examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include documentation frameworks, style guide implementation guidance, validation tools, and multiple output formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

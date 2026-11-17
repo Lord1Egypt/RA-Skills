@@ -1,41 +1,54 @@
-## Description: <br>
-Talent Finder guides a structured interview, talent-pattern analysis, and 90-day action plan to help users identify core strengths and apply them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天赋领域探索全流程工具。从结构化深度访谈，到天赋画像解码，再到90天落地行动方案。帮助用户发现自己的核心天赋，制定可执行的成长战略。
 
-## Publisher: <br>
-[isaacwong1986](https://clawhub.ai/user/isaacwong1986) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isaacwong1986](https://clawhub.ai/user/isaacwong1986)
 
-## Use Case: <br>
-External users and personal-development coaches use this skill to run a structured talent-discovery conversation, analyze recurring strengths, and turn the findings into a 90-day growth plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The interview encourages detailed self-disclosure and direct quotations that may include sensitive personal or workplace information. <br>
-Mitigation: Avoid sharing secrets, credentials, medical details, financial information, or confidential workplace information unless comfortable with the agent platform storing that conversation. <br>
-Risk: Talent conclusions and action plans are coaching guidance and may be subjective or incomplete. <br>
-Mitigation: Treat outputs as reflection aids, review conclusions before acting on them, and seek qualified professional advice for high-stakes career, medical, legal, or financial decisions. <br>
+## Use Case:
 
+External users use this Chinese-language personal development skill to run a structured talent-discovery interview, decode recurring strengths, and turn the findings into a 90-day action plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isaacwong1986/talent-finder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/isaacwong1986) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown coaching prompts, interview notes, analysis summaries, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, credentials, or external tools are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, skill.json, server release evidence) <br>
+Risk: The interview can collect personal self-reflection details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details appropriate for the chat context, and avoid unnecessary sensitive information unless it is intentionally needed for the analysis.
+
+Risk: Talent conclusions and growth plans may affect personal decisions.
+
+Mitigation: Treat the results as reflective guidance and review the 90-day plan before taking consequential action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isaacwong1986/skills/talent-finder)
+- [ClawHub publisher profile](https://clawhub.ai/user/isaacwong1986)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown text with structured interview prompts, talent analysis sections, and 90-day planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language personal development guidance; no code or command output.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

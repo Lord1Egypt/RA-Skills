@@ -1,46 +1,60 @@
-## Description: <br>
-Keep track of positions across exchanges, brokers, or external systems, detect orphaned or phantom positions, and reconcile local state with external APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep track of positions across any exchange, broker, or external system, detect orphans, prevent leaks, and reconcile state for stateful bots.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Python-based position lifecycle tracking, orphan detection, phantom cleanup, and reconciliation to bots or services that depend on external state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional cleanup behavior can affect real external positions or resources when connected to privileged APIs. <br>
-Mitigation: Test with sandbox or read-only credentials first, use narrowly scoped API keys, and manually review orphan detections before enabling automatic cleanup. <br>
-Risk: The local state file can contain sensitive position metadata. <br>
-Mitigation: Protect the state directory with appropriate filesystem permissions and avoid storing secrets in position metadata. <br>
-Risk: External API downtime, rate limits, or race conditions can delay or misclassify reconciliation results. <br>
-Mitigation: Tune reconciliation intervals, add adapter-level retry and verification logic, and keep automatic reconciliation disabled until behavior is validated. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate self-healing position tracking into bots or services that must compare local state with an external exchange, broker, cloud provider, API service, database pool, or subscription system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/position-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README.md](artifact/README.md) <br>
-- [LIMITATIONS.md](artifact/LIMITATIONS.md) <br>
-- [config_example.json](artifact/config_example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python, JSON, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces integration guidance and examples for local file-backed position state management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Optional auto-close behavior can affect real financial, cloud, subscription, or other external resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auto_close disabled until it has been tested with non-production data, explicit confirmation, allowlists, fresh re-checks, logging, and rollback expectations.
+
+Risk: The user-provided API adapter determines what external systems the tracker can read from or modify.
+
+Mitigation: Review and constrain adapter permissions before use, and run the skill from a pinned, hash-verified package or copied source file in a non-privileged virtual environment.
+
+Risk: External state can change during reconciliation, creating false orphan or phantom detections.
+
+Mitigation: Verify external state again before cleanup, tune reconciliation intervals for API limits, and prefer manual review until behavior is validated for the target system.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/position-tracker)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [Known Limitations](LIMITATIONS.md)
+- [Configuration Example](config_example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on integrating position_tracker.py with a user-provided external API adapter.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

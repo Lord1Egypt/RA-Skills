@@ -1,45 +1,54 @@
-## Description: <br>
-CN Trends Aggregator fetches Chinese and global trend lists from Baidu, Toutiao, V2EX, Hacker News, and GitHub and formats them as JSON, text, or Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates Chinese and global trending topics from Baidu, Toutiao, V2EX, Hacker News, and GitHub for trend discovery and briefings.
 
-## Publisher: <br>
-[huoguang16](https://clawhub.ai/user/huoguang16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huoguang16](https://clawhub.ai/user/huoguang16)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect current hot topics, technology discussions, and newly popular open-source projects for briefings, summaries, and trend discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live web requests to public trend sources, so returned items may be unavailable, incomplete, or change between runs. <br>
-Mitigation: Use explicit source and limit options, and treat the output as a current snapshot rather than an authoritative record. <br>
-Risk: If a proxy is configured, the proxy operator may observe request traffic. <br>
-Mitigation: Use only trusted proxies and avoid proxy settings unless needed for the selected sources. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to fetch public hot topics and technology trends for daily briefings, summaries, and downstream automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huoguang16/cn-trends-aggregator) <br>
-- [Baidu Hot Board](https://top.baidu.com/board?tab=realtime) <br>
-- [Toutiao Hot Board endpoint](https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc) <br>
-- [V2EX hot topics API](https://www.v2ex.com/api/topics/hot.json) <br>
-- [Hacker News top stories API](https://hacker-news.firebaseio.com/v0/topstories.json) <br>
-- [GitHub repository search API](https://api.github.com/search/repositories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON, plain text, or Markdown trend summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports source selection, item limits, output format selection, and optional HTTP proxy configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trend titles, links, and summaries come from external public services and may contain inaccurate, misleading, or unsafe content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched trend data as untrusted input, prefer JSON for downstream automation, and review or sanitize content before publishing, executing links, or feeding it into other workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huoguang16/skills/cn-trends-aggregator)
+- [Baidu Hot Board](https://top.baidu.com/board?tab=realtime)
+- [Toutiao Hot Board](https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc)
+- [V2EX Hot Topics API](https://www.v2ex.com/api/topics/hot.json)
+- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/topstories.json)
+- [GitHub Repository Search API](https://api.github.com/search/repositories)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
+
+**Output Format:** [JSON, plain text, or Markdown tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-derived public trend data with source selection, item limit, and optional HTTP proxy support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

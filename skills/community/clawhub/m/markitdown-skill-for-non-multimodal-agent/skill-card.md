@@ -1,39 +1,59 @@
-## Description: <br>
-Converts document attachments into Markdown for text-only agents, using a local MarkItDown MCP server for text-bearing files and an optional OpenAI-compatible OCR layer for scanned PDFs or images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts document attachments into Markdown so text-only agents can read, summarize, quote, or store their contents, with optional OCR for scanned PDFs and images when an OpenAI-compatible vision key is configured.
 
-## Publisher: <br>
-[keepyaoung](https://clawhub.ai/user/keepyaoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keepyaoung](https://clawhub.ai/user/keepyaoung)
 
-## Use Case: <br>
-Developers and operators use this skill when a text-only agent receives PDFs, Office files, spreadsheets, HTML, CSV, JSON, XML, EPUB, ZIP files, scanned PDFs, or images and needs readable Markdown content for answering, summarizing, quoting, or storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keepyaoung/markitdown-skill-for-non-multimodal-agent) <br>
-- [MarkItDown fork referenced by the skill](https://github.com/Self-made-Orange/markitdown) <br>
-- [Microsoft MarkItDown referenced by the skill](https://github.com/microsoft/markitdown) <br>
+Developers and operators of text-only agents use this skill to convert PDFs, Office documents, spreadsheets, web and structured data files, EPUBs, ZIPs, and Markdown into agent-readable Markdown. When OCR credentials are intentionally configured, they can also extract text from scanned PDFs and image-based inputs.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional OCR requires OPENAI_API_KEY and a vision-capable model. Security evidence marks the release suspicious and recommends installing only if the publisher is trusted.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Setup can run unpinned third-party code.
+
+Mitigation: Pin package versions or commit SHAs before use and install only in a constrained environment.
+
+Risk: The converter can read local documents accessible to its process.
+
+Mitigation: Limit runtime access to the specific input document and output directory, and avoid broad filesystem mounts.
+
+Risk: Optional OCR may use API credentials and process sensitive image-based content.
+
+Mitigation: Provide OCR credentials only when vision OCR is intentionally needed, and avoid persisting converted sensitive documents unless the user explicitly requests it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/keepyaoung/skills/markitdown-skill-for-non-multimodal-agent)
+- [Microsoft MarkItDown](https://github.com/microsoft/markitdown)
+- [Self-made-Orange MarkItDown Fork](https://github.com/Self-made-Orange/markitdown)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces converted document text for agent use; optional OCR requires an API key and may incur vision-model costs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

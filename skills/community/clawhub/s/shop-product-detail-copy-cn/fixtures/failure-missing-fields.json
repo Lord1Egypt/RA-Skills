@@ -1,0 +1,13 @@
+{
+  "input": {
+    "product_name": "云岚手冲咖啡滤杯",
+    "specifications": {
+      "材质": "高硼硅玻璃"
+    }
+  },
+  "expected_missing_fields": [
+    "image_notes",
+    "target_audience"
+  ],
+  "expected_behavior": "明确指出缺少 image_notes 与 target_audience，并要求补充；不得编造图片内容或目标客群。"
+}

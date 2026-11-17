@@ -1,0 +1,33 @@
+# Creative brief - fill this in, then run:
+#   python3 scripts/creative_brief.py --brief brief.yaml --out campaign/
+
+product: "Product name (one line, what it physically is)"
+category: "Category a US buyer would shop for"
+audience: "US audience with age, job, buying habits"
+audience_short: "US weekend hikers"
+offer: "Price + shipping + trial (exact wording you will publish)"
+proof:
+  - "Verifiable fact 1 (spec, review count, guarantee)"
+  - "Verifiable fact 2"
+tone: "practical, blunt, no hype"
+brand_voice: "Like a knowledgeable peer, not a billboard"
+channels:
+  - tiktok
+  - instagram
+  - meta_ads
+  - email
+competitors:
+  - "Competitor one"
+  - "Competitor two"
+cta: "Tap the link and try it for 30 days"
+use_case: "the moment someone uses this"
+job_to_be_done: "what the buyer is really hiring the product to do"
+pain: "the annoying thing that happens without the product"
+time_money: "an hour a week"
+
+# Optional extras
+# price: 39
+# currency: USD
+# ship_from: "USA"
+# support_email: "support@example.com"
+# landing_page: "https://example.com"

@@ -1,44 +1,57 @@
-## Description: <br>
-Search your professional network and research people using the Happenstance API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search your professional network and research people using the Happenstance API.
 
-## Publisher: <br>
-[almostimplemented](https://clawhub.ai/user/almostimplemented) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[almostimplemented](https://clawhub.ai/user/almostimplemented)
 
-## Use Case: <br>
-Professionals, recruiters, founders, and agents use this skill to search connected professional networks, research people, list available groups, and check Happenstance credit usage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Happenstance API key that grants access to the user's Happenstance account. <br>
-Mitigation: Treat HAPPENSTANCE_API_KEY like a password, provide it only in trusted environments, and avoid exposing it in prompts, logs, or shared outputs. <br>
-Risk: Search and research operations can involve professional-network and profile details about people. <br>
-Mitigation: Use the skill only when authorized and comfortable sending the relevant person or network information to Happenstance, and limit sharing of returned profile details. <br>
-Risk: Search and research requests consume credits and asynchronous work can be rate limited. <br>
-Mitigation: Check usage before bulk activity, pace polling and retries, and confirm the user wants to spend credits before starting large searches or research runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Happenstance Developer Documentation](https://developer.happenstance.ai) <br>
-- [Happenstance API Base URL](https://api.happenstance.ai) <br>
-- [Happenstance API Settings](https://happenstance.ai/settings/api) <br>
-- [ClawHub Happenstance Skill](https://clawhub.ai/almostimplemented/happenstance) <br>
+## Use Case:
 
+Developers and operators use this skill to search professional networks, research individual profiles, page through Happenstance results, list searchable groups, and check API credit usage.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HAPPENSTANCE_API_KEY and curl; API use may consume Happenstance credits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms, person descriptions, network-scope choices, and returned profile details may contain sensitive personal or professional data.
+
+Mitigation: Submit only necessary information to Happenstance and avoid unnecessary sensitive personal data about third parties.
+
+Risk: The HAPPENSTANCE_API_KEY grants authenticated access to paid API operations and usage data.
+
+Mitigation: Store the key in an environment variable or secret manager and avoid including it in prompts, logs, code snippets, or shared transcripts.
+
+Risk: Search and research operations consume Happenstance credits and may fail when credits are insufficient or concurrent request limits are reached.
+
+Mitigation: Check usage before starting batches and handle 402 and 429 responses with appropriate user confirmation or retry behavior.
+
+## Reference(s):
+
+- [Happenstance Developer Documentation](https://developer.happenstance.ai)
+- [Happenstance Skill on ClawHub](https://clawhub.ai/almostimplemented/skills/happenstance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HAPPENSTANCE_API_KEY and curl; Happenstance searches and research requests run asynchronously and require polling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

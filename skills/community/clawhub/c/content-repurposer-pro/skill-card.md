@@ -1,39 +1,52 @@
-## Description: <br>
-Transforms long-form content such as blogs, articles, transcripts, videos, and podcasts into platform-ready Twitter/X threads, LinkedIn posts, newsletters, show notes, social snippets, and content calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Repurposer Pro transforms long-form content such as blogs, articles, transcripts, videos, and podcasts into platform-ready social posts, newsletters, show notes, snippets, and content calendars.
 
-## Publisher: <br>
-[kambrosgroup](https://clawhub.ai/user/kambrosgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kambrosgroup](https://clawhub.ai/user/kambrosgroup)
 
-## Use Case: <br>
-External content marketers, creators, and business teams use this skill to repurpose owned or authorized long-form material into social posts, newsletters, snippets, and scheduling ideas for distribution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private, unauthorized, personal, customer, or regulated source material could be exposed to the agent during repurposing. <br>
-Mitigation: Use only content you own or are authorized to process, and redact secrets, customer data, private meeting transcripts, personal information, and regulated content unless operating in an approved environment. <br>
-Risk: Repurposed drafts may include misleading claims, poor platform fit, or language that does not match the publisher's voice. <br>
-Mitigation: Review, personalize, and fact-check outputs before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Content Repurposer Pro on ClawHub](https://clawhub.ai/kambrosgroup/content-repurposer-pro) <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to repurpose existing long-form material into platform-specific distribution copy, calendars, and snippets. It supports tailoring by audience, tone, language, and channel while leaving final editorial review to the user.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with platform-specific sections, hooks, calls to action, calendars, and snippet drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed and personalized before publication; source material should be owned or authorized.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated posts, CTAs, hashtags, or platform-specific claims may be inaccurate, brand-inconsistent, or unsuitable for publication without editorial review.
+
+Mitigation: Review and edit all generated content before publishing, with particular attention to factual claims, tone, legal claims, and audience fit.
+
+Risk: Repurposing private drafts, customer materials, or unpublished transcripts may expose confidential information to the assistant processing the content.
+
+Mitigation: Remove confidential or sensitive details before using the skill unless the user is comfortable having that content processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kambrosgroup/skills/content-repurposer-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text organized by platform-specific sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific hooks, CTAs, calendars, snippets, tone adaptation, and translation or localization guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,34 @@
 ---
 name: qa-heuristic-checklist
-version: 1.5.0
 description: >-
-  提供登录、支付、搜索、购物车、导入导出、审批、消息通知、权限管理等不同类型功能的测试要点模板。当面对一个新功能类型不知道从哪里开始测试、或者担心遗漏了某个功能类型的特有测试点时，应当使用此技能。特别适合测试新人——照着清单逐项检查就不会漏掉该功能类型的典型问题。例如支付类要测金额精度和幂等性，导入导出类要测格式兼容和性能，每个功能类型都有其特有的高风险区域。
-
-when_to_use: 用户说"这个功能怎么测"、"有什么测试要点"、"checklist"、"测试模板"、"表单测试"、"支付测试要点"、"导入怎么测"、面对新功能类型、测试新人需要指引时
+  提供登录、支付、搜索、购物车、导入导出、审批、消息通知、权限管理等不同类型功能的测试要点模板。当面对一个新功能类型不知道从哪里开始测试、或者担心遗漏了某个功能类型的特有测试点时，应当使用此技能。特别适合测试新人——照着清单逐项检查就不会漏掉该功能类型的典型问题。例如支付类要测金额精度和幂等性，导入导出类要测格式兼容和性能，每个功能类型都有其特有的高风险区域。 触发场景：这个功能怎么测、有什么测试要点、checklist、测试模板、表单测试、支付测试要点、导入怎么测、测试新人需要指引时。 Use when the user asks about: heuristic checklists and testing points by feature type — login, payment, search, cart, import/export, approval, notification, and permissions.
+license: MIT
 allowed-tools: Read Grep Glob
-related_skills:
-  upstream:
-    - qa-retrospective           # 输入：复盘结果更新checklist
-  downstream:
-    - qa-scenario-tree           # 输出：checklist指导场景构建
-    - qa-boundary-deep-dive      # 输出：checklist指导边界分析
-input_format:
-  required:
-    - name: 测试上下文
-      type: string
-      description: 待测试的功能或场景描述
-  optional:
-    - name: 测试类型
-      type: string
-      description: 功能/性能/安全/兼容性等
-    - name: 历史缺陷
-      type: array
-      description: 历史缺陷模式
-output_format:
-  structure:
-    - heuristic_list: 启发式检查清单
-    - covered_areas: 已覆盖领域
-    - uncovered_areas: 未覆盖领域提示
-    - exploration_guide: 探索测试指南
-depth_requirement_quantification:
-  reference_value: "根据功能类型数量调整清单深度：简单×1/中等×2/复杂×3"
-  minimum: "至少应用5个相关启发式"
+metadata:
+  display-name: "Heuristic Checklist"
+  version: "1.8.0"
+  when-to-use: "用户说\"这个功能怎么测\"、\"有什么测试要点\"、\"checklist\"、\"测试模板\"、\"表单测试\"、\"支付测试要点\"、\"导入怎么测\"、面对新功能类型、测试新人需要指引时"
+  related-skills: "{\"upstream\":[\"qa-retrospective\"],\"downstream\":[\"qa-scenario-tree\",\"qa-boundary-deep-dive\",\"qa-team-coaching\"]}"
+  references: "[\"references/checklists.md\"]"
+  input-format: "{\"required\":[{\"name\":\"测试上下文\",\"type\":\"string\",\"description\":\"待测试的功能或场景描述\"}],\"optional\":[{\"name\":\"测试类型\",\"type\":\"string\",\"description\":\"功能/性能/安全/兼容性等\"},{\"name\":\"历史缺陷\",\"type\":\"array\",\"description\":\"历史缺陷模式\"}]}"
+  output-format: "{\"traceability\":[\"本技能应用清单，不新增唯一ID；标注覆盖的启发式编号\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"heuristic_list\":\"启发式检查清单\"},{\"covered_areas\":\"已覆盖领域\"},{\"uncovered_areas\":\"未覆盖领域提示\"},{\"exploration_guide\":\"探索测试指南\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"清单应用遗漏功能类型时回退到需求解构补充\",\"retry_behavior\":\"补全功能类型后重新应用清单\"}"
+  categories: "[\"Development\",\"Testing\"]"
+  depth-requirement: "{\"reference_value\":\"根据功能类型数量调整清单深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少应用5个相关启发式\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
+
+> **⚠️ 安全警告**：本技能的示例可能涉及被测对象的增删改操作描述（如购物车删除商品）。
+> 这些是测试场景示例，不是对本技能数据的操作；请勿在测试执行中误删真实数据。
+> 本技能仅在 workspace/ 输出评估文件，不持久化、不外传、不跨会话复用。
 
 # 启发式检查清单
 
+> **无复盘数据时的兜底策略**：如果当前没有 `qa-retrospective` 的输出数据（首次使用或复盘未执行），直接使用本技能内置的默认检查清单模板，覆盖以下 8 类常见功能测试要点。上游依赖为可选，不阻塞工作流执行。
+
 ## 核心原则
 
-你是一位测试设计专家，掌握各类功能的常见陷阱和测试要点。
-**核心原则**：对不同类型的功能，资深测试脑子里有一份"这类功能通常要测什么"的 mental checklist。
-本技能覆盖8大功能类型的检查清单和功能类型×测试维度矩阵。
+对不同类型的功能，资深测试脑子里有一份"这类功能通常要测什么"的 mental checklist。
 
 ## 功能类型清单
 
@@ -59,6 +46,19 @@ depth_requirement_quantification:
 | 权限类 | 角色管理、资源权限 | 越权防护、权限继承、审计 |
 
 > 每个功能类型的**完整检查清单**（输入验证/业务规则/并发/异常等详细测试要点）参见 [`references/checklists.md`](references/checklists.md)。
+
+## 加载时机
+
+**需要时才读，不要一上来全读**：
+
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 拿到一个功能，想知道该测什么 | [`references/checklists.md`](references/checklists.md)（按功能类型的测试要点模板） |
+
+> 本文的速查表只覆盖常见功能类型；完整清单按需加载。
+
+
+---
 
 ## 使用方法
 
@@ -141,3 +141,10 @@ depth_requirement_quantification:
 - [ ] 测试要点是否可执行？
 
 
+## 检查清单
+
+- [ ] 8大功能类型是否都应用？
+- [ ] 清单覆盖是否完整？
+- [ ] 遗漏类型是否补全？
+- [ ] 经验启发式是否标注来源？
+- [ ] 应用结果是否记录？

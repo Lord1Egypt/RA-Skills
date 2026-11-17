@@ -1,41 +1,55 @@
-## Description: <br>
-Creates, optimizes, and revises professional resumes, using structured resume data to generate minimal HTML and export PDF resumes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+创建、优化、修改专业简历。数据驱动生成极简简历 HTML 并导出 PDF。当用户需要创建简历、修改简历、优化简历、生成 PDF 简历时使用。支持从零开始引导收集信息，也支持读取已有简历进行优化改写。
 
-## Publisher: <br>
-[linhongbijkm-dot](https://clawhub.ai/user/linhongbijkm-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linhongbijkm-dot](https://clawhub.ai/user/linhongbijkm-dot)
 
-## Use Case: <br>
-External users and agents use this skill to collect resume details, optimize content for target roles, and produce reviewable HTML and PDF resume files. It also supports restructuring and improving existing resumes supplied as common document formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated resume HTML may include user-provided content and project links without sanitization. <br>
-Mitigation: Use trusted resume content and links, and sanitize third-party HTML or suspicious links before rendering or exporting. <br>
-Risk: The workflow processes personal contact details and resume history. <br>
-Mitigation: Handle resume inputs and generated files as sensitive personal data and share outputs only with the intended user. <br>
+## Use Case:
 
+External users and agents use this skill to create a new professional resume or improve an existing resume, then generate HTML and PDF resume files for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linhongbijkm-dot/resume-create) <br>
-- [Resume HTML template](artifact/assets/template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance plus generated HTML and PDF resume files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a structured JavaScript resume data object rendered into an HTML template before PDF export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated resumes can contain sensitive personal data that is retained in local HTML and PDF files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review storage location and retention expectations before use, and remove generated resume files when they are no longer needed.
+
+Risk: The resume template can execute unsafe content from resume fields when opened for PDF export.
+
+Mitigation: Use only trusted resume inputs until template escaping, link validation, and unsafe HTML insertion are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linhongbijkm-dot/skills/resume-create)
+- [Skill instructions](artifact/SKILL.md)
+- [Resume HTML template](artifact/assets/template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, shell commands, guidance]
+
+**Output Format:** [Structured resume data rendered as HTML and exported to PDF, with conversational guidance and revision notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local HTML and PDF resume files; generated files may contain sensitive personal data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

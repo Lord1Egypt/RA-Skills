@@ -1,41 +1,55 @@
-## Description: <br>
-Use CodexBar CLI local cost usage to summarize per-model usage for Codex or Claude, including the current model or a full model breakdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CodexBar CLI local cost usage to summarize per-model usage for Codex or Claude, including the current model or a full model breakdown.
 
-## Publisher: <br>
-[JustAskNudge](https://clawhub.ai/user/JustAskNudge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[justasknudge](https://clawhub.ai/user/justasknudge)
 
-## Use Case: <br>
-Developers and engineers use this skill to summarize local CodexBar cost logs by model for Codex or Claude, including the most recent model or a full model cost breakdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local CodexBar cost data, which may reflect sensitive local usage patterns. <br>
-Mitigation: Install only from a trusted CodexBar CLI source and review raw CodexBar JSON or local session logs before sharing them. <br>
-Risk: Summaries are limited by CodexBar cost JSON fields and do not split token counts by model. <br>
-Mitigation: Use the output for cost analysis and confirm token-level conclusions against the underlying CodexBar data. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect local CodexBar cost data, identify current or historical per-model spend for Codex or Claude, and produce text or JSON usage summaries.
 
-## Reference(s): <br>
-- [CodexBar CLI quick ref](references/codexbar-cli.md) <br>
-- [ClawHub skill page](https://clawhub.ai/JustAskNudge/model-usage-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text or JSON summaries with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost-only per-model summaries; token counts are not split by model in CodexBar output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: CodexBar reads local Codex and Claude usage logs to calculate costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where that local log access is acceptable; supply a reviewed JSON file or stdin input when tighter control over the analyzed data is needed.
+
+Risk: The documented install path uses a third-party Homebrew cask for CodexBar.
+
+Mitigation: Review the cask source and CodexBar installation path before installing in sensitive environments.
+
+## Reference(s):
+
+- [Model Usage Skill on ClawHub](https://clawhub.ai/justasknudge/skills/model-usage-skill)
+- [justasknudge publisher profile](https://clawhub.ai/user/justasknudge)
+- [CodexBar CLI quick reference](artifact/references/codexbar-cli.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script output is plain text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost-only per-model summaries; token counts are not split by model in CodexBar cost output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

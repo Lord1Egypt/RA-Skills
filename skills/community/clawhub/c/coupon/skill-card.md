@@ -1,37 +1,52 @@
-## Description: <br>
-Provides real-time summaries of e-commerce coupons, platform rewards, and offline brand internal-sale coupons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供全网电商通用券、平台红包及线下大牌内购券实时汇总。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this Chinese-language skill to ask an agent for coupon and shopping-deal guidance across online marketplaces, platform promotions, and offline brand purchase offers. The skill is intended to help compare discounts, logistics timing, seller trust, after-sales terms, and buyer feedback before purchase.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Coupon prices, availability, return terms, and seller trust signals may be stale or inaccurate at purchase time.
+
+Mitigation: Verify current prices, coupon terms, return policies, seller reputation, and product condition before purchasing or confirming receipt.
+
+Risk: The artifact uses broad, generic examples that may not constrain the agent to a specific retailer, product category, or jurisdiction.
+
+Mitigation: Use the skill for explicit coupon or shopping-discount tasks and ask for concrete purchase criteria such as price range, logistics needs, store rating, and after-sales requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External shoppers or shopping assistants use this skill to find and compare coupon and deal options by price, discount, delivery speed, shop rating, buyer feedback, and after-sale coverage before purchasing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Coupon, price, delivery, and seller recommendations may be broad or become outdated before purchase. <br>
-Mitigation: Confirm the skill is relevant to the shopping request and verify coupons, prices, platform terms, seller details, and product condition directly before buying. <br>
+**Output Format:** [Markdown-style Chinese-language shopping guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Prompt-only skill with no executable code, persistence, credential handling, or hidden behavior in the inspected artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with coupon details and purchase guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deal filters, final payable amount, logistics status, after-sale coverage, price protection, reviews, and buyer media when available.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

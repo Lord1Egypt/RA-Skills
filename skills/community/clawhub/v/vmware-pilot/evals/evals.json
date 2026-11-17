@@ -7,8 +7,9 @@
       "expected_output": "clone_and_test workflow created with approval gate",
       "files": [],
       "expectations": [
-        "Uses plan_workflow with type clone_and_test",
+        "Uses create_workflow_from_template with type clone_and_test",
         "Change spec includes memory_mb: 32768",
+        "Passes snapshot_name, found with vmware-monitor list_vm_snapshots (required, no default)",
         "Workflow has approval gate before production apply",
         "Shows workflow steps for user review"
       ]
@@ -31,7 +32,7 @@
       "expected_output": "incident_response workflow executed with approval",
       "files": [],
       "expectations": [
-        "Uses plan_workflow with type incident_response",
+        "Uses create_workflow_from_template with type incident_response",
         "Collects alarms and events first",
         "Pauses for approval before remediation",
         "Acknowledges the alarm after approval"
@@ -43,7 +44,7 @@
       "expected_output": "rolling_restart workflow saved as template",
       "files": [],
       "expectations": [
-        "Uses plan_workflow with type rolling_restart or create_workflow",
+        "Uses create_workflow_from_template with type rolling_restart or create_workflow",
         "Includes health check between each VM restart",
         "Saves as YAML template with save_as_template=true",
         "Template is reusable for future runs"

@@ -1,45 +1,58 @@
-## Description: <br>
-Deep research workflow for /deepresearch with sources, claims, synthesis, and resumable state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep research workflow for /deepresearch with sources, claims, synthesis, and resumable state.
 
-## Publisher: <br>
-[jkobject](https://clawhub.ai/user/jkobject) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkobject](https://clawhub.ai/user/jkobject)
 
-## Use Case: <br>
-Developers and research-focused agents use this skill to run source-grounded investigations that need lanes, citations, durable notes, and resumable evidence tracking across turns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research ledgers saved under .deepresearch may contain sensitive source URLs, notes, claim summaries, or decision context. <br>
-Mitigation: Review ledger contents before sharing a workspace and avoid recording secrets or sensitive research context. <br>
-Risk: User-supplied slugs can affect where local ledger state is written. <br>
-Mitigation: Use simple slug values without path separators. <br>
-Risk: Research synthesis can mislead when claims remain weak, conflicting, or unverified. <br>
-Mitigation: Run the brief command, preserve uncertainty, and cite important conclusions before publishing. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to run source-grounded investigations that need durable state, evidence tracking, and resumable synthesis across agent turns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkobject/omoc-deepresearch) <br>
-- [Publisher profile](https://clawhub.ai/user/jkobject) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown synthesis with inline shell commands and local JSON ledger files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or resumes .deepresearch/<slug>/ state containing lanes, sources, claims, notes, and brief summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: A path-like or untrusted slug could direct the helper script to read or write a ledger outside the intended .deepresearch folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted slugs only and prefer a fixed version that validates slugs before reading or writing ledger files.
+
+Risk: The skill creates persistent .deepresearch state in the workspace.
+
+Mitigation: Install and run it only in workspaces where this local research ledger state is acceptable.
+
+Risk: Non-/deepresearch prompts could activate the workflow more broadly than intended.
+
+Mitigation: Confirm activation criteria during review and prefer versions that require explicit activation for broader research requests.
+
+## Reference(s):
+
+- [Deep Research on ClawHub](https://clawhub.ai/jkobject/skills/omoc-deepresearch)
+- [jkobject publisher profile](https://clawhub.ai/user/jkobject)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON ledger files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates .deepresearch ledger state when its helper commands are run.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

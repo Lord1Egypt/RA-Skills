@@ -1,42 +1,54 @@
-## Description: <br>
-Runs an already installed OpenStoryline setup by starting local MCP and Web services, managing editing sessions, sending editing instructions, supporting re-edits, and verifying rendered video outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when OpenStoryline is already installed and the user wants to start local MCP and Web services, create or continue editing sessions, send editing instructions, perform multi-turn re-editing, and verify rendered video outputs.
 
-## Publisher: <br>
-[Anlittledy](https://clawhub.ai/user/Anlittledy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlittledy](https://clawhub.ai/user/anlittledy)
 
-## Use Case: <br>
-Developers and operators use this skill to run OpenStoryline video-editing sessions after installation, provide editing prompts, continue work in an existing session, and confirm that new MP4 outputs were produced. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Feishu sender can upload a local file using stored OpenClaw credentials. <br>
-Mitigation: Use the sender only when Feishu delivery is needed; verify the exact file path and recipient before sending, keep uploads limited to generated video outputs, and use least-privilege credentials. <br>
-Risk: OpenStoryline configuration requires model, endpoint, and API-key values. <br>
-Mitigation: Avoid committing config.toml or other files containing API keys, and review configuration changes before running the editing workflow. <br>
-Risk: Local MCP and Web services could be exposed beyond the local machine if bound broadly. <br>
-Mitigation: Keep services bound to 127.0.0.1 unless local-network access is explicitly required, and stop local services when finished. <br>
+## Use Case:
 
+Developers and operators use this skill to run an already installed OpenStoryline environment, configure required model endpoints, start local services, manage editing sessions, and verify generated MP4 outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Anlittledy/openstoryline-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes session identifiers and generated MP4 file paths when editing succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: server release evidence) <br>
+Risk: The Feishu helper can upload any readable local file using local Feishu credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the sender only for reviewed generated video files, confirm the recipient before sending, and avoid exposing arbitrary file paths or sensitive directories to the agent.
+
+Risk: Changing service hosts or file-delivery settings can expose local workflows beyond the intended environment.
+
+Mitigation: Keep OpenStoryline services bound to 127.0.0.1 unless the user explicitly requests LAN or mobile access, and use trusted networks only when broader access is required.
+
+## Reference(s):
+
+- [OpenStoryline Use troubleshooting reference](artifact/reference.md)
+- [OpenStoryline Use ClawHub page](https://clawhub.ai/anlittledy/skills/openstoryline-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session IDs, service URLs, generated MP4 paths, and Feishu delivery status when requested.]
+
+## Skill Version(s):
+
+0.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

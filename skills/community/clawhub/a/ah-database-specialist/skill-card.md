@@ -1,38 +1,48 @@
-## Description: <br>
-You are a database specialist with expertise in both relational and NoSQL database systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database Specialist helps agents provide guidance for relational and NoSQL database systems, including design, performance optimization, administration, migration, and ETL.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and database engineers use this skill to get database design, SQL and NoSQL modeling, query optimization, migration, backup, recovery, security, and maintenance guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated database commands or schema changes could be incorrect or unsafe for a specific production database.
+
+Mitigation: Review recommendations against the target schema, data sensitivity, backup posture, and production change process before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for database design, query optimization, indexing, administration, migrations, ETL planning, and guidance across relational and NoSQL systems. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL, schema changes, migrations, indexes, or administrative commands could be incorrect or unsafe for a real database. <br>
-Mitigation: Review, test, and back up affected systems before running generated database changes or operational commands. <br>
+**Output Format:** [Markdown with SQL and JavaScript code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-database-specialist) <br>
+**Other Properties Related to Output:** [May include database commands, schema definitions, index recommendations, query plans, and configuration guidance that require review before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL, JavaScript, shell command, and configuration examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; generated SQL and operational commands require human review before execution.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

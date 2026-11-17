@@ -1,40 +1,49 @@
-## Description: <br>
-A versatile engineer with strong expertise in system design, distributed systems, and AI infrastructure. Experienced in building scalable backend services, optimizing performance-critical workloads, and deploying modern cloud-native applications using Kubernetes and containerization technologies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a personal engineering profile covering system design, distributed systems, AI infrastructure, scalable backend services, performance optimization, and cloud-native deployment.
 
-## Publisher: <br>
-[moilk](https://clawhub.ai/user/moilk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moilk](https://clawhub.ai/user/moilk)
 
-## Use Case: <br>
-Developers and engineers can use this skill as profile context about the publisher's stated system design, distributed systems, AI infrastructure, programming language, and cloud-native experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides static profile context and does not add executable workflows or tools. <br>
-Mitigation: Use it as informational context only and verify any profile claims before relying on them for operational decisions. <br>
-Risk: Future versions could add commands, integrations, credentials, or installation steps that change the risk profile. <br>
-Mitigation: Review the security evidence and artifact behavior before upgrading to a later release. <br>
+## Use Case:
 
+Developers and engineers can use this skill as a concise profile of the publisher's engineering strengths, project experience, tool familiarity, and learning goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moilk/moilk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown profile context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static profile-style content with no commands, installation steps, credential access, persistence, or hidden behavior according to the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is a broad personal engineering profile rather than a narrowly scoped operational skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as informational context and review any generated engineering guidance against project-specific requirements before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moilk/skills/moilk)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, installation steps, data access, or persistence behavior is indicated by the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-Maiat Trust API helps agents register an on-chain identity, check agent and token trust signals, protect wallet transactions, and report outcomes through Maiat APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trust infrastructure for AI agents to register on-chain identities, check trust scores, assess token safety, and protect wallet transactions.
 
-## Publisher: <br>
-[JhiNResH](https://clawhub.ai/user/JhiNResH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhinresh](https://clawhub.ai/user/jhinresh)
 
-## Use Case: <br>
-External developers and agent builders use this skill to integrate Maiat trust checks, passport registration, token safety checks, outcome reporting, and optional wallet-guard workflows into agent transaction decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-linked trust, token, outcome, and threat-report data may be sent to Maiat. <br>
-Mitigation: Disclose the data flow to users and require explicit approval before registration, outcome reporting, or threat reporting. <br>
-Risk: Outcome and threat reports can affect reputation signals or blocking decisions. <br>
-Mitigation: Submit reports only from verified user intent, keep an audit trail, and avoid automated reporting without confirmation. <br>
-Risk: The optional wallet-guard package can influence transaction execution. <br>
-Mitigation: Review the package and configuration before granting transaction authority, and set conservative trust thresholds for wallet actions. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register agent identities, check counterparties before transactions, evaluate token risk, and report trust outcomes through Maiat services.
 
-## Reference(s): <br>
-- [Maiat App](https://app.maiat.io) <br>
-- [Maiat API Base](https://app.maiat.io/api/v1) <br>
-- [Maiat Skill Source](https://app.maiat.io/skill.md) <br>
-- [Passport Portal](https://passport.maiat.io) <br>
-- [Maiat API Docs](https://app.maiat.io/docs) <br>
-- [8004scan](https://www.8004scan.io) <br>
-- [Maiat Protocol](https://github.com/JhiNResH/maiat-protocol) <br>
-- [Maiat Guard](https://github.com/JhiNResH/maiat-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration] <br>
-**Output Format:** [Markdown with curl commands, JSON examples, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoints, request examples, response examples, trust score thresholds, package names, and contract addresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill links wallet identities and agent reputation data with an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet or pseudonymous identity, and confirm what transaction and report data Maiat receives before production use.
+
+Risk: Wallet transaction protection depends on third-party npm packages and service responses.
+
+Mitigation: Pin and audit the packages before installation, and review failure behavior before enabling automatic blocking or reporting.
+
+Risk: Automatic blocking or threat reporting may affect transaction availability or privacy.
+
+Mitigation: Enable automatic actions only when the privacy, failure, and appeal behavior matches the operator's risk tolerance.
+
+## Reference(s):
+
+- [Maiat App](https://app.maiat.io)
+- [Maiat API Base](https://app.maiat.io/api/v1)
+- [Maiat API Docs](https://app.maiat.io/docs)
+- [Maiat Passport Portal](https://passport.maiat.io)
+- [ClawHub Skill Listing](https://clawhub.ai/jhinresh/skills/maiat-trust-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, JSON examples, TypeScript snippets, and configuration values.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to call external Maiat APIs, install npm packages, and store identity or wallet-related configuration.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

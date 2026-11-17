@@ -1,0 +1,13 @@
+# RFP Response Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+req_id,rfp_section,page,requirement,mandatory,owner,answer,evidence_source,status,due_date
+1,"2.1 Scope",3,"Describe the technical approach in no more than three pages",yes,"","","",open,
+2,"3.4 Staffing",9,"Provide named program manager with five years in higher education",yes,"","","",open,
+3,"4.2 Price",12,"Provide the price table with unit and total cost",yes,"","","",open,
+4,"5.1 Security",18,"Describe the annual penetration test and remediation cycle",yes,"","","",open,
+5,"6.3 Training",22,"Deliver live training for up to 250 staff",no,"","","",open,
+6,"7.1 Reporting",25,"Submit monthly usage and SLA reporting",yes,"","","",open,
+7,"8.4 Contract",30,"Accept the solicitation terms without exception",yes,"","","",open,
+8,"9.2 Insurance",33,"Provide certificates of general liability and workers compensation",yes,"","","",open,
+9,"10.5 Timelines",38,"Commit to a kickoff within ten business days of award",no,"","","",open,
+10,"11.1 References",41,"Provide three references from comparable institutions",no,"","","",open,

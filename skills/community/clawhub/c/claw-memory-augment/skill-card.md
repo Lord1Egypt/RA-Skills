@@ -1,43 +1,59 @@
-## Description: <br>
-Long-term memory system for OpenClaw agents. Store, retrieve, and query conversation history and learned information across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory system for OpenClaw agents. Store, retrieve, and query conversation history and learned information across sessions.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-Developers and agent users use this skill to persist preferences, decisions, learnings, and session context across OpenClaw sessions, then retrieve those memories through search, listing, summaries, export, and import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memories persist locally and may contain private user, project, or business context. <br>
-Mitigation: Avoid storing passwords, API keys, personal identifiers, or sensitive business data, and periodically review ~/.memory-augment/storage.yaml. <br>
-Risk: Automatic context injection can surface stored memories in later agent turns where they may be irrelevant or sensitive. <br>
-Mitigation: Disable auto_inject or narrow its triggers when using the skill in sensitive workflows. <br>
-Risk: Delete and import commands can remove or overwrite useful local memory data. <br>
-Mitigation: Back up the memory file before bulk deletion or import operations. <br>
+## Use Case:
 
+Developers and agent users use this skill to give OpenClaw agents durable local memory for preferences, decisions, learnings, and session context across conversations.
 
-## Reference(s): <br>
-- [Memory Types Reference](references/memory-types.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/indigas/claw-memory-augment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON command output with YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local YAML memory records and can export memories as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores and reuses long-term conversation context, which may retain sensitive or stale information and influence future prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets or sensitive personal data, review injected memories before relying on them, and prune or expire memories that are no longer appropriate.
+
+Risk: Local memory import, deletion, and test behavior can cause data loss or introduce untrusted memory records if run against a real home directory.
+
+Mitigation: Back up the memory store before deletion or import, import only trusted files, and test with an isolated storage path.
+
+Risk: Unpinned installation examples can make it harder to verify the exact code being installed.
+
+Mitigation: Prefer pinned, verified ClawHub release sources before deployment.
+
+## Reference(s):
+
+- [Memory Types Reference](references/memory-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/indigas/skills/claw-memory-augment)
+- [Publisher Profile](https://clawhub.ai/user/indigas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, YAML configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read, write, import, export, summarize, and inject local memory records according to the configured storage and retention settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

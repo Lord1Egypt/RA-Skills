@@ -1,42 +1,54 @@
-## Description: <br>
-Claw Stock provides Chinese-language single-stock analysis for A-share, Hong Kong, and U.S. equities with dynamic six-factor scoring and a non-advice disclaimer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Stock is a Chinese-language single-stock analysis skill that analyzes A-share, Hong Kong, and US equities with dynamic factor selection, scoring, and educational disclaimers.
 
-## Publisher: <br>
-[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha)
 
-## Use Case: <br>
-External ClawHub users use this skill to request structured Chinese-language analysis of a named stock or ticker, including market context, factor-level reasoning, scores, and follow-up discussion. The skill is for educational reference and does not make trading decisions for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis may be incorrect or outdated if prices, filings, news, or market conditions are not independently verified. <br>
-Mitigation: Treat scores and conclusions as educational reference only and verify financial data through reliable sources before acting. <br>
-Risk: Broad activation wording may trigger the skill for non-financial requests that use phrases such as "analyze this" or "what do you think". <br>
-Mitigation: Confirm the user is asking about a stock before applying the stock-analysis workflow. <br>
+## Use Case:
 
+External users use this skill to request Chinese-language educational analysis of individual A-share, Hong Kong, and US stocks. It classifies the stock, selects six relevant analysis factors, scores the result, and supports follow-up questions while preserving an investment-risk disclaimer.
 
-## Reference(s): <br>
-- [Claw Stock ClawHub Page](https://clawhub.ai/yoborlon-alpha/claw-stock) <br>
-- [Publisher Profile](https://clawhub.ai/user/yoborlon-alpha) <br>
-- [Project Homepage](https://github.com/your-org/claw-stock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese prose with structured sections, factor scores, a total score, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code execution, account access, persistence, or trading authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill discusses stock ratings and buy/sell considerations that users could mistake for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the educational disclaimer in outputs and verify current market data independently before relying on any analysis.
+
+Risk: Broad trigger wording may route ambiguous stock-related prompts to this skill.
+
+Mitigation: Narrow trigger language during publication or review so the skill activates only for clear single-stock analysis requests.
+
+## Reference(s):
+
+- [Claw Stock homepage](https://github.com/your-org/claw-stock)
+- [ClawHub skill page](https://clawhub.ai/yoborlon-alpha/skills/claw-stock)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese-language stock analysis with factor scores, summary rating, follow-up answers, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential access, or hidden data movement was identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

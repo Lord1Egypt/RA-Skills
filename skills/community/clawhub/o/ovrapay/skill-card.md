@@ -1,45 +1,65 @@
-## Description: <br>
-Enables AI agents to complete online purchases, handle payment-required flows, manage payment records, and use tokenized credentials without exposing real card data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ovra Payments enables AI agents to complete online checkouts, manage spending, and track purchases through Ovra payment tools without exposing real card data to the agent.
 
-## Publisher: <br>
-[ovra](https://clawhub.ai/user/ovra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ovra](https://clawhub.ai/user/ovra)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent complete approved online purchases, handle HTTP 402 payments, manage virtual cards, enforce spending policy, and keep transaction records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the skill claims EU (Germany) data residency. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real-money payment and account-management actions. <br>
-Mitigation: Use sandbox or restricted keys first, enforce spending policy, and require explicit user confirmation before any real purchase. <br>
-Risk: Payment intent, merchant, amount, transaction, and receipt data is sent to Ovra. <br>
-Mitigation: Install only if you trust Ovra with that data and upload only receipts or invoices from the current transaction. <br>
-Risk: Sensitive card, token, agent, policy, and GDPR actions require strong backend approval controls. <br>
-Mitigation: Verify that the Ovra backend enforces approval and authorization for those actions before production use. <br>
+## Use Case:
 
+External users and developers use this skill to let an MCP-compatible agent make online payments, handle HTTP 402 paywalls, manage payment intents, upload transaction receipts, and review payment records while keeping real card data out of agent context.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ovra/ovrapay) <br>
-- [Ovra website](https://getovra.com) <br>
-- [Ovra documentation](https://docs.getovra.com) <br>
-- [Ovra MCP endpoint](https://api.getovra.com/api/mcp) <br>
+### Deployment Geography for Use:
 
+Global, with service data residency stated as EU (Germany).
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OVRA_API_KEY and an MCP connection to https://api.getovra.com/api/mcp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; skill metadata reports 2.3.0) <br>
+Risk: The skill can initiate payments and perform account-changing actions, including admin, credential, card, customer, and deletion operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox keys first, require explicit user confirmation for payments and account-changing actions, and enable only least-privilege tools needed for the task.
+
+Risk: Production bearer tokens could authorize financial or administrative actions if stored or exposed insecurely.
+
+Mitigation: Store live OVRA_API_KEY values in a secure secret store, avoid plaintext agent configs where possible, and rotate or revoke keys that may have been exposed.
+
+Risk: Receipt upload can transmit PDF or PNG files to the Ovra MCP endpoint.
+
+Mitigation: Upload only receipts or invoices from the current transaction and avoid sending arbitrary or unrelated files.
+
+Risk: Customer deletion and card close actions can be irreversible.
+
+Mitigation: Keep destructive tools behind separate approval, policy checks, and human confirmation before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ovra/skills/ovrapay)
+- [Ovra publisher profile](https://clawhub.ai/user/ovra)
+- [Ovra website](https://getovra.com)
+- [Ovra documentation](https://docs.getovra.com)
+- [Ovra MCP endpoint](https://api.getovra.com/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API calls, Shell commands]
+
+**Output Format:** [Markdown with JSON configuration and MCP tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OVRA_API_KEY and a connection to the Ovra MCP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

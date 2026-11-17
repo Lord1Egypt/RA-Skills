@@ -1,43 +1,59 @@
-## Description: <br>
-Renames academic PDF papers to standardized "[Year] [Venue] Title.pdf" filenames through an Extract, Verify, Rename workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rename academic PDF papers to a standardized format "[Year] [Venue] Title.pdf" using a three-stage Extract, Verify, and Rename pipeline.
 
-## Publisher: <br>
-[67available](https://clawhub.ai/user/67available) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[67available](https://clawhub.ai/user/67available)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to organize academic PDF folders by extracting candidate metadata, verifying it manually or with web search, and safely previewing or executing standardized renames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatically extracted PDF metadata can be incorrect or incomplete. <br>
-Mitigation: Review the generated manifest and add verified title, year, and venue values before marking files ready for rename. <br>
-Risk: Batch rename execution changes local filenames. <br>
-Mitigation: Run preview mode first and rely on the script-created timestamped backup before using execute mode. <br>
+## Use Case:
 
+Developers, researchers, and document-library maintainers use this skill to organize folders of academic PDFs by extracting first-page text, verifying bibliographic metadata, previewing proposed filenames, and executing batch renames when entries are confirmed.
 
-## Reference(s): <br>
-- [Manifest Schema](references/manifest_spec.md) <br>
-- [Standard Venue Abbreviations](references/venue_abbrev.md) <br>
-- [Common Mistakes and Anti-patterns](references/anti_patterns.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/67available/pdf-rename) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands, Python configuration edits, JSON manifests, and rename previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates manifest files and local PDF filenames when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled stale manifests and folder-specific helper data can drive incorrect renames or moves against user-accessible files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled manifest files and folder-specific VERIFIED_DATA helpers, regenerate the manifest for the exact target folder, and run preview before execution.
+
+Risk: Executing the rename stage changes files on disk and may be hard to reverse if metadata is wrong.
+
+Mitigation: Use a disposable copy of the PDF folder, inspect the preview, and run --execute only after confirmed metadata matches the intended files.
+
+Risk: Optional LLM parsing sends extracted PDF text to the configured local gateway, which may expose confidential document contents.
+
+Mitigation: Avoid the LLM parsing path for confidential PDFs unless the gateway and data handling are approved for that content.
+
+## Reference(s):
+
+- [Manifest Schema](references/manifest_spec.md)
+- [Standard Venue Abbreviations](references/venue_abbrev.md)
+- [Common Mistakes and Anti-patterns](references/anti_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python data snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces manifests and rename previews before optional file-moving execution.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Provides clinical medication consultation, personalized medication education, and rehabilitation guidance Q&A by routing selected questions to a configured medical model API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides clinical medication consultation, personalized medication education, and rehabilitation guidance Q&A with task-specific prompts.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and healthcare workflow integrators use this skill to run a command-line medical Q&A helper for medication consultation, patient medication education, and rehabilitation guidance. Outputs should be treated as decision support and reviewed under institutional clinical processes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected question text is sent to the configured medical model API. <br>
-Mitigation: De-identify patient data before use and only submit text approved for the target medical model service. <br>
-Risk: The app key authorizes calls to the medical model API. <br>
-Mitigation: Store the key securely, avoid logging it, and restrict access to users who are approved to operate the skill. <br>
-Risk: Medical answers may be incomplete or inappropriate for a specific patient. <br>
-Mitigation: Treat outputs as decision support only and require qualified clinical review before diagnosis, prescribing, or rehabilitation decisions. <br>
+## Use Case:
 
+Developers and clinical workflow integrators use this skill to route medication consultation, medication education, or rehabilitation questions to a medical LLM and return structured assistant output. The output is model-assisted information and is not a substitute for formal clinical diagnosis, prescribing, or treatment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-medication-rehab) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Configured medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON by default, plain text answer with --text-only, and NDJSON for batch output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task, question, answer, model, input mode, and metadata fields; dry-run mode emits parsed input without calling the model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Sensitive medical questions and API credentials may be sent to an external or caller-supplied API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS endpoint, avoid overriding --api-url unless the destination is controlled, protect the API key, and de-identify patient details before submission.
+
+Risk: Generated output may be mistaken for clinical diagnosis, prescribing, or treatment decisions.
+
+Mitigation: Review responses through qualified clinical workflows and treat outputs as model-assisted information only.
+
+Risk: Files written with --output may contain sensitive medical records or identifiers.
+
+Mitigation: Store output files only in approved locations, restrict access, and handle them as sensitive records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-medication-rehab)
+- [Default medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON by default, plain answer text with --text-only, or NDJSON for batch output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write UTF-8 JSON or NDJSON files when --output is provided.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

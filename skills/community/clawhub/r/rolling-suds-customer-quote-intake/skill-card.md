@@ -1,45 +1,57 @@
-## Description: <br>
-Normalize messy Rolling Suds customer or salesperson inputs for exterior cleaning jobs into a clean intake summary, estimator-ready handoff, Workiz-friendly internal note, follow-up questions, and manual-review flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalize messy Rolling Suds customer or salesperson inputs for exterior cleaning jobs into a clean intake summary, estimator-ready handoff, Workiz-friendly internal note, follow-up questions, and manual-review flags.
 
-## Publisher: <br>
-[mwdearing](https://clawhub.ai/user/mwdearing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mwdearing](https://clawhub.ai/user/mwdearing)
 
-## Use Case: <br>
-Sales and estimating staff use this skill to turn messy Rolling Suds exterior-cleaning leads into concise intake summaries, Workiz-ready notes, follow-up questions, manual-review flags, and handoff text for estimating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-St. Louis metro area, United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process customer lead details such as addresses, photos, and scheduling notes. <br>
-Mitigation: Provide only customer information authorized for business intake and avoid adding unnecessary personal data. <br>
-Risk: Generated Workiz notes or estimator handoffs can misstate messy or incomplete source input. <br>
-Mitigation: Review generated notes before pasting them into Workiz or another estimator workflow. <br>
-Risk: Missing Lead number or address can make a handoff look more complete than the source supports. <br>
-Mitigation: Require the Lead number and address before treating the handoff as estimator-ready. <br>
+## Use Case:
 
+Sales and estimating staff use this skill to turn rough customer messages, call notes, photos plus notes, or address-only lead details into clean quote-intake output for Rolling Suds exterior cleaning work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mwdearing/rolling-suds-customer-quote-intake) <br>
-- [Default design](artifact/references/default-design.md) <br>
-- [Version history](artifact/references/version-history.md) <br>
-- [Iteration notes](artifact/references/iteration-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with fixed intake, handoff, note, question, and manual-review sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces internal-use summaries and handoffs; no code execution or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release evidence and artifact version history) <br>
+Risk: Customer addresses and lead notes may contain sensitive business or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with quote-intake data appropriate for the intended Rolling Suds workflow and avoid adding unrelated sensitive details.
+
+Risk: Incomplete lead details can make an estimator handoff unreliable.
+
+Mitigation: Require the Lead number and address before an estimator-ready handoff, ask only the highest-value follow-up questions, and flag low-confidence scope for manual review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mwdearing/skills/rolling-suds-customer-quote-intake)
+- [Skill homepage](https://github.com/mwdearing/rolling-suds-customer-quote-intake)
+- [Default design](references/default-design.md)
+- [Version history](references/version-history.md)
+- [Iteration notes](references/iteration-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured text with labeled intake, handoff, Workiz note, follow-up, and manual-review sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Lead number before estimator-ready handoff and keeps known facts separate from assumptions.]
+
+## Skill Version(s):
+
+0.1.10 (source: evidence.release.version and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

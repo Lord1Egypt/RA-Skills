@@ -1,40 +1,53 @@
-## Description: <br>
-整合30多个麦肯锡经典思考框架，帮助用户用结构化方法开展战略、项目、组织、市场、逻辑和创意分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language collection of 30+ consulting frameworks for strategy planning, project management, organization analysis, marketing, logical reasoning, and creative problem solving.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Business users, consultants, product teams, and analysts use this prompt-only skill to select and apply classic consulting frameworks for market analysis, strategic planning, prioritization, decision support, and structured communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business framework outputs can be incomplete or misleading if the user provides limited context or relies on them as final advice. <br>
-Mitigation: Use the generated framework analysis as decision support, review assumptions and evidence, and validate recommendations before business use. <br>
-Risk: Users may include confidential business data while requesting consulting-style analysis. <br>
-Mitigation: Avoid entering confidential business data unless the normal agent environment is trusted and approved for that information. <br>
+## Use Case:
 
+Business users, consultants, analysts, and students use this skill to select and apply structured consulting frameworks to strategy, market, organization, project, and problem-solving questions. It helps an agent produce framework-based analysis plans, matrices, and recommendations in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/mckinsey-frameworks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain-language structured analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only reference material; no code execution or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Framework-based outputs may be mistaken for validated business conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as advisory templates and independently verify business facts, assumptions, and decisions before real-world use.
+
+Risk: The skill content is primarily Chinese-language, which may limit accessibility for some users.
+
+Mitigation: Ask the agent to translate or explain framework outputs in another language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/mckinsey-frameworks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with framework tables, matrices, and step-by-step analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory content; no code execution or data access behavior is described in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

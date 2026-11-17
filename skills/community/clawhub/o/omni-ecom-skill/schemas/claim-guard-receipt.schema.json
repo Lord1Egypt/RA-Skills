@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/claim-guard-receipt-2.0.json",
+  "title": "Omni E-commerce Claim Guard Receipt",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "status", "run_id", "client_scope", "claims_file", "claims_sha256", "errors", "checked_at"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "claim_guard_receipt"},
+    "contract_name": {"const": "omni-ecom.claim-guard"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.claim-guard@1.0"], "current_completion_authority": false}},
+    "status": {"enum": ["claim_structure_passed", "claim_guard_passed", "claim_guard_blocked"]},
+    "run_id": {"type": ["string", "null"]},
+    "client_scope": {"type": ["string", "null"]},
+    "claims_file": {"type": "string", "minLength": 1},
+    "claims_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "errors": {"type": "array"},
+    "checked_at": {"type": "string", "minLength": 1}
+  }
+}

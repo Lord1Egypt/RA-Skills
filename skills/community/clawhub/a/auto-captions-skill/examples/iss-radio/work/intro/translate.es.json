@@ -1,0 +1,31 @@
+{
+ "from": "en",
+ "to": "es",
+ "how": "Fill every 'text' with the translation of 'source': the same meaning in natural es, short enough to read in the cue's time; keep names and numbers. Optional 'emphasis': words to colour, as in fixes.json. Don't change i, start or end.",
+ "emphasis": [
+  "16 vueltas"
+ ],
+ "cues": [
+  {
+   "i": 1,
+   "start": 0.0,
+   "end": 1.757,
+   "source": "Hey everyone, I'm NASA astronaut Nichole Ayers,",
+   "text": "Hola, soy Nichole Ayers, de la NASA,"
+  },
+  {
+   "i": 2,
+   "start": 1.84,
+   "end": 3.677,
+   "source": "and welcome aboard the International Space Station,",
+   "text": "y bienvenidos a la Estación Espacial,"
+  },
+  {
+   "i": 3,
+   "start": 3.76,
+   "end": 7.207,
+   "source": "where we're orbiting the Earth 16 times every single day.",
+   "text": "donde damos 16 vueltas a la Tierra cada día."
+  }
+ ]
+}

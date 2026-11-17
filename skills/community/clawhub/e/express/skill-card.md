@@ -1,46 +1,61 @@
-## Description: <br>
-查快递物流轨迹与签收状态，支持自动识别公司与顺丰等校验。当用户说：这个单号到哪了？帮我查一下中通物流，或类似快递查询时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks express logistics status and delivery history through JisuAPI, including automatic courier recognition and courier-specific validation when required.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agents use this skill to check shipment tracking status, delivery progress, signed status, and supported courier company codes through JisuAPI. It is intended for user-requested express logistics lookups where the user provides a tracking number and, for some couriers, the last four digits of a phone number. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment identifiers, and sometimes the last four digits of a phone number, are sent to JisuAPI. <br>
-Mitigation: Use the skill only for user-requested tracking lookups, send only the fields required by the courier, and avoid adding unrelated personal data. <br>
-Risk: The skill requires a JisuAPI key. <br>
-Mitigation: Use a dedicated JisuAPI key in the JISU_API_KEY environment variable and avoid exposing the key in prompts, command history, logs, or shared outputs. <br>
-Risk: Shell execution with user-provided tracking data can be unsafe if raw input is concatenated into commands. <br>
-Mitigation: Construct the request as structured JSON and pass it as a quoted argument; strictly escape command arguments when a shell is unavoidable. <br>
+## Use Case:
 
+External users and developers use this skill to check package tracking status, signature state, and recent logistics events from an agent workflow. It is useful when a user provides a tracking number and optionally a courier code or phone-number suffix needed by specific couriers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/express) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI express documentation](https://www.jisuapi.com/api/express) <br>
-- [JisuAPI express query endpoint](https://api.jisuapi.com/express/query) <br>
-- [JisuAPI express type endpoint](https://api.jisuapi.com/express/type) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the Python CLI, with agent-facing summaries derived from that JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests package, and JISU_API_KEY; accepts a JSON argument containing number, optional type, and optional mobile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Shipment tracking numbers, courier type, the JisuAPI key, and sometimes the last four phone digits are sent to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that third-party sharing is acceptable, and avoid sensitive shipments unless the data-sharing terms are approved.
+
+Risk: User-provided tracking details could be mishandled if inserted directly into a shell command.
+
+Mitigation: Pass request data as structured JSON and apply strict quoting or escaping whenever a shell invocation is unavoidable.
+
+Risk: The skill depends on a configured JISU_API_KEY and network access to JisuAPI.
+
+Mitigation: Configure the API key in the environment and handle API, quota, HTTP, and JSON parsing errors before presenting results to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/express)
+- [JisuAPI express API documentation](https://www.jisuapi.com/api/express)
+- [JisuAPI website](https://www.jisuapi.com/)
+- [JisuAPI express query endpoint](https://api.jisuapi.com/express/query)
+- [JisuAPI express type endpoint](https://api.jisuapi.com/express/type)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from a Python CLI, with Markdown setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; query input includes a tracking number, optional courier type, and optional phone-number suffix.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

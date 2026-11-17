@@ -1,39 +1,58 @@
-## Description: <br>
-基于吴军智能时代投资理念，帮助分析公司的技术优势、数据资产、市场地位、AI 趋势适配度和投资关注点。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于吴军投资理念，帮助代理分析公司在智能时代的技术优势、数据资产、市场地位和科技趋势投资机会。
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and analysts use this skill to structure technology-investment research around AI trends, data quality, technical advantage, and market position. It is an educational analysis checklist and should not be treated as professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated investment recommendations as professional financial advice. <br>
-Mitigation: Use the output as an educational research checklist, verify data independently, and avoid making investment decisions solely from the skill's recommendations. <br>
+## Use Case:
 
+External users and analysts use this skill for Chinese-language, Wu Jun-style technology investment analysis, including AI trend assessment, data-asset review, market-position comparison, and structured investment-rating guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/wu-jun-investor) <br>
-- [吴军投资原则参考](references/wu-principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured checklist-style analysis with ratings, tables, and investment-research considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Investment analysis outputs may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify conclusions independently and avoid relying on the skill as the sole basis for buy, sell, or allocation decisions.
+
+Risk: Data-driven conclusions can be misleading when source data is incomplete, stale, or low quality.
+
+Mitigation: Use reliable data sources, check data quality, and combine quantitative outputs with qualitative review.
+
+Risk: The skill is Chinese-language and uses a specific Wu Jun-style investment framing.
+
+Mitigation: Ask the agent to use the preferred language and adapt the framing when the default style is not appropriate.
+
+## Reference(s):
+
+- [吴军投资原则参考](artifact/references/wu-principles.md)
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/wu-jun-investor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with tables, checklists, and investment-rating guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language investment analysis templates; financial conclusions require independent verification.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

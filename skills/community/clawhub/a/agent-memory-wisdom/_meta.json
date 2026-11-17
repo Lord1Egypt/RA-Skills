@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn75t8bxm4dwr3ykpw8sb8fbmd84mxjm",
-  "slug": "agent-memory-wisdom",
-  "version": "1.1.7",
-  "publishedAt": 1777113849867
+  "ownerId": "pawmi-wang",
+  "slug": "brain",
+  "version": "1.1.7-user",
+  "tag": "user",
+  "publishedAt": 1745577600000,
+  "tags": ["memory", "architecture", "brain", "v1.1.7", "user-edition", "confidence", "capsule"],
+  "description": "brain v1.1.7 用户版：让AI Agent拥有类大脑决策架构。置信度触发、双保险记忆、经验胶囊复用。3片段内存池，2并发上限。",
+  "author": "Pawmi",
+  "license": "MIT",
+  "features": [
+    "类大脑6层神经网络架构",
+    "置信度双保险（<0.6强制快照）",
+    "信号表决策机制",
+    "经验胶囊（raw/tested/stable三级成熟度）",
+    "会话上下文启动自动组装",
+    "QMD语义记忆搜索（轻量版）",
+    "子agent派发思考链",
+    "超时重试与失败兜底"
+  ]
 }

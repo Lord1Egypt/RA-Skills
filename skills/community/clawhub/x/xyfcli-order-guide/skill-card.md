@@ -1,46 +1,60 @@
-## Description: <br>
-Xyfcli Order Guide helps agents place fertilizer orders, query product, inventory, customer, supplier, and address information, and parse order images through the xyfcli CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fertilizer ordering and customer or supplier management skill that uses the xyfcli CLI to place orders, query product, price, inventory, customer, and dealer information, and parse order images.
 
-## Publisher: <br>
-[mayafans](https://clawhub.ai/user/mayafans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayafans](https://clawhub.ai/user/mayafans)
 
-## Use Case: <br>
-Developers and operational users use this skill to guide an agent through fertilizer ordering workflows, including product and inventory checks, customer and address lookup, order confirmation, order placement, and address updates through xyfcli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a stored order-system token to view customer data and change order or address records. <br>
-Mitigation: Install only for trusted publishers and target systems, use a limited and revocable token, and verify customer, address, product, quantity, logistics, and receiver fields before confirming an order. <br>
-Risk: Weak secret handling may expose order-system tokens or customer/order details through configuration output or transcripts. <br>
-Mitigation: Avoid commands that print configuration in JSON, keep transcripts private, and rotate or revoke tokens after exposure or when access is no longer needed. <br>
-Risk: Reusing another customer's address could create privacy and fulfillment issues. <br>
-Mitigation: Use another customer's address only when the organization explicitly permits it and the operator has confirmed the intended receiver and delivery details. <br>
+## Use Case:
 
+Sales and operations users use this skill to collect and validate fertilizer order details, query customer, product, inventory, and address data, and submit confirmed order drafts through xyfcli. It can also guide image-based order extraction before user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mayafans/xyfcli-order-guide) <br>
-- [Workflow guide](references/workflow_guide.md) <br>
-- [CLI quick reference Chinese](references/cli_quickref_chinese.md) <br>
-- [Image processing guide](references/image_processing.md) <br>
-- [xyfcli scripts README](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with inline xyfcli shell commands and structured confirmation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the xyfcli binary and a configured order-system base URL and token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.4 (source: server release evidence) <br>
+Risk: The skill can submit order drafts and modify customer addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production use, require explicit user confirmation for orders and address changes, and use a least-privilege or test token during validation.
+
+Risk: Authentication tokens may be exposed in logs, transcripts, or configuration output.
+
+Mitigation: Avoid running config show --json, limit token visibility, and rotate any token that appears in logs or transcripts.
+
+Risk: Unsafe address reuse or insufficient validation could create orders for the wrong customer, product, inventory level, or payment mode.
+
+Mitigation: Confirm backend enforcement of dealer product authorization, inventory, address ownership, and payment-mode validation before trusting the skill for real orders.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mayafans/skills/xyfcli-order-guide)
+- [XYFCLI Command Quick Reference](references/cli_quickref_chinese.md)
+- [Interactive Ordering Workflow](references/workflow_guide.md)
+- [Image Processing Reference](references/image_processing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with xyfcli shell commands and human-readable or JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the xyfcli binary and configured API base URL and bearer token.]
+
+## Skill Version(s):
+
+1.4.4 (source: ClawHub server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

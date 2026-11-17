@@ -1,44 +1,58 @@
-## Description: <br>
-Automated abstract screening tool for systematic literature reviews with PRISMA workflow support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated abstract screening tool for systematic literature reviews with PRISMA workflow support.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers and evidence-review teams use this skill to screen academic abstracts against configurable inclusion and exclusion criteria, produce reviewable decision rationales, and prepare PRISMA-style screening outputs. Human reviewers remain responsible for final inclusion and exclusion decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screening recommendations can be incorrect or incomplete if criteria, thresholds, language assumptions, or abstract content do not match the review protocol. <br>
-Mitigation: Customize and review the YAML criteria before use, inspect conflicts and low-confidence records, and require human verification before reporting final inclusion decisions. <br>
-Risk: The packaged Python script reads local reference files and writes screening outputs to the workspace. <br>
-Mitigation: Run it only on intended input files in a controlled workspace and review generated CSV and JSON outputs before sharing. <br>
-Risk: Dependency declarations require verification before real use. <br>
-Mitigation: Confirm the Python environment and dependencies before execution, then run the documented compile and help checks. <br>
+## Use Case:
 
+Researchers, systematic-review teams, and developers use this skill to screen academic abstracts against configurable inclusion and exclusion criteria, then generate reviewable inclusion, exclusion, conflict, PRISMA, and audit-log outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/systematic-review-screener) <br>
-- [criteria_template.yaml](references/criteria_template.yaml) <br>
-- [sample_references.csv](references/sample_references.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the packaged script can generate CSV and JSON screening outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces included, excluded, conflict, PRISMA, and screening-log artifacts when run with valid reference and criteria files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The dependency file lists unconstrained yaml and dataclasses packages, which can create unsafe or incompatible installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment after replacing yaml with a pinned PyYAML version and removing or constraining dataclasses.
+
+Risk: CSV report handling and user-supplied reference data may create safety or data-handling risks.
+
+Mitigation: Prefer JSON output for untrusted reference data, inspect generated files before sharing, and keep input and output paths workspace-scoped.
+
+Risk: Automated abstract screening can make incorrect inclusion or exclusion recommendations.
+
+Mitigation: Treat results as recommendations only, confirm language restrictions and confidence thresholds, and require human review for final study decisions.
+
+## Reference(s):
+
+- [Criteria Template](references/criteria_template.yaml)
+- [Sample References](references/sample_references.csv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts may be CSV or JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces included, excluded, conflict, PRISMA data, and screening log outputs when the packaged script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md Version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

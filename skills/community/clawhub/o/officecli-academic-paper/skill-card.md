@@ -1,39 +1,54 @@
-## Description: <br>
-Creates formally structured Word documents such as academic papers, research papers, white papers, technical reports, and policy briefs with TOC, equations, footnotes, endnotes, bibliography, and scholarly formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to build academic-style .docx papers with formal citation styles, numbered equations, figure and table cross-references, footnotes or endnotes, bibliography formatting, and optional multi-column journal layout.
 
-## Publisher: <br>
-[iceyliu](https://clawhub.ai/user/iceyliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iceyliu](https://clawhub.ai/user/iceyliu)
 
-## Use Case: <br>
-External users and developers use this skill to plan and generate academic or formal .docx documents with OfficeCli, including headings, TOC, equations, footnotes or endnotes, bibliography, and QA checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to automatically download and run an unpinned OfficeCli installer or updater from GitHub. <br>
-Mitigation: Review before installing; prefer installing a pinned, reviewed OfficeCli release yourself and prevent automatic curl/bash or PowerShell installer execution. <br>
+## Use Case:
 
+Developers and document-generation agents use this skill to create academic .docx manuscripts, journal or conference papers, and thesis chapters with venue-aware citation, equation, bibliography, figure, table, and layout conventions.
 
-## Reference(s): <br>
-- [Creating an Academic Paper](creating.md) <br>
-- [ClawHub release page](https://clawhub.ai/iceyliu/officecli-academic-paper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands for producing a .docx file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single Word .docx file through OfficeCli-driven document creation and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup instructions include direct execution of downloaded installer scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it, or prefer a verifiable, version-pinned OfficeCLI release.
+
+Risk: Document validation can miss academic-style defects such as unresolved citations, stale figure or table numbers, and equations rendered as plain text.
+
+Mitigation: Run the skill's citation, SEQ-field, and visual-preview checks before delivering the final .docx.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iceyliu/skills/officecli-academic-paper)
+- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with OfficeCLI shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides creation and validation of a single academic .docx output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,36 @@
+export default {
+en:{
+  app_name:"Project",
+  search:"Search",
+  report:"Reports",
+  report:{},
+  prj:{}
+},
+zh:{
+  app_name:"项目管理",
+  search:"搜索",
+  report:{
+    title:'报表',
+    in:'收入',
+    out:'支出',
+    salary:'工资',
+    prjName:'项目名称',
+    segs:{
+      workload:'工时(人.天)',
+      salary:'工资',
+      income:'已收款',
+      pay:'已付款',
+      iIncome:'内部收入',
+      iPay:'内部支出',
+      subsidy:'补助',
+      expense:'报销',
+      resource:'固定资产折旧',
+      receivable:'应收账款',
+      payable:'应付账款'
+    }
+  },
+  prj:{
+    title:'项目管理'
+  }
+}
+};

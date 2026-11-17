@@ -1,0 +1,27 @@
+name: video-character-reference-pack-cn
+slug: video-character-reference-pack-cn
+display_name: 视频人物参考卡
+version: 1.0.1
+description: 将用户授权的角色参考图描述、故事与造型限制整理为可跨镜头复用的人物参考卡，交付外观、服装和动作约束及一致性检查项。面向中文小店经营者、小说作者和自媒体创作者；资料不完整时明确列出缺失字段，不编造人物事实。
+repository: https://github.com/xxjrq/video-character-reference-pack-cn
+license: MIT-0
+tags:
+  - video-production
+  - character-consistency
+  - chinese-content
+  - storyboard
+  - creative-writing
+trigger_words:
+  - 视频人物参考卡
+  - 角色一致性
+  - 跨镜头人物设定
+  - 人物造型约束
+icon: assets/icon-512.png
+entrypoint: SKILL.md
+self_test: python3 scripts/self_test.py
+seo:
+  title: 视频人物参考卡：跨镜头角色一致性文本素材
+  keywords:
+    - 视频人物设定
+    - 角色参考卡
+    - 人物一致性

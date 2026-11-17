@@ -1,41 +1,51 @@
-## Description: <br>
-ADHD Body Doubling helps users run ADHD focus and accountability sessions with micro-step planning, frequent check-ins, dopamine reset options, and local session history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides virtual ADHD body-doubling sessions with micro-step prompts, frequent check-ins, dopamine resets, and local session history tracking.
 
-## Publisher: <br>
-[jankutschera](https://clawhub.ai/user/jankutschera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jankutschera](https://clawhub.ai/user/jankutschera)
 
-## Use Case: <br>
-External users and developers use this skill as a virtual body double for ADHD-oriented focus sessions, task initiation, procrastination recovery, and accountability while working. It guides users through timed work sessions, stuck-task breakdowns, resets, and session wrap-ups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local session history can retain task details, energy levels, and focus-session notes. <br>
-Mitigation: Avoid entering confidential client, business, health, or credential details, and periodically review or delete ~/.openclaw/skills/adhd-body-doubling/history/ if retained records are not desired. <br>
+## Use Case:
 
+External users, especially ADHD founders and productivity-focused users, use this skill to start tasks, maintain accountability during timed focus sessions, break down stuck tasks, and review local session history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jankutschera/adhd-body-doubling) <br>
-- [Publisher profile](https://clawhub.ai/user/jankutschera) <br>
-- [Body Doubling Protocols](references/protocols.md) <br>
-- [ADHD-founder.com](https://adhd-founder.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown conversation guidance with optional shell command output and local JSON history files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local session history under ~/.openclaw/skills/adhd-body-doubling/history/ when users run the session script or use history-tracking flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: Focus-session details such as task descriptions, micro-steps, energy level, and outcomes may be saved locally under ~/.openclaw/skills/adhd-body-doubling/history/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential task details unless local retention is acceptable, and periodically review or delete the history directory when retention is not desired.
+
+## Reference(s):
+
+- [Body Doubling Protocols](references/protocols.md)
+- [ADHD-founder.com](https://adhd-founder.com)
+- [ClawHub Skill Page](https://clawhub.ai/jankutschera/skills/adhd-body-doubling)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown conversation prompts with optional shell commands and local JSON session history files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Standalone session script can save task and focus-session history under ~/.openclaw/skills/adhd-body-doubling/history/.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence; artifact frontmatter reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

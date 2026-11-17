@@ -1,46 +1,54 @@
-## Description: <br>
-Shed provides context-window hygiene guidance for long-running LLM agents, including when to compress, mask, switch, or delegate context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shed gives long-running LLM agents decision rules for managing context windows by compressing, masking, switching, or delegating context when sessions grow large.
 
-## Publisher: <br>
-[compass-soul](https://clawhub.ai/user/compass-soul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[compass-soul](https://clawhub.ai/user/compass-soul)
 
-## Use Case: <br>
-Developers and agent operators use Shed to manage context growth during extended agent sessions and to design agent architectures with explicit context-management rules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated memory notes could contain secrets, credentials, private transcripts, or unnecessary personal data. <br>
-Mitigation: Keep notes in a known workspace, review them for accuracy, and avoid saving sensitive or unnecessary personal information. <br>
-Risk: Context-compression guidance could preserve incorrect or misleading summaries if applied without review. <br>
-Mitigation: Review condensed notes and retained breadcrumbs before relying on them for future agent work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Shed on ClawHub](https://clawhub.ai/compass-soul/shed) <br>
-- [The Complexity Trap](https://arxiv.org/abs/2508.21433) <br>
-- [OpenHands Context Condensation](https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents) <br>
-- [Letta Memory Blocks](https://www.letta.com/blog/memory-blocks) <br>
-- [LLMLingua-2](https://aclanthology.org/2024.acl-long.91/) <br>
-- [Lost in the Middle](https://arxiv.org/abs/2307.03172) <br>
-- [Found in the Middle](https://arxiv.org/abs/2406.16008) <br>
-- [MEM1 Dynamic State Management](https://arxiv.org/abs/2506.15841) <br>
+## Use Case:
 
+Developers and agent operators use Shed to keep extended LLM sessions manageable by extracting key facts from large tool outputs, condensing context before overflow, and handing off work when context becomes stale.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with decision rules and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or external tool calls are required by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Long-lived memory or breadcrumb files could retain secrets or sensitive raw tool output if an agent follows the guidance without filtering.
+
+Mitigation: Extract only necessary facts, redact credentials and sensitive values, and avoid storing raw command output or private data in persistent memory files.
+
+## Reference(s):
+
+- [Lindenbauer et al., The Complexity Trap](https://arxiv.org/abs/2508.21433)
+- [OpenHands Context Condensation](https://openhands.dev/blog/openhands-context-condensensation-for-more-efficient-ai-agents)
+- [Letta/MemGPT Memory Blocks](https://www.letta.com/blog/memory-blocks)
+- [LLMLingua-2](https://aclanthology.org/2024.acl-long.91/)
+- [Liu et al., Lost in the Middle](https://arxiv.org/abs/2307.03172)
+- [Hsieh et al., Found in the Middle](https://arxiv.org/abs/2406.16008)
+- [MEM1 Dynamic State Management](https://arxiv.org/abs/2506.15841)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and concise operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include short checklists, decision rules, or file-writing guidance for context handoff.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

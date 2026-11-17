@@ -1,40 +1,50 @@
-## Description: <br>
-Provides Windows-oriented OpenClaw configuration guidance for context size, runtime optimization, error handling, token limits, and fast processing settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Windows-focused OpenClaw configuration guidance for improving development environment performance, token limits, runtime behavior, and error handling.
 
-## Publisher: <br>
-[agentricai-owner](https://clawhub.ai/user/agentricai-owner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentricai-owner](https://clawhub.ai/user/agentricai-owner)
 
-## Use Case: <br>
-Developers and engineers use this skill as concise guidance for tuning an OpenClaw development environment on Windows 11. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced OpenClaw configuration APIs or settings may not exist in the user's installed environment. <br>
-Mitigation: Confirm the installed OpenClaw version supports the referenced APIs and treat the settings as examples until verified. <br>
-Risk: Higher context, token limit, runtime, and hardware acceleration settings may change resource usage on Windows systems. <br>
-Mitigation: Apply configuration changes incrementally and monitor performance, memory, and error logs before using them in regular workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill as a documentation-style aid for configuring OpenClaw on Windows 11 development environments. It summarizes settings related to context size, token limits, runtime optimization, error handling, and hardware acceleration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentricai-owner/skills/win-openclaw-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, code] <br>
-**Output Format:** [Markdown guidance with configuration steps and a Python example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are bundled; the artifact is documentation-oriented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact claims configuration settings have been applied, but ships only Markdown guidance and no code that applies those settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a configuration aid and manually verify each OpenClaw setting before using it in a development environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentricai-owner/skills/win-openclaw-config)
+- [Publisher Profile](https://clawhub.ai/user/agentricai-owner)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration instructions, Guidance, Code]
+
+**Output Format:** [Markdown with inline Python example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; users should manually verify settings before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

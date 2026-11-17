@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn70wwaa0ck0dqg2a3jp651vgs837cvw",
-  "slug": "seedream-img-gen",
+  "name": "seedream-img-gen",
   "version": "1.0.0",
-  "publishedAt": 1774509039417
+  "description": "使用火山引擎 Seedream 模型生成图片，支持文生图和图生图",
+  "author": "",
+  "license": "MIT"
 }

@@ -43,10 +43,17 @@ import subprocess
 import sys
 import tempfile
 import urllib.parse
+import urllib.request
 from pathlib import Path
 
-# CDP debugging port for connecting to real Chrome
-CDP_PORT = 9222
+# CDP debugging port for connecting to real Chrome. The launcher writes the
+# selected port when 9222 is occupied by an incompatible embedded browser.
+_CDP_PORT_FILE = Path.home() / ".fetch_article" / "cdp_port"
+try:
+    _saved_cdp_port = _CDP_PORT_FILE.read_text(encoding="utf-8").strip()
+except OSError:
+    _saved_cdp_port = ""
+CDP_PORT = int(os.environ.get("FETCH_ARTICLE_CDP_PORT") or _saved_cdp_port or "9222")
 
 # Substack session persistence
 SUBSTACK_STORAGE_DIR = Path.home() / ".substack"
@@ -113,6 +120,90 @@ def _is_chrome_running() -> bool:
 _chrome_process: subprocess.Popen | None = None
 
 
+def _cdp_list_targets(port: int = CDP_PORT) -> list[dict]:
+    """List CDP targets via Chrome DevTools HTTP API."""
+    with urllib.request.urlopen(f"http://127.0.0.1:{port}/json/list", timeout=5) as resp:
+        return json.loads(resp.read())
+
+
+def _cdp_ensure_seed_tab(port: int = CDP_PORT) -> bool:
+    """Ensure at least one page target exists before connect_over_cdp.
+
+    Playwright fails with 'Browser context management is not supported' when
+    the CDP Chrome instance has zero open tabs (common after all tabs closed).
+    """
+    try:
+        targets = _cdp_list_targets(port)
+    except Exception:
+        return False
+    if any(t.get("type") == "page" for t in targets):
+        return False
+    req = urllib.request.Request(
+        f"http://127.0.0.1:{port}/json/new?about:blank",
+        method="PUT",
+    )
+    with urllib.request.urlopen(req, timeout=10) as resp:
+        json.loads(resp.read())
+    print("📄 已创建 CDP 种子标签页（connect_over_cdp 需要至少一个 page target）")
+    return True
+
+
+def _cdp_profile_dir() -> str:
+    return str(Path.home() / ".fetch_article" / "chrome_cdp_profile")
+
+
+def _sync_cookies_to_cdp_profile() -> None:
+    """Copy cookies from daily Chrome profile into the CDP profile."""
+    cdp_profile_dir = _cdp_profile_dir()
+    real_chrome_dir = _get_chrome_user_data_dir()
+    real_cookies = Path(real_chrome_dir) / "Default" / "Cookies"
+    cdp_cookies = Path(cdp_profile_dir) / "Default" / "Cookies"
+    if real_cookies.exists():
+        os.makedirs(str(cdp_cookies.parent), exist_ok=True)
+        try:
+            shutil.copy2(str(real_cookies), str(cdp_cookies))
+            print("🍪 已同步日常 Chrome 的 cookies 到 CDP profile")
+        except Exception as e:
+            print(f"⚠️  Cookies 同步失败: {e}")
+
+
+def _launch_cdp_chrome_via_open(port: int = CDP_PORT) -> bool:
+    """Launch CDP Chrome via macOS open (survives Agent shell termination)."""
+    cdp_profile_dir = _cdp_profile_dir()
+    os.makedirs(cdp_profile_dir, exist_ok=True)
+    _sync_cookies_to_cdp_profile()
+
+    if platform.system() == "Darwin":
+        cmd = [
+            "open", "-na", "Google Chrome", "--args",
+            f"--remote-debugging-port={port}",
+            f"--user-data-dir={cdp_profile_dir}",
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--disable-default-apps",
+        ]
+        print(f"🚀 通过 open 启动 CDP Chrome (profile: {cdp_profile_dir})")
+        subprocess.run(cmd, check=False)
+        return True
+
+    chrome_path = _find_chrome_executable()
+    if not chrome_path:
+        print("❌ 未找到系统 Chrome 浏览器")
+        return False
+    cmd = [
+        chrome_path,
+        f"--remote-debugging-port={port}",
+        f"--user-data-dir={cdp_profile_dir}",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+    ]
+    print(f"🚀 启动 CDP Chrome (profile: {cdp_profile_dir})")
+    global _chrome_process
+    _chrome_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    return True
+
+
 async def _ensure_chrome_cdp(port: int = CDP_PORT) -> bool:
     """Ensure Chrome is running with CDP enabled on the given port.
 
@@ -138,75 +229,14 @@ async def _ensure_chrome_cdp(port: int = CDP_PORT) -> bool:
     finally:
         sock.close()
 
-    # Need to launch Chrome with CDP
-    chrome_path = _find_chrome_executable()
-    if not chrome_path:
-        print("❌ 未找到系统 Chrome 浏览器")
-        return False
-
-    # Always use a dedicated CDP profile directory (NOT the default Chrome dir).
-    # macOS Chrome refuses to open the CDP port when using the default
-    # user-data-dir.
-    # However, we copy cookies from the real profile to the CDP profile
-    # to preserve login state.
-    cdp_profile_dir = str(Path.home() / ".fetch_article" / "chrome_cdp_profile")
-    os.makedirs(cdp_profile_dir, exist_ok=True)
-
-    # Copy cookies from the real Chrome profile to CDP profile if available
-    real_chrome_dir = _get_chrome_user_data_dir()
-    real_cookies = Path(real_chrome_dir) / "Default" / "Cookies"
-    cdp_cookies = Path(cdp_profile_dir) / "Default" / "Cookies"
-    if real_cookies.exists():
-        os.makedirs(str(cdp_cookies.parent), exist_ok=True)
-        try:
-            shutil.copy2(str(real_cookies), str(cdp_cookies))
-            print(f"🍪 已同步真实 Chrome 的 cookies 到 CDP profile")
-        except Exception as e:
-            print(f"⚠️  Cookies 同步失败: {e}")
-
-    cmd = [
-        chrome_path,
-        f"--remote-debugging-port={port}",
-        f"--user-data-dir={cdp_profile_dir}",
-        "--no-first-run",
-        "--no-default-browser-check",
-        "--disable-default-apps",
-        "--disable-popup-blocking",
-        "--disable-translate",
-        "--window-size=1440,900",
-    ]
-
-    # Auto-detect proxy
-    proxy = (
-        os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY")
-        or os.environ.get("http_proxy") or os.environ.get("HTTP_PROXY")
-    )
-    if not proxy and platform.system() == "Darwin":
-        for proxy_cmd in ["getsecurewebproxy", "getwebproxy"]:
-            try:
-                result = subprocess.run(
-                    ["networksetup", f"-{proxy_cmd}", "Wi-Fi"],
-                    capture_output=True, text=True, timeout=5,
-                )
-                enabled = server = port_str = ""
-                for line in result.stdout.splitlines():
-                    if line.startswith("Enabled: Yes"):
-                        enabled = True
-                    elif line.startswith("Server:"):
-                        server = line.split(":", 1)[1].strip()
-                    elif line.startswith("Port:"):
-                        port_str = line.split(":", 1)[1].strip()
-                if enabled and server and port_str:
-                    proxy = f"http://{server}:{port_str}"
-                    break
-            except Exception:
-                pass
-    if proxy:
-        cmd.append(f"--proxy-server={proxy}")
-        print(f"🌐 使用代理: {proxy}")
-
-    print(f"🚀 启动 Chrome CDP (profile: {cdp_profile_dir})")
-    _chrome_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    # Prefer start-cdp-chrome.sh / open -a so Chrome survives Agent shell exit.
+    start_script = Path.home() / ".fetch_article" / "start-cdp-chrome.sh"
+    if start_script.exists():
+        print(f"🚀 调用 {start_script} 启动 CDP Chrome...")
+        subprocess.run(["bash", str(start_script)], check=False)
+    else:
+        if not _launch_cdp_chrome_via_open(port):
+            return False
 
     # Wait for CDP port
     for _ in range(30):
@@ -233,28 +263,50 @@ async def _ensure_chrome_cdp(port: int = CDP_PORT) -> bool:
     return False
 
 
-async def _create_cdp_context(playwright):
-    """Connect to real Chrome via CDP and return (browser, context, page).
-    
-    Falls back to Playwright's bundled Chromium with Chrome cookie injection
-    if CDP connection fails (e.g., Chrome 147+ removed setDownloadBehavior).
+async def _create_cdp_context(playwright, strict_cdp: bool = False):
+    """Connect to CDP Chrome on port 9222 and return (browser, context, page).
+
+    When strict_cdp=True (--cdp flag), never fall back to Playwright's bundled
+    'Google Chrome for Testing' (no login state). Re-raise on failure instead.
     """
-    # Try CDP first
+    os.environ.setdefault("PW_CHROMIUM_DISABLE_DOWNLOAD_BEHAVIOR", "1")
+
     launched = await _ensure_chrome_cdp(CDP_PORT)
     if launched:
+        seed_created = _cdp_ensure_seed_tab(CDP_PORT)
         try:
-            browser = await playwright.chromium.connect_over_cdp(f"http://127.0.0.1:{CDP_PORT}")
+            browser = await playwright.chromium.connect_over_cdp(
+                f"http://127.0.0.1:{CDP_PORT}"
+            )
             if browser.contexts:
                 context = browser.contexts[0]
-                print("🔗 已连接到真实 Chrome（复用已有上下文）")
+                print("🔗 已连接到 CDP Chrome（复用已有上下文，将新开标签页抓取）")
             else:
                 context = await browser.new_context(viewport={"width": 1440, "height": 900})
-                print("🔗 已连接到真实 Chrome（新建上下文）")
-            page = await context.new_page()
+                print("🔗 已连接到 CDP Chrome（新建上下文）")
+            if seed_created and context.pages:
+                page = context.pages[-1]
+                print("📄 复用刚创建的 CDP 种子标签页")
+            else:
+                page = await context.new_page()
             return browser, context, page
         except Exception as e:
-            print(f"⚠️  CDP 连接失败: {str(e)[:100]}")
+            print(f"⚠️  CDP 连接失败: {str(e)[:200]}")
+            if strict_cdp:
+                raise RuntimeError(
+                    "CDP 连接失败，已禁止回退到 Playwright Testing Chrome（无登录态）。\n"
+                    "请确认：① CDP Chrome 在 9222 端口运行（~/.fetch_article/start-cdp-chrome.sh）\n"
+                    "② 在 CDP Chrome 窗口（非日常 Chrome）中登录目标网站\n"
+                    f"原始错误: {e}"
+                ) from e
             print("🔄 回退到 Playwright Chromium + Chrome Cookie 注入模式...")
+
+    if strict_cdp:
+        raise RuntimeError(
+            "无法启动或连接 CDP Chrome（端口 9222）。\n"
+            "请先运行: ~/.fetch_article/start-cdp-chrome.sh\n"
+            "然后在 CDP Chrome 窗口中登录目标网站后再重试。"
+        )
 
     # Fallback: use Playwright's bundled Chromium with cookie injection
     browser = await playwright.chromium.launch(
@@ -412,6 +464,8 @@ def _is_substack_site(url: str) -> bool:
     # Known Substack domains
     substack_domains = [
         "substack.com",
+        "a16z.news",
+        "www.a16z.news",
         "lennysnewsletter.com",
         "www.lennysnewsletter.com",
         "creatoreconomy.so",
@@ -832,11 +886,49 @@ async def _scroll_page(page, is_wechat: bool = False, is_dedao: bool = False):
         await page.wait_for_timeout(2000)
 
 
-async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path, is_wechat: bool = False, is_dedao: bool = False, is_webflow: bool = False) -> str:
+def _strip_substack_archive_noise(markdown: str, author: str = "") -> str:
+    """Remove Substack chrome and end matter that can leak into article containers."""
+    markers = (
+        "\n[Institutional AI vs Individual AI",
+        "\nThis newsletter is provided for informational purposes only",
+        "\n*This newsletter is provided for informational purposes only",
+        "\n#### Subscribe to ",
+        "\n### Subscribe to ",
+    )
+    positions = [markdown.find(marker) for marker in markers if markdown.find(marker) >= 0]
+    if positions:
+        markdown = markdown[: min(positions)]
+        markdown = re.sub(
+            r"\n+!\[[^\]]*\]\([^)]+\)\s*$",
+            "",
+            markdown.rstrip(),
+        )
+    if author:
+        escaped = re.escape(author.strip())
+        markdown = re.sub(
+            rf"^\s*\[{escaped}\]\([^)]+\).*$\n?",
+            "",
+            markdown,
+            count=1,
+            flags=re.MULTILINE | re.IGNORECASE,
+        )
+    return markdown.strip()
+
+
+async def _extract_and_save(
+    page,
+    url: str,
+    output_path: Path,
+    images_dir: Path,
+    is_wechat: bool = False,
+    is_dedao: bool = False,
+    is_webflow: bool = False,
+    is_substack: bool = False,
+) -> str:
     """Extract article content, download images, convert to Markdown, and save.
     
     This is the shared extraction logic used by both CDP mode and cookie-injection mode.
-    Returns the path to the saved article.md.
+    Returns the path to the saved source.md.
     """
     # Take a screenshot for debugging
     try:
@@ -851,6 +943,7 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
         const isWechat = args.isWechat;
         const isDedao = args.isDedao;
         const isWebflow = args.isWebflow;
+        const isSubstack = args.isSubstack;
 
         // Remove style/script tags first (Webflow embeds <style> inside content containers)
         if (isWebflow) {
@@ -970,9 +1063,42 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
             const wcDateEl = document.querySelector('#publish_time');
             if (wcDateEl) date = wcDateEl.innerText.trim();
         }
+        if (!date && isSubstack) {
+            const visit = value => {
+                if (!value || typeof value !== 'object') return [];
+                if (Array.isArray(value)) return value.flatMap(visit);
+                return [value, ...Object.values(value).flatMap(visit)];
+            };
+            for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
+                try {
+                    const items = visit(JSON.parse(script.textContent || '{}'));
+                    const exact = items.find(item =>
+                        item && item.datePublished && item.headline &&
+                        String(item.headline).trim() === title
+                    );
+                    const article = exact || items.find(item =>
+                        item && item.datePublished &&
+                        /article|posting/i.test(String(item['@type'] || ''))
+                    );
+                    if (article) {
+                        date = article.datePublished;
+                        break;
+                    }
+                } catch (_) {}
+            }
+        }
         if (!date) {
-            const dateEl = document.querySelector('time, .post-date, [class*="date"]');
+            const dateEl = document.querySelector(
+                'time[datetime], time, .post-date, [data-testid="post-date"], [class*="publish-date"]'
+            );
             date = dateEl ? (dateEl.getAttribute('datetime') || dateEl.innerText.trim()) : '';
+        }
+        if (!date) {
+            const publishedMeta = document.querySelector(
+                'meta[property="article:published_time"], meta[name="article:published_time"], ' +
+                'meta[itemprop="datePublished"]'
+            );
+            if (publishedMeta) date = publishedMeta.getAttribute('content') || '';
         }
 
         return { 
@@ -980,7 +1106,12 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
             content: articleEl.innerText, 
             html: articleEl.innerHTML 
         };
-    }""", {"isWechat": is_wechat, "isDedao": is_dedao, "isWebflow": is_webflow})
+    }""", {
+        "isWechat": is_wechat,
+        "isDedao": is_dedao,
+        "isWebflow": is_webflow,
+        "isSubstack": is_substack,
+    })
 
     title = article_data.get("title", "Untitled")
     print(f"📖 文章标题: {title}")
@@ -991,6 +1122,7 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
     image_elements = await page.evaluate("""(args) => {
         const isWechat = args.isWechat;
         const isDedao = args.isDedao;
+        const isSubstack = args.isSubstack;
         let articleEl = null;
         if (isWechat) {
             // WeChat: use #js_content directly
@@ -1039,14 +1171,34 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
             imgs = articleEl.querySelectorAll('img');
         }
         
+        function isArchiveNoise(node) {
+            if (!isSubstack) return false;
+            for (let current = node; current && current !== articleEl; current = current.parentElement) {
+                const classes = String(current.className || '').toLowerCase();
+                const testid = String(current.getAttribute?.('data-testid') || '').toLowerCase();
+                if (/(subscribe|subscription|recommend|related|post-footer|disclaimer)/.test(classes + ' ' + testid)) {
+                    return true;
+                }
+                const text = (current.innerText || '').trim().replace(/\\s+/g, ' ').toLowerCase();
+                if (
+                    text.startsWith('discover more from ') ||
+                    text.startsWith('subscribe for more from ') ||
+                    text.startsWith('this newsletter is provided for informational purposes only')
+                ) return true;
+            }
+            return false;
+        }
+
         return Array.from(imgs).map((img, i) => ({
             // For WeChat, prefer data-src (original high-res URL) over src (which may be a placeholder)
             src: (isWechat ? (img.getAttribute('data-src') || img.src) : (img.src || img.getAttribute('data-src'))) || '',  // isWechat from closure
             alt: img.alt || '',
             width: img.naturalWidth || img.width || 0,
             height: img.naturalHeight || img.height || 0,
-            index: i
+            index: i,
+            archiveNoise: isArchiveNoise(img)
         })).filter(x => {
+            if (x.archiveNoise) return false;
             if (!x.src || x.src.startsWith('data:image/svg')) return false;
             if (x.src.includes('pixel') || x.src.includes('tracking')) return false;
             // For X.com, include larger images (not just avatars/profile pics)
@@ -1059,7 +1211,12 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
             }
             return true;
         });
-    }""", {"isWechat": is_wechat, "isDedao": is_dedao, "isWebflow": is_webflow})
+    }""", {
+        "isWechat": is_wechat,
+        "isDedao": is_dedao,
+        "isWebflow": is_webflow,
+        "isSubstack": is_substack,
+    })
 
     image_map = {}
     for i, img_info in enumerate(image_elements):
@@ -1107,6 +1264,7 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
         const isWechat = args.isWechat;
         const isDedao = args.isDedao;
         const isWebflow = args.isWebflow;
+        const isSubstack = args.isSubstack;
         
         let articleEl = null;
         if (isWechat) {
@@ -1146,6 +1304,17 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
                 node.className.includes('paywall') ||
                 node.className.includes('footer')
             )) return '';
+            if (isSubstack) {
+                const classes = String(node.className || '').toLowerCase();
+                const testid = String(node.getAttribute?.('data-testid') || '').toLowerCase();
+                const text = (node.innerText || '').trim().replace(/\\s+/g, ' ').toLowerCase();
+                if (
+                    /(subscribe|subscription|recommend|related|post-footer|disclaimer)/.test(classes + ' ' + testid) ||
+                    text.startsWith('discover more from ') ||
+                    text.startsWith('subscribe for more from ') ||
+                    text.startsWith('this newsletter is provided for informational purposes only')
+                ) return '';
+            }
 
             const children = () => {
                 let s = '';
@@ -1253,7 +1422,28 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
         }
 
         return processNode(articleEl, 0);
-    }""", {"imageMap": image_map, "title": title, "isWechat": is_wechat, "isWebflow": is_webflow})
+    }""", {
+        "imageMap": image_map,
+        "title": title,
+        "isWechat": is_wechat,
+        "isWebflow": is_webflow,
+        "isSubstack": is_substack,
+    })
+
+    if is_substack:
+        markdown = _strip_substack_archive_noise(
+            markdown,
+            article_data.get("author", ""),
+        )
+
+    referenced_images = set(
+        re.findall(r"!\[[^\]]*\]\((images/[^)\s]+)\)", markdown)
+    )
+    for local_rel in set(image_map.values()) - referenced_images:
+        (output_path / local_rel).unlink(missing_ok=True)
+    archived_images = [
+        local_rel for local_rel in image_map.values() if local_rel in referenced_images
+    ]
 
     # Build final document
     import datetime as _dt
@@ -1271,28 +1461,40 @@ async def _extract_and_save(page, url: str, output_path: Path, images_dir: Path,
     md_content += markdown
     md_content = re.sub(r"\n{4,}", "\n\n\n", md_content)
 
-    md_path = output_path / "article.md"
+    md_path = output_path / "source.md"
+    if md_path.exists() and md_path.read_text(encoding="utf-8") != md_content:
+        raise FileExistsError(
+            f"{md_path} 已存在且内容不同；请使用新的输出目录，避免覆盖不可变原文"
+        )
     md_path.write_text(md_content, encoding="utf-8")
 
+    sample = re.sub(r"!\[[^\]]*\]\([^)]+\)", "", markdown)[:5000]
+    cjk_count = len(re.findall(r"[\u3400-\u9fff]", sample))
+    language = "zh" if sample and cjk_count / max(len(sample), 1) >= 0.3 else "non-zh"
     article_meta = {
-        "url": url,
         "title": title,
+        "source_url": url,
+        "source_title": title,
+        "source_type": "article",
+        "language": language,
         "subtitle": article_data.get("subtitle", ""),
         "author": article_data.get("author", ""),
         "date": article_data.get("date", ""),
         "content_length": len(article_data.get("content", "")),
-        "image_count": len(image_map),
-        "images": list(image_map.values()),
+        "image_count": len(archived_images),
+        "images": archived_images,
         "fetched_at": _dt.datetime.now().isoformat(),
     }
-    meta_path = output_path / "article_meta.json"
+    meta_path = output_path / "meta.json"
     meta_path.write_text(json.dumps(article_meta, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"📋 元信息已保存: {meta_path}")
 
-    print(f"\n✅ 文章已保存: {md_path}")
+    print(f"\n✅ 标准工作包已生成: {output_path}")
+    print(f"   不可变原文: {md_path}")
+    print(f"   元信息: {meta_path}")
     print(f"   标题: {title}")
     print(f"   正文: {len(article_data.get('content', ''))} 字符")
-    print(f"   图片: {len(image_map)} 张")
+    print(f"   图片: {len(archived_images)} 张")
 
     return str(md_path)
 
@@ -1301,7 +1503,7 @@ async def fetch_article(
     url: str,
     output_dir: str,
     headless: bool = True,
-    use_cdp: bool = False,
+    use_cdp: bool = True,
 ):
     """Fetch article content and images.
     
@@ -1348,30 +1550,14 @@ async def fetch_article(
     if use_cdp:
         print("🔗 使用 CDP 模式连接真实 Chrome...")
         async with async_playwright() as p:
-            browser, context, page = await _create_cdp_context(p)
+            browser, context, page = await _create_cdp_context(p, strict_cdp=True)
 
-            # Try to find existing tab with the target URL/domain, avoid re-navigation
-            target_page = None
-            target_url_lower = url.lower()
-            for ctx in browser.contexts:
-                for p2 in ctx.pages:
-                    page_url = p2.url or ""
-                    if target_url_lower in page_url.lower() or "dedao.cn" in page_url.lower():
-                        target_page = p2
-                        print(f"📄 复用已打开的标签页: {page_url[:80]}")
-                        break
-                if target_page:
-                    break
-
-            if target_page:
-                page = target_page
-            else:
-                print(f"📥 正在加载页面: {url}")
-                try:
-                    await page.goto(url, wait_until="networkidle", timeout=60000)
-                except Exception as e:
-                    print(f"⚠️  页面加载超时，继续: {e}")
-                    await page.wait_for_timeout(5000)
+            print(f"📥 在已连接的 CDP Chrome 新标签页中加载: {url}")
+            try:
+                await page.goto(url, wait_until="networkidle", timeout=60000)
+            except Exception as e:
+                print(f"⚠️  页面加载超时，继续: {e}")
+                await page.wait_for_timeout(5000)
 
             # Wait for Cloudflare challenge if detected
             await _wait_for_cloudflare(page)
@@ -1384,7 +1570,14 @@ async def fetch_article(
                 login_status = await _check_substack_login(page)
                 print(f"   {login_status['detail']}")
 
-                if not login_status["logged_in"]:
+                login_required = (
+                    not login_status["logged_in"]
+                    and (
+                        login_status["has_paywall"]
+                        or login_status["content_length"] < 2000
+                    )
+                )
+                if login_required:
                     print("\n" + "=" * 60)
                     print("🔐 Substack 未登录！请在 Chrome 浏览器中完成以下操作：")
                     print(f"   1. 在 Chrome 中打开: {url}")
@@ -1427,16 +1620,27 @@ async def fetch_article(
                                     print(f"⚠️  验证未通过（还有 {remaining} 次机会）")
                                 else:
                                     print("⚠️  多次验证未通过，将抓取当前可见内容")
-                else:
+                elif login_status["logged_in"]:
                     # Logged in — check if paywall still blocks full content
                     if login_status["has_paywall"]:
                         print("⚠️  已登录但仍检测到付费墙（可能需要付费订阅此频道）")
+                else:
+                    print("✅ 公开文章内容完整，无需登录")
 
             # Scroll to load lazy content
             await _scroll_page(page, is_wechat=is_wechat, is_dedao=is_dedao)
 
             # Extract content
-            result = await _extract_and_save(page, url, output_path, images_dir, is_wechat=is_wechat, is_dedao=is_dedao, is_webflow=is_webflow)
+            result = await _extract_and_save(
+                page,
+                url,
+                output_path,
+                images_dir,
+                is_wechat=is_wechat,
+                is_dedao=is_dedao,
+                is_webflow=is_webflow,
+                is_substack=is_substack,
+            )
 
             # Close the tab we opened (don't close the browser — it's the user's Chrome)
             await page.close()
@@ -1606,7 +1810,16 @@ async def fetch_article(
             print("⚠️  仍被付费墙拦截，但会继续提取可见内容")
 
         # Extract content and save
-        result = await _extract_and_save(page, url, output_path, images_dir, is_wechat=is_wechat, is_dedao=is_dedao, is_webflow=is_webflow)
+        result = await _extract_and_save(
+            page,
+            url,
+            output_path,
+            images_dir,
+            is_wechat=is_wechat,
+            is_dedao=is_dedao,
+            is_webflow=is_webflow,
+            is_substack=is_substack,
+        )
 
         await browser.close()
         if pw_manager:
@@ -1615,61 +1828,22 @@ async def fetch_article(
 
 
 async def substack_login():
-    """Standalone Substack login — opens browser, guides login, saves session."""
+    """Standalone Substack login using the persistent CDP Chrome profile."""
     from playwright.async_api import async_playwright
-    
+
     print("🔐 Substack 登录")
     print("=" * 60)
-    
-    if SUBSTACK_STORAGE_PATH.exists():
-        print(f"💾 发现已有登录态缓存: {SUBSTACK_STORAGE_PATH}")
-        print("   正在验证缓存是否有效...")
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                storage_state=str(SUBSTACK_STORAGE_PATH),
-                viewport={"width": 1280, "height": 900},
-                user_agent=(
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/131.0.0.0 Safari/537.36"
-                ),
-            )
-            page = await context.new_page()
-            try:
-                await page.goto("https://substack.com", wait_until="networkidle", timeout=30000)
-            except Exception:
-                await page.wait_for_timeout(5000)
-            await page.wait_for_timeout(2000)
-            login_status = await _check_substack_login(page)
-            await browser.close()
-            
-            if login_status["logged_in"]:
-                print(f"   ✅ 缓存有效，已登录！无需重新登录。")
-                return
-            else:
-                print(f"   ⚠️  缓存已过期，需要重新登录")
-                SUBSTACK_STORAGE_PATH.unlink(missing_ok=True)
-    
-    print("\n即将打开浏览器，请完成 Substack 登录：")
+    print("将复用 9222 端口的 CDP Chrome，不会启动 Google Chrome for Testing。")
+    print("\n请在 CDP Chrome 中完成 Substack 登录：")
     print("  1. 点击 'Sign in' 登录您的账号")
     print("  2. 登录成功后页面右上角应显示您的头像")
     print("  3. 回到终端输入 'y' 确认")
     print("=" * 60)
-    
+
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
-        context = await browser.new_context(
-            viewport={"width": 1280, "height": 900},
-            user_agent=(
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/131.0.0.0 Safari/537.36"
-            ),
-        )
-        page = await context.new_page()
+        browser, context, page = await _create_cdp_context(p, strict_cdp=True)
         await page.goto("https://substack.com/sign-in", wait_until="networkidle", timeout=60000)
-        
+
         for attempt in range(5):
             try:
                 user_input = await asyncio.get_event_loop().run_in_executor(
@@ -1679,31 +1853,26 @@ async def substack_login():
                 break
             
             if user_input.strip().lower() == "y":
-                # Navigate to a Substack page to verify login
                 try:
                     await page.goto("https://substack.com", wait_until="networkidle", timeout=30000)
                 except Exception:
                     await page.wait_for_timeout(5000)
                 await page.wait_for_timeout(2000)
-                
+
                 login_status = await _check_substack_login(page)
                 print(f"   {login_status['detail']}")
-                
+
                 if login_status["logged_in"]:
-                    SUBSTACK_STORAGE_DIR.mkdir(parents=True, exist_ok=True)
-                    await context.storage_state(path=str(SUBSTACK_STORAGE_PATH))
-                    print(f"💾 登录态已缓存到 {SUBSTACK_STORAGE_PATH}")
-                    print("✅ 后续抓取 Substack 文章时将自动使用此登录态，无需重复登录！")
-                    await browser.close()
+                    print("✅ 登录态已保存在 CDP Chrome profile，后续抓取会直接复用。")
+                    await page.close()
                     return
-                else:
-                    remaining = 4 - attempt
-                    if remaining > 0:
-                        print(f"⚠️  验证未通过，请确认已登录（还有 {remaining} 次机会）")
+                remaining = 4 - attempt
+                if remaining > 0:
+                    print(f"⚠️  验证未通过，请确认已登录（还有 {remaining} 次机会）")
             elif user_input.strip().lower() == "q":
                 break
-        
-        await browser.close()
+
+        await page.close()
         print("❌ 登录未完成")
 
 
@@ -1717,7 +1886,9 @@ def main():
     fetch_parser.add_argument("--output-dir", "-o", required=True, help="输出目录")
     fetch_parser.add_argument("--headless", action="store_true", default=True, help="无头模式（默认）")
     fetch_parser.add_argument("--no-headless", action="store_true", help="显示浏览器窗口")
-    fetch_parser.add_argument("--cdp", action="store_true", help="使用 CDP 模式连接真实 Chrome（适用于 Cloudflare 保护站点如 OpenAI、需要 Google 登录的站点如 LinkedIn）")
+    fetch_parser.set_defaults(use_cdp=True)
+    fetch_parser.add_argument("--cdp", dest="use_cdp", action="store_true", help="使用 CDP 模式连接并复用真实 Chrome（默认）")
+    fetch_parser.add_argument("--no-cdp", dest="use_cdp", action="store_false", help="显式使用隔离的 Playwright 浏览器（无既有登录态）")
     
     # Login subcommand
     subparsers.add_parser("login", help="登录 Substack 并缓存登录态到 ~/.substack/storage_state.json")
@@ -1728,7 +1899,7 @@ def main():
         asyncio.run(substack_login())
     elif args.command == "fetch":
         headless = not args.no_headless
-        result = asyncio.run(fetch_article(url=args.url, output_dir=args.output_dir, headless=headless, use_cdp=args.cdp))
+        result = asyncio.run(fetch_article(url=args.url, output_dir=args.output_dir, headless=headless, use_cdp=args.use_cdp))
         if result:
             print(f"\n🎉 完成!")
         else:

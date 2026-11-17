@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7amkcd924z5tfs6sra7p2q7181wcqj",
-  "slug": "fxtwitter-extract",
+  "name": "fxtwitter-extract",
   "version": "1.0.0",
-  "publishedAt": 1772904458805
+  "description": "使用 FxTwitter API 提取 X (Twitter) 文章内容",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "repository": "https://github.com/FxEmbed/FxTwitter",
+  "tags": ["twitter", "x", "social-media", "extract", "api"],
+  "dependencies": [],
+  "scripts": [
+    {
+      "name": "fxtwitter_extract",
+      "path": "scripts/fxtwitter_extract.py",
+      "runtime": "python3"
+    }
+  ]
 }

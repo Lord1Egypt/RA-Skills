@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "ask-architecture-before-structuring",
+    "name": "aREDACTED-SECRET",
     "description": "Tests whether the model asks the developer about architecture preference before imposing one",
     "prompt": "I'm starting a new Go web service project. Set up the directory structure for me.",
     "trap": "Without the skill, the model immediately generates a directory structure without asking. The skill says to ASK the developer what architecture they prefer before structuring.",

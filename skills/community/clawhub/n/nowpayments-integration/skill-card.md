@@ -1,44 +1,55 @@
-## Description: <br>
-Integrates the NowPayments API so an agent can add multi-cryptocurrency checkout, IPN handling, and order tracking to an AI-operated store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates the NowPayments API so an agent can add multi-cryptocurrency checkout, IPN callback handling, payment verification, and order tracking to an AI-operated store.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Developers and store operators use this skill to have an agent add NowPayments checkout, payment callbacks, status polling, and product configuration to an ecommerce store. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to modify payment code for a live store. <br>
-Mitigation: Review generated checkout and callback code before deployment and test the flow in staging before accepting real payments. <br>
-Risk: NowPayments API keys and IPN secrets could be exposed if placed in client-side code or committed to source control. <br>
-Mitigation: Keep payment secrets server-side in environment variables and verify they are excluded from source control. <br>
-Risk: Incorrect checkout or IPN handling could misreport payment status or order fulfillment. <br>
-Mitigation: Verify IPN signature handling, rate limiting, CSRF protections, and order status transitions before production use. <br>
+## Use Case:
 
+Developers and store operators use this skill to have an agent add NowPayments checkout, IPN webhook handling, and payment status tracking to an AI-operated store.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/nowpayments-integration) <br>
-- [NowPayments API documentation](https://documenter.getpostman.com/view/7900902/S1a7UnNT) <br>
-- [Store example](https://www.talonforge.xyz/store) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment variable setup, checkout endpoint guidance, IPN callback handling, status polling, and security checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Payment-flow changes may be under-scoped and could affect checkout, callback, or order-status behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply changes in a test branch or staging environment and review each endpoint, callback, and payment-status change before deployment.
+
+Risk: Payment API keys and IPN secrets may be exposed if environment files, logs, or chat transcripts are mishandled.
+
+Mitigation: Store NOWPAYMENTS_API_KEY and NOWPAYMENTS_IPN_SECRET in protected environment configuration, keep secret files gitignored, and avoid logging or sharing secret values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/casperzinou/skills/nowpayments-integration)
+- [NowPayments Docs](https://documenter.getpostman.com/view/7900902/S1a7UnNT)
+- [Store Example](https://www.talonforge.xyz/store)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for checkout endpoints, IPN callbacks, environment variables, and payment-status handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

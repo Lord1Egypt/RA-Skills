@@ -1,42 +1,54 @@
-## Description: <br>
-Helps QA teams reduce combination-test explosion by using pairwise coverage, orthogonal testing, decision-table thinking, and risk-weighted combinations to produce coverage matrices and identify gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA teams reduce parameter and environment test combinations using pairwise testing, orthogonal designs, and risk-based selection while documenting coverage gaps.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test designers, and developers use this skill to turn scenario trees, requirement breakdowns, and optional risk assessments into efficient combination-test plans. It is most useful when full combinatorial coverage is impractical across many parameters, environments, or dependent input values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reduced combination sets may miss critical interactions in high-risk workflows. <br>
-Mitigation: Manually review generated matrices and add full coverage for high-risk, safety-sensitive, payment, security, or complex dependency flows. <br>
-Risk: Broad QA terminology may trigger the skill when pairwise or orthogonal reduction is not the right strategy. <br>
-Mitigation: Confirm the parameters, value ranges, business rules, and risk levels before relying on a reduced matrix. <br>
-Risk: The skill produces QA planning guidance rather than executable tests. <br>
-Mitigation: Convert the matrix into concrete test cases with clear preconditions, steps, and expected results before execution. <br>
+## Use Case:
 
+QA engineers and developers use this skill to design manageable combinatorial test cases for multi-parameter features, prioritize higher-risk combinations, and identify coverage gaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-combination-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with combination matrices, pairwise combinations, N-way analysis, and coverage-gap notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before being converted into executable test cases, especially for high-risk flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: Examples may contain customer, payment, identity, or production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or masked test data; do not paste real sensitive records into prompts.
+
+Risk: The optional command installs a larger skill bundle without a pinned version.
+
+Mitigation: Review the publisher and bundle source before running it, and pin a reviewed version where possible.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-combination-strategy)
+- [Combination reduction strategies](references/reduction-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Testing guidance]
+
+**Output Format:** [Markdown tables and test-case lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Combination matrices with IDs, linked scenario IDs, pairwise and N-way analyses, stated coverage basis, and coverage gaps.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

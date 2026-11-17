@@ -1,44 +1,58 @@
-## Description: <br>
-Trades Polymarket prediction markets on social trend indicators, including loneliness indices, mental health policy, drug legalization, and cultural inflection points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on social trend indicators: loneliness indices, mental health policy, drug legalization, and cultural inflection points.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to run a configurable Polymarket social-trends trading strategy, starting in paper mode and optionally enabling live trading after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Polymarket mode can place real USDC orders, and the release security summary says live-trading risk controls are weaker than the skill describes. <br>
-Mitigation: Review before enabling live trading, start in paper mode, and use independent account-level limits in addition to the skill tunables. <br>
-Risk: SIMMER_API_KEY is a sensitive trading credential. <br>
-Mitigation: Use a dedicated, revocable key with limited funds and rotate or revoke it if exposure is suspected. <br>
-Risk: Dependency behavior affects market discovery and order execution. <br>
-Mitigation: Verify the simmer-sdk version before installation and deployment. <br>
+## Use Case:
 
+External developers and trading operators use this skill to discover social policy and wellbeing prediction markets, compute conviction-adjusted YES/NO trade signals, and run simulated or live orders through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-social-trends-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Python script execution with console status logs and trade requests through simmer-sdk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires the --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades with financial exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default paper mode unless deliberately enabling live trading; use a limited, revocable SIMMER_API_KEY.
+
+Risk: Security evidence says several advertised financial safety limits are unreliable.
+
+Mitigation: Keep live trading disabled until the risk-control issues are fixed and reviewed.
+
+Risk: The trading dependency is not pinned in the artifact.
+
+Mitigation: Pin or otherwise verify simmer-sdk before trusting the skill with real funds.
+
+## Reference(s):
+
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Shell commands, Configuration]
+
+**Output Format:** [Console text with simulated or live trade order requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trades require an explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

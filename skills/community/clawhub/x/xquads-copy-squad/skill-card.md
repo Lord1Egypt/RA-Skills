@@ -1,41 +1,50 @@
-## Description: <br>
-Routes copywriting requests to a 23-agent copy squad for headlines, sales letters, VSL scripts, email sequences, funnels, offers, analysis, and critique. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xquads Copy Squad helps agents route copywriting requests across 23 named marketing personas to create headlines, sales letters, VSL scripts, email sequences, funnels, offers, and copy reviews.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Marketers, founders, and content teams use this skill to brief a Copy Chief orchestrator that selects specialist copywriting personas and produces or reviews direct-response copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include unsupported legal, medical, financial, or advertising-compliance claims. <br>
-Mitigation: Review generated copy with appropriate domain and compliance reviewers before public use. <br>
-Risk: Users may install the wrong package if the publisher or homepage is not the source they expect. <br>
-Mitigation: Verify the ClawHub publisher profile and listed homepage before installation. <br>
+## Use Case:
 
+External users and marketers use this skill to route Portuguese-oriented copywriting requests to named marketing personas for headlines, long-form sales copy, VSL scripts, email sequences, landing pages, offers, copy analysis, and critique.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/engsathiago/xquads-copy-squad) <br>
-- [Project homepage](https://github.com/synkra/xquads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text copywriting drafts and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only writing assistance; no credential, code execution, persistence, or hidden data handling was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact skill.json) <br>
+Risk: Generated marketing copy can include inaccurate claims, compliance issues, or brand misalignment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review copy for factual accuracy, advertising claims, regulatory compliance, and brand fit before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/xquads-copy-squad)
+- [Project homepage](https://github.com/synkra/xquads)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text copywriting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing copy drafts, critiques, and routing guidance; outputs should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

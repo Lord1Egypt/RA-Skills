@@ -1,45 +1,62 @@
-## Description: <br>
-Use the Instaparser API to parse articles, PDFs, and generate summaries from URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Instaparser API to parse articles, PDFs, and generate summaries from URLs.
 
-## Publisher: <br>
-[donohue](https://clawhub.ai/user/donohue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donohue](https://clawhub.ai/user/donohue)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve parsed article text, parse PDF content, and request article summaries through Instaparser when a user provides a URL or local PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Instaparser receives submitted URLs, article content, and PDFs for third-party processing. <br>
-Mitigation: Use the skill only for content you are comfortable sending to Instaparser, and avoid private URLs, confidential article content, or sensitive PDFs unless that processing is acceptable. <br>
-Risk: The skill requires an Instaparser API key. <br>
-Mitigation: Provide INSTAPARSER_API_KEY through the environment or a secure secrets feature instead of pasting the key into chat. <br>
+## Use Case:
 
+External users and developers use this skill to extract article or PDF content and request summaries through the Instaparser service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donohue/instaparser) <br>
-- [Instaparser website](https://www.instaparser.com) <br>
-- [Instaparser API base](https://www.instaparser.com/api/) <br>
-- [Instaparser Article API](https://www.instaparser.com/api/1/article) <br>
-- [Instaparser PDF API](https://www.instaparser.com/api/1/pdf) <br>
-- [Instaparser Summary API](https://www.instaparser.com/api/1/summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and parsed API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INSTAPARSER_API_KEY and network access to Instaparser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill sends selected URLs, HTML content, or PDFs to the external Instaparser service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for content intended for external processing and confirm Instaparser's terms and data handling before uploading confidential documents.
+
+Risk: The skill requires an Instaparser API key.
+
+Mitigation: Set INSTAPARSER_API_KEY through an environment variable or secret store instead of pasting credentials into chat.
+
+Risk: Parsing and summary requests may consume account credits or hit service limits.
+
+Mitigation: Review request scope before execution and monitor Instaparser account usage, rate limits, and plan limits.
+
+## Reference(s):
+
+- [ClawHub Instaparser Skill Page](https://clawhub.ai/donohue/skills/instaparser)
+- [Instaparser Website](https://www.instaparser.com)
+- [Instaparser API Base](https://www.instaparser.com/api/)
+- [Instaparser Article API](https://www.instaparser.com/api/1/article)
+- [Instaparser PDF API](https://www.instaparser.com/api/1/pdf)
+- [Instaparser Summary API](https://www.instaparser.com/api/1/summary)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and parsed API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and INSTAPARSER_API_KEY; API use may consume Instaparser credits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

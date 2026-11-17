@@ -1,45 +1,60 @@
-## Description: <br>
-OpenClaw 记忆系统 adds multimodal memory, project/agent/user isolation, natural-language correction, and version control for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 记忆系统 helps agents manage multimodal memory, project/agent/user isolation, and natural-language memory correction with version history.
 
-## Publisher: <br>
-[Nick-Liu1989](https://clawhub.ai/user/Nick-Liu1989) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nick-liu1989](https://clawhub.ai/user/nick-liu1989)
 
-## Use Case: <br>
-Developers running OpenClaw instances use this skill to persist and retrieve text, image, and tool-call memories, isolate those memories by project, agent, and user, and correct stored memories from natural-language feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent user, project, image, and tool-call memories without clear privacy, retention, or sharing boundaries in the evidence. <br>
-Mitigation: Define allowed memory categories, retention expectations, and sharing rules before deployment; disable or tightly scope cross-user sharing. <br>
-Risk: Server security evidence reports inconsistent packaging, including missing skills/, configs/, tests/, and scripts/postinstall.js. <br>
-Mitigation: Confirm the complete package contents with the publisher and review installation behavior before enabling the skill. <br>
-Risk: Optional Feishu integration can send memory data to an external service. <br>
-Mitigation: Configure Feishu only when external transmission of memory data is approved, and avoid sending sensitive memory content. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to add persistent multimodal memory, scoped project/agent/user namespaces, and natural-language memory correction workflows to agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Nick-Liu1989/openclaw-memory-system) <br>
-- [README.md](artifact/README.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
-- [RELEASE.md](artifact/RELEASE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and examples for persistent memory storage, namespace configuration, memory correction, and optional Feishu integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, manifest.json, package.json) <br>
+Risk: The release claims broad persistent memory, sharing, import/export, deletion, cleanup, and Feishu webhook behavior without clearly explaining privacy, retention, consent, or data egress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy and retention expectations before installation, use a disposable workspace for evaluation, and keep webhook configuration disabled until data-flow behavior is understood.
+
+Risk: The package is under-scoped and does not ship the advertised implementation files for the documented memory modules.
+
+Mitigation: Verify installed files and runnable tests before relying on the skill for production memory workflows.
+
+Risk: The install script creates memory directories and copies configuration into the OpenClaw workspace.
+
+Mitigation: Set OPENCLAW_WORKSPACE to an intended test workspace and review filesystem changes before running the installer in a shared or production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nick-liu1989/skills/openclaw-memory-system)
+- [README.md](artifact/README.md)
+- [QUICKSTART.md](artifact/QUICKSTART.md)
+- [RELEASE.md](artifact/RELEASE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JavaScript examples, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The package advertises persistent memory behavior, optional Feishu webhook integration, and workspace configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

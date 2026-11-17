@@ -1,43 +1,57 @@
-## Description: <br>
-Documentation-only skill for using AEGX Provenable as a runtime guide for agent guardrails, verification, CLI workflows, integration, packaging, and incident-response evidence handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A condensed single-file guide for operating and integrating AEGX Provenable, a runtime that helps agents make risky behavior observable, verifiable, and recoverable.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers, integrators, operators, and incident investigators use this skill to understand, operate, package, or adapt AEGX Provenable workflows. It summarizes how to build or install the runtime, initialize state, check daemon health, run self-verification, create snapshots, and export or verify evidence bundles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes an external runtime, daemon, installer, and binaries that are not bundled with the documentation-only release. <br>
-Mitigation: Obtain external software from a trusted source and verify integrity before installation or execution. <br>
-Risk: The referenced runtime may monitor agent activity or require elevated access depending on deployment. <br>
-Mitigation: Review its monitoring, persistence, daemon health, and permission behavior before granting elevated access. <br>
-Risk: A degraded or unreachable guard runtime can give a false sense of protection during risky operations. <br>
-Mitigation: Check daemon status and active self-verification before high-impact actions, and pause risky work when coverage is stale or uncertain. <br>
+## Use Case:
 
+Developers, integrators, and operators use this skill to understand, integrate, and operate AEGX Provenable workflows for guarded agent actions, runtime health checks, snapshots, evidence export, and incident review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/provenable) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/danielfoojunwei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command examples and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code or hidden install behavior is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is a condensed guide and is not proof that the full AEGX Provenable runtime code is safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain the actual repository from a trusted source and review the installer, daemon, adapters, and runtime code before building or running it.
+
+Risk: The referenced daemon and adapters may store records, run background processes, and monitor local activity.
+
+Mitigation: Confirm record storage locations, process behavior, and monitoring scope before installation or operational use.
+
+Risk: Using the runtime while protection is degraded can create false confidence in guarded actions.
+
+Mitigation: Check daemon status and run active self-verification before high-risk work; pause risky actions if protection is stale, unreachable, or uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoojunwei/skills/provenable)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with command examples and structured operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Condensed single-file repository guide; it does not include raw source code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

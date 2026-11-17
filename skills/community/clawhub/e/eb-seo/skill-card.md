@@ -1,42 +1,54 @@
-## Description: <br>
-Helps startups and product teams audit and improve technical SEO, on-page metadata, schema markup, Core Web Vitals, sitemaps, robots.txt, and keyword targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search engine optimization guidance for startups and products, focused on technical SEO and on-page optimization that developers can implement directly.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill to perform SEO audits and turn recommendations into code-level fixes for startup and product websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect SEO configuration can affect what search engines crawl, index, or display. <br>
-Mitigation: Review generated robots.txt, sitemap URLs, canonical tags, noindex settings, schema values, analytics setup, and production metadata before deployment. <br>
-Risk: SEO recommendations may include site-specific assumptions that do not match the user's product, audience, or current search data. <br>
-Mitigation: Validate recommendations against the live site, search-console data, and product goals before applying changes. <br>
+## Use Case:
 
+Developers, founders, and product teams use this skill to audit and improve a site's technical SEO, on-page metadata, structured data, crawlability, Core Web Vitals, and search visibility. It is aimed at actionable fixes an agent can propose or implement in code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emersonbraun/eb-seo) <br>
-- [SEO Checklists Reference](references/seo-checklists.md) <br>
-- [Schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with checklists, tables, and inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized audit findings, implementation snippets, metadata examples, schema markup, sitemap and robots.txt guidance, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: SEO, schema, and metadata recommendations can publish inaccurate public snippets if placeholder domains, prices, ratings, locale values, or organization links are used unchanged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all placeholders with accurate site-specific values and review public-facing snippets before deployment.
+
+Risk: Analytics and search-console recommendations may affect tracking, consent, or operational visibility for a production site.
+
+Mitigation: Get user approval before adding or changing analytics, Search Console, or Core Web Vitals tracking.
+
+## Reference(s):
+
+- [SEO Checklists Reference](references/seo-checklists.md)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SEO audit scores, prioritized issue lists, keyword tables, schema JSON-LD, and Next.js implementation snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -18,18 +18,24 @@
  *          this, decides whether there is a discernible goal, and COMPOSES a
  *          to-do card. With --session <id> / --kbd-input <id> the payload is
  *          filtered to a single unit (the auto-run dispatcher unit); with no
- *          flags it returns the whole time window (the manual ask).
+ *          flags it returns the whole time window (the manual ask). It also
+ *          REMEMBERS each returned session's raw started_at/ended_at instants in
+ *          per-user state (`sessionWindows`, same 30-day TTL as `seen`, capped at
+ *          500 entries) so `push` can anchor the card without being re-handed them.
  *   push   read a to-do-card JSON object on stdin, dedup it against per-user local
  *          state (the `seen` map, 30-day TTL), and write it to
  *          POST /api/skill/data type="todo" status="pending" (best-effort mirror),
  *          then deliver a markdown digest of the card via /api/agent/push (NON-FATAL
  *          — the summary line reports delivered / FAILED). The skill does NOT
  *          self-gate per unit — the server owns run-once (DispatchRouteExecuted).
- *          When the stdin JSON also carries the fetch payload's `sessions` (and
- *          `tz`), push stamps the item's OPTIONAL start_at/end_at journal window
- *          from the source session's started_at/ended_at — earliest session by
- *          started_at among the card's source_refs, serialized naive-local in tz
- *          (calendar-extractor convention). Missing/malformed times => omitted.
+ *          push stamps the item's OPTIONAL start_at/end_at journal window from the
+ *          source session's started_at/ended_at — earliest session by started_at
+ *          among the card's source_refs, serialized naive-local in tz
+ *          (calendar-extractor convention). The window is resolved from the UNION
+ *          of the `sessionWindows` map `fetch` remembered and any `sessions` the
+ *          stdin JSON carries (piped overrides remembered by session_id), so a
+ *          bare card object still gets its day. Missing/malformed times => omitted;
+ *          a date is NEVER invented.
  *
  * Usage:
  *   node brainstorming.js <userId> fetch [--hours N] [--limit N]
@@ -56,13 +62,19 @@ const fs = require('fs');
 const path = require('path');
 const { resolveUserId, safeUserPath, readJson, writeJson } = require('./data');
 const {
+  SEEN_TTL_DAYS,
+  SESSION_WINDOWS_MAX,
   resolveTz,
   localAnchor,
+  instantIso,
   sessionWindow,
+  unionSessions,
   todoDedupKey,
   composePrompt,
   formatDigest,
+  pruneByTtl,
   pruneSeen,
+  capRecent,
 } = require('./lib');
 const { buildTodoItem, postTodoCards } = require('./todo-card');
 
@@ -149,11 +161,63 @@ function filterToUnit(sessions, { sessionFilter }) {
   return sessions;
 }
 
+// Persist the journal window of every session this fetch returned, so a later
+// `push` can anchor the card even when the agent pipes only the card object
+// (design 2026-09-11 §B: the anchor must not depend on an LLM re-piping an
+// array the skill itself fetched).
+//
+//   state.sessionWindows = { "<session_id>": { started_at, ended_at?, seen_at } }
+//
+// Values are RAW ISO instants, never naive-local strings: tz is resolved per run
+// and a window frozen in one tz would render wrong after the user's tz changes.
+// `sessionWindow` converts to naive-local at the last moment, and instantIso
+// normalizes the live wire's epoch seconds to ISO on the way in, so the map
+// feeds it exactly the kind of value the envelope does.
+//
+// A session with no usable `started_at` carries no window and is not recorded;
+// a session with no usable `ended_at` records its `started_at` alone (the key is
+// simply absent — buildTodoItem then emits start_at without end_at).
+//
+// The map prunes with the SAME 30-day TTL as `seen` (pruneByTtl, keyed on
+// seen_at), then keeps at most its SESSION_WINDOWS_MAX most recent entries. A
+// fetch that returned zero sessions leaves the existing map in place — it is
+// never cleared — and `seen` / `lastRunAt` are never touched here.
+//
+// It also records `state.tz` — but ONLY the tz the SERVER supplied on the fetch
+// envelope. `push` falls back to it when the agent pipes no `tz`, which is the
+// same defect the session map fixes: the agent had to re-pipe a value the skill
+// already had. Recording a fallback-derived tz instead would be worse than
+// recording nothing — the container runs with TZ unset, so `resolveTz` yields
+// UTC, and persisting that would make every later card STICKILY wrong by the
+// user's whole offset (verified on prod 2026-09-12: a bare-card push wrote
+// 20:12 for a session that started 13:12 local).
+function rememberSessionWindows(sessions, nowIso, { load, save }, serverTz) {
+  const state = load();
+  const tz = (serverTz == null ? '' : String(serverTz)).trim();
+  if (tz) state.tz = tz;
+  const kept = pruneByTtl(state.sessionWindows || {}, (w) => w && w.seen_at, SEEN_TTL_DAYS);
+  for (const s of Array.isArray(sessions) ? sessions : []) {
+    const id = sessionId(s);
+    if (!id) continue;
+    const started_at = instantIso(s.started_at);
+    if (!started_at) continue;
+    const window = { started_at };
+    const ended_at = instantIso(s.ended_at);
+    if (ended_at) window.ended_at = ended_at;
+    window.seen_at = nowIso;
+    kept[id] = window;
+  }
+  state.sessionWindows = capRecent(kept, (w) => w && w.seen_at, SESSION_WINDOWS_MAX);
+  save(state);
+}
+
 // IO-injectable core so doFetch is unit-testable. `deps.httpGet(url, token)`
 // returns the parsed JSON body (the default hits javis-server via fetch).
 async function doFetch(opts = {}, deps = {}) {
   const token = opts.token || requireToken();
   const httpGet = deps.httpGet || defaultHttpGet;
+  const load = deps.load || loadState;
+  const save = deps.save || saveState;
   const nowIso = deps.now ? deps.now() : new Date().toISOString();
 
   const sessionFilter = 'sessionFilter' in opts ? opts.sessionFilter : getFlag('session', null);
@@ -167,15 +231,26 @@ async function doFetch(opts = {}, deps = {}) {
   const data = await httpGet(url, token);
 
   const isEnvelope = data && typeof data === 'object' && !Array.isArray(data);
-  let sessions = isEnvelope
+  // Everything the server returned, BEFORE --session/--kbd-input narrows it.
+  const fetched = isEnvelope
     ? (Array.isArray(data.sessions) ? data.sessions : [])
     : (Array.isArray(data) ? data : []);
 
-  if (!kbdFilter) sessions = filterToUnit(sessions, { sessionFilter });
+  const sessions = kbdFilter ? fetched : filterToUnit(fetched, { sessionFilter });
 
   const base = isEnvelope ? data : {};
   const payloadTz = 'tz' in opts ? opts.tz : (deps.tz != null ? deps.tz : base.tz);
   const tz = resolveTz(payloadTz);
+
+  // Remember EVERY session this fetch returned, not just the one --session
+  // narrowed the envelope to. The window costs nothing to keep, and a card whose
+  // source_refs cite a sibling session from the same fetch still gets its day.
+  //
+  // Remembering is NON-FATAL: an unwritable state file must never cost the agent
+  // the envelope it is waiting on (the card then degrades to the piped-sessions
+  // path, exactly as before this design).
+  try { rememberSessionWindows(fetched, nowIso, { load, save }, payloadTz); }
+  catch (e) { console.error('⚠️ session-window memory not updated (non-fatal):', e.message); }
 
   // The relative-date anchor lets the agent resolve "today" coherently if the
   // goal references it; the sessions' started_at/ended_at are what `push` later
@@ -238,7 +313,9 @@ function defaultSubtitle(sourceRefs) {
 // {card:{…}, sessions?:[…], tz?:"…"}. `sessions` (the fetch payload's
 // sessions[], or at least the {session_id, started_at, ended_at} of the card's
 // source_refs) and `tz` may ride either on the envelope or on the card itself;
-// they feed the optional start_at/end_at stamping and are otherwise ignored.
+// they feed the optional start_at/end_at stamping (layered over the
+// `sessionWindows` map `fetch` remembered) and are otherwise ignored. Both are
+// optional: a bare card object is anchored from the remembered map alone.
 async function readStdinPush() {
   let input = '';
   for await (const chunk of process.stdin) input += chunk;
@@ -283,6 +360,31 @@ const defaultPushClient = {
   digest: (token, card) => pushDigest(token, card),
 };
 
+// push owns exactly TWO keys of the per-user state file: `seen` and `lastRunAt`.
+// It re-reads the state immediately before writing and merges only those two
+// into the fresh copy, instead of saving the whole-object snapshot it loaded at
+// the top of the run. That snapshot is held across two awaited network
+// round-trips (client.write, client.digest) and now carries `sessionWindows` —
+// a key push does not own. A `fetch` that completes inside that window does its
+// own load->save of `sessionWindows` (rememberSessionWindows), and saving the
+// stale snapshot would revert it; the next bare-card push citing that session
+// would then find NEITHER source and write the card undated — exactly the
+// failure design 2026-09-11 §B exists to remove. Concurrently-added `seen`
+// entries survive for the same reason: the fresh map is the base (TTL-pruned
+// like any other read of it) and this run's keys are layered on top.
+function commitPushState({ load, save, seen, nowIso }) {
+  let fresh = {};
+  try {
+    const s = load();
+    if (s && typeof s === 'object' && !Array.isArray(s)) fresh = s;
+  } catch (e) {
+    console.error('⚠️ state re-read before save failed, writing this run\'s keys only:', e.message);
+  }
+  fresh.seen = { ...pruneSeen(fresh.seen || {}), ...seen };
+  fresh.lastRunAt = nowIso;
+  save(fresh);
+}
+
 // ---- push ----------------------------------------------------------------
 // The skill does NOT self-gate per unit (the server owns run-once). push only
 // dedups the card against the `seen` map so the same card is never written twice
@@ -296,37 +398,44 @@ async function doPush(deps = {}) {
   const stdin = 'card' in deps ? null : await readStdinPush();
   const card = 'card' in deps ? deps.card : stdin.card;
   const sessions = 'sessions' in deps ? deps.sessions : (stdin ? stdin.sessions : []);
-  const tz = resolveTz('tz' in deps ? deps.tz : (stdin ? stdin.tz : null));
   const digest = deps.digest !== undefined ? deps.digest : true;
 
   const state = load();
+  // tz precedence: piped -> the tz `fetch` remembered from the server -> TZ env
+  // -> system zone. The remembered rung is why a BARE card is anchored in the
+  // USER's zone: the container runs with TZ unset, so without it resolveTz lands
+  // on UTC and toNaiveLocal writes the UTC wall-clock as if it were local — a
+  // whole-offset error that moves an evening session to the next day, which is
+  // the exact class of bug the journal window exists to prevent.
+  const pipedTz = 'tz' in deps ? deps.tz : (stdin ? stdin.tz : null);
+  const tz = resolveTz(pipedTz || state.tz);
   const seen = pruneSeen(state.seen || {});
   const nowIso = deps.now ? deps.now() : new Date().toISOString();
 
   // No discernible goal/request in the transcript -> no card. Silence is a valid
   // detector outcome (the agent emits nothing / a card with no title).
   if (!card) {
-    state.seen = seen;
-    state.lastRunAt = nowIso;
-    save(state);
+    commitPushState({ load, save, seen, nowIso });
     console.log('No brainstorm card to write (no discernible goal).');
     return;
   }
 
   if (seen[card.dedupKey]) {
-    state.seen = seen;
-    state.lastRunAt = nowIso;
-    save(state);
+    commitPushState({ load, save, seen, nowIso });
     console.log('Brainstorm card already seen — nothing to write.');
     return;
   }
 
   // Build the validated type="todo" item (icon/title/prompt REQUIRED). The
   // OPTIONAL start_at/end_at journal window comes from the source session's
-  // times (earliest session among source_refs, naive-local in tz); when the
-  // session times are missing/malformed, sessionWindow returns {} and the
-  // fields are omitted entirely — never invented.
-  const { start_at, end_at } = sessionWindow(sessions, card.source_refs, tz);
+  // times (earliest session among source_refs, naive-local in tz), resolved
+  // over the UNION of both sources: the `sessionWindows` map `fetch` remembered
+  // is the base, and any piped `sessions` are layered on top, overriding by
+  // session_id (design 2026-09-11 §C). When BOTH sources miss the card's
+  // source_refs, sessionWindow returns {} and the fields are omitted entirely —
+  // there is deliberately no time-based last resort; a date is never invented.
+  const known = unionSessions(state.sessionWindows || {}, sessions);
+  const { start_at, end_at } = sessionWindow(known, card.source_refs, tz);
   const item = buildTodoItem({
     dedupKey: card.dedupKey,
     sourceRef: card.sourceRef,
@@ -358,10 +467,10 @@ async function doPush(deps = {}) {
     }
   }
 
+  // Re-read + merge (NOT save(state)): the snapshot loaded above predates two
+  // network round-trips and must not carry a stale `sessionWindows` back to disk.
   seen[card.dedupKey] = nowIso;
-  state.seen = seen;
-  state.lastRunAt = nowIso;
-  save(state);
+  commitPushState({ load, save, seen, nowIso });
   console.log(`Wrote 1 brainstorm to-do card (${card.title}).${digestNote}`);
 }
 

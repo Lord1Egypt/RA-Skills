@@ -1,41 +1,60 @@
-## Description: <br>
-Provides AI-assisted legal and compliance automation skills for Chinese enterprise legal teams, covering contract review, legal Q&A, labor compliance, intellectual property, data protection, and corporate compliance workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 50 AI-assisted China legal compliance skills for contract review, legal Q&A, labor compliance, intellectual property, data protection, and corporate compliance workflows.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-Chinese enterprise legal, HR, privacy, and compliance teams use this skill bundle to draft, review, score, and summarize contracts, policies, legal questions, labor matters, IP issues, data protection obligations, and corporate compliance materials. Outputs are drafts and checklists intended for qualified human review before operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that one legal Q&A path can send sensitive questions to DeepSeek when an API key is configured. <br>
-Mitigation: Use only non-confidential test data unless the DeepSeek data flow is approved, and avoid setting DEEPSEEK_API_KEY when local-only processing is required. <br>
-Risk: The security review reports that some legal-risk outputs overstate limited checks, including legal opinions, compliance ratings, and risk assessments. <br>
-Mitigation: Treat generated legal outputs as drafts and require review by qualified legal, HR, privacy, or compliance professionals before relying on them. <br>
+## Use Case:
 
+Legal, compliance, HR, privacy, and business teams working with China-law matters use this bundle to draft templates, review contracts and policies, generate checklists, and prepare preliminary legal and compliance analyses for lawyer review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daimingvip-a11y/legal-compliance-bundle) <br>
-- [Publisher profile](https://clawhub.ai/user/daimingvip-a11y) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, generated document templates, checklists, JSON-like structured results, and command-line guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Legal opinions, compliance ratings, risk scores, and assessment reports should be treated as drafts requiring qualified human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The legal Q&A feature can send user questions to DeepSeek when an API key is configured, despite local-processing claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure DEEPSEEK_API_KEY or pass --api-key unless third-party processing is approved; redact privileged or regulated data before any external submission.
+
+Risk: The bundle may process confidential contracts, employee data, personal information, or legal strategy.
+
+Mitigation: Use data minimization, redaction, access controls, and organizational approval before processing sensitive material.
+
+Risk: Generated case-law and compliance outputs may be incomplete or mistaken if treated as authoritative legal research.
+
+Mitigation: Treat outputs as drafts or samples and require qualified legal review before operational or legal reliance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daimingvip-a11y/skills/legal-compliance-bundle)
+- [Publisher Profile](https://clawhub.ai/user/daimingvip-a11y)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, plain text guidance, generated templates, structured summaries, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated legal and compliance outputs are drafts for professional review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

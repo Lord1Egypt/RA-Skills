@@ -1,44 +1,57 @@
-## Description: <br>
-Filter human-critical workflows using proof-of-human logic for identity-sensitive commercial decisions, anti-bot gating, and real-human-required checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Filter human-critical workflows using proof-of-human logic for identity-sensitive commercial decisions, anti-bot gating, and real-human-required checkpoints across proposals, leads, and approvals.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External product, operations, and founder teams use this skill to decide where workflow steps need proof-of-human-style gates, anti-bot filtering, or escalation to formal identity and compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake proof-of-human workflow guidance for biometric verification, KYC, AML, or legal identity certification. <br>
-Mitigation: Use the skill for workflow decision design only, and escalate regulated identity or compliance needs to qualified review. <br>
-Risk: Human-verification gates can add friction, reduce conversion, and create false negatives or accessibility concerns. <br>
-Mitigation: Match verification strength to workflow risk and explicitly weigh friction, conversion impact, operational burden, and trust benefit. <br>
-Risk: The security guidance recommends installing only when comfortable with requested workflows that may involve repo tools, CLIs, or authenticated moderation commands. <br>
-Mitigation: Review the skill before deployment, scan it before use, and keep any requested tool execution within the user's intended sandbox and permissions. <br>
+## Use Case:
 
+External builders, founders, and operations teams use this skill to design proof-of-human-style decision layers for workflows affected by bots, duplicate actors, fake leads, synthetic engagement, or low-trust approvals.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Examples](examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Duclawbot/worldcoin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown with structured assessment sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external identity API calls; outputs workflow design guidance rather than identity certification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: Users may mistake proof-of-human workflow guidance for formal identity verification, KYC, AML, biometric verification, or World ID integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill's output advisory and escalate regulated identity, compliance, biometric, or legal verification needs to the appropriate specialist process.
+
+Risk: Human-verification gates can add friction, reduce conversion, create false negatives, or introduce accessibility concerns.
+
+Mitigation: Match the verification threshold to workflow sensitivity and review conversion, accessibility, and operational impact before deployment.
+
+Risk: Automated recommendations about human-trust checkpoints can affect approvals, rewards, access, or lead handling when applied without review.
+
+Mitigation: Use the assessment as decision support and require accountable human review for high-stakes gating policies or workflow changes.
+
+## Reference(s):
+
+- [ClawHub Worldcoin skill page](https://clawhub.ai/duclawbot/skills/worldcoin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown assessment with labeled sections and bullet recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory workflow design guidance only; no API calls, credentials, persistence, biometric verification, KYC, AML, or legal identity review.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

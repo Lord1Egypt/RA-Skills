@@ -1,45 +1,60 @@
-## Description: <br>
-AI Operation Undo System. When user executes /ctrlZ or says "undo last step", automatically revert all file modifications, installations, etc. from the recent conversation round. Default keeps 1 undo unit, configurable to 3 or 5. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Operation Undo System. When user executes /ctrlZ or says "undo last step", automatically revert all file modifications, installations, etc. from the recent conversation round. Default keeps 1 undo unit, configurable to 3 or 5.
 
-## Publisher: <br>
-[chrisluo5311](https://clawhub.ai/user/chrisluo5311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrisluo5311](https://clawhub.ai/user/chrisluo5311)
 
-## Use Case: <br>
-Developers and OpenClaw users use CtrlZ to record AI-driven file, directory, and package-installation operations during a conversation round and roll back recent changes with /ctrlZ commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language undo triggers can delete or overwrite local files without preview or confirmation. <br>
-Mitigation: Use explicit /ctrlZ commands, inspect the undo list before rollback, and require operator confirmation before applying destructive undo actions. <br>
-Risk: Backups and recorded file contents can include secret-bearing files. <br>
-Mitigation: Avoid recording secrets, restrict permissions on the undo database and backup directory, and clear records when rollback data is no longer needed. <br>
-Risk: Package installs and external command side effects are not fully undone automatically. <br>
-Mitigation: Treat package-removal output as manual remediation guidance and review external side effects separately after rollback. <br>
+## Use Case:
 
+Developers and OpenClaw users use CtrlZ to record AI-created file, directory, and package-install operations by conversation round so recent changes can be listed or reverted on request.
 
-## Reference(s): <br>
-- [ClawHub CtrlZ release page](https://clawhub.ai/chrisluo5311/ctrlz) <br>
-- [README.md](README.md) <br>
-- [TEST_CASES.md](TEST_CASES.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SQLite-backed local undo records and backup files under the OpenClaw skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Undo operations can overwrite or delete user files from stored records without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, use only disposable or well-backed-up workspaces, and add path scoping plus explicit confirmation before undo and clear operations.
+
+Risk: Plaintext backups can retain sensitive file contents.
+
+Mitigation: Protect the backup directory, avoid recording sensitive paths, and clear retained backups when they are no longer needed.
+
+Risk: Package installations and shell command side effects may not be fully reversible.
+
+Mitigation: Treat package removal output as manual follow-up guidance and verify the environment state after any undo.
+
+## Reference(s):
+
+- [CtrlZ Skill Page](https://clawhub.ai/chrisluo5311/skills/ctrlz)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [TEST_CASES.md](artifact/TEST_CASES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill records undo sessions in SQLite, stores file backups, lists manual removal commands for package installs, and cannot fully reverse external shell command side effects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

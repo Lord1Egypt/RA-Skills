@@ -1,43 +1,59 @@
-## Description: <br>
-Stocki is an AI financial analyst for A-shares, HK stocks, US stocks, ETFs, indices, sector analysis, financial metrics, concept themes, real-time market data, and quantitative analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI financial analyst with institutional-grade data covering A-shares, HK stocks, US stocks, ETFs, and indices. Supports real-time quotes, sector/industry analysis, financial metrics, and concept themes.
 
-## Publisher: <br>
-[17817942676](https://clawhub.ai/user/17817942676) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17817942676](https://clawhub.ai/user/17817942676)
 
-## Use Case: <br>
-External users and developers use Stocki to ask financial market questions, retrieve real-time quotes and sector context, and submit longer quantitative analysis tasks such as screening or backtesting. It is designed for OpenClaw workflows that call the bundled CLI with a Stocki gateway URL and API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The doctor and update paths can replace the installed Stocki skill, including deleting and recloning the installed directory. <br>
-Mitigation: Review the installed scripts before running doctor or update commands, and avoid those paths in sensitive environments unless code replacement is acceptable. <br>
-Risk: The skill sends user questions, selected preferences, and any explicitly shared portfolio context to the Stocki gateway. <br>
-Mitigation: Share portfolio or private financial details only with explicit consent, and configure STOCKI_API_KEY using normal secret hygiene. <br>
-Risk: Real-time financial outputs may be unavailable, rate limited, or unsuitable as standalone financial advice. <br>
-Mitigation: Treat Stocki output as analysis support, verify material trading decisions independently, and surface gateway errors or quota limits without fabricating data. <br>
+## Use Case:
 
+External users and developers use Stocki to route market-data questions, financial analysis, sector research, and quantitative backtesting tasks through the Stocki CLI and remote gateway.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/17817942676/stocki) <br>
-- [Stocki Gateway](https://api.stocki.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text from CLI commands, with downloaded analysis files when quant tasks produce reports or images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instant mode returns direct answers; quant mode returns task identifiers, status text, file listings, and downloaded result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: server release metadata) <br>
+Risk: Repair and install flows can replace or delete the installed skill from mutable remote sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running doctor, and back up local changes before using reinstall paths.
+
+Risk: The API key is sent to whichever gateway URL is configured.
+
+Mitigation: Use the official Stocki gateway unless another endpoint is intentionally trusted.
+
+Risk: Stocki responses and downloaded artifacts come from a remote service, and portfolio details may be sensitive.
+
+Mitigation: Treat outputs as remote service content and include portfolio details only after explicit user consent.
+
+## Reference(s):
+
+- [Stocki ClawHub Skill Page](https://clawhub.ai/17817942676/skills/stocki)
+- [Artifact README](artifact/README.md)
+- [Artifact Install Guide](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown analysis, CLI status text, and downloaded report or image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instant mode returns direct answers; quant mode can produce task IDs, summaries, reports, and attachments.]
+
+## Skill Version(s):
+
+0.4.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

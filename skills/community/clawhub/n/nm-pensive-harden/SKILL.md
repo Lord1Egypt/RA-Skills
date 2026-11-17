@@ -1,7 +1,7 @@
 ---
 name: harden
 description: Applies NIST/CWE security hardening to Python and Rust code
-version: 1.9.8
+version: 1.10.3
 triggers:
   - security
   - hardening
@@ -11,17 +11,17 @@ triggers:
   - rust
   - cwe
   - auditing code for vulnerabilities or proposing concrete security remediations
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd12", "requires": {"config": ["night-market.pensive:safety-critical-patterns", "night-market.pensive:rust-review", "night-market.pensive:bug-review", "night-market.pensive:tiered-audit", "night-market.pensive:blast-radius", "night-market.leyline:supply-chain-advisory", "night-market.leyline:authentication-patterns", "night-market.leyline:content-sanitization", "night-market.abstract:hook-authoring", "night-market.imbue:proof-of-work"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd12", "requires": {"config": ["night-market.pensive:safety-critical-patterns", "night-market.pensive:rust-review", "night-market.pensive:bug-review", "night-market.pensive:tiered-audit", "night-market.pensive:blast-radius", "night-market.leyline:supply-chain-advisory", "night-market.leyline:authentication-patterns", "night-market.leyline:content-sanitization", "night-market.abstract:hook-authoring", "night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Harden Codebase Skill
 
-Active security hardening — scan the existing repository for
+Active security hardening: scan the existing repository for
 vulnerabilities and forward-facing threats, then propose concrete
 remediations the user can approve, defer, or file.
 
@@ -47,26 +47,28 @@ checks rather than line-level review of in-flight code.
   but does not propose protocol fixes (specialist work).
 - One-off bug hunting. Use `pensive:bug-review`.
 
-## Required TodoWrite Items
+## Required Progress Items
 
-1. `harden:discovery` — inventory languages, build files, hooks,
+1. `harden:discovery`: inventory languages, build files, hooks,
    CI workflows
-2. `harden:scan-python` — run python-checks.md detectors when
+2. `harden:scan-python`: run python-checks.md detectors when
    Python is present
-3. `harden:scan-rust` — run rust-checks.md detectors when Rust
+3. `harden:scan-rust`: run rust-checks.md detectors when Rust
    is present
-4. `harden:scan-cross-cutting` — run cross-cutting.md detectors
+4. `harden:scan-cross-cutting`: run cross-cutting.md detectors
    (deps, secrets, SBOM, CI)
-5. `harden:scan-frontier` — run frontier-checks.md (PQC, LLM
+5. `harden:scan-frontier`: run frontier-checks.md (PQC, LLM
    supply chain, sandboxing)
-6. `harden:nist-mapping` — map findings to NIST SSDF practices
-7. `harden:proposals` — for each finding above the threshold,
+6. `harden:nist-mapping`: map findings to NIST SSDF practices
+7. `harden:proposals`: for each finding above the threshold,
    draft a concrete remediation per `modules/proposal-shape.md`
-8. `harden:approval-gate` — present proposals to the user for
+8. `harden:approval-gate`: present proposals to the user for
    apply / file / defer / reject
-9. `harden:apply-and-validate` — apply approved proposals as
+9. `harden:apply-and-validate`: apply approved proposals as
    discrete commits, re-run gates, capture evidence
-10. `harden:report` — write `reviews/harden-<date>.md` and
+10. `harden:findings-verified`: citations confirmed by
+    `citation_verifier.py`
+11. `harden:report`: write `reviews/harden-<date>.md` and
     optionally post to Discussions
 
 ## Progressive Loading
@@ -83,11 +85,11 @@ Load modules based on what the discovery step finds.
 | Any with proposals enabled | `modules/proposal-shape.md` |
 
 The module hub keeps the SKILL.md itself under the
-`estimated_tokens: 1100` budget. Detail lives in the modules.
+`estimated_tokens: 1100` budget. Detail is in the modules.
 
 ## Core Workflow
 
-### Phase 1 — Discovery
+### Phase 1: Discovery
 
 Inventory the repo without modifying anything:
 
@@ -110,7 +112,7 @@ find . -path ./node_modules -prune -o -type f \
 Dispatch `/discovery-prefilter` if the repo has > 5000 source files
 to bound the scan.
 
-### Phase 2 — Citation-backed scan
+### Phase 2: Citation-backed scan
 
 For each detected language, load the matching module and run its
 detector list. Each detector outputs findings with the schema
@@ -118,14 +120,14 @@ defined in `modules/proposal-shape.md`. The citation column is
 mandatory: a finding without a NIST/CWE reference is downgraded
 to "advisory" and not eligible for active proposal.
 
-### Phase 3 — NIST mapping
+### Phase 3: NIST mapping
 
 Group findings by SSDF practice (PW.4, PW.8, RV.1, etc.) and CWE
-ID. The mapping table lives in `modules/nist-controls.md`. The
+ID. The mapping table is in `modules/nist-controls.md`. The
 report's executive summary references SSDF practice coverage so
 the audit is comparable across runs.
 
-### Phase 4 — Proposal generation
+### Phase 4: Proposal generation
 
 For each finding above the configured severity threshold, draft a
 concrete remediation per `modules/proposal-shape.md`:
@@ -136,14 +138,14 @@ concrete remediation per `modules/proposal-shape.md`:
 - Reversal plan: how to revert if the change breaks behavior
 - Test that should pass after the change
 
-### Phase 5 — Approval gate
+### Phase 5: Approval gate
 
 Present proposals one at a time via `AskUserQuestion`. Default
 options: **apply**, **file as issue**, **defer to backlog**,
 **reject**. Auto-apply is opt-in via the `--auto-apply` flag and
 respects a per-finding severity threshold.
 
-### Phase 6 — Apply and validate
+### Phase 6: Apply and validate
 
 Apply each approved proposal as a discrete commit:
 
@@ -161,7 +163,7 @@ make test --quiet && make lint && make type-check
 If a gate fails, revert the commit (`git revert HEAD --no-edit`)
 and downgrade the finding to "needs human design."
 
-### Phase 7 — Report
+### Phase 7: Report
 
 Write `reviews/harden-<date>.md` with:
 
@@ -213,6 +215,7 @@ NIST SSDF PW.7 (Review and analyze human-readable code).
 
 **Detection signal:**
 - File: `src/x.py:45`
+- Anchor: `data = pickle.loads(user_supplied_input)`
 - Pattern: <module>.loads(user_supplied_input)
 - Reachability: untrusted, comes from request body
 
@@ -241,22 +244,28 @@ NIST SSDF PW.7 (Review and analyze human-readable code).
 
 The skill composes (rather than re-implements):
 
-- `pensive:rust-review` — full Rust audit when Rust is present
-- `pensive:bug-review` — bug-hunting backbone
-- `pensive:safety-critical-patterns` — NASA Power-of-10 adapted
-- `pensive:tiered-audit` — three-tier discipline (`--tier 1/2/3`)
-- `pensive:blast-radius` — change-impact assessment for proposals
-- `leyline:supply-chain-advisory` — dependency posture
-- `leyline:authentication-patterns` — auth/credential review
-- `leyline:content-sanitization` — input handling
-- `abstract:hook-authoring` — hook-event security
-- `imbue:proof-of-work` — evidence discipline for findings
+- `pensive:rust-review`: full Rust audit when Rust is present
+- `pensive:bug-review`: bug-hunting backbone
+- `pensive:safety-critical-patterns`: NASA Power-of-10 adapted
+- `pensive:tiered-audit`: three-tier discipline (`--tier 1/2/3`)
+- `pensive:blast-radius`: change-impact assessment for proposals
+- `leyline:supply-chain-advisory`: dependency posture
+- `leyline:authentication-patterns`: auth/credential review
+- `leyline:content-sanitization`: input handling
+- `abstract:hook-authoring`: hook-event security
+- `imbue:proof-of-work`: evidence discipline for findings
+
+### Verify Findings Are Grounded (`harden:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
 
 ## Exit Criteria
 
 - [ ] Discovery output lists every language and build manifest
       detected in the repo.
-- [ ] Each finding carries a CWE or NIST SSDF citation; the
+- [ ] Each finding carries a CWE or NIST SSDF citation, and the
       report executive summary lists the SSDF practice coverage.
 - [ ] Each finding above the severity threshold has a concrete
       proposal (file, diff or config snippet, blast radius,
@@ -264,9 +273,12 @@ The skill composes (rather than re-implements):
 - [ ] No proposal was applied without explicit user approval
       (or without an `--auto-apply` flag covering its severity).
 - [ ] Each applied proposal is its own commit, reversal-friendly.
-- [ ] After every apply, the project gates were re-run; any
+- [ ] After every apply, the project gates were re-run, and any
       gate failure reverted the commit and downgraded the
       finding.
 - [ ] `reviews/harden-<date>.md` exists and lists every finding
       with a disposition (applied / filed / deferred / rejected /
       advisory).
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor`
+      confirmed by `citation_verifier.py` (exit `0`), or unverified
+      findings were dropped or labeled `UNVERIFIED`.

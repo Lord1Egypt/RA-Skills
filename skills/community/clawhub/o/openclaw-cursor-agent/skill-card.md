@@ -1,47 +1,61 @@
-## Description: <br>
-Manage long-running Cursor CLI coding tasks through OpenClaw tools backed by tmux sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage long-running Cursor CLI coding tasks through OpenClaw tools backed by tmux sessions.
 
-## Publisher: <br>
-[zhangzeyu99-web](https://clawhub.ai/user/zhangzeyu99-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangzeyu99-web](https://clawhub.ai/user/zhangzeyu99-web)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to start, monitor, send instructions to, and stop persistent Cursor CLI coding tasks from OpenClaw when work needs to continue in tmux rather than a short inline session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives OpenClaw broad control over trusted background Cursor coding sessions. <br>
-Mitigation: Install only when you intentionally want OpenClaw to start and control trusted Cursor sessions, and review diffs before accepting changes. <br>
-Risk: Exposing the control path publicly could allow unwanted access to local coding sessions. <br>
-Mitigation: Keep it bound to localhost or a private authenticated network, and use strong authentication and firewall rules before any broader exposure. <br>
-Risk: Task inputs, project paths, and logs can contain sensitive project information. <br>
-Mitigation: Use trusted project paths and task inputs, treat task logs as sensitive, and back up important work before long-running sessions. <br>
+## Use Case:
 
+Developers and teams use this skill to start, monitor, update, and stop persistent Cursor CLI coding tasks from OpenClaw, with tmux sessions preserving long-running work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangzeyu99-web/openclaw-cursor-agent) <br>
-- [OpenClaw Cursor Agent README](README.md) <br>
-- [OpenClaw Cursor Agent usage guide](docs/usage-guide.md) <br>
-- [Plugin README](extensions/openclaw-cursor-agent/README.md) <br>
-- [Command patterns](extensions/openclaw-cursor-agent/skill/references/commands.md) <br>
-- [Cursor agent system README](cursor-agent-system/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text and JSON tool results, with Markdown command examples in references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session names, task IDs, progress, recent output, tmux status, and dependency diagnostics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes powerful Cursor and tmux task control without enough authorization or project scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted, isolated OpenClaw environment; require authentication for /cursor and restrict allowed project roots before using with valuable repositories or credentials.
+
+Risk: Setup material includes unsafe installation and restore guidance, including curl-to-shell commands and personal backup restore instructions.
+
+Mitigation: Remove personal backup restore instructions and avoid curl-to-shell installers; review setup steps before installation.
+
+Risk: Default trust, force, or shell escaping behavior can increase the impact of malformed input or unintended command execution.
+
+Mitigation: Remove default --trust/--force behavior and fix shell escaping before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangzeyu99-web/skills/openclaw-cursor-agent)
+- [Usage guide](docs/usage-guide.md)
+- [Plugin README](extensions/openclaw-cursor-agent/README.md)
+- [Cursor Agent System README](cursor-agent-system/README.md)
+- [Command patterns](extensions/openclaw-cursor-agent/skill/references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with tool-status summaries, command guidance, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session names, task IDs, progress, tmux status, missing dependency names, and follow-up commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

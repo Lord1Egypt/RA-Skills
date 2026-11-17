@@ -1,40 +1,57 @@
-## Description: <br>
-Creates one-shot natural-language reminders for America/Bogota, emits cron job JSON, and records reminders in markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Arya Reminders creates one-shot, Spanish natural-language reminders for the America/Bogota timezone, emits cron job JSON, and records reminders in markdown.
 
-## Publisher: <br>
-[StarAtheris](https://clawhub.ai/user/StarAtheris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staratheris](https://clawhub.ai/user/staratheris)
 
-## Use Case: <br>
-Users and agents use this skill to turn Spanish natural-language reminder requests into one-time scheduled cron jobs, with reminder details logged to markdown for later review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reminder contents may be sent to a fixed Telegram chat ID if ARYA_TELEGRAM_CHAT_ID is not set. <br>
-Mitigation: Set ARYA_TELEGRAM_CHAT_ID to a verified chat ID that you control before installing or using the skill. <br>
-Risk: Reminder text is stored locally in memory/reminders.md and scheduled into future cron jobs. <br>
-Mitigation: Avoid sensitive reminder text and review scheduled jobs and local reminder logs before relying on the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/StarAtheris/arya-reminders) <br>
-- [Publisher profile](https://clawhub.ai/user/StarAtheris) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to turn Spanish reminder requests into scheduled one-time reminders, with a local markdown record of reminder timing and content.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [JSON cron job request with shell invocation guidance and markdown reminder logging] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and python3; defaults to America/Bogota and supports TZ_NAME and ARYA_TELEGRAM_CHAT_ID environment overrides.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reminder text may be sent to an unintended Telegram destination if the configured chat target is not verified.
+
+Mitigation: Verify the Telegram destination before use, configure the intended chat explicitly, and remove or fail closed on any hard-coded default before broad distribution.
+
+Risk: Reminder content may persist in scheduled cron jobs and a local reminder log.
+
+Mitigation: Avoid sensitive reminder text unless persistence is acceptable, and review scheduled jobs plus memory/reminders.md for retention and cleanup.
+
+Risk: The skill creates persistent scheduled agent actions that may run after the original conversation context has changed.
+
+Mitigation: Review each generated cron job request before adding it and disable stale or incorrect jobs promptly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staratheris/skills/arya-reminders)
+- [Publisher profile](https://clawhub.ai/user/staratheris)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Markdown, Guidance]
+
+**Output Format:** [JSON cron job request with shell command usage and markdown reminder-log guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timezone defaults to America/Bogota; normal use schedules a one-shot reminder and records it in memory/reminders.md.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Skill Auto Evolver monitors OpenClaw Agent Skill usage, analyzes skill health and code quality, and generates improvement reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes and optimizes Agent Skills by monitoring usage, assessing health, checking code quality, generating improvement suggestions, and exporting reports.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor local OpenClaw skills, evaluate health across reliability, performance, code quality, and feedback, and generate recommendations and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local usage logs, feedback comments, user IDs, context, and error messages may contain secrets or personal data. <br>
-Mitigation: Limit the skill directories it inspects, avoid recording secrets or personal data, and review exported reports before sharing them. <br>
-Risk: Cleanup commands delete old local usage and feedback history. <br>
-Mitigation: Confirm retention needs and export any needed reports before running cleanup. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor OpenClaw Agent Skill usage, evaluate health and code quality, collect feedback, and generate JSON, Markdown, or HTML reports with improvement recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skill-auto-evolver) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, html, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and report exports in JSON, Markdown, or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local SQLite-backed monitoring data and generated reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and package.json) <br>
+Risk: Malformed skill names or directories may make the tool inspect unintended local folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted skill names and directories, and review paths before analyzing or clearing data.
+
+Risk: Usage context, errors, comments, and user IDs are stored in a persistent local SQLite database.
+
+Mitigation: Avoid putting secrets, personal data, or sensitive operational details into monitored context, error messages, comments, or user identifiers.
+
+Risk: Exported HTML reports may be unsafe when generated from untrusted inputs.
+
+Mitigation: Avoid opening HTML reports from untrusted skill inputs until HTML escaping and path validation issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/skill-auto-evolver)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, Python API examples, and report outputs in JSON, Markdown, or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local usage, health, and feedback records in SQLite and can export skill health reports.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

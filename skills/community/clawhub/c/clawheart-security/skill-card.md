@@ -1,43 +1,54 @@
-## Description: <br>
-Lets an AI agent drive the local ClawHeart CLI for AI security auditing, skill review, agent discovery, MCP listing, provider profile listing, and credential governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHeart Security lets an AI agent drive the local ClawHeart CLI for AI security scans, skill audits, agent discovery, MCP listings, and provider configuration reviews.
 
-## Publisher: <br>
-[tjsdyy](https://clawhub.ai/user/tjsdyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tjsdyy](https://clawhub.ai/user/tjsdyy)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to ask an agent to run ClawHeart CLI checks and summarize local AI tooling, skills, agents, MCP servers, providers, and security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad local security and credential-adjacent authority through ClawHeart CLI commands. <br>
-Mitigation: Install it only when you intentionally want agent-driven ClawHeart scans, and treat provider, API-key, agent, and MCP output as sensitive. <br>
-Risk: The artifact can direct users to run external installer commands when the CLI is missing. <br>
-Mitigation: Review the external installer before running it and prefer a trusted ClawHeart installation path. <br>
-Risk: Provider add/import/overwrite and init --reset workflows can change local configuration. <br>
-Mitigation: Allow those actions only after an explicit user request and confirm the intended configuration change first. <br>
+## Use Case:
 
+Developers, security reviewers, and AI governance teams use this skill to invoke local ClawHeart checks and summarize AI security, skill, agent, MCP, and provider configuration findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tjsdyy/clawheart-security) <br>
-- [ClawHeart website](https://clawheart.live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include sensitive local security, provider, agent, and MCP configuration information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The install fallback suggests executing remote installer scripts directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify and trust the installer source before running curl|sh or iwr|iex commands.
+
+Risk: The skill can expose or modify sensitive local agent, MCP, provider, and credential-governance configuration.
+
+Mitigation: Treat outputs as sensitive and require explicit user confirmation before listing or changing provider configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tjsdyy/skills/clawheart-security)
+- [ClawHeart Website](https://clawheart.live)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text summaries derived from ClawHeart JSON output, with inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize sensitive local agent, MCP, provider, and credential-governance information.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

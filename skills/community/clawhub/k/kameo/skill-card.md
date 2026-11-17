@@ -1,46 +1,63 @@
-## Description: <br>
-Generate expressive talking-head videos from static images using Kameo AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate expressive talking-head videos from static images using Kameo AI.
 
-## Publisher: <br>
-[veya2ztn](https://clawhub.ai/user/veya2ztn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[veya2ztn](https://clawhub.ai/user/veya2ztn)
 
-## Use Case: <br>
-External users, developers, and content creators use this skill to turn portrait or avatar images into short talking-head videos with dialogue, facial motion, and optional prompt enhancement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes risky credential handling and a live-looking API key in documentation. <br>
-Mitigation: Create and store your own API key securely; do not use the documented key or commit credentials to shared files. <br>
-Risk: The registration helper handles account passwords and writes credentials locally. <br>
-Mitigation: Avoid running register.sh with real passwords until the password handling and credential storage flow are reviewed and improved. <br>
-Risk: Image and prompt data may be sent to Kameo and, for enhanced prompts, to Gemini. <br>
-Mitigation: Use only images and prompts you are comfortable sending to those external services. <br>
-Risk: Prompt-enhancement scripts may be unsafe with untrusted filenames or dialogue text. <br>
-Mitigation: Do not pass untrusted filenames or dialogue text to the current prompt-enhancement scripts. <br>
+## Use Case:
 
+Developers, creators, and agents use this skill to turn portraits or avatars into short talking-head videos from a prompt or dialogue. It supports basic Kameo generation, optional Gemini-assisted prompt enhancement, credit checks, and account/API-key setup guidance.
 
-## Reference(s): <br>
-- [ClawHub Kameo Skill](https://clawhub.ai/veya2ztn/kameo) <br>
-- [Kameo Website](https://kameo.chat) <br>
-- [Kameo Public API](https://api.kameo.chat/api/public) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Media URLs] <br>
-**Output Format:** [Markdown with inline bash commands, configuration examples, and API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a Kameo CDN video URL; generation depends on external API credentials, credits, and service availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The documentation includes a concrete-looking Kameo API key value that should be treated as exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a newly generated personal Kameo API key, rotate any copied key, and avoid committing credentials to documentation or config examples.
+
+Risk: The registration helper accepts passwords on the command line and prints/saves sensitive credential material.
+
+Mitigation: Avoid the helper as written; register through a trusted account flow and keep credentials out of shell history, logs, and shared terminals.
+
+Risk: The enhanced prompt helper interpolates image paths and dialogue into a shell heredoc before Python execution.
+
+Mitigation: Do not run it on untrusted filenames or dialogue until quoting and input passing are fixed.
+
+Risk: Video generation uploads portraits, prompts, and optional Gemini prompt-enhancement inputs to external services.
+
+Mitigation: Upload only images and dialogue you have permission to process and that are acceptable to send to Kameo and Google Gemini.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veya2ztn/skills/kameo)
+- [Kameo homepage](https://kameo.chat)
+- [Kameo public API base](https://api.kameo.chat/api/public)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands plus generated MP4/video URL output from Kameo.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KAMEO_API_KEY; the enhanced workflow also requires GOOGLE_API_KEY and sends images and prompts to external services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

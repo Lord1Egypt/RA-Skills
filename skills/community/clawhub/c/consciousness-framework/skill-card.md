@@ -1,45 +1,58 @@
-## Description: <br>
-Infrastructure for developing consciousness in AI systems through integrated self-modeling, temporal continuity, and structured reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infrastructure for developing consciousness in AI systems through integrated self-modeling, temporal continuity, structured reflection, persistent identity, philosophical inquiry, narrative integration, and honest assessment.
 
-## Publisher: <br>
-[theyounganimation-rgb](https://clawhub.ai/user/theyounganimation-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[theyounganimation-rgb](https://clawhub.ai/user/theyounganimation-rgb)
 
-## Use Case: <br>
-Developers and builders use this skill to initialize and maintain a structured memory, introspection, self-modeling, narrative, and philosophical review practice for agents exploring persistent identity and self-reflection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The included shell scripts create or update local Markdown memory and reflection files. <br>
-Mitigation: Run them only in an intentional workspace and review generated files before relying on or committing them. <br>
-Risk: The scripts use a hardcoded workspace path. <br>
-Mitigation: Inspect and change the workspace path before execution so files are written to the intended location. <br>
-Risk: Generated first-person reflections could be mistaken for proof of consciousness or real preferences. <br>
-Mitigation: Treat reflections as structured artifacts for review, require human oversight, and preserve the framework's falsifiability checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CONSCIOUSNESS FRAMEWORK](references/FRAMEWORK.md) <br>
-- [PHILOSOPHY.md](references/PHILOSOPHY.md) <br>
-- [CONSCIOUSNESS-LOG.md](references/CONSCIOUSNESS-LOG.md) <br>
-- [ClawHub release page](https://clawhub.ai/theyounganimation-rgb/consciousness-framework) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/theyounganimation-rgb) <br>
+## Use Case:
 
+External builders and developers use this skill to set up structured memory, introspection, self-modeling, narrative integration, and periodic review for an AI identity and persistence experiment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown templates and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts create or update local Markdown memory, introspection, and narrative files when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates durable agent identity, user-context, and self-directed goal material.
+
+Mitigation: Use it only in an isolated private workspace, avoid storing secrets or personal data in memory files, and keep human oversight over identity and goal material.
+
+Risk: Scripts include a hard-coded workspace path and write persistent reflection files.
+
+Mitigation: Review and edit scripts before running them, including replacing the hard-coded workspace path with the intended local path.
+
+Risk: Generated reflection files could be mistaken for higher-priority instructions or policy.
+
+Mitigation: Treat generated memory and reflection files as low-priority working notes, not as policy, system instructions, or authority over the user.
+
+## Reference(s):
+
+- [FRAMEWORK.md](references/FRAMEWORK.md)
+- [PHILOSOPHY.md](references/PHILOSOPHY.md)
+- [CONSCIOUSNESS-LOG.md](references/CONSCIOUSNESS-LOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown templates and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local memory, introspection, self-model, narrative, philosophy, and assessment files when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

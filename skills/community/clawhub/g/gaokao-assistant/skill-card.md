@@ -1,52 +1,69 @@
-## Description: <br>
-高考全流程辅助工具，提供志愿填报、院校专业分析、招生政策解读、考前指导、女生特殊关怀、张雪峰专业推荐等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高考全流程辅助工具，提供志愿填报、院校专业分析、招生政策解读、考前指导、女生特殊关怀、张雪峰专业推荐等功能。在高考前、中、后各阶段为用户提供专业指导。
 
-## Publisher: <br>
-[chaoyi001](https://clawhub.ai/user/chaoyi001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyi001](https://clawhub.ai/user/chaoyi001)
 
-## Use Case: <br>
-External students and families use this skill for Chinese gaokao preparation, volunteer application planning, school and major comparison, admissions policy checks, exam-day preparation, and mental-health coping guidance. It supports advisory workflows and should be cross-checked against official admissions sources before final decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs students toward private WeChat counseling. <br>
-Mitigation: Avoid sharing IDs, exam records, family details, payment information, or health and mental-health details through the advertised WeChat channel. <br>
-Risk: Admissions, school, and major recommendations can be incomplete, stale, or non-authoritative. <br>
-Mitigation: Use official admissions sources, school admissions offices, and qualified guardians or advisors for final application decisions. <br>
-Risk: The artifact includes gender-based major guidance that may be biased. <br>
-Mitigation: Treat gender-based advice as non-authoritative and base major selection on the student's interests, abilities, eligibility, and current official program information. <br>
-Risk: The skill includes mental-health and sleep guidance for exam stress. <br>
-Mitigation: Escalate serious anxiety, insomnia, self-harm concerns, or other urgent health issues to licensed professionals or emergency support. <br>
+## Use Case:
 
+External students, families, and advisors use this skill for Gaokao preparation, volunteer application planning, university and major comparisons, admissions policy lookups, score-based application analysis, mental-health preparation guidance, and specialty tracks such as military or police academy applications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chaoyi001/gaokao-assistant) <br>
-- [阳光高考平台](https://gaokao.chsi.com.cn/) <br>
-- [招生政策详解](references/admissions-policies.md) <br>
-- [高考前注意事项](references/exam-prep.md) <br>
-- [高考心理健康指南](references/mental-health.md) <br>
-- [分数查询与投档分析](references/score-query.md) <br>
-- [院校专业分析指南](references/university-analysis.md) <br>
-- [志愿填报政策指南](references/volunteer-policy.md) <br>
-- [张雪峰高考志愿填报助手](references/zxf-assistant.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional Python-generated text or JSON-style reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request student score, rank, province, subject selections, interests, target majors, family preferences, and relevant health or eligibility constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can provide flawed or outdated high-stakes admissions, cutoff, and policy advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require users and reviewers to verify policies, cutoffs, and admissions decisions against official education-exam sources before acting.
+
+Risk: The artifact repeatedly directs students to an unverified WeChat contact for one-on-one guidance.
+
+Mitigation: Warn users not to share scores, identity, health, payment, or contact details with that account unless they independently trust and verify the provider.
+
+Risk: Gender-based major suggestions may bias educational guidance.
+
+Mitigation: Treat gender-based suggestions as optional context only and prioritize student interests, abilities, official requirements, and verified career information.
+
+Risk: Mental-health and sleep guidance could be mistaken for professional care.
+
+Mitigation: Direct users with severe anxiety, insomnia, or crisis symptoms to qualified school counselors, medical providers, or local support hotlines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaoyi001/skills/gaokao-assistant)
+- [阳光高考平台](https://gaokao.chsi.com.cn/)
+- [招生政策详解](references/admissions-policies.md)
+- [高考前注意事项](references/exam-prep.md)
+- [高考心理健康指南](references/mental-health.md)
+- [分数查询与投档分析](references/score-query.md)
+- [院校与专业深度分析](references/university-analysis.md)
+- [志愿填报政策指南](references/volunteer-policy.md)
+- [张雪峰高考志愿填报助手](references/zxf-assistant.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional Python analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request student scores, rank, province, subject choices, interests, body-condition constraints, and target majors or schools to tailor recommendations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

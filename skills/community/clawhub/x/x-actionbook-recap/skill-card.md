@@ -1,43 +1,60 @@
-## Description: <br>
-Collect, scroll, extract, and summarize recent X (Twitter) posts for any handle, optionally filtered by keyword search, using the Actionbook Rust CLI workflow and produce Chinese working notes plus neutral English recap copy for publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects public X (Twitter) posts for a handle with the Actionbook Rust CLI workflow, then helps summarize findings and draft neutral recap posts or threads.
 
-## Publisher: <br>
-[jack4world](https://clawhub.ai/user/jack4world) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jack4world](https://clawhub.ai/user/jack4world)
 
-## Use Case: <br>
-External users and operators use this skill to collect public X posts for a requested handle and time window, summarize observed themes, and draft neutral English recap copy. It can also guide optional image-card creation and publication after confirming the target account and final text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in X account through browser automation and may publish externally. <br>
-Mitigation: Use it only with accounts intended for this workflow, and confirm the target account, final post text, and image choice before publication. <br>
-Risk: Infinite scroll collection may miss posts or provide incomplete coverage for the requested time window. <br>
-Mitigation: State the requested time window, scroll depth or cutoff, and that the results may be incomplete. <br>
-Risk: Recaps can misattribute claims if interview quotes or external statements are used without exact source links or timestamps. <br>
-Mitigation: Only attribute quoted material when exact links or timestamps are available, and separate public-post observations from interpretation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Extraction checklist](references/checklist.md) <br>
-- [Image card without Python](references/image-card.md) <br>
-- [Templates](references/templates.md) <br>
+## Use Case:
 
+External users and developers use this skill to collect public posts from a specified X handle, document coverage limits, summarize themes in Chinese working notes, and prepare neutral English recap copy for publication after confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown notes, recap drafts, and inline shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes coverage caveats, source-link notes, and confirmation steps before publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can help publish posts to X, which is an external action if the target account, final text, or image is wrong.
+
+Mitigation: Confirm the target account, final copy, and any attached image before approving publication.
+
+Risk: Browser automation over X may produce incomplete coverage because infinite scroll is not exhaustive.
+
+Mitigation: State the requested time window, scrolling depth or cutoff, and any uncertainty in the recap.
+
+Risk: Recaps can misattribute quoted material or imply intent beyond the collected public posts.
+
+Mitigation: Use neutral framing, keep verbatim quotes tied to captured post evidence, and require exact links or timestamps for interview claims.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Extraction checklist](references/checklist.md)
+- [Image card without Python](references/image-card.md)
+- [ClawHub skill page](https://clawhub.ai/jack4world/skills/x-actionbook-recap)
+- [Publisher profile](https://clawhub.ai/user/jack4world)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise recap text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese working notes, English post or thread drafts, and optional image-card guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

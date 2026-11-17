@@ -1,44 +1,54 @@
-## Description: <br>
-Crawl any website and save pages as local markdown files. Ideal for downloading documentation, knowledge bases, or web content for offline access or analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawl any website and save pages as local markdown files. Ideal for downloading documentation, knowledge bases, or web content for offline access or analysis.
 
-## Publisher: <br>
-[matthew77](https://clawhub.ai/user/matthew77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthew77](https://clawhub.ai/user/matthew77)
 
-## Use Case: <br>
-Developers and agents use this skill to crawl public or authorized websites, collect documentation and knowledge base content, and save or print extracted pages for offline analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crawling unauthorized, internal, authenticated, confidential, or regulated content may send sensitive information to Tavily. <br>
-Mitigation: Use the skill only for sites you are authorized to crawl, and avoid sensitive content unless organizational policy permits sending it to Tavily. <br>
-Risk: Broad crawls can collect more content than intended or create large local outputs. <br>
-Mitigation: Use conservative depth and page limits, path filters, and a dedicated output directory. <br>
-Risk: Crawled web content may be untrusted when reused as agent context. <br>
-Mitigation: Review crawled content before relying on it or feeding it into an agent. <br>
-Risk: The Tavily API key can authorize external crawl requests if exposed. <br>
-Mitigation: Use a revocable Tavily API key and rotate it if it may have been disclosed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [ClawHub skill page](https://clawhub.ai/matthew77/liang-tavily-crawl) <br>
+## Use Case:
 
+Developers and agents use this skill to crawl public websites, documentation, and knowledge bases, then review the returned content or save pages locally for offline analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration] <br>
-**Output Format:** [Markdown or JSON crawl results, with optional local markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; supports crawl depth, breadth, page limit, output directory, path filters, instructions, chunking, timeout, and JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crawl URLs and natural language instructions are sent to Tavily using the user's API key.
+
+Mitigation: Avoid crawling sensitive internal or proprietary sites without approval.
+
+Risk: Broad crawl settings can collect and save more local content than intended.
+
+Mitigation: Use conservative depth and limit values, and apply select or exclude path filters for focused crawls.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [Tavily Crawl API endpoint](https://api.tavily.com/crawl)
+- [ClawHub skill page](https://clawhub.ai/matthew77/skills/liang-tavily-crawl)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown crawl results, raw JSON when requested, or local Markdown files when an output directory is provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY. Supports crawl depth, breadth, page limits, path filters, semantic instructions, chunk counts, timeout, JSON output, and local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

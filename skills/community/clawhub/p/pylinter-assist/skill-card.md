@@ -1,44 +1,59 @@
-## Description: <br>
-Provides context-aware Python linting with pattern-based heuristics for reviewing GitHub pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides context-aware Python linting with pattern-based heuristics for reviewing GitHub pull requests.
 
-## Publisher: <br>
-[claytantor](https://clawhub.ai/user/claytantor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claytantor](https://clawhub.ai/user/claytantor)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to lint Python projects and GitHub pull request changes, including checks for secrets, FastAPI documentation, React hook dependency patterns, and standard Pylint findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub Actions workflows run with repository permissions and may read repository secrets. <br>
-Mitigation: Review workflow files before committing them, pin copied workflow sources to a reviewed commit when downloading, and grant only the permissions required for PR linting. <br>
-Risk: GitHub tokens, bot tokens, or webhook URLs passed on the command line can be exposed through process listings or shell history. <br>
-Mitigation: Use least-privilege tokens and prefer environment-backed configuration for notification credentials instead of direct command-line arguments. <br>
-Risk: Optional notifications can send lint report details to external Telegram, Discord, Slack, or email services. <br>
-Mitigation: Enable notification channels only when the repository owner accepts sharing those report details with the selected service. <br>
+## Use Case:
 
+Developers and engineers use this skill to lint pull requests, staged changes, diffs, or selected files with Pylint plus custom checks for secrets, FastAPI docstrings, and React hook dependency issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claytantor/pylinter-assist) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and agent guidance with optional JSON or text lint output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can post pull request comments, write lint-report.json artifacts, and provide setup commands when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release evidence, SKILL.md, pyproject.toml) <br>
+Risk: Detected secrets can appear in reports, PR comments, or external notifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid enabling PR comments or external notifications until secret findings are redacted or the output path has been reviewed.
+
+Risk: Unsafe file and archive handling may be risky for untrusted diffs or workflow artifacts.
+
+Mitigation: Run the skill only on trusted repositories and reviewed workflow artifacts, and avoid untrusted diff files.
+
+Risk: The authoritative security verdict is suspicious.
+
+Mitigation: Audit or patch the installed snapshot before installation and before enabling CI automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claytantor/skills/pylinter-assist)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown, JSON, or plain text lint reports with optional GitHub PR comments and notification messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May exit nonzero when configured error or warning thresholds are met.]
+
+## Skill Version(s):
+
+0.6.3 (source: server release, SKILL.md, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

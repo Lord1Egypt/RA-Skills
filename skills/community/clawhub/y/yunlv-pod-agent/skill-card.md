@@ -1,49 +1,62 @@
-## Description: <br>
-Helps POD sellers build or optimize print-on-demand businesses with AI-assisted strategy, tool selection, product listing, design, customer-service, and sales recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users build or optimize a print-on-demand business with AI-assisted product listing, design, customer service, tool selection, and sales strategy guidance.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External POD sellers and e-commerce operators use this skill to plan AI-assisted print-on-demand workflows, compare tools, score product categories, select platform strategies, and prepare operational guidance before human-approved execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires TRADEGPT_API_KEY and may use an external strategy API. <br>
-Mitigation: Store the token securely, rotate it when needed, and avoid placing it in logs, prompts, source files, or shared outputs. <br>
-Risk: POD strategy details sent to the external API could include sensitive business information. <br>
-Mitigation: Share only the minimum category and operating context needed for strategy generation, and do not send customer data, store credentials, sales exports, or platform secrets. <br>
-Risk: Generated recommendations may touch high-impact store actions such as refunds, address changes, bulk listings, pricing, or promotions. <br>
-Mitigation: Require human review and explicit approval before applying recommendations in commerce platforms or customer-service systems. <br>
-Risk: AI-generated POD designs and tool recommendations can still create copyright, trademark, likeness, or platform-policy exposure. <br>
-Mitigation: Perform manual IP checks, image reverse searches, trademark checks, font-license review, and platform-policy review before publishing designs. <br>
+## Use Case:
 
+External POD sellers, operators, and developers use this skill to select AI tools, plan store operations, assess product and platform fit, and produce practical recommendations for POD design, listing, and customer-service workflows.
 
-## Reference(s): <br>
-- [YunlvAI Homepage](https://yunlvai.com) <br>
-- [YunlvAI TradeGPT API](https://api.yunlvai.com) <br>
-- [ClawHub Release Page](https://clawhub.ai/wangm-a3/yunlv-pod-agent) <br>
-- [POD AI Tool Comparison](references/pod_tool_comparison.md) <br>
-- [POD Design Safety Formula](references/pod_design_formula.md) <br>
-- [POD Store Operations Checklist](references/pod_operations_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON from the bundled CLI analyzer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRADEGPT_API_KEY for external strategy API use; bundled analyzer commands print structured JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence and clawhub.yaml) <br>
+Risk: Store automation advice could be applied to refunds, address changes, listings, or customer data without adequate oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in an advisory role unless automation is protected by customer verification, least-privilege permissions, audit logs, transaction limits, and human approval for nontrivial cases.
+
+Risk: AI-generated POD designs may resemble protected IP, trademarks, celebrity likenesses, competitor artwork, or unlicensed fonts.
+
+Mitigation: Require human review, image and trademark checks, commercial font and asset license verification, and platform policy review before publishing designs.
+
+Risk: API keys and customer-service conversation data could expose sensitive business or customer information if mishandled.
+
+Mitigation: Store API keys outside code and logs, use minimal permissions, rotate credentials regularly, and avoid sending store API keys, sales data, or customer information to external services.
+
+## Reference(s):
+
+- [POD Tool Comparison](references/pod_tool_comparison.md)
+- [POD Design Safety Formula](references/pod_design_formula.md)
+- [POD Store Operations Checklist](references/pod_operations_checklist.md)
+- [Yunlv AI Homepage](https://yunlvai.com)
+- [Yunlv AI TradeGPT API](https://api.yunlvai.com)
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/yunlv-pod-agent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance and JSON analysis from the included CLI script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TRADEGPT_API_KEY for Yunlv AI TradeGPT API access when strategy recommendations require the external service.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

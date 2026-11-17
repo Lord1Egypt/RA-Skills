@@ -1,43 +1,59 @@
-## Description: <br>
-Ai Secretary Bundle is a 24-hour assistant package that combines email management, schedule reminders, news summaries, and task tracking for busy professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Secretary Bundle helps busy professionals manage email summaries, schedule reminders, daily news briefings, and task tracking through an OpenClaw-based assistant workflow.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-External professionals, business owners, and teams use this bundle to assemble daily assistant workflows for email triage, reminders, AI and technology news briefings, and task tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External installation steps and dependency skills may introduce unreviewed behavior. <br>
-Mitigation: Inspect install.ps1 and each dependency skill before installation or execution. <br>
-Risk: Email workflows may require sensitive account credentials and access to private messages. <br>
-Mitigation: Use app-specific credentials, limit account permissions where possible, and require confirmation before sending or modifying email. <br>
-Risk: Recurring scheduled jobs may access email, task, and news data automatically. <br>
-Mitigation: Disable scheduled jobs until schedules, data access, and notification behavior have been reviewed. <br>
+## Use Case:
 
+External users and professionals use this skill to coordinate routine administrative workflows, including mailbox review, recurring reminders, news digests, and task summaries. It is aimed at personal productivity and lightweight office support rather than autonomous unsupervised decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daimingvip-a11y/ai-secretary-bundle) <br>
-- [AI Secretary documentation](https://docs.clawhub.com/ai-secretary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cron schedule examples and suggested dependency-skill commands; user review is needed before running installation or automation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The workflow can access sensitive mailbox, calendar, and task information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use app-specific passwords or OAuth, keep configuration files out of version control, and restrict mailbox permissions to the minimum needed.
+
+Risk: Recurring scheduled jobs may read private data or trigger actions without timely user review.
+
+Mitigation: Review or disable cron jobs before use and require confirmation before sending emails or sharing generated summaries.
+
+Risk: The bundle depends on separately installed skills and an install script that were not fully reviewed in the provided artifact.
+
+Mitigation: Review dependency skills and install scripts before installation, and prefer pinned versions or trusted releases.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daimingvip-a11y/skills/ai-secretary-bundle)
+- [Publisher Profile](https://clawhub.ai/user/daimingvip-a11y)
+- [AI Secretary Documentation](https://docs.clawhub.com/ai-secretary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and configuration-oriented assistant responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested commands, YAML configuration snippets, schedule definitions, email or task summaries, and action recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

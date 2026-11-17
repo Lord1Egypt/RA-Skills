@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/quality-observation-2.0.json",
+  "title": "Omni E-commerce Quality Observation Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "report_revision", "has_conflict", "conflict_count", "host", "evidence_kind", "inputs"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "quality_observation_record"},
+    "contract_name": {"const": "omni-ecom.quality-observation"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.quality-observation@1.0"], "current_quality_authority": false}},
+    "report_revision": {"type": "string", "pattern": "^R[1-9][0-9]*$"},
+    "has_conflict": {"type": "boolean"},
+    "conflict_count": {"type": "integer", "minimum": 0},
+    "host": {"type": "string", "minLength": 1},
+    "evidence_kind": {"type": "string", "minLength": 1},
+    "inputs": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+  }
+}

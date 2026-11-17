@@ -1,0 +1,129 @@
+# paired.conf — Paired skill configuration template
+#
+# Copy to ~/.config/paired/paired.conf, edit, then run `paired-trusted list` to verify.
+# All keys are optional — sensible defaults documented per key.
+#
+# Setup tips:
+#   - Find your phone's BT MAC:    bt-list --paired
+#   - Find your hci adapter:       bt-adapters
+#   - Telegram chat ID:            already in OpenClaw config — paired reads it from there
+
+# === Phone identity ===
+# The Bluetooth MAC of the phone you've paired. Required for everything except
+# generic discovery (bt-list --scan etc).
+#
+# REQUIRED.
+phone_bt_mac = AA:BB:CC:DD:EE:FF
+
+# Friendly display name (used only in Telegram alerts and log lines).
+phone_label = My Phone
+
+# === ADB device serial (for paired-call-and-speak and ADB-based wrappers) ===
+# The hardware serial of your phone as ADB sees it. Find it with:
+#   adb devices
+# If you only have ONE phone attached over ADB, you can leave this blank and
+# the wrappers will pick the only attached device automatically.
+# Alternatively, set the PAIRED_ADB_DEVICE environment variable.
+#
+# Default: empty (use first attached device)
+adb_device =
+
+# === Messages app (non-Samsung override) ===
+# paired-sms-send drives the phone's Messages app via ADB UI automation. The
+# defaults target Samsung Messages (tested on Note 9 / OneUI 12). On non-Samsung
+# firmware, override the package and Send-button resource-id here, e.g. for Google
+# Messages:
+#   messages_pkg   = com.google.android.apps.messaging
+#   send_button_id = com.google.android.apps.messaging:id/send_message_button_icon
+# NOTE: compose-detection resource-ids (composer_root_view / message_edit_text) are
+# still Samsung-tuned, so non-Samsung support may need further adjustment.
+#
+# Default: com.samsung.android.messaging (+ :id/send_button1)
+#messages_pkg =
+#send_button_id =
+
+# === Bluetooth adapter ===
+# Which HCI adapter to use. Run `bt-adapters` to see what's available.
+# Default: hci0
+adapter = hci0
+
+# === Data directory ===
+# Where paired stores its event logs, MNS cache, sms-events.jsonl, call-events.jsonl.
+# Default: ~/.paired/
+data_dir = ~/.paired
+
+# === LLM trigger phrase (optional showcase feature) ===
+# When an SMS arrives whose body starts with this phrase (from a trusted number),
+# paired-respond invokes Gemini/your configured LLM to draft a reply, then sends
+# it to your Telegram chat as a tap-to-copy /sms command.
+#
+# The phrase is matched case-insensitively and the trailing comma is optional.
+# Set to empty string ("") to disable the feature entirely.
+#
+# Default: "Hi Agent,"
+llm_trigger = Hi Agent,
+
+# Whitelist of numbers allowed to trigger the LLM responder. UK normalization:
+# entries like "07911123456", "+447911123456", "447911123456" all match the same.
+# Empty list = LLM trigger disabled even if llm_trigger phrase matches.
+#
+# Default: empty
+llm_trigger_whitelist =
+
+# Whether a drafted LLM reply is SENT BACK to the sender automatically via SMS.
+#   false (default) = draft-only: the reply is posted to your Telegram with a
+#                     tap-to-copy /sms command and YOU decide whether to send it.
+#   true            = the reply is texted back to the (whitelisted) sender
+#                     automatically, still gated by the whitelist + 30s cooldown.
+# Default: false (draft-only)
+llm_auto_reply = false
+
+# === Auto-unlock (opt-in, security-sensitive) ===
+# If set to true, paired-sms-send will dismiss the lock screen using a PIN
+# stored at ~/.config/paired/pin (mode 0600 enforced). After sending, --relock
+# locks the phone again.
+#
+# SECURITY WARNING: storing your phone PIN on this host means anyone with
+# read access to ~/.config/paired/pin can unlock your phone via ADB. Only
+# enable on a host you fully control.
+#
+# Default: false (opt-in only)
+auto_unlock = false
+
+# === Telegram chat ID for owner alerts ===
+# READ-ONLY HINT: paired reads this from openclaw.json[env].TELEGRAM_OWNER_CHAT_ID
+# at runtime — you do NOT set it here. This block is informational only.
+#
+# To set it: edit ~/.openclaw/openclaw.json and add to the env block:
+#   "env": {
+#     "TELEGRAM_OWNER_CHAT_ID": "123456789"
+#   }
+# Then restart openclaw.service.
+
+# === Logging ===
+# Levels: DEBUG, INFO, WARNING, ERROR
+# Default: INFO
+log_level = INFO
+
+# === SMS hook trigger ===
+# Whether to enable the deterministic Telegram /sms NUMBER text command parser.
+# This bypasses the LLM and dispatches directly to paired-sms-send.
+# Default: true
+sms_command_hook = true
+
+# === Call handler defaults ===
+# What to do when an incoming call arrives from a NON-trusted number:
+#   - notify   : send Telegram alert only (default)
+#   - ignore   : silent
+#   - hangup   : auto-reject the call
+# Default: notify
+incoming_untrusted_action = notify
+
+# What to do when an incoming call arrives from a TRUSTED number.
+# (paired-call-handler reads this; any unknown/missing value fails closed to notify.)
+#   - notify         : Telegram alert only; let it ring — nothing is done to the
+#                      call and no SMS is sent (default)
+#   - hangup         : hang up the call, no SMS
+#   - hangup_and_sms : hang up AND text back the "Agent is unavailable…" reply
+# Default: notify
+incoming_trusted_action = notify

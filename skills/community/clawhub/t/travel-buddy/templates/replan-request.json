@@ -1,0 +1,77 @@
+{
+  "_contract": [
+    "This is the shape of plan.replan_context, the block scripts/replan_trip.py writes into a",
+    "replanned plan. It is filled in below with a real example rather than nulls, because the",
+    "all-null stub this replaced told an author the field names and nothing about what belongs in",
+    "them -- and the one field that matters, must_reverify, is the one a stub cannot demonstrate.",
+
+    "replanned_from names the plan this was derived from, so a reader can find the artifact that",
+    "was superseded. replanned_at is the date the shift was run, not the date the trip starts.",
+
+    "changed_fields lists what the script rewrote mechanically. Every entry is a pure function of",
+    "the delta -- dates, day numbering, accommodation windows, dates prefilled into booking URLs.",
+    "Prose is never in this list, because the script never rewrites prose: a sentence like",
+    "'Saturday is the only full shopping day' becomes false when the dates move, and swapping the",
+    "weekday token inside it would turn a stale sentence into a confident one, which is worse.",
+
+    "must_reverify is the point of the whole block. One entry per fact the change invalidated,",
+    "each carrying the path that holds it and the reason it is now a guess.",
+    "check_plan_consistency.py FAILS the plan while any entry has resolved other than true, so a",
+    "replanned trip cannot be delivered until a human has re-checked each one at its original",
+    "source, written what they found into resolution, and set resolved: true.",
+    "Resolving means re-checking, not ticking. Where a reason begins CLOSED ON THE NEW DAY, do not",
+    "even re-check: the plan already carries its own refutation, so move the item to another day,",
+    "take the fallback the plan names, or drop it.",
+
+    "The example below is real. Shifting a Cologne trip from Fri 18 - Mon 21 September by one day",
+    "put day 2 on a Sunday (NRW law closes retail, and that day existed to buy allergy-safe food),",
+    "day 3 on a Monday (Museum Ludwig shuts Mondays), and day 4 on a Tuesday -- the one weekday the",
+    "Roemisch-Germanisches Museum is closed, and it had been chosen precisely because it opens on",
+    "Mondays when every other city museum does not. Three of four days lost their anchor to a",
+    "one-day shift, and the script found all of it by reading the plan's own sentences.",
+
+    "See references/replanning.md. Delete this _contract key before saving the real plan."
+  ],
+
+  "replanned_from": "2026-09-18-koeln-4d3n.json",
+  "replanned_at": "2026-08-07",
+  "change_request": "Push the whole trip back one day; the Friday morning meeting cannot move.",
+  "changed_fields": [
+    "trip.start_date",
+    "trip.end_date",
+    "days[0].date",
+    "days[1].date",
+    "days[2].date",
+    "days[3].date",
+    "booking_options.accommodations[0].check_in",
+    "booking_options.accommodations[0].check_out",
+    "booking_options.accommodations[0].comparison_searches[0].search_url"
+  ],
+  "retained_note": "Route order, stops, segment modes, fare bases, venue and accommodation choices and every budget row were kept: none of them depends on which weekday the trip starts. Ticket day_number and anchor planned_day were re-derived from the new dates rather than re-typed, because re-typing them by hand is the off-by-one that references/research-budget.md records.",
+  "must_reverify": [
+    {
+      "path": "days[2].dining[1].venue_hours",
+      "reason": "CLOSED ON THE NEW DAY. Day 3 now falls on Monday, and this card's own hours say the venue is shut Mondays. The plan refutes itself here -- do not re-check it, move the meal or take the named fallback.",
+      "resolved": false,
+      "resolution": null
+    },
+    {
+      "path": "days[3].activities[1].ticket_note",
+      "reason": "Day 4 moved Monday -> Tuesday. This museum runs Wed-Mon and closes Tuesdays; it was chosen for being the one major museum open on a Monday, so the reason it is in the plan no longer holds.",
+      "resolved": false,
+      "resolution": null
+    },
+    {
+      "path": "days[1].focus",
+      "reason": "Day 2 moved Saturday -> Sunday. This text promises the trip's only market and shopping day, and NRW law closes retail on Sunday. Prose is never rewritten by the script -- edit the sentence by hand once the day is re-planned.",
+      "resolved": false,
+      "resolution": null
+    },
+    {
+      "path": "verification_status",
+      "reason": "Cleared by this replan. The verification report certified the old dates, and every weekday-keyed claim it checked is now unverified. Re-run the seven-agent pass in references/verification.md before calling this plan bookable.",
+      "resolved": false,
+      "resolution": null
+    }
+  ]
+}

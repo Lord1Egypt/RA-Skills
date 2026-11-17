@@ -1,865 +1,213 @@
 ---
 name: openplanet-plugin-dev
-description: Create, debug, and structure Openplanet AngelScript plugins for Trackmania/Maniaplanet. Comprehensive guide with API quirks, AngelScript language pitfalls, performance patterns, and proven templates. Use when building, debugging, or reviewing Openplanet plugins.
-version: 2.2.0
+description: Create, debug, structure, and run Openplanet AngelScript plugins for Trackmania 2020 (TMNEXT) and ManiaPlanet 4 (TM2/MP4). Covers API quirks, AngelScript pitfalls, performance patterns, the launch/verify loop, MP4 API-mismatch fixes, and proven templates. Use when building, debugging, reviewing, or launching Openplanet plugins.
+version: 3.0.0
 metadata:
   openclaw:
     tags: [openplanet, trackmania, angelscript, plugin, game-modding]
 ---
 
-# 🎮 Openplanet Plugin Development
+# Openplanet Plugin Development
 
-## 📋 Overview
+Core guide for Openplanet AngelScript plugins on **TM2020 (TMNEXT)** and
+**ManiaPlanet 4 (MP4/TM2)**. Deep material lives in `references/` — load only
+what the task needs (index at the bottom).
 
-Openplanet is a plugin/script development platform for Nadeo games (Trackmania 2020, Maniaplanet). Plugins are written in AngelScript (.as), a C++-like scripting language. This skill covers everything from project structure to deep API quirks, performance patterns, and debugging.
+## Golden rules
 
-> 💡 Hard-won lessons from building: Grid Explorer & Tracker, Event Calendar, Vehicle Detector, Apeiron Galaxy, Competition Companion.
+1. **Verify API members against the reflection DB before writing code.**
+   - **Game Nod classes** live in `<GameDir>/Openplanet4.json` under
+     `ns.Game.<Class>.m[]` (entries `n`=name, `t`=type, `p`=parent). Walk it with
+     the procedure in `references/static-verify-workflow.md`.
+   - **Openplanet script namespaces** (`UI::`, `IO::`, `Time::`, `Json::`,
+     `Math::`, `Text::`, `Net::`, `Audio::`, `Icons::`, `getExceptionInfo()`) are
+     **NOT in `Openplanet4.json`**. They live in **`OpenplanetCore.json`** (same
+     game dir) under `functions[]` (filter by `ns`), `classes[]`, `enums[]`.
+     Extraction recipes + verified signatures: `references/openplanet-core-json.md`.
+     **Before assuming a built-in exists (e.g. `IO::WriteFile`, `UI::ListBox`,
+     `Time::Format(string)`), grep `OpenplanetCore.json`** — false assumptions
+     here cost a full kill+relaunch recompile cycle each time.
+   - MP4 game-class specifics: `references/mp4-api-verified.md` (editor) and
+     `references/mp4-runtime-and-dev-memory.md` (in-race / playground).
+   - **A class can appear in the DB with an EMPTY `m[]`** (e.g.
+     `ns.Scene.CSceneVehicleVis` is `{"i":...,"s":3464}` with no members). That is
+     not a lookup failure — it means the class has no scriptable named members and
+     the only way in is raw `Dev::GetOffset*` / `Dev::SetOffset` against its byte
+     size. Report that honestly instead of inventing member names.
+2. **Target game matters.** TM2020 examples often DON'T compile on MP4 (missing
+   UI overloads, missing members, wstring vs string). MP4 specifics:
+   `references/mp4-api-verified.md`, `references/mp4-api-mismatches.md`,
+   `references/mp4-supplement.md`, `references/mp4-ui-rendering.md`.
+3. **Unsigned folder plugins need Developer signature mode.** Launch with
+   `ManiaPlanet.exe /openplanet:developer` (or F3 → Developer → Signature Mode).
+   Otherwise the log shows `Invalid file hash` + `not suitable for the current
+   signature mode` and the plugin silently doesn't appear.
+4. **Debug via the log, not the GUI.** Clear `Openplanet.log`, launch, wait
+   ~50 s, then grep for `ERR :` / `compilation failed` / `Loaded plugin`.
+   Full command recipes: `references/launch-and-verify.md`.
+5. **A running game holds the compiled state.** After editing sources, kill the
+   game (`taskkill /F /IM ManiaPlanet.exe`) and relaunch for a clean recompile —
+   stale errors in the log mean the old build, not a failed patch.
+6. **Null-safe editor access.** Route all `App.Editor` access through one
+   gateway that re-checks every handle each frame; wrap each UI module in
+   try/catch. Proven skeleton: `references/mapforge-architecture.md`.
+7. **Cross-game (TMNEXT + MP4) plugins.** One plugin can target BOTH games via
+   the predefined `TMNEXT` / `MP4` preprocessor defines (Openplanet injects them
+   per-game; no `info.toml` flag needed). `CGameCtnApp` is the shared base, so
+   `app.Switcher.ModuleStack`, `app.RootMap`, `app.Editor`, `app.CurrentPlayground`
+   work on BOTH. Gate TMNEXT-only API (`cast<CTrackManiaMenus>`,
+   `NGameLoadProgress::EState`, `app.LoadProgress`) behind `#if TMNEXT` and add an
+   `#elif MP4` branch. **Keep TMNEXT and MP4 pause reasons/settings SEPARATE** —
+   do NOT collapse `Pause In Menu` + `Pause While Loading` into one
+   `inMenuOrLoading` check (Copilot flagged exactly this in the green-timer port:
+   a combined `ModuleStack<1 || RootMap is null` with `return true` always reports
+   "Loading Screen" and lets "menu" setting pause during load). Correct MP4 form:
+   `bool inMenu = app.Switcher.ModuleStack.Length < 1;`
+   `bool inLoading = !inMenu && app.RootMap is null;` then two separate `if`s.
+   Deprecated calls to fix while porting: `nvg::LoadFont("x.ttf", true, true)` →
+   `nvg::LoadFont("x.ttf")`; `Time::Format(int, bool, bool, bool)` →
+   `Time::Format(uint64, bool fractions, bool forceMinutes, bool forceHours, bool short)`.
+   Verified pattern, shared-member list, deprecated fixes, and the
+   `nvg::LoadFont` root-path pitfall: `references/crossgame-tmnext-mp4.md`.
+ 8. **Never hardcode memory offsets you did not verify on THIS build.** `Dev::`
+ read/write/hook is fully available on MP4, but offsets are build-specific.
+ Discover them with a live correlation panel, freeze them behind a load-time
+ self-check (re-read a known field and compare it to a reflected value), and
+ fall back to read-only mode when the check fails — a bad `SetOffset` into a
+ physics object crashes the game, not just the plugin. Procedure:
+ `references/mp4-runtime-and-dev-memory.md` §6.
+ 9. **A plugin whose logic lives in a bundled native `.dll` is a REWRITE, not a
+ port.** Unpack the `.op` (it is a ZIP) and check whether the `.as` files are
+ just an `Import::GetLibrary` shell. If so, say that up front instead of
+ promising a port — the offsets target a different executable and no sources
+ ship in the package. Analysis recipe + verdict/brief template:
+ `references/op-package-analysis-and-porting.md`.
+ 10. **Prefer dynamic, runtime-observed game state over static/parsed lists.**
+ The user explicitly asks for this ("statyczne checkpointy → zrób dynamiczne").
+ Example: bucket by the live `CurTriggerIndex` the driver actually crosses
+ rather than a precomputed checkpoint table; it adapts to any map, multilap
+ included. See `references/mp4-runtime-and-dev-memory.md` §7. Offer the static
+ form as an explicitly-labelled *fallback* in the same module, never as the
+ primary design — the user accepts "static if dynamic proves impossible", which
+ is not the same as being handed static first.
+ 11. **In-plugin AngelScript beats any external process for reading game
+ state.** When asked "can this be done in Python / .NET instead", the deciding
+ fact is pointer acquisition: Openplanet hands you the live nod via `GetApp()`
+ for free, so `Dev::GetOffset(nod, off)` is one line. An external Python
+ `ctypes`/`pymem` or .NET process must first *find* that same object by scanning
+ process memory — hours of work for something already solved. Answer with that
+ comparison (a 3-row table works well), then keep Python for offline tooling:
+ reflection-DB queries, code generation, Kanban seeding, and the static
+ pre-flight gate. Do not accept "rewrite it in Python" as a way to avoid .NET
+ when the real answer is "neither — it belongs in the plugin".
+ 12. **Stage delivery as Tier 1 (safe) then Tier 2 (memory writes).** Tier 1 =
+ read-only reflection + teleport-style restore, ships immediately and cannot
+ crash the game. Tier 2 = velocity/physics restore via `Dev::SetOffset`, gated
+ behind a load-time offset self-check with automatic Tier-1 fallback. Ship and
+ verify Tier 1 first; it also proves the nod chain before you build anything on
+ top of it. A read-only telemetry tab is the cheapest possible proof that the
+ whole context chain resolves — build it first and ask the user to confirm the
+ numbers move before writing further modules.
 
----
+## Project documentation convention (where knowledge lives)
 
-## 🏗️ Plugin Architecture (callback-style)
+For OpenPlanet plugin projects **on disk**, the user's preferred layout:
 
-Openplanet plugins can be either:
+- **`IDEA.md` (project root) = project catalog only.** List *what each plugin/project
+  does* (name → one-line description + module map). It is NOT a dumping ground for
+  API knowledge or verified facts.
+- **API knowledge → `README.md` + this skill's `references/`** (esp.
+  `references/mp4-api-verified.md`). Put the verified member list, error→fix table,
+  and the "no `MapForge.*` SDK / no Lua-C# / `MwFastBuffer` is a value type" facts in
+  README (a summary) and in `references/`.
+- Do **not** keep API facts in `IDEA.md`; keep `IDEA.md` a plain index so a future
+  session finds projects fast without re-learning the API.
 
-- **Coroutine-style**: one `void Main()` that loops with `yield()`/`sleep(ms)`
-- **Callback-style**: optional `Main()` + auto-called `void Update(float dt)` and `void Render()`
-
-For most overlays, **callback-style is simpler and lower-latency** — you don't need a `Main()` at all. Just define `Update()` and/or `Render()`.
-
-| Callback | When it fires |
-|---|---|
-| `void Main()` | Plugin load. Yieldable coroutine. |
-| `void Update(float dt)` | Every frame. `dt` is delta in milliseconds. |
-| `void Render()` | Every frame, even with overlay closed. |
-| `void RenderInterface()` | Every frame, only when overlay is open. |
-| `void RenderMenu()` | For Openplanet menu items. |
-| `void OnEnabled/OnDisabled/OnDestroyed()` | Plugin lifecycle. |
-| `void OnSettingsChanged()` | After user changes any `[Setting]` value. |
-
----
-
-## 📁 Project Layout
-
-### 📂 Folder-based (development) — PREFERRED
+## Plugin skeleton (callback style)
 
 ```
-Openplanet4/Plugins/<plugin-name>/
-├── info.toml          # Metadata (required)
-├── Main.as            # Entry point (required)
-├── src/               # Optional modules
-│   ├── core/
-│   ├── ui/
-│   └── utils/
-├── README.md
-└── tests/             # Optional Python test scripts
-```
-
-All `.as` files in the folder are compiled together as a single module — no manual imports needed.
-
-### 🗂️ Filesystem layout
-
-```
-Openplanet4/
-├── docs/                  # API documentation
-├── Plugins/               # Runtime plugins (what Openplanet loads)
-├── Plugins-Developer/     # Source-of-truth development tree
-├── PluginStorage/         # Per-plugin persistent data (IO::FromStorageFolder)
-└── Openplanet.log         # Debug log — check for compilation errors
-```
-
-When iterating, edit `Plugins-Developer/`, then copy to `Plugins/` for live test.
-
-### 📦 Packaged (.op) — distribution
-
-`.op` files are ZIP archives. Do NOT edit them directly — extract, develop as folder, re-zip for release.
-
-Build:
-
-```bash
-cd path/to/MyPlugin
-7z a MyPlugin.zip info.toml Main.as src/
-ren MyPlugin.zip MyPlugin.op  # rename to .op
-```
-
----
-
-## ⚙️ info.toml
-
-```toml
-[meta]
-name        = "My Plugin"
-author      = "yourname"
-version     = "1.0.0"
-category    = "Tools"
-
-[script]
-timeout         = 0
-dependencies    = [ "VehicleState", "Camera" ]   # namespaces your code uses
-defines         = []                              # Preprocessor defines for dev
-```
-
-### 🔗 Common namespaces and which plugin owns them
-
-| Namespace/function | Plugin to add to `dependencies` |
-|---|---|
-| `VehicleState::ViewingPlayerState()` | `VehicleState` |
-| `Camera::ToScreenSpace(vec3) -> vec2` | `Camera` |
-| `Camera::IsBehind(vec3) -> bool` | `Camera` |
-| `NadeoServices::AddAudience(...)` | `NadeoServices` |
-| `Dashboard::ViewingPlayerState()` | `Dashboard` (optional) |
-
-⚠️ **Symptom of missing dependency**: `ERR : No matching symbol 'X::Y'` at compile time.
-
----
-
-## 🎚️ Settings
-
-```angelscript
-[Setting name="Display name" description="Tooltip"]
-bool S_MySetting = true;
-
-[Setting name="Slider value" min=0 max=100]
-int S_Slider = 50;
-
-[Setting hidden]
-string S_InternalData = "";
-```
-
----
-
-## 🚨 CRITICAL — API Quirks & Pitfalls
-
-### 🔤 AngelScript Language Quirks
-
-These bite everyone. AngelScript ≠ C++, ≠ C#, ≠ Java.
-
-#### 🔢 Integer literal suffixes
-
-`u`, `l`, `ul`, `ull` suffixes are **not supported**.
-
-```angelscript
-// ❌ ERR: Unexpected token '<identifier>'
-const uint64 MASK = 0x3FFFFFFu;
-const int BIG = 1ul;
-
-// ✅ OK: bare literal; compiler picks the type
-const uint64 MASK = 0x3FFFFFF;
-const int BIG = 1;
-const uint64 KEY = uint64(0x123);     // explicit cast
-```
-
-#### 📐 `const` on value-type arrays
-
-`const` works for primitives, but **NOT for fixed-size arrays of value types** like `int2[]` or `vec3[]`.
-
-```angelscript
-// ❌ ERR: Expected '('
-const int2 EDGES[12] = { int2(0,1), ... };
-const vec3 CORNERS[8] = { ... };
-
-// ✅ OK: dynamic, no const
-int2[] g_Edges = { int2(0,1), ... };
-```
-
-Also: `const` on `array<T>` is unreliable — keep globals un-`const` and use a `g_` prefix instead.
-
-#### 📏 Fixed-size local arrays
-
-**Local fixed-size arrays are not supported**:
-
-```angelscript
-void Foo() {
-    // ❌ ERR: Expected ';' Instead found identifier 'pts'
-    vec2 pts[8];
-    float depth[8];
-}
-
-// ✅ WORKAROUND: individual variables
-void Foo() {
-    vec2 p0, p1, p2, p3, p4, p5, p6, p7;
-    // compiler will register-allocate them
-}
-```
-
-Or use dynamic arrays:
-
-```angelscript
-vec2[] GetCorners() {
-    vec2[] cs = { vec2(0,0), vec2(1,0), ... };
-    return cs;
-}
-```
-
-#### 🗝️ `dictionary` key types
-
-**Most surprising limitation**: `dictionary` only accepts `const string&in` keys.
-
-```angelscript
-dictionary d;
-
-// ❌ ERR: No matching signatures to 'dictionary::Exists(uint64)'
-d[uint64(123)] = true;
-d[int(456)]    = true;
-
-// ✅ OK: build a string key
-d["123"] = true;
-d[gx + "," + gy + "," + gz] = true;
-```
-
-If you need a fast non-string key, roll your own hash table (parallel arrays + linear scan, or small open-addressed probe table). For most plugins, `string` keys are fine.
-
-#### 🔀 `uint` vs `int` in comparisons
-
-`array<T>.Length` returns `uint`. Comparing a signed `int` loop counter produces a warning treated as error in strict mode:
-
-```angelscript
-// ⚠️ WARN: Signed/Unsigned mismatch
-for (int e = 0; e < arr.Length; e++) { ... }
-
-// ✅ CLEAN:
-for (uint e = 0; e < arr.Length; e++) { ... }
-```
-
-#### 📤 `out` parameter naming
-
-Match the parameter name **exactly**:
-
-```angelscript
-// ❌ ERR: No matching symbol 'outDepth'
-bool Project(vec3 &in p, vec2 &out screen, float &out depth) {
-    outDepth = 0.0f;
-}
-
-// ✅ OK:
-bool Project(vec3 &in p, vec2 &out screen, float &out depth) {
-    depth = 0.0f;
-}
-```
-
-#### 🎨 `int2`, `vec2`, `vec3`, `vec4` constructors
-
-```angelscript
-int2 a = int2(1, 2);
-vec3 v = vec3(1.0f, 2.0f, 3.0f);
-vec4 red = vec4(1.0f, 0.0f, 0.0f, 0.5f);
-```
-
-They are value types — no `@` needed for storage.
-
-#### 🔄 `&inout` on primitive types is NOT allowed
-
-```angelscript
-// ❌ ERR:
-void ConfigRow(const string &in label, bool &inout value) { }
-
-// ✅ OK:
-void ConfigRow(const string &in label, bool value) { }
-```
-
-#### 📊 Array initialization — inline `int t[] = {...}` fails inside functions
-
-```angelscript
-// ❌ ERR inside functions:
-// int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
-
-// ✅ OK: use array<T> with InsertLast
-array<int64> items;
-items.InsertLast(123);
-
-// ✅ OK: pre-allocate at global scope
-int[] g_Array;
-void Main() { g_Array.Resize(16); }
-
-// ✅ OK: inline array init works at global scope
-int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-```
-
-#### 🔍 `string::IndexOf` — takes exactly ONE parameter
-
-```angelscript
-// ❌ ERR:
-int idx = text.IndexOf("[", startPos);
-
-// ✅ OK:
-int idx = text.IndexOf("[");
-// For offset: use SubStr first
-int idx = text.SubStr(startPos).IndexOf("[");
-```
-
-#### 📝 `Text::Format` takes exactly ONE value argument
-
-```angelscript
-// ❌ ERR:
-Text::Format("%.6f (%.2f%%)", sidereal, sidereal * 100.0);
-
-// ✅ OK:
-Text::Format("%.6f", sidereal) + " (" + Text::Format("%.2f%%", sidereal * 100.0) + ")";
-```
-
----
-
-### ⏰ Time API Quirks
-
-#### 🅰️ Time::Info uses PascalCase, NOT lowercase
-
-`'year' is not a member of 'Time::Info'`
-
-```angelscript
-// ❌ ERR:
-info.year, info.month, info.day, info.hour, info.minute, info.second
-
-// ✅ OK:
-info.Year, info.Month, info.Day, info.Hour, info.Minute, info.Second
-```
-
-#### 📅 Weekday is NOT a member of Time::Info
-
-`info.Weekday` will fail. Use **Zeller's formula** (0=Sun..6=Sat):
-
-```angelscript
-int GetDayOfWeek(int y, int m, int d) {
-    if (m < 3) { m += 12; y -= 1; }
-    int K = y % 100;
-    int J = y / 100;
-    int h = (d + (13 * (m + 1)) / 5 + K + K / 4 + J / 4 + 5 * J) % 7;
-    return (h + 6) % 7; // 0=Sun
-}
-```
-
-#### 🕐 Time functions
-
-```angelscript
-int64 now = Time::Stamp;                          // Epoch seconds
-uint64 gameTime = Time::Now;                      // ms since game start
-string formatted = Time::FormatString("%H:%M", now);  // strftime format
-Time::Info info = Time::Parse(now);               // Local time
-```
-
----
-
-### 🖥️ UI API Quirks
-
-#### 🔤 No UI::Font enum — use PushFontSize
-
-```angelscript
-// ✅ OK:
-UI::PushFontSize(22.0);
-UI::Text("Big text");
-UI::PopFontSize();
-
-// ❌ ERR (does not exist):
-UI::PushFont(UI::Font::OpenSansBold);
-```
-
-#### 🎨 No UI::TextColored — use PushStyleColor
-
-```angelscript
-// ✅ OK:
-UI::PushStyleColor(UI::Col::Text, vec4(0.3f, 1.0f, 0.5f, 1.0f));
-UI::Text("Green text");
-UI::PopStyleColor();
-
-// ❌ ERR:
-UI::TextColored(color, "text");
-```
-
-#### 📍 Window position uses int coords
-
-```angelscript
-// ✅ OK (cast floats to int):
-UI::SetNextWindowPos(int(posX), int(posY), UI::Cond::Appearing);
-```
-
-#### 🪟 UI::Begin takes a bool reference
-
-```angelscript
-bool S_WindowOpen = false;
-if (!UI::Begin("My Window", S_WindowOpen, UI::WindowFlags::NoSavedSettings)) {
-    UI::End();
-    return;
-}
-```
-
-#### ⌨️ UI::InputText — return type vs. bool&out
-
-```angelscript
-// ❌ ERR — InputText ALWAYS returns string, can't use in if():
-if (UI::InputText("##Input", g_Text, changed, flags)) { }
-
-// ✅ OK:
-bool changed = false;
-UI::InputText("##Input", g_Text, changed, flags);
-if (changed) { /* Enter was pressed */ }
-```
-
----
-
-### 🖌️ NanoVG Essentials
-
-The drawing API is per-frame immediate-mode. State persists until changed.
-
-```angelscript
-nvg::BeginPath();
-nvg::MoveTo(p1);
-nvg::LineTo(p2);
-nvg::Stroke();          // ← actually draws the path
-
-nvg::FontSize(13.0f);
-nvg::FillColor(vec4(1.0f, 1.0f, 1.0f, 0.9f));
-nvg::TextAlign(nvg::Align::Middle | nvg::Align::Center);
-nvg::Text(p, "label");
-```
-
-- `nvg::BeginPath()` is **required** for `LineTo`/`Rect`/`Circle`/etc.
-- `nvg::Text()` does **NOT** need `BeginPath`.
-- For minimum state changes, batch draws that share a state.
-
----
-
-### 📷 Camera API
-
-#### 🎯 Camera::ToScreenSpace returns `vec2`, not `vec3`
-
-```angelscript
-vec2 screenPos = Camera::ToScreenSpace(worldPos);   // 2D only
-// NO z/depth component!
-```
-
-For behind-camera test:
-
-```angelscript
-if (Camera::IsBehind(worldPos)) {
-    // skip this point
-}
-```
-
-⚠️ Don't assume a `vec3` overload exists. The `vec2` return is the only signature.
-
-#### 🚗 VehicleState::ViewingPlayerState() returns CSmPlayer
-
-```angelscript
-auto state = VehicleState::ViewingPlayerState();
-if (state is null) return;       // null when not in a vehicle / not in a map
-vec3 pos = state.Position;        // world-space player position
-```
-
-Use `is null` — AngelScript's null-comparison operator for handles.
-
----
-
-### 🧱 Trackmania Block Dimensions
-
-Standard blocks are **32 × 32 × 8** (X × Z × Y) in world units.
-
-```angelscript
-const float BLOCK_XZ = 32.0f;
-const float BLOCK_Y  = 8.0f;
-
-int gx = int(Math::Floor(worldPos.x / BLOCK_XZ));
-int gy = int(Math::Floor(worldPos.y / BLOCK_Y));
-int gz = int(Math::Floor(worldPos.z / BLOCK_XZ));
-```
-
----
-
-## ⚡ Performance Patterns
-
-### 🎨 Minimize NVG state changes
-
-Batch draws by state — the single biggest FPS win:
-
-```angelscript
-// ❌ BAD: stroke state changes per block
-for (each block) {
-    nvg::StrokeColor(...);
-    nvg::StrokeWidth(...);
-    DrawEdgesOfBlock(...);
-}
-
-// ✅ GOOD: sort by state, then batch
-nvg::StrokeColor(green);  // once per "visited" pass
-for (each visited block) DrawEdgesOfBlock(...);
-nvg::StrokeColor(red);    // once per "unvisited" pass
-for (each unvisited block) DrawEdgesOfBlock(...);
-```
-
-State-change guard:
-
-```angelscript
-bool g_LastDrewVisited = false;
-void ApplyStroke(bool visited) {
-    if (visited == g_LastDrewVisited) return;
-    g_LastDrewVisited = visited;
-    nvg::StrokeColor(visited ? green : red);
-    nvg::StrokeWidth(visited ? 3.0f : 2.0f);
-}
-```
-
-### 🧠 Don't recompute in `Render()`
-
-Anything that can be computed in `Update()` and cached as a global is one less per-frame allocation.
-
-### 👁️ Spatial culling
-
-For 3D grids:
-1. **Per-block AABB cull**: project all 8 corners; if 0 in front of camera, skip block
-2. **Edge-level cull**: only draw edges whose two endpoints were both visible
-
-### 🔤 Avoid string concatenation in hot loops
-
-`"a" + "b" + "c"` allocates 3 new strings. For cache keys hit thousands of times per frame, cache the per-frame key. For 4–8 char keys, the cost is acceptable — the lookup hash dominates.
-
----
-
-## 📊 Diagnostic UI
-
-The `UI::*` namespace is immediate-mode (like Dear ImGui):
-
-```angelscript
-UI::SetNextWindowSize(width, height, UI::Cond::FirstUseEver);
-if (UI::Begin("My Diagnostics")) {
-    UI::Text("Static label: " + value);
-    if (UI::Button("Reset")) {
-        // handle click
-    }
-    UI::Separator();
-}
-UI::End();
-```
-
-Window titles with icons: `UI::Begin(Icons::Eye + " Diagnostics")`
-
-The `Icons::` namespace has 600+ Unicode glyphs (`Icons::Eye`, `Icons::Cog`, `Icons::Trash`, `Icons::Clock`, `Icons::Car`, `Icons::Info`, `Icons::Calendar`, `Icons::Star`, `Icons::QuestionCircle`, etc.).
-
-### 🗂️ Config & Debug Window Pattern
-
-```angelscript
-void RenderDebugWindow() {
-    UI::SetNextWindowSize(580, 520, UI::Cond::FirstUseEver);
-    if (!UI::Begin("Config", g_ShowDebugWindow)) { UI::End(); return; }
-    UI::BeginTabBar("Tabs");
-    if (UI::BeginTabItem("Config")) { RenderConfigTab(); UI::EndTabItem(); }
-    if (UI::BeginTabItem("Status")) { RenderStatusTab(); UI::EndTabItem(); }
-    if (UI::BeginTabItem("History")) { RenderHistoryTab(); UI::EndTabItem(); }
-    UI::EndTabBar(); UI::End();
-}
-```
-
-| Tab | Content |
-|---|---|
-| ⚙️ Config | All `[Setting]` toggles in a table with ON/OFF |
-| 📊 Status | Live values, cache queues, computed data |
-| 📜 History | Data tables, map visits, recorded events |
-| 📋 Reference | Static reference data (nodes, calibration tables) |
-
----
-
-## 🌙 Lunar Calendar & Date Conversion
-
-### 📅 Gregorian ↔ Day of Year
-
-```angelscript
-// Day of year from Gregorian (1-based)
-int GetDayOfYear(int year, int month, int day) {
-    int[] daysBefore = {0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
-    int doy = daysBefore[month] + day;
-    if (month > 2 && IsLeapYear(year)) doy++;
-    return doy;
-}
-
-// Day of year back to Gregorian
-void DayOfYearToGregorian(int year, int dayOfYear, int &out month, int &out day) {
-    int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    if (IsLeapYear(year)) mdays[1] = 29;
-    month = 1;
-    int remaining = dayOfYear;
-    for (int i = 0; i < 12; i++) {
-        if (remaining <= mdays[i]) { month = i + 1; day = remaining; return; }
-        remaining -= mdays[i];
-    }
-    month = 12; day = 31;
-}
-
-// Unix timestamp from Gregorian date (midnight UTC)
-uint64 UnixFromGregorian(int year, int month, int day) {
-    Time::Info info;
-    info.Year = year;
-    info.Month = month;
-    info.Day = day;
-    info.Hour = 0;
-    info.Minute = 0;
-    info.Second = 0;
-    return Time::Unix(info);
-}
-
-// Gregorian from Unix timestamp
-void GetGregorianFromUnix(uint64 unixTime, int &out year, int &out month, int &out day) {
-    Time::Info info = Time::Parse(unixTime);
-    year = info.Year;
-    month = info.Month;
-    day = info.Day;
-}
-
-bool IsLeapYear(int year) {
-    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-}
-```
-
-### 🌓 Moon phase (synodic ~29.53 days)
-
-```angelscript
-// Returns 0.0 (new moon) to 1.0 (next new moon)
-float GetMoonPhase(uint64 unixTime) {
-    // Known new moon: 2000-01-06 18:14 UTC = 947182440
-    const float SYNODIC = 29.53058867;
-    double daysSince = double(unixTime - 947182440) / 86400.0;
-    return float(fmod(daysSince, SYNODIC) / SYNODIC);
-}
-
-// Moon texture for current phase (requires Moon plugin textures)
-auto@ GetMoonTexture(uint64 unixTime) {
-    float phase = GetMoonPhase(unixTime);
-    // 0.0=new, 0.25=first quarter, 0.5=full, 0.75=last quarter
-    // Map to your texture array index
-    int idx = int(phase * 8.0) % 8;
-    return Moon::GetTexture(idx);
-}
-```
-
----
-
-## 📆 Calendar Day Indicators
-
-### 🟢 Event dots — mark days that have events
-
-```angelscript
-bool[] g_DaysWithEvents;
-
-void Main() {
-    g_DaysWithEvents.Resize(31);
-    while (true) {
-        RebuildEventDays();
-        yield();
-    }
-}
-
-void RebuildEventDays() {
-    for (int i = 0; i < 31; i++) g_DaysWithEvents[i] = false;
-    Time::Info now = Time::Parse(Time::Stamp);
-    int curDOW = GetDayOfWeek(now.Year, now.Month, now.Day);
-    // Convert Sun=0 to Mon=1..Sun=7 convention if needed
-    curDOW = (curDOW == 0) ? 7 : curDOW;
-    int curDay = now.Day;
-    for (int i = 0; i < g_EventCount; i++) {
-        int diff = g_WeekDay[i] - curDOW;
-        int eventDay = curDay + diff;
-        if (eventDay >= 1 && eventDay <= 31) g_DaysWithEvents[eventDay - 1] = true;
-    }
-}
-```
-
-In your calendar draw loop:
-
-```angelscript
-// Highlight days with event dots
-if (g_DaysWithEvents[day - 1])
-    UI::PushStyleColor(UI::Col::Button, vec4(0.4f, 0.8f, 0.4f, 0.25f));
-UI::Button(dayStr);
-if (g_DaysWithEvents[day - 1])
-    UI::PopStyleColor();
-```
-
-### 📊 Inline data in cells — show computed value without hover
-
-```angelscript
-// In each calendar cell, after drawing the day number button:
-UI::TextDisabled(Text::Format("%.0f%%", progress * 100.0));  // e.g. "23%" = 23%
-
-// Moon phase icon alongside:
-auto@ tex = GetMoonTexture(Time::Stamp);
-if (tex !is null) {
-    UI::SameLine();
-    UI::Image(tex, vec2(14, 14));
-}
-```
-
----
-
-## ⏱️ Upcoming Events Countdown
-
-```angelscript
-array<int64> eTs; array<string> eLabel;
-
-void BuildUpcomingList() {
-    eTs.Resize(0);
-    eLabel.Resize(0);
-    int64 now = Time::Stamp;
-    for (int i = 0; i < g_Count; i++) {
-        int64 ets = GetNextEventTs(g_WeekDay[i], g_Hour[i], g_Min[i]);
-        if (ets > now) {
-            eTs.InsertLast(ets);
-            eLabel.InsertLast(g_Label[i]);
-        }
-    }
-    // Bubble sort by timestamp (ascending)
-    for (uint i = 0; i < eTs.Length - 1; i++) {
-        for (uint j = 0; j < eTs.Length - 1 - i; j++) {
-            if (eTs[j] > eTs[j + 1]) {
-                int64 tmpT = eTs[j]; eTs[j] = eTs[j + 1]; eTs[j + 1] = tmpT;
-                string tmpL = eLabel[j]; eLabel[j] = eLabel[j + 1]; eLabel[j + 1] = tmpL;
-            }
-        }
-    }
-}
-
-// Display first 5 in UI:
-void RenderUpcoming() {
-    BuildUpcomingList();
-    uint count = eTs.Length;
-    if (count > 5) count = 5;
-    for (uint i = 0; i < count; i++) {
-        int64 ago = eTs[i] - Time::Stamp;
-        string countdown = FormatCountdown(ago);
-        UI::Text(eLabel[i] + " — " + countdown);
-    }
-}
-
-string FormatCountdown(int64 seconds) {
-    int h = int(seconds / 3600);
-    int m = int((seconds % 3600) / 60);
-    return Text::Format("%dh %dm", h, m);
-}
-```
-
----
-
-## 🔁 Recurring Events Pattern
-
-```angelscript
-const int MAX_EVENTS = 16;
-int g_Count = 0;
-int[] g_WeekDay; int[] g_Hour; int[] g_Min; string[] g_Label;
-
-void AddEvent(int d, int h, int m, const string &in l) {
-    if (g_Count >= MAX_EVENTS) return;
-    g_WeekDay[g_Count] = d; g_Hour[g_Count] = h;
-    g_Min[g_Count] = m; g_Label[g_Count] = l; g_Count++;
-}
-```
-
-⏱️ Upcoming events with countdown:
-
-```angelscript
-array<int64> eTs; array<string> eLabel;
-for (int i = 0; i < g_EventCount; i++) {
-    int64 ets = GetNextEventTs(g_WeekDay[i], g_Hour[i], g_Min[i]);
-    if (ets > now) { eTs.InsertLast(ets); eLabel.InsertLast(g_Label[i]); }
-}
-// Bubble sort, display first 5
-```
-
----
-
-## 🔀 Preprocessor Directives
-
-```angelscript
-#if TMNEXT
-    // Trackmania (2020) only
-#elif MP4
-    // Maniaplanet 4 only
-#endif
-```
-
----
-
-## 🐛 Common Build/Compile Errors
-
-| Error message | Cause | Fix |
-|---|---|---|
-| `ERR : No matching symbol 'X::Y'` at function call | Missing `dependencies` in `info.toml` | Add the owning plugin to `[script].dependencies` |
-| `ERR : Unexpected token '<identifier>'` after numeric literal | Integer suffix (`u`, `l`, etc.) not supported | Drop suffix or use `uint64(x)` cast |
-| `ERR : Expected '(' Instead found '['` on `const TYPE name[N]` | `const` on fixed-size value-type array | Use `TYPE[] name = { ... };` (dynamic, no const) |
-| `ERR : Expected ';' Instead found identifier 'pts'` on `vec2 pts[8];` | Local fixed-size array not supported | Use individual variables |
-| `ERR : No matching signatures to 'dictionary::Exists(uint64)'` | Dictionary only takes string keys | Convert to `string` key |
-| `WARN : Signed/Unsigned mismatch` in `for` loop | `int i` vs `uint Length` | Use `uint i` |
-| `ERR : Can't implicitly convert from 'vec2' to 'vec3'` | `Camera::ToScreenSpace` returns `vec2` | Use `vec2`; test `Camera::IsBehind` for cull |
-| `'year' is not a member of 'Time::Info'` | Wrong case on member | Use PascalCase: `info.Year`, `info.Month`, `info.Day`, etc. |
-| `'Weekday' is not a member of 'Time::Info'` | Weekday doesn't exist on Time::Info | Use Zeller's formula (see Time API section) |
-| `No matching symbol 'UI::Font::...'` | Font enum doesn't exist | Use `PushFontSize`/`PopFontSize` |
-| `No matching symbol 'UI::TextColored'` | Function doesn't exist | Use `PushStyleColor(UI::Col::Text, ...)` |
-| `Float value truncated in implicit conversion` | float where int expected | Cast: `int(value)` |
-| `ERR : No matching symbol 'outDepth'` | `out` param name mismatch | Match parameter name exactly |
-| `ERR : Can't implicitly convert from 'string' to 'bool'` | `UI::InputText` return in `if()` | Call separately, check `changed` bool after |
-| `ERR on '&inout' with primitive` | `&inout` not allowed on primitives | Pass by value for reads |
-| `ERR on 'IndexOf' with 2 args` | `string::IndexOf` takes 1 param | Use `SubStr` first for offset |
-| `ERR on 'Text::Format' with 2 values` | `Text::Format` takes 1 value arg | Chain multiple `Text::Format` calls |
-
----
-
-## 🔧 Debugging Tips
-
-- 📝 **`F3 → Log`** — `print("hello")` lands here
-- 🔄 **Reload scripts** after every save via `F3 → Developer → Reload Scripts` — no restart needed
-- 📋 **F3 → Developer → Plugin Manager** — shows load order and compile errors
-- 🔍 **Nod Explorer** (`F3 → Developer → Nod Explorer`) — browse live `CGameCtnApp` tree
-- 📄 **Openplanet.log** (`%USERPROFILE%\OpenplanetNext\Openplanet.log`) — stack traces for runtime crashes
-
----
-
-## 🚀 Quick-Start Template
-
-```toml
-# info.toml
-[meta]
-name        = "My Plugin"
-author      = "Me"
-category    = "Tools"
-version     = "1.0.0"
-
-[script]
-timeout         = 0
-dependencies    = [ "VehicleState" ]
+MyPlugin/
+├── info.toml        # metadata (see references/launch-and-verify.md §info.toml)
+└── src/
+    ├── Main.as      # Main(), Render(), RenderMenu(), OnDestroyed()
+    ├── Core/        # context/gateway, module manager
+    └── Modules/     # one feature per file
 ```
 
 ```angelscript
-// main.as
-[Setting name="Enabled" category="General"]
-bool S_Enabled = true;
+// Main.as — minimal
+[Setting name="Show window"] bool S_ShowWindow = true;
 
-void Update(float dt) {
-    if (!S_Enabled) return;
-    auto state = VehicleState::ViewingPlayerState();
-    if (state is null) return;
-    // ... per-frame work ...
+void Main() { /* init; yield in loops */ }
+
+void RenderMenu() {
+    if (UI::MenuItem("\\$0f0" + Icons::Wrench + " MyPlugin", "", S_ShowWindow))
+        S_ShowWindow = !S_ShowWindow;
 }
 
 void Render() {
-    if (!S_Enabled) return;
-    if (UI::Begin(Icons::Cog + " My Plugin")) {
-        UI::Text("Hello world");
+    if (!S_ShowWindow) return;
+    if (UI::Begin("MyPlugin", S_ShowWindow)) {
+        // guard editor access every frame:
+        auto app = cast<CGameCtnApp>(GetApp());
+        auto editor = cast<CGameCtnEditorFree>(app.Editor);
+        if (editor is null) UI::Text("Open the map editor.");
+        else { /* modules */ }
     }
     UI::End();
 }
 ```
 
----
+`info.toml` minimum:
 
-## 🧹 Cleanup When Removing a Feature
+```toml
+[meta]
+name = "MyPlugin"
+author = "you"
+category = "Map Editing"
+version = "1.0.0"
 
-Check EVERY `.as` file:
-
-```bash
-grep -rn "DeletedName" Plugins/<name>/
+[script]
+timeout = 5000
 ```
 
----
+## Top MP4 compile-error killers (details in references/mp4-api-verified.md)
 
-## 📚 Reference
+- `tostring(uint)` ambiguous → `Text::Format("%d", int(v))`
+- no `char()` / char literals → byte math (`'A'`=65, `'Z'`=90)
+- `MwFastBuffer` is a value type → never `Buf is null`
+- ternary `cond ? x.Name : "?"` with `wstring Name` → `string(x.Name)` both branches
+- `UI::InputInt3`, `UI::BeginTable`, `UI::Columns`, flag args on
+  `CollapsingHeader`/`BeginTabBar` → don't exist; use `BeginChild`+`SameLine`
+- no `string::ToLower` → manual byte compare helper
 
-Full API reference: 🌐 **https://openplanet.dev/docs**
+## Reference index (load on demand)
 
-Hermes skills repo reference files: 📎 https://github.com/tomekdot/hermes-skills/tree/main/skills/software-development/openplanet-plugin-dev/references
-
----
-
-*Last updated: 2026-06-12. Covers AngelScript build as of OpenplanetNext 2026.*
+| File | When to load |
+|---|---|
+| `references/mp4-api-verified.md` | **Always for MP4 EDITOR work** — verified member list + error→fix table |
+| `references/mp4-runtime-and-dev-memory.md` | **Always for MP4 IN-RACE work** (trainers, HUDs, telemetry, save-state) — playground nod chain, `CTrackManiaPlayer` / `CTrackManiaScriptPlayer` (~120 verified members incl. driver inputs, gear, rpm), the `CSceneVehicleVis` reflection gap (size 3464, no members), full `Dev::` read/write/hook surface, the offset-hunting procedure, and the dynamic-checkpoint pattern |
+| `references/mp4-trainer-scaffold.md` | **Building an in-race trainer/HUD on MP4.** Session-verified nod chain (`GetApp → CurrentPlayground → GameTerminals[0].GUIPlayer → cast CTrackManiaPlayer → ScriptAPI`), 41 confirmed members with types, `ERaceState` values, the `CGameWaypointSpecialProperty` lives-in-`GameData`-not-`Game` trap, the dynamic `CurTriggerIndex` checkpoint pattern with multilap bucket formula + static scan fallback, the `Core/Modules` scaffold that compiles, and the de-risking build order (telemetry tab first as proof the chain resolves). |
+| `references/op-package-analysis-and-porting.md` | User drops a compiled `.op` and asks "can this run on ManiaPlanet?" — unzip pitfalls, telling a script plugin from a native-DLL plugin, fingerprinting the DLL without a disassembler, recovering structs from the bridge, port-vs-rewrite verdict + the port-brief deliverable template |
+| `references/mp4-api-mismatches.md` | More MP4 error→fix cases (time API, ISO 8601, session notes) |
+| `references/mp4-supplement.md` | MP4/TM2 platform supplement (differences vs TM2020) |
+| `references/mp4-ui-rendering.md` | MP4 UI limits (no images, layout primitives that work) |
+| `references/api-quirks-and-pitfalls.md` | General AngelScript/Openplanet quirks (both games) |
+| `references/patterns-performance-ui.md` | Performance, diagnostic UI, NanoVG, JSON persistence, public API namespace |
+| `references/api-namespaces.md` | Namespace/function reference (UI, Time, Text, IO, Net, Json, nvg, Math…) |
+| `references/launch-and-verify.md` | info.toml reference + launch/kill/reload/log-verify command recipes |
+| `references/mapforge-architecture.md` | Proven MP4 editor-plugin skeleton (module registry + safe context) |
+| `references/static-verify-workflow.md` | No-compiler static verification pass for .as + grid/array block-replication pattern. **When grepping for forbidden natives, strip `/* */` and `//` comments first** — a naive scan flags legitimate mentions *inside* comments (e.g. a doc line "no char() literals on MP4") as false positives. |
+| `references/crossgame-tmnext-mp4.md` | **Cross-game TMNEXT+MP4 plugins** — `#if TMNEXT`/`#elif MP4` pattern, shared `CGameCtnApp` members (Switcher/RootMap/Editor/CurrentPlayground), MP4 menu/load detection, deprecated-API fixes, `.op`-is-zip build workaround, and the `nvg::LoadFont` root-path pitfall. Read BEFORE porting any TMNEXT plugin to MP4. |
+| `scripts/verify-mp4-branch.py` | Static pre-load guard: extracts the `#elif MP4`/`#else` branch and checks it has no forbidden TMNEXT symbols and only `app.X` members present in `Openplanet4.json`. Run before the in-game kill+relaunch. |
+| `references/openplanet-core-json.md` | **Source for Openplanet built-in namespaces** (`IO/Time/UI/Json/Math/Text/Net/Audio/Icons`). Where to find them (`OpenplanetCore.json`, not `Openplanet4.json`) + verified signatures that bit us (`IO::CreateFolder` not `CreateDirectory`, no `IO::WriteFile`, `Time::FormatString` not `Time::Format(string)`, `UI::ListBox` absent → use `BeginCombo`, `Json::Value` has no `IsArray`). |
+| `scripts/hermes-verify-mapforge.sh` | Re-runnable ad-hoc load-check: greps `Openplanet.log` for clean `Loaded plugin` + zero `ERR :`/`compilation failed`, confirms 18 module files present & registered. Use after kill+relaunch to prove a clean compile (AngelScript has no offline compiler). |
+| `scripts/static-preflight-plugin.py` | **Run BEFORE every kill+relaunch.** Generic static gate over a whole plugin tree: brace/paren balance, every `handle.Member` resolved against `Openplanet4.json` (walking the `p` parent chain), forbidden-native scan on comment-stripped source, `Icons::` allowlist, and module-registered-vs-defined cross-check. Adapt `ROOT`/`PLUGIN`/`HANDLE_TYPES` at the top. Two hard-won details baked in: handle regexes need a `(?<![\w.])` guard (else `s.` matches the tail of `m_modules.Length` and emits phantom errors), and you must prove the gate non-vacuous by injecting `UI::BeginTable` into a sandbox copy and asserting FAIL. |
+| `references/plugin-standardization.md` | Naming/structure conventions |
+| `references/openplanet-ui-menu-and-scaling.md` | Menu integration + UI scaling |
+| `references/plugin-cleanup-recipes.md` | Removing features/plugins cleanly, visibility recipes |
+| `references/feedback-map-uid.md` | ManiaPlanet feedback page map-UID extraction |
+| `references/blockable-input-callbacks-mp4.md` | **Trainer hotkey input layer** — `BlockableInputCallbacks` on MP4: verified import surface (`RegisterCallback`/`UnregisterCallbacks`, `SetInputBlocked`, `VirtualKeyToKeyboardInput`), `KeyboardInput` F5=0x3F/F6=0x40/F8=0x42 enum values, `PadInput`/`InputDecision`, its `[script] module/exports/shared_exports` manifest shape, and the zero-dep `OnKeyPress` fallback |
+| `references/openplanet-docs-dump.md` | Raw Openplanet docs dump (search only when the above fail) |
+| `references/review-failure-ledger.md` | **Reviewing a finished plugin/PR/release.** Mechanism checklist of subtle runtime/state/lifecycle/UI/architecture/sync failures (UI containment, state desync, transactional mutation, architecture erosion, network mismatch). Use as a grading checklist, not a keyword linter. Imported from XertroV/openplanet-reviewer (CC0/Unlicense) — see header in file. |
+| `references/review-evidence-precedents.md` | **Review evidence + concrete fault probes.** Evidence grades (Demonstrated / Confirmed source invariant / Hypothesis), real project-local precedents (`tm-bosslike`, `Map Together`, `Dips++`) with `path:line` fault fixtures, and the network fault-matrix. Load when a review branch needs a concrete probe or a precedent. Imported from XertroV/openplanet-reviewer (CC0/Unlicense) — see header in file. |

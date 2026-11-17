@@ -1,40 +1,57 @@
-## Description: <br>
-Expert Toolkit helps Chinese-speaking users browse, search, match, and invoke local expert role prompts across 178+ specialist roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Toolkit helps agents find, search, and load local expert-role Markdown prompts with Chinese names, category browsing, keyword search, and automatic matching.
 
-## Publisher: <br>
-[catkid010520](https://clawhub.ai/user/catkid010520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catkid010520](https://clawhub.ai/user/catkid010520)
 
-## Use Case: <br>
-Chinese-speaking developers and operators use this skill to find suitable expert roles, load role prompts, and get specialized guidance for product, engineering, marketing, finance, testing, and related tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local role markdown can influence model responses if the role pack is untrusted or the roles directory is set too broadly. <br>
-Mitigation: Keep the roles directory limited to trusted role packs, avoid broad EXPERT_TOOLKIT_ROLES_ROOT values, and review third-party role files before relying on the output. <br>
-Risk: Missing or damaged local role and mapping files can produce incomplete expert matches or fallback behavior. <br>
-Mitigation: Verify the role pack and configuration JSON before deployment, then test category listing, search, direct invocation, and automatic matching in the target environment. <br>
+## Use Case:
 
+Developers and Chinese-speaking agent users use this skill to browse expert categories, search for specialist roles, and load matching local role prompts for tasks such as product planning, architecture review, marketing, data analysis, finance, testing, and support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/catkid010520/expert-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with expert search/list results and loaded role prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns prompt content for selected or matched expert roles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill loads Markdown role files from the configured roles directory, so untrusted role files can introduce misleading or unsafe instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted role files, keep the roles directory protected from untrusted modification, and review returned prompts before acting on high-impact guidance.
+
+Risk: Setting EXPERT_TOOLKIT_ROLES_ROOT to a broad or private document location may expose unintended local Markdown content to the agent context.
+
+Mitigation: Point EXPERT_TOOLKIT_ROLES_ROOT only at the intended agency-orchestrator roles directory and avoid broad home, workspace, or private-document paths.
+
+Risk: Automatic expert matching is keyword-based and may select an unsuitable expert for ambiguous requests.
+
+Mitigation: For important work, review the matched experts and use explicit expert IDs, category browsing, or search commands when a precise role is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/catkid010520/skills/expert-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text containing category lists, search results, selected role prompts, and task guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local Markdown role files from a configured roles directory and returns prompt text without network calls, file writes, or persistence.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

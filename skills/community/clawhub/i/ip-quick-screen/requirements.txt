@@ -1,0 +1,2 @@
+# 依赖：coze_workload_identity（预装）
+# 无需额外依赖

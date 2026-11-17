@@ -1,0 +1,325 @@
+collection: PICO
+sort-by: 10
+shortname: pico
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/retro8_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 194-8战机
+file: 194-8战机.p8
+assets.box_front: Imgs/194-8战机.png
+description: 《194-8战机》，世嘉 Pico 平台。
+game: 保龄球挑战赛
+file: 保龄球挑战赛.p8
+assets.box_front: Imgs/保龄球挑战赛.png
+description: 《保龄球挑战赛》，世嘉 Pico 平台。
+game: 兰博 - 越狱
+file: 兰博 - 越狱.p8
+assets.box_front: Imgs/兰博 - 越狱.png
+description: 《兰博 - 越狱》，世嘉 Pico 平台。
+game: 冒险者
+file: 冒险者.p8
+assets.box_front: Imgs/冒险者.png
+description: 《冒险者》，世嘉 Pico 平台。
+game: 冲浪
+file: 冲浪.p8
+assets.box_front: Imgs/冲浪.png
+description: 《冲浪》，世嘉 Pico 平台。
+game: 击球
+file: 击球.p8
+assets.box_front: Imgs/击球.png
+description: 《击球》，世嘉 Pico 平台。
+game: 别被夹住
+file: 别被夹住.p8
+assets.box_front: Imgs/别被夹住.png
+description: 《别被夹住》，世嘉 Pico 平台。
+game: 剑鱼
+file: 剑鱼.p8
+assets.box_front: Imgs/剑鱼.png
+description: 《剑鱼》，世嘉 Pico 平台。
+game: 危险旅途
+file: 危险旅途.p8
+assets.box_front: Imgs/危险旅途.png
+description: 《危险旅途》，世嘉 Pico 平台。
+game: 只是一个BOSS
+file: 只是一个BOSS.p8
+assets.box_front: Imgs/只是一个BOSS.png
+description: 《只是一个BOSS》，世嘉 Pico 平台。
+game: 史莱姆泡泡
+file: 史莱姆泡泡.p8
+assets.box_front: Imgs/史莱姆泡泡.png
+description: 《史莱姆泡泡》，世嘉 Pico 平台。
+game: 哈利攀登之旅
+file: 哈利攀登之旅.p8
+assets.box_front: Imgs/哈利攀登之旅.png
+description: 《哈利攀登之旅》，世嘉 Pico 平台。
+game: 哈罗德的糟糕日子
+file: 哈罗德的糟糕日子.p8
+assets.box_front: Imgs/哈罗德的糟糕日子.png
+description: 《哈罗德的糟糕日子》，世嘉 Pico 平台。
+game: 嗨!机器人
+file: 嗨!机器人.p8
+assets.box_front: Imgs/嗨!机器人.png
+description: 《嗨!机器人》，世嘉 Pico 平台。
+game: 国际象棋
+file: 国际象棋.p8
+assets.box_front: Imgs/国际象棋.png
+description: 《国际象棋》，世嘉 Pico 平台。
+game: 塞莱斯
+file: 塞莱斯.p8
+assets.box_front: Imgs/塞莱斯.png
+description: 《塞莱斯》，世嘉 Pico 平台。
+game: 夜行
+file: 夜行.p8
+assets.box_front: Imgs/夜行.png
+description: 《夜行》，世嘉 Pico 平台。
+game: 大蜜蜂
+file: 大蜜蜂.p8
+assets.box_front: Imgs/大蜜蜂.png
+description: 《大蜜蜂》，世嘉 Pico 平台。
+game: 太空人
+file: 太空人.p8
+assets.box_front: Imgs/太空人.png
+description: 《太空人》，世嘉 Pico 平台。
+game: 夺旗
+file: 夺旗.p8
+assets.box_front: Imgs/夺旗.png
+description: 《夺旗》，世嘉 Pico 平台。
+game: 奥泽洛特战机
+file: 奥泽洛特战机.p8
+assets.box_front: Imgs/奥泽洛特战机.png
+description: 《奥泽洛特战机》，世嘉 Pico 平台。
+game: 女巫射击
+file: 女巫射击.p8
+assets.box_front: Imgs/女巫射击.png
+description: 《女巫射击》，世嘉 Pico 平台。
+game: 安蒂班
+file: 安蒂班.p8
+assets.box_front: Imgs/安蒂班.png
+description: 《安蒂班》，世嘉 Pico 平台。
+game: 小地牢
+file: 小地牢.p8
+assets.box_front: Imgs/小地牢.png
+description: 《小地牢》，世嘉 Pico 平台。
+game: 小建筑师
+file: 小建筑师.p8
+assets.box_front: Imgs/小建筑师.png
+description: 《小建筑师》，世嘉 Pico 平台。
+game: 小蜜蜂
+file: 小蜜蜂.p8
+assets.box_front: Imgs/小蜜蜂.png
+description: 《小蜜蜂》，世嘉 Pico 平台。
+game: 小鸡冒险
+file: 小鸡冒险.p8
+assets.box_front: Imgs/小鸡冒险.png
+description: 《小鸡冒险》，世嘉 Pico 平台。
+game: 巨坑
+file: 巨坑.p8
+assets.box_front: Imgs/巨坑.png
+description: 《巨坑》，世嘉 Pico 平台。
+game: 巫妖王的诅咒
+file: 巫妖王的诅咒.p8
+assets.box_front: Imgs/巫妖王的诅咒.png
+description: 《巫妖王的诅咒》，世嘉 Pico 平台。
+game: 帕库托男孩
+file: 帕库托男孩.p8
+assets.box_front: Imgs/帕库托男孩.png
+description: 《帕库托男孩》，世嘉 Pico 平台。
+game: 帽子
+file: 帽子.p8
+assets.box_front: Imgs/帽子.png
+description: 《帽子》，世嘉 Pico 平台。
+game: 彩球消除
+file: 彩球消除.p8
+assets.box_front: Imgs/彩球消除.png
+description: 《彩球消除》，世嘉 Pico 平台。
+game: 微型钻机
+file: 微型钻机.p8
+assets.box_front: Imgs/微型钻机.png
+description: 《微型钻机》，世嘉 Pico 平台。
+game: 德军总部
+file: 德军总部.p8
+assets.box_front: Imgs/德军总部.png
+description: 《德军总部》，世嘉 Pico 平台。
+game: 德朗基-无限下降
+file: 德朗基-无限下降.p8
+assets.box_front: Imgs/德朗基-无限下降.png
+description: 《德朗基-无限下降》，世嘉 Pico 平台。
+game: 怪物外壳
+file: 怪物外壳.p8
+assets.box_front: Imgs/怪物外壳.png
+description: 《怪物外壳》，世嘉 Pico 平台。
+game: 惊险跳跃
+file: 惊险跳跃.p8
+assets.box_front: Imgs/惊险跳跃.png
+description: 《惊险跳跃》，世嘉 Pico 平台。
+game: 戈尼尔墓
+file: 戈尼尔墓.p8
+assets.box_front: Imgs/戈尼尔墓.png
+description: 《戈尼尔墓》，世嘉 Pico 平台。
+game: 战斗人
+file: 战斗人.p8
+assets.box_front: Imgs/战斗人.png
+description: 《战斗人》，世嘉 Pico 平台。
+game: 打砖块2
+file: 打砖块2.p8
+assets.box_front: Imgs/打砖块2.png
+description: 《打砖块2》，世嘉 Pico 平台。
+game: 打砖块3
+file: 打砖块3.p8
+assets.box_front: Imgs/打砖块3.png
+description: 《打砖块3》，世嘉 Pico 平台。
+game: 扫雷
+file: 扫雷.p8
+assets.box_front: Imgs/扫雷.png
+description: 《扫雷》，世嘉 Pico 平台。
+game: 收集钻石
+file: 收集钻石.p8
+assets.box_front: Imgs/收集钻石.png
+description: 《收集钻石》，世嘉 Pico 平台。
+game: 星空探险
+file: 星空探险.p8
+assets.box_front: Imgs/星空探险.png
+description: 《星空探险》，世嘉 Pico 平台。
+game: 极地跳跃
+file: 极地跳跃.p8
+assets.box_front: Imgs/极地跳跃.png
+description: 《极地跳跃》，世嘉 Pico 平台。
+game: 欧米伽战机
+file: 欧米伽战机.p8
+assets.box_front: Imgs/欧米伽战机.png
+description: 《欧米伽战机》，世嘉 Pico 平台。
+game: 沙漠漂流
+file: 沙漠漂流.p8
+assets.box_front: Imgs/沙漠漂流.png
+description: 《沙漠漂流》，世嘉 Pico 平台。
+game: 洞穴狂奔
+file: 洞穴狂奔.p8
+assets.box_front: Imgs/洞穴狂奔.png
+description: 《洞穴狂奔》，世嘉 Pico 平台。
+game: 消灭入侵者
+file: 消灭入侵者.p8
+assets.box_front: Imgs/消灭入侵者.png
+description: 《消灭入侵者》，世嘉 Pico 平台。
+game: 滑雪
+file: 滑雪.p8
+assets.box_front: Imgs/滑雪.png
+description: 《滑雪》，世嘉 Pico 平台。
+game: 球球大冒险1
+file: 球球大冒险1.p8
+assets.box_front: Imgs/球球大冒险1.png
+description: 《球球大冒险1》，世嘉 Pico 平台。
+game: 球球大冒险2
+file: 球球大冒险2.p8
+assets.box_front: Imgs/球球大冒险2.png
+description: 《球球大冒险2》，世嘉 Pico 平台。
+game: 瓦尔迪阴影
+file: 瓦尔迪阴影.p8
+assets.box_front: Imgs/瓦尔迪阴影.png
+description: 《瓦尔迪阴影》，世嘉 Pico 平台。
+game: 甲虫
+file: 甲虫.p8
+assets.box_front: Imgs/甲虫.png
+description: 《甲虫》，世嘉 Pico 平台。
+game: 科曼奇
+file: 科曼奇.p8
+assets.box_front: Imgs/科曼奇.png
+description: 《科曼奇》，世嘉 Pico 平台。
+game: 秘境冒险
+file: 秘境冒险.p8
+assets.box_front: Imgs/秘境冒险.png
+description: 《秘境冒险》，世嘉 Pico 平台。
+game: 移动谜题
+file: 移动谜题.p8
+assets.box_front: Imgs/移动谜题.png
+description: 《移动谜题》，世嘉 Pico 平台。
+game: 空间站
+file: 空间站.p8
+assets.box_front: Imgs/空间站.png
+description: 《空间站》，世嘉 Pico 平台。
+game: 立体空间
+file: 立体空间.p8
+assets.box_front: Imgs/立体空间.png
+description: 《立体空间》，世嘉 Pico 平台。
+game: 简约射击
+file: 简约射击.p8
+assets.box_front: Imgs/简约射击.png
+description: 《简约射击》，世嘉 Pico 平台。
+game: 米斯蒂格利
+file: 米斯蒂格利.p8
+assets.box_front: Imgs/米斯蒂格利.png
+description: 《米斯蒂格利》，世嘉 Pico 平台。
+game: 网球
+file: 网球.p8
+assets.box_front: Imgs/网球.png
+description: 《网球》，世嘉 Pico 平台。
+game: 罗利
+file: 罗利.p8
+assets.box_front: Imgs/罗利.png
+description: 《罗利》，世嘉 Pico 平台。
+game: 蜘蛛结网
+file: 蜘蛛结网.p8
+assets.box_front: Imgs/蜘蛛结网.png
+description: 《蜘蛛结网》，世嘉 Pico 平台。
+game: 蠕虫
+file: 蠕虫.p8
+assets.box_front: Imgs/蠕虫.png
+description: 《蠕虫》，世嘉 Pico 平台。
+game: 谜题洞窟
+file: 谜题洞窟.p8
+assets.box_front: Imgs/谜题洞窟.png
+description: 《谜题洞窟》，世嘉 Pico 平台。
+game: 谜题洞窟II
+file: 谜题洞窟II.p8
+assets.box_front: Imgs/谜题洞窟II.png
+description: 《谜题洞窟II》，世嘉 Pico 平台。
+game: 赛车手
+file: 赛车手.p8
+assets.box_front: Imgs/赛车手.png
+description: 《赛车手》，世嘉 Pico 平台。
+game: 足球
+file: 足球.p8
+assets.box_front: Imgs/足球.png
+description: 《足球》，世嘉 Pico 平台。
+game: 跳动的方块
+file: 跳动的方块.p8
+assets.box_front: Imgs/跳动的方块.png
+description: 《跳动的方块》，世嘉 Pico 平台。
+game: 跳跃吃星
+file: 跳跃吃星.p8
+assets.box_front: Imgs/跳跃吃星.png
+description: 《跳跃吃星》，世嘉 Pico 平台。
+game: 轰炸小子
+file: 轰炸小子.p8
+assets.box_front: Imgs/轰炸小子.png
+description: 《轰炸小子》，世嘉 Pico 平台。
+game: 迷你赛车
+file: 迷你赛车.p8
+assets.box_front: Imgs/迷你赛车.png
+description: 《迷你赛车》，世嘉 Pico 平台。
+game: 迷宫射击
+file: 迷宫射击.p8
+assets.box_front: Imgs/迷宫射击.png
+description: 《迷宫射击》，世嘉 Pico 平台。
+game: 迷路射击
+file: 迷路射击.p8
+assets.box_front: Imgs/迷路射击.png
+description: 《迷路射击》，世嘉 Pico 平台。
+game: 飞碟沼泽奥德赛
+file: 飞碟沼泽奥德赛.p8
+assets.box_front: Imgs/飞碟沼泽奥德赛.png
+description: 《飞碟沼泽奥德赛》，世嘉 Pico 平台。
+game: 马奇
+file: 马奇.p8
+assets.box_front: Imgs/马奇.png
+description: 《马奇》，世嘉 Pico 平台。
+game: 高难度飞行
+file: 高难度飞行.p8
+assets.box_front: Imgs/高难度飞行.png
+description: 《高难度飞行》，世嘉 Pico 平台。
+game: 黑暗LBA
+file: 黑暗LBA.p8
+assets.box_front: Imgs/黑暗LBA.png
+description: 《黑暗LBA》，世嘉 Pico 平台。
+game: 黑白世界
+file: 黑白世界.p8
+assets.box_front: Imgs/黑白世界.png
+description: 《黑白世界》，世嘉 Pico 平台。

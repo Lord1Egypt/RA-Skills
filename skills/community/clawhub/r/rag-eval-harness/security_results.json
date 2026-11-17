@@ -1,0 +1,49 @@
+{
+  "skill": "rag-eval-harness",
+  "version": "1.1.0",
+  "timestamp_local": "2026-08-28T00:05:43",
+  "scope": "本地闭环 · 零真实凭据 · 可重复",
+  "dimensions": [
+    {
+      "name": "脚本完整性",
+      "score": 5.0,
+      "note": "2 个 py 可解析"
+    },
+    {
+      "name": "路径中性化",
+      "score": 5.0,
+      "note": "0 残留"
+    },
+    {
+      "name": "敏感信息隔离",
+      "score": 5.0,
+      "note": "0 命中"
+    },
+    {
+      "name": "依赖轻量",
+      "score": 5.0,
+      "note": "仅标准库"
+    },
+    {
+      "name": "安全运行",
+      "score": 5.0,
+      "note": "仅本机 loopback"
+    },
+    {
+      "name": "frontmatter 全字段",
+      "score": 5.0,
+      "note": "13 字段齐全"
+    },
+    {
+      "name": "文档×代码一致",
+      "score": 5.0,
+      "note": "随包声明 3 文件齐全"
+    },
+    {
+      "name": "权属与许可",
+      "score": 5,
+      "note": "LICENSE+版权段+免责+署名"
+    }
+  ],
+  "overall": 5.0
+}

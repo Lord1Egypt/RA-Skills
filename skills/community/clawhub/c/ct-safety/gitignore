@@ -1,0 +1,78 @@
+# ============================================================
+# ct-safety packaging exclusions
+# Purpose: when this skill is packaged / published, NONE of the
+# files below may be shipped — especially any openFDA API key.
+# The GitHub publish path respects .gitignore; ClawHub respects
+# .clawhubignore (see that file). Keep the two in sync.
+# ============================================================
+
+# ---- Secrets / API keys (NEVER ship) ----
+.env
+*.env
+.env.*
+*.key
+*.secret
+*.token
+secrets.json
+credentials.json
+config.local.json
+
+# ---- Runtime caches / downloaded outputs (not part of the skill) ----
+out/
+out_live/
+*.cache
+faers_summary_cache.json
+faers_*.json
+faers_*.csv
+faers_*.xlsx
+cn_pv.json
+*.jsonl
+
+# ---- Python cruft ----
+__pycache__/
+*.pyc
+
+# ---- Tests (never ship: regression harness stays in source repo) ----
+tests/
+tests/**
+
+# ── publish_inject 注入标记，不进发布包 ──
+.ctbase_injected.json
+
+# ── Coze 端接口契约（cn_pv payload 契约，含 ct-search.coze.site 端点 URL）──
+references/cn_pv_contract.md
+
+# ── ct-base 统一基线（§16.7 / §16.8，2026-08-29 全库回填）──
+*.pyo
+outputs/
+adapters/coze/
+adapters/coze_project/
+**/coze_contract.md
+**/refiner_contract.md
+**/coze_system_prompt_v*.md
+**/ops.md
+scripts/tests/
+
+# ── 补齐双份 ignore 差异项（2026-08-29）──
+*.py[cod]
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.so
+*.egg-info/
+
+# ── 工作台整目录排除（2026-09-16 新增，§16.12）──
+# 工作台前端全部代码与文档（含发布元数据 app.config.json）不随技能发布。
+workbench/
+
+# ── F20/F27 顶层残留（本地运行产物 · 发布前检查自动补，与双 ignore 对齐）──
+.pytest_cache/
+.pytest_cache
+
+# ── ct-update 周检自动补齐（2026-11-03） ──
+browser_tests.py
+ctqa.config.json
+
+# ── 本地整改存档（2026-11-14：workbench/_bak_* 移出工作台，不随包）──
+_local_archive/

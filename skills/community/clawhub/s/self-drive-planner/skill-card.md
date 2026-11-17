@@ -1,42 +1,53 @@
-## Description: <br>
-零配置即装即用，提供3项自驾规划工具，支持路线规划与过路费估算、沿途设施搜索和天气查询，基于高德地图实时数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自驾出行规划助手，基于高德地图实时数据，支持路线规划与过路费估算、沿途加油站/充电桩/服务区搜索和天气查询，零配置即装即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Drivers and travel-planning agents use this skill to plan self-drive trips, estimate distance, time, tolls and fuel or EV costs, find nearby facilities, and review weather-based driving advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel locations and nearby-place searches are sent through the publisher's Tencent SCF proxy for Gaode/Amap lookup. <br>
-Mitigation: Use the skill only if that data flow is acceptable, and avoid entering highly sensitive travel plans unless the publisher's proxy and no-storage claim are trusted. <br>
-Risk: Route, toll, cost, weather, and facility results can differ from real conditions. <br>
-Mitigation: Confirm final navigation, weather, tolls, and stops in an authoritative map or navigation app before driving. <br>
-Risk: The release evidence notes a confusing commission or booking disclosure. <br>
-Mitigation: Treat booking links and commercial ordering as outside the route-planning result, and independently compare options before booking. <br>
+## Use Case:
 
+External users use this skill to plan self-drive trips, compare route strategy, estimate toll and energy costs, find nearby travel facilities, and review weather-based driving advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/self-drive-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON strings containing route plans, cost estimates, POI results, weather data, and driving guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the publisher's cloud proxy and upstream Gaode/Amap data; cost and travel-time values are estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Sensitive home, work, school, medical, waypoint, nearby-search, or weather-query locations may be sent to the proxy service and upstream map or weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-sharing expectations before use and avoid entering sensitive locations unless that disclosure is acceptable.
+
+Risk: Route, toll, fuel, charging, facility, and weather details are estimates that may be outdated or differ from actual road conditions.
+
+Mitigation: Confirm final navigation, costs, charging availability, and severe-weather decisions with authoritative mapping, weather, and service-provider sources before driving.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/travel-skills/skills/self-drive-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON strings containing route, POI, weather, cost, and driving-advice fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are estimates and recommendations; route, weather, facility, toll, fuel, and charging information may differ from real-world conditions.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

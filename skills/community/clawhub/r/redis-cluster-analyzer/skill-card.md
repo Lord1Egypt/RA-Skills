@@ -1,40 +1,52 @@
-## Description: <br>
-Analyze Redis Sentinel and Cluster configurations for high availability, performance, and memory efficiency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Redis Sentinel and Cluster configurations for high availability, performance, and memory efficiency.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, infrastructure engineers, and operations teams use this skill to review Redis Sentinel, Cluster, and standalone deployments for availability, memory, persistence, replication, security, and performance risks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Redis configuration files and application connection code may include secrets or production-impacting settings.
+
+Mitigation: Point the skill only at relevant Redis configs and client code, and redact sensitive values where possible.
+
+Risk: Generated remediation may change Redis availability, persistence, security, or performance behavior if applied without review.
+
+Mitigation: Review proposed configuration changes with an operator before applying them to production.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to audit Redis, Sentinel, or Cluster deployments, review configuration and application connection code, and prioritize production-readiness fixes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, analysis, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Redis configuration files and command output can expose sensitive operational details such as passwords, connection strings, hostnames, and internal IPs. <br>
-Mitigation: Provide only intended Redis or project paths and ask the agent to redact secrets and infrastructure identifiers from reports. <br>
-Risk: Runtime redis-cli checks can query the wrong environment if scope is ambiguous. <br>
-Mitigation: Confirm the target host, context, and environment before allowing any redis-cli checks. <br>
+**Output Format:** [Markdown report with text topology diagrams, issue rankings, Redis configuration directives, and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/redis-cluster-analyzer) <br>
+**Other Properties Related to Output:** [Includes health and category scores, critical issues, remediation recommendations, and a priority matrix.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with findings, scores, topology summaries, remediation directives, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Redis health scores, category scores, priority matrices, and exact redis.conf remediation snippets.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

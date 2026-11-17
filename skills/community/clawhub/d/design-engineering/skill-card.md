@@ -1,44 +1,59 @@
-## Description: <br>
-Design Engineering guides agents through iterative frontend design work using research, planning, sub-agent execution, validation, and refinement loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates iterative design and frontend engineering work through research, planning, sub-agent execution, and validation loops.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
 
-## Use Case: <br>
-Developers and design engineers use this skill to plan, implement, validate, and refine design-heavy frontend work that needs technical tradeoff analysis, sub-agent coordination, and visual QA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may edit project files, coordinate sub-agents, run local build or validation commands, and leave research notes in the project directory. <br>
-Mitigation: Use it only in trusted project workspaces, keep normal command and file-change approvals enabled, review diffs, and run the validation checklist before accepting changes. <br>
-Risk: Frontend changes produced through iterative design work can introduce layout, accessibility, responsiveness, or CSS-JS integration regressions. <br>
-Mitigation: Run build checks, syntax checks, responsive spot checks, theme and reduced-motion checks, and screenshot review as described in the bundled validation checklist. <br>
+## Use Case:
 
+Developers and design engineers use this skill to plan, coordinate, implement, and validate iterative frontend design work, especially when rendering choices, sub-agent coordination, or visual QA need explicit engineering discipline.
 
-## Reference(s): <br>
-- [Design Engineering Skill Definition](artifact/SKILL.md) <br>
-- [Rendering Technology Decisions](artifact/references/rendering-decisions.md) <br>
-- [Sub-Agent Patterns for Design Work](artifact/references/subagent-patterns.md) <br>
-- [Validation Checklist](artifact/references/validation-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/corbin-breton/design-engineering) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, command examples, implementation plans, and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Project-scoped workflow; no external credentials or services are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Coordinated sub-agent work may propose or apply frontend changes that affect important project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plan and resulting diffs before execution on important projects, then run the build and validation checklist.
+
+Risk: Project-local research or validation files may be created during iterative design work.
+
+Mitigation: Keep generated files inside the project root and inspect them before sharing, committing, or releasing the project.
+
+Risk: Visual or rendering guidance can be wrong for a specific browser, viewport, or performance constraint.
+
+Mitigation: Validate with build checks, JavaScript syntax checks, CSS-to-JS integration checks, responsive spot checks, and reduced-motion checks.
+
+## Reference(s):
+
+- [Rendering Technology Decisions](references/rendering-decisions.md)
+- [Sub-Agent Patterns for Design Work](references/subagent-patterns.md)
+- [Validation Checklist - Post Sub-Agent Execution](references/validation-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate project-local research and validation files during frontend work.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Converts official Sensors Analytics manual pages into standardized Feishu usage documentation for analytics, audience, panel, and metadata management modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts official Sensors Analytics analysis manuals into standardized Feishu usage documents for modules including event analysis, retention, funnels, distribution, LTV, dashboards, user cohorts, and metadata management.
 
-## Publisher: <br>
-[bianca1227](https://clawhub.ai/user/bianca1227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bianca1227](https://clawhub.ai/user/bianca1227)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use this skill to fetch Sensors Analytics manual pages, confirm a documentation framework, and create Feishu usage docs for supported product modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided source links may be incorrect or untrusted. <br>
-Mitigation: Use official manual.sensorsdata.cn links and avoid private or sensitive URLs. <br>
-Risk: Generated Feishu documents may expose information if content or sharing settings are not reviewed. <br>
-Mitigation: Review the generated Feishu document and sharing permissions before distribution. <br>
+## Use Case:
 
+External users and documentation authors use this skill to turn official Sensors Analytics manual URLs into Feishu-ready usage guides. It is aimed at generating consistent end-user documentation after confirming the standard document outline with the user.
 
-## Reference(s): <br>
-- [Sensors Analytics event analysis manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_event) <br>
-- [Sensors Analytics retention analysis manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_retention) <br>
-- [Sensors Analytics funnel analysis manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_funnel) <br>
-- [Sensors Analytics distribution analysis manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_addiction) <br>
-- [Sensors Analytics LTV manual](https://manual.sensorsdata.cn/sa/docs/ltv/v0205) <br>
-- [Sensors Analytics panel manual](https://manual.sensorsdata.cn/sa/docs/guide_pannel/v0205) <br>
-- [Sensors Analytics metadata manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_meta/v0205) <br>
-- [Sensors Analytics user group manual](https://manual.sensorsdata.cn/sa/docs/User_Group_Create/v0205) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown content for Feishu documents plus document link, Doc ID, standards summary, and structure overview] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent asks the user to confirm the document framework before creating the Feishu document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill fetches external Sensors Analytics manual URLs and creates Feishu documents, so user-provided links or copied content could introduce inaccurate or sensitive material into generated documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official Sensors Analytics manual URLs only, review the generated Feishu content before sharing, and avoid including confidential internal notes or sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bianca1227/skills/bianca1227-sensors-analytics-doc-gen)
+- [Sensors Analytics Event Analysis Manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_event)
+- [Sensors Analytics Retention Analysis Manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_retention)
+- [Sensors Analytics Funnel Analysis Manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_funnel)
+- [Sensors Analytics Distribution Analysis Manual](https://manual.sensorsdata.cn/sa/docs/guide_analytics_addiction)
+- [Sensors Analytics LTV Manual](https://manual.sensorsdata.cn/sa/docs/ltv/v0205)
+- [Sensors Analytics Dashboard Manual](https://manual.sensorsdata.cn/sa/docs/guide_pannel/v0205)
+- [Sensors Analytics Metadata Event Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_meta/v0205)
+- [Sensors Analytics User Group Manual](https://manual.sensorsdata.cn/sa/docs/User_Group_Create/v0205)
+- [Sensors Analytics Event Property Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_event_property/v0205)
+- [Sensors Analytics Virtual Property Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_virtual_property/v0205)
+- [Sensors Analytics Virtual Event Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_virtual_event/v0205)
+- [Sensors Analytics Dimension Table Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_dimension/v0205)
+- [Sensors Analytics Item Property Manual](https://manual.sensorsdata.cn/sa/docs/guide_metadata_item_property/v0205)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown content for a Feishu document, plus a document link, document ID, conformity notes, and structure overview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided official Sensors Analytics manual URLs and user confirmation of the document framework before generation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

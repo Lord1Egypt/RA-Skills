@@ -1,42 +1,61 @@
-## Description: <br>
-Fetch, sync, and organize EdStem discussion threads for any course or institution, including recent posts, staff/student role labels, and exported thread files for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch, sync, and organize EdStem discussion threads for any course or institution.
 
-## Publisher: <br>
-[axel5o5](https://clawhub.ai/user/axel5o5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[axel5o5](https://clawhub.ai/user/axel5o5)
 
-## Use Case: <br>
-Developers, educators, teaching staff, and agents use this skill to fetch authorized EdStem course discussions, monitor new posts, review student and staff exchanges, and prepare course forum content for search or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled bearer token or user-provided token can expose EdStem account access. <br>
-Mitigation: Remove and revoke the bundled token before installation, do not store personal bearer tokens in tracked source files, and keep tokens in private local secret storage. <br>
-Risk: Exported EdStem threads can contain sensitive course discussions and student or staff content. <br>
-Mitigation: Run the skill only for courses the user is authorized to access, write exports to private directories, avoid unattended syncing unless approved, and delete exported course data when it is no longer needed. <br>
+## Use Case:
 
+External users, educators, course staff, and developers use this skill to fetch, archive, review, and analyze EdStem course discussion threads across institutions.
 
-## Reference(s): <br>
-- [EdStem Skill on ClawHub](https://clawhub.ai/axel5o5/edstem) <br>
-- [EdStem API](https://us.edstem.org/api) <br>
-- [EdStem Course URL Pattern](https://edstem.org/us/courses/12345/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown thread files, JSON thread metadata, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authorized EdStem course ID and authentication token; optional output directory, course name, and fetch limit control the exported files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, CHANGELOG.md, README.md, PUBLISHING.md) <br>
+Risk: The skill ships and documents hardcoded EdStem bearer tokens for private course data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat any included token as exposed, revoke it, and replace hardcoded tokens with a secure runtime secret before use.
+
+Risk: Exported EdStem discussions may contain student or staff content that should not be shared broadly.
+
+Mitigation: Confirm authorization to export course discussions, store generated files in an appropriate private location, and review LLM or cron workflows for disclosure risk.
+
+Risk: The security verdict requires review before installation.
+
+Mitigation: Review and scan the skill before deployment, and do not install it as-is in shared or published environments.
+
+## Reference(s):
+
+- [EdStem Skill on ClawHub](https://clawhub.ai/axel5o5/skills/edstem)
+- [EdStem API endpoint](https://us.edstem.org/api)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Migration notes](artifact/MIGRATION_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, JSON, text, shell commands, configuration guidance]
+
+**Output Format:** [Markdown thread files, JSON thread metadata, terminal status text, and usage commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a user-selected output directory and writes EdStem thread exports for the requested course.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, README, CHANGELOG, PUBLISHING.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

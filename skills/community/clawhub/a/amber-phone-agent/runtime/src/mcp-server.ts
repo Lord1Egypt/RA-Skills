@@ -33,6 +33,7 @@ const BRIDGE_CREDENTIAL = runtimeConfig.bridgeCredential;
 const OPERATOR_NAME = runtimeConfig.operatorName;
 const LOGS_DIR = runtimeConfig.logsDir;
 const OUTBOUND_CALLS_ENABLED = runtimeConfig.outboundCallsEnabled;
+const CRM_ENABLED = runtimeConfig.crmEnabled;
 
 // ─── Helpers ───
 
@@ -198,8 +199,9 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       description:
         'Make an outbound phone call via Twilio. Amber will handle the conversation ' +
         'autonomously, pursuing the stated objective. ALWAYS use contacts_lookup first ' +
-        'to resolve a name to a verified phone number. The tool will show who it is about ' +
-        'to call and require confirmed=true before actually dialing — this prevents wrong-number calls.',
+        'to resolve a name to a phone number. The tool previews the exact destination and objective; ' +
+        'obtain operator approval before repeating with confirmed=true and the returned approvalToken. ' +
+        'Contact-cache matches are hints, not proof of recipient identity.',
       inputSchema: {
         type: 'object' as const,
         properties: {
@@ -215,6 +217,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             type: 'string',
             description: 'What to accomplish on the call (e.g., "book a table for 4 at 7pm")',
           },
+          approvalToken: { type: 'string', description: 'Single-use token from the exact call preview. Send only after explicit operator approval.' },
           confirmed: {
             type: 'boolean',
             description: 'Set to true only after the tool has shown you who it will call and you have verified the number. Never set this on the first attempt.',
@@ -277,7 +280,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       name: 'calendar_query',
       description:
         'Check calendar availability or create events. For lookups, returns ' +
-        'busy time slots (event titles are private). For creation, adds an event.',
+        'busy time slots (event titles are private). Event creation requires confirmed=true after explicit approval.',
       inputSchema: {
         type: 'object' as const,
         properties: {
@@ -314,11 +317,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             type: 'string',
             description: 'For create: event notes (optional)',
           },
+          confirmed: {
+            type: 'boolean',
+            description: 'For create: must be true after explicit confirmation of title, time, calendar, and notes.',
+          },
         },
         required: ['action'],
       },
     },
-    {
+    ...(CRM_ENABLED ? [{
       name: 'crm',
       description:
         'Manage contacts and interaction history. Look up contacts by phone or name, ' +
@@ -359,7 +366,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         },
         required: ['action'],
       },
-    },
+    }] : []),
     {
       name: 'bridge_health',
       description:
@@ -400,7 +407,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   try {
     switch (name) {
       case 'make_call': {
-        let { to, name: toName, objective, confirmed } = args as { to?: string; name?: string; objective: string; confirmed?: boolean };
+        let { to, name: toName, objective, confirmed, approvalToken } = args as { to?: string; name?: string; objective: string; confirmed?: boolean; approvalToken?: string };
 
         if (!OUTBOUND_CALLS_ENABLED) {
           return {
@@ -450,46 +457,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         // Normalize to E.164 (strip formatting)
         to = '+' + to.replace(/\D/g, '');
 
-        // Safety check: always verify number against contacts cache before dialing.
-        // Require explicit confirmed=true if no matching contact is found.
         if (!confirmed) {
+          let matchedName = '';
           const cachePath = path.join(__dirname, '..', 'contacts-cache.json');
-          let matchedName: string | null = null;
-          if (fs.existsSync(cachePath)) {
-            try {
-              const cache = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
-              const contacts: any[] = cache.contacts || [];
-              const digits = to.replace(/\D/g, '').slice(-10);
-              const match = contacts.find((c: any) => {
-                const phones: any[] = c.phones || (c.phone ? [{ number: c.phone }] : []);
-                return phones.some((p: any) => (p.number || '').replace(/\D/g, '').slice(-10) === digits);
-              });
-              if (match) {
-                matchedName = [match.firstName, match.lastName].filter(Boolean).join(' ') || match.organization || null;
-              }
-            } catch {}
-          }
-
-          if (!matchedName) {
-            return {
-              content: [{
-                type: 'text',
-                text: `⚠️ Safety check: "${to}" was not found in Apple Contacts. Cannot verify this number belongs to the intended person.\n\nTo proceed anyway, call again with confirmed=true. To find the correct number first, use contacts_lookup.`,
-              }],
-              isError: true,
-            };
-          }
-
-          // Found in contacts — show who we're about to call and require one more confirmation step
-          return {
-            content: [{
-              type: 'text',
-              text: `📞 About to call **${matchedName}** at ${to}.\nObjective: ${objective}\n\nTo confirm and place the call, call make_call again with confirmed=true.`,
-            }],
-          };
+          try {
+            const contacts = JSON.parse(fs.readFileSync(cachePath, 'utf8')).contacts || [];
+            const match = contacts.find((c: any) => (c.phones || (c.phone ? [{ number: c.phone }] : []))
+              .some((p: any) => String(p.number || '').replace(/\D/g, '') === to!.replace(/\D/g, '')));
+            if (match) matchedName = [match.firstName, match.lastName].filter(Boolean).join(' ') || match.organization || '';
+          } catch { /* Missing/unreadable optional cache: show unverified destination warning. */ }
+          const preview = await bridgeRequest('/call/preview', { to, objective });
+          return { content: [{ type: 'text', text: `Preview: call ${to}. ${matchedName ? `Contact-cache match: ${matchedName} (not identity proof).` : "No exact contact-cache match; verify this destination with the operator."} Objective: ${objective}\nObtain explicit operator approval, then repeat with confirmed=true and approvalToken=${preview.approvalToken}. Valid for five minutes and this exact call only.` }] };
         }
-
-        const result = await bridgeRequest('/call/outbound', { to, objective });
+        if (!approvalToken) {
+          return { content: [{ type: 'text', text: 'Missing approvalToken. Preview first with confirmed=false, then obtain operator approval.' }], isError: true };
+        }
+        const result = await bridgeRequest('/call/outbound', { to, objective, confirmed: true, approvalToken });
         return {
           content: [{
             type: 'text',
@@ -596,6 +579,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'crm': {
+        if (!CRM_ENABLED) {
+          return {
+            content: [{
+              type: 'text',
+              text: 'CRM is disabled. Set AMBER_CRM_ENABLED=true, install amber-skills/crm dependencies, and restart Amber to use caller memory.',
+            }],
+            isError: true,
+          };
+        }
+
         // Format CRM results into readable text
         const formatCrmResult = (result: any): string => {
           if (!result.success) return result.message ?? result.error ?? JSON.stringify(result);
@@ -669,6 +662,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case 'contacts_lookup': {
         const contactName = (args as any)?.name;
         const contactPhone = (args as any)?.phone;
+        const includeExtendedFields = /^(1|true|yes)$/i.test(process.env.AMBER_CONTACTS_EXTENDED || '');
 
         if (!contactName && !contactPhone) {
           return {
@@ -728,20 +722,22 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           const formatted = matches.map((c: any) => {
             const fullName = [c.firstName, c.lastName].filter(Boolean).join(' ') || c.organization || 'Unknown';
             const lines = [`### ${fullName}`];
-            if (c.organization) lines.push(`🏢 ${c.organization}${c.jobTitle ? ` — ${c.jobTitle}` : ''}`);
             if (c.phones?.length) {
               lines.push(`📱 ${c.phones.map((p: any) => `${p.number}${p.label ? ` (${p.label})` : ''}`).join(', ')}`);
             }
-            if (c.emails?.length) {
-              lines.push(`📧 ${c.emails.map((e: any) => `${e.address}${e.label ? ` (${e.label})` : ''}`).join(', ')}`);
+            if (includeExtendedFields) {
+              if (c.organization) lines.push(`🏢 ${c.organization}${c.jobTitle ? ` — ${c.jobTitle}` : ''}`);
+              if (c.emails?.length) {
+                lines.push(`📧 ${c.emails.map((e: any) => `${e.address}${e.label ? ` (${e.label})` : ''}`).join(', ')}`);
+              }
+              if (c.relationships?.length) {
+                lines.push(`👥 ${c.relationships.map((r: any) => `${r.name} (${r.type})`).join(', ')}`);
+              }
+              if (c.addresses?.length) {
+                lines.push(`📍 ${c.addresses[0].full}`);
+              }
+              if (c.note) lines.push(`📝 ${c.note}`);
             }
-            if (c.relationships?.length) {
-              lines.push(`👥 ${c.relationships.map((r: any) => `${r.name} (${r.type})`).join(', ')}`);
-            }
-            if (c.addresses?.length) {
-              lines.push(`📍 ${c.addresses[0].full}`);
-            }
-            if (c.note) lines.push(`📝 ${c.note}`);
             return lines.join('\n');
           }).join('\n\n');
 

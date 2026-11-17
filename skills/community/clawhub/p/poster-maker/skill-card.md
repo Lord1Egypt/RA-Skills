@@ -1,44 +1,55 @@
-## Description: <br>
-AI poster-making skill for style recreation, creative product poster generation, and livestream preview posters, with prompt templates, copywriting guidance, style analysis guidance, and a helper script for image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poster Maker guides agents through style replication, creative product poster generation, and livestream teaser poster workflows, with prompt templates and an optional image-generation script.
 
-## Publisher: <br>
-[dizhu](https://clawhub.ai/user/dizhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dizhu](https://clawhub.ai/user/dizhu)
 
-## Use Case: <br>
-Marketing, ecommerce, and content teams use this skill to plan and generate product posters, livestream announcement posters, social media creative, and brand promotional assets. The skill helps an agent analyze reference styles, draft compliant poster copy, assemble detailed image-generation prompts, and optionally call an image-generation script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script may send an OpenRouter API key to the Ofox API endpoint. <br>
-Mitigation: Use OFOX_API_KEY with the current script, avoid setting OPENROUTER_API_KEY for this skill unless endpoint selection is corrected, and review the script before installation. <br>
-Risk: Poster prompts can include confidential product, launch, pricing, or campaign details that are sent to an external image provider. <br>
-Mitigation: Do not include confidential campaign or product details unless the user has approved sharing them with the configured image-generation provider. <br>
+## Use Case:
 
+Marketing teams, designers, and agents use this skill to plan, prompt, generate, and iterate ecommerce, campaign, social media, brand, and livestream posters. It helps collect product details, approved copy, composition choices, and prompt constraints before optional image generation.
 
-## Reference(s): <br>
-- [Poster Maker on ClawHub](https://clawhub.ai/dizhu/poster-maker) <br>
-- [Prompt templates](references/Prompt模板.md) <br>
-- [Copywriting principles](references/文案原则.md) <br>
-- [Style analysis guide](references/风格分析指南.md) <br>
-- [Ofox image generation API endpoint](https://api.ofox.ai/v1/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance, image-generation prompts, shell commands, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an Ofox API key; the helper script can read either OFOX_API_KEY or OPENROUTER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release evidence) <br>
+Risk: The helper script can send an OpenRouter API key to the Ofox image-generation endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Ofox key with spending limits, do not use an OpenRouter key with this version, and rotate any OpenRouter key previously used with the script.
+
+Risk: Prompts and poster content are sent to an external image-generation API when the helper script runs.
+
+Mitigation: Avoid sensitive prompt content and review the script before installing or executing it.
+
+## Reference(s):
+
+- [Prompt Templates](references/Prompt模板.md)
+- [Copywriting Principles](references/文案原则.md)
+- [Style Analysis Guide](references/风格分析指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with prompt templates and optional shell commands; the helper script can write PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses external image-generation APIs when the optional script is run and requires API-key configuration.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Multi-platform skill ranking and discovery system for 25,000+ skills across Tencent SkillHub, Xfyun SkillHub, and local installations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform skill ranking and discovery system with 25,000+ skills, supporting Tencent SkillHub, Xfyun SkillHub, and local skills.
 
-## Publisher: <br>
-[runze123](https://clawhub.ai/user/runze123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runze123](https://clawhub.ai/user/runze123)
 
-## Use Case: <br>
-Agents and developers use this skill to discover, compare, rank, and install skills from Tencent SkillHub, Xfyun SkillHub, and local installations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install workflow can execute external skill installation commands. <br>
-Mitigation: Prefer --dry-run first, verify the skill name, source, and publisher, and install only after explicit user confirmation. <br>
-Risk: GitHub tokens or other configuration values may be stored locally if users add them to the skill configuration. <br>
-Mitigation: Avoid storing sensitive tokens in plaintext config unless the local exposure risk is understood and acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover, rank, search, inspect, and optionally install agent skills from remote catalogs and local installations.
 
-## Reference(s): <br>
-- [Skill Rank Architecture](references/architecture.md) <br>
-- [ClawHub release page](https://clawhub.ai/runze123/skill-index) <br>
-- [Tencent SkillHub](https://skillhub.tencent.com) <br>
-- [Xfyun SkillHub](https://skill.xfyun.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local SQLite ranking database and may invoke external skill installation CLIs when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install third-party skills based on remote catalog data with limited provenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, verify the skill name and publisher outside the ranking output, and avoid non-dry-run installs for untrusted catalog entries.
+
+Risk: Remote catalog data and the local ranking database may be stale or unverified.
+
+Mitigation: Treat rankings as recommendation data rather than a security signal, and confirm important metadata against trusted sources before installing.
+
+Risk: Custom API endpoints can change the trust boundary for catalog data.
+
+Mitigation: Use custom API endpoints only when the endpoint operator and returned data are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/runze123/skills/skill-index)
+- [Skill Rank Architecture](references/architecture.md)
+- [Tencent SkillHub](https://skillhub.tencent.com)
+- [Xfyun SkillHub](https://skill.xfyun.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI commands and ranked text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use network data, a local SQLite cache, and dry-run installation previews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

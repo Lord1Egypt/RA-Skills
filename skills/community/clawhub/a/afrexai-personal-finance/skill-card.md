@@ -1,43 +1,52 @@
-## Description: <br>
-Complete personal finance system - budgeting, debt payoff, investing, tax optimization, net worth tracking, and financial independence planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Finance Mastery helps agents guide users through budgeting, debt payoff, investing, tax optimization, net worth tracking, and financial independence planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External users and individuals use this skill to structure personal finance planning, including budgeting, debt payoff, investing, tax optimization, insurance, estate planning, net worth tracking, and financial independence reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve sensitive personal financial information. <br>
-Mitigation: Do not enter passwords, recovery phrases, full account numbers, tax IDs, or unnecessary personal identifiers; keep generated finance files in an encrypted, private location. <br>
-Risk: Agent-generated planning could be mistaken for authorization to act on financial accounts. <br>
-Mitigation: Require explicit approval before connecting banking, brokerage, tax, or file-system tools or before making real payments, transfers, trades, rebalancing, or account changes. <br>
-Risk: Tax, investing, insurance, and estate guidance can vary by jurisdiction and may become outdated. <br>
-Mitigation: Verify current local rules and account limits, and consult qualified professionals before relying on the output for tax, legal, insurance, or investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-personal-finance) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+## Use Case:
 
+External users and agents use this skill to structure personal finance reviews, track net worth and cash flow, choose debt payoff and budgeting approaches, and plan investments, taxes, insurance, estate essentials, and financial independence.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and YAML templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external dependencies; outputs may include personal finance worksheets, review prompts, and planning templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may expose sensitive financial data while using the skill.
+
+Mitigation: Use redacted or summarized financial data where possible, avoid bank credentials, full account numbers, SSNs, tax IDs, and wallet recovery phrases, and store generated finance files only in protected locations controlled by the user.
+
+Risk: Personal finance, tax, investment, insurance, and estate planning guidance may not fit every jurisdiction or individual circumstance.
+
+Mitigation: Treat outputs as planning support, verify current local rules and account limits, and consult qualified professionals before acting on high-impact financial, tax, legal, or insurance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-personal-finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and YAML templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce finance tracker templates and review notes for files controlled by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

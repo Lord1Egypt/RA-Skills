@@ -1,39 +1,52 @@
-## Description: <br>
-Provides claims guidance for filing, documenting, negotiating, escalating, and disputing insurance, warranty, workers compensation, personal injury, property damage, and consumer claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users file, manage, negotiate, and dispute insurance, warranty, compensation, personal injury, property damage, and consumer claims.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External users use this skill to organize claim documentation, draft claim and escalation language, understand negotiation steps, and identify when official policy, regulator, or legal review is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Claims, insurance, and legal guidance may be incomplete or jurisdiction-specific. <br>
-Mitigation: Verify deadlines, policy terms, local procedures, and legal strategy with official sources or a qualified professional before acting. <br>
-Risk: Users may disclose unnecessary sensitive documents or personal details while preparing a claim. <br>
-Mitigation: Share only the information needed for drafting and organization, and redact personal or sensitive details where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Claim skill page](https://clawhub.ai/Duclawbot/claim) <br>
+## Use Case:
 
+External users use this skill to organize claim documentation, draft claim or escalation language, and prepare for negotiation across insurance, warranty, workplace, personal injury, property damage, and consumer disputes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, templates, and structured claim workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include claim letters, escalation language, documentation checklists, and negotiation scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can provide general legal or insurance guidance that may not match a user's jurisdiction, policy terms, claim type, or filing deadline.
+
+Mitigation: Verify deadlines, rights, policy language, and regulator or tribunal options against authoritative local sources before relying on the guidance.
+
+Risk: The skill may produce assertive claim, negotiation, or escalation language for high-value, denied, employment, or injury-related matters.
+
+Mitigation: Use the output as drafting support and seek qualified professional review for complex, high-value, injury, employment, or disputed claims.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duclawbot/skills/claim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured checklists, templates, and drafting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, API calls, or shell commands are described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

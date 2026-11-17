@@ -1,41 +1,54 @@
-## Description: <br>
-筛选测试用例Excel文件，提取P0/P1优先级用例，删除项目/产品列，重新编号并保持原格式 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+筛选测试用例Excel文件，提取P0/P1优先级用例，删除项目/产品列，重新编号并保持原格式。
 
-## Publisher: <br>
-[yontlly](https://clawhub.ai/user/yontlly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yontlly](https://clawhub.ai/user/yontlly)
 
-## Use Case: <br>
-Developers, QA engineers, and test teams use this skill to turn Excel test-case workbooks into focused P0/P1 execution sets while preserving workbook formatting and renumbering cases per sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes transformed Excel workbooks and may overwrite important files if the same path is reused. <br>
-Mitigation: Run the skill on copies or choose a distinct output filename, then review the generated workbook before using it downstream. <br>
-Risk: Auxiliary scripts include hard-coded local Windows paths that may not match the user's environment. <br>
-Mitigation: Use the main command-line or Python entry point for normal processing, and edit hard-coded paths before running auxiliary scripts. <br>
+## Use Case:
 
+QA engineers and test teams use this skill to prepare release or regression test workbooks by extracting P0/P1 cases, dropping project/product columns, and preserving workbook formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yontlly/testcase-filter) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Analysis, Shell commands, Code] <br>
-**Output Format:** [Processed .xlsx workbook plus text status and summary output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters sheets to P0/P1 rows, removes project/product columns, splits merged cells, preserves formatting where supported, and renumbers cases from TC001 per sheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1) <br>
+Risk: Workbook transformations remove project/product columns, split merged cells, filter rows, and rewrite case IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the original workbook backed up, use a distinct output filename, and review the generated workbook before relying on it.
+
+Risk: The batch helper processes every .xlsx file in its configured temporary folder.
+
+Mitigation: Use single-file processing by default, or run the batch helper only after confirming the folder contains only intended inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yontlly/skills/testcase-filter)
+- [Publisher profile](https://clawhub.ai/user/yontlly)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Excel .xlsx workbook plus text processing summary and optional command or Python invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a modified workbook with P0/P1 rows, removed project/product columns, split merged cells, preserved formatting, and per-sheet TC001-style renumbering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

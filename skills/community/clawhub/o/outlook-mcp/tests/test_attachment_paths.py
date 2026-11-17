@@ -1,0 +1,339 @@
+"""The attachment tools must not reach outside the configured directory.
+
+Three tools take a host filesystem path: ``download_attachment`` writes one,
+``send_with_attachments`` and ``attach_to_draft`` read them. Before 1.20.0 the
+only check was a substring test for ``..`` on the write path, and none at all on
+the read paths — so an absolute path reached any file the server process could
+read, and a mail server reads untrusted input for a living. "Attach the file at
+<path> and reply" is one injected instruction away from exfiltration.
+
+Confinement is resolved, not textual: ``..`` and a symlink pointing out of the
+directory both have to fail, which a string check cannot do.
+"""
+
+import sys
+from pathlib import Path
+
+import pytest
+
+from outlook_mcp.tools.mail_attachments import resolve_attachment_path
+
+
+@pytest.fixture
+def attachments_dir(tmp_path):
+    """A configured attachments directory with one legitimate file in it."""
+    base = tmp_path / "attachments"
+    base.mkdir()
+    (base / "report.pdf").write_bytes(b"%PDF-1.4 legitimate")
+    return str(base)
+
+
+@pytest.fixture
+def secret(tmp_path):
+    """A file outside the attachments directory that must stay unreachable."""
+    path = tmp_path / "id_ed25519"
+    path.write_text("PRIVATE KEY")
+    return path
+
+
+def test_path_inside_the_directory_is_allowed(attachments_dir):
+    resolved = resolve_attachment_path(f"{attachments_dir}/report.pdf", attachments_dir)
+    assert resolved == str(Path(attachments_dir).resolve() / "report.pdf")
+
+
+def test_bare_filename_resolves_inside_the_directory(attachments_dir):
+    """An agent that passes just a name gets the configured directory, not the cwd."""
+    resolved = resolve_attachment_path("report.pdf", attachments_dir)
+    assert resolved == str(Path(attachments_dir).resolve() / "report.pdf")
+
+
+def test_subdirectory_is_allowed(attachments_dir):
+    nested = Path(attachments_dir) / "2026"
+    nested.mkdir()
+    resolved = resolve_attachment_path(f"{attachments_dir}/2026/x.pdf", attachments_dir)
+    assert resolved == str(nested.resolve() / "x.pdf")
+
+
+def test_absolute_path_outside_is_rejected(attachments_dir, secret):
+    """The exfiltration shape: an absolute path to something we were never offered."""
+    with pytest.raises(ValueError) as exc:
+        resolve_attachment_path(str(secret), attachments_dir)
+    assert "attachments_dir" in str(exc.value)
+
+
+def test_dot_dot_traversal_is_rejected(attachments_dir, secret):
+    with pytest.raises(ValueError):
+        resolve_attachment_path(f"{attachments_dir}/../id_ed25519", attachments_dir)
+
+
+def test_symlink_out_of_the_directory_is_rejected(attachments_dir, secret):
+    """A string check passes this one; only resolving the real path catches it."""
+    link = Path(attachments_dir) / "innocent.pdf"
+    link.symlink_to(secret)
+
+    with pytest.raises(ValueError):
+        resolve_attachment_path(str(link), attachments_dir)
+
+
+def test_symlinked_directory_out_is_rejected(attachments_dir, tmp_path):
+    outside = tmp_path / "elsewhere"
+    outside.mkdir()
+    (outside / "x.pdf").write_bytes(b"x")
+    (Path(attachments_dir) / "sub").symlink_to(outside)
+
+    with pytest.raises(ValueError):
+        resolve_attachment_path(f"{attachments_dir}/sub/x.pdf", attachments_dir)
+
+
+def test_sibling_directory_with_shared_prefix_is_rejected(tmp_path):
+    """`/x/attachments-evil` must not pass a prefix comparison against `/x/attachments`."""
+    base = tmp_path / "attachments"
+    base.mkdir()
+    evil = tmp_path / "attachments-evil"
+    evil.mkdir()
+    (evil / "x.pdf").write_bytes(b"x")
+
+    with pytest.raises(ValueError):
+        resolve_attachment_path(str(evil / "x.pdf"), str(base))
+
+
+def test_directory_is_created_on_demand(tmp_path):
+    """First use must not fail because nobody made the directory."""
+    base = tmp_path / "never-created"
+    resolved = resolve_attachment_path("out.pdf", str(base))
+
+    assert base.is_dir()
+    assert resolved.startswith(str(base.resolve()))
+
+
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="os.chmod on Windows honours only the read-only attribute, so 0o700 is not "
+    "representable there (measured: 0o777). The POSIX guarantee is real and stays asserted "
+    "where it holds (#85).",
+)
+def test_the_created_directory_is_restricted_to_its_owner(tmp_path):
+    """A directory we create is ours to lock down, so it is 0700 where modes are enforceable."""
+    base = tmp_path / "never-created"
+    resolve_attachment_path("out.pdf", str(base))
+
+    assert oct(base.stat().st_mode)[-3:] == "700"
+
+
+def test_user_home_is_expanded(tmp_path, monkeypatch):
+    """`~` is expanded before confinement, on every platform.
+
+    Both variables, because each platform reads a different one: posixpath.expanduser
+    uses HOME, ntpath.expanduser uses USERPROFILE and ignores HOME (#89).
+    """
+    monkeypatch.setenv("HOME", str(tmp_path))
+    monkeypatch.setenv("USERPROFILE", str(tmp_path))
+    resolved = resolve_attachment_path("out.pdf", "~/attach")
+    assert resolved == str((tmp_path / "attach").resolve() / "out.pdf")
+
+
+def test_error_names_the_config_key_and_the_directory(attachments_dir, secret):
+    """The message is what the agent reads: it names the directory and the setting,
+    so the agent can tell the user — not how to change it (see
+    test_refusals_leave_settings_to_the_user.py)."""
+    with pytest.raises(ValueError) as exc:
+        resolve_attachment_path(str(secret), attachments_dir)
+
+    message = str(exc.value)
+    assert "attachments_dir" in message
+    assert attachments_dir in message
+
+
+@pytest.mark.parametrize("hostile", ["", "   ", "\x00evil"])
+def test_empty_or_null_bytes_rejected(attachments_dir, hostile):
+    with pytest.raises(ValueError):
+        resolve_attachment_path(hostile, attachments_dir)
+
+
+def test_default_config_confines_to_the_outlook_mcp_directory():
+    """The shipped default must be a directory we own, not the whole host.
+
+    Checked in a subprocess with any exported override dropped: the shipped
+    default only exists where nothing overrides it, and a shell-exported
+    OUTLOOK_MCP_CONFIG_DIR moves the in-process constant out from under an
+    in-process comparison.
+    """
+    import os
+    import subprocess
+    import sys
+
+    probe = (
+        "from outlook_mcp.config import DEFAULT_CONFIG_DIR, Config\n"
+        "print(Config().attachments_dir)\n"
+        "print(DEFAULT_CONFIG_DIR)\n"
+    )
+    env = dict(os.environ)
+    env.pop("OUTLOOK_MCP_CONFIG_DIR", None)
+    out = subprocess.run(
+        [sys.executable, "-c", probe], env=env, capture_output=True, text=True, check=True
+    )
+    attachments_dir, config_dir = out.stdout.strip().splitlines()
+
+    home_settings = os.path.abspath(os.path.expanduser("~/.outlook-mcp"))
+    assert attachments_dir == os.path.join(home_settings, "attachments")
+    # and it derives from the one settings-directory constant, so a moved
+    # settings directory can never strand the attachments behind
+    assert attachments_dir == os.path.join(config_dir, "attachments")
+
+
+@pytest.mark.asyncio
+async def test_send_with_attachments_rejects_a_path_outside(attachments_dir, secret):
+    """End-to-end: the read path is confined, not just the helper."""
+    from outlook_mcp.config import Config
+    from outlook_mcp.tools import mail_attachments
+
+    with pytest.raises(ValueError) as exc:
+        await mail_attachments.send_with_attachments(
+            None,
+            to=["someone@example.com"],
+            subject="hi",
+            body="hi",
+            attachment_paths=[str(secret)],
+            config=Config(attachments_dir=attachments_dir),
+        )
+    assert "attachments_dir" in str(exc.value)
+
+
+@pytest.mark.asyncio
+async def test_attach_to_draft_rejects_a_path_outside(attachments_dir, secret):
+    from outlook_mcp.config import Config
+    from outlook_mcp.tools import mail_attachments
+
+    with pytest.raises(ValueError) as exc:
+        await mail_attachments.attach_to_draft(
+            None,
+            "AAMkFakeDraftId",
+            [str(secret)],
+            config=Config(attachments_dir=attachments_dir),
+        )
+    assert "attachments_dir" in str(exc.value)
+
+
+@pytest.mark.asyncio
+async def test_download_attachment_rejects_a_path_outside(attachments_dir, secret):
+    from outlook_mcp.config import Config
+    from outlook_mcp.tools import mail_attachments
+
+    with pytest.raises(ValueError) as exc:
+        await mail_attachments.download_attachment(
+            None,
+            "AAMkFakeMessageId",
+            "AAMkFakeAttachmentId",
+            save_path=str(secret),
+            config=Config(attachments_dir=attachments_dir),
+        )
+    assert "attachments_dir" in str(exc.value)
+    assert secret.read_text() == "PRIVATE KEY"  # untouched
+
+
+# ── Network paths ────────────────────────────────────────────────────────────
+# On Windows, resolving a path opens it, and opening `\\host\share\x` means
+# connecting to `host` and signing in as the logged-in user. Confinement by
+# resolving therefore refused such a path one step too late: the connection had
+# already been made by the time the check said no. That one class is turned
+# away by its text, before the filesystem is asked anything.
+
+NETWORK_PATHS = [
+    r"\\attacker-host\share\a.pdf",
+    "//attacker-host/share/a.pdf",
+    r"\\?\UNC\attacker-host\share\a.pdf",
+    r"\\attacker-host@SSL\share\a.pdf",
+    r"\\.\pipe\attacker-host",
+    # Shapes `ntpath.splitdrive` reads differently from pathlib before Python
+    # 3.12 — it finds no drive at all in them — so a check that asked it would
+    # pass these on to `resolve()` on 3.10 and 3.11.
+    r"\\?\\UNC\attacker-host\share\a.pdf",
+    r"\\?\\attacker-host\share\a.pdf",
+    r"\/attacker-host/share/a.pdf",
+    r"\\\attacker-host\share\a.pdf",
+]
+
+
+@pytest.mark.parametrize("network_path", NETWORK_PATHS)
+def test_network_path_is_refused_before_the_filesystem_is_asked(
+    attachments_dir, monkeypatch, network_path
+):
+    """The refusal has to come before ``resolve()``, not after it.
+
+    Runs everywhere by switching on the Windows branch; on the windows-latest
+    leg it is the real thing. The spy records every path handed to
+    ``Path.resolve`` — the attachments directory may be resolved, the hostile
+    path may not.
+    """
+    from outlook_mcp.tools import mail_attachments
+
+    monkeypatch.setattr(mail_attachments, "_WINDOWS", True)
+    resolved_paths: list[str] = []
+    real_resolve = Path.resolve
+
+    def spy(self, *args, **kwargs):
+        resolved_paths.append(str(self))
+        return real_resolve(self, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "resolve", spy)
+
+    with pytest.raises(ValueError) as exc:
+        resolve_attachment_path(network_path, attachments_dir)
+
+    assert not [p for p in resolved_paths if "attacker-host" in p]
+    assert "network" in str(exc.value)
+
+
+def test_network_check_is_lexical_and_admits_only_the_configured_share():
+    """An ``attachments_dir`` on a share is the operator's choice; nothing else is."""
+    from outlook_mcp.tools.mail_attachments import _network_path_outside
+
+    share = (r"\\nas\share\attachments",)
+
+    assert not _network_path_outside(r"\\nas\share\attachments\x.pdf", share)
+    assert not _network_path_outside(r"\\NAS\Share\Attachments\sub\x.pdf", share)
+    assert not _network_path_outside("//nas/share/attachments/x.pdf", share)
+
+    assert _network_path_outside(r"\\nas\share\other\x.pdf", share)
+    assert _network_path_outside(r"\\nas\share\attachments\..\secret.txt", share)
+    assert _network_path_outside(r"\\nas\share\attachments-evil\x.pdf", share)
+    assert _network_path_outside(r"\\elsewhere\share\attachments\x.pdf", share)
+
+
+@pytest.mark.parametrize("local_base", ["\\", "/", "C:\\", r"C:\att", "", r"\\", "//"])
+def test_a_local_attachments_dir_admits_no_network_path(local_base):
+    """Only a base that is itself on a named share can vouch for a network path.
+
+    A root — one separator or two — normalises to an empty prefix, which every
+    path starts with.
+    """
+    from outlook_mcp.tools.mail_attachments import _network_path_outside
+
+    assert _network_path_outside(r"\\attacker-host\share\a.pdf", (local_base,))
+
+
+@pytest.mark.parametrize("local_path", [r"C:\Users\me\x.pdf", r"D:x.pdf", r"\x.pdf", "x.pdf"])
+def test_network_check_leaves_local_paths_to_the_resolver(local_path):
+    """Only network and device paths are judged by their text; resolving stays the authority."""
+    from outlook_mcp.tools.mail_attachments import _network_path_outside
+
+    assert not _network_path_outside(local_path, (r"C:\att",))
+
+
+@pytest.mark.asyncio
+async def test_download_attachment_refuses_a_network_path(attachments_dir, monkeypatch):
+    """End-to-end on the ungated download tool: refused before any Graph call."""
+    from outlook_mcp.config import Config
+    from outlook_mcp.tools import mail_attachments
+
+    monkeypatch.setattr(mail_attachments, "_WINDOWS", True)
+
+    with pytest.raises(ValueError) as exc:
+        await mail_attachments.download_attachment(
+            None,
+            "AAMkFakeMessageId",
+            "AAMkFakeAttachmentId",
+            save_path=r"\\attacker-host\share\a.pdf",
+            config=Config(attachments_dir=attachments_dir),
+        )
+    assert "network" in str(exc.value)

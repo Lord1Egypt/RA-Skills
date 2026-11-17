@@ -1,42 +1,55 @@
-## Description: <br>
-Create user-facing App Store release notes by collecting and summarizing all user-impacting changes since the last git tag or a specified ref. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create user-facing App Store release notes by collecting and summarizing all user-impacting changes since the last git tag or a specified ref.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and release managers use this skill to turn local git history into concise, user-facing App Store release notes. It helps collect changes since a tag or ref, filter out internal-only work, and draft benefit-focused bullets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local commit messages and file paths, which may contain private project details. <br>
-Mitigation: Run it only on repositories whose history can be summarized, and review generated notes before sharing them outside the project. <br>
-Risk: Release notes may misclassify ambiguous or internal-only changes as user-visible. <br>
-Mitigation: Validate every bullet against the selected git range and ask for clarification when the user impact is unclear. <br>
+## Use Case:
 
+Developers and release managers use this skill to turn git history into concise, user-facing App Store release notes. It helps collect changes, filter for user impact, group updates, and draft clear storefront-ready bullets.
 
-## Reference(s): <br>
-- [App Store Release Notes Guidelines](references/release-notes-guidelines.md) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-app-store-changelog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown bullet list with optional title and supporting shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers 5 to 10 concise, user-facing bullets and filters internal-only changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The helper reads commit history and touched file names from repositories where it is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where sharing commit subjects and file paths with the agent is acceptable.
+
+Risk: Manual ref arguments may be unsafe if copied from an untrusted source before validation and quoting are added.
+
+Mitigation: Pass only trusted tag, branch, or commit refs when collecting release changes.
+
+## Reference(s):
+
+- [App Store Release Notes Guidelines](references/release-notes-guidelines.md)
+- [Complete Setup Guide](https://skillboss.co/skill.md)
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-app-store-changelog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown bullet lists with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-facing bullets should map to real changes and avoid internal-only work.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

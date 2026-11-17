@@ -1,15 +1,11 @@
 ---
 name: glass2claw
-description: "Ray-Ban glasses → voice command → WhatsApp → OpenClaw auto-routes your photo into the right database. Hands-free life logging."
-version: "2.3.3"
+description: Route user-selected photos from Meta Ray-Ban glasses or another camera through a configured messaging ingress to an approved specialist and destination. Use only for explicit, opt-in photo routing with allowlisted destinations and confirmation before cross-session forwarding or persistent writes.
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "👁️",
-        "tools": ["sessions_send", "message"]
-      }
-  }
+  openclaw:
+    version: "2.3.4"
+    emoji: "👁️"
+    homepage: https://clawhub.ai/jonathanjing/glass2claw
 ---
 
 # glass2claw: From Your Eyes to Your Database — Instantly
@@ -17,21 +13,21 @@ metadata:
 ## 🛠️ Installation
 
 ### 1. Ask OpenClaw (Recommended)
-Tell OpenClaw: *"Install the glass2claw skill."* The agent will handle the installation and configuration automatically.
+Tell OpenClaw: *"Install the glass2claw skill."* Installation does not enable automatic photo forwarding.
 
 ### 2. Manual Installation (CLI)
 If you prefer the terminal, run:
 ```bash
-clawhub install glass2claw
+openclaw skills install @jonathanjing/glass2claw
 ```
 
 You're wearing your **Meta Ray-Ban glasses**. You see a wine label, a business card, a tea tin. You say:
 
 > *"Hey Meta, take a picture and send this to myself on WhatsApp."*
 
-That's it. OpenClaw does the rest.
+That message is an explicit routing request. OpenClaw then previews the detected category and destination before forwarding or saving anything.
 
-The photo lands in your WhatsApp. OpenClaw's Vision Router picks it up, classifies what it is, and writes a structured entry into the right database — wine cellar, contacts, tea collection, whatever you've set up.
+The photo lands in your configured ingress. OpenClaw's Vision Router classifies it, asks for confirmation when a cross-session transfer or persistent write is required, and uses only destinations you allowlisted.
 
 **No typing. No app switching. No friction.**
 
@@ -49,7 +45,7 @@ Meta Ray-Ban glasses
                       → writes structured entry to your database
 ```
 
-Your only action is the voice command. Everything downstream is automatic.
+The capture can be hands-free; external forwarding and persistent writes remain visible and controlled.
 
 ---
 
@@ -70,12 +66,18 @@ This skill is a **routing protocol** — it defines the pattern, not the specifi
 
 This skill processes **photos from your personal camera**. Images flow from WhatsApp → your OpenClaw instance → your configured destination. Any external services you connect (Notion, Discord, etc.) are governed by their own privacy policies. All routing logic runs on your own OpenClaw instance.
 
+- Route only photos the user intentionally submitted.
+- Do not route photos of third parties without appropriate consent.
+- Allowlist destination session keys; never infer them.
+- Show the category and destination before forwarding or writing.
+- Keep automatic persistence off unless the user explicitly enables it for a named destination.
+
 ---
 
 ## 📦 What's Included
 
-- `SAMPLE_AGENT.md` — reference routing logic for the hub agent
-- `SAMPLE_SOUL_WINE.md` — reference persona for a wine specialist agent
+- `{baseDir}/SAMPLE_AGENT.md` — reference routing logic for the hub agent
+- `{baseDir}/SAMPLE_SOUL_WINE.md` — reference persona for a wine specialist agent
 
 Use these as starting points. Customize for your own categories and destinations.
 

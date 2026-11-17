@@ -1,44 +1,59 @@
-## Description: <br>
-Discover, profile, and deeply analyze Instagram users by exploring follower and following networks, posts, Reels, Stories, Highlights, tagged content, reposts, and similarity-based recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, profile, and deeply analyze Instagram users by exploring follower and following networks, posts, Reels, Stories, Highlights, tagged content, reposts, and similarity-based recommendations.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-External users and developers use this skill to collect Instagram profile, content, social graph, and similarity data through the KeyAPI MCP service, then synthesize structured user intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a broader MCP runner and can make authenticated requests to KeyAPI services. <br>
-Mitigation: Install only when you trust KeyAPI, set KEYAPI_TOKEN through the environment, and use --platform instagram explicitly. <br>
-Risk: Sensitive lookup results and credentials may be stored locally through .keyapi-cache or .env. <br>
-Mitigation: Use --no-cache for sensitive lookups, keep KEYAPI_TOKEN out of source control, and delete .keyapi-cache and .env when no longer needed. <br>
-Risk: KEYAPI_SERVER_URL can redirect requests to an alternate endpoint. <br>
-Mitigation: Avoid KEYAPI_SERVER_URL overrides unless the endpoint is known and trusted. <br>
+## Use Case:
 
+Developers, analysts, and social media researchers use this skill to retrieve Instagram profile, content, audience, and similarity data through KeyAPI and synthesize user intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/lycici/keyapi-instagram-user-analysis) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Instagram MCP server](https://mcp.keyapi.ai/instagram/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KEYAPI_TOKEN and Node.js; API responses may be cached locally under .keyapi-cache unless caching is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary reports that API tokens may be stored in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited KeyAPI token, prefer setting KEYAPI_TOKEN in the shell, and delete artifact/.env if it is created.
+
+Risk: Instagram API responses may be cached locally and remain on disk after analysis.
+
+Mitigation: Clear .keyapi-cache when cached Instagram data should not persist.
+
+Risk: The security summary identifies the runner as a generic KeyAPI MCP client rather than a strictly Instagram-only wrapper.
+
+Mitigation: Review the selected platform, tool schema, and command parameters before execution and keep usage scoped to the intended Instagram workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lycici/skills/keyapi-instagram-user-analysis)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Instagram MCP Server](https://mcp.keyapi.ai/instagram/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the runner]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can cache API responses locally under .keyapi-cache and can write command output to a selected file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

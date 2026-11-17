@@ -1,0 +1,9 @@
+{
+  "name": "medxpert-skill-panorama",
+  "normalizedName": "medxpert-skill-panorama",
+  "description": "将 AI 助手平台 Skill 生成 MedXpert + 公司 VI 风格的高清三角度全景图（价值/服务/能力）及评测类雷达图，并按 plugin 编号命名。",
+  "author": "注册老炮@MedXpert",
+  "copyright": "MedXpert",
+  "version": "1.0.0",
+  "license": "MIT"
+}

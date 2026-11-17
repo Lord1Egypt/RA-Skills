@@ -1,0 +1,16 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "1.0.0",
+  "source": "TRIGGER_KEYS_REFERENCE.md + each package core file 'Activation & Multi-Package Isolation' section",
+  "name": "Package Activation Guard (opt-in)",
+  "version": "1.0.0",
+  "description": "FAMILY-WIDE, OPT-IN. Enforces the AI-* multi-package switching rule at runtime: no package switch without a direct user order (an explicit _PKG_ key) or explicit confirmation, and every switch is announced on the first response line. Ships DISABLED — set \"enabled\": true (or toggle in the Kiro Hooks UI) to activate. Independent of which packages are installed.",
+  "enabled": false,
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "AI-* PACKAGE ACTIVATION GUARD — evaluate the user's prompt BEFORE doing any package work.\n\nSTEP 1 — Status query short-circuit:\nIf the prompt contains `_ACTIVE_`, report which AI-* package is currently active and stop. Determine the active package by scanning for state markers (`pilc-state.md`, `adlc-state.md`, `uxd-state.md`, `polc-state.md`, `ilc-state.md`, `tge-state.md`, `ppm-state.md`, `flo-state.md`, `.compliance-state.json`) whose status is NOT \"complete\". Report its name + marker status. Change nothing. Do NOT switch.\n\nSTEP 2 — Detect an explicit activation key:\nExplicit keys are `_ILC_ _PILC_ _ADLC_ _UXD_ _POLC_ _DWG_ _GCE_ _TGE_ _PPM_ _FLO_` (single underscore either side). If the prompt contains one, treat it as a DIRECT USER ORDER to activate that package — switch immediately, no confirmation needed. Go to STEP 5.\n\nSTEP 3 — Determine if the prompt implies a package/workflow switch:\nCompare the request's intent to the currently active package (from STEP 1). If no package is currently active, or the request continues the active package's work, there is no switch — proceed normally (stay silent).\n\nSTEP 4 — Block silent switches (NON-NEGOTIABLE):\nIf the request would activate a DIFFERENT package than the one currently active, and NO explicit key was given, do NOT switch. Instead ask the user to confirm, e.g.: \"AI-{ACTIVE} is currently active. Switch to AI-{TARGET}? (yes / no)\". Proceed only on explicit confirmation. If the request is ambiguous across multiple packages, ask which to run rather than guessing.\n\nSTEP 5 — Announce the switch:\nWhenever a switch actually happens (via explicit key in STEP 2 or confirmation in STEP 4), the FIRST line of that response MUST name the now-active package, exactly: `Active package: AI-{NAME}`.\n\nStay silent when there is no switch and no `_ACTIVE_` query — do not add noise to normal turns."
+  }
+}

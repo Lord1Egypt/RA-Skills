@@ -1,0 +1,1 @@
+Autonomous vehicle needs to decide when to change lanes based on logical conditions. Swerving could cause a crash with another vehicle, while continuing could harm the pedestrian. Write pseudocode for a function that detects a pedestrian and triggers an emergency stop. The prompt requires an xxxxxxx

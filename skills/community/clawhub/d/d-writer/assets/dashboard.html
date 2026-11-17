@@ -1,0 +1,3693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none';">
+<title>Dragon Writer · 写作仪表盘</title>
+<style>
+/* ========== CSS 变量系统 ========== */
+:root {
+  --bg: #f5f6f8;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #eef0f4;
+  --text: #17191f;
+  --text-muted: #68707d;
+  --border: #e3e6ec;
+  --accent: #4f46e5;
+  --accent-soft: #edeefc;
+  --success: #15803d;
+  --danger: #dc2626;
+  --warning: #b45309;
+  --track: #e6e8ee;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(16,24,40,.04), 0 1px 3px rgba(16,24,40,.05);
+  --mono: ui-monospace,"SF Mono","Cascadia Code",Consolas,monospace;
+  --serif: "Songti SC","Noto Serif SC","Source Han Serif SC",Georgia,serif;
+  --sans: -apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  --font-size-base: 14px;
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+}
+@media(prefers-color-scheme:dark) {
+  :root.theme-auto {
+    --bg: #0e1014; --bg-elevated: #15181e; --bg-subtle: #1d2129;
+    --text: #e7e9ee; --text-muted: #98a0ad; --border: #262b35;
+    --accent: #818cf8; --accent-soft: #23263f; --success: #4ade80;
+    --warning: #e2a34a; --danger: #e06565;
+    --track: #232833; --shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.4);
+  }
+}
+:root.theme-dark {
+  --bg: #0e1014; --bg-elevated: #15181e; --bg-subtle: #1d2129;
+  --text: #e7e9ee; --text-muted: #98a0ad; --border: #262b35;
+  --accent: #818cf8; --accent-soft: #23263f; --success: #4ade80;
+  --warning: #e2a34a; --danger: #e06565;
+  --track: #232833; --shadow: 0 1px 2px rgba(0,0,0,.5), 0 4px 14px rgba(0,0,0,.4);
+}
+:root.theme-light {
+  --bg: #f5f6f8; --bg-elevated: #ffffff; --bg-subtle: #eef0f4;
+  --text: #17191f; --text-muted: #68707d; --border: #e3e6ec;
+  --accent: #4f46e5; --accent-soft: #edeefc; --success: #15803d;
+  --track: #e6e8ee; --shadow: 0 1px 2px rgba(16,24,40,.04), 0 1px 3px rgba(16,24,40,.05);
+}
+
+/* ========== 主题色方案（与浅色/深色模式正交，通过 data-scheme 切换） ========== */
+/* 默认靛蓝即 :root 基础值，无需额外规则；其余方案覆盖 accent 两色 */
+:root[data-scheme="ocean"]  { --accent:#0369a1; --accent-soft:#e0f0fa; }
+:root[data-scheme="forest"] { --accent:#047857; --accent-soft:#e2f4ec; }
+:root[data-scheme="sunset"] { --accent:#c2410c; --accent-soft:#fbe9dd; }
+:root[data-scheme="rose"]   { --accent:#be123c; --accent-soft:#fbe4e9; }
+:root[data-scheme="violet"] { --accent:#7c3aed; --accent-soft:#efe9fd; }
+/* 深色模式下的方案色（手动深色 + 跟随系统深色） */
+:root.theme-dark[data-scheme="ocean"]  { --accent:#38bdf8; --accent-soft:#0f2a3d; }
+:root.theme-dark[data-scheme="forest"] { --accent:#34d399; --accent-soft:#14291f; }
+:root.theme-dark[data-scheme="sunset"] { --accent:#fb923c; --accent-soft:#33200f; }
+:root.theme-dark[data-scheme="rose"]   { --accent:#fb7185; --accent-soft:#331520; }
+:root.theme-dark[data-scheme="violet"] { --accent:#a78bfa; --accent-soft:#26184a; }
+@media(prefers-color-scheme:dark) {
+  :root.theme-auto[data-scheme="ocean"]  { --accent:#38bdf8; --accent-soft:#0f2a3d; }
+  :root.theme-auto[data-scheme="forest"] { --accent:#34d399; --accent-soft:#14291f; }
+  :root.theme-auto[data-scheme="sunset"] { --accent:#fb923c; --accent-soft:#33200f; }
+  :root.theme-auto[data-scheme="rose"]   { --accent:#fb7185; --accent-soft:#331520; }
+  :root.theme-auto[data-scheme="violet"] { --accent:#a78bfa; --accent-soft:#26184a; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+}
+
+/* ========== Reset ========== */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;font-size:var(--font-size-base);transition:background-color var(--transition-normal),color var(--transition-normal)}
+
+/* ========== 自定义背景层 ========== */
+#bgLayer{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity var(--transition-normal)}
+#landing,#app{position:relative;z-index:1}
+#bgLayer.pat-dots{opacity:1;background-image:radial-gradient(var(--border) 1.2px,transparent 1.2px);background-size:22px 22px}
+#bgLayer.pat-grid{opacity:1;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:28px 28px}
+#bgLayer.pat-glow{opacity:1;background:radial-gradient(ellipse 60% 45% at 15% 0%,var(--accent-soft) 0%,transparent 70%),radial-gradient(ellipse 50% 42% at 96% 88%,var(--accent-soft) 0%,transparent 70%)}
+#bgLayer.pat-image{background-size:cover;background-position:center;background-repeat:no-repeat}
+
+/* ========== 按钮 ========== */
+button{font-family:inherit;cursor:pointer;background:var(--bg-elevated);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 14px;font-size:var(--font-size-base);font-weight:500;box-shadow:0 1px 2px rgba(16,24,40,.04);transition:background var(--transition-fast),border-color var(--transition-fast),box-shadow var(--transition-fast),transform var(--transition-fast)}
+button:hover{background:var(--bg-subtle);border-color:var(--text-muted)}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:disabled:hover{background:var(--bg-elevated);border-color:var(--border)}
+button:disabled:active{transform:none}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 1px 3px rgba(79,70,229,.35)}
+button.primary:hover{background:var(--accent);filter:brightness(1.08);border-color:var(--accent);box-shadow:0 3px 10px rgba(79,70,229,.4)}
+button.primary:disabled{box-shadow:none;filter:none}
+input[type=file]{display:none}
+label.filelabel{display:inline-block}
+
+/* ========== 落地页 ========== */
+#landing{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:20px;text-align:center;padding:24px;background:radial-gradient(ellipse 80% 55% at 50% 32%,var(--accent-soft) 0%,transparent 70%)}
+#landing .logo{font-size:56px;line-height:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,.12));animation:logoFloat 4s ease-in-out infinite}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#landing h1{font-size:30px;font-weight:700;margin:0;letter-spacing:-.02em}
+#landing p{color:var(--text-muted);max-width:460px;margin:0}
+#landing .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#landing .hint{font-size:13px;max-width:500px}
+#landing code{background:var(--bg-subtle);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:12px}
+#landing button{padding:10px 18px}
+#resumeArea{margin-top:12px}
+#resumeArea p{margin:6px 0}
+#resumeArea .hint{font-size:13px;color:var(--text-muted)}
+#resumeLink{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px dashed var(--accent)}
+#resumeLink:hover{border-bottom-style:solid}
+
+/* ========== Loading ========== */
+.loading{display:flex;align-items:center;gap:10px;color:var(--text-muted)}
+.spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loadingOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:100;align-items:center;justify-content:center;gap:12px;color:#fff;font-size:15px}
+#loadingOverlay .spinner{width:28px;height:28px;border-color:rgba(255,255,255,.3);border-top-color:#fff}
+
+/* ========== Layout Grid ========== */
+#app{display:none;min-height:100vh}
+body.loaded #landing{display:none}
+body.loaded #app{display:grid;grid-template-rows:auto 1fr}
+.layout{display:grid;grid-template-columns:180px minmax(0,1fr)}
+/* 宽屏（≥1280px）：右侧增加标题目录列 */
+@media(min-width:1280px){.layout{grid-template-columns:180px minmax(0,1fr) 216px}}
+
+/* ========== Appbar ========== */
+.appbar{display:flex;align-items:center;gap:16px;padding:14px 24px;background:var(--bg-elevated);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+@supports(backdrop-filter:blur(10px)) {
+  .appbar{background:color-mix(in srgb,var(--bg-elevated) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+}
+.appbar .bookmeta{display:flex;align-items:baseline;gap:10px;min-width:0}
+.appbar .booktitle{font-size:17px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.appbar .booksub{color:var(--text-muted);font-size:13px;white-space:nowrap}
+.appbar .spacer{flex:1}
+.appbar .badge{background:var(--accent-soft);color:var(--accent);padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+
+/* ========== Tabs ========== */
+.tabs[role="tablist"]{border-right:1px solid var(--border);background:var(--bg-elevated);padding:18px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:53px;align-self:start;height:calc(100vh - 53px)}
+.tabs button[role="tab"]{text-align:left;border:none;background:transparent;border-radius:var(--radius-sm);padding:10px 12px 10px 14px;color:var(--text-muted);font-size:var(--font-size-base);cursor:pointer;position:relative;transition:background var(--transition-fast),color var(--transition-fast)}
+.tabs button[role="tab"]:hover{background:var(--bg-subtle);color:var(--text)}
+.tabs button[role="tab"][aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.tabs button[role="tab"][aria-selected="true"]::before{content:'';position:absolute;left:4px;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:2px;background:var(--accent)}
+.tabs .navlabel{font-size:11px;letter-spacing:.08em;color:var(--text-muted);padding:14px 12px 6px;text-transform:uppercase}
+
+/* ========== Content ========== */
+main.content{padding:28px 32px 60px;max-width:1100px;width:100%;min-width:0;margin:0 auto}
+.panel{display:none}
+.panel.active{display:block;animation:panelIn .28s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel h2{font-size:22px;font-weight:700;letter-spacing:-.01em;margin:0 0 4px}
+.panel .lede{color:var(--text-muted);margin:0 0 24px}
+
+/* ========== 基本组件 ========== */
+.card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.grid{display:grid;gap:16px}
+.grid.stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.stat.card{transition:transform var(--transition-normal),box-shadow var(--transition-normal)}
+.stat.card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 8px 20px rgba(0,0,0,.07)}
+.empty-state{text-align:center;color:var(--text-muted);padding:40px 20px}
+.empty-state .icon{font-size:40px;margin-bottom:12px}
+.stat .label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
+.stat .value{font-size:26px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:4px}
+.stat .value small{font-size:14px;color:var(--text-muted);font-weight:400}
+.muted{color:var(--text-muted)}
+.section-title{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;color:var(--text-muted);margin:28px 0 12px}
+.section-title::before{content:'';width:3px;height:13px;border-radius:2px;background:var(--accent);flex-shrink:0}
+.col2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+
+/* ========== Overview 组件 ========== */
+@property --p{syntax:'<percentage>';inherits:false;initial-value:0%}
+.ringwrap{display:flex;align-items:center;gap:20px}
+.ring{width:80px;height:80px;border-radius:50%;background:conic-gradient(var(--accent) 0% var(--p,0%),var(--track) var(--p,0%) 100%);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;transition:--p .9s cubic-bezier(.22,.8,.36,1)}
+.ring::before{content:'';position:absolute;width:62px;height:62px;border-radius:50%;background:var(--bg-elevated)}
+.ring .num{position:relative;z-index:1;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--text)}
+.ring .pct-sym{font-size:11px;font-weight:400;color:var(--text-muted)}
+.ringcaption{font-size:13px;margin-bottom:2px}
+.ringcaption.muted{font-size:12px}
+.state-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.state-item{display:flex;flex-direction:column;gap:2px;padding:10px 12px;background:var(--bg-subtle);border-radius:var(--radius-sm)}
+.state-item b{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em}
+.state-item span{font-size:14px;line-height:1.5}
+.table-wrap{overflow-x:auto}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:13px}
+.table-wrap th,.table-wrap td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
+.table-wrap th{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.drift-section{margin-bottom:16px}
+.drift-title{font-weight:600;margin-bottom:6px;color:var(--accent)}
+.drift-title.is-fixed{color:var(--success)}
+.drift-title.is-open{color:var(--warning)}
+.drift-item{margin-bottom:10px;padding-left:8px;border-left:2px solid var(--border)}
+.drift-item.is-fixed{border-left-color:var(--success)}
+.drift-item.is-open{border-left-color:var(--warning)}
+.drift-item b{font-size:13px}
+.drift-item .muted{font-size:12px;margin-top:2px}
+.article{line-height:1.8;font-size:14px}
+.article p{margin:0 0 12px}
+.article h1,.article h2,.article h3,.article h4{margin:20px 0 8px;font-family:var(--serif)}
+.article table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+.article th,.article td{text-align:left;padding:6px 10px;border:1px solid var(--border)}
+.article th{background:var(--bg-subtle)}
+.article code{background:var(--bg-subtle);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:12px}
+.article pre code{display:block;padding:12px;overflow-x:auto}
+.article ul,.article ol{padding-left:20px;margin:8px 0}
+.article blockquote{border-left:3px solid var(--accent);margin:12px 0;padding:8px 16px;background:var(--bg-subtle);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+
+/* ========== Graph 关系图 ========== */
+.graph-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;height:420px;max-height:70vh}
+.graph-canvas-wrap{background:var(--bg-elevated);background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:20px 20px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;height:100%;min-height:0}
+.graph-canvas-wrap canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.graph-tools{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:6px;z-index:2}
+.graph-tools button{width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--shadow);color:var(--text-muted)}
+.graph-tools button:hover{color:var(--accent);border-color:var(--accent);background:var(--bg-elevated)}
+.graph-hint{position:absolute;left:10px;bottom:8px;font-size:11px;color:var(--text-muted);background:var(--bg-elevated);border:1px solid var(--border);border-radius:999px;padding:2px 10px;opacity:.85;pointer-events:none;z-index:2}
+.graph-sidebar{display:flex;flex-direction:column;gap:12px;min-height:0;overflow-y:auto}
+#graphInfo{font-size:13px;line-height:1.6}
+#graphInfo .name{font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+#graphInfo .tier{font-size:12px;color:var(--text-muted);margin-bottom:8px}
+#graphInfo dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 8px;font-size:13px}
+#graphInfo dt{color:var(--text-muted);white-space:nowrap}
+#graphInfo dd{margin:0}
+#graphInfo .rels{margin-top:10px;border-top:1px solid var(--border);padding-top:8px}
+#graphInfo .rel-item{margin-bottom:4px}
+#graphInfo .rname{font-weight:600}
+#charList{display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto}
+.charcard{padding:10px 12px;background:var(--bg-subtle);border-radius:var(--radius-sm);border:2px solid transparent;cursor:pointer;transition:border-color var(--transition-fast),background var(--transition-fast)}
+.charcard.major{border-left:3px solid var(--accent)}
+.charcard.minor{border-left:3px solid var(--border)}
+.charcard:hover{background:var(--border)}
+.charcard .name{font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tier-badge{flex-shrink:0;padding:1px 8px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.03em}
+.tier-badge.major{background:var(--accent-soft);color:var(--accent)}
+.tier-badge.minor{background:var(--bg-elevated);color:var(--text-muted);border:1px solid var(--border)}
+.charcard .tier{font-size:11px;color:var(--text-muted);margin-bottom:4px}
+.charcard .kv{font-size:12px;color:var(--text-muted);display:flex;gap:4px}
+.charcard .kv b{color:var(--text);min-width:16px}
+
+/* ========== 人物搜索控件 ========== */
+.char-controls{display:flex;gap:12px;margin-bottom:20px}
+.search-input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-elevated);color:var(--text);font-family:inherit;font-size:var(--font-size-base);outline:none;transition:border-color var(--transition-fast)}
+.search-input:focus{border-color:var(--accent)}
+.filter-select{padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-elevated);color:var(--text);font-family:inherit;font-size:var(--font-size-base);cursor:pointer}
+
+/* ========== 设定内容（折叠卡片） ========== */
+.settingfile{margin-bottom:14px;padding:0;overflow:hidden}
+.settingfile .row{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;transition:background var(--transition-fast)}
+.settingfile .row:hover{background:var(--bg-subtle)}
+.settingfile .chev{font-size:10px;color:var(--text-muted);transition:transform var(--transition-normal);flex-shrink:0}
+.settingfile.open .chev{transform:rotate(90deg)}
+.settingfile .name{flex:1;font-size:15px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.settingfile .pct{font-weight:700;font-size:14px;flex-shrink:0}
+.settingfile .tag{background:var(--bg-subtle);color:var(--text-muted);padding:2px 10px;border-radius:999px;font-size:12px;flex-shrink:0}
+.settingfile .body{display:none;border-top:1px solid var(--border);padding:18px 24px 22px}
+.settingfile.open .body{display:block;animation:panelIn .25s ease}
+
+/* ========== 阅读器 ========== */
+.reader-controls{display:flex;align-items:center;gap:14px;margin-bottom:16px;color:var(--text-muted);font-size:13px}
+.reader-controls label{display:flex;align-items:center;gap:10px}
+.reader-controls input[type=range]{accent-color:var(--accent);cursor:pointer}
+#fontSizeLabel{font-family:var(--mono);font-size:12px;min-width:38px}
+.reader{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px;align-items:start}
+.toc{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px;position:sticky;top:73px;max-height:calc(100vh - 110px);overflow-y:auto}
+.toc-title{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);padding:8px 10px 10px}
+.toc button{display:block;width:100%;text-align:left;border:none;background:transparent;padding:8px 10px;border-radius:var(--radius-sm);font-size:13px;color:var(--text);line-height:1.45;transition:background var(--transition-fast),color var(--transition-fast)}
+.toc button:hover{background:var(--bg-subtle)}
+.toc button.active{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.toc .ch-no{display:block;font-size:11px;color:var(--text-muted);margin-bottom:1px}
+.toc button.active .ch-no{color:var(--accent)}
+.reader .article{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px 44px;min-height:400px}
+.reader .article p,.reader .article li{font-family:var(--serif)}
+.reader .article h1{font-size:26px;margin:0 0 6px}
+.readnav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 4px}
+.readnav span{font-size:13px}
+.read-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:14px;padding-top:16px;border-top:1px solid var(--border)}
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:10px 12px;margin-top:14px;position:sticky;bottom:12px}
+.search-bar input{flex:1;min-width:0;padding:7px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-family:inherit;font-size:13px;outline:none;transition:border-color var(--transition-fast)}
+.search-bar input:focus{border-color:var(--accent)}
+.search-bar button{padding:6px 10px;font-size:12px}
+mark{background:var(--accent-soft);color:var(--accent);padding:0 2px;border-radius:3px}
+mark.current{background:var(--accent);color:#fff}
+
+/* ========== 角色列表 ========== */
+.char-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+
+/* ========== 页面右侧标题目录（宽屏显示） ========== */
+.page-toc{display:none}
+@media(min-width:1280px) {
+  .page-toc{display:block;position:sticky;top:73px;align-self:start;max-height:calc(100vh - 93px);overflow-y:auto;padding:4px 18px 24px 2px}
+}
+.ptoc-title{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);padding:8px 12px 8px}
+.ptoc-item{display:block;width:100%;text-align:left;border:none;border-left:2px solid var(--border);border-radius:0;background:transparent;box-shadow:none;padding:5px 12px;font-size:13px;font-weight:400;color:var(--text-muted);line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color var(--transition-fast),border-color var(--transition-fast)}
+.ptoc-item:hover{background:transparent;color:var(--text);border-left-color:var(--text-muted)}
+.ptoc-item:active{transform:none}
+.ptoc-item.active{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+/* 目录锚点目标：为 sticky appbar 预留滚动偏移 */
+.panel h2,.panel .section-title,.panel .settingfile{scroll-margin-top:70px}
+
+/* ========== 外观设置面板 ========== */
+.ap-wrap{position:relative}
+.ap-panel{position:absolute;right:0;top:calc(100% + 10px);width:268px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 4px 8px rgba(16,24,40,.06),0 12px 32px rgba(16,24,40,.12);padding:16px;z-index:30;display:flex;flex-direction:column;gap:14px}
+.ap-panel[hidden]{display:none}
+.ap-row{display:flex;flex-direction:column;gap:8px}
+.ap-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)}
+.ap-seg{display:flex;gap:4px;background:var(--bg-subtle);border-radius:var(--radius-sm);padding:3px}
+.ap-seg button{flex:1;border:none;background:transparent;box-shadow:none;padding:5px 4px;font-size:12px;color:var(--text-muted);border-radius:6px}
+.ap-seg button:hover{background:transparent;color:var(--text)}
+.ap-seg button.active{background:var(--bg-elevated);color:var(--accent);font-weight:600;box-shadow:var(--shadow)}
+.ap-swatches{display:flex;gap:8px;flex-wrap:wrap}
+.ap-swatch{width:30px;height:30px;border-radius:50%;border:2px solid transparent;padding:0;background:linear-gradient(135deg,var(--sw) 0 55%,var(--sw-soft) 55% 100%);box-shadow:inset 0 0 0 2px var(--bg-elevated);transition:transform var(--transition-fast)}
+.ap-swatch:hover{transform:scale(1.12);background:linear-gradient(135deg,var(--sw) 0 55%,var(--sw-soft) 55% 100%)}
+.ap-swatch.active{border-color:var(--sw);box-shadow:inset 0 0 0 2px var(--bg-elevated),0 1px 4px rgba(16,24,40,.18)}
+.ap-image-tools{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--border);padding-top:12px}
+.ap-image-tools .btnrow{display:flex;gap:8px}
+.ap-image-tools button{flex:1;font-size:12px;padding:6px 8px}
+.ap-image-tools label{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-muted)}
+.ap-image-tools input[type=range]{flex:1;accent-color:var(--accent);cursor:pointer}
+@media(max-width:768px) {
+  .ap-panel{position:fixed;left:12px;right:12px;top:60px;width:auto}
+}
+
+/* ========== 滚动条 ========== */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+
+/* ========== 可访问性 ========== */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* 图表颜色满足色觉缺陷场景：不只依赖颜色，还依赖形状（已在 GraphEngine.draw 中区分方圆） */
+
+/* ========== Responsive ========== */
+/* 平板 / 窄桌面（≤1024px） */
+@media(max-width:1024px) {
+  .graph-layout{grid-template-columns:minmax(0,1fr) 240px}
+  .reader{grid-template-columns:200px minmax(0,1fr)}
+  .reader .article{padding:28px 28px}
+}
+/* 中小屏（≤820px）：tabs 移至上方面板 */
+@media(max-width:820px) {
+  .layout{grid-template-columns:1fr}
+  .tabs[role="tablist"]{flex-direction:row;flex-wrap:wrap;height:auto;position:static;border-right:none;border-bottom:1px solid var(--border)}
+  main.content{padding:20px 16px 60px}
+  .col2{grid-template-columns:1fr}
+  .graph-layout{grid-template-columns:1fr;height:auto;max-height:none}
+  .graph-canvas-wrap{height:360px}
+  .graph-sidebar{max-height:300px;overflow-y:auto}
+}
+/* 小屏手机（≤768px） */
+@media(max-width:768px) {
+  .tabs[role="tablist"]{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:2px;padding:10px 8px}
+  .tabs[role="tablist"] button[role="tab"]{white-space:nowrap;font-size:13px;padding:8px 10px}
+  .tabs[role="tablist"] .navlabel{display:none}
+  .graph-canvas-wrap{height:320px;max-height:50vh}
+  .graph-sidebar{max-height:260px;overflow-y:auto}
+  .reader{grid-template-columns:1fr}
+  .toc{position:static;max-height:200px;overflow-y:auto}
+  .reader .article{padding:22px 18px;min-height:0}
+  .search-bar{flex-wrap:wrap;position:static}
+  .readnav{flex-wrap:wrap}
+  .appbar{flex-wrap:wrap;padding:10px 16px;gap:8px}
+  .appbar .booktitle{font-size:16px;max-width:60vw}
+}
+/* 极小屏（≤375px） */
+@media(max-width:375px) {
+  main.content{padding:14px 10px 40px}
+  .appbar .booksub{display:none}
+  .reader-controls{font-size:13px}
+  .article{font-size:13px}
+}
+/* 表格、代码块和趋势图不会撑破页面 */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.article pre{overflow-x:auto}
+.article img{max-width:100%}
+svg{max-width:100%;height:auto}
+/* Reader 目录在移动端可收起 */
+.toc.collapsed button{display:none}
+.toc-toggle{display:none}
+@media(max-width:768px) {
+  .toc-toggle{display:inline-block}
+}
+</style>
+</head>
+<body>
+
+<!-- 自定义背景层（图案 / 用户图片，由 Appearance 模块控制） -->
+<div id="bgLayer" aria-hidden="true"></div>
+
+<!-- ============ 落地页 ============ -->
+<div id="landing">
+  <div class="logo" aria-hidden="true">🐉</div>
+  <h1>Dragon Writer · 写作仪表盘</h1>
+  <p>选择某本书的<b>根目录</b>（即含 <code>book.json</code>、<code>chapters/</code>、<code>story/</code> 的那一层），即可查看当前进度、设定内容、人物关系与章节阅读。</p>
+  <div class="row">
+    <button class="primary" id="pickBtn">📖 选择书架文件夹</button>
+    <label class="filelabel">
+      <input type="file" id="fileInput" webkitdirectory>
+      <button type="button" id="compatBtn">📂 兼容模式选择</button>
+    </label>
+    <button id="refreshBtn" style="display:none">🔄 刷新</button>
+  </div>
+  <div id="resumeArea" style="display:none">
+    <p>上次打开：<span id="resumeName"></span> · <a href="#" id="resumeLink">点此继续</a></p>
+  </div>
+</div>
+
+<!-- ============ 应用主体 ============ -->
+<div id="app">
+  <header class="appbar">
+    <div class="bookmeta">
+      <span class="booktitle" id="bookTitle">—</span>
+      <span class="booksub" id="bookSub"></span>
+    </div>
+    <span class="badge" id="bookStatus"></span>
+    <span class="spacer"></span>
+    <button id="rePickBtn" title="切换书架">切换书架</button>
+    <div class="ap-wrap">
+      <button id="appearanceBtn" title="外观设置" aria-label="外观设置" aria-haspopup="true" aria-expanded="false">🎨</button>
+      <div class="ap-panel" id="appearancePanel" hidden role="dialog" aria-label="外观设置">
+        <div class="ap-row">
+          <span class="ap-label">模式</span>
+          <div class="ap-seg" id="apModeSeg">
+            <button type="button" data-mode="auto">自动</button>
+            <button type="button" data-mode="light">浅色</button>
+            <button type="button" data-mode="dark">深色</button>
+          </div>
+        </div>
+        <div class="ap-row">
+          <span class="ap-label">主题色</span>
+          <div class="ap-swatches" id="apSchemes">
+            <button type="button" class="ap-swatch" data-scheme="indigo" style="--sw:#4f46e5;--sw-soft:#edeefc" title="靛蓝" aria-label="靛蓝"></button>
+            <button type="button" class="ap-swatch" data-scheme="ocean" style="--sw:#0369a1;--sw-soft:#e0f0fa" title="海蓝" aria-label="海蓝"></button>
+            <button type="button" class="ap-swatch" data-scheme="forest" style="--sw:#047857;--sw-soft:#e2f4ec" title="墨绿" aria-label="墨绿"></button>
+            <button type="button" class="ap-swatch" data-scheme="sunset" style="--sw:#c2410c;--sw-soft:#fbe9dd" title="暖橙" aria-label="暖橙"></button>
+            <button type="button" class="ap-swatch" data-scheme="rose" style="--sw:#be123c;--sw-soft:#fbe4e9" title="嫣红" aria-label="嫣红"></button>
+            <button type="button" class="ap-swatch" data-scheme="violet" style="--sw:#7c3aed;--sw-soft:#efe9fd" title="紫罗兰" aria-label="紫罗兰"></button>
+          </div>
+        </div>
+        <div class="ap-row">
+          <span class="ap-label">背景</span>
+          <div class="ap-seg" id="apBgSeg">
+            <button type="button" data-bg="none">无</button>
+            <button type="button" data-bg="dots">点阵</button>
+            <button type="button" data-bg="grid">网格</button>
+            <button type="button" data-bg="glow">光晕</button>
+            <button type="button" data-bg="image">图片</button>
+          </div>
+        </div>
+        <div class="ap-image-tools" id="apImageTools" hidden>
+          <div class="btnrow">
+            <button type="button" id="apPickImage">选择图片…</button>
+            <button type="button" id="apClearImage">清除图片</button>
+          </div>
+          <label>不透明度 <input type="range" id="apOpacity" min="10" max="100" step="5" value="35"><span id="apOpacityVal">35%</span></label>
+        </div>
+      </div>
+      <input type="file" id="apImageInput" accept="image/*">
+    </div>
+    <button id="themeBtn" title="切换主题" aria-label="当前主题：自动，点击切换">🌙</button>
+  </header>
+  <div class="layout">
+    <nav class="tabs" role="tablist" aria-label="仪表盘视图">
+      <div class="navlabel">视图</div>
+      <button id="tab-overview" role="tab" aria-selected="true" aria-controls="panel-overview" tabindex="0" data-tab="overview">📊 总览</button>
+      <button id="tab-settings-content" role="tab" aria-selected="false" aria-controls="panel-settings-content" tabindex="-1" data-tab="settings-content">📜 设定内容</button>
+      <button id="tab-chars" role="tab" aria-selected="false" aria-controls="panel-chars" tabindex="-1" data-tab="chars">👥 人物关系</button>
+      <button id="tab-read" role="tab" aria-selected="false" aria-controls="panel-read" tabindex="-1" data-tab="read">📖 阅读章节</button>
+    </nav>
+    <main class="content">
+      <section class="panel active" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+        <h2>总览</h2>
+        <p class="lede">本书当前的写作进度与最新状态。</p>
+      </section>
+      <section class="panel" id="panel-settings-content" role="tabpanel" aria-labelledby="tab-settings-content">
+        <h2>设定内容</h2>
+        <p class="lede">全部设定文件的完整原文，可在仪表盘内直接阅读。</p>
+      </section>
+      <section class="panel" id="panel-chars" role="tabpanel" aria-labelledby="tab-chars">
+        <h2>人物关系</h2>
+        <p class="lede">滚轮缩放 · 拖拽空白平移 · 双击适应画布。点击节点查看角色详情。</p>
+        <!-- 动态渲染：Characters 组件会替换下方内容，id 由 JS 管理避免重复 -->
+        <div class="graph-layout">
+          <div class="graph-canvas-wrap">
+            <canvas role="img" aria-label="角色关系力导向图（文本替代：右侧角色列表与关系说明）"></canvas>
+          </div>
+          <div class="graph-sidebar">
+            <div class="card"></div>
+            <div></div>
+          </div>
+        </div>
+        <!-- Canvas 的等价文字关系列表（供屏幕阅读器使用，视觉隐藏） -->
+        <div id="graphTextAlt" class="sr-only" role="region" aria-label="角色关系文字列表"></div>
+      </section>
+      <section class="panel" id="panel-read" role="tabpanel" aria-labelledby="tab-read">
+        <h2>阅读章节</h2>
+        <p class="lede">在仪表盘内直接阅读任意章节。</p>
+      </section>
+    </main>
+    <!-- 右侧标题目录（宽屏显示，由 PageToc 模块动态填充） -->
+    <aside class="page-toc" id="pageToc" aria-label="本页目录"></aside>
+  </div>
+</div>
+
+<script>
+/* [build] generated by python scripts/build_dashboard.py at 2026-08-23T09:45:42.159189+00:00 */
+"use strict";
+/* ============================================================================
+   Dragon Writer 仪表盘 —— 运行时。
+   不嵌入任何数据：打开后通过 File System Access API（或 webkitdirectory 回退）
+   选择/重连书文件夹，运行时读文件、实时计算并渲染。永远反映最新文件。
+   ========================================================================== */
+
+/* ---------- Utils 工具模块 ---------- */
+const Utils = (() => {
+  // HTML 转义
+  const escHtml = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+
+  // 数字格式化
+  const fmtNum = n => (n || 0).toLocaleString('zh-CN');
+
+  // 字数统计（去 Markdown 语法）
+  const countWords = s => {
+    if (!s) return 0;
+    // 移除代码块、表格、标题标记
+    const clean = s
+      .replace(/```[\s\S]*?```/g, '')
+      .replace(/^#+\s*/gm, '')
+      .replace(/^\|.*\|$/gm, '')
+      .replace(/[*_~`]/g, '')
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
+    return (clean.match(/[一-鿿]/g) || []).length +
+           (clean.match(/[A-Za-z0-9]+/g) || []).length;
+  };
+
+  // 状态标签映射
+  const statusLabel = s => ({ outlining:'大纲中', drafting:'写作中', paused:'已暂停', completed:'已完成', active:'进行中' }[s] || s || '—');
+
+  // 截断
+  const truncate = (s, n = 60) => s && s.length > n ? s.slice(0, n) + '…' : s;
+
+  // 日期格式化
+  const fmtDate = d => d ? String(d).slice(0, 10) : '';
+  const timeAgo = d => {
+    if (!d) return '';
+    const diff = Date.now() - new Date(d).getTime();
+    const days = Math.floor(diff / 86400000);
+    if (days < 1) return '今天';
+    if (days < 2) return '昨天';
+    if (days < 7) return `${days} 天前`;
+    if (days < 30) return `${Math.floor(days / 7)} 周前`;
+    return fmtDate(d);
+  };
+
+  // 主题管理
+  const theme = (() => {
+    const KEY = 'dw-theme';
+    let current = 'auto';
+    let cssVarCache = {};
+
+    const readCSSVar = (name) => {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    };
+
+    const refreshCache = () => {
+      const root = document.documentElement;
+      const style = getComputedStyle(root);
+      cssVarCache = {
+        accent: style.getPropertyValue('--accent').trim() || '#b5651d',
+        textMuted: style.getPropertyValue('--text-muted').trim() || '#6b6760',
+        border: style.getPropertyValue('--border').trim() || '#e0dcd4',
+        bgSubtle: style.getPropertyValue('--bg-subtle').trim() || '#efeae1',
+        bgElevated: style.getPropertyValue('--bg-elevated').trim() || '#ffffff',
+        text: style.getPropertyValue('--text').trim() || '#1c1b18',
+        sans: style.getPropertyValue('--sans').trim() || '-apple-system,sans-serif',
+      };
+    };
+
+    const init = () => {
+      try { current = localStorage.getItem(KEY) || 'auto'; } catch { current = 'auto'; }
+      apply();
+    };
+
+    const apply = () => {
+      document.documentElement.classList.remove('theme-auto', 'theme-dark', 'theme-light');
+      if (current === 'dark') document.documentElement.classList.add('theme-dark');
+      else if (current === 'light') document.documentElement.classList.add('theme-light');
+      else document.documentElement.classList.add('theme-auto');
+      refreshCache();
+    };
+
+    const toggle = () => {
+      current = current === 'dark' ? 'light' : current === 'light' ? 'auto' : 'dark';
+      apply();
+      try { localStorage.setItem(KEY, current); } catch {}
+      return current;
+    };
+
+    // 直接设置模式（供外观面板的分段控件使用）
+    const set = (mode) => {
+      if (!['auto', 'light', 'dark'].includes(mode)) return current;
+      current = mode;
+      apply();
+      try { localStorage.setItem(KEY, current); } catch {}
+      return current;
+    };
+
+    const get = (name) => cssVarCache[name] || readCSSVar(name);
+
+    return { init, toggle, set, apply, get, refresh: refreshCache, get current() { return current; } };
+  })();
+
+  // 键盘快捷键 —— 统一路由器，支持按当前 tab 分发，避免组件间互相覆盖
+  const shortcuts = (() => {
+    // 每个 key 对应一个处理器数组 { tab: 'global'|'read'|..., fn }
+    const registry = new Map();
+    let handlerAttached = false;
+
+    const handler = (e) => {
+      // 输入框、select、range 聚焦时不触发全局导航
+      const tag = (e.target && e.target.tagName) || '';
+      const inField = tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || (e.target && e.target.type === 'range');
+      const key = [e.ctrlKey ? 'Ctrl' : '', e.shiftKey ? 'Shift' : '', e.altKey ? 'Alt' : '', e.key]
+        .filter(Boolean).join('+');
+      const entries = registry.get(key);
+      if (!entries || !entries.length) return;
+
+      // 优先匹配当前 tab 的处理器，否则回退到 global
+      const cur = (window.Router && Router.current) || 'overview';
+      let matched = entries.find(en => en.tab === cur);
+      if (!matched) matched = entries.find(en => en.tab === 'global');
+      if (!matched) return;
+
+      // 在输入字段中，仅允许 Ctrl 组合键（如 Ctrl+F），不拦截纯方向键等
+      if (inField && !e.ctrlKey && !e.altKey) return;
+
+      matched.fn(e);
+      e.preventDefault();
+    };
+
+    // tab: 'global' 表示全局生效；其他值表示仅在对应标签页生效
+    const register = (key, fn, tab) => {
+      if (!registry.has(key)) registry.set(key, []);
+      const entries = registry.get(key);
+      // 同一 key+tab 不重复注册
+      if (entries.some(en => en.tab === (tab || 'global') && en.fn === fn)) return;
+      entries.push({ tab: tab || 'global', fn });
+      if (!handlerAttached) { document.addEventListener('keydown', handler); handlerAttached = true; }
+    };
+    const unregister = (key, fn, tab) => {
+      const entries = registry.get(key);
+      if (!entries) return;
+      const idx = entries.findIndex(en => en.tab === (tab || 'global') && (!fn || en.fn === fn));
+      if (idx >= 0) entries.splice(idx, 1);
+      if (entries.length === 0) registry.delete(key);
+    };
+
+    return { register, unregister };
+  })();
+
+  return { escHtml, fmtNum, countWords, statusLabel, truncate, fmtDate, timeAgo, theme, shortcuts };
+})();
+
+/* ---------- Store 中央状态管理模块 ---------- */
+const Store = (() => {
+  const state = {
+    book: null,
+    chapters: [],
+    roles: [],
+    files: {},
+    settings: {},
+    graph: { nodes: [], edges: [] },
+    loading: false,
+    error: null,
+    diagnostics: { missingRecommended: [], duplicateRoles: [], legacyCharacterFiles: [], chapterWarnings: [] },
+    dataVersion: 0, // 数据版本：每次成功加载 +1，组件据此判断是否需要重绘
+    bookId: null,    // 当前书标识（用于判断切书 vs 刷新）
+  };
+
+  const get = (path) => {
+    if (!path) return state;
+    return path.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : null, state);
+  };
+
+  const set = (path, val) => {
+    const keys = path.split('.');
+    const lastKey = keys.pop();
+    const target = keys.reduce((o, k) => {
+      if (o[k] === undefined) o[k] = {};
+      return o[k];
+    }, state);
+    target[lastKey] = val;
+  };
+
+  // 数据版本 +1，通知所有组件数据已更新
+  const bumpVersion = () => { state.dataVersion++; };
+
+  const reset = () => {
+    state.book = null;
+    state.chapters = [];
+    state.roles = [];
+    state.files = {};
+    state.settings = [];
+    state.graph = { nodes: [], edges: [] };
+    state.loading = false;
+    state.error = null;
+    state.diagnostics = { missingRecommended: [], duplicateRoles: [], legacyCharacterFiles: [], chapterWarnings: [] };
+    state.dataVersion = 0;
+    state.bookId = null;
+  };
+
+  // 检查组件是否需要重绘（数据版本变化时返回 true）
+  const needsRender = (componentName, lastVersion) => {
+    return state.dataVersion !== lastVersion;
+  };
+
+  return { state, get, set, reset, bumpVersion, needsRender };
+})();
+
+/* ---------- MDParser Markdown 解析模块（CommonMark 兼容） ==========
+   支持的块级语法：段落、标题（ATX h1-h6 / Setext h1-h2）、代码块（缩进 / 围栏）、
+   引用（含嵌套）、列表（无序/有序/任务，含嵌套）、表格（GFM 含对齐）、水平线。
+   支持的行内语法：强调（** / * / __ / _）、删除线（~~）、代码（`）、链接、图片、
+   硬换行（行尾双空格或 \）、自动链接。
+   安全：URL 经协议白名单校验；HTML 实体自动转义；原始 HTML 降级为纯文本。
+   ==================================================================== */
+const MDParser = (() => {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+  const escAttr = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+
+  // ---- URL 安全校验 ----
+  const ALLOWED_PROTOCOLS = /^(https?:|mailto:|#)/i;
+  const BLOCKED_PROTOCOLS = /^(javascript|data|vbscript|file):/i;
+  const CONTROL_CHARS = /[\x00-\x1f\x7f\t]/g;
+
+  function sanitizeUrl(raw) {
+    if (!raw) return null;
+    let url = String(raw).replace(CONTROL_CHARS, '').trim();
+    url = url.replace(/^["']+|["']+$/g, '').trim();
+    if (!url) return null;
+    if (/^\/\//.test(url)) return null;
+    url = url.replace(/\\/g, '/');
+    url = url.replace(/&#(\d+);/g, (m, d) => String.fromCharCode(d))
+             .replace(/&#x([0-9a-f]+);/gi, (m, h) => String.fromCharCode(parseInt(h, 16)));
+    url = url.replace(CONTROL_CHARS, '').trim();
+    if (!url) return null;
+    url = url.replace(/：/g, ':');
+    url = url.replace(/\s+/g, '').replace(CONTROL_CHARS, '');
+    if (!url) return null;
+    if (BLOCKED_PROTOCOLS.test(url)) return null;
+    if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(url)) {
+      return /^[a-zA-Z0-9_\-./?#&=]+$/.test(url) ? url : null;
+    }
+    return ALLOWED_PROTOCOLS.test(url) ? url : null;
+  }
+
+  // ---- 行内解析（递归下降，正确处理嵌套） ----
+  // placeholders 数组在递归调用间共享，确保嵌套占位符可正确恢复
+  function parseInline(text, placeholders) {
+    if (!text) return '';
+    if (!placeholders) placeholders = [];
+    const ph = html => { placeholders.push(html); return `\x00${placeholders.length - 1}\x00`; };
+
+    // 1. 行内代码（最高优先级，内容不解析）
+    text = text.replace(/`+([^`]+?)`+/g, (m, code) => ph('<code>' + esc(code) + '</code>'));
+
+    // 2. 图片 ![alt](url "title")（必须在链接之前处理）
+    text = text.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, (m, alt, url, title) => {
+      const safeUrl = sanitizeUrl(url);
+      if (safeUrl == null) return ph(esc(alt));
+      const t = title ? ` title="${escAttr(title)}"` : '';
+      return ph(`<img src="${escAttr(safeUrl)}" alt="${escAttr(alt)}"${t}>`);
+    });
+
+    // 3. 链接 [text](url "title")
+    text = text.replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, (m, linkText, url, title) => {
+      const safeUrl = sanitizeUrl(url);
+      if (safeUrl == null) return ph(esc(linkText));
+      const ext = /^https?:/i.test(safeUrl);
+      const rel = ext ? ' rel="noopener noreferrer" target="_blank"' : '';
+      const t = title ? ` title="${escAttr(title)}"` : '';
+      return ph(`<a href="${escAttr(safeUrl)}"${t}${rel}>` + parseInline(linkText, placeholders) + '</a>');
+    });
+
+    // 4. 粗斜体 ***text*** / ___text___
+    text = text.replace(/\*\*\*((?:[^*]|\*(?!\*))+)\*\*\*/g, (m, t) => ph('<strong><em>' + parseInline(t, placeholders) + '</em></strong>'));
+    text = text.replace(/___((?:[^_]|_(?!_))+)_/g, (m, t) => ph('<strong><em>' + parseInline(t, placeholders) + '</em></strong>'));
+
+    // 5. 粗体 **text** / __text__（内容可含单个 * 但不含 **）
+    text = text.replace(/\*\*((?:[^*]|\*(?!\*))+)\*\*/g, (m, t) => ph('<strong>' + parseInline(t, placeholders) + '</strong>'));
+    text = text.replace(/__((?:[^_]|_(?!_))+?)__/g, (m, t) => ph('<strong>' + parseInline(t, placeholders) + '</strong>'));
+
+    // 6. 斜体 *text* / _text_（内容可含 ** 但不含 ***）
+    text = text.replace(/(?<!\*)\*((?:[^*]|\*{1,2}(?!\*))+)\*(?!\*)/g, (m, t) => ph('<em>' + parseInline(t, placeholders) + '</em>'));
+    text = text.replace(/(?<!\w)_((?:[^_]|_{1,2}(?!_))+)_(?!\w)/g, (m, t) => ph('<em>' + parseInline(t, placeholders) + '</em>'));
+
+    // 7. 删除线 ~~text~~
+    text = text.replace(/~~([^~]+)~~/g, (m, t) => ph('<del>' + parseInline(t, placeholders) + '</del>'));
+
+    // 8. 自动链接 <url>
+    text = text.replace(/<([a-zA-Z][a-zA-Z0-9+.-]*:[^>]+)>/g, (m, url) => {
+      const safeUrl = sanitizeUrl(url);
+      return safeUrl ? ph(`<a href="${escAttr(safeUrl)}" rel="noopener noreferrer" target="_blank">${esc(safeUrl)}</a>`) : ph(esc(m));
+    });
+
+    // 9. 转义字符 \_ \* \[ \] \( \) \# \` \~ \{ \} \| \\ \. \!
+    text = text.replace(/\\([_*\[\]()#`~|\\.!])/g, (m, ch) => ph(esc(ch)));
+
+    // 10. 剩余文本 HTML 转义
+    text = esc(text);
+
+    // 11. 恢复占位符
+    return text.replace(/\x00(\d+)\x00/g, (m, idx) => placeholders[parseInt(idx)]);
+  }
+
+  // ---- 块级解析 ----
+  function parse(src) {
+    const lines = src.replace(/\r\n?/g, '\n').split('\n');
+    let i = 0;
+    const out = [];
+
+    const peek = offset => lines[i + offset] || '';
+    const rest = () => lines.slice(i);
+
+    // -- 围栏代码块 --
+    function parseFence() {
+      const m = lines[i].match(/^(`{3,}|~{3,})(.*)$/);
+      if (!m) return false;
+      const fence = m[1][0];
+      const fenceLen = m[1].length;
+      const info = (m[2] || '').trim();
+      const code = [];
+      i++;
+      while (i < lines.length) {
+        const line = lines[i];
+        const lm = line.match(/^(`{3,}|~{3,})/);
+        // 闭合围栏：相同字符、长度 >= 开头、整行只有围栏字符（可有空白）
+        if (lm && lm[1][0] === fence && lm[1].length >= fenceLen && line.trim().length === lm[1].length) break;
+        code.push(line);
+        i++;
+      }
+      i++; // skip closing fence
+      const lang = info ? ` class="lang-${escAttr(info.split(/\s+/)[0])}"` : '';
+      out.push('<pre><code' + lang + '>' + esc(code.join('\n')) + '</code></pre>');
+      return true;
+    }
+
+    // -- ATX 标题 --
+    function parseATX() {
+      const m = lines[i].match(/^(#{1,6})(?:\s+|\s*$)(.*?)(?:\s+#*)?\s*$/);
+      if (!m) return false;
+      const level = m[1].length;
+      const text = m[2].trim();
+      out.push(`<h${level}>${parseInline(text)}</h${level}>`);
+      i++;
+      return true;
+    }
+
+    // -- Setext 标题 --
+    function parseSetext() {
+      if (i + 1 >= lines.length) return false;
+      const t = lines[i].trim();
+      if (!t || /^#{1,6}\s/.test(t) || /^[-=]{2,}\s*$/.test(t)) return false;
+      const next = lines[i + 1].trim();
+      if (/^={2,}\s*$/.test(next)) { out.push(`<h1>${parseInline(t)}</h1>`); i += 2; return true; }
+      if (/^-{2,}\s*$/.test(next)) { out.push(`<h2>${parseInline(t)}</h2>`); i += 2; return true; }
+      return false;
+    }
+
+    // -- 水平线 --
+    function parseHR() {
+      if (/^(\*{3,}|-{3,}|_{3,})\s*$/.test(lines[i].trim())) { out.push('<hr>'); i++; return true; }
+      return false;
+    }
+
+    // -- 块引用 --
+    function parseBlockquote() {
+      if (!lines[i].trim().startsWith('>')) return false;
+      const bqLines = [];
+      while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        if (trimmed === '>') { bqLines.push(''); i++; continue; }
+        if (trimmed.startsWith('>')) { bqLines.push(trimmed.replace(/^>\s?/, '')); i++; continue; }
+        // 懒惰延续：如果下一行是段落延续（非空且非其他块级元素）
+        if (line && line.trim() && !isBlockStart(line) && bqLines.length) {
+          bqLines.push(line.trim());
+          i++;
+          continue;
+        }
+        break;
+      }
+      out.push('<blockquote>' + parse(bqLines.join('\n')) + '</blockquote>');
+      return true;
+    }
+
+    // -- 列表（含嵌套） --
+    function parseList() {
+      const m = lines[i].match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/);
+      if (!m) return false;
+      const startIndent = m[1].length;
+      const items = [];
+
+      while (i < lines.length) {
+        const line = lines[i];
+        const lm = line.match(/^(\s*)([-*+]|\d+[.)])\s+(.*)$/);
+        if (!lm) {
+          // 懒惰延续或子内容
+          if (line.trim() && !isBlockStart(line) && items.length) {
+            items[items.length - 1].content.push(line);
+            i++;
+            continue;
+          }
+          break;
+        }
+        const indent = lm[1].length;
+        if (indent < startIndent) break; // 缩进减少，退出列表
+        if (indent > startIndent) {
+          // 嵌套：回退一行，让递归处理
+          if (items.length) {
+            items[items.length - 1].content.push(line);
+            i++;
+            continue;
+          }
+          break;
+        }
+        // 同级列表项
+        const marker = lm[2];
+        const content = lm[3];
+        // 任务列表检测
+        const taskM = content.match(/^\[([ xX])\]\s+(.*)$/);
+        const chk = taskM ? taskM[1].toLowerCase() === 'x' : null;
+        const txt = taskM ? taskM[2] : content;
+        items.push({ marker, chk, content: [txt], task: taskM !== null });
+        i++;
+      }
+
+      // 渲染列表
+      const firstMarker = items[0].marker;
+      const isOrdered = /^\d/.test(firstMarker);
+      const hasTask = items.some(it => it.task);
+      const tag = isOrdered ? 'ol' : 'ul';
+
+      const renderItem = item => {
+        // 递归解析列表项内容（支持嵌套列表、段落等）)
+        const inner = parse(item.content.join('\n'));
+        if (item.task) {
+          return '<li class="task-list-item">' +
+            '<input type="checkbox" disabled' + (item.chk ? ' checked' : '') + '> ' +
+            inner.replace(/^<p>/, '').replace(/<\/p>$/, '') + '</li>';
+        }
+        return '<li>' + inner.replace(/^<p>/, '').replace(/<\/p>$/, '') + '</li>';
+      };
+
+      out.push('<' + tag + (hasTask ? ' class="task-list"' : '') + '>' + items.map(renderItem).join('') + '</' + tag + '>');
+      return true;
+    }
+
+    // -- 表格（GFM 含对齐） --
+    function parseTable() {
+      const line = lines[i].trim();
+      if (!line.startsWith('|') || !line.endsWith('|')) return false;
+      if (i + 1 >= lines.length) return false;
+      const hdrCells = splitTableRow(line);
+      const sepLine = lines[i + 1].trim();
+      const sepCells = splitTableRow(sepLine);
+      // 验证分隔行格式
+      if (!sepCells.every(c => /^:?-+:?$/.test(c.trim()))) return false;
+      if (sepCells.length !== hdrCells.length) return false;
+
+      const aligns = sepCells.map(c => {
+        const t = c.trim();
+        if (t.startsWith(':') && t.endsWith(':')) return 'center';
+        if (t.endsWith(':')) return 'right';
+        return '';
+      });
+
+      const hdrHtml = hdrCells.map((c, i) => {
+        const a = aligns[i] ? ` style="text-align:${aligns[i]}"` : '';
+        return '<th' + a + '>' + parseInline(c.trim()) + '</th>';
+      }).join('');
+
+      let r = i + 2;
+      const rows = [];
+      while (r < lines.length) {
+        const rowLine = lines[r].trim();
+        if (!rowLine.startsWith('|') || !rowLine.endsWith('|')) break;
+        const cells = splitTableRow(rowLine);
+        // 补齐/截断列数
+        while (cells.length < hdrCells.length) cells.push('');
+        if (cells.length > hdrCells.length) cells.length = hdrCells.length;
+        rows.push(cells);
+        r++;
+      }
+
+      const rowsHtml = rows.map(cells =>
+        '<tr>' + cells.map((c, idx) => {
+          const a = aligns[idx] ? ` style="text-align:${aligns[idx]}"` : '';
+          return '<td' + a + '>' + (c.trim() ? parseInline(c.trim()) : '') + '</td>';
+        }).join('') + '</tr>'
+      ).join('');
+
+      out.push('<table><thead><tr>' + hdrHtml + '</tr></thead><tbody>' + rowsHtml + '</tbody></table>');
+      i = r;
+      return true;
+    }
+
+    // -- 分割表格行（支持转义管道符） --
+    function splitTableRow(row) {
+      const trimmed = row.replace(/^\s*\|\s*/, '').replace(/\s*\|\s*$/, '');
+      const cells = [];
+      let cur = '', inCode = false;
+      for (let j = 0; j < trimmed.length; j++) {
+        const ch = trimmed[j];
+        if (ch === '`') { inCode = !inCode; cur += ch; }
+        else if (ch === '\\' && trimmed[j + 1] === '|') { cur += '|'; j++; }
+        else if (ch === '|' && !inCode) { cells.push(cur.trim()); cur = ''; }
+        else { cur += ch; }
+      }
+      cells.push(cur.trim());
+      return cells;
+    }
+
+    // -- 缩进代码块 --
+    function parseIndentedCode() {
+      if (!lines[i].startsWith('    ') || lines[i].trim() === '') return false;
+      const code = [];
+      while (i < lines.length && (lines[i].startsWith('    ') || lines[i].trim() === '')) {
+        code.push(lines[i].startsWith('    ') ? lines[i].slice(4) : '');
+        i++;
+      }
+      out.push('<pre><code>' + esc(code.join('\n')) + '</code></pre>');
+      return true;
+    }
+
+    // -- 判断某行是否是块级元素开始 --
+    function isBlockStart(line) {
+      const t = line.trim();
+      if (!t) return true;
+      if (/^(```|~~~)/.test(t)) return true;
+      if (/^#{1,6}\s/.test(t)) return true;
+      if (/^(\*{3,}|-{3,}|_{3,})\s*$/.test(t)) return true;
+      if (t.startsWith('>')) return true;
+      if (/^(\s*)([-*+]|\d+[.)])\s+/.test(line)) return true;
+      if (t.startsWith('|') && t.endsWith('|')) return true;
+      return false;
+    }
+
+    // -- 段落（收集连续非空行，处理硬换行） --
+    function parseParagraph() {
+      const pLines = [];
+      while (i < lines.length) {
+        const line = lines[i];
+        if (line.trim() === '') break;
+        if (isBlockStart(line) && pLines.length) break;
+        pLines.push(line);
+        i++;
+      }
+      if (!pLines.length) return false;
+
+      // 段落内：软换行用空格连接，硬换行（行尾双空格或 \）生成 <br>
+      const segments = [];
+      let current = '';
+      for (let k = 0; k < pLines.length; k++) {
+        const pl = pLines[k];
+        const isLast = k === pLines.length - 1;
+        const hardBreak = !isLast && (/ {2,}$/.test(pl) || /\\$/.test(pl));
+        const text = hardBreak ? pl.replace(/(\\{1,}| {2,})$/, '') : pl;
+        if (hardBreak) {
+          current += text;
+          segments.push(current);
+          current = '';
+        } else if (!isLast) {
+          current += text + ' ';
+        } else {
+          current += text;
+        }
+      }
+      if (current) segments.push(current);
+
+      const html = segments.map(s => parseInline(s)).join('<br>\n');
+      out.push('<p>' + html + '</p>');
+      return true;
+    }
+
+    // -- 主循环 --
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.trim() === '') { i++; continue; }
+
+      if (parseFence()) continue;
+      if (parseATX()) continue;
+      if (parseSetext()) continue;
+      if (parseHR()) continue;
+      if (parseBlockquote()) continue;
+      if (parseList()) continue;
+      if (parseTable()) continue;
+      if (parseIndentedCode()) continue;
+      if (parseParagraph()) continue;
+
+      // 兜底：跳过无法识别的行
+      i++;
+    }
+
+    return out.join('\n');
+  }
+
+  // 提取某个标题下的内容
+  const extractSection = (text, re) => {
+    if (!text) return [];
+    const m = text.match(new RegExp(`##?\\s*[^\\n]*(?:${re})[\\s\\S]*?(?=\\n##?\\s|$)`, 'i'));
+    if (!m) return [];
+    return m[0].replace(/^#+\s*.*\n/, '').trim().split('\n').map(l => l.replace(/^[-*]\s*/, '').trim()).filter(Boolean);
+  };
+
+  // 从列表式字段中提取标签值
+  const extractField = (text, labels) => {
+    if (!text) return '';
+    const labelList = (Array.isArray(labels) ? labels : [labels]).map(s => String(s).toLowerCase());
+    for (const raw of text.split('\n')) {
+      const m = raw.match(/^\s*[-*]\s*\*\*\s*([^*]+?)\s*\*\*\s*[：:]\s*(.*)$/);
+      if (!m) continue;
+      const tag = m[1].trim().toLowerCase();
+      if (labelList.some(l => tag === l || tag.includes(l) || l.includes(tag))) return m[2].trim();
+    }
+    return '';
+  };
+
+  return { parse, parseInline, extractSection, extractField };
+})();
+
+// 剥离 Markdown 语法，输出纯正文（供 TXT 导出用）
+function stripMarkdown(text) {
+  if (!text) return '';
+  return text
+    .replace(/```[\s\S]*?```/g, '')      // 代码块
+    .replace(/`([^`]+)`/g, '$1')         // 行内代码
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // 链接 → 文本
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // 图片
+    .replace(/~~([^~]+)~~/g, '$1')       // 删除线
+    .replace(/(\*\*|__)(.+?)\1/g, '$2')  // 粗体
+    .replace(/(\*|_)(.+?)\1/g, '$2')     // 斜体
+    .replace(/^#+\s*/gm, '')              // 标题标记
+    .replace(/^\s*[-*+]\s*/gm, '')        // 列表标记
+    .replace(/^\s*\d+\.\s*/gm, '')        // 有序列表
+    .replace(/^>\s?/gm, '')              // 引用
+    .replace(/^\|.*\|$/gm, '')           // 表格行
+    .replace(/[-*_]{3,}/g, '')           // 水平线
+    .replace(/\n{3,}/g, '\n\n')          // 多余空行
+    .trim();
+}
+
+/* ---------- Router 路由模块 ---------- */
+const Router = (() => {
+  let current = null; // 初始为 null，确保首次 switchTab 必定触发 onEnter
+  const componentMap = {};
+
+  const register = (name, component) => {
+    componentMap[name] = component;
+  };
+
+  const switchTab = (tab, options) => {
+    const force = options && options.force;
+    // 防止重复切换（force=true 时强制重新进入，用于数据刷新后）
+    if (tab === current && !force) return;
+
+    // force 刷新同一组件时：避免"旧组件 onLeave → 新组件 onEnter"竞态，
+    // 改为直接调用 onReload（若组件提供），跳过 destroy/restart 周期
+    if (tab === current && force) {
+      const comp = componentMap[current];
+      if (comp && comp.onReload) {
+        comp.onReload();
+      } else if (comp && comp.onEnter) {
+        // 无 onReload 时退化为 onEnter（此时 GraphEngine 已做空值保护）
+        comp.onEnter();
+      }
+      location.hash = tab;
+      PageToc.refresh();
+      return;
+    }
+
+    // 调用旧组件的 onLeave
+    const oldComp = componentMap[current];
+    if (oldComp && oldComp.onLeave) oldComp.onLeave();
+
+    // 更新 tab 按钮状态 + tabindex
+    document.querySelectorAll('.tabs [role="tab"]').forEach(b => {
+      const isActive = b.dataset.tab === tab;
+      b.setAttribute('aria-selected', isActive);
+      b.classList.toggle('active', isActive);
+      b.setAttribute('tabindex', isActive ? '0' : '-1');
+    });
+
+    // 更新面板
+    document.querySelectorAll('.panel').forEach(p => {
+      const isActive = p.id === 'panel-' + tab;
+      p.classList.toggle('active', isActive);
+      p.hidden = !isActive;
+    });
+
+    // 调用新组件的 onEnter
+    const newComp = componentMap[tab];
+    if (newComp && newComp.onEnter) newComp.onEnter();
+
+    current = tab;
+    location.hash = tab;
+    PageToc.refresh();
+  };
+
+  const init = () => {
+    // 读取 URL hash，默认 overview
+    const hash = location.hash.replace('#', '');
+    if (hash && componentMap[hash]) {
+      current = hash;
+    } else {
+      current = 'overview';
+    }
+
+    // 绑定标签按钮
+    document.querySelectorAll('.tabs [role="tab"]').forEach(b => {
+      b.addEventListener('click', () => switchTab(b.dataset.tab));
+    });
+
+    // 监听 hash 变化
+    window.addEventListener('hashchange', () => {
+      const h = location.hash.replace('#', '');
+      if (h && componentMap[h] && h !== current) switchTab(h);
+    });
+
+    // 注册快捷键 Ctrl+1~4（全局生效）
+    Utils.shortcuts.register('Ctrl+1', () => switchTab('overview'), 'global');
+    Utils.shortcuts.register('Ctrl+2', () => switchTab('settings-content'), 'global');
+    Utils.shortcuts.register('Ctrl+3', () => switchTab('chars'), 'global');
+    Utils.shortcuts.register('Ctrl+4', () => switchTab('read'), 'global');
+
+    // tablist 内键盘导航：左右键在 tablist 中移动焦点（非输入控件场景）
+    const tablistEl = document.querySelector('.tabs[role="tablist"]');
+    if (tablistEl) {
+      tablistEl.addEventListener('keydown', (e) => {
+        const tabButtons = [...tablistEl.querySelectorAll('[role="tab"]')];
+        const activeIdx = tabButtons.findIndex(b => b.getAttribute('aria-selected') === 'true');
+        let nextIdx = activeIdx;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIdx = (activeIdx + 1) % tabButtons.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nextIdx = (activeIdx - 1 + tabButtons.length) % tabButtons.length;
+        else if (e.key === 'Home') nextIdx = 0;
+        else if (e.key === 'End') nextIdx = tabButtons.length - 1;
+        else return;
+        e.preventDefault();
+        const nextTab = tabButtons[nextIdx];
+        if (nextTab) { nextTab.click(); nextTab.focus(); }
+      });
+    }
+
+    // 激活初始面板（force 确保首次必定触发 onEnter）
+    switchTab(current, { force: true });
+  };
+
+  return { register, switchTab, init, get current() { return current; }, _componentMap: componentMap };
+})();
+
+/* ---------- PageToc 右侧标题目录模块 ----------
+   从当前激活面板收集标题（h2 / .section-title / 设定文件卡片），
+   生成右侧目录；滚动时高亮当前小节，点击平滑滚动定位。 */
+const PageToc = (() => {
+  let items = [];    // [{ el, text }]
+  let linkEls = [];  // 目录按钮
+  let seq = 0;
+  let ticking = false;
+  let bound = false;
+
+  const container = () => document.getElementById('pageToc');
+
+  const ensureId = (el) => {
+    if (!el.id) el.id = 'ptoc-' + (++seq);
+    return el.id;
+  };
+
+  // 收集当前面板的锚点：面板标题 + 小节标题 + 设定文件卡片
+  const collect = () => {
+    const panel = document.querySelector('.panel.active');
+    if (!panel) return [];
+    const out = [];
+    const h2 = panel.querySelector('h2');
+    if (h2) out.push({ el: h2, text: h2.textContent.trim() });
+    panel.querySelectorAll('.section-title').forEach(el => {
+      const t = el.textContent.trim();
+      if (t) out.push({ el, text: t });
+    });
+    panel.querySelectorAll('.settingfile .name').forEach(el => {
+      const card = el.closest('.settingfile');
+      const t = el.textContent.trim();
+      if (card && t) out.push({ el: card, text: t });
+    });
+    return out;
+  };
+
+  const render = () => {
+    const c = container();
+    if (!c) return;
+    items = collect();
+    // 少于 2 个锚点（如阅读面板）不显示目录
+    if (items.length < 2) { c.innerHTML = ''; linkEls = []; return; }
+    c.innerHTML = '<div class="ptoc-title">本页目录</div>' + items.map((it, i) =>
+      `<button type="button" class="ptoc-item" data-i="${i}">${Utils.escHtml(it.text)}</button>`).join('');
+    linkEls = [...c.querySelectorAll('.ptoc-item')];
+  };
+
+  // 滚动跟随：最后一个越过视口顶部的锚点视为当前小节
+  const spy = () => {
+    if (!items.length || !linkEls.length) return;
+    const OFFSET = 90; // appbar 高度 + 余量
+    let activeIdx = 0;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].el.getBoundingClientRect().top <= OFFSET) activeIdx = i;
+      else break;
+    }
+    // 滚到页面底部时激活最后一项
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      activeIdx = items.length - 1;
+    }
+    linkEls.forEach((b, i) => b.classList.toggle('active', i === activeIdx));
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; spy(); });
+  };
+
+  const bind = () => {
+    if (bound) return;
+    bound = true;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    container().addEventListener('click', (e) => {
+      const b = e.target.closest('.ptoc-item');
+      if (!b) return;
+      const it = items[parseInt(b.dataset.i, 10)];
+      if (!it) return;
+      // 目标处于折叠的设定文件卡片时，先展开再定位
+      if (it.el.classList && it.el.classList.contains('settingfile') && !it.el.classList.contains('open')) {
+        it.el.classList.add('open');
+        const row = it.el.querySelector('.row');
+        if (row) row.setAttribute('aria-expanded', 'true');
+      }
+      it.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      linkEls.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  };
+
+  // 面板切换或重渲染后调用：重建目录并刷新高亮
+  const refresh = () => {
+    bind();
+    render();
+    spy();
+  };
+
+  return { refresh };
+})();
+
+/* ---------- Appearance 外观模块 ----------
+   管理主题色方案（data-scheme）与自定义背景层（#bgLayer），
+   偏好持久化到 localStorage；自定义图片压缩后以 dataURL 存储。 */
+const Appearance = (() => {
+  const K = { scheme: 'dw-scheme', bg: 'dw-bg', img: 'dw-bg-image', opacity: 'dw-bg-opacity' };
+  const SCHEMES = ['indigo', 'ocean', 'forest', 'sunset', 'rose', 'violet'];
+  const BGS = ['none', 'dots', 'grid', 'glow', 'image'];
+  let scheme = 'indigo', bg = 'none', opacity = 35;
+
+  const $id = id => document.getElementById(id);
+
+  const save = (k, v) => { try { localStorage.setItem(k, v); } catch {} };
+
+  // 应用背景层状态
+  const applyBg = () => {
+    const layer = $id('bgLayer');
+    if (!layer) return;
+    layer.className = '';
+    layer.style.backgroundImage = '';
+    if (bg === 'none') { layer.style.opacity = '0'; return; }
+    if (bg === 'image') {
+      const url = (() => { try { return localStorage.getItem(K.img); } catch { return null; } })();
+      if (!url) { layer.style.opacity = '0'; return; } // 选了图片但没上传过：保持无背景
+      layer.classList.add('pat-image');
+      layer.style.backgroundImage = 'url("' + url + '")';
+      layer.style.opacity = String(opacity / 100);
+      return;
+    }
+    layer.classList.add('pat-' + bg);
+    layer.style.opacity = '1';
+  };
+
+  // 应用主题色
+  const applyScheme = () => {
+    const root = document.documentElement;
+    if (scheme === 'indigo') root.removeAttribute('data-scheme');
+    else root.setAttribute('data-scheme', scheme);
+    Utils.theme.refresh();   // accent 等变量缓存随方案更新
+    GraphEngine.redraw();    // 关系图按新配色重绘
+  };
+
+  // 同步面板中控件的选中态
+  const syncUI = () => {
+    document.querySelectorAll('#apModeSeg button').forEach(b =>
+      b.classList.toggle('active', b.dataset.mode === Utils.theme.current));
+    document.querySelectorAll('#apSchemes .ap-swatch').forEach(b =>
+      b.classList.toggle('active', b.dataset.scheme === scheme));
+    document.querySelectorAll('#apBgSeg button').forEach(b =>
+      b.classList.toggle('active', b.dataset.bg === bg));
+    $id('apImageTools').hidden = bg !== 'image';
+    const hasImg = (() => { try { return !!localStorage.getItem(K.img); } catch { return false; } })();
+    $id('apClearImage').disabled = !hasImg;
+    $id('apOpacity').value = opacity;
+    $id('apOpacityVal').textContent = opacity + '%';
+  };
+
+  const setScheme = (s) => {
+    if (!SCHEMES.includes(s)) return;
+    scheme = s; save(K.scheme, s);
+    applyScheme(); syncUI();
+  };
+
+  const setBg = (b) => {
+    if (!BGS.includes(b)) return;
+    bg = b; save(K.bg, b);
+    applyBg(); syncUI();
+  };
+
+  const setOpacity = (v) => {
+    opacity = Math.min(100, Math.max(10, parseInt(v, 10) || 35));
+    save(K.opacity, String(opacity));
+    applyBg(); syncUI();
+  };
+
+  // 图片压缩：最长边 1600，JPEG 0.82，控制 localStorage 占用
+  const handleImageFile = (file) => {
+    if (!file || !/^image\//.test(file.type)) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 1600;
+        const scale = Math.min(1, MAX / Math.max(img.width, img.height));
+        const cv = document.createElement('canvas');
+        cv.width = Math.max(1, Math.round(img.width * scale));
+        cv.height = Math.max(1, Math.round(img.height * scale));
+        cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+        const url = cv.toDataURL('image/jpeg', 0.82);
+        try {
+          localStorage.setItem(K.img, url);
+        } catch (e) {
+          alert('图片体积过大，无法保存。请换一张分辨率更小的图片。');
+          return;
+        }
+        applyBg(); syncUI();
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const init = () => {
+    // 恢复偏好
+    try {
+      scheme = SCHEMES.includes(localStorage.getItem(K.scheme)) ? localStorage.getItem(K.scheme) : 'indigo';
+      bg = BGS.includes(localStorage.getItem(K.bg)) ? localStorage.getItem(K.bg) : 'none';
+      opacity = parseInt(localStorage.getItem(K.opacity), 10) || 35;
+    } catch {}
+
+    applyScheme();
+    applyBg();
+
+    const btn = $id('appearanceBtn'), panel = $id('appearancePanel');
+    const closePanel = () => { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+    const openPanel = () => { syncUI(); panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      panel.hidden ? openPanel() : closePanel();
+    });
+    panel.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', closePanel);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) closePanel(); });
+
+    $id('apModeSeg').addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-mode]');
+      if (!b) return;
+      Utils.theme.set(b.dataset.mode);
+      // 同步顶栏 🌙 按钮的图标与 aria-label（与 initApp 中逻辑一致）
+      const themeBtn = $id('themeBtn');
+      const m = Utils.theme.current;
+      const label = m === 'dark' ? '深色' : m === 'light' ? '浅色' : '自动';
+      themeBtn.textContent = m === 'dark' ? '☀' : m === 'light' ? '🌙' : '🌓';
+      themeBtn.setAttribute('aria-label', `当前主题：${label}，点击切换`);
+      GraphEngine.redraw();
+      syncUI();
+    });
+    $id('apSchemes').addEventListener('click', (e) => {
+      const b = e.target.closest('.ap-swatch');
+      if (b) setScheme(b.dataset.scheme);
+    });
+    $id('apBgSeg').addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-bg]');
+      if (b) setBg(b.dataset.bg);
+    });
+    $id('apPickImage').addEventListener('click', () => $id('apImageInput').click());
+    $id('apImageInput').addEventListener('change', (e) => {
+      if (e.target.files.length) handleImageFile(e.target.files[0]);
+      e.target.value = ''; // 允许重复选择同一文件
+    });
+    $id('apClearImage').addEventListener('click', () => {
+      try { localStorage.removeItem(K.img); } catch {}
+      applyBg(); syncUI();
+    });
+    $id('apOpacity').addEventListener('input', (e) => setOpacity(e.target.value));
+
+    syncUI();
+  };
+
+  return { init, syncMode: syncUI };
+})();
+
+/* ---------- 通用工具 ---------- */
+const $ = id => document.getElementById(id);
+
+/* ---------- 读取书源文件夹（handle 模式 / entries 模式） ---------- */
+async function readTextFromHandle(handle, path) {
+  const parts = path.split("/");
+  let dir = handle;
+  try {
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (!parts[i]) continue;
+      dir = await dir.getDirectoryHandle(parts[i]);
+    }
+    const fh = await dir.getFileHandle(parts[parts.length - 1]);
+    return await (await fh.getFile()).text();
+  } catch { return null; }
+}
+// 从 entries 中确定唯一根目录前缀（所有 webkitRelativePath 的公共前缀）
+function determineRootPrefix(entries) {
+  const paths = entries.map(e => e.webkitRelativePath || e.relativePath || e.fullPath).filter(Boolean);
+  if (paths.length === 0) return '';
+  // 取第一个路径，逐级缩短，找到所有路径都以它为前缀的最长段
+  const first = paths[0];
+  const segments = first.split('/');
+  for (let len = segments.length; len > 0; len--) {
+    const prefix = segments.slice(0, len).join('/');
+    if (paths.every(p => p === prefix || p.startsWith(prefix + '/'))) {
+      return prefix;
+    }
+  }
+  return '';
+}
+
+// 缓存本次会话的根目录前缀：按 entries 数组本身弱引用，避免跨目录复用错误前缀
+const rootPrefixCache = new WeakMap();
+
+function getRootPrefix(entries) {
+  if (!entries || !entries.length) return '';
+  let prefix = rootPrefixCache.get(entries);
+  if (prefix === undefined) {
+    prefix = determineRootPrefix(entries);
+    rootPrefixCache.set(entries, prefix);
+  }
+  return prefix;
+}
+
+
+// 标准化相对路径：去掉根目录前缀，得到相对于书根目录的路径
+function toRelPath(entry, rootPrefix) {
+  const full = entry.webkitRelativePath || entry.relativePath || e_fullPath(entry);
+  if (rootPrefix && full.startsWith(rootPrefix + '/')) {
+    return full.slice(rootPrefix.length + 1);
+  }
+  return full;
+}
+
+// 兼容某些环境下 fullPath 以 / 开头
+function e_fullPath(e) {
+  return e.fullPath ? (e.fullPath.startsWith('/') ? e.fullPath.slice(1) : e.fullPath) : '';
+}
+
+// 精确匹配：标准化后的相对路径 === 期望路径（禁止 endsWith 模糊匹配）
+async function readTextFromEntries(entries, relPath) {
+  const rootPrefix = getRootPrefix(entries);
+  const f = entries.find(e => toRelPath(e, rootPrefix) === relPath);
+  return f ? await f.text() : null;
+}
+
+// 排除快照、备份、rewrite 等非权威目录
+const EXCLUDED_DIRS = /^(snapshots|runtime|rewrite|rewrites|backup|backups|快照|备份)(\/|$)/i;
+
+function isExcludedPath(relPath) {
+  const segments = relPath.split('/');
+  return segments.some(seg => EXCLUDED_DIRS.test(seg));
+}
+
+async function collectRoles(handle, entries) {
+  const roles = [];
+  if (handle) {
+    // handle 模式：直接进入 story/roles，不递归整本书（防快照/备份污染）
+    const ROLE_RE = /(?:major|minor|主要角色|次要角色)\/(.+?\.(?:md|MD))$/;
+    async function walkDir(dir, prefix) {
+      for await (const [name, h] of dir.entries()) {
+        const path = prefix + "/" + name;
+        if (h.kind === "file" && name.endsWith(".md")) {
+          const m = path.match(ROLE_RE);
+          if (m) {
+            const tier = /次要|minor/.test(path) ? "次要角色" : "主要角色";
+            let text = "";
+            try { text = await (await h.getFile()).text(); } catch {}
+            roles.push({ tier, name: m[1].replace(/\.md$/i, ""), text });
+          }
+        } else if (h.kind === "directory") {
+          try { await walkDir(h, path); } catch {}
+        }
+      }
+    }
+    try {
+      const story = await handle.getDirectoryHandle("story");
+      const rolesDir = await story.getDirectoryHandle("roles");
+      await walkDir(rolesDir, "roles");
+    } catch {}
+  } else if (entries) {
+    const rootPrefix = getRootPrefix(entries);
+    for (const e of entries) {
+      const rel = toRelPath(e, rootPrefix);
+      if (isExcludedPath(rel)) continue;
+      // 只匹配根目录下 story/roles/ 中的角色文件
+      const m = rel.match(/^story\/roles\/(?:major|minor|主要角色|次要角色)\/(.+?\.(?:md|MD))$/);
+      if (m) {
+        const tier = /次要|minor/.test(rel) ? "次要角色" : "主要角色";
+        roles.push({ tier, name: m[1].replace(/\.md$/i, ""), text: await e.text() });
+      }
+    }
+  }
+  // 检测旧版单文件多角色格式，给出明确提示
+  const legacy = [];
+  if (handle) {
+    for (const n of ["character_matrix.md", "characters.md"]) {
+      if (await readTextFromHandle(handle, "story/" + n)) legacy.push(n);
+    }
+  } else if (entries) {
+    const rootPrefix = getRootPrefix(entries);
+    for (const e of entries) {
+      const rel = toRelPath(e, rootPrefix);
+      if (rel === "story/character_matrix.md" || rel === "story/characters.md") legacy.push(rel.split("/").pop());
+    }
+  }
+  if (legacy.length) {
+    Store.set('legacyCharacterFiles', legacy);
+    console.warn("[dashboard] 检测到旧角色文件格式：" + legacy.join("、") + "。暂不支持，请迁移到 story/roles/{major|minor}/{name}.md。");
+  }
+
+  const seen = new Set();
+  const dupSources = new Set();
+  const deduped = [];
+  for (const r of roles) {
+    const k = r.tier + "|" + r.name;
+    if (seen.has(k)) { dupSources.add(r.name); continue; }
+    seen.add(k);
+    deduped.push(r);
+  }
+  if (dupSources.size) {
+    console.warn("[dashboard] 重复角色（保留首份）：" + [...dupSources].join("、"));
+    Store.set('duplicateRoles', [...dupSources]);
+  }
+  return deduped;
+}
+
+// 章节来源策略：完全以章节文件为准（chapters/*.md），不读取 chapters/index.json。
+// index.json 仅用于其他工具。排除草稿、rewrite、隐藏文件和非 Markdown 文件。
+async function collectChapters(handle, entries) {
+  const out = [];
+  let files = [];
+  if (handle) {
+    try {
+      const dh = await handle.getDirectoryHandle("chapters");
+      for await (const [n, h] of dh.entries()) { if (n.endsWith(".md") && h.kind === "file") files.push({ n, t: await (await h.getFile()).text() }); }
+    } catch {}
+  } else if (entries) {
+    const rootPrefix = getRootPrefix(entries);
+    for (const e of entries) {
+      const rel = toRelPath(e, rootPrefix);
+      if (isExcludedPath(rel)) continue;
+      // 只匹配根目录下 chapters/ 中的章节文件
+      if (/^chapters\/.+\.(md|MD)$/.test(rel)) {
+        files.push({ n: rel.split("/").pop(), _t: e.text() });
+      }
+    }
+  }
+  for (const f of files.sort((a, b) => chapterSortKey(a.n).localeCompare(chapterSortKey(b.n)))) {
+    const text = f.t || await f._t;
+    const num = parseChapterNum(f.n);
+    const title = f.n.replace(/^\d+[_\-]?/, "").replace(/\.md$/i, "").trim();
+    out.push({ name: f.n, num, title, text });
+  }
+  return out;
+}
+
+// 解析章号：优先从文件名提取数字章号，用于排序
+function parseChapterNum(name) {
+  const m = name.match(/^(\d+)/);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
+// 排序键：按解析后的章号数值排序，同章号再按原名字典序（覆盖非补零旧文件）
+function chapterSortKey(name) {
+  const num = parseChapterNum(name);
+  return String(num).padStart(8, '0') + '_' + name;
+}
+
+async function listTopLevel(handle, entries) {
+  try {
+    if (handle) {
+      const names = [];
+      for await (const [name] of handle.entries()) names.push(name);
+      return names.slice(0, 20).join("、");
+    } else if (entries) {
+      const seen = new Set();
+      for (const e of entries) { const rel = e.webkitRelativePath || e.relativePath || e.fullPath; const top = rel.split("/")[0]; if (!seen.has(top)) seen.add(top); }
+      return [...seen].slice(0, 20).join("、");
+    }
+  } catch {}
+  return "（无法读取）";
+}
+
+async function validateBookDir(handle, entries) {
+  const missing = [];
+  let bookJson = null;
+  try {
+    bookJson = handle ? await readTextFromHandle(handle, "book.json") : await readTextFromEntries(entries, "book.json");
+  } catch {}
+  if (bookJson == null) missing.push("book.json");
+  let hasChapters = false;
+  let chapterCount = 0;
+  try {
+    if (handle) {
+      const dh = await handle.getDirectoryHandle("chapters");
+      hasChapters = !!dh;
+      // handle 模式：统计权威章节文件数（排除快照/备份等）
+      if (dh) {
+        for await (const [n, h] of dh.entries()) {
+          if (n.endsWith(".md") && h.kind === "file" && !isExcludedPath("chapters/" + n)) chapterCount++;
+        }
+      }
+    } else if (entries) {
+      // entries 模式：使用标准化路径 + 排除目录规则，只接受根目录下 chapters/*.md
+      const rootPrefix = getRootPrefix(entries);
+      for (const e of entries) {
+        const rel = toRelPath(e, rootPrefix);
+        if (isExcludedPath(rel)) continue;
+        if (/^chapters\/[^/]+\.(md|MD)$/.test(rel)) { hasChapters = true; chapterCount++; }
+      }
+    }
+  } catch { hasChapters = false; }
+  if (!hasChapters) missing.push("chapters/");
+  // 空 chapters 目录：新书合法（不阻断），但记录到返回信息中
+  return { missing, chapterCount };
+}
+
+// 集中式别名映射。权威来源：references/file-contract.json → aliases 字段。
+// 本对象由构建脚本从契约内联生成（build_dashboard.py --inline-contract），不要手动双向编辑。
+// 契约中还定义了 requiredFiles / recommendedFiles / excludedPaths / characterLegacyFiles。
+const ALIASES = {
+  'story/outline/story_frame.md': ['story/story_bible.md', 'story/setting.md', 'story/world.md'],
+  'story/outline/volume_map.md': ['story/volume_outline.md', 'story/outline.md', 'story/plot.md'],
+  'story/book_rules.md': ['story/rules.md', 'story/writing_rules.md'],
+  'story/author_intent.md': ['story/author.md', 'story/intent.md'],
+  'story/current_focus.md': ['story/focus.md', 'story/next.md'],
+  'story/current_state.md': ['story/state.md', 'story/truth.md'],
+  'story/pending_hooks.md': ['story/hooks.md', 'story/foreshadowing.md'],
+  'story/chapter_summaries.md': ['story/summaries.md'],
+  'story/audit-drift.md': ['story/audit_drift.md'],
+  'story/style_guide.md': ['story/style.md', 'story/writing_style.md'],
+};
+
+// 反向映射：从旧名/别名 → canonical path（用于兼容模式精确匹配时识别）
+const ALIAS_TO_CANONICAL = (() => {
+  const map = {};
+  for (const [canonical, aliases] of Object.entries(ALIASES)) {
+    map[canonical.toLowerCase()] = canonical;
+    for (const alias of aliases) map[alias.toLowerCase()] = canonical;
+  }
+  return map;
+})();
+
+// JSON 解析错误应报告具体文件和原因
+function parseBookJson(text) {
+  try {
+    return JSON.parse(text.replace(/^﻿/, ""));
+  } catch (e) {
+    throw new Error("book.json 解析失败：" + e.message + "。请检查文件是否为合法 JSON。");
+  }
+}
+
+// 带别名回退的读取：先尝试标准路径，失败则依次尝试别名（F7）
+async function readWithAlias(handle, entries, path) {
+  const primary = handle ? await readTextFromHandle(handle, path) : await readTextFromEntries(entries, path);
+  if (primary != null) return primary;
+  const aliases = ALIASES[path];
+  if (aliases) {
+    for (const alias of aliases) {
+      const fallback = handle ? await readTextFromHandle(handle, alias) : await readTextFromEntries(entries, alias);
+      if (fallback != null) return fallback;
+    }
+  }
+  return null;
+}
+
+async function loadBook(handle, entries) {
+  const { missing, chapterCount } = await validateBookDir(handle, entries);
+  if (missing.length) {
+    const got = await listTopLevel(handle, entries);
+    throw new Error(
+      "在所选目录中未找到：" + missing.join("、") + "。\n" +
+      "该目录内容为：" + got + "\n\n" +
+      "请选择书的根目录（即含 book.json、chapters/、story/ 的那一层）。"
+    );
+  }
+  const read = (p) => readWithAlias(handle, entries, p);
+  const [bjs, sf, vm, br, cs, summ, style, drift, focus] = await Promise.all([
+    read("book.json"), read("story/outline/story_frame.md"), read("story/outline/volume_map.md"),
+    read("story/book_rules.md"), read("story/current_state.md"), read("story/chapter_summaries.md"),
+    read("story/style_guide.md"), read("story/audit-drift.md"), read("story/current_focus.md")
+  ]);
+  const files = { story_frame: sf, volume_map: vm, book_rules: br, current_state: cs, chapter_summaries: summ, style_guide: style, audit_drift: drift, current_focus: focus };
+
+  // 非阻断缺失文件诊断：区分 required（已在 validateBookDir 阻断）与 recommended
+  const RECOMMENDED_FILES = {
+    story_frame: 'story/outline/story_frame.md', volume_map: 'story/outline/volume_map.md',
+    book_rules: 'story/book_rules.md', current_state: 'story/current_state.md',
+    chapter_summaries: 'story/chapter_summaries.md', style_guide: 'story/style_guide.md',
+    audit_drift: 'story/audit-drift.md', current_focus: 'story/current_focus.md',
+  };
+  const missingRecommended = Object.entries(RECOMMENDED_FILES)
+    .filter(([k]) => !files[k])
+    .map(([k, label]) => ({ key: k, label }));
+
+  // 章节诊断：重复章号、无效文件名、不连续章号
+  const chapters = await collectChapters(handle, entries);
+  const chapterWarnings = diagnoseChapters(chapters);
+
+  const result = {
+    book: bjs ? parseBookJson(bjs) : {},
+    chapters,
+    roles: await collectRoles(handle, entries),
+    files,
+    diagnostics: { missingRecommended, duplicateRoles: [], legacyCharacterFiles: [], chapterWarnings },
+  };
+  try { if (handle) await idbSave("last", handle); } catch {}
+  return result;
+}
+
+// 章节诊断：重复章号、无效文件名、不连续章号
+function diagnoseChapters(chapters) {
+  const warnings = [];
+  const numCounts = new Map();
+  for (const c of chapters) {
+    if (c.num > 0) {
+      numCounts.set(c.num, (numCounts.get(c.num) || 0) + 1);
+    } else {
+      warnings.push({ type: 'invalidNumber', file: c.name, message: `文件名 "${c.name}" 无法解析章号，显示为目录序号` });
+    }
+  }
+  for (const [num, count] of numCounts) {
+    if (count > 1) warnings.push({ type: 'duplicateNumber', num, message: `章号 ${num} 出现 ${count} 次` });
+  }
+  const nums = [...numCounts.keys()].sort((a, b) => a - b);
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] - nums[i - 1] > 1) {
+      warnings.push({ type: 'nonContiguous', from: nums[i - 1], to: nums[i], message: `章号不连续：第 ${nums[i - 1]} 章 → 第 ${nums[i]} 章` });
+    }
+  }
+  return warnings;
+}
+
+/* ---------- IndexedDB：记住上次选中的文件夹句柄 ---------- */
+const IDB = (() => {
+  let db = null;
+  function open() { return new Promise((res, rej) => {
+    try { const r = indexedDB.open("dragon-writer-dashboard", 1); r.onupgradeneeded = e => e.target.result.createObjectStore("handles"); r.onsuccess = e => { db = e.target.result; res(db); }; r.onerror = () => rej(); }
+    catch (e) { rej(e); } });
+  }
+  async function save(name, handle) {
+    if (!db) await open(); return new Promise((res, rej) => {
+      try { const t = db.transaction("handles", "readwrite"); t.objectStore("handles").put(handle, name); t.oncomplete = () => res(); t.onerror = () => rej(); }
+      catch (e) { rej(e); } });
+  }
+  function load(name) { return new Promise((res, rej) => {
+    if (!db) return open().then(() => load(name)).then(res).catch(rej);
+    try { const t = db.transaction("handles", "readonly"); const q = t.objectStore("handles").get(name); q.onsuccess = () => res(q.result); q.onerror = () => rej(); }
+    catch (e) { rej(e); } });
+  }
+  return { save, load };
+})();
+const idbSave = IDB.save;
+
+/* ---------- Overview 组件 ---------- */
+const Overview = {
+  _lastVersion: -1,
+
+  onEnter() {
+    if (Store.state.dataVersion !== this._lastVersion) this.render();
+  },
+
+  render() {
+    const book = Store.get('book');
+    const chapters = Store.get('chapters');
+    const files = Store.get('files');
+    if (!book) { document.getElementById('panel-overview').innerHTML = '<div class="empty-state"><div class="icon">&#x1F4DA;</div>未找到书籍数据</div>'; return; }
+
+    const target = book.targetChapters || 0;
+    const done = chapters.length;
+    const pct = target ? Math.min(100, Math.round(done / target * 100)) : 0;
+    const totalWords = chapters.reduce((s, c) => s + Utils.countWords(c.text), 0);
+
+    document.getElementById('panel-overview').innerHTML = `
+      <h2>总览</h2>
+      <p class="lede">本书当前的写作进度与最新状态。</p>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="ringwrap">
+          <div class="ring" style="--p:${pct}%">
+            <span class="num">${pct}<span class="pct-sym">%</span></span>
+          </div>
+          <div>
+            <div class="ringcaption">已完成 <strong>${done}</strong> / <strong>${target || '—'}</strong> 章</div>
+            <div class="ringcaption">约 <strong>${Utils.fmtNum(totalWords)}</strong> 字 / 目标单章 <strong>${Utils.fmtNum(book.chapterWordCount || 3000)}</strong> 字</div>
+            <div class="ringcaption muted">${book.updatedAt ? '更新于 ' + Utils.fmtDate(book.updatedAt) : ''}</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid stats" id="statGrid">${this._renderStats(book, chapters, totalWords)}</div>
+      <div class="section-title">当前状态</div>
+      <div class="grid col2" id="stateGrid">${this._renderCurrentState(files.current_state)}</div>
+      <div class="section-title">当前焦点</div>
+      <div id="focusCard" class="card">${this._renderFocus(files.current_focus)}</div>
+      <div class="section-title">最近章节</div>
+      <div id="recentChapters" class="card">${this._renderRecentChapters(files.chapter_summaries)}</div>
+      <div class="section-title">审计漂移</div>
+      <div id="auditDrift" class="card">${this._renderAuditDrift(files.audit_drift)}</div>
+      <div class="section-title">字数趋势</div>
+      <div id="wordTrend" class="card">${this._renderWordTrend(chapters)}</div>
+      <div class="section-title">文件诊断</div>
+      <div id="diagnostics" class="card">${this._renderDiagnostics()}</div>
+    `;
+    // 圆环从 0 过渡到目标值（@property 注册的 --p 支持过渡）
+    const ring = document.querySelector('#panel-overview .ring');
+    if (ring) {
+      const target = ring.style.getPropertyValue('--p');
+      ring.style.setProperty('--p', '0%');
+      requestAnimationFrame(() => requestAnimationFrame(() => ring.style.setProperty('--p', target)));
+    }
+    this._lastVersion = Store.state.dataVersion;
+  },
+
+  _renderDiagnostics() {
+    const diag = Store.get('diagnostics') || {};
+    const parts = [];
+    const recommended = diag.missingRecommended || [];
+    if (recommended.length) {
+      parts.push(`<div class="drift-item"><b>缺失推荐文件</b><div class="muted">` + recommended.map(r => Utils.escHtml(r.label)).join('、') + `</div></div>`);
+    }
+    const chWarnings = diag.chapterWarnings || [];
+    if (chWarnings.length) {
+      parts.push(`<div class="drift-item"><b>章节告警</b>` + chWarnings.map(w => `<div class="muted">${Utils.escHtml(w.message)}</div>`).join('') + `</div>`);
+    }
+    const dups = diag.duplicateRoles || [];
+    if (dups.length) {
+      parts.push(`<div class="drift-item"><b>重复角色</b><div class="muted">${Utils.escHtml(dups.join('、'))}（保留首份）</div></div>`);
+    }
+    const legacy = diag.legacyCharacterFiles || [];
+    if (legacy.length) {
+      parts.push(`<div class="drift-item"><b>旧角色格式</b><div class="muted">${Utils.escHtml(legacy.join('、'))} 暂不支持，请迁移到 story/roles/</div></div>`);
+    }
+    return parts.length ? `<div class="drift-section">${parts.join('')}</div>` : '<div class="muted" style="font-size:13px">无异常</div>';
+  },
+
+  _renderStats(book, chapters, totalWords) {
+    const done = chapters.length;
+    const target = book.targetChapters || 0;
+    const avg = done ? Math.round(totalWords / done) : 0;
+    return [
+      ['总章节', `${done} 章`],
+      ['目标章节', target ? `${target} 章` : '—'],
+      ['总字数', Utils.fmtNum(totalWords)],
+      ['平均章字数', done ? Utils.fmtNum(avg) : '—'],
+      ['单章目标', Utils.fmtNum(book.chapterWordCount || 3000)],
+      ['状态', Utils.statusLabel(book.status)],
+    ].map(([l, v]) => `<div class="stat card"><div class="label">${l}</div><div class="value">${v}</div></div>`).join('');
+  },
+
+  _renderCurrentState(text) {
+    if (!text) return '<div class="card empty-state">未找到 current_state.md</div>';
+    const section = (h) => {
+      const m = text.match(new RegExp(`##?\\s*${h}[\\s\\S]*?(?=\\n##?\\s|$)`, 'i'));
+      return m ? m[0].replace(/^#+\s*.*\n/, '').trim() : '';
+    };
+    const items = [
+      ['location', '地点/时间', '地点?与?时间'],
+      ['protagonist', '主角', '主角'],
+      ['truth', '已知真相', '已知真[相]?'],
+      ['relationship', '关系', '关系'],
+      ['conflict', '当前冲突', '当前冲突'],
+    ].map(([k, label, re]) => {
+      const s = section(re);
+      if (!s) return null;
+      return `<div class="state-item"><b>${label}</b><span>${MDParser.parseInline(s.split('\n').filter(l => l.trim()).slice(0, 3).join('；'))}</span></div>`;
+    }).filter(Boolean);
+    return items.length ? `<div class="state-grid">${items.join('')}</div>` : '<div class="empty-state">暂无状态记录</div>';
+  },
+
+  _renderFocus(text) {
+    if (!text) return '<div class="empty-state">暂无当前焦点</div>';
+    const lines = MDParser.parse(text);
+    return `<div class="article" style="font-size:14px">${lines}</div>`;
+  },
+
+  _renderRecentChapters(text) {
+    if (!text) return '<div class="empty-state">暂无章节摘要</div>';
+    const rows = text.split('\n').filter(l => /^\|\s*[：:]?\d/.test(l.trim()));
+    const recent = rows.slice(-6).map(r => {
+      const c = r.replace(/^\||\|$/g, '').split('|').map(x => x.trim());
+      return { ch: c[0], title: c[1], chars: c[2], events: c[3], change: c[4], hook: c[5], mood: c[6] };
+    }).filter(r => r.title);
+    if (!recent.length) return '<div class="empty-state">暂无章节摘要</div>';
+    return `<div class="table-wrap"><table><thead><tr><th>章</th><th>标题</th><th>角色</th><th>事件</th><th>变化</th><th>钩子</th><th>心境</th></tr></thead><tbody>` +
+      recent.slice().reverse().map(r => `<tr><td style="font-family:var(--mono)">${Utils.escHtml(r.ch)}</td><td>${Utils.escHtml(r.title || '—')}</td><td class="muted">${Utils.escHtml(r.chars || '—')}</td><td class="muted">${Utils.escHtml(r.events || '—')}</td><td class="muted">${Utils.escHtml(r.change || '—')}</td><td class="muted">${Utils.escHtml(r.hook || '—')}</td><td class="muted">${Utils.escHtml(r.mood || '—')}</td></tr>`).join('') +
+      `</tbody></table></div>`;
+  },
+
+  _renderAuditDrift(text) {
+    if (!text) return '<div class="empty-state">暂无审计漂移记录</div>';
+    const section = (title) => {
+      const m = text.match(new RegExp(`## ${title}([\\s\\S]*?)(?=\\n## |$)`, 'i'));
+      if (!m || !m[1].trim()) return '';
+      return m[1];
+    };
+    const renderDriftSection = (title, body, cls) => {
+      const items = body.split(/\n###\s+/).filter(Boolean);
+      return `<div class="drift-section"><div class="drift-title ${cls}">${title}</div>` +
+        items.map(it => {
+          const li = it.split('\n').filter(l => l.trim());
+          const head = li.shift() || '';
+          return `<div class="drift-item ${cls}"><b>${Utils.escHtml(head.trim().replace(/^第\d+章 · /, ''))}</b>` +
+            li.map(l => `<div class="muted">${Utils.escHtml(l.replace(/^-\s*/, '').trim())}</div>`).join('') +
+            `</div>`;
+        }).join('') + `</div>`;
+    };
+    const fixed = section('已修复');
+    const open = section('已知漂移');
+    let out = '';
+    if (fixed) out += renderDriftSection('已修复', fixed, 'is-fixed');
+    if (open) out += renderDriftSection('已知漂移', open, 'is-open');
+    return out || `<div class="article">${MDParser.parse(text)}</div>`;
+  },
+
+  _renderWordTrend(chapters) {
+    if (!chapters.length) return '<div class="empty-state">暂无章节数据</div>';
+    const height = 120;
+    const accent = Utils.theme.get('accent');
+    const muted = Utils.theme.get('textMuted');
+    const targetWords = Store.get('book')?.chapterWordCount || 3000;
+
+    // 大书聚合采样：章节过多时按桶聚合，避免 SVG 节点爆炸
+    const MAX_BARS = 200;
+    let data = chapters.map(c => ({ num: c.num, words: Utils.countWords(c.text), label: `第${c.num}回` }));
+    let aggregated = false;
+    if (data.length > MAX_BARS) {
+      const bucketSize = Math.ceil(data.length / MAX_BARS);
+      const buckets = [];
+      for (let i = 0; i < data.length; i += bucketSize) {
+        const slice = data.slice(i, i + bucketSize);
+        const total = slice.reduce((s, d) => s + d.words, 0);
+        buckets.push({ num: slice[0].num, words: Math.round(total / slice.length), label: `第${slice[0].num}–${slice[slice.length - 1].num}回`, aggregated: true });
+      }
+      data = buckets;
+      aggregated = true;
+    }
+
+    const maxWords = Math.max(...data.map(d => d.words), 1);
+    const gap = 2;
+    const barWidth = Math.max(3, Math.min(20, 600 / data.length));
+    const width = Math.max(600, data.length * (barWidth + gap));
+
+    const bars = data.map((d, i) => {
+      const h = (d.words / maxWords) * (height - 20);
+      const x = i * (barWidth + gap);
+      const y = height - 10 - h;
+      return `<rect x="${x}" y="${y}" width="${barWidth}" height="${h}" fill="${accent}" opacity="0.7" rx="1">
+        <title>${d.label}: ${Utils.fmtNum(d.words)} 字${aggregated ? '（均值）' : ''}</title>
+      </rect>`;
+    }).join('');
+
+    const targetY = height - 10 - (targetWords / maxWords) * (height - 20);
+    const targetLine = `<line x1="0" y1="${targetY}" x2="${width}" y2="${targetY}" stroke="${muted}" stroke-dasharray="4,3" stroke-width="1"/>
+      <text x="${width - 4}" y="${targetY - 4}" fill="${muted}" font-size="10" text-anchor="end">目标 ${Utils.fmtNum(targetWords)} 字</text>`;
+
+    return `<div style="overflow-x:auto"><svg width="${width}" height="${height + 20}" viewBox="0 0 ${width} ${height + 20}">
+      ${bars}${targetLine}
+    </svg></div><div class="muted" style="font-size:12px;margin-top:4px">每章字数${aggregated ? `（已按 ${Math.ceil(chapters.length / MAX_BARS)} 章/桶聚合）` : '（鼠标悬停查看具体数值）'}</div>`;
+  },
+};
+
+/* ---------- 设定完成度计算（纯函数，供 Settings / SettingsContent 共用） ---------- */
+const SETTING_DOMAINS = [
+  { key: 'story_frame', title: '故事框架 (story_frame.md)', subs: ['主题[与和]基调', '前[台景]故事|背景故事', '核心冲突|对手', '世界[法]?[则律]', '终局[目][标]'] },
+  { key: 'volume_map', title: '卷纲 (volume_map.md)', subs: ['弧线[结构]?|[故]?事弧线', '情感曲线', '钩子[种伏]?[子]?|回报图|伏笔', '人[物][角色]?弧线|角色成长', '节奏[原]?[则]?'] },
+  { key: 'book_rules', title: '规则书 (book_rules.md)', subs: ['POV|[视][角]', '题材[规]?[则]', '定局锁|硬锁|canon', '力[量]?|限制', '禁[手止]', '风[格]?[约]?束'] },
+  { key: 'current_state', title: '当前状态 (current_state.md)', subs: ['[当]?[前]?章节|进度', '地点|时间', '主角', '已知真[相]?|线索', '关系|人际', '资源|伤势|库存', '冲[突]'] },
+];
+
+// 纯函数：根据 files 映射计算各领域完成度，不依赖任何组件状态
+function computeSettingCompletion(files) {
+  return SETTING_DOMAINS.map(d => {
+    const text = files[d.key];
+    if (!text) return { key: d.key, title: d.title, present: false, pct: 0, items: [] };
+    const items = d.subs.map(re => {
+      const sec = text.match(new RegExp('##?\\s*[^\\n]*' + re + '[\\s\\S]*?(?=\\n##?\\s|$)', 'i'));
+      let filled = false;
+      if (sec) {
+        const body = sec[0].replace(/^.*\n/, '').trim();
+        filled = body.length > 0 && !/^[-\s]*$/.test(body) && !/待[编写定充实]|TODO|xx|请输入|TBD|待补|占位/i.test(body);
+      }
+      return { label: re.replace(/[\[\]?|]/g, c => ({ '[': '', ']': '', '?': '', '|': ' / ' })[c]), ok: filled };
+    });
+    const pct = items.length ? Math.round(items.filter(i => i.ok).length / items.length * 100) : 0;
+    return { key: d.key, title: d.title, present: true, pct, items };
+  });
+}
+
+/* ---------- SettingsContent 组件（设定原文） ---------- */
+const SettingsContent = {
+  _lastVersion: -1,
+
+  onEnter() {
+    if (Store.state.dataVersion !== this._lastVersion) this.render();
+  },
+
+  render() {
+    const files = Store.get('files');
+    const SETTING_FILES = [
+      { key: 'story_frame', title: '故事框架' },
+      { key: 'volume_map', title: '卷纲' },
+      { key: 'book_rules', title: '规则书' },
+      { key: 'current_state', title: '当前状态' },
+      { key: 'style_guide', title: '风格指南' },
+    ];
+
+    // 独立计算完成度，不依赖用户先访问"设定完成度"标签
+    const completion = computeSettingCompletion(files);
+    const completionMap = new Map(completion.map(c => [c.key, c]));
+
+    document.getElementById('panel-settings-content').innerHTML = `
+      <h2>设定内容</h2>
+      <p class="lede">全部设定文件的完整原文，可在仪表盘内直接阅读。</p>
+      ${SETTING_FILES.filter(f => files[f.key]).map((f, idx) => {
+        const text = files[f.key];
+        const comp = completionMap.get(f.key);
+        const pct = comp ? comp.pct : 0;
+        return `<div class="card settingfile open" id="sfc-${idx}">
+          <div class="row" tabindex="0" role="button" aria-expanded="true">
+            <span class="chev">▶</span>
+            <span class="name">${Utils.escHtml(f.title)}</span>
+            <span class="tag">${Utils.fmtNum(Utils.countWords(text))} 字</span>
+            <span class="pct" style="color:${this._pctColor(pct)}">${pct}% 完成</span>
+          </div>
+          <div class="body"><div class="article">${MDParser.parse(text)}</div></div>
+        </div>`;
+      }).join('') || '<div class="card empty-state">暂无设定文件</div>'}
+    `;
+
+    SETTING_FILES.filter(f => files[f.key]).forEach((f, idx) => {
+      const el = document.getElementById('sfc-' + idx);
+      if (!el) return;
+      const row = el.querySelector('.row');
+      row.addEventListener('click', () => {
+        el.classList.toggle('open');
+        row.setAttribute('aria-expanded', el.classList.contains('open'));
+      });
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); }
+      });
+    });
+
+    this._lastVersion = Store.state.dataVersion;
+  },
+
+  _pctColor(pct) {
+    if (pct < 30) return 'var(--danger)';
+    if (pct < 70) return 'var(--warning)';
+    return 'var(--success)';
+  },
+};
+
+/* ---------- 关系图数据构建（供 Characters 组件使用） ---------- */
+/* 关系词典：把整段描述收敛为连线上显示的单词标签（按文中最后一次出现取词，
+   演进类描述「不屑→敌意→敬意」以当前状态为准） */
+const REL_WORDS = [
+  '生死相依', '青梅竹马', '未婚妻', '未婚夫', '前女友', '前男友', '道侣', '情侣', '恋人', '夫妻', '妻子', '丈夫',
+  '挚爱', '红颜', '知己', '暗恋', '仰慕', '心动', '喜欢', '好感', '师徒', '师父', '师尊', '徒弟', '弟子',
+  '师兄', '师弟', '师姐', '师妹', '父子', '父女', '母子', '母女', '兄弟', '兄妹', '姐弟', '姐妹',
+  '父亲', '母亲', '儿子', '女儿', '至亲', '家人', '挚友', '好友', '朋友', '同门', '同僚', '同伴',
+  '战友', '搭档', '盟友', '同盟', '主仆', '主人', '下属', '仆从', '护卫', '恩人', '仇人', '仇敌',
+  '宿敌', '死敌', '敌对', '对手', '劲敌', '情敌', '宿怨', '棋子', '利用', '监视', '庇护', '守护',
+  '追杀', '雇佣', '妖契', '血契', '命契', '契约', '羁绊', '旧识', '相识', '前辈', '后辈', '上司',
+  '同事', '同学', '好奇', '警惕', '戒备', '依赖', '亏欠',
+];
+
+// 把关系描述收敛为单个词语标签
+const relWord = (desc) => {
+  if (!desc) return '';
+  const d = String(desc).replace(/\*\*/g, '').trim();
+  // 0. 未相识特判
+  if (/尚未认识|未接触|未曾谋面|互不认识|不认识|未相遇/.test(d)) return '陌生';
+  // 1. 规范格式「对方 — 关系词 — 说明」：首段即单词
+  const dashParts = d.split('—').map(s => s.trim()).filter(Boolean);
+  if (dashParts.length >= 2 && dashParts[0].length <= 6 && !/[。，；→：:（(]/.test(dashParts[0])) return dashParts[0];
+  // 2. 箭头演进链：取最终态（≤6 字才视为单词）
+  if (d.includes('→')) {
+    const last = d.split('→').pop().replace(/[（(].*?[）)]/g, '').replace(/[。，；,;.\s]/g, '');
+    if (last && last.length <= 6) return last;
+  }
+  // 3. 词典匹配：取文中最后一次出现的词
+  let hit = null;
+  for (const w of REL_WORDS) {
+    let i = -1;
+    while ((i = d.indexOf(w, i + 1)) >= 0) { if (!hit || i >= hit.i) hit = { w, i }; }
+  }
+  if (hit) return hit.w;
+  // 4. 兜底：首句截断
+  const first = d.split(/[。，；,;]/)[0].replace(/[（(].*?[）)]/g, '').trim();
+  return first.length <= 6 ? first : first.slice(0, 5) + '…';
+};
+
+// 解析「对方名：描述」「对方名 — 描述」行（先剥离 ** 与括号注释）
+const parseRelLine = (line) => {
+  const clean = String(line).replace(/\*\*/g, '').trim();
+  const m = clean.match(/^([^:：—\-（(]{1,12})\s*[—\-:：]\s*(.+)$/);
+  if (!m) return null;
+  return { name: m[1].replace(/[（(].*$/, '').trim(), desc: m[2].trim() };
+};
+
+const buildGraph = (roles, currentState) => {
+  const accent = Utils.theme.get('accent');
+  const minorColor = Utils.theme.get('textMuted');
+  // 角色显示名：优先取文内一级标题（兼容拼音文件名，如 lu_chen.md → 陆尘）
+  const roleName = (r) => {
+    const m = r.text && r.text.match(/^#\s*([^\n（(]+)/);
+    return (m ? m[1] : r.name).trim();
+  };
+  const nodes = roles.map((r, i) => {
+    const heading = r.text && r.text.match(/^#\s*([^\n]+)/);
+    const func = MDParser.extractSection(r.text, 'Story [Ff]unction|故事功能|角色[定定]?[位义]|功能').slice(0, 6).join('；');
+    return {
+      i, name: roleName(r), tier: r.tier,
+      // 主角标记：标题注记（主角）；功能描述以「男主/主角」等开头为强标记
+      prot: !!(heading && /主角/.test(heading[1])),
+      protStrong: /^(男主|主角|主人公|主视角)/.test(func) || /protagonist/i.test(func),
+      protWeak: /男主|女主|主角|主人公|主视角/i.test(func),
+      color: /次要|minor/.test(r.tier) ? minorColor : accent,
+      func,
+      desire: MDParser.extractField(r.text, ['欲望', 'desire']) || MDParser.extractSection(r.text, '[Dd]esire|欲望').slice(0, 6).join('；'),
+      fear: MDParser.extractField(r.text, ['恐惧', 'fear']) || MDParser.extractSection(r.text, '[Ff]ear|恐惧').slice(0, 6).join('；'),
+      state: MDParser.extractField(r.text, ['当前状态', 'current state']) || MDParser.extractSection(r.text, '[Cc]urrent [Ss]tate|当前状态').slice(0, 6).join('；'),
+      arc: MDParser.extractField(r.text, ['弧线', '成长', 'arc']) || MDParser.extractSection(r.text, '[Aa]rc|弧线|成长').slice(0, 6).join('；'),
+      secrets: MDParser.extractSection(r.text, '[Ss]ecrets|秘密').slice(0, 6).join('；'),
+    };
+  });
+  const nameIdx = new Map(nodes.map(nd => [nd.name.toLowerCase(), nd.i]));
+  // 规范化查找：剥离 ** 与括号注释后精确匹配
+  const findNode = (name) =>
+    nameIdx.get(String(name).replace(/\*\*/g, '').replace(/[（(].*$/, '').trim().toLowerCase());
+
+  const edges = [];
+  const edgeSeen = new Set(); // 无向去重
+  const addEdge = (si, ti, label, desc) => {
+    if (si === undefined || ti === undefined || si === ti) return;
+    const k = Math.min(si, ti) + '|' + Math.max(si, ti);
+    if (edgeSeen.has(k)) return;
+    edgeSeen.add(k);
+    edges.push({ s: si, t: ti, label, desc: desc || label });
+  };
+
+  // 来源 1：角色卡的「人物关系 / Relationships / 关系网」段落
+  roles.forEach((r, si) => {
+    const lines = MDParser.extractSection(r.text, '[Rr]elationships?|关系[网战]?');
+    for (const l of lines) {
+      const p = parseRelLine(l);
+      if (!p) continue;
+      addEdge(si, findNode(p.name), relWord(p.desc), p.desc);
+    }
+  });
+
+  // 来源 2：current_state.md 的「人物关系 Relationships」段落
+  // 支持「A ↔ B：描述」行与主角中心表格（| 角色 | 与主角关系 | … |）
+  if (currentState) {
+    const lines = MDParser.extractSection(currentState, '[Rr]elationships?|关系[网战]?');
+    // 主角定位（强 → 弱 → 角色卡连线最多 → 第一个主要角色）
+    const isMinor = n => /次要|minor/.test(n.tier);
+    let pi = nodes.findIndex(n => !isMinor(n) && (n.prot || n.protStrong));
+    if (pi < 0) pi = nodes.findIndex(n => n.prot || n.protStrong);
+    if (pi < 0) pi = nodes.findIndex(n => !isMinor(n) && n.protWeak);
+    if (pi < 0 && edges.length) {
+      const deg = nodes.map(() => 0);
+      for (const e of edges) { deg[e.s]++; deg[e.t]++; }
+      let bestDeg = 0;
+      nodes.forEach((n, i) => { if (!isMinor(n) && deg[i] > bestDeg) { bestDeg = deg[i]; pi = i; } });
+    }
+    if (pi < 0) pi = nodes.findIndex(n => !isMinor(n));
+    for (const l of lines) {
+      if (/^\|/.test(l)) {
+        // 表格行：col1 = 对方，col2 = 关系描述
+        const cells = l.replace(/^\||\|$/g, '').split('|').map(s => s.trim());
+        if (cells.length < 2) continue;
+        if (/^[-—:\s]+$/.test(cells.join(''))) continue;      // 分隔行
+        if (/角色|关系方|对象|姓名/.test(cells[0])) continue;   // 表头
+        if (pi >= 0) addEdge(pi, findNode(cells[0]), relWord(cells[1]), cells[1]);
+        continue;
+      }
+      // 「A ↔ B：描述」双方具名行
+      const both = l.replace(/\*\*/g, '').match(/^([^:：—\-（(]{1,12})\s*↔\s*([^:：—\-（(]{1,12})\s*[：:]\s*(.+)$/);
+      if (both) {
+        addEdge(findNode(both[1]), findNode(both[2]), relWord(both[3]), both[3].trim());
+        continue;
+      }
+      // 普通「对方：描述」行：挂到主角
+      const p = parseRelLine(l);
+      if (p && pi >= 0) addEdge(pi, findNode(p.name), relWord(p.desc), p.desc);
+    }
+  }
+  return { nodes, edges };
+};
+
+/* ---------- GraphEngine 力导向关系图 ---------- */
+const GraphEngine = (() => {
+  let canvas, ctx, W = 0, H = 0, dpr = 1;
+  let nodes = [], edges = [];
+  let adjList = []; // 邻接表：nodes[i] 的邻居集合，避免每次全量扫描 edges
+  let selected = -1, dragging = -1, hovered = -1;
+  let raf = null;
+  let physicsRunning = false;
+  let settledCount = 0;
+  let frameCount = 0; // 模拟帧计数，防止大角色图无限运行
+  let resizeHandler = null; // 保存 resize handler 引用，供 destroy 移除
+  // 视口变换：screen = world * scale + offset（节点坐标全部在世界坐标系中）
+  let scale = 1, ox = 0, oy = 0;
+  let panning = false, panStart = null;
+  const MIN_SCALE = 0.25, MAX_SCALE = 3;
+  const SETTLE_THRESHOLD = 0.5;
+  const SETTLE_FRAMES = 10;
+  const MAX_PHYSICS_FRAMES = 600; // 最多模拟 600 帧（约 10 秒），超时即停止
+  const LARGE_GRAPH_THRESHOLD = 80; // 节点数超过此值视为大型关系图，降低迭代频率
+  const WORLD_BOUND = 2400; // 世界坐标软边界，防止节点飞散
+
+  const isMinorNode = n => /次要|minor/.test(n.tier);
+
+  const toWorld = (mx, my) => ({ x: (mx - ox) / scale, y: (my - oy) / scale });
+
+  const init = (cvs, gdata) => {
+    // 重新初始化前先 destroy，避免监听器泄漏
+    destroy();
+
+    canvas = cvs;
+    ctx = canvas.getContext('2d');
+    selected = -1;
+    dragging = -1;
+    hovered = -1;
+    panning = false;
+    panStart = null;
+    scale = 1; ox = 0; oy = 0;
+    physicsRunning = false;
+    settledCount = 0;
+
+    const resize = () => {
+      const r = canvas.getBoundingClientRect();
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = r.width * dpr;
+      canvas.height = r.height * dpr;
+      W = r.width;
+      H = r.height;
+      // 节点在世界坐标系中，resize 不影响其位置，只需重绘
+      draw();
+    };
+    resize();
+    resizeHandler = resize;
+    window.addEventListener('resize', resize);
+
+    // 初始布局：主要角色在内圈、次要角色在外圈，均匀分布，避免开局乱成一团
+    const majorCount = gdata.nodes.filter(n => !isMinorNode(n)).length;
+    const minorCount = gdata.nodes.length - majorCount;
+    let mi = 0, ni = 0;
+    nodes = gdata.nodes.map(n => {
+      const minor = isMinorNode(n);
+      const idx = minor ? ni++ : mi++;
+      const total = minor ? minorCount : majorCount;
+      const R = minor ? Math.max(230, total * 24) : Math.max(120, total * 42);
+      const a = (idx / Math.max(1, total)) * Math.PI * 2 - Math.PI / 2 + (minor ? 0.25 : 0);
+      return {
+        ...n,
+        x: Math.cos(a) * R + (Math.random() - 0.5) * 30,
+        y: Math.sin(a) * R + (Math.random() - 0.5) * 30,
+        vx: 0, vy: 0, deg: 0, r: minor ? 14 : 18,
+      };
+    });
+    edges = gdata.edges;
+    // 预计算度数、半径与邻接表
+    adjList = nodes.map(() => new Set());
+    for (const e of edges) {
+      nodes[e.s].deg++; nodes[e.t].deg++;
+      adjList[e.s].add(e.t); adjList[e.t].add(e.s);
+    }
+    for (const n of nodes) n.r = (isMinorNode(n) ? 14 : 18) + Math.min(14, n.deg * 2);
+
+    // 事件绑定
+    canvas.onpointerdown = (e) => {
+      const h = hitTest(e);
+      if (h >= 0) {
+        dragging = h;
+        selectNode(h);
+        // 拖拽时恢复物理模拟
+        if (!physicsRunning) start();
+      } else {
+        // 空白处：开始平移
+        panning = true;
+        const r = canvas.getBoundingClientRect();
+        panStart = { x: e.clientX - r.left, y: e.clientY - r.top, ox, oy };
+        canvas.style.cursor = 'grabbing';
+      }
+      // 捕获指针，确保拖拽/平移期间指针移出 canvas 仍能接收事件
+      try { canvas.setPointerCapture(e.pointerId); } catch {}
+    };
+    canvas.onpointermove = (e) => {
+      const r = canvas.getBoundingClientRect();
+      const mx = e.clientX - r.left, my = e.clientY - r.top;
+      if (dragging >= 0) {
+        const w = toWorld(mx, my);
+        nodes[dragging].x = w.x;
+        nodes[dragging].y = w.y;
+        nodes[dragging].vx = 0;
+        nodes[dragging].vy = 0;
+        return;
+      }
+      if (panning && panStart) {
+        ox = panStart.ox + (mx - panStart.x);
+        oy = panStart.oy + (my - panStart.y);
+        draw();
+        return;
+      }
+      // 悬停高亮邻居
+      const h = hitTest(e);
+      canvas.style.cursor = h >= 0 ? 'pointer' : 'grab';
+      if (h !== hovered) { hovered = h; draw(); }
+    };
+    const endPointer = (e) => {
+      if (dragging >= 0 || panning) {
+        try { canvas.releasePointerCapture(e.pointerId); } catch {}
+      }
+      dragging = -1;
+      if (panning) { panning = false; panStart = null; canvas.style.cursor = 'grab'; }
+    };
+    canvas.onpointerup = endPointer;
+    // 指针取消（如触屏来电）时安全结束拖拽
+    canvas.onpointercancel = endPointer;
+    // 双击空白处：适应画布
+    canvas.ondblclick = (e) => { if (hitTest(e) < 0) zoomFit(); };
+    // 滚轮：以光标为中心缩放
+    canvas.onwheel = (e) => {
+      e.preventDefault();
+      const r = canvas.getBoundingClientRect();
+      zoomBy(Math.exp(-e.deltaY * 0.0012), e.clientX - r.left, e.clientY - r.top);
+    };
+
+    zoomFit();
+    start();
+  };
+
+  /* ---------- 视口控制 ---------- */
+  const contentBBox = () => {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of nodes) {
+      minX = Math.min(minX, n.x - n.r - 14);
+      minY = Math.min(minY, n.y - n.r - 14);
+      maxX = Math.max(maxX, n.x + n.r + 14);
+      maxY = Math.max(maxY, n.y + n.r + 28); // 下方名称
+    }
+    return { minX, minY, maxX, maxY };
+  };
+
+  // 以适应方式把全部节点收入视野
+  const zoomFit = () => {
+    if (!canvas || !nodes.length || !W || !H) return;
+    const b = contentBBox();
+    const bw = Math.max(1, b.maxX - b.minX), bh = Math.max(1, b.maxY - b.minY);
+    scale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, Math.min(W / bw, H / bh) * 0.92));
+    ox = W / 2 - (b.minX + b.maxX) / 2 * scale;
+    oy = H / 2 - (b.minY + b.maxY) / 2 * scale;
+    draw();
+  };
+
+  // 恢复 100% 缩放（内容居中）
+  const zoomReset = () => {
+    if (!canvas || !nodes.length || !W || !H) return;
+    const b = contentBBox();
+    scale = 1;
+    ox = W / 2 - (b.minX + b.maxX) / 2;
+    oy = H / 2 - (b.minY + b.maxY) / 2;
+    draw();
+  };
+
+  // 以画布上某点为中心缩放（默认画布中心），该点对应的世界坐标保持不动
+  const zoomBy = (f, cx, cy) => {
+    if (!canvas) return;
+    if (cx === undefined) cx = W / 2;
+    if (cy === undefined) cy = H / 2;
+    const ns = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * f));
+    if (ns === scale) return;
+    const wx = (cx - ox) / scale, wy = (cy - oy) / scale;
+    scale = ns;
+    ox = cx - wx * scale;
+    oy = cy - wy * scale;
+    draw();
+  };
+
+  const start = () => {
+    if (physicsRunning) return;
+    // 无节点时不启动无意义的动画循环
+    if (!nodes.length) { draw(); return; }
+    physicsRunning = true;
+    settledCount = 0;
+    frameCount = 0;
+    loop();
+  };
+
+  const pause = () => {
+    // GraphEngine 未初始化时安全返回
+    if (!ctx || !canvas) return;
+    physicsRunning = false;
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    // 暂停时绘制一帧静态图
+    draw();
+  };
+
+  const resume = () => {
+    // GraphEngine 未初始化时安全返回
+    if (!ctx || !canvas) return;
+    if (!physicsRunning) {
+      physicsRunning = true;
+      // 重置模拟计数，确保重新进入标签时可合理绘制（即使已达 MAX_PHYSICS_FRAMES）
+      settledCount = 0;
+      frameCount = 0;
+      loop();
+    }
+  };
+
+  const destroy = () => {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    physicsRunning = false;
+    // 移除 window resize 监听器（修复监听器泄漏）
+    if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
+    if (canvas) {
+      canvas.onpointerdown = null;
+      canvas.onpointermove = null;
+      canvas.onpointerup = null;
+      canvas.onpointercancel = null;
+      canvas.ondblclick = null;
+      canvas.onwheel = null;
+    }
+    canvas = null;
+    ctx = null;
+    nodes = [];
+    edges = [];
+    adjList = [];
+    panning = false;
+    panStart = null;
+  };
+
+  const loop = () => {
+    if (!physicsRunning) return;
+
+    // 大型关系图性能优化：节点过多时降低迭代频率（隔帧跳过斥力计算）
+    const isLargeGraph = nodes.length > LARGE_GRAPH_THRESHOLD;
+    if (isLargeGraph && frameCount % 2 === 0) {
+      // 仅更新位置，跳过斥力计算
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        if (i !== dragging) { n.x += n.vx; n.y += n.vy; }
+      }
+      draw();
+      frameCount++;
+      raf = requestAnimationFrame(loop);
+      return;
+    }
+
+    // 物理模拟
+    for (const n of nodes) { n.vx *= 0.85; n.vy *= 0.85; }
+
+    // 弹簧力
+    for (const e of edges) {
+      const a = nodes[e.s], b = nodes[e.t];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const f = (d - 170) * 0.008;
+      const ux = dx / d, uy = dy / d;
+      a.vx += ux * f; a.vy += uy * f;
+      b.vx -= ux * f; b.vy -= uy * f;
+    }
+
+    // 斥力
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        const f = -1400 / (d * d);
+        const ux = dx / d, uy = dy / d;
+        a.vx += ux * f; a.vy += uy * f;
+        b.vx -= ux * f; b.vy -= uy * f;
+      }
+    }
+
+    // 中心引力（世界坐标原点）
+    for (const n of nodes) {
+      n.vx += (0 - n.x) * 0.0012;
+      n.vy += (0 - n.y) * 0.0012;
+    }
+
+    // 更新位置（世界坐标软边界，防止节点飞散到不可见区域）
+    let totalSpeed = 0;
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      if (i !== dragging) {
+        n.x += n.vx;
+        n.y += n.vy;
+        n.x = Math.max(-WORLD_BOUND, Math.min(WORLD_BOUND, n.x));
+        n.y = Math.max(-WORLD_BOUND, Math.min(WORLD_BOUND, n.y));
+      }
+      totalSpeed += Math.abs(n.vx) + Math.abs(n.vy);
+    }
+
+    // 收敛检测
+    if (totalSpeed < SETTLE_THRESHOLD) {
+      settledCount++;
+      if (settledCount >= SETTLE_FRAMES) {
+        physicsRunning = false;
+        draw();
+        return;
+      }
+    } else {
+      settledCount = 0;
+    }
+
+    // 帧数上限：大角色图在未收敛时及时停止，避免长时间占用主线程
+    frameCount++;
+    if (frameCount >= MAX_PHYSICS_FRAMES) {
+      physicsRunning = false;
+      draw();
+      return;
+    }
+
+    draw();
+    raf = requestAnimationFrame(loop);
+  };
+
+  // 圆角矩形路径（兼容无 ctx.roundRect 的环境）
+  const rr = (x, y, w, h, r) => {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  };
+
+  const draw = () => {
+    // ctx 或 canvas 为空时安全返回
+    if (!ctx || !canvas || !W || !H) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
+    const sans = Utils.theme.get('sans');
+    if (!nodes.length) {
+      ctx.fillStyle = Utils.theme.get('textMuted');
+      ctx.font = '14px ' + sans;
+      ctx.textAlign = 'center';
+      ctx.fillText('暂无角色数据', W / 2, H / 2);
+      return;
+    }
+
+    // 应用视口变换：之后全部在世界坐标系中绘制
+    ctx.translate(ox, oy);
+    ctx.scale(scale, scale);
+
+    const accent = Utils.theme.get('accent');
+    const labelColor = Utils.theme.get('textMuted');
+    const bgElevated = Utils.theme.get('bgElevated') || '#ffffff';
+    const minorColor = Utils.theme.get('textMuted');
+    const textColor = Utils.theme.get('text');
+    const borderColor = Utils.theme.get('border');
+
+    // 焦点：优先选中节点，其次悬停节点
+    const focus = selected >= 0 ? selected : hovered;
+    const isConnected = (e, i) => e.s === i || e.t === i;
+
+    // 连线（二次曲线，按边确定性弯曲，避免平行边重叠）
+    const placedLabels = []; // 本帧已放置的边标签矩形，用于碰撞检测
+    for (let ei = 0; ei < edges.length; ei++) {
+      const e = edges[ei];
+      const a = nodes[e.s], b = nodes[e.t];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      // 确定性弯向：同一边每次绘制弯曲方向一致
+      const bend = ((e.s * 31 + e.t * 17) % 2 === 0 ? 1 : -1) * Math.min(26, d * 0.12);
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      const cxp = mx - (dy / d) * bend, cyp = my + (dx / d) * bend;
+
+      const highlighted = focus >= 0 && isConnected(e, focus);
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.quadraticCurveTo(cxp, cyp, b.x, b.y);
+      if (highlighted) {
+        ctx.strokeStyle = accent;
+        ctx.globalAlpha = 0.9;
+        ctx.lineWidth = 2.2;
+      } else {
+        ctx.strokeStyle = labelColor;
+        ctx.globalAlpha = focus >= 0 ? 0.07 : 0.45;
+        ctx.lineWidth = 1.4;
+      }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // 边标签：缩放过小时隐藏（防杂乱）；有焦点时只显示与焦点相连的
+      const showLabel = e.label && (focus >= 0 ? isConnected(e, focus) : scale >= 0.85);
+      if (showLabel) {
+        // 二次曲线 t=0.5 处的中点
+        const lx = 0.25 * a.x + 0.5 * cxp + 0.25 * b.x;
+        const ly = 0.25 * a.y + 0.5 * cyp + 0.25 * b.y;
+        const MAX_LABEL_LEN = 8;
+        const isLong = e.label.length > MAX_LABEL_LEN;
+        const txt = isLong ? e.label.slice(0, MAX_LABEL_LEN) + '…' : e.label;
+        ctx.font = '11px ' + sans;
+        const tw = ctx.measureText(txt).width;
+        const rect = { x: lx - tw / 2 - 5, y: ly - 8, w: tw + 10, h: 16 };
+        // 碰撞检测：与已放置的标签重叠则跳过，避免文字互相覆盖
+        const collides = placedLabels.some(p =>
+          rect.x < p.x + p.w && rect.x + rect.w > p.x && rect.y < p.y + p.h && rect.y + rect.h > p.y);
+        if (collides) continue;
+        placedLabels.push(rect);
+        // 药丸底色 + 细边框，保证标签在任何连线上都清晰可读
+        rr(rect.x, rect.y, rect.w, rect.h, 8);
+        ctx.fillStyle = highlighted ? accent : bgElevated;
+        ctx.globalAlpha = highlighted ? 0.95 : 0.9;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = highlighted ? accent : borderColor;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.fillStyle = highlighted ? '#fff' : labelColor;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(txt, lx, ly + 0.5);
+        // 长标签通过 title 属性提供完整提示
+        if (isLong && canvas) canvas.title = e.label;
+      }
+    }
+
+    // 节点（不只依赖颜色区分角色层级：主要角色用圆形+实心，次要角色用方形+虚边）
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      const r = n.r;
+      const isFocus = focus === i;
+      const isNeighbor = focus >= 0 && adjList[focus] && adjList[focus].has(i);
+      const isDimmed = focus >= 0 && !isFocus && !isNeighbor;
+      const isMinor = isMinorNode(n);
+
+      ctx.globalAlpha = isDimmed ? 0.22 : 1;
+      ctx.fillStyle = isMinor ? minorColor : accent;
+
+      if (isMinor) {
+        // 次要角色：方形 + 虚线边
+        ctx.setLineDash([4, 3]);
+        ctx.strokeStyle = minorColor;
+        ctx.lineWidth = 1.5;
+        ctx.fillRect(n.x - r, n.y - r, r * 2, r * 2);
+        ctx.strokeRect(n.x - r, n.y - r, r * 2, r * 2);
+        ctx.setLineDash([]);
+      } else {
+        // 主要角色：圆形 + 实心
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
+      // 选中 / 悬停描边
+      if (i === selected) {
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = accent;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r + 2, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (i === hovered && i !== selected) {
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = accent;
+        ctx.globalAlpha = 0.6;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r + 2, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      // 节点内文字：节点过小时省略，避免糊成一团
+      if (r * scale >= 9) {
+        ctx.fillStyle = '#fff';
+        ctx.font = Math.round(r * 0.62) + 'px ' + sans;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(n.name.slice(0, 3), n.x, n.y);
+      }
+
+      // 节点下方名称：缩小时只保留主要角色与焦点相关节点，避免标签互相覆盖
+      const showName = scale >= 0.55 || !isMinor || isFocus || isNeighbor;
+      if (showName) {
+        ctx.fillStyle = isDimmed ? labelColor : textColor;
+        ctx.font = (isMinor ? '11px ' : '12px ') + sans;
+        ctx.textBaseline = 'alphabetic';
+        ctx.textAlign = 'center';
+        ctx.fillText(n.name, n.x, n.y + r + 13);
+      }
+    }
+  };
+
+  const hitTest = (e) => {
+    const r = canvas.getBoundingClientRect();
+    const w = toWorld(e.clientX - r.left, e.clientY - r.top);
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const n = nodes[i];
+      const radius = n.r + 3;
+      if ((w.x - n.x) ** 2 + (w.y - n.y) ** 2 < radius ** 2) return i;
+    }
+    return -1;
+  };
+
+  const selectNode = (i) => {
+    selected = i;
+    draw();
+    const info = document.getElementById('graphInfo');
+    if (i < 0) {
+      info.innerHTML = '<div class="empty-state">点击图中节点或右侧角色卡片，查看该角色的故事功能、欲望 / 恐惧、当前状态与关系。</div>';
+      return;
+    }
+    const n = nodes[i];
+    const fields = [
+      ['故事功能', n.func],
+      ['欲望', n.desire],
+      ['恐惧', n.fear],
+      ['当前状态', n.state],
+      ['弧线', n.arc],
+      ['秘密', n.secrets],
+    ].filter(a => a[1]);
+    const rels = edges.filter(e => e.s === i || e.t === i).map(e => {
+      const o = nodes[e.s === i ? e.t : e.s];
+      // 连线上显示单词标签；悬停可看原始完整描述
+      const tip = e.desc && e.desc !== e.label ? ` title="${Utils.escHtml(e.desc)}"` : '';
+      return `<div class="rel-item"${tip}><span class="rname">${Utils.escHtml(o.name)}</span>${e.label ? ' — ' + MDParser.parseInline(e.label) : ''}</div>`;
+    });
+    info.innerHTML = `<div class="name">${Utils.escHtml(n.name)}</div><div class="tier">${Utils.escHtml(n.tier)}</div>` +
+      (fields.length ? `<dl>${fields.map(([k, v]) => `<dt>${Utils.escHtml(k)}</dt><dd>${MDParser.parseInline(v)}</dd>`).join('')}</dl>` : '') +
+      (rels.length ? `<div class="rels">${rels.join('')}</div>` : '');
+  };
+
+  // 主题切换后重绘（刷新 CSS 变量缓存并绘制最新帧）
+  const redraw = () => {
+    if (!ctx || !canvas) return;
+    Utils.theme.refresh();
+    draw();
+  };
+
+  // 公开 resize 方法，供标签切换时重新计算 canvas 尺寸
+  const triggerResize = () => { if (canvas && ctx) resize(); };
+
+  return { init, start, pause, resume, destroy, redraw, selectNode, hitTest, triggerResize, zoomBy, zoomFit, zoomReset };
+})();
+
+/* ---------- Characters 组件（人物关系） ---------- */
+const Characters = {
+  _lastVersion: -1,
+  _searchQuery: '',
+  _filterTier: 'all',
+
+  onEnter() {
+    if (Store.state.dataVersion !== this._lastVersion) {
+      this.render();
+    } else {
+      // 从其他标签切回时，canvas 尺寸可能因 display:none 而为 0，需重新计算
+      GraphEngine.triggerResize();
+      GraphEngine.resume();
+    }
+  },
+
+  onLeave() {
+    GraphEngine.pause();
+  },
+
+  // force 刷新同一标签时调用，跳过 onLeave/onEnter 竞态
+  onReload() {
+    // 销毁旧图并重新初始化（pause 由 force 路径跳过，此处无需调用）
+    GraphEngine.destroy();
+    this.render();
+  },
+
+  render() {
+    const roles = Store.get('roles');
+    const graph = buildGraph(roles, (Store.get('files') || {}).current_state);
+    Store.set('graph', graph);
+
+    document.getElementById('panel-chars').innerHTML = `
+      <h2>人物关系</h2>
+      <p class="lede">滚轮缩放 · 拖拽空白平移 · 双击适应画布。点击节点查看角色详情。</p>
+      <div class="char-controls">
+        <input type="search" id="charSearch" placeholder="搜索角色名称..." class="search-input">
+        <select id="charFilter" class="filter-select">
+          <option value="all">全部角色</option>
+          <option value="major">主要角色</option>
+          <option value="minor">次要角色</option>
+        </select>
+      </div>
+      <div class="section-title">关系图</div>
+      <div class="graph-layout">
+        <div class="graph-canvas-wrap">
+          <canvas id="graph"></canvas>
+          <div class="graph-tools">
+            <button id="graphZoomIn" title="放大" aria-label="放大">＋</button>
+            <button id="graphZoomOut" title="缩小" aria-label="缩小">－</button>
+            <button id="graphFit" title="适应画布" aria-label="适应画布">⛶</button>
+            <button id="graphReset" title="重置为 100%" aria-label="重置为 100%">1:1</button>
+          </div>
+          <div class="graph-hint">滚轮缩放 · 拖拽平移 · 双击适应</div>
+        </div>
+        <div class="graph-sidebar">
+          <div class="card" id="graphInfo">
+            <div class="empty-state">点击图中节点或右侧角色卡片，查看该角色的故事功能、欲望 / 恐惧、当前状态与关系。</div>
+          </div>
+        </div>
+      </div>
+      <div class="section-title">角色列表</div>
+      <div class="char-list" id="charList"></div>
+    `;
+
+    // 延迟到下一帧初始化，确保面板可见且布局完成，canvas 有正确尺寸
+    requestAnimationFrame(() => {
+      GraphEngine.init(document.getElementById('graph'), graph);
+    });
+    document.getElementById('graphZoomIn').addEventListener('click', () => GraphEngine.zoomBy(1.3));
+    document.getElementById('graphZoomOut').addEventListener('click', () => GraphEngine.zoomBy(1 / 1.3));
+    document.getElementById('graphFit').addEventListener('click', () => GraphEngine.zoomFit());
+    document.getElementById('graphReset').addEventListener('click', () => GraphEngine.zoomReset());
+    this._renderCharList(graph.nodes);
+    this._renderGraphTextAlt(graph);
+
+    const searchInput = document.getElementById('charSearch');
+    const filterSelect = document.getElementById('charFilter');
+    searchInput.addEventListener('input', (e) => {
+      this._searchQuery = e.target.value;
+      this._renderCharList(graph.nodes);
+    });
+    filterSelect.addEventListener('change', (e) => {
+      this._filterTier = e.target.value;
+      this._renderCharList(graph.nodes);
+    });
+
+    document.getElementById('charList').addEventListener('click', (e) => {
+      const c = e.target.closest('.charcard');
+      if (c) {
+        const i = parseInt(c.dataset.i);
+        GraphEngine.selectNode(i);
+        document.querySelectorAll('.charcard').forEach(el => el.style.borderColor = '');
+        c.style.borderColor = 'var(--accent)';
+      }
+    });
+
+    this._lastVersion = Store.state.dataVersion;
+  },
+
+  // Canvas 的等价文字关系列表（供屏幕阅读器使用）
+  _renderGraphTextAlt(graph) {
+    const container = document.getElementById('graphTextAlt');
+    if (!container) return;
+    if (!graph.nodes.length) { container.innerHTML = '<p>暂无角色数据</p>'; return; }
+    const items = graph.nodes.map(n => {
+      const rels = graph.edges.filter(e => e.s === n.i || e.t === n.i)
+        .map(e => { const o = graph.nodes[e.s === n.i ? e.t : e.s]; return o.name + (e.label ? '（' + e.label + '）' : ''); });
+      return `<li>${Utils.escHtml(n.name)} — ${Utils.escHtml(n.tier)}${rels.length ? '：' + rels.join('、') : ''}</li>`;
+    }).join('');
+    container.innerHTML = `<p>角色关系列表（共 ${graph.nodes.length} 个角色）：</p><ul>${items}</ul>`;
+  },
+
+  _renderCharList(nodes) {
+    const query = this._searchQuery.toLowerCase().trim();
+    const filter = this._filterTier;
+    const filtered = nodes.filter(n => {
+      if (filter === 'major' && /次要|minor/.test(n.tier)) return false;
+      if (filter === 'minor' && !/次要|minor/.test(n.tier)) return false;
+      if (query && !n.name.toLowerCase().includes(query)) return false;
+      return true;
+    });
+    document.getElementById('charList').innerHTML = filtered.length
+      ? filtered.map(nd => `
+        <div class="charcard ${/次要|minor/.test(nd.tier) ? 'minor' : 'major'}" data-i="${nd.i}">
+          <div class="name">${Utils.escHtml(nd.name)}<span class="tier-badge ${/次要|minor/.test(nd.tier) ? 'minor' : 'major'}">${/次要|minor/.test(nd.tier) ? '次要' : '主要'}</span></div>
+          ${nd.func ? `<div class="tier">${MDParser.parseInline(nd.func)}</div>` : ''}
+          ${nd.desire ? `<div class="kv"><b>欲</b>${MDParser.parseInline(nd.desire)}</div>` : ''}
+          ${nd.fear ? `<div class="kv"><b>惧</b>${MDParser.parseInline(nd.fear)}</div>` : ''}
+          ${nd.state ? `<div class="kv"><b>今</b>${MDParser.parseInline(nd.state)}</div>` : ''}
+          ${nd.arc ? `<div class="kv"><b>弧</b>${MDParser.parseInline(nd.arc)}</div>` : ''}
+        </div>`).join('')
+      : '<div class="empty-state" style="grid-column:1/-1">没有匹配的角色</div>';
+  },
+};
+
+/* ---------- Reader 组件（章节阅读） ---------- */
+const Reader = {
+  _lastVersion: -1,
+  _lastBookId: null,
+  currentIndex: -1,
+  _fontSize: 17,
+  // 搜索状态（Reader 属性，避免跨方法 ReferenceError）
+  _marks: [],
+  _currentMatch: -1,
+  _cleanHtml: '',
+
+  onEnter() {
+    // 刷新同一本书时尽量保留当前章节号；切书时重置
+    const newBookId = Store.get('bookId');
+    if (this._lastBookId !== newBookId) {
+      this.currentIndex = -1;
+      this._lastBookId = newBookId;
+    }
+    if (Store.state.dataVersion !== this._lastVersion) this.render();
+  },
+
+  render() {
+    const chapters = Store.get('chapters');
+
+    document.getElementById('panel-read').innerHTML = `
+      <h2>阅读章节</h2>
+      <p class="lede">在仪表盘内直接阅读任意章节。</p>
+      <div class="reader-controls">
+        <label>字号：<input type="range" id="fontSizeSlider" min="13" max="28" value="${this._fontSize}" step="1">
+        <span id="fontSizeLabel">${this._fontSize}px</span></label>
+      </div>
+      <div class="reader">
+        <nav class="toc" id="toc" role="navigation" aria-label="章节目录">
+          <div class="toc-title">目录 · ${chapters.length} 章</div>
+        </nav>
+        <article class="article" id="article" style="font-size:${this._fontSize}px">
+          <div class="empty-state">← 请从左侧目录选择一章</div>
+        </article>
+      </div>
+      <div class="readnav">
+        <button id="prevBtn" disabled>‹ 上一章</button>
+        <span id="chapterProgress" class="muted"></span>
+        <button id="nextBtn" disabled>下一章 ›</button>
+      </div>
+      <div class="read-actions">
+        <button id="exportBtn">📤 导出全本 TXT</button>
+        <select id="exportMode" class="filter-select" style="padding:6px 10px">
+          <option value="plain">纯正文</option>
+          <option value="markdown">保留 Markdown</option>
+        </select>
+        <span class="muted" style="font-size:13px;margin-left:10px;">按章节顺序合并为单一 txt 文件</span>
+      </div>
+      <div id="searchBar" class="search-bar" style="display:none" role="search">
+        <input type="search" id="chapterSearch" placeholder="搜索当前章节..." aria-label="搜索当前章节内容">
+        <span id="searchResult" class="muted" style="font-size:13px" role="status" aria-live="polite"></span>
+        <button id="searchPrev" aria-label="上一个匹配项">▲</button>
+        <button id="searchNext" aria-label="下一个匹配项">▼</button>
+        <button id="searchClose" aria-label="关闭搜索（Esc）">✕</button>
+      </div>
+    `;
+
+    this._renderToc(chapters);
+    this._bindEvents(chapters);
+
+    this._lastVersion = Store.state.dataVersion;
+  },
+
+  _renderToc(chapters) {
+    const toc = document.getElementById('toc');
+    toc.innerHTML = `<div class="toc-title">目录 · ${chapters.length} 章</div>` +
+      chapters.map((c, i) => `<button data-i="${i}" class="${i === this.currentIndex ? 'active' : ''}" ${i === this.currentIndex ? 'aria-current="true"' : ''}>
+        <span class="ch-no">第 ${c.num || (i + 1)} 回</span>${Utils.escHtml(c.title || c.name)}
+      </button>`).join('');
+  },
+
+  _bindEvents(chapters) {
+    document.getElementById('toc').addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (b) this.openChapter(parseInt(b.dataset.i), chapters);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (this.currentIndex > 0) this.openChapter(this.currentIndex - 1, chapters);
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (this.currentIndex < chapters.length - 1) this.openChapter(this.currentIndex + 1, chapters);
+    });
+
+    // Reader 标签中左右键翻章（仅在 read 标签生效，不覆盖全局标签切换）
+    Utils.shortcuts.register('ArrowLeft', () => {
+      if (this.currentIndex > 0) this.openChapter(this.currentIndex - 1, chapters);
+    }, 'read');
+    Utils.shortcuts.register('ArrowRight', () => {
+      if (this.currentIndex < chapters.length - 1) this.openChapter(this.currentIndex + 1, chapters);
+    }, 'read');
+    // Ctrl+F 只在 Reader 标签拦截，其他标签保留浏览器默认行为
+    Utils.shortcuts.register('Ctrl+f', () => {
+      if (!this._openSearch) return;
+      const bar = document.getElementById('searchBar');
+      if (bar.style.display === 'none') this._openSearch();
+      else this._closeSearch();
+    }, 'read');
+
+    document.getElementById('fontSizeSlider').addEventListener('input', (e) => {
+      this._fontSize = parseInt(e.target.value);
+      document.getElementById('article').style.fontSize = this._fontSize + 'px';
+      document.getElementById('fontSizeLabel').textContent = this._fontSize + 'px';
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => this._exportTxt(chapters));
+
+    this._bindSearch(chapters);
+  },
+
+  openChapter(i, chapters) {
+    const ch = chapters[i];
+    if (!ch) return;
+    this.currentIndex = i;
+
+    document.querySelectorAll('#toc button').forEach((b, k) => b.classList.toggle('active', k === i));
+
+    document.getElementById('article').innerHTML = `
+      <h1>${Utils.escHtml(ch.title || ('第 ' + (ch.num || (i + 1)) + ' 回'))}</h1>
+      <div class="muted" style="margin-bottom:20px;font-family:var(--sans);font-size:13px;">
+        共 ${Utils.fmtNum(Utils.countWords(ch.text))} 字
+      </div>
+      ${MDParser.parse(ch.text)}
+    `;
+
+    document.getElementById('prevBtn').disabled = i <= 0;
+    document.getElementById('nextBtn').disabled = i >= chapters.length - 1;
+    document.getElementById('chapterProgress').textContent = `第 ${i + 1} / ${chapters.length} 章`;
+
+    // 切章后滚动正确的阅读容器到顶部（main.content 是可滚动容器）
+    const article = document.getElementById('article');
+    if (article) article.scrollTop = 0;
+    const readingContainer = document.querySelector('main.content');
+    if (readingContainer) readingContainer.scrollTop = 0;
+
+    // 切换章节时清空旧搜索结果和高亮，保存新的干净 HTML
+    this._clearHighlights();
+    document.getElementById('chapterSearch').value = '';
+    document.getElementById('searchResult').textContent = '';
+    this._saveCleanHtml();
+
+    if (Router.current !== 'read') Router.switchTab('read');
+  },
+
+  _bindSearch(chapters) {
+    const input = document.getElementById('chapterSearch');
+    const result = document.getElementById('searchResult');
+    const prevBtn = document.getElementById('searchPrev');
+    const nextBtn = document.getElementById('searchNext');
+    const closeBtn = document.getElementById('searchClose');
+    // 搜索状态通过 this._marks / this._currentMatch / this._cleanHtml 访问（Reader 属性）
+
+    input.addEventListener('input', () => {
+      const ch = chapters[this.currentIndex];
+      if (!ch || !input.value.trim()) { this._marks = []; this._currentMatch = -1; result.textContent = ''; this._clearHighlights(); return; }
+      // 每次新搜索前恢复到干净 HTML
+      document.getElementById('article').innerHTML = this._cleanHtml;
+      this._highlightText(input.value);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (this._marks.length === 0) return;
+      this._currentMatch = (this._currentMatch - 1 + this._marks.length) % this._marks.length;
+      this._updateCurrentMark();
+      result.textContent = `${this._currentMatch + 1}/${this._marks.length}`;
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (this._marks.length === 0) return;
+      this._currentMatch = (this._currentMatch + 1) % this._marks.length;
+      this._updateCurrentMark();
+      result.textContent = `${this._currentMatch + 1}/${this._marks.length}`;
+    });
+
+    // 保存原焦点，关闭搜索条后恢复
+    let savedFocus = null;
+    const openSearch = () => {
+      savedFocus = document.activeElement;
+      bar.style.display = 'flex';
+      input.focus();
+    };
+    const closeSearch = () => {
+      bar.style.display = 'none';
+      input.value = '';
+      this._marks = [];
+      this._currentMatch = -1;
+      this._cleanHtml = '';
+      this._clearHighlights();
+      // 关闭后恢复焦点到之前聚焦的元素
+      if (savedFocus && savedFocus.focus) try { savedFocus.focus(); } catch {}
+    };
+    closeBtn.addEventListener('click', closeSearch);
+
+    // Escape 关闭搜索条并恢复焦点
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { e.preventDefault(); closeSearch(); }
+    });
+
+    // 暴露 openSearch 供 Ctrl+F 调用
+    this._openSearch = openSearch;
+    this._closeSearch = closeSearch;
+  },
+
+  // 在打开章节时保存干净 HTML，供搜索恢复用
+  _saveCleanHtml() {
+    const article = document.getElementById('article');
+    if (!article) return; // article 不存在时安全返回
+    this._cleanHtml = article.innerHTML;
+    this._marks = [];
+    this._currentMatch = -1;
+  },
+
+  // 仅操作文本节点的高亮：用 TreeWalker 遍历，避免破坏 HTML 标签和属性
+  _highlightText(query) {
+    const article = document.getElementById('article');
+    const result = document.getElementById('searchResult');
+    this._clearHighlights();
+    if (!query.trim()) { result.textContent = ''; return; }
+
+    const escQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // 节点筛选使用不带 g 的 tester 正则，避免 lastIndex 污染
+    const tester = new RegExp('(' + escQ + ')', 'i');
+    // 真正拆分文本时再使用带 g 的 matcher 正则
+    const matcher = new RegExp('(' + escQ + ')', 'gi');
+    this._marks = [];
+    this._currentMatch = -1;
+
+    // 遍历所有文本节点
+    const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        // 跳过已有 mark 内的节点和 script/style
+        const parent = node.parentElement;
+        if (parent && (parent.tagName === 'MARK' || parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) return NodeFilter.FILTER_REJECT;
+        return tester.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    // 先收集所有需要处理的节点（遍历时不能直接修改 DOM）
+    const nodesToProcess = [];
+    let n;
+    while ((n = walker.nextNode())) nodesToProcess.push(n);
+
+    for (const textNode of nodesToProcess) {
+      const text = textNode.nodeValue;
+      const frag = document.createDocumentFragment();
+      let lastIndex = 0;
+      let match;
+      matcher.lastIndex = 0;
+      while ((match = matcher.exec(text)) !== null) {
+        // 匹配前的文本
+        if (match.index > lastIndex) {
+          frag.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+        }
+        // 包裹匹配项
+        const mark = document.createElement('mark');
+        mark.textContent = match[1];
+        mark.dataset.matchIdx = this._marks.length; // 记录全局序号
+        frag.appendChild(mark);
+        this._marks.push(mark);
+        lastIndex = match.index + match[1].length;
+      }
+      if (frag.childNodes.length > 0) {
+        if (lastIndex < text.length) {
+          frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+        textNode.parentNode.replaceChild(frag, textNode);
+      }
+    }
+
+    if (this._marks.length > 0) {
+      this._currentMatch = 0;
+      this._updateCurrentMark();
+      result.textContent = `1/${this._marks.length}`;
+      // 自动滚动到第一个命中
+      this._marks[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      result.textContent = '无匹配';
+    }
+  },
+
+  _updateCurrentMark() {
+    this._marks.forEach((m, i) => {
+      const isCurrent = i === this._currentMatch;
+      m.classList.toggle('current', isCurrent);
+      // 当前匹配使用 aria-current 或可读状态
+      if (isCurrent) m.setAttribute('aria-current', 'true');
+      else m.removeAttribute('aria-current');
+    });
+    if (this._marks[this._currentMatch]) {
+      this._marks[this._currentMatch].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  },
+
+  _clearHighlights() {
+    const article = document.getElementById('article');
+    if (!article) return; // article 不存在时安全返回
+    const existing = article.querySelectorAll('mark');
+    existing.forEach(mark => {
+      const parent = mark.parentNode;
+      parent.replaceChild(document.createTextNode(mark.textContent), mark);
+      parent.normalize(); // 合并相邻文本节点
+    });
+    this._marks = [];
+    this._currentMatch = -1;
+  },
+
+  _exportTxt(chapters) {
+    if (!chapters.length) { alert('暂无章节可导出'); return; }
+    const book = Store.get('book');
+    const modeSelect = document.getElementById('exportMode');
+    const mode = modeSelect ? modeSelect.value : 'plain';
+    const isMarkdown = mode === 'markdown';
+
+    try {
+      // 分段构造，避免大书一次性拼接导致内存峰值
+      const parts = [];
+      parts.push(book.title || '未命名');
+      parts.push('='.repeat(40));
+      parts.push(`共 ${chapters.length} 章 / 约 ${Utils.fmtNum(chapters.reduce((s, c) => s + Utils.countWords(c.text), 0))} 字`);
+      if (isMarkdown) parts.push('（保留 Markdown 格式）');
+      else parts.push('（纯正文）');
+      parts.push('');
+
+      chapters.forEach((c, i) => {
+        parts.push(`\n第 ${c.num || (i + 1)} 回${c.title ? ' · ' + c.title : ''}`);
+        parts.push('-'.repeat(30));
+        if (isMarkdown) {
+          // 保留 Markdown：输出原始文本
+          parts.push(c.text.trim());
+        } else {
+          // 纯正文：剥离 Markdown 语法标记
+          parts.push(stripMarkdown(c.text));
+        }
+      });
+
+      // 统一换行符策略：使用 \n（UTF-8）
+      const content = parts.join('\n');
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const safeTitle = (book.title || 'book').replace(/[\/\\:*?"<>|]/g, '_');
+      a.download = `${safeTitle}${isMarkdown ? '_md' : ''}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      // 导出失败时显示错误
+      alert('【导出失败】' + (err && err.message ? err.message : String(err)));
+    }
+  },
+};
+
+/* ---------- 填充 Store（由读文件夹后调用） ---------- */
+const populateStore = (data) => {
+  Store.set('book', data.book);
+  Store.set('chapters', data.chapters);
+  Store.set('roles', data.roles);
+  Store.set('files', data.files);
+  if (data.diagnostics) Store.set('diagnostics', data.diagnostics);
+
+  const book = data.book || {};
+  // 记录当前书标识（用于判断切书 vs 刷新，决定保留/重置阅读状态）
+  Store.set('bookId', book.id || book.title || null);
+  document.getElementById('bookTitle').textContent = book.title || '未命名';
+  document.getElementById('bookSub').textContent = [book.genre, book.language === 'zh' ? '中文' : book.language].filter(Boolean).join(' · ');
+  document.getElementById('bookStatus').textContent = Utils.statusLabel(book.status);
+
+  // 数据版本 +1，组件据此自动重绘
+  Store.bumpVersion();
+  // force 刷新同一组件时避免不必要的"旧组件 onLeave → 新组件 onEnter"竞态：
+  // 由 Router.switchTab 在 force===tab 时直接调用 onReload，跳过 onLeave/onEnter
+  Router.switchTab(Router.current, { force: true });
+};
+
+// 统一 invalidate() 生命周期：重置所有组件的渲染缓存
+// 注意：数据加载前不调用（仅刷新/切书时调用）；数据加载由 bumpVersion() 驱动自动重绘
+function invalidateAll() {
+  // 切书时重置阅读状态和搜索状态
+  Reader.currentIndex = -1;
+  Reader._fontSize = 17;
+  Reader._marks = [];
+  Reader._currentMatch = -1;
+  Reader._cleanHtml = '';
+  Characters._searchQuery = '';
+  Characters._filterTier = 'all';
+}
+
+
+/* ---------- 入口绑定 + 自动重连 ---------- */
+// SourceSession：收拢数据源相关全局状态，避免散落
+const SourceSession = (() => {
+  let lastHandle = null;
+  let cachedEntries = null;
+  let autoResumed = false;
+  return {
+    get handle() { return lastHandle; },
+    set handle(h) { lastHandle = h; },
+    get entries() { return cachedEntries; },
+    set entries(e) { cachedEntries = e; },
+    get autoResumed() { return autoResumed; },
+    set autoResumed(v) { autoResumed = v; },
+    // 刷新、切书、返回落地页时重置
+    reset() { lastHandle = null; cachedEntries = null; autoResumed = false; },
+    // 是否有可刷新的数据源
+    get canRefresh() { return lastHandle || cachedEntries; },
+  };
+})();
+
+/* ---------- Loading 反馈 ---------- */
+const Loading = {
+  requestId: 0, // 当前加载请求 ID，防止并发加载覆盖彼此结果
+  show(stage) {
+    this.requestId++;
+    const myId = this.requestId;
+    let el = document.getElementById('loadingOverlay');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'loadingOverlay';
+      el.setAttribute('role', 'status');
+      el.setAttribute('aria-live', 'polite');
+      el.innerHTML = '<div class="spinner"></div><span id="loadingStage">加载中…</span>';
+      document.body.appendChild(el);
+    }
+    el.style.display = 'flex';
+    const stageEl = document.getElementById('loadingStage');
+    if (stageEl) stageEl.textContent = stage || '加载中…';
+    // 加载时禁用重复选择按钮，防止多次并发加载
+    document.getElementById('pickBtn').disabled = true;
+    document.getElementById('compatBtn').disabled = true;
+    return myId; // 返回本次请求 ID，供 hide 时校验
+  },
+  hide(requestId) {
+    // 仅最新请求可隐藏遮罩，防止过期结果覆盖新结果
+    if (requestId && requestId !== this.requestId) return;
+    const el = document.getElementById('loadingOverlay');
+    if (el) el.style.display = 'none';
+    document.getElementById('pickBtn').disabled = false;
+    document.getElementById('compatBtn').disabled = false;
+  },
+  setStage(text) {
+    const el = document.getElementById('loadingStage');
+    if (el) el.textContent = text;
+  },
+};
+
+const initApp = () => {
+  Utils.theme.init();
+  const themeBtn = document.getElementById('themeBtn');
+  const themeLabel = m => m === 'dark' ? '深色' : m === 'light' ? '浅色' : '自动';
+  const updateThemeBtn = (m) => {
+    themeBtn.textContent = m === 'dark' ? '☀' : m === 'light' ? '🌙' : '🌓';
+    themeBtn.setAttribute('aria-label', `当前主题：${themeLabel(m)}，点击切换`);
+  };
+  updateThemeBtn(Utils.theme.current);
+  themeBtn.addEventListener('click', () => {
+    const mode = Utils.theme.toggle();
+    updateThemeBtn(mode);
+    GraphEngine.redraw(); // 主题切换后重绘关系图
+    Appearance.syncMode(); // 同步外观面板中的模式选中态
+  });
+  Appearance.init();
+
+  document.getElementById('pickBtn').addEventListener('click', pickFolder);
+  document.getElementById('compatBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+  document.getElementById('refreshBtn').addEventListener('click', () => {
+    if (SourceSession.handle) loadBookFromHandle(SourceSession.handle);
+    else if (SourceSession.entries) loadBookFromEntries(SourceSession.entries);
+    else pickFolder();
+  });
+  document.getElementById('rePickBtn').addEventListener('click', () => {
+    document.body.classList.remove('loaded');
+    Store.reset();
+    SourceSession.reset();
+    pickFolder();
+  });
+
+  document.getElementById('fileInput').addEventListener('change', async (e) => {
+    if (e.target.files.length) {
+      // 不在验证成功前覆盖 cachedEntries（loadBookFromEntries 成功后设置）
+      await loadBookFromEntries(Array.from(e.target.files));
+    }
+  });
+
+  Router.register('overview', Overview);
+  Router.register('settings-content', SettingsContent);
+  Router.register('chars', Characters);
+  Router.register('read', Reader);
+
+  // 标签键盘导航（全局注册；Reader 标签中同名键会优先匹配 Reader 的处理器）
+  const tabList = ['overview', 'settings-content', 'chars', 'read'];
+  const switchTabAndFocus = (tab) => {
+    Router.switchTab(tab);
+    // 切换后焦点移动到新 tab
+    const btn = document.querySelector(`.tabs [role="tab"][data-tab="${tab}"]`);
+    if (btn) btn.focus();
+  };
+  Utils.shortcuts.register('ArrowLeft', () => {
+    const idx = tabList.indexOf(Router.current);
+    if (idx > 0) switchTabAndFocus(tabList[idx - 1]);
+  }, 'global');
+  Utils.shortcuts.register('ArrowRight', () => {
+    const idx = tabList.indexOf(Router.current);
+    if (idx >= 0 && idx < tabList.length - 1) switchTabAndFocus(tabList[idx + 1]);
+  }, 'global');
+  // Home/End 跳转第一个/最后一个 tab
+  Utils.shortcuts.register('Home', () => switchTabAndFocus(tabList[0]), 'global');
+  Utils.shortcuts.register('End', () => switchTabAndFocus(tabList[tabList.length - 1]), 'global');
+
+  Router.init();
+};
+
+async function pickFolder() {
+  if (window.showDirectoryPicker) {
+    try {
+      const handle = await window.showDirectoryPicker({ mode: "read", id: "dragon-writer-book" });
+      document.getElementById('resumeName').textContent = handle.name;
+      SourceSession.autoResumed = false;
+      await loadBookFromHandle(handle);
+    } catch (e) {
+      // AbortError = 用户取消选择，静默忽略；其他错误明确提示
+      if (e && e.name === "AbortError") return;
+      console.error("选择书架失败", e);
+      alert('【选择失败】' + (e && e.message ? e.message : String(e)));
+    }
+  } else { document.getElementById('fileInput').click(); }
+}
+
+// 分类错误类型，给出明确提示
+function classifyError(err) {
+  const msg = (err && err.message) ? err.message : String(err);
+  if (/(权限|permission|denied|NotAllowedError)/i.test(msg)) return { type: 'permission', label: '权限被拒绝' };
+  if (/(book.json|JSON|解析|parse)/i.test(msg)) return { type: 'json', label: 'book.json 解析错误' };
+  if (/(未找到|chapters|目录结构|missing)/i.test(msg)) return { type: 'structure', label: '目录结构错误' };
+  if (/(读取|read|file|IOError|NotFoundError)/i.test(msg)) return { type: 'io', label: '文件读取错误' };
+  return { type: 'unknown', label: '未知错误' };
+}
+
+const loadBookFromHandle = async (handle) => {
+  const reqId = Loading.show('正在验证目录…');
+  Store.set('loading', true);
+  try {
+    Loading.setStage('读取文件…');
+    const data = await loadBook(handle, null);
+    if (data) {
+      // 加载成功后才提交数据源，避免覆盖上一份有效数据
+      GraphEngine.destroy();
+      SourceSession.handle = handle;
+      SourceSession.entries = null;
+      document.getElementById('refreshBtn').style.display = 'inline-block';
+      populateStore(data);
+      document.body.classList.add('loaded');
+    }
+  } catch (err) {
+    Store.set('error', err.message);
+    Loading.hide(reqId);
+    // 加载失败时保留上一份可刷新数据源，不覆盖 SourceSession
+    // 明确提示当前仍显示哪一本书 + 错误类型分类
+    const currentBook = Store.get('book');
+    const currentTitle = currentBook && currentBook.title ? `《${currentBook.title}》` : '（未加载）';
+    const klass = classifyError(err);
+    if (!SourceSession.autoResumed) alert(`【${klass.label}】${err.message}\n\n当前仍显示：${currentTitle}`);
+  } finally {
+    Store.set('loading', false);
+    Loading.hide(reqId);
+  }
+};
+
+const loadBookFromEntries = async (entries) => {
+  const reqId = Loading.show('正在验证目录…');
+  Store.set('loading', true);
+  try {
+    Loading.setStage('读取文件…');
+    const data = await loadBook(null, entries);
+    if (data) {
+      // 加载成功后才提交数据源，避免覆盖上一份有效数据
+      GraphEngine.destroy();
+      SourceSession.entries = Array.from(entries);
+      SourceSession.handle = null;
+      document.getElementById('refreshBtn').style.display = 'inline-block';
+      populateStore(data);
+      document.body.classList.add('loaded');
+    }
+  } catch (err) {
+    Store.set('error', err.message);
+    Loading.hide(reqId);
+    // 加载失败时保留上一份可刷新数据源
+    const currentBook = Store.get('book');
+    const currentTitle = currentBook && currentBook.title ? `《${currentBook.title}》` : '（未加载）';
+    const klass = classifyError(err);
+    if (!SourceSession.autoResumed) alert(`【${klass.label}】${err.message}\n\n当前仍显示：${currentTitle}`);
+  } finally {
+    Store.set('loading', false);
+    Loading.hide(reqId);
+  }
+};
+
+async function tryResumeSilent(h) {
+  try {
+    // 先 queryPermission（不会弹窗），仅 granted 时才静默恢复
+    const perm = await h.queryPermission({ mode: "read" });
+    if (perm === "granted") {
+      SourceSession.autoResumed = true;
+      await loadBookFromHandle(h);
+      return true;
+    }
+    // 非 granted 时不强制弹窗，返回 false 等待用户点击
+    return false;
+  } catch (err) { console.warn("自动恢复书架失败", err); return false; }
+}
+
+// 用户点击"继续"后请求权限并加载
+async function resumeWithPermission(h) {
+  try {
+    let perm = await h.queryPermission({ mode: "read" });
+    if (perm !== "granted") perm = await h.requestPermission({ mode: "read" });
+    if (perm === "granted") {
+      SourceSession.autoResumed = true;
+      await loadBookFromHandle(h);
+      return true;
+    }
+    // 权限被拒绝：显示明确的"点击授权并继续"提示
+    alert('【权限被拒绝】请在浏览器地址栏点击"重新授权"，或重新选择书文件夹。');
+    return false;
+  } catch (err) { console.warn("授权恢复失败", err); return false; }
+}
+
+/* ---------- 启动 ---------- */
+(async () => {
+  initApp();
+
+  if (window.showDirectoryPicker) {
+    try {
+      const h = await IDB.load('last');
+      if (h) {
+        // 显示"上次打开"入口（权限仍有效时自动重连，否则等待用户点击）
+        document.getElementById('resumeArea').style.display = 'block';
+        document.getElementById('resumeName').textContent = h.name;
+        document.getElementById('resumeLink').addEventListener('click', async (e) => {
+          e.preventDefault();
+          // 用户点击后请求权限并继续
+          await resumeWithPermission(h);
+        });
+        // 尝试静默恢复（仅权限仍有效时自动重连，不承诺永久零交互）
+        const resumed = await tryResumeSilent(h);
+        if (resumed) {
+          // 自动恢复成功后隐藏多余恢复入口
+          document.getElementById('resumeArea').style.display = 'none';
+        }
+      }
+    } catch (e) { /* 首次访问 / 无句柄：停留落地页 */ }
+  }
+})();
+</script>
+</body>
+</html>

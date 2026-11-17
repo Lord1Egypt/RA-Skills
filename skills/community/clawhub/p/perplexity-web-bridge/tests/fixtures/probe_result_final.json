@@ -1,0 +1,397 @@
+{
+ "ok": 29,
+ "total": 30,
+ "wall_s": 21.0,
+ "results": [
+  {
+   "id": 0,
+   "state": "ppxt_home",
+   "ok": true,
+   "got": [
+    "TYPE_TEXT",
+    44
+   ],
+   "exp": [
+    "TYPE_TEXT",
+    44
+   ]
+  },
+  {
+   "id": 1,
+   "state": "ppxt_home",
+   "ok": true,
+   "got": [
+    "CLICK",
+    48
+   ],
+   "exp": [
+    "CLICK",
+    48
+   ]
+  },
+  {
+   "id": 2,
+   "state": "ppxt_home",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 3,
+   "state": "ppxt_explore",
+   "ok": true,
+   "got": [
+    "CLICK",
+    0
+   ],
+   "exp": [
+    "CLICK",
+    0
+   ]
+  },
+  {
+   "id": 4,
+   "state": "ppxt_explore",
+   "ok": true,
+   "got": [
+    "DONE",
+    null
+   ],
+   "exp": [
+    "DONE",
+    null
+   ]
+  },
+  {
+   "id": 5,
+   "state": "ppxt_explore",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 6,
+   "state": "ppxt_library",
+   "ok": true,
+   "got": [
+    "CLICK",
+    2
+   ],
+   "exp": [
+    "CLICK",
+    2
+   ]
+  },
+  {
+   "id": 7,
+   "state": "ppxt_library",
+   "ok": false,
+   "got": [
+    "CLICK",
+    42
+   ],
+   "exp": [
+    "CLICK",
+    0
+   ]
+  },
+  {
+   "id": 8,
+   "state": "ppxt_library",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 9,
+   "state": "gh_tree",
+   "ok": true,
+   "got": [
+    "TYPE_TEXT",
+    20
+   ],
+   "exp": [
+    "TYPE_TEXT",
+    20
+   ]
+  },
+  {
+   "id": 10,
+   "state": "gh_tree",
+   "ok": true,
+   "got": [
+    "CLICK",
+    33
+   ],
+   "exp": [
+    "CLICK",
+    33
+   ]
+  },
+  {
+   "id": 11,
+   "state": "gh_tree",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 12,
+   "state": "gh_blob",
+   "ok": true,
+   "got": [
+    "CLICK",
+    47
+   ],
+   "exp": [
+    "CLICK",
+    47
+   ]
+  },
+  {
+   "id": 13,
+   "state": "gh_blob",
+   "ok": true,
+   "got": [
+    "CLICK",
+    25
+   ],
+   "exp": [
+    "CLICK",
+    25
+   ]
+  },
+  {
+   "id": 14,
+   "state": "gh_blob",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 15,
+   "state": "gh_repo",
+   "ok": true,
+   "got": [
+    "TYPE_TEXT",
+    20
+   ],
+   "exp": [
+    "TYPE_TEXT",
+    20
+   ]
+  },
+  {
+   "id": 16,
+   "state": "gh_repo",
+   "ok": true,
+   "got": [
+    "CLICK",
+    6
+   ],
+   "exp": [
+    "CLICK",
+    6
+   ]
+  },
+  {
+   "id": 17,
+   "state": "gh_repo",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 18,
+   "state": "gh_issues",
+   "ok": true,
+   "got": [
+    "CLICK",
+    7
+   ],
+   "exp": [
+    "CLICK",
+    7
+   ]
+  },
+  {
+   "id": 19,
+   "state": "gh_issues",
+   "ok": true,
+   "got": [
+    "CLICK",
+    5
+   ],
+   "exp": [
+    "CLICK",
+    5
+   ]
+  },
+  {
+   "id": 20,
+   "state": "gh_issues",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 21,
+   "state": "gh_pulls",
+   "ok": true,
+   "got": [
+    "CLICK",
+    6
+   ],
+   "exp": [
+    "CLICK",
+    6
+   ]
+  },
+  {
+   "id": 22,
+   "state": "gh_pulls",
+   "ok": true,
+   "got": [
+    "CLICK",
+    5
+   ],
+   "exp": [
+    "CLICK",
+    5
+   ]
+  },
+  {
+   "id": 23,
+   "state": "gh_pulls",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 24,
+   "state": "gh_actions",
+   "ok": true,
+   "got": [
+    "CLICK",
+    5
+   ],
+   "exp": [
+    "CLICK",
+    5
+   ]
+  },
+  {
+   "id": 25,
+   "state": "gh_actions",
+   "ok": true,
+   "got": [
+    "CLICK",
+    30
+   ],
+   "exp": [
+    "CLICK",
+    30
+   ]
+  },
+  {
+   "id": 26,
+   "state": "gh_actions",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  },
+  {
+   "id": 27,
+   "state": "gh_search",
+   "ok": true,
+   "got": [
+    "CLICK",
+    37
+   ],
+   "exp": [
+    "CLICK",
+    37
+   ]
+  },
+  {
+   "id": 28,
+   "state": "gh_search",
+   "ok": true,
+   "got": [
+    "DONE",
+    null
+   ],
+   "exp": [
+    "DONE",
+    null
+   ]
+  },
+  {
+   "id": 29,
+   "state": "gh_search",
+   "ok": true,
+   "got": [
+    "WAIT",
+    null
+   ],
+   "exp": [
+    "WAIT",
+    null
+   ]
+  }
+ ]
+}

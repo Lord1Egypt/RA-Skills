@@ -1,0 +1,4 @@
+interface:
+  display_name: "XHS Knowledge Retriever"
+  short_description: "Query the competitor-note RAG index for semantically relevant examples"
+  default_prompt: "Use $xhs-knowledge-retriever to find competitor note patterns relevant to the current topic before planning or writing."

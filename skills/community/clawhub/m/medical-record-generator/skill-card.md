@@ -1,44 +1,54 @@
-## Description: <br>
-专业的病历撰写助手，按照三步流程生成规范的入院记录。当用户说"写病历"、"生成病历"、"病历助手"、"入院记录"、"medical record"或"病历生成"时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional medical record drafting assistant that guides users through a three-step process to generate standardized admission records.
 
-## Publisher: <br>
-[gshatw](https://clawhub.ai/user/gshatw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gshatw](https://clawhub.ai/user/gshatw)
 
-## Use Case: <br>
-External users and clinical documentation teams can use this skill to draft structured admission records from supplied patient details. It is intended for record drafting only and does not provide diagnostic recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health data and can save generated records locally. <br>
-Mitigation: Use only synthetic or properly authorized patient data, avoid unnecessary identifiers, and save outputs only in approved secure locations with a clear deletion and retention plan. <br>
-Risk: Unspecified patient details may be filled with normal or standard clinical defaults. <br>
-Mitigation: Treat default-filled findings as drafting placeholders, not verified clinical facts, and require clinician review before operational use. <br>
-Risk: Generated admission records may be mistaken for diagnostic advice. <br>
-Mitigation: Use the output for documentation drafting only; do not rely on it for diagnosis or treatment decisions. <br>
+## Use Case:
 
+External users and healthcare documentation workflows can use this skill to collect patient details, confirm the collected information, and draft a structured admission record. Generated content requires appropriate clinical review before use in care or official records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gshatw/medical-record-generator) <br>
-- [gshatw Publisher Profile](https://clawhub.ai/user/gshatw) <br>
-- [Medical Record Generator Example](references/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Code, Guidance] <br>
-**Output Format:** [Markdown admission-record text with optional local markdown file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses supplied patient details and built-in defaults for unspecified record fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated records may include normal or clinical default values for information the user did not provide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authorized clinician review before treating generated record content as clinical fact or using it in official care documentation.
+
+Risk: Real patient information may be saved to local Markdown files without documented storage safeguards.
+
+Mitigation: Avoid unnecessary identifiers and confirm storage location, access controls, retention, and filename handling before saving records.
+
+## Reference(s):
+
+- [Usage example](references/example.md)
+- [ClawHub skill page](https://clawhub.ai/gshatw/skills/medical-record-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown admission record with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated records as local Markdown files when the script save helper is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

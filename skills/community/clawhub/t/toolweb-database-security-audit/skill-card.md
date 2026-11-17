@@ -1,41 +1,56 @@
-## Description: <br>
-Comprehensive API for processing database security audits and generating detailed compliance reports across access control, encryption, network security, and backup domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive API for processing database security audits and generating detailed compliance reports across access control, encryption, network security, and backup domains.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, compliance officers, database administrators, and organizations use this skill to submit database security audit findings and receive structured compliance reports with control counts, compliance percentage, and domain breakdowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database audit submissions can include sensitive findings, identifiers, hostnames, vulnerability details, or personal data. <br>
-Mitigation: Minimize and redact submissions before use; avoid sending passwords, tokens, exploitable vulnerability details, unnecessary personal identifiers, or other secrets. <br>
-Risk: Audit trails and submitted findings may be processed or retained by a third-party provider. <br>
-Mitigation: Confirm that the organization's policies allow sending this data to the provider and review the provider's privacy and retention terms before use. <br>
+## Use Case:
 
+Security teams, compliance officers, database administrators, and developers use this skill to submit database security audit findings and receive structured compliance summaries across common control domains. It supports documenting audit sessions, compliance percentages, and domain-specific control coverage for internal or external assessment workflows.
 
-## Reference(s): <br>
-- [API Docs](https://api.mkkpro.com:8117/docs) <br>
-- [Kong Route](https://api.mkkpro.com/compliance/database-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Analysis] <br>
-**Output Format:** [JSON response with audit summary, compliance percentage, domain control breakdown, report ID, session ID, user ID, and timestamps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submits database audit findings to a third-party API and returns computed compliance report data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Database security audit content, user IDs, session IDs, and timestamps may be sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only information approved for third-party processing and avoid confidential production identifiers or detailed internal architecture unless organizational data-sharing approval is in place.
+
+Risk: Compliance summaries are generated from submitted audit data and may not independently verify the underlying database security posture.
+
+Mitigation: Review generated reports against source evidence and applicable compliance requirements before using them for formal assurance or regulatory decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-database-security-audit)
+- [Database audit API route](https://api.mkkpro.com/compliance/database-audit)
+- [API documentation](https://api.mkkpro.com:8117/docs)
+- [OpenAPI specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Analysis, Guidance]
+
+**Output Format:** [JSON responses and concise Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include session IDs, user IDs, timestamps, audit summaries, compliance percentages, report IDs, and control-domain breakdowns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

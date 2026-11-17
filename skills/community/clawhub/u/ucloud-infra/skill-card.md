@@ -1,42 +1,63 @@
-## Description: <br>
-UCloud Cloud Management - Complete Version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UCloud Cloud Management - Complete Version.
 
-## Publisher: <br>
-[qianjunye](https://clawhub.ai/user/qianjunye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianjunye](https://clawhub.ai/user/qianjunye)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage UCloud infrastructure resources from an agent workflow, including hosts, databases, caches, networking, storage, load balancers, firewall rules, projects, and regions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful UCloud credentials and can perform destructive cloud operations. <br>
-Mitigation: Use least-privilege UCloud keys for a test or limited project, avoid production credentials until command execution and secret handling are reviewed, and require manual approval for destructive operations. <br>
-Risk: Create and delete operations write structured logs that may expose operational details. <br>
-Mitigation: Protect the generated logs directory, review retention and access controls, or disable logging where sensitive operational metadata should not be stored locally. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inspect and manage UCloud infrastructure through the UCloud CLI, including compute, database, networking, storage, firewall, image, project, and region resources.
 
-## Reference(s): <br>
-- [UCloud CLI installation guide](https://github.com/UCloudDoc-Team/cli/blob/master/intro.md) <br>
-- [UCloud console](https://console.ucloud.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/qianjunye/ucloud-infra) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [JSON responses and Markdown usage guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Create and delete operations are logged to JSONL files in a local logs directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses powerful UCloud credentials that can authorize infrastructure changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, revocable UCloud credentials and rotate or revoke them when the skill is no longer needed.
+
+Risk: Supported operations include destructive or disruptive cloud actions such as delete, resize, stop, restart, and firewall changes.
+
+Mitigation: Review planned commands before execution, require explicit confirmation for destructive actions, and create backups before important changes.
+
+Risk: Local operation logs and agent transcripts may contain sensitive resource parameters or command results.
+
+Mitigation: Treat logs and transcripts as sensitive, restrict access to them, and redact secrets before sharing.
+
+Risk: Command execution can be unsafe when arguments are built from untrusted input.
+
+Mitigation: Avoid running the skill with untrusted input and prefer a fixed version that uses argument-array execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qianjunye/skills/ucloud-infra)
+- [UCloud CLI installation documentation](https://github.com/UCloudDoc-Team/cli/blob/master/intro.md)
+- [UCloud console](https://console.ucloud.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Text]
+
+**Output Format:** [Markdown guidance with bash examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires UCloud credential environment variables; create and delete operations may write local JSONL operation logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script constant)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

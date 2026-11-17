@@ -9,7 +9,7 @@
 }
 ```
 
-`hifleet_liner_api_base` — contact fetch **`POST …/unlock`** (see **`CONTACT_API.md`**).
+`hifleet_liner_api_base` — **`GET …/ports/suggest`** (portid) and contact fetch **`POST …/unlock`** (see **`CONTACT_API.md`**, **`references/charter_port_suggest.md`**).
 
 Optional: `HIFLEET_USER_LOCALE` for localized error/setup text.
 

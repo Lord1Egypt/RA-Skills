@@ -1,45 +1,59 @@
-## Description: <br>
-Use the RenderIO FFmpeg-as-a-Service API to process video, audio, and images in the cloud, including submitting commands, polling results, uploading files, chained workflows, and webhook delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the RenderIO FFmpeg-as-a-Service API to process video, audio, and images in the cloud by submitting commands, polling results, uploading files, chaining workflows, and configuring webhooks.
 
-## Publisher: <br>
-[nevermind-s](https://clawhub.ai/user/nevermind-s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nevermind-s](https://clawhub.ai/user/nevermind-s)
 
-## Use Case: <br>
-Developers and agents use this skill to generate RenderIO API requests and example code for cloud FFmpeg media-processing workflows such as conversion, resizing, compression, trimming, watermarking, audio extraction, uploads, chained jobs, and webhook delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RenderIO API key. <br>
-Mitigation: Store RENDERIO_API_KEY in an environment variable or secret manager, and do not paste it into chats, generated files, or source control. <br>
-Risk: Media files and signed output URLs are handled by a third-party cloud processor. <br>
-Mitigation: Upload only media you are authorized to send to RenderIO, and treat returned signed output URLs as sensitive access links. <br>
-Risk: Using the wrong RenderIO API hostname can break workflows or send requests to an unintended endpoint. <br>
-Mitigation: Confirm the current RenderIO API hostname from official RenderIO documentation before installing or running generated commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate guidance, code samples, shell commands, and request payloads for cloud FFmpeg media-processing workflows through the RenderIO API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nevermind-s/renderio-ffmpeg-api) <br>
-- [RenderIO API key page](https://renderio.dev/get-api-key) <br>
-- [RenderIO FFmpeg command endpoint](https://renderio.dev/api/v1/run-ffmpeg-command) <br>
-- [RenderIO file upload endpoint](https://renderio.dev/api/v1/files/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, TypeScript, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API request patterns, polling guidance, upload guidance, webhook setup examples, and media-processing recipes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Conflicting API domains for authenticated uploads and webhook setup could send API keys, media, or job metadata to the wrong endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the correct RenderIO API host before using generated commands, uploads, or webhook configuration.
+
+Risk: Media files and processing metadata leave the user's environment when cloud API workflows are used.
+
+Mitigation: Avoid uploading sensitive local media unless the data handling requirements for the RenderIO service are acceptable.
+
+Risk: Generated examples rely on an API key stored in an environment variable.
+
+Mitigation: Keep the API key out of source code and logs, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nevermind-s/skills/renderio-ffmpeg-api)
+- [Publisher profile](https://clawhub.ai/user/nevermind-s)
+- [RenderIO API key page](https://renderio.dev/get-api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, TypeScript, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces API workflow guidance and example request payloads; generated commands may reference external media URLs, API keys, uploads, and webhooks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

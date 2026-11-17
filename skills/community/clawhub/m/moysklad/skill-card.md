@@ -1,44 +1,58 @@
-## Description: <br>
-МойСклад ERP — управление товарами, контрагентами, заказами, складами, остатками и документами через REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+МойСклад ERP helps agents work with products, counterparties, customer orders, warehouses, stock reports, invoices, and related records through the MoySklad JSON API.
 
-## Publisher: <br>
-[monsterdeveloper](https://clawhub.ai/user/monsterdeveloper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[monsterdeveloper](https://clawhub.ai/user/monsterdeveloper)
 
-## Use Case: <br>
-Developers and operators use this skill to query and update MoySklad ERP data, including products, counterparties, customer orders, invoices, warehouses, stock reports, and direct API requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify live ERP records and the security review flags the raw API helper as able to leak credentials or perform unsafe production changes. <br>
-Mitigation: Use a least-privilege MoySklad token, avoid raw full-URL API calls, and require human review before POST, PUT, PATCH, or DELETE operations. <br>
-Risk: The skill handles sensitive ERP credentials and business data. <br>
-Mitigation: Store credentials only in environment variables, prefer token authentication over login/password, and limit access to accounts and data required for the task. <br>
+## Use Case:
 
+Developers and operations users use this skill to read MoySklad ERP data, create or update business records, and produce stock or sales-oriented reports through REST API workflows.
 
-## Reference(s): <br>
-- [MoySklad API Overview](references/api-overview.md) <br>
-- [MoySklad Entities](references/entities.md) <br>
-- [MoySklad API Examples](references/examples.md) <br>
-- [MoySklad API Documentation](https://dev.moysklad.ru/doc/api/remap/1.2/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/monsterdeveloper/moysklad) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output, optional JSON output, and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and MoySklad credentials via MOYSKLAD_TOKEN or MOYSKLAD_LOGIN and MOYSKLAD_PASSWORD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The generic API command can send ERP credentials to a user-supplied full URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped bearer token, prefer documented relative paths against the official MoySklad API, and fix or review the helper before using it with real business data.
+
+Risk: Some commands can create, update, or delete business records.
+
+Mitigation: Review generated commands and request bodies before execution, and validate changes with least-privilege credentials or a test account where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/monsterdeveloper/skills/moysklad)
+- [MoySklad API overview](references/api-overview.md)
+- [MoySklad entities reference](references/entities.md)
+- [MoySklad API code examples](references/examples.md)
+- [MoySklad JSON API 1.2](https://api.moysklad.ru/api/remap/1.2)
+- [MoySklad API error reference](https://dev.moysklad.ru/doc/api/remap/1.2/#error_1002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript snippets, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke MoySklad API operations that read or mutate business records when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,70 @@
-## Description: <br>
-Kalshalyst scans Kalshi prediction markets for contrarian mispricings using Claude Sonnet analysis, tracks calibration with Brier scores, sizes opportunities with Kelly Criterion, and can feed automated trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kalshalyst helps agents scan Kalshi prediction markets for contrarian opportunities, estimate probability edge, track calibration, and size or optionally execute trades under configured controls.
 
-## Publisher: <br>
-[kingmadellc](https://clawhub.ai/user/kingmadellc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingmadellc](https://clawhub.ai/user/kingmadellc)
 
-## Use Case: <br>
-External developers and traders use Kalshalyst to scan Kalshi markets, estimate directional edge, generate alerts and cache files, size positions, and optionally run an auto-trader with user-provided Kalshi credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release can trade and cancel Kalshi orders despite being partly described as a scanner. <br>
-Mitigation: Install only when a full prediction-market trading stack is intended; start in dry-run and keep auto_trader_config disabled until risk limits are reviewed. <br>
-Risk: Kalshi and Anthropic credentials may enable account access, trading, and paid model usage. <br>
-Mitigation: Protect API keys and private key files, rotate exposed credentials, and configure only the services needed for the intended workflow. <br>
-Risk: Slack or webhook exports can disclose trade details outside the local environment. <br>
-Mitigation: Avoid enabling Slack or webhook exports unless external sharing of trading information is acceptable. <br>
-Risk: Related local stack components can affect behavior when this skill is used with sibling tools. <br>
-Mitigation: Inspect any sibling kalshi-command-center and prompt-lab code before enabling integrated trading workflows. <br>
+## Use Case:
 
+External developers and prediction market operators use Kalshalyst to identify potential mispricings on Kalshi, generate probability and edge analysis, monitor forecast calibration, and prepare or execute trades when they intentionally enable trading.
 
-## Reference(s): <br>
-- [Kalshalyst README](artifact/README.md) <br>
-- [Kalshalyst Skill Documentation](artifact/SKILL.md) <br>
-- [Blocklist Reference](artifact/references/blocklist.md) <br>
-- [Brier Score Schema and Methodology](artifact/references/brier-schema.md) <br>
-- [Contrarian Estimation System Prompt](artifact/references/contrarian-prompt.md) <br>
-- [Kelly Criterion Position Sizing](artifact/references/kelly-math.md) <br>
-- [Kalshi](https://kalshi.com) <br>
-- [Anthropic Console](https://console.anthropic.com) <br>
-- [Polygon.io](https://polygon.io) <br>
-- [Ollama](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON, YAML, shell commands, and generated analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON cache, SQLite calibration data, logs, and trading-state files when its scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: Unattended auto-trading can place real-money Kalshi orders when configured and enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auto_trader_config.json disabled or run dry-run mode unless live trading is intentional; use daily loss, exposure, position, duplicate, and per-trade controls.
+
+Risk: Credentials used by the skill can grant access to trading and paid API services.
+
+Mitigation: Restrict credentials to the minimum needed, store them outside shared outputs, and review API cost exposure before scheduling frequent scans.
+
+Risk: Persistent agent modification instructions can alter installed skill files.
+
+Mitigation: Remove or ignore the Agent Bug-Fix Protocol before deployment and review any local file changes before reuse.
+
+Risk: Market forecasts, edge estimates, and Kelly sizing can be wrong and may lead to losses.
+
+Mitigation: Treat outputs as decision support, monitor calibration with Brier reports, cap position size, and require human review before increasing risk limits.
+
+## Reference(s):
+
+- [Kalshalyst Skill Page](https://clawhub.ai/kingmadellc/skills/kalshalyst)
+- [README](README.md)
+- [Blocklist Reference](references/blocklist.md)
+- [Brier Score Tracking](references/brier-schema.md)
+- [Contrarian Prompt](references/contrarian-prompt.md)
+- [Kelly Criterion Math](references/kelly-math.md)
+- [Kalshi](https://kalshi.com)
+- [Anthropic Console](https://console.anthropic.com)
+- [Polygon.io](https://polygon.io)
+- [Ollama](https://ollama.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command snippets and JSON/YAML configuration examples; runtime scripts emit console text, JSON cache files, SQLite records, and CSV/JSON exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Kalshi, Anthropic, Polygon, and optional local Ollama/Qwen; the auto-trading path can place live Kalshi orders when configured and enabled.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

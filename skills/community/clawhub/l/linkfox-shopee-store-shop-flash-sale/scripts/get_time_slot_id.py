@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — get_time_slot_id (v2.shop_flash_sale.get_time_slot_id)
+Shopee Store — get_time_slot_id
+
 官方: https://open.shopee.com/documents/v2/v2.shop_flash_sale.get_time_slot_id?module=123&type=1
+
+入参说明见 references/apis/get-time-slot-id.md。
 """
 
 from __future__ import annotations

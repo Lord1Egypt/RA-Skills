@@ -1,0 +1,14 @@
+# ── 运行产物（含用户敏感数据：简历 / 薪资 / 报告）—— 禁止提交 ──
+projects/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp

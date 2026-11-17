@@ -1,45 +1,56 @@
-## Description: <br>
-Turn docs, notes, data, logs, screenshots, and code summaries into polished Marp slide decks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn docs, notes, data, logs, screenshots, and code summaries into polished Marp slide decks.
 
-## Publisher: <br>
-[fuller-stack-dev](https://clawhub.ai/user/fuller-stack-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuller-stack-dev](https://clawhub.ai/user/fuller-stack-dev)
 
-## Use Case: <br>
-Developers, engineers, and other knowledge workers use this skill to turn notes, reports, logs, data, screenshots, and technical summaries into concise Marp presentation decks with rendered outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated slide decks can persist local copies of sensitive source material. <br>
-Mitigation: Review output paths and generated files before sharing, storing, or committing them. <br>
-Risk: Rendering depends on the npm-distributed Marp CLI. <br>
-Mitigation: Review @marp-team/marp-cli as a third-party CLI dependency before installation or use in controlled environments. <br>
-Risk: Dense source material can produce slides with cropped or hidden content if the rendered deck is not checked. <br>
-Mitigation: Render-check the requested target format and split crowded slides before delivery. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to convert notes, reports, data, logs, screenshots, code summaries, and mixed source material into concise Marp presentations with a clear takeaway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuller-stack-dev/marp-slides) <br>
-- [Marp](https://marp.app) <br>
-- [Output formats](references/output-formats.md) <br>
-- [Slide patterns](references/slide-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Marp Markdown source with rendered HTML, PDF, PPTX, notes text, PNG, or JPEG outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps the editable *.slides.md source when rendering other formats; default rendered output is HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may write source and rendered slide files containing user-provided material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output paths and avoid including sensitive material unless the workspace and generated files are approved for that content.
+
+Risk: The Marp CLI dependency can be installed without a pinned version.
+
+Mitigation: Use a pinned or preinstalled Marp CLI version when stronger supply-chain control is required.
+
+## Reference(s):
+
+- [Marp](https://marp.app)
+- [Marp Slide Patterns](references/slide-patterns.md)
+- [Marp Output Formats](references/output-formats.md)
+- [ClawHub skill page](https://clawhub.ai/fuller-stack-dev/skills/marp-slides)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Marp Markdown source plus rendered HTML, PDF, PPTX, notes text, PNG, or JPEG slide outputs when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps an editable *.slides.md source deck when rendering another output format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

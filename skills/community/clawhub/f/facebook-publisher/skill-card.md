@@ -1,43 +1,55 @@
-## Description: <br>
-Publish posts to Facebook Pages, including text, photo, album, video, scheduled posts, and scheduled-post management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish posts to Facebook Pages when the user wants to create text, photo, album, or video posts, schedule Facebook posts, or manage scheduled Facebook posts.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and social media operators use this skill to publish or schedule text, photo, album, and video posts to connected Facebook Pages through Boring after confirming the target Page, content, media, and timing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Boring MCP connector link contains an embedded token that grants posting access to connected Facebook Pages. <br>
-Mitigation: Treat the connector link like a password, share it only with trusted agents, connect only the Pages needed, and revoke or regenerate it if exposed. <br>
-Risk: The skill can publish, schedule, or cancel public Facebook Page posts. <br>
-Mitigation: Require explicit human confirmation before publishing, scheduling, or canceling posts, and review the Page, content, media, and scheduled time before action. <br>
-Risk: The security evidence notes a mismatch between the skill's posting behavior and one data-handling statement that says no content is uploaded or modified. <br>
-Mitigation: Assume publishing workflows can upload media and modify public Page content, and review Boring permissions and data handling before use. <br>
+## Use Case:
 
+External users and social media operators use this skill to publish and schedule Facebook Page posts through Boring after connecting a Facebook Page. It also helps agents list Facebook Pages and manage scheduled Facebook posts.
 
-## Reference(s): <br>
-- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring API documentation](https://boring-doc.aiagent-me.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text] <br>
-**Output Format:** [Markdown guidance with structured MCP tool call parameters and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Boring MCP connector link with an embedded token for connected Facebook Pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The embedded MCP connector token grants authority to publish, upload media, schedule posts, and cancel scheduled posts for connected Facebook Pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the MCP link like a password, verify the connected Page before use, and require explicit user confirmation of the exact post, media, schedule time, or cancellation target before taking action.
+
+Risk: The security verdict is suspicious because public publishing actions may proceed without a required final confirmation.
+
+Mitigation: Review proposed Facebook actions before execution and ask the user to confirm irreversible or public-facing changes.
+
+## Reference(s):
+
+- [ClawHub Facebook Publisher Skill](https://clawhub.ai/snoopyrain/skills/facebook-publisher)
+- [Boring MCP Setup Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring Documentation](https://boring-doc.aiagent-me.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown instructions with tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Boring MCP connector link with an embedded authentication token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

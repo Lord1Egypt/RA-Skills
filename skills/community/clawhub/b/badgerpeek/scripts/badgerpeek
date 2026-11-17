@@ -1,0 +1,313 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly PROGRAM="badgerpeek"
+readonly VERSION="1.1.0"
+readonly DEFAULT_API_URL="https://app.honeybadger.io"
+
+compact=false
+auth_file=""
+response_file=""
+query_string=""
+
+cleanup() {
+  if [[ -n "$auth_file" ]]; then
+    rm -f -- "$auth_file"
+    auth_file=""
+  fi
+  if [[ -n "$response_file" ]]; then
+    rm -f -- "$response_file"
+    response_file=""
+  fi
+}
+trap 'cleanup; exit 129' HUP
+trap 'cleanup; exit 130' INT
+trap 'cleanup; exit 143' TERM
+
+die() {
+  printf '%s: %s\n' "$PROGRAM" "$*" >&2
+  exit 64
+}
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || die "required command not found: $1"
+}
+
+require_id() {
+  local label=$1 value=$2
+  [[ "$value" =~ ^[1-9][0-9]*$ ]] || die "$label must be a positive integer"
+}
+
+require_limit() {
+  local value=$1
+  [[ "$value" =~ ^[1-9][0-9]*$ ]] || die "limit must be an integer from 1 to 25"
+  (( value <= 25 )) || die "limit must be an integer from 1 to 25"
+}
+
+require_timestamp() {
+  local label=$1 value=$2
+  [[ "$value" =~ ^[0-9]+$ ]] || die "$label must be a Unix timestamp in seconds"
+}
+
+urlencode() {
+  jq -rn --arg value "$1" '$value | @uri'
+}
+
+add_query() {
+  local key=$1 value=$2 pair
+  [[ -n "$value" ]] || return 0
+  pair="$(urlencode "$key")=$(urlencode "$value")"
+  if [[ -n "$query_string" ]]; then
+    query_string="${query_string}&${pair}"
+  else
+    query_string=$pair
+  fi
+}
+
+redact_json() {
+  local filter='
+    def redact:
+      walk(
+        if type == "object" then
+          with_entries(
+            if (.key | test("(?i)(token|api[_-]?key|authorization|cookie|password|secret)"))
+            then .value = "[REDACTED]"
+            else .
+            end
+          )
+        else .
+        end
+      );
+    redact
+  '
+
+  if $compact; then
+    jq -c "$filter"
+  else
+    jq "$filter"
+  fi
+}
+
+api_request() {
+  require_command curl
+  require_command jq
+
+  local path=$1
+  local query=${2:-} suffix="" status url
+  local api_url=${HONEYBADGER_API_URL:-${HONEYBADGER_ENDPOINT:-$DEFAULT_API_URL}}
+  local token=${HONEYBADGER_PERSONAL_AUTH_TOKEN:-${HONEYBADGER_AUTH_TOKEN:-}}
+
+  [[ -n "$token" ]] || die "set HONEYBADGER_PERSONAL_AUTH_TOKEN or HONEYBADGER_AUTH_TOKEN"
+  [[ "$token" =~ ^[A-Za-z0-9._-]+$ ]] || die "auth token contains unsupported characters"
+
+  api_url=${api_url%/}
+  if [[ "$api_url" == https://* ]]; then
+    :
+  elif [[ "$api_url" =~ ^http://(127[.]0[.]0[.]1|localhost):[1-9][0-9]*$ ]]; then
+    :
+  else
+    die "Honeybadger API origin must use HTTPS (loopback HTTP with an explicit port is allowed)"
+  fi
+
+  if [[ -n "$query" ]]; then
+    suffix="?${query}"
+  fi
+  url="${api_url}${path}${suffix}"
+
+  auth_file=$(mktemp)
+  response_file=$(mktemp)
+  chmod 600 "$auth_file" "$response_file"
+  printf 'user = "%s:"\n' "$token" >"$auth_file"
+
+  if ! status=$(curl \
+    --config "$auth_file" \
+    --silent \
+    --show-error \
+    --connect-timeout 10 \
+    --max-time 45 \
+    --retry 2 \
+    --retry-delay 1 \
+    --request GET \
+    --header 'Accept: application/json' \
+    --header "User-Agent: ${PROGRAM}/${VERSION}" \
+    --output "$response_file" \
+    --write-out '%{http_code}' \
+    "$url"); then
+    cleanup
+    printf '%s: Honeybadger request failed before receiving a response\n' "$PROGRAM" >&2
+    exit 69
+  fi
+
+  if [[ ! "$status" =~ ^2[0-9][0-9]$ ]]; then
+    printf '%s: Honeybadger returned HTTP %s\n' "$PROGRAM" "$status" >&2
+    if jq -e . "$response_file" >/dev/null 2>&1; then
+      redact_json <"$response_file" >&2 || true
+    else
+      printf '%s: non-JSON error response omitted\n' "$PROGRAM" >&2
+    fi
+    cleanup
+    exit 69
+  fi
+
+  jq -e . "$response_file" >/dev/null 2>&1 || {
+    cleanup
+    printf '%s: Honeybadger returned invalid JSON\n' "$PROGRAM" >&2
+    exit 69
+  }
+  if ! redact_json <"$response_file"; then
+    cleanup
+    printf '%s: failed to redact Honeybadger response\n' "$PROGRAM" >&2
+    exit 69
+  fi
+  cleanup
+}
+
+usage() {
+  cat <<'EOF'
+Read Honeybadger errors without MCP or Docker.
+
+Usage:
+  badgerpeek [--compact] projects [--account-id ID]
+  badgerpeek [--compact] faults PROJECT_ID [options]
+  badgerpeek [--compact] fault PROJECT_ID FAULT_ID
+  badgerpeek [--compact] notices PROJECT_ID FAULT_ID [options]
+  badgerpeek version
+  badgerpeek help
+
+Fault options:
+  --query TEXT             Search fault groups
+  --order recent|frequent Sort results (default: recent)
+  --limit 1..25            Results per page (default: 10)
+  --page NUMBER            Page number (default: 1)
+  --created-after EPOCH    Unix timestamp lower bound
+  --occurred-after EPOCH   Unix timestamp lower bound
+  --occurred-before EPOCH  Unix timestamp upper bound
+
+Notice options:
+  --limit 1..25            Number of occurrences (default: 5)
+  --created-after EPOCH    Unix timestamp lower bound
+  --created-before EPOCH   Unix timestamp upper bound
+
+Environment:
+  HONEYBADGER_PERSONAL_AUTH_TOKEN  Preferred personal auth token
+  HONEYBADGER_AUTH_TOKEN           Fallback token name
+  HONEYBADGER_API_URL              API origin; defaults to US Honeybadger
+  HONEYBADGER_ENDPOINT             Fallback API origin (official hb convention)
+
+Examples:
+  badgerpeek projects
+  badgerpeek faults 12345 --limit 10 --order recent
+  badgerpeek faults 12345 --query Timeout --occurred-after 1785542400
+  badgerpeek fault 12345 98765
+  badgerpeek notices 12345 98765 --limit 3
+EOF
+}
+
+projects_command() {
+  local account_id=""
+  while (($#)); do
+    case "$1" in
+      --account-id) (($# >= 2)) || die "--account-id requires a value"; account_id=$2; shift 2 ;;
+      *) die "unknown projects option: $1" ;;
+    esac
+  done
+
+  [[ -z "$account_id" ]] || require_id account_id "$account_id"
+  query_string=""
+  add_query account_id "$account_id"
+  api_request /v2/projects "$query_string"
+}
+
+faults_command() {
+  (($# >= 1)) || die "faults requires PROJECT_ID"
+  local project_id=$1
+  shift
+  require_id PROJECT_ID "$project_id"
+
+  local search="" order="recent" limit="10" page="1"
+  local created_after="" occurred_after="" occurred_before=""
+  while (($#)); do
+    case "$1" in
+      --query) (($# >= 2)) || die "--query requires a value"; search=$2; shift 2 ;;
+      --order) (($# >= 2)) || die "--order requires a value"; order=$2; shift 2 ;;
+      --limit) (($# >= 2)) || die "--limit requires a value"; limit=$2; shift 2 ;;
+      --page) (($# >= 2)) || die "--page requires a value"; page=$2; shift 2 ;;
+      --created-after) (($# >= 2)) || die "--created-after requires a value"; created_after=$2; shift 2 ;;
+      --occurred-after) (($# >= 2)) || die "--occurred-after requires a value"; occurred_after=$2; shift 2 ;;
+      --occurred-before) (($# >= 2)) || die "--occurred-before requires a value"; occurred_before=$2; shift 2 ;;
+      *) die "unknown faults option: $1" ;;
+    esac
+  done
+
+  [[ "$order" == recent || "$order" == frequent ]] || die "order must be recent or frequent"
+  require_limit "$limit"
+  require_id page "$page"
+  [[ -z "$created_after" ]] || require_timestamp created_after "$created_after"
+  [[ -z "$occurred_after" ]] || require_timestamp occurred_after "$occurred_after"
+  [[ -z "$occurred_before" ]] || require_timestamp occurred_before "$occurred_before"
+
+  query_string=""
+  add_query q "$search"
+  add_query order "$order"
+  add_query limit "$limit"
+  add_query page "$page"
+  add_query created_after "$created_after"
+  add_query occurred_after "$occurred_after"
+  add_query occurred_before "$occurred_before"
+  api_request "/v2/projects/${project_id}/faults" "$query_string"
+}
+
+fault_command() {
+  (($# == 2)) || die "fault requires PROJECT_ID and FAULT_ID"
+  require_id PROJECT_ID "$1"
+  require_id FAULT_ID "$2"
+  api_request "/v2/projects/$1/faults/$2"
+}
+
+notices_command() {
+  (($# >= 2)) || die "notices requires PROJECT_ID and FAULT_ID"
+  local project_id=$1 fault_id=$2
+  shift 2
+  require_id PROJECT_ID "$project_id"
+  require_id FAULT_ID "$fault_id"
+
+  local limit="5" created_after="" created_before=""
+  while (($#)); do
+    case "$1" in
+      --limit) (($# >= 2)) || die "--limit requires a value"; limit=$2; shift 2 ;;
+      --created-after) (($# >= 2)) || die "--created-after requires a value"; created_after=$2; shift 2 ;;
+      --created-before) (($# >= 2)) || die "--created-before requires a value"; created_before=$2; shift 2 ;;
+      *) die "unknown notices option: $1" ;;
+    esac
+  done
+  require_limit "$limit"
+  [[ -z "$created_after" ]] || require_timestamp created_after "$created_after"
+  [[ -z "$created_before" ]] || require_timestamp created_before "$created_before"
+
+  query_string=""
+  add_query limit "$limit"
+  add_query created_after "$created_after"
+  add_query created_before "$created_before"
+  api_request "/v2/projects/${project_id}/faults/${fault_id}/notices" "$query_string"
+}
+
+main() {
+  if [[ ${1:-} == --compact ]]; then
+    compact=true
+    shift
+  fi
+
+  local command=${1:-help}
+  (($# == 0)) || shift
+  case "$command" in
+    projects) projects_command "$@" ;;
+    faults) faults_command "$@" ;;
+    fault) fault_command "$@" ;;
+    notices) notices_command "$@" ;;
+    version) printf '%s %s\n' "$PROGRAM" "$VERSION" ;;
+    help | --help | -h) usage ;;
+    *) die "unknown command: $command (run 'badgerpeek help')" ;;
+  esac
+}
+
+main "$@"

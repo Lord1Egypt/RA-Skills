@@ -1,0 +1,19 @@
+# Test output files
+output/_test_*
+output/*.html
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor temp files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/

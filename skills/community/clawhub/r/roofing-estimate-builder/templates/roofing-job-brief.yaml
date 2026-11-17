@@ -1,0 +1,58 @@
+# Roofing Estimate Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+job:
+  customer_name: ""
+  address: ""
+  city: ""
+  state: ""
+  zip: ""
+roof:
+  plan_area_sqft: 0
+  pitch: ""
+  layers_to_remove: 0
+  access_notes: ""
+scope:
+  - item: tear-off and disposal
+    quantity: 0
+    unit: square
+    unit_price: 0
+  - item: decking repair
+    quantity: 0
+    unit: sheet
+    unit_price: 0
+  - item: underlayment and ice and water shield
+    quantity: 0
+    unit: square
+    unit_price: 0
+  - item: shingles
+    quantity: 0
+    unit: square
+    unit_price: 0
+  - item: flashing and step counter flashing
+    quantity: 0
+    unit: linear foot
+    unit_price: 0
+  - item: ridge vent and ventilation
+    quantity: 0
+    unit: each
+    unit_price: 0
+  - item: labor
+    quantity: 0
+    unit: labor hour
+    unit_price: 0
+waste_factor_pct: 0
+change_order_triggers:
+  - condition: ""
+    unit_price: 0
+deposit:
+  amount: 0
+  due: ""
+  balance_due: ""
+state_notices:
+  lien_notice_required: false
+  permit_required: false
+  permit_authority: ""
+license_number: ""
+insurance_carrier: ""
+prepared_by: ""
+prepared_on: ""

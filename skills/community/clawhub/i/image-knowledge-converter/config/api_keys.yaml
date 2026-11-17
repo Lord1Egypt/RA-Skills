@@ -1,0 +1,25 @@
+ocr:
+  tencent:
+    enabled: false
+    secret_id: ''
+    secret_key: ''
+  baidu:
+    enabled: false
+    api_key: ''
+    secret_key: ''
+  tesseract:
+    enabled: false
+    path: tesseract
+    lang: chi_sim+eng
+llm:
+  enabled: false
+  provider: ''
+  hunyuan_api_key: ''
+  kimi_api_key: ''
+  doubao_api_key: ''
+  siliconflow_api_key: ''
+  siliconflow_base_url: https://api.siliconflow.cn/v1
+ima:
+  enabled: false
+  client_id: ''
+  api_key: ''

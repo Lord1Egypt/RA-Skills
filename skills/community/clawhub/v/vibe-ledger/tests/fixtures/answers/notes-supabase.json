@@ -1,0 +1,31 @@
+{
+  "deterministic": {
+    "findings": [
+      {"probe": "supabase_rls", "path": "supabase/migrations/001_notes.sql", "level": "certain"},
+      {"probe": "secrets_exposed", "path": ".env.local", "level": "certain"},
+      {"probe": "paid_api_unauthed", "path": "app/api/summarize/route.ts", "level": "hint"}
+    ],
+    "no_certain_findings": false,
+    "compromise_hints": ["rls_disabled"],
+    "min_deferrals": 2, "min_claims": 2, "unsupported": [], "lang": "zh"
+  },
+  "graph": {"nodes": ["app/api/summarize/route.ts", "app/page.tsx", "lib/supabase.ts"],
+            "entries": ["app/api/summarize/route.ts", "app/page.tsx"],
+            "externals": ["ext:openai", "ext:supabase"],
+            "edges": [["app/page.tsx", "lib/supabase.ts"], ["app/api/summarize/route.ts", "ext:openai"],
+                      ["lib/supabase.ts", "ext:supabase"]]},
+  "explain": [{"path": "app/api/summarize/route.ts", "label": "sends the notes to OpenAI", "text_any": ["openai", "总结", "summar"]},
+              {"path": "lib/supabase.ts", "label": "connects to the database", "text_any": ["supabase", "数据库", "database"]}],
+  "must_find": [
+    {"label": "RLS switched off breaks 'only I can see my notes'", "status": ["broken"],
+     "paths_any": ["supabase/migrations"], "text_any": ["rls", "row level", "行级", "访问规则"]},
+    {"label": "the OpenAI key in a NEXT_PUBLIC_ variable is still there", "status": ["pending", "broken"],
+     "paths_any": [".env.local", "app/api/summarize"], "text_any": ["key", "密钥", "openai"]},
+    {"label": "the claimed login protection on /api/summarize does not exist", "status": ["broken", "partial"],
+     "paths_any": ["app/api/summarize"], "text_any": ["登录", "login", "auth"]}
+  ],
+  "must_find_compromises": [
+    {"label": "RLS switched off after the permission error", "still_present": true, "text_any": ["rls", "row level", "行级"]}
+  ],
+  "clean": false
+}

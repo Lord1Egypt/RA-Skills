@@ -1,0 +1,4 @@
+interface:
+  display_name: "宠物冒险生活"
+  short_description: "会旅行写日记打电话求助并掷骰成长的真实世界文字宠物"
+  default_prompt: "Use $pet-adventure-life to initialize or advance my pet adventure diary."

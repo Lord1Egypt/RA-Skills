@@ -1,39 +1,55 @@
-## Description: <br>
-Fetches live cryptocurrency and commodity prices from configured local price providers with caching and fallback behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents fetch and format live cryptocurrency and commodity price data from configured market data providers.
 
-## Publisher: <br>
-[ryandeangraves](https://clawhub.ai/user/ryandeangraves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryandeangraves](https://clawhub.ai/user/ryandeangraves)
 
-## Use Case: <br>
-Agents and users use this skill to retrieve current cryptocurrency and commodity prices for market analysis, reports, or direct price questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad price-related wording may cause an agent to invoke the skill more often than intended. <br>
-Mitigation: Use it for explicit cryptocurrency, commodity, market-analysis, report, or direct price-query tasks. <br>
-Risk: Price results depend on the referenced local price module and external data providers. <br>
-Mitigation: Confirm the local price module comes from the same trusted package and report price unavailable when providers fail. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crypto Prices ClawHub listing](https://clawhub.ai/ryandeangraves/crypto-prices) <br>
+## Use Case:
+
+Agents use this skill when a user asks for current cryptocurrency or commodity prices, including batch lookups and concise market-price summaries. It is intended for price lookup support, not financial advice or trade execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Price lookup requests are sent to external market data providers, which may expose queried assets and depend on provider availability, rate limits, and data quality.
+
+Mitigation: Use the skill only for intended market-price lookups, avoid including sensitive trading context in requests, and report prices as unavailable when providers fail.
+
+Risk: The skill depends on an existing local ~/clawd/crypto_prices.py module that was not included in the reviewed skill package.
+
+Mitigation: Confirm the local module is present, trusted, and reviewed before enabling the skill or running its commands.
+
+Risk: Cached or provider-returned market data can become stale or incomplete.
+
+Mitigation: Prefer outputs that include source context, do not guess missing prices, and refresh results when accuracy is material.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and formatted price text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces live price lookups, batch price blocks, and unavailable-price messages when providers fail.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with bash command examples and formatted price text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a short cache window and provider fallback behavior when the local price module is available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

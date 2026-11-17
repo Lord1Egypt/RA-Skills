@@ -1,46 +1,61 @@
-## Description: <br>
-A lightweight AI Agent runtime tool that provides an integrated web management interface, supports multiple LLM providers, and is fully compatible with OpenClaw's skill ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight AI Agent runtime tool that provides an integrated web management interface, supports multiple LLM providers, and is fully compatible with OpenClaw's skill ecosystem.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and manage a lightweight multi-provider AI agent runtime with a local web interface, SOUL.md-compatible agent configuration, and optional local model support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote one-line installers and downloaded binaries can execute code before the user has reviewed the release contents. <br>
-Mitigation: Prefer manual download of a pinned release, verify the source and hash where available, and review installer commands before execution. <br>
-Risk: The runtime handles LLM provider API keys and may store credentials or memory under the user's local FastClaw directory. <br>
-Mitigation: Use limited-scope API keys, keep the local data directory private, avoid entering confidential data unless the provider is trusted, and periodically inspect or delete apikeys.json and MEMORY.md. <br>
-Risk: A local web management interface can expose agent configuration and conversations if the host or port is accessible to untrusted users. <br>
-Mitigation: Bind the interface to local access where possible, restrict host access, and avoid running it on shared systems without additional controls. <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure a lightweight AI agent runtime with a web interface, multi-provider LLM support, and OpenClaw-compatible agent configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yesong-Hue/ai-agent-runtime) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [FastClaw Releases](https://github.com/fastclaw-ai/fastclaw/releases/latest) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [Ollama](https://ollama.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local runtime setup steps, provider API-key configuration guidance, and agent configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and frontmatter) <br>
+Risk: The install and update flow can run mutable remote scripts or unverified binaries with broad local authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer a versioned release, verify any available checksum or signature, and avoid administrator or root privileges unless required.
+
+Risk: The local ~/.fastclaw directory may contain API keys, conversations, agent configuration, and long-term memory.
+
+Mitigation: Treat the directory as sensitive, back it up before deletion, and avoid regulated or secret data until storage, authentication, and provider-data handling are clear.
+
+Risk: The runtime connects to external or local LLM providers selected by the user.
+
+Mitigation: Configure only trusted providers and avoid entering sensitive data until provider terms, retention, and access controls are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/ai-agent-runtime)
+- [ClawHub homepage metadata](https://clawhub.ai/yesong-Hue/ai-agent-runtime)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [OpenRouter](https://openrouter.ai)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/Markdown configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to install a local runtime, configure LLM provider credentials, and manage local agent files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

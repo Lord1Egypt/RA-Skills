@@ -1,11 +1,11 @@
 # ISCH\_WireInfo interface
 
-导线属性
+Wire property
 
 ## Signature
 
 ```typescript
-interface ISCH_WireInfo 
+interface ISCH_WireInfo
 ```
 
 ## Properties
@@ -14,116 +14,92 @@ interface ISCH_WireInfo
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [globalNetName](./ISCH_WireInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-全局网络名
-
+Global net name
 
 </td></tr>
 <tr><td>
 
 [id](./ISCH_WireInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
 ID
-
 
 </td></tr>
 <tr><td>
 
 [name](./ISCH_WireInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-导线名称
-
+Wire name
 
 </td></tr>
 <tr><td>
 
 [pageName](./ISCH_WireInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图图页名称
-
+Schematic sheet name
 
 </td></tr>
 <tr><td>
 
 [pageUuid](./ISCH_WireInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图图页 UUID
-
+Schematic sheet UUID
 
 </td></tr>
 </tbody></table>
@@ -136,7 +112,7 @@ string
 
 # ISCH\_WireInfo.globalNetName property
 
-全局网络名
+Global net name
 
 ## Signature
 
@@ -160,7 +136,7 @@ id: string;
 
 # ISCH\_WireInfo.name property
 
-导线名称
+Wire name
 
 ## Signature
 
@@ -172,7 +148,7 @@ name: string;
 
 # ISCH\_WireInfo.pageName property
 
-原理图图页名称
+Schematic sheet name
 
 ## Signature
 
@@ -184,7 +160,7 @@ pageName: string;
 
 # ISCH\_WireInfo.pageUuid property
 
-原理图图页 UUID
+Schematic sheet UUID
 
 ## Signature
 

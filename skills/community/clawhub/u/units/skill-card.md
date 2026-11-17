@@ -1,42 +1,56 @@
-## Description: <br>
-Perform unit conversions and calculations using GNU Units. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform unit conversions and calculations using GNU Units.
 
-## Publisher: <br>
-[Asleep123](https://clawhub.ai/user/Asleep123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asleep123](https://clawhub.ai/user/asleep123)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert measurements, calculate compound units, format numeric conversion results, and look up GNU Units definitions from an agent shell. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unquoted unit expressions or pasted shell syntax could be interpreted by the shell before GNU Units receives them. <br>
-Mitigation: Quote unit expressions and avoid passing untrusted shell syntax to the command. <br>
-Risk: Currency conversions may use stale static definitions from the local GNU Units data files. <br>
-Mitigation: Treat currency results as estimates and verify exchange-sensitive calculations against a current financial source. <br>
-Risk: Installing the required binary from an untrusted source could introduce package-level risk. <br>
-Mitigation: Install GNU Units from a trusted package source such as the operating system package manager. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Units on ClawHub](https://clawhub.ai/Asleep123/units) <br>
-- [Publisher profile: Asleep123](https://clawhub.ai/user/Asleep123) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to produce GNU Units command-line conversions, calculation examples, definition lookups, and guidance for safer unit expressions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain-text command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GNU Units to be installed; currency conversions may rely on stale local definitions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The GNU Units definitions file may contain outdated currency exchange rates.
+
+Mitigation: Avoid relying on this skill for current exchange-rate decisions; use a current financial data source for currency conversion.
+
+Risk: Unquoted unit expressions can be misread by the shell before reaching GNU Units.
+
+Mitigation: Quote unit expressions in generated shell commands, as shown in the skill examples.
+
+Risk: The required `units` binary could vary by package source or installation.
+
+Mitigation: Install GNU Units from a trusted package source before using generated commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asleep123/skills/units)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the GNU Units `units` binary for command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-OSM-P2P Hybrid provides a UDP and Nostr based peer-to-peer communication system with intelligent routing, room types, gossip message propagation, QR-code node exchange, and CLI/API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OSM-P2P Hybrid provides a peer-to-peer messaging system that combines UDP direct networking with Nostr relay networking.
 
-## Publisher: <br>
-[yanara-osm](https://clawhub.ai/user/yanara-osm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanara-osm](https://clawhub.ai/user/yanara-osm)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, run, and integrate a hybrid P2P chat node that can communicate over local UDP paths and wide-area Nostr relays. It supports node discovery, status inspection, QR-code contact exchange, broadcasting, private messaging, room workflows, and TypeScript API integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can advertise node identity and local network addresses during P2P discovery. <br>
-Mitigation: Run it only on networks where node identity and address exposure are acceptable, and review discovery settings before use. <br>
-Risk: Messages may traverse relays or local network paths before encryption and relay behavior have been verified for the deployment. <br>
-Mitigation: Avoid sensitive messages until the encryption, relay, and transport behavior has been independently reviewed and tested. <br>
-Risk: The local data directory may contain the node private key and message logs. <br>
-Mitigation: Protect access to ~/.osm-p2p, back it up only through approved secure channels, and periodically clear logs when retention is not required. <br>
+## Use Case:
 
+Developers and technically capable users use this skill to install, run, and integrate a TypeScript P2P messaging CLI/library for peer discovery, chat, broadcasts, private messages, and QR-code node exchange over UDP and Nostr networks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanara-osm/osm-p2p-hybrid) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [skills/SKILL.md](skills/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes CLI commands, configuration paths, API snippets, and operational behavior for running a hybrid P2P communication node.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The skill joins UDP and Nostr networks by default and may publish node metadata to public relays.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted networks, review relay and broadcast settings, and disable Nostr or UDP broadcast when that exposure is not acceptable.
+
+Risk: The security evidence says message contents are sent without clear encryption.
+
+Mitigation: Do not send secrets or sensitive content unless encryption has been independently verified or added.
+
+Risk: The skill stores a reusable Nostr private key and message-content audit logs on disk.
+
+Mitigation: Protect the data directory, rotate or remove identities when needed, and disable or restrict audit logging where possible.
+
+Risk: Installation uses npm dependencies for networked runtime behavior.
+
+Mitigation: Review dependency sources and the lockfile before running npm install.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Primary Skill Definition](artifact/SKILL.md)
+- [Packaged Skill Definition](artifact/skills/SKILL.md)
+- [Package Manifest](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, TypeScript snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on a Node.js/TypeScript CLI and library that can start network transports and write local identity and audit files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog; package.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

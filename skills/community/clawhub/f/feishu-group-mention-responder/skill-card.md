@@ -1,39 +1,55 @@
-## Description: <br>
-Responds automatically in Feishu group chats when the bot is mentioned or receives a direct message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在飞书群中，当机器人被@提及或接收到直接消息时，自动进行回复。
 
-## Publisher: <br>
-[Lorpha](https://clawhub.ai/user/Lorpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lorpha](https://clawhub.ai/user/lorpha)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an agent to detect Feishu group mentions or direct messages and reply in the same chat. It is intended for Feishu bots that need to recognize their own identity, address the sender, and avoid duplicate or looping replies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bot reads relevant Feishu chat events and can send replies as the bot. <br>
-Mitigation: Limit Feishu app permissions and group access to intended chats before enabling the skill. <br>
-Risk: Mention detection or reply handling could produce unexpected or repeated replies. <br>
-Mitigation: Test mention handling, direct-message handling, bot identity matching, and duplicate-reply prevention before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lorpha/feishu-group-mention-responder) <br>
+## Use Case:
+
+External and developer users use this skill to help an agent recognize Feishu direct messages or group @mentions and send a concise reply to the sender. It is intended for Feishu group-chat bot interaction where the agent must identify mentions, avoid duplicate replies, and respond in Chinese by default.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bot may read Feishu chat events and send messages as the bot in chats where it is installed.
+
+Mitigation: Before installation, confirm the Feishu bot should have chat event access and send-as-bot permissions for the target workspace.
+
+Risk: Default replies are Chinese and may not fit multilingual workspaces.
+
+Mitigation: Adjust the default response language and wording before deployment if the workspace requires multilingual responses.
+
+Risk: Mention detection or reply logic can cause duplicate or looping responses if bot identities and handled message IDs are not tracked correctly.
+
+Mitigation: Configure reliable bot ID/name detection and suppress replies to non-mentions, already processed messages, and the bot's own messages.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with JSON and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Feishu message handling guidance includes mention detection, sender extraction, reply construction, and bot permission considerations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Guidance, Code, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with JSON and Python-like code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for Feishu message handling, mention detection, reply construction, and required bot permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

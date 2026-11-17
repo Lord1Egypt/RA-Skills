@@ -1,42 +1,57 @@
-## Description: <br>
-Send native voice bubble messages in Feishu/Lark chats by converting text to Opus audio with Microsoft Edge TTS for Feishu audio message delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send native Feishu/Lark voice bubble messages by converting text to Opus audio with Microsoft Edge TTS and preparing the resulting audio for Feishu chat delivery.
 
-## Publisher: <br>
-[SAOKiritoKun](https://clawhub.ai/user/SAOKiritoKun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saokiritokun](https://clawhub.ai/user/saokiritokun)
 
-## Use Case: <br>
-Developers and Feishu/Lark bot operators use this skill to turn text into native voice-bubble audio messages, including long text split into multiple Opus files when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for voice generation may leave the user's machine for Microsoft Edge TTS processing. <br>
-Mitigation: Do not use the skill for secrets, credentials, private personal data, or regulated business content unless that external processing is acceptable. <br>
-Risk: Generated voice audio may be uploaded to Feishu/Lark when sent as a voice bubble. <br>
-Mitigation: Review the text and intended chat destination before sending generated audio. <br>
-Risk: The skill depends on an internet-hosted TTS service and has no stated service-level guarantee. <br>
-Mitigation: Confirm network access and availability before relying on it for time-sensitive messaging workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to create Feishu/Lark voice-bubble replies from text, including longer messages split at sentence boundaries and optional voice, rate, and pitch controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SAOKiritoKun/feishu-voice-bubble) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates .opus audio files for Feishu/Lark voice bubbles; long text can be split into numbered output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Text submitted for speech generation is sent to Microsoft Edge TTS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated content unless the workflow is approved for that external service.
+
+Risk: The helper requires installing the node-edge-tts npm dependency.
+
+Mitigation: Pin and review the npm dependency before installation or deployment.
+
+Risk: Generated audio is written to user-provided output paths.
+
+Mitigation: Keep generated audio paths inside a dedicated output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saokiritokun/skills/feishu-voice-bubble)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Configuration instructions]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces .opus audio files for Feishu audio messages; long text may produce numbered output files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

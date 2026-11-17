@@ -1,44 +1,59 @@
-## Description: <br>
-Trades crypto hourly Up/Down markets on Polymarket when sub-interval consensus disagrees with the hourly price, using conviction-based sizing for BTC, ETH, and SOL opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket crypto hourly Up/Down markets when sub-interval consensus appears to disagree with the hourly market price.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading operators use this skill to discover Polymarket crypto Up/Down market bundles, compare five-minute interval consensus against hourly markets, and run paper or explicitly enabled live trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running with --live can place real Polymarket trades and expose the user to financial loss. <br>
-Mitigation: Start in paper mode, keep position limits conservative, and enable --live only after reviewing the strategy and configuration. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Use a least-privileged Simmer API key, keep it out of logs and shared files, and rotate it if exposed. <br>
-Risk: The advertised minimum-volume safeguard may not be reliable without verification or a fix. <br>
-Mitigation: Verify the volume filter behavior before relying on it for live trading, or keep live trading disabled until the safeguard is fixed. <br>
+## Use Case:
 
+Developers and trading operators can use this skill to run a configurable crypto hourly-market strategy that searches for bundle consensus opportunities and submits simulated or live trade requests through Simmer. It is intended for users who understand automated prediction-market trading and can review the strategy before risking funds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-bundle-crypto-hourly-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with Python code and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading and only places live Polymarket trades when run with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence; artifact metadata also contains 1.0.0 frontmatter and 0.0.2 clawhub.json) <br>
+Risk: The skill can trade with real funds when run in live mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep live mode disabled until reviewed, use a least-privilege or sandbox credential where possible, and cap account exposure before enabling live trading.
+
+Risk: The security evidence says paper-trading boundaries and risk controls are weak.
+
+Mitigation: Review the execution path before use, avoid reusing the same long-running process for paper and live runs, and independently verify safeguards before relying on them.
+
+Risk: The security guidance warns not to rely on documented volume or concurrent-position limits without verification.
+
+Mitigation: Fix or independently test those limits, monitor open positions externally, and use conservative position-size settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-bundle-crypto-hourly-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Console logs, Python execution, environment-variable configuration, and simulated or live trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; configurable trade limits are exposed through SIMMER_* environment variables.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

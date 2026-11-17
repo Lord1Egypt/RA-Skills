@@ -1,46 +1,65 @@
-## Description: <br>
-FastAPI guidance for building high-performance Python Web APIs with routing, validation, documentation, authentication, database integration, testing, and deployment patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastAPI guidance for building high-performance Python Web APIs with typed routes, validation, documentation, authentication, database integration, and troubleshooting.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineers use this skill to create and troubleshoot FastAPI applications, including project setup, REST endpoints, Pydantic models, dependency injection, authentication, database access, tests, and local server validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package installation and generated project files can change the local development environment. <br>
-Mitigation: Review and approve dependency installs and file writes before execution, preferably inside a virtual environment. <br>
-Risk: Server-start commands can expose a FastAPI application beyond the local machine if bound broadly. <br>
-Mitigation: Prefer localhost bindings during development unless network exposure is intentional and reviewed. <br>
-Risk: Authentication, JWT, API key, and database examples may involve sensitive credentials in real projects. <br>
-Mitigation: Keep secrets out of generated source files and review credential handling before running or deploying generated code. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, configure, test, and troubleshoot FastAPI applications. It helps an agent propose project structure, Python code, dependency installation commands, authentication patterns, database integrations, middleware, and deployment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/github-skill-distiller-fastapi) <br>
-- [FastAPI homepage](https://fastapi.tiangolo.com) <br>
-- [FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/) <br>
-- [FastAPI PyPI package](https://pypi.org/project/fastapi/) <br>
-- [FastAPI GitHub project](https://github.com/tiangolo/fastapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python, TOML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose package installation, file generation, tests, and local development server commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release metadata and frontmatter) <br>
+Risk: Dependency installation and pip configuration commands may change the active Python environment or persistent package index settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-local virtual environment and review any pip configuration changes before allowing an agent to execute them.
+
+Risk: Development server examples can expose a local FastAPI service if bound to all interfaces.
+
+Mitigation: Bind development servers to localhost unless external access is intentional and protected.
+
+Risk: Authentication examples include sample secrets, demo users, and simplified defaults that are not suitable for real deployments.
+
+Mitigation: Replace sample secrets and demo users, use production secret management, and review authentication code before deployment.
+
+Risk: Generated code, commands, or troubleshooting steps may be incorrect for a specific project environment.
+
+Mitigation: Review proposed changes, run tests, and scan generated code before applying it to an application.
+
+## Reference(s):
+
+- [FastAPI homepage](https://fastapi.tiangolo.com)
+- [Installation guide](artifact/guides/01-installation.md)
+- [Quickstart guide](artifact/guides/02-quickstart.md)
+- [Advanced usage guide](artifact/guides/03-advanced-usage.md)
+- [Troubleshooting guide](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python, shell, TOML, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable setup commands, application code, dependency lists, and deployment guidance that should be reviewed before use.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

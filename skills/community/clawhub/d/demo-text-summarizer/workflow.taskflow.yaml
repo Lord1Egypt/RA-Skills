@@ -1,0 +1,73 @@
+# TaskFlow Workflow: Skill Processing & Publishing Pipeline
+# This workflow defines the business process for preparing and publishing
+# an AgentSkill to the ClawHub resource center.
+
+name: skill-publish-pipeline
+description: >-
+  End-to-end pipeline: validate a skill folder, verify metadata,
+  then publish it to ClawHub registry.
+
+steps:
+  # ---- Phase 1: Validate skill structure ----
+  - id: validate-structure
+    description: Check that the skill folder has required files (SKILL.md, _meta.json)
+    command: |
+      test -f SKILL.md || { echo "FAIL: SKILL.md missing"; exit 1; }
+      test -f _meta.json || { echo "FAIL: _meta.json missing"; exit 1; }
+      echo "PASS: required files present"
+
+  # ---- Phase 2: Validate SKILL.md frontmatter ----
+  - id: validate-frontmatter
+    description: Parse SKILL.md YAML frontmatter for required fields
+    command: |
+      head -10 SKILL.md | grep -q "^---$" || { echo "FAIL: frontmatter missing"; exit 1; }
+      head -10 SKILL.md | grep -q "name:" || { echo "FAIL: name field missing"; exit 1; }
+      head -10 SKILL.md | grep -q "description:" || { echo "FAIL: description field missing"; exit 1; }
+      echo "PASS: frontmatter valid"
+
+  # ---- Phase 3: Validate _meta.json ----
+  - id: validate-meta
+    description: Check _meta.json is valid JSON with required fields
+    command: |
+      python3 -c "
+import json, sys
+with open('_meta.json') as f:
+    meta = json.load(f)
+assert 'openclaw' in meta, 'missing openclaw key'
+assert 'emoji' in meta['openclaw'], 'missing emoji'
+print('PASS: _meta.json valid')
+"
+
+  # ---- Phase 4: Extract publish metadata ----
+  - id: extract-metadata
+    description: Extract slug, name, version from skill files for publishing
+    command: |
+      SLUG=$(grep -m1 "^name:" SKILL.md | sed 's/name: *//')
+      VERSION=$(python3 -c "import json; print(json.load(open('_meta.json'))['version'])")
+      echo "SLUG=$SLUG"
+      echo "VERSION=$VERSION"
+
+  # ---- Phase 5: Publish to ClawHub ----
+  - id: publish
+    description: Publish the skill to ClawHub registry
+    command: |
+      SLUG=$(grep -m1 "^name:" SKILL.md | sed 's/name: *//')
+      NAME=$(python3 -c "
+import re, yaml
+with open('SKILL.md') as f:
+    content = f.read()
+fm = content.split('---')[1]
+m = re.search(r'name:\s*(.+)', fm)
+print(m.group(1).strip() if m else '')
+")
+      VERSION=$(python3 -c "import json; print(json.load(open('_meta.json'))['version'])")
+      clawhub publish . --slug "$SLUG" --name "$NAME" --version "$VERSION" --changelog "Initial publish via TaskFlow pipeline"
+    condition: previous.steps all passed
+
+  # ---- Phase 6: Verify publication ----
+  - id: verify
+    description: Search ClawHub to confirm the skill is listed
+    command: |
+      SLUG=$(grep -m1 "^name:" SKILL.md | sed 's/name: *//')
+      clawhub search "$SLUG" | head -5
+    condition: publish step succeeded

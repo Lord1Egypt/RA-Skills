@@ -1,0 +1,25 @@
+artifact: agent_handoff_manifest
+artifact_role: supporting
+applicable_stages: [baseline, implementation, acceptance]
+applies_when: 仅在交接需要机器可消费的边界与引用时使用。
+schema_version: 5.3.0
+status: draft
+engineering_baseline_ref: null
+# 仅在实现存在环境/权限/安全边界时取消注释；不得在 secret_refs 写入秘密原值。
+# execution_constraints:
+#   baseline_ref: ENG-BASELINE-001
+#   protected_surfaces: []
+#   allowed_actions: []
+#   forbidden_actions: []
+#   environment_refs: []
+#   secret_refs: [SECRET-EXAMPLE-001]
+#   required_evidence: []
+#   rollback_owner: "{accountable human}"
+baseline:
+  version: 0.1-draft
+  hash: "0000000000000000000000000000000000000000000000000000000000000000"
+  requirement_ref: PRD.md
+# scope_refs/acceptance_refs 必须对应 requirement_ref 中真实定义；每项都进入相应包。
+# 内容哈希只核对漂移；业务反例与证据真实性由接收复核，不把空标签当语义。
+packets: []
+handoffs: []

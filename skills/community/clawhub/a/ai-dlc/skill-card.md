@@ -1,47 +1,61 @@
-## Description: <br>
-AI-DLC provides an adaptive AI-driven software development lifecycle workflow for new projects, features, bug fixes, refactoring, migration, and other development tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-DLC provides an adaptive AI-driven software development lifecycle for new projects, features, bug fixes, refactoring, migrations, and other development tasks.
 
-## Publisher: <br>
-[sydpz](https://clawhub.ai/user/sydpz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sydpz](https://clawhub.ai/user/sydpz)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide software work through adaptive inception, construction, and operations phases with requirements analysis, planning, design, code generation, build, and test steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly activates for ordinary coding tasks and may shape many development workflows. <br>
-Mitigation: Install it only where a structured AI-DLC process is desired, and review the generated workflow plan and approval gates before continuing. <br>
-Risk: The skill records user input verbatim in aidlc-docs/audit.md, which can capture secrets or sensitive project information. <br>
-Mitigation: Avoid pasting secrets, treat audit.md as sensitive, consider excluding audit files from version control, and prefer sanitized summaries if the workflow is customized. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure software delivery from workspace discovery and requirements analysis through planning, design, code generation, and build/test work. It is suited to guided development workflows where users review and approve major phases.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sydpz/ai-dlc) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Process overview](artifact/references/common/process-overview.md) <br>
-- [Requirements analysis](artifact/references/inception/requirements-analysis.md) <br>
-- [Workflow planning](artifact/references/inception/workflow-planning.md) <br>
-- [Code generation](artifact/references/construction/code-generation.md) <br>
-- [Build and test](artifact/references/construction/build-and-test.md) <br>
-- [Security baseline extension](artifact/references/extensions/security/baseline/security-baseline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents, implementation plans, code changes, test/build guidance, and shell command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates AI-DLC workflow documentation under aidlc-docs when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: User input may be recorded verbatim in aidlc-docs/audit.md, which can expose secrets, tokens, customer data, or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive data, add redaction or change the audit-log behavior before use, and keep audit.md out of source control when it may contain private information.
+
+Risk: The workflow scans the workspace and can create or modify many aidlc-docs files, with application-code changes after approval.
+
+Mitigation: Run it in a controlled workspace, review planned phases and generated files before approval, and inspect diffs before committing changes.
+
+## Reference(s):
+
+- [AI-DLC Skill Definition](artifact/SKILL.md)
+- [Process Overview](artifact/references/common/process-overview.md)
+- [Question Format Guide](artifact/references/common/question-format-guide.md)
+- [Session Continuity](artifact/references/common/session-continuity.md)
+- [Requirements Analysis](artifact/references/inception/requirements-analysis.md)
+- [Workflow Planning](artifact/references/inception/workflow-planning.md)
+- [Code Generation](artifact/references/construction/code-generation.md)
+- [Build and Test](artifact/references/construction/build-and-test.md)
+- [Security Baseline](artifact/references/extensions/security/baseline/security-baseline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents, code changes, shell command blocks, configuration guidance, and concise status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates AI-DLC workflow files under aidlc-docs and may guide application-code changes after user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence, created 2026-03-30T17:26:44Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

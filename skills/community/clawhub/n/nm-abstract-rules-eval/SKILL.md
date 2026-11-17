@@ -2,7 +2,7 @@
 name: rules-eval
 description: |
   Evaluate Claude Code rules in .claude/rules/. Use for frontmatter, globs, and quality audits
-version: 1.9.8
+version: 1.10.3
 triggers:
   - evaluation
   - rules
@@ -15,18 +15,16 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Rules Evaluation Framework
 
-## Table of Contents
+## When NOT To Use
 
-1. [Overview](#overview)
-2. [Quick Start](#quick-start)
-3. [Evaluation Workflow](#evaluation-workflow)
-4. [Scoring](#scoring)
-5. [Resources](#resources)
+- Evaluating skills (use `abstract:skills-eval`)
+- Evaluating hooks (use `abstract:hooks-eval`)
+- Writing a new rule (use `hookify:writing-rules`)
 
 ## Overview
 
@@ -88,3 +86,14 @@ Key validations: YAML syntax errors, unquoted glob patterns, Cursor-specific fie
 ### Related Skills
 - `abstract:skills-eval` - Skill evaluation framework
 - `abstract:hooks-eval` - Hook evaluation framework
+
+## Exit Criteria
+
+- [ ] Every `.md` file under `.claude/rules/` (including subdirectories) receives a quality score
+  (0-100) with per-category breakdown across the five dimensions.
+- [ ] YAML frontmatter syntax errors and unquoted glob patterns are listed as blocking findings
+  before any score is reported.
+- [ ] Rules using Cursor-specific fields (`alwaysApply`, `globs`) are flagged as
+  non-compliant with the expected Claude Code schema.
+- [ ] Any rule scoring below 26 (Critical tier) is reported with at least one concrete
+  corrective action alongside the score.

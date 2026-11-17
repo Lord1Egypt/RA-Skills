@@ -1,45 +1,54 @@
-## Description: <br>
-Converts documents and URLs to markdown via tiered fallback using MCP markitdown, native tools, and user notification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts documents and URLs to markdown via tiered fallback (MCP markitdown, native tools, user notice)
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agents use this skill to convert PDF, Office, web, data, image, audio, archive, and e-book inputs into markdown for downstream processing. It is most useful when the source content is not already plain text or markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes external documents and untrusted links, which can include sensitive data or embedded instructions. <br>
-Mitigation: Invoke it only for files or URLs intended for conversion, and apply the documented content-sanitization checklist to converted content. <br>
-Risk: Some formats depend on the markitdown MCP server; without it, conversion quality or coverage can degrade. <br>
-Mitigation: Use the native fallback paths for supported formats and clearly notify the user when a format cannot be converted without markitdown. <br>
+## Use Case:
 
+Developers and agent builders use this skill to convert documents and URLs into Markdown for downstream processing or editable project imports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-leyline-document-conversion) <br>
-- [Publisher Profile](https://clawhub.ai/user/athola) <br>
-- [Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Format Support Matrix](artifact/modules/format-matrix.md) <br>
-- [Fallback Tier Instructions](artifact/modules/fallback-tiers.md) <br>
-- [URI Construction](artifact/modules/uri-construction.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include converted document content, fallback instructions, or setup guidance when markitdown MCP is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Converted external content may contain instruction-like text that affects downstream processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the documented sanitization steps: strip system and instruction tags, apply size limits, and mark external-content boundaries.
+
+Risk: The security scan is partial because two local references in SKILL.md could not be resolved.
+
+Mitigation: Review the unresolved references before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-document-conversion)
+- [Night Market Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown text, with JSON configuration examples when conversion support is unavailable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converted external content is sanitized, wrapped in source boundaries, and limited to 2,000 words per section.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter; release evidence: 1.10.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

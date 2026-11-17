@@ -1,0 +1,123 @@
+# packs/edu_research.yaml — Education & Research Institution industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `edu_research.zh.yaml`.
+# Zero-intrusion note: this is an added pack; it does not modify the 24-department template,
+# the 159-action library, decision/roles/semantic/logic, or init.py.
+# ⚠️ Education / research involves minor protection and ownership of job-related scientific and
+# technological achievements; the red lines in this pack are a reference framework and must be
+# verified by compliance / legal counsel against the latest regulations.
+
+meta:
+  pack_id: edu_research
+  display_name: Education & Research Institution
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [school, university, college, K-12, kindergarten, research institute, education, vocational training, training, academy, laboratory, research group]
+  description: >
+    For schools (higher education / vocational / basic education / training) and research institutions
+    (public-institution research institutes / new R&D institutions / corporate R&D centers).
+    The main pack covers education commonalities (enrollment / teaching / evaluation) and research
+    commonalities (project initiation / funding / achievement transfer); red lines are a reference framework.
+
+# ── 1. Education / research common entities ──
+entities_extra:
+  - type: SchoolOrInstitute
+    extends: Organization
+    properties:
+      - { name: school_type, type: enum, enum: [higher education, vocational education, basic education, training provider, research institute, new R&D institution], required: true, desc: "Institution type" }
+      - { name: license_no, type: string, desc: "School licence / establishment approval number" }
+      - { name: funding_source, type: enum, enum: [government, self-raised, donation, mixed], desc: "Funding source" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+  - type: Student
+    extends: Customer
+    properties:
+      - { name: student_no, type: string, pii: true, desc: "Student ID — strong PII guardrail" }
+      - { name: minor, type: boolean, desc: "Whether a minor (triggers minor protection)" }
+  - type: ResearchProject
+    extends: Project
+    properties:
+      - { name: grant_no, type: string, desc: "Project approval number (national / provincial-ministerial)" }
+      - { name: funding_source, type: enum, enum: [national, provincial-ministerial, commissioned, self-raised], desc: "Funding source" }
+      - { name: budget, type: number, desc: "Approved funding" }
+  - type: ResearchOutcome
+    extends: Document
+    properties:
+      - { name: patent_no, type: string, desc: "Patent number (job-related achievement)" }
+      - { name: transfer_status, type: enum, enum: [not transferred, licensed, assigned, invested as equity], desc: "Achievement transfer status" }
+      - { name: owner_unit, type: boolean, desc: "Whether a job-related achievement (owned by the unit)", default: true }
+
+# ── 2. Recommended departments ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+  # Education / research optional
+  - { code: operations,  name: Operations }        # academic affairs / research management
+  - { code: quality,     name: Quality Management } # teaching evaluation / quality control
+  - { code: investor,    name: Investment & Financing } # achievement transfer / industry-academia-research
+
+suggested_custom_departments:
+  - { code: academic, name: Academic Affairs, gender_default: female, expertise: "enrollment / scheduling / teaching evaluation", when: "recommended for any school" }
+  - { code: research_mgmt, name: Research Management, gender_default: female, expertise: "project initiation / funding / closure / achievement transfer", when: "recommended whenever there are research projects" }
+  - { code: tech_transfer, name: Technology Transfer, gender_default: male, expertise: "patent operation, licensing and assignment compliance", when: "recommended whenever there are job-related achievements" }
+
+# ── 3. Default workflow ──
+default_workflow: edu_research_ops
+workflow_bindings:
+  edu_research_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [enrollment / project initiation, teaching / research, achievement transfer, evaluation, review]
+
+# ── 4. Localization policy hooks ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.edu_research       # research funding / achievement transfer / school-operation compliance / data protection (triggered by this pack; reference framework)
+    - compliance_redlines.tax
+    - compliance_redlines.general            # personal information protection / minor protection
+  local_services: []
+  note: Red lines are a reference framework; before implementation they must be verified by compliance / legal counsel against the latest regulations.
+
+# ── 5. Layer-B flavor ──
+flavor:
+  default: >-
+    You serve an education / research institution; research funding must be used strictly for its
+    designated purpose and never misappropriated or falsely claimed. Ownership of job-related
+    scientific and technological achievements belongs to the institution, and transfer must be
+    compliant (due diligence / valuation / public disclosure) with revenue distribution following the
+    applicable law on promoting the transfer of scientific and technological achievements. Student and
+    subject information is under a strong PII guardrail, and minors require additional protection
+    with no disclosure.
+  legal: School-operation licence and enrollment compliance; degree-education qualifications; ownership and transfer procedures for job-related achievements; research involving human subjects requires ethics review.
+  finance: Execute research funding according to budget; travel / conference / labour costs follow the rules; closure audit; separate accounting for government and self-raised funds.
+  rnd: Keep project initiation and process management documented; data must be truthful and traceable; achievement transfer valuation and public disclosure must be compliant.
+  hr: Faculty hiring and title review compliance; student management compliance; non-staff and dispatched labour compliance.
+  quality: Teaching evaluation and programme accreditation; training quality closed loop; research integrity (no academic misconduct).
+
+# ── 6. Instantiation prompts ──
+instance_prompts:
+  - "Please describe the institution type (university / vocational / K-12 / research institute / new R&D) and qualifications (school licence / establishment approval)"
+  - "Please introduce the institution (name, region, funding source, whether you hire staff)"
+  - "Which departments do you want to build (12 core by default + operations / quality / investment; recommended to add Academic Affairs / Research Management / Technology Transfer)"
+  - "Core business loop (e.g. enrollment → teaching → evaluation; or initiation → research → achievement transfer)"
+  - "Whether there is national research funding / job-related achievements / minor students (affects red lines)"
+
+# ── 7. Education & research monitoring signals (pairs with the edu_research domain in monitoring.yaml) ──
+edu_research_signals:
+  signals:
+    - { id: fund_misuse, name: research fund misappropriation, owner: [research_mgmt, finance], desc: "over-budget spending / false claims" }
+    - { id: transfer_gap, name: achievement transfer procedure gap, owner: [tech_transfer, legal], desc: "transfer without valuation or public disclosure" }
+    - { id: student_pii_leak, name: student information leak, owner: [it_security, legal], desc: "student IDs / minor information sent out without de-identification" }
+    - { id: academic_misconduct, name: research integrity risk, owner: [rnd, legal], desc: "academic misconduct / data fabrication warning" }

@@ -1,38 +1,52 @@
-## Description: <br>
-Intelligent budget tracking and financial management library for AI agents - expense tracking, income management, budgets, savings goals, and LLM-powered insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent budget tracking and financial management library for AI agents for expense tracking, income management, budgets, savings goals, and LLM-powered insights.
 
-## Publisher: <br>
-[enjuguna](https://clawhub.ai/user/enjuguna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[enjuguna](https://clawhub.ai/user/enjuguna)
 
-## Use Case: <br>
-Developers and AI-agent builders use this skill to add programmatic budget tracking, transaction management, budget alerts, savings goals, recurring transactions, reports, and AI-generated financial insights to agents or bots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Budget records can contain sensitive financial information. <br>
-Mitigation: Avoid entering account numbers, credentials, or unnecessary financial identifiers, and keep explicit control over export, backup, recurring transaction, and insight-generation actions. <br>
-Risk: The skill depends on installing and using an external npm package. <br>
-Mitigation: Verify the npm package publisher and version before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and AI agents use this skill to integrate programmatic personal finance tracking, including expenses, income, budgets, savings goals, recurring transactions, analytics, and LLM-powered insights.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents toward local budget data operations, JSON-style exports, backups, and report or insight text produced by the referenced TypeScript package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive financial data while LLM data handling and backup/export protections are not clearly explained.
+
+Mitigation: Use a sandbox or least-privileged account, and avoid entering real financial data until local storage, exports, backups, and any LLM processing paths are reviewed.
+
+Risk: The artifact asks users to install an unaudited npm package.
+
+Mitigation: Pin and verify the npm package version before installation and review the package before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enjuguna/skills/intelligent-budget-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, JSON, Guidance]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-like financial summaries, status objects, export data, backup paths, and generated insight text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

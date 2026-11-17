@@ -1,0 +1,8 @@
+interface:
+  display_name: "YouTube 公开视频元数据中文化"
+  short_description: "将授权公开视频资料适配为中文受众标题简介草稿并标注待确认品牌"
+  default_prompt: "使用 $youtube-video-metadata-localize-free 和我指定的 browserId，只读分析已授权 YouTube 公开视频，生成中文标题和简介草稿并列出来源与缺项；品牌或模糊主张保留并标注待确认，不修改后台。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

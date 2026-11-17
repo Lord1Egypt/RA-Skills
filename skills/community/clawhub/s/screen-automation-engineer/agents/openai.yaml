@@ -1,0 +1,4 @@
+interface:
+  display_name: "屏幕自动化工程师"
+  short_description: "强大的屏幕理解与控制，并创建可维护流程"
+  default_prompt: "使用 $screen-automation-engineer，左边窗口的内容是什么？进行一项屏幕任务"

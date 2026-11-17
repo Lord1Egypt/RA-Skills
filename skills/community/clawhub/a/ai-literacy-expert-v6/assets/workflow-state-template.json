@@ -1,0 +1,49 @@
+{
+  "$schema": "V6.0 workflow-state",
+  "workflowId": "wf_<uuid>",
+  "createdAt": "ISO8601",
+  "updatedAt": "ISO8601",
+  "auto": false,
+  "intent": {
+    "ability": "courseware|game|lesson|assessment|recommend|collab|ops",
+    "modules": ["A2", "C1"],
+    "audience": "大学生",
+    "difficulty": 2,
+    "workbuddy": { "ima": false, "doc": false, "alarm": false, "calendar": false, "memo": false, "share": false },
+    "context": { "bnbu": false, "courseCode": null, "topic": null }
+  },
+  "plan": {
+    "runbook": "A",
+    "stages": ["INTENT", "PLAN", "BUILD", "VERIFY", "ASSEMBLE", "DELIVER", "REPORT", "LEARN"],
+    "checkpoints": []
+  },
+  "progress": {
+    "done": ["INTENT", "PLAN"],
+    "current": "BUILD",
+    "pending": ["VERIFY", "ASSEMBLE", "DELIVER", "REPORT", "LEARN"]
+  },
+  "artifacts": {
+    "html": null,
+    "readme": null,
+    "zip": null,
+    "delivery": { "ima": null, "doc": null, "alarm": null, "calendar": null, "memo": null, "share": null }
+  },
+  "verify": {
+    "harnessJson": null,
+    "controlsTotal": 0,
+    "pass": 0,
+    "fail": 0,
+    "fixRounds": 0,
+    "fixBudget": 3,
+    "gate": "pending|pass|fail"
+  },
+  "learn": {
+    "weakPoints": [],
+    "nextIntent": null,
+    "feedback": []
+  },
+  "observability": [
+    { "ts": "ISO8601", "stage": "BUILD", "ability": "courseware", "module": "C1", "detail": {}, "durationMs": 0, "errors": [] }
+  ],
+  "notes": "本模板为长任务/运营流的可恢复状态骨架。PLAN 阶段写入，每阶段追加 observability；中断后由 INTENT/PLAN 读取并跳过 done 中的 stage 实现续跑。"
+}

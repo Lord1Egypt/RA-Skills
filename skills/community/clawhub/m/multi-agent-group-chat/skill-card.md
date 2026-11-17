@@ -1,39 +1,58 @@
-## Description: <br>
-Multi Agent Group Chat automatically reposts sub-agent results from sessions_send workflows into the originating Telegram or Feishu group chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Agent Group Chat forwards sub-agent replies from sessions_send tasks back to the originating Telegram or Feishu group chat after automatically detecting the source chat.
 
-## Publisher: <br>
-[harven-droid](https://clawhub.ai/user/harven-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harven-droid](https://clawhub.ai/user/harven-droid)
 
-## Use Case: <br>
-Developers and operators use this plugin to make a multi-agent OpenClaw setup visible in group chat, so sub-agent responses are automatically shared with the Telegram or Feishu group where the task originated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can automatically post sub-agent outputs into Telegram or Feishu group chats without clear allowlists, confirmations, or content controls. <br>
-Mitigation: Install only for trusted groups where automatic reposting is intended; avoid workflows with secrets, private customer data, internal reasoning, or sensitive operational details unless chat/account allowlists, explicit approval, and redaction controls are added. <br>
+## Use Case:
 
+Developers and team operators use this skill to let multiple OpenClaw agents coordinate in shared Telegram or Feishu group chats, with sub-agent results posted back for group visibility.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/harven-droid/multi-agent-group-chat) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/harven-droid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Chat messages and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatically sends final sub-agent replies to the detected source group when an internal sessions_send task completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Sub-agent replies may be posted into shared group chats without enough per-chat control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only in groups where participants consent to automatic posting, and prefer deployments with per-chat opt-in and destination allowlists.
+
+Risk: Incorrect or overly broad session metadata could route a reply to the wrong chat.
+
+Mitigation: Use hosts that provide trustworthy session metadata and prefer versions with stronger parent-session validation.
+
+Risk: Response-content logging can expose private or sensitive agent output.
+
+Mitigation: Prefer a version that avoids logging response content and review logs before use in private workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harven-droid/skills/multi-agent-group-chat)
+- [ClawHub project homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and usage guidance for an OpenClaw group-chat plugin; runtime behavior posts agent reply text to the detected chat destination.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter, openclaw.plugin.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

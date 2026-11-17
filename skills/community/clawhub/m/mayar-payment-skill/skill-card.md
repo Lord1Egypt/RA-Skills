@@ -1,50 +1,65 @@
-## Description: <br>
-Mayar.id payment integration for generating invoices, payment links, and tracking transactions via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mayar.id payment integration for generating invoices, payment links, and tracking transactions via MCP.
 
-## Publisher: <br>
-[ahsanatha](https://clawhub.ai/user/ahsanatha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ahsanatha](https://clawhub.ai/user/ahsanatha)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Mayar.id for Indonesian payment workflows, including invoice creation, payment links, transaction checks, and subscription or membership lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent access to a Mayar payment API token and production payment-account actions. <br>
-Mitigation: Start in sandbox, keep tokens out of shared configuration and logs, and require human approval before creating invoices or messaging customers. <br>
-Risk: Incorrect recipient, amount, or invoice details could create payment requests for the wrong customer or value. <br>
-Mitigation: Verify recipient, amount, item, expiry, and redirect details before sending payment links or customer messages. <br>
-Risk: Example snippets use command execution patterns that may be unsafe if copied directly into production automation. <br>
-Mitigation: Replace shell-string execution examples with safer argument-based tool calls before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to Mayar.id payment workflows for Indonesian commerce, including invoice creation, payment links, transaction tracking, membership checks, and customer payment messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahsanatha/mayar-payment-skill) <br>
-- [MCP Tools Reference](references/mcp-tools.md) <br>
-- [Integration Examples](references/integration-examples.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Mayar API documentation](https://docs.mayar.id/api-reference/introduction) <br>
-- [Mayar.id](https://mayar.id) <br>
-- [Mayar MCP endpoint](https://mcp.mayar.id/sse) <br>
-- [Mayar production dashboard](https://web.mayar.id) <br>
-- [Mayar sandbox dashboard](https://web.mayar.club) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing setup and workflow guidance for Mayar MCP payment operations; Mayar tool responses may include invoice IDs, transaction IDs, payment links, balances, customer records, and transaction status data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The configured MCP server can access the user's Mayar payment account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that account access is acceptable, use sandbox tokens first, and scope production credentials to the minimum account permissions available.
+
+Risk: Unpinned `npx -y` setup can execute a changing MCP bridge package.
+
+Mitigation: Pin or preinstall the MCP bridge before production use.
+
+Risk: Live tokens in shared configuration or process arguments can expose payment credentials.
+
+Mitigation: Store credentials outside shared config, restrict file permissions, and avoid passing live tokens through command arguments where they may be logged or inspected.
+
+Risk: Webhook, polling, and customer-message examples can create payment or messaging errors if copied directly into production.
+
+Mitigation: Add webhook authentication, idempotency, input validation, payment-state checks, and customer consent controls before deployment.
+
+## Reference(s):
+
+- [Mayar MCP Tools Reference](references/mcp-tools.md)
+- [Mayar Integration Examples](references/integration-examples.md)
+- [Mayar.id API Reference](references/api-reference.md)
+- [Mayar Official API Documentation](https://docs.mayar.id/api-reference/introduction)
+- [Mayar.id](https://mayar.id)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool calls, API request examples, and customer-message templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README badge)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

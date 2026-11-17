@@ -1,42 +1,55 @@
-## Description: <br>
-Generate videos through Filtrix Remote MCP for text-to-video, image-to-video, video task polling, and downloading completed videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos through Filtrix Remote MCP for text-to-video, image-to-video, video task polling, and downloading completed videos.
 
-## Publisher: <br>
-[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud)
 
-## Use Case: <br>
-Developers and creators use this skill to submit text-to-video or image-to-video jobs through Filtrix MCP, monitor generation status, and download completed videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected input images, and generated-video metadata are sent to the Filtrix service. <br>
-Mitigation: Use only content approved for that external service and avoid sensitive or regulated media unless the service is approved for the use case. <br>
-Risk: API key use and generation requests can affect account access and credits. <br>
-Mitigation: Prefer a scoped or revocable key when available, set FILTRIX_MCP_API_KEY explicitly, and use idempotency keys for retries to reduce duplicate billing risk. <br>
+## Use Case:
 
+Developers and creative operators use this skill to submit Filtrix MCP video generation jobs, poll their status, and download completed outputs from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lumenclaw-cloud/filtrix-video-gen) <br>
-- [MCP Tools Reference](references/mcp-tools.md) <br>
-- [Video Prompt Guide](references/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands, text status output, optional JSON payloads, and downloaded video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Filtrix MCP API key, accepts prompts and optional input images, returns request IDs and status, and can download completed video outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: API credentials, prompts, and source images may be sent to a custom MCP endpoint if FILTRIX_MCP_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default Filtrix MCP endpoint unless the custom endpoint is intentionally trusted, keep the API key scoped or disposable where possible, and avoid submitting sensitive prompts or images without reviewing Filtrix data handling.
+
+Risk: Downloaded videos come from returned URLs that are not constrained or size-limited by the skill evidence.
+
+Mitigation: Treat downloaded videos as untrusted files, download to a controlled path, avoid untrusted or test MCP endpoints, and scan files before opening or sharing them.
+
+## Reference(s):
+
+- [MCP Tools Reference](references/mcp-tools.md)
+- [Video Prompt Guide](references/prompts.md)
+- [Filtrix MCP Endpoint](https://mcp.filtrix.ai/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands, optional JSON status output, and optional downloaded video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FILTRIX_MCP_API_KEY and may use FILTRIX_MCP_URL to target a custom MCP endpoint.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

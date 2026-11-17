@@ -41,6 +41,7 @@ See [references/workflows.md](references/workflows.md) for detailed step-by-step
 - **New Event Setup** → [event-page-setup.md](references/event-page-setup.md)
 - **Email Campaign** → [email-campaign.md](references/email-campaign.md)
 - **CDP Registration** → scripts `renatus_register_guest.py`, `renatus_delete_lead.py`
+- **Back Office Order Entry** → [order-entry-backoffice-api.md](references/order-entry-backoffice-api.md)
 - **Lead Export** → Supabase lead-admin-export edge function
 - **Unsubscribe Sync** → `weekly_unsubscribe_sync.sh`
 

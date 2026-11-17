@@ -1,42 +1,57 @@
-## Description: <br>
-Helps an agent plan and manage serial batch registration workflows for multiple eBay business entities with queue tracking, environment scheduling, resumable progress, and reporting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides batch eBay business registration workflows for 20-50 legal entities, including queue management, environment scheduling, progress resumption, and risk-control spacing.
 
-## Publisher: <br>
-[powerzzjohn](https://clawhub.ai/user/powerzzjohn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[powerzzjohn](https://clawhub.ai/user/powerzzjohn)
 
-## Use Case: <br>
-External operators and developers can use this skill to structure authorized batch account-registration work, track per-entity status, resume failed steps, and produce operational reports. It should only be used where the operator is authorized to manage all business identities and accounts involved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk eBay and Payoneer registration workflows can violate platform rules or misuse business identities if run without authorization. <br>
-Mitigation: Install and use only when authorized to create and manage every listed business identity and account, and review eBay and Payoneer requirements before execution. <br>
-Risk: The workflow describes local storage of identity, account, bank, and card details for many people. <br>
-Mitigation: Do not store full card data or CVVs in plaintext; use a secure vault, encrypt local folders, restrict report access, mask exported identifiers, and define deletion and retention rules. <br>
-Risk: Scheduled resume and batch reporting can expose sensitive progress and account data to unauthorized users. <br>
-Mitigation: Limit access to queue files, reports, scheduled tasks, and notification channels before running any batch workflow. <br>
+## Use Case:
 
+Developers and operations staff use this skill to plan serial batch registration workflows for multiple eBay business entities, including queue state tracking, retry handling, resource checks, and progress reporting. The skill requires careful policy, privacy, and security review before use.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/powerzzjohn/ebay-batch-registration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON examples, Python code blocks, shell commands, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational templates and workflow guidance; no executable files are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can be used for unauthorized bulk account creation or platform-policy evasion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intended use before installation and remove guidance related to proxy rotation, anti-detection spacing, and other evasion-oriented operations.
+
+Risk: The skill stores identity, credential, banking, and card data in plaintext templates and queue records.
+
+Mitigation: Move credentials to a secrets manager, avoid storing CVV values, encrypt or avoid local identity records, and define retention and deletion rules.
+
+Risk: Progress reports and batch state files can expose sensitive account and financial information.
+
+Mitigation: Mask reports by default, restrict access to generated files, and make notifications and scheduled processing explicit and opt-in.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/powerzzjohn/skills/ebay-batch-registration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON templates, Python code snippets, shell commands, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes batch queue state definitions, scheduler examples, retry procedures, resource checks, and reporting templates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

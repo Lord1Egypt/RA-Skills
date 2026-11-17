@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/craftwave-skill-11",
+  "description": "通过智能助手帮助客户快速找到合适的邮轮产品，轻松获取信息与建议。",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/edc528f4-5640-48bd-8b90-6c5f37f44e06"
+    }
+  ]
+}

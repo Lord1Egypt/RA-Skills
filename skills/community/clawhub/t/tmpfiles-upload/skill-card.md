@@ -1,38 +1,54 @@
-## Description: <br>
-Uploads files such as images, PDFs, and documents to tmpfiles.org and returns temporary download links for sharing through messaging platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files such as images, PDFs, and documents to tmpfiles.org and produce temporary download links for sharing through messaging platforms.
 
-## Publisher: <br>
-[TurboS7](https://clawhub.ai/user/TurboS7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turbos7](https://clawhub.ai/user/turbos7)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to create temporary public file links for screenshots, PDFs, or documents, especially when direct upload to a messaging platform fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accidental sharing of sensitive files through temporary public tmpfiles.org links. <br>
-Mitigation: Confirm the exact file path and recipient before upload, and do not use the skill for sensitive, confidential, or permanent storage. <br>
+## Use Case:
 
+Developers and operators use this skill when they need an agent to upload a user-selected file to tmpfiles.org and return a temporary public download link, especially when direct upload to a messaging platform is unavailable.
 
-## Reference(s): <br>
-- [tmpfiles.org upload API endpoint](https://tmpfiles.org/api/v1/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with Python, bash, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces temporary public tmpfiles.org links that expire after about one hour; artifact notes a maximum file size of about 100MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Uploaded files are publicly accessible while active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact file path before upload and avoid confidential documents, private screenshots, or other sensitive files.
+
+Risk: Anyone with a generated link may access the file until it expires.
+
+Mitigation: Share links only with intended recipients and use the workflow for short-lived, non-sensitive transfers.
+
+## Reference(s):
+
+- [Tmpfiles Upload ClawHub Page](https://clawhub.ai/turbos7/skills/tmpfiles-upload)
+- [tmpfiles.org upload API endpoint](https://tmpfiles.org/api/v1/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python, bash, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces temporary public download links; users should avoid uploading confidential or private files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

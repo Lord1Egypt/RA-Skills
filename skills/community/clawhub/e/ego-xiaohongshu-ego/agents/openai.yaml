@@ -1,0 +1,4 @@
+interface:
+  display_name: "Xiaohongshu video"
+  short_description: "Publish one Xiaohongshu video note via Ego Lite. --yes required. --cover replaces the first frame."
+  default_prompt: "Use xiaohongshu-ego: check-login first (exit 2 means stop). One video note per run. Nothing uploads without --yes. If --cover is set, confirm toast 已添加 PK 封面 and the counter advancing (0/3 to 1/3) before 发布; otherwise stop and do not publish the first frame. Never type a password."

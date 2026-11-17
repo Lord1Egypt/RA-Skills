@@ -1,0 +1,8 @@
+interface:
+  display_name: "优惠适用条件核对"
+  short_description: "核对既定优惠与购物清单，输出条件状态、计算依据和应付草稿"
+  default_prompt: "使用 $shop-promo-eligibility-check-cn 核对我提供的优惠规则和购物清单，逐项列出条件状态与计算依据；缺少信息标为待确认。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

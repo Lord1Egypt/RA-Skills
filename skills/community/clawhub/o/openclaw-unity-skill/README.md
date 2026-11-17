@@ -34,15 +34,52 @@ openclaw gateway restart
 
 ```
 unity-plugin/
-├── SKILL.md           # AI workflow guide (~82 tools)
+├── SKILL.md           # AI workflow guide (~100 tools)
 ├── extension/         # Gateway extension (for OpenClaw channels)
-│   ├── index.ts
+│   ├── index.ts       # Includes the project-changing safety gate
+│   ├── dist/index.js  # Compiled bundle
 │   ├── openclaw.plugin.json
 │   └── package.json
 ├── scripts/
 │   └── install-extension.sh
+├── tests/
+│   └── gate.test.mjs  # Safety-gate tests (no Unity needed)
 └── references/
     └── tools.md       # Detailed tool documentation
+```
+
+## Safety
+
+Read-only tools (`get*`, `list`, `find`, `script.read`, `debug.hierarchy`,
+`debug.screenshot`, `console.getLogs`) run as they always have. Every
+project-changing tool — create, delete, save, `set*`, `package.add`,
+`script.execute`, input simulation, Play-mode control — is **refused by default**
+and needs two independent opt-ins:
+
+```bash
+# 1. the operator enables project changes on the gateway process
+OPENCLAW_EDITOR_ALLOW_DESTRUCTIVE=1 openclaw gateway restart
+```
+
+```
+# 2. the call confirms that specific change, after asking the user
+unity_execute: asset.delete {path: "Assets/Old/Item.prefab"}, confirm: true
+```
+
+`dryRun: true` previews any call without sending it. `openclaw unity status`
+shows whether project changes are currently enabled. Full details in
+[SKILL.md → Safety and permissions](SKILL.md#safety-and-permissions).
+
+## Development
+
+```bash
+# Run the safety-gate tests (Node 22.18+ / 24 — no Unity Editor required)
+node --test --test-force-exit tests/*.test.mjs
+
+# Rebuild extension/dist/index.js after editing extension/index.ts
+npx --yes esbuild@0.21.5 extension/index.ts --bundle --format=esm \
+  --platform=node --target=esnext --external:openclaw \
+  --outfile=extension/dist/index.js
 ```
 
 ## Connection Modes
@@ -143,3 +180,8 @@ disableModelInvocation: false  # AI 자동 호출 허용
 ## License
 
 MIT License - See [LICENSE](LICENSE.md)
+
+## License
+
+This project has been licensed under [Apache-2.0](LICENSE) since its initial release.
+Copyright 2026 Tom Lee (TomLeeLive)

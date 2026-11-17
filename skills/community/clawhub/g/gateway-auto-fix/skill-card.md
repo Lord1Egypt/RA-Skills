@@ -1,40 +1,52 @@
-## Description: <br>
-Automatically monitors OpenClaw gateway status and runs OpenClaw repair commands when the RPC probe fails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically monitor OpenClaw gateway status and fix when RPC probe fails. Uses OpenClaw cron system - just install and it works!
 
-## Publisher: <br>
-[nwcalvin](https://clawhub.ai/user/nwcalvin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nwcalvin](https://clawhub.ai/user/nwcalvin)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw use this skill to install or configure a recurring health check that repairs and restarts the gateway after an RPC probe failure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A persistent one-minute auto-repair job can repeatedly change OpenClaw configuration and restart the gateway without further approval. <br>
-Mitigation: Review the script before enabling it, use a longer interval or add cooldown and retry limits where appropriate, and confirm the removal procedure before installation. <br>
-Risk: Unattended repair can continue running after it is no longer wanted. <br>
-Mitigation: Remove the scheduled job with `openclaw cron rm gateway-auto-fix` and delete `~/.openclaw-it/workspace/openclaw-auto-fix.sh` when disabling the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nwcalvin/gateway-auto-fix) <br>
-- [Publisher profile](https://clawhub.ai/user/nwcalvin) <br>
+## Use Case:
 
+Developers and operators use this skill to monitor an OpenClaw gateway and automatically run OpenClaw repair and restart commands when the RPC probe reports failure.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with bash commands and shell script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs a shell script, configures an OpenClaw cron job, and writes operational logs to /tmp/openclaw-auto-fix.log.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent automation can repeatedly change OpenClaw gateway configuration and restart the gateway without per-run approval.
+
+Mitigation: Install only when unattended gateway repair is intended; review and run the included local scripts before deployment, pin installer versions, and add safeguards such as retry limits, locking, backoff, alerting, and private user-owned logs.
+
+Risk: A one-minute repair loop can disrupt service or mask recurring gateway failures.
+
+Mitigation: Set an appropriate schedule, monitor the repair log, and require operator review for repeated failures before enabling continuous automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nwcalvin/skills/gateway-auto-fix)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and shell commands for OpenClaw cron-based gateway repair.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

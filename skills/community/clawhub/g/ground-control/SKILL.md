@@ -1,12 +1,13 @@
 ---
 name: ground-control
-description: Post-upgrade verification system for OpenClaw. Defines a model/cron/channel ground truth file and a 5-phase automated verification flow (config integrity, API key liveness, cron integrity, session smoke test, channel liveness) with auto-repair for config and cron drift.
-version: "0.3.5"
+description: Verify OpenClaw after upgrades against an operator-maintained model, cron, and channel ground truth. Use for report-only config integrity, provider liveness, cron integrity, session smoke tests, and channel checks; require explicit approval before applying repairs.
 metadata:
-  author: JonathanJing
-  tags: [ops, verification, upgrade, config, cron, health]
-  license: MIT
-  credentials: none
+  openclaw:
+    version: "0.3.6"
+    emoji: "🛰️"
+    homepage: https://clawhub.ai/jonathanjing/ground-control
+    requires:
+      bins: [openclaw]
 ---
 
 # ground-control
@@ -16,24 +17,24 @@ Post-upgrade verification for OpenClaw. Keeps your system honest after every upg
 ## 🛠️ Installation
 
 ### 1. Ask OpenClaw (Recommended)
-Tell OpenClaw: *"Install the ground-control skill."* The agent will handle the installation and configuration automatically.
+Tell OpenClaw: *"Install the ground-control skill."* Installation does not authorize runtime config or cron changes.
 
 ### 2. Manual Installation (CLI)
 If you prefer the terminal, run:
 ```bash
-clawhub install ground-control
+openclaw skills install @jonathanjing/ground-control
 ```
 
 ## Permissions & Privileges
 
 This skill requires the following OpenClaw capabilities:
 - **`gateway config.get`** — read current config (all phases)
-- **`gateway config.patch`** — auto-fix config drift (Phase 1 only)
-- **`cron list` / `cron update`** — verify and auto-fix cron jobs (Phase 3)
+- **`gateway config.patch`** — apply an operator-approved config repair (Phase 1 only)
+- **`cron list` / `cron update`** — verify cron jobs and apply operator-approved repairs (Phase 3)
 - **`sessions_spawn`** — smoke test sessions (Phase 2, 4, 5)
 - **`message send`** — channel liveness test + summary report (Phase 5)
 
-**Auto-fix behavior:** Phases 1 and 3 will automatically patch config/cron to match GROUND_TRUTH. Use `--dry-run` to disable auto-fix and get a report-only run.
+**Change-control behavior:** Every run is report-only by default. Present a redacted repair plan and obtain explicit operator approval immediately before any `gateway config.patch` or `cron update`.
 
 **Security & Redaction:** This skill enforces a Zero-Secret Logging protocol.
 - **Immediate Redaction**: Sensitive nodes (`auth`, `plugins`) are stripped from memory after fetching runtime config.
@@ -51,13 +52,14 @@ This skill requires the following OpenClaw capabilities:
 
 ## Setup
 
-1. Copy `templates/MODEL_GROUND_TRUTH.md` to your workspace root
+1. Copy `{baseDir}/templates/MODEL_GROUND_TRUTH.md` to your workspace root
 2. Fill in your actual config values (models, cron jobs, channels)
-3. Add the GROUND_TRUTH sync rule to your AGENTS.md (see README)
-4. Run `/verify` to test
+3. (Optional) For large configs, split into `refs/ground-truth/*.md` sub-files
+4. Add the GROUND_TRUTH sync rule to your AGENTS.md (see README)
+5. Run `/verify` to test
 
 ## Files
 
-- `templates/MODEL_GROUND_TRUTH.md` — Ground truth template (copy to workspace root)
-- `scripts/post-upgrade-verify.md` — Agent execution prompt for 5-phase verification
-- `scripts/UPGRADE_SOP.md` — Upgrade standard operating procedure
+- `{baseDir}/templates/MODEL_GROUND_TRUTH.md` — Ground truth template (copy to workspace root)
+- `{baseDir}/scripts/post-upgrade-verify.md` — Agent execution prompt for 5-phase verification
+- `{baseDir}/scripts/UPGRADE_SOP.md` — Upgrade standard operating procedure

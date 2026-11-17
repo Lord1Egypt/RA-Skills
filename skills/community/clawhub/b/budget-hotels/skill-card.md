@@ -1,39 +1,53 @@
-## Description: <br>
-Find nearby budget hotels. Invoke when user asks for cheap hotels near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby budget hotels. Invoke when user asks for cheap hotels near me.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External users and agent integrations use this skill to find budget hotel options near an authorized location, with support for radius, limit, and hotel-attribute filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nearby hotel search may require location data, which can expose a user's precise whereabouts. <br>
-Mitigation: Ask for location permission, prefer approximate coordinates when exact coordinates are unnecessary, and confirm provider retention behavior for privacy-sensitive use. <br>
+## Use Case:
 
+External users and agents use this skill to find nearby budget hotels or temporary low-cost accommodations from a user-authorized location, with optional filters such as radius, result limit, price level, rating, breakfast, and keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/budget-hotels) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawkk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown or structured text describing standardized point-of-interest results and error handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe location, radius, result limit, optional filters, standardized response fields, and privacy-aware handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may use precise location data to search for nearby hotels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only request precise coordinates when the user intends to search, and avoid retaining exact coordinates unnecessarily.
+
+Risk: Hotel provider unavailability or rate limiting can prevent complete results.
+
+Mitigation: Return clear provider-unavailable or rate-limited errors and use short-lived caching where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/budget-hotels)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Text]
+
+**Output Format:** [Markdown guidance describing inputs, response fields, error codes, and privacy considerations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces standardized nearby hotel lookup guidance; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

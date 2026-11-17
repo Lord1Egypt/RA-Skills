@@ -1,41 +1,54 @@
-## Description: <br>
-Builds, updates, and manages Casso-hosted websites through email requests, including new sites, content updates, pages, images, custom domains, and Casso support questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, update, and manage websites via Casso, an AI website builder agent that operates entirely through email.
 
-## Publisher: <br>
-[jonpizza](https://clawhub.ai/user/jonpizza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonpizza](https://clawhub.ai/user/jonpizza)
 
-## Use Case: <br>
-External users and agents use this skill to create or update Casso-hosted websites by drafting or sending clear email requests to Casso. It is suited to small business sites, personal sites, portfolios, restaurants, professional services, simple content updates, custom domain requests, and follow-up questions about Casso-hosted websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email requests and attachments may disclose personal, business, legal, customer, or other sensitive information to Casso. <br>
-Mitigation: Review the email draft and attachments before sending, and include sensitive files only when they are necessary for the website request. <br>
-Risk: Casso cannot handle complex web apps, e-commerce checkout, or member-only authenticated content. <br>
-Mitigation: Use the skill for simple website creation and updates, and direct unsupported requirements to another implementation path or human support. <br>
+## Use Case:
 
+External users and agents use this skill to draft or send emails to Casso for creating, updating, hosting, or managing small business and personal websites. It is intended for requests such as new sites, content updates, custom domains, pricing questions, and follow-up support.
 
-## Reference(s): <br>
-- [Casso Websites homepage](https://casso-websites.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jonpizza/email-website-builder-casso) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text email drafts with concise instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user to attach relevant files and may send email on the user's behalf only when the agent has access and the user intends that action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Website requests, links, and attachments may be sent to an external email service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recipient, message body, links, and attachments before sending, and remove private or unrelated information.
+
+Risk: Generic website-building requests may trigger the skill even when the user has not explicitly selected Casso.
+
+Mitigation: Confirm the user wants to use Casso's email-based website builder before drafting or sending the request.
+
+## Reference(s):
+
+- [Casso Websites homepage](https://casso-websites.com)
+- [ClawHub skill page](https://clawhub.ai/jonpizza/skills/email-website-builder-casso)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and email draft text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recipient, message body guidance, attachment reminders, and follow-up instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

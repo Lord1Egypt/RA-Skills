@@ -1,43 +1,55 @@
-## Description: <br>
-家庭教育习惯养成追踪与教育付出记录系统，当用户提及习惯养成、坏习惯干预、记录孩子的行为变化、分析干预效果、教育付出总结、孩子内驱力建立等话题时激活，用于替代用户重复描述背景，直接进行习惯记录、分析和查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+家庭教育习惯养成追踪与教育付出记录系统，用于在用户提及习惯养成、坏习惯干预、孩子行为变化记录、干预效果分析、教育付出总结或孩子内驱力建立时，帮助记录、查询和分析相关家庭教育信息。
 
-## Publisher: <br>
-[silent404](https://clawhub.ai/user/silent404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silent404](https://clawhub.ai/user/silent404)
 
-## Use Case: <br>
-Parents or caregivers use this skill with an agent to record child habit formation, behavior interventions, caregiver contributions, and related education notes in a local SQLite database, then query or summarize progress. It also guides the agent to distinguish intrinsic-motivation habits from externally driven habits when offering practical parenting suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive child behavior, habit, intervention, and caregiver contribution records in a local database. <br>
-Mitigation: Configure the database path for the user's own environment, restrict file permissions, and obtain explicit confirmation before creating or changing sensitive family records. <br>
-Risk: Broad activation rules can cause the agent to record or query family data when the user only intended a general discussion. <br>
-Mitigation: Confirm the requested operation and target habit before creating, updating, querying, merging, archiving, or deleting records. <br>
-Risk: Parenting analysis and intervention summaries may be incomplete or misleading if based on sparse or subjective records. <br>
-Mitigation: Present summaries as decision support, preserve the user's original context, and avoid replacing professional medical, psychological, or educational advice. <br>
+## Use Case:
 
+Parents and family education assistants use this skill to track child habit formation, habit interventions, education contributions, motivation-related signals, and progress statistics in a local SQLite record system.
 
-## Reference(s): <br>
-- [Database Schema Reference](references/schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/silent404/habit-education) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, Python helper calls, and SQLite-backed record summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, query, merge, archive, or delete local habit, intervention, and caregiver contribution records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can persist and modify sensitive child and family education records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the SQLite database as private family data and use appropriate backups and access controls.
+
+Risk: Broad activation and insufficient confirmation could lead to unintended create, update, archive, merge, or delete actions.
+
+Mitigation: Require explicit user confirmation before every record-changing action.
+
+## Reference(s):
+
+- [Database Schema Reference](references/schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/silent404/skills/habit-education)
+- [Publisher Profile](https://clawhub.ai/user/silent404)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Chinese-language conversational guidance with Python script calls and structured record summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists and updates local SQLite records for child habits, interventions, archived summaries, and education contributions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

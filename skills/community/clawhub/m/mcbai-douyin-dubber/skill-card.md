@@ -1,47 +1,67 @@
-## Description: <br>
-Auto-dubs Douyin and TikTok videos into a target language by downloading video with Playwright and a Douyin cookie, transcribing with Whisper, translating subtitles with the agent, generating TTS, stretching timing with FFmpeg, mixing audio, and burning subtitles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-dubs Douyin/TikTok videos into a target language by downloading with Playwright, transcribing with Whisper, translating subtitles through the agent, generating TTS, and mixing audio and subtitles with FFmpeg.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-Developers and content workflow users use this skill to produce dubbed versions of Douyin or TikTok videos, including translated subtitles, generated speech, mixed audio, and a final MP4 output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a full Douyin session cookie, which can grant access to the user's Douyin account. <br>
-Mitigation: Use a throwaway or test Douyin account, store the cookie only in the configured local file, never share it, and rotate it after use. <br>
-Risk: Transcript and translated text may be sent to the agent and to the selected TTS provider. <br>
-Mitigation: Avoid private or sensitive videos and choose the TTS provider deliberately before running the pipeline. <br>
-Risk: The security evidence flags external-provider data sharing and dependency review concerns. <br>
-Mitigation: Run the skill in a dedicated environment and review dependencies and provider behavior before deployment. <br>
+## Use Case:
 
+External users, creators, and automation developers use this skill to translate and dub Douyin or TikTok videos into another language while producing synchronized subtitles and a mixed output video.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/mcbai-douyin-dubber) <br>
-- [Publisher Profile](https://clawhub.ai/user/mcbaivn) <br>
-- [MCB AI](https://www.mcbai.vn) <br>
-- [OpenClaw 101](https://openclaw.mcbai.vn/openclaw101) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a final dubbed MP4 plus working files such as SRT subtitles, ASS subtitles, TTS audio, and intermediate video/audio assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Douyin session cookies grant account access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a throwaway Douyin account, store the cookie file outside shared locations, restrict file permissions, and rotate the cookie after use.
+
+Risk: Subtitle text and generated prompts may include sensitive transcript content.
+
+Mitigation: Avoid confidential videos, review generated prompt/result files, and delete temporary translation artifacts after the run.
+
+Risk: Selected TTS providers and the AI translation step may receive subtitle text despite local-only wording in the skill documentation.
+
+Mitigation: Choose providers according to the data sensitivity of the source video and disclose remote processing before using third-party TTS or agent translation.
+
+Risk: The skill has a suspicious scanner verdict due to data exposure tradeoffs and temporary-file practices.
+
+Mitigation: Run it in a dedicated virtual environment, review dependencies and commands before execution, and scan outputs before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/skills/mcbai-douyin-dubber)
+- [Publisher Profile](https://clawhub.ai/user/mcbaivn)
+- [MCB AI](https://www.mcbai.vn)
+- [OpenClaw 101](https://openclaw.mcbai.vn/openclaw101)
+- [Python Downloads](https://www.python.org/downloads/)
+- [FFmpeg Downloads](https://ffmpeg.org/download.html)
+- [ElevenLabs](https://elevenlabs.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated media/subtitle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dubbed MP4 plus intermediate MP4, SRT, ASS, MP3, and temporary translation JSON/prompt files during execution.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

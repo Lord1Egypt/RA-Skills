@@ -1,46 +1,60 @@
-## Description: <br>
-quotedance-market generates structured global market intelligence reports from market data and professional news sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese-language global market intelligence reports by combining market quotes, sector leaders, and professional news sources.
 
-## Publisher: <br>
-[yoocky](https://clawhub.ai/user/yoocky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoocky](https://clawhub.ai/user/yoocky)
 
-## Use Case: <br>
-Market-focused users and agents use this skill to generate trading-day or weekend market reports that combine global index, equity, futures, sector, and news signals. The reports are informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market reports may be mistaken for investment advice. <br>
-Mitigation: Treat reports as informational, verify underlying data independently, and apply human review before making financial decisions. <br>
-Risk: The skill contacts financial and news services, may use a configured proxy, and can fall back to curl for network requests. <br>
-Mitigation: Review network configuration, proxy settings, and any Quotedance API key before running in a controlled environment. <br>
-Risk: The skill keeps local market snapshots and news cache files. <br>
-Mitigation: Review and clear the memory directory as needed, and avoid placing secrets or sensitive portfolio data in cached outputs. <br>
+## Use Case:
 
+External users and agents use this skill to generate daily or weekend global market intelligence reports covering equities, futures, themes, opportunities, and risks. The report is for market research and operational briefing, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoocky/quotedance-market) <br>
-- [Quotedance service endpoint](https://quotedance.api.gapgap.cc) <br>
-- [Yahoo Finance quote endpoint](https://query1.finance.yahoo.com/v7/finance/quote) <br>
-- [Bloomberg markets RSS](https://feeds.bloomberg.com/markets/news.rss) <br>
-- [Reuters business news RSS](https://feeds.reuters.com/reuters/businessNews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown market report with console logs and local JSON snapshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports --refresh and --net-debug; may write market snapshots and news cache files under the skill memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Authenticated proxy URLs or quotedance API keys may be exposed through network diagnostics, logs, or process arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid --net-debug with credential-bearing proxy URLs, use narrowly scoped or disposable API keys, and review logs before sharing output.
+
+Risk: Curl fallback can pass proxy details through command arguments.
+
+Mitigation: Disable curl fallback or use non-sensitive proxy credentials until the fallback path avoids exposing secrets.
+
+Risk: Market data and news sources may be unavailable, delayed, blocked, or rate-limited.
+
+Mitigation: Treat generated reports as research briefings, check source availability, and verify important market data before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoocky/skills/quotedance-market)
+- [Publisher profile](https://clawhub.ai/user/yoocky)
+- [quotedance service endpoint](https://quotedance.api.gapgap.cc)
+- [Yahoo Finance quote API](https://query1.finance.yahoo.com/v7/finance/quote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown market report with console logs and JSON cache snapshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a weekday or weekend report based on the current date and stores market/news snapshots under the skill memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Bookmark & Desktop Dock AI Assistant works with the Command Compass Windows app to turn prompts, skill files, local files, folders, app shortcuts, web links, and browser bookmarks into searchable, copy-ready, open-ready cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bookmark & Desktop Dock AI Assistant works with the Command Compass Windows app to turn prompts, skill files, local files, folders, app shortcuts, web links, and browser bookmarks into searchable, copy-ready, open-ready cards.
 
-## Publisher: <br>
-[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[addogiavara-tech](https://clawhub.ai/user/addogiavara-tech)
 
-## Use Case: <br>
-External users and developers use this skill to organize selected prompts, skill files, local resources, app shortcuts, web links, and bookmarks into Command Compass cards for fast copying, searching, and opening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local files, folders, shortcuts, and bookmarks can expose private paths or resource names if users add sensitive resources to cards. <br>
-Mitigation: Only add resources the user intentionally selects, and keep local paths, file contents, and private data out of public website or market data. <br>
-Risk: Opening executable, shortcut, installer, or script-like targets can trigger local actions outside the agent response. <br>
-Mitigation: Keep shell permission disabled in generated cards and require user confirmation before opening executable or script-like targets. <br>
-Risk: Website or command-market matches could sync resources the user did not intend to add. <br>
-Mitigation: Use confirmation-based sync and review matches before adding them to the local Command Compass library. <br>
+## Use Case:
 
+External users and developers use this skill to create Command Compass CardSchema v1 cards for prompts, local resources, web favorites, app shortcuts, and quick-launch workflows. It is intended for organizing user-selected resources into cards that can be copied, searched, or opened from the Command Compass desktop app.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/addogiavara-tech/skills/bookmark-desktop-dock-ai-assistant-en) <br>
-- [Command Compass download page](https://www.wboke.com/zh/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, configuration] <br>
-**Output Format:** [JSON object or array containing Command Compass CardSchema v1 cards.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cards use instruction as the copy field and openTarget as the openable resource address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Supplemental files may be loaded as active instructions and steer an agent toward external website changes or package replacement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only SKILL.md as the active skill instructions, treat supplemental files as reference evidence, and remove or clearly quarantine WEBSITE_AGENT_INSTRUCTIONS.md before broad distribution.
+
+Risk: Cards can point to local files, shortcuts, executables, scripts, or private paths selected by the user.
+
+Mitigation: Require user confirmation before opening executable or script-like targets, avoid inventing local paths or secrets, and keep local resource organization limited to user-selected or confirmed items.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/addogiavara-tech/skills/bookmark-desktop-dock-ai-assistant-en)
+- [Publisher profile](https://clawhub.ai/user/addogiavara-tech)
+- [Command Compass download page](https://www.wboke.com/zh/download)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Configuration]
+
+**Output Format:** [JSON arrays or objects containing Command Compass CardSchema v1 cards, with concise Markdown guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cards should keep copied content in instruction, openable targets in openTarget, and conservative permissions for local files, shortcuts, executables, and scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

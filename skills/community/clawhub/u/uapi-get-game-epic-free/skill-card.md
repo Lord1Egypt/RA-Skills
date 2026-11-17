@@ -1,46 +1,60 @@
-## Description: <br>
-使用 UAPI 的 Epic 免费游戏单接口 skill，帮助 agents 判断、准备并调用 GET /game/epic-free 来查询 Epic Games 当前免费游戏信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses UAPI's Epic free-games endpoint to help an agent handle requests for current Epic Games free-game information through GET /game/epic-free.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and agent users use this skill to route Epic free-game requests to the UAPI GET /game/epic-free endpoint, confirm that no explicit parameters are required, and explain response codes or quota handling before presenting results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad trigger can activate the skill for general game-information questions. <br>
-Mitigation: Use explicit Epic free-game wording when invoking this skill, and narrow trigger terms in a future release. <br>
-Risk: Anonymous or visitor quota can be exhausted before the endpoint returns results. <br>
-Mitigation: When quota errors occur, ask the user to register with UAPI, create a free UAPI Key, and retry with that key. <br>
-Risk: The external Epic free-games service can be temporarily unavailable. <br>
-Mitigation: Check response codes and clearly report temporary service failures before retrying later. <br>
+## Use Case:
 
+External users and developers use this skill to prepare or execute requests for current Epic Games free-game information via UAPI. It helps agents confirm the single endpoint, no-parameter request shape, expected response codes, and quota or API-key handling.
 
-## Reference(s): <br>
-- [Quick Start](references/quick-start.md) <br>
-- [Epic 免费游戏 Operation](references/operations/get-game-epic-free.md) <br>
-- [Game Resource](references/resources/Game.md) <br>
-- [UAPI API Base URL](https://uapis.cn/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuakami/uapi-get-game-epic-free) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown guidance with endpoint, parameter, authentication, response-code, and quota-handling details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare a GET request to /game/epic-free and summarize returned free-game information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill relies on uapis.cn for Epic free-game data, so the external service or the documented 500 response can prevent a result.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint response and clearly report service-unavailable failures instead of presenting stale or guessed game data.
+
+Risk: Anonymous UAPI quota may be exhausted and the workflow may require a UAPI key.
+
+Mitigation: Request a user-provided UAPI key only after an explicit quota error or 429 response, and avoid exposing the key in user-facing output.
+
+Risk: A broad game-information request could be routed to this narrow Epic free-games endpoint by mistake.
+
+Mitigation: Confirm the user is specifically asking for Epic free games before applying this skill.
+
+## Reference(s):
+
+- [Epic 免费游戏](references/operations/get-game-epic-free.md)
+- [快速上手](references/quick-start.md)
+- [Game 分类接口](references/resources/Game.md)
+- [UAPI](https://uapis.cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, API calls]
+
+**Output Format:** [Markdown or plain text with endpoint details and response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UAPI quota guidance and documented response-code handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Use when creating OpenClaw agents, configuring workspaces, multi-agent routing, session isolation, or channel bindings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating OpenClaw agents, configuring workspaces, multi-agent routing, session isolation, or channel bindings.
 
-## Publisher: <br>
-[a12591771](https://clawhub.ai/user/a12591771) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a12591771](https://clawhub.ai/user/a12591771)
 
-## Use Case: <br>
-Developers and operators use this skill to create and configure OpenClaw agents, workspace files, routing rules, session isolation, channel bindings, and safety controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated hooks, exec permissions, heartbeat tasks, identity links, channel bindings, or memory and session retention settings could change agent behavior or expose private context if enabled without review. <br>
-Mitigation: Review these settings before enabling them, restrict tool permissions and sandbox scope to the intended use case, and validate routing and retention behavior after configuration. <br>
-Risk: Workspace Markdown files and configuration examples may include placeholders for credentials or user preferences. <br>
-Mitigation: Keep raw secrets out of Markdown workspace files and store credentials in an appropriate secret manager or local environment configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Docs](https://docs.openclaw.ai/) <br>
-- [OpenClaw Agent Runtime](https://docs.openclaw.ai/concepts/agent.md) <br>
-- [OpenClaw Skills](https://docs.openclaw.ai/tools/skills.md) <br>
-- [OpenClaw Agent Workspace](https://docs.openclaw.ai/concepts/agent-workspace.md) <br>
+## Use Case:
 
+Developers and operators use this skill to create and configure OpenClaw agents, including workspace setup, session isolation, channel routing, model selection, tool restrictions, and skill integration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON5 configuration examples, Markdown file templates, shell commands, and checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose workspace files, agent settings, routing rules, sandbox options, and deployment checks for review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated agent configuration may enable hooks, heartbeat checks, memory, or session cleanup that affect what an agent runs, remembers, or deletes.
+
+Mitigation: Review those settings before installation or deployment, and confirm they match the intended operational and data-retention policy.
+
+Risk: Copied channel bindings, mention requirements, sandbox settings, or tool allow/deny lists may route messages or grant tool access differently than intended.
+
+Mitigation: Validate bindings, channel identifiers, sandbox mode, and tool permissions against the intended users and channels before applying the configuration.
+
+## Reference(s):
+
+- [OpenClaw Agent Runtime](https://docs.openclaw.ai/concepts/agent.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+- [OpenClaw Skills](https://docs.openclaw.ai/tools/skills.md)
+- [OpenClaw Agent Workspace](https://docs.openclaw.ai/concepts/agent-workspace.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON5 configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup workflows, configuration patterns, and deployment checklists; the skill itself is documentation-only.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

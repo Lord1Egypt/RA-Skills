@@ -1,45 +1,60 @@
-## Description: <br>
-Generates AI images through the Qingping AI API and downloads the resulting PNG files locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+青萍 AI 图片生成工具，通过青萍 AI API 生成图片并自动下载到本地，支持多种模型、尺寸和比例配置，默认生成 16:9 比例图片。
 
-## Publisher: <br>
-[lusyoe](https://clawhub.ai/user/lusyoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lusyoe](https://clawhub.ai/user/lusyoe)
 
-## Use Case: <br>
-External users and developers use this skill to generate design assets, creative images, covers, wallpapers, and other AI-created images from prompts using Qingping AI models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and API-key-backed usage are sent to a third-party Qingping/lusyoe service. <br>
-Mitigation: Use a revocable API key, avoid sensitive prompts, and install only if the service is trusted for the intended data. <br>
-Risk: The downloader trusts API-returned file names and image URLs before writing files locally. <br>
-Mitigation: Review generated file paths and prefer adding filename sanitization and expected HTTPS image-domain restrictions before broad deployment. <br>
-Risk: API keys may be exposed if placed in shared shell profiles or committed configuration. <br>
-Mitigation: Store QINGPING_API_KEY in a private environment or secrets manager and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to submit prompts to Qingping AI, poll for completion, and download generated PNG images for creative or design workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lusyoe/qingping-ai-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lusyoe) <br>
-- [Qingping platform](https://auth.lusyoe.com/profile) <br>
-- [Qingping homepage](https://claw.lusyoe.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [PNG image files saved locally with console status text and returned file paths when used as Python code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QINGPING_API_KEY and sends prompts to the Qingping API before downloading generated images into the qingping-ai directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and frontmatter) <br>
+Risk: Prompts are sent to Qingping's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use prompts appropriate for external processing and review data-sharing requirements before use.
+
+Risk: The remote API can control downloaded URLs and filenames, which may write outside the advertised folder.
+
+Mitigation: Run the skill in a limited workspace where unintended PNG writes or large downloads would not damage important files.
+
+Risk: The Qingping API key can authorize external service use.
+
+Mitigation: Use a limited, rotatable API key and avoid committing shell profile files or other files containing the key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lusyoe/skills/qingping-ai-skill)
+- [Qingping AI platform profile and API key page](https://auth.lusyoe.com/profile)
+- [Qingping image generation API](https://video.lusyoe.com/api/img/generations)
+- [Qingping image generation status API](https://video.lusyoe.com/api/img/generations/{task_id}/status)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [Downloaded PNG image files with console status text and command-line usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QINGPING_API_KEY and writes generated images to the qingping-ai directory.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

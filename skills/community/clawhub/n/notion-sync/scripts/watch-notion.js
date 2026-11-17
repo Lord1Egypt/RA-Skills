@@ -14,6 +14,7 @@ const {
   normalizeId,
   getAllBlocks,
   blocksToMarkdown,
+  extractTitle,
   stripTokenArg,
   hasJsonFlag,
   hasHelpFlag,
@@ -30,12 +31,24 @@ function parseWatchArgs(args) {
   const positional = [];
 
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--state-file' && args[i + 1]) {
+    if (args[i] === '--state-file') {
+      if (!args[i + 1] || args[i + 1].startsWith('-')) {
+        throw new Error('--state-file requires a path');
+      }
       stateFile = expandHomePath(args[i + 1]);
       i++;
       continue;
     }
+
+    if (args[i].startsWith('-')) {
+      throw new Error(`Unknown option: ${args[i]}`);
+    }
+
     positional.push(args[i]);
+  }
+
+  if (positional.length > 2) {
+    throw new Error(`Unexpected argument: ${positional[2]}`);
   }
 
   return {
@@ -45,9 +58,35 @@ function parseWatchArgs(args) {
   };
 }
 
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function normalizeWatchState(state) {
+  if (!isPlainObject(state)) {
+    return { pages: {} };
+  }
+
+  const pages = isPlainObject(state.pages) ? state.pages : {};
+  const normalizedPages = {};
+
+  for (const [pageId, pageState] of Object.entries(pages)) {
+    normalizedPages[pageId] = isPlainObject(pageState) ? pageState : {};
+  }
+
+  return { ...state, pages: normalizedPages };
+}
+
 function loadState(stateFile) {
   if (!fs.existsSync(stateFile)) return { pages: {} };
-  return JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+
+  try {
+    const state = JSON.parse(fs.readFileSync(stateFile, 'utf8'));
+    return normalizeWatchState(state);
+  } catch (error) {
+    log(`Warning: failed to parse watch state file at ${stateFile}; resetting state.`);
+    return { pages: {} };
+  }
 }
 
 function saveState(stateFile, state) {
@@ -68,11 +107,12 @@ async function checkPage(pageId, localPath, stateFile = DEFAULT_STATE_FILE) {
 
     const normalizedPageId = normalizeId(pageId);
     const state = loadState(safeStateFile);
-    const pageState = state.pages[normalizedPageId] || {};
+    const existingPageState = state.pages[normalizedPageId];
+    const pageState = isPlainObject(existingPageState) ? { ...existingPageState } : {};
 
     const page = await getPage(normalizedPageId);
     const lastEditedTime = page.last_edited_time;
-    const title = page.properties?.title?.title?.[0]?.plain_text || 'Untitled';
+    const title = extractTitle(page).replace(/^\(Untitled\)$/, 'Untitled');
 
     const hasChanges = !pageState.lastEditedTime ||
       new Date(lastEditedTime) > new Date(pageState.lastEditedTime);
@@ -131,9 +171,40 @@ async function checkPage(pageId, localPath, stateFile = DEFAULT_STATE_FILE) {
 }
 
 async function main() {
-  const args = stripTokenArg(process.argv.slice(2));
-  const usage = 'Usage: watch-notion.js [--state-file <path>] <page-id> <local-path> [--json] [--allow-unsafe-paths]';
-  const { pageId, localPath, stateFile } = parseWatchArgs(args);
+  const usage = 'Usage: watch-notion.js [--state-file <path>] <page-id> <local-path> [--json] [--allow-read-path <exact-path>] [--allow-write-path <exact-path>]';
+
+  if (hasHelpFlag()) {
+    log(usage);
+    process.exit(0);
+  }
+
+  const rawArgs = process.argv.slice(2);
+  const stateFileIndex = rawArgs.indexOf('--state-file');
+  if (stateFileIndex !== -1 && (!rawArgs[stateFileIndex + 1] || rawArgs[stateFileIndex + 1].startsWith('-'))) {
+    const message = '--state-file requires a path';
+    if (hasJsonFlag()) {
+      console.log(JSON.stringify({ error: message }, null, 2));
+    } else {
+      log(`Error: ${message}`);
+    }
+    process.exit(1);
+  }
+
+  const args = stripTokenArg(rawArgs);
+  let parsed;
+
+  try {
+    parsed = parseWatchArgs(args);
+  } catch (error) {
+    if (hasJsonFlag()) {
+      console.log(JSON.stringify({ error: error.message }, null, 2));
+    } else {
+      log(`Error: ${error.message}`);
+    }
+    process.exit(1);
+  }
+
+  const { pageId, localPath, stateFile } = parsed;
 
   if (hasHelpFlag() || !pageId || !localPath) {
     if (hasJsonFlag()) {
@@ -160,5 +231,5 @@ if (require.main === module) {
     process.exit(1);
   });
 } else {
-  module.exports = { checkPage, parseWatchArgs };
+  module.exports = { checkPage, parseWatchArgs, loadState, normalizeWatchState };
 }

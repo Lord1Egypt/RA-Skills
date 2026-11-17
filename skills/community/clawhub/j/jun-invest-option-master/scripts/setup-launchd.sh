@@ -30,7 +30,6 @@ cat > "${PUBLISH_PLIST}" <<EOF
     <dict>
       <key>PATH</key><string>/Users/lijunsheng/.nvm/versions/node/v22.22.0/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
       <key>CLAWHUB_BIN</key><string>${CLAWHUB_BIN}</string>
-      <key>CLAWHUB_REQUEST_TIMEOUT_MS</key><string>120000</string>
     </dict>
     <key>RunAtLoad</key><true/>
     <!-- Daily publish window: 03:15 local time -->

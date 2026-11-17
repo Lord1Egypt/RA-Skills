@@ -1,0 +1,3 @@
+display_name: Genesis Ouroboros
+short_description: Genesis constitution for scaffolding a new self-evolving agent
+default_prompt: Create a new agent scaffold following the genesis constitution

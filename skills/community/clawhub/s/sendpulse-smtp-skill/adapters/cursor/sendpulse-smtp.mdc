@@ -1,0 +1,34 @@
+---
+description: >
+  SendPulse SMTP integration rules — apply when the user works with SendPulse
+  email sending: SMTP API, transactional email, smtp-pulse.com relay,
+  bounces/unsubscribes, deliverability, SendPulse webhooks.
+globs:
+alwaysApply: false
+---
+
+# SendPulse SMTP
+
+Full skill lives in `docs/sendpulse-smtp-skill/` (adjust path if cloned
+elsewhere). Read `docs/sendpulse-smtp-skill/SKILL.md` first; load files from
+`references/` and `examples/` there as needed.
+
+Non-negotiable rules when generating SendPulse SMTP code:
+
+1. Auth: `POST https://api.sendpulse.com/oauth/access_token` with
+   `client_credentials`; cache the Bearer token (~1 h TTL), refresh on 401.
+   Credentials from env vars, never hardcoded.
+2. Send: `POST /smtp/emails` — the `html` field MUST be Base64-encoded; always
+   include a plain `text` part; `to` is an array of `{name?, email}` objects.
+3. `from.email` must be a verified sender on a corporate domain (free mailbox
+   domains are rejected). The SMTP account must be activated (moderated) first.
+4. Store the returned message `id`; status via `GET /smtp/emails/{id}`.
+5. Hygiene: check `GET /smtp/unsubscribe/search?email=` before sending; sync
+   `GET /smtp/bounces/day` daily and purge hard bounces; mirror app opt-outs via
+   `POST /smtp/unsubscribe`.
+6. Retry on 429/5xx with exponential backoff; never retry 4xx validation errors.
+7. SMTP relay alternative: `smtp-pulse.com:465` (SSL), login/password from
+   *SMTP → Settings → General*.
+8. Newsletters to subscriber lists = Email Service API (address books +
+   campaigns), NOT a loop over `/smtp/emails` — see
+   `references/email-service-api.md`.

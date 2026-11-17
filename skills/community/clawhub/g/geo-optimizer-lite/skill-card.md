@@ -1,42 +1,55 @@
-## Description: <br>
-Free version — audit your content for AI search citability with the GEO Scorecard. Covers 4 of 8 dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free version - audit your content for AI search citability with the GEO Scorecard, covering 4 of 8 dimensions.
 
-## Publisher: <br>
-[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai)
 
-## Use Case: <br>
-Content marketers, SEO and GEO practitioners, and site owners use this skill to audit a URL or pasted content for AI-search citability and receive a lite four-dimension scorecard with improvement actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL or pasted-content audits may expose confidential material or private URLs to the agent processing the request. <br>
-Mitigation: Use public or approved content unless confidential processing is intended and permitted. <br>
-Risk: Generated scorecards and improvement actions may be incomplete or misleading if treated as definitive. <br>
-Mitigation: Review recommendations before applying them to production content. <br>
+## Use Case:
 
+External users and content teams use this skill to evaluate a URL or pasted content for AI-search citability and receive a lite GEO scorecard with improvement actions.
 
-## Reference(s): <br>
-- [GEO Optimizer Lite on ClawHub](https://clawhub.ai/apex-stack-ai/geo-optimizer-lite) <br>
-- [GEO Optimizer Full](https://apexstack.gumroad.com/l/geo-optimizer) <br>
-- [Apex Stack](https://apexstack.gumroad.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown scorecard with scored dimensions and improvement actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a lite score out of 40 across four GEO dimensions; URL-based audits may require page retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill asks the agent to analyze user-provided URLs or pasted content, which may include sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only URLs or content you are comfortable having the agent analyze for the GEO scorecard.
+
+Risk: The skill includes promotional links to a paid full version.
+
+Mitigation: Review linked destinations before following or purchasing, and separate the lite audit output from paid upgrade decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apex-stack-ai/skills/geo-optimizer-lite)
+- [GEO Optimizer Full](https://apexstack.gumroad.com/l/geo-optimizer)
+- [Apex Stack](https://apexstack.gumroad.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scorecard with concise analysis and improvement recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores content across four lite GEO dimensions: factual density, source attribution, structured format, and direct answers.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

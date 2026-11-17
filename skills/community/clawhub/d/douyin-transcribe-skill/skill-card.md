@@ -1,45 +1,60 @@
-## Description: <br>
-抖音视频智能助手可从抖音链接或本地视频文件提取音频，生成中文转录，并按用户意图输出摘要、逐字稿、归档内容或讨论分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically transcribes Douyin links or local video files and helps an agent summarize, provide transcripts, archive notes, or support discussion.
 
-## Publisher: <br>
-[junweiren98-rgb](https://clawhub.ai/user/junweiren98-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junweiren98-rgb](https://clawhub.ai/user/junweiren98-rgb)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn Douyin links, Douyin share text, or local video files into transcripts, summaries, knowledge-base notes, or discussion analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio and transcript content may be sent to third-party Groq or OpenAI services for transcription and formatting. <br>
-Mitigation: Use the skill only with content appropriate for third-party processing, and avoid sensitive or private videos unless the user accepts where audio and text will be sent. <br>
-Risk: The first-use flow can ask for API keys in chat. <br>
-Mitigation: Configure keys through a local .env file, secure environment, or secret store instead of pasting secrets into chat; rotate any exposed key. <br>
-Risk: The workflow relies on browser-based Douyin access, local command execution, and local transcript storage. <br>
-Mitigation: Review command execution and output paths before use, run in a trusted workspace, and keep generated transcript directories scoped to the intended project. <br>
+## Use Case:
 
+External users and developers use this skill to turn Douyin videos or local video files into usable text, summaries, discussion analysis, and saved knowledge notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/junweiren98-rgb/douyin-transcribe-skill) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Groq](https://groq.com) <br>
-- [FFmpeg](https://ffmpeg.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries, transcripts, analysis, and saved .md transcript or archive files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save transcripts under douyin-transcripts/ and archive notes under douyin-knowledge/; setup requires ffmpeg and a Groq or OpenAI API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Command execution can be abused with crafted URLs or filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only after command execution is changed to non-shell argument arrays and URL or file inputs are strictly validated.
+
+Risk: API keys may be exposed if users paste secrets into chat or store them casually.
+
+Mitigation: Configure secrets out of band, avoid sharing keys in chat, and rotate any key that may already have been exposed.
+
+Risk: Links and filenames are untrusted inputs.
+
+Mitigation: Treat all user-provided links and paths as untrusted and avoid running the skill on crafted input until validation is hardened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junweiren98-rgb/skills/douyin-transcribe-skill)
+- [OpenClaw](https://openclaw.ai)
+- [Groq](https://groq.com)
+- [FFmpeg](https://ffmpeg.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses and saved Markdown transcript or archive files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save transcripts under douyin-transcripts and archived notes under douyin-knowledge when requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

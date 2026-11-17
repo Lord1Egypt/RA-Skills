@@ -1,43 +1,55 @@
-## Description: <br>
-Manage OpenClaw Skills by listing, checking updates, installing, updating, or uninstalling from GitHub, SkillHub, Config, or local sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Manage helps OpenClaw users list, check, install, update, and uninstall skills from GitHub, SkillHub, Config, or local sources.
 
-## Publisher: <br>
-[andy8663](https://clawhub.ai/user/andy8663) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy8663](https://clawhub.ai/user/andy8663)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect installed skills, check for available updates, install or update skills, and remove skills from local OpenClaw locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uninstall behavior may remove installed skills, configuration files, or related local state. <br>
-Mitigation: Back up installed skills and configuration files, review the target paths, and use dry-run mode before uninstalling. <br>
-Risk: The script contains hard-coded local Windows OpenClaw paths. <br>
-Mitigation: Replace the hard-coded paths with the user's actual OpenClaw paths before running management commands. <br>
-Risk: The security review flags the release as suspicious because uninstall behavior and local path handling need review. <br>
-Mitigation: Install only after reviewing or fixing the script, and avoid preserve-related uninstall behavior until config-file deletion is corrected. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage installed skills, inspect available updates, and run source-appropriate install, update, or uninstall commands.
 
-## Reference(s): <br>
-- [Skill Manage on ClawHub](https://clawhub.ai/andy8663/skill-manage) <br>
-- [Publisher profile: andy8663](https://clawhub.ai/user/andy8663) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local file-management commands for OpenClaw skill directories when invoked by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Uninstall cleanup can delete files beyond the selected skill and may remove configuration files unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run uninstall with --dry-run first, review every planned path, back up skill configuration files, and avoid --force unless the deletion list is confirmed.
+
+Risk: The release is flagged suspicious by the authoritative security evidence.
+
+Mitigation: Review the script before installation and narrow cleanup behavior to recorded skill-owned paths before trusting routine use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andy8663/skills/skill-manage)
+- [Publisher Profile](https://clawhub.ai/user/andy8663)
+- [Project Homepage](https://github.com/andy8663/skill-manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local shell commands such as git pull, skillhub install, and filesystem cleanup commands when the user runs the provided script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog report 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

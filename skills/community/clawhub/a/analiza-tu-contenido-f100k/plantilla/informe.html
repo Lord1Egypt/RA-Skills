@@ -1,0 +1,1243 @@
+<title>La Hoja del Mes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --papel:#F4F3EF; --hoja:#FFFFFF; --tinta:#0B0B10; --tinta-2:#3A3A44; --tenue:#62626C;
+  --pelo:#DEDCD4; --pelo-fuerte:#BEBBB0;
+  --oro:#F0B24A; --oro-tinta:#7A4E05; --oro-fondo:#FBEBCB;
+  --chatarra:#9E3524; --chatarra-fondo:#F6E1DC;
+  --pasa:#1F6B45; --pasa-fondo:#DCEFE3;
+  --gris-fondo:#ECEAE4;
+  --sans:Geist,-apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",Times,serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --papel:#050509; --hoja:#0B0B10; --tinta:#F4F1EA; --tinta-2:#D6D2C8; --tenue:#A1A1AA;
+    --pelo:#24242E; --pelo-fuerte:#3F3F46;
+    --oro:#F0B24A; --oro-tinta:#F0B24A; --oro-fondo:#2A2011;
+    --chatarra:#F29A88; --chatarra-fondo:#2A1512;
+    --pasa:#7FE3AD; --pasa-fondo:#0F2219;
+    --gris-fondo:#16161D;
+  }
+}
+:root[data-theme="dark"]{
+  --papel:#050509; --hoja:#0B0B10; --tinta:#F4F1EA; --tinta-2:#D6D2C8; --tenue:#A1A1AA;
+  --pelo:#24242E; --pelo-fuerte:#3F3F46;
+  --oro:#F0B24A; --oro-tinta:#F0B24A; --oro-fondo:#2A2011;
+  --chatarra:#F29A88; --chatarra-fondo:#2A1512;
+  --pasa:#7FE3AD; --pasa-fondo:#0F2219;
+  --gris-fondo:#16161D;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:24px 64px}
+.envoltura{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.ser{font-family:var(--serif);font-style:italic;font-weight:500;letter-spacing:-.5px}
+.ceja{font-size:11.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--tenue)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+
+/* ── barra de acciones ── */
+.acciones{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.acciones .grupo{display:flex;flex-wrap:wrap;gap:8px}
+.btn{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--pelo-fuerte);background:transparent;cursor:pointer;font-weight:600;font-size:14px}
+.btn:hover{border-color:var(--tinta)}
+.btn-oro{background:var(--oro);border-color:var(--oro);color:#050509}
+.aviso{font-size:13px;color:var(--tenue);min-height:1.2em}
+
+/* ── LA HOJA (página 1) ── */
+.hoja{background:var(--hoja);border:1px solid var(--pelo);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:22px}
+.cabeza{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;border-bottom:1px solid var(--pelo);padding-bottom:18px}
+.cabeza h1{font-size:clamp(30px,4.4vw,48px);font-weight:800;letter-spacing:-2px;line-height:1.02}
+.cabeza h1 .ser{font-weight:500}
+.cabeza .meta{display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:right;font-size:13px;color:var(--tinta-2)}
+.pildora{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:1px solid transparent;white-space:nowrap}
+.p-pasa{background:var(--pasa-fondo);color:var(--pasa)}
+.p-tapado{background:var(--chatarra-fondo);color:var(--chatarra)}
+.p-gris{background:var(--gris-fondo);color:var(--tenue)}
+.p-oro{background:var(--oro-fondo);color:var(--oro-tinta)}
+.p-chat{background:var(--chatarra-fondo);color:var(--chatarra)}
+
+/* mapa del método */
+.mapa{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.momento{border:1px solid var(--pelo);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.momento .q{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--tinta-2)}
+.momento .t{font-weight:800;letter-spacing:-.3px;font-size:15px}
+.estaciones{display:flex;flex-wrap:wrap;gap:6px}
+.estacion{display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;background:var(--gris-fondo);font-size:12.5px;font-weight:600;text-decoration:none;color:var(--tinta)}
+.estacion b{font-family:var(--mono);font-weight:600;color:var(--tenue)}
+.estacion:hover{background:var(--oro-fondo)}
+.momento .sale{font-size:12.5px;color:var(--tenue)}
+.momento .sale strong{color:var(--tinta)}
+
+/* rejilla de la hoja */
+.rejilla{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.bloque{border-top:2px solid var(--tinta);padding-top:12px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.bloque h2{font-size:19px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
+.bloque .sub{font-size:13px;color:var(--tenue)}
+.c-5{grid-column:span 5}.c-7{grid-column:span 7}.c-4{grid-column:span 4}.c-6{grid-column:span 6}.c-8{grid-column:span 8}.c-12{grid-column:span 12}
+
+/* veredicto */
+.veredicto{font-size:clamp(24px,3vw,32px);font-weight:800;letter-spacing:-1.2px;line-height:1.08}
+.veredicto em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--oro-tinta);letter-spacing:-.5px}
+.arreglo{font-size:14px;color:var(--tinta-2);max-width:62ch}
+
+/* embudo */
+.embudo{display:flex;flex-direction:column;gap:6px}
+.franja{margin:0 auto;border-radius:8px;padding:9px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--gris-fondo);border:1px solid transparent;width:100%}
+.franja .nro{font-family:var(--mono);font-size:12px;color:var(--tenue)}
+.franja .nom{font-weight:700;font-size:14px;line-height:1.2}
+.franja .nom small{display:block;font-weight:400;font-size:12px;color:var(--tenue);font-family:var(--serif);font-style:italic}
+.franja .det{font-size:12px;color:var(--tinta-2);text-align:right;line-height:1.35}
+.franja[data-estado="pasa"]{background:var(--pasa-fondo)}
+.franja[data-estado="tapado"]{background:var(--oro-fondo);border-color:var(--oro)}
+.franja[data-estado="no-se-lee"]{background:repeating-linear-gradient(135deg,var(--gris-fondo) 0 8px,transparent 8px 14px);border-color:var(--pelo)}
+.franja[data-estado="no-se-lee"] .nom,.franja[data-estado="no-se-lee"] .det{color:var(--tenue)}
+.cmp .baja{color:var(--chatarra);font-weight:700}
+.cmp .sube{color:var(--pasa);font-weight:700}
+
+/* mentira del promedio */
+.dos-num{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cifra{border:1px solid var(--pelo);border-radius:10px;padding:10px 12px}
+.cifra .v{font-size:26px;font-weight:800;letter-spacing:-1px}
+.cifra .e{font-size:12px;color:var(--tenue)}
+
+/* coronación */
+.coronas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cubo{border:1px solid var(--pelo);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.cubo .ti{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cubo ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.cubo li{font-size:13.5px;line-height:1.3}
+.cubo li .veces{font-family:var(--mono);font-size:11.5px;color:var(--tenue)}
+.cubo .vacio{font-size:13px;color:var(--tenue);font-style:italic;font-family:var(--serif)}
+.angulos{display:flex;flex-direction:column;gap:6px}
+.ang{display:grid;grid-template-columns:110px 1fr;gap:10px;font-size:13.5px;padding:7px 0;border-bottom:1px solid var(--pelo)}
+.ang:last-child{border-bottom:0}
+.ang .p{font-weight:700}
+.ang .r{color:var(--tinta-2)}
+.ang .r i{color:var(--tenue);font-family:var(--serif)}
+
+/* reparto */
+.barra{display:flex;height:46px;border-radius:10px;overflow:hidden;border:1px solid var(--pelo)}
+.barra div{display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;min-width:0;white-space:nowrap}
+.b-rep{background:var(--tinta);color:var(--hoja)}
+.b-var{background:var(--oro);color:#050509}
+.b-apo{background:var(--gris-fondo);color:var(--tinta)}
+.leyenda-barra{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12.5px;color:var(--tinta-2)}
+.leyenda-barra b{display:block;color:var(--tinta);font-size:13px}
+
+.conclusiones{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;counter-reset:c}
+.conclusiones li{display:grid;grid-template-columns:28px 1fr;gap:8px;counter-increment:c}
+.conclusiones li::before{content:counter(c);font-family:var(--serif);font-style:italic;font-size:24px;line-height:1;color:var(--oro-tinta)}
+.conclusiones b{display:block;font-size:14.5px;letter-spacing:-.2px}
+.conclusiones span{font-size:13.5px;color:var(--tinta-2)}
+.ev{font-family:var(--mono);font-size:11.5px;color:var(--tenue)}
+
+.semana{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.semana li{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.semana li::before{content:"";flex:0 0 16px;height:16px;margin-top:2px;border:1.5px solid var(--tinta);border-radius:4px}
+
+/* las 3 conclusiones fijas */
+.fijas-cab{display:flex;flex-direction:column;gap:4px}
+.fijas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.fija{border:1px solid var(--pelo);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.fija.gana{border-color:var(--oro);box-shadow:inset 0 3px 0 var(--oro)}
+.fija .fq{font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--tenue)}
+.fija .fr{font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.15;letter-spacing:-.5px;overflow-wrap:anywhere}
+.fija .fr small{display:block;font-size:15px;margin-top:2px}
+.fija .fcat{font-size:12.5px;color:var(--tenue)}
+.fija .fcat b{color:var(--tinta);font-weight:700}
+.fija .fn{font-family:var(--mono);font-size:12px;line-height:1.45;color:var(--tinta-2)}
+.fija .ft{font-size:13.5px;color:var(--tinta-2)}
+.fija .fx{font-size:12.5px;color:var(--tenue)}
+.refs{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.ref{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--pelo);border-radius:8px;padding:3px 9px 3px 3px;font-family:var(--mono);font-size:11.5px;color:var(--tinta-2);text-decoration:none;min-height:38px}
+.ref:hover{border-color:var(--tinta)}
+.ref img{width:32px;height:32px;object-fit:cover;border-radius:5px;display:block}
+.ref .sinfoto{width:32px;height:32px;border-radius:5px;background:var(--gris-fondo)}
+
+/* tu data */
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.dato{border:1px solid var(--pelo);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.dato[data-estado="sin-dato"]{border-color:var(--chatarra)}
+.dato .ti{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dato .ti b{font-size:15px}
+.dato .riel{height:10px;border-radius:5px;background:var(--gris-fondo);overflow:hidden}
+.dato .riel i{display:block;height:100%;background:var(--pasa)}
+.dato p{font-size:13.5px;color:var(--tinta-2)}
+.dato .desb{font-family:var(--serif);font-style:italic;color:var(--tinta)}
+.dato .refs{margin-top:0}
+.dato .ref{min-height:34px;padding:2px 8px 2px 2px}
+.dato .ref img,.dato .ref .sinfoto{width:28px;height:28px}
+
+/* calendario con detalle */
+.semana-cal{display:flex;flex-direction:column;gap:10px}
+.semana-cal>h3{font-size:15px;font-weight:800;letter-spacing:-.2px;border-bottom:1px solid var(--pelo);padding-bottom:6px}
+.piezas{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.pieza{border:1px solid var(--pelo);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.pieza[data-sale="REPETIR"]{border-color:var(--tinta)}
+.pz-cab{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between}
+.pz-tema{font-size:16.5px;font-weight:700;letter-spacing:-.3px;line-height:1.25}
+.chip.viral{border-color:var(--oro);background:var(--oro-fondo);color:var(--oro-tinta);font-weight:700}
+.chip.vende{border-color:var(--pasa);background:var(--pasa-fondo);color:var(--pasa);font-weight:700}
+.pz-angulo{font-size:13.5px;color:var(--tinta-2)}
+.pz-caja{background:var(--gris-fondo);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.pz-caja .caja-t,.pz-t{font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--tenue)}
+.pz-gancho{font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.35}
+.pz-pantalla{font-size:12.5px;color:var(--tinta-2)}
+.pz-estructura{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px;font-size:13.5px}
+.pz-estructura li::marker{font-family:var(--mono);font-size:12px;color:var(--tenue)}
+.pz-cta{font-size:13.5px}
+.pz-ref{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:start;border:1px dashed var(--pelo-fuerte);border-radius:10px;padding:8px}
+.pz-ref.bib{grid-template-columns:1fr}
+.pz-ref img,.pz-ref .sinfoto{width:64px;height:80px;object-fit:cover;border-radius:6px;display:block;background:var(--gris-fondo)}
+.pz-ref p{font-size:13px;color:var(--tinta-2)}
+.pz-ref a{font-size:12px;color:var(--tenue)}
+.pz-meta{font-size:12.5px;font-family:var(--mono);color:var(--pasa)}
+.pieza .porque{font-size:12.5px;color:var(--tenue);border-top:1px solid var(--pelo);padding-top:8px;margin-top:auto}
+
+/* clase: ranking de ángulos */
+.rank-ang{display:flex;flex-direction:column;gap:6px}
+.rank-ang .fila{display:grid;grid-template-columns:minmax(90px,150px) 1fr 70px;gap:10px;align-items:center;font-size:13px}
+.rank-ang .riel{position:relative;height:14px;border-radius:4px;background:var(--gris-fondo)}
+.rank-ang .riel i{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--pelo-fuerte)}
+.rank-ang .fila.gana .riel i{background:var(--oro)}
+.rank-ang .riel em{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--tinta)}
+.rank-ang b{font-family:var(--mono);font-size:12px;text-align:right}
+
+/* ── ANEXOS ── */
+.anexo{background:var(--hoja);border:1px solid var(--pelo);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.anexo>header{display:flex;flex-direction:column;gap:6px;max-width:72ch}
+.anexo h2{font-size:clamp(22px,2.6vw,28px);font-weight:800;letter-spacing:-1px;line-height:1.1}
+.anexo h2 .ser{font-weight:500}
+.anexo header p{color:var(--tinta-2)}
+
+.lienzo-pend{overflow-x:auto}
+.lienzo-pend svg{display:block;min-width:560px;width:100%;max-width:900px;margin:0 auto;height:auto}
+
+.videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.video{border:1px solid var(--pelo);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.video[data-zona="ORO"]{border-color:var(--oro)}
+.video .foto{position:relative;aspect-ratio:16/10;background:var(--gris-fondo);overflow:hidden;max-width:100%}
+.video .foto img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.video .foto .nro{position:absolute;left:8px;top:8px;background:rgba(5,5,9,.78);color:#F4F1EA;font-family:var(--mono);font-size:12px;padding:2px 7px;border-radius:6px}
+.video .foto .z{position:absolute;right:8px;top:8px}
+.video .cuerpo{padding:10px 12px 12px;display:flex;flex-direction:column;gap:7px;flex:1}
+.video .gancho{font-family:var(--serif);font-style:italic;font-size:14.5px;line-height:1.35}
+.video .idea{font-size:12.5px;color:var(--tenue)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:11.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--pelo-fuerte);color:var(--tinta-2)}
+.chip.f{border-color:var(--tinta);color:var(--tinta);font-weight:600}
+.video dl{margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border-top:1px solid var(--pelo);padding-top:8px;margin-top:auto}
+.video dt{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--tenue)}
+.video dd{margin:0;font-weight:700;font-size:13px}
+.video dd.clave{color:var(--oro-tinta)}
+.video a.ver{font-size:12px;color:var(--tenue)}
+
+.preguntas{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.preg{border:1px solid var(--pelo);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.preg .tipo{align-self:flex-start}
+.preg h3{font-size:16px;font-weight:700;letter-spacing:-.3px;line-height:1.25}
+.preg .porque{font-size:13.5px;color:var(--tinta-2)}
+.preg .destino{font-size:12.5px;color:var(--tenue);font-family:var(--serif);font-style:italic}
+.respuesta{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.respuesta button{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--pelo-fuerte);background:transparent;cursor:pointer;font-size:13px;font-weight:600}
+.respuesta button[aria-pressed="true"]{background:var(--tinta);color:var(--hoja);border-color:var(--tinta)}
+
+.tabla-env{overflow-x:auto;border:1px solid var(--pelo);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tenue);text-align:left;padding:10px 12px;border-bottom:1px solid var(--pelo);white-space:nowrap;background:var(--gris-fondo)}
+td{padding:10px 12px;border-bottom:1px solid var(--pelo);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.porque{color:var(--tinta-2);min-width:240px}
+td .tema{font-weight:600}
+
+.ganchos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.gancho-var{border:1px solid var(--pelo);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px}
+.gancho-var .l{font-family:var(--mono);font-weight:600;color:var(--oro-tinta)}
+.gancho-var p{font-family:var(--serif);font-style:italic;font-size:15px}
+
+.glosario{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0 24px}
+.glosario div{padding:10px 0;border-bottom:1px solid var(--pelo)}
+.glosario dt{font-weight:700;font-size:14px}
+.glosario dd{margin:2px 0 0;font-size:13.5px;color:var(--tinta-2)}
+.pie{font-size:12.5px;color:var(--tenue);max-width:90ch}
+
+
+/* ══ vistas: clase · hoja · flashcards · examen ══ */
+#app{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.envoltura-hoja{display:flex;flex-direction:column;gap:28px}
+.vistas{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;flex-wrap:wrap;padding:8px;background:var(--hoja);border:1px solid var(--pelo);border-radius:999px;align-self:flex-start;max-width:100%}
+.vistas button{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:transparent;cursor:pointer;font-weight:700;font-size:14px;color:var(--tinta-2)}
+.vistas button[aria-selected="true"]{background:var(--tinta);color:var(--hoja)}
+.como{font-size:11.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--oro-tinta);margin-left:8px;white-space:nowrap}
+.clase{background:var(--hoja);border:1px solid var(--pelo);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:18px}
+.clase-cab{display:flex;flex-direction:column;gap:6px}
+.clase-cab h1{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.6px;line-height:1.05}
+.clase-cab h1 .ser{font-weight:500}
+.subtabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scroll-margin-top:72px}
+.subtabs button{flex:0 0 auto;display:flex;gap:8px;align-items:center;min-height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--pelo);background:transparent;cursor:pointer;font-weight:700;font-size:14px;color:var(--tinta-2)}
+.subtabs button b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:18px;color:var(--oro-tinta)}
+.subtabs button[aria-selected="true"]{border-color:var(--oro);background:var(--oro-fondo);color:var(--tinta)}
+.sub-panel{display:flex;flex-direction:column;gap:16px}
+.caja-t{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--tenue);margin-bottom:4px}
+.intro-clase{border-radius:14px;padding:20px 22px;background:var(--gris-fondo);display:flex;flex-direction:column;gap:6px}
+.intro-clase p{max-width:70ch}
+.grande{font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-1px;line-height:1.1}
+.grande .ser{font-weight:500}
+.grande-2{font-size:20px;font-weight:800;letter-spacing:-.4px;line-height:1.2}
+.h-clase{font-size:20px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.h-clase .ser{font-weight:500}
+.paso{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tinta);color:var(--hoja);font-size:14px;font-weight:800;font-family:var(--sans);font-style:normal}
+.caja{border:1px solid var(--pelo);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.caja p{font-size:14px;color:var(--tinta-2)}
+.tu-mes{background:var(--oro-fondo);border-radius:12px;padding:12px 16px}
+.tu-mes p{font-size:14px;color:var(--tinta)}
+.err-comun{border-left:3px solid var(--chatarra);padding:6px 0 6px 14px}
+.err-comun p{font-size:14px;color:var(--tinta-2);max-width:80ch}
+.err-comun .caja-t{color:var(--chatarra)}
+/* mapa */
+.flujo{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.flujo-m{border:1.5px solid var(--tinta);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.flujo-t{font-size:22px;font-weight:800;letter-spacing:-.8px}
+.flujo-q{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--tinta-2)}
+.nodos{list-style:none;margin:4px 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.nodo{width:100%;text-align:left;display:flex;gap:10px;align-items:center;min-height:42px;padding:0 12px;border-radius:10px;border:1px solid var(--pelo);background:var(--hoja);cursor:pointer;font-weight:700;font-size:14px}
+.nodo:hover{border-color:var(--oro);background:var(--oro-fondo)}
+.nodo b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:20px;color:var(--oro-tinta);width:18px}
+.flujo-sale{margin-top:auto;font-size:13px;color:var(--tenue)}
+.flujo-sale strong{color:var(--tinta)}
+.flecha{display:grid;place-items:center;font-size:26px;color:var(--oro-tinta)}
+.bucle{border:1.5px dashed var(--pelo-fuerte);border-radius:12px;padding:10px 14px;font-size:14px;color:var(--tinta-2);text-align:center}
+.leyes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.medidor{display:grid;grid-template-columns:44px 1fr 36px;gap:8px;align-items:center;font-size:12.5px;color:var(--tenue)}
+.medidor b{color:var(--tinta);text-align:right}
+.riel{position:relative;height:10px;border-radius:999px;background:var(--gris-fondo);overflow:visible}
+.riel i{display:block;height:100%;border-radius:999px;background:var(--tinta)}
+.riel em{position:absolute;top:-16px;transform:translateX(-50%);font-style:normal;font-size:10.5px;color:var(--chatarra);font-weight:700}
+.riel em::after{content:"";position:absolute;left:50%;top:14px;width:2px;height:14px;background:var(--chatarra)}
+.riel.ok i{background:var(--pasa)} .riel.no i{background:var(--chatarra)}
+.tira-svg{width:100%;height:auto;max-width:100%}
+.mini-embudo{display:flex;flex-direction:column;align-items:center;gap:4px}
+.mini-embudo span{display:block;text-align:center;font-size:12px;font-weight:700;padding:5px 0;border-radius:6px;background:var(--gris-fondo);color:var(--tenue)}
+.mini-embudo span[data-estado="tapado"]{background:var(--oro);color:#050509}
+.mini-embudo span[data-estado="pasa"]{background:var(--pasa-fondo);color:var(--pasa)}
+/* filtros */
+.filtros-clase{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:18px;align-items:start}
+.embudo-clase{display:flex;flex-direction:column;align-items:center;gap:6px}
+.banda{display:flex;flex-direction:column;align-items:center;gap:1px;min-height:58px;padding:8px 10px;border-radius:10px;border:1.5px solid transparent;background:var(--gris-fondo);cursor:pointer;font-weight:800;font-size:15px;color:var(--tinta)}
+.banda b{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--oro-tinta)}
+.banda small{font-family:var(--serif);font-style:italic;font-weight:400;font-size:12.5px;color:var(--tinta-2)}
+.banda[data-estado="tapado"]{background:var(--oro-fondo)}
+.banda[data-estado="pasa"]{background:var(--pasa-fondo)}
+.banda[data-estado="no-se-lee"]{background:repeating-linear-gradient(135deg,var(--gris-fondo) 0 8px,transparent 8px 14px)}
+.banda[aria-selected="true"]{border-color:var(--tinta)}
+.panel-filtro{border:1px solid var(--pelo);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.pf-cabeza{display:flex;gap:12px;align-items:center}
+.pf-n{font-family:var(--serif);font-style:italic;font-size:44px;line-height:1;color:var(--oro-tinta)}
+.pf-nom{font-size:24px;font-weight:800;letter-spacing:-.8px}
+.pf-q{font-family:var(--serif);font-style:italic;color:var(--tinta-2)}
+.pf-dl{margin:0;display:flex;flex-direction:column;gap:10px}
+.pf-dl dt{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--tenue)}
+.pf-dl dd{margin:2px 0 0;font-size:14px}
+.cmp-barras{display:flex;flex-direction:column;gap:6px}
+.cmp-barras>p{font-size:13px;font-weight:700}
+.cb{display:grid;grid-template-columns:78px 1fr 84px;gap:8px;align-items:center;font-size:12.5px;color:var(--tenue)}
+.cb b{color:var(--tinta);text-align:right;font-variant-numeric:tabular-nums}
+/* coronar */
+.etiquetas-demo{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start}
+.demo-video{border:1px solid var(--oro);border-radius:12px;overflow:hidden}
+.demo-video img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;max-width:100%}
+.demo-video p{padding:0 12px}
+.gancho-d{font-family:var(--serif);font-style:italic;font-size:14.5px;padding-top:10px!important}
+.demo-video .sub{padding-bottom:10px!important}
+.demo-etq{display:flex;flex-direction:column;gap:10px}
+.etq{border:1px solid var(--pelo);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:100px 1fr;gap:4px 12px;align-items:baseline}
+.etq-k{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--oro-tinta)}
+.etq-v{font-weight:800;font-size:16px}
+.etq p{grid-column:2;font-size:13.5px;color:var(--tinta-2)}
+.tema-molde{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;border:1px dashed var(--pelo-fuerte);border-radius:12px;padding:14px 18px}
+.tema-molde .vs{font-size:34px;color:var(--chatarra);font-weight:800}
+.corte-env{overflow-x:auto}
+.corte,.corte-ley{min-width:620px}
+.corte{display:grid;gap:3px}
+.bloq{position:relative;height:46px;border-radius:6px;background:var(--gris-fondo);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--tinta)}
+.bloq i{font-style:normal;font-family:var(--mono);font-size:10px;font-weight:600;color:var(--tinta-2)}
+.bloq[data-zona="ORO"]{background:var(--oro)} .bloq[data-zona="ORO"] i{color:#050509}
+.bloq[data-zona="ORO"]{color:#050509}
+.bloq[data-zona="CHATARRA"]{background:var(--chatarra);color:var(--hoja)} .bloq[data-zona="CHATARRA"] i{color:var(--hoja)}
+.corte-ley{display:flex;gap:4px;font-size:12px;font-weight:700;text-align:center}
+.corte-ley span{border-top:2px solid var(--pelo-fuerte);padding-top:4px;color:var(--tenue);min-width:0}
+.corte-ley .z-oro{border-color:var(--oro);color:var(--oro-tinta)} .corte-ley .z-chat{border-color:var(--chatarra);color:var(--chatarra)}
+.reglas-v{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;font-weight:600}
+.matriz{display:flex;flex-direction:column;border:1px solid var(--pelo);border-radius:12px;overflow:hidden}
+.fila-m{display:grid;grid-template-columns:1fr auto 110px;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--pelo)}
+.fila-m:last-child{border-bottom:0}
+.fm-nom{font-weight:700;font-size:14px}
+.fm-pts{display:flex;gap:4px}
+.fm-pts i{width:14px;height:14px;border-radius:50%;display:block}
+.d-oro{background:var(--oro)} .d-chat{background:var(--chatarra)} .d-tib{border:1.5px solid var(--pelo-fuerte)}
+.fila-m .pildora{justify-self:end}
+/* preguntar */
+.dos-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.col-d,.col-e{border-radius:12px;padding:16px}
+.col-d{background:var(--tinta);color:var(--hoja)} .col-d .caja-t{color:var(--hoja);opacity:.75}
+.col-e{background:var(--oro-fondo)}
+.decision{display:flex;flex-direction:column;align-items:center;gap:10px}
+.dec-q{border:1.5px solid var(--tinta);border-radius:999px;padding:10px 18px;font-weight:800;text-align:center}
+.dec-ramas{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.rama{border:1px solid var(--pelo);border-radius:12px;padding:12px 14px;opacity:.6}
+.rama.activa{opacity:1;border:2px solid var(--oro);background:var(--oro-fondo)}
+.rama>b{font-size:18px}
+.rama p{font-size:14px;color:var(--tinta-2)}
+/* decidir */
+.cubetas-clase{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cub{border:1px solid var(--pelo);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.cub .cub-n{font-family:var(--serif);font-style:italic;font-size:32px;line-height:1;color:var(--oro-tinta)}
+.cub p{font-size:13.5px;color:var(--tinta-2)}
+.ej-cal{margin-top:6px;padding-top:6px;border-top:1px solid var(--pelo);font-size:12.5px!important}
+.selector{display:flex;flex-wrap:wrap;gap:6px}
+.selector button{min-height:38px;padding:0 12px;border-radius:999px;border:1px solid var(--pelo-fuerte);background:transparent;cursor:pointer;font-size:13px;font-weight:600;color:var(--tinta)}
+.selector button[aria-pressed="true"]{background:var(--tinta);color:var(--hoja);border-color:var(--tinta)}
+#mezcla-demo{display:flex;flex-direction:column;gap:8px}
+.formula{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.formula span{border:1px solid var(--pelo-fuerte);border-radius:10px;padding:8px 12px;font-weight:700;font-size:14px}
+.formula b{font-size:20px;color:var(--oro-tinta)}
+.formula .res{background:var(--tinta);color:var(--hoja);border-color:var(--tinta)}
+.trial{display:grid;grid-template-columns:160px 1fr;gap:14px;align-items:center}
+.trial-video{border:2px solid var(--tinta);border-radius:12px;aspect-ratio:9/12;display:grid;place-items:center;font-weight:800;text-align:center;padding:10px;max-width:100%}
+.trial-ramas{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.trial-ramas div{border:1px solid var(--pelo);border-radius:10px;padding:10px 12px;font-size:13px;font-weight:700}
+.trial-ramas b{font-family:var(--mono);color:var(--oro-tinta)}
+.trial-ramas p{font-family:var(--serif);font-style:italic;font-weight:400;font-size:14px;color:var(--tinta-2);margin-top:4px}
+.reglas-trial{display:flex;flex-wrap:wrap;gap:6px}
+.reglas-trial span{background:var(--gris-fondo);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600}
+.sub-panel>.btn{align-self:flex-start}
+.waffle{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:260px}
+.waffle i{aspect-ratio:1;border-radius:3px;background:var(--pelo-fuerte)}
+.waffle i.arriba{background:var(--oro)}
+.dos-barras{display:flex;flex-direction:column;gap:6px}
+.grupo-pie{display:flex;flex-wrap:wrap;gap:8px}
+.btn-link{display:inline-flex;align-items:center;text-decoration:none;color:var(--tinta)}
+.clase-pie{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;border-top:1px solid var(--pelo);padding-top:16px}
+/* flashcards */
+.flash-zona{display:flex;flex-direction:column;align-items:center;gap:14px}
+.flip-container{perspective:1000px;width:min(560px,100%);height:19rem;cursor:pointer}
+.flip-inner{position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);width:100%;height:100%}
+.flip-inner.is-flipped{transform:rotateY(180deg)}
+.flip-front,.flip-back{backface-visibility:hidden;-webkit-backface-visibility:hidden;width:100%;height:100%;border-radius:16px;padding:26px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.flip-front{border:1.5px solid var(--oro);background:var(--hoja)}
+.flip-back{transform:rotateY(180deg);position:absolute;inset:0;background:var(--tinta);color:var(--hoja)}
+.fc-q{font-size:24px;font-weight:800;letter-spacing:-.6px;line-height:1.2}
+.fc-a{white-space:pre-line;font-size:17px;line-height:1.5}
+.flash-nav{display:flex;gap:14px;align-items:center}
+@media (prefers-reduced-motion:reduce){.flip-inner{transition:none}}
+/* examen */
+.examen{display:flex;flex-direction:column;gap:14px}
+.caso{border:1px solid var(--pelo);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.caso-n{font-family:var(--serif);font-style:italic;color:var(--oro-tinta);font-size:18px}
+.caso-q{font-weight:700;font-size:15.5px;max-width:80ch}
+.opciones{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opciones button{display:flex;gap:10px;align-items:flex-start;text-align:left;padding:10px 12px;min-height:48px;border-radius:10px;border:1px solid var(--pelo-fuerte);background:transparent;cursor:pointer;font-size:14px;color:var(--tinta)}
+.opciones button b{font-family:var(--mono)}
+.opciones button.bien{border:2px solid var(--pasa);background:var(--pasa-fondo)}
+.opciones button.mal{border:2px solid var(--chatarra);background:var(--chatarra-fondo)}
+.opciones button:disabled{cursor:default}
+.why{font-size:14px;color:var(--tinta-2);background:var(--gris-fondo);border-radius:10px;padding:10px 12px}
+.puntaje{font-weight:800;font-size:16px}
+@media (max-width:900px){
+  .flujo{grid-template-columns:1fr}.flecha{transform:rotate(90deg)}
+  .leyes,.cubetas-clase{grid-template-columns:1fr}
+  .filtros-clase{grid-template-columns:1fr}
+  .etiquetas-demo{grid-template-columns:1fr}.demo-video{max-width:260px}
+}
+@media (max-width:560px){
+  .clase{padding:18px}
+  .dos-col,.dec-ramas,.opciones,.trial-ramas{grid-template-columns:1fr}
+  .tema-molde{grid-template-columns:1fr}.trial{grid-template-columns:1fr}.trial-video{aspect-ratio:auto}
+  .etq{grid-template-columns:1fr}.etq p{grid-column:1}
+  .fila-m{grid-template-columns:1fr auto}.fila-m .pildora{grid-column:1/-1;justify-self:start}
+  .vistas{border-radius:14px}
+}
+@media print{.vistas,.subtabs,.clase-pie,.flash-nav{display:none}.clase{border:0;padding:0}[data-vista-panel="clase"] .sub-panel{display:flex!important;break-before:page}.como{display:none}}
+
+@media (max-width:900px){
+  .c-5,.c-7,.c-4,.c-6,.c-8{grid-column:span 12}
+  .fijas{grid-template-columns:1fr}
+  .mapa{grid-template-columns:1fr}
+  .coronas{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .hoja,.anexo{padding:18px}
+  .cabeza{grid-template-columns:1fr}
+  .cabeza .meta{align-items:flex-start;text-align:left}
+  .franja{grid-template-columns:auto 1fr}
+  .franja .det{grid-column:1/-1;text-align:left}
+  .ang{grid-template-columns:1fr}
+  .leyenda-barra{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){ .btn,.estacion{transition:background .15s,border-color .15s} }
+
+@page{size:letter landscape;margin:9mm}
+@media print{
+  :root,:root[data-theme="dark"]{
+    --papel:#FFFFFF; --hoja:#FFFFFF; --tinta:#0B0B10; --tinta-2:#3A3A44; --tenue:#55555F;
+    --pelo:#D6D3CA; --pelo-fuerte:#B5B2A7; --oro-tinta:#7A4E05; --oro-fondo:#FBEBCB;
+    --chatarra:#9E3524; --chatarra-fondo:#F6E1DC; --pasa:#1F6B45; --pasa-fondo:#DCEFE3; --gris-fondo:#EEEDE8;
+  }
+  body{padding:0;font-size:11.5px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .acciones,.respuesta button:not([aria-pressed="true"]){display:none}
+  .envoltura{gap:0;max-width:none}
+  .hoja,.anexo{border:0;border-radius:0;padding:0;break-after:page}
+  .hoja{gap:12px}
+  .rejilla{gap:12px}
+  .c-5{grid-column:span 5}.c-7{grid-column:span 7}.c-4{grid-column:span 4}.c-6{grid-column:span 6}.c-8{grid-column:span 8}
+  .mapa{grid-template-columns:repeat(3,1fr)}
+  .coronas{grid-template-columns:repeat(3,1fr)}
+  .video,.preg,tr,.pieza,.fija{break-inside:avoid}
+  .fijas{grid-template-columns:repeat(3,1fr)}
+  .piezas{grid-template-columns:repeat(3,1fr)}
+  .videos{grid-template-columns:repeat(5,1fr)}
+  .lienzo-pend svg{min-width:0}
+}
+</style>
+
+<main class="envoltura" id="app">
+  <p class="aviso">Cargando el informe…</p>
+</main>
+
+<script type="application/json" id="informe-datos">/*__DATOS__*/</script>
+<script>
+(function(){
+"use strict";
+var D;
+try{ D = JSON.parse(document.getElementById("informe-datos").textContent); }
+catch(e){ document.getElementById("app").innerHTML='<p class="aviso">Este informe no trae datos. Genéralo con la skill analiza-tu-contenido-f100k.</p>'; return; }
+
+var R = D.resultado, L = D.lectura || {}, C = D.cuenta || {};
+var porN = {}; R.posts.forEach(function(p){ porN[p.n]=p; });
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function fmt(n,dec){ if(n==null||!isFinite(n)) return "—"; return Number(n).toLocaleString("es-CO",{minimumFractionDigits:0,maximumFractionDigits:dec==null?1:dec}); }
+function fecha(f){ if(!f) return ""; var d=new Date(f+"T12:00:00"); return d.toLocaleDateString("es-CO",{day:"numeric",month:"short"}); }
+function ev(arr){ return (arr&&arr.length) ? '<span class="ev">Reels '+arr.map(function(n){return "#"+n;}).join(" · ")+'</span>' : ""; }
+function zonaPill(z){ return z==="ORO"?'<span class="pildora p-oro">ORO</span>':z==="CHATARRA"?'<span class="pildora p-chat">Chatarra</span>':'<span class="pildora p-gris">'+(z==="TIBIO"?"Tibio":"Sin dato")+'</span>'; }
+
+var BIB = D.biblioteca || {};
+var CF = R.conclusionesFijas || null;
+var COLS={pct_no_seguidores:["de no seguidores"," %"],tasa_conv:["de conversión (seguidores nuevos por cada 100 vistas de afuera)"," %"],intencion:["de intención (visitas + enlace + DMs)",""],valor_1000:["de valor por 1.000 vistas",""],retencion_3s:["de retención a 3 s"," %"],vistas:["vistas",""]};
+function colTxt(c,v){ var x=COLS[c]||[c,""]; return fmt(v,c==="vistas"?0:2)+x[1]+" "+x[0]; }
+function refMini(n){
+  var p=porN[n]; if(!p) return "";
+  var cuerpo=(p.portada?'<img src="'+esc(p.portada)+'" alt="" loading="lazy">':'<span class="sinfoto"></span>')+'#'+n+' · '+fmt(p.metricas.vistas,0)+' vistas';
+  return p.url?'<a class="ref" href="'+esc(p.url)+'" target="_blank" rel="noopener" title="Ver el Reel #'+n+'">'+cuerpo+'</a>':'<span class="ref">'+cuerpo+'</span>';
+}
+function rolAngulo(a){
+  var r=[];
+  var LF0=L.conclusiones_fijas||{}, t=function(k){ return LF0[k]&&LF0[k].angulo_especifico?' title="'+esc(LF0[k].angulo_especifico)+'"':''; };
+  if(CF&&CF.anguloViral.estado==="ganador"&&a===CF.anguloViral.angulo) r.push('<span class="chip viral"'+t("angulo_viral")+'>Tu ángulo que viraliza</span>');
+  if(CF&&CF.anguloVenta.estado==="ganador"&&a===CF.anguloVenta.angulo) r.push('<span class="chip vende"'+t("angulo_venta")+'>Tu posible ángulo de venta</span>');
+  return r.join("");
+}
+var META_FILTRO={1:["pct_no_seguidores","vistas"],2:["retencion_3s"],3:["valor_1000"],4:["tasa_conv"],5:["intencion"]};
+function metaDe(filtroTxt){
+  var n=parseInt(String(filtroTxt||""),10), cols=META_FILTRO[n]; if(!cols||!R.medianas) return "";
+  var partes=cols.map(function(c){ return R.medianas[c]==null?null:colTxt(c,R.medianas[c]); }).filter(Boolean);
+  if(!partes.length) return 'Mide: el filtro '+n+' no tiene dato. Captura su número desde la app para saber si funcionó.';
+  return 'Funcionó si supera '+partes.join(" y ")+' (tu mediana).';
+}
+
+var MOMENTOS=[
+  {t:"Diagnostica",q:"¿Dónde se tapa?",est:[[1,"Leer los 5 filtros","filtros"]],sale:"tu filtro tapado"},
+  {t:"Descifra",q:"¿Qué lo explica?",est:[[2,"Etiquetar","coronar"],[3,"Coronar","coronar"],[4,"Preguntar","preguntar"]],sale:"tus moldes ganadores y el porqué"},
+  {t:"Decide",q:"¿Qué hago el mes que viene?",est:[[5,"Repartir","decidir"],[6,"Presionar","decidir"],[7,"Apostar","decidir"]],sale:"el calendario con acta"}
+];
+
+var SUB_DE_ESTACION={1:"filtros",2:"coronar",3:"coronar",4:"preguntar",5:"decidir",6:"decidir",7:"decidir"};
+var h=[];
+
+/* ── acciones ── */
+h.push('<div class="acciones"><div class="grupo">'+
+  '<button class="btn btn-oro" id="btn-imprimir" type="button">Imprimir o guardar PDF</button>'+
+  '<button class="btn" id="btn-hoja" type="button">Copiar la hoja de los 30 videos</button>'+
+  '<button class="btn" id="btn-calendario" type="button">Copiar el calendario</button>'+
+  '<button class="btn" id="btn-respuestas" type="button">Copiar mis respuestas</button>'+
+  '</div><p class="aviso" id="aviso" role="status"></p></div>');
+
+/* ══ HOJA 1: la infografía ══ */
+h.push('<section class="hoja" aria-label="La hoja del mes">');
+
+// cabeza
+var lote=R.lote;
+h.push('<header class="cabeza"><div style="display:flex;flex-direction:column;gap:8px">'+
+  '<p class="ceja">Analiza tu contenido · Informe del mes</p>'+
+  '<h1>@'+esc(C.handle||"tu cuenta")+', tu mes <span class="ser">en una hoja</span></h1>'+
+  (L.resumen?'<p class="arreglo">'+esc(L.resumen)+'</p>':'')+
+  '</div><div class="meta">'+
+  '<span class="pildora '+(lote.valido?"p-pasa":"p-tapado")+'">'+(lote.valido?"Lote válido":"Sin lote")+'</span>'+
+  '<span class="num">'+lote.n+' Reels · '+lote.dias+' días</span>'+
+  (R.ventanas?'<span class="num">Línea base: '+fecha(R.ventanas.base.desde)+' – '+fecha(R.ventanas.base.hasta)+' ('+R.ventanas.base.n+')<br>Este mes: '+fecha(R.ventanas.mes.desde)+' – '+fecha(R.ventanas.mes.hasta)+' ('+R.ventanas.mes.n+')</span>':'')+
+  '</div></header>');
+
+if(!lote.valido){
+  h.push('<div class="bloque c-12"><p class="veredicto">Esto todavía es <em>anécdota</em>, no data.</p><p class="arreglo">'+esc(lote.motivo)+' Sigue publicando y vuelve cuando tengas 9 posts y 30 días.</p></div></section>');
+  document.getElementById("app").innerHTML=h.join(""); return;
+}
+
+// mapa
+h.push('<nav class="mapa" aria-label="El método en 3 momentos">');
+MOMENTOS.forEach(function(m,i){
+  h.push('<div class="momento"><div><p class="ceja">Momento '+(i+1)+'</p><p class="t">'+m.t+' <span class="q">— '+m.q+'</span></p></div>'+
+    '<div class="estaciones">'+m.est.map(function(e){return '<a class="estacion" href="#" data-ir="clase:'+e[2]+'"><b>'+e[0]+'</b>'+e[1]+'</a>';}).join("")+'</div>'+
+    '<p class="sale">Sale: <strong>'+m.sale+'</strong></p></div>');
+});
+h.push('</nav>');
+
+// las 3 conclusiones fijas
+if(CF){
+  var LF=L.conclusiones_fijas||{};
+  var txtF=function(k){ var x=LF[k]; return x&&x.texto?'<p class="ft">'+esc(x.texto)+' '+ev(x.evidencia)+'</p>':''; };
+  var cards=[];
+  var fo=CF.formato, g0=fo.ganadores[0];
+  cards.push('<article class="fija'+(fo.estado==="repetir"?' gana':'')+'"><p class="fq">1 · Tu formato ganador</p>'+
+    (g0?'<p class="fr">'+fo.ganadores.map(function(g){return esc(g.formato);}).join('<small>y</small>')+'</p>'+
+      '<p>'+(fo.estado==="repetir"?'<span class="pildora p-oro">Repetir · '+g0.oro+'× en ORO</span>':'<span class="pildora p-gris">Candidato · confírmalo</span>')+'</p>'+
+      '<p class="fn">'+fo.ganadores.map(function(g){return g.oro+'× ORO · '+g.chatarra+'× chatarra en '+g.veces+' Reels · mediana '+colTxt(fo.columna,g.mediana);}).join('<br>')+'</p>'
+      :'<p class="fr">Todavía ninguno</p><p class="fx">'+esc(fo.motivo)+'</p>')+
+    (fo.estado==="candidato"?'<p class="fx">'+esc(fo.motivo)+'</p>':'')+
+    txtF("formato")+
+    (fo.matar.length?'<p class="fx">Sale del calendario: <b>'+fo.matar.map(esc).join(", ")+'</b> (2+ veces en CHATARRA).</p>':'')+
+    '<div class="refs">'+(g0?fo.ganadores.reduce(function(a,g){return a.concat(g.referencias.length?g.referencias:g.posts);},[]).slice(0,3).map(refMini).join(""):'')+'</div></article>');
+  var cardAng=function(k,titulo,a,pill){
+    return '<article class="fija'+(a.estado==="ganador"?' gana':'')+'"><p class="fq">'+titulo+'</p>'+
+      (a.estado==="ganador"
+        ?(LF[k]&&LF[k].angulo_especifico
+            ?'<p class="fcat">Categoría: <b>'+esc(a.angulo)+'</b></p><p class="fr">'+esc(LF[k].angulo_especifico)+'</p>'
+            :'<p class="fr">'+esc(a.angulo)+'</p>')+'<p>'+pill+'</p>'+
+          '<p class="fn">'+(a.mediana!=null?'Mediana '+colTxt(a.columna,a.mediana)+' en '+a.veces+' Reels<br>Tu cuenta: '+colTxt(a.columna,a.medianaCuenta):a.veces+' Reels arriba')+
+          (a.segundo?'<br>Le sigue: '+esc(a.segundo.angulo)+' ('+fmt(a.segundo.mediana,2)+(COLS[a.columna]||["",""])[1]+')':'')+'</p>'
+        :'<p class="fr">Todavía ninguno</p><p class="fx">'+esc(a.motivo)+'</p>')+
+      txtF(k)+'<p class="fx">Se mide con: '+esc(a.fuente)+'.'+(a.seguridad==="proxy"&&R.calidadDatos&&!R.calidadDatos.completa?' <a href="#tu-data">Qué capturar para confirmarlo ↓</a>':'')+'</p>'+
+      '<div class="refs">'+(a.referencias||[]).map(refMini).join("")+'</div></article>';
+  };
+  var av=CF.anguloViral, ave=CF.anguloVenta;
+  cards.push(cardAng("angulo_viral","2 · El ángulo que más te ayuda a viralizar",av,
+    av.fuerza==="patron"?'<span class="pildora p-oro">Patrón · '+av.arriba+'× arriba</span>':'<span class="pildora p-gris">Pista · 1 vez arriba</span>'));
+  cards.push(cardAng("angulo_venta","3 · Tu posible mejor ángulo de venta",ave,
+    ave.seguridad==="coronado"?'<span class="pildora p-pasa">Coronado</span>':ave.seguridad==="medido"?'<span class="pildora p-pasa">Medido con intención</span>':'<span class="pildora p-gris">Posible · medido con conversión</span>'));
+  h.push('<section class="bloque" id="fijas"><div class="fijas-cab"><p class="ceja">Las 3 conclusiones fijas · salen en todos los informes</p>'+
+    '<h2>Lo que <span class="ser">te llevas</span> de este mes</h2></div><div class="fijas">'+cards.join("")+'</div>'+
+    '<p class="sub">Las elige el motor con reglas fijas, no la IA: un ángulo necesita 2 Reels o más y ganarle a la mediana de tu cuenta. «Viralizar» = que te vea quien no te sigue.</p></section>');
+}
+
+h.push('<div class="rejilla">');
+
+// filtros
+var T=R.tapadoInfo;
+var ver = T ? 'Tu filtro tapado es el <em>'+T.n+' · '+T.nombre+'</em>.' : 'Ningún filtro <em>se tapó</em> este mes.';
+var arreglo = T ? T.arreglo : 'Se sostiene el molde que ya funciona y se sigue midiendo. Consigue el dato de los filtros que quedaron sin leer.';
+h.push('<section class="bloque c-7" id="filtros"><p class="ceja">1 · Leer · Los 5 filtros<a class="como" href="#" data-ir="clase:filtros">Ver la explicación</a></p>'+
+  '<p class="veredicto">'+ver+'</p><p class="arreglo">'+esc(arreglo)+'</p><div class="embudo">');
+R.filtros.forEach(function(f){
+  var ancho = 100 - (f.n-1)*9;
+  var det="";
+  if(f.estado==="no-se-lee") det="No se lee: primero el "+R.tapado;
+  else if(f.estado==="sin-dato") det="Sin dato: ni pasa ni se tapa";
+  else det=f.comps.map(function(c){
+    var cls=c.ok?"sube":"baja";
+    return '<span class="cmp">'+esc(c.et)+': '+fmt(c.base,2)+c.unidad+' → <span class="'+cls+'">'+fmt(c.mes,2)+c.unidad+'</span></span>';
+  }).join("<br>");
+  var pill = f.estado==="pasa"?'<span class="pildora p-pasa">Pasa</span>':f.estado==="tapado"?'<span class="pildora p-tapado">Tapado</span>':f.estado==="sin-dato"?'<span class="pildora p-gris">Sin dato</span>':'<span class="pildora p-gris">No se lee</span>';
+  h.push('<div class="franja num" data-estado="'+f.estado+'" style="width:'+ancho+'%"><span class="nro">'+f.n+'</span>'+
+    '<span class="nom">'+f.nombre+' '+pill+'<small>'+esc(f.pregunta)+'</small></span><span class="det">'+det+'</span></div>');
+});
+h.push('</div><p class="sub">Línea base → este mes, siempre con la mediana. Se lee de arriba abajo y se para en el primero tapado.</p></section>');
+
+// mentira del promedio + las vistas engañan
+var mv=R.medianaVsPromedio, eng=R.engañoVistas;
+h.push('<section class="bloque c-5"><p class="ceja">Por qué no se lee con el promedio ni con las vistas</p>'+
+  '<div class="dos-num"><div class="cifra num"><div class="v">'+fmt(mv.mediana,1)+'</div><div class="e">mediana de vistas: lo normal para ti</div></div>'+
+  '<div class="cifra num"><div class="v">'+fmt(mv.promedio,1)+'</div><div class="e">promedio: '+fmt(mv.veces,1)+'× la mediana</div></div></div>'+
+  '<p class="arreglo">Contra el promedio, <b>'+mv.bajoPromedio+' de '+lote.n+'</b> Reels parecen un fracaso. Contra la mediana, la mitad está arriba.</p>'+
+  '<p class="arreglo">Ordenados por <b>'+esc(R.orden.etiqueta)+'</b>'+(R.orden.porDefecto?' (sin filtro tapado se ordena por Valor)':'')+', '+
+  (eng.topVistasEnChatarra.length ? '<b>'+eng.topVistasEnChatarra.length+' de tus '+eng.topVistas.length+' Reels más vistos</b> caen en CHATARRA ('+eng.topVistasEnChatarra.map(function(n){return "#"+n;}).join(", ")+'). Copiarlos sería repetir lo que no sirve.' : 'tus Reels más vistos no caen en CHATARRA: este mes las vistas no te engañan.')+'</p>'+
+  '<a class="estacion" href="#pendiente" style="align-self:flex-start">Ver la comparación completa</a></section>');
+
+// tu data: lo que falta para leerte completa
+var CD=R.calidadDatos;
+if(CD&&!CD.completa){
+  var inc=CD.avanzadas.filter(function(a){return a.estado!=="completo";});
+  h.push('<section class="bloque c-12" id="tu-data"><p class="ceja">Tu data · lo que falta para leerte completa</p>'+
+    '<h2>'+(inc.length?'Te faltan <span class="ser">'+inc.length+' captura'+(inc.length>1?'s':'')+'</span> de la app':'Te faltan <span class="ser">números básicos</span>')+'</h2>'+
+    '<p class="arreglo">El panel del computador no trae retención ni actividad en el perfil: solo salen en la app del teléfono. Sin ellas, esos filtros quedan sin dato y este informe se lee a medias. Con <b>5 Reels de este mes y 5 de tu línea base</b> ya se leen; lo ideal es tenerlos todos.</p>'+
+    '<div class="datos">'+
+    (CD.basicas.faltan.length?'<div class="dato" data-estado="parcial"><div class="ti"><b>Números básicos</b><span class="pildora p-gris">'+CD.basicas.con+' de '+CD.basicas.total+'</span></div><p>Vistas, % de no seguidores, guardados, compartidos y seguidores nuevos.</p><div class="refs">'+CD.basicas.faltan.map(refMini).join("")+'</div></div>':'')+
+    CD.avanzadas.map(function(a){
+      var pill=a.estado==="completo"?'<span class="pildora p-pasa">Completo</span>':a.estado==="parcial"?'<span class="pildora p-gris">'+a.con+' de '+a.total+'</span>':'<span class="pildora p-tapado">0 de '+a.total+'</span>';
+      return '<div class="dato" data-estado="'+a.estado+'"><div class="ti"><b>'+esc(a.nombre)+'</b>'+pill+'</div>'+
+        '<div class="riel" role="img" aria-label="'+a.con+' de '+a.total+' Reels con este dato"><i style="width:'+(a.con/a.total*100)+'%"></i></div>'+
+        '<p class="desb">Desbloquea el '+esc(a.desbloquea)+'</p>'+
+        (a.estado==="completo"?'':'<p><b>Cómo:</b> '+esc(a.captura)+'</p>'+
+          (a.prioridad&&a.prioridad.length?'<p class="pz-t">Captura primero estos '+a.prioridad.length+'</p><div class="refs">'+a.prioridad.map(refMini).join("")+'</div>'+
+            (a.faltan.length>a.prioridad.length?'<p class="fx">Después, los otros '+(a.faltan.length-a.prioridad.length)+' que faltan.</p>':''):''))+
+        '</div>';
+    }).join("")+'</div>'+
+    '<button class="btn" id="btn-capturas" type="button" style="align-self:flex-start">Copiar la lista de capturas</button></section>');
+}
+
+// coronación
+var fx=R.formatos||[];
+function lista(ver){
+  var xs=fx.filter(function(f){return f.veredicto===ver;});
+  if(!xs.length) return '<p class="vacio">Ninguno este mes.</p>';
+  return '<ul>'+xs.map(function(f){return '<li>'+esc(f.formato)+' <span class="veces">'+f.oro+'× oro · '+f.chatarra+'× chatarra</span></li>';}).join("")+'</ul>';
+}
+h.push('<section class="bloque c-7" id="coronar"><p class="ceja">2–3 · Etiquetar y coronar · Una vez es suerte, dos es patrón<a class="como" href="#" data-ir="clase:coronar">Ver la explicación</a></p>'+
+  '<h2>Tus moldes, <span class="ser">con veredicto</span></h2>'+
+  '<div class="coronas">'+
+  '<div class="cubo"><div class="ti"><b>Repetir</b><span class="pildora p-oro">2+ en oro</span></div>'+lista("REPETIR")+'</div>'+
+  '<div class="cubo"><div class="ti"><b>Confirmar</b><span class="pildora p-gris">1 en oro</span></div>'+lista("CONFIRMAR")+'</div>'+
+  '<div class="cubo"><div class="ti"><b>Matar</b><span class="pildora p-chat">2+ en chatarra</span></div>'+lista("MATAR")+'</div>'+
+  '</div>'+
+  (fx.some(function(f){return f.veredicto==="EN DISPUTA";})?'<p class="sub">En disputa (2+ en oro y 2+ en chatarra, revísalo con las preguntas): '+fx.filter(function(f){return f.veredicto==="EN DISPUTA";}).map(function(f){return esc(f.formato);}).join(", ")+'</p>':'')+
+  '<p class="sub">Oro = el '+R.cuarto+' de arriba y chatarra = el '+R.cuarto+' de abajo, ordenados por '+esc(R.orden.etiqueta)+'.</p></section>');
+
+h.push('<section class="bloque c-5"><p class="ceja">3 · Ángulos · cada uno con la columna de su trabajo<a class="como" href="#" data-ir="clase:coronar">Ver la explicación</a></p><div class="angulos">');
+(R.angulos||[]).forEach(function(a){
+  var r;
+  if(a.estado==="coronado") r='👑 '+a.coronados.map(function(c){return '<b>'+esc(c.angulo)+'</b> ('+c.veces+'×)';}).join(", ")+' <i>— por '+esc(a.trabajo)+'</i>';
+  else r='<i>'+esc(a.motivo)+'</i>';
+  h.push('<div class="ang"><span class="p">'+a.proposito+'</span><span class="r">'+r+'</span></div>');
+});
+h.push('</div></section>');
+
+// reparto
+var rp=R.reparto;
+h.push('<section class="bloque c-4" id="repartir"><p class="ceja">5 · Repartir · '+rp.piezas+' piezas<a class="como" href="#" data-ir="clase:decidir">Ver la explicación</a></p>'+
+  '<h2>De dónde sale <span class="ser">cada pieza</span></h2>'+
+  '<div class="barra num" role="img" aria-label="Repetir '+rp.rep+'%, variar '+rp.var_+'%, apostar '+rp.apo+'%">'+
+  (rp.rep?'<div class="b-rep" style="flex:'+rp.rep+'">'+rp.rep+'%</div>':'')+
+  (rp.var_?'<div class="b-var" style="flex:'+rp.var_+'">'+rp.var_+'%</div>':'')+
+  (rp.apo?'<div class="b-apo" style="flex:'+rp.apo+'">'+rp.apo+'%</div>':'')+'</div>'+
+  '<div class="leyenda-barra num"><span><b>Repetir · '+rp.cubetas.rep+'</b>molde ganador, tema nuevo</span><span><b>Variar · '+rp.cubetas.var_+'</b>una sola variable</span><span><b>Apostar · '+rp.cubetas.apo+'</b>formato nuevo del Radar</span></div>'+
+  '<p class="sub">'+esc(rp.nota)+'</p></section>');
+
+// conclusiones
+h.push('<section class="bloque c-4"><p class="ceja">Otras conclusiones</p><ol class="conclusiones">'+
+  (L.conclusiones||[]).map(function(c){return '<li><div><b>'+esc(c.titulo)+'</b><span>'+esc(c.texto)+'</span> '+ev(c.evidencia)+'</div></li>';}).join("")+
+  '</ol></section>');
+
+// esta semana
+var es=(L.aplicacion&&L.aplicacion.esta_semana)||[];
+h.push('<section class="bloque c-4"><p class="ceja">Aplicación · lo que haces esta semana</p><ul class="semana">'+
+  es.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>'+
+  '<p class="sub">'+esc(R.encuesta.motivo)+'</p></section>');
+
+h.push('</div></section>');
+
+/* ══ ANEXO: vistas vs filtro ══ */
+(function(){
+  var rk=R.ranking, n=rk.length; if(!n) return;
+  var W=760, top=34, fila=18, H=top+n*fila+16, xL=150, xR=W-150;
+  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Puesto por vistas contra puesto por '+esc(R.orden.etiqueta)+'">';
+  s+='<text x="'+xL+'" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="var(--tenue)">PUESTO POR VISTAS</text>';
+  s+='<text x="'+xR+'" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="var(--tenue)">PUESTO POR '+esc(R.orden.etiqueta.toUpperCase().slice(0,34))+'</text>';
+  var y=function(pos){return top+(pos-1)*fila+fila/2;};
+  var orden=rk.slice().sort(function(a,b){ var za=a.zona==="TIBIO"?0:1, zb=b.zona==="TIBIO"?0:1; return za-zb; });
+  orden.forEach(function(r){
+    if(!r.posVistas) return;
+    var col = r.zona==="ORO"?"var(--oro)":r.zona==="CHATARRA"?"var(--chatarra)":"var(--pelo-fuerte)";
+    var gros = r.zona==="TIBIO"?1:2.2;
+    s+='<line x1="'+(xL+8)+'" y1="'+y(r.posVistas)+'" x2="'+(xR-8)+'" y2="'+y(r.posFiltro)+'" stroke="'+col+'" stroke-width="'+gros+'" fill="none"/>';
+  });
+  rk.forEach(function(r){
+    if(!r.posVistas) return;
+    s+='<text x="'+(xL-4)+'" y="'+(y(r.posVistas)+4)+'" text-anchor="end" font-size="11.5" fill="var(--tinta-2)" font-family="Geist Mono, monospace">#'+r.n+' · '+fmt(r.vistas,0)+'</text>';
+    s+='<circle cx="'+(xL+8)+'" cy="'+y(r.posVistas)+'" r="3" fill="var(--tinta)"/>';
+    s+='<circle cx="'+(xR-8)+'" cy="'+y(r.posFiltro)+'" r="3" fill="var(--tinta)"/>';
+    s+='<text x="'+(xR+4)+'" y="'+(y(r.posFiltro)+4)+'" font-size="11.5" fill="var(--tinta-2)" font-family="Geist Mono, monospace">#'+r.n+' · '+fmt(r.valor,2)+'</text>';
+  });
+  s+='</svg>';
+  h.push('<section class="anexo" id="pendiente"><header><p class="ceja">Anexo A · La comparación</p>'+
+    '<h2>Lo que las vistas coronan <span class="ser">y tu filtro no</span></h2>'+
+    '<p>A la izquierda, tus Reels ordenados por vistas. A la derecha, por '+esc(R.orden.etiqueta)+'. Las líneas doradas terminan en ORO; las rojas, en CHATARRA. Una línea que baja mucho es un Reel que estalló y no hizo el trabajo que este mes te falta.</p></header>'+
+    '<div class="lienzo-pend">'+s+'</div></section>');
+})();
+
+/* ══ ANEXO: los 30 videos ══ */
+var vids=(L.videos)||{};
+var col=R.orden.columna;
+var ordenVid=R.ranking.map(function(r){return porN[r.n];}).concat(R.posts.filter(function(p){return !R.ranking.some(function(r){return r.n===p.n;});}));
+h.push('<section class="anexo" id="videos"><header><p class="ceja">Anexo B · Estación 2 · Descargados, transcritos y etiquetados</p>'+
+  '<h2>Tus '+lote.n+' videos, <span class="ser">del mejor al peor</span> según tu filtro</h2>'+
+  '<p>Cada tarjeta trae la primera frase que dijiste, las 3 etiquetas (formato · ángulo · propósito) y los números del panel. El dorado marca la columna que ordena este mes.</p></header><div class="videos">');
+ordenVid.forEach(function(p){
+  var v=vids[p.n]||{}, m=p.metricas, e=p.etiquetas||{};
+  var celdas=[["Vistas",fmt(m.vistas,0),col==="vistas"],["No seg.",fmt(m.pct_no_seguidores,1)+"%",col==="pct_no_seguidores"],["Valor",fmt(m.valor_1000,1),col==="valor_1000"],["Conv.",fmt(m.tasa_conv,2)+"%",col==="tasa_conv"]];
+  if(col==="retencion_3s") celdas[3]=["Ret. 3s",fmt(m.retencion_3s,1)+"%",true];
+  if(col==="intencion") celdas[3]=["Intención",fmt(m.intencion,0),true];
+  h.push('<article class="video" data-zona="'+p.zona+'"><div class="foto">'+
+    (p.portada?'<img src="'+esc(p.portada)+'" alt="Portada del Reel #'+p.n+'" loading="lazy">':'')+
+    '<span class="nro">#'+p.n+' · '+fecha(p.fecha)+'</span><span class="z">'+zonaPill(p.zona)+'</span></div>'+
+    '<div class="cuerpo">'+
+    (v.gancho?'<p class="gancho">«'+esc(v.gancho)+'»</p>':'<p class="gancho" style="color:var(--tenue)">Sin voz: se etiquetó por lo que se ve</p>')+
+    (v.idea?'<p class="idea">'+esc(v.idea)+'</p>':'')+
+    '<div class="chips">'+(e.formato?'<span class="chip f">'+esc(e.formato)+'</span>':'')+(e.angulo?'<span class="chip">'+esc(e.angulo)+'</span>':'')+(e.proposito?'<span class="chip">'+esc(e.proposito)+'</span>':'')+'</div>'+
+    '<dl class="num">'+celdas.map(function(c){return '<div><dt>'+c[0]+'</dt><dd'+(c[2]?' class="clave"':'')+'>'+c[1]+'</dd></div>';}).join("")+'</dl>'+
+    (p.url?'<a class="ver" href="'+esc(p.url)+'" target="_blank" rel="noopener">Ver el Reel ↗</a>':'')+
+    '</div></article>');
+});
+h.push('</div></section>');
+
+/* ══ ANEXO: preguntas ══ */
+var pr=L.preguntas||[];
+h.push('<section class="anexo" id="preguntas"><header><p class="ceja">Anexo C · Estación 4 · Ya vienen hechas</p>'+
+  '<h2>Tú solo <span class="ser">marcas</span></h2>'+
+  '<p>Los números dicen qué pasó, nunca por qué. Estas son las hipótesis que salen de tus videos: marca si te suenan ciertas. Lo que marques se queda en este navegador y lo puedes copiar con «Copiar mis respuestas».</p></header><div class="preguntas">');
+pr.forEach(function(q,i){
+  var id=q.id||("p"+(i+1));
+  h.push('<div class="preg" data-id="'+esc(id)+'"><span class="pildora '+(q.tipo==="encuesta"?"p-oro":"p-gris")+' tipo">'+(q.tipo==="encuesta"?"Para tu audiencia":"Para ti")+'</span>'+
+    '<h3>'+esc(q.pregunta)+'</h3>'+(q.porque?'<p class="porque">'+esc(q.porque)+' '+ev(q.evidencia)+'</p>':'')+
+    (q.destino?'<p class="destino">Si dices que sí: '+esc(q.destino)+'</p>':'')+
+    (q.tipo==="encuesta"?'':'<div class="respuesta" role="group" aria-label="Tu respuesta">'+["Sí","No","No sé"].map(function(o){return '<button type="button" id="r-'+esc(id)+'-'+o.replace(/\s/g,"")+'" data-q="'+esc(id)+'" data-o="'+o+'" aria-pressed="false">'+o+'</button>';}).join("")+'</div>')+
+    '</div>');
+});
+h.push('</div></section>');
+
+/* ══ ANEXO: calendario + campaña + apuesta ══ */
+function salePill(s){ return s==="REPETIR"?'<span class="pildora p-oro">Repetir</span>':s==="VARIAR"?'<span class="pildora p-gris">Variar</span>':'<span class="pildora p-chat">Apostar</span>'; }
+function piezaHtml(f,i){
+  var ref=f.referencia||{}, rp=ref.post!=null?porN[ref.post]:null, ficha=BIB[f.formato];
+  var refHtml;
+  if(rp){
+    refHtml='<div class="pz-ref">'+(rp.portada?'<img src="'+esc(rp.portada)+'" alt="Portada del Reel #'+rp.n+'" loading="lazy">':'<span class="sinfoto"></span>')+
+      '<div><p class="pz-t">Referencia · tu Reel #'+rp.n+' '+zonaPill(rp.zona)+'</p>'+
+      '<p>'+esc(ref.que_copiar||"")+'</p>'+
+      '<p class="ev">'+fmt(rp.metricas.vistas,0)+' vistas · '+fmt(rp.metricas.pct_no_seguidores,1)+' % no seg. · '+esc((rp.etiquetas||{}).angulo||"")+'</p>'+
+      (rp.url?'<a href="'+esc(rp.url)+'" target="_blank" rel="noopener">Ver el Reel ↗</a>':'')+'</div></div>';
+  } else {
+    refHtml='<div class="pz-ref bib"><div><p class="pz-t">Referencia · Biblioteca de formatos</p>'+
+      (ficha?'<p>'+esc(ficha.queEs)+'</p>':'')+(ref.que_copiar?'<p>'+esc(ref.que_copiar)+'</p>':'')+
+      (ref.url?'<a href="'+esc(ref.url)+'" target="_blank" rel="noopener">Ver el ejemplo ↗</a>':'')+'</div></div>';
+  }
+  return '<article class="pieza" data-sale="'+esc(f.de_donde_sale)+'">'+
+    '<header class="pz-cab"><span class="ev">Pieza '+(i+1)+(f.dia?' · '+esc(f.dia):'')+' · ataca '+esc(f.filtro_que_ataca)+'</span>'+salePill(f.de_donde_sale)+'</header>'+
+    '<h3 class="pz-tema">'+esc(f.tema)+'</h3>'+
+    '<div class="chips"><span class="chip f">'+esc(f.formato)+'</span><span class="chip">'+esc(f.angulo)+'</span><span class="chip">'+esc(f.proposito)+'</span>'+rolAngulo(f.angulo)+'</div>'+
+    (f.angulo_exacto?'<p class="pz-angulo"><b>Ángulo exacto:</b> '+esc(f.angulo_exacto)+'</p>':'')+
+    (f.gancho?'<div class="pz-caja"><p class="caja-t">Primera frase</p><p class="pz-gancho">«'+esc(f.gancho)+'»</p>'+(f.texto_pantalla?'<p class="pz-pantalla">En pantalla: '+esc(f.texto_pantalla)+'</p>':'')+'</div>':'')+
+    (f.estructura&&f.estructura.length?'<div><p class="pz-t">Estructura</p><ol class="pz-estructura">'+f.estructura.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ol></div>':'')+
+    (f.cta?'<p class="pz-cta"><b>CTA:</b> '+esc(f.cta)+'</p>':'')+
+    refHtml+
+    '<p class="pz-meta">'+esc(metaDe(f.filtro_que_ataca))+'</p>'+
+    '<p class="porque">'+esc(f.por_que)+' '+ev(f.evidencia)+'</p></article>';
+}
+function piezasCal(cal){
+  var semanas=[], i=0;
+  cal.forEach(function(f){ var s=f.semana; var g=semanas.filter(function(x){return x.s===s;})[0]; if(!g){ g={s:s,fs:[]}; semanas.push(g); } g.fs.push([f,i++]); });
+  return semanas.map(function(g){ return '<div class="semana-cal"><h3>Semana '+esc(g.s)+'</h3><div class="piezas">'+g.fs.map(function(x){return piezaHtml(x[0],x[1]);}).join("")+'</div></div>'; }).join("");
+}
+var ap=L.aplicacion||{};
+var cal=ap.calendario||[];
+h.push('<section class="anexo" id="calendario"><header><p class="ceja">Anexo D · Estaciones 5 y 6 · La aplicación real</p>'+
+  '<h2>El mes que viene, <span class="ser">fila por fila y con acta</span></h2>'+
+  '<p>Cada pieza trae el ángulo exacto, la primera frase, la estructura, el CTA, el Reel que tomas de referencia y el número que dice si funcionó. Lo dorado y lo verde marcan tus ángulos de las conclusiones fijas.</p></header>'+
+  piezasCal(cal)+
+  (ap.campana?'<div class="cubo"><div class="ti"><b>Campaña del mes</b><span class="pildora p-oro">Va en repetir</span></div><p class="gancho ser" style="font-size:18px">'+esc(ap.campana.frase)+'</p><p class="sub">'+esc(ap.campana.detalle||"")+'</p></div>'
+    :'<p class="sub"><b>Sin campaña de urgencia este mes:</b> '+esc(ap.sin_campana||"no hay un ángulo de venta coronado. Una campaña sin ángulo probado es un anuncio con prisa.")+'</p>')+
+  '</section>');
+
+if(ap.apuesta){
+  var g=ap.apuesta.ganchos||{};
+  h.push('<section class="anexo" id="apuesta"><header><p class="ceja">Anexo E · Estación 7 · Antes de gastarlo en tu grid</p>'+
+    '<h2>La apuesta: <span class="ser">'+esc(ap.apuesta.formato)+'</span></h2>'+
+    '<p>'+esc(ap.apuesta.por_que||"")+' Graba el video una vez y súbelo como trial reel con estos 4 ganchos en la misma tanda. A las 48 horas gana el que supere en 25 % tu tasa mediana de conversión ('+fmt(ap.apuesta.tasa_mediana,2)+' %), no el de más vistas.</p></header>'+
+    '<div class="ganchos">'+[["A","Claim de texto"],["B","Gancho visual"],["C","Conflicto"],["D","Prueba"]].map(function(x){return '<div class="gancho-var"><span class="l">'+x[0]+' · '+x[1]+'</span><p>'+esc(g[x[0]]||"—")+'</p></div>';}).join("")+'</div></section>');
+}
+
+/* ══ ANEXO: leyenda ══ */
+var GLOS=[
+  ["Lote","Los Reels que se leen juntos. Hacen falta 9 o más y 30 días publicando: con menos, cualquier conclusión es un accidente."],
+  ["Mediana","El valor del medio: la mitad de tus Reels quedó arriba y la mitad abajo. Se usa siempre en vez del promedio, que un solo viral infla."],
+  ["Línea base","Tu normal: la mediana de los Reels anteriores a este mes. Primer mes: los 20 más viejos contra los 10 más nuevos."],
+  ["Los 5 filtros","El recorrido de alguien que no te conoce: te ve (Alcance), se queda (Retención), le sirve (Valor), te sigue (Conversión), te busca (Intención). Cada filtro deja pasar a menos gente."],
+  ["Filtro tapado","El primero de los 5 que cae por debajo de tu línea base. Es tu único trabajo del mes: los de abajo no se leen, porque no les llega nadie."],
+  ["Sin dato","Un filtro cuyo número Instagram no te dio (retención e intención viven en la app del teléfono). Ni pasa ni se tapa: la lectura sigue."],
+  ["Valor por 1.000","(guardados + compartidos) ÷ vistas × 1.000. Cuántas personas de cada mil lo guardaron o lo mandaron."],
+  ["Tasa de conversión","Seguidores nuevos ÷ vistas de no seguidores × 100. De quienes llegaron de afuera, cuántos se quedaron."],
+  ["Formato","El molde con que está hecho el video (de la Biblioteca de formatos). Sirve para cualquier tema. «Rutina de mañana» es un tema; «lista numerada con captura» es un formato."],
+  ["Ángulo","Desde dónde agarras el tema: error común, dolor concreto, método, objeción…"],
+  ["Propósito","El trabajo de la pieza: Experimentación, Crecimiento, Nutrición o Venta."],
+  ["ORO · Tibio · Chatarra","Con tus Reels ordenados por la columna del filtro tapado: el 25 % de arriba es ORO, el 25 % de abajo es CHATARRA (se redondea hacia abajo) y el resto es tibio."],
+  ["Repetir · Confirmar · Matar","Un formato 2+ veces en ORO se repite con tema nuevo; 1 vez en ORO se vuelve a producir para confirmarlo; 2+ veces en CHATARRA sale del calendario."],
+  ["Coronar un ángulo","Misma regla de recurrencia, pero cada ángulo se juzga con la columna de su propósito: Crecimiento por % de no seguidores, Nutrición por Valor, Venta por Intención."],
+  ["60 / 30 / 10","De dónde sale cada pieza del mes: repetir lo que ganó, variar una sola cosa, apostar a algo nuevo. El filtro tapado inclina los porcentajes."],
+  ["Trial reel","Un Reel que solo ven no seguidores. Prueba ganchos, no formatos. Gana el que supera en 25 % tu tasa mediana de conversión."],
+  ["La encuesta desempata","La data elige el molde, la encuesta elige el tema. Quien responde ya te sigue: por eso no sirve cuando el filtro tapado es el 1 o el 2."]
+];
+h.push('<section class="anexo" id="leyenda"><header><p class="ceja">Anexo F · Leyenda</p><h2>Qué significa <span class="ser">cada cosa</span></h2></header><dl class="glosario">'+
+  GLOS.map(function(g){return '<div><dt>'+g[0]+'</dt><dd>'+g[1]+'</dd></div>';}).join("")+'</dl>'+
+  '<p class="pie">Fuente de los números: '+esc(C.fuente||"panel «Ver insights» de Instagram")+'. Los cálculos los hace un motor con reglas fijas; la IA solo etiqueta los videos y redacta las preguntas, conclusiones y el calendario, y un validador rechaza cualquier texto que contradiga los números. Generado el '+esc(R.generado)+'.</p></section>');
+
+/* ══════════ LA CLASE · FLASHCARDS · EXAMEN ══════════ */
+var hojaHtml = h.join("");
+var ap0 = L.aplicacion || {};
+var nomFiltro = function(n){ return n ? R.filtros[n-1].nombre : "ninguno"; };
+var tap = R.tapado;
+
+var DETALLE_FILTRO = {
+  1:{mide:"Vistas Y % de vistas de no seguidores. Es un «y»: si cualquiera de los dos cae por debajo de tu línea base, se tapa.", donde:"Panel web y app · Ver estadísticas → Visualizaciones → Seguidores / No seguidores"},
+  2:{mide:"Cuánta gente pasa de largo en los primeros 3 segundos (tasa de omisión) y el tiempo medio que se queda.", donde:"Solo en la app del teléfono · Ver estadísticas → Retención"},
+  3:{mide:"(guardados + compartidos) ÷ vistas × 1.000. De cada mil que lo vieron, cuántos se lo quedaron o lo mandaron.", donde:"Panel web y app · Ver estadísticas → Interacciones"},
+  4:{mide:"Seguidores nuevos ÷ vistas de no seguidores × 100. De quienes llegaron de afuera, cuántos se quedaron.", donde:"Panel web y app · Seguidores + Visualizaciones"},
+  5:{mide:"Visitas al perfil + toques al enlace + DMs que trajo la pieza.", donde:"Solo en la app · Ver estadísticas → Perfil. Los DMs los cuentas tú"}
+};
+
+function caja(titulo, cuerpo, clase){ return '<div class="caja '+(clase||"")+'"><p class="caja-t">'+titulo+'</p>'+cuerpo+'</div>'; }
+function tuMes(txt){ return '<div class="tu-mes"><p class="caja-t">En el mes de @'+esc(C.handle||"tu cuenta")+'</p><p>'+txt+'</p></div>'; }
+function error(txt){ return '<div class="err-comun"><p class="caja-t">⚠ El error común</p><p>'+txt+'</p></div>'; }
+
+/* ── Sub 1 · El mapa ── */
+function subMapa(){
+  var s='<div class="intro-clase"><p class="caja-t">La pregunta del módulo</p><p class="grande">¿Qué publico el mes que viene <span class="ser">sin adivinar?</span></p><p>Se responde en 3 momentos y 7 estaciones, siempre en el mismo orden: lo que sale de una estación es lo que usa la siguiente.</p></div>';
+  s+='<div class="flujo">';
+  MOMENTOS.forEach(function(m,i){
+    s+='<div class="flujo-m"><p class="ceja">Momento '+(i+1)+'</p><p class="flujo-t">'+m.t+'</p><p class="flujo-q">'+m.q+'</p><ol class="nodos">'+
+      m.est.map(function(e){return '<li><button type="button" class="nodo" data-sub="'+SUB_DE_ESTACION[e[0]]+'"><b>'+e[0]+'</b>'+e[1]+'</button></li>';}).join("")+
+      '</ol><p class="flujo-sale">Sale → <strong>'+m.sale+'</strong></p></div>';
+    if(i<2) s+='<div class="flecha" aria-hidden="true">→</div>';
+  });
+  s+='</div><div class="bucle">↺ Cada 30 días vuelves a <b>Leer</b>. A los 3 meses tienes tu propia curva y dejas de adivinar.</div>';
+
+  // Las 3 leyes
+  var mxv=Math.max(mv.mediana,mv.promedio)||1, waf='';
+  var ordenV=R.posts.map(function(p){return p.metricas.vistas;}).filter(function(v){return v!=null;}).sort(function(a,b){return a-b;});
+  ordenV.forEach(function(v){ waf+='<i'+(v>=mv.promedio?' class="arriba"':'')+'></i>'; });
+  var tira='<div class="dos-barras"><div class="cb"><span>Mediana</span><div class="riel ok"><i style="width:'+(mv.mediana/mxv*100)+'%"></i></div><b>'+fmt(mv.mediana,0)+'</b></div>'+
+    '<div class="cb"><span>Promedio</span><div class="riel no"><i style="width:'+(mv.promedio/mxv*100)+'%"></i></div><b>'+fmt(mv.promedio,0)+'</b></div></div>'+
+    '<div class="waffle" role="img" aria-label="'+(ordenV.length-mv.bajoPromedio)+' Reels sobre el promedio y '+mv.bajoPromedio+' por debajo">'+waf+'</div><p class="sub">Cada cuadro es un Reel. Solo los '+(ordenV.length-mv.bajoPromedio)+' dorados superan el promedio.</p>';
+  s+='<h3 class="h-clase">Antes de leer: <span class="ser">las 3 leyes</span></h3><div class="leyes">';
+  s+=caja("Ley 1 · La Regla del Lote",
+    '<p>Nada se decide con menos de <b>9 posts</b> ni con menos de <b>30 días</b> publicando. Las dos cosas.</p>'+
+    '<div class="medidor"><span>Posts</span><div class="riel"><i style="width:'+Math.min(100,lote.n/30*100)+'%"></i><em style="left:30%">9</em></div><b>'+lote.n+'</b></div>'+
+    '<div class="medidor"><span>Días</span><div class="riel"><i style="width:'+Math.min(100,lote.dias/60*100)+'%"></i><em style="left:50%">30</em></div><b>'+lote.dias+'</b></div>'+
+    '<p class="sub">'+esc(lote.motivo)+'</p>');
+  s+=caja("Ley 2 · Mediana, nunca promedio",
+    '<p>Unos pocos virales inflan el promedio a '+fmt(mv.veces,1)+' veces tu mediana: '+mv.bajoPromedio+' de '+lote.n+' Reels quedan por debajo y parecen un fracaso.</p>'+tira);
+  s+=caja("Ley 3 · El primer filtro tapado",
+    '<p>Los 5 filtros se leen <b>en orden</b>. En cuanto uno cae por debajo de tu línea base, paras: ese es tu único trabajo del mes.</p>'+
+    '<div class="mini-embudo">'+R.filtros.map(function(f){return '<span data-estado="'+f.estado+'" style="width:'+(100-(f.n-1)*14)+'%">'+f.n+' '+f.nombre+'</span>';}).join("")+'</div>');
+  s+='</div>';
+  s+=error("Leer un Reel suelto y cambiar toda tu estrategia por él. Por pura definición, unos 3 de cada 4 Reels quedan por debajo de tu propia mediana: leído solo, casi cualquiera te diría que vas mal.");
+  return s;
+}
+
+/* ── Sub 2 · Los 5 filtros ── */
+function panelFiltro(n){
+  var f=R.filtros[n-1], d=DETALLE_FILTRO[n];
+  var barras = f.comps.length ? f.comps.map(function(c){
+    var mx=Math.max(c.base,c.mes)||1;
+    return '<div class="cmp-barras"><p>'+esc(c.et)+'</p>'+
+      '<div class="cb"><span>Línea base</span><div class="riel"><i style="width:'+(c.base/mx*100)+'%"></i></div><b>'+fmt(c.base,2)+c.unidad+'</b></div>'+
+      '<div class="cb"><span>Este mes</span><div class="riel '+(c.ok?"ok":"no")+'"><i style="width:'+(c.mes/mx*100)+'%"></i></div><b>'+fmt(c.mes,2)+c.unidad+'</b></div></div>';
+  }).join("") : '<p class="sub">Sin dato este mes: Instagram no dio este número o no se capturó. Ni pasa ni se tapa.</p>';
+  var estado = f.estado==="tapado"?"Se tapó: aquí se para la lectura.":f.estado==="pasa"?"Pasa: la lectura sigue al filtro "+(n+1)+".":f.estado==="sin-dato"?"Sin dato: la lectura sigue.":"No se lee: primero se destapa el "+tap+". Optimizarlo ahora sería pulir el final de un video que nadie llegó a ver.";
+  return '<div class="pf-cabeza"><span class="pf-n">'+n+'</span><div><p class="pf-nom">'+f.nombre+'</p><p class="pf-q">'+esc(f.pregunta)+'</p></div></div>'+
+    '<dl class="pf-dl"><div><dt>Qué mide</dt><dd>'+d.mide+'</dd></div><div><dt>Dónde está el número</dt><dd>'+d.donde+'</dd></div><div><dt>Si se tapa, tu trabajo del mes es</dt><dd>'+esc(f.arreglo)+'</dd></div></dl>'+
+    tuMes('<b>'+estado+'</b>')+barras;
+}
+function subFiltros(){
+  var sel = tap || 1;
+  var s='<div class="intro-clase"><p class="caja-t">Estación 1 · Diagnostica</p><p class="grande">Los 5 filtros son el recorrido de <span class="ser">alguien que no te conoce</span></p><p>Cada filtro deja pasar a menos gente. Si uno se tapa, a los de abajo no les llega nadie: por eso se leen en orden. Toca cada filtro.</p></div>';
+  s+='<div class="filtros-clase"><div class="embudo-clase" role="tablist" aria-label="Los 5 filtros">';
+  R.filtros.forEach(function(f){
+    s+='<button type="button" role="tab" class="banda" id="banda-'+f.n+'" data-filtro="'+f.n+'" data-estado="'+f.estado+'" aria-selected="'+(f.n===sel)+'" style="width:'+(100-(f.n-1)*10)+'%"><b>'+f.n+'</b> '+f.nombre+'<small>'+esc(f.pregunta)+'</small></button>';
+  });
+  s+='<p class="sub">Cada filtro compara <b>tu línea base</b> (tu normal) contra <b>este mes</b>. '+(R.ventanas.modo==="partido"?'Primer mes: tus '+R.ventanas.base.n+' Reels más viejos son la línea base y los '+R.ventanas.mes.n+' más nuevos son «este mes».':'')+'</p>';
+  s+='</div><div class="panel-filtro" id="panel-filtro" role="tabpanel">'+panelFiltro(sel)+'</div></div>';
+  s+=error("Arreglar el filtro que más te duele en vez del primero tapado. Por ejemplo, cambiar el CTA (filtro 5) cuando el problema real es que tu contenido no sale de tu casa (filtro 1).");
+  return s;
+}
+
+/* ── Sub 3 · Etiquetar y coronar ── */
+function subCoronar(){
+  var top=porN[R.ranking[0].n], vt=(L.videos||{})[top.n]||{}, et=top.etiquetas||{};
+  var s='<div class="intro-clase"><p class="caja-t">Estaciones 2 y 3 · Descifra</p><p class="grande">Un Reel no se repite. <span class="ser">Su molde, sí.</span></p><p>Primero cada video recibe 3 etiquetas. Después se ordenan por la columna de tu filtro tapado y se busca qué moldes se repiten arriba y abajo.</p></div>';
+  // paso A
+  s+='<h3 class="h-clase"><span class="paso">A</span> Las 3 etiquetas de cada video</h3><div class="etiquetas-demo">'+
+    '<div class="demo-video">'+(top.portada?'<img src="'+esc(top.portada)+'" alt="Portada del Reel #'+top.n+'">':'')+'<p class="gancho-d">«'+esc(vt.gancho||"")+'»</p><p class="sub">Reel #'+top.n+' · el 1.º por '+esc(R.orden.etiqueta)+'</p></div>'+
+    '<div class="demo-etq">'+
+      '<div class="etq"><span class="etq-k">Formato</span><span class="etq-v">'+esc(et.formato||"—")+'</span><p>El molde con que está hecho. Sirve para cualquier tema. Sale de la Biblioteca de formatos.</p></div>'+
+      '<div class="etq"><span class="etq-k">Ángulo</span><span class="etq-v">'+esc(et.angulo||"—")+'</span><p>Desde dónde agarras el tema: error común, dolor concreto, método, objeción…</p></div>'+
+      '<div class="etq"><span class="etq-k">Propósito</span><span class="etq-v">'+esc(et.proposito||"—")+'</span><p>Su trabajo: experimentar, crecer, nutrir o vender.</p></div>'+
+    '</div></div>'+
+    '<div class="tema-molde"><div><p class="caja-t">Esto es un tema</p><p class="ser grande-2">«Rutina de mañana»</p></div><div class="vs">≠</div><div><p class="caja-t">Esto es un formato</p><p class="ser grande-2">«Lista numerada con captura en pantalla»</p></div></div>';
+  // paso B
+  var rk=R.ranking, exacto=rk.length*0.25;
+  var topV={}; (R.engañoVistas.topVistas||[]).forEach(function(n){topV[n]=1;});
+  s+='<h3 class="h-clase"><span class="paso">B</span> Ordenar y cortar: ORO · tibio · CHATARRA</h3>'+
+    '<p class="sub">Tus '+rk.length+' Reels ordenados por <b>'+esc(R.orden.etiqueta)+'</b>. El 25 % de '+rk.length+' es '+fmt(exacto,2)+': se redondea <b>hacia abajo</b>. Los ▲ son tus '+R.engañoVistas.topVistas.length+' Reels más vistos: mira dónde caen.</p>'+
+    '<div class="corte-env"><div class="corte" style="grid-template-columns:repeat('+rk.length+',minmax(0,1fr))" role="img" aria-label="'+R.cuarto+' en oro, '+(rk.length-2*R.cuarto)+' tibios, '+R.cuarto+' en chatarra">'+
+    rk.map(function(r){return '<span class="bloq" data-zona="'+r.zona+'" title="#'+r.n+' · '+fmt(r.valor,2)+'">'+(topV[r.n]?'▲':'')+'<i>#'+r.n+'</i></span>';}).join("")+'</div>'+
+    '<div class="corte-ley"><span style="flex:'+R.cuarto+'" class="z-oro">'+R.cuarto+' ORO</span><span style="flex:'+(rk.length-2*R.cuarto)+'">'+(rk.length-2*R.cuarto)+' tibios: tu normal, no enseñan nada</span><span style="flex:'+R.cuarto+'" class="z-chat">'+R.cuarto+' CHATARRA</span></div></div>';
+  // paso C
+  var fx=(R.formatos||[]).filter(function(f){return f.veredicto!=="SIN VEREDICTO";});
+  s+='<h3 class="h-clase"><span class="paso">C</span> Una vez es suerte, <span class="ser">dos es patrón</span></h3>'+
+    '<div class="reglas-v"><span><b class="p-oro pildora">2+ en ORO</b> → Repetir</span><span><b class="p-gris pildora">1 en ORO</b> → Confirmar</span><span><b class="p-chat pildora">2+ en CHATARRA</b> → Matar</span></div>'+
+    '<div class="matriz">'+fx.map(function(f){
+      var pts=''; for(var i=0;i<f.oro;i++) pts+='<i class="d-oro"></i>'; for(var j=0;j<f.chatarra;j++) pts+='<i class="d-chat"></i>'; for(var k=0;k<f.veces-f.oro-f.chatarra;k++) pts+='<i class="d-tib"></i>';
+      var pill=f.veredicto==="REPETIR"?"p-oro":f.veredicto==="MATAR"?"p-chat":"p-gris";
+      return '<div class="fila-m"><span class="fm-nom">'+esc(f.formato)+'</span><span class="fm-pts">'+pts+'</span><span class="pildora '+pill+'">'+f.veredicto.toLowerCase()+'</span></div>';
+    }).join("")+'</div><p class="sub">● dorado = en ORO · ● rojo = en CHATARRA · ○ = tibio</p>';
+  // paso D
+  s+='<h3 class="h-clase"><span class="paso">D</span> Los ángulos se coronan con <span class="ser">la columna de su trabajo</span></h3><div class="tabla-env"><table><thead><tr><th>Propósito</th><th>Se corona mirando</th><th>Porque su trabajo es</th><th>Tu mes</th></tr></thead><tbody>'+
+    (R.angulos||[]).map(function(a){
+      var col=a.proposito==="Crecimiento"?"Filtro 1 · % de no seguidores":a.proposito==="Nutrición"?"Filtro 3 · Valor":a.proposito==="Venta"?"Filtro 5 · Intención":"No se corona";
+      var tr=a.proposito==="Experimentación"?"descubrir a quién le hablas":a.trabajo;
+      return '<tr><td><b>'+a.proposito+'</b></td><td>'+col+'</td><td>'+esc(tr)+'</td><td>'+(a.estado==="coronado"?'👑 '+a.coronados.map(function(c){return esc(c.angulo);}).join(", "):'<span class="sub">'+esc(a.motivo)+'</span>')+'</td></tr>';
+    }).join("")+'</tbody></table></div>';
+  // paso E
+  if(CF){
+    var rank=function(a){
+      if(!a.tabla||!a.tabla.length) return '<p class="sub">'+esc(a.motivo||"Sin dato.")+'</p>';
+      var mx=Math.max.apply(null,a.tabla.map(function(t){return t.mediana;}).concat([a.medianaCuenta||0]))||1, u=(COLS[a.columna]||["",""])[1];
+      return '<div class="rank-ang" role="img" aria-label="Mediana por ángulo">'+a.tabla.map(function(t){
+        return '<div class="fila'+(a.estado==="ganador"&&t.angulo===a.angulo?' gana':'')+'"><span>'+esc(t.angulo)+' <span class="ev">·'+t.veces+'</span></span><div class="riel"><i style="width:'+(t.mediana/mx*100)+'%"></i>'+(a.medianaCuenta!=null?'<em style="left:'+(a.medianaCuenta/mx*100)+'%"></em>':'')+'</div><b>'+fmt(t.mediana,2)+u+'</b></div>';
+      }).join("")+'</div><p class="sub">La raya negra es la mediana de tu cuenta ('+fmt(a.medianaCuenta,2)+u+'). ·N = cuántos Reels tiene ese ángulo.</p>';
+    };
+    var gF=CF.formato.ganadores[0];
+    var aterrizado=function(k){ var x=(L.conclusiones_fijas||{})[k]; return x&&x.angulo_especifico?tuMes('La categoría sola no se graba. Aterrizada a tus Reels: <b>'+esc(x.angulo_especifico)+'</b>.'):''; };
+    s+='<h3 class="h-clase"><span class="paso">E</span> Las 3 conclusiones fijas: <span class="ser">salen solas de lo anterior</span></h3>'+
+      '<div class="leyes">'+
+      caja("1 · Formato ganador",'<p>El formato con veredicto <b>REPETIR</b>. Si no hay, el mejor <b>CONFIRMAR</b>, marcado como candidato.</p>'+
+        tuMes(gF?'<b>'+esc(gF.formato)+'</b>: '+gF.oro+'× en ORO en '+gF.veces+' Reels.':esc(CF.formato.motivo)))+
+      caja("2 · El ángulo que viraliza",'<p>Viralizar es que te vea <b>quien no te sigue</b>. Se agrupan todos tus Reels por ángulo y gana la mediana más alta de <b>% de no seguidores</b>, con 2 Reels o más. Después se <b>aterriza</b>: de qué tema hablan esos Reels.</p>'+rank(CF.anguloViral)+aterrizado("angulo_viral"))+
+      caja("3 · Tu posible ángulo de venta",'<p>Si hay ángulo de Venta <b>coronado</b>, es ese. Si no, gana la mediana más alta de <b>intención</b>. Sin dato de intención, se usa <b>conversión</b> y se dice «posible». Y también se aterriza a su tema.</p>'+rank(CF.anguloVenta)+aterrizado("angulo_venta"))+
+      '</div>';
+  }
+  s+=error("Coronar un ángulo de venta porque tuvo muchos guardados. Un ángulo de venta que gana en guardados es un ángulo de nutrición disfrazado: la gente lo archiva y no compra.");
+  return s;
+}
+
+/* ── Sub 4 · Preguntar ── */
+function subPreguntar(){
+  var salta=[1,2].indexOf(tap)>-1;
+  var s='<div class="intro-clase"><p class="caja-t">Estación 4 · Descifra</p><p class="grande">Los números dicen qué pasó, <span class="ser">nunca por qué</span></p><p>Para el porqué hay dos fuentes: tus propios videos (las hipótesis) y tu audiencia (la encuesta). Cada una decide algo distinto.</p></div>';
+  s+='<div class="dos-col"><div class="col-d"><p class="caja-t">La data decide el</p><p class="grande-2">MOLDE</p><p>Qué formato, qué ángulo y cuánto de cada cosa.</p></div><div class="col-e"><p class="caja-t">La encuesta decide el</p><p class="grande-2">TEMA</p><p>Las palabras, los dolores y la objeción con que llenas ese molde.</p></div></div>';
+  s+='<h3 class="h-clase">¿Hago encuesta este mes?</h3><div class="decision">'+
+    '<div class="dec-q">¿Tu filtro tapado es el 1 o el 2?</div>'+
+    '<div class="dec-ramas"><div class="rama'+(salta?' activa':'')+'"><b>Sí</b><p>Sáltala. Quien responde ya te sigue: preguntarle cómo llegar a quien no te conoce es preguntarle al lugar equivocado.</p></div>'+
+    '<div class="rama'+(!salta?' activa':'')+'"><b>No</b><p>Haz 2 preguntas <b>abiertas</b>, enganchadas a una pieza ORO: la de lenguaje («cuéntame con tus palabras qué intentas resolver») y la de objeción («¿qué te frena para…?»).</p></div></div></div>';
+  var hip=(L.preguntas||[]).filter(function(q){return q.tipo!=="encuesta";}).slice(0,2);
+  if(hip.length){
+    s+='<h3 class="h-clase">Las hipótesis <span class="ser">ya vienen hechas</span></h3><p class="sub">La IA compara lo que dicen tus Reels de ORO contra los de CHATARRA. Tú solo marcas si te suena cierto; cada respuesta cambia algo del calendario.</p><div class="preguntas">'+
+      hip.map(function(q){return '<div class="preg"><h3>'+esc(q.pregunta)+'</h3><p class="porque">'+esc(q.porque)+'</p><p class="destino">Si dices que sí: '+esc(q.destino)+'</p></div>';}).join("")+
+      '</div><button type="button" class="btn" data-ir="hoja:preguntas">Ver y marcar todas en Mi hoja</button>';
+  }
+  s+=tuMes(esc(R.encuesta.motivo));
+  s+=error("Preguntar «¿de qué quieres que hable?» o hacer una encuesta cerrada con 3 opciones que escribiste tú. La primera te devuelve lo que ya publicaste; la segunda, tu propia hipótesis con un porcentaje al lado.");
+  return s;
+}
+
+/* ── Sub 5 · Decidir ── */
+function cubetasDe(total,p){
+  var ks=["rep","var_","apo"], ex=ks.map(function(k){return {k:k,x:total*p[k]/100};}), b={};
+  ex.forEach(function(e){b[e.k]=Math.floor(e.x);});
+  var falta=total-b.rep-b.var_-b.apo;
+  ex.slice().sort(function(a,c){return (c.x-Math.floor(c.x))-(a.x-Math.floor(a.x));}).forEach(function(e){ if(falta>0&&p[e.k]>0){b[e.k]++;falta--;} });
+  return b;
+}
+var MEZ={0:[60,30,10,"Ningún filtro tapado: se sostiene lo que funciona."],1:[40,30,30,"Alcance: APOSTAR sube a 30 %. Hace falta sangre nueva para salir de tu casa."],2:[60,30,10,"Retención: la mezcla no se mueve, pero todo el trabajo va al gancho."],3:[50,40,10,"Valor: VARIAR sube a 40 %. Mismo formato, ángulo un peldaño más útil."],4:[60,40,0,"Conversión: no se tocan los formatos. APOSTAR baja a 0 % y pasa a VARIAR."],5:[60,30,10,"Intención: el contenido no se toca. El trabajo es la oferta y el CTA."]};
+function barraMezcla(t){
+  var m=MEZ[t], c=cubetasDe(R.reparto.piezas,{rep:m[0],var_:m[1],apo:m[2]});
+  return '<div class="barra num">'+(m[0]?'<div class="b-rep" style="flex:'+m[0]+'">'+m[0]+'%</div>':'')+(m[1]?'<div class="b-var" style="flex:'+m[1]+'">'+m[1]+'%</div>':'')+(m[2]?'<div class="b-apo" style="flex:'+m[2]+'">'+m[2]+'%</div>':'')+'</div>'+
+    '<p class="sub">'+m[3]+' De '+R.reparto.piezas+' piezas: <b>'+c.rep+' repetir · '+c.var_+' variar · '+c.apo+' apostar</b>.</p>';
+}
+function subDecidir(){
+  var cal=ap0.calendario||[];
+  var ej=function(k){var f=cal.filter(function(x){return x.de_donde_sale===k;})[0]; return f?'<p class="ej-cal">Ej. de tu mes: <b>'+esc(f.tema)+'</b> · '+esc(f.formato)+(f.angulo_exacto?' · <i>'+esc(f.angulo_exacto)+'</i>':'')+'</p>':'';};
+  var s='<div class="intro-clase"><p class="caja-t">Estaciones 5, 6 y 7 · Decide</p><p class="grande">El calendario ya no se imagina: <span class="ser">se reparte</span></p><p>Cada pieza del mes sale de uno de tres lugares, y tu filtro tapado decide cuánto pesa cada uno.</p></div>';
+  s+='<h3 class="h-clase"><span class="paso">5</span> Repartir</h3><div class="cubetas-clase">'+
+    '<div class="cub"><p class="cub-n">60 %</p><b>Repetir</b><p>Formato ganador, tema nuevo. El molde se respeta.</p>'+ej("REPETIR")+'</div>'+
+    '<div class="cub"><p class="cub-n">30 %</p><b>Variar</b><p>Sobre algo probado cambias <b>una sola</b> cosa: el ángulo o el formato.</p>'+ej("VARIAR")+'</div>'+
+    '<div class="cub"><p class="cub-n">10 %</p><b>Apostar</b><p>Formato nuevo. Su gancho pasa antes por trial reels.</p>'+ej("APOSTAR")+'</div></div>'+
+    '<p class="sub" style="margin-top:10px">Cada pieza del calendario trae 7 cosas: <b>ángulo exacto · primera frase · estructura · CTA · un Reel tuyo de referencia · la meta con tu mediana · el porqué</b>. Si le falta una, no se puede grabar sin adivinar.</p>'+
+    '<p class="caja-t" style="margin-top:14px">Así se inclina según el filtro tapado · toca uno</p><div class="selector" role="group" aria-label="Filtro tapado">'+
+    [0,1,2,3,4,5].map(function(t){return '<button type="button" data-mezcla="'+t+'" aria-pressed="'+(t===tap)+'">'+(t?t+" "+nomFiltro(t):"Ninguno")+'</button>';}).join("")+
+    '</div><div id="mezcla-demo">'+barraMezcla(tap)+'</div>';
+  s+='<h3 class="h-clase"><span class="paso">6</span> Presionar: la campaña con plazo</h3><div class="formula">'+
+    ['Ángulo de venta coronado','Objeción real (de la encuesta)','Plazo real','Algo que se pierde'].map(function(x){return '<span>'+x+'</span>';}).join('<b>+</b>')+'<b>=</b><span class="res">Campaña</span></div>'+
+    tuMes(ap0.campana?esc("«"+ap0.campana.frase+"». Va en REPETIR: su ángulo ya está probado."):esc("Sin campaña este mes: "+(ap0.sin_campana||"no hay ángulo de venta coronado."))+' Si falta un ingrediente, no es campaña: es un anuncio con prisa.');
+  var tasa=ap0.apuesta?ap0.apuesta.tasa_mediana:null, g=(ap0.apuesta&&ap0.apuesta.ganchos)||{};
+  s+='<h3 class="h-clase"><span class="paso">7</span> Apostar: el trial reel prueba <span class="ser">ganchos, no formatos</span></h3>'+
+    '<div class="trial"><div class="trial-video">Un solo video</div><div class="trial-ramas">'+[["A","Claim de texto"],["B","Gancho visual"],["C","Conflicto"],["D","Prueba"]].map(function(x){return '<div><b>'+x[0]+'</b> '+x[1]+(g[x[0]]?'<p>'+esc(g[x[0]])+'</p>':'')+'</div>';}).join("")+'</div></div>'+
+    '<div class="reglas-trial"><span>Misma tanda</span><span>Solo lo ven no seguidores</span><span>Se lee a las 48 h</span><span>Nunca por vistas</span></div>'+
+    (tasa!=null?tuMes('Tu tasa mediana de conversión es <b>'+fmt(tasa,2)+' %</b>. Gana el gancho que llegue a <b>'+fmt(tasa*1.25,2)+' %</b> o más (25 % por encima). Ese gancho entra a REPETIR el mes que viene y el ciclo vuelve a Leer.'):'');
+  s+=error("Meter la campaña en APOSTAR, o usar un trial reel para probar un formato. En el trial el video no cambia: solo te dice qué gancho gana.");
+  return s;
+}
+
+var SUBS=[["mapa","El mapa",subMapa],["filtros","Los 5 filtros",subFiltros],["coronar","Etiquetar y coronar",subCoronar],["preguntar","Preguntar",subPreguntar],["decidir","Decidir",subDecidir]];
+var claseHtml='<section class="clase"><header class="clase-cab"><p class="ceja">Analiza tu Contenido · La clase</p><h1>El método, <span class="ser">explicado con un mes real</span></h1><p class="arreglo">Caso: @'+esc(C.handle||"")+', '+lote.n+' Reels del '+fecha(R.ventanas.base.desde)+' al '+fecha(R.ventanas.mes.hasta)+'. Todos los números salen de su panel de Instagram.</p></header>'+
+  '<div class="subtabs" role="tablist">'+SUBS.map(function(x,i){return '<button type="button" role="tab" data-sub="'+x[0]+'" aria-selected="'+(i===0)+'"><b>'+(i+1)+'</b>'+x[1]+'</button>';}).join("")+'</div>'+
+  SUBS.map(function(x,i){return '<div class="sub-panel" data-panel="'+x[0]+'"'+(i===0?'':' hidden')+'>'+x[2]()+'</div>';}).join("")+
+  '<div class="clase-pie"><div class="grupo-pie"><a class="btn btn-link" href="https://grimorio.formula100k.app/skills/analiza-tu-contenido-f100k.skill" target="_blank" rel="noopener">⬇ Descargar la skill</a><button type="button" class="btn" id="btn-clase-ia">Copiar la clase para una IA</button></div><button type="button" class="btn btn-oro" data-ir="flash">Repasar con flashcards →</button></div></section>';
+
+/* ── Flashcards ── */
+var CARDS=[
+  ["Fundamentos","¿Qué es el filtro tapado?","El primero de los 5 filtros que cae\npor debajo de tu línea base.\n\nEs tu único trabajo del mes.\nLos de abajo no se leen."],
+  ["Fundamentos","¿Por qué mediana y no promedio?","Un par de virales inflan el promedio:\ncontra él, casi todo parece un fracaso.\n\nLa mediana es tu normal:\nla mitad arriba, la mitad abajo."],
+  ["Mecánica","¿Cuándo hay lote para leer?","9 posts o más\nY 30 días publicando.\n\nLas dos cosas, no una.\nSin lote: sigue publicando y vuelve."],
+  ["Mecánica","Con 30 Reels, ¿cuántos van a ORO y a CHATARRA?","Ordenas por la columna de tu filtro tapado.\n25 % de 30 = 7,5 → hacia abajo.\n\n7 ORO · 16 tibios · 7 CHATARRA."],
+  ["Aplicación","Un formato sale 2 veces en ORO. ¿Qué haces?","REPETIR: mismo molde, tema nuevo.\n\n1 vez en ORO → CONFIRMAR\n2 veces en CHATARRA → MATAR"],
+  ["Aplicación","¿Cómo queda la mezcla si se tapa el Alcance?","40 / 30 / 30\n\nAPOSTAR sube a 30 %:\nhace falta sangre nueva.\nLos 20 puntos salen de REPETIR."],
+  ["Casos límite","¿Cuántas capturas de retención hacen falta para leer el filtro 2?","5 Reels de este mes\ny 5 de tu línea base.\n\nCon 2 capturas sueltas no hay mediana:\nel filtro queda sin dato.\nLo ideal: todos."],
+  ["Casos límite","¿Qué pasa con un filtro sin dato?","Ni pasa ni se tapa.\nLa lectura sigue al siguiente.\n\nSuele pasar con Retención e Intención\nsi no capturas la app del teléfono."],
+  ["Conclusiones fijas","¿Cómo se elige el ángulo que más te ayuda a viralizar?","Agrupas tus Reels por ángulo.\nGana la mediana más alta\nde % de no seguidores.\n\nSolo compiten ángulos con 2+ Reels\ny que le ganen a tu cuenta."],
+  ["Conclusiones fijas","¿Por qué «Curiosidad» sola no sirve como ángulo?","Porque es una categoría:\nno te dice qué grabar.\n\nSe aterriza al tema de los Reels que ganaron:\n«Curiosidad de cómo generar\ncontenido automático con Claude»."],
+  ["Conclusiones fijas","¿Por qué el ángulo de venta dice «posible»?","Porque el panel no dio intención\n(visitas + enlace + DMs).\n\nSe usa conversión mientras tanto.\nCaptura la sección Perfil en la app\ny el mes que viene se corona."],
+  ["Casos límite","¿Qué prueba un trial reel?","Ganchos, no formatos:\nel video es el mismo.\n\nGana el que supera en 25 %\ntu tasa mediana de conversión, a las 48 h."]
+];
+var flashHtml='<section class="clase"><header class="clase-cab"><p class="ceja">Repaso</p><h1>'+CARDS.length+' flashcards <span class="ser">para no olvidarlo</span></h1><p class="arreglo">Toca la tarjeta para voltearla.</p></header>'+
+  '<div class="flash-zona"><div class="flip-container" id="flip" role="button" tabindex="0" aria-label="Voltear tarjeta"><div class="flip-inner" id="flip-inner"><div class="flip-front"><span class="pildora p-oro" id="fc-tag"></span><p class="fc-q" id="fc-q"></p><p class="sub">Toca para ver la respuesta</p></div><div class="flip-back"><p class="fc-a" id="fc-a"></p></div></div></div>'+
+  '<div class="flash-nav"><button type="button" class="btn" id="fc-prev">← Anterior</button><span class="num" id="fc-cont"></span><button type="button" class="btn" id="fc-next">Siguiente →</button></div></div></section>';
+
+/* ── Examen ── */
+var EXAM=[
+  {q:"Una alumna tiene 30 Reels. Línea base: 9.000 vistas y 40 % de no seguidores. Este mes: 11.000 vistas y 34 % de no seguidores. Su Valor bajó de 18 a 12. ¿Cuál es su filtro tapado?",
+   o:["El 3, Valor: es el número que más cayó","El 1, Alcance: las vistas subieron pero el % de no seguidores bajó","Ninguno: las vistas subieron","El 4, Conversión"],c:1,
+   why:"El filtro 1 es un «y»: vistas Y % de no seguidores tienen que sostenerse. Cayó el % de no seguidores, así que se tapa el 1 y el Valor no se lee todavía, aunque haya bajado."},
+  {q:"Lleva 12 días publicando y ya tiene 14 Reels. Uno se hizo viral. ¿Qué hace este mes?",
+   o:["Lee los 5 filtros con sus 14 Reels","Repite el formato del viral tres veces","No lee todavía: tiene posts pero no 30 días. Sigue publicando","Se compara contra el promedio del viral"],c:2,
+   why:"La Regla del Lote pide las dos cosas: 9 posts Y 30 días. Con 12 días cualquier conclusión es un accidente, y un viral suelto es anécdota, no patrón."},
+  {q:"Su filtro tapado es el Valor. Ordenó por esa columna: «Lista numerada» sale 2 veces en ORO; «Vlog» sale 1 vez en ORO y 2 en CHATARRA. ¿Veredictos?",
+   o:["Lista: repetir · Vlog: matar","Lista: confirmar · Vlog: confirmar","Las dos: repetir","Lista: repetir · Vlog: confirmar"],c:0,
+   why:"2 o más en ORO se repite. 2 o más en CHATARRA se mata, aunque haya tenido un ORO suelto: una vez es suerte, dos es patrón."},
+  {q:"Su filtro tapado es el 1 (Alcance). Quiere una encuesta en historias para decidir su contenido de crecimiento. ¿Qué le dices?",
+   o:["Buena idea: pregunta de qué quieren que hables","Sáltala este mes: quien responde ya te sigue","Hazla cerrada con 3 opciones para que respondan más","Hazla y lleva el tema más votado a APOSTAR"],c:1,
+   why:"La encuesta la responde tu casa. Si el problema es salir de ella, preguntarle a tu audiencia actual es preguntarle al lugar equivocado."},
+  {q:"Subió un video con 4 ganchos como trial reels. Su tasa mediana de conversión es 0,20 %. A las 48 h: A 0,22 % con 9.000 vistas · B 0,27 % con 3.000 vistas · C 0,18 % · D 0,24 %. ¿Cuál pasa al grid?",
+   o:["A: tiene más vistas","B: supera el 0,25 % (25 % sobre su mediana)","D: está por encima de su mediana","Ninguno: hay que esperar una semana"],c:1,
+   why:"El umbral es la mediana × 1,25 = 0,25 %. Solo B lo supera. Las vistas de un trial no se comparan: el reparto es distinto."}
+];
+var examHtml='<section class="clase"><header class="clase-cab"><p class="ceja">Examen</p><h1>5 casos <span class="ser">de alumnas reales</span></h1><p class="arreglo">No son preguntas de memoria: son decisiones. Elige y lee por qué.</p></header><div class="examen">'+
+  EXAM.map(function(e,i){return '<div class="caso" data-caso="'+i+'"><p class="caso-n">Caso '+(i+1)+'</p><p class="caso-q">'+esc(e.q)+'</p><div class="opciones">'+
+    e.o.map(function(o,j){return '<button type="button" data-caso="'+i+'" data-op="'+j+'"><b>'+"ABCD"[j]+'</b>'+esc(o)+'</button>';}).join("")+'</div><p class="why" hidden></p></div>';}).join("")+
+  '</div><p class="puntaje num" id="puntaje" role="status"></p></section>';
+
+var VISTAS=[["clase","📋 La clase"],["hoja","📊 Mi hoja"],["flash","🃏 Flashcards"],["examen","✅ Examen"]];
+var vistaIni = D.vista_inicial || "hoja";
+try{ var v0=localStorage.getItem("f100k-vista"); if(v0 && VISTAS.some(function(v){return v[0]===v0;})) vistaIni=v0; }catch(e){}
+document.getElementById("app").innerHTML=
+  '<nav class="vistas no-print" role="tablist" aria-label="Vistas">'+VISTAS.map(function(v){return '<button type="button" role="tab" data-vista="'+v[0]+'" aria-selected="'+(v[0]===vistaIni)+'">'+v[1]+'</button>';}).join("")+'</nav>'+
+  '<div data-vista-panel="clase"'+(vistaIni==="clase"?'':' hidden')+'>'+claseHtml+'</div>'+
+  '<div data-vista-panel="hoja"'+(vistaIni==="hoja"?'':' hidden')+' class="envoltura-hoja">'+hojaHtml+'</div>'+
+  '<div data-vista-panel="flash"'+(vistaIni==="flash"?'':' hidden')+'>'+flashHtml+'</div>'+
+  '<div data-vista-panel="examen"'+(vistaIni==="examen"?'':' hidden')+'>'+examHtml+'</div>';
+
+function irVista(v, ancla){
+  document.querySelectorAll("[data-vista]").forEach(function(b){ b.setAttribute("aria-selected", b.dataset.vista===v?"true":"false"); });
+  document.querySelectorAll("[data-vista-panel]").forEach(function(p){ p.hidden = p.dataset.vistaPanel!==v; });
+  try{ localStorage.setItem("f100k-vista", v); }catch(e){}
+  if(ancla){ var el=document.getElementById(ancla); if(el) el.scrollIntoView({block:"start"}); } else window.scrollTo(0,0);
+}
+function irSub(s){
+  document.querySelectorAll(".subtabs [data-sub]").forEach(function(b){ b.setAttribute("aria-selected", b.dataset.sub===s?"true":"false"); });
+  document.querySelectorAll("[data-panel]").forEach(function(p){ p.hidden = p.dataset.panel!==s; });
+  var t=document.querySelector(".subtabs"); if(t) t.scrollIntoView({block:"start"});
+}
+var fcI=0;
+function pintarFC(){ var c=CARDS[fcI]; document.getElementById("fc-tag").textContent=c[0]; document.getElementById("fc-q").textContent=c[1]; document.getElementById("fc-a").textContent=c[2]; document.getElementById("fc-cont").textContent=(fcI+1)+" / "+CARDS.length; document.getElementById("flip-inner").classList.remove("is-flipped"); }
+pintarFC();
+var aciertos={};
+document.addEventListener("click",function(e){
+  var b;
+  if((b=e.target.closest("[data-vista]"))){ irVista(b.dataset.vista); return; }
+  if((b=e.target.closest("[data-ir]"))){ e.preventDefault(); var p=b.dataset.ir.split(":"); if(p[0]==="clase"){ irVista("clase"); irSub(p[1]); } else irVista(p[0], p[1]); return; }
+  if((b=e.target.closest("[data-sub]"))){ irSub(b.dataset.sub); return; }
+  if((b=e.target.closest("[data-filtro]"))){ var n=+b.dataset.filtro; document.querySelectorAll("[data-filtro]").forEach(function(x){x.setAttribute("aria-selected", x===b?"true":"false");}); document.getElementById("panel-filtro").innerHTML=panelFiltro(n); return; }
+  if((b=e.target.closest("[data-mezcla]"))){ document.querySelectorAll("[data-mezcla]").forEach(function(x){x.setAttribute("aria-pressed", x===b?"true":"false");}); document.getElementById("mezcla-demo").innerHTML=barraMezcla(+b.dataset.mezcla); return; }
+  if(e.target.closest("#flip")){ document.getElementById("flip-inner").classList.toggle("is-flipped"); return; }
+  if(e.target.closest("#fc-prev")){ fcI=(fcI+CARDS.length-1)%CARDS.length; pintarFC(); return; }
+  if(e.target.closest("#fc-next")){ fcI=(fcI+1)%CARDS.length; pintarFC(); return; }
+  if((b=e.target.closest("[data-op]"))){
+    var i=+b.dataset.caso, j=+b.dataset.op, ex=EXAM[i], caso=b.closest(".caso");
+    caso.querySelectorAll("[data-op]").forEach(function(x){ var k=+x.dataset.op; x.disabled=true; if(k===ex.c) x.classList.add("bien"); else if(k===j) x.classList.add("mal"); });
+    var w=caso.querySelector(".why"); w.hidden=false; w.textContent=(j===ex.c?"Correcto. ":"No es esa. ")+ex.why;
+    aciertos[i]=(j===ex.c);
+    var hechos=Object.keys(aciertos).length, ok=Object.keys(aciertos).filter(function(k){return aciertos[k];}).length;
+    document.getElementById("puntaje").textContent=ok+" de "+hechos+" correctos"+(hechos===EXAM.length?(ok===EXAM.length?" · Dominas el método.":" · Repasa La clase y vuelve a intentarlo."):"");
+  }
+});
+document.addEventListener("keydown",function(e){ if(e.target.id==="flip" && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); document.getElementById("flip-inner").classList.toggle("is-flipped"); } });
+
+
+/* ── interacción ── */
+var aviso=document.getElementById("aviso");
+var CLAVE="f100k-informe-"+(C.handle||"")+"-"+(R.ventanas?R.ventanas.mes.hasta:"");
+var resp={};
+try{ resp=JSON.parse(localStorage.getItem(CLAVE)||"{}")||{}; }catch(e){ resp={}; }
+function pintarResp(){
+  document.querySelectorAll(".respuesta button").forEach(function(b){ b.setAttribute("aria-pressed", resp[b.dataset.q]===b.dataset.o ? "true":"false"); });
+}
+pintarResp();
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".respuesta button"); if(!b) return;
+  resp[b.dataset.q] = resp[b.dataset.q]===b.dataset.o ? undefined : b.dataset.o;
+  try{ localStorage.setItem(CLAVE, JSON.stringify(resp)); }catch(err){}
+  pintarResp();
+});
+function copiar(t,msg){
+  function ok(){ aviso.textContent=msg; }
+  function legacy(){ try{ var ta=document.createElement("textarea"); ta.value=t; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); ok(); }catch(e){ aviso.textContent="No se pudo copiar: selecciona el texto a mano."; } }
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok,legacy); else legacy();
+}
+
+document.getElementById("btn-clase-ia").addEventListener("click",function(){
+  var t=document.querySelector('[data-vista-panel="clase"]');
+  var partes=[];
+  t.querySelectorAll("[data-panel]").forEach(function(p){ partes.push("## "+p.dataset.panel.toUpperCase()+"\n"+p.innerText.replace(/\n{3,}/g,"\n\n")); });
+  copiar("# Analiza tu Contenido · La clase\n\n"+partes.join("\n\n"),"Clase copiada. Pégala en tu IA para hacerle preguntas.");
+});
+document.getElementById("btn-imprimir").addEventListener("click",function(){ window.print(); });
+document.getElementById("btn-hoja").addEventListener("click",function(){
+  var q=function(s){ return '"'+String(s==null?"":s).replace(/"/g,'""')+'"'; };
+  var filas=["N,FECHA,LINK,FORMATO,ANGULO,PROPOSITO,VISTAS,% NO SEGUIDORES,RETENCION 3S,GUARDADOS,COMPARTIDOS,SEGUIDORES NUEVOS,INTENCION,ZONA,VALOR /1000,TASA CONV %"];
+  R.posts.forEach(function(p){ var m=p.metricas,e=p.etiquetas||{}; filas.push([p.n,p.fecha,p.url,e.formato,e.angulo,e.proposito,m.vistas,m.pct_no_seguidores,m.retencion_3s,m.guardados,m.compartidos,m.seguidores_nuevos,m.intencion,p.zona,m.valor_1000,m.tasa_conv].map(q).join(",")); });
+  copiar(filas.join("\n"),"Copiada. Pégala en Google Sheets, Numbers o Excel.");
+});
+var btnCap=document.getElementById("btn-capturas");
+if(btnCap) btnCap.addEventListener("click",function(){
+  var t=["Capturas que faltan · desde la app: el Reel → Ver estadísticas",""];
+  R.calidadDatos.avanzadas.filter(function(a){return a.estado!=="completo";}).forEach(function(a){
+    t.push("## "+a.nombre+" ("+a.con+" de "+a.total+")", a.captura, "Primero:");
+    a.prioridad.forEach(function(n){ var p=porN[n]; t.push("[ ] #"+n+" · "+fecha(p.fecha)+(p.url?" · "+p.url:"")); });
+    var resto=a.faltan.filter(function(n){return a.prioridad.indexOf(n)<0;});
+    if(resto.length){ t.push("Después:"); resto.forEach(function(n){ var p=porN[n]; t.push("[ ] #"+n+" · "+fecha(p.fecha)+(p.url?" · "+p.url:"")); }); }
+    t.push("");
+  });
+  t.push("Nombra las capturas con el número del Reel: 01a.png, 01b.png… (01 = el más reciente).");
+  copiar(t.join("\n"),"Lista copiada. Mándatela al teléfono y marca a medida que capturas.");
+});
+document.getElementById("btn-calendario").addEventListener("click",function(){
+  var q=function(s){ return '"'+String(s==null?"":s).replace(/"/g,'""')+'"'; };
+  var filas=["SEMANA,DIA,TEMA,FORMATO,ANGULO,ANGULO EXACTO,PROPOSITO,SALE DE,FILTRO,PRIMERA FRASE,EN PANTALLA,ESTRUCTURA,CTA,REFERENCIA,QUE COPIAR,META,POR QUE"];
+  (ap.calendario||[]).forEach(function(f){
+    var ref=f.referencia||{}, rp=ref.post!=null?porN[ref.post]:null;
+    filas.push([f.semana,f.dia,f.tema,f.formato,f.angulo,f.angulo_exacto,f.proposito,f.de_donde_sale,f.filtro_que_ataca,f.gancho,f.texto_pantalla,(f.estructura||[]).map(function(x,i){return (i+1)+". "+x;}).join("\n"),f.cta,rp?("#"+rp.n+" "+(rp.url||"")):(ref.url||"Biblioteca de formatos"),ref.que_copiar,metaDe(f.filtro_que_ataca),f.por_que].map(q).join(","));
+  });
+  copiar(filas.join("\n"),"Calendario copiado. Pégalo en Google Sheets, Numbers o Excel.");
+});
+document.getElementById("btn-respuestas").addEventListener("click",function(){
+  var t=pr.filter(function(q){return q.tipo!=="encuesta";}).map(function(q,i){ var id=q.id||("p"+(i+1)); return "• "+q.pregunta+" → "+(resp[id]||"sin marcar"); }).join("\n");
+  copiar(t,"Respuestas copiadas.");
+});
+})();
+</script>

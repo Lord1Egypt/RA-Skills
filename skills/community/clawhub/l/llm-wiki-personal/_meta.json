@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn72qm0mhhzq996py44dq8ycfh83eedp",
-  "slug": "llm-wiki-personal",
+  "name": "llm-wiki",
   "version": "1.0.0",
-  "publishedAt": 1775584653442
+  "description": "个人知识库构建系统（基于 Karpathy llm-wiki 方法论）。让 AI 持续构建和维护你的知识库，支持多种素材源，自动整理为结构化的 wiki。",
+  "author": "Andy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdyckjq-lab/llm-wiki-skill"
+  },
+  "clawhub": {
+    "category": "productivity",
+    "tags": [
+      "knowledge-base",
+      "wiki",
+      "obsidian",
+      "note-taking",
+      "content-management",
+      "personal-knowledge",
+      "markdown",
+      "llm",
+      "agent"
+    ],
+    "skillType": "productivity-tool",
+    "price": "0",
+    "platforms": ["openclaw", "claude", "codex"]
+  }
 }

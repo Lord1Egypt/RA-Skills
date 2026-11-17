@@ -1,0 +1,107 @@
+{
+  "taskId": "layered-scroll",
+  "assets": [
+    {
+      "assetId": "background-tile",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/2d21226218402d33a1766d175d57de2094df4874.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/2d21226218402d33a1766d175d57de2094df4874.png",
+      "boxWidth": 390,
+      "boxHeight": 1170,
+      "cropMode": "contain",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "middle-marker",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/019ddbf3a1cfd4f8e48f1c6eec0442dd11f34bdf.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/019ddbf3a1cfd4f8e48f1c6eec0442dd11f34bdf.png",
+      "boxWidth": 90,
+      "boxHeight": 90,
+      "cropMode": "contain",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "foreground-lattice",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png",
+      "boxWidth": 220,
+      "boxHeight": 600,
+      "cropMode": "contain",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "story-boat",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/019ddbf3a1cfd4f8e48f1c6eec0442dd11f34bdf.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/019ddbf3a1cfd4f8e48f1c6eec0442dd11f34bdf.png",
+      "boxWidth": 220,
+      "boxHeight": 220,
+      "cropMode": "contain",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "popup-scene",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png",
+      "boxWidth": 390,
+      "boxHeight": 520,
+      "cropMode": "cover",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "popup-detail",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/93c19eefa547172bee902b6a8b0c7e5c25aa3566.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/93c19eefa547172bee902b6a8b0c7e5c25aa3566.png",
+      "boxWidth": 310,
+      "boxHeight": 200,
+      "cropMode": "cover",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "popup-open",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/87703fa265d63e51ace59bba88e0dfc1815254e0.png",
+      "originSrc": "https://svg-cdn.creatby.com/87703fa265d63e51ace59bba88e0dfc1815254e0.png",
+      "boxWidth": 72,
+      "boxHeight": 72,
+      "cropMode": "contain",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "slideshow-1",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png",
+      "boxWidth": 390,
+      "boxHeight": 520,
+      "cropMode": "cover",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "slideshow-2",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png",
+      "boxWidth": 390,
+      "boxHeight": 520,
+      "cropMode": "cover",
+      "source": "placeholder"
+    },
+    {
+      "assetId": "slideshow-3",
+      "status": "placeholder",
+      "src": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png_large",
+      "originSrc": "https://svg-cdn.creatby.com/67e8dd5d4bf7cd7229097390/e0aaf2ba7d33fad7e0e6bd38278ba5d83af25d39.png",
+      "boxWidth": 390,
+      "boxHeight": 520,
+      "cropMode": "cover",
+      "source": "placeholder"
+    }
+  ],
+  "imageSource": "ai-assets",
+  "tag": "旅游"
+}

@@ -1,0 +1,8 @@
+# open-langchain configuration
+browser: brave
+homepage_url: https://www.langchain.com/
+cta_text: Start building
+avoid_demo_button: true
+reuse_existing_session: true
+avoid_duplicate_tabs: true
+verify_destination: true

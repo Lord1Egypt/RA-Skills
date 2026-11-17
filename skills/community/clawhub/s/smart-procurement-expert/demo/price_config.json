@@ -1,0 +1,12 @@
+{
+  "method": "benchmark",
+  "full_score": 60,
+  "base": { "mode": "average_k", "k": 0.98 },
+  "deduction": { "above": 0.5, "below": 0.3 },
+  "quotes": [
+    { "name": "投标人A", "price": 980.50 },
+    { "name": "投标人B", "price": 1000.00 },
+    { "name": "投标人C", "price": 1020.30 },
+    { "name": "投标人D", "price": 950.80 }
+  ]
+}

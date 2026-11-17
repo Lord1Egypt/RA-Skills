@@ -1,45 +1,60 @@
-## Description: <br>
-Designs an engineered loop for medium or large semi-autonomous AI-coding work by decomposing the task into gated sub-loops and emitting a runnable .loop/ runbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs gated, checkable sub-loops for medium or large AI-coding tasks and writes a runnable loop runbook without executing the loop.
 
-## Publisher: <br>
-[vincentjiang06](https://clawhub.ai/user/vincentjiang06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentjiang06](https://clawhub.ai/user/vincentjiang06)
 
-## Use Case: <br>
-Developers and engineers use this skill to design check-driven agent loops for medium or large coding tasks before running implementation work. It produces a reviewable loop design with decision logs, validation gates, and a persisted .loop/ runbook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated loop designs and runbooks can contain incorrect or misleading gates if the checks do not actually prove the intended outcome. <br>
-Mitigation: Run the supplied linter, complete the fresh-reader checklist, and review each generated gate before using the runbook. <br>
-Risk: The skill may propose shell commands or workflows that affect a project, deployment, or privileged environment. <br>
-Mitigation: Review commands before approval, use authorized environments only, and keep normal credential and deployment access controls in place. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to design reviewable, machine-checkable workflows for semi-autonomous coding tasks. It produces a loop specification and runbook rather than executing the proposed workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentjiang06/skills/loop-constructor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Loop selection procedure](artifact/references/loop-selection.md) <br>
-- [Canonical loop-design shape](artifact/references/loop-design-shape.md) <br>
-- [Loop principle map](artifact/references/loop-principle-map.md) <br>
-- [Fresh-reader checklist](artifact/assets/fresh-reader-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON loop-design content and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design artifacts and runbook paths; it does not execute the designed loop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Generating a runbook creates files in the target project's .loop/ directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target project and intended output paths before generating the runbook.
+
+Risk: The documented npx installation command is not pinned to an immutable version.
+
+Mitigation: Verify the publisher and release before installation, and pin a reviewed version where possible.
+
+Risk: Generated commands may affect a project if a user later runs them; local linting does not validate those effects.
+
+Mitigation: Review generated checks and commands against the target project before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentjiang06/skills/loop-constructor)
+- [Loop selection procedure](references/loop-selection.md)
+- [Loop design specification](references/loop-design-shape.md)
+- [Loop operating model](references/loops-model.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON configuration, Markdown runbook, Guidance]
+
+**Output Format:** [JSON design and Markdown files under the target project's .loop/ directory]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a decision log and runnable checks; designs the loop but does not execute it.]
+
+## Skill Version(s):
+
+0.5.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

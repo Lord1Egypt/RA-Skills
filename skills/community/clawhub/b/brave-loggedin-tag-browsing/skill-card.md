@@ -1,43 +1,59 @@
-## Description: <br>
-Uses a logged-in Brave browser session to browse X/Twitter and Facebook user pages and extract recent posts, profile details, login status, and engagement data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses a logged-in Brave browser session to browse X/Twitter or Facebook profile pages and extract recent posts, profile details, login status, and optional engagement stats.
 
-## Publisher: <br>
-[sean810720](https://clawhub.ai/user/sean810720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sean810720](https://clawhub.ai/user/sean810720)
 
-## Use Case: <br>
-External users and developers can use this skill to collect recent public social posts and profile fields from X/Twitter or Facebook through a logged-in browser session for monitoring, research, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates through a real logged-in browser session/profile and can report details from that context. <br>
-Mitigation: Use a dedicated Brave or Chrome profile with a non-sensitive social account rather than a normal personal browser session. <br>
-Risk: Returned social posts are untrusted external content. <br>
-Mitigation: Review or sanitize extracted post text before using it in downstream prompts, automation, analysis, or publication. <br>
-Risk: The browser-control behavior has limited containment. <br>
-Mitigation: Install only after review and run it in an isolated environment appropriate for logged-in social browsing. <br>
+## Use Case:
 
+External users and developers can use this skill to collect recent posts, profile metadata, login status, and engagement counts from X/Twitter or Facebook accounts through an already logged-in Brave session for monitoring, analysis, or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sean810720/brave-loggedin-tag-browsing) <br>
-- [Publisher Profile](https://clawhub.ai/user/sean810720) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Structured JSON object containing username, platform, login status, profile, posts, and metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Post count and engagement fields depend on platform selectors, login state, and the requested maxPosts/includeStats options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill uses a logged-in browser session and may access a broad browser profile, existing tabs, and account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Brave or Chrome profile containing only the X/Facebook accounts needed for this task, and avoid using a normal profile or sensitive tabs.
+
+Risk: The security summary notes weakened browser sandboxing and profile isolation concerns.
+
+Mitigation: Run the skill only in an isolated environment and avoid sensitive or high-privilege accounts until sandboxing and profile isolation are fixed.
+
+Risk: The skill automates scraping of social-media pages through authenticated sessions.
+
+Mitigation: Use it only for authorized monitoring or analysis and confirm the target platform terms and account permissions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sean810720/skills/brave-loggedin-tag-browsing)
+- [Publisher profile](https://clawhub.ai/user/sean810720)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [JSON object containing username, platform, login status, profile, posts, and metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Post count is controlled by maxPosts; engagement stats are optional.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "name": "@openclaw/compaction-proxy",
+  "version": "1.0.0",
+  "description": "Local compaction proxy for OpenClaw — intercepts LLM calls, compacts long contexts via local ollama, forwards to any upstream (kimi, lovbrowser, etc.)",
+  "main": "src/index.js",
+  "scripts": {
+    "install-proxy": "bash install.sh",
+    "start": "node src/index.js"
+  },
+  "keywords": ["openclaw", "compaction", "proxy", "ollama", "context-window"],
+  "license": "MIT"
+}

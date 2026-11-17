@@ -1,0 +1,49 @@
+# WorkBuddy Skill Manifest
+# 用于发布到 ClawHub 技能市场
+
+slug: wms-reconciliation
+name: WMS仓库收费对账
+version: 1.0.1
+category: productivity
+author: WorkBuddy User
+description: >
+  第三方仓库收费对账技能。将仓库方提供的Excel收费清单与WMS（仓库管理系统）OpenAPI中的
+  实际业务记录逐笔核对，验证每笔收费是否真实发生、业务是否实际完成。已适配TopWMS（极欧云仓），
+  支持出库费、退件处理费、包装费、仓租费、销毁费核对，自动生成对账报告并标红Excel异常行。
+  本技能为第三方独立工具，与TopWMS无任何关联或背书关系，系统名称为其各自所有者商标。
+
+triggers:
+  - 仓库对账
+  - 核账
+  - WMS对账
+  - 收费核对
+  - 仓租费核对
+  - 出库费核对
+  - 包装费核对
+  - 退件费核对
+  - 仓库收费
+  - 对账
+
+tags:
+  - WMS
+  - 仓库对账
+  - 跨境电商
+  - 收费核对
+  - 财务对账
+  - 三方仓
+
+requires_api_key: true
+api_key_description: >
+  需要用户提供其使用的WMS系统的 AppKey 和 AppSecret（从仓库方/WMS系统后台获取）。
+  同时需要仓库ID（warehouseId）。密钥仅在本机使用，不存储、不上传。
+
+permissions:
+  - Read
+  - Write
+  - Bash
+
+dependencies:
+  - openpyxl
+  - requests
+
+min_workbuddy_version: "1.0"

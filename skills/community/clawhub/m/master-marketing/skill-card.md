@@ -1,39 +1,53 @@
-## Description: <br>
-Master Marketing is an all-in-one marketing engine that combines growth strategy, content remixing, and trend monitoring to produce data-informed marketing plans, cross-platform content ideas, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one marketing engine combining growth strategy, content remixing, and trend monitoring. Drive growth with data-driven strategies, repurposed content across all platforms, and real-time trend analysis.
 
-## Publisher: <br>
-[TevfikGulep](https://clawhub.ai/user/TevfikGulep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tevfikgulep](https://clawhub.ai/user/tevfikgulep)
 
-## Use Case: <br>
-Marketing teams, founders, creators, and agents use this skill to analyze growth funnels, repurpose content across platforms, and plan timely campaigns around relevant trends. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated market claims, metrics, or trend assumptions may be inaccurate or outdated. <br>
-Mitigation: Review claims, metrics, and trend assumptions against current business data and trusted sources before using them in campaigns. <br>
-Risk: Marketing recommendations could be used to post content, access analytics, or operate platform accounts without adequate approval. <br>
-Mitigation: Require separate explicit approval before using other tools to publish content, access analytics, or act through social, advertising, or marketing accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TevfikGulep/master-marketing) <br>
+## Use Case:
 
+External users and marketing teams use this skill to plan growth strategy, repurpose content across channels, and shape campaigns around timely trends.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, plans, tables, and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces marketing strategy guidance, content remix plans, trend alerts, campaign schedules, and experiment recommendations; outputs should be reviewed before publication or operational use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact/version.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trend, timing, or platform recommendations may become stale or inaccurate before a real campaign is launched.
+
+Mitigation: Verify current trend and timing claims with up-to-date sources before publishing content or making business decisions.
+
+Risk: Generated marketing plans could affect brand, legal, or commercial outcomes if published without review.
+
+Mitigation: Require explicit human approval before publishing campaign content or acting on strategic recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tevfikgulep/skills/master-marketing)
+- [Publisher profile](https://clawhub.ai/user/tevfikgulep)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, planning tables, and campaign recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable code, install requirements, persistence, or credential access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact/version.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

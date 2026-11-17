@@ -1,41 +1,54 @@
-## Description: <br>
-Design OpenClaw-native automation systems using cron, HEARTBEAT.md, spawned sessions, specialist-agent delegation, first-class tools, MCPs, and local scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design OpenClaw-native automation systems using cron, HEARTBEAT.md, spawned sessions, specialist-agent delegation, first-class tools, MCPs, and local scripts.
 
-## Publisher: <br>
-[lsj210001](https://clawhub.ai/user/lsj210001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lsj210001](https://clawhub.ai/user/lsj210001)
 
-## Use Case: <br>
-Developers and operators use this skill to design OpenClaw-native automation workflows, choose the right execution plane, and define state, deduplication, delivery, and recovery behavior for recurring or event-driven work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automation designs can schedule work, connect data sources, or trigger external actions that have operational impact if enabled without review. <br>
-Mitigation: Review schedules, cancellation paths, data sources, persistent state files, external connectors, and approval checkpoints before enabling an automation. <br>
-Risk: Workflows that publish, pay, modify configuration, or perform destructive changes can create unintended outcomes if approval is skipped. <br>
-Mitigation: Require explicit user approval before public posts, payments, destructive changes, or configuration changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Automation Architecture](https://clawhub.ai/lsj210001/openclaw-automation-architecture) <br>
-- [Decision Matrix](references/decision-matrix.md) <br>
-- [OpenClaw Workflow Patterns](references/patterns.md) <br>
+## Use Case:
 
+Developers and operators use this skill to choose execution planes and design OpenClaw-native automation workflows for reminders, scheduled reports, monitoring, alerting, and agent orchestration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations cover execution plane, rationale, state and deduplication, failure handling, and whether native OpenClaw or an external workflow tool is justified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automation recommendations may lead to persistent cron jobs, heartbeat tasks, or spawned agents that continue running after the initial design session.
+
+Mitigation: Review schedules, delivery targets, state storage, deduplication, and failure behavior before enabling recurring or background automation.
+
+Risk: Workflows that send external messages or touch business-critical data can create operational impact if configured without approval gates.
+
+Mitigation: Require explicit human approval before external sends, destructive actions, or changes involving sensitive production data.
+
+## Reference(s):
+
+- [Decision Matrix](references/decision-matrix.md)
+- [OpenClaw Workflow Patterns](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/lsj210001/skills/openclaw-automation-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with recommendations, plans, and inline code or shell commands when implementation is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include state, deduplication, failure-handling, and delivery plans for automations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

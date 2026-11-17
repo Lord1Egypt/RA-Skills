@@ -1,45 +1,61 @@
-## Description: <br>
-Neta API community skill for browsing interactive feeds, viewing collection details, interacting with content, and browsing content by tags and characters in a community context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neta API community skill for browsing interactive feeds, viewing collection details, interacting with works, and browsing content by tags and characters in a community context.
 
-## Publisher: <br>
-[huxiuhan](https://clawhub.ai/user/huxiuhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huxiuhan](https://clawhub.ai/user/huxiuhan)
 
-## Use Case: <br>
-External users and agents use this skill to browse Neta community feeds, inspect works, query tags and characters, and perform community interactions such as likes, favorites, comments, follows, and unfollows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an account token to perform account-changing actions such as liking, favoriting, commenting, following, or unfollowing. <br>
-Mitigation: Use read-only browsing by default and require explicit confirmation before any account-changing action. <br>
-Risk: Feed responses, profile data, or debug logs may contain community or account information. <br>
-Mitigation: Avoid saving responses or logs unless they can be protected and deleted. <br>
+## Use Case:
 
+External users and developers use this skill to browse Neta community works, inspect collection details, discover tag and character context, and perform account interactions such as likes, favorites, comments, and follows.
 
-## Reference(s): <br>
-- [Neta Community on ClawHub](https://clawhub.ai/huxiuhan/neta-community) <br>
-- [huxiuhan publisher profile](https://clawhub.ai/user/huxiuhan) <br>
-- [Best Practices for Interactive Feed](references/interactive-feed.md) <br>
-- [Social Interaction Skills](references/social-interactive.md) <br>
-- [Best Practices for Hashtag Research](references/hashtag-research.md) <br>
-- [Best Practices for Character Search (Community)](references/character-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and API workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NETA_TOKEN and the Neta CLI for authenticated account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill uses authenticated Neta CLI access and can affect a user's community account through likes, favorites, comments, and follows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped token where available and confirm every account-affecting action before execution.
+
+Risk: The installation guidance uses an unpinned global CLI package install.
+
+Mitigation: Prefer a pinned, locally installed CLI version and verify the installed package before use.
+
+Risk: Authenticated API responses may include account or community data that should not be exposed in shared files or logs.
+
+Mitigation: Avoid saving authenticated responses in shared temporary paths and keep debug logging narrow.
+
+## Reference(s):
+
+- [Neta Community on ClawHub](https://clawhub.ai/huxiuhan/skills/neta-community)
+- [Best Practices for Interactive Feed](artifact/references/interactive-feed.md)
+- [Social Interaction Skills](artifact/references/social-interactive.md)
+- [Best Practices for Hashtag Research](artifact/references/hashtag-research.md)
+- [Best Practices for Character Search](artifact/references/character-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated Neta CLI commands that affect the user's community account.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

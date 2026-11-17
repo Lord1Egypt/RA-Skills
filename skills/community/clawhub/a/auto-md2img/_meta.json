@@ -1,6 +1,32 @@
 {
-  "ownerId": "kn76hg4ndfv46zxnfxgh46em7n82m5n2",
-  "slug": "auto-md2img",
+  "name": "auto-md2img",
   "version": "1.3.1",
-  "publishedAt": 1773589290409
+  "description": "自动将 Markdown 内容转换为图片，支持按高度分页、JPEG质量调整，完整支持中文、智能分页、Emoji、代码高亮、GitHub 风格渲染。",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "tags": ["markdown", "image", "convert", "md2img", "puppeteer", "pagination", "quality", "chinese"],
+  "homepage": "https://github.com/openclaw/auto-md2img",
+  "repository": "https://github.com/openclaw/auto-md2img.git",
+  "keywords": ["markdown", "image", "converter", "markdown-to-image", "md2png", "pagination", "quality-adjustment", "chinese"],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "puppeteer": "^21.7.0",
+    "marked": "^4.3.0"
+  },
+  "skill": {
+    "emoji": "🖼️",
+    "requires": {
+      "bins": ["node", "npm"]
+    },
+    "install": [
+      {
+        "id": "npm",
+        "kind": "npm",
+        "script": "npm install",
+        "label": "Install dependencies"
+      }
+    ]
+  }
 }

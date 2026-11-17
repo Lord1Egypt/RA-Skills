@@ -1,0 +1,7 @@
+interface:
+  display_name: "Premium Web UI Designer"
+  short_description: "Polish web apps into premium modern interfaces."
+  default_prompt: "Use $premium-web-ui-designer to redesign this web app so it feels premium, modern, and production-ready."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,40 +1,58 @@
-## Description: <br>
-Create, share, import, and manage standardized Feishu ClawBot identity cards to identify and remember AI agents in chats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, share, import, render, and manage standardized Feishu ClawBot identity cards for AI agents.
 
-## Publisher: <br>
-[HMyaoyuan](https://clawhub.ai/user/HMyaoyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[hmyaoyuan](https://clawhub.ai/user/hmyaoyuan)
 
-## Use Case: <br>
-Developers and Feishu bot operators use this skill to mint, export, import, list, and render standardized identity cards for AI agents in Feishu chats and local registries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Rendered share cards can include shell import commands derived from card data supplied by another party. <br>
-Mitigation: Inspect shared card data before use, avoid running rendered import commands from untrusted cards, and import only reviewed raw JSON from trusted recipients. <br>
+## Use Case:
 
+Developers and Feishu bot operators use this skill to mint local FCC v1 identity cards, exchange them with other agents, and render cards as Feishu rich text JSON for chat workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/HMyaoyuan/feishu-clawbot-card) <br>
-- [Usage guide](artifact/SKILL.md) <br>
-- [FCC v1 protocol schema](artifact/src/CardProtocol.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Feishu card JSON, local registry entries, and rendered Feishu Rich Text JSON for agent identity cards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Rendered cards can include import commands built from untrusted card text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat received cards as untrusted data and rewrite import actions into a safe file-based or stdin-based workflow before execution.
+
+Risk: The skill modifies the local rolodex.json registry when minting or importing cards.
+
+Mitigation: Review registry changes after use and keep backups or version control for local card data.
+
+Risk: Dependency posture may change over time.
+
+Mitigation: Pin or update Node.js dependencies before deployment and review the lockfile as part of installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hmyaoyuan/skills/feishu-clawbot-card)
+- [Feishu ClawBot Card usage guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and Feishu rich text JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill reads and writes a local rolodex.json registry and validates cards against the FCC v1 schema.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

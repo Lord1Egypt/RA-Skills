@@ -1,70 +1,82 @@
-## Description: <br>
-Baidu Map JSAPI GL provides Baidu Maps JSAPI WebGL guidance for map initialization, overlays, layers, events, styling, route planning, local search, geocoding, coordinate conversion, and performance-oriented 3D map development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+百度地图 JSAPI WebGL (BMapGL)完整开发指南，覆盖地图初始化、覆盖物、图层、事件、样式、性能优化的任务，一站式开发高性能 3D 地图应用。
 
-## Publisher: <br>
-[baidu-maps](https://clawhub.ai/user/baidu-maps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidu-maps](https://clawhub.ai/user/baidu-maps)
 
-## Use Case: <br>
-Developers use this skill to build and debug Baidu Maps JSAPI WebGL applications, including map pages, overlays, interactive events, custom styles, tile layers, route planning, local search, geocoding, and coordinate conversion. It also guides users who need to obtain or troubleshoot a browser-side Baidu Maps AK. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baidu Maps AK values can be exposed or abused if pasted into prompts, source control, or unrestricted browser applications. <br>
-Mitigation: Keep real keys out of prompts and repositories, use BMAP_JSAPI_KEY only through approved configuration, and restrict keys with domain or IP allowlists and quotas. <br>
-Risk: Map, route, search, geocoding, and coordinate-conversion examples may send precise addresses or coordinates to Baidu services. <br>
-Mitigation: Get appropriate user consent before using precise location data and avoid submitting unnecessary personal or sensitive locations. <br>
-Risk: Tile-layer examples include non-HTTPS endpoint patterns that could expose map traffic or be blocked by secure pages. <br>
-Mitigation: Prefer HTTPS tile endpoints and validate third-party tile service terms before deployment. <br>
-Risk: InfoWindow and custom overlay examples can render HTML supplied by application data. <br>
-Mitigation: Sanitize user-controlled content before placing it into InfoWindow or custom overlay HTML. <br>
+## Use Case:
 
+Developers and engineers use this skill for Chinese-language guidance and examples when building Baidu Maps JSAPI GL web applications, including map initialization, overlays, layers, events, route planning, local search, geocoding, coordinate conversion, styling, and AK setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baidu-maps/baidu-map-jsapi-gl) <br>
-- [Baidu Maps Open Platform](https://lbsyun.baidu.com/) <br>
-- [Baidu Maps AK console](https://lbsyun.baidu.com/apiconsole/key) <br>
-- [基础类](references/base-classes.md) <br>
-- [通用常量](references/constants.md) <br>
-- [地图初始化](references/map-init.md) <br>
-- [覆盖物通用操作](references/overlay-common.md) <br>
-- [Marker 点标记](references/marker.md) <br>
-- [Polyline 折线](references/polyline.md) <br>
-- [Polygon 多边形](references/polygon.md) <br>
-- [Circle 圆形](references/circle.md) <br>
-- [CustomOverlay 自定义覆盖物](references/custom-overlay.md) <br>
-- [InfoWindow 信息窗口](references/info-window.md) <br>
-- [地图事件](references/map-events.md) <br>
-- [覆盖物事件](references/overlay-events.md) <br>
-- [个性化地图样式](references/map-style.md) <br>
-- [XYZLayer 第三方图层](references/xyz-layer.md) <br>
-- [MVTLayer 矢量瓦片图层](references/mvt-layer.md) <br>
-- [路径规划通用配置](references/route-common.md) <br>
-- [DrivingRoute 驾车路线规划](references/driving-route.md) <br>
-- [WalkingRoute 步行路线规划](references/walking-route.md) <br>
-- [RidingRoute 骑行路线规划](references/riding-route.md) <br>
-- [TransitRoute 公交路线规划](references/transit-route.md) <br>
-- [LocalSearch 本地检索](references/local-search.md) <br>
-- [Geocoder 地理编码](references/geocoder.md) <br>
-- [Convertor 坐标转换](references/convertor.md) <br>
-- [获取密钥（AK）](references/get-ak.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and HTML code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Baidu Maps JSAPI browser AK, represented in metadata as BMAP_JSAPI_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: A Baidu Maps AK that is unrestricted or broadly shared can be misused or exhaust service quota.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a browser-side AK with appropriate Referer restrictions, enabled services limited to the application need, and quota monitoring before production use.
+
+Risk: Location, address, route, and POI queries may expose sensitive user or business location data.
+
+Mitigation: Disclose collection, minimize precise location data, avoid unnecessary retention, and handle addresses and coordinates according to the application's privacy requirements.
+
+Risk: Examples that place user-controlled values into HTML strings or use HTTP tile endpoints can introduce content-injection or transport-security issues.
+
+Mitigation: Sanitize or construct DOM content safely and replace HTTP tile URLs with HTTPS endpoints before adopting snippets in production.
+
+## Reference(s):
+
+- [Baidu Maps Open Platform](https://lbsyun.baidu.com/)
+- [Baidu Maps API Console](https://lbsyun.baidu.com/apiconsole/key)
+- [AK setup](references/get-ak.md)
+- [Base classes](references/base-classes.md)
+- [Constants](references/constants.md)
+- [Map initialization](references/map-init.md)
+- [Overlay common operations](references/overlay-common.md)
+- [Marker](references/marker.md)
+- [Polyline](references/polyline.md)
+- [Polygon](references/polygon.md)
+- [Circle](references/circle.md)
+- [Custom overlay](references/custom-overlay.md)
+- [Info window](references/info-window.md)
+- [Map events](references/map-events.md)
+- [Overlay events](references/overlay-events.md)
+- [Map style](references/map-style.md)
+- [XYZ layer](references/xyz-layer.md)
+- [MVT layer](references/mvt-layer.md)
+- [Route common configuration](references/route-common.md)
+- [Driving route](references/driving-route.md)
+- [Walking route](references/walking-route.md)
+- [Riding route](references/riding-route.md)
+- [Transit route](references/transit-route.md)
+- [Local search](references/local-search.md)
+- [Geocoder](references/geocoder.md)
+- [Coordinate convertor](references/convertor.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and HTML code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Baidu Maps browser AK exposed to the agent as BMAP_JSAPI_KEY when examples need authenticated JSAPI access.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter shows 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Generate professional PDF invoices from simple text commands. Supports multiple currencies, tax calculation, CJK text, and customizable templates. No external service needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional PDF invoices from simple text commands with multiple currencies, tax calculation, CJK text support, and no external service requirement.
 
-## Publisher: <br>
-[zacjiang](https://clawhub.ai/user/zacjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zacjiang](https://clawhub.ai/user/zacjiang)
 
-## Use Case: <br>
-External users, freelancers, and business operators use this skill to create itemized PDF invoices from simple commands or structured billing details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Invoice PDFs can contain client, business, payment, and tax details. <br>
-Mitigation: Review invoice fields before generation and store generated PDFs according to the user's data-handling requirements. <br>
-Risk: The selected output filename can overwrite an existing file. <br>
-Mitigation: Confirm the output path before running the generation command. <br>
-Risk: The script requires the local reportlab dependency and optional CJK fonts. <br>
-Mitigation: Install dependencies deliberately, preferably in a virtual environment, and add CJK fonts only when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zacjiang/invoice-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/zacjiang) <br>
+## Use Case:
 
+External users, freelancers, and small-business operators use this skill to create print-ready PDF invoices from natural language or structured billing details. Agents can call the bundled script to calculate subtotals, tax, totals, invoice numbers, due terms, notes, and currency-formatted line items.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance and shell commands that generate a PDF invoice file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PDF invoice files and may include client, business, payment, and tax details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup guidance includes optional sudo package-install commands for CJK fonts that modify system packages.
+
+Mitigation: Run those commands only in an appropriate environment and only after reviewing the package source and system impact.
+
+Risk: The PDF generator depends on ReportLab.
+
+Mitigation: Install the dependency in a virtual environment and pin ReportLab to a reviewed version before operational use.
+
+Risk: The release advertises customizable templates, while the security guidance says to verify or extend that capability before relying on it.
+
+Mitigation: Review the bundled script and add the required template controls before promising customized invoice layouts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zacjiang/skills/invoice-gen)
+- [Publisher profile](https://clawhub.ai/user/zacjiang)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PDF file plus Markdown guidance with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local invoice PDFs using ReportLab; supports itemized billing, tax calculation, multiple currencies, optional notes, and optional CJK font support.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

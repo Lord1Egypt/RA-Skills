@@ -34,7 +34,7 @@ meta:
     celo-mainnet: "0x9bCa3a623e7b2e248510d88B2894F54898d88F91"
     base-mainnet: "0xA87F76e99f6C8Ff8996d14f550ceF47f193D9A09"
     scroll-mainnet: "0x1bF9D75d50fD828a93f69ECB06f2B85767792CEB"
-    degenchain: "0x38ed5512Ac11926bB697F4CF4eE0DD04358E2E7e"
+    arc-mainnet: "0x1bF9D75d50fD828a93f69ECB06f2B85767792CEB"
 
 # PIC (Patrician In Charge) — the account that receives sentinel rewards for a given Super Token
 # bond        — the amount staked by the PIC; grows with accrued rewards, shrinks with the exit stream
@@ -59,7 +59,7 @@ getCurrentPICInfo:
     - token: address
   outputs:
     - pic: address
-    - bond: uint256
+    - bondAmount: uint256   # named `bond` before ethereum-contracts v1.15.3 (same selector)
     - exitRate: int96
 
 getDefaultExitRateFor:
@@ -101,6 +101,20 @@ changeExitRate:
   emits: [ExitRateChanged]
 
 # == Bidding ==
+
+bond:
+  # ERC-20 alternative to bidding via ERC-777 send(): pulls `amount` with transferFrom
+  # (approve TOGA first). Non-PIC caller bids to become PIC; current PIC increases its bond.
+  # exitRate is ignored for the current PIC; use getDefaultExitRateFor(token, amount) for a default.
+  notes:
+    - "Gotcha: Added in ethereum-contracts v1.15.3 (ITOGAv4). Deployed only on arc-mainnet as of 2026-10-28; other networks' TOGA reverts, so bid via ERC-777 send() there."
+  mutability: nonpayable
+  access: anyone
+  inputs:
+    - token: address
+    - amount: uint256
+    - exitRate: int96
+  emits: [NewPIC, BondIncreased]
 
 tokensReceived:
   # ERC-777 tokensReceived hook — the entry point for new bids and bond increases.

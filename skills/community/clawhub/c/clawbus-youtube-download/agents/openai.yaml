@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube Download"
+  short_description: "Download YouTube videos with yt-dlp"
+  default_prompt: "Use $youtube-download to download a YouTube video."

@@ -1,6 +1,85 @@
 {
-  "ownerId": "kn756twg5jsnq9saxvtbb8frb982wk2h",
-  "slug": "msteamschinaadapter",
-  "version": "10.0.2",
-  "publishedAt": 1778047158075
+  "name": "msteams-china-patch",
+  "version": "10.1.0",
+  "description": "Patch OpenClaw to support Microsoft Teams China (世纪互联/21Vianet). SDK cloud injection, plugin dist patches, environment variables, auto-detect version upgrade and auto-fix.",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "msteams",
+    "teams",
+    "china",
+    "21vianet",
+    "patch",
+    "ssrf",
+    "allowlist",
+    "cloud",
+    "SDK",
+    "auto-detect",
+    "auto-fix",
+    "upgrade"
+  ],
+  "capabilities": [
+    "diagnose",
+    "patch",
+    "verify",
+    "report",
+    "ssrf-allowlist",
+    "sdk-cloud-injection",
+    "env-var-setup",
+    "plugin-dist-patch",
+    "one-click-fix",
+    "auto-detect",
+    "auto-fix",
+    "auto-restart",
+    "version-tracking"
+  ],
+  "triggers": [
+    "AADSTS90002",
+    "SigningKeyNotFoundError",
+    "401 Unauthorized",
+    "JWT verification failed",
+    "Teams not responding",
+    "OpenClaw upgrade",
+    "Blocked hostname (not in allowlist)",
+    "SSRF blocked",
+    "msteams.graph.message",
+    "msteams.graph.collection",
+    "sent-message state failed",
+    "failed to deliver message blocks",
+    "no reply from Teams bot",
+    "version change detected",
+    "auto-upgrade detected",
+    "heartbeat version check"
+  ],
+  "files": {
+    "skill": "SKILL.md",
+    "scripts": [
+      "scripts/patch_all_v10.cjs",
+      "scripts/auto_detect.cjs",
+      "scripts/diagnose.cjs",
+      "scripts/verify.cjs"
+    ],
+    "references": [
+      "references/endpoints.md",
+      "references/error-codes.md",
+      "references/workflow.md",
+      "references/output-standards.md"
+    ],
+    "assets": [
+      "assets/summary-template.md",
+      "assets/checklist.md"
+    ]
+  },
+  "requirements": {
+    "node": ">=18.0.0",
+    "openclaw": ">=2026.3.24"
+  },
+  "compatibility": {
+    "2026.3.24": "tested",
+    "2026.3.28": "tested",
+    "2026.4.03": "tested",
+    "2026.5.4": "tested"
+  }
 }

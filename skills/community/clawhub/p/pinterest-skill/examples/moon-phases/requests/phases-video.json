@@ -1,0 +1,26 @@
+{
+ "content": [
+  {
+   "text": "Watch one full cycle of Moon phases in 12 seconds, from the full Moon of 3 January 2026 to the next on 1 February, sped up from NASA's Scientific Visualization Studio animation of the Moon in 2026. In the sky it takes 29.5 days.",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for phases.mp4>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "PINTEREST",
+   "socialAccountId": "<socialAccountId for main>",
+   "pinterestBoardId": "<board id for 'Moon and night sky'>",
+   "title": "Moon phases in 12 seconds: one full lunar cycle",
+   "link": "https://science.nasa.gov/moon/moon-phases/"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-24T01:30:00Z"
+ }
+}

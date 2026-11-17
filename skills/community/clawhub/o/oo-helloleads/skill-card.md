@@ -1,43 +1,56 @@
-## Description: <br>
-HelloLeads (helloleads.io). Use this skill for ANY HelloLeads request - reading, creating, and updating data. Whenever a task involves HelloLeads, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HelloLeads (helloleads.io). Use this skill for ANY HelloLeads request — reading, creating, and updating data. Whenever a task involves HelloLeads, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to inspect HelloLeads connector schemas, fetch visible web form definitions, and submit confirmed web form leads through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run credentialed HelloLeads connector actions, including submitting a web form lead. <br>
-Mitigation: Use it only in a trusted ClawHub and OOMOL account context, inspect the live action schema, and confirm the exact write payload and effect before submission. <br>
-Risk: Credentialed connector access can act through the currently connected OOMOL account and HelloLeads connection. <br>
-Mitigation: Confirm the active account, connector target, and reason for the action before running commands that access or change HelloLeads data. <br>
+## Use Case:
 
+Users with a connected HelloLeads account can inspect the visible web form definition and submit a lead through an AI agent. Review and approve each lead submission before it is sent.
 
-## Reference(s): <br>
-- [ClawHub HelloLeads release page](https://clawhub.ai/oomol/oo-helloleads) <br>
-- [HelloLeads homepage](https://www.helloleads.io/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before request construction; command responses are JSON when run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence and skill frontmatter) <br>
+Risk: The automatic setup can execute downloaded CLI code that was unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately; prefer a verified, fixed release.
+
+Risk: Automatic agent-skill synchronization may change instructions after review, and HelloLeads data passes through OOMOL.
+
+Mitigation: Review synchronized changes and ensure the data flow through OOMOL is acceptable before use.
+
+## Reference(s):
+
+- [HelloLeads homepage](https://www.helloleads.io/)
+- [HelloLeads web form documentation](https://helloleads.io/knowledge-base/converting-your-website-enquires-as-leads/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [HelloLeads ClawHub release](https://clawhub.ai/oomol/skills/oo-helloleads)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON responses and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected HelloLeads account and selected action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

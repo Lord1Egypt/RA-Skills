@@ -1,41 +1,49 @@
-## Description: <br>
-Retrieves structured Douyin work details for content analysis, including post details, interaction metrics, image/text details, and related media fields through SocialDataX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于抖音数据分析、抖音作品详情、图文详情、作品数据、互动指标、内容调研和内容分析。覆盖 Douyin work details，来自 SocialDataX 社媒数据助手。
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve read-only social media work details from SocialDataX for Douyin content research and interaction analysis. The artifact also documents Weibo and WeChat Channels detail retrieval through the same API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Douyin-focused name understates that the artifact also covers Weibo and WeChat Channels detail retrieval. <br>
-Mitigation: Confirm the intended platform before running a lookup and disclose when using non-Douyin commands. <br>
-Risk: The skill requires SOCIALDATAX_API_KEY for SocialDataX data calls. <br>
-Mitigation: Use a scoped SocialDataX key, keep it in environment variables, and avoid sharing it in prompts or logs. <br>
+## Use Case:
 
+Developers, analysts, and content researchers use this skill to retrieve structured details for a Douyin work, including available content and interaction metrics.
 
-## Reference(s): <br>
-- [SocialDataX API access homepage](https://socialdatax.52choujiang.com/?from=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/socialdatax-douyin-detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the SocialDataX CLI prints JSON containing platform, tool, arguments, and data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, and SOCIALDATAX_API_KEY; detail lookups are read-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: evidence.release.version) <br>
+Risk: The security assessment flags repeated installation of an unpinned latest CLI, creating supply-chain risk for commands that may handle credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the CLI version before installation, especially before entering an API key, and follow the skill's credential-handling guidance.
+
+## Reference(s):
+
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON containing Douyin work details and available engagement metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned fields depend on the Douyin work and the platform response.]
+
+## Skill Version(s):
+
+0.1.22 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

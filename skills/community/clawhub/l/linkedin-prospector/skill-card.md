@@ -1,41 +1,55 @@
-## Description: <br>
-Score LinkedIn prospects by signal strength (0-3) to detect high-intent leads such as new jobs, funding, recent relevant posts, or active hiring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents research public LinkedIn companies, people, and jobs for B2B prospecting through ClawLink.
 
-## Publisher: <br>
-[romainrabreau](https://clawhub.ai/user/romainrabreau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Sales, recruiting, and outreach users can have an agent score prospect lists by observable LinkedIn-related signals before deciding whom to contact. The skill is intended as a decision framework and does not log into LinkedIn or send messages automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach or prospect prioritization could be used without adequate human review. <br>
-Mitigation: Review any generated outreach before sending and confirm that each score is based on observable, relevant signals. <br>
-Risk: Use of prospect data or messages may conflict with LinkedIn rules, privacy expectations, or anti-spam laws. <br>
-Mitigation: Confirm that prospect data handling and outreach comply with applicable platform rules, privacy expectations, and anti-spam requirements. <br>
+## Use Case:
 
+Sales and recruiting teams use the skill to research public LinkedIn profiles, companies, and hiring signals, build prospect lists, and find work emails for user-requested outreach.
 
-## Reference(s): <br>
-- [LinkedIn Prospector on ClawHub](https://clawhub.ai/romainrabreau/linkedin-prospector) <br>
-- [Publisher Homepage](https://openclaw-courses-fawn.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text prospect scoring notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores prospects from 0-3, sorts by priority, and summarizes specific observable signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Installing and pairing the ClawLink plugin connects OpenClaw to a paid service, and lookups spend credit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with the user's consent; check live prices and confirm costly calls or large batches before proceeding.
+
+Risk: Email lookups involve personal contact data and cost more than ordinary searches.
+
+Mitigation: Use email searches only for explicitly requested outreach, confirm the count and cost, and follow applicable outreach laws.
+
+## Reference(s):
+
+- [LinkedIn Prospector on ClawHub](https://clawhub.ai/hith3sh/skills/linkedin-prospector)
+- [ClawLink OpenClaw documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink pricing](https://claw-link.dev/pricing?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-prospector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Chat summaries and prospect lists in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public-data lookups; individual calls spend ClawLink credit.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

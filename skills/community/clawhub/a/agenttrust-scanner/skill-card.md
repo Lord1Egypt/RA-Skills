@@ -1,43 +1,65 @@
-## Description: <br>
-AgentTrust scans AI agent skills and MCP manifests for security issues and returns signed ACT/HALT receipts, findings, and trust guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentTrust scans AI agent skills and MCP server manifests for security threats and returns signed ACT/HALT trust receipts.
 
-## Publisher: <br>
-[poteshniy](https://clawhub.ai/user/poteshniy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poteshniy](https://clawhub.ai/user/poteshniy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan SKILL.md content, MCP manifests, endpoints, wallet addresses, or content hashes before an agent acts or pays. It helps produce security findings, trust scores, and signed verification receipts for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected skill content, MCP manifests, endpoint URLs, wallet addresses, or hashes may be sent to agenttrust.uk for analysis. <br>
-Mitigation: Submit only content the user is comfortable sharing with AgentTrust, and prefer free endpoints when they are sufficient. <br>
-Risk: Some full scans, wallet lookups, integrity checks, and reports require paid x402/USDC actions. <br>
-Mitigation: Ask for explicit approval before any paid action, and disclose the exact price and input being submitted. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to assess SKILL.md files, MCP manifests, endpoint reputation, and wallet trust signals before an agent installs, trusts, or calls external tools. The skill is intended for workflows where users explicitly approve any outbound submission and redact sensitive content first.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/poteshniy/skills/agenttrust-scanner) <br>
-- [AgentTrust service](https://agenttrust.uk) <br>
-- [IETF verification-state draft](https://datatracker.ietf.org/doc/draft-krausz-verification-state/) <br>
-- [AgentTrust JWKS](https://agenttrust.uk/.well-known/jwks.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP request details, JSON request and response descriptions, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external AgentTrust endpoints; paid x402/USDC actions require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Skill or manifest content may be transmitted outside the local machine to agenttrust.uk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit approval before each submission and disclose that the selected content will leave the local environment.
+
+Risk: Submitted content may contain credentials, tokens, internal URLs, or other sensitive material.
+
+Mitigation: Redact secrets and internal details by default, skip submission when redaction is not sufficient, and prefer local summarization for sensitive material.
+
+Risk: Paid endpoints may incur x402 USDC charges on Base.
+
+Mitigation: Confirm the exact cost with the user before using any paid endpoint.
+
+Risk: Installing the MCP server fetches an npm package.
+
+Mitigation: Verify the pinned package version, publisher, and integrity before adding the MCP server configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/poteshniy/skills/agenttrust-scanner)
+- [AgentTrust service host](https://agenttrust.uk)
+- [AgentTrust JWKS](https://agenttrust.uk/.well-known/jwks.json)
+- [IETF Verification State draft](https://datatracker.ietf.org/doc/draft-krausz-verification-state/)
+- [AgentTrust receipt mapping](https://raw.githubusercontent.com/poteshniy/agenttrust/main/docs/mapping-v0.3.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with endpoint descriptions, shell commands, JSON configuration, and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit per-request consent before transmitting content to agenttrust.uk; paid endpoints require explicit x402 USDC cost confirmation.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

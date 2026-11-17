@@ -1,0 +1,42 @@
+{
+  "name": "trade-tracker",
+  "version": "1.1.0",
+  "description": "交易追踪与归因分析 v1.1.0。交易复盘、成本分析、持仓结构、策略标签归类、多策略对比、ASCII盈亏分布图。",
+  "author": "ChengQian (成乾)",
+  "license": "MIT",
+  "keywords": [
+    "trading",
+    "tracking",
+    "交易复盘",
+    "归因分析",
+    "投资收益",
+    "持仓分析"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "track": "python3 scripts/trade_tracker.py --file"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "data-analysis",
+    "region": "cn",
+    "dependencies": [],
+    "emoji": "💰"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cqdev-ai/trade-tracker"
+  }
+}

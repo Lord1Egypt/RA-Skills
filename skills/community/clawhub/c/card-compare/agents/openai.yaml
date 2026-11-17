@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Compare"
+  short_description: "Compare two US credit cards side by side"
+  default_prompt: "Use $card-compare to compare Chase Sapphire Preferred vs Capital One Venture X."

@@ -1,0 +1,60 @@
+{
+  "title": "AI-ADLC Data",
+  "description": "Per-project data shape for AI-ADLC (Architecture Design Life Cycle). One file per project.",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema": {"type":"string"},
+    "$schemaVersion": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy": {"type":"string","const":"AI-DFE"},
+    "$generatedOn": {"type":"string","format":"date-time"},
+    "$family": {"type":"string"},
+    "$package": {"type":"string","const":"ai-adlc"},
+    "data": {
+      "type":"object",
+      "required":["projectId","status"],
+      "properties": {
+        "projectId": {"type":["string","null"]},
+        "systemName": {"type":["string","null"]},
+        "projectHandle": {"type":["string","null"]},
+        "status": {"type":["string","null"],"enum":["In Progress","Paused","Complete",null]},
+        "currentPhase": {"type":["string","null"]},
+        "currentStage": {"type":["integer","null"]},
+        "workflowDepth": {"type":["string","null"],"enum":["Minimal","Standard","Comprehensive",null]},
+        "inputMode": {"type":["string","null"]},
+        "started": {"type":["string","null"],"format":"date-time"},
+        "lastUpdated": {"type":["string","null"],"format":"date-time"},
+        "producerVersion": {"type":["string","null"]},
+        "enabledExtensions": {"type":"array","items":{"type":"string"}},
+        "containers": {"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"technology":{"type":["string","null"]},"responsibility":{"type":["string","null"]}}}},
+        "adrs": {"type":"array","items":{"type":"object","properties":{"number":{"type":"integer"},"title":{"type":"string"},"stage":{"type":["integer","null"]},"status":{"type":"string"},"summary":{"type":["string","null"]}}}},
+        "principles": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"summary":{"type":["string","null"]}}}},
+        "constraints": {"type":"array","items":{"type":"object","properties":{"constraint":{"type":"string"},"source":{"type":["string","null"]},"impact":{"type":["string","null"]}}}},
+        "openQuestions": {"type":"array","items":{"type":"object","properties":{"number":{"type":"integer"},"question":{"type":"string"},"priority":{"type":["string","null"]},"raisedAt":{"type":["string","null"]},"targetStage":{"type":["string","null"]}}}},
+        "progress": {"type":"array","items":{"type":"object","properties":{"stage":{"type":"integer"},"name":{"type":"string"},"status":{"type":"string"},"completed":{"type":["string","null"]},"notes":{"type":["string","null"]}}}},
+        "decisions": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"date":{"type":"string"},"summary":{"type":"string"},"status":{"type":"string"}}}},
+        "changes": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"date":{"type":"string"},"description":{"type":"string"},"status":{"type":"string"}}}},
+        "issues": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"description":{"type":"string"},"priority":{"type":"string"},"status":{"type":"string"},"owner":{"type":["string","null"]}}}},
+        "lessons": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"lesson":{"type":"string"},"stage":{"type":["string","null"]},"captured":{"type":["string","null"]}}}},
+        "arch": {"type":["object","null"],"description":"Architecture pane for the dashboard Architect tab (BUILD_GUIDE §2.1.4). Assembled by AI-DFE into dashboard-data.json projects[].arch.","properties":{
+          "status":{"type":["string","null"]},
+          "phase":{"type":["string","null"]},
+          "stage":{"type":["string","null"]},
+          "stageNum":{"type":["integer","null"]},
+          "c4Progress":{"type":["object","null"],"properties":{"context":{"type":["string","null"]},"container":{"type":["string","null"]},"component":{"type":["string","null"]},"code":{"type":["string","null"]}}},
+          "vision":{"type":["object","null"],"properties":{"status":{"type":["string","null"]},"statement":{"type":["string","null"]},"optimisesFor":{"type":"array","items":{"type":"string"}},"path":{"type":["string","null"]}}},
+          "principles":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"summary":{"type":["string","null"]}}}},
+          "constraints":{"type":"array","items":{"type":"object","properties":{"id":{"type":["string","null"]},"text":{"type":"string"},"impact":{"type":["string","null"]}}}},
+          "nfrs":{"type":["object","null"],"description":"Object keyed by NFR name → {defined,target,priority}"},
+          "integrations":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"type":{"type":["string","null"]},"direction":{"type":["string","null"]},"status":{"type":["string","null"]}}}},
+          "adrs":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"status":{"type":["string","null"]},"date":{"type":["string","null"]},"path":{"type":["string","null"]}}}},
+          "risks":{"type":"array","items":{"type":"object","properties":{"text":{"type":"string"},"severity":{"type":["string","null"]}}}},
+          "techStack":{"type":["object","null"],"description":"Grouped object","properties":{"languages":{"type":"array"},"frameworks":{"type":"array"},"databases":{"type":"array"},"infrastructure":{"type":"array"},"messaging":{"type":"array"},"observability":{"type":"array"}}},
+          "containers":{"type":"array","items":{"type":"object","properties":{"name":{"type":"string"},"type":{"type":["string","null"]},"tech":{"type":["string","null"]}}}},
+          "c4Diagrams":{"type":["object","null"],"description":"l1/l2/l3 → {mermaid,path,status}","properties":{"l1":{"type":["object","null"]},"l2":{"type":["object","null"]},"l3":{"type":["object","null"]}}},
+          "diagrams":{"type":["object","null"],"description":"security/data/api/infrastructure → {mermaid,path,label}","properties":{"security":{"type":["object","null"]},"data":{"type":["object","null"]},"api":{"type":["object","null"]},"infrastructure":{"type":["object","null"]}}}
+        }}
+      }
+    }
+  }
+}

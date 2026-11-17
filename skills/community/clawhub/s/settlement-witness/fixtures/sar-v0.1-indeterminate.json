@@ -1,0 +1,11 @@
+{
+  "sar_version": "0.1",
+  "task_id_hash": "sha256:fixture-task-001",
+  "verdict": "INDETERMINATE",
+  "confidence": 0,
+  "reason_code": "SPEC_AMBIGUOUS",
+  "ts": "2026-02-14T12:00:00Z",
+  "verifier_kid": "sar-prod-ed25519-01",
+  "receipt_id": "sha256:220ad1bae9f1136fd7d4d2e5bda3980aeb6f5fa61b188581058a9bac7210cfc4",
+  "sig": "base64url:the4F62ZwcHFC2lOzNeVplBg5PnFwwRdpEsMJeNtu07g1S3x2gavuBoxDHR7ZHmFmbNjbFBSqZfsqKZb1zwPDw"
+}

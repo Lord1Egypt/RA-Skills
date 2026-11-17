@@ -1,42 +1,52 @@
-## Description: <br>
-Use JD Logistics (Jingdong Express) for shipment tracking, shipping guidance, service-type comparison, outlet lookup, and delivery-time or fee estimation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use JD Logistics (京东快递) for shipment tracking, shipping guidance, service-type comparison, outlet lookup, and delivery-time or fee estimation.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and support agents use this skill to answer routine JD Logistics questions, including shipment tracking, service comparison, fee or delivery-time estimation, outlet lookup, and return pickup guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local runtime features may retain shipment history, subscription records, and possibly address records under ~/.openclaw/data/jdl-express/.
+
+Mitigation: Use persistence only when needed, disclose the local storage behavior when relevant, and use the documented privacy info, export, and clear controls for retained data.
+
+Risk: Fee and delivery-time answers may be estimates when exact JD Logistics data is unavailable.
+
+Mitigation: State assumptions, provide cautious ranges, and do not claim to complete real shipping actions unless live tools are available and confirmed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and support agents use this skill to get JD Logistics shipment guidance, compare JD Express service tiers, estimate delivery timing or fees, and prepare return pickup workflows. It provides practical guidance and cautions users when exact shipping actions or live prices cannot be confirmed. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Local runtime features may store shipment query history, subscription records, saved address records, encrypted helper files, and privacy exports under ~/.openclaw/data/jdl-express/. <br>
-Mitigation: Use local persistence only when needed, disclose the storage paths for privacy-sensitive workflows, and use the documented privacy info, clear, and export controls when appropriate. <br>
-Risk: The skill can provide shipping estimates and workflow guidance, but exact fees, timing, tracking status, or real shipping actions may require live JD Logistics tools. <br>
-Mitigation: State assumptions for estimates, ask for only the missing shipment details, and do not claim to complete real shipping actions unless live tools are available and confirmed. <br>
+**Output Format:** [Markdown or plain text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/jdl-express) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [May include cautious delivery-time or fee estimates with stated assumptions when exact values cannot be confirmed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with concise estimates, comparisons, and workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, pickup instructions, service-tier comparisons, and privacy disclosures when local runtime persistence is relevant.] <br>
+1.0.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

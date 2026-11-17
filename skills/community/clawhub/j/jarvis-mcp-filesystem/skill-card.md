@@ -1,41 +1,55 @@
-## Description: <br>
-Provides an MCP filesystem server through mcporter so an agent can read files, list directories, search by pattern, and inspect file metadata inside a configured workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jarvis MCP Filesystem lets an agent use mcporter with an MCP filesystem server to read files, list directories, search by pattern, and inspect file metadata within the workspace.
 
-## Publisher: <br>
-[claudedamir-art](https://clawhub.ai/user/claudedamir-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claudedamir-art](https://clawhub.ai/user/claudedamir-art)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give Jarvis controlled filesystem access for reading, listing, searching, and inspecting files within a configured workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent read, listing, search, and metadata access to files under the configured workspace, which can expose secrets or unrelated private data if the root is too broad. <br>
-Mitigation: Configure the workspace root narrowly, keep secrets and unrelated private data outside that root, and review access before deployment. <br>
-Risk: The skill depends on external command-line packages for filesystem access. <br>
-Mitigation: Verify or pin the required packages before using the skill in sensitive environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give Jarvis workspace-scoped filesystem access through MCP commands for reading files, listing directories, searching files, and checking file metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/claudedamir-art/jarvis-mcp-filesystem) <br>
-- [Model Context Protocol Servers](https://github.com/modelcontextprotocol/servers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filesystem access is scoped to the configured workspace root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill enables broad read access to the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with workspaces that do not contain secrets, credentials, or sensitive agent memory.
+
+Risk: The documented installation uses an unpinned global npm package.
+
+Mitigation: Prefer a pinned, locally scoped install of the MCP filesystem server where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claudedamir-art/skills/jarvis-mcp-filesystem)
+- [Publisher profile](https://clawhub.ai/user/claudedamir-art)
+- [Model Context Protocol servers](https://github.com/modelcontextprotocol/servers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and mcp-server-filesystem; commands are intended to stay scoped to the configured workspace root.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

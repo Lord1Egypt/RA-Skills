@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn70jzhmjk80051ypj2sespqy582fmfx",
-  "slug": "li-sentry-check",
-  "version": "0.4.0",
-  "publishedAt": 1777213210065
+  "ownerId": "kn7b7sdwcjy1etamx2zvahc5xx80k8d4",
+  "slug": "li_sentry_check",
+  "version": "0.3.0",
+  "publishedAt": 1770691893078,
+  "security": {
+    "read_only": true,
+    "network_access": "ssh_only",
+    "file_access": ["references/targets.yaml", "references/checks.yaml", "SSH key path from keyPath"],
+    "no_exfiltration": true,
+    "command_allowlist": "references/checks.yaml"
+  }
 }

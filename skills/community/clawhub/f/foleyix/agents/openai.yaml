@@ -1,0 +1,6 @@
+interface:
+  display_name: "Audio Creator · Foleyix"
+  short_description: "Create music, songs, podcasts, voices, effects and ambience"
+  default_prompt: "Use $audiocreator-foleyix to prepare a precise prompt for my requested sound, preserve my dialogue and constraints, and generate and deliver audio only if I ask for it."
+policy:
+  allow_implicit_invocation: true

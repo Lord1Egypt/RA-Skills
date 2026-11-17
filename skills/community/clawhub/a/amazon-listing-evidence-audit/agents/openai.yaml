@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing Readiness Check"
+  short_description: "Find listing gaps before rewriting or publishing."
+  default_prompt: "Use $amazon-listing-evidence-audit to check this Amazon listing and prioritize the next improvements."

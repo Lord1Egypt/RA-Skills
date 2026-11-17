@@ -1,0 +1,17 @@
+# NOTICE — Proprietary Cloud Template
+
+Copyright (c) 2026 ez-hq
+
+The MIT License in this repository covers ONLY the local Agent Skill source code and
+documentation contained in this package (search, evidence collection, validation,
+and Excel rendering scripts).
+
+The **Cloud Template** behind this SkillBot — including the screening instructions,
+step definitions, model configuration, and all prompts executed on the LoomLoom /
+CogFoundry platform — is **proprietary and confidential**. It is NOT covered by the
+MIT License and is not distributed in this package. The Cloud template lives only in
+the private template registry (`76484632-796a-4980-bfc5-180c9fd4200f`) and must not
+be reproduced, published, or re-created from this repository.
+
+You may use, modify, and redistribute the local Agent Skill code under the MIT License,
+but doing so does NOT grant any rights to the Cloud template or its prompts.

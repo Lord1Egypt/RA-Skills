@@ -1,0 +1,4 @@
+interface:
+  display_name: "企业AI落地诊断免费出报告"
+  short_description: "分析企业资料并生成可验证的三种 AI 落地诊断报告"
+  default_prompt: "使用 $enterprise-ai-opportunity-advisor-zh 分析我提供的企业资料，并生成 Markdown、HTML 和 PDF 报告。"

@@ -1,42 +1,52 @@
-## Description: <br>
-Professional Biotechnology Wet Lab Career Development Platform for personalized career planning and advancement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Biotechnology Wet Lab Career Development Platform for personalized career planning and advancement.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Biotechnology professionals, career counselors, biotech HR teams, and training program developers use this skill to generate wet lab career roadmaps, compare target roles, identify skill gaps, and review relevant hiring opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career history, skills, goals, and identifiers are sent to the provider's external API. <br>
-Mitigation: Avoid employer-confidential lab details, proprietary protocols, patient data, and unnecessary personal identifiers; review the provider's privacy and retention terms before using real profiles. <br>
-Risk: Generated career recommendations may be incomplete or unsuitable for a user's specific employment, regulatory, or training context. <br>
-Mitigation: Review recommendations with qualified career, HR, or training staff before relying on them for career or workforce decisions. <br>
+## Use Case:
 
+External biotech professionals, career counselors, HR teams, and training developers use this skill to request personalized wet lab career roadmaps, role recommendations, skill gap analysis, training priorities, and hiring opportunity summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-wet-lab-career) <br>
-- [Wet Lab Career API Docs](https://api.mkkpro.com:8152/docs) <br>
-- [Wet Lab Career API Route](https://api.mkkpro.com/career/wet-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, JSON, API calls] <br>
-**Output Format:** [JSON API responses with career roadmap guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap responses may include role recommendations, skill gap analysis, development plans, and hiring opportunities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and OpenAPI info.version) <br>
+Risk: Career profile details and optional user identifiers are sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information needed for the roadmap, avoid unnecessary personal identifiers, and review provider privacy and deletion terms before use.
+
+## Reference(s):
+
+- [OpenAPI specification](artifact/openapi.json)
+- [API documentation](https://api.mkkpro.com:8152/docs)
+- [API route](https://api.mkkpro.com/career/wet-lab)
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-wet-lab-career)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap requests include education, experience, skills, goals, sessionId, timestamp, and optional userId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

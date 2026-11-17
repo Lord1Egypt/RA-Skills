@@ -1,38 +1,54 @@
-## Description: <br>
-MedPilot manages a single-patient medication and health-tracking workflow for ingesting doctor orders, logging medication intake and home metrics, and generating follow-up summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a single-patient medication and health-tracking workflow with MedPilot. Use when the user wants to ingest doctor orders, confirm active medications, record intakes or skipped doses, log blood pressure or glucose, generate follow-up summaries, or operate the MedPilot self-use edition through its CLI or local API. NOT for: multi-patient clinic workflows, diagnosis, treatment decisions, or replacing physician judgment.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for single-patient self-management workflows: recording doctor orders, confirming active medications, logging doses or skipped doses, tracking blood pressure or glucose, and preparing follow-up summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release scanner found that examples can cross into medical interpretation and follow-up advice despite the stated boundary against diagnosis or treatment decisions. <br>
-Mitigation: Review the skill before installation, keep use to logging medications, vitals, and doctor orders, and avoid diagnosis, test-result interpretation, medication changes, or care decisions unless stronger clinical safety and privacy boundaries are added. <br>
+## Use Case:
 
+External users use this skill to manage one local patient profile by recording doctor orders, medication intake events, skipped or missed doses, blood pressure or glucose readings, and follow-up summaries. It is intended for health-management record keeping and should not be used for diagnosis, treatment decisions, medication changes, or multi-patient clinic workflows.
 
-## Reference(s): <br>
-- [MedPilot Self-Use Quickstart](references/quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI and local API command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include structured order summaries, medication state, intake logs, metric alerts, and weekly follow-up reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The release evidence flags that examples can provide overly specific medical interpretation or follow-up advice beyond the stated non-diagnostic scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only for local tracking and summaries, require clinician review for diagnosis or follow-up decisions, and avoid presenting medication changes as autonomous medical advice.
+
+Risk: The skill handles sensitive health and medication information for a local patient profile.
+
+Mitigation: Confirm privacy and storage handling before entering real health data, and keep use limited to the intended single-patient local deployment.
+
+## Reference(s):
+
+- [MedPilot Self-Use Quickstart](references/quickstart.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/medpilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured summaries and inline CLI or API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include medication records, intake logs, abnormal metric alerts, and follow-up summaries for a single local patient profile.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

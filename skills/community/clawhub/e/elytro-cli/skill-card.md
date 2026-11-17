@@ -1,40 +1,50 @@
-## Description: <br>
-Entry point for the Elytro wallet skill plus the curated DeFi sub-skills. Start here before loading any individual protocol skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entry point for the Elytro wallet skill plus the curated DeFi sub-skills.
 
-## Publisher: <br>
-[CodeExplorer29](https://clawhub.ai/user/CodeExplorer29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeexplorer29](https://clawhub.ai/user/codeexplorer29)
 
-## Use Case: <br>
-External developers and agents use this skill as the starting point for Elytro smart-account wallet workflows and curated DeFi protocol flows such as token swaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The linked CLI and sub-skills may help prepare or execute wallet or DeFi transactions. <br>
-Mitigation: Verify the @elytro/cli package and Elytro repository, review each loaded sub-skill separately, and approve wallet actions only after checking transaction details. <br>
-Risk: This entry-point skill delegates important behavior to wallet, execution, and protocol-specific sub-skills. <br>
-Mitigation: Load only the sub-skills needed for the workflow and review their instructions before using them. <br>
+## Use Case:
 
+Developers and agents use this skill as the entry point for Elytro smart-account workflows, choosing wallet, DeFi, protocol, and payroll sub-skills before executing wallet or DeFi tasks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/CodeExplorer29/elytro-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The release asks users to install mutable unpinned tooling and remote wallet-related sub-skills that were not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions and immutable repository commits, inspect the Elytro, DeFi, Uniswap, and payroll sub-skills before enabling them, and install in a least-privileged environment without wallet files, credentials, or production accounts available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codeexplorer29/skills/elytro-cli)
+- [Publisher Profile](https://clawhub.ai/user/codeexplorer29)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and skill-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Acts as an entry point for related wallet and DeFi sub-skills; it does not execute transactions by itself.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Generate, execute, and verify CAD scripts across FreeCAD, AutoCAD, SolidWorks, and Fusion 360 using natural language commands with safety checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, execute, and verify CAD scripts across FreeCAD, AutoCAD, SolidWorks, and Fusion 360 using natural language commands with safety checks.
 
-## Publisher: <br>
-[WayneOuyang](https://clawhub.ai/user/WayneOuyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wayneouyang](https://clawhub.ai/user/wayneouyang)
 
-## Use Case: <br>
-Developers and CAD automation users use this skill pack to turn natural language part requests into CAD scripts, run them against supported CAD backends, and verify generated STEP, STL, OBJ, and related model outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python CAD scripts can execute CAD operations and write model files. <br>
-Mitigation: Use trusted prompts, review generated code before execution, and keep outputs in a dedicated project directory. <br>
-Risk: The Fusion 360 bridge can receive CAD and export commands from local processes while it is running. <br>
-Mitigation: Enable the bridge only when needed and only if you understand the local command authority it grants. <br>
+## Use Case:
 
+Developers, CAD engineers, and automation users use this skill pack to turn natural-language part requests into reviewed CAD scripts, backend configuration steps, exported model files, and QA reports. It is best suited for local CAD automation workflows where the user can review generated scripts and verify geometry before relying on outputs.
 
-## Reference(s): <br>
-- [CADStack ClawHub Release](https://clawhub.ai/WayneOuyang/cadstack) <br>
-- [FreeCAD](https://www.freecad.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples, configuration snippets, and CAD output file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce CAD model files such as STEP, STL, OBJ, DXF, SVG, FCStd, SAT, DWG, IGES, or Parasolid depending on backend support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated local Python scripts can affect the host CAD environment or filesystem if they are unsafe or incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a constrained local CAD environment, keep script validation enabled, and review generated scripts before execution.
+
+Risk: The Fusion 360 bridge exposes CAD actions over a localhost socket without documented authentication or per-request approval.
+
+Mitigation: Avoid the Fusion 360 bridge until authentication or explicit approval is added, or run it only in a tightly controlled local session.
+
+Risk: Generated exports may be written to unintended locations.
+
+Mitigation: Restrict output paths to the configured CADStack output directory and verify exported files before downstream use.
+
+Risk: Documented remote setup commands may point to unpinned or placeholder sources.
+
+Mitigation: Install only from a verified pinned release controlled by the trusted publisher.
+
+## Reference(s):
+
+- [CADStack ClawHub listing](https://clawhub.ai/wayneouyang/skills/cadstack)
+- [FreeCAD project](https://www.freecad.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated CAD scripts and exported CAD files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce STEP, STL, OBJ, DXF, or SVG files through local CAD backends.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

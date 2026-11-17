@@ -1,42 +1,55 @@
-## Description: <br>
-Growth Engineering Mastery helps agents diagnose growth health, design experiments, optimize AARRR funnels, plan viral and retention loops, evaluate channels, and structure growth reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Growth Engineering Mastery helps agents diagnose growth health, design experiments, optimize AARRR funnel stages, plan viral and retention loops, and structure analytics-driven growth reviews.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, founders, marketers, and growth teams use this skill to turn an agent into a growth engineering partner for audits, experiment design, funnel analysis, referral programs, lifecycle campaigns, channel scaling, analytics planning, and weekly growth reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Growth analytics, attribution, lifecycle email, and session recording recommendations may involve personal data or user behavior tracking. <br>
-Mitigation: Review applicable privacy laws and platform rules, honor opt-outs, avoid sensitive categories, and configure analytics or session replay tools with masking, page exclusions, least-privilege access, and short retention. <br>
-Risk: The skill provides advisory growth and experimentation guidance that could be applied without validating assumptions, sample sizes, or local compliance constraints. <br>
-Mitigation: Treat outputs as proposals for human review, validate experiment design and metrics before launch, and have responsible teams approve campaigns before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-growth-engine) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Source](artifact/SKILL.md) <br>
+## Use Case:
 
+Founders, growth teams, marketers, product managers, and developers use this skill to turn product and funnel data into growth audits, prioritized experiments, channel plans, referral systems, retention programs, and weekly growth reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with structured templates and YAML-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only advisory output; no code execution or privileged access is requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Analytics, session replay, and event tracking recommendations can create privacy or compliance exposure if implemented without review.
+
+Mitigation: Configure user notice or consent where required, mask sensitive fields, limit collection, and apply retention controls before following analytics setup guidance.
+
+Risk: Short natural-language command phrases could be mistaken for authorization to modify products, tracking, experiments, or growth programs.
+
+Mitigation: Treat command phrases as analysis triggers only and require product, privacy, legal, or operational review before making real changes.
+
+## Reference(s):
+
+- [Growth Engineering Mastery on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-growth-engine)
+- [Publisher profile: 1kalin](https://clawhub.ai/user/1kalin)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AfrexAI on ClawHub](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, and YAML-style templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill content; security evidence reports no executable payload, persistence, or hidden system access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

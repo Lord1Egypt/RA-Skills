@@ -1,40 +1,52 @@
-## Description: <br>
-Decision Engine helps agents guide users through structured decision classification, bias reduction, and decision frameworks tailored to the user's context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision Engine helps users classify decisions, reduce cognitive bias, compare options with structured frameworks, and document decision outcomes.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Individuals, teams, and organizations use this skill to classify decisions by reversibility, stakes, and speed, then apply matching frameworks such as weighted matrices, pre-mortems, bias checks, RAPID roles, scenario planning, and decision records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on structured decision guidance for high-stakes legal, financial, medical, or executive decisions. <br>
-Mitigation: Treat outputs as decision-support material and keep accountable human review in place for high-stakes choices. <br>
-Risk: Broad trigger phrases may activate the skill when an agent only needs a lightweight answer. <br>
-Mitigation: Prefer explicit invocation by name when Decision Engine should be applied, especially in agents with automatic skill activation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Decision Engine ClawHub Release](https://clawhub.ai/1kalin/afrexai-decision-engine) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers, operators, teams, and individual users use this skill when they need structured support for consequential decisions, option comparison, prioritization, group decision roles, or decision documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with decision tables, checklists, and YAML templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include decision classifications, weighted matrices, bias checks, decision records, policy templates, and prioritization scores.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad natural-language prompts such as decision questions or requests for missing considerations may cause the skill to apply decision frameworks in ordinary conversations.
+
+Mitigation: Invoke the skill deliberately when structured decision support is desired, and treat the resulting analysis as advisory input for human judgment.
+
+Risk: Decision-support outputs can appear precise even when they depend on incomplete user-provided context or unvalidated assumptions.
+
+Mitigation: Review key assumptions, evidence quality, stakeholder impacts, and proposed actions before using the output for consequential decisions.
+
+## Reference(s):
+
+- [Decision Engine ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-decision-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured checklists, tables, and YAML templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include decision briefs, weighted matrices, assumption tests, decision records, policies, prioritization scores, and review rubrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

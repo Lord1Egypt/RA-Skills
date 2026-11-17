@@ -1,39 +1,54 @@
-## Description: <br>
-Create presentations, documents, social posts, and websites using Gamma's AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create presentations, documents, social posts, and websites using Gamma's AI API.
 
-## Publisher: <br>
-[MrGoodB](https://clawhub.ai/user/MrGoodB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrgoodb](https://clawhub.ai/user/mrgoodb)
 
-## Use Case: <br>
-Developers and content creators use this skill to have an agent create Gamma presentations, documents, social posts, or webpages through Gamma's API and return the generated Gamma URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Gamma API key and the artifact mentions storing it in TOOLS.md, which can expose plaintext credentials. <br>
-Mitigation: Provide the API key through an environment variable or secret manager, avoid version-controlled files, and do not submit confidential content unless sending it to Gamma is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gamma developer documentation](https://developers.gamma.app) <br>
-- [Gamma public API base URL](https://public-api.gamma.app/v1.0) <br>
-- [ClawHub skill page](https://clawhub.ai/MrGoodB/gamma-presentations) <br>
+## Use Case:
 
+External users and developers use this skill to create Gamma presentations, documents, social posts, and webpages through Gamma's API, including starting generations, checking completion status, and returning a Gamma URL.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns or guides retrieval of a Gamma URL after polling the generation endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Gamma API key may be exposed if it is stored in plaintext in an agent-readable project file.
+
+Mitigation: Store the key in the GAMMA_API_KEY environment variable or a secret manager, avoid placing it in TOOLS.md or project documents, and rotate any key previously stored in plaintext.
+
+Risk: Selected user content is sent to Gamma's API when generating presentations, documents, social posts, or webpages.
+
+Mitigation: Use the skill only for content that is appropriate to share with Gamma's API and review sensitive inputs before generation.
+
+## Reference(s):
+
+- [Gamma Developer Documentation](https://developers.gamma.app)
+- [Gamma Public API](https://public-api.gamma.app/v1.0)
+- [ClawHub Skill Page](https://clawhub.ai/mrgoodb/skills/gamma-presentations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and returned Gamma URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generation IDs, status polling guidance, optional export parameters, and Gamma document URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

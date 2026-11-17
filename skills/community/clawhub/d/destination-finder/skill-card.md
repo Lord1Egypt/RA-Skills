@@ -1,44 +1,59 @@
-## Description: <br>
-Helps users choose a travel destination by collecting trip needs, excluding places they have already visited, and producing one personalized recommendation with rationale, itinerary, traveler-sourced perspective, and FlyAI links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users find their ideal travel destination through personalized recommendations based on structured needs assessment.
 
-## Publisher: <br>
-[walkingzq](https://clawhub.ai/user/walkingzq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walkingzq](https://clawhub.ai/user/walkingzq)
 
-## Use Case: <br>
-External travel users and travel-planning agents use this skill to collect trip constraints through conversation, compare candidate destinations internally, and present one best-fit destination with supporting rationale, itinerary guidance, real traveler perspective, and FlyAI-sourced links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run local shell setup commands and may install a global npm tool. <br>
-Mitigation: Install and configure FlyAI through the user or platform in advance; do not allow automatic global npm installation or shell profile sourcing without approval. <br>
-Risk: Destination searches and travel preferences may be sent to Xiaohongshu and FlyAI/Fliggy-style services. <br>
-Mitigation: Avoid sending sensitive personal data to external travel services and use a fallback response when the user or platform does not allow those lookups. <br>
-Risk: Real-time destination links or travel data may be unavailable. <br>
-Mitigation: When FlyAI fails, fall back to no-link output rather than fabricating booking, POI, or destination links. <br>
+## Use Case:
 
+External users use this skill when they want an agent to collect travel preferences conversationally and recommend one well-matched destination with rationale, itinerary guidance, and traveler-facing references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/walkingzq/destination-finder) <br>
-- [FlyAI integration guide](references/flyai-integration.md) <br>
-- [Questionnaire guide](references/questionnaire-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown travel recommendation with structured sections, plain-text links, and FlyAI lookup commands used by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends one destination per request; uses real-time FlyAI data when available and falls back to no-link output when unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter metadata.version is 0.7.0) <br>
+Risk: The skill can require third-party FlyAI and Xiaohongshu-style lookups while producing destination advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow those lookups only when they are needed for the recommendation, and avoid sharing detailed travel history or stored profile location unless the user explicitly provides it for the trip.
+
+Risk: The artifact includes behavior that may repair PATH settings, source shell profiles, or install a global npm package to enable FlyAI.
+
+Mitigation: Require explicit user approval before shell profile sourcing, PATH repair, or global npm installation, and review any generated shell command before execution.
+
+Risk: FlyAI links may point to third-party commercial travel content.
+
+Mitigation: Present these links as external commercial references and have the user verify price, availability, and terms before relying on them.
+
+## Reference(s):
+
+- [FlyAI Integration Guide](references/flyai-integration.md)
+- [Questionnaire Guide](references/questionnaire-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/walkingzq/skills/destination-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel recommendation with conversational questions, structured itinerary sections, source links, and inline shell commands when FlyAI lookup is required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party travel links, traveler feedback summaries, and image or booking URLs returned by approved lookup tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-ninebot-device-skill helps agents query authorized Ninebot electric vehicle status, charging state, battery level, range, remaining charge time, and location using a Ninebot Device Service key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+九号电动车(Ninebot)车辆信息查询，支持九号电动车、九号电动摩托车，提供车辆开关机状态、车辆充电状态、车辆位置、车辆剩余电量、车辆剩余里程、车辆剩余充电时间等数据的查询功能
 
-## Publisher: <br>
-[ninebot-app](https://clawhub.ai/user/ninebot-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninebot-app](https://clawhub.ai/user/ninebot-app)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Ninebot vehicle telemetry for vehicles they own or are authorized to access, including power, charging, battery, mileage, remaining charge time, and location details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ninebot Device Service keys can grant access to vehicle telemetry. <br>
-Mitigation: Prefer the NINEBOT_DEVICESERVICE_KEY environment variable, keep any config.json private and out of source control, and rotate the key if it may have been exposed. <br>
-Risk: Vehicle location and telemetry can reveal sensitive personal or operational information. <br>
-Mitigation: Run location queries only for vehicles the user owns or is authorized to access, and avoid storing or sharing returned telemetry unnecessarily. <br>
-Risk: Misconfigured or stale API mappings could send requests to an unintended service endpoint. <br>
-Mitigation: Verify configured endpoints and API mappings still point to the intended Ninebot service before use. <br>
+## Use Case:
 
+Developers and external users use this skill to query Ninebot electric vehicle status, charging state, battery level, estimated range, remaining charging time, and location through the Ninebot Device Service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ninebot-app/ninebot-device-skill) <br>
-- [Ninebot API assumptions](references/api-spec.md) <br>
-- [Ninebot Device Service endpoint](https://cn-cbu-gateway.ninebot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NINEBOT_DEVICESERVICE_KEY; returned vehicle telemetry and location data should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The skill uses a Ninebot Device Service API key and can access sensitive vehicle data, including location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where access to this data is acceptable, prefer NINEBOT_DEVICESERVICE_KEY for the key, and avoid putting real keys in config.json or command-line arguments.
+
+Risk: Local configuration can redirect authenticated requests or expose the API key if run from an untrusted directory.
+
+Mitigation: Run the skill from a trusted directory and review any config.json or custom config before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ninebot-app/skills/ninebot-device-skill)
+- [Ninebot API assumptions](references/api-spec.md)
+- [Ninebot API gateway](https://cn-cbu-gateway.ninebot.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NINEBOT_DEVICESERVICE_KEY or an equivalent local API key configuration.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Guides agents to produce concise Simplified Chinese responses through a structured workflow for planning, review, task breakdown, research, and clarification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured Workflow makes an agent default to concise Simplified Chinese responses and a lightweight planning, review, task breakdown, research, and clarification workflow.
 
-## Publisher: <br>
-[cikichen](https://clawhub.ai/user/cikichen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cikichen](https://clawhub.ai/user/cikichen)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill when they want an agent to default to concise Simplified Chinese output and follow a lightweight structured workflow before implementation or delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to use Simplified Chinese for all outputs, which may be unsuitable for workflows that require English or another language. <br>
-Mitigation: Override the language requirement explicitly when installing or invoking the skill for non-Chinese workflows. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent answer in Simplified Chinese with conclusion-first, concise structure and staged workflow discipline for general tasks.
 
-## Reference(s): <br>
-- [Architecture and Tradeoffs](references/architecture.md) <br>
-- [Quality Gates](references/quality-gates.md) <br>
-- [Workflow Template](references/workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cikichen/structured-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text in concise Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is instruction-only and does not run code or access data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill applies broad default-on Simplified Chinese response rules across many tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a Simplified Chinese default is desired, or revise the skill so language choice remains conditional on explicit user preference.
+
+## Reference(s):
+
+- [Structured Workflow ClawHub release](https://clawhub.ai/cikichen/skills/structured-workflow)
+- [Complex Architecture and Tradeoffs](artifact/references/architecture.md)
+- [Multi-Step Implementation Template](artifact/references/workflow.md)
+- [Quality Gates Checklist](artifact/references/quality-gates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Simplified Chinese Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to conclusion-first, minimal sufficient output; optional reference files add architecture, workflow, and quality gate guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

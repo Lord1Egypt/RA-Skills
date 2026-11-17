@@ -1,40 +1,53 @@
-## Description: <br>
-Safely create and manage subagents through a strict wrapper instead of calling sessions_spawn directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely create and manage subagents through a strict wrapper instead of calling sessions_spawn directly, with multi-round continuity via shared context files with full-text history.
 
-## Publisher: <br>
-[devymex](https://clawhub.ai/user/devymex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devymex](https://clawhub.ai/user/devymex)
 
-## Use Case: <br>
-Developers and agent operators use this skill to standardize subagent delegation, generate safe spawn payloads, and preserve multi-round subagent context in auditable Markdown files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent full-text context files may retain sensitive task background, external messages, and child outputs. <br>
-Mitigation: Avoid using the skill with secrets, credentials, regulated data, or sensitive personal data unless a separate redaction and retention process is in place. <br>
-Risk: Multi-round delegation reuses previous context, so later subagents may see earlier task history. <br>
-Mitigation: Create a new context file for unrelated work or whenever prior context should not be shared. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate work to subagents through validated helper scripts, preserve full-text context across rounds, and reduce mistakes in spawn payload assembly.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/devymex/safe-subagent-spawn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and generated JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent full-text context files and ready-to-use subagent spawn payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Permanent plaintext context files may retain secrets, credentials, regulated personal data, or sensitive business material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using this skill for sensitive material unless retention, redaction, and path-containment safeguards are added first.
+
+Risk: A helper can append content to any writable file path it is given.
+
+Mitigation: Review target context paths before use and restrict execution to trusted workspaces with appropriate file permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/devymex/skills/safe-subagent-spawn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON spawn payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and appends plaintext context files that preserve full subagent interaction history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

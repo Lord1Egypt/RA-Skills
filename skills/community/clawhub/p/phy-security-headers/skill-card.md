@@ -1,42 +1,55 @@
-## Description: <br>
-Audits HTTP security response headers for a URL or local dev server, grades missing or weak protections, and proposes configuration fixes for common web servers and frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTP security header auditor that fetches response headers from a URL, grades common browser security headers, and suggests nginx, Apache, Next.js, or Cloudflare Workers fixes.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, security engineers, and DevOps teams use this skill to inspect response headers on sites or local services and receive prioritized remediation guidance. It can generate nginx, Apache, Next.js, or similar configuration snippets for missing or weak headers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to user-provided URLs, including possible localhost or private-network targets. <br>
-Mitigation: Run it only against systems you own or have permission to test, and review localhost, private-network, cloud metadata, and redirect targets before execution. <br>
-Risk: Generated header fixes can affect site behavior if applied without adaptation. <br>
-Mitigation: Review configuration snippets in a staging environment and adjust CSP, HSTS, and cross-origin policies for the application's actual dependencies before deploying. <br>
+## Use Case:
 
+Developers, security engineers, and DevOps teams use this skill to audit HTTP response security headers on live URLs or local services and receive prioritized configuration fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-security-headers) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [HSTS preload list](https://hstspreload.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with grades, command examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated nginx, Apache, Next.js, or Cloudflare Workers header recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and frontmatter metadata) <br>
+Risk: Unrestricted URL fetching can cause the agent to probe local or private network services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run audits only against domains or local services you control, and add URL allowlisting plus private-network protections before broad use.
+
+Risk: Outbound curl requests run from the user's machine or agent runtime.
+
+Mitigation: Use this skill only in environments where outbound network requests to the target URL are acceptable and monitored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-security-headers)
+- [Canlah AI homepage](https://canlah.ai)
+- [HSTS preload list](https://hstspreload.org)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with tables and inline bash, nginx, Apache, JavaScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include security grades, prioritized findings, and generated configuration snippets.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

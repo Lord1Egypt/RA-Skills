@@ -1,40 +1,57 @@
-## Description: <br>
-Busca conteúdo no Stremio Web e transmite para dispositivos Chromecast usando CATT e Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Stremio Web for movies or series and casts selected streams to a Chromecast device using Playwright and CATT.
 
-## Publisher: <br>
-[pedro-valentim](https://clawhub.ai/user/pedro-valentim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pedro-valentim](https://clawhub.ai/user/pedro-valentim)
 
-## Use Case: <br>
-External users use this skill to search for films or series in Stremio Web and cast the selected stream to a named Chromecast device. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the code uses a hard-coded Stremio server address that does not match the documented local setup. <br>
-Mitigation: Review and edit the script to point to the user's own Stremio service before installing or running it. <br>
-Risk: The security guidance calls out disabled browser protections and the need to confirm the target device and stream. <br>
-Mitigation: Remove or justify disabled browser protections, then confirm the exact Chromecast device and selected stream before casting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pedro-valentim/stremio-cast) <br>
-- [Stremio Web](https://app.strem.io/) <br>
+## Use Case:
 
+External users or developers use this skill to automate Stremio Web playback and cast requested movies or series to a named Chromecast device in a local setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Console text with command-line execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs browser automation and starts a Chromecast cast through CATT when dependencies and local services are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill under-discloses a hard-coded external streaming endpoint.
+
+Mitigation: Review before installing and replace the hard-coded streamingServer with a user-approved local endpoint.
+
+Risk: The browser automation weakens Chromium security controls.
+
+Mitigation: Use only in a contained environment and remove the Chromium security-disabling flags before broader use.
+
+Risk: Full stream URLs may be exposed in logs.
+
+Mitigation: Avoid logging full stream URLs.
+
+## Reference(s):
+
+- [Stremio Web](https://app.strem.io/shell-v4.4/?streamingServer=https%3A%2F%2F192-168-15-162.519b6502d940.stremio.rocks%3A12470#/)
+- [ClawHub Skill Page](https://clawhub.ai/pedro-valentim/skills/stremio-cast)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with command-line invocation details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a content query and an optional Chromecast device name.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

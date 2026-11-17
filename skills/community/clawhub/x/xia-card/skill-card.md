@@ -1,44 +1,61 @@
-## Description: <br>
-Xia Card helps an agent generate, manage, publish, share, and sync personal social cards and contact rosters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xia Card helps an agent create, manage, share, and sync a personal social card and contact roster, including recognizing agent-card:// messages to save other people's cards.
 
-## Publisher: <br>
-[sxd20010606-cmd](https://clawhub.ai/user/sxd20010606-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxd20010606-cmd](https://clawhub.ai/user/sxd20010606-cmd)
 
-## Use Case: <br>
-External users and agent operators use this skill to maintain a personal profile card, publish selected public fields, share a text card, and manage a local contact roster. It also supports contact synchronization and saving received agent-card entries after user-controlled review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores contact, profile, and generated API key data locally. <br>
-Mitigation: Treat config.json as sensitive, restrict file access, and review local profile and contact data before use. <br>
-Risk: Publishing a card sends selected profile fields to adonghub.cn. <br>
-Mitigation: Confirm the public tier field list before publication and keep private notes or background fields out of the public tier. <br>
-Risk: Received card data can update local contacts and may steer installation from untrusted metadata. <br>
-Mitigation: Verify the source and publisher before approving installation or saving received card data. <br>
+## Use Case:
 
+External ClawHub users and their agents use Xia Card to build a shareable profile, maintain a local contact roster, import agent-card:// contacts, and publish or sync selected public card fields with the configured card server.
 
-## Reference(s): <br>
-- [Xia Card ClawHub listing](https://clawhub.ai/sxd20010606-cmd/xia-card) <br>
-- [AgentCard operation manual](artifact/references/manual.md) <br>
-- [AgentCard JSON data format](artifact/references/data-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown text responses and local JSON data updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local profile, contact, and configuration files; publishes only fields selected in the public tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.1 (source: server release evidence; artifact frontmatter says 2.5.0) <br>
+Risk: A fetched card response may direct the agent to install another skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and manually verify the publisher and source before installing any skill from a remote card response.
+
+Risk: The skill stores contacts and an API key locally and publishes selected profile fields to the configured server.
+
+Mitigation: Review public fields before publishing, keep private notes out of published fields, and protect config.json because it can contain api_key and user_id values.
+
+Risk: Contact sync may change locally stored roster details.
+
+Mitigation: Review sync conflict prompts and preserve manually_edited_fields for details that should not be overwritten by server data.
+
+## Reference(s):
+
+- [Xia Card ClawHub release](https://clawhub.ai/sxd20010606-cmd/skills/xia-card)
+- [Data format reference](references/data-format.md)
+- [Operation manual](references/manual.md)
+- [Card service endpoint](https://www.adonghub.cn)
+- [schema.org Person](https://schema.org/Person)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance, api calls]
+
+**Output Format:** [Markdown-style text responses and JSON file updates, including a fixed three-part share block.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local profile, contacts, and config JSON files and call the configured card server after user confirmation.]
+
+## Skill Version(s):
+
+2.5.1 (source: ClawHub release metadata; artifact frontmatter reports 2.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,65 @@
-## Description: <br>
-Manage the full lifecycle of Alibaba Cloud ADBPG Supabase projects, including listing, querying, creation, pause and resume, password reset, API key access, and security IP management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the lifecycle of Alibaba Cloud AnalyticDB for PostgreSQL Supabase projects, including listing, creation, pause and resume, password reset, API key retrieval, and security IP management.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud AnalyticDB for PostgreSQL Supabase projects through Aliyun GPDB commands. It supports read-only inventory and detail lookups as well as controlled lifecycle, credential, and network-access operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve API keys and dashboard credentials. <br>
-Mitigation: Require explicit approval before retrieving secrets, return them minimally, avoid shared logs, and rotate any exposed credentials. <br>
-Risk: Create, pause, resume, password reset, and security IP changes can affect cost, availability, credentials, or network access. <br>
-Mitigation: Use a least-privilege RAM profile and require explicit user confirmation with key parameters before any mutating command. <br>
-Risk: Local CLI and plugin setup can affect which cloud account and commands are used. <br>
-Mitigation: Verify the Aliyun CLI version, plugin source, and active credential profile without printing access keys or secrets. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud ADBPG Supabase projects through Aliyun GPDB CLI workflows. It supports read-only inventory and credential queries as well as mutating lifecycle, password, and access-control operations with confirmation and verification steps.
 
-## Reference(s): <br>
-- [CreateSupabaseProject API Reference](https://help.aliyun.com/zh/analyticdb/analyticdb-for-postgresql/developer-reference/api-gpdb-2016-05-03-createsupabaseproject) <br>
-- [Create Supabase Project Parameters](references/create-supabase-project-parameters.md) <br>
-- [RAM Policies for ADBPG Supabase Management](references/ram-policies.md) <br>
-- [Related APIs - ADBPG Supabase Management](references/related-apis.md) <br>
-- [Operation Verification Methods](references/verification-method.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and JSON-oriented CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Alibaba Cloud credentials, Aliyun CLI 3.3.3 or newer, the GPDB plugin, user confirmation for mutating operations, and careful handling of returned secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Unverified Aliyun CLI installation, unpinned latest archives, and global plugin auto-update can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use; prefer pinned and verified packages or trusted package managers, and enable global plugin auto-update only when that operational risk is accepted.
+
+Risk: The skill can retrieve or handle API keys, service-role keys, dashboard credentials, database passwords, and Alibaba Cloud access credentials.
+
+Mitigation: Mask secrets in outputs, avoid logging full values, confirm sensitive operations, apply least-privilege RAM permissions, and rotate credentials after any exposure.
+
+Risk: Create, pause, resume, password reset, and security IP changes can affect cost, availability, credentials, or network access.
+
+Mitigation: Require explicit user confirmation for mutating operations, show key parameters before execution, and verify post-operation status with the documented GPDB checks.
+
+## Reference(s):
+
+- [CreateSupabaseProject parameters and defaults](references/create-supabase-project-parameters.md)
+- [Related APIs for ADBPG Supabase management](references/related-apis.md)
+- [RAM policies for ADBPG Supabase management](references/ram-policies.md)
+- [Verification methods for ADBPG Supabase management](references/verification-method.md)
+- [Acceptance criteria for ADBPG Supabase management](references/acceptance-criteria.md)
+- [Aliyun CLI installation and configuration guide](references/cli-installation-guide.md)
+- [Official CreateSupabaseProject API reference](https://help.aliyun.com/zh/analyticdb/analyticdb-for-postgresql/developer-reference/api-gpdb-2016-05-03-createsupabaseproject)
+- [Official GPDB API documentation](https://help.aliyun.com/document_detail/86906.html)
+- [Official Alibaba Cloud RAM access control documentation](https://help.aliyun.com/product/28625.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Aliyun CLI shell commands and JSON response interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Aliyun CLI 3.3.3 or later, configured Alibaba Cloud credentials, confirmed user parameters, required RAM permissions, and the skill-specific user-agent.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

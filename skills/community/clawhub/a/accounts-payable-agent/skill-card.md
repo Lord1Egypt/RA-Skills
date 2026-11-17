@@ -1,44 +1,59 @@
-## Description: <br>
-Accounts Payable Agent helps an agent process supplier payments, contractor invoices, and recurring bills across crypto, fiat, and stablecoin payment rails through MCP-integrated workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An accounts payable agent that processes supplier payments, contractor invoices, and recurring bills across crypto, fiat, and stablecoin payment rails through MCP-integrated payment workflows.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
 
-## Use Case: <br>
-Finance operators and agent builders use this skill to coordinate accounts payable workflows, including invoice checks, payment routing, audit records, and escalation for payments that exceed configured approval limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to let an agent participate in real payment workflows. <br>
-Mitigation: Use sandbox credentials first, restrict API keys with hard spend limits and recipient allowlists, and require explicit human approval before live payments. <br>
-Risk: Payment requests may arrive from other agents or workflows. <br>
-Mitigation: Authenticate inter-agent payment requests and keep controlled audit logs for every invoice, recipient, amount, payment rail, timestamp, and status. <br>
-Risk: The skill relies on an external MCP payment package for payment execution. <br>
-Mitigation: Verify and pin the AgenticBTC MCP package before connecting live accounts. <br>
+## Use Case:
 
+Finance operations teams and workflow agents use this skill to manage accounts payable activity, including vendor payments, contractor invoices, recurring bills, audit records, approvals, and payment exception handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/lihangmissu/accounts-payable-agent) <br>
-- [AgenticBTC MCP Documentation](https://agenticbtc.io) <br>
-- [agenticbtc-mcp npm Package](https://www.npmjs.com/package/agenticbtc-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with bash, JSON, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to call AgenticBTC payment APIs; live deployment requires external credentials, approval controls, and audit logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill is intended for real autonomous payments, so excessive credential scope or weak approval boundaries could allow unintended funds movement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped payment credentials, server-side spend limits, explicit approval thresholds, and a restricted runtime environment.
+
+Risk: Raw inter-agent requests or scheduled records could influence payment recipients or amounts if accepted without validation.
+
+Mitigation: Require independent validation of recipient, amount, invoice reference, vendor approval status, and idempotency before executing a payment.
+
+Risk: Payment dependency execution is security-sensitive and should not be installed or invoked without package verification.
+
+Mitigation: Pin and verify the MCP package before use, then review the skill carefully before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lihangmissu/skills/accounts-payable-agent)
+- [AgenticBTC MCP documentation](https://agenticbtc.io)
+- [agenticbtc-mcp npm package](https://www.npmjs.com/package/agenticbtc-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline TypeScript, bash, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment workflow steps, configuration examples, audit summaries, exception handling guidance, and tool-call-oriented code examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

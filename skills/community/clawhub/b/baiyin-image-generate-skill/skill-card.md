@@ -1,41 +1,54 @@
-## Description: <br>
-This skill helps agents call the Baiyin Open Platform for text-to-image and image-to-image generation, configure allowed parameters, and return task status and image links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through the Baiyin open platform from text prompts or public reference-image URLs, and can check task status and return result links.
 
-## Publisher: <br>
-[jiuping520](https://clawhub.ai/user/jiuping520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuping520](https://clawhub.ai/user/jiuping520)
 
-## Use Case: <br>
-External users and developers use this skill to submit text-to-image or image-to-image requests to the Baiyin Open Platform, configure supported model, resolution, aspect ratio, and reference-image parameters, and check task status or result links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local reference-image files to a remote service when a local path is provided. <br>
-Mitigation: Use it only with files intentionally selected for upload, and prefer an execution flow that confirms the destination before uploading. <br>
-Risk: The skill requires a Baiyin API key for remote API access. <br>
-Mitigation: Provide credentials through the intended environment variable and avoid exposing the key in chat, logs, or generated prompts. <br>
+## Use Case:
 
+Developers and external users use this skill to configure Baiyin image-generation requests, create text-to-image or reference-image tasks, poll task status, and return final image links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuping520/baiyin-image-generate-skill) <br>
-- [Baiyin Open Platform base URL](https://ai.hikoon.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Markdown text with task identifiers, status values, image links, and JSON request or response fields when useful.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIYIN_API_KEY and may upload local reference images to the remote Baiyin service to obtain public URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill contacts Baiyin/Hikoon services with a Baiyin API key and may upload reference images to that external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users intend to use Baiyin/Hikoon services, provide only approved API keys, and avoid private paths or attachments unless upload is intended.
+
+Risk: The server security summary flags a hidden self-update behavior as the main concern.
+
+Mitigation: Handle version updates through a trusted package manager or explicit administrator approval before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiuping520/skills/baiyin-image-generate-skill)
+- [Baiyin/Hikoon Service Endpoint](https://ai.hikoon.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Markdown or concise text with task IDs, status values, progress, and image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIYIN_API_KEY and uses fixed model, resolution, aspect-ratio, and reference-image URL parameters.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

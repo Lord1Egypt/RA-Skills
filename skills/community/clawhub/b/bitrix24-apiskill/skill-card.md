@@ -1,50 +1,61 @@
-## Description: <br>
-Integrate AI agents with Bitrix24 REST API to automate CRM, tasks, chats, event processing, auth selection, and API error troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design, implement, debug, and harden Bitrix24 REST API integrations for CRM, tasks, chats, events, authentication, batching, limits, and REST 3.0.
 
-## Publisher: <br>
-[vrtalex](https://clawhub.ai/user/vrtalex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vrtalex](https://clawhub.ai/user/vrtalex)
 
-## Use Case: <br>
-Developers and integration engineers use this skill to design, implement, debug, and harden Bitrix24 REST integrations for CRM, tasks, chats, events, authentication, and API troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent access and modify real Bitrix24 account data. <br>
-Mitigation: Install it only for intended Bitrix24 automation, use least-privilege webhook or OAuth scopes, and require review before write or destructive operations. <br>
-Risk: Webhook URLs, OAuth tokens, client secrets, and local runtime files can expose account access or operational history if mishandled. <br>
-Mitigation: Keep secrets out of chat and source control, leave secret masking enabled, and protect or rotate .runtime audit, retry, idempotency, and DLQ files. <br>
-Risk: Using --allow-unlisted or broad packs can permit methods beyond the normal allowlist. <br>
-Mitigation: Use --allow-unlisted only for controlled testing, prefer narrow packs, and extend allowlists deliberately after verification. <br>
-Risk: The offline event worker clears events after processing, so misconfiguration can cause missed or unrecoverable event handling. <br>
-Mitigation: Test the offline worker on a non-production portal first, validate application tokens for inbound events, and review retry and DLQ behavior before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bitrix24 Skill on ClawHub](https://clawhub.ai/vrtalex/bitrix24-apiskill) <br>
-- [Publisher Profile](https://clawhub.ai/user/vrtalex) <br>
-- [Bitrix24 REST for AI Agents](references/bitrix24.md) <br>
-- [Capability Packs](references/packs.md) <br>
-- [Bitrix24 REST Documentation](https://github.com/bitrix24/b24restdocs) <br>
-- [Bitrix24 MCP Documentation](https://github.com/bitrix24/b24restdocs/blob/main/sdk/mcp.md) <br>
-- [Bitrix24 External AI Connections](https://helpdesk.bitrix24.com/open/25866707/) <br>
-- [Bitrix24 Developer Resources Setup](https://helpdesk.bitrix24.com/open/21133100/) <br>
+## Use Case:
 
+Developers and engineers use this skill to build and operate Bitrix24 agent integrations that call REST APIs, choose webhook or OAuth authentication, automate CRM, tasks, and chats, and handle events and retries with guardrails.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and JSON parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise agent-facing responses; may include Bitrix24 REST method names, pack selections, allowlist choices, and command examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Helper scripts can operate with powerful CRM credentials.
+
+Mitigation: Use a test portal first, grant least-privilege scopes, avoid broad packs unless needed, and require explicit confirmation before writes or destructive operations.
+
+Risk: Destination validation may be too weak for production use.
+
+Mitigation: Pin B24_DOMAIN to an approved HTTPS Bitrix24 tenant before allowing live calls.
+
+Risk: Local runtime state can contain business payloads or tokens.
+
+Mitigation: Treat .runtime files as sensitive, restrict local access, and keep them out of source control.
+
+## Reference(s):
+
+- [Bitrix24 REST documentation](https://github.com/bitrix24/b24restdocs)
+- [Bitrix24 MCP documentation](https://github.com/bitrix24/b24restdocs/blob/main/sdk/mcp.md)
+- [Bitrix24 external AI setup guide](https://helpdesk.bitrix24.com/open/25866707/)
+- [Bitrix24 REST load checks](https://helpdesk.bitrix24.com/open/21001036/)
+- [Capability Packs](artifact/references/packs.md)
+- [Bitrix24 REST for AI Agents](artifact/references/bitrix24.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline code, JSON parameters, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise by default; selects minimal reference packs and requires confirmations for write and destructive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-整理零一万物大模型公开页面信息，包括模型能力、定价、文档目录与示例链接的检索与摘要。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize and summarize public information about 01.AI model pages, documentation, pricing, examples, and service status.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and external users use this skill to gather and summarize public 01.ai product and documentation information, including model capabilities, pricing details, documentation links, examples, and service status. It is limited to public information and does not perform account actions or API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce outdated or incomplete summaries if public 01.ai pages change after retrieval. <br>
-Mitigation: Verify important model, pricing, quota, and service-status details against the current public 01.ai pages before relying on them. <br>
-Risk: Using credentials or private account data would exceed the skill's intended public-information boundary. <br>
-Mitigation: Do not provide 01.ai logins, API keys, private documents, or account settings when using this skill. <br>
-Risk: Automated browsing can conflict with site access expectations if run too frequently. <br>
-Mitigation: Keep browsing rate-limited and aligned with the site's published rules. <br>
+## Use Case:
 
+External users and developers use this skill to research public 01.AI product and documentation pages, extract model capability details, collect pricing or quota information, and summarize relevant documentation links.
 
-## Reference(s): <br>
-- [01.ai homepage](https://www.01.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/01-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on public 01.ai pages and avoid sensitive information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill is intended only for public 01.AI page research and should not require account access, API keys, private files, or permissions to make changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public information gathering and deny requests for 01.AI credentials, private data access, code execution, persistence, or write permissions.
+
+Risk: Summaries of public model, pricing, quota, documentation, or service-status pages may become outdated or misleading as those pages change.
+
+Mitigation: Verify important details against the current public 01.AI pages before using the output for operational or commercial decisions.
+
+## Reference(s):
+
+- [01.AI homepage](https://www.01.ai/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/01-ai)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text summaries and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be limited to public 01.AI information and should not include account actions, private data, API calls, or access bypass instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

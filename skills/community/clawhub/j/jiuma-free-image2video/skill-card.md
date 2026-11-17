@@ -1,47 +1,54 @@
-## Description: <br>
-Generates videos from first-frame or first-and-last-frame images with prompts using the Jiuma AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiuma Free Image2Video uses the Jiuma AI API to generate videos from a first-frame image, optional end-frame image, and text prompt.
 
-## Publisher: <br>
-[dddcn1](https://clawhub.ai/user/dddcn1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dddcn1](https://clawhub.ai/user/dddcn1)
 
-## Use Case: <br>
-External users and developers use this skill to submit local or remote images plus prompts to Jiuma AI, poll generation status, and retrieve generated video URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images and prompts selected by the user are sent to Jiuma for processing. <br>
-Mitigation: Use only images and prompts that are acceptable to share with Jiuma; avoid personal, confidential, or sensitive content. <br>
-Risk: The optional login flow saves a reusable Jiuma API key locally in plaintext under the workspace. <br>
-Mitigation: Use the login flow only on trusted machines, restrict workspace access, and delete or rotate the saved key when it is no longer needed. <br>
-Risk: Generated video URLs may be temporary and hosted remotely. <br>
-Mitigation: Download generated videos promptly when long-term access is needed. <br>
+## Use Case:
 
+External users and developers use this skill to submit image-to-video jobs to Jiuma AI, check generation status, and retrieve the resulting video URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dddcn1/jiuma-free-image2video) <br>
-- [Login and API key workflow](LOGIN.md) <br>
-- [jiuma-free-image-gen related skill](https://clawhub.ai/dddcn1/jiuma-free-image-gen) <br>
-- [jiuma-free-image-edit related skill](https://clawhub.ai/dddcn1/jiuma-free-image-edit) <br>
-- [jiuma-free-meta-human related skill](https://clawhub.ai/dddcn1/jiuma-free-meta-human) <br>
-- [jiuma-free-voice-clone related skill](https://clawhub.ai/dddcn1/jiuma-free-voice-clone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Files] <br>
-**Output Format:** [JSON status payloads with task IDs, generated video URLs, and error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a reusable Jiuma API key locally in plaintext after the optional login flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Images and prompts are sent to the Jiuma API for video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images and prompts that are appropriate to share with Jiuma, and avoid private or sensitive content.
+
+Risk: A Jiuma API key is stored in a predictable plaintext local file.
+
+Mitigation: Run the skill in a private workspace, restrict permissions on the credential file, and delete or rotate the key if the workspace is shared, backed up, or exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dddcn1/skills/jiuma-free-image2video)
+- [Login documentation](artifact/LOGIN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration guidance]
+
+**Output Format:** [JSON returned by Python command-line scripts, with video URLs and task status fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits prompts and images to Jiuma API endpoints; generated video links are returned after polling by task ID.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

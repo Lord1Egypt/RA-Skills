@@ -1,0 +1,11 @@
+{
+  "fixture_notice": "独立新离线可见文字材料，不是在线访问结果；未使用既有示例词汇。",
+  "source_url": "https://www.youtube.com/watch?v=offline-bike-hidden",
+  "title": "TrailPack X: Weekend Setup",
+  "chinese_audience": "第一次参加骑行露营的中文读者",
+  "description_visible": false,
+  "description_points": [],
+  "unresolved_terms": [
+    { "term": "TrailPack X", "source_field": "title" }
+  ]
+}

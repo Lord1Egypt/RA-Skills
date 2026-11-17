@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn758rw4v26sqwamk1j3xnn5a581zr3w",
-  "slug": "ai-video-cinematography",
+  "name": "ai-video-cinematography",
   "version": "1.0.0",
-  "publishedAt": 1773220356697
+  "description": "AI视频创作 cinematography 指南，包含运镜、情绪表达、皮肤真实感提示词"
 }

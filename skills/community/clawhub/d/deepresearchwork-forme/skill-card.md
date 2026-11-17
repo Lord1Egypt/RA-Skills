@@ -1,45 +1,52 @@
-## Description: <br>
-Personal deep product research report generator that automates topic research, Markdown report optimization, and Mermaid chart conversion into images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese product and industry research reports by coordinating deep research, Markdown formatting, and Mermaid chart rendering into PNG assets.
 
-## Publisher: <br>
-[shinelp100](https://clawhub.ai/user/shinelp100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shinelp100](https://clawhub.ai/user/shinelp100)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and analysts use this skill to produce structured Chinese research reports for industry analysis, company deep dives, competitive landscape reviews, technology trend analysis, market research, and investment memos.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically download and execute an unpinned npm Mermaid CLI package during chart conversion.
+
+Mitigation: Review before installation and use a pinned, reviewed Mermaid CLI package or a sandboxed chart conversion path.
+
+Risk: Research reports may contain inaccurate, outdated, or misleading findings if source data is weak or stale.
+
+Mitigation: Review generated reports, verify important claims against authoritative sources, and preserve source citations and timestamps.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to generate professional Chinese-language product, industry, company, technology trend, market research, and investment memo reports with supporting Markdown structure and Mermaid-generated PNG charts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use external research and search tools, so confidential or sensitive topics could be exposed to dependent services. <br>
-Mitigation: Use only when the dependent tools' data handling is acceptable, and avoid confidential topics unless that handling has been reviewed. <br>
-Risk: Generated research reports can contain incorrect, stale, or misleading claims. <br>
-Mitigation: Review generated reports and sources before relying on them, especially for investment, market, or company analysis. <br>
-Risk: The chart workflow creates report and image files in the workspace and runs Mermaid CLI through npm/npx. <br>
-Mitigation: Run it in a dedicated project folder and review generated files and commands before deployment or sharing. <br>
+**Output Format:** [Markdown reports with generated PNG chart assets and optional shell commands for Mermaid conversion]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shinelp100/deepresearchwork-forme) <br>
-- [README.md](artifact/README.md) <br>
-- [EXAMPLES.md](artifact/EXAMPLES.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Outputs a topic-named research report and a mermaid_charts directory when chart conversion is used.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown reports with Mermaid code blocks, PNG chart files, shell commands, and JSON configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a topic report Markdown file and a sibling mermaid_charts directory containing generated PNG images.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

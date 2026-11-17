@@ -1,44 +1,58 @@
-## Description: <br>
-Task Interrupt Pro helps an agent stop a targeted local subtask process by creating a stop flag and escalating from SIGINT to SIGTERM or SIGKILL after validating the session and PID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Interrupt Pro helps an agent stop stuck subtask processes by creating stop flags and escalating from interrupt signals to forced termination when needed.
 
-## Publisher: <br>
-[tsangho](https://clawhub.ai/user/tsangho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsangho](https://clawhub.ai/user/tsangho)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a local OpenClaw-style agent task is stuck or unresponsive and they need to stop a specific session without issuing the platform /stop command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can terminate local subprocesses, including escalation to SIGKILL when gentler signals do not stop the target. <br>
-Mitigation: Install only when intentional process interruption is needed, verify the target SESSION_ID before use, and avoid broad natural-language auto-triggers. <br>
-Risk: Forced termination can interrupt work in progress and may corrupt outputs from a stuck task. <br>
-Mitigation: Use the stop-flag and SIGINT path first, and avoid this skill for tasks where abrupt termination could damage important state. <br>
-Risk: The skill stores PID, stop-flag, lock, and audit files in shared /tmp paths. <br>
-Mitigation: Review local file permissions and consider moving state files to a private runtime directory before relying on it in shared environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent a message-triggered way to stop unresponsive subtasks while avoiding system-level abort commands. It is intended for controlled Linux or macOS environments where task processes are expected to cooperate with the provided stop-flag and PID-file pattern.
 
-## Reference(s): <br>
-- [Task Interrupt Pro on ClawHub](https://clawhub.ai/tsangho/task-interrupt-pro) <br>
-- [tsangho publisher profile](https://clawhub.ai/user/tsangho) <br>
-- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and local shell script invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash on Linux or macOS; uses local PID, stop-flag, lock, and audit files under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad stop triggers can cause unintended task termination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation or narrower command matching before sending termination signals.
+
+Risk: Shared temporary PID and flag files can be unsafe on shared or privileged hosts.
+
+Mitigation: Run the skill as an ordinary user and avoid shared or privileged hosts until temporary-file handling is reviewed and hardened.
+
+Risk: Forced termination can lose unsaved work or leave partial state.
+
+Mitigation: Prefer cooperative stop flags and interrupt signals first, and reserve forced termination for unresponsive tasks.
+
+## Reference(s):
+
+- [Task Interrupt Pro on ClawHub](https://clawhub.ai/tsangho/skills/task-interrupt-pro)
+- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue process-termination commands and status confirmations for targeted task sessions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,49 @@
-## Description: <br>
-Ruflo is a multi-agent AI harness for coordinating agent swarms, memory-oriented workflows, and federated communication across machines and trust boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent AI harness for orchestrating 100+ agents across machines, with self-learning memory, federated comms & enterprise security.
 
-## Publisher: <br>
-[harryhihi](https://clawhub.ai/user/harryhihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harryhihi](https://clawhub.ai/user/harryhihi)
 
-## Use Case: <br>
-Developers and agent operators use Ruflo to guide multi-agent coordination, swarm orchestration, federated communication, and agent-memory workflows in OpenClaw-style environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises persistent memory, which can retain sensitive context if retention behavior is not documented. <br>
-Mitigation: Require explicit confirmation before enabling memory behavior and avoid sensitive prompts unless retention controls are understood. <br>
-Risk: The skill advertises federated agent communication, which can cross agent, team, or system boundaries. <br>
-Mitigation: Confirm data-boundary, consent, and sharing controls before allowing federation or communication with other agents. <br>
-Risk: The skill may reference scripts, plugins, or deployment patterns that affect local systems. <br>
-Mitigation: Review proposed commands, scripts, plugins, and configuration changes before execution. <br>
+## Use Case:
 
+Developers and agent builders use Ruflo guidance when planning multi-agent coordination, swarm orchestration, federated communication, agent memory, and related deployment patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harryhihi/ruflo) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/harryhihi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, command, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of orchestration scripts, documentation, and deployment patterns when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package appears to be an incomplete wrapper or pointer rather than a functional bundled harness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before relying on it for orchestration, verify the upstream project, scripts, memory behavior, security controls, and any permissions requested by separately installed Ruflo components.
+
+## Reference(s):
+
+- [ClawHub Ruflo skill page](https://clawhub.ai/harryhihi/skills/ruflo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with possible inline commands or configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The release appears to be guidance rather than a bundled operational harness.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

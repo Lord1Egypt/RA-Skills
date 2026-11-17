@@ -1,42 +1,54 @@
-## Description: <br>
-Bootstrap skill for DiagForge that helps an agent find the repository, understand the project structure, run the canonical cold-start smoke test, and begin the Visio-based drawing workflow safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap skill for DiagForge that helps an agent find the repository, understand the project structure, run the canonical cold-start smoke test, and start the Visio-based drawing loop safely.
 
-## Publisher: <br>
-[qweadzchn](https://clawhub.ai/user/qweadzchn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qweadzchn](https://clawhub.ai/user/qweadzchn)
 
-## Use Case: <br>
-Developers and agents use this skill to onboard into the DiagForge Visio workflow, validate a local environment, and start producing editable Visio diagram assets from reference figures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run setup and smoke-test commands from an external DiagForge repository. <br>
-Mitigation: Review the repository and Python scripts before execution, then run them only in an environment intended for the DiagForge Visio workflow. <br>
-Risk: VISIO_BRIDGE_TOKEN is used for a local Visio bridge and could be exposed if printed or logged. <br>
-Mitigation: Set VISIO_BRIDGE_TOKEN only for the user's own local bridge and avoid printing, logging, or sharing the token. <br>
+## Use Case:
 
+Developers and agent operators use this skill to onboard into the DiagForge workflow, validate the local Visio bridge path, and begin producing editable Visio diagram assets from reference figures.
 
-## Reference(s): <br>
-- [DiagForge GitHub repository](https://github.com/qweadzchn/DiagForge) <br>
-- [Agent Visio Use on ClawHub](https://clawhub.ai/qweadzchn/diagforge-agent-visio-use) <br>
-- [qweadzchn publisher profile](https://clawhub.ai/user/qweadzchn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only onboarding guidance; no executable code is bundled in the package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill directs agents to clone and run unpinned external repository code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the DiagForge repository state and maintainer before running commands, and execute cloned code with the least filesystem and environment access practical.
+
+Risk: The local Visio bridge uses VISIO_BRIDGE_TOKEN for bridge-backed smoke tests and execution.
+
+Mitigation: Avoid exposing VISIO_BRIDGE_TOKEN until the bridge is needed, and keep the token scoped to the user's local bridge environment.
+
+## Reference(s):
+
+- [DiagForge GitHub repository](https://github.com/qweadzchn/DiagForge)
+- [ClawHub skill page](https://clawhub.ai/qweadzchn/skills/diagforge-agent-visio-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, configuration]
+
+**Output Format:** [Markdown guidance with shell and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides repository cloning, document read order, smoke-test execution, and expected editable Visio outputs.]
+
+## Skill Version(s):
+
+0.1.2 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

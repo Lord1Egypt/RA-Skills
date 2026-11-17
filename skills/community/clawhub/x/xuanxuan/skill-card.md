@@ -1,44 +1,59 @@
-## Description: <br>
-Skill Tracker helps agents track skill usage, calculate health scores, generate optimization suggestions, and produce Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Tracker helps an agent record skill usage, calculate health scores, generate optimization proposals, and produce Markdown health reports.
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-Developers and agent operators use this skill to collect local OpenClaw skill usage records, calculate health scores, generate improvement proposals, and produce Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Usage metadata could include sensitive prompts, credentials, customer data, tokens, or file contents if callers pass that information into the logging metadata. <br>
-Mitigation: Keep logged metadata minimal and exclude secrets, prompts, customer data, tokens, and sensitive file contents. <br>
-Risk: Optional cron jobs can create ongoing local telemetry and scheduled analysis artifacts. <br>
-Mitigation: Enable scheduled jobs only when continuous local tracking is desired, and review generated logs and reports regularly. <br>
-Risk: Generated optimization proposals may be incorrect or misleading if based on sparse or noisy usage records. <br>
-Mitigation: Review proposals before changing, removing, or rewriting skills. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor how local agent skills are used, score their health, and review generated improvement proposals and Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alsoforever/xuanxuan) <br>
-- [Skill definition](SKILL.md) <br>
-- [Open-source README](README-opensource.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, Markdown reports, JSON health snapshots, and JSONL usage logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local usage records, health snapshots, proposals, and scheduled analysis logs when the included scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill stores usage records, timing, success or failure, satisfaction scores, and caller-supplied metadata under ~/.openclaw/data/gungun.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what metadata is passed into the logger, avoid sensitive values, and define retention and cleanup expectations before routine use.
+
+Risk: The security evidence reports an unvalidated proposal file-write path that can escape the intended proposal folder.
+
+Mitigation: Fix filename validation before using the proposal generator on shared or automation-heavy systems.
+
+Risk: Optional cron automation can run health scoring, proposal generation, and report generation without interactive review.
+
+Mitigation: Do not enable cron until storage location, retention, and generated proposal review practices are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alsoforever/skills/xuanxuan)
+- [README-opensource.md](README-opensource.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON and JSONL data files, console summaries, shell commands, and Python integration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local usage, health-score, and proposal files under ~/.openclaw/data/gungun and can be scheduled with cron.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

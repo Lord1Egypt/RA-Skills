@@ -1,40 +1,53 @@
-## Description: <br>
-Routes explicit requests to add or query U.S. stock analysis report conclusions in a specified DingTalk multidimensional table via the dingtalk-ai-table skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+my_stock_report_mgnt_skill helps agents archive and retrieve U.S. stock analysis report conclusions in a DingTalk multidimensional table through the dingtalk-ai-table integration.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-Developers and analysts use this skill to archive validated U.S. stock analysis report conclusions into a DingTalk table and retrieve matching report records as Markdown results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist new stock analysis report records into a specific DingTalk table. <br>
-Mitigation: Use it only for the intended table and require all six documented fields to be validated before insertion. <br>
-Risk: Queries may retrieve all rows from the configured sheet through the dependent dingtalk-ai-table skill. <br>
-Mitigation: Confirm the dependent skill is trusted and permission-limited before installation or use. <br>
+## Use Case:
 
+External users and developers use this skill when they explicitly request the analysis report multidimensional table or the skill name, so an agent can validate, archive, and query U.S. stock analysis report conclusions and document links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/canonxu/my-stock-report-mgnt-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown tables or concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Insert requests require six validated fields; summaries are limited to 300 Chinese characters before insertion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Stock analysis summaries and document links may be stored in the configured DingTalk base and sheet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the DingTalk Base ID and Sheet ID before installation and use only a table approved for those report summaries and links.
+
+Risk: Incorrect or incomplete report fields could create low-quality table records.
+
+Mitigation: Require all six documented fields to be present and format-valid before inserting a record.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-stock-report-mgnt-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown tables and structured field payloads for DingTalk table operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Insert records require six validated fields; query responses are filtered and presented as Markdown tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

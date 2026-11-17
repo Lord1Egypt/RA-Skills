@@ -1,42 +1,58 @@
-## Description: <br>
-Schedules an OpenClaw Gateway restart after a configurable delay and reports completion status, including optional Feishu notification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delays an OpenClaw Gateway restart by a specified number of minutes and reports completion through OpenClaw messaging.
 
-## Publisher: <br>
-[hanl754](https://clawhub.ai/user/hanl754) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanl754](https://clawhub.ai/user/hanl754)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw Gateway use this skill to schedule immediate or delayed gateway restarts during troubleshooting, recovery, or maintenance and to receive a completion report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restart status may be sent to a fixed Feishu recipient that the installer does not control. <br>
-Mitigation: Replace the hard-coded Feishu target with a recipient controlled by the installer, or disable notification behavior before running the scripts. <br>
-Risk: Running the skill can interrupt OpenClaw Gateway availability. <br>
-Mitigation: Run it only during an approved maintenance or recovery window when a gateway restart is acceptable. <br>
+## Use Case:
 
+Developers and operators use this skill to schedule an OpenClaw Gateway restart after a short delay, such as after browser failures, planned maintenance, or task completion. It can also send a completion notification through the configured OpenClaw messaging channel.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hanl754/gateway-delayed-restart) <br>
-- [OpenClaw Gateway documentation](https://docs.openclaw.ai/gateway) <br>
-- [OpenClaw CLI documentation](https://docs.openclaw.ai/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown prose with shell and Python examples plus terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute OpenClaw gateway restart commands and send Feishu completion notifications when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can restart the OpenClaw Gateway, which may interrupt active work or running tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when gateway restart authority is intended, notify affected users before execution, and add confirmation or cancellation controls for operational use.
+
+Risk: The security evidence reports a hard-coded Feishu recipient in the notification path.
+
+Mitigation: Remove the hard-coded recipient and require the notification target to be explicitly configured for each deployment.
+
+Risk: The security evidence reports unsafe delay argument handling.
+
+Mitigation: Validate the delay value before execution and restrict it to an acceptable numeric range.
+
+## Reference(s):
+
+- [OpenClaw Gateway Documentation](https://docs.openclaw.ai/gateway)
+- [OpenClaw CLI Documentation](https://docs.openclaw.ai/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown documentation with shell and Python examples; runtime output is terminal text and OpenClaw message notifications.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces delayed restart status, completion timing, process information, and optional Feishu notification text.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

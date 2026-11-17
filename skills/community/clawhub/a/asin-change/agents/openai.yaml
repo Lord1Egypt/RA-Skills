@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon ASIN 变化监控"
+  short_description: "按已支持周期输出商品快照变化摘要"
+  default_prompt: "使用 $amazon-asin-change-monitor 查看一个 Amazon ASIN 在已支持周期内的商品字段变化摘要。"

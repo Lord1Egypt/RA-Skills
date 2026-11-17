@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 通识课 · 协作备课室 · TDH 数字人文</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #f0fdf4; color: #0f172a; }
+  header { padding: 14px 20px; background: #15803d; color: #fff; }
+  h1 { margin: 0; font-size: 19px; }
+  .wrap { padding: 16px 20px; display:flex; gap:16px; flex-wrap:wrap; }
+  .box { background:#fff; border:1px solid #bbf7d0; border-radius:8px; padding:14px; min-width: 280px; }
+  select, input[type=text] { padding: 7px; border:1px solid #cbd5e1; border-radius:6px; width:100%; box-sizing:border-box; }
+  button { background:#15803d; color:#fff; border:0; padding:8px 14px; border-radius:6px; margin-top:8px; cursor:pointer; }
+  ul { font-size: 13px; padding-left: 18px; }
+  .gate { margin: 16px 20px; }
+</style>
+</head>
+<body>
+<header><h1>AI 通识课 · 协作备课室 · TDH 数字人文 AI 教案</h1></header>
+<div class="wrap">
+  <div class="box">
+    <b>角色分配</b>
+    <select id="role">
+      <option value="主讲">主讲教师</option>
+      <option value="助教">助教</option>
+      <option value="出题">出题人</option>
+    </select>
+    <div style="margin-top:8px">当前成员：<span id="members">主讲-王老师</span></div>
+    <button id="addMember">添加成员</button>
+  </div>
+  <div class="box">
+    <b>版本历史</b>
+    <ul id="versions"><li>v1.0 初稿（王老师）</li></ul>
+    <button id="commit">提交新版本</button>
+  </div>
+  <div class="box">
+    <b>批注</b>
+    <input type="text" id="note" placeholder="输入批注内容…" />
+    <button id="addNote">添加批注</button>
+    <ul id="notes"></ul>
+  </div>
+</div>
+
+<script>
+let vNum = 1;
+document.getElementById('addMember').addEventListener('click', () => {
+  const r = document.getElementById('role').value;
+  document.getElementById('members').textContent += `，${r}-新成员`;
+});
+document.getElementById('commit').addEventListener('click', () => {
+  vNum++;
+  const li = document.createElement('li');
+  li.textContent = `v${vNum}.0 修订（${document.getElementById('role').value}）`;
+  document.getElementById('versions').appendChild(li);
+});
+document.getElementById('addNote').addEventListener('click', () => {
+  const t = document.getElementById('note').value.trim();
+  if (!t) return;
+  const li = document.createElement('li'); li.textContent = t;
+  document.getElementById('notes').appendChild(li);
+  document.getElementById('note').value = '';
+});
+</script>
+</body>
+</html>

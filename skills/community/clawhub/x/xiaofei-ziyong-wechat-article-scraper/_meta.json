@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7esq5tkvky6n2m93g71thq2d82hgae",
-  "slug": "xiaofei-ziyong-wechat-article-scraper",
-  "version": "2.0.0",
-  "publishedAt": 1774775135789
+  "name": "wechat-article-scraper",
+  "version": "1.0.0",
+  "description": "微信公众号文章抓取工具，绕过反爬机制提取正文",
+  "identifier": "wechat-article-scraper",
+  "emoji": "📱",
+  "author": "xiao",
+  "tags": ["wechat", "china", "scraping", "article"],
+  "requires": {
+    "bins": ["python3", "google-chrome"],
+    "env": []
+  }
 }

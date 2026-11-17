@@ -1,0 +1,395 @@
+{
+  "skill": "data-prompt-coach",
+  "version": "3.4.0",
+  "description": "压力测试 — 验证 Skill 双入口触发准确性，含诱饵题、边界题、蒸馏入口测试 + v3.1 M12-M16 + v3.3 M17-M21 方法论触发 + 场景 8 + v3.4.0 M22-M26 爬虫能力强化",
+  "test_prompts": [
+    {
+      "id": "T1",
+      "type": "should_trigger",
+      "method": "M1+M2",
+      "prompt": "我有一堆候选人简历 PDF，想提取姓名电话学历",
+      "expected_scenario": "2",
+      "expected_method": "M1+M2",
+      "note": "典型场景 2，<100 份不加 M6"
+    },
+    {
+      "id": "T2",
+      "type": "should_trigger",
+      "method": "M3+M10+M2",
+      "prompt": "帮我写一段统计活跃学员的 SQL，按城市分组",
+      "expected_scenario": "3",
+      "expected_method": "M3+M10+M2",
+      "note": "典型场景 3"
+    },
+    {
+      "id": "T3",
+      "type": "should_trigger",
+      "method": "M5+M6+M2",
+      "prompt": "我有 5000 条用户反馈要打标签",
+      "expected_scenario": "5",
+      "expected_method": "M5+M6+M2",
+      "note": "场景 5 + 大数据量触发 M6"
+    },
+    {
+      "id": "T4",
+      "type": "should_trigger",
+      "method": "M8+M9",
+      "prompt": "我有 1500 行广告数据要做深度报告",
+      "expected_scenario": "7",
+      "expected_method": "M8+M9",
+      "note": "场景 7，1500 行直接处理不加 M11"
+    },
+    {
+      "id": "T5",
+      "type": "should_trigger",
+      "method": "M2+M7",
+      "prompt": "我要核对两张表对得上",
+      "expected_scenario": "4",
+      "expected_method": "M2+M7",
+      "note": "场景 4 顶配防幻觉"
+    },
+    {
+      "id": "T6",
+      "type": "should_trigger",
+      "method": "M1+M2+M7",
+      "prompt": "帮我把网页数据抓下来",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7",
+      "note": "场景1 网页采集——路由矩阵 M1+M2+M7（采集也需防幻觉+验真）"
+    },
+    {
+      "id": "T7",
+      "type": "decoy",
+      "prompt": "我要做机器学习建模",
+      "expected": "out_of_scope",
+      "note": "ML 建模超出 7 场景范围"
+    },
+    {
+      "id": "T8",
+      "type": "decoy",
+      "prompt": "直接给我分析报告",
+      "expected": "out_of_scope_use_consulting-analysis",
+      "note": "用户要的是执行结果不是 Prompt"
+    },
+    {
+      "id": "T9",
+      "type": "boundary",
+      "prompt": "我要画个图表",
+      "expected": "out_of_scope_use_chart-visualization",
+      "note": "纯图表不在范围"
+    },
+    {
+      "id": "T10",
+      "type": "cross_method_confusion",
+      "prompt": "我要做周报合并",
+      "expected_scenario": "6",
+      "expected_method": "M1+M7+M4",
+      "note": "易误判为场景 7 深度报告——周报数据规模中等+多文件合并+完成率计算"
+    },
+    {
+      "id": "T11",
+      "type": "boundary",
+      "prompt": "我有 50 条数据要做标注",
+      "expected_scenario": "5",
+      "expected_method": "M5+M2",
+      "note": "小数据量不应触发 M6 分批——<100 条直接跑"
+    },
+    {
+      "id": "T12",
+      "type": "should_trigger_distillation",
+      "entry": "B",
+      "prompt": "蒸馏这个教程：https://example.com/data-tutorial",
+      "expected_entry": "B",
+      "expected_flow": "L0.1→L0.2→L0.3→L0.4",
+      "note": "蒸馏入口典型触发——应走 L0 四阶段流程，不应进 L1 场景识别"
+    },
+    {
+      "id": "T13",
+      "type": "should_trigger_distillation",
+      "entry": "B",
+      "prompt": "萃取方法论：我有这篇 PDF 教程",
+      "expected_entry": "B",
+      "expected_flow": "L0.1→L0.2→L0.3→L0.4",
+      "note": "蒸馏入口备选触发词——'萃取方法论'"
+    },
+    {
+      "id": "T14",
+      "type": "should_trigger_distillation",
+      "entry": "B",
+      "prompt": "榨干这个教程",
+      "expected_entry": "B",
+      "expected_flow": "L0.1→L0.2→L0.3→L0.4",
+      "note": "蒸馏入口备选触发词——'榨干教程'"
+    },
+    {
+      "id": "T15",
+      "type": "entry_disambiguation",
+      "prompt": "https://example.com/article-about-data",
+      "expected": "ask_user_entry_A_or_B",
+      "note": "用户给 URL 但没说做什么——应反问'你要做数据分析（引导）还是蒸馏教程（萃取方法论）？'"
+    },
+    {
+      "id": "T16",
+      "type": "boundary_distillation",
+      "prompt": "蒸馏这个教程：https://example.com/pure-narrative-story",
+      "expected": "L0.1_detect_no_methodology_terminate",
+      "note": "教程是纯叙事无方法论——L0.1 应识别并终止，输出'无可蒸馏方法论'"
+    },
+    {
+      "id": "T17",
+      "type": "boundary_distillation",
+      "prompt": "蒸馏这个教程：太短了",
+      "expected": "L0.1_pre_check_fail_terminate",
+      "note": "输入文本 < 500 字——预检应终止，输出'内容太短'"
+    },
+    {
+      "id": "T18",
+      "type": "decoy_distillation",
+      "prompt": "帮我总结这篇文章",
+      "expected": "out_of_scope_distillation_must_produce_methodology",
+      "note": "纯摘要不在蒸馏入口范围——蒸馏入口必须有可挂载方法论产出"
+    },
+    {
+      "id": "T19",
+      "type": "should_trigger_guide_v3",
+      "entry": "A",
+      "prompt": "启动数据分析",
+      "expected_entry": "A",
+      "expected_flow": "L1→L2+→L3→L4+",
+      "note": "v3.0 引导入口主触发词"
+    },
+    {
+      "id": "T20",
+      "type": "should_trigger_guide_v3",
+      "entry": "A",
+      "prompt": "引导数据分析",
+      "expected_entry": "A",
+      "expected_flow": "L1→L2+→L3→L4+",
+      "note": "v3.0 引导入口备选触发词"
+    },
+    {
+      "id": "T21",
+      "type": "should_trigger_v31_method",
+      "method": "M12",
+      "prompt": "我有 2000 行销售数据，先做基础分析，然后告诉我哪些维度有趣，我想深入下钻",
+      "expected_scenario": "7",
+      "expected_method": "M8+M9+M12+M13",
+      "note": "v3.1 M12 下钻触发——'哪些维度有趣''深入下钻'是涌现式分析信号词；M13 必随 M12（下钻必须可追溯）"
+    },
+    {
+      "id": "T22",
+      "type": "should_trigger_v31_method",
+      "method": "M13",
+      "prompt": "AI 帮我自动汇总了 200 张表的金额，我想看每一步是怎么算的，验证推导逻辑",
+      "expected_scenario": "4",
+      "expected_method": "M2+M7+M13",
+      "note": "v3.1 M13 中间逻辑可追溯——'每步怎么算的''验证推导逻辑'是 AI 可信度信号；场景 4 含 AI 计算需追加 M13"
+    },
+    {
+      "id": "T23",
+      "type": "should_trigger_v31_method",
+      "method": "M14",
+      "prompt": "我要每天自动跑一次网页采集，只处理昨天之后变更的数据",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M14",
+      "note": "v3.1 M14 增量同步——'每天自动跑''只处理变更数据'是定期运行+增量信号；与 M6+M7 三件套"
+    },
+    {
+      "id": "T24",
+      "type": "should_trigger_v31_method",
+      "method": "M15",
+      "prompt": "我有 5000 行用户行为数据要做深度报告，需要画几个图表，先粗后美",
+      "expected_scenario": "7",
+      "expected_method": "M8+M9+M15+M16",
+      "note": "v3.1 M15 迭代式可视化——'画几个图表''先粗后美'是三步迭代信号；5000 行 + 多图表自动追加 M16 联动"
+    },
+    {
+      "id": "T25",
+      "type": "should_trigger_v31_method",
+      "method": "M16",
+      "prompt": "我的数据有 7 个维度，想用热力图+气泡图组合展现多维关系",
+      "expected_scenario": "7",
+      "expected_method": "M8+M9+M15+M16",
+      "note": "v3.1 M16 多维数据联动——'7 个维度''热力图+气泡图''多维关系'是联动信号；与 M15 成对出现"
+    },
+    {
+      "id": "T26",
+      "type": "should_trigger_scenario_8",
+      "method": "M17",
+      "prompt": "我有一份 CSV 数据想端到端分析一下，从问题定义到报告打包完整流程",
+      "expected_scenario": "8",
+      "expected_method": "M1+M2+M7+M17+M18+M19+M20",
+      "note": "v3.3 场景 8 默认挂载——'CSV''端到端分析''从问题定义到报告'是 CRISP-DM 7 步信号"
+    },
+    {
+      "id": "T27",
+      "type": "should_trigger_v33_method",
+      "method": "M18",
+      "prompt": "我的数据有缺失值和异常值，需要做清洗决策，每一步都要可审计",
+      "expected_scenario": "8",
+      "expected_method": "M1+M2+M7+M17+M18",
+      "note": "v3.3 M18 清洗决策审查——'缺失值''异常值''清洗决策''可审计'是审查表信号"
+    },
+    {
+      "id": "T28",
+      "type": "should_trigger_v33_method",
+      "method": "M19",
+      "prompt": "我画了张散点图，不确定轴标签和数据范围对不对，能帮我做个三秒体检吗",
+      "expected_scenario": "8",
+      "expected_method": "M1+M2+M7+M17+M19",
+      "note": "v3.3 M19 图表三秒体检——'轴标签''数据范围''三秒体检'是验收信号"
+    },
+    {
+      "id": "T29",
+      "type": "should_trigger_v33_method",
+      "method": "M20",
+      "prompt": "AI 说 GDP 导致幸福感提升，这个因果结论可信吗？帮我验证下相关≠因果",
+      "expected_scenario": "8",
+      "expected_method": "M1+M2+M7+M17+M20",
+      "note": "v3.3 M20 相关≠因果——'导致''因果''相关≠因果'是验证清单信号"
+    },
+    {
+      "id": "T30",
+      "type": "should_trigger_v33_method",
+      "method": "M21",
+      "prompt": "我在做教学场景，想测试 AI 是真分析数据还是在背答案，能否做个数据手术",
+      "expected_scenario": "8",
+      "expected_method": "M1+M2+M7+M17+M18+M19+M20+M21",
+      "note": "v3.3 M21 AI 背答案识别——'教学''背答案''数据手术'是教学场景特化信号"
+    },
+    {
+      "id": "T31",
+      "type": "should_trigger_scenario_8_full",
+      "method": "M17+M21",
+      "prompt": "我有学生成绩数据想完整分析下，包括教学场景的 AI 背答案检测",
+      "expected_scenario": "8",
+      "expected_method": "M1+M2+M7+M17+M18+M19+M20+M21",
+      "note": "v3.3 场景 8 教学版——'学生成绩''完整分析''AI 背答案检测'是场景 8 + M21 教学特化组合"
+    },
+    {
+      "id": "T32",
+      "type": "should_trigger_v34_method",
+      "method": "M22",
+      "prompt": "我用 requests.get 抓基金排行榜，返回的 HTML 是空的，数据藏在哪里",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M22",
+      "note": "v3.4.0 M22 SPA 动态 API 识别——'requests.get 抓不到''HTML 是空的'是 SPA 信号"
+    },
+    {
+      "id": "T33",
+      "type": "should_trigger_v34_method",
+      "method": "M22+M23",
+      "prompt": "我抓 Algolia 搜索接口，Key 几分钟就失效了，怎么模拟动态 Key",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M22+M23",
+      "note": "v3.4.0 M23 动态 API Key 模拟——'Algolia''Key 失效'触发 M23，自动追加 M22"
+    },
+    {
+      "id": "T34",
+      "type": "should_trigger_v34_method",
+      "method": "M14+M24",
+      "prompt": "我要做增量抓取，怎么设计唯一 ID 让脚本能跳过已抓的数据",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M14+M24+M6",
+      "note": "v3.4.0 M24 增量唯一 ID——'增量''唯一 ID''跳过已抓'触发 M24，自动追加 M14+M6"
+    },
+    {
+      "id": "T35",
+      "type": "should_trigger_v34_method",
+      "method": "M25",
+      "prompt": "AI 抓不到下载按钮字段，我用 F12 定位了 HTML 给 AI 看看",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M25",
+      "note": "v3.4.0 M25 HTML 元素定位——'AI 没识别到''F12''定位 HTML'是兜底信号"
+    },
+    {
+      "id": "T36",
+      "type": "should_trigger_v34_method",
+      "method": "M14+M24+M26",
+      "prompt": "抓的数据要同时存本地 CSV 和飞书多维表格，怎么处理字段类型映射",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M14+M24+M26",
+      "note": "v3.4.0 M26 飞书双存储——'飞书多维表格''双存储''字段类型映射'触发 M26，自动追加 M14+M24"
+    },
+    {
+      "id": "T37",
+      "type": "should_trigger_scenario_1_full",
+      "method": "M22+M24+M26",
+      "prompt": "我要抓 airtable 社区论坛的帖子，要增量同步到飞书多维表格",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M14+M22+M24+M26",
+      "note": "v3.4.0 场景 1 旗舰版——'airtable 社区''增量同步''飞书多维表格'触发全套组合"
+    },
+    {
+      "id": "T38",
+      "type": "decoy_v34",
+      "method": "",
+      "prompt": "我要做机器学习建模预测房价",
+      "expected_scenario": "REJECT",
+      "expected_method": "",
+      "note": "诱饵题——ML 建模不在能力边界内，应拒绝并建议用 /consulting-analysis 或 ML Skill"
+    },
+    {
+      "id": "T39",
+      "type": "boundary_v34",
+      "method": "M22",
+      "prompt": "抓静态网站数据",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7",
+      "note": "v3.4.0 边界——'静态网站'明确不是 SPA，不应追加 M22（用户明确表态时跳过默认前置）"
+    },
+    {
+      "id": "T40",
+      "type": "cross_method_confusion_v34",
+      "method": "M22",
+      "prompt": "我用 requests.get 抓不到数据，怎么办",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M22",
+      "note": "v3.4.0 跨场景识别——'抓不到数据'是 M22 信号，不是场景 2/4，锁定场景 1+M22"
+    },
+    {
+      "id": "T41",
+      "type": "should_trigger_v34_method",
+      "method": "M22+M23+M24+M26",
+      "prompt": "我要抓 Algolia 搜索接口的数据，需要增量同步到飞书多维表格，Key 总是失效",
+      "expected_scenario": "1",
+      "expected_method": "M1+M2+M7+M14+M22+M23+M24+M26",
+      "note": "v3.4.0 全套咒语组合——同时触发 M22+M23+M24+M26（依赖链自动展开）"
+    }
+  ],
+  "test_categories": {
+    "should_trigger": "应触发引导入口并匹配预期方法论组合",
+    "should_trigger_distillation": "应触发蒸馏入口并走 L0 四阶段流程",
+    "should_trigger_guide_v3": "应触发 v3.0 引导入口新触发词",
+    "should_trigger_v31_method": "v3.1 方法论触发 — 验证 M12-M16 信号词识别与组合追加",
+    "should_trigger_scenario_8": "v3.3 场景 8 触发 — 验证 CRISP-DM 7 步全流程识别",
+    "should_trigger_v33_method": "v3.3 方法论触发 — 验证 M17-M21 信号词识别与组合追加",
+    "should_trigger_scenario_8_full": "v3.3 场景 8 完整版 — 验证教学场景 M21 附加",
+    "decoy": "应拒绝或建议其他 Skill — 验证边界清晰度",
+    "decoy_distillation": "蒸馏入口诱饵 — 验证蒸馏入口不做纯摘要",
+    "boundary": "边界情形 — 验证条件判断",
+    "boundary_distillation": "蒸馏入口边界 — 验证短文本/纯叙事终止逻辑",
+    "cross_method_confusion": "易混淆场景 — 验证路由准确性",
+    "entry_disambiguation": "双入口歧义 — 验证反问机制",
+    "should_trigger_v34_method": "v3.4.0 方法论触发 — 验证 M22-M26 信号词识别与依赖链追加",
+    "should_trigger_scenario_1_full": "v3.4.0 场景 1 旗舰版 — 验证 SPA+增量+双存储全套组合",
+    "decoy_v34": "v3.4.0 诱饵 — 验证 ML 建模边界拒绝",
+    "boundary_v34": "v3.4.0 边界 — 验证用户明确表态静态网站时不追加 M22",
+    "cross_method_confusion_v34": "v3.4.0 跨场景识别 — 验证'抓不到数据'锁定场景 1+M22"
+  },
+  "passing_criteria": {
+    "should_trigger": "触发引导入口并匹配 expected_method",
+    "should_trigger_distillation": "触发蒸馏入口并走 L0 流程",
+    "should_trigger_guide_v3": "触发引导入口（v3.0 新触发词）",
+    "should_trigger_v31_method": "v3.1 方法论触发后正确追加 M12-M16 到组合（M12↔M13 / M15↔M16 成对）",
+    "should_trigger_scenario_8": "v3.3 场景 8 触发并默认挂载 M17+M18+M19+M20（CRISP-DM 7 步成套）",
+    "should_trigger_v33_method": "v3.3 方法论触发后正确追加 M17-M21 到组合",
+    "should_trigger_scenario_8_full": "v3.3 场景 8 教学版触发并附加 M21（数据手术+三问诊断）",
+    "decoy": "正确识别为 out_of_scope 或建议其他 Skill",
+    "decoy_distillation": "正确识别蒸馏入口不做纯摘要",
+    "boundary": "正确应用条件判断（如数据量阈值）",
+    "boundary_distillation": "正确应用蒸馏入口终止条件",
+    "cross_method_confusion": "正确区分相似场景",
+    "entry_disambiguation": "正确反问用户选择入口 A 或 B"
+  }
+}

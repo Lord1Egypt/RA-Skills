@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7eap6gapde944gfh909v87m583hpp3",
+  "ownerId": "ou_074397f5ddd46b75d7ae06baea9eea45",
+  "ownerName": "Leo",
   "slug": "large-file-handler",
   "version": "1.0.0",
-  "publishedAt": 1775176541208
+  "publishedAt": 1775289600000,
+  "author": "Leo 🦁",
+  "license": "MIT",
+  "tags": ["file", "async", "large-file", "pdf", "video", "image"]
 }

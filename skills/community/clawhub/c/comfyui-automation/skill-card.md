@@ -1,40 +1,53 @@
-## Description: <br>
-Use when you need to automate ComfyUI tasks, including installing ComfyUI, parsing API-format workflow JSON files, checking and downloading missing models, and executing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ComfyUI setup, API-format workflow analysis, missing-model checks, model download guidance, and local workflow execution.
 
-## Publisher: <br>
-[nhuquangls](https://clawhub.ai/user/nhuquangls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhuquangls](https://clawhub.ai/user/nhuquangls)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up ComfyUI, inspect API-format workflows for required model files, prepare missing model downloads, and submit workflows to a local ComfyUI API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to clone custom node repositories, install Python packages, and download model files into a ComfyUI workspace. <br>
-Mitigation: Confirm each repository and model URL before execution, prefer trusted sources and pinned commits, and avoid automatic installation of unknown custom nodes. <br>
-Risk: Workflow execution depends on locally available model files and a running ComfyUI server. <br>
-Mitigation: Run the included model analysis script before execution, download only missing files without overwriting existing assets, and report missing nodes, missing models, or out-of-memory failures explicitly. <br>
+## Use Case:
 
+Developers and agents use this skill to set up ComfyUI, prepare API-format workflows, check model dependencies, and queue image-generation jobs through a local ComfyUI API.
 
-## Reference(s): <br>
-- [ComfyUI Repository](https://github.com/comfyanonymous/ComfyUI.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file checks, model download commands, ComfyUI custom node installation steps, and a lightweight Python API submission wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may lead agents to install unpinned third-party code or ComfyUI custom nodes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace or container, pin ComfyUI and each custom node to reviewed commits, and require manual approval before adding new custom-node repositories.
+
+Risk: Model downloads may lack clear provenance or integrity checks.
+
+Mitigation: Verify model sources and checksums before downloading or using large model files.
+
+## Reference(s):
+
+- [ComfyUI GitHub Repository](https://github.com/comfyanonymous/ComfyUI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local setup steps, model dependency reports, download commands, workflow API wrappers, and error-reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

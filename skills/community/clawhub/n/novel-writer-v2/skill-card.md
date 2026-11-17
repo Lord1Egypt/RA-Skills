@@ -1,40 +1,57 @@
-## Description: <br>
-章节正文生成器 - 根据章节大纲、Voice Profile 和角色档案构建 LLM 提示词，用于生成章节正文。当需要根据大纲创作具体章节时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds structured LLM prompts from a chapter outline, optional voice profile, and character files to help generate novel chapter prose.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Writers, editors, and agent workflows use this skill to turn a chapter outline, optional style profile, and optional character files into structured Markdown prompts for drafting novel chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script reads local outline, style, and character files and writes to a user-provided output path. <br>
-Mitigation: Run it against a dedicated novel project folder and review --book-dir, --outline, and --output before execution. <br>
-Risk: The Python dependencies are not pinned in the artifact. <br>
-Mitigation: Install in an isolated environment and pin rich and PyYAML versions before long-term or shared use. <br>
+## Use Case:
 
+Writers and developers use this skill to prepare chapter-generation prompts for local novel projects. It combines a Markdown chapter outline with optional style and character YAML files, then outputs a Markdown prompt package for review before use with an LLM.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuzhihui886/novel-writer-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prompt files and CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a chapter outline, optional style.yml, and optional characters/*.yml from a local novel project; writes a Markdown prompt file to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Path handling can read files outside the intended book project when untrusted users control input paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted local book projects, fix the project directory in automation, and do not let untrusted users choose --outline or --output values.
+
+Risk: Project text can be carried into generated prompts and treated as instructions by a downstream LLM.
+
+Mitigation: Review generated prompt files before sending them to an LLM and remove or neutralize unexpected instructions from outline, style, or character content.
+
+Risk: Unpinned dependencies can change behavior over time in automated use.
+
+Mitigation: Pin rich and PyYAML versions in deployment environments and install from trusted package sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuzhihui886/skills/novel-writer-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown prompt file with system and user prompt sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local Markdown and YAML inputs; no network call or credentials are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

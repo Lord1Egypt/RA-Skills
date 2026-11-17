@@ -1,42 +1,54 @@
-## Description: <br>
-Proactive Personal Assistant behavior patterns that help an agent anticipate needs, run heartbeat checks, surface actionable insights, and improve over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Personal Assistant behavior patterns help an agent anticipate needs, run heartbeat checks, configure cron-based proactive checks, and surface actionable insights autonomously.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-External users and developers use this skill to configure an agent for proactive personal-assistant checks, scheduled heartbeat routines, and actionable follow-up suggestions. The artifact marks this release as deprecated and says the behavior moved into broader agent and personality configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous messaging or scheduled checks may contact fixed recipients or send external messages without clear user intent. <br>
-Mitigation: Remove fixed recipient defaults and require explicit approval for every external message, or define a clearly bounded opt-in rule before use. <br>
-Risk: Proactive scheduled behavior and memory persistence can continue after installation without enough review. <br>
-Mitigation: Document and limit memory writes, keep scheduled jobs reviewable, and ensure users can disable them. <br>
-Risk: Proactive alerts can become noisy or disruptive if every signal is treated as urgent. <br>
-Mitigation: Alert only on actionable issues, batch non-urgent updates, and enforce quiet-hour rules except for explicitly defined critical cases. <br>
+## Use Case:
 
+External users and developers use this skill to configure a personal-assistant agent to monitor messages, calendar events, cron health, and urgent email signals, then surface actionable alerts and next steps. The artifact is marked deprecated and says the behavior was moved into broader assistant guidance.
 
-## Reference(s): <br>
-- [Proactive Pa on ClawHub](https://clawhub.ai/netanel-abergel/proactive-pa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes proactive check categories, heartbeat-state conventions, cron setup patterns, communication rules, and approval guardrails for sensitive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can prompt an agent to monitor private services and send alerts to a hard-coded WhatsApp recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in the intended private environment, remove hard-coded phone and group destinations, and require user confirmation before any outbound message.
+
+Risk: The skill can encourage persistent cron jobs, memory writes, Git pushes, and publishing actions without adequate user control.
+
+Mitigation: Require confirmation for cron creation, memory writes, Git pushes, publishing, and outbound messages, and provide clear ways to list, disable, and expire scheduled jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/proactive-pa)
+- [DEPRECATED.md](artifact/DEPRECATED.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes autonomous monitoring patterns, cron setup examples, alerting templates, and personal-assistant guardrails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

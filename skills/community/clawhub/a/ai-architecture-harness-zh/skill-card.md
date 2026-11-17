@@ -1,39 +1,53 @@
-## Description: <br>
-Builds AI programming architecture guardrails that help agents preserve design intent, architecture boundaries, acceptance rules, and regression protections during code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+建立和使用 AI 编程架构护栏，防止架构坍缩、功能回退和长对话迭代漂移。
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and coding agents use this skill to create or apply lightweight architecture guardrails before non-trivial code changes. It guides documentation of design intent, architecture state, acceptance rules, drift, and incident-derived golden rules, then encourages deterministic checks such as tests, lint rules, and CI gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guardrail documents, tests, or lint rules proposed by the agent may encode incorrect architecture assumptions. <br>
-Mitigation: Review proposed documentation, test, and lint changes as normal repository changes before adopting them. <br>
+## Use Case:
 
+Developers and engineering agents use this Chinese-language skill to create, maintain, and apply architecture guardrails before modifying large or complex codebases. It guides documentation, acceptance checks, architecture drift review, and golden-rule feedback loops to reduce architecture collapse, regression, and long-conversation drift.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/ai-architecture-harness-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/hgvgfgvh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, document outlines, and code or shell snippets when applying guardrails.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; security evidence reports no executable payload, credential access, network behavior, or hidden persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may ask an agent to create or update repository documentation, tests, lint rules, or configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed repository changes like normal code changes before accepting them.
+
+Risk: Architecture guidance can become inaccurate if it treats current implementation drift as intended design.
+
+Mitigation: Compare updates against human-maintained design intent and keep uncertain differences in architecture drift documentation for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/ai-architecture-harness-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional repository documentation, tests, lint rules, shell commands, and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language architecture guardrail guidance; repository changes should be reviewed like normal code changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

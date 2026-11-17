@@ -1,7 +1,7 @@
 ---
 name: memory-tencentdb
 description: 四层记忆系统插件 — 自动捕获对话、提取结构化记忆、归纳场景、生成用户画像。支持 L0→L1→L2→L3 渐进式管线，本地 SQLite + 腾讯云向量数据库双后端。
-version: 0.3.8
+version: 0.3.6
 tags: ["memory", "long-term-memory", "persona", "sqlite", "vector-search"]
 author: paudyyin
 ---
@@ -9,13 +9,6 @@ author: paudyyin
 # memory-tencentdb — 四层记忆系统
 
 为 OpenClaw AI Agent 提供 L0→L1→L2→L3 长期记忆能力。
-
-## v0.3.8 变更（2026-06-08）
-
-- **集成 Nomic Atlas 可视化**：新增 `scripts/nomic_atlas_visualizer.py`，使用 sentence-transformers + nomic-embed-text-v1.5 生成 768 维语义嵌入，UMAP 降维后生成交互式 HTML 可视化，完全本地运行
-- **删除 llm configSchema**：从 openclaw.plugin.json 中移除 `llm` 配置段（v0.3.7 已删除代码，此版本清理配置 schema）
-- **本地 embedding 支持**：兼容 memorySearch.provider: "local" 配置，使用 nomic-embed-text-v1.5.Q4_K_M.gguf 本地模型
-- **修复 L1 提取静默失败**：之前独立 LLM 因 apiKey 为空返回 401，导致提取管线完全停止
 
 ## v0.3.6 变更（2026-06-08）
 

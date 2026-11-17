@@ -1,41 +1,55 @@
-## Description: <br>
-Audit a game, feature, encounter structure, roguelite run, puzzle sequence, onboarding path, or progression gate through the lens of its failure loop: what happens after the player fails, what they learn, what they lose, and why they would or would not try again. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits game failure loops to assess what players lose, learn, retain, and whether the retry path motivates another attempt.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, developers, and narrative or systems reviewers use this skill to audit repeated player failure states and identify whether those loops teach, motivate, stall, humiliate, exhaust, or eject players. It supports tuning punishment, retry structure, post-failure recovery, feedback clarity, and motivation after defeat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata includes capability tags that do not match the markdown-only behavior described by the security evidence. <br>
-Mitigation: Re-check future versions for added code, install steps, credentials, network access, or purchase-related behavior before deployment. <br>
-Risk: Design recommendations may be incorrect or misleading if the user's game context or playtest evidence is incomplete. <br>
-Mitigation: Review recommendations against concrete playtest observations and designer goals before changing a game design. <br>
+## Use Case:
 
+Game designers, developers, and design reviewers use this skill to evaluate repeated failure states, retry friction, player learning, emotional impact, and practical tuning changes.
 
-## Reference(s): <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured audit sections covering failure loop summary, loss-learning-retry analysis, friction diagnosis, motivation diagnosis, recommendations, and a minimal fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill provides design-opinion guidance that may not fit every game, audience, or production goal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the specific game's design intent, player segment, and available playtest evidence before adopting changes.
+
+Risk: Audit conclusions may be misleading when the user provides incomplete or anecdotal failure-loop evidence.
+
+Mitigation: Anchor findings to concrete player observations, telemetry, or design examples and treat unsupported assumptions as provisional.
+
+## Reference(s):
+
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/stanestane/skills/game-design-failure-loop-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit with structured sections, tables, prioritized recommendations, and a minimal fix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, configuration, or tool calls are produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

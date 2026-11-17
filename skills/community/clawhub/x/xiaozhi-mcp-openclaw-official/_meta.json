@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76d84e5yshb7jz8b8c9b3gjh82px78",
-  "slug": "xiaozhi-mcp-openclaw-official",
+  "name": "小智AI-Xiaozhi Mcp Openclaw Official",
   "version": "1.0.2",
-  "publishedAt": 1774373083395
+  "description": "Official-style XiaoZhi MCP bridge for OpenClaw / OpenAI-compatible backends.",
+  "author": "OpenClaw Assistant",
+  "tags": ["xiaozhi", "mcp", "openclaw", "voice", "assistant"]
 }

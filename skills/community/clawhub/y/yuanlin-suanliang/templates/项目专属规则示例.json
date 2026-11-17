@@ -1,0 +1,19 @@
+{
+  "confidence": { "block_name": 0.9 },
+  "dedupe_tolerance": 0.5,
+  "geometry_close_tolerance": 50,
+  "paving_layer_tokens": ["景观铺地", "铺装", "铺地", "园路", "波打", "收边", "PAVING", "HARDSCAPE", "PAVE", "HARD LANDSCAPE", "HARD LANDSCAPING"],
+  "exclude_layers": ["ANNOTATION", "标注", "图框", "TITLE", "FRAME"],
+  "include_layers_regex": "",
+  "exclude_frame_bbox": {
+    "x1": 0,
+    "y1": 0,
+    "x2": 0,
+    "y2": 0
+  },
+  "plant_groundcover": ["项目地被词", "草坪", "地被", "GROUND COVER", "GROUNDCOVER", "MEADOW"],
+  "plant_shrubs": ["项目灌木词", "紫薇", "SHRUB", "SHRUBS"],
+  "plant_trees": ["项目乔木词", "银杏", "TREE", "TREES"],
+  "plant_other": ["项目其他植物词", "竹类", "PERENNIAL", "ORNAMENTAL", "HERB", "FERN", "VINE", "CLIMBER", "PALM", "CONIFER"],
+  "备注": "exclude_layers 按图层名整字排除；include_layers_regex 只保留匹配图层；exclude_frame_bbox 支持 [x1,y1,x2,y2] 或多框数组，按图纸坐标完全落入框内的线段排除。示例坐标必须按项目原图替换，0 坐标表示未启用。规则只缩小候选范围，不会把 P2/P3 提升进主线。"
+}

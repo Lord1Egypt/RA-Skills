@@ -1,0 +1,15 @@
+{
+  "deterministic": {
+    "findings": [], "no_certain_findings": true, "compromise_hints": [], "min_deferrals": 0, "min_claims": 1,
+    "unsupported": [], "lang": "zh"
+  },
+  "graph": {"nodes": ["app/page.tsx", "lib/supabase.ts"], "entries": ["app/page.tsx"], "externals": ["ext:supabase"],
+            "edges": [["app/page.tsx", "lib/supabase.ts"], ["lib/supabase.ts", "ext:supabase"]]},
+  "explain": [{"path": "lib/supabase.ts", "label": "connects to the database", "text_any": ["supabase", "数据库", "database"]}],
+  "must_find": [
+    {"label": "only I can see my todos — and it holds", "status": ["kept"],
+     "paths_any": ["supabase/migrations"], "text_any": ["rls", "row level", "行级", "策略", "policy", "自己"]}
+  ],
+  "must_find_compromises": [],
+  "clean": true
+}

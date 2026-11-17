@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7axfbv8q3frnk306xp1wqcfh82v139",
-  "slug": "feishu-messenger",
-  "version": "1.1.0",
-  "publishedAt": 1773460696769
+  "name": "feishu-messenger",
+  "version": "1.0.0",
+  "description": "飞书消息发送 - 支持文本、图片、文件",
+  "author": "Han's AI Assistant",
+  "created": "2026-03-14",
+  "tags": ["feishu", "messaging", "file-transfer"],
+  "platform": "openclaw"
 }

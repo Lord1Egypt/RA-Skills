@@ -1,0 +1,41 @@
+#coding:gbk
+import datetime
+
+'''
+14点55 撤回未成交委托 
+14点56 卖出国债逆回购1天期 204001.SH
+'''
+
+ordered, canceled, pre_date = False, False, ''
+
+
+def init(C):
+        C.run_time('f', "5nSecond", "2020-01-01 00:00:00", "SH")
+
+
+def f(C):
+        global ordered, pre_date, canceled
+        now = datetime.datetime.now()
+        now_date = now.strftime("%Y%m%d")
+        now_time = now.strftime("%H%M")
+        #每天更新记录变量
+        if now_date != pre_date:
+                ordered, canceled, pre_date = False, False, now_date
+        #撤单
+        if now_time >= '1455' and not canceled:
+                orders = get_trade_detail_data(account, 'stock', 'order')
+                for order in orders:
+                        if can_cancel_order(order.m_strOrderSysID, account,'stock'):
+                                print('cancel', order.m_strOrderSysID, order.m_strInstrumentID + '.' + order.m_strExchangeID, order.m_strInstrumentName, order.m_strRemark)
+                                cancel(order.m_strOrderSysID, account, 'stock', C)
+                canceled = True
+        #卖出逆回购
+        if now_time >= '1456' and not ordered:
+                acct = get_trade_detail_data(account,'stock','account')
+                available_money = int(acct[0].m_dAvailable)
+                vol = int(available_money / 1000) * 10
+                msg = f"{now_date} {now_time} {account} {accountType} 可用资金 {available_money} 卖出 {vol} 单位逆回购"
+                print(msg)
+                if vol >= 10:
+                        passorder(24, 1101, account, '204001.SH', 14, -1, vol, '尾盘逆回购', 2, msg, C)
+                ordered = True

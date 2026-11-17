@@ -1,41 +1,52 @@
-## Description: <br>
-Automate social media posting across Twitter, LinkedIn, Facebook, Instagram. Schedule posts, track engagement, auto-reply. Use when you need to manage social media presence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates social media posting across Twitter/X, LinkedIn, Facebook, and Instagram, including scheduled posts, engagement tracking, and auto-replies.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Social media operators, marketers, and developers use this skill to plan, schedule, publish, auto-reply, and review engagement for posts across multiple social platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, schedule, and auto-reply from connected social-media accounts. <br>
-Mitigation: Require manual review for every post, scheduled campaign, and auto-reply rule before enabling account activity. <br>
-Risk: Production social-media tokens could be exposed or misused if credentials are entered before the implementation and package source are verified. <br>
-Mitigation: Use test or low-risk accounts first, prefer scoped tokens and secure secret storage, and verify the implementation and package source before entering production credentials. <br>
-Risk: Scheduled or automatic activity may continue after configuration mistakes or changing campaign requirements. <br>
-Mitigation: Maintain a clear way to list, pause, delete, and revoke all scheduled or automatic activity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-socialposter) <br>
+## Use Case:
 
+External users and social media operators use this skill to plan, publish, and monitor posts across multiple social platforms. It also supports automatic replies and analytics workflows for managing an online presence.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include social-platform post content, scheduling parameters, auto-reply templates, analytics export commands, and credential configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to connect posting credentials for social media accounts.
+
+Mitigation: Use least-privilege and short-lived tokens where possible, and avoid entering secrets directly on the command line.
+
+Risk: Automatic public replies can post unintended content if they are enabled without adequate controls.
+
+Mitigation: Scope auto-replies by platform and account, test templates before use, apply rate limits, keep logs, and maintain an easy disable path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-socialposter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that configure social media API credentials, schedule posts, export analytics, and define auto-reply templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

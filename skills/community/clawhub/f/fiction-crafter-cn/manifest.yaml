@@ -1,0 +1,22 @@
+name: "fiction-crafter-cn"
+display_name: "中文小说工匠"
+slug: "fiction-crafter-cn"
+version: "1.0.2"
+category: "writing"
+author: "xxjrq"
+repository: "https://github.com/xxjrq/fiction-crafter-cn"
+description: "离线管理中文长篇小说的人物、世界观、卷纲、时间线和章节；脚本检查文件结构，正文连续性由 AI 阅读资料后分析。"
+icon: "icon-512.png"
+trigger_words:
+  - "长篇小说工作台"
+  - "人物卡和大纲"
+  - "小说连续性"
+  - "网文创作管理"
+tags:
+  - "novel"
+  - "writing"
+  - "continuity"
+  - "outline"
+  - "中文小说"
+license: MIT-0
+self_test: "python3 scripts/self_test.py self-test"

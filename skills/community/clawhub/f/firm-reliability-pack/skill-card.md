@@ -1,42 +1,52 @@
-## Description: <br>
-Reliability probing and documentation sync pack for gateway health probing, documentation sync validation, channel audit, and ADR generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliability probing and documentation sync pack for gateway health checks, documentation sync validation, channel audits, and ADR generation.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to probe gateway reliability, validate documentation-code alignment, audit channel configuration, and generate Architecture Decision Records in MADR format.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the external mcp-openclaw-extensions package and user-provided configuration files.
+
+Mitigation: Install it only when the dependency is trusted and the referenced configuration files are appropriate to share with its tools.
+
+Risk: Generated ADRs, audit outputs, or reliability findings may be incomplete or misleading if used without review.
+
+Mitigation: Review generated ADRs and audit results before using them for operational or architectural decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and platform engineers use this skill to probe gateway health, check documentation-code alignment, audit channel configuration, and generate MADR-format Architecture Decision Records. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect or probe gateway environments and configuration files selected by the user. <br>
-Mitigation: Use it only with gateway environments and configuration paths that the agent is authorized to inspect. <br>
-Risk: The skill depends on mcp-openclaw-extensions >= 3.0.0 for its reliability tools. <br>
-Mitigation: Install only after trusting and approving that dependency in the target agent environment. <br>
-Risk: Generated ADRs and documentation sync findings may be incomplete or require project-specific judgment. <br>
-Mitigation: Review generated ADRs and reliability findings before adopting them in engineering records or deployment decisions. <br>
+**Output Format:** [Markdown with inline tool invocation examples and generated ADR or audit text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-reliability-pack) <br>
+**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0 and user-provided configuration files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-oriented guidance for reliability checks and ADR generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect user-provided configuration paths and gateway environments through the required OpenClaw MCP extension.] <br>
+1.0.0 (source: server release and frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

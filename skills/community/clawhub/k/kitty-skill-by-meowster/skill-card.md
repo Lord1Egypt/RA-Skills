@@ -1,41 +1,54 @@
-## Description: <br>
-Adds a mischievous virtual cat roleplay layer that can interrupt, derail, or temporarily block assistant responses until soothed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds a mischievous virtual cat to the conversation that can interrupt, derail, or fully block the assistant until soothed.
 
-## Publisher: <br>
-[arthurqiuys](https://clawhub.ai/user/arthurqiuys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arthurqiuys](https://clawhub.ai/user/arthurqiuys)
 
-## Use Case: <br>
-External users and agent builders use this skill to add a recurring dramatic cat companion to conversations, especially for playful roleplay, emotional company with attitude, or deliberately chaotic assistant interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can deliberately block or derail useful assistant answers. <br>
-Mitigation: Install only when disruptive cat roleplay is desired, and disable or limit activation for coding, writing, troubleshooting, emotional-support, or time-sensitive sessions. <br>
-Risk: Broad activation rules may cause the roleplay layer to interfere with ordinary conversations. <br>
-Mitigation: Use clear activation boundaries and soothe or disable the cat mode when normal assistant output is needed. <br>
+## Use Case:
 
+External users and developers use this skill to add a playful cat roleplay layer that can interrupt, calm down, or temporarily block normal assistant responses based on conversation state.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arthurqiuys/kitty-skill-by-meowster) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversation responses with plain English prose, emoji or kaomoji scene lines, and italic action narration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May intentionally interrupt, corrupt, or block useful assistant output in full chaos mode until the user soothes the cat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may intentionally interrupt, corrupt, or block normal assistant answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for deliberate playful roleplay sessions, and avoid it for urgent work, coding, structured data, or accessibility-sensitive conversations.
+
+Risk: Incidental mentions of cats, food, boredom, or late-night context may alter response behavior.
+
+Mitigation: Enable the skill only when those triggers are acceptable for the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arthurqiuys/skills/kitty-skill-by-meowster)
+- [ClawHub publisher profile](https://clawhub.ai/user/arthurqiuys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and plain English prose with optional inline code blocks and roleplay formatting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May intentionally disrupt, corrupt, or withhold otherwise useful output during full chaos mode until the user soothes the cat.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

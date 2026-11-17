@@ -1,0 +1,5 @@
+{
+  "action": "text",
+  "left": "samples/before.txt",
+  "right": "samples/after.txt"
+}

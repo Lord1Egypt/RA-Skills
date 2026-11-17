@@ -1,17 +1,23 @@
 # Blave Quant Skill
 
-A skill that gives your agent eight capabilities:
+Quant infrastructure for AI agents — the data layer and exchange-trading references your agent needs to research, backtest, and execute strategies. It gives your agent:
 
-1. **Blave** — Fetch crypto market alpha data (holder concentration, whale hunter, taker intensity, and more)
-2. **BitMart Futures** — Trade perpetual futures contracts on BitMart
-3. **BitMart Spot** — Buy and sell spot assets on BitMart
-4. **OKX** — Spot and perpetual swap trading on OKX
-5. **Bybit** — Spot and derivatives/perpetual swap trading on Bybit
-6. **BingX** — Spot and perpetual swap trading on BingX
-7. **Bitget** — Spot and futures trading on Bitget
-8. **Binance** — Spot and USDS-M futures trading on Binance
+1. **Blave market data** — Crypto alpha indicators (holder concentration, whale hunter, taker intensity, and more), raw cross-exchange base data, Hyperliquid top trader tracking
+2. **Taiwan stock data** — Daily and minute OHLCV, institutional flows, margin, shareholding, fundamentals, dividends, broker branch buy/sell (分點), market-wide TAIEX series
+3. **Futures OHLCV** — CME / ICE (WTI, gold, Brent) and Taiwan Futures (TXF)
+4. **BitMart Futures** — Trade perpetual futures contracts on BitMart
+5. **BitMart Spot** — Buy and sell spot assets on BitMart
+6. **OKX** — Spot and perpetual swap trading on OKX
+7. **Bybit** — Spot and derivatives/perpetual swap trading on Bybit
+8. **BingX** — Spot and perpetual swap trading on BingX
+9. **Bitget** — Spot and futures trading on Bitget
+10. **Binance** — Spot and USDS-M futures trading on Binance
+11. **Bitfinex** — Spot, margin, and funding/lending on Bitfinex
+12. **KuCoin** — Spot and futures trading on KuCoin
+13. **Gate.io** — Spot and USDT-settled perpetual futures trading on Gate.io
+14. **StockCoin** — USDT perpetuals on US / KR stocks, ETFs and commodities on StockCoin (no spot); plus US stock perps on Binance, Bybit, BingX and Bitget
 
-Official website: [https://blave.org](https://blave.org) | For more details, visit the [Blave Academy](https://blave.notion.site/Blave-Academy-c13a8a9ca8824319baa685a769686ac8)
+Official website: [https://blave.org](https://blave.org) | For more details, visit the [Blave Docs](https://blave.org/docs/en)
 
 ## Security
 
@@ -20,7 +26,7 @@ This skill is **documentation only** — it contains no executable code, scripts
 - All files are plain Markdown (`.md`)
 - No `package.json`, no scripts, no dependencies
 - All API calls are made directly by your agent — this skill only provides the instructions
-- Your API keys stay in your local `.env` file. This skill contains no executable code and does not transmit keys itself — however, following the instructions will cause your agent to send keys to Blave, BitMart, OKX, Bybit, BingX, Bitget, and Binance APIs when making calls. We recommend using API keys with minimum required permissions and enabling IP whitelisting where possible.
+- Your API keys stay in your local `.env` file. This skill contains no executable code and does not transmit keys itself — however, following the instructions will cause your agent to send keys to Blave, BitMart, OKX, Bybit, BingX, Bitget, Binance, Bitfinex, KuCoin, Gate.io and StockCoin APIs when making calls. We recommend using API keys with minimum required permissions and enabling IP whitelisting where possible.
 - API request signing (HMAC-SHA256) is performed by your agent in code — the reference docs include `openssl`/`curl` shell examples for illustration only. No local shell tools are required by this skill.
 
 You can inspect the full source at: [https://github.com/Blave-TW/blave-quant-skill](https://github.com/Blave-TW/blave-quant-skill)
@@ -55,7 +61,7 @@ Or just tell your agent: **"Update the blave-quant skill"** — the agent will r
 
 Subscribe to the **API Plan** to get API access. First-time subscribers get a **14-day free trial** (credit card required).
 
-👉 [https://blave.org/landing/en/pricing](https://blave.org/landing/en/pricing)
+👉 [https://blave.org/landing/en/pricing#api](https://blave.org/landing/en/pricing#api)
 
 #### 2. Create Your Blave API Key
 
@@ -146,7 +152,7 @@ Add the following to your `.env` file:
 
 ```
 BYBIT_API_KEY=YOUR_API_KEY
-BYBIT_API_SECRET=YOUR_API_SECRET
+BYBIT_SECRET_KEY=YOUR_API_SECRET
 ```
 
 ---
@@ -179,7 +185,7 @@ BINGX_SECRET_KEY=YOUR_SECRET_KEY
 
 #### 1. Create Your Bitget API Key
 
-1. Register at **[https://www.bitget.com/](https://www.bitget.com/)** (if you don't have an account)
+1. Register at **[https://www.bitget.com/](https://www.bitget.com/)** (if you don't have an account). Both **Classic** and **Unified Trading Account (UTA)** accounts are supported
 2. Go to **Account → API Management**
 3. Click **Create API Key**
 4. Set a **Passphrase** (required for signing requests)

@@ -49,6 +49,7 @@ Every review MUST cite at least one specific concern, suggestion, or explicit ap
 - `sast` (L3): static analysis security scan on reviewed code
 - L4 extension packs: domain-specific review patterns when context matches (e.g., @rune/ui for frontend, @rune/security for auth code)
 - `neural-memory` | After review complete | Capture code quality insight
+- `council` (L3): Step 1.6 — decorrelated bug-finding on the diff when blast radius is 50+ callers with a HIGH-severity change, mode=review
 
 ## Called By (inbound)
 
@@ -68,8 +69,19 @@ Every review MUST cite at least one specific concern, suggestion, or explicit ap
 - `review` → `improve-architecture` — when reviewer flag mentions "shallow", "wrapper", "indirection", or pass-through pattern
 - `review` ← `fix` — complex fix requests self-review
 - `review` → `sentinel` — security-critical code → sentinel deep scan
+- `review` → `council` — blast radius 50+ callers with HIGH-severity change → decorrelated bug-finding on the diff
 
 ## Execution
+
+### Review Policy
+
+Three rules govern every step below. When a later step seems to conflict with one of these, the policy wins.
+
+**1. Precision over recall.** A false alarm costs more reviewer trust than a missed LOW finding. One wrong CRITICAL teaches the developer to skim the next report; a missed style nit costs nothing. Optimise for a report where every line is worth reading — not for coverage.
+
+**2. Blocking split.** Correctness and security findings are blocking. Style and idiom findings are non-blocking and never gate a merge on their own. Report both; only the first kind may produce REQUEST CHANGES.
+
+**3. Never guess at missing context.** When the surrounding code, caller, or convention needed to judge a line is not in front of you, either go read it (read_file, grep, `rune-scout.md`) or stay silent. A finding invented to fill a gap in your own reading is the single most expensive kind of false alarm.
 
 ### Step 1: Scope
 
@@ -79,6 +91,23 @@ Determine what to review.
 - If triggered by a specific file or feature: use read_file on each named file
 - If context is unclear: use `rune-scout.md` to identify all files touched by the change
 - List every file in scope before proceeding — do not review files outside the stated scope
+
+**Strict Focus Rule** — the scope list you just wrote is the only set of files this review may produce findings about.
+
+- Reads outside that list are for **understanding only**. Open any file you need to judge the diff correctly (callers, types, config, conventions) — that is encouraged, not scope creep.
+- A finding whose subject is a file outside scope is **dropped, not reported** — not downgraded to LOW, not filed under "while I was in there". Dropped.
+- If you spot a genuine issue elsewhere while gathering context, record it as a **one-line follow-up in the report footer**, never as a review finding. It carries no severity and does not affect the verdict.
+
+The reason is trust, not bureaucracy: a review that wanders produces findings the author cannot act on in this change, and trains them to skim the ones they can.
+
+**Rule Loading** — pick the checklists this diff actually needs, then stop.
+
+1. Collect the distinct file extensions across the scope list you just wrote.
+2. read_file `references/rules/index.md` and follow its mapping to the matching rule files — at most one per language present in the diff.
+3. Always read `references/rules/default.md`. It carries the five dimensions every file is judged on.
+4. Read nothing further. **Never read all rule files** — a Go rule cannot produce a true finding about a diff with no Go in it, only a plausible-looking one, and that is the noise this split exists to remove.
+
+Every rule in those files ends with a `Do not report when…` clause. That clause is as binding as the rule above it: a rule that only says when to fire will fire on everything. Rules do not restate the Review Policy, the Evidence Contract, or the claim types — they inherit all three from this file, and a rule never invents a severity or a gate of its own.
 
 ### Step 1.5: Blast Radius Assessment
 
@@ -100,6 +129,31 @@ Use Grep to count direct callers/importers of each modified symbol:
 Modifying a symbol with 50+ callers + HIGH severity change (logic, types, behavior) → adversarial analysis REQUIRED. Quick review is NOT sufficient for high-blast-radius changes.
 </HARD-GATE>
 
+### Step 1.6: Decorrelated Bug-Finding (council, high-blast-radius only)
+
+review's own pass is one model reading the diff once. For the same 50+ caller / HIGH-severity
+symbols that trigger the Step 1.5 HARD-GATE, call `rune-council.md` (mode=review) on the diff
+itself BEFORE writing up Step 2's findings — a second architecture reading the same code
+independently catches bugs a single pass rationalizes past.
+
+This is complementary to (not a replacement for) the existing adversary escalation: council
+here examines the ALREADY-WRITTEN diff for bugs; adversary examines plan-level risk before
+code exists. Both can fire on the same high-blast-radius change.
+
+**Request**: `{ question: <the diff, symbol name, and blast radius context — self-contained>,
+mode: "review", n: 3, diversity: { prefer_model_families: true },
+evidence_required: [repro, reasoning] }`.
+
+**Consume**: fold `agreement.consensus_claims` into Step 2's CRITICAL/HIGH findings, tagged
+`[council-verified]`. Fold `agreement.dissent` into MEDIUM findings or the report's NEEDS
+DISCUSSION section, tagged `[council-dissent]`. If `decorrelation: NO_DECORRELATION`, do not
+claim independent confirmation in the report — say plainly that no second model family was
+reachable.
+
+**Skip if**: blast radius is under 50 callers, or the change is not HIGH-severity — council is
+opt-in overhead reserved for the same tier that already requires adversarial escalation, not a
+default tax on every review.
+
 ### Step 2: Logic Check (Production-Critical Focus)
 
 Read each changed file. Prioritize bugs that **pass CI but break production** — these are the highest-value findings because linters and type checkers already catch the rest.
@@ -111,33 +165,35 @@ Read each changed file. Prioritize bugs that **pass CI but break production** �
 - **Data loss paths**: write operations without confirmation, delete without soft-delete, truncation without backup
 - **Edge cases**: empty input, null/undefined, zero, negative numbers, empty arrays, Unicode, timezone boundaries
 - Check for: logic errors, off-by-one errors, incorrect conditionals, broken async/await patterns
-- Flag each finding with file path, line number, and severity
+- Flag each finding using the **Evidence Contract** below — a snippet you copied, not a line number you remembered
 
-**Common patterns to flag:**
+#### Evidence Contract
 
-```typescript
-// BAD — missing await causes race condition
-async function saveUser(data) {
-  db.users.create(data); // caller proceeds before save completes
-  return { success: true };
-}
-// GOOD
-async function saveUser(data) {
-  await db.users.create(data);
-  return { success: true };
-}
-```
+Every finding carries these five fields. The line number is the one field you do **not** produce yourself.
 
-```typescript
-// BAD — null deref crash
-function getUsername(user) {
-  return user.profile.name.toUpperCase(); // crashes if profile or name is null
-}
-// GOOD — safe access
-function getUsername(user) {
-  return user?.profile?.name?.toUpperCase() ?? 'Anonymous';
-}
-```
+| Field | Required | Source |
+|-------|----------|--------|
+| `path` | yes | the Step 1 scope list |
+| `evidence` | yes | verbatim snippet copied out of the file |
+| `line` | resolved | grep on `evidence` at report time — never model recall |
+| `severity` | yes | your judgement |
+| `claim` | yes | `OBSERVED` / `DERIVED` / `ASSUMED` (Step 6) |
+
+A line number recalled from a long context drifts, and a correct finding pointing at the wrong line is unactionable — the reader looks, sees nothing, and stops trusting the report. A snippet can be checked against the file; a remembered number cannot. So produce what you can copy, and let a tool resolve the rest (Step 6, Anchor Pass).
+
+**Evidence rules:**
+
+- Copy the lines **verbatim** — no rewriting, reformatting, re-indenting, or tidying
+- Strip diff markers (`+`, `-`, and the leading space on context lines) before recording
+- Include only the lines directly involved — no surrounding context padding
+- Cap at **5 lines**. A finding that needs more than 5 lines to show is a design comment, not a defect — report it without evidence at MEDIUM or below
+- Multiple disjoint locations → pick the single most relevant one and file the rest as separate findings
+
+Evidence blocks are **substance, not shape**. Under `context-engine`'s `caveman` output mode the prose around a finding compresses; the evidence block does not (`../context-engine/references/output-modes.md` — "shape is negotiable, substance is not").
+
+**Strict Focus applies here** (restated from Step 1, because this is the step that breaks it): reading a caller or a helper outside the diff to decide whether a changed line is correct is *expected*. Reporting a bug you noticed in that caller is not — that finding is dropped, or goes to the report footer as a one-line follow-up. The question this step answers is only ever "is the **changed** code correct?"
+
+**Language-specific patterns** for the files in scope come from the rule files loaded in Step 1 — each carries the concrete triggers *and* the conditions under which they must not be reported.
 
 ### Step 3: Pattern Check
 
@@ -150,30 +206,7 @@ Check consistency with project conventions.
 - Check TypeScript: no `any`, full type coverage, no non-null assertions without justification
 - Flag inconsistencies as MEDIUM or LOW depending on impact
 
-**Common patterns to flag:**
-
-```typescript
-// BAD — mutation
-function addItem(cart, item) {
-  cart.items.push(item); // mutates in place
-  return cart;
-}
-// GOOD — immutable
-function addItem(cart, item) {
-  return { ...cart, items: [...cart.items, item] };
-}
-```
-
-```typescript
-// BAD — any defeats TypeScript's purpose
-function process(data: any): any {
-  return data.items.map((i: any) => i.value);
-}
-// GOOD — typed
-function process(data: { items: Array<{ value: string }> }): string[] {
-  return data.items.map(i => i.value);
-}
-```
+Mutation, type-escape, and idiom triggers are language-specific — take them from the Step 1 rule files rather than applying one language's conventions to another's.
 
 ### Step 4: Security Check
 
@@ -301,24 +334,81 @@ Proceed to Step 6 only after Stage 1 passes. Code quality findings (bugs, patter
 
 The review report MUST show both stages: spec compliance verdict first, then code quality findings.
 
+### Step 5.7: Subtractive Pass (over-engineering lens)
+
+Stage 1 catches SPEC-CREEP (unrequested *features*). This pass goes further: it hunts complexity worth **deleting** even inside requested scope, and reports it as a one-line-per-finding cut list with a net-lines total. Run it on any diff that adds a class, wrapper, config option, or dependency. Skip for pure config/docs/style diffs.
+
+Tag each finding, one line: `<file>:L<line>: <tag> <what>. <replacement>.`
+
+| Tag | Cuts | Replacement |
+|-----|------|-------------|
+| `delete:` | Dead code, unused flexibility, speculative feature | Nothing |
+| `stdlib:` | Hand-rolled thing the standard library ships | Name the function |
+| `native:` | Dependency or code doing what the platform already does | Name the feature |
+| `yagni:` | Abstraction with one implementation, config nobody sets, layer with one caller | Inline it until a 2nd caller exists |
+| `shrink:` | Same logic, fewer lines | Show the shorter form |
+
+End with the only metric that matters: `net: -<N> lines, -<M> deps possible.` Nothing to cut → `Lean already.` and move on.
+
+**Ranking discipline**: these are LOW/MEDIUM findings (complexity, not correctness) — a subtractive suggestion NEVER outranks a real bug. A single smoke test or assert-based self-check is the ponytail minimum, not bloat — never flag it for deletion. This pass lists cuts; it does not apply them (route to `rune-fix.md`).
+
 ### Step 6: Report
 
 Produce a structured severity-ranked report.
 
-**Before reporting, apply confidence filter:**
-- Only report findings with >80% confidence it is a real issue
+#### Falsification Pass (run before writing the report)
+
+**Falsify, not verify.** Do not ask "am I confident enough to report this?" — a model cannot calibrate its own confidence to a number, so that question filters nothing and quietly drops true findings. Ask the answerable question instead: **"did I read something that disproves this?"**
+
+| | Condition | Action |
+|---|---|---|
+| **DROP** | The code you read contains **direct counter-evidence** against the finding's key claim — the null check exists three lines up, the `await` is there, the input is validated by the caller you opened | Discard it |
+| **KEEP** | The finding depends on context **outside the diff** that you did read via tools — that context is evidence, not a disqualification | Report it |
+| **KEEP** | You can neither verify nor disprove it | Report it, typed honestly (below) |
+
+**"Unsure" is not grounds to drop.** Only counter-evidence is. A finding you could not confirm is still a finding — it is reported at the severity its claim type allows, not deleted to keep the report tidy.
+
+Dropped findings are **discarded silently** — never listed as "considered and dismissed". A disproven finding is noise whether or not you label it as such.
+
+**Type every surviving finding** with a claim type from `../completion-gate/references/claim-discipline.md`:
+
+| Type | Means | Ceiling |
+|------|-------|---------|
+| `OBSERVED` | You read the code path this session and saw the defect | Any severity |
+| `DERIVED` | Follows from what you read through a mechanism you can state in the finding | Any severity |
+| `ASSUMED` | Requires an unverified premise (a caller you did not open, a runtime condition you cannot see) | **Never CRITICAL** — state the premise in the finding |
+
+An `ASSUMED` finding capped below CRITICAL is the honest form of "this looks wrong but I could not confirm the call path". Promotion happens by reading the code, never by rephrasing the finding more confidently.
+
+#### Anchor Pass (run per surviving finding)
+
+Resolve every line number now, with a tool. Climb the ladder and stop at the first rung that hits:
+
+1. grep the exact `evidence` string in `path`. A hit → the finding is **anchored**; use the line number grep returned.
+2. No hit → retry once with whitespace normalised (collapse runs of spaces) and the first and last lines of the snippet dropped. A hit → anchored on the remaining core.
+3. Still no hit → the finding is **`UNANCHORED`**.
+
+**`UNANCHORED` handling** — advisory, never blocking:
+
+- Downgrade severity by one level: CRITICAL → HIGH → MEDIUM → LOW. LOW stays LOW.
+- Report as `path (unanchored)` in place of `path:line`, with the evidence snippet shown inline
+- **Never silently drop it.** A failed anchor means the snippet does not match the file as you recorded it — usually a transcription slip, occasionally a file that moved while you read. Both deserve the reader's attention; neither is counter-evidence, so neither disproves the finding.
+
+Anchoring resolves a finding; it does not filter one. Only the Falsification Pass drops findings — a survivor of that pass always reaches the report, anchored or not.
+
+**Then, before reporting:**
 - Consolidate similar issues: "8 functions missing error handling in src/services/" — not 8 separate findings
 - Skip stylistic preferences unless they violate conventions found in `.eslintrc`, `CLAUDE.md`, or `CONTRIBUTING.md`
 - Adapt to project type: a `console.log` in a CLI tool is fine; in a production API handler it is not
 
 - Group findings by severity: CRITICAL → HIGH → MEDIUM → LOW
-- Include file path and line number for every finding
+- Give every finding its `path:line` from the Anchor Pass — or `path (unanchored)` — plus the evidence block underneath
 - Include a Positive Notes section (good patterns observed)
 - Include a Verdict: APPROVE | REQUEST CHANGES | NEEDS DISCUSSION
 
 ### Step 6.5: Fix-First Triage
 
-> From gstack (garrytan/gstack, 50.9k★): "Reviews that produce 20 findings and delegate all to the user waste everyone's time."
+A review that produces 20 findings and delegates every one of them back to the user has moved work, not done it.
 
 Classify each finding as **AUTO-FIX** or **ASK** before reporting:
 
@@ -336,11 +426,13 @@ Classify each finding as **AUTO-FIX** or **ASK** before reporting:
 - Collect ASK findings into ONE `AskUserQuestion` — not 5 separate questions
 - Report both: "Auto-fixed 4 issues. 2 findings need your input: [...]"
 
-**Rationalization prevention**: "This looks fine" is NOT acceptable without evidence. If you can't cite a specific file:line or convention that justifies the code, flag it as UNVERIFIED — don't rationalize away uncertainty.
+**Rationalization prevention**: "This looks fine" is NOT acceptable without evidence. If you cannot cite a specific file:line or convention that justifies the code, do not wave it through — report it as an `ASSUMED` finding naming the premise you could not check.
+
+This is the same asymmetry as the Falsification Pass, applied in the other direction: uncertainty never justifies **dropping** a finding, and it never justifies **clearing** code either. Both resolve by reading, or by saying plainly what was not read.
 
 ### Step 6.6: Scope Drift Detection
 
-> From gstack (garrytan/gstack, 50.9k★): "Intent vs diff catches scope creep that plan-based guards miss."
+Comparing stated intent against the actual diff catches scope creep that plan-based guards miss — the plan was right, the diff simply grew past it.
 
 After reviewing code, compare **stated intent** vs **actual diff**:
 
@@ -362,26 +454,6 @@ After reporting:
 - If any HIGH findings: call `rune-fix.md` with the finding details
 - If untested code: call `rune-test.md` with specific coverage gaps identified
 - Call `neural-memory` (Capture Mode) to save any novel code quality patterns or recurring issues found.
-
-## Framework-Specific Checks
-
-Apply **only** if the framework is detected in the changed files. Skip if not relevant.
-
-**React / Next.js** (detect: `import React` or `.tsx` files)
-- `useEffect` with missing dependencies (stale closure) → flag HIGH
-- List items using index as key on reorderable lists: `key={i}` → flag MEDIUM
-- Props drilled through 3+ levels without Context or composition → flag MEDIUM
-- Client-side hooks (`useState`, `useEffect`) in Server Components (Next.js App Router) → flag HIGH
-
-**Node.js / Express** (detect: `import express` or `require('express')`)
-- Missing rate limiting on public endpoints → flag MEDIUM
-- `req.body` passed directly to DB without validation schema → flag HIGH
-- Synchronous operations blocking the event loop inside async handlers → flag HIGH
-
-**Python** (detect: `.py` files with `django`, `flask`, or `fastapi` imports)
-- `except:` bare catch without specific exception type → flag MEDIUM
-- Mutable default arguments: `def func(items=[])` → flag HIGH
-- Missing type hints on public functions (if project uses mypy/pyright) → flag LOW
 
 ## UI/UX Anti-Pattern Checks
 
@@ -519,6 +591,42 @@ className="focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
 - iOS target: solid-background cards (iOS 26 Liquid Glass deprecates this visual language) — should use translucent/blur surfaces
 - Android target: hardcoded hex colors instead of `MaterialTheme.colorScheme` tokens → not adaptive to dynamic color
 
+## Motion Craft Checks
+
+Apply **only** when the diff touches motion. Strong signals: `@keyframes`, `motion.`, `animate={`, `useSpring`, `cubic-bezier`, `@starting-style`, `transition:` / `transition-`. Weak signals: bare `transform` or `ease-` — these also match static layout transforms (`translate(-50%,-50%)`) and non-motion identifiers, so treat them as a trigger only when they co-occur with a strong signal. Skip entirely for diffs with no motion code.
+
+These are **advisory** — default severity MEDIUM. Escalate to HIGH only for *feel-breaking* regressions (the first five triggers below). Motion is a taste call: when feel can't be judged from source, say so and recommend a slow-motion / frame-by-frame check rather than asserting a defect. **For every finding, cite the exact remediation value from `skills/design/MOTION-CRAFT.md`** — do not restate its tables here.
+
+**Escalation triggers — flag on sight (first five = HIGH, feel-breaking):**
+- `ease-in` on an entrance or arrival (delays the moment the user watches most) — **not** a finding on something departing the frame or falling, where `ease-in` is correct (MOTION-CRAFT §3). Also catches `ease-in` hiding inside a composed curve (`smootherstep` starts at zero velocity)
+- `scale(0)` or pure-fade entrances with no initial transform (nothing appears from nothing → initial scale + opacity per MOTION-CRAFT §5)
+- Animation on a keyboard shortcut / command-palette toggle / 100+/day action (should have none)
+- Animating layout properties (`width`/`height`/`margin`/`padding`/`top`/`left`) instead of `transform`/`opacity` (off-GPU, drops frames)
+- UI animation duration over the budget with no stated reason (duration budget + modals/drawers exemption per MOTION-CRAFT §4)
+- `transition: all` — unbounded property animation (MEDIUM)
+- `transform-origin: center` on a trigger-anchored popover/dropdown/tooltip (should scale from trigger; modals exempt) (MEDIUM)
+- Keyframes on toasts/toggles/anything triggered rapidly (can't retarget → use CSS transitions or springs) (MEDIUM)
+- Framer Motion `x`/`y`/`scale` shorthands on motion that runs while the page is busy (not hardware-accelerated → full `transform` string) (MEDIUM)
+- Driving a child transform via a CSS variable on the parent (style-recalc storm) (MEDIUM)
+- Missing `prefers-reduced-motion` handling on movement, or ungated `:hover` motion (missing `@media (hover: hover) and (pointer: fine)`) (MEDIUM)
+- **A reduced-motion branch that is present but cannot work** — the guard existing is not the finding; these are (MOTION-CRAFT §10). Do not close this check on a grep hit: **touches ≠ reachable ≠ correct** (HIGH):
+  - **Dead branch** — an outer `if (reduced) return` / `if (!shouldAnimate) return` that runs *before* the helper applying the end state. Reduced users get the raw default DOM. Greps clean
+  - **One-shot `matchMedia(...).matches`** read at mount with no `change` listener — preference toggled mid-session leaves the page on the old path
+  - **`duration: 0` on sequence-as-content** — every key pose applied in one frame, stacking mid-poses instead of landing on the destination
+  - **`0s` while something awaits `transitionend` / `animationend` / `onComplete`** — engines may drop completion events for true zero-length transitions and the state machine hangs; `~0.01ms` is the fix
+  - **JS motion ungated** — CSS has the media query, GSAP/Motion/Lenis/canvas keep running. A media query cannot stop a JS timeline
+  - **Blanket `* { animation-duration: 0 !important }` as the only handling** — over-removes focus-ring and loading cues that should survive reduce
+- Curve chosen by name for a large rotation or long translate, with no peak-speed check — `peak = maxSlope × travel / duration` against a ~30°/frame ceiling (a third of the pitch for a rotationally symmetric part). `--ease-out-strong` on a spinner is the common instance (MOTION-CRAFT §3) (MEDIUM)
+- Both segments of a two-segment keyframe move eased — the element dead-stops at the join (MOTION-CRAFT §3, velocity continuity) (MEDIUM)
+- Animated SVG passing through SVGO without `cleanupIds` / `mergePaths` / `removeHiddenElems` / `removeViewBox` / `inlineStyles` disabled — source correct, build output broken (MOTION-CRAFT §14) (HIGH)
+- Transform on a root `<svg>` or HTML wrapper with a literal px value not derived from the rendered size — breaks at every size but the authored one (MOTION-CRAFT §14) (MEDIUM)
+- Animated SVG with an element resting state declared only in the `0%` keyframe — snaps to a broken pose the moment `animation: none` applies under reduce (MOTION-CRAFT §14) (MEDIUM)
+- Reusable animated SVG with hardcoded `url(#id)` mask/clipPath references and no per-instance id rewrite — every copy on the page renders the first one's mask (MOTION-CRAFT §14) (MEDIUM)
+- Symmetric enter/exit timing on a press-and-release or hold interaction (deliberate phase should be slower, response snappier) (LOW–MEDIUM)
+- Everything-at-once entrance where a stagger belongs (stagger interval per MOTION-CRAFT §11) (LOW)
+
+**Remedial preference (propose the earliest that applies):** delete the animation (high-frequency / no purpose) → reduce it → fix the easing → fix origin/physicality → make it interruptible → move it to the GPU → asymmetric timing → polish (blur/stagger/`@starting-style`/spring). Pull the exact curve, duration, or spring config from MOTION-CRAFT.md. Findings feed the existing Report + Fix-First triage — do not create a parallel output path.
+
 ## Weighted Composite Scoring
 
 When a review is part of a recurring quality-gate cycle (e.g., sprint review, pre-release gate), produce a **composite quality score** alongside the findings list. This makes review output numeric and comparable across runs.
@@ -559,24 +667,36 @@ LOW       — style inconsistency, naming suggestion, minor refactor opportunity
 
 ## Output Format
 
-```
+````
 ## Code Review Report
 - **Files Reviewed**: [count]
 - **Findings**: [count by severity]
 - **Review Commit**: [git hash at time of review]
+- **Council**: [not invoked | MULTI_FAMILY (N families) | NO_DECORRELATION — same-family subagents only]
+- **Unanchored**: [count — findings whose evidence did not resolve to a line]
 - **Overall**: APPROVE | REQUEST CHANGES | NEEDS DISCUSSION
 
 ### Spec Compliance
 - [PASS/FAIL]: [acceptance criteria coverage]
 
 ### CRITICAL
-- `path/to/file.ts:42` — [description of critical issue]
+- `src/auth/session.ts:42` — [OBSERVED] loose equality on the session token: a request with no token and a session with no token are both `undefined`, and `undefined == undefined` is true, so an anonymous caller is granted that session's user
+  ```ts
+  if (req.token == session.token) return grant(session.user);
+  ```
 
 ### HIGH
-- `path/to/file.ts:85` — [description of high-severity issue]
+- `src/db/users.ts:85` — [DERIVED] create is not awaited, so the handler returns success before the write lands; a failed insert is reported to the client as 201
+  ```ts
+  db.users.create(data);
+  return { success: true };
+  ```
 
 ### MEDIUM
-- `path/to/file.ts:120` — [description of medium issue]
+- `src/cache/store.ts (unanchored)` — [ASSUMED: caller in worker.ts not read] cache write has no TTL; if the worker path also writes this key the entry never expires
+  ```ts
+  cache.set(key, value)
+  ```
 
 ### Blast Radius
 - [High-impact symbols with caller counts]
@@ -586,7 +706,14 @@ LOW       — style inconsistency, naming suggestion, minor refactor opportunity
 
 ### Verdict
 [Summary and recommendation]
-```
+
+### Follow-ups (outside this scope)
+- `other/file.ts` — [one line, no severity, does not affect the verdict; omit section if none]
+````
+
+Read the MEDIUM entry above as the shape of an honest weak finding: unanchored (so `path (unanchored)`, already downgraded one level), `ASSUMED` with its unchecked premise named, and still reported — because none of that is counter-evidence.
+
+Every finding carries its claim type from the Falsification Pass and its evidence block from the Evidence Contract. `ASSUMED` findings name the premise that was not checked and never appear under CRITICAL. A finding over the 5-line evidence cap is a design comment — it ships without a block, at MEDIUM or below. The Follow-ups section is the only place an out-of-scope observation may appear.
 
 ### Review Staleness Detection
 
@@ -602,7 +729,7 @@ When `cook` or `ship` checks review status: compare review commit hash with curr
 ## Constraints
 
 1. MUST read the full diff — not just the files the user pointed at
-2. MUST reference specific file:line for every finding
+2. MUST give every finding a verbatim evidence snippet, and resolve its line via the Anchor Pass rather than recall — an unresolved finding is reported `(unanchored)` and downgraded, never renumbered by guess
 3. MUST NOT rubber-stamp with generic praise ("well-structured", "clean code") without evidence
 4. MUST check: correctness, security, performance, conventions, test coverage
 5. MUST categorize findings: CRITICAL (blocks commit) / HIGH / MEDIUM / LOW
@@ -626,14 +753,14 @@ Append to Code Review Report when invoked standalone. Suppress when called as su
 ```yaml
 chain_metadata:
   skill: "rune-review.md"
-  version: "1.2.0"
+  version: "1.5.0"
   status: "[DONE | DONE_WITH_CONCERNS]"
   domain: "[area reviewed]"
   files_changed: []  # review doesn't change files
   exports:
     findings_count: { critical: [N], high: [N], medium: [N], low: [N] }
     findings:
-      - { severity: "[level]", file: "[path]", line: [N], message: "[issue]" }
+      - { severity: "[level]", file: "[path]", line: [N or null when unanchored], anchored: [true | false], evidence: "[verbatim snippet, ≤5 lines]", message: "[issue]", claim_type: "[OBSERVED | DERIVED | ASSUMED]" }
     verdict: "[APPROVE | REQUEST_CHANGES | NEEDS_DISCUSSION]"
     quality_score: [0-100]  # when mode: "scored"
   suggested_next:
@@ -646,9 +773,14 @@ chain_metadata:
 
 | Failure Mode | Severity | Mitigation |
 |---|---|---|
-| Finding flood — 20+ findings overwhelm developer | MEDIUM | Confidence filter: only >80% confidence, consolidate similar issues per file |
+| Finding flood — 20+ findings overwhelm developer | MEDIUM | Falsification Pass drops disproven findings; consolidate similar issues per file |
 | "LGTM" without file:line evidence | HIGH | HARD-GATE blocks this — cite at least one specific item per changed file |
-| Expanding review scope beyond the diff | MEDIUM | Limit to `git diff` scope — do not creep into adjacent unchanged files |
+| Expanding review scope beyond the diff | MEDIUM | Strict Focus Rule (Step 1) — read anything for context, but findings about out-of-scope files are dropped or become footer follow-ups |
+| Dropping a true finding because it could not be confirmed | HIGH | Falsification Pass — only counter-evidence drops a finding; "unsure" reports it as `ASSUMED` |
+| Line number recalled from context instead of resolved — points at the wrong line, reader finds nothing, stops trusting the report | HIGH | Evidence Contract (Step 2) produces a copyable snippet; the Anchor Pass (Step 6) resolves the number with grep. Never write a line number you did not get back from a tool |
+| Dropping a finding because its evidence would not anchor | MEDIUM | Anchoring resolves, it never filters — `UNANCHORED` downgrades one level and reports with the snippet inline. A failed grep is not counter-evidence |
+| Reading every rule file regardless of the diff's languages | MEDIUM | Step 1 Rule Loading — load only the files matching extensions in scope, plus `default.md`. A rule for a language absent from the diff can only produce a plausible-looking false finding |
+| Applying a rule's trigger while ignoring its `Do not report when…` clause | HIGH | The negative clause is part of the rule, not commentary on it. A rule cited without checking its exclusion is the single most common source of confident false alarms |
 | Security finding without sentinel escalation | HIGH | Any auth/crypto/payment code touched → MUST call rune-sentinel.md |
 | Skipping UI anti-pattern checks for frontend changes | MEDIUM | Any .tsx/.jsx/.svelte/.vue in diff → MUST run UI/UX Anti-Pattern Checks section |
 | Skipping spec compliance check (Step 5.5 Stage 1) | HIGH | Code quality without spec check ships clean code that does the wrong thing — always load the plan/ticket before reviewing quality |
@@ -659,22 +791,26 @@ chain_metadata:
 | Review loop exceeds 3 iterations without resolution | MEDIUM | Cap at 3 review loops. After 3rd iteration with unresolved findings → surface to user with "these findings persist after 3 fix attempts — needs human decision" |
 | Auto-fixing something that should have been ASK | HIGH | When in doubt, ASK. AUTO-FIX only for mechanical issues (dead imports, console.log). Anything involving intent or trade-offs = ASK |
 | Scope drift flagged on intentional refactoring | LOW | Scope drift is informational, not blocking. User can override with "intentional" — don't re-flag after override |
+| (council) Reporting council output as consensus when decorrelation is NO_DECORRELATION | CRITICAL | Step 1.6 consume rule: report the decorrelation stamp plainly, never imply independent confirmation from same-family subagents |
+| (council) Calling council on every review, not just high-blast-radius | MEDIUM | Step 1.6 skip condition matches the existing Step 1.5 HARD-GATE threshold exactly — no separate lower bar |
 
 ## Done When
 
 - All changed files in the diff read and analyzed
-- Every finding references specific file:line with severity label
+- Rule files matching the diff's extensions loaded (plus `default.md`), and no others
+- Every finding carries a verbatim evidence snippet and a severity label, with its line resolved by the Anchor Pass or marked `(unanchored)` and downgraded
 - Security-critical code escalated to sentinel (or confirmed not present)
 - Test coverage gaps identified and documented
 - UI anti-pattern checks ran for any frontend files in diff (or confirmed not applicable)
 - Structured report emitted with APPROVE / REQUEST CHANGES / NEEDS DISCUSSION verdict
+- (council) If blast radius 50+ with HIGH severity: council invoked on the diff, decorrelation stamp reported plainly, consensus/dissent folded into findings
 
 ## Cost Profile
 
-~3000-6000 tokens input, ~1000-2000 tokens output. Sonnet default, opus for security-critical reviews. Runs once per implementation cycle.
+~3000-6000 tokens input, ~1000-2000 tokens output. Sonnet default, opus for security-critical reviews. Runs once per implementation cycle. When Step 1.6 fires (high-blast-radius only): add council's cost profile (~1500-4000 tokens per voice × 2-5 voices) — reserved for the same tier that already requires adversarial escalation.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

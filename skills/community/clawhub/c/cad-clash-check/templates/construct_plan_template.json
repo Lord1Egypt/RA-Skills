@@ -1,0 +1,24 @@
+{
+  "schema": "cad-clash-construct-plan/v1",
+  "template": true,
+  "final_quantity": false,
+  "explain": "施工计划模板起始骨架：把 v0.2 碰撞候选按工作包组织成图审/穿墙开洞/预留孔洞复核清单；责任人与排期留空由工程例会填。",
+  "work_package": {
+    "work_package_id": "专业A-专业B-001",
+    "title": "专业A × 专业B 图面同位区",
+    "zone_axis": "1/A …",
+    "floor": "首层/二层…",
+    "sheet": "1,2 …",
+    "coordinate": "(x, y) 图面坐标",
+    "count": 1,
+    "min_gap": 0,
+    "side_a_types": ["管线/墙/设备…"],
+    "side_b_types": ["管线/墙/洞口…"],
+    "task_type": "图审/穿墙开洞/预留孔洞复核",
+    "priority": "高|中|低",
+    "responsible": "",
+    "due": "",
+    "status": "open",
+    "note": "需核对：坐标、标高、周边构件、是否已预留洞口"
+  }
+}

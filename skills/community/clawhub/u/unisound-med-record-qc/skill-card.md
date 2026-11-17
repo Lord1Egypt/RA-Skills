@@ -1,43 +1,58 @@
-## Description: <br>
-Extracts structured medical-record entities and supports chart, clinical-pathway, and imaging-report quality control through a standalone Python script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports medical record entity extraction, chart content quality control, clinical pathway quality control, and radiology report text quality control through a configurable medical LLM call.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical and healthcare developers use this skill to pass de-identified medical records or report prompts to an approved medical LLM for entity extraction and quality-control review. Authorized operators can select chart quality control, clinical-pathway quality control, imaging-report text quality control, or structured medical-record extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical inputs or saved outputs may contain patient information. <br>
-Mitigation: Use only approved, de-identified data and avoid shared terminals or CI logs for sensitive cases. <br>
-Risk: The script requires an app key and a configured medical LLM endpoint. <br>
-Mitigation: Verify endpoint authorization and handle the app key as a secret before use. <br>
-Risk: Model answers may be mistaken for clinical decisions. <br>
-Mitigation: Treat outputs as reference-only quality-control assistance and require review under local clinical procedures. <br>
+## Use Case:
 
+Developers and healthcare system integrators use this skill to submit medical-record or medical-report prompts and receive quality-control conclusions or structured extraction results for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-record-qc) <br>
-- [Default OpenAI-compatible medical LLM endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, API Calls] <br>
-**Output Format:** [JSON or NDJSON by default; plain text when --text-only is used; optional UTF-8 output file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include task metadata, the original question, selected model, input mode, and model answer; --output stores the full response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitted medical records or reports may leave the local machine when the model endpoint is called.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where operators understand this data flow, de-identify real patient data first, and follow approved healthcare data-handling procedures.
+
+Risk: The configurable API URL can direct medical text and credentials to an unintended destination.
+
+Mitigation: Use a trusted HTTPS endpoint and avoid overriding --api-url unless the endpoint and credential scope are approved.
+
+Risk: The app key used for model access is sensitive.
+
+Mitigation: Treat the app key as a secret and provide it only in controlled execution environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-record-qc)
+- [Default model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object by default; optional plain text answer with --text-only; batch output uses NDJSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task metadata, source input details, model name, record index, and model answer text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

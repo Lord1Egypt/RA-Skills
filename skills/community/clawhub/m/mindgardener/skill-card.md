@@ -1,45 +1,62 @@
-## Description: <br>
-MindGardener provides local-first long-term memory for autonomous agents by creating wiki knowledge graphs from conversations, scoring events by surprise, detecting conflicts, and assembling token-budget context for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first long-term memory for autonomous agents. Built for OpenClaw. Creates wiki knowledge graph from conversations, scores events by surprise, detects conflicts, and assembles token-budget context. Complements OpenClaw's built-in memory_search.
 
-## Publisher: <br>
-[widingmarcus-cyber](https://clawhub.ai/user/widingmarcus-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[widingmarcus-cyber](https://clawhub.ai/user/widingmarcus-cyber)
 
-## Use Case: <br>
-Developers and agent operators use MindGardener to give autonomous agents persistent file-based memory, turning conversation logs into entity pages, graph triplets, conflict and surprise signals, and recall context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive memory logs may be sent to external LLM providers during extraction, surprise scoring, consolidation, beliefs, or nightly jobs. <br>
-Mitigation: Use a local provider such as Ollama for private data, and review provider configuration before running commands that perform model-assisted processing. <br>
-Risk: The tool can read, rewrite, sync, and persist model-derived workspace memory files. <br>
-Mitigation: Review generated MEMORY.md, entity pages, and context outputs before relying on them, and use caution with sync, write-back, and automated --apply workflows. <br>
+## Use Case:
 
+Developers and agent operators use MindGardener to build and retrieve persistent memory from conversation logs, including entity wiki pages, graph relationships, surprise scoring, conflict checks, and token-budget recall context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/widingmarcus-cyber/mindgardener) <br>
-- [MindGardener GitHub Repository](https://github.com/widingmarcus-cyber/mindgardener) <br>
-- [MindGardener PyPI Project](https://pypi.org/project/mindgardener/) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
-- [Research Background](docs/RESEARCH.md) <br>
-- [State Tracker Integration](docs/state-tracker-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets, YAML configuration, and generated Markdown and JSONL memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates file-based memory artifacts such as MEMORY.md, memory/entities/*.md, graph.jsonl, RECALL-CONTEXT.md, and garden.yaml; some commands can call configured LLM providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata, pyproject.toml, README.md) <br>
+Risk: Private agent logs may be sent to remote LLM providers during extraction or related memory maintenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose and verify the intended local or remote provider before use, and avoid processing private logs until the configured extraction path is confirmed.
+
+Risk: Generated MEMORY.md and RECALL-CONTEXT.md can expose sensitive, stale, or incorrect memory to downstream agents.
+
+Mitigation: Inspect generated memory and recall context before loading them into agent sessions, especially in workspaces containing private logs.
+
+Risk: Scheduled maintenance and apply-style commands can change, consolidate, or prune memory files without a manual review step.
+
+Mitigation: Enable cron or apply-style maintenance only after backups, retention rules, and review procedures are in place.
+
+## Reference(s):
+
+- [MindGardener ClawHub Skill Page](https://clawhub.ai/widingmarcus-cyber/skills/mindgardener)
+- [MindGardener GitHub Project](https://github.com/widingmarcus-cyber/mindgardener)
+- [MindGardener PyPI Package](https://pypi.org/project/mindgardener/)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Research Background](docs/RESEARCH.md)
+- [State Tracker Integration](docs/state-tracker-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated memory artifacts are Markdown and JSONL files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the garden CLI. LLM-backed extraction, surprise scoring, and consolidation depend on the configured provider; recall and context assembly operate on local files.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn70achgzvarm4h65h3vzc0s4x83736q",
-  "slug": "image-manager",
+  "name": "image-manager",
   "version": "1.0.0",
-  "publishedAt": 1773939566283
+  "description": "本地图片管理技能，支持索引、压缩、分类、快速查找",
+  "author": "xiaobu2020",
+  "tags": ["image", "storage", "index", "management"]
 }

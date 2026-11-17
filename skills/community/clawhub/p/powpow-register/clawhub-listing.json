@@ -1,0 +1,31 @@
+{
+  "display_name": "PowPop Register — 注册泡泡，把游记钉上地图，和数字人聊天",
+  "categories": ["communication", "lifestyle", "creative"],
+  "search_keywords": [
+    "泡泡注册",
+    "PowPop注册",
+    "地图社交",
+    "AGENT社交",
+    "旅行游记"
+  ],
+  "language": "zh-CN",
+  "language_note": "本包是中文版。技能运行时会跟随用户语言：用户用其他语言时，优先切换对应语言包（powpow-register-en 等），页面链接与字段规则不变。这不是面向单一地区的限制，而是多语言发布中的一册。",
+  "activation_scope": {
+    "use_when": [
+      "注册泡泡 / 注册 powpow 账号 / 泡泡怎么注册",
+      "注册卡住：收不到验证码、用户名或邮箱被占用、密码不合格",
+      "注册后：账户未激活、403 pending_payment、泡泡怎么付费或是否免费"
+    ],
+    "do_not_use_when": [
+      "发帖、创建数字人（改用 powpow-simple）",
+      "Web 端代码开发"
+    ]
+  },
+  "data_handling": "不含任何脚本，不发起网络请求，不读写本地文件。不索取密码、验证码、登录凭据或支付凭证；注册与付款在用户自己的浏览器与官方收银台完成。",
+  "author": {
+    "name": "durenzidu",
+    "email": "dongtao@outlook.com"
+  },
+  "homepage": "https://global.powpow.online",
+  "notes": "v2.4.1 起为纯文档模式：不含脚本，不接触任何凭证，注册与支付由用户自己在官方页面完成。改名/关键字/分类沿用 v1.0.1 原值。"
+}

@@ -1,46 +1,60 @@
-## Description: <br>
-Browse, search, analyze, and track Wojak Farmers Plot NFTs with floor prices, rarity estimates, price trends, traits, listings, and deal opportunities on the Chia blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, search, analyze, and track Wojak Farmers Plot NFTs with floor prices, marketplace listings, rarity estimates, trait information, and local price-history tracking.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-External users and developers use this skill to query Wojak Farmers Plot NFT market data, inspect listings and character types, estimate rarity, and track local price history from public APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Market, rarity, and deal outputs are informational estimates and may be incomplete or stale. <br>
-Mitigation: Review source marketplace data before making trading decisions and treat rarity or deal calculations as advisory. <br>
-Risk: The skill contacts public NFT APIs and depends on their availability and returned data quality. <br>
-Mitigation: Expect API failures or outdated listings and re-run commands when fresh market data is required. <br>
-Risk: Price tracking stores local market-history JSON files. <br>
-Mitigation: Delete the skill's data directory when retained local history is no longer wanted. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about Wojak Farmers Plot NFTs, compare floor prices and marketplace listings, inspect traits and rarity estimates, and track market history from public NFT data sources.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Koba42Corp/wojak-ink) <br>
-- [Koba42Corp ClawHub profile](https://clawhub.ai/user/Koba42Corp) <br>
-- [Wojak.ink collection website](https://wojak.ink) <br>
-- [MintGarden API](https://api.mintgarden.io) <br>
-- [Dexie API](https://api.dexie.space/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, JSON files] <br>
-**Output Format:** [Plain text responses for CLI or chat channels, with local JSON history files when tracking is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public NFT APIs, caches marketplace data briefly, and can retain local market-history JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill contacts MintGarden, Dexie, and IPFS/Web3.Storage-style URLs for NFT market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where those network contacts are acceptable and expected.
+
+Risk: Price-history tracking keeps local JSON market-history files under the skill directory.
+
+Mitigation: Review, retain, or clear those local history files according to the deployment's data retention expectations.
+
+Risk: Wallet credentials or private keys would be inappropriate input for this market lookup skill.
+
+Mitigation: Do not provide wallet credentials, private keys, or other wallet secrets to the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/koba42corp/skills/wojak-ink)
+- [Wojak.ink collection website](https://wojak.ink)
+- [MintGarden](https://mintgarden.io)
+- [Dexie](https://dexie.space)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text responses suitable for CLI and chat surfaces, with occasional inline command and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public NFT market data and can keep local JSON market-history files when tracking is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

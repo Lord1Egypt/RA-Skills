@@ -1,41 +1,49 @@
-## Description: <br>
-Search, retrieve, and install Agent Skills from the prompts.chat registry using MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, and install Agent Skills from the prompts.chat registry using MCP tools.
 
-## Publisher: <br>
-[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover reusable Agent Skills, inspect skill metadata and files, and install selected skills into Claude for later activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add third-party skill files into a persistent Claude skills folder with limited safeguards. <br>
-Mitigation: Review the fetched skill author, SKILL.md, filenames, scripts, and configuration files before installation, and avoid installing skills that request broad access or contain unexpected helper code. <br>
-Risk: Installed third-party skills may later influence agent behavior when they activate. <br>
-Mitigation: Install only skills from publishers and sources the user trusts, and scan or inspect installed files before relying on them in normal workflows. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to search the prompts.chat registry, compare skill results, retrieve selected skills, and install them into Claude skill directories.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhengxinjipai/skill-lookup-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/zhengxinjipai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tool-call examples and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in persistent skill files being written under a Claude skills directory when the user chooses to install a retrieved skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release metadata) <br>
+Risk: Installing registry content can write untrusted files into an agent skill-loading directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted registries and publishers; require a visible file manifest, safe filename checks, content inspection, and explicit confirmation before writing into .claude/skills/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengxinjipai/skills/skill-lookup-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline MCP tool calls and file path instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include registry search results, selected skill metadata, file manifests, and installation confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn725kyxpr1g1e3rjqtkp26v0s809930",
-  "slug": "play-music",
-  "version": "0.1.0",
-  "publishedAt": 1770649953512
+  "name": "play-music",
+  "version": "1.0.0",
+  "description": "Play music files from local directory with pause/resume/stop support",
+  "author": "Ana",
+  "created": "2026-02-09",
+  "platforms": ["windows", "macos", "linux"],
+  "dependencies": {
+    "python": "3.6+",
+    "optional": ["pygame"]
+  },
+  "configuration": {
+    "environment_variables": {
+      "MUSIC_DIR": "Path to music directory (default: ./music)",
+      "DEFAULT_SONG": "Default song filename (default: jaychou-sunnyday.mp3)",
+      "MUSIC_LOCK_FILE": "Lock file path (default: /tmp/music_player.lock)"
+    }
+  }
 }

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/edit-plan.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "projectId",
+    "planId",
+    "transcriptId",
+    "transcriptRevision",
+    "segments"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "planId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "transcriptId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "transcriptRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "segmentId",
+          "sourceAssetId",
+          "sourceWordIds",
+          "action",
+          "order",
+          "speed",
+          "risk",
+          "approval"
+        ],
+        "properties": {
+          "segmentId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "sourceAssetId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "sourceWordIds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          },
+          "action": {
+            "enum": [
+              "keep",
+              "remove",
+              "reorder"
+            ]
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "speed": {
+            "$ref": "creator-os-common.schema.json#/$defs/rate"
+          },
+          "risk": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "approval": {
+            "$ref": "creator-os-common.schema.json#/$defs/approval"
+          }
+        }
+      }
+    }
+  }
+}

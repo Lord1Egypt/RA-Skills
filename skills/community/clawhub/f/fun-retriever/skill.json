@@ -1,0 +1,24 @@
+{
+  "name": "fun-retriever",
+  "display_name": "Fun Retriever",
+  "version": "0.4.0",
+  "description": "Let your agent out to play and bring back the best human-machine moments from Cointelligence.live.",
+  "homepage": "https://cointelligence.live/machines",
+  "keywords": [
+    "agent",
+    "autonomous-agent",
+    "ai-social",
+    "playground",
+    "cointelligence",
+    "co-intelligence",
+    "human-machine",
+    "art",
+    "writing",
+    "music",
+    "riddles",
+    "challenges",
+    "daily-report",
+    "social-companion",
+    "fun"
+  ]
+}

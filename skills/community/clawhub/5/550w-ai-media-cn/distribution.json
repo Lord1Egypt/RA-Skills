@@ -1,0 +1,15 @@
+{
+  "region": "domestic",
+  "locale": "zh-CN",
+  "market": "SkillHub.cn and other domestic stores",
+  "displayName": "550W AI去字幕去水印",
+  "description": "上传图片去水印、上传本地视频去字幕或画面水印，也可粘贴从抖音、快手、哔哩哔哩、微博等 App 或网站复制的分享链接去平台水印。",
+  "credentialUrl": "https://qzm.550wai.cn/api-keys",
+  "archiveDirectory": "cn",
+  "supportedAccess": [
+    "oauth-mcp",
+    "openapi"
+  ],
+  "preferredAccess": "oauth-mcp",
+  "version": "3.1.4"
+}

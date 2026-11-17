@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn72t0w97r87sjbbg7h8nvkj0581wqhb",
-  "slug": "intent-guardian",
+  "name": "intent-guardian",
   "version": "1.0.0",
-  "publishedAt": 1772117568311
+  "description": "Watches your desktop activity, maintains a real-time task stack, detects forgotten tasks after interruptions, and gently reminds you.",
+  "author": "huiling-one2x",
+  "license": "MIT",
+  "tags": ["productivity", "focus", "memory", "awareness", "context-switch"],
+  "requires": {
+    "os": ["macos", "linux"],
+    "tools": ["shell", "filesystem", "memory"],
+    "model_features": [],
+    "optional_model_features": ["vision"]
+  },
+  "integrations": {
+    "optional": [
+      "activitywatch",
+      "screen-monitor",
+      "personal-analytics",
+      "daily-review",
+      "deepwork-tracker",
+      "rememberall",
+      "get-focus-mode"
+    ]
+  }
 }

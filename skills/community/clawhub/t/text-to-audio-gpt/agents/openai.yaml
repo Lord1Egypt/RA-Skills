@@ -1,0 +1,14 @@
+interface:
+  display_name: Text to Audio
+  short_description: GPT-only: создаёт озвучку MP3 в ChatGPT Work/Codex; для Android нужен отдельный импорт ZIP.
+  default_prompt: Используй $text-to-audio, чтобы озвучить предоставленный текст и
+    собрать готовый аудиофайл.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

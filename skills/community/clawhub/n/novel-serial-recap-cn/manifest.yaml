@@ -1,0 +1,25 @@
+name: "novel-serial-recap-cn"
+slug: "novel-serial-recap-cn"
+display_name: "连载前情摘要"
+title: "连载前情摘要"
+version: "1.0.1"
+description: "根据中文连载小说的上几章正文或摘要及下一章目标，生成120至250字读者前情提要和作者续写记忆卡，保留人物当前状态、事件因果与未解线索；已知事实、衔接建议和待确认信息分开，缺少材料或目标时请求补充。"
+short_description: "将中文连载上下文压缩为读者前情提要和作者续写记忆卡"
+repository: "https://github.com/xxjrq/novel-serial-recap-cn"
+license: "MIT-0"
+tags:
+  - "中文小说"
+  - "连载写作"
+  - "前情提要"
+  - "上下文压缩"
+  - "续写记忆卡"
+trigger_words:
+  - "整理连载前情"
+  - "生成前情提要"
+  - "制作续写记忆卡"
+entrypoint: "SKILL.md"
+self_test: "bash scripts/self-test.sh"
+assets:
+  icon: "icon-512.png"
+  promo: "assets/promo-1600x900.png"
+icon: icon-512.png

@@ -1,43 +1,52 @@
-## Description: <br>
-When the user wants to apply psychological principles, mental models, or behavioral science to marketing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents apply psychological principles, mental models, and behavioral science to marketing strategy, copy, pricing, onboarding, and consumer decision-making.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mariokarras](https://clawhub.ai/user/mariokarras)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketers, product teams, and go-to-market practitioners use this skill to identify relevant mental models, explain the buyer psychology behind them, and turn them into ethical marketing recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persuasion guidance could be applied as misleading or manipulative marketing.
+
+Mitigation: Require truthful claims, genuine scarcity, transparent pricing, and consent-preserving defaults before using recommendations externally.
+
+Risk: Strategic advice may not fit a specific product, audience, or legal context.
+
+Mitigation: Review recommendations with product, marketing, and compliance owners before publishing or launching campaigns.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, founders, and operators use this skill to apply mental models and behavioral science to positioning, copy, pricing, onboarding, conversion, and customer decision-making. It is intended to produce ethical, product-aware marketing recommendations when relevant product context is available. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may incorporate local product-marketing context into recommendations. <br>
-Mitigation: Review .agents/product-marketing-context.md or .claude/product-marketing-context.md before use and remove sensitive or inappropriate content. <br>
-Risk: Broad psychology and persuasion triggers may produce influence-oriented marketing guidance in more contexts than intended. <br>
-Mitigation: Narrow activation guidance or restrict use when persuasion-oriented recommendations are not appropriate. <br>
-Risk: Scarcity, urgency, defaults, and related persuasion patterns can become manipulative if applied without real constraints or user benefit. <br>
-Mitigation: Apply the skill's ethical framing by using genuine constraints, preserving user choice, and validating recommendations with real customer feedback. <br>
+**Output Format:** [Markdown guidance with structured explanations and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-marketing-psychology) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mariokarras) <br>
+**Other Properties Related to Output:** [No executable output; persuasion advice should be reviewed before use in customer-facing marketing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local product-marketing context files when present.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version reports 1.1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata; artifact frontmatter lists 1.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

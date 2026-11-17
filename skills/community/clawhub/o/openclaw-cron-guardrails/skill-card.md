@@ -1,49 +1,68 @@
-## Description: <br>
-OpenClaw Cron Guardrails helps agents create, review, repair, and route OpenClaw cron jobs with explicit schedule, session, delivery, and verification defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, review, repair, or route OpenClaw cron jobs and scheduled agent actions with safe defaults for delivery, sessions, timeouts, and natural-language scheduling.
 
-## Publisher: <br>
-[jackal092927](https://clawhub.ai/user/jackal092927) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackal092927](https://clawhub.ai/user/jackal092927)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn reminder, recurring task, visible delivery, and cron repair requests into safer OpenClaw cron patterns. It emphasizes explicit delivery targets, session routing, timezones, timeout choices, and post-change verification for scheduled agent actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled jobs can create or edit recurring agent actions that may run without the user watching each execution. <br>
-Mitigation: Review every generated cron job before applying it, then verify the job list, recent runs, payload kind, timezone, delivery target, and timeout after creation or edit. <br>
-Risk: Session or thread prompt-injection patterns can repeatedly push an active agent context. <br>
-Mitigation: Use these patterns only when that behavior is intentional, bind the session or thread explicitly, and avoid converting them into generic visible delivery. <br>
-Risk: Webhook or visible delivery can send output to the wrong destination or expose sensitive content if routing is ambiguous. <br>
-Mitigation: Use trusted endpoints, avoid sensitive output, and require explicit channel, target, and account details for visible delivery in multi-channel setups. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn scheduled-action requests into safer OpenClaw cron patterns, commands, and JSON payloads. It is especially relevant for reminders, recurring workers, visible channel delivery, session or thread pushes, and cron repair workflows where routing, timezone, or timeout mistakes could cause failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackal092927/openclaw-cron-guardrails) <br>
-- [Publisher profile](https://clawhub.ai/user/jackal092927) <br>
-- [Intent routing](references/intent-routing.md) <br>
-- [Safe patterns](references/patterns.md) <br>
-- [Diagnostics and repair](references/diagnostics.md) <br>
-- [Public examples](references/public-examples.md) <br>
-- [Integration modes](references/integration-modes.md) <br>
-- [Target helpers](references/target-helpers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce dry-run cron specifications, validation results, rendered OpenClaw cron commands, or repair guidance before any apply step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Persistent scheduled agent actions, including current-session or current-thread prompt injection, can continue operating after the initial request and may affect the wrong context if scope is unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear scope for session or thread jobs, keep workflows in dry-run until reviewed, and verify the resulting job target before enabling repeated execution.
+
+Risk: The skill includes an unsafe shell-based apply path for creating cron jobs.
+
+Mitigation: Review rendered commands before use, require explicit confirmation before --apply, and avoid passing untrusted natural-language input into apply workflows.
+
+Risk: External channel delivery and webhooks can send scheduled output to unintended or untrusted destinations.
+
+Mitigation: Use explicit trusted delivery channels and targets, avoid implicit last-channel routing, and treat webhooks as privileged destinations.
+
+Risk: Cron edit or run operations can change or execute existing persistent jobs.
+
+Mitigation: Inspect the existing job and recent runs first, change one dimension at a time, and confirm the updated timezone, delivery target, payload kind, and timeout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackal092927/skills/openclaw-cron-guardrails)
+- [Intent Routing for Natural-Language Cron Requests](references/intent-routing.md)
+- [OpenClaw Cron Safe Patterns](references/patterns.md)
+- [OpenClaw Cron Pitfalls](references/pitfalls.md)
+- [Diagnostics and Repair](references/diagnostics.md)
+- [Integration Modes](references/integration-modes.md)
+- [Cron Spec Examples](references/spec-examples.md)
+- [Target Helpers](references/target-helpers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce dry-run cron specifications, rendered OpenClaw commands, validation findings, repair guidance, and configuration advice; apply actions require explicit confirmation.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

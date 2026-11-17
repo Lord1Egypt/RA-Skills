@@ -1,43 +1,55 @@
-## Description: <br>
-Autonomous WorkProtocol agent that monitors jobs, claims matching code tasks, completes them via coding sub-agents, and delivers results for payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous WorkProtocol agent that monitors jobs, claims matching code tasks, completes them via coding sub-agents, and delivers results for payment.
 
-## Publisher: <br>
-[atlaskos](https://clawhub.ai/user/atlaskos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atlaskos](https://clawhub.ai/user/atlaskos)
 
-## Use Case: <br>
-External developers and agent operators use this skill to configure an OpenClaw agent to find, evaluate, claim, complete, and deliver paid coding jobs on WorkProtocol. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent recurring credentialed authority to claim paid work and submit deliverables. <br>
-Mitigation: Keep autonomous polling disabled until manual approval is added for claims, pull requests, delivery, verification, and disputes. <br>
-Risk: WorkProtocol and repository credentials may authorize payment-related actions or code changes. <br>
-Mitigation: Use least-privilege credentials, restrict repositories and job sources, sandbox coding sub-agents, and rotate the API key if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure an OpenClaw agent to find, evaluate, claim, complete, and deliver paid code jobs through WorkProtocol.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atlaskos/workprotocol-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/atlaskos) <br>
-- [WorkProtocol](https://workprotocol.ai) <br>
-- [WorkProtocol registration](https://workprotocol.ai/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request examples and operational checklists for claiming and delivering work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can give an agent broad unattended authority to claim paid jobs, use WorkProtocol and GitHub credentials, run untrusted code workflows, and submit deliverables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, revocable WorkProtocol and GitHub credentials and require manual review before claiming jobs, cloning repositories, running builds, opening pull requests, or submitting deliveries.
+
+Risk: Recurring autonomous polling can continue acting after the operator loses context or when job quality and acceptance criteria are unclear.
+
+Mitigation: Avoid unattended cron mode unless strict approval rules are added for job selection, acceptance criteria, compute cost, deadlines, and delivery evidence.
+
+## Reference(s):
+
+- [WorkProtocol](https://workprotocol.ai)
+- [WorkProtocol Agent Registration](https://workprotocol.ai/register)
+- [ClawHub Skill Listing](https://clawhub.ai/atlaskos/skills/workprotocol-agent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for WorkProtocol API calls, credential setup, job evaluation, delivery, and payment checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Gaokao Calculus Bridge helps agents connect 2026 Gaokao math reform themes with higher-math instruction by generating contextualized modeling problems, concept bridges, long-prompt analyses, project guides, and study paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaokao Calculus Bridge helps learners and educators connect 2026 Gaokao math reform themes with higher-math modeling practice for real-world, interdisciplinary problems.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-External users, educators, students, and learning agents use this skill to turn high-school-to-college calculus topics into real-world modeling exercises, concept maps, project-based learning plans, and personalized study guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs local Python scripts with third-party dependencies. <br>
-Mitigation: Install dependencies in a virtual environment and review unpinned packages before execution when reproducibility or supply-chain control matters. <br>
-Risk: The release declares API-key configuration for integrations. <br>
-Mitigation: Provide API keys only for integrations the user intends to use, and keep secrets in the agent or runtime environment rather than in skill content. <br>
-Risk: Broad educational math triggers may activate for loosely related contextual math requests. <br>
-Mitigation: Confirm the user wants the Gaokao-to-calculus bridge workflow before applying it to general math or modeling questions. <br>
+## Use Case:
 
+Students, educators, and curriculum developers use this skill to analyze 2026 Gaokao math reform expectations, generate contextualized calculus and modeling problems, deconstruct long problem statements, map high-school concepts to college mathematics, design project-based learning, and recommend learning paths.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daigxok/gaokao-calculus-bridge) <br>
-- [Gaokao 2026 Reform Reference](references/gaokao_2026_reform.md) <br>
-- [Mathematical Modeling Templates](references/modeling_templates.md) <br>
-- [Real-World Case Library](references/real_world_cases.md) <br>
-- [Project Guide Template](templates/project_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-oriented text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces educational math analyses, modeling prompts, learning plans, and local Python command invocations; scripts can emit markdown or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The release requests API-key environment variables even though the security review describes the core content as educational and locally scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing API keys unless the publisher explains how they are used; run without credentials or in an isolated environment when possible.
+
+Risk: The security review flags unused unpinned Python dependencies.
+
+Mitigation: Install in an isolated environment and pin or remove dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daigxok/skills/gaokao-calculus-bridge)
+- [ClawHub homepage metadata](https://clawhub.ai/daigxok/gaokao-calculus-bridge)
+- [2026 Gaokao Math Reform Reference](references/gaokao_2026_reform.md)
+- [Mathematical Modeling Templates](references/modeling_templates.md)
+- [Real-World Case Library](references/real_world_cases.md)
+- [PBL Project Guide](templates/project_guide.md)
+- [Demo Problem: AI Model Training Optimization](assets/demo_problems/demo_problem_1.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, structured text, JSON-capable script output, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local Python scripts and optional runtime configuration; educational outputs are intended for review before use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; skill frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

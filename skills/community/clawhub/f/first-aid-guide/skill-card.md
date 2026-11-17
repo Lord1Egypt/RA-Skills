@@ -1,50 +1,66 @@
-## Description: <br>
-AI急救指南 provides Chinese-language first-aid reference guidance for CPR/AED, choking, bleeding, fractures, burns, poisoning, environmental emergencies, medical emergencies, bites, outdoor incidents, first-aid kits, and certification topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI急救指南 helps agents provide Chinese-language, structured first-aid reference guidance across CPR/AED, choking, bleeding, burns, poisoning, environmental emergencies, medical emergencies, bites, outdoor incidents, first-aid kits, and certification topics.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and agents use this skill to provide structured first-aid reference guidance and, when requested, generate a simple interactive HTML guide. It is educational and should direct users to emergency services and local professional guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China-specific emergency number and certification references that require localization outside China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-aid guidance can be mistaken for professional medical advice during emergencies. <br>
-Mitigation: Present it as educational reference, tell users to contact emergency services first, and encourage certified first-aid training. <br>
-Risk: The artifact includes China-specific emergency number, poison-control, legal, and certification guidance that may not apply elsewhere. <br>
-Mitigation: Localize emergency numbers, poison-control contacts, legal assumptions, and certification references to the user's country or region before relying on them. <br>
-Risk: Medical and CPR/AED practices can change as professional guidance is updated. <br>
-Mitigation: Verify time-sensitive procedures against current local emergency medical, Red Cross, AHA, ERC, or equivalent authority guidance. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language first-aid questions, select relevant first-aid reference material, and optionally generate a standalone HTML first-aid report for complex requests.
 
-## Reference(s): <br>
-- [动物咬伤与户外急救指南](artifact/references/bites-outdoor.md) <br>
-- [烧伤急救指南](artifact/references/burns.md) <br>
-- [心肺复苏 (CPR) 与 AED 使用指南](artifact/references/cpr-aed.md) <br>
-- [环境急症急救：中暑、失温与溺水](artifact/references/environmental.md) <br>
-- [海姆立克急救法 (Heimlich Maneuver)](artifact/references/heimlich.md) <br>
-- [家庭急救包与急救证指南](artifact/references/kit-certification.md) <br>
-- [内科急症识别与急救：癫痫、心梗、卒中](artifact/references/medical-emergency.md) <br>
-- [中毒急救指南](artifact/references/poisoning.md) <br>
-- [止血、包扎与骨折固定指南](artifact/references/trauma.md) <br>
+### Deployment Geography for Use:
 
+China / Chinese-language contexts
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance, with optional standalone HTML/CSS/JavaScript report when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational first-aid reference with no executable install steps or external service access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Emergency medical guidance may be unsafe, outdated, or under-scoped for a user's specific condition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct medical content against current certified first-aid sources before deployment, and preserve clear escalation to professional emergency services.
+
+Risk: The skill is oriented around Chinese-language emergency guidance and the 120 emergency number, which may be inappropriate in other locales.
+
+Mitigation: Use it for China or Chinese-language contexts unless locale selection and local emergency-number handling are added and reviewed.
+
+Risk: Generated HTML reports could make first-aid guidance appear more authoritative than the reviewed source material supports.
+
+Mitigation: Keep disclaimers, medical-review status, emergency escalation, and limits of first-aid advice visible in generated reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/first-aid-guide)
+- [心肺复苏 (CPR) 与 AED 使用指南](references/cpr-aed.md)
+- [海姆立克急救法 (Heimlich Maneuver)](references/heimlich.md)
+- [止血、包扎与骨折固定指南](references/trauma.md)
+- [烧伤急救指南](references/burns.md)
+- [中毒急救指南](references/poisoning.md)
+- [环境急症急救：中暑、失温与溺水](references/environmental.md)
+- [内科急症识别与急救：癫痫、心梗、卒中](references/medical-emergency.md)
+- [动物咬伤与户外急救指南](references/bites-outdoor.md)
+- [家庭急救包与急救证指南](references/kit-certification.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with optional standalone HTML report code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, emergency-oriented responses that should include medical disclaimers and escalation to professional emergency services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Control interactive BLE devices (scan/connect/playback/timeline) from terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control interactive BLE devices (scan/connect/playback/timeline) from terminal.
 
-## Publisher: <br>
-[LovappenCava](https://clawhub.ai/user/LovappenCava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovappencava](https://clawhub.ai/user/lovappencava)
 
-## Use Case: <br>
-Developers and terminal users use this skill to install and operate the dokidoki CLI for scanning, connecting to, and controlling BLE devices, including timeline playback and direct device actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BLE scanning may reveal nearby device names or identifiers. <br>
-Mitigation: Scan only in the intended environment and confirm the target device before connecting. <br>
-Risk: Commands can control a nearby BLE device through action and playback operations. <br>
-Mitigation: Confirm the connected device before running action or playback commands, and use pause, disconnect, or stop when finished. <br>
+## Use Case:
 
+Developers and device operators use this skill to scan for, connect to, and control interactive BLE devices from a terminal, including timeline playback and direct device actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LovappenCava/dokidoki) <br>
-- [Publisher profile](https://clawhub.ai/user/LovappenCava) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the doki CLI, Node.js 18+, and Bluetooth Low Energy support; audio playback may require ffplay or afplay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill installs and runs a third-party npm CLI globally with the user's permissions and BLE access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or isolated installation where practical, review the package before use, and grant BLE access only in an environment appropriate for device control.
+
+Risk: The skill starts a background daemon that can control connected BLE devices.
+
+Mitigation: Check daemon status during use and stop or disconnect the daemon when device control is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovappencava/skills/dokidoki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON timeline examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include npm installation guidance and BLE device control commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

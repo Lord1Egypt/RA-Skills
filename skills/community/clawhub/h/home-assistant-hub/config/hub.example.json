@@ -1,0 +1,24 @@
+{
+  "ha_url": "http://homeassistant.local:8123",
+  "ha_token": "YOUR_LONG_LIVED_TOKEN_HERE",
+  "poll_interval": 10,
+  "rules": [],
+  "notification_channel": "telegram",
+  "quiet_hours": {
+    "enabled": false,
+    "start": "23:00",
+    "end": "07:00"
+  },
+  "on_demand": {
+    "enabled": false,
+    "port": 9123
+  },
+  "call_safe_domains": ["light", "climate", "scene", "media_player", "automation", "notify"],
+  "telegram_bot_token": "YOUR_TELEGRAM_BOT_TOKEN_HERE",
+  "telegram_chat_id": "YOUR_CHAT_ID_HERE",
+  "echo_devices": {
+    "all_devices_announce_id": "",
+    "echo_pop_device_id": "",
+    "echo_show_device_id": ""
+  }
+}

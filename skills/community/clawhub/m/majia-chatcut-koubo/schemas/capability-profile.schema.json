@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/capability-profile.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "profileId",
+    "host",
+    "status",
+    "hostBuild",
+    "toolSchemaHash",
+    "observedAt",
+    "expiresAt",
+    "capabilities",
+    "canary",
+    "liveRouteRequested"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/capability-profile.schema.json"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "profileId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "host": {
+      "const": "chatcut"
+    },
+    "status": {
+      "enum": [
+        "unverified",
+        "validated",
+        "stale"
+      ]
+    },
+    "hostBuild": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "toolSchemaHash": {
+      "oneOf": [
+        {
+          "$ref": "creator-os-common.schema.json#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capabilityId",
+          "mandatory",
+          "status",
+          "probeRefs",
+          "fallback"
+        ],
+        "properties": {
+          "capabilityId": {
+            "enum": [
+              "timeline-read",
+              "timeline-write",
+              "media-import",
+              "preview-render",
+              "media-export"
+            ]
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "unverified",
+              "validated",
+              "failed"
+            ]
+          },
+          "probeRefs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/sha256"
+            }
+          },
+          "fallback": {
+            "enum": [
+              "fake-adapter",
+              "manual",
+              "blocked"
+            ]
+          }
+        }
+      }
+    },
+    "canary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "status",
+        "redaction",
+        "businessMutation",
+        "evidenceRefs"
+      ],
+      "properties": {
+        "mode": {
+          "const": "non-blocking"
+        },
+        "status": {
+          "enum": [
+            "not-run",
+            "passed",
+            "failed"
+          ]
+        },
+        "redaction": {
+          "const": "content-free"
+        },
+        "businessMutation": {
+          "const": false
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "creator-os-common.schema.json#/$defs/sha256"
+          }
+        }
+      }
+    },
+    "liveRouteRequested": {
+      "type": "boolean"
+    }
+  }
+}

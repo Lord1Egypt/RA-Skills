@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Kibana Saved Objects, including dashboards, Lens visualizations, imports, exports, references, and related troubleshooting via the Kibana Saved Objects REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Kibana Saved Objects, including dashboards, Lens visualizations, imports, exports, bulk operations, references, and corrupted-object troubleshooting via the Kibana Saved Objects REST API.
 
-## Publisher: <br>
-[chunkin616-hue](https://clawhub.ai/user/chunkin616-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chunkin616-hue](https://clawhub.ai/user/chunkin616-hue)
 
-## Use Case: <br>
-Developers and operators use this skill to list, create, update, export, import, and troubleshoot Kibana dashboards, Lens visualizations, and other saved objects through REST API calls and helper scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change, overwrite, or delete Kibana dashboards and saved objects. <br>
-Mitigation: Require explicit human approval for delete, overwrite, and bulk operations, and export backups before imports or destructive changes. <br>
-Risk: Running against the wrong Kibana host can alter the wrong environment. <br>
-Mitigation: Verify the target Kibana host before execution and prefer HTTPS or a trusted internal network. <br>
-Risk: Broad credentials can expand the impact of an accidental or incorrect saved-object operation. <br>
-Mitigation: Use least-privilege Kibana access scoped to the saved-object operations the agent is expected to perform. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to manage Kibana dashboards, Lens visualizations, and related saved objects through REST API examples and helper scripts. It supports NDJSON import/export, bulk saved-object workflows, reference management, and troubleshooting for corrupted or missing saved-object dependencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chunkin616-hue/kibana-saved-objects) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown with REST endpoint examples, JSON snippets, Python script usage, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or consume Kibana saved object NDJSON exports and JSON API payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Destructive Kibana operations can delete saved objects or overwrite imported dashboards and visualizations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require backups and explicit confirmation before delete operations or overwrite imports, and run against a controlled Kibana environment.
+
+Risk: Cleartext HTTP defaults may expose Kibana traffic or credentials on untrusted networks.
+
+Mitigation: Prefer HTTPS endpoints and avoid using the provided HTTP examples outside trusted local or internal environments.
+
+Risk: The dashboard export helper builds a local filename from the dashboard ID.
+
+Mitigation: Review or patch export filename handling before using untrusted dashboard IDs or untrusted Kibana endpoints.
+
+## Reference(s):
+
+- [Kibana Saved Objects ClawHub release](https://clawhub.ai/chunkin616-hue/skills/kibana-saved-objects)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python helper scripts and JSON or NDJSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST endpoint patterns, request bodies, troubleshooting notes, and scripts that can call Kibana APIs or read and write NDJSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,7 +9,6 @@ A pre-configured AI Persona setup for content creation and brand growth.
 | File | Purpose |
 |------|---------|
 | `SOUL.md` | Spark — an energetic, brand-aware marketing assistant |
-| `HEARTBEAT.md` | Daily ops with performance tracking, engagement, content calendar |
 
 ---
 
@@ -72,12 +71,6 @@ A pre-configured AI Persona setup for content creation and brand growth.
 - [ ] Set content pillars for your brand
 - [ ] Add your writing style examples
 
-### In HEARTBEAT.md:
-- [ ] Set your engagement benchmarks
-- [ ] Configure content calendar structure
-- [ ] Add your platforms and metrics
-- [ ] Set response time goals
-
 ---
 
 ## Example Daily Briefing
@@ -113,7 +106,6 @@ MARKETING BRIEFING — Monday, January 27, 2026
 2. Finalize Twitter thread for approval
 3. Draft response to competitor campaign
 
-HEARTBEAT_OK
 ```
 
 ---

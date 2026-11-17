@@ -1,41 +1,53 @@
-## Description: <br>
-Summarize Feishu/Lark cloud documents the user can read. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes Feishu/Lark docx or wiki documents that the user can read, using a fixed summary schema from agent memory and returning the result in the current chat.
 
-## Publisher: <br>
-[victor-thu](https://clawhub.ai/user/victor-thu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[victor-thu](https://clawhub.ai/user/victor-thu)
 
-## Use Case: <br>
-Employees and external users use this skill to turn Feishu/Lark docx or wiki links they can access into structured in-chat summaries. It is intended for document understanding workflows where the user expects a concise summary without extra prompting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may read Feishu/Lark documents that contain sensitive business or personal information. <br>
-Mitigation: Use the skill only with documents the user is authorized to access, and treat generated summaries as sensitive when the source document is sensitive. <br>
-Risk: Quoted evidence in a summary could be inaccurate if it is not grounded in the retrieved document text. <br>
-Mitigation: Keep source quotes short and include only text that appears in the retrieved document. <br>
-Risk: Permission failures or empty reads can lead to incomplete summaries. <br>
-Mitigation: Ask the user to confirm read access before summarizing when document retrieval fails or returns empty content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/victor-thu/feishu-doc-summarizer) <br>
+## Use Case:
 
+External users and knowledge workers use this skill to summarize Feishu/Lark documents from docx or wiki links without writing a custom prompt. It is intended for documents the user has permission to read and for summaries that follow the user's stored template.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary in the current chat] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the original document link and short representative source quotes only when they appear in the document.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads full Feishu/Lark documents and summarizes their contents into the current chat.
+
+Mitigation: Use it only for documents the user is comfortable having read in full and summarized in the active conversation.
+
+Risk: The skill consults persistent memory for the summary template, which may introduce unrelated private details if that memory is not tightly scoped.
+
+Mitigation: Keep the memory-stored summary template limited to formatting preferences and free of unrelated sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/victor-thu/skills/feishu-doc-summarizer)
+- [Publisher profile](https://clawhub.ai/user/victor-thu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summary in the current chat]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's stored summary schema; missing fields are kept as unknown rather than removed.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

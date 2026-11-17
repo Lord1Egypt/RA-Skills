@@ -1,42 +1,60 @@
-## Description: <br>
-Tailwind CSS v4 guidance for CSS-first configuration and design tokens, used when setting up Tailwind v4, defining theme variables, using OKLCH colors, or configuring dark mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tailwind CSS v4 guidance for CSS-first configuration, design tokens, OKLCH colors, Vite setup, and dark-mode patterns.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up Tailwind CSS v4, migrate from v3 conventions, define CSS-first theme tokens, and choose dark mode strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example dependency versions or prerelease install commands may not match a target project's current package constraints. <br>
-Mitigation: Review generated dependency versions and confirm Tailwind CSS and @tailwindcss/vite are on major version 4 before applying changes. <br>
-Risk: Dark mode examples may store preferences in browser localStorage or include optional external Google Fonts links. <br>
-Mitigation: Review privacy, content security policy, and font-loading requirements before adopting those examples. <br>
+## Use Case:
 
+Developers and engineers use this skill when setting up Tailwind CSS v4 projects, defining CSS-first theme tokens, choosing @theme modes, and configuring dark-mode behavior.
 
-## Reference(s): <br>
-- [Setup & Installation](references/setup.md) <br>
-- [Theming & Design Tokens](references/theming.md) <br>
-- [Dark Mode Strategies](references/dark-mode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline TypeScript, CSS, JSON, TSX, JavaScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated dependency versions should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Generated Tailwind or Vite setup changes could be misapplied to projects that are not on the Tailwind v4 integration path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package versions, Vite plugin wiring, and the CSS entry point before applying recommendations.
+
+Risk: Package commands using @next may install prerelease packages when stable versions are expected.
+
+Mitigation: Use @next only when prerelease packages are intended; otherwise pin stable Tailwind CSS v4 package versions.
+
+Risk: Dark-mode SSR examples may not match an application's locale handling or security policy.
+
+Mitigation: Adapt dark-mode snippets to the host application's SSR, locale, and security requirements before deployment.
+
+## Reference(s):
+
+- [Setup & Installation](artifact/references/setup.md)
+- [Theming & Design Tokens](artifact/references/theming.md)
+- [Dark Mode Strategies](artifact/references/dark-mode.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/tailwind-v4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no tool, persistence, or credential handling was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

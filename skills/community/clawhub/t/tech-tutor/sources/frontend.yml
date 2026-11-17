@@ -1,0 +1,102 @@
+name: frontend
+description: Frontend web development authoritative sources
+
+categories:
+  official_docs:
+    - name: MDN Web Docs
+      url: https://developer.mozilla.org/
+      type: official-docs
+      description: Mozilla web documentation
+
+    - name: React Docs
+      url: https://react.dev/
+      type: official-docs
+      description: React official documentation
+
+    - name: Vue Docs
+      url: https://vuejs.org/
+      type: official-docs
+      description: Vue.js official documentation
+
+    - name: Next.js Docs
+      url: https://nextjs.org/docs
+      type: official-docs
+      description: Next.js framework docs
+
+    - name: TypeScript Docs
+      url: https://www.typescriptlang.org/docs/
+      type: official-docs
+      description: TypeScript documentation
+
+    - name: Vite Docs
+      url: https://vitejs.dev/guide/
+      type: official-docs
+      description: Vite build tool
+
+    - name: Tailwind CSS Docs
+      url: https://tailwindcss.com/docs
+      type: official-docs
+      description: Utility-first CSS framework
+
+    - name: Webpack Docs
+      url: https://webpack.js.org/concepts/
+      type: official-docs
+      description: Module bundler
+
+  official_blogs:
+    - name: V8 Blog
+      url: https://v8.dev/blog
+      type: official-blog
+      description: Chrome V8 engine insights
+
+    - name: Chrome Developers
+      url: https://developer.chrome.com/blog/
+      type: official-blog
+      description: Chrome and web platform updates
+
+    - name: React Blog
+      url: https://react.dev/blog
+      type: official-blog
+      description: React updates and announcements
+
+    - name: TypeScript Blog
+      url: https://devblogs.microsoft.com/typescript/
+      type: official-blog
+      description: TypeScript releases and features
+
+    - name: Next.js Blog
+      url: https://nextjs.org/blog
+      type: official-blog
+      description: Next.js updates and tutorials
+
+  conferences:
+    - name: JSConf
+      url: https://jsconf.com/
+      type: conference
+      description: JavaScript conference
+
+    - name: React Conf
+      url: https://react.dev/conf
+      type: conference
+      description: React conference
+
+    - name: VueConf
+      url: https://vuejs.org/vueconf/
+      type: conference
+      description: Vue.js conference
+
+  communities:
+    - name: CSS-Tricks
+      url: https://css-tricks.com/
+      type: community
+      description: CSS and frontend techniques
+
+    - name: Smashing Magazine
+      url: https://www.smashingmagazine.com/
+      type: community
+      description: Web design and development
+
+    - name: dev.to
+      url: https://dev.to/
+      type: community
+      description: Developer community articles

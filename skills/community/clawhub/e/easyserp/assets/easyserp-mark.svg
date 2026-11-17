@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">easyserp mark</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3978F6"/>
+      <stop offset="1" stop-color="#7C45D8"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="232" height="232" rx="60" fill="url(#g)"/>
+  <circle cx="112" cy="108" r="54" fill="none" stroke="#fff" stroke-width="18"/>
+  <path d="m151 148 49 49" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M83 108h58M112 79v58" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" opacity=".92"/>
+</svg>

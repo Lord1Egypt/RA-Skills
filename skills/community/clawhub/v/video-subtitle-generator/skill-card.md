@@ -1,44 +1,56 @@
-## Description: <br>
-Generate and translate video subtitles using WhisperX and LLM translation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and translate video subtitles using WhisperX and LLM translation for video files, with multilingual transcription, target-language translation, and bilingual subtitle generation.
 
-## Publisher: <br>
-[Jianhua-Cui](https://clawhub.ai/user/Jianhua-Cui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianhua-cui](https://clawhub.ai/user/jianhua-cui)
 
-## Use Case: <br>
-Developers, content teams, and video localization workflows use this skill to transcribe video files into timestamped SRT subtitles and optionally translate them into target-language or bilingual subtitle files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translation may send subtitle text to the configured LLM provider. <br>
-Mitigation: Avoid translating sensitive videos unless the user accepts the provider, endpoint, and data-sharing implications. <br>
-Risk: Translation may incur token-based API costs. <br>
-Mitigation: Confirm the API key, base URL, model, target language, and cost acknowledgement before running translation or the full pipeline. <br>
-Risk: Dependency installation and Whisper model downloads can consume significant disk space and bandwidth. <br>
-Mitigation: Use a virtual environment, consider pinning dependencies, and confirm storage and download expectations before installing packages or downloading models. <br>
+## Use Case:
 
+Developers and media teams use this skill to guide an agent through generating timestamped subtitles from video files, translating subtitles through a configurable LLM API, and producing bilingual subtitle outputs.
 
-## Reference(s): <br>
-- [WhisperX](https://github.com/m-bain/whisperX) <br>
-- [FFmpeg](https://ffmpeg.org/) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; execution produces SRT subtitle files and JSON transcription metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcription runs locally after model download; translation can call a configured LLM API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The translation path can send subtitle text to a remote LLM provider and incur token charges when an API key is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run transcription separately for sensitive videos, keep OPENAI_API_KEY unset unless translation is intended, and confirm the provider, base URL, and cost before translating.
+
+Risk: Dependency installation and model downloads can consume substantial disk space and bandwidth.
+
+Mitigation: Install in an isolated virtual environment, pin dependencies where practical, and confirm storage and download impact before installing packages or models.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jianhua-cui/skills/video-subtitle-generator)
+- [WhisperX](https://github.com/m-bain/whisperX)
+- [FFmpeg](https://ffmpeg.org/)
+- [Python Downloads](https://www.python.org/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts are SRT subtitle files and JSON transcription metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces source-language subtitles, transcription metadata, bilingual subtitles, and target-language subtitles when the corresponding scripts are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

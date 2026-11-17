@@ -1,26 +1,31 @@
-# [Topic title]
+# [Specific topic or decision title]
+
+<!-- Authoring template, not a completed note. Replace bracketed guidance and
+dates with supported facts, choose one value per enum, and remove unused lines.
+Use the user's language. Do not include credentials or raw chat/session IDs.
+create.py supplies dates and initial counters for a ready-to-edit note. -->
 
 ## TL;DR
--
--
--
+- [One durable conclusion supported by the source]
+- [The decision or action to reuse, including its scope]
+- [The condition that requires checking or revisiting it]
 
 ## Memory type
-- fact | experience | background
+- experience
 
 ## Importance
-- high | medium | low
+- medium
 
 ## Semantic context
-1-2 sentences: describe when this note is useful and why it matters in context.
+[Describe the concrete task, constraints, and reason this note helps in 1–2 sentences.]
 
 ## Triggers
--
--
+- [Distinctive multiword topic, incident, or decision phrase]
+- [Specific synonym used when this knowledge is needed]
 
 ## Use this when
--
--
+- [A concrete future task in which the conclusion applies]
+- [The conditions or environment that must match before reuse]
 
 ## Memory state
 - warm
@@ -49,9 +54,19 @@
 ## Last verified
 - YYYY-MM-DD
 
+<!-- Last verified records actual source checking, not merely retrieval.
+If unverified, leave the bullet empty rather than invent a verification date. -->
+
 ## Related tags
--
--
+- [specific-topic-tag]
+- [project-or-domain-tag]
+
+## Session signals
+- current_session_hits: 0
+- recent_session_hits: 0
+- cross_session_repeat_count: 0
+- consecutive_session_count: 0
+- last_activated:
 
 ## Details
-(optional — only add if genuinely long background context is needed)
+[Optional: evidence/source reference, decision rationale, exceptions, and what must be reverified. Omit unnecessary background.]

@@ -1,0 +1,11 @@
+# deps
+node_modules/
+
+# runtime config + secrets
+nwc.env
+state.json
+state.json.bak.*
+
+# misc
+*.log
+.DS_Store

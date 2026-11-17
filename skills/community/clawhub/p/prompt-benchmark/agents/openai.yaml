@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt Benchmark"
+  short_description: "静态评测 Prompt 质量与兼容性 · Prompt benchmark"
+  default_prompt: "Use $prompt-benchmark to evaluate this prompt and return an evidence-based static benchmark report."

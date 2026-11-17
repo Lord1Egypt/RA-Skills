@@ -1,0 +1,77 @@
+{
+  "version": "2.9.0",
+  "source_id": "connected-papers",
+  "status": "query_verified",
+  "checked_at": "2026-10-16T12:24:47.986Z",
+  "entry": {
+    "url": "https://www.connectedpapers.com/",
+    "title": "Connected Papers | Find and explore academic papers",
+    "status": "accessible",
+    "note": "检索页公开可读；URL 直达 /search?q=<query> 稳定返回建议行与引文数，但站内搜索框不可交互，无法做成执行器流程。"
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "role": "searchbox",
+      "note": "检索框，接受论文题名或关键词"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "connected-papers:citation-count",
+      "source_id": "connected-papers",
+      "title": "读取指定论文的引文数（URL 直达）",
+      "task_kind": "citation-count",
+      "status": "query_verified",
+      "parameters": [
+        "query"
+      ],
+      "steps": [
+        "直接导航到 https://www.connectedpapers.com/search?q=<query>（query 用题给论文题名或关键词，需 URL 编码）；该 URL 也可由站内检索框提交后得到。",
+        "等待建议列表渲染：页面正文出现 “Showing paper suggestions for \"<query>\"”。",
+        "逐行读取形如 “<n> Citations, <m> References” 的文本；n 即该工具口径的引文数，按行内题名定位目标论文。",
+        "若题给多篇候选论文，逐篇查询并按同一口径比较引文数；不要用图谱节点代替。"
+      ],
+      "notes": [
+        "实测（2026-10-16）：/search?q=…&p=1 两次独立查询均成功读到引文数（5825 / 834），页面正文回显了查询词。",
+        "站内搜索框 #searchbar-input 计算样式为 display:inline-block 但 offsetParent 为 null，点击/填写不可用。",
+        "已尝试两种执行器流程（click+fill+Enter、click+fill+press），runSearch 均返回 “No fresh result/detail page matched this question”；因此本流程**不提供 execution**，改用直接导航 URL 的方式取证。",
+        "该页注明 “Search powered by Semantic Scholar”，数字为该数据源口径，与其他聚合库可能不同；题目指定本工具时以本数字为准。",
+        "图谱是“相似论文”聚类：点选一篇建议建图后，图中不保证包含本题其他候选论文，因此不要用图谱节点反推候选项。",
+        "无公开 API：所有 /api/... 路径均返回首页 HTML（实测）。"
+      ],
+      "retrieval_channels": [
+        {
+          "kind": "web-page",
+          "name": "Connected Papers 检索结果页",
+          "documentation": "https://www.connectedpapers.com/",
+          "endpoint": "https://www.connectedpapers.com/search?q=<query>",
+          "auth": "none",
+          "tested_at": "2026-10-16",
+          "tested_result": "2026-10-16 两次独立查询成功：/search?q=…&p=1 返回 “5825 Citations, 99 References” 与 “834 Citations, 185 References”，正文回显查询词",
+          "covers": "该工具口径的引文数与参考文献数",
+          "does_not_cover": "图谱节点不保证包含指定论文，因此不能用图谱反推候选项",
+          "notes": [
+            "无公开 API：所有 /api/... 路径均返回首页 HTML。",
+            "站内搜索框不可交互（offsetParent 为 null），因此本渠道由 agent 直接导航 URL 完成，不走 runSearch()。",
+            "页面注明 “Search powered by Semantic Scholar”，数字为该数据源口径。",
+            "图谱按“相似论文”聚类，不保证含指定论文，不可用图谱节点反推候选项。"
+          ],
+          "blocker": null
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "no-executable-flow",
+      "detail": "站内搜索框不可交互；两种执行器流程形态均失败，只能由 agent 直接导航 URL 取证",
+      "first_seen": "2026-10-16T12:38:13.188Z"
+    }
+  ],
+  "provenance": {
+    "observed_at": "2026-10-16T12:24:47.986Z",
+    "evidence": "实测检索页渲染并读到 “5825 Citations, 99 References” 等条目文本；/api/graph 与 /api/paper 均返回首页 HTML。"
+  }
+}

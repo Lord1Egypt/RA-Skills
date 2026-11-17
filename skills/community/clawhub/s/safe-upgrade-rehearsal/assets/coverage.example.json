@@ -1,0 +1,44 @@
+{
+  "schema": "openclaw.safe_update.coverage.v1",
+  "install_shape": "npm_global_linux",
+  "runtime": {
+    "node_version": "22.14.0",
+    "os": "linux",
+    "arch": "x64",
+    "libc": "glibc"
+  },
+  "surfaces": [
+    {
+      "id": "signal",
+      "category": "channel",
+      "required": true,
+      "customization_checks": [
+        "signal-entrypoint"
+      ],
+      "post_update_checks": [
+        "inbound text reaches the intended agent",
+        "outbound reply reaches the expected conversation",
+        "voice note is transcribed and available to the agent",
+        "attachment content reaches the agent"
+      ]
+    },
+    {
+      "id": "memory",
+      "category": "memory",
+      "required": true,
+      "customization_checks": [],
+      "post_update_checks": [
+        "a known synthetic memory can be retrieved without exposing private data"
+      ]
+    },
+    {
+      "id": "weather-mcp",
+      "category": "mcp",
+      "required": true,
+      "customization_checks": [],
+      "post_update_checks": [
+        "the MCP is discovered and a read-only synthetic call succeeds"
+      ]
+    }
+  ]
+}

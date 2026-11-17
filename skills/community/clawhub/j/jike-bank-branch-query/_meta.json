@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-bank-branch-query",
   "version": "1.0.0",
-  "publishedAt": 1777432952047
+  "title": "银行支行、联行号查询 - 即刻数据",
+  "description": "根据银行名称、省市代码、支行关键词查询支行名称、联行号、省份和城市。",
+  "env": "JIKE_BANK_BRANCH_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/bank/branch/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

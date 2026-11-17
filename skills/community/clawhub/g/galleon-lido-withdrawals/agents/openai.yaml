@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lido withdrawal queue"
+  short_description: "Lido withdrawal queue workflow and evidence"
+  default_prompt: "Use $galleon-lido-withdrawals to perform the requested protocol workflow and return its decision record."

@@ -1,0 +1,54 @@
+/* ============================================================
+   html-base.css — style-card HTML 引擎强制底座
+   用法：全文复制进每个 HTML 的 <style> 块最顶部，不许删改。
+   作用：统一画布尺寸基准、字体渲染、防浏览器默认样式漂移。
+   （角色对标 frontend-slides 的 viewport-base.css）
+   ============================================================ */
+
+/* 画布尺寸：由具体卡决定比例，这里给默认与变量覆盖点 */
+:root {
+    --card-width: 1170px;   /* 3:4 小红书默认，横版卡改为 1560x1170 */
+    --card-height: 1560px;
+    --bg-page: #f5efe0;     /* 底色由卡的配色系统覆盖 */
+    --ink: #1a1a1a;
+    --accent: #e8b04b;
+}
+
+/* ---- Reset ---- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: var(--card-width);
+    height: var(--card-height);
+    overflow: hidden;                 /* 卡片是固定画布，不许出现滚动条 */
+    background: var(--bg-page);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ---- 卡片舞台：所有内容画在 .card 内 ---- */
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ---- 文字排印基准 ---- */
+h1, h2, h3 { font-weight: 900; line-height: 1.25; }
+p, li { line-height: 1.6; }
+
+/* 中文安全行宽与断行 */
+p, li, span { overflow-wrap: break-word; }
+
+/* ---- 像素/复古风格辅助（按卡选用） ---- */
+.pixelated { image-rendering: pixelated; }
+.pixel-font { font-family: 'ZCOOL QingKe HuangYou', 'Noto Sans SC', sans-serif; letter-spacing: 0.02em; }
+.hand-font  { font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; }
+
+/* ---- 导出专用：截图时隐藏任何交互痕迹 ---- */
+::selection { background: transparent; }

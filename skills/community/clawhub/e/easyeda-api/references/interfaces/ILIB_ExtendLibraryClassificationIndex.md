@@ -2,19 +2,19 @@
 
 > Warning: This API is now obsolete.
 >
-> - since EDA v3.2; dropped EDA v3.3
+> since EDA v3.2; dropped EDA v3.3
 
-外部库分类索引
+External library classification index
 
 ## Signature
 
 ```typescript
-interface ILIB_ExtendLibraryClassificationIndex 
+interface ILIB_ExtendLibraryClassificationIndex
 ```
 
 ## Remarks
 
-支持外部库使用名称或 UUID 作为分类的唯一 ID 索引
+Supports external libraries using a name or UUID as the unique ID index of the classification
 
 ## Properties
 
@@ -22,97 +22,77 @@ interface ILIB_ExtendLibraryClassificationIndex
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [primaryClassificationName?](./ILIB_ExtendLibraryClassificationIndex.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 一级分类名称
-
+_(Optional)_ Primary classification name
 
 </td></tr>
 <tr><td>
 
 [primaryClassificationUuid?](./ILIB_ExtendLibraryClassificationIndex.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 一级分类 UUID
-
+_(Optional)_ Primary classification UUID
 
 </td></tr>
 <tr><td>
 
 [secondaryClassificationName?](./ILIB_ExtendLibraryClassificationIndex.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 二级分类名称
-
+_(Optional)_ Secondary classification name
 
 </td></tr>
 <tr><td>
 
 [secondaryClassificationUuid?](./ILIB_ExtendLibraryClassificationIndex.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 二级分类 UUID
-
+_(Optional)_ Secondary classification UUID
 
 </td></tr>
 </tbody></table>
@@ -125,7 +105,7 @@ _(Optional)_ 二级分类 UUID
 
 # ILIB\_ExtendLibraryClassificationIndex.primaryClassificationName property
 
-一级分类名称
+Primary classification name
 
 ## Signature
 
@@ -137,7 +117,7 @@ primaryClassificationName?: string;
 
 # ILIB\_ExtendLibraryClassificationIndex.primaryClassificationUuid property
 
-一级分类 UUID
+Primary classification UUID
 
 ## Signature
 
@@ -149,7 +129,7 @@ primaryClassificationUuid?: string;
 
 # ILIB\_ExtendLibraryClassificationIndex.secondaryClassificationName property
 
-二级分类名称
+Secondary classification name
 
 ## Signature
 
@@ -161,7 +141,7 @@ secondaryClassificationName?: string;
 
 # ILIB\_ExtendLibraryClassificationIndex.secondaryClassificationUuid property
 
-二级分类 UUID
+Secondary classification UUID
 
 ## Signature
 

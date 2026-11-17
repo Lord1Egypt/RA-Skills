@@ -1,0 +1,127 @@
+{
+  "card_id": "WQ-SCI-010",
+  "source_type": "paper",
+  "source_file": "6 Swallowing-related cough and health status of old adults Results from a nationwide cross-sectional study.pdf",
+  "title": "Swallowing-related cough and health status of old adults: Results from a nationwide cross-sectional study",
+  "authors": [
+    "Huai-Yu Wang",
+    "Minghua Bai",
+    "Jinwei Wang",
+    "Zhuqing Li",
+    "Ji Wang",
+    "Qi Wang"
+  ],
+  "year": 2024,
+  "journal": "Chinese Medical Journal",
+  "language": "en",
+  "abstract": "",
+  "keywords": [],
+  "doi": "10.1097/CM9.0000000000003281",
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [
+      "高血压",
+      "糖尿病"
+    ],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 882,
+    "study_design": "横断面研究"
+  },
+  "results": {},
+  "conclusions": "",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "文章围绕高血压、糖尿病等疾病与体质关系展开。",
+      "importance": "medium",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [
+    "高血压",
+    "糖尿病"
+  ],
+  "evidence_sentences": [],
+  "page_info": {
+    "total_pages": 3,
+    "sections": {}
+  },
+  "created_at": "2026-04-25T09:39:12.400563",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.447917",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.447926"
+  }
+}

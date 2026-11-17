@@ -1,0 +1,97 @@
+[
+  {
+    "evidence_id": "reddit:t3_podcast",
+    "platform": "reddit",
+    "native_id": "t3_podcast",
+    "kind": "post",
+    "text": "I spend 60% of my own editing time checking which transcript revision matches the audio.",
+    "author_id": "pod-editor",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/reddit/t3_podcast",
+    "conversation_id": "t3_podcast",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "reddit:t1_podcast",
+    "platform": "reddit",
+    "native_id": "t1_podcast",
+    "kind": "comment",
+    "text": "I copied three transcript versions into a spreadsheet yesterday and delivered the episode a day late.",
+    "author_id": "pod-editor",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/reddit/t1_podcast",
+    "conversation_id": "t3_podcast",
+    "parent_id": "t3_podcast",
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "x:podcast-enough",
+    "platform": "x",
+    "native_id": "podcast-enough",
+    "kind": "post",
+    "text": "The free labels in my current editor are enough for my solo show. I would not pay for another app.",
+    "author_id": "pod-solo",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/x/podcast-enough",
+    "conversation_id": "podcast-enough",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "youtube:podcast-advice",
+    "platform": "youtube",
+    "native_id": "podcast-advice",
+    "kind": "post",
+    "text": "You could build an automatic revision checker. I have never used one.",
+    "author_id": "pod-viewer",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/youtube/podcast-advice",
+    "conversation_id": "podcast-advice",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  },
+  {
+    "evidence_id": "discord:podcast-payer",
+    "platform": "discord",
+    "native_id": "podcast-payer",
+    "kind": "post",
+    "text": "Our studio pays 18 dollars a month for the review app. I operate it, but I do not choose or pay for the subscription.",
+    "author_id": "pod-operator",
+    "published_at": "2026-08-02T10:00:00Z",
+    "url": "https://example.invalid/discord/podcast-payer",
+    "conversation_id": "podcast-payer",
+    "parent_id": null,
+    "title": "Invented example; no real person or account",
+    "raw": [],
+    "metadata": {
+      "synthetic": true
+    },
+    "content_status": "complete",
+    "review_status": "unreviewed"
+  }
+]

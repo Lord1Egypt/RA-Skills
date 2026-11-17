@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/artifact-review-0.1.json",
+  "title": "MoSoCanvas Artifact Review 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "artifact_ref", "reviewer", "blind_pass", "spec_pass", "decision"],
+  "properties": {
+    "schema": { "const": "moso.artifact-review/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "artifact_ref": { "type": "string", "minLength": 1 },
+    "artifact_sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+    "spec_ref": { "type": "string", "minLength": 1 },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "independent_from_generation", "actual_artifact_inspected", "reviewed_at"],
+      "properties": {
+        "kind": { "enum": ["fresh-context-agent", "different-model", "human", "same-context-assistive"] },
+        "independent_from_generation": { "type": "boolean" },
+        "actual_artifact_inspected": { "const": true },
+        "reviewed_at": { "type": "string", "format": "date-time" },
+        "identity_ref": { "type": "string", "minLength": 1 },
+        "session_ref": { "type": "string", "minLength": 1 }
+      }
+    },
+    "blind_pass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt_hidden", "first_read", "eye_path", "inferred_narrative", "observed_anomalies"],
+      "properties": {
+        "prompt_hidden": { "const": true },
+        "first_read": { "type": "string", "minLength": 1 },
+        "eye_path": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "inferred_narrative": { "type": "string", "minLength": 1 },
+        "observed_anomalies": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "spec_pass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["carrier", "composition", "narrative", "color_light", "material_physics", "ai_residue", "spec_fit"],
+      "properties": {
+        "carrier": { "$ref": "#/$defs/findingList" },
+        "composition": { "$ref": "#/$defs/findingList" },
+        "narrative": { "$ref": "#/$defs/findingList" },
+        "color_light": { "$ref": "#/$defs/findingList" },
+        "material_physics": { "$ref": "#/$defs/findingList" },
+        "ai_residue": { "$ref": "#/$defs/findingList" },
+        "spec_fit": { "$ref": "#/$defs/findingList" }
+      }
+    },
+    "series_pass": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contact_sheet_inspected", "rhythm", "redundancy", "continuity"],
+      "properties": {
+        "contact_sheet_inspected": { "const": true },
+        "rhythm": { "$ref": "#/$defs/findingList" },
+        "redundancy": { "$ref": "#/$defs/findingList" },
+        "continuity": { "$ref": "#/$defs/findingList" }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recommendation", "release_authorized", "priority_improvement"],
+      "properties": {
+        "recommendation": { "enum": ["accept", "local-repair", "regenerate", "branch", "user-judgment"] },
+        "release_authorized": { "type": "boolean" },
+        "priority_improvement": { "type": "string", "minLength": 1 },
+        "remaining_risks": { "$ref": "#/$defs/stringArray" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "properties": {
+              "release_authorized": { "const": true }
+            },
+            "required": ["release_authorized"]
+          }
+        },
+        "required": ["decision"]
+      },
+      "then": {
+        "required": ["artifact_sha256", "spec_ref"],
+        "properties": {
+          "reviewer": {
+            "required": ["identity_ref", "session_ref"]
+          },
+          "spec_pass": {
+            "properties": {
+              "carrier": { "minItems": 1 },
+              "composition": { "minItems": 1 },
+              "narrative": { "minItems": 1 },
+              "color_light": { "minItems": 1 },
+              "material_physics": { "minItems": 1 },
+              "ai_residue": { "minItems": 1 },
+              "spec_fit": { "minItems": 1 }
+            }
+          },
+          "decision": {
+            "properties": {
+              "recommendation": { "const": "accept" }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "findingList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "claim", "evidence_region", "consequence", "confidence"],
+        "properties": {
+          "severity": { "type": "integer", "minimum": 0, "maximum": 3 },
+          "claim": { "type": "string", "minLength": 1 },
+          "evidence_region": { "type": "string", "minLength": 1 },
+          "consequence": { "type": "string", "minLength": 1 },
+          "confidence": { "enum": ["low", "medium", "high"] },
+          "alternative_explanation": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

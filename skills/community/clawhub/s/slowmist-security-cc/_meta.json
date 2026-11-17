@@ -1,6 +1,40 @@
 {
-  "ownerId": "kn76bp2jsdmb25t3egd28hhj6181mz2n",
-  "slug": "slowmist-security-cc",
+  "name": "slowmist-security-cc",
   "version": "1.0.0",
-  "publishedAt": 1775492949088
+  "description": "Comprehensive security review framework for Claude Code agents. Covers skill/MCP installation, GitHub repos, URLs/documents, on-chain addresses, products/services, and social shares. 6 review types, 11 code red-flags, 8 social engineering patterns, 7 supply chain attacks. Claude Code adapted version.",
+  "author": "0xcjl",
+  "license": "MIT",
+  "homepage": "https://github.com/0xcjl/slowmist-security-cc",
+  "repository": "https://github.com/0xcjl/slowmist-security-cc",
+  "keywords": [
+    "security",
+    "audit",
+    "review",
+    "claude-code",
+    "skill",
+    "prompt-injection",
+    "social-engineering",
+    "supply-chain",
+    "aml",
+    "blockchain",
+    "agent-security"
+  ],
+  "categories": [
+    "security",
+    "audit",
+    "blockchain"
+  ],
+  "requires": {
+    "bins": []
+  },
+  "optional": {
+    "integrations": [
+      {
+        "name": "misttrack-skills",
+        "description": "For on-chain AML risk assessment",
+        "url": "https://github.com/slowmist/misttrack-skills"
+      }
+    ]
+  },
+  "minClawVersion": "0.1.0"
 }

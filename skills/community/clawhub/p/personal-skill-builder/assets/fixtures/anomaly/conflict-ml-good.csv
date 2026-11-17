@@ -1,0 +1,6 @@
+id,source_line,quantity,note
+B01,2,3,
+B01,4,4,"第一行
+第二行"
+B03,6,未知,y
+B03,7,5,z

@@ -1,40 +1,56 @@
-## Description: <br>
-Research Company helps agents research a company from a URL and produce a professional B2B account research PDF report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B company research producing professional PDF reports.
 
-## Publisher: <br>
-[TomsTools11](https://clawhub.ai/user/TomsTools11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tomstools11](https://clawhub.ai/user/tomstools11)
 
-## Use Case: <br>
-External users, sales teams, business development teams, and analysts use this skill to turn public company information into structured account research and a downloadable PDF report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on public web research that can be incomplete, outdated, or incorrect. <br>
-Mitigation: Verify important business claims and cited sources before relying on the generated report. <br>
-Risk: The workflow may install ReportLab and write temporary JSON and PDF files in the workspace. <br>
-Mitigation: Run it in a trusted workspace and review package installation and output paths before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Data Schema](references/data-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/TomsTools11/research-company) <br>
+## Use Case:
 
+External users, sales teams, and business-development analysts use this skill to research a company from its URL, structure the findings, and generate a professional PDF account research report.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance, structured JSON input, shell commands, and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install ReportLab if missing, write a temporary JSON file, and save a PDF report in the workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated company research may contain incorrect, incomplete, or outdated claims if public sources are limited.
+
+Mitigation: Verify important claims, citations, and links before relying on or sharing the report.
+
+Risk: Temporary JSON inputs and generated PDFs may contain sensitive company, prospect, or lead-generation data.
+
+Mitigation: Review where temporary data and final PDFs are written, restrict access to saved reports, and clean up sensitive research data after use.
+
+Risk: Installing ReportLab at runtime can introduce dependency uncertainty.
+
+Mitigation: Use a pinned or preinstalled ReportLab dependency in controlled environments.
+
+## Reference(s):
+
+- [Report Data Schema](references/data-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON research data, shell commands, and a generated PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local PDF report from structured company research data; important claims and links should be verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

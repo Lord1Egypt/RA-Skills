@@ -1,42 +1,51 @@
-## Description: <br>
-CodeBuddy Code CLI installation, configuration, and usage guide for Tencent's AI-powered terminal programming assistant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeBuddy CLI for OpenClaw helps agents guide installation, configuration, usage, and troubleshooting for Tencent's CodeBuddy Code CLI.
 
-## Publisher: <br>
-[pmwalkercao](https://clawhub.ai/user/pmwalkercao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pmwalkercao](https://clawhub.ai/user/pmwalkercao)
 
-## Use Case: <br>
-Developers use this skill to install, configure, and operate Tencent CodeBuddy CLI, including interactive sessions, one-off prompts, slash commands, account login, updates, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing and authenticating with the Tencent CodeBuddy npm package and login flow may expose a development workspace to third-party CLI behavior. <br>
-Mitigation: Install only when the package and login flow are trusted, and use the CLI in development workspaces. <br>
-Risk: Permission-bypass flags can allow unintended file changes, deletion, or data loss. <br>
-Mitigation: Avoid permission-bypass flags outside disposable sandboxes and review proposed file operations before use. <br>
-Risk: Command and memory files may capture sensitive project details if secrets are included. <br>
-Mitigation: Do not place secrets in CodeBuddy prompts, custom command files, or memory files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CodeBuddy CLI for OpenClaw on ClawHub](https://clawhub.ai/pmwalkercao/codebuddy-cli) <br>
-- [Publisher profile: pmwalkercao](https://clawhub.ai/user/pmwalkercao) <br>
+## Use Case:
+
+Developers and external users use this skill to install, configure, operate, and troubleshoot Tencent's CodeBuddy Code CLI from an agent workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Permission-skipping options such as --dangerously-skip-permissions and bypassPermissions can allow file changes or deletion without confirmation.
+
+Mitigation: Use default or plan permission modes for normal projects, and reserve permission-skipping options for disposable sandboxes.
+
+Risk: Global npm installation can introduce supply-chain and privilege risks if the package or publisher is not verified.
+
+Mitigation: Verify the npm package and publisher before installation, and avoid running npm or CodeBuddy with elevated privileges.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI commands, usage tables, examples, login options, update steps, and security notes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Browser automation patterns and best practices for OpenClaw browser control. Use when navigating web apps, filling forms, clicking elements, or extracting data from websites. Covers GHL, Lovable, and general SPA navigation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation patterns and best practices for OpenClaw browser control.
 
-## Publisher: <br>
-[boris148](https://clawhub.ai/user/boris148) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[boris148](https://clawhub.ai/user/boris148)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and automation agents use this skill to navigate web applications, fill forms, interact with iframe-heavy SPAs, handle login flows, and troubleshoot browser snapshots and screenshots in OpenClaw-managed browsers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may guide agents through login flows that involve credentials or two-factor codes.
+
+Mitigation: Use only accounts the operator controls or is authorized to access, and provide credentials or 2FA codes only through approved secure channels.
+
+Risk: Screenshots, snapshots, or logs from automated browsing can expose secrets or account contents.
+
+Mitigation: Avoid retaining browser artifacts that show sensitive data, and redact or discard screenshots and logs before sharing them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to guide an agent through OpenClaw-managed browser automation for navigation, form entry, screenshots, snapshots, login flows, iframe handling, and SPA troubleshooting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through logged-in websites and pages containing private information. <br>
-Mitigation: Supervise logins, 2FA, purchases, submissions, account changes, and pages containing private information. <br>
-Risk: Browser automation may interact with accounts or credentials outside the user's authority. <br>
-Mitigation: Do not provide credentials for accounts the user does not own or administer. <br>
+**Output Format:** [Markdown guidance with command-style browser actions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/boris148/se-browser-automation) <br>
+**Other Properties Related to Output:** [No executable code; guidance covers browser navigation, snapshots, screenshots, iframe handling, login flows, and SPA troubleshooting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown guidance with inline browser action commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only browser automation guidance for an OpenClaw-managed browser.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

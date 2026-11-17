@@ -1,0 +1,43 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_update",
+    "description": "Update an existing company member's information such as roles, departments, and leaders.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Account ID of the member to update (required)."
+        },
+        "leaderIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of leader account IDs for this member."
+        },
+        "roleIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of role IDs to assign to this member."
+        },
+        "departmentIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of department IDs this member belongs to."
+        },
+        "rowNumber": {
+          "type": "number",
+          "description": "Display order number. Lower numbers appear first."
+        }
+      },
+      "required": ["accountId", "leaderIdList", "roleIdList"],
+      "additionalProperties": false
+    }
+  }
+}

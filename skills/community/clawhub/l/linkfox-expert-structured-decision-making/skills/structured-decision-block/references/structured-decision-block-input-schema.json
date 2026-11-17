@@ -1,0 +1,204 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Structured Decision Block - Input Payload v0.2",
+  "description": "Universal input contract for the structured decision module. Any upstream analysis agent (Amazon or other) produces this payload after multi-dimensional mining. The decision module then synthesizes verdicts, scores, counter-evidence, and actionable recommendations.",
+  "type": "object",
+  "required": ["version", "metadata", "business_context", "dimensions"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "0.2",
+      "description": "Schema version for compatibility."
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["scenario", "upstream_skill", "run_id", "timestamp", "platform"],
+      "properties": {
+        "scenario": {
+          "type": "string",
+          "description": "High-level scenario, e.g. 'niche-analysis', 'product-selection', 'monopoly-check', 'listing-optimization'."
+        },
+        "scenario_id": {
+          "type": "string",
+          "description": "Optional unique ID for this analysis run (e.g. keyword hash)."
+        },
+        "upstream_skill": {
+          "type": "string",
+          "description": "The calling skill/agent name, e.g. 'amazon-niche-radar'."
+        },
+        "run_id": {
+          "type": "string",
+          "description": "Unique execution identifier for traceability."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Marketplace/platform, e.g. 'amazon', 'temu'."
+        },
+        "site": {
+          "type": "string",
+          "description": "Market site, e.g. 'US', 'DE'."
+        }
+      }
+    },
+    "business_context": {
+      "type": "object",
+      "description": "User goals, risk tolerance, and constraints that drive the decision logic.",
+      "required": ["risk_preference", "primary_goal"],
+      "properties": {
+        "risk_preference": {
+          "type": "string",
+          "enum": ["保守", "稳健", "激进"],
+          "description": "Risk appetite. Affects how aggressively verdicts are given and what counts as 'acceptable'."
+        },
+        "primary_goal": {
+          "type": "string",
+          "description": "Main objective, e.g. '利润优先', '规模优先', '蓝海低竞争', '新品窗口期', '稳健现金流'."
+        },
+        "weights": {
+          "type": "object",
+          "description": "Optional custom weights (total should be ~100). If omitted, module uses scenario defaults.",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "example": {
+            "market_potential": 20,
+            "competition": 18,
+            "entry_barrier": 15,
+            "profitability": 25,
+            "trend_momentum": 12,
+            "risk": 10
+          }
+        },
+        "hard_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "One-vote veto conditions expressed as human-readable rules (module will try to enforce).",
+          "example": ["净利润率 >= 25%", "CR3 < 55%"]
+        },
+        "soft_preferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Non-blocking preferences."
+        }
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "description": "Core structured findings. Each dimension represents one axis of value/risk after upstream mining. Minimum 4-6 recommended for meaningful decisions.",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "value", "evidence"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable machine identifier, e.g. 'market_growth', 'cr3', 'top_asin_profit_zero_ad'."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name in the target language."
+          },
+          "value": {
+            "description": "The measured value. Prefer numeric when possible for scoring."
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit for the value, e.g. '% YoY', 'USD', 'count'."
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Optional pre-computed score (0-10). Module may re-score based on business_context."
+          },
+          "weight": {
+            "type": "number",
+            "description": "Optional weight for this dimension (used if business_context.weights is not provided)."
+          },
+          "thresholds": {
+            "type": "object",
+            "description": "Suggested thresholds for green/yellow/red. Module may adjust.",
+            "properties": {
+              "green": { "type": "string" },
+              "yellow": { "type": "string" },
+              "red": { "type": "string" }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["text", "source"],
+              "properties": {
+                "text": { "type": "string" },
+                "source": { "type": "string", "description": "Atomic skill or data source, e.g. 'linkfox-aba-intelligent-query'" },
+                "step": { "type": "string", "description": "Optional step in upstream pipeline, e.g. 'S3.5'" }
+              }
+            }
+          },
+          "potential_reversals": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Hints for generating strong counter-evidence. Upstream should list concrete conditions that would flip this dimension's conclusion."
+          },
+          "importance": {
+            "type": "string",
+            "enum": ["high", "medium", "low"],
+            "default": "medium"
+          }
+        }
+      }
+    },
+    "key_aggregates": {
+      "type": "object",
+      "description": "Global summary metrics useful for overall scoring and veto logic. Not tied to a single dimension.",
+      "additionalProperties": true,
+      "example": {
+        "cr3": 42,
+        "cr5": 58,
+        "overall_market_score": 82,
+        "top_asin_net_profit_rate_zero_ad": 28.5,
+        "new_product_success_rate": 18
+      }
+    },
+    "key_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "severity": { "type": "string", "enum": ["high", "medium", "low"] },
+          "source": { "type": "string" }
+        }
+      },
+      "description": "Top risks surfaced during upstream analysis."
+    },
+    "positive_signals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Notable positive signals (narrative or structured) that should influence the final verdict."
+    },
+    "upstream_limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Data gaps, freshness issues, or methodological limitations from upstream."
+    },
+    "raw_data_refs": {
+      "type": "object",
+      "description": "Optional references to full artifacts for deeper inspection by the decision module or humans.",
+      "properties": {
+        "report_path": { "type": "string" },
+        "data_paths": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

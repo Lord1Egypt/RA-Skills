@@ -232,5 +232,5 @@ Exit codes follow `act`.
 ## Updating The CLI
 
 If `magicbrowse --version` is missing or outdated, run
-`npm i -g @mercuryo-ai/magicbrowse-cli@latest`, then verify with
+`npm i -g @nuanu-ai/magicbrowse-cli@latest`, then verify with
 `magicbrowse --version`.

@@ -217,9 +217,6 @@ class TaskPipeline {
    */
   async initialize() {
     this.identityCore.boot();
-    console.error('[TaskPipeline] 初始化完成');
-    console.error('[TaskPipeline] 身份:', this.identityCore.getIdentitySummary());
-    console.error('[TaskPipeline] 配置:', JSON.stringify(this.config));
   }
 
   // ========================================================================
@@ -256,7 +253,6 @@ class TaskPipeline {
         `非法状态转换: ${from} → ${newState}`,
         { from, to: newState, validTargets: VALID_TRANSITIONS[from] || [] }
       );
-      console.error('[TaskPipeline]', JSON.stringify(err));
       throw new Error(err.message);
     }
 
@@ -429,7 +425,6 @@ class TaskPipeline {
       return false;
     }
     this._cancellationToken = true;
-    console.error('[TaskPipeline] 任务取消已请求');
     return true;
   }
 
@@ -442,7 +437,6 @@ class TaskPipeline {
 
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       if (attempt > 0) {
-        console.error(`[TaskPipeline] 重试第 ${attempt}/${maxRetries} 次`);
         await this._delay(this.config.retryDelayMs * attempt);
       }
 
@@ -471,7 +465,6 @@ class TaskPipeline {
         if (!verification.verified && attempt < maxRetries) {
           lastError = new Error('验证未通过');
           lastError.type = PipelineError.VALIDATION;
-          console.error('[TaskPipeline] 验证未通过，将重试');
           continue;
         }
 
@@ -480,7 +473,6 @@ class TaskPipeline {
       } catch (err) {
         lastError = err;
         if (attempt >= maxRetries) throw err;
-        console.error(`[TaskPipeline] 阶段失败: ${err.message}`);
       }
     }
 
@@ -539,7 +531,6 @@ class TaskPipeline {
       domain: this.currentTask ? this.currentTask.domain : undefined
     });
 
-    console.error(`[TaskPipeline] 任务 ${taskId} ${status} (${duration}ms)`);
   }
 
   // ========================================================================
@@ -551,7 +542,6 @@ class TaskPipeline {
    * @private
    */
   async _analyzeTask(taskInput, text) {
-    console.error('[TaskPipeline] 阶段 1: 分析任务');
 
     return {
       text: text.substring(0, 1000),
@@ -589,6 +579,10 @@ class TaskPipeline {
         lower.includes('dataset') || lower.includes('表格')) return 'data';
     if (lower.includes('论文') || lower.includes('研究') || lower.includes('学术') ||
         lower.includes('paper') || lower.includes('research')) return 'academic';
+    // [v5.9.13] 叙事分析：长文本 + 第三人称叙事特征
+    const _fps = /我[很非常觉得认为想]|我[不没]|帮我|给我|我想|我该/;
+    const _ni = /他[们]?[被把将让]|她[被把将让]|受害者|凶手|嫌疑人|案发|事发|当时|之后|后来|此前|被告|原告|当事人/;
+    if (text.length > 30 && _ni.test(text) && !_fps.test(text)) return 'narrative_analysis';
     return 'general';
   }
 
@@ -828,7 +822,6 @@ class TaskPipeline {
    * @private
    */
   async _planTask(taskInput, analysis) {
-    console.error('[TaskPipeline] 阶段 2: 规划任务');
 
     const complexity = analysis.complexity || TaskComplexity.TRIVIAL;
     const domain = analysis.domain || TaskDomain.UNKNOWN;
@@ -1084,7 +1077,6 @@ class TaskPipeline {
    * @private
    */
   async _verifyResult({ analysis, plan }) {
-    console.error('[TaskPipeline] 阶段 3: 认知验证');
 
     // 基本存在性检查
     const analysisValid = !!(analysis && analysis.text);

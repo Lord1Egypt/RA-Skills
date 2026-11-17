@@ -1,44 +1,55 @@
-## Description: <br>
-AI-powered professional pitch deck outline generator using the $1B Pitch Deck Formula for startup presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered professional pitch deck outline generator using the $1B Pitch Deck Formula for startup presentations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Founders, accelerator teams, pitch coaches, and developers use this skill to create investor-ready pitch deck outlines and PowerPoint presentation files from structured startup information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pitch deck inputs may contain confidential business plans, financials, customer lists, or investor materials that are sent to an external provider. <br>
-Mitigation: Submit only information approved for the provider, and verify privacy, retention, and access controls before using sensitive inputs. <br>
-Risk: Generated PPTX links and files may expose sensitive presentation material if shared or stored insecurely. <br>
-Mitigation: Treat hosted PPTX links as sensitive, limit sharing, and download or delete files according to the provider's access and retention controls. <br>
+## Use Case:
 
+Founders, accelerator teams, pitch coaches, and entrepreneurs use this skill to turn startup details into investor-ready pitch deck outlines and PowerPoint presentation outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/pitch-deck-v2) <br>
-- [Kong Route](https://api.mkkpro.com/creative/pitch-deck-v2) <br>
-- [API Docs](https://api.mkkpro.com:8077/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Guidance] <br>
-**Output Format:** [JSON responses with pitch deck outline data or PowerPoint file metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hosted PPTX download links with expiration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Startup information submitted to the skill may include confidential, regulated, or investor-sensitive material processed by a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive pitch materials unless the provider's privacy, retention, access-control, and deletion practices are acceptable.
+
+Risk: Generated PowerPoint files may be delivered through temporary hosted links.
+
+Mitigation: Treat generated PPTX links as shareable artifacts and review access expectations before distributing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/pitch-deck-v2)
+- [Pitch Deck V2 API Route](https://api.mkkpro.com/creative/pitch-deck-v2)
+- [Pitch Deck V2 API Docs](https://api.mkkpro.com:8077/docs)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Guidance]
+
+**Output Format:** [JSON responses containing pitch deck outlines or PPTX file metadata and download links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PPTX generation can return a temporary hosted download link; outline generation returns structured slide content and design metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

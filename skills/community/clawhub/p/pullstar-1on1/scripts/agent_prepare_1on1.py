@@ -4,11 +4,12 @@ agent_prepare_1on1.py — Prepare the LLM input artifact for agent-managed infer
 Usage:
     python scripts/agent_prepare_1on1.py --login jsmith
     python scripts/agent_prepare_1on1.py --login jsmith --input-dir .pullstar --mode pr_insights
+    python scripts/agent_prepare_1on1.py --login jsmith --prompt brief_v1.txt
 
 Reads:
-    .pullstar/score_{login}.json   (required)
-    .pullstar/ingest_{login}.json  (optional — for engineer name, org, stats, PR insights)
-    prompts/brief_v1.txt           (system prompt)
+    .pullstar/score_{login}.json            (required)
+    .pullstar/ingest_{login}.json           (optional — for engineer name, org, stats, PR insights)
+    {prompt}                                (system prompt, default: brief_v1.txt)
 
 Writes:
     .pullstar/llm_input_{login}.json
@@ -27,10 +28,9 @@ from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parent.parent / ".env")
 
-PROMPT_PATH = Path(__file__).parent.parent / "brief_v1.txt"
+SKILL_DIR = Path(__file__).parent.parent
 
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(SKILL_DIR))
 from prompt_builder import build_llm_input_payload, write_llm_input
 
 
@@ -45,7 +45,10 @@ def main() -> None:
     )
     parser.add_argument("--login",     required=True,    help="Engineer GitHub login")
     parser.add_argument("--input-dir", default=".pullstar", help="Directory containing score and ingest files")
-    parser.add_argument("--mode",      default="default",   help="Preparation mode label stored in payload metadata (e.g. default, pr_insights)")
+    parser.add_argument("--mode",      default="default",
+                        help="Preparation mode label (e.g. default, pr_insights)")
+    parser.add_argument("--prompt",    default=None,
+                        help="System prompt file (default: brief_v1.txt in skill dir)")
     args = parser.parse_args()
 
     input_dir  = Path(args.input_dir)
@@ -75,11 +78,17 @@ def main() -> None:
         print("> No ingest file found — score data only")
 
     # -- Load system prompt ---------------------------------------------------
-    if not PROMPT_PATH.exists():
-        fail(f"System prompt not found: {PROMPT_PATH}")
-    system_prompt = PROMPT_PATH.read_text(encoding="utf-8").strip()
+    if args.prompt:
+        p = Path(args.prompt).expanduser()
+        prompt_path = p if p.is_absolute() else (SKILL_DIR / p)
+    else:
+        prompt_path = SKILL_DIR / "brief_v1.txt"
+    if not prompt_path.exists():
+        fail(f"System prompt not found: {prompt_path}")
+    system_prompt = prompt_path.read_text(encoding="utf-8").strip()
+    print(f"> Prompt loaded — {prompt_path.name} ({len(system_prompt)} chars)")
 
-    # -- Build and write LLM input payload ------------------------------------
+    # -- Build LLM input payload ----------------------------------------------
     payload = build_llm_input_payload(
         score, ingest, system_prompt,
         model=None, provider=None, mode=args.mode,

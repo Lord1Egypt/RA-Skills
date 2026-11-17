@@ -1,44 +1,63 @@
-## Description: <br>
-Generates, edits, and composes images through the EchoFlow API using Nano Banana Pro / Gemini 3 Pro Image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, edits, and composes images through the EchoFlow API using Nano Banana Pro (Gemini 3 Pro Image).
 
-## Publisher: <br>
-[zjx15296694073](https://clawhub.ai/user/zjx15296694073) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjx15296694073](https://clawhub.ai/user/zjx15296694073)
 
-## Use Case: <br>
-Developers and external users use this skill to create new images, edit a provided image, or combine up to 14 images through EchoFlow-hosted image models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected input images, and the EchoFlow API key are sent to a third-party API provider. <br>
-Mitigation: Install and use this skill only when EchoFlow is trusted for the intended prompts, images, and credentials. <br>
-Risk: Passing the API key on the command line or changing the API base can expose credentials to process history or an untrusted host. <br>
-Mitigation: Prefer the ECHOFLOW_API_KEY environment variable and keep the default EchoFlow endpoint unless another host is fully trusted. <br>
-Risk: The documented Linux uv installer uses a curl-to-shell command. <br>
-Mitigation: Verify the installer source before running it or install uv through a trusted package manager. <br>
+## Use Case:
 
+External users and developers use this skill to generate images, edit a provided image, or compose up to 14 images through EchoFlow from agent-provided prompts and file paths.
 
-## Reference(s): <br>
-- [EchoFlow API Reference](references/echoflow_api.md) <br>
-- [EchoFlow API](https://api.echoflow.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/zjx15296694073/echoflow-banana) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files with terminal status output and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and ECHOFLOW_API_KEY; supports 1K, 2K, and 4K output resolutions and up to 14 input images for editing or composition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Prompts and selected input images are sent to EchoFlow for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending that content to EchoFlow is acceptable.
+
+Risk: Passing an API key on the command line can expose it through shell history or process listings.
+
+Mitigation: Set ECHOFLOW_API_KEY in the environment instead of using --api-key.
+
+Risk: Changing --api-base can send the EchoFlow API key to a different endpoint.
+
+Mitigation: Keep the default endpoint unless the replacement endpoint is fully trusted.
+
+Risk: The documented curl|sh installer path can execute a downloaded script.
+
+Mitigation: Install uv through a trusted package manager where possible, or inspect installer scripts before running them.
+
+## Reference(s):
+
+- [EchoFlow API Reference](references/echoflow_api.md)
+- [EchoFlow API](https://api.echoflow.cn/)
+- [ClawHub Skill Page](https://clawhub.ai/zjx15296694073/skills/echoflow-banana)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and ECHOFLOW_API_KEY; can use optional input images, model, resolution, and API base arguments.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

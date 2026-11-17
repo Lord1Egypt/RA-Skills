@@ -1,45 +1,66 @@
-## Description: <br>
-AI前沿哨兵 tracks public AI and big-data industry signals and helps generate morning, evening, and daily intelligence reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI前沿哨兵 tracks public AI, open-source, research, and big data industry signals and turns them into concise intelligence reports.
 
-## Publisher: <br>
-[xiaopengs](https://clawhub.ai/user/xiaopengs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaopengs](https://clawhub.ai/user/xiaopengs)
 
-## Use Case: <br>
-External users, developers, product managers, data leaders, and executives use this skill to collect public AI, open-source, academic, social, and big-data industry signals and turn them into structured intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad public web collection and arbitrary feed fetching can expose the agent to untrusted content or misleading sources. <br>
-Mitigation: Run in an isolated environment, pin dependencies, and review custom RSS or source URLs before fetching them. <br>
-Risk: Optional credentials, including Twitter/X bearer tokens, may be mishandled if entered into unsafe storage locations. <br>
-Mitigation: Prefer environment variables or secrets-file storage, avoid placing secrets in USER.md or MEMORY.md, and do not enter a Twitter/X bearer token in the web UI unless necessary. <br>
-Risk: The follow-builders integration executes a separate skill path and adds another trust boundary. <br>
-Mitigation: Do not enable the integration unless that separate skill and its scripts have been reviewed and trusted. <br>
+## Use Case:
 
+Executives, product managers, developers, and data teams use this skill to gather public AI and data-platform signals, analyze their significance, and generate decision-ready Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaopengs/ai-intelligence-sentinel) <br>
-- [API setup guide](artifact/references/api_setup.md) <br>
-- [Information source guide](artifact/references/sources_guide.md) <br>
-- [Big data insight requirement](artifact/docs/BIGDATA_INSIGHT_REQUIREMENT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with supporting text, configuration snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report templates cover AI morning/evening reports, big-data daily reports, and Xiaohongshu-style summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Under-scoped network access can reach many public sources, including user-configured RSS feeds and web pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured sources before use, narrow access to trusted public URLs, and keep the documented timeout and rate-limit controls enabled.
+
+Risk: Twitter or custom API credentials may be entered through local configuration paths or the WebUI.
+
+Mitigation: Avoid entering sensitive tokens in the WebUI, prefer environment variables or ignored secrets files, and rotate any token used during testing.
+
+Risk: Broad USER.md or MEMORY.md loading can expose private context to generated reports or downstream analysis.
+
+Mitigation: Use minimal purpose-specific configuration files and remove private, credential-like, or unrelated content before running the skill.
+
+Risk: Mutable installer, dependency, or external-skill execution paths can change behavior between runs.
+
+Mitigation: Pin ClawHub, dependency, and external skill versions; review external skill output before mixing it into reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaopengs/skills/ai-intelligence-sentinel)
+- [README](README.md)
+- [API setup guide](references/api_setup.md)
+- [Source configuration guide](references/sources_guide.md)
+- [Big Data Insight requirements](docs/BIGDATA_INSIGHT_REQUIREMENT.md)
+- [Security configuration](SECURITY_CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional configuration snippets, code snippets, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs summarize public sources and may save generated report files under configured report directories.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

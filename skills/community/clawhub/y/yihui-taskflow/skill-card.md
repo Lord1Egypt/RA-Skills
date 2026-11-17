@@ -1,38 +1,53 @@
-## Description: <br>
-Use when work should span one or more detached tasks but still behave like one job with a single owner context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when work should span one or more detached tasks but still behave like one job with a single owner context.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1yihui](https://clawhub.ai/user/1yihui)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to design durable multi-step workflows that preserve flow identity, state, child-task linkage, waiting state, and revision-checked mutations across detached agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes powerful maintainer and workflow actions that may affect task state, child tasks, cancellation, or waiting behavior. <br>
-Mitigation: Use it only in intended ClawHub or repo-local maintainer workflows, review proposed mutations before execution, and apply the security guidance for credentials and full-access review modes. <br>
+## Use Case:
 
+Developers and agent builders use TaskFlow to coordinate durable multi-step work that can link detached child tasks, persist small resume state, wait on people or external systems, and return one owner-facing result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1yihui/yihui-taskflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript examples and API usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Workflows can persist small state or waiting metadata that may include sensitive content if callers place it there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only the minimum state required to resume, and avoid placing sensitive content in stateJson or waitJson unless it is necessary.
+
+Risk: Linked child tasks may continue running as part of durable multi-step work if cancellation is not handled deliberately.
+
+Mitigation: Use requestCancel when scheduling should stop, use cancel when active linked child tasks should also be cancelled, and inspect task summaries during orchestration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1yihui/skills/yihui-taskflow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript examples and API usage patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for durable flow identity, child-task linkage, waiting state, revision-checked mutations, and cancellation handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

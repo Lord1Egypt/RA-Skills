@@ -1,39 +1,53 @@
-## Description: <br>
-查询当前机器的公网 IP 地址。用于需要确定服务器或客户端在互联网上的公开标识时。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries the current machine's public IP address for cases where an agent needs to identify the server or client as seen on the public internet.
 
-## Publisher: <br>
-[trollhe](https://clawhub.ai/user/trollhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trollhe](https://clawhub.ai/user/trollhe)
 
-## Use Case: <br>
-Developers and engineers use this skill to query the current machine's public IP address for network diagnostics, egress verification, and IP allowlist or firewall configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public IP lookup providers, which can reveal the environment's public egress IP and lookup activity to third parties. <br>
-Mitigation: Use it only where outbound calls to ipify, ifconfig.me, ipapi.co, and api.myip.com are acceptable; avoid restricted, corporate, or anonymity-sensitive networks. <br>
+## Use Case:
 
+Developers and operators use this skill to confirm a machine's internet-facing IP address for network diagnostics, allowlist configuration, and firewall troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trollhe/public-ip-skill-in-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/trollhe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [JSON from the helper script, with concise text guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns public_ip and per-service lookup details when available; exits nonzero if all lookup services fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Running the skill contacts third-party public IP lookup services, which can observe the caller's public IP address, request timing, and normal HTTP metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where external IP lookup is allowed, and avoid restricted or privacy-sensitive systems unless that disclosure is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trollhe/skills/public-ip-skill-in-openclaw)
+- [api.ipify.org endpoint](https://api.ipify.org?format=json)
+- [ifconfig.me endpoint](https://ifconfig.me/all.json)
+- [ipapi.co endpoint](https://ipapi.co/json/)
+- [api.myip.com endpoint](https://api.myip.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [JSON from the lookup script, typically summarized to the user as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the selected public_ip value and per-service lookup details when services respond.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

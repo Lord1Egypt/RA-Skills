@@ -1,44 +1,63 @@
-## Description: <br>
-Draws a four-card Tarot spread using local cryptographic randomness and maps the result to a concrete next-step recommendation for ambiguous or low-stakes planning decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draws four Tarot cards with local randomness to break ties in vague, low-stakes planning and map the spread to practical next steps.
 
-## Publisher: <br>
-[kc0bfv](https://clawhub.ai/user/kc0bfv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kc0bfv](https://clawhub.ai/user/kc0bfv)
 
-## Use Case: <br>
-Agents use this skill to break ties when a user gives an ambiguous, nonchalant, or explicitly fate-based request and multiple reasonable approaches exist. It is intended as a creative nudge for low-stakes planning, not as a substitute for clear requirements, safety review, or production judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tarot-style randomness can produce misleading confidence if used for security, data integrity, production, financial, or other high-stakes decisions. <br>
-Mitigation: Use the reading only for low-stakes ambiguous choices; for consequential decisions, ask for requirements, apply domain review, and rely on explicit user control. <br>
+## Use Case:
 
+Developers and agent users use this skill as a creative tie-breaker when a request is ambiguous, low-stakes, or explicitly asks to let fate decide. It should bias a choice among viable approaches, not replace requirements gathering, safety judgment, or deterministic reasoning when those are needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kc0bfv/let-fate-decide) <br>
-- [Interpretation Guide](references/INTERPRETATION_GUIDE.md) <br>
-- [Major Arcana Card Meanings](cards/major.md) <br>
-- [Wands Card Meanings](cards/wands.md) <br>
-- [Cups Card Meanings](cards/cups.md) <br>
-- [Swords Card Meanings](cards/swords.md) <br>
-- [Pentacles Card Meanings](cards/pentacles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON from the draw script followed by Markdown or plain-text interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draws four cards by default; output is nondeterministic and intended for low-stakes tie-breaking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Users may over-weight a random Tarot interpretation in security, production, data-loss, financial, legal, or other high-impact decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for ambiguous, low-stakes planning and opt out when deterministic reasoning or expert judgment is required.
+
+Risk: A failed entropy read or script error could tempt the agent to invent a draw.
+
+Mitigation: Report the failure and skip the reading; do not simulate cards when the script cannot run.
+
+Risk: Randomized guidance can reinforce an agent's pre-existing preference instead of clarifying the decision.
+
+Mitigation: Treat the spread as a creative nudge, state how cards influenced the choice, and keep safety, requirements, and best practices authoritative.
+
+## Reference(s):
+
+- [Let Fate Decide Skill Page](https://clawhub.ai/kc0bfv/skills/let-fate-decide)
+- [Interpretation Guide](references/INTERPRETATION_GUIDE.md)
+- [Major Arcana Card Meanings](cards/major.md)
+- [Wands Card Meanings](cards/wands.md)
+- [Cups Card Meanings](cards/cups.md)
+- [Swords Card Meanings](cards/swords.md)
+- [Pentacles Card Meanings](cards/pentacles.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [JSON draw result plus concise Markdown interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draw defaults to four cards; the script accepts an optional card count from 1 to 78.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

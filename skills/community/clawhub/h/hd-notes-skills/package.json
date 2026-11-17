@@ -1,23 +1,40 @@
 {
-  "name": "huadai-notes",
-  "version": "0.1.0",
-  "description": "话袋笔记 Skill — 通过 AI 新建、更新和搜索个人笔记。",
+  "name": "hd-notes-skills",
+  "version": "1.1.0",
+  "description": "话袋笔记 Skill：通过话袋 OpenAPI 新建、更新和搜索个人笔记。",
   "license": "MIT-0",
   "author": "话袋 (Huadai)",
-  "homepage": "https://ihuadai.cn",
-  "keywords": ["话袋", "笔记", "huadai", "notes", "openclaw", "skill"],
+  "homepage": "https://github.com/monkeyDB/hd-notes-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monkeyDB/hd-notes-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monkeyDB/hd-notes-skills/issues"
+  },
+  "keywords": [
+    "话袋",
+    "笔记",
+    "huadai",
+    "notes",
+    "skill",
+    "openclaw",
+    "clawhub",
+    "skillhub",
+    "agent",
+    "hd-notes-skills"
+  ],
   "clawhub": {
     "acceptLicenseTerms": true
   },
   "openclaw": {
     "minVersion": "0.1.0",
     "baseUrl": "https://openapi.ihuadai.cn/open/api/v1",
-    "requires": {},
-    "optionalEnv": [
-      "HUADAI_BASE_URL",
-      "HUADAI_CLIENT_ID",
-      "HUADAI_API_KEY",
-      "HUADAI_USER_UUID"
-    ]
+    "requires": {
+      "env": [
+        "HUADAI_API_KEY"
+      ]
+    },
+    "primaryEnv": "HUADAI_API_KEY"
   }
 }

@@ -1,38 +1,52 @@
-## Description: <br>
-简易聊天模式输入数字回复对应内容 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A simple Chinese-language chat skill that maps numeric terminal input to preset replies.
 
-## Publisher: <br>
-[quweilin](https://clawhub.ai/user/quweilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[quweilin](https://clawhub.ai/user/quweilin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can use this skill as a small terminal chat demo that returns fixed Chinese replies for numeric inputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is a Chinese-language fixed-response terminal demo and may not meet expectations for English, multilingual, or open-ended chat behavior.
+
+Mitigation: Adapt and review the prompts and response mapping before using it in a broader conversational workflow.
+
+Risk: Users may mistake the preset weather-related reply for a live weather capability.
+
+Mitigation: Present the skill as a fixed-response demo and add real data retrieval only after separate review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users run this local Python chat skill to enter simple numeric choices and receive preset replies. It is suitable for lightweight demonstrations of fixed-response chat behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Requests for credentials, special permissions, network access, or package installation would be outside the reviewed behavior. <br>
-Mitigation: Run it as a local Python script and do not provide credentials, grant special permissions, enable network access, or install packages for this release. <br>
+**Output Format:** [Plain text terminal prompts and responses, with Markdown usage guidance in the skill documentation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quweilin/chatskillproject) <br>
+**Other Properties Related to Output:** [Produces fixed Chinese-language replies for inputs 1, 2, 3, and a default reply for other inputs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text terminal replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns fixed Chinese-language replies for numeric inputs 1, 2, and 3, with a default reply for other inputs.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

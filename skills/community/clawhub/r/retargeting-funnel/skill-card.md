@@ -1,49 +1,64 @@
-## Description: <br>
-Designs multi-stage retargeting ad funnels that re-engage ecommerce visitors based on browsing depth - from homepage bouncers to cart abandoners - with platform-specific strategies for Meta, Google, and TikTok. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs multi-stage retargeting ad funnels that re-engage ecommerce visitors based on browsing depth - from homepage bouncers to cart abandoners - with platform-specific strategies for Meta, Google, and TikTok.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce marketers and operators use this skill to plan segmented retargeting funnels, configure audiences and campaigns across Meta, Google, and TikTok, and document measurement plans for improving return on ad spend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Behavioral retargeting can create privacy, consent, opt-out, data-minimization, and retention obligations across regions. <br>
-Mitigation: Confirm the site's privacy notice, consent management, opt-out handling, data minimization, and retention practices before applying the funnel. <br>
-Risk: Sharing audience and event data with ad platforms can conflict with Meta, Google, TikTok, or regional platform-term obligations if configured incorrectly. <br>
-Mitigation: Review platform terms and regional requirements before enabling pixel, server-side event, product catalog, or audience-sync workflows. <br>
-Risk: Incorrect tracking, exclusions, or frequency caps can waste ad spend or over-target recent purchasers. <br>
-Mitigation: Use the included audit, exclusion, frequency-cap, and quality-check workflows before launching or scaling campaigns. <br>
+## Use Case:
 
+Marketing teams and ecommerce operators use this skill to design retargeting funnels, segment visitors by intent, configure Meta, Google, and TikTok campaigns, and document launch and optimization checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/retargeting-funnel) <br>
-- [Meta Ads Retargeting Best Practices](https://www.facebook.com/business/help/retargeting) <br>
-- [Google Ads Remarketing Guide](https://support.google.com/google-ads/answer/2453998) <br>
-- [TikTok Ads Manager Retargeting](https://ads.tiktok.com/help/) <br>
-- [Shopify Retargeting Audiences](https://help.shopify.com/en/manual/promoting-marketing/create-marketing/facebook-audiences) <br>
-- [Dynamic Product Ads Feed Specification](https://www.facebook.com/business/help/120325381656392) <br>
-- [Google Merchant Center Feed Guide](https://support.google.com/merchants/answer/7052112) <br>
-- [Incrementality Testing Framework](https://www.facebook.com/business/help/1738164643098669) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown plans, checklists, tables, and platform setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for retargeting funnel design; users must verify privacy, consent, opt-out, retention, and ad-platform requirements before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Persistent third-party behavioral tracking can create privacy and compliance risk when used without consent and notice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a consent-management flow, an updated privacy notice, regional privacy and legal review, platform-policy review, and clear opt-out and deletion handling.
+
+Risk: Sharing hashed customer identifiers with advertising platforms can expose sensitive customer data flows.
+
+Mitigation: Minimize event and identifier sharing to what is necessary, confirm the business has lawful basis and platform approval, and review all server-side tracking before launch.
+
+## Reference(s):
+
+- [Retargeting Funnel on ClawHub](https://clawhub.ai/leooooooow/skills/retargeting-funnel)
+- [Audience Segmentation Guide](artifact/audience-segmentation-guide.md)
+- [Platform Setup Guide](artifact/platform-setup-guide.md)
+- [Output Template](artifact/output-template.md)
+- [Quality Checklist](artifact/quality-checklist.md)
+- [Meta Ads Retargeting Best Practices](https://www.facebook.com/business/help/retargeting)
+- [Google Ads Remarketing Guide](https://support.google.com/google-ads/answer/2453998)
+- [TikTok Ads Manager Retargeting](https://ads.tiktok.com/help/)
+- [Shopify Retargeting Audiences](https://help.shopify.com/en/manual/promoting-marketing/create-marketing/facebook-audiences)
+- [Dynamic Product Ads Feed Specification](https://www.facebook.com/business/help/120325381656392)
+- [Google Merchant Center Feed Guide](https://support.google.com/merchants/answer/7052112)
+- [Incrementality Testing Framework](https://www.facebook.com/business/help/1738164643098669)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown plan with tables, checklists, and platform setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include audience definitions, budget allocations, pixel and event checks, campaign structures, and optimization cadence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Distributed control system manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dcs is presented as a distributed control system manager, but server security review characterizes it as a local note and configuration data manager.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators can use this skill as a simple CLI-backed local record and configuration tracker. It is not evidence of a real distributed-control-system management capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is labeled as an industrial distributed-control manager, but the security evidence says it implements only a local note/config store. <br>
-Mitigation: Use it only for local records and configuration notes; do not rely on it to manage operational control systems. <br>
-Risk: The skill stores entries under ~/.dcs and can export local files that may contain sensitive operational data. <br>
-Mitigation: Do not store secrets, credentials, or sensitive operational data; review ~/.dcs and dcs-export files before sharing or backup. <br>
+## Use Case:
 
+Developers and operators can use this third-party skill to run shell commands for recording, listing, searching, exporting, and configuring local DCS-labeled entries. It should be reviewed carefully before operational use because server security evidence says the implementation does not match the industrial control claim.
 
-## Reference(s): <br>
-- [Dcs ClawHub listing](https://clawhub.ai/bytesagain3/dcs) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured stdout text and JSONL-backed local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DCS_DIR when set; otherwise stores local data under ~/.dcs/ and can export dcs-export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Server security evidence says the skill is presented as an industrial distributed control system manager but behaves as a persistent local data tracker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the actual behavior in a controlled environment and do not rely on it for industrial control decisions.
+
+Risk: Server security evidence reports a command-execution risk in the config command.
+
+Mitigation: Avoid the config command with untrusted keys or values until configuration serialization and command construction are fixed.
+
+Risk: Server guidance warns against using config and CSV export features until serialization is made safe.
+
+Mitigation: Review generated configuration and exported files before reuse, and avoid exporting untrusted or sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/dcs)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Structured stdout text and local JSONL or export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local data under ~/.dcs by default unless DCS_DIR is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

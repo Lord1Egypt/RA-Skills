@@ -1,44 +1,55 @@
-## Description: <br>
-Identifies nighttime elder-safety events in monitoring video, including bed exit, prolonged wandering, and extended immobility, for nursing-home and at-home care scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes nighttime monitoring footage for elderly bed exits, prolonged wandering, and extended immobility, and returns a structured report.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Caregivers, nursing-home staff, family monitors, and developers use this skill to analyze nighttime monitoring videos for bed-exit, wandering, immobility, and alert-worthy elder-safety events. It can also query cloud-stored historical monitoring reports for a provided user identifier. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Elder-monitoring video, report queries, and a username or phone number may be sent to a remote Life Emergence service. <br>
-Mitigation: Use only approved monitoring media and identifiers, obtain appropriate consent, and review the configured service endpoint before running analysis. <br>
-Risk: The runtime may create local user records and store access tokens in SQLite. <br>
-Mitigation: Run the skill in a dedicated workspace, avoid shared machines for sensitive use, and apply local data-retention and token-rotation controls. <br>
-Risk: The analysis output is advisory and may not catch every safety-critical situation. <br>
-Mitigation: Treat alerts and reports as care-support signals and require human confirmation for abnormal events or emergencies. <br>
+## Use Case:
 
+Caregivers and residential care teams use the skill to review nighttime footage for possible bed exits, wandering, and extended immobility, and to retrieve prior monitoring reports. Results are for care reference and require human confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-elderly-bed-exit-wandering-monitoring-analysis) <br>
-- [Elderly Bed-Exit & Wandering Monitor API Reference](references/api_doc.md) <br>
-- [Common Analysis API Reference](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries and JSON-formatted analysis or report-listing output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote report export links when returned by the analysis service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The server security assessment reports credential and data-handling concerns, behavior beyond the stated monitoring purpose, and gaps in the promised analysis behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and verify video processing, credential handling, and runtime permissions before use.
+
+Risk: The security scan was partial because a referenced path was missing, so some monitoring behavior could not be verified.
+
+Mitigation: Confirm the skill's behavior and have a caregiver verify alerts; the skill describes its results as care guidance rather than a replacement for human checks.
+
+## Reference(s):
+
+- [API documentation](references/api_doc.md)
+- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md)
+- [Skill demo](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown]
+
+**Output Format:** [Structured analysis reports and report lists, with report export links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis reports may include a report export link; history queries return report records.]
+
+## Skill Version(s):
+
+1.0.24 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

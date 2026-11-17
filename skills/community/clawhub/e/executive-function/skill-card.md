@@ -1,44 +1,59 @@
-## Description: <br>
-External executive function support for planning, task initiation, time management, working memory, and self-monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides external executive function support for planning, task initiation, time management, working memory, and self-monitoring.
 
-## Publisher: <br>
-[skhotdotcom](https://clawhub.ai/user/skhotdotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skhotdotcom](https://clawhub.ai/user/skhotdotcom)
 
-## Use Case: <br>
-External users use this skill to get practical support for planning, starting tasks, managing time, preserving working memory, switching contexts, and reviewing progress without turning the interaction into therapy or clinical care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate proactively when a user sounds stuck, scattered, or overwhelmed. <br>
-Mitigation: Use it as opt-in planning and support, and let the user redirect or decline the structure at any point. <br>
-Risk: The skill may receive sensitive personal or workplace context during planning, time management, or self-monitoring conversations. <br>
-Mitigation: Avoid sharing highly sensitive details unless appropriate for the host agent's normal chat and memory behavior. <br>
-Risk: The skill discusses executive function challenges but is not therapy, diagnosis, or clinical intervention. <br>
-Mitigation: For crisis, self-harm ideation, severe anxiety, or persistent inability to function, direct users toward qualified professional support. <br>
+## Use Case:
 
+External users use this skill when they need help breaking down tasks, starting avoided work, managing time, preserving working context, transitioning between activities, or reflecting on a work session. It is intended as practical executive-function scaffolding, not therapy, diagnosis, or clinical intervention.
 
-## Reference(s): <br>
-- [Executive Function Support on ClawHub](https://clawhub.ai/skhotdotcom/executive-function) <br>
-- [Modes of Operation](references/modes.md) <br>
-- [Strategy Reference](references/strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with concise lists, plans, check-ins, and task breakdowns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no API keys, code execution, MCP tools, or hidden system access are identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The host application may store task history, reminder context, or time-tracking patterns across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review host memory and tool permissions before installation, and disable saved memory or history if continuity is not desired.
+
+Risk: Users may treat executive-function support as therapy, diagnosis, or clinical intervention.
+
+Mitigation: Use the skill for practical planning and task scaffolding only; route crisis, diagnostic, or clinical needs to qualified support.
+
+Risk: Calendar, reminder, or task-tool actions could create commitments the user did not intend.
+
+Mitigation: Confirm with the user before creating events, reminders, or persistent task records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/skhotdotcom/skills/executive-function)
+- [Modes of Operation - Detailed Guide](references/modes.md)
+- [Strategy Reference](references/strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown with concise lists, plans, check-ins, and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task lists, time anchors, session summaries, and reminder or calendar suggestions when host tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

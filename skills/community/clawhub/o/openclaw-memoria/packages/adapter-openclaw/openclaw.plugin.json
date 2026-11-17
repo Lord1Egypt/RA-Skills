@@ -1,0 +1,33 @@
+{
+  "id": "memoria",
+  "version": "0.1.0",
+  "description": "Mémoire persistante Memoria : auto-recall avant chaque tour et auto-capture en fin de tour, via le daemon local Memoria (127.0.0.1).",
+  "keywords": ["memory", "memoria", "recall", "capture"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+      "daemonUrl": {
+        "type": "string",
+        "description": "URL du daemon Memoria. Vide = découverte auto via ~/.memoria/data/daemon.json."
+      },
+      "token": {
+        "type": "string",
+        "description": "Token d'instance (obtenu au pairing). REQUIS pour lire/écrire la mémoire."
+      },
+      "instance": { "type": "string", "default": "koda" },
+      "storageRoot": {
+        "type": "string",
+        "description": "Racine du stockage Memoria (pour la découverte du port). Défaut ~/.memoria/data."
+      },
+      "autoRecall": { "type": "boolean", "default": true },
+      "autoCapture": { "type": "boolean", "default": true },
+      "recallLimit": { "type": "number", "default": 12, "minimum": 1, "maximum": 20 },
+      "recallTimeoutMs": { "type": "number", "default": 400 }
+    }
+  },
+  "uiHints": {
+    "autoRecall": { "label": "Auto-Recall" },
+    "autoCapture": { "label": "Auto-Capture" }
+  }
+}

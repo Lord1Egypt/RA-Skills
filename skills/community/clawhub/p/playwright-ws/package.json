@@ -1,12 +1,12 @@
 {
   "name": "playwright-skill",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Remote Playwright browser automation for screenshots and PDFs",
   "main": "scripts/screenshot.js",
   "scripts": {
     "screenshot": "node scripts/screenshot.js",
     "pdf": "node scripts/pdf-export.js",
-    "test": "bash test.sh"
+    "test": "jest --passWithNoTests"
   },
   "keywords": [
     "playwright",
@@ -23,6 +23,9 @@
     "url": "https://github.com/first-it-consulting/playwright-skill.git"
   },
   "dependencies": {
-    "playwright": "^1.40.0"
+    "playwright": "^1.65.0"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2"
   }
 }

@@ -1,42 +1,53 @@
-## Description: <br>
-Reconciles data sources using stable identifiers such as Pay Number and driver document numbers, then produces exception reporting and no silent failure checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconciles data sources using stable identifiers such as Pay Number and driver document numbers, producing exception reports and no-silent-failure checks for weekly matching with explicit reasons for non-joins and mismatches.
 
-## Publisher: <br>
-[KOwl64](https://clawhub.ai/user/KOwl64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kowl64](https://clawhub.ai/user/kowl64)
 
-## Use Case: <br>
-Employees and data quality analysts use this skill to reconcile payroll, compliance, or weekly operational exports and get explicit reasons for missing records, duplicates, mismatches, or invalid keys. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Input datasets and exception reports may contain sensitive identifiers such as pay numbers, names, and driver document numbers. <br>
-Mitigation: Provide only the datasets needed for the reconciliation, treat generated exception reports as sensitive, and review access before sharing outputs. <br>
-Risk: Incorrect matching rules or thresholds can misclassify records or stop a pipeline unexpectedly. <br>
-Mitigation: Confirm key priority, field mappings, normalization rules, and tolerance thresholds before relying on the reconciliation results. <br>
-Risk: Exception reports may be mistaken for approved source-system corrections. <br>
-Mitigation: Use the reports for review and keep the workflow read-only unless a user explicitly approves changes in a source system. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Matching Rules](references/matching-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/KOwl64/data-reconciliation-exceptions) <br>
+## Use Case:
 
+Developers, data analysts, and operations teams use this skill to plan deterministic reconciliation between payroll, compliance, or weekly export datasets and produce exception-report specifications with reason codes, variance checks, and review gates.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, text] <br>
-**Output Format:** [Markdown guidance with CSV schemas and exception reason codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only reconciliation guidance; outputs should categorize every record as matched, missing, duplicate, mismatch, or invalid.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive payroll or driver-document data may be exposed if unnecessary fields are used or reports are shared too broadly.
+
+Mitigation: Use only the minimum datasets needed, confirm column mappings and tolerances, and review exception reports before sharing them outside the intended audience.
+
+Risk: Incorrect mappings, competing identifiers, or unspecified tolerances can produce misleading reconciliation results.
+
+Mitigation: Confirm source columns and key priority before matching, use deterministic rules first, and stop for user clarification when mappings or tolerances are missing.
+
+## Reference(s):
+
+- [Matching Rules](references/matching-rules.md)
+- [Exceptions Report Template](assets/exceptions-report-template.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with CSV schema snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an exceptions report schema, reason-code taxonomy, normalization rules, join strategy, and tolerance gates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

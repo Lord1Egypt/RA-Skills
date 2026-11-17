@@ -1,43 +1,57 @@
-## Description: <br>
-ClawHub技能开发标准模板，包含完整的目录结构、SKILL.md模板、package.json模板，一键初始化新技能项目，帮助你快速发布技能到ClawHub。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub技能开发标准模板，包含完整的目录结构、SKILL.md模板、package.json模板，一键初始化新技能项目，帮助你快速发布技能到ClawHub。
 
-## Publisher: <br>
-[xiatian5](https://clawhub.ai/user/xiatian5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiatian5](https://clawhub.ai/user/xiatian5)
 
-## Use Case: <br>
-Developers creating ClawHub or OpenClaw skills use this Chinese template to generate a standard skill directory, SKILL.md metadata, package.json metadata, publishing checklist, and example publish commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill files may retain placeholders or inaccurate metadata if published without review. <br>
-Mitigation: Review the generated SKILL.md and package.json, replace all placeholders, and confirm metadata before publishing. <br>
-Risk: Users may accidentally add real API keys, credentials, or private metadata while adapting the template. <br>
-Mitigation: Scan generated skills before deployment and keep secrets out of template-derived files. <br>
+## Use Case:
 
+Developers use this Chinese-language template to create ClawHub skill projects with a standard SKILL.md, package.json, trigger phrases, publishing checklist, and release guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiatian5/clawhub-skill-template) <br>
-- [ClawHub Official](https://clawhub.ai) <br>
-- [OpenClaw Official Docs](https://docs.openclaw.ai) <br>
-- [Awesome OpenClaw Skills ZH](https://github.com/clawdbot-ai/awesome-openclaw-skills-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON, Markdown, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language skill development template guidance; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Generic trigger phrases or the promotional star line could be copied into a new skill and reduce the clarity of its scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before reusing the template, remove the promotional line and make trigger phrases specific to the new skill's actual behavior.
+
+Risk: Template placeholders or sample dependency fields could remain in a published derivative skill.
+
+Mitigation: Review SKILL.md and package.json before publishing, replace placeholders, declare real dependencies, and scan for sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiatian5/skills/clawhub-skill-template)
+- [Publisher profile](https://clawhub.ai/user/xiatian5)
+- [ClawHub Official](https://clawhub.ai)
+- [OpenClaw Official Docs](https://docs.openclaw.ai)
+- [Awesome OpenClaw Skills ZH](https://github.com/clawdbot-ai/awesome-openclaw-skills-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language template guidance; no executable code or dependencies in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

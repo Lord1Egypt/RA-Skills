@@ -1,39 +1,54 @@
-## Description: <br>
-AI 3D model generation skill for text-to-3D and image-to-3D workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 3D model generation for text-to-3D and image-to-3D workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and creators can use this skill to guide AI-assisted 3D asset generation, including text-to-3D, image-to-3D, model optimization, material generation, and batch processing for games, VR/AR, architecture, and product design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executable application code is outside the submitted skill package, so implementation details and dependency behavior are not verified by the package evidence. <br>
-Mitigation: Review the linked repository, requirements file, and application entry point before installation or deployment. <br>
-Risk: Pricing and generation capability claims are not independently verified by the submitted package evidence. <br>
-Mitigation: Validate capabilities, limits, and costs against the publisher's current materials before relying on them. <br>
+## Use Case:
 
+External developers and creative teams use this skill for text-to-3D, image-to-3D, model optimization, material generation, and batch model generation workflows for game development, VR/AR, architecture, and product design.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only package; executable setup depends on externally linked project files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install steps run unpinned remote code that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and dependencies before installing, prefer a pinned commit or signed release, and run in an isolated environment without sensitive credentials.
+
+Risk: Running the app from a privileged shell or production machine could increase impact if the unreviewed code is unsafe.
+
+Mitigation: Avoid privileged shells and production machines when evaluating or installing the app.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-3d-model-maker)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup guidance for a Python and FastAPI-based 3D generation app.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact/SKILL.md frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

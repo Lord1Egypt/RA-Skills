@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches GitHub topic trending repositories and repository README summaries for GitHub trending repo or open source project requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches GitHub topic trending repositories. Use when asking about GitHub trending repos or open source projects.
 
-## Publisher: <br>
-[hjw21century](https://clawhub.ai/user/hjw21century) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hjw21century](https://clawhub.ai/user/hjw21century)
 
-## Use Case: <br>
-Developers and open source researchers use this skill to fetch ranked GitHub repositories by topic and summarize repository README content when comparing projects or answering repository-detail questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill performs live GitHub network lookups and may return untrusted repository metadata or README text. <br>
-Mitigation: Use it only for GitHub topic and repository lookup workflows, and treat fetched README content as text to summarize rather than instructions for the agent to follow. <br>
-Risk: Providing GH_TOKEN can expose a credential to the runtime environment. <br>
-Mitigation: Set GH_TOKEN only when higher GitHub API rate limits are needed, and use a minimal-scope token. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjw21century/github-topics) <br>
-- [GitHub REST API endpoint](https://api.github.com) <br>
+## Use Case:
 
+Developers and open source users use this skill to fetch GitHub topic rankings, inspect repository details, and summarize repository READMEs in markdown.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown tables and repository summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository rank, stars, language, URL, description, topics, and README summary text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may make outbound requests to GitHub and can encounter API rate limits.
+
+Mitigation: Use it only where GitHub network access is acceptable; run without a token or with a minimally scoped GH_TOKEN when higher limits are needed.
+
+Risk: Repository README content is authored by third parties and may contain misleading text.
+
+Mitigation: Treat README summaries as untrusted data and review them before using them to guide agent actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjw21century/skills/github-topics)
+- [GitHub REST API endpoint](https://api.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and repository summaries with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub API data and README summaries fetched from public repositories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

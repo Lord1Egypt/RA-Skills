@@ -1,42 +1,59 @@
-## Description: <br>
-AI-powered proxy assistant for OpenClaw that helps users fetch, test, filter, and format free public proxy nodes for common proxy clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magic Internet Access helps OpenClaw users fetch, test, and format free public proxy node configurations for common proxy clients.
 
-## Publisher: <br>
-[shadowrocketai](https://clawhub.ai/user/shadowrocketai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadowrocketai](https://clawhub.ai/user/shadowrocketai)
 
-## Use Case: <br>
-External OpenClaw users use this skill to receive guided device selection and proxy configuration output for public proxy clients such as Clash, Shadowrocket, and v2rayNG. It is intended for users who explicitly ask for proxy or connectivity assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches free public proxy nodes from untrusted sources, and those nodes may log, block, or tamper with traffic. <br>
-Mitigation: Treat returned nodes as untrusted and avoid using them for banking, email, work accounts, or other sensitive activity. <br>
-Risk: Local cache files may contain usable proxy credentials or connection strings. <br>
-Mitigation: Store generated node cache files only in trusted local workspaces and clear them when no longer needed. <br>
+## Use Case:
 
+External OpenClaw users can ask an agent for guided proxy setup. The skill scrapes public free-node lists, tests reachable endpoints, and returns client-specific configuration for Clash, V2Ray, Shadowrocket, or v2rayNG.
 
-## Reference(s): <br>
-- [Magic Internet Access on ClawHub](https://clawhub.ai/shadowrocketai/magic-internet-access) <br>
-- [Publisher profile](https://clawhub.ai/user/shadowrocketai) <br>
-- [Publisher homepage](https://shadowrocket.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Plain text prompts and proxy configuration strings, with JSON or base64 configuration output depending on the selected client.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs public proxy nodes and client-specific setup guidance; generated nodes should be treated as untrusted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.6 (source: server release metadata) <br>
+Risk: The skill fetches and tests free public proxy nodes and makes outbound network connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where this network behavior is expected, and review the bundled scripts before enabling it for users.
+
+Risk: Free proxy nodes and generated proxy configuration data are untrusted.
+
+Mitigation: Do not use the returned proxies for sensitive logins or regulated activity, and avoid sharing stored proxy configuration files.
+
+Risk: The skill attempts to constrain agent replies and includes promotional and Telegram-link content.
+
+Mitigation: Review the user-facing workflow and links before deployment, and disable or edit the skill if that posture is not appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shadowrocketai/skills/magic-internet-access)
+- [Publisher profile](https://clawhub.ai/user/shadowrocketai)
+- [Publisher homepage](https://shadowrocket.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Plain text and client-specific proxy configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run bundled Python scripts that scrape public sources and test proxy endpoints before formatting output.]
+
+## Skill Version(s):
+
+1.8.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

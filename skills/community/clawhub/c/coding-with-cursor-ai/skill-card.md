@@ -1,42 +1,58 @@
-## Description: <br>
-Execute coding tasks like feature implementation, bug fixes, refactoring, and code reviews using Cursor AI within specified project directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Cursor AI coding-agent sessions against a specified project to implement features, fix bugs, refactor code, write tests, and perform code reviews.
 
-## Publisher: <br>
-[igrwijaya](https://clawhub.ai/user/igrwijaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igrwijaya](https://clawhub.ai/user/igrwijaya)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate feature implementation, bug fixes, refactoring, tests, and code review tasks to Cursor AI within a selected project repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cursor AI receives full access to the selected repository and may inspect or modify project files while completing the requested coding task. <br>
-Mitigation: Run it on a feature branch or other reviewed branch, review all diffs before commits or pushes, and avoid production branches. <br>
-Risk: Task text, repository contents, and optional credentials may be exposed to the Cursor agent workflow. <br>
-Mitigation: Do not include secrets in task text, keep sensitive credentials out of the repository, verify the cursor-agent package source and version, and scope CURSOR_API_KEY appropriately. <br>
+## Use Case:
 
+Developers use this skill to delegate coding tasks to Cursor AI within a selected project directory, including feature work, bug fixes, refactoring, tests, and code reviews. It is intended for reviewed development workflows on feature branches or disposable working copies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igrwijaya/coding-with-cursor-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/igrwijaya) <br>
-- [Cursor CLI](https://cursor.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown task summaries, shell output, code edits, commits, and pull request summaries produced through Cursor AI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local project path, natural-language task, optional focused file list, cursor-agent on PATH, and optional CURSOR_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill delegates broad repository edit and commit authority to a third-party Cursor agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on feature branches or disposable working copies, then review diffs and test results before committing, merging, or deploying.
+
+Risk: Weak task or file scoping can allow unintended changes outside the intended work area.
+
+Mitigation: Provide a narrow project path and focused file list, and confirm the active repository before execution.
+
+Risk: Supply-chain and temporary-file handling gaps can increase exposure when running the wrapper.
+
+Mitigation: Use a pinned and reviewed cursor-agent version, avoid unrelated secrets in the environment, and prefer safer temporary-file handling before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/igrwijaya/skills/coding-with-cursor-ai)
+- [Cursor](https://cursor.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-style task summary, terminal status text, repository file changes, and optional commit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify and commit files in the selected project repository through cursor-agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

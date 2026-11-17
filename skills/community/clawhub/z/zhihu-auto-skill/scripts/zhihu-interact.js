@@ -8,17 +8,27 @@
  *   node scripts/zhihu-interact.js like --url "内容链接"
  *   node scripts/zhihu-interact.js comment --url "链接" --content "评论"
  *   node scripts/zhihu-interact.js follow --user "用户ID"
+ *
+ * @module zhihu-interact
  */
 
 import { getSession, navigateTo, findElement, clickElement, typeLikeHuman, humanDelay, sleep, withCrashRecovery, getSelectors } from './zhihu-browser.js';
+import { interactLog } from './zhihu-logger.js';
 
 // ──────────────────────────────────────────
 // 点赞/取消点赞
 // ──────────────────────────────────────────
 
+/**
+ * 点赞或取消点赞内容
+ *
+ * @param {string} url - 内容链接
+ * @param {boolean} [unlike=false] - 是否取消点赞
+ * @returns {Promise<{ status: string, action: string }>} 操作结果
+ */
 async function like(url, unlike = false) {
   const action = unlike ? '取消点赞' : '点赞';
-  console.log(`\n👍 ${action}: ${url}`);
+  interactLog.info(`${action}: ${url}`);
 
   return await withCrashRecovery(async () => {
     const { page } = await getSession();
@@ -38,11 +48,11 @@ async function like(url, unlike = false) {
     if ((unlike && isLiked) || (!unlike && !isLiked)) {
       await likeBtn.click();
       await humanDelay(1000, 2000);
-      console.log(`✅ ${action}成功`);
+      interactLog.info(`✅ ${action}成功`);
       return { status: 'success', action };
     }
 
-    console.log(`ℹ️ 已是目标状态 (${unlike ? '已取消' : '已点赞'})`);
+    interactLog.info(`ℹ️ 已是目标状态 (${unlike ? '已取消' : '已点赞'})`);
     return { status: 'already', action };
   }, 'like');
 }
@@ -51,8 +61,15 @@ async function like(url, unlike = false) {
 // 评论
 // ──────────────────────────────────────────
 
+/**
+ * 发布评论
+ *
+ * @param {string} url - 内容链接
+ * @param {string} content - 评论内容
+ * @returns {Promise<{ status: string, action: string }>} 操作结果
+ */
 async function comment(url, content) {
-  console.log(`\n💬 评论: ${url}`);
+  interactLog.info(`评论: ${url}`);
 
   return await withCrashRecovery(async () => {
     const { page } = await getSession();
@@ -80,7 +97,7 @@ async function comment(url, content) {
     if (submitBtn) {
       await submitBtn.click();
       await humanDelay(2000, 3000);
-      console.log('✅ 评论发布成功');
+      interactLog.info('✅ 评论发布成功');
       return { status: 'success', action: 'comment' };
     }
 
@@ -92,9 +109,15 @@ async function comment(url, content) {
 // 关注用户
 // ──────────────────────────────────────────
 
+/**
+ * 关注用户
+ *
+ * @param {string} userId - 用户 ID 或 url_token
+ * @returns {Promise<{ status: string, action: string }>} 操作结果
+ */
 async function follow(userId) {
   const url = `https://www.zhihu.com/people/${userId}`;
-  console.log(`\n👤 关注用户: ${userId}`);
+  interactLog.info(`关注用户: ${userId}`);
 
   return await withCrashRecovery(async () => {
     const { page } = await getSession();
@@ -107,12 +130,12 @@ async function follow(userId) {
     if (followBtn) {
       const text = await followBtn.textContent() || '';
       if (text.includes('已关注')) {
-        console.log('ℹ️ 已关注该用户');
+        interactLog.info('ℹ️ 已关注该用户');
         return { status: 'already', action: 'follow' };
       }
       await followBtn.click();
       await humanDelay(1000, 2000);
-      console.log('✅ 关注成功');
+      interactLog.info('✅ 关注成功');
       return { status: 'success', action: 'follow' };
     }
 
@@ -124,16 +147,20 @@ async function follow(userId) {
 // CLI
 // ──────────────────────────────────────────
 
+/**
+ * CLI 主入口
+ * @returns {void}
+ */
 function main() {
   const args = process.argv.slice(2);
   const action = args[0];
 
   if (!action) {
-    console.error('用法: node scripts/zhihu-interact.js <like|unlike|comment|follow> [选项]');
-    console.error('');
-    console.error('  like/unlike:  --url "内容链接"');
-    console.error('  comment:      --url "链接" --content "评论"');
-    console.error('  follow:       --user "用户ID"');
+    interactLog.error('用法: node scripts/zhihu-interact.js <like|unlike|comment|follow> [选项]');
+    interactLog.error('');
+    interactLog.error('  like/unlike:  --url "内容链接"');
+    interactLog.error('  comment:      --url "链接" --content "评论"');
+    interactLog.error('  follow:       --user "用户ID"');
     process.exit(1);
   }
 
@@ -151,15 +178,15 @@ function main() {
     case 'like': promise = like(opts.url); break;
     case 'unlike': promise = like(opts.url, true); break;
     case 'comment':
-      if (!opts.content) { console.error('评论需要 --content'); process.exit(1); }
+      if (!opts.content) { interactLog.error('评论需要 --content'); process.exit(1); }
       promise = comment(opts.url, opts.content);
       break;
     case 'follow':
-      if (!opts.user) { console.error('关注需要 --user'); process.exit(1); }
+      if (!opts.user) { interactLog.error('关注需要 --user'); process.exit(1); }
       promise = follow(opts.user);
       break;
     default:
-      console.error(`未知操作: ${action}`);
+      interactLog.error(`未知操作: ${action}`);
       process.exit(1);
   }
 
@@ -167,7 +194,7 @@ function main() {
     console.log(JSON.stringify(r, null, 2));
     process.exit(0);
   }).catch(err => {
-    console.error(`❌ 操作失败:`, err.message);
+    interactLog.error('操作失败', err);
     process.exit(1);
   });
 }

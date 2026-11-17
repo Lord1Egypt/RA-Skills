@@ -1,41 +1,56 @@
-## Description: <br>
-Route risky communications next steps through a typed action-intent bridge so external writes, bookings, settings changes, public posts, and spend decisions require explicit policy and approval handling instead of informal reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route risky communications next steps through a typed action-intent bridge so external writes, bookings, settings changes, public posts, and spend decisions require explicit policy and approval handling instead of informal reasoning.
 
-## Publisher: <br>
-[heyalerio](https://clawhub.ai/user/heyalerio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heyalerio](https://clawhub.ai/user/heyalerio)
 
-## Use Case: <br>
-Developers and agent operators use this skill to convert risky communication and external-write next steps into explicit typed proposals before execution. It is intended for workflows where sends, posts, bookings, settings changes, API writes, or spend decisions need policy and approval handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Routed HTTP write requests may have high impact if the downstream sidecar or proxy executes them after approval. <br>
-Mitigation: Review the configured endpoint environment variables and use the bridge only with an intended local or configured action-gate sidecar. <br>
-Risk: Risky external actions could be sent, posted, confirmed, or spent without sufficient review if approval status is unclear. <br>
-Mitigation: Treat red actions as requiring explicit user approval and escalate when policy, scope, approval, or reversibility is unclear. <br>
+## Use Case:
 
+Developers and agents use this skill in communications workflows to classify risky next steps and route external writes, bookings, settings changes, public posts, and spend decisions through explicit approval handling.
 
-## Reference(s): <br>
-- [Action Bridge](references/action-bridge.md) <br>
-- [Approval Matrix](references/approval-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON action proposals or routing responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes proposals and HTTP write intents through configured local sidecar endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: High-impact actions could be routed through unauthenticated local HTTP helpers if the bridge is treated as the approval boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted, authenticated action-gate sidecar or proxy, restrict endpoint configuration, and require explicit user approval for red actions.
+
+Risk: Sensitive request bodies or credential references could be exposed through routed write intents.
+
+Mitigation: Avoid routing sensitive request bodies or credential references until the bridge validates and authenticates responses.
+
+## Reference(s):
+
+- [Action Bridge](references/action-bridge.md)
+- [Approval Matrix](references/approval-matrix.md)
+- [ClawHub Skill Page](https://clawhub.ai/heyalerio/skills/action-gate-bridge-clean)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/heyalerio)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON helper responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes proposals to configured local action-gate endpoints and expects allowed, needs_approval, blocked, or accepted results.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents plan video marketing, create video scripts, and optimize short-form or long-form video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to plan video marketing, create video scripts, or optimize for short-form or long-form video.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing teams, content creators, and agents use this skill to choose video format and platform strategy, draft hooks and scripts, place calls to action, and tailor optimization notes for TikTok, Instagram Reels, YouTube Shorts, and long-form YouTube content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project-context files containing sensitive strategy, audience, or positioning details when drafting video marketing recommendations. <br>
-Mitigation: Review project-context inputs before use and avoid providing confidential strategy or audience details unless they are appropriate for the drafting task. <br>
-Risk: Generated hooks, engagement claims, scripts, or platform recommendations may be inaccurate, outdated, or unsuitable for a specific brand, audience, or advertising policy. <br>
-Mitigation: Review all generated marketing copy and recommendations against current platform rules, brand guidelines, and campaign evidence before publishing. <br>
+## Use Case:
 
+External users and marketing teams use this skill to plan video content, choose short-form or long-form formats, draft platform-specific hooks and scripts, and place calls to action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/video-marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured recommendations, hook options, scripts, CTA placement, and platform notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May incorporate local project context about value proposition, audience, and content strategy when those files are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Project context files may contain private or sensitive business details that could be reflected in generated video marketing outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project context files before use and remove information that should not appear in public marketing recommendations or scripts.
+
+Risk: Generated hooks, scripts, or platform advice may be inaccurate, overstated, or unsuitable for a specific brand or audience.
+
+Mitigation: Have a human reviewer validate claims, tone, and platform guidance before publishing or using the content commercially.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/video-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text recommendations, script drafts, hooks, CTA guidance, and platform optimization notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use existing project context files to tailor marketing recommendations when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

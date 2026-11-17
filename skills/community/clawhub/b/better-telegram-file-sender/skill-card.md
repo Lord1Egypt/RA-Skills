@@ -1,41 +1,54 @@
-## Description: <br>
-Send local files such as archives, PDFs, images, and videos to the current Telegram chat through OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send files such as archives, documents, images, and videos to the current Telegram chat through OpenClaw using the session's trusted chat context.
 
-## Publisher: <br>
-[dzunglaviet](https://clawhub.ai/user/dzunglaviet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzunglaviet](https://clawhub.ai/user/dzunglaviet)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to send a selected local file back to the active Telegram conversation. It checks that the file exists, uses the session chat target, and calls OpenClaw to send the file with an optional caption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can send a local file to the active Telegram chat, which may expose sensitive content if the wrong path is selected. <br>
-Mitigation: Before each send, verify the exact file path and avoid sending sensitive files unless the user clearly intends it. <br>
-Risk: The transfer depends on a trusted OpenClaw CLI and configured Telegram bot. <br>
-Mitigation: Use the skill only in environments where the OpenClaw gateway, CLI, and Telegram bot configuration are trusted. <br>
+## Use Case:
 
+Developers and operators use this skill to send a selected local file from an OpenClaw session to the active Telegram conversation. It is intended for file delivery workflows where the Telegram destination is supplied by trusted inbound session metadata.
 
-## Reference(s): <br>
-- [ClawHub Package Page](https://clawhub.ai/dzunglaviet/better-telegram-file-sender) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces file existence checks, OpenClaw send commands, and send-status confirmation text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send any local file the agent can read to Telegram without enough path limits or sensitive-file warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict allowed directories, block sensitive paths such as keys and environment files, resolve symlinks before upload, and require explicit confirmation of the final path before sending.
+
+Risk: A wrong or untrusted Telegram target could cause files to be sent to an unintended chat.
+
+Mitigation: Read the Telegram target only from trusted inbound session metadata and require confirmation of the destination before upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dzunglaviet/skills/better-telegram-file-sender)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [Markdown or plain text with shell command execution guidance and send-status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw in PATH, a configured Telegram gateway, a readable file path, and a trusted Telegram chat target from inbound context.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

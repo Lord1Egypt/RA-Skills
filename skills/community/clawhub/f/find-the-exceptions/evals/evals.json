@@ -1,0 +1,32 @@
+{
+  "skill_name": "find-the-exceptions",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Rule: invoices above €10,000 require manager approval. Find the exceptions before we automate it.",
+      "expected_output": "A compact exception analysis covering exact threshold, currency/aggregation, delegation/absence, amendments, and relevant data-quality cases without inventing policy answers.",
+      "assertions": [
+        "Exact-threshold behavior is surfaced",
+        "Authority/delegation exceptions are considered",
+        "Unknown policy branches are marked unresolved rather than invented"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Process: receive CSV, validate it, import it. Find material exceptions.",
+      "expected_output": "Relevant file/schema/encoding/duplicate/partial-import/retry cases rather than unrelated imaginative edge cases.",
+      "assertions": [
+        "Exceptions are tied to execution failure modes",
+        "The list is filtered for materiality"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We know the approver can delegate while absent; that rule is documented. Ask me what happens when they are absent.",
+      "expected_output": "The agent reads/uses the documented rule instead of asking the user for a discoverable fact.",
+      "assertions": [
+        "Discoverable facts are resolved from available evidence before questioning the user"
+      ]
+    }
+  ]
+}

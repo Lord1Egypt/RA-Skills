@@ -1,45 +1,56 @@
-## Description: <br>
-Interpret A/B test results for ecommerce campaigns and pages by checking statistical significance, practical effect size, and next-step recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret A/B test results for ecommerce campaigns and pages by checking statistical significance, practical effect size, and next-step recommendations.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce, growth, and analytics teams use this skill to turn A/B test inputs into a concise ship, kill, extend, or redesign recommendation with statistical, practical, segment, and guardrail checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A readout can be misleading when required setup, sample, metric, segment, or guardrail data is missing or inaccurate. <br>
-Mitigation: Require the skill to name missing inputs, classify weak evidence as inconclusive, and keep a human reviewer responsible for rollout decisions. <br>
-Risk: A/B test exports may include sensitive user-level revenue or segment data. <br>
-Mitigation: Provide only the data needed for the readout and anonymize user-level revenue or segment data where possible. <br>
-Risk: Server evidence reports overbroad capability tags that do not match the markdown-only behavior. <br>
-Mitigation: Treat the capability tags as needing publisher correction and rely on the security summary when assessing execution, purchase, credential, or data-movement risk. <br>
+## Use Case:
 
+External ecommerce growth, marketing, and analytics teams use this skill to turn A/B test inputs and results into a concise readout with statistical checks, risk flags, and a ship, kill, extend, or redesign recommendation.
 
-## Reference(s): <br>
-- [A/B Test Readout Template](references/output-template.md) <br>
-- [Choosing the Right Statistical Test](references/statistical-tests.md) <br>
-- [Segment Playbook](references/segment-playbook.md) <br>
-- [A/B Readout Quality Checklist](assets/ab-readout-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown readout with verdict, statistics, risk, and next step] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided A/B test setup, metric, sample, segment, and guardrail data; no code execution or credential access is indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can advise shipping, killing, extending, or redesigning tests based on business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recommendation and supporting statistics before acting on the readout.
+
+Risk: Incomplete inputs such as missing primary metrics, MDE, guardrails, or segment data can make a readout inconclusive or misleading.
+
+Mitigation: Require missing setup fields to be named in the readout and avoid a ship decision when critical inputs are absent.
+
+## Reference(s):
+
+- [A/B Test Readout Template](references/output-template.md)
+- [Choosing the Right Statistical Test](references/statistical-tests.md)
+- [Segment Playbook](references/segment-playbook.md)
+- [A/B Readout Quality Checklist](assets/ab-readout-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown readout with a verdict, statistics, risk notes, and next step.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided A/B test setup, per-arm results, primary metric, MDE, guardrails, and segment data where available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

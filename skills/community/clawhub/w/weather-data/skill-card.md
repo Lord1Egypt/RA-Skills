@@ -1,39 +1,51 @@
-## Description: <br>
-Provides weather forecast data from NOAA. Free tier returns 3-day forecast, premium tier returns 7-day with hourly data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides weather forecast data from NOAA. Free tier returns 3-day forecast, premium tier returns 7-day with hourly data.
 
-## Publisher: <br>
-[letorresmeza](https://clawhub.ai/user/letorresmeza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[letorresmeza](https://clawhub.ai/user/letorresmeza)
 
-## Use Case: <br>
-Developers and external users can use this skill to request NOAA-based weather forecasts by latitude and longitude through documented local forecast endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requests target a localhost weather service, so an unintended local service could receive forecast requests or payment headers. <br>
-Mitigation: Confirm that localhost:5000 is the intended weather service before sending requests. <br>
-Risk: The premium endpoint requires an x402 payment header for a stated 0.05 USDC charge. <br>
-Mitigation: Send a payment header only after confirming the charge and deciding to use the premium forecast endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Weather Data API release page](https://clawhub.ai/letorresmeza/weather-data) <br>
+## Use Case:
+
+Developers and agents use this skill to retrieve NOAA-based weather forecast guidance for a latitude and longitude, including a free 3-day forecast and a paid premium 7-day hourly forecast.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Premium forecast requests are documented as costing 0.05 USDC.
+
+Mitigation: Only provide an X-Payment header when the user intends to use the paid premium forecast endpoint.
+
+Risk: The artifact documents local weather-service endpoints but does not provide or run the service.
+
+Mitigation: Confirm that the local service is trusted and available before issuing requests.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with curl command examples and endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecast requests accept latitude and longitude parameters; premium forecast requests require an x402 payment header.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include free and paid endpoint guidance; premium access is documented as costing 0.05 USDC.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

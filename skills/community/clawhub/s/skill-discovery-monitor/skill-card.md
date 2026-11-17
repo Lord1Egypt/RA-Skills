@@ -1,41 +1,64 @@
-## Description: <br>
-Monitors and discovers popular skills across ClawHub, GitHub Actions, and npm with reports, usage flowcharts, and notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Discovery Monitor helps agents discover popular skills across ClawHub, GitHub Actions, and npm, then summarize findings with metrics, usage flowcharts, and optional notifications.
 
-## Publisher: <br>
-[zhdryanchang](https://clawhub.ai/user/zhdryanchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhdryanchang](https://clawhub.ai/user/zhdryanchang)
 
-## Use Case: <br>
-Developers, teams, and skill creators use this agent to monitor tool trends across ClawHub, GitHub Actions, and npm, generate skill summaries and flowcharts, and send scheduled reports through configured notification channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled SkillPay key appears in the release and should be treated as exposed. <br>
-Mitigation: Replace it with an owner-controlled, rotated credential before use and do not reuse the bundled key. <br>
-Risk: Notification, subscription, status, and payment callback endpoints are exposed without adequate caller or ownership scoping. <br>
-Mitigation: Run the service only on localhost or behind authentication, and verify callers, payment webhooks, and destination ownership before exposing those endpoints. <br>
+## Use Case:
 
+Developers, automation teams, skill creators, and learners use this skill to monitor skill ecosystems, compare popular tools, and receive scheduled discovery reports through configured notification channels.
 
-## Reference(s): <br>
-- [Skill Discovery Monitor on ClawHub](https://clawhub.ai/zhdryanchang/skill-discovery-monitor) <br>
-- [zhdryanchang ClawHub profile](https://clawhub.ai/user/zhdryanchang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [JSON API responses, notification text, Mermaid markdown flowcharts, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results can include skill metadata, popularity metrics, feature summaries, usage flowcharts, and delivery status for Telegram, Discord, or email notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.json, package.json) <br>
+Risk: The release ships a live-looking SkillPay API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed key, remove it from the artifact, and require operators to provide their own secret through environment configuration.
+
+Risk: Subscription and payment operations are exposed without adequate access control.
+
+Mitigation: Add authentication and avoid public deployment until subscription endpoints are protected.
+
+Risk: Payment callback handling may trust caller-supplied status data.
+
+Mitigation: Verify signed payment callbacks before activating subscriptions or recording payment state.
+
+Risk: Contact and payment-related data handling is not documented clearly enough for operators.
+
+Mitigation: Document what contact and payment data is stored, how it is used, and how operators should protect it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhdryanchang/skills/skill-discovery-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhdryanchang)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON API responses, Markdown notification summaries, Mermaid usage-flow text, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact ClawHub, GitHub, npm, SkillPay, Telegram, Discord, and SMTP services when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

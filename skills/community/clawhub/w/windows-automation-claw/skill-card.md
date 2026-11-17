@@ -1,42 +1,60 @@
-## Description: <br>
-Automate Windows desktop tasks by launching apps, capturing screenshots, and simulating mouse and keyboard actions via PowerShell and Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Windows desktop tasks by launching apps, capturing screenshots, and simulating mouse and keyboard actions via PowerShell and Python scripts.
 
-## Publisher: <br>
-[xiaodu](https://clawhub.ai/user/xiaodu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaodu](https://clawhub.ai/user/xiaodu)
 
-## Use Case: <br>
-Developers, engineers, and automation practitioners use this skill to control Windows applications, capture UI state, and automate repetitive desktop workflows through script-backed mouse, keyboard, screenshot, and application actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Windows desktop control can expose or alter sensitive local state through screenshots, clicks, typing, URL launches, saves, or process termination. <br>
-Mitigation: Run it only in an intended Windows automation session, avoid administrator privileges, keep private content off screen, and require explicit confirmation before control or capture actions. <br>
-Risk: Unsafe PowerShell command construction can mishandle untrusted paths, URLs, window titles, typed text, or process names. <br>
-Mitigation: Treat those values as trusted-only inputs until escaping is fixed, and review proposed commands before execution. <br>
+## Use Case:
 
+Developers, QA engineers, and automation practitioners use this skill to perform Windows RPA-style desktop workflows, UI testing, data entry, and application control through command-line Python helpers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaodu/windows-automation-claw) <br>
-- [Usage Guide](artifact/使用说明.md) <br>
-- [Completion Report](artifact/完成报告.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and PowerShell command examples; included scripts return JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for Windows desktop automation and may invoke local scripts that return success, message, and data fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can manipulate the live Windows desktop through mouse, keyboard, application launch, and process termination actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in controlled environments, require explicit confirmation for destructive or broad actions, and restrict allowed applications and processes.
+
+Risk: Screenshot functions can capture visible information from the desktop or application windows.
+
+Mitigation: Avoid sensitive screens, constrain screenshot output locations, and apply retention or redaction controls before sharing captured files.
+
+Risk: PowerShell commands are built from user-provided values in several scripts.
+
+Mitigation: Add strict input validation, argument allowlists, safe quoting or structured process APIs, and reject unexpected paths, process names, URLs, and window titles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaodu/skills/windows-automation-claw)
+- [SKILL.md](artifact/SKILL.md)
+- [Usage guide](artifact/使用说明.md)
+- [Completion report](artifact/完成报告.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-style script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can produce screenshots, process/window listings, and success/error result objects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

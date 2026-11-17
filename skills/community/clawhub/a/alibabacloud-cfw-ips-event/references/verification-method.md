@@ -89,7 +89,7 @@ aliyun cloudfw describe-risk-event-group \
 ### Step 3: Verify DescribeRiskEventTopAttackAsset
 
 ```bash
-aliyun cloudfw describe-risk-event-top-attack-asset \
+aliyun cloudfw describe-riREDACTED-SECRET \
   --StartTime ${START_TS} \
   --EndTime ${NOW_TS} \
   --region cn-hangzhou \

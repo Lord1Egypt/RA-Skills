@@ -1,0 +1,25 @@
+name: shop-pack-unit-price-compare-cn
+slug: shop-pack-unit-price-compare-cn
+display_name: 商品包装单位单价对照
+description: 输入已确认的2至10种同类商品包装价格、净含量或数量、单位、币种、价格日期及运费口径，交付统一计量单位的单价表、透明算式、可比性判断和按需求量计算的购买包数。适用于采购前核对包装规格；净含量、折算因子、价格口径或币种缺失即说明缺口并标记不可比，不用密度臆测换算。
+version: 1.0.1
+icon: icon-512.png
+repository: https://github.com/xxjrq/shop-pack-unit-price-compare-cn
+license: MIT-0
+tags:
+  - 单价比较
+  - 包装规格
+  - 采购核算
+  - 价格透明
+trigger_words:
+  - 包装单价对比
+  - 每100克多少钱
+  - 哪个规格划算
+  - 净含量价格计算
+interface:
+  display_name: 商品包装单位单价对照
+  short_description: 将包装价格换算为可复核的同单位单价，并计算所需包数
+  default_prompt: 使用 $shop-pack-unit-price-compare-cn 根据我提供的包装价格、净含量、单位、币种、日期和运费口径，输出可比性、单价算式及需求量对应包数；缺料请列出原因，不猜密度。
+  icon_small: ./icon-512.png
+  icon_large: ./icon-512.png
+self_test: python3 scripts/self_test.py

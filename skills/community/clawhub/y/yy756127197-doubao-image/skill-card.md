@@ -1,47 +1,59 @@
-## Description: <br>
-使用字节跳动豆包 Doubao SeeDream 模型生成高质量图片，支持文生图、AI 绘图和插画创作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用字节跳动豆包 Doubao SeeDream 模型生成高质量图片。支持文生图、AI 绘图、插画创作等功能。
 
-## Publisher: <br>
-[yy756127197](https://clawhub.ai/user/yy756127197) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yy756127197](https://clawhub.ai/user/yy756127197)
 
-## Use Case: <br>
-Developers and creators use this skill to generate images from Chinese or English text prompts through Volcengine ARK's Doubao SeeDream 5.0 model and save the resulting image locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to the third-party Volcengine ARK API and may expose sensitive user input. <br>
-Mitigation: Avoid secrets, private business text, and sensitive personal data in prompts; review prompts before running the skill. <br>
-Risk: Diagnostic guidance can partially print the ARK API key. <br>
-Mitigation: Remove or avoid key-printing diagnostics and keep API keys in environment variables or a managed secret store. <br>
-Risk: The release was flagged for unsafe advice about bypassing content filters. <br>
-Mitigation: Review and remove content-filter bypass guidance before relying on the skill, and follow the provider's content policy. <br>
-Risk: The skill uses a paid API key and can incur external service costs. <br>
-Mitigation: Set usage limits, monitor billing, and restrict the API key to the minimum permissions needed for image generation. <br>
+## Use Case:
 
+External users and developers use this skill to generate image assets from text prompts through the Volcengine ARK API and Doubao SeeDream model. It helps an agent suggest commands, configure required environment variables, call the generation scripts, and save generated images locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yy756127197/yy756127197-doubao-image) <br>
-- [Publisher profile](https://clawhub.ai/user/yy756127197) <br>
-- [Volcengine ARK documentation](https://www.volcengine.com/docs/82379) <br>
-- [Doubao product information](https://www.volcengine.com/product/doubao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python commands; generated images are saved as local PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARK_API_KEY, sends prompts to Volcengine ARK, and writes images to a configurable output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, SKILL.md metadata, CHANGELOG) <br>
+Risk: Prompts and an ARK API bearer token are sent to Volcengine/Doubao during image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that external data transfer is acceptable, keep credentials out of project files and shell history, and rotate tokens if exposure is suspected.
+
+Risk: Diagnostics and troubleshooting guidance may reveal sensitive credential prefixes in shared logs.
+
+Mitigation: Avoid running diagnostics in shared logs until the API-key-prefix output is fixed, and redact environment output before sharing.
+
+Risk: Automatic trigger phrases may initiate image generation before the user has reviewed the external API call.
+
+Mitigation: Require explicit confirmation before auto-triggered generation sends prompts or credentials to the provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yy756127197/skills/yy756127197-doubao-image)
+- [Volcengine ARK documentation](https://www.volcengine.com/docs/82379)
+- [Doubao product page](https://www.volcengine.com/product/doubao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python commands; generated PNG image files saved to a local output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARK_API_KEY and supports prompt, size, watermark, output directory, timeout, and retry settings.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, skill metadata, and changelog released 2026-04-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

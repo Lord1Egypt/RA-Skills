@@ -1,49 +1,58 @@
-## Description: <br>
-RNWY provides MCP and REST tools for agent trust scoring, sybil detection, sock puppet and fake review scanning, reviewer wallet profiling, agent comparison, commerce data, and network statistics across ERC-8004, Olas, and Virtuals registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free trust intelligence for AI agents that provides MCP and REST access for trust scoring, sybil detection, sock puppet scanning, fake review detection, reviewer wallet behavior profiling, agent comparison, commerce data, and network stats.
 
-## Publisher: <br>
-[rnwy](https://clawhub.ai/user/rnwy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rnwy](https://clawhub.ai/user/rnwy)
 
-## Use Case: <br>
-External agents, developers, and operators use this skill to check whether an agent, wallet, reviewer set, or marketplace counterparty appears trustworthy before interacting with it. The skill is also used to configure RNWY's MCP endpoint or call RNWY REST endpoints for trust checks, review analysis, scanner lookups, and commerce history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents write actions that can create identities, API keys, on-chain records, messages, vouches, and marketplace state. <br>
-Mitigation: Require explicit user confirmation before registration, wallet linking, SBT minting, vouching, messaging, posting jobs, claiming jobs, or marketplace lifecycle actions. <br>
-Risk: Returned API keys are credentials and may grant access to RNWY identity management actions. <br>
-Mitigation: Handle API keys as secrets, avoid printing them in shared logs, and store them only in an approved credential store. <br>
-Risk: Wallet-linked and on-chain actions may be public, persistent, or difficult to reverse. <br>
-Mitigation: Warn users before wallet-linked actions and confirm the target wallet, chain, agent, and intended public effect before proceeding. <br>
-Risk: The skill depends on RNWY's external trust, identity, scanner, and marketplace services. <br>
-Mitigation: Treat RNWY results as decision support and verify high-impact trust or transaction decisions with additional evidence when practical. <br>
+## Use Case:
 
+External agents, developers, and operators use this skill to check whether an agent or wallet appears trustworthy before transacting, hiring, accepting work, or relying on reviews. It supports read-only trust checks, reviewer analysis, wallet age checks, agent comparison, network statistics, and commerce lookups, with separate registration, messaging, vouching, and marketplace actions that should require approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rnwy/rnwy) <br>
-- [RNWY homepage](https://rnwy.com) <br>
-- [RNWY API](https://rnwy.com/api) <br>
-- [RNWY MCP endpoint](https://rnwy.com/api/mcp) <br>
-- [RNWY MCP showcase](https://rnwy.com/mcp) <br>
-- [RNWY scanner](https://rnwy.com/scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration, Python examples, curl commands, REST endpoint descriptions, and guidance for interpreting returned JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include API keys, wallet-linked identity details, on-chain transaction references, trust scores, review analysis, scanner findings, and marketplace state returned by RNWY services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Autonomous write actions may create persistent public identity, reputation, messaging, marketplace, or on-chain records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Permit read-only trust checks by default and require explicit approval before registration, wallet submission, batch registration, vouching, messaging, or marketplace job actions.
+
+Risk: Trust scores, reviewer analysis, and scanner results may be used as final fraud determinations without human or policy review.
+
+Mitigation: Treat outputs as decision support and review the score math, raw data, and business policy before making high-impact trust, payment, identity, or marketplace decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rnwy/skills/rnwy)
+- [RNWY MCP Endpoint](https://rnwy.com/api/mcp)
+- [RNWY API Documentation](https://rnwy.com/api)
+- [RNWY Scanner](https://rnwy.com/scanner)
+- [Artifact README](artifact/README.md)
+- [Artifact FAQ](artifact/FAQ.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, REST URLs, and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include external RNWY MCP or REST responses for trust scores, reviewer analysis, wallet age, comparisons, network statistics, commerce data, and identity or marketplace workflows.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

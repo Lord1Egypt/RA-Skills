@@ -1,45 +1,59 @@
-## Description: <br>
-CompanyEnrich helps agents search, count, enrich, and find similar company profiles through an OOMOL-connected CompanyEnrich account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search CompanyEnrich and retrieve company data through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and business users use this skill to query CompanyEnrich company data, enrich company profiles, find similar companies, and inspect account capabilities through the oo CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an authenticated OOMOL account with CompanyEnrich connected credentials. <br>
-Mitigation: Use an account and CompanyEnrich connection with the minimum scopes needed, and reconnect only when an auth or connection error requires it. <br>
-Risk: Connector actions depend on live schemas and may fail if the user is not signed in, the provider is not connected, credentials expire, or billing credit is unavailable. <br>
-Mitigation: Inspect the live action schema before building payloads and follow the documented setup or billing recovery steps only after the matching failure occurs. <br>
-Risk: Search and enrichment results come from an external company-data service and may be incomplete or outdated. <br>
-Mitigation: Treat returned company data as source data for review and verify business-critical decisions against authoritative records. <br>
+## Use Case:
 
+Developers and business users use the skill to search CompanyEnrich and retrieve company profiles by domain or company properties, find similar companies, and check account capabilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-companyenrich) <br>
-- [CompanyEnrich homepage](https://companyenrich.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent actions may return JSON data from the CompanyEnrich connector with an execution id in response metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Setup may execute unreviewed software, and the remote installers' exact local effects were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a fixed CLI release yourself before use.
+
+Risk: Automatic skill synchronization may introduce broader agent changes without clear user control.
+
+Mitigation: Review the synchronization behavior and decide whether to allow it.
+
+Risk: CompanyEnrich requests pass through OOMOL and may consume credits.
+
+Mitigation: Check account and credit usage before running actions when cost matters.
+
+## Reference(s):
+
+- [CompanyEnrich API documentation](https://docs.companyenrich.com/docs/getting-started)
+- [CompanyEnrich homepage](https://companyenrich.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Text summaries and structured JSON company data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected account and the selected CompanyEnrich action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Elon Hardcore helps agents pressure-test product, strategy, hiring, execution, operations, prioritization, org design, manufacturing/process, and messaging decisions through a first-principles review lens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elon Hardcore helps agents pressure-test product, strategy, hiring, execution, operations, prioritization, org design, manufacturing/process, and messaging decisions through a blunt first-principles review framework.
 
-## Publisher: <br>
-[shieldxiaodun](https://clawhub.ai/user/shieldxiaodun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shieldxiaodun](https://clawhub.ai/user/shieldxiaodun)
 
-## Use Case: <br>
-External users and agents use this skill to critique plans, strategy, hiring calls, operations, prioritization, and messaging, then return quick verdicts, full reviews, first-principles rewrites, or hard questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad review wording may activate the skill for general critique requests and could expose sensitive business plans or internal strategy documents. <br>
-Mitigation: Confirm this is the intended skill before use and avoid sharing sensitive business, strategy, or internal planning details unless the deployment context permits it. <br>
+## Use Case:
 
+Employees, external users, and agents use this skill to critique plans, identify weak assumptions and bottlenecks, and produce concise required actions before committing resources.
 
-## Reference(s): <br>
-- [Elon Review Framework](references/framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quick verdicts, full reviews, first-principles rewrites, hard questions, and required actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can produce direct recommendations that challenge policies, regulations, or existing processes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as advisory and require appropriate human review before acting on policy, legal, or operational decisions.
+
+Risk: Decision reviews may be incomplete or misleading when the user's input omits important constraints or evidence.
+
+Mitigation: Validate outputs against direct evidence, domain expertise, and accountable decision owners before committing resources.
+
+## Reference(s):
+
+- [Elon Review Framework](references/framework.md)
+- [ClawHub skill page](https://clawhub.ai/shieldxiaodun/skills/elon-hardcore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision reviews, verdicts, rewrites, or question lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before acting on policy, legal, operational, or resource-allocation recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

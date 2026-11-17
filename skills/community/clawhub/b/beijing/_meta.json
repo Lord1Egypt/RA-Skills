@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "beijing",
-  "version": "1.0.0",
-  "publishedAt": 1771851165229
+  "displayName": "Beijing",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764898
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784844337701
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784811512510
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1771851165536
+    }
+  ]
 }

@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agy-ppt/source_grounded_qa.schema.json",
+  "title": "AGY PPT source-grounded QA report (Phase 12)",
+  "description": "Layer B (deterministic) contract for the final grounded-QA report. This is a summary/report artifact, not a new source of truth: it aggregates source_inventory.json, claim_traceability.json, and source_coverage.json. It must clearly separate 'deterministic_findings' (computed by the Python validator: dangling references, unaccounted HIGH-priority units, missing required fields) from 'semantic_findings' (AGY's own judgement, persisted verbatim, never computed by this validator).",
+  "type": "object",
+  "required": ["schema_version", "project_id", "generated_at", "deterministic_findings", "semantic_findings"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "type": "string", "const": "1" },
+    "project_id": { "type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9._-]+$" },
+    "generated_at": { "type": "string" },
+    "summary": {
+      "type": ["object", "null"],
+      "properties": {
+        "total_source_units": { "type": "integer", "minimum": 0 },
+        "total_claims": { "type": "integer", "minimum": 0 },
+        "high_priority_units": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "deterministic_findings": {
+      "type": "object",
+      "description": "Computed only from structural facts: dangling references, missing required fields, unaccounted HIGH-priority units. Never a claim about semantic truth.",
+      "required": ["dangling_source_references", "dangling_slide_references", "high_priority_omissions", "invalid_references"],
+      "properties": {
+        "dangling_source_references": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dangling_slide_references": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "high_priority_omissions": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^su:[A-Za-z0-9._-]+:[a-f0-9]{8,}$" }
+        },
+        "invalid_references": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "semantic_findings": {
+      "type": "object",
+      "description": "AGY's own judgement, persisted verbatim by AGY. This validator never computes or infers these values; it only checks the shape is legal.",
+      "properties": {
+        "unsupported_claims": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^cl:[A-Za-z0-9._-]+:[0-9]{2,}$" }
+        },
+        "numeric_findings": { "type": "array", "items": { "type": "object" } },
+        "modal_findings": { "type": "array", "items": { "type": "object" } },
+        "agy_qa_outcome": {
+          "type": ["string", "null"],
+          "enum": [null, "passed", "passed_with_notes", "failed", "pending"]
+        }
+      }
+    }
+  }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Cisco IOS-XE and NX-OS device health check and triage procedure for troubleshooting Cisco routers, switches, or Nexus platforms by assessing CPU, memory, interfaces, routing, and environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cisco IOS-XE and NX-OS device health check and triage procedure for troubleshooting routers, switches, and Nexus platforms across CPU, memory, interface, routing, and environmental health.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers, operators, and incident responders use this skill to run structured Cisco IOS-XE and NX-OS health checks, classify findings by severity, and produce prioritized remediation guidance for audits, post-change verification, troubleshooting, and capacity planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could treat report-only remediation notes as automatic operational changes. <br>
-Mitigation: Use read-only credentials where possible and require explicit maintenance approval before reloads, ACL or CoPP changes, VDC context switches, module shutdowns, or module power cycles. <br>
-Risk: Health findings can be misleading if the operator checks the wrong platform context or lacks an accurate device baseline. <br>
-Mitigation: Confirm the IOS-XE or NX-OS platform, NX-OS VDC context, and expected CPU, memory, route, and traffic baselines before acting on findings. <br>
+## Use Case:
 
+Network engineers and operations teams use this skill to collect read-only Cisco IOS-XE and NX-OS health signals, classify device risk, and prepare a prioritized findings report for troubleshooting, audits, incident response, post-change checks, and capacity planning.
 
-## Reference(s): <br>
-- [Cisco IOS-XE / NX-OS CLI Reference](artifact/references/cli-reference.md) <br>
-- [Cisco IOS-XE / NX-OS Threshold Tables](artifact/references/threshold-tables.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/vahagn-madatyan/cisco-device-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with inline Cisco IOS-XE and NX-OS show commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces severity-classified findings, platform-specific notes, recommendations, and next-check timing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release declares a read-only safety posture, but evidence.security reports potentially state-changing or service-disrupting NX-OS commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for diagnostic collection unless the workflow blocks or requires explicit human approval for switchto vdc, poweroff module, and no poweroff module.
+
+Risk: Crash and core data collected during health triage may contain sensitive operational information.
+
+Mitigation: Handle crashinfo, core files, and logs according to the organization's sensitive-data handling and change-control process.
+
+## Reference(s):
+
+- [Cisco IOS-XE / NX-OS CLI Reference](artifact/references/cli-reference.md)
+- [Cisco IOS-XE / NX-OS Threshold Tables](artifact/references/threshold-tables.md)
+- [ClawHub skill release](https://clawhub.ai/vahagn-madatyan/skills/cisco-device-health)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with Cisco show-command snippets, severity classifications, findings, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only diagnostic workflow; any potentially disruptive device action requires separate human approval and change-control review]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

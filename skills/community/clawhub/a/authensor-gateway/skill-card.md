@@ -1,45 +1,56 @@
-## Description: <br>
-Fail-safe policy gate for OpenClaw marketplace skills that intercepts tool calls before execution and checks them against an Authensor policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fail-safe policy gate for OpenClaw marketplace skills that intercepts tool calls before execution and checks them against an Authensor policy.
 
-## Publisher: <br>
-[AUTHENSOR](https://clawhub.ai/user/AUTHENSOR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[authensor](https://clawhub.ai/user/authensor)
 
-## Use Case: <br>
-Developers and teams using OpenClaw marketplace skills use Authensor Gateway to require policy checks, approvals, and denials before tool calls execute. It is intended for users who want human oversight, audit receipts, and fail-closed behavior when the control plane is unreachable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Tool-call metadata is sent to an external Authensor control plane and receipts are stored by the service. <br>
-Mitigation: Verify the control-plane URL, use a dedicated Authensor API key, and install only when external mediation and audit receipts are intended. <br>
-Risk: The packaged skill provides prompt-level enforcement unless the separate hook is installed. <br>
-Mitigation: Use the referenced PreToolUse hook when deterministic code-level enforcement is required. <br>
-Risk: If the control plane is unavailable, the skill is designed to deny actions fail-closed. <br>
-Mitigation: Confirm connectivity and operational readiness before relying on the gateway in active workflows. <br>
+## Use Case:
 
+Developers and teams use this skill to route OpenClaw tool activity through a policy gateway so low-risk actions can proceed, high-risk actions can require approval, and dangerous actions can be blocked. It is most relevant for teams running marketplace skills, needing audit receipts, or working under compliance expectations.
 
-## Reference(s): <br>
-- [Authensor for OpenClaw](https://github.com/AUTHENSOR/Authensor-for-OpenClaw) <br>
-- [ClawHub Listing](https://clawhub.ai/AUTHENSOR/authensor-gateway) <br>
-- [Publisher Profile](https://clawhub.ai/user/AUTHENSOR) <br>
-- [ClawHavoc Research](https://snyk.io/blog/clawhavoc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides instruction-only policy-gate behavior and approval guidance; it does not bundle executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill routes session-wide tool activity decisions through an external service and sends redacted action metadata outside the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS control-plane URL, scope the Authensor API key narrowly, and avoid highly sensitive repositories unless sharing redacted action metadata is acceptable.
+
+Risk: An Authensor allow decision could be mistaken for complete execution safety.
+
+Mitigation: Keep host sandboxing and platform safety controls enabled, and review high-risk actions before approval.
+
+## Reference(s):
+
+- [Authensor Gateway ClawHub listing](https://clawhub.ai/authensor/skills/authensor-gateway)
+- [Authensor for OpenClaw homepage](https://github.com/AUTHENSOR/Authensor-for-OpenClaw)
+- [ClawHub marketplace metadata listing](https://www.clawhub.ai/AUTHENSOR/authensor-gateway)
+- [ClawHavoc marketplace skill security article](https://snyk.io/blog/clawhavoc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown instructions with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CONTROL_PLANE_URL and AUTHENSOR_API_KEY environment variables.]
+
+## Skill Version(s):
+
+0.7.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

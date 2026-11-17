@@ -1,43 +1,56 @@
-## Description: <br>
-Music Helper recommends songs and playlists, searches music metadata, retrieves lyrics, and manages local favorites and playlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides music recommendations, playlist management, music search, lyric lookup, and popular chart retrieval.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-External users and music-focused agent workflows use this skill to answer music recommendation, search, lyric lookup, chart, favorites, and playlist requests. It is most useful when the agent can access NetEase Music endpoints and write local preference files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Song searches and lyric lookups may be sent to NetEase Music. <br>
-Mitigation: Avoid sensitive music queries on shared systems and review the external service behavior before deployment. <br>
-Risk: Favorites, playlists, and cached music results can remain in local JSON files. <br>
-Mitigation: Delete generated favorites, playlists, and cache files when retained preferences are no longer needed. <br>
+## Use Case:
 
+External users and agent developers use this skill to answer music discovery requests, retrieve lyrics, manage favorites and playlists, and look up NetEase music charts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cp3d1455926-svg/music-helper) <br>
-- [NetEase Music](https://music.163.com/) <br>
-- [NetEase Music API Base](https://music.163.com/api) <br>
-- [NeteaseCloudMusicApi Reference](https://github.com/Binaryify/NeteaseCloudMusicApi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text responses with optional Python usage examples and local JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call NetEase Music endpoints and may create or update local favorites, playlists, and cache JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Music searches, lyric lookups, and ranking requests may be sent to NetEase music endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those requests with the music service is acceptable.
+
+Risk: Favorites, playlists, play counts, and cached lookup results may be stored as local JSON files.
+
+Mitigation: Review, protect, or clear local data files when music preferences are sensitive on the device.
+
+## Reference(s):
+
+- [ClawHub Music Helper Skill Page](https://clawhub.ai/cp3d1455926-svg/skills/music-helper)
+- [NetEase Cloud Music](https://music.163.com/)
+- [NetEase Cloud Music API Endpoint](https://music.163.com/api)
+- [NeteaseCloudMusicApi Reference](https://github.com/Binaryify/NeteaseCloudMusicApi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown text with optional Python usage examples and local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write favorites, playlists, and cache data as local JSON files; NetEase lookup results may be cached for one hour.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

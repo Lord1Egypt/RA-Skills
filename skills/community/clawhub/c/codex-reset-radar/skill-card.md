@@ -1,44 +1,59 @@
-## Description: <br>
-Monitors the Codex Reset Radar current.json feed for Codex usage reset-window changes and helps an OpenClaw cron send chat alerts only when state changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Codex usage reset windows from the third-party Codex Reset Radar public JSON feed, detect changes with schema validation and a local baseline, and optionally provide user-authorized OpenClaw chat alerts.
 
-## Publisher: <br>
-[advnljs](https://clawhub.ai/user/advnljs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[advnljs](https://clawhub.ai/user/advnljs)
 
-## Use Case: <br>
-Developers and Codex users use this skill to monitor reset-window status without repeatedly checking the dashboard by hand. It is intended for scheduled OpenClaw runs that fetch a public JSON feed, compare it with local cached state, and produce a concise change notice when an alert is warranted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts codex-reset-radar.pages.dev, so alert quality depends on that public feed being reachable and accurate. <br>
-Mitigation: Review the external URL before scheduling the cron job and treat alerts as monitoring signals rather than authoritative quota guarantees. <br>
-Risk: Frequent cron schedules can create unnecessary network traffic and chat noise when monitoring is not urgent. <br>
-Mitigation: Choose a cron frequency appropriate for the user's needs and prefer the documented hourly waking-hours schedule for normal monitoring. <br>
-Risk: The detector stores a small local cache in the OpenClaw workspace to compare state across runs. <br>
-Mitigation: Run it from the intended workspace and review the cache path and permissions before enabling scheduled execution. <br>
+## Use Case:
 
+Developers use this skill to monitor public Codex reset-window and prediction changes, either with a one-off check or with alerts sent to a destination they authorized.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/advnljs/codex-reset-radar) <br>
-- [Codex Reset Radar dashboard](https://codex-reset-radar.pages.dev/) <br>
-- [Codex Reset Radar current JSON feed](https://codex-reset-radar.pages.dev/current.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON diff output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script emits has_changes status, event details, and current status; no-change runs are designed to stay silent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Checks require access to a third-party HTTPS public feed, and the scan does not establish whether the host runtime permits that network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that access to the fixed public feed is suitable for the host runtime; treat failed checks as monitor faults rather than reset alerts.
+
+Risk: Notifications are Chinese-only.
+
+Mitigation: Use chat alerts only when Chinese notifications suit the authorized destination and audience.
+
+Risk: The security review was partial, so a benign verdict does not establish that the skill is risk-free.
+
+Mitigation: Review the unresolved coverage and the skill's stated security and operational limits before deployment.
+
+## Reference(s):
+
+- [Validated feed contract](artifact/references/feed-contract.md)
+- [Security, cache, and operational limits](artifact/references/security.md)
+- [Codex Reset Radar public summary feed](https://codex-reset-radar.pages.dev/current.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [A JSON result with an optional notification string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Notifications use fixed local Chinese templates; raw feed prose is not included.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

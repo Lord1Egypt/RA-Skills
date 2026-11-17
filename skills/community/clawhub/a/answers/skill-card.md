@@ -1,44 +1,54 @@
-## Description: <br>
-Provides AI-grounded answers through Brave Search's OpenAI-compatible chat completions endpoint, with single-search and deep-research modes, streaming or blocking responses, and citation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-grounded answers through Brave's OpenAI-compatible chat completions API, with fast single-search and deeper research modes.
 
-## Publisher: <br>
-[0xrichyrich](https://clawhub.ai/user/0xrichyrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrichyrich](https://clawhub.ai/user/0xrichyrich)
 
-## Use Case: <br>
-Developers and agents use this skill to call Brave's Answers API for fast cited answers or multi-step research synthesis through an OpenAI-compatible interface. It is useful for chat integrations, cited answer generation, and web-grounded research workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Questions and research-mode derived queries are sent to Brave's API using the user's Brave API key and quota. <br>
-Mitigation: Use the skill only for data approved for Brave API processing, and avoid sending secrets, credentials, regulated data, or sensitive internal information unless that sharing is approved. <br>
-Risk: Research mode can issue multiple queries and consume additional time, tokens, and API quota. <br>
-Mitigation: Set research iteration, query, result, token, and time limits appropriate for the task, and parse usage data to monitor cost. <br>
-Risk: Mode constraints can cause failed API calls when citations, research, streaming, and blocking settings are combined incorrectly. <br>
-Mitigation: Use streaming for research mode and citation-enabled single-search calls, and do not enable citation tags together with research mode. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xrichyrich/answers) <br>
-- [Brave Search API](https://api.search.brave.com) <br>
-- [Brave Answers chat completions endpoint](https://api.search.brave.com/res/v1/chat/completions) <br>
-- [Brave Search API base URL](https://api.search.brave.com/res/v1) <br>
+## Use Case:
 
+Developers and agent builders use this skill to call Brave Answers for cited, web-grounded responses in chat interfaces, research workflows, or OpenAI SDK-compatible integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with cURL, Python, HTTP, JSON, and SSE examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents single-search and research-mode API parameters, streaming tags, citations, usage reporting, and mode constraints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to Brave when the skill is used.
+
+Mitigation: Use only prompts and source material that policy allows sending to Brave; avoid secrets, private internal documents, personal data, and regulated data unless approved.
+
+Risk: Research mode can increase usage and cost because it performs iterative searches.
+
+Mitigation: Set query, iteration, token, and time limits, and monitor usage data returned by the API.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xrichyrich/skills/answers)
+- [Brave Search API](https://api.search.brave.com)
+- [Brave Answers Chat Completions Endpoint](https://api.search.brave.com/res/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with cURL examples, Python code blocks, API parameters, and response format guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents single-search and research modes, streaming constraints, citation behavior, and usage reporting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

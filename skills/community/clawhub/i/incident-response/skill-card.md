@@ -1,44 +1,61 @@
-## Description: <br>
-Structured 7-phase incident response for OpenClaw system failures, guiding agents through triage, evidence collection, root cause analysis, restore, prevention, monitoring, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured incident response for OpenClaw system failures using a seven-phase loop from triage and evidence collection through root cause analysis, restore, prevention, monitoring, and documentation.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Developers and operators use this skill to investigate OpenClaw incidents such as config loss, binding changes, gateway crashes, missing settings, and routing failures. It helps collect evidence, identify root cause, restore known-good state, add prevention controls, monitor for recurrence, and document lessons learned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Remote recovery actions can change live OpenClaw configuration or restart services. <br>
-Mitigation: Require explicit review, a narrow target host and scope, and a rollback plan before restoring configs or restarting services. <br>
-Risk: The workflow can edit agent rules, commit changes, change permissions, and create persistent cron monitoring. <br>
-Mitigation: Allow these actions only for trusted agents, review each proposed persistent change, and define when monitoring should stop. <br>
+## Use Case:
 
+OpenClaw operators and developers use this skill to investigate system regressions, gather evidence, restore known-good configuration, add prevention measures, and set temporary monitoring after an incident.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chunhualiao/incident-response) <br>
-- [README](artifact/README.md) <br>
-- [Quick Diagnosis Checklists](artifact/references/checklists.md) <br>
-- [Cron Job Template for Incident Monitoring](artifact/references/cron-template.md) <br>
-- [Prevention Patterns](artifact/references/prevention-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands, investigation notes, root cause statements, restore confirmations, prevention steps, monitoring cron prompts, and documentation updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires exec access, SSH access to the affected OpenClaw host, config backups, and a git audit trail for full workflow execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.yml, changelog, server release metadata) <br>
+Risk: The workflow can lead an agent to read session histories, restore configuration, restart services, change permissions, commit changes, create cron jobs, or write persistent learning files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with trusted OpenClaw operators and require explicit confirmation before each operational or persistent action.
+
+Risk: Incident investigation can expose sensitive session-log evidence or affect the wrong environment if the scope is vague.
+
+Mitigation: Scope each run to a named host and incident, redact session-log evidence, and keep monitoring jobs read-only by default.
+
+Risk: Broad commits or open-ended monitoring can introduce unrelated changes or persistent follow-up beyond the incident.
+
+Mitigation: Avoid git add -A, commit only reviewed prevention changes, and give monitoring jobs a fixed expiry.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chunhualiao/skills/incident-response)
+- [README](README.md)
+- [Quick Diagnosis Checklists](references/checklists.md)
+- [Cron Job Template for Incident Monitoring](references/cron-template.md)
+- [Prevention Patterns](references/prevention-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and evidence-backed incident notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include root cause chains, restore verification, prevention commits, monitoring schedules, and learning entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.yml, CHANGELOG, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

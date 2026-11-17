@@ -1,37 +1,53 @@
-## Description: <br>
-智能会议记录和待办事项跟踪助手 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能会议记录和待办事项跟踪助手。
 
-## Publisher: <br>
-[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07)
 
-## Use Case: <br>
-Users and teams use this skill to capture meeting points, decisions, participants, and follow-up tasks, then search or review prior meeting records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes and action items may include sensitive business or personal information stored in local JSON files. <br>
-Mitigation: Avoid storing secrets or highly confidential meeting details, and periodically review or delete saved notes when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/meeting-notes-oc) <br>
+## Use Case:
 
+Employees and external users use this skill to record meeting highlights, decisions, participants, and follow-up action items, then search or review prior meeting notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Natural-language meeting summaries and action-item lists, with optional local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes local storage in meetings.json and action-items.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Meeting notes and action items may be written to persistent local JSON files.
+
+Mitigation: Confirm where meetings.json and action-items.json are stored, who can access them, and how records can be deleted or redacted.
+
+Risk: Highly confidential meeting content may be retained longer than intended.
+
+Mitigation: Avoid using the skill for highly confidential meetings unless local storage access and retention controls have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/skills/meeting-notes-oc)
+- [Publisher profile](https://clawhub.ai/user/huangjingzhi07)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown or JSON records containing meeting notes and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist meeting notes to local meetings.json and action-items.json files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+# Smithery server configuration
+# MCP server: aesthete-agent-mcp — mechanically validated frontend aesthetics
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  commandFunction: |-
+    (config) => ({
+      "command": "uvx",
+      "args": ["aesthete-agent-mcp"]
+    })

@@ -33,7 +33,7 @@
 
 1. **`list-accounts`**（推荐第一步）：`items[].ma.currencyCode`；表格有 **「币种」** 列。
 2. **`balance` / `balance-scan` / `accounts-digest`**：`items[].currencyCode` 或行内已格式化的金额（含代码）。
-3. **`stats`**：`items[].currencyCode`（Google 含今天窗口时可能无币种，见 `references/accounts/accounts.md` 时效性说明）。
+3. **`stats`**：`items[].currencyCode`（Google 含今天窗口时可能无币种，见 `references/accounts/accounts-balance-stats.md` 时效性说明）。
 4. **`google-analysis --sections overview`**：`overview-*.json` 的 `record.currencyCode`（汇总维度，`schemaVersion 3` 起整块在 `record`）。
 5. **`ad campaigns` / `ad groups`**：JSON 内 `currencyCode`（与账户主币种一致）。
 6. **发票/充值**：`invoice billable` 的 `currencyCode`；人民币订单与美金订单开票类型不同，见 `references/accounts/finance.md`。
@@ -46,7 +46,7 @@
 
 ## 金额单位约定
 
-- **CLI 出口的大多数 JSON / 表格金额以「元」为单位**：`budget`、`*Yuan` 后缀（`budgetAmountYuan`、`maxCPCAmountYuan` 等）、`spend` / `averageCpc` / `costPerConversion` 等。**`keyword suggest`**：`averageCpc` / `lowTopOfPageBid` / `highTopOfPageBid` 的币种见根级与每条 **`bidAmountCurrency`**（传 `-a` 时为账户 `currencyCode`；无 `-a` 时为 **USD**）。
+- **CLI 出口的大多数 JSON / 表格金额以「元」为单位**：`budget`、`*Yuan` 后缀（`budgetAmountYuan`、`maxCPCAmountYuan` 等）、`spend` / `averageCpc` / `costPerConversion` 等。**`keyword -k`**：`averageCpc` / `lowTopOfPageBid` / `highTopOfPageBid` 的币种见根级与每条 **`bidAmountCurrency`**（传 `-a` 时为账户 `currencyCode`；无 `-a` 时为 **USD**）。
 - **写 CLI 参数**（`--budget`、`--max-cpc`、`--target-cpa`、`--amount` 等）：同样传**主币种元**，与账户 `currencyCode` 一致；CLI 内部按需 ×100 / ×1_000_000 写后端。
 - 旧版网关字段（`budgetAmount` 分、`*Micros` 微元、`maxCPCAmountDisplay` 等）**已不再落盘到 CLI 输出**，下游脚本无需做单位换算。
 
@@ -66,7 +66,7 @@
 
 ## 相关文档
 
-- 账户命令与字段：`references/accounts/accounts.md`
+- 账户命令与字段：`references/accounts/accounts.md`（索引）→ `accounts-list.md` / `accounts-balance-stats.md` / `accounts-permissions.md`
 - 报告金额口径：`references/analytics/account-analytics.md`
 - 开户选币：`references/accounts/open-account-google-ui.md`、`references/core/workflows.md`
 - 开票币种：`references/accounts/finance.md`

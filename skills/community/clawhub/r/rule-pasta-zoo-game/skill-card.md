@@ -1,46 +1,56 @@
-## Description: <br>
-A Chinese rule-pasta zoo text-adventure skill that lets an agent host a horror game with hidden rules, inventory/state tracking, branching choices, multiple endings, and local game_state.md save updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+动物园规则怪谈 is a Chinese interactive horror text-adventure skill where an agent runs a rules-based zoo mystery, tracks player state, inventory, items, hidden rules, and resolves choices toward multiple endings.
 
-## Publisher: <br>
-[Dream-Pig](https://clawhub.ai/user/Dream-Pig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dream-pig](https://clawhub.ai/user/dream-pig)
 
-## Use Case: <br>
-External users and game-oriented agent builders use this skill to run an interactive Chinese horror text adventure where the agent acts as game master, reveals conflicting zoo rules, tracks inventory and pollution state, and resolves player choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify a local game_state.md save file for adventure progress. <br>
-Mitigation: Run it in a dedicated game folder and review save, inventory, or state changes before important overwrites. <br>
-Risk: Fourth-wall horror narration may refer to the user's real environment as part of the fiction. <br>
-Mitigation: Treat these passages as fictional game content rather than instructions to inspect or act on the real environment. <br>
-Risk: Some artifact content is messy or internally inconsistent, which can lead to confusing state transitions during play. <br>
-Mitigation: Keep player-facing state visible in game_state.md and ask for confirmation before destructive inventory or save changes. <br>
+## Use Case:
 
+External users and agents use this skill to run a Chinese rules-horror zoo text adventure, manage player inventory and game state, reveal hidden area rules, and narrate choices through survival, discovery, and multiple endings.
 
-## Reference(s): <br>
-- [Game Start and Initialization](references/ch00_start.md) <br>
-- [Managing Inventory System](references/system_inventory.md) <br>
-- [Managing Item System](references/system_item.md) <br>
-- [Managing Rule System](references/system_role.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Dream-Pig/rule-pasta-zoo-game) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown narrative responses with structured game-state and inventory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and edit a local game_state.md save file during play.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may maintain a local game_state.md save file during play.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in the intended game workspace and review file changes before reusing or publishing the save state.
+
+Risk: Hidden formatting characters and inconsistent reference names may confuse readers or file lookup during gameplay.
+
+Mitigation: Sanitize hidden formatting characters and align referenced file names before publication.
+
+## Reference(s):
+
+- [Game Start and Initialization](references/ch00_start.md)
+- [Managing Inventory System](references/system_inventory.md)
+- [Managing Item System](references/system_item.md)
+- [Managing Rule System](references/system_role.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown narrative with local game-state file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update a local game_state.md save file during play.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "RecallBase"
+  short_description: "Recover context from local AI conversation history"
+  default_prompt: "Use $recallbase to summarize what I worked on today and identify the most useful next step."

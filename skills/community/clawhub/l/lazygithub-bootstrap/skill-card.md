@@ -1,39 +1,54 @@
-## Description: <br>
-Publish, bootstrap, or tidy a GitHub repository so the README and full GitHub About metadata stay in sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, bootstrap, or tidy a GitHub repository so the README and full GitHub About metadata stay in sync.
 
-## Publisher: <br>
-[hanjo92](https://clawhub.ai/user/hanjo92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjo92](https://clawhub.ai/user/hanjo92)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, publish, or tidy GitHub repositories while keeping README content and GitHub About metadata aligned. It helps agents infer repository descriptions, homepage values, and topics, then verify the final GitHub metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may publish local files or update GitHub repository metadata with unintended visibility, descriptions, homepage values, or topics. <br>
-Mitigation: Confirm the target repository, public or private visibility, README content, description, homepage, topics, and push intent before allowing the workflow to run. <br>
+## Use Case:
 
+Developers and agents use this skill to create, publish, or tidy GitHub repositories with a README, description, homepage when available, and useful repository topics. It is intended for repository setup and metadata synchronization tasks driven through GitHub CLI workflows.
 
-## Reference(s): <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hanjo92/lazygithub-bootstrap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local README content and GitHub repository metadata when the agent executes the suggested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can publish or modify GitHub repositories, including public remote changes, without strong confirmation or path-safety controls in the wrapper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the owner, repository name, visibility, source directory, files to be pushed, and absence of secrets before any GitHub CLI command runs.
+
+Risk: The wrapper script defaults to public visibility and can scaffold, initialize, commit, create, and push a repository.
+
+Mitigation: Avoid the wrapper script unless it is updated to reject unsafe paths and require an explicit public or private visibility choice.
+
+## Reference(s):
+
+- [Prompt Templates](references/prompt-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/hanjo92/skills/lazygithub-bootstrap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and repository metadata summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run GitHub CLI commands that create repositories, push local content, and edit public repository metadata.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

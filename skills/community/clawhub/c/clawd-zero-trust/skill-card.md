@@ -1,45 +1,64 @@
-## Description: <br>
-Zero Trust security hardening for OpenClaw deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawd Zero Trust helps OpenClaw operators audit and apply Zero Trust hardening, including outbound allowlisting, plugin integrity checks, least-privilege tool profiles, and deployment verification.
 
-## Publisher: <br>
-[stanistolberg](https://clawhub.ai/user/stanistolberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanistolberg](https://clawhub.ai/user/stanistolberg)
 
-## Use Case: <br>
-Developers and operators use this skill to audit and harden OpenClaw AI agent deployments by applying egress controls, plugin allowlisting, tool scoping, and runtime configuration checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change firewall policy and OpenClaw runtime authority. <br>
-Mitigation: Run audit and dry-run modes first, keep firewall and OpenClaw configuration backups available, and review hardening.json before applying changes. <br>
-Risk: Provider allowlists and whitelist.sh can permit outbound destinations. <br>
-Mitigation: Remove provider domains that are not needed and use whitelist.sh only after reviewing the destination domain and port. <br>
-Risk: tools.exec and tools.elevated settings can broaden local execution authority. <br>
-Mitigation: Review tools.exec, tools.elevated, and Telegram allowFrom entries, then restrict authorized identities before applying the hardening configuration. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to review and harden OpenClaw deployments before or during production operation. It provides audit guidance and administrative workflows for firewall egress controls, plugin allowlists, least-privilege tool profiles, and execution policy review.
 
-## Reference(s): <br>
-- [Zero Trust Principles for AI Agents](artifact/references/zero-trust-principles.md) <br>
-- [Known Audit False Positives](artifact/references/false-positives.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanistolberg/clawd-zero-trust) <br>
-- [Project Homepage](https://github.com/stanistolberg/clawd-zero-trust) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run, audit, verification, and mutating commands; mutating operations can require root privileges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence, README, CHANGELOG, hardening.json; SKILL.md frontmatter lists 1.3.1) <br>
+Risk: Full non-interactive gateway exec settings can increase impact if identity or channel controls are bypassed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain gateway exec before sensitive deployment, require approval for privileged execution, and verify channel allowlists against operational policy.
+
+Risk: An unrestricted outbound 443 rule can weaken the intended provider allowlist.
+
+Mitigation: Remove or narrow broad HTTPS egress before applying firewall policy, then verify provider-specific connectivity with dry-run, canary, and verify-all modes.
+
+Risk: Dynamic whitelist changes can open new egress paths without sufficient review.
+
+Mitigation: Require validation and approval for whitelist.sh inputs, review added domains and ports, and keep a change record for provider allowlist updates.
+
+Risk: Firewall and hardening apply modes can disrupt access or alter production configuration.
+
+Mitigation: Run audit and dry-run modes first, prefer canary where available, maintain backups, and confirm rollback steps before mutating production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stanistolberg/skills/clawd-zero-trust)
+- [Project homepage](https://github.com/stanistolberg/clawd-zero-trust)
+- [Zero Trust Principles](references/zero-trust-principles.md)
+- [Known Audit False Positives](references/false-positives.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run, apply, canary, verification, audit-log, plugin-integrity, and rollback workflows for administrative review.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata and CHANGELOG.md, released 2026-03-10; SKILL.md frontmatter lists 1.3.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

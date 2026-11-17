@@ -1,41 +1,58 @@
-## Description: <br>
-Vibe Coding Blueprint guides agents through a document-driven coding workflow that plans first, works in small verifiable steps, keeps project documentation synchronized, and leaves architecture decisions and root-cause diagnosis with the human developer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A document-driven AI programming methodology for planning first, iterating in small verified steps, keeping documents as project memory, and keeping the human in command.
 
-## Publisher: <br>
-[xiaoxiangxie](https://clawhub.ai/user/xiaoxiangxie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxiangxie](https://clawhub.ai/user/xiaoxiangxie)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted coding work around architecture planning, small task iteration, synchronized documentation, and deliberate human review during debugging or refactoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for ordinary coding requests and steer the agent into a documentation-heavy process. <br>
-Mitigation: Invoke it explicitly only when a structured plan-first workflow and project documentation updates are desired. <br>
-Risk: The workflow encourages creating or updating architecture docs, folder docs, and file headers, which could add maintenance overhead or stale documentation if reviewed casually. <br>
-Mitigation: Review proposed documentation changes with the same scrutiny as code changes and keep edits scoped to files affected by the task. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure AI-assisted coding work around architecture planning, small task iteration, documentation synchronization, and human-led debugging.
 
-## Reference(s): <br>
-- [Vibe Coding Blueprint on ClawHub](https://clawhub.ai/xiaoxiangxie/vibe-coding-blueprint) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoxiangxie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with prompts, documentation templates, code header examples, and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update project documentation such as architecture docs, folder docs, file headers, and implementation plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may update architecture docs, folder docs, and file headers as part of normal development.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it when that documentation-heavy workflow is desired, and review documentation changes before accepting them.
+
+Risk: Generated implementation plans, code, or shell commands may still be incomplete or incorrect.
+
+Mitigation: Review proposed plans before implementation and run the verification steps the skill asks for after each small task.
+
+## Reference(s):
+
+- [Vibe Coding Blueprint ClawHub page](https://clawhub.ai/xiaoxiangxie/skills/vibe-coding-blueprint)
+- [Publisher profile](https://clawhub.ai/user/xiaoxiangxie)
+- [Architecture documentation template](docs/ARCHITECTURE.md)
+- [Claude Code quick reference card](docs/CLAUDE_CODE_CARD.md)
+- [Code file header template](docs/FILE_HEADER.md)
+- [Folder documentation template](docs/FOLDER.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, documentation templates, code header examples, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or update project documentation such as architecture docs, folder docs, and file headers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

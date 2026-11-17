@@ -1280,11 +1280,14 @@ def export_report_pdf(
     try:
         from reportlab.lib import colors
         from reportlab.lib.pagesizes import letter
+        from reportlab.lib.enums import TA_CENTER
         from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
         from reportlab.lib.units import inch
         from reportlab.platypus import (
+            BaseDocTemplate,
+            Frame,
+            PageTemplate,
             Paragraph,
-            SimpleDocTemplate,
             Spacer,
             Table,
             TableStyle,
@@ -1298,6 +1301,13 @@ def export_report_pdf(
             ),
         }
 
+    from xml.sax.saxutils import escape
+
+    def safe(value):
+        if isinstance(value, (dict, list, tuple)):
+            value = json.dumps(value, ensure_ascii=True, indent=2)
+        return escape(str(value)).replace("\n", "<br/>")
+
     # Resolve output path
     if not output_path:
         ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
@@ -1308,7 +1318,9 @@ def export_report_pdf(
     # Extract data
     target_type = scan_result.get("target_type", "website")
     url = scan_result.get("url", "Unknown")
-    score = scan_result.get("score") or scan_result.get("security_score", "N/A")
+    score = scan_result.get("score")
+    if score is None:
+        score = scan_result.get("security_score", "N/A")
     grade = scan_result.get("grade", "N/A")
     trust_score = scan_result.get("trust_score")
     assessment = scan_result.get("assessment", "")
@@ -1319,142 +1331,319 @@ def export_report_pdf(
     summary = scan_result.get("summary")
     type_label = {"skill": "Claw Hub Skill", "repository": "Repository", "website": "Website"}.get(target_type, target_type.title())
 
-    # Grade colour
-    grade_colour = {
-        "A": colors.HexColor("#22c55e"),
-        "B": colors.HexColor("#84cc16"),
-        "C": colors.HexColor("#eab308"),
-        "D": colors.HexColor("#f97316"),
-        "F": colors.HexColor("#ef4444"),
-    }.get(grade, colors.grey)
-
+    navy = colors.HexColor("#0c2030")
+    ink = colors.HexColor("#142a3a")
+    muted = colors.HexColor("#4e606e")
+    accent = colors.HexColor("#087f98")
+    pale = colors.HexColor("#f4f7f9")
+    border = colors.HexColor("#d5dfe5")
     severity_colour = {
-        "critical": colors.HexColor("#ef4444"),
-        "high": colors.HexColor("#f97316"),
-        "medium": colors.HexColor("#eab308"),
-        "low": colors.HexColor("#3b82f6"),
+        "critical": colors.HexColor("#b42318"),
+        "high": colors.HexColor("#a8440b"),
+        "medium": colors.HexColor("#806000"),
+        "low": colors.HexColor("#126194"),
         "info": colors.HexColor("#6b7280"),
     }
 
-    # Build PDF
+    # Shared Security Assessment Dossier typography.
     styles = getSampleStyleSheet()
-    title_style = ParagraphStyle("CL_Title", parent=styles["Title"], fontSize=22, spaceAfter=6)
-    heading_style = ParagraphStyle("CL_Heading", parent=styles["Heading2"], fontSize=14, spaceBefore=16, spaceAfter=6)
-    body_style = ParagraphStyle("CL_Body", parent=styles["Normal"], fontSize=10, spaceAfter=4)
-    small_style = ParagraphStyle("CL_Small", parent=styles["Normal"], fontSize=8, textColor=colors.grey)
+    section_kicker_style = ParagraphStyle(
+        "CL_SectionKicker", parent=styles["Normal"], fontName="Helvetica-Bold",
+        fontSize=6.8, leading=8, textColor=accent, spaceAfter=2,
+    )
+    heading_style = ParagraphStyle(
+        "CL_Heading", parent=styles["Heading2"], fontName="Helvetica-Bold",
+        fontSize=12, leading=15, spaceBefore=0, spaceAfter=0, textColor=ink,
+    )
+    body_style = ParagraphStyle(
+        "CL_Body", parent=styles["Normal"], fontSize=9.3, leading=13,
+        spaceAfter=6, textColor=ink, splitLongWords=True,
+    )
+    body_compact_style = ParagraphStyle(
+        "CL_BodyCompact", parent=body_style, fontSize=8.5, leading=11.5,
+        spaceAfter=2,
+    )
+    label_style = ParagraphStyle(
+        "CL_Label", parent=styles["Normal"], fontName="Helvetica-Bold",
+        fontSize=6.5, leading=8, textColor=muted, spaceAfter=2,
+    )
+    metric_style = ParagraphStyle(
+        "CL_Metric", parent=styles["Normal"], fontName="Helvetica-Bold",
+        fontSize=18, leading=20, textColor=ink,
+    )
+    severity_metric_style = ParagraphStyle(
+        "CL_SeverityMetric", parent=styles["Normal"], fontName="Helvetica-Bold",
+        fontSize=12, leading=14, alignment=TA_CENTER, textColor=ink,
+    )
+
+    def section(number, title):
+        content = [
+            Paragraph(f"SECTION {number:02d}", section_kicker_style),
+            Paragraph(safe(title), heading_style),
+        ]
+        table = Table([[content]], colWidths=[6.35 * inch])
+        table.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, -1), pale),
+            ("LINEBEFORE", (0, 0), (0, -1), 4, accent),
+            ("LEFTPADDING", (0, 0), (-1, -1), 10),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+            ("TOPPADDING", (0, 0), (-1, -1), 7),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+        ]))
+        table.keepWithNext = True
+        return table
+
+    def key_value_rows(values):
+        return [
+            [Paragraph(safe(key).upper(), label_style), Paragraph(safe(value), body_compact_style)]
+            for key, value in values
+        ]
+
+    def draw_chrome(canvas, document, first_page=False):
+        canvas.saveState()
+        width, height = letter
+        header_height = 1.15 * inch if first_page else 0.38 * inch
+        canvas.setFillColor(navy)
+        canvas.rect(0, height - header_height, width, header_height, fill=1, stroke=0)
+        canvas.setFillColor(accent)
+        canvas.rect(0, height - 0.055 * inch, width, 0.055 * inch, fill=1, stroke=0)
+
+        canvas.setFillColor(colors.white)
+        canvas.setFont("Helvetica-Bold", 8 if first_page else 7)
+        canvas.drawString(0.72 * inch, height - (0.28 if first_page else 0.24) * inch, "CYBERLENS AI")
+
+        if first_page:
+            canvas.setFillColor(colors.HexColor("#b7cbd6"))
+            canvas.setFont("Helvetica", 6.5)
+            canvas.drawRightString(width - 0.72 * inch, height - 0.28 * inch, "SECURITY ASSESSMENT DOSSIER")
+            canvas.drawRightString(width - 0.72 * inch, height - 0.42 * inch, "REPORT 3.0  |  CONFIDENTIAL")
+            canvas.setFillColor(colors.white)
+            canvas.setFont("Helvetica-Bold", 16)
+            canvas.drawString(0.72 * inch, height - 0.69 * inch, f"{type_label} Security Assessment")
+            canvas.setFillColor(colors.HexColor("#d6e2e8"))
+            canvas.setFont("Helvetica", 7.5)
+            target = str(url)
+            while len(target) > 10 and canvas.stringWidth(target + "...", "Helvetica", 7.5) > 6.95 * inch:
+                target = target[:-1]
+            canvas.drawString(0.72 * inch, height - 0.91 * inch, target if target == str(url) else target + "...")
+        else:
+            canvas.setFillColor(colors.HexColor("#b7cbd6"))
+            canvas.setFont("Helvetica", 6.5)
+            canvas.drawRightString(width - 0.72 * inch, height - 0.24 * inch, "REPORT 3.0")
+
+        canvas.setStrokeColor(border)
+        canvas.setLineWidth(0.35)
+        canvas.line(0.72 * inch, 0.52 * inch, width - 0.72 * inch, 0.52 * inch)
+        canvas.setFillColor(muted)
+        canvas.setFont("Helvetica", 6.3)
+        canvas.drawString(0.72 * inch, 0.34 * inch, "CYBERLENS AI")
+        canvas.drawCentredString(width / 2, 0.34 * inch, "CONFIDENTIAL SECURITY ASSESSMENT")
+        canvas.drawRightString(width - 0.72 * inch, 0.34 * inch, f"PAGE {document.page:02d}")
+        canvas.restoreState()
+
+    def first_page(canvas, document):
+        draw_chrome(canvas, document, first_page=True)
+
+    def later_page(canvas, document):
+        draw_chrome(canvas, document, first_page=False)
 
     story: list = []
 
-    # Title
-    story.append(Paragraph("CyberLens Security Report", title_style))
-    story.append(Spacer(1, 8))
+    story.append(section(1, "Executive Assessment"))
+    story.append(Spacer(1, 10))
 
-    # Meta table
-    meta_data = [
-        ["Target", url],
-        ["Type", type_label],
-        ["Scan Source", source],
-        ["Date", str(generated_at)],
+    score_cards = [
+        [Paragraph("SECURITY SCORE", label_style), Paragraph("GRADE", label_style), Paragraph("REPORT STATUS", label_style)],
+        [Paragraph(f"{safe(score)} <font size='8'>/ 100</font>", metric_style), Paragraph(safe(grade), metric_style), Paragraph("COMPLETE", metric_style)],
     ]
-    meta_table = Table(meta_data, colWidths=[1.4 * inch, 5.0 * inch])
-    meta_table.setStyle(TableStyle([
-        ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
-        ("FONTSIZE", (0, 0), (-1, -1), 10),
+    if trust_score is not None:
+        score_cards[0][2] = Paragraph("TRUST SCORE", label_style)
+        score_cards[1][2] = Paragraph(f"{safe(trust_score)} <font size='8'>/ 100</font>", metric_style)
+    score_table = Table(score_cards, colWidths=[2.08 * inch, 2.08 * inch, 2.08 * inch])
+    score_table.setStyle(TableStyle([
+        ("BOX", (0, 0), (-1, -1), 0.5, border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, border),
+        ("BACKGROUND", (0, 0), (-1, -1), colors.white),
+        ("LEFTPADDING", (0, 0), (-1, -1), 9),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 9),
+        ("TOPPADDING", (0, 0), (-1, 0), 7),
+        ("BOTTOMPADDING", (0, 0), (-1, 0), 0),
+        ("TOPPADDING", (0, 1), (-1, 1), 2),
+        ("BOTTOMPADDING", (0, 1), (-1, 1), 8),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
+    story.append(score_table)
+    story.append(Spacer(1, 10))
+
+    counts = {key: 0 for key in ("critical", "high", "medium", "low", "info")}
+    for finding in findings:
+        if isinstance(finding, dict):
+            severity = str(finding.get("severity", "info")).lower()
+            counts[severity if severity in counts else "info"] += 1
+    ledger = []
+    for severity in counts:
+        ledger.append([
+            Paragraph(severity.upper(), ParagraphStyle(
+                f"CL_{severity}_label", parent=label_style, alignment=TA_CENTER,
+                textColor=severity_colour[severity],
+            )),
+            Paragraph(str(counts[severity]), severity_metric_style),
+        ])
+    severity_table = Table([ledger], colWidths=[1.25 * inch] * 5)
+    severity_table.setStyle(TableStyle([
+        ("BOX", (0, 0), (-1, -1), 0.5, border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, border),
+        ("BACKGROUND", (0, 0), (-1, -1), pale),
+        ("TOPPADDING", (0, 0), (-1, -1), 7),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    ]))
+    story.append(severity_table)
+    story.append(Spacer(1, 10))
+
+    sorted_findings = sorted(
+        [finding for finding in findings if isinstance(finding, dict)],
+        key=_severity_sort_key,
+    )
+    posture = assessment or (
+        "Immediate attention is recommended for the highest-severity finding."
+        if counts["critical"] or counts["high"]
+        else "No critical or high-severity findings were identified in this assessment."
+    )
+    priority = "No actionable findings were recorded."
+    if sorted_findings:
+        first = sorted_findings[0]
+        priority = first.get("message") or first.get("description") or "Review the first finding in the technical record."
+    executive_rows = key_value_rows([
+        ("Assessment posture", posture),
+        ("Priority finding", priority),
+        ("Assessment scope", f"{type_label}; source: {source}; {len(sorted_findings)} findings recorded."),
+    ])
+    executive_table = Table(executive_rows, colWidths=[1.28 * inch, 4.97 * inch])
+    executive_table.setStyle(TableStyle([
+        ("BOX", (0, 0), (-1, -1), 0.5, border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.35, border),
+        ("BACKGROUND", (0, 0), (0, -1), pale),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 8),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+        ("TOPPADDING", (0, 0), (-1, -1), 7),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+    ]))
+    story.append(executive_table)
+    story.append(Spacer(1, 12))
+
+    story.append(section(2, "Assessment Record"))
+    story.append(Spacer(1, 8))
+    meta_data = key_value_rows([
+        ("Target", url),
+        ("Target type", type_label),
+        ("Scan source", source),
+        ("Assessment date", generated_at),
+    ])
+    meta_table = Table(meta_data, colWidths=[1.28 * inch, 4.97 * inch])
+    meta_table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (0, -1), pale),
+        ("BOX", (0, 0), (-1, -1), 0.5, border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.35, border),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 8),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
     ]))
     story.append(meta_table)
     story.append(Spacer(1, 12))
 
-    # Score card
-    story.append(Paragraph("Score", heading_style))
-    score_data = [["Security Score", f"{score} / 100"], ["Grade", str(grade)]]
-    if trust_score is not None:
-        score_data.append(["Trust Score", f"{trust_score} / 100"])
-    if assessment:
-        score_data.append(["Assessment", assessment])
-    score_table = Table(score_data, colWidths=[1.8 * inch, 4.6 * inch])
-    score_table.setStyle(TableStyle([
-        ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
-        ("FONTSIZE", (0, 0), (-1, -1), 10),
-        ("BACKGROUND", (1, 0), (1, 0), grade_colour),
-        ("TEXTCOLOR", (1, 0), (1, 0), colors.white),
-        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
-        ("TOPPADDING", (0, 0), (-1, -1), 6),
-        ("BOX", (0, 0), (-1, -1), 0.5, colors.grey),
-        ("INNERGRID", (0, 0), (-1, -1), 0.25, colors.lightgrey),
-    ]))
-    story.append(score_table)
-    story.append(Spacer(1, 12))
-
-    # AI Analysis
-    if ai_analysis:
-        story.append(Paragraph("AI Analysis", heading_style))
-        if isinstance(ai_analysis, dict):
-            for key, value in ai_analysis.items():
-                story.append(Paragraph(f"<b>{key.replace('_', ' ').title()}:</b> {value}", body_style))
-        else:
-            story.append(Paragraph(str(ai_analysis), body_style))
-        story.append(Spacer(1, 8))
-
-    # Summary
-    if summary and isinstance(summary, dict):
-        story.append(Paragraph("Summary", heading_style))
-        for key, value in summary.items():
-            story.append(Paragraph(f"<b>{key.replace('_', ' ').title()}:</b> {value}", body_style))
-        story.append(Spacer(1, 8))
-
-    # Findings
-    story.append(Paragraph(f"Findings ({len(findings)} total)", heading_style))
-    if findings:
-        sorted_findings = sorted(findings, key=_severity_sort_key)
+    story.append(section(3, f"Detailed Findings ({len(sorted_findings)})"))
+    story.append(Spacer(1, 9))
+    if sorted_findings:
         for i, f in enumerate(sorted_findings, 1):
-            sev = f.get("severity", "info")
+            sev = str(f.get("severity", "info")).lower()
             msg = f.get("message") or f.get("description", "No description")
             sev_color = severity_colour.get(sev, colors.grey)
 
-            # Finding header row
-            header_data = [[f"#{i}", sev.upper(), msg]]
-            header_table = Table(header_data, colWidths=[0.4 * inch, 0.8 * inch, 5.2 * inch])
+            header_data = [[
+                Paragraph(f"FINDING {i:02d}", label_style),
+                Paragraph(safe(sev.upper()), ParagraphStyle(
+                    f"CL_severity_{i}", parent=label_style, alignment=2, textColor=sev_color,
+                )),
+            ]]
+            header_table = Table(header_data, colWidths=[3.12 * inch, 3.12 * inch])
             header_table.setStyle(TableStyle([
-                ("FONTNAME", (0, 0), (-1, -1), "Helvetica-Bold"),
-                ("FONTSIZE", (0, 0), (-1, -1), 10),
-                ("BACKGROUND", (1, 0), (1, 0), sev_color),
-                ("TEXTCOLOR", (1, 0), (1, 0), colors.white),
+                ("BACKGROUND", (0, 0), (-1, -1), pale),
+                ("LINEBEFORE", (0, 0), (0, -1), 4, sev_color),
+                ("LINEABOVE", (0, 0), (-1, 0), 0.4, border),
+                ("LINEBELOW", (0, 0), (-1, -1), 0.4, border),
                 ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                ("TOPPADDING", (0, 0), (-1, -1), 4),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-1, -1), 6),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
             ]))
+            header_table.keepWithNext = True
             story.append(header_table)
+            title = ParagraphStyle(
+                f"CL_finding_title_{i}", parent=heading_style, fontSize=10.5,
+                leading=13, spaceBefore=6, spaceAfter=5,
+            )
+            story.append(Paragraph(safe(msg), title))
 
             detail_parts = []
             if f.get("type"):
-                detail_parts.append(f"Type: {f['type']}")
+                detail_parts.append(("Type", f["type"]))
             if f.get("description") and f.get("description") != msg:
-                detail_parts.append(f"Details: {f['description']}")
+                detail_parts.append(("Details", f["description"]))
             if f.get("recommendation") or f.get("remediation"):
-                detail_parts.append(f"Recommendation: {f.get('recommendation') or f.get('remediation')}")
+                detail_parts.append(("Remediation", f.get("recommendation") or f.get("remediation")))
             if f.get("cve"):
-                detail_parts.append(f"CVE: {f['cve']}")
-            if detail_parts:
-                story.append(Paragraph("<br/>".join(detail_parts), body_style))
-            story.append(Spacer(1, 6))
+                detail_parts.append(("CVE", f["cve"]))
+            displayed = {"severity", "message", "description", "type", "recommendation", "remediation", "cve"}
+            for key, value in f.items():
+                if key not in displayed and value is not None:
+                    detail_parts.append((key.replace("_", " ").title(), value))
+            for label, value in detail_parts:
+                story.append(Paragraph(f"<b>{safe(label)}:</b> {safe(value)}", body_style))
+            story.append(Spacer(1, 8))
     else:
         story.append(Paragraph("No findings detected.", body_style))
 
-    # Footer
-    story.append(Spacer(1, 24))
-    story.append(Paragraph("Generated by CyberLens Security Scanner — https://cyberlensai.com", small_style))
+    if ai_analysis or (summary and isinstance(summary, dict)):
+        story.append(section(4, "Analyst Detail and Evidence"))
+        story.append(Spacer(1, 9))
+        if ai_analysis:
+            story.append(Paragraph("AI ANALYSIS", label_style))
+            if isinstance(ai_analysis, dict):
+                for key, value in ai_analysis.items():
+                    story.append(Paragraph(f"<b>{safe(key.replace('_', ' ').title())}:</b> {safe(value)}", body_style))
+            else:
+                story.append(Paragraph(safe(ai_analysis), body_style))
+            story.append(Spacer(1, 5))
+        if summary and isinstance(summary, dict):
+            story.append(Paragraph("SCAN SUMMARY", label_style))
+            for key, value in summary.items():
+                story.append(Paragraph(f"<b>{safe(key.replace('_', ' ').title())}:</b> {safe(value)}", body_style))
 
-    doc = SimpleDocTemplate(
+    doc = BaseDocTemplate(
         output_path,
         pagesize=letter,
-        leftMargin=0.75 * inch,
-        rightMargin=0.75 * inch,
-        topMargin=0.75 * inch,
-        bottomMargin=0.75 * inch,
+        leftMargin=0.72 * inch,
+        rightMargin=0.72 * inch,
+        topMargin=0.72 * inch,
+        bottomMargin=0.65 * inch,
     )
+    first_frame = Frame(
+        0.72 * inch, 0.65 * inch, 7.06 * inch, 8.90 * inch,
+        leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0,
+    )
+    later_frame = Frame(
+        0.72 * inch, 0.65 * inch, 7.06 * inch, 9.63 * inch,
+        leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0,
+    )
+    doc.addPageTemplates([
+        PageTemplate(id="First", frames=[first_frame], onPage=first_page, autoNextPageTemplate="Later"),
+        PageTemplate(id="Later", frames=[later_frame], onPage=later_page),
+    ])
     doc.build(story)
 
     return {

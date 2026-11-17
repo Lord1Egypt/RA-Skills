@@ -1,0 +1,46 @@
+import pandas as pd
+import numpy as np
+import alphalens as al
+# 1. 数据生成函数
+# ============================================================
+def generate_synthetic_data(start_date='2024-01-01', end_date='2024-12-31',
+                            n_stocks=30, seed=42):
+    """
+    生成模拟的因子数据和价格数据
+    返回: (factor_df, price_df, factor_series, factor_data)
+    """
+    np.random.seed(seed)
+    dates = pd.date_range(start_date, end_date, freq='B')
+    stocks = [f'Stock_{i:03d}' for i in range(n_stocks)]
+
+    factor_df = pd.DataFrame(index=dates, columns=stocks)
+    price_df = pd.DataFrame(index=dates, columns=stocks)
+
+    for stock in stocks:
+        trend = np.linspace(0, 1, len(dates)) * 0.3
+        style = np.random.randn() * 0.5
+        factor_df[stock] = np.random.randn(len(dates)) + trend + style
+        ret = np.random.randn(len(dates)) * 0.02
+        ret += factor_df[stock].shift(1).fillna(0) * 0.01
+        price_df[stock] = 100 * (1 + ret).cumprod()
+
+    factor_series = factor_df.stack()
+    factor_series.index.names = ['date', 'asset']
+    return factor_df, price_df, factor_series
+factor_df, price_df, factor_series=generate_synthetic_data()
+def clean_factor_data(factor_series, price_df, quantiles=5, periods=(1,5,10), max_loss=0.95):
+    """数据清洗与对齐，返回 Alphalens 格式的 factor_data"""
+    print("正在清洗数据...")
+    factor_data = al.utils.get_clean_factor_and_forward_returns(
+        factor=factor_series,
+        prices=price_df,
+        quantiles=quantiles,
+        periods=periods,
+        max_loss=max_loss,
+    )
+    print(f"数据清洗完成，形状: {factor_data.shape}\n")
+    return factor_data
+factor_data=clean_factor_data(factor_series, price_df)
+from xg_alphalens.xg_alphalens import xg_alphalens
+models=xg_alphalens(factor_data=factor_data)
+models.composite_score()

@@ -1,44 +1,52 @@
-## Description: <br>
-vn.py open-source quantitative trading framework guidance for CTA, spread, options, broker gateway, data management, and strategy examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+vn.py 开源量化交易框架 - 支持CTA、价差、期权策略，20+券商接口，覆盖国内外市场。
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and quantitative trading practitioners use this skill to get vn.py setup guidance, strategy templates, broker gateway configuration examples, and operational reminders for testing or running trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broker connection and strategy-start examples could lead to real financial actions if used with live accounts. <br>
-Mitigation: Review before installation or use, start with paper trading or SimNow-style test accounts, require explicit confirmation before connecting or starting strategies, and keep a fast stop path available. <br>
-Risk: Broker credentials may be exposed if copied directly into examples or shared with an agent session. <br>
-Mitigation: Store credentials in a secret manager or environment variables and avoid placing secrets directly in prompts, code snippets, or committed files. <br>
-Risk: Unpinned trading dependencies can change behavior across installs. <br>
-Mitigation: Pin dependency versions and validate the environment before using the skill for brokerage-connected workflows. <br>
+## Use Case:
 
+Developers and quantitative-trading practitioners use this skill to draft vn.py setup steps, strategy templates, broker gateway configuration, and trading-framework guidance for CTA, spread, options, and data-management workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coderwpf/vnpy) <br>
-- [vn.py homepage](https://www.vnpy.com) <br>
-- [vn.py documentation](https://www.vnpy.com/docs/cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides examples and recommendations; users must review before connecting brokerage accounts or starting strategies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Live trading and order-execution examples may be unsafe for real financial accounts without clear scope, credentials handling, and risk limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated environment, prefer pinned and reviewed dependency versions, start with simulation or paper-trading accounts, and require explicit human confirmation before connecting broker credentials or starting strategies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderwpf/skills/vnpy)
+- [Publisher profile](https://clawhub.ai/user/coderwpf)
+- [vn.py homepage](https://www.vnpy.com)
+- [vn.py documentation](https://www.vnpy.com/docs/cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live-trading examples; human review is needed before using broker credentials, account connections, or strategy execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact files mention 1.1.0 and 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Optimizes AI research ETAs with dynamic updates, parallel execution, smart filtering, and template-driven workflows for faster prospect analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes AI research task estimates and progress updates with formulas, checkpoints, parallelization guidance, filtering, templates, and quality gates.
 
-## Publisher: <br>
-[achillesprotocol](https://clawhub.ai/user/achillesprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[achillesprotocol](https://clawhub.ai/user/achillesprotocol)
 
-## Use Case: <br>
-Agents and research operators use this skill to estimate, monitor, and communicate timelines for AI-assisted prospect research while preserving defined quality gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect research can involve personal or sensitive business information, source access limits, and stakeholder communications that vary by organization. <br>
-Mitigation: Define approved data sources, privacy or scraping constraints, and permitted update channels before applying the workflow to real research. <br>
-Risk: ETA formulas are based on a small number of observed tasks and may overstate acceleration for unfamiliar research domains. <br>
-Mitigation: Use the formulas as starting benchmarks, re-evaluate during execution, and recalibrate after additional completed tasks. <br>
+## Use Case:
 
+Developers, analysts, and research agents use this skill to plan AI-assisted prospect research, revise ETAs during execution, and communicate acceleration or delays while maintaining verification quality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/achillesprotocol/ai-research-eta-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown process guidance with formulas, checklists, and progress-update language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ETA optimization guidance could encourage overconfidence or reduced verification when research appears to be accelerating.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a research-process aid; review outputs and confirm sources before using results for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/achillesprotocol/skills/ai-research-eta-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with formulas, checklists, and progress-update language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden system changes are described by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Helps parents plan family travel by searching child-friendly hotels and packages, comparing playground quality and supervision needs, and producing age- and preference-aware itinerary guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps parents plan family trips by searching family-friendly hotels and packages, comparing playground quality and supervision needs, and suggesting age- and personality-appropriate activities.
 
-## Publisher: <br>
-[dutxueyu](https://clawhub.ai/user/dutxueyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dutxueyu](https://clawhub.ai/user/dutxueyu)
 
-## Use Case: <br>
-Parents and travel-planning agents use this skill to compare child-friendly hotels, packages, and nearby activities for weekend or holiday trips. It is especially focused on matching venues to a child's age and preferences while highlighting whether adult supervision is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send destination, dates, preferences, and child-related planning details to FlyAI/Fliggy-backed searches. <br>
-Mitigation: Share only the minimum details needed for planning, prefer interest-based preferences over child gender when possible, and review the FlyAI CLI and travel account used for searches. <br>
-Risk: Hotel playground fees, supervision rules, and travel prices can be incomplete or change after search results are returned. <br>
-Mitigation: Verify booking details on the provider page and call the hotel or venue when supervision requirements or child-safety assumptions affect the plan. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to prepare parent-friendly itineraries that compare family hotels, package options, child supervision needs, and nearby activities. The skill is aimed at weekend and holiday family trips where hotel amenities, child age, personality, budget, and booking data affect the recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dutxueyu/easytravelwithchild) <br>
-- [Parent-child hotel rating standards](references/hotel-rating-standards.md) <br>
-- [Child venue classification guide](references/venue-classification.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, itinerary sections, booking links, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses real-time FlyAI/Fliggy-backed search results; prices, availability, fees, and supervision requirements should be verified before booking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented setup pulls mutable third-party code and installs a global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the installer, remote skill revision, and flyai-cli version before installing.
+
+Risk: Destination, dates, budget, family details, and search keywords may be sent to FlyAI/Fliggy and reflected in commercial booking links.
+
+Mitigation: Use a least-privileged environment and avoid entering unnecessary sensitive family or travel details.
+
+Risk: Hotel prices, package availability, and booking links can change after retrieval.
+
+Mitigation: Review live booking pages and confirm prices, availability, and supervision details before purchase or travel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dutxueyu/skills/easytravelwithchild)
+- [FlyAI skill installation repository](https://github.com/alibaba-flyai/flyai-skill)
+- [Family hotel rating standards](artifact/references/hotel-rating-standards.md)
+- [Child venue classification guide](artifact/references/venue-classification.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown itinerary card with comparison tables, price notes, booking links, and concise recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke shell scripts to retrieve current hotel and package data before producing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Bot Trade lets agents connect to the MossTrade simulated futures trading API to register bots, place and close positions, inspect portfolios, and recover after liquidation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MossTrade lets an agent connect to a simulated USDT-margined contract trading environment to register a bot, place and close positions, check portfolio status, and recover after liquidation.
 
-## Publisher: <br>
-[Fueav](https://clawhub.ai/user/Fueav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fueav](https://clawhub.ai/user/fueav)
 
-## Use Case: <br>
-Developers and external agent builders use this skill to give an agent structured guidance for interacting with the MossTrade simulated contract-trading API, including registration, market orders, portfolio checks, and risk-aware position management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Automated use can place high-leverage simulated trades or oversized positions. <br>
-Mitigation: Require explicit leverage and position-size limits before allowing the agent to trade. <br>
-Risk: The sample close_position helper can send a reversing order instead of a reduce-only close. <br>
-Mitigation: Fix or avoid that helper unless it sends reduce_only:true and validates the current position size. <br>
-Risk: API key exposure would let another caller act as the bot. <br>
-Mitigation: Keep the API key private and avoid logging or sharing credentials. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect an agent to MossTrade's simulated contract-trading API for account registration, market checks, order placement, position review, and strategy testing.
 
-## Reference(s): <br>
-- [bot-trade ClawHub release page](https://clawhub.ai/Fueav/bot-trade) <br>
-- [MossTrade API base URL](https://lark.openclaw-ai.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MossTrade API key; examples include order, leverage, portfolio, status, and history parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can persist bearer API credentials for a trading bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the API key in a protected secret store or a credentials file with restrictive permissions such as 0600.
+
+Risk: The skill can enable autonomous leveraged trading behavior in a simulated market.
+
+Mitigation: Require explicit user approval or well-defined trading limits before placing or closing orders.
+
+Risk: Closing a position through an opposite-side order can open a new reverse position if reduce_only is omitted.
+
+Mitigation: Verify close-position flows always set reduce_only to true and validate the requested quantity before submitting the order.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fueav/skills/bot-trade)
+- [MossTrade API Base](https://lark.openclaw-ai.cc)
+- [MossTrade Homepage](https://mosstrade.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with curl examples, JSON examples, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint guidance, credential storage examples, trading parameters, status checks, and strategy examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

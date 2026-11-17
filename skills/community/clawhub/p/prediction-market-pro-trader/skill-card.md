@@ -1,43 +1,57 @@
-## Description: <br>
-Analyze Polymarket and Kalshi events using base rates and Bayesian updating to identify mispriced contracts and recommend value trades with risk controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Polymarket and Kalshi events using base rates and Bayesian updating to identify mispriced contracts and recommend value trades with risk controls.
 
-## Publisher: <br>
-[0xzahra](https://clawhub.ai/user/0xzahra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xzahra](https://clawhub.ai/user/0xzahra)
 
-## Use Case: <br>
-Prediction-market analysts and traders use this skill to produce structured event-market reports with source review, base-rate calibration, probability estimates, edge calculations, and buy, hold, or pass recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce prescriptive trading guidance despite disclaimers that the output is not financial advice. <br>
-Mitigation: Review outputs before relying on them for real-money decisions and treat recommendations as analysis requiring independent verification. <br>
-Risk: Prediction-market trading can result in total loss, and availability or legality varies by jurisdiction. <br>
-Mitigation: Confirm local regulatory requirements, platform eligibility, market resolution criteria, and personal risk limits before trading. <br>
-Risk: Probability estimates and edge calculations may be wrong when source data is incomplete, stale, biased, or misinterpreted. <br>
-Mitigation: Require cited current sources, disconfirming evidence, documented assumptions, and periodic re-evaluation when new information appears. <br>
+## Use Case:
 
+External prediction-market analysts and traders use this skill to structure event research, estimate probabilities, compare those estimates with market prices, and form risk-controlled trade recommendations. Outputs should be treated as educational financial opinions requiring independent review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xzahra/prediction-market-pro-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/0xzahra) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with prices, probability estimates, evidence, risk controls, and recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include actionable buy, hold, or pass guidance, position sizing, and risk factors for prediction-market contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can produce explicit prediction-market trade recommendations and position sizes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of every recommendation and prohibit agents from placing trades or sizing positions automatically.
+
+Risk: Prediction-market trading may be restricted or unlawful in some jurisdictions.
+
+Mitigation: Verify platform availability and legal compliance for the user's jurisdiction before acting on any analysis.
+
+Risk: The skill presents financial opinions while also disclaiming that it is educational and not financial advice.
+
+Mitigation: Treat outputs as high-risk educational analysis, independently validate sources and assumptions, and avoid risking funds the user cannot afford to lose.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xzahra/skills/prediction-market-pro-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report with probability estimates, evidence rationale, edge calculation, recommendation, confidence level, and position-size guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces actionable prediction-market trading opinions; human review is required before any trading decision.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

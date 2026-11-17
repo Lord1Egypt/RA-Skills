@@ -1,40 +1,54 @@
-## Description: <br>
-Diagnose e-commerce ad performance issues by analyzing the conversion funnel, cross-validating metrics, detecting blockers, and prioritizing fixes by severity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose e-commerce ad performance issues by analyzing the full conversion funnel, cross-validating metrics, detecting blockers, and prioritizing fixes by severity.
 
-## Publisher: <br>
-[no7dw](https://clawhub.ai/user/no7dw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[no7dw](https://clawhub.ai/user/no7dw)
 
-## Use Case: <br>
-E-commerce marketers, operators, and analysts use this skill to troubleshoot ad performance anomalies across impressions, clicks, add-to-cart behavior, orders, ROAS, and cost ratio. It helps separate data sufficiency issues, stock or system blockers, targeting problems, landing-page conversion weakness, and bidding inefficiency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ad performance metrics or business-sensitive campaign data may be shared with the agent during analysis. <br>
-Mitigation: Provide only the metrics needed for diagnosis and avoid ad account credentials, customer-level personal data, and private logs unless separately required by the workflow. <br>
-Risk: Incomplete or insufficient metric samples can lead to misleading diagnoses and inappropriate optimization actions. <br>
-Mitigation: Apply the skill's sample-size and data freshness checks, cross-validate related metrics, and review recommendations before changing campaigns or product listings. <br>
+## Use Case:
 
+E-commerce operators, marketers, and agents use this skill to diagnose advertising anomalies across impression, click, add-to-cart, and order stages. It helps prioritize fixes for cost, conversion, traffic-quality, inventory, listing, pricing, and checkout blockers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/no7dw/ads-performance-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with diagnostic patterns, decision-tree outcomes, severity labels, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not produce code or shell commands; outputs metric-based troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Ad diagnostics may lead to changes in bids, targeting, listings, or campaign settings that affect spend or revenue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as advisory and require explicit user approval before applying business-impacting changes.
+
+Risk: Insufficient or stale metrics can produce premature performance conclusions.
+
+Mitigation: Apply the skill's sample-size and freshness gates before diagnosing or prioritizing optimization actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/no7dw/skills/ads-performance-analysis)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with diagnostic checklists, decision trees, metric thresholds, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory diagnostic output; it does not execute actions or change ad settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

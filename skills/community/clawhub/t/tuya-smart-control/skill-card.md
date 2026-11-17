@@ -1,52 +1,69 @@
-## Description: <br>
-Control Tuya smart home devices via natural language, including device control and status queries, home and room management, notifications, weather, data statistics, IPC camera capture, and real-time device events via WebSocket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Tuya smart home devices via natural language, including device control and status queries, home and room management, notifications, weather, statistics, IPC camera captures, and real-time device events.
 
-## Publisher: <br>
-[gaosq856](https://clawhub.ai/user/gaosq856) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaosq856](https://clawhub.ai/user/gaosq856)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate Tuya smart-home devices, query device state, send self-notifications, inspect home data, and monitor device events. It is intended for users who explicitly want agent access to Tuya devices and camera capture workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Tuya API key that can control smart-home devices and access account data. <br>
-Mitigation: Protect TUYA_API_KEY, avoid printing it in logs or chat output, and install the skill only where Tuya device control is intended. <br>
-Risk: Camera capture and visual analysis can expose private media outside the user's expected context. <br>
-Mitigation: Require explicit approval before camera capture or AI image analysis, and explain when decrypted image or video URLs will be used. <br>
-Risk: A user-supplied TUYA_BASE_URL could redirect API calls to an untrusted endpoint. <br>
-Mitigation: Use automatic region detection where possible and override TUYA_BASE_URL only for trusted Tuya endpoints. <br>
-Risk: Broad WebSocket monitoring or automations can observe or act on many devices. <br>
-Mitigation: Scope monitoring and automations to specific devices and apply notification throttling for event-driven alerts. <br>
+## Use Case:
 
+External users and developers use this skill to operate and inspect Tuya smart-home environments through an agent, including physical device control, monitoring, notifications, camera capture, and related data queries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gaosq856/tuya-smart-control) <br>
-- [Tuya Official Website](https://www.tuya.com/) <br>
-- [API Conventions](references/api-conventions.md) <br>
-- [Device Control](references/device-control.md) <br>
-- [Device Query](references/device-query.md) <br>
-- [Device Message Subscription](references/device-message.md) <br>
-- [IPC AI Cloud Capture](references/ipc-cloud-capture.md) <br>
-- [Notifications](references/notifications.md) <br>
-- [Error Handling](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands or scripts that call Tuya APIs and may return smart-home device status, notification results, event-monitoring guidance, or camera capture URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: A Tuya API key can permit device control, home and device data access, notifications, event monitoring, statistics queries, and camera-media capture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Tuya credential where possible, keep the key out of logs and responses, and only install the skill when that access level is acceptable.
+
+Risk: Physical device actions and camera captures can affect privacy or safety.
+
+Mitigation: Require explicit user confirmation before physical actions or IPC capture, and avoid unattended automation for sensitive devices.
+
+Risk: Endpoint and image-processing disclosures are incomplete in the security evidence.
+
+Mitigation: Restrict endpoints to official Tuya hosts and obtain publisher clarification before sending captured camera media to any AI vision service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gaosq856/skills/tuya-smart-control)
+- [Tuya Official Website](https://www.tuya.com/)
+- [API Conventions](references/api-conventions.md)
+- [Device Control](references/device-control.md)
+- [Device Query](references/device-query.md)
+- [Device Management](references/device-management.md)
+- [Home and Space Management](references/home-and-space.md)
+- [Device Message Subscription](references/device-message.md)
+- [IPC AI Cloud Capture](references/ipc-cloud-capture.md)
+- [Notifications](references/notifications.md)
+- [Data Statistics](references/statistics.md)
+- [Weather Query](references/weather.md)
+- [Error Handling](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python examples, JSON payloads, and human-readable status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Tuya API calls, device-control commands, monitoring scripts, and camera-media URLs when authorized.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

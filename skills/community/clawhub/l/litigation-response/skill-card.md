@@ -1,42 +1,60 @@
-## Description: <br>
-Analyzes plaintiff complaints, identifies legal relationships and dispute issues, and drafts structured litigation response strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+解析起诉状内容，提炼争议焦点，制定系统化应诉策略；当收到原告起诉状需要梳理诉讼思路、分析法律关系或制定答辩方向时使用
 
-## Publisher: <br>
-[xuleff](https://clawhub.ai/user/xuleff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuleff](https://clawhub.ai/user/xuleff)
 
-## Use Case: <br>
-Legal teams, defendants, and advisors use this skill to convert a complaint into a structured response plan covering claim analysis, dispute issues, evidence preparation, procedural options, and risk assessment. Users should verify any legal strategy with qualified counsel before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lawsuit documents can contain sensitive legal and personal data. <br>
-Mitigation: Redact unnecessary ID numbers, addresses, contact details, bank data, and confidential facts before using the skill. <br>
-Risk: Generated legal strategy may be incomplete or unsuitable for a specific case. <br>
-Mitigation: Verify the response strategy with a qualified lawyer before filing, negotiating, or making litigation decisions. <br>
+## Use Case:
 
+External users and legal teams use this skill to turn a plaintiff's complaint into a structured litigation response plan, including claim analysis, dispute focus, evidence preparation, procedural options, settlement considerations, and risk assessment.
 
-## Reference(s): <br>
-- [Litigation Elements Reference](references/litigation-elements.md) <br>
-- [Evidence Rules Reference Guide](references/evidence-guide.md) <br>
-- [Response Strategy Template](assets/response-strategy-template.md) <br>
+### Deployment Geography for Use:
 
+Global; content is oriented to Chinese civil litigation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown response document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the response strategy template to organize case information, claims, dispute issues, response strategy, evidence checklist, and risk evaluation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may process sensitive litigation materials and personal identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary identifiers and avoid entering exact settlement bottom lines unless they are needed for the task.
+
+Risk: Generated response strategies or filing drafts may be incomplete, outdated, or unsuitable for the specific matter.
+
+Mitigation: Treat outputs as drafting support and have a qualified legal professional review strategy, deadlines, evidence choices, and filings.
+
+Risk: A plaintiff's complaint is a one-sided account and may omit or misstate material facts.
+
+Mitigation: Corroborate claims against available evidence before adopting the generated issue analysis or risk assessment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuleff/skills/litigation-response)
+- [Response strategy template](assets/response-strategy-template.md)
+- [Evidence guide](references/evidence-guide.md)
+- [Litigation elements](references/litigation-elements.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown litigation response plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafting support that should be reviewed by a qualified legal professional before use in strategy or filings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

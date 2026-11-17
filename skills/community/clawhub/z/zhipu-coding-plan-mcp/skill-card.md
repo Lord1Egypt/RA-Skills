@@ -1,41 +1,58 @@
-## Description: <br>
-Provides Zhipu AI MCP and HTTP helpers for image and video understanding, OCR, UI screenshot analysis, web search, web reading, GitHub repository lookup, CogView image generation, and CogVideoX video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Zhipu AI tools for image and video analysis, OCR, error screenshot diagnosis, UI-to-code conversion, technical diagram and data visualization analysis, UI comparison, web search, web page reading, GitHub repository lookup, CogView image generation, and CogVideoX video generation.
 
-## Publisher: <br>
-[zhangalexhy](https://clawhub.ai/user/zhangalexhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangalexhy](https://clawhub.ai/user/zhangalexhy)
 
-## Use Case: <br>
-Developers and agents use this skill to access Zhipu/BigModel visual analysis, search, repository reading, image generation, and video generation tools from an agent workflow. It is intended for users who have configured a Zhipu API key and understand that prompts, media, URLs, and repository queries may be sent to remote services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a saved Zhipu API key and sends selected content to remote Zhipu/BigModel services through MCP and HTTP calls. <br>
-Mitigation: Install only if you trust Zhipu/BigModel and the npm tooling invoked by npx, use a limited API key where possible, and avoid sending confidential screenshots, videos, URLs, prompts, or private repository data. <br>
-Risk: Generated image and video examples may consume account quota and download remote files to local paths. <br>
-Mitigation: Review prompts, account limits, and output paths before running examples or one-shot scripts. <br>
+## Use Case:
 
+Developers and agents use this skill to call Zhipu AI MCP services and related HTTP APIs for multimodal analysis, web and repository retrieval, and generated image or video outputs when Zhipu credentials are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangalexhy/zhipu-coding-plan-mcp) <br>
-- [Zhipu BigModel homepage](https://open.bigmodel.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and API/MCP invocation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include remote service responses, extracted text, generated code, search results, image URLs, video URLs, and downloaded media depending on the selected tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill runs unpinned npm/MCP tooling while inheriting the parent process environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package resolution before installation, prefer pinned trusted package versions, and run with a minimal environment.
+
+Risk: The skill reads a local Zhipu API key and passes it to MCP and HTTP calls.
+
+Mitigation: Use a least-privilege Zhipu API key dedicated to this skill and rotate or revoke it if exposure is suspected.
+
+Risk: Vision, OCR, video, search, and web-reading tools can transmit user-provided images, videos, URLs, code, or page content to remote services.
+
+Mitigation: Avoid sending confidential screenshots, proprietary code, customer data, internal URLs, or other sensitive content unless the destination service is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangalexhy/skills/zhipu-coding-plan-mcp)
+- [Zhipu AI Open Platform](https://open.bigmodel.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, text, code snippets, shell commands, configuration snippets, and generated media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some operations call remote MCP or HTTP APIs and may return JSON-shaped responses, generated image URLs, or generated video URLs.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

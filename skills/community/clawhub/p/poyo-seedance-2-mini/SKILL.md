@@ -1,10 +1,16 @@
 ---
 name: poyo-seedance-2-mini
 description: Seedance 2.0 Mini video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `seedance-2-mini`, text-to-video, image-to-video, first-frame and last-frame guidance, reference image/video/audio guidance, 480p, 720p, duration, aspect ratio, audio generation, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/seedance-2-mini","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/seedance-2-mini","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Seedance 2.0 Mini Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/seedance-2-mini>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/seedance-2-mini>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Seedance 2.0 Mini video jobs on PoYo. It helps agents prepare text-to-video, image-to-video, first/last-frame, and multimodal reference payloads, submit async tasks, and explain polling or webhook follow-up.
 

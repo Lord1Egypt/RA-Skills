@@ -1,42 +1,51 @@
-## Description: <br>
-Feishu Card helps agents send rich Feishu interactive card messages using schema 2.0, including titles, Markdown body content, and color themes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Card helps agents send international Feishu interactive card messages with titles, Markdown content, and color themes using Feishu schema 2.0 and double JSON serialization.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare or send Feishu interactive cards to individual users or group chats when an agent needs structured notification messages with Markdown content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Feishu app credentials to send messages through Feishu APIs. <br>
-Mitigation: Install only when the publisher is trusted, use approved Feishu app credentials, confirm recipients before sending, and avoid sensitive content unless the app and destination are authorized. <br>
-Risk: The artifact contains hardcoded Feishu app and example recipient identifiers. <br>
-Mitigation: Replace the hardcoded app_id and example recipient IDs with approved local configuration before use. <br>
+## Use Case:
 
+Developers and agents use this skill to compose and send rich Feishu interactive card messages to a user or chat, including Markdown bodies, color-themed headers, and troubleshooting guidance for schema 2.0 rendering.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dadaniya99/xiaolongxia-feishu-card) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu send message API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with JSON, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Feishu schema 2.0 interactive card payload guidance and optional send commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and ClawHub release evidence) <br>
+Risk: The skill reads a local Feishu app secret and sends messages through the configured Feishu app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Feishu message sending is intended, verify the app_id and recipients match the tenant, and prefer managed message tooling or a secret manager to avoid exposing secrets in shell commands or logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dadaniya99/skills/xiaolongxia-feishu-card)
+- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Send Message API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu interactive message payload guidance and may execute a helper script that sends messages through the configured Feishu app.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

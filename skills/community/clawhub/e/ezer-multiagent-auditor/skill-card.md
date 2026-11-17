@@ -1,41 +1,54 @@
-## Description: <br>
-Runs Ezer financial audit tasks by security code, reporting period, year, and language, then returns the final structured audit result from the configured Ezer API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrapper skill for the Ezer audit backend API that runs financial audit tasks by code, period, year, and language and returns structured final audit output from the Ezer API.
 
-## Publisher: <br>
-[mx-222](https://clawhub.ai/user/mx-222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mx-222](https://clawhub.ai/user/mx-222)
 
-## Use Case: <br>
-Developers and audit operators use this skill to create an Ezer audit task, poll for completion, and retrieve structured financial audit output for a specified code, period, year, and language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network calls to the configured Ezer API and may include an optional bearer token in requests. <br>
-Mitigation: Install only when the configured API endpoint is trusted, restrict EZER_API_BASE_URL to an allowed host, and provide EZER_BEARER_TOKEN only through the runtime environment. <br>
-Risk: The manifest documents the required base URL but the script also supports optional bearer-token authentication. <br>
-Mitigation: Review deployment configuration so operators understand both required and optional environment variables before use. <br>
+## Use Case:
 
+Developers and audit operators use this skill to submit Ezer financial audit tasks with a stock code, reporting period, year, and language, then retrieve the completed structured audit result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mx-222/ezer-multiagent-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/mx-222) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON payload printed to stdout, with JSON error payloads on stderr for failures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EZER_API_BASE_URL and python3; supports optional EZER_BEARER_TOKEN for API authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send audit request data and an optional bearer token to any URL configured in EZER_API_BASE_URL, including plaintext HTTP endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a controlled Ezer endpoint, prefer HTTPS for non-local endpoints, and keep EZER_API_BASE_URL fixed to the intended server.
+
+Risk: Bearer tokens used with untrusted or plaintext endpoints may be exposed.
+
+Mitigation: Avoid broad or long-lived bearer tokens and rotate any token that was used with an untrusted or plaintext endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mx-222/skills/ezer-multiagent-auditor)
+- [Publisher profile](https://clawhub.ai/user/mx-222)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, guidance]
+
+**Output Format:** [JSON result payload on stdout, with JSON error payloads on stderr for failed API calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and EZER_API_BASE_URL; may use EZER_BEARER_TOKEN when the Ezer API requires authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

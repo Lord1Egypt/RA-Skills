@@ -1,44 +1,59 @@
-## Description: <br>
-Parse text and coordinates from images with SoMark, including character, word, and line positions on the original image for OCR-first image understanding where location matters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse text and coordinates from images with SoMark (character/word/line positions on original image). Ideal for OCR-first image understanding where location matters. Requires SoMark API Key (SOMARK_API_KEY).
 
-## Publisher: <br>
-[soul-code](https://clawhub.ai/user/soul-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soul-code](https://clawhub.ai/user/soul-code)
 
-## Use Case: <br>
-Developers and agents use this skill to extract OCR text with bounding-box coordinates from receipts, invoices, screenshots, forms, scanned pages, and other images. It supports downstream field extraction, regional lookup, and layout-aware automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images may contain sensitive content and are sent to SoMark for processing. <br>
-Mitigation: Use the skill only for images you are comfortable processing with SoMark, especially for receipts, invoices, screenshots, and forms. <br>
-Risk: Providing the API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Prefer the SOMARK_API_KEY environment variable and avoid pasting secrets into chat or command arguments. <br>
-Risk: Use can consume SoMark quota or paid billing capacity. <br>
-Mitigation: Monitor quota and billing before large parsing runs. <br>
+## Use Case:
 
+Developers and agent users use Image Parser to extract OCR text with bounding-box coordinates from receipts, invoices, forms, screenshots, and photographed documents for precise field extraction and location-aware automation.
 
-## Reference(s): <br>
-- [Image Parser Skill Page](https://clawhub.ai/soul-code/image-parser) <br>
-- [Soul-Code Publisher Profile](https://clawhub.ai/user/soul-code) <br>
-- [SoMark](https://somark.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON and Markdown files with text, bounding boxes, page numbers, roles, and a results index] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOMARK_API_KEY and sends selected images to SoMark for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and _meta.json) <br>
+Risk: Images and the SoMark API key are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images approved for upload to SoMark and keep the key in SOMARK_API_KEY instead of chat or command history.
+
+Risk: The skill suggests making Image Parser a persistent default for future image text extraction.
+
+Mitigation: Add the CLAUDE.md default rule only after deciding that future image OCR should route through this third-party service.
+
+Risk: OCR coordinates and extracted text may be incomplete or incorrect for difficult images.
+
+Mitigation: Review the *.text_bbox.json output before using it for field extraction, automation, or decisions that depend on exact location.
+
+## Reference(s):
+
+- [Image Parser on ClawHub](https://clawhub.ai/soul-code/skills/image-parser)
+- [SoMark](https://somark.tech)
+- [SoMark parse API endpoint](https://somark.tech/api/v1/parse/sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON and Markdown OCR output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SOMARK_API_KEY; primary parsed output is *.text_bbox.json with text, bbox, page, and role fields.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

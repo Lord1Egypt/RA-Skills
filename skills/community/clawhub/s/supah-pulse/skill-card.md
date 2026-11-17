@@ -1,50 +1,63 @@
-## Description: <br>
-SUPAH Pulse provides real-time crypto market intelligence briefings with market regime, fear and greed, BTC and ETH dominance, gas costs, trending tokens, top movers, DeFi TVL shifts, liquidations, and a 0-100 Market Pulse Score using x402 USDC micropayments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SUPAH Pulse provides real-time crypto market intelligence, including market regime, sentiment, asset dominance, gas costs, DeFi TVL shifts, liquidations, and a Market Pulse Score for agent decision support.
 
-## Publisher: <br>
-[supah-based](https://clawhub.ai/user/supah-based) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supah-based](https://clawhub.ai/user/supah-based)
 
-## Use Case: <br>
-External developers and crypto-focused agents use this skill to get a paid, real-time market briefing before trading, allocation, or advisory workflows. It summarizes market conditions and writes structured results that an agent can inspect. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger paid x402 calls that spend USDC on Base. <br>
-Mitigation: Use a low-balance wallet or spending limits, and require explicit confirmation before paid calls when the host agent supports it. <br>
-Risk: The market briefing may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as market data and analysis only; require human review before trading, allocation, or advisory decisions. <br>
-Risk: SUPAH_API_BASE can redirect the paid SUPAH request to an alternate endpoint. <br>
-Mitigation: Leave SUPAH_API_BASE unset unless the alternate endpoint is trusted. <br>
-Risk: The script writes its JSON result to /tmp/market-pulse-result.json. <br>
-Mitigation: Run in an environment where temporary-file writes are acceptable and review the file before reusing it in downstream workflows. <br>
+## Use Case:
 
+External developers and agent operators use this skill to request a concise crypto market briefing before trading, allocation, advisory, or monitoring workflows. The briefing combines paid SUPAH regime data with public market, sentiment, and DeFi data sources.
 
-## Reference(s): <br>
-- [SUPAH Pulse on ClawHub](https://clawhub.ai/supah-based/supah-pulse) <br>
-- [supah-based publisher profile](https://clawhub.ai/user/supah-based) <br>
-- [x402 protocol](https://www.x402.org) <br>
-- [SUPAH API](https://api.supah.ai) <br>
-- [CoinGecko global market API](https://api.coingecko.com/api/v3/global) <br>
-- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/?limit=7) <br>
-- [DeFiLlama chains API](https://api.llama.fi/v2/chains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text briefing with a JSON result file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports focus values full, quick, defi, and gas; writes /tmp/market-pulse-result.json; paid SUPAH calls use x402 USDC micropayments on Base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Risk: The skill can automatically spend wallet USDC through x402 paid calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where paid calls require user approval or strict wallet spending limits.
+
+Risk: The authoritative security summary reports a local temporary-file overwrite risk.
+
+Mitigation: Avoid running the skill with elevated privileges until the /tmp output path is fixed.
+
+Risk: Crypto market briefings and tactical suggestions can be incorrect, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as decision-support context, not financial advice, and require human review before trading or allocation decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/supah-based/skills/supah-pulse)
+- [Publisher Profile](https://clawhub.ai/user/supah-based)
+- [x402 Protocol](https://www.x402.org)
+- [SUPAH API](https://api.supah.ai)
+- [CoinGecko Global Market API](https://api.coingecko.com/api/v3/global)
+- [Alternative.me Fear & Greed API](https://api.alternative.me/fng/?limit=7)
+- [DeFiLlama Chains TVL API](https://api.llama.fi/v2/chains)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text briefing plus JSON result file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and Node.js; may require SUPAH_API_BASE; writes JSON output to /tmp/market-pulse-result.json.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

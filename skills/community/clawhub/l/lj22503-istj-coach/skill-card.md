@@ -1,44 +1,59 @@
-## Description: <br>
-Istj Coach helps self-identified ISTJ users work through growth, career, and learning questions with coaching questions or concrete action plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Istj Coach helps ISTJ users work through growth, career, and study questions with a coaching mode for reflection and an advisory mode for concrete action steps.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as ISTJ use this skill for growth, career, and learning guidance around analysis paralysis, focus, and action planning. The skill alternates between question-led coaching and direct advisory responses based on the user's needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to remember personal coaching details across sessions. <br>
-Mitigation: Make profile saving opt-in, show users what will be retained, and provide clear review, deletion, and retention controls. <br>
-Risk: The security summary reports conflicting ISTJ and INTP materials in the artifact. <br>
-Mitigation: Align the skill body, README, tags, and reference files before relying on the guidance in production. <br>
-Risk: Users may share sensitive mental-health, career, relationship, or identity information during coaching. <br>
-Mitigation: Warn users not to share sensitive details unless they explicitly want them retained, and direct serious mental-health concerns to qualified professionals. <br>
+## Use Case:
 
+External users who identify as ISTJ can use this skill for structured coaching around analysis paralysis, career or study direction, focus, and turning reflection into small action steps. It is general coaching support and does not replace professional mental health care.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/lj22503-istj-coach) <br>
-- [ISTJ traits reference](references/istj-traits.md) <br>
-- [INTP insights reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown guidance with prompts, summaries, action steps, and risk notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coaching responses are intended to be concise; the artifact asks for short coaching replies and bounded advisory replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata; artifact frontmatter reports 1.6.0) <br>
+Risk: The release contains mismatched ISTJ and INTP documentation, install text, references, and version metadata, which may confuse users about the intended personality type and release identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and align the README, manifest, install command, references, and version fields before installation or publication.
+
+Risk: The skill directs retention of personal coaching records without clear privacy controls.
+
+Mitigation: Make retention opt-in and document storage location, retention period, review controls, and deletion controls before users share personal details.
+
+Risk: Users may share sensitive personal, health, credential, financial, or employment details during coaching conversations.
+
+Mitigation: Avoid entering sensitive details unless storage and deletion controls are clear, and route serious psychological concerns to qualified professionals.
+
+## Reference(s):
+
+- [ISTJ traits and cognitive functions](artifact/references/istj-traits.md)
+- [INTP insights reference included in release artifact](artifact/references/intp-insights.md)
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-istj-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Markdown responses in Chinese with questions, options, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach mode is documented as at most 200 Chinese characters per reply; advisory mode is documented as at most 400 Chinese characters per reply.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release evidence; artifact frontmatter says 1.6.0 and manifest says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

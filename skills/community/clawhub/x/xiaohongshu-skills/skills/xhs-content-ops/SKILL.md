@@ -3,17 +3,6 @@ name: xhs-content-ops
 description: |
   小红书复合内容运营技能。组合搜索、详情、发布、互动等能力完成运营工作流。
   当用户要求竞品分析、热点追踪、内容创作、互动管理等复合任务时触发。
-version: 1.0.0
-metadata:
-  openclaw:
-    requires:
-      bins:
-        - python3
-        - uv
-    emoji: "\U0001F4CA"
-    os:
-      - darwin
-      - linux
 ---
 
 # 小红书复合内容运营
@@ -43,23 +32,6 @@ metadata:
 | `publish` | 图文发布（需用户确认） |
 | `fill-publish` | 填写图文表单（分步发布） |
 | `click-publish` | 点击发布按钮 |
-
----
-
-## 账号选择（前置步骤）
-
-每次 skill 触发后，先运行：
-
-```bash
-python scripts/cli.py list-accounts
-```
-
-根据返回的 `count`：
-- **0 个命名账号**：直接使用默认账号（后续命令不加 `--account`）。
-- **1 个命名账号**：告知用户"将使用账号 X"，直接加 `--account <名称>` 执行。
-- **多个命名账号**：向用户展示列表，询问选择哪个，再用 `--account <选择的名称>` 执行所有后续命令。
-
-账号选定后，本次操作全程固定该账号，**不重复询问**。
 
 ---
 

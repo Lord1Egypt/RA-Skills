@@ -1,45 +1,62 @@
-## Description: <br>
-Guides an AI agent through installing and authenticating the agentdrive CLI, backing up its own root/data directory to 360AgentDrive, enabling auto-backup, and maintaining a recurring backup guard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an AI agent through backing up its local root directory to 360AgentDrive, including AgentDrive CLI setup, authentication, first backup, automatic backup monitoring, and hourly listener recovery.
 
-## Publisher: <br>
-[jsoncm](https://clawhub.ai/user/jsoncm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsoncm](https://clawhub.ai/user/jsoncm)
 
-## Use Case: <br>
-External agent operators and developers use this skill when they want an agent to configure 360AgentDrive authentication, install or update the agentdrive CLI, back up the agent's own root/data directory, and enable recurring backup monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to upload its full root/data directory to 360AgentDrive, which may include credentials or private data. <br>
-Mitigation: Require visible confirmation of the exact source path and cloud destination before backup, and add explicit exclusions for credentials and private data. <br>
-Risk: The skill can enable recurring auto-backup behavior and a scheduled guard with limited user control. <br>
-Mitigation: Make the recurring guard optional, document the removal command, and confirm that the user wants ongoing background backup before enabling it. <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure an agent to back up its own installation or data root to 360AgentDrive and keep automatic backup monitoring active. It is intended for workflows where the operator knowingly wants cloud backup of the agent root.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/jsoncm/agentdrive-backup) <br>
-- [360AgentDrive homepage](https://agentdrive.360.cn) <br>
-- [360AgentDrive CLI documentation](https://agentdrive.360.cn/cli) <br>
-- [360AgentDrive CLI installation](https://agentdrive.360.cn/cli/installation) <br>
-- [360AgentDrive CLI commands](https://agentdrive.360.cn/cli/commands) <br>
-- [360AgentDrive CLI advanced usage](https://agentdrive.360.cn/cli/advanced) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational steps for OAuth/API-key login, CLI installation, root-directory selection, initial backup, auto-backup enablement, and scheduled guard setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill can direct an agent to upload its full local root to 360AgentDrive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the source directory and destination path, review a file manifest before upload, and exclude secrets or other sensitive files.
+
+Risk: The skill keeps automatic backup monitoring alive with an hourly background cron job.
+
+Mitigation: Document and verify commands to disable the cron job, stop automatic backup monitoring, and revoke or rotate AgentDrive credentials.
+
+Risk: The skill installs or upgrades the AgentDrive CLI dynamically.
+
+Mitigation: Pin and review the CLI version before use in controlled environments.
+
+## Reference(s):
+
+- [360AgentDrive Homepage](https://agentdrive.360.cn)
+- [AgentDrive CLI Documentation](https://agentdrive.360.cn/cli)
+- [AgentDrive CLI Installation](https://agentdrive.360.cn/cli/installation)
+- [AgentDrive CLI Commands](https://agentdrive.360.cn/cli/commands)
+- [AgentDrive CLI Advanced Usage](https://agentdrive.360.cn/cli/advanced)
+- [ClawHub Skill Page](https://clawhub.ai/jsoncm/skills/agentdrive-backup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and operational steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing backup, authentication, CLI installation, and monitoring instructions; it does not itself perform backup without agent execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

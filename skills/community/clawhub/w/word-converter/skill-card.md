@@ -1,42 +1,53 @@
-## Description: <br>
-Word Converter helps agents convert .docx and .doc files to Markdown, HTML, LaTeX, DOCX, or JSON using the mineru-open-api CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Word Converter helps agents convert .docx and .doc files to Markdown, HTML, LaTeX, DOCX, or JSON using the mineru-open-api CLI.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Developers, technical writers, researchers, and content migration teams use this skill to prepare Word-document conversion commands and select the right MinerU mode for single-file or batch conversions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document contents may be processed through MinerU or mineru-open-api. <br>
-Mitigation: Use the skill only for documents approved for third-party processing; avoid confidential, regulated, client, legal, or personal documents unless that processing is approved. <br>
-Risk: The workflow depends on the mineru-open-api npm package and MinerU service terms. <br>
-Mitigation: Review the npm package source and MinerU data-handling terms before installation or production use. <br>
-Risk: Conversion mode limitations can affect fidelity, such as flash-extract not supporting tables. <br>
-Mitigation: Choose extract mode for tables or multi-format output and review converted documents before relying on them. <br>
+## Use Case:
 
+Developers, engineers, and document pipeline maintainers use this skill to choose and run MinerU CLI commands for Word-to-Markdown or multi-format Word conversion, including batch workflows.
 
-## Reference(s): <br>
-- [ClawHub Word Converter release](https://clawhub.ai/veeicwgy/word-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; converted document outputs may be Markdown, HTML, LaTeX, DOCX, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mineru-open-api; extract mode may require a token and batch mode requires an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill asks users to install an unpinned global third-party npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned local package version, avoid elevated privileges, and review the package before installation.
+
+Risk: Word document contents may be handled by MinerU-related tooling.
+
+Mitigation: Do not use the skill on sensitive documents unless MinerU privacy and data-handling terms have been verified.
+
+## Reference(s):
+
+- [ClawHub Word Converter Skill Page](https://clawhub.ai/veeicwgy/skills/word-converter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create converted document files in a user-specified or generated output directory when commands are executed.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

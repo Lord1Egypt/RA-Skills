@@ -1,57 +1,72 @@
-## Description: <br>
-Buy or sell XAUT (Tether Gold) on Ethereum using Uniswap V3 market orders or UniswapX limit orders with Foundry keystore or WDK wallet modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy or sell XAUT (Tether Gold) on Ethereum with market orders through Uniswap V3, limit orders through UniswapX, and local wallet setup guidance.
 
-## Publisher: <br>
-[aure-duncan](https://clawhub.ai/user/aure-duncan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aure-duncan](https://clawhub.ai/user/aure-duncan)
 
-## Use Case: <br>
-External users and developers use this skill to configure a local wallet and execute XAUT/USDT market or limit trades on Ethereum through an agent-guided workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has local wallet-signing authority and can execute on-chain financial transactions. <br>
-Mitigation: Install only after reviewing the helper scripts, keep wallet files private, and rely on the documented confirmation thresholds before approving trades. <br>
-Risk: An under-documented arbitrary signing capability could authorize unintended EIP-712 payloads. <br>
-Mitigation: Do not use generic signing unless the exact payload and authorization effect have been independently verified. <br>
-Risk: Wallet vault, seed, or password files expose funds if disclosed or stored with weak permissions. <br>
-Mitigation: Keep ~/.aurehub/.env, vault, seed, and password files private with 0600 permissions and avoid sharing or committing them. <br>
-Risk: Opting into rankings can link a wallet address to a user-chosen nickname. <br>
-Mitigation: Leave rankings disabled unless that identity linkage is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through XAUT/USDT market swaps, UniswapX limit orders, balance checks, and wallet setup on Ethereum. The skill is intended for explicit user-directed trading workflows, not autonomous price monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aure-duncan/aurehub-xaut-trade) <br>
-- [README](README.md) <br>
-- [Environment Initialization](references/onboarding.md) <br>
-- [Wallet Modes](references/wallet-modes.md) <br>
-- [Balance & Pre-flight Checks](references/balance.md) <br>
-- [Quote & Slippage Protection](references/quote.md) <br>
-- [Buy Execution](references/buy.md) <br>
-- [Sell Execution](references/sell.md) <br>
-- [Limit Order Placement](references/limit-order-buy-place.md) <br>
-- [Limit Sell Order Placement](references/limit-order-sell-place.md) <br>
-- [Limit Order Query](references/limit-order-status.md) <br>
-- [Limit Order Cancellation](references/limit-order-cancel.md) <br>
-- [Live Trading Runbook](references/live-trading-runbook.md) <br>
-- [Skill Delegation](references/skill-delegation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration examples, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute on-chain transactions after user confirmation; requires local wallet configuration and external Ethereum RPC and UniswapX services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release evidence, frontmatter, package.json) <br>
+Risk: The skill can guide wallet signing and on-chain financial transactions, so mistakes or unintended authorization can spend real assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, review every command preview, keep confirmation thresholds enabled, and require explicit confirmation for larger trades or high slippage.
+
+Risk: Setup and wallet paths include sensitive credential files and may use remote installers.
+
+Mitigation: Avoid the Foundry curl-to-bash path unless independently verified, keep vault and password files at mode 0600, and audit ~/.aurehub/.env for shell metacharacters before sourcing it.
+
+Risk: Alternate RPC or UniswapX endpoints can expose wallet address, order data, transaction data, or API keys to third parties.
+
+Mitigation: Use trusted HTTPS endpoints, avoid alternate UniswapX endpoints with production API keys, and treat external API responses as untrusted.
+
+## Reference(s):
+
+- [Skill Overview](README.md)
+- [Environment and Security Declaration](SKILL.md)
+- [Balance and Pre-flight Checks](references/balance.md)
+- [Buy Execution](references/buy.md)
+- [Sell Execution](references/sell.md)
+- [Quote and Slippage Protection](references/quote.md)
+- [Limit Order Placement: Buy](references/limit-order-buy-place.md)
+- [Limit Order Placement: Sell](references/limit-order-sell-place.md)
+- [Limit Order Status](references/limit-order-status.md)
+- [Limit Order Cancellation](references/limit-order-cancel.md)
+- [Live Trading Runbook](references/live-trading-runbook.md)
+- [Wallet Modes](references/wallet-modes.md)
+- [Onboarding](references/onboarding.md)
+- [Skill Delegation](references/skill-delegation.md)
+- [Uniswap Developer Dashboard](https://developers.uniswap.org/dashboard)
+- [Foundry Project](https://github.com/foundry-rs/foundry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate transaction previews, wallet setup steps, trading commands, balance summaries, and limit-order status guidance.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence, SKILL.md frontmatter, scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Complex document parsing with PaddleOCR. Intelligently converts complex PDFs and document images into Markdown and JSON files that preserve the original structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complex document parsing with PaddleOCR. Intelligently converts complex PDFs and document images into Markdown and JSON files that preserve the original structure.
 
-## Publisher: <br>
-[sfresurgam](https://clawhub.ai/user/sfresurgam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfresurgam](https://clawhub.ai/user/sfresurgam)
 
-## Use Case: <br>
-Developers and engineers use this skill to parse complex PDFs and document images through a configured PaddleOCR/Triton endpoint, then return extracted text, Markdown, and structured JSON for documents with tables, formulas, figures, charts, and multi-column layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are sent to the configured PaddleOCR/Triton endpoint. <br>
-Mitigation: Use a trusted local or internal endpoint for sensitive documents and confirm PADDLEOCR_DOC_PARSING_API_URL before processing. <br>
-Risk: Raw document-parsing results may be saved locally by default. <br>
-Mitigation: Use --stdout or a controlled --output path when persistence is not desired, and delete saved JSON results when they are no longer needed. <br>
-Risk: Passing untrusted document URLs to the backend can expose the endpoint to unwanted network retrievals. <br>
-Mitigation: Avoid untrusted URLs and prefer vetted local files or trusted document-hosting locations. <br>
+## Use Case:
 
+Developers and agents use this skill to parse complex PDFs and document images through a configured PaddleOCR/Triton endpoint, then return complete extracted text, Markdown, tables, formulas, and structured page JSON.
 
-## Reference(s): <br>
-- [Output Schema](references/output_schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sfresurgam/paddleocr-vl-locally) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with command examples and JSON document-parsing envelopes saved to files or printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JSON envelope includes ok, text, result, and error fields; saved results default to the system temp directory unless --output or --stdout is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The configured PaddleOCR/Triton endpoint receives complete document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when documents are intended to be sent to that endpoint, and prefer trusted, access-controlled deployments.
+
+Risk: Documents or credentials may be sent over plaintext HTTP when a non-local endpoint is configured that way.
+
+Mitigation: Use HTTPS for non-local endpoints and avoid sending access tokens or Basic Auth credentials over HTTP.
+
+Risk: Raw OCR results are saved to the system temp directory by default.
+
+Mitigation: Use --stdout or a private --output path for sensitive documents, and remove temporary result files when they are no longer needed.
+
+## Reference(s):
+
+- [PaddleOCR Document Parsing Output Schema](artifact/references/output_schema.md)
+- [ClawHub skill page](https://clawhub.ai/sfresurgam/skills/paddleocr-vl-locally)
+- [PaddleOCR](https://www.paddleocr.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON extracted from document parsing results, with shell commands and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [By default, raw JSON is saved under the system temp directory unless --stdout or --output is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

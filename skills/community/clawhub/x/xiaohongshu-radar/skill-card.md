@@ -1,43 +1,53 @@
-## Description: <br>
-Xiaohongshu Radar lets an agent run Xiaohongshu keyword searches and note-detail lookups for content planning, competitive analysis, KOL screening, and trend research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches public Xiaohongshu posts, retrieves post details, comments, creator posts and engagement metrics, and returns structured JSON for trend, competitor, creator and sentiment research.
 
-## Publisher: <br>
-[um-why](https://clawhub.ai/user/um-why) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[um-why](https://clawhub.ai/user/um-why)
 
-## Use Case: <br>
-External users, marketers, and content analysts use this command-line skill to collect public Xiaohongshu search results and note details for campaign research, content ideation, and structured reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, note URLs, and the GUAIKEI_API_TOKEN are sent to the GuaiKei API service. <br>
-Mitigation: Use only when that data sharing is acceptable, store the token as a protected credential, and rotate it if exposure is suspected. <br>
-Risk: Search and detail results are written to local log files that may contain sensitive queries or returned content. <br>
-Mitigation: Protect or delete the logs directory when outputs contain sensitive research, customer, or campaign information. <br>
-Risk: Some documentation claims are broader than the implemented search and detail commands, and one limitation line names Douyin instead of Xiaohongshu. <br>
-Mitigation: Evaluate the skill as a Xiaohongshu keyword-search and note-detail tool, and verify claims outside those implemented commands before relying on them. <br>
+## Use Case:
 
+Creators, brand teams and analysts use this skill to research public Xiaohongshu content, compare creators or competitors, and understand audience response. It requires a Guaikei API token and returns structured JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/um-why/xiaohongshu-radar) <br>
-- [Publisher profile](https://clawhub.ai/user/um-why) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON or Markdown command-line output, with JSON log files written locally] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and GUAIKEI_API_TOKEN; search output supports json or markdown, while detail output is JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: ClawScan flags possible privacy exposure when search keywords and links are sent to an external service or request details are shared with support; its analysis of 13 files is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the privacy implications before installing, use only non-sensitive public-data queries, and check request details before sharing them with support.
+
+## Reference(s):
+
+- [Guaikei service](https://www.guaikei.com)
+- [Routing guide](references/routing.md)
+- [Request and output contract](references/contract.md)
+- [Command options](references/options.md)
+- [Error guide](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured public post, comment and creator data; analysis may summarize trends, competitors and audience response.]
+
+## Skill Version(s):
+
+1.2.2 (source: evidence.release.version, SKILL.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

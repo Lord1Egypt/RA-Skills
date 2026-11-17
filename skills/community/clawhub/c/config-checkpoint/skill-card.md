@@ -1,38 +1,52 @@
-## Description: <br>
-Creates Git checkpoints and guides rollbacks for OpenClaw configuration changes while requiring checks for ignored and sensitive files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git-based version control for OpenClaw system configuration changes, including creating checkpoints before sensitive operations and rolling back when recovery is needed.
 
-## Publisher: <br>
-[welkeyever](https://clawhub.ai/user/welkeyever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[welkeyever](https://clawhub.ai/user/welkeyever)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to create Git checkpoints before configuration changes and to choose safer rollback commands when recovery is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A hard reset can permanently discard uncommitted OpenClaw configuration changes. <br>
-Mitigation: Prefer soft or mixed reset options and require explicit confirmation after showing the changes that would be lost. <br>
-Risk: A checkpoint could accidentally include credentials or other sensitive local files. <br>
-Mitigation: Verify .gitignore, scan modified and untracked paths for sensitive filenames, and prefer targeted git add commands before committing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create Git checkpoints before changing configuration, installing or removing skills, or editing core OpenClaw files. They can also use it to inspect history and roll back configuration state after a failed or unwanted change.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended to be reviewed before execution, especially rollback operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can commit broad OpenClaw configuration state, which may capture sensitive files or unwanted runtime data if exclusions are incomplete.
+
+Mitigation: Verify .gitignore before saving, scan changed files for secrets, prefer targeted git add commands, and review staged diffs before committing.
+
+Risk: Rollback workflows can invoke destructive hard resets that permanently discard uncommitted changes.
+
+Mitigation: Prefer soft or mixed resets, show exactly what would be lost, and require explicit human confirmation before any hard reset.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/welkeyever/skills/config-checkpoint)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

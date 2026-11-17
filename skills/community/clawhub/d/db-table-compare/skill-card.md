@@ -1,42 +1,58 @@
-## Description: <br>
-Compares table field differences between MySQL and ODPS databases and generates HiveSQL ALTER TABLE statements and DataX JSON field mappings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares MySQL and ODPS table schemas and generates HiveSQL ALTER TABLE statements and DataX JSON field mappings.
 
-## Publisher: <br>
-[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab)
 
-## Use Case: <br>
-Developers and data engineers use this skill to compare MySQL and ODPS table schemas, identify field differences, and prepare synchronization artifacts. It generates reviewable ALTER TABLE statements and DataX get_json_object mappings without applying DDL itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may query database schemas and SSH-accessible ODPS environments. <br>
-Mitigation: Use it only with databases and SSH hosts the user controls or is authorized to inspect, and prefer read-only credentials for schema checks. <br>
-Risk: Generated ALTER TABLE statements could make unintended schema changes if applied without review. <br>
-Mitigation: Review the generated DDL against the intended source and target environments before executing it. <br>
-Risk: Ambiguous source or target names may cause the agent to compare the wrong environment or table. <br>
-Mitigation: Provide explicit source and target environment names plus table scope for each comparison. <br>
+## Use Case:
 
+Developers and data engineers use this skill to inspect schema differences between MySQL and ODPS tables, then draft synchronization SQL and DataX JSON extraction mappings for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexmayanjun-collab/db-table-compare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with SQL, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include field comparison notes, generated ALTER TABLE statements, and DataX JSON extraction expressions for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill documents direct database and SSH access in an internal environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in authorized environments, require confirmation before connecting, and prefer dedicated read-only schema-inspection accounts.
+
+Risk: Credential examples could encourage unsafe handling of secrets.
+
+Mitigation: Replace real infrastructure details with approved placeholders and avoid putting passwords in shell commands or generated output.
+
+Risk: Generated schema synchronization statements could be incorrect or incomplete.
+
+Mitigation: Review generated ALTER TABLE and DataX mappings before applying them, and execute DDL only after explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexmayanjun-collab/skills/db-table-compare)
+- [ClawHub publisher profile](https://clawhub.ai/user/alexmayanjun-collab)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with SQL, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as reviewable proposals; DDL should be executed only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

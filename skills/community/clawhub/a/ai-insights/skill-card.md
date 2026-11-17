@@ -1,41 +1,57 @@
-## Description: <br>
-Searches and analyzes major AI events from the past N days, then generates a structured Markdown insights report covering recent AI developments, industry trends, leading vendor news, and policy changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Insights searches recent AI news, analyzes major events across industry, technology, companies, and policy, and produces a structured Markdown insight report.
 
-## Publisher: <br>
-[neverland83](https://clawhub.ai/user/neverland83) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverland83](https://clawhub.ai/user/neverland83)
 
-## Use Case: <br>
-External users, analysts, and teams use this skill to produce concise AI news and trend reports over a requested time window. It is useful for weekly briefings, recent AI market scans, and summaries of technical, commercial, and policy developments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated news summaries, trend interpretations, and numeric claims can be inaccurate or stale. <br>
-Mitigation: Review generated reports and cited sources before sharing or making decisions from the content. <br>
-Risk: The optional cron or push workflow can send reports on a schedule or to a channel the user did not intend. <br>
-Mitigation: Enable scheduled delivery only after explicitly choosing the schedule, destination, and any operational limits. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to generate concise Chinese-language AI industry reports for a user-selected recent time window. It is intended for tracking major AI news, industry trends, leading company updates, policy changes, and other high-impact events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neverland83/ai-insights) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/neverland83) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance, configuration] <br>
-**Output Format:** [Markdown report file with a short delivery summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a dated report under ./artifacts/ai-insights-report/ and may include optional scheduling configuration when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: Web search results can include incomplete, low-quality, outdated, or duplicated AI news.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before relying on them, prefer authoritative sources, preserve source links, and mark uncertain claims clearly.
+
+Risk: The skill writes Markdown reports to a fixed local artifacts directory.
+
+Mitigation: Run it in an expected workspace and review generated files before sharing or committing them.
+
+Risk: Optional cron-based daily push can create recurring searches and reports.
+
+Mitigation: Enable scheduled execution only when recurring report generation is intended and the destination channel is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neverland83/skills/ai-insights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown report file with a brief text summary and optional cron-style scheduling configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under ./artifacts/ai-insights-report/ using timestamped Markdown filenames.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

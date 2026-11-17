@@ -1,43 +1,52 @@
-## Description: <br>
-Helps agents review, validate, and package a local skill for handoff or publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete local skill package to assess and potentially publish.
 
-## Publisher: <br>
-[li-chi](https://clawhub.ai/user/li-chi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-chi](https://clawhub.ai/user/li-chi)
 
-## Use Case: <br>
-Developers and maintainers use this skill to review metadata, check required package files, and prepare a local skill archive before handoff or publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release name suggests incident triage, while the artifact content behaves as a local skill validation and packaging helper. <br>
-Mitigation: Confirm the intended package before installation and revise the release metadata or artifact contents if incident triage behavior is required. <br>
-Risk: The artifact includes local shell scripts that validate package files and create an archive. <br>
-Mitigation: Review scripts/validate.sh and scripts/package.sh before execution, and run them only in a local workspace containing the expected package files. <br>
+## Use Case:
 
+Developers and reviewers use this skill to check a local skill package, record assessment notes, validate required files, and prepare a publication request or archive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/li-chi/incident-triage-helper) <br>
-- [README](artifact/README.md) <br>
-- [Review Checklist](artifact/docs/review-checklist.md) <br>
-- [Assessment Notes](artifact/docs/assessment-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown with inline shell commands and local file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local tar.gz package archive when the packaging script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: Included shell scripts validate package contents and create a local archive, which could behave unexpectedly if reused in a different package context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/package.sh and scripts/validate.sh before running them outside this artifact, and run them only in a trusted local checkout.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/li-chi/skills/incident-triage-helper)
+- [Review Checklist](artifact/docs/review-checklist.md)
+- [Assessment Notes](artifact/docs/assessment-notes.md)
+- [Publish Request Template](artifact/templates/publish-request.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or validate a local tar.gz package when the included scripts are run.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

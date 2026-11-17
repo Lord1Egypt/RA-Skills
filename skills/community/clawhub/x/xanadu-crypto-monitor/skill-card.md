@@ -1,43 +1,57 @@
-## Description: <br>
-Monitor cryptocurrency prices, set customizable price alerts, track large whale transactions, analyze on-chain metrics, and manage crypto portfolios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CLI workflows for cryptocurrency prices, price alerts, on-chain market metrics, and portfolio tracking, with whale tracking noted as requiring additional blockchain API support.
 
-## Publisher: <br>
-[saintlittlefish](https://clawhub.ai/user/saintlittlefish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saintlittlefish](https://clawhub.ai/user/saintlittlefish)
 
-## Use Case: <br>
-External users and developers use this skill to monitor cryptocurrency market data, create price alerts, inspect whale and on-chain activity, and track portfolio holdings from an agent-assisted workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled billing code includes an exposed SkillPay key and mismatched product references. <br>
-Mitigation: Treat the key as compromised, remove or rotate it before use, and require clear user approval before any charge flow is enabled. <br>
-Risk: Portfolio holdings and alert details may be stored locally under ~/.openclaw/crypto-monitor. <br>
-Mitigation: Use the skill only on trusted systems and avoid storing sensitive financial details unless local data handling is acceptable. <br>
-Risk: The server security verdict marks this release suspicious pending review. <br>
-Mitigation: Review the package before installing and verify billing, data storage, and network behavior before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/saintlittlefish/xanadu-crypto-monitor) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3) <br>
-- [SkillPay API](https://api.skillpay.me/v1) <br>
+## Use Case:
 
+External users and developers use this skill to run crypto market-monitoring commands, configure local alerts, review market and on-chain metrics, and track simple portfolio holdings from public APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON data files when commands are executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores alerts and portfolio data under ~/.openclaw/crypto-monitor when the bundled scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact includes a billing module with an exposed SkillPay key and weak user-control boundaries.
+
+Mitigation: Remove or fix the billing files before use, rotate the exposed key, and require explicit user confirmation plus server-side authorization before any charge.
+
+Risk: Alerts and portfolio holdings are stored locally, which can reveal user trading interests or holdings on a shared system.
+
+Mitigation: Document the local storage path and advise users to protect, inspect, or delete ~/.openclaw/crypto-monitor data according to their privacy requirements.
+
+Risk: Market and on-chain outputs depend on public API availability and may be delayed, incomplete, or unavailable under rate limits.
+
+Mitigation: Treat outputs as informational monitoring data and verify important trading or operational decisions against trusted sources.
+
+## Reference(s):
+
+- [Xanadu Crypto Monitor on ClawHub](https://clawhub.ai/saintlittlefish/skills/xanadu-crypto-monitor)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON alert and portfolio files under ~/.openclaw/crypto-monitor when commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

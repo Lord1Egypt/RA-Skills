@@ -1,45 +1,69 @@
-## Description: <br>
-Use CallMyCall API to start, end, and check AI phone calls, and return results in chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CallMyCall API to start, end, and check AI phone calls, and return results in chat.
 
-## Publisher: <br>
-[BenjaminWaye](https://clawhub.ai/user/BenjaminWaye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benjaminwaye](https://clawhub.ai/user/benjaminwaye)
 
-## Use Case: <br>
-External OpenClaw users use this skill to operate CallMyCall from chat: preparing outbound call briefs, placing or ending calls after confirmation, checking recent call status, and retrieving results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place and end real phone calls through a user's CallMyCall account, and its repeated-calling workflow needs explicit operational limits. <br>
-Mitigation: Require human confirmation before placing calls, use a limited API key where possible, verify the API endpoint, and set maximum attempts and intervals for retry-until-answered requests. <br>
-Risk: Call briefs, transcripts, and recording URLs may contain sensitive information. <br>
-Mitigation: Avoid unnecessary sensitive details in call briefs, show transcript excerpts only when explicitly requested, and warn users before sharing recording URLs. <br>
-Risk: API keys could be exposed or persisted unintentionally if handled outside the documented flow. <br>
-Mitigation: Resolve keys from the environment, user config, or a one-time prompt; never echo keys; do not write config automatically; and do not store keys in call state. <br>
+## Use Case:
 
+External users and operators use this skill to place, end, monitor, and retrieve results for CallMyCall AI phone calls from an OpenClaw chat session after reviewing the call details and confirming execution.
 
-## Reference(s): <br>
-- [CallMyCall API Reference](references/api.md) <br>
-- [Auth and Config](docs/auth-config.md) <br>
-- [Event Updates for Pull-Based CallMyCall](docs/event-updates.md) <br>
-- [CallMyCall API homepage](https://api.callmycall.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API call results, Configuration guidance] <br>
-**Output Format:** [Markdown chat responses with call IDs, statuses, summaries, transcript excerpts, recording links, and configuration instructions when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a recent-calls state list for in-session follow-up and fetches transcripts or recordings only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Outbound calls can contact the wrong person, caller ID, emergency, or premium number.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review phone number, caller ID, call goal, and call brief before confirmation; validate E.164 formatting and block emergency or premium numbers before execution.
+
+Risk: Recordings, transcripts, phone numbers, and call goals may contain sensitive personal data.
+
+Mitigation: Show transcript excerpts only on explicit request, warn before exposing recording URLs, and apply consent and retention controls appropriate to the call.
+
+Risk: The CallMyCall API key can be exposed if copied into source files, chat output, logs, or call state.
+
+Mitigation: Keep the API key in an environment variable or user config, do not echo it, and do not store it in skill files or recent call state.
+
+Risk: Optional webhooks and PII fields can send sensitive data to destinations the user did not intend.
+
+Mitigation: Avoid optional webhooks and PII fields unless the user has a clear need and trusts the destination.
+
+Risk: A scheduled-call request could be mistaken for an autonomous background job.
+
+Mitigation: Prepare only an in-session call plan and require the user to return and explicitly confirm execution; do not create cron, launchd, task scheduler, or background runs.
+
+## Reference(s):
+
+- [CallMyCall API portal](https://api.callmycall.com)
+- [CallMyCall API Reference](references/api.md)
+- [Auth and Config](docs/auth-config.md)
+- [Event Updates for Pull-Based CallMyCall](docs/event-updates.md)
+- [Example Prompts](examples/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration guidance]
+
+**Output Format:** [Markdown status summaries, call plans, and concise call result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CALLMYCALL_API_KEY and explicit user confirmation before placing outbound calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

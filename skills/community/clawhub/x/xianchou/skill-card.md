@@ -1,47 +1,68 @@
-## Description: <br>
-Guides an agent to use the Xianchou CLI for Markdown/MDX image insertion, AI image generation, AI video generation, model discovery, task polling, and Xianchou upload workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xianchou CLI guides agents to generate images and videos through Xianchou's CLI API and to insert generated images into Markdown or MDX documents.
 
-## Publisher: <br>
-[starlying](https://clawhub.ai/user/starlying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[starlying](https://clawhub.ai/user/starlying)
 
-## Use Case: <br>
-Developers, agents, and content authors use this skill to configure and run Xianchou CLI commands that generate images or videos, upload local media, and insert generated assets into Markdown or MDX documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown-derived content and reference media may be uploaded to Xianchou's remote AI media service, and returned asset URLs may be public. <br>
-Mitigation: Do not pass private images, videos, audio, or sensitive Markdown content unless remote upload and public asset URLs are acceptable. <br>
-Risk: Using Markdown image generation with write-back can modify source Markdown or MDX files. <br>
-Mitigation: Review generated changes before using or accepting commands that include --write. <br>
+## Use Case:
 
+Developers, content authors, and external agents use this skill to configure and operate the Xianchou CLI for AI image generation, AI video generation, file upload, task polling, and Markdown or MDX image insertion.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/starlying/xianchou) <br>
-- [Xianchou Homepage](https://xianchou.com) <br>
-- [Xianchou CLI npm Package](https://www.npmjs.com/package/@xianchou/cli) <br>
-- [CLI Command Guide](references/cli-command-guide.md) <br>
-- [API Generation Guide](references/api-generation-guide.md) <br>
-- [Markdown Image Guide](references/markdown-image-guide.md) <br>
-- [API Contract Guide](references/api-contract-guide.md) <br>
-- [Common Pitfalls](references/common-pitfalls.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose CLI commands that upload local files, poll remote tasks, download generated assets, or write changes to Markdown/MDX files when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill relies on a globally installed, unpinned @xianchou/cli package that handles credentials and local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted reviewed CLI version, prefer pinning the package version, and avoid running the CLI with elevated privileges.
+
+Risk: Xianchou access keys and project IDs are used for remote generation and upload workflows.
+
+Mitigation: Use a limited project access key, store credentials only in the documented config path or environment variables, and rotate credentials if exposure is suspected.
+
+Risk: Local image, video, or audio files may be uploaded and returned as publicly accessible URLs.
+
+Mitigation: Avoid uploading sensitive local media and review file paths before invoking generate or upload commands.
+
+Risk: Markdown or MDX content can be modified when the --write flag is used.
+
+Mitigation: Review dry-run output first and use version control or backups before writing generated image references into source documents.
+
+## Reference(s):
+
+- [Xianchou CLI skill page](https://clawhub.ai/starlying/skills/xianchou)
+- [Xianchou homepage](https://xianchou.com)
+- [Xianchou CLI npm package](https://www.npmjs.com/package/@xianchou/cli)
+- [CLI command guide](references/cli-command-guide.md)
+- [API generation guide](references/api-generation-guide.md)
+- [Markdown image guide](references/markdown-image-guide.md)
+- [API contract guide](references/api-contract-guide.md)
+- [Common pitfalls](references/common-pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate and upload media assets, poll remote tasks, and write changes to Markdown or MDX files only when the --write flag is used.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

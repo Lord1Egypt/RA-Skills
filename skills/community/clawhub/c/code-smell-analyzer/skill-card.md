@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes code for improvements including code smells, design patterns, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes code for improvements including code smells, design patterns, and best practices.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-Developers and engineers use this skill during code review or refactoring work to identify maintainability, readability, design-pattern, and performance improvements while preserving existing behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incorrect or overly broad code-quality recommendations. <br>
-Mitigation: Review suggested changes against the project's tests, conventions, and intended behavior before applying them. <br>
-Risk: The skill is a maintainability helper and should not be treated as a security audit. <br>
-Mitigation: Use dedicated security review and scanning processes for security-sensitive code changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to review code quality and receive prioritized suggestions for readability, maintainability, refactoring, design patterns, and performance while preserving functionality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/code-smell-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, guidance] <br>
-**Output Format:** [Markdown with issue descriptions, code examples, rationale, and priority labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Suggestions should be reviewed before applying because the skill provides maintainability guidance rather than a security audit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Code-quality suggestions may be incomplete or unsuitable for the project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggestions against project conventions, tests, and expected behavior before applying changes.
+
+Risk: Broad code-review routing may be mistaken for dedicated security or debugging review.
+
+Mitigation: Use separate security or debugging review instructions when those assurances are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/code-smell-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown analysis with code snippets and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current code, suggested improvement, rationale, and priority.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

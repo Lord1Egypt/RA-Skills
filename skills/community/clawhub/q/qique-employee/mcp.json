@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "qique_employee": {
+      "command": "${QIQUE_NODE_EXECUTABLE}",
+      "args": [
+        "${QIQUE_EMPLOYEE_RUNTIME_DIR}/mcp/server.cjs"
+      ]
+    }
+  }
+}

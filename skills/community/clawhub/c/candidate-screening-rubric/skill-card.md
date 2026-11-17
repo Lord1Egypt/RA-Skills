@@ -1,40 +1,56 @@
-## Description: <br>
-Screens candidate materials against a job description with evidence-cited scoring, bias checks, and a draft Advance/Hold/Decline verdict with targeted follow-up questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps recruiters, hiring managers, and talent partners screen a candidate against a job description with evidence-cited requirement scoring, bias checks, an Advance/Hold/Decline draft verdict, and structured follow-up interview questions.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Recruiters, hiring managers, and talent partners use this skill to turn a job description and candidate materials into a consistent screening rubric suitable for hiring-team review and ATS attachment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Candidate materials may include sensitive personal information.
+
+Mitigation: Use only candidate information the user is allowed to process and redact direct identifiers where possible before sharing or storing outputs.
+
+Risk: A screening verdict could be mistaken for an automated employment decision.
+
+Mitigation: Treat Advance/Hold/Decline as a draft screening aid and require human hiring-team review before any decision.
+
+Risk: Screening rationales can reflect bias if they rely on demographic signals, employer brand, school name, or unsupported assumptions.
+
+Mitigation: Use evidence-cited scoring, run the built-in bias and fairness check, and keep final evaluation tied to structured interviews and panel review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Recruiters, hiring managers, and talent partners use this skill to turn a job description and candidate materials into a structured screening rubric that can be reviewed by a hiring team and attached to a candidate record. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate materials may include direct identifiers or protected-characteristic signals that could bias screening or be stored unnecessarily. <br>
-Mitigation: Redact names, emails, phone numbers, exact addresses, photos, and other direct identifiers where possible, and score only cited job-related evidence. <br>
-Risk: A draft rubric verdict could be mistaken for an automated hiring decision. <br>
-Mitigation: Treat outputs as structured aids for human review; final decisions should use panel calibration and structured interviews based on the cited gaps. <br>
+**Output Format:** [Markdown screening rubric with tables, cited evidence, a draft verdict, and numbered follow-up interview questions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/candidate-screening-rubric) <br>
+**Other Properties Related to Output:** [Draft screening aid for human hiring-team review; not an automated employment decision.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown screening rubric with tables, cited evidence, verdict rationale, and structured next-round questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft screening aid for human hiring-team review; it does not execute code or take external actions.] <br>
+0.1.2 (source: server release evidence and CHANGELOG, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and CHANGELOG, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

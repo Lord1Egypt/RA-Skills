@@ -1,40 +1,49 @@
-## Description: <br>
-Full podcast post-production pipeline that turns a transcript or episode URL into show notes, chapter markers, social media clips, SEO metadata, and a newsletter summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Podcast Workflow turns a transcript or audio URL into show notes, chapter markers, social media clips, SEO metadata, and a newsletter summary in one structured response.
 
-## Publisher: <br>
-[ash2hsa](https://clawhub.ai/user/ash2hsa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ash2hsa](https://clawhub.ai/user/ash2hsa)
 
-## Use Case: <br>
-Podcasters, editors, marketers, and agent users use this skill to convert a transcript or public episode URL into publishing-ready podcast assets. It is intended for post-production workflows that need show notes, chapters, social posts, SEO fields, and newsletter copy from the same source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Episode URLs may be fetched over the network and could expose private, internal, paywalled, or confidential content if supplied. <br>
-Mitigation: Use pasted transcripts or public episode URLs, and avoid private company links, localhost or internal URLs, paywalled content, and confidential transcripts unless that processing is approved. <br>
+## Use Case:
 
+External creators, podcasters, and content teams use this skill to convert episode transcripts or public episode URLs into publish-ready podcast marketing assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ash2hsa/podcast-workflow) <br>
-- [Podcast Workflow README](artifact/README.md) <br>
-- [Example output](artifact/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured text sections, timestamp lists, and plain-text social posts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use curl to fetch public episode pages when a URL is provided; no API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may fetch arbitrary user-provided podcast, video, RSS, or transcript URLs with curl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public URLs intended for agent access; avoid private links, internal services, authenticated pages, local file URLs, and confidential transcripts unless URL-fetching protections are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ash2hsa/skills/podcast-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Structured Markdown with timestamp lists, social post text, SEO fields, and newsletter copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use curl to fetch public podcast, video, RSS, or transcript pages when the user provides a URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Mofang Records helps agents use a bundled Node.js CLI to manage Magicflu/Mofang web-table records and BPM workflow tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage Magicflu/Mofang web-table records and BPM workflow tasks through the bundled CLI.
 
-## Publisher: <br>
-[magicscape](https://clawhub.ai/user/magicscape) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicscape](https://clawhub.ai/user/magicscape)
 
-## Use Case: <br>
-Developers, operations teams, and agents use this skill to list spaces and forms, inspect field definitions, query or change records, and act on BPM tasks in Magicflu/Mofang environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, complete, delegate, claim, jump, and transact on records or BPM tasks. <br>
-Mitigation: Require explicit review of record IDs, task IDs, targets, and consequences before write, delete, BPM, or transaction operations. <br>
-Risk: The skill needs Magicflu/Mofang server credentials. <br>
-Mitigation: Use a dedicated least-privilege account and keep passwords in a secure environment or secret store rather than a shared .env file. <br>
-Risk: Ambiguous space or form names can target the wrong data. <br>
-Mitigation: Prefer read-only discovery first, pass spaceHint when available, and inspect field definitions before create or update operations. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Magicflu/Mofang spaces and forms, manage table records, and perform BPM workflow actions through a Node.js CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicscape/mofang-records) <br>
-- [Publisher profile](https://clawhub.ai/user/magicscape) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands return JSON with success, message, and data fields; write, delete, and BPM actions require explicit review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release evidence) <br>
+Risk: The skill uses business credentials for powerful record and BPM workflow actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted Magicflu/Mofang server and a narrowly scoped non-admin account, and require explicit human confirmation before deletes or BPM workflow changes.
+
+Risk: Insecure HTTP endpoints could expose credentials.
+
+Mitigation: Configure an HTTPS BASE_URL whenever possible.
+
+Risk: Recent space and form aliases may be stored locally under ~/.mofang-skills.
+
+Mitigation: Use the skill on trusted hosts and clear the local cache when the environment is shared or decommissioned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicscape/skills/mofang-records)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown text with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands return JSON payloads from the configured Magicflu/Mofang service.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release metadata; artifact manifests report 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

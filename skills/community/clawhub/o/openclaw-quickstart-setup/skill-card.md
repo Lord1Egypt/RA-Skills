@@ -1,45 +1,52 @@
-## Description: <br>
-OpenClaw Quickstart Setup helps agents guide users through installing OpenClaw, hardening gateway settings, configuring model routing and channels, and enabling starter cron workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete OpenClaw setup automation skill that guides gateway installation, security hardening, model routing, channel setup, and starter workflow configuration.
 
-## Publisher: <br>
-[sepulchralvoid666](https://clawhub.ai/user/sepulchralvoid666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sepulchralvoid666](https://clawhub.ai/user/sepulchralvoid666)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to set up OpenClaw, apply baseline gateway security, configure model routing, connect messaging channels, and deploy starter automations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent main-session automations and messaging or mailbox integrations may operate with broad access and limited user-control safeguards.
+
+Mitigation: Use pinned and verified OpenClaw and skill versions, prefer read-only and revocable credentials, and add approval, isolation, auditing, and a clear disable path before enabling main-session cron examples.
+
+Risk: The security verdict is suspicious even though no specific risk findings were listed.
+
+Mitigation: Review the skill carefully before installation and avoid granting calendar, mailbox, or messaging permissions until each integration's access scope is understood.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to bootstrap an OpenClaw deployment, configure safer local gateway defaults, connect messaging channels, and add starter automations for daily briefs, email triage, and heartbeat checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cron workflows can continue acting after initial setup if their scope and shutdown process are not defined. <br>
-Mitigation: Enable cron workflows only after documenting allowed actions, session targets, monitoring expectations, and a clear stop or disable procedure. <br>
-Risk: Messaging and email integrations can expose sensitive accounts or broad OAuth/API scopes. <br>
-Mitigation: Use dedicated bot and email accounts where possible, restrict scopes to the minimum needed, protect tokens, and test integrations with non-sensitive data first. <br>
-Risk: The skill asks users to install related skills such as wacli and maton. <br>
-Mitigation: Verify those skills separately before installation and only allow reviewed skills in the OpenClaw configuration. <br>
-Risk: Gateway exposure or weak authentication could make an OpenClaw instance reachable by unintended parties. <br>
-Mitigation: Bind the gateway to 127.0.0.1, enable authentication, and use a private access layer such as Tailscale for remote access. <br>
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [OpenClaw Quickstart Setup on ClawHub](https://clawhub.ai/sepulchralvoid666/openclaw-quickstart-setup) <br>
-- [Publisher profile on ClawHub](https://clawhub.ai/user/sepulchralvoid666) <br>
+**Other Properties Related to Output:** [Setup guidance includes prerequisite checks, OpenClaw commands, configuration examples, workflow snippets, and verification steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps, configuration snippets, verification commands, troubleshooting guidance, and security cautions.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

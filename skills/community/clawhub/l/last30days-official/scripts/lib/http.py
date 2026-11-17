@@ -38,7 +38,6 @@ def request(
     url: str,
     headers: Optional[Dict[str, str]] = None,
     json_data: Optional[Dict[str, Any]] = None,
-    params: Optional[Dict[str, Any]] = None,
     timeout: int = DEFAULT_TIMEOUT,
     retries: int = MAX_RETRIES,
     max_429_retries: int = MAX_429_RETRIES,
@@ -51,8 +50,6 @@ def request(
         url: Request URL
         headers: Optional headers dict
         json_data: Optional JSON body (for POST)
-        params: Optional query-string params. Values are stringified. None values
-            are dropped. If ``url`` already has a query string, ``params`` is appended.
         timeout: Request timeout in seconds
         retries: Number of retries on failure
         max_429_retries: Maximum 429 retries before giving up (separate cap)
@@ -66,12 +63,6 @@ def request(
     """
     headers = headers or {}
     headers.setdefault("User-Agent", USER_AGENT)
-
-    if params:
-        filtered = {k: str(v) for k, v in params.items() if v is not None}
-        if filtered:
-            separator = "&" if ("?" in url) else "?"
-            url = f"{url}{separator}{urlencode(filtered)}"
 
     data = None
     if json_data is not None:
@@ -164,14 +155,6 @@ def post(url: str, json_data: Dict[str, Any], headers: Optional[Dict[str, str]] 
 def post_raw(url: str, json_data: Dict[str, Any], headers: Optional[Dict[str, str]] = None, **kwargs) -> str:
     """Make a POST request with JSON body and return raw text."""
     return request("POST", url, headers=headers, json_data=json_data, raw=True, **kwargs)
-
-
-def scrapecreators_headers(token: str) -> Dict[str, str]:
-    """Build ScrapeCreators request headers (x-api-key + JSON content type)."""
-    return {
-        "x-api-key": token,
-        "Content-Type": "application/json",
-    }
 
 
 def get_reddit_json(path: str, timeout: int = DEFAULT_TIMEOUT, retries: int = MAX_RETRIES) -> Dict[str, Any]:

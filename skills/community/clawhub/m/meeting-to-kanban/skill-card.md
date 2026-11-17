@@ -1,43 +1,58 @@
-## Description: <br>
-Convert meeting notes or transcripts into a clean Kanban board with owners, due dates, blockers, and next actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert meeting notes or transcripts into a clean Kanban board with owners, due dates, blockers, and next actions.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, project managers, and team leads use this skill to turn meeting notes or transcripts into action-oriented Kanban outputs, including owners, due dates, blockers, and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may omit owners, due dates, or context needed for a reliable board. <br>
-Mitigation: Mark missing fields as unresolved and ask only for the minimum clarification needed. <br>
-Risk: Generated task boards may be mistaken for final commitments or official records. <br>
-Mitigation: Return a preview or draft first and keep assumptions explicit before downstream use. <br>
-Risk: The helper script writes a CSV output path supplied by the user. <br>
-Mitigation: Use explicit input and output paths and avoid overwriting existing files without confirmation. <br>
+## Use Case:
 
+Employees, external collaborators, and project teams use this skill to turn meeting notes or transcripts into an actionable Kanban board with owners, due dates, blockers, and open questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/meeting-to-kanban) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CSV-style task tables and optional local CSV file generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses explicit meeting input and optional board-column schema; missing owners, dates, or facts should be marked unresolved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: Meeting content and generated CSVs may be untrusted, especially when received from other people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated board content before sharing it and treat exported files as untrusted inputs.
+
+Risk: CSV cells derived from meeting text could be interpreted by spreadsheet software as formulas.
+
+Mitigation: Sanitize formula-prefixed values before opening exported CSVs in spreadsheet applications.
+
+Risk: The local Python helper reads a user-specified JSON file and writes a CSV file.
+
+Mitigation: Run it only against intended input paths and choose an explicit output path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/meeting-to-kanban)
+- [ClawHub publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional CSV output from a local Python helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a Kanban CSV, manager summary, owners and due dates table, and open questions list.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

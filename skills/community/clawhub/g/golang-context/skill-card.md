@@ -1,43 +1,58 @@
-## Description: <br>
-Guides AI coding agents on idiomatic Go context.Context usage, including propagation, cancellation, timeouts, deadlines, request-scoped values, and context.WithoutCancel for background work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Idiomatic context.Context usage in Golang \u2014 propagation through API boundaries, cancellation, timeouts and deadlines, request-scoped values, context.WithoutCancel for background work outliving requests.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill when designing or reviewing Go code that must propagate context across HTTP handlers, services, databases, external calls, goroutines, and tracing boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release has broad coding-tool permissions and server capability tags that appear unrelated to the documentation-only skill content. <br>
-Mitigation: Review permissions and displayed capability tags before deployment; rely on the documented Go context guidance rather than the unrelated tags. <br>
+## Use Case:
 
+Developers and engineers use this skill when designing, reviewing, or debugging Go context propagation across HTTP handlers, service layers, databases, external API calls, goroutines, cancellation paths, and request-scoped values.
 
-## Reference(s): <br>
-- [Cancellation, Timeouts & Deadlines](references/cancellation.md) <br>
-- [Context in HTTP Servers & Service Calls](references/http-services.md) <br>
-- [Context Values & Cross-Service Tracing](references/values-tracing.md) <br>
-- [Project homepage](https://github.com/samber/cc-skills-golang) <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-context) <br>
-- [Publisher profile](https://clawhub.ai/user/samber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Go code examples and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; requires the Go toolchain when commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill requests broad git and agent permissions beyond what its Go context guidance normally requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing requested permissions, and prefer a release with git access narrowed to read-only commands or removed and Agent access removed unless delegation is required.
+
+Risk: Generated guidance or file edits could introduce incorrect context propagation, cancellation, timeout, or request-value patterns into Go code.
+
+Mitigation: Review proposed changes before applying them and run Go tests, static analysis, and relevant linters such as govet or staticcheck.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-context)
+- [Publisher profile](https://clawhub.ai/user/samber)
+- [Cancellation, Timeouts & Deadlines](references/cancellation.md)
+- [Context in HTTP Servers & Service Calls](references/http-services.md)
+- [Context Values & Cross-Service Tracing](references/values-tracing.md)
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Go code examples and occasional shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Go source files and may propose edits to project files.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

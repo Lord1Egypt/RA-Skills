@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-calendar-manager",
-  "version": "1.0.0",
-  "publishedAt": 1776432582533
-}
+{"name":"calendar-manager","version":"1.0.0","author":"小鸣 🦞","tags":["calendar","schedule","event","reminder"],"requires":{"bins":["curl"]}}

@@ -1,45 +1,64 @@
-## Description: <br>
-Generates repository-facing AI guidance, including AGENTS.md and supporting coding style and architecture documentation, so coding agents can understand, build, test, and navigate a project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a concise AGENTS.md project guide for coding agents, including project overview, quick start, architecture, coding standards, local validation, and documentation navigation.
 
-## Publisher: <br>
-[linuxcer](https://clawhub.ai/user/linuxcer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuxcer](https://clawhub.ai/user/linuxcer)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create or refresh AI-facing project guidance for repositories, including AGENTS.md, coding-style notes, architecture notes, and documentation navigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace CLAUDE.md with a symlink to AGENTS.md, which may overwrite existing repository-specific agent instructions. <br>
-Mitigation: Check whether CLAUDE.md already exists and require a reviewed diff or explicit confirmation before allowing symlink creation or file updates. <br>
-Risk: The skill reads representative source files and edits repository documentation, which can introduce inaccurate guidance if run without review. <br>
-Mitigation: Run it only on intended repositories and review generated or merged documentation before relying on it. <br>
+## Use Case:
 
+Developers and coding agents use this skill to create or update repository-facing AI guidance so an agent can understand the project, follow local standards, and verify changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuxcer/agentsmd-creator) <br>
-- [Community coding standards](artifact/references/community-standards.md) <br>
-- [AGENTS.md template](artifact/references/template.md) <br>
-- [Programming principles](artifact/references/principles.md) <br>
-- [Programming principle examples](artifact/references/examples.md) <br>
-- [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files and concise status text with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets AGENTS.md under 200 lines and may create or update docs/CODING_STYLE.md, docs/ARCHITECTURE.md, and a CLAUDE.md symlink.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can silently replace an existing CLAUDE.md file with a symlink.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running it, check whether CLAUDE.md already exists and require the agent to preserve it instead of using ln -sf or replacing it automatically.
+
+Risk: The skill changes more files than its headline AGENTS.md output suggests.
+
+Mitigation: Review the planned changes to AGENTS.md, docs/CODING_STYLE.md, docs/ARCHITECTURE.md, and CLAUDE.md before accepting generated edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuxcer/skills/agentsmd-creator)
+- [Community standards reference](references/community-standards.md)
+- [Programming principles reference](references/principles.md)
+- [Programming principles examples](references/examples.md)
+- [AGENTS.md template](references/template.md)
+- [Effective Go](https://go.dev/doc/effective_go)
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+- [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
+- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+- [Microsoft .NET Naming Conventions](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with inline shell commands and documentation links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets AGENTS.md at 200 lines or fewer and may also update docs/CODING_STYLE.md, docs/ARCHITECTURE.md, and CLAUDE.md compatibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

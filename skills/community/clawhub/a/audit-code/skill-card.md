@@ -1,40 +1,53 @@
-## Description: <br>
-Security-focused code review for hardcoded secrets, dangerous calls, and common vulnerabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-focused code review for hardcoded secrets, dangerous calls, and common vulnerabilities.
 
-## Publisher: <br>
-[itsnishi](https://clawhub.ai/user/itsnishi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itsnishi](https://clawhub.ai/user/itsnishi)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan project repositories before commits, pull request reviews, periodic audits, or after AI-assisted code generation. It reports hardcoded secrets, dangerous calls, SQL injection patterns, dependency risks, sensitive files, permissive file modes, and exfiltration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads selected project files, including .env-like files, and may print matched snippets in its report. <br>
-Mitigation: Run it only on repositories whose contents can be reviewed in the agent session, and handle generated reports as potentially sensitive. <br>
-Risk: Detected pip and npm package names may be checked against public package registries. <br>
-Mitigation: Avoid or network-restrict the skill for confidential repositories where private package names must not be sent to PyPI or npm. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan project code before commits, pull request reviews, periodic audits, or after AI-assisted code generation. It reports likely secrets, dangerous calls, dependency risks, sensitive files, file-permission issues, and exfiltration patterns with remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itsnishi/audit-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with severity-ranked findings, file locations, matched patterns, and remediation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scans local source files up to 1 MB each and may verify detected pip or npm package names against public registries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill scans the selected project tree, including .env-like files, and its report may display matched secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on projects you are authorized to audit, treat reports as sensitive, and redact or rotate exposed credentials before sharing results.
+
+Risk: Package install names found in code may be checked against PyPI or npm over the network.
+
+Mitigation: Run it in an environment where outbound registry lookups are acceptable, or manually review package findings when network access is restricted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itsnishi/skills/audit-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown security audit report with severity-ranked findings, file locations, matched patterns, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include sensitive matched text from scanned files; treat output as sensitive.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

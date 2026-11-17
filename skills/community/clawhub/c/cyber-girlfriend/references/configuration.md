@@ -21,7 +21,7 @@ For first-time setup, keep this split strict:
 - `config.local.json` stores profile paths, delivery, pacing policy, runtime paths, and optional long-lived source toggles
 - `character-profile.md` stores the companion's core identity, tone, relationship expression, interests, and lived anchors
 - `life_schedule.day_schedule.required_events` stores stable user-defined life anchors
-- presence cron payloads store only the current runner chain, not long prompt prose
+- presence automation payloads store only an exact wrapper argv, not prompt prose
 - generated state files store derived rhythm, continuity, and current day schedules
 
 Do not turn `config.local.json` into a dump of prompt prose.
@@ -192,7 +192,7 @@ Suggested fields:
 - `cron_jobs_file`
 - `jobs_list_command`
 
-`sessions_store_path` is used for runtime state inspection and compatibility. Current `companion-presence` runs from an isolated cron session that calls `companion_presence_tick.py`; the wrapper starts the stable companion runtime session only after fresh prepare matches an event. Media events start OpenClaw async generation, and the wrapper also starts `companion_presence_tick.py --watch-recent-media-task` so generated media is sent through the explicit `delivery_contract` after the media task succeeds. Event state is committed after the text presence story is visibly sent, not after media success.
+`sessions_store_path` is used for runtime state inspection and compatibility. On OpenClaw versions with command automations, current `companion-presence` uses an isolated exact argv command payload to call `companion_presence_tick.py`; the wrapper derives a fresh dispatch-scoped companion session only after fresh prepare matches an event. Media events start OpenClaw async generation, and the wrapper also starts `companion_presence_tick.py --watch-recent-media-task` so generated media is sent through the explicit `delivery_contract` after the media task succeeds. Event state is committed after the text presence story is visibly sent, not after media success.
 
 中文说明：异步媒体补发由 wrapper 后台 `--watch-recent-media-task` 自动等待任务完成并显式发送；原生 completion 不再是正确渠道投递的主路径，避免 runtime 把 current chat 误解为 Codex `internal-ui`。
 
@@ -253,4 +253,4 @@ Before calling setup complete, the generated local config must be materialized:
 For a fresh install, pair this file with [first-time-setup.md](./first-time-setup.md):
 
 - this file defines where fields belong
-- `first-time-setup.md` defines what to ask, what to default, and what should stay in presence cron instead of config
+- `first-time-setup.md` defines what to ask, what to default, and what should stay in the presence automation instead of config

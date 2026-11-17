@@ -1,43 +1,55 @@
-## Description: <br>
-Real-time market data, portfolio tracking, trade journaling, screening, and news for stocks, crypto, ETFs, commodities, and forex - no API key required to start. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve market data and support research for stocks, crypto, ETFs, commodities, and forex, with explicitly confirmed portfolio, journal, and watchlist workflows through mkts.io.
 
-## Publisher: <br>
-[sdliriano](https://clawhub.ai/user/sdliriano) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdliriano](https://clawhub.ai/user/sdliriano)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve market data, screen assets, compare tickers, summarize financial news, and manage portfolio, journal, and watchlist records through mkts.io API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market queries and portfolio, journal, or watchlist content may be sent to mkts.io. <br>
-Mitigation: Send only the data needed for the user request, avoid unnecessary private details, and confirm before transmitting sensitive portfolio or journal content. <br>
-Risk: Portfolio, journal, and watchlist endpoints can create, update, delete, or clear user records. <br>
-Mitigation: Treat POST, PATCH, and DELETE commands as state-changing operations; confirm the action, target IDs, and affected counts with the user before execution. <br>
-Risk: The optional MKTS_API_KEY grants higher limits and access to authenticated endpoints. <br>
-Mitigation: Keep MKTS_API_KEY private, pass it through the environment or request header only, and avoid printing or storing it in generated output. <br>
+## Use Case:
 
+External users and developers use the skill for market research, quotes, screening, financial news, and user-requested portfolio, journal, or watchlist management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdliriano/mkts-market-data) <br>
-- [mkts API base URL](https://mkts.io/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; MKTS_API_KEY is optional for basic market data and required for portfolio, journal, watchlist, portfolio card, and ask endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: Portfolio positions, journal text, and watchlists can reveal sensitive financial interests when sent to mkts.io and stored in the API-key owner's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep requests read-only by default, minimize private content, and show the exact payload and obtain informed confirmation before each account change or sensitive submission.
+
+Risk: Account deletions have no documented undo and may affect the wrong records if the target is not resolved first.
+
+Mitigation: Fetch records first, identify the exact ID or affected count, explain the lack of a documented undo, and obtain confirmation immediately before deletion.
+
+## Reference(s):
+
+- [mkts.io API](https://mkts.io/api/v1)
+- [mkts Examples](https://github.com/mkts-io/mkts-examples)
+- [ClawHub release](https://clawhub.ai/sdliriano/skills/mkts-market-data)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [Structured market data and natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Account workflows may involve private financial records.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

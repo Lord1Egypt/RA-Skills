@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Transfer"
+  short_description: "Transfer partners and ratios for one US card"
+  default_prompt: "Use $card-transfer to show the transfer partners for Chase Sapphire Preferred."

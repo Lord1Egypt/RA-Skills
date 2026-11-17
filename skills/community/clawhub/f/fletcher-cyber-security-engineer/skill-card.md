@@ -1,46 +1,66 @@
-## Description: <br>
-Security engineering workflow for OpenClaw privilege governance and hardening, including least-privilege execution, approval-first privileged actions, idle timeout controls, port and egress monitoring, and ISO 27001/NIST-aligned compliance reporting with mitigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security engineering workflow for OpenClaw privilege governance and hardening. Use for least-privilege execution, approval-first privileged actions, idle timeout controls, port and egress monitoring, and ISO 27001/NIST-aligned compliance reporting with mitigations.
 
-## Publisher: <br>
-[FletcherFrimpong](https://clawhub.ai/user/FletcherFrimpong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fletcherfrimpong](https://clawhub.ai/user/fletcherfrimpong)
 
-## Use Case: <br>
-Developers, platform engineers, and security engineers use this skill to enforce approval-first privileged operations, command and prompt policy checks, local port and egress monitoring, and compliance reporting for OpenClaw environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can mediate privileged OpenClaw operations through sudo-related controls and local runtime monitoring. <br>
-Mitigation: Review the sudo shim before enabling the runtime hook, configure a restrictive command-policy.json, and keep a documented removal path for any LaunchAgent PATH change. <br>
-Risk: Security state and policy files under ~/.openclaw influence privileged execution and monitoring behavior. <br>
-Mitigation: Protect ~/.openclaw and ~/.openclaw/security permissions and review command, prompt, approved port, and egress allowlist policies before operational use. <br>
-Risk: Notification hooks may execute operator-configured commands. <br>
-Mitigation: Avoid OPENCLAW_VIOLATION_NOTIFY_CMD unless the configured command is fully trusted and scoped to the intended notification behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/FletcherFrimpong/fletcher-cyber-security-engineer) <br>
-- [Least-Privilege Policy For OpenClaw](artifact/references/least-privilege-policy.md) <br>
-- [Port Monitoring Policy For OpenClaw](artifact/references/port-monitoring-policy.md) <br>
-- [Compliance Controls Map](artifact/references/compliance-controls-map.json) <br>
-- [Command Policy Template](artifact/references/command-policy.template.json) <br>
-- [Egress Allowlist Template](artifact/references/egress-allowlist.template.json) <br>
+## Use Case:
 
+Developers and security engineers use this skill to review OpenClaw privilege controls, enforce approval-first elevation, monitor listening ports and outbound connections, and produce ISO 27001/NIST-aligned findings with mitigations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status reports with check IDs, risk, evidence, mitigations, and optional JSON or shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should include affected check IDs, status, risk, concise evidence, concrete mitigations, and network finding details when applicable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install a persistent sudo wrapper that changes how OpenClaw privileged commands are routed.
+
+Mitigation: Install only when that routing is intentional, require reviewed command policy files first, and remove or replace the sudo PATH shim if it is not acceptable for the deployment.
+
+Risk: Approval, session state, and environment handling may be weak if local files are writable, overly broad, or not scoped to the active task.
+
+Mitigation: Make approval state unforgeable, restrict env-file parsing to required flags, enforce task session IDs and approval tokens where appropriate, and harden file permissions.
+
+Risk: Notification execution and audit logging can expose operational risk if commands or logs are not controlled.
+
+Mitigation: Eliminate shell-based notifier execution, protect and redact audit logs, and keep privileged audit records append-only where possible.
+
+Risk: Network and command baselines may be missing or incomplete, causing privileged actions, listening ports, or outbound connections to bypass intended review.
+
+Mitigation: Populate and review command policy, approved ports, prompt policy, and egress allowlist files before relying on enforcement.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fletcherfrimpong/skills/fletcher-cyber-security-engineer)
+- [Least-Privilege Policy For OpenClaw](references/least-privilege-policy.md)
+- [Port Monitoring Policy For OpenClaw](references/port-monitoring-policy.md)
+- [Compliance Controls Map](references/compliance-controls-map.json)
+- [Command Policy Template](references/command-policy.template.json)
+- [Egress Allowlist Template](references/egress-allowlist.template.json)
+- [Prompt Policy Template](references/prompt-policy.template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status reports, JSON and HTML assessments, shell commands, configuration templates, and Python/Bash code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should include affected check_id values, status, risk, concise evidence, and concrete mitigations.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

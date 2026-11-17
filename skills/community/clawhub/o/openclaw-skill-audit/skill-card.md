@@ -1,41 +1,58 @@
-## Description: <br>
-Security scanner for OpenClaw skills that analyzes skill folders and .skill files for prompt injection, data exfiltration, malicious scripts, suspicious network connections, dangerous code patterns, and unauthorized access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills that analyzes skill folders and .skill files for prompt injection, data exfiltration, malicious scripts, suspicious network connections, dangerous code patterns, and unauthorized access.
 
-## Publisher: <br>
-[produktentdecker](https://clawhub.ai/user/produktentdecker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[produktentdecker](https://clawhub.ai/user/produktentdecker)
 
-## Use Case: <br>
-Developers and security reviewers use this skill before installing or auditing OpenClaw skills to scan folders or packaged .skill files and review findings about suspicious patterns, dependencies, URLs, and risk levels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted .skill archive may write outside the intended extraction folder during scanning. <br>
-Mitigation: Review before installing or running on untrusted .skill files, and use a disposable workspace or sandbox until archive extraction validates every member path, rejects symlinks and special files, and enforces size and file-count limits. <br>
-Risk: Static analysis can miss logic-level attacks, obfuscated behavior beyond known patterns, and behavior fetched or executed only at runtime. <br>
-Mitigation: Combine scan results with manual review for high-stakes deployments and treat low-risk results as advisory rather than proof of safety. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw skill folders or packaged .skill files before installation, during audits, or when assessing whether a skill appears safe to use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/produktentdecker/openclaw-skill-audit) <br>
-- [Skill-declared source code](https://github.com/ProduktEntdecker/skill-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON scan reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Risk findings include overall risk, finding counts, referenced URLs and APIs, required environment variables, required binaries, and file/script counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Scanning untrusted .skill archives may expose the local machine to archive-handling risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans in a sandbox or low-privilege account, especially for skills from unknown sources.
+
+Risk: The documented critical-risk workflow can delete a skill folder when the user confirms removal.
+
+Mitigation: Confirm that the resolved target path is inside an approved skills directory before allowing any recursive deletion command.
+
+Risk: Static analysis can miss logic-level attacks, stronger obfuscation, or runtime-only behavior.
+
+Mitigation: Use scanner results as a review aid and perform manual review for high-stakes deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/produktentdecker/skills/openclaw-skill-audit)
+- [Source code](https://github.com/ProduktEntdecker/skill-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and optional JSON scan reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static-analysis findings are advisory and should be reviewed before acting on deletion or installation guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

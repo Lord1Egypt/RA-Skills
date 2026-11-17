@@ -1,41 +1,53 @@
-## Description: <br>
-Cognitive Debt Guard helps developers reduce cognitive debt from AI-generated code through comprehension gates, review frameworks, AI-free zones, and audit practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive Debt Guard helps agents and developers apply comprehension gates, review frameworks, and AI-free zones when working with AI-generated code.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill when assessing AI-assisted code changes before merge. It provides human-facing review prompts, comprehension checks, PR limits, AI-free zones, and recurring audit guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata includes crypto and purchase capability tags that are not needed by the markdown-only skill. <br>
-Mitigation: Verify the platform does not grant crypto or purchase permissions for this release before deployment. <br>
-Risk: The skill encourages maintaining MEMORY.md, which could accidentally collect sensitive project context. <br>
-Mitigation: Keep secrets, credentials, and sensitive data out of MEMORY.md and review it before sharing or publishing. <br>
+## Use Case:
 
+Developers, engineering teams, and code-review agents use this skill to evaluate AI-generated code before acceptance or merge. It provides comprehension checks, review layers, PR-size guardrails, and audit prompts for reducing cognitive debt.
 
-## Reference(s): <br>
-- [Cognitive Debt Guard on ClawHub](https://clawhub.ai/aptratcn/xiaobai-cognitive-debt-guard) <br>
-- [Publisher profile: aptratcn](https://clawhub.ai/user/aptratcn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; guidance is intended for human review workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The artifact cites research statistics that are not independently substantiated inside the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the statistics as discussion prompts and verify them against trusted sources before using them for policy, compliance, or executive reporting.
+
+Risk: The skill may steer AI-code reviews toward stricter comprehension gates and review discipline.
+
+Mitigation: Adopt the checklists as review aids and let project owners tune thresholds such as PR size, coverage expectations, and AI-free zones to local risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aptratcn/skills/xiaobai-cognitive-debt-guard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with checklists, review questions, and lightweight templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; intended for conversational code-review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

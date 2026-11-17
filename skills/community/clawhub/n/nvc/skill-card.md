@@ -1,42 +1,53 @@
-## Description: <br>
-Guides users to express feelings and needs clearly and constructively in conflicts using the four-step Nonviolent Communication framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to express feelings and needs clearly and constructively in conflicts using the four-step Nonviolent Communication framework.
 
-## Publisher: <br>
-[snoopy7](https://clawhub.ai/user/snoopy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopy7](https://clawhub.ai/user/snoopy7)
 
-## Use Case: <br>
-People drafting difficult interpersonal or workplace messages use this skill to turn emotionally charged thoughts into observation, feeling, need, and request language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive personal, relationship, or workplace details while drafting conflict messages. <br>
-Mitigation: Avoid sharing unnecessary sensitive details and review any drafted message before sending it. <br>
-Risk: Generated wording could misstate the user's feelings or needs, or land poorly in a high-conflict situation. <br>
-Mitigation: Edit the draft so it accurately reflects the user's intent, context, and safety needs before use. <br>
-Risk: Marketplace capability tags suggest crypto or purchase behavior that is not implemented by the artifact. <br>
-Mitigation: Treat this release as a plain Markdown communication-coaching skill with no code, external access, persistence, credential handling, or automatic actions. <br>
+## Use Case:
 
+External users can use this skill to convert emotionally charged conflict descriptions into concise Nonviolent Communication observations, feelings, needs, and requests for interpersonal conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snoopy7/nvc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with drafted message text and NVC breakdowns.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive, step-by-step prompts using the observation, feeling, need, and request structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Users may mistake communication drafting for professional therapy, legal advice, or crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as communication coaching and direct users to qualified professional, emergency, or crisis resources when those needs arise.
+
+Risk: A drafted message can still be misleading or escalate conflict if the user's observations are incomplete or judgmental.
+
+Mitigation: Keep guidance grounded in observable facts, feelings, needs, and concrete requests, and encourage user review before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snoopy7/skills/nvc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational coaching prompts and drafted messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, file access, credentials, or shell commands are required by the skill.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-SOLO is an OpenClaw meta-agent framework for coordinating a kernel, an audit layer, and execution skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SOLO is a third-party OpenClaw meta-agent framework for coordinating a kernel, audit layer, and execution skills under a separation-of-powers operating model.
 
-## Publisher: <br>
-[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator)
 
-## Use Case: <br>
-Developers and operators can use this skill to organize an OpenClaw-based agent fleet with audit records, learning promotion guidance, and recurring review workflows. It is aimed at coordinating operational skills while preserving review boundaries between proposed changes and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can maintain persistent audit state and cron-style operational records. <br>
-Mitigation: Restrict writable paths to the intended audit and status directories, and review generated records regularly. <br>
-Risk: The included upload workflow can send local Markdown or text content to an external IMA knowledge base using API credentials. <br>
-Mitigation: Require explicit approval before any upload, scope credentials narrowly, and verify the selected file path and destination knowledge base before execution. <br>
-Risk: Audit proposals may influence future skill behavior if accepted without review. <br>
-Mitigation: Keep audit outputs advisory until a human reviewer approves any promoted rule, checklist, or SOP change. <br>
+## Use Case:
 
+Developers and agent operators use SOLO to define governance boundaries, audit scheduled agent work, capture operational learnings, and coordinate related OpenClaw skills. It is intended for persistent agent-fleet oversight where policy, audit, and execution responsibilities need to remain separate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meta-evo-creator/solo) <br>
-- [SOLO README](README.md) <br>
-- [SOLO audit agent](agent-audit.md) <br>
-- [Eval loop for self-improvement](references/eval-loop.md) <br>
-- [Promotion guide](references/promotion-guide.md) <br>
-- [Learning schema](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, status text, JSON status/audit records, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read audit inputs, write audit/status files, and invoke credentialed upload workflows when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security summary characterizes the skill as asking for broad persistent control over memory and policy files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed memory, audit, and policy changes before applying them, and install only in workspaces where persistent governance behavior is intended.
+
+Risk: The security guidance flags remote uploads and external notifications with unclear user control.
+
+Mitigation: Disable or remove upload and notification paths unless they are explicitly approved for the workspace and the credentials are scoped to the intended destination.
+
+Risk: The artifact includes an IMA upload helper that reads Markdown or text files and sends their contents through an external helper using environment credentials.
+
+Mitigation: Audit the external IMA helper, require explicit approval before upload commands, and use least-privilege IMA credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meta-evo-creator/skills/solo)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [SOLO audit agent](artifact/agent-audit.md)
+- [MEV Five-Layer Engine](artifact/SOUL.mev.md)
+- [Eval Loop for Self-Improvement](artifact/references/eval-loop.md)
+- [Promotion Guide](artifact/references/promotion-guide.md)
+- [Learning Schema](artifact/references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON audit records, learning entries, configuration paths, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent memory, audit archive, policy, and upload-related actions that should be reviewed before use.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

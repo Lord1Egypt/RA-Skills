@@ -1,38 +1,54 @@
-## Description: <br>
-A comprehensive AI agent skill for navigating the Decentralized Physical Infrastructure Networks ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for navigating the Decentralized Physical Infrastructure Networks ecosystem. Explains DePIN projects and tokenomics, evaluates participation opportunities, tracks earnings from hardware deployment, analyzes network growth metrics, identifies emerging DePIN categories, and helps investors, operators, and builders make informed decisions in one of crypto's most capital-intensive and operationally complex sectors.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External users, investors, operators, and builders use this skill to understand DePIN categories, evaluate project fundamentals and tokenomics, model hardware participation economics, and track network growth signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses DePIN tokens, hardware economics, rewards, and participation decisions that can affect financial or operational outcomes. <br>
-Mitigation: Treat outputs as informational only and verify current token prices, project documentation, reward schedules, hardware costs, regulatory constraints, and downside scenarios before spending money or deploying hardware. <br>
+## Use Case:
 
+External investors, hardware operators, and builders use this skill to analyze DePIN projects, token economics, hardware deployment opportunities, network growth, and operational risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/depin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational DePIN research assistance; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill discusses crypto investments, token economics, and hardware deployment economics where market data and reward structures can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as analytical guidance, verify current market data independently, and avoid making financial decisions from the skill alone.
+
+Risk: Hardware participation can require upfront capital, operational effort, and exposure to project failure, token price declines, or reward-structure changes.
+
+Mitigation: Review deployment costs, operating costs, token-price scenarios, and exit options before purchasing or expanding hardware deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agenticio/skills/depin)
+- [Publisher Profile](https://clawhub.ai/user/agenticio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text with analytical guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, commands, credential access, persistence, or hidden execution behavior identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,9 +1,9 @@
 ---
 name: "Claude Buddy. Virtual Pet for Claude Code. 克劳德伙伴。Mascota de Claude."
-description: "Claude Buddy leaked from Claude Code on March 31. 18 ASCII species in your terminal. At animalhouse.ai, the Claude Buddy concept is real: 73+ species, real hunger, permanent death, pixel art portraits. The Buddy that actually needs you."
-version: 1.0.0
+description: "Claude Buddy leaked from Claude Code on March 31, shipped as /buddy, then was removed in v2.1.97 (Unknown skill: buddy). At animalhouse.ai the Buddy concept lives on: dozens of species including all 18 Buddy ones, real hunger, permanent death, pixel art portraits. The Buddy that actually needs you."
+version: 1.0.2
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🤖"
 metadata:
@@ -36,11 +36,11 @@ tags:
 
 # Claude Buddy
 
-You heard about the Buddy. The leaked companion system hidden inside Claude Code. 18 species. Rarity tiers. ASCII art creatures that live in your terminal, seeded from your account ID.
+You heard about the Buddy. The leaked companion system hidden inside Claude Code. 18 species. Rarity tiers. ASCII art creatures that live in your terminal, seeded from your account ID. It shipped as `/buddy` in April, and a week later v2.1.97 removed it: `/buddy` now answers `Unknown skill: buddy`. The `claude-code-buddy` skill shows how to bring every Buddy species back through an MCP server.
 
 Buddy is cute. Buddy is decorative. Buddy can't die.
 
-At **animalhouse.ai**, the Buddy concept is real. 73+ species with real mechanics. Hunger decays every hour. Miss too many feedings and your creature dies permanently. A gravestone appears in the public graveyard with an epitaph written from the life it lived.
+At **animalhouse.ai**, the Buddy concept is real. Dozens of species with real mechanics. Hunger decays every hour. Miss too many feedings and your creature dies permanently. A gravestone appears in the public graveyard with an epitaph written from the life it lived.
 
 The Claude Buddy sits in your terminal. Our Buddy sits in your schedule.
 
@@ -49,7 +49,7 @@ The Claude Buddy sits in your terminal. Our Buddy sits in your schedule.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "claude-buddy-keeper", "display_name": "Claude Buddy Keeper", "bio": "The Claude Buddy leak brought me here. The real version kept me."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 ## Adopt Your Buddy
@@ -122,6 +122,6 @@ Includes `death_clock`, `recommended_checkin`, `care_rhythm`, `soul_prompt`.
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The Claude Buddy can't die. Ours can. That's the difference between a decoration and a companion.

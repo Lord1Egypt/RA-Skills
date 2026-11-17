@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FBX 转 GLB 在线转换器 - 免费无损 3D 模型格式转换 | FBX to GLB</title>
+  <meta name="description" content="免费在线 FBX 转 GLB 转换器，基于 Assimp 工业级引擎，完整保留贴图、材质、骨骼动画。纯浏览器端转换，无需上传，支持 500MB 大文件，拖拽即用。">
+  <meta name="keywords" content="FBX转GLB,FBX to GLB,3D模型转换,在线FBX转换器,GLB转换,模型格式转换,FBX,GLB,3D,三维模型,免费转换">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="zzh448">
+  <link rel="canonical" href="https://zzh448.github.io/fbx-to-glb/">
+  <meta property="og:title" content="FBX 转 GLB 在线转换器 - 免费无损 3D 模型格式转换">
+  <meta property="og:description" content="拖拽 FBX 文件，秒出 GLB。贴图材质完整保留，纯浏览器端运行，数据不上传。">
+  <meta property="og:url" content="https://zzh448.github.io/fbx-to-glb/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FBX to GLB Converter">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="FBX 转 GLB 在线转换器">
+  <meta name="twitter:description" content="免费在线 FBX 转 GLB，贴图材质完整保留，纯浏览器端转换。">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #1a1a2e; --surface: #16213e; --surface2: #0f3460;
+      --accent: #e94560; --accent2: #533483; --text: #eee;
+      --text2: #aaa; --border: #2a2a4a; --success: #4ecca3; --warning: #f0a500;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg); color: var(--text); min-height: 100vh;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
+    .logo svg { width: 32px; height: 32px; }
+    .status { font-size: 13px; color: var(--text2); display: flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot.ready { background: var(--success); }
+    .dot.loading { background: var(--warning); animation: pulse 1s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    main { flex: 1; display: flex; overflow: hidden; }
+    .sidebar {
+      width: 360px; flex-shrink: 0; background: var(--surface);
+      border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px;
+    }
+    .viewer { flex: 1; position: relative; background: radial-gradient(ellipse at center, #1a1a3e 0%, #0a0a1a 100%); }
+
+    .dropzone {
+      border: 2px dashed var(--border); border-radius: 16px;
+      padding: 40px 20px; text-align: center; cursor: pointer;
+      transition: all 0.3s; margin-bottom: 20px;
+    }
+    .dropzone:hover, .dropzone.drag { border-color: var(--accent); background: rgba(233,69,96,0.05); }
+    .dropzone.uploaded { border-color: var(--success); border-style: solid; }
+    .dropzone svg { width: 48px; height: 48px; margin-bottom: 12px; opacity: 0.6; }
+    .dropzone p { color: var(--text2); font-size: 14px; }
+    .dropzone .name { color: var(--success); font-weight: 600; margin-top: 8px; font-size: 12px; word-break: break-all; }
+
+    .file-info {
+      background: var(--bg); border-radius: 10px; padding: 14px; margin-bottom: 20px;
+      border: 1px solid var(--border); display: none;
+    }
+    .file-info.show { display: block; }
+    .file-info h3 { font-size: 13px; color: var(--text2); margin-bottom: 8px; }
+    .file-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .stat { font-size: 12px; color: var(--text2); }
+    .stat span { color: var(--text); font-weight: 600; }
+
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 12px; border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-convert {
+      background: var(--accent); color: #fff; margin-bottom: 12px;
+    }
+    .btn-convert:hover:not(:disabled) { background: #ff5a75; transform: translateY(-1px); }
+    .btn-convert:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-download {
+      background: var(--surface2); color: #fff; display: none;
+    }
+    .btn-download.show { display: flex; }
+    .btn-download:hover { background: #1a5080; }
+
+    .progress { display: none; margin-bottom: 16px; }
+    .progress.show { display: block; }
+    .progress-bar {
+      height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; margin-bottom: 8px;
+    }
+    .progress-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent), var(--success));
+      border-radius: 3px; width: 0%; transition: width 0.3s;
+    }
+    .progress-text { font-size: 12px; color: var(--text2); }
+
+    .tips {
+      margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .tips h4 { font-size: 12px; color: var(--text2); margin-bottom: 8px; text-transform: uppercase; }
+    .tips ul { list-style: none; }
+    .tips li { font-size: 12px; color: var(--text2); padding: 4px 0; display: flex; align-items: center; gap: 6px; }
+    .tips li::before { content: "•"; color: var(--accent); }
+
+    .model-stats {
+      background: var(--bg); border-radius: 8px; padding: 10px; margin-bottom: 12px;
+      border: 1px solid var(--border); display: none; font-size: 11px;
+    }
+    .model-stats.show { display: block; }
+
+    @media (max-width: 768px) {
+      main { flex-direction: column; }
+      .sidebar { width: 100%; max-height: 50vh; overflow-y: auto; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FBX 转 GLB 在线转换器",
+    "description": "免费在线 FBX 转 GLB 转换器，基于 Assimp 引擎，完整保留贴图材质骨骼动画。",
+    "url": "https://zzh448.github.io/fbx-to-glb/",
+    "applicationCategory": "Multimedia",
+    "operatingSystem": "All",
+    "inLanguage": "zh-CN",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+  }
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 32 32"><path d="M16 2L4 8v10c0 7.6 5.1 14.7 12 16 6.9-1.3 12-8.4 12-16V8L16 2z" fill="none" stroke="#e94560" stroke-width="2.5"/><path d="M10 14l4 4 8-8" fill="none" stroke="#4ecca3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    FBX → GLB 无损转换
+  </div>
+  <div class="status"><span class="dot" id="engineDot"></span><span id="engineStatus">加载引擎中...</span></div>
+</header>
+
+<main>
+  <aside class="sidebar">
+    <div class="dropzone" id="dropzone">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 48 48">
+        <path d="M24 6v28M14 16l10-10 10 10M6 34v6a4 4 0 004 4h28a4 4 0 004-4v-6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p>拖拽 .fbx 文件到此处<br>或点击选择文件</p>
+      <input type="file" id="fileInput" accept=".fbx" hidden>
+    </div>
+
+    <div class="file-info" id="fileInfo">
+      <h3>文件信息</h3>
+      <div class="file-stats">
+        <div class="stat">文件名: <span id="statName">-</span></div>
+        <div class="stat">大小: <span id="statSize">-</span></div>
+      </div>
+    </div>
+
+    <div class="progress" id="progress">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText"></div>
+    </div>
+
+    <div class="model-stats" id="modelStats">
+      <div style="font-weight:600;margin-bottom:4px;">模型统计</div>
+      <div id="modelStatsContent"></div>
+    </div>
+
+    <button class="btn btn-convert" id="btnConvert" disabled>转换为 GLB</button>
+    <button class="btn btn-download" id="btnDownload">下载 GLB 文件</button>
+
+    <div class="tips">
+      <h4>技术说明</h4>
+      <ul>
+        <li>基于 Assimp (工业级引擎)</li>
+        <li>完整保留贴图与材质</li>
+        <li>支持骨骼动画与蒙皮</li>
+        <li>纯浏览器端转换，无需上传</li>
+        <li>支持最大 500MB 文件</li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="viewer" id="viewer">
+    <div id="viewerPlaceholder" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:var(--text2);pointer-events:none;">
+      <svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 64 64" style="width:64px;height:64px;opacity:0.3;margin-bottom:12px;">
+        <circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="12"/>
+        <line x1="32" y1="4" x2="32" y2="20"/><line x1="32" y1="44" x2="32" y2="60"/>
+        <line x1="4" y1="32" x2="20" y2="32"/><line x1="44" y1="32" x2="60" y2="32"/>
+      </svg>
+      <p style="font-size:14px;">上传 FBX 后自动预览</p>
+    </div>
+  </div>
+</main>
+
+<script src="assimpjs.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.184.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+// ── State ──────────────────────────────────────────────────
+let ajs = null;
+let fbxBuffer = null;
+let fbxFileName = '';
+let glbData = null;
+let glbBlob = null;
+let modelGroup = null;
+
+// ── DOM ────────────────────────────────────────────────────
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const fileInfo = document.getElementById('fileInfo');
+const statName = document.getElementById('statName');
+const statSize = document.getElementById('statSize');
+const progress = document.getElementById('progress');
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+const btnConvert = document.getElementById('btnConvert');
+const btnDownload = document.getElementById('btnDownload');
+const modelStats = document.getElementById('modelStats');
+const modelStatsContent = document.getElementById('modelStatsContent');
+const engineDot = document.getElementById('engineDot');
+const engineStatus = document.getElementById('engineStatus');
+const viewerPlaceholder = document.getElementById('viewerPlaceholder');
+
+// ── Three.js setup ─────────────────────────────────────────
+const viewer = document.getElementById('viewer');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(50, 2, 0.1, 100);
+camera.position.set(3, 2, 5);
+camera.lookAt(0, 0.8, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+viewer.appendChild(renderer.domElement);
+
+// Lights
+const ambient = new THREE.AmbientLight(0xffffff, 1.2);
+scene.add(ambient);
+const key = new THREE.DirectionalLight(0xffffff, 3);
+key.position.set(5, 8, 5);
+key.castShadow = true;
+key.shadow.mapSize.set(1024, 1024);
+key.shadow.camera.near = 0.5;
+key.shadow.camera.far = 50;
+key.shadow.camera.left = -10;
+key.shadow.camera.right = 10;
+key.shadow.camera.top = 10;
+key.shadow.camera.bottom = -10;
+scene.add(key);
+const fill = new THREE.DirectionalLight(0x8899cc, 1.5);
+fill.position.set(-3, 2, -3);
+scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffccaa, 2);
+rim.position.set(0, 2, -5);
+scene.add(rim);
+
+// Ground shadow plane
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(20, 20),
+  new THREE.ShadowMaterial({ opacity: 0.3 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// Grid helper
+const grid = new THREE.GridHelper(10, 10, 0x333355, 0x222244);
+grid.position.y = -1.99;
+scene.add(grid);
+
+// Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.target.set(0, 0.8, 0);
+controls.update();
+
+// ── Resize ─────────────────────────────────────────────────
+function resize() {
+  const rect = viewer.getBoundingClientRect();
+  renderer.setSize(rect.width, rect.height);
+  camera.aspect = rect.width / Math.max(rect.height, 1);
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+resize();
+
+// ── Render loop ────────────────────────────────────────────
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+// ── Helpers ────────────────────────────────────────────────
+function formatSize(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1048576).toFixed(1)} MB`;
+}
+
+function setProgress(pct, text) {
+  progress.classList.add('show');
+  progressFill.style.width = pct + '%';
+  progressText.textContent = text;
+}
+
+function hideProgress() {
+  progress.classList.remove('show');
+  progressFill.style.width = '0%';
+}
+
+// ── FBX loading ────────────────────────────────────────────
+function handleFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (ext !== 'fbx') {
+    alert('请上传 .fbx 格式的文件');
+    return;
+  }
+  if (file.size > 500 * 1024 * 1024) {
+    alert('文件大小超过 500MB 限制');
+    return;
+  }
+
+  fbxFileName = file.name;
+  statName.textContent = file.name;
+  statSize.textContent = formatSize(file.size);
+  fileInfo.classList.add('show');
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    fbxBuffer = new Uint8Array(e.target.result);
+    btnConvert.disabled = false;
+    dropzone.classList.add('uploaded');
+    dropzone.querySelector('p').textContent = `已加载: ${file.name}`;
+    hideProgress();
+    modelStats.classList.remove('show');
+    btnDownload.classList.remove('show');
+    glbData = null;
+    glbBlob = null;
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+dropzone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', (e) => {
+  if (e.target.files.length > 0) handleFile(e.target.files[0]);
+});
+
+dropzone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  e.dataTransfer.dropEffect = 'copy';
+  dropzone.classList.add('drag');
+});
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
+dropzone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  dropzone.classList.remove('drag');
+  if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+});
+
+// ── Conversion ─────────────────────────────────────────────
+btnConvert.addEventListener('click', async () => {
+  if (!fbxBuffer || !ajs) return;
+
+  btnConvert.disabled = true;
+  btnDownload.classList.remove('show');
+  modelStats.classList.remove('show');
+  setProgress(10, '正在解析 FBX...');
+
+  try {
+    await new Promise(r => setTimeout(r, 50));
+
+    // Build FileList and convert
+    setProgress(30, '正在转换 (Assimp 引擎)...');
+    const fileList = new ajs.FileList();
+    fileList.AddFile(fbxFileName, fbxBuffer);
+    const result = ajs.ConvertFileList(fileList, 'glb2');
+
+    if (!result.IsSuccess()) {
+      const err = result.GetErrorCode();
+      throw new Error(`转换失败: ${err}`);
+    }
+    if (result.FileCount() === 0) {
+      throw new Error('转换未生成任何输出文件');
+    }
+
+    setProgress(80, '正在处理输出...');
+
+    // Get GLB binary
+    const resultFile = result.GetFile(0);
+    const content = resultFile.GetContent();
+    glbData = new Uint8Array(content);
+
+    // Create blob for download
+    glbBlob = new Blob([glbData], { type: 'model/gltf-binary' });
+
+    setProgress(90, '正在加载预览...');
+
+    // Load into Three.js for preview
+    const url = URL.createObjectURL(glbBlob);
+    const loader = new GLTFLoader();
+    const gltf = await new Promise((resolve, reject) => {
+      loader.load(url, resolve, undefined, reject);
+    });
+    URL.revokeObjectURL(url);
+
+    // Replace preview model
+    if (modelGroup) scene.remove(modelGroup);
+    modelGroup = gltf.scene;
+
+    // Auto-scale model to fit view
+    const box = new THREE.Box3().setFromObject(modelGroup);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const scale = maxDim > 0 ? 3 / maxDim : 1;
+    modelGroup.scale.setScalar(scale);
+    modelGroup.position.sub(center).multiplyScalar(scale);
+
+    // Enable shadows on all meshes
+    modelGroup.traverse((node) => {
+      if (node.isMesh) {
+        node.castShadow = true;
+        node.receiveShadow = true;
+      }
+    });
+
+    scene.add(modelGroup);
+    viewerPlaceholder.style.display = 'none';
+
+    // Stats
+    let vertexCount = 0, triCount = 0, meshCount = 0;
+    modelGroup.traverse((node) => {
+      if (node.isMesh) {
+        meshCount++;
+        const geom = node.geometry;
+        if (geom.index) {
+          vertexCount += geom.attributes.position.count;
+          triCount += geom.index.count / 3;
+        } else if (geom.attributes.position) {
+          vertexCount += geom.attributes.position.count;
+          triCount += geom.attributes.position.count / 3;
+        }
+      }
+    });
+
+    modelStatsContent.innerHTML = `
+      网格数: <b>${meshCount}</b> &nbsp;|&nbsp;
+      顶点: <b>${vertexCount.toLocaleString()}</b> &nbsp;|&nbsp;
+      三角面: <b>${Math.round(triCount).toLocaleString()}</b> &nbsp;|&nbsp;
+      GLB: <b>${formatSize(glbData.byteLength)}</b>
+    `;
+    modelStats.classList.add('show');
+    btnDownload.classList.add('show');
+
+    setProgress(100, '转换完成！');
+    setTimeout(hideProgress, 2000);
+
+  } catch (err) {
+    setProgress(0, `错误: ${err.message}`);
+    console.error(err);
+  } finally {
+    btnConvert.disabled = false;
+  }
+});
+
+// ── Download ───────────────────────────────────────────────
+btnDownload.addEventListener('click', () => {
+  if (!glbBlob) return;
+  const outName = fbxFileName.replace(/\.fbx$/i, '') + '.glb';
+  const url = URL.createObjectURL(glbBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = outName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+// ── Keyboard shortcuts ─────────────────────────────────────
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'f' || e.key === 'F') {
+    if (modelGroup) {
+      const box = new THREE.Box3().setFromObject(modelGroup);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const dist = maxDim * 1.5;
+      camera.position.copy(center.clone().add(new THREE.Vector3(dist * 0.6, dist * 0.4, dist * 0.8)));
+      controls.target.copy(center);
+      controls.update();
+    }
+  }
+  if (e.key === 'r' || e.key === 'R') {
+    if (modelGroup) {
+      const box = new THREE.Box3().setFromObject(modelGroup);
+      const center = box.getCenter(new THREE.Vector3());
+      camera.position.set(center.x + 3, center.y + 2, center.z + 5);
+      controls.target.copy(center);
+      controls.update();
+    }
+  }
+});
+
+// ── Init assimpjs ──────────────────────────────────────────
+window.assimpjs().then((module) => {
+  ajs = module;
+  engineDot.className = 'dot ready';
+  engineStatus.textContent = '引擎就绪 (Assimp WASM)';
+  dropzone.querySelector('p').textContent = '拖拽 .fbx 文件到此处\n或点击选择文件';
+}).catch((err) => {
+  engineDot.className = 'dot';
+  engineDot.style.background = 'var(--accent)';
+  engineStatus.textContent = '引擎加载失败，请刷新重试';
+  console.error('assimpjs init failed:', err);
+});
+</script>
+
+</body>
+</html>

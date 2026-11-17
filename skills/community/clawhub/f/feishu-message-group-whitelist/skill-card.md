@@ -1,39 +1,53 @@
-## Description: <br>
-Filters Feishu group-chat messages against a configurable whitelist so the agent replies only when a message contains an approved keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Filters Feishu group-chat messages with a configurable keyword whitelist so the bot only replies when a message contains an allowed keyword.
 
-## Publisher: <br>
-[johnhejunlin](https://clawhub.ai/user/johnhejunlin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnhejunlin](https://clawhub.ai/user/johnhejunlin)
 
-## Use Case: <br>
-Developers and operators of Feishu group-chat agents use this skill to reduce noisy or unintended replies by allowing responses only for configured keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An empty whitelist allows normal replies instead of suppressing all group-chat responses. <br>
-Mitigation: Keep config/whitelist.txt populated before deployment, or change the fail-open behavior if an empty whitelist should mean no replies. <br>
-Risk: Group-message inspection may be sensitive or regulated in some environments. <br>
-Mitigation: Notify participants or obtain consent where required, and confirm the whitelist keywords are appropriate before installation. <br>
+## Use Case:
 
+Developers and operators maintaining Feishu group bots use this skill to gate replies on a local keyword whitelist, reducing unrelated replies and token use in busy group chats.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, text] <br>
-**Output Format:** [Markdown and plain-text configuration entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a newline-delimited whitelist file at config/whitelist.txt; an empty whitelist is documented to allow normal replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An empty whitelist causes the bot to reply without filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep at least one intended trigger keyword in config/whitelist.txt unless unfiltered replies are deliberate.
+
+Risk: Broad or ambiguous keywords can trigger replies in unrelated group messages.
+
+Mitigation: Use specific keywords and review the whitelist before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnhejunlin/skills/feishu-message-group-whitelist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions and plain-text whitelist configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses one keyword per line; an empty whitelist intentionally disables filtering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -23,6 +23,3 @@ It does not execute approvals, spending, vendor commitments, payroll, or legal a
 
 ## Enable
 
-```bash
-openclaw hooks enable self-improving-business
-```

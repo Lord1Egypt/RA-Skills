@@ -31,7 +31,7 @@ from preprocess import (
 
 
 DEFAULT_LLM_BASE = "https://maas-api.hivoice.cn/v1"
-DEFAULT_LLM_MODEL = "u1-insuremed"
+DEFAULT_LLM_MODEL = "u2-med"
 
 # 标准输出字段顺序
 FIELDS_PART1 = [

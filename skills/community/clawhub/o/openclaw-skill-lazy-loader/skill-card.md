@@ -1,43 +1,55 @@
-## Description: <br>
-Dramatically reduce per-session token usage by loading skills and context files only when needed, not at session start. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw agents reduce startup context usage by loading skill and memory files only when a task requires them.
 
-## Publisher: <br>
-[Asif2BD](https://clawhub.ai/user/Asif2BD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[asif2bd](https://clawhub.ai/user/asif2bd)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to replace eager skill loading with a lightweight SKILLS catalog, task-based loading rules, and an optional local recommendation helper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Lazy-loading instructions could introduce incorrect or unwanted AGENTS.md behavior if merged without review. <br>
-Mitigation: Review AGENTS.md changes before merging them into an agent workspace. <br>
-Risk: A SKILLS catalog that references untrusted skill paths could cause an agent to load untrusted instructions. <br>
-Mitigation: Keep SKILLS.md limited to trusted skill paths and treat helper recommendations as advisory. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to configure lazy loading of skills, memory files, and context catalogs so agents load only the material needed for the current task.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Asif2BD/openclaw-skill-lazy-loader) <br>
-- [Publisher profile](https://clawhub.ai/user/Asif2BD) <br>
-- [Project homepage](https://github.com/Asif2BD/openclaw-skill-lazy-loader) <br>
-- [OpenClaw Token Optimizer](https://clawhub.ai/Asif2BD/openclaw-token-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, templates, and optional plain-text CLI recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory recommendations; users should review AGENTS.md changes and keep SKILLS.md limited to trusted skill paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installing the skill may change future agent behavior by encouraging lazy loading through AGENTS.md and SKILLS.md templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the templates before merging them into an agent workspace.
+
+Risk: Skill catalogs and memory indexes can expose sensitive project details if populated with private context.
+
+Mitigation: Keep sensitive information out of SKILL.md, SKILLS.md, and memory catalog files.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/asif2bd/skills/openclaw-skill-lazy-loader)
+- [Project homepage from ClawHub metadata](https://github.com/Asif2BD/openclaw-skill-lazy-loader)
+- [Security disclosure](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes templates for SKILLS.md and AGENTS.md plus a local command-line helper that prints skill-loading recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

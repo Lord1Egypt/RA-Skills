@@ -1,45 +1,60 @@
-## Description: <br>
-Organizes incident materials into a reviewable postmortem draft that separates root cause, contributing factors, amplifiers, impact, and remediation actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes incident evidence into a reviewable postmortem draft that separates root causes, contributing factors, amplifiers, impact, remediation actions, and follow-up improvements.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, SREs, and incident response teams use this skill to turn timelines, alerts, handling notes, and impact details into structured postmortem drafts. It is intended for blameless review, missing-information tracking, and follow-up improvement planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incident inputs may contain sensitive operational details or personal data. <br>
-Mitigation: Scope inputs to the incident materials needed for the draft, redact sensitive details where possible, and review generated Markdown before sharing. <br>
-Risk: Generated postmortem text may misstate chronology, causality, or responsibility if the supplied incident record is incomplete. <br>
-Mitigation: Use the skill's待确认项 and review workflow to confirm missing facts before treating the postmortem as final. <br>
-Risk: The bundled helper can write an output file and has dormant audit modes controlled by resources/spec.json. <br>
-Mitigation: Run the helper only on chosen local files, inspect output paths, and do not alter resources/spec.json to broaden inspection unless that behavior is intended. <br>
+## Use Case:
 
+SRE, operations, and engineering teams use this skill to turn incident timelines, alerts, handling notes, and impact details into structured, reviewable postmortem drafts and improvement checklists.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/incident-postmortem-assistant) <br>
-- [README.md](artifact/README.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable drafts, confirmation questions, next-step checklists, and optional local file output when run with python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: Incident notes may contain private operational details or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive input before using the skill or sharing generated drafts.
+
+Risk: Broad directory inputs can produce noisy or unintended summaries.
+
+Mitigation: Point the local script at intended incident files or narrow directories only.
+
+Risk: Unused generic audit modes may confuse maintainers or reviewers.
+
+Mitigation: Document or remove dormant modes before relying on the skill in a managed release process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/incident-postmortem-assistant)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+- [Artifact README](artifact/README.md)
+- [Skill Specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown by default; optional JSON when the local script is run with --format json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local input only and asks for missing incident details instead of filling gaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

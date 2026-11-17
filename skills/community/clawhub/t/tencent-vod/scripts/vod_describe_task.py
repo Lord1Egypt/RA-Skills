@@ -118,7 +118,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models  # NOCA:unused-import(may be needed for future use)
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -134,13 +134,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -948,29 +951,38 @@ def wait_for_task(args):
 # ── CLI 入口 ──────────────────────────────────────────────────────────────────
 
 def main():
+    # 先加载 .env，确保 argparse `default=os.environ.get(...)` 求值前环境变量已就绪
+    # 修复 BUG：之前 SubAppId 默认值在 add_argument 时立即从环境变量取值，
+    # 但 .env 加载发生在 get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description="VOD 任务详情查询工具 - 查询任务执行状态和结果（最多查询3天内的任务）",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:
   # 查询任务状态
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135
 
   # 等待任务完成（最多等 10 分钟）
   # 默认等待任务完成
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135
   
   # 仅查询当前状态，不等待
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --no-wait
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --no-wait
 
   # JSON 格式输出完整响应
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --json
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --json
 
   # 详细输出（含输出 URL 等）
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --verbose
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --verbose
 
   # 指定子应用 ID
-  python vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --sub-app-id 1500046806
+  python3 vod_describe_task.py --task-id 1490013579-procedurev2-acd135 --sub-app-id 1500046806
 
 任务状态说明:
   WAITING    - 等待中
@@ -989,7 +1001,7 @@ def main():
         default=int(os.environ.get("TENCENTCLOUD_VOD_SUB_APP_ID", 0)) or None,
         help="子应用 ID（也可通过环境变量 TENCENTCLOUD_VOD_SUB_APP_ID 设置）",
     )
-    parser.add_argument("--region", default="ap-guangzhou", help="地域（默认: ap-guangzhou）")
+    parser.add_argument("--region", default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help="地域（默认: ap-guangzhou）")
     parser.add_argument("--no-wait", action="store_true", help="仅查询当前状态，不等待完成")
     parser.add_argument("--max-wait", type=int, default=600, help="最大等待时间，单位秒（默认: 600）")
     parser.add_argument("--interval", type=int, default=5, help="轮询间隔，单位秒（默认: 5）")

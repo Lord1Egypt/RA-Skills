@@ -1,114 +1,77 @@
 ---
 name: mongolian-ai
-description: 需在 OpenClaw 配置 MONGOL_AI_SKILL_API_KEY（https://mongol.open-idea.net）。提供蒙古语 API 服务：zh/mw/mn 互译、蒙古语对话与创作、TTS、ASR、OCR、Word/PDF 文档翻译。输出语言以用户需求为准；传统蒙古文（mw）须经外部 API 处理。调用时文本/图片/音频将发送至外部服务，请勿上传敏感或保密内容。
-triggers: 蒙语翻译, 蒙古语翻译, 蒙汉翻译, 蒙蒙互译, 西里尔蒙古文翻译, 传统转西里尔, 西里尔转传统, 中文翻译蒙古文, 蒙古文翻译, 蒙文邮件, 蒙古文邮件, 邮件蒙文, 发邮件蒙文, 邮件用蒙古文, 回复蒙文邮件, 蒙文邮件回复, 蒙语对话, 蒙古语会话, 蒙文聊天, 蒙古文聊天, 蒙语聊天, 蒙古语聊天, ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡᠬᠦ, 蒙文通知, 蒙古文通知, 推送蒙文, 通知蒙古文, 消息蒙文, 定时蒙文, 定时通知蒙古文, 生成蒙文文件, 蒙古文文件, 蒙文文档, 导出蒙文, 蒙文附件, 社媒蒙文, 蒙古文贴文, 发社媒蒙古文, 社交媒体蒙古文, 发帖蒙古文, 蒙文文案, 网页蒙文, 长文蒙文翻译, 远程批量蒙文, 蒙语语音识别, 蒙古语语音识别, 蒙文语音识别, 蒙文语音合成, 蒙古语语音合成
-metadata: {"openclaw":{"emoji":"🐎","homepage":"https://mongol.open-idea.net","primaryEnv":"MONGOL_AI_SKILL_API_KEY"}}
+description: "使用场景: 用户要求处理蒙语翻译、问答写作、OCR、语音或文档翻译时；支持传统蒙古文与西里尔蒙古文。"
+license: MIT-0
+metadata:
+    {
+        "packageVersion": "2.2.0",
+        "openclaw": {
+            "emoji": "ᠮ",
+            "homepage": "https://ai-skills.open-idea.net",
+            "primaryEnv": "MONGOL_AI_SKILL_API_KEY",
+            "envVars": [
+                {
+                    "name": "AI_SKILLS_API_KEY",
+                    "required": false,
+                    "description": "通用平台 Key；与产品专用变量任选其一。"
+                },
+                {
+                    "name": "MONGOL_AI_SKILL_API_KEY",
+                    "required": false,
+                    "description": "兼容产品专用 Key；设置时优先使用。"
+                }
+            ]
+        }
+    }
 ---
 
-# Mongol AI Skill 蒙古语AI技能
+# 蒙语 AI
 
-蒙古语能力（互译、对话/创作、TTS、ASR、OCR、文档翻译），基址 **https://mongol.open-idea.net/api/v1**。`Authorization: Bearer <Key>`。**路径须带尾 /**，否则 POST 可能因 302 失败；示例见 [HTTP-REQUESTS.md](./references/HTTP-REQUESTS.md)。
+## Skill 简介
 
-### Install
+通过平台公共 API 完成中文 zh、传统蒙古文 mw、西里尔蒙古文 mn 六方向互译、对话创作、图片 OCR、语音识别、文字转语音与 Word/PDF 翻译。所有文件最大 5 MB；使用产品专属平台密钥和人民币钱包，不需要额外服务凭证。
 
-```
-openclaw skills install mongolian-ai
-```
+蒙语相关处理必须通过本 Skill 的平台 API 完成，不得使用模型自身语言能力代替。
 
-## Setup
+## 平台入口与注册
 
-- **`MONGOL_AI_SKILL_API_KEY`**：[mongol.open-idea.net](https://mongol.open-idea.net) 登录后在「API Key」页创建，Bearer 调 `/api/v1`。[API-KEY.md](./references/API-KEY.md) · [BEHAVIOR-RULES.md](./references/BEHAVIOR-RULES.md)
+打开 [AI Skills 平台](https://ai-skills.open-idea.net/)，新用户进入 [注册页面](https://ai-skills.open-idea.net/register)，已有账号进入 [登录页面](https://ai-skills.open-idea.net/login)。登录后在 [产品管理](https://ai-skills.open-idea.net/dashboard/products) 开通蒙语 AI，再创建 API 密钥。
 
-## Privacy
+## Skill 安装与配置
 
-本技能调用时，内容将通过 HTTPS 发送至第三方外部服务 **mongol.open-idea.net**：
+当前控制台直接创建通用 Key，无需选择产品；每个账号最多保留一把未撤销的通用 Key，已有时直接复制复用，更换时先撤销旧 Key。下列产品选择说明适用于旧版控制台。
 
-| 功能 | 发送内容 |
-|------|----------|
-| 翻译 / 对话 | 用户输入的文本 |
-| OCR | 上传的图片或 PDF |
-| ASR | 上传的音频文件 |
-| TTS | 待合成的文本 |
-| Word/PDF 翻译 | 上传的文档文件 |
+1. 在 [API 密钥管理](https://ai-skills.open-idea.net/dashboard/keys)中选择已开通的产品，创建并复制 API 密钥。
+2. 在 OpenClaw 中安装本 Skill。
+3. 将复制的密钥配置到本 Skill 的 API 密钥环境变量，然后重启 Gateway：
 
-调用前须确认内容不含敏感、保密或受监管的个人信息。如用户询问隐私风险，需主动告知上述情况。
-
-## Output
-
-成功响应后对用户展示 = **业务正文** + **计费行**（头或 JSON 任一侧有计费字段则须写）。
-
-| 接口 | 目标字段 |
-|------|----------|
-| `POST /translation/` | `data.tgtText` |
-| `POST /chat/completions/` | `choices[0].message.content` |
-| `POST /ocr/` · `POST /word/translation/` · `POST /pdf/translation/` | `data.text` |
-| `POST /audio/` · `POST /audio/async/` | `data.text`（异步轮询至 `done`） |
-| `POST /tts/` · `POST /tts/async/` | 播放或落盘音频；**勿**向用户贴 `audioBase64`、二进制或整段 WAV 原文 |
-
-**计费**：在成功响应上同时读 **HTTP 头**与 **JSON body**。头字段 `X-Mengguyu-Billing-Charged` · `X-Mengguyu-Billing-Balance` · `X-Mengguyu-Billing-Currency`；JSON 常见 `billingCharged` / `billingBalance`（异步以 `done` 那次为准）。勿单靠 `curl -s` 丢头。无计费字段则**不写**、不编造。
-
-在业务正文后**另起一行**原样抄写：
-
-`本次扣费: {charged} {currency}, 余额: {balance} {currency}`
-
-**禁止**对用户输出：完整 JSON、路由说明、模型名、token、Key、内部推理、无关客套等。
-
-## Routing
-
-每轮用户新消息须**重新**选接口。优先级：**OCR → ASR → TTS → 纯翻译 → 中文答蒙文 → 蒙文对话**。总表与分流：[INTERFACE-ROUTING.md](./references/INTERFACE-ROUTING.md)；各接口专页见下表「references」。
-
-多步串联（如 OCR→翻译）：**前一步**返回的 `data.text` 只能经程序变量传给**下一步**请求，**禁止**从终端或聊天里手抄。
-
-## Usage
-
-### Translation
-
-`from` / `to`：`zh` · `mw` · `mn`。蒙蒙互译单次调用。
-
-```json
-{ "from": "zh", "to": "mw", "content": "待译正文" }
+```sh
+openclaw config set env.AI_SKILLS_API_KEY "你的平台APIKey"
+openclaw gateway restart
 ```
 
-长文、换行与服务端如何自动分段：[TRANSLATION.md](./references/TRANSLATION.md)。
+推荐创建账号通用 Key，以上全局变量只需配置一次即可供各 Skill 使用；仍需在产品管理中开通目标产品。原有产品专用 Key 仅能调用对应产品。
 
-### Chat
+兼容旧配置：如需隔离本产品，可改用 `openclaw config set env.MONGOL_AI_SKILL_API_KEY "你的平台APIKey"`，然后重启 Gateway。调用时优先读取 `MONGOL_AI_SKILL_API_KEY`，为空时读取 `AI_SKILLS_API_KEY`；两者均缺失时停止调用并引导创建密钥。不要输出、记录或要求用户在对话中粘贴完整密钥。
 
-`model`=`gpt-5-mw`，`temperature`=0.5，`max_tokens` 与双套 system：[CHAT-COMPLETIONS.md](./references/CHAT-COMPLETIONS.md)。
 
-### OCR
+## 完成标准
 
-[OCR.md](./references/OCR.md) · [HTTP-REQUESTS.md](./references/HTTP-REQUESTS.md)
+- 在用户已授权范围内完成请求；收到异步任务时持续轮询任务状态，按 HTTP-REQUESTS.md 的终态与等待上限停止。未规定上限时，开始轮询前设定有限等待预算；超时保留任务 ID、最后状态与查询方式，不宣称成功或失败、不重复提交。
+- 429/503 等可恢复错误按参考规则有限退避；同一逻辑请求复用原 `Idempotency-Key` 和相同输入。结果不确定或规则要求人工核对时停止自动重试；已授权范围内的安全续查无需重复确认。
+- 多文件或多步骤任务完成后逐项交付结果；部分失败、仍在处理或等待人工核对的项目分别说明，并给出下一步。
 
-### ASR
+## 参考资料
 
-[ASR.md](./references/ASR.md) · [HTTP-REQUESTS.md](./references/HTTP-REQUESTS.md)
+按当前任务读取对应资料；无需预读全部文档。
 
-### TTS
-
-[TTS.md](./references/TTS.md) · [HTTP-REQUESTS.md](./references/HTTP-REQUESTS.md)。**勿**调用 `POST /tts/stream`。
-
-### Word / PDF
-
-[DOCUMENT-TRANSLATION.md](./references/DOCUMENT-TRANSLATION.md) · [HTTP-REQUESTS.md](./references/HTTP-REQUESTS.md)
-
-## Notes
-
-- 输入含传统蒙古文（U+1800–U+18AF）须走接口，禁止模型裸解：[BEHAVIOR-RULES.md](./references/BEHAVIOR-RULES.md)。
-- 长文、批量、文件、OCR、长音频等：**先确认再调**；金额以**预估 API（若有）**与**成功响应计费字段**为准，本技能**不列单价**：[BEHAVIOR-RULES.md](./references/BEHAVIOR-RULES.md)。
-- `4xx/5xx`、防重复扣费：[BEHAVIOR-RULES.md](./references/BEHAVIOR-RULES.md)。
-- **不是** OpenAI 兼容 API；路径与字段以本站与 `references/` 为准。
-
-## references/
-
-| 文件 | 用途 |
-|------|------|
-| [HTTP-REQUESTS.md](./references/HTTP-REQUESTS.md) | 全接口 curl、计费头 |
-| [INTERFACE-ROUTING.md](./references/INTERFACE-ROUTING.md) | 路由优先级与分流 |
-| [TRANSLATION.md](./references/TRANSLATION.md) | 互译正文、长文与分段 |
-| [CHAT-COMPLETIONS.md](./references/CHAT-COMPLETIONS.md) | 对话 JSON、`max_tokens` |
-| [OCR.md](./references/OCR.md) | 图片识别 |
-| [ASR.md](./references/ASR.md) | 语音转写 |
-| [TTS.md](./references/TTS.md) | 语音合成 |
-| [DOCUMENT-TRANSLATION.md](./references/DOCUMENT-TRANSLATION.md) | Word/PDF 翻译 |
-| [API-KEY.md](./references/API-KEY.md) | Key 配置 |
-| [BEHAVIOR-RULES.md](./references/BEHAVIOR-RULES.md) | 行为、确认、重试 |
+- 首次配置、升级旧版或排查鉴权时：[API-KEY](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/API-KEY.md)
+- 选择语言处理接口时：[INTERFACE-ROUTING](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/INTERFACE-ROUTING.md)
+- 文本翻译时：[TRANSLATION](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/TRANSLATION.md)
+- 问答或写作时：[CHAT-COMPLETIONS](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/CHAT-COMPLETIONS.md)
+- 识别蒙文图片时：[OCR](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/OCR.md)
+- 语音识别时：[ASR](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/ASR.md)
+- 语音合成时：[TTS](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/TTS.md)
+- 翻译 Word/PDF 时：[DOCUMENT-TRANSLATION](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/DOCUMENT-TRANSLATION.md)
+- 调用 API 前，确认请求、响应与重试规则：[HTTP-REQUESTS](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/HTTP-REQUESTS.md)
+- 执行前，确认本次授权、安全与结果解释边界：[BEHAVIOR-RULES](https://ai-skills.open-idea.net/skill-docs/mongolian-ai/BEHAVIOR-RULES.md)

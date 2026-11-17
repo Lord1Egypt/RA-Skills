@@ -1,43 +1,58 @@
-## Description: <br>
-Consolidates Telegram personal-account login workflows for tdl/TDLib, including namespace reuse, QR and batch logins, TDLib state transfer, and clear escalation when human authentication or API credentials are required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consolidate practical Telegram personal-account login workflows for tdl/TDLib: reuse an existing namespace, complete QR login, batch-login multiple namespaces, copy working TDLib state, and escalate honestly when human auth or API credentials are required.
 
-## Publisher: <br>
-[stevewu422](https://clawhub.ai/user/stevewu422) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevewu422](https://clawhub.ai/user/stevewu422)
 
-## Use Case: <br>
-Developers and operators use this skill to recover or set up Telegram personal-account access for local tdl/TDLib workflows without switching to bot tooling. It helps choose between reusing a namespace, QR login, copying an existing session, MTProto fallback, or human-assisted login. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusing or copying TDLib session state can expose live Telegram personal-account access if shared, logged, or transferred insecurely. <br>
-Mitigation: Treat TDLib state directories like passwords: keep them out of logs and transcripts, restrict file permissions, use secure transfer, and clean up or revoke sessions when needed. <br>
-Risk: The workflows can be misused against Telegram accounts the user does not own or have permission to access. <br>
-Mitigation: Use the skill only for Telegram accounts you own or are explicitly authorized to manage. <br>
-Risk: MTProto fallback requires Telegram API credentials, and QR login requires human authentication when no reusable session is available. <br>
-Mitigation: Do not claim login is complete without the required credentials or human step; escalate for one-time authentication when the documented fallback conditions are not met. <br>
+## Use Case:
 
+Developers and operators use this skill when Telegram personal-account access is blocked at login, when a reusable TDLib namespace or copied session state may resolve the issue, or when another agent needs a concise local login runbook.
 
-## Reference(s): <br>
-- [Telegram Login Runbook](references/runbook.md) <br>
-- [ClawHub release page](https://clawhub.ai/stevewu422/telegram-login-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require interactive QR login, reusable TDLib session state, or Telegram API credentials depending on the chosen path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authenticated TDLib session state may expose a Telegram personal account if copied, stored, or reused without adequate protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for accounts you own or are authorized to administer, protect any session-state transfer and storage, and avoid copying state between machines unless that handling is secured.
+
+Risk: The artifact includes hardcoded local paths and the steve namespace, which may be inappropriate in shared or different environments.
+
+Mitigation: Review the paths and namespaces before use, then remove or adapt hardcoded local values for the target environment.
+
+Risk: Telegram API credentials and TDLib data directories are sensitive and can enable account access.
+
+Mitigation: Treat TELEGRAM_API_ID, TELEGRAM_API_HASH, and TDLib data directories as secrets and keep them out of logs, shared workspaces, and unprotected artifacts.
+
+## Reference(s):
+
+- [Telegram Login Runbook](references/runbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/stevewu422/skills/telegram-login-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive login guidance that may require QR scanning, reusable TDLib session state, or TELEGRAM_API_ID and TELEGRAM_API_HASH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

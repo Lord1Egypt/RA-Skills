@@ -1,41 +1,55 @@
-## Description: <br>
-Exact arithmetic for AI agents with tools for integer arithmetic, fractions, units, calculus, and financial calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exact arithmetic for AI agents - zero hallucination math via 62 tools covering integer arithmetic, fractions, units, calculus, and financial calculations.
 
-## Publisher: <br>
-[lrningslo](https://clawhub.ai/user/lrningslo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrningslo](https://clawhub.ai/user/lrningslo)
 
-## Use Case: <br>
-Developers and agents use Arithym when a numeric result must be correct, including financial math, unit conversion, exact rational arithmetic, calculus, physical constants, and multi-step calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Arithym API key and sends calculation inputs to Arithym's hosted service. <br>
-Mitigation: Confirm the provider's terms and privacy practices before use, and avoid submitting confidential personal, financial, or business details unless that is acceptable for the deployment. <br>
+## Use Case:
 
+Developers and agents use Arithym to route math-sensitive tasks to a hosted MCP service for exact arithmetic, unit conversion, calculus, financial calculations, and physics constants when approximation would be unacceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrningslo/arithym-io-arithym) <br>
-- [Arithym homepage](https://arithym.xyz) <br>
-- [Arithym MCP endpoint](https://arithym.xyz/mcp) <br>
-- [OpenClaw source metadata](https://github.com/Arithym-io/arithym) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with JSON configuration snippets and tool-use guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an Arithym-hosted MCP server authenticated with ARITHYM_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: Calculation inputs are sent to Arithym's hosted MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending those inputs to a third-party service is acceptable, and avoid confidential financial or business data unless that use has been approved.
+
+Risk: The skill requires an ARITHYM_API_KEY in the MCP environment.
+
+Mitigation: Store the API key in the agent or MCP secret-management path and avoid hard-coding it in shared configuration.
+
+## Reference(s):
+
+- [Arithym homepage](https://arithym.xyz)
+- [Arithym source repository](https://github.com/Arithym-io/arithym)
+- [ClawHub skill page](https://clawhub.ai/lrningslo/skills/arithym-io-arithym)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Text]
+
+**Output Format:** [Markdown with MCP configuration JSON and tool-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARITHYM_API_KEY and sends calculation inputs to the hosted Arithym MCP service.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

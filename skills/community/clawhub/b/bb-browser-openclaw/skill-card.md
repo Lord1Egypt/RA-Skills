@@ -1,39 +1,54 @@
-## Description: <br>
-Turn any website into a CLI command across 36 platforms and 103 commands using OpenClaw's browser directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any website into a CLI command. 36 platforms, 103 commands - Twitter, Reddit, GitHub, YouTube, Zhihu, Bilibili, Weibo, and more. Uses OpenClaw's browser directly, no extra extension needed.
 
-## Publisher: <br>
-[a1437707640-ui](https://clawhub.ai/user/a1437707640-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a1437707640-ui](https://clawhub.ai/user/a1437707640-ui)
 
-## Use Case: <br>
-Developers and agents use this skill to run bb-browser site adapters through OpenClaw for structured extraction from social, developer, news, finance, video, and knowledge sites, including logged-in pages when the user intentionally uses that browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through a logged-in browser session against arbitrary sites and may read visible account data. <br>
-Mitigation: Use it only on trusted sites, confirm the exact site and data before running adapter tests, and avoid sensitive accounts unless that access is intentional. <br>
+## Use Case:
 
+Developers and agents use this skill to run bb-browser website adapters through OpenClaw's browser, extracting structured data from social, developer, finance, news, knowledge, and video sites. It also guides users toward listing, filtering, inspecting, and creating adapters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a1437707640-ui/bb-browser-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/a1437707640-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and optional structured JSON from bb-browser commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the bb-browser binary. Site commands must include --openclaw; --json and --jq can be used for structured output and filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Community website adapters may access the same browser session and logged-in account context used by OpenClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review adapter source before execution and use a separate browser profile or logged-out session when working with sensitive accounts.
+
+Risk: Release provenance is unavailable, so upstream source history cannot be confirmed from server-resolved GitHub import data.
+
+Mitigation: Treat the packaged artifact and server evidence as the review boundary, and avoid inferring provenance from skill text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a1437707640-ui/skills/bb-browser-openclaw)
+- [Publisher profile](https://clawhub.ai/user/a1437707640-ui)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured command-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are expected to use bb-browser with --openclaw; some adapters may return JSON for downstream filtering.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

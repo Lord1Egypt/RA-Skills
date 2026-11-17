@@ -1,42 +1,59 @@
-## Description: <br>
-Manage multiple social media platforms to automate posting, scheduling, draft and template management, timeline viewing, interactions, and analytics via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A CLI skill for managing social-media posting, scheduling, drafts, templates, timelines, interactions, and rate-limit-aware account workflows.
 
-## Publisher: <br>
-[HiroFumiko](https://clawhub.ai/user/HiroFumiko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hirofumiko](https://clawhub.ai/user/hirofumiko)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to manage social media workflows from a CLI, including posting to X/Twitter, scheduling content, managing drafts and templates, and reviewing timelines and interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can perform real actions on connected social-media accounts, including public posts and interactions. <br>
-Mitigation: Use a test account first and review immediate, scheduled, and recurring posts before enabling automation. <br>
-Risk: API tokens and account credentials may be stored locally in environment variables or a .env file. <br>
-Mitigation: Keep .env out of source control and backups, restrict local file permissions, and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+Developers and social-media operators use this skill to configure and run a CLI for drafting, posting, scheduling, templating, viewing timelines, monitoring mentions, and performing account interactions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/HiroFumiko/social-media-automation) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in local configuration files, SQLite records, and social-media API actions when the CLI commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata, created 2026-03-14T19:30:05Z) <br>
+Risk: The skill can use social-media credentials to act on live accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API credentials, keep the .env file private, and rotate tokens if configuration output has been logged.
+
+Risk: Commands can post, like, retweet, delete, or schedule actions against account content.
+
+Mitigation: Verify account, platform, post, and target IDs before executing account-changing commands.
+
+Risk: The security guidance flags the undocumented Discord and Telegram integration as unresolved.
+
+Mitigation: Avoid the Discord and Telegram integration until its file-upload and webhook scoping issues are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hirofumiko/skills/social-media-automation)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of local .env settings, SQLite-backed drafts, templates, scheduled jobs, and social-media account actions when commands are executed.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

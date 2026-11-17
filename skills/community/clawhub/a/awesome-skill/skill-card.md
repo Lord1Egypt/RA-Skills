@@ -1,39 +1,58 @@
-## Description: <br>
-Discover, search, and install from 5,400+ curated OpenClaw skills across 30 categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, search, and install from 5,400+ curated OpenClaw skills across 30 categories.
 
-## Publisher: <br>
-[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to discover relevant community skills, compare options, and get installation guidance. It also reminds users to review security status before installing third-party skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recommended skills may be third-party content that has not been audited. <br>
-Mitigation: Review each recommended skill's source, publisher, permissions, and available ClawHub or security scan results before installation. <br>
-Risk: Skills involving credentials, wallets, posting, automation, or global installation can carry elevated operational risk. <br>
-Mitigation: Apply extra review before installing or enabling those categories, and prefer workspace-scoped installation when evaluating unfamiliar skills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mohdalhashemi98-hue/awesome-skill) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to discover community skills, compare relevant options, and get installation guidance with security reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with installation commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are drawn from the bundled OpenClaw skill directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The catalog recommends unpinned automatic installs of community skills.
+
+Mitigation: Use pinned, reviewed installer versions and review each target skill before running installation commands.
+
+Risk: Recommendations may include unaudited community-built skills.
+
+Mitigation: Treat recommendations as search results rather than endorsements, and check each skill's source and ClawHub security status.
+
+Risk: Unsanitized third-party catalog text can influence recommendations.
+
+Mitigation: Manually review suggested skill descriptions and commands before executing or installing anything.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/skills/awesome-skill)
+- [Publisher profile](https://clawhub.ai/user/mohdalhashemi98-hue)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown recommendations with install commands and safety notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are drawn from a large community catalog and should be reviewed before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

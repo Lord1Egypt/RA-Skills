@@ -1,42 +1,50 @@
-## Description: <br>
-Provides NexusFIX-focused guidance for building, reviewing, debugging, and optimizing C++23 FIX protocol connectivity code with low-latency, zero-allocation constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides NexusFIX-specific guidance for building, reviewing, debugging, and optimizing C++23 FIX protocol connectivity, including session management, order entry, market data, low-latency parsing, and zero-allocation hot-path constraints.
 
-## Publisher: <br>
-[alan-stratcraftsai](https://clawhub.ai/user/alan-stratcraftsai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alan-stratcraftsai](https://clawhub.ai/user/alan-stratcraftsai)
 
-## Use Case: <br>
-Developers and engineers use this skill when generating, reviewing, or debugging NexusFIX-based C++ FIX connectivity for session management, order entry, market data handling, and low-latency message parsing. It helps keep generated code aligned with C++23, fixed-point price handling, std::expected error handling, and zero-allocation hot-path practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate in broader FIX protocol conversations where NexusFIX-specific guidance is not intended. <br>
-Mitigation: Confirm the target project uses NexusFIX before applying its generated patterns or constraints. <br>
-Risk: Generated trading or broker-connectivity code could be unsafe if used directly against live systems. <br>
-Mitigation: Review generated code and test it in a sandbox before any live trading or broker connectivity use. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate, review, debug, or optimize NexusFIX-based C++ FIX protocol code. It is intended for FIX session management, order entry, market data subscription, message parsing, and low-latency implementation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alan-stratcraftsai/nexusfix) <br>
-- [Publisher profile](https://clawhub.ai/user/alan-stratcraftsai) <br>
-- [NexusFIX GitHub repository](https://github.com/StratCraftsAI/NexusFIX) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with C++ code examples, constraints, anti-patterns, and verification guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; generated trading and broker-connectivity code should be reviewed and sandbox-tested before live use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may activate on general FIX protocol prompts and steer answers toward NexusFIX-specific C++23 patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when NexusFIX specialization is desired, and verify API and latency claims against the actual NexusFIX project documentation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alan-stratcraftsai/skills/nexusfix)
+- [NexusFIX Project](https://github.com/StratCraftsAI/NexusFIX)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with C++ code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include NexusFIX-specific constraints, anti-pattern checks, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "router-local",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:3457",
+    "ANTHROPIC_MODEL": "space-bunny[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "space-bunny[1m]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME": "space-bunny",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "space-bunny[1m]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME": "space-bunny",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "space-bunny[1m]",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL_NAME": "space-bunny",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "space-bunny[1m]",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME": "space-bunny",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "space-bunny[1m]",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "1000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "API_TIMEOUT_MS": "600000"
+  },
+  "model": "space-bunny[1m]",
+  "tui": "fullscreen",
+  "modelSettings": {
+    "space-bunny": {
+      "effortLevel": "medium"
+    }
+  }
+}

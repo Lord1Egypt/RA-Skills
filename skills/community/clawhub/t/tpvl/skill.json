@@ -1,7 +1,13 @@
 {
   "name": "tpvl",
-  "version": "1.1.1",
-  "description": "TPVL (Taiwan Professional Volleyball League) stats, scores, schedules, and standings for Taiwan's pro volleyball.",
-  "tags": ["tpvl", "volleyball", "taiwan", "sports", "scores"],
+  "version": "1.2.1",
+  "description": "TPVL (Taiwan Professional Volleyball League) scores, schedules, standings, and player leaderboards for Taiwan pro volleyball (2026-27, 5 teams).",
+  "tags": [
+    "tpvl",
+    "volleyball",
+    "taiwan",
+    "sports",
+    "scores"
+  ],
   "author": "ichendong"
 }

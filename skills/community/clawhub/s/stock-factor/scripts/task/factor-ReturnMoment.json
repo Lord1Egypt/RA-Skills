@@ -1,0 +1,14 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "ANOM_52WK_HIGH": "ac = d['close'] * d['adj_factor']\nhp = ac.rolling(252).max()\nout = ac / hp",
+    "ANOM_BETA": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nmkt = get_stock_index('000001', 'close').pct_change()\nout = rolling_regbeta(ret, mkt, 252)",
+    "ANOM_BETA2": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nmkt = get_stock_index('000001', 'close').pct_change()\nbeta = rolling_regbeta(ret, mkt, 252)\nout = beta ** 2",
+    "ANOM_DOWNSIDE_VOL": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\ndr = ret.where(ret < 0, 0)\nout = dr.rolling(252).std()",
+    "ANOM_SKEW": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = ret.rolling(60).skew()",
+    "ANOM_KURT": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nout = ret.rolling(60).kurt()",
+    "ANOM_IDIOSKEW": "ac = d['close'] * d['adj_factor']\nret = ac / ac.shift(1) - 1\nmkt = get_stock_index('000001', 'close').pct_change()\nbeta = rolling_regbeta(ret, mkt, 252)\nresid = ret - beta * mkt\nout = resid.rolling(60).skew()"
+  },
+  "save_path": "output\\factor-ReturnMoment.xlsx"
+}

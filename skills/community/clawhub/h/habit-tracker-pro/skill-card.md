@@ -1,38 +1,55 @@
-## Description: <br>
-Habit Tracker Pro helps users build and manage personal habits with check-ins, statistics, achievements, data analysis, and social sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit Tracker Pro helps users build and manage personal habits with check-ins, statistics, achievements, data analysis, and social sharing.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users can use this skill to add habits, record check-ins, inspect habit statistics, view achievements, and manage personal habit-building workflows from command-line guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Instructions are primarily Chinese-only, which may make purpose, commands, pricing, or data handling harder for non-Chinese readers to assess. <br>
-Mitigation: Review a trusted translation or ask the publisher for an English summary before relying on the skill in mixed-language environments. <br>
+## Use Case:
 
+External users can use this skill to add personal habits, record check-ins, view statistics, track achievements, and review habit progress through ClawHub CLI guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kaising-openclaw1/habit-tracker-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instructions are primarily in Chinese and describe ClawHub habit-management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The installation command uses a mutable npm latest tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned clawhub installer version when installing or reproducing this release.
+
+Risk: The metadata declares a curl binary requirement that is not explained by the artifact behavior.
+
+Mitigation: Review the runtime environment and confirm whether curl is actually required before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/habit-tracker-pro)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language habit-tracking guidance; no generated files declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Content Pilot helps content operators generate social posts, hashtags, quotes, newsletters, press releases, content calendars, and long-form articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates marketing and social media content, including captions, hashtags, quotes, newsletters, press releases, long-form articles, and content calendars.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-Marketing and content operations teams use this skill to draft and adapt social media copy, hashtag strategies, slogans, newsletters, press releases, long-form articles, and content calendars for publication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing or publishing guidance may be too broad or inaccurate for a brand, campaign, or channel. <br>
-Mitigation: Review and edit all generated content before publication or account-facing actions. <br>
-Risk: The skill describes network and API-key dependent workflows that may process business content. <br>
-Mitigation: Do not provide confidential drafts, customer data, embargoed announcements, credentials, or secrets unless the user accepts third-party API handling. <br>
-Risk: Generic business prompts may activate the skill outside the user's intended marketing-content workflow. <br>
-Mitigation: Invoke it only for marketing-content generation and related content operations. <br>
+## Use Case:
 
+Marketing, content operations, and communications users use this skill to draft platform-specific social posts, tags, slogans, newsletters, press releases, long-form articles, and publishing calendars.
 
-## Reference(s): <br>
-- [Content Pilot on ClawHub](https://clawhub.ai/freeman88-tch/lobster-content-pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text drafts with platform-specific sections, lists, and calendars] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multiple content variants, hashtag lists, quote suggestions, newsletter or press release drafts, and publication schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive drafts or customer data could be exposed if the skill is used with unverified third-party API providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the configured provider and data policy before use, and avoid submitting confidential drafts or customer data unless approved.
+
+Risk: Broad activation examples and inconsistent documentation can cause unintended use or mismatched expectations.
+
+Mitigation: Narrow activation triggers, align metadata with the documented long-form writing behavior, and review generated content before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/lobster-content-pilot)
+- [ClawHub publisher profile](https://clawhub.ai/user/freeman88-tch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include platform-specific copy variants, hashtag recommendations, quotes, newsletters, press releases, long-form article drafts, and content calendar entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

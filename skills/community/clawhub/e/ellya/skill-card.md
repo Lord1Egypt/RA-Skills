@@ -1,46 +1,56 @@
-## Description: <br>
-OpenClaw virtual companion skill that bootstraps character setup, learns and stores visual styles from uploaded photos, generates selfies from prompts or saved styles, and creates multi-image photo series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ellya is an OpenClaw virtual companion skill that helps initialize a character profile, learn visual styles from photos, and generate selfies or multi-image photo series with Gemini.
 
-## Publisher: <br>
-[laogiant](https://clawhub.ai/user/laogiant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[laogiant](https://clawhub.ai/user/laogiant)
 
-## Use Case: <br>
-OpenClaw users and skill handlers use Ellya to set up a virtual companion persona, collect user-provided appearance and style references, generate personalized images, and send generated media back through the OpenClaw runtime. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded photos, generated images, base appearance files, and saved style notes may contain sensitive or identifying information. <br>
-Mitigation: Use only photos the user is comfortable storing locally, avoid private or identifying images, and add clear retention and deletion steps before deployment. <br>
-Risk: Photo analysis prompts ask for detailed body and identifying visual characteristics. <br>
-Mitigation: Obtain explicit user consent before analyzing personal photos and limit analysis to style details needed for the requested generation. <br>
-Risk: Selected photos and prompts are sent to Google GenAI for analysis and generation. <br>
-Mitigation: Disclose this external processing path to users and avoid submitting sensitive photos or prompts unless the user accepts that handling. <br>
-Risk: Generated media can be sent through OpenClaw to a channel and target. <br>
-Mitigation: Confirm the recipient context before sending generated images and provide a fallback when the OpenClaw CLI is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laogiant/ellya) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Analysis prompt](artifact/ANALYSIS_PROMPT.md) <br>
+## Use Case:
 
+OpenClaw users and skill handlers use Ellya to personalize a virtual companion's name and appearance, learn reusable style references from uploaded photos, and generate companion selfie images or pose/story photo series.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under output/ and learned style notes are saved under styles/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Personal or reference photos and detailed derived prompts may be sent to Google Gemini and saved locally.
+
+Mitigation: Use only photos the user has permission to process, avoid sensitive or intimate images, disclose external processing and local retention, and provide cleanup controls.
+
+Risk: A style-name path traversal flaw could expose local Markdown files.
+
+Mitigation: Constrain style names to sanitized filenames and verify resolved style paths remain inside the intended styles directory before reading or writing.
+
+Risk: The skill handles uploaded appearance and style references with weak consent boundaries.
+
+Mitigation: Require explicit consent before processing, storing, or sending user-provided or generated media, and document where files are stored.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laogiant/skills/ellya)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, image files]
+
+**Output Format:** [Markdown guidance with CLI commands, saved Markdown style prompts, and generated PNG image paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under output/ and learned style prompts are saved under styles/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

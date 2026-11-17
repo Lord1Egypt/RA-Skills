@@ -31,7 +31,7 @@ metadata:
 
 
 If you run trading bots across multiple exchanges, you have a visibility problem. Binance shows you Binance positions. Coinbase shows you Coinbase positions. Kraken shows you Kraken positions. Nobody shows you the aggregate. Nobody tells you that your mean-reversion strategy on Binance and your momentum strategy on Coinbase have become 0.94 correlated over the last four hours -- meaning a single market move will hit both simultaneously. Nobody warns you that your combined leverage across three exchanges has crept from 3x to 7x because each exchange only sees its own slice. The May 2025 cascade liquidations on BitMEX made this concrete: bots running isolated risk checks per exchange missed the aggregate exposure building across venues, and when BTC dropped 12% in ninety minutes, the cross-exchange margin calls arrived simultaneously. Operators who had $200K in aggregate equity across four exchanges discovered they were effectively running 11x leverage when positions were netted. The liquidation cascade took 47 seconds from first margin call to full wipeout. This guide builds a complete, production-grade risk monitoring system that sits above your exchange connections and provides a unified view of portfolio risk. It uses GreenHelix's event bus for real-time data aggregation, webhooks for alert delivery, and SLA compliance monitoring for operational health tracking. You will build drawdown trackers, correlation monitors, liquidation proximity engines, and circuit breakers -- all wired together through a single risk management layer that treats your entire multi-exchange operation as one portfolio.
-1. [Risk Architecture Overview](#chapter-1-risk-architecture-overview)
+1. [Risk Architecture Overview](#chapter-1-riREDACTED-SECRET)
 2. [The RiskMonitor Class](#chapter-2-the-riskmonitor-class)
 
 ## What You'll Learn
@@ -55,7 +55,7 @@ If you run trading bots across multiple exchanges, you have a visibility problem
 
 ## Table of Contents
 
-1. [Risk Architecture Overview](#chapter-1-risk-architecture-overview)
+1. [Risk Architecture Overview](#chapter-1-riREDACTED-SECRET)
 2. [The RiskMonitor Class](#chapter-2-the-riskmonitor-class)
 3. [Drawdown Monitoring and Alerts](#chapter-3-drawdown-monitoring-and-alerts)
 4. [Correlation Monitoring](#chapter-4-correlation-monitoring)

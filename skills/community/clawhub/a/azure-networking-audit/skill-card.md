@@ -1,41 +1,58 @@
-## Description: <br>
-Azure VNet networking audit covering address space design, NSG rule evaluation, Azure Firewall policy analysis, ExpressRoute and VPN Gateway connectivity, VNet Peering topology, and UDR validation using read-only Azure CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Azure VNet networking audit covering address space design, NSG rule evaluation, Azure Firewall policy analysis, ExpressRoute and VPN Gateway connectivity, VNet Peering topology, and UDR validation using read-only Azure CLI commands.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Cloud, network, and security engineers use this skill to inspect Azure VNet architecture, NSG exposure, firewall policy posture, hybrid connectivity, peering, and route table behavior. It supports design reviews, post-migration audits, compliance preparation, connectivity troubleshooting, and cost-oriented cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects Azure networking configuration in the selected account and can expose sensitive topology, routing, firewall, and IAM context in the audit output. <br>
-Mitigation: Use least-privileged Reader or granular network read permissions, target the subscription, resource group, and VNet explicitly, and avoid sharing audit output beyond the intended review audience. <br>
-Risk: The bundled command reference includes role-assignment listing commands that may reveal access-control details when IAM context is not required. <br>
-Mitigation: Run role-assignment queries only when IAM review is part of the audit scope and redact principal or role details before external sharing. <br>
+## Use Case:
 
+Developers, cloud engineers, and security reviewers use this skill to audit Azure VNet architecture, NSG rules, Azure Firewall policy, hybrid connectivity, peering, and routes using read-only Azure CLI commands.
 
-## Reference(s): <br>
-- [Azure CLI Reference - VNet Networking Audit Commands](references/cli-reference.md) <br>
-- [Azure VNet Architecture Reference](references/vnet-architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline Azure CLI commands and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only audit steps and findings guidance for a selected Azure subscription, resource group, or VNet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Azure inventory commands can expose sensitive resource topology when run with broad subscription access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Reader or granular Microsoft.Network read permissions scoped to the intended subscription, resource group, and VNet.
+
+Risk: RBAC and Azure AD identity checks broaden the audit beyond network resource inventory.
+
+Mitigation: Run identity and role-assignment commands only when confirming the signed-in user or verifying required audit permissions.
+
+Risk: The audit can inspect unintended Azure resources if the Azure CLI context points at the wrong subscription or resource group.
+
+Mitigation: Confirm the target subscription, resource group, and VNet before running the listed read-only commands.
+
+## Reference(s):
+
+- [Azure CLI Reference - VNet Networking Audit Commands](references/cli-reference.md)
+- [Azure VNet Architecture Reference](references/vnet-architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline Azure CLI command blocks and a report template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Azure CLI audit workflow requiring an authenticated Azure CLI session and scoped Azure read permissions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

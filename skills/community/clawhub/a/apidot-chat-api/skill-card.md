@@ -1,46 +1,61 @@
-## Description: <br>
-Use APIDot for chat API workflows, including OpenAI-compatible chat completions, coding assistants, reasoning models, multimodal assistant routing, streaming planning, server-side API key safety, and APIDot chat model docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for chat API workflows, including OpenAI-compatible chat completions, coding assistants, reasoning models, multimodal assistant routing, streaming planning, server-side API key safety, and APIDot chat model docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this documentation-only skill to route APIDot chat integration questions to relevant docs, model pages, examples, and API-key handling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys or private chat data could be exposed if copied into browser code, logs, public repositories, screenshots, or chat output. <br>
-Mitigation: Keep APIDOT_API_KEY, prompts, transcripts, outputs, and user identifiers in server-side environment variables, secret managers, or approved secure storage. <br>
-Risk: APIDot model availability and model-specific request fields can change over time. <br>
-Mitigation: Check current APIDot docs and live model pages before choosing a model route or giving model-specific integration details. <br>
-Risk: Live API calls could send user data to APIDot unexpectedly. <br>
-Mitigation: Do not make live API calls unless the user explicitly asks and provides a safe server-side environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to route APIDot chat integration questions to the relevant docs, model pages, examples, and server-side API-key safety guidance. It supports planning for chat completions, coding assistants, reasoning workflows, multimodal chat, streaming, request storage, and rate-limit handling.
 
-## Reference(s): <br>
-- [APIDot documentation](https://apidot.ai/docs) <br>
-- [APIDot chat models](https://apidot.ai/models/chat) <br>
-- [APIDot quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot examples](https://github.com/APIDotAI/apidot-examples) <br>
-- [ClawHub skill page](https://clawhub.ai/jiehao71727/skills/apidot-chat-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Code] <br>
-**Output Format:** [Markdown guidance with links and optional code or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no scripts, bundled API clients, stored credentials, or automatic network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: APIDot API keys could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store APIDOT_API_KEY only in server-side environment variables or an approved secret manager, and avoid echoing credentials in generated examples or logs.
+
+Risk: Live APIDot API calls could be made unintentionally while following integration guidance.
+
+Mitigation: Make live API calls only when explicitly requested and when a safe server-side environment is available.
+
+Risk: APIDot model availability, request fields, or product details may change after the skill release.
+
+Mitigation: Check the current APIDot docs and model catalog before selecting model-specific routes or making product claims.
+
+## Reference(s):
+
+- [APIDot API Docs](https://apidot.ai/docs)
+- [APIDot Chat Models](https://apidot.ai/models/chat)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [APIDot GitHub Organization](https://github.com/APIDotAI)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional code, shell command, or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable files, automatic network calls, install-time automation, or credential storage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

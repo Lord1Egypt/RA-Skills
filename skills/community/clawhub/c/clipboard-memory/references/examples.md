@@ -164,6 +164,6 @@ clipmem doctor --json
 clipmem service status --json
 ```
 
-If `clipmem service status --json` reports `stale: true`, the watcher is not running. Tell the user to run `clipmem setup` or `brew services start clipmem` before retrying.
+If `clipmem service status --json` reports `stale: true`, the watcher is not running. Tell the user to run `clipmem setup` or `clipmem service start` before retrying.
 
 See [troubleshooting.md](troubleshooting.md) for remediation steps.

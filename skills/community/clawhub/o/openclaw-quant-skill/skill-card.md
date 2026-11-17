@@ -1,45 +1,60 @@
-## Description: <br>
-Professional quantitative trading system for cryptocurrency - backtesting, paper trading, live trading, and strategy optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional quantitative trading system for cryptocurrency - backtesting, paper trading, live trading, and strategy optimization.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-External developers and trading-system builders use this skill to produce commands, code examples, configuration guidance, and analysis workflows for crypto strategy backtesting, paper trading, performance review, and explicitly confirmed live trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package mixes a crypto live-trading skill with an unrelated video-generation skill. <br>
-Mitigation: Review the packaged files before installation and treat the unrelated video-generation file as out of scope until the publisher removes or separates it. <br>
-Risk: The skill asks users to install and run external code that was not reviewed in the server evidence. <br>
-Mitigation: Review the external repository and dependencies before executing commands, and pin or inspect the code used for any trading workflow. <br>
-Risk: Live-trading commands can place real orders when exchange credentials are provided. <br>
-Mitigation: Use backtesting and paper or testnet mode first, disable withdrawals on exchange keys, set tight limits, and require explicit confirmation before any live-trading command. <br>
+## Use Case:
 
+Developers and trading-system operators use this skill to guide OpenClaw agents through cryptocurrency strategy backtesting, optimization, paper trading, and live-trading workflows. It produces commands, configuration, and implementation guidance that should be reviewed before any market execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/openclaw-quant-skill) <br>
-- [Openclaw Quant project repository](https://github.com/ZhenRobotics/openclaw-quant) <br>
-- [Openclaw Quant issues](https://github.com/ZhenRobotics/openclaw-quant/issues) <br>
-- [Openclaw Quant discussions](https://github.com/ZhenRobotics/openclaw-quant/discussions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Python, YAML, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading risk warnings and confirmation prompts for live-trading workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package mixes the crypto trading skill with an unrelated video-generation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the quant documentation unless the publisher fixes or removes the unrelated English video-generator file.
+
+Risk: The skill asks users to install mutable external code while handling API keys.
+
+Mitigation: Install in an isolated environment, pin and inspect the exact repository commit, avoid global installs, and keep API keys out of shell history and chats.
+
+Risk: The skill documents live trading workflows that can place real exchange orders.
+
+Mitigation: Disable withdrawals on exchange keys, prefer testnet or paper trading, and require explicit confirmation before any live trading.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/openclaw-quant-skill)
+- [Openclaw Quant Project Documentation](https://github.com/ZhenRobotics/openclaw-quant)
+- [Openclaw Quant Issues](https://github.com/ZhenRobotics/openclaw-quant/issues)
+- [Openclaw Quant Discussions](https://github.com/ZhenRobotics/openclaw-quant/discussions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading workflow guidance and risk warnings for paper or live trading.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Add lightweight defense-in-depth guardrails to OpenClaw with dangerous-command blocking, prompt-injection detection, secret redaction, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add lightweight defense-in-depth guardrails to OpenClaw with dangerous-command blocking, prompt-injection detection, secret redaction, and audit logging.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and operators use this skill to add lightweight safety checks around OpenClaw shell, file, network, and messaging workflows. It helps flag or block risky commands, prompt-injection patterns, sensitive paths, and secret-like content while preserving an audit trail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit logs may contain sensitive prompt text, tool parameters, paths, tokens, or credentials. <br>
-Mitigation: Configure auditLogPath to a protected location with strict access controls and short retention, and redact or omit audit previews before operational use. <br>
-Risk: The guardrails are defense-in-depth checks and do not provide sandboxing or malware containment. <br>
-Mitigation: Use OS, network, credential, and runtime isolation controls alongside the skill for higher-risk workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to add lightweight guardrails to OpenClaw runtimes that inspect tool calls, detect prompt-injection patterns, redact secrets, and keep audit logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wd041216-bit/ironclaw-security-guard) <br>
-- [Project homepage](https://github.com/wd041216-bit/openclaw-ironclaw-security-guard) <br>
-- [IronClaw reference project](https://github.com/nearai/ironclaw) <br>
-- [Manual scan example](examples/manual-scan-example.md) <br>
-- [Example OpenClaw configuration](examples/openclaw-config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON scan-result examples and inline shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk categories, severity, block or audit recommendations, and safer alternatives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence, package.json, openclaw.plugin.json, skill.json) <br>
+Risk: Audit logs can persist sensitive message and tool contents locally, including data the skill is intended to protect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private audit path with restrictive permissions and prefer deployments that redact audit previews centrally before use with sensitive prompts, tool parameters, or outgoing messages.
+
+Risk: This skill adds defense-in-depth checks but does not provide container isolation, sandboxing, or full malware containment.
+
+Mitigation: Keep OS, credential, network, and runtime controls in place, and treat the skill as a guardrail rather than a security boundary.
+
+Risk: Heuristic command, path, prompt-injection, and secret-detection rules can produce false positives or miss novel patterns.
+
+Mitigation: Review audit entries before overriding blocked calls and test local allowlists, protected paths, and blocked-command patterns before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd041216-bit/skills/ironclaw-security-guard)
+- [Project homepage](https://github.com/wd041216-bit/openclaw-ironclaw-security-guard)
+- [README](README.md)
+- [Security policy](SECURITY.md)
+- [Manual scan example](examples/manual-scan-example.md)
+- [OpenClaw plugin manifest](openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON scan results and inline configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include redacted previews, finding categories, severity labels, safer alternatives, and block recommendations.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, package.json, skill.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

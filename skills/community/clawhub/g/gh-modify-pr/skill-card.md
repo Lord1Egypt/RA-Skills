@@ -1,40 +1,53 @@
-## Description: <br>
-Modify code based on GitHub PR review comments and create a local commit using gh + git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modifies code based on GitHub PR review comments and creates a local commit using gh and git.
 
-## Publisher: <br>
-[danie1Lin](https://clawhub.ai/user/danie1Lin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danie1lin](https://clawhub.ai/user/danie1lin)
 
-## Use Case: <br>
-Developers and engineers use this skill to address GitHub pull request review comments by inspecting PR metadata and inline comments, editing affected files, validating changes, and creating a local commit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses configured GitHub and git access to read pull request data, clone or check out repositories, edit files, and create a local commit. <br>
-Mitigation: Install it only when the agent should use that GitHub access, and review the resulting diff and commit before approving any push. <br>
-Risk: Validation commands may run inside unfamiliar repositories while addressing review comments. <br>
-Mitigation: Run only necessary validation, inspect commands before execution when risk is unclear, and avoid broad test or script execution without user approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danie1Lin/gh-modify-pr) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/danie1Lin) <br>
+## Use Case:
 
+Developers and maintainers use this skill to apply GitHub PR review feedback, validate targeted changes, create local commits, and report the branch and commit status.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summary with changed-file details, commit hash, branch name, and push status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local repository edits and a local git commit; push is only performed when requested or approved.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use GitHub CLI authentication to read PR details, clone or open repositories, edit code, and create a local commit.
+
+Mitigation: Install only when that access is acceptable, use an appropriately scoped GitHub session, and review the resulting diff before approving any push.
+
+Risk: A PR review comment may be ambiguous or broader than intended, leading to unintended code changes.
+
+Mitigation: Limit the requested scope when needed, require a focused clarification for ambiguous comments, and review the final changed files before sharing the commit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danie1lin/skills/gh-modify-pr)
+- [ClawHub publisher profile](https://clawhub.ai/user/danie1lin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Markdown]
+
+**Output Format:** [Markdown operational summary with shell commands and local code changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local git commit; pushing remains subject to explicit user approval.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Compile rough natural-language coding requests into structured, high-signal prompts for cross-platform AI coding tools such as Cursor, Claude Code, Codex CLI, Gemini CLI, and generic IDE chat assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compile rough natural-language coding requests into structured, high-signal prompts for cross-platform AI coding tools such as Cursor, Claude Code, Codex CLI, Gemini CLI, and generic IDE chat assistants.
 
-## Publisher: <br>
-[qiyuequkanhai](https://clawhub.ai/user/qiyuequkanhai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qiyuequkanhai](https://clawhub.ai/user/qiyuequkanhai)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn vague coding or product-engineering requests into scoped implementation briefs with assumptions, constraints, non-goals, and acceptance criteria. It is best suited for MVPs, bugfixes, refactors, architecture reviews, integrations, automation workflows, and cross-tool handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The compiler may turn a broad or vague request into a scoped brief whose assumptions do not match the user's intent. <br>
-Mitigation: Review the generated assumptions, scope, non-goals, and acceptance criteria before using the brief to drive implementation. <br>
-Risk: Repository-aware options can read local project guidance files such as README, AGENTS.md, and package.json. <br>
-Mitigation: Use repo-aware flags only on repositories whose local guidance and metadata files are appropriate for the helper script to read. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn vague coding or product-engineering requests into scoped implementation briefs, handoff prompts, assumptions, non-goals, constraints, and acceptance criteria for AI coding tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiyuequkanhai/vibe-prompt-compiler-portable) <br>
-- [Auto Mode](references/auto-mode.md) <br>
-- [Templates](references/templates.md) <br>
-- [Routing](references/routing.md) <br>
-- [Usage](references/usage.md) <br>
-- [Tool Examples](references/tool-examples.md) <br>
-- [Real Examples](references/real-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON, and command-line snippets depending on workflow mode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task classification, assumptions, scope, non-goals, acceptance criteria, tool-specific handoff wrappers, Chinese-first output, and repository-aware rules when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated handoff prompts may carry incorrect assumptions into another coding agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and handoffs before pasting them into another tool, especially for broad, architecture, auth, data, or production tasks.
+
+Risk: Repo-aware mode can read common local repository files to infer coding rules.
+
+Mitigation: Run repo-aware extraction only in repositories the user intends to analyze, and review the extracted rules before use.
+
+Risk: The package includes local executable Python helper scripts.
+
+Mitigation: Inspect and run the scripts in a trusted local environment before adding them to routine workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiyuequkanhai/skills/vibe-prompt-compiler-portable)
+- [Auto mode](references/auto-mode.md)
+- [Portable usage](references/usage.md)
+- [Portable prompt templates](references/templates.md)
+- [Routing rules](references/routing.md)
+- [Tool examples](references/tool-examples.md)
+- [Real examples](references/real-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, and plain text prompts with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce structured handoff briefs, prompt-lint guidance, tool-specific wrapper text, and repository-aware rule summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

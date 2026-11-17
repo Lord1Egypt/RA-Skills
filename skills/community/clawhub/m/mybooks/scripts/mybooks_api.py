@@ -10,18 +10,27 @@ Environment Variables:
     MYBOOKS_HOST       Server URL with port (e.g., http://192.168.1.2:8082)
     MYBOOKS_USER       Login username
     MYBOOKS_PASSWORD   Login password
+    MYBOOKS_SSL_VERIFY Set to "false" to skip SSL certificate verification (self-signed certs)
 
 Authentication:
     Automatically signs in via /api/user/sign_in before each tool invocation.
     Session cookies (user_id, lt) are maintained throughout the script lifecycle.
     If err=user.need_login is received, the script re-authenticates once and retries.
+
+TTS API Prefix:
+    /api/toolbox/mimo_tts/
 """
 
 import json
 import os
 import sys
+import base64
+import ipaddress
 import urllib.parse
+import urllib3
 from typing import Any, Dict
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 # ============================================================================
@@ -29,6 +38,12 @@ from typing import Any, Dict
 # ============================================================================
 
 REQUIRED_ENV_VARS = ["MYBOOKS_HOST", "MYBOOKS_USER", "MYBOOKS_PASSWORD"]
+
+API_TTS_PREFIX = "/api/toolbox/mimo_tts"
+
+# book_upload only reads files with these extensions (blocks sending arbitrary
+# local files such as ~/.ssh/id_rsa or .env to the server)
+EBOOK_UPLOAD_EXTS = {"epub", "mobi", "azw", "azw3", "pdf", "txt", "lrf", "rtf", "djvu", "docx"}
 
 ERROR_MESSAGES = {
     "env_missing": {
@@ -40,6 +55,36 @@ ERROR_MESSAGES = {
         "message": "MYBOOKS_USER or MYBOOKS_PASSWORD is not set. Authentication is required."
     }
 }
+
+
+def validate_host(host: str) -> str:
+    """
+    Validate MYBOOKS_HOST before any credential is sent to it.
+
+    - Must be an http(s) URL with a hostname and no embedded userinfo.
+    - Plain http is only accepted for loopback / private-LAN / *.local hosts
+      (the typical self-hosted setup); anything else must use https, unless
+      MYBOOKS_ALLOW_INSECURE_HTTP=true is set explicitly.
+
+    Returns the normalized base URL, or exits with an error.
+    """
+    parsed = urllib.parse.urlparse(host.strip())
+    if parsed.scheme not in ("http", "https") or not parsed.hostname or parsed.username or parsed.password:
+        print(json.dumps({"status": "error", "message": "MYBOOKS_HOST must be like http(s)://host[:port] without embedded credentials."}), file=sys.stderr)
+        sys.exit(1)
+
+    if parsed.scheme == "http" and os.environ.get("MYBOOKS_ALLOW_INSECURE_HTTP", "false").lower() not in ("true", "1", "yes"):
+        name = parsed.hostname
+        try:
+            ip = ipaddress.ip_address(name)
+            local = ip.is_loopback or ip.is_private or ip.is_link_local
+        except ValueError:
+            local = name == "localhost" or name.endswith(".local")
+        if not local:
+            print(json.dumps({"status": "error", "message": "Refusing to send credentials over plain http to a non-local host. Use https, or set MYBOOKS_ALLOW_INSECURE_HTTP=true to override."}), file=sys.stderr)
+            sys.exit(1)
+
+    return f"{parsed.scheme}://{parsed.netloc}{parsed.path}".rstrip("/")
 
 
 # ============================================================================
@@ -58,7 +103,7 @@ class MyBooksAPI:
             username: Login username
             password: Login password
         """
-        self.host = host.rstrip('/')
+        self.host = validate_host(host)
         self.username = username
         self.password = password
         self.session_cookies = {}
@@ -67,6 +112,7 @@ class MyBooksAPI:
         try:
             import requests
             self.requests = requests
+            self.verify_ssl = os.environ.get("MYBOOKS_SSL_VERIFY", "true").lower() in ("true", "1", "yes")
         except ImportError:
             self._print_error("Python 'requests' library is required. Install with: pip3 install requests")
             sys.exit(1)
@@ -78,15 +124,16 @@ class MyBooksAPI:
     def sign_in(self) -> None:
         """Authenticate with the server and store session cookies."""
         url = f"{self.host}/api/user/sign_in"
-        # Use form-encoded data (not JSON) as required by the server
-        data = f"username={self.username}&password={self.password}"
+        # Form-encoded (not JSON) as required by the server; requests url-encodes the values
+        data = {"username": self.username, "password": self.password}
 
         try:
             resp = self.requests.post(
                 url,
                 data=data,
-                headers={"Content-Type": "application/x-www-form-urlencoded"},
-                timeout=30
+                timeout=30,
+                verify=self.verify_ssl,
+                allow_redirects=False  # never forward credentials to a redirect target
             )
             resp.raise_for_status()
             result = resp.json()
@@ -117,6 +164,7 @@ class MyBooksAPI:
         url = f"{self.host}{path}"
         kwargs.setdefault('cookies', self.session_cookies)
         kwargs.setdefault('timeout', 30)
+        kwargs.setdefault('verify', self.verify_ssl)
 
         try:
             resp = self.requests.request(method, url, **kwargs)
@@ -163,22 +211,39 @@ class MyBooksAPI:
 
     def search_books(self, args: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Search books by keyword (title or author).
+        Search books by keyword, by field conditions (combined with AND), or
+        by a raw Calibre search expression.
 
         Args:
-            name (str, required): Search keyword
+            name (str, optional): Keyword (title/author/comments), a bare ISBN,
+                or a Calibre expression such as 'title:=三体' or
+                'authors:余华 AND rating:>=4'
+            title (str, optional): Exact book title
+            author (str, optional): Author (contains match)
+            isbn (str, optional): ISBN-10/13, dashes allowed
+            publisher (str, optional): Publisher (contains match)
+            series (str, optional): Series (contains match)
+            tag (str, optional): Tag (contains match)
+            exact (bool, optional): Use exact match for author/publisher/series/tag
+            order (str, optional): Sort field, e.g. 'pubdate'
             num (int, optional): Results per page (default: 20)
             page (int, optional): Page number (default: 1)
         """
-        name = args.get("name", "")
         num = args.get("num", 20)
         page = args.get("page", 1)
-        start = (page - 1) * num
+        params: Dict[str, Any] = {"num": num, "start": (page - 1) * num}
+        for key in ("name", "title", "author", "isbn", "publisher", "series", "tag", "order"):
+            value = str(args.get(key) or "").strip()
+            if value:
+                params[key] = value
+        if args.get("exact"):
+            params["exact"] = 1
+        if len(params) == 2:
+            return {"err": "params.invalid", "msg": "At least one of name/title/author/isbn/publisher/series/tag is required"}
 
-        encoded_name = urllib.parse.quote(name)
         return self._call_with_auto_relogin(
             "GET",
-            f"/api/search?name={encoded_name}&num={num}&start={start}"
+            "/api/search?" + urllib.parse.urlencode(params)
         )
 
     def search_by_category(self, args: Dict[str, Any]) -> Dict[str, Any]:
@@ -244,6 +309,127 @@ class MyBooksAPI:
             f"/api/book/{book_id}/edit",
             json=body
         )
+
+    def push_notes(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Import third-party annotations (e.g. WeChat Reading highlights/thoughts)
+        into a book's reading records via server-side full-text CFI resolution.
+
+        Args:
+            book_id (int, required): MyBooks book ID (must have an EPUB format)
+            anchors (array, required): each item:
+                id (str, required): stable id from the source system (e.g. WeChat
+                    Reading bookmarkId/reviewId) — used to build an idempotent
+                    record id, safe to call repeatedly with the same anchors.
+                text (str, optional): the highlighted/quoted original text to
+                    search for. Omit for a chapter-/book-level note with no
+                    precise anchor (falls back to a chapter-start bookmark).
+                chapterHint (str, optional): source chapter title, used to help
+                    locate a chapter-start position when `text` is omitted.
+                note (str, optional): the user's own thought/comment text.
+                color (str, optional): highlight color, default "yellow".
+                style (str, optional): "highlight"/"underline"/"squiggly", default "highlight".
+                createdAt (int, optional): ms epoch timestamp from the source system.
+                source (str, optional): provenance tag, default "wxread".
+            on_ambiguous (str, optional): "error" (default) or "first_match" —
+                behavior when the anchor text matches more than once in the book.
+            dry_run (bool, optional): default true. true = only resolve and return
+                a report, write nothing; false = also write the resolved notes.
+                ALWAYS call with dry_run=true first, show the caller the report
+                (how many resolved/ambiguous/no_match), and only call again with
+                dry_run=false after explicit confirmation — never write blind.
+            force (bool, optional): default false. Re-syncing is automatically
+                deduplicated server-side — an anchor whose `text`/`chapterHint`
+                haven't changed since a previous import reuses its stored `cfi`
+                instead of being re-searched (results[].reused: true marks this).
+                Only set force=true if you actually need everything re-resolved
+                from scratch (e.g. the book's EPUB file itself was replaced) —
+                do not set it on routine re-syncs, the dedup already handles those.
+        """
+        book_id = args.get("book_id")
+        anchors = args.get("anchors")
+        if not book_id:
+            return {"status": "error", "message": "book_id is required"}
+        if not anchors:
+            return {"status": "error", "message": "anchors is required and must be non-empty"}
+
+        body = {
+            "book_id": book_id,
+            "anchors": anchors,
+            "on_ambiguous": args.get("on_ambiguous", "error"),
+            "dry_run": args.get("dry_run", True),
+            "force": args.get("force", False),
+        }
+        return self._call_with_auto_relogin("POST", "/api/sync/import", json=body)
+
+    def get_notes(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Query a book's reading annotations (bookmarks/highlights/notes) via
+        GET /api/sync.
+
+        Args:
+            book_id (int, optional): MyBooks book ID. Provide this OR `title`.
+            title (str, optional): Book title; if `book_id` is omitted, this
+                is resolved via search_books. Must match exactly one book —
+                if the search returns more than one hit, the response comes
+                back as an error with a `candidates` list instead of guessing.
+            own (int, optional): 1 (default) = only the current user's own
+                notes; 0 = also include other users' shared notes on this
+                book (subject to the server's ENABLE_SHARED_NOTES setting).
+        """
+        book_id = args.get("book_id")
+        title = args.get("title")
+        own = args.get("own", 1)
+        if own not in (0, 1):
+            return {"status": "error", "message": "own must be 0 or 1"}
+
+        if not book_id:
+            if not title:
+                return {"status": "error", "message": "book_id or title is required"}
+            found = self.search_books({"name": title, "num": 5, "page": 1})
+            if found.get("err") != "ok":
+                return found
+            books = found.get("books") or []
+            if not books:
+                return {"status": "error", "message": f"No book found matching title: {title}"}
+            if len(books) > 1:
+                candidates = [{"id": b.get("id"), "title": b.get("title"), "authors": b.get("authors")} for b in books]
+                return {
+                    "status": "error",
+                    "message": "Multiple books matched this title; specify book_id",
+                    "candidates": candidates,
+                }
+            book_id = books[0].get("id")
+            if not book_id:
+                return {"status": "error", "message": "Search result missing book id"}
+
+        # cloud 书籍的 book_hash 固定为 "cloud-<book_id>-epub"，与 push_notes/
+        # sync_import_service.book_hash_for() 保持一致
+        book_hash = f"cloud-{book_id}-epub"
+        query = urllib.parse.urlencode({"since": 0, "type": "notes", "book": book_hash, "own": own})
+        result = self._call_with_auto_relogin("GET", f"/api/sync?{query}")
+        if isinstance(result, dict):
+            result["book_id"] = book_id
+            result["book_hash"] = book_hash
+        return result
+
+    def clear_imported_notes(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Remove all annotations `push_notes` previously imported for one book
+        (current user only) — a "start over" escape hatch, NOT the normal way
+        to handle a re-sync (push_notes already dedups automatically; see its
+        docstring). Only use this if the user explicitly asks to undo/reset an
+        import, e.g. because it was run with wrong data or bad on_ambiguous
+        matches.
+
+        Args:
+            book_id (int, required): MyBooks book ID
+        """
+        book_id = args.get("book_id")
+        if not book_id:
+            return {"status": "error", "message": "book_id is required"}
+
+        return self._call_with_auto_relogin("POST", "/api/sync/import/clear", json={"book_id": book_id})
 
     def book_fill(self, args: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -331,6 +517,68 @@ class MyBooksAPI:
         """Get all custom categories and book counts."""
         return self._call_with_auto_relogin("GET", "/api/categories")
 
+    def list_folders(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """Get the folder tree (at most two levels) with book counts."""
+        return self._call_with_auto_relogin("GET", "/api/folders")
+
+    def search_by_folder(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        List books directly inside a folder.
+
+        Args:
+            path (str, optional): Folder path such as "文学" or "文学.小说"; empty means root
+            num (int, optional): Results per page (default: 20)
+            page (int, optional): Page number (default: 1)
+        """
+        path = urllib.parse.quote(args.get("path", ""))
+        num = args.get("num", 20)
+        start = (args.get("page", 1) - 1) * num
+        return self._call_with_auto_relogin(
+            "GET",
+            f"/api/folder/books?path={path}&size={num}&start={start}"
+        )
+
+    def set_folder(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Set the folder of one book, or of many books (admin only).
+
+        Args:
+            book_id (int, optional): Book ID for a single book
+            book_ids (array, optional): Book IDs for a batch
+            folder (str, required): Folder path such as "文学.小说"; "" or "清除" moves out of any folder
+        """
+        if "folder" not in args:
+            return {"status": "error", "message": "folder is required"}
+        if args.get("book_ids"):
+            return self._call_with_auto_relogin(
+                "POST", "/api/book/folder",
+                json={"ids": args["book_ids"], "folder": args["folder"]}
+            )
+        book_id = args.get("book_id")
+        if not book_id:
+            return {"status": "error", "message": "book_id or book_ids is required"}
+        return self._call_with_auto_relogin(
+            "POST", f"/api/book/{book_id}/folder", json={"folder": args["folder"]}
+        )
+
+    def rename_folder(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Rename the last segment of a folder (admin only). If the target already
+        exists the server answers folder.exists without changing anything; merging
+        is irreversible and only happens when merge is true.
+
+        Args:
+            path (str, required): Existing folder path
+            name (str, required): New name of the last segment
+            merge (bool, optional): Confirm merging into an existing folder (default: false)
+        """
+        if not args.get("path") or not args.get("name"):
+            return {"status": "error", "message": "path and name are required"}
+        return self._call_with_auto_relogin(
+            "POST", "/api/folder/rename",
+            json={"path": args["path"], "name": args["name"], "merge": bool(args.get("merge", False))}
+        )
+
     def list_authors(self, args: Dict[str, Any]) -> Dict[str, Any]:
         """
         Get all authors and book counts.
@@ -375,6 +623,10 @@ class MyBooksAPI:
 
         if not os.path.isfile(file_path):
             return {"status": "error", "message": f"File not found: {file_path}"}
+
+        ext = os.path.splitext(file_path)[1].lower().lstrip('.')
+        if ext not in EBOOK_UPLOAD_EXTS:
+            return {"status": "error", "message": f"Unsupported file type '.{ext}'. Allowed: {', '.join(sorted(EBOOK_UPLOAD_EXTS))}"}
 
         try:
             with open(file_path, 'rb') as f:
@@ -494,6 +746,511 @@ class MyBooksAPI:
         """Get current user's finished book list."""
         return self._call_with_auto_relogin("GET", "/api/read-done")
 
+    def get_book_reading_stats(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Get the current user's reading duration/progress statistics for a
+        book, broken down by ebook format (epub/pdf/mobi/etc).
+
+        Args:
+            book_id (int, required): Book ID
+        """
+        book_id = args.get("book_id")
+        if not book_id:
+            return {"status": "error", "message": "book_id is required"}
+
+        return self._call_with_auto_relogin("GET", f"/api/book/{book_id}/reading_stats")
+
+    def update_book_reading_stats(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Manually update/correct the current user's reading duration or
+        progress for one ebook format of a book. Useful for backfilling
+        historical reading records, or marking a format as started/finished
+        when there is no automatic heartbeat (e.g. reading outside MyReader).
+
+        Args:
+            book_id (int, required): Book ID
+            format (str, required): Ebook format, e.g. epub/pdf/mobi/azw3/txt
+            duration_seconds (int, optional): Seconds to ADD to the cumulative
+                reading duration (not an absolute value)
+            progress (array, optional): [current, total], e.g. [120, 488];
+                reaching ~100% auto-marks the format as finished
+            start_time (str, optional): ISO8601 string or epoch timestamp;
+                explicitly starts a new reading round
+            finish_time (str, optional): ISO8601 string or epoch timestamp;
+                explicitly marks the current round finished
+            state (int, optional): 0=reading, 1=finished (alternative to finish_time)
+        """
+        book_id = args.get("book_id")
+        fmt = args.get("format")
+        if not book_id or not fmt:
+            return {"status": "error", "message": "book_id and format are required"}
+
+        body = {k: v for k, v in args.items() if k not in ("book_id",)}
+        return self._call_with_auto_relogin(
+            "POST",
+            f"/api/book/{book_id}/reading_stats",
+            json=body
+        )
+
+    # ========================================================================
+    # Manual reading time (v4.3.0+)
+    # ========================================================================
+
+    def get_reading_time(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Get the manual reading-time entry (and reference totals) of a book on a date.
+
+        Args:
+            book_id (int, required): Book ID
+            date (str, required): YYYY-MM-DD
+        """
+        book_id = args.get("book_id")
+        date = args.get("date")
+        if not book_id or not date:
+            return {"status": "error", "message": "book_id and date are required"}
+        return self._call_with_auto_relogin("GET", f"/api/book/{book_id}/reading_time", params={"date": date})
+
+    def set_reading_time(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Add or overwrite the manual reading-time entry of a book on a date.
+
+        Args:
+            book_id (int, required): Book ID
+            date (str, required): YYYY-MM-DD, must not be in the future
+            duration_seconds (int, required): 0~64800 (18h); overwrites that day's manual entry
+            start_time (str, optional): free-form start time text
+            end_time (str, optional): free-form end time text
+        """
+        book_id = args.get("book_id")
+        if not book_id or not args.get("date") or args.get("duration_seconds") is None:
+            return {"status": "error", "message": "book_id, date and duration_seconds are required"}
+        body = {k: v for k, v in args.items() if k != "book_id"}
+        return self._call_with_auto_relogin("POST", f"/api/book/{book_id}/reading_time", json=body)
+
+    def delete_reading_time(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Delete the manual reading-time entry of a book on a date.
+
+        Args:
+            book_id (int, required): Book ID
+            date (str, required): YYYY-MM-DD
+            confirm (bool, optional): must be true to actually delete; otherwise
+                the current entry is returned as a preview and nothing is deleted
+        """
+        book_id = args.get("book_id")
+        date = args.get("date")
+        if not book_id or not date:
+            return {"status": "error", "message": "book_id and date are required"}
+        if args.get("confirm") is not True:
+            preview = self._call_with_auto_relogin("GET", f"/api/book/{book_id}/reading_time", params={"date": date})
+            return {
+                "err": "confirm.required",
+                "msg": "Nothing deleted. Show this entry to the user and, only after they explicitly agree, call again with \"confirm\": true.",
+                "entry": preview.get("entry"),
+                "preview_err": preview.get("err"),
+            }
+        return self._call_with_auto_relogin("DELETE", f"/api/book/{book_id}/reading_time", params={"date": date})
+
+    # ========================================================================
+    # Booklist Tool Methods (v4.3.0+)
+    # ========================================================================
+
+    def list_my_booklists(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """List the current user's own booklists."""
+        return self._call_with_auto_relogin("GET", "/api/booklists/mine")
+
+    def list_public_booklists(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        List public booklists.
+
+        Args:
+            page (int, optional): default 1
+            page_size (int, optional): default 20, max 50
+        """
+        params = {k: args[k] for k in ("page", "page_size") if k in args}
+        return self._call_with_auto_relogin("GET", "/api/booklists/public", params=params)
+
+    def list_liked_booklists(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """List booklists liked by the current user."""
+        return self._call_with_auto_relogin("GET", "/api/booklists/liked")
+
+    def get_booklist(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Get a booklist with its books.
+
+        Args:
+            booklist_id (int, required): Booklist ID
+            order (str, optional): desc (default) / asc, by time added
+            page (int, optional): default 1
+            page_size (int, optional): default 24, max 60
+        """
+        booklist_id = args.get("booklist_id")
+        if not booklist_id:
+            return {"status": "error", "message": "booklist_id is required"}
+        params = {k: args[k] for k in ("order", "page", "page_size") if k in args}
+        return self._call_with_auto_relogin("GET", f"/api/booklist/{booklist_id}", params=params)
+
+    def create_booklist(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Create a booklist.
+
+        Args:
+            name (str, required): Booklist name
+            description (str, optional): up to 500 chars
+            color (str, optional): Booklist color
+            is_public (bool, optional): default false
+        """
+        if not args.get("name"):
+            return {"status": "error", "message": "name is required"}
+        return self._call_with_auto_relogin("POST", "/api/booklist/create", json=args)
+
+    def update_booklist(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Update a booklist (owner or admin). Only the fields passed are changed.
+
+        Args:
+            booklist_id (int, required): Booklist ID
+            name / description / color / is_public (optional)
+        """
+        booklist_id = args.get("booklist_id")
+        if not booklist_id:
+            return {"status": "error", "message": "booklist_id is required"}
+        body = {k: v for k, v in args.items() if k != "booklist_id"}
+        return self._call_with_auto_relogin("POST", f"/api/booklist/{booklist_id}/update", json=body)
+
+    def delete_booklist(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Delete a booklist (owner or admin). The books themselves are not deleted.
+
+        Two-step, enforced in code: without confirm=true nothing is deleted and a
+        preview of the target is returned instead.
+
+        Args:
+            booklist_id (int, required): Booklist ID
+            confirm (bool, optional): must be true to actually delete
+        """
+        booklist_id = args.get("booklist_id")
+        if not booklist_id:
+            return {"status": "error", "message": "booklist_id is required"}
+        if args.get("confirm") is not True:
+            preview = self._call_with_auto_relogin("GET", f"/api/booklist/{booklist_id}", params={"page_size": 1})
+            info = preview.get("booklist") or {}
+            return {
+                "err": "confirm.required",
+                "msg": "Nothing deleted. Show this booklist to the user and, only after they explicitly agree, call again with \"confirm\": true.",
+                "booklist": {k: info.get(k) for k in ("id", "name", "book_count", "is_public", "like_count", "is_owner")},
+                "preview_err": preview.get("err"),
+            }
+        return self._call_with_auto_relogin("POST", f"/api/booklist/{booklist_id}/delete", json={})
+
+    def booklist_add_books(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Add books to a booklist (owner or admin).
+
+        Args:
+            booklist_id (int, required): Booklist ID
+            book_ids (array, required): Book IDs (a single book_id is also accepted)
+        """
+        booklist_id = args.get("booklist_id")
+        if not booklist_id:
+            return {"status": "error", "message": "booklist_id is required"}
+        body = {k: v for k, v in args.items() if k in ("book_ids", "book_id")}
+        return self._call_with_auto_relogin("POST", f"/api/booklist/{booklist_id}/books/add", json=body)
+
+    def booklist_remove_book(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Remove one book from a booklist (owner or admin).
+
+        Args:
+            booklist_id (int, required): Booklist ID
+            book_id (int, required): Book ID
+        """
+        booklist_id = args.get("booklist_id")
+        book_id = args.get("book_id")
+        if not booklist_id or not book_id:
+            return {"status": "error", "message": "booklist_id and book_id are required"}
+        return self._call_with_auto_relogin("POST", f"/api/booklist/{booklist_id}/books/remove", json={"book_id": book_id})
+
+    def like_booklist(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Toggle like on a booklist.
+
+        Args:
+            booklist_id (int, required): Booklist ID
+        """
+        booklist_id = args.get("booklist_id")
+        if not booklist_id:
+            return {"status": "error", "message": "booklist_id is required"}
+        return self._call_with_auto_relogin("POST", f"/api/booklist/{booklist_id}/like", json={})
+
+    def get_book_booklists(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        List the current user's booklists, marking which already contain the book.
+
+        Args:
+            book_id (int, required): Book ID
+        """
+        book_id = args.get("book_id")
+        if not book_id:
+            return {"status": "error", "message": "book_id is required"}
+        return self._call_with_auto_relogin("GET", f"/api/book/{book_id}/booklists")
+
+    # ========================================================================
+    # TTS Tool Methods (MiMo TTS audiobook, admin only)
+    # ========================================================================
+
+    def tts_save_config(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Save TTS API configuration (encrypted server-side).
+
+        Args:
+            api_url (str, required): API endpoint URL
+            model_name (str, required): Model ID (e.g., mimo-v2.5-tts)
+            api_type (str, required): chat_completions / audio_speech / custom
+            api_key (str, required): API key
+            auth_type (str, optional): bearer / basic / custom (default: bearer)
+            voice_name (str, optional): Preset voice ID or audio_speech voice
+            voice_desc (str, optional): Custom voice description
+            clone_voice (str, optional): Clone voice name
+        """
+        required = ["api_url", "model_name", "api_type", "api_key"]
+        for field in required:
+            if not args.get(field):
+                return {"status": "error", "message": f"{field} is required"}
+
+        body = {k: v for k, v in args.items() if v is not None}
+        return self._call_with_auto_relogin(
+            "POST",
+            f"{API_TTS_PREFIX}/config",
+            json=body,
+        )
+
+    def tts_test_connection(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Test API connection using saved configuration.
+
+        Args: none
+        """
+        return self._call_with_auto_relogin("POST", f"{API_TTS_PREFIX}/test")
+
+    def tts_convert(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Start EPUB-to-audiobook conversion (async background task).
+
+        Args:
+            book_id (int, required): Book ID
+            api_url (str, required): API endpoint URL
+            model_name (str, required): Model ID
+            api_type (str, required): chat_completions / audio_speech / custom
+            api_key (str, required): API key
+            auth_type (str, optional): bearer / basic / custom
+            voice_name (str, optional): Preset voice ID or audio_speech voice
+            voice_desc (str, optional): Custom voice description
+            clone_voice (str, optional): Clone voice name
+        """
+        required = ["book_id", "api_url", "model_name", "api_type", "api_key"]
+        for field in required:
+            if not args.get(field):
+                return {"status": "error", "message": f"{field} is required"}
+
+        body = {k: v for k, v in args.items() if v is not None}
+        return self._call_with_auto_relogin(
+            "POST",
+            f"{API_TTS_PREFIX}/convert",
+            json=body,
+        )
+
+    def tts_progress(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Query current TTS conversion progress.
+
+        Args: none
+        """
+        return self._call_with_auto_relogin("GET", f"{API_TTS_PREFIX}/progress")
+
+    def tts_clone_upload(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Upload a clone voice sample (MP3/WAV, <=7MB).
+
+        Args:
+            voice_name (str, required): Clone voice name
+            file_path (str, required): Absolute path to local audio file
+        """
+        voice_name = args.get("voice_name", "")
+        file_path = args.get("file_path", "")
+
+        if not voice_name:
+            return {"status": "error", "message": "voice_name is required"}
+        if not file_path:
+            return {"status": "error", "message": "file_path is required"}
+
+        if not os.path.isfile(file_path):
+            return {"status": "error", "message": f"File not found: {file_path}"}
+
+        # Validate format
+        ext = os.path.splitext(file_path)[1].lower().lstrip('.')
+        if ext not in ('mp3', 'wav'):
+            return {"status": "error", "message": "Only MP3 and WAV formats are supported"}
+
+        # Validate size (7MB limit)
+        file_size = os.path.getsize(file_path)
+        if file_size > 7 * 1024 * 1024:
+            return {"status": "error", "message": f"File too large: {file_size} bytes (max 7MB)"}
+
+        try:
+            with open(file_path, 'rb') as f:
+                files = {'file': f}
+                data = {'voice_name': voice_name}
+                return self._call_with_auto_relogin(
+                    "POST",
+                    f"{API_TTS_PREFIX}/clone/upload",
+                    data=data,
+                    files=files,
+                )
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def tts_clone_list(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        List all uploaded clone voices.
+
+        Args: none
+        """
+        return self._call_with_auto_relogin("GET", f"{API_TTS_PREFIX}/clone/list")
+
+    def tts_clone_delete(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Delete a clone voice by name.
+
+        Args:
+            voice_name (str, required): Clone voice name to delete
+        """
+        voice_name = args.get("voice_name", "")
+        if not voice_name:
+            return {"status": "error", "message": "voice_name is required"}
+
+        return self._call_with_auto_relogin(
+            "POST",
+            f"{API_TTS_PREFIX}/clone/delete",
+            json={"voice_name": voice_name},
+        )
+
+    def tts_clone_audio(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Download/preview a clone voice audio file (binary WAV).
+
+        Args:
+            voice_name (str, required): Clone voice name
+            save_to (str, optional): Local path to save the audio;
+                                     if omitted, returns base64-encoded audio
+        """
+        voice_name = args.get("voice_name", "")
+        if not voice_name:
+            return {"status": "error", "message": "voice_name is required"}
+
+        save_to = args.get("save_to", "")
+        query = urllib.parse.urlencode({"voice_name": voice_name})
+
+        url = f"{self.host}{API_TTS_PREFIX}/clone/audio?{query}"
+        kwargs = {
+            'cookies': self.session_cookies,
+            'timeout': 60,
+            'verify': self.verify_ssl,
+        }
+
+        try:
+            resp = self.requests.get(url, **kwargs)
+
+            # Check for auth redirect
+            try:
+                ct = resp.headers.get('Content-Type', '')
+                if 'json' in ct:
+                    result = resp.json()
+                    if result.get("err") == "user.need_login":
+                        self.sign_in()
+                        kwargs['cookies'] = self.session_cookies
+                        resp = self.requests.get(url, **kwargs)
+                        ct = resp.headers.get('Content-Type', '')
+                        if 'json' in ct:
+                            return resp.json()
+            except Exception:
+                pass
+
+            content = resp.content
+
+            if save_to:
+                if not save_to.lower().endswith(".wav"):
+                    return {"status": "error", "message": "save_to must end with .wav"}
+                if os.path.exists(save_to):
+                    return {"status": "error", "message": f"Refusing to overwrite existing file: {save_to}"}
+                with open(save_to, 'wb') as f:
+                    f.write(content)
+                return {
+                    "err": "ok",
+                    "msg": "Audio saved",
+                    "path": save_to,
+                    "size": len(content),
+                }
+            else:
+                # Return base64 for small files
+                b64 = base64.b64encode(content).decode('ascii')
+                return {
+                    "err": "ok",
+                    "msg": "Audio retrieved",
+                    "voice_name": voice_name,
+                    "size": len(content),
+                    "base64": b64,
+                }
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def tts_prompt_list(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        List all saved voice prompt descriptions.
+
+        Args: none
+        """
+        return self._call_with_auto_relogin("GET", f"{API_TTS_PREFIX}/prompt/list")
+
+    def tts_prompt_save(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Save a voice prompt description (same name overwrites).
+
+        Args:
+            name (str, required): Prompt name
+            desc (str, required): Voice description text
+        """
+        name = args.get("name", "")
+        desc = args.get("desc", "")
+
+        if not name:
+            return {"status": "error", "message": "name is required"}
+        if not desc:
+            return {"status": "error", "message": "desc is required"}
+
+        return self._call_with_auto_relogin(
+            "POST",
+            f"{API_TTS_PREFIX}/prompt/save",
+            json={"name": name, "desc": desc},
+        )
+
+    def tts_prompt_delete(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Delete a voice prompt by name.
+
+        Args:
+            name (str, required): Prompt name to delete
+        """
+        name = args.get("name", "")
+        if not name:
+            return {"status": "error", "message": "name is required"}
+
+        return self._call_with_auto_relogin(
+            "POST",
+            f"{API_TTS_PREFIX}/prompt/delete",
+            json={"name": name},
+        )
+
     # ========================================================================
     # Tool Dispatcher
     # ========================================================================
@@ -514,12 +1271,22 @@ class MyBooksAPI:
         if tool_method is None or not callable(tool_method):
             available_tools = [
                 "get_user_info", "library_stats", "reading_stats",
-                "search_books", "search_by_category", "get_book", "edit_book",
+                "search_books", "search_by_category", "list_folders", "search_by_folder",
+                "set_folder", "rename_folder", "get_book", "edit_book",
+                "get_notes", "push_notes", "clear_imported_notes",
                 "book_fill", "save_meta_to_file", "mailto", "send_to_device", "categories",
                 "list_authors", "get_author_books", "book_upload",
                 "book_add_by_isbn", "wants", "list_wants", "favorite",
                 "list_favorites", "reading", "list_reading", "read_done",
-                "list_read_done"
+                "list_read_done", "get_book_reading_stats", "update_book_reading_stats",
+                "get_reading_time", "set_reading_time", "delete_reading_time",
+                "list_my_booklists", "list_public_booklists", "list_liked_booklists",
+                "get_booklist", "create_booklist", "update_booklist", "delete_booklist",
+                "booklist_add_books", "booklist_remove_book", "like_booklist", "get_book_booklists",
+                "tts_save_config", "tts_test_connection",
+                "tts_convert", "tts_progress", "tts_clone_upload", "tts_clone_list",
+                "tts_clone_delete", "tts_clone_audio", "tts_prompt_list",
+                "tts_prompt_save", "tts_prompt_delete"
             ]
             return {
                 "status": "error",

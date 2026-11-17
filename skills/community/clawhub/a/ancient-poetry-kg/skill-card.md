@@ -1,45 +1,59 @@
-## Description: <br>
-Provides a knowledge graph for Chinese ancient poetry, including poem titles, authors, dynasties, and classic phrases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+围绕中国古代诗词名称，作者，朝代，经典词句的知识图谱。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and knowledge-graph users can use this skill to inspect the Chinese ancient poetry graph schema and run read-only Cypher queries for poetry, author, dynasty, and classic-phrase information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends API keys and graph queries to xiaobenyang.com. <br>
-Mitigation: Install only if you trust xiaobenyang.com with those credentials and query contents. <br>
-Risk: The skill persists the API key in a local .env file. <br>
-Mitigation: Keep the .env file out of source control and shared workspaces. <br>
-Risk: Some documentation labels are stale and may not accurately describe the implemented graph-query tools. <br>
-Mitigation: Review the implemented tool behavior before relying on the documentation labels. <br>
+## Use Case:
 
+Developers and external users use this skill to query an ancient Chinese poetry knowledge graph for schema information and read-only Cypher query results about poems, authors, dynasties, and notable lines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/ancient-poetry-kg) <br>
-- [Publisher profile](https://clawhub.ai/user/alinklab) <br>
-- [XiaoBenYang API key site](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration instructions, Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or text summaries derived from JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value before querying the external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill stores the Xiaobenyang API key in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege, revocable key and remove or protect the .env file after use.
+
+Risk: The skill sends graph queries and API credentials to an external Xiaobenyang service.
+
+Mitigation: Install and use it only if the service is trusted, and avoid submitting sensitive queries.
+
+Risk: The artifact contains mismatched poetry and gaokao documentation, which may confuse expected behavior.
+
+Mitigation: Review the tool descriptions and confirm they match the intended ancient-poetry graph before approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/ancient-poetry-kg)
+- [Xiaobenyang API key portal](https://xiaobenyang.com)
+- [Xiaobenyang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API responses, Configuration guidance]
+
+**Output Format:** [Markdown summary of JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Xiaobenyang API key and returns schema or read-only Cypher query results from the upstream service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

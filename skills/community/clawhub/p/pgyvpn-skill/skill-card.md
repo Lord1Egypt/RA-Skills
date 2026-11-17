@@ -1,46 +1,63 @@
-## Description: <br>
-贝锐蒲公英异地组网 guides agents through registering an account, configuring the蒲公英 MCP connection, creating SD-WAN networks, adding members and devices, installing clients, logging in, and verifying connectivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户通过贝锐蒲公英完成账号注册、MCP 配置、SD-WAN 组网、成员与设备管理、客户端下载登录和连通性验证。
 
-## Publisher: <br>
-[chenzihao10456-star](https://clawhub.ai/user/chenzihao10456-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenzihao10456-star](https://clawhub.ai/user/chenzihao10456-star)
 
-## Use Case: <br>
-Developers, IT operators, and end users use this skill to set up and manage蒲公英 SD-WAN connectivity for remote office access, cross-site private network access, virtual LAN workflows, and device maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a蒲公英 MCP API key that can let an AI client manage the user's SD-WAN environment. <br>
-Mitigation: Store the key only in trusted per-user MCP configuration, avoid committing or sharing it, restrict local access where possible, and rotate it if exposure is suspected. <br>
-Risk: Some supported operations can change or delete networks, members, passwords, devices, or router LAN settings. <br>
-Mitigation: Require explicit user confirmation before high-impact MCP actions and verify results through query tools or the蒲公英 management console after changes. <br>
+## Use Case:
 
+Developers, IT administrators, and remote-work users use this skill to configure and manage Oray PgyVPN SD-WAN networks through MCP-enabled AI clients. It supports creating networks, adding software or hardware members, installing clients, and checking connectivity.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/chenzihao10456-star/pgyvpn-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/chenzihao10456-star/pgyvpn-skill) <br>
-- [蒲公英管理平台](https://console.sdwan.oray.com/) <br>
-- [蒲公英客户端下载](https://pgy.oray.com/download/) <br>
-- [蒲公英帮助文档](https://service.oray.com/) <br>
-- [MCP protocol specification](https://modelcontextprotocol.io/) <br>
-- [MCP tools reference](artifact/references/tools_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with configuration examples, tool names, command snippets, and step-by-step operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP configuration JSON, SD-WAN tool invocation guidance, client installation commands, and connectivity verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The MCP API key can grant access to manage PgyVPN or Oray SD-WAN resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the key like a password and keep it out of chats, screenshots, repositories, and shared configuration files.
+
+Risk: Network, member, password, device, and delete operations can affect production or remote-access connectivity.
+
+Mitigation: Require explicit user confirmation before high-impact MCP operations and verify the result after each change.
+
+Risk: Incorrect topology, role, or member configuration can expose or block private network access.
+
+Mitigation: Review network type, member roles, and device identifiers in the management console before relying on the configuration.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/chenzihao10456-star/pgyvpn-skill)
+- [ClawHub skill page](https://clawhub.ai/chenzihao10456-star/skills/pgyvpn-skill)
+- [蒲公英 MCP 工具参考](references/tools_reference.md)
+- [蒲公英官网](https://pgy.oray.com/)
+- [蒲公英管理平台](https://console.sdwan.oray.com/)
+- [蒲公英客户端下载](https://pgy.oray.com/download/)
+- [Model Context Protocol specification](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON configuration examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose MCP tool calls that require user review before changes to networks, devices, passwords, or deletions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

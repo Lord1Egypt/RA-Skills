@@ -1,47 +1,62 @@
-## Description: <br>
-Run structured multi-step workflows through the FlowForge engine so agents can follow ordered YAML workflows without skipping required steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run structured multi-step workflows via the FlowForge engine.
 
-## Publisher: <br>
-[kagura-agent](https://clawhub.ai/user/kagura-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagura-agent](https://clawhub.ai/user/kagura-agent)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run ordered FlowForge workflows for multi-step work such as code contribution, research, and review tasks. It is useful when tasks need explicit sequencing, branching, sub-agent delegation, and persisted workflow state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External CLI execution can be triggered by broad workflow requests. <br>
-Mitigation: Install the FlowForge npm CLI only from a trusted source, verify the workflow selected before starting it, and review each CLI action before advancing. <br>
-Risk: Workflow YAML can direct sub-agent actions, code pushes, PR creation, deployment, deletion, public posting, or credential use. <br>
-Mitigation: Review workflow YAML before running it and require explicit approval gates for impactful or credential-bearing steps. <br>
-Risk: FlowForge state and daily logs may retain sensitive task summaries. <br>
-Mitigation: Avoid storing secrets or sensitive details in workflow results, treat local FlowForge state as retained records, and clear local state when it is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to run and resume structured multi-step workflows, coordinate inline decisions with sub-agent delegation, and create YAML workflow definitions for repeatable agent tasks.
 
-## Reference(s): <br>
-- [FlowForge Skill Listing](https://clawhub.ai/kagura-agent/agent-flowforge) <br>
-- [FlowForge Setup Guide](setup.md) <br>
-- [FlowForge YAML Format](references/yaml-format.md) <br>
-- [Code Contribution Workflow Example](references/examples/code-contribution.yaml) <br>
-- [Research Workflow Example](references/examples/research.yaml) <br>
-- [Review Workflow Example](references/examples/review.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FlowForge CLI JSON actions to guide workflow execution and advancement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill uses a persistent workflow runner and may delegate workflow steps to sub-agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use it only when persistent FlowForge workflow execution and sub-agent delegation are intended.
+
+Risk: Setup can require a global third-party CLI installation.
+
+Mitigation: Prefer a pinned or local CLI install and avoid running npm with sudo.
+
+Risk: Workflow result text or workflow actions may lead to consequential shell commands or external operations.
+
+Mitigation: Do not paste untrusted result text into shell commands, and add explicit approval gates before workflows deploy, post, notify, create pull requests, or modify important data.
+
+## Reference(s):
+
+- [FlowForge Setup Guide](setup.md)
+- [FlowForge YAML Format](references/yaml-format.md)
+- [Code Contribution Workflow Example](references/examples/code-contribution.yaml)
+- [Research Workflow Example](references/examples/research.yaml)
+- [Code Review Workflow Example](references/examples/review.yaml)
+- [ClawHub Skill Page](https://clawhub.ai/kagura-agent/skills/agent-flowforge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands, YAML examples, and JSON action descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses FlowForge CLI state and workflow YAML files; no model output schema beyond the CLI action JSON is defined.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,10 @@
 # Spiders architecture
 
-Scrapling's spider system is an async crawling framework designed for concurrent, multi-session crawls with built-in pause/resume support. It brings together Scrapling's parsing engine and fetchers into a unified crawling API while adding scheduling, concurrency control, and checkpointing.
+Scrapling's spider system is a Scrapy-inspired async crawling framework designed for concurrent, multi-session crawls with built-in pause/resume support. It brings together Scrapling's parsing engine and fetchers into a unified crawling API while adding scheduling, concurrency control, and checkpointing.
 
 ## Data Flow
 
-The diagram below shows how data flows through the spider system when a crawl is running:
-
-Here's what happens step by step when you run a spider:
+Here's what happens step by step when you run a spider without many details:
 
 1. The **Spider** produces the first batch of `Request` objects. By default, it creates one request for each URL in `start_urls`, but you can override `start_requests()` for custom logic.
 2. The **Scheduler** receives requests and places them in a priority queue, and creates fingerprints for them. Higher-priority requests are dequeued first.
@@ -51,7 +49,6 @@ A priority queue with built-in URL deduplication. Requests are fingerprinted bas
 Manages one or more named session instances. Each session is one of:
 
 - [FetcherSession](../fetching/static.md)
-- [AsyncDynamicSession](../fetching/dynamic.md)
 - [AsyncStealthySession](../fetching/stealthy.md)
 
 When a request comes in, the Session Manager routes it to the correct session based on the request's `sid` field. Sessions can be started with the spider start (default) or lazily (started on the first use).
@@ -66,7 +63,7 @@ An optional cache that, when development mode is enabled, stores every fetched r
 
 ### Output
 
-Scraped items are collected in an `ItemList` (a list subclass with `to_json()` and `to_jsonl()` export methods). Crawl statistics are tracked in a `CrawlStats` dataclass which contains a lot of useful info.
+Scraped items are collected in an `ItemList` (a list subclass with `to_json()`, `to_jsonl()`, `to_csv()`, and `to_xml()` export methods). Crawl statistics are tracked in a `CrawlStats` dataclass which contains a lot of useful info.
 
 
 ## Comparison with Scrapy
@@ -88,7 +85,7 @@ If you're coming from Scrapy, here's how Scrapling's spider system maps:
 | Domain filtering   | `allowed_domains`             | `allowed_domains`                                               |
 | Robots.txt         | `ROBOTSTXT_OBEY` setting      | `robots_txt_obey` class attribute                               |
 | Pause/Resume       | `JOBDIR` setting              | `crawldir` constructor argument                                 |
-| Export             | Feed exports                  | `result.items.to_json()` / `to_jsonl()` or custom through hooks |
+| Export             | Feed exports                  | `result.items.to_json()` / `to_jsonl()` / `to_csv()` / `to_xml()` or custom through hooks |
 | Running            | `scrapy crawl spider_name`    | `MySpider().start()`                                            |
 | Streaming          | N/A                           | `async for item in spider.stream()`                             |
 | Multi-session      | N/A                           | Multiple sessions with different types per spider               |

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.installation_contract.v1.schema.json",
+  "title": "OpenClaw Safe Update Installation Contract",
+  "type": "object",
+  "required": [
+    "schema",
+    "install_shape",
+    "runtime",
+    "capabilities",
+    "components",
+    "contracts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.installation_contract.v1"
+    },
+    "install_shape": {
+      "const": "npm_global_linux"
+    },
+    "runtime": {
+      "type": "object"
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/contract"
+      }
+    }
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "capability": {
+      "type": "object",
+      "required": [
+        "id",
+        "category",
+        "business_criticality",
+        "evidence_policy",
+        "component_ids",
+        "post_activation_checks"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "category": {
+          "enum": ["attachment", "channel", "mcp", "memory", "other", "persona", "plugin", "provider", "service", "voice"]
+        },
+        "business_criticality": {
+          "enum": ["critical", "important", "best_effort"]
+        },
+        "evidence_policy": {
+          "enum": ["always", "impact_triggered", "sampled"]
+        },
+        "component_ids": {"$ref": "#/$defs/stringList"},
+        "post_activation_checks": {
+          "allOf": [
+            {"$ref": "#/$defs/stringList"},
+            {"minItems": 1}
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": [
+        "id",
+        "roles",
+        "application_phases",
+        "artifacts",
+        "contract_ids",
+        "depends_on",
+        "supports",
+        "governance"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["core", "compatibility", "addon", "personalization", "configuration"]
+          }
+        },
+        "application_phases": {"$ref": "#/$defs/stringList"},
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind", "ref"],
+            "properties": {
+              "kind": {"type": "string", "minLength": 1},
+              "ref": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "contract_ids": {"$ref": "#/$defs/stringList"},
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["component_id", "kind"],
+            "properties": {
+              "component_id": {"type": "string", "minLength": 1},
+              "kind": {"enum": ["runtime", "configuration", "state", "contract"]}
+            },
+            "additionalProperties": false
+          }
+        },
+        "supports": {"$ref": "#/$defs/stringList"},
+        "governance": {
+          "type": "object",
+          "properties": {
+            "owner": {"type": "string"},
+            "removal": {"type": "string"},
+            "upstream_reference": {"type": "string"},
+            "kill_criteria": {"type": "string"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "contract": {
+      "type": "object",
+      "required": ["id", "kind", "evidence_refs"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "evidence_refs": {"$ref": "#/$defs/stringList"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

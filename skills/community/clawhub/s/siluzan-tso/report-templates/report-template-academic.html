@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <!--
   风格：专业学术（论文式层级、衬线标题、低饱和配色、弱装饰、表格偏「期刊」）
   与 report-template.html 区块结构、data-section-id 一致，可互换填充数据。
@@ -46,7 +46,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
     <style>
       @media print {
         body {
@@ -56,8 +56,6 @@
           display: none !important;
         }
       }
-
-
 
       /* 移动端原生适配（≤768px，内联） */
       @supports (padding: env(safe-area-inset-bottom)) {

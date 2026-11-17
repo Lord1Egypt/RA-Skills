@@ -1,0 +1,210 @@
+{
+  "card_id": "WQ-EXP-004",
+  "source_type": "clinical_experience",
+  "source_file": "国医大师王琦辨气郁体质论治疾病的临床思路_孙鹏程.pdf",
+  "title": "国医大师王琦辨气郁体质论治疾病的临床思路",
+  "authors": [
+    "孙鹏程"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨体-辨病-辨证相结合”的诊疗模式，并根据“体病相关土壤说”，形成以体质为本论治疾病的临床思想。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "",
+    "herbs": [
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "陈皮",
+      "半夏"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体-辨病-辨证相结合”的诊疗模式，并根据“体病相关土壤说”，形成以体质为本论治疾病的临床思想。文章以气郁体质为核心，阐发其基本理论，从辨体方法、用药思维、组方原理3个方面总结王琦教授辨气郁体质论治心身疾病的临床思路，展现体质医学在临床诊疗中的宽广应用前景。 体质的表现特征 气郁体质者具有长期情志不畅的心理特点及气机郁滞的生理特点，身心相互影响。其表现特征为：平素忧郁面貌，神情多烦闷不乐，对精神刺激适应能力较差，善太息等；多见胸胁胀痛，或走窜疼痛，或嗳气呃逆，或乳房胀痛等。 体质与疾病的关系气郁体质与疾病的关系具有两重性：一方面，体质是疾病发生的土壤，气郁体质之人情志久郁，易发生多系统的疾病；另一方面，疾病也是引起体质变化的后天因素，长期患病之人多情志不乐，久之也易向气郁体质发生转化。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "国医大师王琦教授创立中医体质学，提出“形神构成论”，指出体质是特定躯体素质与一定心理素质的综合体，是“形神合一”思想的体 现 [2]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "在9种基本体质类型中，气郁体质与负性情绪关系最为密切，是心身疾病发病的内因 [3]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "本文总结王琦教授辨气郁体质论治疾病的独到经验，以期更好地掌握王琦教授以体质为核心的“治病求本”临证 思想",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨体-辨病-辨证相结合”的诊疗模式，并根据“体病相关土壤说”，形成以体质为本论治疾病的临床思想。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括柴胡、茯苓、甘草、陈皮、半夏。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "体-辨病-辨证相结合”的诊疗模式，并根据“体病相关土壤说”，形成以体质为本论治疾病的临床思想",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "文章以气郁体质为核心，阐发其基本理论，从辨体方法、用药思维、组方原理3个方面总结王琦教授辨气郁体质论治心身疾病的临床思路，展现体质医学在临床诊疗中的宽广应用前景",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体质的表现特征 气郁体质者具有长期情志不畅的心理特点及气机郁滞的生理特点，身心相互影响",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "气郁质"
+  ],
+  "related_diseases": [
+    "失眠",
+    "抑郁症"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "国医大师王琦教授创立中医体质学，提出“形神构成论”，指出体质是特定躯体素质与一定心理素质的综合体，是“形神合一”思想的体 现 [2]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "在9种基本体质类型中，气郁体质与负性情绪关系最为密切，是心身疾病发病的内因 [3]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "本文总结王琦教授辨气郁体质论治疾病的独到经验，以期更好地掌握王琦教授以体质为核心的“治病求本”临证 思想",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "气郁质"
+    ],
+    "disease": [
+      "失眠",
+      "抑郁症"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 3
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.215648",
+  "methods": {},
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.484249",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.484257"
+  }
+}

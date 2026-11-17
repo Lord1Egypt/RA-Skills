@@ -1,45 +1,64 @@
-## Description: <br>
-DeepSop工作台 helps agents turn natural-language sales requests into DeepSOP customer mining, email, phone, SMS, and outbound-call-scene workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepSop工作台 helps agents turn natural-language sales requests into DeepSOP customer discovery, email, phone, SMS, and call-script review workflows.
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-Sales and growth teams use this skill to submit DeepSOP customer discovery, email, phone, SMS, and outbound-call-scene tasks from conversational instructions. Agents can also query task results, summarize campaign metrics, and return spreadsheet reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive DeepSOP API key. <br>
-Mitigation: Install only in trusted workspaces, store the key in the environment, and rotate or remove DEEPSOP_API_KEY when the workspace is no longer trusted. <br>
-Risk: Automatic result queries can send generated sales reports or customer data to chat channels. <br>
-Mitigation: Confirm the destination chat or channel before use and avoid sharing customer lists or outreach results in shared channels unintentionally. <br>
-Risk: Follow-up jobs can query sales results without a fresh authorization check. <br>
-Mitigation: Use the skill only where scheduled DeepSOP result queries and chat-file delivery are acceptable for the workspace. <br>
+## Use Case:
 
+Sales and go-to-market teams use this skill to submit and monitor DeepSOP customer discovery, outbound email, phone, SMS, and call-script review tasks from conversational instructions. Agents can return status summaries and xlsx reports for discovered customers or campaign results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kukuoai/deepsop-humabot-ai) <br>
-- [DeepSOP login](https://ai.deepsop.com/login?source=3) <br>
-- [DeepSOP registration](https://ai.deepsop.com/register?source=3) <br>
-- [DeepSOP API base](https://ai.deepsop.com/prod-api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown or JSON-oriented task guidance with shell command snippets and generated xlsx report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPSOP_API_KEY and may submit or query sales automation tasks through DeepSOP APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles sensitive customer and communication data that may appear in chat summaries or exported reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in approved workspaces, minimize or mask personal data in previews and reports, and restrict report access to authorized recipients.
+
+Risk: Automatic result delivery can expose reports if message destinations are not tightly controlled.
+
+Mitigation: Bind delivery to fixed, authorized chat targets and verify the recipient before scheduling or sending report files.
+
+Risk: Shell-oriented payload handling can corrupt JSON or expose task data through command arguments.
+
+Mitigation: Pass structured payloads through stdin or files, avoid shell interpolation for customer data, and preserve the artifact's validation checks before API submission.
+
+Risk: Scheduled callbacks could query and publish task results without adequate authorization.
+
+Mitigation: Require authenticated callback validation and confirm that the callback task, workspace, and delivery target are authorized before querying results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuoai/skills/deepsop-humabot-ai)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [DeepSOP platform](https://ai.deepsop.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, shell commands, API call instructions, status summaries, and xlsx report file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPSOP_API_KEY and may send customer, email, phone, SMS, and task data to DeepSOP APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

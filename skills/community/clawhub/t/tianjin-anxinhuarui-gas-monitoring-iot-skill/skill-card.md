@@ -1,41 +1,59 @@
-## Description: <br>
-Generates, customizes, and deploys QuecPython code for reading Anxin Huarui AX100 gas-controller data over Modbus RTU and reporting it to a customer HTTP platform at a configurable interval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and customizes QuecPython code templates that read Anxin Huarui AX100 gas detector controller data through RS485/Modbus RTU and report JSON payloads to customer HTTP platforms.
 
-## Publisher: <br>
-[lbs2016](https://clawhub.ai/user/lbs2016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbs2016](https://clawhub.ai/user/lbs2016)
 
-## Use Case: <br>
-Developers and field engineers use this skill to adapt a QuecPython template for AX100 gas alarm controllers, including customer upload URLs, reporting frequency, JSON payload shape, Modbus register addresses, and device deployment steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The template includes enabled-by-default remote OTA behavior that can download files and reboot deployed devices. <br>
-Mitigation: Disable URL_OTA unless the operator controls and trusts the update service, require authenticated and integrity-checked OTA packages before enabling updates, and test on non-production devices first. <br>
-Risk: OTA checks and platform reporting can include device identifiers and gas telemetry such as IMEI, IMSI, ICCID, signal strength, and detector readings. <br>
-Mitigation: Confirm the receiving platform is authorized for these data types and remove unnecessary telemetry from OTA checks or customer payloads. <br>
+## Use Case:
 
+Developers and field engineers use this skill to adapt AX100 gas monitoring device code for customer platform URLs, reporting intervals, JSON formats, Modbus register maps, and QuecPython deployment.
 
-## Reference(s): <br>
-- [AX100 code structure guide](references/code_guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lbs2016/tianjin-anxinhuarui-gas-monitoring-iot-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with customized QuecPython code snippets or complete Python files and deployment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically emits a modified config.py, may modify main.py payload logic, and may reference unchanged template files for deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The template includes automatic OTA behavior with a hardcoded default update endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or replace the default OTA endpoint, and require signed update manifests plus hash verification before applying updates or rebooting devices.
+
+Risk: The template may share device identifiers such as IMEI, ICCID, or IMSI more broadly than a deployment requires.
+
+Mitigation: Minimize transmitted identifiers and confirm the customer explicitly requires each identifier before including it in telemetry or OTA requests.
+
+Risk: Incorrect customer-specific URL, reporting interval, GPIO, or Modbus register settings can produce missing or misleading gas monitoring reports.
+
+Mitigation: Confirm deployment parameters against the target platform protocol, module hardware documentation, and controller register table before installation.
+
+## Reference(s):
+
+- [Code guide](references/code_guide.md)
+- [ClawHub skill page](https://clawhub.ai/lbs2016/skills/tianjin-anxinhuarui-gas-monitoring-iot-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/lbs2016)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown containing generated or modified QuecPython files, configuration values, deployment steps, and occasional command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May output only a modified config.py for simple deployments or full Python template files when payload or device behavior changes are requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

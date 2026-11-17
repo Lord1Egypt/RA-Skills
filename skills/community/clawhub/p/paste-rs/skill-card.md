@@ -1,42 +1,58 @@
-## Description: <br>
-Paste text, Markdown, or HTML snippets to https://paste.rs and return a shareable URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paste text, Markdown, or HTML snippets to https://paste.rs and return a shareable URL.
 
-## Publisher: <br>
-[banghasan](https://clawhub.ai/user/banghasan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[banghasan](https://clawhub.ai/user/banghasan)
 
-## Use Case: <br>
-Developers and support users use this skill to turn selected text, command output, logs, or configuration snippets into a paste.rs URL for sharing after reviewing the content for sensitive data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded content is shared through a public paste service. <br>
-Mitigation: Review content before upload, keep redaction enabled, and avoid uploading sensitive, proprietary, or regulated data. <br>
-Risk: The script saves a local .md copy before uploading. <br>
-Mitigation: Choose an appropriate output directory and delete the saved file when a retained local copy is not desired. <br>
-Risk: Automatic redaction is heuristic and may miss sensitive values. <br>
-Mitigation: Manually inspect logs and configuration snippets before upload, and use --no-redact only for content confirmed to be safe to share. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [paste.rs API quick reference](references/paste-rs-api.md) <br>
-- [paste.rs](https://paste.rs) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to publish short text, Markdown, HTML, logs, configuration snippets, or command output to paste.rs as a shareable URL. It is appropriate only for content that may be public.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text URL with Markdown and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script saves a local .md copy before upload and applies best-effort redaction by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Pasted content is sent to a public third-party service.
+
+Mitigation: Use the skill only for content that may be public; review snippets before upload and avoid secrets, private files, and sensitive logs.
+
+Risk: The bundled script saves a local Markdown copy before uploading and defaults to shared /tmp with predictable filenames.
+
+Mitigation: Use a private output directory with --outdir and remove saved paste files after use.
+
+Risk: Automatic redaction is heuristic and can be disabled with --no-redact.
+
+Mitigation: Manually inspect and redact content before upload, and avoid --no-redact for logs, configs, credentials, or other sensitive material.
+
+## Reference(s):
+
+- [paste.rs API quick reference](references/paste-rs-api.md)
+- [paste.rs](https://paste.rs)
+- [ClawHub skill page](https://clawhub.ai/banghasan/skills/paste-rs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; script output is a paste.rs URL on stdout and a saved local Markdown path on stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads user-provided content to paste.rs, writes a local .md copy before upload, and applies best-effort redaction unless --no-redact is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

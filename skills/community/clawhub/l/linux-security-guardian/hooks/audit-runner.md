@@ -1,6 +1,6 @@
 ---
 name: linux-security-guardian-audit-runner
-description: Main audit orchestrator. Fires at 1 AM IST. Iterates all clients → all servers → runs 18 modules via SSH MCP, collects findings, applies auto-actions, queues confirmations, compiles per-server reports, compiles master report, sends via email plugin.
+description: Main audit orchestrator. Fires at 1 AM IST. Iterates all clients → all servers → runs 26 modules via SSH MCP, collects findings, applies auto-actions, queues confirmations, compiles per-server reports, compiles master report, sends via email plugin.
 ---
 
 # Audit Runner — 1 AM IST

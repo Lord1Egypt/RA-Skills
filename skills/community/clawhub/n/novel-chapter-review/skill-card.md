@@ -1,38 +1,50 @@
-## Description: <br>
-Reviews completed novel chapters with six-dimension scoring, appeal-beat auditing, issue lists, and revision suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese novel-review skill that audits completed chapters for reader payoff density, narrative quality, setting consistency, character plausibility, and produces scores, issue lists, and revision suggestions.
 
-## Publisher: <br>
-[zhao-zwl](https://clawhub.ai/user/zhao-zwl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhao-zwl](https://clawhub.ai/user/zhao-zwl)
 
-## Use Case: <br>
-Authors, editors, and writing agents use this skill to audit finished novel chapters, score chapter quality, identify plot and style issues, and prioritize revisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward broad Python-based batch edits to manuscripts without enough safeguards. <br>
-Mitigation: Require an exact file list, backups, a dry-run or diff, and separate approval before any batch script, manuscript edit, or memory-file update. <br>
+## Use Case:
 
+Authors, editors, and writing agents use this skill to review completed Chinese novel chapters, score narrative quality and reader payoff, identify continuity and craft issues, and prioritize revisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhao-zwl/novel-chapter-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown chapter review reports, whole-book quality summaries, prioritized revision guidance, and occasional shell command suggestions for manuscript checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include chapter scores, appeal-beat density analysis, issue severity lists, and revision priorities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can direct broad code-driven manuscript edits and memory-file synchronization without strong scoping or rollback safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit chapter or file scope, ask for a proposed diff or dry run before edits, and keep backups before approving bulk Python edits or memory-file synchronization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhao-zwl/skills/novel-chapter-review)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown review reports with score tables, issue lists, revision priorities, and proposed manuscript changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scoped manuscript-edit proposals, validation steps, and batch-edit commands when the user approves revisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

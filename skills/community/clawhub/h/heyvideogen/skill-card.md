@@ -1,46 +1,64 @@
-## Description: <br>
-HeyVideoGen helps agents create vertical MP4 videos by combining storyboard planning, MiniMax Hailuo AI video clips, HyperFrames HTML and GSAP composition, TTS voiceover, and FFmpeg finalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HeyVideoGen helps agents produce short-form MP4 videos by planning storyboards, generating TTS and MiniMax Hailuo clips, composing HyperFrames HTML/GSAP scenes, and rendering or post-processing with HyperFrames and FFmpeg.
 
-## Publisher: <br>
-[devioslang](https://clawhub.ai/user/devioslang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devioslang](https://clawhub.ai/user/devioslang)
 
-## Use Case: <br>
-Developers and content-production agents use this skill to plan short-video storyboards, generate or reference AI video clips, author HyperFrames HTML compositions, and render publishable vertical MP4 assets. It is aimed at workflows that need HTML-based motion graphics, captions, TTS narration, and final video assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper workflow can run shell commands built from user-provided or generated text. <br>
-Mitigation: Run it only in a controlled workspace, review generated commands and storyboard values before execution, and update the helper to use validated arguments with shell=False before accepting untrusted inputs. <br>
-Risk: The skill requires sensitive credentials for downstream video, TTS, or media-generation providers. <br>
-Mitigation: Use limited-scope API keys, keep credentials out of prompts and generated project files, and avoid sending sensitive scripts or proprietary prompts to providers unless that data sharing is approved. <br>
+## Use Case:
 
+Developers and content-automation agents use this skill to turn a video topic or existing HyperFrames project into a storyboard, narration, AI video clips, HTML composition guidance, render commands, and publishable vertical MP4 outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/devioslang/heyvideogen) <br>
-- [HyperFrames](https://github.com/heygen-com/hyperframes) <br>
-- [HTML authoring guide](references/html-authoring.md) <br>
-- [GSAP animation rules](references/gsap-rules.md) <br>
-- [Captions and subtitles](references/captions.md) <br>
-- [Transitions](references/transitions.md) <br>
-- [TTS workflow](references/tts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON storyboard structures, HTML/JavaScript snippets, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local project files and rendered MP4 video assets when the required external tools and credentials are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The security summary reports that ordinary video inputs can reach unsafe local command execution paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and constrain the runner before installation; replace shell=True subprocess calls with argument-list invocations and validate project names, paths, prompts, and output locations.
+
+Risk: The skill orchestrates local rendering, media generation, and file writes through external tools such as HyperFrames, MiniMax scripts, and FFmpeg.
+
+Mitigation: Run the workflow in a sandbox with only the intended workspace and API credentials exposed, and review generated commands before execution.
+
+Risk: Dependency and tool behavior may vary because HyperFrames and related media-generation dependencies are invoked from the local environment.
+
+Mitigation: Pin and review HyperFrames, MiniMax, FFmpeg, and supporting dependencies before production use.
+
+## Reference(s):
+
+- [HyperFrames HTML Authoring](references/html-authoring.md)
+- [GSAP Animation Rules](references/gsap-rules.md)
+- [Captions & Subtitles](references/captions.md)
+- [Scene Transitions](references/transitions.md)
+- [TTS & Audio](references/tts.md)
+- [Storyboard Example](examples/storyboard-example.json)
+- [Apple-Style HyperFrames Template](templates/apple-style/index.html)
+- [HyperFrames GitHub Repository](https://github.com/heygen-com/hyperframes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON storyboard structures, HTML/GSAP examples, Python and shell commands, and file layout instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow targets vertical short-video production and can produce storyboard JSON, HyperFrames HTML compositions, TTS audio, AI video clips, and rendered MP4 files when the required local tools and API credentials are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

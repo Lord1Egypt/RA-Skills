@@ -1,45 +1,60 @@
-## Description: <br>
-Monitor and rebalance a multi-asset portfolio using real-time quotes, sector allocation, and risk metrics from the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and rebalance a multi-asset portfolio using real-time quotes, sector allocation, and risk metrics from the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and developers use this skill to analyze US equity holdings, compare portfolio performance with market benchmarks, identify concentration risks, and generate rebalancing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio details and cost basis can be sensitive financial information. <br>
-Mitigation: Provide only the holdings data needed for the analysis and avoid unnecessary personally identifying financial details. <br>
-Risk: The skill requires a Finskills API key for market-data lookups. <br>
-Mitigation: Store FINSKILLS_API_KEY in an environment variable or secret store and avoid pasting it into chat history. <br>
-Risk: Portfolio recommendations may be incomplete or unsuitable for a user's financial situation. <br>
-Mitigation: Verify market data and recommendations before making investment decisions; treat the output as analysis, not automated trading. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to analyze US equity holdings, compare portfolio performance against benchmarks, identify sector and concentration risks, and prepare rebalancing guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/finskills/finskills-portfolio-manager) <br>
-- [Project homepage](https://github.com/finskills/portfolio-manager) <br>
-- [Finskills API](https://finskills.net) <br>
-- [Finskills API registration](https://finskills.net/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown portfolio report with tables, metrics, risk flags, market context, and rebalancing recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided holdings and a Finskills API key; does not connect to brokerage accounts or execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
+Risk: Portfolio holdings, cost basis, and ticker symbols may reveal sensitive financial information in the agent session or to Finskills market-data endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the portfolio details needed for the requested analysis, avoid unnecessary cost-basis data, and confirm that use of the Finskills API is acceptable for the portfolio data involved.
+
+Risk: Market quotes can be delayed and beta values may be approximated, which can make performance, risk, and rebalance outputs imperfect.
+
+Mitigation: Treat the report as analytical guidance, verify important figures against authoritative market data, and review any rebalance suggestion before acting.
+
+Risk: The skill can suggest buy or sell quantities but does not connect to brokerage accounts or execute trades.
+
+Mitigation: Keep all trade execution outside the skill and require human review before placing orders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/finskills-portfolio-manager)
+- [Publisher profile](https://clawhub.ai/user/finskills)
+- [Project homepage](https://github.com/finskills/portfolio-manager)
+- [Finskills API](https://finskills.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown portfolio report with holdings, allocation, risk flags, market context, and rebalancing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API-derived market data, estimated beta values, benchmark comparisons, and share-quantity suggestions when user inputs support them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

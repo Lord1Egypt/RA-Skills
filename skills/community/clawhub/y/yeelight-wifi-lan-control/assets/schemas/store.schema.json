@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "yeelight-wifi-lan-control-store-v1",
+  "title": "Yeelight WiFi LAN Control private store v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "storeId", "revision", "updatedAt", "home", "rooms", "groups", "devices", "scenes", "schedules", "operations"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "storeId": {"$ref": "#/$defs/id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "updatedAt": {"$ref": "#/$defs/dateTime"},
+    "home": {"$ref": "#/$defs/home"},
+    "rooms": {"type": "array", "maxItems": 128, "items": {"$ref": "#/$defs/room"}},
+    "groups": {"type": "array", "maxItems": 128, "items": {"$ref": "#/$defs/group"}},
+    "devices": {"type": "array", "maxItems": 512, "items": {"$ref": "#/$defs/device"}},
+    "scenes": {"type": "array", "maxItems": 256, "items": {"$ref": "#/$defs/scene"}},
+    "schedules": {"type": "array", "maxItems": 128, "items": {"$ref": "#/$defs/schedule"}},
+    "operations": {"type": "array", "maxItems": 32, "items": {"$ref": "#/$defs/operation"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[A-Za-z0-9._:-]{1,160}$"},
+    "uuid": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[A-Za-z0-9._:-]{1,160}$"},
+    "dateTime": {"type": "string", "format": "date-time", "minLength": 20, "maxLength": 64},
+    "name": {"type": "string", "minLength": 1, "maxLength": 80, "pattern": "^(?!.*[\\u0000-\\u001f\\u007f])[^\\r\\n]{1,80}$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "entityTimes": {
+      "type": "object",
+      "required": ["revision", "createdAt", "updatedAt"],
+      "properties": {
+        "revision": {"$ref": "#/$defs/revision"},
+        "createdAt": {"$ref": "#/$defs/dateTime"},
+        "updatedAt": {"$ref": "#/$defs/dateTime"}
+      },
+      "additionalProperties": true
+    },
+    "home": {
+      "allOf": [
+        {"$ref": "#/$defs/entityTimes"},
+        {"type": "object", "required": ["id", "name"], "properties": {"id": {"$ref": "#/$defs/uuid"}, "name": {"$ref": "#/$defs/name"}}, "additionalProperties": true}
+      ]
+    },
+    "room": {
+      "allOf": [
+        {"$ref": "#/$defs/entityTimes"},
+        {"type": "object", "required": ["id", "name", "deviceIds"], "properties": {"id": {"$ref": "#/$defs/uuid"}, "name": {"$ref": "#/$defs/name"}, "deviceIds": {"type": "array", "maxItems": 512, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}}, "additionalProperties": true}
+      ]
+    },
+    "endpoint": {
+      "type": "object",
+      "required": ["host", "port"],
+      "properties": {"scheme": {"const": "yeelight"}, "host": {"type": "string", "minLength": 1, "maxLength": 64}, "port": {"type": "integer", "minimum": 1, "maximum": 65535}},
+      "additionalProperties": false
+    },
+    "rebind": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["active", "rebind_pending"]},
+        "candidateEndpoint": {"anyOf": [{"$ref": "#/$defs/endpoint"}, {"type": "null"}]},
+        "challenge": {"type": ["object", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "device": {
+      "allOf": [
+        {"$ref": "#/$defs/entityTimes"},
+        {
+          "type": "object",
+          "required": ["id", "protocolId", "alias", "roomId", "groupIds", "support", "online", "stale", "rebind"],
+          "properties": {
+            "id": {"$ref": "#/$defs/id"},
+            "protocolId": {"$ref": "#/$defs/id"},
+            "alias": {"type": "string", "maxLength": 80},
+            "localAlias": {"type": "string", "maxLength": 80},
+            "name": {"type": "string", "maxLength": 128},
+            "roomId": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+            "groupIds": {"type": "array", "maxItems": 128, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+            "endpoint": {"anyOf": [{"$ref": "#/$defs/endpoint"}, {"type": "null"}]},
+            "sender": {"anyOf": [{"$ref": "#/$defs/endpoint"}, {"type": "null"}]},
+            "model": {"type": "string", "maxLength": 128},
+            "firmware": {"type": "string", "maxLength": 64},
+            "fwVersion": {"type": "string", "maxLength": 64},
+            "support": {"type": "array", "maxItems": 128, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 64}},
+            "capabilities": {"type": "object"},
+            "capabilityFingerprint": {"type": "string", "maxLength": 2048},
+            "online": {"type": "boolean"},
+            "stale": {"type": "boolean"},
+            "status": {"enum": ["online", "offline", "stale", "rebind_pending"]},
+            "observedAt": {"type": ["string", "null"]},
+            "lastSeenAt": {"type": ["string", "null"]},
+            "rebind": {"$ref": "#/$defs/rebind"},
+            "state": {"type": "object"}
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "group": {
+      "allOf": [
+        {"$ref": "#/$defs/entityTimes"},
+        {
+          "type": "object",
+          "required": ["id", "name", "memberIds", "fingerprint", "status"],
+          "properties": {
+            "id": {"$ref": "#/$defs/uuid"},
+            "name": {"$ref": "#/$defs/name"},
+            "memberIds": {"type": "array", "minItems": 2, "maxItems": 512, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+            "deviceIds": {"type": "array", "minItems": 2, "maxItems": 512, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+            "fingerprint": {"type": "string", "minLength": 1, "maxLength": 2048},
+            "capabilityFingerprint": {"type": "string", "minLength": 1, "maxLength": 2048},
+            "status": {"enum": ["active", "needs_review"]},
+            "needsReview": {"type": "boolean"}
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "scene": {
+      "allOf": [
+        {"$ref": "#/$defs/entityTimes"},
+        {"type": "object", "required": ["id", "name", "source"], "properties": {"id": {"$ref": "#/$defs/uuid"}, "name": {"$ref": "#/$defs/name"}, "source": {"enum": ["custom", "snapshot", "recommended"]}, "revision": {"$ref": "#/$defs/revision"}, "payloadHash": {"type": "string", "maxLength": 256}, "actions": {"type": "array", "maxItems": 512}, "deviceIds": {"type": "array", "maxItems": 512, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}}, "additionalProperties": true}
+      ]
+    },
+    "schedule": {
+      "allOf": [
+        {"$ref": "#/$defs/entityTimes"},
+        {"type": "object", "required": ["id", "name"], "properties": {"id": {"$ref": "#/$defs/uuid"}, "name": {"$ref": "#/$defs/name"}, "state": {"enum": ["draft", "inactive", "binding_pending", "enabled", "active", "paused", "delete_pending"]}, "status": {"enum": ["draft", "inactive", "binding_pending", "enabled", "active", "paused", "delete_pending"]}, "lifecycle": {"type": "string", "maxLength": 64}, "sceneId": {"$ref": "#/$defs/id"}, "sceneRevision": {"type": "integer", "minimum": 1}, "timezone": {"type": "string", "maxLength": 64}, "taskId": {"type": ["string", "null"], "maxLength": 160}}, "additionalProperties": true}
+      ]
+    },
+    "operation": {
+      "type": "object",
+      "required": ["id", "status", "createdAt", "updatedAt"],
+      "properties": {"id": {"$ref": "#/$defs/uuid"}, "revision": {"$ref": "#/$defs/revision"}, "createdAt": {"$ref": "#/$defs/dateTime"}, "updatedAt": {"$ref": "#/$defs/dateTime"}, "status": {"enum": ["pending", "running", "success", "partial", "uncertain", "failed", "manual_recovery_required", "complete", "conflict"]}, "deviceIds": {"type": "array", "maxItems": 512, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}, "kind": {"type": "string", "maxLength": 64}, "schemaVersion": {"type": "integer", "minimum": 1}},
+      "additionalProperties": true
+    }
+  }
+}

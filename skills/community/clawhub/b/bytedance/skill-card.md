@@ -1,37 +1,56 @@
-## Description: <br>
-Provides a static Chinese-language reference about ByteDance history, product ecosystem, recommendation algorithms, business model, globalization, culture, revenue summaries, regulation, and outlook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language overview of ByteDance, including company history, products, recommendation algorithms, business model, globalization, revenue data, culture, regulatory challenges, and future outlook.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and analysts use this skill to ask an agent for concise background information about ByteDance, including products, leadership, business model, international footprint, and regulatory considerations. The content should be treated as a static public-information summary rather than current business, legal, or investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ByteDance business, leadership, financial, product, and regulatory details can become stale or inaccurate because the skill is a static public-information summary. <br>
-Mitigation: Verify current facts from trusted official or authoritative sources before relying on the information for business, legal, investment, or regulatory decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LeoCryptoFlow/bytedance) <br>
+## Use Case:
 
+External users can use this skill to ask for a structured, static overview of ByteDance's company background, products, business model, technical themes, and market context. It is informational guidance and should not be treated as a live source for current financial, executive, product, regulatory, or investment facts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text informational summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static public-information reference; no code execution, account access, or private-data handling is described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Company, financial, executive, regulatory, and product details may become outdated because the skill is static.
+
+Mitigation: Verify important claims against current official disclosures or reputable sources before relying on them.
+
+Risk: The artifact includes investment-related context that could be mistaken for decision support.
+
+Mitigation: Treat the skill as general background information and consult qualified professionals for investment decisions.
+
+Risk: Regulatory status and availability of ByteDance products can vary by country and change over time.
+
+Mitigation: Check current local regulatory and product availability sources for jurisdiction-specific use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/bytedance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational content; no live data source or executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_upload_file",
+		"description": "上传文件到织信平台存储（S3/COS），返回可公开访问的下载URL。\n\n【使用场景】\n当你生成了文件（Excel、PPT、PDF、图片、CSV等）需要让用户下载时，必须调用此方法将文件上传到平台存储，然后将返回的downloadUrl提供给用户。\n\n【重要规则】\n1. 生成文件后必须调用此方法上传，禁止直接返回服务器本地文件路径给用户\n2. fileContent和filePath二选一：fileContent传base64编码内容，filePath传文件在当前工作目录下的路径\n3. 上传成功后将downloadUrl返回给用户作为下载链接",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"fileName": {
+					"type": "string",
+					"description": "文件名（含扩展名），如 report.xlsx、presentation.pptx、data.csv"
+				},
+				"fileContent": {
+					"type": "string",
+					"description": "文件内容的base64编码字符串。推荐使用此方式（因为agent可能运行在Docker容器内，服务端无法直接访问容器内文件）"
+				},
+				"filePath": {
+					"type": "string",
+					"description": "文件的绝对路径（仅在agent与服务端共享文件系统时可用，如非Docker部署场景）。与fileContent二选一"
+				}
+			},
+			"required": ["fileName"]
+		}
+	}
+}

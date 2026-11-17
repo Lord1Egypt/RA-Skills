@@ -1,0 +1,29 @@
+{
+  "input_records": [
+    {
+      "order_id": "C-01",
+      "product": "简约衬衫",
+      "spec": "M",
+      "reason": "尺码偏小"
+    },
+    {
+      "order_id": "C-02",
+      "product": "简约衬衫",
+      "spec": "M",
+      "reason": "尺码偏小"
+    },
+    {
+      "order_id": "C-03",
+      "product": "帆布包",
+      "spec": "原色",
+      "reason": "不合适"
+    },
+    {
+      "order_id": "C-04",
+      "product": "帆布包",
+      "spec": "原色",
+      "reason": "背带太短"
+    }
+  ],
+  "constraints": "不删除相似文本，不猜“不合适”的细类，不计算退款率"
+}

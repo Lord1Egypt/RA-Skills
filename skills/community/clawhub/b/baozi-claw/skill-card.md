@@ -1,42 +1,58 @@
-## Description: <br>
-Complete Solana prediction markets skill for Baozi: list markets, get odds, place bets, and claim winnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Solana prediction markets skill for Baozi: list markets, get odds, place bets, and claim winnings.
 
-## Publisher: <br>
-[marcusfranca12](https://clawhub.ai/user/marcusfranca12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcusfranca12](https://clawhub.ai/user/marcusfranca12)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Baozi Solana prediction markets, review odds and portfolio positions, and prepare betting or claim actions through an agent interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises Solana betting and claiming actions while the shipped code, documentation, and tool list are inconsistent. <br>
-Mitigation: Install only for review or testing until the publisher aligns the shipped code, documentation, and tool list. <br>
-Risk: Transaction-related tools use a shell-backed execution path and may receive untrusted free-form inputs. <br>
-Mitigation: Verify the exact Baozi MCP version being executed and avoid passing untrusted free-form inputs to shell-backed tools. <br>
-Risk: Betting and claiming can affect wallet funds. <br>
-Mitigation: Do not allow autonomous betting or claiming; require manual wallet review and signature for every transaction. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent browse Baozi prediction markets on Solana, inspect odds and positions, and prepare betting or claim actions. Any action involving funds should be reviewed and confirmed before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcusfranca12/baozi-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Shell commands] <br>
-**Output Format:** [JSON tool results returned to the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transaction-related outputs should be reviewed manually before any wallet signature or on-chain action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The release advertises betting, claiming, portfolio, and market-creation behavior, but shipped implementation files include a placeholder example tool and a smaller runtime tool set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the publisher to align the manifest, documentation, and implementation before installation or publication.
+
+Risk: Betting-related tool instructions invoke runtime npx and shell execution.
+
+Mitigation: Remove shell execution, pin and review dependencies, and call reviewed APIs directly.
+
+Risk: Tools can build betting or claim transactions that may affect user funds.
+
+Mitigation: Require explicit user confirmation and transaction review before any betting or claim action is submitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcusfranca12/skills/baozi-claw)
+- [ClawHub publisher profile](https://clawhub.ai/user/marcusfranca12)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured tool results with inline code or shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce market data, portfolio summaries, transaction-building guidance, and installation commands; transaction-related outputs require user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

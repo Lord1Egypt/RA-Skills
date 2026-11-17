@@ -1,0 +1,4 @@
+interface:
+  display_name: "网盘通 · 通用下载调度层"
+  short_description: "跨 macOS / Windows / Linux 的通用下载调度层，统一通过 Agent/MCP/CLI、Web UI 和浏览器插件投递任务；调度本机或可选 Docker/远程引擎。不解析分享页、不提取直链、不绕过鉴权/限速/风控/DRM。"
+  default_prompt: "使用 $cloud-drive-downloader：先让用户提供链接或确认公开搜索范围，运行 `pan.py doctor --json` 检查依赖，再用 `pan.py get <url> --dry-run --json` 生成计划；确认后执行实际下载到 `<download-dir>`。若地址需要登录/VIP/验证码，只引导官方或已授权方式，不把 Cookie/Token/密码放进聊天。"

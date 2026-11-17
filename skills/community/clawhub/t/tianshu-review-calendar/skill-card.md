@@ -1,40 +1,53 @@
-## Description: <br>
-Generates a printable Markdown study schedule that spreads course topics across the days before an exam. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tianshu Review Calendar spreads course topics across the days before an exam and produces a printable Markdown review schedule.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Students or agents assisting students use this skill to distribute course topics across a configurable number of days before an exam and produce a printable checklist-style review plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A topics file may contain sensitive course or study details that are echoed into the generated Markdown schedule. <br>
-Mitigation: Use only topics files whose contents are acceptable to include in the printed or shared schedule. <br>
-Risk: The script prompts and generated notes are in Chinese, which may be unsuitable for users expecting another language. <br>
-Mitigation: Review the generated schedule before sharing and localize the notes when needed. <br>
+## Use Case:
 
+Students use this skill to turn an exam date and a list of course topics into a day-by-day pre-exam review calendar. It is suited to end-of-term review planning, not hourly reminders or personalized study diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-review-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown schedule with a date and topic table plus brief study notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads topics from command-line input or a user-provided local topics file; prompts and generated notes are in Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: The skill reads a user-supplied topic file when --file is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only files that contain study topics intended for the review calendar.
+
+Risk: Very long or unrealistic schedule lengths may produce unwieldy review plans.
+
+Mitigation: Use normal schedule lengths and review the generated calendar before relying on it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangshengli0421/skills/tianshu-review-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown table with schedule notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local text output only; no network, credential, persistence, or privileged behavior is reported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

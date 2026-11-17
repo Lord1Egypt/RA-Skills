@@ -1,42 +1,58 @@
-## Description: <br>
-Automates update tracking for OpenClaw and other GitHub-released tools by monitoring a watchlist, reviewing release notes with a security lens, checking for regressions, and preparing approval-ready recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Update Scout helps agents track GitHub-released tools, review release notes and post-release issues, and prepare recommendation cards before any user-approved upgrade.
 
-## Publisher: <br>
-[ziggy2socks](https://clawhub.ai/user/ziggy2socks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziggy2socks](https://clawhub.ai/user/ziggy2socks)
 
-## Use Case: <br>
-Developers and operators use Update Scout to monitor GitHub-released tools, compare installed and latest versions, review release notes and post-release issues, and decide whether to upgrade, wait, or skip. It also helps maintain a local watchlist and skip list for periodic checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured version-check commands can run locally and may be unsafe if a watchlist entry is untrusted. <br>
-Mitigation: Keep watchlist entries limited to trusted commands, review ~/.config/scout/watchlist.json before scheduled checks, and inspect proposed upgrade or restart commands before approval. <br>
-Risk: Update recommendations can be incomplete when release notes or post-release issue data are incomplete. <br>
-Mitigation: Review the recommendation card and verify release stability before approving installation. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor a watchlist of GitHub-released tools, compare installed and latest versions, assess update risk, and prepare approval-ready upgrade recommendations.
 
-## Reference(s): <br>
-- [Scout Watchlist Reference](references/watchlist.md) <br>
-- [Update Scout on ClawHub](https://clawhub.ai/ziggy2socks/update-scout) <br>
-- [ziggy2socks ClawHub Publisher Profile](https://clawhub.ai/user/ziggy2socks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown recommendation cards, JSON reports, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local watchlist and skip-list JSON files, call GitHub APIs, and run configured local version-detection commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release metadata) <br>
+Risk: Configured command detectors can run local programs when checking installed versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted watchlist entries only and review detector commands before running update checks.
+
+Risk: Skill health review can inspect local skill directories and expose their structure or SKILL.md contents in reports.
+
+Mitigation: Run reviews only on intended directories and avoid sharing reports that contain private skill details.
+
+Risk: A GitHub token may be sent when fetching remote reference content.
+
+Mitigation: Prefer no token or a fine-grained token with minimal permissions, and treat fetched reference content as untrusted.
+
+## Reference(s):
+
+- [Scout Watchlist Reference](references/watchlist.md)
+- [ClawHub Skill Page](https://clawhub.ai/ziggy2socks/skills/update-scout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown recommendation cards, JSON update reports, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before any installation or update action.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

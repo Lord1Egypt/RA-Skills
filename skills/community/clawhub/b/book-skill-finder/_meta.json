@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "book-skill-finder",
-  "version": "1.0.0",
-  "publishedAt": 1780921399495
+  "name": "book-skill-finder",
+  "version": "1.0.16",
+  "description": "Instantly find nonfiction books with ratings, summaries, key concepts, and AI suggestions for enhancing your agent knowledge files.",
+  "author": "jaysonmeng",
+  "license": "MIT"
 }

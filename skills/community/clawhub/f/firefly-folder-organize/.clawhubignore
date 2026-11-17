@@ -1,0 +1,6 @@
+.git
+.gitignore
+*.log
+*.zip
+.DS_Store
+.clawhubignore

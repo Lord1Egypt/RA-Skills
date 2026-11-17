@@ -1,0 +1,294 @@
+{
+  "schema": "neomorphic.received-useful-work.pins.v1",
+  "skill": "received-useful-work",
+  "version": "0.1.1",
+  "installedCommand": "scripts/dispatch.mjs",
+  "nativeProviderRoute": "/.well-known/skills/received-useful-work/SKILL.md",
+  "index": "/.well-known/skills/index.json",
+  "paymentAuthority": "none",
+  "claimAuthority": "none",
+  "catalogMutation": false,
+  "humanPage": false,
+  "notACatalog": true,
+  "acceptedDerivativeReceived": false,
+  "functions": [
+    {
+      "id": "walletless-trial",
+      "class": "hosted_library",
+      "hostedApi": false,
+      "subscription": false,
+      "spendingPermission": false,
+      "publicationStatus": "hosted_library_received",
+      "hostedAcquisitionVerified": true,
+      "owner": "neomorphic",
+      "version": "0.1.0",
+      "taskIds": [
+        "crt-100198-capability-preflight-reuse"
+      ],
+      "expectedOutputs": [
+        "prepared-crt-envelope",
+        "useful-negative-evaluation"
+      ],
+      "archive": "/downloads/funded-task-consumer/0.1.0/funded-task-consumer-0.1.0.tar.gz",
+      "sha256": "4a70db5c0a7ac1f4e511ec486dc721a591feac4349a3942a75b9486d01fb5211",
+      "bytes": 82528,
+      "machineEntry": "/downloads/funded-task-consumer/0.1.0/machine-entry.json",
+      "providerRoute": "/api/labs/funded-task-consumer.json",
+      "layout": "top-directory",
+      "extractTop": "funded-task-consumer-0.1.0",
+      "consumer": "experiments/funded-task-consumer-100257/bin/consumer.mjs",
+      "node": "22.22.2",
+      "dependencies": [
+        {
+          "id": "contributor-reuse-trial",
+          "role": "crt-client",
+          "archive": "/downloads/contributor-reuse-trial/0.1.2/contributor-reuse-trial-100198-0.1.2.tar.gz",
+          "sha256": "11b3ab94c836dfc8655e86bdee13cd9f0ff2412ce8dd50574352a63ef2214a2e",
+          "bytes": 35543,
+          "layout": "flat",
+          "version": "0.1.2",
+          "required": true
+        },
+        {
+          "id": "capability-preflight",
+          "role": "subject-archive",
+          "archive": "/downloads/capability-preflight/capability-preflight.tar.gz",
+          "sha256": "477e31cb09818409ff9fe81b9d8401bc227591be100a2aca7edf73ca1a45e551",
+          "bytes": 143275,
+          "layout": "unextracted",
+          "required": true
+        }
+      ],
+      "taskDescription": "Prepare one walletless CRT envelope for crt-100198-capability-preflight-reuse and record a useful-negative evaluation. The envelope is not transmitted and payment stays off.",
+      "usages": [
+        "run --crt-client CRT --budget fixtures/budget-walletless.json --subject SUBJECT --outcome useful_negative --out OUT"
+      ]
+    },
+    {
+      "id": "grantless-retained-read",
+      "class": "hosted_library",
+      "hostedApi": false,
+      "subscription": false,
+      "spendingPermission": false,
+      "publicationStatus": "hosted_library_received",
+      "hostedAcquisitionVerified": true,
+      "owner": "neomorphic",
+      "version": "0.1.0",
+      "taskIds": [
+        "grantless-retained-read"
+      ],
+      "expectedOutputs": [
+        "retained-read",
+        "grant-refusal"
+      ],
+      "archive": "/downloads/customer-retained-operations/0.1.0/customer-retained-operations-0.1.0.tar.gz",
+      "sha256": "b4afc27eff621b63dd668973706bb3c13dc4a960662c0283da43e0018e09899d",
+      "bytes": 23797,
+      "machineEntry": "/downloads/customer-retained-operations/0.1.0/machine-entry.json",
+      "providerRoute": "/api/labs/customer-retained-operations.json",
+      "layout": "top-directory",
+      "extractTop": "customer-retained-operations-0.1.0",
+      "consumer": "experiments/customer-retained-operations-100256/bin/customer-retained-operations.mjs",
+      "node": "22.22.2",
+      "server": {
+        "origin": "https://agents.samedaydesk.com",
+        "discoveryPath": "/.well-known/useful-result-reuse/current.json",
+        "readPath": "/.well-known/useful-result-reuse/retained",
+        "authority": "server-or-caller-held-grant",
+        "merchantCommit": "5206246ca831aa5b7c01ec147f69b22b5f71447b"
+      },
+      "dependencies": [
+        {
+          "id": "maintained-operations",
+          "role": "pinned-runner-archive",
+          "archive": "/downloads/maintained-operations/0.1.0/maintained-operations-0.1.0.tar.gz",
+          "sha256": "b68024a3b359b354b6869cfdc4621f1eb2947cb40311bf7bafcbd546b0cdabc9",
+          "bytes": 104792,
+          "layout": "unextracted",
+          "required": false,
+          "note": "The retained client checks this archive hash. It does not turn the free runner into a subscription."
+        }
+      ],
+      "taskDescription": "Read an earlier SameDayDesk result again only from a caller-held continuation. Without a grant the useful output is grant_required and missing_continuation, not a purchase.",
+      "usages": [
+        "discover --origin ORIGIN",
+        "read --home HOME",
+        "reject-seeded --file SEEDED"
+      ]
+    },
+    {
+      "id": "no-spend-composition",
+      "class": "hosted_library",
+      "hostedApi": false,
+      "subscription": false,
+      "spendingPermission": false,
+      "publicationStatus": "hosted_library_received",
+      "hostedAcquisitionVerified": true,
+      "owner": "neomorphic",
+      "version": "0.1.0",
+      "taskIds": [
+        "caller-owned-no-spend-composition"
+      ],
+      "expectedOutputs": [
+        "composition-decision"
+      ],
+      "archive": "/downloads/caller-composition-delivery/0.1.0/caller-composition-delivery-0.1.0.tar.gz",
+      "sha256": "47e09962996f43c25fab15759fee31db794244e6dd311d398f6847f7361e4643",
+      "bytes": 38018,
+      "machineEntry": "/downloads/caller-composition-delivery/0.1.0/machine-entry.json",
+      "providerRoute": "/api/labs/caller-composition-delivery.json",
+      "layout": "top-directory",
+      "extractTop": "caller-composition-delivery-0.1.0",
+      "consumer": "bin/compose.mjs",
+      "node": "22.22.2",
+      "pilotAdapter": "912938d35372566442f67dd1ad2dd0ca3d9e754f",
+      "dependencies": [
+        {
+          "id": "buyer-mandate",
+          "role": "optional-engine",
+          "archive": "/downloads/buyer-mandate/0.4.0/buyer-mandate-0.4.0.tar.gz",
+          "sha256": "a5533fb192438bfba972ccd9704e6e2acfffdad33d7bda5d3156da99942c6999",
+          "bytes": 162060,
+          "layout": "top-directory",
+          "extractTop": "buyer-mandate-0.4.0",
+          "version": "0.4.0",
+          "required": false,
+          "providerRoute": "/api/labs/buyer-mandate.json",
+          "note": "Public 0.4.0 archive. A missing root stays unresolved. It is not a purchase and not a new signer."
+        }
+      ],
+      "taskDescription": "Decide a caller-owned composition from the published label, then refuse a later changed task that tries to inherit that authority. The optional buyer-mandate root stays unresolved.",
+      "usages": [
+        "self-check",
+        "decide --request examples/admissible.json",
+        "retain --request examples/admissible.json --store STORE",
+        "compare --request CHANGED --store STORE"
+      ]
+    },
+    {
+      "id": "maintained-observation",
+      "class": "free_runner",
+      "hostedApi": false,
+      "subscription": false,
+      "spendingPermission": false,
+      "publicationStatus": "public_archive",
+      "hostedAcquisitionVerified": false,
+      "owner": "neomorphic",
+      "version": "0.1.0",
+      "taskIds": [
+        "hold-sellers"
+      ],
+      "expectedOutputs": [
+        "maintenance-observation",
+        "baseline",
+        "unchanged",
+        "cancelled"
+      ],
+      "archive": "/downloads/maintained-operations/0.1.0/maintained-operations-0.1.0.tar.gz",
+      "sha256": "b68024a3b359b354b6869cfdc4621f1eb2947cb40311bf7bafcbd546b0cdabc9",
+      "bytes": 104792,
+      "machineEntry": "/.well-known/maintained-operations.json",
+      "providerRoute": "/.well-known/maintained-operations.json",
+      "layout": "top-directory",
+      "extractTop": "maintained-operations-0.1.0",
+      "consumer": "experiments/maintained-operations-100184/bin/maintained-operations.mjs",
+      "node": "22.22.2",
+      "contract": "pilot.external-observatory.source-projection.v1",
+      "providerEnrollment": "conditional",
+      "originCommit": "3fe9d1ceafc076eb0e50a9afb11f37b5637f8db3",
+      "dependencies": [],
+      "taskDescription": "Observe one hold-sellers maintenance run through baseline, changed, unchanged, and an applied cancel (exit 0, disposition cancelled). A different owner exits 2 with enrollment_conflict. The runner is not a subscription.",
+      "usages": [
+        "opt-in --explicit yes --task hold-sellers",
+        "run --task hold-sellers --file PROJECTION",
+        "cancel --task hold-sellers"
+      ]
+    },
+    {
+      "id": "compatibility-query",
+      "class": "public_library_candidate",
+      "hostedApi": false,
+      "subscription": false,
+      "spendingPermission": false,
+      "publicationStatus": "candidate",
+      "hostedAcquisitionVerified": false,
+      "owner": "neomorphic",
+      "version": "0.0.1",
+      "taskIds": [
+        "current-compatibility-query"
+      ],
+      "expectedOutputs": [
+        "compatibility-decision"
+      ],
+      "archive": "/downloads/compatibility-envelope/0.0.1/compatibility-envelope-0.0.1.tar.gz",
+      "sha256": "fa2e5d6e8fe5f2790aece840c5cc420060a70104a9645fbe81cdc21adf56f3c7",
+      "bytes": 26862,
+      "machineEntry": "/downloads/compatibility-envelope/0.0.1/machine-entry.json",
+      "providerRoute": "/api/labs/compatibility-envelope.json",
+      "layout": "top-directory",
+      "extractTop": "compatibility-envelope",
+      "consumer": "bin/cold.mjs",
+      "node": "22.22.2",
+      "originCommit": "9a3d068f65365c4e9a61ff596fae37ac1984fa7e",
+      "note": "Candidate library. Hosted acquisition is not verified. A query is not Root acceptance of a later scaffold and not a payment.",
+      "dependencies": [],
+      "taskDescription": "Query the candidate compatibility envelope for a mismatched network, a later task, the current network, and a stale clock. Import is refused. Hosted acquisition stays unverified.",
+      "usages": [
+        "npm ci --ignore-scripts --no-audit --no-fund",
+        "decide --body fixtures/supported-derived.json --network NETWORK",
+        "later --evidence evidence-fixture"
+      ]
+    }
+  ],
+  "executionMode": "contract_replay",
+  "callerMode": "references/caller-input-contract.json",
+  "execution": {
+    "schema": "neomorphic.received-useful-work.execution.v1",
+    "paymentAuthority": "none",
+    "default": "free",
+    "sends": {
+      "credential": false,
+      "signing": false,
+      "purchase": false,
+      "note": false
+    },
+    "runtime": {
+      "node": ">=22.22.2",
+      "bins": ["node", "tar", "npm"]
+    },
+    "children": [
+      "node <pinned-library-cli>",
+      "tar -xzf <hash-pinned-archive>",
+      "npm ci --ignore-scripts --no-audit --no-fund"
+    ],
+    "network": [
+      {
+        "origin": "https://neomorphic.io",
+        "method": "GET",
+        "scope": "/downloads/",
+        "when": "library-delivery and task-distribution public acquisition",
+        "body": false
+      },
+      {
+        "origin": "https://agents.samedaydesk.com",
+        "method": "GET",
+        "paths": [
+          "/.well-known/useful-result-reuse/current.json",
+          "/.well-known/useful-result-reuse/retained"
+        ],
+        "when": "grantless-retained-read discover and retained read",
+        "body": false
+      },
+      {
+        "origin": "https://registry.npmjs.org",
+        "method": "GET",
+        "when": "compatibility-query npm ci from the pinned lockfile",
+        "body": false
+      }
+    ],
+    "callerInputs": "Request files stay local. They are not fields of a public acquisition request.",
+    "output": "Dispatch writes the acquired tree, child home, and child temp under --work, and events under the caller --log. Task-distribution execute writes only under --work. A referral is written only to --out. Library acquire writes only under --work.",
+    "locale": "Child LANG and LC_ALL are C so captured bytes stay stable.",
+    "changedObservation": "Contract replay increments the pinned projection sellers_30d value so the library can report a change. That is not a seller ranking and not a payment."
+  }
+}

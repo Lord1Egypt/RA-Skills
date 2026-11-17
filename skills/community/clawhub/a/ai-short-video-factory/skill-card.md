@@ -1,45 +1,64 @@
-## Description: <br>
-AI Short Video Factory creates MP4 videos from HTML using HyperFrames. Use for captioned talking-head edits, product launches, data visualizations, code walkthroughs, social clips, GSAP animations, transitions, audio muxing, and deterministic rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Short Video Factory creates MP4 videos from HTML using HyperFrames for captioned talking-head edits, product launches, data visualizations, code walkthroughs, social clips, GSAP animations, transitions, audio muxing, and deterministic rendering.
 
-## Publisher: <br>
-[zrzqbr](https://clawhub.ai/user/zrzqbr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrzqbr](https://clawhub.ai/user/zrzqbr)
 
-## Use Case: <br>
-External creators, developers, and marketing teams use this skill to turn text ideas, structured scripts, or existing talking-head media into short MP4 videos with HTML/CSS/GSAP animation, captions, audio processing, and HyperFrames rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run npx/HyperFrames, download browser components, invoke FFmpeg, process local media, and consume significant CPU, disk, and bandwidth. <br>
-Mitigation: Run video-production workflows in an isolated project or container, review commands before execution, and budget local storage and render time before starting. <br>
-Risk: The scanner summary notes sandbox-bypass rendering guidance and a privileged repair command without enough user-facing caution. <br>
-Mitigation: Manually approve any sandbox-disabled render or sudo command, and avoid privileged cache or permission repairs unless the exact path and need are clear. <br>
-Risk: Long video audio can be incomplete if the workflow relies on built-in HyperFrames audio behavior. <br>
-Mitigation: Use FFmpeg post-render audio muxing for long or narrated videos and verify final audio duration and tail audibility with the provided verification helper. <br>
+## Use Case:
 
+Developers, agents, and content producers use this skill to turn text ideas, structured scripts, or content outlines into HTML/CSS/GSAP video projects and rendered MP4 short videos. It supports tech news, product launches, data visualization, code walkthroughs, social clips, and captioned talking-head post-production.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/zrzqbr/ai-short-video-factory) <br>
-- [HyperFrames Animation Guide](references/animation-guide.md) <br>
-- [HyperFrames Caption & Subtitle Patterns](references/caption-patterns.md) <br>
-- [HyperFrames Composition Rules](references/composition-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML/CSS/JavaScript snippets and shell commands; workflows may render MP4 media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or verify WAV/MP4 media through local HyperFrames, FFmpeg, and Python helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence.release.version, SKILL.md frontmatter, CHANGELOG.md) <br>
+Risk: The workflow runs mutable package commands and can download browser components for video rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin HyperFrames and Python package versions where practical, review generated commands before execution, and run renders in a disposable container or VM.
+
+Risk: Rendering may require disabling the browser sandbox for Headless Chrome.
+
+Mitigation: Use sandbox disabling only inside an isolated rendering environment and avoid using it on a sensitive host.
+
+Risk: Troubleshooting guidance includes a sudo ownership workaround for cache permissions.
+
+Mitigation: Diagnose the exact permission problem first and avoid broad sudo ownership changes unless the target path and impact are understood.
+
+Risk: The skill performs shell-driven media processing with FFmpeg and generated assets.
+
+Mitigation: Constrain input and output paths, keep original media backups, and verify final duration, audio coverage, and visual quality before delivery.
+
+## Reference(s):
+
+- [HyperFrames Composition Rules](references/composition-rules.md)
+- [HyperFrames Animation Guide](references/animation-guide.md)
+- [HyperFrames Caption & Subtitle Patterns](references/caption-patterns.md)
+- [AI Short Video Factory README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with HTML/CSS/JavaScript snippets, shell commands, configuration details, and generated project file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify HyperFrames project files, captions, WAV audio, and final MP4 render outputs.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

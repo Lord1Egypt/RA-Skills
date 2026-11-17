@@ -1,37 +1,54 @@
-## Description: <br>
-Test your agent's input sanitization against common injection attacks. Runs self-contained checks using synthetic test data only - no local files are accessed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test your agent's input sanitization against common injection attacks. Runs self-contained checks using synthetic test data only — no local files are accessed.
 
-## Publisher: <br>
-[x1xhlol](https://clawhub.ai/user/x1xhlol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[x1xhlol](https://clawhub.ai/user/x1xhlol)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to run self-contained checks for common prompt-injection and text-obfuscation patterns in agent inputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes adversarial strings and executable Python snippets intended for testing. <br>
-Mitigation: Treat the strings as synthetic test data, review the visible snippets before running them, and re-check future versions for added file, network, credential, or persistence behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Hardening threat definitions](https://github.com/x1xhlol/agent-hardening) <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to run simple local checks for prompt-injection and unicode sanitization weaknesses using synthetic examples.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained Python 3 snippets using hardcoded synthetic samples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sample injection strings may be mistaken for operative instructions or retained as agent memory.
+
+Mitigation: Treat all attack strings as synthetic test data and do not store them as persistent memory, policy, or task instructions.
+
+Risk: External GitHub and author links are references outside the packaged skill artifact.
+
+Mitigation: Review external references separately before relying on them for security policy or operational guidance.
+
+## Reference(s):
+
+- [Agent Hardening threat definitions](https://github.com/x1xhlol/agent-hardening)
+- [ZeroLeaks Security Research](https://zeroleaks.ai)
+- [ClawHub release page](https://clawhub.ai/x1xhlol/skills/agent-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained Python 3 checks using synthetic test data only.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

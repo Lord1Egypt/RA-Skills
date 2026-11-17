@@ -1,0 +1,20 @@
+{
+  "schema": "task-distribution.input-contract.v1",
+  "requestSchema": "task-distribution.request.v1",
+  "fields": {
+    "task": "caller-owned nonempty task text",
+    "requirements": ["seller-useful-output", "seller-method-binding"],
+    "input": "samedaydesk.seller-repair-caller-request.v1: callerId, task (40-4000 chars), origin, operation (GET /exact-path), sdk, runtime, expect.path/value, limits, observed OR explicit probeConsent"
+  },
+  "limits": "probes 1-8; bodyBytes 1-65536; deadlineMs 20-5000; totalBodyBytes 1-524288; totalResponseMs 20-20000; outputBytes 512-262144; redirects 0",
+  "methodBinding": "Required for seller-method-binding: caller-supplied discovering/intended/accepted methods, declaration provenance/time, body shape, retry profile, freshness, protocol. The actual received client validates these; historical repair reports remain historical.",
+  "adapterLimits": "One absolute 100-30000ms deadline across source, bytes, extraction, child; aggregate source 1024-1048576 bytes; child stdout+stderr 1024-1048576 bytes; expanded archive 2MiB/128 members; 64KiB file/packet input.",
+  "explicitFlags": ["--execute yes --work CALLER-WORK", "--share yes --out caller-owned-file.json"],
+  "outputScope": "Execute writes only under --work. A referral is written only to --out. The system temp directory is not an output.",
+  "sharingPurpose": "integration-command-referral",
+  "sharingExpiry": "24 hours, rechecked at later process clock",
+  "unknownRequirements": "rejected before source read",
+  "authority": "none",
+  "sourceAdapter": "owning Neomorphic public current/download route; or explicitly supplied offline snapshot",
+  "noDefaultTask": true
+}

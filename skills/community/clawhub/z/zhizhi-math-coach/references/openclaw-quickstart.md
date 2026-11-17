@@ -6,6 +6,8 @@ Use this reference when onboarding a parent or when the first reply in a persona
 
 Keep the user-facing reply short. Prefer a checklist and the next command/action over long architecture explanations.
 
+Reply in the user's language. Standalone worksheet requests can use `zhizhi-math-worksheet` without initializing a learning archive. The initializer below is a Chinese-school profile with Chinese labels and regional defaults; adapt profiles/calendars for other systems instead of running it unchanged. Language alone does not identify the school system.
+
 ## First-Use Checklist
 
 1. Confirm the current workspace is the personal learning repository, not `zhizhi-math-coach-openclaw`.
@@ -31,6 +33,9 @@ Use this section only when the parent asks for cloud sync, GitHub backup, public
 
 Trigger phrases:
 
+- `Set up GitHub backup`
+- `Publish public worksheet links`
+- `Create a GitHub deploy key`
 - `进阶：配置 GitHub 云同步`
 - `进阶：开启 GitHub Pages 在线访问`
 - `生成 GitHub Deploy key`
@@ -38,7 +43,7 @@ Trigger phrases:
 - `返回 SSH 公钥`
 - `配置公开链接`
 
-When triggered, return this public guide URL:
+For Chinese users, this public guide is available; for English users, explain the steps below in English and use the installed `references/github-sync-authorization.md` rather than requiring them to read a Chinese-only guide:
 
 ```text
 https://github.com/linzi007/zhizhi-math-coach-openclaw/blob/main/docs/github-advanced-setup.zh-CN.md
@@ -54,7 +59,7 @@ The reply should include:
 If GitHub owner/repo is missing and cannot be inferred from `origin`, ask:
 
 ```text
-请告诉我你的 GitHub 用户名和个人学习数据仓库名，例如 linzi007 / zhizhi-math-learning-data。
+What are your GitHub username and personal learning repository name, for example your-name / math-learning-data?
 ```
 
 1. Check GitHub sync only if the parent wants sync, public links, automatic Pages publishing, or `.zhizhi-math-coach/config.json` already enables it:

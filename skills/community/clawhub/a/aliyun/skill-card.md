@@ -1,45 +1,55 @@
-## Description: <br>
-Provides compliant summaries of Aliyun public product specifications, pricing, billing trends, and service announcements without performing account operations or handling sensitive data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides compliant summaries of Aliyun public product information, pricing, service announcements, and read-only console-visible billing overviews without performing account operations or handling sensitive credentials.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and cloud operators use this skill to summarize Aliyun public pages and logged-in console views for product specs, pricing, billing overviews, and service announcements. It is intended for non-sensitive summary work, not account changes, access bypass, paid service actions, or credential handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user could expose Aliyun credentials, account IDs, billing details, or other sensitive console data while requesting summaries. <br>
-Mitigation: Keep credentials and sensitive identifiers out of prompts and outputs, redact account-specific values, and summarize only non-sensitive visible information. <br>
-Risk: Console automation could be mistaken for permission to perform account-changing or paid service actions. <br>
-Mitigation: Use the skill for summaries only; do not make API calls, bypass access controls, or perform account operations through this skill. <br>
-Risk: Repeated page access could conflict with Aliyun platform limits or account policies. <br>
-Mitigation: Apply rate limits, respect platform access restrictions, and stop if Aliyun presents throttling or access warnings. <br>
+## Use Case:
 
+External users and developers use this skill to summarize Aliyun product specifications, pricing links, billing trends visible in their own console, and service announcements. The skill is intended for read-only information organization and excludes account changes, access bypass, API calls, paid-service actions, and credential handling.
 
-## Reference(s): <br>
-- [Aliyun Homepage](https://www.aliyun.com/) <br>
-- [Aliyun Console](https://home.console.aliyun.com/) <br>
-- [Aliyun Documentation Center](https://help.aliyun.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/codenova58/aliyun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise text summaries with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No account operations, API calls, credential collection, or sensitive-data storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Logged-in console pages can expose billing details or other account-specific information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use read-only, review console-derived summaries before sharing, and omit credentials, access keys, account IDs, and other sensitive identifiers.
+
+Risk: Automated access to Aliyun pages may exceed platform or account expectations.
+
+Mitigation: Respect Aliyun access limits and use the skill only for visible information summaries, not account operations, API calls, or paid-service actions.
+
+## Reference(s):
+
+- [Aliyun Homepage](https://www.aliyun.com/)
+- [Aliyun Console](https://home.console.aliyun.com/)
+- [Aliyun Help Center](https://help.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text summaries with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only summaries should avoid credentials, access keys, account IDs, and other sensitive identifiers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

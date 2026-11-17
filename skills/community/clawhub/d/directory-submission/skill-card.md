@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users prepare directory, launch platform, curated list, and app store submissions by reading project context when available and generating ready-to-paste platform-specific copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to submit a product to directories, launch platforms, curated lists, or app stores, this skill reads project context when present and generates ready-to-paste submission content per platform.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Founders, marketers, and product teams use this skill to prepare submission copy, field checklists, directory targeting, and launch-platform variants for products, SaaS tools, apps, and extensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated submission copy can include inaccurate or outdated claims from web research, such as pricing, traffic figures, or platform requirements. <br>
-Mitigation: Review generated copy before posting publicly and verify web-sourced claims against the target platform or product source. <br>
-Risk: Project context files may contain confidential roadmap, customer, financial, or strategy details that could be reused in public listing drafts. <br>
-Mitigation: Keep sensitive details out of project-context files unless they are intended for use in public directory submission materials. <br>
+## Use Case:
 
+Developers, founders, marketers, and product teams use this skill to prepare directory, launch platform, curated list, and app store submissions for a product. It helps produce platform-tailored descriptions, tags, readiness checklists, submission ordering, UTM templates, and related launch-channel guidance.
 
-## Reference(s): <br>
-- [Alignify directory guide](https://alignify.co/zh/insights/directory-submission-sites) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with ready-to-paste submission copy, platform-specific field guidance, checklists, and tracking suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use project context and web research to tailor copy; users should verify public claims before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata and skill metadata) <br>
+Risk: The skill may read project-context files and use web search to fill gaps in product details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For confidential or unreleased products, provide needed details manually or instruct the agent not to use web search.
+
+Risk: Generated directory copy may include incorrect or outdated platform details when product information is missing.
+
+Mitigation: Review submission copy, pricing, legal URLs, and platform-specific requirements before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/directory-submission)
+- [Alignify directory submission guide](https://alignify.co/zh/insights/directory-submission-sites)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections and ready-to-paste listing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include directory-specific variants, checklists, submission order, and UTM templates.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

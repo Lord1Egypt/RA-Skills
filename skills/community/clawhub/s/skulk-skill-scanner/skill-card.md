@@ -1,39 +1,52 @@
-## Description: <br>
-Skulk Skill Scanner scans OpenClaw skill folders for static security red flags before install, publishing, or review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan OpenClaw skill folders for security red flags before installing or publishing.
 
-## Publisher: <br>
-[AdaInTheLab](https://clawhub.ai/user/AdaInTheLab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adainthelab](https://clawhub.ai/user/adainthelab)
 
-## Use Case: <br>
-Developers and skill reviewers use this skill to run a first-pass static security scan on OpenClaw skill folders before installing, publishing, or granting sensitive access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Static pattern matching can miss sophisticated, runtime-generated, or context-dependent malicious behavior. <br>
-Mitigation: Treat scan results as a first-pass signal and manually review important skills before granting sensitive access. <br>
-Risk: Verbose or JSON scan output may expose private file paths or snippets from scanned skills. <br>
-Mitigation: Run scans on specific skill folders and avoid sharing detailed output from private material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AdaInTheLab/skulk-skill-scanner) <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect OpenClaw skill folders before installation or publication and identify common security red flags such as exfiltration patterns, credential access, destructive commands, obfuscation, privilege escalation, and supply chain risks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Console text, one-line summaries, or JSON, with markdown guidance for command usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scanner may exit non-zero on failed scans, and verbose or JSON output can include matched file paths and line snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scanner reads eligible files under the user-specified target path to analyze their contents.
+
+Mitigation: Run it only against skill folders intended for inspection, not broad personal or sensitive directories.
+
+Risk: Static pattern matching can miss sophisticated, runtime-generated, or context-dependent unsafe behavior.
+
+Mitigation: Treat scanner results as a first-pass signal and manually review skills before granting sensitive access.
+
+## Reference(s):
+
+- [Skulk Skill Scanner on ClawHub](https://clawhub.ai/adainthelab/skills/skulk-skill-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner output may include pass, warn, or fail verdicts, severity-grouped findings, scores, file paths, and line references.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

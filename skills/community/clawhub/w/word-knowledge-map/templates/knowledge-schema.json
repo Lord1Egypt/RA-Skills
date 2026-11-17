@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WordKnowledgeMap",
+  "type": "object",
+  "required": [
+    "word",
+    "pronunciation",
+    "core_meanings",
+    "parts_of_speech",
+    "collocations",
+    "word_forms",
+    "word_family",
+    "examples",
+    "common_mistakes"
+  ],
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "pronunciation": {
+      "type": "string"
+    },
+    "core_meanings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "meaning",
+          "level",
+          "priority"
+        ],
+        "properties": {
+          "meaning": {
+            "type": "string"
+          },
+          "level": {
+            "enum": [
+              "P1",
+              "P2",
+              "P3"
+            ]
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        }
+      }
+    },
+    "parts_of_speech": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "meanings"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "meanings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "collocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "phrase",
+          "meaning",
+          "priority",
+          "example"
+        ],
+        "properties": {
+          "phrase": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "example": {
+            "type": "string"
+          },
+          "translation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "word_forms": {
+      "type": "object",
+      "properties": {
+        "third_person_singular": {
+          "type": "string"
+        },
+        "past": {
+          "type": "string"
+        },
+        "past_participle": {
+          "type": "string"
+        },
+        "present_participle": {
+          "type": "string"
+        },
+        "comparative": {
+          "type": "string"
+        },
+        "superlative": {
+          "type": "string"
+        }
+      }
+    },
+    "word_family": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "word",
+          "part_of_speech",
+          "meaning"
+        ],
+        "properties": {
+          "word": {
+            "type": "string"
+          },
+          "part_of_speech": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "formation": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        }
+      }
+    },
+    "grammar_patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "pattern",
+          "meaning",
+          "example"
+        ],
+        "properties": {
+          "pattern": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "example": {
+            "type": "string"
+          },
+          "translation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "english",
+          "chinese",
+          "target"
+        ],
+        "properties": {
+          "english": {
+            "type": "string"
+          },
+          "chinese": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "common_mistakes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "topic",
+          "explanation"
+        ],
+        "properties": {
+          "topic": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          },
+          "example": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "memory_tip": {
+      "type": "string"
+    }
+  }
+}

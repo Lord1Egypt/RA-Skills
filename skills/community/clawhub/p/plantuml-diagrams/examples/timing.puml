@@ -1,0 +1,14 @@
+@startuml
+title 请求处理 · 定时图
+clock "时钟" as clk with period 2
+binary "请求" as req
+robust "处理" as proc
+@0
+req is high
+proc is 空闲
+@2
+req is low
+proc is 处理中
+@5
+proc is 完成
+@enduml

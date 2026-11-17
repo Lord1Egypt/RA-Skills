@@ -1,44 +1,59 @@
-## Description: <br>
-Mission Control is a macOS-native web dashboard for monitoring and controlling an OpenClaw agent with live chat, cron management, task workshop, scout engine, cost tracking, and related controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS-native web dashboard for monitoring and controlling your OpenClaw agent. Live chat, cron management, task workshop, scout engine, cost tracking, and more.
 
-## Publisher: <br>
-[Jzineldin](https://clawhub.ai/user/Jzineldin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSL 1.1 (converts to MIT 2030) <br>
+## Publisher:
 
+[jzineldin](https://clawhub.ai/user/jzineldin)
 
-## Use Case: <br>
-OpenClaw users and developers use Mission Control to monitor and control a local OpenClaw agent, manage conversations, scheduled jobs, delegated tasks, cost tracking, installed skills, and model settings from a browser dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+BSL 1.1 (converts to MIT 2030)
 
-## Known Risks and Mitigations: <br>
-Risk: Installing Mission Control gives a local web app access to the OpenClaw gateway token and broad agent-control features. <br>
-Mitigation: Install only after reviewing and trusting the project and its dependencies, and start with a low-risk OpenClaw profile. <br>
-Risk: The install flow clones an external project and installs npm dependencies without pinning a commit in the submitted instructions. <br>
-Mitigation: Pin the repository to a known commit and review npm dependencies before installing or updating. <br>
-Risk: A persistent service or network-exposed dashboard can expand access to agent controls. <br>
-Mitigation: Keep the server bound to localhost, avoid exposing it without authentication, and inspect the systemd service before enabling persistence. <br>
+## Use Case:
 
+Developers and OpenClaw operators use Mission Control to monitor agent activity, manage conversations and scheduled jobs, coordinate task workflows, track usage costs, and adjust agent settings from a local dashboard.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Jzineldin/openclaw-mission-control) <br>
-- [Project homepage](https://github.com/Jzineldin/mission-control) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installation and configuration guidance for a local Node.js dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup fetches and runs unpinned remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository before installing, prefer a pinned release or commit, and use lockfiles with npm ci where available.
+
+Risk: The dashboard uses OpenClaw gateway credentials.
+
+Mitigation: Use a dedicated least-privilege OpenClaw token rather than a primary gateway credential.
+
+Risk: The installation path includes root-level persistent service setup.
+
+Mitigation: Do not enable the system service until the service file is reviewed and confirmed to run as an unprivileged local-only service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jzineldin/skills/openclaw-mission-control)
+- [Mission Control GitHub Homepage](https://github.com/Jzineldin/mission-control)
+- [Brave Search API](https://brave.com/search/api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides setup and operation of a local dashboard that uses OpenClaw gateway credentials and optional external service configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

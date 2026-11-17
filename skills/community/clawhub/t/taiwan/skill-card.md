@@ -1,41 +1,54 @@
-## Description: <br>
-Plan Taiwan trips with city-specific food, rail, hot spring, and regional tips that avoid tourist filler and logistics mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Taiwan trips with city-specific food, rail, hot spring, and regional tips that avoid tourist filler and logistics mistakes.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users planning Taiwan travel use this skill to choose bases, routes, food stops, transport options, weather-aware activities, and practical local preparations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store Taiwan trip preferences and planning context locally in ~/taiwan/. <br>
-Mitigation: Avoid saving highly sensitive data such as passport numbers, payment details, passwords, or full identity documents; review or delete the local memory when it is no longer wanted. <br>
-Risk: Weather-sensitive travel advice may become inaccurate for typhoons, mountain closures, ferries, or beach conditions. <br>
-Mitigation: Check current weather, transport, ferry, and closure information before booking or following time-sensitive outdoor plans. <br>
+## Use Case:
 
+External travelers use this skill to plan Taiwan trips by matching cities, routes, food, transport, lodging, beaches, hiking, tea, nightlife, and family pacing to their itinerary. It helps the agent ask useful trip-planning questions and optionally keep Taiwan travel preferences in local memory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/taiwan) <br>
-- [Skill Homepage](https://clawic.com/skills/taiwan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with optional local memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local trip memory in ~/taiwan/ when the user chooses to keep Taiwan preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may retain Taiwan trip preferences such as dates, pace, transport style, food restrictions, and travel history in local memory if the user opts in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before retaining preferences, keep saved details limited to Taiwan trip planning, and store them only under ~/taiwan/.
+
+Risk: Travel guidance can become stale for weather, closures, prices, schedules, typhoon impacts, emergencies, and other live conditions.
+
+Mitigation: Verify current sources before finalizing time-sensitive travel, transport, outdoor, beach, mountain, ferry, or emergency advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/taiwan)
+- [Skill homepage](https://clawic.com/skills/taiwan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown travel-planning guidance with optional local preference notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask follow-up questions and may use local memory under ~/taiwan/ when the user opts in.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T2 - 带图片的页面</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; padding: 40px; background: #fafafa; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card h3 { padding: 16px; font-size: 18px; color: #333; }
+    .card p { padding: 0 16px 16px; color: #666; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; margin-bottom:40px; color:#333;">T2 - 带图片的页面</h1>
+  <div class="gallery">
+    <div class="card">
+      <img src="https://picsum.photos/300/200?random=1" alt="Image 1">
+      <h3>图片卡片 1</h3>
+      <p>这是一张来自 picsum.photos 的随机图片。</p>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/300/200?random=2" alt="Image 2">
+      <h3>图片卡片 2</h3>
+      <p>测试图片加载和显示效果。</p>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/300/200?random=3" alt="Image 3">
+      <h3>图片卡片 3</h3>
+      <p>验证三列网格布局中的图片渲染。</p>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/300/200?random=4" alt="Image 4">
+      <h3>图片卡片 4</h3>
+      <p>长页面滚动测试的一部分。</p>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/300/200?random=5" alt="Image 5">
+      <h3>图片卡片 5</h3>
+      <p>确保图片在长截图中完整显示。</p>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/300/200?random=6" alt="Image 6">
+      <h3>图片卡片 6</h3>
+      <p>底部卡片，测试页面底部截图完整性。</p>
+    </div>
+  </div>
+</body>
+</html>

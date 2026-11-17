@@ -1,42 +1,58 @@
-## Description: <br>
-Video Extractor Pro helps agents extract still frames, frame sequences, short clips, GIFs, and metadata from local video files using ffmpeg and ffprobe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts key frames, clips, GIFs, and video metadata from local videos with ffmpeg for analysis, review, and asset collection.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers, content analysts, and video reviewers use this skill to extract representative frames, short clips, GIF previews, and video metadata from local videos for analysis, review, and material collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on local ffmpeg and ffprobe binaries to process media. <br>
-Mitigation: Install ffmpeg and ffprobe from a trusted source and keep them updated. <br>
-Risk: Output commands may overwrite existing files at the requested output path. <br>
-Mitigation: Review output filenames and directories before running extraction commands, especially when reusing paths. <br>
-Risk: The artifact documentation and command labels are primarily in Chinese. <br>
-Mitigation: Confirm command intent and arguments before execution when the operator is not fluent in Chinese. <br>
+## Use Case:
 
+Content reviewers, analysts, and creators use this skill to extract still frames, short clips, GIFs, or metadata from local videos for analysis, review, and asset collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/video-extractor-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, JSON] <br>
-**Output Format:** [Terminal text plus generated media files such as JPG or PNG frames, video clips, GIFs, and JSON video metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local ffmpeg and ffprobe; selected commands may overwrite existing output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: ffmpeg is invoked with overwrite behavior, so existing files at selected output paths can be replaced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose output directories and filenames deliberately, and review target paths before running extraction commands.
+
+Risk: Extracted frames, clips, GIFs, and metadata may contain sensitive or restricted video content.
+
+Mitigation: Process only videos you have permission to use, and handle generated outputs according to the sensitivity of the source media.
+
+Risk: The skill depends on a local Chinese-language ffmpeg helper and external ffmpeg/ffprobe binaries.
+
+Mitigation: Install and run it only in environments where that local tooling dependency is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxliuyu/skills/video-extractor-pro)
+- [Publisher profile](https://clawhub.ai/user/sxliuyu)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Local media files such as JPG, PNG, MP4, or GIF, plus JSON metadata and terminal text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg and ffprobe. Writes extracted outputs to user-selected local paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Analyze data with `toxicity-structure-alert` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze data with `toxicity-structure-alert` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and chemoinformatics reviewers use this skill to screen chemical structure inputs such as SMILES for known toxic structural alerts, risk levels, and review-ready recommendations. Its results are screening signals for expert review, not a substitute for comprehensive toxicological assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screening output may be mistaken for definitive toxicology assessment. <br>
-Mitigation: Treat results as screening signals and require expert toxicology validation before scientific, clinical, or product decisions. <br>
-Risk: Dependency hygiene issues or unpinned chemistry dependencies can create deployment drift. <br>
-Mitigation: Install in an isolated Python environment, prefer a trusted RDKit source, and pin or remove dependencies before production use. <br>
-Risk: Non-chemical inputs can produce irrelevant or misleading results. <br>
-Mitigation: Use only chemical structure inputs such as SMILES or SMARTS and validate the input format before running the skill. <br>
+## Use Case:
 
+Developers and scientific reviewers use this skill to screen molecular SMILES inputs for known toxic structural alerts, risk levels, and follow-up recommendations. It supports bounded, reviewable toxicity triage and should not replace comprehensive toxicology assessment.
 
-## Reference(s): <br>
-- [Runtime Checklist](references/runtime_checklist.md) <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/toxicity-structure-alert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Text or JSON, with concise Markdown guidance and validation commands when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include risk level, risk score, matched alerts, recommendations, and assumptions or limits that affect interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Toxicity alerts are screening guidance and may include false positives or false negatives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results as triage input only and confirm with full toxicology review, validated assays, or complementary ADMET tools.
+
+Risk: The workflow depends on molecular structure input quality and RDKit availability; invalid SMILES or degraded matching can reduce result reliability.
+
+Mitigation: Validate SMILES inputs, run the documented smoke check in an isolated environment, and prefer reviewed or pinned dependencies.
+
+## Reference(s):
+
+- [Toxicity Structure Alert on ClawHub](https://clawhub.ai/aipoch-ai/skills/toxicity-structure-alert)
+- [Runtime Checklist](references/runtime_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text or JSON toxicity alert reports with risk scores, matched alerts, recommendations, and executable command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports basic, standard, and full detail levels; high-risk findings may produce a non-zero command exit code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

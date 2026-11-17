@@ -1,42 +1,53 @@
-## Description: <br>
-Forum Scout scans the Moltbook forum, filters for technical discussions, logs actions, audits tool use, and generates structured hot-topic reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forum Scout monitors the Moltbook forum, filters for technology-focused discussions, logs activity, audits tool usage, and prepares structured hotspot reports for an agent to review.
 
-## Publisher: <br>
-[jiuge897](https://clawhub.ai/user/jiuge897) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuge897](https://clawhub.ai/user/jiuge897)
 
-## Use Case: <br>
-Agents and developers use Forum Scout to monitor Moltbook discussions, focus on technical topics, and prepare structured forum trend reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Moltbook API token for forum access. <br>
-Mitigation: Use a read-only or least-privilege token and rotate or revoke it if the installation source or runtime behavior is unclear. <br>
-Risk: The skill performs recurring forum scans on a 30-minute cadence. <br>
-Mitigation: Confirm the scan schedule is expected and that the process can be reviewed, paused, or stopped before deployment. <br>
-Risk: Receipts, reports, and audit logs may accumulate under ~/.forum-scout/. <br>
-Mitigation: Review stored outputs periodically and define cleanup or retention expectations for the local workspace. <br>
+## Use Case:
 
+Developers and operators use Forum Scout to monitor Moltbook forum activity, identify high-engagement technical threads, and review structured reports, signed receipts, and tool-use audits.
 
-## Reference(s): <br>
-- [Forum Scout on ClawHub](https://clawhub.ai/jiuge897/forum-scout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with command-line examples and local receipt, report, and audit summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Moltbook API token and records local receipts and reports under ~/.forum-scout/ according to the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, evidence release, artifact config) <br>
+Risk: The skill uses a Moltbook API token and periodic forum reads, which may access forum data according to the installed credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Moltbook monitoring is intended, scope and rotate MOLTBOOK_API_KEY appropriately, and disable scheduled scans when they are no longer needed.
+
+Risk: Local reports, receipts, and audit logs under ~/.forum-scout/ may contain sensitive forum-derived data.
+
+Mitigation: Restrict filesystem access, review retention needs, and clean stored reports or logs before sharing the environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/jiuge897/skills/forum-scout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain-text reports with CLI command examples, receipt summaries, and audit notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include forum thread titles, authors, popularity signals, local receipt records, and tool-use analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

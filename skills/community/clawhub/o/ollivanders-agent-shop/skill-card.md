@@ -1,47 +1,52 @@
-## Description: <br>
-Design and land persona-driven agents by matching role, work identity, cognitive structure, personality grounding, identity-binding, and file skeleton into one coherent agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and land persona-driven agents by matching role, work identity, cognitive structure, personality grounding, identity-binding, and file skeleton into one coherent agent.
 
-## Publisher: <br>
-[child2d](https://clawhub.ai/user/child2d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[child2d](https://clawhub.ai/user/child2d)
 
-## Use Case: <br>
-Developers and agent designers use this skill to create, reshape, and land persona-driven agents with a clear work identity, stable cognitive structure, identity-binding sentence, file skeleton, and testing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or modified agent files may retain information the user does not want persisted. <br>
-Mitigation: Review the target directory, generated files, and any persistent memory or session files before allowing writes or keeping the generated agent. <br>
-Risk: Runtime registration changes can affect central agent configuration. <br>
-Mitigation: Prefer user-applied OpenClaw configuration snippets and validate configuration syntax after insertion. <br>
-Risk: A persona can drift into roleplay without stable work ownership or testing. <br>
-Mitigation: Use the included failure-mode checks, identity-binding sentence, and first-round real-task validation before relying on the agent. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design persona-driven agents, align work identity with personality, land a minimum viable agent skeleton, and produce testing guidance.
 
-## Reference(s): <br>
-- [Agent Architect Methodology](references/methodology.md) <br>
-- [Agent Architect Failure Modes](references/failure-modes.md) <br>
-- [Character Texture for Persona-Driven Agents](references/character-texture.md) <br>
-- [Agent Architect Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/child2d/ollivanders-agent-shop) <br>
-- [Publisher Profile](https://clawhub.ai/user/child2d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with file skeletons, draft agent content, command or configuration snippets, and testing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-applied runtime registration snippets instead of directly editing central configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Generated agent files or runtime registration snippets may be incorrect or unsuitable if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated agent files and config snippets before applying them, and validate runtime configuration after insertion.
+
+## Reference(s):
+
+- [Agent Architect Methodology](references/methodology.md)
+- [Agent Architect Failure Modes](references/failure-modes.md)
+- [Character Texture for Persona-Driven Agents](references/character-texture.md)
+- [Agent Architect Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file skeletons, configuration snippets, and testing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft agent files and user-applied runtime registration snippets after design confirmation.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

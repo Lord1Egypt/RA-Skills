@@ -1,44 +1,60 @@
-## Description: <br>
-US Stock AI Trading Assistant via SkillBoss API Hub for stock entry and exit analysis, target price predictions, probability calculations, technical ratings, and "Should I Buy" investment Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+US Stock AI Trading Assistant | SkillBoss API Hub Stock Forecast - smart analysis of stock entry and exit points, target price predictions, probability calculations, and technical ratings with support for "Should I Buy" investment decision Q&A.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to request one-symbol stock or crypto forecasts and structured buy, sell, or hold style analysis through SkillBoss API Hub. Outputs are informational and should not be treated as financial, investment, or trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and financial-analysis questions are sent to SkillBoss using the user's API key. <br>
-Mitigation: Do not include account numbers, private portfolio details, proprietary trading strategies, or other confidential information in prompts. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Provide SKILLBOSS_API_KEY through the environment and avoid pasting the key into prompts, shared transcripts, or committed files. <br>
-Risk: Forecasts and buy, sell, or hold analysis may be incomplete, stale, or unsuitable for investment decisions. <br>
-Mitigation: Treat outputs as informational only and verify decisions with authoritative financial data sources or a qualified professional. <br>
+## Use Case:
 
+External users and developers use this skill to request single-symbol stock or crypto forecasts and buy, sell, or hold analysis through SkillBoss API Hub. It is intended for informational market analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/intellectia-stock-forecast-2) <br>
-- [SkillBoss skill page](https://skillboss.co/skills/intellectia-stock-forecast) <br>
-- [SkillBoss API Hub pilot endpoint](https://api.skillboss.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with cURL and Python examples; SkillBoss API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends ticker symbols plus financial-analysis prompts to SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ticker queries and analysis prompts are sent to SkillBoss API Hub as outbound API requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if SkillBoss is trusted for the submitted queries, use a scoped API key, and avoid private portfolio or account details in prompts.
+
+Risk: Forecasts and buy, sell, or hold analysis may be incomplete, delayed, or unsuitable for financial decision-making.
+
+Mitigation: Treat outputs as informational only and verify material decisions with authoritative market data or a qualified financial professional.
+
+Risk: The optional Python path depends on the requests package and local environment handling of API credentials.
+
+Mitigation: Use curl or an isolated Python environment when reducing dependency risk, and keep SKILLBOSS_API_KEY out of shared logs and prompts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/intellectia-stock-forecast-2)
+- [Publisher Profile](https://clawhub.ai/user/marjoriebroad)
+- [SkillBoss Skill Information](https://skillboss.co/skills/intellectia-stock-forecast)
+- [SkillBoss API Hub Endpoint](https://api.skillboss.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python examples; API responses may be JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends ticker queries or analysis prompts to SkillBoss API Hub.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

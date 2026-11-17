@@ -1,40 +1,54 @@
-## Description: <br>
-Operate outbound voice calls safely with the OpenClaw voice-call plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate outbound voice calls safely with the OpenClaw voice-call plugin.
 
-## Publisher: <br>
-[danielsinewe](https://clawhub.ai/user/danielsinewe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielsinewe](https://clawhub.ai/user/danielsinewe)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare clear, task-specific outbound voice-call flows through OpenClaw providers such as Twilio, Telnyx, Plivo, or mock mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live outbound calls can create cost, compliance, or accidental outreach risk if placed without approval or retry limits. <br>
-Mitigation: Require explicit approval for live calls when unattended calling is not acceptable, use mock mode first, and set retry or rate limits before production use. <br>
-Risk: Voice providers require sensitive credentials for real traffic. <br>
-Mitigation: Confirm the voice-call plugin uses scoped provider credentials and keep provider tokens in the plugin configuration rather than in prompts or call scripts. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and execute clear, task-specific outbound calls through the OpenClaw voice-call plugin. It supports preflight checks, provider setup, dry runs, status checks, retries, and troubleshooting for operational reminders, alerts, verification, and escalation calls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/danielsinewe/openclaw-voice-call-playbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and configuration keys] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes preflight checks, provider setup notes, call tool actions, troubleshooting guidance, and operational usage boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Live outbound calls can incur provider costs or reach unintended recipients if credentials, caller numbers, destinations, or retry settings are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm provider credentials, caller number, E.164 destination, and retry policy before each live call; test flows with the mock provider first.
+
+Risk: Agent-initiated calls could contact real people without adequate user intent or an approved destination.
+
+Mitigation: Require explicit user approval for each destination and call purpose, keep messages short and factual, and avoid open-ended chat flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielsinewe/skills/openclaw-voice-call-playbook)
+- [Publisher profile](https://clawhub.ai/user/danielsinewe)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational call playbooks, preflight checklists, provider configuration guidance, tool action guidance, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

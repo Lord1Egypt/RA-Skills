@@ -1,43 +1,58 @@
-## Description: <br>
-Unified bug investigation and closure by combining source code, database, server logs, and software platform query capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified bug investigation and closure by combining source code, database, server logs, and software platform query capabilities.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate bugs with a complete evidence chain from logs, database queries, source-code localization, and platform validation before drawing root-cause conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide agents toward sensitive maintainer workflows or high-impact operational commands. <br>
-Mitigation: Review proposed commands before execution and use reduced-access review modes when full access is not required. <br>
-Risk: Bug-closure conclusions can be misleading if any required evidence source is missing. <br>
-Mitigation: Require source-code, database, server-log, and platform-query checks before issuing final root-cause conclusions. <br>
-Risk: Investigation outputs could expose sensitive credentials or operational data. <br>
-Mitigation: Use environment variables or secret managers for credentials and avoid printing plaintext secrets in outputs. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate bugs with an evidence chain across logs, databases, source code, and platform queries before making root-cause conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/multi-capability-bug-closure-en) <br>
-- [server-log-analysis companion skill](https://clawhub.ai/hgvgfgvh/server-log-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown investigation summary with evidence, root-cause assessment, recommendations, and verification criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires source-code, database, server-log, and platform-query evidence before final conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to use database, server-log, source-code, and platform access for bug investigations without enough task-specific scoping or approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped read-only credentials, require explicit approval before production queries or log pulls, and constrain searches by service, time window, and identifiers.
+
+Risk: Bug investigation outputs may expose sensitive operational data from logs, databases, or business systems.
+
+Mitigation: Redact sensitive output and review the skill before installing it in environments with production data.
+
+Risk: The skill recommends adding an external log-analysis skill when log capability is missing.
+
+Mitigation: Independently inspect or pin the external log-analysis skill before adding it.
+
+## Reference(s):
+
+- [server-log-analysis](https://clawhub.ai/hgvgfgvh/server-log-analysis)
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/multi-capability-bug-closure-en)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with evidence summaries, root-cause assessment, recommendations, and verification criteria]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include query or log-inspection commands when needed for evidence gathering.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

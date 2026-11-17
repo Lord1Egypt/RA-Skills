@@ -1,0 +1,1186 @@
+{
+  "patterns": [
+    {
+      "id": "mixin_injection_failure",
+      "regex": "MixinApplyError|mixins\\..*\\.json|InjectionError|Failed to apply mixin|MixinException|MixinTransformerError",
+      "severity": "high",
+      "name_cn": "Mixin注入失败",
+      "desc_cn": "模组的Mixin注入目标在新版本中不存在或已变更，通常发生在版本升级后",
+      "common_causes": [
+        "模组版本与MC版本不匹配",
+        "模组依赖的前置缺失",
+        "Mixin注入目标类已被重构或重命名",
+        "Create等大型模组更新后架构重构导致Mixin失效"
+      ],
+      "suggestions": [
+        "检查模组是否支持当前MC版本",
+        "使用F4扫描Mixin冲突",
+        "尝试更新或降级相关模组",
+        "查看模组的更新日志，确认是否已适配新版本"
+      ]
+    },
+    {
+      "id": "missing_dependency",
+      "regex": "Missing dependency|requires mod|ModDependencyException|Unresolved dependency|dependency.*not found|requires.*not satisfied",
+      "severity": "high",
+      "name_cn": "缺少前置模组",
+      "desc_cn": "模组依赖的前置模组未安装或版本不匹配",
+      "common_causes": [
+        "整合包不完整，缺少前置模组",
+        "前置模组版本不匹配",
+        "手动安装模组时遗漏了依赖"
+      ],
+      "suggestions": [
+        "使用F2检索并下载缺失的前置模组",
+        "检查模组兼容性清单",
+        "查看崩溃日志中提到的具体模组名称，针对性下载"
+      ]
+    },
+    {
+      "id": "java_version_mismatch",
+      "regex": "UnsupportedClassVersionError|java\\.lang\\.NoSuchMethodError|has been compiled by a more recent version of the Java Runtime|Unsupported major\\.minor version",
+      "severity": "medium",
+      "name_cn": "Java版本不匹配",
+      "desc_cn": "模组编译时使用的Java版本与运行时不一致",
+      "common_causes": [
+        "Java版本过低，无法运行新版本模组",
+        "Java版本过高，部分老模组不兼容",
+        "MC 1.21+需要Java 21，但系统安装的是Java 17"
+      ],
+      "suggestions": [
+        "使用F3检查并安装正确的Java版本",
+        "切换启动器中分配的Java版本",
+        "MC 1.17-1.20使用Java 17，1.21+使用Java 21"
+      ]
+    },
+    {
+      "id": "duplicate_mod",
+      "regex": "Duplicate mod|already loaded|ModResolutionException|duplicate.*jar|multiple versions",
+      "severity": "low",
+      "name_cn": "重复安装模组",
+      "desc_cn": "mods文件夹中存在重复的模组或同一模组的多个版本",
+      "common_causes": [
+        "同一模组的多个版本共存",
+        "整合包与已安装模组冲突",
+        "手动下载时误装了不同版本"
+      ],
+      "suggestions": [
+        "检查mods文件夹，删除重复的JAR文件",
+        "保留最新或匹配MC版本的版本",
+        "注意有些模组有Fabric版和Forge版，不要混装"
+      ]
+    },
+    {
+      "id": "memory_leak_oom",
+      "regex": "OutOfMemoryError|java\\.lang\\.OutOfMemoryError|Failed to allocate memory|heap space|GC overhead limit exceeded",
+      "severity": "high",
+      "name_cn": "内存溢出",
+      "desc_cn": "JVM分配的内存不足以加载所有模组",
+      "common_causes": [
+        "整合包模组数量过多",
+        "JVM内存分配过低",
+        "某个模组存在内存泄漏",
+        "渲染距离过大或高清材质占用过多"
+      ],
+      "suggestions": [
+        "在启动器中增加JVM内存分配（建议4G以上）",
+        "减少同时加载的模组数量",
+        "使用优化类模组（如Sodium、Embeddium、FerriteCore）",
+        "降低渲染距离和模拟距离"
+      ]
+    },
+    {
+      "id": "registry_duplication",
+      "regex": "Registry|duplicate|already registered|FMLRegistrationException|RegistrationException|already exists",
+      "severity": "medium",
+      "name_cn": "注册表冲突",
+      "desc_cn": "多个模组尝试注册相同的方块/物品/实体ID",
+      "common_causes": [
+        "模组ID冲突",
+        "整合包中模组存在功能重叠",
+        "两个模组使用了相同的注册名"
+      ],
+      "suggestions": [
+        "在模组配置文件中修改冲突的ID",
+        "删除或替换冲突的模组",
+        "查看崩溃日志中具体冲突的注册名，定位冲突模组"
+      ]
+    },
+    {
+      "id": "rendering_error",
+      "regex": "Rendering|GLException|Failed to draw|Shader|VertexFormat|GLFW|OpenGL|glError|RenderSystem",
+      "severity": "medium",
+      "name_cn": "渲染错误",
+      "desc_cn": "图形渲染相关错误，可能与显卡驱动或光影模组相关",
+      "common_causes": [
+        "显卡驱动过旧",
+        "光影模组与MC版本不兼容",
+        "渲染优化模组冲突（如Sodium与Iris版本不匹配）",
+        "显卡不支持所需的OpenGL版本"
+      ],
+      "suggestions": [
+        "更新显卡驱动到最新版本",
+        "禁用光影模组测试",
+        "检查渲染优化模组（如Sodium、Iris、Embeddium）的兼容性",
+        "尝试切换渲染引擎（如从Vanilla切到Sodium）"
+      ]
+    },
+    {
+      "id": "world_corruption",
+      "regex": "Corrupted|NBTException|Chunk|level\\.dat|IOException|CorruptedLevelDataException|ChunkIoException",
+      "severity": "high",
+      "name_cn": "存档损坏",
+      "desc_cn": "世界存档文件损坏或读写异常",
+      "common_causes": [
+        "游戏异常退出导致存档未完整保存",
+        "磁盘空间不足",
+        "存档文件被意外修改或覆盖",
+        "不同版本MC加载同一存档导致数据结构不兼容"
+      ],
+      "suggestions": [
+        "使用F6恢复存档备份",
+        "检查磁盘空间是否充足",
+        "尝试使用区域文件修复工具（如MCEdit）",
+        "备份后删除损坏的区块文件让游戏重新生成"
+      ]
+    },
+    {
+      "id": "shader_mod_conflict",
+      "regex": "shader|ShaderInstance|ShaderGroup|ShaderLink|ShaderError|ProgramException|iris|optifine.*shader|Oculus|Canvas",
+      "severity": "medium",
+      "name_cn": "光影模组冲突",
+      "desc_cn": "光影模组与MC版本或其他渲染模组不兼容",
+      "common_causes": [
+        "OptiFine与Sodium/Iris同时安装导致冲突",
+        "光影包版本与MC版本不匹配",
+        "Oculus或Canvas与渲染优化模组版本不匹配"
+      ],
+      "suggestions": [
+        "不要同时安装OptiFine和Sodium/Iris",
+        "选择一种光影方案：OptiFine路线 或 Sodium+Iris路线",
+        "检查光影包是否支持当前MC版本",
+        "Fabric用户推荐使用 Iris+Sodium 组合"
+      ]
+    },
+    {
+      "id": "block_state_error",
+      "regex": "BlockState|BlockModel|model.*not found|ModelBlock|BlockModelDefinition|MissingModel|ModelRegistry",
+      "severity": "medium",
+      "name_cn": "方块状态/模型错误",
+      "desc_cn": "方块模型或状态定义文件缺失或格式错误",
+      "common_causes": [
+        "模组资源文件不完整",
+        "模组版本更新后旧资源包未清理",
+        "资源包覆盖了模组的模型定义"
+      ],
+      "suggestions": [
+        "重新安装报错的模组",
+        "检查资源包是否与模组冲突",
+        "清除Minecraft的缓存文件（.minecraft/assets目录）"
+      ]
+    },
+    {
+      "id": "texture_error",
+      "regex": "Texture|TextureManager|texture.*not found|TextureAtlas|MissingTexture|Failed to load texture|png.*not found",
+      "severity": "low",
+      "name_cn": "贴图加载错误",
+      "desc_cn": "纹理贴图文件缺失或格式不支持",
+      "common_causes": [
+        "模组贴图文件缺失",
+        "资源包覆盖了模组贴图",
+        "贴图格式不支持（如使用了WebP但MC不支持）"
+      ],
+      "suggestions": [
+        "重新安装模组",
+        "检查资源包优先级",
+        "确认贴图格式为PNG",
+        "清除assets缓存后重启游戏"
+      ]
+    },
+    {
+      "id": "network_protocol_error",
+      "regex": "NetworkProtocol|ProtocolError|PacketException|BadPacket|disconnect|ConnectionLost|ProtocolException|handshake",
+      "severity": "medium",
+      "name_cn": "网络协议错误",
+      "desc_cn": "客户端与服务器之间的网络通信协议不匹配",
+      "common_causes": [
+        "客户端与服务器MC版本不一致",
+        "客户端与服务器安装的模组不一致",
+        "网络延迟或防火墙导致的连接中断"
+      ],
+      "suggestions": [
+        "确保客户端和服务器使用相同MC版本",
+        "确保双方安装了相同的模组（服务器模组需匹配）",
+        "检查防火墙是否阻止了MC的连接",
+        "尝试使用直连IP而非域名连接"
+      ]
+    },
+    {
+      "id": "class_not_found",
+      "regex": "ClassNotFoundException|NoClassDefFoundError|NoSuchFieldError|NoSuchMethodError|LinkageError",
+      "severity": "high",
+      "name_cn": "类/方法未找到",
+      "desc_cn": "模组引用了不存在的类或方法，通常因版本不兼容导致",
+      "common_causes": [
+        "模组依赖的API在更新中被移除或重命名",
+        "模组为旧版本MC设计但运行在新版本上",
+        "前置库版本过低或过高"
+      ],
+      "suggestions": [
+        "更新模组到与当前MC版本匹配的版本",
+        "更新所有前置模组到最新版本",
+        "检查模组是否已停止维护",
+        "在模组的GitHub Issues中搜索类似错误"
+      ]
+    },
+    {
+      "id": "concurrent_modification",
+      "regex": "ConcurrentModificationException|IllegalStateException|AbstractMethodError|UnsupportedOperationException",
+      "severity": "medium",
+      "name_cn": "并发修改异常",
+      "desc_cn": "多个线程同时修改同一数据结构导致的冲突",
+      "common_causes": [
+        "模组存在线程安全问题",
+        "异步加载时数据竞争",
+        "模组与MC的渲染线程冲突"
+      ],
+      "suggestions": [
+        "更新模组到最新版本",
+        "减少同时运行的模组数量",
+        "查看模组是否有已知线程问题",
+        "尝试关闭模组的异步加载选项"
+      ]
+    },
+    {
+      "id": "null_pointer_exception",
+      "regex": "NullPointerException|NPE|Cannot invoke.*because.*null|is null",
+      "severity": "medium",
+      "name_cn": "空指针异常",
+      "desc_cn": "代码尝试访问空对象的方法或属性",
+      "common_causes": [
+        "模组代码存在Bug",
+        "前置模组未正确初始化",
+        "存档数据中存在空值",
+        "版本更新后API返回null"
+      ],
+      "suggestions": [
+        "更新模组到最新版本",
+        "查看崩溃堆栈中涉及的模组，在其Issue页面报告Bug",
+        "尝试在新建世界中复现，排除存档问题"
+      ]
+    },
+    {
+      "id": "class_cast_exception",
+      "regex": "ClassCastException|cannot be cast to|incompatible types",
+      "severity": "medium",
+      "name_cn": "类型转换异常",
+      "desc_cn": "尝试将对象强制转换为不兼容的类型",
+      "common_causes": [
+        "模组API版本不匹配",
+        "两个模组修改了同一类型但接口不同",
+        "MC版本更新后内部类结构变化"
+      ],
+      "suggestions": [
+        "更新所有模组到最新版本",
+        "检查模组之间的兼容性",
+        "查看崩溃堆栈定位是哪两个模组冲突"
+      ]
+    },
+    {
+      "id": "file_permission_error",
+      "regex": "Permission denied|AccessDenied|SecurityException|FileNotFoundException|ReadOnlyFileSystem",
+      "severity": "medium",
+      "name_cn": "文件权限错误",
+      "desc_cn": "游戏或模组无法读写所需的文件",
+      "common_causes": [
+        "游戏目录权限不足",
+        "文件被其他程序锁定",
+        "磁盘已满或只读",
+        "杀毒软件阻止了文件访问"
+      ],
+      "suggestions": [
+        "以管理员身份运行启动器",
+        "检查游戏目录的读写权限",
+        "暂时禁用杀毒软件测试",
+        "确保磁盘有足够的剩余空间"
+      ]
+    },
+    {
+      "id": "config_parse_error",
+      "regex": "JsonParseException|com\\.google\\.gson.*Exception|MalformedJsonException|parse exception|JSON.*syntax|ConfigException|YamlException|toml.*parse",
+      "severity": "low",
+      "name_cn": "配置文件解析错误",
+      "desc_cn": "模组的JSON/TOML/YAML配置文件格式错误",
+      "common_causes": [
+        "手动编辑配置文件时格式错误",
+        "模组更新后配置格式变化但旧文件未迁移",
+        "编码问题（如BOM头或非UTF-8编码）"
+      ],
+      "suggestions": [
+        "删除模组的配置文件让其重新生成",
+        "使用JSON校验工具检查配置格式",
+        "确保配置文件使用UTF-8编码（无BOM）",
+        "查看模组文档了解配置格式"
+      ]
+    },
+    {
+      "id": "mod_loader_version_mismatch",
+      "regex": "LoaderVersion|incompatible loader|NeoForge version|Forge version|Fabric Loader|requires.*loader|loader.*mismatch|IncompatibleMod",
+      "severity": "high",
+      "name_cn": "加载器版本不匹配",
+      "desc_cn": "模组需要不同版本的Forge/NeoForge/Fabric加载器",
+      "common_causes": [
+        "模组需要更新版本的加载器",
+        "Forge模组装到了NeoForge上（或反之）",
+        "Fabric模组装到了Forge上（或反之）"
+      ],
+      "suggestions": [
+        "使用F3检查并更新加载器到所需版本",
+        "确认模组是为当前加载器编译的（Forge模组不能在Fabric上运行）",
+        "MC 1.21+推荐使用NeoForge（Forge的继任者）",
+        "检查模组下载页面标注的加载器类型"
+      ]
+    },
+    {
+      "id": "entity_ai_error",
+      "regex": "EntityAI|GoalSelector|PathNavigate|EntityPredicate|MobEntity.*tick|NoAI|AIException",
+      "severity": "medium",
+      "name_cn": "实体AI错误",
+      "desc_cn": "实体（生物/怪物）的AI逻辑出现异常",
+      "common_causes": [
+        "模组添加的自定义实体AI有Bug",
+        "实体数据损坏导致AI无法正常工作",
+        "模组间的实体行为冲突"
+      ],
+      "suggestions": [
+        "更新或移除涉及自定义实体的模组",
+        "尝试在纯净MC中复现，排除存档问题",
+        "查看崩溃堆栈中涉及的实体类型"
+      ]
+    },
+    {
+      "id": "world_gen_error",
+      "regex": "WorldGen|ChunkGenerator|StructureFeature|BiomeSource|generation.*error|Feature.*exception|ore.*gen|structure.*gen",
+      "severity": "medium",
+      "name_cn": "世界生成错误",
+      "desc_cn": "世界/区块/结构生成过程中出现异常",
+      "common_causes": [
+        "模组添加的自定义生物群系或结构有Bug",
+        "世界生成配置错误",
+        "多个模组的生成规则冲突",
+        "旧存档的区块数据与新版本不兼容"
+      ],
+      "suggestions": [
+        "更新或移除涉及世界生成的模组",
+        "尝试生成新世界看是否复现",
+        "减少模组中自定义结构的数量",
+        "使用F6恢复之前的存档备份"
+      ]
+    },
+    {
+      "id": "schematic_error",
+      "regex": "Schematic|Blueprint|StructureBlock|Structure.*template|NBT.*structure|structure.*load",
+      "severity": "low",
+      "name_cn": "结构/原理图错误",
+      "desc_cn": "加载或保存建筑结构文件时出错",
+      "common_causes": [
+        "结构文件损坏",
+        "结构文件版本与当前MC不兼容",
+        "模组（如Create）加载原理图时格式错误"
+      ],
+      "suggestions": [
+        "重新下载或导出结构文件",
+        "确认结构文件格式（.nbt、.schem、.litematic等）被模组支持",
+        "检查结构文件是否完整"
+      ]
+    },
+    {
+      "id": "create_mod_specific",
+      "regex": "com\\.simibubi\\.create|CreateMod|Contraption|KineticTileEntity|Rotation|coupling|CogWheel|ShaftBlock",
+      "severity": "medium",
+      "name_cn": "机械动力模组错误",
+      "desc_cn": "Create（机械动力）模组相关的运行时错误",
+      "common_causes": [
+        "Create版本与MC版本不匹配",
+        "Create的扩展模组（如Steam n Rails、Create Crafts & Additions）版本不匹配",
+        "装置（Contraption）中的方块状态异常",
+        "动能传动链计算溢出"
+      ],
+      "suggestions": [
+        "更新Create到最新版本",
+        "确保所有Create扩展模组版本与Create本体一致",
+        "移除有问题的装置（Contraption）",
+        "查看Create的GitHub Issues搜索类似错误"
+      ]
+    },
+    {
+      "id": "dataseries_overflow",
+      "regex": "StackOverflowError|RecursionError|InfiniteLoop|stack.*overflow|too deep",
+      "severity": "high",
+      "name_cn": "栈溢出/无限递归",
+      "desc_cn": "代码递归调用过深导致栈溢出",
+      "common_causes": [
+        "模组存在无限递归的Bug",
+        "事件循环触发导致死循环",
+        "模组的事件处理器互相触发形成环"
+      ],
+      "suggestions": [
+        "更新模组到最新版本",
+        "查看崩溃堆栈底部的递归调用链，定位模组",
+        "移除可疑模组逐一测试"
+      ]
+    },
+    {
+      "id": "sound_engine_error",
+      "regex": "SoundEngine|SoundManager|SoundEvent|AudioException|sound.*not found|codec.*not supported|SoundSystem",
+      "severity": "low",
+      "name_cn": "声音引擎错误",
+      "desc_cn": "音频播放相关错误，通常不影响游戏运行",
+      "common_causes": [
+        "模组添加的声音文件缺失或格式不支持",
+        "音频驱动问题",
+        "OpenAL库版本过低"
+      ],
+      "suggestions": [
+        "更新音频驱动",
+        "检查模组声音文件是否存在",
+        "在启动器中更新OpenAL库",
+        "暂时关闭模组自定义声音"
+      ]
+    },
+    {
+      "id": "resource_pack_conflict",
+      "regex": "ResourcePack|resource.*pack.*error|pack\\.mcmeta|ResourceLocation|InvalidResource|AssetException",
+      "severity": "low",
+      "name_cn": "资源包冲突",
+      "desc_cn": "资源包与模组资源冲突或格式错误",
+      "common_causes": [
+        "资源包版本与MC版本不匹配",
+        "资源包覆盖了模组的关键资源",
+        "pack.mcmeta格式错误"
+      ],
+      "suggestions": [
+        "检查资源包支持的MC版本",
+        "调整资源包优先级",
+        "逐个禁用资源包定位冲突源",
+        "确保pack.mcmeta的format版本正确"
+      ]
+    },
+    {
+      "id": "fabric_loader_conflict",
+      "regex": "FabricLoader|fabric.*version|FabricAPI|fabric.*missing|fabric.*incompatible",
+      "severity": "high",
+      "name_cn": "Fabric加载器冲突",
+      "desc_cn": "Fabric加载器版本或API不匹配",
+      "common_causes": [
+        "Fabric加载器版本过低",
+        "Fabric API版本不匹配",
+        "模组需要更高版本的Fabric API"
+      ],
+      "suggestions": [
+        "更新Fabric加载器到最新版本",
+        "确保Fabric API版本与模组要求匹配",
+        "使用Fabric版本管理器检查兼容性"
+      ]
+    },
+    {
+      "id": "forge_neo_forge_conflict",
+      "regex": "Forge|NeoForge|forge.*conflict|neoforge.*conflict|forge.*mod.*on.*neoforge|neoforge.*mod.*on.*forge",
+      "severity": "high",
+      "name_cn": "Forge/NeoForge冲突",
+      "desc_cn": "Forge和NeoForge模组混装或加载器不匹配",
+      "common_causes": [
+        "Forge模组装到NeoForge上（或反之）",
+        "同时安装了Forge和NeoForge加载器",
+        "旧Forge模组与新NeoForge加载器不兼容"
+      ],
+      "suggestions": [
+        "确认使用的加载器类型，安装对应版本的模组",
+        "MC 1.21+推荐使用NeoForge",
+        "MC 1.20及以下使用Forge"
+      ]
+    },
+    {
+      "id": "sodium_iris_conflict",
+      "regex": "Sodium.*Iris|Iris.*Sodium|sodium.*conflict|iris.*conflict|renderer.*conflict|shader.*conflict",
+      "severity": "medium",
+      "name_cn": "Sodium/Iris渲染冲突",
+      "desc_cn": "Sodium与Iris或其他渲染模组版本不匹配",
+      "common_causes": [
+        "Sodium版本与Iris版本不兼容",
+        "同时安装了Rubidium和Sodium",
+        "渲染优化模组与光影模组版本冲突"
+      ],
+      "suggestions": [
+        "确保Sodium和Iris版本匹配",
+        "Forge用户使用Rubidium+Oculus组合",
+        "移除多余的渲染优化模组"
+      ]
+    },
+    {
+      "id": "block_entity_rendering_error",
+      "regex": "BlockEntityRenderer|BlockEntityRenderDispatcher|render.*entity.*error|render.*tile.*entity|TESR",
+      "severity": "medium",
+      "name_cn": "方块实体渲染错误",
+      "desc_cn": "方块实体（如箱子、机器）的渲染出现异常",
+      "common_causes": [
+        "方块实体的渲染器未正确注册",
+        "渲染器版本与MC版本不兼容",
+        "模组的方块实体数据损坏"
+      ],
+      "suggestions": [
+        "更新相关模组",
+        "检查是否有渲染优化模组冲突",
+        "在纯净世界中测试以排除存档问题"
+      ]
+    },
+    {
+      "id": "packet_handler_error",
+      "regex": "PacketHandler|packet.*error|NetworkHandler|payload.*error|CustomPacketPayload|ICustomPacket",
+      "severity": "medium",
+      "name_cn": "数据包处理错误",
+      "desc_cn": "模组自定义数据包的发送或接收失败",
+      "common_causes": [
+        "客户端与服务器模组版本不匹配",
+        "数据包ID冲突",
+        "网络延迟导致数据包丢失"
+      ],
+      "suggestions": [
+        "确保客户端和服务器安装相同版本的模组",
+        "检查模组的网络兼容性配置",
+        "尝试重新连接服务器"
+      ]
+    },
+    {
+      "id": "fluid_handler_error",
+      "regex": "FluidHandler|fluid.*error|FluidStack|IFluidHandler|fluid.*capacity|fluid.*transfer",
+      "severity": "medium",
+      "name_cn": "流体处理错误",
+      "desc_cn": "流体（液体/气体）存储或传输出现异常",
+      "common_causes": [
+        "流体容器的容量配置错误",
+        "流体管道连接问题",
+        "模组的流体处理逻辑有Bug"
+      ],
+      "suggestions": [
+        "检查流体容器和管道的连接",
+        "确保流体模组版本匹配",
+        "更新流体相关模组到最新版本"
+      ]
+    },
+    {
+      "id": "item_handler_error",
+      "regex": "ItemHandler|item.*error|IItemHandler|ItemStackHandler|item.*transfer|inventory.*error",
+      "severity": "medium",
+      "name_cn": "物品处理错误",
+      "desc_cn": "物品存储或传输逻辑异常",
+      "common_causes": [
+        "物品容器的槽位配置错误",
+        "物品管道优先级设置不当",
+        "模组间的物品处理API版本不匹配"
+      ],
+      "suggestions": [
+        "检查物品容器和管道的配置",
+        "统一物品处理模组的版本",
+        "查看模组的配置文件"
+      ]
+    },
+    {
+      "id": "recipe_conflict",
+      "regex": "Recipe|recipe.*conflict|duplicate.*recipe|RecipeManager|recipes.*overlap|crafting.*conflict",
+      "severity": "low",
+      "name_cn": "合成配方冲突",
+      "desc_cn": "多个模组添加了相同物品的合成配方",
+      "common_causes": [
+        "不同模组添加了同名物品的配方",
+        "整合包中有功能重叠的模组",
+        "模组的配方配置文件重复"
+      ],
+      "suggestions": [
+        "使用配方查看器（如JEI）检查冲突",
+        "在模组配置中禁用重复的配方",
+        "移除功能重叠的模组"
+      ]
+    },
+    {
+      "id": "biome_modification_error",
+      "regex": "BiomeModifier|biome.*modification|BiomeSource|biome.*error|BiomeRegistry|biome.*inject",
+      "severity": "medium",
+      "name_cn": "生物群系修改错误",
+      "desc_cn": "模组修改生物群系的逻辑出现异常",
+      "common_causes": [
+        "生物群系修改器配置错误",
+        "多个生物群系模组的修改冲突",
+        "MC版本更新后生物群系API变化"
+      ],
+      "suggestions": [
+        "检查生物群系模组的配置文件",
+        "减少同时修改生物群系的模组数量",
+        "更新生物群系模组到最新版本"
+      ]
+    },
+    {
+      "id": "structure_generation_error",
+      "regex": "StructureFeature|structure.*generation|StructureSet|ConfiguredStructureFeature|structure.*placement",
+      "severity": "medium",
+      "name_cn": "结构生成错误",
+      "desc_cn": "自定义结构（如地牢、村庄变种）生成失败",
+      "common_causes": [
+        "结构配置文件格式错误",
+        "结构的放置规则冲突",
+        "结构模组与世界生成模组不兼容"
+      ],
+      "suggestions": [
+        "检查结构模组的配置",
+        "确保结构模组与生物群系模组版本匹配",
+        "尝试在新世界中测试"
+      ]
+    },
+    {
+      "id": "entity_attribute_error",
+      "regex": "EntityAttribute|attribute.*error|Attributes.*register|ModifiableAttributeInstance|attribute.*modifier",
+      "severity": "medium",
+      "name_cn": "实体属性错误",
+      "desc_cn": "实体（玩家/生物）的属性（生命值、攻击力等）处理异常",
+      "common_causes": [
+        "属性修改器计算错误",
+        "多个模组同时修改同一属性",
+        "属性公式与MC版本不兼容"
+      ],
+      "suggestions": [
+        "检查属性修改模组的配置",
+        "减少同时修改属性的模组数量",
+        "使用属性查看器检查当前属性值"
+      ]
+    },
+    {
+      "id": "enchantment_error",
+      "regex": "Enchantment|enchant.*error|enchant.*level|enchant.*target|EnchantmentCategory|enchantment.*conflict",
+      "severity": "low",
+      "name_cn": "附魔错误",
+      "desc_cn": "附魔系统（自定义附魔、附魔等级等）异常",
+      "common_causes": [
+        "自定义附魔配置错误",
+        "附魔等级超出最大值",
+        "多个附魔模组的逻辑冲突"
+      ],
+      "suggestions": [
+        "检查附魔模组的配置",
+        "确保附魔等级设置合理",
+        "移除功能重叠的附魔模组"
+      ]
+    },
+    {
+      "id": "particle_error",
+      "regex": "Particle|particle.*error|ParticleType|particle.*spawn|particle.*limit|particle.*render",
+      "severity": "low",
+      "name_cn": "粒子效果错误",
+      "desc_cn": "自定义粒子效果的生成或渲染异常",
+      "common_causes": [
+        "粒子生成器配置错误",
+        "粒子数量超出限制",
+        "粒子贴图缺失"
+      ],
+      "suggestions": [
+        "减少粒子生成数量",
+        "检查粒子贴图是否完整",
+        "更新粒子相关模组"
+      ]
+    },
+    {
+      "id": "codechicken_lib_error",
+      "regex": "CodeChickenCore|CodeChickenLib|codechicken.*error|CCLib|CodeChicken",
+      "severity": "high",
+      "name_cn": "CodeChicken库错误",
+      "desc_cn": "CodeChicken核心库或其API出现错误",
+      "common_causes": [
+        "CodeChicken版本过低",
+        "依赖CodeChicken的模组版本与库不匹配",
+        "CodeChicken与其他核心库冲突"
+      ],
+      "suggestions": [
+        "更新CodeChicken到最新版本",
+        "确保所有依赖CodeChicken的模组版本兼容",
+        "检查CodeChicken的配置文件"
+      ]
+    },
+    {
+      "id": "create_lag_spike",
+      "regex": "create.*lag|Contraption.*lag|Kinetic.*lag|Create.*performance|FPS.*drop.*create|contraption.*performance",
+      "severity": "medium",
+      "name_cn": "机械动力性能问题",
+      "desc_cn": "Create模组导致的性能下降或卡顿",
+      "common_causes": [
+        "大量装置（Contraption）同时运行",
+        "复杂的动能传动链计算",
+        "Create扩展模组的性能问题"
+      ],
+      "suggestions": [
+        "减少同时运行的装置数量",
+        "优化动能传动链",
+        "更新Create到最新版本",
+        "使用Spark profiler分析性能瓶颈"
+      ]
+    },
+    {
+      "id": "ae2_network_overload",
+      "regex": "AE2.*overload|AE2.*lag|ME.*network.*full|storage.*network.*lag|ae2.*performance",
+      "severity": "medium",
+      "name_cn": "AE2网络过载",
+      "desc_cn": "应用能源ME网络过载导致的性能问题",
+      "common_causes": [
+        "ME网络存储已满",
+        "过多的合成接口同时工作",
+        "网络缓存配置过小"
+      ],
+      "suggestions": [
+        "扩容ME网络存储",
+        "减少同时工作的合成接口数量",
+        "调整网络缓存大小"
+      ]
+    },
+    {
+      "id": "long_reload_time",
+      "regex": "Reload.*time|reload.*slow|loading.*slow|took.*too.*long|reload.*performance|scan.*time",
+      "severity": "low",
+      "name_cn": "加载/重载过慢",
+      "desc_cn": "游戏加载或数据包重载耗时过长",
+      "common_causes": [
+        "模组数量过多",
+        "大型结构或生物群系模组初始化耗时",
+        "磁盘读写速度慢"
+      ],
+      "suggestions": [
+        "减少同时加载的模组数量",
+        "使用SSD提升读写速度",
+        "使用JVM参数优化（如-XX:+UseG1GC）"
+      ]
+    },
+    {
+      "id": "server_connection_timeout",
+      "regex": "ConnectionTimeout|connect.*timeout|server.*timeout|read.*timeout|connection.*reset|timed.*out",
+      "severity": "medium",
+      "name_cn": "服务器连接超时",
+      "desc_cn": "客户端与服务器的连接超时",
+      "common_causes": [
+        "网络延迟过高",
+        "服务器端模组处理数据包过慢",
+        "客户端与服务器版本不匹配"
+      ],
+      "suggestions": [
+        "检查网络连接质量",
+        "确保双方版本完全一致",
+        "服务器端优化TPS"
+      ]
+    },
+    {
+      "id": "ice_and_fire_error",
+      "regex": "IceAndFire|ice.*fire.*error|dragon.*error|IceFireMod",
+      "severity": "medium",
+      "name_cn": "冰与火之歌错误",
+      "desc_cn": "Ice and Fire（冰与火之歌）模组的运行时错误",
+      "common_causes": [
+        "冰与火之歌版本与MC版本不匹配",
+        "龙之巢穴等扩展模组版本不匹配",
+        "火龙/冰龙生成逻辑冲突"
+      ],
+      "suggestions": [
+        "更新冰与火之歌到最新版本",
+        "确保所有扩展模组版本一致",
+        "移除冲突的世界生成模组"
+      ]
+    },
+    {
+      "id": "damage_type_error",
+      "regex": "DamageType|damage.*type|damage.*source|CombatRules|damage.*calculation",
+      "severity": "low",
+      "name_cn": "伤害类型错误",
+      "desc_cn": "自定义伤害类型定义或处理异常",
+      "common_causes": [
+        "伤害类型未正确注册",
+        "伤害计算公式与MC版本不兼容",
+        "多个伤害模组的处理逻辑冲突"
+      ],
+      "suggestions": [
+        "更新伤害相关模组",
+        "检查模组的伤害配置",
+        "在纯净环境中测试"
+      ]
+    },
+    {
+      "id": "fallback_registry_error",
+      "regex": "FallbackRegistry|fallback.*registry|Registry.*Fallback|registry.*sync|datapack.*registry",
+      "severity": "medium",
+      "name_cn": "备用注册表错误",
+      "desc_cn": "MC 1.21+的备用注册表机制出现异常",
+      "common_causes": [
+        "模组注册时机错误",
+        "数据驱动的注册表与代码注册表冲突",
+        "加载器版本不支持备用注册表"
+      ],
+      "suggestions": [
+        "使用最新版加载器",
+        "更新模组到支持备用注册表的版本",
+        "检查模组的注册代码"
+      ]
+    },
+    {
+      "id": "fabric_loader_conflict",
+      "regex": "FabricLoader|fabric.*version|FabricAPI|fabric.*missing|fabric.*incompatible",
+      "severity": "high",
+      "name_cn": "Fabric加载器冲突",
+      "desc_cn": "Fabric加载器版本或API不匹配",
+      "common_causes": [
+        "Fabric加载器版本过低",
+        "Fabric API版本不匹配",
+        "模组需要更高版本的Fabric API"
+      ],
+      "suggestions": [
+        "更新Fabric加载器到最新版本",
+        "确保Fabric API版本与模组要求匹配",
+        "使用Fabric版本管理器检查兼容性"
+      ]
+    },
+    {
+      "id": "forge_neo_forge_conflict",
+      "regex": "Forge|NeoForge|forge.*conflict|neoforge.*conflict|forge.*mod.*on.*neoforge|neoforge.*mod.*on.*forge",
+      "severity": "high",
+      "name_cn": "Forge/NeoForge冲突",
+      "desc_cn": "Forge和NeoForge模组混装或加载器不匹配",
+      "common_causes": [
+        "Forge模组装到NeoForge上（或反之）",
+        "同时安装了Forge和NeoForge加载器",
+        "旧Forge模组与新NeoForge加载器不兼容"
+      ],
+      "suggestions": [
+        "确认使用的加载器类型，安装对应版本的模组",
+        "MC 1.21+推荐使用NeoForge",
+        "MC 1.20及以下使用Forge"
+      ]
+    },
+    {
+      "id": "sodium_iris_conflict",
+      "regex": "Sodium.*Iris|Iris.*Sodium|sodium.*conflict|iris.*conflict|renderer.*conflict|shader.*conflict",
+      "severity": "medium",
+      "name_cn": "Sodium/Iris渲染冲突",
+      "desc_cn": "Sodium与Iris或其他渲染模组版本不匹配",
+      "common_causes": [
+        "Sodium版本与Iris版本不兼容",
+        "同时安装了Rubidium和Sodium",
+        "渲染优化模组与光影模组版本冲突"
+      ],
+      "suggestions": [
+        "确保Sodium和Iris版本匹配",
+        "Forge用户使用Rubidium+Oculus组合",
+        "移除多余的渲染优化模组"
+      ]
+    },
+    {
+      "id": "block_entity_rendering_error",
+      "regex": "BlockEntityRenderer|BlockEntityRenderDispatcher|render.*entity.*error|render.*tile.*entity|TESR",
+      "severity": "medium",
+      "name_cn": "方块实体渲染错误",
+      "desc_cn": "方块实体（如箱子、机器）的渲染出现异常",
+      "common_causes": [
+        "方块实体的渲染器未正确注册",
+        "渲染器版本与MC版本不兼容",
+        "模组的方块实体数据损坏"
+      ],
+      "suggestions": [
+        "更新相关模组",
+        "检查是否有渲染优化模组冲突",
+        "在纯净世界中测试以排除存档问题"
+      ]
+    },
+    {
+      "id": "packet_handler_error",
+      "regex": "PacketHandler|packet.*error|NetworkHandler|payload.*error|CustomPacketPayload|ICustomPacket",
+      "severity": "medium",
+      "name_cn": "数据包处理错误",
+      "desc_cn": "模组自定义数据包的发送或接收失败",
+      "common_causes": [
+        "客户端与服务器模组版本不匹配",
+        "数据包ID冲突",
+        "网络延迟导致数据包丢失"
+      ],
+      "suggestions": [
+        "确保客户端和服务器安装相同版本的模组",
+        "检查模组的网络兼容性配置",
+        "尝试重新连接服务器"
+      ]
+    },
+    {
+      "id": "fluid_handler_error",
+      "regex": "FluidHandler|fluid.*error|FluidStack|IFluidHandler|fluid.*capacity|fluid.*transfer",
+      "severity": "medium",
+      "name_cn": "流体处理错误",
+      "desc_cn": "流体（液体/气体）存储或传输出现异常",
+      "common_causes": [
+        "流体容器的容量配置错误",
+        "流体管道连接问题",
+        "模组的流体处理逻辑有Bug"
+      ],
+      "suggestions": [
+        "检查流体容器和管道的连接",
+        "确保流体模组版本匹配",
+        "更新流体相关模组到最新版本"
+      ]
+    },
+    {
+      "id": "item_handler_error",
+      "regex": "ItemHandler|item.*error|IItemHandler|ItemStackHandler|item.*transfer|inventory.*error",
+      "severity": "medium",
+      "name_cn": "物品处理错误",
+      "desc_cn": "物品存储或传输逻辑异常",
+      "common_causes": [
+        "物品容器的槽位配置错误",
+        "物品管道优先级设置不当",
+        "模组间的物品处理API版本不匹配"
+      ],
+      "suggestions": [
+        "检查物品容器和管道的配置",
+        "统一物品处理模组的版本",
+        "查看模组的配置文件"
+      ]
+    },
+    {
+      "id": "recipe_conflict",
+      "regex": "Recipe|recipe.*conflict|duplicate.*recipe|RecipeManager|recipes.*overlap|crafting.*conflict",
+      "severity": "low",
+      "name_cn": "合成配方冲突",
+      "desc_cn": "多个模组添加了相同物品的合成配方",
+      "common_causes": [
+        "不同模组添加了同名物品的配方",
+        "整合包中有功能重叠的模组",
+        "模组的配方配置文件重复"
+      ],
+      "suggestions": [
+        "使用配方查看器（如JEI）检查冲突",
+        "在模组配置中禁用重复的配方",
+        "移除功能重叠的模组"
+      ]
+    },
+    {
+      "id": "biome_modification_error",
+      "regex": "BiomeModifier|biome.*modification|BiomeSource|biome.*error|BiomeRegistry|biome.*inject",
+      "severity": "medium",
+      "name_cn": "生物群系修改错误",
+      "desc_cn": "模组修改生物群系的逻辑出现异常",
+      "common_causes": [
+        "生物群系修改器配置错误",
+        "多个生物群系模组的修改冲突",
+        "MC版本更新后生物群系API变化"
+      ],
+      "suggestions": [
+        "检查生物群系模组的配置文件",
+        "减少同时修改生物群系的模组数量",
+        "更新生物群系模组到最新版本"
+      ]
+    },
+    {
+      "id": "structure_generation_error",
+      "regex": "StructureFeature|structure.*generation|StructureSet|ConfiguredStructureFeature|structure.*placement",
+      "severity": "medium",
+      "name_cn": "结构生成错误",
+      "desc_cn": "自定义结构（如地牢、村庄变种）生成失败",
+      "common_causes": [
+        "结构配置文件格式错误",
+        "结构的放置规则冲突",
+        "结构模组与世界生成模组不兼容"
+      ],
+      "suggestions": [
+        "检查结构模组的配置",
+        "确保结构模组与生物群系模组版本匹配",
+        "尝试在新世界中测试"
+      ]
+    },
+    {
+      "id": "entity_attribute_error",
+      "regex": "EntityAttribute|attribute.*error|Attributes.*register|ModifiableAttributeInstance|attribute.*modifier",
+      "severity": "medium",
+      "name_cn": "实体属性错误",
+      "desc_cn": "实体（玩家/生物）的属性（生命值、攻击力等）处理异常",
+      "common_causes": [
+        "属性修改器计算错误",
+        "多个模组同时修改同一属性",
+        "属性公式与MC版本不兼容"
+      ],
+      "suggestions": [
+        "检查属性修改模组的配置",
+        "减少同时修改属性的模组数量",
+        "使用属性查看器检查当前属性值"
+      ]
+    },
+    {
+      "id": "enchantment_error",
+      "regex": "Enchantment|enchant.*error|enchant.*level|enchant.*target|EnchantmentCategory|enchantment.*conflict",
+      "severity": "low",
+      "name_cn": "附魔错误",
+      "desc_cn": "附魔系统（自定义附魔、附魔等级等）异常",
+      "common_causes": [
+        "自定义附魔配置错误",
+        "附魔等级超出最大值",
+        "多个附魔模组的逻辑冲突"
+      ],
+      "suggestions": [
+        "检查附魔模组的配置",
+        "确保附魔等级设置合理",
+        "移除功能重叠的附魔模组"
+      ]
+    },
+    {
+      "id": "particle_error",
+      "regex": "Particle|particle.*error|ParticleType|particle.*spawn|particle.*limit|particle.*render",
+      "severity": "low",
+      "name_cn": "粒子效果错误",
+      "desc_cn": "自定义粒子效果的生成或渲染异常",
+      "common_causes": [
+        "粒子生成器配置错误",
+        "粒子数量超出限制",
+        "粒子贴图缺失"
+      ],
+      "suggestions": [
+        "减少粒子生成数量",
+        "检查粒子贴图是否完整",
+        "更新粒子相关模组"
+      ]
+    },
+    {
+      "id": "codechicken_lib_error",
+      "regex": "CodeChickenCore|CodeChickenLib|codechicken.*error|CCLib|CodeChicken",
+      "severity": "high",
+      "name_cn": "CodeChicken库错误",
+      "desc_cn": "CodeChicken核心库或其API出现错误",
+      "common_causes": [
+        "CodeChicken版本过低",
+        "依赖CodeChicken的模组版本与库不匹配",
+        "CodeChicken与其他核心库冲突"
+      ],
+      "suggestions": [
+        "更新CodeChicken到最新版本",
+        "确保所有依赖CodeChicken的模组版本兼容",
+        "检查CodeChicken的配置文件"
+      ]
+    },
+    {
+      "id": "create_lag_spike",
+      "regex": "create.*lag|Contraption.*lag|Kinetic.*lag|Create.*performance|FPS.*drop.*create|contraption.*performance",
+      "severity": "medium",
+      "name_cn": "机械动力性能问题",
+      "desc_cn": "Create模组导致的性能下降或卡顿",
+      "common_causes": [
+        "大量装置（Contraption）同时运行",
+        "复杂的动能传动链计算",
+        "Create扩展模组的性能问题"
+      ],
+      "suggestions": [
+        "减少同时运行的装置数量",
+        "优化动能传动链",
+        "更新Create到最新版本",
+        "使用Spark profiler分析性能瓶颈"
+      ]
+    },
+    {
+      "id": "ae2_network_overload",
+      "regex": "AE2.*overload|AE2.*lag|ME.*network.*full|storage.*network.*lag|ae2.*performance",
+      "severity": "medium",
+      "name_cn": "AE2网络过载",
+      "desc_cn": "应用能源ME网络过载导致的性能问题",
+      "common_causes": [
+        "ME网络存储已满",
+        "过多的合成接口同时工作",
+        "网络缓存配置过小"
+      ],
+      "suggestions": [
+        "扩容ME网络存储",
+        "减少同时工作的合成接口数量",
+        "调整网络缓存大小"
+      ]
+    },
+    {
+      "id": "long_reload_time",
+      "regex": "Reload.*time|reload.*slow|loading.*slow|took.*too.*long|reload.*performance|scan.*time",
+      "severity": "low",
+      "name_cn": "加载/重载过慢",
+      "desc_cn": "游戏加载或数据包重载耗时过长",
+      "common_causes": [
+        "模组数量过多",
+        "大型结构或生物群系模组初始化耗时",
+        "磁盘读写速度慢"
+      ],
+      "suggestions": [
+        "减少同时加载的模组数量",
+        "使用SSD提升读写速度",
+        "使用JVM参数优化（如-XX:+UseG1GC）"
+      ]
+    },
+    {
+      "id": "server_connection_timeout",
+      "regex": "ConnectionTimeout|connect.*timeout|server.*timeout|read.*timeout|connection.*reset|timed.*out",
+      "severity": "medium",
+      "name_cn": "服务器连接超时",
+      "desc_cn": "客户端与服务器的连接超时",
+      "common_causes": [
+        "网络延迟过高",
+        "服务器端模组处理数据包过慢",
+        "客户端与服务器版本不匹配"
+      ],
+      "suggestions": [
+        "检查网络连接质量",
+        "确保双方版本完全一致",
+        "服务器端优化TPS"
+      ]
+    },
+    {
+      "id": "ice_and_fire_error",
+      "regex": "IceAndFire|ice.*fire.*error|dragon.*error|IceFireMod",
+      "severity": "medium",
+      "name_cn": "冰与火之歌错误",
+      "desc_cn": "Ice and Fire（冰与火之歌）模组的运行时错误",
+      "common_causes": [
+        "冰与火之歌版本与MC版本不匹配",
+        "龙之巢穴等扩展模组版本不匹配",
+        "火龙/冰龙生成逻辑冲突"
+      ],
+      "suggestions": [
+        "更新冰与火之歌到最新版本",
+        "确保所有扩展模组版本一致",
+        "移除冲突的世界生成模组"
+      ]
+    },
+    {
+      "id": "damage_type_error",
+      "regex": "DamageType|damage.*type|damage.*source|CombatRules|damage.*calculation",
+      "severity": "low",
+      "name_cn": "伤害类型错误",
+      "desc_cn": "自定义伤害类型定义或处理异常",
+      "common_causes": [
+        "伤害类型未正确注册",
+        "伤害计算公式与MC版本不兼容",
+        "多个伤害模组的处理逻辑冲突"
+      ],
+      "suggestions": [
+        "更新伤害相关模组",
+        "检查模组的伤害配置",
+        "在纯净环境中测试"
+      ]
+    },
+    {
+      "id": "fallback_registry_error",
+      "regex": "FallbackRegistry|fallback.*registry|Registry.*Fallback|registry.*sync|datapack.*registry",
+      "severity": "medium",
+      "name_cn": "备用注册表错误",
+      "desc_cn": "MC 1.21+的备用注册表机制出现异常",
+      "common_causes": [
+        "模组注册时机错误",
+        "数据驱动的注册表与代码注册表冲突",
+        "加载器版本不支持备用注册表"
+      ],
+      "suggestions": [
+        "使用最新版加载器",
+        "更新模组到支持备用注册表的版本",
+        "检查模组的注册代码"
+      ]
+    }
+  ]
+}

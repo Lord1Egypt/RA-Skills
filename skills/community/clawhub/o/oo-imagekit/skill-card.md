@@ -1,44 +1,60 @@
-## Description: <br>
-ImageKit helps an agent list, inspect, purge, and delete ImageKit media assets through the OOMOL ImageKit connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate ImageKit through an OOMOL-connected account for reading, creating, updating, and deleting data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage ImageKit media library assets from an agent session, including search, metadata lookup, cache purge, purge status checks, and file deletion with confirmation controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad ImageKit prompts could be interpreted as permission to take account-impacting actions. <br>
-Mitigation: Treat the trigger narrowly and confirm the exact payload and intended effect before approving write, purge, or delete actions. <br>
-Risk: The skill requires sensitive ImageKit-connected credentials through the OOMOL account connection. <br>
-Mitigation: Install it only for users who intend to manage ImageKit resources and keep credential handling inside the configured OOMOL connection. <br>
-Risk: Destructive actions can permanently delete files or purge cached content. <br>
-Mitigation: Require explicit user approval for destructive targets and verify identifiers or URLs before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to search ImageKit assets, inspect file and media metadata, check cache-purge status, request cache purges, or delete file versions through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ImageKit homepage](https://imagekit.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub release page](https://clawhub.ai/oomol/oo-imagekit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON when actions are run with the oo CLI --json flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: CLI setup may execute an unverified installer, and the installed CLI version is not verified by the available evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately before use, and verify the installer and resulting version.
+
+Risk: CLI setup or invocations may make undisclosed changes to other agents’ skill directories.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 for CLI invocations and review any proposed skill-directory changes.
+
+Risk: The skill exposes destructive ImageKit actions that permanently delete file versions or submit cache purge requests.
+
+Mitigation: Require explicit approval for each destructive action after reviewing its exact target, payload, and effect.
+
+## Reference(s):
+
+- [ImageKit Documentation](https://imagekit.io/docs/api-overview)
+- [ImageKit](https://imagekit.io)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads and JSON responses, plus brief operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields vary by ImageKit action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

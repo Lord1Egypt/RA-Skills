@@ -1,39 +1,54 @@
-## Description: <br>
-Chinese-language INTJ productivity coaching skill for personality-aware idea structuring, task breakdowns, learning plans, process building, and efficiency optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language INTJ-framed productivity guidance for structuring ideas, breaking down tasks, planning learning, building processes, and reducing overthinking.
 
-## Publisher: <br>
-[hangchuan555-bot](https://clawhub.ai/user/hangchuan555-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hangchuan555-bot](https://clawhub.ai/user/hangchuan555-bot)
 
-## Use Case: <br>
-External users and developers use this skill to turn planning, learning, and execution requests into Chinese-language INTJ-style guidance with goal alignment, concise task steps, and conditional personality reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may frame broad planning, learning, or efficiency requests through INTJ personality-based templates when neutral advice or another language would be a better fit. <br>
-Mitigation: Install or enable it only where Chinese-language INTJ-style productivity coaching is desired, and review outputs for fit before relying on the guidance. <br>
+## Use Case:
 
+External users and agent operators use this skill when they want an INTJ/personality-framed productivity assistant to convert strategic thinking into short, executable task plans. It is especially suited for idea structuring, task breakdown, learning plans, process design, and analysis-paralysis correction.
 
-## Reference(s): <br>
-- [INTJ Personality Guide](references/intj-personality-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hangchuan555-bot/intj-efficiency-boost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured Chinese-language sections and concise action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses emphasize goal alignment, execution steps, and personality reminders only when matching behavior is detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The skill uses an INTJ/personality frame that may not fit every user or situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the personality framing as productivity guidance, not as a psychological assessment, and adapt plans to the user's stated constraints.
+
+Risk: The bundled packaging script should not be run on untrusted or contributor-controlled directories because release evidence warns it does not reject symlinks and writes more than one manifest entry.
+
+Mitigation: Run packaging only on trusted skill directories or fix the script to reject symlinks and write a single manifest before use.
+
+## Reference(s):
+
+- [INTJ 人格参考指南](references/intj-personality-guide.md)
+- [ClawHub skill page](https://clawhub.ai/hangchuan555-bot/skills/intj-efficiency-boost)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese text with structured sections and concise task lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include thinking alignment, optional personality reminders, execution plans, learning plans, and up to five action steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, _meta.json, manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

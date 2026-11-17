@@ -1,0 +1,9 @@
+# style_extractor.py（Mode B 风格提取 + Mode C 品牌模板生成）依赖
+# 仅 Mode B/C 需要，Mode A 排版和所有校验脚本仅用 Python 标准库
+# 按需安装：只提取公众号文章/HTML 风格 → requests + beautifulsoup4 即可
+#            品牌图提色（--image）→ 追加 pillow
+#            品牌手册 PDF（--pdf）→ 追加 pymupdf
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+pillow>=9.0.0
+pymupdf>=1.23.0

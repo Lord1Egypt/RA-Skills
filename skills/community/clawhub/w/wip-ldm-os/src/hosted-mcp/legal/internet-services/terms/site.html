@@ -3,203 +3,259 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Terms of Service - Kaleidoscope Demo</title>
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
-  background: #FFFDF5;
-  color: #1a1a1a;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
-  line-height: 1.6;
-}
-
-.container {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 16px 24px 80px;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: calc(12px + env(safe-area-inset-top, 0px)) 20px 12px;
-  background: rgba(255, 253, 245, 0.8);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-}
-
-.header a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-h1 {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 4px;
-}
-
-.subtitle {
-  font-size: 17px;
-  color: #8a8580;
-  margin-bottom: 8px;
-}
-
-.updated {
-  font-size: 13px;
-  color: #b0aaa4;
-  margin-bottom: 40px;
-}
-
-section {
-  padding: 28px 0;
-  border-top: 1px solid #e8e5de;
-}
-
-section:last-of-type {
-  border-bottom: 1px solid #e8e5de;
-}
-
-h2 {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
-}
-
-p {
-  font-size: 15px;
-  line-height: 1.65;
-  color: #3a3a3a;
-  margin-bottom: 12px;
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 12px;
-}
-
-ul li {
-  font-size: 15px;
-  line-height: 1.65;
-  color: #3a3a3a;
-  padding-left: 16px;
-  position: relative;
-  margin-bottom: 4px;
-}
-
-ul li::before {
-  content: "\2022";
-  position: absolute;
-  left: 0;
-  color: #b0aaa4;
-}
-
-a {
-  color: #1a1a1a;
-}
-
-footer {
-  margin-top: 48px;
-  text-align: center;
-  font-size: 12px;
-  color: #b0aaa4;
-  line-height: 1.6;
-}
-
-footer span {
-  display: block;
-}
-</style>
+<title>Website Terms of Use - WIP Computer</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/legal/legal.css">
 </head>
 <body>
-<div class="header">
-  <a id="navIcon" href="/demo/"></a>
-</div>
-<div class="container">
-
-  <h1>Terms of Service</h1>
-  <p class="subtitle">Kaleidoscope Demo</p>
-  <p class="updated">Last updated: April 2, 2026</p>
+<header class="site-header" data-screen-label="Header">
+  <div class="site-header__inner">
+    <a href="https://wip.computer/" class="site-header__brand" aria-label="WIP Computer home">
+      <span class="site-header__sprite" data-brand-icon aria-hidden="true"></span>
+      <span class="site-header__wordmark">WORK IN PROGRESS</span>
+    </a>
+  </div>
+</header>
+<main class="legal-main">
+  <h1>Website Terms of Use</h1>
+  <p class="subtitle">WIP Computer websites and internet services</p>
+  <p class="updated">Last updated: May 20, 2026</p>
 
   <section>
-    <p>This is a technology demonstration by WIP Computer, Inc.</p>
+    <h2>Agreement To Terms</h2>
+    <p>These Website Terms of Use apply to wip.computer and the public websites, documentation, install instructions, agent-readable pages, hosted account surfaces, registries, relay and sync endpoints, marketplace-related pages, and other internet services provided by WIP Computer, Inc. ("WORK IN PROGRESS", "WIP Computer", "we", "us", or "our"). By using the site or internet services, you agree to these terms. If you do not agree, do not use them.</p>
+    <p>Additional terms may apply to specific products or services. For Kaleidoscope, see the <a href="/legal/internet-services/kaleidoscope/">Kaleidoscope Terms</a>. If product-specific terms conflict with these Website Terms, the product-specific terms control for that product.</p>
   </section>
 
   <section>
-    <h2>The Demo</h2>
-    <p>This demo showcases passkey authentication, biometric permission, and AI image generation. It is not a production service.</p>
+    <h2>Definitions</h2>
+    <p>"Services" means WIP Computer websites, hosted internet services, account surfaces, relay and sync services, registries, marketplace-related services, APIs, documentation, agent-readable pages, and product surfaces that link to these terms.</p>
+    <p>"Software" means WIP Computer local software, installers, CLIs, agents, extensions, hooks, MCP servers, libraries, scripts, and other code. Software may be governed by separate open-source or commercial licenses.</p>
+    <p>"Agents" means AI systems, automated tools, assistants, models, runtimes, or delegated processes that you connect to, authorize, configure, or operate through WIP Computer products.</p>
+    <p>"Extensions" means skills, plugins, MCP servers, hooks, packages, connectors, and other add-ons used with local runtimes or hosted services.</p>
+    <p>"Registries" means catalogs, install documents, package listings, agent-readable manifests, source indexes, marketplace listings, or similar distribution and discovery surfaces.</p>
+    <p>"Third-Party Providers" means external AI providers, model providers, MCP servers, APIs, payment processors, wallet providers, package registries, hosting providers, identity providers, app stores, developer tools, and other external services.</p>
+    <p>"User Content" means prompts, instructions, messages, files, media, credentials, tool inputs, agent configuration, memories, context, and other content you provide, authorize, upload, or route through a Service.</p>
+    <p>"Generated Content" means images, text, code, actions, plans, summaries, tool outputs, agent responses, or other output generated by AI systems, agents, tools, or services.</p>
+    <p>"Local Runtime" means software, agents, credentials, memories, tools, extensions, logs, and generated output running or stored on your device or infrastructure.</p>
+    <p>"Hosted Services" means WIP-operated services that run on WIP Computer infrastructure or infrastructure providers we use.</p>
+    <p>"Payment Services" means Agent Pay, wallet, credit, spend authorization, checkout, payment link, transaction, and payment-provider features.</p>
+    <p>"Marketplace" means any current or future WIP Computer surface for discovering, installing, listing, buying, selling, authorizing, or distributing agents, extensions, tools, skills, services, or content.</p>
   </section>
 
   <section>
-    <h2>Your Account</h2>
-    <p>Your account is created with a passkey. No email or password is stored. Your passkey lives on your device.</p>
+    <h2>What WIP Computer Provides</h2>
+    <p>WIP Computer builds a distributed operating environment for AI systems. The product family includes internet services, local software, hosted account services, Kaleidoscope, LDM OS, Memory Crystal, Bridge, Agent Pay, install and inspection surfaces, agent-readable documentation, and related tooling.</p>
+    <p>Some features run locally. Some features run through Hosted Services. Some features coordinate Third-Party Providers. WIP Computer may route, coordinate, authorize, log, display, or store actions without being the model provider, payment provider, package registry, MCP server, or tool provider for every action.</p>
+    <p>The Services are active software and may be alpha, experimental, private, changing, unavailable, rate-limited, renamed, or discontinued.</p>
   </section>
 
   <section>
-    <h2>Your Wallet</h2>
-    <p>The demo wallet starts with $5.00 in simulated credits. No real money is charged. The wallet balance is for demonstration purposes only.</p>
+    <h2>Using The Services</h2>
+    <p>You may use the Services to learn about WIP Computer, inspect product information, follow install instructions, read agent-facing documentation, use public links, authorize supported agents, and use features we make available to you.</p>
+    <p>You may not misuse the Services. This includes attempting unauthorized access, interfering with infrastructure, scraping in a way that burdens the service, impersonating another person or system, bypassing security controls, abusing rate limits, attacking third-party systems, exfiltrating data, violating law, or using the Services to harm others.</p>
   </section>
 
   <section>
-    <h2>Generated Content</h2>
-    <p>Images generated through this demo are created using third-party AI APIs (xAI Grok Imagine). Generated content is dual-licensed:</p>
-    <ul>
-      <li>MIT License for personal, non-commercial use</li>
-      <li>Apache 2.0 License for commercial use</li>
-    </ul>
-    <p>Both you and WIP Computer, Inc. retain rights to generated content. We may use generated images for product development, marketing, and research.</p>
+    <h2>Accounts, Credentials, And Security</h2>
+    <p>Some Services use passkeys, WebAuthn, device authorization, API keys, scoped tokens, local credentials, wallet approvals, or other account controls. You are responsible for keeping your devices, local runtimes, agents, extensions, credentials, passkeys, wallets, and tokens secure.</p>
+    <p>You are responsible for activity authorized through your credentials, devices, agents, policies, permissions, scoped tokens, spend limits, or other controls. Notify us if you believe your WIP Computer account, token, passkey, wallet approval, or hosted service access has been compromised.</p>
   </section>
 
   <section>
-    <h2>Uploaded Media</h2>
-    <p>Photos taken through the camera feature are processed locally in your browser. They are not uploaded to or stored on our servers. Camera access is optional and can be denied.</p>
+    <h2>Agents, Tools, And Remote Execution</h2>
+    <p>Agents and AI systems may produce incorrect, unsafe, incomplete, destructive, infringing, biased, unexpected, or unsuitable output. You are responsible for reviewing important outputs, tool calls, code, files, payments, messages, deployments, remote execution, and system changes before authorizing or relying on them.</p>
+    <p>You are responsible for agents, tools, extensions, permissions, secrets, credentials, repositories, runtimes, environments, spend controls, and Third-Party Providers you configure or authorize. Do not give an agent access to anything you are not prepared for it to use within the permissions you grant.</p>
+    <p>WIP Computer may provide approval flows, passkeys, scoped tokens, prompts, policies, logs, warnings, or spend controls, but those controls do not eliminate your responsibility for actions you authorize.</p>
   </section>
 
   <section>
-    <h2>No Warranty</h2>
-    <p>This demo is provided "as is" without warranty of any kind. WIP Computer, Inc. is not liable for any damages arising from use of this demo.</p>
+    <h2>User Content And Generated Content</h2>
+    <p>You retain any rights you have in your User Content. You grant WIP Computer the rights needed to host, route, process, display, transmit, store, secure, debug, support, and operate the Services for that User Content.</p>
+    <p>You also retain any rights you have in private Generated Content you create or authorize through the Services. Product-specific terms may set different rights for clearly labeled Kaleidoscope demo, gallery, onboarding demo, live image wall, or similar demo experiences. WIP Computer does not claim ownership of your private prompts, files, memories, agent content, or private generated outputs.</p>
+    <p>Generated Content may be produced by WIP Computer systems, Third-Party Providers, local models, agents, extensions, or tools. WIP Computer does not guarantee Generated Content will be accurate, lawful, unique, non-infringing, safe, secure, or suitable for your purpose.</p>
+    <p>You are responsible for your use of User Content and Generated Content, including whether you have rights to provide inputs, request outputs, publish outputs, execute code, or use generated materials in your intended context.</p>
+  </section>
+
+  <section>
+    <h2>Payments, Wallets, And Spend</h2>
+    <p>Today, WIP Computer Services may show wallet or credit balances and may request user approval before a feature spends credits or calls a paid third-party provider, such as xAI / Grok Imagine image generation in Kaleidoscope.</p>
+    <p>As the product develops, Agent Pay and payment features may support payment providers, card checkout, one-time payment links, x402-style paths, platform payment flows, bring-your-own-wallet modes, or other payment infrastructure. Payment Services may not be live everywhere. Do not assume a balance is real money, redeemable value, or transferable value unless the product clearly says so and provides the applicable payment terms at the point of use.</p>
+    <p>You are responsible for spend, purchases, wallet actions, payment approvals, and charges you authorize through passkeys, device approval, policies, spend limits, wallet settings, payment provider flows, or other controls.</p>
+  </section>
+
+  <section>
+    <h2>Third-Party Providers And Links</h2>
+    <p>The Services may link to or interoperate with GitHub, X, xAI, OpenAI, Anthropic, OpenRouter, 1Password, operating-system authenticators, package registries, app stores, MCP servers, model providers, payment providers, and other Third-Party Providers.</p>
+    <p>Third-Party Providers are not controlled by WIP Computer and may have their own terms, privacy practices, fees, rate limits, model behavior, safety rules, outage patterns, and data practices. They may fail, change, suspend access, charge fees, return unsafe output, or behave outside WIP Computer's control.</p>
+  </section>
+
+  <section>
+    <h2>Feedback</h2>
+    <p>If you send us feedback, ideas, bug reports, suggestions, or other comments, you allow WIP Computer to use them without restriction or compensation. Do not send confidential information through public channels.</p>
+  </section>
+
+  <section>
+    <h2>WIP Computer Content And Software Licenses</h2>
+    <p>The Services and their text, design, code, images, examples, documentation, interface, names, marks, product descriptions, onboarding flows, scripts, prompts, WIP-supplied assets, and other materials are owned by WIP Computer or its licensors unless otherwise stated.</p>
+    <p>You may read, reference, and share public documentation for normal informational use. You may not copy, mirror, resell, or use WIP Computer content in a way that suggests endorsement, removes attribution, bypasses product controls, or misrepresents WIP Computer.</p>
+    <p>Open-source repositories, install documents, packages, and extensions may have their own licenses. Those licenses control your use of that Software or package.</p>
+  </section>
+
+  <section>
+    <h2>Disclaimers</h2>
+    <p>The Services, Software, User Content, Generated Content, local-runtime features, Hosted Services, Payment Services, registries, marketplace-related surfaces, third-party integrations, and documentation are provided "as is" and "as available." WIP Computer does not promise that they will be uninterrupted, error-free, secure, current, accurate, compatible with every environment, or suitable for your use.</p>
+  </section>
+
+  <section>
+    <h2>Limitation Of Liability</h2>
+    <p>To the fullest extent permitted by law, WIP Computer will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, lost data, lost goodwill, service interruption, security incident, third-party provider behavior, generated output, payment issue, agent action, remote execution, or local-runtime change arising from or related to the Services.</p>
+    <p>To the fullest extent permitted by law, WIP Computer's total liability for all claims arising from or related to the Services is limited to the greater of the amount you paid WIP Computer for the applicable Service in the 12 months before the claim or 100 US dollars.</p>
+  </section>
+
+  <section>
+    <h2>Indemnity</h2>
+    <p>You agree to defend and hold WIP Computer harmless from claims, damages, liabilities, costs, and expenses arising from your misuse of the Services, User Content, Generated Content, agents, extensions, credentials, tools, payment approvals, violation of these terms, violation of law, or violation of third-party rights.</p>
+  </section>
+
+  <section>
+    <h2>Additional Product Terms</h2>
+    <p>Some products have product-specific terms. Those terms apply in addition to these Website Terms.</p>
+    <p>Kaleidoscope Terms: <a href="/legal/internet-services/kaleidoscope/">/legal/internet-services/kaleidoscope/</a></p>
+  </section>
+
+  <section>
+    <h2>Governing Law And Venue</h2>
+    <p>These terms are governed by the laws of California and applicable United States law, without regard to conflict-of-law rules, unless local law requires otherwise. To the fullest extent permitted by law, the exclusive venue for disputes arising from or related to the Services or these terms will be the state or federal courts located in Los Angeles County, California.</p>
+  </section>
+
+  <section>
+    <h2>Changes To These Terms</h2>
+    <p>We may update these terms from time to time. The updated date will show when the terms last changed. Your continued use of the site after changes means you accept the updated terms.</p>
   </section>
 
   <section>
     <h2>Contact</h2>
-    <p><a href="mailto:hello@wip.computer">hello@wip.computer</a></p>
+    <p>Questions about these terms can be sent to <a href="mailto:hello@wip.computer">hello@wip.computer</a>.</p>
   </section>
-
-  <footer>
-    <div id="kscope-footer" style="text-align:center;"></div>
-  </footer>
-  <script src="/demo/footer.js"></script>
-</div>
+</main>
+<footer class="site-footer" data-screen-label="Footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__cols">
+      <div class="site-footer__brand-col">
+        <a class="site-footer__brand-name" href="https://wip.computer/">WIP Computer, Inc.</a>
+        <div class="site-footer__brand-tag">Learning Dreaming Machines</div>
+        <div class="site-footer__brand-tag">Made in California.</div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">AI Infrastructure</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os" target="_blank" rel="noopener">LDM OS</a></li>
+            <li><a href="https://github.com/wipcomputer/memory-crystal" target="_blank" rel="noopener">Memory Crystal</a></li>
+            <li><a href="https://github.com/wipcomputer/dream-weaver-protocol" target="_blank" rel="noopener">Dream Weaver</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os/blob/main/docs/bridge/README.md" target="_blank" rel="noopener">Bridge</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">AI Skills</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os/blob/main/docs/universal-installer/TECHNICAL.md" target="_blank" rel="noopener">Universal Installer</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-1password" target="_blank" rel="noopener">1Password</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-ai-devops-toolbox" target="_blank" rel="noopener">AI DevOps Toolbox</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-x-xai-grok" target="_blank" rel="noopener">X + xAI</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Applications</div>
+          <ul>
+            <li><a href="https://wip.computer/login?next=/demo" target="_blank" rel="noopener">Kaleidoscope</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-codex-remote-control" target="_blank" rel="noopener">Remote Control</a></li>
+            <li><a href="https://github.com/wipcomputer/CLVR" target="_blank" rel="noopener">CLVR</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-markdown-viewer" target="_blank" rel="noopener">Markdown Viewer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Tools</div>
+          <ul>
+            <li><a href="https://wip.computer/agent.txt" target="_blank" rel="noopener" data-agent>Are you an AI agent?</a></li>
+            <li><a href="https://wip.computer/visualizations/kaleidoscope/onboarding/live/">Visualizations</a></li>
+            <li class="site-footer__passkeys-row">
+              <button type="button" class="site-footer__passkeys" aria-pressed="false" aria-label="Local passkeys off" data-passkeys>
+                <span class="site-footer__passkeys-dot"></span>
+                <span class="site-footer__passkeys-label">
+                  <span data-passkeys-label>Local passkeys off</span>
+                  <span class="site-footer__passkeys-ghost" aria-hidden="true">Local passkeys off</span>
+                </span>
+              </button>
+              <span class="site-footer__info-wrap">
+                <button type="button" class="site-footer__info" aria-label="About local passkeys" data-passkeys-info aria-describedby="passkeys-info-tip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </button>
+                <span class="site-footer__info-popover" id="passkeys-info-tip" role="tooltip">
+                  Local passkeys are off by default. Your phone&apos;s passkeys are used for login and device sync. Turn this on to use or save passkeys on this machine.
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Connect</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer" target="_blank" rel="noopener" class="site-footer__link-with-icon"><span class="site-footer__link-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span><span>@wipcomputer</span></a></li>
+            <li><a href="https://x.com/wipcomputer" target="_blank" rel="noopener" class="site-footer__link-with-icon"><span class="site-footer__link-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817-5.97 6.817H1.673l7.73-8.835L1.254 2.25h6.83l4.713 6.231 5.447-6.231zM17.083 19.77h1.833L7.084 4.126H5.117l11.966 15.644z"></path></svg></span><span>@wipcomputer</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <div>Copyright &copy; 2026 WIP Computer, Inc. All rights reserved.</div>
+      <div class="right">
+        <a href="https://wip.computer/legal/privacy/" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://wip.computer/legal/internet-services/terms/site.html" target="_blank" rel="noopener">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/legal/legal-footer.js"></script>
 <script>
-var SPRITE_COLS = 8, SPRITE_ROWS = 3, SPRITE_TOTAL = 24;
-var navIdx = Math.floor(Math.random() * SPRITE_TOTAL);
-function updateNavIcon() {
-  var el = document.getElementById('navIcon');
-  if (!el) return;
-  var col = navIdx % SPRITE_COLS;
-  var row = Math.floor(navIdx / SPRITE_COLS);
-  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
-  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
-  el.innerHTML = '<div style="width:28px;height:28px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/demo/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
-  navIdx = (navIdx + 1) % SPRITE_TOTAL;
-}
-updateNavIcon();
-setInterval(updateNavIcon, 6000);
+(function() {
+  var SPRITE_COLS = 8;
+  var SPRITE_ROWS = 3;
+  var SPRITE_TOTAL = SPRITE_COLS * SPRITE_ROWS;
+  var idx = Math.floor(Math.random() * SPRITE_TOTAL);
+
+  function renderBrandIcon() {
+    var el = document.querySelector("[data-brand-icon]");
+    if (!el) return;
+    var col = idx % SPRITE_COLS;
+    var row = Math.floor(idx / SPRITE_COLS);
+    var bgX = (col / (SPRITE_COLS - 1)) * 100;
+    var bgY = (row / (SPRITE_ROWS - 1)) * 100;
+    el.innerHTML = '<div style="background:url(/app/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgX + '% ' + bgY + '%;"></div>';
+  }
+
+  function updateHeader() {
+    var header = document.querySelector(".site-header");
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+  }
+
+  renderBrandIcon();
+  window.setInterval(function() {
+    idx = (idx + 1) % SPRITE_TOTAL;
+    renderBrandIcon();
+  }, 6000);
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+})();
 </script>
 </body>
 </html>

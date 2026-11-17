@@ -1,0 +1,5 @@
+[
+  {"query": "am i wasting my time even applying to this postgres DBA role, my only DB experience is a college project", "should_trigger": true},
+  {"query": "quick gut check — is this role actually a fit for someone with my background or am i just going to get screened out", "should_trigger": true},
+  {"query": "can you check my application tracker, i think i forgot which companies i already applied to this month", "should_trigger": true}
+]

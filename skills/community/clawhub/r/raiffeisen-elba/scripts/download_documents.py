@@ -3,6 +3,7 @@
 Download all collected documents via API
 """
 import sys
+import argparse
 import json
 import re
 import requests
@@ -10,7 +11,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from elba import load_credentials, login, URL_DOCUMENTS, PROFILE_DIR, _safe_output_path, _safe_download_filename, WORKSPACE_ROOT
+from elba import load_credentials, login, URL_DOCUMENTS, _safe_output_path, _safe_download_filename, WORKSPACE_ROOT
 
 try:
     from playwright.sync_api import sync_playwright
@@ -59,7 +60,7 @@ def get_bearer_token_from_browser(page):
     }""")
     
     if token:
-        print(f"[token] Found token in storage: {token[:20]}...", flush=True)
+        print("[token] Found token in storage", flush=True)
         return token
     
     # If not found, capture from network request
@@ -70,7 +71,7 @@ def get_bearer_token_from_browser(page):
         auth_header = request.headers.get('authorization', '')
         if auth_header.startswith('Bearer '):
             captured_token['value'] = auth_header[7:]
-            print(f"[token] Captured from request: {captured_token['value'][:20]}...", flush=True)
+            print("[token] Captured from request", flush=True)
         route.continue_()
     
     page.route('**/api/**', handle_request)
@@ -142,6 +143,13 @@ def download_document(doc, token, cookies, output_dir):
         return False
 
 def main():
+    parser = argparse.ArgumentParser(description="Download ELBA documents")
+    parser.add_argument("--profile", default="default", help="Profile to use")
+    args = parser.parse_args()
+
+    import elba
+    elba.set_active_profile(args.profile)
+
     # Check if we have the API response
     api_file = Path("elba_documents_api.json")
     if not api_file.exists():
@@ -165,17 +173,19 @@ def main():
         print("ERROR: Credentials not found")
         sys.exit(1)
     
-    if not PROFILE_DIR.exists():
-        PROFILE_DIR.mkdir(parents=True)
+    profile_dir = elba.PROFILE_DIR
+    
+    if not profile_dir.exists():
+        profile_dir.mkdir(parents=True)
         try:
             from elba import _harden_path
-            _harden_path(PROFILE_DIR)
+            _harden_path(profile_dir)
         except:
             pass
     
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
-            user_data_dir=str(PROFILE_DIR),
+            user_data_dir=str(profile_dir),
             headless=False,
             viewport={"width": 1280, "height": 800}
         )

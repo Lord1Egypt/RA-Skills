@@ -1,47 +1,58 @@
-## Description: <br>
-AI-powered livestock management assistant for Spanish-speaking farmers, with guidance on herd management, animal health, reproduction, genetics, nutrition, breed selection, and REST API-based herd record keeping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered livestock management assistant for Spanish-speaking farmers that provides guidance on herd management, animal health, reproduction, genetics, nutrition, breed selection, and REST API herd record-keeping.
 
-## Publisher: <br>
-[antonygiomarxdev](https://clawhub.ai/user/antonygiomarxdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonygiomarxdev](https://clawhub.ai/user/antonygiomarxdev)
 
-## Use Case: <br>
-External Spanish-speaking farmers, livestock operators, and developers use this skill to get livestock management guidance, consult domain references, and operate a local REST API for animal records. The assistant is intended for advisory support and record workflows, not definitive veterinary diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Livestock health guidance could be mistaken for definitive veterinary diagnosis. <br>
-Mitigation: Keep health responses advisory, recommend a licensed veterinarian for emergencies or definitive diagnosis, and escalate zoonotic or urgent symptoms as the skill directs. <br>
-Risk: Animal record API calls can create, update, or delete local herd records. <br>
-Mitigation: Confirm the user's intent and review payloads before issuing create, update, or delete requests against the local API. <br>
-Risk: AI provider API keys are required for normal assistant operation. <br>
-Mitigation: Load keys from environment variables only and avoid including secrets in prompts, records, logs, or committed files. <br>
+## Use Case:
 
+External farmers, livestock operators, and developers use this skill for Spanish-language livestock management guidance and for operating a local REST API to record animals, health events, reproduction, nutrition, and herd status.
 
-## Reference(s): <br>
-- [REST API Reference](references/api.md) <br>
-- [Livestock Breed Reference](references/breeds.md) <br>
-- [Livestock Disease Reference](references/diseases.md) <br>
-- [Nutrition & Forage Reference](references/nutrition.md) <br>
-- [Project homepage](https://github.com/antonygiomarxdev/openclaw-livestock-assistant) <br>
-- [ClawHub release page](https://clawhub.ai/antonygiomarxdev/livestock-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are expected to be in Spanish; REST API examples use localhost endpoints and provider configuration through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter declares 1.0.0) <br>
+Risk: The skill requests multiple AI-provider credentials and executable installation authority beyond what its packaged files fully justify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the intended provider key, run in a least-privileged environment, and review supplied server/runtime files before deployment.
+
+Risk: Livestock health guidance may be mistaken for definitive veterinary diagnosis or emergency treatment instructions.
+
+Mitigation: Keep the built-in requirement to avoid definitive diagnoses and route emergencies, zoonotic disease concerns, and legally notifiable diseases to licensed veterinarians or authorities.
+
+## Reference(s):
+
+- [Livestock Assistant on ClawHub](https://clawhub.ai/antonygiomarxdev/skills/livestock-assistant)
+- [Project homepage](https://github.com/antonygiomarxdev/openclaw-livestock-assistant)
+- [REST API Reference](references/api.md)
+- [Livestock Breed Reference](references/breeds.md)
+- [Livestock Disease Reference](references/diseases.md)
+- [Nutrition & Forage Reference](references/nutrition.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Spanish Markdown or plain text with optional shell, HTTP, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should avoid definitive disease diagnosis, flag zoonotic and emergency cases, and direct users to licensed veterinary support when appropriate.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

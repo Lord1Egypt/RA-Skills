@@ -1,0 +1,37 @@
+{
+  "name": "xiaohongshu-user-insight",
+  "version": "1.1.4",
+  "description": "小红书用户需求洞察与产品机会分析技能，适用于基于小红书公开数据的新产品开发、营销策划、品类切入前的市场分析；适用于基于数据分析的洞察到创业落地框架：用户画像识别、情绪动机挖掘、洞察转机会、创业落地；帮你快速理解目标用户、挖掘情绪动机、把洞察转成可落地的产品机会。",
+  "keywords": [
+    "小红书",
+    "爆款笔记",
+    "数据分析",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长",
+    "用户画像"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

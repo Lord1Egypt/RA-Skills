@@ -1,43 +1,54 @@
-## Description: <br>
-Use Plane project management through its API to create and update issues, track progress, and manage agent tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plane Project Manager helps agents use the Plane API to manage projects, issues, workspace members, and task progress.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to Plane so it can list projects, create or update issues, and track project-management work through API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plane credentials stored in ~/.config/plane/credentials.json can allow access to or modification of Plane data. <br>
-Mitigation: Use a least-privilege Plane API token, avoid storing a plaintext Plane password, and restrict permissions on the credentials file. <br>
-Risk: API calls can create or update Plane projects and issues. <br>
-Mitigation: Review proposed requests before execution and use credentials scoped to only the intended workspace and projects. <br>
-Risk: Using a non-local Plane server over plain HTTP can expose credentials or project data in transit. <br>
-Mitigation: Use HTTPS for any non-local Plane server. <br>
+## Use Case:
 
+Developers and teams using Plane use this skill to configure API access and ask an agent for Plane project, issue, member, and progress-management operations through API examples and curl commands.
 
-## Reference(s): <br>
-- [Plane API examples](references/api-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/plane-project-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Plane API request guidance; actions require a configured Plane URL and API token or credentials file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill asks users to store Plane credential material in a plaintext credentials file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Plane API token where possible, avoid storing a Plane password, protect the file with owner-only permissions, and do not sync or commit it.
+
+Risk: Example POST and PATCH commands can create or update Plane projects and issues.
+
+Mitigation: Run mutating commands only after confirming the target Plane URL, workspace, project, and intended change.
+
+## Reference(s):
+
+- [Plane API examples](artifact/references/api-examples.md)
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/plane-project-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON credential examples and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq for examples; mutating POST/PATCH commands can create or update Plane records.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

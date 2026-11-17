@@ -1,39 +1,54 @@
-## Description: <br>
-Docker resource cleanup, pruning, and disk usage analysis toolkit for inspecting Docker containers, images, volumes, networks, and build cache usage, pruning unused resources, and generating cleanup reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docker Cleanup Toolkit helps agents analyze Docker resource usage, prune stopped containers, dangling images, unused volumes and orphaned networks, and generate cleanup reports.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze Docker disk usage, identify reclaimable resources, prune stopped or unused Docker resources, and generate JSON or HTML cleanup reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup flags such as --all, --volumes, and --force can permanently delete Docker resources. <br>
-Mitigation: Run the default analysis or --report mode first, review unused resources, and use destructive cleanup flags only after confirming the target Docker environment. <br>
-Risk: Generated HTML reports may contact jsDelivr for Bootstrap styling when opened. <br>
-Mitigation: Open reports only in environments where that external request is acceptable, or remove the remote stylesheet before sharing or archiving the report. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Docker disk usage, identify reclaimable resources, and run controlled cleanup and reporting commands for local Docker environments.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus optional JSON output and generated HTML report files from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The default workflow is analysis-only; cleanup flags can prune Docker resources, and report mode writes a timestamped HTML file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Docker prune commands can remove stopped containers, dangling images, unused networks, or unused volumes, and force mode bypasses interactive confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run analysis mode first, review Docker's unused-resource list, avoid --force and broad --all or --volumes cleanup on important systems, and ensure backups exist before pruning volumes.
+
+Risk: Generated HTML reports load Bootstrap CSS from jsDelivr when opened.
+
+Mitigation: Use plain text or JSON output when offline or avoiding third-party network requests, or review the HTML report dependency before opening it in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericlooi504/skills/docker-cleanup)
+- [Publisher profile](https://clawhub.ai/user/ericlooi504)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; script output may be plain text, JSON, or HTML report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can inspect Docker resources and, when cleanup flags are used, invoke Docker prune commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

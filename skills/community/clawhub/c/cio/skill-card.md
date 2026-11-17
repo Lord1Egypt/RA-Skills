@@ -1,43 +1,56 @@
-## Description: <br>
-Drive IT strategy, digital transformation, vendor management, architecture decisions, and technology governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive IT strategy, digital transformation, vendor management, architecture decisions, and technology governance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Business and technology leaders use this skill as virtual CIO support for IT strategy, digital transformation, vendor evaluation, architecture governance, budgeting, operations, and data strategy decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recommendations about vendors, budgets, architecture, contracts, or compliance may materially affect business decisions. <br>
-Mitigation: Treat outputs as decision support and have qualified business, legal, security, or finance stakeholders review before acting. <br>
-Risk: Generic CIO frameworks can be misapplied when company stage, team size, current stack, constraints, or budget posture are missing. <br>
-Mitigation: Collect the skill's decision-checklist context before applying recommendations to a specific organization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cio) <br>
-- [IT Strategy Frameworks](strategy.md) <br>
-- [Vendor Management](vendors.md) <br>
-- [Architecture Decisions](architecture.md) <br>
-- [Digital Transformation Playbooks](transformation.md) <br>
+## Use Case:
 
+Business and technology leaders use this skill as a virtual CIO planning aid for IT strategy, digital transformation, vendor management, architecture governance, budget control, operations, and data strategy.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, templates, checklists, scorecards, and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only advisory output; no executable behavior or requested system access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CIO-style planning output can influence vendor contracts, budgets, compliance, and architecture governance if treated as final authority.
+
+Mitigation: Treat outputs as advisory and keep final business decisions under normal human review.
+
+Risk: Recommendations may be incomplete when company stage, team size, current stack, industry constraints, or budget posture are missing.
+
+Mitigation: Gather the skill's decision-checklist context before using recommendations for planning or governance.
+
+## Reference(s):
+
+- [Chief Information Officer ClawHub Skill](https://clawhub.ai/ivangdavila/skills/cio)
+- [IT Strategy Frameworks](artifact/strategy.md)
+- [Vendor Management](artifact/vendors.md)
+- [Architecture Decisions](artifact/architecture.md)
+- [Digital Transformation Playbooks](artifact/transformation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown advisory guidance, checklists, scorecards, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output intended for human review before business, compliance, budget, vendor, or architecture decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

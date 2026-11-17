@@ -1,42 +1,52 @@
-## Description: <br>
-Implements UCP broadcast of buyer intents to eligible nodes, including message signing, routing, acknowledgement handling, and quote-intake response streaming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement UCP broadcast of buyer intents to eligible nodes, including message signing, routing, and ack handling.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to implement UCP publish/subscribe behavior that broadcasts signed buyer intents to eligible nodes, tracks acknowledgements, and feeds responses into quote intake.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Referenced runtime code may handle private keys, buyer intent data, target nodes, retries, and quote responses outside the reviewed artifact.
+
+Mitigation: Before installing or using the skill, confirm that the separate runtime package is available and review that code independently.
+
+Risk: Incorrect canonical serialization, signing, or retry handling could cause failed dispatch, invalid acknowledgements, or duplicate broadcast attempts.
+
+Mitigation: Keep JSON serialization deterministic, attach the protocol version to every envelope, record per-node retry counters, and stop retries after a configured threshold.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Universal Commerce Protocol publish/subscribe behavior that signs buyer intent messages, broadcasts them to eligible nodes, tracks acknowledgements, and feeds quote responses into intake. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Signing keys or buyer intents could be exposed if they are logged or stored too broadly. <br>
-Mitigation: Keep signing keys in a secure scoped key store, avoid logging private keys or full buyer intents, and review any referenced runtime package before production use. <br>
-Risk: Broadcasts could reach unauthenticated or unapproved nodes. <br>
-Mitigation: Send broadcasts only to authenticated, approved nodes, and enforce per-node acknowledgement tracking and retry thresholds. <br>
-Risk: Inconsistent message serialization or missing protocol versions could break signature verification and interoperability. <br>
-Mitigation: Use deterministic canonical JSON serialization and attach the protocol version to every broadcast envelope. <br>
+**Output Format:** [Markdown implementation guidance with suggested file paths, contracts, event mappings, guardrails, and validation commands.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/a2a-market-ucp-broadcast) <br>
+**Other Properties Related to Output:** [No executable code is included in the reviewed artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with implementation contracts and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes signing, routing, acknowledgement, retry, and protocol-version guardrails; no shell execution is requested.] <br>
+0.2.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

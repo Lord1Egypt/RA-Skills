@@ -1,45 +1,60 @@
-## Description: <br>
-AI开发者发布助手 automates release-content work for GitHub projects by researching comparable projects, generating project visuals, and preparing a WeChat article. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI开发者发布助手 automates GitHub project release content by researching competitors, generating project cover images, and producing a WeChat-ready technical article.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers, open-source maintainers, and developer-relations teams use this skill to prepare release announcements, project introductions, cover images, competitor analysis, and WeChat-ready technical articles from a public GitHub project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may send project information and generated publishing assets to external services. <br>
-Mitigation: Use the skill only with public or non-sensitive projects and review workflow.json before installing or running it. <br>
-Risk: The workflow includes Feishu notifications that may disclose run status or publishing context if left enabled unintentionally. <br>
-Mitigation: Disable Feishu notifications unless the target channel is intended and authorized. <br>
-Risk: Generated release articles and images may be inaccurate or unsuitable for publication. <br>
-Mitigation: Manually review generated articles and images before uploading or publishing to WeChat. <br>
-Risk: Brave and WeChat credentials are needed for parts of the workflow. <br>
-Mitigation: Use least-privilege credentials and avoid running the workflow with accounts or tokens that have broader access than required. <br>
+## Use Case:
 
+External developers, open-source maintainers, and developer-relations teams use this skill to turn a project name, tagline, and GitHub repository URL into competitor research, visual release assets, and a WeChat-ready announcement article.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zlszhonglongshen/ai-dev-release-helper) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zlszhonglongshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, images] <br>
-**Output Format:** [Markdown, JSON metadata, shell command examples, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces competitor_analysis.md, cover image, feature image, and article.md outputs in the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Project metadata, prompts, generated images, and article content may be sent to external search, image-generation, and WeChat-related services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public or authorized repository content, confirm service terms and data handling before installation, and avoid submitting confidential release material.
+
+Risk: Generated competitor research, imagery, and WeChat article content may be inaccurate, outdated, or unsuitable for publication.
+
+Mitigation: Review and fact-check generated assets and article content before using them in a public release or WeChat publication.
+
+Risk: The workflow relies on mutable delegated skills and installer behavior.
+
+Mitigation: Prefer pinned or reviewed versions of the installer and delegated skills before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-dev-release-helper)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+- [ClawHub install source](https://clawhub.com/ai-dev-release-helper.git)
+- [Example GitHub repository input](https://github.com/example/litai)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown files, generated image files, and JSON workflow output metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces competitor_analysis.md, cover and feature images, and article.md for review before publication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

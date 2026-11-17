@@ -1,40 +1,50 @@
-## Description: <br>
-Generate high-converting landing page copy — headlines, subheads, feature sections, social proof blocks, CTAs, FAQs, and objection handlers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-converting landing page copy: headlines, subheads, feature sections, social proof blocks, CTAs, FAQs, and objection handlers for SaaS, e-commerce, services, and lead generation pages.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External marketers, SaaS founders, agencies, e-commerce teams, and freelancers use this skill to draft landing page copy, headline variants, CTA options, pricing-page copy, FAQs, and objection-handling sections for conversion-focused pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Metadata lists crypto and purchase capability tags even though the visible skill is markdown-only copywriting content. <br>
-Mitigation: Use this as a prompt/template skill only; do not grant wallet, payment, purchase, or transaction permissions for this release. <br>
-Risk: Generated landing-page copy can include unverified social proof, guarantees, urgency, or comparative claims. <br>
-Mitigation: Review generated copy against real evidence, legal requirements, and brand policy before publishing. <br>
+## Use Case:
 
+Marketing teams, founders, agencies, freelancers, and e-commerce operators use this skill to draft landing page copy, CTA variants, FAQs, objection handling, and conversion-oriented page sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tktk-ai/tk-landing-page-copy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown landing page copy with section headings, variants, FAQs, CTAs, and supporting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces copywriting drafts; users provide product, audience, benefit, pricing, social proof, and differentiation details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: Generated marketing copy may include unsupported testimonials, statistics, urgency, guarantees, or competitor claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and substantiate factual, comparative, legal, guarantee, and scarcity claims before publishing.
+
+## Reference(s):
+
+- [Landing Page Copy Generator on ClawHub](https://clawhub.ai/tktk-ai/skills/tk-landing-page-copy)
+- [Publisher profile](https://clawhub.ai/user/tktk-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown landing page copy with section headings, variants, bullet lists, FAQ entries, and CTA text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for factual accuracy before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

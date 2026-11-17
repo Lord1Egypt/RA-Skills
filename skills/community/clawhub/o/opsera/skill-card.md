@@ -1,42 +1,55 @@
-## Description: <br>
-Use the bundled Opsera executable as the Xshell replacement for VPN-launched sessions so an agent can run commands or upload and download files through a current VPN-created .xsh local SSH tunnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the bundled Opsera executable as the Xshell replacement for VPN-launched sessions.
 
-## Publisher: <br>
-[tao-vin](https://clawhub.ai/user/tao-vin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tao-vin](https://clawhub.ai/user/tao-vin)
 
-## Use Case: <br>
-Developers and operators use this skill to manage SSH command execution and file transfer through VPN-launched Xshell .xsh tunnels with the bundled Opsera executable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run remote SSH commands and transfer files on servers reachable through configured VPN and Xshell sessions. <br>
-Mitigation: Review target server inventory and SSH configuration before use, prefer least-privilege deploy users, and verify commands and upload or download paths before execution. <br>
-Risk: Wildcard, batch, root, or production commands may affect more systems or data than intended. <br>
-Mitigation: Use explicit targets and paths, avoid broad production commands unless deliberately authorized, and confirm user intent before high-impact operations. <br>
+## Use Case:
 
+Developers and agents use this skill to run remote commands and transfer files through current VPN-created Xshell .xsh SSH tunnel sessions with the bundled Opsera executable.
 
-## Reference(s): <br>
-- [ClawHub Opsera Skill Page](https://clawhub.ai/tao-vin/opsera) <br>
-- [Opsera GitHub Repository](https://github.com/tao-vin/opsera) <br>
-- [Opsera Releases](https://github.com/tao-vin/opsera/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the bundled opsera.exe executable for GUI or CLI workflows over existing .xsh tunnel files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill depends on a missing bundled executable that would handle SSH credentials and remote command and file operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Opsera executable source and binary provenance before installing or using the skill.
+
+Risk: The skill is intended to operate over SSH sessions using stored .xsh connection details.
+
+Mitigation: Use it only with trusted VPN and Xshell sessions, confirm the intended remote host before execution, and avoid exposing passwords.
+
+## Reference(s):
+
+- [Opsera GitHub Repository](https://github.com/tao-vin/opsera)
+- [Opsera Releases](https://github.com/tao-vin/opsera/releases)
+- [ClawHub Skill Page](https://clawhub.ai/tao-vin/skills/opsera)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local .xsh session details and writes Opsera events under the user's local application data directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

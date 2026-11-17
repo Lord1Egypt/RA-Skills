@@ -1,40 +1,51 @@
-## Description: <br>
-Comprehensive video/audio processing with FFmpeg for transcoding, cutting, merging, audio extraction, thumbnails, GIFs, speed adjustments, filters, subtitles, and watermarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process video and audio using FFmpeg CLI for transcoding, cutting, merging, audio extraction, thumbnails, GIFs, speed changes, filters, subtitles, and watermarks.
 
-## Publisher: <br>
-[ascendswang](https://clawhub.ai/user/ascendswang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ascendswang](https://clawhub.ai/user/ascendswang)
 
-## Use Case: <br>
-Developers and media engineers use this skill to generate and run local FFmpeg command workflows for common video and audio processing tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The FFmpeg helper scripts can overwrite existing output files. <br>
-Mitigation: Use fresh output filenames and review target paths before running generated commands. <br>
-Risk: Untrusted filenames or merge file lists can affect local FFmpeg command behavior. <br>
-Mitigation: Use only trusted local media files and avoid passing filenames or file lists from untrusted sources, especially to merge.sh. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ascendswang/ffmpeg-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/ascendswang) <br>
+## Use Case:
+
+Developers and media operators use this skill to process local audio and video files for conversion, trimming, merging, audio extraction, thumbnail and GIF creation, speed adjustment, and watermarking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bundled FFmpeg helpers can overwrite output files without confirmation.
+
+Mitigation: Use deliberate output filenames, avoid paths that point to valuable existing files, and work on copies when processing important media.
+
+Risk: Untrusted filenames, output paths, playback rates, or watermark positions may be unsafe unless the scripts are hardened first.
+
+Mitigation: Use trusted media paths and validated parameter values; review and harden the scripts before allowing an agent to choose these inputs automatically.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and script usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local FFmpeg workflows that may create or overwrite media files selected by the user.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg to be installed in the execution environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

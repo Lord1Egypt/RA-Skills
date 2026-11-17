@@ -1,41 +1,52 @@
-## Description: <br>
-Monitor and control Snapmaker U1 3D printers through Moonraker/Klipper for status, temperatures, progress, filament data, file listing, and print operations such as pause, resume, and cancel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and control Snapmaker U1 3D printers through the Moonraker/Klipper API, including status, temperatures, filament data, progress, file listings, and print controls.
 
-## Publisher: <br>
-[LucaKaufmann](https://clawhub.ai/user/LucaKaufmann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[lucakaufmann](https://clawhub.ai/user/lucakaufmann)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers, makers, and printer operators use this skill to let an agent monitor Snapmaker U1 printer state, temperatures, filament RFID and sensor data, progress, available G-code files, and active print controls. It is also suitable when an agent needs to prepare or run documented Snapmaker CLI commands for Moonraker/Klipper-based printer management.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Raw G-code support can move hardware, heat components, invoke printer macros, or otherwise change physical printer state.
+
+Mitigation: Remove or restrict the raw G-code command path when it is not required, and require explicit operator confirmation before sending raw G-code.
+
+Risk: State-changing controls such as cancel, pause, and resume can interrupt or alter an active physical print.
+
+Mitigation: Confirm the target printer and requested action before state-changing commands, especially cancel, and limit use to trusted operators and printers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and printer operators use this skill to inspect Snapmaker U1 printer status, temperatures, filament data, progress, and files, and to issue print-control commands through Moonraker/Klipper. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Printer-control commands can directly affect physical hardware, including pause, resume, and cancel operations. <br>
-Mitigation: Configure the skill only for the intended printer and require explicit user confirmation before issuing control commands. <br>
-Risk: Raw G-code can have physical effects that are not fully documented by the skill. <br>
-Mitigation: Avoid raw G-code unless the user has personally verified the command and understands its effect on the printer. <br>
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Snapmaker U1 ClawHub release](https://clawhub.ai/LucaKaufmann/snapmaker) <br>
-- [LucaKaufmann publisher profile](https://clawhub.ai/user/LucaKaufmann) <br>
+**Other Properties Related to Output:** [Includes monitoring/status output, filament and temperature summaries, print control commands, file listings, and raw G-code command support.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Python CLI commands that query or control a configured Snapmaker printer.] <br>
+1.0.0 (source: release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

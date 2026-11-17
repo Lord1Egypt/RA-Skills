@@ -1,43 +1,59 @@
-## Description: <br>
-Audits cryptocurrency addresses and stock tickers from a local portfolio file, then reports estimated current holdings using public, read-only market data APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits cryptocurrency addresses and stock tickers from a local portfolio file, returning current value summaries from public read-only APIs.
 
-## Publisher: <br>
-[sahil1005](https://clawhub.ai/user/sahil1005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sahil1005](https://clawhub.ai/user/sahil1005)
 
-## Use Case: <br>
-Developers and individual portfolio users can run the skill locally to review configured cryptocurrency and stock holdings without giving the agent private keys or exchange credentials. It is intended for read-only portfolio visibility, not trading or custody. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, stock symbols, and market-data queries may be sent to third-party API providers. <br>
-Mitigation: Review portfolio.json before use and only include identifiers you are comfortable sending to services such as Etherscan, CoinGecko, or a configured stock data provider. <br>
-Risk: Accidentally storing secrets in the portfolio file could expose sensitive financial access material to local tooling or downstream logs. <br>
-Mitigation: Never place private keys, seed phrases, exchange credentials, account passwords, or broad-scope API keys in portfolio.json. <br>
-Risk: Market data can be unavailable, rate-limited, delayed, or represented by placeholder values for stock prices. <br>
-Mitigation: Treat the output as an informational estimate and verify values with authoritative financial systems before making financial decisions. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to inspect local cryptocurrency and stock portfolio entries and receive a read-only value summary without providing private keys.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sahil1005/local-portfolio-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/sahil1005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text portfolio summary with stderr warnings for missing API keys or unavailable data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local JSON portfolio file and may query CoinGecko, Etherscan, or stock market data providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Portfolio lookup data, including coin IDs, Ethereum wallet addresses, and an optional Etherscan API key, is sent to third-party public APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public wallet addresses that are acceptable to query externally, use a limited Etherscan API key, and review API provider terms and rate limits before deployment.
+
+Risk: Failed runs or troubleshooting output could expose sensitive portfolio lookup details or API-key related context in shared logs.
+
+Mitigation: Avoid sharing raw logs from failed runs and redact wallet addresses, portfolio contents, and API-key material before support or review.
+
+Risk: The pinned requests dependency and placeholder stock-pricing behavior may be unsuitable for production portfolio reporting.
+
+Mitigation: Update the requests dependency before production use and integrate a validated stock data provider before relying on stock valuations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sahil1005/skills/local-portfolio-auditor)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text portfolio summary with setup and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads portfolio.json locally, queries public market-data APIs, and prints holdings plus total estimated value.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact SKILL.md states 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 
 import argparse
+import hashlib
 import json
 import sys
+import threading
 import time
 import uuid
 import urllib.request
 import urllib.error
 import urllib.parse
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
 # ============================================================
@@ -356,11 +359,8 @@ def get_wechat_login_url(send_code: str) -> str:
     )
 
 
-def fetch_miniprogram_code(send_code: str, output_path: str = None) -> str:
-    """调用小程序码 API，下载图片，返回本地文件路径。"""
-    import os
-    import tempfile
-
+def _download_miniprogram_image(send_code: str) -> bytes:
+    """调用小程序码 API，下载图片二进制数据。返回 (image_data, image_url)。"""
     payload = {
         "scene": f"sendCode={send_code}",
         "path": "userPages/login/index",
@@ -412,6 +412,16 @@ def fetch_miniprogram_code(send_code: str, output_path: str = None) -> str:
     if not image_data:
         raise RuntimeError("获取小程序码失败: 图片数据为空")
 
+    return image_data
+
+
+def fetch_miniprogram_code(send_code: str, output_path: str = None) -> str:
+    """调用小程序码 API，下载图片，返回本地文件路径。"""
+    import os
+    import tempfile
+
+    image_data = _download_miniprogram_image(send_code)
+
     if not output_path:
         output_dir = tempfile.gettempdir()
         output_path = os.path.join(output_dir, f"miniprogram_code_{send_code}.jpg")
@@ -422,11 +432,221 @@ def fetch_miniprogram_code(send_code: str, output_path: str = None) -> str:
     return output_path
 
 
-def poll_for_token(send_code: str, poll_url: str = None, verbose: bool = True) -> str:
+def _get_cancel_port(send_code: str) -> int:
+    """根据 send_code 生成一个可预测的取消服务端口（范围 10000-60000）。"""
+    h = int(hashlib.md5(send_code.encode()).hexdigest(), 16)
+    return 10000 + (h % 50000)
+
+
+def _start_cancel_server(port: int, cancel_event: threading.Event):
+    """在后台线程启动一个简易 HTTP 服务器，/cancel 路径触发取消事件。"""
+
+    class CancelHandler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            if self.path == "/cancel":
+                cancel_event.set()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(json.dumps({"cancelled": True}).encode("utf-8"))
+            else:
+                self.send_response(404)
+                self.end_headers()
+
+        def do_OPTIONS(self):
+            self.send_response(200)
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "*")
+            self.end_headers()
+
+        def log_message(self, format, *args):
+            pass  # 静默日志
+
+    server = HTTPServer(("127.0.0.1", port), CancelHandler)
+    t = threading.Thread(target=server.serve_forever, daemon=True)
+    t.start()
+    return server
+
+
+def generate_code_html(send_code: str, output_path: str = None,
+                       cancel_port: int = None) -> str:
+    """生成包含小程序码的自适应 HTML 页面，返回 HTML 文件路径。"""
+    import base64
+    import os
+    import tempfile
+
+    image_data = _download_miniprogram_image(send_code)
+    b64 = base64.b64encode(image_data).decode("ascii")
+    data_uri = f"data:image/jpeg;base64,{b64}"
+
+    html = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小智回收 - 授权登录</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 32px 24px 28px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+.subtitle {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 24px;
+}
+.qr-box {
+  display: inline-block;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 12px;
+  line-height: 0;
+}
+.qr-box img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+}
+.hint {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #07c160;
+}
+.hint::before {
+  content: "📱";
+  margin-right: 6px;
+}
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #bbb;
+}
+.spinner {
+  display: none;
+  margin-top: 16px;
+  color: #07c160;
+  font-size: 14px;
+}
+.spinner.show { display: block; }
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.dots::after {
+  content: "...";
+  animation: pulse 1.5s infinite;
+}
+.btn-cancel {
+  display: CANCEL_DISPLAY;
+  margin-top: 20px;
+  padding: 10px 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  color: #999;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-cancel:hover {
+  border-color: #ff4d4f;
+  color: #ff4d4f;
+  background: #fff1f0;
+}
+.btn-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.cancel-msg {
+  display: none;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #ff4d4f;
+}
+.cancel-msg.show { display: block; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="title">小智回收</div>
+  <div class="subtitle">微信扫码确认授权</div>
+  <div class="qr-box">
+    <img src="DATA_URI_PLACEHOLDER" alt="小程序码">
+  </div>
+  <div class="hint">请使用微信扫描上方小程序码</div>
+  <div class="footer">扫码后即可完成身份认证，系统将自动提交订单</div>
+  <button class="btn-cancel" onclick="handleCancel()">取消下单</button>
+  <div class="cancel-msg" id="cancelMsg">已取消，可关闭此页面</div>
+</div>
+<script>
+var cancelPort = CANCEL_PORT_JS;
+function handleCancel() {
+  var btn = document.querySelector('.btn-cancel');
+  var msg = document.getElementById('cancelMsg');
+  btn.disabled = true;
+  btn.textContent = '正在取消...';
+  fetch('http://127.0.0.1:' + cancelPort + '/cancel')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.cancelled) {
+        btn.style.display = 'none';
+        msg.classList.add('show');
+      }
+    })
+    .catch(function() {
+      btn.textContent = '取消下单';
+      btn.disabled = false;
+    });
+}
+</script>
+</body>
+</html>"""
+    html = (html.replace("DATA_URI_PLACEHOLDER", data_uri)
+                .replace("CANCEL_DISPLAY", "block" if cancel_port else "none")
+                .replace("CANCEL_PORT_JS", str(cancel_port) if cancel_port else "0"))
+
+    if not output_path:
+        output_dir = tempfile.gettempdir()
+        output_path = os.path.join(output_dir, f"miniprogram_auth_{send_code}.html")
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    return output_path
+
+
+def poll_for_token(send_code: str, poll_url: str = None, verbose: bool = True,
+                   cancel_event: threading.Event = None) -> str:
     url = (poll_url or DEFAULT_POLL_URL) + "?sendCode=" + send_code
     if verbose:
         print(f"\u8f6e\u8be2\u6388\u6743\u72b6\u6001 (sendCode: {send_code})...")
     for i in range(POLL_MAX_ATTEMPTS):
+        if cancel_event and cancel_event.is_set():
+            raise KeyboardInterrupt("\u7528\u6237\u53d6\u6d88\u4e86\u6388\u6743")
         try:
             with urllib.request.urlopen(url, timeout=10) as resp:
                 body = json.loads(resp.read().decode("utf-8"))
@@ -645,6 +865,7 @@ def create_clothing_order(params: dict, admtoken: str,
         "areaName": params.get("area_name", ""),
         "cityId": int(params.get("city_id", 0)),
         "cityName": params.get("city_name", ""),
+        "estimatedPrice": str(item_price * item_weight),
         "inExpress": CLOTHING_IN_EXPRESS,
         "inExpressTime": params.get("in_express_time", ""),
         "mobile": params.get("mobile", ""),
@@ -654,6 +875,7 @@ def create_clothing_order(params: dict, admtoken: str,
                 "goodsType": CLOTHING_GOODS_TYPE,
                 "itemCates": CLOTHING_ITEM_CATES,
                 "itemCatesId": CLOTHING_CATEGORY_ID,
+                "itemModel": str(item_weight),
                 "itemName": CLOTHING_ITEM_NAME,
                 "itemPrice": item_price,
                 "itemWeight": item_weight,
@@ -768,6 +990,8 @@ def main():
     parser.add_argument("--code-type", choices=["qrcode", "miniprogram"], default="miniprogram",
                         help="授权方式: qrcode(网页二维码) / miniprogram(小程序码，默认)")
     parser.add_argument("--code-output", help="小程序码图片输出路径")
+    parser.add_argument("--code-html", action="store_true",
+                        help="生成包含小程序码的自适应 HTML 页面（适配网页聊天等各种终端）")
 
     # ---- 接口地址覆盖 ----
     parser.add_argument("--base-url",
@@ -791,7 +1015,21 @@ def main():
     # ========================================
     if args.login_url_only:
         sc = args.send_code or generate_send_code()
-        if args.code_type == "miniprogram":
+        if args.code_html:
+            # 生成 HTML 页面（小程序码 base64 内嵌），含取消按钮
+            cancel_port = _get_cancel_port(sc)
+            try:
+                html_path = generate_code_html(sc, args.code_output,
+                                               cancel_port=cancel_port)
+                result = {
+                    "send_code": sc,
+                    "code_html": html_path,
+                    "code_type": "miniprogram_html",
+                }
+            except RuntimeError as e:
+                print(f"生成授权页面失败: {e}", file=sys.stderr)
+                sys.exit(1)
+        elif args.code_type == "miniprogram":
             try:
                 img_path = fetch_miniprogram_code(sc, args.code_output)
                 result = {
@@ -853,6 +1091,11 @@ def main():
     # --- 微信授权 ---
     admtoken = args.admtoken
     if not admtoken and args.send_code:
+        # 启动取消服务器（用于 HTML 页面取消按钮）
+        cancel_port = _get_cancel_port(args.send_code)
+        cancel_event = threading.Event()
+        cancel_server = _start_cancel_server(cancel_port, cancel_event)
+
         if args.code_type == "miniprogram":
             print("请扫描小程序码确认授权后，系统将自动提交订单...")
         else:
@@ -860,10 +1103,16 @@ def main():
             print(get_wechat_login_url(args.send_code))
             print()
         try:
-            admtoken = poll_for_token(args.send_code, args.poll_url)
+            admtoken = poll_for_token(args.send_code, args.poll_url,
+                                       cancel_event=cancel_event)
+        except KeyboardInterrupt as e:
+            print(f"\n{e}", file=sys.stderr)
+            sys.exit(0)
         except (RuntimeError, TimeoutError) as e:
             print(f"授权失败: {e}", file=sys.stderr)
             sys.exit(1)
+        finally:
+            cancel_server.shutdown()
 
     if not admtoken:
         print("请提供 --admtoken 或 --send-code 参数", file=sys.stderr)
@@ -878,7 +1127,8 @@ def main():
                                "in_express_time", "detail",
                                "clothing_price_url", "clothing_order_url",
                                "prov_id", "city_id", "area_id",
-                               "query_price_only", "code_type", "code_output")}
+                               "query_price_only", "code_type", "code_output",
+                               "code_html")}
 
         if not params.get("sale_item_name"):
             params["sale_item_name"] = params.get("item_cates", "")

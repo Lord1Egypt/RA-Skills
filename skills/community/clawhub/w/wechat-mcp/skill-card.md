@@ -1,41 +1,60 @@
-## Description: <br>
-MCP skill for monitoring the Windows desktop WeChat client, checking its window status, and sending messages from the active logged-in WeChat session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat MCP lets an agent check a Windows desktop WeChat window and send messages through MCP or direct Python desktop automation.
 
-## Publisher: <br>
-[dragon015](https://clawhub.ai/user/dragon015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dragon015](https://clawhub.ai/user/dragon015)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an MCP-capable agent inspect a local WeChat desktop window and send messages through the user's active WeChat account. It is intended for Windows desktop automation where the user has WeChat open and understands that messages are sent from their logged-in session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages from the user's logged-in WeChat desktop session without recipient verification or an explicit confirmation step. <br>
-Mitigation: Keep only the intended chat active, require manual review before tool calls that send messages, and prefer a version that verifies the recipient before sending. <br>
-Risk: The skill leaves generated chat screenshots on disk during verification. <br>
-Mitigation: Delete generated screenshot files after use and prefer a version that avoids saving screenshots by default. <br>
-Risk: Desktop automation can alter the active window and clipboard while the agent is operating WeChat. <br>
-Mitigation: Run the skill only in a controlled desktop session, avoid concurrent clipboard use, and prefer a version that preserves clipboard contents and keeps PyAutoGUI FAILSAFE enabled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dragon015/wechat-mcp) <br>
+## Use Case:
 
+External users and developers can use this skill to expose Windows desktop WeChat status checks and current-chat message sending to an agent through MCP or direct Python calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [MCP tool responses as text or JSON, with setup and usage guidance in Markdown and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Windows WeChat desktop session and can create screenshot files during verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send messages from the active desktop WeChat session without reliable recipient verification or a final confirmation step.
+
+Mitigation: Add recipient verification and require explicit user confirmation before sending each message.
+
+Risk: The skill can activate WeChat, overwrite the clipboard, paste text, and press Enter in the local desktop session.
+
+Mitigation: Run it only in a least-privileged desktop environment dedicated to the intended WeChat account and workflow.
+
+Risk: Diagnostic screenshots of chat windows can be written to disk.
+
+Mitigation: Make screenshot capture opt-in and clean up screenshot files after diagnostics are complete.
+
+Risk: Dependencies are specified with lower bounds instead of pinned versions.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dragon015/skills/wechat-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [MCP text content with JSON status payloads or plain text send-result messages; diagnostic screenshots may be saved as PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Windows desktop WeChat session and local GUI automation access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

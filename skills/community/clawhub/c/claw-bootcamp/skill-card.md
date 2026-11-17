@@ -1,40 +1,54 @@
-## Description: <br>
-OpenClaw 新手训练营通过闯关游戏逐步帮助刚完成 onboarding 的新用户掌握 OpenClaw 的各项功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 新手训练营 guides newly onboarded OpenClaw users through a seven-level tutorial for search, file operations, scheduled reminders, skills, channels, and a final challenge.
 
-## Publisher: <br>
-[homer212416](https://clawhub.ai/user/homer212416) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[homer212416](https://clawhub.ai/user/homer212416)
 
-## Use Case: <br>
-New OpenClaw users use this skill as an interactive onboarding bootcamp to learn core OpenClaw workflows. It guides them through search, file operations, cron reminders, skills, channel connections, and a final combined challenge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bootcamp may ask users to inspect installed skills, connected channels, or progress identifiers that reveal their OpenClaw setup. <br>
-Mitigation: Use the skill in a private or trusted chat when skill lists, channel connections, or progress identifiers are sensitive. <br>
-Risk: Guided exercises can leave behind practice notes, cron reminders, or progress records after the bootcamp ends. <br>
-Mitigation: Review and remove practice notes, reminders, and training progress records after completion if they should not persist. <br>
+## Use Case:
 
+External OpenClaw users use this skill to learn core OpenClaw features through a guided, game-like bootcamp. It walks the agent through staged onboarding tasks, progress tracking, and a completion certificate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/homer212416/claw-bootcamp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown conversation guidance with optional file output on request] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tracks bootcamp progress in memory and writes practice files or reminders only as part of guided user-requested exercises.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and changelog) <br>
+Risk: The bootcamp can lead the agent through real OpenClaw actions, including web searches, reminder creation, skill or channel listing, and memory progress tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a test or low-risk workspace when trying it for the first time, and exit the bootcamp if it starts unexpectedly.
+
+Risk: The file-operations lesson may create or read a sample notes.md file, and the certificate is saved only when the user explicitly asks for a file.
+
+Mitigation: Review the target workspace before file exercises and only request saved artifacts when persistent files are desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/homer212416/skills/claw-bootcamp)
+- [Publisher Profile](https://clawhub.ai/user/homer212416)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with occasional inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to create reminders, write a notes.md file on request, list skills or channels, and record bootcamp progress in memory.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

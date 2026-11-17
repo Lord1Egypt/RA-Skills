@@ -1,49 +1,67 @@
-## Description: <br>
-Novel Master helps agents plan, draft, and maintain publication-grade Chinese long-form fiction from worldbuilding and character design through outlines, chapter writing, foreshadowing, and quality control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publication-grade Chinese long-form novel writing kit that helps agents plan worlds, characters, outlines, chapters, foreshadowing, and quality control.
 
-## Publisher: <br>
-[bbroot](https://clawhub.ai/user/bbroot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbroot](https://clawhub.ai/user/bbroot)
 
-## Use Case: <br>
-Writers and creative-writing agents use this skill to structure Chinese novels, generate planning documents, draft chapters, track foreshadowing, and check continuity and style across a long-form project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update persistent local project files for outlines, chapters, foreshadowing, conflicts, and progress state. <br>
-Mitigation: Use simple book names without slashes or path components, and ask the agent to confirm before creating or modifying project files when only a quick draft is needed. <br>
+## Use Case:
 
+External writers, creators, and agent operators use this skill to structure and draft Chinese novels from initial concept through long-form continuity management and chapter quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bbroot/skills/novel-master) <br>
-- [README](README.md) <br>
-- [English README](README_EN.md) <br>
-- [Plot Structure](references/plot-structure.md) <br>
-- [Dramaturgy](references/dramaturgy.md) <br>
-- [Character Design](references/character-design.md) <br>
-- [Style Guide](references/style-guide.md) <br>
-- [Scene Writing](references/scene-writing.md) <br>
-- [Foreshadowing](references/foreshadowing.md) <br>
-- [Genres](references/genres.md) <br>
-- [Banned Words and Quality Checks](references/banned-words.md) <br>
-- [Classic Writing Books](references/classic-writing-books.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Chinese prose and Markdown planning drafts, with JSON tracker/state files and optional shell command examples for helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The security scan reports no evidence of hidden data access or exfiltration; normal use creates and updates local files under ~/.qclaw/workspace/novels/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Helper scripts can read or write outside the intended novel workspace when given crafted project names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted novel project names and avoid slashes, backslashes, dots, or absolute paths until path validation and containment checks are added.
+
+Risk: The skill maintains persistent manuscript state under ~/.qclaw/workspace/novels/.
+
+Mitigation: Review expected file changes before running helper scripts and keep project-specific backups for long-running manuscripts.
+
+## Reference(s):
+
+- [README](README.md)
+- [English README](README_EN.md)
+- [Banned Words](references/banned-words.md)
+- [Character Design](references/character-design.md)
+- [Classic Writing Books](references/classic-writing-books.md)
+- [Cognitive Bias](references/cognitive-bias.md)
+- [Dramaturgy](references/dramaturgy.md)
+- [Foreshadowing](references/foreshadowing.md)
+- [Genres](references/genres.md)
+- [Node-Compressed Graph](references/node-compressed-graph.md)
+- [Plot Structure](references/plot-structure.md)
+- [Process per Character](references/process-per-character.md)
+- [Quantum Auditor](references/quantum-auditor.md)
+- [Scene Writing](references/scene-writing.md)
+- [Style Guide](references/style-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with code blocks, JSON state snippets, and Python helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may create and maintain persistent manuscript state under ~/.qclaw/workspace/novels/.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

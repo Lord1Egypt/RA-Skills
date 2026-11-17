@@ -261,6 +261,7 @@ These commands are mainly for manual debugging, local verification, or cases whe
 
 ```bash
 codia-design image-to-design --image ./screenshot.png --out result.json
+codia-design image-to-design --image https://example.com/large-screen.png --poll --out result.json
 codia-design pdf-to-design --pdf ./file.pdf --pages 0,1 --out result.json
 codia-design pdf-to-ppt --pdf ./file.pdf --pages 0,1,2 --title "Deck" --poll --out deck.json
 codia-design image generate --prompt "modern product launch visual" --model seedream_5 --size 2560x1440 --download-dir ./outputs
@@ -272,6 +273,8 @@ codia-design usage --page 1 --page_size 20
 ```
 
 Image-output commands download returned images by default. Pass `--download-dir DIR` to choose the local output directory; the JSON response will include `data.local_file` or `data.local_files` next to the remote URL fields. Use `--no-download` only when a JSON-only response is required.
+
+`image-to-design` supports both synchronous direct conversion and asynchronous Task API conversion. Use the default synchronous command for a single image or images below 2K on the longest edge. Use `--async` to submit an `image_to_design` task, or `--poll` to submit and wait for it, when processing multiple images or large 2K+ images. Async mode requires `--image` to be a public HTTPS URL; local image files are supported by synchronous direct upload.
 
 The CLI calls the public Open API v2 surface (`/v2/open/*`). Billable commands estimate the `open_api_v2` credit cost before running, then query `codia-design credits` after the operation completes. If the remaining `available_credits` is below 2x the estimated cost, the CLI prints a reminder to stderr but does not block generation. Pass `--estimate` to show the estimate without sending the request. Common fixed prices are `pdf-to-design` 13 credits/page, `pdf-to-ppt` 13 credits/page, `image-to-design` 13 credits/request, `remove-bg` 13 credits/request, `image describe` 5 credits/request, `image layering` 27 credits/request, and `svg create` 13 credits/create. Image generation and several edit tools vary by model and resolution. Use `codia-design limits` or the API reference at `https://codia.ai/api-reference#description/introduction` for the live pricing and limits table.
 

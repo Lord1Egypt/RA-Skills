@@ -1,46 +1,68 @@
-## Description: <br>
-Personal network intelligence: remember people, find connections, and draft introductions while storing contacts locally as plain Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal network intelligence for remembering people, finding connections, and drafting introductions with contacts stored locally as plain Markdown files.
 
-## Publisher: <br>
-[ilyabelikin](https://clawhub.ai/user/ilyabelikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyabelikin](https://clawhub.ai/user/ilyabelikin)
 
-## Use Case: <br>
-External users and agent operators use Peeps to maintain a local personal-network knowledge base, retrieve relationship context, find useful connections, and draft introductions from their own contact notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal relationship notes, private notes, contact details, and sensitive context are stored as local plaintext files. <br>
-Mitigation: Keep the mind/peeps folder in a private workspace, avoid recording details you would not want resurfaced, and review files before sharing or committing the workspace. <br>
-Risk: The skill instructs the agent to search the web for people by default and can optionally fetch images. <br>
-Mitigation: Change the instructions or local config to require confirmation before external searches or image fetching, especially for private individuals. <br>
-Risk: Automatic housekeeping can silently alter action history when actions.md is read. <br>
-Mitigation: Review the retention rules before use and require confirmation before cleanup if preserving historical action records matters. <br>
-Risk: Connections to related skills may move information across local datasets or suggest outbound dispatch through Haah. <br>
-Mitigation: Require explicit user approval before cross-skill sharing or outbound dispatch, and verify what context will be included. <br>
+## Use Case:
 
+External users and developers use Peeps to maintain a private local record of people and organizations, retrieve relationship context, find network connections, and draft introductions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilyabelikin/peeps) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ilyabelikin) <br>
-- [Supported agents](https://github.com/vercel-labs/skills#supported-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown contact files, organization files, action queues, concise guidance, and optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores personal relationship records as local plaintext under mind/peeps; optional image fetching and proactive checks depend on local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Sensitive contact and relationship notes are stored as local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or highly sensitive third-party details, and keep the mind/peeps directory out of shared repositories and sync folders.
+
+Risk: External web searches or image downloads can expose names or relationship context outside the local workspace.
+
+Mitigation: Require explicit user confirmation before web searches or image downloads, and leave image fetching disabled unless the user has accepted the privacy tradeoff.
+
+Risk: Mutable update and install paths can pull unreviewed changes.
+
+Mitigation: Review the fetched source and pin the exact release or commit before installing or updating.
+
+Risk: Automatic housekeeping can silently change the action history.
+
+Mitigation: Use the cleanup behavior only where short retention is acceptable, and review or back up actions before relying on them as records.
+
+## Reference(s):
+
+- [Peeps ClawHub listing](https://clawhub.ai/ilyabelikin/skills/peeps)
+- [Publisher profile](https://clawhub.ai/user/ilyabelikin)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Haah skill](https://github.com/haah-ing/haah-skill)
+- [Pages skill](https://github.com/haah-ing/pages-skill)
+- [Vibes skill](https://github.com/haah-ing/vibes-skill)
+- [Digs skill](https://github.com/haah-ing/digs-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, plain text responses, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local mind/peeps Markdown files, organization files, configuration, and action queues.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

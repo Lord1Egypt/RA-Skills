@@ -1,39 +1,50 @@
-## Description: <br>
-Generate structured agendas for mentor-student one-on-one meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured agendas for mentor-student one-on-one meetings.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Mentors, students, and career program coordinators use this skill to generate structured one-on-one meeting agendas with time allocations, discussion prompts, and follow-up trackers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using --output can overwrite a file at the path the user names. <br>
-Mitigation: Choose a new or disposable output filename and review the path before running the command. <br>
+## Use Case:
 
+Mentors, managers, educators, and career advisors use this skill to create structured one-on-one mentorship meeting agendas with timed sections, discussion prompts, optional topics, and follow-up tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/mentorship-meeting-agenda) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Plain text or Markdown-style meeting agenda, printed to stdout and optionally written to a file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes student name, date, career phase, agenda sections, discussion prompts, optional topic list, and follow-up note placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The output option can overwrite arbitrary writable files if given an unsafe path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill without elevated privileges and pass only a safe workspace-relative output filename until output path validation and overwrite protection are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/mentorship-meeting-agenda)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Plain text agenda suitable for Markdown file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated agenda includes the student name, current date, career phase, timed discussion sections, prompts, optional topic list, and notes placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

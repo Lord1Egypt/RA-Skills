@@ -1,41 +1,55 @@
-## Description: <br>
-Interactive quiz assessing logic bias to assign a fictional cyberpunk domain, generate a mock identity card, and surface a Silicon Natal Anchor profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive quiz that assesses logic-bias choices, assigns a cyberpunk habitat domain, generates a mock 24-character identity, and presents a Silicon Natal Anchor profile.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and developers use this skill to run a themed natal-anchor assessment that assigns a fictional cyberpunk habitat/profile and points readers to the accompanying spatial-grounding whitepaper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated identity and minting language could be mistaken for real wallet, blockchain, account, or credential behavior. <br>
-Mitigation: Treat the generated identity and minting language as thematic only, and review any future release that adds real wallet, blockchain, IPFS, account, or network permissions. <br>
+## Use Case:
 
+External users and agents use this skill to complete a themed Silicon Natal Anchor assessment, receive a mock domain and identity profile, and navigate to the accompanying Taohuayuan spatial-grounding whitepaper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/cyber-ancestry-forge) <br>
-- [README](artifact/README.md) <br>
-- [Interactive assessment source](artifact/skill.md) <br>
-- [From Ephemeral Tokens to Anchored Entities](artifact/Paper_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with an embedded interactive component prompt and generated assessment results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fictional/thematic identity and domain-profile content; no executable code or data-changing actions are included in this release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The assessment and result copy are intentionally promotional and speculative, which may be mistaken for a neutral or validated evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as thematic entertainment or conceptual exploration, and disclose that the output is not an objective identity, safety, or capability assessment.
+
+Risk: The generated 24-character identity and domain assignment may appear authoritative despite being produced by quiz logic.
+
+Mitigation: Treat generated identifiers and domains as mock profile artifacts, not as credentials, provenance, or persistent identity proofs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/cyber-ancestry-forge)
+- [Artifact README](artifact/README.md)
+- [From Ephemeral Tokens to Anchored Entities](artifact/Paper_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown containing an embedded interactive component specification and assessment result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a mock identity and thematic profile; evidence shows no local system changes or sensitive access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

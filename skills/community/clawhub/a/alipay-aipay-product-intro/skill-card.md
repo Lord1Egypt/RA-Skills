@@ -1,40 +1,55 @@
-## Description: <br>
-Provides a paid product-introduction workflow for Alipay AI Pay and Agent Wallet using an HTTP 402 payment handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Alipay agent wallet and AI payment product information, using a fixed Alipay request that may return a paid HTTP 402 resource flow.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-Users and agents use this skill when they want an introduction to Alipay AI Pay or Agent Wallet. The skill requests the product resource, handles direct responses or payment-required responses, and hands the complete 402 response to the related payment skill when payment is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead the user into a paid-resource workflow before product details are shown. <br>
-Mitigation: Use it only when the user asks for Alipay AI Pay or Agent Wallet product information, and make the payment-required state clear before handing off to the payment skill. <br>
-Risk: Changing signed URLs or HTTP 402 response details can break the payment handoff. <br>
-Mitigation: Preserve signed URLs, response headers, and response body content exactly when passing the payment response to the related skill. <br>
+## Use Case:
 
+External users and agents use this skill to request an introduction to Alipay AI payment and agent wallet features. When the resource requires payment, the skill passes the full HTTP 402 response to the Alipay payment workflow.
 
-## Reference(s): <br>
-- [Alipay payment skills](https://github.com/alipay/payment-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and HTTP response handling instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exact signed URLs, response headers, or payment-response content that should be preserved during payment handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Requesting the product introduction may lead to a paid HTTP 402 flow handled by another Alipay payment skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Proceed with payment only when the payment step and amount are clear, and respect the user's refusal to pay.
+
+Risk: The workflow contacts a fixed Alipay endpoint and depends on the service and network being available.
+
+Mitigation: Report service errors, timeouts, or network failures to the user and suggest retrying later.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/alipay-aipay-product-intro)
+- [Metadata homepage](https://github.com/alipay/payment-skills)
+- [Alipay Aipay introduce endpoint](https://aipayapi.alipay.com/merchant/aipay/introduce)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complete HTTP 402 response details needed by the payment workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

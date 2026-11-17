@@ -1,39 +1,51 @@
-## Description: <br>
-Install Orderly SDK packages and related dependencies (hooks, UI, features, wallet connectors) using the preferred package manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install Orderly SDK packages and related dependencies (hooks, UI, features, wallet connectors) using the preferred package manager.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers building Orderly Network DEX integrations use this skill to choose and install the SDK, UI, feature, wallet connector, Tailwind, and Vite dependency sets needed for their project. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Package installation commands could add unintended or unpinned dependencies to a production wallet or DEX project. <br>
-Mitigation: Review package names before running commands, consider pinning versions, and audit dependencies before production use. <br>
-Risk: Wallet connector setup may require extra dependency and browser polyfill choices that affect runtime behavior. <br>
-Mitigation: Install only the wallet connector path required by the project and verify Tailwind and Vite configuration changes in the target application. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-install-dependency) <br>
+## Use Case:
+
+Developers and engineers use this skill when starting or updating DEX projects that need Orderly SDK packages, wallet connectors, UI modules, Tailwind setup, and Vite polyfill guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Installing unnecessary wallet, trading, or authentication packages can expand project dependency and security exposure.
+
+Mitigation: Review the listed npm packages before installing and add only the modules required by the project.
+
+Risk: Package-version mismatches across Orderly SDK modules can cause integration failures.
+
+Mitigation: Use compatible versions across Orderly SDK packages, following the skill's version-alignment guidance.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, TypeScript, and CSS code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces package installation guidance and configuration snippets for JavaScript and React projects.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash, JSON, TypeScript, and CSS snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces install and configuration guidance; it does not automatically execute package installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

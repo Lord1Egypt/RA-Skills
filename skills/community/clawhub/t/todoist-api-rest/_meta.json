@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7eef4bcakev7qgqhdnyj1wqs814dhe",
-  "slug": "todoist-api-rest",
+  "name": "todoist-api-rest",
   "version": "1.0.0",
-  "publishedAt": 1772562136646
+  "description": "Direct Todoist API integration via curl/jq. Lightweight, reliable, and uses working v1/v2 endpoints.",
+  "author": "Justin Yu",
+  "tags": ["productivity", "api", "todoist"]
 }

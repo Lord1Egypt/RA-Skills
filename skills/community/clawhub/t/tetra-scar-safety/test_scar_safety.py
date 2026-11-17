@@ -69,7 +69,7 @@ def tmp_audit_dir(tmp_path):
 
     # File with a secret
     secret = tmp_path / "config.py"
-    secret.write_text('API_KEY = "AKIAIOSFODNN7EXAMPLE1"\n')
+    secret.write_text('API_KEY = "REDACTED-SECRET1"\n')
 
     # Dangerous shell script
     danger = tmp_path / "cleanup.sh"
@@ -159,7 +159,7 @@ class TestSafetyCheckBuiltin:
         assert result["severity"] == "MEDIUM"
 
     def test_aws_key_detected(self):
-        result = safety_check('export AWS_KEY="AKIAIOSFODNN7EXAMPLE1"')
+        result = safety_check('export AWS_KEY="REDACTED-SECRET1"')
         assert result["safe"] is False
         assert "secret" in result["reason"].lower() or "AWS" in result["reason"]
 
@@ -172,7 +172,7 @@ class TestSafetyCheckBuiltin:
         assert result["safe"] is False
 
     def test_github_token_detected(self):
-        result = safety_check("GITHUB_TOKEN=ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefgh1234")
+        result = safety_check("GITHUB_TOKEN=REDACTED-SECRET")
         assert result["safe"] is False
 
     def test_password_assignment_detected(self):
@@ -359,7 +359,7 @@ class TestAudit:
         git_dir = tmp_path / ".git"
         git_dir.mkdir()
         secret_file = git_dir / "config.py"
-        secret_file.write_text('API_KEY = "AKIAIOSFODNN7EXAMPLE1"\n')
+        secret_file.write_text('API_KEY = "REDACTED-SECRET1"\n')
 
         issues = audit(str(tmp_path))
         # .git dir should be skipped

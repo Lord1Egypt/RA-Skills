@@ -1,0 +1,9 @@
+{
+  "name": "text-to-elegant-image",
+  "version": "1.2.0",
+  "description": "Puppeteer script runner for MD to Long Image skill",
+  "main": "scripts/export_image.js",
+  "dependencies": {
+    "puppeteer-core": "^22.0.0"
+  }
+}

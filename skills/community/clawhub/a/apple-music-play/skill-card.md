@@ -1,45 +1,58 @@
-## Description: <br>
-Play Apple Music songs on macOS using clawtunes, including streaming catalog tracks via a keyboard-navigation workaround after opening the song in Music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Apple Music songs on macOS using clawtunes with keyboard navigation to stream catalog tracks via the Music app and local library.
 
-## Publisher: <br>
-[skaravind](https://clawhub.ai/user/skaravind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skaravind](https://clawhub.ai/user/skaravind)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to play songs, artists, albums, playlists, or moods in Apple Music on macOS when direct library playback or normal AppleScript control is not enough. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: macOS Accessibility and Automation permissions allow the scripts to send keyboard input to the Music app. <br>
-Mitigation: Install only in trusted environments, review the scripts before use, grant permissions deliberately, and revoke them when no longer needed. <br>
-Risk: Apple Music catalog searches send search terms to Apple. <br>
-Mitigation: Avoid sensitive search queries and prefer direct library playback when search privacy matters. <br>
-Risk: The playlist helper can create playlists and modify the user's Music library. <br>
-Mitigation: Review or remove scripts/playlist_create.py if only playback is needed, and confirm intent before running playlist creation commands. <br>
-Risk: Catalog playback relies on Music app UI focus and keyboard navigation, so it may not always play the requested track. <br>
-Mitigation: Check the command's JSON status fields after playback attempts and state plainly when playback did not switch to the requested song. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to play songs, artists, albums, playlists, or moods in Apple Music on macOS when direct library playback is insufficient.
 
-## Reference(s): <br>
-- [Apple Music Play on ClawHub](https://clawhub.ai/skaravind/apple-music-play) <br>
-- [Apple iTunes Search API endpoint](https://itunes.apple.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with Apple Music, clawtunes, python3, osascript, open, and Accessibility/Automation permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill automates the macOS Music app through Accessibility and Automation permissions and can send catalog searches to Apple.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running, grant permissions only in a trusted macOS session, and avoid sensitive search queries.
+
+Risk: The bundled playlist_create.py script has an AppleScript injection risk when handling crafted playlist names.
+
+Mitigation: Avoid using playlist_create.py with untrusted playlist names until its AppleScript handling is fixed or the script is removed.
+
+Risk: Catalog playback depends on macOS UI focus and keyboard navigation, so playback may not switch to the requested song.
+
+Mitigation: Check playback status after each attempt and report plainly when the requested track did not start.
+
+## Reference(s):
+
+- [Apple Music Play release page](https://clawhub.ai/skaravind/skills/apple-music-play)
+- [Apple iTunes Search API endpoint](https://itunes.apple.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, the Music app, clawtunes, python3, osascript, open, and Accessibility/Automation permissions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

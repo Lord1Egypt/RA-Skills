@@ -1,44 +1,52 @@
-## Description: <br>
-Deliver locally generated office files back into Feishu chats as real attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deliver locally generated office files back into Feishu chats as real attachments with streaming response support.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Employees, external collaborators, developers, and engineers use this skill to return generated office documents and other local files into Feishu chats as real attachments. It is most useful when an agent creates files such as presentations, PDFs, documents, spreadsheets, archives, or text files that must be delivered through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A reply could include an absolute path to the wrong file, causing an unintended Feishu attachment. <br>
-Mitigation: Verify each listed absolute path points to a file intended for the current chat before sending the final reply. <br>
-Risk: Sensitive or unrelated local files could be exposed if their paths are included in the delivery message. <br>
-Mitigation: Avoid listing paths for secrets, unrelated documents, or sensitive local locations; include only the generated deliverables requested by the user. <br>
-Risk: Files may fail to upload if paths are relative, formatted as Markdown links, or embedded in bullets. <br>
-Mitigation: Use one existing absolute file path per line with no bullets, no Markdown link wrappers, and a short caption above the path list. <br>
+## Use Case:
 
+Developers and Feishu users use this skill when an agent creates local office files and needs the final Feishu reply to trigger real attachment upload. It guides the agent to save files locally, write a short caption, and list absolute file paths in an upload-friendly format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wd041216-bit/feishu-file-delivery) <br>
-- [Clawdis homepage](https://github.com/wd041216-bit/openclaw-feishu-file-delivery) <br>
-- [OpenClaw documentation](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text that includes a short caption and one absolute local file path per line.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for Feishu replies where the outbound adapter detects existing absolute local file paths and uploads them as attachments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, skill.json, _meta.json, README.md) <br>
+Risk: Files listed in the final Feishu reply may be uploaded into the chat, including unintended local content if the path is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before sending the final reply, verify that each absolute path exists and points only to the intended output file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd041216-bit/skills/feishu-file-delivery)
+- [Project homepage](https://github.com/wd041216-bit/openclaw-feishu-file-delivery)
+- [OpenClaw documentation](https://openclaw.ai)
+- [Feishu](https://www.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown reply text with absolute local file paths on separate lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paths should be absolute, unformatted, one per line, and verified to point to intended output files before sending.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence, artifact _meta.json, artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

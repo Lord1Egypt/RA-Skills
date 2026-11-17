@@ -1,43 +1,61 @@
-## Description: <br>
-AndonQ 腾讯云智能客服"领域虾" — 不切窗口、不排队，即刻获得腾讯云全产品线专业解答。支持工单查询（列表/详情/流水）、集团/MC 工单与需求单管理、腾讯云全产品线智能问答、云产品资源查询等。当用户查询工单、查看工单详情、咨询腾讯云产品问题、查询集团(360)工单/需求单、或查询腾讯云资源信息时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AndonQ helps agents answer Tencent Cloud support questions, query tickets and requirements, and retrieve cloud resource information through the AndonQ chat service.
 
-## Publisher: <br>
-[cyuxlif](https://clawhub.ai/user/cyuxlif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyuxlif](https://clawhub.ai/user/cyuxlif)
 
-## Use Case: <br>
-External Tencent Cloud users use this skill to authorize AndonQ and ask account-specific support questions, including ticket lookup, demand-order management, product Q&A, and cloud resource queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow uses an account-linked OAuth temporary code, and the security verdict flags this as needing careful review. <br>
-Mitigation: Install only when intending to authorize AndonQ for Tencent Cloud support, ticket, demand-order, and resource access; prefer terminal binding flows instead of pasting the temporary code into chat. <br>
-Risk: The local OAuth token file grants continued access while the authorization remains valid. <br>
-Mitigation: Protect ~/.andonq/auth.json on shared machines, verify it is readable only by the local user, and revoke or reauthorize if the code may have been exposed. <br>
+## Use Case:
 
+Tencent Cloud users and support operators use this skill to ask product questions, inspect ticket or requirement status, and retrieve account resource information without leaving the agent conversation.
 
-## Reference(s): <br>
-- [AndonQ ClawHub Release Page](https://clawhub.ai/cyuxlif/andonq) <br>
-- [ChatCompletionsAndonQ API Reference](references/api/ChatCompletionsAndonQ.md) <br>
-- [AndonQ Gateway](https://andon.cloud.tencent.com) <br>
-- [Tencent Cloud Authorization](https://cloud.tencent.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and JSON setup output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams AndonQ gateway responses through SSE and may write local OAuth token configuration during setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: OAuth temporary codes can grant access to Tencent Cloud support or resource workflows if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local interactive binding, avoid pasting codes into shared chats, keep ~/.andonq/auth.json restricted to the current user, and reauthorize if a code may have been exposed.
+
+Risk: The skill sends user questions and resource-support context to the AndonQ backend.
+
+Mitigation: Use it only for Tencent Cloud support and resource questions that are appropriate to send to the AndonQ service.
+
+Risk: The environment check may contact clawhub.ai for update checks despite the stated Tencent-only network scope.
+
+Mitigation: Review outbound network policy before deployment and use the provided skip-update mode when update checks are not permitted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyuxlif/skills/andonq)
+- [cyuxlif Publisher Profile](https://clawhub.ai/user/cyuxlif)
+- [ChatCompletionsAndonQ API Reference](references/api/ChatCompletionsAndonQ.md)
+- [AndonQ Gateway](https://andon.cloud.tencent.com)
+- [Tencent Cloud Authorization](https://cloud.tencent.com/open/authorize)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and service-returned answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers are returned from the AndonQ SSE service; authentication and session guidance may be included when setup or reauthorization is required.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

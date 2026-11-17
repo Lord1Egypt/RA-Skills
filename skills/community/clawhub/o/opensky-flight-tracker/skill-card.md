@@ -1,41 +1,54 @@
-## Description: <br>
-CLI skill for real-time flight tracking using the OpenSky Network API with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents track live aircraft positions by callsign or flight number and list airborne aircraft near a latitude and longitude using the OpenSky Network API.
 
-## Publisher: <br>
-[javi23ruiz](https://clawhub.ai/user/javi23ruiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javi23ruiz](https://clawhub.ai/user/javi23ruiz)
 
-## Use Case: <br>
-Developers and agent users use this skill to track live aircraft by radio callsign or flight number and to list airborne aircraft near supplied coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the required third-party PyPI package may introduce dependency supply-chain risk. <br>
-Mitigation: Install in a managed or isolated environment and review the package source, version, and lockfile policy before deployment. <br>
-Risk: Flight numbers, callsigns, or coordinates sent to the data source may reveal location-related interests. <br>
-Mitigation: Avoid sensitive queries and confirm that external flight-tracking requests are acceptable for the intended environment. <br>
+## Use Case:
 
+External users, developers, and operations teams can use this skill to ask an agent where a currently airborne flight is or what aircraft are overhead at specific coordinates. It is suited to live flight lookup tasks where summary text or JSON output is useful.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javi23ruiz/opensky-flight-tracker) <br>
-- [Support issues](https://github.com/javi23ruiz/flight-tracker-cli/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI output is human-readable summary text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the flight-tracker CLI. Queries may send callsigns, flight numbers, or coordinates to the flight-tracking data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and clawhub.json) <br>
+Risk: Live flight lookups may send flight numbers or geographic coordinates to a third-party flight-tracking service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or unnecessary locations, and review whether such lookups are acceptable for the deployment environment.
+
+Risk: The skill installs and depends on a third-party PyPI CLI package.
+
+Mitigation: Pin and review the package version before use in stricter environments.
+
+## Reference(s):
+
+- [OpenSky Flight Tracker on ClawHub](https://clawhub.ai/javi23ruiz/skills/opensky-flight-tracker)
+- [flight-tracker-cli support issue tracker](https://github.com/javi23ruiz/flight-tracker-cli/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI output can be human-readable summaries or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI requires the flight-tracker binary, uses no API key, and applies retries and timeout options for OpenSky rate limits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

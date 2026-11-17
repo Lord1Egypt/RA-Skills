@@ -1,39 +1,53 @@
-## Description: <br>
-Session retrospective and skill audit. Use when asked to reflect, do a retrospective, review lessons learned, audit what went well or wrong, or review session effectiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session retrospective and skill audit. Use when asked to reflect, do a retrospective, review lessons learned, audit what went well or wrong, or review session effectiveness.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to review a completed session, identify mistakes, friction, useful lessons, and skill improvements, and decide which lessons should be persisted for future chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save selected retrospective lessons to memory, which could accidentally capture secrets, customer data, private URLs, or sensitive personal information. <br>
-Mitigation: Review the exact content before approving any memory write, and exclude secrets, credentials, customer data, private URLs, and sensitive personal information. <br>
-Risk: Retrospective findings or skill audit proposals could introduce incorrect or misleading guidance if accepted without review. <br>
-Mitigation: Review proposed findings, memory entries, and skill changes before applying them, then scan the skill before deployment. <br>
+## Use Case:
 
+AI agents use this tool to review a session or skill when asked for a retrospective or audit. It produces evidence-cited findings and prioritized, actionable improvements while observing authorization requirements for memory changes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with review findings, prioritized improvements, proposed diffs, and memory-capture prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose memory entries or skill changes for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: release evidence) <br>
+Risk: Incomplete conversation or artifact evidence can lead to misleading retrospective findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the scope reviewed and any missing or truncated evidence, and cite the specific exchange or artifact for each finding.
+
+Risk: Persisting an inferred lesson without user authorization could retain an incorrect or sensitive memory.
+
+Mitigation: Persist memory only when already authorized or after the user selects concrete items, and exclude credential values.
+
+## Reference(s):
+
+- [Capture and remedy routing](references/capture-and-routing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown retrospective with evidence citations and prioritized improvement tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [States review scope and evidence gaps; improvements are actionable and prioritized, with no more than 10 items. Memory changes require existing authorization or user selection.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

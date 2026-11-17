@@ -1,44 +1,57 @@
-## Description: <br>
-Generate personalized outreach messages and value propositions to recruit new affiliates and commission-based partners for ecommerce products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized outreach messages and value propositions to recruit new affiliates and commission-based partners for ecommerce products across creator DMs, email, marketplace applications, and affiliate re-engagement.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce marketers, affiliate managers, and founders use this skill to draft creator outreach for affiliate recruitment, creator marketplace applications, inactive affiliate re-engagement, FAQ responses, and one-step follow-up messages across TikTok Shop, Shopify, Amazon Associates, Shopee, email, Instagram, YouTube, and creator marketplaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Affiliate outreach can be perceived as spam or trigger platform enforcement when messages are generic, high-volume, link-heavy, or followed up too aggressively. <br>
-Mitigation: Personalize each opener, rate-limit batches, avoid first-message links in DMs, use exactly one clear call to action, send one follow-up after 3-4 days, and then stop. <br>
-Risk: Commission and earning claims can become misleading if projections are inflated or framed as guaranteed outcomes. <br>
-Mitigation: Base every projection on stated AOV, commission rate, and conservative conversion assumptions; avoid guaranteed or passive-income language; include disclosure expectations in the FAQ block. <br>
+## Use Case:
 
+External ecommerce operators, affiliate managers, and growth marketers use this skill to draft channel-specific creator recruitment, reactivation, FAQ, and follow-up messaging grounded in commission math and audience fit.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/leooooooow/affiliate-outreach) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Channel Playbook](artifact/channel-playbook.md) <br>
-- [Commission Math Guide](artifact/commission-math-guide.md) <br>
-- [Outreach Quality Checklist](artifact/outreach-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured outreach variants, FAQ items, follow-up copy, quality checks, and concise guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include channel-specific word counts, concrete commission math, one clear call to action per message, and no unresolved placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated outreach may include inaccurate product details or unsupported earnings claims if the input data is incomplete or optimistic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review product facts, commission math, and conversion assumptions before sending messages to creators.
+
+Risk: Affiliate outreach can create FTC disclosure, platform-policy, or spam-rate-limit exposure when used without human review.
+
+Mitigation: Confirm disclosure language, platform rules, and sending cadence before using generated messages in live campaigns.
+
+## Reference(s):
+
+- [Affiliate Outreach Skill Page](https://clawhub.ai/leooooooow/skills/affiliate-outreach)
+- [Channel Playbook](artifact/channel-playbook.md)
+- [Commission Math Guide](artifact/commission-math-guide.md)
+- [Output Template](artifact/output-template.md)
+- [Outreach Quality Checklist](artifact/outreach-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured outreach variants, FAQ items, and follow-up guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outreach should be reviewed for factual accuracy, substantiated earnings claims, FTC/platform disclosure requirements, and spam-rate limits before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

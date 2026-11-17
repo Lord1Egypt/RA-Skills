@@ -1,39 +1,59 @@
-## Description: <br>
-Compliance Guardian helps real estate professionals screen residential property transfers for FinCEN reporting requirements, collect report data, and track filing deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compliance Guardian helps real estate professionals screen transactions for FinCEN real estate reporting requirements, collect report data, and track filing deadlines.
 
-## Publisher: <br>
-[jonbarnato](https://clawhub.ai/user/jonbarnato) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonbarnato](https://clawhub.ai/user/jonbarnato)
 
-## Use Case: <br>
-Real estate agents, transaction coordinators, brokers, and closing teams use this skill to evaluate whether a residential property transfer may require a FinCEN Real Estate Report, gather required party and property details, and monitor filing deadlines. Users should handle copied report data and browser-saved tracker records carefully because they may include sensitive personal and transaction information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jonbarnato/compliance-guardian) <br>
-- [FinCEN BSA E-File Portal](https://bsaefiling.fincen.treas.gov/) <br>
-- [First American FinCEN Resources](https://www.firstam.com/fincen/) <br>
+Real estate agents, brokers, transaction coordinators, and closing teams use this skill to identify potentially reportable residential property transfers, prepare FinCEN pre-fill data, and monitor filing deadlines.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Browser-rendered text, printable pages, clipboard-ready report data, and local deadline tracker records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a standalone HTML browser tool with no external dependencies; tracker records are stored in browser localStorage and report data can be copied to the system clipboard.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill handles highly sensitive identity and tax data, including SSNs, TINs, dates of birth, addresses, and transaction details.
+
+Mitigation: Use only on trusted devices and origins, avoid entering SSNs, TINs, or dates of birth unless necessary, clear browser storage after use, and treat copied exports as sensitive documents.
+
+Risk: Browser-side storage and clipboard export can expose client data to local browser state or other local applications.
+
+Mitigation: Warn users before export, redact fields when possible, and avoid retaining completed filings in localStorage longer than needed.
+
+Risk: The security review flags unsafe browser-side rendering patterns for tracker entries.
+
+Mitigation: Render tracker entries with textContent or equivalent safe DOM APIs, add deletion controls, and review changes before using with real client data.
+
+## Reference(s):
+
+- [Compliance Guardian on ClawHub](https://clawhub.ai/jonbarnato/skills/compliance-guardian)
+- [FinCEN BSA E-File Portal](https://bsaefiling.fincen.treas.gov/)
+- [First American FinCEN Resources](https://www.firstam.com/fincen/)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Browser-rendered guidance with plain-text report pre-fill output and deadline status data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores filing tracker data in browser localStorage and copies report pre-fill output to the clipboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

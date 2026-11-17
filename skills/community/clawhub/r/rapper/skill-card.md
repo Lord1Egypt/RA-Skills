@@ -1,41 +1,55 @@
-## Description: <br>
-Create and debug SenseAudio rap, hip-hop, or vocal song generation workflows using the SenseAudio lyric and music generation APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and debug SenseAudio rap, hip-hop, or vocal song generation workflows using the `/v1/song/lyrics/create`, `/v1/song/lyrics/pending/:task_id`, `/v1/song/music/create`, and `/v1/song/music/pending/:task_id` APIs.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and agents use this skill to produce rap lyrics, create vocal songs from lyrics, tune song style controls, and poll asynchronous SenseAudio generation jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SenseAudio API key and may consume API quota when generation or polling requests are made. <br>
-Mitigation: Use a dedicated SenseAudio API key for this workflow, keep it in the SENSEAUDIO_API_KEY environment variable, and review generated requests before running them. <br>
-Risk: Lyrics, prompts, and style instructions sent to SenseAudio may contain private or sensitive content. <br>
-Mitigation: Avoid sending private lyrics or sensitive prompt content unless the user is comfortable sharing it with SenseAudio. <br>
+## Use Case:
 
+External developers and creators use this skill to generate rap or hip-hop lyrics, create vocal songs through SenseAudio, and debug asynchronous polling and response parsing.
 
-## Reference(s): <br>
-- [SenseAudio homepage](https://nightly.senseaudio.cn) <br>
-- [SenseAudio Music Reference](artifact/references/music.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SENSEAUDIO_API_KEY and may include polling logic for asynchronous generation tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Using the skill requires a SenseAudio API key and can send prompts, lyrics, and creative briefs to SenseAudio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API key in an environment variable and avoid submitting private lyrics, personal data, or confidential creative briefs unless the user trusts SenseAudio's handling of that content.
+
+Risk: SenseAudio lyric and song generation jobs may be asynchronous, pending, failed, or missing expected response data before success.
+
+Mitigation: Poll the documented pending endpoint, require `status == SUCCESS`, surface `FAILED` clearly, and guard every response field access.
+
+## Reference(s):
+
+- [SenseAudio Music Reference](references/music.md)
+- [SenseAudio homepage](https://nightly.senseaudio.cn)
+- [ClawHub Rapper skill page](https://clawhub.ai/scikkk/skills/rapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, curl, Python, or JavaScript examples when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SenseAudio endpoint names, minimal request bodies, polling logic, response fields, and rap-specific prompt or style guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

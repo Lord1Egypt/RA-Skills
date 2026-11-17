@@ -1,44 +1,57 @@
-## Description: <br>
-GLSL Encyclopedia guides agents through docs-first GLSL language and shader-source work, including syntax and semantic lookup, shader authoring and review, stage/interface/layout reasoning, version and extension checks, and compiler-error triage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GLSL language/specification workflow for GLSL-specific questions, shader authoring and review, exact syntax and semantic lookup, built-in and qualifier reference, interface/layout reasoning, stage-specific behavior checks, version/extension rules, and compiler-error triage when the actual language layer is GLSL.
 
-## Publisher: <br>
-[kklouzal](https://clawhub.ai/user/kklouzal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklouzal](https://clawhub.ai/user/kklouzal)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer, author, review, and debug GLSL shader source using official GLSL docs, local cached excerpts, and clearly separated project observations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches official GLSL documentation and writes workspace-local cache and notes. <br>
-Mitigation: Use the documented docs.vulkan.org GLSL workflow and review generated .GLSL-Encyclopedia files before relying on them. <br>
-Risk: Workspace notes can accidentally capture secrets, private URLs, tokens, or sensitive access details. <br>
-Mitigation: Do not store secrets or sensitive access details in the notes; redact or omit them when recording local observations. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer, author, review, and troubleshoot GLSL shader-language work with a docs-first workflow. It is intended for GLSL syntax, qualifiers, built-ins, interfaces, stage behavior, version or extension rules, and compiler-error triage, not for unrelated shader languages or generic Vulkan API debugging.
 
-## Reference(s): <br>
-- [Official GLSL Documentation](https://docs.vulkan.org/glsl/latest/index.html) <br>
-- [GLSL Encyclopedia Workflow](references/workflow.md) <br>
-- [GLSL Cache Layout](references/cache-layout.md) <br>
-- [GLSL Topic Map](references/topic-map.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kklouzal/glsl-encyclopedia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and workspace file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace-local .GLSL-Encyclopedia cache and note files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can create a .GLSL-Encyclopedia directory in the active workspace containing cached documentation and local shader notes that may be shared or committed with the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cache and notes before sharing or committing workspace files, and avoid storing plaintext credentials, private URLs, tokens, recovery codes, or other secrets there.
+
+Risk: Cached GLSL documentation and local observations can become stale or be mistaken for authoritative project-independent language behavior.
+
+Mitigation: Refresh or re-check official GLSL docs for exact syntax, layout/interface rules, built-ins, stage behavior, compiler errors, and version-sensitive decisions, and keep local observations clearly labeled.
+
+## Reference(s):
+
+- [Official GLSL Documentation](https://docs.vulkan.org/glsl/latest/index.html)
+- [GLSL Variables Documentation](https://docs.vulkan.org/glsl/latest/chapters/variables.html)
+- [Workflow](references/workflow.md)
+- [Cache Layout](references/cache-layout.md)
+- [Topic Map](references/topic-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workspace-local .GLSL-Encyclopedia cache, notes, and inventory files when the agent applies the skill workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

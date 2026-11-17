@@ -1,44 +1,62 @@
-## Description: <br>
-Orchestrates TRAE IDE for automated software development with multi-agent collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates TRAE IDE for automated software development with multi-agent collaboration.
 
-## Publisher: <br>
-[Vichard998](https://clawhub.ai/user/Vichard998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vichard998](https://clawhub.ai/user/vichard998)
 
-## Use Case: <br>
-Developers and project leads use this skill to create project scaffolding, generate TRAE prompts, launch TRAE, monitor progress signals, and coordinate automated software development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local files, launch TRAE, and submit prompts through desktop automation. <br>
-Mitigation: Use it only in a fresh or version-controlled project directory and review generated changes before running them. <br>
-Risk: Desktop automation has weak targeting and may send prompts to the wrong focused window. <br>
-Mitigation: Confirm the TRAE executable path and focused window before enabling auto-send. <br>
-Risk: Prompts sent into TRAE may expose sensitive information. <br>
-Mitigation: Avoid placing secrets or confidential data in prompts or generated project documents. <br>
+## Use Case:
 
+Developers and automation users use this skill to prepare project requirements, launch TRAE IDE, send development prompts, and monitor progress through signal files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Vichard998/trae-orchestrator) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Implementation notes](artifact/INNOVATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, file-based control signals, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project files, TRAE prompts, control signals, and status summaries for agent-assisted development.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can launch a local TRAE IDE session and write project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a dedicated project directory that is under version control.
+
+Risk: The skill can auto-submit clipboard text through desktop automation without strong focus safeguards.
+
+Mitigation: Prefer manual paste or verify the active TRAE window before enabling automated prompt submission.
+
+Risk: Project requirements and prompts may be copied into files or the clipboard.
+
+Mitigation: Do not include secrets, credentials, or sensitive data in requirements or prompts.
+
+Risk: Optional desktop automation dependencies affect the local Python environment.
+
+Mitigation: Install dependencies in a virtual environment with reviewed versions, and avoid running as Administrator unless necessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vichard998/skills/trae-orchestrator)
+- [Artifact documentation: INNOVATIONS.md](artifact/INNOVATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples and generated local project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create requirements, prompts, progress files, signal files, and local configuration for TRAE orchestration.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Recommends three food choices from a local menu database based on a user's location, weather, mood, budget, dining mode, time, cuisine, and spice preferences, with reasons and image references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends three meal options based on a user's location, weather, mood, budget, dining mode, and taste preferences, with reasons and image references.
 
-## Publisher: <br>
-[Pancat009](https://clawhub.ai/user/Pancat009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pancat009](https://clawhub.ai/user/pancat009)
 
-## Use Case: <br>
-External users and agent builders use this skill to quickly answer meal-choice requests such as what to eat, order, dine out for, or cook. It turns brief user preferences into concise recommendations with budget, spice level, dining mode, reasons, and image references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional image hydration helper can send dish names and prompts to third-party image services and write image files locally. <br>
-Mitigation: Use the normal recommendation scripts for local suggestions; run scripts/hydrate_food_images.py only after reviewing the external-service behavior and confirming that the dish names or prompts are acceptable to share. <br>
-Risk: The optional --external-ai-cmd parameter executes a user-provided command template. <br>
-Mitigation: Avoid --external-ai-cmd unless the exact command is trusted, quoted, and run in a constrained environment. <br>
-Risk: Feishu or OpenClaw image sending may share local images beyond the current workspace audience. <br>
-Mitigation: Send only images intended for the recipient and keep image sending limited to the paths selected for the recommendation. <br>
+## Use Case:
 
+External users and agents use this skill to quickly decide what to eat by turning a short natural-language preference into practical dish recommendations for takeaway, dining in, or cooking.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Pancat009/eat-what-today-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/Pancat009) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with recommendation bullets, inline image links, and optional shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendation output normally includes three dishes, reasons, budget range, spice level, dining mode, and local image paths when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional image hydration script can make outbound requests to Bing and Pollinations and write downloaded files into local assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the normal local recommendation command by default; use image hydration only after reviewing the destination path and accepting network downloads.
+
+Risk: The optional --external-ai-cmd path can execute a local shell command and is unsafe with untrusted workspaces or untrusted menu and image filenames.
+
+Mitigation: Do not use --external-ai-cmd unless the command template and input filenames are trusted; prefer a reviewed integration that avoids shell execution.
+
+Risk: The skill provides meal suggestions and explicitly does not handle medical advice or serious dietary restriction diagnosis.
+
+Mitigation: Treat recommendations as preference-based suggestions and route medical, allergy, or severe dietary questions to appropriate professional guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pancat009/skills/eat-what-today-skill)
+- [Publisher profile](https://clawhub.ai/user/pancat009)
+- [Image asset repository noted by README](https://github.com/Pancat009/eat-what-today-skill)
+- [Reference project noted by README](https://github.com/A-kirami/whattoeat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown meal recommendations with reasons, price range, dining mode, and local image references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command-line examples and image paths for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,112 +1,105 @@
-# Template: .github/workflows/desktop-build.yml
-# Cross-platform Tauri build with signing, a draft release carrying latest.json,
-# and a portable Windows exe. Replace <App Title>/<AppName>. Pin action versions to
-# whatever the SKILL.md "verify latest" step reports (these were current 2026-06).
-#
-# Secrets required for auto-update: TAURI_SIGNING_PRIVATE_KEY (+ _PASSWORD if the key
-# has one). GITHUB_TOKEN is built in. Remember: the release is a DRAFT — un-draft it
-# to actually roll the update out (releases/latest ignores drafts).
+# Copy to .github/workflows/desktop-build.yml. See release-workflow.md for setup.
 name: Build Desktop App
-
-on:
-  workflow_dispatch:
+env:
+  DESKTOP_RELEASE_MODE: manual
+'on':
+  workflow_dispatch: null
   push:
-    tags: ["v*"]
-
+    tags:
+      - v*
+concurrency:
+  group: desktop-build-${{ github.ref }}
+  cancel-in-progress: false
+  queue: max
 jobs:
+  draft:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      id: ${{ steps.draft.outputs.id }}
+      commit: ${{ steps.draft.outputs.commit }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+      - id: draft
+        shell: bash
+        run: bash .github/scripts/ci/prepare-draft.sh
   publish-tauri:
+    needs: draft
+    if: ${{ !cancelled() && (needs.draft.result == 'success' || needs.draft.result == 'skipped') }}
     permissions:
       contents: write
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         include:
-          - platform: "macos-latest" # Apple Silicon
-            args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest" # Intel
-            args: "--target x86_64-apple-darwin"
-          - platform: "ubuntu-22.04"
-            args: ""
-          - platform: "windows-latest"
-            args: ""
-    runs-on: ${{ matrix.platform }}
+          - platform: macos-latest
+            target: aarch64-apple-darwin
+            args: --target aarch64-apple-darwin
+          - platform: macos-latest
+            target: x86_64-apple-darwin
+            args: --target x86_64-apple-darwin
+          - platform: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            args: ''
+          - platform: windows-latest
+            target: x86_64-pc-windows-msvc
+            args: ''
+    uses: ./.github/workflows/tauri-build.yml
+    with:
+      runner: ${{ matrix.platform }}
+      target: ${{ matrix.target }}
+      build-args: ${{ matrix.args }}
+      draft-id: ${{ needs.draft.outputs.id }}
+      source-commit: ${{ needs.draft.outputs.commit }}
+      publish: ${{ github.event_name == 'push' }}
+    secrets:
+      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+  verify-draft:
+    if: github.event_name == 'push'
+    needs:
+      - draft
+      - publish-tauri
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      TAG: ${{ github.ref_name }}
+      DRAFT_ID: ${{ needs.draft.outputs.id }}
+      SOURCE_COMMIT: ${{ needs.draft.outputs.commit }}
+      TARGETS: aarch64-apple-darwin x86_64-apple-darwin x86_64-unknown-linux-gnu x86_64-pc-windows-msvc
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Install Linux dependencies
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf libgtk-3-dev wget file
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
         with:
-          node-version: lts/*
-          cache: yarn
-
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+          ref: ${{ needs.draft.outputs.commit }}
+      - uses: actions/setup-node@v7
         with:
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
-
-      - name: Cache Rust build
-        uses: Swatinem/rust-cache@v2
+          node-version: 26
+      - uses: actions/download-artifact@v8
         with:
-          workspaces: "./src-tauri -> target"
-
-      # Make the git tag the single source of truth: on tag push, write the tag
-      # (minus the leading v) into package.json BEFORE update-version propagates it
-      # into tauri.conf.json. Then installer filenames, the embedded app version,
-      # and tagName: v__VERSION__ all equal the tag — no manual bumping. Manual
-      # workflow_dispatch (no tag) keeps the committed version. Do NOT instead point
-      # tagName at github.ref_name: installer names come from tauri.conf.json, not
-      # tagName, so you'd ship a release NAMED v3.0.1 full of 3.0.0 installers — and
-      # on workflow_dispatch github.ref_name is a branch name, not a version.
-      - name: Sync version from tag
-        if: github.event_name == 'push'
+          pattern: tauri-evidence-*
+          path: release-evidence
+          merge-multiple: true
+      - name: Verify draft contents before manual publication
         shell: bash
-        run: npm pkg set version="${GITHUB_REF_NAME#v}"
-
-      - name: Install frontend dependencies
-        run: |
-          yarn update-version
-          yarn install --frozen-lockfile
-
-      - uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-        with:
-          tagName: v__VERSION__
-          releaseName: "<App Title> v__VERSION__"
-          releaseBody: "See the assets to download and install."
-          releaseDraft: true
-          prerelease: false
-          args: ${{ matrix.args }}
-
-      # Portable "green" exe (Windows only): the raw self-contained binary tauri
-      # builds anyway. No installer; needs the WebView2 runtime; does NOT self-update.
-      - name: Stage portable Windows exe
-        if: matrix.platform == 'windows-latest'
+        run: bash .github/scripts/ci/verify-draft.sh
+      - name: SHA256SUMS from verified assets
         shell: bash
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          cp "src-tauri/target/release/<AppName>.exe" "<AppName>_${VERSION}_portable.exe"
-          echo "APP_VERSION=$VERSION" >> "$GITHUB_ENV"
-
-      - name: Upload portable exe as workflow artifact
-        if: matrix.platform == 'windows-latest'
-        uses: actions/upload-artifact@v7
+        run: bash .github/scripts/ci/write-checksums.sh
+      - uses: actions/attest@v4
         with:
-          name: portable-windows
-          path: <AppName>_${{ env.APP_VERSION }}_portable.exe
-          if-no-files-found: error
-
-      - name: Attach portable exe to the release
-        if: matrix.platform == 'windows-latest'
-        shell: bash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload "v${APP_VERSION}" "<AppName>_${APP_VERSION}_portable.exe" --clobber
+          subject-checksums: dist/SHA256SUMS

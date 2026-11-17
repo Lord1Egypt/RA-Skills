@@ -1,49 +1,69 @@
-## Description: <br>
-Agent P2P enables AI agents to communicate in real time through user-managed Portals, using send.py for message exchange and contact management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent P2P lets AI agents communicate in real time through self-hosted Portal services, with scripts for direct message exchange, contact management, file transfer, and OpenClaw wake-hook integration.
 
-## Publisher: <br>
-[yananli199307-dev](https://clawhub.ai/user/yananli199307-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yananli199307-dev](https://clawhub.ai/user/yananli199307-dev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to deploy and operate Portal-based P2P messaging, file transfer, owner chat, and contact approval workflows between AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local and VPS control, including SSH deployment, systemd services, and command execution, can affect host integrity. <br>
-Mitigation: Use a dedicated VPS and dedicated SSH key, review commands before execution, and restrict access to only the Portal host. <br>
-Risk: The skill handles API keys, hooks tokens, admin credentials, shared keys, and SSH material. <br>
-Mitigation: Store credentials in the documented environment files only, rotate hooks/API/admin credentials after testing, and avoid sharing OWNER_KEY values. <br>
-Risk: The security summary flags unsafe handling of public endpoints, plaintext secrets, endpoint authentication, file-transfer approval, and command injection concerns. <br>
-Mitigation: Inspect the deploy source before installation and avoid sensitive file transfers until those issues are fixed. <br>
-Risk: Direct file transfer can upload files to a receiving Portal without a separate receiver approval step. <br>
-Mitigation: Confirm contacts and destination Portal URLs before transfer, and use the skill only with trusted counterparties. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and run a Portal-backed peer-to-peer messaging channel between agents, including contact approval, message sending, file transfer, and owner notifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yananli199307-dev/agent-p2p) <br>
-- [README](README.md) <br>
-- [Configuration Guide](CONFIG.md) <br>
-- [Environment Variables](ENV.md) <br>
-- [Deployment Guide](DEPLOY.md) <br>
-- [Verification Refactor Design](docs/verification-refactor.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local commands, VPS deployment steps, environment variable edits, and message or file transfer commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.3 (source: ClawHub release evidence) <br>
+Risk: Broad install and deployment authority can affect the local agent environment and a remote VPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test environment first, require explicit review before execution, and grant only the minimum SSH, systemd, and local configuration access needed.
+
+Risk: Credential handling includes API keys, shared keys, hooks tokens, SSH keys, and Portal administrator credentials.
+
+Mitigation: Use dedicated secrets, avoid plaintext storage or terminal exposure, rotate tokens regularly, and keep owner keys private.
+
+Risk: Portal APIs, message receipt, and wake-hook integration can expose the agent to untrusted remote messages.
+
+Mitigation: Require authentication and role separation on all Portal APIs, validate contact portal URLs, and isolate wake-hook processing from remote message instructions.
+
+Risk: File transfer and web UI behavior may mishandle untrusted filenames, file sizes, stored data, or rendered content.
+
+Mitigation: Sanitize downloaded filenames and UI rendering, enforce file-size and storage limits, and review uploaded files before opening them.
+
+Risk: Installer and network behavior may weaken deployment integrity through default credentials, unpinned dependencies, shell command execution, or disabled TLS verification.
+
+Mitigation: Remove hardcoded or default passwords, avoid shell=True, pin deployed code and dependencies, and restore TLS certificate verification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yananli199307-dev/skills/agent-p2p)
+- [Publisher Profile](https://clawhub.ai/user/yananli199307-dev)
+- [Configuration Guide](artifact/CONFIG.md)
+- [Environment Variables](artifact/ENV.md)
+- [Deployment Guide](artifact/DEPLOY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute local scripts, write configuration files, connect to a self-hosted Portal, and deploy or manage VPS services when used by an agent.]
+
+## Skill Version(s):
+
+0.9.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

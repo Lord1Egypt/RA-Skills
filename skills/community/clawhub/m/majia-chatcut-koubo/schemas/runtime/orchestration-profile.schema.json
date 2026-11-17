@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/orchestration-profile.schema.json",
+  "title": "One-click orchestration profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "id", "version", "label", "supportedModes", "selection", "defaults", "contentProtections"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/orchestration-profile.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.profile.v1"},
+    "id": {"enum": ["balanced-stable", "tight-short", "trust-longform", "screen-demo"]},
+    "version": {"const": "1.0.0"},
+    "label": {"type": "string", "minLength": 1},
+    "supportedModes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["stable", "fast", "pro"]}},
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["priority", "goals", "minimumDurationSec", "maximumDurationSec", "requiresScreenCapture"],
+      "properties": {
+        "priority": {"type": "integer", "minimum": 0, "maximum": 100},
+        "goals": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "minimumDurationSec": {"type": ["integer", "null"], "minimum": 0},
+        "maximumDurationSec": {"type": ["integer", "null"], "minimum": 1},
+        "requiresScreenCapture": {"type": "boolean"}
+      }
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pacing", "automationLevel", "sample", "treatments", "captions", "visualStates", "riskPolicy"],
+      "properties": {
+        "pacing": {"enum": ["natural", "balanced", "tight"]},
+        "automationLevel": {"enum": ["audit", "assist", "auto"]},
+        "sample": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["openingSec", "includeComplexWindow", "includePrivacyWindow", "includeEnding"],
+          "properties": {
+            "openingSec": {"type": "integer", "minimum": 20, "maximum": 60},
+            "includeComplexWindow": {"const": true},
+            "includePrivacyWindow": {"type": "boolean"},
+            "includeEnding": {"type": "boolean"}
+          }
+        },
+        "treatments": {"$ref": "project-brief.schema.json#/$defs/treatments"},
+        "captions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "language", "semanticPaging", "maxLines", "avoidCriticalUi"],
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "language": {"const": "zh-CN"},
+            "semanticPaging": {"const": true},
+            "maxLines": {"type": "integer", "minimum": 1, "maximum": 2},
+            "avoidCriticalUi": {"type": "boolean"}
+          }
+        },
+        "visualStates": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["A", "B", "S"]}},
+        "riskPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["low", "medium", "high"],
+          "properties": {
+            "low": {"const": "auto-with-evidence"},
+            "medium": {"const": "sample-review"},
+            "high": {"const": "explicit-approval"}
+          }
+        }
+      }
+    },
+    "contentProtections": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {"enum": ["do-not-invent", "protect-numbers", "protect-proper-nouns", "protect-negation", "preserve-user-baseline", "privacy-first"]}
+    }
+  }
+}

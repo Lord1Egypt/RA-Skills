@@ -1,41 +1,56 @@
-## Description: <br>
-Generates a Salesforce report blueprint from real org metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Salesforce report blueprints from live org metadata by guiding users through Salesforce CLI metadata discovery, object mapping, and report design constraints.
 
-## Publisher: <br>
-[breynol01](https://clawhub.ai/user/breynol01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breynol01](https://clawhub.ai/user/breynol01)
 
-## Use Case: <br>
-Salesforce administrators, developers, and operations teams use this skill to map reporting questions to live Salesforce objects, fields, relationships, report types, filters, and blockers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Salesforce CLI access can expose org metadata, schemas, CSVs, query output, or example records that may contain sensitive business data. <br>
-Mitigation: Verify the target org alias, prefer a sandbox or least-privileged Salesforce account, keep queries narrow, and protect saved outputs as sensitive data. <br>
+## Use Case:
 
+Salesforce administrators, analysts, and developers use this skill to turn reporting questions into Salesforce Report Builder blueprints grounded in real org metadata. It helps identify relevant objects, fields, relationships, filters, groupings, and gaps before a report is built.
 
-## Reference(s): <br>
-- [SFDC CLI Reference](references/cli-reference.md) <br>
-- [Object Mapping Guide](references/object-mapping.md) <br>
-- [Project homepage](https://github.com/breynol01/salesforce-reporting-copilot) <br>
-- [ClawHub skill page](https://clawhub.ai/breynol01/salesforce-reporting-copilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Salesforce CLI commands and report blueprint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live Salesforce metadata and avoids fabricating object or field names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Salesforce metadata, query results, and local exports may contain sensitive business or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox or least-privilege Salesforce user for exploration, avoid unnecessary local exports, and handle any saved schema or query output according to the organization's data policy.
+
+Risk: Generated SOQL or report assumptions may not match the target org's schema, permissions, or report type availability.
+
+Mitigation: Review commands and SOQL before execution, run live metadata describes before making field claims, and validate reportable fields and permissions before building the report.
+
+## Reference(s):
+
+- [SFDC CLI Reference](artifact/references/cli-reference.md)
+- [Object Mapping Guide](artifact/references/object-mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/breynol01/skills/salesforce-reporting-copilot)
+- [Project Homepage](https://github.com/breynol01/salesforce-reporting-copilot)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report blueprint with tables, lists, and optional inline Salesforce CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Relies on live Salesforce metadata; users should review generated SOQL and avoid storing sensitive schema or query outputs unnecessarily.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+{
+  "name": "gdpr-audit",
+  "version": "2.0.2",
+  "type": "skill",
+  "description": "GDPR 合规深度审计。仅在用户明确要求 GDPR 合规深度审计 / 欧盟隐私审计时激活。免费 审计（云端评分），25 项核心检查。 无 Key 自动匿名试用（5 次真实云端评分 / 7 天窗口），额度用尽后一键注册引导（携带 anon_id）；注册后免费 API Key 含 100 次调用。",
+  "warnings": [
+    "云端评分：运行评分审计时，你的答题内容会发送至 compliancehub.cn 进行评分；--non-interactive 预览模式不发送答案，但会尝试从云端规则库拉取最新题目集，离线时回退到内置快照。",
+    "API Key：通过 COMPLIANCEHUB_API_KEY 环境变量提供，或写入 ~/.config/compliancehub/gdpr-audit.key（0600，由你在网页注册后自行写入）；本 skill 不收集 email/password，也不自动写入凭据。"
+  ],
+  "author": "CQDev",
+  "license": "MIT",
+  "homepage": "https://compliancehub.cn/account.html?skill=gdpr-audit",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "displayName": "GDPR 合规深度审计",
+    "category": "compliance",
+    "pricing": "free",
+    "points": 10,
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    }
+  }
+}

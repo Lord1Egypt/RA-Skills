@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>傻瓜厨房 - 今日健康食谱</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --card-bg: #ffffff;
+    --text: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --accent: #e8753a;
+    --accent-light: #fff0e8;
+    --green: #4caf84;
+    --green-light: #e8f5e9;
+    --blue: #5b9bd5;
+    --blue-light: #e8f0fa;
+    --purple: #9b7ec4;
+    --purple-light: #f3edf9;
+    --yellow: #f0c040;
+    --yellow-light: #fffae8;
+    --border: #e8e5e0;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+
+  .container { max-width: 800px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 24px 0 8px;
+  }
+  .header .logo {
+    font-size: 32px;
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .header .date {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  /* Profile Section */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .profile-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .profile-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .profile-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .profile-value.bmi-normal { color: var(--green); }
+  .profile-value.bmi-warn { color: var(--yellow); }
+  .profile-value.bmi-alert { color: var(--accent); }
+  .profile-value.diet-goal { color: var(--purple); }
+
+  .macro-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .macro-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .macro-label {
+    width: 50px;
+    text-align: right;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+  .macro-bar-bg {
+    flex: 1;
+    height: 10px;
+    background: #f0ede8;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .macro-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.6s ease;
+  }
+  .macro-bar-fill.carb { background: var(--yellow); }
+  .macro-bar-fill.protein { background: var(--accent); }
+  .macro-bar-fill.fat { background: var(--blue); }
+  .macro-val {
+    width: 60px;
+    font-weight: 600;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Chart */
+  .chart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .chart-canvas-wrap {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+  }
+  .chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  .chart-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Meal Section */
+  .meal-section {
+    margin-bottom: 14px;
+  }
+  .meal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .meal-title {
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .meal-badge {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .meal-badge.breakfast { background: var(--yellow-light); color: #b8860b; }
+  .meal-badge.lunch { background: var(--accent-light); color: var(--accent); }
+  .meal-badge.dinner { background: var(--purple-light); color: var(--purple); }
+  .meal-badge.snack { background: var(--green-light); color: var(--green); }
+
+  .meal-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .meal-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Dish Card */
+  .dish-card {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent);
+  }
+  .dish-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dish-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .dish-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+  .step {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #e8e5e0;
+    align-items: flex-start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    counter-increment: step;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .step-num::before { content: counter(step); }
+  .step-content {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .step-content strong {
+    color: var(--accent);
+  }
+  .step-hint {
+    display: inline-block;
+    background: #fff8e1;
+    color: #b8860b;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-left: 4px;
+  }
+
+  /* Ingredients table */
+  .ingredients-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .ingredient-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dotted #e8e5e0;
+  }
+  .ingredient-name { color: var(--text-secondary); }
+  .ingredient-amount { font-weight: 600; }
+
+  /* Shopping List */
+  .shopping-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .shopping-item {
+    background: #fff3cd;
+    color: #856404;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Summary Table */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .summary-table th,
+  .summary-table td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-table th {
+    background: var(--bg);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .summary-table td { font-weight: 600; }
+  .summary-table .highlight { color: var(--accent); font-size: 16px; }
+
+  .special-note {
+    background: #fef3e4;
+    border: 1px solid #f0c040;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #8b6914;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Diversity Grid */
+  .diversity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .diversity-item {
+    text-align: center;
+    padding: 12px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+  }
+  .diversity-num {
+    font-size: 28px;
+    font-weight: 800;
+  }
+  .diversity-num.pass { color: var(--green); }
+  .diversity-num.fail { color: var(--accent); }
+  .diversity-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .profile-grid { grid-template-columns: 1fr 1fr; }
+    .chart-wrapper { flex-direction: column; align-items: flex-start; }
+    .ingredients-grid { grid-template-columns: 1fr; }
+    body { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 页面标题 -->
+  <div class="header">
+    <div class="logo">🍳</div>
+    <h1>傻瓜厨房 · 今日健康食谱</h1>
+    <div class="date" id="pageDate"></div>
+  </div>
+
+  <!-- ============ 个人信息卡片 ============ -->
+  <div class="card">
+    <div class="card-header">📋 我的数据</div>
+    <div class="profile-grid" id="profileGrid"></div>
+    <div class="macro-bars" id="macroBars"></div>
+  </div>
+
+  <!-- ============ 热量分配图 ============ -->
+  <div class="card">
+    <div class="card-header">🔥 全天热量分配</div>
+    <div class="chart-wrapper">
+      <div class="chart-canvas-wrap">
+        <canvas id="calorieChart"></canvas>
+      </div>
+      <div class="chart-legend" id="chartLegend"></div>
+    </div>
+  </div>
+
+  <!-- ============ 食材多样性 ============ -->
+  <div class="card">
+    <div class="card-header">🥗 食材多样性检测</div>
+    <div class="diversity-grid" id="diversityGrid"></div>
+  </div>
+
+  <!-- ============ 特别提示 ============ -->
+  <div class="special-note" id="specialNote" style="display:none;">
+    <span>💡</span>
+    <span id="specialNoteText"></span>
+  </div>
+
+  <!-- ============ 食谱区 ============ -->
+  <div id="mealsContainer"></div>
+
+  <!-- ============ 购物清单 ============ -->
+  <div class="card" id="shoppingCard" style="display:none;">
+    <div class="card-header">🛒 建议补货清单</div>
+    <div class="shopping-list" id="shoppingList"></div>
+  </div>
+
+  <!-- ============ 全天营养汇总 ============ -->
+  <div class="card">
+    <div class="card-header">📊 全天营养汇总</div>
+    <table class="summary-table" id="summaryTable">
+    </table>
+  </div>
+
+  <div class="footer">
+    傻瓜厨房 · 基于《中国居民膳食指南(2022)》· 10-15 分钟快手健康餐
+  </div>
+</div>
+
+<script>
+  // ===== 数据注入区 =====
+  // 以下数据由食谱生成逻辑动态填充
+
+  const userData = {
+    name: "{{USER_NAME}}",
+    gender: "{{GENDER}}",
+    age: "{{AGE}}",
+    height: "{{HEIGHT}}",
+    weight: "{{WEIGHT}}",
+    bmi: "{{BMI}}",
+    bmiLabel: "{{BMI_LABEL}}",
+    bmiClass: "{{BMI_CLASS}}",
+    dietGoal: "{{DIET_GOAL}}",
+    tdee: "{{TDEE}}",
+    targetCalories: "{{TARGET_CALORIES}}",
+    specialCondition: "{{SPECIAL_CONDITION}}",
+    specialNote: "{{SPECIAL_NOTE}}",
+    macros: {
+      carbPercent: "{{CARB_PERCENT}}",
+      proteinPercent: "{{PROTEIN_PERCENT}}",
+      fatPercent: "{{FAT_PERCENT}}",
+      carbGram: "{{CARB_GRAM}}",
+      proteinGram: "{{PROTEIN_GRAM}}",
+      fatGram: "{{FAT_GRAM}}"
+    }
+  };
+
+  const meals = [
+    {{MEALS_JSON}}
+  ];
+
+  const shoppingItems = [
+    {{SHOPPING_JSON}}
+  ];
+
+  const foodDiversity = {
+    totalVariety: {{FOOD_VARIETY_COUNT}},
+    targetVariety: 12,
+    proteinSources: {{PROTEIN_SOURCES}},
+    carbSources: {{CARB_SOURCES}},
+    vegColors: {{VEG_COLORS}}
+  };
+
+  const dailySummary = {
+    totalCalories: "{{TOTAL_CALORIES}}",
+    totalProtein: "{{TOTAL_PROTEIN}}",
+    totalCarb: "{{TOTAL_CARB}}",
+    totalFat: "{{TOTAL_FAT}}",
+    targetCalories: "{{TARGET_CALORIES}}",
+    targetProtein: "{{TARGET_PROTEIN}}",
+    targetCarb: "{{TARGET_CARB}}",
+    targetFat: "{{TARGET_FAT}}"
+  };
+
+  // ===== 渲染函数 =====
+
+  function renderProfile() {
+    const grid = document.getElementById('profileGrid');
+    const items = [
+      { label: '性别 / 年龄', value: `${userData.gender} · ${userData.age}岁` },
+      { label: '身高 / 体重', value: `${userData.height}cm / ${userData.weight}kg` },
+      { label: 'BMI', value: `${userData.bmi} (${userData.bmiLabel})`, cls: userData.bmiClass },
+      { label: '饮食目标', value: userData.dietGoal, cls: 'diet-goal' },
+      { label: '每日目标热量', value: `${userData.targetCalories} kcal` },
+      { label: '基础代谢(TDEE)', value: `${userData.tdee} kcal` }
+    ];
+    grid.innerHTML = items.map(item =>
+      `<div class="profile-item">
+        <span class="profile-label">${item.label}</span>
+        <span class="profile-value ${item.cls || ''}">${item.value}</span>
+      </div>`
+    ).join('');
+
+    // Macro bars
+    const bars = document.getElementById('macroBars');
+    bars.innerHTML = `
+      <div class="macro-row">
+        <span class="macro-label">碳水</span>
+        <div class="macro-bar-bg"><div class="macro-bar-fill carb" style="width:${userData.macros.carbPercent}%"></div></div>
+        <span class="macro-val">${userData.macros.carbGram}g</span>
+      </div>
+      <div class="macro-row">
+        <span class="macro-label">蛋白质</span>
+        <div class="macro-bar-bg"><div class="macro-bar-fill protein" style="width:${userData.macros.proteinPercent}%"></div></div>
+        <span class="macro-val">${userData.macros.proteinGram}g</span>
+      </div>
+      <div class="macro-row">
+        <span class="macro-label">脂肪</span>
+        <div class="macro-bar-bg"><div class="macro-bar-fill fat" style="width:${userData.macros.fatPercent}%"></div></div>
+        <span class="macro-val">${userData.macros.fatGram}g</span>
+      </div>`;
+  }
+
+  function renderChart() {
+    const mealNames = meals.map(m => m.name);
+    const mealCals = meals.map(m => m.calories);
+    const colors = ['#f0c040', '#e8753a', '#9b7ec4', '#4caf84'];
+
+    const legend = document.getElementById('chartLegend');
+    legend.innerHTML = meals.map((m, i) =>
+      `<div class="chart-legend-item">
+        <div class="chart-legend-dot" style="background:${colors[i]}"></div>
+        <span>${m.name} ${m.calories} kcal</span>
+      </div>`
+    ).join('');
+
+    new Chart(document.getElementById('calorieChart'), {
+      type: 'doughnut',
+      data: {
+        labels: mealNames,
+        datasets: [{
+          data: mealCals,
+          backgroundColor: colors,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          hoverBorderWidth: 4
+        }]
+      },
+      options: {
+        cutout: '62%',
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.label}: ${ctx.raw} kcal`
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function renderMeals() {
+    const container = document.getElementById('mealsContainer');
+    const mealIcons = { '早餐': '🌅', '午餐': '☀️', '晚餐': '🌙', '加餐': '🍎' };
+    const mealBadgeCls = { '早餐': 'breakfast', '午餐': 'lunch', '晚餐': 'dinner', '加餐': 'snack' };
+
+    container.innerHTML = meals.map(meal => `
+      <div class="card meal-section">
+        <div class="meal-header">
+          <div class="meal-title">
+            <span>${mealIcons[meal.name] || '🍽️'}</span>
+            ${meal.name}
+            <span class="meal-badge ${mealBadgeCls[meal.name] || 'snack'}">${meal.calories} kcal</span>
+          </div>
+        </div>
+        <div class="meal-meta">
+          <span>⏱️ 总耗时 ${meal.totalTime || '--'} 分钟</span>
+          <span>🥘 ${meal.dishCount || 1} 道菜</span>
+        </div>
+        <div>
+          ${meal.dishes.map(dish => `
+            <div class="dish-card">
+              <div class="dish-name">
+                🥘 ${dish.name}
+              </div>
+              <div class="dish-tags">
+                <span class="dish-tag">⏱️ ${dish.time} 分钟</span>
+                <span class="dish-tag">😋 ${dish.flavor || '美味'}</span>
+                <span class="dish-tag">🔥 ${dish.calories} kcal</span>
+                <span class="dish-tag">⭐ 傻瓜级</span>
+              </div>
+              ${dish.ingredients ? `
+                <div class="ingredients-grid">
+                  ${dish.ingredients.map(ing => `
+                    <div class="ingredient-row">
+                      <span class="ingredient-name">${ing.name}</span>
+                      <span class="ingredient-amount">${ing.amount}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+              <ol class="steps">
+                ${dish.steps.map((step, i) => `
+                  <li class="step">
+                    <div class="step-num"></div>
+                    <div class="step-content">
+                      ${step.main}
+                      ${step.hint ? `<span class="step-hint">💡 ${step.hint}</span>` : ''}
+                    </div>
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderShopping() {
+    if (!shoppingItems || shoppingItems.length === 0) return;
+    const card = document.getElementById('shoppingCard');
+    card.style.display = 'block';
+    const list = document.getElementById('shoppingList');
+    list.innerHTML = shoppingItems.map(item =>
+      `<div class="shopping-item">➕ ${item}</div>`
+    ).join('');
+  }
+
+  function renderSummary() {
+    const tbl = document.getElementById('summaryTable');
+    tbl.innerHTML = `
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>实际摄入</th>
+          <th>目标值</th>
+          <th>达成率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>总热量</td>
+          <td class="highlight">${dailySummary.totalCalories} kcal</td>
+          <td>${dailySummary.targetCalories} kcal</td>
+          <td>${Math.round(dailySummary.totalCalories / dailySummary.targetCalories * 100)}%</td>
+        </tr>
+        <tr>
+          <td>蛋白质</td>
+          <td>${dailySummary.totalProtein}g</td>
+          <td>${dailySummary.targetProtein}g</td>
+          <td>${Math.round(dailySummary.totalProtein / dailySummary.targetProtein * 100)}%</td>
+        </tr>
+        <tr>
+          <td>碳水</td>
+          <td>${dailySummary.totalCarb}g</td>
+          <td>${dailySummary.targetCarb}g</td>
+          <td>${Math.round(dailySummary.totalCarb / dailySummary.targetCarb * 100)}%</td>
+        </tr>
+        <tr>
+          <td>脂肪</td>
+          <td>${dailySummary.totalFat}g</td>
+          <td>${dailySummary.targetFat}g</td>
+          <td>${Math.round(dailySummary.totalFat / dailySummary.targetFat * 100)}%</td>
+        </tr>
+      </tbody>`;
+  }
+
+  function renderSpecialNote() {
+    if (!userData.specialNote) return;
+    document.getElementById('specialNote').style.display = 'flex';
+    document.getElementById('specialNoteText').textContent = userData.specialNote;
+  }
+
+  function renderDiversity() {
+    const grid = document.getElementById('diversityGrid');
+    const varietyPass = foodDiversity.totalVariety >= foodDiversity.targetVariety;
+    grid.innerHTML = `
+      <div class="diversity-item">
+        <div class="diversity-num ${varietyPass ? 'pass' : 'fail'}">${foodDiversity.totalVariety}</div>
+        <div class="diversity-label">食材种类（目标 ≥${foodDiversity.targetVariety}）</div>
+      </div>
+      <div class="diversity-item">
+        <div class="diversity-num pass">${foodDiversity.proteinSources}</div>
+        <div class="diversity-label">蛋白来源种类</div>
+      </div>
+      <div class="diversity-item">
+        <div class="diversity-num pass">${foodDiversity.carbSources}</div>
+        <div class="diversity-label">主食种类</div>
+      </div>
+      <div class="diversity-item">
+        <div class="diversity-num pass">${foodDiversity.vegColors}</div>
+        <div class="diversity-label">蔬菜颜色种数</div>
+      </div>`;
+  }
+
+  function renderDate() {
+    const now = new Date();
+    const days = ['日','一','二','三','四','五','六'];
+    document.getElementById('pageDate').textContent =
+      `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 星期${days[now.getDay()]}`;
+  }
+
+  // ===== 启动 =====
+  renderDate();
+  renderProfile();
+  renderChart();
+  renderDiversity();
+  renderMeals();
+  renderShopping();
+  renderSummary();
+  renderSpecialNote();
+</script>
+</body>
+</html>

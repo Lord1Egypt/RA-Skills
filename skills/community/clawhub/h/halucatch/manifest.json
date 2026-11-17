@@ -1,26 +1,31 @@
 {
   "name": "HaluCatch",
-  "version": "1.7.0",
+  "version": "1.8.8",
   "required_files": [
-    "SKILL.md",
-    "halucatch_core.py",
-    "README.md"
+    "halucatch/SKILL.md",
+    "halucatch/halucatch_core.py",
+    "halucatch/halucatch/"
   ],
   "skillhub_files": [
-    "SKILL.md",
-    "halucatch_core.py",
+    "halucatch/SKILL.md",
+    "halucatch/halucatch_core.py",
+    "halucatch/halucatch/",
     "README.md",
-    "CHANGELOG.md"
+    "docs/CHANGELOG.md",
+    "halucatch/FAQ.md"
   ],
   "version_sync": [
-    "SKILL.md",
-    "_meta.json"
+    "halucatch/SKILL.md",
+    "config.yaml",
+    "docs/index.html"
   ],
   "clawhub_exclude": [
     "tests/",
     "docs/",
     "reports/",
+    "reports_zh/",
     "scripts/",
+    "outputs/",
     ".workbuddy/",
     ".github/",
     "__pycache__/",

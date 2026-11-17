@@ -1,39 +1,52 @@
-## Description: <br>
-Provides deterministic preflight risk classification for command-like actions, returning allow, require approval, or block decisions with detailed reason codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides deterministic preflight risk classification for command-like actions, returning allow, require approval, or block decisions with detailed reason codes.
 
-## Publisher: <br>
-[parmindersk](https://clawhub.ai/user/parmindersk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[parmindersk](https://clawhub.ai/user/parmindersk)
 
-## Use Case: <br>
-Developers and agent operators use this skill as a local advisory guardrail to classify proposed command-like actions before execution and surface reason codes for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An allow decision only means the command did not match the bundled risk patterns. <br>
-Mitigation: Review high-impact commands and tune policy.baseline.json to match the workspace, domains, and sensitive paths where the skill will be used. <br>
-Risk: The baseline policy may not reflect a user's actual workspace layout or approval requirements. <br>
-Mitigation: Update workspaceRoots, allowlistedDomains, highRiskPatterns, and actions before relying on the classifier for enforcement decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DeepInspect Guardrails ClawHub release](https://clawhub.ai/parmindersk/deepinspect-openclaw-guardrails) <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate command-like actions before execution and decide whether they should be allowed, require approval, or be blocked.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance, Configuration] <br>
-**Output Format:** [JSON decisions with reason codes, plus Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision values are allow, require_approval, or block; policy behavior is tunable through policy.baseline.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review found that staged remote-code execution patterns may be incorrectly allowed despite the skill presenting itself as a preflight decision tool.
+
+Mitigation: Review the default policy, shell parsing behavior, and staged download-to-execution detection before using this skill as an enforcement gate.
+
+Risk: A command-risk classifier can produce incomplete or misleading decisions when policy coverage is too narrow.
+
+Mitigation: Treat decisions as review support, tune policy.baseline.json for the deployment environment, and keep human approval for high-risk actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parmindersk/skills/deepinspect-openclaw-guardrails)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON decisions with reason codes, plus concise Markdown guidance and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision values are allow, require_approval, or block.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

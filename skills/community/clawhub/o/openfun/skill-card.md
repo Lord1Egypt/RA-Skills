@@ -1,45 +1,63 @@
-## Description: <br>
-Create viral short-form videos using AI by analyzing trending patterns, generating original content, rendering videos, and downloading MP4s. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create viral short-form videos using AI by analyzing trending patterns, generating original branded content, rendering videos, and downloading MP4s.
 
-## Publisher: <br>
-[andyluvis](https://clawhub.ai/user/andyluvis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyluvis](https://clawhub.ai/user/andyluvis)
 
-## Use Case: <br>
-External creators, marketers, and developer agents use this skill to find short-form video trends, remix a trend into branded original content, render the result, and download the finished video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and relies on the third-party openfun-cli npm package and OpenFun service. <br>
-Mitigation: Install only from the expected npm package and use the skill only when the publisher and service are trusted. <br>
-Risk: OpenFun login persists a token in ~/.openfun/config.json. <br>
-Mitigation: Treat the config file as sensitive, avoid printing or sharing it, and remove stored credentials when access is no longer needed. <br>
-Risk: Automated trend, remix, render, and download runs can consume plan credits. <br>
-Mitigation: Set explicit limits for trend counts, remixes, renders, and downloads before running batches. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to operate the OpenFun CLI for trend discovery, branded short-form video script generation, rendering, account review, and MP4 download workflows.
 
-## Reference(s): <br>
-- [OpenFun Skill Page](https://clawhub.ai/andyluvis/openfun) <br>
-- [OpenFun Website](https://www.openfun.ai) <br>
-- [OpenFun CLI Repository](https://github.com/andyluvis/openfun-cli) <br>
-- [OpenFun CLI npm Package](https://www.npmjs.com/package/openfun-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OpenFun CLI data commands emit JSON by default; download commands can write MP4 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on an unpinned global npm CLI installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package source before installation and prefer an isolated environment.
+
+Risk: OpenFun uses a persistent login token stored in ~/.openfun/config.json.
+
+Mitigation: Protect the local config file and avoid using shared machines for authenticated workflows.
+
+Risk: Rendering or batching videos may consume account credits.
+
+Mitigation: Have the agent confirm before rendering or batching account-using actions.
+
+Risk: Video prompts and brand details are sent to an external service.
+
+Mitigation: Install only if external processing of this content is acceptable for the intended use case.
+
+## Reference(s):
+
+- [OpenFun skill page](https://clawhub.ai/andyluvis/skills/openfun)
+- [OpenFun website](https://www.openfun.ai)
+- [OpenFun CLI repository](https://github.com/andyluvis/openfun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-producing CLI workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The OpenFun CLI outputs JSON by default, writes downloaded videos as MP4 files, and stores a login token in ~/.openfun/config.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

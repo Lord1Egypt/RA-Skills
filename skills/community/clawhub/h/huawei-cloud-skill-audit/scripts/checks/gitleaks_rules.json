@@ -1,0 +1,509 @@
+{
+  "version": "8.30.1",
+  "global_allowlist": {
+    "paths": [
+      "gitleaks\\.toml",
+      "(?i)\\.(?:bmp|gif|jpe?g|png|svg|tiff?)$",
+      "(?i)\\.(?:eot|otf)$"
+    ],
+    "regexes": [
+      "^(?i:true|false|null)$",
+      "^(?i:a+|b+|c+|d+|e+|f+|g+|h+|i+|j+|k+|l+|m+|n+|o+|p+|q+|r+|s+|t+|u+|v+|w+|x+|y+|z+|\\*+|\\.+)$",
+      "^\\$(?:\\d+|{\\d+})$",
+      "^\\$(?:[A-Z_][A-Z0-9_]*|\\{[^}]*\\})$"
+    ],
+    "stopwords": [
+      "014df517-39d1-4453-b7b3-9930c563627c",
+      "abcdefghijklmnopqrstuvwxyz"
+    ]
+  },
+  "rules": [
+    {
+      "id": "alibaba-access-key-id",
+      "description": "Detected an Alibaba Cloud AccessKey ID, posing a risk of unauthorized cloud resource access and potential data compromise.",
+      "regex": "(?i)\\b(LTAI[a-z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "entropy": 2.0,
+      "keywords": [
+        "ltai"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "alibaba-secret-key",
+      "description": "Discovered a potential Alibaba Cloud Secret Key, potentially allowing unauthorized operations and data access within Alibaba Cloud.",
+      "regex": "(?i)[\\w.-]{0,50}?(?:alibaba)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}([a-z0-9]{30})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "entropy": 2.0,
+      "keywords": [
+        "alibaba"
+      ],
+      "severity": "high",
+      "enabled": true,
+      "secretGroup": 1
+    },
+    {
+      "id": "anthropic-admin-api-key",
+      "description": "Detected an Anthropic Admin API Key, risking unauthorized access to administrative functions and sensitive AI model configurations.",
+      "regex": "\\b(sk-ant-admin01-[a-zA-Z0-9_\\-]{93}AA)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "keywords": [
+        "sk-ant-admin01"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "anthropic-api-key",
+      "description": "Identified an Anthropic API Key, which may compromise AI assistant integrations and expose sensitive data to unauthorized access.",
+      "regex": "\\b(sk-ant-api03-[a-zA-Z0-9_\\-]{93}AA)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "keywords": [
+        "sk-ant-api03"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "aws-access-token",
+      "description": "Identified a pattern that may indicate AWS credentials, risking unauthorized cloud resource access and data breaches on AWS platforms.",
+      "regex": "\\b((?:A3T[A-Z0-9]|AKIA|ASIA|ABIA|ACCA)[A-Z2-7]{16})\\b",
+      "entropy": 3.0,
+      "keywords": [
+        "a3t",
+        "akia",
+        "asia",
+        "abia",
+        "acca"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "aws-amazon-bedrock-api-key-long-lived",
+      "description": "Identified a pattern that may indicate long-lived Amazon Bedrock API keys, risking unauthorized Amazon Bedrock usage",
+      "regex": "\\b(ABSK[A-Za-z0-9+/]{109,269}={0,2})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "entropy": 3.0,
+      "keywords": [
+        "absk"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "aws-amazon-bedrock-api-key-short-lived",
+      "description": "Identified a pattern that may indicate short-lived Amazon Bedrock API keys, risking unauthorized Amazon Bedrock usage",
+      "regex": "\\bbedrock-api-key-[A-Za-z0-9+/=_-]{8,}\\b",
+      "entropy": 3.0,
+      "keywords": [
+        "bedrock-api-key-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "curl-auth-header",
+      "description": "Discovered a potential authorization token provided in a curl command header, which could compromise the curl accessed resource.",
+      "regex": "(?i)\\bcurl\\b(?:.*?|.*?(?:[\\r\\n]{1,2}.*?){1,5})[ \\t\\n\\r](?:-H|--header)(?:=|[ \\t]{0,5})(?:\"(?:Authorization:[ \\t]{0,5}(?:Basic[ \\t]([a-z0-9+/]{8,}={0,3})|(?:Bearer|(?:Api-)?Token)[ \\t]([\\w=~@.+/-]{8,})|([\\w=~@.+/-]{8,}))|(?:(?:X-(?:[a-z]+-)?)?(?:Api-?)?(?:Key|Token)):[ \\t]{0,5}([\\w=~@.+/-]{8,}))\"|'(?:Authorization:[ \\t]{0,5}(?:Basic[ \\t]([a-z0-9+/]{8,}={0,3})|(?:Bearer|(?:Api-)?Token)[ \\t]([\\w=~@.+/-]{8,})|([\\w=~@.+/-]{8,}))|(?:(?:X-(?:[a-z]+-)?)?(?:Api-?)?(?:Key|Token)):[ \\t]{0,5}([\\w=~@.+/-]{8,}))')(?:\\B|\\s|$)",
+      "entropy": 2.75,
+      "keywords": [
+        "curl"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "curl-auth-user",
+      "description": "Discovered a potential basic authorization token provided in a curl command, which could compromise the curl accessed resource.",
+      "regex": "\\bcurl\\b(?:.*|.*(?:[\\r\\n]{1,2}.*){1,5})[ \\t\\n\\r](?:-u|--user)(?:=|[ \\t]{0,5})(\"(:[^\"]{3,}|[^:\"]{3,}:|[^:\"]{3,}:[^\"]{3,})\"|'([^:']{3,}:[^']{3,})'|((?:\"[^\"]{3,}\"|'[^']{3,}'|[\\w$@.-]+):(?:\"[^\"]{3,}\"|'[^']{3,}'|[\\w${}@.-]+)))(?:\\s|$)",
+      "entropy": 2.0,
+      "keywords": [
+        "curl"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "github-app-token",
+      "description": "Identified a GitHub App Token, which may compromise GitHub application integrations and source code security.",
+      "regex": "(?:ghu|ghs)_[0-9a-zA-Z]{36}",
+      "entropy": 3.0,
+      "keywords": [
+        "ghu_",
+        "ghs_"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "github-fine-grained-pat",
+      "description": "Found a GitHub Fine-Grained Personal Access Token, risking unauthorized repository access and code manipulation.",
+      "regex": "github_pat_\\w{82}",
+      "entropy": 3.0,
+      "keywords": [
+        "github_pat_"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "github-oauth",
+      "description": "Discovered a GitHub OAuth Access Token, posing a risk of compromised GitHub account integrations and data leaks.",
+      "regex": "gho_[0-9a-zA-Z]{36}",
+      "entropy": 3.0,
+      "keywords": [
+        "gho_"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "github-pat",
+      "description": "Uncovered a GitHub Personal Access Token, potentially leading to unauthorized repository access and sensitive content exposure.",
+      "regex": "ghp_[0-9a-zA-Z]{36}",
+      "entropy": 3.0,
+      "keywords": [
+        "ghp_"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "github-refresh-token",
+      "description": "Detected a GitHub Refresh Token, which could allow prolonged unauthorized access to GitHub services.",
+      "regex": "ghr_[0-9a-zA-Z]{36}",
+      "entropy": 3.0,
+      "keywords": [
+        "ghr_"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-cicd-job-token",
+      "description": "Identified a GitLab CI/CD Job Token, potential access to projects and some APIs on behalf of a user while the CI job is running.",
+      "regex": "glcbt-[0-9a-zA-Z]{1,5}_[0-9a-zA-Z_-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "glcbt-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-deploy-token",
+      "description": "Identified a GitLab Deploy Token, risking access to repositories, packages and containers with write access.",
+      "regex": "gldt-[0-9a-zA-Z_\\-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "gldt-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-feature-flag-client-token",
+      "description": "Identified a GitLab feature flag client token, risks exposing user lists and features flags used by an application.",
+      "regex": "glffct-[0-9a-zA-Z_\\-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "glffct-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-feed-token",
+      "description": "Identified a GitLab feed token, risking exposure of user data.",
+      "regex": "glft-[0-9a-zA-Z_\\-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "glft-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-incoming-mail-token",
+      "description": "Identified a GitLab incoming mail token, risking manipulation of data sent by mail.",
+      "regex": "glimt-[0-9a-zA-Z_\\-]{25}",
+      "entropy": 3.0,
+      "keywords": [
+        "glimt-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-kubernetes-agent-token",
+      "description": "Identified a GitLab Kubernetes Agent token, risking access to repos and registry of projects connected via agent.",
+      "regex": "glagent-[0-9a-zA-Z_\\-]{50}",
+      "entropy": 3.0,
+      "keywords": [
+        "glagent-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-oauth-app-secret",
+      "description": "Identified a GitLab OIDC Application Secret, risking access to apps using GitLab as authentication provider.",
+      "regex": "gloas-[0-9a-zA-Z_\\-]{64}",
+      "entropy": 3.0,
+      "keywords": [
+        "gloas-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-pat",
+      "description": "Identified a GitLab Personal Access Token, risking unauthorized access to GitLab repositories and codebase exposure.",
+      "regex": "glpat-[\\w-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "glpat-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-pat-routable",
+      "description": "Identified a GitLab Personal Access Token (routable), risking unauthorized access to GitLab repositories and codebase exposure.",
+      "regex": "\\bglpat-[0-9a-zA-Z_-]{27,300}\\.[0-9a-z]{2}[0-9a-z]{7}\\b",
+      "entropy": 4.0,
+      "keywords": [
+        "glpat-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-ptt",
+      "description": "Found a GitLab Pipeline Trigger Token, potentially compromising continuous integration workflows and project security.",
+      "regex": "glptt-[0-9a-f]{40}",
+      "entropy": 3.0,
+      "keywords": [
+        "glptt-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-rrt",
+      "description": "Discovered a GitLab Runner Registration Token, posing a risk to CI/CD pipeline integrity and unauthorized access.",
+      "regex": "GR1348941[\\w-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "gr1348941"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-runner-authentication-token",
+      "description": "Discovered a GitLab Runner Authentication Token, posing a risk to CI/CD pipeline integrity and unauthorized access.",
+      "regex": "glrt-[0-9a-zA-Z_\\-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "glrt-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-runner-authentication-token-routable",
+      "description": "Discovered a GitLab Runner Authentication Token (Routable), posing a risk to CI/CD pipeline integrity and unauthorized access.",
+      "regex": "\\bglrt-t\\d_[0-9a-zA-Z_\\-]{27,300}\\.[0-9a-z]{2}[0-9a-z]{7}\\b",
+      "entropy": 4.0,
+      "keywords": [
+        "glrt-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-scim-token",
+      "description": "Discovered a GitLab SCIM Token, posing a risk to unauthorized access for a organization or instance.",
+      "regex": "glsoat-[0-9a-zA-Z_\\-]{20}",
+      "entropy": 3.0,
+      "keywords": [
+        "glsoat-"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitlab-session-cookie",
+      "description": "Discovered a GitLab Session Cookie, posing a risk to unauthorized access to a user account.",
+      "regex": "_gitlab_session=[0-9a-z]{32}",
+      "entropy": 3.0,
+      "keywords": [
+        "_gitlab_session="
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "jwt",
+      "description": "Uncovered a JSON Web Token, which may lead to unauthorized access to web applications and sensitive user data.",
+      "regex": "\\b(ey[a-zA-Z0-9]{17,}\\.ey[a-zA-Z0-9\\/\\\\_-]{17,}\\.(?:[a-zA-Z0-9\\/\\\\_-]{10,}={0,2})?)(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "entropy": 3.0,
+      "keywords": [
+        "ey"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "jwt-base64",
+      "description": "Detected a Base64-encoded JSON Web Token, posing a risk of exposing encoded authentication and data exchange information.",
+      "regex": "\\bZXlK(?:(?P<alg>aGJHY2lPaU)|(?P<apu>aGNIVWlPaU)|(?P<apv>aGNIWWlPaU)|(?P<aud>aGRXUWlPaU)|(?P<b64>aU5qUWlP)|(?P<crit>amNtbDBJanBi)|(?P<cty>amRIa2lPaU)|(?P<epk>bGNHc2lPbn)|(?P<enc>bGJtTWlPaU)|(?P<jku>cWEzVWlPaU)|(?P<jwk>cWQyc2lPb)|(?P<iss>cGMzTWlPaU)|(?P<iv>cGRpSTZJ)|(?P<kid>cmFXUWlP)|(?P<key_ops>clpYbGZiM0J6SWpwY)|(?P<kty>cmRIa2lPaUp)|(?P<nonce>dWIyNWpaU0k2)|(?P<p2c>d01tTWlP)|(?P<p2s>d01uTWlPaU)|(?P<ppt>d2NIUWlPaU)|(?P<sub>emRXSWlPaU)|(?P<svt>emRuUWlP)|(?P<tag>MFlXY2lPaU)|(?P<typ>MGVYQWlPaUp)|(?P<url>MWNtd2l)|(?P<use>MWMyVWlPaUp)|(?P<ver>MlpYSWlPaU)|(?P<version>MlpYSnphVzl1SWpv)|(?P<x>NElqb2)|(?P<x5c>NE5XTWlP)|(?P<x5t>NE5YUWlPaU)|(?P<x5ts256>NE5YUWpVekkxTmlJNkl)|(?P<x5u>NE5YVWlPaU)|(?P<zip>NmFYQWlPaU))[a-zA-Z0-9\\/\\\\_+\\-\\r\\n]{40,}={0,2}",
+      "entropy": 2.0,
+      "keywords": [
+        "zxlk"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "openai-api-key",
+      "description": "Found an OpenAI API Key, posing a risk of unauthorized access to AI services and data manipulation.",
+      "regex": "\\b(sk-(?:proj|svcacct|admin)-(?:[A-Za-z0-9_-]{74}|[A-Za-z0-9_-]{58})T3BlbkFJ(?:[A-Za-z0-9_-]{74}|[A-Za-z0-9_-]{58})\\b|sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "entropy": 3.0,
+      "keywords": [
+        "t3blbkfj"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "pkcs12-file",
+      "description": "Found a PKCS #12 file, which commonly contain bundled private keys.",
+      "severity": "critical",
+      "enabled": true,
+      "regex": "['\\\"`][^'\\\"`\\s]*\\.(?:p12|pfx)(?=['\\\"`\\s]|$)",
+      "keywords": [
+        ".p12",
+        ".pfx"
+      ]
+    },
+    {
+      "id": "private-key",
+      "description": "Identified a Private Key, which may compromise cryptographic security and sensitive data encryption.",
+      "regex": "(?i)-----BEGIN[ A-Z0-9_-]{0,100}PRIVATE KEY(?: BLOCK)?-----[\\s\\S-]{64,}?KEY(?: BLOCK)?-----",
+      "keywords": [
+        "-----begin"
+      ],
+      "severity": "critical",
+      "enabled": true
+    },
+    {
+      "id": "yandex-aws-access-token",
+      "description": "Uncovered a Yandex AWS Access Token, potentially compromising cloud resource access and data security on Yandex Cloud.",
+      "regex": "(?i)[\\w.-]{0,50}?(?:yandex)(?:[ \\t\\w.-]{0,20})[\\s'\"]{0,3}(?:=|>|:{1,3}=|\\|\\||:|=>|\\?=|,)[\\x60'\"\\s=]{0,5}(YC[a-zA-Z0-9_\\-]{38})(?:[\\x60'\"\\s;]|\\\\[nr]|$)",
+      "keywords": [
+        "yandex"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "huawei-cloud-access-key-id",
+      "description": "Detected a Huawei Cloud Access Key ID (AK), posing a risk of unauthorized cloud resource access and potential data compromise.",
+      "regex": "(?i)\\b(?:HW[_-]?ACCESS[_-]?KEY|HUAWEICLOUD[_-]?SDK[_-]?AK|HUAWEI[_-]?CLOUD[_-]?AK|hw_ak)['\\\"\\s:=]{1,8}[A-Z0-9]{20}\\b",
+      "entropy": 2.0,
+      "keywords": [
+        "hw_access",
+        "huaweicloud_sdk_ak",
+        "huawei_cloud_ak",
+        "hw_ak",
+        "access_key"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "huawei-cloud-secret-key",
+      "description": "Detected a Huawei Cloud Secret Access Key (SK), posing a risk of unauthorized cloud resource access and potential data compromise.",
+      "regex": "(?i)\\b(?:HW[_-]?SECRET[_-]?KEY|HUAWEICLOUD[_-]?SDK[_-]?SK|HUAWEI[_-]?CLOUD[_-]?SK|hw_sk)['\\\"\\s:=]{1,8}[A-Za-z0-9+/]{40}\\b",
+      "entropy": 3.5,
+      "keywords": [
+        "hw_secret",
+        "huaweicloud_sdk_sk",
+        "huawei_cloud_sk",
+        "hw_sk",
+        "secret_key"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "clauwhub-token",
+      "description": "Detected a ClawHub registry token (CLAUWHUB_TOKEN/CLAUWHUB_AUTH_TOKEN), risking unauthorized access to package publishing or private registries.",
+      "regex": "(?i)\\b(?:CLAUWHUB|CLAWHUB)[_A-Z]*TOKEN\\b['\\\"\\s:=]{1,8}[A-Za-z0-9._\\-]{20,}",
+      "entropy": 3.0,
+      "keywords": [
+        "clauwhub",
+        "clawhub"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "opencode-api-key",
+      "description": "Detected an OpenCode agent API key (OPENCODE_API_KEY/ZEN/GO), risking unauthorized model access and potential cost/abuse.",
+      "regex": "(?i)\\b(?:OPENCODE[_A-Z]*API[_A-Z]*KEY)\\b['\\\"\\s:=]{1,8}(?:sk-)?[A-Za-z0-9._\\-]{16,}",
+      "entropy": 3.0,
+      "keywords": [
+        "opencode"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "hermes-api-key",
+      "description": "Detected a Hermes agent API key (config api_key / HERMES_API_KEY), risking unauthorized model access and potential cost/abuse.",
+      "regex": "(?i)\\b(?:HERMES[_A-Z]*API[_A-Z]*KEY)\\b['\\\"\\s:=]{1,8}(?:sk-)?[A-Za-z0-9._\\-]{16,}",
+      "entropy": 3.0,
+      "keywords": [
+        "hermes"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "gitcode-pat",
+      "description": "Detected a GitCode Personal Access Token (GITCODE_TOKEN env), risking unauthorized access to GitCode repositories and APIs.",
+      "regex": "(?i)\\bGITCODE[_A-Z]*TOKEN\\b['\\\"\\s:=]{1,8}[A-Za-z0-9_\\-]{16,40}",
+      "entropy": 3.0,
+      "keywords": [
+        "gitcode"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "gitcode-oauth2-token",
+      "description": "Detected a GitCode OAuth2 token (oauth2: prefix used in git remotes), risking unauthorized repository access.",
+      "regex": "\\boauth2:[A-Za-z0-9_\\-]{16,40}@(?:[\\w.-]+\\.)?gitcode\\.com",
+      "entropy": 3.0,
+      "keywords": [
+        "oauth2",
+        "gitcode"
+      ],
+      "severity": "high",
+      "enabled": true
+    },
+    {
+      "id": "generic-password-literal",
+      "description": "Detected a plaintext password literal assigned to a CLI flag or parameter (e.g. --server.adminPass=Huawei@123). Hardcoded passwords in skill scripts/docs get copied verbatim and applied to real cloud resources.",
+      "regex": "(?i)\\b(?:--|[a-z0-9_\\.-]+=)?(?:admin|user|root|server|db|mysql|redis|ecs|rds|default)?[-_.]?(?:pass|passwd|password|pwd)(?:word)?\\s*[:=]\\s*['\\\"]?(?!(?:<|>|\\$|your-|example|sample|xxxx?|placeholder))([A-Za-z0-9@#$%^&*!_-]{6,64})(?![A-Za-z0-9@#$%^&*!_-])(?:['\\\"]|[,;&|]|\\s|$)",
+      "entropy": null,
+      "keywords": [
+        "password",
+        "passwd",
+        "adminpass",
+        "pwd",
+        "pass=",
+        "pass ="
+      ],
+      "severity": "high",
+      "enabled": true
+    }
+  ]
+}

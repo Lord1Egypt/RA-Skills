@@ -22,7 +22,7 @@ Load when performing comprehensive product selection, market analysis, or compet
 
 Before running any Full-mode product selection or market analysis, **complete this checklist**:
 
-- [ ] **Step 1 — Mode Selection:** Check the Product Selection Mode Mapping table in SKILL.md. If ANY of the 14 preset modes matches the user's intent, **USE IT** (`--mode xxx`). Do NOT manually piece together filters when a preset mode exists.
+- [ ] **Step 1 — Mode Selection:** Check the Product Selection Mode Mapping table in SKILL.md. If ANY of the 13 preset modes matches the user's intent, **USE IT** (`--mode xxx`). Do NOT manually piece together filters when a preset mode exists.
 - [ ] **Step 2 — Realtime Supplement:** Plan to call `product --asin` for the top 3-5 ASINs from results.
 - [ ] **Step 3 — Review Analysis:** Plan to call `analyze --asins` for top ASINs to get consumer insights (especially painPoints, improvements, buyingFactors).
 - [ ] **Step 4 — Output Blocks:** Prepare to include Disclaimer, Confidence Labels, Data Provenance, and API Usage.
@@ -43,7 +43,7 @@ When selecting Top 5 products for benchmarking or comparison, deduplicate by par
 
 ## Competitors Fallback
 
-If competitors endpoint returns empty results (common with broad keywords), rely on `products/search` sorted by sales as the competitor discovery source. Do not expose the issue to users.
+If competitors endpoint returns empty results (common with broad keywords), rely on `products/search` sorted by sales as the competitor discovery source. Tell the user the primary competitors endpoint returned no data and that the competitor set comes from a sales-ranked products fallback.
 
 ---
 
@@ -53,7 +53,7 @@ If competitors endpoint returns empty results (common with broad keywords), rely
 When comparing multiple brands, analyze each brand's ASIN separately — do NOT combine ASINs from different brands in a single `analyze` call. Mixed-ASIN analysis produces averaged insights that hide competitive differences and cannot be attributed to specific brands.
 
 ### Fallback for Insufficient Reviews
-If `analyze` returns insufficient data (requires 50+ reviews), silently fall back to `realtime/product` ratingBreakdown data. Extract sentiment distribution from star ratings. Never expose API errors to users.
+If `analyze` returns insufficient data (requires 50+ reviews), fall back to `realtime/product` ratingBreakdown data. Extract sentiment distribution from star ratings. Disclose that direct review analysis was unavailable and that sentiment is derived from the star-rating breakdown — a lower-confidence proxy, not full review analysis.
 
 ### Review Fallback Chain
 `realtime/product` provides ratingBreakdown (star distribution). When reviews/analysis is unavailable (insufficient reviews), use this as the consumer insight source. Cross-validate: compare positive_sentiment% from analyze against (4+5 star)% from ratingBreakdown — if gap > 15%, flag potential discrepancy.
@@ -116,7 +116,7 @@ When `monthlySalesFloor` is null: **Monthly sales ≈ 300,000 / BSR^0.65**
 
 ### Disclaimer (every Full-mode report)
 
-> ⚠️ **Important**: This analysis is based on APIClaw API data as of [date]. Sales figures are lower-bound estimates. Market conclusions are directional indicators based on available data, not definitive business recommendations. Always validate key findings with additional sources before making business decisions.
+> ⚠️ **Important**: This analysis is based on ZooData API data as of [date]. Sales figures are lower-bound estimates. Market conclusions are directional indicators based on available data, not definitive business recommendations. Always validate key findings with additional sources before making business decisions.
 
 ### Confidence Labels (every conclusion must be tagged)
 
@@ -127,9 +127,12 @@ When `monthlySalesFloor` is null: **Monthly sales ≈ 300,000 / BSR^0.65**
 
 ### Data Provenance Block (Full Mode Only)
 
-```markdown
+Use this rendered template at the end of every Full-mode report:
+
 ---
+
 📋 **Data Provenance**
+
 | Item | Value |
 |------|-------|
 | Query Keyword | [keyword used] |
@@ -142,7 +145,6 @@ When `monthlySalesFloor` is null: **Monthly sales ≈ 300,000 / BSR^0.65**
 | Endpoints Used | [list with call count] |
 | Credits Consumed | [total] |
 | Known Limitations | [list any gaps] |
-```
 
 **Rules**:
 1. Every Full-mode analysis MUST end with this block
@@ -153,8 +155,10 @@ When `monthlySalesFloor` is null: **Monthly sales ≈ 300,000 / BSR^0.65**
 
 ### API Usage Summary (All Modes — MANDATORY)
 
-```markdown
+Use this rendered template at the end of every report:
+
 📊 **API Usage**
+
 | Interface | Calls |
 |-----------|-------|
 | categories | 1 |
@@ -165,10 +169,9 @@ When `monthlySalesFloor` is null: **Monthly sales ≈ 300,000 / BSR^0.65**
 | **Total** | **8** |
 | **Credits consumed** | **8** |
 | **Credits remaining** | **492** |
-```
 
 **Tracking rules:**
-1. Count each `apiclaw.py` execution as 1 call to the corresponding interface
+1. Count each `zoodata.py` execution as 1 call to the corresponding interface
 2. Sum `_credits.consumed` from every API response for total consumed
 3. Use `_credits.remaining` from the **last** API response as remaining balance
 4. If `_credits` fields are null, show "N/A"
@@ -215,18 +218,18 @@ The interfaces return **different fields**. Do NOT assume they share the same st
 
 ## Data Structure Reminder
 
-All interfaces return `.data` as an **array**. Use `.data[0]` to get the first record, NOT `.data.fieldName`.
+Many interfaces return `.data` as an **array**. Use `.data[0]` to get the first record for those responses, but inspect the actual payload shape first because some commands return non-array data inside `data`.
 
 ---
 
 ## Error Handling
 
 Errors are handled by the script with structured JSON output. **Never expose error details to users.**
-Self-check: `python3 scripts/apiclaw.py check`
+Self-check: `python3 scripts/zoodata.py check`
 
 | Error | Fix |
 |-------|-----|
-| `Cannot index array with string` | Use `.data[0].fieldName` (`.data` is array) |
+| `Cannot index array with string` | If the response `data` is an array, use `.data[0].fieldName`; otherwise inspect the actual payload shape first |
 | Empty `data: []` | Use `categories` to confirm category exists |
 | `monthlySalesFloor: null` | BSR estimate: 300,000 / BSR^0.65 |
 

@@ -1,37 +1,47 @@
-## Description: <br>
-Write German that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write German that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Writers, translators, and agents use this skill to produce German text that reads more casual, native, and context-aware instead of overly formal or machine-like. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce casual German with slang or profanity that may be unsuitable for formal, regulated, or brand-sensitive contexts. <br>
-Mitigation: Use it only where an informal tone is appropriate, and review generated text before publication or customer-facing use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/german) <br>
+## Use Case:
+
+External users and agents use this skill to draft or revise German text so it sounds more natural, casual, and native-sounding while preserving awareness of formality, regional usage, punctuation, and tone.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Casual German defaults may be inappropriate for business, legal, academic, or stranger-facing messages.
+
+Mitigation: Ask explicitly for formal German and Sie usage when the message needs a professional or formal register.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language German text or writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tool calls, data access, or persistence; output style may include casual wording, slang, and profanity when appropriate.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior; defaults to casual German unless formal register is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

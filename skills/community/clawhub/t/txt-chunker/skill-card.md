@@ -1,40 +1,53 @@
-## Description: <br>
-Splits large text files into smaller chunks by line count for easier processing of logs, datasets, or documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits large text files into smaller chunks by line count for easier processing of logs, datasets, or documents.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers, analysts, and operators use TXT Chunker to split large logs, datasets, or long documents into smaller text files by line count for easier processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chunk output files are written in the current directory or the path implied by the output prefix, and matching filenames may be overwritten. <br>
-Mitigation: Run the tool in a dedicated output directory or choose a unique output prefix before processing important files. <br>
-Risk: The documented command name may not be installed as a wrapper in every environment. <br>
-Mitigation: If the wrapper is unavailable, run the bundled Python script directly with the same input file, line-count, and output-prefix arguments. <br>
+## Use Case:
 
+Developers and analysts use this skill to split large local text files, such as logs, datasets, and long documents, into smaller line-count-based chunks that are easier for agents or downstream tools to process.
 
-## Reference(s): <br>
-- [Txt Chunker ClawHub listing](https://clawhub.ai/albionaiinc-del/txt-chunker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with CLI examples and generated text chunk files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes chunk files using the selected output prefix and numbered .txt filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Existing files with the same numbered output prefix can be overwritten.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a unique output prefix or run the tool in a controlled output directory before splitting files.
+
+Risk: The tool reads the provided local file path and writes chunk files to the local workspace.
+
+Mitigation: Run it only on text files intended for splitting and review the working directory before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/txt-chunker)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, files]
+
+**Output Format:** [Markdown guidance with shell command examples and local text chunk files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes numbered UTF-8 .txt files using the selected output prefix.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

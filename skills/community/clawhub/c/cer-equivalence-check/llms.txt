@@ -1,0 +1,12 @@
+# cer-equivalence-check
+
+> 临床评价报告等同性论证要素检查器 — 医疗器械合规判定器（决策支持，非权威结论）
+
+- 类型：零依赖确定性 CLI 技能
+- 输入：命令行参数（枚举值）
+- 输出：JSON IR（result / rc / error_code / aigc_mark）
+- 规则源：MDR (EU) 2017/745 Art 61 + Annex XIV Part A / MDCG 2020-5、2020-6 / MEDDEV 2.7/1 rev.4
+- 定位：决策支持；正式结论以主管部门决定与官方最新文件为准
+- 作者：注册老炮@MedXpert · © 2026 MedXpert · MIT
+- 在线：https://medxpert.cn/knowledge/
+- 家族合集：https://medxpert.cn/skills/

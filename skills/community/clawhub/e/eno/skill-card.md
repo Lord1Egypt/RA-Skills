@@ -1,42 +1,61 @@
-## Description: <br>
-Analyzes frontend project architecture, tech stack choices, component design patterns, build configuration, monorepo structure, VSCode extension setup, and OpenHarmony project layout, producing scored reports with strengths, weaknesses, and refactoring suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This prompt-only skill helps agents analyze frontend project architecture, evaluate technology choices, review component design, assess build configuration, inspect monorepo and VSCode extension structure, and produce structured improvement guidance.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to review Vue, React, Angular, OpenHarmony, VSCode extension, and monorepo projects. It produces structured architecture health reports with scores, grades, strengths, weaknesses, and prioritized refactoring guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad frontend activation terms may trigger the skill during general architecture, tech stack, component, monorepo, or build configuration discussions. <br>
-Mitigation: Confirm the user wants a frontend architecture review and scope the analysis to the supplied project materials. <br>
-Risk: Users may paste private environment values, API keys, tokens, or passwords while sharing project files for review. <br>
-Mitigation: Ask users to redact secrets before analysis and avoid including credentials in generated reports. <br>
-Risk: Prompt-only architecture guidance can be incomplete or misleading when the supplied project evidence is partial. <br>
-Mitigation: Label findings as based on the provided files and recommend human review before adopting refactoring decisions. <br>
+## Use Case:
 
+Developers and frontend teams use this skill to review Vue, React, Angular, OpenHarmony, VSCode Extension, and monorepo projects. It produces architecture health assessments with scores, strengths, weaknesses, and prioritized refactoring suggestions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Wscats/eno) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown architecture review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scores, grades, findings, and prioritized refactoring suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad frontend architecture terms and produce project review guidance when the user's intent is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested review scope before performing a full architecture assessment.
+
+Risk: Architecture review may require project structure, package metadata, configuration files, or code snippets that could contain sensitive implementation details.
+
+Mitigation: Ask users to share only files they are comfortable having analyzed and to redact secrets or proprietary details before review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/eno)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [frontend-arch-skill.md](artifact/frontend-arch-skill.md)
+- [Jest Architecture](https://github.com/Wscats/jest-tutorial)
+- [Dependency Injection Framework](https://github.com/Wscats/dependency-injection)
+- [Lerna Tutorial](https://github.com/Wscats/lerna-tutorial)
+- [GitHub Actions Tutorial](https://github.com/Wscats/github-actions-tutorial)
+- [OpenHarmony Sheet](https://github.com/Wscats/sheet)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown architecture review reports with scoring tables, findings, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no tool calls, API calls, or executable artifacts are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,67 @@
-## Description: <br>
-Manage Apple Notes via the memo CLI on macOS and generate guidance for SkillBoss API calls across AI, search, document, email, and SMS workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Notes via the memo CLI on macOS and access 50+ SkillBoss-hosted models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS.
 
-## Publisher: <br>
-[MartinPollitt](https://clawhub.ai/user/MartinPollitt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martinpollitt](https://clawhub.ai/user/martinpollitt)
 
-## Use Case: <br>
-Developers and agent users can use this skill to generate shell commands and API call guidance for Apple Notes-related workflows and SkillBoss-hosted AI, search, document, email, and SMS capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is labeled for Apple Notes, but server security evidence says its files mainly document a broad remote SkillBoss AI/API gateway with search, email, and SMS capabilities. <br>
-Mitigation: Install only when that broad gateway behavior is intended, and review the enabled scope before use. <br>
-Risk: Private notes, files, audio, images, or documents may be sent to third-party processing services through SkillBoss API calls. <br>
-Mitigation: Avoid sending sensitive content unless third-party processing is acceptable, and use a restricted API key when available. <br>
-Risk: Email, SMS, OTP, batch messaging, upload, and document-processing actions can affect external recipients or expose data. <br>
-Mitigation: Require explicit human approval before those actions and verify recipients, payloads, and uploaded content. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for SkillBoss API commands, model selection guidance, and configuration help across chat, media generation, search, document, email, and SMS workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MartinPollitt/apple-notess) <br>
-- [SkillBoss](https://www.skillboss.co) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated SkillBoss API calls] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill name and display text may lead users to expect a local Apple Notes helper, while the security evidence describes a broad external SkillBoss API wrapper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and use it only when broad SkillBoss API access is intended.
+
+Risk: The skill can guide agents to send private notes, documents, recordings, contact details, OTP codes, emails, or SMS content to third-party services.
+
+Mitigation: Avoid submitting sensitive content unless the user has approved third-party processing and account usage through SKILLBOSS_API_KEY.
+
+Risk: Commands may consume account quota or trigger external actions such as email or SMS sending.
+
+Mitigation: Inspect generated commands and payloads before execution, especially for email, SMS, document, media, and model-routing actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/martinpollitt/skills/apple-notess)
+- [Publisher Profile](https://clawhub.ai/user/martinpollitt)
+- [SkillBoss API Base](https://api.heybossai.com/v1)
+- [SkillBoss Models Endpoint](https://api.heybossai.com/v1/models)
+- [SkillBoss Site](https://www.skillboss.co)
+- [Audio Models](artifact/audio-models.md)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Search and Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+- [Video Models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, curl examples, JSON payloads, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call external SkillBoss API endpoints with SKILLBOSS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

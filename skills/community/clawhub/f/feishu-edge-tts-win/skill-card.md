@@ -1,40 +1,56 @@
-## Description: <br>
-Sends Feishu voice messages on Windows by generating speech with Microsoft Edge TTS and delivering it as Feishu audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书语音消息发送技能（Windows 版）。使用 Edge TTS（微软，免费）生成语音并以飞书语音气泡发送。
 
-## Publisher: <br>
-[ztxdcyy](https://clawhub.ai/user/ztxdcyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ztxdcyy](https://clawhub.ai/user/ztxdcyy)
 
-## Use Case: <br>
-Developers and operators use this skill on Windows to convert provided text into the zh-CN-XiaoxiaoNeural voice and send it to a Feishu user as an audio message. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Message text and generated audio may leave the user's machine for Edge TTS and Feishu processing. <br>
-Mitigation: Avoid sending secrets, regulated data, or other sensitive content through this workflow. <br>
-Risk: The skill uses Feishu app credentials and sends audio to a supplied recipient open_id. <br>
-Mitigation: Protect the OpenClaw configuration file, use least-privilege Feishu app credentials, and verify the recipient open_id before running the command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ztxdcyy/feishu-edge-tts-win) <br>
-- [Feishu Open API](https://open.feishu.cn/open-apis) <br>
+## Use Case:
 
+Developers and agents use this skill on Windows to convert provided text into a Chinese Edge TTS voice clip and send it to a Feishu user as an audio message.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for generating audio and sending a Feishu voice message; runtime success depends on Edge TTS, ffmpeg, Feishu credentials, and a valid recipient open_id.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Feishu app credentials and can expose a bearer token locally during upload.
+
+Mitigation: Review before installation, use least-privilege Feishu app credentials, and avoid sharing the configuration file beyond the local agent environment.
+
+Risk: Input text is transmitted to Microsoft Edge TTS and the generated audio is transmitted to Feishu.
+
+Mitigation: Do not send sensitive text unless the user accepts transmission to both services.
+
+Risk: The upload path shells out to curl and depends on local ffmpeg and edge-tts behavior.
+
+Mitigation: Prefer a revised version with an in-process HTTPS client, pinned dependencies, and verified local ffmpeg installation before operational use.
+
+## Reference(s):
+
+- [Feishu Open APIs](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Windows shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates temporary MP3 and OPUS audio, uploads the OPUS file to Feishu, and reports send status or a message_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

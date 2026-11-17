@@ -1,42 +1,54 @@
-## Description: <br>
-Plan resources, track inventory, and coordinate departments with reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan resources, track inventory, and coordinate departments with reporting.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Employees and operators use this skill to keep local ERP-style notes for resource planning, inventory tracking, department coordination, reminders, reports, and weekly reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ERP notes are stored as plaintext files in ~/.local/share/erp. <br>
-Mitigation: Avoid entering passwords, secrets, regulated personal data, or highly confidential business records unless appropriate filesystem protections and retention controls are in place. <br>
-Risk: Export files may contain sensitive operational notes. <br>
-Mitigation: Review JSON, CSV, or TXT exports before sharing them outside the intended audience. <br>
+## Use Case:
 
+Employees and business operators use this skill to maintain local ERP-style logs for resource planning, inventory tracking, operational reviews, reminders, priorities, timelines, reporting, and weekly summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/erp) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plaintext log, export, status, and search output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local plaintext files under ~/.local/share/erp and can export JSON, CSV, or TXT files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Business notes, logs, and exports are stored as plaintext files under ~/.local/share/erp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing passwords, regulated records, or highly sensitive business data unless local file permissions and backup handling are acceptable.
+
+Risk: CSV exports may be opened in spreadsheet software and can carry practical export-safety concerns.
+
+Mitigation: Review exported CSV content before sharing or opening it in spreadsheet tools.
+
+## Reference(s):
+
+- [Erp on ClawHub](https://clawhub.ai/bytesagain1/skills/erp)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and manages local plaintext logs and JSON, CSV, or TXT exports under ~/.local/share/erp.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

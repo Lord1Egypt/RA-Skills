@@ -1,43 +1,64 @@
-## Description: <br>
-Supports asynchronous intelligent document OCR for batch processing by submitting a publicly accessible file URL and returning structured JSON with recognized text, tables, titles, and other document elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits public document URLs to Scnet's asynchronous OCR service and returns structured JSON with recognized text, tables, titles, layout elements, and page Markdown.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to submit public HTTP or HTTPS document URLs to Scnet OCR, poll for completion, and retrieve parsed JSON containing text, layout blocks, tables, images, seals, formulas, and Markdown content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided document URLs and retrieved OCR output through Scnet, which may expose sensitive or regulated document content to a third-party OCR service. <br>
-Mitigation: Use short-lived, access-scoped public URLs without embedded secrets, and process confidential or regulated documents only after approval for third-party OCR processing. <br>
-Risk: The skill requires SCNET_API_KEY and supports overriding SCNET_API_BASE, creating credential exposure or endpoint trust risk if configured carelessly. <br>
-Mitigation: Protect SCNET_API_KEY outside chat transcripts and source control, restrict local configuration file permissions, and change SCNET_API_BASE only to a trusted endpoint. <br>
+## Use Case:
 
+Developers and external users use this skill to send publicly accessible documents to Scnet for asynchronous OCR and document-structure extraction, especially for batch document processing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scnet-sugon/document-parse-ocr) <br>
-- [Scnet website](https://www.scnet.cn) <br>
-- [Scnet OCR API docs](references/api-docs.md) <br>
-- [Output fields summary](assets/templates/fields-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON document parsing result with optional Markdown content embedded in the response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a public HTTP or HTTPS file URL and SCNET_API_KEY; task results are retrieved through asynchronous polling and temporary result download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Documents and document URLs are sent to Scnet for external OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for external processing; avoid confidential, regulated, internal-only, or signed-URL documents unless that processing is explicitly approved.
+
+Risk: The skill depends on an API token stored in configuration.
+
+Mitigation: Protect the config/.env token file, avoid pasting API keys into chat, and rotate the token if exposure is suspected.
+
+Risk: The API base can be configured and may direct requests to an unintended network destination.
+
+Mitigation: Keep SCNET_API_BASE pointed at the official HTTPS Scnet endpoint before running the skill.
+
+Risk: Runtime dependencies are not pinned in the artifact evidence.
+
+Mitigation: Pin and review Python dependencies before deployment in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/skills/document-parse-ocr)
+- [Scnet Website](https://www.scnet.cn)
+- [Sugon-Scnet OCR API Docs](references/api-docs.md)
+- [Document Parsing Output Fields](assets/templates/fields-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON document parsing results with recognized text, layout blocks, tables, images, and page Markdown content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY, accepts a public HTTP or HTTPS file URL, polls asynchronously for up to 600 seconds, and returns errors as user-facing text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, skill.yaml, and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

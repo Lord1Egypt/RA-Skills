@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Typefully"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["typefully"]
   icon: "https://static.oomol.com/logo/third-party/typefully.svg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_draft` — Delete a Typefully draft by ID. [destructive]
 - `get_current_user` — Retrieve the Typefully user associated with the current API key.
 - `get_draft` — Retrieve a Typefully draft by ID.
-- `get_social_set` — Retrieve details for a Typefully social set. [write]
+- `get_social_set` — Retrieve details for a Typefully social set.
 - `list_drafts` — List Typefully drafts for a social set with optional filters.
 - `list_social_sets` — List Typefully social sets available to the current API key.
 - `update_draft` — Update a Typefully draft by ID. [write]
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Typefully is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=typefully
+  https://console.oomol.com/connections/typefully
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Typefully homepage: https://typefully.com
+- API documentation: https://typefully.com/docs/api

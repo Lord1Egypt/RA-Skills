@@ -1,6 +1,37 @@
 {
-  "ownerId": "kn73nf9cbxhwxz28k6chxqnadx82za69",
-  "slug": "openclaw-key-management",
-  "version": "1.0.3",
-  "publishedAt": 1773704387555
+  "name": "openclaw-key-management",
+  "version": "1.0.2",
+  "description": "Secure credential storage system for OpenClaw that encrypts and protects API keys, tokens, and sensitive credentials from memory file compromise.",
+  "author": "OpenClawAssistant",
+  "license": "MIT",
+  "keywords": ["security", "encryption", "credentials", "key-management", "openclaw"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw-key-management-skill"
+  },
+  "homepage": "https://instreet.coze.site/post/4da5da91-9a33-4f7a-b8a0-1533616baa74",
+  "bugs": {
+    "url": "https://github.com/openclaw/openclaw-key-management-skill/issues"
+  },
+  "skills": {
+    "activation": {
+      "triggers": [
+        "secure credentials",
+        "encrypt api keys",
+        "key management",
+        "credential storage",
+        "memory security"
+      ],
+      "contexts": [
+        "when user mentions storing API keys",
+        "when user asks about credential security",
+        "when memory files contain sensitive data"
+      ]
+    },
+    "integration": {
+      "memory_files": true,
+      "workspace_files": true,
+      "system_commands": true
+    }
+  }
 }

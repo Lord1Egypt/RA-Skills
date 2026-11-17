@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.2.0",
+  "project": {
+    "name": "ThoughtCodec",
+    "nameZh": "思维编解码",
+    "description": "A bilingual skill library for decompression and compression based AI workflows.",
+    "descriptionZh": "一个基于解压与压缩理念的中英双语 AI 工作流 Skill 库。"
+  },
+  "skills": [
+    {
+      "id": "architecture-scaffolding",
+      "title": "Architecture Scaffolding",
+      "titleZh": "架构级脚手架生成器",
+      "type": "decompression",
+      "status": "preview",
+      "models": ["Codex", "Claude"],
+      "tags": ["architecture", "scaffold", "api", "data-model"],
+      "description": "Convert business logic into architecture diagrams, data models, API contracts, and implementation scaffolds.",
+      "descriptionZh": "将业务逻辑转化为架构图、数据模型、API 契约和实施脚手架。",
+      "paths": {
+        "en": "skills/architecture-scaffolding/SKILL.md",
+        "zh-CN": "skills/architecture-scaffolding/SKILL.zh-CN.md"
+      },
+      "examples": ["skills/architecture-scaffolding/examples/basic-usage.md"]
+    },
+    {
+      "id": "sop-instantiation",
+      "title": "SOP Instantiation",
+      "titleZh": "标准作业程序实例化引擎",
+      "type": "decompression",
+      "status": "preview",
+      "models": ["Claude", "Codex"],
+      "tags": ["sop", "planning", "operations", "checklist"],
+      "description": "Convert broad objectives into concrete operating procedures with milestones, artifacts, and checks.",
+      "descriptionZh": "将宏观目标转化为包含里程碑、产出物和检查点的具体作业程序。",
+      "paths": {
+        "en": "skills/sop-instantiation/SKILL.md",
+        "zh-CN": "skills/sop-instantiation/SKILL.zh-CN.md"
+      },
+      "examples": ["skills/sop-instantiation/examples/basic-usage.md"]
+    },
+    {
+      "id": "rule-prompt-optimizer",
+      "title": "Rule And Prompt Optimizer",
+      "titleZh": "规则与提示词迭代器",
+      "type": "compression",
+      "status": "preview",
+      "models": ["Claude", "Codex"],
+      "tags": ["prompt-engineering", "rules", "feedback", "iteration"],
+      "description": "Convert repeated feedback, corrections, and conversation traces into durable prompt rules or skill updates.",
+      "descriptionZh": "将重复反馈、纠错和对话轨迹转化为长期可用的提示词规则或 Skill 更新。",
+      "paths": {
+        "en": "skills/rule-prompt-optimizer/SKILL.md",
+        "zh-CN": "skills/rule-prompt-optimizer/SKILL.zh-CN.md"
+      },
+      "examples": ["skills/rule-prompt-optimizer/examples/basic-usage.md"]
+    },
+    {
+      "id": "code-abstraction-encapsulation",
+      "title": "Code Abstraction And Encapsulation",
+      "titleZh": "代码与组件重构器",
+      "type": "compression",
+      "status": "preview",
+      "models": ["Codex", "Claude"],
+      "tags": ["refactoring", "components", "abstraction", "engineering"],
+      "description": "Convert repeated or messy code into reusable components, clean interfaces, and engineering rules.",
+      "descriptionZh": "将重复或混乱的代码转化为可复用组件、清晰接口和工程规则。",
+      "paths": {
+        "en": "skills/code-abstraction-encapsulation/SKILL.md",
+        "zh-CN": "skills/code-abstraction-encapsulation/SKILL.zh-CN.md"
+      },
+      "examples": ["skills/code-abstraction-encapsulation/examples/basic-usage.md"]
+    },
+    {
+      "id": "personal-methodology-engine",
+      "title": "Personal Methodology Engine",
+      "titleZh": "个人方法论引擎",
+      "type": "loop",
+      "status": "preview",
+      "models": ["Codex", "Claude"],
+      "tags": ["agentic-loop", "methodology", "knowledge-system", "personal-ai"],
+      "description": "Build a closed-loop personal AI working system that decompresses intent and compresses feedback into reusable methodology.",
+      "descriptionZh": "构建一个将意图解压为执行、并将反馈压缩为可复用方法论的个人 AI 工作系统。",
+      "paths": {
+        "en": "skills/personal-methodology-engine/SKILL.md",
+        "zh-CN": "skills/personal-methodology-engine/SKILL.zh-CN.md"
+      },
+      "examples": ["skills/personal-methodology-engine/examples/basic-usage.md"]
+    }
+  ]
+}

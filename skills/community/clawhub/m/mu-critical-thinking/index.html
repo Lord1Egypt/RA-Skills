@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mu-critical-thinking · 批判性思维提问教练</title>
+<meta name="description" content="批判性思维提问教练：12 维度论证质量诊断、12 类逻辑谬误速查、苏格拉底式 5 轮追问、决策质量审计、7 大数据陷阱识别、辩论正反面准备。别急着点头——先学会提问。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<style>
+:root{
+  --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+  --border:#e8e2db;--border-light:#f0ebe5;
+  --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+  --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+  --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;--red:#c0705a;
+  --radius:12px;--radius-sm:8px;
+  --transition:0.25s ease;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-serif:'Georgia','Noto Serif SC','Source Han Serif SC',serif;
+  --font-mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;font-size:15px}
+a{text-decoration:none;color:inherit}
+em{font-style:normal;color:var(--accent)}
+.container{max-width:960px;margin:0 auto;padding:0 28px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:1.02rem;font-weight:700;color:var(--text);letter-spacing:-0.02em;white-space:nowrap}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:color var(--transition)}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:0.78rem;cursor:pointer;user-select:none}
+.lang-switch span{padding:5px 11px;transition:all var(--transition);color:var(--text-muted)}
+.lang-switch span.active{background:var(--accent);color:#fff}
+.lang-switch span:hover:not(.active){color:var(--text);background:var(--bg-warm)}
+.nav-cta{padding:7px 18px;border-radius:7px;font-size:0.82rem;font-weight:600;background:var(--text);color:var(--bg);transition:all var(--transition);white-space:nowrap}
+.nav-cta:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+/* Hero */
+.hero{padding:150px 0 78px;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-warm) 100%)}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:100px;background:var(--bg-card);border:1px solid var(--border);font-size:0.76rem;font-weight:600;color:var(--text-secondary);margin-bottom:26px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+.hero h1{font-family:var(--font-serif);font-size:3.1rem;line-height:1.22;font-weight:700;letter-spacing:-0.03em;margin-bottom:20px}
+.hero-sub{font-size:1.04rem;color:var(--text-secondary);max-width:620px;margin:0 auto 34px;line-height:1.8}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 30px;border-radius:9px;font-size:0.9rem;font-weight:600;transition:all var(--transition);border:1px solid transparent}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(201,100,66,0.18)}
+.btn-primary:hover{background:#b5583a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,100,66,0.26)}
+.btn-secondary{background:var(--bg-card);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;margin-top:52px}
+.stat{background:var(--bg-card);padding:22px 14px;text-align:center}
+.stat-num{font-family:var(--font-serif);font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1.2;letter-spacing:-0.02em}
+.stat-num .stat-emoji{font-size:inherit;line-height:inherit;font-family:var(--font)}
+.stat-label{font-size:0.76rem;color:var(--text-secondary);margin-top:5px;font-weight:500}
+
+/* Sections */
+section.block{padding:78px 0}
+.bg-warm{background:var(--bg-warm)}
+.section-label{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);padding:4px 12px;border-radius:5px;margin-bottom:14px}
+.section-title{font-family:var(--font-serif);font-size:2rem;font-weight:700;letter-spacing:-0.025em;margin-bottom:10px;line-height:1.3}
+.section-desc{font-size:0.94rem;color:var(--text-secondary);max-width:660px;margin-bottom:36px;line-height:1.8}
+
+/* Cards */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{padding:26px 22px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition);display:flex;flex-direction:column}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:15px;background:var(--bg-warm)}
+.card h3{font-size:0.98rem;font-weight:700;margin-bottom:7px;letter-spacing:-0.01em}
+.card p{font-size:0.845rem;color:var(--text-secondary);line-height:1.75;flex:1}
+.card-say{margin-top:12px;padding:9px 12px;border-radius:var(--radius-sm);background:var(--bg-code);border-left:3px solid var(--accent-light);font-size:0.79rem;color:var(--text-secondary);font-family:var(--font-mono);line-height:1.6}
+.card-tag{display:inline-block;align-self:flex-start;margin-top:12px;padding:3px 10px;border-radius:4px;font-size:0.68rem;font-weight:600;background:var(--accent-bg);color:var(--accent)}
+
+/* Highlight list */
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hl{padding:24px 22px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);border-top:3px solid var(--accent-light);transition:all var(--transition)}
+.hl:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04);border-top-color:var(--accent)}
+.hl h3{font-size:0.95rem;font-weight:700;margin-bottom:8px}
+.hl p{font-size:0.84rem;color:var(--text-secondary);line-height:1.75}
+.hl-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-size:0.7rem;padding:3px 9px;border-radius:100px;background:var(--bg-warm);color:var(--text-secondary);font-weight:500;border:1px solid var(--border-light)}
+
+/* Comparison table */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparison-table{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light);background:var(--bg-card)}
+.comparison-table th,.comparison-table td{padding:14px 18px;text-align:left;font-size:0.845rem;border-bottom:1px solid var(--border-light);vertical-align:top;line-height:1.7}
+.comparison-table thead th{background:var(--bg-warm);font-weight:700;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);white-space:nowrap}
+.comparison-table thead th:nth-child(2){color:var(--accent)}
+.comparison-table tbody tr{background:var(--bg-card);transition:background var(--transition)}
+.comparison-table tbody tr:hover{background:var(--bg-warm)}
+.comparison-table tbody tr:last-child td{border-bottom:none}
+.comparison-table td:first-child{font-weight:700;white-space:nowrap}
+.comparison-table td:nth-child(2){color:var(--text)}
+.check{color:var(--green);font-weight:700}
+.cross{color:var(--red);font-weight:700}
+.partial{color:#c9a44e;font-weight:700}
+
+/* Workflow rows */
+.wf-head,.wf-row{display:grid;grid-template-columns:28% 29% 43%;gap:14px;align-items:start}
+.wf-head{padding:0 18px 10px;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)}
+.wf-row{padding:16px 18px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:10px;transition:all var(--transition)}
+.wf-row:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.wf-name{font-size:0.9rem;font-weight:700;letter-spacing:-0.01em}
+.wf-scene{font-size:0.83rem;color:var(--text-secondary);line-height:1.7}
+.wf-trigger{font-family:var(--font-mono);font-size:0.79rem;color:var(--accent);background:var(--accent-bg);padding:6px 11px;border-radius:var(--radius-sm);line-height:1.6;display:inline-block}
+.wf-modes{margin-top:28px;padding-top:24px;border-top:1px dashed var(--border)}
+.wf-modes-title{font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:14px;letter-spacing:-0.01em}
+.wf-modes .wf-row{align-items:center}
+.wf-modes .wf-row>div{display:flex;align-items:center}
+
+/* CTA */
+.cta-section{padding:92px 0;text-align:center;background:var(--bg-warm);border-top:1px solid var(--border-light)}
+.cta-section h2{font-family:var(--font-serif);font-size:2.5rem;font-weight:700;letter-spacing:-0.03em;line-height:1.3;margin-bottom:16px}
+.cta-section p{font-size:1rem;color:var(--text-secondary);max-width:560px;margin:0 auto 32px;line-height:1.8}
+
+/* Footer */
+footer{padding:44px 0 52px;background:var(--bg);border-top:1px solid var(--border-light);text-align:center}
+.footer-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:18px}
+.footer-badges img{height:20px;display:block}
+
+@media(max-width:768px){
+  .hero{padding:118px 0 62px}
+  .hero h1{font-size:2.05rem}
+  .hero-sub{font-size:0.95rem}
+  .nav-links{display:none}
+  .nav-logo{font-size:0.86rem;white-space:normal;line-height:1.25}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards-grid,.hl-grid{grid-template-columns:1fr}
+  .wf-head,.wf-row{grid-template-columns:28% 29% 43%;gap:8px}
+  .wf-row{padding:12px 12px}
+  .wf-name{font-size:0.8rem}
+  .wf-scene{font-size:0.75rem}
+  .wf-trigger{font-size:0.7rem;padding:5px 8px}
+  .section-title{font-size:1.55rem}
+  .cta-section h2{font-size:1.8rem}
+  section.block{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<div class="nav-logo">🧠 mu-critical-thinking · 批判性思维提问教练</div>
+<ul class="nav-links">
+<li><a href="#scenarios"><span data-en="Scenarios" data-zh="使用场景">使用场景</span></a></li>
+<li><a href="#highlights"><span data-en="Highlights" data-zh="核心亮点">核心亮点</span></a></li>
+<li><a href="#comparison"><span data-en="Compare" data-zh="对比">对比</span></a></li>
+<li><a href="#workflows"><span data-en="Workflows" data-zh="工作流">工作流</span></a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch" id="langSwitch"><span data-lang="zh" class="active">中文</span><span data-lang="en">EN</span></div>
+<a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta" target="_blank"><span data-en="Skill Hub" data-zh="Skill合集">Skill合集</span></a>
+</div>
+</div></nav>
+
+<!-- Hero -->
+<section class="hero"><div class="container">
+<div class="hero-badge"><span class="dot"></span><span data-en="v2.0.0 · Open Source · Based on《Asking the Right Questions》" data-zh="v2.0.0 · 开源发布 · 基于《学会提问》">v2.0.0 · 开源发布 · 基于《学会提问》</span></div>
+<h1><span data-en="Critical Thinking Coach:<br>Not lectures — <em>critical questioning</em>." data-zh="批判性思维提问教练：<br>不是讲道理，而是<em>批判性提问</em>">批判性思维提问教练：<br>不是讲道理，而是<em>批判性提问</em></span></h1>
+<p class="hero-sub"><span data-en="Not a textbook on logic — a coach that trains critical thinking on your real text. Paste a proposal, a report, a data slide or a decision, and get a 12-dimension diagnosis, the exact sentences that break, and how to fix them." data-zh="不是讲道理的教科书，而是在你的真实材料上练出批判性思维的教练。贴一份方案、一段汇报、一张数据图或一个决策，拿到 12 维度诊断、出问题的具体那句话，以及怎么改。">不是讲道理的教科书，而是在你的真实材料上练出批判性思维的教练。贴一份方案、一段汇报、一张数据图或一个决策，拿到 12 维度诊断、出问题的具体那句话，以及怎么改。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-critical-thinking" class="btn btn-primary" target="_blank"><span data-en="🧠 Get the Skill on GitHub" data-zh="🧠 在 GitHub 上获取">🧠 在 GitHub 上获取</span></a>
+<a href="https://github.com/muippt/mu-critical-thinking/archive/refs/tags/v2.0.0.zip" class="btn btn-secondary" target="_blank"><span data-en="📦 Download Skill ZIP" data-zh="📦 下载 Skill">📦 下载 Skill</span></a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-num"><span class="stat-emoji">🧠</span> 12</div><div class="stat-label"><span data-en="Diagnostic dimensions" data-zh="维度诊断">维度诊断</span></div></div>
+<div class="stat"><div class="stat-num"><span class="stat-emoji">🔍</span> 12</div><div class="stat-label"><span data-en="Logical fallacies" data-zh="谬误速查">谬误速查</span></div></div>
+<div class="stat"><div class="stat-num"><span class="stat-emoji">🎯</span> 5</div><div class="stat-label"><span data-en="Socratic rounds" data-zh="轮递进追问">轮递进追问</span></div></div>
+<div class="stat"><div class="stat-num"><span class="stat-emoji">📊</span> 7</div><div class="stat-label"><span data-en="Data traps" data-zh="大数据陷阱">大数据陷阱</span></div></div>
+</div>
+</div></section>
+
+<!-- Scenarios -->
+<section class="block" id="scenarios"><div class="container">
+<div class="section-label">💡 <span data-en="Use Cases" data-zh="使用场景示例">使用场景示例</span></div>
+<h2 class="section-title"><span data-en="Six moments where thinking usually slips" data-zh="六个最容易想错的时刻">六个最容易想错的时刻</span></h2>
+<p class="section-desc"><span data-en="Every scenario starts from real material you paste in — never abstract theory. Diagnosis always cites the exact sentence, explains why it breaks, and rewrites it." data-zh="每个场景都从你贴进来的真实材料出发，不做空对空分析。诊断一定引用具体那句话、说明为什么站不住、给出怎么改。">每个场景都从你贴进来的真实材料出发，不做空对空分析。诊断一定引用具体那句话、说明为什么站不住、给出怎么改。</span></p>
+<div class="cards-grid">
+
+<div class="card">
+<div class="card-icon">📋</div>
+<h3>📋 <span data-en="Argument Quality Assessment" data-zh="论证质量评估">论证质量评估</span></h3>
+<p><span data-en="Paste any argument, opinion or proposal. Get a full 12-dimension report — issue type, conclusion, reasons, hidden assumptions, evidence level — each rated ✅ / ⚠️ / ❌ with a concrete diagnosis." data-zh="贴任意论证、观点或方案，得到一份 12 维度全覆盖诊断报告：论题类型、结论、理由、隐含假设、证据层级，每一项打上 ✅／⚠️／❌ 并附具体诊断。">贴任意论证、观点或方案，得到一份 12 维度全覆盖诊断报告：论题类型、结论、理由、隐含假设、证据层级，每一项打上 ✅／⚠️／❌ 并附具体诊断。</span></p>
+<div class="card-say"><span data-en="&quot;Here's our Q3 plan — poke holes in it.&quot;" data-zh="「这是我们 Q3 的方案，帮我挑挑毛病」">「这是我们 Q3 的方案，帮我挑挑毛病」</span></div>
+<div class="card-tag"><span data-en="12-dimension report" data-zh="12 维度诊断报告">12 维度诊断报告</span></div>
+</div>
+
+<div class="card">
+<div class="card-icon">🔍</div>
+<h3>🔍 <span data-en="Logical Fallacy Detection" data-zh="逻辑谬误识别">逻辑谬误识别</span></h3>
+<p><span data-en="Line-by-line scan against 12 classic fallacies — straw man, slippery slope, hasty generalisation, false cause, false dichotomy and more. Each hit shows the quote, the flaw and a rewrite. Clean text gets told it's clean." data-zh="逐句扫描 12 类经典谬误：稻草人、滑坡、以偏概全、虚假因果、错误二分等。每处命中给出原文引用、问题解释和修正话术；没问题就明说没问题，不强行找毛病。">逐句扫描 12 类经典谬误：稻草人、滑坡、以偏概全、虚假因果、错误二分等。每处命中给出原文引用、问题解释和修正话术；没问题就明说没问题，不强行找毛病。</span></p>
+<div class="card-say"><span data-en="&quot;Any logic problems in here?&quot;" data-zh="「这里面有没有逻辑问题」">「这里面有没有逻辑问题」</span></div>
+<div class="card-tag"><span data-en="Quote + fix script" data-zh="原文引用 + 修正话术">原文引用 + 修正话术</span></div>
+</div>
+
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3>🎯 <span data-en="Socratic Questioning Training" data-zh="苏格拉底式追问训练">苏格拉底式追问训练</span></h3>
+<p><span data-en="Five progressive rounds — surface facts → reasons and evidence → hidden assumptions → alternative explanations → action verification. Each question tells you what it tests and what silence would mean." data-zh="5 轮递进追问：表层事实 → 理由证据 → 隐含假设 → 替代可能 → 行动验证。每个问题都标注在检验哪个维度，以及对方答不上来意味着什么风险。">5 轮递进追问：表层事实 → 理由证据 → 隐含假设 → 替代可能 → 行动验证。每个问题都标注在检验哪个维度，以及对方答不上来意味着什么风险。</span></p>
+<div class="card-say"><span data-en="&quot;Help me prepare follow-up questions.&quot;" data-zh="「帮我准备追问／提问清单」">「帮我准备追问／提问清单」</span></div>
+<div class="card-tag"><span data-en="5 rounds, max 2 questions each" data-zh="≤5 轮 · 每轮≤2 问">≤5 轮 · 每轮≤2 问</span></div>
+</div>
+
+<div class="card">
+<div class="card-icon">📊</div>
+<h3>📊 <span data-en="Decision Quality Audit" data-zh="决策质量审计">决策质量审计</span></h3>
+<p><span data-en="A 12-item checklist runs over your decision — reasons, shared definitions, assumptions, alternatives, worst case, reversibility — then grades it Go / Reinforce / Hold, plus a Kill Switch: the conditions under which you should abort." data-zh="12 项清单逐条审计你的决策：理由、概念共识、假设、替代方案、最坏情况、是否可逆，最后给出「可执行／需补强／建议暂缓」评级，并附 Kill Switch——什么条件下应该及时喊停。">12 项清单逐条审计你的决策：理由、概念共识、假设、替代方案、最坏情况、是否可逆，最后给出「可执行／需补强／建议暂缓」评级，并附 Kill Switch——什么条件下应该及时喊停。</span></p>
+<div class="card-say"><span data-en="&quot;Audit this decision before I commit.&quot;" data-zh="「帮我审计这个决策」">「帮我审计这个决策」</span></div>
+<div class="card-tag"><span data-en="Checklist + Kill Switch" data-zh="12 项清单 + Kill Switch">12 项清单 + Kill Switch</span></div>
+</div>
+
+<div class="card">
+<div class="card-icon">📈</div>
+<h3>📈 <span data-en="Data Interpretation Coach" data-zh="数据解读教练">数据解读教练</span></h3>
+<p><span data-en="Splits any chart or report into what the data tells you and what it deliberately doesn't — then names the traps and hands you the questions to ask the person who produced it." data-zh="把任何图表或报告拆成两栏：这个数据告诉你什么、这个数据没告诉你什么，然后点名可能的陷阱，并给出该向数据提供方追问的具体问题。">把任何图表或报告拆成两栏：这个数据告诉你什么、这个数据没告诉你什么，然后点名可能的陷阱，并给出该向数据提供方追问的具体问题。</span></p>
+<div class="card-say"><span data-en="&quot;Is this number trustworthy?&quot;" data-zh="「这个数据靠谱吗／该怎么看」">「这个数据靠谱吗／该怎么看」</span></div>
+<div class="card-tag"><span data-en="Told / Not told / Traps" data-zh="告诉你 · 没告诉你 · 陷阱">告诉你 · 没告诉你 · 陷阱</span></div>
+</div>
+
+<div class="card">
+<div class="card-icon">⚔️</div>
+<h3>⚔️ <span data-en="Debate Preparation" data-zh="辩论准备">辩论准备</span></h3>
+<p><span data-en="Both sides argued with equal force — argument, best evidence, likely rebuttal, your counter — plus the key clash points, the assumption worth attacking, and the fallacies each side is most likely to commit." data-zh="正反两面同等力度：论点、最佳证据、对方可能反驳、你的再反驳，外加关键交锋点、值得攻击的胜负手假设，以及双方最可能犯的谬误自查。">正反两面同等力度：论点、最佳证据、对方可能反驳、你的再反驳，外加关键交锋点、值得攻击的胜负手假设，以及双方最可能犯的谬误自查。</span></p>
+<div class="card-say"><span data-en="&quot;Prep me both sides of this.&quot;" data-zh="「帮我准备正反面论点」">「帮我准备正反面论点」</span></div>
+<div class="card-tag"><span data-en="No preset stance" data-zh="不预设立场">不预设立场</span></div>
+</div>
+
+</div>
+</div></section>
+
+<!-- Highlights -->
+<section class="block bg-warm" id="highlights"><div class="container">
+<div class="section-label">✨ <span data-en="Core Highlights" data-zh="核心亮点">核心亮点</span></div>
+<h2 class="section-title"><span data-en="Structure, not vibes" data-zh="靠结构，不靠感觉">靠结构，不靠感觉</span></h2>
+<p class="section-desc"><span data-en="Every output is anchored to a named framework and a quoted sentence. No abstract lecturing, no moral judgement on your position — only the quality of the reasoning." data-zh="每一条输出都锚定到一个具名框架和一句被引用的原文。不讲抽象大道理，不当道德裁判评判立场对错，只评估论证本身的质量。">每一条输出都锚定到一个具名框架和一句被引用的原文。不讲抽象大道理，不当道德裁判评判立场对错，只评估论证本身的质量。</span></p>
+<div class="hl-grid">
+
+<div class="hl">
+<h3>🧠 <span data-en="12 dimensions, zero skipped" data-zh="12 维度，一个不跳">12 维度，一个不跳</span></h3>
+<p><span data-en="Issue &amp; conclusion, sufficiency of reasons, clarity of terms, value assumptions, descriptive assumptions, reasoning, evidence credibility, rival causes, data reliability, omitted information, conclusion soundness, decision quality. Missing info gets flagged, never quietly dropped." data-zh="论题结论、理由充分、概念清晰、价值假设、描述假设、推理逻辑、证据可信、替代原因、数据可靠、信息完整、结论合理、决策质量。信息不足会明确标注，绝不悄悄略过。">论题结论、理由充分、概念清晰、价值假设、描述假设、推理逻辑、证据可信、替代原因、数据可靠、信息完整、结论合理、决策质量。信息不足会明确标注，绝不悄悄略过。</span></p>
+<div class="hl-chips"><span class="chip">✅ <span data-en="Pass" data-zh="通过">通过</span></span><span class="chip">⚠️ <span data-en="Weak" data-zh="薄弱">薄弱</span></span><span class="chip">❌ <span data-en="Broken" data-zh="缺陷">缺陷</span></span></div>
+</div>
+
+<div class="hl">
+<h3>🔍 <span data-en="12 fallacies, workplace-ready" data-zh="12 类谬误，职场可用">12 类谬误，职场可用</span></h3>
+<p><span data-en="Each fallacy ships with four parts: definition, identification pattern, a workplace example you'll recognise, and a correction script you can say out loud in the meeting." data-zh="每类谬误都是四件套：定义、识别模式、一个你一看就懂的职场示例、以及一句会上就能说出口的修正话术。">每类谬误都是四件套：定义、识别模式、一个你一看就懂的职场示例、以及一句会上就能说出口的修正话术。</span></p>
+<div class="hl-chips"><span class="chip"><span data-en="Straw man" data-zh="稻草人">稻草人</span></span><span class="chip"><span data-en="Slippery slope" data-zh="滑坡谬误">滑坡谬误</span></span><span class="chip"><span data-en="False dichotomy" data-zh="错误二分">错误二分</span></span><span class="chip"><span data-en="Ad hominem" data-zh="人身攻击">人身攻击</span></span><span class="chip"><span data-en="Circular reasoning" data-zh="循环论证">循环论证</span></span><span class="chip"><span data-en="Red herring" data-zh="转移话题">转移话题</span></span></div>
+</div>
+
+<div class="hl">
+<h3>🎯 <span data-en="Questioning that goes five layers deep" data-zh="追问，一路问到第五层">追问，一路问到第五层</span></h3>
+<p><span data-en="Facts → reasons → assumptions → alternatives → verification. Capped at five rounds and two questions per round, so it sharpens you instead of exhausting you." data-zh="表层事实 → 理由证据 → 隐含假设 → 替代可能 → 行动验证。上限 5 轮、每轮最多 2 问，练的是锋利度而不是耐力。">表层事实 → 理由证据 → 隐含假设 → 替代可能 → 行动验证。上限 5 轮、每轮最多 2 问，练的是锋利度而不是耐力。</span></p>
+<div class="hl-chips"><span class="chip">💬 <span data-en="Guided mode" data-zh="引导模式">引导模式</span></span><span class="chip">📋 <span data-en="Checklist mode" data-zh="清单模式">清单模式</span></span></div>
+</div>
+
+<div class="hl">
+<h3>📊 <span data-en="Kill Switch before it's too late" data-zh="Kill Switch，来得及喊停">Kill Switch，来得及喊停</span></h3>
+<p><span data-en="Decision audits don't stop at a verdict. They define the abort conditions up front — what has to be observed for you to reopen or drop the decision, decided while you're still calm." data-zh="决策审计不止给一个结论，还会预先定义放弃条件：观察到什么就该重新评估或直接放弃——趁你还冷静的时候先定好。">决策审计不止给一个结论，还会预先定义放弃条件：观察到什么就该重新评估或直接放弃——趁你还冷静的时候先定好。</span></p>
+<div class="hl-chips"><span class="chip"><span data-en="Reversible?" data-zh="是否可逆">是否可逆</span></span><span class="chip"><span data-en="Worst case" data-zh="最坏情况">最坏情况</span></span><span class="chip"><span data-en="Regret test" data-zh="一年后会后悔吗">一年后会后悔吗</span></span></div>
+</div>
+
+<div class="hl">
+<h3>⚠️ <span data-en="7 data traps + evidence pyramid" data-zh="7 大数据陷阱 + 证据金字塔">7 大数据陷阱 + 证据金字塔</span></h3>
+<p><span data-en="Base rate fallacy, mean vs median, cherry-picked time windows, survivorship bias, Simpson's paradox, missing data, correlation mistaken for causation — ranked against a seven-level evidence hierarchy from meta-analysis down to anecdote." data-zh="基数谬误、平均值 vs 中位数、选择性时间窗口、幸存者偏差、辛普森悖论、缺失数据、相关当因果——并对照从元分析到个人轶事的七级证据层级金字塔定位可信度。">基数谬误、平均值 vs 中位数、选择性时间窗口、幸存者偏差、辛普森悖论、缺失数据、相关当因果——并对照从元分析到个人轶事的七级证据层级金字塔定位可信度。</span></p>
+<div class="hl-chips"><span class="chip"><span data-en="Source audit" data-zh="来源审查">来源审查</span></span><span class="chip"><span data-en="Definition audit" data-zh="口径审查">口径审查</span></span><span class="chip"><span data-en="Presentation audit" data-zh="呈现审查">呈现审查</span></span></div>
+</div>
+
+<div class="hl">
+<h3>💼 <span data-en="8 workplace scenarios mapped" data-zh="8 大职场场景已映射">8 大职场场景已映射</span></h3>
+<p><span data-en="Proposal review, interview evaluation, data reporting, conflict mediation, strategic decision, deck auditing, managing up, performance review — each pre-mapped to its priority dimensions, common traps and ready-to-use phrasing." data-zh="方案评审、面试评估、数据汇报、冲突调解、战略决策、汇报材料审查、向上管理、绩效评价——每个场景都预先映射到主攻维度、常见陷阱和现成应对话术。">方案评审、面试评估、数据汇报、冲突调解、战略决策、汇报材料审查、向上管理、绩效评价——每个场景都预先映射到主攻维度、常见陷阱和现成应对话术。</span></p>
+<div class="hl-chips"><span class="chip"><span data-en="Priority dimensions" data-zh="主攻维度">主攻维度</span></span><span class="chip"><span data-en="Common traps" data-zh="常见陷阱">常见陷阱</span></span><span class="chip"><span data-en="Response scripts" data-zh="应对话术">应对话术</span></span></div>
+</div>
+
+</div>
+</div></section>
+
+<!-- Comparison -->
+<section class="block" id="comparison"><div class="container">
+<div class="section-label">📌 <span data-en="Comparison" data-zh="与同类方法对比">与同类方法对比</span></div>
+<h2 class="section-title"><span data-en="Why not just ask a chatbot?" data-zh="为什么不直接找个聊天框问？">为什么不直接找个聊天框问？</span></h2>
+<p class="section-desc"><span data-en="Critical thinking tools mostly fall into two camps: academic models that never touch your actual deck, and freeform prompts that give a different answer every time. This sits in between — a fixed framework applied to your real text." data-zh="批判性思维工具通常分两类：学术模型不碰你的真实材料，自由提问每次给的答案都不一样。这个 Skill 卡在中间——固定框架，作用于你的真实文本。">批判性思维工具通常分两类：学术模型不碰你的真实材料，自由提问每次给的答案都不一样。这个 Skill 卡在中间——固定框架，作用于你的真实文本。</span></p>
+<div class="table-wrap"><table class="comparison-table"><thead><tr>
+<th><span data-en="Dimension" data-zh="维度">维度</span></th>
+<th>mu-critical-thinking</th>
+<th><span data-en="Generic chat prompts" data-zh="通用聊天提问">通用聊天提问</span></th>
+<th><span data-en="Toulmin Model" data-zh="图尔敏论证模型">图尔敏论证模型</span></th>
+<th><span data-en="Six Thinking Hats" data-zh="六顶思考帽">六顶思考帽</span></th>
+</tr></thead><tbody>
+<tr>
+<td><span data-en="Structured framework" data-zh="结构化框架">结构化框架</span></td>
+<td><span class="check">✅</span> <span data-en="Fixed 12 dimensions, none skipped" data-zh="固定 12 维度，全覆盖不跳过">固定 12 维度，全覆盖不跳过</span></td>
+<td><span class="cross">❌</span> <span data-en="Freeform, varies every run" data-zh="自由发挥，每次结果都不同">自由发挥，每次结果都不同</span></td>
+<td><span class="check">✅</span> <span data-en="6 elements, academic" data-zh="6 要素，偏学术">6 要素，偏学术</span></td>
+<td><span class="partial">⚠️</span> <span data-en="6 perspectives, not logic-checking" data-zh="6 视角，不做逻辑检验">6 视角，不做逻辑检验</span></td>
+</tr>
+<tr>
+<td><span data-en="Works on your real text" data-zh="作用于真实文本">作用于真实文本</span></td>
+<td><span class="check">✅</span> <span data-en="Diagnoses pasted material, quotes sentences" data-zh="诊断你贴进来的材料，引用原句">诊断你贴进来的材料，引用原句</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Often drifts into abstract advice" data-zh="容易滑向抽象的泛泛建议">容易滑向抽象的泛泛建议</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Needs manual mapping first" data-zh="需要先人工把论证套进模型">需要先人工把论证套进模型</span></td>
+<td><span class="cross">❌</span> <span data-en="Discussion method, not text analysis" data-zh="是讨论方法，不做文本分析">是讨论方法，不做文本分析</span></td>
+</tr>
+<tr>
+<td><span data-en="Fallacy detection" data-zh="谬误识别">谬误识别</span></td>
+<td><span class="check">✅</span> <span data-en="12 fallacies with quote + fix script" data-zh="12 类谬误，附原文引用与修正话术">12 类谬误，附原文引用与修正话术</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Names fallacies, rarely pins the sentence" data-zh="能说出谬误名，很少定位到具体句子">能说出谬误名，很少定位到具体句子</span></td>
+<td><span class="cross">❌</span> <span data-en="Not part of the model" data-zh="模型本身不涵盖">模型本身不涵盖</span></td>
+<td><span class="cross">❌</span> <span data-en="Not part of the method" data-zh="方法本身不涵盖">方法本身不涵盖</span></td>
+</tr>
+<tr>
+<td><span data-en="Workplace grounding" data-zh="职场落地">职场落地</span></td>
+<td><span class="check">✅</span> <span data-en="8 mapped scenarios with response scripts" data-zh="8 大场景映射 + 现成应对话术">8 大场景映射 + 现成应对话术</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Depends entirely on how you prompt" data-zh="完全取决于你怎么提问">完全取决于你怎么提问</span></td>
+<td><span class="cross">❌</span> <span data-en="Academic origin, no scenario mapping" data-zh="学术出身，无场景映射">学术出身，无场景映射</span></td>
+<td><span class="check">✅</span> <span data-en="Designed for meetings" data-zh="为会议讨论设计">为会议讨论设计</span></td>
+</tr>
+<tr>
+<td><span data-en="Data trap awareness" data-zh="数据陷阱识别">数据陷阱识别</span></td>
+<td><span class="check">✅</span> <span data-en="7 traps + 7-level evidence pyramid" data-zh="7 大陷阱 + 七级证据金字塔">7 大陷阱 + 七级证据金字塔</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Only if you think to ask" data-zh="只有你主动想到才会问">只有你主动想到才会问</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Covers warrant, not statistics" data-zh="关注论据保证，不覆盖统计陷阱">关注论据保证，不覆盖统计陷阱</span></td>
+<td><span class="cross">❌</span> <span data-en="Not covered" data-zh="不覆盖">不覆盖</span></td>
+</tr>
+<tr>
+<td><span data-en="Decision safeguards" data-zh="决策保险机制">决策保险机制</span></td>
+<td><span class="check">✅</span> <span data-en="12-item audit + Kill Switch conditions" data-zh="12 项审计清单 + Kill Switch 放弃条件">12 项审计清单 + Kill Switch 放弃条件</span></td>
+<td><span class="cross">❌</span> <span data-en="No standing checklist" data-zh="没有固定清单">没有固定清单</span></td>
+<td><span class="cross">❌</span> <span data-en="Argument analysis only" data-zh="只做论证分析">只做论证分析</span></td>
+<td><span class="partial">⚠️</span> <span data-en="Black hat flags risk, no abort criteria" data-zh="黑帽提示风险，但无放弃标准">黑帽提示风险，但无放弃标准</span></td>
+</tr>
+</tbody></table></div>
+</div></section>
+
+<!-- Workflows & Interaction Modes -->
+<section class="block bg-warm" id="workflows"><div class="container">
+<div class="section-label">🚀 <span data-en="Interaction Modes &amp; Workflows" data-zh="三种交互模式 &amp; 六大工作流">三种交互模式 &amp; 六大工作流</span></div>
+<h2 class="section-title"><span data-en="Say it plainly. It picks the right lane." data-zh="正常说话，它自己选路">正常说话，它自己选路</span></h2>
+<p class="section-desc"><span data-en="No commands to memorise. Paste text and the 12-dimension scan runs by default; say what you want and it routes to the matching workflow." data-zh="不需要记指令。直接贴文本就默认走 12 维度扫描；说一句你想要什么，它自动路由到对应工作流。">不需要记指令。直接贴文本就默认走 12 维度扫描；说一句你想要什么，它自动路由到对应工作流。</span></p>
+
+<div class="wf-modes">
+<h3 class="wf-modes-title"><span data-en="Three interaction modes" data-zh="三种交互模式">三种交互模式</span></h3>
+<div class="wf-head">
+<div><span data-en="🎛️ Mode" data-zh="🎛️ 模式">🎛️ 模式</span></div>
+<div><span data-en="📦 Behavior" data-zh="📦 行为">📦 行为</span></div>
+<div><span data-en="⚡ When It Activates" data-zh="⚡ 何时触发">⚡ 何时触发</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">🚀 <span data-en="Quick (default)" data-zh="快捷模式（默认）">快捷模式（默认）</span></div>
+<div class="wf-scene"><span data-en="Paste → auto 12-dimension scan → diagnostic report" data-zh="贴文本 → 自动 12 维度扫描 → 诊断报告">贴文本 → 自动 12 维度扫描 → 诊断报告</span></div>
+<div><span class="wf-trigger" data-en="Text pasted with no mode specified" data-zh="直接贴了文本且未指定模式">直接贴了文本且未指定模式</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">💬 <span data-en="Guided" data-zh="引导模式">引导模式</span></div>
+<div class="wf-scene"><span data-en="Socratic dialogue, decision audit, or data coaching" data-zh="苏格拉底对话 / 决策审计 / 数据教练">苏格拉底对话 / 决策审计 / 数据教练</span></div>
+<div><span class="wf-trigger" data-en="You say &quot;train me&quot;, &quot;audit this&quot;, &quot;teach me to read this&quot;" data-zh="说&quot;训练&quot;&quot;追问&quot;&quot;帮我审计&quot;&quot;教我看数据&quot;">说"训练""追问""帮我审计""教我看数据"</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">📋 <span data-en="Checklist" data-zh="清单模式">清单模式</span></div>
+<div class="wf-scene"><span data-en="Structured question list, no back-and-forth" data-zh="输出结构化提问清单，不做对话">输出结构化提问清单，不做对话</span></div>
+<div><span class="wf-trigger" data-en="You say &quot;give me a question list&quot; / &quot;what should I ask at the review&quot;" data-zh="说&quot;帮我列提问清单&quot;&quot;评审要问什么&quot;">说"帮我列提问清单""评审要问什么"</span></div>
+</div>
+</div>
+
+<h3 class="wf-modes-title" style="margin-top:2.5rem"><span data-en="Six workflows" data-zh="六大工作流">六大工作流</span></h3>
+<div class="wf-head">
+<div><span data-en="🚀 Workflow" data-zh="🚀 工作流">🚀 工作流</span></div>
+<div><span data-en="🎯 Scenario" data-zh="🎯 场景">🎯 场景</span></div>
+<div><span data-en="💬 Trigger" data-zh="💬 触发方式">💬 触发方式</span></div>
+</div>
+
+<div class="wf-row">
+<div class="wf-name">🧠 <span data-en="Argument Quality Assessment" data-zh="论证质量评估">论证质量评估</span></div>
+<div class="wf-scene"><span data-en="Paste any argument → full diagnostic report" data-zh="贴任意论证 → 输出完整诊断报告">贴任意论证 → 输出完整诊断报告</span></div>
+<div><span class="wf-trigger" data-en="Paste text / opinion / proposal (default mode)" data-zh="直接贴文本／观点／方案（默认模式）">直接贴文本／观点／方案（默认模式）</span></div>
+</div>
+
+<div class="wf-row">
+<div class="wf-name">🔍 <span data-en="Logical Fallacy Identification" data-zh="逻辑谬误识别">逻辑谬误识别</span></div>
+<div class="wf-scene"><span data-en="Find the logical fallacies hiding in the text" data-zh="找出文本里藏着的逻辑谬误">找出文本里藏着的逻辑谬误</span></div>
+<div><span class="wf-trigger" data-en="&quot;Any logic problems in here?&quot;" data-zh="「这里面有没有逻辑问题」">「这里面有没有逻辑问题」</span></div>
+</div>
+
+<div class="wf-row">
+<div class="wf-name">🎯 <span data-en="Socratic Questioning Training" data-zh="苏格拉底追问训练">苏格拉底追问训练</span></div>
+<div class="wf-scene"><span data-en="Train the ability to ask the question that breaks it" data-zh="练出一问就问到关键处的能力">练出一问就问到关键处的能力</span></div>
+<div><span class="wf-trigger" data-en="&quot;Help me prepare follow-up questions.&quot;" data-zh="「帮我准备追问／提问」">「帮我准备追问／提问」</span></div>
+</div>
+
+<div class="wf-row">
+<div class="wf-name">📊 <span data-en="Decision Quality Audit" data-zh="决策质量审计">决策质量审计</span></div>
+<div class="wf-scene"><span data-en="Audit a decision before you actually commit to it" data-zh="在真正落子之前先审一遍这个决策">在真正落子之前先审一遍这个决策</span></div>
+<div><span class="wf-trigger" data-en="&quot;Audit this decision for me.&quot;" data-zh="「帮我审计这个决策」">「帮我审计这个决策」</span></div>
+</div>
+
+<div class="wf-row">
+<div class="wf-name">📈 <span data-en="Data Interpretation Coach" data-zh="数据解读教练">数据解读教练</span></div>
+<div class="wf-scene"><span data-en="Read the number and spot what it's hiding" data-zh="读懂数字，并看出它藏了什么">读懂数字，并看出它藏了什么</span></div>
+<div><span class="wf-trigger" data-en="&quot;Is this data trustworthy / how do I read it?&quot;" data-zh="「这个数据靠谱吗／怎么看」">「这个数据靠谱吗／怎么看」</span></div>
+</div>
+
+<div class="wf-row">
+<div class="wf-name">⚔️ <span data-en="Debate Preparation" data-zh="辩论准备">辩论准备</span></div>
+<div class="wf-scene"><span data-en="Build both sides, then find the clash point" data-zh="正反两面都搭起来，再找交锋点">正反两面都搭起来，再找交锋点</span></div>
+<div><span class="wf-trigger" data-en="&quot;Prep both sides of the argument.&quot;" data-zh="「帮我准备正反面论点」">「帮我准备正反面论点」</span></div>
+</div>
+
+</div></section>
+
+<!-- CTA -->
+<section class="cta-section"><div class="container">
+<h2><span data-en="Stop <em>nodding along</em>.<br><em>Start asking.</em>" data-zh="别再<em>顺着点头</em>了。<br><em>开始提问。</em>">别再<em>顺着点头</em>了。<br><em>开始提问。</em></span></h2>
+<p><span data-en="Twelve dimensions, twelve fallacies, seven data traps and a Kill Switch — pointed at the very next thing that lands on your desk." data-zh="12 个维度、12 类谬误、7 大数据陷阱和一个 Kill Switch——对准下一份摆到你桌上的材料。">12 个维度、12 类谬误、7 大数据陷阱和一个 Kill Switch——对准下一份摆到你桌上的材料。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-critical-thinking/archive/refs/tags/v2.0.0.zip" class="btn btn-primary" target="_blank"><span data-en="📦 Download Skill" data-zh="📦 下载 Skill">📦 下载 Skill</span></a>
+<a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-secondary" target="_blank"><span data-en="📚 Browse the Skill Hub" data-zh="📚 浏览 Skill合集">📚 浏览 Skill合集</span></a>
+</div>
+</div></section>
+
+<!-- Footer -->
+<footer><div class="container">
+<div class="footer-badges">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div></footer>
+
+<script>
+(function(){
+  var sw=document.getElementById('langSwitch');
+  var spans=sw.querySelectorAll('span');
+  function applyLang(lang){
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      el.innerHTML=el.getAttribute('data-'+lang);
+    });
+    document.querySelectorAll('img[data-'+lang+'-src]').forEach(function(img){
+      var s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;
+    });
+    spans.forEach(function(s){s.classList.toggle('active',s.getAttribute('data-lang')===lang)});
+    document.documentElement.lang=lang==='zh'?'zh':'en';
+  }
+  spans.forEach(function(s){s.addEventListener('click',function(){applyLang(s.getAttribute('data-lang'))})});
+  applyLang('zh');
+})();
+</script>
+
+</body>
+</html>

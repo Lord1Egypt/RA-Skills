@@ -1,41 +1,55 @@
-## Description: <br>
-Use when the user asks for Pionex market data, including price, ticker, order book depth, recent trades, symbol info, and OHLCV klines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks for Pionex market data, including price, ticker, order book depth, recent trades, symbol info, and OHLCV klines, through read-only commands that do not require API credentials.
 
-## Publisher: <br>
-[pibrandon](https://clawhub.ai/user/pibrandon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pibrandon](https://clawhub.ai/user/pibrandon)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve public, read-only Pionex market data through the Pionex CLI before analysis or trading workflows. It is scoped to market lookup tasks and excludes account balance checks and order placement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on installing and invoking the external global npm package @pionex/pionex-ai-kit. <br>
-Mitigation: Install only if comfortable with that package and run it in an environment appropriate for global npm CLI execution. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve public Pionex market data such as depth, tickers, recent trades, symbol metadata, and klines before analysis or order preparation. The skill is not intended for account balances, credentialed account access, or placing and cancelling orders.
 
-## Reference(s): <br>
-- [Pionex API Docs](https://pionex-doc.gitbook.io/apidocs/) <br>
-- [Pionex](https://www.pionex.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pibrandon/pionex-market) <br>
-- [Publisher Profile](https://clawhub.ai/user/pibrandon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and read-only CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces public market-data retrieval guidance; the skill states no API credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill frontmatter metadata says 0.1.0) <br>
+Risk: The skill recommends a global npm install without pinning an exact package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted Pionex npm package source, avoid sudo, and pin or review the exact package version before global installation.
+
+Risk: Market-data output may be used as a precursor to trading decisions.
+
+Mitigation: Use the skill only for public market-data lookup, verify price and symbol rules before trading, and route balance or order actions to the appropriate separate skill.
+
+## Reference(s):
+
+- [Pionex API Docs](https://pionex-doc.gitbook.io/apidocs/)
+- [Pionex Homepage](https://www.pionex.com)
+- [ClawHub Skill Page](https://clawhub.ai/pibrandon/skills/pionex-market)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only market-data workflow; no API credentials required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

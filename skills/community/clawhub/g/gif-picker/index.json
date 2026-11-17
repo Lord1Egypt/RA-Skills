@@ -1,0 +1,103 @@
+{
+  "description": "Local GIF library for tag-based reaction GIFs",
+  "root": "~/.openclaw/workspace/gif-library/gifs",
+  "last_updated": "2026-07-19",
+  "gifs": {
+    "pat-on-back": {
+      "file": "pat-on-back.gif",
+      "tags": ["praise", "congratulate", "nice-work", "well-done", "appreciation", "good-job", "recognition", "proud"],
+      "mood": "warm/proud",
+      "description": "Community Abed-Troy well hey yes - gentle shoulder pat for appreciation"
+    },
+    "fist-bump": {
+      "file": "fist-bump.gif",
+      "tags": ["solidarity", "agreement", "let-go", "teamwork", "partnership", "executed", "high-five"],
+      "mood": "celebratory/friendly",
+      "description": "Top Gun volleyball high-five - shared accomplishment"
+    },
+    "nod-respect": {
+      "file": "nod-respect.gif",
+      "tags": ["acknowledge", "i-see-you", "respect", "understood", "duly-noted", "recognition", "noted"],
+      "mood": "serious/respectful",
+      "description": "Big Lebowski cowboy nod - quiet acknowledgment of something significant"
+    },
+    "thinking": {
+      "file": "thinking.gif",
+      "tags": ["hmm", "analyzing", "considering", "cogs-turning", "pondering", "deep-thought", "processing"],
+      "mood": "focused/curious",
+      "description": "Cogs turning / deep thought - analysis in progress"
+    },
+    "facepalm": {
+      "file": "facepalm.gif",
+      "tags": ["mistake", "oops", "doh", "my-bad", "self-aware", "silly-me"],
+      "mood": "self-deprecating",
+      "description": "Picard facepalm - acknowledging my own error or a facepalm moment"
+    },
+    "celebration": {
+      "file": "celebration.gif",
+      "tags": ["win", "success", "completed", "shipped", "deployed", "achievement", "victory"],
+      "mood": "triumphant/excited",
+      "description": "General celebration - something shipped or achieved"
+    },
+    "celebration-alt": {
+      "file": "celebration-alt.gif",
+      "tags": ["party", "yay", "woohoo", "confetti", "clap", "excited-win"],
+      "mood": "party/enthusiastic",
+      "description": "HIMYM Barney excited clap with confetti - playful celebration"
+    },
+    "salute": {
+      "file": "salute.gif",
+      "tags": ["respect", "honor", "formal-thanks", "deference", "sir-yessir", "standing-by"],
+      "mood": "formal/grateful",
+      "description": "Conan O'Brien salute-clap - formal respect or gratitude"
+    },
+    "deal-with-it": {
+      "file": "deal-with-it.gif",
+      "tags": ["confidence", "cool", "done-deal", "handled", "flex", "stylish-finish"],
+      "mood": "confident/cool",
+      "description": "Perfect Gifs - confident flourish or 'handled'"
+    },
+    "waiting-patiently": {
+      "file": "waiting-patiently.gif",
+      "tags": ["waiting", "patience", "standing-by", "observing", "watching"],
+      "mood": "patient/composed",
+      "description": "Community Troy teeth-grit - patiently waiting, no rush"
+    },
+    "excited": {
+      "file": "excited.gif",
+      "tags": ["hyped", "lets-go", "excited", "anticipation", "ready", "pumped", "eager"],
+      "mood": "energetic/eager",
+      "description": "Partyy - hyped and ready for what's coming"
+    },
+    "deep-dive": {
+      "file": "deep-dive.gif",
+      "tags": ["research", "investigation", "digging", "drilling-down", "deep-focus", "analysis"],
+      "mood": "focused/analytical",
+      "description": "Deep research / analysis zone - about to dig in"
+    },
+    "sorry": {
+      "file": "sorry.gif",
+      "tags": ["apology", "my-mistake", "regret", "remorse", "sorry-about-that"],
+      "mood": "contrite",
+      "description": "Michael Scott nonono - sincere apology or self-aware mistake"
+    },
+    "mind-blown": {
+      "file": "mind-blown.gif",
+      "tags": ["surprise", "revelation", "insight", "whoa", "unexpected", "brilliant", "impressive"],
+      "mood": "amazed",
+      "description": "Tim and Eric mind blown - genuinely impressed by an insight"
+    },
+    "bookmark-this": {
+      "file": "bookmark-this.gif",
+      "tags": ["remember-this", "important", "save-for-later", "notable", "noteworthy", "pin"],
+      "mood": "emphatic/important",
+      "description": "Futurama Fry squint - this is worth remembering"
+    },
+    "coffee-cheers": {
+      "file": "coffee-cheers.gif",
+      "tags": ["morning-stack", "toast", "cheers", "good-vibes", "communal", "morning"],
+      "mood": "warm/casual",
+      "description": "Charlotte cheers - shared moment, coffee toast"
+    }
+  }
+}

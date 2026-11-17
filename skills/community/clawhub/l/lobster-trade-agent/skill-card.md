@@ -1,44 +1,59 @@
-## Description: <br>
-Trade Agent helps a personal assistant manage AIUSD account workflows such as balance checks, trading, staking, withdrawals, gas top-ups, and transaction history through authenticated tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Agent helps an assistant analyze gold and forex markets, provide trading signals, risk assessment, and position suggestions, and handle AIUSD account actions such as balances, trades, staking, withdrawals, gas top-ups, and transaction history.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-External users and bot operators use this skill to manage AIUSD trading-account workflows from chat, including checking balances, executing trades or swaps, staking or unstaking, withdrawing funds, topping up gas, and reviewing transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access an AIUSD account and may trade, stake, withdraw, or top up gas. <br>
-Mitigation: Install only when these account actions are intended, and require manual confirmation of asset, amount, destination, chain, fees, and slippage before funds move. <br>
-Risk: Automatic installer and authentication flows can affect a local bot environment and credentials. <br>
-Mitigation: Use a trusted private device and bot session, inspect or sandbox the installer before running it, and back up any existing aiusd-skill directory. <br>
-Risk: Security evidence marks the release suspicious because it appears to be a real trading skill with fund-moving capabilities. <br>
-Mitigation: Review the skill and its requested permissions before deployment, and avoid using it with accounts or wallets that should not be exposed to automated trading actions. <br>
+## Use Case:
 
+External users and developers use this skill to connect a personal assistant to AIUSD account workflows for balances, trading, staking, withdrawals, gas top-ups, and transaction history, with market-analysis guidance for gold and forex trading.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freeman88-tch/lobster-trade-agent) <br>
-- [AIUSD Website](https://aiusd.ai) <br>
-- [AIUSD Skill Release Download](https://github.com/galpha-ai/aiusd-skills/releases/download/v1.0.0/aiusd-skill-agent.skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands and tool-call parameters when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated AIUSD account access; agents should confirm asset, amount, destination, chain, fees, and slippage before any transaction moves funds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, build-info.json) <br>
+Risk: The skill can request high-impact financial actions including trades, withdrawals, staking changes, gas top-ups, and credential resets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review and confirmation before executing financial actions or resetting credentials.
+
+Risk: Local authentication uses bearer tokens and cached credentials.
+
+Mitigation: Protect and scope tokens, avoid production wallet credentials during review, and use a sandbox or low-risk account for first use.
+
+Risk: Installer files execute local code and may replace an existing aiusd-skill directory.
+
+Mitigation: Review the decoded package before installation and back up any existing aiusd-skill directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeman88-tch/skills/lobster-trade-agent)
+- [Publisher Profile](https://clawhub.ai/user/freeman88-tch)
+- [AIUSD Website](https://aiusd.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with tool-call results and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live tool schema lookup before account actions and may trigger OAuth re-authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, frontmatter, and build-info; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

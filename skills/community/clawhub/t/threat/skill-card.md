@@ -1,38 +1,49 @@
-## Description: <br>
-Deep threat modeling workflow for system decomposition, trust boundaries, STRIDE-style threats, mitigations, prioritization, and tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep threat modeling workflow for system decomposition, trust boundaries, STRIDE-style threats, mitigations, prioritization, and tracking.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers, security engineers, and product teams use this skill to facilitate threat modeling for new features, architecture reviews, compliance requests, and post-incident prevention planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Threat-modeling discussions can expose sensitive architecture, credentials, incident details, or other confidential system information if users include them in shared notes. <br>
-Mitigation: Avoid putting real secrets, credentials, or unnecessary confidential architecture details into shared artifacts; redact or summarize sensitive context where possible. <br>
+## Use Case:
 
+Developers, security engineers, and architecture reviewers use this skill to facilitate team threat modeling for new services, major data-flow changes, public APIs, partner integrations, compliance requests, or post-incident prevention planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mike47512/threat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown facilitation notes, threat lists, mitigation plans, ownership tracking, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external data access; output depends on user-provided system context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Threat ratings or mitigations may not match the user's actual architecture or operating environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning guidance and adapt assumptions, ratings, and controls to the specific system being modeled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/threat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, questions, threat scenarios, mitigations, and tracking prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; outputs should be reviewed and adapted to the modeled system.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

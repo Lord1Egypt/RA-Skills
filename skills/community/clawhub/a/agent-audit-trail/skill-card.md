@@ -1,39 +1,56 @@
-## Description: <br>
-Append-only, hash-chained audit log for AI agents that records actions, tool calls, decisions, and external writes with provenance, timestamps, and sha256 chain integrity for EU AI Act Article 12 event recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Append-only, hash-chained audit log for AI agents that records agent actions, tool calls, decisions, and external writes with provenance, timestamps, and sha256 chain integrity for EU AI Act Article 12 logging support.
 
-## Publisher: <br>
-[roosch269](https://clawhub.ai/user/roosch269) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[roosch269](https://clawhub.ai/user/roosch269)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators of AI agents use this skill to add an append-only NDJSON audit log that records actions, tool calls, decisions, external writes, and provenance for compliance review and tamper-evidence.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill creates durable local records of agent activity that may include sensitive session, credential, wallet, transaction, or other operational metadata.
+
+Mitigation: Restrict audit-log file permissions, define a retention policy, and redact sensitive identifiers and metadata before using the log for compliance or incident evidence.
+
+Risk: The security evidence notes reliability flaws in the sample integrity logic, including the need to fix hash-chain genesis behavior and writer coordination.
+
+Mitigation: Fix the hash-chain genesis mismatch and use locking or a single-writer design before relying on the log for compliance or incident evidence.
+
+Risk: Companion skills may extend agent behavior or integrations beyond this audit trail.
+
+Mitigation: Verify companion skills before installing or wiring them into an agent workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and compliance engineers use this skill to configure append-only NDJSON audit logging for AI agent activity, including tool calls, decisions, credential access, payments, and external writes. It supports traceability, tamper detection, and event-recording workflows for high-risk AI system compliance review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Audit entries may contain sensitive operational metadata, personal data, credential locations, or payment details if users log more than is necessary. <br>
-Mitigation: Decide log location, access controls, retention, and redaction rules before installation; avoid raw secrets, tokens, passwords, unnecessary personal data, and overly detailed credential locations. <br>
-Risk: Future remote log shipping could introduce additional security and compliance exposure. <br>
-Mitigation: Treat remote shipping as a separate security and compliance decision with dedicated review before enabling it. <br>
+**Output Format:** [Markdown with JSON, Python, and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces local NDJSON audit-log setup and verification guidance; persistent logs may contain sensitive activity metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JSON, Python, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local append-only NDJSON audit log guidance with hash-chain verification examples.] <br>
+2.1.0 (source: frontmatter, _meta.json, release evidence)
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter, release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

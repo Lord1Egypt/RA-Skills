@@ -1,42 +1,55 @@
-## Description: <br>
-Generate PPT with Baidu Wenku AI. Smart template selection based on content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PPT with Baidu Wenku AI. Smart template selection based on content.
 
-## Publisher: <br>
-[wuliyuan2026](https://clawhub.ai/user/wuliyuan2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuliyuan2026](https://clawhub.ai/user/wuliyuan2026)
 
-## Use Case: <br>
-Developers and agents use this skill to generate presentation decks from a topic through Baidu Wenku AI, either with a selected template or with automatic template selection based on the topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation topics, optional supplied content, and the Baidu API key are sent to Baidu's API. <br>
-Mitigation: Use the skill only when that third-party processing is acceptable, and avoid sensitive, regulated, or proprietary material unless approved for Baidu processing. <br>
-Risk: The local scripts require the Python requests package and a BAIDU_API_KEY environment variable. <br>
-Mitigation: Confirm the runtime has python3, requests, and BAIDU_API_KEY configured before running the generation commands. <br>
+## Use Case:
 
+External users and developers use this skill to generate PowerPoint presentations from a topic with either selected or automatically matched Baidu Wenku AI templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuliyuan2026/ai-ppt-generator-local) <br>
-- [Baidu AI PPT API endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/) <br>
-- [Baidu AI PPT theme endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/get_ppt_theme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Baidu API status messages and, on successful completion, a PPT download URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Presentation topics and optional content are sent to Baidu's remote AI PPT service using the user's Baidu API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content permitted by the user's organization and avoid submitting secrets, regulated data, private business plans, or personal information.
+
+Risk: Generated presentations may reflect limitations or inaccuracies from the remote generation service.
+
+Mitigation: Review the final PPT before sharing or relying on it for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuliyuan2026/skills/ai-ppt-generator-local)
+- [Baidu Qianfan AI PPT API endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/)
+- [Baidu Qianfan AI PPT theme endpoint](https://qianfan.baidubce.com/v2/tools/ai_ppt/get_ppt_theme)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY and may return a hosted PPT URL after streamed generation completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

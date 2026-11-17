@@ -1,45 +1,59 @@
-## Description: <br>
-Himalaya Email CLI helps agents use the `himalaya` terminal client to list, read, write, reply, forward, search, and organize email over IMAP/SMTP, with multiple accounts and MML composition support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI to manage emails via IMAP/SMTP. Use `himalaya` to list, read, write, reply, forward, search, and organize emails from the terminal. Supports multiple accounts and message composition with MML (MIME Meta Language).
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Agents and developers use this skill to operate configured email accounts from the terminal through the Himalaya CLI, including account setup, mailbox navigation, search, message composition, and mailbox organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured Himalaya CLI can read and change the user's mailbox. <br>
-Mitigation: Install only when the local Himalaya CLI and account configuration are trusted, and limit credentials to the intended mailbox account. <br>
-Risk: Raw passwords or OAuth tokens in configuration can expose email credentials. <br>
-Mitigation: Prefer app-specific passwords, OAuth tokens, pass, or a system keyring, and protect the Himalaya configuration file. <br>
-Risk: Send, reply-all, forward, move, and delete commands can affect real messages or recipients. <br>
-Mitigation: Review recipients, folders, and message IDs before running commands that send or modify email. <br>
+## Use Case:
 
+External users and developers use this skill to operate a configured Himalaya email account from an agent-assisted terminal workflow, including reading, searching, composing, sending, moving, and deleting messages. It is useful when email operations need repeatable CLI commands, configuration examples, and message composition guidance.
 
-## Reference(s): <br>
-- [Himalaya project homepage](https://github.com/pimalaya/himalaya) <br>
-- [Configuration Reference](references/configuration.md) <br>
-- [Message Composition with MML](references/message-composition.md) <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/himalaya-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and TOML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for a locally installed Himalaya CLI and configuration guidance for IMAP, SMTP, OAuth2, app passwords, pass, and system keyring setups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can help compose, reply to, forward, and send email from a configured account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected account, recipients, subject, body, and attachments before allowing any send operation.
+
+Risk: The skill can help move, copy, flag, or delete messages using folder-relative message IDs.
+
+Mitigation: Re-list the current folder and confirm message IDs before allowing move, copy, flag, or delete operations.
+
+Risk: Email configuration may expose credentials if raw passwords are stored directly in the config file.
+
+Mitigation: Prefer pass, system keyring, or app-password command lookups, and avoid storing raw passwords in configuration files.
+
+## Reference(s):
+
+- [Himalaya Configuration Reference](references/configuration.md)
+- [Message Composition with MML](references/message-composition.md)
+- [Himalaya project homepage](https://github.com/pimalaya/himalaya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Himalaya CLI commands, account configuration snippets, and message composition examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

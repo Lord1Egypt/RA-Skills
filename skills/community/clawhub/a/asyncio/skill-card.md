@@ -1,39 +1,54 @@
-## Description: <br>
-asyncio patterns, concurrency pitfalls, and backpressure. Use when writing async Python services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+asyncio patterns, concurrency pitfalls, and backpressure. Use when writing async Python services.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure async Python service work around asyncio design, cancellation, timeouts, backpressure, queues, validation, and operational follow-through. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance-only output may still influence project-specific async code changes later proposed by an agent. <br>
-Mitigation: Review proposed code changes, tests, rollout steps, and operational assumptions before applying them to a project. <br>
+## Use Case:
 
+Developers and engineers use this skill for structured guidance when designing, reviewing, validating, and operating async Python services that use asyncio.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codekungfu/asyncio) <br>
-- [Publisher profile](https://clawhub.ai/user/codekungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, trade-offs, verification steps, and optional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces stage-by-stage advice for asyncio work; it does not request tool execution, credentials, persistence, or external access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may offer its structured workflow for nearby async Python topics where the user prefers lighter, freeform help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The artifact instructs the agent to explain the workflow briefly, ask whether to use it, and switch to freeform support if declined.
+
+Risk: Asyncio guidance can miss service-specific constraints such as scale, deadlines, monitoring, or rollback needs.
+
+Mitigation: The artifact directs the agent to ask targeted context questions, state trade-offs, tie verification to impact, and cover operational follow-through.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/asyncio)
+- [Publisher Profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with checklists and staged workflow recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, tools, MCP references, or credential requests are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

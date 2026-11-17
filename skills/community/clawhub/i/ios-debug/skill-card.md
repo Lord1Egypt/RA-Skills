@@ -1,42 +1,57 @@
-## Description: <br>
-Helps developers debug iOS apps on an iPhone 14 by collecting stdout logs, capturing QuickTime-mirrored screenshots, building, installing, launching, uninstalling apps, and checking device status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides iOS developers with workflows for debugging apps on an iPhone 14, including stdout log capture, QuickTime-based screenshots, app build/install/launch commands, and device status checks.
 
-## Publisher: <br>
-[sougannkyou](https://clawhub.ai/user/sougannkyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sougannkyou](https://clawhub.ai/user/sougannkyou)
 
-## Use Case: <br>
-Developers and engineers use this skill on a trusted macOS development machine to inspect logs, capture device screenshots, deploy debug builds, and troubleshoot connection or signing issues for an attached iPhone 14. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local device-control commands can install, uninstall, launch, or provision an app on a connected iPhone. <br>
-Mitigation: Run commands only on a trusted macOS development machine and verify the device ID, bundle ID, project, and scheme before execution. <br>
-Risk: Logs and screenshots may expose sensitive app or device information. <br>
-Mitigation: Capture and review logs or phone screens locally only when intended, and avoid collecting sensitive screens or logs unnecessarily. <br>
-Risk: Background console or log streams can continue running after debugging. <br>
-Mitigation: Stop background log streams and launched console processes when the debugging session is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill when debugging iOS apps on an authorized physical iPhone 14, collecting stdout logs, capturing the mirrored device screen, and managing build, install, launch, uninstall, and device status workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sougannkyou/ios-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes device-specific commands and placeholders for project, scheme, app name, and bundle ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The screenshot workflow can capture private information from a connected iPhone screen.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on an authorized test device, switch to a safe screen before capture, and delete captured image files when finished.
+
+Risk: Log capture can expose sensitive app or device data.
+
+Mitigation: Collect logs only from authorized apps and devices, and review output before sharing or storing it.
+
+Risk: Install, reinstall, and uninstall commands can alter app state or remove app data.
+
+Mitigation: Require explicit confirmation before uninstalling or reinstalling apps and back up data that must be preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sougannkyou/skills/ios-debug)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are procedural debugging guidance and commands intended for review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

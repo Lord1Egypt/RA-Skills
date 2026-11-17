@@ -98,7 +98,9 @@ elevation.levels         → extend.boxShadow
 - Default to Three.js
 - Apply lighting, camera, materials from params
 - Handle resize with ResizeObserver
-- CDN: `https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js`
+- Use the project’s reviewed, exact Three.js version and lockfile. For a self-contained page, vendor that version locally and import `./vendor/three.module.js`.
+- If a CDN is explicitly part of the output, use an exact version URL and record it in the handoff; never use `@latest`, wildcard or floating versions. Resolve the exact compatible version from the project rather than guessing one.
+- Prefer CSS, SVG or Canvas when the requested effect does not need a 3D library.
 
 ### Scroll effects
 - Parallax: `transform: translateY()` × scroll offset × layer speed
@@ -116,7 +118,8 @@ elevation.levels         → extend.boxShadow
 Before delivering:
 - [ ] Does it actually look like the reference?
 - [ ] All design tokens applied (not just some)?
-- [ ] Self-contained — no external dependencies that could break?
+- [ ] Self-contained — dependencies vendored locally, or exact external versions recorded?
+- [ ] No mutable `@latest`, wildcard or unversioned third-party script imports?
 - [ ] Visual effects degrade gracefully without JS?
 - [ ] `no-slop-ui` rules respected — no AI defaults slipping in?
 

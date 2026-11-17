@@ -1,0 +1,25 @@
+version: "1.1.0"
+updated: "2026-10-09"
+# 扁平键值格式，PowerShell 5.1 原生可解析（无需第三方库）
+# 监控采样器实际读取的是 output 目录下的副本：
+#   ~/.workbuddy/output/winskill/thresholds.yaml
+# 用户可直接编辑该副本，修改后下一采样周期自动生效。
+# 本文件作为可编辑模板与权威来源留存于 skill 仓库。
+
+cpu_warn: 80
+cpu_alert: 90
+mem_warn: 85
+mem_alert: 95
+disk_warn: 85
+disk_alert: 95
+svc_check: Spooler,Winmgmt,Dnscache,W32Time
+evt_window_min: 15
+evt_max: 50
+dedup_min: 30
+
+# ===== 模糊重复检测阈值（模块 34） =====
+fuzzy_filename_similarity_threshold: 0.75    # 文件名 SimHash 相似度 ≥ 0.75 视为候选
+fuzzy_size_approximation_threshold: 0.10    # 大小差异 ≤ 10% 视为候选
+fuzzy_min_file_size: 10485760               # 10MB，小于此值不参与模糊检测
+fuzzy_large_file_threshold: 104857600       # 100MB，大文件只哈希前 1MB 采样
+fuzzy_max_compare_per_bucket: 1000          # 每桶最多比较对数（防 O(n^2) 爆炸）

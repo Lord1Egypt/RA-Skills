@@ -1,43 +1,57 @@
-## Description: <br>
-Communication MQTT publishes and subscribes to agent intro and status messages through a local MQTT broker for lightweight agent-to-agent coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides MQTT-based commands for publishing and subscribing to agent introduction and status messages through a local broker.
 
-## Publisher: <br>
-[hyunwoo91](https://clawhub.ai/user/hyunwoo91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hyunwoo91](https://clawhub.ai/user/hyunwoo91)
 
-## Use Case: <br>
-Developers and agent operators use this skill to share an agent's identity, role, and current activity over MQTT, and to monitor intro or status messages from one or more agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Intro and status messages can expose agent identifiers, roles, activities, or other sensitive work details to anyone with access to the MQTT broker. <br>
-Mitigation: Use only a trusted local MQTT broker and avoid publishing secrets or sensitive details in agent IDs, roles, or activity fields. <br>
-Risk: Subscribed MQTT messages are external text inputs and may be stale, malformed, or misleading. <br>
-Mitigation: Treat subscribed messages as untrusted text and verify their source and contents before acting on them. <br>
-Risk: Published MQTT messages are retained by default, so old status data may remain visible after the original activity is no longer current. <br>
-Mitigation: Clear retained MQTT topics when previous intro or status data should not remain visible. <br>
+## Use Case:
 
+Developers and agent operators use this skill to publish an agent's ID, role, and current activity to MQTT topics and to subscribe to intro or status messages from one or more agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hyunwoo91/communication-mqtt) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus JSON MQTT payloads and console text from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.x, paho-mqtt, typer, and a trusted local MQTT broker on localhost:1883.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Agent IDs, roles, activities, and retained status messages may be visible to any client with broker access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted broker with authentication, ACLs, and TLS when crossing trust boundaries; avoid publishing sensitive roles or activities.
+
+Risk: Checking the agent ID by printing the full OpenClaw configuration can expose unrelated local configuration details.
+
+Mitigation: Extract only the needed agent_id instead of printing the full configuration.
+
+Risk: Retained MQTT messages can persist outdated or sensitive agent state.
+
+Mitigation: Define clear retained-message rules and publish only non-sensitive state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hyunwoo91/skills/communication-mqtt)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MQTT message text or JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local MQTT broker at localhost:1883 with QoS 1; published messages are retained by the broker.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

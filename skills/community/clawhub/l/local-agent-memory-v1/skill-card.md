@@ -1,44 +1,55 @@
-## Description: <br>
-Build, maintain, or improve a layered local memory system for OpenClaw-style agents using markdown files instead of database-backed memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build and maintain a layered local markdown memory system with skeptical use, strict write discipline, and consolidation routines.
 
-## Publisher: <br>
-[lupinweng](https://clawhub.ai/user/lupinweng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lupinweng](https://clawhub.ai/user/lupinweng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to design and maintain local markdown-based memory layers, consolidate durable facts and workflows, and avoid acting on stale remembered information without re-verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may persist sensitive preferences, environment details, or operational context longer than intended. <br>
-Mitigation: Review memory content before storing it and keep memory folders only in workspaces acceptable for persistent local state. <br>
-Risk: Stale remembered facts can lead to incorrect actions if treated as authoritative. <br>
-Mitigation: Re-check current files, paths, versions, scripts, or environment state before acting on remembered information. <br>
-Risk: Large pruning, migration, or restructuring could remove useful memory or reorganize it unexpectedly. <br>
-Mitigation: Require explicit user approval before broad cleanup, migration, or restructuring passes and write destination topic files before updating the index. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up, maintain, and consolidate local markdown memory across daily logs, semantic facts, procedural workflows, and a lightweight MEMORY.md index.
 
-## Reference(s): <br>
-- [Local Agent Memory Architecture](references/architecture.md) <br>
-- [Setup and Topic Layout](references/setup.md) <br>
-- [Maintenance and Governance](references/maintenance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance and file-structure recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local memory notes may influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what is written to MEMORY.md and memory/ before relying on it in later sessions.
+
+Risk: Remembered information can become stale before it is used for real actions.
+
+Mitigation: Re-check current files, paths, versions, scripts, or environment details before acting on remembered information.
+
+## Reference(s):
+
+- [Local Agent Memory Architecture](references/architecture.md)
+- [Setup and Topic Layout](references/setup.md)
+- [Maintenance and Governance](references/maintenance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and local markdown memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network behavior, or hidden authority is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

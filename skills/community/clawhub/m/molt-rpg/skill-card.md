@@ -1,41 +1,54 @@
-## Description: <br>
-A local RPG game engine for AI agents that works offline for single-player use and includes optional online dashboard, multiplayer, and A2A communication features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local RPG game engine for AI agents that works offline for single-player play and offers optional web dashboard and A2A multiplayer features.
 
-## Publisher: <br>
-[NoizceEra](https://clawhub.ai/user/NoizceEra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[noizceera](https://clawhub.ai/user/noizceera)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a local AI-agent RPG game, simulate battles and raids, manage local in-game wallet state, and optionally connect to multiplayer, A2A, or Telegram bot features. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional online sync, A2A messaging, and Telegram bot features can transmit gameplay, player, or agent messages outside the local environment when enabled. <br>
-Mitigation: Use offline mode for no network use, and enable OnlineSync or telegram_bot.py only deliberately after reviewing what game and message data will be shared. <br>
-Risk: Telegram bot operation may require a bot token and can expose messages to the configured Telegram channel or bot context. <br>
-Mitigation: Use a dedicated Telegram bot token for this game and avoid sending sensitive information through game, A2A, or Telegram messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltRPG ClawHub listing](https://clawhub.ai/NoizceEra/molt-rpg) <br>
-- [MoltRPG Player Hub](https://molt-rpg-web.vercel.app) <br>
-- [MoltRPG Player Hub API](https://molt-rpg-web.vercel.app/api) <br>
+## Use Case:
 
+Developers and agent users can use MoltRPG to run local RPG battles, autonomous gameplay, local leaderboards, and opt-in multiplayer coordination for agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell examples, plus local game text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline mode is local by default; online, A2A, and Telegram behavior are optional and user-started.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local game writes wallet and raid state JSON files using predictable relative paths.
+
+Mitigation: Run the skill from a trusted working directory and review or back up the generated state files before sharing the workspace.
+
+Risk: Telegram bot and online multiplayer features require intentional opt-in and may use tokens or external services when enabled.
+
+Mitigation: Set tokens only in trusted environments, confirm the configured endpoint, and run online features only when multiplayer behavior is expected.
+
+## Reference(s):
+
+- [MoltRPG ClawHub skill page](https://clawhub.ai/noizceera/skills/molt-rpg)
+- [noizceera ClawHub publisher profile](https://clawhub.ai/user/noizceera)
+- [MoltRPG web dashboard](https://molt-rpg-web.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local game output and write wallet or raid state JSON files when scripts are run.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

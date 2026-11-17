@@ -1,44 +1,60 @@
-## Description: <br>
-Openclaw Auto Backup helps OpenClaw users back up selected local configuration and workspace files, list backup versions, restore a selected backup, and clean up old backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Auto Backup helps agents manage local OpenClaw configuration backups with scheduled backup, version listing, restore, and cleanup workflows.
 
-## Publisher: <br>
-[williamwg2025](https://clawhub.ai/user/williamwg2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwg2025](https://clawhub.ai/user/williamwg2025)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill to protect local agent configuration and workspace state with manual or scheduled backups, backup version listing, restore, and retention cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may copy sensitive OpenClaw profile, memory, or configuration data into ~/.openclaw/backups in unencrypted form. <br>
-Mitigation: Use restrictive permissions on the backup directory, review configured watchFiles before use, and apply external encryption when sensitive data may be included. <br>
-Risk: Restore and cleanup operations can overwrite or remove local OpenClaw state. <br>
-Mitigation: List available backups first, use dry-run behavior where available, and review cleanup or restore targets before allowing changes. <br>
-Risk: Scheduled execution can repeatedly change local state without direct user action. <br>
-Mitigation: Review any OpenClaw cron or system cron entry and disable or adjust it when automatic local backups are not desired. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to protect local OpenClaw configuration state, keep versioned backups, inspect available backup versions, restore a prior backup, and remove older backups.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/williamwg2025/openclaw-auto-backup) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of bundled local Python scripts that create, list, restore, and delete backup files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: ClawHub release evidence) <br>
+Risk: The skill can copy sensitive OpenClaw state into plaintext backup archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain backupDir and watchFiles to intended OpenClaw paths, exclude secrets, restrict backup directory permissions, and encrypt backups with an external tool when sensitive state may be present.
+
+Risk: Restore and cleanup operations can overwrite or delete local files.
+
+Mitigation: Treat restore and cleanup as destructive operations, use dry-run or confirmation flows first, and create a fresh backup before restoring or deleting old backups.
+
+Risk: Path expansion and restore layout issues can make backup or restore behavior differ from user expectations.
+
+Mitigation: Pin the reviewed skill version and verify configured paths and restore targets in a non-critical environment before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamwg2025/skills/openclaw-auto-backup)
+- [README_EN.md](README_EN.md)
+- [README.md](README.md)
+- [backup-config.json](config/backup-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local backup, restore, list, and cleanup guidance for OpenClaw configuration files.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

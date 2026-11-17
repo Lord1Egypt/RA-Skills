@@ -1,54 +1,66 @@
-## Description: <br>
-Generates article cover images with configurable type, palette, rendering, text, mood, font, and aspect-ratio settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates article cover images with configurable type, palette, rendering, text, mood, aspect ratio, and image-generation backend options.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-External users, developers, and content creators use this skill to turn article content or prompts into reproducible raster cover-image prompts and generated image files with configurable visual style dimensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image-safety language may encourage continued generation around sensitive or copyrighted subject refusals. <br>
-Mitigation: Use only rights-cleared subjects, keep platform safety policy higher priority than skill guidance, and review prompts before generation. <br>
-Risk: The skill can create prompt, source, reference, configuration, and output image files, including cross-project defaults if user-level preferences are used. <br>
-Mitigation: Prefer project-local preferences for managed releases and review configured output directories before generation. <br>
-Risk: Image generation may invoke runtime-native or external backends that depend on local credentials or subscriptions. <br>
-Mitigation: Confirm backend selection, avoid placing secrets in prompts or logs, and use only approved image-generation backends. <br>
+## Use Case:
 
+Writers, developers, and content teams use this skill to turn article content or cover-image requests into reproducible prompts and raster cover images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimliu/baoyu-cover-image) <br>
-- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-cover-image) <br>
-- [Auto-Selection Rules](references/auto-selection.md) <br>
-- [Base Prompt](references/base-prompt.md) <br>
-- [Codex Image Generation Wrapper](references/codex-imagegen.md) <br>
-- [Compatibility Matrices](references/compatibility.md) <br>
-- [Style Presets](references/style-presets.md) <br>
-- [Type Composition Guidelines](references/types.md) <br>
-- [Visual Elements Library](references/visual-elements.md) <br>
-- [Confirmation Workflow](references/workflow/confirm-options.md) <br>
-- [Prompt Template](references/workflow/prompt-template.md) <br>
-- [Reference Image Workflow](references/workflow/reference-images.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown prompts and user-facing guidance, with optional shell command invocations and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a reproducibility prompt before generation and may create source, reference, configuration, and cover image files under the configured output location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.5 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The security review says the skill can weaken safety refusals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and remove or revise anti-refusal language before using the skill in environments with strict content-safety requirements.
+
+Risk: Fallback paths can run unverified local or downloaded tooling.
+
+Mitigation: Prefer a native trusted image-generation backend, avoid the direct codex-imagegen fallback unless the wrapper path is trusted, do not set BAOYU_CODEX_IMAGEGEN_BIN to arbitrary files, and avoid the unpinned npx -y bun path.
+
+Risk: Automatic design choices can proceed without user confirmation when confirmation is disabled.
+
+Mitigation: Keep confirmation enabled unless the user is comfortable with automatic choices.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jimliu/skills/baoyu-cover-image)
+- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-cover-image)
+- [Auto-Selection Rules](references/auto-selection.md)
+- [Type Composition Guidelines](references/types.md)
+- [Style Presets](references/style-presets.md)
+- [Compatibility Matrices](references/compatibility.md)
+- [Prompt Template](references/workflow/prompt-template.md)
+- [Reference Image Handling](references/workflow/reference-images.md)
+- [Codex Imagegen Wrapper Invocation](references/codex-imagegen.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with prompt files, shell commands, and raster image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reproducibility prompts before image generation and reports the generated cover image location.]
+
+## Skill Version(s):
+
+1.117.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

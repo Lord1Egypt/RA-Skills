@@ -1,39 +1,52 @@
-## Description: <br>
-Checks the health status of a configured local ComfyUI instance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start/stop/status for a ComfyUI instance.
 
-## Publisher: <br>
-[Xtopher86](https://clawhub.ai/user/Xtopher86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xtopher86](https://clawhub.ai/user/xtopher86)
 
-## Use Case: <br>
-Developers and ComfyUI users can use this skill to check whether a trusted local ComfyUI service is reachable at the configured host and port. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release notes and artifact prose describe run and stop actions, but the reviewed code only supports status checks. <br>
-Mitigation: Use this version only to check ComfyUI reachability; do not rely on it to start or stop ComfyUI. <br>
-Risk: The health check contacts a configurable host and port. <br>
-Mitigation: Set COMFYUI_HOST and COMFYUI_PORT to a trusted ComfyUI instance, and avoid placing credentials in a .env file unless a later reviewed version uses them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xtopher86/comfyui-runner) <br>
+## Use Case:
 
+Developers and operators use this skill to check whether a configured local ComfyUI instance is reachable. The release documentation also describes run and stop actions, but the security evidence advises treating this version as a status-check skill only.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON status response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports ok, status or error details, host, and port; non-status actions return only_status_supported_in_container.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documentation describes run and stop actions, while the security evidence says this version should not be relied on to start or stop ComfyUI.
+
+Mitigation: Use this release for status checks only, and verify run or stop behavior in a future release before depending on those actions operationally.
+
+Risk: The documentation mentions optional basic-auth environment variables, but the current evidence does not show protected credential handling for this version.
+
+Mitigation: Avoid storing COMFYUI_USER or COMFYUI_PASS in the skill .env file unless a future version actually uses them and documents how they are protected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xtopher86/skills/comfyui-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON status response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports health-check success, HTTP status, host, port, or unreachable error details; run and stop actions return an unsupported-action response in this version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

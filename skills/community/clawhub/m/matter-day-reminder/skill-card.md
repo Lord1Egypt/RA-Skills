@@ -1,43 +1,58 @@
-## Description: <br>
-Matter Day Reminder helps users manage birthdays, anniversaries, and other important dates for family and friends with local contact files, lunar and solar date support, two-stage reminders, and generated wishes and gift suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Matter Day Reminder helps users manage birthdays, anniversaries, and other important dates for family and friends with local contact records, lunar and solar date handling, two-stage reminders, and personalized message and gift suggestions.
 
-## Publisher: <br>
-[norfish](https://clawhub.ai/user/norfish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[norfish](https://clawhub.ai/user/norfish)
 
-## Use Case: <br>
-External users use this skill as a personal social assistant to record contact events, check upcoming birthday or anniversary reminders, and draft relationship-aware wishes or gift suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores friends' and family members' dates, relationship details, interests, and notes in readable local Markdown/YAML files. <br>
-Mitigation: Keep the reminder data directory private, avoid committing it to shared repositories, and back it up only to trusted locations. <br>
-Risk: Email fallback configuration can contain mailbox credentials. <br>
-Mitigation: Use an app-specific password and keep config.yml out of shared folders, logs, and Git history. <br>
-Risk: Leap-month lunar dates may be scheduled incorrectly. <br>
-Mitigation: Review leap-month reminders manually and confirm the converted solar date before acting on the reminder. <br>
+## Use Case:
 
+External users use this skill as a personal social assistant to record contacts, birthdays, anniversaries, and preferences, then check upcoming reminders and draft appropriate blessings or gift ideas.
 
-## Reference(s): <br>
-- [Reminder Data Schema](references/data-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/norfish/matter-day-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with YAML, JSON, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown contact files and local YAML configuration when the user asks to manage reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores friends' and family members' dates, preferences, and relationship notes in local unencrypted Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the reminder-data directory private, restrict access to the local workspace, and avoid committing real contact data to public repositories.
+
+Risk: Email fallback configuration can include SMTP credentials.
+
+Mitigation: Use secret management or private local configuration for SMTP passwords, and do not place real credentials in shared config files.
+
+Risk: Node dependencies and shared contact files can introduce dependency or parsing hygiene concerns.
+
+Mitigation: Update Node dependencies before use and review shared or untrusted contact files before loading them.
+
+## Reference(s):
+
+- [Reminder Data Schema](artifact/references/data-schema.md)
+- [ClawHub skill page](https://clawhub.ai/norfish/skills/matter-day-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text with optional YAML, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown contact files and configuration examples for reminder data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

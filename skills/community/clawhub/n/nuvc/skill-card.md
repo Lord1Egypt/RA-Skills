@@ -1,43 +1,60 @@
-## Description: <br>
-Score business ideas, get startup roasts, analyze markets, and extract structured data - powered by the same AI engine behind 250+ VC investment memos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score business ideas, get startup roasts, analyze markets, and extract structured data — powered by the same AI engine behind 250+ VC investment memos.
 
-## Publisher: <br>
-[nuvcai](https://clawhub.ai/user/nuvcai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nuvcai](https://clawhub.ai/user/nuvcai)
 
-## Use Case: <br>
-External users, founders, startup operators, investors, and agents use this skill to submit business ideas, pitch text, market questions, or metrics to NUVC for scoring, market analysis, competitive analysis, startup feedback, structured extraction, and model availability checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business ideas, pitch text, market notes, and metrics submitted through the skill are sent to NUVC's remote API for processing. <br>
-Mitigation: Use the skill only when NUVC's privacy and retention terms fit the data, and avoid submitting confidential customer data, regulated data, sensitive investor materials, or proprietary plans unless approved. <br>
-Risk: The skill depends on a private NUVC_API_KEY environment variable. <br>
-Mitigation: Keep NUVC_API_KEY out of prompts, logs, shared transcripts, source control, and public configuration. <br>
+## Use Case:
 
+External founders, operators, investors, and agent users use NUVC to score business ideas, pressure-test startup pitches, analyze markets and competitors, review financial or pitch content, extract startup metrics, and list available NUVC models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nuvcai/nuvc) <br>
-- [NUVC API keys](https://nuvc.ai/api-platform/keys) <br>
-- [NUVC API documentation](https://nuvc.ai/api-platform/docs) <br>
-- [NUVC website](https://nuvc.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown responses by default, raw JSON when --json is explicitly requested, and shell commands for agent execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and NUVC_API_KEY; sends submitted business, pitch, market, and metric text to NUVC's remote API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Submitted business ideas, pitch decks, financial details, and extracted metrics are sent to NUVC's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content appropriate for NUVC processing; avoid confidential or regulated material unless NUVC's data handling terms are acceptable.
+
+Risk: The skill uses shell-style command templates for user-provided business text.
+
+Mitigation: Prefer an argument-safe runner that passes user content as a single argument array, and review commands before execution.
+
+Risk: Business scores, roasts, market analysis, financial review, and extracted metrics may be incomplete or misleading.
+
+Mitigation: Treat outputs as decision support and verify important claims, market data, financial conclusions, and investment judgments independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nuvcai/skills/nuvc)
+- [NUVC API key registration](https://nuvc.ai/api-platform/keys)
+- [NUVC API documentation](https://nuvc.ai/api-platform/docs)
+- [NUVC website](https://nuvc.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses by default, with optional raw JSON when requested; setup guidance may include shell snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and NUVC_API_KEY; sends submitted business, pitch, financial, and metric content to NUVC's external API.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

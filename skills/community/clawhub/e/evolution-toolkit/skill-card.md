@@ -1,43 +1,59 @@
-## Description: <br>
-Use this skill when you need portable agent self-improvement tooling: capture session handoffs, measure reasoning style, scan guidance for contradictions, log predictions, optimize playbooks, run Socratic questioning, or analyze cross-session coherence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when you need portable agent self-improvement tooling: capture session handoffs, measure reasoning style, scan guidance for contradictions, log predictions, optimize playbooks, run Socratic questioning, or analyze cross-session coherence.
 
-## Publisher: <br>
-[ergopitrez](https://clawhub.ai/user/ergopitrez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ergopitrez](https://clawhub.ai/user/ergopitrez)
 
-## Use Case: <br>
-Developers and agent operators use Evolution Toolkit to preserve session continuity, audit reasoning patterns, scan guidance for contradictions, log prediction calibration, and improve playbooks across agent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolkit persists self-audit and session-memory files in the configured workspace. <br>
-Mitigation: Set EVOLUTION_TOOLKIT_WORKSPACE to a narrow intended directory and periodically delete old imprints, reports, fingerprints, and history. <br>
-Risk: Workspace notes, logs, test cases, or playbooks may contain sensitive information that is later stored or processed by the toolkit. <br>
-Mitigation: Keep secrets out of CURRENT.md, daily memory logs, test cases, and playbooks before running toolkit scripts. <br>
-Risk: skill-optimizer can send configured playbook content to Gemini when run. <br>
-Mitigation: Run skill-optimizer only with content approved for Gemini API sharing, and do not treat --dry-run as offline mode. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve session continuity, audit reasoning behavior, find contradictory guidance, log predictions, and improve agent playbooks across workspaces.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ergopitrez/evolution-toolkit) <br>
-- [Publisher Profile](https://clawhub.ai/user/ergopitrez) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, terminal output, JSON reports, generated files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some scripts write local memory, imprint, report, fingerprint, prediction, or playbook files under the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can persist sensitive behavioral memory or workspace notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in workspaces with private notes, customer data, proprietary prompts, or broad secrets; prefer a dedicated test workspace.
+
+Risk: The playbook optimizer can send local playbooks or test cases to Gemini using workspace credentials.
+
+Mitigation: Avoid running the optimizer on confidential playbooks unless external Gemini processing is acceptable, and prefer explicit environment variables over workspace .secrets files.
+
+Risk: The thinking-partner protocol can affect default assistant behavior if treated as a standing policy.
+
+Mitigation: Use the thinking-partner protocol as opt-in guidance for suitable tasks rather than as a default behavior policy.
+
+## Reference(s):
+
+- [Evolution Toolkit on ClawHub](https://clawhub.ai/ergopitrez/skills/evolution-toolkit)
+- [Session Continuity Protocol](protocols/session-continuity.md)
+- [Thinking Partner Protocol](protocols/thinking-partner.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, terminal text, JSON, and workspace files depending on the selected tool.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts write state under the configured workspace memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

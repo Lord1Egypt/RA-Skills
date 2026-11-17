@@ -1,45 +1,61 @@
-## Description: <br>
-Read Azure DevOps projects, teams, team members, saved queries, and work items securely; run WIQL-based reporting; and export spreadsheet-ready reports with summaries and charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Azure DevOps projects, teams, team members, saved queries, and work items securely; run WIQL-based reporting; and export spreadsheet-ready reports with summaries and charts.
 
-## Publisher: <br>
-[webspeaks](https://clawhub.ai/user/webspeaks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webspeaks](https://clawhub.ai/user/webspeaks)
 
-## Use Case: <br>
-Developers, engineering managers, and project teams use this skill to inspect Azure DevOps projects, teams, sprints, saved queries, and work items, then generate local JSON, CSV, or Excel reports with summaries and charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A read-capable Azure DevOps PAT can expose project, team, sprint, and work item data. <br>
-Mitigation: Use least-privilege read scopes, keep the .env file private, and install only where local report generation from Azure DevOps data is acceptable. <br>
-Risk: Broad trigger examples may use stored Azure DevOps credentials when a request is not clearly about Azure DevOps reporting. <br>
-Mitigation: Phrase requests explicitly with Azure DevOps context and confirm the intended project, team, sprint, query, or report before running commands. <br>
-Risk: Generated local reports may contain sensitive project or work item information. <br>
-Mitigation: Keep generated report files local, restrict output to the skill directory, and review files before sharing them. <br>
+## Use Case:
 
+Developers, engineers, and delivery teams use this skill to inspect Azure DevOps projects, teams, sprints, saved queries, and work items, then generate local reporting outputs for progress and workload analysis.
 
-## Reference(s): <br>
-- [API Notes](references/api-notes.md) <br>
-- [Charting](references/charting.md) <br>
-- [Field Mapping](references/field-mapping.md) <br>
-- [Report Types](references/report-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV, Excel workbook] <br>
-**Output Format:** [Markdown guidance with command examples plus generated local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, Python 3, pip3, AZURE_DEVOPS_ORG, AZURE_DEVOPS_PAT, and the xlsxwriter Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill can access sensitive Azure DevOps work data through a personal access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege PAT with only the required read scopes, store it locally, and avoid sharing generated reports without review.
+
+Risk: Generated CSV or XLSX reports may contain untrusted work-item data.
+
+Mitigation: Review generated files before sharing and avoid opening spreadsheet reports with formula execution enabled when data is untrusted.
+
+Risk: Routine use depends on local tooling and report file paths.
+
+Mitigation: Pin the Python dependency where practical and keep Excel input and output paths confined to the skill workspace.
+
+## Reference(s):
+
+- [Azure DevOps Reports on ClawHub](https://clawhub.ai/webspeaks/skills/azure-devops-reports)
+- [API Notes](references/api-notes.md)
+- [Field Mapping](references/field-mapping.md)
+- [Report Types](references/report-types.md)
+- [Charting](references/charting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated report artifacts may be JSON, CSV, or XLSX.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AZURE_DEVOPS_ORG and AZURE_DEVOPS_PAT; reports are generated locally.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

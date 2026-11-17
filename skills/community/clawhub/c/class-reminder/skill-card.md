@@ -1,42 +1,57 @@
-## Description: <br>
-Parses Excel class schedules, including teacher timetable layouts, and helps an agent query classes by date, generate reminder text, and set recurring daily or weekly reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Class Reminder parses Excel course schedules, including teacher-style timetable layouts, and helps agents answer date-based class queries or generate reminder text.
 
-## Publisher: <br>
-[judysue](https://clawhub.ai/user/judysue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[judysue](https://clawhub.ai/user/judysue)
 
-## Use Case: <br>
-Students, teachers, and scheduling agents use this skill to turn Excel timetables into class reminders for today, tomorrow, a specific date, or the coming week. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timetable details may be stored in the workspace when schedules are parsed or queried. <br>
-Mitigation: Use the skill only in a trusted workspace and avoid keeping sensitive timetable files where unintended users or agents can access them. <br>
-Risk: Recurring cron or heartbeat reminders can continue producing schedule notifications after setup. <br>
-Mitigation: Enable recurring reminders only when ongoing notifications are intended, and review or disable the job when the class schedule changes. <br>
-Risk: The command-line output path can write JSON results to a user-selected location. <br>
-Mitigation: Review any --output path before execution and keep generated schedule files inside the intended workspace. <br>
+## Use Case:
 
+Students, instructors, and agents assisting them use this skill to parse uploaded Excel timetables, answer today/tomorrow/specific-date schedule questions, and produce daily or weekly reminder text.
 
-## Reference(s): <br>
-- [Class Reminder on ClawHub](https://clawhub.ai/judysue/class-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash commands plus JSON or plain-text reminder output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local schedule JSON files and reminder text from Excel timetable input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and package.json) <br>
+Risk: The skill reads user-provided course spreadsheets that may contain personal schedule information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended schedule files and keep parsed schedule data in a controlled workspace.
+
+Risk: Automated cron or heartbeat reminders can run on an unintended schedule or stale file path.
+
+Mitigation: Review the schedule file path, semester start date, and cron or heartbeat trigger before enabling automation.
+
+Risk: The skill depends on openpyxl for spreadsheet parsing.
+
+Mitigation: Install dependencies in a virtual environment and pin openpyxl when deploying.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/judysue/skills/class-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON or plain-text reminder outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-provided Excel spreadsheets and may write parsed schedule data to data/schedule.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

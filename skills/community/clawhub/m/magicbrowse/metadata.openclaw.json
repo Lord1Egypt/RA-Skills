@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/MercuryoAI/skills/blob/main/docs/magicbrowse/openclaw/marketplace/README.md",
+  "homepage": "https://github.com/nuanu-ai/skills/blob/main/docs/magicbrowse/openclaw/marketplace/README.md",
   "requires": {
     "bins": ["magicbrowse"]
   },
@@ -8,7 +8,7 @@
     {
       "id": "npm",
       "kind": "node",
-      "package": "@mercuryo-ai/magicbrowse-cli@latest",
+      "package": "@nuanu-ai/magicbrowse-cli@latest",
       "bins": ["magicbrowse"],
       "label": "Install MagicBrowse CLI (npm)"
     }

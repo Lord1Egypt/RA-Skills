@@ -1,44 +1,63 @@
-## Description: <br>
-Autonomous financial research agent for stock analysis, financial statements, metrics, prices, SEC filings, and crypto data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous financial research agent for stock analysis, financial statements, metrics, prices, SEC filings, and crypto data.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-External users and developers use Dexter to ask financial research questions and receive synthesized analysis across stocks, crypto, company fundamentals, SEC filings, metrics, prices, news, and comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation pulls and runs unpinned third-party code. <br>
-Mitigation: Review or pin the Dexter repository commit before installation, then run it as a non-root user in an isolated workspace. <br>
-Risk: The skill requires API keys and sends research queries to external providers. <br>
-Mitigation: Use dedicated low-privilege API keys and avoid submitting confidential financial plans, watchlists, client data, or proprietary research unless the provider data handling is acceptable. <br>
-Risk: Financial answers can depend on external data coverage and model synthesis. <br>
-Mitigation: Verify important outputs against primary sources before relying on them for financial decisions. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to answer financial research questions about public companies, market data, SEC filings, analyst estimates, insider trades, news, and crypto assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abe-dexter) <br>
-- [SkillBoss API Hub](https://api.heybossai.com) <br>
-- [Financial Datasets](https://financialdatasets.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use external API-backed financial research queries when the required API keys are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installation fetches and runs unpinned third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the Dexter repository to a reviewed commit and use a locked dependency install before deployment.
+
+Risk: API keys are persisted in an environment file.
+
+Mitigation: Protect the .env file with owner-only permissions and avoid storing unnecessary credentials.
+
+Risk: Financial queries and research context may be sent to external services.
+
+Mitigation: Use only non-confidential financial queries and review external service handling requirements before use.
+
+Risk: The skill may produce incorrect or stale financial analysis.
+
+Mitigation: Review outputs against authoritative market, filing, or financial data sources before making decisions.
+
+## Reference(s):
+
+- [abe-dexter ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abe-dexter)
+- [SkillBoss API Hub](https://api.heybossai.com)
+- [Financial Datasets](https://financialdatasets.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sourced financial analysis, installation steps, API key configuration guidance, and command-line usage examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

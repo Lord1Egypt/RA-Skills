@@ -1,0 +1,15 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "prompt": "Edit video 1: replace the blue-shirted presenter's face and hair with the person in image 1, keeping the original clothing and the same replacement identity throughout. Preserve other people, objects, setting, shot order, camera movement, actions, mouth motion, and visual timing. Video 1 is a silent source clip. Edit visuals only; do not generate dialogue, BGM, or other sound. The original audio will be restored after visual assembly. Image 1 defines only the presenter's appearance; do not use its gray background.",
+  "duration_seconds": -1,
+  "resolution": "720p",
+  "aspect_ratio": "adaptive",
+  "omni_reference_task_type": "edit",
+  "reference_video_urls": [
+    "https://example.com/silent-segment-01.mp4"
+  ],
+  "reference_image_urls": [
+    "https://example.com/selected-character.png"
+  ],
+  "generate_audio": false
+}

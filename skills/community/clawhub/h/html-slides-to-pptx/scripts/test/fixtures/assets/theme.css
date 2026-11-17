@@ -1,0 +1,356 @@
+/* ================================================================
+   AI辅助ESG管理革新工作坊 · 主题样式
+   视觉风格：联想Lenovo品牌视觉
+   字体：微软雅黑
+   核心配色：深蓝中轴 + 联想红精准强调 + 炭黑深底
+   ================================================================ */
+
+/* CSS变量：色板 */
+:root {
+  /* 主色：三色主结构 */
+  --brand-primary: #E2232A;
+  --lenovo-red: var(--brand-primary);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-primary-dark: #B81C22;
+  --lenovo-red-dark: var(--brand-primary-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark: #0A2E5C;
+  --deep-navy: var(--brand-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark-soft: #14477A;
+  --deep-navy-light: var(--brand-dark-soft);   /* 别名(向后兼容,169 处历史引用) */
+  --charcoal: #1A1A1A;
+  --charcoal-soft: #2C2C2C;
+
+  /* 白+灰系（承载） */
+  --white: #FFFFFF;
+  --off-white: #F5F7FA;
+  --card-bg: #FAFBFC;
+  --text-primary: #1F1F1F;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+
+  /* 代码块 */
+  --code-bg: #0F1419;
+  --code-text: #E8E8E8;
+  --code-highlight: #FFD966;
+  --code-comment: #7A8B99;
+
+  /* 信号色（仅在盲区路由/数据安全等类别区分时用） */
+  --signal-green: #00A651;
+  --signal-yellow: #F9A825;
+  --signal-blue: #1976D2;
+  --signal-red: #E2232A;
+  --signal-gray: #757575;
+
+  /* 深色底上的浅色文字(预算混合色,非 rgba)
+     —— 2026-08-06 修复:此前缺失,97/103/117 深底页文字回退成近黑 #1F1F1F */
+  --on-navy-text: #FFFFFF;
+  --on-navy-sub: #D9E2F0;    /* ≈ 白 85% 混 deep-navy */
+  --on-navy-dim: #A9BCD6;    /* ≈ 白 70% 混 deep-navy */
+
+  /* 强调橙（高亮卡/徽章） */
+  --accent-orange: #F39800;
+
+  /* 字体 */
+  --font-cn: "Microsoft YaHei", "PingFang SC", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  --font-en: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, "Courier New", monospace;
+
+  /* ── 版面分区与字号阶(2026-08-02 设计总纲;与 assets/theme.css 同步)
+     2026-08-06 修复:此前误粘在 .big-num 规则体内,:root 上全部 UNDEFINED ── */
+  --zone-header-top: 60px;
+  --zone-content-top: 320px;
+  --zone-content-bottom: 940px;
+  --zone-footer-top: 980px;
+  --page-margin: 100px;
+  --content-width: 1720px;
+  --space-block: 60px;
+  --space-item: 40px;
+  --space-item-tight: 24px;
+  --text-cover: 104px;
+  --text-title-page: 60px;
+  --text-title-block: 32px;
+  --text-body: 24px;
+  --text-note: 16px;
+  --text-floor: 14px;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--font-cn);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  background: #E5E7EB;
+}
+
+.slide-container {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--white);
+  font-family: var(--font-cn);
+}
+
+/* ---------------- 通用装饰 ---------------- */
+
+/* 顶部红色装饰线（B/C/E/F型页面） */
+.top-accent-line {
+  position: absolute;
+  left: 100px;
+  top: 60px;
+  width: 80px;
+  height: 4px;
+  background: var(--lenovo-red);
+  z-index: 10;
+}
+
+/* 页脚（B/C/E/F型页面） */
+.page-footer {
+  position: absolute;
+  left: 100px;
+  right: 100px;
+  bottom: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: var(--text-tertiary);
+  z-index: 10;
+}
+.page-footer .left { display: flex; align-items: center; gap: 20px; }
+.page-footer .brand { font-weight: 600; color: var(--text-secondary); }
+.page-footer .sub { color: var(--text-tertiary); }
+.page-footer .page-num {
+  color: var(--lenovo-red);
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+/* 页标题（B/C/E/F型） */
+.page-title-block {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  z-index: 10;
+}
+.page-title-block .kicker {
+  font-size: 20px;
+  color: var(--lenovo-red);
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-family: var(--font-en);
+}
+.page-title-block .title {
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+.page-title-block .subtitle {
+  font-size: 22px;
+  color: var(--text-secondary);
+  margin-top: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* 强调下划线 */
+.underline-red {
+  position: relative;
+  display: inline-block;
+}
+.underline-red::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 4px;
+  background: var(--lenovo-red);
+}
+
+/* ---------------- A型：章节封面 ---------------- */
+
+.template-a {
+  background: var(--deep-navy);
+  color: var(--white);
+}
+
+.template-a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(226, 35, 42, 0.08) 0%, transparent 40%),
+    linear-gradient(135deg, var(--deep-navy) 0%, #071F42 100%);
+  z-index: 0;
+}
+
+/* ---------------- D型：互动引导 ---------------- */
+
+.template-d {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.template-d::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(226, 35, 42, 0.05) 0%, transparent 60%);
+  z-index: 0;
+}
+
+/* ---------------- E型：代码块 ---------------- */
+
+.code-block {
+  background: var(--code-bg);
+  border-radius: 8px;
+  padding: 40px 48px;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 1.7;
+  color: var(--code-text);
+  white-space: pre-wrap;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(10, 46, 92, 0.15);
+}
+
+.code-block::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FF5F57;
+  box-shadow: 20px 0 0 #FEBC2E, 40px 0 0 #28C840;
+}
+
+.code-block .code-title-bar {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  font-size: 14px;
+  color: var(--code-comment);
+  font-family: var(--font-en);
+  letter-spacing: 0.5px;
+}
+
+.code-block .code-body {
+  margin-top: 28px;
+}
+
+.code-block .highlight {
+  color: var(--code-highlight);
+  font-weight: 600;
+}
+
+.code-block .comment {
+  color: var(--code-comment);
+  font-style: italic;
+}
+
+/* ---------------- C型：演示灯箱 ---------------- */
+
+.lightbox {
+  background: var(--off-white);
+  border: 2px dashed var(--border-medium);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: var(--text-secondary);
+  font-size: 22px;
+  position: relative;
+}
+
+.lightbox .icon-frame {
+  width: 96px;
+  height: 96px;
+  border: 3px solid var(--deep-navy);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  color: var(--deep-navy);
+  font-weight: 700;
+  background: var(--white);
+}
+
+.lightbox .label {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-top: 8px;
+}
+
+.lightbox .caption {
+  font-size: 18px;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ---------------- 通用卡片 ---------------- */
+
+.info-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 32px;
+  position: relative;
+}
+
+.info-card.accent-top {
+  border-top: 4px solid var(--deep-navy);
+}
+
+.info-card.accent-red-top {
+  border-top: 4px solid var(--lenovo-red);
+}
+
+.info-card .card-num {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: var(--font-en);
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--lenovo-red);
+  opacity: 0.15;
+  line-height: 1;
+}
+
+/* 数字强调 */
+.big-num {
+  font-family: var(--font-en);
+  font-weight: 800;
+  color: var(--lenovo-red);
+  line-height: 1;
+}
+
+/* 数字/西文用 Inter（表格数字、页码等,可加 class="num"）
+   —— 2026-08-06 修复:此前缺失,55 处 class="num" 全部回退到中文字体 */
+.num { font-family: var(--font-en); font-feature-settings: "tnum"; }

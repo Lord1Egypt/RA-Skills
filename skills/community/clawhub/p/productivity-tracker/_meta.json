@@ -1,6 +1,45 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "productivity-tracker",
-  "version": "2.0.0",
-  "publishedAt": 1773659068300
+  "name": "task-tracker",
+  "version": "1.0.0",
+  "description": "任务管理与时间追踪工具，支持 TODO 管理、番茄钟、习惯打卡",
+  "entry": "scripts/task-tracker.py",
+  "commands": [
+    {
+      "name": "add",
+      "description": "添加新任务",
+      "usage": "task-tracker add <任务名称>"
+    },
+    {
+      "name": "list",
+      "description": "列出所有任务",
+      "usage": "task-tracker list"
+    },
+    {
+      "name": "complete",
+      "description": "标记任务完成",
+      "usage": "task-tracker complete <任务ID>"
+    },
+    {
+      "name": "delete",
+      "description": "删除任务",
+      "usage": "task-tracker delete <任务ID>"
+    },
+    {
+      "name": "pomodoro",
+      "description": "开始番茄钟",
+      "usage": "task-tracker pomodoro [分钟数，默认25]"
+    },
+    {
+      "name": "habit",
+      "description": "习惯管理",
+      "usage": "task-tracker habit <add|check|list> [名称]"
+    },
+    {
+      "name": "stats",
+      "description": "查看今日统计",
+      "usage": "task-tracker stats"
+    }
+  ],
+  "tags": ["task", "productivity", "pomodoro", "habit", "time-tracking"],
+  "author": "OpenClaw"
 }

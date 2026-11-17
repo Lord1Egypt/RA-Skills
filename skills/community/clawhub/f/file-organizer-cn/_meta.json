@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "file-organizer-cn",
-  "version": "1.0.2",
-  "publishedAt": 1771631772704
+  "metadata": {
+    "openclaw": {
+      "name": "file-organizer-cn",
+      "title": "文件整理助手",
+      "description": "智能整理和管理本地文件，支持自动分类、重命名和清理重复文件",
+      "version": "1.0.0",
+      "category": "系统工具",
+      "tags": ["文件", "整理", "自动化", "分类", "清理"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/file-organizer-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

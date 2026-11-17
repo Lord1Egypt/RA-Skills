@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+*.tgz
+node_modules/
+.tmp/
+.npmignore
+.git/

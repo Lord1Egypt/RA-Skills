@@ -1,40 +1,53 @@
-## Description: <br>
-File Backup guides an agent to create a local backup before editing important files, ask the user to review the result, and delete the backup only after explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a backup before important file edits, asks the user to review the modified file, and deletes the backup only after explicit confirmation.
 
-## Publisher: <br>
-[Jiaqi-Guo-0114](https://clawhub.ai/user/Jiaqi-Guo-0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiaqi-guo-0114](https://clawhub.ai/user/jiaqi-guo-0114)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve copies of important local files before changes, review the edited files, and clean up backups only after they confirm the result is correct. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can contain the same sensitive data as the original files. <br>
-Mitigation: Use a trusted backup directory and delete backups after the user verifies that the edited files are correct. <br>
-Risk: Incorrect backup or deletion paths could preserve the wrong file or remove a backup before review. <br>
-Mitigation: Show the backup path to the user and require explicit confirmation before deleting the backup. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve recovery copies before editing configuration files, core mechanism files, or other user-designated sensitive files. It guides the agent to retain backups until the user confirms they can be removed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jiaqi-Guo-0114/file-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes backup path reminders and confirmation-gated cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Backup copies can duplicate sensitive file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private backup directory for sensitive files and remove stale backups when they are no longer needed.
+
+Risk: Deleting the wrong backup path can remove the recovery copy before the edit has been verified.
+
+Mitigation: Verify backup paths before deletion and wait for explicit user confirmation before removing backups.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiaqi-guo-0114/skills/file-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands and backup file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local backup copies and cleanup commands; backup retention depends on user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

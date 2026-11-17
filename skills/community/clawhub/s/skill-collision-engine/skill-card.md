@@ -1,49 +1,60 @@
-## Description: <br>
-Skill Collision Engine is a meta-skill for combining existing skills and external knowledge through four-way reasoning to propose new skills, domain adaptations, and self-improvement loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Collision Engine is a meta-skill for combining skills and external knowledge through four-way collision reasoning to propose new or adapted skills.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and skill authors use this skill to analyze relationships between existing skills, generate candidate new skill concepts, adapt a general reasoning framework to domain-specific skills, and plan validation steps before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence other skills by proposing generated or evolved skill content, which may introduce incorrect, misleading, or unsafe guidance if reused without review. <br>
-Mitigation: Use the skill manually, review and approve each generated skill or source before reuse or publication, and scan any resulting artifact before deployment. <br>
-Risk: The skill asks for broad recurring access to skills, logs, external sources, and conversation records without clear scope limits. <br>
-Mitigation: Restrict the files, logs, external content, and conversations it may read; avoid private conversations and secrets. <br>
-Risk: The artifact includes Python usage examples but does not provide a verified implementation. <br>
-Mitigation: Verify any separate implementation before running the examples or incorporating them into an agent workflow. <br>
+## Use Case:
 
+Developers and skill authors use this skill to analyze existing skills, external knowledge sources, and verification feedback, then draft new skill concepts, adaptations, and skill-related artifacts for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/skill-collision-engine) <br>
-- [Publisher homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837) <br>
-- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411) <br>
-- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007) <br>
-- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with structured reasoning notes, shell command examples, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose new skill definitions, collision matrices, validation protocols, and self-improvement tasks for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill describes reading skill logs, external materials, and conversation records, which could expose private or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved, non-sensitive inputs unless consent, redaction, and source allowlists are in place.
+
+Risk: Automatic skill generation and self-evolution can produce incorrect, misleading, or unsafe skill artifacts.
+
+Mitigation: Require human review, security scanning, and rollback controls before installing or publishing generated artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/skill-collision-engine)
+- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046)
+- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255)
+- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837)
+- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411)
+- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007)
+- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposed skill artifacts and collision analysis that should be reviewed before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Guides IT and business teams through incident classification, response checklists, communication planning, timelines, and post-mortem drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides IT and business teams through incident classification, response checklists, communication plans, timelines, and post-mortems.
 
-## Publisher: <br>
-[shark1973](https://clawhub.ai/user/shark1973) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shark1973](https://clawhub.ai/user/shark1973)
 
-## Use Case: <br>
-IT, security, operations, and business response teams use this skill to draft structured incident response plans, classify severity, coordinate communications, track timelines, and prepare post-mortems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incident descriptions may contain credentials, tokens, customer personal data, legal-hold material, or raw forensic artifacts. <br>
-Mitigation: Redact sensitive material before sharing incident details with the agent. <br>
-Risk: Generated containment, disclosure, legal, or recovery recommendations may be incomplete or inappropriate for the organization. <br>
-Mitigation: Have authorized human responders review and approve response actions before use. <br>
+## Use Case:
 
+Business, IT, and incident-response teams use this skill to classify incidents, generate response checklists and communications, maintain timelines, and draft post-mortems from incident descriptions.
 
-## Reference(s): <br>
-- [Afrexai Incident Response.Skip](https://clawhub.ai/shark1973/afrexai-incident-response-skip) <br>
-- [AI Operations Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown incident plans, checklists, communication plans, timelines, and post-mortem templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewable response drafts; does not execute containment, disclosure, legal, or recovery actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incident descriptions and timelines may contain secrets, credentials, personal data, regulated records, or legally privileged details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive data unless the agent environment is approved for that data class.
+
+Risk: Generated severity classifications, stakeholder communications, or response actions may be incomplete or operationally inappropriate.
+
+Mitigation: Have the incident commander or accountable responder review proposed communications and actions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shark1973/skills/afrexai-incident-response-skip)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with severity ratings, checklists, communications, timelines, and post-mortem sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include P1-P4 severity classification, incident-type-specific actions, stakeholder updates, timeline entries, and root-cause-analysis prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

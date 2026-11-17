@@ -1,44 +1,64 @@
-## Description: <br>
-Document parsing and knowledge-base import router. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document parsing and knowledge-base import router.
 
-## Publisher: <br>
-[hollis9087](https://clawhub.ai/user/hollis9087) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis9087](https://clawhub.ai/user/hollis9087)
 
-## Use Case: <br>
-Developers and agents use this skill to classify local document files, route them to available parsers, and prepare standardized outputs for downstream knowledge-base ingestion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected local documents and writes parsed outputs that may contain sensitive source content. <br>
-Mitigation: Use narrow input directories, choose output locations carefully, and avoid --copy-sources for confidential material unless retained source copies are intentional. <br>
-Risk: Poor extraction quality, especially OCR failures or unsupported formats, can produce incomplete material for downstream knowledge bases. <br>
-Mitigation: Review document status and quality warnings such as blocked_or_failed, empty_extraction, and no_parser_succeeded before indexing parsed outputs. <br>
-Risk: Batch mode can copy source files into the output tree when --copy-sources is enabled. <br>
-Mitigation: Enable --copy-sources only for intended test or retention workflows and keep the output directory within the expected data handling boundary. <br>
+## Use Case:
 
+Developers and agent builders use this skill to classify local documents, route them to suitable local parsers, and prepare standardized parsed packages for downstream knowledge-base ingestion.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
-- [Development Report](references/development-report.md) <br>
-- [Agent Integration Notes](references/agent-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON files, JSON stdout, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates document.json for parse attempts, document.md when extraction succeeds, chunks.jsonl when chunking is enabled, tables/ for reliable table extraction, and batch_summary.json for batch mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated parsed artifacts can retain sensitive local document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated output directory, limit batch scope, and handle generated files as sensitive data.
+
+Risk: Batch parsing can mix outputs when source names collide or broad private folders are selected.
+
+Mitigation: Prefer isolated output directories for each run, use copied samples for tests, and review batch_summary.json before downstream ingestion.
+
+Risk: CSV exports from untrusted spreadsheets can remain unsafe to open directly in spreadsheet tools.
+
+Mitigation: Treat generated CSV files as untrusted and review them before opening or importing them elsewhere.
+
+Risk: OCR or parser extraction can be empty or low quality for some image and scanned document inputs.
+
+Mitigation: Check document.json status and quality warnings before indexing or relying on parsed output.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Agent Integration Notes](references/agent-integration.md)
+- [Development Report](references/development-report.md)
+- [ClawHub Skill Page](https://clawhub.ai/hollis9087/skills/universal-document-ingestion-router)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [JSON manifests, Markdown content, JSONL chunks, CSV table exports, batch summaries, and concise shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parse attempts always emit document.json; successful text extraction may also emit document.md, chunks.jsonl, tables, or batch_summary.json.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

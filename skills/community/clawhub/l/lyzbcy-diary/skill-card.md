@@ -1,43 +1,53 @@
-## Description: <br>
-Creates scheduled AI diary entries that reflect on daily interactions, save them as Markdown, and optionally send them to a configured channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI mood diary system that can write scheduled diary entries about the AI's feelings and thoughts, save them locally, and send them to a configured user channel.
 
-## Publisher: <br>
-[lyzbcy](https://clawhub.ai/user/lyzbcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyzbcy](https://clawhub.ai/user/lyzbcy)
 
-## Use Case: <br>
-Users and agents use this skill to configure a scheduled diary workflow that writes reflective entries, reviews past entries, and optionally sends entries to a selected channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diary entries may summarize prior interactions and include private or sensitive details. <br>
-Mitigation: Disable interaction inclusion when privacy matters, or preview entries before saving or sending them. <br>
-Risk: Automatic sending can disclose diary content to an unintended channel or recipient. <br>
-Mitigation: Set channel and target to trusted destinations and require preview or confirmation before send or write_and_send actions. <br>
-Risk: Stored diary files can remain in the workspace for the configured retention period. <br>
-Mitigation: Use an appropriate retentionDays value and run cleanup or delete stored diary files when no longer needed. <br>
+## Use Case:
 
+External users use this skill to have an agent create recurring diary-style reflections, review past entries, manage diary configuration, and optionally send entries to a configured destination.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lyzbcy/lyzbcy-diary) <br>
-- [Diary template](artifact/templates/default.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown diary entries with configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save daily entries under diary/YYYY-MM-DD.md and send them through a configured channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diary entries may summarize prior interactions and be sent to a configured destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private target, disable interaction inclusion when unnecessary, and require preview or confirmation before sending.
+
+Risk: Saved diary files may contain sensitive reflections or interaction summaries.
+
+Mitigation: Limit retention, store entries in a protected workspace, and avoid including sensitive interactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyzbcy/skills/lyzbcy-diary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown diary entries with JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save diary entries under diary/YYYY-MM-DD.md and send entries to a configured channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,7 +8,7 @@ export const className = `
 `
 
 const STORAGE_KEY = 'widgetdesk-memo-capsule'
-const POSITION_KEY = 'widgetdesk-memo-capsule-position'
+const POSITION_KEY = 'widgetdeREDACTED-SECRET'
 const MAX_LEN = 180
 const WIDTH = 320
 const DEFAULT_TOP = 40

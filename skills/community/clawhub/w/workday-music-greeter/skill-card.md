@@ -1,40 +1,58 @@
-## Description: <br>
-On weekdays, this skill switches the current home-music scene, fetches a matching GIF, and sends a themed greeting email with optional weekday cron scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On weekdays, automatically switches the home-music scene for the current time slot, fetches a matching GIF, and sends a greeting email that embeds and attaches that GIF.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and home automation operators use this skill to automate weekday music scene changes and send scene-matched greeting emails. It is useful when a recurring workday routine should coordinate music, GIF selection, and email notification from one agent skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the cron helper can create recurring weekday actions that send email and change music without further prompts. <br>
-Mitigation: Inspect the fixed schedule, confirm the recipient and SMTP credentials, and test run.sh with --dry-run before running install-cron.sh. <br>
-Risk: Missing or incorrect dependencies and credentials can prevent music switching, GIF retrieval, or email delivery. <br>
-Mitigation: Verify bash, node, WMG_MAIL_TO, SMTP settings, and optional home-music, gifgrep, and imap-smtp-email integrations before relying on the automation. <br>
+## Use Case:
 
+Employees and individual users use this skill to automate weekday home-music scene changes and receive scene-matched greeting emails. Developers can customize time slots, GIF queries, recipient settings, and cron scheduling for a local workstation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/workday-music-greeter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Bash/configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead to external side effects when run or scheduled, including weekday cron entries, music scene changes, GIF lookup, and greeting email delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Recurring weekday cron jobs can repeatedly run user-level automation after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the schedule, use dry-run first, and provide or document a clear way to remove the tagged cron entries.
+
+Risk: Editable configuration combined with eval-style shell execution or sourcing .env as shell code can lead to unintended command execution.
+
+Mitigation: Remove eval-style execution, avoid sourcing .env as shell code, quote command arguments directly, and restrict .env file permissions.
+
+Risk: Email delivery depends on local SMTP credentials and a helper script path.
+
+Mitigation: Verify the SMTP helper path and credentials before live use, and keep credentials out of world-readable files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/workday-music-greeter)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Email content, Files]
+
+**Output Format:** [Markdown guidance with bash commands, shell-script output, generated HTML email content, and user crontab entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run previews; live execution may create temporary GIF or HTML files and install recurring weekday cron entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

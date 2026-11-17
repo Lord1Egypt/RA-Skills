@@ -1,46 +1,64 @@
-## Description: <br>
-小花专用自我迭代技能 - 基于 self-improving-agent 增强，集成 OpenClaw 工作流、MEMORY.md、百度千帆、看想做找四部曲。专为国内部署优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小花专用自我迭代技能，基于 self-improving-agent 增强，集成 OpenClaw 工作流、MEMORY.md、百度千帆、看想做找四部曲，并面向国内部署优化。
 
-## Publisher: <br>
-[Aroooooy](https://clawhub.ai/user/Aroooooy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aroooooy](https://clawhub.ai/user/aroooooy)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to capture learnings, errors, corrections, and reusable workflow patterns across OpenClaw-oriented sessions. It helps maintain .learnings files, promote durable knowledge into MEMORY.md, SOUL.md, TOOLS.md, or AGENTS.md, and configure reminder hooks for future sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to persist and reuse session learnings broadly, which can unintentionally retain sensitive, personal, or confidential information. <br>
-Mitigation: Restrict use to trusted projects and review .learnings, MEMORY.md, SOUL.md, TOOLS.md, AGENTS.md, and daily memory files before allowing persisted content to influence later sessions. <br>
-Risk: Bootstrap hooks can re-inject durable notes into future agent context without enough scoping or consent guidance. <br>
-Mitigation: Enable hooks only in workspaces where persistent reminders are expected, and disable or narrow hook use for projects involving secrets, credentials, regulated data, or confidential business details. <br>
-Risk: Error and learning templates may encourage storing raw command output or operational details. <br>
-Mitigation: Redact credentials, tokens, personal data, customer data, and private system details before writing learning entries or promoting them into long-term memory files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/Aroooooy/xiaohua-self-improving) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Integration](artifact/references/openclaw-integration.md) <br>
-- [Hook Setup Guide](artifact/references/hooks-setup.md) <br>
-- [Entry Examples](artifact/references/examples.md) <br>
-- [Learnings Format](artifact/assets/LEARNINGS.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture corrections, command failures, workflow lessons, and reusable knowledge into local learning and memory files for future sessions. It is especially oriented toward OpenClaw workflows and China-friendly tooling patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, templates, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update local learning and memory files when the agent follows the skill guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory and behavior files can influence future agent sessions.
+
+Mitigation: Require explicit review before writing to MEMORY.md, SOUL.md, AGENTS.md, or TOOLS.md, and keep learning entries project-scoped unless intentionally promoted.
+
+Risk: Broad hook activation can inject reminders into every prompt or bootstrap event.
+
+Mitigation: Prefer project-local hooks and scoped matchers; avoid empty matchers unless every-prompt activation is intentional.
+
+Risk: Cross-session transcript access or message forwarding can expose user or project context.
+
+Mitigation: Do not allow cross-session transcript access or message forwarding without clear user consent.
+
+Risk: Installing the wrong package or version can alter agent behavior unexpectedly.
+
+Mitigation: Verify the exact package name, publisher handle, and version before installation.
+
+## Reference(s):
+
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Entry Examples](artifact/references/examples.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/aroooooy/skills/xiaohua-self-improving)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration examples, hooks, and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional hook scripts and local-file learning templates; output is intended for agent context and workspace documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

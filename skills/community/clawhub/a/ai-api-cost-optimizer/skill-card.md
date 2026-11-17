@@ -1,44 +1,57 @@
-## Description: <br>
-AI API Cost Optimizer helps developers audit, compare, estimate, and reduce AI API costs across providers such as OpenAI, Anthropic Claude, DeepSeek, and Google Gemini. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI API Cost Optimizer helps agents audit token and model spend, compare OpenAI, Claude, DeepSeek, and Gemini pricing, and propose lower-cost model, caching, routing, and batch-processing strategies.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-Developers, technical leads, and teams that use AI APIs can use this skill to estimate current spend, compare model pricing, choose cost-effective model mixes, and plan caching, batching, and routing optimizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled pricing and model recommendations can become outdated as providers change model names, prices, discounts, and availability. <br>
-Mitigation: Confirm current pricing on official provider sites before making budget, migration, or architecture decisions. <br>
-Risk: Cost-optimized routing or model substitution can reduce quality, reliability, latency, or regional availability if applied without validation. <br>
-Mitigation: Test recommended routing and model choices against the intended workload, quality bar, latency needs, and deployment region before production use. <br>
+## Use Case:
 
+Developers, technical leads, and teams using AI APIs use this skill to estimate monthly API spend, choose cost-effective model mixes, and plan token, cache, routing, and batch optimizations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caingao/ai-api-cost-optimizer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/caingao) <br>
-- [pricing-data.md](artifact/pricing-data.md) <br>
-- [optimization-strategies.md](artifact/optimization-strategies.md) <br>
-- [routing-patterns.md](artifact/routing-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown reports, comparison tables, checklists, advisory prose, and illustrative code or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pricing and model recommendations are advisory and should be checked against current provider pricing before budget or architecture decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Pricing data may become stale or differ by vendor account, region, free tier, or enterprise agreement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current vendor pricing and applicable discounts before using the skill's estimates for budget decisions.
+
+Risk: Cache examples could retain or expose sensitive data if copied into production without access controls.
+
+Mitigation: Add tenant and user scoping, authorization checks, sensitive-data exclusions, TTLs, and deletion controls before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caingao/skills/ai-api-cost-optimizer)
+- [Publisher profile](https://clawhub.ai/user/caingao)
+- [Pricing data](artifact/pricing-data.md)
+- [Optimization strategies](artifact/optimization-strategies.md)
+- [Routing patterns](artifact/routing-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown reports, comparison tables, checklists, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses static May 2026 pricing data; readers should verify current vendor prices before making budget decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

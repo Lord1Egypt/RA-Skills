@@ -1,0 +1,16 @@
+{
+  "_comment": "文件名 → 七层模型层码映射。详见扫地僧 SKILL.md §四「七层能力模型（L1→L7）」。distill.py 的 _read_local_jsonl 用它把本地信号 ref_hit（参考文件名）解析为 method_layer（层码），解耦「层维度」与「文件维度」两个独立语义，避免把文件名塞进 method_layer 导致规则永不命中（信号规范 §七 旧映射的 bug）。新增参考文件时同步更新此表。",
+  "research-playbook.md": "L1",
+  "acquaintance.md": "L2",
+  "three-gates.md": "L3",
+  "triage-matrix.md": "L3",
+  "misdiagnosis.md": "L3",
+  "cognitive-apprenticeship.md": "L4",
+  "double-loop.md": "L5",
+  "method-matrix.md": "L6",
+  "methodology-reading-list.md": "L6",
+  "rapport.md": "L7",
+  "reasoning-biases.md": "L7",
+  "china-academic.md": "L7",
+  "unknown-unknowns.md": "L7"
+}

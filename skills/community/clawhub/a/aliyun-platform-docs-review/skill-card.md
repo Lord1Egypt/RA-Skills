@@ -1,44 +1,56 @@
-## Description: <br>
-Reviews Alibaba Cloud product documentation and OpenAPI documentation by product name, producing scored findings, evidence, and prioritized P0/P1/P2 improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Alibaba Cloud product documentation and OpenAPI documentation by product name, then produces scored, evidence-backed improvement recommendations.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Documentation owners, API platform teams, developers, and technical writers use this skill to review Alibaba Cloud product and API documentation quality, collect source evidence, and prioritize fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill asks users to configure Alibaba Cloud access keys even though the visible workflow fetches public documentation pages. <br>
-Mitigation: Run the review without credentials when possible, and do not provide Alibaba Cloud access keys unless the publisher documents why they are needed, which read-only permissions are required, and what operations will use them. <br>
-Risk: The script fetches live Alibaba Cloud product pages and OpenAPI metadata, so results can change when remote documentation changes or is unavailable. <br>
-Mitigation: Review the generated source links and JSON evidence before relying on recommendations, and rerun the review when documentation versions or source availability change. <br>
+## Use Case:
 
+Developers, documentation owners, and API platform teams use this skill to audit Alibaba Cloud product and OpenAPI documentation for discoverability, completeness, API usability, and prioritized fixes.
 
-## Reference(s): <br>
-- [Review Rubric](references/review-rubric.md) <br>
-- [Alibaba Cloud OpenAPI products metadata (Chinese)](https://api.aliyun.com/meta/v1/products.json?language=ZH_CN) <br>
-- [Alibaba Cloud OpenAPI products metadata (English)](https://api.aliyun.com/meta/v1/products.json?language=EN_US) <br>
-- [Alibaba Cloud product list](https://www.aliyun.com/product/list) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-platform-docs-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, guidance, shell commands] <br>
-**Output Format:** [Markdown report plus JSON evidence files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes review_report.md and review_evidence.json under output/aliyun-platform-docs-review/ for each run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The instructions ask users to configure Alibaba Cloud credentials even though the included script only fetches public documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing in environments that contain Alibaba Cloud credentials, and do not provide cloud access keys unless a future authenticated use case is explicitly documented and scoped.
+
+Risk: The generated review depends on live public documentation and product metadata fetched at run time, so product resolution or coverage may be incomplete.
+
+Mitigation: Review the generated source links, JSON evidence, and prioritized findings before applying documentation or API changes.
+
+## Reference(s):
+
+- [Review rubric](references/review-rubric.md)
+- [Alibaba Cloud OpenAPI products metadata (ZH_CN)](https://api.aliyun.com/meta/v1/products.json?language=ZH_CN)
+- [Alibaba Cloud OpenAPI products metadata (EN_US)](https://api.aliyun.com/meta/v1/products.json?language=EN_US)
+- [Alibaba Cloud product list](https://www.aliyun.com/product/list)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with JSON evidence files and concise response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes review_evidence.json and review_report.md under output/aliyun-platform-docs-review/ for each run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

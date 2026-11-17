@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高考志愿方案 Tab 功能参考</title>
+  <style>
+    [hidden] { display: none !important; }
+    [data-sticky-tabs] { position: sticky; z-index: 20; background: #fff; }
+    [data-sticky-level="mode"] { top: 0; min-height: 44px; }
+    [data-sticky-level="gradient"] { top: 44px; min-height: 44px; }
+    body[data-single-mode] [data-sticky-level="gradient"] { top: 0; }
+    @media print { [data-sticky-tabs] { position: static; } }
+  </style>
+</head>
+<body>
+  <!--
+    功能参考，不是视觉模板。
+    双模式：保留 mode-tabs，以及两个模式面板内各自独立的梯度 Tab。
+    单模式：删除 mode-tabs 和未选择的模式面板，只保留所选模式内部的一组梯度 Tab；给 body 添加 data-single-mode，使梯度栏 top=0；保留对应 h2，明确显示“推荐模式：院校优先”或“推荐模式：专业优先”。
+    正式报告必须用真实 CLI 数据替换示例内容，但不要改变 Tab 的绑定结构、data-tab-group、data-tab-panel-group、aria-controls 和 activateTab 逻辑。
+  -->
+  <h1>高考志愿方案 Tab 功能参考</h1>
+
+  <div role="tablist" aria-label="推荐模式" data-sticky-tabs data-sticky-level="mode">
+    <button type="button" role="tab" id="mode-school-tab" data-tab-group="mode-tabs" aria-controls="mode-school-panel" aria-selected="true" tabindex="0">院校优先</button>
+    <button type="button" role="tab" id="mode-major-tab" data-tab-group="mode-tabs" aria-controls="mode-major-panel" aria-selected="false" tabindex="-1">专业优先</button>
+  </div>
+
+  <section id="mode-school-panel" role="tabpanel" data-tab-panel-group="mode-tabs" aria-labelledby="mode-school-tab" data-content-key="mode-school">
+    <h2>推荐模式：院校优先</h2>
+    <div role="tablist" aria-label="院校优先梯度" data-sticky-tabs data-sticky-level="gradient">
+      <button type="button" role="tab" id="school-stretch-tab" data-tab-group="school-level-tabs" aria-controls="school-stretch-panel" aria-selected="true" tabindex="0">冲刺（1）</button>
+      <button type="button" role="tab" id="school-match-tab" data-tab-group="school-level-tabs" aria-controls="school-match-panel" aria-selected="false" tabindex="-1">稳妥（1）</button>
+      <button type="button" role="tab" id="school-safety-tab" data-tab-group="school-level-tabs" aria-controls="school-safety-panel" aria-selected="false" tabindex="-1">保底（0）</button>
+    </div>
+
+    <section id="school-stretch-panel" role="tabpanel" data-tab-panel-group="school-level-tabs" aria-labelledby="school-stretch-tab" data-content-key="school-stretch" data-paginated-panel data-page-size="20" data-current-page="1">
+      <h3>院校冲刺内容</h3>
+      <script type="application/json" data-candidate-source>[
+        {"id":"school-stretch-01","title":"院校名称示例","logo":"","rate":54,"level":"冲","tags":["所在地区","普通本科","公办","985","211","双一流"],"metrics":[{"label":"院校代码","value":"1022"},{"label":"26年计划","value":"166人"},{"label":"25年最低分","value":"670"},{"label":"25年最低位次","value":"1328"}],"groupCount":1,"groups":[{"name":"专业组(205)","majors":[{"id":"major-example-01","name":"专业名称示例","rate":99,"level":"保","description":"培养模式与限制说明示例","metrics":[{"label":"专业代码","value":"53"},{"label":"26年计划","value":"3人"},{"label":"学制学费","value":"4 / 58000"},{"label":"选科要求","value":"不限"},{"label":"25年最低分","value":"583"},{"label":"25年最低位次","value":"39448"}]}]}]},{"id":"school-stretch-02","title":"冲刺院校示例 02"},{"id":"school-stretch-03","title":"冲刺院校示例 03"},{"id":"school-stretch-04","title":"冲刺院校示例 04"},{"id":"school-stretch-05","title":"冲刺院校示例 05"},{"id":"school-stretch-06","title":"冲刺院校示例 06"},{"id":"school-stretch-07","title":"冲刺院校示例 07"},{"id":"school-stretch-08","title":"冲刺院校示例 08"},{"id":"school-stretch-09","title":"冲刺院校示例 09"},{"id":"school-stretch-10","title":"冲刺院校示例 10"},{"id":"school-stretch-11","title":"冲刺院校示例 11"},{"id":"school-stretch-12","title":"冲刺院校示例 12"},{"id":"school-stretch-13","title":"冲刺院校示例 13"},{"id":"school-stretch-14","title":"冲刺院校示例 14"},{"id":"school-stretch-15","title":"冲刺院校示例 15"},{"id":"school-stretch-16","title":"冲刺院校示例 16"},{"id":"school-stretch-17","title":"冲刺院校示例 17"},{"id":"school-stretch-18","title":"冲刺院校示例 18"},{"id":"school-stretch-19","title":"冲刺院校示例 19"},{"id":"school-stretch-20","title":"冲刺院校示例 20"},{"id":"school-stretch-21","title":"冲刺院校示例 21（用于验证第 2 页）"}
+      ]</script>
+      <div data-candidate-list></div>
+      <nav data-pagination-controls aria-label="院校冲刺分页" hidden>
+        <label>每页 <select data-page-size><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select> 条</label>
+        <button type="button" data-page-prev>上一页</button>
+        <span data-page-status aria-live="polite"></span>
+        <button type="button" data-page-next>下一页</button>
+      </nav>
+    </section>
+    <section id="school-match-panel" role="tabpanel" data-tab-panel-group="school-level-tabs" aria-labelledby="school-match-tab" data-content-key="school-match" data-paginated-panel data-page-size="20" data-current-page="1" hidden>
+      <h3>院校稳妥内容</h3>
+      <script type="application/json" data-candidate-source>[{"id":"school-match-example","title":"稳妥院校示例（正式报告替换为 CLI 原始候选）"}]</script>
+      <div data-candidate-list></div>
+      <nav data-pagination-controls aria-label="院校稳妥分页" hidden><label>每页 <select data-page-size><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select> 条</label><button type="button" data-page-prev>上一页</button><span data-page-status aria-live="polite"></span><button type="button" data-page-next>下一页</button></nav>
+    </section>
+    <section id="school-safety-panel" role="tabpanel" data-tab-panel-group="school-level-tabs" aria-labelledby="school-safety-tab" data-content-key="school-safety" data-paginated-panel data-page-size="20" data-current-page="1" hidden>
+      <h3>院校保底内容</h3>
+      <script type="application/json" data-candidate-source>[]</script>
+      <div data-candidate-list></div>
+      <p data-empty-state>本次 CLI 推荐响应中，该梯度暂无候选。</p>
+      <nav data-pagination-controls aria-label="院校保底分页" hidden><label>每页 <select data-page-size><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select> 条</label><button type="button" data-page-prev>上一页</button><span data-page-status aria-live="polite"></span><button type="button" data-page-next>下一页</button></nav>
+    </section>
+  </section>
+
+  <section id="mode-major-panel" role="tabpanel" data-tab-panel-group="mode-tabs" aria-labelledby="mode-major-tab" data-content-key="mode-major" hidden>
+    <h2>推荐模式：专业优先</h2>
+    <div role="tablist" aria-label="专业优先梯度" data-sticky-tabs data-sticky-level="gradient">
+      <button type="button" role="tab" id="major-stretch-tab" data-tab-group="major-level-tabs" aria-controls="major-stretch-panel" aria-selected="true" tabindex="0">冲刺（1）</button>
+      <button type="button" role="tab" id="major-match-tab" data-tab-group="major-level-tabs" aria-controls="major-match-panel" aria-selected="false" tabindex="-1">稳妥（1）</button>
+      <button type="button" role="tab" id="major-safety-tab" data-tab-group="major-level-tabs" aria-controls="major-safety-panel" aria-selected="false" tabindex="-1">保底（0）</button>
+    </div>
+
+    <section id="major-stretch-panel" role="tabpanel" data-tab-panel-group="major-level-tabs" aria-labelledby="major-stretch-tab" data-content-key="major-stretch" data-paginated-panel data-page-size="20" data-current-page="1">
+      <h3>专业冲刺内容</h3>
+      <script type="application/json" data-candidate-source>[{"id":"major-stretch-example","title":"冲刺专业示例（正式报告替换为 CLI 原始候选）"}]</script>
+      <div data-candidate-list></div>
+      <nav data-pagination-controls aria-label="专业冲刺分页" hidden><label>每页 <select data-page-size><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select> 条</label><button type="button" data-page-prev>上一页</button><span data-page-status aria-live="polite"></span><button type="button" data-page-next>下一页</button></nav>
+    </section>
+    <section id="major-match-panel" role="tabpanel" data-tab-panel-group="major-level-tabs" aria-labelledby="major-match-tab" data-content-key="major-match" data-paginated-panel data-page-size="20" data-current-page="1" hidden>
+      <h3>专业稳妥内容</h3>
+      <script type="application/json" data-candidate-source>[{"id":"major-match-example","title":"稳妥专业示例（正式报告替换为 CLI 原始候选）"}]</script>
+      <div data-candidate-list></div>
+      <nav data-pagination-controls aria-label="专业稳妥分页" hidden><label>每页 <select data-page-size><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select> 条</label><button type="button" data-page-prev>上一页</button><span data-page-status aria-live="polite"></span><button type="button" data-page-next>下一页</button></nav>
+    </section>
+    <section id="major-safety-panel" role="tabpanel" data-tab-panel-group="major-level-tabs" aria-labelledby="major-safety-tab" data-content-key="major-safety" data-paginated-panel data-page-size="20" data-current-page="1" hidden>
+      <h3>专业保底内容</h3>
+      <script type="application/json" data-candidate-source>[]</script>
+      <div data-candidate-list></div>
+      <p data-empty-state>本次 CLI 推荐响应中，该梯度暂无候选。</p>
+      <nav data-pagination-controls aria-label="专业保底分页" hidden><label>每页 <select data-page-size><option value="10">10</option><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option></select> 条</label><button type="button" data-page-prev>上一页</button><span data-page-status aria-live="polite"></span><button type="button" data-page-next>下一页</button></nav>
+    </section>
+  </section>
+
+  <p id="tab-status" role="status" aria-live="polite"></p>
+
+  <footer>
+    <p data-disclaimer>本系统数据仅供参考，不构成填报决策依据，请自行核验信息，并对填报内容真实性负责。</p>
+  </footer>
+
+  <script>
+    (() => {
+      const allTabs = () => Array.from(document.querySelectorAll('[role="tab"][data-tab-group]'));
+      const allPanels = () => Array.from(document.querySelectorAll('[role="tabpanel"][data-tab-panel-group]'));
+
+      function tabsInGroup(groupId) {
+        return allTabs().filter((tab) => tab.dataset.tabGroup === groupId);
+      }
+
+      function panelsInGroup(groupId) {
+        return allPanels().filter((panel) => panel.dataset.tabPanelGroup === groupId);
+      }
+
+      const candidateCache = new WeakMap();
+
+      function candidatesInPanel(panel) {
+        if (candidateCache.has(panel)) return candidateCache.get(panel);
+        const source = panel.querySelector('[data-candidate-source]');
+        if (!source) {
+          throw new Error(`候选数据源缺失: ${panel.id || panel.dataset.contentKey || 'unknown-panel'}`);
+        }
+
+        let candidates;
+        try {
+          candidates = JSON.parse(source.textContent || '');
+        } catch (error) {
+          throw new Error(`候选 JSON 解析失败: ${panel.id || panel.dataset.contentKey || 'unknown-panel'}`, { cause: error });
+        }
+        if (!Array.isArray(candidates)) {
+          throw new Error(`候选数据不是数组: ${panel.id || panel.dataset.contentKey || 'unknown-panel'}`);
+        }
+        candidateCache.set(panel, candidates);
+        return candidates;
+      }
+
+      function createMajorItem(major) {
+        const item = document.createElement('article');
+        item.dataset.majorId = String(major.id || 'unknown-major');
+
+        const header = document.createElement('header');
+        const title = document.createElement('h5');
+        title.textContent = String(major.name || '未命名专业');
+        header.appendChild(title);
+        if (major.rate !== undefined || major.level) {
+          const probability = document.createElement('strong');
+          probability.textContent = `${major.rate ?? '暂无'}% / ${major.level || '暂无梯度'}`;
+          header.appendChild(probability);
+        }
+        item.appendChild(header);
+
+        if (major.description) {
+          const description = document.createElement('p');
+          description.textContent = String(major.description);
+          item.appendChild(description);
+        }
+
+        const metrics = document.createElement('dl');
+        (major.metrics || []).forEach((metric) => {
+          const term = document.createElement('dt');
+          term.textContent = String(metric.label);
+          const value = document.createElement('dd');
+          value.textContent = String(metric.value ?? '暂无');
+          metrics.append(term, value);
+        });
+        item.appendChild(metrics);
+        return item;
+      }
+
+      function createCandidateCard(candidate) {
+        const article = document.createElement('article');
+        article.dataset.candidateId = String(candidate.id || 'unknown');
+
+        const header = document.createElement('header');
+        const identity = document.createElement('div');
+        if (candidate.logo) {
+          const logo = document.createElement('img');
+          logo.src = String(candidate.logo);
+          logo.alt = '';
+          logo.width = 48;
+          logo.height = 48;
+          identity.appendChild(logo);
+        }
+        const heading = document.createElement('h4');
+        heading.textContent = String(candidate.title || candidate.name || '未命名候选');
+        identity.appendChild(heading);
+        header.appendChild(identity);
+
+        if (candidate.rate !== undefined || candidate.level) {
+          const probability = document.createElement('strong');
+          probability.textContent = `${candidate.rate ?? '暂无'}% / ${candidate.level || '暂无梯度'}`;
+          probability.setAttribute('aria-label', `录取概率与梯度：${probability.textContent}`);
+          header.appendChild(probability);
+        }
+        article.appendChild(header);
+
+        const tags = document.createElement('p');
+        (candidate.tags || []).forEach((tag) => {
+          const item = document.createElement('span');
+          item.textContent = String(tag);
+          tags.appendChild(item);
+        });
+        article.appendChild(tags);
+
+        const metrics = document.createElement('dl');
+        (candidate.metrics || []).forEach((metric) => {
+          const term = document.createElement('dt');
+          term.textContent = String(metric.label);
+          const value = document.createElement('dd');
+          value.textContent = String(metric.value ?? '暂无');
+          metrics.append(term, value);
+        });
+        article.appendChild(metrics);
+
+        if (candidate.groupCount !== undefined) {
+          const panelId = `candidate-groups-${String(candidate.id || 'unknown').replace(/[^a-zA-Z0-9_-]/g, '-')}`;
+          const groups = document.createElement('button');
+          groups.type = 'button';
+          groups.textContent = `可报专业组 ${candidate.groupCount}`;
+          groups.setAttribute('aria-expanded', 'false');
+          groups.setAttribute('aria-controls', panelId);
+          article.appendChild(groups);
+
+          const groupPanel = document.createElement('section');
+          groupPanel.id = panelId;
+          groupPanel.hidden = true;
+          (candidate.groups || []).forEach((group) => {
+            const groupSection = document.createElement('section');
+            const groupTitle = document.createElement('h5');
+            groupTitle.textContent = `${group.name || '未命名专业组'} · 可报专业 ${(group.majors || []).length}`;
+            groupSection.appendChild(groupTitle);
+            (group.majors || []).forEach((major) => groupSection.appendChild(createMajorItem(major)));
+            groupPanel.appendChild(groupSection);
+          });
+          article.appendChild(groupPanel);
+        }
+        return article;
+      }
+
+      function renderPage(panel) {
+        const candidates = candidatesInPanel(panel);
+        const list = panel.querySelector('[data-candidate-list]');
+        const controls = panel.querySelector('[data-pagination-controls]');
+        const sizeSelect = panel.querySelector('[data-page-size]');
+        const previous = panel.querySelector('[data-page-prev]');
+        const next = panel.querySelector('[data-page-next]');
+        const status = panel.querySelector('[data-page-status]');
+        const emptyState = panel.querySelector('[data-empty-state]');
+
+        if (!list || list === panel || !controls || !sizeSelect || !previous || !next || !status) {
+          throw new Error(`分页面板结构无效: ${panel.id || panel.dataset.contentKey || 'unknown-panel'}`);
+        }
+
+        const totalItems = candidates.length;
+        const pageSize = Number(sizeSelect?.value || panel.dataset.pageSize || 20);
+        const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+        const currentPage = Math.min(Math.max(Number(panel.dataset.currentPage || 1), 1), totalPages);
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = Math.min(startIndex + pageSize, totalItems);
+
+        panel.dataset.pageSize = String(pageSize);
+        panel.dataset.currentPage = String(currentPage);
+        list.replaceChildren(...candidates.slice(startIndex, endIndex).map(createCandidateCard));
+
+        if (emptyState) emptyState.hidden = totalItems !== 0;
+        if (!controls) return;
+
+        controls.hidden = totalItems <= 20;
+        if (totalItems <= 20) return;
+
+        previous.disabled = currentPage === 1;
+        next.disabled = currentPage === totalPages;
+        status.textContent = `第 ${currentPage} / ${totalPages} 页，显示 ${startIndex + 1}-${endIndex} 条，共 ${totalItems} 条`;
+      }
+
+      function changePage(panel, delta) {
+        panel.dataset.currentPage = String(Number(panel.dataset.currentPage || 1) + delta);
+        renderPage(panel);
+      }
+
+      function initializePagination() {
+        document.querySelectorAll('[data-paginated-panel]').forEach((panel) => renderPage(panel));
+      }
+
+      function activateTab(tab, announce = true) {
+        const groupId = tab.dataset.tabGroup;
+        const targetId = tab.getAttribute('aria-controls');
+        const targetPanel = document.getElementById(targetId);
+        const tabs = tabsInGroup(groupId);
+        const panels = panelsInGroup(groupId);
+
+        if (!groupId || !targetId || !targetPanel || targetPanel.dataset.tabPanelGroup !== groupId) {
+          throw new Error(`Tab 绑定无效: ${tab.id || tab.textContent.trim()}`);
+        }
+
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.setAttribute('aria-selected', String(active));
+          item.tabIndex = active ? 0 : -1;
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel !== targetPanel;
+        });
+
+        if (panels.filter((panel) => !panel.hidden).length !== 1 || targetPanel.hidden) {
+          throw new Error(`Tab 切换失败: ${groupId}`);
+        }
+
+        if (targetPanel.matches('[data-paginated-panel]')) {
+          renderPage(targetPanel);
+        } else {
+          targetPanel.querySelectorAll('[data-paginated-panel]').forEach((panel) => renderPage(panel));
+        }
+
+        if (announce) {
+          document.getElementById('tab-status').textContent = `已切换到：${tab.textContent.trim()}，内容：${targetPanel.dataset.contentKey}`;
+        }
+      }
+
+      function initialize() {
+        const groupIds = [...new Set(allTabs().map((tab) => tab.dataset.tabGroup))];
+        groupIds.forEach((groupId) => {
+          const tabs = tabsInGroup(groupId);
+          const selected = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0];
+          if (selected) activateTab(selected, false);
+        });
+      }
+
+      document.addEventListener('click', (event) => {
+        const tab = event.target.closest('[role="tab"][data-tab-group]');
+        if (tab) {
+          activateTab(tab);
+          return;
+        }
+
+        const groupButton = event.target.closest('[aria-controls^="candidate-groups-"]');
+        if (groupButton) {
+          const groupPanel = document.getElementById(groupButton.getAttribute('aria-controls'));
+          const expanded = groupButton.getAttribute('aria-expanded') === 'true';
+          groupButton.setAttribute('aria-expanded', String(!expanded));
+          if (groupPanel) groupPanel.hidden = expanded;
+          return;
+        }
+
+        const previous = event.target.closest('[data-page-prev]');
+        const next = event.target.closest('[data-page-next]');
+        const panel = event.target.closest('[data-paginated-panel]');
+        if (previous && panel) changePage(panel, -1);
+        if (next && panel) changePage(panel, 1);
+      });
+
+      document.addEventListener('change', (event) => {
+        const sizeSelect = event.target.closest('[data-page-size]');
+        const panel = event.target.closest('[data-paginated-panel]');
+        if (!sizeSelect || !panel) return;
+        panel.dataset.currentPage = '1';
+        renderPage(panel);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        const current = event.target.closest('[role="tab"][data-tab-group]');
+        if (!current || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        const tabs = tabsInGroup(current.dataset.tabGroup);
+        const currentIndex = tabs.indexOf(current);
+        let nextIndex = currentIndex;
+        if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        event.preventDefault();
+        activateTab(tabs[nextIndex]);
+        tabs[nextIndex].focus();
+      });
+
+      initialize();
+      initializePagination();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+DeepSeek Harness Plugin Development Skill
+Third-party notices
+
+This NOTICE file is distributed together with the skill package
+"dsh-plugin-development" (skill version 1.1.0) in order to satisfy the
+notice and attribution requirements of the upstream projects listed below,
+in particular section 4(d) of the Apache License 2.0, which requires that
+the attribution notices contained in an upstream NOTICE file be reproduced
+in a readable form alongside any distribution of a derivative work.
+
+The original content of this skill (prose, tooling scripts and templates
+authored here) is released under MIT-0. Fragments that come from upstream
+projects remain under the terms of those projects, as set out below.
+
+================================================================
+0. Change notice (Apache-2.0 section 4(b))
+================================================================
+
+This package redistributes no upstream file. What it carries are short
+excerpts and paraphrases, re-formatted into a different document and
+annotated in Chinese by this skill's author, together with repository
+file:line locators. Where upstream material has been abridged or reworded,
+that is stated at the point of use.
+
+Apache-2.0 section 4(b) requires modified files to carry prominent notices
+stating that they were changed. Since no upstream file is redistributed here,
+no upstream file is modified in place; this section is the change notice for
+every excerpt taken from an Apache-2.0 source.
+
+================================================================
+1. Apache License 2.0 components
+================================================================
+
+A copy of the Apache License 2.0 is included with this package at
+licenses/Apache-2.0.txt, as required by Apache-2.0 section 4(a).
+
+The following copyright and attribution notices are retained as required
+by Apache-2.0 section 4(c).
+
+------------------------------------------------------------------------
+huangruiteng/loopx
+License: Apache-2.0 (LICENSE, packages/dsh-loopx-plugin/LICENSE)
+Referenced in: references/02-templates.md, references/10c-casebook-services.md
+
+Neither LICENSE file fills in a copyright owner line. The project identifies
+itself as "LoopX / Copyright 2026 LoopX contributors" in its own NOTICE files.
+**The repository ships two NOTICE files and both are reproduced verbatim
+below**, as required by Apache-2.0 section 4(d) — the skill quotes source
+from inside `packages/dsh-loopx-plugin/`, so that package's NOTICE applies
+alongside the repository-root one.
+
+    --- NOTICE (repository root) ---
+    LoopX
+    Copyright 2026 LoopX contributors
+
+    LoopX releases through v0.4.7 were distributed under the MIT License.
+    The historical MIT license text and copyright notice are retained in
+    LICENSE-MIT.
+
+    --- NOTICE (packages/dsh-loopx-plugin) ---
+    LoopX
+    Copyright 2026 LoopX contributors
+
+    This package is distributed under the repository's Apache-2.0 license.
+------------------------------------------------------------------------
+MemTensor/MemOS
+License: Apache-2.0 (LICENSE, 11,358 B)
+Referenced in: references/02-templates.md, references/10c-casebook-services.md
+
+The upstream LICENSE file is the standard Apache-2.0 boilerplate with no
+copyright owner line filled in. The repository root carries no package.json
+and its README contains no copyright statement, so there is no upstream
+copyright notice to reproduce. The project is identified here only as
+"MemTensor/MemOS", for provenance; no ownership claim is made.
+
+The repository ships no NOTICE file, so Apache-2.0 section 4(d) does not
+apply to it.
+
+Note: earlier releases of this skill attributed MemOS to
+"Copyright 2025 - Present MemTensor Research". That line could not be traced
+to any upstream file and has been withdrawn.
+------------------------------------------------------------------------
+zhu1090093659/dsh-web
+License: Apache-2.0 at the repository root — see the per-package breakdown
+
+Referenced in: references/01-mental-model.md, references/08-cheatsheet.md,
+               references/10a-casebook-ui.md, references/10c-casebook-services.md,
+               references/10d-casebook-host-bundle.md,
+               references/13-version-history.md,
+               references/14-inbound-http-and-timers.md
+
+This repository is a mixed-licence monorepo and is NOT uniformly Apache-2.0.
+Verified from its file tree on 2026-09-16:
+
+    Apache-2.0 ....... root LICENSE; market/shell; packages/dsh-{git-graph,
+                       liangshen, pet, remote-web-ui, session-id, ...};
+                       several market/dist/assets/skins/*
+    BSD-3-Clause ..... packages/dsh-{community-plugins, doctor,
+                       plugin-manager}; market/dist/assets/skins/furina
+    CC BY-NC-SA 4.0 .. market/dist/assets/skins/{maid-atelier, orca-link,
+                       phoebe-atelier, whalechan-harness}
+
+Neither the root LICENSE nor the Apache-2.0 package LICENSE files fill in a
+copyright owner line. The BSD-3-Clause files carry
+"Copyright (c) 2026, zhu1090093659".
+
+Scope of this skill's quotations: only repository-root material
+(`packages/AGENTS.md`, `.agents/notes/**`) and `packages/` sources as
+described in references/10a. Nothing is reproduced from the CC BY-NC-SA 4.0
+skin asset directories, which are the non-commercial part of the tree.
+
+NOTICE files: the only one inside the quoted region is
+`packages/dsh-liangshen/presets/liangshen/NOTICE`, which concerns a preset
+this skill does not quote; the skin NOTICE files are likewise outside the
+quoted region. So no upstream NOTICE attribution falls due from this skill's
+quotations.
+
+================================================================
+2. BSD 3-Clause components
+================================================================
+
+BSD 3-Clause is not copyleft: it permits commercial and closed-source use and
+imposes no ShareAlike condition. It adds exactly one clause beyond MIT — the
+no-endorsement clause (clause 3) — which is why it is listed separately.
+
+A copy of the BSD 3-Clause licence text is included with this package at
+licenses/BSD-3-Clause.txt, reproduced verbatim from
+`zhu1090093659/dsh-web` → `packages/dsh-doctor/LICENSE` (1,521 B). The
+copyright notices retained from the covered sources follow, as required by
+clauses 1 and 2. Clause 3 is honoured: no copyright holder's name and no
+contributor's name is used to endorse or promote anything derived from this
+skill.
+
+------------------------------------------------------------------------
+zhu1090093659/dsh-web — the BSD-3-Clause part of the tree
+Copyright (c) 2026, zhu1090093659
+All rights reserved.
+
+These packages ship their own BSD-3-Clause LICENSE file, distinct from the
+repository's Apache-2.0 root LICENSE, and their package.json `license` field
+likewise reads "BSD-3-Clause":
+
+    packages/dsh-community-plugins/LICENSE
+    packages/dsh-doctor/LICENSE
+    packages/dsh-plugin-manager/LICENSE
+    market/dist/assets/skins/furina/LICENSE
+
+See section 1 for the Apache-2.0 part of the same repository and for the
+scope of this skill's quotations.
+------------------------------------------------------------------------
+yjh051108/dsh-routing-suite
+Declared licence: BSD-3-Clause (root package.json, injector/package.json)
+Repository-root LICENSE file: MIT
+Referenced in: references/10b-casebook-tools.md
+
+The repository is self-inconsistent. Verified from its file tree on
+2026-09-16:
+
+    package.json ............ "license": "BSD-3-Clause"
+    injector/package.json ... "license": "BSD-3-Clause"
+    injector/LICENSE ........ absent
+    graded/package.json ..... "license": "Apache-2.0"
+    graded/LICENSE .......... Apache License 2.0 (11,377 B)
+    LICENSE (repo root) ..... MIT (1,066 B)
+
+The skill quotes source from `injector/` and `graded/`, so both the
+BSD-3-Clause declaration and the `graded/` package's Apache-2.0 licence are in
+scope. Because BSD-3-Clause carries strictly more obligations than MIT, this
+skill applies the BSD-3-Clause terms rather than resting on the repo-root MIT
+LICENSE. The only copyright line the repository provides anywhere is the one
+in its root MIT LICENSE:
+
+    Copyright (c) 2026 yjh051108
+
+The `graded/` package's Apache-2.0 obligations are discharged by section 1's
+general statement: the Apache-2.0 licence text ships at
+licenses/Apache-2.0.txt, the change notice is section 0, and attribution is
+given here. That repository ships no NOTICE file inside `injector/` or
+`graded/` — its only NOTICE is `preset/NOTICE`, and this skill quotes nothing
+from `preset/` — so Apache-2.0 section 4(d) does not fall due.
+------------------------------------------------------------------------
+
+================================================================
+3. MIT-licensed components
+================================================================
+
+The MIT License requires that the copyright notice and the permission
+notice be included in all copies or substantial portions of the software.
+The common permission notice text is included with this package at
+licenses/MIT.txt. The following copyright notices are retained:
+
+------------------------------------------------------------------------
+deepseek-ai/deepseek-harness
+Copyright (c) 2026 DeepSeek
+Referenced in: references/01, 02b, 03, 04, 06, 07, 08, 13, 14, assets/
+------------------------------------------------------------------------
+Tencent/WeKnora
+Copyright (C) 2025 Tencent. All rights reserved.
+Referenced in: references/02-templates.md, references/10b-casebook-tools.md
+Note: upstream uses a custom LICENSE file that begins by granting the MIT
+License for the project itself while listing separate terms for bundled
+third-party components.
+------------------------------------------------------------------------
+anywhere-labs/dsh-desktop
+Copyright (c) 2026 Anywhere Labs
+Referenced in: references/02-templates.md, references/02b-official-templates.md,
+               references/10d-casebook-host-bundle.md
+------------------------------------------------------------------------
+yjh051108/dsh-routing-suite
+Copyright (c) 2026 yjh051108
+Referenced in: references/10b-casebook-tools.md
+------------------------------------------------------------------------
+Q00/ouroboros
+Copyright (c) 2025 Q00
+Referenced in: references/02c-community-bundle.md, references/10d-casebook-host-bundle.md
+------------------------------------------------------------------------
+omdsh-dev/DSH-better-sidebar
+Copyright (c) 2026 dsh-external
+Referenced in: references/10d-casebook-host-bundle.md
+------------------------------------------------------------------------
+liustack/modlens
+Copyright (c) 2026 Leon Liu (liustack)
+Referenced in: references/10b-casebook-tools.md
+------------------------------------------------------------------------
+xiaobright/dsh-anchored-standard
+Copyright (c) 2026 xiaobright
+Portions Copyright (c) 2026 DeepSeek
+Referenced in: references/10d-casebook-host-bundle.md
+------------------------------------------------------------------------
+tt-a1i/archify
+Copyright (c) 2026 tt-a1i (Archify)
+Copyright (c) 2025 Cocoon AI
+Referenced in: references/10c-casebook-services.md
+------------------------------------------------------------------------
+
+================================================================
+4. Copyleft-licensed components
+================================================================
+
+None.
+
+This package cites no copyleft-licensed (AGPL / GPL / LGPL) project.
+
+An earlier release of this skill had cited one AGPL-3.0 project for
+provenance in references/10b-casebook-tools.md. On 2026-09-16 that source was
+removed from the cited set: its eight implementation-specific pitfall entries
+were deleted, and the general lessons behind them were restated as the
+author's own advice, so that no upstream code, upstream text or attribution
+obligation is carried. The removal list is recorded at the end of that file's
+section 1.2. The two mechanism-level pitfalls that survived the removal were
+re-sourced to MIT-licensed DSH source files, with file:line locators.
+------------------------------------------------------------------------
+
+================================================================
+5. How to obtain the upstream sources
+================================================================
+
+Each component above can be obtained from its repository on GitHub under
+the path <https://github.com/{owner}/{repo}>. The specific files and line
+ranges that this skill refers to are recorded in references/11 and in the
+source tables at the end of LICENSE and references/12-community-plugins.md.

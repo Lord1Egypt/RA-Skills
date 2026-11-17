@@ -36,7 +36,7 @@ class TestToolCallLogger:
         """should redact secrets in args before writing."""
         tmp_logger.log(
             "agent-1", "sess-1", "exec",
-            {"env": "OPENAI_KEY=sk-abc123def456ghi789jkl012mno345"},
+            {"env": "OPENAI_KEY=REDACTED-SECRET"},
         )
         entries = tmp_logger.read_recent()
         assert "sk-abc123" not in json.dumps(entries)

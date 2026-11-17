@@ -1,44 +1,61 @@
-## Description: <br>
-采集钛媒体、虎嗅、36氪、爱范儿四大中文科技媒体的最新资讯，整理成带原文链接的快讯。无需 API Key，直接抓取 RSS 源。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the latest Chinese technology news from TMTPost, Huxiu, 36Kr, and ifanr RSS feeds and presents headlines with original links, without requiring an API key.
 
-## Publisher: <br>
-[ofaith](https://clawhub.ai/user/ofaith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ofaith](https://clawhub.ai/user/ofaith)
 
-## Use Case: <br>
-External users and developers use this skill to fetch a concise snapshot of recent Chinese technology news from public RSS feeds and review source links for each headline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill sends network requests to the configured public media RSS feeds. <br>
-Mitigation: Use it only in environments where outbound requests to those news sites are acceptable. <br>
-Risk: The skill prints links from external news sources. <br>
-Mitigation: Review printed links before opening them. <br>
+## Use Case:
 
+External users and developers use this skill to collect a current snapshot of Chinese technology headlines from four named RSS sources and inspect the original article links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ofaith/chinese-tech-news) <br>
-- [TMTPost RSS feed](https://www.tmtpost.com/rss) <br>
-- [Huxiu RSS feed](https://www.huxiu.com/rss/0.xml) <br>
-- [36Kr RSS feed](https://36kr.com/feed) <br>
-- [ifanr RSS feed](https://www.ifanr.com/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output with numbered headlines, source names, and original links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public RSS feeds at runtime and prints approximately 20 headline links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill makes outbound HTTPS requests to third-party media RSS feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where outbound access to the listed feeds is acceptable.
+
+Risk: The reviewed release has hardening gaps around response size limits, request timeouts, redirect allowlisting, and output sanitization.
+
+Mitigation: Review network behavior before deployment and add those controls for stricter production environments.
+
+Risk: Fetched headlines and links originate from external feeds.
+
+Mitigation: Treat feed content as untrusted and inspect links before using them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ofaith/skills/chinese-tech-news)
+- [TMTPost RSS Feed](https://www.tmtpost.com/rss)
+- [Huxiu RSS Feed](https://www.huxiu.com/rss/0.xml)
+- [36Kr RSS Feed](https://36kr.com/feed)
+- [ifanr RSS Feed](https://www.ifanr.com/feed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text command-line output with numbered headlines, source names, and original article links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and outbound HTTPS access to the listed RSS feeds; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

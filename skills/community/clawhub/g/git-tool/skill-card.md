@@ -1,41 +1,53 @@
-## Description: <br>
-Git Tool provides useful Git commands for repository management, including branch, history, stash, diff, and commit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Useful Git commands for repository management. Use when user needs to manage git repositories, create branches, view history, stash changes, or automate git workflows.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to run common Git repository-management workflows through an agent, including checking status, viewing logs and diffs, creating commits, managing branches, and stashing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: State-changing Git actions can modify repository contents or history, including add, commit, stash-pop, push, and pull. <br>
-Mitigation: Review or explicitly approve state-changing commands before execution, especially in repositories with configured remotes or saved credentials. <br>
-Risk: Remote Git operations can interact with configured remotes using existing local credentials. <br>
-Mitigation: Confirm the target remote and branch before running push or pull commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage Git repositories from an agent workflow, including repository initialization, branch and history inspection, stash operations, diffs, and commits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/git-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Git command output from the active workspace when the helper script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: State-changing Git operations can modify repository state through add, commit, stash, pull, or push.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review status and diffs before running mutation commands, and confirm file selections, remotes, and branches before commit, pull, or push.
+
+Risk: Commit stages files by default when no file list is supplied.
+
+Mitigation: Pass an explicit file list for targeted commits or review staged changes before committing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/git-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve real Git repository mutations when state-changing commands are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

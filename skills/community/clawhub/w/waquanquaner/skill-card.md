@@ -1,42 +1,60 @@
-## Description: <br>
-挖券券儿 helps agents fetch and format current food-delivery coupon links for Meituan, Ele.me, and JD from waquanquaner.cn without requiring registration or an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+挖券券儿 helps agents query current Meituan, Ele.me, and JD Food delivery coupon promotions and return a single redemption link without user registration or API keys.
 
-## Publisher: <br>
-[w5543081](https://clawhub.ai/user/w5543081) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[w5543081](https://clawhub.ai/user/w5543081)
 
-## Use Case: <br>
-External users and agent operators use this skill to retrieve one-link food-delivery coupon summaries before ordering from Chinese delivery platforms. It can respond to coupon-related prompts with current promotional links and formatted text or card output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts waquanquaner.cn and displays coupon links returned by that service. <br>
-Mitigation: Install only if this external lookup is acceptable, and review returned links before opening or sharing them. <br>
-Risk: Broad food-related prompts may trigger coupon suggestions when the user did not explicitly request coupons. <br>
-Mitigation: Confirm coupon lookup intent before acting on links or presenting the results as the main answer. <br>
+## Use Case:
 
+External users and agents use this skill to answer food-delivery coupon requests by fetching current promotions and rendering a shareable redemption message for Chinese delivery platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/w5543081/waquanquaner) <br>
-- [WaQuanquaner homepage](https://waquanquaner.cn) <br>
-- [Compact coupon API](https://waquanquaner.cn/api/v1/activities/channel/skill_compact) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Links, Guidance] <br>
-**Output Format:** [Plain text or JSON card payload with coupon links, promotional highlights, and short usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may include third-party promotional links returned by waquanquaner.cn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact metadata lists 1.0.3) <br>
+Risk: The skill contacts waquanquaner.cn to retrieve coupon data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where outbound HTTPS access to waquanquaner.cn is acceptable and organization-approved.
+
+Risk: Returned coupon URLs are third-party promotional links supplied by the service.
+
+Mitigation: Treat returned links as promotional content, show them to the user before opening, and avoid automatic link following.
+
+Risk: Broad coupon and food-ordering triggers can activate in ambiguous user conversations.
+
+Mitigation: Use confirmation or narrower trigger policy in environments where automatic coupon lookup is not expected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/w5543081/skills/waquanquaner)
+- [Publisher Profile](https://clawhub.ai/user/w5543081)
+- [WaQuanquaner Homepage](https://waquanquaner.cn)
+- [Coupon Data API](https://waquanquaner.cn/api/v1/activities/channel/skill_compact)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Chinese coupon recommendation text, Feishu card JSON, or plain text with third-party promotional links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches current coupon data from waquanquaner.cn over HTTPS and formats service-supplied links for the user.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact SKILL.md and package.json state 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

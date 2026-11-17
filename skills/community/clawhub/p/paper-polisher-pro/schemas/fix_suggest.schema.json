@@ -1,0 +1,83 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "ppp://schemas/fix-suggest@7",
+ "title": "paper-polisher-pro fix_suggest result (v7 contract)",
+ "description": "pp_api.fix_suggest / pp_fix_suggest.py --json 的输出契约：只指位+策略，不代改。",
+ "type": "object",
+ "required": [
+  "stats",
+  "suggestions",
+  "notice"
+ ],
+ "properties": {
+  "stats": {
+   "type": "object",
+   "required": [
+    "total_sentences",
+    "flagged_sentences"
+   ],
+   "properties": {
+    "total_sentences": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "flagged_sentences": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "flag_ratio": {
+     "type": "number"
+    }
+   }
+  },
+  "suggestions": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "index",
+     "sentence",
+     "issues"
+    ],
+    "properties": {
+     "index": {
+      "type": "integer",
+      "minimum": 1
+     },
+     "sentence": {
+      "type": "string"
+     },
+     "issues": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "required": [
+        "type",
+        "evidence",
+        "advice"
+       ],
+       "properties": {
+        "type": {
+         "type": "string"
+        },
+        "evidence": {
+         "type": "string"
+        },
+        "advice": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "notice": {
+   "type": "string"
+  },
+  "language": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": true
+}

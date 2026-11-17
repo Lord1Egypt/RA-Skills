@@ -1,40 +1,66 @@
-## Description: <br>
-AI-powered SEO analysis and optimization. Audit HTML pages, rewrite meta tags, research keywords, generate schema markup, and create sitemaps. Powered by evolink.ai <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A website SEO audit and optimization assistant that crawls or analyzes site HTML, scores SEO health across key dimensions, and produces risk-graded recommendations for review and implementation.
 
-## Publisher: <br>
-[evolinkai](https://clawhub.ai/user/evolinkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hsqduron](https://clawhub.ai/user/hsqduron)
 
-## Use Case: <br>
-Developers, site owners, and SEO practitioners use this skill to audit HTML pages, check live URLs, rewrite metadata, research keywords, generate JSON-LD schema, and create XML sitemaps from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI commands can send page content, live URL content, or topic descriptions to EvoLink for analysis. <br>
-Mitigation: Use local audit and sitemap commands for private material, avoid AI commands on internal or sensitive pages, and use a dedicated EvoLink API key. <br>
+## Use Case:
 
+External users, developers, and site operators use this skill to audit public websites they own or are authorized to assess, generate SEO scores, and plan or apply reviewed SEO improvements. It supports generic website audits and CMS-oriented workflows when the user provides appropriate access credentials.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/evolinkai/ai-seo-assistant) <br>
-- [Project homepage](https://github.com/EvoLinkAI/seo-skill-for-openclaw) <br>
-- [EvoLink API documentation](https://docs.evolink.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown-style recommendations, JSON-LD schema snippets, XML sitemap files, and shell command usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [AI commands require EVOLINK_API_KEY and can transmit HTML content, live URL content, or topic descriptions to api.evolink.ai; audit and sitemap commands run locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, and server release metadata) <br>
+Risk: The skill can crawl arbitrary URLs and may follow redirects or links from the execution network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on public sites the user owns or is authorized to audit, and avoid networks that can reach sensitive internal services until URL validation and redirect controls are confirmed.
+
+Risk: CMS Bearer tokens can enable site changes.
+
+Mitigation: Request tokens only when the user intends write operations, never echo or store them, and require explicit review of each proposed write before execution.
+
+Risk: Some CMS guidance discusses bypassing normal write controls when host validation blocks an operation.
+
+Mitigation: Prefer documented SEO MCP tools, keep changes minimal and SEO-scoped, preserve pre-change snapshots, and proceed only with clear site-operator approval.
+
+Risk: SEO recommendations can affect site visibility, ranking, or page semantics.
+
+Mitigation: Treat generated changes as proposals, separate low-risk metadata updates from high-risk structural changes, and require confirmation before high-risk edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hsqduron/skills/ai-seo-assistant)
+- [SEO metrics reference](references/seo-metrics.md)
+- [SEO scoring model](references/scoring-model.md)
+- [Risk classification and confirmation rules](references/risk-classification.md)
+- [CMS write-back mapping](references/cms-writeback.md)
+- [SEO MCP tool reference](references/mcp-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON audit reports, and code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces SEO scores, per-dimension findings, and low/high risk recommendation lists for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

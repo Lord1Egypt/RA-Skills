@@ -1,40 +1,55 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[zhaowl1023](https://clawhub.ai/user/zhaowl1023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaowl1023](https://clawhub.ai/user/zhaowl1023)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive browser-based workflows for UI testing, structured page inspection, data extraction, form filling, screenshots, PDFs, recordings, and session-based automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can expose cookies, local storage, saved sessions, screenshots, PDFs, recordings, traces, or other sensitive browser artifacts. <br>
-Mitigation: Use test accounts or dedicated browser sessions, avoid printing cookies or storage values, keep saved state files such as auth.json out of repositories, and delete generated browser artifacts when no longer needed. <br>
-Risk: Full browser automation can perform actions such as form submissions, uploads, network routing, and JavaScript evaluation against live pages. <br>
-Mitigation: Review target URLs and proposed actions before execution, prefer staging environments or low-privilege accounts, and confirm destructive or externally visible actions before running them. <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate web pages through agent-browser commands for navigation, UI interaction, form filling, screenshots, PDF export, recording, state management, and structured data extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaowl1023/wskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline bash commands and structured command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce browser snapshots, JSON output, screenshots, PDFs, videos, traces, and saved session state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cookies, localStorage, request headers, saved browser state, and captured network data can expose sensitive account or session information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted, pinned release when possible; protect and delete saved auth state like a password; avoid printing or sharing cookies, storage, headers, and captured network data.
+
+Risk: Browser automation can perform unintended actions on live websites if commands target the wrong page, session, or element.
+
+Mitigation: Inspect snapshots before interaction, confirm URLs and element references after navigation, and test workflows with non-sensitive sessions before using authenticated accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaowl1023/skills/wskill)
+- [agent-browser project](https://github.com/vercel-labs/agent-browser)
+- [Agent-Browser-CLI issue tracker](https://github.com/TheSethRose/Agent-Browser-CLI)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include JSON-output options for commands that support machine-readable responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

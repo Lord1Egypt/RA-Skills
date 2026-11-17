@@ -1,47 +1,68 @@
-## Description: <br>
-玄机子 is a feng shui and traditional Chinese metaphysics assistant for bazi analysis, palm and face reading, feng shui layout review, image analysis, and related learning guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天机·玄机子 is a Chinese-language feng shui and fortune-analysis assistant for BaZi, feng shui layout, palm reading, face reading, image analysis, book recommendations, and learning guidance.
 
-## Publisher: <br>
-[yuhong-cray](https://clawhub.ai/user/yuhong-cray) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuhong-cray](https://clawhub.ai/user/yuhong-cray)
 
-## Use Case: <br>
-External users and developers use this skill to obtain traditional feng shui, bazi, palmistry, face-reading, and I Ching style analysis, including image-based palm or layout review through configured third-party model APIs. It also provides command examples, configuration guidance, and reference material for using those analyses in an OpenClaw-style agent environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive palm, face, home-layout, and exact birth information through third-party model APIs. <br>
-Mitigation: Use only information the user accepts sending to those services, and avoid private images, home details, or exact birth data unless third-party processing is acceptable. <br>
-Risk: The skill relies on API keys and local configuration files. <br>
-Mitigation: Use a restricted API key or a dedicated configuration file containing only the credentials needed for this skill. <br>
-Risk: Image analysis workflows can create optimized images and reports under /tmp. <br>
-Mitigation: Manually delete generated /tmp/tianji_fengshui* files after use, especially on shared machines. <br>
-Risk: Traditional metaphysics outputs may be uncertain or misleading if treated as authoritative advice. <br>
-Mitigation: Treat analyses as informational or entertainment-oriented guidance and do not use them as the sole basis for important medical, financial, legal, safety, or life decisions. <br>
+## Use Case:
 
+External users and developers use this skill for culturally framed feng shui, BaZi, palm, face, and image-layout analysis, plus command-line image analysis workflows that call configured third-party model APIs. Outputs should be treated as entertainment or cultural reference, not as medical, financial, or life-decision advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuhong-cray/tianji-fengshui) <br>
-- [Volcengine Doubao API documentation](https://www.volcengine.com/docs/82379) <br>
-- [DeepSeek API documentation](https://platform.deepseek.com/api-docs) <br>
-- [Baidu API Key Setup Guide](skills/baidu-search/references/apikey-fetch.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands, JSON configuration examples, and generated analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured third-party APIs and may write temporary optimized images or text reports under /tmp during image and palm analysis workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata; artifact frontmatter lists 2.6.0) <br>
+Risk: User images and prompts may be sent to third-party model API endpoints for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images and personal details you are willing to share with those services, and avoid private, identifying, or sensitive images unless third-party processing is acceptable.
+
+Risk: Optimized images and analysis reports may remain in predictable temporary directories.
+
+Mitigation: Manually delete /tmp/tianji_fengshui, /tmp/tianji_fengshui_public, and /tmp/tianji_fengshui_reports after use, especially on shared systems.
+
+Risk: The security checker may expose credential prefixes in terminal output.
+
+Mitigation: Run security checks only in private terminals and use limited-scope API keys that can be rotated after testing.
+
+Risk: Fortune, health, personality, and relationship interpretations may be mistaken for professional advice.
+
+Mitigation: Treat outputs as entertainment or cultural reference and do not rely on them as medical, financial, legal, or major life-decision guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuhong-cray/skills/tianji-fengshui)
+- [Volcengine Doubao Vision API documentation](https://www.volcengine.com/docs/82379)
+- [DeepSeek API documentation](https://platform.deepseek.com/api-docs)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/skills)
+- [Baidu AI Search API key setup](skills/baidu-search/references/apikey-fetch.md)
+- [Feng shui, BaZi, and palmistry knowledge base](knowledge/fengshui_bazi_palm_books.md)
+- [Analysis templates](knowledge/analysis_templates.md)
+- [Quick reference guide](knowledge/quick_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language prose analysis reports, Markdown guidance, JSON-like result objects, and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image workflows may create optimized images and text reports in temporary directories before returning analysis text.]
+
+## Skill Version(s):
+
+2.7.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

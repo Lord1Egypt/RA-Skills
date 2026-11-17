@@ -1,0 +1,41 @@
+[
+  {
+    "deal": {
+      "name": "重庆渝北某住宅(二拍)", "city": "重庆", "asset_type": "住宅-二拍",
+      "court_appraisal": 1000000, "start_price": 560000,
+      "expected_deal_price": 580000, "market_price": 880000
+    },
+    "acquisition_costs": {"buyer_taxes": 30000, "auction_commission": 10000, "eviction_cost": 20000, "legal_fees": 15000, "due_diligence": 5000},
+    "scenarios": {
+      "conservative": {"exit_price_ratio": 0.88, "disposal_months": 15, "collection_mode": 1, "extra_cost_ratio": 0.03},
+      "base":         {"exit_price_ratio": 0.95, "disposal_months": 12, "collection_mode": 2, "extra_cost_ratio": 0.02},
+      "optimistic":   {"exit_price_ratio": 1.00, "disposal_months": 8,  "collection_mode": 2, "extra_cost_ratio": 0.01}
+    }
+  },
+  {
+    "deal": {
+      "name": "深圳南山某住宅(一拍)", "city": "深圳", "asset_type": "住宅-一拍",
+      "court_appraisal": 8000000, "start_price": 6400000,
+      "expected_deal_price": 7550000, "market_price": 8200000
+    },
+    "acquisition_costs": {"buyer_taxes": 300000, "auction_commission": 80000, "eviction_cost": 60000, "legal_fees": 60000, "due_diligence": 30000},
+    "scenarios": {
+      "conservative": {"exit_price_ratio": 0.92, "disposal_months": 12, "collection_mode": 1, "extra_cost_ratio": 0.02},
+      "base":         {"exit_price_ratio": 0.98, "disposal_months": 9,  "collection_mode": 2, "extra_cost_ratio": 0.015},
+      "optimistic":   {"exit_price_ratio": 1.05, "disposal_months": 6,  "collection_mode": 2, "extra_cost_ratio": 0.01}
+    }
+  },
+  {
+    "deal": {
+      "name": "某二线城市核心区商办(变卖)", "city": "全国", "asset_type": "商办-变卖",
+      "court_appraisal": 30000000, "start_price": 12000000,
+      "expected_deal_price": 13000000, "market_price": 22000000
+    },
+    "acquisition_costs": {"buyer_taxes": 1500000, "auction_commission": 200000, "eviction_cost": 300000, "legal_fees": 200000, "due_diligence": 100000},
+    "scenarios": {
+      "conservative": {"exit_price_ratio": 0.75, "disposal_months": 30, "collection_mode": 1, "extra_cost_ratio": 0.06},
+      "base":         {"exit_price_ratio": 0.88, "disposal_months": 24, "collection_mode": 2, "extra_cost_ratio": 0.04},
+      "optimistic":   {"exit_price_ratio": 1.00, "disposal_months": 18, "collection_mode": 2, "extra_cost_ratio": 0.03}
+    }
+  }
+]

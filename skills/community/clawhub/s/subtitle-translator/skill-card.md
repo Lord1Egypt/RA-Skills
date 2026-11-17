@@ -1,40 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick static guidance on Subtitle Translator concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheat sheet reference material for Subtitle Translator concepts and practices.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve local reference guidance for subtitle-translator topics while working in devtools contexts. It is a documentation helper, not an actual subtitle translation engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill name may suggest live subtitle translation, but the artifact provides static reference guidance rather than translation functionality. <br>
-Mitigation: Use it as documentation support only and verify any operational or translation guidance against the system being changed. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference for Subtitle Translator concepts, common workflows, troubleshooting, performance guidance, security considerations, migration steps, and quick command summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/subtitle-translator) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are static local reference text from command-specific heredocs; no API calls, credentials, network access, or file writes were identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled quickstart text mentions credentials generically, which could be mistaken for a requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the credential language as generic reference guidance; the shipped code does not collect, store, or use credentials.
+
+Risk: Reference output may be generic for subtitle translation workflows and may not match a specific production environment.
+
+Mitigation: Review the generated guidance against local subtitle tooling, data handling, and operational requirements before applying it.
+
+## Reference(s):
+
+- [Subtitle Translator on ClawHub](https://clawhub.ai/bytesagain3/skills/subtitle-translator)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Plain-text and Markdown reference documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected local reference output; no network access, credentials, or persistent state are required by the shipped code.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

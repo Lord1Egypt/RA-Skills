@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy - WIP Computer</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/legal/legal.css">
+</head>
+<body>
+<header class="site-header" data-screen-label="Header">
+  <div class="site-header__inner">
+    <a href="https://wip.computer/" class="site-header__brand" aria-label="WIP Computer home">
+      <span class="site-header__sprite" data-brand-icon aria-hidden="true"></span>
+      <span class="site-header__wordmark">WORK IN PROGRESS</span>
+    </a>
+  </div>
+</header>
+<main class="legal-main">
+  <h1>Privacy Policy</h1>
+  <p class="subtitle">WIP Computer products, software, and hosted services</p>
+  <p class="updated">Last updated: May 20, 2026</p>
+
+  <section>
+    <p>WIP Computer, Inc. ("WORK IN PROGRESS", "WIP Computer", "we", "us", or "our") builds a distributed operating environment for AI systems. This includes public websites, hosted account services, local software, agent-readable instructions, registries, relay and sync services, Memory Crystal, Bridge, Agent Pay, Kaleidoscope, LDM OS, and other products that link to this policy.</p>
+    <p>Different parts of the system process data in different places. Some features run locally on your device or in your own runtime. Some features use WIP-operated hosted services. Some features call third-party providers when you connect them or ask for an action that depends on them.</p>
+  </section>
+
+  <section>
+    <h2>Information We Collect</h2>
+    <ul>
+      <li>Account and identity data, such as handles, display labels, account identifiers, passkey credential IDs, public keys, device records, and scoped tokens.</li>
+      <li>Authentication and authorization data, such as WebAuthn challenges, session state, device approval records, permission decisions, token metadata, and agent authorization history.</li>
+      <li>User content, such as prompts, instructions, messages, selected files, uploaded media, images, agent requests, and other inputs you provide to a WIP Computer service.</li>
+      <li>Generated content if a product stores, displays, relays, or returns it for you.</li>
+      <li>Memory and context records when you use Memory Crystal or memory-related features. Depending on the product and settings, memory may be local-only, synchronized, encrypted, or connected to third-party tools you choose.</li>
+      <li>Wallet, credit, payment, and spend-authorization metadata, such as displayed balances, authorization events, payment status, transaction identifiers, payment provider records, and abuse-prevention signals.</li>
+      <li>Local runtime and extension metadata when needed to install, verify, update, or support software you choose to run.</li>
+      <li>Operational data, such as IP address, user agent, timestamps, route identifiers, tenant identifiers, logs, rate-limit records, error reports, diagnostics, and security events.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Information We Do Not Collect Or Sell</h2>
+    <ul>
+      <li>We do not sell personal data.</li>
+      <li>We do not "sell" or "share" personal information as those terms are defined under California privacy law.</li>
+      <li>We do not use advertising-network tracking.</li>
+      <li>We do not receive Face ID, fingerprint, or other biometric data. Biometric approval happens on your device through the platform authenticator.</li>
+      <li>We do not store passwords for WIP Computer passkey account surfaces.</li>
+      <li>We do not receive passkey private keys from your device.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Local And On-Device Processing</h2>
+    <p>Many WIP Computer products are designed to operate primarily on-device or inside a local runtime you control. Data processed locally may not transit WIP-operated infrastructure unless you enable or use a hosted account, synchronization, relay, payment, marketplace, registry, cloud, third-party integration, or support feature.</p>
+    <p>Local software may store configuration, logs, tokens, memories, extension data, generated outputs, or runtime state on your device. You are responsible for the devices, local accounts, agents, extensions, and credentials you configure.</p>
+  </section>
+
+  <section>
+    <h2>Hosted Services, Relay, And Sync</h2>
+    <p>Hosted services may process data needed to authenticate accounts, issue scoped tokens, authorize agents, route requests, synchronize state, operate registries or marketplaces, show wallet or credit balances, prevent abuse, and provide support.</p>
+    <p>Relay and sync features may process routing metadata, tenant identifiers, session identifiers, authorization headers, connection state, timestamps, rate-limit records, and logs. Where a relay feature supports end-to-end encryption today, such as supported Codex Remote Control daemon sessions, WIP Computer is designed to route encrypted payloads without reading the decrypted content. Operational metadata can still remain visible to run and protect the service.</p>
+    <p>Some WIP Computer memory and sync features are designed or intended to use end-to-end encryption or device-bound keys. That design goal does not mean every current feature is end-to-end encrypted today. We will describe product-specific encryption behavior where it matters.</p>
+  </section>
+
+  <section>
+    <h2>Cookies And Local Storage</h2>
+    <p>WIP Computer may use browser sessionStorage or local storage for session continuity, including tokens or agent identifiers such as <code>lesa-token</code> and <code>lesa-agent</code>. This storage is used to keep the product flow connected during a browser session, not for advertising-network tracking. Browser sessionStorage may clear when the tab or browser session ends, depending on your browser settings.</p>
+  </section>
+
+  <section>
+    <h2>Third-Party AI Providers, Tools, And Infrastructure</h2>
+    <p>WIP Computer may coordinate, route, authorize, log, display, or store actions without being the model provider, payment provider, package registry, MCP server, or developer tool for every action.</p>
+    <p>When you connect third-party AI systems, MCP servers, APIs, payment processors, software registries, package managers, developer tools, or hosted platforms, those interactions may also be governed by the third party's terms and privacy practices.</p>
+    <p>Kaleidoscope image generation currently uses xAI / Grok Imagine. When you request image generation through that flow, WIP Computer may send the prompt, selected image input, and related request metadata needed for the generation to xAI. xAI may process that information under its own terms and privacy practices.</p>
+    <p>Other AI or tool providers may receive prompts, context, files, media, credentials, tool arguments, generated content, metadata, or other information needed to perform actions you request or authorize.</p>
+    <p>We do not use your private prompts, uploaded files, memories, agent content, or private generated outputs to train third-party foundation models unless you explicitly choose a feature that sends that content to a third-party provider under its terms.</p>
+  </section>
+
+  <section>
+    <h2>Payment And Wallet Infrastructure</h2>
+    <p>Today, Kaleidoscope may show wallet or credit balances and may request user approval before calling xAI / Grok Imagine for image generation. WIP Computer may receive balance records, authorization records, request status, and abuse-prevention information needed to operate those features.</p>
+    <p>As the product develops, Agent Pay and payment features may support payment providers, card checkout, one-time payment links, x402-style paths, platform payment flows, bring-your-own-wallet modes, or similar payment infrastructure. Those future payment paths may involve additional third-party providers and payment metadata if and when they are enabled. Do not assume a displayed balance is real money unless the product clearly says it is real money and presents the applicable payment terms at the point of use.</p>
+  </section>
+
+  <section>
+    <h2>How We Use Information</h2>
+    <ul>
+      <li>Authenticate users, agents, devices, sessions, and scoped tokens.</li>
+      <li>Operate Kaleidoscope, LDM OS, Memory Crystal, Bridge, Agent Pay, hosted relay and sync services, registries, marketplaces, and local-runtime support features.</li>
+      <li>Route, display, store, synchronize, or return content and generated output at your request.</li>
+      <li>Show balances, credits, authorization state, usage, and transaction history.</li>
+      <li>Run requested AI generation, memory, agent, payment, install, registry, marketplace, relay, or developer workflows.</li>
+      <li>Prevent abuse, fraud, unauthorized access, credential misuse, unsafe automation, and service disruption.</li>
+      <li>Debug reliability issues, maintain security, provide support, and improve the services.</li>
+      <li>Comply with legal obligations and enforce our terms.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Storage, Retention, And Deletion</h2>
+    <p>Storage and retention depend on the product, feature, settings, and record type. Local runtime data may remain on your device until you delete it or uninstall the software. Hosted account records, security logs, payment metadata, authorization records, and operational records may be retained as needed to provide the service, secure the platform, comply with law, resolve disputes, prevent abuse, and maintain business records.</p>
+    <p>Memory features are designed to store and retrieve user-authorized context so your agents can maintain continuity. Depending on the product and settings, memory may be local-only, synchronized, encrypted, exported, deleted, or connected to third-party tools you choose.</p>
+  </section>
+
+  <section>
+    <h2>Business Transfers</h2>
+    <p>If WIP Computer is involved in a merger, acquisition, financing, reorganization, bankruptcy, or sale of assets, information may be transferred as part of that transaction, subject to this policy or another policy disclosed to you.</p>
+  </section>
+
+  <section>
+    <h2>Your Rights And Choices</h2>
+    <p>You may choose whether to use local software, hosted services, third-party integrations, relay, sync, payment, registry, marketplace, memory, and AI-provider features. Some features may not work without the data needed to operate them.</p>
+    <p>Depending on your location, you may have rights to request access, correction, deletion, portability, restriction, or objection for personal information. To request deletion, export, review, or correction of personal information associated with your use of WIP Computer services, contact <a href="mailto:hello@wip.computer">hello@wip.computer</a>.</p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>WIP Computer services are not directed to children under 13. If you believe a child has provided personal information to WIP Computer, contact <a href="mailto:hello@wip.computer">hello@wip.computer</a>.</p>
+  </section>
+
+  <section>
+    <h2>Changes To This Policy</h2>
+    <p>We may update this policy as WIP Computer products change. The updated date shows when the policy last changed. Continued use of the services after changes means the updated policy applies.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Questions about this policy can be sent to <a href="mailto:hello@wip.computer">hello@wip.computer</a>.</p>
+  </section>
+</main>
+<footer class="site-footer" data-screen-label="Footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__cols">
+      <div class="site-footer__brand-col">
+        <a class="site-footer__brand-name" href="https://wip.computer/">WIP Computer, Inc.</a>
+        <div class="site-footer__brand-tag">Learning Dreaming Machines</div>
+        <div class="site-footer__brand-tag">Made in California.</div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">AI Infrastructure</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os" target="_blank" rel="noopener">LDM OS</a></li>
+            <li><a href="https://github.com/wipcomputer/memory-crystal" target="_blank" rel="noopener">Memory Crystal</a></li>
+            <li><a href="https://github.com/wipcomputer/dream-weaver-protocol" target="_blank" rel="noopener">Dream Weaver</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os/blob/main/docs/bridge/README.md" target="_blank" rel="noopener">Bridge</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">AI Skills</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os/blob/main/docs/universal-installer/TECHNICAL.md" target="_blank" rel="noopener">Universal Installer</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-1password" target="_blank" rel="noopener">1Password</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-ai-devops-toolbox" target="_blank" rel="noopener">AI DevOps Toolbox</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-x-xai-grok" target="_blank" rel="noopener">X + xAI</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Applications</div>
+          <ul>
+            <li><a href="https://wip.computer/login?next=/demo" target="_blank" rel="noopener">Kaleidoscope</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-codex-remote-control" target="_blank" rel="noopener">Remote Control</a></li>
+            <li><a href="https://github.com/wipcomputer/CLVR" target="_blank" rel="noopener">CLVR</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-markdown-viewer" target="_blank" rel="noopener">Markdown Viewer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Tools</div>
+          <ul>
+            <li><a href="https://wip.computer/agent.txt" target="_blank" rel="noopener" data-agent>Are you an AI agent?</a></li>
+            <li><a href="https://wip.computer/visualizations/kaleidoscope/onboarding/live/">Visualizations</a></li>
+            <li class="site-footer__passkeys-row">
+              <button type="button" class="site-footer__passkeys" aria-pressed="false" aria-label="Local passkeys off" data-passkeys>
+                <span class="site-footer__passkeys-dot"></span>
+                <span class="site-footer__passkeys-label">
+                  <span data-passkeys-label>Local passkeys off</span>
+                  <span class="site-footer__passkeys-ghost" aria-hidden="true">Local passkeys off</span>
+                </span>
+              </button>
+              <span class="site-footer__info-wrap">
+                <button type="button" class="site-footer__info" aria-label="About local passkeys" data-passkeys-info aria-describedby="passkeys-info-tip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </button>
+                <span class="site-footer__info-popover" id="passkeys-info-tip" role="tooltip">
+                  Local passkeys are off by default. Your phone&apos;s passkeys are used for login and device sync. Turn this on to use or save passkeys on this machine.
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Connect</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer" target="_blank" rel="noopener" class="site-footer__link-with-icon"><span class="site-footer__link-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span><span>@wipcomputer</span></a></li>
+            <li><a href="https://x.com/wipcomputer" target="_blank" rel="noopener" class="site-footer__link-with-icon"><span class="site-footer__link-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817-5.97 6.817H1.673l7.73-8.835L1.254 2.25h6.83l4.713 6.231 5.447-6.231zM17.083 19.77h1.833L7.084 4.126H5.117l11.966 15.644z"></path></svg></span><span>@wipcomputer</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <div>Copyright &copy; 2026 WIP Computer, Inc. All rights reserved.</div>
+      <div class="right">
+        <a href="https://wip.computer/legal/privacy/" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://wip.computer/legal/internet-services/terms/site.html" target="_blank" rel="noopener">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="/legal/legal-footer.js"></script>
+<script>
+(function() {
+  var SPRITE_COLS = 8;
+  var SPRITE_ROWS = 3;
+  var SPRITE_TOTAL = SPRITE_COLS * SPRITE_ROWS;
+  var idx = Math.floor(Math.random() * SPRITE_TOTAL);
+
+  function renderBrandIcon() {
+    var el = document.querySelector("[data-brand-icon]");
+    if (!el) return;
+    var col = idx % SPRITE_COLS;
+    var row = Math.floor(idx / SPRITE_COLS);
+    var bgX = (col / (SPRITE_COLS - 1)) * 100;
+    var bgY = (row / (SPRITE_ROWS - 1)) * 100;
+    el.innerHTML = '<div style="background:url(/app/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgX + '% ' + bgY + '%;"></div>';
+  }
+
+  function updateHeader() {
+    var header = document.querySelector(".site-header");
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+  }
+
+  renderBrandIcon();
+  window.setInterval(function() {
+    idx = (idx + 1) % SPRITE_TOTAL;
+    renderBrandIcon();
+  }, 6000);
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+})();
+</script>
+</body>
+</html>

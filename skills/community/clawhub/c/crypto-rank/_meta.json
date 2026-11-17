@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn7ce55dpjehzdkz69sc4k9nkd82m5ew",
-  "slug": "crypto-rank",
-  "version": "1.0.1",
-  "publishedAt": 1780481413243
+  "name": "cryptorank-radar",
+  "version": "1.0.0",
+  "description": "Chinese CryptoRank radar skill for funding, airdrops, public sales, and daily briefs.",
+  "author": "caroline",
+  "tags": [
+    "cryptorank",
+    "web3",
+    "crypto",
+    "chinese",
+    "radar",
+    "latest"
+  ],
+  "requires": {
+    "env": [],
+    "credentials": [],
+    "bins": [
+      "python3"
+    ]
+  }
 }

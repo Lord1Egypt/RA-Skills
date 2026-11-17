@@ -1,41 +1,52 @@
-## Description: <br>
-4-phase root cause debugging. Never guess, find the cause. Based on real production debugging methodology. Trigger on: 'bug', 'error', 'not working', 'broken', 'debug', 'fix this'. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic Debugging guides agents through a four-phase root cause debugging process that gathers evidence, narrows scope, forms a hypothesis, and verifies the fix.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aptratcn](https://clawhub.ai/user/aptratcn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to guide software debugging work through evidence gathering, scope isolation, hypothesis formation, and verification before declaring a fix complete.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may activate the skill for general support requests that mention common debugging terms.
+
+Mitigation: Confirm the user wants a structured debugging workflow before applying the full checklist, or narrow activation triggers during packaging.
+
+Risk: Debugging guidance can lead to code or command proposals that are incorrect for the user's environment.
+
+Mitigation: Require reproduction details, review proposed changes before execution, and verify with the original failing case and regression checks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to work through software bugs with a structured observe, isolate, hypothesize, and verify process instead of guessing at fixes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill during ordinary bug, error, or troubleshooting discussions. <br>
-Mitigation: Use the workflow when structured debugging is intended and confirm that the suggested process applies to the current issue. <br>
-Risk: Suggested commands or code edits may be unsuitable for the user's local environment. <br>
-Mitigation: Review proposed commands and changes before running them, especially log inspection commands or edits that modify files. <br>
+**Output Format:** [Markdown guidance with checklists and inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+**Other Properties Related to Output:** [The skill produces procedural debugging guidance and verification prompts rather than executing commands automatically.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with checklists and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, APIs, MCP tools, or external services detected; commands should be reviewed before execution.] <br>
+2.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence release and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

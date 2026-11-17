@@ -1,41 +1,58 @@
-## Description: <br>
-Control the desktop via the CUA computer server API running on port 8000. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the desktop via the CUA computer server API running on port 8000.
 
-## Publisher: <br>
-[sarinali](https://clawhub.ai/user/sarinali) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sarinali](https://clawhub.ai/user/sarinali)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an agent inspect and operate a local desktop through a temporary localhost CUA server. It supports GUI workflows such as screenshots, clicks, keyboard input, application launch, window control, and form filling when the user intentionally starts the server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent control the user's desktop, including screenshots, mouse actions, keyboard input, file saves, form submissions, and other state-changing actions. <br>
-Mitigation: Install only for intentional desktop-control use, run the CUA server temporarily, keep it bound to localhost, stop it when finished, avoid sensitive windows, and confirm actions that save files, submit forms, or change application state. <br>
-Risk: Binding the desktop-control server beyond localhost could expose GUI control to other systems on the network. <br>
-Mitigation: Keep the server on 127.0.0.1 and avoid network exposure unless the environment has been explicitly secured for that use. <br>
+## Use Case:
 
+Developers and automation users use this skill to let an agent inspect and control a local desktop through a CUA server for GUI workflows such as screenshots, clicks, typing, application launch, browser navigation, and form filling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sarinali/gui-automation) <br>
-- [CUA computer server source](https://github.com/trycua/cua-computer-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands and guidance for interacting with a localhost CUA server; responses may include screenshot data or JSON returned by that server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill enables high-impact desktop control through an unauthenticated local control API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when desktop control is intentional, bind the server explicitly to 127.0.0.1, run it in a monitored foreground session, and stop it when finished.
+
+Risk: The skill depends on third-party server installation steps that may be unpinned.
+
+Mitigation: Use a pinned and reviewed server version in an isolated environment, and verify the package publisher and version before running it.
+
+Risk: Exposing the server beyond localhost or changing system permissions can broaden access to keyboard, mouse, screenshot, and application-control capabilities.
+
+Mitigation: Avoid network exposure, background operation, and sudo group changes unless necessary and reviewed for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sarinali/skills/gui-automation)
+- [CUA computer server source](https://github.com/trycua/cua-computer-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a local CUA server, commonly bound to 127.0.0.1 on port 8000.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,29 @@
+{
+  "name": "claude",
+  "version": "0.1.0",
+  "extends": "default-tech",
+  "description": "Anthropic / Claude-inspired theme: warm cream paper, clay-coral accent, grotesk + editorial-serif pairing.",
+  "vibe": "Warm, human, editorial, high-craft, calm — cream paper, soft clay-coral signal, Styrene-style grotesk headings over a Tiempos-style serif body. Restrained, trustworthy, not corporate.",
+  "license": "MIT",
+  "author": "Timur Isachenko",
+  "roles": {
+    "bg": "#faf9f5",
+    "bg2": "#f4f3ee",
+    "text": "#141413",
+    "muted": "#73706a",
+    "accent": "#d97757",
+    "accent2": "#6a9bcc",
+    "cardBg": "#ffffff",
+    "border": "#e8e6dc"
+  },
+  "typography": {
+    "headingFont": "'Space Grotesk', system-ui, sans-serif",
+    "bodyFont": "'Lora', Georgia, 'Times New Roman', serif",
+    "headingWeight": 600,
+    "googleFonts": ["Space+Grotesk:wght@500;600;700", "Lora:wght@400;500;600"]
+  },
+  "geometry": {
+    "radius": "12px",
+    "slideWidth": "1280px"
+  }
+}

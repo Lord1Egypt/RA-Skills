@@ -1,39 +1,56 @@
-## Description: <br>
-Browser control skill for opening pages, capturing screenshots, filling forms, automating page actions, scraping data, and monitoring web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser control for automated page actions, screenshots, form filling, and data extraction.
 
-## Publisher: <br>
-[fhbillwer](https://clawhub.ai/user/fhbillwer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fhbillwer](https://clawhub.ai/user/fhbillwer)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to direct an agent through browser tasks such as opening pages, taking screenshots, filling forms, exporting table data, and monitoring pages for changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad browser control can perform sensitive actions such as logins, form submissions, purchases, account changes, script execution, scraping authenticated pages, or scheduled monitoring.
+
+Mitigation: Require explicit confirmation before sensitive actions and review requested browser operations before execution.
+
+Risk: Screenshots, scraped data, and configuration files may contain sensitive information.
+
+Mitigation: Check storage locations for generated browser data and delete screenshots, exports, recordings, and configuration files when no longer needed.
+
+Risk: Automated scraping or monitoring may conflict with site rules or user expectations.
+
+Mitigation: Respect robots.txt, site terms, and access boundaries before running extraction or monitoring tasks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to direct an agent through browser tasks such as page navigation, screenshots, form entry, data extraction, and scheduled monitoring. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad browser automation powers that may affect logged-in accounts, forms, or monitored pages. <br>
-Mitigation: Provide specific URLs and task boundaries, require confirmation before submitting forms or acting in logged-in sessions, and set explicit limits for monitoring jobs. <br>
-Risk: Screenshots, recordings, and scraped data may contain sensitive information. <br>
-Mitigation: Avoid sensitive browser sessions when possible and delete saved screenshots, recordings, or scraped data when they are no longer needed. <br>
+**Output Format:** [Markdown with browser action requests, tool names, paths, and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May produce screenshots, recordings, scraped data exports, and browser configuration files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or conversational text with browser-action guidance and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, recordings, scraped data files, and browser configuration artifacts in workspace paths described by the skill.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

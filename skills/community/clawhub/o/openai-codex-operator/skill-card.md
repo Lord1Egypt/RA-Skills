@@ -1,47 +1,60 @@
-## Description: <br>
-Run OpenAI Codex CLI from OpenClaw for coding tasks in a target project directory. Use when the user asks OpenClaw to use Codex for implementation, debugging, refactoring, review, or scripted coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run OpenAI Codex CLI from OpenClaw for coding tasks in a target project directory.
 
-## Publisher: <br>
-[cecwxf](https://clawhub.ai/user/cecwxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cecwxf](https://clawhub.ai/user/cecwxf)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to have OpenClaw delegate implementation, debugging, refactoring, review, and scripted coding tasks to the Codex CLI in a specified repository. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Codex can read, change, and run code in the selected repository. <br>
-Mitigation: Run the skill only from the intended repository, prefer a version-controlled branch, and review diffs after execution. <br>
-Risk: Untrusted task text can be unsafe when placed into hand-built shell command strings. <br>
-Mitigation: Use proper argument passing or quoting before invoking shell commands. <br>
-Risk: Missing Codex CLI installation or authentication blocks the workflow. <br>
-Mitigation: Verify `codex --version` and complete Codex sign-in before delegating work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenAI Codex Operator](https://clawhub.ai/cecwxf/openai-codex-operator) <br>
-- [OpenAI Codex](https://developers.openai.com/codex) <br>
-- [OpenAI Codex CLI](https://developers.openai.com/codex/cli) <br>
-- [OpenAI Codex Quickstart](https://developers.openai.com/codex/quickstart) <br>
-- [Codex Docs Summary](references/codex-doc-summary.md) <br>
-- [Codex Usage Recipes](references/codex-usage-recipes.md) <br>
-- [Codex Example Runner](scripts/run-codex-example.sh) <br>
+## Use Case:
 
+Developers and engineering operators use this skill to launch, monitor, and troubleshoot OpenAI Codex CLI tasks from OpenClaw for implementation, debugging, refactoring, review, and scripted coding workflows in a target repository.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Codex can read and change files in the selected repository when launched through this skill.
+
+Mitigation: Use the skill only for repositories where that access is acceptable, verify the target workdir every time, and review diffs before keeping generated changes.
+
+Risk: Task text used in raw command strings can create unsafe execution patterns if it includes untrusted input.
+
+Mitigation: Avoid interpolating untrusted task text into shell command strings; keep command structure fixed and quote task content carefully.
+
+Risk: Background Codex sessions may continue operating without immediate review.
+
+Mitigation: Supervise background sessions, poll logs for prompts or failures, and stop sessions that are no longer needed.
+
+## Reference(s):
+
+- [OpenAI Codex](https://developers.openai.com/codex)
+- [OpenAI Codex CLI](https://developers.openai.com/codex/cli)
+- [OpenAI Codex Quickstart](https://developers.openai.com/codex/quickstart)
+- [Codex docs summary](references/codex-doc-summary.md)
+- [Codex usage recipes](references/codex-usage-recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include milestone status, remediation steps for missing Codex CLI or authentication, and monitoring instructions for background sessions.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

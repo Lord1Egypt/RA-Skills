@@ -1,45 +1,59 @@
-## Description: <br>
-Operate X (Twitter) through an OOMOL-connected account to read, create, update, and delete account data with schema-first oo CLI connector commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate X (Twitter) through an OOMOL-connected account to read, search, create, update, and delete account data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to perform X (Twitter) tasks through an OOMOL-connected account, including reading profiles, posts, timelines, bookmarks, lists, Spaces, DMs, and search results. It also supports user-approved posting, following, muting, list management, bookmark, DM, media upload, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an OOMOL-connected X/Twitter account and read private account data, including DMs, when requested. <br>
-Mitigation: Install and use it only for accounts where that level of OOMOL-connected tooling access is acceptable, and review requested read targets before execution. <br>
-Risk: Write actions can change X/Twitter account state, including posts, follows, DMs, lists, bookmarks, mutes, and media uploads. <br>
-Mitigation: Confirm the exact payload and expected account effect with the user before running any action tagged as write. <br>
-Risk: Destructive actions can delete or remove account data such as posts, DMs, lists, list members, and bookmarks. <br>
-Mitigation: Require explicit approval for the exact destructive target before execution. <br>
+## Use Case:
 
+Agents use this skill to search X and manage an authorized account through OOMOL, including posts, lists, profiles, and direct messages. Account-changing actions should be reviewed with the user before execution.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/oomol/oo-twitter) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [X homepage](https://x.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Two account-changing actions bypass the skill's stated confirmation rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval for every account change, including hiding replies and pinning lists.
+
+Risk: Setup runs remote installers, and the hosted connector implementation was not verified.
+
+Mitigation: Install a reviewed, verified CLI version and review or disable its automatic agent-skill synchronization.
+
+Risk: Connecting X gives the OOMOL integration access to authorized account data, including private messages.
+
+Mitigation: Review and authorize the account connection and its data access before use.
+
+## Reference(s):
+
+- [X API introduction](https://docs.x.com/x-api/introduction)
+- [X](https://x.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON connector requests and responses, with shell command instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available actions include read operations and account changes; write actions require confirmation and destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

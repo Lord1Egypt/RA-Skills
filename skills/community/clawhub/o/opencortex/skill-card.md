@@ -1,47 +1,62 @@
-## Description: <br>
-OpenCortex gives OpenClaw agents a structured workspace memory system with nightly distillation, weekly synthesis, durable memory files, optional vault, optional metrics, and opt-in backup features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCortex adds structured memory files, scheduled distillation and synthesis, principles, and opt-in helper features so OpenClaw agents can preserve and organize long-term knowledge.
 
-## Publisher: <br>
-[jd2005l](https://clawhub.ai/user/jd2005l) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jd2005l](https://clawhub.ai/user/jd2005l)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and maintain a structured long-term memory architecture for an agent workspace. It is intended for improving memory organization, nightly knowledge distillation, weekly synthesis, and optional local maintenance features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled maintenance jobs can read and write long-term workspace memory without direct interaction. <br>
-Mitigation: Review installed cron entries after setup, confirm they are scoped to the intended workspace, and remove or edit jobs that are not needed. <br>
-Risk: The skill can capture durable user, project, tool, and optional voice or infrastructure information. <br>
-Mitigation: Disable optional voice profiling and infrastructure collection unless required, and review generated memory files before using the skill with sensitive projects. <br>
-Risk: Vault and backup features may interact with credentials or secret-scrubbing configuration. <br>
-Mitigation: Prefer a system keyring for vault passphrases, avoid file-based passphrase storage unless explicitly accepted, and test git backup scrubbing in a disposable workspace before using a real remote. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to install and maintain a workspace-scoped memory system that structures long-term notes, runs scheduled distillation and synthesis, and optionally configures vault, metrics, and backup helpers.
 
-## Reference(s): <br>
-- [ClawHub OpenCortex Release Page](https://clawhub.ai/jd2005l/opencortex) <br>
-- [OpenCortex Architecture Reference](references/architecture.md) <br>
-- [Daily Memory Distillation Instructions](references/distillation.md) <br>
-- [Weekly Synthesis Instructions](references/weekly-synthesis.md) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [OpenCortex Homepage](https://github.com/JD2005L/opencortex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace memory files, scheduled maintenance instructions, verification guidance, and optional local helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.7 (source: server release evidence) <br>
+Risk: Recurring OpenClaw agents can rewrite long-term workspace memory without direct human interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a workspace where scheduled memory editing is acceptable, inspect cron messages after setup, and edit or remove recurring jobs if autonomous rewriting is not desired.
+
+Risk: Optional git backup and metrics paths may be affected by workspace-path cron escaping issues identified in the security guidance.
+
+Mitigation: Keep optional git backup and metrics disabled until workspace-path cron escaping is fixed and verified in the target workspace.
+
+Risk: Secret-entry paths can expose sensitive values if real secrets are entered as command-line arguments or stored in file-based passphrase fallback.
+
+Mitigation: Avoid entering real secrets as command-line arguments, prefer system keyring storage for the vault, and enable file-based passphrase storage only when the user accepts that risk.
+
+## Reference(s):
+
+- [OpenCortex Skill Page](https://clawhub.ai/jd2005l/skills/opencortex)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub](https://clawhub.com)
+- [OpenCortex Architecture Reference](references/architecture.md)
+- [Daily Memory Distillation Instructions](references/distillation.md)
+- [Weekly Synthesis Instructions](references/weekly-synthesis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and workspace configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installer-created workspace files and recurring jobs; optional vault, metrics, voice profiling, infrastructure collection, git backup, and git push features require explicit user opt-in.]
+
+## Skill Version(s):
+
+3.6.7 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Send, receive, and manage Bitcoin Lightning payments through Alby Hub's Nostr Wallet Connect, including balance checks and invoice handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send, receive, and manage Bitcoin Lightning payments through Alby Hub's Nostr Wallet Connect, including balance checks and invoice handling.
 
-## Publisher: <br>
-[kiagentkronos-cell](https://clawhub.ai/user/kiagentkronos-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiagentkronos-cell](https://clawhub.ai/user/kiagentkronos-cell)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an OpenClaw agent send sats to Lightning addresses, pay BOLT11 invoices, check balances, and create receive invoices through an Alby Hub NWC connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A spend-capable Alby NWC connection can move wallet funds when payment commands run. <br>
-Mitigation: Use a dedicated wallet connection with strict spending limits, and verify recipient, invoice, and amount before invoking payment commands. <br>
-Risk: The NWC URL contains wallet secret material and can allow spending if exposed. <br>
-Mitigation: Store the URL only in environment configuration, never commit or share it, and rotate it immediately if exposure is suspected. <br>
-Risk: The package test command executes scripts/wallet.js, which includes example wallet operations. <br>
-Mitigation: Review, remove, or neutralize scripts/wallet.js before running npm test in any environment connected to real wallet funds. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let an OpenClaw agent send sats to Lightning addresses, pay BOLT11 invoices, and work with Alby Hub through Nostr Wallet Connect. It is suited to controlled payment workflows where wallet permissions and spending limits are configured before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kiagentkronos-cell/alby-lightning) <br>
-- [Alby Hub](https://albyhub.com) <br>
-- [LNURL-pay protocol](https://github.com/lnurl/luds/blob/legacy/lnurl-pay.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown usage guidance with bash and JSON snippets; runnable Node.js scripts return JSON payment results or terminal text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALBY_NWC_URL and network access to recipient LNURL endpoints and the configured Alby Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: ALBY_NWC_URL grants wallet-spending authority and can expose funds if leaked or reused broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Alby NWC connection with strict spending limits, store it only in the agent environment, and rotate it immediately if exposure is suspected.
+
+Risk: The package test command runs scripts/wallet.js, which performs live wallet operations rather than a non-spending test.
+
+Mitigation: Do not run npm test for this release; remove scripts/wallet.js or replace it with non-spending checks before trusting the package in an agent workflow.
+
+Risk: Agent-triggered Lightning payments can move real funds to a recipient address or BOLT11 invoice.
+
+Mitigation: Require operator review for recipients and amounts, keep wallet spending limits low, and use the implemented amount and callback validation as a guard rather than as sole approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kiagentkronos-cell/skills/alby-lightning)
+- [Publisher Profile](https://clawhub.ai/user/kiagentkronos-cell)
+- [Alby Hub](https://albyhub.com)
+- [LNURL-pay](https://github.com/lnurl/luds/blob/legacy/lnurl-pay.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands and console JSON or text payment results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ALBY_NWC_URL and performs live Lightning wallet operations when invoked.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

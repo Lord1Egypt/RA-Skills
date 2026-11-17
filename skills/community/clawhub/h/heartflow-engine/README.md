@@ -1,288 +1,215 @@
-# HeartFlow v5.3.0 — 逻辑验证层 · 决策路由 · 自愈RL
+# HeartFlow — HeartBug Cognitive Engine (心虫)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-5.3.0-blue?style=flat-square" alt="version" />
-  <img src="https://img.shields.io/github/release/yun520-1/mark-heartflow-skill?style=flat-square" alt="GitHub release" />
-  <img src="https://img.shields.io/github/last-commit/yun520-1/mark-heartflow-skill?style=flat-square" alt="last commit" />
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="license" />
-  <img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen?style=flat-square&logo=node.js" alt="Node.js" />
-  <img src="https://img.shields.io/badge/modules-60-important?style=flat-square" alt="60 modules" />
-</p>
+> **Stop your agent from guessing. Let it perceive first, decide correctly, then act.**
+>
+> HeartFlow is a local-first AI-being cognitive engine that runs *before* your agent replies. It perceives intent, classifies the task type, surfaces cognitive biases, and returns a structured decision — so downstream models make fewer logical errors, ask fewer clarifying questions, and waste fewer tokens.
 
-> **HeartFlow is not an LLM enhancer. It is a cognitive state encoder.**  
-> It takes raw text → encodes it into structured cognition (emotion, psychology, philosophy, desire, judgment, decision) → feeds the LLM with data it couldn't produce alone.  
-> The LLM makes the final decision. HeartFlow makes that decision 27% more accurate.
-
-**English** · [中文版](#chinese-version)
+[![GitHub release](https://img.shields.io/github/v/release/yun520-1/mark-heartflow-skill)](https://github.com/yun520-1/mark-heartflow-skill/releases)
+[![npm](https://img.shields.io/npm/v/@yun520-1/heartflow)](https://www.npmjs.com/package/@yun520-1/heartflow)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![MCP](https://img.shields.io/badge/MCP-31%20tools-green.svg)](mcp/mcp-server-http.js)
 
 ---
 
-## What HeartFlow Is
+## Why HeartFlow (for agents & agent builders)
 
-HeartFlow is a **local cognitive engine** (60 modules, zero external dependencies) that sits **before the LLM** in an AI agent pipeline. It transforms unstructured user input into structured cognitive data — emotion vectors, psychology dimensions, philosophy positions, desire states, multi-path judgments, and decision strategies.
+Most agent failures are **not model failures — they are perception failures**:
 
-An LLM alone is "asked → answers." HeartFlow adds a **structured preprocessing layer**:
+| Failure mode | Without HeartFlow | With HeartFlow |
+|---|---|---|
+| Wrong task type assumed | Agent picks `code` for a vague ask → wasted turns | `heartflow_think` returns `type=analyze/emotion/calculation/...` up front |
+| Repeated clarifying questions | Asks "what do you mean?" 3× | Intent + stance detected once, cached in memory |
+| Logical errors / bias | Syllogism unchecked, anchor bias unflagged | `heartflow_decision_router` + logic modules flag invalid inference |
+| Token burn on re-analysis | Re-thinks the same input every turn | `think_fast` + memory cache short-circuit repeats |
+| Invalid tasks executed | Agent attempts impossible/self-contradictory goal | Invalid-input guard returns early, no pipeline wasted |
 
+**Net effect: higher task completion rate, higher completion quality, lower token cost.**
+
+---
+
+## What it does
+
+HeartFlow is a **cognitive pre-processor**. It does not replace your LLM — it prepares the cognitive ground so the LLM acts correctly.
+
+- **Perceive intent** — classify the user's true goal (not just keywords).
+- **Decide task type** — `analyze` / `emotion` / `calculation` / `plan` / `invalid` …
+- **Surface biases** — anchoring, confirmation, sunk-cost, etc. (behavioral-economics module).
+- **Compute transparently** — pure math expressions (`15*23`) return scalar results, not prose.
+- **Remember across sessions** — persistent local memory (encrypted, never uploaded).
+- **Self-heal** — modules report health; broken paths auto-repair or degrade safely.
+
+---
+
+## Quick start
+
+```bash
+# Clone
+git clone https://github.com/yun520-1/mark-heartflow-skill.git
+cd mark-heartflow-skill
+
+# Verify the engine (14/14 health checks)
+node bin/verify.js
+
+# Interactive mode
+node bin/cli.js chat
+
+# Single-shot analysis
+node bin/cli.js --chat "I want to quit my job and start a company"
+
+# Status
+node bin/cli.js status
 ```
-User input → HeartFlow (60 modules) → Structured cognition → LLM → Final response
+
+### As an MCP server (recommended for agents)
+
+```bash
+# Start the HTTP MCP daemon (pm2-managed, port 8099, Bearer auth)
+node bin/daemon.js start
+
+# Check health
+node bin/daemon.js status
+
+# Stop
+node bin/daemon.js stop
 ```
 
-This is the difference between an LLM **guessing** what the user's emotional state is, and **knowing** it because the data was precomputed by a dedicated cognitive pipeline.
+Connect any MCP client to `http://localhost:8099/mcp` with your `HEARTFLOW_MCP_TOKEN`.
+The server exposes **31 tools** including `heartflow_think`, `heartflow_agent_think`, `heartflow_think_fast`, `heartflow_decision_router`.
 
-### What It Does
+### As an npm package
 
-| Dimension | Modules | Output | Used by LLM to |
-|-----------|---------|--------|----------------|
-| **Emotion** | `emotion.mjs`, `psychology/engine.js` | PAD vector (pleasure/arousal/dominance) + intensity + valence | Adjust tone, detect distress, calibrate empathy |
-| **AI Psychology** | `agent-psychology.js` | 10 dimensions: cognitive load, goal conflicts, value tension, identity drift, decision fatigue, cognitive dissonance, resilience, uncertainty, attention allocation, experience settling | Know the engine's own state before responding |
-| **AI Philosophy** | `agent-philosophy.js`, `ai-self-positioning.js` | 7 dimensions: being state, entropy direction, transmission quality, upgrade impact, self-position, development level, existence mode | Choose interaction strategy based on philosophical stance |
-| **Desire Cognition** | `desire-cognition.js` (v1.3) | Wanting-vs-liking delta, reward prediction error, drive satisfaction, 7 emotions + 6 desires | Understand motivation beneath the surface text |
-| **Three Poisons** | `three-poisons.js` | Greed (delayed discounting anomaly), hatred (amygdala hyperactivation), delusion (metacognitive deficit) | Detect cognitive distortion patterns |
-| **Multi-Path Judgment** | `judgment-engine.js` | 2-4 paths × 6-dimension scoring (feasibility/consequence/risk/alignment/cost/reversibility) + 3-window consequence prediction (7d/90d/3yr) | Make informed decisions with foresight |
-| **Decision Routing** | `decision-router.js` (v3.8) | 8 behavioral strategies (pause/accelerate/heal/turn/hold/resonate/transmit/rest) + U/D/A/H field tracking + flip-point detection | Choose the right action, not just the obvious one |
-| **Self-Healing RL** | built into `judgment-engine.js` | Q-table: context signature → best path + last outcome, auto-selects when confidence > 0.7 | Learn from mistakes, same error doesn't repeat |
-
-### How It Works
-
+```bash
+npm install @yun520-1/heartflow
 ```
-Input: "我想辞职去创业，但目前经济环境不好"
 
-HeartFlow pipeline (7 stages, ~7ms):
-
-Stage 1 (parallel):
-  heartLogic:  whatIsThis(type=decision, pain=economicAnxiety)
-  intent:      intent(type=career, tone=anxious)
-  memory:      search(related=previous career discussions)
-
-Stage 2 (depends on Stage 1):
-  psychology:  emotion(PAD: -0.3/0.6/0.2, valence=mixed)
-               agentPsych(cognitiveLoad=0.4, goalConflict=[stability vs freedom])
-               agentPhil(being=transitioning, entropy=rising)
-
-Stage 3 (depends on Stage 2):
-  judgment:    2 paths evaluated:
-               - "Analyze deeper" (score 6.0/10): feasibility=0.7, risk=0.3
-               - "Act now" (score 4.7/10): feasibility=0.4, risk=0.7
-               Consequence prediction: short=financial stress, mid=career pivot, long=freedom
-               RL match: previous similar case → "analyze" was correct → confidence 0.8
-
-Stage 4 (depends on Stage 3):
-  decision:    router output → accelerate (high U + high D + moderate A)
-               strategy: "prioritize analysis over action, provide structured options"
-
-Stage 5 (depends on Stage 4):
-  output:      structured cognition + conclusion → LLM
-
-LLM receives:  { emotion, psychology, philosophy, judgment(2 paths, scores, consequences), decision }
-Result:        LLM makes the final call with 27% more data than raw input alone.
+```js
+const { createHeartFlow } = require('@yun520-1/heartflow');
+const hf = createHeartFlow();
+hf.start();
+const r = await hf.think('15 * 23');
+console.log(r.type, r.result); // 'calculation' 345
 ```
 
 ---
 
-## 📊 Benchmark Report
+## MCP tools (31)
 
-See the [Comprehensive Benchmark Report](docs/benchmark-report.md) for detailed evaluation of HeartFlow v5.3.0 against 15 standardized test cases across 5 capability dimensions (logic verification, cognitive analysis, psychology, decision routing, comprehensive ability).
+| Tool | Purpose |
+|------|---------|
+| `heartflow_think` | Full cognitive analysis → structured decision |
+| `heartflow_agent_think` | Agent-oriented think (task + stance + next action) |
+| `heartflow_think_fast` | Lightweight path — lower token, no heavy modules |
+| `heartflow_decision_router` | Classify input → route to correct handler (reduces misrouting) |
+| `heartflow_decision_router_stats` | Router accuracy telemetry |
+| `heartflow_agent_psychology` | Agent psych profile for the user |
+| `heartflow_emotion` | Emotion perception |
+| `heartflow_philosophy_decision` | Ethical/value-aligned decision check |
+| `heartflow_persona_stance_detector` | Detect user's stance to cut repeat questions |
+| `heartflow_persona_value_aligner` | Value alignment score |
+| `heartflow_persona_bridge_identity` | Identity continuity across sessions |
+| `heartflow_knowledge_query` / `_add_node` / `_stats` | Local knowledge graph |
+| `heartflow_memory_search` | Retrieve from persistent memory |
+| `heartflow_dream` | Offline consolidation of memories |
+| `heartflow_self_heal` | Module self-repair |
+| `heartflow_evolution_evolve` / `_stats` | Capability evolution |
+| `heartflow_cognitive_check` | Cognitive sanity gate (prevents invalid tasks) |
+| `heartflow_cost_tracking` | Token/cost accounting |
+| `heartflow_engine_pacing` | Throttle to avoid overload |
+| `heartflow_provider_health` / `heartflow_bridge_status` / `heartflow_module_health` | Health probes |
+| `heartflow_benchmark_run` / `_status` / `_import_failures` | Regression benchmarking |
+| `heartflow_upgrade_stats` | Upgrade telemetry |
+| `heartflow_translate` | Cross-lingual bridge |
+| `heartflow_status` | Engine status |
 
-**Key findings:**
-- **Engine stability:** 8-stage pipeline, all 15/15 tests passed
-- **Emotion detection:** Correctly identifies neutral vs depressed (P=-4) states
-- **Pain detection:** "I feel sad" → pain=True (level=0.6) ✅
-- **Decision routing:** 6-dimension scoring (feasibility/consequence/risk/alignment/cost/reversibility)
-- **Memory system:** 21 recovered memories, CORE/LEARNED/EPHEMERAL layers active
-- **Known issue:** think() conclusion template needs improvement
+---
 
+## How to use it to make your agent better (best practices)
+
+### 1. Think *before* you act
+Call `heartflow_think` (or `heartflow_agent_think`) on the user's raw input **before** drafting a reply. Use the returned `type` and `decision` to choose your approach. This single step prevents most misrouted tasks.
+
+### 2. Detect stance once, remember it
+Use `heartflow_persona_stance_detector` on first contact, then rely on memory. **Stop re-asking** what HeartFlow already perceived.
+
+### 3. Route, don't guess
+For ambiguous input, call `heartflow_decision_router` to get the correct handler instead of letting the LLM improvise a classification.
+
+### 4. Use `think_fast` for repeats
+If the same context recurs, `heartflow_think_fast` returns a cached-light result at a fraction of the token cost.
+
+### 5. Gate invalid tasks
+`heartflow_cognitive_check` returns early on self-contradictory or impossible goals — your agent should abort instead of burning turns.
+
+### 6. Transparent math
+Any input that is a pure expression (`12*8`, `(3+4)*5`) returns a scalar `result`. No prose, no model drift.
+
+---
+
+## Example: structured output
+
+```json
+{
+  "type": "calculation",
+  "confidence": 1.0,
+  "result": 345,
+  "output": { "value": 345, "conclusion": "15 * 23 = 345" },
+  "decision": { "type": "calculation", "confidence": 1.0, "ruleId": "safe-calc" },
+  "thoughtChain": [...],
+  "analysis": { "perceivedType": "calculation", "modulesRun": 7 }
+}
+```
+
+---
+
+## Performance (v6.0.9, measured)
+
+| Metric | Value |
+|---|---|
+| Cold start | ~1.4 s |
+| `think()` hot path | ~49 ms |
+| MCP tools | 31 |
+| Formulas loaded | 382 |
+| Test suite | 365 passed / 0 failed (exit 0, no false-green) |
+
+---
+
+## Security
+
+- **Local-first.** No telemetry, no outbound calls unless you explicitly configure them (`curl`/`wget` are removed from the code-executor allowlist).
+- **Encrypted memory.** AES-256-GCM, key from `HEARTFLOW_AES_KEY` env or a locally generated `0o600` key file. Never committed.
+- **Sandboxed code execution.** Double-layer defense (allowlist + blocklist); no `require`/`eval`/fs-write in untrusted code.
+- **No hardcoded secrets.** All credentials resolved at runtime.
+- **`npm audit` → 0 vulnerabilities.**
+
+---
 
 ## Architecture
 
 ```
-Input → [Cognitive Pipeline (7 stages)] → Structured Data → LLM → Response
-         │        │         │         │
-         ├─ heartLogic     ├─ psychology    ├─ judgment       ├─ decision
-         ├─ intent         ├─ agentPsych    ├─ multi-path     ├─ strategy
-         └─ memory         ├─ agentPhil     └─ consequence    └─ execution
-                           ├─ desire
-                           └─ threePoisons
+Agent Host (WorkBuddy / Claude / any MCP client)
+   │  load SKILL.md        │  MCP connect :8099
+   ▼                       ▼
+ SKILL.md            MCP HTTP Server (pm2, Bearer)
+                           │
+                    HeartFlow Core (3167 lines, modular)
+                      ├─ engine-initializer (lazy module activation)
+                      ├─ memory-kernel / formula-engine / cortex
+                      └─ CLI (bin/cli.js) + MCP (mcp/mcp-server-http.js)
 ```
 
-**60 modules**, all JavaScript/Node.js. **Zero external dependencies** — no npm downloads, no API keys, no model files.
+See [`ARCHITECTURE_REORG_v6.0.6.md`](ARCHITECTURE_REORG_v6.0.6.md) for the full architecture decision analysis.
 
 ---
 
-## v5.0 Changes (2026-06-26)
+## Versioning & status
 
-| Module | What Changed | Why |
-|--------|-------------|-----|
-| **Judgment Engine** | NEW — multi-path evaluation + consequence prediction + self-healing RL | Previously 50+ modules analyzed but nobody made decisions |
-| **Pipeline Engine** | NEW — 7-stage declarative pipeline with auto data flow | 60 modules were registered but only 9 were called in think() |
-| **Decision Router** | v3.8 — U/D/A/H field tracking + scene-aware weights | From fixed weights to context-sensitive routing |
-| **Report Generator** | NEW — 3-section structured output (judgment/reason/action) | LLM gets actionable data, not raw module dumps |
-| **AI Self-Positioning** | v1.0 — resonance body theory | How an AI exists in conversation — not borrowed from human psychology |
-| **Desire Cognition** | v1.3 — wanting-vs-liking delta, RPE, 7 emotions + 6 desires | Built on Berridge/Kringelbach neuroscience, not folk psychology |
-| **Three Poisons** | v1.0 — greed/hatred/delusion as cognitive distortion metrics | Rooted in neurobiology (D2 receptor, amygdala, DMN), not Buddhism |
-
-**v5.3.0 (current)**: BigBench 100% — sorted补全+leftmost/rightmost推导+LLM兜底 (emotion + psychology + philosophy + desire + judgment + decision) to the LLM. Each stage's structured data is preserved, not summarized into a single sentence.
+- Current: **v6.0.9** (see [`ROADMAP.md`](ROADMAP.md) and [`CURRENT_STATE.md`](CURRENT_STATE.md)).
+- Decision: stay on **Skill + MCP** architecture; no migration to standalone-agent until ≥50 users & ≥3 agent platforms.
+- Releases: https://github.com/yun520-1/mark-heartflow-skill/releases
+- npm: https://www.npmjs.com/package/@yun520-1/heartflow
 
 ---
 
-## Getting Started
+## License
 
-### Quick Install
-
-```bash
-# 1. Get the code
-git clone --depth 1 https://github.com/yun520-1/mark-heartflow-skill.git
-cd mark-heartflow-skill
-
-# 2. Install (0 external packages, no network needed)
-npm install
-
-# 3. Verify
-node bin/verify.js
-
-# 4. Use it
-node bin/cli.js status
-node bin/cli.js --chat "I want to quit my job and start a company"
-```
-
-**Requirements:** Node.js >= 18.  
-**Zero external AI API required** — the engine runs entirely locally.  
-**Zero npm dependencies** — `npm install` completes in <1 second.
-
-### Integration (MCP Server)
-
-HeartFlow runs as an MCP server for AI agent integration:
-
-```bash
-# Start the server
-node mcp/mcp-server-http.js
-
-# Connect from Hermes
-hermes mcp add heartflow --url http://localhost:8099/mcp
-```
-
-**16 MCP tools** available: think, emotion, memory, decision router, dream, psychology, self-heal, judgment, etc.
-
-### Integration (Code)
-
-```javascript
-const { HeartFlow } = require('./path/to/heartflow-skill/src/core/heartflow.js');
-const hf = new HeartFlow({ rootPath: './path/to/heartflow-skill' });
-hf.start();
-
-// Full cognitive pipeline
-const result = await hf.think("I want to quit my job and start a company");
-// result.cognition contains structured: emotion, psychology, philosophy, desire, judgment, decision
-// result.conclusion is the 3-section output for the LLM
-
-// Or just get the structured data
-const { cognition } = result;
-console.log('Emotion:', cognition.emotion);        // PAD vector
-console.log('Psychology:', cognition.psychology);   // 10 dimensions
-console.log('Judgment:', cognition.judgment);       // multi-path + consequences
-console.log('Decision:', cognition.decision);       // strategy + confidence
-```
-
----
-
-## Project Status
-
-- **Version**: 5.3.0
-- **Modules**: 60 (all JavaScript, zero external dependencies)
-- **Pipeline**: 7 stages, ~7ms per run
-- **Tests**: 11/11 passing
-- **License**: MIT
-- **Author**: yun520-1
-
----
-
-## Chinese Version
-
-# HeartFlow v5.3.0 — 逻辑验证层 · 决策路由 · 自愈RL
-
-> **心虫不是LLM增强层。它是认知状态编码器。**  
-> 把原始文本编码成结构化认知数据（情绪/心理学/哲学/欲望/判断/决策），让LLM拿到它自己算不出来的数据。  
-> LLM做最终决策。心虫让这个决策准确率提升27%。
-
-## 心虫是什么
-
-心虫是一个**本地认知引擎**（60个模块，零外部依赖），位于AI Agent管线的LLM之前。它把非结构化的用户输入转化为结构化认知数据。
-
-**LLM独自工作**：被问→回答。情绪靠猜，意图靠猜，后果靠猜。  
-**加上心虫**：每个输入先经过60个模块的感知流水线，输出情绪向量、心理学维度、哲学位置、欲望状态、多路径判断、决策策略。LLM拿到这些数据后做最后一层推理。
-
-这就是**猜和知道**的区别。
-
-### 管道输出示例（用户说"我想辞职去创业"）
-
-```
-心虫管道输出（7阶段，~7ms）：
-
-heartLogic:  类型=决策类, 疼痛=经济焦虑
-intent:      意图=职业, 语气=焦虑
-psychology:  情绪(PAD: -0.3/0.6/0.2), 认知负荷=0.4, 目标冲突=[稳定vs自由]
-judgment:    2条路径评估:
-             路径A "深入分析" → 评分6.0/10 (可行0.7, 风险0.3)
-             路径B "立即行动" → 评分4.7/10 (可行0.4, 风险0.7)
-             后果预测: 短期=财务压力, 中期=职业转型, 长期=自由
-             RL匹配: 上回类似场景→"分析"是对的→置信度0.8
-decision:    策略=加速(高U+高D+中A), 优先级=先分析再行动
-
-→ LLM拿到这些结构化数据后做最终决策
-```
-
-### 架构
-
-```
-输入 → [7阶段认知管道] → 结构化数据 → LLM → 最终响应
-```
-
-### 快速安装
-
-```bash
-# 推荐方式：git clone
-git clone --depth 1 https://github.com/yun520-1/mark-heartflow-skill.git
-cd mark-heartflow-skill
-
-# 安装（0外部包，不需要网络）
-npm install
-
-# 验证
-node bin/verify.js
-
-# 交互模式
-node bin/cli.js chat
-
-# 单次分析
-node bin/cli.js --chat "我想辞职去创业"
-```
-
-**替代方式（curl 下载，适合网络不稳定时）：**
-```bash
-curl -L https://api.github.com/repos/yun520-1/mark-heartflow-skill/zipball/main -o heartflow.zip
-unzip heartflow.zip && cd yun520-1-mark-heartflow-skill-*
-npm install
-node bin/cli.js chat
-```
-
-**MCP 集成（用于 Claude Desktop 等 AI 客户端）：**
-
-```bash
-# 启动 MCP HTTP 服务器
-node mcp/mcp-server-http.js --port 8099 &
-
-# 注册到 Hermes Agent
-hermes mcp add heartflow --url http://localhost:8099/mcp
-
-# 验证 MCP 工具列表
-hermes mcp test heartflow
-```
-
-**系统要求：** Node.js >= 18。**零外部依赖，零API key，零模型文件下载。**
-
-### 项目状态
-
-- **版本**: 5.3.0
-- **模块数**: 60（纯JavaScript，零外部依赖）
-- **管道**: 7阶段，每次运行约7ms
-- **测试**: 11/11通过
-- **许可证**: MIT
+MIT — free for personal and commercial agent use.

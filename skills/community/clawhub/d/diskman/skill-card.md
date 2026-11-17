@@ -1,44 +1,62 @@
-## Description: <br>
-DiskMan helps agents scan, analyze, clean, and migrate directories for disk space management with rule-based and optional AI-enhanced recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DiskMan helps agents scan directories, analyze disk usage, recommend cleanup or migration actions, and manage disk space with rule-based or optional AI-assisted guidance.
 
-## Publisher: <br>
-[heyy259](https://clawhub.ai/user/heyy259) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heyy259](https://clawhub.ai/user/heyy259)
 
-## Use Case: <br>
-Developers and technical users use this skill to find large directories, assess cleanup or migration options, and run risk-aware disk space management workflows through CLI, Python, or MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete, move, link, and scan directories, which may affect important local data. <br>
-Mitigation: Use dry-run first, verify exact resolved paths before cleanup or migration, back up important folders, and avoid elevated privileges unless necessary. <br>
-Risk: Optional AI analysis can send directory metadata or project path information to an external provider. <br>
-Mitigation: Prefer rule-based mode or a local AI provider for sensitive paths, and review AI provider configuration before enabling network-backed analysis. <br>
-Risk: Cleanup or migration recommendations may be incorrect for unfamiliar directories. <br>
-Mitigation: Treat recommendations as advisory, review high-risk findings manually, and require explicit user confirmation before destructive or filesystem-changing operations. <br>
+## Use Case:
 
+Developers and agent users use DiskMan to find large directories, classify cleanup or migration opportunities, and prepare safer disk-space management actions. It is most useful when an agent needs to explain risk, request confirmation, and produce path-specific recommendations before file-system changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heyy259/diskman) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, JSON configuration snippets, filesystem paths, risk labels, and operation summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce dry-run cleanup summaries, migration plans, symbolic-link status, and optional AI-backed recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Cleanup tools can delete broad local directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval, preview deletion with dry-run mode first, and avoid using the skill on important directories without a backup.
+
+Risk: Migration tools can move data and replace the original path with a symbolic link or junction.
+
+Mitigation: Confirm source and target paths, ensure target storage has sufficient space, close programs using the directory, and keep a backup before migration.
+
+Risk: Optional AI analysis can send directory metadata and user context to a configured provider.
+
+Mitigation: Do not configure AI credentials unless sharing that metadata with the provider is acceptable; use rule-based analysis when privacy or network exposure is a concern.
+
+Risk: Running the MCP server with elevated privileges increases the impact of accidental cleanup or migration operations.
+
+Mitigation: Run the MCP server with normal user privileges and restrict use to directories the user intends the agent to inspect or manage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heyy259/skills/diskman)
+- [Publisher Profile](https://clawhub.ai/user/heyy259)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, JSON configuration snippets, risk levels, recommended actions, paths, and sizes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include dry-run cleanup previews, migration confirmations, AI provider status, and structured scan or analysis results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

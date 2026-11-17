@@ -1,48 +1,54 @@
-## Description: <br>
-Searches cheap flights and airfare through the Travelpayouts/Aviasales API, including date-specific search, price calendars, round trips, latest prices, popular destinations, and IATA lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for cheap flights and airfare via the Travelpayouts/Aviasales API, including date-specific fares, price calendars, round trips, latest prices, popular destinations, and IATA code lookup.
 
-## Publisher: <br>
-[aspalagin](https://clawhub.ai/user/aspalagin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aspalagin](https://clawhub.ai/user/aspalagin)
 
-## Use Case: <br>
-External users and agents use this skill to search Aviasales/Travelpayouts flight data, compare cheapest options, resolve IATA codes, and present booking links for travel queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight searches send route details, dates, and preferences to Travelpayouts/Aviasales. <br>
-Mitigation: Use the skill only when users are comfortable sharing those search details with the Travelpayouts/Aviasales service. <br>
-Risk: The helper script requires a Travelpayouts API token for most searches. <br>
-Mitigation: Store the token in the TRAVELPAYOUTS_TOKEN environment variable, use a dedicated token where possible, and avoid placing it in chat or logs. <br>
-Risk: The helper script writes a low-sensitivity airline-name cache in /tmp for 24 hours. <br>
-Mitigation: Treat the cache as operational metadata and clear /tmp according to local environment policy on shared systems. <br>
+## Use Case:
 
+External users and travel assistants use this skill to look up fares, compare cheaper travel dates, resolve IATA codes, and present booking links from Aviasales/Travelpayouts search results.
 
-## Reference(s): <br>
-- [Aviasales Flight Search on ClawHub](https://clawhub.ai/aspalagin/aviasales-flights) <br>
-- [Airline Code Fallback Reference](references/airlines.md) <br>
-- [Travelpayouts Flight Search API Endpoint](https://api.travelpayouts.com/aviasales/v3/prices_for_dates) <br>
-- [Travelpayouts Latest Prices API Endpoint](https://api.travelpayouts.com/aviasales/v3/get_latest_prices) <br>
-- [Travelpayouts Price Calendar API Endpoint](https://api.travelpayouts.com/aviasales/v3/grouped_prices) <br>
-- [Travelpayouts City Directions API Endpoint](https://api.travelpayouts.com/v1/city-directions) <br>
-- [Travelpayouts Places Autocomplete API Endpoint](https://autocomplete.travelpayouts.com/places2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON stdout from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRAVELPAYOUTS_TOKEN for flight searches; IATA lookup does not require the token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Flight search details and the Travelpayouts API token are used with external Travelpayouts/Aviasales services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users accept that data flow, keep TRAVELPAYOUTS_TOKEN managed as a secret, and avoid submitting unnecessary personal travel data.
+
+Risk: The airline mapping cache uses a shared temporary path at /tmp/airlines_cache.json.
+
+Mitigation: Use a private per-user cache directory or run the skill in an isolated environment before deployment.
+
+## Reference(s):
+
+- [Airline code mapping](references/airlines.md)
+- [ClawHub skill page](https://clawhub.ai/aspalagin/skills/aviasales-flights)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON flight-search results that an agent can summarize as Markdown with prices, itinerary details, and booking links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Most searches require TRAVELPAYOUTS_TOKEN; IATA lookup can run without the token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

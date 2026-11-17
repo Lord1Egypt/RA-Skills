@@ -1,36 +1,47 @@
-## Description: <br>
-Guides agents through batch-processing and long-running task orchestration patterns, including queues, adaptive concurrency, abort recovery, circuit breakers, remote polling, progress reporting, and HTTP rate-limit handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents on batch processing and long-running task orchestration, including queue management, concurrency scheduling, interruption and recovery, circuit breakers, remote task polling, progress reporting, and batch HTTP request patterns.
 
-## Publisher: <br>
-[bingfoon](https://clawhub.ai/user/bingfoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bingfoon](https://clawhub.ai/user/bingfoon)
 
-## Use Case: <br>
-Developers and agents use this skill to design resilient batch file processing, AI API polling, crawler, and background queue workflows with concurrency control, retries, abort handling, and progress reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scraping section includes anti-detection tactics that could be misused or conflict with site rules. <br>
-Mitigation: Use only for authorized work; prefer documented APIs, obey site rules and rate limits, identify clients honestly, and stop on captchas, login redirects, or anti-bot pages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineering agents use this skill to design resilient batch file processing, remote API polling, crawler or batch HTTP workflows, and background queue tasks with concurrency limits, resumability, progress reporting, and failure handling.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Crawler and batch HTTP patterns could be adapted to bypass rate limits, captchas, login gates, robots.txt, site terms, or privacy expectations.
+
+Mitigation: Use the patterns only for authorized batch processing and approved APIs; add explicit endpoint, privacy, rate-limit, robots.txt, and terms-of-service controls before deployment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell execution; generated examples should be reviewed before use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [guidance, markdown, code, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with TypeScript examples, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Feedback Controller helps agents diagnose execution drift and choose a correction path using a closed-loop protocol and fixed Markdown output contract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feedback Controller is a closed-loop agent skill for correcting execution drift by comparing target and current states, localizing deviations, and choosing a correction or escalation path.
 
-## Publisher: <br>
-[clarkchenkai](https://clawhub.ai/user/clarkchenkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarkchenkai](https://clawhub.ai/user/clarkchenkai)
 
-## Use Case: <br>
-Developers, automation builders, and agent operators use this skill to compare a target state with current output, localize drift, and decide whether to retry, adjust scope, switch tools, or escalate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly and influence correction decisions in multi-step work. <br>
-Mitigation: Review the proposed diagnosis and correction strategy before relying on it, and disable implicit invocation or call the skill explicitly for approval-sensitive tasks. <br>
-Risk: Repeated correction loops can hide missing authority, policy conflicts, or unavailable evidence. <br>
-Mitigation: Use the skill's escalation decision and stop condition to hand off when approval, policy, or missing context blocks safe correction. <br>
+## Use Case:
 
+Developers and agent operators use this skill to diagnose workflow drift after a partial or unsatisfactory result and decide whether to retry, switch tools, narrow scope, rewrite locally, or escalate.
 
-## Reference(s): <br>
-- [Correction Patterns](references/correction-patterns.md) <br>
-- [Escalation Rules](references/escalation.md) <br>
-- [Wiener Reference](references/wiener.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a six-part diagnostic structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ends with Target State, Current State, Observed Deviation, Error Source, Correction Strategy, and Escalation Decision sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md metadata) <br>
+Risk: Automatic invocation can steer an agent into a diagnostic correction format when a normal answer may be expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for correction or quality-control situations where a structured drift diagnosis is appropriate.
+
+Risk: The skill can influence retry or escalation decisions in workflows with material consequences.
+
+Mitigation: Apply its escalation guidance and require human review when approval, policy, missing context, or high-risk judgment blocks a safe correction.
+
+## Reference(s):
+
+- [Correction Patterns](references/correction-patterns.md)
+- [Escalation Rules](references/escalation.md)
+- [Wiener Reference](references/wiener.md)
+- [ClawHub Skill Page](https://clawhub.ai/clarkchenkai/skills/feedback-controller-clarkchenkai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with a fixed six-section diagnostic structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ends with Target State, Current State, Observed Deviation, Error Source, Correction Strategy, and Escalation Decision sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

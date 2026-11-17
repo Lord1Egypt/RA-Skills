@@ -1,45 +1,55 @@
-## Description: <br>
-Professional career roadmap platform that generates personalized learning paths and specialization recommendations for aspiring financial analysts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform that generates personalized learning paths and specialization recommendations for aspiring financial analysts.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers and career platforms use this skill to call a financial analyst roadmap API that generates personalized career phases, milestones, specializations, and learning resources from user assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call a paid or rate-limited external API. <br>
-Mitigation: Review the pricing tiers and expected request volume before using the API in automated workflows. <br>
-Risk: Roadmap recommendations may be incomplete, outdated, or mismatched to a user's career goals. <br>
-Mitigation: Treat generated roadmaps as planning guidance and review recommendations before relying on them for career or training decisions. <br>
-Risk: External API calls may expose submitted assessment data to the API provider. <br>
-Mitigation: Avoid sending unnecessary personal data and confirm that intended use aligns with the provider's data-handling terms. <br>
+## Use Case:
 
+External users and agents use this skill to request personalized financial analyst career roadmaps, specialization options, and curated learning paths from an external API. It is intended for career changers, recent graduates, and working professionals planning financial analysis skill development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-financial-analyst) <br>
-- [Financial Analyst Roadmap API route](https://api.mkkpro.com/career/financial-analyst) <br>
-- [Financial Analyst Roadmap API docs](https://api.mkkpro.com:8187/docs) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with career roadmap phases, milestones, specializations, and learning resources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on supplied assessment data, session identifiers, optional user identifiers, and the availability of the external API service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Submitted assessment details are shared with the external API operator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize assessment data to fields needed for roadmap generation and avoid sensitive personal or employment details.
+
+Risk: Supplying userId can enable persistent profile tracking.
+
+Mitigation: Use an opaque sessionId and omit userId unless persistent profile tracking is intentionally required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-financial-analyst)
+- [Financial Analyst API route](https://api.mkkpro.com/career/financial-analyst)
+- [Financial Analyst API docs](https://api.mkkpro.com:8187/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON]
+
+**Output Format:** [JSON API responses that agents may summarize in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap responses can include phases, milestones, specialization recommendations, estimated duration, and learning resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Helps agents design SaaS churn prevention strategies, including cancel flows, save offers, failed-payment recovery, and retention interventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents advise on SaaS churn prevention through cancel-flow design, save offers, churn-risk signals, and failed-payment recovery.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-External SaaS founders, product teams, and growth or retention teams use this skill to diagnose churn, design cancellation experiences, map save offers to cancellation reasons, and plan dunning workflows for failed payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read a local product-marketing context file that contains secrets or unrelated confidential business information. <br>
-Mitigation: Review that context file before use and remove secrets or unrelated confidential material. <br>
-Risk: Cancel-flow and dunning recommendations can create legal or compliance risk if they make cancellation difficult or apply high-friction retention handling inappropriately. <br>
-Mitigation: Review recommendations with legal or compliance judgment and keep cancellation paths clear, especially for larger accounts or regulated markets. <br>
+## Use Case:
 
+External SaaS product, growth, and customer success teams use this skill to plan churn-reduction work, including voluntary cancellation flows, save-offer design, proactive retention, and dunning/payment-recovery workflows.
 
-## Reference(s): <br>
-- [Cancel Flow Patterns](references/cancel-flow-patterns.md) <br>
-- [Dunning Playbook](references/dunning-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, sample UX copy, and campaign timing recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May adapt recommendations from local product-marketing context when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Cancellation-flow or billing-provider changes may affect real customer accounts or legal compliance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed cancellation, billing, CRM, email, and analytics changes with appropriate business and legal owners before applying them to production systems.
+
+Risk: Recommendations can be miscalibrated when churn, product-usage, cancellation-reason, or payment-failure data is incomplete.
+
+Mitigation: Ground rollout decisions in product-specific metrics, exit-survey data, payment-failure data, and controlled tests before making material offer or cancellation-flow changes.
+
+Risk: Retention and dunning experiences can harm users if they obscure cancellation, overuse discounts, or apply inappropriate urgency.
+
+Mitigation: Keep cancellation paths visible, match save offers to stated cancellation reasons, use clear payment consequences, and avoid guilt-trip copy.
+
+## Reference(s):
+
+- [Cancel Flow Patterns](artifact/references/cancel-flow-patterns.md)
+- [Dunning Playbook](artifact/references/dunning-playbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-churn-prevention)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text, configuration]
+
+**Output Format:** [Markdown guidance with tables, examples, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the artifact; outputs may propose billing, CRM, email, or analytics changes that require human approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

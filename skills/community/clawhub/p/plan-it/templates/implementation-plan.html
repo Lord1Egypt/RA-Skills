@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Implementation Plan</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fafaf7;
+    --fg: #1b1b18;
+    --muted: #5b5b56;
+    --accent: #c8553d;
+    --border: #1b1b18;
+    --border-soft: #c8c8c2;
+    --code: #f1f1ec;
+    --ok: #2a6f4e;
+    --warn: #b9802b;
+    --err: #a73326;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161613;
+      --fg: #ecece6;
+      --muted: #9c9c95;
+      --accent: #e07a5f;
+      --border: #ecece6;
+      --border-soft: #3a3a36;
+      --code: #232320;
+      --ok: #6ab089;
+      --warn: #d9a25a;
+      --err: #d96959;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.5;
+  }
+  header.bar {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header.bar h1 {
+    margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+  }
+  header.bar .meta {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 12px; color: var(--muted);
+  }
+  header.bar .actions { display: flex; gap: 8px; }
+  button {
+    font: inherit; font-size: 12px; padding: 6px 10px;
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--border); border-radius: 2px;
+    cursor: pointer;
+  }
+  button:hover { background: var(--fg); color: var(--bg); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  nav.tabs {
+    display: flex; gap: 0; padding: 0 24px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  nav.tabs button {
+    border: none; border-bottom: 2px solid transparent;
+    border-radius: 0; padding: 12px 16px;
+    color: var(--muted); background: transparent;
+  }
+  nav.tabs button[aria-selected="true"] {
+    color: var(--fg); border-bottom-color: var(--accent);
+  }
+  nav.tabs button:hover { color: var(--fg); background: transparent; }
+  main { padding: 24px; max-width: 1280px; margin: 0 auto; }
+  section[role="tabpanel"][hidden] { display: none; }
+  h2 {
+    font-family: ui-serif, Georgia, serif;
+    font-size: 18px; font-weight: 700; margin: 0 0 12px;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+  .phase {
+    border: 1px solid var(--border-soft); border-radius: 2px;
+    padding: 14px 16px; margin-bottom: 12px;
+    background: var(--bg);
+  }
+  .phase[data-status="in_progress"] { border-color: var(--accent); }
+  .phase[data-status="complete"] { opacity: 0.7; }
+  .phase[data-status="blocked"] { border-color: var(--err); }
+  .phase .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .phase h3 { margin: 0; font-size: 14px; font-weight: 600; }
+  .phase .badge {
+    font-family: ui-monospace, monospace;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 2px 6px; border: 1px solid currentColor; border-radius: 2px;
+  }
+  .badge.pending { color: var(--muted); }
+  .badge.in_progress { color: var(--accent); }
+  .badge.complete { color: var(--ok); }
+  .badge.blocked { color: var(--err); }
+  .phase ul { list-style: none; padding: 0; margin: 8px 0 0; }
+  .phase li { display: flex; align-items: flex-start; gap: 8px; padding: 4px 0; font-size: 14px; }
+  .phase li input[type="checkbox"] { margin: 4px 0 0; accent-color: var(--accent); }
+  .phase li.done { color: var(--muted); text-decoration: line-through; }
+  .phase .milestones { margin-top: 8px; font-size: 12px; color: var(--muted); }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    border: 1px solid var(--border-soft);
+  }
+  th, td {
+    text-align: left; padding: 8px 12px;
+    border-bottom: 1px solid var(--border-soft);
+    font-family: ui-monospace, monospace;
+  }
+  th { background: var(--code); font-weight: 600; }
+  pre.snippet {
+    background: var(--code); padding: 12px;
+    border: 1px solid var(--border-soft); border-radius: 2px;
+    overflow-x: auto;
+    font-family: ui-monospace, monospace; font-size: 12px;
+  }
+  .mock {
+    border: 1px solid var(--border-soft);
+    padding: 16px;
+    background: var(--code);
+    border-radius: 2px;
+  }
+  .mock-title { font-family: ui-monospace, monospace; font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .data-flow { width: 100%; height: 200px; }
+  .risk-high { color: var(--err); font-weight: 600; }
+  .risk-mid { color: var(--warn); font-weight: 600; }
+  .risk-low { color: var(--ok); font-weight: 600; }
+  footer.bar {
+    border-top: 1px solid var(--border); padding: 12px 24px;
+    font-family: ui-monospace, monospace; font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .skip-link {
+    position: absolute; left: -9999px; top: 8px;
+    padding: 8px 12px; background: var(--accent); color: var(--bg);
+  }
+  .skip-link:focus { left: 16px; }
+  .empty { font-style: italic; color: var(--muted); padding: 24px; text-align: center; }
+
+  /* --- v0.2.0 trust layer: integrity badge, approval gate, evidence, lock --- */
+  .integrity {
+    font-family: ui-monospace, monospace; font-size: 11px;
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
+  }
+  .integrity .dot { width: 8px; height: 8px; border: 1px solid currentColor; flex: none; }
+  .integrity.verified { color: var(--ok); }
+  .integrity.verified .dot { background: var(--ok); }
+  .integrity.unverified { color: var(--err); }
+  .integrity.unverified .dot { background: var(--err); }
+  .integrity.unsealed { color: var(--muted); }
+  .integrity.checking { color: var(--muted); font-style: italic; }
+  .approval { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-soft); }
+  .approval h4 {
+    margin: 0 0 6px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--muted); font-family: ui-monospace, monospace;
+  }
+  .approval dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 2px 12px; font-size: 13px; }
+  .approval dt { font-family: ui-monospace, monospace; font-size: 11px; color: var(--muted); }
+  .approval dd { margin: 0; }
+  .approval .est { color: var(--muted); font-size: 11px; }
+  .approval .controls { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+  .approval .decided { font-family: ui-monospace, monospace; font-size: 12px; margin-top: 8px; }
+  .approval .decided.approved { color: var(--ok); }
+  .approval .decided.rejected { color: var(--err); }
+  .approval .decided.changes_requested { color: var(--warn); }
+  .phase[data-locked="true"] { opacity: 0.5; border-left: 3px solid var(--err); }
+  .phase .lock-msg { font-family: ui-monospace, monospace; font-size: 11px; color: var(--err); margin-top: 6px; }
+  .evidence { margin-top: 8px; }
+  .evidence summary { cursor: pointer; font-size: 12px; font-family: ui-monospace, monospace; color: var(--ok); }
+  .evidence[data-missing="true"] summary { color: var(--err); }
+  .evidence table { margin-top: 6px; }
+  .evidence th { white-space: nowrap; vertical-align: top; width: 1px; }
+  .evidence pre { margin: 0; max-height: 160px; overflow: auto; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<header class="bar" role="banner">
+  <div>
+    <h1 id="plan-title">Implementation Plan</h1>
+    <div class="meta" id="plan-meta">template: implementation-plan</div>
+    <div class="integrity checking" id="integrity-badge" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="integrity-text">Checking seal&#8230;</span>
+    </div>
+  </div>
+  <div class="actions" role="group" aria-label="Plan actions">
+    <button type="button" id="btn-save" aria-label="Save plan.html to disk">Save</button>
+    <button type="button" id="btn-copy-md" aria-label="Copy plan as Markdown">Copy as Markdown</button>
+    <button type="button" id="btn-copy-json" aria-label="Copy plan-data as JSON">Copy as JSON</button>
+    <button type="button" id="btn-print" aria-label="Print plan">Print</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Plan sections">
+  <button role="tab" type="button" aria-controls="tab-phases" aria-selected="true" id="tab-phases-btn">Phases</button>
+  <button role="tab" type="button" aria-controls="tab-mockups" aria-selected="false" id="tab-mockups-btn">Mockups</button>
+  <button role="tab" type="button" aria-controls="tab-dataflow" aria-selected="false" id="tab-dataflow-btn">Data flow</button>
+  <button role="tab" type="button" aria-controls="tab-risks" aria-selected="false" id="tab-risks-btn">Risks</button>
+  <button role="tab" type="button" aria-controls="tab-decisions" aria-selected="false" id="tab-decisions-btn">Decisions</button>
+  <button role="tab" type="button" aria-controls="tab-progress" aria-selected="false" id="tab-progress-btn">Progress</button>
+  <button role="tab" type="button" aria-controls="tab-history" aria-selected="false" id="tab-history-btn">History</button>
+</nav>
+
+<main id="main">
+  <section role="tabpanel" id="tab-phases" aria-labelledby="tab-phases-btn">
+    <h2>Phases</h2>
+    <div id="phases-root"></div>
+  </section>
+
+  <section role="tabpanel" id="tab-mockups" aria-labelledby="tab-mockups-btn" hidden>
+    <h2>Mockups</h2>
+    <div class="grid-2" id="mockups-root"></div>
+  </section>
+
+  <section role="tabpanel" id="tab-dataflow" aria-labelledby="tab-dataflow-btn" hidden>
+    <h2>Data flow</h2>
+    <div class="mock">
+      <div class="mock-title">data-flow diagram (inline SVG)</div>
+      <svg class="data-flow" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data flow diagram">
+        <rect x="20" y="60" width="120" height="80" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="80" y="105" font-family="ui-monospace, monospace" font-size="12" fill="currentColor" text-anchor="middle">User</text>
+        <line x1="140" y1="100" x2="240" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="240" y="60" width="160" height="80" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="320" y="105" font-family="ui-monospace, monospace" font-size="12" fill="currentColor" text-anchor="middle">plan-it Skill</text>
+        <line x1="400" y1="100" x2="500" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="500" y="60" width="120" height="80" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="560" y="100" font-family="ui-monospace, monospace" font-size="12" fill="currentColor" text-anchor="middle">plan.html</text>
+        <text x="560" y="120" font-family="ui-monospace, monospace" font-size="10" fill="currentColor" text-anchor="middle">(disk)</text>
+        <line x1="620" y1="100" x2="720" y2="100" stroke="currentColor" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="720" y="60" width="60" height="80" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <text x="750" y="105" font-family="ui-monospace, monospace" font-size="11" fill="currentColor" text-anchor="middle">Browser</text>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </section>
+
+  <section role="tabpanel" id="tab-risks" aria-labelledby="tab-risks-btn" hidden>
+    <h2>Risks</h2>
+    <table>
+      <thead><tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr></thead>
+      <tbody id="risks-root"></tbody>
+    </table>
+  </section>
+
+  <section role="tabpanel" id="tab-decisions" aria-labelledby="tab-decisions-btn" hidden>
+    <h2>Decisions</h2>
+    <table>
+      <thead><tr><th>Decision</th><th>Rationale</th></tr></thead>
+      <tbody id="decisions-root"></tbody>
+    </table>
+  </section>
+
+  <section role="tabpanel" id="tab-progress" aria-labelledby="tab-progress-btn" hidden>
+    <h2>Progress log</h2>
+    <table>
+      <thead><tr><th>Timestamp</th><th>Phase</th><th>Action</th><th>Files</th></tr></thead>
+      <tbody id="progress-root"></tbody>
+    </table>
+  </section>
+
+  <section role="tabpanel" id="tab-history" aria-labelledby="tab-history-btn" hidden>
+    <h2>Plan history</h2>
+    <p class="meta">Append-only, hash-chained. Every seal and decision is logged so a re-seal is a visible act.</p>
+    <table>
+      <thead><tr><th>Timestamp</th><th>Event</th><th>Phase</th><th>Summary</th><th>Hash</th></tr></thead>
+      <tbody id="history-root"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="bar" role="contentinfo">
+  <div>plan-it v0.2.0 · single-file persistent HTML plan</div>
+  <div id="footer-sha">Plan integrity: checking&#8230;</div>
+</footer>
+
+<script type="application/json" id="plan-data">
+{
+  "schema_version": "0.2.0",
+  "plan_title": "Implementation Plan",
+  "goal": "Replace this with what you are building.",
+  "current_phase": 1,
+  "template": "implementation-plan",
+  "ownership": "agent",
+  "created_at": "2026-05-20T00:00:00Z",
+  "updated_at": "2026-05-20T00:00:00Z",
+  "gate": {"enforce_evidence": false, "require_approval": false},
+  "phases": [
+    {
+      "id": 1,
+      "title": "Phase 1: Foundation",
+      "status": "in_progress",
+      "approval": {
+        "state": "pending",
+        "approach": "Describe the approach you propose for this phase so the human can approve it before work begins.",
+        "blast_radius": ["the files or systems this phase will touch"],
+        "confidence": "medium",
+        "cost_estimate": "light",
+        "decided_at": null,
+        "decided_by": null,
+        "note": ""
+      },
+      "items": [
+        {"text": "Replace this item with your first task", "done": false, "owner": null},
+        {"text": "Add more items here", "done": false, "owner": null}
+      ],
+      "evidence": [],
+      "milestones": ["A clear, testable milestone for end of Phase 1"]
+    },
+    {
+      "id": 2,
+      "title": "Phase 2: Build",
+      "status": "pending",
+      "items": [
+        {"text": "Implementation tasks go here", "done": false, "owner": null}
+      ],
+      "evidence": [],
+      "milestones": []
+    },
+    {
+      "id": 3,
+      "title": "Phase 3: Verify",
+      "status": "pending",
+      "items": [
+        {"text": "Tests, review, sign-off", "done": false, "owner": null}
+      ],
+      "evidence": [],
+      "milestones": []
+    }
+  ],
+  "findings": [],
+  "progress_log": [],
+  "decisions": [
+    {"id": "d1", "decision": "Use HTML for the plan, not Markdown", "rationale": "Engagement, interactivity, persistence."}
+  ],
+  "errors": [],
+  "risks": [
+    {"risk": "Stakeholders skip long markdown plans", "severity": "high", "mitigation": "Render as a single navigable HTML with tabs and copy-buttons."},
+    {"risk": "Token budget inflates in chained-agent calls", "severity": "mid", "mitigation": "Run /plan-export markdown when sending the plan into an agent loop."},
+    {"risk": "Accessibility lapses in AI-generated HTML", "severity": "mid", "mitigation": "WCAG AA contrast, ARIA roles, keyboard nav baked into every template."}
+  ],
+  "mockups": [
+    {"title": "Hero", "html": "<div style='padding:24px;border:1px dashed currentColor'>Hero mockup<br><small>Replace with sketch / screenshot.</small></div>"},
+    {"title": "Detail view", "html": "<div style='padding:24px;border:1px dashed currentColor'>Detail mockup<br><small>Replace with sketch / screenshot.</small></div>"}
+  ],
+  "history": [],
+  "integrity": null,
+  "attestation_sha256": null
+}
+</script>
+
+<script>
+(() => {
+  "use strict";
+
+  const dataEl = document.getElementById("plan-data");
+  let plan = {};
+  try { plan = JSON.parse(dataEl.textContent); }
+  catch (e) {
+    document.getElementById("phases-root").innerHTML =
+      '<p class="empty">plan-data JSON could not be parsed.</p>';
+    return;
+  }
+
+  // Header
+  document.getElementById("plan-title").textContent = plan.plan_title || "Plan";
+  document.getElementById("plan-meta").textContent =
+    `template: ${plan.template || "(custom)"} · phase ${plan.current_phase ?? "?"} of ${(plan.phases || []).length}`;
+
+  // --- v0.2.0 content-seal verification ---------------------------------
+  // Vendored SHA-256 (no crypto.subtle: it is unavailable on some file://
+  // origins). Recomputes the seal /plan-attest wrote and compares live. The
+  // canonical form here is byte-identical to the Python sealer's (conformance
+  // tested). Tamper-EVIDENT, not tamper-proof: a re-seal of forged state is
+  // possible but is logged in history as a deliberate act.
+  function _sha256(bytes) {
+    var K = new Uint32Array([
+      0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+      0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+      0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+      0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+      0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+      0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+      0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+      0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2]);
+    var h0=0x6a09e667,h1=0xbb67ae85,h2=0x3c6ef372,h3=0xa54ff53a,
+        h4=0x510e527f,h5=0x9b05688c,h6=0x1f83d9ab,h7=0x5be0cd19;
+    var l=bytes.length, bitLen=l*8, withOne=l+1, pad=(56-(withOne%64)+64)%64, total=withOne+pad+8;
+    var m=new Uint8Array(total); m.set(bytes); m[l]=0x80;
+    var dv=new DataView(m.buffer);
+    dv.setUint32(total-8, Math.floor(bitLen/0x100000000)); dv.setUint32(total-4, bitLen>>>0);
+    var w=new Uint32Array(64), rotr=function(x,n){return (x>>>n)|(x<<(32-n));};
+    for (var off=0; off<total; off+=64) {
+      for (var i=0;i<16;i++) w[i]=dv.getUint32(off+i*4);
+      for (i=16;i<64;i++){
+        var s0=rotr(w[i-15],7)^rotr(w[i-15],18)^(w[i-15]>>>3);
+        var s1=rotr(w[i-2],17)^rotr(w[i-2],19)^(w[i-2]>>>10);
+        w[i]=(w[i-16]+s0+w[i-7]+s1)>>>0;
+      }
+      var a=h0,b=h1,c=h2,d=h3,e=h4,f=h5,g=h6,h=h7;
+      for (i=0;i<64;i++){
+        var S1=rotr(e,6)^rotr(e,11)^rotr(e,25), ch=(e&f)^(~e&g);
+        var t1=(h+S1+ch+K[i]+w[i])>>>0;
+        var S0=rotr(a,2)^rotr(a,13)^rotr(a,22), maj=(a&b)^(a&c)^(b&c);
+        var t2=(S0+maj)>>>0;
+        h=g; g=f; f=e; e=(d+t1)>>>0; d=c; c=b; b=a; a=(t1+t2)>>>0;
+      }
+      h0=(h0+a)>>>0;h1=(h1+b)>>>0;h2=(h2+c)>>>0;h3=(h3+d)>>>0;
+      h4=(h4+e)>>>0;h5=(h5+f)>>>0;h6=(h6+g)>>>0;h7=(h7+h)>>>0;
+    }
+    var hex=function(x){return ("00000000"+(x>>>0).toString(16)).slice(-8);};
+    return [h0,h1,h2,h3,h4,h5,h6,h7].map(hex).join("");
+  }
+  function _utf8(s) { return new TextEncoder().encode(s); }
+  function _canon(v) {
+    if (v === null) return "null";
+    if (Array.isArray(v)) return "[" + v.map(_canon).join(",") + "]";
+    if (typeof v === "object") {
+      return "{" + Object.keys(v).sort().map(function (k) {
+        return JSON.stringify(k) + ":" + _canon(v[k]);
+      }).join(",") + "}";
+    }
+    return JSON.stringify(v);
+  }
+  function _shaText(s) { return _sha256(_utf8(s)); }
+  function _changedSections(integ) {
+    var want = integ.sections || {};
+    var now = {
+      phases: _shaText(_canon(plan.phases || [])),
+      gate: _shaText(_canon(plan.gate || {})),
+      history: _shaText(_canon(plan.history || []))
+    };
+    return Object.keys(now).filter(function (k) { return now[k] !== want[k]; });
+  }
+  function verifyIntegrity() {
+    var el = document.getElementById("integrity-badge");
+    var txt = document.getElementById("integrity-text");
+    var foot = document.getElementById("footer-sha");
+    try {
+      var integ = plan.integrity;
+      if (!integ || !integ.value) {
+        if (el) el.className = "integrity unsealed";
+        if (txt) txt.textContent = "Not sealed · run /plan-attest to lock";
+        if (foot) foot.textContent = "Plan integrity: not sealed";
+        return;
+      }
+      var body = {};
+      Object.keys(plan).forEach(function (k) { if (k !== "integrity") body[k] = plan[k]; });
+      if (_shaText(_canon(body)) === integ.value) {
+        if (el) el.className = "integrity verified";
+        if (txt) txt.textContent = "Verified against seal · " + integ.value.slice(0, 8);
+        if (foot) foot.textContent = "Plan integrity: verified · SHA-256 " + integ.value +
+          (integ.sealed_at ? " · sealed " + integ.sealed_at : "");
+      } else {
+        if (el) el.className = "integrity unverified";
+        var changed = _changedSections(integ);
+        if (txt) txt.textContent = "Edited since seal · " + (changed.length ? changed.join(", ") : "content changed");
+        if (foot) foot.textContent = "Plan integrity: edited since seal · re-run /plan-attest after review";
+      }
+    } catch (err) {
+      if (el) el.className = "integrity unverified";
+      if (txt) txt.textContent = "Seal check failed";
+    }
+  }
+
+  // Render containers. Clear before populate so re-opens of a Saved file do
+  // not double-render the cards baked into the serialized DOM.
+  const phasesRoot = document.getElementById("phases-root");
+
+  function renderPhases() {
+    phasesRoot.replaceChildren();
+    const phases = plan.phases || [];
+    // A rejected phase locks every downstream phase: the human's reject flows
+    // into the JSON and the agent's hook surfaces the lock on its next read.
+    let lockedFrom = -1;
+    phases.forEach((p, i) => {
+      if (lockedFrom < 0 && (p.approval || {}).state === "rejected") lockedFrom = i;
+    });
+
+    phases.forEach((ph, idx) => {
+      const locked = lockedFrom >= 0 && idx > lockedFrom;
+      const div = document.createElement("article");
+      div.className = "phase";
+      div.setAttribute("data-status", ph.status || "pending");
+      if (locked) div.setAttribute("data-locked", "true");
+      div.setAttribute("aria-labelledby", `phase-${ph.id}-title`);
+
+      const row = document.createElement("div");
+      row.className = "row";
+      const h3 = document.createElement("h3");
+      h3.id = `phase-${ph.id}-title`;
+      h3.textContent = ph.title || `Phase ${ph.id}`;
+      const badge = document.createElement("span");
+      badge.className = "badge " + (ph.status || "pending");
+      badge.textContent = ph.status || "pending";
+      row.appendChild(h3);
+      row.appendChild(badge);
+      div.appendChild(row);
+
+      if (locked) {
+        const lm = document.createElement("p");
+        lm.className = "lock-msg";
+        lm.textContent = "Locked: an earlier phase was rejected. Resolve that decision before this phase proceeds.";
+        div.appendChild(lm);
+        phasesRoot.appendChild(div);
+        return;
+      }
+
+      renderApproval(ph, div);
+
+      if ((ph.items || []).length) {
+        const ul = document.createElement("ul");
+        ph.items.forEach((it, i2) => {
+          const li = document.createElement("li");
+          if (it.done) li.classList.add("done");
+          const cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.checked = !!it.done;
+          cb.setAttribute("aria-label", "Mark item " + (i2 + 1) + " complete");
+          cb.addEventListener("change", () => {
+            it.done = cb.checked;
+            li.classList.toggle("done", cb.checked);
+            touch();
+          });
+          const span = document.createElement("span");
+          span.textContent = it.text || "";
+          li.appendChild(cb);
+          li.appendChild(span);
+          if (it.owner) {
+            const owner = document.createElement("em");
+            owner.style.color = "var(--muted)";
+            owner.style.marginLeft = "6px";
+            owner.textContent = "@" + it.owner;
+            li.appendChild(owner);
+          }
+          ul.appendChild(li);
+        });
+        div.appendChild(ul);
+      }
+
+      renderEvidence(ph, div);
+
+      if ((ph.milestones || []).length) {
+        const m = document.createElement("div");
+        m.className = "milestones";
+        m.textContent = "Milestones: " + ph.milestones.join(" · ");
+        div.appendChild(m);
+      }
+
+      phasesRoot.appendChild(div);
+    });
+  }
+
+  function renderApproval(ph, div) {
+    const ap = ph.approval;
+    if (!ap || !ap.state) return;
+    const wrap = document.createElement("div");
+    wrap.className = "approval";
+    const h4 = document.createElement("h4");
+    h4.textContent = ap.state === "pending" ? "Awaiting approval" : "Approval";
+    wrap.appendChild(h4);
+    const dl = document.createElement("dl");
+    const addRow = (k, v, est) => {
+      if (!v) return;
+      const dt = document.createElement("dt"); dt.textContent = k;
+      const dd = document.createElement("dd"); dd.textContent = v;
+      if (est) {
+        const e = document.createElement("span");
+        e.className = "est"; e.textContent = " (est.)";
+        dd.appendChild(e);
+      }
+      dl.appendChild(dt); dl.appendChild(dd);
+    };
+    addRow("Approach", ap.approach);
+    if ((ap.blast_radius || []).length) addRow("Blast radius", ap.blast_radius.join(", "));
+    if (ap.confidence) addRow("Confidence", ap.confidence, true);
+    if (ap.cost_estimate) addRow("Cost", ap.cost_estimate, true);
+    wrap.appendChild(dl);
+    if (ap.state === "pending") {
+      const controls = document.createElement("div");
+      controls.className = "controls";
+      [["Approve", "approved"], ["Request changes", "changes_requested"], ["Reject", "rejected"]].forEach((pair) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = pair[0];
+        b.setAttribute("aria-label", pair[0] + " phase " + ph.id);
+        b.addEventListener("click", () => decide(ph, pair[1]));
+        controls.appendChild(b);
+      });
+      wrap.appendChild(controls);
+    } else {
+      const d = document.createElement("div");
+      d.className = "decided " + ap.state;
+      const who = ap.decided_by ? " by " + ap.decided_by : "";
+      const when = ap.decided_at ? " at " + ap.decided_at : "";
+      d.textContent = ap.state.replace("_", " ") + who + when;
+      wrap.appendChild(d);
+      if (ap.note) {
+        const n = document.createElement("div");
+        n.className = "est"; n.textContent = "Note: " + ap.note;
+        wrap.appendChild(n);
+      }
+    }
+    div.appendChild(wrap);
+  }
+
+  function renderEvidence(ph, div) {
+    const ev = ph.evidence || [];
+    const usable = ev.some((e) => (e.command || "").trim() && (e.output || "").trim() && (e.probe || "").trim());
+    // A complete phase with no usable evidence pack is flagged in the page, not
+    // only by the agent-side gate. Matches what the Stop hook would block.
+    if (ph.status === "complete" && !usable) {
+      const warn = document.createElement("p");
+      warn.className = "lock-msg";
+      warn.textContent = "Marked complete without an evidence pack (command + output + re-runnable probe).";
+      div.appendChild(warn);
+    }
+    if (!ev.length) return;
+    const det = document.createElement("details");
+    det.className = "evidence";
+    if (ph.status === "complete" && !usable) det.setAttribute("data-missing", "true");
+    const sum = document.createElement("summary");
+    sum.textContent = "Evidence (" + ev.length + ") · re-run a probe to verify";
+    det.appendChild(sum);
+    ev.forEach((e) => {
+      const t = document.createElement("table");
+      const rows = [
+        ["command", e.command || ""],
+        ["output", e.output || ""],
+        ["exit", (e.exit_code === null || e.exit_code === undefined) ? "" : String(e.exit_code)],
+        ["probe (re-run to verify)", e.probe || ""],
+        ["checked", e.checked_at || ""]
+      ];
+      rows.forEach((kv) => {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th"); th.scope = "row"; th.textContent = kv[0];
+        const td = document.createElement("td");
+        if (kv[0] === "output") {
+          const pre = document.createElement("pre"); pre.textContent = kv[1];
+          td.appendChild(pre);
+        } else {
+          td.textContent = kv[1];
+        }
+        tr.appendChild(th); tr.appendChild(td); t.appendChild(tr);
+      });
+      det.appendChild(t);
+    });
+    div.appendChild(det);
+  }
+
+  function decide(ph, state) {
+    if (!ph.approval) ph.approval = {};
+    ph.approval.state = state;
+    ph.approval.decided_at = new Date().toISOString();
+    ph.approval.decided_by = "user";
+    touch();
+    renderPhases();
+  }
+
+  renderPhases();
+  verifyIntegrity();
+
+  // Mockups
+  const mocksRoot = document.getElementById("mockups-root");
+  mocksRoot.replaceChildren();
+  (plan.mockups || []).forEach((m) => {
+    const wrap = document.createElement("div");
+    wrap.className = "mock";
+    const title = document.createElement("div");
+    title.className = "mock-title";
+    title.textContent = m.title || "Mockup";
+    wrap.appendChild(title);
+    const body = document.createElement("div");
+    // Mockup HTML is plan-author-provided. Treat as trusted: it ships inline in plan.html.
+    body.innerHTML = m.html || "";
+    wrap.appendChild(body);
+    mocksRoot.appendChild(wrap);
+  });
+
+  // Risks
+  const risksRoot = document.getElementById("risks-root");
+  risksRoot.replaceChildren();
+  (plan.risks || []).forEach((r) => {
+    const tr = document.createElement("tr");
+    const td1 = document.createElement("td"); td1.textContent = r.risk || "";
+    const td2 = document.createElement("td");
+    td2.textContent = r.severity || "";
+    td2.className = r.severity === "high" ? "risk-high" : r.severity === "mid" ? "risk-mid" : "risk-low";
+    const td3 = document.createElement("td"); td3.textContent = r.mitigation || "";
+    tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
+    risksRoot.appendChild(tr);
+  });
+
+  // Decisions
+  const decisionsRoot = document.getElementById("decisions-root");
+  decisionsRoot.replaceChildren();
+  (plan.decisions || []).forEach((d) => {
+    const tr = document.createElement("tr");
+    const td1 = document.createElement("td"); td1.textContent = d.decision || "";
+    const td2 = document.createElement("td"); td2.textContent = d.rationale || "";
+    tr.appendChild(td1); tr.appendChild(td2);
+    decisionsRoot.appendChild(tr);
+  });
+
+  // Progress
+  const progressRoot = document.getElementById("progress-root");
+  progressRoot.replaceChildren();
+  (plan.progress_log || []).forEach((p) => {
+    const tr = document.createElement("tr");
+    ["ts", "phase", "action"].forEach((k) => {
+      const td = document.createElement("td");
+      td.textContent = p[k] ?? "";
+      tr.appendChild(td);
+    });
+    const filesTd = document.createElement("td");
+    filesTd.textContent = (p.files || []).join(", ");
+    tr.appendChild(filesTd);
+    progressRoot.appendChild(tr);
+  });
+
+  // History (append-only, hash-chained audit log)
+  const historyRoot = document.getElementById("history-root");
+  historyRoot.replaceChildren();
+  (plan.history || []).forEach((h) => {
+    const tr = document.createElement("tr");
+    [h.ts, h.kind, (h.phase == null ? "" : h.phase), h.summary].forEach((v) => {
+      const td = document.createElement("td");
+      td.textContent = (v == null ? "" : String(v));
+      tr.appendChild(td);
+    });
+    const hashTd = document.createElement("td");
+    hashTd.textContent = h.hash ? String(h.hash).slice(0, 8) : "";
+    historyRoot.appendChild(tr).appendChild(hashTd);
+  });
+
+  // Tabs
+  const tabBtns = Array.from(document.querySelectorAll('[role="tab"]'));
+  const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+  const selectTab = (idx) => {
+    tabBtns.forEach((b, i) => {
+      const sel = i === idx;
+      b.setAttribute("aria-selected", String(sel));
+      b.tabIndex = sel ? 0 : -1;
+    });
+    panels.forEach((p, i) => p.hidden = i !== idx);
+  };
+  tabBtns.forEach((b, i) => {
+    b.addEventListener("click", () => selectTab(i));
+    b.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        const n = (i + 1) % tabBtns.length;
+        tabBtns[n].focus(); selectTab(n);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        const n = (i - 1 + tabBtns.length) % tabBtns.length;
+        tabBtns[n].focus(); selectTab(n);
+      }
+    });
+  });
+
+  // Copy buttons
+  const toMarkdown = () => {
+    const lines = [];
+    lines.push("# " + (plan.plan_title || "Plan"));
+    if (plan.goal) lines.push("\n## Goal\n" + plan.goal);
+    lines.push("\n## Phases");
+    (plan.phases || []).forEach((ph) => {
+      lines.push(`\n### Phase ${ph.id}: ${ph.title} (${ph.status})`);
+      (ph.items || []).forEach((it) => {
+        lines.push(`- [${it.done ? "x" : " "}] ${it.text}`);
+      });
+      if ((ph.milestones || []).length) {
+        lines.push("- **Milestones:** " + ph.milestones.join("; "));
+      }
+    });
+    if ((plan.risks || []).length) {
+      lines.push("\n## Risks");
+      lines.push("| Risk | Severity | Mitigation |");
+      lines.push("|---|---|---|");
+      plan.risks.forEach((r) => {
+        lines.push(`| ${r.risk} | ${r.severity} | ${r.mitigation} |`);
+      });
+    }
+    if ((plan.decisions || []).length) {
+      lines.push("\n## Decisions");
+      plan.decisions.forEach((d) => lines.push(`- **${d.decision}** — ${d.rationale}`));
+    }
+    return lines.join("\n");
+  };
+
+  const copyText = async (text) => {
+    try {
+      if (navigator.clipboard) await navigator.clipboard.writeText(text);
+      else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); document.body.removeChild(ta);
+      }
+    } catch (e) { /* no-op */ }
+  };
+
+  document.getElementById("btn-copy-md").addEventListener("click", () => copyText(toMarkdown()));
+  document.getElementById("btn-copy-json").addEventListener("click", () => copyText(JSON.stringify(plan, null, 2)));
+  document.getElementById("btn-print").addEventListener("click", () => window.print());
+  document.getElementById("btn-save").addEventListener("click", savePlanHtml);
+
+  function touch() {
+    plan.updated_at = new Date().toISOString();
+    // An in-browser edit diverges the content from the last seal: reflect that
+    // honestly in the badge. The human re-runs /plan-attest to re-seal.
+    verifyIntegrity();
+  }
+
+  function flashSaved(btn, msg) {
+    const orig = btn.dataset.origLabel || btn.textContent;
+    btn.dataset.origLabel = orig;
+    btn.textContent = msg;
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 2000);
+  }
+
+  async function savePlanHtml() {
+    const btn = document.getElementById("btn-save");
+    // Push current state into the embedded data block so serialized HTML carries it.
+    // Replace '<' with its \u escape on write-back to neutralize close-script
+    // sequences a user typed into a plan string. JSON.parse round-trips the
+    // escape back to '<' on reload, preserving semantics.
+    dataEl.textContent = JSON.stringify(plan, null, 2).replace(/</g, "\\u003c");
+    const html = "<!doctype html>\n" + document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+
+    // File System Access API (Chromium): overwrite in place after first picker.
+    if (window.showSaveFilePicker) {
+      try {
+        if (!window.__planFileHandle) {
+          window.__planFileHandle = await window.showSaveFilePicker({
+            suggestedName: "plan.html",
+            types: [{ description: "plan-it HTML plan", accept: { "text/html": [".html"] } }],
+          });
+        }
+        const writable = await window.__planFileHandle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+        flashSaved(btn, "Saved");
+        return;
+      } catch (e) {
+        if (e && e.name === "AbortError") return;
+        // fall through to download fallback
+      }
+    }
+
+    // Download fallback (Firefox, Safari): user moves the file into the project.
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "plan.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    flashSaved(btn, "Downloaded");
+  }
+})();
+</script>
+</body>
+</html>

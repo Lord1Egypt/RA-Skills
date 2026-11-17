@@ -1,0 +1,4 @@
+interface:
+  display_name: "Organize Task Package"
+  short_description: "Organize auditable task packages and launch workflows"
+  default_prompt: "Use $organize-task-package to prepare an auditable task package, derive launch settings, and arrange inherited-subagent or explicit self-review after confirmation."

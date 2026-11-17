@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7cy2z5e60pxd0830tar97xwx866ydt",
-  "slug": "chinese-handwriting-ocr",
-  "version": "1.0.1",
-  "publishedAt": 1778500576586
-}
+﻿{"name":"chinese-handwriting-ocr","version":"1.0.0","description":"中文手写体OCR引擎"}

@@ -1,46 +1,70 @@
-## Description: <br>
-Automatically signs in to QQ Mail, searches invoice emails by date range, downloads PDF attachments and ZIP archives, filters non-invoice files, and creates classified Excel and JSON reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically logs in to QQ Mail, searches invoice email by date, downloads PDF attachments, extracts ZIP files, filters non-invoices, and produces categorized Excel reports.
 
-## Publisher: <br>
-[frankfushmomentlab](https://clawhub.ai/user/frankfushmomentlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankfushmomentlab](https://clawhub.ai/user/frankfushmomentlab)
 
-## Use Case: <br>
-Employees, finance operators, and developers can use this skill to collect invoice files from QQ Mail over a requested date range and produce organized invoice reports for reconciliation or recordkeeping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded QQ and Telegram secrets may expose real accounts or allow unauthorized access. <br>
-Mitigation: Remove embedded secrets, rotate affected credentials, and require users to provide credentials through secure local configuration or environment variables. <br>
-Risk: SSL verification bypass can weaken protection when downloading invoice files. <br>
-Mitigation: Disable the bypass by default, require explicit user approval for any fallback, and log when certificate verification is not enforced. <br>
-Risk: Invoice email content and reports may be shared with MiniMax or Telegram without sufficient disclosure. <br>
-Mitigation: Document all external data sharing, make integrations opt-in, and avoid sending sensitive invoice data unless the user has approved the destination. <br>
+## Use Case:
 
+Finance, operations, and personal productivity users can use this skill to collect invoice files from QQ Mail over a selected date range and organize the results into local attachments, JSON logs, and Excel reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/frankfushmomentlab/qq-invoice-downloader) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
-- [FINAL_TEST_REPORT.md](artifact/FINAL_TEST_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples; generated runtime outputs include downloaded invoice files, Excel workbooks, and JSON logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied QQ Mail credentials and optional MiniMax API configuration; Playwright browser steps must run serially.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Embedded QQ and Telegram credentials may expose accounts or messaging destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded secrets, rotate any exposed credentials, and require credentials through a managed secrets mechanism or environment variables before use.
+
+Risk: Poorly scoped Telegram reporting and outbound network behavior may disclose invoice or mailbox information.
+
+Mitigation: Disable reporting by default or explicitly scope approved reporting destinations and payload contents.
+
+Risk: TLS verification changes can make invoice downloads vulnerable to interception.
+
+Mitigation: Keep TLS verification enabled and fail closed when certificate validation fails.
+
+Risk: Automated email link processing can follow untrusted invoice links.
+
+Mitigation: Add trusted-domain checks before browser automation or direct downloads act on links extracted from email.
+
+Risk: Optional MiniMax LLM analysis may send mailbox content to an external service.
+
+Mitigation: Confirm privacy and compliance acceptability before enabling LLM analysis, and disable or redact inputs when sensitive mailbox content should remain local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankfushmomentlab/skills/qq-invoice-downloader)
+- [README](artifact/README.md)
+- [Skill usage notes](artifact/SKILL.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Final test report](artifact/FINAL_TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime outputs invoice files, extracted archives, Excel reports, and JSON logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided QQ Mail authorization credentials, local output paths, Playwright browser automation, and optional MiniMax API configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

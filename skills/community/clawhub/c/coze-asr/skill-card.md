@@ -1,45 +1,55 @@
-## Description: <br>
-Automatic Speech Recognition (ASR) using Coze API. Use when you need to transcribe audio files to text. Supports Chinese audio transcription via Coze's speech-to-text API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic Speech Recognition (ASR) using Coze API. Use when you need to transcribe audio files to text. Supports Chinese audio transcription via Coze's speech-to-text API.
 
-## Publisher: <br>
-[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe local MP3, WAV, or OGG audio files through the Coze speech-to-text API and receive the transcription as JSON text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are uploaded to Coze for transcription. <br>
-Mitigation: Use only audio that is approved for external transcription and avoid sensitive or confidential recordings unless authorization is in place. <br>
-Risk: The skill depends on a COZE_API_KEY credential. <br>
-Mitigation: Store the API key in the environment, avoid committing it, and rotate it if exposure is suspected. <br>
-Risk: The release metadata lists jq, while security guidance also notes that curl is needed. <br>
-Mitigation: Confirm both jq and curl are installed before relying on the transcription script. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local MP3, WAV, or OGG audio files through Coze's speech-to-text API, with Chinese as the default language and optional language selection.
 
-## Reference(s): <br>
-- [Coze Platform](https://www.coze.cn/) <br>
-- [Coze audio transcription API endpoint](https://api.coze.cn/v1/audio/transcriptions) <br>
-- [ClawHub skill page](https://clawhub.ai/franklu0819-lang/coze-asr) <br>
-- [Publisher profile](https://clawhub.ai/user/franklu0819-lang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [JSON transcription output with status and transcript text printed by the shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COZE_API_KEY, jq, curl, and a local audio file; the optional language parameter defaults to zh.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Selected audio files are uploaded to Coze's API, which can create privacy or consent risk for confidential, regulated, or third-party recordings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only recordings you are authorized to process, avoid confidential or regulated audio unless Coze's data handling terms have been approved, and obtain required consent for third-party recordings.
+
+Risk: The skill requires a COZE_API_KEY to call an external transcription service.
+
+Mitigation: Provide the API key through the environment, avoid embedding it in files or prompts, and rotate it if it is exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/franklu0819-lang/skills/coze-asr)
+- [Coze Platform](https://www.coze.cn/)
+- [Coze Audio Transcriptions API Endpoint](https://api.coze.cn/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON transcription responses with concise Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq and the COZE_API_KEY environment variable; accepts an audio file path and optional language code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

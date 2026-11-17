@@ -1,44 +1,54 @@
-## Description: <br>
-Lead generation, prospecting, and qualification for B2B sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead Gen supports B2B lead generation, prospecting, and qualification by guiding ICP definition, prospect discovery, contact enrichment, lead scoring, and CSV-ready reporting.
 
-## Publisher: <br>
-[v3ads](https://clawhub.ai/user/v3ads) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[v3ads](https://clawhub.ai/user/v3ads)
 
-## Use Case: <br>
-Sales teams, founders, and go-to-market operators use this skill to define an ideal customer profile, find target companies and decision makers, enrich lead records, score prospects, and prepare pipeline-ready outreach lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide contact enrichment and guessed business email discovery without proving consent or lawful basis. <br>
-Mitigation: Use it only for authorized B2B prospecting, prefer opt-in or official business contact sources, and label guessed emails as unverified until independently confirmed. <br>
-Risk: Prospecting workflows can conflict with anti-spam, privacy, platform, or opt-out requirements. <br>
-Mitigation: Define a clear ICP and outreach purpose before use, honor opt-outs, and check CAN-SPAM, GDPR, platform terms, and applicable local rules before outreach. <br>
-Risk: Search tactics may surface personal profiles or developer artifacts that are not appropriate outreach sources. <br>
-Mitigation: Avoid mining personal profiles or developer artifacts for outreach unless there is a documented lawful basis and the source is appropriate for business contact use. <br>
+## Use Case:
 
+Sales teams, founders, and go-to-market operators use this skill to define an ICP, find and qualify B2B prospects, enrich decision-maker information, score leads, and prepare pipeline-ready lead lists.
 
-## Reference(s): <br>
-- [Lead Scoring Rubric](references/scoring-rubric.md) <br>
-- [Lead Gen Search Playbook](references/search-playbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/v3ads/lead-gen-x) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and CSV-ready lead tables, with optional JSON or CSV produced by the enrichment script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lead records can include contact fields, ICP scoring components, priority labels, buying-signal notes, and suggested outreach angles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Collecting or estimating professional contact emails can create privacy and acceptable-use risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to authorized B2B prospecting, follow applicable privacy laws and site terms, avoid personal or sensitive data, and retain generated lead lists only as long as needed.
+
+Risk: Bulk prospect discovery can encourage harvesting or guessing contact information beyond an organization's policy.
+
+Mitigation: Review the workflow before real outreach, restrict collection volume and data fields to policy-approved purposes, and avoid guessed emails unless explicitly permitted.
+
+## Reference(s):
+
+- [Lead Scoring Rubric](references/scoring-rubric.md)
+- [Lead Gen Search Playbook](references/search-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, CSV, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and CSV-ready tables, with optional CSV or JSON output from the enrichment script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lead records may include names, titles, companies, estimated emails, LinkedIn URLs, lead scores, priority labels, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

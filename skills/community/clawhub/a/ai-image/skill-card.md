@@ -1,44 +1,61 @@
-## Description: <br>
-Build and execute skills.video image generation REST requests from OpenAPI specs for creating, debugging, or documenting image generation calls on open.skills.video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and execute skills.video image generation REST requests from OpenAPI specs.
 
-## Publisher: <br>
-[skills-video](https://clawhub.ai/user/skills-video) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills-video](https://clawhub.ai/user/skills-video)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure skills.video API access, inspect OpenAPI contracts, build valid image-generation payloads, execute SSE-first generation requests, and fall back to polling until a terminal result is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The configured API key may be sent to caller-supplied URLs outside the intended skills.video service. <br>
-Mitigation: Use the default https://open.skills.video API base, avoid custom full URLs or base URLs unless verified as controlled by skills.video, and prefer a version that allowlists the intended API host before adding Authorization headers. <br>
-Risk: The skill requires a bearer API key for runtime API calls. <br>
-Mitigation: Store SKILLS_VIDEO_API_KEY in the agent or shell environment, keep it out of files and prompts, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to create, debug, or document image generation requests against the skills.video Open Platform API. It helps inspect OpenAPI schemas, produce endpoint-ready payloads, execute SSE-first generation calls, and wait for terminal results.
 
-## Reference(s): <br>
-- [AI Image ClawHub Skill Page](https://clawhub.ai/skills-video/ai-image) <br>
-- [skills.video Homepage](https://skills.video) <br>
-- [skills-video Skills Repository](https://github.com/skills-video/skills) <br>
-- [skills.video Open Platform API Contract](references/open-platform-api.md) <br>
-- [Image Model Endpoints Snapshot](references/image-model-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses API-key-backed calls to skills.video, prefers SSE results, and should return only terminal generation states.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can send the user's API key to an unintended network destination if endpoint options are misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with the intended https://open.skills.video API, avoid full custom URLs or untrusted base URLs, and review endpoint arguments before execution.
+
+Risk: API keys may be exposed if users hardcode SKILLS_VIDEO_API_KEY in files or shell profile snippets.
+
+Mitigation: Store SKILLS_VIDEO_API_KEY in managed skill environment settings and avoid committing credentials to files.
+
+Risk: The security verdict is suspicious, so installation may carry higher review requirements.
+
+Mitigation: Review the skill before installing and scan changes before deployment.
+
+## Reference(s):
+
+- [skills.video homepage](https://skills.video)
+- [skills-video repository](https://github.com/skills-video/skills)
+- [Open Platform API Contract](references/open-platform-api.md)
+- [Image Model Endpoints](references/image-model-endpoints.md)
+- [AI Image ClawHub listing](https://clawhub.ai/skills-video/skills/ai-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads, shell commands, and JSON event output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLS_VIDEO_API_KEY for live API calls; helpers use SSE first and polling only as fallback until terminal generation status.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

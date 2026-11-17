@@ -39,7 +39,7 @@ try:
     from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
     from tencentcloud.common.common_client import CommonClient
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -59,13 +59,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -387,7 +390,9 @@ def create_element(args):
             wait_result = wait_for_task(client, task_id, args.sub_app_id, args.max_wait)
             if wait_result is None:
                 print(f"\n⏱️ 等待超时（{args.max_wait}秒），任务仍在执行中")
-                print(f"📋 可稍后手动查询: python scripts/vod_describe_task.py --task-id {task_id}")
+                print(f"📋 可稍后手动查询: python3 scripts/vod_describe_task.py --task-id {task_id}")
+            else:
+                print_task_outputs(wait_result)
 
         if args.json:
             print("\nJSON 响应:")
@@ -433,6 +438,85 @@ def list_elements(args):
         print()
 
 
+def print_task_outputs(result):
+    """从任务返回结果中提取并打印产物（FileUrl / FileId / SubjectId 等）。
+
+    兼容多种任务返回结构，按优先级展示：
+    - 顶层 FileId / FileUrl（上传/拉取上传任务）
+    - SubjectId / ElementId（自定义主体任务）
+    - Output.FileInfos[].{FileUrl, FileId}（AIGC / 处理类任务）
+    - Output.FileUrl（部分任务）
+    - 错误信息（FAIL 状态）
+    """
+    if not result:
+        return
+
+    # AIGC 任务可能嵌套在 AigcImageTask/AigcVideoTask 等子对象内
+    task = result
+    for key in ('AigcImageTask', 'AigcVideoTask', 'TaskDetail', 'Data'):
+        if isinstance(result.get(key), dict):
+            task = result[key]
+            break
+
+    # 失败：打印错误信息
+    if task.get('Status') == 'FAIL' or task.get('ErrCode'):
+        err = task.get('Message') or task.get('ErrCodeExt') or '任务失败'
+        print(f"⚠️  错误信息: {err}")
+        return
+
+    printed = False
+
+    # 顶层 SubjectId / ElementId（自定义主体）
+    for sid_key in ('SubjectId', 'ElementId', 'CustomElementId'):
+        if task.get(sid_key) or result.get(sid_key):
+            sid = task.get(sid_key) or result.get(sid_key)
+            print(f"\n🆔 {sid_key}: {sid}")
+            printed = True
+
+    # 顶层 FileId / FileUrl（上传 / 拉取上传）
+    if task.get('FileId') or result.get('FileId'):
+        fid = task.get('FileId') or result.get('FileId')
+        print(f"\n📂 FileId: {fid}")
+        printed = True
+    if task.get('FileUrl') or result.get('FileUrl'):
+        url = task.get('FileUrl') or result.get('FileUrl')
+        print(f"   URL    : {url}")
+        printed = True
+
+    # Output 内的 FileInfos / FileUrl
+    output = task.get('Output') or result.get('Output') or {}
+    file_infos = output.get('FileInfos') or output.get('FileInfoSet') or []
+
+    if file_infos:
+        print(f"\n📦 产物（{len(file_infos)} 个文件）:")
+        for i, fi in enumerate(file_infos, 1):
+            url = fi.get('FileUrl') or fi.get('Url') or ''
+            fid = fi.get('FileId') or ''
+            ftype = fi.get('FileType') or fi.get('Type') or ''
+            prefix = f"  [{i}]" if len(file_infos) > 1 else "  •"
+            label_parts = []
+            if ftype:
+                label_parts.append(ftype)
+            if fid:
+                label_parts.append(f"FileId={fid}")
+            if label_parts:
+                print(f"{prefix} {' '.join(label_parts)}")
+                if url:
+                    print(f"     URL: {url}")
+            elif url:
+                print(f"{prefix} URL: {url}")
+        printed = True
+    elif output.get('FileUrl'):
+        print(f"\n📦 产物 URL: {output['FileUrl']}")
+        if output.get('FileId'):
+            print(f"   FileId  : {output['FileId']}")
+        printed = True
+
+    if not printed:
+        # 兜底：完成但没找到标准产物字段
+        print(f"\n💡 任务已完成（状态: {task.get('Status', 'N/A')}），如需详细信息使用 --json 查看完整响应")
+
+
 def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
     """等待任务完成"""
     print(f"\n等待任务完成 (TaskId: {task_id})...")
@@ -476,16 +560,25 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
 # ─────────────────────────────────────────────
 
 def main():
+    # 先加载 .env，确保 argparse `default=os.environ.get(...)` 求值前环境变量已就绪
+    # 修复 BUG：之前 SubAppId 默认值在 add_argument 时立即从环境变量取值，
+    # 但 .env 加载发生在 get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description="VOD AIGC 高级自定义主体创建工具\n基于 CreateAigcAdvancedCustomElement API",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:
   # 交互式引导创建（推荐）
-  python vod_create_aigc_advanced_custom_element.py create --interactive
+  python3 vod_create_aigc_advanced_custom_element.py create --interactive
 
   # 命令行直接创建（多图主体）
-  python vod_create_aigc_advanced_custom_element.py create \\
+  python3 vod_create_aigc_advanced_custom_element.py create \\
     --sub-app-id 1500046725 \\
     --element-name "我的主体" \\
     --element-description "用于商品展示的主体" \\
@@ -494,7 +587,7 @@ def main():
     --tag-list '[{"tag_id":"o_101"}]'
 
   # 命令行直接创建（视频角色主体）
-  python vod_create_aigc_advanced_custom_element.py create \\
+  python3 vod_create_aigc_advanced_custom_element.py create \\
     --sub-app-id 1500046725 \\
     --element-name "视频主体A" \\
     --element-description "从视频中定制的角色主体" \\
@@ -503,12 +596,12 @@ def main():
     --element-voice-id "123333"
 
   # 预览请求参数（不实际执行）
-  python vod_create_aigc_advanced_custom_element.py create \\
+  python3 vod_create_aigc_advanced_custom_element.py create \\
     --element-name "测试" --element-description "测试描述" \\
     --reference-type image_refer --sub-app-id 1500046725 --dry-run
 
   # 查看已创建主体记录
-  python vod_create_aigc_advanced_custom_element.py list
+  python3 vod_create_aigc_advanced_custom_element.py list
 
 参考方式说明:
   video_refer  —— 视频角色主体，通过参考视频定义外表，支持绑定音色
@@ -586,7 +679,7 @@ def main():
     )
 
     # 通用参数
-    create_parser.add_argument("--region", default="ap-guangzhou", help="地域（默认 ap-guangzhou）")
+    create_parser.add_argument("--region", default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help="地域（默认 ap-guangzhou）")
     create_parser.add_argument("--json", action="store_true", help="JSON 格式输出")
     create_parser.add_argument("--dry-run", action="store_true", help="预览请求参数，不实际执行")
     create_parser.add_argument("--no-wait", action="store_true", help="仅提交任务，不等待结果")

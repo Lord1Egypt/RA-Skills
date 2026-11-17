@@ -1,40 +1,53 @@
-## Description: <br>
-Life Radar builds a concise daily action brief by aggregating available reminders from email, calendar, SMS/iMessage, weather, and task notes, then prioritizing them into Must-do, Should-do, and Nice-to-have items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a concise "what needs action now" daily brief by aggregating reminders from multiple channels (email, calendar, SMS/iMessage, weather, and task notes) and prioritizing them into Must-do / Should-do / Nice-to-have.
 
-## Publisher: <br>
-[YIKAILucas](https://clawhub.ai/user/YIKAILucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yikailucas](https://clawhub.ai/user/yikailucas)
 
-## Use Case: <br>
-Employees and external users use Life Radar to turn connected calendars, messages, email, billing notices, weather, and task notes into a short daily action digest. It is suited for daily planning, inbox triage, proactive reminders, and role-aware prioritization for executives, team leads, and individual contributors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may summarize sensitive personal or business information from connected calendars, messages, email, billing notices, weather, and notes. <br>
-Mitigation: Keep tool permissions scoped to sources the user wants summarized, redact secrets and full account numbers, and avoid collecting unavailable or unnecessary sources. <br>
-Risk: Payment, security, deadline, and account-risk items could be incomplete or wrong if source data is missing or ambiguous. <br>
-Mitigation: Verify payments, security alerts, deadlines, and account-risk items in the original source before acting, and mark missing dates or amounts as unknown. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Life Radar Modes](artifact/references/modes.md) <br>
-- [Life Radar on ClawHub](https://clawhub.ai/YIKAILucas/life-radar) <br>
+## Use Case:
 
+Employees and individual users use this skill to turn calendar events, urgent messages, billing notices, weather impacts, and task notes into a concise prioritized daily action brief. It can adapt prioritization for CEO, department lead, or individual contributor perspectives.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown action brief with prioritized sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes capped Must-do, Should-do, and Nice-to-have sections plus one-line suggested next actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The brief may aggregate sensitive messages, calendar items, billing notices, weather context, and notes into one visible summary.
+
+Mitigation: Review results in private contexts and limit connected sources when financial, message, or personal content should not be included.
+
+Risk: Unavailable or incomplete source data may produce uncertain priorities, deadlines, or amounts.
+
+Mitigation: Skip unavailable sources, mark missing dates or amounts as unknown, downgrade uncertain items, and verify critical actions before acting.
+
+## Reference(s):
+
+- [Life Radar Modes](artifact/references/modes.md)
+- [Life Radar on ClawHub](https://clawhub.ai/yikailucas/skills/life-radar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown action brief with prioritized sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits output to concise Must-do, Should-do, Nice-to-have, and suggested next action sections.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

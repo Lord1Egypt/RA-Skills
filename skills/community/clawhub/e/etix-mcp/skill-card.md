@@ -1,45 +1,60 @@
-## Description: <br>
-Searches Etix events, venues, and performers and retrieves event or venue details through the etix-mcp MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Etix events, venues, and performers and pull event and venue details through an MCP server that requires etix-mcp, the fetchproxy extension, and an open etix.com browser tab.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and external users use this skill to find Etix events, venues, performers, and showtimes, then retrieve structured event or venue details through an MCP-enabled agent. It is useful when the user has etix-mcp installed, the fetchproxy extension active, and an open etix.com browser tab. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external etix-mcp npm package and fetchproxy extension. <br>
-Mitigation: Install only after reviewing and trusting those dependencies, and keep the browser extension and MCP package scoped to explicit Etix lookup workflows. <br>
-Risk: Requests are made through the user's active Etix browser tab, including that browser session, cookies, and TLS context. <br>
-Mitigation: Use a dedicated Etix tab/session where practical, approve pairing deliberately, and close or disconnect the bridge when Etix lookups are complete. <br>
-Risk: Etix does not publish a public consumer API, so website endpoints or pages may change without notice. <br>
-Mitigation: Use the documented health check when results fail and verify important event, venue, pricing, or availability details directly on Etix before relying on them. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent search Etix events, venues, and performers, retrieve event or venue details, resolve locations, and check the browser-extension bridge health.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chrischall/etix-mcp) <br>
-- [etix-mcp npm package](https://www.npmjs.com/package/etix-mcp) <br>
-- [fetchproxy extension](https://github.com/chrischall/fetchproxy) <br>
-- [Etix ticket site](https://www.etix.com/ticket/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with MCP tool names, JSON configuration examples, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on an external MCP package, the fetchproxy browser extension, and the user's active Etix browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to run unpinned external code for the MCP package and browser extension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin exact package and repository versions, review the code before installation, and build in a disposable environment.
+
+Risk: Requests are routed through a browser extension using the user's Etix browser session.
+
+Mitigation: Use a dedicated browser profile with no unrelated signed-in accounts and approve the bridge only when needed.
+
+Risk: The MCP is unofficial and uses Etix website endpoints and pages rather than a public consumer API.
+
+Mitigation: Confirm use is consistent with Etix terms, limit use to appropriate public event-discovery data, and expect site changes to break behavior.
+
+## Reference(s):
+
+- [etix-mcp npm package](https://www.npmjs.com/package/etix-mcp)
+- [fetchproxy extension repository](https://github.com/chrischall/fetchproxy)
+- [Etix ticket site](https://www.etix.com/ticket/)
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/etix-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [MCP tool results with Markdown setup guidance, JSON configuration snippets, and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local MCP server, the fetchproxy browser extension, and an active etix.com browser tab.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,3 +1,6 @@
-display_name: Daily Workflow / 项目记忆工作流
-short_description: A bilingual project memory workflow that records project metadata, targets, current status, completed work, pending work, next actions, archive history, and AI handoff notes at project start, checkpoint, wrap-up, or handoff.
-default_prompt: Use this skill to initialize, migrate, or update project-local Docs/ workflow notes at start work, checkpoint, wrap-up, or handoff so the user and next AI can continue from clear project memory.
+interface:
+  display_name: "Daily Workflow"
+  short_description: "Preserve evidence-backed project memory"
+  default_prompt: "Use $daily-workflow to orient from the current project state and create an evidence-backed checkpoint, wrap-up, or handoff without overwriting governance or acceptance records."
+policy:
+  allow_implicit_invocation: true

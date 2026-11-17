@@ -1,0 +1,1771 @@
+# Action Specs - ENGLISH EDITION
+# The original Chinese edition is preserved verbatim at `action_specs.zh.yaml`.
+# Bilingual policy (中英文皆可适配): default `.yaml` is English, `.zh.yaml` is the Chinese original.
+# MACHINE KEYS ARE IDENTICAL ACROSS BOTH EDITIONS: action slug, `source` code, `uses_entities`
+# type names, `skill_ref` paths, and the `industry_specific` / `derived` flags. Only the
+# human-facing fields (`name`, `desc`, `inputs`, `outputs`) are translated.
+#
+# Provenance codes (development-time only):
+#   OPB  = chendongqi/OPB-Skills (MIT)   Frog = Frog1205/OPC-Skills   slav = slavingia/skills
+#   ReS  = ReScienceLab/opc-skills       sober= sober568/opc-zhinao
+#   easy = easychen/opc-methodology (CC-BY-NC-SA; conceptual inspiration only, own expression)
+#   WSHU = original extensions by Tianjin Weishu AI Technology Co., Ltd. (registered IP increment)
+
+meta:
+  generated_by: gen_action_specs.py
+  total: 159
+  opb_real_covered: 75
+  note: >-
+    On 2026-08-15, 18 original extension actions for the 24-department model were added
+    (WSHU; 3 each for procurement / investor / csm / international / risk / it_security),
+    taking the total from 141 to 159.
+
+actions:
+  strategic-startup-mentor:
+    name: Startup Mentor
+    source: OPB
+    desc: >-
+      Use when the user needs startup mentoring, business-model consulting, fundraising advice,
+      team-building guidance, product-strategy planning, or help with challenges encountered while
+      starting up. Covers (1) business-model and monetization design, (2) fundraising preparation
+      and investor communication, (3) product iteration and user retention, (4) team management and
+      partner relations, (5) market positioning and growth strategy, (6) one-person-company
+      methodology. Trigger words: startup mentoring, business model, fundraising, team management,
+      product strategy, user retention, one-person company.
+    inputs: [Startup status, Pain points, Resource inventory]
+    outputs: [Strategic advice, Action list, Risk warnings]
+    uses_entities: [Organization, Goal]
+    skill_ref: OPB/skills/strategic-planning-startup-mentor
+  strategic-startup-simulator:
+    name: Startup Simulator
+    source: OPB
+    desc: >-
+      Use when the user wants to simulate startup scenarios, practise business decisions, evaluate a
+      startup idea, or run scenario drills and get feedback. Covers (1) feasibility analysis of a
+      proposed idea, (2) strategic decision points during the startup journey, (3) stress-testing a
+      business model, (4) evaluating market positioning from a commercial angle before building a
+      technical product. Trigger words: startup, business model, feasibility analysis, market
+      validation, MVP, startup decision, business analysis.
+    inputs: [Business assumptions, Market parameters]
+    outputs: [Scenario walkthrough, Sensitivity analysis]
+    uses_entities: [Organization, Project]
+    skill_ref: OPB/skills/strategic-planning-startup-simulator
+  personal-review:
+    name: Periodic Review
+    source: OPB
+    desc: >-
+      Review assistant - expert in periodic review and reflection. Covers (1) periodic reviews
+      (daily / weekly / monthly / annual), (2) project retrospectives and lessons distilled,
+      (3) achievement summaries and highlight extraction, (4) problem reflection and root-cause
+      analysis, (5) experience capture and knowledge management, (6) improvement action planning,
+      (7) failure analysis, (8) growth-trajectory tracking.
+    inputs: [Period goals, Actual results]
+    outputs: [Review report, Improvement items]
+    uses_entities: [Goal, Task]
+    skill_ref: OPB/skills/personal-growth-review-assistant
+  personal-planning:
+    name: Planning Assistant
+    source: OPB
+    desc: >-
+      Planning assistant - expert in personal goal planning. Covers (1) long-range planning
+      (annual / 3-year / 5-year / 10-year vision), (2) short-term plans (quarterly / monthly /
+      weekly), (3) goal decomposition and execution path design, (4) prioritization and resource
+      allocation, (5) plan adjustment, (6) OKR / goal-management system design, (7) project planning
+      and milestones, (8) individual development plans (IDP).
+    inputs: [Goal description]
+    outputs: [Plan, Milestones]
+    uses_entities: [Goal, Task]
+    skill_ref: OPB/skills/personal-growth-planning-assistant
+  personal-talent-discovery:
+    name: Talent Discovery Advisor
+    source: OPB
+    desc: >-
+      Talent and strength discovery advisor. Through 10 carefully designed deep questions, asked one
+      at a time, it guides the user to uncover hidden talents and strengths, collects concrete
+      examples, distinguishes genuine passion from merely learned skills, and finally delivers a
+      precise analysis of the user's strong domains plus monetization advice. Use when (1) the user
+      wants to discover hidden talents, (2) needs clarity on career direction and advantage areas,
+      (3) is looking for ways to monetize personal strengths, (4) wants to separate hobbies from
+      true areas of mastery. Trigger words: talent discovery, strength mining, advantage analysis,
+      capability assessment, career positioning, monetization advice.
+    inputs: [Interests, Past experience]
+    outputs: [Talent profile, Role recommendations]
+    uses_entities: [Person]
+    skill_ref: OPB/skills/personal-growth-talent-discovery
+  personal-goal-manager:
+    name: Goal Management
+    source: OPB
+    desc: >-
+      Goal management assistant - expert in goal setting and achievement tracking. Covers
+      (1) SMART goal setting and refinement, (2) breaking large goals into executable sub-goals,
+      (3) progress tracking and visualization, (4) achievement-rate analysis and gap diagnosis,
+      (5) goal adjustment and re-planning, (6) incentive and reward/punishment design,
+      (7) prioritizing and balancing multiple goals, (8) goal retrospectives.
+    inputs: [Goals]
+    outputs: [Goal tree, Progress]
+    uses_entities: [Goal]
+    skill_ref: OPB/skills/personal-growth-goal-manager
+  personal-habit-builder:
+    name: Habit Builder
+    source: OPB
+    desc: >-
+      Habit builder - expert in behavioural habit design and formation. Covers (1) designing new
+      habits and trigger mechanisms, (2) habit tracking systems and check-in schemes,
+      (3) habit-formation strategy and motivation maintenance, (4) recovery plans after a lapse,
+      (5) breaking bad habits and designing replacement behaviours, (6) habit stacking and habit
+      chains, (7) habit effectiveness evaluation, (8) 21-day / 66-day habit programmes.
+    inputs: [Habit to build]
+    outputs: [Habit plan, Cue cards]
+    uses_entities: [Person]
+    skill_ref: OPB/skills/personal-growth-habit-builder
+  personal-career-planner:
+    name: Career Planning
+    source: OPB
+    desc: >-
+      Career planning assistant - expert in career development and transition guidance. Covers
+      (1) career path planning and direction choice, (2) capability assessment and gap analysis,
+      (3) industry / role opportunity and trend analysis, (4) career-transition strategy and
+      bridging plans, (5) resume optimization, (6) interview preparation and mock drills,
+      (7) salary negotiation strategy, (8) personal branding and workplace influence.
+    inputs: [Current role, Aspirations]
+    outputs: [Path map, Capability gaps]
+    uses_entities: [Person, Goal]
+    skill_ref: OPB/skills/personal-growth-career-planner
+  personal-time-manager:
+    name: Time Management
+    source: OPB
+    desc: >-
+      Time management assistant - expert in time management and efficiency. Covers (1) time-log
+      analysis and where-time-goes diagnosis, (2) priority management and task ordering,
+      (3) time-blocking and schedule design, (4) identifying and fixing time waste, (5) efficiency
+      strategies and tool recommendations, (6) methods such as the Pomodoro Technique,
+      (7) procrastination countermeasures, (8) work-life balance optimization.
+    inputs: [Task list, Time budget]
+    outputs: [Schedule, Priorities]
+    uses_entities: [Task]
+    skill_ref: OPB/skills/personal-growth-time-manager
+  personal-health-manager:
+    name: Health Management
+    source: OPB
+    desc: >-
+      Health management assistant - expert in physical/mental health and lifestyle optimization.
+      Covers (1) health goal setting and action plans, (2) exercise programming (fat loss / muscle
+      gain / conditioning), (3) diet plans and nutrition advice, (4) sleep quality optimization,
+      (5) stress management and emotional regulation, (6) health data tracking and analysis,
+      (7) sedentary-office health improvement, (8) energy management.
+    inputs: [Health data]
+    outputs: [Health plan]
+    uses_entities: [Person]
+    skill_ref: OPB/skills/personal-growth-health-manager
+  personal-human3:
+    name: HUMAN 3.0 Assessment
+    source: OPB
+    desc: Assess an individual's level of human-AI collaboration capability in the AI era.
+    inputs: [Self-described capabilities]
+    outputs: [HUMAN 3.0 report]
+    uses_entities: [Person]
+    skill_ref: OPB/skills/personal-human3-evaluation
+  learning-planner:
+    name: Learning Planner
+    source: OPB
+    desc: >-
+      Learning planner - expert in personal learning and skill-development planning. Covers
+      (1) planning a path to learn a new skill or knowledge domain, (2) weekly / monthly / quarterly
+      study plans, (3) knowledge mapping and mind-map generation, (4) exercises and self-tests,
+      (5) progress tracking and effectiveness evaluation, (6) resource recommendations,
+      (7) exam / certification preparation, (8) fragmented-time learning design.
+    inputs: [Learning goals]
+    outputs: [Learning path]
+    uses_entities: [Goal]
+    skill_ref: OPB/skills/learning-development-learning-planner
+  knowledge-manager:
+    name: Knowledge Management
+    source: OPB
+    desc: >-
+      Knowledge management assistant - expert in personal and team knowledge asset management.
+      Covers (1) building and organizing a knowledge base / wiki, (2) knowledge-graph design and
+      visualization, (3) note-system optimization (Notion / Obsidian / Yuque etc.),
+      (4) knowledge retrieval and tag taxonomy, (5) knowledge capture and reuse processes,
+      (6) team knowledge sharing, (7) building a second brain, (8) information-overload filtering.
+    inputs: [Information streams]
+    outputs: [Knowledge base structure]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/learning-development-knowledge-manager
+  company-values:
+    name: Company Values
+    source: slav
+    desc: Derive company values and behavioural codes from the founder's beliefs.
+    inputs: [Founder beliefs]
+    outputs: [Values statement]
+    uses_entities: [Organization]
+    skill_ref: slavingia/skills/company-values
+  user-operations:
+    name: User Operations
+    source: OPB
+    desc: >-
+      User operations assistant - expert in full-lifecycle user operations and growth. Covers
+      (1) user growth strategy (acquisition channels / referral campaigns), (2) activation design
+      (onboarding / first-order conversion), (3) retention optimization (membership / points),
+      (4) churned-user win-back, (5) community operations and UGC incentives, (6) user segmentation
+      and precision operations, (7) lifetime value (LTV) improvement, (8) private-domain traffic
+      operations and conversion.
+    inputs: [User data]
+    outputs: [Operations strategy, Segmentation]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/operations-user-operations
+  event-planner:
+    name: Event Planning
+    source: OPB
+    desc: >-
+      Event planning assistant - expert in online and offline event planning and execution. Covers
+      (1) event concept design (launch / salon / exhibition / annual meeting), (2) run-of-show and
+      schedule, (3) event copy (invitations / host script / promo copy), (4) budgeting and cost
+      control, (5) outcome forecasting and KPI setting, (6) online events (livestream / webinar /
+      virtual launch), (7) post-event review, (8) vendor selection and coordination.
+    inputs: [Event goals, Budget]
+    outputs: [Event plan, Execution sheet]
+    uses_entities: [Event, Project]
+    skill_ref: OPB/skills/operations-event-planner
+  hr-recruiter:
+    name: Recruiting Assistant
+    source: OPB
+    desc: Write job descriptions, screen resumes and evaluate candidates.
+    inputs: [Role requirements]
+    outputs: [Job description, Candidate assessment]
+    uses_entities: [Person, Department]
+    skill_ref: OPB/skills/hr-recruiter
+  hr-performance:
+    name: Performance Management
+    source: OPB
+    desc: Design performance metrics and review cycles.
+    inputs: [Role responsibilities]
+    outputs: [Performance plan]
+    uses_entities: [Department, Person]
+    skill_ref: OPB/skills/hr-performance
+  hr-compensation:
+    name: Compensation Design
+    source: OPB
+    desc: Design compensation structure and incentive schemes.
+    inputs: [Role value, Budget]
+    outputs: [Salary bands, Incentive plan]
+    uses_entities: [Department]
+    skill_ref: OPB/skills/hr-compensation
+  finance-planner:
+    name: Financial Planning
+    source: OPB
+    desc: >-
+      Financial planning assistant - expert in financial planning and budget management. Covers
+      (1) annual budget preparation and management, (2) cash-flow forecasting and funding plans,
+      (3) financial goal setting and decomposition, (4) financial statement analysis,
+      (5) financial early-warning and risk control, (6) financing plans and capital planning,
+      (7) plan execution and review. Trigger words: financial planning, budget management, cash
+      flow, financial forecasting, financial analysis, funding plan, financial statements,
+      financial risk, financing planning.
+    inputs: [Historical income/expenses, Business plan, Tax status]
+    outputs: [Budget table, Cash-flow forecast, Financial metrics]
+    uses_entities: [Organization, Account, Task]
+    skill_ref: OPB/skills/finance-financial-planner
+  finance-cost-analyst:
+    name: Cost Analysis
+    source: OPB
+    desc: >-
+      Cost analysis assistant - expert in cost control and efficiency optimization. Covers
+      (1) cost structure breakdown, (2) cost driver analysis and attribution, (3) cost optimization
+      design, (4) cost forecasting and budgeting, (5) cost-benefit analysis (CBA), (6) pricing cost
+      analysis, (7) cost-reduction project evaluation. Trigger words: cost analysis, cost
+      optimization, cost reduction, cost structure, cost control, cost budget, cost benefit,
+      pricing analysis, margin analysis, expense analysis.
+    inputs: [Cost data, Output volume]
+    outputs: [Cost structure, Break-even]
+    uses_entities: [Account, Project]
+    skill_ref: OPB/skills/finance-cost-analyst
+  finance-investment-analyst:
+    name: Investment Analysis
+    source: OPB
+    desc: >-
+      Investment analysis assistant - expert in investment evaluation and financial modelling.
+      Covers (1) opportunity evaluation and due diligence, (2) financial model building and
+      valuation, (3) ROI / IRR return analysis, (4) investment risk assessment, (5) portfolio
+      analysis and optimization, (6) M&A valuation and deal analysis, (7) investment decision
+      reports. Trigger words: investment analysis, financial modelling, valuation, ROI, IRR, due
+      diligence, return on investment, M&A analysis, portfolio, investment decision, DCF, PE.
+    inputs: [Investment proposal, Cash flow]
+    outputs: [NPV / IRR, Risk rating]
+    uses_entities: [Project, Account]
+    skill_ref: OPB/skills/finance-investment-analyst
+  legal-contract-reviewer:
+    name: Contract Review
+    source: OPB
+    desc: >-
+      Contract review assistant - expert in commercial contract review and risk control. Covers
+      (1) clause-by-clause analysis and risk identification, (2) revision suggestions and clause
+      optimization, (3) generating common templates (NDA / service agreement / procurement
+      contract), (4) compliance checking against regulations, (5) negotiation strategy and
+      concession limits, (6) flagging unfavourable clauses and alternatives, (7) version/term
+      comparison, (8) breach liability and dispute-resolution clauses.
+    inputs: [Contract text]
+    outputs: [Risk list, Revision suggestions]
+    uses_entities: [Document, Organization]
+    skill_ref: OPB/skills/legal-compliance-contract-reviewer
+  legal-compliance-checker:
+    name: Compliance Check
+    source: OPB
+    desc: >-
+      Compliance assistant - expert in corporate compliance and regulatory adherence. Covers
+      (1) regulatory conformity checks (GDPR / Personal Information Protection Law / Cybersecurity
+      Law etc.), (2) compliance risk assessment and gap analysis, (3) compliance reports and audit
+      materials, (4) compliance training material, (5) compliance process and policy design,
+      (6) compliance monitoring systems, (7) data privacy compliance (privacy policy / terms of
+      service), (8) industry-specific compliance (finance / healthcare / education).
+    inputs: [Business description]
+    outputs: [Compliance gaps, Remediation list]
+    uses_entities: [Organization, Policy]
+    skill_ref: OPB/skills/legal-compliance-compliance-checker
+  legal-ip-manager:
+    name: IP Management
+    source: OPB
+    desc: >-
+      IP assistant - expert in intellectual property protection and management. Covers (1) patent
+      search and patentability assessment, (2) trademark filing strategy and confusing-similarity
+      risk analysis, (3) copyright protection and registration, (4) IP protection strategy (patent
+      portfolio / trade secrets), (5) IP risk assessment and infringement analysis, (6) application
+      process guidance and document preparation, (7) open-source licence selection and compliance,
+      (8) IP portfolio management and valuation.
+    inputs: [Innovation outputs]
+    outputs: [IP landscape, Filing list]
+    uses_entities: [Document, Organization]
+    skill_ref: OPB/skills/legal-compliance-ip-manager
+  legal-overview:
+    name: Legal Overview
+    source: Frog
+    desc: Overview of legal structure and risks for a one-person company.
+    inputs: [Company form]
+    outputs: [Legal structure map, Risk points]
+    uses_entities: [Organization]
+    skill_ref: Frog1205/skills/legal
+  legal-agreement:
+    name: Agreement Drafting
+    source: Frog
+    desc: Draft partnership / service / equity agreements.
+    inputs: [Deal points]
+    outputs: [Agreement draft]
+    uses_entities: [Document, Person]
+    skill_ref: Frog1205/skills/legal
+  legal-compare:
+    name: Clause Comparison
+    source: Frog
+    desc: Compare differences across multiple contract versions.
+    inputs: [Multiple contract versions]
+    outputs: [Difference table]
+    uses_entities: [Document]
+    skill_ref: Frog1205/skills/legal
+  legal-freelancer:
+    name: Freelance Legal
+    source: Frog
+    desc: Lightweight legal support for freelancers.
+    inputs: [Business scenario]
+    outputs: [Legal key points]
+    uses_entities: [Person]
+    skill_ref: Frog1205/skills/legal
+  legal-missing:
+    name: Missing Clauses
+    source: Frog
+    desc: Check a contract for missing key clauses.
+    inputs: [Contract text]
+    outputs: [Missing-clause list]
+    uses_entities: [Document]
+    skill_ref: Frog1205/skills/legal
+  legal-nda:
+    name: NDA
+    source: Frog
+    desc: Draft confidentiality / non-compete agreements.
+    inputs: [Scope of confidentiality]
+    outputs: [NDA draft]
+    uses_entities: [Document, Person]
+    skill_ref: Frog1205/skills/legal
+  legal-negotiate:
+    name: Legal Negotiation
+    source: Frog
+    desc: Negotiation strategy and clause bargaining.
+    inputs: [Negotiation topics]
+    outputs: [Negotiation script]
+    uses_entities: [Person]
+    skill_ref: Frog1205/skills/legal
+  legal-plain:
+    name: Plain-Language Law
+    source: Frog
+    desc: Translate legal language into plain, everyday wording.
+    inputs: [Legal text]
+    outputs: [Plain-language explanation]
+    uses_entities: [Document]
+    skill_ref: Frog1205/skills/legal
+  legal-privacy:
+    name: Privacy Compliance
+    source: Frog
+    desc: Design compliant personal-information processing.
+    inputs: [Data processing flows]
+    outputs: [Compliance plan]
+    uses_entities: [Policy, Person]
+    skill_ref: Frog1205/skills/legal
+  legal-report-pdf:
+    name: Legal Report
+    source: Frog
+    desc: Generate a structured legal report as PDF.
+    inputs: [Analysis conclusions]
+    outputs: [PDF report]
+    uses_entities: [Document]
+    skill_ref: Frog1205/skills/legal
+  legal-review:
+    name: Legal Review
+    source: Frog
+    desc: Comprehensive legal review and opinion.
+    inputs: [Materials to review]
+    outputs: [Legal opinion]
+    uses_entities: [Document, Organization]
+    skill_ref: Frog1205/skills/legal
+  legal-risks:
+    name: Legal Risk
+    source: Frog
+    desc: Identify and grade legal risks.
+    inputs: [Business model]
+    outputs: [Risk map]
+    uses_entities: [Organization]
+    skill_ref: Frog1205/skills/legal
+  legal-terms:
+    name: Terms Generation
+    source: Frog
+    desc: Generate standard clauses for a given scenario.
+    inputs: [Clause type]
+    outputs: [Clause text]
+    uses_entities: [Document]
+    skill_ref: Frog1205/skills/legal
+  opc-compliance-diagnosis:
+    name: OPC Compliance Diagnosis
+    source: sober
+    desc: >-
+      Diagnostics for one-person-company entity selection, new Company Law compliance, and
+      fiscal / tax planning.
+    inputs: [Entity information, Business model]
+    outputs: [Compliance diagnosis report, Remediation items]
+    uses_entities: [Organization, Policy]
+    skill_ref: sober568/docs/skill-reference
+  product-industry-analyst:
+    name: Industry Analysis
+    source: OPB
+    desc: >-
+      Industry analysis assistant - quickly build a deep understanding of an industry. Helps the
+      user establish industry context before entering a new field and supplies market grounding for
+      product decisions. Use when (1) the user wants an overview of an industry and its market size,
+      (2) needs to analyse major players and the competitive landscape, (3) is exploring a new
+      track and must weigh opportunity vs risk, (4) needs industry background for product planning,
+      (5) is preparing to start up or invest and needs industry due diligence, (6) is invoked by
+      another skill (e.g. product-ideation-pm) for industry research. Trigger words: industry
+      analysis, market size, industry trends, competitive landscape, industry report, market
+      research, track analysis, market opportunity.
+    inputs: [Industry]
+    outputs: [Industry report]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/product-industry-analyst
+  product-researcher:
+    name: Product Research
+    source: OPB
+    desc: >-
+      Market research assistant - expert in market insight and opportunity analysis. Covers
+      (1) target user personas and segmentation, (2) user needs research and pain-point mining,
+      (3) market sizing and growth forecasting (TAM / SAM / SOM), (4) opportunity identification and
+      blue-ocean analysis, (5) market entry strategy and GTM planning, (6) trend analysis and
+      forecasting, (7) segmentation and positioning, (8) user interview and questionnaire design.
+    inputs: [Research objectives]
+    outputs: [Research report]
+    uses_entities: [Customer, Goal]
+    skill_ref: OPB/skills/product-market-researcher
+  product-market-researcher:
+    name: Market Research
+    source: OPB
+    desc: >-
+      Market research assistant - expert in market insight and opportunity analysis. Covers
+      (1) target user personas and segmentation, (2) user needs research and pain-point mining,
+      (3) market sizing and growth forecasting (TAM / SAM / SOM), (4) opportunity identification and
+      blue-ocean analysis, (5) market entry strategy and GTM planning, (6) trend analysis and
+      forecasting, (7) segmentation and positioning, (8) user interview and questionnaire design.
+    inputs: [Category]
+    outputs: [Market map]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/product-market-researcher
+  product-ideation-pm:
+    name: Product Ideation PM
+    source: OPB
+    desc: >-
+      Product ideation and brainstorming expert. Acts as a senior product manager to help the user
+      diverge on product ideas, define requirements and explore business models. Use when (1) the
+      user wants to discuss a new product idea or feature, (2) needs to brainstorm product
+      direction, (3) wants to validate or refine an idea, (4) needs to define a product from zero to
+      one, (5) is exploring business models or monetization, (6) is running competitive analysis and
+      differentiation positioning. Trigger words: product idea, brainstorming, product definition,
+      feature design, business model, product thinking, creative discussion, requirement
+      exploration, product direction, differentiation, user pain point, MVP definition.
+    inputs: [Problem domain]
+    outputs: [Idea list, PRD]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/product-ideation-pm
+  product-ai-remake:
+    name: AI Product Rebuild
+    source: OPB
+    desc: >-
+      AI product rebuild explorer - a methodology for rebuilding proven products with AI. Core
+      premise: in the AI era every product is worth rebuilding with AI. Use when (1) looking for
+      mature products that can be rebuilt with AI, (2) assessing rebuild feasibility and
+      differentiation opportunities, (3) designing the AI version of a product, (4) planning
+      go-to-market for the AI product. Trigger words: AI rebuild, product remake, AI-ify, find
+      product, product idea, product opportunity, remake, redefine. Unlike zero-to-one ideation,
+      this skill focuses on AI innovation that stands on the shoulders of giants.
+    inputs: [Existing product]
+    outputs: [AI rebuild plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/product-ai-remake
+  rnd-frontend-review:
+    name: Frontend Review
+    source: OPB
+    desc: >-
+      Trigger when the user requests a review of frontend files (e.g. .tsx, .ts, .js). Supports both
+      pending-change reviews and focused file reviews while applying the checklist rules.
+    inputs: [Code / pages]
+    outputs: [Review comments]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-frontend-code-review
+  rnd-code-simplify:
+    name: Code Simplification
+    source: OPB
+    desc: >-
+      Expert code simplification and refactoring specialist that autonomously enhances code clarity,
+      consistency and maintainability while preserving exact functionality. Use when (1) code has
+      been recently written or modified in the current session, (2) after completing any coding task
+      to proactively improve quality, (3) applying project-specific coding standards from CLAUDE.md,
+      (4) eliminating unnecessary complexity and improving readability without changing behaviour.
+      Operates autonomously.
+    inputs: [Code]
+    outputs: [Simplification plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-code-simplify
+  rnd-requirements-writer:
+    name: Requirements Writing
+    source: OPB
+    desc: >-
+      Requirements writing assistant - author software requirements documents. Covers (1) turning
+      vague ideas into structured functional requirements, (2) writing user stories and acceptance
+      criteria, (3) creating technical specifications, (4) requirement prioritization,
+      (5) change-impact analysis, (6) PRD / MRD / BRD product documents, (7) API requirement
+      definition. Trigger words: requirements, PRD, user story, functional spec, technical spec,
+      acceptance criteria, requirements document.
+    inputs: [Requirement outline]
+    outputs: [Requirements document]
+    uses_entities: [Task, Project]
+    skill_ref: OPB/skills/rnd-requirements-writer
+  rnd-fullstack-architect:
+    name: Full-Stack Architecture
+    source: OPB
+    desc: >-
+      Full-stack architecture expert - fluent in frontend/backend architecture, microservices,
+      cloud-native and mobile architecture. Covers (1) SaaS product architecture, (2) microservice
+      decomposition and governance, (3) frontend engineering architecture, (4) mobile architecture
+      (iOS / Android / cross-platform), (5) API design and gateway architecture, (6) database
+      selection and design, (7) DevOps and deployment architecture, (8) high availability and
+      disaster recovery, (9) performance optimization and scaling strategy.
+    inputs: [Business requirements]
+    outputs: [Architecture plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-fullstack-architect
+  rnd-api-design:
+    name: API Design
+    source: OPB
+    desc: >-
+      Master REST and GraphQL API design principles to build intuitive, scalable and maintainable
+      APIs that delight developers. Use when designing new APIs, reviewing API specifications, or
+      establishing API design standards.
+    inputs: [Domain model]
+    outputs: [API specification]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-api-design-principles
+  rnd-db-table-design:
+    name: Database Schema Design
+    source: OPB
+    desc: >-
+      Design a PostgreSQL-specific schema. Covers best practices, data types, indexing, constraints,
+      performance patterns and advanced features.
+    inputs: [Entity relationships]
+    outputs: [DDL]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-postgresql-table-design
+  rnd-technical-writer:
+    name: Technical Writing
+    source: OPB
+    desc: Write technical documentation.
+    inputs: [Technical content]
+    outputs: [Technical documentation]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/rnd-technical-writer
+  rnd-blog-planner:
+    name: Blog Series Planning
+    source: OPB
+    desc: Plan a technical blog content matrix.
+    inputs: [Theme]
+    outputs: [Topic matrix]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/rnd-blog-planner
+  rnd-arch-diagrammer:
+    name: Architecture Diagramming
+    source: OPB
+    desc: Express system architecture as diagrams.
+    inputs: [Architecture description]
+    outputs: [Architecture diagram]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-arch-diagrammer
+  rnd-frontend-design:
+    name: Frontend Design
+    source: OPB
+    desc: >-
+      Create distinctive, production-grade frontend interfaces with high design quality. Use when
+      the user asks to build web components, pages or applications. Generates creative, polished
+      code that avoids generic AI aesthetics.
+    inputs: [Requirements]
+    outputs: [Design mockup]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-frontend-design
+  rnd-cockpit-architect:
+    name: Cockpit Architecture
+    source: OPB
+    desc: >-
+      Smart-cockpit architecture expert - fluent in in-vehicle software architecture, SOA
+      service-oriented architecture, cross-domain fusion and head-unit system development. Covers
+      (1) cockpit domain-controller architecture, (2) SOA service-oriented architecture,
+      (3) HMI human-machine interaction architecture, (4) multi-screen interconnect,
+      (5) vehicle-cloud integrated architecture, (6) AUTOSAR AP/CP, (7) functional safety
+      (ISO 26262), (8) cybersecurity design, (9) in-vehicle middleware selection (SOME/IP, DDS).
+    inputs: [Head-unit requirements]
+    outputs: [Cockpit architecture]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-cockpit-architect
+    industry_specific: true
+  rnd-android-architect:
+    name: Android Architecture
+    source: OPB
+    desc: >-
+      Android system architecture expert - fluent in low-level Android architecture, Framework layer
+      design, HAL development, system customization and optimization. Covers (1) Android
+      customization and AOSP source modification, (2) Framework module design and system service
+      development, (3) HAL development (HIDL / AIDL), (4) performance optimization (boot / memory /
+      power), (5) Binder / AIDL / HIDL interface design and IPC architecture, (6) SELinux policy and
+      security architecture, (7) multi-process communication and process management, (8) Android
+      architecture review and decision analysis.
+    inputs: [Device-side requirements]
+    outputs: [Android architecture]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-android-system-architect
+    industry_specific: true
+  rnd-android-perf:
+    name: Android Performance
+    source: OPB
+    desc: >-
+      Android performance expert - specialized in Android system performance diagnosis and
+      optimization. Covers (1) performance problem diagnosis (jank / slowness / ANR), (2) performance
+      data analysis (logcat / systrace / traceview / dumpsys / perfetto), (3) CPU analysis (peak
+      usage / main-thread blocking / infinite loops / inefficient algorithms), (4) memory analysis
+      (leaks / GC frequency / OOM risk), (5) IO analysis (disk / database / network),
+      (6) responsiveness analysis (ANR / message-queue blocking / UI rendering / startup time),
+      (7) optimization design (code-level and architectural), (8) performance monitoring and
+      prevention.
+    inputs: [Performance baseline]
+    outputs: [Optimization plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-android-performance-analyzer
+    industry_specific: true
+  rnd-anr-analyzer:
+    name: ANR Analysis
+    source: OPB
+    desc: >-
+      Android ANR expert - specialized in ANR diagnosis and root-cause location. Covers (1) analysing
+      ANR logs such as traces.txt / tombstone, (2) diagnosing app freezes, unresponsiveness or ANR
+      dialogs, (3) locating the specific cause and call stack of main-thread blocking, (4) identifying
+      code patterns that risk ANR, (5) designing ANR fixes and optimizations, (6) complex issues such
+      as deadlock / lock contention / Binder timeout, (7) system-level chained ANR diagnosis,
+      (8) ANR prevention monitoring design.
+    inputs: [Trace]
+    outputs: [Root cause]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-anr-analyzer
+    industry_specific: true
+  rnd-auto-issue:
+    name: Cockpit Issue Analysis
+    source: OPB
+    desc: >-
+      Smart-cockpit system issue expert - Android in-vehicle problem diagnosis and root-cause
+      location. Covers (1) display anomalies (black / white / flickering / garbled screen, touch
+      failure), (2) stability issues (freeze / reboot / watchdog / ANR / JE / NE), (3) performance
+      issues (jank / slow response / memory leak / OOM / abnormal power), (4) functional anomalies
+      (feature not working / wrong state / cross-domain communication failure), (5) multi-system
+      coordination issues (Android-QNX-MCU interaction), (6) multi-source log analysis and timeline
+      construction, (7) cross-system root-cause location and evidence-chain analysis, (8) in-vehicle
+      scenario solution design.
+    inputs: [Logs]
+    outputs: [Attribution report]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-automotive-issue-analyzer
+    industry_specific: true
+  rnd-aspice-sys2swe:
+    name: ASPICE Requirements Decomposition
+    source: OPB
+    desc: >-
+      ASPICE requirements review expert - supports comprehensive review of three requirement types
+      (SYS.1 / SYS.2 / SWE.1) to ensure requirement quality meets ASPICE and company standards.
+      Covers (1) SYS.1 customer requirement review, (2) SYS.2 system requirement review
+      (SRS / SRD) verifying completeness, correctness and traceability, (3) SWE.1 software
+      requirement review (SWRS), (4) ASPICE compliance checking, (5) requirement quality checks
+      (completeness, correctness, clarity, consistency, traceability, testability), (6) cockpit-domain
+      professional review, (7) structured review report output with issue list and improvements.
+      Trigger words: requirements review, ASPICE, SYS.1, SYS.2, SWE.1, customer requirements,
+      system requirements, software requirements, SWRS, SRD, review report, cockpit, in-vehicle
+      software.
+    inputs: [System requirements]
+    outputs: [Software requirements]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-aspice-requirements-reviewer
+    industry_specific: true
+  rnd-aspice-reviewer:
+    name: ASPICE Requirements Review
+    source: OPB
+    desc: >-
+      ASPICE requirements review expert - supports comprehensive review of three requirement types
+      (SYS.1 / SYS.2 / SWE.1) to ensure requirement quality meets ASPICE and company standards.
+      Covers (1) SYS.1 customer requirement review, (2) SYS.2 system requirement review
+      (SRS / SRD) verifying completeness, correctness and traceability, (3) SWE.1 software
+      requirement review (SWRS), (4) ASPICE compliance checking, (5) requirement quality checks,
+      (6) cockpit-domain professional review, (7) structured review report output. Trigger words:
+      requirements review, ASPICE, SYS.1, SYS.2, SWE.1, SWRS, SRD, review report, cockpit.
+    inputs: [Requirements]
+    outputs: [Review conclusions]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/rnd-aspice-requirements-reviewer
+    industry_specific: true
+  design-ui-ux:
+    name: UI/UX Design
+    source: OPB
+    desc: >-
+      UI/UX design intelligence. 50 styles, 21 palettes, 50 font pairings, 20 charts, 9 stacks
+      (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions:
+      plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor,
+      check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS,
+      portfolio, blog, mobile app. Elements: button, modal, navbar, sidebar, card, table, form,
+      chart.
+    inputs: [Requirements]
+    outputs: [UI/UX plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/design-ui-ux-pro-max
+  design-visual:
+    name: Visual Design
+    source: OPB
+    desc: >-
+      Visual design assistant - expert in brand visual and graphic design. Covers (1) brand visual
+      identity system (VI) design, (2) colour scheme design and colour theory, (3) font selection and
+      typography, (4) icon and illustration style guidance, (5) marketing material visual design,
+      (6) design standards and style guides, (7) design trend analysis and creative direction.
+      Trigger words: visual design, VI design, colour scheme, typography, icon design, brand visual,
+      design standards, style guide, graphic design, colour matching.
+    inputs: [Brand]
+    outputs: [Visual mockup]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/design-visual-designer
+  design-remotion:
+    name: Video Generation
+    source: OPB
+    desc: Best practices for Remotion - video creation in React.
+    inputs: [Script]
+    outputs: [Video]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/design-remotion-generator
+  test-case-writer:
+    name: Test Case Writing
+    source: OPB
+    desc: >-
+      Test case writing assistant - expert in test case design. Covers (1) test case design
+      (equivalence partitioning / boundary value / decision table / state transition), (2) test
+      scenario analysis and case decomposition, (3) boundary and exception cases, (4) functional cases
+      (positive / negative / exception), (5) API test case design, (6) case review and optimization,
+      (7) case template and standards, (8) test data design. Trigger words: test case, case design,
+      boundary value, equivalence class, test scenario, test data, case review, test steps.
+    inputs: [Requirements]
+    outputs: [Test case set]
+    uses_entities: [Task]
+    skill_ref: OPB/skills/testing-test-case-writer
+  test-automation:
+    name: Test Automation
+    source: OPB
+    desc: >-
+      Test automation assistant - expert in test automation design and implementation. Covers
+      (1) framework selection and setup (Selenium / Cypress / Playwright / Appium), (2) automated
+      script authoring (Web / API / Mobile), (3) test data management and mocking, (4) CI/CD test
+      integration (Jenkins / GitLab CI / GitHub Actions), (5) Page Object pattern and test
+      architecture, (6) report generation and visualization, (7) maintenance and optimization,
+      (8) parallel and distributed execution. Trigger words: test automation, test framework,
+      Selenium, Cypress, Playwright, CI/CD, test script, Page Object, Mock, test report.
+    inputs: [System under test]
+    outputs: [Test scripts]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/testing-test-automation-engineer
+  test-performance:
+    name: Performance Testing
+    source: OPB
+    desc: Load testing and performance evaluation.
+    inputs: [System, Targets]
+    outputs: [Performance report]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/test-performance
+  test-security:
+    name: Security Testing
+    source: OPB
+    desc: Vulnerability scanning and penetration testing.
+    inputs: [Target]
+    outputs: [Vulnerability report]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/test-security
+  test-manager:
+    name: Test Management
+    source: OPB
+    desc: >-
+      Test management assistant - expert in software test management and coordination. Covers
+      (1) test plan creation and review (scope / strategy / resources / schedule), (2) progress
+      tracking and status reporting, (3) defect management (triage / priority / status flow),
+      (4) coverage analysis and improvement, (5) test report generation and quality assessment,
+      (6) team coordination and resource allocation, (7) risk identification and mitigation,
+      (8) process improvement and metrics. Trigger words: test plan, test progress, defect
+      management, test report, test coverage, test coordination, test risk, quality gate.
+    inputs: [Release plan]
+    outputs: [Test plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/testing-test-manager
+  quality-system-builder:
+    name: Quality System Building
+    source: OPB
+    desc: >-
+      Quality system assistant - expert in quality management system design. Covers (1) building
+      systems such as ISO 9001, (2) quality process design and optimization, (3) quality system
+      documentation (manual / procedures / work instructions), (4) checklists and forms,
+      (5) standard setting and rollout, (6) training system and materials, (7) certification
+      preparation and coaching, (8) effectiveness evaluation and improvement.
+    inputs: [Organization status]
+    outputs: [Quality system]
+    uses_entities: [Organization]
+    skill_ref: OPB/skills/quality-quality-system-builder
+  quality-monitor:
+    name: Quality Monitoring
+    source: OPB
+    desc: >-
+      Quality monitoring assistant - expert in quality metrics monitoring and data analysis. Covers
+      (1) quality KPI design, (2) data collection and automation, (3) SPC statistical process control,
+      (4) trend monitoring and anomaly alerting, (5) dashboard / kanban design, (6) status report
+      generation, (7) goal setting and decomposition, (8) data visualization.
+    inputs: [Metrics]
+    outputs: [Monitoring dashboard]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/quality-quality-monitor
+  quality-auditor:
+    name: Quality Audit
+    source: OPB
+    desc: >-
+      Quality audit assistant - expert in quality auditing and compliance inspection. Covers
+      (1) audit planning and checklists, (2) process compliance review and gap analysis,
+      (3) product / service conformity audit, (4) ISO / industry standard compliance checks,
+      (5) supplier quality audit, (6) audit report writing, (7) non-conformity remediation tracking,
+      (8) internal auditor training.
+    inputs: [Audit scope]
+    outputs: [Audit report]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/quality-quality-auditor
+  quality-improvement:
+    name: Quality Improvement
+    source: OPB
+    desc: >-
+      Quality improvement assistant - expert in continuous improvement and problem solving. Covers
+      (1) root-cause analysis (5 Whys / fishbone / fault tree), (2) PDCA / DMAIC project planning and
+      execution, (3) improvement design and effect prediction, (4) verification and institutionalization,
+      (5) best-practice extraction and standardization, (6) cost-of-quality analysis,
+      (7) quality culture building, (8) continuous improvement mechanism design.
+    inputs: [Quality problem]
+    outputs: [Improvement plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/quality-quality-improvement
+  quality-risk-manager:
+    name: Quality Risk
+    source: OPB
+    desc: >-
+      Quality risk assistant - expert in quality risk identification and control. Covers
+      (1) risk identification and register (FMEA / HACCP), (2) assessment and prioritization (RPN),
+      (3) response strategy and implementation, (4) monitoring and early-warning mechanisms,
+      (5) risk reporting and communication, (6) emergency plan design and drills, (7) new product /
+      process risk review, (8) supply-chain quality risk management.
+    inputs: [Process]
+    outputs: [Risk register]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/quality-quality-risk-manager
+  devops-system-ops:
+    name: System Operations
+    source: OPB
+    desc: >-
+      System operations assistant - expert in production operations and stability. Covers
+      (1) monitoring design and alerting policy, (2) production fault diagnosis (outage / degradation /
+      unavailability), (3) performance optimization and bottleneck analysis, (4) capacity planning,
+      (5) automation scripts and processes, (6) operations reporting and SLA analysis, (7) log
+      analysis, (8) backup, recovery and disaster recovery.
+    inputs: [System]
+    outputs: [Operations plan]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/infrastructure-devops-system-operations
+  devops-engineer:
+    name: DevOps
+    source: OPB
+    desc: >-
+      DevOps assistant - expert in DevOps practice and automation. Covers (1) CI/CD pipeline design
+      and implementation, (2) deployment strategy and release management, (3) infrastructure as code
+      (IaC), (4) containerization and Kubernetes deployment, (5) monitoring, alerting and
+      observability, (6) toolchain selection, (7) DevOps culture and practice promotion. Trigger
+      words: DevOps, CI/CD, continuous integration, continuous deployment, Jenkins, GitLab CI, GitHub
+      Actions, Docker, Kubernetes, Terraform, automated deployment.
+    inputs: [Code repository]
+    outputs: [Pipeline]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/infrastructure-devops-devops-engineer
+  devops-cloud-arch:
+    name: Cloud Architecture
+    source: OPB
+    desc: >-
+      Cloud architecture assistant - expert in cloud architecture design and optimization. Covers
+      (1) cloud architecture design and planning, (2) resource selection and capacity planning,
+      (3) cost optimization and FinOps, (4) multi-cloud / hybrid-cloud strategy, (5) migration
+      planning and execution, (6) cloud security architecture, (7) cloud-native transformation.
+      Trigger words: cloud architecture, AWS, Alibaba Cloud, Azure, GCP, cloud migration, cloud cost,
+      multi-cloud, hybrid cloud, cloud security, cloud native, Kubernetes, containers.
+    inputs: [Business]
+    outputs: [Cloud architecture]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/infrastructure-devops-cloud-architect
+  sec-strategist:
+    name: Security Strategy
+    source: OPB
+    desc: Security strategy and governance.
+    inputs: [Assets]
+    outputs: [Security strategy]
+    uses_entities: [Organization]
+    skill_ref: OPB/skills/sec-strategist
+  sec-data-security:
+    name: Data Security
+    source: OPB
+    desc: >-
+      Data security assistant - expert in data protection and privacy compliance. Covers
+      (1) data classification and labelling, (2) data security policy, (3) encryption and masking,
+      (4) data loss prevention (DLP), (5) privacy compliance (GDPR / Personal Information Protection
+      Law), (6) security audit and assessment, (7) data lifecycle management. Trigger words: data
+      security, data protection, data classification, encryption, masking, DLP, privacy compliance,
+      GDPR, data breach, data audit.
+    inputs: [Data flows]
+    outputs: [Protection plan]
+    uses_entities: [Policy, Document]
+    skill_ref: OPB/skills/information-security-data-security
+  sec-incident-response:
+    name: Security Incident Response
+    source: OPB
+    desc: >-
+      Security incident response assistant - expert in incident handling and emergency response.
+      Covers (1) incident identification and classification, (2) emergency response planning,
+      (3) investigation and forensics, (4) containment and eradication, (5) system recovery and
+      business continuity, (6) post-incident review and improvements, (7) incident report writing.
+      Trigger words: security incident, emergency response, intrusion detection, security alert,
+      forensics, recovery plan, incident review, ransomware, data breach.
+    inputs: [Incident]
+    outputs: [Handling report]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/information-security-security-incident-response
+  meta-skill-creator:
+    name: Skill Creator
+    source: OPB
+    desc: >-
+      Guide for creating effective skills. Use when users want to create a new skill (or update an
+      existing one) that extends capabilities with specialized knowledge, workflows or tool
+      integrations.
+    inputs: [Skill requirements]
+    outputs: [SKILL.md]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/god-skill-creator
+  opc-template-engine:
+    name: OPC Template Engine
+    source: ReS
+    desc: Generate standardized one-person-company skill templates.
+    inputs: [Skill definition]
+    outputs: [Template]
+    uses_entities: [Project]
+    skill_ref: ReScienceLab/skills
+  opc-add-skill-engine:
+    name: Add OPC Skill
+    source: ReS
+    desc: Add a new skill to the one-person-company system.
+    inputs: [New skill requirements]
+    outputs: [Skill file]
+    uses_entities: [Project]
+    skill_ref: ReScienceLab/skills
+  content-app-namer:
+    name: App Naming
+    source: OPB
+    desc: >-
+      Generate creative, memorable and appropriate names for software applications, products and
+      services. Use when users need to name their app, software, product or service. Considers
+      functionality, target audience, brand positioning, cultural factors and language requirements.
+      Supports naming in any language specified by the user.
+    inputs: [Positioning]
+    outputs: [Name candidates]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/content-app-namer
+  content-creator:
+    name: Content Creation
+    source: OPB
+    desc: >-
+      Content creation assistant - expert in multi-format content creation and optimization. Covers
+      (1) article writing (blog / newsletter / column / press release), (2) content planning and
+      outlining, (3) headline optimization and opening paragraphs, (4) rewriting and polishing,
+      (5) SEO content optimization and keyword placement, (6) social media copy, (7) content series
+      and topic planning. Trigger words: write article, content creation, blog, copy, headline,
+      outline, content optimization, rewrite, polish, SEO article, topic planning.
+    inputs: [Topic]
+    outputs: [Content]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-content-creator
+  content-audio:
+    name: Audio Generation
+    source: OPB
+    desc: Audio generation assistant - generate audio from text.
+    inputs: [Script]
+    outputs: [Audio]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-audio-generator
+  content-video-script:
+    name: Video Script
+    source: OPB
+    desc: >-
+      Video script assistant - expert in video content planning and script writing. Covers
+      (1) short-video scripts (Douyin / Kuaishou / WeChat Channels), (2) mid/long-form scripts
+      (Bilibili / YouTube), (3) storyboard design, (4) voice-over copy, (5) video outline and
+      structure, (6) titles and cover copy, (7) video SEO (title / description / tags). Trigger
+      words: video script, short-video copy, storyboard, voice-over, video outline, video planning,
+      shooting script.
+    inputs: [Topic]
+    outputs: [Script]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-video-script-writer
+  content-altay:
+    name: Essay Writing
+    source: OPB
+    desc: >-
+      Altay writing method - a writing approach based on Li Juan's essay style, containing 48 concrete
+      writing principles. Use for (1) creating or improving essays, diaries, blogs and other personal
+      writing, (2) increasing authenticity, detail and sensory experience, (3) reviewing and improving
+      specificity and vividness, (4) learning to observe life, capture detail and write with
+      restraint. Trigger words: Altay, Li Juan style, writing principles, honest record, life detail,
+      sensory writing, essay creation, article improvement, writing guidance.
+    inputs: [Topic]
+    outputs: [Article]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-altay-writing
+  content-oss-article:
+    name: Open-Source Article
+    source: OPB
+    desc: >-
+      Generate technical articles for an "one open-source project a day" series. Use when the user
+      needs to create articles about open-source projects, including project introduction, background,
+      feature analysis and in-depth dissection. Applies to content creation, technical blogging and
+      open-source project promotion.
+    inputs: [Topic]
+    outputs: [Article]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-opensource-project-article-writer
+  content-notebooklm:
+    name: Research Assistant
+    source: OPB
+    desc: >-
+      Query Google NotebookLM notebooks directly for source-grounded, citation-backed answers from
+      Gemini. Browser automation, library management, persistent auth. Drastically reduces
+      hallucinations through document-only responses.
+    inputs: [Literature]
+    outputs: [Literature review]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-notebooklm
+  mkt-ad-copywriter:
+    name: Ad Copywriting
+    source: OPB
+    desc: >-
+      Create product advertisements and brand slogans, providing professional marketing copywriting.
+      Covers (1) brand slogans and core ad lines, (2) product ad copy, (3) copy optimization and
+      improvement, (4) multi-platform adaptation (social media / e-commerce / outdoor advertising),
+      (5) A/B test copy variants, (6) holiday and promotional copy. Trigger words: slogan, ad line,
+      ad copy, marketing copy, brand communication, copy creativity, tagline.
+    inputs: [Product, Audience]
+    outputs: [Copy]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/marketing-ad-copywriter
+  brand-manager:
+    name: Brand Management
+    source: OPB
+    desc: >-
+      Brand management assistant - expert in brand strategy and management. Covers (1) brand
+      positioning and differentiation, (2) brand architecture (master / sub-brand / endorsed),
+      (3) brand asset inventory and valuation, (4) brand consistency audit, (5) brand story and core
+      narrative, (6) brand touchpoint experience design, (7) brand health diagnosis. Trigger words:
+      brand positioning, brand strategy, brand architecture, brand story, brand assets, brand audit,
+      brand consistency, brand image, brand value.
+    inputs: [Brand status]
+    outputs: [Brand strategy]
+    uses_entities: [Organization]
+    skill_ref: OPB/skills/brand-pr-brand-manager
+  brand-pr-strategist:
+    name: PR Strategy
+    source: OPB
+    desc: >-
+      PR strategy assistant - expert in corporate public relations and media communication. Covers
+      (1) PR communication strategy and planning, (2) media relations building and maintenance,
+      (3) crisis PR planning and response, (4) press release writing and optimization, (5) PR event
+      planning and execution, (6) KOL / media partnership proposals, (7) PR effectiveness evaluation
+      and review. Trigger words: PR strategy, media relations, crisis PR, press release, media
+      communication, public opinion response, PR event, KOL collaboration.
+    inputs: [Communication goals]
+    outputs: [PR plan]
+    uses_entities: [Event]
+    skill_ref: OPB/skills/brand-pr-pr-strategist
+  brand-reputation:
+    name: Reputation Monitoring
+    source: OPB
+    desc: >-
+      Reputation monitoring assistant - expert in brand sentiment monitoring and reputation
+      management. Covers (1) building and optimizing monitoring systems, (2) incident analysis and
+      assessment, (3) crisis early-warning design, (4) report writing and interpretation,
+      (5) negative sentiment response strategy, (6) reputation repair planning, (7) competitor
+      sentiment comparison. Trigger words: sentiment monitoring, reputation monitoring, crisis
+      warning, negative sentiment, brand reputation, online word of mouth, reputation repair.
+    inputs: [Brand]
+    outputs: [Sentiment report]
+    uses_entities: [Organization]
+    skill_ref: OPB/skills/brand-pr-reputation-monitor
+  design-banner:
+    name: Banner Creation
+    source: ReS
+    desc: Marketing banner design.
+    inputs: [Theme]
+    outputs: [Banner]
+    uses_entities: [Document]
+    skill_ref: ReScienceLab/skills/banner-creator
+  design-logo:
+    name: Logo Creation
+    source: ReS
+    desc: Logo design.
+    inputs: [Brand]
+    outputs: [Logo]
+    uses_entities: [Document]
+    skill_ref: ReScienceLab/skills/logo-creator
+  design-image-ai:
+    name: AI Image
+    source: ReS
+    desc: AI-generated marketing imagery.
+    inputs: [Description]
+    outputs: [Image]
+    uses_entities: [Document]
+    skill_ref: ReScienceLab/skills/image-ai
+  bd-partnership:
+    name: Partnership Management
+    source: OPB
+    desc: Partner screening and relationship management.
+    inputs: [Partnership needs]
+    outputs: [Partnership proposal]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/business-development-partnership
+  bd-negotiator:
+    name: Business Negotiation
+    source: OPB
+    desc: Negotiate commercial terms.
+    inputs: [Negotiation topics]
+    outputs: [Negotiation outcome]
+    uses_entities: [Person]
+    skill_ref: OPB/skills/business-development-negotiator
+  bd-channel-dev:
+    name: Channel Development
+    source: OPB
+    desc: Channel recruitment and management.
+    inputs: [Channel strategy]
+    outputs: [Channel plan]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/business-development-channel-developer
+  dist-reddit:
+    name: Reddit Distribution
+    source: ReS
+    desc: Distribute content on Reddit to acquire users.
+    inputs: [Content]
+    outputs: [Distribution plan]
+    uses_entities: [Document]
+    skill_ref: ReScienceLab/skills/reddit-distributor
+  dist-twitter:
+    name: Twitter Distribution
+    source: ReS
+    desc: Content distribution on Twitter/X.
+    inputs: [Content]
+    outputs: [Distribution plan]
+    uses_entities: [Document]
+    skill_ref: ReScienceLab/skills/twitter-distributor
+  dist-producthunt:
+    name: Product Hunt
+    source: ReS
+    desc: Plan a Product Hunt launch.
+    inputs: [Product]
+    outputs: [Launch plan]
+    uses_entities: [Project]
+    skill_ref: ReScienceLab/skills/producthunt-launcher
+  dist-requesthunt:
+    name: Request Hunter
+    source: ReS
+    desc: Mine and submit product requests.
+    inputs: [Demand leads]
+    outputs: [Demand report]
+    uses_entities: [Project]
+    skill_ref: ReScienceLab/skills/requesthunt
+  seo-optimizer:
+    name: SEO Optimization
+    source: OPB
+    desc: >-
+      SEO assistant - expert in search engine optimization and traffic growth. Covers
+      (1) keyword research and competitive analysis, (2) on-page SEO (title / description / content),
+      (3) technical SEO diagnosis and fixes, (4) site structure and internal linking,
+      (5) backlink strategy, (6) SEO data analysis and reporting, (7) competitor SEO analysis.
+      Trigger words: SEO, keywords, search ranking, indexing, backlinks, internal links, technical
+      SEO, on-page optimization, search engine, traffic optimization, Baidu, Google.
+    inputs: [Site]
+    outputs: [SEO plan]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/content-seo-optimizer
+  seo-geo:
+    name: Geo SEO
+    source: ReS
+    desc: Local geographic SEO optimization.
+    inputs: [Region]
+    outputs: [Local plan]
+    uses_entities: [Document]
+    skill_ref: ReScienceLab/skills/geo-seo
+  seo-domain-hunter:
+    name: Domain Hunter
+    source: ReS
+    desc: Domain name mining and evaluation.
+    inputs: [Keywords]
+    outputs: [Domain candidates]
+    uses_entities: [Project]
+    skill_ref: ReScienceLab/skills/domain-hunter
+  growth-user-ops:
+    name: User Growth
+    source: OPB
+    desc: Growth funnels and experiments.
+    inputs: [Growth goals]
+    outputs: [Growth plan]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/growth-user-ops
+  growth-sustainably:
+    name: Sustainable Growth
+    source: slav
+    desc: Low-cost sustainable growth strategy.
+    inputs: [Business]
+    outputs: [Growth path]
+    uses_entities: [Organization]
+    skill_ref: slavingia/skills/grow-sustainably
+  growth-first-customers:
+    name: First Customers
+    source: slav
+    desc: Acquire the first paying customers.
+    inputs: [Product]
+    outputs: [Acquisition plan]
+    uses_entities: [Customer]
+    skill_ref: slavingia/skills/first-customers
+  growth-pricing:
+    name: Pricing Strategy
+    source: slav
+    desc: Pricing model design.
+    inputs: [Cost, Value]
+    outputs: [Pricing plan]
+    uses_entities: [Product]
+    skill_ref: slavingia/skills/pricing
+  sales-strategist:
+    name: Sales Strategy
+    source: OPB
+    desc: >-
+      Sales strategy assistant - expert in sales strategy planning and execution optimization. Covers
+      (1) sales strategy and goal setting (annual / quarterly plans), (2) customer personas and market
+      segmentation, (3) channel strategy (direct / distribution / e-commerce / agency), (4) pricing
+      and promotion design, (5) sales team structure and incentives, (6) competitive strategy and
+      differentiation, (7) key-account / KA strategy, (8) sales process and funnel management.
+      Trigger words: sales strategy, sales plan, customer persona, sales channel, pricing strategy,
+      sales target, market segmentation, sales team, competitive analysis, KA strategy.
+    inputs: [Product, Market]
+    outputs: [Sales strategy]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/sales-sales-strategist
+  sales-crm:
+    name: CRM Management
+    source: OPB
+    desc: >-
+      CRM assistant - expert in customer relationship management and maximizing customer value.
+      Covers (1) CRM strategy and system design, (2) customer classification and tiering (RFM model /
+      segmentation), (3) lifecycle management (acquisition / activation / retention / monetization /
+      referral), (4) customer value analysis (LTV / CLV / health score), (5) churn warning and
+      win-back, (6) satisfaction and loyalty (NPS / CSAT), (7) CRM process automation,
+      (8) membership and points programme design. Trigger words: CRM, customer management, customer
+      relationship, RFM, customer tiering, customer lifecycle, LTV, churn warning, win-back, NPS,
+      satisfaction, membership, points, customer persona.
+    inputs: [Customer data]
+    outputs: [CRM plan]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/sales-crm-manager
+  sales-forecaster:
+    name: Sales Forecasting
+    source: OPB
+    desc: >-
+      Sales forecasting assistant - expert in sales forecasting and performance analysis. Covers
+      (1) forecasting models (time series / regression / weighted probability), (2) target
+      decomposition and quota setting, (3) performance analysis and review (attainment / variance),
+      (4) trend analysis and insight, (5) sales early-warning and risk identification,
+      (6) reports and dashboard design, (7) quarterly / annual forecasting, (8) pipeline health
+      assessment. Trigger words: sales forecast, performance analysis, target decomposition, sales
+      trend, warning, sales report, quota, attainment, funnel analysis, pipeline forecast.
+    inputs: [History, Targets]
+    outputs: [Forecast]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/sales-sales-forecaster
+  support-customer-service:
+    name: Customer Service Assistant
+    source: OPB
+    desc: >-
+      Customer service assistant - expert in customer service and support systems. Covers
+      (1) service script design and optimization, (2) FAQ knowledge base building and maintenance,
+      (3) issue classification and handling process, (4) complaint handling and escalation,
+      (5) satisfaction analysis and improvement, (6) training material authoring,
+      (7) automated replies and bot scripts. Trigger words: service script, FAQ, customer complaint,
+      satisfaction, knowledge base, service training, auto-reply, ticketing, after-sales.
+    inputs: [Customer issue]
+    outputs: [Response]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/customer-support-customer-service
+  support-technical:
+    name: Technical Support
+    source: OPB
+    desc: >-
+      Technical support assistant - expert in technical problem diagnosis and resolution. Covers
+      (1) technical issue diagnosis and analysis, (2) troubleshooting and solutions, (3) technical
+      documentation (FAQ / manual / guide), (4) user guidance and training, (5) technical ticketing
+      and escalation, (6) product usage questions, (7) system / software problem handling. Trigger
+      words: technical support, troubleshooting, technical issue, error, bug, system problem,
+      software problem, operation guidance, technical documentation, solution.
+    inputs: [Fault]
+    outputs: [Solution]
+    uses_entities: [Project]
+    skill_ref: OPB/skills/customer-support-technical-support
+  data-analyst:
+    name: Data Analysis
+    source: OPB
+    desc: >-
+      Data analysis assistant - expert in data analysis and business insight. Covers
+      (1) data visualization and report design, (2) business metric system design, (3) trend analysis
+      and predictive modelling, (4) anomaly detection and root-cause analysis, (5) A/B test design
+      and analysis, (6) data report writing, (7) SQL / data extraction guidance. Trigger words: data
+      analysis, data visualization, metric system, trend analysis, anomaly detection, A/B test, data
+      report, SQL, data insight, dashboard, data-driven.
+    inputs: [Dataset]
+    outputs: [Analysis report]
+    uses_entities: [Document]
+    skill_ref: OPB/skills/data-analytics-data-analyst
+  data-user-behavior:
+    name: User Behavior Analysis
+    source: OPB
+    desc: >-
+      User behavior analysis assistant - expert in behavioural insight and growth analysis. Covers
+      (1) behaviour path analysis and optimization, (2) conversion funnel analysis and bottleneck
+      diagnosis, (3) retention analysis and churn warning, (4) user segmentation and persona
+      building, (5) lifetime value analysis, (6) event tracking design, (7) growth experiment design
+      and analysis. Trigger words: user behavior, path analysis, funnel analysis, retention analysis,
+      user segmentation, user persona, LTV, event tracking, behavioural insight, conversion rate,
+      churn analysis.
+    inputs: [Behavioral data]
+    outputs: [Behavioral insight]
+    uses_entities: [Customer]
+    skill_ref: OPB/skills/data-analytics-user-behavior-analyst
+  data-bi:
+    name: Business Intelligence
+    source: OPB
+    desc: Metric system and dashboards.
+    inputs: [Business metrics]
+    outputs: [BI dashboard]
+    uses_entities: [Organization]
+    skill_ref: OPB/skills/data-bi
+  strategy-validate-idea:
+    name: Idea Validation
+    source: slav
+    desc: Validate whether an idea is real at minimum cost.
+    inputs: [Idea]
+    outputs: [Validation conclusion]
+    uses_entities: [Goal]
+    skill_ref: slavingia/skills/validate-idea
+  strategy-mvp:
+    name: MVP Design
+    source: slav
+    desc: Design a minimum viable product.
+    inputs: [Core assumptions]
+    outputs: [MVP plan]
+    uses_entities: [Project]
+    skill_ref: slavingia/skills/mvp
+  strategy-marketing-plan:
+    name: Marketing Plan
+    source: slav
+    desc: Marketing mix and cadence.
+    inputs: [Product, Audience]
+    outputs: [Marketing plan]
+    uses_entities: [Project]
+    skill_ref: slavingia/skills/marketing-plan
+  strategy-find-community:
+    name: Community Discovery
+    source: slav
+    desc: Find target communities and seed users.
+    inputs: [Persona]
+    outputs: [Community list]
+    uses_entities: [Customer]
+    skill_ref: slavingia/skills/find-community
+  strategy-processize:
+    name: Processization
+    source: slav
+    desc: Turn repetitive work into SOPs.
+    inputs: [Process description]
+    outputs: [SOP]
+    uses_entities: [Task]
+    skill_ref: slavingia/skills/processize
+  strategy-minimalist-review:
+    name: Minimalist Review
+    source: slav
+    desc: A one-page minimalist review.
+    inputs: [Period]
+    outputs: [Review page]
+    uses_entities: [Goal]
+    skill_ref: slavingia/skills/minimalist-review
+  diagnosis-idea-feasibility:
+    name: Idea Feasibility
+    source: sober
+    desc: >-
+      Validate whether the demand is real, assess personal fit, run competitive analysis and assign a
+      feasibility level.
+    inputs: [projectInfo, demandDescription, personalSkills, budget, availableTime]
+    outputs: [demandValidation, personalMatch, feasibilityLevel, nextStep]
+    uses_entities: [Goal, Project]
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-mvp-design:
+    name: Diagnostic MVP Design
+    source: sober
+    desc: MVP scoping, three-layer product system and delivery cost estimation.
+    inputs: [Product concept]
+    outputs: [MVP plan, Cost estimation]
+    uses_entities: [Project]
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-seed-coldstart:
+    name: Seed Cold Start
+    source: sober
+    desc: Low-cost acquisition, recruitment strategy and business-loop validation.
+    inputs: [Product, Audience]
+    outputs: [Cold-start plan]
+    uses_entities: [Customer]
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-scale-growth:
+    name: Scale Growth
+    source: sober
+    desc: Business automation, product upgrades and channel scaling.
+    inputs: [Business status]
+    outputs: [Growth plan]
+    uses_entities: [Organization]
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-feasibility-score:
+    name: Feasibility Scoring
+    source: sober
+    desc: Quantify the feasibility level as a score.
+    inputs: [Diagnosis conclusions]
+    outputs: [Score]
+    uses_entities: [Goal]
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-report-export:
+    name: Diagnostic Report Export
+    source: sober
+    desc: Export a structured diagnostic report.
+    inputs: [Diagnosis data]
+    outputs: [Report]
+    uses_entities: [Document]
+    skill_ref: sober568/docs/skill-reference
+  diagnosis-user-feedback:
+    name: User Feedback
+    source: sober
+    desc: Collect and analyse user feedback.
+    inputs: [Feedback]
+    outputs: [Feedback insight]
+    uses_entities: [Customer]
+    skill_ref: sober568/docs/skill-reference
+  wf-opc-orchestrator:
+    name: OPC Orchestrator
+    source: easy
+    desc: >-
+      One-person-company stage orchestrator: cross-stage state machine and hand-off.
+    inputs: [Company state]
+    outputs: [Stage plan, Hand-off ticket]
+    uses_entities: [Organization, Project, Task]
+    skill_ref: easychen/skills/opc-orchestrator
+    derived: true
+  wf-conversion-loop:
+    name: Conversion Loop
+    source: easy
+    desc: >-
+      Closed-loop workflow for acquisition - conversion - retention - repurchase.
+    inputs: [Traffic]
+    outputs: [Conversion funnel]
+    uses_entities: [Customer, Goal]
+    skill_ref: easychen/skills/opc-conversion-loop
+    derived: true
+  wf-asset-ops:
+    name: Asset Operations
+    source: easy
+    desc: Digital asset operations and value-growth workflow.
+    inputs: [Asset inventory]
+    outputs: [Operations plan]
+    uses_entities: [Document, Account]
+    skill_ref: easychen/skills/opc-asset-ops
+    derived: true
+  wf-business-model:
+    name: Business Model Design
+    source: easy
+    desc: Business model canvas design and validation.
+    inputs: [Value hypotheses]
+    outputs: [Business model canvas]
+    uses_entities: [Organization, Goal]
+    skill_ref: easychen/skills/opc-business-model
+    derived: true
+  wf-value-proposition:
+    name: Value Proposition
+    source: easy
+    desc: Value proposition design and validation.
+    inputs: [Customer pain points]
+    outputs: [Value proposition]
+    uses_entities: [Customer, Goal]
+    skill_ref: easychen/skills/opc-value-proposition
+    derived: true
+  wf-niche-positioning:
+    name: Niche Positioning
+    source: easy
+    desc: Niche market positioning.
+    inputs: [Market]
+    outputs: [Positioning]
+    uses_entities: [Goal]
+    skill_ref: easychen/skills/opc-niche-positioning
+    derived: true
+  wf-dashboard-review:
+    name: Dashboard Review
+    source: easy
+    desc: Periodic review of the business dashboard.
+    inputs: [Business data]
+    outputs: [Review]
+    uses_entities: [Organization]
+    skill_ref: easychen/skills/opc-dashboard-review
+    derived: true
+  wf-resource-audit:
+    name: Resource Audit
+    source: easy
+    desc: Resource inventory and allocation audit.
+    inputs: [Resources]
+    outputs: [Audit report]
+    uses_entities: [Organization]
+    skill_ref: easychen/skills/opc-resource-audit
+    derived: true
+  wf-mvp-designer:
+    name: MVP Designer
+    source: easy
+    desc: MVP scope design and validation plan.
+    inputs: [Core assumptions]
+    outputs: [MVP scope]
+    uses_entities: [Project]
+    skill_ref: easychen/skills/opc-mvp-designer
+    derived: true
+
+  # --- Original extension actions for the 24-department model ---
+  #     (WSHU = original work by Tianjin Weishu AI Technology Co., Ltd.; registered IP increment)
+  procurement-sourcing:
+    name: Vendor Sourcing
+    source: WSHU
+    desc: >-
+      Vendor sourcing and evaluation: build a candidate pool, review qualifications, score capability
+      and onboard by tier.
+    inputs: [Procurement requirements]
+    outputs: [Candidate vendor list]
+    uses_entities: [Organization, Contract]
+    skill_ref: WSHU/ext/procurement
+  procurement-negotiation:
+    name: Procurement Negotiation
+    source: WSHU
+    desc: >-
+      Price negotiation and contract term bargaining: comparison shopping, total cost of ownership
+      (TCO) analysis and price-reduction paths.
+    inputs: [Quotations]
+    outputs: [Negotiation conclusion]
+    uses_entities: [Organization, Contract]
+    skill_ref: WSHU/ext/procurement
+  procurement-inventory:
+    name: Inventory Strategy
+    source: WSHU
+    desc: >-
+      Inventory strategy and replenishment: safety stock, days of inventory, shortage alerts and
+      fulfilment coordination.
+    inputs: [Inventory data]
+    outputs: [Replenishment advice]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/procurement
+  investor-bp:
+    name: Fundraising Deck
+    source: WSHU
+    desc: >-
+      Write a fundraising business plan (BP / deck): story line, financial model, milestones and use
+      of funds.
+    inputs: [Business status]
+    outputs: [Fundraising deck]
+    uses_entities: [Organization, Project]
+    skill_ref: WSHU/ext/investor
+  investor-relations:
+    name: Investor Relations
+    source: WSHU
+    desc: >-
+      Investor relationship management: outreach, roadshows, due-diligence support and communication
+      cadence.
+    inputs: [Investor list]
+    outputs: [Communication plan]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/investor
+  investor-valuation:
+    name: Valuation & Terms
+    source: WSHU
+    desc: >-
+      Valuation and term assessment: valuation range, key Term Sheet clauses and risk warnings.
+    inputs: [Financial projections]
+    outputs: [Valuation and terms advice]
+    uses_entities: [Organization, Contract]
+    skill_ref: WSHU/ext/investor
+  csm-health:
+    name: Health Monitoring
+    source: WSHU
+    desc: >-
+      Customer health monitoring: activity, adoption, satisfaction and churn-risk scoring.
+    inputs: [Customer behavior data]
+    outputs: [Health score]
+    uses_entities: [Customer]
+    skill_ref: WSHU/ext/csm
+  csm-renewal:
+    name: Renewal Drive
+    source: WSHU
+    desc: >-
+      Renewal drive: renewal window management, value review and contract renewal negotiation.
+    inputs: [Contract expiry]
+    outputs: [Renewal plan]
+    uses_entities: [Customer, Contract]
+    skill_ref: WSHU/ext/csm
+  csm-upsell:
+    name: Upsell Mining
+    source: WSHU
+    desc: >-
+      Upsell and expansion mining: usage trends, upsell timing and case-study capture.
+    inputs: [Usage data]
+    outputs: [Upsell opportunities]
+    uses_entities: [Customer]
+    skill_ref: WSHU/ext/csm
+  intl-localization:
+    name: Localization
+    source: WSHU
+    desc: >-
+      Overseas market localization: multi-language, cultural adaptation, local payment and logistics
+      solutions.
+    inputs: [Target market]
+    outputs: [Localization plan]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/international
+  intl-compliance:
+    name: Overseas Compliance
+    source: WSHU
+    desc: >-
+      Overseas compliance and platform rules: target-country regulation, cross-border data transfer
+      and tax registration.
+    inputs: [Target country]
+    outputs: [Compliance checklist]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/international
+  intl-growth:
+    name: Cross-border Growth
+    source: WSHU
+    desc: >-
+      Cross-border growth and fulfilment coordination: channels, ad placement and overseas
+      fulfilment chain optimization.
+    inputs: [Growth goals]
+    outputs: [Growth plan]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/international
+  risk-map:
+    name: Risk Map
+    source: WSHU
+    desc: >-
+      Risk mapping and early warning: identify business / funding / compliance risks and grade the
+      warnings.
+    inputs: [Business data]
+    outputs: [Risk map]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/risk
+  risk-control:
+    name: Internal Control Process
+    source: WSHU
+    desc: >-
+      Internal control processes and separation of duties: control points on key process nodes and
+      duty-separation design.
+    inputs: [Process definition]
+    outputs: [Internal control matrix]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/risk
+  risk-audit:
+    name: Audit & Anti-Fraud
+    source: WSHU
+    desc: >-
+      Audit and anti-fraud: sampling audit, anomalous transaction detection and remediation closure.
+    inputs: [Audit scope]
+    outputs: [Audit report]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/risk
+  it-asset:
+    name: Assets & Permissions
+    source: WSHU
+    desc: >-
+      IT assets and account permissions: asset inventory, least-privilege authorization and periodic
+      permission review.
+    inputs: [Asset inventory]
+    outputs: [Permission matrix]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/it_security
+  it-network:
+    name: Network Security
+    source: WSHU
+    desc: >-
+      Network security and vulnerability protection: perimeter defence, vulnerability scanning and
+      intrusion monitoring.
+    inputs: [Network topology]
+    outputs: [Hardening recommendations]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/it_security
+  it-backup:
+    name: Backup & Disaster Recovery
+    source: WSHU
+    desc: >-
+      Data backup and disaster recovery: backup strategy, recovery drills and business continuity.
+    inputs: [System inventory]
+    outputs: [Disaster recovery plan]
+    uses_entities: [Organization]
+    skill_ref: WSHU/ext/it_security

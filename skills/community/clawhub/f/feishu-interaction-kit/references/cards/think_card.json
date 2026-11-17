@@ -1,0 +1,61 @@
+{
+  "schema": "2.0",
+  "config": {
+    "streaming_mode": true,
+    "style": {
+      "color": {
+        "cus-0": {
+          "light_mode": "rgba(166,124,0,1)",
+          "dark_mode": "rgba(240,200,90,1)"
+        },
+        "cus-1": {
+          "light_mode": "rgba(139,90,43,1)",
+          "dark_mode": "rgba(200,155,105,1)"
+        }
+      }
+    }
+  },
+  "body": {
+    "elements": [
+      {
+        "tag": "collapsible_panel",
+        "element_id": "think_panel",
+        "expanded": false,
+        "header": {
+          "title": {
+            "tag": "markdown",
+            "element_id": "think_title",
+            "content": "<font color='cus-1'>**思考和工具调用过程**</font> ⠋"
+          },
+          "background_color": "grey",
+          "vertical_align": "center",
+          "icon": {
+            "tag": "standard_icon",
+            "token": "down-small-ccm_outlined",
+            "size": "16px 16px"
+          },
+          "icon_position": "right",
+          "icon_expanded_angle": -180
+        },
+        "border": {
+          "color": "grey",
+          "corner_radius": "5px"
+        },
+        "vertical_spacing": "8px",
+        "padding": "8px 8px 8px 8px",
+        "elements": [
+          {
+            "tag": "markdown",
+            "element_id": "think_log",
+            "content": " "
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "element_id": "think_live",
+        "content": "​"
+      }
+    ]
+  }
+}

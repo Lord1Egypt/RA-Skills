@@ -1,41 +1,54 @@
-## Description: <br>
-Creates and rewrites Xiaohongshu-style Chinese marketing and lifestyle posts in a natural conversational voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书文案专家 helps agents draft and rewrite Xiaohongshu posts for product recommendations, lifestyle sharing, and viral-copy rewrites in a conversational Chinese style.
 
-## Publisher: <br>
-[slfcys](https://clawhub.ai/user/slfcys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slfcys](https://clawhub.ai/user/slfcys)
 
-## Use Case: <br>
-Creators, marketers, and content agents use this skill to draft product recommendation posts, lifestyle sharing posts, and rewrites of existing Xiaohongshu copy while preserving a conversational Chinese tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include unsupported product claims or invented personal-experience details. <br>
-Mitigation: Review factual claims and supplied personal details before publishing, especially for product recommendation posts. <br>
-Risk: Promotional or sponsored content may require disclosure depending on the publishing context. <br>
-Mitigation: Disclose sponsored or promotional relationships where required and avoid presenting paid promotion as independent personal experience. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to generate Xiaohongshu-style titles, post bodies, hashtags, and rewrite notes for product recommendations, lifestyle posts, or copy optimization.
 
-## Reference(s): <br>
-- [Xiaohongshu Rules Reference](artifact/references/xiaohongshu-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/slfcys/slfcys-xhs-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Chinese copy with content type, main title, alternate titles, body text, recommended hashtags, and optional rewrite notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Body text is intended to stay within 200-500 Chinese characters according to the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can create first-person promotional posts with invented realistic details that may look like genuine customer experiences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain generations to user-provided facts, explicit placeholders, or clearly labeled fictional or promotional drafts.
+
+Risk: Commercial product content could become misleading if generated details are presented as actual user experience.
+
+Mitigation: Review generated copy before publication and require disclosure or correction when content is promotional, fictional, or not based on verified experience.
+
+## Reference(s):
+
+- [Xiaohongshu rules reference](references/xiaohongshu-rules.md)
+- [ClawHub skill page](https://clawhub.ai/slfcys/skills/slfcys-xhs-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured Chinese copy with section labels, titles, body text, hashtags, and optional rewrite notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one main title, three alternate titles, 200-500 Chinese body text, recommended hashtags, and rewrite notes when applicable.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

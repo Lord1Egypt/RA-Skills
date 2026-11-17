@@ -1,47 +1,62 @@
-## Description: <br>
-Generate images and videos with AIsa using Gemini 3 Pro Image for images and Qwen Wan 2.6 for video through one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images & videos with AIsa. Gemini 3 Pro Image (image) + Qwen Wan 2.6 (video) via one API key.
 
-## Publisher: <br>
-[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom)
 
-## Use Case: <br>
-Developers and content automation agents use this skill to generate image files, create AIsa video generation tasks, poll task status, and optionally download generated videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, reference image URLs, and an API key-authorized request to AIsa. <br>
-Mitigation: Use only approved prompts and media URLs, and do not submit secrets, private prompts, or sensitive image URLs unless approved for that provider. <br>
-Risk: Generated image or video downloads can write to local output paths. <br>
-Mitigation: Choose output paths carefully and review generated files before sharing or using them in downstream workflows. <br>
-Risk: Automatic video download trusts the provider-returned download URL. <br>
-Mitigation: Treat automatic video download as less hardened and use it only when the AIsa task response is trusted. <br>
+## Use Case:
 
+Developers and external users use this skill to generate images and videos through the AIsa API, including Gemini image generation and Wan 2.6 asynchronous video tasks with polling and optional local download.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/bowen-dotcom/aisa-media-gen-skill) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [AIsa GenerateContent API](https://docs.aisa.one/reference/generatecontent) <br>
-- [AIsa video generation API](https://docs.aisa.one/reference/post_services-aigc-video-generation-video-synthesis) <br>
-- [AIsa task status API](https://docs.aisa.one/reference/get_services-aigc-tasks) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API responses, and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; image output is saved as png, jpg, or webp, and optional video download saves mp4 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, referenced image URLs, task IDs, and generated-media requests are sent to AIsa using AISA_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or private content and use an API key scoped appropriately for the task.
+
+Risk: The download path writes generated media locally and provider-returned download URLs are not validated by the skill.
+
+Mitigation: Review chosen output paths before running download commands and inspect provider-returned URLs before downloading files.
+
+Risk: A chosen output path can be overwritten when the client saves generated media.
+
+Mitigation: Use a fresh output filename or directory for each run when preserving existing files matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bowen-dotcom/skills/aisa-media-gen-skill)
+- [OpenClaw homepage](https://openclaw.ai)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [AIsa GenerateContent documentation](https://docs.aisa.one/reference/generatecontent)
+- [AIsa video generation documentation](https://docs.aisa.one/reference/post_services-aigc-video-generation-video-synthesis)
+- [AIsa task status documentation](https://docs.aisa.one/reference/get_services-aigc-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from the client script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated image or video files locally when output or download options are used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

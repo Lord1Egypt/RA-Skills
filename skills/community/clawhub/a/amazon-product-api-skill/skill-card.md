@@ -1,42 +1,55 @@
-## Description: <br>
-This skill helps agents extract structured Amazon product listings, including titles, ASINs, prices, ratings, and product attributes, through BrowserAct. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users extract structured product listings from Amazon, including titles, ASINs, prices, ratings, and specifications.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-Developers, analysts, and market-research agents use this skill to search Amazon listings and collect structured product data for pricing, competitor monitoring, catalog enrichment, rating analysis, and localized product research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon search terms and related parameters are sent to BrowserAct. <br>
-Mitigation: Use a dedicated, revocable BrowserAct API key through the environment or a secure secret manager, and avoid placing the key in chat, logs, or source code. <br>
-Risk: The skill runs an external BrowserAct workflow that may take several minutes and can fail because of network, authorization, or task-status errors. <br>
-Mitigation: Monitor status output, do not retry invalid authorization failures, and limit automatic retries for other failures to one attempt. <br>
+## Use Case:
 
+Developers, analysts, and ecommerce operators use this skill to run BrowserAct-backed Amazon product searches and collect structured listing data for market research, competitor monitoring, product catalog enrichment, price tracking, and localized research.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/phheng/amazon-product-api-skill) <br>
-- [BrowserAct Console integrations](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with status logs and structured product-data output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python and BROWSERACT_API_KEY; accepts keywords, brand, page count, and language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The security evidence reports that the skill unsafely tells users they may provide a BrowserAct API key in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BROWSERACT_API_KEY only through the local environment or an approved secret manager, avoid pasting the key into chat, and rotate any key that has already been shared.
+
+Risk: Running the skill sends product search inputs and the BrowserAct bearer token to BrowserAct's API.
+
+Mitigation: Review intended search terms before execution and use an approved BrowserAct account and credential-handling process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/amazon-product-api-skill)
+- [BrowserAct API key setup](https://www.browseract.com/reception/integrations)
+- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured product data printed as text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; sends product search inputs and a BrowserAct bearer token to BrowserAct's API.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

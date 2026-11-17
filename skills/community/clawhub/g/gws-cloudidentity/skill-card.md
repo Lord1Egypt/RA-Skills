@@ -1,41 +1,58 @@
-## Description: <br>
-Google Cloud Identity: Manage identity groups and memberships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Cloud Identity: Manage identity groups and memberships.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and Google Workspace administrators use this skill to discover and draft `gws cloudidentity` CLI commands for Cloud Identity groups, memberships, devices, SSO profiles, assignments, and policies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward broad Google Workspace or Cloud Identity administrative actions beyond group management, including device wipes and SSO changes. <br>
-Mitigation: Install it only for admin-capable use cases, use the least-privileged Google admin account possible, and require explicit human confirmation before wipe, delete, SSO, policy, or security-setting operations. <br>
-Risk: Generated commands depend on the local `gws` binary and shared authentication instructions. <br>
-Mitigation: Verify the `gws` binary and generated `gws-shared` instructions before use, then inspect each method with `gws schema` before passing parameters or JSON bodies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-cloudidentity) <br>
-- [Google API resource names](https://cloud.google.com/apis/design/resource_names) <br>
-- [Google Workspace multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448) <br>
+## Use Case:
 
+Google Workspace administrators and operations engineers use this skill to ask an agent for Google Cloud Identity CLI guidance covering groups, memberships, devices, policies, and SSO resources.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `gws` CLI binary and command inspection with `gws cloudidentity --help` or `gws schema`.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide device wipe, device delete, group patch, SSO profile, and SSO assignment changes with high administrative impact.
+
+Mitigation: Require explicit human confirmation and administrator review before executing wipe, delete, patch, or assignment-changing commands.
+
+Risk: The short description emphasizes groups and memberships while the artifact also covers device administration and SSO configuration.
+
+Mitigation: Install only in environments where agents are authorized to assist with the full Cloud Identity scope documented by the skill.
+
+Risk: Incorrect parameters for Cloud Identity methods could affect production identity, device, or SSO state.
+
+Mitigation: Use gws schema inspection before constructing commands and review generated parameters before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-cloudidentity)
+- [Google API resource names](https://cloud.google.com/apis/design/resource_names)
+- [Google Workspace multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include gws cloudidentity commands and gws schema inspection guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

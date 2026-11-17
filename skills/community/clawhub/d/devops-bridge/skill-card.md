@@ -1,42 +1,60 @@
-## Description: <br>
-DevOps Bridge connects GitHub, GitHub Actions, Slack, Discord, Linear, Jira, and GitHub Issues into cross-tool workflows for CI alerts, PR review tracking, issue sync, flaky test detection, repository monitoring, and daily development summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified developer operations bridge connecting GitHub, CI/CD, Slack, Discord, and issue trackers into cross-tool automated workflows for notifications, review tracking, summaries, issue sync, flaky test detection, and repository health monitoring.
 
-## Publisher: <br>
-[ariktulcha](https://clawhub.ai/user/ariktulcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ariktulcha](https://clawhub.ai/user/ariktulcha)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to monitor repositories, analyze CI status, coordinate PR reviews, sync linked issues, and send context-rich updates across developer tools and team channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can monitor broad developer systems and team channels. <br>
-Mitigation: Limit access to specific repositories, projects, and channels, and use least-privilege credentials. <br>
-Risk: The skill can post notifications, update tickets, rerun CI, merge pull requests, or otherwise affect external developer systems. <br>
-Mitigation: Require user approval before ticket updates, comments, CI reruns, merges, or outbound messages. <br>
-Risk: Workspace memory and cron schedules may persist team mappings or recurring operational checks. <br>
-Mitigation: Periodically review stored workspace memory and configured schedules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ariktulcha/devops-bridge) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ariktulcha) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate GitHub, CI/CD, messaging, and issue tracker activity across pull requests, build failures, review reminders, standup summaries, and deployment notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with optional JSON configuration snippets and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or compose notifications, summaries, issue updates, cron schedules, and repository or team-channel configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can connect repositories, CI/CD systems, messaging channels, and issue trackers, creating broad automation reach across development workflows.
+
+Mitigation: Use explicit repository and channel allowlists; avoid granting access to all repositories with push permission unless that scope is intended.
+
+Risk: Automatic posts, issue updates, CI reruns, merges, and recurring schedules can change external systems or broadcast sensitive context.
+
+Mitigation: Require user confirmation before external posts, issue updates, reruns, merges, and recurring schedule creation.
+
+Risk: CI logs, issue details, and pull request context may expose sensitive information when sent to chat systems.
+
+Mitigation: Limit and redact CI logs and issue details before posting to Slack, Discord, Telegram, or other messaging channels.
+
+Risk: Persistent team username mappings may expose or misuse developer identity links across tools.
+
+Mitigation: Review mappings before storage and keep them scoped to the intended workspace or team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ariktulcha/skills/devops-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text with optional shell commands, JSON configuration snippets, and external tool action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce chat notifications, pull request and CI summaries, issue tracker updates, scheduled workflow suggestions, and team username mappings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

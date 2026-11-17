@@ -1,43 +1,53 @@
-## Description: <br>
-Constructs or locates compliant virtual test products by category, business identity, product attributes, or item tags, then can clone, reprice, and clean tags for test listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Constructs compliant test products by finding or cloning virtual items, adjusting prices, and cleaning item tags based on category, business identity, attributes, and tag requirements.
 
-## Publisher: <br>
-[cpu-hammer](https://clawhub.ai/user/cpu-hammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cpu-hammer](https://clawhub.ai/user/cpu-hammer)
 
-## Use Case: <br>
-Marketplace QA, operations, and engineering users can use this skill to find or construct virtual test product listings, clone eligible items to test seller accounts, set test prices, and remove inappropriate item tags. It is intended for test-item workflows, not general product administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call internal services that mutate marketplace item state, including clone, price, tag, and listing-status operations. <br>
-Mitigation: Install only in trusted environments, confirm backend authorization restricts changes to test items and accounts, and require explicit approval before each mutating action. <br>
-Risk: The skill sends user and system context to Alibaba internal services while resolving and modifying product records. <br>
-Mitigation: Avoid sensitive production data in prompts and limit use to approved internal test-item workflows. <br>
-Risk: The category and SPU helper broadens the skill beyond virtual test-item construction. <br>
-Mitigation: Remove or disable that helper when the deployment only needs virtual test-product construction. <br>
+## Use Case:
 
+Developers and test operators use this skill to locate or construct virtual test products for commerce workflows, including category and attribute matching, test-account cloning, price updates, and tag cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cpu-hammer/virtual-item-constructor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/cpu-hammer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with command examples and a structured final product summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product IDs, titles, prices, seller names, item tags, and Taobao item links when construction succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json reports 0.1.0) <br>
+Risk: The skill can trigger product-management actions including cloning, repricing, listing-state changes, and tag changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each mutating action and verify that the target item is a test item immediately before mutation.
+
+Risk: The skill depends on backing internal services to enforce test-only restrictions.
+
+Mitigation: Install and run it only when the publisher and backing services are trusted to enforce those restrictions server-side.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cpu-hammer/skills/virtual-item-constructor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and a structured final product summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful results may include item ID, title, price, test seller, item tags, and an item URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

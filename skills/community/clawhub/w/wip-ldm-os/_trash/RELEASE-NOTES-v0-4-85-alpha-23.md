@@ -1,0 +1,1 @@
+Add hosted Remote Control WebSocket abuse limits for the established browser relay path. Browser-originated sockets now have frame size, message rate, byte rate, malformed frame, pending byte, idle timeout, per-thread socket cap, and operator kill switch enforcement with metadata-only violation logs.

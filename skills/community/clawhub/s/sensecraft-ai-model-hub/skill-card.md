@@ -1,50 +1,67 @@
-## Description: <br>
-Connect OpenClaw to the SenseCraft public model library to search, inspect, export, and download AI vision models for software and edge AI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to the SenseCraft public model library to search, inspect, export, and download AI vision models for software and edge AI workflows.
 
-## Publisher: <br>
-[jancee](https://clawhub.ai/user/jancee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jancee](https://clawhub.ai/user/jancee)
 
-## Use Case: <br>
-Developers and engineers use this skill to find SenseCraft public vision models, inspect model metadata and download URLs, export searchable catalogs, download artifacts, and validate candidates for OpenClaw or edge AI integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download model artifacts and create local files such as indexes, manifests, models, and captures. <br>
-Mitigation: Run download and demo workflows in an isolated workspace, inspect downloaded model files before production use, and remove saved captures or other generated files when they are no longer needed. <br>
-Risk: The optional local webcam demo accesses the user's camera and can save annotated frames. <br>
-Mitigation: Run the webcam demo only when local camera processing is intended, confirm camera permissions explicitly, and delete saved captures after validation. <br>
-Risk: SenseCraft API responses, numeric field meanings, and download URLs may change or may not fully document runtime compatibility. <br>
-Mitigation: Use the bundled list, view, and index workflows with retries and mild throttling, preserve raw metadata, and verify downloaded artifacts before claiming exact TFLite or runtime compatibility. <br>
-Risk: Vision model preprocessing and output decoding can be model-specific, especially for YOLO-family exports. <br>
-Mitigation: Check tensor metadata, labels, quantization, thresholds, and model-specific postprocessing notes before integrating a model or treating demo output as validated. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover SenseCraft vision models, inspect model metadata and download URLs, export searchable indexes, download model artifacts, and validate selected TFLite models for OpenClaw or edge AI workflows.
 
-## Reference(s): <br>
-- [SenseCraft Public Model API](references/sensecraft-api.md) <br>
-- [Field Mapping Notes](references/field-mapping-notes.md) <br>
-- [Integration Notes](references/integration-notes.md) <br>
-- [Local Webcam Demo Notes](references/local-webcam-demo.md) <br>
-- [Model Catalog](references/model-catalog.md) <br>
-- [SenseCraft API Base URL](https://sensecraft.seeed.cc/aiserverapi) <br>
-- [SSCMA-Micro Reference Implementation](https://github.com/Seeed-Studio/SSCMA-Micro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON or CSV export paths, download manifests, and integration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local model files, catalog exports, manifests, and annotated webcam captures when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The optional local demo can install Python packages, download model files, open a webcam, and save local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, use a dedicated directory or virtual environment, and grant camera access only when live inference is intended.
+
+Risk: Downloaded model artifacts and generated indexes may be untrusted or may not match expected runtime assumptions.
+
+Mitigation: Verify downloaded models before use, inspect input/output tensors and metadata, and validate behavior on positive, near-miss, and negative examples before integration.
+
+Risk: CSV exports can contain untrusted model metadata from the public API.
+
+Mitigation: Sanitize CSV files before opening them in spreadsheet software.
+
+Risk: The SenseCraft public API contract and model availability may change.
+
+Mitigation: Use small retries and throttling during bulk operations, preserve raw metadata in exports, and record per-model failures instead of assuming every lookup or download will succeed.
+
+## Reference(s):
+
+- [SenseCraft API Notes](references/sensecraft-api.md)
+- [Field Mapping Notes](references/field-mapping-notes.md)
+- [Integration Notes](references/integration-notes.md)
+- [Local Webcam Demo Notes](references/local-webcam-demo.md)
+- [Model Catalog](references/model-catalog.md)
+- [SenseCraft Public Model API](https://sensecraft.seeed.cc/aiserverapi)
+- [SSCMA-Micro](https://github.com/Seeed-Studio/SSCMA-Micro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown with inline shell commands plus JSON, CSV, manifest, model download, and annotated image file outputs when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local model indexes, download manifests, model artifacts, virtual environments, and webcam captures under user-selected or skill-local directories.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata, released 2026-03-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

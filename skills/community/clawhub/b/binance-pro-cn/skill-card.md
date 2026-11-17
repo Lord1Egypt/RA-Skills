@@ -1,45 +1,59 @@
-## Description: <br>
-Binance Pro Cn helps an agent provide Binance spot and futures trading guidance, including balance checks, price queries, order placement, leverage changes, staking-related context, and Binance API command examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance Pro Cn provides Binance integration guidance for spot and futures trading, leverage, staking, balances, prices, open orders, cancellations, and trade history.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Binance account, spot trading, futures trading, leverage, order management, and market data workflows. It is intended for Binance API command guidance and should be used with explicit human review before any trading action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to place real Binance spot or futures trades, cancel orders, and change leverage. <br>
-Mitigation: Require explicit human confirmation for every order, cancellation, leverage change, symbol, side, quantity, and price before execution. <br>
-Risk: Use of broad or high-privilege Binance API keys could expose funds or allow unintended trading activity. <br>
-Mitigation: Use a dedicated Binance API key with withdrawals disabled, minimum required trading permissions, and IP restrictions where possible. <br>
-Risk: Leveraged futures actions can amplify losses if parameters or account state are misunderstood. <br>
-Mitigation: Prefer testnet or very small amounts first, verify the current position before closing or changing leverage, and use stop-loss controls for leveraged trades. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/binance-pro-cn) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/guohongbin-git) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [Binance API Documentation](https://binance-docs.github.io/apidocs/) <br>
-- [Binance Testnet](https://testnet.binance.vision/) <br>
+## Use Case:
 
+External users and developers use this skill to generate Binance API credential setup guidance and command examples for market data, account reads, spot orders, futures orders, leverage changes, and order management.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Binance API credential setup examples and curl-based command patterns for account, order, futures, and market data operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use Binance API keys for live account reads and trade execution.
+
+Mitigation: Use a dedicated, least-privilege Binance API key with withdrawals disabled, restrict source IPs where possible, and protect credential files with restrictive permissions.
+
+Risk: The skill includes commands for spot orders, futures orders, leverage changes, and cancellations.
+
+Mitigation: Prefer Binance testnet first and require explicit confirmation before every order, leverage change, or cancellation.
+
+Risk: Security evidence flags broad triggers and weak safeguards for market-trading commands.
+
+Mitigation: Review prompts and generated commands before deployment, and constrain activation to intentional Binance trading requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/binance-pro-cn)
+- [OpenClaw Metadata Source](https://clawhub.ai)
+- [Binance API Documentation](https://binance-docs.github.io/apidocs/)
+- [Binance Testnet](https://testnet.binance.vision/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes executable Binance API command examples that may read live account data or submit trading actions when populated with valid credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

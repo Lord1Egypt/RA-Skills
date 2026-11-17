@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.local/article-html-to-ppt/rubric-score.schema.json",
+  "title": "article-html-to-ppt Rubric Score v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "case_id",
+    "build_id",
+    "scorer",
+    "dimensions",
+    "automatic_evidence",
+    "total_score",
+    "hard_gate_status",
+    "rubric_quality_status",
+    "overall_status",
+    "manual_review_required",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "generated_at": {"type": "string"},
+    "case_id": {"type": "string"},
+    "build_id": {"type": "string"},
+    "deck_id": {"type": "string"},
+    "scorer": {
+      "type": "object",
+      "required": ["type", "name", "version"],
+      "properties": {
+        "type": {"enum": ["human_reference", "model", "automatic_metrics"]},
+        "name": {"type": "string"},
+        "version": {"type": "string"}
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["dimension", "score", "evidence", "automatic_metrics", "confidence"],
+        "properties": {
+          "dimension": {
+            "enum": [
+              "title_role_and_message_quality",
+              "content_fidelity",
+              "expression_architecture",
+              "page_composition",
+              "component_craft",
+              "editability_hygiene"
+            ]
+          },
+          "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 3},
+          "provisional_score": {"type": ["integer", "null"], "minimum": 0, "maximum": 3},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "automatic_metrics": {"type": "object"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "manual_review_required": {"type": "boolean"}
+        }
+      }
+    },
+    "automatic_evidence": {"type": "object"},
+    "total_score": {"type": ["integer", "null"], "minimum": 0, "maximum": 18},
+    "hard_gate_status": {"enum": ["passed", "warning", "failed", "manual_review_required"]},
+    "rubric_quality_status": {"enum": ["passed", "failed", "manual_review_required"]},
+    "overall_status": {"enum": ["passed", "warning", "failed", "manual_review_required"]},
+    "manual_review_required": {"type": "boolean"},
+    "decoupling": {"type": "object"},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

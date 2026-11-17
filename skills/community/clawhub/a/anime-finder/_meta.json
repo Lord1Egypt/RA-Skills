@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72ax6xn8gpdhvhvnw02rp47n823x31",
-  "slug": "anime-finder",
+  "name": "anime-finder",
   "version": "1.4.0",
-  "publishedAt": 1775989428023
+  "description": "找番、追更、最新一集/最新一季、磁力与下载跟进的一体化 anime skill",
+  "emoji": "🌸",
+  "mergedFrom": [
+    "torrent-downloader",
+    "nyaa-downloader"
+  ]
 }

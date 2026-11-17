@@ -1,0 +1,16 @@
+{
+  "action": "prepare",
+  "name": "Weekly report",
+  "message": "Remind me to submit the weekly report.",
+  "timezone": "Asia/Shanghai",
+  "schedule": {
+    "kind": "cron",
+    "value": "0 20 * * 5"
+  },
+  "delivery": {
+    "agentId": "CURRENT_AGENT",
+    "channel": "CURRENT_CHANNEL",
+    "accountId": "CURRENT_ACCOUNT",
+    "to": "CURRENT_RECIPIENT"
+  }
+}

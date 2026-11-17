@@ -1,47 +1,61 @@
-## Description: <br>
-Reviews daily AI advancements and banking fintech progress from curated sources with full text inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review daily AI advancements and domestic banking fintech progress from tier-1 curated sources with full text inspection.
 
-## Publisher: <br>
-[lube845](https://clawhub.ai/user/lube845) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lube845](https://clawhub.ai/user/lube845)
 
-## Use Case: <br>
-Developers, analysts, and fintech teams use this skill to fetch curated AI, banking, and financial technology sources, summarize substantive technical developments, and save a daily Markdown brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses listed public news and fintech sites over the network. <br>
-Mitigation: Install it only if that network access is acceptable for the target environment and review the disclosed source list before use. <br>
-Risk: The skill stores raw cached data and permanent Markdown report history in the local OpenClaw workspace. <br>
-Mitigation: Delete or manage the workspace output directory when report history should not be retained, and treat cached-data reports as potentially one day stale. <br>
+## Use Case:
 
+External users and analysts use this skill to generate a daily AI and fintech brief from curated AI, banking, and domestic financial technology sources. The skill retrieves or reuses recent article data, summarizes concrete technical and business details, and saves a Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lube845/daily-fintech-brief) <br>
-- [The Batch RSS](https://www.deeplearning.ai/the-batch/rss/) <br>
-- [Ben's Bites RSS](https://www.bensbites.co/rss) <br>
-- [Banking Dive RSS](https://www.bankingdive.com/feeds/news/) <br>
-- [China Financial Computer technology news](https://www.fcc.com.cn/art/kjzx/) <br>
-- [China Electronic Banking digital banking](https://www.cebnet.com.cn/szyh/) <br>
-- [China Electronic Banking financial AI](https://www.cebnet.com.cn/financialai/) <br>
-- [MPayPass](https://www.mpaypass.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown daily brief, with JSON returned from data-fetching helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Raw source data is cached locally for seven days; generated report Markdown files are retained in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The crawler can follow untrusted links from source pages and bring fetched article content into the agent and local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, block outbound requests to private or internal services, or harden crawling with strict HTTPS host allowlists and redirect validation.
+
+Risk: Fetched article text, raw JSON, and cached reports may contain untrusted or misleading content.
+
+Mitigation: Treat fetched content and cached reports as untrusted inputs and review generated briefs before relying on or redistributing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lube845/skills/daily-fintech-brief)
+- [The Batch RSS](https://www.deeplearning.ai/the-batch/rss/)
+- [Ben's Bites RSS](https://www.bensbites.co/rss)
+- [Banking Dive RSS](https://www.bankingdive.com/feeds/news/)
+- [China Financial Computer technology news](https://www.fcc.com.cn/art/kjzx/)
+- [China Electronic Banking digital banking](https://www.cebnet.com.cn/szyh/)
+- [China Electronic Banking financial AI](https://www.cebnet.com.cn/financialai/)
+- [MPayPass](https://www.mpaypass.com.cn/)
+- [MPayPass fintech column](https://www.mpaypass.com.cn/authordefault.asp?id=80115)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files]
+
+**Output Format:** [Markdown daily brief with supporting JSON article payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Raw article JSON is cached for 7 days; generated Markdown reports are retained under the skill workspace.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

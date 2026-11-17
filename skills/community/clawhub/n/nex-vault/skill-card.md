@@ -1,45 +1,59 @@
-## Description: <br>
-Nex Vault helps agents set up and operate a local contract and document vault for tracking business documents, extracting deadlines and clauses, and surfacing expiry or renewal alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Vault is a local contract and document vault for tracking business agreements, extracting key dates and clauses, monitoring costs, and alerting users about expirations, renewals, and termination notice deadlines.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-External business users, agency operators, SME owners, directors, and managers use this skill to manage contracts, leases, policies, subscriptions, certificates, permits, and other documents while tracking expirations, renewal deadlines, termination notice periods, costs, and optional Telegram alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with Belgian and EU contract-date formats emphasized by the source documentation <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram credential setup can unsafely modify the user's shell startup file. <br>
-Mitigation: Review before installing and avoid the built-in Telegram credential setup unless it is fixed to use safe app-scoped storage instead of ~/.bashrc. <br>
-Risk: The local-only privacy framing under-discloses that enabled Telegram alerts may send document names and deadline details to Telegram. <br>
-Mitigation: If Telegram alerts are enabled, assume document names and deadline details may be sent to Telegram and disclose that external notification path to users. <br>
-Risk: Exports can contain sensitive vault information, potentially including extracted document text. <br>
-Mitigation: Use the vault only for files intentionally added and treat CSV or JSON exports as sensitive business records. <br>
+## Use Case:
 
+Business operators, SME owners, directors, and managers use this skill to manage local contract and document records, track expiration and renewal obligations, search clauses, and export vault data for compliance or budgeting workflows.
 
-## Reference(s): <br>
-- [Nex Vault README](README.md) <br>
-- [Nex Vault Skill Documentation](SKILL.md) <br>
-- [Nex AI Homepage](https://nex-ai.be) <br>
-- [Nex Vault ClawHub Listing](https://clawhub.ai/nexaiguy/nex-vault) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create local vault files, alerts, CSV or JSON exports, and optional Telegram notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The server security review marks the release suspicious because Telegram setup can execute shell input and modifies shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup commands before installation, avoid using Telegram configuration commands as written unless fixed, and store credentials in a restricted configuration file or keyring.
+
+Risk: Telegram alerts may disclose document metadata to a third-party messaging service.
+
+Mitigation: Enable Telegram only for metadata that is appropriate to send outside the local vault, and document this data-sharing behavior for users.
+
+Risk: Untrusted export filenames may overwrite files outside the vault export folder.
+
+Mitigation: Use trusted export paths and constrain export destinations to the vault export directory before running exports.
+
+## Reference(s):
+
+- [Nex Vault on ClawHub](https://clawhub.ai/nexaiguy/skills/nex-vault)
+- [Nex AI](https://nex-ai.be)
+- [Publisher profile](https://clawhub.ai/user/nexaiguy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI outputs use structured plain text with ISO-8601 dates, document statuses, and monetary values.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

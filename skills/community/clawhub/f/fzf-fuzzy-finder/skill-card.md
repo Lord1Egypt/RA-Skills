@@ -1,42 +1,55 @@
-## Description: <br>
-Command-line fuzzy finder for interactive filtering and selection - integrates with shell, vim, and other tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line fuzzy finder for interactive filtering and selection - integrates with shell, vim, and other tools.
 
-## Publisher: <br>
-[Arnarsson](https://clawhub.ai/user/Arnarsson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arnarsson](https://clawhub.ai/user/arnarsson)
 
-## Use Case: <br>
-Developers and command-line users use this skill to get concise fzf usage patterns, shell integrations, aliases, and workflow examples for interactive filtering and selection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Some optional shell examples can delete files, kill processes, or change Docker and Kubernetes resources if copied and run carelessly. <br>
-Mitigation: Review shell snippets before execution, add confirmation or dry-run steps to destructive commands, and verify the current working directory plus Docker or Kubernetes context before running admin commands. <br>
-Risk: The history replay alias can immediately re-run prior commands. <br>
-Mitigation: Avoid adding the history replay alias unless the operator understands the behavior and inspects the selected command before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Arnarsson/fzf-fuzzy-finder) <br>
-- [fzf Project Homepage](https://github.com/junegunn/fzf) <br>
-- [fzf Wiki](https://github.com/junegunn/fzf/wiki) <br>
-- [fzf Examples](https://github.com/junegunn/fzf/wiki/examples) <br>
+## Use Case:
 
+Developers and command-line users use this skill to get concise fzf usage patterns, shell integration examples, and command snippets for interactive filtering, file selection, git workflows, process management, Docker, and Kubernetes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples, aliases, and environment variable configuration guidance that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copyable shell snippets can delete files, kill processes, remove Docker or Kubernetes resources, or execute shell history without confirmation.
+
+Mitigation: Review snippets before use and replace destructive pipelines with preview, dry-run, explicit confirmation, context checks, and safe argument handling.
+
+Risk: Persistent aliases such as fh and fkill can execute shell history or force-kill processes unintentionally if installed verbatim.
+
+Mitigation: Do not install persistent aliases verbatim; adapt them with confirmations and scope checks before adding them to shell configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arnarsson/skills/fzf-fuzzy-finder)
+- [fzf project homepage](https://github.com/junegunn/fzf)
+- [fzf wiki](https://github.com/junegunn/fzf/wiki)
+- [fzf examples](https://github.com/junegunn/fzf/wiki/examples)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides copyable command examples and shell configuration snippets; commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

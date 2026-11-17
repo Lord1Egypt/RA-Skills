@@ -1,3 +1,4 @@
+const { emitError } = require('./shareone_client');
 const fs = require('fs');
 const path = require('path');
 const {
@@ -18,47 +19,85 @@ let password = null;
 let watermark = null;
 let shareId = null;
 let allowComments = null;
+let allowData = null;
 let slug = null;
+let remoteUrl = null;
 let forceNew = false;
+let idempotencyKey = null;
+
+function usage() {
+    console.error("Usage: node upload_page.js <file_path> [--remote-url <url>] [--api-key <key>] [--base-url <url>] [--filename <name>] [--password <pwd>] [--watermark <wm>] [--share-id <id>] [--slug <slug>] [--allow-comments <true|false>] [--allow-data <true|false>] [--force-new] [--idempotency-key <key>]");
+}
+
+function nextValue(index, flag) {
+    const value = args[index + 1];
+    if (value === undefined || value.startsWith('--')) {
+        emitError(`ERROR:MISSING_VALUE:${flag}`);
+    }
+    return value;
+}
+
+function parseBoolean(value, flag) {
+    if (value === 'true') return true;
+    if (value === 'false') return false;
+    emitError(`ERROR:INVALID_BOOLEAN:${flag}`, [`${flag} must be true or false.`].join('\n'));
+}
 
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--api-key') {
-        apiKey = args[++i];
+        apiKey = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--base-url') {
-        process.env.SHAREONE_BASE_URL = args[++i];
+        process.env.SHAREONE_BASE_URL = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--filename') {
-        filename = args[++i];
+        filename = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--password') {
-        password = args[++i];
+        password = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--watermark') {
-        watermark = args[++i];
+        watermark = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--share-id') {
-        shareId = args[++i];
+        shareId = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--slug') {
-        slug = args[++i];
+        slug = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--allow-comments') {
-        allowComments = args[++i] === 'true';
+        allowComments = parseBoolean(nextValue(i, args[i]), args[i]);
+        i += 1;
+    } else if (args[i] === '--allow-data') {
+        allowData = parseBoolean(nextValue(i, args[i]), args[i]);
+        i += 1;
+    } else if (args[i] === '--remote-url') {
+        remoteUrl = nextValue(i, args[i]);
+        i += 1;
+    } else if (args[i] === '--idempotency-key') {
+        idempotencyKey = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--force-new') {
         forceNew = true;
-    } else if (!args[i].startsWith('--')) {
+    } else if (!args[i].startsWith('--') && !filePath) {
         filePath = args[i];
+    } else {
+        emitError(`ERROR:UNKNOWN_ARGUMENT:${args[i]}`);
     }
 }
 
-if (!filePath) {
-    console.error("Usage: node upload_page.js <file_path> [--api-key <key>] [--base-url <url>] [--filename <name>] [--password <pwd>] [--watermark <wm>] [--share-id <id>] [--slug <slug>] [--allow-comments <true|false>] [--force-new]");
-    process.exit(1);
+if (!filePath && !remoteUrl) {
+    usage();
+    emitError('BAD_ARGS', 'Required arguments are missing.');
 }
 
 if (!shareId && !forceNew && fs.existsSync(ACTIVE_TASK_FILENAME)) {
     const activeShareId = fs.readFileSync(ACTIVE_TASK_FILENAME, 'utf-8').trim();
-    console.error("ERROR:ACTIVE_SHARE_TASK");
-    console.error(`检测到进行中的评论处理任务（目标 share: ${activeShareId}）。请使用 --share-id ${activeShareId} 执行 PUT 更新原链接，不要创建新链接。只有确认要创建全新链接时，才删除 ${ACTIVE_TASK_FILENAME} 文件或追加 --force-new。`);
-    process.exit(1);
+    emitError("ERROR:ACTIVE_SHARE_TASK", [`检测到进行中的评论处理任务（目标 share: ${activeShareId}）。请使用 --share-id ${activeShareId} 执行 PUT 更新原链接，不要创建新链接。只有确认要创建全新链接时，才删除 ${ACTIVE_TASK_FILENAME} 文件或追加 --force-new。`].join('\n'));
 }
 
 const HISTORY_FILENAME = '.shareone_history.json';
-const absFilePath = path.resolve(filePath);
+const absFilePath = filePath ? path.resolve(filePath) : null;
 
 function readHistory() {
     try {
@@ -69,50 +108,55 @@ function readHistory() {
     }
 }
 
-if (!shareId && !forceNew) {
+if (!shareId && !forceNew && absFilePath) {
     const previous = readHistory()[absFilePath];
-    if (previous && previous.share_id) {
-        console.error("ERROR:FILE_PREVIOUSLY_PUBLISHED");
-        console.error(`该文件之前已发布过（share_id: ${previous.share_id}${previous.share_url ? `，链接: ${previous.share_url}` : ''}）。请使用 --share-id ${previous.share_id} 执行 PUT 更新原链接；只有确认用户要为同一文件创建全新链接时，才追加 --force-new。`);
-        process.exit(1);
+    if (previous && previous.share_id && !(idempotencyKey && previous.idempotency_key === idempotencyKey)) {
+        emitError("ERROR:FILE_PREVIOUSLY_PUBLISHED", [`该文件之前已发布过（share_id: ${previous.share_id}${previous.share_url ? `，链接: ${previous.share_url}` : ''}）。请使用 --share-id ${previous.share_id} 执行 PUT 更新原链接；只有确认用户要为同一文件创建全新链接时，才追加 --force-new。`].join('\n'));
     }
 }
 
 function recordHistory(responseText) {
+    if (!absFilePath) return; // remote URL mode has no local file to track
     try {
         const parsed = JSON.parse(responseText);
         if (!parsed || !parsed.share_id) return;
         const history = readHistory();
-        history[absFilePath] = { share_id: parsed.share_id, share_url: parsed.share_url };
+        history[absFilePath] = { share_id: parsed.share_id, share_url: parsed.share_url,
+            ...(!shareId && idempotencyKey ? {idempotency_key: idempotencyKey} : {}) };
         fs.writeFileSync(HISTORY_FILENAME, JSON.stringify(history, null, 2));
     } catch (_) {
         // History is best-effort; never fail the upload because of it.
     }
 }
 
-if (!filename) {
+if (!filename && filePath) {
     filename = path.basename(filePath);
 }
 
 async function uploadPage() {
     const credentialMode = await detectCredentialMode();
     if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY && apiKey) {
-        console.error("ERROR:SUDOWORK_MANAGED_KEY");
-        console.error("Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。");
-        process.exit(1);
+        emitError("ERROR:SUDOWORK_MANAGED_KEY", ["Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。"].join('\n'));
     }
 
     if (credentialMode.mode !== CREDENTIAL_MODE_SUDOWORK_PROXY && !resolveDirectApiKey(apiKey)) {
-        console.error("ERROR:KEY_NOT_FOUND");
-        process.exit(1);
+        emitError("ERROR:KEY_NOT_FOUND");
     }
 
-    const content = fs.readFileSync(filePath, "utf-8");
+    let payload;
 
-    const payload = {
-        filename: filename,
-        html_content: content
-    };
+    if (remoteUrl) {
+        // Remote URL mode: server fetches content from the URL
+        payload = { remote_url: remoteUrl };
+        if (filename) payload.filename = filename;
+    } else {
+        // Local file mode: read and upload content
+        const content = fs.readFileSync(filePath, "utf-8");
+        payload = {
+            filename: filename,
+            html_content: content,
+        };
+    }
 
     if (password !== null) payload.password = password;
     if (watermark !== null) payload.watermark = watermark;
@@ -120,6 +164,11 @@ async function uploadPage() {
 
     if (allowComments !== null) {
         payload.allow_comments = allowComments;
+    } else if (!shareId) {
+        payload.allow_comments = false;
+    }
+    if (allowData !== null) {
+        payload.allow_data = allowData;
     }
 
     const data = JSON.stringify(payload);
@@ -133,6 +182,7 @@ async function uploadPage() {
         method: method,
         apiKey,
         headers: {
+            ...(!shareId && idempotencyKey ? {'Idempotency-Key': idempotencyKey} : {}),
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(data)
         }
@@ -141,7 +191,21 @@ async function uploadPage() {
     console.log(res.text);
     recordHistory(res.text);
 
-    if (shareId) {
+    // cli-steering: the instant an AI turns on page storage is the right moment
+    // to surface the sensitivity choice + the data-local compute pattern — not a
+    // static prompt it may never read. One line on stderr (stdout stays clean JSON).
+    if (allowData === true) {
+        console.error(
+            'HINT:PAGE_DATA_ENABLED:This page can store data. '
+            + 'Public/shared → window.__SHAREONE__.putShared (server, cross-device); '
+            + 'sensitive → window.__SHAREONE__.putPrivate (this device+browser only, never uploaded). '
+            + 'Private data can still be computed on: keep the model public and run inference in the page '
+            + 'so bytes never leave the device — reference: templates/client-side-inference.html'
+        );
+    }
+
+    if (shareId && !remoteUrl) {
+        const content = fs.readFileSync(filePath, "utf-8");
         await verifyUpdatedContent(shareId, content);
     }
 }
@@ -161,6 +225,5 @@ async function verifyUpdatedContent(updatedShareId, expectedContent) {
 }
 
 uploadPage().catch((error) => {
-    printShareOneScriptError(error);
-    process.exit(1);
+    process.exit(printShareOneScriptError(error));
 });

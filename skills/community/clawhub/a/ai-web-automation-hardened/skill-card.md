@@ -1,47 +1,62 @@
-## Description: <br>
-Automated web task execution service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated web task execution service.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and operators use this skill to guide authorized web automation tasks such as form filling, scraping, testing, website monitoring, and submissions while applying guardrails for credentials, site controls, and scraped data handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web automation and scraping can affect sites or accounts where the user lacks authorization. <br>
-Mitigation: Run the skill only for sites and accounts where you have authorization, check robots.txt where applicable, and do not use it to bypass CAPTCHAs, rate limits, IP bans, two-factor authentication, or other site protections. <br>
-Risk: OAuth tokens or sensitive credentials can be exposed through prompts, command arguments, URLs, logs, shell history, or process listings. <br>
-Mitigation: Pass credentials through environment variables or credential stores, keep them out of URLs and command-line data fields, and treat base64-encoded credentials as plaintext. <br>
-Risk: Scraped data, credentials, or session tokens could be sent to the wrong external endpoint. <br>
-Mitigation: Confirm destinations before forwarding scraped data and do not send credentials or session tokens through email or webhooks. <br>
-Risk: The documentation mentions scheduled or cron-style tasks, but the included code only implements direct scraping. <br>
-Mitigation: Verify any scheduling behavior before relying on it, and do not assume cron automation is implemented by the bundled script. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to propose and run web automation tasks such as scraping, form filling, scheduled checks, API testing, and website monitoring through OpenClaw-style commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/ai-web-automation-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Artifact safety evaluation](artifact/SAFETY.md) <br>
-- [Faberlens](https://faberlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and plain-text guidance with shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require OAuth tokens or sensitive credentials; generated scrape reports are written as Markdown files by the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill can make outbound network requests to user-supplied URLs without clear containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a contained network context and add URL allowlisting or private-address blocking before shared or service-style use.
+
+Risk: Web automation can be misused to bypass CAPTCHAs, rate limits, IP bans, or similar security controls.
+
+Mitigation: Refuse bypass requests and direct users to official APIs, written permission, whitelisting, or site-owner coordination.
+
+Risk: Credentials included in URLs, command data, webhooks, or email destinations can leak through logs, shell history, process listings, or referrer headers.
+
+Mitigation: Use environment variables or credential stores, avoid placing secrets in URLs or command arguments, and verify destinations before sending scraped data.
+
+Risk: Bulk extraction of personal data can become unauthorized data harvesting.
+
+Mitigation: Check robots.txt, confirm lawful basis and authorization, and avoid extracting emails, phone numbers, addresses, credentials, or session tokens without verified approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/ai-web-automation-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/ai-web-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and command-oriented guidance with inline shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write scrape reports under an output directory when the packaged script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

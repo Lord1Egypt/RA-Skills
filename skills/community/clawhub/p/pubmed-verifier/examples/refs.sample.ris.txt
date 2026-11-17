@@ -1,0 +1,29 @@
+% Package-copy of examples/refs.sample.ris — the --bibliography format sniffer reads this RIS content directly (v6.3.0).
+% Sample bibliography for --bibliography (RIS, v3.7.0).
+% Routes: record 1 by DOI, record 2 by PMID (AN), record 3 by arXiv URL in UR.
+% Audit:  python3 scripts/verify_pmids.py --bibliography examples/refs.sample.ris
+% Lint:   python3 scripts/verify_pmids.py --lint-claims examples/refs.sample.ris
+% Expected verdicts: all three entries verify correct (real, stable IDs).
+
+TY  - JOUR
+TI  - City size and the spreading of COVID-19 in Brazil
+AU  - Ribeiro
+JO  - PLoS ONE
+PY  - 2020
+DO  - 10.1371/journal.pone.0239699
+ER  - 
+
+TY  - JOUR
+TI  - Classification criteria for autoinflammatory recurrent fevers
+AU  - Gattorno
+JO  - Ann Rheum Dis
+PY  - 2019
+AN  - 31018962
+ER  - 
+
+TY  - JOUR
+TI  - Attention Is All You Need
+AU  - Vaswani
+PY  - 2017
+UR  - https://arxiv.org/abs/1706.03762
+ER  - 

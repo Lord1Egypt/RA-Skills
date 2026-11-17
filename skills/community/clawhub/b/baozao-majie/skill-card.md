@@ -1,40 +1,53 @@
-## Description: <br>
-Adds a Chinese-language abrasive persona for OpenClaw that uses profanity and confrontational phrasing in normal agent responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona skill that steers an OpenClaw agent toward blunt, profane, colloquial responses.
 
-## Publisher: <br>
-[addoee](https://clawhub.ai/user/addoee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[addoee](https://clawhub.ai/user/addoee)
 
-## Use Case: <br>
-External users install this skill to make an OpenClaw agent answer in an intentionally abrasive, profanity-laced Chinese persona. It is suitable for informal roleplay or stylistic experimentation where that tone is deliberate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill attempts to keep a rude, profanity-heavy persona always on, which can override normal tone, transparency, and refusal wording. <br>
-Mitigation: Install only where that persona is deliberate, and disable it for customer support, safety-sensitive tasks, or workflows that require neutral policy language. <br>
-Risk: Profanity and personal insults may be inappropriate or harmful in professional or vulnerable-user contexts. <br>
-Mitigation: Review generated responses before use and keep higher-priority safety and content policies in place for respectful refusals and required disclosures. <br>
+## Use Case:
 
+External OpenClaw users can install this persona to make the agent answer in an abrasive, colloquial Chinese style for conversational interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/addoee/baozao-majie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text or Markdown responses in Chinese, depending on the agent task] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona; no code, tools, or configuration files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The always-on profane persona can produce abusive or unprofessional responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this tone is deliberately desired, keep the persona opt-in where possible, and review outputs for professionalism.
+
+Risk: The skill text attempts to override normal safety, refusal, and task-boundary behavior.
+
+Mitigation: Preserve higher-priority system, safety, and policy instructions, and remove override claims before deployment in stricter environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/addoee/skills/baozao-majie)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona steering only; no tools, files, shell commands, or API calls are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

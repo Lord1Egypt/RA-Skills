@@ -1,42 +1,55 @@
-## Description: <br>
-Codex Switcher helps OpenClaw users manage multiple local Codex accounts through OAuth auth snapshots for adding accounts, switching profiles, checking quota, and refreshing tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local OpenClaw skill for managing multiple OpenAI Codex accounts through auth snapshots, including add, switch, current-account, quota, and token-refresh workflows.
 
-## Publisher: <br>
-[ppaibb](https://clawhub.ai/user/ppaibb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppaibb](https://clawhub.ai/user/ppaibb)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw with multiple Codex accounts use this skill to add OAuth snapshots, switch the active Codex profile, inspect the current account and quota, and refresh expiring snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores refreshable OAuth tokens and can modify the active Codex auth profile. <br>
-Mitigation: Install only when this credential-management behavior is expected; restrict snapshot files to owner-only permissions, confirm the target profile before switching, keep backups for rollback, and revoke tokens if a snapshot directory may have been exposed. <br>
-Risk: Credential values may be exposed if snapshot files or command output are copied into chat or logs. <br>
-Mitigation: Treat all snapshot files as secrets and never display full access tokens or refresh tokens. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage multiple local Codex account snapshots, switch the active Codex credentials, inspect current account and quota status, and refresh expiring tokens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppaibb/codex-switcher) <br>
-- [Security Notes](references/security-notes.md) <br>
-- [Local Flow Sketch](scripts/README-local-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and local configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths and command invocations; full access tokens and refresh tokens should not be displayed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles long-lived OAuth tokens, snapshot files, and auth-profile backups that function as account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local environment, restrict access to ~/.openclaw to the local user, and do not expose snapshot, backup, access-token, or refresh-token contents in chat or logs.
+
+Risk: Configurable OAuth endpoint overrides could leak credentials if the local environment is tampered with.
+
+Mitigation: Leave CS_OAUTH_AUTHORIZE_URL and CS_OAUTH_TOKEN_URL unset except during deliberate testing, and verify the environment before starting an add or refresh flow.
+
+## Reference(s):
+
+- [Security Notes](references/security-notes.md)
+- [Local Flow Sketch](scripts/README-local-flow.md)
+- [Codex Switcher on ClawHub](https://clawhub.ai/ppaibb/skills/codex-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown guidance with shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow may create or update local OpenClaw auth snapshot and auth profile files when the bundled shell command is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

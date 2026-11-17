@@ -1,44 +1,59 @@
-## Description: <br>
-Aicoo Discover helps an agent search Aicoo Square for relevant people, present concise profile recommendations, and suggest next contact actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds relevant people on Aicoo Square in automatic or manual mode and presents usernames, profile hooks, reachability, and suggested next actions.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Developers, builders, and other Aicoo users use this skill to discover people on Square by interests, project context, or explicit search criteria, then decide whether to chat, connect, or send a request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide credentialed chat, connect, friend-request, or batch actions that may change Aicoo network relationships. <br>
-Mitigation: Require explicit user confirmation before any chat, connect, friend-request, or batch action, and provide API keys only when those account effects are acceptable. <br>
-Risk: The skill requires sensitive credentials for network operations. <br>
-Mitigation: Keep API keys out of agent output, use scoped environment variables, and review proposed API calls before execution. <br>
+## Use Case:
 
+External users and developers use this skill to discover relevant Aicoo Square profiles for collaboration, hiring, events, or project discovery. It can infer search angles from available context or use an explicit user query, then present curated people results and optional follow-up actions.
 
-## Reference(s): <br>
-- [Aicoo Discover on ClawHub](https://clawhub.ai/xisen-w/aicoo-discover) <br>
-- [Aicoo Square search endpoint](https://www.aicoo.io/api/square) <br>
-- [Aicoo guest chat endpoint](https://www.aicoo.io/api/chat/guest-v04) <br>
-- [Aicoo network connect endpoint](https://www.aicoo.io/api/v1/network/connect) <br>
-- [Aicoo network request endpoint](https://www.aicoo.io/api/v1/network/request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with concise profile lists and optional curl command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use public Square search and, with explicit user authorization and credentials, account-affecting chat, connect, or friend-request API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill may use memory, conversation, and repository-derived interests to search Aicoo, which can expose private context to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual searches or generic Square browsing unless the user explicitly approves using private context for discovery.
+
+Risk: The skill includes authenticated connect, batch connect, messaging, and friend-request actions.
+
+Mitigation: Require explicit user review of each target and message or action before using authenticated endpoints.
+
+Risk: API-key-backed connection operations can expose credentials if key values are printed or copied into output.
+
+Mitigation: Keep credentials in environment variables and never print or include API key values in generated output.
+
+## Reference(s):
+
+- [Aicoo Discover ClawHub release](https://clawhub.ai/xisen-w/skills/aicoo-discover)
+- [Aicoo Square search API](https://www.aicoo.io/api/square)
+- [Aicoo guest chat API](https://www.aicoo.io/api/chat/guest-v04)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown list with usernames, profile summaries, reachability notes, and optional curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default result count is 10; output may include public profile snippets, engagement signals, and user-relevance notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

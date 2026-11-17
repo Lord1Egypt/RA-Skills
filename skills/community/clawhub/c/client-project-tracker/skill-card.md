@@ -1,41 +1,49 @@
-## Description: <br>
-Tracks client projects, deliverables, deadlines, invoices, and relationship context for freelancers and consultants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local tracker for freelancers and consultants to manage clients, projects, deliverables, deadlines, invoices, and communication notes.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External freelancers and consultants use this skill as a lightweight CRM and project notebook for tracking clients, deliverables, invoices, deadlines, communication notes, and follow-up prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores client contact details, project notes, invoice amounts and statuses, and communication summaries in a local client-data.json file. <br>
-Mitigation: Use it only where local retention of this client information is acceptable, avoid secrets, payment card or bank details, regulated personal data, and unnecessary confidential notes, and periodically review or delete the data file. <br>
-Risk: Project, invoice, and follow-up records can become stale or incomplete if the user does not confirm updates. <br>
-Mitigation: Review generated summaries and status changes before relying on them for client follow-up, billing, or delivery decisions. <br>
+## Use Case:
 
+Freelancers and independent consultants use the skill to maintain a client and project tracker, check upcoming work and invoices, and recall brief communication history.
 
-## Reference(s): <br>
-- [Client Project Tracker on ClawHub](https://clawhub.ai/chris-openclaw/client-project-tracker) <br>
-- [chris-openclaw publisher profile](https://clawhub.ai/user/chris-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown responses and local JSON data updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains client and project records in a local client-data.json file when used by an agent with file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and changelog, released 2026-05-13) <br>
+Risk: Client contacts, project notes, and invoice amounts are stored in an unencrypted local file accessible to anyone with access to the device or its backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit access to the device and backups, avoid saving bank details, passwords, tax IDs, or unnecessary personal information, and delete tracker data when no longer needed.
+
+## Reference(s):
+
+- [Client Project Tracker on ClawHub](https://clawhub.ai/chris/skills/client-project-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Conversational Markdown and locally saved JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Client-specific views, deadline and invoice summaries, and a local tracker file.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, CHANGELOG, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

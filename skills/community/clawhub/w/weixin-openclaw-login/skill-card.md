@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents install and troubleshoot the Weixin personal-account login flow for OpenClaw, including QR authorization links, scan-status polling, and local token-state checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents install and troubleshoot Weixin personal-account login for OpenClaw, including QR authorization links, scan status polling, and local token state checks.
 
-## Publisher: <br>
-[aqHi](https://clawhub.ai/user/aqHi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aqhi](https://clawhub.ai/user/aqhi)
 
-## Use Case: <br>
-Developers and operators use this skill to connect a Weixin personal account to OpenClaw, retrieve a browser-friendly QR authorization URL, poll login status, and diagnose cases where OpenClaw still reports SETUP or no token after the Weixin side confirms login. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles login URLs, qrcode values, bot tokens, ilink_user_id values, terminal output from polling, and files under ~/.openclaw/openclaw-weixin/ that may expose account access or identity data. <br>
-Mitigation: Treat those values and files as secrets; redact them from chats, tickets, logs, screenshots, and repositories. <br>
-Risk: The server security verdict is suspicious because the artifact does not clearly warn users that these login and account values are sensitive. <br>
-Mitigation: Review the skill before installing and use it only when the Tencent Weixin OpenClaw package and this login workflow are trusted. <br>
+## Use Case:
 
+Developers and operators use this skill to connect a Weixin personal account to OpenClaw and diagnose QR login, scan confirmation, and local token persistence issues.
 
-## Reference(s): <br>
-- [Implementation notes](references/implementation-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aqHi/weixin-openclaw-login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce QR login URLs, qrcode values, scan-status JSON, bot tokens, account identifiers, and local OpenClaw state-file paths that should be treated as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can print bot login tokens and related account identifiers in terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact bot_token values, account identifiers, polling output, terminal logs, and account files before sharing them.
+
+Risk: The install flow runs an unpinned Tencent Weixin OpenClaw package installer.
+
+Mitigation: Review the package before installing and prefer a pinned, reviewed installer version when available.
+
+Risk: The skill interacts with Weixin login state through Tencent Weixin OpenClaw endpoints.
+
+Mitigation: Use it only when the Tencent Weixin OpenClaw package is trusted and the user is comfortable granting access to the relevant Weixin login state.
+
+## Reference(s):
+
+- [Implementation Notes](references/implementation-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include QR authorization URLs, login status JSON, and local OpenClaw state file paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

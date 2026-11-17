@@ -1,41 +1,54 @@
-## Description: <br>
-Just-In-Time production reference for pull systems, kanban, takt time, inventory reduction, and related manufacturing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Just-In-Time production reference for pull systems, kanban, takt time, inventory reduction, and pull-based workflow design.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Manufacturing engineers, operations teams, and process-improvement practitioners use this skill as a quick reference for implementing JIT production, designing pull-based workflows, sizing kanban systems, and assessing readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational manufacturing guidance as a complete implementation plan. <br>
-Mitigation: Validate JIT changes against site-specific demand, equipment reliability, supplier constraints, safety requirements, and operational controls before deployment. <br>
-Risk: The skill runs a local shell script. <br>
-Mitigation: Security evidence reports that the reviewed script only prints static guidance and does not access files, credentials, or the network. <br>
+## Use Case:
 
+Manufacturing engineers, operations teams, and agents supporting industrial workflows use this skill to explain JIT concepts, calculate takt time, design kanban systems, assess readiness, and identify implementation barriers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/jit) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell script prints static educational reference material for the selected JIT topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill includes an executable shell script, and future publisher updates could change behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan updates before deployment; this version is reported clean and only prints local reference text.
+
+Risk: JIT guidance may influence operational manufacturing decisions.
+
+Mitigation: Validate recommendations against site-specific demand, supplier reliability, equipment readiness, and quality requirements before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/jit)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands]
+
+**Output Format:** [Plain text and Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local shell script output; no credentials, network calls, or mutation behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

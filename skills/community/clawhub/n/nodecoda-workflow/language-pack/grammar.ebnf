@@ -1,0 +1,72 @@
+// grammar.ebnf — NodeCoda Workflow Language (nodecoda/1)
+// Source of truth: lang/docs/dify-dsl.y (main repo) + lang/src/nclang/lang/parser.py
+// Extracted from references/grammar-reference.md; keep in sync with it.
+// Feature tags: [directives] [types] [statements] [expr] [ffi] [parallel] [chat]
+
+// ---- [directives] ----
+program            = language_decl_opt mode_decl_opt conversation_decl_list top_level_list ;
+language_decl_opt  = /* empty */ | "@language" IDENTIFIER semicolon_opt ;
+mode_decl_opt      = /* empty */ | "@mode" IDENTIFIER semicolon_opt ;   // workflow|advanced-chat
+conversation_decl  = "@conversation" type_ref IDENTIFIER default_opt ";" ;  // MUST precede const/type/function
+default_opt        = /* empty */ | "=" literal ;
+top_level_decl     = const_decl | type_decl | enum_decl | code_function_def | function_def ;
+const_decl         = "const" IDENTIFIER "=" literal ";" ;
+type_decl          = "type" IDENTIFIER "=" "{" field_list "}" semicolon_opt ;
+enum_decl          = "enum" IDENTIFIER "{" enum_member_list trailing_comma_opt "}" semicolon_opt ;
+function_def       = "function" IDENTIFIER param_list return_type_opt block ;
+code_function_def  = "code" IDENTIFIER param_list "->" type_ref block ;
+
+// ---- [types] ----
+type_ref           = type_atom array_suffix_seq optional_suffix ;      // [] first, ? after
+type_atom          = primitive_type | file_type_ref | IDENTIFIER | "array<" type_ref ">" | "map<string," type_ref ">" ;
+primitive_type     = "string" | "int" | "float" | "bool" | "void" | "any" ;
+file_type_ref      = "file" | "file<" file_type_list ";" file_ext_list ";" file_upload_list ">" ;
+// file<types;exts;uploads> — types: document|image|audio|video|custom; exts: .pdf,.docx,...
+
+// ---- [statements] ----
+block              = "{" stmt_list "}" ;
+statement          = if_stmt | for_stmt | while_stmt | return_stmt | yield_stmt | answer_stmt
+                   | parallel_stmt | attempt_stmt | request_input_stmt | break_stmt | continue_stmt
+                   | typed_var_decl | var_decl | output_stmt | expr_or_assign_stmt ;
+if_stmt            = "if" "(" expression ")" block else_clause_opt ;
+else_clause_opt    = /* empty */ | "else" block | "else" if_stmt ;   // else-if 链合法,见 examples/05-conditional-output.ncoda
+for_stmt           = "for" "(" for_var "in" expression ")" block ;
+while_stmt         = "while" "(" expression ")" "limit" INT block ;    // limit required
+return_stmt        = "return" [expression] ";" ;
+yield_stmt         = "yield" [expression] ";" ;                        // inside for/parallel-for only
+answer_stmt        = "answer" "(" [expression] ")" ";" ;               // advanced-chat only
+parallel_stmt      = "parallel" "{" block* "}" ;                       // unnamed parallel (statement)
+attempt_stmt       = "attempt" expression "as" IDENTIFIER "{" "success" block "failure" "(" IDENTIFIER ")" block "}" ;
+break_stmt         = "break" ";" ;
+continue_stmt      = "continue" ";" ;
+var_decl           = ("var"|"let") IDENTIFIER ["=" expression] ";" ;
+typed_var_decl     = type_ref IDENTIFIER ["=" expression] ";" ;
+output_stmt        = "output" "(" expression "," expression ")" ";" ;  // workflow only
+
+// ---- [expr] ----
+expression         = ternary_expr ;
+ternary            = or_expr | or_expr "?" expression ":" expression ;
+postfix_expr       = primary_expr
+                   | postfix_expr "<" type_ref_list ">" "(" arg_list ")"   // call type args (extract<T>)
+                   | postfix_expr "." IDENTIFIER
+                   | postfix_expr "[" expression "]"
+                   | postfix_expr "(" arg_list ")"
+                   | postfix_expr "with" operation_policies ;
+operation_policy   = "retry(" "max" ":" INT ["," "interval" ":" duration] ")"
+                   | "timeout(" duration ")" | "default(" expression ")" ;
+primary_expr       = literal | IDENTIFIER | "(" expression ")" | array_literal | map_literal
+                   | for_expr | parallel_for_expr | parallel_expr | foreign_code_expr | lambda_expr ;
+for_expr           = "for" "(" for_var "in" expression ")" yield_block ;      // >=1 yield
+parallel_for_expr  = "parallel" "for" "(" for_var "in" expression "," concurrency ":" INT "," on_error ":" IDENTIFIER ")" yield_block ;
+parallel_expr      = "parallel" "{" IDENTIFIER ":" block* "}" ;               // named parallel (expression)
+lambda_expr        = "(" lambda_params_opt ")" "->" expression ;
+
+// ---- [ffi] ----
+foreign_code_expr  = "foreign" "code" code_language "(" code_inputs_opt ")" "->" code_output_contract "{" code_source "}" ;
+code_language      = IDENTIFIER | STRING ;                                    // python3
+code_output_contract = code_direct_output | code_structural_output ;          // structural >= 2 fields
+code_source        = "source" TEMPLATE_STRING ";" ;                           // backtick template string
+
+// ---- [literals] ----
+literal            = STRING | TEMPLATE_STRING | INT | FLOAT | TRUE | FALSE | NULL ;
+duration           = INT ("ms"|"s") ;

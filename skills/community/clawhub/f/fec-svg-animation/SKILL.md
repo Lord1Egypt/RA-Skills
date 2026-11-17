@@ -1,38 +1,38 @@
 ---
 name: fec-svg-animation
-description: Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG 动画, 路径描边, 动效.
+description: Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG animation, path stroke, animation.
 ---
 
-# SVG 动画实现
+# SVG animation implementation
 
 ## Purpose
 
-为 SVG 图标、插画和数据可视化提供可维护、可访问、性能可控的动画方案。
+Provide maintainable, accessible, and performance-controllable animation solutions for SVG icons, illustrations, and data visualizations.
 
 ## When to Use
 
-- 需要实现 SVG 图标、Logo、插画或路径描边动画。
-- 需要在 React/Vue 组件中接入 Framer Motion、GSAP 或 CSS 动画。
-- 需要根据 `prefers-reduced-motion` 提供动效降级。
-- 不用于复杂 3D/WebGL 场景；此类场景优先使用 Canvas / Three.js workflow。
+- SVG icon, logo, illustration or path stroke animation needs to be implemented.
+- Framer Motion, GSAP or CSS animation needs to be connected to React/Vue components.
+- Need to provide motion reduction according to `prefers-reduced-motion`.
+- Not used for complex 3D/WebGL scenes; for such scenes, Canvas / Three.js workflow is preferred.
 
 ## Procedure
 
-### 1. 选择动画方式
+### 1. Select animation mode
 
-按复杂度和运行时需求选型：
+Choose based on complexity and runtime requirements:
 
-| 场景 | 推荐 |
+| Scenario | Recommendation |
 | --- | --- |
 | hover/focus、opacity、transform | CSS animation/transition |
-| 路径描边、简单重复动效 | CSS + `stroke-dasharray` |
-| React 组件状态驱动动画 | Framer Motion |
-| 时间轴、复杂编排、滚动触发 | GSAP |
-| 需要保持零依赖的静态 SVG | CSS 或 SMIL |
+| Path stroke, simple repeating animation | CSS + `stroke-dasharray` |
+| React component state-driven animation | Framer Motion |
+| Timeline, complex arrangement, scrolling trigger | GSAP |
+| Need to keep static SVG with zero dependencies | CSS or SMIL |
 
-如果动效跨越页面转场、滚动叙事或复杂组件编排，应先按交互动效 workflow 判断强度、懒加载和 reduced-motion 策略；本 skill 只负责 SVG 图形本身的路径、形变和图标 motion。
+If the animation spans page transitions, scrolling narratives, or complex component arrangements, you should first judge the intensity, lazy loading, and reduced-motion strategies according to the interactive effects workflow; this skill is only responsible for the path, deformation, and icon motion of the SVG graphics themselves.
 
-### 2. 使用 CSS 实现路径描边
+### 2. Use CSS to implement path strokes
 
 ```tsx
 export function CheckmarkIcon() {
@@ -73,7 +73,7 @@ export function CheckmarkIcon() {
 }
 ```
 
-### 3. 在 React 中使用 Framer Motion
+### 3. Using Framer Motion in React
 
 ```tsx
 import { motion, useReducedMotion } from "framer-motion";
@@ -82,7 +82,7 @@ export function AnimatedSparkline({ path }: { path: string }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <svg viewBox="0 0 120 40" role="img" aria-label="趋势图">
+    <svg viewBox="0 0 120 40" role="img" aria-label="Trend Chart">
       <motion.path
         d={path}
         fill="none"
@@ -97,7 +97,7 @@ export function AnimatedSparkline({ path }: { path: string }) {
 }
 ```
 
-### 4. 使用 GSAP 编排复杂时间轴
+### 4. Use GSAP to orchestrate complex timelines
 
 ```tsx
 import { useLayoutEffect, useRef } from "react";
@@ -126,23 +126,23 @@ export function LogoReveal() {
 }
 ```
 
-### 5. 控制运行成本
+### 5. Control operating costs
 
-- 大型 SVG 拆成静态底图和少量可动画节点，不要让每个 path 都参与时间轴。
-- 图标库或 Lottie 替代方案必须按需加载，不进入所有页面的基础包。
-- 循环动画只在可见区域运行，页面隐藏或组件卸载时停止。
-- 移动端减少滤镜、mask、clipPath 和大量渐变叠加。
+- Split large SVG into static basemaps and a small number of animatable nodes. Do not let each path participate in the timeline.
+- Icon libraries or Lottie alternatives must be loaded on demand, without going into the base package for all pages.
+- The loop animation only runs in the visible area and stops when the page is hidden or the component is unloaded.
+- The mobile version reduces filters, masks, clipPaths and a large number of gradient overlays.
 
 ## Constraints
 
-- 优先动画 `transform`、`opacity` 和 SVG 路径属性；避免高频修改 layout 相关属性。
-- 交互控件必须保留可见 focus 状态，动画不能替代状态表达。
-- 所有非装饰性 SVG 必须有可访问名称；装饰性 SVG 使用 `aria-hidden="true"`。
-- 默认尊重 `prefers-reduced-motion`，复杂动效必须提供静态或弱动效降级。
-- 不要把大型 SVG 内联到频繁重渲染的组件中；提取为 memoized 组件或外部资源。
-- 不用动画改变可点击区域、阅读顺序或焦点位置。
-- 不让 SVG 滤镜、模糊、mask 或 clipPath 成为移动端掉帧主因；复杂效果需要设备降级。
+- Prioritize animation `transform`, `opacity` and SVG path attributes; avoid frequent modification of layout-related attributes.
+- Interactive controls must retain the visible focus state, and animation cannot replace state expression.
+- All non-decorative SVGs must have accessible names; decorative SVGs use `aria-hidden="true"`.
+- Default respects `prefers-reduced-motion`, complex animations must provide static or weak motion degradation.
+- Don't inline large SVGs into frequently re-rendered components; extract as memoized components or external resources.
+- Change clickable area, reading order or focus position without animation.
+- Don't let SVG filters, blur, mask or clipPath become the main cause of frame drops on mobile devices; complex effects require device downgrading.
 
 ## Expected Output
 
-产出一个可复用的 SVG 动画组件或样式方案，包含选型理由、动效降级和可访问性处理。验证时检查动画流畅、无布局抖动、键盘与 reduced-motion 场景可用。
+Produce a reusable SVG animation component or style solution, including selection reasons, animation degradation and accessibility processing. During verification, check that the animation is smooth, there is no layout jitter, and keyboard and reduced-motion scenes are available.

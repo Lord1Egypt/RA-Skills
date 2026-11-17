@@ -1,54 +1,68 @@
-## Description: <br>
-Systematic X (Twitter) operations skill for founders, indie developers, and tech professionals that supports daily planning, content strategy, performance analysis, engagement workflows, product promotion, persona development, competitor analysis, and data-driven improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic X (Twitter) operations skill for founders, indie developers, and tech professionals that supports content planning, engagement workflows, performance review, competitor analysis, and profile optimization.
 
-## Publisher: <br>
-[linfangw](https://clawhub.ai/user/linfangw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[linfangw](https://clawhub.ai/user/linfangw)
 
-## Use Case: <br>
-External users, founders, indie developers, and tech professionals use this skill to operate an X account through repeatable planning, posting, engagement, analytics, and review workflows. It helps draft content plans, validate X metrics, generate performance reports, optimize profiles, and structure competitor and community analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may help automate posting, replies, or direct messages on an X account without clear approval boundaries. <br>
-Mitigation: Require explicit user confirmation before posting, replying, quote posting, following, or sending DMs, and keep X/API permissions read-only until write access is intentionally granted. <br>
-Risk: Mentions, DMs, and engagement logs can contain sensitive personal or business information. <br>
-Mitigation: Avoid ingesting DMs unless necessary, redact sensitive content in reports, and define retention and deletion rules for logs and message data. <br>
-Risk: Incorrect or fabricated metrics could lead to misleading content strategy decisions. <br>
-Mitigation: Use the documented validation workflow, mark missing values as null, stop on API failures, and avoid recommendations that rely on unvalidated data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linfangw/x-founder-operations) <br>
-- [Publisher Profile](https://clawhub.ai/user/linfangw) <br>
-- [Operations Methodology](references/methodology.md) <br>
-- [Content Strategy](references/content-strategy.md) <br>
-- [Thread Playbook](references/thread-playbook.md) <br>
-- [Multimodal Guide](references/multimodal-guide.md) <br>
-- [Product Integration](references/product-integration.md) <br>
-- [Engagement Playbook](references/engagement-playbook.md) <br>
-- [Persona and Voice Guide](references/persona-voice.md) <br>
-- [Algorithm Guide](references/algorithm-guide.md) <br>
-- [Profile Optimization](references/profile-optimization.md) <br>
-- [Competitor Framework](references/competitor-framework.md) <br>
-- [Growth Benchmarks](references/growth-benchmarks.md) <br>
-- [Cron Schedule](references/cron-schedule.md) <br>
+## Use Case:
 
+Founders, indie developers, and tech professionals use this skill to operate an X account with structured planning, content drafting, engagement routines, analytics reviews, and iterative growth experiments. It is intended for account operations where users retain review authority over public posts, replies, and direct messages.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and Python script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational plans, content recommendations, validation reports, analytics summaries, review templates, and configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated posts, replies, or direct messages could be inaccurate, off-brand, or inappropriate if published without review.
+
+Mitigation: Keep manual approval over all public posts, replies, and DMs before publishing.
+
+Risk: Account, analytics, or product configuration may include sensitive operational information.
+
+Mitigation: Provide only the account and configuration data the skill needs for the current workflow.
+
+Risk: Analytics recommendations can be misleading when source records are incomplete or anomalous.
+
+Mitigation: Use the validation workflow before acting on recommendations and treat flagged anomalies as requiring user review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linfangw/skills/x-founder-operations)
+- [Operations Methodology](references/methodology.md)
+- [Content Strategy](references/content-strategy.md)
+- [Thread Playbook](references/thread-playbook.md)
+- [Multimodal Content Guide](references/multimodal-guide.md)
+- [Product Integration Framework](references/product-integration.md)
+- [Engagement Playbook](references/engagement-playbook.md)
+- [Persona & Voice Guide](references/persona-voice.md)
+- [X Algorithm Guide](references/algorithm-guide.md)
+- [Profile Optimization Guide](references/profile-optimization.md)
+- [Competitor Analysis Framework](references/competitor-framework.md)
+- [Growth Benchmarks](references/growth-benchmarks.md)
+- [Cron Schedule](references/cron-schedule.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON-style plans and reports, configuration examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes review templates and helper-script outputs for planning, validation, and analytics reporting.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

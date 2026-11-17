@@ -1,45 +1,60 @@
-## Description: <br>
-Generate vertical organizing shorts from chaos to order with WeryAI for closets, fridges, vanities, desks, luggage, and similar satisfying before-and-after scenes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical WeryAI shorts that transform organizing and decluttering scenes from chaos to order, including closets, fridges, vanities, desks, luggage, and similar satisfying before-and-after clips.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and developers use this skill to turn organizing-video briefs, optional image inputs, and confirmed WeryAI parameters into paid vertical video generation runs. It guides prompt expansion, parameter confirmation, CLI execution, and result handling for text-to-video or image-to-video organizing clips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid WeryAI calls can consume quota and expose prompts to an external service. <br>
-Mitigation: Use dry-run first, confirm parameters before paid submits, and run only with an API key whose permissions and quota are acceptable. <br>
-Risk: Image-to-video inputs may upload selected local images to WeryAI when local file paths are used. <br>
-Mitigation: Prefer public HTTPS image URLs and use local paths only after reviewing the script behavior and obtaining explicit consent for that exact upload. <br>
-Risk: The WERYAI_API_KEY is a sensitive credential required at runtime. <br>
-Mitigation: Keep the key out of source, chat, and logs; use a limited-scope or test key until the workflow is trusted. <br>
+## Use Case:
 
+External creators and developers use this skill to turn short organizing or decluttering briefs, and optional image references, into confirmed WeryAI video generation requests and playable vertical short links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zoucdr/organize-room-video) <br>
-- [WeryAI Video API Reference](resources/WERYAI_VIDEO_API.md) <br>
-- [WeryAI Video API Host](https://api.weryai.com) <br>
-- [WeryAI Models and Upload API Host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with parameter tables, inline shell commands, and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces WeryAI task status summaries, error messages, and playable video URLs when generation succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The bundled video script can upload a readable local image path to WeryAI when local paths are used as image inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer public HTTPS image URLs; allow local image paths only after verifying the exact file, size, and destination and obtaining explicit user consent.
+
+Risk: Prompts and media are sent to WeryAI during non-dry-run generation.
+
+Mitigation: Use dry runs to inspect request payloads before paid submits, avoid sensitive prompts or media, and run in an isolated workspace when sensitive files may be readable.
+
+Risk: WERYAI_API_KEY is required for generation, status checks, model lookups, and local-image upload.
+
+Mitigation: Use a limited-scope or test API key, keep the key out of chat and logs, and install only if the publisher and WeryAI processing are acceptable.
+
+## Reference(s):
+
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/organize-room-video)
+- [WeryAI video generation API](https://api.weryai.com)
+- [WeryAI model registry and upload API](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with parameter tables, JSON command payloads, shell commands, and video result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and WERYAI_API_KEY; non-dry-run generation uses paid authenticated network calls.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Track a shared contact's location via Apple Find My with street-level accuracy, returning address, city, and home/work/out context from map landmarks or an AI vision fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track a shared contact's location via Apple Find My with street-level accuracy. Returns address, city, and context (home/work/out) by reading map landmarks. Supports configurable known locations and SkillBoss API Hub vision fallback for unknown places.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-External users and developers use this skill on macOS to query the location of a contact who already shares location through Apple Find My and return a readable address or structured JSON result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live Find My location data and full-screen location screenshots. <br>
-Mitigation: Use it only with appropriate consent and account access, verify the selected contact before relying on results, and delete temporary screenshots after use. <br>
-Risk: Unknown-location fallback may upload screenshots containing location data to SkillBoss/HeyBoss. <br>
-Mitigation: Prefer configured known locations or a local-only workflow where possible, and enable the API key only when external screenshot processing is acceptable. <br>
-Risk: Hammerspoon and screen automation require broad local permissions and can click the wrong target if misconfigured. <br>
-Mitigation: Grant only required macOS permissions, secure or disable the Hammerspoon click server when not needed, and manually verify automation behavior during setup. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve a shared Find My contact's approximate address, city, status, and home/work/out context from a macOS device with Find My access. It is most useful when an agent needs a structured location readout from an already-shared contact relationship.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abeltennyson/abe-findmy-location) <br>
-- [peekaboo screen automation CLI](https://github.com/steipete/peekaboo) <br>
-- [Hammerspoon automation](https://www.hammerspoon.org/) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [Human-readable location string or JSON object; may include a temporary screenshot path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Find My access, Accessibility and Screen Recording permissions, and SKILLBOSS_API_KEY for vision fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may process the wrong shared contact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit target verification before location lookup and confirm the selected contact before returning or uploading location data.
+
+Risk: Full-screen Find My screenshots may expose sensitive location or account information.
+
+Mitigation: Minimize screenshots to the required map region, delete temporary images after use, and avoid returning screenshot paths unless needed for review.
+
+Risk: Screenshots may be uploaded to an external vision API when fallback analysis is used.
+
+Mitigation: Ask for explicit consent before upload, disclose the external API use, and run without vision fallback when consent or SKILLBOSS_API_KEY is absent.
+
+Risk: The Hammerspoon click helper can send UI clicks beyond the intended Find My flow.
+
+Mitigation: Constrain the helper to the expected local endpoint and Find My window state, and disable it when reliable target selection cannot be confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abe-findmy-location)
+- [peekaboo screen-reading CLI](https://github.com/steipete/peekaboo)
+- [Hammerspoon](https://www.hammerspoon.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Human-readable text or a JSON object containing contact, address, city, state, status, context, screenshot path, and vision fallback status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a local screenshot path and a needs_vision flag when external vision analysis was used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

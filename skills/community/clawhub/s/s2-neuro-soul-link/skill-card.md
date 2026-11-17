@@ -1,39 +1,55 @@
-## Description: <br>
-Generates a local, date-based SOUL.md personality prompt with daily 5D neuro-radar stats for an Openclaw agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily, deterministic 5D personality prompt for an agent's SOUL.md using local date and agent-name hashing.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and developers use this skill to generate a daily SOUL.md personality prompt for an Openclaw agent while keeping file updates manual. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SOUL.md text can change how boldly an agent approaches terminal or external actions. <br>
-Mitigation: Treat the generated text as optional personality flavor, remove Bravery/autonomy and SYSTEM DIRECTIVE lines, and keep normal approval rules for terminal commands and external actions unchanged. <br>
+## Use Case:
 
+Developers and agent users can use this skill to generate a daily Markdown prompt that changes an agent's style or personality profile. It is intended for local prompt generation rather than automatic modification of workspace files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-neuro-soul-link) <br>
-- [Space2.world](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text response containing a Markdown SOUL.md template and copy-paste instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated locally from agent name and current date; no automatic file writing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Generated SOUL.md content can influence how autonomously an agent uses external tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated text before using it, and do not allow daily personality scores to control permissions, terminal use, tool autonomy, approvals, or safety behavior.
+
+Risk: System-directive lines and promotional links may be inappropriate when the user only wants a style prompt.
+
+Mitigation: Remove the system-directive/autonomy lines and promotional URL before persisting the output when they are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-neuro-soul-link)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+- [Space2.world](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-text response containing Markdown SOUL.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally and returns generated content for human review; it does not automatically write SOUL.md.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

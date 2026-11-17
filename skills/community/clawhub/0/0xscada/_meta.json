@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn7572w32fd1k4z4r1r4r6af1582eb9e",
+  "ownerId": "kn7472bg474xtcrazj1dhmh0m180ywh6",
   "slug": "0xscada",
   "version": "1.0.1",
-  "publishedAt": 1773032954539
+  "publishedAt": 1741651200000,
+  "dependencies": ["flux"],
+  "requires": {
+    "bins": ["node", "npm", "curl", "git"],
+    "env": []
+  },
+  "optional": {
+    "bins": ["docker"],
+    "env": [
+      "SCADA_PORT",
+      "DATABASE_URL",
+      "SCADA_DIR",
+      "WEB3_RPC_URL",
+      "PRIVATE_KEY",
+      "FLUX_URL",
+      "FLUX_AUTH_TOKEN"
+    ]
+  },
+  "dataDestinations": {
+    "alwaysLocal": ["scada-local"],
+    "optionalRemote": []
+  }
 }

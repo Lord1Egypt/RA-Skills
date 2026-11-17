@@ -1,45 +1,56 @@
-## Description: <br>
-Recognizes payment vouchers and returns structured fields such as payer, payment method, purpose, amount, and handler seal information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes payment voucher documents with Scnet OCR and extracts structured fields such as payer, payee, account details, amount, usage, signatures or stamps, and confidence data.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to run Scnet OCR on payment voucher image, PDF, or archive files and extract structured payment details for review or downstream automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Payment vouchers and extracted OCR contents can contain sensitive financial or personal information. <br>
-Mitigation: Upload only documents needed for the task and avoid unnecessary personal or financial details. <br>
-Risk: The skill uploads the user-specified document to Scnet's OCR API for processing. <br>
-Mitigation: Confirm the destination endpoint and review the provider's privacy and retention terms before using confidential or regulated records. <br>
-Risk: The skill requires an API key for Scnet access. <br>
-Mitigation: Store the API key in the configured environment or local config file, restrict file permissions, and do not paste credentials into chat. <br>
+## Use Case:
 
+External users and developers use this skill to submit authorized payment voucher images, PDFs, or archives to Scnet OCR and receive structured voucher fields for review, reconciliation, or downstream automation.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API documentation summary](references/api-docs.md) <br>
-- [Payment voucher field summary](assets/templates/fields-summary.md) <br>
-- [Scnet website](https://www.scnet.cn) <br>
-- [ClawHub release page](https://clawhub.ai/scnet-sugon/payment-voucher-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes OCR result data to standard output; user-facing errors are emitted as text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.yaml, CHANGELOG released 2025-05-29, ClawHub release evidence) <br>
+Risk: The skill sends sensitive payment voucher files and an API token to a configurable external Scnet endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only payment documents approved for upload, verify SCNET_API_BASE is the intended HTTPS Scnet endpoint, and require explicit user approval before processing sensitive files.
+
+Risk: The API key can be exposed if copied into chat or stored with broad file permissions.
+
+Mitigation: Store SCNET_API_KEY in a protected environment or config file, keep config/.env restricted to the owner, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/payment-voucher-ocr)
+- [Scnet website](https://www.scnet.cn)
+- [Sugon-Scnet OCR API documentation summary](artifact/references/api-docs.md)
+- [Payment voucher fields summary](artifact/assets/templates/fields-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Structured JSON data on stdout, with human-readable error text on failure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and a local file path; supports the WITHDRAWAL_VOUCHER OCR type.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

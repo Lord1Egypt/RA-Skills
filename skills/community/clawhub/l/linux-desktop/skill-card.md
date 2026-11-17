@@ -1,40 +1,52 @@
-## Description: <br>
-Linux desktop automation and control. Use when: (1) taking screenshots of the screen or windows, (2) controlling mouse and keyboard, (3) managing windows, (4) automating desktop tasks, or (5) any Linux desktop interaction needs. Supports screenshot capture, mouse movement, typing, and window management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Desktop Control helps agents automate a Linux desktop by taking screenshots, moving and clicking the mouse, typing text, pressing keys, and managing windows.
 
-## Publisher: <br>
-[ouyangAbel](https://clawhub.ai/user/ouyangAbel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouyangabel](https://clawhub.ai/user/ouyangabel)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture Linux desktop screenshots, inspect active or visible windows, control mouse and keyboard input, and automate desktop workflows in graphical sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can view and control a Linux desktop, including screenshots, mouse input, keyboard input, and window interaction. <br>
-Mitigation: Install it only when desktop control is intentional, and require manual confirmation before using it around terminals, browsers, password prompts, business applications, or private content. <br>
-Risk: The security scan reports unsafe command construction around text, paths, key names, or window IDs. <br>
-Mitigation: Avoid passing untrusted values to the skill until command construction is fixed and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouyangAbel/linux-desktop) <br>
-- [Publisher profile](https://clawhub.ai/user/ouyangAbel) <br>
+## Use Case:
 
+Developers and automation-focused agents use this skill to inspect and control Linux desktop sessions through screenshots, mouse actions, keyboard input, window discovery, and screen information commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and file path outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces screenshots as image files and command output describing windows, screen information, and action status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Command-injection exposure can turn normal helper-script arguments into arbitrary shell commands.
+
+Mitigation: Do not expose the script to untrusted prompts, wrappers, filenames, window IDs, typed text, or key values until shell=True is removed and arguments are validated.
+
+Risk: Desktop automation can interact with sensitive windows or simulate privileged commands through typed input.
+
+Mitigation: Use only in a non-sensitive desktop session, avoid password or financial windows, verify the active window before typing, and do not run privileged commands through simulated typing.
+
+## Reference(s):
+
+- [Linux Desktop Control on ClawHub](https://clawhub.ai/ouyangabel/skills/linux-desktop)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PNG screenshot files at requested paths or timestamped /tmp defaults.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

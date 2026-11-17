@@ -1,42 +1,51 @@
-## Description: <br>
-Frontend Architecture Pro helps agents define CSS architecture, design tokens, responsive layout systems, component hierarchy, and theme support for frontend projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expertise in CSS architecture, layout frameworks, responsive design, component naming, design tokens, and theme toggle for frontend projects.
 
-## Publisher: <br>
-[tyronecoh](https://clawhub.ai/user/tyronecoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyronecoh](https://clawhub.ai/user/tyronecoh)
 
-## Use Case: <br>
-Developers, frontend engineers, tech leads, and coding agents use this skill to establish reusable frontend foundations, including CSS tokens, grid and container patterns, component naming, accessibility baselines, and light/dark/system theme support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to influence general frontend requests where architecture guidance is not desired. <br>
-Mitigation: Review whether the skill should be active for general frontend requests before installation or deployment. <br>
-Risk: Generated HTML, CSS, or theme code may be unsuitable for a production frontend if applied without review. <br>
-Mitigation: Review and test generated frontend code for accessibility, responsiveness, and project conventions before production use. <br>
+## Use Case:
 
+Frontend developers, tech leads, and AI coding agents use this skill to create CSS design token systems, layout frameworks, responsive breakpoints, component naming conventions, and light/dark/system theme support for frontend projects.
 
-## Reference(s): <br>
-- [CSS Architecture Reference](references/css-architecture.md) <br>
-- [Component Hierarchy & Naming Conventions](references/component-hierarchy.md) <br>
-- [Frontend Architecture Pro on ClawHub](https://clawhub.ai/tyronecoh/frontend-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with CSS, HTML, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include design-token definitions, layout specifications, component naming guidance, accessibility checklists, and theme-toggle implementation details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated frontend architecture guidance may not match a project's language, product requirements, or accessibility expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the generated UI copy, theme behavior, and accessibility baseline before applying it wholesale.
+
+## Reference(s):
+
+- [CSS Architecture Reference](references/css-architecture.md)
+- [Component Hierarchy & Naming Conventions](references/component-hierarchy.md)
+- [ClawHub Skill Page](https://clawhub.ai/tyronecoh/skills/frontend-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with CSS, JavaScript, and HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces frontend architecture guidance; review UI copy and theme requirements before applying them to a specific product.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

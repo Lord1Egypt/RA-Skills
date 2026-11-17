@@ -1,0 +1,16 @@
+{
+  "name": "hithink-astock-selector",
+  "version": "1.0.1",
+  "description": "选股靠感觉，一买就套？一句话说清你要什么——「低估值、主力流入、均线多头」——它从全市场把票筛出来。",
+  "license": "MIT",
+  "tags": [
+    "astock",
+    "stock",
+    "selection",
+    "finance",
+    "A股",
+    "选股",
+    "同花顺",
+    "问财"
+  ]
+}

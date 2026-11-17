@@ -1,38 +1,53 @@
-## Description: <br>
-Auto-minifies code, compresses logs, cleans configs, and optimizes prompts to reduce token usage while preserving core logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto minifies code, compresses logs, cleans configuration, and optimizes technical prompts to reduce token usage while preserving core logic.
 
-## Publisher: <br>
-[jhonemingyoung](https://clawhub.ai/user/jhonemingyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhonemingyoung](https://clawhub.ai/user/jhonemingyoung)
 
-## Use Case: <br>
-Developers using AI coding tools use this skill to condense code, logs, configuration, and technical prompts before sending them to an assistant. It is intended to reduce token usage while preserving the information needed for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shortened outputs can omit, reword, or alter details that matter for production code, configuration, debugging, security logs, or prompts. <br>
-Mitigation: Review the condensed output against the original material before applying it in formal projects or production workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to shorten code, logs, configuration, and technical prompts before sending them through AI coding tools. It is intended to reduce token consumption while keeping the important technical details available for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhonemingyoung/token-saver-for-programmer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with condensed code, logs, configs, and prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be manually reviewed before use in production code, configs, debugging, security logs, or prompts where exact wording and full context matter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata, skill frontmatter) <br>
+Risk: Compressed code, logs, configuration, or prompts may remove context or alter edge-case meaning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review optimized content before using it for debugging, audits, production changes, or security-sensitive work.
+
+Risk: Automatic activation can transform developer content when code, logs, configs, or prompts are submitted.
+
+Mitigation: Compare the compressed output with the original input before applying or sharing the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhonemingyoung/skills/token-saver-for-programmer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with compressed code, log, configuration, or prompt content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be manually reviewed before use because compression may omit context or alter edge-case meaning.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

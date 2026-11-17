@@ -1,42 +1,56 @@
-## Description: <br>
-Musecard turns a phrase, mood, or scene into a 9:16 illustrated quote-card prompt for WeChat, Xiaohongshu, and similar social publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自媒体情绪金句插画卡片创作助手，把一句话、一种情绪转化为适合微信、小红书传播的 9:16 竖版图文插画。支持萌点元素库、香度等级递增、OI疼痛文学等主题适配。
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-External creators, social media editors, and creative agents use Musecard to select visual styles, draft card copy options, and produce image-generation prompts for vertical emotional quote illustrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad file-write access can create or overwrite files when file creation is not required. <br>
-Mitigation: Remove or limit Write access unless the workflow explicitly needs files, and review target paths before allowing writes. <br>
-Risk: Anime styling features can steer vague requests toward suggestive or age-ambiguous character prompts. <br>
-Mitigation: Require anime characters to be clearly adult and non-sexualized, and avoid youth-coded sexualized clothing, poses, or framing. <br>
+## Use Case:
 
+Creators, social-media operators, and agents use Musecard to turn short emotional phrases, quote-card ideas, and OI-themed scenes into 9:16 illustration prompts for WeChat and Xiaohongshu-style visual posts.
 
-## Reference(s): <br>
-- [Musecard ClawHub release page](https://clawhub.ai/fslong520/whispersketch) <br>
-- [Musecard skill definition](artifact/SKILL.md) <br>
-- [Example Musecard prompt](artifact/output/musecard_prompt.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with image-prompt text blocks; may request image generation when the host agent supports it.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optimized for 9:16 vertical illustration-card prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: Image generation may send prompt content to the configured image provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive or private information in illustration prompts and use only approved image-generation providers.
+
+Risk: The broad trigger may activate for general quote-card or illustration requests.
+
+Mitigation: Confirm the user's intended text, style, and whether image generation is desired before producing final prompts or images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/whispersketch)
+- [Publisher profile](https://clawhub.ai/user/fslong520)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact example prompt](artifact/output/musecard_prompt.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with fenced text prompts and optional image generation requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 9:16 social-media illustration prompt guidance; image generation, when available, uses the configured image provider.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

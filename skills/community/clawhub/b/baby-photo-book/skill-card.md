@@ -1,40 +1,49 @@
-## Description: <br>
-Generates print-ready baby photo book PDFs from a folder of photos using age grouping and aspect-ratio-aware layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional baby photo books from photos with intelligent layout, automatic age-stage organization, whitespace-minimizing layouts, and print-ready PDF output.
 
-## Publisher: <br>
-[atmosphere16happy](https://clawhub.ai/user/atmosphere16happy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atmosphere16happy](https://clawhub.ai/user/atmosphere16happy)
 
-## Use Case: <br>
-External users and developers use this skill to organize baby photos by age stage and generate an A4 PDF photo book with cover, chapter pages, smart photo layouts, and date or age annotations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script reads baby photos and EXIF or file dates from the folder selected by the user. <br>
-Mitigation: Run it only on a narrowly scoped photo folder that you are comfortable processing. <br>
-Risk: The script writes the generated photo book to a user-provided output path. <br>
-Mitigation: Review the output path before execution and use a virtual environment for the Pillow and ReportLab dependencies. <br>
+## Use Case:
 
+External users and agents use this skill to turn a local folder of baby photos into a printable A4 photo book with cover, age-stage chapters, photo pages, and date or age annotations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atmosphere16happy/baby-photo-book) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated artifact is a PDF photo book.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script writes a local A4 PDF and reads image files from the user-selected photo folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill processes private family photos from the selected folder and scans subdirectories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated virtual environment, avoid administrator or root execution, and point it only at the photo folder intended for the book.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atmosphere16happy/skills/baby-photo-book)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifact is a PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an A4 PDF from a local photo folder using Pillow and ReportLab.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

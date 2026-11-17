@@ -1,43 +1,55 @@
-## Description: <br>
-Plan campaign visuals and messaging hooks for paid nonprofit, NGO, and fundraiser campaign planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for nonprofit promotions. Use when working on paid campaign planning for nonprofits, NGOs, fundraisers.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Nonprofit marketing teams, fundraisers, and supporting agencies use this skill to draft creative briefs that clarify audience, campaign goals, constraints, deliverables, visuals, and messaging hooks for paid promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests Bash permission even though the documented creative-brief workflow does not require shell access. <br>
-Mitigation: Restrict available tools where possible and grant shell access only when a deployment has a specific need for it. <br>
-Risk: External SkillBoss links are part of the skill materials and may change outside the release artifact. <br>
-Mitigation: Review linked setup and homepage content before relying on it in a managed environment. <br>
-Risk: Creative brief outputs may contain inaccurate, unsuitable, or unsubstantiated campaign messaging. <br>
-Mitigation: Review generated audience assumptions, claims, visuals, and calls to action before publication. <br>
+## Use Case:
 
+Marketing teams, fundraisers, and nonprofit campaign planners use this skill to draft creative briefs for paid nonprofit, NGO, and fundraising promotions. It helps clarify audience, campaign goals, constraints, deliverables, visual direction, and messaging hooks before external publication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/toby-generate-nonprofit-ad-creative-brief) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-nonprofit-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown creative brief or structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign goals, audience notes, constraints, visual directions, messaging hooks, SEO keywords, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad Bash and Read access beyond what its stated creative-brief workflow needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where local files and shell access are not sensitive, and ask the publisher to narrow or remove those tool permissions before wider deployment.
+
+Risk: Generated nonprofit campaign guidance may be inaccurate, incomplete, or unsuitable for external publication without review.
+
+Mitigation: Have campaign owners review and refine outputs for factual accuracy, audience fit, compliance, and brand suitability before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-nonprofit-ad-creative-brief)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+- [SkillBoss Skill Page](https://www.skillboss.co/skills/generate-nonprofit-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown creative brief and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign audience, goals, constraints, deliverables, visual concepts, messaging hooks, and review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

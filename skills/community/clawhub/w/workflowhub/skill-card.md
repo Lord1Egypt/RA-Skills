@@ -1,45 +1,57 @@
-## Description: <br>
-Use when the user wants OpenClaw or Codex to remember their way of working as reusable SOPs, workflows, queues, or "how I do things". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw or Codex remember repeated multi-step work as reusable SOPs and workflows that can be matched, confirmed, reused, saved, or updated across tasks.
 
-## Publisher: <br>
-[zhangyuqi98](https://clawhub.ai/user/zhangyuqi98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyuqi98](https://clawhub.ai/user/zhangyuqi98)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture repeated multi-step work as local SOP/workflow JSON files, match new tasks against saved workflows, and ask for confirmation before reusing or updating a workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved workflow files may contain sensitive process details or tool preferences. <br>
-Mitigation: Keep the workflow directory scoped to a trusted project or personal folder and review saved workflows before sharing or reuse. <br>
-Risk: A matched SOP could lead to writes, external calls, or other side effects if reused without review. <br>
-Mitigation: Require explicit user confirmation before applying a matched workflow unless the current user turn already asks to use the previous SOP or usual process. <br>
-Risk: The bundled UI edits local workflow files and should not be exposed unintentionally. <br>
-Mitigation: Run the UI on localhost and expose it beyond the local machine only with deliberate access controls. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn recurring multi-step tasks into local workflow memory, ask before reusing matched SOPs, and capture or update workflows after useful runs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyuqi98/workflowhub) <br>
-- [Workflow schema](references/workflow-schema.md) <br>
-- [Runtime behavior](references/runtime-behavior.md) <br>
-- [Local UI spec](references/local-ui-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text execution briefs, JSON workflow files, and shell commands for local workflow tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses concise local workflow records rather than full transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The local editor can change persistent workflow instructions that may steer future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the editor only on localhost and inspect saved workflow steps before approving reuse.
+
+Risk: Workflow JSON files may be overwritten or updated in ways that are hard to audit later.
+
+Mitigation: Keep backups or version control for workflow files before using save or update flows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangyuqi98/skills/workflowhub)
+- [Workflow Schema](references/workflow-schema.md)
+- [Runtime Behavior](references/runtime-behavior.md)
+- [Local UI Spec](references/local-ui-spec.md)
+- [Workflow Template](assets/workflow-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON workflow files and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local workflow JSON that can influence future agent task handling after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

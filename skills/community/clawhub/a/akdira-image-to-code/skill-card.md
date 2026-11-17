@@ -1,40 +1,53 @@
-## Description: <br>
-Guides Codex through an image-first workflow for visually important website design tasks, generating and analyzing design references before implementing frontend code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image To Code Skill guides Codex through an image-first workflow for visually important web work: generate clear design references, analyze them deeply, and implement polished frontend code from that analysis.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Developers and designers use this skill to create visually polished landing pages, marketing sites, portfolio pages, product pages, and redesigns by first producing readable design references and then translating them into frontend implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The image-first workflow can require multiple generated design references, increasing execution time or image-generation quota usage. <br>
-Mitigation: Use the workflow when visual fidelity matters, and keep image generation proportional to the number and complexity of requested sections. <br>
-Risk: Generated visual references may still leave implementation details ambiguous or produce designs that need review before release. <br>
-Mitigation: Review generated images, analysis, and code changes before relying on the final frontend. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to create polished frontend implementations for hero sections, landing pages, product pages, portfolios, and redesigns from generated website reference images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akdira/akdira-image-to-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with frontend implementation details and code changes when used in a coding workspace] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request multiple generated design images before coding when image generation is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Visual website tasks may trigger multiple image-generation calls, which can consume usage quota or cost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested page scope and image-generation budget before using the skill on large visual builds.
+
+Risk: Generated visual references can produce frontend code that needs human review for accessibility, responsiveness, and brand fit.
+
+Mitigation: Inspect generated references and implementation output before deployment, especially for customer-facing pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akdira/skills/akdira-image-to-code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with design analysis, implementation notes, and code or shell-command snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cause the agent to generate multiple image references before coding visual website tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

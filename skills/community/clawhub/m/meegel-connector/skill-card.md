@@ -1,45 +1,58 @@
-## Description: <br>
-Connect to Meegle via MCP service, support OAuth authentication, and enable querying and managing work items, views, etc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Meegle via MCP service, support OAuth authentication, and enable querying and managing work items, views, etc.
 
-## Publisher: <br>
-[wadxm](https://clawhub.ai/user/wadxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wadxm](https://clawhub.ai/user/wadxm)
 
-## Use Case: <br>
-Developers and operators use this skill to authenticate an agent with Meegle and query, create, modify, or transfer work items and views through the Meegle MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent OAuth credentials are stored at ~/.mcporter/credentials.json. <br>
-Mitigation: Prefer browser OAuth, protect the credentials file, avoid logging credential contents, and store credentials only in the designated mcporter location. <br>
-Risk: The skill can create, modify, or transfer Meegle work items. <br>
-Mitigation: Require the agent to show exact proposed work-item changes and receive user confirmation before executing changes. <br>
-Risk: Use depends on the external npm package and trusted Meegle workspace access. <br>
-Mitigation: Install only when the npm package and target Meegle workspace access are trusted for the intended environment. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Meegle through an OAuth-authenticated MCP service so it can query views, to-dos, and work items and perform work-item operations.
 
-## Reference(s): <br>
-- [ClawHub Meegle Connector listing](https://clawhub.ai/wadxm/meegel-connector) <br>
-- [@lark-project/meego-mcporter npm package](https://www.npmjs.com/package/@lark-project/meego-mcporter) <br>
-- [Meegle OAuth authorization guide](https://meegle.com/b/helpcenter/product/5rifl7a7) <br>
-- [Meegle MCP server endpoint](https://meegle.com/mcp_server/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of meegle-config.json and OAuth credential setup; work-item changes should be shown to the user before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The connector handles Meegle OAuth credentials, including a remote flow where credential material may be synchronized with agent assistance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer browser OAuth where the agent does not inspect credential contents; require explicit user confirmation for credential operations, avoid sending authorized credentials through chat or attachments, store credentials only in ~/.mcporter/credentials.json, and clean temporary files promptly.
+
+Risk: The skill runs @lark-project/meego-mcporter through npx without a pinned version, so the tool or its dependencies could change after review.
+
+Mitigation: Verify the npm package version before use and consider pinning @lark-project/meego-mcporter to a reviewed version with locked dependencies and restrictive permissions on ~/.mcporter/credentials.json.
+
+Risk: Authorized use can read Meegle data and create, modify, or transfer work items.
+
+Mitigation: Install only for workspaces where this level of Meegle access is acceptable, and review agent actions before executing work-item mutations.
+
+## Reference(s):
+
+- [@lark-project/meego-mcporter npm package](https://www.npmjs.com/package/@lark-project/meego-mcporter)
+- [Meegle OAuth authorization help](https://meegle.com/b/helpcenter/product/5rifl7a7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npx, Meegle OAuth, and ~/.mcporter/credentials.json for authorized use.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

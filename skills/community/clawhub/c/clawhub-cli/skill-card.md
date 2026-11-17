@@ -1,47 +1,64 @@
-## Description: <br>
-Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.ai.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to produce concise ClawHub CLI command guidance for discovering, installing, updating, publishing, and syncing agent skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk sync can publish skill folders and may run without a dry run if the installed ClawHub CLI does not support the requested dry-run flag. <br>
-Mitigation: Confirm CLI support with `clawhub sync --help`, manually review the generated command, and avoid `scripts/linux/sync-all.sh --dry-run` unless dry-run support is confirmed. <br>
-Risk: Publishing or syncing skill folders can expose secrets, credentials, private keys, internal URLs, customer data, logs, or proprietary files. <br>
-Mitigation: Review the folder tree before publish or sync, exclude sensitive files, and use least-privilege credentials. <br>
-Risk: Passing tokens on the command line can expose credentials through shell history or process listings. <br>
-Mitigation: Prefer interactive login or a safer credential flow where available, and avoid command-line tokens when possible. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover, install, update, publish, and sync ClawHub skills with the npm-installed ClawHub CLI. It helps choose safe command patterns, validate publishing inputs, and troubleshoot common CLI errors.
 
-## Reference(s): <br>
-- [Clawhub Cli skill page](https://clawhub.ai/openlang-cn/clawhub-cli) <br>
-- [CLI Commands](reference/CLI-COMMANDS.md) <br>
-- [Publishing Checklist](reference/PUBLISHING-CHECKLIST.md) <br>
-- [Security & Safety](reference/SECURITY.md) <br>
-- [Troubleshooting](reference/TROUBLESHOOTING.md) <br>
-- [Windows Usage](reference/WINDOWS-USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawHub CLI commands, SemVer guidance, preflight checks, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: A bundled bulk sync helper may run a real publish or sync when dry-run is requested but the installed CLI does not support --dry-run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify `clawhub sync --help` before using dry-run behavior, and avoid the bundled `sync-all.sh --dry-run` path unless the local CLI explicitly supports it.
+
+Risk: Publishing or syncing skill folders can expose secrets, private credentials, proprietary content, or internal data.
+
+Mitigation: Manually review skill folders before publish or sync, exclude `.env` files, tokens, keys, credentials, internal URLs, customer data, and other proprietary artifacts.
+
+Risk: Token-based login commands can leak credentials if real tokens are pasted into commands or support transcripts.
+
+Mitigation: Use interactive `clawhub login` where possible and avoid sharing real API tokens in command examples, logs, or troubleshooting output.
+
+## Reference(s):
+
+- [ClawHub CLI Commands](reference/CLI-COMMANDS.md)
+- [Publishing Checklist](reference/PUBLISHING-CHECKLIST.md)
+- [Security and Safety](reference/SECURITY.md)
+- [SemVer Guide](reference/SEMVER-GUIDE.md)
+- [Skill Package Structure](reference/SKILL-STRUCTURE.md)
+- [Troubleshooting](reference/TROUBLESHOOTING.md)
+- [Windows Usage](reference/WINDOWS-USAGE.md)
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/clawhub-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be adapted after checking local ClawHub CLI help when flags are uncertain.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

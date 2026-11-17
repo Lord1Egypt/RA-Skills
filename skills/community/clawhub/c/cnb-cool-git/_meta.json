@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7e73bsbbstrxs2db900r8tbs83m1ea",
-  "slug": "cnb-cool-git",
-  "version": "2.0.1",
-  "publishedAt": 1774544486779
+  "author": "MiniMax Agent",
+  "category": "development-tools",
+  "created_at": "2026-03-21",
+  "id": 378986722783544,
+  "name": "cnb-cool-git",
+  "platform": "minimax",
+  "required_envs": [
+    "CNB_COOL_GIT_USER_NAME",
+    "CNB_COOL_GIT_USER_EMAIL"
+  ],
+  "required_secrets": [
+    "CNB_COOL_GIT_TOKEN",
+    "CNB_COOL_API_TOKEN"
+  ],
+  "tags": [
+    "git",
+    "cnb",
+    "cloud-native",
+    "devops",
+    "ci-cd",
+    "git-user"
+  ],
+  "updated_at": 1774080257686,
+  "version": "2.0.0"
 }

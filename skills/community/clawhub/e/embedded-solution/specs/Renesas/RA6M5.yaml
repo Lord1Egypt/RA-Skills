@@ -1,0 +1,103 @@
+part: RA6M5
+aliases:
+- R5F572N
+source_pdf: ../../embedded_dev/renesas/datasheet/RX72N_datasheet.pdf
+datasheet_revision: 1.50 (page 1 rev-line) — refresh-needed
+datasheet_doc_id: R01DS0366EJ0150
+extracted_at: '2026-07-05T23:23:27+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description
+verified_by_human: false
+product_status: Active (per renesas.com product page, longevity 2041)
+specs:
+  function: RX family flagship 32-bit MCU — highest performance, with FPU and DSP
+  cores:
+  - Arm Cortex-M33 @ up to 200 MHz
+  flash: up to 2 MB code flash
+  ram: 512 KB SRAM
+  operating_voltage_v: 2.7 to 3.6
+  low_power_modes: 4
+  peripherals:
+    ethernet_mac: 2 channels, IEEE 1588 compliant
+    usb: USB 2.0 full-speed host/function/OTG (1 channel with PHY layer)
+    can: 32 mailboxes, up to 3 channels (ISO11898-1 compliant)
+    sci: up to 8 channels (SCIj + SCIh with async/clock-sync/smart-card/SPI/I2C modes)
+    spi: QSPI supported
+    sd_host: true
+    adc12: 12-bit A/D converter
+    rtc: true
+    ssi: Serial sound interface
+    camera_if: CMOS camera interface
+    glcd_controller: Graphic-LCD controller
+    drawing_engine: 2D drawing engine
+    encryption: Encryption functions (optional)
+  packages:
+  - type: LQFP
+    pin_count: 176
+  - type: LQFP
+    pin_count: 144
+  - type: LQFP
+    pin_count: 100
+  - type: BGA
+    pin_count: 144
+  - type: BGA
+    pin_count: 100
+  - type: BGA
+    pin_count: 176
+  - type: LQFP
+    pin_count: 176
+  - type: BGA
+    pin_count: 176
+  - type: LQFP
+    pin_count: 144
+  - type: BGA
+    pin_count: 144
+  - type: LQFP
+    pin_count: 100
+  - type: BGA
+    pin_count: 100
+  - type: LQFP
+    pin_count: 100
+  - type: LQFP
+    pin_count: 144
+  - type: LQFP
+    pin_count: 176
+  - type: BGA
+    pin_count: 100
+  - type: BGA
+    pin_count: 144
+  - type: BGA
+    pin_count: 176
+  - type: LQFP
+    pin_count: 100
+  - type: LQFP
+    pin_count: 144
+  - type: LQFP
+    pin_count: 176
+  - type: BGA
+    pin_count: 100
+  - type: BGA
+    pin_count: 144
+  - type: BGA
+    pin_count: 176
+  - type: LQFP
+    pin_count: 176
+  data_flash: 8 KB
+unverified:
+- exact_gpio_count_per_package
+- exact_peripheral_counts_per_package
+notes:
+- '2026-07-05 phase1-recovery: part field was RX72N (mislabeled); now corrected to RA6M5 but spec contents are still RX72N data. Full re-extraction from the correct datasheet (embedded_dev/renesas/datasheet/RA6M5_datasheet.pdf) is required.'
+link_status: needs-re-extraction-factory-error-2026-07-05

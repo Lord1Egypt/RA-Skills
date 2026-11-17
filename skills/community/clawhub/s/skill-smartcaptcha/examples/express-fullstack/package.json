@@ -1,0 +1,17 @@
+{
+  "name": "smartcaptcha-express-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Пример: форма с Yandex SmartCaptcha и серверная проверка токена на Express",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "skill_name": "agent-constraints",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我的 CLAUDE.md 越写越长，而且 agent 还是会漏规则。请审视这个仓库的约束配置并给出治理方案。",
+      "expected_output": "执行治理体检；同时检查第 1 层配置和第 2/3 层指令，再给删除、迁移、补充建议。",
+      "files": [],
+      "expectations": [
+        "检查 hooks、权限、CI 或 lint 配置",
+        "检查 CLAUDE.md、rules 和 skills",
+        "先给建议而非直接修改"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "怎么禁止 coding agent 修改 migrations 目录里已经存在的文件？这是不可破例的红线。",
+      "expected_output": "选择 Claude Code 的 Edit deny、PreToolUse 或 sandbox 等执行层机制，不把 CLAUDE.md 当作唯一保护。",
+      "files": [],
+      "expectations": [
+        "明确选择第 1 层",
+        "不把文本指令描述为硬保证",
+        "说明子进程绕过时使用 sandbox"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "只在这一次发布前核对 changelog，之后的任务不需要。这个要求应该放哪里？",
+      "expected_output": "选择第 4 层当前 prompt，不写入持久配置。",
+      "files": [],
+      "expectations": [
+        "选择 prompt 或第 4 层",
+        "反对写入 AGENTS.md 或 CLAUDE.md"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "所有 src/api/**/*.ts 文件都要使用统一错误响应，但其他目录不适用。这条规则放哪里？",
+      "expected_output": "选择带 paths frontmatter 的 path-scoped rule。",
+      "files": [],
+      "expectations": [
+        "选择第 3 层 path-scoped rule",
+        "给出 src/api/**/*.ts 的 paths 匹配范围"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "解释一下这个项目的 README 在说什么，不要修改任何文件。",
+      "expected_output": "普通解释任务，不调用 agent-constraints，也不把问题改写成约束治理。",
+      "files": [],
+      "expectations": [
+        "不输出四层约束治理流程",
+        "不建议新增 hook、权限规则或 Skill"
+      ]
+    }
+  ]
+}

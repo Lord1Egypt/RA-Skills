@@ -1,0 +1,83 @@
+{
+  "kind": "jiedan-platform-suite",
+  "platforms": [
+    {
+      "platformTag": "mahua",
+      "packageName": "@rascalagnt001/jiedan-platform-mahua",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "secretonion",
+      "packageName": "@rascalagnt001/jiedan-platform-secretonion",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "hahapiao",
+      "packageName": "@rascalagnt001/jiedan-platform-hahapiao",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis",
+        "pricing"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "mango",
+      "packageName": "@rascalagnt001/jiedan-platform-mango",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis",
+        "pricing"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "lieren",
+      "packageName": "@rascalagnt001/jiedan-platform-lieren",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis",
+        "pricing"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "shoutu",
+      "packageName": "@rascalagnt001/jiedan-platform-shoutu",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "mayiufu",
+      "packageName": "@rascalagnt001/jiedan-platform-mayiufu",
+      "capabilities": [
+        "orderSync",
+        "marketAnalysis"
+      ],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "ticketsmalls",
+      "packageName": "@rascalagnt001/jiedan-platform-ticketsmalls",
+      "capabilities": [],
+      "cinemaCount": 0
+    },
+    {
+      "platformTag": "yhs",
+      "packageName": "@rascalagnt001/jiedan-platform-yhs",
+      "capabilities": [],
+      "cinemaCount": 0
+    }
+  ]
+}

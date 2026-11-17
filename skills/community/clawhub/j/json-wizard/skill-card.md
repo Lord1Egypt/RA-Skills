@@ -1,40 +1,52 @@
-## Description: <br>
-JSON formatting, validation, and conversion tool. Format, compress, validate JSON, and convert between JSON and YAML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JSON formatting, validation, and conversion tool. Format, compress, validate JSON, and convert between JSON and YAML.
 
-## Publisher: <br>
-[freeter226](https://clawhub.ai/user/freeter226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freeter226](https://clawhub.ai/user/freeter226)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to format, compress, validate, and convert JSON and YAML while debugging API responses, checking configuration files, or preparing structured data for other tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The --file option reads a local path supplied by the user.
+
+Mitigation: Use --file only with files intentionally selected for formatting, validation, or conversion.
+
+Risk: YAML conversion depends on the installed PyYAML package version.
+
+Mitigation: Install the skill in a virtual environment and pin PyYAML to a reviewed version when reproducible builds matter.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to format, minify, validate, and convert JSON and YAML while debugging API responses, checking configuration files, or preparing data for other tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can read local files when invoked with --file. <br>
-Mitigation: Use --file only for files intended to be processed and printed by the formatter. <br>
-Risk: YAML conversion depends on PyYAML. <br>
-Mitigation: Install a reviewed, pinned PyYAML version before using YAML conversion commands. <br>
+**Output Format:** [Markdown guidance with JSON-formatted command results from the bundled Python utility]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [JSON Wizard on ClawHub](https://clawhub.ai/freeter226/json-wizard) <br>
+**Other Properties Related to Output:** [Requires python3 and PyYAML for YAML conversion.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON strings and concise command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces formatted, compressed, validation, or conversion results from user-provided JSON/YAML input.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

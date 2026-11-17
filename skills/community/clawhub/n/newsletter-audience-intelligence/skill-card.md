@@ -1,43 +1,53 @@
-## Description: <br>
-Use when the user asks to understand newsletter audience quality, segment readers, summarize survey/reply/click data, prove sponsor value, create media-kit proof points, compare subscriber source quality, or decide what audience data to collect next. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze newsletter subscriber, reply, survey, source, and click data to produce audience segments, sponsor proof points, risk notes, and data collection plans.
 
-## Publisher: <br>
-[freeman14](https://clawhub.ai/user/freeman14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman14](https://clawhub.ai/user/freeman14)
 
-## Use Case: <br>
-Newsletter operators, media-kit builders, and growth teams use this skill to turn subscriber, survey, reply, source, and click data into audience-quality summaries, segment comparisons, sponsor-proof points, and data collection plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process private subscriber, sponsor, survey, reply, or engagement data supplied by the user or connected workspace. <br>
-Mitigation: Review generated reports and handoff notes before sharing them, and provide only the audience data needed for the analysis. <br>
-Risk: Audience conclusions or sponsor proof points may be misleading if the available data is thin or incomplete. <br>
-Mitigation: Keep exact metrics separate from qualitative signals, label missing data clearly, and use the skill's collection plan when evidence is insufficient. <br>
-Risk: Subscriber records could be changed unexpectedly if an agent has workspace or API tools available. <br>
-Mitigation: Require explicit approval before exporting, deleting, tagging, or modifying subscribers. <br>
+## Use Case:
 
+Newsletter operators, growth teams, and sponsorship teams use this skill to understand audience quality, compare segments, prepare sponsor-ready proof points, and decide what audience data to collect next.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman14/newsletter-audience-intelligence) <br>
-- [Publisher profile](https://clawhub.ai/user/freeman14) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, bullets, risk notes, and handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps known data separate from assumptions and missing data; does not modify subscriber records without explicit approval and an available workspace or API tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Audience or sponsor claims may overstate what thin or incomplete data proves.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep exact metrics separate from qualitative signals, distinguish known data from missing data, and review sponsor-facing outputs for overclaiming.
+
+Risk: Newsletter analytics and subscriber-related data may be sensitive, especially when connected workspace data is used.
+
+Mitigation: Use only data the user provides or connects, and require explicit approval before exporting, deleting, tagging, modifying subscribers, or making workspace changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman14/skills/newsletter-audience-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with summary sections, bullet lists, and a segment table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes known versus missing data, sponsor-proof bullets, weak-proof or risk notes, a data collection plan, and connected-workspace handoff notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

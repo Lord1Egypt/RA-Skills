@@ -1,0 +1,6 @@
+interface:
+  display_name: "Code Impact Analyzer"
+  short_description: "Analyze code-change blast radius with the impact CLI — affected tests, callers, public contract diffs, orphan code, and PR impact summaries"
+  default_prompt: "Use $impact to analyze the blast radius of my current changes."
+policy:
+  allow_implicit_invocation: true

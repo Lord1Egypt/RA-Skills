@@ -1,44 +1,55 @@
-## Description: <br>
-Free image hosting via picrd.com - upload screenshots, diagrams, and image files to get permanent, embeddable URLs. No account required. Supports PNG, JPEG, WebP, and GIF up to 10 MB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picrd Image Hosting helps agents upload PNG, JPEG, WebP, and GIF images to picrd.com and return permanent, embeddable URLs without an account.
 
-## Publisher: <br>
-[setdemos](https://clawhub.ai/user/setdemos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[setdemos](https://clawhub.ai/user/setdemos)
 
-## Use Case: <br>
-Developers, agents, and external users use this skill to upload selected screenshots, diagrams, and image files to picrd.com and receive public URLs for markdown, issues, pull requests, docs, or chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded images may be public, unlisted but link-accessible, or permanent. <br>
-Mitigation: Do not upload private screenshots, documents, credentials, or sensitive images; use TTL uploads when appropriate. <br>
-Risk: The delete URL is a one-time secret and cannot be recovered later. <br>
-Mitigation: Save the delete URL immediately when uploaded content may need to be removed. <br>
-Risk: The service limits uploads to 60 per hour per IP address. <br>
-Mitigation: Retry later after rate-limit responses and avoid automated bulk upload loops. <br>
+## Use Case:
 
+Developers, technical writers, and agents use this skill to upload screenshots, generated images, and diagrams for embedding in markdown, issues, pull requests, chats, and documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/setdemos/picrd-image-hosting) <br>
-- [picrd.com documentation](https://picrd.com/docs) <br>
-- [picrd.com](https://picrd.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces upload guidance for public or unlisted image URLs and album workflows; uploads depend on curl and the external picrd.com service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Uploaded images are hosted externally and unlisted links are shareable rather than private.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Upload only non-sensitive images and treat every returned page or image URL as accessible to anyone who has the link.
+
+Risk: The delete URL is a one-time secret that cannot be recovered later.
+
+Mitigation: Store the delete URL immediately when removal may be needed.
+
+## Reference(s):
+
+- [Picrd documentation](https://picrd.com/docs)
+- [Picrd service](https://picrd.com)
+- [ClawHub skill page](https://clawhub.ai/setdemos/skills/picrd-image-hosting)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; uploads user-selected images to an external hosting service and returns shareable image, page, album, and delete URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

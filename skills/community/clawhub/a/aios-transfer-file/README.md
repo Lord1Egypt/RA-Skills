@@ -2,7 +2,13 @@
 
 > 本技能只适用于受控 AIOS 部署。它可能访问真实业务系统，必须按最小权限配置。只读操作可以自动执行；任何会改变状态的操作，包括创建、更新、提交、审批、驳回、删除或触发，都必须先预览目标应用、命令和请求体，并获得明确人工确认。CLI 必须固定到经过评审的版本，Ontology 来源必须可信且可审计。
 
-OpenClaw/AIOS 文件传输 skill。使用 `scripts/transfer_s3.mjs` 动态加载当前目录本地安装的 `@aws-sdk/client-s3`，把 `file_input://...` 对象下载到工作区，或把本地文件上传到发件箱 bucket。
+OpenClaw/AIOS 文件传输 skill。使用 `scripts/transfer_s3.mjs` 动态加载当前目录本地安装的 `@aws-sdk/client-s3`，按当前通道的 `senderId` 把 `file_input://...` 对象下载到工作区 `<senderId>/upload`，或把当前 `<senderId>` 目录内的本地文件上传到发件箱 bucket。
+
+workspace 中的会话文件必须按 `senderId` 隔离：
+
+- `<senderId>/upload`：S3 或通道传入的文件。
+- `<senderId>/download`：OpenClaw 通过互联网、第三方系统、业务应用等方式下载得到的文件。
+- `<senderId>/generated`：AI 自己生成、转换、分析、渲染或准备返回给用户的文件。
 
 ## 依赖要求
 
@@ -20,8 +26,8 @@ OpenClaw/AIOS 文件传输 skill。使用 `scripts/transfer_s3.mjs` 动态加载
 
 ```bash
 npm install
-node scripts/transfer_s3.mjs download-uri --uri "file_input://bucket/path/to/file.bin" --workspace .
-node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --workspace .
+node scripts/transfer_s3.mjs download-uri --uri "file_input://bucket/path/to/file.bin" --workspace . --sender-id "<senderId>"
+node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --workspace . --sender-id "<senderId>"
 ```
 
 ## Docker

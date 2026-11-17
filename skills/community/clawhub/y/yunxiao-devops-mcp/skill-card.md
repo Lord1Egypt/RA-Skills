@@ -1,46 +1,59 @@
-## Description: <br>
-Yunxiao DevOps MCP lets agents operate Alibaba Cloud Yunxiao over MCP SSE for project management, work items, pipelines, code repositories, deployment workflows, and more than 165 tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+云效 DevOps MCP helps agents operate Alibaba Cloud Yunxiao through an MCP SSE server for project, work item, pipeline, repository, and deployment workflows.
 
-## Publisher: <br>
-[jonasgao](https://clawhub.ai/user/jonasgao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonasgao](https://clawhub.ai/user/jonasgao)
 
-## Use Case: <br>
-Developers, DevOps engineers, and agents use this skill to discover Yunxiao MCP tools, inspect their schemas, and call them for project, work item, pipeline, repository, and deployment operations. It is intended for environments where a human has deployed and authorized the Yunxiao MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate powerful Yunxiao cloud, repository, pipeline, file, and deployment workflows through MCP tools. <br>
-Mitigation: Require explicit human confirmation before create, update, file, pipeline, or deployment actions. <br>
-Risk: Yunxiao access depends on Alibaba Cloud RAM credentials that may be stored in deployment environment configuration. <br>
-Mitigation: Use least-privileged RAM credentials and prefer short-lived or managed secrets over plaintext .env files. <br>
-Risk: An exposed MCP server could allow unintended access to Yunxiao DevOps resources. <br>
-Mitigation: Restrict the MCP server to localhost or a trusted network and verify the Docker image before deployment. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to discover Yunxiao MCP tools, inspect tool schemas, and call DevOps operations for project tracking, work item management, pipeline runs, repository operations, and deployment workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonasgao/yunxiao-devops-mcp) <br>
-- [Yunxiao official documentation](https://help.aliyun.com/zh/yunxiao/) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [MCP server deployment guide](artifact/DEPLOY.md) <br>
-- [Yunxiao MCP SSE client README](artifact/client/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tool listings, JSON schemas and tool results, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or later and a reachable Yunxiao MCP SSE server; tool calls may read or modify Yunxiao resources depending on the selected MCP tool and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: A credential-backed DevOps MCP service can expose broad write powers over unauthenticated HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the MCP server to 127.0.0.1 or place it behind authenticated TLS, use a dedicated least-privileged RAM identity, and require explicit approval before tools create, update, deploy, or change repository content.
+
+Risk: Plaintext environment secrets can expose Alibaba Cloud RAM credentials.
+
+Mitigation: Protect or avoid plaintext .env secrets, rotate credentials after exposure, and review audit logs if the service was reachable from an untrusted network.
+
+Risk: A mutable container image can change server behavior after review.
+
+Mitigation: Pin the MCP server image to a reviewed digest before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonasgao/skills/yunxiao-devops-mcp)
+- [Alibaba Cloud Yunxiao documentation](https://help.aliyun.com/zh/yunxiao/)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and guidance, JSON tool schemas and tool results, JavaScript examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a separately deployed Yunxiao MCP SSE server and valid Alibaba Cloud credentials; tool effects depend on the configured Yunxiao permissions.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

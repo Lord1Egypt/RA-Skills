@@ -1,40 +1,49 @@
-## Description: <br>
-Provides AI-assisted competitor analysis with batch-oriented workflows for businesses, professionals, and teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-driven competitor analysis with automated batch processing for businesses and professional teams.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Businesses, entrepreneurs, professionals, and teams use this skill to generate competitor-analysis material and process multiple analysis tasks more efficiently. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provided artifacts are sparse and include marketing-level value and ROI claims that are not substantiated. <br>
-Mitigation: Review the expected analysis criteria and validate generated outputs before using them for business decisions. <br>
-Risk: Future versions could add code, integrations, credentials, external data sources, or automated actions that change the security posture. <br>
-Mitigation: Re-review and rescan updated versions before deployment. <br>
+## Use Case:
 
+Business users, entrepreneurs, professionals, and teams use this skill to produce AI-assisted competitor analysis, automate analysis workflows, process multiple targets, and improve the quality and efficiency of competitive research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-competitor-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or credential access is described in the provided artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: server release evidence) <br>
+Risk: The skill is under-specified and does not document concrete inputs, outputs, or workflow boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm expected input scope, output format, and review criteria before relying on generated competitor analysis in business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-competitor-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The release evidence describes a brief, non-executable skill with no documented concrete input schema, output schema, or workflow boundaries.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

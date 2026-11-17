@@ -1,43 +1,53 @@
-## Description: <br>
-Integrates personal productivity data with deep work principles to create tailored focus schedules, optimize energy-task matching, and reduce distractions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates personal productivity data with deep work principles to create tailored focus schedules, optimize energy-task matching, and reduce distractions.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Knowledge workers, developers, writers, and other professionals use this skill to plan deep work blocks, understand attention and energy patterns, reduce shallow work, and establish sustainable focus habits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request schedule, energy, and distraction details to personalize focus planning. <br>
-Mitigation: Share only productivity information you are comfortable giving to the agent, and omit sensitive personal or workplace details. <br>
-Risk: The source artifact is written in Chinese, which may limit reviewability for users who do not read Chinese. <br>
-Mitigation: Use a translated or localized version before relying on the guidance. <br>
-Risk: Focus and productivity coaching can be mistaken for medical or psychological advice for attention disorders. <br>
-Mitigation: Treat the output as productivity guidance only and seek qualified professional support for ADHD or other attention-related health concerns. <br>
+## Use Case:
 
+Knowledge workers and developers use this skill to plan deep work blocks, analyze attention patterns, reduce shallow work, and match demanding tasks to their energy levels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/deep-work-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/kingofzhao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with planning templates and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for schedule, energy, work-pattern, and distraction details to personalize recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad deep-work or productivity prompts may activate the skill and invite sharing sensitive workplace or personal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the information needed for the planning task and avoid confidential workplace, health, or personal data.
+
+Risk: Productivity coaching could be mistaken for professional support for attention disorders or mental health needs.
+
+Mitigation: Treat outputs as planning guidance and seek qualified professional support for ADHD or other clinical attention concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/deep-work-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces personalized deep work plans, attention tracking prompts, task-energy matching, and environment trigger recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

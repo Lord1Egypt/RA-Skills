@@ -1,42 +1,65 @@
-## Description: <br>
-OpenClaw setup and configuration service that helps users install, configure, and optimize an OpenClaw AI assistant, including skill installation, customization, and enterprise deployment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw setup and configuration service that helps users install, configure, optimize, and customize the OpenClaw AI assistant for individual or enterprise deployments.
 
-## Publisher: <br>
-[lover876](https://clawhub.ai/user/lover876) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lover876](https://clawhub.ai/user/lover876)
 
-## Use Case: <br>
-External users, developers, and organizations use this skill to install OpenClaw, create configuration files, connect Telegram, and receive setup guidance for personal or enterprise deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup process can require powerful server access and install software from external sources. <br>
-Mitigation: Review the scripts before execution, back up the server, and use a temporary least-privilege account instead of permanent root access where possible. <br>
-Risk: The generated configuration can include bot credentials and may expose the service on all network interfaces. <br>
-Mitigation: Restrict config file permissions, rotate Telegram or API credentials after setup, and add firewall, TLS, and authentication before starting a public gateway. <br>
+## Use Case:
 
+Developers, operators, and small businesses use this skill to install OpenClaw, create configuration files, connect Telegram, and prepare an OpenClaw assistant environment for personal or enterprise use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lover876/jarvis-setup-service) <br>
-- [README](README.md) <br>
-- [OpenClaw configuration template](templates/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or update local OpenClaw configuration files and setup scripts when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks users to run high-impact installation and configuration steps on a host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the scripts first, run them only on a host you control, and prefer a local or pinned installation path.
+
+Risk: Installation may require elevated access and persistent root credentials.
+
+Mitigation: Avoid sharing persistent root credentials; use temporary, owner-controlled access and revoke it after installation.
+
+Risk: Telegram bot tokens are entered interactively and written into configuration files.
+
+Mitigation: Store tokens with owner-only file permissions or a secrets manager, and rotate exposed tokens.
+
+Risk: The generated gateway configuration binds the server host to 0.0.0.0.
+
+Mitigation: Change the gateway host to 127.0.0.1 unless remote access is intentionally protected by network controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lover876/skills/jarvis-setup-service)
+- [Artifact README](artifact/README.md)
+- [OpenClaw Configuration Template](artifact/templates/config.yaml)
+- [ClawHub Marketplace](https://clawhub.ai)
+- [SkillHub Marketplace](https://skillhub.tencent.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash snippets, YAML configuration, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install, environment check, OpenClaw configuration, and Telegram setup workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

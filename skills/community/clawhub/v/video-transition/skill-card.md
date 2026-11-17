@@ -1,43 +1,50 @@
-## Description: <br>
-Video Transition helps agents create smooth transitions and fade effects for local video clips using FFmpeg xfade and related filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Transition helps agents generate Python guidance and ffmpeg-based workflows for applying xfade transitions, merging video clips, and adding fade effects to local media.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and content automation agents use this skill to merge local video segments, apply named transition effects, and add batch fade-in or fade-out effects through a Python interface backed by FFmpeg. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The FFmpeg commands write to user-specified output paths and may overwrite existing files. <br>
-Mitigation: Use explicit output filenames in a safe working directory and avoid pointing outputs at files that must be preserved. <br>
-Risk: Batch operations can create or replace multiple files in the selected output directory. <br>
-Mitigation: Review input and output directories before running batch processing. <br>
-Risk: The helpers depend on local FFmpeg and FFprobe behavior. <br>
-Mitigation: Use a trusted FFmpeg/FFprobe installation before processing local videos. <br>
+## Use Case:
 
+Developers and video automation users use this skill to create or adapt Python and ffmpeg commands for combining local video clips with transition effects and batch fade processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/systiger/video-transition) <br>
-- [Publisher profile](https://clawhub.ai/user/systiger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and FFmpeg command patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local video files through FFmpeg when the provided Python helpers are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The authoritative security scan marks the release suspicious because the fallback video merge path handles temporary files and paths unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on trusted local media in a controlled output folder until the fallback concat path uses secure temporary files, escapes or rejects unsafe path characters, and validates transition and duration inputs.
+
+## Reference(s):
+
+- [Video Transition ClawHub Page](https://clawhub.ai/systiger/skills/video-transition)
+- [systiger ClawHub Profile](https://clawhub.ai/user/systiger)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs assume local ffmpeg and ffprobe availability and trusted local media paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

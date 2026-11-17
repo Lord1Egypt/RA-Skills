@@ -1,44 +1,59 @@
-## Description: <br>
-Analyze YouTube videos at depth by retrieving metadata, comments, reply threads, stream formats, related recommendations, Shorts, search results, and trending content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze YouTube videos in depth to retrieve metadata, comments, sub-comment threads, stream formats, related recommendations, Shorts results, search results, and trending content across categories.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect YouTube videos, comments, related content, Shorts search results, and trending categories through KeyAPI. It supports video audits, audience and comment analysis, content discovery, and trend monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video, comment, search, and trend queries are sent to KeyAPI. <br>
-Mitigation: Use the skill only when KeyAPI is an acceptable processor for the submitted queries, and avoid sending sensitive or private research targets unless approved. <br>
-Risk: KEYAPI_TOKEN is required for bearer authentication and may be stored locally if placed in a .env file. <br>
-Mitigation: Prefer setting KEYAPI_TOKEN in the environment, protect any local .env file, and rotate the token if it is exposed. <br>
-Risk: API responses can be written to the local .keyapi-cache directory, creating a local record of requested videos, comments, searches, and trends. <br>
-Mitigation: Use a disposable cache directory or remove .keyapi-cache after analysis when local retention is not appropriate. <br>
+## Use Case:
 
+Developers and analysts use this skill to gather YouTube video intelligence, inspect audience comments and replies, enumerate stream formats, discover related or trending content, and synthesize findings from KeyAPI results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lycici/keyapi-youtube-video-analysis) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI YouTube MCP Server](https://mcp.keyapi.ai/youtube/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and KEYAPI_TOKEN; local API responses may be cached under .keyapi-cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a real KeyAPI token and the security assessment flags token handling for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN only for the command invocation or trusted shell session, and avoid flows that persist the token to a local .env file.
+
+Risk: Changing KEYAPI_SERVER_URL can direct requests and credentials to an untrusted endpoint.
+
+Mitigation: Do not set KEYAPI_SERVER_URL unless the endpoint is explicitly trusted.
+
+Risk: Cached or output JSON can contain private API results.
+
+Mitigation: Treat generated caches and saved outputs as sensitive data and remove or protect them after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-youtube-video-analysis)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI YouTube MCP server](https://mcp.keyapi.ai/youtube/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with inline shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local cached result files containing API responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

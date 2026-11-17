@@ -1,45 +1,58 @@
-## Description: <br>
-A text editor for LLMs, not humans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A text editor for LLMs, not humans.
 
-## Publisher: <br>
-[frane](https://clawhub.ai/user/frane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frane](https://clawhub.ai/user/frane)
 
-## Use Case: <br>
-Developers and agent operators use Agented to guide LLM agents through durable, command-line text editing with state tokens, undo history, annotations, transactions, and conflict-aware file changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installer commands can execute downloaded code when users choose the curl install path. <br>
-Mitigation: Prefer the Homebrew installation path where available; if using curl, download and inspect the installer before running it. <br>
-Risk: The ae tool can create and modify files and auto-save edits to disk. <br>
-Mitigation: Use state tokens and review ae responses before continuing broad or multi-file edits. <br>
-Risk: Agented stores workspace history and annotations in .agented/state.db. <br>
-Mitigation: Treat the workspace database as project data and review it before sharing or archiving sensitive workspaces. <br>
-Risk: Permission-management commands can change agent tool-permission settings. <br>
-Mitigation: Review the intended target and scope before running commands that enable or disable internal tools. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide coding agents through stateful, command-line file editing with versioned history, conflict detection, annotations, transactions, and optional MCP access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frane/skills/agented) <br>
-- [Project homepage](https://github.com/frane/agented) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing instructions for using the ae CLI; no binary output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: The skill encourages use of an external editor with persistent workspace state and cross-session annotations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat annotations as untrusted context and verify them against the current user request and repository state before acting.
+
+Risk: Installation paths can write agent skills, MCP entries, or configuration files.
+
+Mitigation: Review commands that modify agent configuration or skill directories before execution.
+
+Risk: The curl-based installer executes a remote shell script.
+
+Mitigation: Prefer the Homebrew installation path when available and inspect any shell installer before running it.
+
+## Reference(s):
+
+- [Agented ClawHub skill page](https://clawhub.ai/frane/skills/agented)
+- [Agented homepage](https://github.com/frane/agented)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume the ae binary is installed and available on PATH.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

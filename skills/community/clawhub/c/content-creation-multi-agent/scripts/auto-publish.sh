@@ -26,10 +26,10 @@ if [ -z "$GITHUB_TOKEN" ]; then
     echo "请设置 GITHUB_TOKEN 环境变量："
     echo ""
     echo "方式一：临时设置（当前终端会话有效）"
-    echo "  export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    echo "  export GITHUB_TOKEN=REDACTED-SECRET"
     echo ""
     echo "方式二：永久设置（添加到 ~/.zshrc）"
-    echo "  echo 'export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' >> ~/.zshrc"
+    echo "  echo 'export GITHUB_TOKEN=REDACTED-SECRET' >> ~/.zshrc"
     echo "  source ~/.zshrc"
     echo ""
     exit 1

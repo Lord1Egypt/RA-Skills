@@ -1,48 +1,55 @@
-## Description: <br>
-Use when migrating or switching from an existing auth provider to Auth0, including bulk user import, gradual migration strategies, code migration patterns, and JWT validation updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when migrating or switching from an existing auth provider to Auth0, covering bulk user import, gradual migration strategies, code migration patterns, and JWT validation updates.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and execute migrations from Firebase, Cognito, Supabase, Clerk, custom authentication, or other providers to Auth0. It helps with user export/import planning, gradual migration strategy, application code updates, and JWT validation changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: User exports, password hashes, salts, and profile data can expose sensitive account information during migration. <br>
-Mitigation: Restrict access to migration files, encrypt them in storage and transit, avoid pasting them into logs or chats, and securely delete temporary artifacts after verification. <br>
-Risk: Auth0 Management API tokens, client secrets, database URLs, and other migration credentials can grant privileged access. <br>
-Mitigation: Use least-privilege temporary credentials where possible, rotate or revoke them after migration, and keep them out of source control and shared transcripts. <br>
-Risk: Authentication migration changes can break login, session, or JWT validation behavior for production users. <br>
-Mitigation: Test the migration in staging, validate issuer and JWKS configuration, review generated code changes, and keep a rollback plan before production rollout. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and carry out migrations from existing authentication providers such as Firebase, Cognito, Supabase, Clerk, or custom auth systems to Auth0. It helps with user export/import, phased rollout planning, SDK migration patterns, and API JWT validation updates.
 
-## Reference(s): <br>
-- [Auth0 Agent Skills](https://github.com/auth0/agent-skills) <br>
-- [User Export and Import Guide](references/user-import.md) <br>
-- [Code Migration Patterns](references/code-patterns.md) <br>
-- [Auth0 User Migration Documentation](https://auth0.com/docs/manage-users/user-migration) <br>
-- [Bulk User Import](https://auth0.com/docs/manage-users/user-migration/bulk-user-imports) <br>
-- [Password Hash Algorithms](https://auth0.com/docs/manage-users/user-migration/bulk-user-imports#password-hashing-algorithms) <br>
-- [Management API - User Import](https://auth0.com/docs/api/management/v2/jobs/post-users-imports) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include migration steps, before/after code patterns, Auth0 CLI commands, and authentication configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The skill handles full identity exports, password hashes, salts, metadata, error reports, and API tokens during migration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, keep migration files in a private encrypted working location with restrictive permissions, avoid committing or uploading secrets, and define cleanup or encrypted retention before production use.
+
+## Reference(s):
+
+- [Code Migration Patterns](references/code-patterns.md)
+- [User Export and Import Guide](references/user-import.md)
+- [Auth0 Agent Skills Repository](https://github.com/auth0/agent-skills)
+- [Auth0 User Migration Documentation](https://auth0.com/docs/manage-users/user-migration)
+- [Bulk User Import](https://auth0.com/docs/manage-users/user-migration/bulk-user-imports)
+- [Password Hash Algorithms](https://auth0.com/docs/manage-users/user-migration/bulk-user-imports#password-hashing-algorithms)
+- [Management API - User Import](https://auth0.com/docs/api/management/v2/jobs/post-users-imports)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code examples, shell commands, JSON examples, SQL snippets, and migration checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Auth0 CLI for CLI-based import workflows; applicable to macOS and Linux according to release metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

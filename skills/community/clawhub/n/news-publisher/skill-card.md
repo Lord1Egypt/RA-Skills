@@ -1,42 +1,57 @@
-## Description: <br>
-OpenClaw News Publisher helps agents create, preview, and publish Markdown news articles to RSS and configured content platforms from a command-line workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw News Publisher helps agents create Markdown news drafts, preview article content, and publish or prepare distribution across configured platforms such as RSS, WeChat, and Twitter/X.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers, editors, and content teams use this skill to draft Markdown news articles, preview them, and publish or dry-run publishing to RSS and configured platforms from a CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install and run external publishing code and dependencies. <br>
-Mitigation: Review the external project and dependencies before installing, preferably pinning to a known commit. <br>
-Risk: Publishing workflows may use platform credentials stored in environment files. <br>
-Mitigation: Use test or least-privilege credentials, keep .env files out of version control, and review credential scope before use. <br>
-Risk: Live publish commands can distribute content publicly across configured platforms. <br>
-Mitigation: Use preview and --dry-run first, specify target platforms explicitly, and require human confirmation before live publishing. <br>
+## Use Case:
 
+Content teams, developers, and operators use this skill to maintain a Markdown-first publishing workflow: create article drafts, preview content, run dry-runs, publish RSS output, and prepare platform-specific publishing for connected services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/news-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific publishing steps, dry-run guidance, and credential configuration reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned remote Node code and dependencies may change between review and installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the referenced repository and dependencies before installation or use.
+
+Risk: Publishing commands can expose article content and metadata through connected services.
+
+Mitigation: Use preview and dry-run modes first, then publish only with test or low-privilege platform accounts until the workflow is approved.
+
+Risk: Platform credentials stored in environment files can grant access to publishing accounts.
+
+Mitigation: Protect the .env file, restrict credential scope, and rotate credentials if they are exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/news-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces publishing workflow guidance, draft article structures, preview commands, dry-run commands, and credential configuration notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

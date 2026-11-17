@@ -1,40 +1,58 @@
-## Description: <br>
-Automates GitHub trend research, ByteRover knowledge capture, OpenMOSS task logging, and StarOffice status updates for autonomous knowledge creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Barbaric Growth guides an autonomous agent through GitHub trend discovery, repository analysis, memory curation, OpenMOSS task logging, and StarOffice status updates.
 
-## Publisher: <br>
-[jokerli530](https://clawhub.ai/user/jokerli530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jokerli530](https://clawhub.ai/user/jokerli530)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run an autonomous research loop that finds GitHub projects, analyzes them, records knowledge, creates local tasks, and updates status dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence identifies autonomous research behavior with local task creation, dashboard updates, and persistent memory writes. <br>
-Mitigation: Install only when autonomous local workflow changes are intended, and review generated tasks, status updates, and memory writes before relying on them. <br>
-Risk: The release evidence reports under-scoped background monitoring and a hardcoded external service credential. <br>
-Mitigation: Remove and rotate the embedded EvoMap secret, require user-provided scoped credentials, and start monitoring only after explicit opt-in with a clear uninstall path. <br>
+## Use Case:
 
+Developers and autonomous-agent operators use this skill to run a recurring research workflow that discovers GitHub projects, analyzes README content, records reusable knowledge, and logs follow-up tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jokerli530/barbaric-growth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and local status files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent local task, token, monitor, and memory state under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The background EvoMap monitor includes an embedded bearer secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rotate the bundled credential and require user-provided credentials before running the monitor.
+
+Risk: Autonomous task creation and memory updates can persist GitHub-derived findings without explicit approval.
+
+Mitigation: Require user approval before OpenMOSS task creation and before writing GitHub-derived findings into persistent memory.
+
+Risk: GitHub README content is external untrusted reference data.
+
+Mitigation: Treat fetched README content as data for analysis, not as instructions for the agent to follow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jokerli530/skills/barbaric-growth)
+- [Publisher profile: jokerli530](https://clawhub.ai/user/jokerli530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and status/log text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local state files, phase logs, and API task records when executed by an agent.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

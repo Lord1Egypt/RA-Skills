@@ -1,0 +1,50 @@
+# Law Firm Client Intake Form - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+matter:
+  practice_area: ""
+  referred_by: ""
+  client:
+    full_name: ""
+    pronouns: ""
+    date_of_birth: ""
+    ssn_last_four: ""
+    email: ""
+    phone: ""
+    mailing_address: ""
+    employer: ""
+  adverse_parties:
+    - name: ""
+      relationship: ""
+      address: ""
+  other_parties:
+    - name: ""
+      relationship: ""
+  key_dates:
+    - event: ""
+      date: ""
+  deadlines:
+    - deadline: ""
+      source: ""
+  documents_received:
+    - ""
+conflicts:
+  search_names: []
+  search_cleared_by: ""
+  search_date: ""
+  waiver_obtained: false
+fees:
+  arrangement: ""
+  hourly_rate: 0
+  flat_fee: 0
+  deposit: 0
+  trust_account_instructions: ""
+  invoice_terms: ""
+data_handling:
+  retention_period: ""
+  file_access_roles: []
+  secure_channel: ""
+acknowledgements:
+  limits_notice_accepted: false
+  privacy_notice_accepted: false
+prepared_by: ""
+prepared_on: ""

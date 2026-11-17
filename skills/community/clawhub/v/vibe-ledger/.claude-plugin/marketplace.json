@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "vibe-ledger",
+  "owner": {"name": "dong845"},
+  "metadata": {"description": "vibe-ledger skill — understand and check an AI-built app from its own conversations", "version": "1.0.0"},
+  "plugins": [{
+    "name": "vibe-ledger",
+    "source": "./",
+    "description": "Checks an AI-built app against the conversations that built it: a map of its parts, every request verified against the code, and a safety ledger — one offline report.",
+    "version": "1.0.0",
+    "author": {"name": "dong845"},
+    "license": "MIT",
+    "category": "productivity"
+  }]
+}

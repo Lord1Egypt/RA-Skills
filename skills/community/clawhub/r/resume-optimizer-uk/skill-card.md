@@ -1,41 +1,54 @@
-## Description: <br>
-Professional resume analysis and optimization for the UK job market, including job-description matching, ATS keyword suggestions, quantified bullet improvements, and optimized .docx resume output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional resume analysis and optimization for the UK job market, including job-description matching, ATS compatibility scoring, keyword suggestions, quantified bullet-point improvements, and .docx resume generation with annotations.
 
-## Publisher: <br>
-[phonedog](https://clawhub.ai/user/phonedog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[phonedog](https://clawhub.ai/user/phonedog)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to evaluate UK-focused resumes against job descriptions, identify ATS and keyword gaps, and generate an annotated optimized resume for review. <br>
-
-### Deployment Geography for Use: <br>
-Global, with guidance tailored to UK resume conventions. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Resume-derived files may contain personal or sensitive career information and are written to the local working folder. <br>
-Mitigation: Review output paths before running the scripts, keep generated JSON, DOCX, and backup files private, and delete resume-derived artifacts when no longer needed. <br>
-Risk: Optimization suggestions and generated bullet edits may introduce inaccurate or overstated claims if user-provided details are incomplete. <br>
-Mitigation: Review every generated change and inline comment against the user's actual experience before submitting or sharing the optimized resume. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phonedog/resume-optimizer-uk) <br>
-- [ATS Keywords by Industry](references/ats_keywords.md) <br>
-- [UK Professional Resume Templates](references/resume_templates.md) <br>
+## Use Case:
 
+External job seekers and career-support users use this skill to assess UK resumes against job descriptions, improve ATS keyword coverage, strengthen quantified achievements, and generate an optimized .docx resume with annotations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON files, DOCX files, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, JSON analysis reports, and .docx resume outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local parsed resume, analysis report, supplemental data, original backup, and optimized resume files when run as documented.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Resume contents and supplemental answers may be written to local JSON, .docx, and backup files.
+
+Mitigation: Use the skill only with local file handling you are comfortable with, then review and delete intermediate or backup files when finished.
+
+Risk: The current implementation does not create native Word tracked changes or native Word comments.
+
+Mitigation: Review generated [COMMENT] annotations manually in the output document before treating the resume as final.
+
+## Reference(s):
+
+- [ATS Keywords by Industry](references/ats_keywords.md)
+- [UK Professional Resume Templates](references/resume_templates.md)
+- [ClawHub skill listing](https://clawhub.ai/phonedog/skills/resume-optimizer-uk)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON analysis files, and .docx resume output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local .docx resumes and may write parsed_resume.json, analysis_report.json, supplemental_data.json, optimized_resume.docx, and optional backup files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

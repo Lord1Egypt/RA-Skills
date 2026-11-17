@@ -1,40 +1,58 @@
-## Description: <br>
-Automates Baiwang ISP Open Platform API testing by preparing test data, signing authenticated requests, executing test cases, and generating reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ISP API Tester helps agents automate Baiwang ISP open-platform API testing by preparing authenticated requests, running test cases, and generating reports.
 
-## Publisher: <br>
-[squidtestgary](https://clawhub.ai/user/squidtestgary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squidtestgary](https://clawhub.ai/user/squidtestgary)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to run authenticated Baiwang ISP Open Platform API test suites, validate business responses, and produce local HTML and JSON reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports hardcoded credentials and possible sensitive live test data in generated local reports. <br>
-Mitigation: Remove and rotate exposed credentials, replace examples with placeholders, use synthetic or masked fixture data, and restrict execution to approved test environments. <br>
-Risk: The skill performs authenticated API and database-backed testing against configured environments. <br>
-Mitigation: Review configuration before execution and confirm targets, database access, and credentials are approved for the intended test scope. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to create reusable API test configurations, exercise Baiwang ISP v6.0 and v7.0 interfaces in a controlled test environment, and review generated result reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squidtestgary/isp-api-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Markdown] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands; execution produces HTML, JSON, and JavaScript report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include raw requests, responses, identifiers, tokens, or business data and should be handled as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles API credentials, database data, access tokens, and generated reports that may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate exposed credentials before use, install only in a controlled test environment, and treat generated reports as sensitive artifacts that require redaction before sharing.
+
+Risk: API test configurations may target non-HTTPS URLs, increasing exposure of credentials or test data in transit.
+
+Mitigation: Require HTTPS in environment-specific configuration before executing tests.
+
+Risk: Database fixtures and configurable SQL can access live or sensitive data.
+
+Mitigation: Use least-privilege read-only database accounts and review each config file's SQL and target URL before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squidtestgary/skills/isp-api-tester)
+- [Publisher profile](https://clawhub.ai/user/squidtestgary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands; execution can produce HTML, JSON, and JavaScript report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports can contain request, response, token, and database-derived data and should be handled as sensitive artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

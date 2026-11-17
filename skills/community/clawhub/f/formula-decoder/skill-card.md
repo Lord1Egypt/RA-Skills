@@ -1,40 +1,50 @@
-## Description: <br>
-Formula Decoder helps users understand mathematical and physical formulas by turning them into intuitive visual models, real-world scenarios, staged derivations, and broader conceptual context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formula Decoder helps agents explain mathematical and physics formulas through intuitive visual models, real-world scenarios, symbolic mapping, edge-case analysis, and broader conceptual context.
 
-## Publisher: <br>
-[shinelee2014](https://clawhub.ai/user/shinelee2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinelee2014](https://clawhub.ai/user/shinelee2014)
 
-## Use Case: <br>
-Students, educators, and technical readers use this skill to get deeper intuition for math and physics formulas through visual metaphors, variable-role explanations, limit checks, unit reasoning, and knowledge-context summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad educational, formula, or visualization phrases. <br>
-Mitigation: Confirm the user wants a formula or concept explanation before applying the full staged decoding format. <br>
-Risk: The skill may answer in Chinese unless the user asks for another language. <br>
-Mitigation: Specify the desired response language when a non-Chinese answer is needed. <br>
+## Use Case:
 
+External users and learners use this skill to turn mathematical or physics formulas into structured, readable explanations with intuition, visualization, derivation context, and practical meaning.
 
-## Reference(s): <br>
-- [Formula Decoder ClawHub release page](https://clawhub.ai/shinelee2014/formula-decoder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with LaTeX formulas, staged sections, lists, and explanatory prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-oriented responses by default; uses a five-stage explanation flow for formula decoding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact skill.json) <br>
+Risk: The skill may activate on broad educational requests about formulas, math intuition, or physics visualization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in contexts where a structured Chinese-language teaching style is desired, and review activation behavior before deployment in workflows with overlapping educational skills.
+
+## Reference(s):
+
+- [Formula Decoder skill page](https://clawhub.ai/shinelee2014/skills/formula-decoder)
+- [Publisher profile](https://clawhub.ai/user/shinelee2014)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with LaTeX formulas and structured explanatory sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational explanations organized into staged formula analysis]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

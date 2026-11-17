@@ -1,42 +1,51 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Encode concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Encode.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill for quick Encode reference guidance across intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The static reference output may be mistaken for authoritative Encode documentation. <br>
-Mitigation: Verify the guidance against the relevant product or project documentation before using it for production decisions. <br>
-Risk: Some reference sections mention credentials or operational changes that are outside what the artifact implements. <br>
-Mitigation: Do not provide credentials or make system changes solely from this skill's output; use it as generic lookup guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for Encode concepts, commands, troubleshooting, performance, security, and migration guidance in devtools workflows.
 
-## Reference(s): <br>
-- [Encode on ClawHub](https://clawhub.ai/bytesagain3/encode) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and command tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local output; no external API calls, credentials, network access, or user file access are described by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release metadata) <br>
+Risk: The cheatsheet text names a troubleshooting command that is not listed as a supported command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented debugging command for troubleshooting content and verify command names against the Commands table or help output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/encode)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings, lists, and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained shell output; no external API calls, network access, API keys, or credentials required.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

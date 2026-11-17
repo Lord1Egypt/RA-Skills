@@ -1,50 +1,65 @@
-## Description: <br>
-Use when saving content to an Obsidian vault, appending to daily notes, or writing structured output from another skill into a vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves content to an Obsidian vault, appends to daily notes, and writes structured agent output into vault notes in VPS and headless server environments using notesmd-cli.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Developers and agents use this skill to save generated Markdown, summaries, drafts, and structured notes into an accessible Obsidian vault without requiring the Obsidian desktop app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes to local Obsidian vault files through a third-party CLI. <br>
-Mitigation: Confirm the notesmd-cli package is trusted and verify the selected vault path before allowing the agent to write. <br>
-Risk: Overwrite, move, or delete operations can change or remove existing notes. <br>
-Mitigation: Require explicit user confirmation before overwrite, move, or delete actions. <br>
-Risk: Vault credentials or sync tokens could be exposed if included in notes or chat context. <br>
-Mitigation: Do not store vault credentials or sync tokens in notes or conversation context. <br>
+## Use Case:
 
+Developers and operators use this skill to save agent-generated Markdown, summaries, drafts, and structured notes into an accessible Obsidian vault, including daily notes and named note files. It is designed for headless, VPS, server, and CI environments where the Obsidian desktop app is not running.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/obsidian-vault-writer) <br>
-- [notesmd-cli reference](references/notesmd-cli.md) <br>
-- [notesmd-cli source](https://github.com/Yakitrak/notesmd-cli) <br>
-- [Obsidian Flavored Markdown reference](references/obsidian-markdown.md) <br>
-- [Obsidian Canvas reference](references/obsidian-canvas.md) <br>
-- [JSON Canvas Spec 1.0](https://jsoncanvas.org/spec/1.0/) <br>
-- [Obsidian Bases reference](references/obsidian-bases.md) <br>
-- [Obsidian Bases syntax](https://help.obsidian.md/bases/syntax) <br>
-- [Obsidian Flavored Markdown docs](https://help.obsidian.md/obsidian-flavored-markdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and Obsidian note content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose notesmd-cli commands that append, create, overwrite, move, or delete notes after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence and changelog, released 2026-05-28) <br>
+Risk: The skill modifies an Obsidian vault, so incorrect target selection or generated content could change user notes unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the vault once per session, keep vault backups or version control, and require explicit user consent before overwriting existing notes.
+
+Risk: The security summary identifies unsafe command templates for note content.
+
+Mitigation: Invoke notesmd-cli without shell string interpolation for user-supplied content, and review generated commands before execution.
+
+Risk: The security summary identifies reliance on an unpinned third-party CLI install.
+
+Mitigation: Install notesmd-cli only from a trusted source, prefer a pinned and verified version in a user-owned path, and re-check the CLI version before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/obsidian-vault-writer)
+- [notesmd-cli Reference](references/notesmd-cli.md)
+- [Obsidian Flavored Markdown Reference](references/obsidian-markdown.md)
+- [Obsidian Canvas (JSON Canvas) Reference](references/obsidian-canvas.md)
+- [Obsidian Bases Reference](references/obsidian-bases.md)
+- [notesmd-cli source](https://github.com/Yakitrak/notesmd-cli)
+- [Obsidian Bases syntax](https://help.obsidian.md/bases/syntax)
+- [JSON Canvas Spec 1.0](https://jsoncanvas.org/spec/1.0/)
+- [Obsidian Flavored Markdown docs](https://help.obsidian.md/obsidian-flavored-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Obsidian note content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, append, or overwrite vault notes through notesmd-cli after vault confirmation and user consent for overwrites.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

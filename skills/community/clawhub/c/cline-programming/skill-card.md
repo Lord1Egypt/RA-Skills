@@ -1,40 +1,53 @@
-## Description: <br>
-Calls the Cline AI programming tool and provides a plan-check-act workflow for generating a coding plan, reviewing it, and executing implementation tasks with verbose progress output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cline Programming guides agents through a Cline CLI plan-check-act workflow for generating, reviewing, and executing programming tasks.
 
-## Publisher: <br>
-[touchdeeper](https://clawhub.ai/user/touchdeeper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[touchdeeper](https://clawhub.ai/user/touchdeeper)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to structure Cline-assisted coding work into planning, plan review, and action steps. It provides command patterns for Cline configuration, credential setup, planning, and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes Cline auto-approval through --yolo, allowing coding actions and generated code execution without manual confirmation. <br>
-Mitigation: Use it in a disposable or version-controlled workspace, remove auto-approval flags for sensitive tasks, and review generated plans before allowing changes. <br>
-Risk: Cline tasks may depend on API credentials, network access, and local workspace permissions. <br>
-Mitigation: Limit credentials and workspace permissions to the minimum needed for the task, and avoid running the skill where secrets or production assets are exposed. <br>
+## Use Case:
 
+Developers and engineers use this skill to invoke Cline planning and action modes, review generated plan files, and configure Cline for programming automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/touchdeeper/cline-programming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Cline CLI commands that can execute generated code when run by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Auto-approved Cline execution can run generated code without a human review gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual approvals, review generated plans and diffs immediately before execution, and run automation in a disposable least-privilege sandbox.
+
+Risk: Autonomous tasks may access API credentials or local configuration when broad automation is enabled.
+
+Mitigation: Keep API credentials out of workspaces where autonomous tasks can read them and use credential storage appropriate for the Cline environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/touchdeeper/skills/cline-programming)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Cline CLI commands for planning, reviewing, executing, and testing programming tasks.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

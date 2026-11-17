@@ -1,42 +1,52 @@
-## Description: <br>
-Design, prototype, build, QA, and ship Chrome extensions across separate plugin, template, and product repos with explicit publish lanes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, prototype, build, QA, and ship Chrome extensions across separate plugin, template, and product repos with explicit publish lanes.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and extension teams use this skill to design, prototype, validate, package, and prepare Chrome extensions while keeping plugin, template, and product repositories separated by publish lane.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow may run unaudited Python scripts from relative paths outside the packaged skill.
+
+Mitigation: Confirm the repository layout and exact script paths, inspect those scripts, and run the workflow from a controlled working directory with only required files and credentials available.
+
+Risk: Chrome extension release steps can use the wrong publish lane or broaden extension permissions if release metadata is changed carelessly.
+
+Mitigation: Keep permissions, host matches, and store metadata narrow in extension.release.json; validate the release profile and lane before recommending ship steps.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to create and maintain Chrome extension product repositories with explicit release lanes, structured briefs, store-listing drafts, QA checklists, and release-plan documentation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or updated repository files may contain incorrect release, store listing, or QA guidance. <br>
-Mitigation: Review generated file changes before committing or publishing. <br>
-Risk: Chrome extension permissions and host matches may be broader than the product needs. <br>
-Mitigation: Keep permissions, host matches, and store copy intentionally narrow and verify them during QA. <br>
-Risk: The workflow references helper scripts outside the product repo. <br>
-Mitigation: Verify the referenced ../../scripts helpers come from a trusted repository before running them. <br>
+**Output Format:** [Markdown guidance with inline shell commands and repository file recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Chrome Extension Studio on ClawHub](https://clawhub.ai/zack-dev-cm/chrome-extension-studio) <br>
+**Other Properties Related to Output:** [May rely on relative workflow scripts that should be inspected before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and repository file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or update Chrome extension release profile, brief, QA checklist, store listing, and release plan files.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

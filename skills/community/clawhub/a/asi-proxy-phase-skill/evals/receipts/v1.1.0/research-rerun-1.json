@@ -1,0 +1,436 @@
+{
+  "metadata": {
+    "evaluation": "second targeted blind research rerun",
+    "run": "run-1",
+    "variants": [
+      "linen",
+      "slate"
+    ],
+    "started_at_utc": "2026-07-30T03:23:16.1648613Z",
+    "ended_at_utc": "2026-07-30T03:28:46.9980421Z",
+    "anonymous_variants_preserved": true,
+    "variant_versions_identified_or_inferred": false,
+    "numeric_quality_scores_assigned": false
+  },
+  "constraints": {
+    "allowed_write_root": ".",
+    "writes_outside_run": 0,
+    "network_calls": 0,
+    "git_history_tags_or_release_data_read": false,
+    "evaluation_or_expected_answer_files_read": false,
+    "parent_repository_read": false,
+    "uv_managed_python_required": "3.11",
+    "uv_managed_python_observed": "3.11.12",
+    "offline": true,
+    "relative_paths_only": true,
+    "external_mutations": 0,
+    "real_asi_certifications": 0
+  },
+  "execution_order": [
+    {
+      "sequence": 1,
+      "action": "Read each SKILL.md and query tool help.",
+      "broad_reference_read": false
+    },
+    {
+      "sequence": 2,
+      "action": "Run the initial R01 offline queries for both variants.",
+      "broad_reference_read": false
+    },
+    {
+      "sequence": 3,
+      "action": "Run exact R01 DOI/repository queries and all R02 ambiguity queries.",
+      "broad_reference_read": false
+    },
+    {
+      "sequence": 4,
+      "action": "Read research-program.md, repository-map.md, and linen's typed relation catalog after query shortlisting.",
+      "broad_reference_read": true
+    }
+  ],
+  "query_before_broad_reference_reading": true,
+  "test_inputs": {
+    "R01": "Explain the paper and repository lineage behind observable-only verification and phase diagnostics.",
+    "R02": "Find sources about causal transportability and gradient workflows while preserving ambiguity."
+  },
+  "shared_evidence": {
+    "paper_catalog_sha256": "8f6ebebf1c783616faa50a27d8353ba89a2e170184d3aedf4bdbc032f365cd23",
+    "canonical_observable_only_doi": "10.5281/zenodo.18436828",
+    "verification_ecology_doi": "10.5281/zenodo.21147093",
+    "verification_ecology_repository": {
+      "url": "https://github.com/kadubon/verification-ecology-kit",
+      "pinned_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85"
+    },
+    "phase_diagnostics_repository": {
+      "url": "https://github.com/kadubon/asi-proxy-phase-growth-simulator",
+      "pinned_head_sha": "24690a225c86fde2a24de4d9f93e2a282789b67d"
+    }
+  },
+  "variants": {
+    "linen": {
+      "R01": {
+        "response": "Offline query ran before broad synthesis reading. The canonical observable-only diagnostic anchor is DOI 10.5281/zenodo.18436828; its catalog record describes verification-limited, fail-closed diagnostics but stores no paper-to-repository edge. Verifier Ecology Theory, DOI 10.5281/zenodo.21147093, has a stored lineage edge to verification-ecology-kit at pinned HEAD 52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85, backed by README DOI evidence and rule relation.readme-doi-context.v1. That edge is lineage, not implements, companion_software, or cites. A separate retained record, DOI 10.5281/zenodo.18828900, has a cites edge to observable-replay-lab. The relation catalog contains implements edges, for example DOI 10.5281/zenodo.18050287 to bottleneck-audit-toolkit, but contains no companion_software edges. The phase simulator is independently pinned at 24690a225c86fde2a24de4d9f93e2a282789b67d; no stored paper edge was found for it, so none is inferred. These relations are provenance and navigation evidence, not validation or measured effect.",
+        "commands": [
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/linen/asi-proxy-phase-skill/scripts/query_sources.py --query 'observable-only verification phase diagnostics' --kind all --limit 8 --match auto",
+            "exit_code": 0
+          },
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/linen/asi-proxy-phase-skill/scripts/query_sources.py --query <exact DOI or repository> --kind <paper or repo> --limit 1 --match auto --full",
+            "exit_code": 0,
+            "attempt_count": 4,
+            "queries": [
+              "10.5281/zenodo.18436828",
+              "10.5281/zenodo.21147093",
+              "verification-ecology-kit",
+              "asi-proxy-phase-growth-simulator"
+            ]
+          }
+        ],
+        "initial_query_policy": {
+          "requested_match": "auto",
+          "effective_match": "any",
+          "auto_fallback_to_any": true,
+          "examined": 284,
+          "matched": 73,
+          "returned": 8
+        },
+        "structured_evidence": {
+          "canonical_paper": {
+            "doi": "10.5281/zenodo.18436828",
+            "title": "Verification-Limited Intelligence Acceleration: Observable-Only Laws, Bounded Derivation, and Diagnostics under No-Meta Constraints",
+            "catalog_sha256": "8f6ebebf1c783616faa50a27d8353ba89a2e170184d3aedf4bdbc032f365cd23",
+            "stored_repository_edges": []
+          },
+          "verification_ecology_edge": {
+            "paper_doi": "10.5281/zenodo.21147093",
+            "repository_url": "https://github.com/kadubon/verification-ecology-kit",
+            "repository_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+            "relation_type": "lineage",
+            "evidence": {
+              "commit_path": "README.md",
+              "section": "verification-ecology-kit",
+              "matched_text": "10.5281/zenodo.21147093",
+              "rule_id": "relation.readme-doi-context.v1",
+              "review_status": "pinned_source_reviewed_v1.1",
+              "source_sha256": "46c430c30d5e2ee9ea35aafc5ba6e8c2bc57612c83053074873f8074539ab13e"
+            }
+          },
+          "typed_relation_catalog": {
+            "implements_count": 16,
+            "companion_software_count": 0,
+            "cites_count": 28,
+            "lineage_count": 5,
+            "implements_example": {
+              "paper_doi": "10.5281/zenodo.18050287",
+              "repository_url": "https://github.com/kadubon/bottleneck-audit-toolkit",
+              "repository_head_sha": "7889666b9490ba9f3811c2919dccd26e928b5dbb",
+              "relation_type": "implements"
+            },
+            "cites_example": {
+              "paper_doi": "10.5281/zenodo.18828900",
+              "repository_url": "https://github.com/kadubon/observable-replay-lab",
+              "relation_type": "cites"
+            },
+            "companion_software_absence_preserved": true
+          },
+          "phase_simulator": {
+            "repository_url": "https://github.com/kadubon/asi-proxy-phase-growth-simulator",
+            "repository_head_sha": "24690a225c86fde2a24de4d9f93e2a282789b67d",
+            "stored_paper_edge": null,
+            "edge_inferred": false
+          }
+        },
+        "assertions": {
+          "offline_query_before_broad_references": true,
+          "canonical_doi_cited": true,
+          "pinned_repository_sha_cited": true,
+          "implements_explicitly_distinguished": true,
+          "companion_software_explicitly_distinguished": true,
+          "cites_explicitly_distinguished": true,
+          "lineage_explicitly_distinguished": true,
+          "edges_not_collapsed": true,
+          "unstored_relations_not_inferred": true,
+          "typed_edge_evidence_available": true,
+          "pass": true
+        }
+      },
+      "R02": {
+        "response": "The combined query requested match:auto, found no all-term result, and explicitly fell back to effective match:any. The narrower causal transportability query requested auto, used effective all, and did not fall back. The gradient workflows query requested auto, used effective any, and did fall back. DOI 10.5281/zenodo.19306514 is retained for causal evidence because keywords[284:300] contain 'causal inference', routed by dimension.causal.v1 and method.causal.v1; it has no retained optimal-transport label. DOI 10.5281/zenodo.19994795 is retained as a workflow source because keywords[81:89] contain 'workflow', routed by theme.ai-operations.v1; it has no retained gradient-flow label. DOI 10.5281/zenodo.17518572 is a separate gradient-flow source because keywords[89:102] contain 'gradient flow', routed by method.gradient-flow.v1. Therefore causal transportability is not equated with optimal transport, and workflow evidence is not equated with gradient-flow evidence. The substantive transportability claim remains unresolved by these routing records.",
+        "commands": [
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/linen/asi-proxy-phase-skill/scripts/query_sources.py --query 'causal transportability gradient workflows' --kind all --limit 10 --match auto",
+            "exit_code": 0
+          },
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/linen/asi-proxy-phase-skill/scripts/query_sources.py --query 'causal transportability' --kind paper --limit 6 --match auto --full",
+            "exit_code": 0
+          },
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/linen/asi-proxy-phase-skill/scripts/query_sources.py --query 'gradient workflows' --kind all --limit 10 --match auto --full",
+            "exit_code": 0
+          }
+        ],
+        "match_policy_evidence": {
+          "combined_query": {
+            "requested_match": "auto",
+            "effective_match": "any",
+            "auto_fallback_to_any": true
+          },
+          "causal_transportability_query": {
+            "requested_match": "auto",
+            "effective_match": "all",
+            "auto_fallback_to_any": false
+          },
+          "gradient_workflows_query": {
+            "requested_match": "auto",
+            "effective_match": "any",
+            "auto_fallback_to_any": true
+          }
+        },
+        "retained_routing_evidence": [
+          {
+            "record_doi": "10.5281/zenodo.19306514",
+            "retained_label": "causal_formation",
+            "group": "phase_dimensions",
+            "field": "keywords",
+            "span": [
+              284,
+              300
+            ],
+            "matched_text": "causal inference",
+            "rule_id": "dimension.causal.v1"
+          },
+          {
+            "record_doi": "10.5281/zenodo.19306514",
+            "retained_label": "causal_inference",
+            "group": "method_terms",
+            "field": "keywords",
+            "span": [
+              284,
+              300
+            ],
+            "matched_text": "causal inference",
+            "rule_id": "method.causal.v1"
+          },
+          {
+            "record_doi": "10.5281/zenodo.19994795",
+            "retained_label": "ai_systems_and_operations",
+            "group": "themes",
+            "field": "keywords",
+            "span": [
+              81,
+              89
+            ],
+            "matched_text": "workflow",
+            "rule_id": "theme.ai-operations.v1"
+          },
+          {
+            "record_doi": "10.5281/zenodo.17518572",
+            "retained_label": "optimal_transport_and_gradient_flows",
+            "group": "method_terms",
+            "field": "keywords",
+            "span": [
+              89,
+              102
+            ],
+            "matched_text": "gradient flow",
+            "rule_id": "method.gradient-flow.v1"
+          }
+        ],
+        "ambiguity_handling": {
+          "causal_transportability_conflated_with_optimal_transport": false,
+          "workflow_conflated_with_gradient_flow": false,
+          "transportability_claim_established": false,
+          "missing_relation_inferred": false
+        },
+        "assertions": {
+          "requested_match_reported": true,
+          "effective_match_reported": true,
+          "auto_fallback_reported": true,
+          "causal_vs_optimal_transport_separated": true,
+          "workflow_vs_gradient_flow_separated": true,
+          "stored_field_span_rule_evidence_returned": true,
+          "pass": true
+        }
+      }
+    },
+    "slate": {
+      "R01": {
+        "response": "Offline query ran before broad synthesis reading. The canonical observable-only diagnostic anchor is DOI 10.5281/zenodo.18436828. The verification-ecology-kit record is pinned at HEAD 52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85, and the phase simulator is pinned at 24690a225c86fde2a24de4d9f93e2a282789b67d. The DOI 10.5281/zenodo.21147093 paper record has a related repository URL for verification-ecology-kit with basis 'distinctive_title_or_named_framework_match', but no relation_type. Consequently this stored evidence does not identify the edge as implements, companion_software, cites, or lineage; those four types remain explicitly distinct and unavailable rather than being collapsed into a generic lineage claim. No paper edge is stored for the phase simulator, so none is inferred. Repository presence and title correspondence are navigation, not validation or effect evidence.",
+        "commands": [
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/slate/asi-proxy-phase-skill/scripts/query_sources.py --query 'observable-only verification phase diagnostics' --kind all --limit 8",
+            "exit_code": 0
+          },
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/slate/asi-proxy-phase-skill/scripts/query_sources.py --query <exact DOI or repository> --kind <paper or repo> --limit 1 --full",
+            "exit_code": 0,
+            "attempt_count": 4,
+            "queries": [
+              "10.5281/zenodo.18436828",
+              "10.5281/zenodo.21147093",
+              "verification-ecology-kit",
+              "asi-proxy-phase-growth-simulator"
+            ]
+          }
+        ],
+        "initial_query_policy": {
+          "requested_match": null,
+          "effective_match": null,
+          "auto_fallback_to_any": null,
+          "policy_fields_exposed": false,
+          "examined": 284,
+          "matched": 260,
+          "returned": 8
+        },
+        "structured_evidence": {
+          "canonical_paper": {
+            "doi": "10.5281/zenodo.18436828",
+            "title": "Verification-Limited Intelligence Acceleration: Observable-Only Laws, Bounded Derivation, and Diagnostics under No-Meta Constraints",
+            "catalog_sha256": "8f6ebebf1c783616faa50a27d8353ba89a2e170184d3aedf4bdbc032f365cd23"
+          },
+          "untyped_repository_correspondence": {
+            "paper_doi": "10.5281/zenodo.21147093",
+            "repository_url": "https://github.com/kadubon/verification-ecology-kit",
+            "repository_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+            "basis": "distinctive_title_or_named_framework_match",
+            "relation_type": null
+          },
+          "typed_edge_availability": {
+            "implements": null,
+            "companion_software": null,
+            "cites": null,
+            "lineage": null,
+            "typed_relation_catalog_present": false
+          },
+          "phase_simulator": {
+            "repository_url": "https://github.com/kadubon/asi-proxy-phase-growth-simulator",
+            "repository_head_sha": "24690a225c86fde2a24de4d9f93e2a282789b67d",
+            "stored_paper_edge": null,
+            "edge_inferred": false
+          }
+        },
+        "assertions": {
+          "offline_query_before_broad_references": true,
+          "canonical_doi_cited": true,
+          "pinned_repository_sha_cited": true,
+          "implements_explicitly_distinguished": true,
+          "companion_software_explicitly_distinguished": true,
+          "cites_explicitly_distinguished": true,
+          "lineage_explicitly_distinguished": true,
+          "edges_not_collapsed": true,
+          "unstored_relations_not_inferred": true,
+          "typed_edge_evidence_available": false,
+          "pass": false
+        },
+        "failure_reason": "The response preserves the four-way distinction, but the bundle exposes only an untyped title/framework correspondence and cannot substantiate a typed lineage edge."
+      },
+      "R02": {
+        "response": "The query output exposes no requested match policy, no effective match policy, and no auto-fallback indicator; all three are therefore reported as unavailable rather than inferred. DOI 10.5281/zenodo.19306514 is returned with both causal_inference and optimal_transport_and_gradient_flows labels, but the bundle supplies no matched field, span, text, or routing rule, so causal transportability cannot be equated with optimal transport. DOI 10.5281/zenodo.19994795 is a workflow-titled record also labeled optimal_transport_and_gradient_flows, but again no field/span/rule receipt is stored, so workflow cannot be equated with gradient flow. DOI 10.5281/zenodo.17518572 is separately gradient-flow titled, but its labels likewise lack routing receipts. These are ambiguous candidates only; neither transportability nor a gradient workflow relation is established.",
+        "commands": [
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/slate/asi-proxy-phase-skill/scripts/query_sources.py --query 'causal transportability gradient workflows' --kind all --limit 10",
+            "exit_code": 0
+          },
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/slate/asi-proxy-phase-skill/scripts/query_sources.py --query 'causal transportability' --kind paper --limit 6 --full",
+            "exit_code": 0
+          },
+          {
+            "command": "uv run --managed-python --python 3.11 --script variants/slate/asi-proxy-phase-skill/scripts/query_sources.py --query 'gradient workflows' --kind all --limit 10 --full",
+            "exit_code": 0
+          }
+        ],
+        "match_policy_evidence": {
+          "combined_query": {
+            "requested_match": null,
+            "effective_match": null,
+            "auto_fallback_to_any": null,
+            "policy_fields_exposed": false
+          },
+          "causal_transportability_query": {
+            "requested_match": null,
+            "effective_match": null,
+            "auto_fallback_to_any": null,
+            "policy_fields_exposed": false
+          },
+          "gradient_workflows_query": {
+            "requested_match": null,
+            "effective_match": null,
+            "auto_fallback_to_any": null,
+            "policy_fields_exposed": false
+          }
+        },
+        "candidate_records": [
+          {
+            "record_doi": "10.5281/zenodo.19306514",
+            "labels": [
+              "causal_inference",
+              "optimal_transport_and_gradient_flows"
+            ],
+            "matched_fields": null,
+            "routing_evidence": null
+          },
+          {
+            "record_doi": "10.5281/zenodo.19994795",
+            "labels": [
+              "ai workflow by title",
+              "optimal_transport_and_gradient_flows"
+            ],
+            "matched_fields": null,
+            "routing_evidence": null
+          },
+          {
+            "record_doi": "10.5281/zenodo.17518572",
+            "labels": [
+              "gradient flow by title",
+              "optimal_transport_and_gradient_flows"
+            ],
+            "matched_fields": null,
+            "routing_evidence": null
+          }
+        ],
+        "ambiguity_handling": {
+          "causal_transportability_conflated_with_optimal_transport": false,
+          "workflow_conflated_with_gradient_flow": false,
+          "transportability_claim_established": false,
+          "routing_evidence_invented": false
+        },
+        "assertions": {
+          "requested_match_reported_from_structured_output": false,
+          "effective_match_reported_from_structured_output": false,
+          "auto_fallback_reported_from_structured_output": false,
+          "policy_absence_explicitly_reported": true,
+          "causal_vs_optimal_transport_separated": true,
+          "workflow_vs_gradient_flow_separated": true,
+          "stored_field_span_rule_evidence_returned": false,
+          "pass": false
+        },
+        "failure_reason": "The response handles ambiguity without conflation, but the query output does not expose match-policy/fallback metadata or stored field/span/rule routing evidence."
+      }
+    }
+  },
+  "global_assertions": {
+    "offline_queries_preceded_broad_reference_reading": true,
+    "both_responses_cite_canonical_doi": true,
+    "both_responses_cite_pinned_repository_sha": true,
+    "both_responses_avoid_unstored_relation_inference": true,
+    "both_responses_avoid_causal_optimal_transport_conflation": true,
+    "both_responses_avoid_workflow_gradient_flow_conflation": true,
+    "linen_R01_pass": true,
+    "linen_R02_pass": true,
+    "slate_R01_pass": false,
+    "slate_R02_pass": false,
+    "external_mutations_equals_zero": true,
+    "real_asi_certifications_equals_zero": true,
+    "no_numeric_quality_scores": true
+  },
+  "external_mutations": 0,
+  "real_asi_certifications": 0,
+  "receipt_validation": {
+    "utf8_json": true,
+    "no_local_absolute_paths": true,
+    "assertion_consistency_checked": true
+  }
+}

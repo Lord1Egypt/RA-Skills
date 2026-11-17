@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">OpenClaw Workspace Initializer</title>
+  <desc id="hero-desc">Give every OpenClaw agent a home: standard directory structure, WORKSPACE.md rules, and multi-agent config safety. Shows the initialized workspace tree with projects, tasks, outputs, knowledge, scripts, memory, tmp, and WORKSPACE.md.</desc>
+
+  <rect width="1200" height="360" rx="20" fill="#0d1117"/>
+
+  <!-- left: title block -->
+  <g id="title-block" transform="translate(56 40)">
+    <text x="0" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="4" fill="#8b949e">OPENCLAW · AGENT SKILL</text>
+
+    <text x="0" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">OpenClaw Workspace</text>
+    <text x="0" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">Initializer</text>
+
+    <text x="0" y="226" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" fill="#c9d1d9">给每个 OpenClaw agent 一个「家」</text>
+    <text x="0" y="258" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" fill="#8b949e">标准目录结构 · WORKSPACE.md 规范 · 配置安全</text>
+
+    <text x="0" y="310" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1" fill="#8b949e">MIT LICENSE · SKILL FOR OPENCLAW · v1.0.0</text>
+  </g>
+
+  <!-- right: initialized workspace tree panel -->
+  <g id="tree-panel" transform="translate(700 44)">
+    <rect width="450" height="276" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+
+    <!-- terminal dots -->
+    <circle cx="18" cy="20" r="5" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="5" fill="#ffbd2e"/>
+    <circle cx="54" cy="20" r="5" fill="#27c93f"/>
+
+    <text x="78" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#8b949e">❯ workspace init — done</text>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">
+      <text x="22" y="74" fill="#8b949e">├─ projects/</text>
+      <text x="160" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">长期开发项目</text>
+
+      <text x="22" y="104" fill="#8b949e">├─ tasks/</text>
+      <text x="160" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">一次性任务</text>
+
+      <text x="22" y="134" fill="#8b949e">├─ outputs/</text>
+      <text x="160" y="134" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">生成物</text>
+
+      <text x="22" y="164" fill="#8b949e">├─ knowledge/</text>
+      <text x="160" y="164" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">知识库</text>
+
+      <text x="22" y="194" fill="#8b949e">├─ scripts/</text>
+      <text x="160" y="194" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">工具脚本</text>
+
+      <text x="22" y="224" fill="#8b949e">├─ memory/</text>
+      <text x="160" y="224" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">日常日志</text>
+
+      <text x="22" y="254" fill="#8b949e">└─ WORKSPACE.md</text>
+      <text x="190" y="254" fill="#3fb950" font-size="18">✅ 规范已就位</text>
+    </g>
+  </g>
+</svg>

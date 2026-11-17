@@ -1,40 +1,55 @@
-## Description: <br>
-Review UI code for Web Interface Guidelines compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review UI code for Web Interface Guidelines compliance.
 
-## Publisher: <br>
-[divyamprusty](https://clawhub.ai/user/divyamprusty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[divyamprusty](https://clawhub.ai/user/divyamprusty)
 
-## Use Case: <br>
-Developers, designers, and reviewers use this skill to check UI files for Web Interface Guidelines compliance and receive terse file:line findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The review depends on live guideline content from an external raw GitHub URL, so results can change if that source changes. <br>
-Mitigation: Check the fetched guideline source when results are surprising and rerun reviews after confirming the source is expected. <br>
-Risk: The skill reads user-specified UI files during review. <br>
-Mitigation: Run it only on code files you are comfortable letting the agent inspect, and scope file patterns to the intended review area. <br>
+## Use Case:
 
+Developers and UI engineers use this skill to review interface code against Web Interface Guidelines and receive concise file-and-line findings for remediation.
 
-## Reference(s): <br>
-- [Web Interface Guidelines source](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Analysis, Guidance] <br>
-**Output Format:** [Plain text findings in file:line format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings depend on the current external Web Interface Guidelines source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches a mutable external guidelines document on each review, so behavior and output criteria may change without a skill release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the fetched guidelines before relying on findings, or use a version that vendors or pins the guidelines source.
+
+Risk: The fetched document includes review and output instructions that could influence agent behavior beyond static skill contents.
+
+Mitigation: Treat remote guideline text as untrusted reference material and keep final remediation changes under human review.
+
+## Reference(s):
+
+- [Web Interface Guidelines command source](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md)
+- [ClawHub skill page](https://clawhub.ai/divyamprusty/skills/skill-files)
+- [Publisher profile](https://clawhub.ai/user/divyamprusty)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with concise file:line findings and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings depend on the current contents of the external guidelines document fetched at review time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

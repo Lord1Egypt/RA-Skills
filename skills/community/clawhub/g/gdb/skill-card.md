@@ -1,41 +1,55 @@
-## Description: <br>
-Gdb reference tool. Use when working with gdb in devtools contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gdb reference tool. Use when working with gdb in devtools contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick GDB reference for command overviews, quickstart guidance, patterns, troubleshooting, performance notes, security considerations, migration checklists, and cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference content is generic and may not match a user's specific production debugging environment. <br>
-Mitigation: Verify production debugging and sysops changes against official project documentation and local operational policies before applying them. <br>
-Risk: The shell helper prints static guidance; users could mistake examples or checklist items for environment-validated instructions. <br>
-Mitigation: Review the generated guidance before use and adapt commands, permissions, and safety checks to the target system. <br>
+## Use Case:
 
+Developers and engineers use this skill for quick GDB-oriented reference material, command summaries, and general troubleshooting guidance in devtools contexts.
 
-## Reference(s): <br>
-- [ClawHub Gdb skill page](https://clawhub.ai/bytesagain3/gdb) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content selected by command name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill may provide misleading debugging guidance because the security evidence says it claims to be a GDB reference while providing generic placeholder material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance before using it for debugging decisions, and prefer authoritative GDB documentation until the publisher replaces the placeholder content.
+
+Risk: Users may mistake the skill for a complete GDB reference.
+
+Mitigation: Treat the skill as a lightweight reference aid and verify commands, workflows, and safety-sensitive advice against trusted sources before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/gdb)
+- [ClawHub publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by shell command subcommands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output is static reference material selected by subcommand.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

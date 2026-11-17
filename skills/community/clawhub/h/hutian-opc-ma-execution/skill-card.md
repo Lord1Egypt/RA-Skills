@@ -1,50 +1,66 @@
-## Description: <br>
-并购执行全流程技能，覆盖从意向达成到交割完成的法律文件、尽调、中间材料。与并购匹配Skill（初期选标的）配套，为中小企业/技术方提供并购全流程支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides full-cycle M&A execution support from intent through closing, including legal document templates, due diligence frameworks, intermediate transaction materials, and seller-focused risk guidance for technical teams and small or medium-sized businesses.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users, founders, technical sellers, and small to midsize businesses use this skill to draft and review M&A execution materials from intent through closing, including legal templates, due diligence checklists, valuation support, regulatory filing guidance, and negotiation risk prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill names and structures sensitive M&A documents, including deal data, personal details, banking information, legal records, and due diligence materials. <br>
-Mitigation: Use NDAs, secure data rooms or encrypted transfer, need-to-know access controls, redaction of unnecessary personal and banking details, and retention and deletion rules before using real deal data. <br>
-Risk: Generated templates and guidance may be incomplete or unsuitable for a specific transaction, jurisdiction, tax posture, or regulatory filing. <br>
-Mitigation: Have qualified legal, tax, financial, and regulatory advisors review all outputs before relying on them in a transaction. <br>
+## Use Case:
 
+External founders, technical sellers, business operators, and M&A advisers use this skill to prepare PRC-oriented M&A execution documents, diligence checklists, closing materials, valuation notes, regulatory filing checklists, and governance documents from LOI through closing.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Skill Source](SKILL.md) <br>
-- [保密协议（NDA）模板框架](references/01-NDA模板.md) <br>
-- [投资意向书（TS/LOI）模板框架](references/02-TS模板.md) <br>
-- [并购尽调清单框架](references/03-尽调清单.md) <br>
-- [股权转让协议（SPA）核心条款深度解读](references/04-SPA条款解读.md) <br>
-- [对赌协议框架](references/05-对赌协议.md) <br>
-- [并购交割清单框架](references/06-交割清单.md) <br>
-- [并购估值方法框架](references/07-估值方法.md) <br>
-- [并购监管申报指引](references/08-监管申报.md) <br>
-- [并购治理文件模板框架](references/09-治理文件.md) <br>
+### Deployment Geography for Use:
 
+China and PRC-oriented transactions
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance, checklists, templates, and structured legal and financial review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language M&A execution support; outputs require professional legal, tax, financial, privacy, and information-security review before use with real transaction data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill handles sensitive M&A materials such as diligence records, bank details, employee data, intellectual property materials, seals, tokens, and administrator credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authorization, signed NDAs, a secure data room, least-privilege access, redaction where possible, audit logs, and an agreed deletion or retention plan before sharing or processing sensitive materials.
+
+Risk: M&A drafting and deal guidance can be legally, financially, and tax-sensitive, especially outside the PRC-oriented context described in the evidence.
+
+Mitigation: Use the skill only for Chinese or PRC-oriented M&A drafting and require review by qualified legal, tax, and financial advisers before relying on outputs.
+
+Risk: The security evidence notes built-in referral prompts that may be inappropriate for some installations.
+
+Mitigation: Review and remove referral or contact sections from agent instructions before installation when they are not intended for the deployment.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [NDA Template Framework](artifact/references/01-NDA模板.md)
+- [Investment Term Sheet Template Framework](artifact/references/02-TS模板.md)
+- [M&A Due Diligence Checklist Framework](artifact/references/03-尽调清单.md)
+- [SPA Core Clause Analysis](artifact/references/04-SPA条款解读.md)
+- [Valuation Adjustment Mechanism Framework](artifact/references/05-对赌协议.md)
+- [M&A Closing Checklist Framework](artifact/references/06-交割清单.md)
+- [M&A Valuation Method Framework](artifact/references/07-估值方法.md)
+- [M&A Regulatory Filing Guide](artifact/references/08-监管申报.md)
+- [M&A Governance Document Template Framework](artifact/references/09-治理文件.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text containing document templates, checklists, clause explanations, risk notes, and procedural guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, PRC-oriented M&A drafting assistance that requires professional review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

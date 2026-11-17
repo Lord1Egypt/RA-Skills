@@ -1,46 +1,65 @@
-## Description: <br>
-帮助明道云 HAP 私有部署用户评估跨版本升级、架构兼容性和附加操作，并生成单机或集群升级指南。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Mingdao HAP private deployment upgrade questions and generate executable standalone or cluster upgrade guides when the required deployment details are available.
 
-## Publisher: <br>
-[1447443432](https://clawhub.ai/user/1447443432) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1447443432](https://clawhub.ai/user/1447443432)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to answer HAP private-deployment upgrade questions, check target-version architecture support, merge cross-version additional operations, and produce executable upgrade guidance for standalone or cluster deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated upgrade commands may affect production HAP private-deployment systems. <br>
-Mitigation: Verify every command against current official documentation, confirm backups and rollback plans, and execute during an approved maintenance window. <br>
-Risk: Generated guides or support artifacts could expose sensitive operational details if users include real secrets. <br>
-Mitigation: Keep real passwords, tokens, and sensitive connection details out of generated guides, screenshots, tickets, and shell history. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to assess HAP private deployment upgrade paths, architecture support, required pre-upgrade and post-upgrade operations, and to generate Markdown and HTML upgrade runbooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1447443432/hap-upgrade-guide) <br>
-- [HAP private deployment version history](https://docs-pd.mingdao.com/version) <br>
-- [HAP upgrade command library](artifact/references/command-library.md) <br>
-- [HAP upgrade merge rules](artifact/references/merge-rules.md) <br>
-- [Mingdao private deployment documentation site structure](artifact/references/site-structure.md) <br>
-- [Standalone upgrade guide template](artifact/assets/upgrade-guide-template-standalone.md) <br>
-- [Cluster upgrade guide template](artifact/assets/upgrade-guide-template-cluster.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or HTML upgrade guides with shell command and configuration code blocks, or concise advisory text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated guide filenames follow the HAP升级指南-v{current}-to-v{target}-{mode} naming pattern.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Generated upgrade guidance can include high-impact administration commands for HAP services, Kubernetes, Docker, and databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands against the official Mingdao documentation and run them only in a planned maintenance window with backups and a rollback plan.
+
+Risk: Some generated examples execute remote scripts through curl-to-bash patterns without built-in integrity verification.
+
+Mitigation: Download remote scripts first, verify them against trusted checksums or signatures when available, inspect the contents, and execute with least privilege.
+
+Risk: MongoDB examples may place credentials in command lines or copied shell history.
+
+Mitigation: Use secure credential handling, avoid embedding passwords directly in command lines, and restrict database credentials to the minimum required privilege.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1447443432/skills/hap-upgrade-guide)
+- [HAP documentation site structure reference](references/site-structure.md)
+- [HAP upgrade command library](references/command-library.md)
+- [HAP upgrade merge rules](references/merge-rules.md)
+- [Mingdao private deployment version history](https://docs-pd.mingdao.com/version)
+- [Mingdao private deployment upgrade detail pages](https://docs-pd.mingdao.com/upgrade/{version}/)
+- [MongoDB 3.4 to 4.4 upgrade reference](https://docs-pd.mingdao.com/deployment/docker-compose/standalone/upgrade/mongodb/3.4_4.4)
+- [MongoDB index rebuild reference](https://docs-pd.mingdao.com/deployment/components/mongodb/reIndex)
+- [Object storage preset file reference](https://docs-pd.mingdao.com/faq/oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and HTML documents with inline shell commands, configuration snippets, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated upgrade guide files named with the source version, target version, and deployment mode.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

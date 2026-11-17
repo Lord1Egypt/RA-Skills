@@ -1,43 +1,54 @@
-## Description: <br>
-Locates and imports character-specific chapters from Chen Yan's novel The Protagonist so an agent can answer questions, analyze characters, trace relationships, find source passages, or draft commentary from relevant background text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按人物检索并导入长篇小说《主角》(陈彦 著，茅盾文学奖)的相关章节，作为后续任务的背景资料。
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External users and agents use this skill when a request refers to characters, roles, or relationships in The Protagonist and needs relevant chapters loaded before analysis, Q&A, quotation lookup, or writing. It is designed to narrow retrieval by character, co-occurrence, and novel section instead of loading the full book. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read an alternate chapter directory when ZHUJUE_TXT is set. <br>
-Mitigation: Leave ZHUJUE_TXT unset unless you intentionally want the scripts to read a different local chapter corpus. <br>
-Risk: Retrieved literary passages may include offensive language or sensitive content from the source novel. <br>
-Mitigation: Treat passages as contextual literary source material, preserve context, and quote only what is necessary. <br>
-Risk: Broad character matches, especially the protagonist who appears throughout the novel, can pull too much text into the agent context. <br>
-Mitigation: Narrow retrieval with co-occurring characters, section filters, or selected chapters before exporting text. <br>
+## Use Case:
 
+External users and developers use this skill to locate and import chapters from Chen Yan's novel Zhujue by character, alias, or opera role so downstream agents can answer questions, analyze relationships, find passages, or draft commentary from grounded source text.
 
-## Reference(s): <br>
-- [Character roster](references/characters.md) <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/zhujue-characters) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, chapter lists, and optional plain-text chapter extracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write selected cleaned chapter text to a local file for the agent to read; text export defaults limit broad matches and should be narrowed before increasing limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Retrieved source passages can include mature or derogatory literary content from the bundled novel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that source material is appropriate for the task, and review retrieved passages before reusing them in public or sensitive outputs.
+
+Risk: The query workflow may write extracted passages to a user-chosen local path.
+
+Mitigation: Choose an expected temporary or workspace path for exports and inspect the generated file before using it as agent context.
+
+## Reference(s):
+
+- [Characters Reference](references/characters.md)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/zhujue-characters)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and extracted text-file paths when chapter text is exported]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write selected cleaned source passages to a user-chosen local path when text export is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

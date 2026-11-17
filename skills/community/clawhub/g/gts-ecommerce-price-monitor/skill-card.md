@@ -1,44 +1,59 @@
-## Description: <br>
-Monitor competitor product prices across Shopee, Lazada, Amazon, and other e-commerce platforms with automated tracking, alerts, reports, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor competitor product prices across major e-commerce platforms, set up automated tracking and alerts, and generate comparison reports for pricing decisions.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-External e-commerce sellers, dropshippers, and small business owners use this skill to track competitor product URLs, compare prices over time, receive threshold alerts, and generate pricing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor URLs, alert rules, price history, and generated reports may reveal sensitive product strategy if stored or shared unexpectedly. <br>
-Mitigation: Keep the workspace access-controlled, review generated files before sharing, and avoid entering product strategy data that should not be persisted. <br>
-Risk: Recurring scans can run automatically after setup and may continue collecting price data or triggering alerts. <br>
-Mitigation: Confirm the cron schedule, scan frequency, and tracked product list before enabling automation, and remove schedules that are no longer needed. <br>
-Risk: Alerts sent through Telegram, email, Discord, or similar channels may disclose pricing intelligence to third-party services. <br>
-Mitigation: Review the destination for each alert channel and send sensitive pricing information only through channels approved for that data. <br>
+## Use Case:
 
+External e-commerce sellers, dropshippers, and small business owners use this skill to track competitor product URLs, monitor price changes, receive alerts, and create reports that support pricing decisions.
 
-## Reference(s): <br>
-- [GTS Ecommerce Price Monitor ClawHub Release](https://clawhub.ai/ericlooi504/gts-ecommerce-price-monitor) <br>
-- [Advanced Configuration](references/CONFIG.md) <br>
-- [Platform-Specific Notes](references/PLATFORMS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text guidance with inline shell commands, JSON/JSONL tracking data, and optional CSV reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local product, alert, price-history, and report files in the workspace when the agent follows the skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill stores product URLs, price history, and alert settings in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Track only marketplace URLs you are comfortable storing locally and remove old history or alert files when they are no longer needed.
+
+Risk: Scheduled browser scans and external notifications may run repeatedly or send updates to unintended channels.
+
+Mitigation: Review scan intervals and notification destinations before enabling automated scans.
+
+Risk: Generated CSV reports can carry spreadsheet-handling risk when opened in office tools.
+
+Mitigation: Open generated CSV files cautiously and inspect exported values before sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/skills/gts-ecommerce-price-monitor)
+- [Platform-Specific Notes](references/PLATFORMS.md)
+- [Advanced Configuration](references/CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON, JSONL, CSV, and terminal report outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local tracking files, price history, alert configuration, scheduled scan setup, and CSV reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

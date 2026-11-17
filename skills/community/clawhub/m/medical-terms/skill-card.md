@@ -1,37 +1,49 @@
-## Description: <br>
-Explain medical terminology, lab results, diagnoses, and prescription abbreviations in plain everyday language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain medical terminology, lab results, diagnoses, and prescription abbreviations in plain everyday language.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users use this skill to translate unfamiliar medical terms, lab values, diagnoses, prescription abbreviations, and report language into plain-language educational explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational medical explanations for diagnosis, urgency triage, or medication instructions. <br>
-Mitigation: Treat output as informational only and consult a licensed clinician for medical decisions, urgent symptoms, confusing results, or prescription changes. <br>
+## Use Case:
 
+External users and support agents use this skill to translate unfamiliar medical terms, lab-result language, diagnoses, report wording, and prescription abbreviations into plain everyday explanations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational explanations only; not medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may mistake plain-language explanations of medication instructions, abnormal lab values, or treatment decisions for clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Advise users to confirm medication instructions, abnormal lab values, and treatment decisions with a clinician or pharmacist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/medical-terms)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain-language explanations with user-facing healthcare caution for medication instructions, abnormal lab values, and treatment decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

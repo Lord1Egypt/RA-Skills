@@ -1,0 +1,31 @@
+% Package-copy of examples/refs.sample.bib — the --bibliography format sniffer reads this BIB content directly (v6.3.0).
+% Sample bibliography for --bibliography (v3.6.0).
+% Routes: entry 1 by DOI, entry 2 by PMID, entry 3 by arXiv eprint.
+% Expected verdicts: all three entries verify correct (real, stable IDs);
+% entry 2's deliberately exact title matches the registry record.
+% Audit:  python3 scripts/verify_pmids.py --bibliography examples/refs.sample.bib
+% Lint:   python3 scripts/verify_pmids.py --lint-claims examples/refs.sample.bib
+
+@article{covid2020,
+  title = {City size and the spreading of COVID-19 in Brazil},
+  author = {Ribeiro},
+  journal = {PLoS ONE},
+  year = {2020},
+  doi = {10.1371/journal.pone.0239699}
+}
+
+@article{criteria2019,
+  title = {Classification criteria for autoinflammatory recurrent fevers},
+  author = {Gattorno},
+  journal = {Ann Rheum Dis},
+  year = {2019},
+  pmid = {31018962}
+}
+
+@misc{attention2017,
+  title = {Attention Is All You Need},
+  author = {Vaswani},
+  year = {2017},
+  eprint = {1706.03762},
+  archiveprefix = {arXiv}
+}

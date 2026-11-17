@@ -1,0 +1,11 @@
+The build broke at 4:17 p.m.
+
+Maya had already packed her bag when the alert arrived, so she reopened the laptop and checked the last deployment. One configuration line pointed to a test bucket that had been deleted months earlier, but the failure appeared only now because a cached credential finally expired.
+
+She changed the line. Nothing happened.
+
+The worker had kept the old configuration in memory, which meant the clean-looking deploy had never restarted the process that actually handled customer uploads in production. Maya stopped the worker, watched it return with the correct bucket, and sent a small file through the public endpoint. It landed.
+
+Before leaving, she added a startup check that rejects missing buckets and wrote down why a restart is required after configuration changes. The patch, test included, was twelve lines and saved the next person from reading forty minutes of misleading logs.
+
+Her bag was still beside the door. Dinner was cold, but the queue was empty.

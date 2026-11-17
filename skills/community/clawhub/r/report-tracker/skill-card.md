@@ -1,41 +1,54 @@
-## Description: <br>
-Report Tracker analyzes Chinese-language investment research reports, maps findings to a fixed local stock pool, appends tracking records, updates cumulative indicators, and returns a structured analysis receipt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Report Tracker analyzes research reports, maps findings to a fixed investment watchlist, appends tracking archive entries, updates cumulative tracking indicators, and returns a structured analysis receipt.
 
-## Publisher: <br>
-[pcchris1995](https://clawhub.ai/user/pcchris1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcchris1995](https://clawhub.ai/user/pcchris1995)
 
-## Use Case: <br>
-Investors and analysts use this skill to process research reports, compare the findings against a predefined local stock pool, and maintain a markdown tracking archive with follow-up indicators and valuation-impact notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can append research-report analysis to local investment tracking files. <br>
-Mitigation: Review the target paths and ask the agent to confirm before writing when using the skill outside the documented tracking workflow. <br>
-Risk: Report analysis may affect valuation or PE tracking notes. <br>
-Mitigation: Review generated archive entries, especially any profitability forecast or PE changes, before relying on them for investment decisions. <br>
+## Use Case:
 
+Investment-focused users use this skill to process research reports, relate report findings to a predefined stock pool, preserve the analysis in tracking files, and receive a concise receipt of report impact.
 
-## Reference(s): <br>
-- [Report Tracker on ClawHub](https://clawhub.ai/pcchris1995/report-tracker) <br>
-- [Research Report Tracking Template](references/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis receipt and appended markdown tracking records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads report inputs and updates local investment tracking files when the workflow is triggered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and _meta.json) <br>
+Risk: The skill can retain report content by appending analysis to tracking archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where report archiving is intended, and confirm before storing sensitive or confidential reports.
+
+Risk: The skill can alter investment tracking records and forecast or PE assumptions from broad file or link analysis requests.
+
+Mitigation: Ask for confirmation before writing or revising forecasts when reports are sensitive or requests are ambiguous.
+
+## Reference(s):
+
+- [Report Tracker ClawHub skill page](https://clawhub.ai/pcchris1995/skills/report-tracker)
+- [Research report tracking archive template](references/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown archive entries, cumulative tracking tables, and structured text receipts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append report analysis to tracking archives and update investment tracking records.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

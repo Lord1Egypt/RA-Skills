@@ -1,43 +1,62 @@
-## Description: <br>
-Validate single video URLs, download highest-quality files with yt-dlp, and archive results into a Feishu Bitable using platform tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate single video URLs, download highest-quality files with yt-dlp, and archive results into a Feishu Bitable using platform tools.
 
-## Publisher: <br>
-[feiernk](https://clawhub.ai/user/feiernk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feiernk](https://clawhub.ai/user/feiernk)
 
-## Use Case: <br>
-Developers and operators use this skill to process one video URL at a time, download or reconcile a local archive file, and prepare or write metadata records to a configured Feishu Bitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads video files and stores URLs, descriptions, uploader data, and full local file paths in a fixed Feishu Bitable. <br>
-Mitigation: Confirm the Feishu app token and table are owned by you or intentionally shared, and review what metadata may be written before running the workflow. <br>
-Risk: The runner depends on an unbundled, hard-coded local helper script for downloads. <br>
-Mitigation: Inspect, replace, or remove the helper path before installation so the invoked download script is trusted and present on the target system. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review the publisher, security summary, and file behavior before installing or using the skill. <br>
+## Use Case:
 
+Users with video archiving workflows use this skill to validate a single video URL, download or complete the local archive with yt-dlp, and create or update the corresponding Feishu Bitable record.
 
-## Reference(s): <br>
-- [Video Download Archive release page](https://clawhub.ai/feiernk/video-download-archive) <br>
-- [Configured Feishu Bitable target](https://my.feishu.cn/base/KMuEbR5b5aLXFosyxGlc7kTenpb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the runner plus concise text or Markdown status from the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded video files, .info.json metadata, local file paths, and Feishu Bitable record fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 0.2.0) <br>
+Risk: The skill writes detailed user and video metadata to a fixed Feishu Bitable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with the intended Feishu destination, preview fields before writing, and avoid private, signed, internal, or token-bearing video URLs.
+
+Risk: The skill depends on an external ytfetch.sh helper that is not included in the reviewed package.
+
+Mitigation: Run it only when that helper is present, trusted, and under your control; prefer packaging reviewed executable helpers with the skill.
+
+Risk: The skill can expose absolute local download paths in archived records.
+
+Mitigation: Prefer a configuration that omits absolute local paths from shared records unless those paths are required and appropriate for the audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feiernk/skills/video-download-archive)
+- [Target Feishu Bitable](https://my.feishu.cn/base/KMuEbR5b5aLXFosyxGlc7kTenpb)
+- [Workflow](workflow.md)
+- [Usage](usage.md)
+- [Bitable Mapping](bitable-mapping.md)
+- [Error Handling](error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON record_fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one video URL at a time and returns local path, media metadata, Feishu table identifiers, and fields for the archive record.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

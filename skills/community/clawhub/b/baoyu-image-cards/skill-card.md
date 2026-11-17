@@ -1,44 +1,61 @@
-## Description: <br>
-Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes for social media posts and visual summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes, breaking content into 1-10 cartoon-style image cards optimized for social media engagement.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-External users and content creators use this skill to turn source content into multi-card infographic image series for Xiaohongshu, WeChat, and similar social media channels. It guides style, layout, palette, outline, prompt preparation, and image generation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt-safety language may encourage stylized substitutes for sensitive or copyrighted figure requests instead of normal refusal or policy handling. <br>
-Mitigation: Review or revise the prompt-safety language before installation, and require the selected image backend's policy handling for sensitive or copyrighted subject requests. <br>
-Risk: The workflow writes source summaries, outlines, prompts, preferences, and generated assets to local files. <br>
-Mitigation: Use an appropriate project workspace, review saved prompt and preference files before sharing, and avoid placing sensitive source content in generated prompt records. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to turn source content into multi-card social media infographic series with selectable visual styles, layouts, palettes, prompts, and generation workflow guidance.
 
-## Reference(s): <br>
-- [Baoyu Image Cards homepage](https://github.com/JimLiu/baoyu-skills#baoyu-image-cards) <br>
-- [Confirmation questions](references/confirmation.md) <br>
-- [Style presets](references/style-presets.md) <br>
-- [Canvas and layout guidance](references/elements/canvas.md) <br>
-- [Prompt assembly workflow](references/workflows/prompt-assembly.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, prompt files, outline files, preference configuration, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a raster image generation backend and writes prompts before invoking image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.2 (source: server release metadata and changelog dated 2026-05-17) <br>
+Risk: A prompt template may encourage image generators not to refuse sensitive or copyrighted-figure requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and revise the prompt-assembly wording so generated prompts respect the selected image backend's safety policies.
+
+Risk: User-wide preference storage can unintentionally reuse watermark and style defaults across projects.
+
+Mitigation: Use project-local preferences unless cross-project reuse is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimliu/skills/baoyu-image-cards)
+- [Publisher profile](https://clawhub.ai/user/jimliu)
+- [Homepage from ClawHub metadata](https://github.com/JimLiu/baoyu-skills#baoyu-image-cards)
+- [Prompt Assembly Guide](references/workflows/prompt-assembly.md)
+- [Xiaohongshu Content Analysis Framework](references/workflows/analysis-framework.md)
+- [Xiaohongshu Outline Template](references/workflows/outline-template.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Watermark Guide](references/config/watermark-guide.md)
+- [Style Presets](references/style-presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance, image files]
+
+**Output Format:** [Markdown workflow notes, Markdown prompt files, configuration guidance, and raster image outputs from the selected image backend]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt files before image generation, supports 1-10 card series, selectable styles/layouts/palettes, optional watermark preferences, and batch generation guidance.]
+
+## Skill Version(s):
+
+1.117.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

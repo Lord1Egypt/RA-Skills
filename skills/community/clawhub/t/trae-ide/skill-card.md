@@ -1,39 +1,50 @@
-## Description: <br>
-Provides guidance for using Trae AI IDE features, including Builder mode, Chat mode, inline editing, model switching, and Chinese-language coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using Trae AI IDE, including Builder mode, Chat mode, inline editing, model switching, and Chinese-language coding workflows.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill to get practical guidance on Trae IDE workflows, especially Builder mode, Chat mode, inline edits, model selection, and Chinese-language coding support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trae IDE Builder mode can modify project files and suggest terminal commands during practical use. <br>
-Mitigation: Review file diffs and terminal commands before accepting or executing them. <br>
+## Use Case:
 
+Developers use this skill to get practical guidance for Trae AI IDE workflows, including project generation, code discussion, local edits, and model selection.
 
-## Reference(s): <br>
-- [Trae Ide on ClawHub](https://clawhub.ai/zhangifonly/trae-ide) <br>
-- [Publisher profile: zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with optional code blocks and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review suggested file changes and terminal commands before applying them in Trae IDE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Builder-mode guidance may lead users to accept file edits or terminal commands that modify their development environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file edits and terminal commands before allowing software installation, file deletion, network access, or environment changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/trae-ide)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language IDE and coding workflow guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-SMS RPG Instruction is a text adventure RPG engine that lets an agent act as the wuxia world creator "Moyan", generate story turns directly, manage local JSON save files, and present meaningful player action choices without requiring an external API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language SMS RPG text-adventure engine that lets an agent generate wuxia story turns, manage JSON save slots, and present player choices without an external API key.
 
-## Publisher: <br>
-[jayshna](https://clawhub.ai/user/jayshna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayshna](https://clawhub.ai/user/jayshna)
 
-## Use Case: <br>
-External users and developers use this skill to run an interactive wuxia text RPG through an agent, including new-game setup, turn-by-turn narration, action selection, state updates, and local save-slot management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates, updates, overwrites, and deletes RPG save files under ./sms-rpg-saves/. <br>
-Mitigation: Install and run it only in workspaces where that directory is dedicated to RPG saves, and keep unrelated sensitive files outside that path. <br>
-Risk: The included test script creates, updates, and deletes a test save slot. <br>
-Mitigation: Review the test script before running it and execute it only when test save-file changes are acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to run a Chinese-language wuxia text adventure, create or continue local saves, generate turn-by-turn narrative, and maintain goals, crises, NPC relationships, and world state.
 
-## Reference(s): <br>
-- [Drive Engine Reference](references/drive-engine.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jayshna/sms-rpg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown and plain-text gameplay responses with JSON save-file content and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local RPG save files under ./sms-rpg-saves/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence and artifact version history, released 2026-04-22) <br>
+Risk: The skill manages local game saves and can create, read, update, or delete files under ./sms-rpg-saves/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a dedicated game workspace and keep backups of saves that should not be overwritten or deleted.
+
+Risk: The bundled test_save_system.py scripts can overwrite and delete slot 1 if run manually.
+
+Mitigation: Do not run the test scripts in a directory containing real saves, or back up ./sms-rpg-saves/save_001.json first.
+
+## Reference(s):
+
+- [Drive Engine reference](artifact/references/drive-engine.md)
+- [ClawHub skill page](https://clawhub.ai/jayshna/skills/sms-rpg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown/text responses with JSON save structures and occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates, reads, updates, and deletes local save files under ./sms-rpg-saves/.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and artifact version notes, released 2026-04-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

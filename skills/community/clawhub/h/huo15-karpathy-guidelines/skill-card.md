@@ -1,40 +1,53 @@
-## Description: <br>
-将 Andrej Karpathy 的 LLM 编程四大行为规范打包为 OpenClaw Skill <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Packages Andrej Karpathy's four LLM programming behavior guidelines as an OpenClaw skill.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and coding agents use this skill to apply four concise programming behavior guidelines: clarify uncertainty, prefer simple implementations, keep changes narrowly scoped, and verify work against the goal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could activate the coding-guidance skill unexpectedly. <br>
-Mitigation: Review trigger wording before deployment and narrow generic Chinese behavior or programming-standard phrases when predictable activation is required. <br>
-Risk: Guidance-oriented skills can influence coding behavior even when they do not access data or execute hidden actions. <br>
-Mitigation: Review generated coding plans, edits, and validation steps against the user's actual request before accepting changes. <br>
+## Use Case:
 
+Developers and coding agents use this skill to apply concise programming behavior guidelines: clarify uncertainty, keep changes simple, make targeted edits, and verify work before delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-karpathy-guidelines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, shell commands] <br>
-**Output Format:** [Markdown guidance and optional terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell script prints a quick-reference checklist for the same programming behavior guidelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter and _meta.json report 1.0.2) <br>
+Risk: The skill may activate on fairly general Chinese phrases about behavior or programming standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation context before relying on the guidance and narrow or disable broad triggers where they conflict with local agent behavior.
+
+Risk: The guidance and quick-reference output are primarily Chinese-language.
+
+Mitigation: Confirm that users and reviewing agents can understand the guidance, or translate and review it before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-karpathy-guidelines)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Shell commands]
+
+**Output Format:** [Markdown guidance and plain-text shell quick reference]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language guidance; no external tools or credentials detected.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

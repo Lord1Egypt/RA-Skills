@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically audits newly installed skills to validate structure, security, and health before activation, preventing broken or malicious skills from running. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically audits newly installed skills for structure, basic security indicators, and health before activation.
 
-## Publisher: <br>
-[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoborlon-alpha](https://clawhub.ai/user/yoborlon-alpha)
 
-## Use Case: <br>
-Developers and maintainers use this skill to audit newly installed OpenClaw skills before activation, checking structure, obvious secret patterns, file permissions, and basic health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A PASS result could be mistaken for complete security approval of an untrusted skill. <br>
-Mitigation: Use the audit as a lightweight local checklist and continue to review untrusted skills before enabling them. <br>
-Risk: Running the audit against the wrong directory can produce irrelevant or misleading results. <br>
-Mitigation: Run it against the exact skill directory intended for activation. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect newly installed OpenClaw or ClawHub skills before enabling them. It helps identify missing structure, obvious secret patterns, unsafe permissions, and basic health issues during install and maintenance workflows.
 
-## Reference(s): <br>
-- [Skill Audit on ClawHub](https://clawhub.ai/yoborlon-alpha/claw-skill-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with PASS, WARN, FAIL, and INFO status lines plus an exit code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local skill directory path; a PASS result is not a complete security approval for untrusted skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A PASS result may overstate the safety of another skill because the audit checks can fail silently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the audit output as triage only; review the target skill source and scanner evidence before enabling or distributing it.
+
+Risk: The skill focuses on basic structure, secret patterns, permissions, and health checks, so it may miss behavior outside those checks.
+
+Mitigation: Use it alongside manual review and independent security scanning for install or release decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yoborlon-alpha/skills/claw-skill-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text audit report with PASS, WARN, FAIL, and INFO status lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a severity-oriented exit code for pass, warning, or failure outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

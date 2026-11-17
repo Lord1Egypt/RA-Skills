@@ -1,47 +1,65 @@
-## Description: <br>
-Rtx Local Ai helps developers and AI builders turn Windows or Linux NVIDIA RTX gaming PCs into local Ollama Herd AI servers for model inference, code generation, image generation, embeddings, monitoring, and fleet routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RTX Local AI helps developers and AI builders set up an NVIDIA RTX Windows or Linux PC, or a small RTX fleet, as a local Ollama Herd server for LLM inference, image generation, embeddings, monitoring, and OpenAI-compatible API calls.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers, engineers, and AI builders use this skill to configure RTX-equipped PCs as local AI servers and route requests across one or more machines. It supports local workflows for chat completions, code generation, image generation, embeddings, fleet monitoring, and Ollama configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and running Ollama Herd from an untrusted package source could introduce unwanted software or configuration changes. <br>
-Mitigation: Install only after trusting the Ollama Herd project and package source, and prefer a virtual environment or container. <br>
-Risk: Fleet mode can expose local AI services on a LAN if networking is not reviewed. <br>
-Mitigation: Review LAN exposure, host binding, and firewall settings before enabling fleet mode. <br>
-Risk: System service edits and sudo commands can affect host configuration. <br>
-Mitigation: Review systemd or environment changes before applying them and limit changes to the documented Ollama settings. <br>
-Risk: Large model downloads can consume significant storage and bandwidth. <br>
-Mitigation: Require explicit user confirmation before model downloads or deletions. <br>
+## Use Case:
 
+Developers, AI builders, and technical users use this skill to configure local RTX hardware for Ollama Herd routing, OpenAI-compatible requests, fleet monitoring, and model-serving workflows without relying on cloud inference.
 
-## Reference(s): <br>
-- [Ollama Herd GitHub Repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Ollama Herd PyPI Package](https://pypi.org/project/ollama-herd/) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell, Python, PowerShell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local endpoint examples and RTX/Ollama configuration guidance; model downloads and deletions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Installing `ollama-herd` directly from PyPI can introduce ordinary dependency and supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the PyPI/GitHub project before installation and use a virtual environment or pinned package version.
+
+Risk: Prompts sent to the local router may be processed by other machines in the configured RTX fleet.
+
+Mitigation: Use only trusted fleet machines and avoid sending sensitive prompts unless the fleet configuration and data-handling policy allow it.
+
+Risk: Ollama service and environment changes persist after the setup steps are run.
+
+Mitigation: Record the changes, review them before applying, and undo or reset them when the local AI server configuration is no longer needed.
+
+Risk: Large model downloads and model deletion operations can affect disk usage and local model availability.
+
+Mitigation: Require explicit confirmation before pulling or deleting models and avoid deleting or modifying files in `~/.fleet-manager/`.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/rtx-local-ai)
+- [Ollama Herd GitHub Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Ollama Herd PyPI Package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, PowerShell, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands, API request examples, monitoring commands, and configuration guidance for Windows and Linux.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

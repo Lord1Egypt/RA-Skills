@@ -1,44 +1,63 @@
-## Description: <br>
-Send and receive Bitcoin over Arkade, onchain, and Lightning, and swap USDC/USDT stablecoins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive Bitcoin over Arkade (offchain), onchain (via onboard/offboard), and Lightning. Swap USDC/USDT stablecoins.
 
-## Publisher: <br>
-[tiero](https://clawhub.ai/user/tiero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tiero](https://clawhub.ai/user/tiero)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent initialize an Arkade wallet, inspect balances and addresses, prepare Bitcoin payments, use Lightning invoices, and perform BTC-to-stablecoin swaps. It is intended for wallet workflows where the user confirms fund-moving actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Payment and swap actions can move real funds immediately. <br>
-Mitigation: Require explicit user approval before fund-moving commands and verify the amount, destination, network, fees, and finality before execution. <br>
-Risk: Wallet configuration stores private key material locally at ~/.arkade-wallet/config.json. <br>
-Mitigation: Protect the local configuration file, use only small test amounts at first, and do not paste existing private keys into prompts or shell commands. <br>
-Risk: The security verdict requires review before installation. <br>
-Mitigation: Review and scan the skill before deployment, then start with limited balances until expected wallet behavior is confirmed. <br>
+## Use Case:
 
+External users and developers use this skill to manage an Arkade Bitcoin wallet from an agent, including receiving addresses, balances, offchain and onchain Bitcoin payments, Lightning invoices and payments, and BTC-to-stablecoin swaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tiero/bitcoin-arkade-wallet) <br>
-- [Arkade documentation](https://docs.arkadeos.com) <br>
-- [Arkade service endpoint](https://arkade.computer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run wallet, payment, Lightning, and swap commands; fund-moving actions require explicit user review of amount, destination, network, fees, and finality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata) <br>
+Risk: The skill can move real cryptocurrency funds through send, offboard, Lightning payment, swap, claim, and refund commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any funds-moving command and display the amount and destination before execution.
+
+Risk: Wallet keys or seed material could be exposed through unsafe CLI use or untrusted hosts.
+
+Mitigation: Do not pass any private key or seed phrase to the CLI, protect local wallet configuration, and keep only small or test funds unless the package and host are trusted.
+
+Risk: Unpinned npx or pnpm dlx installation examples can execute mutable package versions.
+
+Mitigation: Pin and verify package versions before installation or execution.
+
+Risk: The security verdict is suspicious because the skill is a real cryptocurrency wallet and some documentation patterns can expose wallet keys.
+
+Mitigation: Review carefully before installing and scan the release before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tiero/skills/bitcoin-arkade-wallet)
+- [Arkade Documentation](https://docs.arkadeos.com)
+- [Arkade Default Server](https://arkade.computer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CLI output, and TypeScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce wallet addresses, balances, transaction identifiers, Lightning invoices, swap quotes, and local wallet configuration guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

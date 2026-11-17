@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "yq-video-motion-analyzer",
+  "id": 378640604237957,
   "version": "1.0.0",
-  "publishedAt": 1780794336473
+  "name": "yq-video-motion-analyzer",
+  "updated_at": 1773994671937,
+  "platform": "minimax"
 }

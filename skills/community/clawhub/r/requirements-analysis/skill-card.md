@@ -1,44 +1,56 @@
-## Description: <br>
-requirements-analysis guides agents through dialogue-based requirements discovery, EPIC decomposition, prioritization, stakeholder and dependency analysis, acceptance criteria, and structured requirements documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language requirements-analysis skill that guides an agent through dialogue-based requirement capture, EPIC decomposition, user-story drafting, prioritization, stakeholder analysis, dependency discovery, acceptance criteria, and structured documentation.
 
-## Publisher: <br>
-[xuanguan2020](https://clawhub.ai/user/xuanguan2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xuanguan2020](https://clawhub.ai/user/xuanguan2020)
 
-## Use Case: <br>
-Product managers, business analysts, and development teams use this skill to turn brief product ideas into structured requirements, EPICs, user stories, acceptance criteria, and prioritization outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requirements outputs can be incomplete or misleading if the source idea lacks stakeholder, compliance, security, or non-functional context. <br>
-Mitigation: Review generated requirements with relevant business, technical, security, and compliance stakeholders before implementation. <br>
-Risk: The supplied security evidence does not include concrete artifact-backed concerns but advises local review before sensitive use. <br>
-Mitigation: Confirm the marketplace page and package files match the intended skill, then review the artifact for unexpected file access, credentials, network use, or persistent behavior before using it with sensitive data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Requirement Template](references/requirement-template.md) <br>
-- [EPIC Template](references/epic-template.md) <br>
-- [User Story Template](references/user-story-template.md) <br>
-- [Prioritization Methods](references/prioritization-methods.md) <br>
-- [Complete Requirements Analysis Example](references/complete-example.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xuanguan2020/requirements-analysis) <br>
+## Use Case:
 
+Product managers, business analysts, developers, and delivery teams use this skill to turn brief product ideas into structured requirements, EPICs, user stories, acceptance criteria, and prioritization decisions. It is especially suited to Chinese-language requirements workshops and documentation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include requirements documents, EPICs, user stories, prioritization tables, stakeholder and dependency notes, and Given-When-Then acceptance criteria.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow and templates are in Chinese, which may reduce clarity for English or multilingual teams.
+
+Mitigation: Translate or adapt the included templates before use in non-Chinese-language requirements workflows.
+
+Risk: Generated requirements may be incomplete or misleading when stakeholder answers are incomplete or unvalidated.
+
+Mitigation: Review requirements, acceptance criteria, priorities, and dependencies with relevant stakeholders before using them for planning or delivery.
+
+## Reference(s):
+
+- [Requirement Document Template](references/requirement-template.md)
+- [EPIC Document Template](references/epic-template.md)
+- [User Story Template](references/user-story-template.md)
+- [Prioritization Methods Guide](references/prioritization-methods.md)
+- [Complete Requirements Analysis Example](references/complete-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain-text analysis with structured requirement documents, EPICs, user stories, prioritization tables, and acceptance criteria.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow and templates; no code execution, credentials, persistence, or hidden system access evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

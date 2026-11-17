@@ -1,44 +1,56 @@
-## Description: <br>
-Guides agents through updating customer-facing Jamdesk documentation for user-facing APIs, CLI commands, UI components, configuration options, and docs.json changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through updating Jamdesk customer-facing documentation for user-facing API, CLI, UI, configuration, and component changes.
 
-## Publisher: <br>
-[gbourne1](https://clawhub.ai/user/gbourne1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbourne1](https://clawhub.ai/user/gbourne1)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill after user-facing product changes to locate Jamdesk docs, confirm documentation scope, write or update MDX pages and docs.json navigation, run validation, and prepare documentation changes for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide edits to documentation files, docs.json navigation, and project docs-path configuration. <br>
-Mitigation: Review the docs path, proposed page scope, diffs, and .jamdesk-docs-path changes before approving file writes. <br>
-Risk: The workflow can guide commits, pushes, or pull request preparation for external documentation repositories. <br>
-Mitigation: Confirm the branch choice and review any push or pull request action before approving publication. <br>
-Risk: Generated examples could accidentally include sensitive values or misleading documentation guidance. <br>
-Mitigation: Use obviously fake secret-shaped values, include expected output for commands, and run Jamdesk validation or the manual verification checklist before publishing. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to plan, write, verify, and optionally commit Jamdesk documentation updates after user-facing product changes.
 
-## Reference(s): <br>
-- [Jamdesk homepage](http://www.jamdesk.com) <br>
-- [Jamdesk documentation](https://jamdesk.com/docs) <br>
-- [Jamdesk components](https://jamdesk.com/docs/components) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, MDX, YAML, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update documentation files, docs.json navigation, .jamdesk-docs-path configuration, and commits after user review; preview mode analyzes scope without writing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may edit a configured external Jamdesk documentation repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed scope, branch choice, generated diff, and any commit or push prompt before approving changes.
+
+Risk: Broad documentation requests may activate the workflow.
+
+Mitigation: Confirm that the requested change affects user-facing documentation before allowing file edits.
+
+## Reference(s):
+
+- [Jamdesk homepage](http://www.jamdesk.com)
+- [Jamdesk documentation](https://jamdesk.com/docs)
+- [Jamdesk components documentation](https://jamdesk.com/docs/components)
+- [ClawHub skill page](https://clawhub.ai/gbourne1/skills/update-jamdesk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, configuration snippets, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update documentation files and project configuration when the user approves the workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

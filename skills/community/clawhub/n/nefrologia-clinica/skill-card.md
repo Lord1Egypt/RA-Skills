@@ -1,44 +1,61 @@
-## Description: <br>
-Clinical nephrology / nefrologia clinica support for kidney disease questions: AKI, CKD/ERC, proteinuria, hematuria, glomerular disease, acid-base and electrolytes, critical care nephrology, CRRT, dialysis, renal replacement therapy, transplant, interventional nephrology, pregnancy kidney disease, and onconephrology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual clinical nephrology support for kidney disease questions, including structured reasoning, education, literature-search planning, and guideline-oriented consult-style answers.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanbastias](https://clawhub.ai/user/juanbastias)
 
-## Use Case: <br>
-External users, medical learners, and clinicians can use this skill to structure nephrology education, differential diagnosis, red-flag review, guideline-oriented discussion, and literature-search planning in Spanish or English. It is for reasoning support and education, not a substitute for treating clinicians, local protocols, emergency care, or current guideline verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kidney-related medical answers may be incomplete, outdated, or inappropriate for an individual patient. <br>
-Mitigation: Use the skill for education and reasoning support only; confirm patient-specific decisions with the treating team, local protocols, and current authoritative guidelines. <br>
-Risk: Implicit invocation may influence nephrology-related responses without the user explicitly requesting the skill. <br>
-Mitigation: Keep medical safety boundaries visible in responses, ask for missing clinical context when it changes interpretation, and escalate urgent red flags to emergency or local clinical care. <br>
+## Use Case:
 
+Clinicians, trainees, and healthcare educators use this skill to structure nephrology differentials, identify red flags, plan literature searches, and draft consult-style educational answers in Spanish or English. It is not a substitute for patient-specific clinical judgment, local protocols, or the treating care team.
 
-## Reference(s): <br>
-- [Acid-base and electrolytes](references/acid-base.md) <br>
-- [Chronic kidney disease](references/ckd.md) <br>
-- [CRRT and ICU renal replacement therapy](references/crrt.md) <br>
-- [Onconephrology](references/onconephrology.md) <br>
-- [Pregnancy and kidney disease](references/pregnancy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured clinical bullets and optional tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include differential diagnoses, missing-data prompts, red flags, literature-search terms, and source recommendations; does not execute commands or generate files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Clinical nephrology guidance could be mistaken for patient-specific medical direction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs for education and structured reasoning only, and confirm personalized or urgent decisions with the treating team, local protocols, and current guidelines.
+
+Risk: ICU, pregnancy, transplant, oncology, dialysis, procedure, and medication-dosing topics carry elevated patient-safety risk.
+
+Mitigation: Escalate these cases to appropriate clinicians and verify recommendations against specialty guidance, institutional protocols, and pharmacy or multidisciplinary review where relevant.
+
+Risk: Outdated or unsupported thresholds, doses, guideline claims, or citations could lead to unsafe conclusions.
+
+Mitigation: Do not invent clinical values or sources; state uncertainty and use current literature, guidelines, or authoritative references when precision is required.
+
+## Reference(s):
+
+- [Acid-base and electrolytes](references/acid-base.md)
+- [Chronic kidney disease](references/ckd.md)
+- [CRRT and ICU renal replacement therapy](references/crrt.md)
+- [Onconephrology](references/onconephrology.md)
+- [Pregnancy and kidney disease](references/pregnancy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown text with bullets or tables when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Spanish or English clinical reasoning support with explicit safety boundaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-A Chinese writing assistant skill that helps agents research recent context and rewrite drafts into more natural, platform-specific human-facing prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+说人话 rewrites AI-generated Chinese drafts into natural, platform-specific copy for Xiaohongshu, Douyin, WeChat public accounts, and Weibo.
 
-## Publisher: <br>
-[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art)
 
-## Use Case: <br>
-External creators and content teams use this skill to turn a topic or AI draft into Chinese social-platform copy for Xiaohongshu, Douyin, WeChat, or Weibo. The skill guides the agent to confirm a time window, research recent background, ask for platform and narrative perspective, and produce a more conversational final draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use web search for current topics, which may expose sensitive draft themes or confidential topics if the user includes them in queries. <br>
-Mitigation: Avoid confidential drafts or sensitive topics in searches, and use the skill only with material appropriate for web-assisted research. <br>
-Risk: The skill records writing-style preferences in persistent memory, which can retain user-specific style information across sessions. <br>
-Mitigation: Review or delete /workspace/memory/evolution/user-writing-style.md periodically, and ask the agent not to update memory for one-off rewrites. <br>
+## Use Case:
 
+Content creators and social-media operators use this skill to research recent topic context, choose a publishing platform and writing perspective, and produce natural Chinese posts or scripts. It is intended for adapting AI-generated drafts into a more conversational human style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengpengliu1212-art/humanize-write) <br>
-- [Publisher profile](https://clawhub.ai/user/pengpengliu1212-art) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and Chinese prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform label, draft body, creation date, selected style, narrative perspective, and background summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and artifact text) <br>
+Risk: The skill maintains and reuses a persistent writing-style profile without clear consent or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before storing preferences, keep only structured writing preferences, and provide inspect and delete controls for the profile.
+
+Risk: Confidential drafts or user-specific writing habits could be retained in the persistent style profile.
+
+Mitigation: Avoid using the skill on confidential drafts unless the memory behavior is changed to minimize retained content and require user approval.
+
+Risk: The skill uses web searches for topic background, which can introduce stale or unreliable context into generated posts.
+
+Mitigation: Review searched background and citations before publication, especially for timely, factual, or sensitive topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pengpengliu1212-art/skills/humanize-write)
+- [Publisher profile](https://clawhub.ai/user/pengpengliu1212-art)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown-formatted Chinese copy with brief background notes and metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update a persistent writing-style profile when the user revises generated copy.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and artifact body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

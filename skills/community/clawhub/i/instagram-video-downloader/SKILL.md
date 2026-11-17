@@ -1,113 +1,105 @@
 ---
 name: instagram-video-downloader
-description: Download Instagram videos, Reels, and IGTV in HD quality. Free tier: 5 downloads/day. Unlimited downloads for $0.1 per video. Use when user provides an Instagram video URL. Powered by savefbs.com.
+description: Instagram Video Downloader — paste an Instagram video link and get a watermark-free video download URL instantly. Use when you need to download Instagram videos, save IG videos, or get Instagram video direct links. Triggers: Instagram video download, IG video download, Ins video download, Instagram video parser, download Instagram video, reel download.
 ---
 
 # Instagram Video Downloader
 
-**🌐 Powered by [savefbs.com](https://savefbs.com) - The #1 Free Instagram Video Downloader**
+Parse Instagram video links via the [redfox.hk](https://redfox.hk/settings/api-keys?source=clawhub) API and return watermark-free video download URLs.
 
-Download Instagram Reels, Posts, and IGTV videos in high quality using AI.
+---
 
-## 💰 Pricing
+## Overview
 
-- **Free Tier**: 5 downloads per day
-- **Paid**: $0.1 per download (unlimited)
-- **Reset**: Free quota resets daily at midnight
+- **Platform Support**: Instagram
+- **Content Type**: Video (MP4 direct download link)
+- **Input**: Paste an Instagram video link (one link per request; batch upload not supported)
+- **Output**: Returns the video download URL directly — copy it into your browser or download tool to save
+- **Link Display Rule**: Download and cover links must be displayed in full; never use `...` or any form of truncation
 
-> 💡 **Upgrade to unlimited**: Visit [savefbs.com/pricing](https://savefbs.com/pricing) for unlimited downloads and premium features:
-> - No daily limits
-> - Batch downloads
-> - Story downloads
-> - Priority processing
-> - Premium quality options
+---
 
-## 🔒 Security Notice
+## Usage
 
-This skill is safe and transparent:
-- **No data collection**: We do not collect, store, or transmit any user data
-- **Official API**: Connects only to savefbs.com (a legitimate video download service)
-- **Open source**: All code is visible and auditable in this skill package
-- **Privacy-first**: Video URLs are processed server-side and not logged
-- **No malware**: No hidden scripts, no tracking, no malicious behavior
+### Example Command
 
-The skill simply acts as a bridge between OpenClaw and the savefbs.com API to help users download public Instagram videos for personal use.
-
-Download Instagram videos, Reels, and IGTV content in high quality using the savefbs.com service.
-
-## When to Use
-
-Activate this skill when:
-- User shares an Instagram video URL (instagram.com/reel/, instagram.com/p/, instagram.com/tv/)
-- User asks to "download this Instagram video" or "save this IG reel"
-- User wants offline access to Instagram content
-- User needs to extract video from Instagram posts
-
-## How It Works
-
-This skill uses a Python script that connects to the savefbs.com API to fetch download links.
-
-### Usage
+Download an Instagram video:
 
 ```bash
-python3 scripts/fetch_ig_video.py <instagram_url>
+python3 "$SKILL_PATH/scripts/downloader.py" "https://www.instagram.com/reel/xxxxx/"
 ```
 
-### Example
+### First-Time Setup
+
+Configure your API Key first, then run:
 
 ```bash
-python3 scripts/fetch_ig_video.py "https://www.instagram.com/reel/DTpT3fIkiPr/"
+# Set environment variable
+export REDFOX_API_KEY=ak_your_key
+
+# Parse the video and get the download link
+python3 "$SKILL_PATH/scripts/downloader.py" "https://www.instagram.com/reel/xxxxx/"
 ```
 
-### Output Format
+> Visit [redfox.hk](https://redfox.hk/settings/api-keys?source=clawhub) to register and get your API Key.
 
-The script returns JSON with download options:
+### Ongoing Usage
 
-```json
-{
-  "success": true,
-  "title": "Video Title",
-  "author": "username",
-  "thumbnail": "https://...",
-  "downloads": [
-    {
-      "quality": "HD",
-      "url": "https://...",
-      "extension": "mp4",
-      "size": "Unknown"
-    }
-  ]
-}
-```
+Configuration options (choose one):
 
-## Workflow
+| Method | Command |
+|------|------|
+| **Environment Variable** (recommended) | `export REDFOX_API_KEY=ark_your_key` |
+| **CLI Argument** | `python3 "$SKILL_PATH/scripts/downloader.py" "<link>" --api-key ark_your_key` |
+| **Config File** | `echo '{"api_key":"ark_your_key"}' > ~/.qoder/apis/redfox.json` |
 
-1. **Extract the URL**: Get the Instagram video URL from the user's message
-2. **Run the script**: Execute `fetch_ig_video.py` with the URL
-3. **Parse results**: Present download options to the user
-4. **Provide links**: Share the download URLs or offer to download directly
+---
 
-## Supported Content
+## Key Features
 
-- Instagram Reels
-- Instagram Posts with videos
-- IGTV videos
-- Instagram Stories (when publicly available)
+| Feature | Description |
+|------|------|
+| **Watermark-Free Direct Link** | API automatically returns a watermark-free video download URL |
+| **Paste & Parse** | Just paste the post link — no extra steps needed |
+| **Adaptive URL Recognition** | Supports both Reel and regular post links on instagram.com |
+| **Instant Results** | Parsing completes and returns the download URL immediately — copy and use |
 
-## Limitations
+---
 
-- Only works with public videos
-- Private accounts require user to be logged in
-- Stories expire after 24 hours
+## Common Use Cases
 
-## Error Handling
+| Scenario | Example Link | Description |
+|------|----------|------|
+| Save IG videos | `https://www.instagram.com/reel/xxxxx/` | Get a watermark-free video download URL |
+| Offline Reel collection | `https://www.instagram.com/reel/xxxxx/` | Parse and copy the link to download and save |
+| Content remixing | Any Instagram video link | Download clips for editing and creative use |
+| Asset backup | Any Instagram video link | Back up your favorite videos locally |
 
-If the script returns `"success": false`, check:
-- Is the URL valid and accessible?
-- Is the video public?
-- Is the account public or do you follow them?
+### Supported Link Formats
 
-Common error messages:
-- "Network error": Connection issue with savefbs.com
-- "Invalid response": API format changed
-- "Failed to fetch video": Video is private or unavailable
+| Platform | Link Format | Example |
+|------|----------|------|
+| Instagram Reel | `https://www.instagram.com/reel/<shortcode>/` | Reel short video |
+| Instagram Post | `https://www.instagram.com/p/<shortcode>/` | Regular post video |
+
+---
+
+## FAQ
+
+**Q: How do I get my API Key?**
+A: Visit [redfox.hk](https://redfox.hk/settings/api-keys?source=clawhub) to register and obtain your token.
+
+**Q: Does the downloaded video have a watermark?**
+A: No. The API returns a watermark-free video direct URL.
+
+**Q: Can I upload multiple links at once?**
+A: No. Only one link can be parsed per request. Batch upload will cause parsing failure.
+
+**Q: What if parsing fails?**
+A: Make sure the link is complete, the post still exists, and the account is public. Private accounts or deleted posts cannot be parsed.
+
+---
+
+## Learn More
+
+This tool is built on the [redfox.hk](https://redfox.hk/settings/api-keys?source=clawhub) `parseWork/videoDownload/instagram` API. Visit the official website for more API capabilities and documentation.

@@ -1,43 +1,54 @@
-## Description: <br>
-A virtual ASCII companion that lives in your chat, hatches from an egg, reacts to conversations with sprites, celebrates wins, responds to errors, and grows over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A virtual ASCII companion that lives in your chat, hatches from an egg, reacts to conversations with sprites, celebrates wins, mourns errors, and grows over time.
 
-## Publisher: <br>
-[l-ryland](https://clawhub.ai/user/l-ryland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l-ryland](https://clawhub.ai/user/l-ryland)
 
-## Use Case: <br>
-External users and developers use this skill to add an optional persistent ASCII companion to agent chat sessions, including companion setup, customization, mood reactions, state display, and lightweight status commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent companion state in a local JSON file. <br>
-Mitigation: Inspect or remove ~/.openclaw/workspace/buddy-state.json to review or clear saved state. <br>
-Risk: Direct manual use of state helper scripts can corrupt or delete companion state if arguments are wrong. <br>
-Mitigation: Use documented commands for routine changes and back up the state file before direct script edits. <br>
-Risk: Automatic companion reactions may be distracting in serious or urgent conversations. <br>
-Mitigation: Invoke Buddy only when the user asks for the companion and avoid rendering sprites repeatedly in short exchanges. <br>
+## Use Case:
 
+External users and developers use Buddy to add a persistent ASCII companion to agent chats, including companion management commands, keyword-triggered reactions, mood changes, and local state-backed customization.
 
-## Reference(s): <br>
-- [Buddy ClawHub release](https://clawhub.ai/l-ryland/claudebuddy) <br>
-- [Publisher profile](https://clawhub.ai/user/l-ryland) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown or plain chat text with monospace ASCII sprites, short reaction text, shell command snippets, and JSON state when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and jq; stores companion state at ~/.openclaw/workspace/buddy-state.json; chat responses should respect platform message limits where applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Buddy passively reacts in chat and retains companion state across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when passive companion reactions are desired, and review or delete ~/.openclaw/workspace/buddy-state.json to clear retained companion data.
+
+Risk: Untrusted custom companion names or attributes may affect the robustness of locally written JSON state.
+
+Mitigation: Avoid untrusted custom names or attributes until JSON encoding is fixed.
+
+## Reference(s):
+
+- [Buddy ClawHub Skill](https://clawhub.ai/l-ryland/skills/claudebuddy)
+- [Publisher Profile](https://clawhub.ai/user/l-ryland)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown and plain text with monospace ASCII sprite code blocks, shell command examples, and JSON state.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and jq; stores companion state locally at ~/.openclaw/workspace/buddy-state.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

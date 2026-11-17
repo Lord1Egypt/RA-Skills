@@ -1,38 +1,53 @@
-## Description: <br>
-Fetches recent GitHub activity from the Nom feed and presents it as a readable summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch recent GitHub activity from the Nom feed.
 
-## Publisher: <br>
-[lws803](https://clawhub.ai/user/lws803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lws803](https://clawhub.ai/user/lws803)
 
-## Use Case: <br>
-Developers and maintainers use this skill to query recent GitHub repository or organization activity through the Nom feed and review concise activity summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, repository names, organization names, and filters are sent to the Nom feed service. <br>
-Mitigation: Avoid entering private repository details or sensitive search text unless sharing that information with the service is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lws803/nom) <br>
-- [Nom feed service](https://beta.nomit.dev) <br>
+## Use Case:
 
+Developers and technical users use this skill to search and summarize recent public GitHub activity across repositories or the global Nom feed.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown summaries with links and concise event metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include event type, title link, author, timestamp, and a one-line summary; user-supplied limits are clamped between 1 and 100.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Searches, repository names, organization filters, and date filters are sent to the third-party Nom service at beta.nomit.dev.
+
+Mitigation: Use the skill only with information appropriate to share with that service, and avoid sensitive private repository or organization details.
+
+Risk: Invalid or overly broad user input could produce malformed requests or unexpectedly large result sets.
+
+Mitigation: Apply the documented validation, URL encoding, and limit clamping before fetching results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lws803/skills/nom)
+- [Nom Feed Service](https://beta.nomit.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with links and timestamps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches may send search terms, repository names, organization filters, and date filters to the third-party Nom service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

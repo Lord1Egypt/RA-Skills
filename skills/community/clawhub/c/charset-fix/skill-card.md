@@ -1,41 +1,55 @@
-## Description: <br>
-Fixes Chinese and Unicode character encoding issues when running AI agents on Windows through POSIX-compatible shells such as Git Bash, MSYS2, WSL, and BusyBox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fixes Chinese and Unicode character encoding issues when AI agents run on Windows through POSIX shells by providing UTF-8 handling guidance for Python, PowerShell, and cmd.exe output.
 
-## Publisher: <br>
-[gkd2323c](https://clawhub.ai/user/gkd2323c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gkd2323c](https://clawhub.ai/user/gkd2323c)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to diagnose and correct garbled Chinese or Unicode output in Windows POSIX shell environments. It provides practical fixes for Python, Windows PowerShell, cmd.exe, and subprocess bridges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports no negative finding but also notes limited artifact-backed verification in the supplied scan telemetry. <br>
-Mitigation: Review the bundled skill files before installation, with attention to permissions, credential handling, network calls, persistence, and data mutation. <br>
-Risk: The helper script and examples invoke Windows PowerShell and cmd.exe commands to inspect and normalize encoding behavior. <br>
-Mitigation: Run the commands only in the intended Windows POSIX shell environment and review command text before execution. <br>
+## Use Case:
 
+Developers and agent users use this skill to diagnose and fix garbled Chinese or Unicode output when running coding agents in Windows POSIX-style shells such as Git Bash, MSYS2, BusyBox, or WSL-like environments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gkd2323c/charset-fix) <br>
-- [Publisher profile](https://clawhub.ai/user/gkd2323c) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline Bash, Python, and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-focused troubleshooting and command examples] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Optional helper commands invoke Windows shell tools such as powershell.exe and cmd.exe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the visible commands before execution and run them only in the intended Windows terminal environment.
+
+Risk: Encoding overrides can change output behavior for a shell session or process.
+
+Mitigation: Prefer command-scoped or session-scoped settings such as PYTHONIOENCODING=utf-8, then verify output with the documented test command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gkd2323c/skills/charset-fix)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell, PowerShell, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-focused guidance; optional diagnostic script requires python3 and Windows shell tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

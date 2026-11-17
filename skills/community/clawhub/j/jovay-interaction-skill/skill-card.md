@@ -1,44 +1,58 @@
-## Description: <br>
-Skill for interacting with Jovay or Ethereum network using jovay-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill for interacting with Jovay or Ethereum network using jovay-cli
 
-## Publisher: <br>
-[jovay-developer](https://clawhub.ai/user/jovay-developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jovay-developer](https://clawhub.ai/user/jovay-developer)
 
-## Use Case: <br>
-Developers and blockchain operators use this skill to prepare Jovay CLI commands for wallet setup, balances, transfers, bridge flows, smart contract calls, transaction lookup, and network configuration on Jovay or Ethereum. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private keys or encryption passwords can be exposed if pasted into chat, logs, or shell history. <br>
-Mitigation: Use encrypted wallets or secure local secret handling, avoid sharing secrets with the agent, and start with testnet or low-balance wallets. <br>
-Risk: Commands using --broadcast can move funds, change allowances, or submit irreversible transactions on Jovay or Ethereum. <br>
-Mitigation: Verify the network, recipient, amount, token, spender, contract, gas settings, and proof data before broadcasting; use non-broadcast output or dry-run modes when appropriate. <br>
-Risk: The skill depends on the external jovay-cli npm package and the user's local network configuration. <br>
-Mitigation: Install only trusted jovay-cli versions and confirm RPC endpoints, chain selection, and package source before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare Jovay CLI commands for wallet setup, balance checks, transfers, bridge operations, contract calls, transaction inspection, and network configuration across Jovay and Ethereum.
 
-## Reference(s): <br>
-- [Jovay Network Information](https://docs.jovay.io/developer/network-information) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jovay-developer/jovay-interaction-skill) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/jovay-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance may include placeholders for addresses, private keys, RPC URLs, gas limits, proofs, and transaction hashes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Wallet private keys or encryption passwords could be exposed through chat transcripts or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste real wallet secrets into an AI chat or shell command history; prefer test wallets, hardware wallets, or external signing.
+
+Risk: Blockchain transfers, approvals, bridge actions, and contract writes can be irreversible when sent with --broadcast.
+
+Mitigation: Verify every recipient, spender, amount, network, contract address, and method before broadcasting a transaction.
+
+Risk: Installing an unpinned CLI package can introduce supply-chain uncertainty.
+
+Mitigation: Pin and verify the jovay CLI package where possible before use.
+
+## Reference(s):
+
+- [Jovay Network Information](https://docs.jovay.io/developer/network-information)
+- [ClawHub Skill Page](https://clawhub.ai/jovay-developer/skills/jovay-interaction-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may include transaction broadcast flags and wallet configuration options that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

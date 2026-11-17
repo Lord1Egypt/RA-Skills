@@ -1,43 +1,59 @@
-## Description: <br>
-Yum NoteBook turns a URL, YouTube video, screenshot, or raw text into a local notebook folder with source material, an AI summary, a dual-host audio recap, a slide deck, and optional delivery links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yum NoteBook turns URLs, YouTube videos, screenshots, or text into a local notebook packet with source capture, summary notes, a dual-host MP3, a PowerPoint deck, and optional delivery.
 
-## Publisher: <br>
-[yumyumtum](https://clawhub.ai/user/yumyumtum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yumyumtum](https://clawhub.ai/user/yumyumtum)
 
-## Use Case: <br>
-Developers, knowledge workers, and agent users use this skill to capture a supplied source into an inspectable local notebook package with notes, audio, slides, and optional sharing. It is suited for study notes, article and video recaps, meeting-ready decks, and reusable local knowledge libraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Private source material may be sent to external AI, upload, webhook, text-to-speech, or chat delivery services when those integrations are enabled. <br>
-Mitigation: Review config.yaml before use and keep upload.provider, notify.webhook_url, deliver.provider, and external AI providers disabled for private material unless outbound sharing is intended. <br>
-Risk: User-configurable commands and helper paths can run local programs under the user's account. <br>
-Mitigation: Use only trusted values for ai.cli.command, --fetcher, rclone_bin, deliver.openclaw.binary, and upload.onedrive_graph.uploader_path. <br>
-Risk: Dependency drift may introduce avoidable security or reliability issues. <br>
-Mitigation: Install current patched dependencies or use a lockfile for safer deployments. <br>
+## Use Case:
 
+Developers, students, and knowledge workers use this skill to have an agent capture a source and create an inspectable local notebook folder with notes, audio, slides, and links. It is suited for study notes, article or video recap workflows, and source-grounded presentation material.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yumyumtum/yumnb) <br>
-- [rclone Documentation](https://rclone.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Audio, Presentation] <br>
-**Output Format:** [Local notebook folder containing source files, summary.md, talkshow.txt, talkshow.mp3, deck.json, deck.pptx, and links.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [External AI, upload, webhook, and chat delivery integrations are optional and controlled by user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and RELEASE_NOTES_v0.1.1.md) <br>
+Risk: Optional AI, upload, webhook, and delivery integrations can send source content or generated artifacts to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ai.provider, upload.provider, notify.webhook_url, and deliver.provider disabled for sensitive sources unless external sharing is intended.
+
+Risk: Configured helper commands or Python files can execute local programs.
+
+Mitigation: Enable ai.cli.command, --fetcher, rclone/openclaw binaries, or onedrive_graph.uploader_path only when the referenced files and commands are trusted and protected from modification.
+
+Risk: URL ingest may reach services available from the host machine.
+
+Mitigation: Avoid URL ingest on machines that can access sensitive internal services.
+
+## Reference(s):
+
+- [Yum NoteBook ClawHub page](https://clawhub.ai/yumyumtum/skills/yumnb)
+- [README.md](README.md)
+- [rclone documentation](https://rclone.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Local files including Markdown summaries, plain-text talk-show scripts, MP3 audio, PowerPoint decks, JSON manifests, and captured source material.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates one timestamped output folder per request; upload, webhook notification, and direct delivery are optional and configuration-controlled.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and RELEASE_NOTES_v0.1.1.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

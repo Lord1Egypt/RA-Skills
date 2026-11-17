@@ -13,10 +13,7 @@ category: conservation
 ```python
 from leyline import calculate_context_pressure
 
-pressure = calculate_context_pressure(
-    current_tokens=80000,
-    max_tokens=1000000
-)
+pressure = calculate_context_pressure(current_tokens=80000, max_tokens=1000000)
 print(pressure)  # "MODERATE"
 ```
 
@@ -25,12 +22,9 @@ print(pressure)  # "MODERATE"
 ```python
 from leyline import check_mecw_compliance
 
-result = check_mecw_compliance(
-    current_tokens=120000,
-    max_tokens=1000000
-)
+result = check_mecw_compliance(current_tokens=120000, max_tokens=1000000)
 
-if not result['compliant']:
+if not result["compliant"]:
     print(f"Overage: {result['overage']:,} tokens")
     print(f"Action: {result['action']}")
 ```
@@ -59,7 +53,7 @@ This module covers the theoretical foundations of Maximum Effective Context Wind
 
 **Core Principle**: Never use more than 50% of the *effective* context window for input content.
 
-> **Important (Claude Code 2.1.7+)**: The effective context window is smaller than the total context window because it reserves space for max output tokens. When monitoring context usage, the 50% rule applies to the effective context, not the total. The status line's `used_percentage` field reports usage against the effective context.
+> **Important (Claude Code 2.1.7+)**: The effective context window is smaller than the total context window because it reserves space for max output tokens. When monitoring context usage, the 50% rule applies to the effective context. The status line's `used_percentage` field reports usage against the effective context.
 
 ### Why 50%?
 
@@ -80,13 +74,13 @@ def calculate_context_pressure(current_tokens, max_tokens):
     usage_ratio = current_tokens / max_tokens
 
     if usage_ratio < 0.3:
-        return "LOW"      # Plenty of headroom
+        return "LOW"  # Plenty of headroom
     elif usage_ratio < 0.5:
-        return "MODERATE" # Within MECW limits
+        return "MODERATE"  # Within MECW limits
     elif usage_ratio < 0.7:
-        return "HIGH"     # Exceeding MECW, risk zone
+        return "HIGH"  # Exceeding MECW, risk zone
     else:
-        return "CRITICAL" # Severe hallucination risk
+        return "CRITICAL"  # Severe hallucination risk
 ```
 
 ## Hallucination Prevention
@@ -249,7 +243,7 @@ breakdown.
 
 ### Output Style Prompt Cache Improvement (2.1.73+)
 
-`/output-style` is deprecated; use `/config` instead.
+`/output-style` is deprecated. Use `/config` instead.
 Output style is now fixed at session start, preventing
 mid-session style changes from invalidating the prompt
 cache. This improves cache hit rates for sessions that
@@ -350,9 +344,9 @@ instead of the session's actual window (1M). Sessions
 with >200K tokens loaded would falsely trigger the
 check. Now uses the session's actual context window size.
 
-This is particularly relevant for plugin skills using
-`model_hint` routing, where skills may temporarily
-switch to a different model for execution.
+This is particularly relevant for plugin skills that set
+`model:` in frontmatter, which switches the session model
+for the rest of the turn.
 
 ### Token Estimation Fix (2.1.75+)
 
@@ -404,6 +398,7 @@ hooks benefit most from this fix.
 ```python
 class MECWMonitor:
     """max_context defaults to 1M (Opus 4.6 GA default)."""
+
     def __init__(self, max_context=1_000_000):
         self.max_context = max_context
         self.mecw_threshold = max_context * 0.5
@@ -411,11 +406,11 @@ class MECWMonitor:
     def check_compliance(self, current_tokens):
         if current_tokens > self.mecw_threshold:
             return {
-                'compliant': False,
-                'overage': current_tokens - self.mecw_threshold,
-                'action': 'immediate_optimization_required'
+                "compliant": False,
+                "overage": current_tokens - self.mecw_threshold,
+                "action": "immediate_optimization_required",
             }
-        return {'compliant': True}
+        return {"compliant": True}
 ```
 
 ### Compression Techniques

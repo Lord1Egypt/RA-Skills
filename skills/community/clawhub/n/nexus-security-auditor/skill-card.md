@@ -1,41 +1,54 @@
-## Description: <br>
-Provides Red/Blue team security audit guidance with CVE scanning, OWASP analysis, and penetration testing recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Red/Blue team security audit with CVE scanning, OWASP analysis, and penetration testing recommendations.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-Developers and security teams use this skill to structure authorized application security reviews, classify findings by severity, and produce prioritized remediation proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security audit targets and vulnerability findings may contain sensitive information. <br>
-Mitigation: Use the skill only with systems, code, and target details you are authorized to assess, and handle findings according to the organization's security data handling rules. <br>
-Risk: The skill provides guidance rather than executable scanning or exploitation tooling. <br>
-Mitigation: Validate findings with approved security tools and reviewer judgment before taking operational or remediation actions. <br>
+## Use Case:
 
+Developers, security engineers, and authorized assessment teams use this skill to review target context for OWASP Top 10 issues, CVEs, Auth/AuthZ concerns, WAF rules, and security headers, then produce severity-ranked findings and improvement proposals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuwanito/nexus-security-auditor) <br>
-- [Project homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-security-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown security audit guidance with severity classifications, citations, confidence scores, and prioritized recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable scanners, credentials, persistence, or destructive behavior are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Penetration-testing guidance could be misused against systems the user is not authorized to assess.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for systems where the user has explicit authorization, and treat any live scanning or exploitation as dependent on separate approved tools and permissions.
+
+Risk: Security recommendations may be incomplete or incorrect without corroboration.
+
+Mitigation: Review the generated findings, require the documented minimum of two independent sources for cross-validation, and confirm changes before deployment.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-security-auditor)
+- [ClawHub skill page](https://clawhub.ai/shuwanito/skills/nexus-security-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or structured text with severity classifications, confidence scores, citations, and prioritized recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are classified as CRITICAL, HIGH, MEDIUM, LOW, or INFO; proposals include impact, effort, and priority scores.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

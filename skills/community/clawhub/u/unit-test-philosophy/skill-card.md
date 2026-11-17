@@ -1,42 +1,53 @@
-## Description: <br>
-Provides risk-based unit testing and Allure-readable behavioral spec guidance for open-agreements repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers and agents in risk-based unit testing and Allure-readable behavioral spec style for open-agreements test additions, coverage expansion, and test-quality reviews.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-Developers and engineers use this skill when adding tests, expanding coverage, or reviewing test quality in open-agreements codebases. It emphasizes behavior-oriented assertions, Allure-readable Given/When/Then steps, and OpenSpec traceability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Listed npm commands may be inappropriate for a repository or workspace if run without review. <br>
-Mitigation: Confirm each command fits the local repository before allowing an agent to run it. <br>
-Risk: Allure attachments can accidentally include credentials or private production data. <br>
-Mitigation: Use sanitized fixtures and avoid adding secrets or private production data to test attachments. <br>
-Risk: Testing guidance can still lead to misleading tests or incorrect spec traceability if applied mechanically. <br>
-Mitigation: Review generated tests and spec mappings before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill when adding or reviewing tests, improving coverage, or applying Allure-readable behavioral spec conventions in the open-agreements codebase.
 
-## Reference(s): <br>
-- [Allure Test Spec Writing Guide](references/allure-test-spec-writing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with inline TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides documentation-only recommendations; it does not execute commands or modify code by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and skill metadata) <br>
+Risk: Suggested npm test and report commands may take time or create normal local test and report artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them and choose targeted commands when a narrower test run is sufficient.
+
+Risk: The guidance is repository-specific and may reference helpers, paths, or report conventions that are not present in another codebase.
+
+Mitigation: Confirm the referenced helpers and package paths exist before applying the recommendations.
+
+## Reference(s):
+
+- [Allure Test Spec Writing Guide](references/allure-test-spec-writing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with TypeScript examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only; proposed commands must be reviewed before running.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

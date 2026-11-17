@@ -1,47 +1,73 @@
-## Description: <br>
-Alibaba Cloud Elasticsearch Instance Network Management Skill for managing ES instance network configurations, including triggering network changes, Kibana PVL network, white IP lists, HTTPS settings, and Kibana SSO authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Elasticsearch Instance Network Management Skill for managing Elasticsearch instance network configurations, including network triggering, Kibana PVL network, white IP lists, HTTPS settings, and Kibana SSO authentication.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud administrators, DevOps engineers, and developers use this skill to plan and execute Alibaba Cloud Elasticsearch network, allowlist, HTTPS, and Kibana SSO configuration changes through Aliyun CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer Alibaba Cloud Elasticsearch network, allowlist, HTTPS, SSO, and persistent Aliyun CLI settings. <br>
-Mitigation: Use a dedicated least-privilege RAM user or role scoped to the exact instance, prefer temporary credentials, and review every command body before execution. <br>
-Risk: Opening public access, replacing allowlists, disabling HTTPS, or disabling SSO can weaken access controls. <br>
-Mitigation: Require explicit human approval before those operations and verify the resulting instance configuration after changes. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud Elasticsearch network access, Kibana private network settings, whitelists, HTTPS, and Kibana SSO through Aliyun CLI workflows.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/sdk-team/alibabacloud-elasticsearch-network-manage) <br>
-- [Acceptance criteria](references/acceptance-criteria.md) <br>
-- [CLI installation guide](references/cli-installation-guide.md) <br>
-- [RAM policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification method](references/verification-method.md) <br>
-- [Aliyun CLI setup](https://aliyuncli.alicdn.com/setup.sh) <br>
-- [Alibaba Cloud RAM AccessKey management](https://ram.console.aliyun.com/manage/ak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit human confirmation for user-customizable parameters and sensitive network or authentication changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Supply-chain exposure from shell-based CLI installation and automatic plugin update flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified package-manager or signed and pinned Aliyun CLI installation path, and avoid global automatic plugin installation.
+
+Risk: Overbroad cloud permissions can allow unintended Elasticsearch network changes.
+
+Mitigation: Scope RAM permissions to one confirmed instance and one approved action where possible, and prefer temporary or role-based credentials.
+
+Risk: Network, allowlist, SSO, or HTTPS changes can expose services or weaken access controls.
+
+Mitigation: Require explicit confirmation before public exposure, allowlist replacement, SSO changes, or disabling HTTPS.
+
+## Reference(s):
+
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [RAM Policies](references/ram-policies.md)
+- [Related APIs](references/related-apis.md)
+- [Verification Method](references/verification-method.md)
+- [TriggerNetwork API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-triggernetwork)
+- [EnableKibanaPvlNetwork API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-enablekibanapvlnetwork)
+- [DisableKibanaPvlNetwork API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-disablekibanapvlnetwork)
+- [ModifyWhiteIps API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-modifywhiteips)
+- [OpenHttps API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-openhttps)
+- [CloseHttps API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-closehttps)
+- [UpdateKibanaSso API Documentation](https://api.aliyun.com/document/elasticsearch/2017-06-13/UpdateKibanaSso)
+- [DescribeInstance API Documentation](https://help.aliyun.com/zh/es/developer-reference/api-describeinstance)
+- [Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/)
+- [Aliyun CLI Repository](https://github.com/aliyun/aliyun-cli)
+- [RAM Policy Overview](https://help.aliyun.com/document_detail/93732.html)
+- [Elasticsearch Authorization Information](https://help.aliyun.com/document_detail/169951.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and Aliyun CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation for instance, region, network, whitelist, VPC, security group, HTTPS, and SSO changes.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

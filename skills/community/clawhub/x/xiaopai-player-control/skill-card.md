@@ -1,41 +1,49 @@
-## Description: <br>
-Control XiaoPai media player over LAN via HTTP/TCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control XiaoPai media player over LAN via HTTP/TCP. Use when asked to play videos, send remote-control keys, adjust volume, or query playback status on a XiaoPai player.
 
-## Publisher: <br>
-[kuangxinyi](https://clawhub.ai/user/kuangxinyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuangxinyi](https://clawhub.ai/user/kuangxinyi)
 
-## Use Case: <br>
-External users and developers use this skill to discover and control a XiaoPai media player on a trusted local network, including playback, volume, remote-control key presses, and status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send disruptive remote-control actions to a XiaoPai player on a local network. <br>
-Mitigation: Require explicit user approval before rebooting, powering off, deleting, taking screenshots, changing settings, or sending rapid key sequences. <br>
-Risk: mDNS discovery and status queries can expose device identifiers and playback state. <br>
-Mitigation: Use the skill only on a trusted LAN, verify that the discovered IP or MAC belongs to the user's device, and avoid logging or sharing identifiers or playback status unnecessarily. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to control a XiaoPai media player on a trusted local network, including playback, remote-control keys, volume adjustment, discovery, and status checks.
 
-## Reference(s): <br>
-- [XiaoPai Player TCP/IP Protocol Reference](references/protocol.md) <br>
-- [XiaoPai Player Control on ClawHub](https://clawhub.ai/kuangxinyi/xiaopai-player-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, HTTP examples, and TCP status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LAN discovery commands, URL-encoded playback requests, remote-control key commands, and JSON status interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can act as a local-network remote control and may disrupt a XiaoPai player if powerful commands are sent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted local networks, confirm the target device or IP, and require explicit user confirmation before power, reboot, delete, or other disruptive commands.
+
+## Reference(s):
+
+- [XiaoPai Player TCP/IP Protocol Reference](references/protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and HTTP/TCP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mDNS discovery steps and commands targeting a user-confirmed LAN player IP.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

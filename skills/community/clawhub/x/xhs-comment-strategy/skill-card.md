@@ -1,41 +1,57 @@
-## Description: <br>
-Generates Xiaohongshu comment drafts in multiple engagement styles from post content and an optional persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书评论策略生成器 generates personalized Xiaohongshu comment strategies and comment templates for engagement, follower growth, and consistent account persona building.
 
-## Publisher: <br>
-[arraylee](https://clawhub.ai/user/arraylee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arraylee](https://clawhub.ai/user/arraylee)
 
-## Use Case: <br>
-External creators and social-media operators use this skill to draft Xiaohongshu comments for posts, with styles such as empathy, experience sharing, questions, and humor. The skill is best used as a drafting aid before a human reviews and posts any comment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Growth-focused comments can become repetitive, deceptive, or inconsistent with platform rules if posted without review. <br>
-Mitigation: Review and edit every generated comment before posting, keep interaction authentic, and follow Xiaohongshu rules. <br>
-Risk: The artifact advertises separate custom automation services that were not part of this reviewed skill. <br>
-Mitigation: Treat any external automation service as outside this skill card and review it separately before use. <br>
+## Use Case:
 
+External creators and social-media operators use this skill to draft Xiaohongshu comments in different styles, including empathetic, experience-sharing, question-led, and humorous comments. It supports comment ideation for profile positioning and engagement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arraylee/xhs-comment-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/arraylee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [Markdown guidance and JSON comment objects when using the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces short templated comment drafts for user review before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad activation phrasing may route general comment-writing requests to this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger phrases if the deployment needs stricter routing.
+
+Risk: Generated comments can be promotional or misaligned with a user's authentic voice if used without review.
+
+Mitigation: Have a human review and adapt comments before posting.
+
+Risk: The artifact includes a promotional contact and service section.
+
+Mitigation: Review the documentation before redistribution if the release channel requires less marketing-oriented content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arraylee/skills/xhs-comment-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and optional JSON from the bundled local Python generator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local generator accepts note content and an optional persona, then returns styled comment suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,325 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-nppa-gov-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:07:21.505Z",
+  "entry": {
+    "url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx",
+    "final_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+    "title": "国家新闻出版署",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:07:21.505Z",
+    "identity": {
+      "declared_name": "国家新闻出版署·期刊查询",
+      "hostname": "www.nppa.gov.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "站内搜索输入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "站内搜索输入",
+      "name": "word",
+      "id": "word",
+      "css": "#word",
+      "role": null,
+      "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+      "locator": {
+        "css": "#word"
+      },
+      "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "observed_at": "2026-10-09T09:07:19.689Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "searchButton",
+      "css": "#searchButton",
+      "role": null,
+      "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+      "locator": {
+        "css": "#searchButton"
+      },
+      "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "observed_at": "2026-10-09T09:07:19.689Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "类别",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+      "locator": null,
+      "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "observed_at": "2026-10-09T09:07:19.689Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "政府网站\n中国政府网\n外交部\n国防部\n国家发展和改革委员会\n教育部\n科学技术部\n工业和信息化部\n国家民族事务委员会\n公安部\n国家安全部\n民政部\n司法部\n财政部\n人力资源和社会保障部\n自然资源部\n生态环境部\n住房和城乡建设部\n交通运输部\n水利部\n农业农村部\n商务部\n文化和旅游部\n国家卫生健康委员会\n退役军人事务部\n应急管理部\n中国人民银行\n审计署\n国家语言文字",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "sel",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "observed_at": "2026-10-09T09:07:19.689Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "新闻出版直属单位网站\n人民出版社\n中国新闻出版研究院\n中国新闻出版传媒集团有限公司\n中国版权保护中心（中华版权代理中心）\n中国版本图书馆（中央宣传部出版物数据中心）\n中央宣传部出版产品质量监督检测中心（中央宣传部出版物评审...\n国家出版基金规划管理办公室",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "sel",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "observed_at": "2026-10-09T09:07:19.689Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "省局网站\n北京\n上海\n广西\n云南",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "sel",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "observed_at": "2026-10-09T09:07:19.689Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-nppa-gov-cn:official-guidance",
+      "source_id": "quiz-nppa-gov-cn",
+      "task_kind": "official-guidance",
+      "status": "entry_observed",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "站内搜索输入",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "站内搜索输入",
+          "name": "word",
+          "id": "word",
+          "css": "#word",
+          "role": null,
+          "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+          "locator": {
+            "css": "#word"
+          },
+          "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+          "observed_at": "2026-10-09T09:07:19.689Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "searchButton",
+          "css": "#searchButton",
+          "role": null,
+          "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+          "locator": {
+            "css": "#searchButton"
+          },
+          "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+          "observed_at": "2026-10-09T09:07:19.689Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "quiz-nppa-gov-cn:record-lookup",
+      "source_id": "quiz-nppa-gov-cn",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "站内搜索输入",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "站内搜索输入",
+          "name": "word",
+          "id": "word",
+          "css": "#word",
+          "role": null,
+          "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+          "locator": {
+            "css": "#word"
+          },
+          "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+          "observed_at": "2026-10-09T09:07:19.689Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "searchButton",
+          "css": "#searchButton",
+          "role": null,
+          "form_action": "https://www.nppa.gov.cn/publishing/search.shtml",
+          "locator": {
+            "css": "#searchButton"
+          },
+          "observed_url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx/",
+          "observed_at": "2026-10-09T09:07:19.689Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-141"
+    ],
+    "example_ids": [
+      "2025-M43-Q1",
+      "2026-M43-Q1",
+      "KH-Q102"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:07:21.505Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-nppa-gov-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-nppa-gov-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

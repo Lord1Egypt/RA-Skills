@@ -1,40 +1,54 @@
-## Description: <br>
-PKU Treehole (北大树洞) anonymous forum CLI tool built in Rust for working with the Treehole crate, Treehole REST APIs, IAAA login flows, and PKU schedule, grade, calendar, and forum commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Treehole guides agents working on the PKU Treehole Rust CLI, including forum commands, authentication flows, and schedule or calendar queries.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-Developers and agents use this skill to understand, debug, and extend a Rust CLI for PKU Treehole, including authenticated login, post browsing and interaction, notifications, schedules, grades, and calendar queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward broad authenticated access to a user's PKU Treehole account, including schedule, grade, profile, posting, replying, and voting actions. <br>
-Mitigation: Require user confirmation before login, account reads, posting, replying, voting, or other state-changing commands, and clear the saved session when persistent access is no longer needed. <br>
-Risk: The skill depends on local treehole and info-auth binaries whose behavior is outside the instruction file itself. <br>
-Mitigation: Install and run the skill only in environments where those local binaries are trusted and reviewed. <br>
+## Use Case:
 
+Developers maintaining or debugging the Treehole CLI use this skill to understand command behavior, API flows, authentication/session handling, and schedule or calendar features.
 
-## Reference(s): <br>
-- [Treehole Skill Page](https://clawhub.ai/wjsoj/pku-treehole) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose authenticated CLI actions that should be confirmed before accessing account data or changing forum state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can lead an agent to access a PKU account using stored keyring credentials and an SMS code from the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before login, SMS verification, or account-data queries.
+
+Risk: The skill covers actions that can change forum state, including posting, replying, voting, and following content.
+
+Mitigation: Require explicit confirmation before any posting, replying, voting, or follow/unfollow action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wjsoj/skills/pku-treehole)
+- [Treehole API Docs](docs/treehole-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Plan cherry blossom viewing trips, including Japan sakura forecasts, Wuhan cherry gardens, and other blooming destinations with peak timing, viewing spots, and related travel booking support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan cherry blossom viewing trips using flyai CLI results for sakura forecasts, Wuhan cherry gardens, blooming destinations, travel options, booking links, and related itinerary support.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to plan cherry blossom trips and retrieve real-time travel options, prices, points of interest, and booking links through the flyai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and trust a global third-party flyai CLI package. <br>
-Mitigation: Review the @fly-ai/flyai-cli package before installation, install it only in an approved environment, and confirm `flyai --version` before running travel queries. <br>
-Risk: Raw travel requests may be retained in a hidden local `.flyai-execution-log.json` file when file writes are available. <br>
-Mitigation: Avoid entering passport, payment, account, or highly personal itinerary details unless logging is disabled or the local execution log is reviewed and deleted as needed. <br>
-Risk: Travel prices, availability, and seasonal bloom information can become stale or misleading if the CLI is unavailable or returns incomplete data. <br>
-Mitigation: Use only current flyai CLI output for user-facing results, retry or simplify failed requests, and clearly mark partial or unavailable data. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to find cherry blossom destinations, seasonal travel options, hotels, attractions, and booking-style results sourced from the flyai CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/cherry-blossom-trip) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include detailUrl booking links, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release evidence; artifact frontmatter reports 3.1.0) <br>
+Risk: The skill requires installing and running a third-party travel CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, sandboxed, consent-based install flow and verify the CLI before using the skill.
+
+Risk: The skill can persist raw user queries in an execution log, which may include sensitive travel details.
+
+Mitigation: Remove or redact query logging before use, and avoid entering sensitive details unless logging controls are confirmed.
+
+Risk: Travel results may be unsuitable if they are not produced from live flyai CLI output.
+
+Mitigation: Require Book links and the flyai brand tag in results, and reject responses that fall back to model memory.
+
+## Reference(s):
+
+- [Parameter and Output Templates](artifact/references/templates.md)
+- [Cherry Blossom Playbooks](artifact/references/playbooks.md)
+- [Fallback Procedures](artifact/references/fallbacks.md)
+- [Execution Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should use live flyai CLI output, include Book links for results, follow the user's language, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: ClawHub release metadata; artifact frontmatter lists 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

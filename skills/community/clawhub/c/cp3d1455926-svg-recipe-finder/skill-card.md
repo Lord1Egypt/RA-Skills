@@ -1,40 +1,55 @@
-## Description: <br>
-Recipe Finder recommends recipes from available ingredients and returns cooking steps, tips, difficulty, time, and basic nutrition details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends recipes from available ingredients and returns Chinese-language recipe details, cooking tips, nutrition information, favorites, and shopping-list responses.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-People looking for meal ideas use this skill to choose recipes from available ingredients, ask for dish details, and get simple nutrition-oriented suggestions. It also supports saved favorites and shopping-list style responses for repeated cooking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad food-related triggers may activate the skill for general recipe or cooking questions. <br>
-Mitigation: Install only where recipe assistance is desired for general food questions, and review activation behavior during normal use. <br>
-Risk: Favorites or related preferences may be retained locally on shared devices. <br>
-Mitigation: Review the documented local storage behavior and delete saved preference data when it should not be retained. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language cooking queries, recommend dishes from available ingredients, and generate recipe details, nutrition notes, favorites, or shopping lists.
 
-## Reference(s): <br>
-- [Recipe Finder on ClawHub](https://clawhub.ai/cp3d1455926-svg/cp3d1455926-svg-recipe-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational text with recipe lists, cooking steps, nutrition notes, favorites, and shopping-list messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save favorites and shopping-list preferences locally when those features are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: Favorites and shopping-list items are saved locally in JSON files and may expose low-sensitivity personal food preferences on shared machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive dietary or personal notes in the lists, and clear or protect the local files on shared systems.
+
+Risk: Nutrition and recipe suggestions come from bundled recipe data and may be incomplete or unsuitable for specific dietary restrictions.
+
+Mitigation: Review ingredients and nutrition notes before relying on them for health, allergy, or dietary decisions.
+
+## Reference(s):
+
+- [Recipe Finder ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/cp3d1455926-svg-recipe-finder)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Chinese-language Markdown responses with optional local JSON files for favorites and shopping lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled recipe data and may save favorites.json or shopping_list.json beside the script when persistence functions are used.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn784af36jyc12gczmcr7fq0a981dbhr",
+  "name": "Nano Banana 2 Direct",
   "slug": "nano-banana-2-direct",
-  "version": "1.0.1",
-  "publishedAt": 1773363337311
+  "version": "1.0.0",
+  "description": "Generate/edit images with Gemini 3.1 Flash Image Preview (Nano Banana 2). Direct API call without inference.sh dependency.",
+  "author": "Leo & Neo",
+  "license": "MIT"
 }

@@ -1,44 +1,64 @@
-## Description: <br>
-Use this skill when a clinician, biller, or practice manager needs to look up ICD-10 diagnosis codes, CPT procedure codes, or E&M visit level codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a clinician, biller, or practice manager needs to look up ICD-10 diagnosis codes, CPT procedure codes, or E&M visit level codes.
 
-## Publisher: <br>
-[optimusprime19](https://clawhub.ai/user/optimusprime19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[optimusprime19](https://clawhub.ai/user/optimusprime19)
 
-## Use Case: <br>
-External clinicians, billers, and practice managers use this skill to generate candidate ICD-10-CM, CPT, and E&M billing codes from de-identified clinical descriptions, then review denial, coding-level, and superbill guidance before qualified human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-assisted billing code suggestions may be incorrect or insufficiently supported for claim submission. <br>
-Mitigation: Require review and approval by a qualified medical coder or clinician before billing or claim submission. <br>
-Risk: Clinical prompts could expose PHI if users paste patient identifiers. <br>
-Mitigation: Use only de-identified clinical descriptions and do not include names, MRNs, DOBs, addresses, or other patient-identifiable information. <br>
-Risk: Optional CMS API use may send billing code pairs to an external CMS endpoint. <br>
-Mitigation: Verify CMS_API_KEY use and confirm that only code pairs, not clinical text or PHI, are transmitted. <br>
+## Use Case:
 
+Clinicians, billers, and practice managers use this skill to suggest ICD-10 diagnosis codes, CPT procedure codes, E&M visit levels, claim validation checks, denial risks, and draft superbills from de-identified clinical descriptions. The output is advisory and must be reviewed by a qualified medical coder or clinician before billing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/optimusprime19/medical-billing-coder) <br>
-- [Source homepage](https://github.com/optimusprime19/medical-billing-coder) <br>
-- [CMS Medicare Coverage Database API](https://api.cms.gov/medicare-coverage-database/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with billing code suggestions, confidence notes, validation findings, and review warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ICD-10-CM, CPT, E&M, modifier, denial-risk, reimbursement, and superbill guidance for qualified human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence.release.version and frontmatter) <br>
+Risk: Incorrect code suggestions could lead to billing errors, denied claims, audit exposure, or fraud concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory and require review and approval by a qualified medical coder or clinician before claim submission.
+
+Risk: Users could expose protected health information by entering names, MRNs, DOBs, addresses, or other patient identifiers.
+
+Mitigation: Use only de-identified clinical descriptions and avoid patient-identifiable information in prompts.
+
+Risk: CMS validation may create network egress when CMS_API_KEY is configured.
+
+Mitigation: Confirm organizational approval before enabling CMS validation and send only billing code pairs, not clinical text.
+
+Risk: CPT is a proprietary AMA code set and may require a license for production claim submission.
+
+Mitigation: Confirm appropriate CPT licensing and use the skill's CPT references as advisory support rather than a substitute for licensed production resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/optimusprime19/skills/medical-billing-coder)
+- [Publisher profile](https://clawhub.ai/user/optimusprime19)
+- [Project homepage](https://github.com/optimusprime19/medical-billing-coder)
+- [CMS Medicare Coverage Database API](https://api.cms.gov/medicare-coverage-database/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with code suggestions, confidence notes, validation findings, and superbill-style summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use CMS_API_KEY for CMS validation; only billing code pairs should be sent to CMS APIs, not clinical text.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

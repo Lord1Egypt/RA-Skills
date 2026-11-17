@@ -1,43 +1,57 @@
-## Description: <br>
-Sends selected local files to Feishu and automatically handles large files by splitting video or audio at 20 MB and compressing other files as ZIP archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发送任意本地文件到飞书，自动处理大文件。视频/音频按 20MB 分段（不重新编码），其他文件压缩为 ZIP。支持大文件自动处理。
 
-## Publisher: <br>
-[jingrongx](https://clawhub.ai/user/jingrongx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingrongx](https://clawhub.ai/user/jingrongx)
 
-## Use Case: <br>
-Developers and operators use this skill to send an explicitly chosen local file to a Feishu user or group, with automatic handling for files larger than Feishu's upload limit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads the selected local file to Feishu. <br>
-Mitigation: Verify the exact file path and recipient before running the command. <br>
-Risk: Feishu app credentials are required and include a sensitive app secret. <br>
-Mitigation: Protect FEISHU_APP_SECRET and any .env file, and use a least-privileged Feishu app. <br>
-Risk: The script may try to install the Python requests dependency at runtime. <br>
-Mitigation: Prefer preinstalling and pinning dependencies in the execution environment. <br>
+## Use Case:
 
+Developers and Feishu workspace operators use this skill to send specified local files to Feishu recipients while automatically preparing files that exceed the 20 MB upload limit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingrongx/sendfiles-to-feishu) <br>
-- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown usage guidance and plain-text execution status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads the selected file or generated split/compressed parts to Feishu and reports per-file success or failure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill uploads specified local files to Feishu and sends messages as the configured Feishu app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Feishu app credentials and invoke the skill only with intended file paths and recipient identifiers.
+
+Risk: The skill can install Python dependencies at runtime.
+
+Mitigation: Preinstall and review dependencies in the target environment instead of relying on automatic runtime installation.
+
+Risk: Large non-media files may be duplicated into ZIP archives or split archives during processing.
+
+Mitigation: Run the skill in a controlled working directory and remove generated archives after confirming delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jingrongx/skills/sendfiles-to-feishu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown-compatible text with command examples and runtime status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create media segments or ZIP archives while preparing files for Feishu upload.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

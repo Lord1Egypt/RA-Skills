@@ -1,40 +1,55 @@
-## Description: <br>
-Thoth Lite -- Auto-Documentation. Point Thoth at a file or folder and get a clean README instantly. Free tier. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thoth Lite -- Auto-Documentation. Point Thoth at a file or folder and get a clean README instantly. Free tier.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Developers and engineers use Thoth Lite to inspect a selected file or folder and generate a clean README from the discovered project structure and file previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can expose selected project files to the agent during documentation generation. <br>
-Mitigation: Review PROJECT_PATH before use and avoid secrets, credentials, private keys, .env files, and highly confidential source unless those contents are approved for processing. <br>
-Risk: The install step uses pip with --break-system-packages, which can alter the system Python environment. <br>
-Mitigation: Run the install step in an isolated virtual environment or disposable development environment. <br>
+## Use Case:
 
+Developers use this skill to scan a file or project folder and generate a concise README from the discovered source files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/thoth-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads up to 20 selected files and up to the first 3000 characters from each file before asking the agent to draft a README.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill copies raw project file contents into the agent context, which may expose secrets or private configuration if a broad path is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow PROJECT_PATH and avoid directories that may contain secrets, credentials, or private configuration.
+
+Risk: The install step uses an unpinned Python package with system-package override flags.
+
+Mitigation: Install dependencies in a virtual environment and pin package versions before running the skill.
+
+## Reference(s):
+
+- [Thoth Lite ClawHub page](https://clawhub.ai/occupythemilkyway/skills/thoth-lite)
+- [Thoth Lite homepage](https://clawhub.ai/occupythemilkyway/thoth-lite)
+- [OccupyTheMilkyWay publisher profile](https://clawhub.ai/user/occupythemilkyway)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates README guidance from up to 20 discovered files, reading the first 3000 characters from each file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

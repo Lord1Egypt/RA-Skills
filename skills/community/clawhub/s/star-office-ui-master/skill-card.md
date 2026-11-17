@@ -1,49 +1,67 @@
-## Description: <br>
-Helps an agent deploy and operate a pixel-art office dashboard with multi-agent status visualization, mobile viewing, public access guidance, and optional AI-powered room design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Star Office UI Master helps an agent deploy and operate a pixel-art office dashboard for visualizing AI assistant status, multi-agent collaboration, mobile viewing, and optional public access.
 
-## Publisher: <br>
-[pinke](https://clawhub.ai/user/pinke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinke](https://clawhub.ai/user/pinke)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent set up a web dashboard that shows an AI assistant's work state, invites other agents through join keys, and exposes the office view locally or through a public tunnel. It also gives configuration guidance for status updates, sidebar access, Gemini image generation, and optional desktop-pet mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local dashboard exposed through a public URL can make status data and dashboard controls reachable by unintended users. <br>
-Mitigation: Use public access only when needed, set strong FLASK_SECRET_KEY and ASSET_DRAWER_PASS values first, and restrict who receives the public URL. <br>
-Risk: Default or reused join keys can allow unwanted agents to join or push status updates. <br>
-Mitigation: Rotate or replace default join keys before deployment and set appropriate expiration and concurrency limits. <br>
-Risk: Memo display and agent status details may reveal private local notes or working context. <br>
-Mitigation: Avoid putting sensitive information in status details and disable or protect memo display when local notes may contain private data. <br>
-Risk: Gemini image generation requires sensitive credentials that may be stored or reachable through the dashboard. <br>
-Mitigation: Only enter a Gemini API key after reviewing where it is stored, who can access the dashboard, and whether the deployment is protected. <br>
+## Use Case:
 
+Developers, operators, and OpenClaw users use this skill to set up a local or shared status dashboard where agents publish work state, join an office view, and expose a controlled access URL when needed.
 
-## Reference(s): <br>
-- [Star Office UI README](artifact/README.en.md) <br>
-- [Star Office UI Skill](artifact/SKILL.md) <br>
-- [Star Office UI Overview](artifact/docs/STAR_OFFICE_UI_OVERVIEW.md) <br>
-- [State API](artifact/desktop-pet/STATE_API.md) <br>
-- [March 2026 Changelog](artifact/docs/CHANGELOG_2026-03.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands, code snippets, configuration values, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commercial use may require replacing bundled art assets with original assets; optional Gemini image generation requires user-supplied credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Public-sharing workflows can expose admin actions, mutating endpoints, and local memory content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted local deployment by default; before public exposure, authenticate mutating and memo endpoints and avoid publishing OpenClaw memory contents.
+
+Risk: Weak default credentials and unset Flask secrets can allow unintended asset or session access.
+
+Mitigation: Set strong ASSET_DRAWER_PASS and Flask secret values before sharing the service outside a trusted local environment.
+
+Risk: Status-push clients and join keys can reveal recurring state details or grant access beyond the intended audience.
+
+Mitigation: Confirm status clients send data only to trusted office URLs, rotate join keys, and limit concurrent or expired joins.
+
+Risk: Bundled art assets are described as non-commercial even though the code is licensed separately.
+
+Mitigation: For commercial deployments, replace bundled art with original or properly licensed assets and verify license terms before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pinke/skills/star-office-ui-master)
+- [README.en.md](artifact/README.en.md)
+- [Star Office UI overview](artifact/docs/STAR_OFFICE_UI_OVERVIEW.md)
+- [March 2026 changelog](artifact/docs/CHANGELOG_2026-03.md)
+- [Desktop pet state API](artifact/desktop-pet/STATE_API.md)
+- [Guest join skill](artifact/frontend/join-office-skill.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, configuration snippets, and API endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local service setup steps, state update commands, public tunnel guidance, and optional Gemini API configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

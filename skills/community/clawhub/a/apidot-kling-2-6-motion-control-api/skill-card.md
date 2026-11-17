@@ -1,47 +1,63 @@
-## Description: <br>
-Routes agents to APIDot Kling 2.6 Motion Control documentation and async workflow guidance for motion transfer, controllable character animation, task polling, and webhook integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for Kling 2.6 Motion Control API workflows, including motion transfer, controllable animation, async task submission, polling, webhook integration, and docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan APIDot Kling 2.6 Motion Control integrations, including motion transfer workflows, async task handling, polling, and production webhook delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys or private media URLs could be exposed during integration work. <br>
-Mitigation: Keep APIDOT_API_KEY and private media references in server-side environment variables or a backend secret manager, and avoid placing them in browser code, logs, screenshots, repositories, or chat output. <br>
-Risk: Live APIDot requests could affect external accounts or resources. <br>
-Mitigation: Make live API calls only when the user explicitly requests them and confirms the target account, environment, and resource details. <br>
-Risk: Model fields, limits, availability, or commercial terms may change after this documentation-only skill was packaged. <br>
-Mitigation: Use the current APIDot docs and model pages as the source of truth before preparing payloads or making product claims. <br>
+## Use Case:
 
+Developers and engineers use this skill to route Kling 2.6 Motion Control integration work through APIDot documentation, including motion transfer, controllable character animation, async task handling, polling, and webhook planning.
 
-## Reference(s): <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Kling 2.6 Motion Control Model Page](https://apidot.ai/models/kling-2-6-motion-control) <br>
-- [APIDot Kling 2.6 Motion Control Docs](https://apidot.ai/docs/kling-2-6-motion-control) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Kling 2.6 Motion Control Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with links and non-executable integration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no scripts, network calls, bundled clients, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: APIDOT_API_KEY could be exposed if used in browser code, public repos, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side environment variables or a backend secret manager, and avoid echoing secrets into logs or user-visible output.
+
+Risk: Private media URLs, generated video URLs, or callback URLs could leak through logging or debugging output.
+
+Mitigation: Avoid logging private prompts, private media URLs, callback URLs, API keys, and generated video URLs.
+
+Risk: Stale or guessed request fields could lead to failed or misleading APIDot workflows.
+
+Mitigation: Verify current model availability, request fields, limits, and commercial terms in APIDot's live documentation before making API calls.
+
+## Reference(s):
+
+- [APIDot Kling 2.6 Motion Control Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [Kling 2.6 Motion Control Model Page](https://apidot.ai/models/kling-2-6-motion-control)
+- [Kling 2.6 Motion Control API Docs](https://apidot.ai/docs/kling-2-6-motion-control)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with documentation links and optional code or configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; live APIDot calls require explicit user request and a safe server-side environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

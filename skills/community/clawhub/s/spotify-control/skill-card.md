@@ -1,38 +1,49 @@
-## Description: <br>
-macOS Spotify control skill for OpenClaw. Supports playback, volume, position, and metadata retrieval via AppleScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS Spotify control skill for OpenClaw. Supports playback, volume, position, and metadata retrieval via AppleScript.
 
-## Publisher: <br>
-[copywrite-ai](https://clawhub.ai/user/copywrite-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[copywrite-ai](https://clawhub.ai/user/copywrite-ai)
 
-## Use Case: <br>
-External developers and agents use this skill on macOS to control Spotify playback, volume, position, shuffle, repeat, and current-track metadata through a Python wrapper around AppleScript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Volume and seek arguments can be interpreted as AppleScript. <br>
-Mitigation: Pass only simple trusted numeric values for volume and seek position; a safer version should parse values as numbers and enforce ranges before invoking AppleScript. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent control Spotify on macOS through a Python wrapper for playback, volume, seeking, shuffle, repeat, and track metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/copywrite-ai/spotify-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs one-shot macOS AppleScript commands through scripts/spotify-control.py and may return Spotify status or track metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, _meta.json, server release) <br>
+Risk: The security evidence reports that unvalidated volume or seek values can lead to unintended AppleScript execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate volume as an integer from 0 to 100 and position as a non-negative finite number before invoking osascript; use only where the agent and wrapper inputs are trusted until fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/copywrite-ai/skills/spotify-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one-shot Spotify control commands and command output from the macOS AppleScript wrapper.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

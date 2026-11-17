@@ -1,51 +1,61 @@
-## Description: <br>
-Need A Hug helps agents respond with lightweight emotional first aid when users are distressed or explicitly ask for comfort, while avoiding therapy, diagnosis, or medical care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Need a Hug shifts an agent into warm, lightweight emotional support when a user asks for comfort or shows clear distress, while avoiding therapy, diagnosis, medical care, or crisis-service claims.
 
-## Publisher: <br>
-[lonelymoon87](https://clawhub.ai/user/lonelymoon87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lonelymoon87](https://clawhub.ai/user/lonelymoon87)
 
-## Use Case: <br>
-Agent developers and operators use this skill to make assistants respond with warmth, grounding, and gentle companionship when users are overwhelmed, ashamed, lonely, anxious, grieving, burned out, or asking for comfort. It also guides the assistant back to task work in smaller steps after the user is steadier. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implicit invocation can shift the assistant into comfort mode when the user sounds distressed, even without an explicit command. <br>
-Mitigation: Review whether implicit invocation is desired; if not, require explicit triggers such as /hug or /need-a-hug before activating the skill. <br>
-Risk: Users may mistake warm emotional support for therapy, diagnosis, medical care, or emergency support. <br>
-Mitigation: Keep the skill's boundary language intact: the assistant must not claim clinical authority, diagnose, treat, or replace emergency services or professional care. <br>
-Risk: Crisis situations require safety-first handling rather than ordinary comfort phrasing. <br>
-Mitigation: Follow the crisis boundary in the skill: prioritize immediate real-world safety, avoid methods or concealment, and direct the user to local emergency services or a trusted nearby person. <br>
-Risk: Optional memory could collect sensitive personal information if used too broadly. <br>
-Mitigation: Store only low-sensitivity preferences the user explicitly asks to remember, and do not store crisis details, medical history, trauma details, third-party private information, or speculative labels. <br>
+## Use Case:
 
+Developers and external users use this skill to give an assistant a conservative comfort posture for moments of overwhelm, shame, loneliness, burnout, grief, or explicit hug requests. It helps the agent slow down, acknowledge the feeling, provide grounding, and return to the task in smaller steps when the user is ready.
 
-## Reference(s): <br>
-- [Comfort Protocol](references/comfort-protocol.md) <br>
-- [Comfort Language Corpus](references/comfort-language-corpus.md) <br>
-- [Counseling-Lite Patterns](references/counseling-lite-patterns.md) <br>
-- [Optional Comfort Memory Template](references/memory-template.md) <br>
-- [NCBI Bookshelf: Motivational Interviewing](https://www.ncbi.nlm.nih.gov/books/n/tip35v2/ch3/) <br>
-- [SAMHSA: Trauma-Informed Approaches](https://www.samhsa.gov/mental-health/trauma-violence/trauma-informed-approaches-programs) <br>
-- [TIME: What to Say to Someone Who Is Depressed](https://time.com/7291435/worst-thing-to-say-depression-depressed/) <br>
-- [Psych Central: What to Say to Someone with Depression](https://psychcentral.com/depression/things-you-should-and-not-say-to-a-depressed-person) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Natural-language text or Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands or external tool calls are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.4 (source: ClawHub release metadata) <br>
+Risk: Broad automatic activation can shift the assistant into comfort-oriented support when the user only wanted practical help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit return-to-task phrases such as /hug:off or /back-to-work, and keep activation conservative for ordinary task difficulty.
+
+Risk: Users may mistake comfort-oriented responses for therapy, medical advice, emergency services, or crisis care.
+
+Mitigation: Keep responses clearly non-clinical, avoid diagnosis or treatment claims, and direct crisis or imminent-danger situations toward local emergency services or trusted nearby people.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lonelymoon87/skills/need-a-hug)
+- [Comfort Protocol](references/comfort-protocol.md)
+- [Comfort Language Corpus](references/comfort-language-corpus.md)
+- [Counseling-Lite Patterns](references/counseling-lite-patterns.md)
+- [Optional Comfort Memory Template](references/memory-template.md)
+- [TIME: Worst Things to Say to Someone Who Is Depressed](https://time.com/7291435/worst-thing-to-say-depression-depressed/)
+- [Psych Central: What to Say to Someone With Depression](https://psychcentral.com/depression/things-you-should-and-not-say-to-a-depressed-person)
+- [NCBI Bookshelf: Motivational Interviewing as a Counseling Style](https://www.ncbi.nlm.nih.gov/books/n/tip35v2/ch3/)
+- [SAMHSA: Trauma-Informed Approaches and Programs](https://www.samhsa.gov/mental-health/trauma-violence/trauma-informed-approaches-programs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language comfort responses in Markdown-compatible text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional short grounding prompts, task-return guidance, and localized English or Chinese comfort phrasing.]
+
+## Skill Version(s):
+
+0.3.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

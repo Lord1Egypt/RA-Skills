@@ -1,42 +1,59 @@
-## Description: <br>
-Secure sync for OpenClaw memory and workspace with commands to push, restore, list, and check versioned backups for disaster recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides secure, versioned sync and restore commands for OpenClaw memory, workspace files, and custom skills.
 
-## Publisher: <br>
-[arakichanxd](https://clawhub.ai/user/arakichanxd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arakichanxd](https://clawhub.ai/user/arakichanxd)
 
-## Use Case: <br>
-Developers and OpenClaw users use Claw Sync to back up and restore memory, profile, workspace rules, daily logs, and custom skills through a private Git repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may include sensitive OpenClaw memory, profile files, workspace rules, daily logs, and custom skills. <br>
-Mitigation: Use a private, empty backup repository with a fine-grained token limited to that repository, inspect dry-run output, and review backup contents before relying on them. <br>
-Risk: Restore operations can overwrite local files and restore executable custom skills, especially when force mode skips confirmation. <br>
-Mitigation: Avoid force restores unless necessary, review backups before restoring skills, and keep the local backup created before restore available for rollback. <br>
-Risk: Recurring auto-sync can upload workspace data every 12 hours. <br>
-Mitigation: Enable auto-sync only when recurring uploads are intentional, and periodically audit the backup repository and token permissions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up, restore, list, and inspect versioned OpenClaw memory, workspace files, and custom skills.
 
-## Reference(s): <br>
-- [Claw Sync on ClawHub](https://clawhub.ai/arakichanxd/claw-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Plain text command output, setup guidance, and filesystem changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create versioned Git backups, local restore backups, restored workspace files, and optional recurring sync configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill handles sensitive OpenClaw memory, workspace content, custom skills, and Git credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workspace and skill directories before installation, use a private backup repository, and configure a least-privilege token.
+
+Risk: Restore operations can replace local agent behavior and skills, especially when confirmation is skipped with --force.
+
+Mitigation: Avoid --force unless a separate trusted backup exists, and confirm the selected backup version before restoring.
+
+Risk: Nested skill secrets may be captured in backup history.
+
+Mitigation: Inspect custom skill directories for secrets before syncing and do not rely on the current implementation to exclude every nested secret.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arakichanxd/skills/claw-sync)
+- [Artifact README](artifact/claw-sync/README.md)
+- [Artifact Skill Definition](artifact/claw-sync/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style command guidance and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local backups, update remote Git backup contents, list versions, or restore workspace files.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

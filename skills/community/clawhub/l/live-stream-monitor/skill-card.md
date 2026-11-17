@@ -1,43 +1,53 @@
-## Description: <br>
-Monitors YouTube and Bilibili live streams in a headed browser session and uses browser SpeechRecognition for real-time transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor YouTube Live and Bilibili Live streams for spoken keywords using browser SpeechRecognition API transcription.
 
-## Publisher: <br>
-[xiaoxu1232](https://clawhub.ai/user/xiaoxu1232) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiaoxu1232](https://clawhub.ai/user/xiaoxu1232)
 
-## Use Case: <br>
-External users and developers use this skill to open supported live streams, check whether a stream appears live, and collect browser-generated speech transcripts for a selected listening duration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start microphone-based browser speech recognition during a headed browser session, and the privacy impact is under-documented. <br>
-Mitigation: Use it only for streams and environments where microphone-based transcription is acceptable, and require publisher documentation for captured audio, transcription handling, storage, and sharing before broader deployment. <br>
-Risk: The release advertises keyword alerts, but the security evidence says real keyword-alert logic is not implemented. <br>
-Mitigation: Treat current output as transcription and stream-status monitoring until keyword matching and notification behavior are implemented and reviewed. <br>
-Risk: Automatic media permission handling may obscure when browser audio or microphone access is active. <br>
-Mitigation: Run in an isolated headed browser profile, review browser permission prompts and flags, and remove or justify automatic media permission handling before trusted use. <br>
+## Use Case:
 
+Developers and external users use this skill to set up live transcription and keyword-monitoring workflows for YouTube Live and Bilibili Live streams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoxu1232/live-stream-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoxu1232) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Console text and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcription depends on a headed browser, microphone permission, platform playback, and browser SpeechRecognition support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Browser speech recognition may access microphone audio while a stream plays through speakers, creating privacy exposure around nearby conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only where audio capture is appropriate, and require explicit consent and data-flow disclosure before use.
+
+Risk: The release claims keyword alerts, but the security guidance says the publisher should implement the advertised keyword alerts or narrow the claims.
+
+Mitigation: Confirm alert behavior before relying on it, or update the skill claims until keyword alert logic is clearly implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoxu1232/skills/live-stream-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve headed browser automation, microphone access, and console transcript output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

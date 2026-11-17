@@ -1,41 +1,54 @@
-## Description: <br>
-Create a text-to-video job from user-provided copy. Submits to the remote video service via one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a text-to-video job from user-provided copy. Submits to the remote video service via one API key.
 
-## Publisher: <br>
-[zhangyuangao](https://clawhub.ai/user/zhangyuangao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyuangao](https://clawhub.ai/user/zhangyuangao)
 
-## Use Case: <br>
-External users and agents use this skill to submit user-provided scripts or paragraphs to a remote text-to-video service, then report the resulting task_id and video_url. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the API key and user-provided text to a remote video service. <br>
-Mitigation: Use a dedicated, revocable MAGIC_API_KEY and avoid submitting confidential or personal text. <br>
-Risk: The current client disables TLS certificate verification for remote service calls. <br>
-Mitigation: Treat the client as unsafe on untrusted networks until TLS verification is restored. <br>
+## Use Case:
 
+External users and agents use this skill to submit user-provided text to a remote video service, poll the generated task, and report the resulting task_id and video_url.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyuangao/magic-text2video) <br>
-- [MagicLight remote API host](https://open-test.magiclight.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAGIC_API_KEY; reports task_id and video_url when the remote service succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Documented shell-command usage with raw user text can create local command execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the documented command with raw user text; pass text through a structured no-shell argument API or stdin.
+
+Risk: API-key exposure risk is elevated when the client is used on untrusted networks.
+
+Mitigation: Use only non-sensitive text, restore normal TLS verification, and rotate MAGIC_API_KEY if it was used on untrusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyuangao/skills/magic-text2video)
+- [Remote video service endpoint](https://open-test.magiclight.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON]
+
+**Output Format:** [Markdown chat response with parsed JSON fields and optional JSON code block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAGIC_API_KEY; returns task_id first and video_url after polling when successful.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -25,13 +25,8 @@ SYSTEM_PROGRAM_ID = "11111111111111111111111111111111"
 RENT_SYSVAR_ID = "SysvarRent111111111111111111111111111111111"
 
 
-def _load_dotenv_if_available() -> None:
-    try:
-        from dotenv import load_dotenv  # type: ignore
-
-        load_dotenv()
-    except Exception:
-        pass
+# NO .env AUTO-LOADING — see the note in wallet_signing.py. SOLANA_SECRET_KEY is read from the
+# process environment only; it is never sourced from a file found by walking the filesystem.
 
 
 def _import_solders() -> Dict[str, Any]:
@@ -62,7 +57,6 @@ def _import_solders() -> Dict[str, Any]:
 
 
 def _load_keypair(keypair_cls: Any) -> Any:
-    _load_dotenv_if_available()
     raw = (os.getenv("SOLANA_SECRET_KEY") or "").strip()
     if not raw:
         raise ValueError("Set SOLANA_SECRET_KEY for Solana payment signing")
@@ -80,7 +74,6 @@ def _load_keypair(keypair_cls: Any) -> Any:
 
 
 def load_solana_wallet_address() -> str:
-    _load_dotenv_if_available()
     explicit = (os.getenv("SOLANA_WALLET_ADDRESS") or os.getenv("WALLET_ADDRESS_SECONDARY") or "").strip()
     if explicit:
         return explicit
@@ -258,10 +251,13 @@ def _build_transaction_base64(accept_option: Dict[str, Any], payer_wallet_addres
             "Run ensure_solana_destination_ready() before creating X-Payment."
         )
 
-    # Keep exactly 3 instructions for x402 exact-scheme Solana verification.
+    # Keep exactly 3 instructions for x402 exact-scheme Solana verification. The facilitator
+    # (PayAI) rejects a 200k compute limit / 1000 microlamport price as
+    # invalid_exact_svm_payload_transaction_instructions_compute_limit_instruction; these are
+    # the values the Cloud app uses, proven on a live Training payment 2026-10-21.
     instructions = [
-        set_compute_unit_limit(200000),
-        set_compute_unit_price(1000),
+        set_compute_unit_limit(40000),
+        set_compute_unit_price(1),
         create_transfer_checked_ix(source_ata, mint, dest_ata, payer_pubkey, amount, 6),
     ]
 

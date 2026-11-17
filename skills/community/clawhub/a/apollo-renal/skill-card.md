@@ -1,41 +1,53 @@
-## Description: <br>
-Apollo Renal filters noisy conversation context in real time, preserving useful decisions, preferences, active tasks, and open questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo Renal helps an agent filter noisy conversation context while preserving useful decisions, user preferences, active tasks, and open questions.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Agents and their operators use this skill to monitor long or noisy conversations, summarize redundant context, and decide when quick filtering or deeper Apollo Dream consolidation is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers may cause context cleanup to run before the user intends it. <br>
-Mitigation: Use report-only mode or require explicit confirmation before pruning context. <br>
-Risk: Lossy pruning can remove useful conversation state if importance is misclassified. <br>
-Mitigation: Keep backups of decisions, preferences, active tasks, and open questions until trigger scope and recovery behavior is verified. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor conversation context, estimate token load and information density, and decide when to prune or summarize noise while preserving important working memory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/apollo-renal) <br>
-- [Publisher Profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style context cleanup report with shell-script status output and JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-only use or explicit confirmation before filtering is recommended because pruning may be lossy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may inspect current conversation memory and related Dream state, then recommend or trigger context pruning with limited user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit confirmation before pruning or enabling heartbeat automation, and review filter reports before deleting or compressing retained context.
+
+Risk: The checker can write persistent filter metrics about the workspace context state.
+
+Mitigation: Install only in workspaces where persistent filter-state records are acceptable, and periodically review or clear .renal/filter-state.json according to local retention expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/apollo-renal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style context status report with optional JSON filter-state output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The checker can write persistent filter metrics to .renal/filter-state.json when run in an OpenClaw workspace.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence, changelog, and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

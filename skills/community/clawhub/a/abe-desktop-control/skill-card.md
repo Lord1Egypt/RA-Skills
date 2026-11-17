@@ -1,45 +1,60 @@
-## Description: <br>
-Advanced desktop automation with mouse, keyboard, and screen control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced desktop automation with mouse, keyboard, screen capture, window management, clipboard operations, and optional autonomous task execution.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and automation agents use this skill to control desktop applications through mouse, keyboard, screen capture, image matching, window management, and clipboard operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control the full desktop, including mouse input, keyboard input, windows, clipboard contents, and screenshots. <br>
-Mitigation: Use it only in a clean or separate desktop session, keep sensitive windows and clipboard contents clear, and avoid unattended autonomous runs. <br>
-Risk: Safety controls are incomplete and can be disabled for speed. <br>
-Mitigation: Leave failsafe enabled, prefer approval mode for sensitive actions, and review planned actions before execution. <br>
-Risk: Screenshots and optional LLM/API integrations can expose sensitive desktop data. <br>
-Mitigation: Treat screenshots, saved image files, API prompts, and API responses as sensitive data flows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to let an agent automate desktop workflows through mouse movement, clicking, keyboard input, screenshots, image matching, clipboard access, and window control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/abe-desktop-control) <br>
-- [Desktop Control Skill](artifact/SKILL.md) <br>
-- [AI Desktop Agent - Cognitive Automation Guide](artifact/AI_AGENT_GUIDE.md) <br>
-- [Desktop Control - Quick Reference Card](artifact/QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown documentation with Python and bash code blocks; runtime calls may return Python objects, result dictionaries, screenshots, and saved image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automation can affect the active desktop, clipboard, open windows, and saved screenshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad desktop-control authority over mouse, keyboard, windows, clipboard, screenshots, and app-launch workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, keep failsafe enabled, avoid administrator execution, and review workflows before allowing them to control external accounts or sensitive applications.
+
+Risk: Approval checks are optional and security evidence reports incomplete approval coverage.
+
+Mitigation: Use require_approval for sensitive sessions and constrain higher-risk actions such as launching apps, submitting forms, copying clipboard content, and saving screenshots.
+
+Risk: Screenshots and clipboard access can expose private information.
+
+Mitigation: Do not use the skill with passwords, secrets, sensitive clipboard contents, or confidential screens, and restrict where screenshots are saved or shared.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/abe-desktop-control)
+- [Skill documentation](artifact/SKILL.md)
+- [AI agent guide](artifact/AI_AGENT_GUIDE.md)
+- [Quick reference](artifact/QUICK_REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown documentation with Python examples; runtime calls can return text, screenshots, coordinates, window titles, and status dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Desktop actions may affect the active user session and can save screenshots or read and write clipboard text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

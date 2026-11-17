@@ -1,0 +1,19 @@
+{
+  "snapshotVersion": "1.0.0",
+  "chapter": 0,
+  "createdAt": "2026-01-01T00:00:00+08:00",
+  "includedFiles": [
+    "story/current_state.md",
+    "story/pending_hooks.md",
+    "story/chapter_summaries.md",
+    "story/current_focus.md",
+    "story/audit-drift.md",
+    "chapters/index.json",
+    "story/roles/major/陆恒.md",
+    "story/roles/major/苏霜.md",
+    "story/roles/minor/林逸.md"
+  ],
+  "fileHashes": {},
+  "skillVersion": "",
+  "schemaVersion": "1.0.0"
+}

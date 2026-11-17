@@ -87,26 +87,9 @@ python3 skills/fulcra-annotations/scripts/fulcra_annotations.py create \
   --tag intake
 ```
 
-For specialized measurement units, inspect the live schema through the bundled helper before adding script support:
+For specialized measurement units, inspect the live Fulcra schema through the official CLI or library before adding reviewed helper support.
 
-```bash
-python3 skills/fulcra-annotations/scripts/fulcra_annotations.py measurement-schema
-```
-
-Use `measurement-schema --raw` only for local debugging. Do not paste raw private account output into chat.
-
-Update or delete definitions only after user approval:
-
-```bash
-python3 skills/fulcra-annotations/scripts/fulcra_annotations.py update \
-  --id "<annotation-id>" \
-  --description "Updated description" \
-  --tag health \
-  --tag workflow
-
-python3 skills/fulcra-annotations/scripts/fulcra_annotations.py delete \
-  --id "<annotation-id>"
-```
+Update or delete definitions only through a separate reviewed admin workflow after explicit user approval. The bundled helper intentionally exposes only `list`, `create`, `record`, and `recent`.
 
 ## Idempotent Pipelines
 

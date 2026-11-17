@@ -1,42 +1,53 @@
-## Description: <br>
-Browse webpages with Playwright, wait for loading, capture screenshots, and extract page or element text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse webpages with Playwright to wait for page loading, capture full-page or element screenshots, and extract text content.
 
-## Publisher: <br>
-[MRchenkuan](https://clawhub.ai/user/MRchenkuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrchenkuan](https://clawhub.ai/user/mrchenkuan)
 
-## Use Case: <br>
-Developers and agents use this skill to collect rendered webpage content, page screenshots, and selected element text for analysis or documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI loads the crawler from a developer-only absolute path, which may fail or execute an unintended local file. <br>
-Mitigation: Review or patch the command to require the packaged local crawler module before installation or use. <br>
-Risk: Captured screenshots and extracted page text are saved to disk and may include sensitive page content. <br>
-Mitigation: Avoid authenticated or sensitive pages unless local capture is intended, and write outputs to a directory that can be inspected and deleted. <br>
+## Use Case:
 
+Developers and agents use this skill to capture webpage screenshots and extracted text for browsing, documentation, QA, or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MRchenkuan/playwright-controller) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Console status text plus PNG screenshots and extracted text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes screenshots, extracted content, and error notes to a configurable local directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, CHANGELOG) <br>
+Risk: The command-line entry point can execute code from a developer-specific path outside the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the CLI import so it loads the packaged crawler file before installation or use.
+
+Risk: The skill can browse arbitrary URLs and write screenshots and extracted text to user-selected directories.
+
+Mitigation: Use only explicitly trusted URLs and output directories, and avoid authenticated, private, internal, or sensitive pages until URL and output path controls are documented and enforced.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrchenkuan/skills/playwright-controller)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript API examples; runtime output includes PNG screenshots and text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Playwright/Chromium; writes screenshots and extracted text to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, CHANGELOG, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

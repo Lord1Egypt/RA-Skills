@@ -1,0 +1,10 @@
+{
+  "decision": "answer",
+  "kind": "exact",
+  "points": [
+    { "text": "Jordan's request about the budget deadline, in his words.", "sources": ["s3"] }
+  ],
+  "exact_segments": [ { "source": "s3", "segs": ["g1204", "g1205"] } ],
+  "task_kind": "drafting_replies",
+  "topic": "Jordan's budget request on Nov 10"
+}

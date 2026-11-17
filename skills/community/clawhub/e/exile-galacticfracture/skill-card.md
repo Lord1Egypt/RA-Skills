@@ -1,41 +1,58 @@
-## Description: <br>
-An entertainment micro-skill that delivers a cinematic Exile hook with optional worldbuilding, offers the playable Remember Sitalis game experience, and keeps waitlist handoff consent-first without collecting email in chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An entertainment micro-skill that delivers a cinematic Exile story hook with optional lore, offers the playable Remember Sitalis experience, and keeps waitlist handoff consent-first without collecting email in chat.
 
-## Publisher: <br>
-[dantunes-github](https://clawhub.ai/user/dantunes-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dantunes-github](https://clawhub.ai/user/dantunes-github)
 
-## Use Case: <br>
-External users and agents use this skill for a short sci-fi story break, optional Exile worldbuilding, and a handoff to the companion game or reading site when the user wants to continue. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may be directed to an external companion site for gameplay, reading, or waitlist signup. <br>
-Mitigation: Keep the handoff optional and consent-first, and remind users to enter personal information only if they choose to and trust the site. <br>
-Risk: Repeated calls to action could make an entertainment skill feel pushy or distract from serious tasks. <br>
-Mitigation: Show the companion-site call to action once per session, avoid inserting it before or during the story, and do not use the skill during serious or high-stakes tasks unless asked. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dantunes-github/exile-galacticfracture) <br>
-- [Exile companion site](https://galacticfracture.com) <br>
-- [Remember Sitalis playable game](https://galacticfracture.com/game.html) <br>
+## Use Case:
 
+External users and agents use this skill for a short sci-fi story break, optional worldbuilding, and a handoff to the Exile companion site for the playable Remember Sitalis experience or future updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with optional external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents the hook as a single short block unless the host requires chunking; optional lore is provided only when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release and frontmatter metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may direct users to a publisher-controlled companion site and waitlist.
+
+Mitigation: Treat external pages as publisher-controlled and only enter contact information there if the user intends to subscribe.
+
+Risk: Users could mistake the waitlist flow for chat-based email collection.
+
+Mitigation: Do not request, collect, or store email addresses in chat; route update requests to the companion site.
+
+Risk: Entertainment prompts can distract from serious or high-stakes work.
+
+Mitigation: Use the story break or game handoff only when the user asks for it or when a completed low-risk task makes an optional break appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dantunes-github/skills/exile-galacticfracture)
+- [Galactic Fracture companion site](https://galacticfracture.com)
+- [Remember Sitalis playable game](https://galacticfracture.com/game.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text story content with optional links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a short story block first, then at most one lightweight call to action unless the user asks again.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

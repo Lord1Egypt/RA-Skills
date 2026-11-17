@@ -1,39 +1,58 @@
-## Description: <br>
-Generates a daily Chinese anti-fraud briefing by searching domestic bank and payment institution news for cases, involved banks, amounts, and related details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily anti-fraud briefing about Chinese domestic banks and payment institutions, focused on recent cases, involved institutions, amounts, and related details.
 
-## Publisher: <br>
-[wdl2005](https://clawhub.ai/user/wdl2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wdl2005](https://clawhub.ai/user/wdl2005)
 
-## Use Case: <br>
-Fraud monitoring and financial operations teams use this skill to prepare daily briefings on Chinese domestic bank and payment-institution anti-fraud incidents for Feishu distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled reporting or Feishu posting could send the briefing to an unintended destination if configured incorrectly. <br>
-Mitigation: Confirm the cron schedule and use a narrowly scoped Feishu webhook or destination before enabling the workflow. <br>
-Risk: Search queries or report context could expose internal incident details, customer data, secrets, or sensitive monitoring interests to external services. <br>
-Mitigation: Limit queries and inputs to public anti-fraud news and exclude internal data, customer data, secrets, and sensitive monitoring interests. <br>
+## Use Case:
 
+Employees or operators responsible for fraud-monitoring briefings use this skill to collect recent China-focused anti-fraud news and summarize relevant cases for daily distribution.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown numbered report with optional shell search command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured case entries include incident date, case process, bank name, amount, and other relevant information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled execution and automatic Feishu distribution can send unreviewed reports to unintended recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable scheduled posting only where Feishu distribution is intended, confirm the destination, and review report content before broader circulation.
+
+Risk: The helper script uses the result-count argument in a shell command without validation or quoting.
+
+Mitigation: Validate the result count as a positive integer and quote shell variables before using the helper script in automated workflows.
+
+Risk: Public search results may produce incomplete or stale case details.
+
+Mitigation: Check material case facts against authoritative financial institution, regulator, or reputable news sources before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wdl2005/skills/daily-antifraud-report)
+- [Baidu search endpoint used by helper script](https://www.baidu.com/s?wd=${QUERY}&rn=${NUM})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Structured Markdown list of anti-fraud case summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each item is expected to include case date, case process, bank or payment institution, amount involved, and other relevant details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

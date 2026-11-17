@@ -1,41 +1,53 @@
-## Description: <br>
-Gitee operations via OpenAPI and git for repositories, pull requests, issues, comments, and file contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gitee operations via OpenAPI and git for repositories, pull requests, issues, comments, file contents, and gitee.com remotes.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate Gitee repository workflows, including inspecting or creating pull requests and issues, reading repository contents through the API, and working with gitee.com git remotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated commands can create pull requests, create issues, update files, or push git commits to Gitee repositories. <br>
-Mitigation: Use a least-privilege Gitee token scoped to the required repositories and require explicit confirmation before write operations or git push. <br>
-Risk: Gitee access tokens may be exposed if printed, pasted into chat, or committed to files. <br>
-Mitigation: Keep GITEE_ACCESS_TOKEN in environment or configuration only, and review commands before execution to avoid revealing secrets. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and automate Gitee repositories, pull requests, issues, file reads, and git remote workflows from a terminal when no dedicated CLI is available.
 
-## Reference(s): <br>
-- [Gitee OpenAPI documentation](https://gitee.com/api/v5/swagger) <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/gitee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, git, jq, and GITEE_ACCESS_TOKEN for authenticated Gitee operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A Gitee access token can expose repository data or authorize repository changes if granted broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token and prefer read-only permissions for inspection tasks.
+
+Risk: Commands for creating issues, creating pull requests, updating files, or pushing branches can modify repository state.
+
+Mitigation: Require explicit approval before running write operations or pushing branches.
+
+## Reference(s):
+
+- [Gitee OpenAPI v5 documentation](https://gitee.com/api/v5/swagger)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and jq command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, git, jq, and a Gitee access token for authenticated workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,56 +1,71 @@
-## Description: <br>
-Wuyun Lingming helps users generate, revise, or evaluate Chinese names using five elements, BaZi, San Cai Wu Ge, Zi Wei Dou Shu, I Ching, phonetics, and taboo-word checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese baby-naming, renaming, and name-evaluation guidance using Wuyun Liuqi, bazi, sancai-wuge, Zi Wei Dou Shu, I Ching, five-element, phonetic, meaning, and taboo-character checks.
 
-## Publisher: <br>
-[dadedawei](https://clawhub.ai/user/dadedawei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dadedawei](https://clawhub.ai/user/dadedawei)
 
-## Use Case: <br>
-External users seeking Chinese name suggestions, name changes, or name evaluations use the skill to provide surname, birth date and time, gender, and preferences, then receive structured naming options with traditional-metaphysics analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for personal birth and family information. <br>
-Mitigation: Share only the least precise birth and family information needed for the naming request. <br>
-Risk: Traditional health, fate, or name-fortune statements may be misleading if treated as factual advice. <br>
-Mitigation: Use outputs as cultural and naming guidance, not as medical, legal, financial, or life-decision advice. <br>
-Risk: Traditional naming conventions may apply gendered cultural assumptions. <br>
-Mitigation: Ask for neutral or modern naming preferences when those conventions are not desired. <br>
+## Use Case:
 
+External users use this skill to generate Chinese baby-name, renaming, or name-evaluation reports from surname, birth date and time, sex, and optional family preferences. The reports combine traditional metaphysical naming frameworks with phonetic, meaning, and taboo-character checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dadedawei/wuyun-lingming) <br>
-- [BaZi basics](references/bazi-basics.md) <br>
-- [BaZi ten gods and pattern analysis](references/bazi-shishen.md) <br>
-- [Complete metaphysics naming handbook](references/complete-handbook.md) <br>
-- [Solar terms and five elements](references/jieqi-wuxing.md) <br>
-- [Liuyao basics](references/liuyao-basics.md) <br>
-- [Naming methodology](references/naming-methodology.md) <br>
-- [Phonetics and meaning guide](references/phonetics-guide.md) <br>
-- [San Cai Wu Ge basics](references/sancai-wuge.md) <br>
-- [Taboo word guide](references/taboo-words.md) <br>
-- [Five-elements character table](references/wuxing-char-table.md) <br>
-- [Wuyun Liuqi basics](references/wuyun-liuqi.md) <br>
-- [Yongshen guide](references/yongshen-guide.md) <br>
-- [Zi Wei Dou Shu advanced notes](references/ziwei-advanced.md) <br>
-- [Zi Wei Dou Shu basics](references/ziwei-basics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Chinese markdown reports with naming options, name evaluations, and caution notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests personal birth and family information when needed; produces no code, files, shell commands, credentials, or external API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: The workflow may request exact birth time, birthplace, family generation names, and other family details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only details needed for the naming task and avoid sharing or retaining unnecessary exact birth or family information.
+
+Risk: Outputs can include traditional belief-based claims about health, fate, personality, or lifestyle.
+
+Mitigation: Treat these claims as cultural or traditional naming suggestions, not medical, psychological, legal, or financial advice.
+
+Risk: The workflow may apply gendered naming conventions.
+
+Mitigation: Ask for neutral naming criteria when the user does not want gendered assumptions applied.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dadedawei/skills/wuyun-lingming)
+- [八字基础](references/bazi-basics.md)
+- [喜用神判定](references/yongshen-guide.md)
+- [十神体系](references/bazi-shishen.md)
+- [三才五格](references/sancai-wuge.md)
+- [五行用字表](references/wuxing-char-table.md)
+- [慎用字详解](references/taboo-words.md)
+- [音韵规则](references/phonetics-guide.md)
+- [五运六气](references/wuyun-liuqi.md)
+- [节气五行](references/jieqi-wuxing.md)
+- [紫微斗数基础](references/ziwei-basics.md)
+- [紫微进阶](references/ziwei-advanced.md)
+- [六爻基础](references/liuyao-basics.md)
+- [起名方法论](references/naming-methodology.md)
+- [完整手册](references/complete-handbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with structured Chinese sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for surname, birth date and time, sex, birthplace, family generation character, and naming preferences before producing results.]
+
+## Skill Version(s):
+
+8.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

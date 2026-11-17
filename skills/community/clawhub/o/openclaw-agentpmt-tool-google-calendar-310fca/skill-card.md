@@ -1,44 +1,60 @@
-## Description: <br>
-Find and install the current canonical AgentPMT skills published under the AgentPMT ClawHub org account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and install the current canonical AgentPMT skills published under the AgentPMT ClawHub org account.
 
-## Publisher: <br>
-[firef1ie](https://clawhub.ai/user/firef1ie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firef1ie](https://clawhub.ai/user/firef1ie)
 
-## Use Case: <br>
-External users and developers use this index skill to locate AgentPMT's current ClawHub skills and choose the appropriate setup, overview, payment, or image-generation skill page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downstream AgentPMT skills may request bearer tokens, OAuth credentials, payments, or x402 use. <br>
-Mitigation: Review each downstream skill before installing it or providing credentials or payment details. <br>
-Risk: The static index can become stale as AgentPMT listings change. <br>
-Mitigation: Check the AgentPMT ClawHub publisher page before relying on the index when freshness matters. <br>
+## Use Case:
 
+External users and developers use this skill as an index for selecting current AgentPMT ClawHub setup, payment, overview, and product skills. It routes agents to canonical AgentPMT profile and skill pages and provides install commands for listed skills.
 
-## Reference(s): <br>
-- [Published ClawHub skill page](https://clawhub.ai/firef1ie/openclaw-agentpmt-tool-google-calendar-310fca) <br>
-- [Publisher profile](https://clawhub.ai/user/firef1ie) <br>
-- [AgentPMT ClawHub profile](https://clawhub.ai/user/agentpmt) <br>
-- [AgentPMT website](https://www.agentpmt.com) <br>
-- [AgentPMT marketplace](https://www.agentpmt.com/marketplace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes users to current AgentPMT ClawHub listings; it does not execute code or collect credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The index may be stale because the artifact says it was last updated on 2026-06-09.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the AgentPMT ClawHub profile before relying on the listed skill pages or install commands when freshness matters.
+
+Risk: The skill routes users to third-party AgentPMT skills and install commands.
+
+Mitigation: Confirm that the target AgentPMT publisher and skill pages are intended before installing linked skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/firef1ie/skills/openclaw-agentpmt-tool-google-calendar-310fca)
+- [AgentPMT ClawHub profile](https://clawhub.ai/user/agentpmt)
+- [AgentPMT no-account AgentAddress/x402 setup](https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402)
+- [What Is AgentPMT](https://clawhub.ai/agentpmt/what-is-agentpmt)
+- [AgentPMT account MCP/REST API setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [Image Generation Agent](https://clawhub.ai/agentpmt/image-generation-agent)
+- [AgentPMT website](https://www.agentpmt.com)
+- [AgentPMT marketplace](https://www.agentpmt.com/marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with links, routing guidance, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static index; no credentials required and no executable code included.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

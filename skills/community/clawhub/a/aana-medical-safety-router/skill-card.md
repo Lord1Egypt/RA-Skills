@@ -1,45 +1,60 @@
-## Description: <br>
-Routes medical and wellness questions into safer boundaries by triaging risk, avoiding diagnosis or treatment overclaims, routing emergencies, encouraging clinician involvement, and minimizing private health data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents route medical and wellness questions with uncertainty, emergency routing, clinician referral, diagnosis and treatment boundaries, and private health data minimization.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add medical safety routing to assistants that answer, summarize, triage, draft, or route health-related questions, especially where emergency escalation, clinician referral, and private health data minimization matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical or wellness responses may be mistaken for diagnosis, treatment, dosage, or clinical decision support. <br>
-Mitigation: Keep replies general, state uncertainty, and route diagnosis, treatment, medication, and dosage decisions to a qualified clinician or pharmacist. <br>
-Risk: Urgent symptoms, self-harm, or crisis messages could be handled as routine advice. <br>
-Mitigation: Route emergency warning signs and crisis scenarios to emergency services, crisis support, or immediate medical care. <br>
-Risk: Private health data could be exposed in review payloads or repeated in replies. <br>
-Mitigation: Use minimal redacted summaries and omit raw records, images, full lab reports, insurance identifiers, private messages, credentials, and unrelated health data. <br>
+## Use Case:
 
+Agents and developers use this skill to classify, triage, summarize, draft, or route medical and wellness-related requests while staying within safer response boundaries. It is most relevant for workflows that need emergency escalation, clinician or pharmacist referral, diagnosis and treatment overclaim checks, and health-data minimization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mindbomber/aana-medical-safety-router) <br>
-- [README](artifact/README.md) <br>
-- [Medical Safety Review Schema](artifact/schemas/medical-safety-review.schema.json) <br>
-- [Redacted Medical Safety Review Example](artifact/examples/redacted-medical-safety-review.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with optional structured JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no dependency installation, command execution, service calls, file writes, or persistent memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata; artifact manifest lists 0.1.0) <br>
+Risk: A high-risk medical or crisis request could be handled as routine advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Route urgent warning signs, self-harm risk, or other emergency scenarios to emergency services, crisis support, or immediate medical care.
+
+Risk: An agent could overstate diagnostic or treatment certainty from incomplete chat context.
+
+Mitigation: Require uncertainty language, avoid definitive diagnosis or prescription claims, and defer high-risk decisions to a clinician or pharmacist.
+
+Risk: Private health information could be exposed in review payloads or optional checker calls.
+
+Mitigation: Use minimal redacted summaries and avoid raw records, images, full lab reports, insurance identifiers, clinician notes, credentials, or unrelated health data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-medical-safety-router)
+- [Skill README](artifact/README.md)
+- [Medical safety review schema](artifact/schemas/medical-safety-review.schema.json)
+- [Redacted medical safety review example](artifact/examples/redacted-medical-safety-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown guidance and optional structured JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; optional checker payloads should use minimal redacted summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

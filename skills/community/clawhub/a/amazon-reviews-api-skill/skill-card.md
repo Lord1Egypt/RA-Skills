@@ -1,44 +1,59 @@
-## Description: <br>
-Extracts structured Amazon product reviews by ASIN through BrowserAct's Amazon Reviews API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent extract structured Amazon product reviews by ASIN through BrowserAct's Amazon Reviews API.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to collect Amazon product review text, ratings, verified-purchase status, reviewer profile links, country data, and related attributes for market research, competitor analysis, sentiment monitoring, and product feedback workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests and ASINs are processed by BrowserAct, and returned review data may include reviewer profile links and country data. <br>
-Mitigation: Use the collected review data only for the intended review-extraction task and handle it in line with privacy, platform, and compliance expectations. <br>
-Risk: A missing or invalid BROWSERACT_API_KEY prevents successful execution. <br>
-Mitigation: Check that BROWSERACT_API_KEY is configured before running, and do not retry when the response reports invalid authorization. <br>
-Risk: The external BrowserAct workflow may take several minutes or fail because of service or network conditions. <br>
-Mitigation: Monitor timestamped status logs and retry non-authorization failures once before reporting the error. <br>
+## Use Case:
 
+External users and developers use this skill to collect Amazon review text, ratings, reviewer metadata, verified-purchase status, and publication details for product feedback analysis, competitor research, sentiment monitoring, and quality insights.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/amazon-reviews-api-skill) <br>
-- [BrowserAct Console integrations](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Terminal status logs followed by structured review data as text or JSON from BrowserAct.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python, BROWSERACT_API_KEY, and an Amazon ASIN; the script polls BrowserAct until the workflow finishes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence) <br>
+Risk: The skill requires a BrowserAct API key and its source asks users to provide one through the agent conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BROWSERACT_API_KEY directly in the environment or a secret manager, and do not paste API keys into chat.
+
+Risk: Extracted review data can include reviewer names and profile links.
+
+Mitigation: Use, store, and share extracted reviewer data only where there is a legitimate basis and appropriate privacy handling.
+
+Risk: The security verdict is suspicious because live review extraction and data collection may create policy, privacy, or terms-of-use concerns.
+
+Mitigation: Use the skill only when live Amazon review extraction is explicitly needed, and review applicable data-use requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/phheng/skills/amazon-reviews-api-skill)
+- [BrowserAct API key setup](https://www.browseract.com/reception/integrations)
+- [BrowserAct Workflow API base URL](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with structured review fields and possible JSON fallback output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BROWSERACT_API_KEY and an Amazon ASIN; polls BrowserAct task status until completion.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

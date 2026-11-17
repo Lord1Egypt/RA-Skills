@@ -1,48 +1,67 @@
-## Description: <br>
-Manage BRICKS workspaces and local BRICKS devices through CLI commands for device control, app/module/media management, project setup, LAN discovery, MCP bridging, and Desktop ACP workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage BRICKS workspaces through CLI guidance for device status, screenshots, control, monitoring, app and module administration, project setup and deployment, LAN device discovery, MCP debugging, and BRICKS Project Desktop ACP workflows.
 
-## Publisher: <br>
-[jhen0409](https://clawhub.ai/user/jhen0409) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhen0409](https://clawhub.ai/user/jhen0409)
 
-## Use Case: <br>
-Developers and administrators use this skill to operate BRICKS workspaces, deploy and manage applications or modules, inspect device state, and connect local BRICKS Foundation devices or BRICKS Project Desktop sessions from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LAN discovery and device MCP bridging can interact with BRICKS devices on the local network. <br>
-Mitigation: Use the skill only on trusted networks and confirm that discovered devices belong to the intended workspace before connecting or dispatching actions. <br>
-Risk: Device MCP bridging uses passcodes as bearer tokens. <br>
-Mitigation: Treat passcodes as secrets, avoid logging or committing them, and rotate them if exposed. <br>
-Risk: Desktop ACP sessions can execute commands in a BRICKS project context. <br>
-Mitigation: Keep ACP disabled when idle and prefer interactive approvals or deny-all mode for untrusted prompts. <br>
-Risk: Persistent acpx configuration can make future ACP sessions easier to start from the same machine. <br>
-Mitigation: Remove persistent acpx configuration when ACP access is no longer actively needed, especially on shared systems. <br>
+## Use Case:
 
+Developers and operations teams use this skill to manage BRICKS workspace devices, groups, applications, modules, media, and project deployments. It also supports local-network device discovery and BRICKS Project Desktop ACP workflows for debugging and automation.
 
-## Reference(s): <br>
-- [BRICKS CLI npm package](https://www.npmjs.com/package/@fugood/bricks-cli) <br>
-- [BRICKS Project Desktop documentation](https://docs.bricks.tools/project) <br>
-- [mcporter](https://mcporter.dev) <br>
-- [acpx Agent Client Protocol CLI](https://github.com/openclaw/acpx) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands may produce JSON output when run with -j or --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: ACP mode can run project commands without confirmation when auto-approval is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit approval or deny-all mode for untrusted prompts, and reserve approve-all mode for isolated trusted projects.
+
+Risk: Persistent acpx configuration can allow future ACP sessions with project file access.
+
+Mitigation: Remove persistent acpx configuration when ACP is not actively needed, especially on shared machines.
+
+Risk: LAN device MCP bridging uses device passcodes as bearer tokens.
+
+Mitigation: Treat passcodes as secrets, avoid logging or committing them, and rotate away from default device passcodes.
+
+Risk: LAN discovery and local device access expose network-connected BRICKS devices to agent workflows.
+
+Mitigation: Run discovery only on trusted networks, verify target workspace membership, and disable ACP or local debugging when idle.
+
+## Reference(s):
+
+- [BRICKS CLI Skill Page](https://clawhub.ai/jhen0409/skills/bricks-cli)
+- [BRICKS CLI npm Package](https://www.npmjs.com/package/@fugood/bricks-cli)
+- [BRICKS Project Documentation](https://docs.bricks.tools/project)
+- [BRICKS Control](https://control.bricks.tools)
+- [mcporter](https://mcporter.dev)
+- [acpx](https://github.com/openclaw/acpx)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, configuration snippets, workflow steps, and security guidance for BRICKS workspace and device operations.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

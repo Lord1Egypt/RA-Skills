@@ -1,48 +1,60 @@
-## Description: <br>
-Identifies insufficiently evidenced conclusions in reports, proposals, or presentations and prioritizes follow-up evidence collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews reports, proposals, or presentations to identify conclusions with weak supporting evidence and prioritize evidence-gathering next steps.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Analysts, reviewers, researchers, and decision-support teams use this skill to turn drafts, claims, and existing evidence into a structured evidence-gap review with priorities, weaker fallback wording, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can read local input files or directories and write an intended output file. <br>
-Mitigation: Run it in a normal project sandbox, review the input and output paths before execution, and avoid sensitive directories unless they are explicitly in scope. <br>
-Risk: Evidence-gap results may be incomplete or misleading when the supplied draft, claims, or evidence are incomplete. <br>
-Mitigation: Treat the output as a review draft, keep the listed pending confirmations visible, and require human review before using findings in decisions. <br>
-Risk: The skill does not fetch external facts or independently validate claims. <br>
-Mitigation: Use it to identify evidence needs, then collect and cite external evidence through an approved research workflow when validation is required. <br>
-Risk: Inputs may contain personal, confidential, or regulated information. <br>
-Mitigation: De-identify sensitive material where possible and keep generated Markdown or JSON outputs within the same access-controlled workspace. <br>
+## Use Case:
 
+External users, analysts, reviewers, and teams use this skill to review report or presentation drafts, map unsupported claims, identify evidence gaps, and prioritize follow-up evidence collection before decisions or publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/evidence-gap-mapper) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Output specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Structured Markdown report, with optional JSON wrapper from the local helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper can write an intended output file when invoked with --output and otherwise prints to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Inputs may contain sensitive report, presentation, or evidence material, and the local script can read the file path supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize inputs before use; remove sensitive material unless the local review is intended for that content.
+
+Risk: The script can write a report file when an output path is provided.
+
+Mitigation: Use a deliberate output path or dry-run/stdout behavior when a persistent file is not desired.
+
+Risk: Evidence-gap recommendations can be misleading if users treat draft analysis as verified facts.
+
+Mitigation: Use the output as an auditable review draft and verify claims against source evidence before decisions, publication, or system changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/evidence-gap-mapper)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Output specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown report, with optional JSON wrapping when the local script is invoked in JSON mode.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs sections for key conclusions, evidence status, gaps, evidence collection priority, downgraded wording, next steps, and pending confirmations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

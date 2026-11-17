@@ -1,0 +1,7 @@
+interface:
+  display_name: "Delegated Code Review"
+  short_description: "Single delegated review with verified fixes"
+  default_prompt: "Use $delegated-code-review to run one review with a fresh, read-only subagent, verify findings, apply accepted fixes, rerun relevant tests, and summarize."
+
+policy:
+  allow_implicit_invocation: false

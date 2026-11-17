@@ -1,44 +1,63 @@
-## Description: <br>
-It Ops Toolkit helps agents choose and run Python scripts for network diagnostics, system monitoring, service checks, troubleshooting, and utility tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+It Ops Toolkit helps agents select and run Python-based IT operations utilities for network diagnostics, system monitoring, service checks, troubleshooting, and practical data utilities.
 
-## Publisher: <br>
-[microsnow](https://clawhub.ai/user/microsnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[microsnow](https://clawhub.ai/user/microsnow)
 
-## Use Case: <br>
-IT operations engineers and developers use this skill to run authorized checks for connectivity, host health, service status, logs, performance issues, camera streams, and common utility conversions. It is intended to help select commands, execute the relevant local scripts, and summarize the results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can actively probe networks, cameras, remote SSH hosts, logs, and services. <br>
-Mitigation: Use it only on systems you own or manage, review proposed commands before execution, and avoid placing real passwords in command lines or RTSP URLs. <br>
-Risk: Remote SSH behavior is not fully safeguarded for production infrastructure. <br>
-Mitigation: Review or patch SSH host-key handling before production use and prefer key-based authentication over password arguments. <br>
-Risk: IP lookup functionality contacts a third-party service. <br>
-Mitigation: Avoid submitting sensitive IP addresses unless that external lookup is approved for the environment. <br>
+## Use Case:
 
+Developers, site reliability engineers, and IT operations teams use this skill to translate natural-language operational requests into diagnostics, checks, troubleshooting steps, and utility commands across Windows, Linux, and macOS environments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/microsnow/it-ops-toolkit) <br>
-- [Server-Resolved GitHub Source](https://github.com/microsnow/it-ops-toolkit.git) <br>
-- [Command Reference](references/commands_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local Python scripts that perform network, system, SSH, Docker, database, log, and RTSP checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Remote SSH, batch checks, port scans, log reads, and RTSP stream tests can affect or expose infrastructure when run on unintended systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before these actions and use the skill only on systems where the operator has authorization.
+
+Risk: Remote monitoring can expose privileged access paths.
+
+Mitigation: Use least-privilege SSH accounts and normal host-key verification.
+
+Risk: Passwords, tokens, and RTSP credentials may be exposed through chat, command arguments, URLs, or diagnostic output.
+
+Mitigation: Avoid placing secrets in chat, command arguments, or RTSP URLs; review generated outputs before sharing them.
+
+Risk: Diagnostic output may contain hostnames, IP addresses, service names, logs, or other sensitive infrastructure details.
+
+Mitigation: Treat outputs as sensitive operational data and restrict storage or redistribution according to the environment's security policy.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/microsnow/skills/it-ops-toolkit)
+- [Source repository](https://github.com/microsnow/it-ops-toolkit.git)
+- [Commands reference](references/commands_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and interpreted diagnostic text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command outputs or infrastructure details from authorized diagnostic runs.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

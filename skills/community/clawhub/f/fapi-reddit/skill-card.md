@@ -1,42 +1,56 @@
-## Description: <br>
-Uses fapi.uk's Reddit REST API to query users, subreddits, searches, and post details from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fapi Reddit lets an agent use fapi.uk's Reddit REST API to look up users, subreddit posts, search results, and post details from natural-language requests.
 
-## Publisher: <br>
-[huojiecs110](https://clawhub.ai/user/huojiecs110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huojiecs110](https://clawhub.ai/user/huojiecs110)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to retrieve and summarize Reddit user activity, subreddit posts, search results, and post details through fapi.uk without manually assembling REST parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose billable fapi.uk API credentials or auth tokens by pasting them into chat. <br>
-Mitigation: Store credentials in OpenClaw configuration or a secure secret store, use revocable keys with spending limits, and rotate any credential already shared in a transcript. <br>
-Risk: Reddit API calls through fapi.uk may consume account credits. <br>
-Mitigation: Check account balance before use and stop requests when credits are insufficient. <br>
+## Use Case:
 
+External users and developers use this skill to query Reddit content through fapi.uk by asking an agent for user activity, subreddit posts, search results, or post details without manually assembling REST parameters.
 
-## Reference(s): <br>
-- [Fapi Reddit on ClawHub](https://clawhub.ai/huojiecs110/fapi-reddit) <br>
-- [fapi.uk](https://fapi.uk) <br>
-- [fapi.uk API documentation](https://utools.readme.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Text, Configuration] <br>
-**Output Format:** [Markdown and natural-language summaries with optional JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw configuration commands and Reddit API request guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can expose paid-service credentials if users paste API keys or auth tokens into chat or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secure configuration storage for a narrowly scoped, revocable fapi.uk API key, avoid sharing credentials in chat, and rotate any credential that was already exposed.
+
+Risk: Requests to fapi.uk can spend account credits.
+
+Mitigation: Confirm the account balance and expected cost before live use, and stop when credits are insufficient.
+
+## Reference(s):
+
+- [Fapi Reddit ClawHub page](https://clawhub.ai/huojiecs110/skills/fapi-reddit)
+- [huojiecs110 ClawHub profile](https://clawhub.ai/user/huojiecs110)
+- [fapi.uk](https://fapi.uk)
+- [fapi.uk documentation](https://utools.readme.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration guidance]
+
+**Output Format:** [Markdown or plain text summaries, with shell commands for setup and JSON only when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a fapi.uk API key for live requests and may spend account credits when API calls are made.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

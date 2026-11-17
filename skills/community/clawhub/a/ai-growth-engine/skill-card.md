@@ -1,49 +1,57 @@
-## Description: <br>
-AI Growth Engine helps agents run a measurable self-improvement loop that reviews recent work, extracts patterns, plans adjustments, verifies results, and records learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Growth Engine gives agents a reusable self-improvement loop for reviewing actions, extracting patterns, planning adjustments, verifying results, and recording learning.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-External users, developers, and agent builders use this skill to give an agent a structured RAPVL growth cycle, Growth Score tracking, profession-specific metric presets, and periodic learning records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can shape agent behavior by producing growth recommendations and action plans that may be incorrect or poorly suited to the user's domain. <br>
-Mitigation: Review Growth Score inputs, extracted failure patterns, and recommended plans before applying them to important workflows. <br>
-Risk: The artifact describes recurring growth-history updates and periodic evolution reports, which may write files in the agent workspace. <br>
-Mitigation: Run the skill in a scoped workspace and review expected log or report paths before enabling recurring use. <br>
-Risk: Security evidence is clean, but the scanner guidance still recommends human review for unexpected credentials, file writes, background behavior, or external service use. <br>
-Mitigation: Skim the installed files before use and keep normal skill review and scanning gates in place. <br>
+## Use Case:
 
+External developers and agent builders use this skill to apply a RAPVL self-improvement process, measure progress with Growth Score, and maintain learning records across repeated work cycles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/ai-growth-engine) <br>
-- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837) <br>
-- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411) <br>
-- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) <br>
-- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline formulas, configuration examples, Python snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to maintain growth logs, trend summaries, and evolution reports in a workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may record growth history, logs, and periodic reports in a workspace that contains sensitive project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where workspace recordkeeping is approved, control where records are retained, and review generated logs before sharing or publishing them.
+
+Risk: The artifact is primarily Chinese-language, which may make review harder for teams that do not read Chinese.
+
+Mitigation: Have a qualified reviewer confirm the workflow, outputs, and retained records before using it in sensitive or regulated work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/ai-growth-engine)
+- [Project Homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046)
+- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255)
+- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline examples, formulas, and optional workspace records or reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce growth history, learning logs, recommendations, and periodic evolution reports in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

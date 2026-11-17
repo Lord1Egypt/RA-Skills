@@ -1,42 +1,53 @@
-## Description: <br>
-Access recipes, meal plans, and grocery lists from Paprika Recipe Manager. Use when user asks about recipes, meal planning, or cooking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access recipes, meal plans, and grocery lists from Paprika Recipe Manager. Use when user asks about recipes, meal planning, or cooking.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-People who use Paprika Recipe Manager can ask an agent to find recipes, inspect ingredients, review meal plans, and show grocery lists through the Paprika CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private recipe, meal plan, and grocery data after Paprika authentication. <br>
-Mitigation: Install and use it only when the agent is allowed to view that Paprika account data. <br>
-Risk: Paprika credentials can be exposed if passwords are placed in shared shell environments or logs. <br>
-Mitigation: Prefer interactive authentication, and avoid exporting Paprika passwords in shared shells or logged sessions. <br>
-Risk: The skill depends on a globally installed npm CLI package. <br>
-Mitigation: Verify the global npm package before installing or running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Paprika Recipe Manager](https://www.paprikaapp.com) <br>
-- [ClawHub Paprika Skill](https://clawhub.ai/mjrussell/paprika) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Paprika Recipe Manager recipes, meal plans, grocery lists, and categories through the Paprika CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request JSON output from the Paprika CLI for programmatic use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing a third-party npm CLI package can add supply-chain and local execution risk.
+
+Mitigation: Verify that paprika-recipe-cli is the intended package before installation and avoid running npm with administrator privileges.
+
+Risk: Paprika account credentials can be exposed if environment variables are stored in shell profiles, logs, or shared environments.
+
+Mitigation: Prefer the interactive paprika auth flow and do not commit or persist PAPRIKA_EMAIL or PAPRIKA_PASSWORD in shared locations.
+
+## Reference(s):
+
+- [Paprika Recipe Manager](https://www.paprikaapp.com)
+- [ClawHub Paprika skill page](https://clawhub.ai/mjrussell/skills/paprika)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Paprika CLI commands; some commands support JSON output through --json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

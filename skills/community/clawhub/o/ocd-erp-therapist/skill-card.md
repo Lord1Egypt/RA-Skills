@@ -1,42 +1,57 @@
-## Description: <br>
-Guides self-directed OCD Exposure and Response Prevention practice with safety screening, check-ins, progress tracking, and relapse-prevention support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured self-directed OCD exposure and response prevention practice using inhibitory learning, safety screening, progress tracking, reminders, and tailored exposure support.
 
-## Publisher: <br>
-[Arclunar](https://clawhub.ai/user/Arclunar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arclunar](https://clawhub.ai/user/arclunar)
 
-## Use Case: <br>
-External users use this agent skill as a self-directed support tool for structured OCD ERP practice, including fear hierarchy planning, timed exposure check-ins, debriefs, records, and progress review. It is not a replacement for licensed mental-health care or emergency support. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled reminder commands may create, modify, or remove cron jobs. <br>
-Mitigation: Confirm each cron command before execution and remove only specific job IDs when possible. <br>
-Risk: ERP notes and progress records can contain sensitive mental-health information. <br>
-Mitigation: Store records only in private local locations and avoid shared or synced Desktop folders. <br>
-Risk: Feishu reminders may disclose mental-health information to an external channel. <br>
-Mitigation: Use Feishu reminders only when the user accepts that disclosure, or choose local-only reminders. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Arclunar/ocd-erp-therapist) <br>
-- [Publisher profile](https://clawhub.ai/user/Arclunar) <br>
+## Use Case:
 
+External users use this skill as a self-directed ERP coaching aid for OCD practice, including safety screening, exposure planning, timed check-ins, progress review, and relapse prevention. It is intended as support and psychoeducation, not a replacement for professional mental-health care.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and record templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose scheduled reminders, local session records, exposure plans, and progress summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scheduled reminders and Feishu notifications can create unwanted automation or disclose sensitive ERP activity.
+
+Mitigation: Review all reminder commands before enabling them, keep recipients limited, and remove cron jobs by exact ID when sessions end.
+
+Risk: ERP session records and progress logs may contain sensitive mental-health information saved locally.
+
+Mitigation: Save records only with user consent, keep files in protected local storage, and avoid sharing logs through notification channels.
+
+Risk: Generated report text and bulk cleanup pipelines can lead to unsafe shell command construction.
+
+Mitigation: Use structured file-writing APIs for generated content and avoid broad shell pipelines; prefer exact command arguments and exact cron IDs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arclunar/skills/ocd-erp-therapist)
+- [International OCD Foundation Find Help](https://iocdf.org/find-help/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Conversational guidance with markdown checklists, session notes, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ERP session records, progress summaries, reminder commands, and safety-oriented recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-AI 工作流优化专家 helps users improve prompts, design AI-assisted workflows, select AI tools, and troubleshoot common AI usage issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Workflow Optimizer helps users improve how they use ChatGPT, Claude, Cursor, and similar AI tools through prompt refinement, workflow design, tool selection, and troubleshooting.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-External users and developers use this skill to get Chinese-language guidance for prompt optimization, AI workflow design, AI tool selection, and practical troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI tool or workflow recommendations may be incorrect, outdated, or unsuitable for a user's environment. <br>
-Mitigation: Review recommendations before applying them and validate important claims against current tool documentation or internal policy. <br>
-Risk: Using external AI tools or the listed contact email may expose sensitive data. <br>
-Mitigation: Do not share confidential, personal, or regulated data with external AI services or contacts unless the destination is trusted and approved. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to improve AI-assisted work by refining prompts, selecting AI tools, designing repeatable workflows, and troubleshooting common AI output issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with prompt templates, workflow outlines, comparison tables, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory only; no tool execution or credential handling is described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The skill provides advice about prompts, AI tool choice, and workflow optimization that may be generic, outdated, or unsuitable for a specific business process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current tool capabilities, internal policies, and the user's specific workflow before adoption.
+
+Risk: The artifact includes third-party custom-service contact information.
+
+Mitigation: Treat the contact details as publisher-provided information and review any external engagement under normal procurement and security processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangtaoid/skills/ai-workflow-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, workflow steps, troubleshooting advice, and tool-selection tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no executable code or local data access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

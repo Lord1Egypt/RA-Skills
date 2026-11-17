@@ -1,38 +1,53 @@
-## Description: <br>
-A branding strategy skill that coordinates 15 specialist agents for brand positioning, identity, naming, brand story, archetypes, and related brand review tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Squad de 15 especialistas em branding - David Aaker, Marty Neumeier, Byron Sharp, etc. Use para brand positioning, brand identity, naming, brand story, archetypes.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Brand strategists, founders, marketers, and agents use this skill to generate or review brand positioning, identity, naming, brand stories, archetypes, architecture, audits, diagnostics, and quality gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated naming, positioning, domain, and trademark-related suggestions may be incomplete or unsuitable for commercial use without review. <br>
-Mitigation: Treat branding outputs as advisory and verify names, domains, trademarks, and market positioning with qualified reviewers before launch. <br>
+## Use Case:
 
+External users and brand practitioners use this skill for brand positioning, identity, naming, brand story, archetype mapping, brand architecture, brand audits, triage, and quality review.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/synkra/xquads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text branding recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include naming, positioning, story, archetype, architecture, audit, diagnostic, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and release evidence) <br>
+Risk: Users who need another language may receive less suitable guidance because the skill appears intended for Portuguese-language branding work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm language and market requirements before relying on recommendations from the skill.
+
+Risk: Brand positioning, naming, and audit outputs can be subjective or misleading if accepted without human review.
+
+Mitigation: Have a qualified brand or business reviewer validate recommendations before use.
+
+## Reference(s):
+
+- [xquads homepage](https://github.com/synkra/xquads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text branding guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language branding-advice posture indicated by security guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

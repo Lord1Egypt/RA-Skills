@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Figma"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["figma"]
   icon: "https://static.oomol.com/logo/third-party/figma.svg"
 ---
@@ -42,7 +42,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_comment_reaction` — Delete an emoji reaction created by the authenticated user. [destructive]
 - `delete_dev_resource` — Delete a Figma dev resource from a main file. [destructive]
 - `get_component` — Get metadata for a published Figma component by key.
-- `get_component_set` — Get metadata for a published Figma component set by key. [write]
+- `get_component_set` — Get metadata for a published Figma component set by key.
 - `get_current_user` — Get the current Figma user associated with the API key.
 - `get_dev_resources` — Get dev resources attached to a Figma main file.
 - `get_file` — Get the JSON document for a Figma file or branch.
@@ -51,7 +51,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_image_fills` — Get temporary download URLs for image fills used in a Figma file.
 - `get_project_metadata` — Get metadata for a Figma project.
 - `get_style` — Get metadata for a published Figma style by key.
-- `list_comment_reactions` — List emoji reactions on a Figma file comment. [write]
+- `list_comment_reactions` — List emoji reactions on a Figma file comment.
 - `list_comments` — List comments on a Figma file or branch.
 - `list_file_component_sets` — List published component sets in a Figma main file library.
 - `list_file_components` — List published components in a Figma main file library.
@@ -93,11 +93,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Figma is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key, OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=figma
+  https://console.oomol.com/connections/figma
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Figma homepage: https://www.figma.com
+- API documentation: https://developers.figma.com/docs/rest-api/

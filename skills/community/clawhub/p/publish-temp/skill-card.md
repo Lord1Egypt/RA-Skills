@@ -1,46 +1,60 @@
-## Description: <br>
-Pokemon GO PvP cultivation query skill based on PvPokeTW ranking data and gamemaster stats, providing ranking lookup, recommended moves, IV comparison, inventory review, training priority, missing-core, and team guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pokemon GO PvP cultivation query skill based on PvPokeTW ranking data and gamemaster base stats, providing rankings, recommended moves, best IVs, and user IV comparisons.
 
-## Publisher: <br>
-[pigro0314](https://clawhub.ai/user/pigro0314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pigro0314](https://clawhub.ai/user/pigro0314)
 
-## Use Case: <br>
-External Pokemon GO PvP players use this skill to query PvPokeTW rankings and moves, compare IVs, manage a local Pokemon inventory, prioritize training, identify missing roster pieces, and receive team-building guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and updates a local Pokemon inventory file. <br>
-Mitigation: Review data/my_pokemon.json after inventory or evaluation commands and remove entries or fields that should not be retained. <br>
-Risk: The skill refreshes public PvPoke ranking and gamemaster data from GitHub-backed sources. <br>
-Mitigation: Use it only in environments where outbound access to those public data sources and local cache updates are acceptable. <br>
-Risk: Evaluation commands may fill blank move fields with recommended moves. <br>
-Mitigation: Check generated move recommendations before relying on them for training or resource decisions. <br>
+## Use Case:
 
+External Pokemon GO PvP players and assistant users use this skill to query league rankings, IV fit, recommended moves, team suggestions, training priority, and missing roster coverage from PvPoke-derived data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pigro0314/publish-temp) <br>
-- [Publisher profile](https://clawhub.ai/user/pigro0314) <br>
-- [PvPokeTW](https://pvpoketw.com/) <br>
-- [PvPoke source repository](https://github.com/pvpoke/pvpoke) <br>
-- [PvPoke ranking data](https://raw.githubusercontent.com/pvpoke/pvpoke/master/src/data/rankings/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Plain text and Markdown-style command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language PvP query, inventory, prioritization, and team recommendation responses; local JSON inventory may be created or updated by inventory commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installation may execute unpinned npm tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a package.json and lockfile with pinned dependencies, and avoid direct unpinned npx execution before deployment.
+
+Risk: The missing fetch script issue can prevent reliable data refresh.
+
+Mitigation: Verify the documented fetch command exists and works before relying on ranking or gamemaster cache updates.
+
+Risk: Evaluation may change local inventory data by filling recommended moves automatically.
+
+Mitigation: Back up data/my_pokemon.json and require an explicit save action before allowing the skill to persist inventory changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pigro0314/skills/publish-temp)
+- [PvPokeTW](https://pvpoketw.com/)
+- [PvPoke GitHub Repository](https://github.com/pvpoke/pvpoke)
+- [PvPoke Rankings Data](https://raw.githubusercontent.com/pvpoke/pvpoke/master/src/data/rankings/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown and command-oriented text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Pokemon GO PvP query results; may include rankings, IV comparisons, move recommendations, team suggestions, and local inventory guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; skill text describes v1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

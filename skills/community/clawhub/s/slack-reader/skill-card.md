@@ -1,39 +1,60 @@
-## Description: <br>
-Reads Slack channel history, thread conversations, and individual replies so an agent can summarize discussions or inspect recent messages from Slack links or channel IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and summarize Slack channel history and thread conversations when given Slack links, channel IDs, or requests to inspect channel, thread, or reply conversations.
 
-## Publisher: <br>
-[Epikoding](https://clawhub.ai/user/Epikoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[epikoding](https://clawhub.ai/user/epikoding)
 
-## Use Case: <br>
-Developers, support teams, and workspace users use this skill to fetch Slack channel history, full threads, or single replies for summarization and review by an agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read large amounts of private Slack content available to the configured bot token. <br>
-Mitigation: Use the narrowest applicable Slack link, limit, and date range, and confirm whether thread replies should be included before fetching channel history. <br>
-Risk: Slack user-name mappings are cached locally on disk. <br>
-Mitigation: Review the local cache at ~/.cache/slack-reader/users.json and the configured Slack bot scopes before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Slack Thread Reader on ClawHub](https://clawhub.ai/Epikoding/slack-reader) <br>
+## Use Case:
 
+Agents and developers use this skill to retrieve Slack channel history, full threads, or individual replies and turn them into concise conversation context for review or summarization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text Slack transcript output with concise Markdown usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chronological output may include timestamps, Slack message IDs, sender names, reactions, attachment identifiers, thread participation, and channel metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can retrieve Slack conversations that may contain sensitive or confidential information.
+
+Mitigation: Use it only for channels and threads the requester is authorized to review, and avoid summarizing confidential conversations unless authorized.
+
+Risk: The skill uses a local OpenClaw Slack bot token to access channels and threads available to that bot.
+
+Mitigation: Install only when this local token access is acceptable, and treat the token and retrieved conversation text as sensitive.
+
+Risk: Broad channel history requests may retrieve more conversation data than needed.
+
+Mitigation: Use date and limit options for broad channels, and explicitly decide whether thread replies should be included.
+
+Risk: Slack user identity mappings are cached locally for up to 24 hours.
+
+Mitigation: Account for the local cache when handling user identity data or cleaning up sensitive workspace artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/epikoding/skills/slack-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text conversation transcripts with Markdown usage examples and shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Messages are formatted one per line with timestamps, sender names, participants, reactions, attachment references, and optional inline thread replies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

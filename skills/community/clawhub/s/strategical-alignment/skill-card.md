@@ -1,40 +1,53 @@
-## Description: <br>
-Strategical Alignment guides long-form White Rock analyses that evaluate whether patterns of decisions are creating long-term fragility, dead ends, or viable alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the White Rock method to assess whether short-term choices are creating long-term strategic fragility and to identify alternative trajectories.
 
-## Publisher: <br>
-[darkd](https://clawhub.ai/user/darkd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darkd](https://clawhub.ai/user/darkd)
 
-## Use Case: <br>
-External users and analysts use this skill to assess a named actor, organization, or system over a months-or-longer horizon when a pattern of behavior needs structured strategic viability analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces dense interpretive judgments about incentives, failure modes, and intent that may be incorrect or overconfident. <br>
-Mitigation: Review outputs critically, verify factual claims independently, and treat conclusions as analytical guidance rather than authoritative forecasts. <br>
-Risk: The skill is designed for long, structured strategic assessments and may be a poor fit for casual wording, single events, or quick advice. <br>
-Mitigation: Invoke it only when the user explicitly asks for a structured long-term viability assessment of a named actor, organization, or system. <br>
+## Use Case:
 
+Individuals, teams, and analysts use this skill to examine patterns of decisions over months or longer, assess long-term viability, and compare practical alternatives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darkd/strategical-alignment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured analytical sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Long-form interpretive analysis; no code, shell commands, tool calls, or configuration changes are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.0 (source: server release metadata) <br>
+Risk: The framework may overstructure a simple question or produce an unnecessarily lengthy response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for decision patterns with a months-or-longer horizon, and match Brief or Full depth to the user's request.
+
+Risk: Long-term projections may sound more certain than the available evidence supports.
+
+Mitigation: Label assumptions and confidence, distinguish evidence from projections, and identify what would change the conclusion.
+
+## Reference(s):
+
+- [Strategical Alignment on ClawHub](https://clawhub.ai/darkd/skills/strategical-alignment)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown prose: concise Brief or six-phase Full analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence, evidence caveats, and alternative trajectories; depth varies with the request.]
+
+## Skill Version(s):
+
+6.6.0 (source: package.json and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

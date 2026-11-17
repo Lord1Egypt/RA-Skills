@@ -1,40 +1,58 @@
-## Description: <br>
-Design and implement no-code automation workflows for solopreneurs, including opportunity identification, workflow design, tool selection, testing, and maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement automation workflows to save time and scale operations as a solopreneur.
 
-## Publisher: <br>
-[MemoryF](https://clawhub.ai/user/MemoryF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memoryf](https://clawhub.ai/user/memoryf)
 
-## Use Case: <br>
-External users and solopreneurs use this skill to identify repetitive business tasks, choose no-code automation tools, design workflows, test them, and maintain them responsibly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live workflow automations can copy customer, payment, or lead data into third-party tools unnecessarily. <br>
-Mitigation: Review field mappings before launch, minimize copied data, and use least-privilege OAuth scopes where available. <br>
-Risk: Untested workflows may create incorrect records, duplicate actions, or missed follow-up tasks. <br>
-Mitigation: Test each trigger and action with safe data, include edge cases, and keep error notifications enabled before relying on production workflows. <br>
+## Use Case:
 
+External users, solopreneurs, and operators use this skill to identify repetitive business tasks, design no-code workflows, choose automation tools, test workflows, and maintain automations over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MemoryF/automation-workflows-moss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, comparison tables, and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution or external tool calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automations that touch customer records, payments, email campaigns, or social posting can expose sensitive data or create unwanted external actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only the accounts and fields needed, test with safe sample data, review logs for personal data exposure, and ensure recurring workflows can be disabled easily.
+
+Risk: Untested workflows can silently fail or create incorrect records after deployment.
+
+Mitigation: Test each trigger and action, include error notifications, review workflow logs regularly, and document troubleshooting steps for each automation.
+
+Risk: Automating tasks that require nuance or creativity can produce poor business outcomes.
+
+Mitigation: Limit automation to repetitive, rule-based work and keep judgment-heavy tasks such as discovery interviews or custom proposals manual.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/memoryf/skills/automation-workflows-moss)
+- [ClawHub publisher profile](https://clawhub.ai/user/memoryf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with checklists, comparison tables, workflow templates, and example automation designs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain instructional output; no direct tool execution or credential collection is performed by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Wecom Deep Op gives agents a unified OpenClaw interface for WeCom documents, schedules, meetings, todos, and contacts through the WeCom OpenClaw plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wecom Deep Op is an OpenClaw skill that wraps WeCom MCP services for documents, schedules, meetings, todos, and contacts through a unified interface.
 
-## Publisher: <br>
-[Bingbox](https://clawhub.ai/user/Bingbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingbox](https://clawhub.ai/user/bingbox)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to let an agent create, read, update, cancel, and delete WeCom work items across documents, calendars, meetings, todos, and visible contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify or delete real WeCom documents, schedules, meetings, todos, and contact-related records through a bot credential. <br>
-Mitigation: Require human confirmation before edit, cancel, delete, or bulk contact actions, and use a dedicated bot with least-privilege MCP permissions. <br>
-Risk: uaKey values grant access to enterprise WeCom MCP endpoints if exposed. <br>
-Mitigation: Keep uaKey values out of source control, logs, screenshots, and shell history; store them only in protected environment variables or local configuration. <br>
-Risk: Misconfigured WECOM_*_BASE_URL values can send enterprise data to an unintended endpoint. <br>
-Mitigation: Verify every configured base URL points to the intended WeCom endpoint before enabling the skill. <br>
-Risk: Contact operations may expose more people data than intended if the bot has broad visibility. <br>
-Mitigation: Restrict the bot's contact visibility in the WeCom admin console before use. <br>
+## Use Case:
 
+Developers and enterprise workspace operators use this skill to let an agent manage WeCom documents, calendar events, meetings, todos, and visible contacts after authorized WeCom bot endpoints are configured.
 
-## Reference(s): <br>
-- [Wecom Deep Op on ClawHub](https://clawhub.ai/Bingbox/wecom-deep-op) <br>
-- [Bingbox publisher profile](https://clawhub.ai/user/Bingbox) <br>
-- [WeCom admin console](https://work.weixin.qq.com/) <br>
-- [Tencent WeCom OpenClaw plugin](https://github.com/WecomTeam/wecom-openclaw-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON API results and Markdown or text content, with shell commands and configuration snippets in documentation-oriented flows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return WeCom document content, schedule and meeting records, todo records, contact search results, health-check status, and configuration diagnostics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence, SKILL.md frontmatter, skill.yml, and changelog released 2026-03-22) <br>
+Risk: Sensitive business data can be sent to any endpoint configured through WECOM_*_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict WECOM_*_BASE_URL values to trusted HTTPS WeCom endpoints or an approved internal proxy before use.
+
+Risk: Full operation payloads can be logged when debug logging is enabled.
+
+Mitigation: Do not enable DEBUG_LEVEL=debug when handling real business data, and review log retention and access controls.
+
+Risk: The skill can modify or delete WeCom data within the bot's granted permissions.
+
+Mitigation: Use a least-privilege WeCom bot and periodically audit bot permissions in the WeCom administration console.
+
+Risk: uaKeys grant access to configured WeCom MCP services if exposed.
+
+Mitigation: Keep uaKeys out of source control and manage them through environment variables, encrypted configuration, or an approved secret store.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingbox/skills/wecom-deep-op)
+- [WeCom Administration Console](https://work.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, cancel, delete, and read WeCom resources within the configured bot permissions.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release, frontmatter, skill.yml, changelog released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

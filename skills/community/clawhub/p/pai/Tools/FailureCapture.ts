@@ -177,7 +177,7 @@ REQUIREMENTS:
 EXAMPLES OF GOOD DESCRIPTIONS:
 - "assistant-deleted-users-file-without-asking-permission-first"
 - "ignored-explicit-python-prohibition-and-used-it-anyway"
-- "claimed-task-complete-when-build-was-still-failing"
+- "claimed-taREDACTED-SECRET"
 - "overwrote-working-code-with-broken-implementation-silently"
 - "asked-clarifying-question-instead-of-just-doing-task"
 

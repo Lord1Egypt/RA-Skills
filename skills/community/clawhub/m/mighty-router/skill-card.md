@@ -1,41 +1,54 @@
-## Description: <br>
-Enforces risk-based coding profiles, impact mapping, adversarial planning, and strict verification gates before making edits, audits, or structural modifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces risk-based coding profiles, impact mapping, adversarial planning, and strict verification gates before making edits, audits, or structural modifications.
 
-## Publisher: <br>
-[johnnymaconny](https://clawhub.ai/user/johnnymaconny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnymaconny](https://clawhub.ai/user/johnnymaconny)
 
-## Use Case: <br>
-Developers and engineering agents use Mighty Router to classify coding, audit, and verification requests into risk-based execution profiles, escalating high-risk edits to stricter planning and verification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make agent responses more rigid and concise than a general coding assistant. <br>
-Mitigation: Use it when stricter planning, verification, and high-risk edit handling are desired; disable it when flexible response style is more important. <br>
-Risk: High-risk path rules can escalate routine work into a forensic workflow based on default paths or project configuration. <br>
-Mitigation: Review .mightyrc or .mighty.json high_risk_paths before use and confirm that the selected profile fits the task. <br>
-Risk: Forensic workflows may propose shell commands for verification. <br>
-Mitigation: Review proposed commands and scope before execution, especially for tasks touching security-sensitive files or credentials. <br>
+## Use Case:
 
+Developers and coding agents use this skill to classify coding, audit, research, verification, and high-risk edit workflows into risk-based execution profiles before acting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text with concise bullets, verification summaries, optional XML-tagged sections, and shell command plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Profile selection can change response structure, and high-risk routing may depend on .mightyrc or .mighty.json configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill broadly governs coding, audit, research, verification, and high-risk edit workflows across a session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that session-wide workflow control is intentional, and review whether its profile rules match the workspace's expected operating process.
+
+Risk: Workspace `.mightyrc` or `.mighty.json` files can affect high-risk path classification.
+
+Mitigation: Inspect any workspace Mighty configuration before use and confirm that listed high-risk paths are appropriate for the project.
+
+## Reference(s):
+
+- [Mighty Router on ClawHub](https://clawhub.ai/johnnymaconny/skills/mighty-router)
+- [johnnymaconny ClawHub profile](https://clawhub.ai/user/johnnymaconny)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown instructions and structured response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require profile-specific verification summaries or forensic XML sections for high-risk workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

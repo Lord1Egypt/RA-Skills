@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn71568gr0p3240v36pag6f7rx83qbb2",
-  "slug": "shenmeng-income-lab",
-  "version": "2025.4.15",
-  "publishedAt": 1776229876466
+  "name": "income-lab",
+  "skill_id": "5706cbf7-c6f7-431c-99b0-752f05736f7b",
+  "version": "1.0.1",
+  "pricing": {
+    "enabled": true,
+    "price_per_call": 0.01,
+    "currency": "USDT",
+    "billing_provider": "skillpay.me"
+  },
+  "payment": {
+    "api_key_env": "SKILLPAY_API_KEY",
+    "user_id_env": "SKILLPAY_USER_ID",
+    "required": true
+  },
+  "metadata": {
+    "created_at": "2026-03-28",
+    "author": "@shenmeng"
+  }
 }

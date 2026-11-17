@@ -1,0 +1,6 @@
+{
+  "transport": "direct",
+  "inventory_path": "~/.local/share/mosobleirc/config/inventory.json",
+  "provider_token_path": "~/.local/share/mosobleirc/secrets/provider_token",
+  "provider_base_url": "https://lkk.mosobleirc.ru"
+}

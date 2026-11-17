@@ -1,6 +1,6 @@
 {
   "id": "fec-svg-animation",
-  "name": "SVG 动画",
+  "name": "SVG animation",
   "category": "implementation-capability",
   "tags": [
     "svg",
@@ -9,8 +9,8 @@
     "gsap",
     "micro-interaction"
   ],
-  "summary": "Frontend Craft skill for SVG 动画.",
-  "version": "2.5.0",
+  "summary": "Implement SVG path, icon, and illustration motion with appropriate reduced-motion behavior.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG 动画, 路径描边, 动效.",
+  "description": "Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG animation, path stroke, animation.",
   "source": "skills/fec-svg-animation",
   "references": [],
   "relations": {

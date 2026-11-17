@@ -1,0 +1,15 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Module Boundary Check",
+  "version": "1.0.0",
+  "description": "Tier B (agentStop): After session completes, checks for cross-module boundary violations in modified files.",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "## Package Territory Check (MANDATORY — evaluate FIRST)\nBefore performing any checks below, verify each file's path in your scan.\n\nEXCLUDED ZONES (package infrastructure — NOT compliance subjects):\n• .kiro/hooks/ — AI-GCE hook infrastructure\n• .kiro/steering/ — AI-DWG/AI-GCE steering infrastructure\n• .kiro/agents/ — AI-GCE agent infrastructure\n• .governance/ — AI-GCE governance rules/agents/logs\n• compliance-log/ — AI-GCE audit trail\n• project-initiation/ — AI-PILC output\n• architecture/ — AI-ADLC output\n• management_framework/ — Shared governance spine\n• docs/compliance-* — AI-GCE generated dashboards\n• templates/ — AI-DWG planning templates\n\nFor each file in your scan: if its path starts with ANY of the above prefixes, SKIP it silently. Only check files outside excluded zones.\n\n---\n\nCheck .compliance-state.json → currentPhase. This hook applies from Construction phase onward.\n\nReview all files modified during this session that are within module source paths. For each:\n\n1. CROSS-MODULE IMPORTS: Check if any file imports/references classes from another module directly. Cross-module communication MUST use events or APIs — not direct class references.\n2. LAYER DIRECTION: Verify dependencies flow inward only (presentation → application → domain, infrastructure → domain). No outward dependencies.\n3. SHARED KERNEL ONLY: If cross-module code is needed, it MUST come from the shared kernel — not from another module's internals.\n\nIf violations found, warn with rule MOD-02/MOD-03 and explain the correct pattern.\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks, append to `compliance-log/events/{today-date}.jsonl`:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"module-boundary-check\", \"trigger\": \"agentStop\", \"ruleId\": \"{primary-rule-checked}\", \"ruleSeverity\": \"high\", \"result\": \"{pass|fail|warn}\", \"message\": \"{finding}\"}\nLog ONE event per rule checked."
+  }
+}

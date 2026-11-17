@@ -1,43 +1,61 @@
-## Description: <br>
-A 6-step structured research skill that searches arXiv, converts selected papers to Markdown, uses an LLM to choose two papers, adds targeted web context, and writes a citation-backed five-bullet Markdown summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+6-step structured research skill that searches arXiv, reads five papers via markitdown, has Claude select the best two, runs targeted web searches, and writes a concise citation-backed research summary.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Researchers, developers, and technical analysts use this skill to turn an open-ended research topic into a concise Markdown summary grounded in selected arXiv papers and targeted web results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, selected paper text, and fetched webpage content are sent to outside services. <br>
-Mitigation: Avoid confidential or proprietary topics, use limited-scope API keys, and only install when that external processing is acceptable. <br>
-Risk: The skill includes advanced web-fetching behavior that may retrieve and cache external page content. <br>
-Mitigation: Prefer a virtual environment and a user-local install path, review fetched sources before relying on summaries, and clear the /tmp/owl_papers cache after use. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to combine arXiv paper discovery, paper triage, targeted web search, and LLM synthesis into a short cited research summary for a topic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/q-research) <br>
-- [arXiv API](https://export.arxiv.org/api/query) <br>
-- [arXiv abstracts](https://arxiv.org/abs) <br>
-- [arXiv PDFs](https://arxiv.org/pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research summary with selected paper links, five cited bullets, web source links, and an execution checklist.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save the Markdown summary to a user-specified file; caches downloaded PDFs and converted Markdown under the configured papers directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill performs broad web retrieval with weak boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with public, non-sensitive topics unless fetch scope, redirect behavior, cache location, and dependency versions are tightened.
+
+Risk: Fetched paper and page text is sent to OpenRouter for paper selection and synthesis.
+
+Mitigation: Do not use private topics, internal URLs, proprietary documents, or sensitive data unless external LLM processing is approved.
+
+Risk: Research summaries can be incomplete or misleading if PDF conversion, web search, or LLM selection fails.
+
+Mitigation: Review the run checklist, selected source list, and inline citations before relying on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/goog/skills/q-research)
+- [Publisher Profile](https://clawhub.ai/user/goog)
+- [arXiv API Query Endpoint](https://export.arxiv.org/api/query)
+- [arXiv Abstract Pages](https://arxiv.org/abs)
+- [arXiv PDF Pages](https://arxiv.org/pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research summary with selected papers, five cited bullets, and web sources; may be printed to terminal or saved to a file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses arXiv paper metadata and PDFs, fetched web page text, Serper search results, and OpenRouter-hosted LLM synthesis.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

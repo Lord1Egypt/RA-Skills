@@ -1,46 +1,53 @@
-## Description: <br>
-Evaluates agent actions for security risks, enforcing least-privilege policies with allow, deny, or confirmation decisions and secret redaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates requested agent actions against least-privilege policy and returns allow, deny, or confirmation decisions with redacted actions and audit records.
 
-## Publisher: <br>
-[bharathjanumpally](https://clawhub.ai/user/bharathjanumpally) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bharathjanumpally](https://clawhub.ai/user/bharathjanumpally)
 
-## Use Case: <br>
-Developers and agent builders use this skill to evaluate proposed HTTP, file, and command actions before execution. It returns a policy decision, redacted action data, risk reasons, and an audit record so the host agent can allow, deny, or request confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Policy evaluation can be mistaken for a complete security boundary. <br>
-Mitigation: Use it as a policy gate, configure policy.yaml for the deployment environment, and fail closed for unknown action types. <br>
-Risk: Executing the original action instead of the returned sanitizedAction can bypass redaction and policy normalization. <br>
-Mitigation: Only execute sanitizedAction values after an ALLOW decision. <br>
-Risk: Confirmation decisions depend on a trusted host layer. <br>
-Mitigation: Keep user confirmation outside the skill in a trusted interface and re-run evaluation with confirmed context before execution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to evaluate proposed HTTP, file, and command actions before execution, enforce policy-based decisions, redact secrets, and produce audit records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bharathjanumpally/claw-permission-firewall) <br>
-- [Publisher profile](https://clawhub.ai/user/bharathjanumpally) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Default policy](artifact/policy.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, configuration] <br>
-**Output Format:** [JSON decision object with risk reasons, sanitized action data, optional confirmation prompt, and audit record] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Policy-driven ALLOW, DENY, or NEED_CONFIRMATION response; secrets are redacted from returned actions where policy rules match.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version, package.json, CHANGELOG.md) <br>
+Risk: The security review says verified implementation flaws mean this skill should not be trusted as a hard security boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as an advisory evaluator and keep executor-side allowlists and independent authorization checks for HTTP, file, and command actions.
+
+Risk: Policy-bypass issues may affect protection of secrets and workspace boundaries.
+
+Mitigation: Keep separate secret handling and workspace-boundary enforcement in the executor, audit dependency updates, and avoid real credentials in examples or test inputs.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/bharathjanumpally/skills/claw-permission-firewall)
+
+## Skill Output:
+
+**Output Type(s):** [json, configuration, guidance]
+
+**Output Format:** [JSON decision object with optional confirmation prompt and structured audit record]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes decision, riskScore, reasons, sanitizedAction, confirmation when needed, and audit metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

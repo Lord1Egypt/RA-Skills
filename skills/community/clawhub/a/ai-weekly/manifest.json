@@ -1,0 +1,86 @@
+{
+  "name": "ai-weekly",
+  "version": "4.1.6",
+  "displayName": "AI Weekly Report",
+  "description": "生成可搜索/筛选/暗色模式的 AI 行业新闻单文件网站（公开 RSS 取数，无付费 API 依赖）",
+  "entry": "scripts/generate_site.py",
+  "args": [
+    "--api-json",
+    "--insights-json",
+    "--date",
+    "--output",
+    "--data-snapshot",
+    "--external-news-json",
+    "--market-data",
+    "--funding-data",
+    "--translate-en",
+    "--translations-url",
+    "--no-remote-translations",
+    "--no-live-ranking",
+    "--health-check"
+  ],
+  "deps": [
+    "feedparser",
+    "requests",
+    "beautifulsoup4"
+  ],
+  "runtime": "python3 >= 3.10",
+  "output": {
+    "type": "single-file-html",
+    "description": "所有 CSS/JS/Chart.js 内联，无外部依赖，可被任意 Agent 返回或托管"
+  },
+  "optional": {
+    "ollama_translate": {
+      "env": "AIWEEKLY_OLLAMA_URL",
+      "default": "http://localhost:11434/api/generate",
+      "args": [
+        "--translate-en"
+      ],
+      "requires": "本地 Ollama + 模型（如 qwen2.5:7b）"
+    },
+    "cloud_deploy": {
+      "script": "scripts/deploy_report.py",
+      "args": [
+        "--html"
+      ],
+      "note": "仅提取摘要 + 框架无关通知文本，实际推送由调用方实现"
+    }
+  },
+  "subcommands": {
+    "fetch": {
+      "entry": "scripts/fetch_ai_news.py",
+      "args": [
+        "--output",
+        "--week"
+      ]
+    },
+    "validate": {
+      "entry": "scripts/validate_report.py",
+      "args": [
+        "--html",
+        "--source-dir"
+      ]
+    }
+  },
+  "compatibility": {
+    "claude-code": "SKILL.md（开放 Agent Skill 规范，Claude Code / Claude.ai 原生读取）",
+    "codex": "SKILL.md（OpenAI Codex CLI 直接读取）",
+    "opencode": "SKILL.md（OpenCode 原生）",
+    "openclaw": "SKILL.md（OpenClaw / ClawHub / 天禧AI 直接读取）",
+    "coze": "SKILL.md（Coze 技能包，SKILL.md 格式兼容）",
+    "workbuddy": "SKILL.md（WorkBuddy 原生 frontmatter）",
+    "generic": "本 manifest.json（LangGraph / Dify / Coze 等框架的最小接口描述）"
+  },
+  "features": [
+    "单文件 HTML（CSS/JS/Chart.js 内联，零外部依赖）",
+    "RSS 自治抓取（14 精选源，国内 7+ 国外 7）",
+    "多源排行榜（LMArena/AA/HF/OpenCompass/SuperCLUE/ModelScope）+ 快照兜底",
+    "国内可访问镜像自动回退（主源不可达时）",
+    "多后端部署（GitHub Pages / 腾讯云 COS / Vercel / Netlify / Cloudflare / 本地）",
+    "飞书连接器推送（密钥不落盘）",
+    "模型资料卡（26+ 模型，联网核实来源）",
+    "本周看点（关键词彩标 + 受众行动建议，服务端预渲染）",
+    "市场数据双源（全球 + 中国规模/融资 4 图 2×2 布局）",
+    "对抗式审查守护（verify 31/31, test 21, validate 25/25）"
+  ]
+}

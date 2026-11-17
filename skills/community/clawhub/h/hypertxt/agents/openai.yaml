@@ -1,0 +1,5 @@
+interface:
+  display_name: "Hypertxt Content Operations"
+  short_description: "Operate Hypertxt articles and GSC safely"
+  default_prompt: "Use $hypertxt to find a GSC opportunity and prepare an article plan without spending credits or publishing yet."
+

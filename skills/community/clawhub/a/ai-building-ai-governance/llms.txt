@@ -1,0 +1,37 @@
+# ai-building-ai-governance
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+A governance and safety playbook for AI building AI — the frontier of autonomous AI development and self-improvement. Covers the form spectrum (AI coding agents, synthetic data and distillation for AI training AI, automated AI research, self-improvement and recursive enhancement), autonomous development risks (capability acquisition, uncontrolled recursive self-improvement, goal misalignment, sudden capability jumps), development gates and boundary governance (capability thresholds, reversibility, oversight red lines), synthetic data and distillation compliance (quality validation, content-labeling linkage, copyright and training-data provenance), AI artifact verification (validation of AI-generated code/research/models with red-team linkage), and organizational implementation (engineering governance, supplier assessment, audit reporting). Includes a zero-dependency local toolkit for form identification, risk recognition, governance checklists and synthetic-data compliance points. Built for AI engineering, governance, security and strategy leaders — the frontier extension of AI governance, agent governance and red-team testing.
+
+A governance and safety playbook for the case where AI systems build, train or improve other AI — coding agents, synthetic data, distillation and automated research. It lays out the risk profile (capability jumps, recursive self-improvement, goal misalignment), the gates and reversibility checks to put in place, and how to validate AI-generated code, data and models. Use when setting rules for autonomous development inside your organisation. AI 造 AI 治理与安全实操手册——面向"AI 自主开发与自我改进"前沿的治理框架：AI 造 AI 形态谱系（AI 编码智能体写代码、AI 训练 AI 之合成数据与蒸馏、AI 研究自动化、AI 自我改进与递归提升）、自主开发风险（能力获取、递归自我改进失控、目标错位、突然能力跃升）、开发门禁与边界治理（能力门槛、可逆性、监督红线）、合成数据与蒸馏的合规治理（质量验证、内容标识衔接、版权与训练数据溯源）、AI 产物验证（AI 生成代码/研究/模型的验证与红队衔接）、组织落地（AI 造 AI 工程治理、供应商评估、审计报告）。附零依赖本地工具一键判定形态、识别风险、生成治理检查清单与合成数据合规要点。面向 AI 工程、治理、安全与战略负责人，与 AI 治理/智能体治理/红队测试形成前沿延伸。
+
+## When to use / 什么时候用
+
+- 让AI自己写代码上线要不要设卡
+- 用模型生成的数据再训模型合规吗
+- 蒸馏别人的模型算不算侵权
+- AI自己改进自己会不会失控
+- 合成数据要不要打标识
+- 怎么验证AI写的代码能不能用
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

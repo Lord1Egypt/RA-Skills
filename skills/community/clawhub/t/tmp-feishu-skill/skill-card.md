@@ -1,41 +1,58 @@
-## Description: <br>
-Guides users through creating a Feishu bot and connecting it to OpenClaw as a dedicated Agent in a Windows environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through creating a Feishu bot, connecting it to OpenClaw, and binding it to a dedicated Agent in a Windows environment.
 
-## Publisher: <br>
-[song123-wq](https://clawhub.ai/user/song123-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[song123-wq](https://clawhub.ai/user/song123-wq)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create Feishu bots, bind them to separate Agents, configure local Windows workspaces, and validate message routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret or other credentials could be exposed if copied into chat, logs, screenshots, or memory files. <br>
-Mitigation: Store secrets only in the intended protected configuration or secret store, avoid pasting them into shared surfaces, and rotate them if exposure is suspected. <br>
-Risk: Windows paths and OpenClaw commands may not match a different local machine or OpenClaw installation. <br>
-Mitigation: Confirm local paths, OpenClaw version, Gateway status, and Feishu event permissions before relying on the bot connection. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Feishu bot integrations for OpenClaw, split bots by role, and validate message routing to dedicated Agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/song123-wq/tmp-feishu-skill) <br>
-- [Feishu Open Platform OpenClaw app creation](https://open.feishu.cn/page/openclaw?form=multiAgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with PowerShell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Windows-specific OpenClaw paths and placeholders for Feishu App ID, App Secret, bot name, and Agent ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The artifact includes unrelated agent-identity and user-addressing instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove persona lines before installing or adapting the skill.
+
+Risk: The setup flow handles Feishu App Secret values and local configuration paths.
+
+Mitigation: Store secrets only in secure configuration locations, avoid pasting them into chats or committed files, and validate Agent IDs with a strict lowercase letters, digits, and hyphen pattern.
+
+Risk: Restarting the OpenClaw gateway can briefly interrupt service.
+
+Mitigation: Restart the gateway only during an acceptable maintenance window or when a brief interruption is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/song123-wq/skills/tmp-feishu-skill)
+- [Feishu Open Platform OpenClaw app creation](https://open.feishu.cn/page/openclaw?form=multiAgent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with PowerShell command blocks and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Windows-specific OpenClaw paths and credential-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

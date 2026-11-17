@@ -1,42 +1,50 @@
-## Description: <br>
-Guides agents through evidence-driven frontend debugging for build failures, runtime errors, UI anomalies, API/data problems, white screens, request failures, and production exceptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides evidence-based diagnosis and verification of frontend build, runtime, UI, and API problems.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to classify frontend failures, collect evidence, test root-cause hypotheses, apply minimal fixes, and produce diagnostic reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic reports may contain logs, headers, request bodies, environment details, or other sensitive project information. <br>
-Mitigation: Review and redact generated reports before sharing them outside the project team. <br>
-Risk: The skill may activate on broad debugging prompts and guide changes before enough evidence is collected. <br>
-Mitigation: Confirm the issue type, evidence, and validation results before applying or accepting proposed fixes. <br>
+## Use Case:
 
+Frontend developers use this skill to triage build failures, runtime errors, UI defects, and API or data issues, then test likely causes and document minimal fixes.
 
-## Reference(s): <br>
-- [Diagnostic report template](references/report-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-debug-framework) <br>
-- [Frontend Craft repository](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown diagnostic report with evidence, hypotheses, validation results, and remaining risks; may include code changes and commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are expected at reports/debug-YYYY-MM-DD-HHmmss.md when a diagnostic report is produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.1 (source: server release metadata) <br>
+Risk: Collected logs, requests, environment details, and saved reports may expose secrets, personal information, or private endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized diagnostics and redact credentials, cookies, tokens, personal information, internal URLs, and sensitive payloads before saving or sharing reports.
+
+## Reference(s):
+
+- [Diagnostic report template](references/report-template.md)
+- [ClawHub skill listing](https://clawhub.ai/bovinphang/skills/fec-debug-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown diagnostic report with supporting commands and fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timestamped report recording evidence, hypothesis checks, root cause, validation, and residual risk.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

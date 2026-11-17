@@ -1,40 +1,53 @@
-## Description: <br>
-Guide users buying a dishwasher through household size, place settings, water hardness, space, and energy rating questions to find the exact capacity and specs they need - region-aware, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a dishwasher through household size, place settings, water hardness, space, and energy rating questions to find the exact capacity and specs they need, region-aware and brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose dishwasher specifications for a purchase based on household size, kitchen fit, utilities, water hardness, noise sensitivity, and regional standards. It provides brand-neutral buying guidance and a small set of candidate models for further user verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence a user's dishwasher purchase decision. <br>
-Mitigation: Treat recommendations as shopping leads and verify current availability, prices, certifications, warranty terms, installer requirements, and independent reviews before spending money. <br>
-Risk: Candidate model details and regional availability can change after publication. <br>
-Mitigation: Confirm current product specifications and local compliance labels with retailers or manufacturers before relying on a model suggestion. <br>
+## Use Case:
 
+External users and buying-assistance agents use this skill to interview dishwasher buyers and produce a structured, situation-specific specification recommendation before purchase.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/dishwasher-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown consultation with prioritized specification lists and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Brand-neutral and region-aware; product suggestions are capped at five and should be verified before purchase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Dishwasher product suggestions may be unavailable, mispriced, regionally incompatible, or outdated by the time a user shops.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat suggested models as research starting points and verify current availability, pricing, certifications, dimensions, and installation requirements before purchase.
+
+Risk: Incorrect dimensions, electrical supply assumptions, water hardness, or plumbing details can lead to an unsuitable dishwasher recommendation.
+
+Mitigation: Ask targeted follow-up questions and require users to confirm space measurements, voltage, water and drain connections, and local compatibility before finalizing non-negotiable specs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/dishwasher-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, analysis]
+
+**Output Format:** [Markdown structured as prioritized specification lists and product research suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brand-neutral purchase guidance; product suggestions are research starting points and should be verified for current availability, pricing, dimensions, and regional compatibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

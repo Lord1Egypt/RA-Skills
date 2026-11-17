@@ -1,0 +1,2865 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "publicDocs": {
+      "en": "https://www.unifyport.ai/docs/",
+      "zhCN": "https://www.unifyport.ai/zh-CN/docs/"
+    },
+    "scope": "Deployed public Device API documentation",
+    "retrievedAt": "2026-11-03"
+  },
+  "counts": {
+    "documentedActions": 82,
+    "uniqueRoutes": 78,
+    "methods": {
+      "GET": 23,
+      "POST": 53,
+      "PATCH": 4,
+      "DELETE": 2
+    }
+  },
+  "operations": [
+    {
+      "id": "get-workspace",
+      "operationId": "getWorkspace",
+      "category": "Workspace",
+      "title": {
+        "en": "Get current workspace",
+        "zhCN": "获取当前工作区"
+      },
+      "method": "GET",
+      "path": "/v1/workspace",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/workspace/get-workspace/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/workspace/get-workspace/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "workspace_id",
+        "name",
+        "metadata"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "update-workspace",
+      "operationId": "updateWorkspace",
+      "category": "Workspace",
+      "title": {
+        "en": "Update current workspace",
+        "zhCN": "更新当前工作区"
+      },
+      "method": "PATCH",
+      "path": "/v1/workspace",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/workspace/update-workspace/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/workspace/update-workspace/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "name",
+        "status",
+        "metadata"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "workspace_id",
+        "name",
+        "metadata"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-accounts",
+      "operationId": "listAccounts",
+      "category": "Accounts",
+      "title": {
+        "en": "List accounts",
+        "zhCN": "列出账号"
+      },
+      "method": "GET",
+      "path": "/v1/accounts",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/list-accounts/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/list-accounts/"
+      },
+      "pathParams": [],
+      "queryFields": [
+        "limit",
+        "cursor"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "name",
+        "provider_account_ref",
+        "provider_data",
+        "proxy",
+        "metadata"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "create-account",
+      "operationId": "createAccount",
+      "category": "Accounts",
+      "title": {
+        "en": "Create account",
+        "zhCN": "创建账号"
+      },
+      "method": "POST",
+      "path": "/v1/accounts",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/create-account/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/create-account/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "name",
+        "provider",
+        "region",
+        "status",
+        "auth_mode",
+        "capabilities",
+        "metadata",
+        "provider_account_ref",
+        "provider_data",
+        "runtime_status",
+        "proxy"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "id",
+        "name",
+        "provider_account_ref",
+        "provider_data",
+        "proxy",
+        "metadata",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      },
+      "headerFields": [
+        "Idempotency-Key"
+      ]
+    },
+    {
+      "id": "get-account",
+      "operationId": "getAccount",
+      "category": "Accounts",
+      "title": {
+        "en": "Get account",
+        "zhCN": "获取账号"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/get-account/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/get-account/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "name",
+        "provider_account_ref",
+        "provider_data",
+        "proxy",
+        "metadata"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "update-account",
+      "operationId": "updateAccount",
+      "category": "Accounts",
+      "title": {
+        "en": "Update account",
+        "zhCN": "更新账号"
+      },
+      "method": "PATCH",
+      "path": "/v1/accounts/{account_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/update-account/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/update-account/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "name",
+        "provider",
+        "region",
+        "status",
+        "auth_mode",
+        "capabilities",
+        "metadata",
+        "provider_data",
+        "runtime_status",
+        "proxy"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "name",
+        "provider_account_ref",
+        "provider_data",
+        "proxy",
+        "metadata",
+        "provider_profile"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "delete-account",
+      "operationId": "deleteAccount",
+      "category": "Accounts",
+      "title": {
+        "en": "Delete account",
+        "zhCN": "删除账号"
+      },
+      "method": "DELETE",
+      "path": "/v1/accounts/{account_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/delete-account/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/delete-account/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "account_id",
+        "id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "get-account-auth",
+      "operationId": "getAccountAuthState",
+      "category": "Authentication",
+      "title": {
+        "en": "Get authentication state",
+        "zhCN": "获取认证状态"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/auth",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/get-account-auth/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/get-account-auth/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "auth_payload",
+        "code",
+        "password",
+        "qr",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "start-code-auth",
+      "operationId": "startAccountAuth",
+      "category": "Authentication",
+      "title": {
+        "en": "Start code authentication",
+        "zhCN": "开始验证码认证"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/start",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/start-code-auth/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/start-code-auth/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "auth_payload",
+        "code",
+        "phone",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "submit-auth-code",
+      "operationId": "submitAccountAuthCode",
+      "category": "Authentication",
+      "title": {
+        "en": "Submit verification code",
+        "zhCN": "提交验证码"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/code",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/submit-auth-code/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/submit-auth-code/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "code"
+      ],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "code",
+        "auth_payload",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "start-qr-auth",
+      "operationId": "startAccountQrAuth",
+      "category": "Authentication",
+      "title": {
+        "en": "Start QR authentication",
+        "zhCN": "开始扫码认证"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/qr/start",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/start-qr-auth/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/start-qr-auth/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "auth_payload",
+        "qr",
+        "code",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "check-qr-auth",
+      "operationId": "checkAccountQrAuth",
+      "category": "Authentication",
+      "title": {
+        "en": "Check QR authentication",
+        "zhCN": "检查扫码状态"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/qr/check",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/check-qr-auth/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/check-qr-auth/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "auth_payload",
+        "qr",
+        "code",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "submit-auth-password",
+      "operationId": "submitAccountAuthPassword",
+      "category": "Authentication",
+      "title": {
+        "en": "Submit two-factor password",
+        "zhCN": "提交二次密码"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/password",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/submit-auth-password/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/submit-auth-password/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "password"
+      ],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "password",
+        "auth_payload",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "import-auth-session",
+      "operationId": "importAccountAuthSession",
+      "category": "Authentication",
+      "title": {
+        "en": "Import authentication session",
+        "zhCN": "导入会话"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/session",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/import-auth-session/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/import-auth-session/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "session_url",
+        "pin",
+        "proxy_config",
+        "whatsapp-protocol"
+      ],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "session",
+        "session_url",
+        "pin",
+        "proxy_config",
+        "cookie",
+        "token",
+        "whatsapp-protocol"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "cancel-auth",
+      "operationId": "cancelAccountAuth",
+      "category": "Authentication",
+      "title": {
+        "en": "Cancel authentication",
+        "zhCN": "取消认证"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/cancel",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/cancel-auth/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/cancel-auth/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "auth_payload",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "refresh-runtime",
+      "operationId": "refreshAccountRuntime",
+      "category": "Runtime",
+      "title": {
+        "en": "Refresh runtime state",
+        "zhCN": "刷新运行时状态"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/runtime/refresh",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/runtime/refresh-runtime/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/runtime/refresh-runtime/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "start-runtime",
+      "operationId": "startAccountRuntime",
+      "category": "Runtime",
+      "title": {
+        "en": "Start runtime",
+        "zhCN": "启动运行时"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/runtime/start",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/runtime/start-runtime/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/runtime/start-runtime/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "stop-runtime",
+      "operationId": "stopAccountRuntime",
+      "category": "Runtime",
+      "title": {
+        "en": "Stop runtime",
+        "zhCN": "停止运行时"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/runtime/stop",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/runtime/stop-runtime/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/runtime/stop-runtime/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "reconnect-runtime",
+      "operationId": "reconnectAccountRuntime",
+      "category": "Runtime",
+      "title": {
+        "en": "Reconnect runtime",
+        "zhCN": "重连运行时"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/runtime/reconnect",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/runtime/reconnect-runtime/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/runtime/reconnect-runtime/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "session",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "send-text-message",
+      "operationId": "sendMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Send text message",
+        "zhCN": "发送文本消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/send-text-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/send-text-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "to",
+        "message",
+        "provider_data"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "to",
+        "message",
+        "provider_data",
+        "reply_to",
+        "mentions",
+        "text",
+        "content",
+        "phone",
+        "reply_token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "send-media-message",
+      "operationId": "sendMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Send media message",
+        "zhCN": "发送媒体消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/send-media-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/send-media-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "to",
+        "message"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "to",
+        "message",
+        "provider_data",
+        "reply_to",
+        "mentions",
+        "content",
+        "caption",
+        "url",
+        "reply_token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "send-contact-message",
+      "operationId": "sendMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Send contact (vCard) message",
+        "zhCN": "发送名片（vCard）消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/send-contact-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/send-contact-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "to",
+        "message"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "to",
+        "message",
+        "contacts",
+        "name",
+        "phone",
+        "email",
+        "provider_data",
+        "reply_token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "send-reply-message",
+      "operationId": "sendMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Reply to a message (quote)",
+        "zhCN": "引用回复消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/send-reply-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/send-reply-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "to",
+        "message",
+        "reply_to"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "to",
+        "message",
+        "text",
+        "content",
+        "provider_data",
+        "reply_to",
+        "reply_token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "send-mention-message",
+      "operationId": "sendMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Mention members in a group message",
+        "zhCN": "群消息 @ 成员"
+      },
+      "method": "POST",
+      "path": "/v1/messages",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/send-mention-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/send-mention-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "to",
+        "message",
+        "mentions"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "to",
+        "message",
+        "text",
+        "content",
+        "provider_data",
+        "mentions",
+        "reply_token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "pin-message",
+      "operationId": "pinMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Pin / unpin message",
+        "zhCN": "置顶 / 取消置顶消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages/pin",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/pin-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/pin-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "sender_id",
+        "pinned",
+        "duration_seconds"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "sender_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "revoke-message",
+      "operationId": "revokeMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Revoke message",
+        "zhCN": "撤回消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages/revoke",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/revoke-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/revoke-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "sender_id"
+      ],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "sender_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "react-message",
+      "operationId": "reactMessage",
+      "category": "Messages",
+      "title": {
+        "en": "React to message",
+        "zhCN": "消息表情回应"
+      },
+      "method": "POST",
+      "path": "/v1/messages/reaction",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/react-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/react-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "sender_id",
+        "emoji"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "sender_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "edit-message",
+      "operationId": "editMessage",
+      "category": "Messages",
+      "title": {
+        "en": "Edit message",
+        "zhCN": "编辑消息"
+      },
+      "method": "POST",
+      "path": "/v1/messages/edit",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/messages/edit-message/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/messages/edit-message/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "content"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id",
+        "message_id",
+        "content",
+        "text"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-conversations",
+      "operationId": "listConversations",
+      "category": "Conversations",
+      "title": {
+        "en": "List conversations",
+        "zhCN": "列出会话"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/conversations",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/list-conversations/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/list-conversations/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "type",
+        "cursor",
+        "limit",
+        "label_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "conversation_id",
+        "label_id",
+        "cursor",
+        "title",
+        "name",
+        "message",
+        "text"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-conversation",
+      "operationId": "getConversation",
+      "category": "Conversations",
+      "title": {
+        "en": "Get conversation",
+        "zhCN": "获取会话详情"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/conversations/info",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/get-conversation/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/get-conversation/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "conversation_id",
+        "type"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "conversation_id",
+        "title",
+        "name",
+        "message",
+        "text"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-conversation-members",
+      "operationId": "listConversationMembers",
+      "category": "Conversations",
+      "title": {
+        "en": "List conversation members",
+        "zhCN": "列出会话成员"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/conversations/members",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/list-conversation-members/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/list-conversation-members/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "conversation_id",
+        "type",
+        "cursor",
+        "limit"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id",
+        "id",
+        "member_id",
+        "cursor",
+        "name",
+        "phone",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "mark-conversation-read",
+      "operationId": "markConversationRead",
+      "category": "Conversations",
+      "title": {
+        "en": "Mark conversation as read",
+        "zhCN": "标记会话已读"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/read",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/mark-conversation-read/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/mark-conversation-read/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id",
+        "up_to_message_id",
+        "up_to_message_sender_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id",
+        "up_to_message_id",
+        "up_to_message_sender_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "mark-conversation-unread",
+      "operationId": "markConversationUnread",
+      "category": "Conversations",
+      "title": {
+        "en": "Mark conversation as unread",
+        "zhCN": "标记会话未读"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/unread",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/mark-conversation-unread/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/mark-conversation-unread/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "mute-conversation",
+      "operationId": "muteConversation",
+      "category": "Conversations",
+      "title": {
+        "en": "Mute conversation",
+        "zhCN": "静音会话"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/mute",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/mute-conversation/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/mute-conversation/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id",
+        "duration",
+        "mute_until"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "unmute-conversation",
+      "operationId": "unmuteConversation",
+      "category": "Conversations",
+      "title": {
+        "en": "Unmute conversation",
+        "zhCN": "取消静音"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/unmute",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/unmute-conversation/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/unmute-conversation/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "pin-conversation",
+      "operationId": "pinConversation",
+      "category": "Conversations",
+      "title": {
+        "en": "Pin conversation",
+        "zhCN": "置顶会话"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/pin",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/pin-conversation/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/pin-conversation/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "unpin-conversation",
+      "operationId": "unpinConversation",
+      "category": "Conversations",
+      "title": {
+        "en": "Unpin conversation",
+        "zhCN": "取消置顶会话"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/unpin",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/unpin-conversation/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/unpin-conversation/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "conversation_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-conversation-labels",
+      "operationId": "listConversationLabels",
+      "category": "Conversations",
+      "title": {
+        "en": "List conversation labels",
+        "zhCN": "列出会话标签"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/conversations/labels",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/list-conversation-labels/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/list-conversation-labels/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "cursor",
+        "limit"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "label_id",
+        "cursor",
+        "name"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "upsert-conversation-label",
+      "operationId": "upsertConversationLabel",
+      "category": "Conversations",
+      "title": {
+        "en": "Create or update label",
+        "zhCN": "新建或更新标签"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/labels/upsert",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/upsert-conversation-label/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/upsert-conversation-label/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "label_id",
+        "name"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "label_id",
+        "id",
+        "name"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "delete-conversation-label",
+      "operationId": "deleteConversationLabel",
+      "category": "Conversations",
+      "title": {
+        "en": "Delete label",
+        "zhCN": "删除标签"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/labels/delete",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/delete-conversation-label/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/delete-conversation-label/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "label_id"
+      ],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "account_id",
+        "label_id",
+        "id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "set-conversation-label-members",
+      "operationId": "setConversationLabelMembers",
+      "category": "Conversations",
+      "title": {
+        "en": "Add / remove label on conversations",
+        "zhCN": "为会话增删标签"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/labels",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/set-conversation-label-members/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/set-conversation-label-members/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "label_id",
+        "action",
+        "conversation_ids"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "label_id",
+        "conversation_ids"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-contacts",
+      "operationId": "listContacts",
+      "category": "Contacts",
+      "title": {
+        "en": "List contacts",
+        "zhCN": "列出联系人"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/contacts",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/list-contacts/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/list-contacts/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "cursor",
+        "limit",
+        "q",
+        "updated_since"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "contact_id",
+        "cursor",
+        "q",
+        "name",
+        "phone",
+        "email",
+        "username",
+        "note"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-contact",
+      "operationId": "getContact",
+      "category": "Contacts",
+      "title": {
+        "en": "Get contact",
+        "zhCN": "获取联系人详情"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/contacts/info",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/get-contact/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/get-contact/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "contact_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "contact_id",
+        "name",
+        "phone",
+        "email",
+        "username",
+        "note"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "block-contact",
+      "operationId": "blockContact",
+      "category": "Contacts",
+      "title": {
+        "en": "Block contact",
+        "zhCN": "封锁联系人"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/contacts/block",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/block-contact/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/block-contact/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "contact_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "contact_id",
+        "id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "unblock-contact",
+      "operationId": "unblockContact",
+      "category": "Contacts",
+      "title": {
+        "en": "Unblock contact",
+        "zhCN": "解封联系人"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/contacts/unblock",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/unblock-contact/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/unblock-contact/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "contact_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "contact_id",
+        "id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-blocklist",
+      "operationId": "listContactBlocklist",
+      "category": "Contacts",
+      "title": {
+        "en": "Get blocklist",
+        "zhCN": "获取黑名单"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/contacts/blocklist",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/list-blocklist/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/list-blocklist/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "contact_id",
+        "name",
+        "phone",
+        "email",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "set-contact-note",
+      "operationId": "setContactNote",
+      "category": "Contacts",
+      "title": {
+        "en": "Set contact note",
+        "zhCN": "设置联系人备注"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/contacts/note",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/set-contact-note/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/set-contact-note/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "contact_id",
+        "note"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "contact_id",
+        "note"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-groups",
+      "operationId": "listGroups",
+      "category": "Groups",
+      "title": {
+        "en": "List groups",
+        "zhCN": "列出群组"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/groups",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/list-groups/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/list-groups/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "cursor",
+        "limit"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "group_id",
+        "cursor",
+        "name",
+        "title",
+        "description",
+        "members",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-group",
+      "operationId": "getGroup",
+      "category": "Groups",
+      "title": {
+        "en": "Get group",
+        "zhCN": "获取群详情"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/groups/info",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/get-group/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/get-group/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "group_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "group_id",
+        "name",
+        "title",
+        "description",
+        "members",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "create-group",
+      "operationId": "createGroup",
+      "category": "Groups",
+      "title": {
+        "en": "Create group",
+        "zhCN": "建群"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/groups/create",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/create-group/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/create-group/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "name",
+        "members"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "id",
+        "group_id",
+        "name",
+        "members",
+        "member_id",
+        "phone",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "leave-group",
+      "operationId": "leaveGroup",
+      "category": "Groups",
+      "title": {
+        "en": "Leave group",
+        "zhCN": "退群"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/groups/leave",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/leave-group/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/leave-group/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "group_id"
+      ],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "account_id",
+        "group_id",
+        "id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "update-group-members",
+      "operationId": "updateGroupMembers",
+      "category": "Groups",
+      "title": {
+        "en": "Manage group members",
+        "zhCN": "管理群成员"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/groups/members",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/update-group-members/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/update-group-members/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "group_id",
+        "action",
+        "member_id"
+      ],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "account_id",
+        "group_id",
+        "member_id",
+        "members",
+        "name",
+        "phone",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "update-group-info",
+      "operationId": "updateGroupInfo",
+      "category": "Groups",
+      "title": {
+        "en": "Update group info",
+        "zhCN": "修改群信息"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/groups/update-info",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/update-group-info/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/update-group-info/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "group_id",
+        "name",
+        "description",
+        "avatar_url"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "group_id",
+        "name",
+        "description",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-group-join-requests",
+      "operationId": "listGroupJoinRequests",
+      "category": "Groups",
+      "title": {
+        "en": "List group join requests",
+        "zhCN": "列出入群申请"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/groups/join-requests",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/list-group-join-requests/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/list-group-join-requests/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "group_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "group_id",
+        "id",
+        "member_id",
+        "name",
+        "phone",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "update-group-join-requests",
+      "operationId": "updateGroupJoinRequests",
+      "category": "Groups",
+      "title": {
+        "en": "Approve / reject join requests",
+        "zhCN": "批准 / 拒绝入群申请"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/groups/join-requests/update",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/update-group-join-requests/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/update-group-join-requests/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "group_id",
+        "action",
+        "member_ids"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "group_id",
+        "member_ids",
+        "name",
+        "phone",
+        "username"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "set-group-join-approval-mode",
+      "operationId": "setGroupJoinApprovalMode",
+      "category": "Groups",
+      "title": {
+        "en": "Set group join approval mode",
+        "zhCN": "设置入群审批模式"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/groups/join-approval-mode",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/set-group-join-approval-mode/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/set-group-join-approval-mode/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "group_id",
+        "enabled"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "group_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-group-invite-code",
+      "operationId": "getGroupInviteCode",
+      "category": "Groups",
+      "title": {
+        "en": "Get group invite link",
+        "zhCN": "获取群邀请链接"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/groups/invite-code",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/groups/get-group-invite-code/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/groups/get-group-invite-code/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "group_id"
+      ],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "group_id",
+        "invite_code",
+        "invite_url",
+        "token"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "list-api-keys",
+      "operationId": "listApiKeys",
+      "category": "API Keys",
+      "title": {
+        "en": "List API keys",
+        "zhCN": "列出 API Key"
+      },
+      "method": "GET",
+      "path": "/v1/api-keys",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/api-keys/list-api-keys/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/api-keys/list-api-keys/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "id",
+        "key_id",
+        "api_key",
+        "key_prefix",
+        "name",
+        "prefix"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "create-api-key",
+      "operationId": "createApiKey",
+      "category": "API Keys",
+      "title": {
+        "en": "Create API key",
+        "zhCN": "创建 API Key"
+      },
+      "method": "POST",
+      "path": "/v1/api-keys",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/api-keys/create-api-key/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/api-keys/create-api-key/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "name",
+        "prefix"
+      ],
+      "risk": "credential",
+      "sensitiveFields": [
+        "id",
+        "key_id",
+        "api_key",
+        "key_prefix",
+        "name",
+        "prefix"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "update-api-key",
+      "operationId": "updateApiKeyStatus",
+      "category": "API Keys",
+      "title": {
+        "en": "Update API key status",
+        "zhCN": "更新 API Key 状态"
+      },
+      "method": "PATCH",
+      "path": "/v1/api-keys/{key_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/api-keys/update-api-key/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/api-keys/update-api-key/"
+      },
+      "pathParams": [
+        "key_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "status"
+      ],
+      "risk": "credential",
+      "sensitiveFields": [
+        "id",
+        "key_id",
+        "api_key",
+        "key_prefix",
+        "name",
+        "prefix"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "rotate-api-key",
+      "operationId": "rotateApiKey",
+      "category": "API Keys",
+      "title": {
+        "en": "Rotate API key",
+        "zhCN": "轮换 API Key"
+      },
+      "method": "POST",
+      "path": "/v1/api-keys/{key_id}/rotate",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/api-keys/rotate-api-key/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/api-keys/rotate-api-key/"
+      },
+      "pathParams": [
+        "key_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "name",
+        "prefix"
+      ],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "id",
+        "key_id",
+        "api_key",
+        "key_prefix",
+        "name",
+        "prefix"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "list-webhooks",
+      "operationId": "listWebhookEndpoints",
+      "category": "Webhook Endpoints",
+      "title": {
+        "en": "List webhook endpoints",
+        "zhCN": "列出 Webhook 端点"
+      },
+      "method": "GET",
+      "path": "/v1/webhook-endpoints",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/webhook-endpoints/list-webhooks/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/webhook-endpoints/list-webhooks/"
+      },
+      "pathParams": [],
+      "queryFields": [
+        "account_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "endpoint_id",
+        "url",
+        "signing_secret",
+        "account_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "create-webhook",
+      "operationId": "createWebhookEndpoint",
+      "category": "Webhook Endpoints",
+      "title": {
+        "en": "Create webhook endpoint",
+        "zhCN": "创建 Webhook 端点"
+      },
+      "method": "POST",
+      "path": "/v1/webhook-endpoints",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/webhook-endpoints/create-webhook/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/webhook-endpoints/create-webhook/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "url",
+        "status",
+        "subscribed_events",
+        "signing_secret",
+        "retry_policy",
+        "account_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "id",
+        "endpoint_id",
+        "url",
+        "signing_secret",
+        "account_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-webhook",
+      "operationId": "getWebhookEndpoint",
+      "category": "Webhook Endpoints",
+      "title": {
+        "en": "Get webhook endpoint",
+        "zhCN": "获取 Webhook 端点"
+      },
+      "method": "GET",
+      "path": "/v1/webhook-endpoints/{endpoint_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/webhook-endpoints/get-webhook/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/webhook-endpoints/get-webhook/"
+      },
+      "pathParams": [
+        "endpoint_id"
+      ],
+      "queryFields": [
+        "account_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "id",
+        "endpoint_id",
+        "url",
+        "signing_secret",
+        "account_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "update-webhook",
+      "operationId": "updateWebhookEndpoint",
+      "category": "Webhook Endpoints",
+      "title": {
+        "en": "Update webhook endpoint",
+        "zhCN": "更新 Webhook 端点"
+      },
+      "method": "PATCH",
+      "path": "/v1/webhook-endpoints/{endpoint_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/webhook-endpoints/update-webhook/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/webhook-endpoints/update-webhook/"
+      },
+      "pathParams": [
+        "endpoint_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "url",
+        "status",
+        "subscribed_events",
+        "signing_secret",
+        "retry_policy",
+        "account_id"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "id",
+        "endpoint_id",
+        "url",
+        "signing_secret",
+        "account_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "deactivate-webhook",
+      "operationId": "deactivateWebhookEndpoint",
+      "category": "Webhook Endpoints",
+      "title": {
+        "en": "Deactivate webhook endpoint",
+        "zhCN": "停用 Webhook 端点"
+      },
+      "method": "POST",
+      "path": "/v1/webhook-endpoints/{endpoint_id}/deactivate",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/webhook-endpoints/deactivate-webhook/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/webhook-endpoints/deactivate-webhook/"
+      },
+      "pathParams": [
+        "endpoint_id"
+      ],
+      "queryFields": [
+        "account_id"
+      ],
+      "bodyFields": [],
+      "risk": "write",
+      "sensitiveFields": [
+        "id",
+        "endpoint_id",
+        "url",
+        "signing_secret",
+        "account_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "delete-webhook",
+      "operationId": "deleteWebhookEndpoint",
+      "category": "Webhook Endpoints",
+      "title": {
+        "en": "Delete webhook endpoint",
+        "zhCN": "删除 Webhook 端点"
+      },
+      "method": "DELETE",
+      "path": "/v1/webhook-endpoints/{endpoint_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/webhook-endpoints/delete-webhook/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/webhook-endpoints/delete-webhook/"
+      },
+      "pathParams": [
+        "endpoint_id"
+      ],
+      "queryFields": [
+        "account_id"
+      ],
+      "bodyFields": [],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "id",
+        "endpoint_id",
+        "url",
+        "signing_secret",
+        "account_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    },
+    {
+      "id": "provider-regions",
+      "operationId": "listProviderRegions",
+      "category": "Providers",
+      "title": {
+        "en": "List provider regions",
+        "zhCN": "列出渠道区域"
+      },
+      "method": "GET",
+      "path": "/v1/providers/{provider}/regions",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/providers/provider-regions/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/providers/provider-regions/"
+      },
+      "pathParams": [
+        "provider"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-account-operation",
+      "operationId": "getAccountOperation",
+      "category": "Accounts",
+      "title": {
+        "en": "Get account operation",
+        "zhCN": "获取账号操作"
+      },
+      "method": "GET",
+      "path": "/v1/account-operations/{operation_id}",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/get-account-operation/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/get-account-operation/"
+      },
+      "pathParams": [
+        "operation_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "create-auth-session",
+      "operationId": "createAccountAuthSession",
+      "category": "Authentication",
+      "title": {
+        "en": "Create account auth session",
+        "zhCN": "创建授权会话"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth-sessions",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/create-auth-session/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/create-auth-session/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "data"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "submit-passkey-response",
+      "operationId": "submitAccountPasskeyResponse",
+      "category": "Authentication",
+      "title": {
+        "en": "Submit account passkey response",
+        "zhCN": "提交 Passkey 响应"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/passkey-response",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/submit-passkey-response/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/submit-passkey-response/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "webauthn_response"
+      ],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "data",
+        "webauthn_response"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "confirm-passkey",
+      "operationId": "confirmAccountPasskey",
+      "category": "Authentication",
+      "title": {
+        "en": "Confirm account passkey",
+        "zhCN": "确认 Passkey 授权"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/auth/passkey-confirm",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/authentication/confirm-passkey/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/authentication/confirm-passkey/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [],
+      "risk": "credential",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "data"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "credential"
+      }
+    },
+    {
+      "id": "add-contact",
+      "operationId": "createContact",
+      "category": "Contacts",
+      "title": {
+        "en": "Create contact",
+        "zhCN": "添加联系人"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/contacts/add",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/add-contact/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/add-contact/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "phone_number",
+        "username",
+        "whatsapp_options"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "phone_number",
+        "username",
+        "whatsapp_options"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-contact-membership",
+      "operationId": "getContactMembership",
+      "category": "Contacts",
+      "title": {
+        "en": "Get contact membership",
+        "zhCN": "查询联系人关系"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/contacts/membership",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/contacts/get-contact-membership/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/contacts/get-contact-membership/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "contact_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "contact_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "request-conversation-history",
+      "operationId": "requestConversationHistory",
+      "category": "Conversations",
+      "title": {
+        "en": "Request conversation history",
+        "zhCN": "请求会话历史"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/conversations/history/request",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/conversations/request-conversation-history/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/conversations/request-conversation-history/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "conversation_id",
+        "before",
+        "limit"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "before"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-posts",
+      "operationId": "listPosts",
+      "category": "Posts",
+      "title": {
+        "en": "List posts",
+        "zhCN": "列出帖子"
+      },
+      "method": "GET",
+      "path": "/v1/accounts/{account_id}/posts",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/list-posts/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/list-posts/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [
+        "cursor",
+        "limit"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "author",
+        "text",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-post",
+      "operationId": "getPost",
+      "category": "Posts",
+      "title": {
+        "en": "Get post",
+        "zhCN": "查询帖子"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/posts/info",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/get-post/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/get-post/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "post_id"
+      ],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "author",
+        "text",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "list-post-comments",
+      "operationId": "listPostComments",
+      "category": "Posts",
+      "title": {
+        "en": "List post comments",
+        "zhCN": "列出帖子评论"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/posts/comments/list",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/list-post-comments/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/list-post-comments/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "post_id",
+        "cursor",
+        "limit"
+      ],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "author",
+        "text",
+        "avatar_url"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "reply-post-comment",
+      "operationId": "replyPostComment",
+      "category": "Posts",
+      "title": {
+        "en": "Reply post comment",
+        "zhCN": "回复帖子评论"
+      },
+      "method": "POST",
+      "path": "/v1/accounts/{account_id}/posts/comments/reply",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/accounts/reply-post-comment/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/accounts/reply-post-comment/"
+      },
+      "pathParams": [
+        "account_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "post_id",
+        "comment_id",
+        "text"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "author",
+        "text"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "create-call",
+      "operationId": "createCall",
+      "category": "Calls",
+      "title": {
+        "en": "Create call",
+        "zhCN": "准备通话"
+      },
+      "method": "POST",
+      "path": "/v1/calls",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/calls/create-call/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/calls/create-call/"
+      },
+      "pathParams": [],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id",
+        "to",
+        "media_type"
+      ],
+      "risk": "write",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "to"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": null
+      }
+    },
+    {
+      "id": "get-active-call",
+      "operationId": "getActiveCall",
+      "category": "Calls",
+      "title": {
+        "en": "Get active call",
+        "zhCN": "查询活动通话"
+      },
+      "method": "GET",
+      "path": "/v1/calls/active",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/calls/get-active-call/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/calls/get-active-call/"
+      },
+      "pathParams": [],
+      "queryFields": [
+        "account_id"
+      ],
+      "bodyFields": [],
+      "risk": "read",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "call_id"
+      ],
+      "confirmation": {
+        "mode": "none",
+        "optIn": null
+      }
+    },
+    {
+      "id": "hangup-call",
+      "operationId": "hangupCall",
+      "category": "Calls",
+      "title": {
+        "en": "Hangup call",
+        "zhCN": "挂断通话"
+      },
+      "method": "POST",
+      "path": "/v1/calls/{call_id}/hangup",
+      "docs": {
+        "en": "https://www.unifyport.ai/docs/calls/hangup-call/",
+        "zhCN": "https://www.unifyport.ai/zh-CN/docs/calls/hangup-call/"
+      },
+      "pathParams": [
+        "call_id"
+      ],
+      "queryFields": [],
+      "bodyFields": [
+        "account_id"
+      ],
+      "risk": "destructive",
+      "sensitiveFields": [
+        "account_id",
+        "provider_profile",
+        "reply_token",
+        "join_url",
+        "call_id"
+      ],
+      "confirmation": {
+        "mode": "hmac-sha256",
+        "optIn": "destructive"
+      }
+    }
+  ]
+}

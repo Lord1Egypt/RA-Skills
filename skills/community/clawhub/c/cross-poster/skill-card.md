@@ -1,40 +1,50 @@
-## Description: <br>
-Drafts and adapts social media posts for Twitter/X, LinkedIn, Reddit, Dev.to, and Hacker News with platform-specific tone, length, and formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and adapt social media drafts for Twitter/X, LinkedIn, Reddit, Dev.to, and Hacker News with platform-specific tone and formatting.
 
-## Publisher: <br>
-[vanthienha199](https://clawhub.ai/user/vanthienha199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanthienha199](https://clawhub.ai/user/vanthienha199)
 
-## Use Case: <br>
-Creators, developers, and teams use this skill to turn project updates, announcements, links, screenshots, and build-in-public notes into draft posts tailored to each social platform. It supports cross-posting workflows while keeping each platform draft distinct. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential or unpublished material could be transformed into public-facing social copy. <br>
-Mitigation: Use the skill only with content intended for public sharing, or remove sensitive details before asking for drafts. <br>
-Risk: Generated posts may be inaccurate, misleading, off-brand, or unsuitable for a target community. <br>
-Mitigation: Review and edit every draft before posting, including platform tone, factual claims, links, tags, and community-specific expectations. <br>
+## Use Case:
 
+External users and creators use this skill to turn one message into platform-specific social media drafts while preserving each channel's expected tone, length, and formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vanthienha199/cross-poster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted social post drafts with platform headings, titles, body copy, hashtags, and first-comment suggestions where relevant.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts only; the skill does not auto-post, access credentials, or execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generic prompts such as "share this" or "announce" may generate public-facing social post drafts that are inaccurate, overly promotional, or unsuitable for the target audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit every generated draft before manually posting it to any public platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vanthienha199/skills/cross-poster)
+- [ClawHub publisher profile](https://clawhub.ai/user/vanthienha199)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown social media drafts organized by target platform]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft content only and does not publish automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Converts Xiaohongshu-style Markdown copy into vertical HTML card pages with template-based or optional LLM-assisted generation and browser PNG export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu Card Creator converts Markdown copy into Xiaohongshu-style HTML card pages, with template and optional LLM-assisted modes for exporting vertical PNG cards.
 
-## Publisher: <br>
-[riverfor](https://clawhub.ai/user/riverfor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riverfor](https://clawhub.ai/user/riverfor)
 
-## Use Case: <br>
-Developers, creators, and content operators use this skill to turn Markdown drafts into Xiaohongshu-style HTML card sets and export them as PNG images for publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional LLM mode can send Markdown content to the configured external model provider. <br>
-Mitigation: Do not use LLM mode with private drafts, business notes, regulated data, or other sensitive content unless the configured provider and endpoint are approved. <br>
-Risk: Generated HTML depends on a remote html2canvas CDN script to download PNG images. <br>
-Mitigation: Review and approve the CDN dependency before use, or vendor a trusted local copy when offline or controlled execution is required. <br>
-Risk: The security verdict is suspicious because AI-mode disclosure is not clear in the main instructions. <br>
-Mitigation: Review the scripts before installing and document when data leaves the local environment. <br>
+## Use Case:
 
+Content creators, marketers, and developers use this skill to turn Markdown drafts into 3:4 Xiaohongshu-style card pages and downloadable PNG images for review and publishing.
 
-## Reference(s): <br>
-- [Xiaohongshu Card Creator on ClawHub](https://clawhub.ai/riverfor/xiaohongshu-card-creator) <br>
-- [html2canvas CDN runtime dependency](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, HTML, PNG images, Shell commands, Configuration] <br>
-**Output Format:** [Generated HTML page with browser-exported PNG card images and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default local generation uses templates; optional LLM mode requires provider configuration and an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated cards may include unsafe HTML or injected browser code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize generated HTML before broad use or publication, and avoid running the skill on untrusted Markdown.
+
+Risk: Optional LLM mode can expose private drafts or API credentials to the configured endpoint.
+
+Mitigation: Use LLM mode only with trusted endpoints and non-sensitive drafts, and protect LLM_API_KEY and .env files.
+
+Risk: Generated visual cards may be inaccurate or unsuitable for publication without review.
+
+Mitigation: Review generated cards before publishing.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/riverfor/skills/xiaohongshu-card-creator)
+- [html2canvas 1.4.1 CDN dependency](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Files, HTML, PNG images, Shell commands, Configuration]
+
+**Output Format:** [Generated HTML page with downloadable PNG card images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates 1-20 vertical 3:4 cards and supports optional LLM-assisted HTML generation when configured.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

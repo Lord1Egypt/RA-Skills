@@ -1,42 +1,57 @@
-## Description: <br>
-Reads paper figure prompts, sends them to Gemini through browser automation, and saves generated scientific diagram images to a fixed local folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads figure prompts from a paper-analysis file, uses Gemini through browser automation to generate scientific diagrams, and saves the images to a fixed local directory.
 
-## Publisher: <br>
-[m1ss-cell](https://clawhub.ai/user/m1ss-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m1ss-cell](https://clawhub.ai/user/m1ss-cell)
 
-## Use Case: <br>
-Developers and researchers use this skill to automate generation of scientific figure drafts from prompts extracted from paper parsing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends extracted figure prompts to Gemini. <br>
-Mitigation: Avoid sensitive paper content in prompts unless sharing it with Gemini is acceptable. <br>
-Risk: The skill relies on fixed local input and output paths. <br>
-Mitigation: Install only in an environment where those paths are intended and accessible. <br>
-Risk: Repeated runs may overwrite figure files in the output folder. <br>
-Mitigation: Use simple intended filenames and check the output folder before rerunning. <br>
+## Use Case:
 
+Developers and researchers use this skill to turn figure prompts extracted from parsed paper files into scientific diagram images. It is intended for workflows where local paper-analysis text can be sent to Gemini for image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m1ss-cell/draw-paper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, API Calls] <br>
-**Output Format:** [STATE status messages and PNG image files saved locally] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fixed local input and output directories and processes figures sequentially.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local paper-analysis content may be sent to Gemini during diagram generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for third-party processing, and avoid sensitive or unpublished material unless policy permits it.
+
+Risk: Generated files are written under a hard-coded desktop images path and may collide with existing output.
+
+Mitigation: Check the target output directory before running and keep input basenames simple and trusted.
+
+Risk: Browser-driven image generation depends on Gemini availability, UI behavior, and response completion.
+
+Mitigation: Review generated diagrams before use and stop the workflow when an expected state or image output is missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m1ss-cell/skills/draw-paper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [State messages and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under a fixed local output directory organized by input filename.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

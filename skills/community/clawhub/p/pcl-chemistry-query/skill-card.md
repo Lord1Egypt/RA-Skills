@@ -1,49 +1,68 @@
-## Description: <br>
-Chemistry agent skill for PubChem API queries and RDKit cheminformatics, including compound lookup, molecular properties, structure images, fingerprints, retrosynthesis, reaction simulation, and synthesis planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PharmaClaw Chemistry Query helps agents query public chemistry APIs and run RDKit-based cheminformatics analysis for compounds, structures, SMILES, reactions, retrosynthesis, and synthesis planning.
 
-## Publisher: <br>
-[cheminempharmaclaw](https://clawhub.ai/user/cheminempharmaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminempharmaclaw](https://clawhub.ai/user/cheminempharmaclaw)
 
-## Use Case: <br>
-Developers, researchers, and cheminformatics teams use this skill to query public chemistry data, analyze SMILES or compound names with RDKit, generate molecule visualizations, and produce structured results for downstream chemistry or pharmacology workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compound names, SMILES strings, and literature queries may be sent to public chemistry APIs. <br>
-Mitigation: Use offline-only RDKit actions for confidential compounds, or avoid name and literature lookups when public API disclosure is not acceptable. <br>
-Risk: The skill can write local chemistry output files such as molecule images, descriptors, coordinate files, CSV, JSON, or text. <br>
-Mitigation: Run it in an approved workspace, review requested output paths, and retain only generated files needed for the workflow. <br>
-Risk: IUPAC name conversion can download and run the OPSIN Java JAR on first use. <br>
-Mitigation: Allow this feature only where Java execution and the checksum-verified OPSIN download are acceptable, or disable OPSIN-dependent actions. <br>
-Risk: Optional lab integration can expand the operational surface when used with pharmaclaw-lab-ui. <br>
-Mitigation: Review or disable the optional lab_hook integration before use in environments that do not require it. <br>
+## Use Case:
 
+Developers and chemistry-focused agents use this skill to retrieve compound data from PubChem, ChEMBL, and PubMed and run RDKit analysis, visualization, ADMET checks, similarity search, retrosynthesis, and synthesis planning.
 
-## Reference(s): <br>
-- [PubChem API Endpoints](references/api_endpoints.md) <br>
-- [PubChem PUG REST documentation](https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest) <br>
-- [PubChem PUG REST API](https://pubchem.ncbi.nlm.nih.gov/rest/pug) <br>
-- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data) <br>
-- [NCBI E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [OPSIN CLI release](https://github.com/dan2097/opsin/releases/download/2.8.0/opsin-cli-2.8.0-jar-with-dependencies.jar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, files] <br>
-**Output Format:** [Structured JSON with optional PNG, SVG, XYZ, CSV, or text output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call public chemistry APIs and may create local visualization or data files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill sends compound names, SMILES strings, and search terms to public chemistry APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive chemistry queries and avoid submitting proprietary or confidential compound information.
+
+Risk: IUPAC name conversion downloads the OPSIN JAR at runtime before executing it.
+
+Mitigation: Run in an isolated workspace and rely on the pinned checksum verification before permitting OPSIN execution.
+
+Risk: scripts/chain_entry.py attempts to import lab_hook from a neighboring pharmaclaw-lab-ui folder.
+
+Mitigation: Avoid scripts/chain_entry.py until that import is removed or the neighboring code is explicitly reviewed and trusted.
+
+Risk: File path options such as input_file and output can read or write files available to the agent.
+
+Mitigation: Do not provide sensitive local file paths, and run the skill with limited filesystem access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cheminempharmaclaw/skills/pcl-chemistry-query)
+- [PubChem API Endpoints](references/api_endpoints.md)
+- [PubChem PUG REST documentation](https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest)
+- [PubChem PUG REST API](https://pubchem.ncbi.nlm.nih.gov/rest/pug)
+- [PubChem PUG View API](https://pubchem.ncbi.nlm.nih.gov/rest/pug_view)
+- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data)
+- [NCBI E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [OPSIN CLI release](https://github.com/dan2097/opsin/releases/download/2.8.0/opsin-cli-2.8.0-jar-with-dependencies.jar)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with command examples; invoked scripts return structured JSON and optional PNG, SVG, XYZ, CSV, or text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call public chemistry APIs and may write local visualization or analysis files when output paths are supplied.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

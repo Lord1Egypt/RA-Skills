@@ -1,44 +1,60 @@
-## Description: <br>
-Repair damaged/corrupted files (video/document/design/archive) and provide an output download URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repair damaged/corrupted files (video/document/design/archive) and provide an output download URL.
 
-## Publisher: <br>
-[water-star-creater](https://clawhub.ai/user/water-star-creater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[water-star-creater](https://clawhub.ai/user/water-star-creater)
 
-## Use Case: <br>
-External users and developers use this skill to submit a supported damaged file to Tenorshare 4DDiG Online Repair and receive a repaired-file download URL or, when requested, a local repaired-file path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected file is uploaded to Tenorshare 4DDiG and a presigned storage backend, which may expose personal or sensitive file contents to a third party. <br>
-Mitigation: Ask for explicit consent before upload and avoid using the skill for confidential, regulated, or highly sensitive files. <br>
-Risk: Download mode can write a repaired file to the user's local disk. <br>
-Mitigation: Use download mode only when the user requests local output, then return the reported local path. <br>
-Risk: Unsupported file types, oversized files, upstream repair failures, and local daily usage limits can prevent successful repair. <br>
-Mitigation: Validate the file extension and size before execution, report upstream errors clearly, and recommend the official client when a documented limitation is reached. <br>
+## Use Case:
 
+External users and agents use this skill to submit supported damaged files to an online repair service and receive a repaired download URL or local repaired file path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/water-star-creater/file-repair) <br>
-- [Tenorshare 4DDiG repair service](https://4ddig.tenorshare.com/video-repair.html?utm_source=clawhub.ai&utm_medium=partner&utm_campaign=4DDiG+File+Repair&utm_term=clawhubai-juni-product) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON result parsing notes; the repaired result is returned as a URL or local file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an optional local repaired-file output when download mode is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact package.json reports 0.1.0) <br>
+Risk: The selected file is uploaded to Tenorshare 4DDiG and may be sent through a pre-signed storage provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for user consent before upload and avoid confidential, regulated, or highly sensitive files.
+
+Risk: The repaired result may be exposed through a time-limited third-party download URL or saved locally when download mode is requested.
+
+Mitigation: Return only the repaired URL or requested local path, and handle the repaired output according to the user's data-sensitivity requirements.
+
+Risk: Service limits can trigger vendor promotional links.
+
+Mitigation: Present vendor recommendations only when limits are reached and keep the promotional nature clear to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/water-star-creater/skills/file-repair)
+- [Tenorshare 4DDiG Online Repair upload endpoint](https://4ddig-online.tenorshare.com/api/v1/file/upload-url)
+- [Tenorshare 4DDiG Online Repair job endpoint](https://4ddig-online.tenorshare.com/api/v1/file/repair)
+- [Tenorshare 4DDiG file repair client](https://4ddig.tenorshare.com/video-repair.html?utm_source=clawhub.ai&utm_medium=partner&utm_campaign=4DDiG+File+Repair&utm_term=clawhubai-juni-product)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Text containing a repaired download URL, or a local file path when download mode is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled command emits progress as JSON lines on stderr and a final JSON object on stdout.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

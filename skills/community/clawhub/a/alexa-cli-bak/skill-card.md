@@ -1,43 +1,58 @@
-## Description: <br>
-Control Amazon Alexa devices and smart-home features through the `alexacli` CLI for Echo announcements, device control, voice commands, and Alexa queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Amazon Alexa devices and smart home via the `alexacli` CLI for speaking or announcing on Echo devices, controlling smart-home devices, sending voice commands, and querying Alexa.
 
-## Publisher: <br>
-[knochen666](https://clawhub.ai/user/knochen666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[knochen666](https://clawhub.ai/user/knochen666)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate Amazon Alexa devices and connected smart-home features through `alexacli`. It is suited for requested announcements, device lookup, Alexa questions, audio playback, and smart-home commands when the user has authorized the local CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue broad Alexa and smart-home commands, including announcements, thermostat changes, and lock commands. <br>
-Mitigation: Require explicit user confirmation before sensitive actions such as locks, thermostat changes, alarms, purchases, and all-device announcements. <br>
-Risk: Commands can retrieve Alexa history, calendar details, and conversation fragments. <br>
-Mitigation: Avoid history, calendar, and conversation retrieval unless the user specifically requests it and understands the privacy impact. <br>
-Risk: Local Alexa credentials are stored in `~/.alexa-cli/config.json` after authentication. <br>
-Mitigation: Protect the local config file and remove credentials with `alexacli auth logout` when access is no longer needed. <br>
+## Use Case:
 
+Developers and automation-focused users use this skill to operate Alexa-enabled Echo and smart-home devices through `alexacli` commands. It helps agents propose authentication, device discovery, text-to-speech, smart-home control, Alexa+ conversation, playback, and history commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/knochen666/alexa-cli-bak) <br>
-- [alexa-cli project homepage](https://github.com/buddyh/alexa-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that operate Alexa devices and smart-home endpoints; security guidance calls for explicit user confirmation for sensitive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can propose commands that affect locks, thermostats, plugs, alarms, or other smart-home devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before physical-device actions and use only accounts and devices approved for agent control.
+
+Risk: Alexa queries and history commands can expose personal account data such as calendar entries, conversation fragments, or recent activity.
+
+Mitigation: Avoid logging returned personal data and limit queries to information the user explicitly requested.
+
+Risk: The release installs an unofficial, unpinned `alexacli` dependency.
+
+Mitigation: Prefer a pinned or otherwise verified `alexacli` release before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/knochen666/skills/alexa-cli-bak)
+- [Alexa CLI upstream project](https://github.com/buddyh/alexa-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that control Alexa and smart-home devices or query Alexa account data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

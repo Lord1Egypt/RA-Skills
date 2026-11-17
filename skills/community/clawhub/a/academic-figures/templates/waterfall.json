@@ -1,0 +1,14 @@
+{
+  "_chart_type": "waterfall",
+  "_command": "python3 scripts/gen_figure.py -t waterfall -d templates/waterfall.json -o waterfall.png --cjk",
+  "_note": "场景：实体瘤 II 期试验（n=18），每例患者肿瘤靶病灶自基线最佳变化百分比（RECIST 1.1 评估）。经典瀑布形态=按变化降序；CR/PR/SD/PD 着色，-30%/+20% 阈值虚线，左下计数事实框。--show-values 可加柱端数值。",
+  "change": [-72.4, -65.1, -58.9, -52.0, -47.3, -41.8, -35.6, -32.1,
+             -28.7, -24.5, -19.8, -15.2, -8.9, -3.4, 0.8, 12.6, 25.3, 41.7],
+  "names": ["P001", "P002", "P003", "P004", "P005", "P006", "P007", "P008",
+            "P009", "P010", "P011", "P012", "P013", "P014", "P015", "P016",
+            "P017", "P018"],
+  "group": ["PR", "CR", "PR", "PR", "PR", "PR",
+            "PR", "PR", "SD", "SD", "SD", "SD", "SD", "SD", "SD", "SD", "PD", "PD"],
+  "pr_cut": -30.0,
+  "pd_cut": 20.0
+}

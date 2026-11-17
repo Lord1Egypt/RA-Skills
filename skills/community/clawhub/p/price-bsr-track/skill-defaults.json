@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "price-bsr-track",
+  "workflow": "watch",
+  "focus": "price_bsr",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots"
+  ]
+}

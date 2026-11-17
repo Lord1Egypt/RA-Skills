@@ -1,43 +1,59 @@
-## Description: <br>
-Remove password protection from a PDF by uploading it with its current password to the Solutions API, polling until completion, then returning a download URL for the unlocked PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove password protection from a PDF by uploading it, with its current password, to the Solutions API, polling until completion, then returning a download URL for the unlocked PDF.
 
-## Publisher: <br>
-[CrossServiceSolutions](https://clawhub.ai/user/CrossServiceSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[crossservicesolutions](https://clawhub.ai/user/crossservicesolutions)
 
-## Use Case: <br>
-External users and developers use this skill to remove known password protection from PDFs through the Cross-Service-Solutions API and receive a structured result with the unlocked file download URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Protected PDFs, their passwords, and unlocked outputs are sent to a third-party service. <br>
-Mitigation: Use only for documents approved for Cross-Service-Solutions processing, and avoid sensitive, regulated, or confidential PDFs unless privacy, retention, deletion, and access-control practices have been separately approved. <br>
-Risk: Unlocked PDF output is returned through a remote download URL. <br>
-Mitigation: Share and store the download URL only in approved channels and delete or restrict access to downloaded files according to the user's document handling policy. <br>
+## Use Case:
 
+External users and developers use this skill to remove password protection from PDFs they are authorized to unlock. The skill submits the PDF and current password to the Solutions API, then returns job status and a download URL for the unlocked file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CrossServiceSolutions/remove-password-from-pdf) <br>
-- [Cross-Service-Solutions publisher profile](https://clawhub.ai/user/CrossServiceSolutions) <br>
-- [Solutions API registration](https://login.cross-service-solutions.com/register) <br>
-- [Solutions API remove-password endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions/api/33) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON result with job status, file name, and download URL; guidance may include shell commands for the bundled CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PDF file, its current password, and a Solutions API key; returns a remote download URL when processing completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Protected PDFs and their current passwords are uploaded to a remote third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for PDFs you are allowed to upload, and avoid confidential documents unless the provider's retention and security terms are acceptable.
+
+Risk: The Solutions API key is a bearer credential that could be exposed through unsafe handling.
+
+Mitigation: Keep the API key in a protected environment variable or secret store, never echo or log it, and rotate it if exposure is suspected.
+
+Risk: The base URL can be overridden, which could redirect documents, passwords, and credentials away from the intended service.
+
+Mitigation: Use the default endpoint or restrict --base-url to a trusted HTTPS endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crossservicesolutions/skills/remove-password-from-pdf)
+- [Solutions API registration](https://login.cross-service-solutions.com/register)
+- [Solutions API remove-password endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions/api/33)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls]
+
+**Output Format:** [JSON containing job_id, status, download_url, file_name, and error details when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output may include API error, polling timeout, missing credential, or invalid input details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

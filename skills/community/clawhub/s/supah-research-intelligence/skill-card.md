@@ -1,43 +1,59 @@
-## Description: <br>
-Professional-grade web research with multi-source verification and credibility scoring. Cross-references multiple sources, scores reliability, and delivers verified intelligence for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional-grade web research with multi-source verification and credibility scoring that cross-references multiple sources, scores reliability, and delivers verified intelligence for AI agents.
 
-## Publisher: <br>
-[supah-based](https://clawhub.ai/user/supah-based) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supah-based](https://clawhub.ai/user/supah-based)
 
-## Use Case: <br>
-External agents and developers use this skill to research topics, verify claims, score source credibility, and generate research reports with citations through SUPAH's web research API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad research prompts can send user content to a third-party paid service and may incur automatic micropayments with unclear consent or pricing boundaries. <br>
-Mitigation: Use only with an x402 client that enforces per-call and total spending limits, confirm pricing with the publisher, and avoid submitting confidential claims, internal URLs, secrets, personal data, or proprietary research topics unless that disclosure is acceptable. <br>
-Risk: The SUPAH_API_BASE environment variable can direct requests to a different service endpoint. <br>
-Mitigation: Keep SUPAH_API_BASE set to a trusted HTTPS endpoint and review endpoint configuration before use. <br>
+## Use Case:
 
+External users and developers use this skill to run paid web research, fact verification, source credibility checks, and research report generation from an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supah-based/supah-research-intelligence) <br>
-- [SUPAH website](https://supah.ai) <br>
-- [SUPAH API endpoint](https://api.supah.ai) <br>
-- [x402 protocol](https://www.x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [CLI text output and Markdown-style research reports with source URLs and credibility or confidence scores] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a third-party HTTPS API and may incur x402 USDC micropayments up to the configured per-call maximum.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Research topics, claims, and URLs are sent to a paid remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for information that can be shared with the service provider, and avoid submitting sensitive or confidential material.
+
+Risk: The SUPAH_API_BASE environment variable can redirect requests to a different endpoint.
+
+Mitigation: Keep SUPAH_API_BASE unset for the default service, or set it only to a trusted HTTPS endpoint.
+
+Risk: x402 micropayments can incur per-call spending.
+
+Mitigation: Monitor payment activity and set agent-level spending limits before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supah-based/skills/supah-research-intelligence)
+- [SUPAH API endpoint](https://api.supah.ai)
+- [x402 documentation](https://www.x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Console text and markdown-style research summaries with citations, confidence scores, and source credibility fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid remote API calls via x402; outputs depend on the submitted topic, claim, or URL.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

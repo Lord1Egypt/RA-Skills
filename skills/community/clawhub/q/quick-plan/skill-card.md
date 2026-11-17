@@ -1,41 +1,54 @@
-## Description: <br>
-Quick Plan turns an implementation discussion into a concise, TDD-driven markdown plan when no finalized spec exists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick Plan turns an implementation discussion into a TDD-driven markdown plan when no finalized spec exists.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineering agents use Quick Plan to reconstruct intent from the current conversation, inspect relevant project conventions, and draft an implementation plan before any code execution begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate during casual planning requests and read project files to prepare a draft. <br>
-Mitigation: Use it when an implementation plan is intended, and review the reconstructed intent before relying on the draft. <br>
-Risk: The generated plan could encode incorrect assumptions about the user's intent or project conventions. <br>
-Mitigation: Review the plan before approving any save to `.beagle/plans/`, and revise unclear scope or acceptance criteria before execution. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to convert an ongoing feature discussion into a focused implementation plan when no reviewed spec exists. It reconstructs intent, checks for gaps, explores the codebase through scoped experts where available, and writes a markdown plan after approval.
 
-## Reference(s): <br>
-- [Quick Plan on ClawHub](https://clawhub.ai/anderskev/skills/quick-plan) <br>
-- [Fanout exploration brief](artifact/references/fanout-brief.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown implementation plan with task checklists, tests, commands, assumptions, and handoff guidance] <br>
-**Output Parameters:** [Conversation context, target slug or path, repository conventions, and explicit approval before saving the plan] <br>
-**Other Properties Related to Output:** [Writes a plan only after approval and does not execute the implementation tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A generated implementation plan can preserve incorrect assumptions from the conversation or code exploration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the draft plan before approving the final plan path, paying attention to assumptions, file references, and test commands.
+
+Risk: The skill reads the current conversation and relevant project files to reconstruct intent.
+
+Mitigation: Use it only in workspaces where that context is appropriate for the planning agent to read.
+
+## Reference(s):
+
+- [Quick Plan skill page](https://clawhub.ai/anderskev/skills/quick-plan)
+- [Fanout Exploration + Expert Subagent Brief](references/fanout-brief.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown plan with checklists, code or shell command snippets, and concise handoff guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the approved plan to .beagle/plans/<slug>/plan.md; does not execute the plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

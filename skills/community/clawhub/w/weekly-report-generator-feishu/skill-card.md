@@ -1,43 +1,60 @@
-## Description: <br>
-Generates AI-assisted weekly report Markdown from local Git history, work notes, and screenshots, then can send the report to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI-assisted weekly reports from local Git activity, user-provided work context, and screenshots, then can send the resulting report to Feishu.
 
-## Publisher: <br>
-[prayone](https://clawhub.ai/user/prayone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prayone](https://clawhub.ai/user/prayone)
 
-## Use Case: <br>
-Employees, developers, and individual contributors use this skill to turn local Git activity and optional screenshots into structured weekly status reports and Feishu updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly scan local Git history under PROJECT_ROOT and summarize work activity. <br>
-Mitigation: Set PROJECT_ROOT to a narrow intended folder and review the generated Markdown before sharing it. <br>
-Risk: The Feishu sender can transmit report content automatically and requires Feishu app credentials. <br>
-Mitigation: Move Feishu secrets out of the script, verify the recipient, and use scheduled sending only when unattended recurring reports are intended. <br>
+## Use Case:
 
+Employees, developers, and team leads use this skill to summarize weekly engineering work from local repositories and optional screenshots into a business-facing Markdown report. It can also help configure a Feishu workflow for sending the report after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/prayone/weekly-report-generator-feishu) <br>
-- [周报生成器功能介绍](周报生成器功能介绍.md) <br>
-- [安装和配置指南](安装和配置指南.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown report content with shell command and Feishu delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Feishu sender reads a report file and sends text content to a configured Feishu recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may scan local Git repositories and include private commit messages, project names, screenshots, or work details in a weekly report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against an explicit project allowlist and preview the generated Markdown before sharing it.
+
+Risk: The skill can send report contents to Feishu automatically after report generation.
+
+Mitigation: Require a clear user opt-in before sending and keep scheduled sending disabled until the workflow has an uninstall path.
+
+Risk: Feishu credentials are configured in the sending script.
+
+Mitigation: Keep credentials out of checked-in scripts and prefer environment variables or a local secret store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prayone/skills/weekly-report-generator-feishu)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu messages API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with shell command snippets and Feishu send status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local weekly-report-YYYYMMDD.md file and send report text to Feishu when configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

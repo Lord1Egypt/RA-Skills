@@ -34,6 +34,16 @@ EXIT CODES:
 EOF
 }
 
+require_option_value() {
+  local option="$1"
+  local value="${2-}"
+  if [[ -z "$value" ]] || [[ "$value" == --* ]]; then
+    echo "❌ Error: $option requires a value"
+    echo "Run with --help for usage"
+    exit 1
+  fi
+}
+
 # Validate that a value contains only safe characters for PlanetScale names
 # Allowed: alphanumeric, hyphens, underscores, dots
 validate_safe_name() {
@@ -54,18 +64,22 @@ ORG=""
 while [[ $# -gt 0 ]]; do
   case $1 in
     --database)
+      require_option_value "$1" "${2-}"
       DATABASE="$2"
       shift 2
       ;;
     --branch)
+      require_option_value "$1" "${2-}"
       BRANCH="$2"
       shift 2
       ;;
     --from)
+      require_option_value "$1" "${2-}"
       FROM="$2"
       shift 2
       ;;
     --org)
+      require_option_value "$1" "${2-}"
       ORG="$2"
       shift 2
       ;;

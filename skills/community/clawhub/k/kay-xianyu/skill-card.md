@@ -1,40 +1,50 @@
-## Description: <br>
-帮助用户在闲鱼平台发布和管理技能服务，包括标题优化、详细描述、价格设定及配图建议，提高曝光与成交率。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户在闲鱼平台发布和管理技能服务，包括标题优化、详细描述、价格设定及配图建议，提高曝光与成交率。
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and independent service providers use this skill to prepare Xianyu service listings with stronger titles, descriptions, pricing notes, image suggestions, and FAQ responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio examples or screenshots added to a listing may expose client names, logos, contact details, order records, or confidential deliverables. <br>
-Mitigation: Redact sensitive client and order information unless explicit permission has been granted. <br>
-Risk: Marketplace login steps can lead users to enter Taobao or Alipay credentials in the wrong place. <br>
-Mitigation: Enter credentials only in the official Xianyu app or trusted Taobao and Alipay login flows. <br>
+## Use Case:
 
+Chinese-speaking service providers and marketplace operators use this skill for concise guidance on preparing Xianyu service listings, including listing flow, title and description templates, pricing notes, image suggestions, and buyer communication practices.
 
-## Reference(s): <br>
-- [Xianyu web site](https://2.taobao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with listing templates and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance; no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Marketplace listings may include prohibited goods, restricted services, or unsupported promotional claims if users apply the templates without checking current Xianyu rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Xianyu marketplace rules before publishing and remove prohibited claims, restricted goods, and non-compliant wording from each listing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/kay-xianyu)
+- [Xianyu website](https://2.taobao.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown guidance with listing templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or automation; the skill provides manual marketplace listing guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

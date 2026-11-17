@@ -1,45 +1,54 @@
-## Description: <br>
-Publish technical docs with Mermaid diagrams, KaTeX math, and code highlighting. Persistent workspace, shareable links, versioning. Free. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents publish and maintain technical Markdown documents with diagrams, math, code highlighting, and shareable links.
 
-## Publisher: <br>
-[operator-auteng-ai](https://clawhub.ai/user/operator-auteng-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[operator-auteng-ai](https://clawhub.ai/user/operator-auteng-ai)
 
-## Use Case: <br>
-Developers and technical agents use this skill to publish rendered Markdown documentation, including diagrams, math, code examples, API specs, architecture notes, and research reports, to AutEng share links or persistent workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published or shared documents can be public and may expose sensitive content. <br>
-Mitigation: Review markdown for secrets, credentials, private keys, internal URLs, and confidential data before publishing or sharing. <br>
-Risk: Workspace operations use wallet signatures for authentication. <br>
-Mitigation: Use a dedicated low-risk wallet or signer for agent workloads and never provide private keys in agent chat. <br>
-Risk: The skill depends on the external @auteng/docs package and outbound HTTPS requests to AutEng services. <br>
-Mitigation: Verify the package and network destination before use in sensitive environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to publish, organize, update, and share technical documentation from an agent workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/operator-auteng-ai/auteng-docs) <br>
-- [Project homepage](https://github.com/operator-auteng-ai/docs) <br>
-- [AutEng Docs MCP server](https://auteng.ai/mcp/docs) <br>
-- [AutEng Docs API](https://auteng.ai/api/docs) <br>
-- [AutEng llms.txt](https://auteng.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, TypeScript examples, API endpoint tables, and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation-publishing instructions and examples; published AutEng documents may become public share links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: VERSION.txt and server release evidence) <br>
+Risk: Shared documents become public and may expose confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content before sharing; exclude secrets, credentials, and private internal information.
+
+Risk: Documents are sent to AutEng and workspace access relies on wallet signing.
+
+Mitigation: Confirm the material is appropriate to send to AutEng and use a signer that keeps private keys out of agent chat.
+
+## Reference(s):
+
+- [AutEng Docs project homepage](https://github.com/operator-auteng-ai/docs)
+- [AutEng API documentation](https://auteng.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, URLs]
+
+**Output Format:** [Markdown documents and share links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shared links display the latest document version and are public.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release metadata and VERSION.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Auto-log trades with context, track outcomes, generate calibration reports to improve trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-log trades with context, track outcomes, generate calibration reports to improve trading.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-External users and agents use this skill to sync Simmer prediction-market trade history, inspect recent trades, update market outcomes, export records, and generate win-rate, P&L, and calibration reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive trading records and ships with prefilled data/trades.json trade records. <br>
-Mitigation: Review or clear bundled trade data before relying on reports for a personal account, and treat exported CSVs and reasoning/context notes as sensitive records. <br>
-Risk: The skill uses SIMMER_API_KEY and can send authenticated requests to SIMMER_API_URL. <br>
-Mitigation: Use only a Simmer API key intended for this skill and keep SIMMER_API_URL unset unless the endpoint is deliberately trusted. <br>
+## Use Case:
 
+External users and developers use this skill to sync prediction-market trades, review recent history, update outcomes, export records, and generate daily, weekly, or monthly trading reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richducat/dolph-trade-journal) <br>
-- [Simmer API Base URL](https://api.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [CLI text reports, local JSON trade records, and optional CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY for API sync; stores trade data locally under data/trades.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.8) <br>
+Risk: Credential handling is under-scoped for a trading API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped read-only Simmer API key and avoid setting SIMMER_API_URL unless it points to a trusted HTTPS Simmer endpoint.
+
+Risk: The artifact ships populated trade history that may be stale or sensitive.
+
+Mitigation: Review, remove, or reset bundled data/trades.json before using the journal.
+
+Risk: Dependency and API-origin controls need publisher review.
+
+Mitigation: Remove the unused unpinned dependency and validate the API origin before sending credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-trade-journal)
+- [Simmer API](https://api.simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [CLI text reports, JSON trade records, and optional CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY for API sync; stores local trade history under data/trades.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog; artifact frontmatter says 1.1.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

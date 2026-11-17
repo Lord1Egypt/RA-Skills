@@ -1,0 +1,83 @@
+{
+ "content": [
+  {
+   "text": "Twenty years after Apollo 11, one of its crew: Earth is small and fragile, and the Moon is a direction. #apollo11 #moon #space",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-orbit-01"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-10-06T16:30:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "PUBLIC_TO_EVERYONE",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": false,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "contentOverride": [
+    {
+     "text": "Twenty years after Apollo 11, one of its crew: Earth is small and fragile, and the Moon is a direction. #apollo11 #moon #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-01"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-acct-orbit-instagram",
+   "postType": "REEL",
+   "contentOverride": [
+    {
+     "text": "Not a place, a direction. An Apollo 11 astronaut on Earth and the Moon, twenty years after he flew there.\n\nFull episode: link in bio.\n#apollo11 #moon #space",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-01"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "example-acct-orbit-youtube",
+   "title": "An Apollo 11 astronaut: the Moon is a direction, not a place (1989)",
+   "privacy": "public",
+   "madeForKids": false,
+   "tags": [
+    "apollo 11",
+    "moon",
+    "earth",
+    "space history"
+   ],
+   "contentOverride": [
+    {
+     "text": "An Apollo 11 astronaut in 1989 on Earth, the Moon, and why the Moon is a direction. #Shorts",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-01"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

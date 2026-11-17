@@ -1,42 +1,52 @@
-## Description: <br>
-Diagnose OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses OpenClaw node connection and pairing failures for Android, iOS, and macOS companion apps.
 
-## Publisher: <br>
-[ciklopentan](https://clawhub.ai/user/ciklopentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ciklopentan](https://clawhub.ai/user/ciklopentan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to diagnose OpenClaw companion app connectivity, route configuration, and device pairing or authentication failures across local, LAN, Tailscale, and public URL topologies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Troubleshooting commands can reveal OpenClaw auth tokens or device pairing state.
+
+Mitigation: Review command output before sharing logs and redact auth tokens, bootstrap tokens, device IDs, and request IDs.
+
+Risk: Approving, rotating, or re-approving devices or nodes can affect access to the OpenClaw gateway.
+
+Mitigation: Only approve current trusted request IDs and confirm the intended route and topology before changing pairing or token state.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw gateway route, pairing, and authentication failures across local, LAN, Tailscale, and public URL topologies. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Approving the wrong device or node could grant access to an unintended OpenClaw client. <br>
-Mitigation: Verify the current pending request ID and device identity before approving devices or nodes. <br>
-Risk: Authentication tokens may be displayed during token repair or drift recovery. <br>
-Mitigation: Treat displayed auth tokens as sensitive and avoid sharing them in logs, screenshots, or chat. <br>
-Risk: Changing routes before confirming topology can lead to misleading troubleshooting or unreachable gateways. <br>
-Mitigation: Confirm the intended topology first, then apply one targeted route fix and verify the relevant route selectors once. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ciklopentan/node-connect-smith) <br>
+**Other Properties Related to Output:** [Sequential troubleshooting flow with at most one targeted route or configuration fix before re-checking.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Proposes a sequential troubleshooting path and targeted OpenClaw configuration checks.] <br>
+1.0.2 (source: server release evidence and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

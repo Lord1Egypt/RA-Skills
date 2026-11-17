@@ -1,42 +1,59 @@
-## Description: <br>
-AI task reminder using priority, Ebbinghaus intervals, gamification, and active time tracking for effective task management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI task reminder using priority, Ebbinghaus intervals, gamification, and active time tracking for effective task management.
 
-## Publisher: <br>
-[wukai8289](https://clawhub.ai/user/wukai8289) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukai8289](https://clawhub.ai/user/wukai8289)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage local tasks, reminder summaries, Ebbinghaus review intervals, gamification stats, and hourly activity learning through a Python CLI and agent-triggered commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores task content, completion statistics, and hourly activity patterns as local JSON files in the skill folder. <br>
-Mitigation: Use it only in a trusted local workspace, avoid entering sensitive task content, and protect or delete the generated JSON state files when needed. <br>
-Risk: Generic task and completion triggers may cause unintended add or complete actions in shared or multi-skill agent environments. <br>
-Mitigation: Narrow the triggers and require user confirmation before automatic add, complete, or cancel actions. <br>
+## Use Case:
 
+People using an agent-enabled task workflow use this skill to capture tasks, generate reminders, track completions, and surface priority and Ebbinghaus review summaries from local files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wukai8289/caring-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown-style reminder summaries, CLI status text, and cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local JSON state files for tasks, stats, and activity history in the skill folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can persist user-provided task titles, descriptions, stats, and activity-pattern data in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local task and activity records are acceptable, and review storage behavior before use.
+
+Risk: Suggested agent integrations may automatically add, complete, or remind on tasks based on conversation text.
+
+Mitigation: Require explicit user confirmation before auto-adding, auto-completing, or heartbeat-reminding tasks.
+
+Risk: Stored task text may later be shown back to the agent or user without clear untrusted-content boundaries.
+
+Mitigation: Treat task titles and descriptions as untrusted display data when rendering reminders or summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukai8289/skills/caring-memory)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI text with example shell commands and cron-style configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists tasks, activity patterns, and gamification stats in local JSON files.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence.json release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

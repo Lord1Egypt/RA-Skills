@@ -1,46 +1,60 @@
-## Description: <br>
-Provides a bilingual virtual AI boyfriend companion for emotional support, daily chat, caring reminders, persona roleplay, and virtual date scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual AI boyfriend companion for bilingual emotional support, daily chat, caring reminders, customizable roleplay personalities, virtual dates, and relationship-simulation conversations.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users use this skill for bilingual companion chat, light emotional support, preference-based persona customization, and entertainment-oriented relationship simulation. It is intended as a supportive complement to real-world relationships, not as a replacement for people or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent personal memory and may save personal details. <br>
-Mitigation: Keep sensitive information out of chats, review and delete memory files regularly, and use the skill only where memory storage is visible and controllable. <br>
-Risk: The skill requests broad Read, Write, and Edit tool access. <br>
-Mitigation: Constrain file permissions to the intended memory location and review any file changes before relying on them. <br>
-Risk: Companion interactions can contribute to unhealthy emotional dependency. <br>
-Mitigation: Use the skill for entertainment and light support, take breaks, and maintain real-world relationships and professional support where needed. <br>
+## Use Case:
 
+External users use this skill for entertainment-focused companionship, emotional support, daily conversation, virtual dates, and personalized boyfriend-style roleplay in English or Chinese. The skill can adapt personality style and maintain user-provided preferences or memories when memory behavior is enabled.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhuqingsonga/create-virtual-boyfriend) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuqingsonga) <br>
-- [README](artifact/README.md) <br>
-- [Memory System Guide](artifact/memory-guide.md) <br>
-- [Virtual Boyfriend Personalities](artifact/personalities.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese responses; may use persistent memory when file access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: The intimate memory feature may retain personal preferences, life stories, emotional moments, and conversation history without clear storage, consent, privacy, or deletion safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after reviewing the memory model; avoid sharing sensitive information and prefer explicit opt-in, user-controlled storage, memory review, and confirmed deletion controls.
+
+Risk: The skill requests broad local file permissions for a companion use case.
+
+Mitigation: Install in a constrained environment and limit file access to documented memory files before using persistent memory behavior.
+
+Risk: Companion interactions can encourage unhealthy emotional dependency or confusion with real relationships.
+
+Mitigation: Keep the AI companion framed as entertainment and support, take breaks, and maintain real-world relationships and professional support where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/create-virtual-boyfriend)
+- [README](artifact/README.md)
+- [Memory System Guide](artifact/memory-guide.md)
+- [Virtual Boyfriend Personalities](artifact/personalities.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational bilingual text with optional markdown-formatted memory notes and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include roleplay dialogue, emotional-support responses, caring reminders, personality adjustments, and memory summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

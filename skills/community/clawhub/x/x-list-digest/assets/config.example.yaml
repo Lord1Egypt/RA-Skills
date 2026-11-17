@@ -1,0 +1,21 @@
+version: 2
+timezone: Asia/Bangkok
+default_window_hours: 24
+default_rhythm: conservative
+default_max_tweets: 500
+default_output: both
+# Add your authorized list URL before running.
+lists: {}
+browser:
+  backend: host
+# Enable only after choosing your native CLI profile and destination.
+# feishu:
+#   backend: local-cli
+#   executable: lark-cli
+#   identity: user
+#   profile: YOUR_PROFILE
+#   root_folder_token: YOUR_FOLDER_TOKEN
+#   send_message: false
+#   daily_mode: combined
+feishu: null
+cron_jobs: []

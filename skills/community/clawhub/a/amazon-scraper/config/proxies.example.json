@@ -1,0 +1,6 @@
+{
+  "_comment": "Copy to proxies.json and fill in. proxies.json is gitignored and must never be committed, baked into an image, or shared. Prefer passing AMAZON_PROXIES / AMAZON_PROXY_FILE at runtime instead of writing this file at all.",
+  "proxies": [
+    "http://USERNAME:PASSWORD@ENTRY_HOST:PORT"
+  ]
+}

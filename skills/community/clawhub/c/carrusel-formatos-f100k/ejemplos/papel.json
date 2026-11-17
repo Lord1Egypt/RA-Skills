@@ -1,0 +1,160 @@
+{
+  "plantilla": "papel",
+  "handle": "@tuhandle",
+  "slides": [
+    {
+      "variante": "libreta",
+      "alinear": "centro",
+      "bloques": [
+        {
+          "tipo": "titulo",
+          "texto": "Cómo pedirle a Claude que tu perfil llegue a ==+1 millón de personas=="
+        },
+        {
+          "tipo": "texto",
+          "texto": "(aunque tengas pocos seguidores y cero diseño)"
+        }
+      ]
+    },
+    {
+      "variante": "espiral",
+      "bloques": [
+        {
+          "tipo": "titulo",
+          "texto": "__Atajos__ que te ahorran una hora"
+        },
+        {
+          "tipo": "chuleta",
+          "centro": "Ctrl",
+          "filas": [
+            [
+              "Ctrl + A",
+              "Seleccionar todo"
+            ],
+            [
+              "Ctrl + C",
+              "Copiar"
+            ],
+            [
+              "Ctrl + V",
+              "Pegar"
+            ],
+            [
+              "Ctrl + X",
+              "Cortar"
+            ],
+            [
+              "Ctrl + Z",
+              "Deshacer"
+            ],
+            [
+              "Ctrl + Y",
+              "Rehacer"
+            ],
+            [
+              "Ctrl + S",
+              "Guardar"
+            ],
+            [
+              "Ctrl + P",
+              "Imprimir"
+            ],
+            [
+              "Ctrl + F",
+              "Buscar"
+            ],
+            [
+              "Ctrl + H",
+              "Reemplazar"
+            ],
+            [
+              "Ctrl + N",
+              "Nuevo documento"
+            ],
+            [
+              "Ctrl + T",
+              "Nueva pestaña"
+            ],
+            [
+              "Ctrl + W",
+              "Cerrar pestaña"
+            ],
+            [
+              "Ctrl + L",
+              "Barra de direcciones"
+            ],
+            [
+              "Ctrl + Mayús + T",
+              "Reabrir pestaña"
+            ],
+            [
+              "Ctrl + B",
+              "Negrita"
+            ],
+            [
+              "Ctrl + I",
+              "Itálica"
+            ],
+            [
+              "Ctrl + U",
+              "Subrayado"
+            ],
+            [
+              "Ctrl + K",
+              "Insertar enlace"
+            ],
+            [
+              "Ctrl + Inicio",
+              "Ir al principio"
+            ],
+            [
+              "Ctrl + Fin",
+              "Ir al final"
+            ],
+            [
+              "Ctrl + +",
+              "Acercar zoom"
+            ],
+            [
+              "Ctrl + −",
+              "Alejar zoom"
+            ],
+            [
+              "Ctrl + 0",
+              "Zoom normal"
+            ],
+            [
+              "Ctrl + Mayús + N",
+              "Ventana de incógnito"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "variante": "agenda",
+      "bloques": [
+        {
+          "tipo": "texto",
+          "texto": "Sube una historia con una foto tuya."
+        },
+        {
+          "tipo": "texto",
+          "texto": "Agrega el sticker «Regalo» de Instagram."
+        },
+        {
+          "tipo": "check",
+          "items": [
+            "Una asesoría de diagnóstico.",
+            "Un recurso gratuito.",
+            "Una clase."
+          ]
+        },
+        {
+          "tipo": "nota",
+          "texto": "Lo importante no es el regalo: ==es empezar una conversación.=="
+        }
+      ]
+    }
+  ]
+}

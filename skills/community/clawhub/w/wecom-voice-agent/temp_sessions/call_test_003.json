@@ -1,0 +1,13 @@
+{
+  "call_id": "test_003",
+  "userid": "wangwu",
+  "direction": "outbound",
+  "state": "ending",
+  "confidence": 0.0,
+  "asr_text": "",
+  "pending_confirmation": "",
+  "history": [],
+  "start_time": 1784103260.4337938,
+  "last_activity": 1784103261.9357834,
+  "turn_count": 1
+}

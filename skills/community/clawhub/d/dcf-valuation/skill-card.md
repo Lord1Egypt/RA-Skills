@@ -1,43 +1,58 @@
-## Description: <br>
-DCF Valuation helps agents produce ten-year company valuation analysis using traditional discounted cash flow and PE exit methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents create ten-year valuation reports using traditional DCF and PE-exit methods, supported by qualitative business analysis.
 
-## Publisher: <br>
-[ianzheng001](https://clawhub.ai/user/ianzheng001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ianzheng001](https://clawhub.ai/user/ianzheng001)
 
-## Use Case: <br>
-External users and analysts use this skill to structure company valuation work, collect current financial inputs, compare conservative, base, and optimistic scenarios, and produce a Markdown DCF analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Valuation outputs may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as analytical support, review assumptions independently, and consult a qualified advisor before making investment decisions. <br>
-Risk: Generated reports may contain financial assumptions or company research that should remain private. <br>
-Mitigation: Store reports only in approved local or workspace locations and avoid Feishu sync unless the destination workspace is appropriate for the content. <br>
-Risk: DCF results can be materially wrong if financial inputs or market prices are stale. <br>
-Mitigation: Verify the latest reporting period, current market data, and scenario assumptions before relying on the calculated output. <br>
+## Use Case:
 
+External users, developers, and finance-focused analysts use this skill to gather company inputs, assess qualitative business quality, run DCF and PE-exit scenarios, and draft a Markdown valuation report. Outputs are for reference and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [Qualitative analysis framework](references/qualitative.md) <br>
-- [ClawHub release page](https://clawhub.ai/ianzheng001/dcf-valuation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown valuation report with scenario tables and optional shell command examples for local calculation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Markdown valuation reports containing financial assumptions and company research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial valuation reports can be misleading when source data is stale or assumptions are subjective.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the latest annual report and market data, document key assumptions, and treat the generated report as reference material rather than investment advice.
+
+Risk: Optional Feishu sync can send investment notes or company analysis to a third-party cloud service.
+
+Mitigation: Keep Feishu sync disabled for confidential notes unless the user explicitly accepts that cloud transfer.
+
+Risk: Mutable install sources can differ from the version reviewed for release.
+
+Mitigation: Install from a reviewed pinned version when possible.
+
+## Reference(s):
+
+- [DCF qualitative analysis framework](references/qualitative.md)
+- [ClawHub skill page](https://clawhub.ai/ianzheng001/skills/dcf-valuation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown valuation report with calculation tables, qualitative analysis, and scenario judgments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local calculator prints traditional DCF and PE-exit scenario results and the skill may save Markdown reports to a user workspace path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

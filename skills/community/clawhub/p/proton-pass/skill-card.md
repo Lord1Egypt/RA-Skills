@@ -1,44 +1,67 @@
-## Description: <br>
-Manage Proton Pass vaults, items, passwords, SSH agent integration, and secret injection workflows through Proton Pass CLI guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Proton Pass vaults, items, passwords, SSH agent integration, and secret injection into applications through Proton Pass CLI workflows.
 
-## Publisher: <br>
-[KakatkarAkshay](https://clawhub.ai/user/KakatkarAkshay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kakatkarakshay](https://clawhub.ai/user/kakatkarakshay)
 
-## Use Case: <br>
-Developers, engineers, and operators use this skill to work with Proton Pass CLI for vault and item management, SSH key workflows, password generation, TOTP access, and secret injection into commands or templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that can view, share, delete, transfer, import, or inject sensitive Proton Pass secrets and SSH keys. <br>
-Mitigation: Require explicit user approval before running destructive, sharing, transfer, SSH-key import, item-viewing, or secret-injection commands. <br>
-Risk: Plaintext credential environment variables and rendered secret files can expose sensitive values through logs, shell history, or committed files. <br>
-Mitigation: Prefer file-based credential inputs, keep secret masking enabled, avoid committing rendered files, and do not log resolved secrets. <br>
-Risk: Installer commands fetched from remote URLs can introduce supply-chain risk if the source is not verified. <br>
-Mitigation: Verify the installer source or use a trusted package manager before installing Proton Pass CLI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KakatkarAkshay/proton-pass) <br>
-- [Proton Pass CLI install script for macOS and Linux](https://proton.me/download/pass-cli/install.sh) <br>
-- [Proton Pass CLI install script for Windows](https://proton.me/download/pass-cli/install.ps1) <br>
-- [Proton Pass account security settings](https://account.proton.me/pass/security) <br>
+## Use Case:
 
+Developers and operators use this skill to manage Proton Pass vaults, credentials, SSH keys, password generation, secret references, and application secret injection from an agent-assisted CLI workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and CLI usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing operational guidance; commands may affect secrets, vault contents, SSH keys, and local configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer examples can execute unverified remote code.
+
+Mitigation: Prefer a package-manager installation or a verified, pinned installer before running setup commands.
+
+Risk: Temporary passphrase-free SSH private keys can expose credentials.
+
+Mitigation: Avoid copying private keys into /tmp; when temporary files are unavoidable, keep permissions strict and securely remove them immediately.
+
+Risk: Generated secret files can be left readable by unintended users.
+
+Mitigation: Keep generated secret files at 0600 or stricter.
+
+Risk: Unmasked output or long-lived environment variables can leak secrets.
+
+Mitigation: Avoid --no-masking and long-lived environment-variable secrets except in tightly controlled automation.
+
+Risk: Auto-created SSH identities can sync keys into an unintended vault or socket.
+
+Mitigation: Use auto-create SSH identities only with a dedicated vault and SSH agent socket intended for synchronization.
+
+## Reference(s):
+
+- [ClawHub Proton Pass CLI skill page](https://clawhub.ai/kakatkarakshay/skills/proton-pass)
+- [Proton Pass CLI macOS/Linux installer](https://proton.me/download/pass-cli/install.sh)
+- [Proton Pass CLI Windows installer](https://proton.me/download/pass-cli/install.ps1)
+- [Proton Pass account security settings](https://account.proton.me/pass/security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, PowerShell, JSON, YAML, and environment-variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may retrieve, inject, or store secrets and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

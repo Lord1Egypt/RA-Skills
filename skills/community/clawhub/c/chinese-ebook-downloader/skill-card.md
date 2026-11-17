@@ -1,46 +1,59 @@
-## Description: <br>
-Downloads Chinese-language ebooks from multiple sources with automatic fallback, file-host handling, archive extraction, and EPUB-to-PDF conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Ebook Downloader helps agents find and download Chinese-language ebooks from multiple sources with automatic fallback, optional EPUB-to-PDF conversion, and support for PDF, EPUB, MOBI, and AZW3 formats.
 
-## Publisher: <br>
-[lb1121](https://clawhub.ai/user/lb1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lb1121](https://clawhub.ai/user/lb1121)
 
-## Use Case: <br>
-External users and developers use this skill to search for Chinese-language ebooks, download available formats, extract archives, and convert EPUB or MOBI files to PDF for downstream reading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates downloads from untrusted ebook and file-hosting sites and may extract remote archives. <br>
-Mitigation: Run it in a sandbox or dedicated empty output folder, and scan downloaded files before opening or sharing them. <br>
-Risk: Downloaded files may overwrite or collide with existing local files. <br>
-Mitigation: Use a separate output directory for each run and review generated paths before running batch workflows. <br>
-Risk: Book queries and download behavior are exposed to third-party sites. <br>
-Mitigation: Avoid sensitive queries and assume external source and file-hosting services can observe searches and downloads. <br>
-Risk: Downloaded content may have copyright or source-trust concerns. <br>
-Mitigation: Use the skill only for content the user is authorized to access and verify the trustworthiness of each source. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to locate and download Chinese-language ebooks, including batch workflows and format conversion when EPUB content needs PDF output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lb1121/chinese-ebook-downloader) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create downloaded ebook, archive, EPUB, MOBI, AZW3, TXT, or PDF files in a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill contacts third-party ebook and file-hosting sites, which can reveal requested titles and file-host passwords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content the user is authorized to access, avoid broad auto-trigger use, and use a unique throwaway file-host password.
+
+Risk: The skill downloads and extracts untrusted files and may overwrite or delete local outputs.
+
+Mitigation: Run the skill in a sandbox with limited filesystem and network access and review output paths before batch runs.
+
+Risk: The skill converts untrusted EPUB content with weak sandboxing.
+
+Mitigation: Convert files only in an isolated environment and treat converted documents as untrusted until reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lb1121/skills/chinese-ebook-downloader)
+- [Playwright documentation](https://playwright.dev/)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated local ebook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, overwrite, delete, extract, or convert local ebook files during scripted workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

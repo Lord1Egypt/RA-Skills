@@ -10,7 +10,7 @@ How to verify PAI-EAS service deployment success.
 aliyun eas describe-service \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 **Expected result**:
@@ -24,7 +24,7 @@ for i in $(seq 1 6); do
   STATUS=$(aliyun eas describe-service \
     --cluster-id cn-hangzhou \
     --service-name <service-name> \
-    --user-agent AlibabaCloud-Agent-Skills | jq -r '.Status')
+    --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Status')
   
   case $STATUS in
     Running) echo "✅ Service ready"; break ;;
@@ -43,7 +43,7 @@ done
 aliyun eas describe-service \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills | jq '{
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq '{
     Status: .Status,
     InternetEndpoint: .InternetEndpoint,
     IntranetEndpoint: .IntranetEndpoint,
@@ -83,7 +83,7 @@ If service startup fails, check events:
 aliyun eas describe-service-event \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ---
@@ -95,7 +95,7 @@ aliyun eas describe-service-event \
 ```bash
 aliyun aiworkspace get-image \
   --image-id <image-id> \
-  --user-agent AlibabaCloud-Agent-Skills | jq '.EasConfig'
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq '.EasConfig'
 ```
 
 ### Verify Resource Config
@@ -103,7 +103,7 @@ aliyun aiworkspace get-image \
 ```bash
 aliyun eas describe-machine-spec \
   --cluster-id cn-hangzhou \
-  --user-agent AlibabaCloud-Agent-Skills | jq ".InstanceMetas[] | select(.InstanceType == \"<instance-type>\")"
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq ".InstanceMetas[] | select(.InstanceType == \"<instance-type>\")"
 ```
 
 ### Verify Storage Config
@@ -137,7 +137,7 @@ Service invocation requires Token authentication. Get from console service detai
 aliyun eas describe-service \
   --cluster-id <region> \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills | jq -r '.Token'
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Token'
 ```
 
 ### Shared Gateway Invocation
@@ -206,7 +206,7 @@ curl "http://<endpoint>/v1/chat/completions" \
 aliyun eas describe-service \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills | jq '{Status, Message, Reason}'
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq '{Status, Message, Reason}'
 ```
 
 ### View Service Logs
@@ -215,7 +215,7 @@ aliyun eas describe-service \
 aliyun eas describe-service-log \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### Check Resource Config

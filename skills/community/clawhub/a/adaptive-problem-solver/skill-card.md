@@ -1,43 +1,53 @@
-## Description: <br>
-Detects rigid security or permission limits and generates multiple adaptive, user-tailored alternative solutions for problem-solving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects rigid security, permission, skill, or complexity limits and generates multiple adaptive, user-tailored alternative solutions for problem-solving.
 
-## Publisher: <br>
-[zs15600770520](https://clawhub.ai/user/zs15600770520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zs15600770520](https://clawhub.ai/user/zs15600770520)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn blocked or overly rigid responses into structured alternative plans, such as step-by-step guides, scripts, local simulations, and configuration guidance. It is intended for situations involving security constraints, permission limits, user skill gaps, or technical complexity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose alternatives after refusals, permission limits, or safety blocks, including host-level commands. <br>
-Mitigation: Install only when that behavior is desired, and require human review and authorization before running any host-machine command, elevated-privilege step, environment-variable handling, or generated script. <br>
-Risk: Local history, profile, and intervention logs may capture operational details from use. <br>
-Mitigation: Avoid entering secrets or sensitive operational details, and periodically clear or disable local history, profile, and log files when using the wrappers. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn blocked or overly rigid task responses into practical alternative plans, such as step-by-step guidance, safer local simulations, simplified scripts, or multiple implementation paths. It is intended for workflows where the user still reviews risks and chooses whether to proceed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zs15600770520/adaptive-problem-solver) <br>
-- [Publisher profile](https://clawhub.ai/user/zs15600770520) <br>
-- [Artifact skill description](artifact/SKILL.md) <br>
-- [Artifact usage guide](artifact/USAGE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured options, inline code, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local history, profile, and intervention log files when used through the included JavaScript wrappers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is designed to respond to safety or permission refusals by suggesting workaround paths, including host commands or privilege-related options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated workaround against the applicable safety, permission, and operational policy before execution; prefer lower-risk guidance, simulations, or user-approved manual steps.
+
+Risk: The artifact stores triggering prompt excerpts, solution history, and user preferences in local plaintext files.
+
+Mitigation: Avoid using it with secrets or sensitive operational details unless logging, retention, and access controls are changed.
+
+## Reference(s):
+
+- [Adaptive Problem Solver on ClawHub](https://clawhub.ai/zs15600770520/skills/adaptive-problem-solver)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured options, decision guidance, and inline code or shell commands when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked alternatives, risk labels, estimated effort, implementation steps, learning reports, and local user preference records.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

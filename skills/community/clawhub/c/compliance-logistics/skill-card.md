@@ -1,42 +1,56 @@
-## Description: <br>
-Helps cross-border e-commerce sellers check export certifications, labeling, packaging, testing, restrictions, customs-clearance needs, detainment response, and compliance gaps for eight destination markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+货被扣了、被退回了、平台下架了？输入产品+目的国，一分钟看清出口认证/标签/包装/测试/限制全套要求，覆盖8大目标市场。适用于用户询问"货被海关扣了"、"清关需要什么文件"、"怎么避免扣货"等场景。
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-External sellers, marketplace operators, and logistics/compliance teams use this skill to get fast reference checklists for export certifications, labels, packaging, testing, restrictions, clearance documents, detained-goods response, and multi-country requirement comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trade, customs, certification, and marketplace requirements can change frequently, so stale guidance may mislead a shipment or listing decision. <br>
-Mitigation: Provide a specific product category and destination country, then verify current requirements with official authorities, a customs broker, or a certification provider before relying on the output. <br>
-Risk: The skill provides compliance reference material and cannot replace product-specific customs or legal advice. <br>
-Mitigation: Use the output as a checklist for follow-up review, especially for detained goods, regulated categories, HS-code-dependent tariffs, medical devices, dangerous goods, food, drugs, and cosmetics. <br>
+## Use Case:
 
+External cross-border e-commerce sellers and logistics operators use this skill to get Chinese-language export compliance, certification, labeling, packaging, testing, customs-detainment, and market-comparison guidance for supported destination markets.
 
-## Reference(s): <br>
-- [Logistics data matrix](references/logistics-data.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sheyuy/compliance-logistics) <br>
-- [Server-resolved GitHub provenance](https://github.com/Sheyuy/compliance-skills/tree/main/compliance-logistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown checklists, comparison tables, emergency guidance, and JSON-shaped action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers US, UK, Germany, Estonia, Singapore, Japan, Australia, and Hong Kong; outputs are reference guidance, not legal or customs advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.2) <br>
+Risk: Regulatory guidance may be incomplete or outdated for a specific product, destination, platform, or shipment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current requirements with official authorities, a testing lab, platform policy, or a customs broker before filing registrations, changing labels, or shipping goods.
+
+Risk: The skill is a reference workflow and does not replace formal customs advice.
+
+Mitigation: Use outputs as a planning checklist and seek professional review for customs filings, detained goods, regulated product categories, or high-value shipments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sheyuy/skills/compliance-logistics)
+- [Server-Resolved GitHub Source](https://github.com/Sheyuy/compliance-skills/tree/main/compliance-logistics)
+- [Logistics Data Matrix](artifact/references/logistics-data.md)
+- [Response Schema](artifact/examples/logistics.response.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Chinese-language Markdown guidance with structured tables and optional JSON-shaped next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compliance scores, requirement gaps, emergency customs steps, country comparisons, and prioritized nextActions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,72 @@
-## Description: <br>
-Manage Alibaba Cloud Flink VVP instances and namespaces through create and query operations only, including regions, zones, tags, and namespace lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Flink VVP instances and namespaces through create/query operations only, including region, zone, namespace, and tag queries in Chinese or English while rejecting update/delete, Flink SQL/job, and unrelated cloud-service requests.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to create or query Alibaba Cloud Flink VVP instances, namespaces, regions, zones, and tags through a scoped wrapper workflow. It is not intended for Flink SQL, job execution, update/delete operations, or unrelated Alibaba Cloud services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create billable Alibaba Cloud Flink resources. <br>
-Mitigation: Use a dedicated least-privilege RAM role or user and review every create command before providing the required confirmation flag. <br>
-Risk: Cloud credentials could be exposed or overprivileged if handled manually. <br>
-Mitigation: Use the default credential chain or RAM roles, avoid plaintext AccessKey or SecretKey values in prompts and outputs, and apply only the documented Flink RAM actions. <br>
-Risk: Requests outside the supported create/query scope could lead to inappropriate cloud operations or misleading results. <br>
-Mitigation: Limit use to Flink VVP instance and namespace create/query workflows, reject update/delete, Flink SQL/job, and unrelated cloud-service requests, and verify create outcomes with read-back checks. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to create and query Alibaba Cloud Flink VVP instances and namespaces through a constrained wrapper script with explicit parameter validation, confirmation gates, and read-back verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-flink-instance-manage) <br>
-- [Quick Start](references/quick-start.md) <br>
-- [Core Execution Flow](references/core-execution-flow.md) <br>
-- [Command Templates](references/command-templates.md) <br>
-- [Parameter Validation](references/parameter-validation.md) <br>
-- [Required Confirmation Model](references/required-confirmation-model.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Alibaba Cloud Flink OpenAPI overview](https://help.aliyun.com/zh/flink/realtime-flink/developer-reference/api-foasconsole-2021-10-28-overview) <br>
-- [Alibaba Cloud Flink OpenAPI RAM actions](https://help.aliyun.com/zh/flink/realtime-flink/developer-reference/api-foasconsole-2021-10-28-ram) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Create operations require explicit confirmation and read-back verification; query operations return JSON with success, operation, data, and request_id fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill can initiate paid Alibaba Cloud Flink instance and namespace creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the final command, region, resource size, billing impact, and --confirm flag before any create operation, then verify the result with read-back queries.
+
+Risk: Broad cloud setup guidance can distract from the Flink-only operating scope.
+
+Mitigation: Use only the documented Flink wrapper commands for create/query work and avoid unrelated ECS, plugin, or non-Flink examples.
+
+Risk: Overbroad credentials could allow more cloud actions than the skill needs.
+
+Mitigation: Use a RAM identity limited to the listed stream actions and rely on the default credential chain without exposing plaintext access keys.
+
+Risk: Optional CLI installation or diagnostics can introduce dependency or supply-chain uncertainty.
+
+Mitigation: Prefer a pinned and verified Aliyun CLI installation, or skip optional CLI setup when the Python wrapper and existing credentials are sufficient.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/sdk-team/skills/alibabacloud-flink-instance-manage)
+- [References Index](references/README.md)
+- [Quick Start](references/quick-start.md)
+- [Core Execution Flow](references/core-execution-flow.md)
+- [Command Templates](references/command-templates.md)
+- [Parameter Validation Rules](references/parameter-validation.md)
+- [Required Confirmation Model](references/required-confirmation-model.md)
+- [Output Handling](references/output-handling.md)
+- [RAM Policies for Flink Instance Operations](references/ram-policies.md)
+- [Related APIs and Command Mapping](references/related-apis.md)
+- [Alibaba Cloud Flink OpenAPI RAM actions](https://help.aliyun.com/zh/flink/realtime-flink/developer-reference/api-foasconsole-2021-10-28-ram)
+- [Alibaba Cloud Flink OpenAPI overview](https://help.aliyun.com/zh/flink/realtime-flink/developer-reference/api-foasconsole-2021-10-28-overview)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Create operations require --confirm and read-back verification; command failures return JSON diagnostics and exit code 1.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

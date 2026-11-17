@@ -1,40 +1,53 @@
-## Description: <br>
-Use the `clawmonitor` CLI/TUI to inspect OpenClaw sessions, model health, token usage, and gateway service health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the `clawmonitor` CLI/TUI to inspect OpenClaw sessions, model health, token usage, and gateway service health.
 
-## Publisher: <br>
-[openclawq](https://clawhub.ai/user/openclawq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawq](https://clawhub.ai/user/openclawq)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local OpenClaw sessions, diagnose stalled or failed delivery, check model/provider health, review token usage, and summarize service-level issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local ClawMonitor commands that read OpenClaw state from the host. <br>
-Mitigation: Install and run it only on hosts where ClawMonitor access to local OpenClaw state is intended. <br>
-Risk: `clawmonitor init` writes configuration, and `clawmonitor nudge` sends a message into a selected session. <br>
-Mitigation: Treat initialization as a setup action and use nudge only when intentionally requesting progress from that session. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw session state, troubleshoot delivery or feedback issues, check model/provider health, review token usage windows, and decide when to export reports or nudge a running session.
 
-## Reference(s): <br>
-- [Claw Monitor skill page](https://clawhub.ai/openclawq/claw-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and diagnostic summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers redacted Markdown reports and avoids raw gateway logs unless requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Installing or running `clawmonitor` reads local OpenClaw session state and depends on a trusted package source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only from a trusted source, preferably in an isolated environment, and run it on the host where OpenClaw state is expected.
+
+Risk: The `nudge` command sends a progress request into a running session.
+
+Mitigation: Use `nudge` only when the user intends to prompt that specific session for progress.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclawq/skills/claw-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended `clawmonitor` CLI commands, status summaries, report guidance, and caution around active session nudges.]
+
+## Skill Version(s):
+
+0.1.3 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

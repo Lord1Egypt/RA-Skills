@@ -1,42 +1,57 @@
-## Description: <br>
-Monitor any service usage dashboard and alert when a configured threshold is reached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor any service usage dashboard and alert when threshold is reached. User-configurable URL and threshold.
 
-## Publisher: <br>
-[strongking666](https://clawhub.ai/user/strongking666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[strongking666](https://clawhub.ai/user/strongking666)
 
-## Use Case: <br>
-Developers and operators use this skill to configure local monitoring for service usage or quota dashboards and receive alerts when usage reaches a chosen percentage threshold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dashboard URLs, local configuration, and usage logs may reveal account-specific URLs or usage patterns. <br>
-Mitigation: Use stable dashboard URLs without tokens, session IDs, API keys, or sensitive query strings, and keep config.json and usage-log.md out of public repositories, screenshots, shared folders, and broad backups. <br>
+## Use Case:
 
+Developers and operators use this skill to configure an agent-assisted check for service usage or quota dashboards and generate alerts when a configured usage threshold is reached.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/strongking666/usage-monitor) <br>
-- [README](artifact/README.md) <br>
-- [Install Guide](artifact/INSTALL.md) <br>
-- [User Guide](artifact/USER-GUIDE.md) <br>
-- [Configuration Schema](artifact/config.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update a local usage-log.md file when the monitor is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and README) <br>
+Risk: Configured dashboard URLs may include sensitive account, session, token, signature, or query-string data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stable HTTPS dashboard URLs that do not contain secrets, and avoid sharing alert messages with the full URL unless every recipient is authorized to see it.
+
+Risk: The generated usage log can store the configured panel URL and usage details locally.
+
+Mitigation: Keep config.json and usage-log.md out of source control and add repository-specific .gitignore entries before running the skill in a project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/strongking666/skills/usage-monitor)
+- [README](artifact/README.md)
+- [Installation guide](artifact/INSTALL.md)
+- [User guide](artifact/USER-GUIDE.md)
+- [Configuration schema](artifact/config.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JavaScript helper output, alert text, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update a local usage-log.md file with service name, threshold, usage percentage, remaining days, and the configured panel URL.]
+
+## Skill Version(s):
+
+2.0.0 (source: release metadata, README.md, USER-GUIDE.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

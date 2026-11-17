@@ -1,44 +1,55 @@
-## Description: <br>
-AI Agent judgment enhancement via Monte Carlo lookahead, risk-adjusted utility, and historical reflection for evaluating multi-step action consequences under uncertainty with configurable risk tolerance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent judgment enhancement via Monte Carlo lookahead, risk-adjusted utility, and historical reflection.
 
-## Publisher: <br>
-[chen-feng123](https://clawhub.ai/user/chen-feng123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen-feng123](https://clawhub.ai/user/chen-feng123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to embed local decision-support logic that compares candidate actions under uncertainty, reports risk-adjusted utility and confidence, and records outcomes for historical reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script runs local verification and a demo. <br>
-Mitigation: Review the setup script before running it, especially in shared or production environments. <br>
-Risk: The selected action is decision-support output rather than authorization to act. <br>
-Mitigation: Treat recommendations as advice and keep a human or policy gate for consequential actions. <br>
-Risk: Recorded states, actions, or outcomes could contain sensitive labels or business context. <br>
-Mitigation: Avoid placing secrets or sensitive labels in state/action values when outcome history is recorded. <br>
+## Use Case:
 
+Developers and agent builders use this skill to evaluate candidate actions under uncertainty with configurable lookahead depth, simulation breadth, risk tolerance, and outcome history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chen-feng123/judgment-enhancement-engine) <br>
-- [API_SPEC.md](references/API_SPEC.md) <br>
-- [USE_GUIDE.md](references/USE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with Python examples and shell commands; runtime output is a Python JudgmentResult object with scores, risk metrics, reasoning, and confidence.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python 3.8+ execution with no external dependencies; behavior is bounded by risk tolerance, lookahead depth, simulation breadth, history size, and max_compute_time_sec.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review notes documentation issues, including Chinese-only reference docs and inaccurate CognitiveEnhancer/setup.bat references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled reference docs and examples before relying on the skill in production workflows.
+
+Risk: The skill provides local decision-support code whose recommendations depend on the caller's world model, objective function, and tuning parameters.
+
+Mitigation: Validate world-model behavior, objective scoring, and risk-tolerance settings against expected outcomes before using recommendations for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chen-feng123/skills/judgment-enhancement-engine)
+- [API specification](references/API_SPEC.md)
+- [Use guide](references/USE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns decision recommendations, per-action scores, risk metrics, confidence values, and human-readable reasoning when used as a Python library.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

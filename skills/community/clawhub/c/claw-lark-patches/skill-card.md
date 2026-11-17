@@ -1,42 +1,53 @@
-## Description: <br>
-Re-applies custom patches to claw-lark plugin distribution files after updates so target resolution, account resolution, mention filtering, and thread replies continue to work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Re-apply custom patches to claw-lark plugin dist files after updates. Use when claw-lark plugin is updated/reinstalled and custom behaviors (requireMention filtering, reply_in_thread, thread-based replies) stop working. Also use when debugging Lark message routing issues.
 
-## Publisher: <br>
-[Pengxiao-Wang](https://clawhub.ai/user/Pengxiao-Wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pengxiao-wang](https://clawhub.ai/user/pengxiao-wang)
 
-## Use Case: <br>
-Developers maintaining a local claw-lark/OpenClaw integration use this skill to reapply patch guidance and shell commands after plugin updates. It helps preserve custom Lark message routing behavior, including mention filtering, target resolution, account resolution, and thread replies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The patch script modifies local claw-lark distribution files. <br>
-Mitigation: Review the script, confirm CLAW_LARK_DIST points to the intended installation, and keep a backup or reinstall path before applying patches. <br>
-Risk: Incorrect bot identity settings can make requireMention filtering behave incorrectly. <br>
-Mitigation: Set BOT_OPEN_ID and BOT_NAME for the target bot and verify group, direct-message, and other-bot mention behavior after restarting the gateway. <br>
-Risk: claw-lark plugin updates can overwrite the patched files. <br>
-Mitigation: Reapply the patches after plugin updates and rerun the documented verification checks before relying on the integration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Patch Details](artifact/references/patch-details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Pengxiao-Wang/claw-lark-patches) <br>
+## Use Case:
 
+Developers and operators use this skill to re-apply custom claw-lark plugin patches after plugin updates or reinstalls. It also helps debug Lark message routing, mention filtering, and thread-reply behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and JavaScript patch snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a shell script that modifies local claw-lark distribution files when run by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The auto-apply script makes persistent changes to installed claw-lark dist files.
+
+Mitigation: Review the patch script before use and keep a backup or versioned copy of the original dist files so the plugin can be restored.
+
+Risk: BOT_OPEN_ID and BOT_NAME values are embedded into JavaScript source during patching.
+
+Mitigation: Run the script only from a clean environment and set BOT_OPEN_ID and BOT_NAME to simple expected values before applying patches.
+
+## Reference(s):
+
+- [Patch Details](references/patch-details.md)
+- [ClawHub skill page](https://clawhub.ai/pengxiao-wang/skills/claw-lark-patches)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash and JavaScript patch snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an optional shell script that modifies local claw-lark dist files when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

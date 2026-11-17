@@ -1,46 +1,59 @@
-## Description: <br>
-Discover and parse China's official holiday notices from gov.cn, normalize holiday and adjusted-workday rows, and apply low-frequency probing rules for future years. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and parse China's official holiday notices from gov.cn, normalize holiday and adjusted-workday rows, and apply low-frequency probing rules for future years.
 
-## Publisher: <br>
-[joeyyyy0430](https://clawhub.ai/user/joeyyyy0430) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyyyy0430](https://clawhub.ai/user/joeyyyy0430)
 
-## Use Case: <br>
-Developers and agents use this skill to build or explain China business calendars, sync official holiday schedules into storage, identify the first workday of a week, and implement holiday-aware weekly sending logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make web requests to official gov.cn pages and use a public-search fallback when official search is unavailable. <br>
-Mitigation: Review network behavior before installation and prefer configured official notice URLs or China government policy search before fallback discovery. <br>
-Risk: The skill may write small local cache or configuration entries for discovered notice URLs and probe history. <br>
-Mitigation: Store source mappings and probe history separately, and review local cache paths and retention behavior before use. <br>
-Risk: Holiday schedules for future years can be unavailable until an official notice is published. <br>
-Mitigation: Do not fabricate future-year schedules; cache negative checks for the month and retry using the documented low-frequency probe window. <br>
+## Use Case:
 
+Developers and agents use this skill to build or maintain China business holiday calendars from official gov.cn notices, including adjusted workdays and holiday-aware weekly scheduling.
 
-## Reference(s): <br>
-- [Official Notice Method](references/official-notice-method.md) <br>
-- [China government policy search](https://sousuo.www.gov.cn/sousuo/search.shtml?code=17da70961a7&dataTypeId=107&searchWord=<query>) <br>
-- [China State Council policy notice pages](https://www.gov.cn/zhengce/content/...) <br>
-- [Skill page](https://clawhub.ai/joeyyyy0430/china-holiday-calendar-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/joeyyyy0430) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON row examples and configuration patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce normalized holiday and adjusted-workday rows with date, is_holiday, is_workday, holiday_name, and source_url fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Future-year holiday schedules may be unavailable until an official notice is published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Return no future-year URL until a validated gov.cn notice exists, and cache negative checks by month to avoid excessive probing.
+
+Risk: Calendar accuracy depends on accepting only authoritative notices.
+
+Mitigation: Use configured official notice URLs first, prefer gov.cn policy search for discovery, and validate candidate page titles or official content before trusting them.
+
+Risk: Local calendar configuration or cache may be modified during synchronization.
+
+Mitigation: Review project storage paths before use and keep stable notice URLs separate from short-lived discovery cache records.
+
+## Reference(s):
+
+- [Official Notice Method](references/official-notice-method.md)
+- [China Holiday Calendar Sync on ClawHub](https://clawhub.ai/joeyyyy0430/skills/china-holiday-calendar-sync)
+- [joeyyyy0430 Publisher Profile](https://clawhub.ai/user/joeyyyy0430)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-shaped examples and implementation details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces normalized holiday and adjusted-workday rows with date, is_holiday, is_workday, holiday_name, and source_url fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

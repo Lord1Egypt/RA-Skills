@@ -1,38 +1,53 @@
-## Description: <br>
-Automatically use installed skills without being asked by maintaining a trigger table that maps observable contexts to skills and adds newly installed skills to the table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically uses installed skills by maintaining trigger mappings that tell an agent when to invoke each skill.
 
-## Publisher: <br>
-[kapslap](https://clawhub.ai/user/kapslap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kapslap](https://clawhub.ai/user/kapslap)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain trigger rules that help an agent select installed skills automatically when a user request matches an observable context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change agent behavior by encouraging automatic use of installed skills, including potentially sensitive ones. <br>
-Mitigation: Use a tightly reviewed trigger table, limit automatic triggers to low-risk read-only work, and require explicit approval before any skill touches files, accounts, public content, credentials, spending, or installed-skill configuration. <br>
+## Use Case:
 
+Developers and agent operators use this skill to define trigger tables that map observable user contexts to installed skills, so agents can choose relevant skills without repeated manual prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kapslap/skill-auto-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and trigger-table entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce durable trigger-table updates for installed skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can make future skill selection persistent and automatic, reducing explicit user control over when skills run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent workspace-level automation is intended, and review each proposed trigger before adding it to permanent rules.
+
+Risk: Automatic triggers for powerful skills could later route agents toward skills that write files, use credentials, contact accounts, publish, deploy, or delete data without enough deliberation.
+
+Mitigation: Avoid auto-use triggers for skills with write, credential, account, publishing, deployment, or deletion capabilities unless they still require explicit approval at execution time.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kapslap/skills/skill-auto-use)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown prose with trigger-table examples and workspace rule guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent trigger-table and skill-use guidance; no direct tool execution is required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

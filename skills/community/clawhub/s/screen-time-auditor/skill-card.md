@@ -1,41 +1,58 @@
-## Description: <br>
-Helps users manually audit screen habits by device, app, time, and trigger so they can identify leakage zones and plan realistic reduction experiments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users manually audit screen habits, find trigger loops, identify the worst leakage zones, and run one week of realistic reduction experiments.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-People who want to reduce unintentional screen time use this skill to structure a manual audit, separate functional use from drift, map trigger loops, and create a one-week reduction plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screen-time details can reveal personal routines, emotional triggers, or work patterns. <br>
-Mitigation: Share only the level of detail needed for the audit and avoid unnecessary account, contact, or private activity details. <br>
-Risk: Users may mistake the skill for an app telemetry reader or blocker. <br>
-Mitigation: Treat its output as coaching and planning guidance; verify screen-time data manually in device tools and configure blockers separately when desired. <br>
-Risk: Overly strict reduction goals can backfire when boredom, fatigue, or emotional needs are ignored. <br>
-Mitigation: Start with one or two leakage zones, pair friction changes with replacement behaviors, and review progress after the one-week experiment. <br>
+## Use Case:
 
+External users use this skill to audit device, app, and time-band screen habits, distinguish useful use from drift, and produce a realistic reduction plan. It is intended as a manual coaching template, not clinical care or device-management software.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured audit and reduction plan; it does not read device telemetry or enforce app blockers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter lists v1.0.0) <br>
+Risk: Users may treat the coaching template as clinical care or device-management software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present recommendations as manual wellness guidance and direct users to professional support or device controls when their needs exceed habit coaching.
+
+Risk: Screen-time details can reveal sensitive personal routines or app usage patterns.
+
+Mitigation: Ask users to share only the details they are comfortable providing and avoid requesting unnecessary telemetry or account data.
+
+Risk: Over-restrictive reduction goals can backfire when boredom, fatigue, or emotional needs are ignored.
+
+Mitigation: Focus plans on one or two leakage zones and pair friction changes with replacement rituals and realistic weekly targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/screen-time-auditor)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown screen time audit with current pattern, trigger map, and reduction plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual coaching output based on user-provided screen-time details; no telemetry collection or app-limit enforcement.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

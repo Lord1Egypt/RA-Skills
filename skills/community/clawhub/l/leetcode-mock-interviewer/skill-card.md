@@ -1,43 +1,56 @@
-## Description: <br>
-Conducts realistic LeetCode-style mock coding interviews with structured setup, interviewer-style follow-ups, and scored feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts realistic LeetCode-style mock coding interviews that require candidates to explain their approach before coding, answer follow-up questions, and receive structured scored feedback.
 
-## Publisher: <br>
-[hjiangcpp](https://clawhub.ai/user/hjiangcpp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjiangcpp](https://clawhub.ai/user/hjiangcpp)
 
-## Use Case: <br>
-External users and developers use this skill to rehearse technical coding interviews, practice verbal problem decomposition, answer follow-up questions, and receive actionable scorecard feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidates may paste proprietary code, credentials, or sensitive project details during a mock interview. <br>
-Mitigation: Use sanitized examples and avoid sharing secrets or confidential work unless the conversation environment is approved for that data. <br>
-Risk: Generated interview problems, feedback, or ideal approaches may be incomplete or inaccurate. <br>
-Mitigation: Treat the output as practice guidance and review important algorithms, complexity claims, and code feedback against trusted interview preparation materials. <br>
+## Use Case:
 
+External candidates, developers, and interview-prep users use this skill to practice coding interviews in SWE, MLE, or AI Engineer formats. The skill guides a mock interviewer through setup, problem presentation, verbal reasoning, coding or pseudocode, follow-up probes, and structured feedback.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hjiangcpp/leetcode-mock-interviewer) <br>
-- [Interview Rubric](references/interview-rubric.md) <br>
-- [Problem Bank](references/problem-bank.md) <br>
-- [Session Examples](references/session-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text with structured Markdown feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup questions, interview prompts, follow-up probes, score tables, complexity summaries, and practice recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Interview-practice activation phrases may unintentionally steer general career conversations into a structured coding-interview mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation phrases before installation and narrow them if accidental triggering would disrupt normal career or coaching conversations.
+
+Risk: Generated interview feedback or ideal approaches may be incomplete or misleading if treated as a hiring decision record.
+
+Mitigation: Use the output for practice and learning; compare feedback against the bundled rubric and avoid using it as the sole basis for evaluation.
+
+## Reference(s):
+
+- [Problem Bank](references/problem-bank.md)
+- [Interview Rubric](references/interview-rubric.md)
+- [Session Examples](references/session-examples.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown interview prompts, problem statements, code or pseudocode review, and structured scorecards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes 1-5 scores for communication, problem-solving, and code quality with specific practice recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Track OpenClaw usage costs and provide detailed reports by date and model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track OpenClaw usage costs and provide detailed reports by date and model. Supports daily, weekly, and monthly report formats for Discord and other messaging channels.
 
-## Publisher: <br>
-[vincentqiu](https://clawhub.ai/user/vincentqiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vincentqiu](https://clawhub.ai/user/vincentqiu)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect OpenClaw session logs, summarize model usage costs by date and model, and prepare daily, weekly, monthly, or custom cost reports for operational review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary reports unsafe command execution when untrusted CLI arguments are passed through the Node wrapper. <br>
-Mitigation: Use the shell script directly with documented flags or review and harden the wrapper before accepting untrusted arguments. <br>
-Risk: Discord-oriented reports and the --show-errors path can expose session-log error details that may contain sensitive content. <br>
-Mitigation: Avoid report_discord.sh and --show-errors when session errors may contain confidential data, and review report output before sharing it to messaging channels. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect local OpenClaw session logs and summarize model usage costs by date and model. It supports one-off reports and scheduled Discord-style summaries for cost monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vincentqiu/cost-report) <br>
-- [JSONL_FORMAT.md](references/JSONL_FORMAT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON, Discord-oriented Markdown, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include date ranges, model-level cost breakdowns, percentage changes, and cron configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The security review reports a shell-injection flaw in the Node CLI command construction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the shell scripts directly with trusted arguments until the CLI command construction is fixed.
+
+Risk: Discord or cron reporting with error details can expose raw model error messages from local OpenClaw session logs.
+
+Mitigation: Avoid shared-channel reporting with --show-errors unless those session-log details are approved for disclosure.
+
+## Reference(s):
+
+- [OpenClaw JSONL log format](references/JSONL_FORMAT.md)
+- [ClawHub skill page](https://clawhub.ai/vincentqiu/skills/cost-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text, Discord-ready Markdown, or JSON cost reports with optional shell commands and scheduling configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local OpenClaw session logs and jq; reports can be scoped to today, yesterday, week, month, or custom date ranges.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

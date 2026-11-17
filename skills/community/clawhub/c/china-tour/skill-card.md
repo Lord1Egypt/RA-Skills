@@ -1,46 +1,60 @@
-## Description: <br>
-AI-powered tour guide with backend API and offline fallback for personalized routes, photo spots, and cultural narration for scenic spots in China, with Chinese and English support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered tour guide with backend API and offline fallback for personalized routes, photo spots, cultural narration for China's scenic spots, and bilingual support.
 
-## Publisher: <br>
-[bitzhuyong](https://clawhub.ai/user/bitzhuyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bitzhuyong](https://clawhub.ai/user/bitzhuyong)
 
-## Use Case: <br>
-Travelers, tourism assistants, and agent developers use this skill for focused single-attraction visits in China: route planning, step-by-step guide narration, photo spot suggestions, and tour summaries in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send user questions and conversation history to an under-disclosed HTTP backend. <br>
-Mitigation: Use the skill only with a trusted documented backend, prefer HTTPS, avoid sensitive travel or family details, and keep local fallback available when remote use is not acceptable. <br>
-Risk: Tour guidance may affect physical safety or rely on changing venue conditions. <br>
-Mitigation: Treat routes, opening hours, crowd notes, and safety-sensitive guidance as advisory and verify current conditions with official venue sources before acting. <br>
+## Use Case:
 
+External travelers and travel-assistant agents use this skill for single-attraction China tours with personalized routes, photo spot recommendations, cultural narration, and English/Chinese interaction.
 
-## Reference(s): <br>
-- [ChinaTour README](README.md) <br>
-- [ChinaTour Skill Definition](SKILL.md) <br>
-- [Development Guide](DEVELOPMENT.md) <br>
-- [Guide Card Template](assets/guide-card-template.md) <br>
-- [Attraction Reference Data](references/attractions/) <br>
-- [Photo Spot Reference Data](references/photo-spots/) <br>
-- [Culture Story Reference Data](references/culture-stories/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown-style conversational guidance with numbered options and optional structured API result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese output; may use local reference data when the backend API is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: API-backed answers may send user questions and optional conversation history to an undisclosed unencrypted remote server by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use the offline/local fallback or configure CHINATOUR_API_URL to a trusted HTTPS endpoint, and avoid sending sensitive travel plans, family details, or unrelated conversation history.
+
+Risk: Travel details such as opening hours, tickets, and no-photo rules may be outdated or site-specific.
+
+Mitigation: Verify time-sensitive travel information and cultural-heritage restrictions with official sources before travel.
+
+## Reference(s):
+
+- [China Tour ClawHub Skill Page](https://clawhub.ai/bitzhuyong/skills/china-tour)
+- [bitzhuyong Publisher Profile](https://clawhub.ai/user/bitzhuyong)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Development Guide](artifact/DEVELOPMENT.md)
+- [Forbidden City Attraction Reference](artifact/references/attractions/beijing/forbidden-city.md)
+- [Forbidden City Photo Spots](artifact/references/photo-spots/beijing/forbidden-city-spots.md)
+- [Forbidden City English Cultural Stories](artifact/references/culture-stories/beijing/forbidden-city-stories-en.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Bilingual Markdown-style conversational guidance with numbered options and occasional helper-script commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local fallback data when API access is unavailable; API-backed answers depend on configured endpoint availability.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

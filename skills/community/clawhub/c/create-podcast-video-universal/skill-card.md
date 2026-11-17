@@ -1,44 +1,59 @@
-## Description: <br>
-CreateVideo Podcast to Video helps agents turn user-provided audio or text into vertical videos with background footage, optional ListenHub text-to-speech, ffmpeg media merging, and short content-analysis notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CreateVideo helps agents turn user-provided audio or text scripts into vertical videos with background media, optional ListenHub text-to-speech, ffmpeg merging, and content analysis.
 
-## Publisher: <br>
-[jackyken](https://clawhub.ai/user/jackyken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackyken](https://clawhub.ai/user/jackyken)
 
-## Use Case: <br>
-Creators, social media operators, and developers use this skill to create 9:16 narrated videos from podcast-style scripts or existing narration, with optional Chinese TTS and reusable background templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User media and generated project files are processed locally with ffmpeg and ffprobe. <br>
-Mitigation: Use trusted media inputs, keep ffmpeg current, and run work in the documented project directory so generated files are easy to inspect and remove. <br>
-Risk: Text-to-speech mode sends script content to the external ListenHub MCP server. <br>
-Mitigation: Avoid confidential, sensitive personal, or sensitive business content unless the user trusts the TTS provider and its handling of submitted text. <br>
-Risk: The ListenHub MCP server is installed with an npm command. <br>
-Mitigation: Review or pin the npm package before use, especially in managed or production environments. <br>
+## Use Case:
 
+Creators, content operators, and developers can use this skill to generate short vertical videos from narration audio or a written script. It guides task folder creation, optional ListenHub TTS setup, ffmpeg-based media merging, and short promotional content analysis.
 
-## Reference(s): <br>
-- [CreateVideo Podcast to Video on ClawHub](https://clawhub.ai/jackyken/create-podcast-video-universal) <br>
-- [jackyken ClawHub Publisher Profile](https://clawhub.ai/user/jackyken) <br>
-- [ListenHub MCP Reference](references/listenhub-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration steps, generated file paths, and optional analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create MP4 video, voice audio, temporary files, and a Chinese content-analysis text file under video-projects/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The workflow installs and runs an unversioned third-party ListenHub MCP server from npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the MCP server package version before use, or run it in a restricted environment with minimal file, environment-variable, and network access.
+
+Risk: Text sent for TTS may contain confidential or sensitive content.
+
+Mitigation: Avoid sending confidential text to the TTS flow unless the user trusts the MCP server and the service handling the content.
+
+Risk: Video generation depends on local ffmpeg and user-provided media assets.
+
+Mitigation: Confirm ffmpeg and ffprobe are installed, review background video licensing, and verify template compatibility before producing final video files.
+
+## Reference(s):
+
+- [ListenHub MCP Reference](references/listenhub-guide.md)
+- [ClawHub skill page](https://clawhub.ai/jackyken/skills/create-podcast-video-universal)
+- [Publisher profile](https://clawhub.ai/user/jackyken)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, configuration steps, file paths, and expected output notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an agent workflow for creating task directories, merging audio and video assets, and reporting generated video outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

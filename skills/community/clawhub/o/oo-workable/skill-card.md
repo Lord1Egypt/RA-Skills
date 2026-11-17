@@ -1,43 +1,59 @@
-## Description: <br>
-Provides read-only Workable candidate and job search and retrieval through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workable (workable.com). Use this skill for ANY Workable request — searching and reading data. Whenever a task involves Workable, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Recruiting and people operations users can ask an agent to list Workable jobs and candidates or retrieve candidate and job details from a connected Workable account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve Workable candidate and job information through an OOMOL-connected account. <br>
-Mitigation: Connect only trusted OOMOL and Workable accounts, keep use to read requests, and review retrieved recruiting data before sharing it. <br>
-Risk: Workable connector contracts can change over time. <br>
-Mitigation: Inspect the live action schema before constructing payloads, as the artifact instructs. <br>
+## Use Case:
 
+Employees and recruiting teams can use this skill to search and read candidate and job information from a connected Workable account. It provides read-only access to candidate and job details and lists.
 
-## Reference(s): <br>
-- [ClawHub Workable Skill Page](https://clawhub.ai/oomol/oo-workable) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [Workable Homepage](https://www.workable.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI bash commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live Workable connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup may execute downloaded installer code whose full effects have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and version-pin the oo CLI, and require approval before running any downloaded installer.
+
+Risk: Using the connected account involves OOMOL handling Workable credentials and candidate data.
+
+Mitigation: Confirm that OOMOL is permitted to handle this account's credentials and candidate data before use.
+
+Risk: The CLI may synchronize skills at startup.
+
+Mitigation: If that behavior is unwanted, disable it with OO_SKILLS_SYNC_DISABLED=1.
+
+## Reference(s):
+
+- [Workable](https://www.workable.com/)
+- [Workable API documentation](https://workable.readme.io/reference/generate-an-access-token)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Workable candidate and job records returned as JSON and presented as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only candidate and job data; fields depend on the selected Workable action.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

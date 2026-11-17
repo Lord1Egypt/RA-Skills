@@ -1,49 +1,61 @@
-## Description: <br>
-Guides a user through capturing and analyzing a HAR file from their own logged-in browser session, extracting the minimum auth material needed, mapping the request chain behind an authorized website action, and turning that known-good browser workflow into a reusable local script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides authorized users through capturing and analyzing their own logged-in browser HAR, extracting minimal auth material, mapping a website action's request chain, and turning the known-good workflow into a reusable local script.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Developers and engineers use this skill to reproduce a legitimate website action they can already perform manually by analyzing a clean HAR capture, isolating required session material and request stages, and building a narrow local replay script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HAR files and extracted cookies, CSRF tokens, or authorization headers can grant live account access. <br>
-Mitigation: Keep these files local and private, store only the minimum needed material, avoid repositories and shared folders, and delete sensitive runtime files when finished. <br>
-Risk: Replaying private web requests may violate service terms, trigger rate limits, or lock or challenge an account. <br>
-Mitigation: Prefer official APIs or scoped tokens when available, test one item first, keep batches small, and stop when a service challenges or rejects requests. <br>
-Risk: Private request workflows can change without notice, causing stale endpoints, query IDs, or auth material to fail. <br>
-Mitigation: Refresh session material from the user's own browser session and compare failures against a new successful HAR instead of guessing or bypassing controls. <br>
-Risk: The workflow could be misapplied outside the user's authorized action. <br>
-Mitigation: Keep the scope limited to a workflow the user can already perform manually and do not brute-force endpoints, fuzz auth, bypass login, bypass MFA, bypass paywalls, or bypass rate limits. <br>
+## Use Case:
 
+Developers and engineers use this skill to reproduce web actions they are already authorized to perform, such as upload, publish, schedule, or queue workflows, when direct authenticated requests are more reliable than browser automation.
 
-## Reference(s): <br>
-- [Auth materials](references/auth-materials.md) <br>
-- [Common web flows](references/common-web-flows.md) <br>
-- [HAR capture checklist](references/har-capture-checklist.md) <br>
-- [Request analysis patterns](references/request-analysis-patterns.md) <br>
-- [Safety boundaries](references/safety-boundaries.md) <br>
-- [ClawHub skill page](https://clawhub.ai/stanestane/lockpicker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python code scaffolds] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local runtime auth files, HAR request summaries, JSON analysis outputs, and first-pass Python replay scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles live browser-session credentials and HAR files that may grant account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep HARs and generated auth files local, out of chat, source control, sync folders, logs, and shared workspaces; retain only the minimum auth material needed.
+
+Risk: Generated replay scripts can expose sensitive request data or perform unintended account actions.
+
+Mitigation: Review generated Python before running it, test one item first, and compare failures against the captured HAR instead of guessing.
+
+Risk: Replaying private web calls may violate site terms, break without notice, or trigger rate limits, account locks, or challenges.
+
+Mitigation: Use only workflows the user is authorized to perform, avoid bypass or brute-force behavior, keep batches small, and refresh expired credentials through the normal browser session.
+
+## Reference(s):
+
+- [HAR capture checklist](references/har-capture-checklist.md)
+- [Auth materials](references/auth-materials.md)
+- [Request analysis patterns](references/request-analysis-patterns.md)
+- [Common web flows](references/common-web-flows.md)
+- [Safety boundaries](references/safety-boundaries.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Code, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with shell command examples and generated Python or JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local auth-material files, filtered HAR request summaries, request-shape diffs, and first-pass replay scripts for user review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

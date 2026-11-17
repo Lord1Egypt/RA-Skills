@@ -1,40 +1,53 @@
-## Description: <br>
-A prompt-engineering guidance skill that helps agents apply nine structured rules and task templates to produce clearer, more constrained responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides nine prompt-engineering rules and scenario templates that help agents produce more structured, concise, and uncertainty-aware responses.
 
-## Publisher: <br>
-[jx-76](https://clawhub.ai/user/jx-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jx-76](https://clawhub.ai/user/jx-76)
 
-## Use Case: <br>
-People using AI assistants can use this skill to apply prompt templates and guardrails for rewriting, code review, information lookup, data analysis, translation, summarization, and similar tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This instruction-only skill can change how an assistant responds within a session. <br>
-Mitigation: Read the system-prompt text before installing, and keep auto-apply and auto-inject disabled unless that behavior is intentional. <br>
+## Use Case:
 
+Developers, prompt authors, and agent users use this skill to apply structured prompt templates for rewriting, code review, information lookup, data analysis, translation, summarization, and important decisions while reducing unsupported additions and guesses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jx-76/claude-prompt-engineering) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [System prompt](artifact/system-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown prompt templates and system-prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; ClawScan evidence reports no code, network access, credential use, or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad system-prompt or automatic injection behavior can change assistant behavior beyond the user's immediate task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auto-apply and auto-inject disabled unless the user explicitly wants this skill active for a specific conversation.
+
+Risk: The skill's mandatory response rules can over-constrain creative writing, brainstorming, role play, or casual conversation.
+
+Mitigation: Use the templates manually for suitable tasks and avoid applying the strict mode to workflows that need open-ended generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jx-76/skills/claude-prompt-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with prompt templates and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May change assistant behavior when used as an injected system prompt; prefer manual template use unless explicitly activated.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

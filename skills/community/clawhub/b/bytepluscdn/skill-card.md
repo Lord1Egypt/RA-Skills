@@ -1,44 +1,58 @@
-## Description: <br>
-Skill for BytePlus CDN domain and policy management, purge and prefetch, and log delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BytePlusCDN helps agents manage BytePlus CDN domains, origin and policy templates, cache purge and prefetch operations, and offline or real-time log delivery.
 
-## Publisher: <br>
-[whitechenyingxi-maker](https://clawhub.ai/user/whitechenyingxi-maker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whitechenyingxi-maker](https://clawhub.ai/user/whitechenyingxi-maker)
 
-## Use Case: <br>
-Developers and operators use this skill to manage BytePlus CDN domains, origin configuration, distribution policy templates, cache purge and prefetch, and offline or real-time log delivery through a local CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real operational changes to BytePlus CDN domains, cache state, policy templates, and log delivery. <br>
-Mitigation: Use least-privilege dedicated credentials and verify domains, purge or preload targets, and log destinations before running commands. <br>
-Risk: Credential material may be handled during setup or log delivery configuration. <br>
-Mitigation: Do not print or paste service-account JSON in terminals or CI logs, and keep BytePlus API keys out of version control. <br>
-Risk: Bulk targets such as all domains or large purge and preload lists can affect many CDN resources. <br>
-Mitigation: Avoid using broad targets such as "all" unless intended, and confirm target lists before execution. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to configure and operate BytePlus CDN domains, distribution policy templates, cache refresh or preload jobs, and log delivery from an agent-guided CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/whitechenyingxi-maker/bytepluscdn) <br>
-- [Skill Guide](artifact/SKILL.md) <br>
-- [BytePlus CDN Scripts Documentation](artifact/reference/about.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and parameter prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide interactive collection of CDN command parameters and credential setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports v1.1) <br>
+Risk: The skill handles BytePlus cloud credentials and may prompt for or read secrets used against production CDN resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment, review dependencies first, use least-privilege BytePlus credentials, and avoid placing secrets directly in command lines or committing credential files.
+
+Risk: CDN domain, purge, preload, and policy-template commands can change production delivery behavior or affect broad domain scopes.
+
+Mitigation: Review every domain, purge, preload, and policy command before execution, especially any all-domain option.
+
+Risk: Offline and real-time log delivery can send operational logs or credentials to external storage and analytics endpoints.
+
+Mitigation: Review log destinations, require HTTPS endpoints, and use protected local output paths when handling generated credential JSON.
+
+## Reference(s):
+
+- [BytePlusCDN ClawHub Skill Page](https://clawhub.ai/whitechenyingxi-maker/skills/bytepluscdn)
+- [BytePlus CDN Scripts Documentation](artifact/reference/about.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python CLI examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BytePlus credentials and careful review before executing CDN, purge, preload, or log-delivery changes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter states v1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

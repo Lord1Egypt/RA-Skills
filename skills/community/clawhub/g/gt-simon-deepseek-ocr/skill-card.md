@@ -1,41 +1,49 @@
-## Description: <br>
-Extract and return text content from images, screenshots, or scanned documents using DeepSeek OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and return text content from images, screenshots, or scanned documents using DeepSeek OCR.
 
-## Publisher: <br>
-[Sendream2002](https://clawhub.ai/user/Sendream2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sendream2002](https://clawhub.ai/user/sendream2002)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text from local image files, screenshots, and scanned documents when OCR output is needed in a workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime, command packaging, and documented entry points do not line up cleanly, so the installed entry point may not perform OCR as expected. <br>
-Mitigation: Confirm which entry point will run before installation and require the maintainer to align the runtime, command name, script path, and documentation before routine use. <br>
-Risk: The OCR path can send local image paths to a DeepSeek OCR endpoint selected by DEEPSEEK_OCR_HOST and DEEPSEEK_OCR_PORT. <br>
-Mitigation: Use only a trusted OCR endpoint and review those environment variables before processing sensitive images. <br>
+## Use Case:
 
+Developers and agents use this skill to extract recognized text from local image files, screenshots, and scanned documents by calling a configured DeepSeek OCR service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sendream2002/gt-simon-deepseek-ocr) <br>
-- [Publisher profile](https://clawhub.ai/user/Sendream2002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or plain text OCR results, depending on the active entry point.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JavaScript OCR path returns text, confidence, and model fields; the configured Python handler returns a placeholder text response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json lists 0.1.1) <br>
+Risk: The included CLI can send local image paths to a configurable plaintext OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a local or trusted OCR endpoint, keep the host on loopback or another trusted network, and avoid sensitive filenames or directories unless the service data handling is documented and acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sendream2002/skills/gt-simon-deepseek-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object with extracted text and optional OCR metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output may include confidence and model fields when provided by the OCR service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

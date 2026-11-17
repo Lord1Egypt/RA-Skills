@@ -1,40 +1,54 @@
-## Description: <br>
-Create business segment lists in HubSpot for customers, partners, competitors, employees, ICP tiers, and industries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create business segment lists in HubSpot for customers, partners, competitors, employees, ICP tiers, and industries.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-Marketing, RevOps, and CRM operators use this skill to plan, create, verify, and maintain HubSpot contact segment lists for targeting, suppression, and analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HubSpot list creation may group contacts incorrectly if list names, criteria, or source properties are wrong. <br>
-Mitigation: Review the exact list names and criteria before creation, use a least-privilege HubSpot private app token, and verify member counts after creation. <br>
-Risk: New segment lists could affect campaigns, workflows, or suppression behavior before they are checked. <br>
-Mitigation: Do not connect new lists to campaigns or workflows until reviewed, and check dependencies before deleting or replacing lists. <br>
+## Use Case:
 
+Marketing operations and CRM teams use this skill to plan, create, verify, and maintain HubSpot segment lists for targeting, suppression, reporting, and workflow enrollment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomgranot/create-segment-lists) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with HubSpot list criteria and a Python API example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes interview prompts, recommended segment definitions, verification checks, and rollback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to create and manage HubSpot marketing segment lists, which may affect targeting, suppression, reporting, workflows, or campaigns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a HubSpot token with only the minimum list-management permissions needed, review proposed list names and criteria before execution, and check list dependencies before deleting or replacing lists.
+
+Risk: Incorrect segment criteria can put contacts into misleading or conflicting lists.
+
+Mitigation: Verify member counts, check for mutually exclusive segment conflicts, and confirm visibility with the appropriate teams after list creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomgranot/skills/create-segment-lists)
+- [Publisher profile](https://clawhub.ai/user/tomgranot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, API Calls]
+
+**Output Format:** [Markdown with inline Python code blocks and checklist-style verification guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces HubSpot list planning criteria, API usage examples, verification steps, rollback guidance, and maintenance tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

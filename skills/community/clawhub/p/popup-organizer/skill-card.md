@@ -1,41 +1,54 @@
-## Description: <br>
-Search and hire mobile vendors for events on PopUp, create event listings, send booking inquiries, and manage invoices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and hire mobile vendors for events on PopUp, including vendor discovery, event listings, booking inquiries, and invoice management.
 
-## Publisher: <br>
-[eliaskress](https://clawhub.ai/user/eliaskress) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eliaskress](https://clawhub.ai/user/eliaskress)
 
-## Use Case: <br>
-Event organizers use this skill to search PopUp vendors, manage event listings and applications, send and update booking inquiries, review invoices, save vendors, and update organizer profile details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, cancel, delete, and respond to business records using an organizer API key. <br>
-Mitigation: Use a revocable or least-privilege PopUp API key when available, and require the agent to summarize the exact event, vendor, inquiry, quote, amount, or profile change before account-changing calls. <br>
-Risk: The security scan notes account-changing authority without built-in confirmation or privacy guidance. <br>
-Mitigation: Require explicit approval for create, update, delete, cancellation, and quote-response actions, and avoid sending unnecessary personal or business data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PopUp Organizer Skill Page](https://clawhub.ai/eliaskress/popup-organizer) <br>
-- [PopUp Login](https://usepopup.com/login) <br>
-- [PopUp Organizer API Base URL](https://usepopup.com/api/v1/organizer) <br>
+## Use Case:
 
+External organizers and event teams use this skill to search PopUp vendors, create and manage event listings, send or update vendor inquiries, track invoices, save vendors, and maintain organizer profile details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON API payloads and HTTP endpoint references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POPUP_API_KEY; PopUp list endpoints return JSON data with pagination.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change or cancel live events, inquiries, saved vendors, invoices, and organizer profile data, including actions that may notify vendors.
+
+Mitigation: Use a least-privilege PopUp API key when available and require explicit confirmation after showing the exact event, inquiry, or profile details before mutating account data.
+
+Risk: The README shows an unpinned npx @latest publishing workflow and examples that place live tokens directly in shell commands.
+
+Mitigation: Pin CLI versions for publishing workflows and provide tokens through environment variables or a secret manager instead of inline shell arguments.
+
+## Reference(s):
+
+- [PopUp login and API key setup](https://usepopup.com/login)
+- [PopUp Organizer API base URL](https://usepopup.com/api/v1/organizer)
+- [ClawHub skill page](https://clawhub.ai/eliaskress/skills/popup-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP API details and JSON request or response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the POPUP_API_KEY environment variable for authenticated PopUp organizer API requests.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

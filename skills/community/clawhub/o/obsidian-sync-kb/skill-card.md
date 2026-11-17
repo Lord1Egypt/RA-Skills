@@ -1,41 +1,52 @@
-## Description: <br>
-Builds a searchable local knowledge base from an Obsidian vault's "笔记同步助手" inbox, then answers with citations, topic cards, update logs, and daily digests for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a searchable local knowledge base from an Obsidian vault's "笔记同步助手" inbox, then answer with citations, topic cards, update logs, and daily digests for OpenClaw.
 
-## Publisher: <br>
-[pangkaifeng](https://clawhub.ai/user/pangkaifeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pangkaifeng](https://clawhub.ai/user/pangkaifeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and knowledge workers use this skill to turn a synced Obsidian inbox into a retrieval-ready local knowledge base. It supports index building, cited question answering, topic promotion, update logs, and daily digests for OpenClaw workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send note-derived data to the web by default and fetch URLs found in notes.
+
+Mitigation: Review the target vault before use and run builds with --disable-network or set research.enable_network to false unless network enrichment is intended.
+
+Risk: Private, client, work, or internal research notes may be indexed or used as source material.
+
+Mitigation: Use the skill only on approved vaults and confirm that generated citations, topic cards, logs, and digests do not expose sensitive note content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn an Obsidian sync inbox into a retrieval-ready local knowledge base for OpenClaw. It supports index refreshes, cited question answering, topic promotion, update logs, and daily digest generation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read configured Obsidian inbox content and store local indexes, query history, topic cards, logs, and daily digests. <br>
-Mitigation: Configure it only for vaults intended for this workflow and review generated artifacts before sharing or syncing them. <br>
-Risk: Network enrichment can send note-derived URLs or search terms to external sites during index builds. <br>
-Mitigation: Set research.enable_network to false or run build-index with --disable-network for private or work-sensitive vaults. <br>
+**Output Format:** [Markdown prose with cited excerpts, optional JSON query results, and shell commands or configuration snippets.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pangkaifeng/obsidian-sync-kb) <br>
-- [Publisher profile](https://clawhub.ai/user/pangkaifeng) <br>
+**Other Properties Related to Output:** [May write local index, state, topic-card, update-log, and daily-digest files under configured vault directories.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON responses with citations, plus shell commands and YAML configuration for setup and maintenance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local indexes, topic cards, update logs, daily digests, query history, and build reports under the configured vault artifacts and research directories.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

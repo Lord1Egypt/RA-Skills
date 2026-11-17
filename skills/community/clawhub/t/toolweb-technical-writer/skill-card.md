@@ -1,40 +1,53 @@
-## Description: <br>
-Professional career development platform that generates personalized technical writing roadmaps based on skills assessment and career goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career development platform that generates personalized technical writing roadmaps based on skills assessment and career goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, developers, and documentation teams use this skill to generate technical writing career roadmaps, specialization options, learning paths, skill gaps, and next steps from career assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process identifiable career-profile data such as experience, prior roles, goals, user IDs, and session IDs without sufficient privacy or retention disclosure. <br>
-Mitigation: Confirm the provider's data handling, storage, retention, and deletion practices before use, and avoid sending unnecessary identifiers, employer names, salary details, or sensitive personal history. <br>
+## Use Case:
 
+External users and developers use this skill to generate personalized technical writing career roadmaps from experience, skills, tool proficiency, goals, and target industry information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-technical-writer) <br>
-- [Technical Writer API Route](https://api.mkkpro.com/career/technical-writer) <br>
-- [Technical Writer API Docs](https://api.mkkpro.com:8092/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses and Markdown-facing career guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces roadmap phases, objectives, resources, skill gaps, recommended specializations, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Submitted assessment details, session IDs, timestamps, and optional user IDs may be sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive employment details unless needed, and omit the optional userId where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-technical-writer)
+- [API Documentation](https://api.mkkpro.com:8092/docs)
+- [Technical Writer API Route](https://api.mkkpro.com/career/technical-writer)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Text]
+
+**Output Format:** [JSON roadmap responses and human-readable guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmaps include phases, objectives, resources, skill gaps, recommended specializations, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

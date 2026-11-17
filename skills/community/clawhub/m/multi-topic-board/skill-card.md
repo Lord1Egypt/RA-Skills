@@ -1,39 +1,54 @@
-## Description: <br>
-Multi-Topic Board helps an agent track unresolved discussions, update aging days, send reminders after three days without an execution task, and create follow-up task files when appropriate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Topic Board tracks unresolved agent discussions, updates aging days, sends timeout alerts after 3 days without a task, and helps generate execution tasks in tasks/.
 
-## Publisher: <br>
-[kzclaw](https://clawhub.ai/user/kzclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kzclaw](https://clawhub.ai/user/kzclaw)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to keep multi-session discussions from being forgotten by recording unresolved topics, reminding on stale items, and linking follow-up task files when work is ready to execute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent topic-tracking files and recurring reminder workflows in a workspace. <br>
-Mitigation: Require explicit opt-in before first setup, confirm where HEARTBEAT.md, memory/multi-topic.md, and tasks/ will be created, and document how to disable scheduled maintenance. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve unresolved discussion topics across sessions, surface pending decisions, and convert stale topics into follow-up task files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kzclaw/multi-topic-board) <br>
-- [Publisher profile](https://clawhub.ai/user/kzclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates workspace files such as HEARTBEAT.md, memory/multi-topic.md, and tasks/*.md when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata); 1.0 (source: frontmatter) <br>
+Risk: The skill may establish persistent workspace-level topic memory and recurring background checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when ongoing topic tracking is intended, and confirm the exact cron jobs, files, session access, retention period, sensitive-topic exclusions, and removal steps before use.
+
+Risk: Tracked discussion topics may include confidential or sensitive information.
+
+Mitigation: Avoid using the skill for confidential discussions unless retention, access controls, and sensitive-topic exclusions are clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kzclaw/skills/multi-topic-board)
+- [ClawHub publisher profile](https://clawhub.ai/user/kzclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace files including memory/multi-topic.md, HEARTBEAT.md, and tasks/*.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

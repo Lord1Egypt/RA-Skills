@@ -1,41 +1,52 @@
-## Description: <br>
-专为中小学教师搭建的学科试卷交流平台助手。用户输入试卷内容或描述时触发，用于：试卷收录与展示、试卷点评与优化建议、试卷改编与组卷、考情交流。触发词包括"试卷""出题""组卷""考题""命题""考情"等。每次对话会自动识别学科和年级。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为中小学教师搭建的学科试卷交流平台助手，可在用户输入试卷内容或描述时提供试卷收录与展示、试卷点评与优化建议、试卷改编与组卷、考情交流支持。
 
-## Publisher: <br>
-[dsxx-2021](https://clawhub.ai/user/dsxx-2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dsxx-2021](https://clawhub.ai/user/dsxx-2021)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+中小学教师使用该技能收录、展示、讨论和优化自编试卷，并获得试卷点评、改编组卷建议和考情交流支持。
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Teachers may share confidential student data while discussing exam materials.
+
+Mitigation: Avoid including student-identifying or confidential classroom data in prompts or uploaded exam content.
+
+Risk: Users may provide copyrighted or real exam materials without permission.
+
+Mitigation: Use the skill for self-authored exam papers or materials the user has permission to share, and avoid requesting leaked real exam questions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External educators use this Chinese-language assistant to organize, review, adapt, and discuss self-authored primary and secondary school exam papers by subject and grade. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad exam or question-setting language outside the intended teacher exam-paper review context. <br>
-Mitigation: Confirm the user is discussing a teacher-focused exam paper and ask for subject, grade, and task scope before giving detailed review or composition guidance. <br>
-Risk: Exam-paper workflows can involve real or confidential test questions. <br>
-Mitigation: Use teacher-provided or self-authored materials and avoid reproducing leaked or unauthorized real exam questions. <br>
+**Output Format:** [Markdown text with structured exam-paper cards, review notes, and example question revisions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dsxx-2021/hua-shan-lun-juan) <br>
-- [Publisher profile](https://clawhub.ai/user/dsxx-2021) <br>
+**Other Properties Related to Output:** [Chinese-language teaching-research tone; confirms subject and grade before evaluating exam-paper content]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured exam-paper cards, critique, recommendations, and example rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language teacher-facing responses; asks for subject, grade, and textbook version when needed.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

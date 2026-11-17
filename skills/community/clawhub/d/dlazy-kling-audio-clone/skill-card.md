@@ -1,45 +1,60 @@
-## Description: <br>
-Generate customized speech that highly restores the timbre by uploading reference audio using Kling Audio Clone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates customized speech from uploaded reference audio using Kling Audio Clone.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and creators use this skill to invoke the dLazy CLI for Kling Audio Clone voice-cloning tasks with a reference audio URL or local audio file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload voice data and generate cloned speech without clear consent safeguards. <br>
-Mitigation: Use only voices and audio that the user has clear rights and consent to use, and verify the local audio file before upload. <br>
-Risk: The artifact documentation contains mismatched media workflow details and command examples. <br>
-Mitigation: Review command help before execution and do not rely on the documented examples until the publisher fixes the output schema and examples. <br>
-Risk: The skill requires a sensitive dLazy API key. <br>
-Mitigation: Prefer per-use environment variables or the documented CLI auth flow, rotate or revoke keys when needed, and avoid exposing credentials in prompts or logs. <br>
+## Use Case:
 
+External users and developers use this skill to authenticate with the dLazy CLI, upload an authorized voice reference, and request custom speech generation through the Kling Audio Clone service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-kling-audio-clone) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key and may upload the selected reference audio file to dLazy-hosted services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill uploads selected voice reference audio to dLazy-hosted services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only audio the user is authorized to submit, avoid sensitive voice samples, and confirm consent from the speaker before cloning.
+
+Risk: The skill depends on a third-party CLI package, hosted API, and API key.
+
+Mitigation: Prefer temporary npx execution or review the pinned package before global installation, and use a revocable API key.
+
+Risk: The security summary notes inconsistent documentation about commands and returned outputs.
+
+Mitigation: Check the CLI help or use dry-run behavior before relying on parameters, cost, or output shape in an automated workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dlazyai/skills/dlazy-kling-audio-clone)
+- [dLazy CLI Source](https://github.com/dlazyai/cli)
+- [@dlazy/cli npm Package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy Homepage](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npm or npx and a dLazy API key; may upload local audio references to dLazy-hosted services and return hosted output URLs.]
+
+## Skill Version(s):
+
+1.3.8 (source: server release metadata; artifact frontmatter lists 1.3.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

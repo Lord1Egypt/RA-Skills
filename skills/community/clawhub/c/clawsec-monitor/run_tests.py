@@ -272,7 +272,7 @@ def test7_config_file():
     # Quick traffic test on custom port
     clear_threats()
     t0 = time.time()
-    payload = b"GET http://x.com/?t=sk-ant-configtest1234567890123456789012 HTTP/1.0\r\nHost: x.com\r\n\r\n"
+    payload = b"GET http://x.com/?t=REDACTED-SECRET HTTP/1.0\r\nHost: x.com\r\n\r\n"
     try:
         send_raw_http(payload, port=8889)
         time.sleep(0.3)

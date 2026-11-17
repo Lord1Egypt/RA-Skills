@@ -1,47 +1,59 @@
-## Description: <br>
-Crawls Douyin trending video and caption data with Playwright, including keyword search, hot-list retrieval, video analysis, and natural-language request parsing. <br>
+## Description:
 
-This skill is for research and development only. <br>
+爬取抖音爆款视频和文案数据，支持自然语言搜索请求，并使用 Playwright 获取搜索、热榜和视频详情信息。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and external users use this skill to search Douyin content, inspect hot-list items, analyze individual Douyin video links, and turn scraped results into user-facing summaries or export files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Playwright browser automation can reach live Douyin pages and may trigger platform controls or account risk. <br>
-Mitigation: Use the skill only for Douyin URLs, avoid logging into accounts, keep request rates low, and follow Douyin platform rules. <br>
-Risk: The skill can write JSON or CSV export files. <br>
-Mitigation: Review output paths before saving and run the skill in a workspace where generated files are expected. <br>
-Risk: The analyze command accepts user-provided URLs. <br>
-Mitigation: Restrict analyze inputs to Douyin URL patterns before execution. <br>
-Risk: Installation may add local dependencies and browser binaries. <br>
-Mitigation: Install in an isolated virtual environment or container and review dependency changes before use. <br>
+## Use Case:
 
+Developers and content operations users can ask an agent to search Douyin topics, inspect trending videos, or analyze a Douyin video URL, then receive summarized video metadata and copywriting signals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/terrycarter1985/douyin-scraper-pro) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown summaries and command guidance, with scraper data available as JSON or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include video titles, descriptions, authors, engagement counts, URLs, tags, and publish times.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The scraper runs browser automation with local shell access and Chromium sandboxing disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a restricted container or disposable environment with only the files and network access needed for the task.
+
+Risk: The analyze command can browse user-supplied URLs.
+
+Mitigation: Only analyze trusted Douyin URLs, avoid logged-in browser sessions, and do not provide secrets or private account context to the scraper.
+
+Risk: Installation pulls mutable external dependencies and browser binaries.
+
+Mitigation: Pin and verify dependencies before use, and prefer a reviewed container image or locked environment for repeatable execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-scraper-pro)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+- [Playwright documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Agent-facing guidance plus JSON or CSV video metadata from scraper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include title, description, author, engagement counts, URL, tags, and publish time; commands can write JSON or CSV files when an output path is provided.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

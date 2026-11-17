@@ -1,41 +1,56 @@
-## Description: <br>
-Runtime-agnostic capability orchestration skill. Activates full delegation mode with capability discovery and task-driven orchestration. Use when maximizing runtime + enhancement layer capabilities. If you have a runtime-specific skill (aha-codex-omx / aha-opencode-omo), prefer that instead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime-neutral orchestration: keep this session as decision maker/integrator; for non-trivial work prefer bounded available agents for search, reading, research, testing, review, and mutually exclusive writes.
 
-## Publisher: <br>
-[its-how](https://clawhub.ai/user/its-how) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[its-how](https://clawhub.ai/user/its-how)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide runtime-neutral capability discovery, delegation, transparent orchestration, and re-orchestration when no runtime-specific orchestration skill is more appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad orchestration wording may lead an agent to use subagents, worktrees, background work, or handoff files when the user expected a narrower route. <br>
-Mitigation: Review the activation wording before deployment and give explicit constraints when subagents, worktrees, background work, or handoff files should not be used. <br>
-Risk: Delegation and handoff guidance can increase exposure if credentials, live state, or account material are included in handoff content. <br>
-Mitigation: Follow the documented safety limits that exclude credentials, tokens, cookies, browser session material, provider state, live state, and account state from handoff material. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide runtime-neutral task orchestration, including capability discovery, bounded delegation, transparency, verification, and re-orchestration when gaps appear.
 
-## Reference(s): <br>
-- [Capability Orchestration](references/capability-orchestration.md) <br>
-- [Repository](https://github.com/its-How/aha-orch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline commands and structured handoff content when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only orchestration guidance; no executable scripts or packaged code are provided by the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Upgrade instructions may encourage installing or updating the latest package without reviewing the exact version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository state first and prefer a pinned or verified version before running update commands.
+
+Risk: The skill can influence how an agent delegates, reports work, and prepares handoff material.
+
+Mitigation: Keep approval gates, permission limits, secret handling, and explicit confirmation requirements in force when applying orchestration guidance.
+
+## Reference(s):
+
+- [Capability Orchestration](references/capability-orchestration.md)
+- [aha-orch repository](https://github.com/its-How/aha-orch)
+- [ClawHub skill page](https://clawhub.ai/its-how/skills/aha-orch-xx)
+- [Publisher profile](https://clawhub.ai/user/its-how)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with occasional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No persistent state; output is advisory orchestration guidance for the consuming agent.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release, target metadata, and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

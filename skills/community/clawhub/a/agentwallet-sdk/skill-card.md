@@ -1,47 +1,56 @@
-## Description: <br>
-Non-custodial wallet SDK guidance for autonomous AI agents that need x402 payments, CCTP V2 bridge transfers, ERC-8004 identity, and Uniswap V3 swaps without server-side key custody. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Non-custodial wallet SDK guidance for autonomous AI agents that need x402 payments, CCTP V2 bridge transfers, ERC-8004 identity, and Uniswap V3 swaps without custodial key handling.
 
-## Publisher: <br>
-[up2itnow](https://clawhub.ai/user/up2itnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[up2itnow](https://clawhub.ai/user/up2itnow)
 
-## Use Case: <br>
-Developers and agent builders use this skill to integrate non-custodial wallet operations into AI agents, including wallet setup, payments, bridging, swaps, identity registration, and transaction signing. It is intended for agents that may interact with crypto wallets and therefore need explicit controls around keys, balances, and approvals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable autonomous crypto transfers, swaps, bridges, and private-key signing without clear approval or spending controls. <br>
-Mitigation: Use a dedicated low-balance or restricted wallet and require explicit confirmation before every transfer, payment, bridge, swap, or signing action. <br>
-Risk: Using a main wallet private key or broad wallet permissions can expose funds if an agent behaves unexpectedly or is prompted maliciously. <br>
-Mitigation: Never use a main wallet private key; scope keys and permissions to the specific agent workflow. <br>
-Risk: Exposing wallet operations through MCP can allow unintended agents to call payment or transaction tools. <br>
-Mitigation: Avoid MCP exposure unless access can be tightly restricted to trusted agents. <br>
-Risk: Unverified package installation can introduce supply-chain risk for wallet and payment operations. <br>
-Mitigation: Pin and verify npm packages before installation. <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate non-custodial wallet operations into AI agents, including x402 API payments, token transfers, cross-chain USDC bridges, token swaps, and on-chain identity workflows.
 
-## Reference(s): <br>
-- [Agentwallet Sdk on ClawHub](https://clawhub.ai/up2itnow/agentwallet-sdk) <br>
-- [agentwallet-sdk npm package](https://www.npmjs.com/package/agentwallet-sdk) <br>
-- [@agent-wallet/mastra-plugin npm package](https://www.npmjs.com/package/@agent-wallet/mastra-plugin) <br>
-- [clawpay-mcp npm package](https://www.npmjs.com/package/clawpay-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet setup and transaction-related commands that require explicit user confirmation before any transfer, payment, bridge, swap, or signing action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact/skill.json lists 1.0.0 and artifact/SKILL.md references npm v2.4.1) <br>
+Risk: Agents using this skill may initiate transfers, swaps, bridges, x402 payments, or identity registration with financial impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for transaction-producing actions and configure spend limits plus destination, chain, token, and payable-domain allowlists.
+
+Risk: Wallet runtime compromise or dependency drift could expose funds or broaden agent authority.
+
+Mitigation: Use pinned and reviewed package versions with a lockfile, isolate the wallet runtime, and operate with low-balance wallets or narrowly scoped session keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/up2itnow/skills/agentwallet-sdk)
+- [agentwallet-sdk npm package](https://www.npmjs.com/package/agentwallet-sdk)
+- [@agent-wallet/mastra-plugin npm package](https://www.npmjs.com/package/@agent-wallet/mastra-plugin)
+- [clawpay-mcp npm package](https://www.npmjs.com/package/clawpay-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes npm package names, SDK usage examples, wallet operation guidance, and security considerations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

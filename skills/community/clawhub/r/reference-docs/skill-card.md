@@ -1,38 +1,48 @@
-## Description: <br>
-Reference documentation patterns for API and symbol documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference documentation patterns for API and symbol documentation.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and documentation writers use this skill to draft or review API reference, parameter tables, symbol documentation, and technical specification pages for quick lookup.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated documentation examples may accidentally include real secrets, API keys, or authorization header values.
+
+Mitigation: Use realistic placeholder values and review examples before publishing so no live credentials are included.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and technical writers use this skill to create concise reference pages for APIs, symbols, parameters, returns, errors, and related technical specifications. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Reference pages may be incomplete or inconsistent if this skill is used without the companion docs-style guidance it depends on conceptually. <br>
-Mitigation: Use it with docs-style and review the resulting page against the included structure, table, runnable-example, and related-link gates. <br>
+**Output Format:** [Markdown and concise prose guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/skills/reference-docs) <br>
+**Other Properties Related to Output:** [No executable output; guidance is intended for documentation-writing tasks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with templates, tables, examples, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces documentation structure and review guidance; no executable code is included.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

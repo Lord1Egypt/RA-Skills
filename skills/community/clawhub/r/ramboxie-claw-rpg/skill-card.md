@@ -1,41 +1,57 @@
-## Description: <br>
-D&D-style RPG system for AI lobsters that auto-generates characters, tracks XP from conversations, manages leveling and prestige, and provides a web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+D&D-style RPG character system for AI assistants that generates character sheets from local memory files, tracks token-based XP, manages levels and prestige, and can emit occasional RPG flavor text during conversations.
 
-## Publisher: <br>
-[RAMBOXIE](https://clawhub.ai/user/RAMBOXIE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramboxie](https://clawhub.ai/user/ramboxie)
 
-## Use Case: <br>
-External users and agent operators use this skill to add RPG-style character progression, XP tracking, leveling, prestige, and optional conversational flavor text to AI lobster assistants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks to read local SOUL.md and MEMORY.md persona or memory files and write persistent character state. <br>
-Mitigation: Install only in workspaces where that local data access is acceptable, and review generated or changed state files before relying on them. <br>
-Risk: The suggested after-reply hook can automatically modify assistant responses with RPG flavor text. <br>
-Mitigation: Keep response modification opt-in and disable the hook in environments that require strict response control or auditability. <br>
-Risk: The evidence reports referenced Node scripts, cron setup, and dashboard behavior that are not present in the submitted artifact for review. <br>
-Mitigation: Do not enable commands, cron jobs, or the dashboard unless the missing implementation files are supplied and reviewed separately. <br>
+## Use Case:
 
+Developers and AI assistant users use this skill to add RPG-style character state, XP tracking, level progression, prestige handling, dashboard launch commands, and optional conversation flavor text to an assistant workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated RPG text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent character state when the referenced local scripts are available and enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Persistent after-reply hooks and scheduled jobs can run local scripts outside explicit user requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the AGENTS.md hook or cron setup only after reviewing the installed scripts and confirming that persistent automation is acceptable for the deployment.
+
+Risk: The artifact references local scripts that are not included in the provided evidence, so their runtime behavior cannot be verified from this package alone.
+
+Mitigation: Inspect the referenced script files separately before running node commands, cron setup, or heartbeat integrations.
+
+Risk: Automatic conversation flavor text can modify assistant replies in ways users may not expect.
+
+Mitigation: Use preview or manual modes first, and disclose or constrain the behavior before enabling automatic reply modification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ramboxie/skills/ramboxie-claw-rpg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit italic RPG flavor text and update local character state when the referenced scripts are installed.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Tests Python code by searching for requested functionality, generating test cases, running them, logging results, and proposing fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python Code Tester helps developers search project code, generate correctness-focused test cases, run tests, and repair detected issues.
 
-## Publisher: <br>
-[zhouhh2017](https://clawhub.ai/user/zhouhh2017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouhh2017](https://clawhub.ai/user/zhouhh2017)
 
-## Use Case: <br>
-Developers and engineers use this skill to create and run Python tests for specific functions or classes, capture results, and review suggested fixes before applying changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Python packages while preparing or rerunning tests. <br>
-Mitigation: Run it only in a disposable or isolated environment, and avoid installing dependencies into a main Python environment. <br>
-Risk: Generated tests may execute project code and produce files in the workspace. <br>
-Mitigation: Review generated test scripts and commands before running them, and use a version-controlled workspace. <br>
-Risk: Suggested fixes or source-code updates may change real project files. <br>
-Mitigation: Require manual diff review before applying changes and keep backups or version-control checkpoints. <br>
+## Use Case:
 
+Developers and engineers use this skill to locate target Python functions or classes, generate test cases with expected-result checks, run pytest-based validation, and summarize failures or proposed repairs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with generated Python test code, command output summaries, and JSON log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create test data, logs, and release test files in the skill workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can scan project files broadly and execute generated tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated project environment such as a disposable virtual environment or container, and confirm the exact target project path before execution.
+
+Risk: The setup script installs Python packages from its requirements file.
+
+Mitigation: Review the package list before running any pip install command.
+
+Risk: The optional fix flow can update real source files.
+
+Mitigation: Review a diff and confirm the intended target file before allowing source updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouhh2017/skills/python-code-test)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown status summaries with generated Python test code, shell command output, logs, and repair guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create test data, pytest scripts, logs, release copies, and source-code backups in the target project.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

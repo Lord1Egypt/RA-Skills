@@ -1,44 +1,59 @@
-## Description: <br>
-CLI tool to create meme tokens on hot.fun (Solana) and return structured JSON for the token creation flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool to create meme tokens on hot.fun on Solana and return structured JSON for the token creation flow.
 
-## Publisher: <br>
-[qinxiuchen](https://clawhub.ai/user/qinxiuchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qinxiuchen](https://clawhub.ai/user/qinxiuchen)
 
-## Use Case: <br>
-Developers and external users use this skill to create Solana meme tokens through the hotfun CLI after collecting token metadata and confirming wallet-use requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI receives full signing authority through PRIVATE_KEY. <br>
-Mitigation: Use a fresh low-balance wallet for this skill and never paste or expose the private key in chat. <br>
-Risk: The command signs and broadcasts a transaction returned by a remote API. <br>
-Mitigation: Require a decoded transaction preview before allowing signing or broadcast. <br>
-Risk: The install path can fetch npm package code at runtime when using @latest or npx auto-install. <br>
-Mitigation: Install only from a trusted package source and prefer a pinned, reviewed package version. <br>
+## Use Case:
 
+External developers and operators use this skill to create meme tokens on Solana through the hotfun CLI after collecting token details and confirming wallet and private-key risk.
 
-## Reference(s): <br>
-- [Hot.fun Create Token API Reference](artifact/references/api-create-token.md) <br>
-- [Hot Fun Integration on ClawHub](https://clawhub.ai/qinxiuchen/hot-fun-integration) <br>
-- [hot.fun create_pool_with_config API](https://gate.game.com/v3/hotfun/agent/create_pool_with_config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; create-token returns JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token creation output includes transaction hash, wallet, mint address, pool/config accounts, token name, symbol, image URL, and metadata URI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter metadata reports 1.0.0) <br>
+Risk: The workflow uses a Solana PRIVATE_KEY and signs a transaction supplied by the hot.fun API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh low-value Solana wallet, do not paste or share the private key in chat, and independently verify the exact transaction contents and expected on-chain effects before signing.
+
+Risk: Mutable npm installation paths such as npx or @latest can change the code executed by the agent.
+
+Mitigation: Pin the npm package version, review the package before use, and avoid npx or @latest for this workflow.
+
+Risk: Storing real wallet keys in shared project environment files can expose funds.
+
+Mitigation: Avoid storing production wallet keys in shared .env files and move funds out of the operating wallet promptly after use.
+
+## Reference(s):
+
+- [Hot.fun Create Token API Reference](artifact/references/api-create-token.md)
+- [ClawHub skill page](https://clawhub.ai/qinxiuchen/skills/hot-fun-integration)
+- [hot.fun create token API endpoint](https://gate.game.com/v3/hotfun/agent/create_pool_with_config)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with shell command invocations and structured JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The command output includes transaction hash, wallet, token mint, pool/config accounts, token name and symbol, image URL, and metadata URI.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version; artifact metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Scrapes web pages with Scrapling, including fast, stealthy, and dynamic modes for extracting page content, links, images, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Panscrapling Web Scraper helps agents scrape web pages with Scrapling using fast HTTP, stealthy, and dynamic browser modes to extract page text, selected elements, links, images, metadata, HTML, or Markdown.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch and extract content from web pages, including dynamically rendered or protected pages, for research, data collection, and downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bypass anti-bot protections during normal scraping use. <br>
-Mitigation: Use it only when authorized to automate the target site and keep scraping activity within applicable site terms and policies. <br>
-Risk: First use can install persistent system tools, Python packages, and browser binaries. <br>
-Mitigation: Review the setup script before use and prefer running the skill in a sandbox or disposable environment. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch and extract content from public web pages, including dynamically rendered pages that require browser-based scraping. It supports web data collection workflows that return page content, selected elements, links, images, metadata, HTML, or Markdown.
 
-## Reference(s): <br>
-- [Panscrapling Web Scraper on ClawHub](https://clawhub.ai/dashiming/panscrapling-web-scraper) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML] <br>
-**Output Format:** [Structured JSON or Markdown/text output containing scraped page content and optional links, images, and metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports URL, scraping mode, CSS selector, XPath, output type, link extraction, image extraction, metadata extraction, and setup-only execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Automatic setup can make persistent system changes and run mutable remote installers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a sandbox or disposable environment, and require manual confirmation for Homebrew, Python, pip, Playwright, and Patchright installation steps.
+
+Risk: Web scraping can unintentionally access internal, localhost, private-network, or cloud metadata URLs.
+
+Mitigation: Restrict allowed targets to intended public URLs and avoid scraping internal hosts, localhost, private network ranges, and cloud metadata endpoints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dashiming/skills/panscrapling-web-scraper)
+- [Scrapling](https://github.com/D4Vinci/Scrapling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and scraped text, HTML, JSON, or Markdown results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return selected page content, links, images, metadata, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

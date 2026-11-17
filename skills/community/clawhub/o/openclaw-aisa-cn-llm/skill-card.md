@@ -1,43 +1,56 @@
-## Description: <br>
-China LLM Gateway - Unified interface for Chinese LLMs including Qwen, DeepSeek, GLM, Baichuan. OpenAI compatible, one API Key for all models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China LLM Gateway - Unified interface for Chinese LLMs including Qwen, DeepSeek, GLM, Baichuan. OpenAI compatible, one API Key for all models.
 
-## Publisher: <br>
-[chaimengphp](https://clawhub.ai/user/chaimengphp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaimengphp](https://clawhub.ai/user/chaimengphp)
 
-## Use Case: <br>
-Developers and agent users use this skill to route chat, coding, reasoning, vision, translation, streaming, and model-comparison requests to Chinese LLMs through the AIsa OpenAI-compatible gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, message content, and optional image URLs to the AIsa third-party gateway. <br>
-Mitigation: Use it only when the provider's data-handling terms are acceptable, and avoid sending secrets, regulated data, proprietary code, or private image URLs. <br>
-Risk: The AISA_API_KEY can authorize paid model usage if exposed or reused broadly. <br>
-Mitigation: Use a dedicated API key, keep it in the environment rather than chats or logs, and monitor cost and quota. <br>
+## Use Case:
 
+Developers and external users use this skill to route chat, coding, reasoning, translation, vision, and model-comparison requests to Chinese LLMs through AIsa's OpenAI-compatible API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaimengphp/openclaw-aisa-cn-llm) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
-- [AIsa API reference](https://docs.aisa.one/reference/) <br>
-- [AIsa model pricing](https://marketplace.aisa.one/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API examples, Python code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY for chat and compare commands; the models command can run without an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, code snippets, image URLs, and related metadata may be sent to AIsa and downstream model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets, regulated data, or proprietary code unless your organization has approved the provider and its retention terms.
+
+Risk: Live API calls require AISA_API_KEY and depend on provider availability, account balance, model availability, and rate limits.
+
+Mitigation: Store the API key securely, monitor quota and rate-limit errors, and handle failed responses before relying on generated output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaimengphp/skills/openclaw-aisa-cn-llm)
+- [OpenClaw Homepage](https://openclaw.ai)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [AIsa Pricing](https://marketplace.aisa.one/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, and JSON examples; CLI responses may be JSON or streamed text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 or curl and an AISA_API_KEY for live API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+{
+  "schema_version": "4.1.0",
+  "deck": { "title": "AI 采用现状", "language": "zh", "narrative_intent": "report" },
+  "sources": [ { "source_id": "doc", "type": "markdown" } ],
+  "slides": [
+    {
+      "id": "s1",
+      "title": "多数企业仍停留在试点阶段",
+      "message": "AI 使用已普及，但规模化尚未发生",
+      "blocks": [
+        { "id": "f1", "role": "fact", "text": "近三分之二的企业尚未开始规模化 AI", "source_ref": { "source_id": "doc", "loc": "para_5" } },
+        { "id": "m1", "role": "metric", "label": "已规模化", "value": "31%", "source_ref": { "source_id": "doc", "loc": "para_6" } }
+      ],
+      "chart": {
+        "type": "column",
+        "data": {
+          "categories": ["实验中", "试点", "扩展中", "完全部署"],
+          "series": [ { "name": "2025 占比", "values": [32, 30, 31, 7] } ]
+        },
+        "source_ref": { "source_id": "doc", "loc": "table_1" }
+      }
+    },
+    {
+      "id": "s2",
+      "title": "规模化由大企业领先",
+      "message": "收入规模越大，越早进入扩展阶段",
+      "blocks": [
+        { "id": "f2", "role": "fact", "text": "收入超 50 亿美元的企业近半数已规模化", "source_ref": { "source_id": "doc", "loc": "para_7" } }
+      ],
+      "diagram_ir": {
+        "diagram_type": "causal_chain",
+        "nodes": [
+          { "id": "n1", "label": "AI 采用", "priority": "primary" },
+          { "id": "n2", "label": "工作流重构", "priority": "secondary" },
+          { "id": "n3", "label": "规模化价值", "priority": "primary" }
+        ],
+        "edges": [
+          { "from": "n1", "to": "n2", "relation": "causal" },
+          { "from": "n2", "to": "n3", "relation": "causal" }
+        ],
+        "source_refs": [ { "source_id": "doc", "loc": "para_7" } ]
+      }
+    }
+  ]
+}

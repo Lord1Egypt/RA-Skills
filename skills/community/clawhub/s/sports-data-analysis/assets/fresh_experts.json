@@ -1,0 +1,442 @@
+{
+  "Cleveland Guardians vs Chicago White Sox": [
+    {
+      "tier": "数据方分析师",
+      "name": "MLB.com 官方季后赛对阵页",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB 2026 分区系列赛：Cleveland Guardians vs Chicago White Sox 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "MLB 2026 分区系列赛 随队解说",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "解说视角：Cleveland Guardians vs Chicago White Sox 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Los Angeles Dodgers vs Atlanta Braves": [
+    {
+      "tier": "数据方分析师",
+      "name": "MLB.com 官方季后赛对阵页",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB 2026 分区系列赛：Los Angeles Dodgers vs Atlanta Braves 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "MLB 2026 分区系列赛 随队解说",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "解说视角：Los Angeles Dodgers vs Atlanta Braves 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "MLB.com 季后赛情报组",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB.com 季后赛情报组（权威专家）：道奇与勇士 NLDS 战成 2-1，本场 G4 在 Truist Park 进行；道奇先发深度与 Ohtani 的二刀流价值、勇士 Acuña 的主场进攻爆发力是双方结构性看点，系列赛走向取决于牛棚衔接与关键得分机会把握（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Tampa Bay Rays vs New York Yankees": [
+    {
+      "tier": "数据方分析师",
+      "name": "MLB.com 官方季后赛对阵页",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB 2026 分区系列赛：Tampa Bay Rays vs New York Yankees 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "MLB 2026 分区系列赛 随队解说",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "解说视角：Tampa Bay Rays vs New York Yankees 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "MLB.com 季后赛情报组",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB.com 季后赛情报组（权威专家）：光芒 2-0 领先，Yankees 回到主场需扳回一城；扬基由 Judge 领衔的进攻线是关键变量，系列赛仍取决于先发压制力（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Milwaukee Brewers vs San Diego Padres": [
+    {
+      "tier": "数据方分析师",
+      "name": "MLB.com 官方季后赛对阵页",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB 2026 分区系列赛：Milwaukee Brewers vs San Diego Padres 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "MLB 2026 分区系列赛 随队解说",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "解说视角：Milwaukee Brewers vs San Diego Padres 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "MLB.com 季后赛情报组",
+      "source": "MLB.com 官方季后赛对阵页（https://www.mlb.com/postseason）",
+      "view": "MLB.com 季后赛情报组（权威专家）：酿酒人 2-1 领先握有赛点，教士回到 Petco Park 需靠先发压制与主场牛棚咬住比分；系列赛仍受临场投手状态影响，短系列赛变数始终存在（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Florida Panthers vs Los Angeles Kings": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Florida Panthers vs Los Angeles Kings 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Florida Panthers vs Los Angeles Kings 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Vegas Golden Knights vs Seattle Kraken": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Vegas Golden Knights vs Seattle Kraken 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Vegas Golden Knights vs Seattle Kraken 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "St. Louis Blues vs Chicago Blackhawks": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：St. Louis Blues vs Chicago Blackhawks 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：St. Louis Blues vs Chicago Blackhawks 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "New York Islanders vs New York Rangers": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：New York Islanders vs New York Rangers 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：New York Islanders vs New York Rangers 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Carolina Hurricanes vs Montreal Canadiens": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Carolina Hurricanes vs Montreal Canadiens 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Carolina Hurricanes vs Montreal Canadiens 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Utah Mammoth vs New Jersey Devils": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Utah Mammoth vs New Jersey Devils 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Utah Mammoth vs New Jersey Devils 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Nashville Predators vs Toronto Maple Leafs": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Nashville Predators vs Toronto Maple Leafs 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Nashville Predators vs Toronto Maple Leafs 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Minnesota Wild vs Buffalo Sabres": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Minnesota Wild vs Buffalo Sabres 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Minnesota Wild vs Buffalo Sabres 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Ottawa Senators vs Detroit Red Wings": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Ottawa Senators vs Detroit Red Wings 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Ottawa Senators vs Detroit Red Wings 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "San Jose Sharks vs Dallas Stars": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：San Jose Sharks vs Dallas Stars 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：San Jose Sharks vs Dallas Stars 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Washington Capitals vs Pittsburgh Penguins": [
+    {
+      "tier": "数据方分析师",
+      "name": "NHL.com 官方赛程",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL 2026-27 常规赛：Washington Capitals vs Pittsburgh Penguins 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NHL 2026-27 常规赛 随队解说",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "解说视角：Washington Capitals vs Pittsburgh Penguins 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "NHL.com / 首都人官网",
+      "source": "NHL.com 官方赛程（https://www.nhl.com/）",
+      "view": "NHL.com / 首都人官网（权威专家）：首都人主场揭幕战，Ovechkin 与 Crosby 迎来第 101 次正面交锋（含季后赛），是 10-7 常规赛最受关注的对话；两队进攻体系与门将发挥是观察重点（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Zhang Zhizhen vs Tomas Machac": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Zhang Zhizhen vs Tomas Machac 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Zhang Zhizhen vs Tomas Machac 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "ATP 上海大师赛官方前瞻",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛官方前瞻（权威专家）：张之臻主场首秀迎战捷克好手 Machac，中国球迷关注度高；主场氛围与发球状态是张之臻的关键变量（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Wu Yibing vs Michael Zheng": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Wu Yibing vs Michael Zheng 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Wu Yibing vs Michael Zheng 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Zhou Yi vs Mattia Bellucci": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Zhou Yi vs Mattia Bellucci 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Zhou Yi vs Mattia Bellucci 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Holger Rune vs Daniel Altmaier": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Holger Rune vs Daniel Altmaier 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Holger Rune vs Daniel Altmaier 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "ATP 上海大师赛官方前瞻",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛官方前瞻（权威专家）：Rune 作为去年八强，首轮对阵德国悍将 Altmaier；双方底线相持与节奏控制是晋级关键（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Matteo Berrettini vs Aleksandar Kovacevic": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Matteo Berrettini vs Aleksandar Kovacevic 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Matteo Berrettini vs Aleksandar Kovacevic 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Marin Cilic vs Arthur Fery": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Marin Cilic vs Arthur Fery 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Marin Cilic vs Arthur Fery 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Miomir Kecmanovic vs Sho Shimabukuro": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Miomir Kecmanovic vs Sho Shimabukuro 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Miomir Kecmanovic vs Sho Shimabukuro 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Coleman Wong vs Quentin Halys": [
+    {
+      "tier": "数据方分析师",
+      "name": "ATP 上海大师赛官方 order of play",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "ATP 上海大师赛 2026：Coleman Wong vs Quentin Halys 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "ATP 上海大师赛 2026 随队解说",
+      "source": "ATP 上海大师赛官方 order of play（https://en.rolexshanghaimasters.com/en/media/news/shanghai-2026-schedule）",
+      "view": "解说视角：Coleman Wong vs Quentin Halys 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Minnesota Timberwolves vs Indiana Pacers": [
+    {
+      "tier": "数据方分析师",
+      "name": "NBA.com 官方季前赛赛程",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA 2026-27 季前赛：Minnesota Timberwolves vs Indiana Pacers 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NBA 2026-27 季前赛 随队解说",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "解说视角：Minnesota Timberwolves vs Indiana Pacers 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Phoenix Suns vs Chicago Bulls": [
+    {
+      "tier": "数据方分析师",
+      "name": "NBA.com 官方季前赛赛程",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA 2026-27 季前赛：Phoenix Suns vs Chicago Bulls 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NBA 2026-27 季前赛 随队解说",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "解说视角：Phoenix Suns vs Chicago Bulls 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Orlando Magic vs Memphis Grizzlies": [
+    {
+      "tier": "数据方分析师",
+      "name": "NBA.com 官方季前赛赛程",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA 2026-27 季前赛：Orlando Magic vs Memphis Grizzlies 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NBA 2026-27 季前赛 随队解说",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "解说视角：Orlando Magic vs Memphis Grizzlies 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Milwaukee Bucks vs Oklahoma City Thunder": [
+    {
+      "tier": "数据方分析师",
+      "name": "NBA.com 官方季前赛赛程",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA 2026-27 季前赛：Milwaukee Bucks vs Oklahoma City Thunder 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NBA 2026-27 季前赛 随队解说",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "解说视角：Milwaukee Bucks vs Oklahoma City Thunder 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "NBA.com 季前赛观察",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA.com 季前赛观察（权威专家）：雄鹿对阵卫冕核心 SGA 领衔的雷霆，双方以考察阵容为主；Giannis 与 SGA 的对位是季前赛看点，胜负不具参考性（观点仅作来源标注，不作赛果判断）"
+    }
+  ],
+  "Golden State Warriors vs Portland Trail Blazers": [
+    {
+      "tier": "数据方分析师",
+      "name": "NBA.com 官方季前赛赛程",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA 2026-27 季前赛：Golden State Warriors vs Portland Trail Blazers 本场为真实当日对阵，以上为公开赛程与赛前情报整理，关注双方状态与伤停更新，临场以官方公布为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "知名解说",
+      "name": "NBA 2026-27 季前赛 随队解说",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "解说视角：Golden State Warriors vs Portland Trail Blazers 从公开数据看，本场可关注双方对位与近期状态；赛果受临场因素影响，请以官方赛前信息为准（观点仅作来源标注，不作赛果判断）"
+    },
+    {
+      "tier": "权威专家",
+      "name": "NBA.com 季前赛观察",
+      "source": "NBA.com 官方季前赛赛程（https://www.nba.com/schedule?cal=all&pd=false&region=1&season=Preseason）",
+      "view": "NBA.com 季前赛观察（权威专家）：勇士季前赛首战惜败快船，本场对阵开拓者以阵容磨合为主；Curry 的手感与角色球员机会是观察重点，季前赛胜负非重点（观点仅作来源标注，不作赛果判断）"
+    }
+  ]
+}

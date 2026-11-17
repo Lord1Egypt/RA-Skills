@@ -1,42 +1,53 @@
-## Description: <br>
-对候选队列执行描述性统计与组间比较，生成感染率对比、描述统计表、结果摘要与论文框架草案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对候选队列执行描述性统计与组间比较，生成感染率对比、描述统计表、结果摘要与论文框架草案。
 
-## Publisher: <br>
-[emergenceronearth](https://clawhub.ai/user/emergenceronearth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergenceronearth](https://clawhub.ai/user/emergenceronearth)
 
-## Use Case: <br>
-Researchers and analysis-focused agents use this skill to summarize candidate cohort data, compare infection rates between groups, and draft a paper structure from the available analysis dataset. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on /home/ubuntu/workspace/demo/mock_data/analysis.json, so stale or untrusted data can lead to misleading statistical summaries. <br>
-Mitigation: Verify that analysis.json is the intended dataset and that its provenance is trusted before relying on generated findings. <br>
-Risk: The skill reports status to localhost:5001/api/report, which may expose workflow status to an unexpected local service if the environment is misconfigured. <br>
-Mitigation: Install only where that localhost reporting service is expected, or review the command before execution in other environments. <br>
-Risk: The output includes research and paper-framework guidance that may be over-relied on for research or medical decisions. <br>
-Mitigation: Treat the generated analysis as a draft and have a qualified reviewer validate the data, methods, and conclusions before use. <br>
+## Use Case:
 
+科研或医疗数据分析用户可用此技能读取预期的 analysis.json 数据，生成候选队列的描述性统计、组间感染率比较、关键发现摘要和论文框架草案。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergenceronearth/agentic-stats-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with tables, findings, cautions, paper outline, and inline bash status-report commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a fixed local analysis.json dataset and reports progress to an expected localhost service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill reads a fixed local analysis.json path and may fail or expose unintended local data if that path is not the expected demo dataset.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where /home/ubuntu/workspace/demo/mock_data/analysis.json is expected and contains approved data for analysis.
+
+Risk: The skill sends start and completion status messages to a localhost reporting endpoint.
+
+Mitigation: Use it only when the local reporting service on localhost:5001 is expected, or review the reporting behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emergenceronearth/skills/agentic-stats-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables, bullet summaries, paper-outline sections, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads the expected analysis.json data file and reports start/completion status to localhost when that local reporting service is present.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

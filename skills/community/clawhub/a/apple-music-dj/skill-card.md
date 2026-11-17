@@ -1,46 +1,62 @@
-## Description: <br>
-Apple Music DJ analyzes Apple Music listening history, Replay stats, library data, and taste patterns to generate personalized playlists, recommendations, insights, and taste summaries through MusicKit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates Apple Music playlists from listening history and offers personalized discoveries, taste insights, and optional account updates.
 
-## Publisher: <br>
-[and3rn3t](https://clawhub.ai/user/and3rn3t) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[and3rn3t](https://clawhub.ai/user/and3rn3t)
 
-## Use Case: <br>
-External Apple Music users and developers use this skill to analyze listening data, discover music, generate playlists, prepare concert or release-radar mixes, and optionally automate recurring curation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Apple Music developer and user tokens that can access personal listening data. <br>
-Mitigation: Store tokens only in environment variables, treat them like passwords, and rotate or remove them when no longer needed. <br>
-Risk: Playlist workflows can create or modify playlists in the user's Apple Music library. <br>
-Mitigation: Use explicit user confirmation before write actions and review generated track lists before committing changes. <br>
-Risk: Cron automation may run recurring Apple Music actions without direct supervision. <br>
-Mitigation: Review generated schedules and crontab entries before enabling automation; avoid enabling cron until command construction has been reviewed. <br>
+## Use Case:
 
+Apple Music subscribers use this skill to discover songs, build personalized playlists, compare listening tastes, and review their music history. A no-token demo lets prospective users explore its features first.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/and3rn3t/apple-music-dj) <br>
-- [Authentication setup](references/auth-setup.md) <br>
-- [Apple Music API reference](references/api-reference.md) <br>
-- [Playlist strategies](references/playlist-strategies.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Apple Music playlists, cache taste profiles locally, generate SVG or text taste cards, and configure optional cron automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: frontmatter, pyproject.toml, clawhub.json, release evidence) <br>
+Risk: Access to Apple Music developer and user tokens exposes music-account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run token setup yourself and try the no-token demo before connecting your account.
+
+Risk: Playlist, favorite, rating, and library changes can alter the user's music account.
+
+Mitigation: Review previews and confirm the intended changes before enabling --create, --yes, or --apply.
+
+Risk: Installed scheduled jobs can keep running and may make unattended changes.
+
+Mitigation: Review the proposed cron jobs before installation, especially any job that creates playlists, and remove jobs when no longer needed.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/and3rn3t/skills/apple-music-dj)
+- [Project homepage](https://github.com/and3rn3t/apple-music-dj)
+- [Apple Music API reference](artifact/references/api-reference.md)
+- [Authentication setup](artifact/references/auth-setup.md)
+- [Playlist strategies](artifact/references/playlist-strategies.md)
+- [Spotify import](artifact/references/spotify-import.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, SVG]
+
+**Output Format:** [Conversational text and playlist previews; optional SVG taste card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Playlist creation and account changes are opt-in; a no-token demo is available.]
+
+## Skill Version(s):
+
+3.4.1 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Controls Xiaomi/Mijia smart-home devices through a trusted xiaomi-home MCP server, including lights, purifiers, heaters, air conditioners, fans, vacuums, curtains, status queries, and camera snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小米/米家智能家居控制帮助代理查询和控制连接的小米/米家灯具、空气净化器、空调、风扇、扫地机器人、窗帘和摄像头等设备。
 
-## Publisher: <br>
-[alleneee](https://clawhub.ai/user/alleneee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alleneee](https://clawhub.ai/user/alleneee)
 
-## Use Case: <br>
-External users with Xiaomi/Mijia smart-home devices use this skill to let an agent authenticate with the xiaomi-home MCP server, locate devices from natural-language requests, read status, control device properties or actions, and analyze camera snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide Xiaomi account credentials during setup. <br>
-Mitigation: Install only with a trusted xiaomi-home MCP server and use platform secret handling instead of exposing credentials in chat whenever available. <br>
-Risk: The skill can control cameras and multiple smart-home devices, including heaters, air conditioners, scenes, and other household equipment. <br>
-Mitigation: Require explicit user confirmation before camera access, bulk scene execution, heater or AC changes, or any action affecting multiple devices. <br>
-Risk: Device property IDs vary by model, so an incorrect action could fail or change the wrong property. <br>
-Mitigation: Resolve devices with list or find tools, verify online status, and read or probe supported properties before changing device state. <br>
+## Use Case:
 
+Smart-home users use this skill to let an agent operate Xiaomi/Mijia home devices, check device status, run multi-device scenes, and capture camera snapshots. It should be used only with a trusted xiaomi-home MCP server and with explicit confirmation for sensitive physical or camera actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alleneee/mijia-home) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Natural-language responses with MCP tool calls and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may trigger authentication, smart-home device control, scene operations, or camera snapshots through the configured MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill may ask users to provide Xiaomi passwords or verification codes in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted MCP server, review where credentials are stored or logged, and avoid entering passwords or verification codes unless that handling is acceptable.
+
+Risk: The skill can trigger broad physical actions across smart-home devices, including scenes, bulk changes, heaters, climate devices, and cameras.
+
+Mitigation: Require explicit user confirmation before scenes, bulk device changes, heater or climate changes, camera snapshots, or RTSP camera setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alleneee/skills/mijia-home)
+- [ClawHub publisher profile](https://clawhub.ai/user/alleneee)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls]
+
+**Output Format:** [Natural language responses with structured MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request Xiaomi account credentials, verification codes, device identifiers, camera names, or RTSP URLs when required by the configured MCP server.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Guides Texas residential electricity users through address confirmation, ESIID lookup, usage estimation, plan recommendation, self-service plan routing, and daily or weekly savings monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Texas residential electricity shoppers through address confirmation, usage estimation, plan recommendation, self-service plan routing, and daily or weekly savings monitoring.
 
-## Publisher: <br>
-[catkennel](https://clawhub.ai/user/catkennel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catkennel](https://clawhub.ai/user/catkennel)
 
-## Use Case: <br>
-External users in Texas use this skill to confirm a service address, compare residential electricity plans, route to a Personalized Energy address page, and set a daily or weekly monitoring preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States - Texas residential electricity market <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports an embedded live bearer token. <br>
-Mitigation: Remove or rotate the token before installation and use a managed secret instead of a hard-coded credential. <br>
-Risk: The security evidence reports that household address and utility data are sent to PowerLego and Personalized Energy services. <br>
-Mitigation: Disclose the external data sharing to users before lookup and avoid sending addresses unless the user has asked for electricity-plan assistance. <br>
-Risk: Plan availability, usage estimates, rates, and projected savings may change or be unavailable for a confirmed address. <br>
-Mitigation: Present results as current estimates, avoid guaranteed savings claims, and route users to the live Personalized Energy address page for final review. <br>
+## Use Case:
 
+External Texas residential electricity consumers use this skill to confirm a service address, compare current plan options, open the matching Personalized Energy address page, and set daily or weekly savings monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/catkennel/texas-electricity-savings-monitor-openclaw) <br>
-- [Publisher Profile](https://clawhub.ai/user/catkennel) <br>
-- [Personalized Energy Texas Electricity Rates](https://www.personalized.energy/electricity-rates/texas) <br>
-- [Address Completeness](references/address-completeness.md) <br>
-- [Intent Routing](references/intent-routing.md) <br>
-- [OpenClaw Execution](references/openclaw-execution.md) <br>
-- [Response Strategy](references/response-strategy.md) <br>
+### Deployment Geography for Use:
 
+United States (Texas)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain English or Markdown responses with address candidates, plan summaries, next-step links, and monitoring recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a confirmed Texas service address before producing downstream plan or monitoring guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Residential service address and usage-related information is sent to Personalized Energy or PowerLego services for plan lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with clear user-facing privacy disclosure and collect only the address and usage details needed for the requested electricity workflow.
+
+Risk: The release ships an exposed bearer token for the external PowerLego service.
+
+Mitigation: Rotate and remove the exposed token before deployment, and move authentication behind a protected service or secret store.
+
+Risk: Plan availability, rates, and estimated savings can change and should not be presented as guaranteed.
+
+Mitigation: Present plan results as current lookup guidance, route users to the Personalized Energy address page for live review, and avoid guaranteed-savings claims.
+
+## Reference(s):
+
+- [Address Completeness](references/address-completeness.md)
+- [Intent Routing](references/intent-routing.md)
+- [OpenClaw Execution Guide](references/openclaw-execution.md)
+- [Response Strategy](references/response-strategy.md)
+- [Personalized Energy Texas Electricity Rates](https://www.personalized.energy/electricity-rates/texas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Consumer-facing text or Markdown with numbered address and plan lists, URLs, and supporting JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include confirmed addresses, ESIID values when available, estimated usage summaries, top plan lists, best-plan recommendations, Personalized Energy address URLs, and monitoring recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

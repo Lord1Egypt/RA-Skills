@@ -15,7 +15,7 @@ description: >
 
 # Claw Memory Manager
 
-- **Version**: 1.1.0
+- **Version**: 1.1.1
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/better-agent-skills
@@ -182,23 +182,7 @@ claw-memory-manager/
 
 ## Changelog
 
-### v1.1.0 (2026-06-20)
-
-- ✨ **Added `active-memory` feature** with three style presets
-  (conservative / balanced / aggressive)
-- ✨ Added `--style` CLI flag (argparse-enforced choices)
-- ✨ `status active-memory` auto-detects current style by reverse-reading `queryMode`
-- ✨ Style preset details exposed in feature catalog
-- Aliases: existing dreaming-only flags unchanged; `--style` ignored (with warning) for dreaming
-
-### v1.0.0 (initial open-source release)
-
-- Dreaming feature: enable / disable / status / check
-- `--half-life`, `--max-age`, `--timezone` flags
-- Auto-backup, --dry-run, --no-restart, --no-backup
-- Auto-detect K8s mirror paths
-- Verify-after-write
-
+See [CHANGELOG.md](./CHANGELOG.md) for the full version history.
 ## See also
 
 - `references/features.md` — full feature catalog, config schemas, and extension guide

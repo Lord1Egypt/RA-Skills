@@ -1,55 +1,76 @@
-## Description: <br>
-Gate CrossEx cross-exchange skill for trading, transfers, order management, and position or history queries across Gate, Binance, OKX, and Bybit through Gate MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate CrossEx cross-exchange skill for trading or querying positions across Gate, Binance, OKX, and Bybit through Gate CrossEx.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to query CrossEx accounts and manage cross-exchange spot, margin, futures, transfer, convert, order, position, and history workflows through Gate MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad CrossEx trading authority can place, amend, cancel, transfer, convert, close positions, or change leverage using real funds. <br>
-Mitigation: Use least-privilege API keys where possible, start with a small funded test amount, and require explicit confirmation of exchange, symbol, amount, order ID, transfer route, and leverage before every mutation. <br>
-Risk: Margin, futures, leverage, and cross-exchange execution can create liquidation, slippage, or fast price-movement exposure. <br>
-Mitigation: Run account, balance, symbol, fee, risk-limit, and leverage pre-checks; surface risk details in the action draft; and verify resulting state with read endpoints after execution. <br>
-Risk: External runtime or update instructions may change after installation. <br>
-Mitigation: Review the installed skill version and change details before accepting updates, and stop or stay query-only when required MCP read or write endpoints are unavailable. <br>
-Risk: API credentials could be mishandled during setup. <br>
-Mitigation: Never paste API secrets into chat; configure credentials through secure local MCP configuration and rotate leaked keys immediately. <br>
+## Use Case:
 
+External users and developers use this skill to route Gate CrossEx account, order, position, history, transfer, convert, margin, and futures requests to documented MCP workflows across supported exchanges.
 
-## Reference(s): <br>
-- [Gate CrossEx Product Page](https://www.gate.com/crossex) <br>
-- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage) <br>
-- [MCP Execution Specification](references/mcp.md) <br>
-- [Runtime Rules](references/runtime-rules.md) <br>
-- [Spot Trading](references/spot-trading.md) <br>
-- [Margin Trading](references/margin-trading.md) <br>
-- [Futures Trading](references/futures-trading.md) <br>
-- [Cross-Exchange Transfer](references/transfer.md) <br>
-- [Convert Trading](references/convert-trading.md) <br>
-- [Order Management](references/order-management.md) <br>
-- [Position Query](references/position-query.md) <br>
-- [History Query](references/history-query.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown action drafts, confirmation prompts, result summaries, and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gate MCP, CrossEx API permissions, pre-checks before mutations, explicit user confirmation, and read-back verification after writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 2026.3.23-1) <br>
+Risk: Mutable remote runtime instructions could affect behavior before high-impact financial actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify runtime rules from a pinned or local copy before use, and do not install or update skills without explicit user confirmation.
+
+Risk: Write-capable CrossEx actions can place trades, transfer funds, convert assets, cancel or amend orders, close positions, and change leverage.
+
+Mitigation: Require an immediate explicit confirmation after presenting the exact action draft, parameters, and risk impact before any mutation call.
+
+Risk: Broad account, position, and history queries may expose sensitive financial records.
+
+Mitigation: Limit query scope to the user's stated need and avoid broad account or history requests unless the user intends to display those records.
+
+Risk: API credentials with CrossEx write permissions can authorize high-impact account changes.
+
+Mitigation: Use secure local MCP configuration, never ask users to paste API secrets in chat, and degrade to query-only mode when write permissions are unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gate-exchange/skills/gate-exchange-crossex)
+- [Gate CrossEx product page](https://www.gate.com/crossex)
+- [Gate CrossEx API documentation](https://www.gate.com/docs/developers/crossex)
+- [Gate API v4 documentation](https://www.gate.com/docs/developers/apiv4)
+- [Gate runtime rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md)
+- [MCP execution specification](references/mcp.md)
+- [Runtime rules](references/runtime-rules.md)
+- [Trading scenarios](references/scenarios.md)
+- [Spot trading workflow](references/spot-trading.md)
+- [Margin trading workflow](references/margin-trading.md)
+- [Futures trading workflow](references/futures-trading.md)
+- [Transfer workflow](references/transfer.md)
+- [Convert workflow](references/convert-trading.md)
+- [Order management workflow](references/order-management.md)
+- [Position query workflow](references/position-query.md)
+- [History query workflow](references/history-query.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown action drafts, confirmations, query summaries, and execution results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Gate MCP and CrossEx API permissions for write actions; can degrade to query-only mode when write endpoints or permissions are unavailable.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

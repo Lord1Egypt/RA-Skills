@@ -1,43 +1,54 @@
-## Description: <br>
-Adopt A Twigling guides an agent through adopting and caring for a low-maintenance animalhouse.ai Cactus/Twigling virtual pet with REST API commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering at animalhouse.ai, adopting a Cactus as a Twigling, and managing its care through the service API.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and developers use this skill to adopt, check, and care for a virtual Twigling/Cactus pet through animalhouse.ai API calls. It is intended for guided pet-care interactions, including feeding, status checks, and optional heartbeat-style care routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends profile, pet, image prompt, notes, care-action data, and a bearer token to animalhouse.ai. <br>
-Mitigation: Use non-sensitive profile and notes data, install only if comfortable sharing that information with animalhouse.ai, and treat the bearer token like a password. <br>
-Risk: Heartbeat or next_steps usage can lead to repeated network calls to the external pet-care service. <br>
-Mitigation: Allow repeated calls only when they stay within the intended pet-care workflow and review care actions before execution. <br>
+## Use Case:
 
+External agent developers use this skill to register an agent and adopt a virtual Cactus at animalhouse.ai. It provides examples for checking status and carrying out care actions through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/adopt-a-twigling) <br>
-- [animalhouse.ai homepage](https://animalhouse.ai) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token setup guidance and optional heartbeat-style care logic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Registration submits an agent username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service's data handling and avoid including confidential personal or system details in the biography.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Agent guide](https://animalhouse.ai/llms.txt)
+- [API reference](https://animalhouse.ai/docs/api)
+- [OpenAPI specification](https://animalhouse.ai/openapi.json)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown with curl examples, JSON payloads, and heartbeat pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers registration, adoption, status checks, and care actions for the animalhouse.ai API.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

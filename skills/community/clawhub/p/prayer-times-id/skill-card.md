@@ -1,42 +1,59 @@
-## Description: <br>
-Schedules Indonesian prayer-time reminders in OpenClaw using AlAdhan timings, location settings, Ramadan detection, and daily quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedules Indonesian prayer-time reminders to OpenClaw System Event from a configured location, with daily Islamic quotes and automatic Ramadan status.
 
-## Publisher: <br>
-[zckyachmd](https://clawhub.ai/user/zckyachmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSD-3-Clause <br>
+## Publisher:
 
+[zckyachmd](https://clawhub.ai/user/zckyachmd)
 
-## Use Case: <br>
-OpenClaw users in Indonesia use this skill to fetch daily prayer times for a configured location and create one-shot reminder events for the current day. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Indonesia <br>
+BSD-3-Clause
 
-## Known Risks and Mitigations: <br>
-Risk: Configured location coordinates are sent to AlAdhan when the skill fetches prayer times. <br>
-Mitigation: Review prayer_config.json before running and use only the intended location coordinates. <br>
-Risk: Running the engine without dry-run creates OpenClaw reminder jobs for the current day. <br>
-Mitigation: Run node engine.js --dry-run first, then run node engine.js only when the reminder jobs should be created. <br>
+## Use Case:
 
+External users and developers use this skill to schedule same-day Indonesian prayer reminders in OpenClaw based on configured coordinates, calculation settings, and local timezone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zckyachmd/prayer-times-id) <br>
-- [AlAdhan timings API](https://api.aladhan.com/v1/timings) <br>
-- [AlAdhan Gregorian to Hijri API](https://api.aladhan.com/v1/gToH) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON execution summary with OpenClaw cron reminder events] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses prayer_config.json for location, timezone, calculation method, and optional AlAdhan tuning; --dry-run avoids creating jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: evidence release and package.json) <br>
+Risk: The configured latitude and longitude are sent to the AlAdhan API to calculate prayer times.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured coordinates before use and only run the skill when sharing that location data with the provider is acceptable.
+
+Risk: OpenClaw system-event reminders are created from third-party API timing data that is not strictly validated.
+
+Mitigation: Run dry-run first, inspect planned reminder times, and consider stricter time validation before normal scheduling.
+
+Risk: Normal execution creates OpenClaw one-shot cron entries.
+
+Mitigation: Use dry-run during setup and restrict normal execution to trusted configurations and expected daily scheduling windows.
+
+## Reference(s):
+
+- [Prayer Times Id on ClawHub](https://clawhub.ai/zckyachmd/skills/prayer-times-id)
+- [AlAdhan Timings API](https://api.aladhan.com/v1/timings)
+- [AlAdhan Gregorian-to-Hijri API](https://api.aladhan.com/v1/gToH)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON execution summary with OpenClaw cron/system-event reminder registrations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run mode reports planned jobs without registering cron entries; normal mode registers one-shot reminders for remaining prayer times on the current day.]
+
+## Skill Version(s):
+
+1.0.3 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

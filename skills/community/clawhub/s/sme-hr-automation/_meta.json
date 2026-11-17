@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7433fxrwre45xvc0kzsf371d8395h1",
-  "slug": "sme-hr-automation",
+  "name": "中小团队HR自动化工具包",
+  "description": "国内中小企业HR自动化工具，一键生成劳动合同、Offer、员工手册、离职证明等标准文书，合规省心",
   "version": "1.0.0",
-  "publishedAt": 1773990934965
+  "author": "天总分身",
+  "tags": ["hr", "行政", "合同", "中小企业", "国内合规"],
+  "requires": ["legal-essentials", "contract-generator"],
+  "dependencies": []
 }

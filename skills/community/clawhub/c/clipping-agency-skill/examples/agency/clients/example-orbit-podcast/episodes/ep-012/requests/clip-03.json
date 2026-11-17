@@ -1,0 +1,82 @@
+{
+ "content": [
+  {
+   "text": "Amazed, then enthralled, then bored. Apollo 11's commander in 1989 on how fast we stop noticing. #apollo11 #space #history",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-orbit-03"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-10-10T16:30:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-acct-orbit-tiktok",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "PUBLIC_TO_EVERYONE",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": false,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "contentOverride": [
+    {
+     "text": "Amazed, then enthralled, then bored. Apollo 11's commander in 1989 on how fast we stop noticing. #apollo11 #space #history",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-03"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-acct-orbit-instagram",
+   "postType": "REEL",
+   "contentOverride": [
+    {
+     "text": "Apollo 11's commander, twenty years after the landing, on why the Moon stopped feeling new.\n\nFull episode: link in bio.\n#apollo11 #space #history",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-03"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "example-acct-orbit-youtube",
+   "title": "Why people get bored of space, from Apollo 11's commander (1989)",
+   "privacy": "public",
+   "madeForKids": false,
+   "tags": [
+    "apollo 11",
+    "space history",
+    "human nature"
+   ],
+   "contentOverride": [
+    {
+     "text": "Apollo 11's commander in 1989 on human nature and space. #Shorts",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-orbit-03"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

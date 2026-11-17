@@ -1,39 +1,54 @@
-## Description: <br>
-Calls Tencent Cloud BizLicenseOCR to extract business-license fields from image URLs or Base64 image input, including company identity fields, validity period details, copy or reshoot warnings, electronic license detection, and optional business-certificate recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud BizLicense OCR calls Tencent Cloud's BizLicenseOCR API to extract structured fields from business-license images supplied as a URL, Base64 string, or local image file.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and agents use this skill to submit authorized business-license images or URLs to Tencent Cloud OCR and receive structured company registration fields and warning signals for downstream review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Tencent Cloud credentials and sends selected business-license images or URLs to Tencent Cloud OCR for recognition. <br>
-Mitigation: Use a dedicated least-privilege Tencent key, protect the required environment variables, process only authorized documents, and review Tencent Cloud data-handling terms for sensitive business records. <br>
+## Use Case:
 
+Agents and developers use this skill to recognize Chinese business-license images and return company details such as registration number, legal representative, registered capital, business scope, validity period, and image warning signals.
 
-## Reference(s): <br>
-- [Tencent Cloud BizLicenseOCR API documentation](https://cloud.tencent.com/document/api/866/36215) <br>
-- [ClawHub skill page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-bizlicense) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON output from the helper script, with Markdown usage guidance and shell command examples in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials via TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY, and accepts either ImageUrl or ImageBase64 input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Business-license images and extracted company details are sent to Tencent Cloud OCR for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments approved for sending these documents to Tencent Cloud, and confirm before uploading sensitive images.
+
+Risk: The skill depends on Tencent Cloud API credentials and the Tencent Cloud Python SDK.
+
+Mitigation: Use narrowly scoped Tencent Cloud credentials and prefer a pinned, reviewed SDK version.
+
+## Reference(s):
+
+- [Tencent Cloud BizLicenseOCR API documentation](https://cloud.tencent.com/document/api/866/36215)
+- [ClawHub skill page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-bizlicense)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, guidance]
+
+**Output Format:** [JSON object printed to stdout, with command-line usage guidance in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials and either an image URL or Base64/image-file input; responses may include warning metadata for copied or re-photographed licenses.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

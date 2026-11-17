@@ -1,0 +1,334 @@
+# Errors and guardrails
+
+The Router signs payments from your wallet in response to instructions written by a merchant nobody
+vetted. It is deliberately suspicious.
+
+**A refusal is the system working.** Before you widen a cap or drop an idempotency key to make an
+error go away, read what it was protecting you from. An autonomous agent that treats guardrails as
+obstacles is exactly the failure mode this design exists to prevent.
+
+## Every Router code
+
+Codes `0029` and `0031`–`0033` are exposed from API 1.55 onward; older API pins retain the legacy
+unbound quote and service-selection request shapes.
+
+| Code | Status | Meaning | Retry? |
+| --- | --- | --- | --- |
+| `BCK.ROUTER.0001` | 400 | Bad input: unsupported protocol, malformed/empty challenge, no fundable option, recipient outside the Delegation's scope, non-allowlisted asset, wrong-provider Delegation, missing `delegationId`. **`details` names the specific problem — read it** Identity consent requires a plain key, HTTPS slug target, seller opt-in and supported direct route. OAuth credentials get `403 BCK.OAUTH.0030` on `/route`, `/route/with-controls`, `/proxy` and `/svc` before consent checks; consent on commerce routes gets this `0001`. Select refuses the field whenever present, even false or null, once past authentication guards. | No |
+| `BCK.ROUTER.0002` | 409 | This `requestId` already minted a payment. The original `paymentId` is in the response | No |
+| `BCK.ROUTER.0003` | 402 | Delegation over cap, expired, exhausted, or revoked | No — **stop** |
+| `BCK.ROUTER.0004` | 404 | No Router payment with that id belongs to you | No |
+| `BCK.ROUTER.0005` | 409 | Payment not settleable. Only `Issued` → `Settled`; same hash is a no-op, a different hash is rejected | No |
+| `BCK.ROUTER.0006` | 500 | Transient failure building the payments summary | **Yes** |
+| `BCK.ROUTER.0007` | 429 | Too many concurrent routed requests in flight | **Yes**, after backoff |
+| `BCK.ROUTER.0008` | 403 | Legacy API key — create a new one | No |
+| `BCK.ROUTER.0009` | 402 | An MPP `tempo` payment (a charge, or a session's deposit or top-up): the wallet doesn't hold enough of the payment token on that Tempo chain; or, on the card rail (MPP-stripe), the issuer declined the card. **Nothing was signed.** x402 and an MPP `evm` charge are never balance-checked and never answer this: a short wallet still gets its credential, and the payment fails when the merchant settles it. | No — **stop** |
+| `BCK.ROUTER.0010` | 500 | Internal: the rail reported a charge amount that isn't a non-negative integer, so the Router can't reserve anything against the cap | No — **never blind-retry** |
+| `BCK.ROUTER.0011` | 402 | Card rail: the charge needs cardholder 3-D Secure, and an agent has no browser to complete it. Nothing was charged and the seller got no usable credential. | No — **needs a human** |
+| `BCK.ROUTER.0012` | 400 | The seller's 402 advertises an EIP-712 domain its own settlement token does not sign under, so the Router refuses to sign. Nothing signed, charged or reserved — an authorization under the wrong domain is unspendable anyway. Seller-side bug | No — **report it, pay elsewhere** |
+| `BCK.ROUTER.0013` | 500 | Nevermined holds no EIP-712 signing domain for the token the funding filter selected — a gap in OUR canonical table, not the seller's bug and not your request. Nothing signed, charged or reserved | No — **report it to Nevermined** |
+| `BCK.ROUTER.0014` | 409 | The target is a cataloged Nevermined service, whose upstream URL is deliberately hidden. The Router refuses to pay it by raw URL — mode A and a raw mode-B target both put the merchant's host on your wire, defeating the broker. The match is by HOST, so a co-hosted endpoint that is not itself listed is refused too — ask the vendor to list it, or contact Nevermined; hosts with no cataloged service are unaffected. | No — **use the slug**: `POST /router/route` with a `slug`, or `POST /router/svc/<catalog-slug>` (a `commerce` grant: `POST /router/commerce/route` with a `slug`). A refused **quote** is re-quoted by slug — `POST /router/quote`, or `/router/commerce/quote` for a grant — never paid |
+| `BCK.ROUTER.0018` | 402 | Per-call `maxTotalCents` is below the fee-inclusive, whole-cent cap reserve. No charge or cap reserve, though signing may already have occurred; parse JSON-string `params` for `requiredTotalCents`. | No — raise the ceiling only if this call is intended; reuse the same `requestId` |
+| `BCK.ROUTER.0019` | 400 | Streaming surfaces only (`/proxy` · `/svc`; `/route` returns the envelope status with `body: null`). A cataloged service returned a **non-retryable** status — a 4xx client error, or a rare 3xx the Router does not follow (a 402 re-challenge and a 429 are **not** this code). The upstream body is withheld (it can name the merchant host); this typed body preserves the **real** upstream status (on the HTTP status line and in JSON-string `params`). Build a valid request from the service's Catalog detail (`requestExample` / `responseFields`). | No — **fix the request first**, then retry with a fresh `requestId` |
+| `BCK.ROUTER.0020` | 502 | Streaming surfaces only (`/proxy` · `/svc`; `/route` returns the envelope status with `body: null`). A cataloged service returned a server error (5xx) or rate-limited (429) — an upstream/transient condition, not your request. Body **and** headers are withheld (host oracle, including `Retry-After`); this typed body preserves the **real** status. The Router charges **no routing fee** for an undelivered call; whether the merchant leg itself charged is reported as `merchantSettlementObservedAt` (recorded by on-chain reconciliation on x402, MPP `evm` and MPP-tempo; `null` on a clean per-call settlement, whenever reconciliation has no verdict, and always on MPP-stripe, so `null` is not proof of no charge; read alongside `status`) on `GET /api/v1/router/payments`. | **Yes**, with backoff — reuse the same `requestId` only if no `X-Router-Payment-Id` came back; if one did, a payment is already recorded, so use a NEW id and reconcile via `GET /router/payments` |
+| `BCK.ROUTER.0021` | 400 | The rail this service advertised carries its payment credential in a header you are **already using**. On the MPP rails that header is `Authorization`, which is also where your own merchant auth goes (`headers.Authorization` on `/route`, `X-Router-Upstream-Authorization` on `/proxy` · `/svc`). Rather than silently dropping yours on the paid hop, the Router refuses: **nothing was minted, no cap was reserved and no money moved**. JSON-string `params` names the contested header. | No — **name the header the service documents** for its credential: `credentialHeader` in the `/route` body, or the `X-Router-Credential-Header` request header on `/proxy` · `/svc` (a separate `Payment` header is the common one). If the service documents none, it wants the credential in `Authorization` itself and cannot also take your bearer there: drop your own auth for that call, or pay it over an x402 endpoint (whose credential travels in `PAYMENT-SIGNATURE`). Retrying unchanged fails identically |
+| `BCK.ROUTER.0022` | 500 | A required Router capability is not configured: service selection or buyer identity signing. Details/params identify the capability; nothing sent, minted or charged by this attempt. | Yes — only after the operator restores the capability; do not loop unchanged. Deliberately omit disclosure consent if attribution is optional |
+| `BCK.ROUTER.0023` | 502 | On an autoPay `POST /router/select` (or `/router/commerce/select`): the chosen service was paid but the downstream call did not complete cleanly **after** the payment was created, so the charge outcome is **indeterminate** — the merchant leg may or may not have settled. JSON-string `params` carries the `paymentId` when one was created. | No — do **not** retry with a fresh `requestId` (that could double-charge). Reconcile via `GET /api/v1/router/payments?requestId=<id>` (percent-encoded), then reuse the **same** `requestId` to retry safely |
+| `BCK.ROUTER.0024` | 413 | The request body exceeds the Router's size limit (about 5 MB). | No — reduce the request body before trying again |
+| `BCK.ROUTER.0025` | 502 | The upstream reply was too large to deliver after a paid request. The payment outcome is indeterminate; it may have gone through. | No — this reply has no `X-Router-Payment-Id`; JSON-string `params` may carry `paymentId`. If `params` has no `paymentId`, look the payment up by your `requestId`: `GET /api/v1/router/payments?requestId=<id>` (percent-encoded) answers `{ presence, payments }`. A 0025 always records the payment first, so `absent` there means you queried the wrong id, account or environment — never that nothing was charged. The row reads `status: Failed` because delivery failed, not because the merchant was uncharged. A non-null `merchantSettlementObservedAt` confirms the merchant was paid on-chain; null does not prove no charge on any rail. Do not retry: the same `requestId` returns 409 `BCK.ROUTER.0002` with the original `paymentId` and cannot re-deliver the reply; a fresh id risks another charge. |
+| `BCK.ROUTER.0026` | 415 | The Router cannot forward this request body. The streaming surfaces (`/router/svc/:slug`, `/router/proxy`) forward only JSON (`application/json`) or URL-encoded (`application/x-www-form-urlencoded`) bodies; any other type — `multipart/form-data` above all, but also `text/plain`, `application/octet-stream` or a vendor `+json` — and any body on GET/HEAD is refused. No payment was minted and no money moved. JSON-string `params` names the refused `contentType` (null when none was sent). | No — resend the body as JSON or a URL-encoded form the service accepts; a service that only takes a file upload cannot be paid through the Router yet, and retrying unchanged fails identically |
+| `BCK.ROUTER.0027` | 413 | The request body is larger than the catalog endpoint accepts. The catalog records a `maxRequestBytes` per endpoint (on the service detail and in MCP `get_service`) — the Locus gateways (`*.mpp.paywithlocus.com`) take 8,000 bytes — and a slug-routed call (`/router/route`, `/router/quote`, `/router/svc/:slug`, `/router/proxy` with a slug) whose body is larger is refused before the service is contacted. No payment was minted and no money moved. JSON-string `params` carries `bodyBytes` and `maxRequestBytes`. | No — shrink the body below the limit or split the work, or pick a service that takes larger requests (`POST /router/select` with the same `body` skips endpoints whose limit is below it); retrying unchanged fails identically |
+| `BCK.ROUTER.0028` | 503 | `POST /router/quote` could not price the call because a read it depends on failed (for example the settlement-token details on the payment network). Nothing is signed, minted or charged on the quote path. | **Yes**, with backoff — a quote never charges, so nothing needs unwinding. The same condition would also fail a payment, so do not route the call meanwhile; if it persists, quote `correlationId` |
+| `BCK.ROUTER.0029` | 404 | The `quoteId` is invalid or belongs to another account. Nothing was signed, reserved or charged. | No — request a new quote and use its `quoteId`; do not retry the same invalid id |
+| `BCK.ROUTER.0030` | 404 | No retained paid result for that paymentId under your account. A paid Router result is retained for 24h after the call ends, for the paying user only; it is not retained for a response that had already started streaming when the call completed, or for a payment never routed through `/router/route`, `/router/proxy` or `/router/svc`. The payment record itself is unaffected. | No — the result is gone (or was never retained); read the payment with `GET /api/v1/router/payments` |
+| `BCK.ROUTER.0031` | 409 | The exact catalog slug in `filters.require` is unavailable, unhealthy, unpayable, excluded by this request, or cannot accept the body. The Router fails closed instead of substituting another service. | No — inspect `params.reason`; correct the slug or request, or deliberately remove `require` to allow fallback |
+| `BCK.ROUTER.0032` | 410 | The `quoteId` expired before payment began. Nothing was signed, reserved or charged. | No — quote the same call again and decide against the new fee-inclusive total; do not retry the expired id |
+| `BCK.ROUTER.0033` | 409 | The payment differs from the quote in its target, method, headers, body, credential header, delegation, rail, or exact fee-inclusive amount. Nothing was reserved or charged. | No — send the quoted call unchanged, or request a new quote for the changed call |
+| `BCK.ROUTER.0034` | 502 | A paid request got no response from the service (timeout or connection failure) after the credential was sent — the service may already have redeemed the payment. `params` carries the `paymentId`. | No — reconcile via `GET /api/v1/router/payments/{paymentId}`; never retry with a fresh `requestId` (it could pay twice) |
+| `BCK.ROUTER.0035` | 422 | The service's challenge asks for no payment (a zero amount — typically an auth-only "sign in with your wallet" challenge), and the Router could not answer it. It answers one (MPP zero-amount proof or x402 SIWX) only on a slug call to an `auth: "siwx"` endpoint or declared follow-up path, after **your own wallet** settled a payment for that service within the follow-up window (see "Wallet-authenticated results" in `references/paying.md`). Your request is not malformed; nothing was signed, reserved or charged. | No — make the paid call first from your own wallet, then poll through the same slug; or authenticate with the service directly |
+| `BCK.ROUTER.0036` | 422 | Every catalog endpoint the call reaches is known to answer after the Router abandons a paid call (120 s), and the merchant charges on receipt — so paying would charge and deliver nothing. Refused before any payment (a retry of an already-paid `requestId` gets `0002` instead). `params.source` is `declared` (permanent) or `observed` (lifts at `params.liftsAt`). On a declared free-follow-up path it is raised only when the service answers `402`. | No — pick another endpoint or service; an `observed` refusal lifts at `liftsAt` |
+| `BCK.ROUTER.0040` | 500 | Internal: the Router's record of an MPP **session** payment channel refused an inconsistent read or write — a defect on our side, not your request. The payment was refused before its credential reached the service, so nothing moved. | No — **report it** with the `correlationId` |
+| `BCK.ROUTER.0041` | 400 | The service's MPP challenge offers only a **session** (a payment channel). The Router must read the service's receipt after every call to keep the channel consistent, so it pays a session only when it fetches the service itself — never through `POST /router/payments`. Nothing was signed or charged. It is the answer there for every crypto delegation, including one created with `allowSessionPayments: false` (on the Router-fetched routes that one gets `0047` instead, unless they can pay the service another way). | No — call it through `POST /router/route`, `/router/svc/<slug>` or `/router/proxy`, or, if the service also offers x402, pay that offer on `POST /router/payments` with `protocol: "x402"` |
+| `BCK.ROUTER.0042` | 409 | The MPP **session** payment channel with this service is closing — its deposit reached its ceiling, or the service refused the channel, a top-up of its deposit, or the payment after a top-up — so nothing can be signed on it until the close completes. No payment was signed, reserved or charged (a top-up the Router sent only moved your own funds into the channel; they come back at close). | **Yes**, later — reuse the same `requestId`; the next call after the close opens a new channel |
+| `BCK.ROUTER.0043` | 503 | The MPP **session** payment channel with this service is busy: another payment on it held it too long, your wallet's signer or balance read did not answer in time, or a top-up of the channel was in flight or the service could not be reached to take one (`params.stage`). Nothing was signed, reserved or charged. | **Yes**, after a few seconds — same `requestId` |
+| `BCK.ROUTER.0044` | 422 | The Router cannot collect its routing fee on this MPP **session** payment, so it refused it. A session's fee is never charged call by call: it is added up and collected later in one transfer from the paying wallet, and `params.cause` says why that cannot happen here: `org-wallet` (the payment is funded by an organization wallet, which that collection cannot draw from yet) or `network` (this deployment does not collect session fees on the service's network). Nothing was signed, reserved or charged, and no payment channel was opened. | No — `org-wallet`: pay from a delegation funded by your own wallet; `network`: pay a service on another network |
+| `BCK.ROUTER.0045` | 409 | The service does not offer the payment rail pinned by `requireProtocol` (`X-Router-Require-Protocol` on `/proxy` · `/svc`; x402 or mpp). `params.requireProtocol` names the pin and `params.offered` lists the rails offered by its payment challenge (empty when neither rail is offered: choose another service). Nothing was signed, reserved or charged. | No — choose a service that accepts your required rail, or deliberately change the pin; never drop it automatically |
+| `BCK.ROUTER.0046` | 400 | You set `validateRequestBody` (opt-in) and the request body provably fails the endpoint's published request schema, so the Router refused it before anything was signed, minted, reserved or charged. `params.endpointPath` names the endpoint whose schema the body failed. Without `validateRequestBody` the call is never refused on this basis. It is read on `/route`, `/commerce/route` (and their `/with-controls` variants) and `/router/subscription/route`, and the Commerce MCP `pay_service` forwards it to them; the streaming `/proxy` and `/svc/:slug` surfaces do not apply it. | No — fix the request body to match the endpoint's published request schema/example (the catalog service detail's `requestSchema`/`requestExample`, or the Commerce MCP `get_service`), then retry; or drop `validateRequestBody` to send it as-is |
+| `BCK.ROUTER.0047` | 409 | This delegation was created with `allowSessionPayments: false` and the Router would pay the service over an MPP **session** (a refundable deposit leaves the wallet at the first call). Nothing signed, reserved or charged, and no channel opened. Raised by the routes and quotes that can pay a session, never by `POST /router/payments`, which answers `0041` instead. | No — use a service that charges per call, or report to the human, who can deliberately drop a `requireProtocol: "mpp"` pin or create a delegation that allows session payments. An app connected over OAuth holds its delegation through its grant, so they disconnect the app in Nevermined and reconnect it with session payments allowed instead |
+| `BCK.ROUTER.0048` | 503 | On an MPP `tempo` payment, Privy did not answer (a rate limit, a server error or no response) when the Router read the wallet's public key, which it does once per wallet. Transient: nothing was signed, reserved or charged. | **Yes**, after a backoff — same `requestId` |
+| `BCK.ROUTER.0049` | 422 | `POST /router/select` or `/router/commerce/select` (MCP `route_by_intent`): the Router chooses a payable service only when its semantic score for your `intent` (0–100) reaches the relevance floor (35 by default); a service not yet indexed for that score can be chosen on a keyword match alone, and while semantic ranking is unavailable no service has a score, so the floor applies to none (an `autoPay` pick is then refused with `0052`). Every payable candidate here fell below the floor, so it chose none rather than name, or pay for, a service that probably does not do what you asked: **nothing was charged and no payment was attempted, even with `autoPay: true`**. The floor applies to `filters.prefer` too. JSON-string `params` carries `bestSemanticScore` (the closest payable candidate) and `minSemanticScore` (the floor). When a close enough match exists but is unhealthy or held by moderation right now, the answer is `0051` instead; when no payable service matched at all, `0001`. | No — rephrase `intent` to name the capability concretely (what you send and what you get back) or broaden it, then select again; or list candidates with `POST /api/v1/ard/search` (MCP `search_services`) and pay one by slug; or name a slug in `filters.require`, which the floor does not apply to. The same intent is refused again |
+| `BCK.ROUTER.0050` | 409 | `GET /api/v1/router/payments/{id}/result/content` (the raw download of a retained paid result): the retained result's `state` is `Failed` (not the payment's `status`: a delivered, charged call can end that way), so there is no body to download. Unlike `0030`, the result itself is retained. Rarely, the stored body could not be read for download; `/result` may still return it. | No — read `GET /api/v1/router/payments/{id}/result`: a `Failed` result carries `failureReason`, and in the rare unreadable case it answers `Ready` with the body. Check `deliveryStatus` with `GET /api/v1/router/payments?requestId=<original-requestId>` (percent-encoded) before paying again |
+| `BCK.ROUTER.0051` | 409 | `POST /router/select` or `/router/commerce/select` (MCP `route_by_intent`): a catalog service that matches your `intent` closely enough to be chosen is unhealthy or held by moderation right now, and no other payable service matched closely enough to take its place, so the Router chose none. **Nothing was charged and no payment was attempted, even with `autoPay: true`.** The cause is on the catalog side, not in your request, so rephrasing finds the same service again. | **Yes**, later — retry the same request (keep its `requestId`, if it has one), since service health is re-checked periodically; or list candidates with `POST /api/v1/ard/search` (MCP `search_services`) and pay one by slug. Don't rephrase |
+| `BCK.ROUTER.0052` | 503 | `POST /router/select` or `/router/commerce/select` with `autoPay: true` (MCP `route_by_intent`): semantic ranking, which scores how closely each service matches your `intent`, is temporarily unavailable, so the Router could only match on keywords and will not pay a keyword-only pick on its own. **Nothing was charged and no payment was attempted.** A `filters.require` pin is still paid, and select without `autoPay` still returns the pick. | **Yes**, later — same `requestId`; or select without `autoPay`, check the pick it returns and pay it yourself by slug (MCP `pay_service`) |
+
+`0022` (500, required Router capability unavailable: service selection or buyer identity signing) is retryable only after an operator restores that capability; do not loop unchanged.
+
+**Only `0006`, `0007`, `0020`, `0028`, `0042`, `0043`, `0048`, `0051` and `0052` are worth retrying automatically** — on the
+paying path, `0007`, `0020`, `0042`, `0043`, `0048`, `0051` and `0052`, plus `BCK.X402.0052` and `BCK.USER_PROFILE.0006` below. The rest are decisions; retrying them unchanged produces the same answer.
+
+**Two codes from outside `BCK.ROUTER.*` can also stop a payment, and both are retryable.** Neither is in
+the table above, but the paying routes (`POST /router/payments`, `/route`, `/commerce/route`,
+`/proxy`, `/svc`; never a quote) can return them, whichever delegation pays:
+
+- **`503 BCK.X402.0052`** — the Router runs your account wallet's EIP-7702 upgrade before it pays (only
+  where EIP-7702 is enabled), and the upgrade did not complete: its delegation could not be installed,
+  a step was mined but reverted, Privy did not sign it, or moving its funds to the upgraded wallet
+  failed. Nothing was paid from the wallet. It is an infrastructure fault and usually transient: retry
+  with the same `requestId` after a backoff of a few minutes (a retry inside the fail-closed window that
+  follows a failed upgrade gets `BCK.X402.0052` again), and report it if it persists across several such retries.
+- **`503 BCK.USER_PROFILE.0006`** — Privy or the chain RPC did not answer while the Router checked that
+  the wallet belongs to your account. Nothing was signed, reserved or charged. Retry after a short
+  backoff with the same `requestId`.
+
+### Refusals that are not `BCK.ROUTER.*` at all
+
+They guard the *caller* rather than the request, and they can end a run before a single payment is
+attempted — so handle them even though none carries a `BCK.ROUTER.*` code.
+
+| | Code | Status | Applies to | Retry? |
+| --- | --- | --- | --- | --- |
+| **OAuth-minted key** | `BCK.OAUTH.0030` | 403 | `POST /delegation/create`, `POST /router/payments`, `POST /router/route`, `POST /router/route/with-controls`, `POST /router/quote`, `POST /router/select`, `ALL /router/proxy`, `ALL /router/svc/<slug>` | No |
+| **Not a commerce grant** | `BCK.OAUTH.0033` | 403 | `POST /router/commerce/route`, `/commerce/route/with-controls`, `/commerce/select`, `/commerce/quote` | No |
+| **`delegationId` on a commerce route** | `BCK.OAUTH.0034` | 400 | The same four commerce routes | No |
+| **Consent lapsed** | `BCK.HTTP.412` (generic — see below) | 412 | Account-wide; `POST /delegation/create` is the one on this path | No |
+
+**`403 BCK.OAUTH.0030`** — the key was minted through an OAuth consent ceremony (today
+`credits_purchase`, `account_access` or `commerce`; the guard keys on the binding, not the consent
+type, so a future ceremony type is refused too) and may not touch the Router spend rails or create
+Delegations: those routes sign from the account's full wallet, outside the narrow session-key policy
+such a credential advertises. For a `credits_purchase` or `account_access` key the fix is a **plain
+API key issued by the account owner** — no request change and no other Router endpoint will work
+around it, do not retry. A **`commerce`** key is the one exception: it spends through
+`POST /api/v1/router/commerce/route` and prices a call without paying through
+`POST /api/v1/router/commerce/quote`. Both take no `delegationId` and derive the Delegation from
+the grant the user approved.
+
+**`403 BCK.OAUTH.0033`** — the reverse door. The commerce routes under `POST /api/v1/router` —
+`/commerce/route`, `/commerce/route/with-controls`, `/commerce/select` and `/commerce/quote` — accept
+only a credential minted from a `commerce` authorization, because they spend or price the Delegation
+that grant is pinned to. A plain API key, or a credential from any other consent type, is refused:
+use the twin that names its own Delegation instead — `POST /api/v1/router/route` to pay,
+`POST /api/v1/router/select` to pick a service, `POST /api/v1/router/quote` to price a call. Those
+twins take a **plain** API key only: a `credits_purchase` or `account_access` credential is refused
+there too (`403 BCK.OAUTH.0030`), and its fix is a plain key from the account owner. A
+`commerce` credential that still sees it has a grant whose Delegation is missing or empty, or is bound
+to a different one: re-run the authorization to mint a fresh mandate. Not retryable unchanged.
+
+**`400 BCK.OAUTH.0034`** — `delegationId must not be supplied on a commerce route`. On those same four
+routes the Delegation is the one the user consented to and capped, and naming another is refused
+rather than ignored. Remove `delegationId` from the body; to choose a Delegation per call, use the
+plain-key twins above.
+
+<a id="consent-412"></a>
+**`412 {"error":"consent_required","outdated":[…]}`** — the account's legal-document consent has
+lapsed, and `POST /delegation/create` is blocked until a human accepts. ⚠️ **`code` alone will not
+identify it.** It is deliberately not an `NVMException`, so it has no `BCK.LEGAL_DOCS.…` code of its
+own — the error filter stamps the generic **`BCK.HTTP.412`**, which restates the status and says
+nothing about the cause. Branch on **`body.error === "consent_required"`**; `body.outdated[]` names
+the document slugs (`terms`, `privacy`). Report it and stop: an endpoint to accept exists and takes
+your API key, but **accepting terms is the account holder agreeing to be bound by them — consent you
+have no standing to give on their behalf.** Details in `bootstrap.md`.
+
+Note the same normalisation applies to any other bare `HttpException` you might hit (a
+`ValidationPipe` 400, for instance): the envelope is there, but `code` reads `BCK.HTTP.<status>`
+rather than a catalogued `BCK.ROUTER.*`. **A `BCK.HTTP.*` code means "no catalogued code for this" —
+look at the rest of the body.**
+
+### `0011` — the 402 that needs a human, not a retry
+
+Card rail only. The issuer demands **3-D Secure / SCA** before the charge can be used, and the Router
+has no human at a browser to complete it. **Nothing was charged, and the seller never received a
+usable credential** — the one Stripe created cannot be charged while it awaits authentication.
+
+Do **not** auto-retry. 3DS is often mandated per charge by industry rules, so every attempt
+re-demands it and mints another single-use card credential that is then abandoned — each expiring on
+its own at `min(the merchant's quoted expiry, your Delegation's expiry, 89 days)`. A later attempt
+*may* succeed, since whether authentication is demanded is decided per charge by the issuer, the card
+networks and Stripe's risk checks — but treat that as a human decision, not a loop.
+
+It is distinct from both other 402s: `0003` is your cap, `0009` is a card refused for lack of funds.
+Here the card is fine; it simply has not been authenticated for this charge.
+
+### `0010` — the 500 you must not retry
+
+`0006` and `0010` are both 500s and behave in opposite ways, so "retry 5xx" is the wrong reflex
+here. Note also that `0006` is raised **only by the payments summary read**, never by a payment —
+so on the paying path, `0007`, `0020`, `0042`, `0043`, `0048`, `0051`, `0052`, `BCK.X402.0052` and
+`BCK.USER_PROFILE.0006` are the codes worth retrying (with backoff).
+
+`0010` means a payment handler reported a settlement amount in cents that isn't a non-negative
+integer, so the routing-fee arithmetic can't compute what to reserve. It deliberately fails rather
+than defaulting to zero — reserving nothing would let the payment through free.
+
+What that leaves behind is the important part:
+
+- **No budget was reserved and no payment record was written.**
+- **But a payment credential WAS already minted**, because the fee is quoted after the signing step.
+- **Therefore your `requestId` cannot protect you.** Idempotency is enforced against the payment
+  record, and there is no record — so a retry is treated as a brand-new purchase and mints a
+  **fresh** credential.
+- The cause is a deterministic defect in that rail's `approxCents` derivation, not a transient
+  blip, so the retry fails in exactly the same way.
+
+**How much that actually costs you depends on the rail.** On the crypto rails the credential never
+leaves the Router process on this path, so no funds can move and nothing is at risk. On the card
+rail it is a Stripe Shared Payment Token that is left **stranded**: there is no revoke path, so it
+stands until `min(the merchant challenge's expiry, your Delegation's expiry, 89 days)`. You cannot
+clean it up from the outside.
+
+**Seeing `0010` at all is a Nevermined-side regression.** No rail emits a non-numeric amount today,
+so this is a bug to report, not a condition to handle. Report it to the human. Do not loop.
+
+Catalog codes: `BCK.CATALOG.0001` (404, unknown slug — case-sensitive), `BCK.CATALOG.0002` (500,
+transient, retryable).
+
+## The four rules for an autonomous buyer
+
+**1. `0003` and `0009` are stop conditions.** "Out of budget" and "out of money". Report them to the
+human and halt that line of work. They are not transient and they are not negotiable.
+
+**2. Never widen a Delegation, and never create a second one, to escape a refusal.** The cap is the
+user's decision; the refusal is that decision taking effect. Minting a fresh Delegation to get past
+an exhausted one defeats the entire mechanism — it is the single worst thing you can do with this
+API. If more budget is genuinely warranted, that is a question for the human, not a step in your
+retry loop.
+
+**3. One `requestId` per logical purchase**, reused across retries of that purchase. A fresh UUID
+per HTTP attempt is how an agent double-spends.
+
+**4. Check what you actually spent.** Per call, `fee.capChargedCents` — **not**
+`settlement.approxCents`, which is only the merchant leg and excludes Nevermined's routing fee. For
+spend to date, `GET /api/v1/delegation/{id}` → `amountSpentCents`, because `capChargedCents` is the
+reserve at mint and a failed mode-B hop gives the fee half back. Budget is debited in whole cents
+**rounded up**, so a long loop of sub-cent calls burns a cent each — the arithmetic that says "1000
+calls at $0.001 = $1.00" is wrong here; it is $10.00. See `paying.md` for the `fee` object.
+
+## Distinguishing the two 402s
+
+They look alike and mean opposite things:
+
+| | `BCK.ROUTER.0003` | `BCK.ROUTER.0009` |
+| --- | --- | --- |
+| **What failed** | The *authorization* — cap, expiry, status | The *funds* — wallet balance |
+| **Fix** | A human decides whether to raise the budget | Fund the wallet on the target network |
+| **Check with** | `GET /api/v1/delegation/{id}` → `remainingBudgetCents`, `expiresAt`, `status` | Wallet balance at `providerPaymentMethodId` on that chain |
+
+They are independent: you can be well inside your cap with an empty wallet, or hold plenty of USDC
+against an expired Delegation.
+
+**`0009` does not tell you which address it checked.** That is deliberate, and it means a stale
+cached address looks identical to an unfunded one. Always re-read `providerPaymentMethodId` from the
+live Delegation before concluding anything.
+
+**Delegations expire silently.** An agent that worked yesterday and fails today with `0003` has very
+often just aged out. Check `expiresAt` first; it looks exactly like a broken rail until you do.
+
+## Reading a `BCK.ROUTER.0001`
+
+It is the catch-all for "the Router will not pay this", and the **`details`** field names which
+check tripped. Common causes, in rough order:
+
+- **No fundable option in the 402.** Every advertised option was on an unfunded network, in an
+  unsupported asset, or used a scheme other than `exact`. A mixed-chain 402 is fine as long as *one*
+  option survives — this only fires when none does. **Check the environment first:** a deployment
+  funds exactly one x402 network — sandbox `base-sepolia`, live `base` — so a `base` merchant is
+  simply unpayable from sandbox and vice versa. That is the single most common cause here, and it
+  looks like a broken merchant. See `bootstrap.md`.
+- **Non-allowlisted MPP asset.** Fail-closed per chain. If MPP fails with `0001` where x402 works,
+  check this first — the rails are configured independently. **On a deployment where the MPP rail
+  is simply not enabled this is the expected result for _every_ MPP service paid over `tempo`**,
+  whatever the service, and even one that also offers x402 (the Router never falls back over its
+  own configuration). It says nothing about the merchant, and no amount of trying other Tempo-paid
+  MPP services will find one that works. For a service that also offers x402, pin
+  `requireProtocol: "x402"` (`protocol` is only a hint), or ask the operator to enable the rail.
+- **An MPP `evm` charge from a personal Delegation** (`details` names an EIP-7702 smart account).
+  Personal wallets on Nevermined can't sign `evm`. An unpinned `/route` or `/quote` already moves
+  to the service's x402 offer, so you see this when pinned to `mpp`, in mode A, or when the service
+  offers no x402, and `/quote` refuses in the same cases as `/route`. Pay the service's x402 offer
+  if it has one, or pay with credits.
+- **Recipient outside the Delegation's scope**, when it carries an `allowedRecipients` list.
+- **Wrong Delegation provider** — a card Delegation on a stablecoin rail or vice versa.
+- **MPP `splits`** — see below.
+- **Missing `delegationId`**, or a missing `X-Router-*` header on `/proxy`.
+
+Retrying does not help. Either fix the input or pick a different service.
+
+## What the Router refuses outright
+
+### Splits
+
+An MPP `charge` can name a primary recipient *and* extra payout recipients. Only the primary is ever
+validated against your Delegation, so honouring splits would move real funds to addresses nobody
+checked. **Any split-bearing challenge is rejected outright** — unconditionally, whether or not your
+Delegation restricts recipients. The Router refuses the whole thing rather than paying the part it
+can vouch for.
+
+### Internal targets
+
+The Router makes server-side requests to URLs you supply, so it will not be pointed at
+infrastructure you should not reach. Loopback, private (RFC 1918), link-local and cloud-metadata
+addresses are blocked — **both literal IPs and public hostnames that resolve to internal
+addresses**, so DNS rebinding does not get around it. The connection is then pinned to the address
+that was validated, so it cannot be swapped underneath.
+
+Operators can lift this for local development with `ROUTER_ALLOW_PRIVATE_TARGETS=true`. It should
+never be on in a shared environment.
+
+### Redirects
+
+**Not followed at all**, and the `location` header is stripped from the relayed response. A merchant
+cannot bounce the Router toward an internal target, and cannot hand your client one either. If you
+need the redirect target, resolve it yourself and route the final URL.
+
+### Forged payment signals
+
+`X-Router-*` headers are stripped in both directions, so an upstream cannot fabricate a payment
+header that makes a free response look paid.
+
+### Signed-vs-approved divergence
+
+After signing an MPP credential the Router decodes what it actually produced and compares it against
+the challenge it validated. On any divergence the credential is discarded and never leaves the
+process — a merchant cannot get one thing approved and a different thing signed.
+
+## Relay limits (mode B)
+
+| Limit | Default | Env var |
+| --- | --- | --- |
+| Concurrent routed requests per user | 10 | `ROUTER_MAX_CONCURRENT_PER_USER` |
+| Idle time on a streamed response | 30s | `ROUTER_STREAM_IDLE_MS` |
+| Total time on a streamed response | 5 min | `ROUTER_STREAM_MAX_MS` |
+| Relayed body size | 100 MB | `ROUTER_MAX_RELAY_BYTES` |
+
+Exceeding concurrency gives `429 BCK.ROUTER.0007`, which **is** retryable — let calls finish and
+back off. Do not respond by fanning out harder.
+
+The idle timer is re-armed by your client draining the response, so a slow-but-healthy large
+transfer will not trip it. An abandoned stream will be, and holds a concurrency slot until it is.
+
+## Error envelope
+
+Errors carry a structured body — branch on `code`, not on message text:
+
+```json
+{ "code": "BCK.ROUTER.0003", "category": "business", "httpStatus": 402,
+  "message": "Delegation budget exceeded, expired, or inactive",
+  "hint": "…", "correlationId": "…" }
+```
+
+`hint` is written for a human reading a log. `details`, when present, names the specific check that
+tripped — that is the field worth logging on a `0001`.
+
+`params`, when present, is a JSON **string** on the wire: parse it with `JSON.parse` before reading
+`requiredTotalCents`. For `0018`, `requiredTotalCents`, `merchantCents`, `feeCents` and the echoed
+`maxTotalCents` are decimal strings. A refused quote can follow credential signing: the card rail
+may mint an expiring SPT, and Tempo may consume a custodial signature. Do not use `0018` for free
+price discovery.
+
+**One documented exception to that rule:** the [`412 consent_required`](#consent-412) on
+`POST /delegation/create` carries only the generic `BCK.HTTP.412`, so `code` identifies the status
+but not the cause — `body.error` does. Keep `code` as your primary branch, and treat any
+`BCK.HTTP.*` as "uncatalogued, read the body".
+
+Error responses always reflect the **current** API shape; they are not version-pinned. Treat them as
+latest-shape diagnostics and tolerate the code set growing over time.

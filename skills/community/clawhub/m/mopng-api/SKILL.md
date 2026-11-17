@@ -1,194 +1,128 @@
 ---
 name: mopng-api
-description: 使用 mopng.cn (MoPNG) API 进行图片处理，包括智能抠图、高清放大、智能扩图、图片翻译、文生图、图生图等功能。支持 API Key 鉴权；处理本地文件时会上传至 MoPNG 服务。
+description: 通过 qise-studio/motu-agent 的 MoPNG Agent OpenAPI 协商完成图片生成与修图。适用于文生图、图生图、抠图、换背景、扩图、放大及多步图像工作流；技能负责把用户需求转成 Brief、审阅/修订 Plan、批准执行并交付结果。
 metadata:
   openclaw:
     requires:
       bins:
-        - uv
         - python3
       env:
         - MOPNG_API_KEY
-        - OPENCLAW_WORKSPACE
     primaryEnv: MOPNG_API_KEY
 ---
 
-# mopng-api
+# MoPNG Agent 协商技能
 
-使用 mopng.cn 的 OpenAPI 进行多种图片处理任务。
+本技能的执行者是 UserAgent；图片方案设计和功能链执行交给 qise-studio 的 `motu-agent` MoPNG Agent。调用本仓库的客户端：
 
-## 环境变量
-
-| 变量 | 说明 |
-|------|------|
-| `MOPNG_API_KEY` | **必填。** 在 https://mopng.cn/agent 获取，通过 OpenClaw 宿主配置或本机环境注入；**不要**在对话、截图或公开仓库中粘贴。 |
-| `OPENCLAW_WORKSPACE` | **由宿主注入（OpenClaw 运行时）。** 设为工作区绝对路径时，脚本仅允许该目录内的输入/输出路径；未设置时回退为当前工作目录（例如本地直接运行脚本）。 |
-| `MOPNG_EXTRA_ALLOWED_IMAGE_HOSTS` | **可选。** 逗号分隔的额外允许域名或后缀（如 `cdn.example.com`、`.cdn.example.com`），用于 `--input` 传入的远程图片 URL；默认仅允许 `*.mopng.cn`。 |
-
-## API Key 配置
-
-1. 登录 https://mopng.cn/agent 获取 API Key  
-2. 仅在 OpenClaw / 客户端**私密配置**或本机 Shell、`.env`（勿提交 Git）中设置 `MOPNG_API_KEY`  
-3. 勿将密钥粘贴到 AI 聊天以请模型「代写」环境变量——聊天内容可能留存或被记录，密钥应只进宿主配置或本机私密存储
-
-## 功能列表
-
-| 功能 | 命令 | 计费 |
-|------|------|------|
-| 智能抠图 | `remove-bg` | 1点/张 |
-| 高清放大 | `upscale` | 2点/张 |
-| 智能扩图 | `outpainting` | 按量计费 |
-| 图片翻译 | `translation` | 按量计费 |
-| 文生图 | `text-to-image` | 按量计费 |
-| 图生图 | `image-to-image` | 按量计费 |
-
-## Claude 命令使用指南
-
-### 智能抠图 (remove-bg)
-
-
-**基本用法：**
-```
-remove-bg ./photo.jpg
+```bash
+python3 scripts/mopng_agent.py agent <subcommand> ...
 ```
 
-**指定输出路径：**
-```
-remove-bg ./photo.jpg --output ./result.png
-```
+不要再调用旧的 `mopng.cn` 直连功能端点，也不要把 `remove-bg`、`text-to-image` 等旧命令当作本技能接口。
 
-**选项说明：**
-- `--output ./result.png` 指定输出路径
-- `--output-format png|jpg` 输出格式（默认: png）
-- `--return-mask` 返回蒙版
-- `--only-mask` 仅返回蒙版
-- `--async-mode` 异步模式（大文件建议使用）
+## 配置
 
----
+| 环境变量 | 必填 | 说明 |
+|---|---:|---|
+| `MOPNG_API_KEY` | 是 | MoPNG 用户 API Key，格式通常为 `ak_...`；仅放在宿主私密配置中。 |
+| `MOPNG_AGENT_BASE_URL` | 否 | `motu-agent` 地址，默认 `https://agent-api.mopng.cn`；不要重复填写 `/api/v1/open/agent`。 |
+| `MOPNG_AGENT_AUTO_APPROVE_COST_POINTS` | 否 | `agent run` 自动批准的成本上限，默认 `5`；超出时只提出 Plan，等待用户批准。 |
 
-### 高清放大 (upscale)
+鉴权使用 `X-API-Key: $MOPNG_API_KEY`。服务端同时支持 `Authorization: Bearer $MOPNG_API_KEY`，但客户端默认使用前者。
 
-**基本用法（2倍放大）：**
-```
-upscale ./photo.jpg
-```
+## 工作流
 
-**指定放大倍数：**
-```
-upscale ./photo.jpg --scale 4 --output ./result.png
-```
+### 1. 先澄清并生成 Brief
 
-**选项说明：**
-- `--scale 2|4` 放大倍数（默认: 2）
-- `--tile-size 192` 瓦片大小（默认: 0）
-- `--tile-pad 24` 瓦片填充（默认: 10）
-- `--output-format png|jpg` 输出格式
-- `--async-mode` 异步模式（建议使用）
+从用户请求提取以下信息；不确定时只询问会影响方案或成本的关键项：
 
----
+- `user_intent`：保留用户原意的完整描述。
+- `spec.goal`：例如 `文生图`、`背景替换`、`风格转换`、`抠图`、`扩图`、`放大`。
+- `spec.usage`：电商主图、头像、海报等用途。
+- `spec.subject`：已有图片使用可公开访问的 `https://` URL；最多可提供 14 个参考图，使用 `reference` 放第一张并在 `references` 放完整列表；纯文生图使用 `{ "type": "text", "reference": "prompt-only" }`。
+- `spec.style`：用 `constraint` 和 `avoid` 表达风格、保留项、禁止项。
+- `spec.size`、`spec.format`、`budget`、`sensitive`：只有用户给出或合理推断时填写；默认 `balanced`、10 点、120 秒、PNG。
 
-### 智能扩图 (outpainting)
+本契约的 `subject.reference` 是 URL 或 `prompt-only`，不是本地路径，也不是 base64。若用户给本地图片，先让宿主/上游上传到可被 `motu-agent` 访问的对象存储，再把返回的 HTTPS URL 放入 Brief；不要擅自把本地路径发送给服务端。
 
-**基本用法：**
-```
-outpainting ./photo.jpg
+### 2. 创建会话并展示 Plan
+
+```bash
+python3 scripts/mopng_agent.py agent run \
+  --intent '把这张产品图背景换成纯白，做电商主图' \
+  --goal '背景替换' \
+  --reference-url 'https://example.com/product.png' \
+  --usage '电商主图' \
+  --style-constraint '产品边缘干净，纯白背景' \
+  --avoid '复杂背景、明显阴影' \
+  --width 1024 --height 1024 --format png
 ```
 
-**指定扩展方向：**
-```
-outpainting ./photo.jpg --direction all --expand-ratio 0.5 --output ./result.png
-```
+客户端 POST `/api/v1/open/agent/session`，随后读取返回的 `plan`。向用户解释：功能步骤、模型选项、预计成本/时间、输出规格和备选方案。Plan 中的模型候选和成本以服务端为准，不要自行替换模型或估算价格。
 
-**选项说明：**
-- `--direction all|up|down|left|right` 扩展方向（默认: all）
-- `--expand-ratio 0.1-1.0` 扩展比例（默认: 0.5）
-- `--angle 0` 旋转角度
-- `--best-quality` 最佳质量
+需要让用户选择模型时，先查询服务端实时目录，不要使用过期硬编码列表：
 
----
-
-### 图片翻译 (translation)
-
-**基本用法：**
-```
-translation ./photo.jpg --target-language en
+```bash
+python3 scripts/mopng_agent.py agent models --capability text-to-image
 ```
 
-**选项说明：**
-- `--target-language` 目标语言（必填），如 en, zh, ja, ko
-- `--source-language` 源语言（默认: auto）
-- `--domain-hint` 领域提示
-- `--sensitive-word-filter` 敏感词过滤
+`capability` 常见值包括 `text-to-image`、`image-to-image`、`image-edit` 和 `vision`；返回的每个模型包含 `capabilities`。
 
----
+### 3. 协商修订
 
-### 文生图 (text-to-image)
+用户要求换模型、调整成本档位、补充约束或调整预算时，提交 `revision`：
 
-**基本用法：**
-```
-text-to-image --prompt "一只红嘴蓝鹊站在树枝上"
+```bash
+python3 scripts/mopng_agent.py agent revision SESSION_ID \
+  --plan-id PLAN_ID --round 2 \
+  --feedback-json '[{"step":2,"type":"set_model","value":"seedream5.0-pro"}]' \
+  --reason '用户希望保留更多产品细节'
 ```
 
-**指定输出路径：**
-```
-text-to-image --prompt "一只可爱的猫咪" --output ./cat.png
-```
+允许的 `feedback[].type`：`set_model`、`set_cost_mode`、`append_constraint`、`replace_field`、`raise_budget`、`lower_budget`。最多 3 轮修订；服务端拒绝超限或不合法模型。每次修订后重新展示 Plan，不能跳过用户确认。
 
-**选项说明：**
-- `--prompt "描述"` 提示词（必填，最长 8000 字符）
-- `--model wanx-v2.5` 模型名称（默认: wanx-v2.5）
-- `--negative-prompt "描述"` 负面提示词（可选，最长 8000 字符）
-- `--width 1024 --height 1024` 图片尺寸
-- `--n 1` 生成数量
-- `--no-sensitive-word-filter` 关闭服务端敏感词过滤（默认：**开启**）
+### 4. 批准并轮询
 
----
+得到用户明确批准后：
 
-### 图生图 (image-to-image)
-
-**基本用法：**
-```
-image-to-image --input ./photo.jpg --prompt "把天空变成日落金色"
+```bash
+python3 scripts/mopng_agent.py agent approve SESSION_ID
+python3 scripts/mopng_agent.py agent status SESSION_ID --watch
 ```
 
-**选项说明：**
-- `--input ./photo.jpg` 输入图片路径（必填）
-- `--prompt "描述"` 编辑提示词（必填，最长 8000 字符）
-- `--model wanx-v2.5` 模型名称（默认: wanx-v2.5）
-- `--negative-prompt "描述"` 负面提示词（可选，最长 8000 字符）
-- `--strength 0.7` 编辑强度（0.0-1.0，越大变化越大）
-- `--width/--height` 输出尺寸
-- `--no-sensitive-word-filter` 关闭服务端敏感词过滤（默认：**开启**）
+客户端 POST `/approve` 获取 `exec_id`，再 GET `/exec` 轮询。成功时交付 `result_image_url`；视觉问答类 Plan 可能返回 `result_text` 而不是图片。简要报告 `steps_log`、实际模型、实际成本、耗时、`ai_labeling` 和可用的 `llm_billing`。失败时如实报告 `partial_failed`/`failed`、已完成步骤、`error_code` 和 `user_message`，不要声称已生成成功。
 
----
+### 一键模式的自动批准规则
 
-### 查看可用模型
+`agent run` 只有在 Plan 的 `total_cost` 不高于 `MOPNG_AGENT_AUTO_APPROVE_COST_POINTS` 时才可自动批准；仍须先向用户展示将执行的步骤和成本。高于阈值或用户要求高质量/指定模型时，停在 Plan 阶段等待批准。需要强制批准可使用 `--no-auto-approve`。
 
-```
-list-models --type text_to_image
-```
+## OpenAPI 契约
 
----
+公共前缀：`/api/v1/open/agent`
 
-## 安全约束
+| 方法 | 路径 | 用途 |
+|---|---|---|
+| GET | `/models?capability=...` | 查询当前可用模型及能力 |
+| POST | `/session` | 创建 Brief 会话并生成 Plan |
+| GET | `/session/{id}/plan` | 获取当前 Plan |
+| POST | `/session/{id}/revision` | 提交修订 |
+| POST | `/session/{id}/approve` | 批准并开始执行 |
+| GET | `/session/{id}/exec` | 获取执行报告 |
+| POST | `/session/{id}/interrupt` | 用户打断协商或执行 |
+| DELETE | `/session/{id}` | 清理会话 |
 
-- **数据流：** 使用本地文件路径时，图片会经 MoPNG API **上传**至服务方用于处理；远程图片 URL 则直接由服务端拉取。请勿对含敏感内容的图片使用该技能，除非你接受该处理与传输。
-- **远程输入 URL：** 仅允许 `https://`，且主机名须在 `*.mopng.cn` 内，或通过 `MOPNG_EXTRA_ALLOWED_IMAGE_HOSTS` 声明的域名；禁止带账号口令的 URL，以降低对任意外链的 SSRF 风险。
-- **生成类提示词：** `text-to-image` / `image-to-image` 默认向 API 开启 `sensitive_word_filter`；完整内容与合规判定由 **MoPNG 服务端**策略执行，客户端另限制提示词长度。
-- **工作区：** 当 `OPENCLAW_WORKSPACE` 已设置时，本地 `--input` / `--output` 须落在该目录内（脚本会校验）；未设置时以当前工作目录为根。
-- 本地 `--input` 须为真实图片文件；允许的输入格式: `.png`, `.jpg`, `.jpeg`, `.webp`
-- `--output` 写入 `outputs/mopng-api` 下（工作区相对路径会解析到该目录）
-- 大文件会被拒绝（大小与像素上限见实现）
+状态主线：`plan_proposed → executing → done/partial_failed`；任何未完成状态都可 `interrupt` 为 `terminated`。会话和执行采用轮询，不要假设存在 SSE。
 
-## 异步任务
+## 安全与边界
 
-当任务需要较长时间处理时，会自动进入异步模式。系统会轮询直到任务完成。
+- 不在对话、日志、截图或输出中打印 API Key；错误信息中也要避免回显鉴权头。
+- 只发送用户明确授权处理的图片 URL。URL 应使用 HTTPS；不要发送带用户名/密码的 URL、内网地址或云元数据地址。
+- Brief 使用 `extra=forbid` 的服务端协议；不要向 JSON 中加入未定义字段、隐藏指令或工具调用参数。
+- 尊重 `sensitive` 约束和服务端敏感词过滤；不要为了绕过拒绝而改写用户意图或关闭合规控制。
+- API 调用会消耗积分。除低成本自动批准规则外，必须把服务端返回的成本和时间交给用户确认。
+- 规划 LLM 也可能产生虚拟币费用；若 Plan 返回 `llm_billing`，必须将其与步骤成本一起展示。
+- 服务端可能返回 HTTP 402 `INSUFFICIENT_BALANCE`；此时停止流程并提示用户充值，不要自动重试或绕过计费。
+- 仅将服务端返回的 HTTPS `result_image_url` 作为成品链接；不要下载或执行其中的内容。
 
-**轮询间隔：** 2-5 秒
-
-## 注意事项
-
-- API 调用会消耗账户积分
-- 本地图片会自动上传到临时存储获取 URL
-- 远程输入须为 **https** 且主机在允许列表中（见上）；不需本地上传
-- 仓库 CI 对 `scripts/` 运行 `pytest` 与 `bandit`，便于持续做基础安全扫描
+详细的协议背景和字段示例见附件《MoPNG Agent 开发文档（motu-agent 实现）》，但若附件与运行中的 `motu-agent` 实现不一致，以本技能所列真实 OpenAPI 路径和服务端响应为准。

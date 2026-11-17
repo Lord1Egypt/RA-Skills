@@ -1,46 +1,59 @@
-## Description: <br>
-Batch-generates Xiaohongshu infographic cards and slideshow videos, then prepares video-note drafts for scheduled or manual publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+龙虾内容工厂批量生成小红书信息图和视频，并支持定时自动发布。
 
-## Publisher: <br>
-[houdaliang](https://clawhub.ai/user/houdaliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houdaliang](https://clawhub.ai/user/houdaliang)
 
-## Use Case: <br>
-Content creators and operators use this skill to define Xiaohongshu post content, generate vertical infographic images and slideshow videos, and prepare browser-assisted upload drafts for review before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates a logged-in browser session through Chrome remote debugging. <br>
-Mitigation: Use a dedicated Chrome profile or account, bind remote debugging to localhost, and review the prepared draft before manually publishing. <br>
-Risk: The artifact includes hard-coded local paths that may not match the install environment. <br>
-Mitigation: Inspect and adjust local paths before running generation or publishing scripts. <br>
-Risk: Recurring scheduled publishing can prepare drafts repeatedly without fresh review of generated content. <br>
-Mitigation: Enable scheduled jobs only after reviewing the workflow and keep manual confirmation before final publication. <br>
+## Use Case:
 
+Content creators and operators use this skill to define Xiaohongshu posts, generate infographic cards and slideshow videos, and prepare manual or scheduled publishing through a logged-in browser session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/houdaliang/guiji-xhs-factory) <br>
-- [Publisher profile](https://clawhub.ai/user/houdaliang) <br>
-- [Post templates](references/post-templates.md) <br>
-- [Publishing rules](references/publish-rules.md) <br>
-- [Xiaohongshu creator publishing page](https://creator.xiaohongshu.com/publish/publish?from=homepage&target=video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python and JavaScript scripts, generated PNG images, MP4 slideshow videos, and a JSON manifest.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated assets are written to local content queue and upload paths; publishing remains a human-confirmed browser action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Persistent scheduled browser automation can continue operating after installation and affect a logged-in Xiaohongshu session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid cron setup unless lifecycle controls are added, and require user review before any final publishing action.
+
+Risk: The content generator calls an external mutable make_card.py path outside the reviewed package.
+
+Mitigation: Change generate-today.py to call the bundled make_card.py and pin required dependencies before deployment.
+
+Risk: Browser publishing fills page content through innerHTML in a logged-in session.
+
+Mitigation: Replace innerHTML body filling with plain-text insertion and review generated content before publishing.
+
+## Reference(s):
+
+- [小红书帖子模板](artifact/references/post-templates.md)
+- [小红书发布规则](artifact/references/publish-rules.md)
+- [ClawHub skill page](https://clawhub.ai/houdaliang/skills/guiji-xhs-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG, MP4, and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates infographic images, slideshow videos, and a content queue manifest; browser publishing requires user review before the final publish action.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

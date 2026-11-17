@@ -1,45 +1,61 @@
-## Description: <br>
-自动整理周报工具，支持从 GitHub、飞书文档和日历汇总工作内容，生成 Markdown 周报，并支持历史保存、HTML/PDF 导出、邮件发送和飞书文档写入。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动整理周报工具，支持从 GitHub、飞书文档、日历和手动输入汇总工作内容，生成 Markdown 周报并可导出或发送。
 
-## Publisher: <br>
-[Carson1012](https://clawhub.ai/user/Carson1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carson1012](https://clawhub.ai/user/carson1012)
 
-## Use Case: <br>
-Employees and teams use this skill to collect weekly work activity from code repositories, documents, calendars, and manual notes, then turn it into a structured weekly report. It is intended for recurring work summaries that may be saved locally, exported, emailed, or published to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles GitHub, Feishu, calendar, and SMTP credentials for work accounts. <br>
-Mitigation: Use least-privilege tokens or app passwords, avoid passing secrets directly in shell commands, and rotate or revoke credentials after testing. <br>
-Risk: Generated reports can be emailed or written to Feishu documents, which may expose sensitive work details. <br>
-Mitigation: Preview report content, recipients, and destination documents before sending or publishing. <br>
-Risk: History and export features write local files, and history management can delete saved reports. <br>
-Mitigation: Restrict report output to expected directories, validate dates and paths, and review delete actions before execution. <br>
-Risk: Scheduled unattended runs could publish or send incomplete or incorrect weekly reports. <br>
-Mitigation: Avoid unattended cron runs until confirmation prompts and path validation are in place. <br>
+## Use Case:
 
+Employees, individual contributors, and team leads use this skill to consolidate weekly work activity from repositories, Feishu documents, calendars, and manual notes into a structured status report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Carson1012/weekly-report-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/Carson1012) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, HTML/PDF files, JSON command results, and delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save report history locally and send or publish generated report content through configured services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill handles GitHub, Feishu, Google Calendar, and SMTP credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped tokens and avoid passing secrets as command-line arguments or storing them in shell history.
+
+Risk: Generated reports can be sent outside the local environment through email or Feishu documents.
+
+Mitigation: Verify recipients, document IDs, and workspace targets before sending or writing reports.
+
+Risk: Automated cron execution can send or write reports without a final human check.
+
+Mitigation: Do not enable scheduled automation until confirmation steps are added for external delivery actions.
+
+Risk: Untrusted report content may be converted to HTML or email without sanitization, and local file paths are accepted for export and history actions.
+
+Mitigation: Sanitize report content before HTML/email export and validate output paths before writing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carson1012/skills/weekly-report-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown report text, optional HTML/PDF files, and JSON status from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include GitHub, Feishu, calendar, and manual-input summaries; optional delivery paths include SMTP email and Feishu documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

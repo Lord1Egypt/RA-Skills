@@ -1,48 +1,70 @@
-## Description: <br>
-Session History Enhanced helps developers add persistent, browsable, resumable OpenClaw chat session history with SQLite indexing, archive and restore workflows, pagination, and dashboard and chat-dropdown integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds persistent, browsable, and resumable OpenClaw session history with SQLite indexing, archive and restore workflows, migration support, dashboard pagination, and chat dropdown integration.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and engineers use this skill to add session archival, search, resume, rename, delete, pagination, and recent-session selection to an OpenClaw gateway dashboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Delete flows can mislead users about whether chat transcripts are permanently deleted or archived. <br>
-Mitigation: Review and align the confirmation text and deleteTranscript handling so each delete action clearly states whether transcript data will be kept, archived, or permanently removed. <br>
-Risk: OpenClaw session history may contain private or important chat data. <br>
-Mitigation: Review before installing, test on non-critical session data first, and consider recovery or soft-delete behavior before enabling destructive actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/session-history-enhancements) <br>
-- [Installation Guide](artifact/references/INSTALL.md) <br>
-- [Backend History Database Reference](artifact/references/backend-history-db.ts.txt) <br>
-- [Backend History Migration Reference](artifact/references/backend-history-migration.ts.txt) <br>
-- [Backend Protocol Schemas Reference](artifact/references/backend-protocol-schemas.ts.txt) <br>
-- [Backend RPC Handlers Reference](artifact/references/backend-rpc-handlers.ts.txt) <br>
-- [Backend Session Archive Reference](artifact/references/backend-session-archive.ts.txt) <br>
-- [Frontend Sessions Controller Reference](artifact/references/frontend-controllers-sessions.ts.txt) <br>
-- [Frontend Sessions View Reference](artifact/references/frontend-views-sessions.ts.txt) <br>
-- [Frontend State Changes Reference](artifact/references/frontend-state-changes.txt) <br>
+## Use Case:
 
+Developers and engineers use this skill to extend OpenClaw with session archival, browsing, search, resume, rename, delete, migration, pagination, and recent-session dropdown workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript code references and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires reviewer application to an OpenClaw codebase and validation before use with private or important session data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, released 2026-02-27) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unscoped agent IDs could expose or modify sessions outside the intended agent context.
+
+Mitigation: Validate requested agent IDs against configured agents and authorization before listing, archiving, resuming, renaming, or deleting sessions.
+
+Risk: Session history responses could expose internal transcript file paths to dashboard clients.
+
+Mitigation: Return opaque session identifiers and user-facing metadata instead of raw server file paths.
+
+Risk: Archive and restore operations could leave transcript files and SQLite status out of sync when a step fails.
+
+Mitigation: Make file moves and database updates transactional where possible, or fail closed with rollback and reconciliation.
+
+Risk: Deletion prompts can imply permanent transcript deletion even when transcript removal is not actually requested or completed.
+
+Mitigation: Align UI prompts, RPC parameters, and server behavior so transcript deletion is explicit, confirmed, and reported accurately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/session-history-enhancements)
+- [Skill source](artifact/SKILL.md)
+- [Installation guide](artifact/references/INSTALL.md)
+- [Backend history database reference](artifact/references/backend-history-db.ts.txt)
+- [Backend history migration reference](artifact/references/backend-history-migration.ts.txt)
+- [Backend session archive reference](artifact/references/backend-session-archive.ts.txt)
+- [Backend protocol schemas reference](artifact/references/backend-protocol-schemas.ts.txt)
+- [Backend RPC handlers reference](artifact/references/backend-rpc-handlers.ts.txt)
+- [Frontend controllers reference](artifact/references/frontend-controllers-sessions.ts.txt)
+- [Frontend views reference](artifact/references/frontend-views-sessions.ts.txt)
+- [Frontend state changes reference](artifact/references/frontend-state-changes.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code references and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review before applying to OpenClaw deployments that store private chat transcripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

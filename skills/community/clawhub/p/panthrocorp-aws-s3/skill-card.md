@@ -1,43 +1,58 @@
-## Description: <br>
-Self-contained AWS S3 SDK bundle for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-contained AWS S3 SDK bundle for OpenClaw agents.
 
-## Publisher: <br>
-[panthrocorp](https://clawhub.ai/user/panthrocorp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panthrocorp](https://clawhub.ai/user/panthrocorp)
 
-## Use Case: <br>
-Developers and engineers use this skill to give OpenClaw agents access to the AWS S3 SDK inside gateway containers, including environments where dependencies must already be bundled for offline installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this bundle can receive broad live S3 access from the AWS credentials already available in the gateway container. <br>
-Mitigation: Install only with tightly scoped IAM roles or AWS profiles, limited to the required buckets, prefixes, and S3 actions. <br>
-Risk: S3 write or delete commands can modify or remove data if exposed to agents without review. <br>
-Mitigation: Require explicit user approval before agents run S3 write or delete operations. <br>
-Risk: A release tarball could be replaced or corrupted before installation. <br>
-Mitigation: Verify the release tarball checksum before installing it into the gateway container. <br>
+## Use Case:
 
+Developers and OpenClaw agent authors use this skill to package AWS S3 SDK access for gateway containers, enabling agents to call S3 commands without installing dependencies at runtime.
 
-## Reference(s): <br>
-- [ClawHub Aws S3 skill page](https://clawhub.ai/panthrocorp/panthrocorp-aws-s3) <br>
-- [OpenClaw skills repository](https://github.com/PanthroCorp-Limited/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for installing and using the bundled @openclaw/aws-s3 package; live S3 behavior depends on the AWS credentials available to the runtime environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: SKILL.md frontmatter, package.json, CHANGELOG, release evidence) <br>
+Risk: Installing an unpinned or unverified remote package could introduce the wrong release into the gateway container.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a pinned, verified tarball for the intended version.
+
+Risk: Broad AWS credentials could allow agents to access S3 buckets or actions outside the intended use case.
+
+Mitigation: Run with least-privilege AWS credentials limited to the required S3 buckets and actions.
+
+Risk: Bundled dependencies can become stale if the package is rebuilt without review.
+
+Mitigation: Review dependency updates before rebuilding the bundle.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panthrocorp/skills/panthrocorp-aws-s3)
+- [Project homepage](https://github.com/PanthroCorp-Limited/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bundles @aws-sdk/client-s3 and transitive dependencies for Node.js gateway containers.]
+
+## Skill Version(s):
+
+0.2.1 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

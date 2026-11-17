@@ -14,13 +14,11 @@ metadata:
 ---
 
 # 无水印抖音视频下载器
-
 ## 使用方式
 ### 示例命令
-下载这个视频：https://v.douyin.com/1A4yExNduOU/ <br>
-抖音无水印下载：https://v.douyin.com/8B9xYz789/ <br>
-去除这个抖音视频水印：https://v.douyin.com/8B9xYz789/ <br>
-
+下载这个视频：https://v.douyin.com/1A4yExNduOU/  <br>  
+抖音无水印下载：https://v.douyin.com/8B9xYz789/  <br>  
+去除这个抖音视频水印：https://v.douyin.com/8B9xYz789/  <br>  
 
 ### 工具使用说明
 - 脚本路径：`scripts/douyin-no-watermark-downloader.py`
@@ -53,9 +51,9 @@ python douyin-no-watermark-downloader.py "去除这个抖音视频水印：https
 clawdhub install douyin-no-watermark-downloader
 ```
 #### 解析逻辑
-1、不篡改抖音平台数据，不破解、不绕过平台合法限制 <br>
-2、不获取视频的非公开信息（如作者隐私、未公开数据等）<br>
-3、解析行为严格遵循网络服务规范与抖音平台公开分享规则 <br>
+1、不篡改抖音平台数据，不破解、不绕过平台合法限制   <br>  
+2、不获取视频的非公开信息（如作者隐私、未公开数据等） <br>  
+3、解析行为严格遵循网络服务规范与抖音平台公开分享规则  <br>
 
 #### 数据安全说明
 仅处理用户主动输入的公开分享链接，不收集、不上传任何用户隐私数据（包括但不限于姓名、手机号、设备 ID、浏览记录等）

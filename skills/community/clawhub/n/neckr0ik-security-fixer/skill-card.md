@@ -1,41 +1,58 @@
-## Description: <br>
-Auto-fix security vulnerabilities in OpenClaw skills by generating remediations for hardcoded secrets, shell injection risks, prompt injection, path traversal issues, secure code replacements, and environment variable templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-fixes security vulnerabilities in OpenClaw skills by remediating hardcoded secrets, shell injection risks, prompt injection, and path traversal issues while generating secure replacements and environment variable templates.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and engineers use this skill to remediate security findings in OpenClaw skills, inspect generated fixes, create environment variable templates, and produce fix reports before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security fixer can rewrite local skill files and may not provide the per-change confirmation described in its documentation. <br>
-Mitigation: Start with --dry-run, keep the target skill in version control, review generated diffs before deployment, and avoid --auto until the changes have been inspected. <br>
-Risk: The skill depends on a scanner or audit module that is not declared in the artifact evidence. <br>
-Mitigation: Verify the scanner dependency and command entrypoint before installing or running the fixer. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to generate and apply fixes for vulnerabilities reported in OpenClaw skills, including secrets handling, shell command execution, prompt injection, and path traversal patterns. It supports dry-run review, interactive application, environment template generation, and fix reports.
 
-## Reference(s): <br>
-- [Fix Templates](references/fix-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Neckr0ik/neckr0ik-security-fixer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON reports, shell command output, code replacements, and generated configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify target skill files, create .env.example, update .gitignore, create backups, or run in dry-run/report-only modes depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Auto-fix mode may corrupt code or write outside the intended target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a clean, backed-up repository; prefer --dry-run; inspect every diff manually; and avoid --auto until path containment and source-replacement issues are fixed.
+
+Risk: Unattended fixes may bypass manual review for changes that need human judgment.
+
+Mitigation: Use interactive mode for normal review workflows, keep backups enabled, and rescan and test the skill after any generated change is applied.
+
+Risk: The release security verdict is suspicious due to unsafe file-modification behavior.
+
+Mitigation: Treat the skill as an untrusted third-party remediation tool and run it in an isolated workspace before using it on sensitive repositories.
+
+## Reference(s):
+
+- [Fix Templates](references/fix-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/neckr0ik/skills/neckr0ik-security-fixer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, JSON reports, and generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify target skill files, create .bak backups, generate .env.example, and update .gitignore when fixes are applied.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Zhua Evolver helps an agent analyze capability gaps, search for supplemental skills, run evolution cycles, record changes, and coordinate helper roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhua Evolver helps an agent analyze capability gaps, search for skills, run evolution workflows, coordinate helper roles, and record evolution progress.
 
-## Publisher: <br>
-[beipian261](https://clawhub.ai/user/beipian261) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beipian261](https://clawhub.ai/user/beipian261)
 
-## Use Case: <br>
-Developers and agent operators use this skill to plan and run capability-improvement workflows, including gap analysis, skill discovery, installation planning, evolution logging, and role-based task coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to expand and change its own capabilities without enough approval controls. <br>
-Mitigation: Use only under close supervision and require explicit review before skill searches, installations, configuration changes, or continuous evolution steps. <br>
-Risk: Automatic installation, identity-file edits, or rollback-prevention behavior could create changes that are difficult to audit or undo. <br>
-Mitigation: Allow changes only when each action is shown first, sourced from a trusted registry, and paired with an easy rollback path. <br>
+## Use Case:
 
+External developers and agent operators use this skill to guide self-improvement workflows for the Zhua agent persona, including gap analysis, skill discovery, skill installation planning, helper-role orchestration, and evolution logging.
 
-## Reference(s): <br>
-- [Reference Documentation for Zhua Evolver](references/api_reference.md) <br>
-- [Zhua Evolver ClawHub Release](https://clawhub.ai/beipian261/zhua-evolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSON from helper scripts when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can direct an agent toward automatic installation of unreviewed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before each installation, use trusted or pinned skill sources, and review visible diffs before applying changes.
+
+Risk: The skill describes persistent identity or SOUL.md changes as part of evolution workflows.
+
+Mitigation: Back up persistent identity files, show proposed changes before writing, and keep rollback controls available.
+
+Risk: Security evidence rates the package as suspicious because approval and safety controls are not clear in the instructions.
+
+Mitigation: Review the packaged scripts and instructions before deployment and restrict execution to supervised environments.
+
+## Reference(s):
+
+- [Reference Documentation for Zhua Evolver](references/api_reference.md)
+- [ClawHub release page for zhua-evolver](https://clawhub.ai/beipian261/skills/zhua-evolver)
+- [Publisher profile: beipian261](https://clawhub.ai/user/beipian261)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local evolution metrics, task assignments, installation plans, and log-ready summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

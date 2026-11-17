@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically accesses Xiaohongshu's Explore page via browser automation, inputs keywords into the search bar, and collects the list of related keywords from the auto-suggest dropdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically accesses Xiaohongshu's Explore page via browser automation, inputs keywords into the search bar, and collects the list of related keywords from the auto-suggest dropdown.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and content researchers use this skill to collect Xiaohongshu search suggestion terms for keyword research, SEO planning, content topic selection, and competitor analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Entered keywords are submitted to Xiaohongshu while collecting auto-suggest results. <br>
-Mitigation: Avoid confidential personal or business terms when using the skill. <br>
-Risk: Search activity may be associated with the active browser session or account. <br>
-Mitigation: Use a logged-out or separate browser session when the activity should not be tied to a main account. <br>
-Risk: Xiaohongshu may show captchas, restrictions, or incomplete suggestions depending on login state and anti-crawling controls. <br>
-Mitigation: Pause automation and ask the user to handle manual challenges or login requirements before continuing. <br>
+## Use Case:
 
+External users and content teams use this skill to collect Xiaohongshu search suggestions for keyword research, trending topic discovery, SEO planning, and competitor keyword mining.
 
-## Reference(s): <br>
-- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/xiaohongshu-keyword-collector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown keyword lists grouped by input keyword] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Suggestions are collected from Xiaohongshu's browser auto-suggest dropdown and may vary by session, login state, locale, and platform availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Entered keywords are sent to Xiaohongshu through a browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential product plans, client names, investigations, or other sensitive terms when collecting suggestions.
+
+Risk: Login state, captchas, site tracking, or anti-crawling controls may affect collection.
+
+Mitigation: Have the user handle login or captcha challenges manually and stop collection when the site restricts access.
+
+## Reference(s):
+
+- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/xiaohongshu-keyword-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown keyword lists grouped by input keyword]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on Xiaohongshu page behavior, login state, captchas, and suggestion availability.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

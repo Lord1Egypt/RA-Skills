@@ -1,0 +1,126 @@
+{
+  "schema": "moso.shot-plan/0.1",
+  "id": "example-observer-shot-plan",
+  "spec_ref": "visual-spec.example.json",
+  "carrier": {
+    "width": 1420,
+    "height": 1892,
+    "unit": "px",
+    "aspect_ratio": "3:4",
+    "thumbnail_width_px": 180
+  },
+  "candidates": [
+    {
+      "shot_id": "threshold-reflection",
+      "narrative_verb": "anticipates",
+      "viewer_position": "inside a familiar room, caught between subject and reflection",
+      "camera": {
+        "height": "eye",
+        "angle": "oblique to the reflective plane",
+        "distance": "wide",
+        "lens_behavior": "neutral"
+      },
+      "masses": {
+        "dominant": "dark room envelope occupying the lower-left and perimeter",
+        "counter": "small pale reflected interval in the upper-right",
+        "negative_space_owner": "the gap between human action and reflected response",
+        "subject_envelope": {
+          "x_pct": 8,
+          "y_pct": 42,
+          "width_pct": 46,
+          "height_pct": 51
+        }
+      },
+      "vectors": [
+        "table edge leads from human action to reflection",
+        "reflected gaze returns toward camera"
+      ],
+      "depth_layers": ["door-frame occlusion", "human action plane", "reflective back plane"],
+      "first_fixation": { "x_pct": 32, "y_pct": 58 },
+      "horizon_y_pct": 55,
+      "value_plan": {
+        "dark_mass": "room perimeter and foreground occlusion",
+        "middle_field": "ordinary furniture and wall",
+        "light_mass": "small reflected interval",
+        "contrast_locus": "human hand first, reflected response second"
+      },
+      "safe_zones": ["top 12 percent remains low-detail for optional overlay"],
+      "failure_signs": ["reflection becomes a literal glowing eye", "wide angle distorts the room"]
+    },
+    {
+      "shot_id": "overhead-administration",
+      "narrative_verb": "records",
+      "viewer_position": "above a human-scale exchange as if reading a diagram",
+      "camera": {
+        "height": "overhead",
+        "angle": "near-orthographic",
+        "distance": "wide",
+        "lens_behavior": "compressed"
+      },
+      "masses": {
+        "dominant": "ordered floor grid",
+        "counter": "small seated figure displaced from center",
+        "negative_space_owner": "the system surrounding the figure",
+        "subject_envelope": {
+          "x_pct": 58,
+          "y_pct": 54,
+          "width_pct": 18,
+          "height_pct": 22
+        }
+      },
+      "vectors": ["floor intervals converge on an empty response position"],
+      "depth_layers": ["ceiling-edge clue", "floor system", "seated figure"],
+      "first_fixation": { "x_pct": 65, "y_pct": 64 },
+      "horizon_y_pct": 0,
+      "value_plan": {
+        "dark_mass": "figure and one grid interruption",
+        "middle_field": "floor system",
+        "light_mass": "empty response position",
+        "contrast_locus": "figure-to-empty-position interval"
+      },
+      "safe_zones": [],
+      "failure_signs": ["overhead view becomes decorative geometry", "system loses human scale"]
+    },
+    {
+      "shot_id": "absent-aftermath",
+      "narrative_verb": "withholds",
+      "viewer_position": "late witness to an exchange whose participants are absent",
+      "camera": {
+        "height": "low",
+        "angle": "partially hidden behind an ordinary object",
+        "distance": "medium",
+        "lens_behavior": "neutral"
+      },
+      "masses": {
+        "dominant": "empty chair and table interval",
+        "counter": "small response trace at the back plane",
+        "negative_space_owner": "the absent participant",
+        "subject_envelope": {
+          "x_pct": 18,
+          "y_pct": 35,
+          "width_pct": 62,
+          "height_pct": 54
+        }
+      },
+      "vectors": ["chair angle points out of frame", "response trace points toward camera"],
+      "depth_layers": ["foreground obstruction", "empty exchange plane", "back-wall evidence"],
+      "first_fixation": { "x_pct": 44, "y_pct": 57 },
+      "horizon_y_pct": 48,
+      "value_plan": {
+        "dark_mass": "foreground obstruction",
+        "middle_field": "empty furniture plane",
+        "light_mass": "small back-wall response trace",
+        "contrast_locus": "empty chair before response trace"
+      },
+      "safe_zones": ["lower 8 percent may receive a deterministic caption"],
+      "failure_signs": ["absence reads as generic liminal space", "trace becomes pseudo-text"]
+    }
+  ],
+  "selection": {
+    "status": "selected",
+    "selected_shot_id": "threshold-reflection",
+    "proof_type": "three-value-thumbnail",
+    "proof_ref": "codex://artifact/example-value-thumbnail",
+    "reason": "It establishes familiarity first and returns attention to the viewer on the second read."
+  }
+}

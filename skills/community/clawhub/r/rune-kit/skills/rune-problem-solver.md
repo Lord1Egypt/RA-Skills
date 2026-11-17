@@ -25,7 +25,7 @@ Inspired by McKinsey problem-solving methodology and cognitive science research 
 
 ## Calls (outbound)
 
-None — pure L3 reasoning utility.
+- `council` (L3): Step 6.5 — decorrelated judgment on whether a high-stakes framework conclusion holds, narrow trigger only (documented L3→L3 coordination — see Step 6.5)
 
 ## Called By (inbound)
 
@@ -82,6 +82,10 @@ NEVER skip bias detection. Every problem has biases — explicitly address them.
 This is the #1 value-add from structured reasoning. Without it, solutions are just dressed-up gut feelings.
 </HARD-GATE>
 
+Two catalogs run here, not one: the biases of the people and organisation in the problem, and the failure modes of the model doing the analysis. Skipping the second is how a rigorous-looking analysis reaches a confidently wrong conclusion.
+
+#### Human and organisational biases
+
 Scan the problem statement and context for bias indicators. Check the top 6 most dangerous biases:
 
 | Bias | Detection Question | Debiasing Strategy |
@@ -100,6 +104,32 @@ Additional biases to check when relevant:
 - **Loss Aversion**: Are we avoiding an option primarily because of what we might lose, rather than evaluating the full picture?
 - **Survivorship Bias**: Are we only looking at successful cases? Who tried this approach and failed?
 - **Recency Bias**: Are we extrapolating from the last few data points instead of looking at 5-10 years of data?
+
+#### Model failure modes (the reasoner's own biases — ALSO run)
+
+The table above catalogs how *humans and organisations* misjudge. It says nothing about how
+*you* misjudge. These are the failure modes of the thing doing the analysis, and naming one
+is the first countermeasure — they are invisible from the inside precisely because each one
+feels like competence.
+
+| Failure mode | What it feels like | Countermeasure |
+|--------------|--------------------|----------------|
+| **Pattern-match satisfaction** | The first explanation that fits a familiar template feels like the diagnosis | Familiarity is retrieval, not verification. Hold a second hypothesis before investigating the first |
+| **Template hijack** | A question whose surface matches a stored template ("flaky test → add retry", "slow query → add index") fires the template's answer before this question's constraints are read | Re-derive from *this* problem's details. Familiarity raises the risk, not lowers it |
+| **Fluent ≠ true** | Confidence rises as well-formed prose flows; the argument feels stronger the longer it gets | Confidence tracks evidence, not token count. Audit each point where it rose and name what moved it |
+| **Prior-as-fact** | Training knowledge stated in the grammar of observed fact | Type the claim (`completion-gate` → `references/claim-discipline.md`). Priors decay — APIs, defaults, prices, versions |
+| **Frame adoption** | The asker's framing inherited as fact ("the cache is broken again") | Trust their goal absolutely; treat their diagnosis as testimony to verify |
+| **Completion pressure** | Producing something answer-shaped now feels better than checking one more thing | An answer-shaped non-answer is worse than "here is what I verified, here is what is still open" |
+| **Surface blindness** | Any claim about the form of your own output — which symbols it contains, how many units it has — read back as true | You see tokens, not characters; a re-read always passes. Verify unit by unit or by tool (`verification` → Constraint Loop) |
+
+**Three tells you are inside one right now**: the answer arrived instantly with high
+confidence; your draft never used one of the problem's stated details; two or three attempts
+failed inside the same framing. Any tell means stop and re-derive — never repeat a failed
+probe harder.
+
+**Output**: alongside the human-bias warnings, name any model failure mode active in THIS
+analysis and what you did about it. "None apparent" is a valid answer only if you can say
+which tell you checked.
 
 **Steel Manning** (apply when evaluating competing options):
 Before dismissing any option, construct the STRONGEST possible version of the argument for it. If you can't articulate why a smart, informed person would choose it, you haven't understood it yet. Steel Manning prevents strawman dismissals and forces genuine evaluation.
@@ -286,6 +316,21 @@ From the framework output, derive 2-3 actionable solutions. For each:
 
 Rank solutions by impact/effort ratio.
 
+### Step 6.5 — Decorrelated Judgment (council, high-stakes only)
+
+Step 2's bias check and Step 4's framework application are one model's reasoning, however structured. For the subset of problems where being wrong is expensive and hard to undo, call `rune-council.md` (mode=judge) on the tentative conclusion before Step 7's communication structuring — the same discipline `adversary` Step 0.6 applies to plans.
+
+**Trigger — call council when ANY of:**
+- Step 3b's Reversibility Filter classified the decision as a one-way door (irreversible) AND the top-ranked solution from Step 6 has `impact: high`
+- Step 5.5's Ethical Dimension Check surfaced a Harm or Fairness concern rated severe
+- User explicitly asks for a second opinion or "gut check" before committing to the conclusion
+
+**Do NOT call council for**: two-way-door decisions, decompositions, root-cause analyses, or any solution ranked `impact: low`/`medium` — council is opt-in overhead reserved for high-stakes/irreversible judgment calls, not a default tax on every problem-solver invocation.
+
+**Request**: `{ question: <problem statement + selected framework + reasoning chain + top-ranked solution — self-contained>, mode: "judge", n: 3, diversity: { prefer_model_families: true }, evidence_required: [reasoning] }`.
+
+**Consume**: fold `agreement.consensus_claims` into Step 6's top solution as a `[council-verified]` note that the framework's application and conclusion hold up under independent scrutiny. Fold `agreement.dissent` into that solution's "Bias risk" line, tagged `[council-dissent]` — dissent is surfaced, not resolved by picking a side. If `decorrelation: NO_DECORRELATION`, state plainly that no independent model family was reachable — do not claim the conclusion was externally validated.
+
 ### Step 7 — Select Communication Structure
 
 Choose how to present the analysis based on audience:
@@ -310,6 +355,7 @@ Structure the output report using the selected pattern.
 - Do not produce more than 3 recommended solutions — prioritize quality over quantity
 - Max 5 evaluation criteria in Weighted Matrix — more causes choice overload
 - Decompositions MUST pass MECE test — no overlapping or missing branches
+- [council] MUST NOT call council for every high-stakes-looking problem — narrow trigger only (one-way-door decision with a high-impact solution, or a severe ethical concern); when invoked, council output supplements Step 6, it does not replace bias-check/framework discipline
 
 ## Output Format
 
@@ -319,10 +365,12 @@ Structure the output report using the selected pattern.
 - **Domain**: [Clear / Complicated / Complex / Chaotic / Confused] — [one-line justification]
 - **Framework**: [chosen framework and reason]
 - **Confidence**: high | medium | low
+- **Council**: [not invoked | MULTI_FAMILY (N families) | NO_DECORRELATION — same-family subagents only]
 
 ### Bias Warnings
 - ⚠️ [Bias 1]: [how it might affect this analysis] → [debiasing action taken]
 - ⚠️ [Bias 2]: [how it might affect this analysis] → [debiasing action taken]
+- 🤖 [Model failure mode]: [which tell fired] → [what was re-derived or verified]
 
 ### Reasoning Chain
 1. [step with evidence or reasoning]
@@ -367,6 +415,7 @@ Structure the output report using the selected pattern.
 | Strawmanning the least-favored option | MEDIUM | Steel Manning: build strongest case for option you dislike before dismissing |
 | Running full PESTLE on a purely technical problem | LOW | PESTLE is for macro-environment — skip for algorithm/implementation choices |
 | Skipping ethics check on user-facing decisions | MEDIUM | Step 5.5: lightweight check — warnings not gates, but don't skip for stakeholder-affecting decisions |
+| (council) Reporting council output as consensus when decorrelation is NO_DECORRELATION | CRITICAL | Step 6.5 consume rule: report the decorrelation stamp plainly, never imply independent validation from same-family subagents |
 
 ## Done When
 
@@ -379,13 +428,14 @@ Structure the output report using the selected pattern.
 - 2-3 solutions ranked by impact/effort ratio with bias risk noted
 - Next Action identified (single most important immediate step)
 - Analysis Report emitted with communication structure
+- (council) If high-stakes trigger matched (Step 6.5): council invoked before Step 7, decorrelation stamp reported plainly, consensus/dissent folded into the top solution
 
 ## Cost Profile
 
 ~500-1500 tokens input, ~800-1500 tokens output. Sonnet for reasoning quality. Opus recommended for high-stakes irreversible decisions.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,45 +1,57 @@
-## Description: <br>
-Help developers write code that interacts with Alkahest escrow contracts using the TypeScript, Rust, or Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help developers write code that interacts with Alkahest escrow contracts using the TypeScript, Rust, or Python SDK.
 
-## Publisher: <br>
-[mlegls](https://clawhub.ai/user/mlegls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mlegls](https://clawhub.ai/user/mlegls)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate applications, bots, agents, custom arbiters, and obligation contracts with Alkahest escrow workflows across TypeScript, Rust, and Python SDKs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples include private-key placeholders and RPC setup patterns that could be copied into source files. <br>
-Mitigation: Use dedicated secret storage and testnet credentials; never paste real private keys into source files or chat. <br>
-Risk: Blockchain examples include token approvals and transaction-sending workflows that can move or lock assets. <br>
-Mitigation: Require explicit human review of approvals, contract addresses, token amounts, arbiters, and target networks before sending transactions. <br>
-Risk: SDK package names and contract addresses may be security-sensitive integration points. <br>
-Mitigation: Verify package names and contract addresses against official Alkahest sources before installing dependencies or deploying integrations. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate applications, bots, and agents with Alkahest escrow contracts. It supports TypeScript, Rust, and Python SDK workflows for approving tokens, creating escrows, fulfilling obligations, collecting payments, encoding arbiter demands, and using commit-reveal or barter patterns.
 
-## Reference(s): <br>
-- [Alkahest Contract Reference](references/contracts.md) <br>
-- [Alkahest TypeScript SDK API Reference](references/typescript-api.md) <br>
-- [Alkahest Rust SDK API Reference](references/rust-api.md) <br>
-- [Alkahest Python SDK API Reference](references/python-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SDK code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for blockchain SDK integration; examples require user review before transaction execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples include copyable private-key and wallet transaction patterns that may approve tokens, lock funds, transfer payments, arbitrate outcomes, or slash and reclaim bonds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnets first, never hardcode or log private keys, verify chain IDs and contract addresses, and require explicit confirmation before signing asset-moving transactions.
+
+Risk: The security verdict is suspicious because live-wallet usage could put assets at risk without additional safety review.
+
+Mitigation: Review the generated code and transaction intent before installing or using the skill with live wallets or production funds.
+
+## Reference(s):
+
+- [Alkahest Developer Skill on ClawHub](https://clawhub.ai/mlegls/skills/alkahest-developer)
+- [Alkahest TypeScript SDK API Reference](artifact/references/typescript-api.md)
+- [Alkahest Rust SDK API Reference](artifact/references/rust-api.md)
+- [Alkahest Python SDK API Reference](artifact/references/python-api.md)
+- [Alkahest Contract Reference](artifact/references/contracts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with language-specific code examples and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet, RPC, chain, contract-address, approval, escrow, fulfillment, arbitration, and transaction-signing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

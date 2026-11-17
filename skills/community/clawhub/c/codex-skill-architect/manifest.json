@@ -1,0 +1,25 @@
+{
+  "name": "skill-architect",
+  "version": "0.2.1",
+  "description": "SKILL.md 架构重构、长对话快照迁移和跨 Agent 传输。",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "scripts": [
+    "scripts/audit.py",
+    "scripts/backup.py",
+    "scripts/extract.py",
+    "scripts/build_index.py",
+    "scripts/validate.py",
+    "scripts/rollback.py",
+    "scripts/self_test.py",
+    "scripts/conversation_architect.py",
+    "scripts/check_privacy.py",
+    "scripts/estimate_tokens.py",
+    "scripts/find_conversation_handoff.py",
+    "scripts/import_conversation_handoff.py",
+    "scripts/export_conversation_handoff.py"
+  ],
+  "test": "python3 scripts/self_test.py",
+  "privacy": "No original books, private logs, personal data, or private absolute paths are bundled; run scripts/check_privacy.py before release."
+}

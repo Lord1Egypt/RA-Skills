@@ -1,52 +1,63 @@
-## Description: <br>
-通过紫薇斗数解释命运 A skill to interpret fate using Ziwei astrology principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过紫薇斗数解释命运 A skill to interpret fate using Ziwei astrology principles.
 
-## Publisher: <br>
-[HerbertHe](https://clawhub.ai/user/HerbertHe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[herberthe](https://clawhub.ai/user/herberthe)
 
-## Use Case: <br>
-External users can provide birth date, birth time, calendar type, leap-month status, and gender so an agent can calculate a Ziwei astrology chart, summarize astrolabe and horoscope data, and provide interpretive fate guidance. The skill is intended for astrology interpretation and reflective guidance, not deterministic or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise birth details and gender may be embedded in a third-party ziwei.pub chart URL. <br>
-Mitigation: Prefer the local Node.js and iztro calculation path when possible, and open or share the ziwei.pub URL only after the user is comfortable exposing those details. <br>
-Risk: Local chart calculation depends on a trusted Node.js runtime and iztro installation. <br>
-Mitigation: Use a trusted Node.js 18 or newer environment and a trusted iztro installation before running generated code. <br>
-Risk: Astrology outputs may be overread as deterministic life guidance. <br>
-Mitigation: Present conclusions as interpretive astrology and reflective advice, and avoid replacing professional, medical, legal, financial, or safety-critical judgment. <br>
+## Use Case:
 
+External users use this skill to generate Ziwei Dou Shu chart data from birth date, birth time, calendar type, leap-month status, and sex, then receive a human-readable astrology interpretation and related guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/HerbertHe/interpret-fate-via-ziwei) <br>
-- [Ziwei astrolabe chart](https://ziwei.pub/astrolabe/) <br>
-- [Iztro discussions](https://github.com/SylarLong/iztro/discussions) <br>
-- [Astrolabe reference](docs/learn-astrolabe.md) <br>
-- [Palace reference](docs/learn-palace.md) <br>
-- [Star reference](docs/learn-star.md) <br>
-- [Mutagen reference](docs/learn-mutagen.md) <br>
-- [Pattern reference](docs/learn-pattern.md) <br>
-- [Setup reference](docs/learn-setup.md) <br>
-- [Ziwei Doushu Complete Book](docs/learn-ancient-book.md) <br>
-- [Stars Q&A reference](docs/learn-ancient-book-qa.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with explanatory text, a generated chart URL, and optional Node.js code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Ziwei chart data, horoscope period data, interpretive conclusions, and user-facing advice] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can expose a user's birth date, birth time, and sex through a generated third-party chart URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local chart calculation; only open or request a populated ziwei.pub URL after the user accepts sharing those details and having them appear in browser or conversation history.
+
+Risk: The skill gives fate and life-event interpretations that may be mistaken for factual or professional advice.
+
+Mitigation: Present results as astrology-based interpretation and avoid treating the output as medical, legal, financial, or other professional guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/herberthe/skills/interpret-fate-via-ziwei)
+- [Ziwei online chart URL](https://ziwei.pub/astrolabe/)
+- [iztro discussions](https://github.com/SylarLong/iztro/discussions)
+- [Ziwei Dou Shu astrolabe](docs/learn-astrolabe.md)
+- [Ziwei Dou Shu palace system](docs/learn-palace.md)
+- [Ziwei Dou Shu star system](docs/learn-star.md)
+- [Ziwei Dou Shu mutagens](docs/learn-mutagen.md)
+- [Ziwei Dou Shu patterns](docs/learn-pattern.md)
+- [Ziwei Dou Shu star setup](docs/learn-setup.md)
+- [Ziwei Dou Shu complete book](docs/learn-ancient-book.md)
+- [Ziwei Dou Shu star question and answer text](docs/learn-ancient-book-qa.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown prose with optional Node.js code blocks and generated chart links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include astrolabe data, horoscope data, birth-hour mapping, and interpretive conclusions based on bundled reference documents.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

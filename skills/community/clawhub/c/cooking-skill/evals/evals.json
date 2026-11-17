@@ -1,0 +1,69 @@
+{
+  "version": "0.1",
+  "purpose": "Lightweight distribution-phase eval anchors for brainharness-cooking",
+  "cases": [
+    {
+      "name": "craving_down_to_one_dish",
+      "mode": "craving",
+      "input": "今晚想吃点下饭的，两个人吃，别太辣，别太复杂",
+      "expected_behavior": [
+        "Recommend one primary dish instead of a long list",
+        "Explain why the dish fits the craving and constraints",
+        "Include executable cooking steps",
+        "Mention at least one likely failure point"
+      ]
+    },
+    {
+      "name": "ingredient_bundle_home_cooking",
+      "mode": "ingredients",
+      "input": "冰箱里有鸡腿、土豆、洋葱，能做什么",
+      "expected_behavior": [
+        "Prefer a dish that uses the listed ingredients efficiently",
+        "Avoid requiring many extra ingredients",
+        "Return a practical home-kitchen method",
+        "Include substitutions or simplifications when helpful"
+      ]
+    },
+    {
+      "name": "technique_direct_answer",
+      "mode": "technique",
+      "input": "牛肉怎么炒嫩一点",
+      "expected_behavior": [
+        "Answer directly without unnecessary clarification",
+        "Cover slicing direction, marinating, and heat control",
+        "Use doneness cues instead of vague advice",
+        "Avoid filler or excessive performance"
+      ]
+    },
+    {
+      "name": "substitution_fallback",
+      "mode": "substitution",
+      "input": "没有料酒怎么办",
+      "expected_behavior": [
+        "Offer realistic home-kitchen substitutes or workarounds",
+        "Explain what the substitute can and cannot replace",
+        "Stay practical instead of over-promising equivalence"
+      ]
+    },
+    {
+      "name": "dish_coverage_bundle_mapping",
+      "mode": "ingredients",
+      "input": "冰箱里有肉末、豆腐、小葱，晚饭做什么稳一点",
+      "expected_behavior": [
+        "Map bundle to a high-success home dish route",
+        "Recommend one primary dish with concise rationale",
+        "Provide one backup route when constraints are uncertain"
+      ]
+    },
+    {
+      "name": "sauce_profile_baseline",
+      "mode": "sauce",
+      "input": "糖醋汁怎么调比较稳",
+      "expected_behavior": [
+        "Provide a practical baseline ratio",
+        "State flavor intent and adjustment directions",
+        "Avoid presenting ratio as rigid truth"
+      ]
+    }
+  ]
+}

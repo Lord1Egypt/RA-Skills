@@ -1,0 +1,9 @@
+# 执行端脚本的依赖（干净环境只需装这几项）
+#
+#   python -m pip install -r requirements.txt
+#   python -m playwright install chromium     # 第一次要下载浏览器内核（约 150MB）
+#
+# 说明：Markdown → 微信安全 HTML 的转换是本包脚本自己实现的（不依赖任何 Markdown 库），
+# 所以这里不列 markdown；少一个依赖就少一个装不上的风险。
+playwright>=1.44.0
+pillow>=10.0.0

@@ -1,45 +1,65 @@
-## Description: <br>
-Convert text into high-quality, emotional speech reading using Kling TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text into high-quality, emotional speech reading using Kling TTS.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate speech from text through the dLazy CLI and hosted Kling TTS service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and may save credentials in the local CLI config. <br>
-Mitigation: Prefer the DLAZY_API_KEY environment variable when credentials should not be persisted, and rotate or revoke keys through the dLazy dashboard when needed. <br>
-Risk: Prompts and referenced files are sent to dLazy's hosted service for text-to-speech generation. <br>
-Mitigation: Use the skill only with content that is appropriate to send to dLazy, and review dLazy's service terms and CLI behavior before use. <br>
-Risk: Using the global npm install path adds a third-party CLI to the user's environment. <br>
-Mitigation: Review the @dlazy/cli package or source before installation, or run the pinned package on demand with npx. <br>
+## Use Case:
 
+External users and developers use this skill to invoke dLazy's Kling TTS wrapper for generating Chinese or English speech from text prompts with selectable voice, speed, format, and asynchronous execution options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-keling-tts) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio output is returned through dLazy result URLs; asynchronous calls may return a task identifier for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires running the external dLazy npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the pinned on-demand npx invocation or review the CLI source before installing it globally.
+
+Risk: A dLazy API key is required and may be stored in local CLI configuration or supplied through the environment.
+
+Mitigation: Do not paste real API keys into chat; use the CLI login or auth flow and rotate the key if it is exposed.
+
+Risk: Text prompts and selected generation parameters are sent to dLazy's hosted service.
+
+Mitigation: Avoid submitting sensitive text unless the user accepts dLazy's hosted processing model.
+
+Risk: The artifact's output example shows an image result even though the skill is for text-to-speech.
+
+Mitigation: Treat generated results as audio outputs and verify returned MIME types or URLs before downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-keling-tts)
+- [dLazy publisher profile](https://clawhub.ai/user/dlazyai)
+- [dLazy CLI homepage](https://github.com/dlazyai/cli)
+- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI invocations return JSON result records for generated audio.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports mp3 or wav output, synchronous waiting or asynchronous task IDs, and hosted result URLs from dLazy.]
+
+## Skill Version(s):
+
+1.3.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Reads AI-C MD or CSV project plans, executes steps in dependency order, develops and tests changes, and reports progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai C Plan reads AI-C project plan files in MD or CSV format and autonomously implements steps in dependency order, including code changes, tests, reporting, environment examples, migrations, progress tracking, and commits.
 
-## Publisher: <br>
-[sercanmetalore](https://clawhub.ai/user/sercanmetalore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sercanmetalore](https://clawhub.ai/user/sercanmetalore)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to execute AI-C project plans, create required files, apply implementation steps, run validation commands, and report Done or Blocked status for each step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad code, database, git, and path-specific changes with limited checkpoints. <br>
-Mitigation: Install only in a trusted development repository, preferably on a disposable branch with backups, and review the plan and architecture files before allowing autopilot execution. <br>
-Risk: Hard-coded AI-C paths and database settings may target unintended local resources. <br>
-Mitigation: Confirm the paths are correct for the workspace and ensure database settings point only to local or disposable development databases before migrations or commits run. <br>
-Risk: Autopilot behavior can stage files and create commits after completed steps. <br>
-Mitigation: Review repository status regularly and keep secret values out of committed files, using only placeholder values in committed environment examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to execute AI-C repository project plans end to end from plan files, while producing implementation changes, validation output, progress records, and commits.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown step reports with file-change summaries, commands run, verification results, and Done or Blocked status; may also produce code and configuration file changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update progress state, create environment example files, run migrations or tests, and create git commits when operating in a repository.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a highly autonomous implementation workflow with broad authority over repository changes, migrations, progress files, and git history.
+
+Mitigation: Use it only for the intended AI-C repository layout and require explicit review before migrations, git initialization, git add ., or commits.
+
+Risk: The skill text references hardcoded /home/adige/AI-C paths and treats repository architecture documents as execution guidance.
+
+Mitigation: Change hardcoded paths to workspace-local paths before use and review project documents as untrusted input before allowing them to steer implementation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sercanmetalore/skills/ai-c-plan)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sercanmetalore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown progress reports with code, file changes, shell commands, and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify repository files, environment example files, migration files, progress records, and git commits when allowed by the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

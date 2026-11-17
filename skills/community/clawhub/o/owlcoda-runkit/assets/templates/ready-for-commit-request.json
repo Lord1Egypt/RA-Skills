@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "OwlCodaRunKitReadyForCommitRequestV2",
+  "sourceCandidatePath": ".owlcoda/runkit/executions/replace-with-run-id/source-candidates/replace-with-candidate.json",
+  "verificationGateInputPath": ".owlcoda/runkit/executions/replace-with-run-id/verification-receipts/replace-with-receipt/verification-gate-input.json",
+  "roots": [
+    {
+      "role": "candidate",
+      "snapshotPath": ".owlcoda/runkit/executions/replace-with-run-id/snapshots/replace-with-root-snapshot.json"
+    }
+  ]
+}

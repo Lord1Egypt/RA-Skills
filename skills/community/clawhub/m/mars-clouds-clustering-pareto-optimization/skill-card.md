@@ -1,40 +1,49 @@
-## Description: <br>
-Multi-objective optimization with Pareto frontiers. Use when optimizing multiple conflicting objectives simultaneously, finding trade-off solutions, or computing Pareto-optimal points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-objective optimization with Pareto frontiers. Use when optimizing multiple conflicting objectives simultaneously, finding trade-off solutions, or computing Pareto-optimal points.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and data scientists use this skill to identify Pareto-optimal trade-offs when optimizing conflicting objectives such as model accuracy, latency, size, or inference time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example Python snippets depend on third-party packages and local execution. <br>
-Mitigation: Install packages only from trusted sources and review snippets before running them in the target environment. <br>
-Risk: One example writes pareto_models.csv to the local filesystem. <br>
-Mitigation: Run examples in a working directory where creating or overwriting a CSV file is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to reason about multi-objective optimization, compute Pareto-optimal points, and compare trade-offs such as model accuracy versus inference time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/mars-clouds-clustering-pareto-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; example code may require local Python packages and can write CSV output if executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The example CSV export can create or overwrite pareto_models.csv in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and choose the output path before running adapted examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lnj22/skills/mars-clouds-clustering-pareto-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code, configuration]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include example CSV export behavior when users adapt the provided model-selection example.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

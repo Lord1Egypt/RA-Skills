@@ -1,45 +1,60 @@
-## Description: <br>
-Read transcripts and summaries from Pocket AI recording devices for retrieval, search, and analysis of recordings, transcripts, summaries, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read transcripts and summaries from Pocket AI (heypocket.com) recording devices.
 
-## Publisher: <br>
-[tmustier](https://clawhub.ai/user/tmustier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tmustier](https://clawhub.ai/user/tmustier)
 
-## Use Case: <br>
-Developers and agent users with Pocket accounts use this skill to list recordings, retrieve transcripts, read summaries, extract action items, and search private Pocket recording data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses a logged-in Pocket browser session and private recording data. <br>
-Mitigation: Install only for trusted use cases, review transcript access before running, and avoid using it on shared machines. <br>
-Risk: The skill stores a Firebase access token in ~/.pocket_token.json. <br>
-Mitigation: Treat the token file like a password, remove it when no longer needed, and keep it out of repositories, backups, and shared home directories. <br>
-Risk: The integration uses an unofficial reverse-engineered Pocket API. <br>
-Mitigation: Review results before relying on them and expect behavior to change if Pocket updates its web app or API. <br>
+## Use Case:
 
+Developers and Pocket users use this skill to retrieve, search, and analyze their own Pocket recordings, transcripts, summaries, action items, speaker metadata, and recording metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tmustier/heypocket-reader) <br>
-- [Pocket AI](https://heypocket.com) <br>
-- [Pocket web app](https://app.heypocket.com) <br>
-- [Pocket API base](https://production.heypocketai.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, plain text transcripts, markdown summaries, and Python data objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Pocket browser session and caches a Firebase token in ~/.pocket_token.json for about one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill extracts a live Pocket account token from browser storage and caches it at ~/.pocket_token.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted machine and account, treat the token file as a password-equivalent secret, delete it when finished, avoid logged or shared terminals, and require owner-only file permissions.
+
+Risk: The token extraction flow may store refresh-token material and prints an access-token fragment after extraction.
+
+Mitigation: Review the script before installing, avoid storing refresh tokens, remove token-fragment logging, and keep terminal output out of shared logs.
+
+Risk: The skill accesses private Pocket recordings through an unofficial reverse-engineered API.
+
+Mitigation: Confirm the account and recordings are appropriate for agent access before use, and review outputs before sharing them outside the trusted workspace.
+
+## Reference(s):
+
+- [Pocket AI](https://heypocket.com)
+- [Pocket Web App](https://app.heypocket.com)
+- [Anthropic Browser Skill](https://github.com/anthropics/skills/tree/main/skills/browser)
+- [ClawHub Skill Page](https://clawhub.ai/tmustier/skills/heypocket-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; API client calls return transcript text, summary markdown, action-item data, and recording metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Pocket account, Chrome with the browser skill, and a short-lived Firebase bearer token cached at ~/.pocket_token.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

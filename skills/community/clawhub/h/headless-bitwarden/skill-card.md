@@ -1,43 +1,58 @@
-## Description: <br>
-Extension for Bitwarden usage: adds an ephemeral HTTPS web unlock helper for rbw (TTL default 10m) so you can unlock remotely without pasting secrets into chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extension for Bitwarden usage: adds an ephemeral HTTPS web unlock helper for rbw (TTL default 10m) so you can unlock remotely without pasting secrets into chat.
 
-## Publisher: <br>
-[hans00](https://clawhub.ai/user/hans00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hans00](https://clawhub.ai/user/hans00)
 
-## Use Case: <br>
-Developers and engineers use this skill to unlock an rbw-backed Bitwarden vault from a short-lived web helper when direct secret entry in chat is inappropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper handles a Bitwarden vault password through a web form and ClawScan flags weak scoping and transport assumptions. <br>
-Mitigation: Use localhost-only access or verified TLS, keep the helper short-lived, require one-time approval, and avoid default public tunneling unless it is explicitly needed. <br>
-Risk: A printed public unlock URL contains the one-time token and could expose the form during the TTL window if shared or logged. <br>
-Mitigation: Treat the full unlock URL as a secret, avoid posting it in issues, logs, screenshots, or shared channels, and stop the helper after use. <br>
-Risk: The password exists briefly in process memory and same-user process scope while rbw unlock runs. <br>
-Mitigation: Run the helper only on trusted systems, keep the TTL short, avoid unnecessary retries, and rely on the helper's documented no-disk-persistence and cleanup behavior. <br>
+## Use Case:
 
+Developers and operators use this skill to unlock an rbw-backed Bitwarden vault through a short-lived local web helper when direct interactive unlock is unavailable or inconvenient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hans00/headless-bitwarden) <br>
-- [Cloudflare tunnel downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides a localhost-first, token-gated unlock workflow with optional temporary HTTPS tunneling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles a vault master password through a public tunnel option and a predictable FIFO/environment handoff.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted machine and account, disable the public tunnel unless remote unlock is necessary, and prefer a future version that uses a private per-run FIFO or direct pipe.
+
+Risk: Anyone who obtains the token URL during the TTL window can access the unlock form.
+
+Mitigation: Treat the token URL as secret, share it only with the person unlocking for that one session, keep the default short TTL, and avoid posting it in logs, screenshots, issues, or shared channels.
+
+Risk: Concurrent helper runs or repeated unlock attempts can increase credential-handling exposure.
+
+Mitigation: Avoid concurrent helper runs and wait for an in-progress unlock attempt to complete before retrying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hans00/skills/headless-bitwarden)
+- [Cloudflare Tunnel downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces short-lived rbw unlock workflow instructions and local helper invocation commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

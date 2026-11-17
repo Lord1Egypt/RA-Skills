@@ -1,0 +1,29 @@
+{
+"roles": {
+    "admin":{
+        "name":"企业主",
+        "rights":{
+            "vip":"*",
+            "order":"*",
+            "package":"*",
+            "employee":"*",
+            "template":"*",
+            "report":"*"
+        }
+    },
+
+    "sales":{
+        "name":"前台接待",
+        "rights":{
+            "vip":"write",
+            "order":"write"
+        }
+    },
+
+    "worker":{
+        "name":"服务人员",
+        "rights":{
+        }
+    }
+}
+}

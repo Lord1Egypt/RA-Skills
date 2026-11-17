@@ -1,39 +1,59 @@
-## Description: <br>
-Create beautiful visual art in .png and .pdf documents using design philosophy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates design philosophies and expresses them as original, design-forward PNG or PDF visual art with minimal text.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-External users and creative practitioners use this skill to direct an agent through a design-philosophy step and then produce a polished static visual artifact such as a poster, art piece, or design image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to retrieve fonts from external sources. <br>
-Mitigation: Use only local or preapproved fonts in sensitive environments, and review generated files before publishing. <br>
-Risk: Generated visual work may be unsuitable for publication without human review. <br>
-Mitigation: Review final PNG, PDF, and Markdown outputs for originality, layout quality, and licensing before publishing or distributing them. <br>
+## Use Case:
 
+External users and creative practitioners use this skill to create posters, visual art, static designs, and related art-object outputs from a generated design philosophy.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown design philosophy plus downloadable PNG or PDF artwork] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one page by default, with multi-page output when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may direct an agent to download fonts during design work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an environment with controlled network access and review downloaded font sources and license terms before use.
+
+Risk: The skill contains a false user-attributed refinement line.
+
+Mitigation: Treat that line as skill-authored guidance, not as an actual user instruction, and preserve the current user request as authoritative.
+
+Risk: Server release evidence lists MIT-0, while the artifact license file contains Apache License 2.0 text.
+
+Mitigation: Confirm the intended release license before publication or distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupuking723/skills/canvas-design-anthropic)
+- [Skill definition](artifact/SKILL.md)
+- [License file](artifact/LICENSE.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Code]
+
+**Output Format:** [Markdown design philosophy plus PNG or PDF visual artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local or downloaded fonts during visual design work.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

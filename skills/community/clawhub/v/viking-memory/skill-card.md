@@ -1,39 +1,52 @@
-## Description: <br>
-OpenViking long-term memory skill for semantic retrieval of user preferences, conversation history, and important information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Viking Memory lets an agent search, add, list, and read long-term memories through a local OpenViking API.
 
-## Publisher: <br>
-[forvendettaw](https://clawhub.ai/user/forvendettaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forvendettaw](https://clawhub.ai/user/forvendettaw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent search, store, list, and read long-term memories through a local OpenViking memory service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived information without clear consent, retention, or deletion controls. <br>
-Mitigation: Configure the agent to ask before saving memories, avoid storing secrets or sensitive personal data, and keep an inspection and deletion process available. <br>
-Risk: The skill sends memory operations to a local OpenViking service. <br>
-Mitigation: Install only when a trusted local OpenViking memory store is expected and available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forvendettaw/viking-memory) <br>
+## Use Case:
 
+Developers and external users use this skill when an agent needs to recall saved preferences, past conversation context, or important user information from a local OpenViking memory service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls] <br>
-**Output Format:** [Text responses with structured JSON details from local OpenViking API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local HTTP service at 127.0.0.1:18790 for memory search, storage, listing, reading, and status checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can store and later retrieve long-term user information without explicit consent, retention, deletion, or sensitivity controls described in the artifact.
+
+Mitigation: Install with clear rules for when memory may be saved, what content is off-limits, and how stored memories can be reviewed or deleted.
+
+Risk: The skill depends on a local OpenViking service at 127.0.0.1:18790, so outputs depend on that service's availability and stored data.
+
+Mitigation: Verify the local service is trusted and running before use, and review returned memory content before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forvendettaw/skills/viking-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text responses with optional JSON details and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns memory search results, saved-memory confirmations, read content, directory listings, or local system status from the OpenViking service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,68 @@
-## Description: <br>
-Visual cron job dashboard for OpenClaw with live countdown timers, run history, and calendar views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual cron job dashboard for OpenClaw with live countdown timers, run history, and calendar view.
 
-## Publisher: <br>
-[firstfloris](https://clawhub.ai/user/firstfloris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firstfloris](https://clawhub.ai/user/firstfloris)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and maintain an OpenCron dashboard for OpenClaw cron jobs, including job status, upcoming schedules, and run history. It helps agents provide dashboard access instructions after cron job runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dashboard URLs can include an access token and may expose cron metadata, prompts, outputs, or run history if shared broadly. <br>
-Mitigation: Treat token-bearing OpenCron URLs as secrets, prefer localhost or an authenticated reverse proxy, and avoid posting the URL in public logs or job output. <br>
-Risk: The deployment script fetches dashboard assets from unpinned remote content. <br>
-Mitigation: Pin, vendor, or review the dashboard asset before production use and re-review updates before redeploying. <br>
-Risk: The background sync loop copies cron job data into a served dashboard location. <br>
-Mitigation: Review what cron data is exposed, limit network access, and use token validation, rate limiting, and security headers when serving externally. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and operate an OpenClaw cron dashboard that shows job status, upcoming runs, run history, and related cron metadata.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/firstfloris/opencron-skill-repo) <br>
-- [OpenCron dashboard project](https://github.com/firstfloris/opencron) <br>
-- [OpenCron skill repository](https://github.com/firstfloris/opencron-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown with inline shell commands and dashboard URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May deploy cron.html and cron-data.json under the OpenClaw canvas directory and keep cron-data.json synchronized on a 30-second loop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Cron job names, prompts, schedules, outputs, and run metadata may reveal sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat dashboard data as sensitive, redact prompts and secrets before serving, and limit access to trusted local users or authenticated viewers.
+
+Risk: Dashboard links include gateway tokens in URLs and may be exposed through logs, browser history, or sharing.
+
+Mitigation: Remove tokenized public URLs from routine output and use authentication that does not place secrets in query parameters.
+
+Risk: The local HTTP server allows wildcard CORS and can bind on all interfaces, broadening data exposure on shared or networked hosts.
+
+Mitigation: Bind locally by default, remove wildcard CORS, and place any external access behind an authenticated reverse proxy with rate limits and security headers.
+
+Risk: The deploy script fetches dashboard HTML from a mutable remote URL at install or update time.
+
+Mitigation: Pin, vendor, or checksum the dashboard asset before deployment so reviewers know exactly what code will run.
+
+Risk: The background sync is documented as a nohup loop without lifecycle, status, or stop controls.
+
+Mitigation: Run synchronization under a managed process supervisor with explicit start, status, restart, and stop behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/firstfloris/skills/opencron-skill-repo)
+- [OpenCron dashboard repository](https://github.com/firstfloris/opencron)
+- [OpenCron skill repository](https://github.com/firstfloris/opencron-skill)
+- [Dashboard overview image](https://raw.githubusercontent.com/firstfloris/opencron/master/docs/overview.png)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and an OpenClaw cron data directory; dashboard content and cron-data JSON may be written under the user's OpenClaw canvas directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

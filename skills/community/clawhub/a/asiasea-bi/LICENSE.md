@@ -1,3 +1,11 @@
+<!--
+ * @Author: 张永超 zhangyongchao@asiasea.com
+ * @Date: 2026-03-19 20:03:27
+ * @LastEditors: 张永超 zhangyongchao@asiasea.com
+ * @LastEditTime: 2026-03-19 20:48:35
+ * @FilePath: /skills/Users/asa-zhang/Downloads/asa-bi/LICENSE.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 金灯塔 BI Skill 专属商业授权及保密协议
 (Jindengta BI Skill Proprietary and Confidential License)
 

@@ -8,7 +8,7 @@ proxy/certificate troubleshooting, and the local ACE-Step API workflow.
 
 ## Read this first: native Windows vs WSL2 vs cloud
 
-- **Cloud backends** (MiniMax `mmx`, Stable Audio) need no WSL and no GPU, but
+- **Cloud backends** (such as Stable Audio) need no WSL and no GPU, but
   require provider accounts, API keys, and network access to the provider.
 - **Local models (ACE-Step) on native Windows** are NOT recommended. PyTorch+CUDA
   work natively, but ACE-Step's setup scripts are bash, and the experience the
@@ -16,7 +16,8 @@ proxy/certificate troubleshooting, and the local ACE-Step API workflow.
 - **Local models via WSL2** is the supported path. WSL2 gives a real Linux with
   CUDA passthrough to your NVIDIA GPU. This is what the rest of this file covers.
 
-Note on "cover": MiniMax is still the fast cloud cover path. ACE-Step also has
+Note on "cover": there is no fast cloud cover path any more (MiniMax music
+generation was discontinued). ACE-Step has
 a local audio-conditioned `cover` mode, but on Windows this means WSL2 + CUDA,
 longer wall time, and strict timeout/cache handling. Treat local cover as an
 experimental path and set expectations with the user before uploading or
@@ -96,8 +97,8 @@ nvidia-smi      # must list your NVIDIA GPU with CUDA version
 
 ```bash
 apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-  git curl ffmpeg python3 python3-pip python3-venv build-essential
-curl -LsSf https://astral.sh/uv/install.sh | sh
+  git curl ffmpeg python3 python3-pip python3-venv pipx build-essential
+pipx install uv      # from PyPI via the distro's pipx; no remote script piped into a shell
 export PATH="$HOME/.local/bin:$PATH"
 git clone --depth 1 https://github.com/ace-step/ACE-Step-1.5.git /root/ACE-Step-1.5
 cd /root/ACE-Step-1.5 && uv sync     # pulls PyTorch CUDA stack, ~4-5 GB
@@ -235,6 +236,6 @@ alongside the prompt text and any analysis JSON.
 | `/health` returns a 403 HTML page | `HTTP_PROXY` routing localhost to the proxy | Unset proxy vars / set `no_proxy` / `trust_env=False` (Step 7) |
 | `acestep-download` gets a few files then "CAS service error" | Xet CDN blocked | Same as TLS fix above |
 | Server start hangs with no output | `start_api_server.sh` waiting on a `read` prompt | Launch `acestep-api` directly (Step 9) |
-| Background server dies after the launching command returns | WSL reaps `nohup ... &` when the session exits | Keep the launching session alive (run the server as a long-lived foreground process in its own session) |
+| Background server dies after the launching command returns | WSL stops background processes when the launching session exits | Run the server in the foreground in its own terminal and stop it when you are done |
 | Distro shows VERSION 1 | WSL1 (no CUDA) | Install a fresh WSL2 distro; do not convert in place |
 | LM OOM on a small GPU | 1.7B LM too large alongside DiT | Use fast tier (`acestep-5Hz-lm-0.6B`) or set `ACESTEP_OFFLOAD_TO_CPU=true` |

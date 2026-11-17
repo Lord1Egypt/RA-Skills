@@ -1,42 +1,63 @@
-## Description: <br>
-Credit cards, loyalty balances, transfer partners, and transfer bonuses. Calculates CPP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Credit cards, loyalty balances, transfer partners, and transfer bonuses. Calculates CPP.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External users and travel-rewards agents use this skill to compare credit cards, transfer partners, active transfer bonuses, loyalty wallet summaries, and cents-per-point redemption value through the Aerobase API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface wallet summaries, linked cards, transfer accounts, and loyalty balances in agent responses when an Aerobase API key is configured. <br>
-Mitigation: Install only when Aerobase access is intended, keep the API key in the agent environment, avoid pasting keys into chat, and review responses before sharing them. <br>
-Risk: Travel redemption guidance and CPP calculations depend on user-provided fare context and current Aerobase API data. <br>
-Mitigation: Validate route, date, cabin, fare, and miles inputs before acting on recommendations, and treat results as decision support rather than a booking guarantee. <br>
+## Use Case:
 
+External users and travel rewards agents use this skill to inspect linked travel wallet data, find transfer opportunities, compare credit cards, and calculate cents-per-point from fare and mileage context.
 
-## Reference(s): <br>
-- [Aerobase](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/kurosh87/aerobase-travel-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise responses with top travel-rewards options first and one to two follow-up actions. Requires AEROBASE_API_KEY for API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server-resolved release metadata) <br>
+Risk: The skill can expose linked travel rewards wallet data through responses from the Aerobase service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an Aerobase API key you are comfortable connecting to the agent environment, and avoid sharing bank passwords, OTPs, cookies, or loyalty account credentials.
+
+Risk: Raw API keys could be disclosed if an agent repeats environment values or request headers.
+
+Mitigation: Follow the skill protocol by using the Authorization Bearer header and redacting API keys in output as sk_live_***.
+
+Risk: Quota limits, authentication failures, or service errors may prevent complete wallet or transfer-bonus results.
+
+Mitigation: Handle 401, 403, 429, timeout, and 5xx responses as documented, retry transient failures once, and return partial guidance with clear next steps when needed.
+
+Risk: Cents-per-point calculations can be misleading if fare amounts or displayed miles are incorrect.
+
+Mitigation: Validate required parameters and compute CPP only from user-provided fare numbers and displayed miles.
+
+## Reference(s):
+
+- [Aerobase homepage](https://aerobase.app)
+- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent)
+- [ClawHub skill page](https://clawhub.ai/kurosh87/skills/aerobase-travel-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Markdown]
+
+**Output Format:** [Concise text or Markdown summaries of travel rewards data, transfer options, wallet balances, and cents-per-point calculations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AEROBASE_API_KEY for Aerobase API access; responses should redact raw API keys and present top options before follow-up actions.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

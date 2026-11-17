@@ -1,0 +1,15 @@
+{
+  "id": "fictional-postal-worker",
+  "origin": "synthetic",
+  "tool": "image_gen.imagegen",
+  "model": null,
+  "taskAttempts": 1,
+  "tokens": null,
+  "durationMs": null,
+  "inputImages": [],
+  "generatedFor": "Original public fictional newspaper demonstration fixture",
+  "sha256": "c14c189d36b63ccd8fee2a8bdeb29574955b1384012169c8ecadb3501de57e18",
+  "scope": "Fixture preparation only; independent agent production is measured separately",
+  "fictionalIdentity": "Adult postal worker with short black hair, round glasses, forest-green cap/jacket and mustard satchel; no real person or place",
+  "prompt": "Create one original source illustration for a fictional Chinese community newspaper production test, not the newspaper itself. A fictional adult East Asian woman postal worker with short black bob hair, round spectacles, forest-green cap and jacket, cream trousers, a mustard-yellow crossbody mail satchel, standing naturally full-body beside a red pillar mailbox on a cobbled lane in an imaginary riverside town. Behind her: small teal and ochre houses, one stone bridge, pale blue river and two small paper kites in the sky. Editorial gouache and precise ink drawing, tactile paper, charming expressive but believable adult proportions, warm coral/teal/ochre palette. Clear face, hands, full body and satchel; one person only, no text or labels, no logos or brands, no real location, no border. Landscape 3:2 composition. This is a synthetic original reference for later faithful cutout and a sitting-pose variant, so make the identity and clothing clear."
+}

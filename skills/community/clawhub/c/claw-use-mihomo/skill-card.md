@@ -1,45 +1,59 @@
-## Description: <br>
-Manage mihomo proxy - install, configure from subscriptions, monitor health, auto-switch nodes. Supports vmess/ss/trojan/vless protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage mihomo proxy installation, subscription configuration, health monitoring, and automatic node switching for vmess, ss, trojan, and vless protocols.
 
-## Publisher: <br>
-[4ier](https://clawhub.ai/user/4ier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4ier](https://clawhub.ai/user/4ier)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and manage a local mihomo proxy, configure it from subscriptions or proxy URLs, monitor health, and switch nodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and start a persistent privileged network proxy service. <br>
-Mitigation: Review before installing, grant sudo only when a persistent service is intended, and verify the mihomo release independently. <br>
-Risk: The mihomo controller can expose high-impact proxy controls if bound broadly or left without a secret. <br>
-Mitigation: Bind the controller to localhost and configure a controller secret before starting the service. <br>
-Risk: Subscription URLs and proxy links can contain credentials or tokens. <br>
-Mitigation: Avoid pasting subscription URLs into contexts where logs may be retained, and rotate exposed subscription credentials. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to install and manage mihomo proxy configurations from subscription URLs or protocol links, monitor proxy health, and switch nodes when connectivity degrades.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/4ier/claw-use-mihomo) <br>
-- [mihomo upstream project](https://github.com/MetaCubeX/mihomo) <br>
-- [mihomod npm package](https://www.npmjs.com/package/mihomod) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can create or modify local mihomo configuration files and can start, stop, or monitor a local proxy service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and package.json) <br>
+Risk: Persistent privileged service setup can keep mihomo running beyond the initiating agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect created systemd or launchd service files before enabling them and document the manual removal steps for the target host.
+
+Risk: Mutable binary downloads can change between installs.
+
+Mitigation: Use a pinned, trusted package version and verify the downloaded mihomo binary before execution.
+
+Risk: Subscription URLs and proxy controller data may expose sensitive proxy-management information.
+
+Mitigation: Avoid pasting sensitive subscription URLs into logged agent sessions, bind the controller to loopback, and configure a controller secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/4ier/skills/claw-use-mihomo)
+- [mihomod npm package](https://www.npmjs.com/package/mihomod)
+- [mihomo project](https://github.com/MetaCubeX/mihomo)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create or update local proxy configuration, install a mihomo binary, and manage system services.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

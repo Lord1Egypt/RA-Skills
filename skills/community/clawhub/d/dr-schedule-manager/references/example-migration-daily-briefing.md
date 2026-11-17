@@ -27,7 +27,7 @@ Example brittle pattern:
   "model": "old-hardcoded-model-example",
   "session": "isolated",
   "wake": "now",
-  "to": "channel:1476754066481877155",
+  "to": "channel:<legacy-or-provider-target>",
   "verify": {
     "requirePromptExact": true,
     "requireModelExact": true,
@@ -56,7 +56,7 @@ Recommended fresh-runtime pattern:
   "schedule": {
     "kind": "cron",
     "expr": "0 8 * * *",
-    "tz": "Australia/Brisbane"
+    "tz": "Etc/UTC"
   },
   "runtimeMode": "fresh-isolated",
   "triggerMode": "wake-only",
@@ -66,8 +66,8 @@ Recommended fresh-runtime pattern:
   ],
   "delivery": {
     "channel": "discord",
-    "target": "user:270548320366100480",
-    "accountId": "default",
+    "target": "user:<approved-recipient-id>",
+    "accountId": "<approved-account-id>",
     "mode": "runtime-send"
   },
   "modelPolicy": {

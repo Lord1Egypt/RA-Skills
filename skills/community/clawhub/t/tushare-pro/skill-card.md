@@ -1,42 +1,55 @@
-## Description: <br>
-A股、港股、期货量化数据查询工具，基于 Tushare Pro API 通过 HTTP REST 接口获取股票、指数、资金流向、期货和财务数据，无需 pip 或 Python 环境。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries China A-share, Hong Kong equity, futures, index, funds-flow, and financial data through the Tushare Pro HTTP REST API without requiring pip or a Python SDK.
 
-## Publisher: <br>
-[gloryjack](https://clawhub.ai/user/gloryjack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloryjack](https://clawhub.ai/user/gloryjack)
 
-## Use Case: <br>
-Developers, analysts, and quantitative finance users can use this skill to ask an agent for Tushare Pro HTTP request patterns, token setup guidance, and example queries for China A-share, Hong Kong stock, futures, index, money-flow, and financial datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled token.env template points users to a misspelled Tushare-like site while discussing API token setup. <br>
-Mitigation: Use the official Tushare site listed in SKILL.md, correct or delete the bundled token.env template, and obtain tokens only through the official account portal. <br>
-Risk: Real Tushare API tokens could be exposed if users store them in shared skill files or commit token.env. <br>
-Mitigation: Store real tokens securely outside shared artifacts, use a revocable token when possible, and monitor API quota usage. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to prepare Tushare Pro REST requests and example code for retrieving China market data, including equities, indices, futures, funds flow, and financial data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gloryjack/tushare-pro) <br>
-- [Tushare Pro](https://tushare.pro) <br>
-- [Tushare Pro API endpoint](https://api.tushare.pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, token configuration snippets, and HTTP API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TUSHARE_TOKEN; available data and rate limits depend on the user's Tushare account permissions and quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A bundled token setup file references a lookalike Tushare domain, which could expose credentials or API tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain credentials only from the verified Tushare domain and correct the token setup guidance before deployment.
+
+Risk: The skill asks users to place TUSHARE_TOKEN in a local token.env file, which can leak if packaged, committed, or shared.
+
+Mitigation: Provide TUSHARE_TOKEN through the runtime environment or a secret manager and keep real tokens out of shared skill directories.
+
+## Reference(s):
+
+- [Tushare Pro](https://tushare.pro)
+- [Tushare Pro API endpoint](https://api.tushare.pro)
+- [ClawHub skill listing](https://clawhub.ai/gloryjack/skills/tushare-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API examples, Python snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided TUSHARE_TOKEN and may depend on Tushare account permissions and rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

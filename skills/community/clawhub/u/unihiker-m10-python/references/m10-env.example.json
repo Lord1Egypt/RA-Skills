@@ -1,0 +1,9 @@
+{
+  "host": "10.1.2.3",
+  "mode": "pyenv",
+  "python_version": "3.12.7",
+  "python_bin": "/root/.pyenv/versions/3.12.7/bin/python3",
+  "uv_path": "/usr/local/bin/uv",
+  "uv_available": true,
+  "detected_at": "2026-06-05 12:00:00"
+}

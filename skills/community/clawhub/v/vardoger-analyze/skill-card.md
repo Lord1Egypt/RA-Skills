@@ -1,42 +1,64 @@
-## Description: <br>
-Runs the vardoger CLI to analyze OpenClaw conversation history and generate tailored assistant personalization instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to personalize their assistant, to use vardoger, or to analyze their OpenClaw conversation history.
 
-## Publisher: <br>
-[dstrupl](https://clawhub.ai/user/dstrupl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[dstrupl](https://clawhub.ai/user/dstrupl)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect prior assistant conversations, summarize behavioral preferences, and generate persistent personalization instructions for future assistant sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads broad past conversation history. <br>
-Mitigation: Install and run it only when the user wants conversation-history analysis, verify the vardoger CLI source and version, and approve only expected vardoger commands. <br>
-Risk: The skill writes persistent global assistant personalization outside the current workspace. <br>
-Mitigation: Review the generated markdown before keeping it and remove or edit the personalization file if it captures sensitive or unwanted instructions. <br>
+## Use Case:
 
+Developers and assistant users use this skill to analyze OpenClaw conversation history with the vardoger CLI and generate persistent personalization instructions for assistant behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dstrupl/vardoger-analyze) <br>
-- [vardoger project page](https://github.com/dstrupl/vardoger) <br>
-- [pipx installation documentation](https://pipx.pypa.io/stable/installation/.) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown personalization guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the vardoger CLI and may read conversation history and write persistent assistant personalization outside the current workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads private conversation history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after explicit user consent and only in trusted local environments.
+
+Risk: The skill writes persistent assistant rules that can change future assistant behavior.
+
+Mitigation: Review the generated markdown before writing it and keep a rollback path for the previous rules file.
+
+Risk: The provided echo-based write example can mishandle generated markdown.
+
+Mitigation: Use a safer stdin or file-based mechanism when passing personalization content to vardoger.
+
+Risk: The vardoger commands need filesystem access outside the workspace.
+
+Mitigation: Use a pinned, reviewed vardoger version and grant expanded file access only for the specific command being run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dstrupl/skills/vardoger-analyze)
+- [dstrupl publisher profile](https://clawhub.ai/user/dstrupl)
+- [Vardoger project page](https://github.com/dstrupl/vardoger)
+- [pipx installation documentation](https://pipx.pypa.io/stable/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown personalization guidance with shell commands and concise status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the vardoger CLI and explicit user consent before reading conversation history or writing persistent assistant rules.]
+
+## Skill Version(s):
+
+0.3.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

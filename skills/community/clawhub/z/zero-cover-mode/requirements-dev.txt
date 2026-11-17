@@ -1,0 +1,5 @@
+# 零稀泥模式 — 开发依赖
+# pip install -r requirements-dev.txt
+
+pytest>=7
+pytest-cov>=5

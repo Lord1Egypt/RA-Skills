@@ -1,43 +1,58 @@
-## Description: <br>
-ssai-dailymoments helps Squirrel AI study-room operators generate five WeChat Moments posts with warm education-themed copy and hand-drawn-style illustrations, either manually or on a daily schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates five non-repeating WeChat Moments posts and matching hand-drawn education-themed illustrations for a SongshuAI study room, either on demand or on a daily schedule.
 
-## Publisher: <br>
-[keystone-shiqi](https://clawhub.ai/user/keystone-shiqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keystone-shiqi](https://clawhub.ai/user/keystone-shiqi)
 
-## Use Case: <br>
-External education-center operators use this skill to create parent-facing WeChat Moments marketing content with matching portrait illustrations. It supports manual generation on request and scheduled daily content generation for recurring social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends image-generation prompts to a MiniMax-compatible image API and may incur provider costs or expose prompt content to that provider. <br>
-Mitigation: Configure only a trusted image provider and valid API key, and review provider data-handling and billing terms before enabling the skill. <br>
-Risk: Scheduled generation can create recurring marketing content without a fresh manual request each time. <br>
-Mitigation: Enable scheduled runs only for intended accounts and review initial outputs before using them in customer-facing channels. <br>
-Risk: The skill keeps a local history file to avoid repeated posts. <br>
-Mitigation: Manage or delete the local history file according to the operator's retention and privacy expectations. <br>
+## Use Case:
 
+Study room operators use this skill to generate parent-facing social media copy and warm education-themed illustrations for daily WeChat Moments marketing. The skill can be triggered manually or by scheduled times throughout the day.
 
-## Reference(s): <br>
-- [MiniMax image generation API](https://api.minimaxi.com/v1/image_generation) <br>
-- [ClawHub skill page](https://clawhub.ai/keystone-shiqi/ssai-dailymoments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, API calls, Configuration guidance] <br>
-**Output Format:** [Plain text paired with generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates five WeChat Moments posts with matching portrait 3:4 illustrations and keeps local history to reduce repeated content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+Risk: Scheduled generation may post at unexpected times if the cron schedule is not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured daily schedule before enabling automated use.
+
+Risk: Image generation uses a MiniMax or compatible image API that may create provider costs and data-handling exposure.
+
+Mitigation: Confirm API pricing, provider data handling, and credential configuration before installing or running the skill.
+
+Risk: The skill keeps a permanent local history file for duplicate avoidance.
+
+Mitigation: Avoid including sensitive personal, student, or business details in generated prompts or stored history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keystone-shiqi/skills/ssai-dailymoments)
+- [MiniMax image generation API endpoint](https://api.minimaxi.com/v1/image_generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, configuration]
+
+**Output Format:** [Plain text posts with generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five posts per manual run; scheduled use sends one configured post at each scheduled time.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

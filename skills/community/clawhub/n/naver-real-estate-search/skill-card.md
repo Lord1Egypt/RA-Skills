@@ -1,46 +1,63 @@
-## Description: <br>
-Search, compare, and monitor 대한민국 property listings from 네이버 부동산 with natural-language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, compare, and monitor Korean property listings from Naver Real Estate using natural-language queries, candidate-complex workflows, briefings, and watch alerts.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-External users and agents use this skill to turn Korean real-estate questions into Naver Real Estate searches, candidate complex comparisons, listing summaries, and price-watch drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-South Korea <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill wraps a local tmp/naverland-scrapper dependency. <br>
-Mitigation: Inspect or otherwise trust that local dependency before installation or execution. <br>
-Risk: Search queries, watch rules, and candidate cache files can reveal property interests or alert thresholds. <br>
-Mitigation: Avoid unnecessary personal details in queries, and review or clear watch-rules.json and candidate-cache.json when that state is sensitive. <br>
-Risk: Live Naver listing searches can be rate limited or incomplete, especially for broad candidate discovery. <br>
-Mitigation: Prefer direct complex URLs or IDs, narrow ambiguous searches to one to three candidate complexes, and verify listings before decisions. <br>
+## Use Case:
 
+External users, real-estate researchers, and agent developers use this skill to turn Korean natural-language property questions into Naver Real Estate searches, candidate-complex lists, comparison briefings, JSON summaries, and local watch alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twbeatles/naver-real-estate-search) <br>
-- [README](README.md) <br>
-- [Design notes](references/design.md) <br>
-- [Candidate seed builder notes](references/candidate-seed-builder.md) <br>
-- [Candidate seeds](references/candidate-seeds.json) <br>
+### Deployment Geography for Use:
 
+South Korea
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Korean text or Markdown summaries, JSON records, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Naver listing URLs and local watch or candidate-cache JSON state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.4.16 (source: evidence.json release.version) <br>
+Risk: The skill queries Naver and may encounter rate limits or incomplete responses during broad searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer direct complex URLs or IDs when available, narrow ambiguous requests to one to three candidate complexes, and avoid repeated broad scans.
+
+Risk: Local candidate-cache and watch-rule JSON files can reveal property interests on shared machines.
+
+Mitigation: Clear local cache and watch files after use on shared systems and avoid storing sensitive watch rules longer than needed.
+
+Risk: Generated candidate seeds can misidentify similar apartment complexes or aliases.
+
+Mitigation: Use preview modes first and manually verify complex ID, name, and address before applying generated seeds to operational files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twbeatles/skills/naver-real-estate-search)
+- [README](README.md)
+- [Design Notes](references/design.md)
+- [Candidate Seed Builder](references/candidate-seed-builder.md)
+- [Candidate Seeds](references/candidate-seeds.json)
+- [Seoul Major Complex Seed Input](references/seoul-major-complexes.seed-input.json)
+- [Generated Candidate Seeds](references/candidate-seeds.generated.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Korean text or JSON, with Markdown-friendly briefings and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local candidate-cache, candidate-seed, and watch-rule JSON files when apply or watch commands are used.]
+
+## Skill Version(s):
+
+2026.4.16 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

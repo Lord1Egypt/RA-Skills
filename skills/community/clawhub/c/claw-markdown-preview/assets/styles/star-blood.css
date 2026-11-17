@@ -1,0 +1,261 @@
+/**
+ * Star Blood 血色风格 Markdown 预览样式
+ * 基于 YunYouJun/star-markdown-css blood 主题变体
+ * 深红暗色背景，血色主题
+ */
+
+:root {
+    --smc-font-sans: Raleway, -apple-system, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    --smc-font-serif: 'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif;
+    --smc-font-mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    --smc-line-height: 1.5;
+    --smc-c-text: #f5f5f5;
+    --smc-c-text-light: #cccccc;
+    --smc-c-text-lighter: #aaaaaa;
+    --smc-code-bg-color: #2a2a2a;
+    --smc-link-color: #ff6b6b;
+    --smc-header-bottom-color: #4a1a1a;
+    --smc-border-color: #8b0000;
+    --smc-bg-color: #1a0a0a;
+    --smc-c-primary: #dc143c;
+    --smc-c-primary-light: #8b0000;
+}
+
+.markdown-body.star-blood {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background: var(--smc-bg-color);
+    color: var(--smc-c-text);
+    font-family: var(--smc-font-sans);
+    font-size: 1rem;
+    line-height: var(--smc-line-height);
+    overflow-wrap: break-word;
+}
+
+.markdown-body.star-blood * {
+    box-sizing: border-box;
+}
+
+.markdown-body.star-blood a {
+    background-color: transparent;
+    color: var(--smc-link-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.markdown-body.star-blood a:hover {
+    border-bottom-color: var(--smc-link-color);
+}
+
+.markdown-body.star-blood hr {
+    background-color: #8b0000;
+    height: 0.1rem;
+    margin: 1.5rem 0;
+    border: none;
+}
+
+.markdown-body.star-blood blockquote {
+    margin: 1rem 0;
+    padding: 0 1rem;
+    border-left: 0.25em solid var(--smc-border-color);
+    background: rgba(139, 0, 0, 0.2);
+    color: #cccccc;
+}
+
+.markdown-body.star-blood code,
+.markdown-body.star-blood pre {
+    font-family: 'Source Code Pro', Consolas, Monaco, SFMono-Regular, 'Ubuntu Mono', Menlo, monospace;
+}
+
+.markdown-body.star-blood h1 > code,
+.markdown-body.star-blood h2 > code,
+.markdown-body.star-blood h3 > code,
+.markdown-body.star-blood h4 > code {
+    font-size: 0.9em;
+}
+
+.markdown-body.star-blood code {
+    padding: 3px 6px;
+    font-size: 0.85rem;
+    color: #ff6b6b;
+    background: var(--smc-code-bg-color);
+    border-radius: 3px;
+}
+
+.markdown-body.star-blood pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow-wrap: normal;
+    /* padding: 1rem; */
+    overflow: auto;
+    background-color: var(--smc-code-bg-color);
+    border-radius: 3px;
+    border: 1px solid #3a1a1a;
+}
+
+.markdown-body.star-blood pre > code {
+    font-size: 0.85rem;
+    white-space: pre;
+}
+
+.markdown-body.star-blood pre code {
+    display: block;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-break: normal;
+    background-color: transparent;
+    border: 0;
+    color: #ff9999;
+}
+
+.markdown-body.star-blood img {
+    display: block;
+    margin: 1rem auto;
+    max-width: 92%;
+    max-height: 600px;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+    transition: 0.4s;
+}
+
+.markdown-body.star-blood img:hover {
+    box-shadow: 0 0 30px rgba(220, 20, 60, 0.5);
+}
+
+.markdown-body.star-blood figure {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.markdown-body.star-blood figcaption {
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.markdown-body.star-blood figure a {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.markdown-body.star-blood figure a img {
+    margin: 16px auto;
+}
+
+
+
+.markdown-body.star-blood ol,
+.markdown-body.star-blood ul {
+    padding-left: 2em;
+}
+
+.markdown-body.star-blood li {
+    overflow-wrap: break-all;
+    margin-top: 0.25em;
+}
+
+.markdown-body.star-blood li > p {
+    margin-top: 16px;
+}
+
+.markdown-body.star-blood table {
+    width: 100%;
+    overflow: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.markdown-body.star-blood table td,
+.markdown-body.star-blood table th {
+    padding: 6px 13px;
+    border: 1px solid var(--smc-c-primary-light, #8b0000);
+}
+
+.markdown-body.star-blood table thead th {
+    font-weight: 600;
+    background: rgba(139, 0, 0, 0.3);
+    color: #ff6b6b;
+}
+
+.markdown-body.star-blood table > tbody > tr:hover {
+    background-color: rgba(139, 0, 0, 0.2);
+}
+
+.markdown-body.star-blood strong {
+    font-family: var(--smc-font-serif);
+    font-weight: 900;
+    color: #ff4444;
+}
+
+.markdown-body.star-blood em {
+    color: #ff9999;
+}
+
+.markdown-body.star-blood p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.markdown-body.star-blood h1,
+.markdown-body.star-blood h2,
+.markdown-body.star-blood h3,
+.markdown-body.star-blood h4,
+.markdown-body.star-blood h5,
+.markdown-body.star-blood h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #ff6b6b;
+}
+
+.markdown-body.star-blood h1 {
+    font-size: 3rem;
+    border-bottom: 1px solid var(--smc-header-bottom-color);
+}
+
+.markdown-body.star-blood h2 {
+    font-size: 2.6rem;
+    border-bottom: 1px solid var(--smc-header-bottom-color);
+    color: #ff8888;
+}
+
+.markdown-body.star-blood h3 {
+    font-size: 2.2rem;
+    color: #ffaaaa;
+}
+
+.markdown-body.star-blood h4 {
+    font-size: 1.8rem;
+    color: #cccccc;
+}
+
+.markdown-body.star-blood h5 {
+    font-size: 1.4rem;
+    color: #bbbbbb;
+}
+
+.markdown-body.star-blood h6 {
+    font-size: 1rem;
+    color: #999999;
+}
+
+@media screen and (max-width: 768px) {
+    .markdown-body.star-blood h1 { font-size: 2rem; }
+    .markdown-body.star-blood h2 { font-size: 1.8rem; }
+    .markdown-body.star-blood h3 { font-size: 1.6rem; }
+}

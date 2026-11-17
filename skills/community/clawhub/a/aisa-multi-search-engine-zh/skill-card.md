@@ -1,42 +1,52 @@
-## Description: <br>
-AISA Multi Search Engine ZH unifies web search, academic search, Tavily search and extraction, smart search, and Perplexity-style deep research through one AISA-powered skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AISA Multi Search Engine ZH lets agents run web, academic, Tavily, extraction, smart, and Perplexity-style research through one AISA API-backed Python client.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to run web, academic, URL extraction, and multi-source research workflows through the AISA API when they need evidence gathering, market scanning, or due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URL lists, and extracted page content are sent to AISA and may reach upstream search providers. <br>
-Mitigation: Do not use this skill with secrets, private or internal URLs, regulated data, credentials, or confidential documents unless external sharing is approved. <br>
-Risk: The skill requires an AISA_API_KEY credential. <br>
-Mitigation: Store the API key in an approved environment or secret manager, avoid exposing it in prompts or logs, and rotate it if it is disclosed. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to gather web, academic, URL-extracted, and multi-source evidence for research, due diligence, market scanning, and question answering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/aisa-multi-search-engine-zh) <br>
-- [AIsa API](https://aisa.one) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and CLI text search summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; search queries, URL lists, and extracted page content are sent to the external AISA API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Search terms and submitted URLs are sent to AIsa-backed external services, which can expose sensitive or confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the service is approved for the data being submitted and avoid sending secrets, private internal URLs, regulated data, or confidential research unless that use is authorized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/aisa-multi-search-engine-zh)
+- [Publisher profile](https://clawhub.ai/user/bibaofeng)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [AIsa API](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command-line text, with JSON accepted for plugin configuration and API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; sends search queries and extraction URLs to AIsa-backed services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

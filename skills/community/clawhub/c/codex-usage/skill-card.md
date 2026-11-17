@@ -1,40 +1,53 @@
-## Description: <br>
-Manual Telegram slash-style command for Codex profile status and usage checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manual Telegram slash-style command for Codex profile status and usage checks.
 
-## Publisher: <br>
-[DeadlySilent](https://clawhub.ai/user/DeadlySilent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadlysilent](https://clawhub.ai/user/deadlysilent)
 
-## Use Case: <br>
-Codex users use this skill to handle /codex_usage requests and check profile status, usage limits, and authentication health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper delegates execution to an external local codex-profiler skill and script. <br>
-Mitigation: Review and trust the referenced codex-profiler skill and codex_usage.py script before installing or running this wrapper. <br>
-Risk: The usage check may inspect all configured Codex profiles and expose profile or authentication-health information. <br>
-Mitigation: Run it only in contexts where profile status and auth-health details are appropriate to disclose. <br>
+## Use Case:
 
+Developers and Codex users use this skill to respond to /codex_usage requests and check profile status, usage limits, and authentication health. The artifact is a deprecated wrapper that forwards requests to a separate codex-profiler implementation.
 
-## Reference(s): <br>
-- [Codex Usage ClawHub release](https://clawhub.ai/DeadlySilent/codex-usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash command and text output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates execution to the local codex-profiler skill script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.19 (source: server release metadata) <br>
+Risk: The skill depends on an unbundled external codex-profiler implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the paired profiler package is trusted and reviewed.
+
+Risk: The wrapper asks the profiler to process all profiles, even when a narrower profile was requested.
+
+Mitigation: Use only when all-profile usage and authentication-health checks are acceptable.
+
+## Reference(s):
+
+- [Codex Usage on ClawHub](https://clawhub.ai/deadlysilent/skills/codex-usage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The wrapper requests all profile usage and authentication-health checks through an external codex-profiler package.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

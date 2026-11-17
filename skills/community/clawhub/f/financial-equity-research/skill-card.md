@@ -1,41 +1,57 @@
-## Description: <br>
-Equity research tools for earnings analysis, initiating coverage reports, updating models, sector overviews, and managing research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Equity research tools for earnings analysis, initiating coverage reports, updating models, sector overviews, and managing research workflows.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Financial analysts, investors, and research teams use this skill to draft equity research reports, earnings previews, model updates, thesis trackers, catalyst calendars, stock screens, sector overviews, and morning notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated equity research and trade ideas can be inaccurate, stale, or incomplete if market data, filings, transcripts, or consensus estimates are outdated. <br>
-Mitigation: Verify market data, source documents, and assumptions before relying on reports, model updates, or investment ideas. <br>
-Risk: The skill may reference licensed market data sources such as Bloomberg or FactSet-style inputs. <br>
-Mitigation: Use only data sources your organization is authorized to access and confirm source licenses before including third-party data in deliverables. <br>
-Risk: Generated analysis can be mistaken for professional financial advice. <br>
-Mitigation: Treat outputs as drafting support and apply qualified human review before sharing or acting on investment recommendations. <br>
+## Use Case:
 
+External users, analysts, and research teams use this skill to draft and organize equity research outputs such as earnings updates, pre-earnings previews, initiating coverage reports, model updates, investment theses, catalyst calendars, stock screens, sector overviews, and morning notes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, notes, tables, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for company tickers, quarters, sectors, timeframes, or screen criteria before drafting outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: Generated equity research, trade ideas, target prices, or model updates may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a research assistant and have a qualified reviewer check generated assumptions, conclusions, and recommendations before relying on them.
+
+Risk: Broad finance trigger phrases may start a market-research workflow when the user's intent or context is unclear.
+
+Mitigation: Confirm the company, ticker, workflow type, timeframe, and intended use before generating or acting on research outputs.
+
+Risk: Research workflows depend on timely market, earnings, filing, transcript, and consensus data.
+
+Mitigation: Verify current source data and dates before using generated earnings analysis, previews, screens, or catalyst calendars.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/financial-equity-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown research reports, structured tables, model update guidance, calendar entries, screening notes, and report assembly instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include financial assumptions, target prices, trade ideas, scenarios, catalysts, and report outlines that require review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

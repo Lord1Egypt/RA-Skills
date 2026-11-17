@@ -1,41 +1,61 @@
-## Description: <br>
-Forecast uncertain outcomes with base rates, reference classes, calibration loops, and explicit scorekeeping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forecast uncertain outcomes with base rates, reference classes, calibration loops, and explicit scorekeeping.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, employees, and agents use this skill to turn uncertain planning or prediction prompts into auditable forecasts with resolution rules, numeric probabilities, update triggers, and later scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local forecast memory can preserve old forecasts, assumptions, or preferences under ~/prediction/. <br>
-Mitigation: Use explicit-request activation when desired, and periodically review or delete ~/prediction/ content that should no longer influence future answers. <br>
-Risk: Forecasts can be misleading when a question lacks a clear deadline, threshold, or resolution source. <br>
-Mitigation: Define a resolvable question and resolution rule before assigning a probability, and abstain or lower confidence when critical evidence is missing. <br>
+## Use Case:
 
+External users and developers use this skill to turn uncertain business, product, technical, operational, policy, sports, market, or personal planning questions into auditable forecasts with resolution rules, probabilities, review triggers, and scorekeeping.
 
-## Reference(s): <br>
-- [Prediction release page](https://clawhub.ai/ivangdavila/prediction) <br>
-- [Prediction skill homepage](https://clawic.com/skills/prediction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local forecast-memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local forecast notes under ~/prediction/ when the user chooses recurring forecast memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Persistent forecasting notes under ~/prediction/ may contain sensitive forecasts or planning context if users store more than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only durable forecasting defaults, open forecasts, scorecards, reference classes, and assumptions; avoid sensitive personal, medical, legal, credential, financial, or unreleased company details.
+
+Risk: Forecast outputs can be misleading when questions lack a clear deadline, threshold, or resolution source, or when evidence is too thin for a responsible estimate.
+
+Mitigation: Define a resolvable question before assigning odds, use base rates and reference classes, cap confidence when assumptions are weak, and abstain or hold a low-confidence view when critical evidence is missing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/prediction)
+- [Skill Homepage](https://clawic.com/skills/prediction)
+- [Skill Definition](artifact/SKILL.md)
+- [Setup - Prediction](artifact/setup.md)
+- [BRACE Forecast Loop](artifact/forecast-loop.md)
+- [Forecastable Question Design](artifact/question-design.md)
+- [Calibration and Confidence](artifact/calibration.md)
+- [Scoring and Review](artifact/scoring-and-review.md)
+- [Memory Template - Prediction](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with structured forecast fields and optional bash setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local notes under ~/prediction/ when the user permits persistent forecasting memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

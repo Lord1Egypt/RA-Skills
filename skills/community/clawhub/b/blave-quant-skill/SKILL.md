@@ -1,7 +1,7 @@
 ---
 name: blave-quant
-description: "Use for: (1) Blave market alpha data — 籌碼集中度 Holder Concentration, 多空力道 Taker Intensity, 巨鯨警報 Whale Hunter, 擠壓動能 Squeeze Momentum, 市場方向 Market Direction, 資金稀缺 Capital Shortage, 板塊輪動 Sector Rotation, Blave頂尖交易員 Top Trader Exposure, kline, alpha table, 市場情緒 Market Sentiment, screener saved conditions, Hyperliquid top trader tracking (leaderboard, positions, history, performance, bucket stats), Taiwan stock daily OHLCV, forward-adjusted prices, institutional investor buy/sell, margin trading data, shareholding distribution, quarterly fundamental statements — income statement, balance sheet, cash flow, and broker/dealer daily buy/sell by branch (台股日K/向後調整/三大法人/融資融券/股權持股分級表/綜合損益表/資產負債表/現金流量表/分點買賣超); (2) CME / ICE futures OHLCV — WTI crude oil (CL), gold (GC), Brent crude (BRN); daily/hourly/minute candles from 2010; (3) Taiwan Futures OHLCV — TXF (台指期近月連續); daily/intraday candles (1d/1m/5m/15m/30m/60m), 1d from 2013-12-30 and intraday from 2014-01-02; (4) BitMart futures/contract trading — opening/closing positions, leverage, plan orders, TP/SL, trailing stops, account management, sub-account transfers; (5) BitMart spot trading — buy/sell, limit/market orders, account balance, order history, sub-account transfers; (6) OKX trading — spot and perpetual swap, order placement, positions, balance; (7) Bybit trading — spot and derivatives/perpetual swap, order placement, positions, balance, TP/SL; (8) BingX trading — spot and perpetual swap, order placement, position management, leverage, TWAP orders, OCO orders; (9) Bitget trading — spot and futures, order placement, position management, leverage, plan orders; (10) Binance trading — spot and USDS-M futures, order placement, positions, leverage, algo orders, OCO/OTO/OTOCO; (11) Bitfinex trading & funding — spot, margin, funding/lending (submit offers, loans, credits), wallet transfers; (12) KuCoin trading — spot and futures/perpetual contracts, order placement, position management, leverage, stop orders, account management; (13) TWSE/TPEX 台股查詢 — look up Taiwan stock codes and company names, query daily quotes (open/high/low/close, volume), PE ratio, dividend yield, PB ratio for listed (上市) and OTC (上櫃) stocks; no API key required; (14) 台股分點買賣超 — search broker branch code by name (`broker/search?name=`), then query by stock (`broker/stock/<stock_id>?date=`) or by broker branch (`broker/trader/<trader_id>?date=`); single-day per request, loop for multi-day; via Blave API; no CAPTCHA required."
-version: 1.8.0
+description: "Blave quant data layer and exchange-trading reference for AI agents. Use when the task needs crypto alpha/market data, Taiwan stock, futures or market-wide data, CME/ICE or TXF OHLCV, Hyperliquid top traders, or trading on BitMart, OKX, Bybit, BingX, Bitget, Binance, Bitfinex, KuCoin, Gate.io or StockCoin (US / KR stock perps), including US stock perpetuals on Binance, Bybit, BingX and Bitget."
+version: 1.25.8
 metadata:
   openclaw:
     emoji: "📊"
@@ -19,7 +19,7 @@ metadata:
         - OKX_SECRET_KEY
         - OKX_PASSPHRASE
         - BYBIT_API_KEY
-        - BYBIT_API_SECRET
+        - BYBIT_SECRET_KEY
         - BINGX_API_KEY
         - BINGX_SECRET_KEY
         - BITGET_API_KEY
@@ -32,11 +32,17 @@ metadata:
         - KUCOIN_API_KEY
         - KUCOIN_API_SECRET
         - KUCOIN_API_PASSPHRASE
+        - GATE_API_KEY
+        - GATE_SECRET_KEY
+        - STOCKCOIN_API_KEY
+        - STOCKCOIN_SECRET_KEY
 ---
 
 # Blave Quant Skill
 
-Fifteen capabilities: **Blave** market alpha data (including 台股日K), **CME / ICE Futures** OHLCV, **Taiwan Futures** OHLCV (TXF), **BitMart** trading, **OKX** trading, **Bybit** trading, **BingX** trading, **Bitget** trading, **Binance** trading, **Bitfinex** trading & funding, **KuCoin** trading, **TWSE/TPEX** 台股查詢, **TWSE BSR** 分點資料.
+Quant infrastructure for AI agents. Capabilities: **Blave** market alpha data (including 台股日K), **CME / ICE Futures** OHLCV, **Taiwan Futures** OHLCV (TXF), **BitMart** trading, **OKX** trading, **Bybit** trading, **BingX** trading, **Bitget** trading, **Binance** trading, **Bitfinex** trading & funding, **KuCoin** trading, **Gate.io** trading, **StockCoin** trading (stock perps), **TWSE/TPEX** 台股查詢, **TWSE BSR** 分點資料.
+
+**Keywords (zh ↔ en, so a request in either language lands on the right reference):** 籌碼集中度 Holder Concentration · 多空力道 Taker Intensity · 巨鯨警報 Whale Hunter · 擠壓動能 Squeeze Momentum · 市場方向 Market Direction · 資金稀缺 Capital Shortage · 板塊輪動 Sector Rotation · OI 失衡 OI Imbalance · Blave頂尖交易員 Top Trader Exposure · 市場情緒 Market Sentiment · 每幣爆倉 / 爆倉矩陣 liquidation by coin / exchange matrix · 多空比 long/short ratio · 未平倉量 open interest (table, per coin, history) · 主動買賣淨額 CVD · CME 持倉報告 COT · kline (every Binance USDT perpetual incl. tokenized stocks, 1min from 2020-01) · 美股代幣／股票永續 US stock perps (Binance / Bybit / BingX / StockCoin names, stock-perp agreement) · alpha table · screener saved conditions · Hyperliquid leaderboard / positions · 台股日K / 現股分線 / 向後調整 / 三大法人 / 融資融券 / 股權持股分級表 / 綜合損益表 / 資產負債表 / 現金流量表 / 月營收 / 財務比率 financial ratios (ROE・毛利率・成長率・週轉率・自由現金流, 單季與近四季 TTM) / 股利事件 / 注意股・處置股 attention & disposition stocks (處置期間、分盤撮合分鐘數) / 市值排名（市場別、ETF 旗標、上市扣除 ETF 市值分母）/ 分點買賣超 / 本益比・殖利率・淨值比 / 台股板塊輪動 sector rotation（RS・動能四象限、板塊法人估值、上漲比例 breadth、成分股）/ 題材族群 concept themes（題材指數、成分股與入選理由）/ 法人買超家數比例 institutional buying breadth（題材・產業）/ 台股選股器 stock screener（估值・獲利・成長・報酬・法人條件） · 大盤加權指數 / 全市場成交量值 / 全市場三大法人 / 全市場融資融券 / 大盤融資維持率 margin maintenance ratio / 指數每日除息點數（含未來預估） · 台指期 TXF 日線與分線 / 選擇權 PCR / 法人持倉成本 / 散戶多空比 retail long/short ratio / 股票期貨清單與流動性排行 stock futures list & liquidity ranking · WTI `CL` / 黃金 `GC` / 布蘭特 `BRN` · 總經日曆 economic calendar.
 
 ## Safety Mode (MANDATORY — applies to every exchange)
 
@@ -69,16 +75,25 @@ This skill is a **data access layer**. When the user's request involves any of t
 
 | Use case | Reference |
 |---|---|
+| **Any Blave data endpoint** — parameters, defaults, response fields, errors, data start date (single source) | `references/blave-api.md` |
 | Alpha indicators — HC, TI, Whale Hunter, Squeeze, Liquidation, Market Direction, Capital Shortage, Market Sentiment, Top Trader Exposure | `references/blave-api.md` |
+| Raw cross-exchange base data — 多空比 long/short ratio, 未平倉量 open interest, CVD, 爆倉矩陣 liquidation matrix (cross-sections of now; open interest alone also has backtest history, `/oi_imbalance/get_history`) | `references/blave-api.md` |
+| CME 持倉報告 CME Bitcoin / Ether futures Commitments of Traders (CFTC COT, weekly) | `references/blave-api.md` (endpoints) · `references/blave-indicator-guide.md` (leveraged funds net short ≠ bearish) |
 | Indicator value interpretation (what the numbers mean, signal thresholds) | `references/blave-indicator-guide.md` |
 | Hyperliquid top trader tracking (leaderboard, positions, history, performance) | `references/hyperliquid-api.md` |
 | Screener saved conditions | `references/blave-api.md` |
-| TradingView alert stream (SSE) | `references/tradingview-stream.md` |
 | CME/ICE futures OHLCV (WTI crude, Gold, Brent) | `references/blave-api.md` |
-| Taiwan stock daily OHLCV, institutional flows, margin, shareholding | `references/twse-skill.md` + `references/twse-api-reference.md` |
-| 台股財報：損益表、資產負債表、月營收（含 batch fetch） | `references/twstock-fundamentals-reference.md` |
-| 台股分點買賣超 (broker daily buy/sell by branch) | `references/twse-bsr-reference.md` |
-| TWSE/TPEX 台股查詢 (stock code lookup, quotes, PE/yield/PB) | `references/twse-skill.md` |
+| Taiwan stock daily OHLCV, quote, institutional flows, margin, shareholding, PE/yield/PB, stock list/info | `references/blave-api.md` |
+| 台股大盤 (market-wide): TAIEX index OHLC, 全市場成交量值, 全市場三大法人, 全市場融資融券, 大盤融資維持率, 指數每日除息點數（含未來預估） | `references/blave-api.md` (endpoints) · `references/blave-indicator-guide.md` (融資維持率) |
+| 台股股利事件 (dividend events: cash/stock amounts + announce/ex/pay dates, single + batch) | `references/blave-api.md` |
+| 台股財報：損益表、資產負債表、月營收（含 batch fetch） | `references/blave-api.md` (endpoints) · `references/twstock-fundamentals-reference.md` (analysis guide) |
+| 台股財務比率 Taiwan stock financial ratios (ROE, margins, growth, turnover, FCF — per quarter and TTM, single + batch) | `references/blave-api.md` (endpoints) · `references/twstock-fundamentals-reference.md` › *Financial Ratios* (formulas, units, null rules, lookahead) |
+| 台股注意股・處置股 Taiwan attention & disposition stocks (TWSE + TPEx announcements from 2001; disposal periods for excluding disposed stocks in a backtest) | `references/blave-api.md` (endpoint) · `references/twstock-fundamentals-reference.md` › *Attention & Disposition Stocks* (tables, semantics, backtest mask, point in time) |
+| 台股分點買賣超 (broker daily buy/sell by branch) | `references/blave-api.md` (endpoints) · `references/twse-bsr-reference.md` (workflow) |
+| 台股板塊輪動・題材族群・法人買超家數比例 sector rotation, concept themes, institutional buying breadth; 台股選股器 stock screener | `references/blave-api.md` (endpoints) · `references/blave-indicator-guide.md` (RS quadrants, themes, breadth) |
+| 台指期散戶多空比 retail long/short ratio (`TMF` / `MTX` / `TX` not comparable); 股票期貨清單・流動性排行 | `references/blave-api.md` (endpoints) · `references/blave-indicator-guide.md` (散戶多空比) |
+| 法人台指期持倉成本 institutional carrying cost (外資/投信/自營商 TAIEX futures cost + PnL) | `references/blave-api.md` (endpoint) · `references/blave-indicator-guide.md` (method & limits) |
+| Trading-halt status / one-shot full-market PE scan (the only two things Blave has no endpoint for) | `references/twse-skill.md` |
 
 **Exchange trading**
 
@@ -93,6 +108,9 @@ This skill is a **data access layer**. When the user's request involves any of t
 | Binance | `references/binance-skill.md` · `references/binance-api-reference.md` |
 | Bitfinex (spot / margin / lending) | `references/bitfinex-skill.md` |
 | KuCoin | `references/kucoin-skill.md` · `references/kucoin-api-reference.md` |
+| Gate.io | `references/gateio-skill.md` · `references/gateio-api-reference.md` |
+| StockCoin (US / KR stock, ETF, commodity perps; no spot) | `references/stockcoin-skill.md` |
+| US stock perps on any venue (names per venue, same-ticker collisions, stock-perp agreement) | `references/stock-perps.md` |
 
 **Marketplace**
 
@@ -108,7 +126,8 @@ This skill is a **data access layer**. When the user's request involves any of t
 
 No API key or 401/403 → guide user to:
 
-- Subscribe: **[https://blave.org/landing/en/pricing](https://blave.org/landing/en/pricing)** — $629/year, 14-day free trial
+- Subscribe: **[https://blave.org/landing/en/pricing#api](https://blave.org/landing/en/pricing#api)** — $629/year, 14-day free trial
+- Once the account is on plan billing, a key the user created themselves needs an **API plan**; a Blave Agent plan covers only the keys Blave Agent issues (cloud machine, desktop app) — `references/blave-api.md` › *Which key, which plan*
 - Create key: **[https://blave.org/landing/en/api?tab=blave](https://blave.org/landing/en/api?tab=blave)**
 
 Add to `.env`: `blave_api_key=...` and `blave_secret_key=...`
@@ -121,10 +140,10 @@ Add to `.env`: `blave_api_key=...` and `blave_secret_key=...`
 
 | Item        | Value                                                   |
 | ----------- | ------------------------------------------------------- |
-| Rate limit  | 100 req / 5 min — `429` if exceeded, resets after 5 min |
-| Data update | Every 5 minutes                                         |
-| History     | Max 1 year **per request** (use multiple requests with different date ranges to retrieve data beyond 1 year) |
-| Timestamps  | UTC+0                                                   |
+| Rate limit  | 500 requests / 5 min per API key, and 500 / 5 min per IP — `429` if exceeded, resets after 5 min. `studio/market/anue/economic_calendar` has its own limit: 100 requests / min per account |
+| Data update | Varies by endpoint (crypto indicators every 5 minutes) — see each endpoint's `Update` row in `references/blave-api.md` |
+| History     | Per-request range caps vary by endpoint (crypto indicators: 1 year, silently clamped; minute bars: 30–365 days, `400 date_range_too_large` beyond) — split long ranges into several requests |
+| Timestamps  | UTC unless the endpoint says otherwise                  |
 
 ## Usage Guidelines
 
@@ -132,284 +151,35 @@ Add to `.env`: `blave_api_key=...` and `blave_secret_key=...`
 - **Historical time series for a specific coin** → use individual `get_alpha` endpoints
 - **Screening / coin discovery (alpha_table)** → always fetch fresh data every time; never reuse a cached response from earlier in the conversation
 - **Backtesting (historical kline + indicator series)** → if you already fetched the data earlier in the conversation and the date range has not changed, ask the user before re-fetching: "I already have data for X from Y to Z — use the existing data or fetch fresh?"
+- **Many Taiwan stocks** → use `studio/market/twstock/batch/<data_type>` (≤ 50 ids per call); never loop a single-stock endpoint over a universe (429). For "top N by market cap" use `twstock/market_value/all`
+- **`503` from a Taiwan data endpoint** means "temporarily unavailable, retry later" — never treat it as "no data" or "no trades"
+- **Macro events and their numbers** → only `studio/market/anue/economic_calendar`; never a web search or a remembered value. If it cannot answer, say so
 
 ## Endpoints
 
-### `GET /price` — Current price + 24h change
+**Every endpoint's parameters, defaults, response fields, errors, data start date, and a Python example live in `references/blave-api.md`. Read the relevant block there before writing any call.** That file opens with an endpoint → line index: read the index, then `Read` the block at its `offset` (or grep the `` ## `GET /path` `` heading) — never the whole 6,000-line file. Index by category:
 
-`symbol` (required) → `{"symbol": "BTCUSDT", "price": 95000.0, "change_24h": 2.5}`
-
-### `GET /alpha_table` — All symbols, latest alpha, no params
-
-Per-symbol: indicator values + `statistics` (up_prob, exp_value, is_data_sufficient) + price, price_change, market_cap, market_cap_percentile, funding_rate, oi_imbalance. `""` = insufficient data. → Full field reference: `references/blave-api.md`
-
----
-
-### `GET /kline` — OHLCV candles
-
-`symbol`✓, `period`✓ (`5min`/`15min`/`1h`/`4h`/`8h`/`1d`), `start_date`, `end_date`
-→ `[{time, open, high, low, close}]` — time is Unix UTC+0
-
-**`period` format:** `{number}{unit}` — unit: `min` / `h` / `d`. Examples: `15min`, `1h`, `4h`, `1d`, `7d`, `30d`.
-
-**Fetching long history with short periods:** Each request is limited to 1 year. For short periods (e.g. `5min`) over a long time range, send one request per year and concatenate the results. Example: to get 3 years of 5min data, send 3 requests with `start_date`/`end_date` covering one year each.
-
-### `GET /market_direction/get_alpha` — 市場方向 Market Direction (BTC only, no symbol param)
-
-`period`✓, `start_date`, `end_date` → `{data: {alpha, timestamp}}`
-
-### `GET /market_sentiment/get_alpha` — 市場情緒 Market Sentiment
-
-`symbol`✓, `period`✓, `start_date`, `end_date` → `{data: {alpha, timestamp, stat}}`
-
-### `GET /capital_shortage/get_alpha` — 資金稀缺 Capital Shortage (market-wide, no symbol param)
-
-`period`✓, `start_date`, `end_date` → `{data: {alpha, timestamp, stat}}`
-
-### `GET /holder_concentration/get_alpha` — 籌碼集中度 Holder Concentration (higher = more concentrated)
-
-`symbol`✓, `period`✓, `start_date`, `end_date` → `{data: {alpha, timestamp, stat}}`
-
-### `GET /funding_rate/get_alpha` — 資金費率 Funding Rate (Binance only; + = longs pay shorts)
-
-`symbol`✓, `period`✓, `start_date`, `end_date` → `{data: {alpha, close, timestamp, stat}}` — `alpha` = funding rate × 100 (percent); `close` = perp price
-
-### `GET /taker_intensity/get_alpha` — 多空力道 Taker Intensity (positive = buying, negative = selling)
-
-`symbol`✓, `period`✓, `timeframe` (`15min`/`1h`/`4h`/`8h`/`24h`/`3d`), `start_date`, `end_date`
-
-### `GET /whale_hunter/get_alpha` — 巨鯨警報 Whale Hunter
-
-`symbol`✓, `period`✓, `timeframe`, `score_type` (`score_oi`/`score_volume`), `start_date`, `end_date`
-
-### `GET /squeeze_momentum/get_alpha` — 擠壓動能 Squeeze Momentum (period fixed to `1d`)
-
-`symbol`✓, `start_date`, `end_date` → includes `scolor` (momentum direction label)
-
-### `GET /blave_top_trader/get_exposure` — Blave 頂尖交易員 Top Trader Exposure (BTC only, no symbol param)
-
-`period`✓, `start_date`, `end_date` → `{data: {alpha, timestamp}}`
-
-### `GET /sector_rotation/get_history_data` — 板塊輪動 Sector Rotation, no params
-
-### `GET /liquidation/get_alpha` — 爆倉指標 Liquidation (higher = more long liquidation pressure)
-
-`symbol`✓, `period`✓, `timeframe` (`15min`/`1h`/`4h`/`8h`/`24h`/`3d`, default `24h`), `start_date`, `end_date` → `{data: {alpha, timestamp, stat}}`
-
-### `GET /liquidation/get_symbols` — List available symbols for liquidation data
-
-No params → `{data: [symbols]}`
-
-### `GET /liquidation/get_map` — Liquidation Heatmap (exposure at each price level)
-
-`symbol`✓, `price_max` (optional float), `price_min` (optional float)
-→ `{data: {labels, liquidation, cumsum, oi_value, price}}`
-- `labels`: 200 price buckets (array of floats)
-- `liquidation`: dict keyed by timeframe → `{"24h": {"buy_liq": [...], "sell_liq": [...]}}` — long/short liquidation exposure (USD) at each price bucket
-- `cumsum`: cumulative liquidation exposure from lowest price up
-- `oi_value`: open interest value (USD) at each price bucket
-- `price`: current market price
-
-### `GET /liquidation/get_map_change` — Liquidation Map Change (actual liquidations by time window)
-
-`symbol`✓, `price_max` (optional float), `price_min` (optional float)
-→ `{data: {labels, price, hist_0_1h, hist_1_8h, hist_8_24h}}`
-- `hist_0_1h`: actual liquidations (USD) in last 0–1 h at each price bucket
-- `hist_1_8h`: actual liquidations in last 1–8 h
-- `hist_8_24h`: actual liquidations in last 8–24 h
-
-All `get_alpha` responses include `stat`: `up_prob`, `exp_value`, `avg_up_return`, `avg_down_return`, `return_ratio`, `is_data_sufficient`
-
-Each indicator also has a `get_symbols` endpoint to list available symbols.
-
----
-
-### Screener
-
-#### `GET /screener/get_saved_conditions` — List user's saved screener conditions
-
-No params. Returns `{data: {<condition_id>: {filters: [...], ...}}}` — a map of condition IDs to their filter configs.
-
-#### `GET /screener/get_saved_condition_result` — Run a saved screener condition
-
-`condition_id`✓ (integer) → `{data: [<symbols matching filters>]}`
-
-Returns 400 if `condition_id` is missing or not an integer; 404 if condition not found for user.
-
----
+| Category | Endpoints (`GET` unless marked `POST`, relative to `https://api.blave.org`) |
+|---|---|
+| Crypto › General | `price`, `alpha_table`, `kline` |
+| Crypto › Tool | `market_direction/get_alpha`, `screener/get_saved_conditions`, `screener/get_saved_condition_result` |
+| Crypto › Alpha | `holder_concentration/*`, `funding_rate/get_alpha`, `market_sentiment/*`, `capital_shortage/get_alpha`, `sector_rotation/get_history_data` / `get_overview_data`, `oi_imbalance/get_overview_data`, `whale_hunter/*`, `taker_intensity/*`, `unusual_movement/*`, `squeeze_momentum/*`, `blave_top_trader/get_exposure`, `liquidation/get_symbols` / `get_alpha` / `get_map` / `get_map_change` / `get_coin` / `get_exchanges` |
+| Crypto › Raw data | `long_short_ratio/get_table` / `get_coin` (多空比), `oi_imbalance/get_table` / `get_coin` / `get_history` (未平倉量 — **not** the `oi_imbalance/get_overview_data` indicator), `taker_intensity/get_cvd_table` / `get_cvd_coin` (CVD 主動買賣淨額), `cme_cot/get_latest` / `get_history` (CME 持倉報告 COT) |
+| Taiwan Stock › Market Data | `studio/market/twstock/list`, `info/<stock_id>`, `price/<stock_id>`, `price_adj/<stock_id>`, `quote/<stock_id>`, `quote?stock_ids=`, `quote/all`, `minute/ohlcv/<stock_id>/<schema>`, `minute/ohlcv/symbols`, `kbar/<stock_id>` (legacy) |
+| Taiwan Stock › Fundamentals | `market_value/<stock_id>`, `market_value/all`, `per/<stock_id>`, `financials/<stock_id>`, `balance_sheet/<stock_id>`, `cashflow/<stock_id>`, `monthly_revenue/<stock_id>`, `ratios/<stock_id>`, `dividend/<stock_id>`, `news/<stock_id>` |
+| Taiwan Stock › Institutional Flow | `institutional/<stock_id>`, `margin/<stock_id>`, `shareholding/<stock_id>`, `foreign_shareholding/<stock_id>`, `gov_bank/<stock_id>`, `lending/<stock_id>`, `broker/search`, `broker/stock/<stock_id>`, `broker/trader/<trader_id>` |
+| Taiwan Stock › Other | `alerts` (注意股／處置股), `batch/<data_type>` |
+| Taiwan Stock › Sectors & Themes | `sector/overview` (板塊輪動), `sector/breadth` (上漲比例), `sector/constituents/<slug>` (成分股), `theme/overview` (題材族群), `theme/constituents/<slug>`, `theme/<slug>/index` (題材指數), `chip_breadth/<theme\|sector>` (法人買超家數比例), `chip_breadth/<scope>/<slug>` |
+| Taiwan Stock › Screener | `POST screener/run` (選股器) |
+| Taiwan Market (大盤) | `studio/market/twmarket/index/TAIEX`, `turnover`, `institutional`, `margin`, `margin_maintenance` (融資維持率), `dividend_points` |
+| Taiwan Futures & Options | `studio/market/twfutures/ohlcv/<symbol>/<schema>`, `ohlcv/symbols`, `ohlcv/<symbol>/export/<year>`, `bid_ask_vol/<symbol>`, `daily/<futures_id>`, `stock_futures/list`, `stock_futures/liquidity_ranking`, `stock_futures/batch/daily`, `institutional/<futures_id>`, `large_traders/<futures_id>`, `retail_long_short_ratio/<futures_id>` (散戶多空比) + `/history` (區間), `option/institutional/<option_id>`, `option/large_traders/<option_id>`, `option/pcr`, `carrying_cost/<identity>` (法人持倉成本) |
+| Commodities | `studio/market/db/ohlcv/<dataset>/<symbol>/<schema>` (WTI `CL`, gold `GC`, Brent `BRN`) |
+| Macro | `studio/market/anue/economic_calendar` |
 
 ### Hyperliquid Top Trader Tracking
 
-> Full response formats: `references/hyperliquid-api.md`
+`/hyperliquid/*` — leaderboard, curated traders, positions, fills, PnL, open orders, top-100 aggregate positions, exposure history, bucket stats. Full reference: `references/hyperliquid-api.md`.
 
-| Endpoint | Params | Cache |
-|---|---|---|
-| `GET /hyperliquid/leaderboard` | `sort_by` (accountValue/week/month/allTime) | 5 min |
-| `GET /hyperliquid/traders` | — | — |
-| `GET /hyperliquid/trader_position` | `address`✓ → perp positions, spot balances, net_equity | 15 s |
-| `GET /hyperliquid/trader_history` | `address`✓ → fills with closedPnl, dir | 60 s |
-| `GET /hyperliquid/trader_performance` | `address`✓ → `{chart: {timestamp, pnl}}` cumulative PnL | 60 s |
-| `GET /hyperliquid/trader_open_order` | `address`✓ → open orders | 60 s |
-| `GET /hyperliquid/top_trader_position` | — → aggregated long/short across top 100 | 5 min |
-| `GET /hyperliquid/top_trader_exposure_history` | `symbol`✓, `period`✓, dates | — |
-| `GET /hyperliquid/bucket_stats` | — → stats by account size bucket; 202 while warming up | ~5 min |
-
-### TradingView Signal Stream (SSE)
-
-Receive TradingView alerts in real time via Server-Sent Events.
-
-**Endpoint:** `GET /sse/tradingview/stream?channel=<ch>&last_id=<id>`
-
-**Event format:** `data: {"id": "1712054400000-0", ...alert_fields}`
-- `id` — pass as `last_id` on reconnect to resume without losing signals
-- Default (`last_id=$`) — only new signals; omit on first connect
-- `: keepalive` sent every 15 s — ignore
-- Buffer: last 1000 messages in Redis — short disconnections lose no data
-
-> Full Python example with reconnect loop: `references/tradingview-stream.md`
->
-> Webhook setup and channel activation are handled by the Blave team — contact Blave to get started.
-
----
-
-### Taiwan Stock Daily Price — 台股日K
-
-> 台股資料（日K、三大法人、融資融券、股權分級、財報、月營收、分點買賣超）由 [FinMind](https://finmindtrade.com) 提供。
-> Full Python examples: `references/blave-api.md`
-
-| Endpoint | Description |
-|---|---|
-| `GET /studio/market/twstock/price/<stock_id>` | Raw daily OHLCV; `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/price_adj/<stock_id>` | Forward-adjusted (向後調整/後復權) daily OHLCV; same params |
-| `GET /studio/market/twstock/institutional/<stock_id>` | 三大法人每日買賣超 (外資/投信/自營商); `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/margin/<stock_id>` | 融資融券每日資料; `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/shareholding/<stock_id>` | 股權持股分級表 (週頻); `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/financials/<stock_id>` | 綜合損益表 (季頻, long format); `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/balance_sheet/<stock_id>` | 資產負債表 (季頻, long format); `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/cashflow/<stock_id>` | 現金流量表 (季頻, long format); `start`/`end` optional (YYYY-MM-DD) |
-| `GET /studio/market/twstock/monthly_revenue/<stock_id>` | 月營收 (月頻); `start`/`end` optional (YYYY-MM-DD); data from 2000-01-01; Redis-cached 24 h |
-| `GET /studio/market/twstock/broker/search?name=<name>` | 券商分點查詢 — 用名稱（模糊比對）查 broker_id; 回傳 `[{broker_id, broker_name}]`; 1007 筆分點目錄 |
-| `GET /studio/market/twstock/broker/stock/<stock_id>` | 分點買賣超 — 查某股票所有券商分點（單日）; `date` optional (YYYY-MM-DD, 預設今天); fields: `broker_id`, `broker_name`, `price`, `buy`, `sell` |
-| `GET /studio/market/twstock/broker/trader/<trader_id>` | 分點買賣超 — 查某券商分點所有股票（單日）; `date` optional (YYYY-MM-DD, 預設今天); fields: `stock_id`, `broker_name`, `price`, `buy`, `sell` |
-| `GET /studio/market/twstock/kbar/<stock_id>` | 1-minute OHLCV (分K); `start`/`end` YYYY-MM-DD required; max 31 days per request; data from 2019-01-01; fields: `date`, `minute`, `open`, `high`, `low`, `close`, `volume` |
-| `GET /studio/market/twstock/per/<stock_id>` | PE ratio / PB ratio / dividend yield (daily); `start`/`end` optional; data from 2005-10-01; fields: `date`, `dividend_yield`, `PER`, `PBR` |
-| `GET /studio/market/twstock/lending/<stock_id>` | Securities lending transactions (daily, multiple rows/day); `start`/`end` optional; data from 2001-05-01; fields: `date`, `transaction_type` (競價/議借), `volume`, `fee_rate`, `close`, `original_return_date`, `original_lending_period` |
-| `GET /studio/market/twstock/market_value/<stock_id>` | Market capitalization (市值, NTD); `start`/`end` optional; data from 2004-01-01; fields: `date`, `market_value` |
-| `GET /studio/market/twstock/gov_bank/<stock_id>` | 8 government bank buy/sell (八大行庫); `start`/`end` YYYY-MM-DD; max 31 days; data from 2021-06-30; 8 rows/day; fields: `date`, `bank_name`, `buy`, `buy_amount`, `sell`, `sell_amount` |
-| `GET /studio/market/twstock/news/<stock_id>` | Stock news (新聞); `start`/`end` YYYY-MM-DD; max 31 days; multiple articles/day; fields: `date` (datetime), `title`, `source`, `link` |
-
-`/price_adj` adjusts for cash and stock dividends — historical prices unchanged, prices from each ex-dividend date onward multiplied by cumulative factor. Use for backtesting total return.
-
-`/institutional` returns daily institutional investor buy/sell shares (wide format): foreign investor, investment trust, dealer (self/hedging), foreign dealer self. Use for 籌碼面分析、外資進出追蹤。
-
-`/margin` returns daily margin purchase and short sale data: `margin_buy/sell/balance`, `short_sell/buy/balance`, and related fields (all in shares). Use for 融資餘額趨勢、融券回補訊號分析。
-
-`/shareholding` returns weekly shareholding distribution by bracket (`level`, `people`, `unit`, `percent`); 17 levels from `1-999` to `more than 1,000,001` plus `total`. Use for 大股東集中度追蹤、籌碼分散程度分析。
-
-`/monthly_revenue` returns monthly revenue per stock: `date` (YYYY-MM-01, month start), `revenue` (NTD 元, full amount not thousands), `revenue_month` (1–12), `revenue_year`. Use for 營收動能選股、月增率/年增率分析。
-
----
-
----
-
-### Taiwan Futures Bid/Ask Volume — 台指期內外盤
-
-`GET /studio/market/twfutures/bid_ask_vol/TXF?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-1-minute bid/ask volume aggregated from tick data. Data from 2018-02-22. Max 31 days per request. Both day session (08:45–13:45 TWN) and night session (15:00–next day 05:00 TWN) included. Requires API plan auth.
-
-Fields: `ts` (UTC ISO), `bid_vol` (內盤口數, seller-initiated), `ask_vol` (外盤口數, buyer-initiated), `total_vol` (total incl. unclassified)
-
----
-
-### Taiwan Futures Daily — 台灣期貨日行情
-
-`GET /studio/market/twfutures/daily/<futures_id>?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-Data from 1998-07-21 (TX; MTX/TE/TF etc. start later). Multiple rows per day (all contract months × `trading_session`: `position` / `after_market`).
-
-| futures_id | 商品 |
-|---|---|
-| `TX` | 台指期 |
-| `MTX` | 小台指 |
-| `TE` | 電子期 |
-| `TF` | 金融期 |
-
-Fields: `date`, `futures_id`, `contract_date`, `open`, `max`, `min`, `close`, `spread`, `spread_per`, `volume`, `settlement_price`, `open_interest`, `trading_session`
-
----
-
-### Taiwan Futures Institutional Investors — 期貨三大法人
-
-`GET /studio/market/twfutures/institutional/<futures_id>?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-Data from 2018-06-05. 3 rows per day (自營商 / 投信 / 外資).
-
-Fields: `date`, `futures_id`, `institutional_investors`, `long_deal_volume`, `long_deal_amount`, `short_deal_volume`, `short_deal_amount`, `long_open_interest_balance_volume`, `long_open_interest_balance_amount`, `short_open_interest_balance_volume`, `short_open_interest_balance_amount`
-
----
-
-### Taiwan Option Institutional Investors — 選擇權三大法人
-
-`GET /studio/market/twfutures/option/institutional/<option_id>?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-Data from 2018-06-05. 6 rows per day (3 investors × call/put). `option_id`: `TXO`.
-
-Fields: `date`, `option_id`, `call_put`（買權/賣權）, `institutional_investors`, `long_deal_volume`, `long_deal_amount`, `short_deal_volume`, `short_deal_amount`, `long_open_interest_balance_volume`, `long_open_interest_balance_amount`, `short_open_interest_balance_volume`, `short_open_interest_balance_amount`
-
----
-
-### Taiwan Futures Large Traders — 期貨大額交易人
-
-`GET /studio/market/twfutures/large_traders/<futures_id>?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-Data from 2007-01-02. 3 rows per day (`contract_type`: week / current month / all).
-
-Fields: `date`, `futures_id`, `name`, `contract_type`, `buy_top5/top10_trader_open_interest`, `buy_top5/top10_trader_open_interest_per`, `sell_top5/top10_trader_open_interest`, `sell_top5/top10_trader_open_interest_per`, `market_open_interest`, `buy/sell_top5/top10_specific_open_interest`, `buy/sell_top5/top10_specific_open_interest_per`
-
----
-
-### Taiwan Option Large Traders — 選擇權大額交易人
-
-`GET /studio/market/twfutures/option/large_traders/<option_id>?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-Data from 2007-01-02. 6 rows per day (call/put × week/current month/all). `option_id`: `TXO`.
-
-Fields: `date`, `option_id`, `name`, `put_call`, `contract_type`, `buy/sell_top5/top10_trader_open_interest(_per)`, `market_open_interest`, `buy/sell_top5/top10_specific_open_interest(_per)`
-
----
-
-### Taiwan Option Put/Call Ratio — 台指選擇權買賣權未平倉量比率
-
-`GET /studio/market/twfutures/option/pcr?start=YYYY-MM-DD&end=YYYY-MM-DD`
-
-Official TAIFEX put/call ratio (買賣權未平倉量比率, OI-based). Daily, trading days only. Data from 2001-12-24. `start`/`end` optional. Requires API plan auth. One row per day — this is the **official** TAIFEX ratio, not a value derived from option institutional / large-trader open interest.
-
-Fields: `date` (YYYY-MM-DD), `pcr` (買賣權未平倉量比率%, float)
-
----
-
-### CME / ICE Futures OHLCV — 原油/黃金/Brent 期貨
-
-`GET /studio/market/db/ohlcv/<dataset>/<symbol>/<schema>`
-
-`start` / `end` optional. Data from 2010-06-06. ~4 h delay.
-
-| dataset | symbol | 商品 | schema | 單次上限 |
-|---|---|---|---|---|
-| `GLBX.MDP3` | `CL` | WTI 原油 | `ohlcv-1d` | 3650 天 |
-| `GLBX.MDP3` | `GC` | 黃金 | `ohlcv-1h` | 365 天 |
-| `IFEU.IMPACT` | `BRN` | Brent 原油 | `ohlcv-1m` | **30 天** |
-
-超出上限 → 400 `date_range_too_large`，需分段請求再拼接。
-
-Response: `{data: [{ts (UTC ISO), open, high, low, close, volume}]}`
-
-> Full Python examples: `references/blave-api.md`
-
----
-
-> Python examples: `references/blave-api.md`
 > Indicator interpretation: `references/blave-indicator-guide.md`
 
 ---
@@ -423,12 +193,16 @@ When the user wants to trade, **ask which exchange** if not specified, then **re
 | BitMart (Futures) | `BITMART_API_KEY`, `BITMART_API_SECRET`, `BITMART_API_MEMO` | `references/bitmart-futures-skill.md` |
 | BitMart (Spot) | same as above | `references/bitmart-spot-skill.md` |
 | OKX | `OKX_API_KEY`, `OKX_SECRET_KEY`, `OKX_PASSPHRASE` | `references/okx-skill.md` |
-| Bybit | `BYBIT_API_KEY`, `BYBIT_API_SECRET` | `references/bybit-skill.md` |
+| Bybit | `BYBIT_API_KEY`, `BYBIT_SECRET_KEY` | `references/bybit-skill.md` |
 | BingX | `BINGX_API_KEY`, `BINGX_SECRET_KEY` | `references/bingx-skill.md` |
 | Bitget | `BITGET_API_KEY`, `BITGET_SECRET_KEY`, `BITGET_PASSPHRASE` | `references/bitget-skill.md` |
 | Binance | `BINANCE_API_KEY`, `BINANCE_SECRET_KEY` | `references/binance-skill.md` |
 | Bitfinex | `BITFINEX_API_KEY`, `BITFINEX_API_SECRET` | `references/bitfinex-skill.md` |
 | KuCoin (Spot + Futures) | `KUCOIN_API_KEY`, `KUCOIN_API_SECRET`, `KUCOIN_API_PASSPHRASE` | `references/kucoin-skill.md` |
+| Gate.io (Spot + Futures) | `GATE_API_KEY`, `GATE_SECRET_KEY` | `references/gateio-skill.md` |
+| StockCoin (Perps only) | `STOCKCOIN_API_KEY`, `STOCKCOIN_SECRET_KEY` | `references/stockcoin-skill.md` |
+
+Trading a US stock perp (`NVDAUSDT` …) on any venue: also read `references/stock-perps.md` — the venue's name for the stock can differ, and a same-name contract can be a different instrument.
 
 **Workflow for all exchanges:**
 1. Verify credentials from `.env` — if missing, **STOP**
@@ -438,17 +212,14 @@ When the user wants to trade, **ask which exchange** if not specified, then **re
 
 ---
 
-# TWSE 台股查詢
+# 台股股票代號/收盤價/PE 查詢
 
-No API key required. Full reference: `references/twse-api-reference.md` | Quick reference: `references/twse-skill.md`
+**用 Blave API,不是原始 TWSE/TPEX API：** 代號/名稱查詢與建 universe 用
+`studio/market/twstock/list` / `/info/<stock_id>`；收盤價/走勢用 `/price/<stock_id>` 或
+`/quote/<stock_id>`；單支 PE/殖利率/PB 用 `/per/<stock_id>`。完整範例：`references/blave-api.md`。
 
-| 用途 | URL |
-|---|---|
-| 上市股票清單 + PE/殖利率/PB | `https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL` |
-| 上市股票全日行情 | `https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL` |
-| 上櫃股票清單 + 行情 | `https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes` |
-
-查詢流程：下載完整清單 → 本地依 `Code`/`Name` 篩選。不確定上市或上櫃時兩者都查再合併。
+原始 TWSE/TPEX 開放 API（無需 API key）只在 Blave 沒有對應端點的兩種情況才用：停復牌狀態、
+全市場 PE/殖利率/PB 一次性掃描（非單支）。詳見 `references/twse-skill.md` / `references/twse-api-reference.md`。
 
 ---
 
@@ -456,7 +227,7 @@ No API key required. Full reference: `references/twse-api-reference.md` | Quick 
 
 查詢各券商分點對特定股票的每日買賣超，透過 Blave API 存取。
 
-**Full reference: `references/twse-bsr-reference.md`**
+**Endpoint reference: `references/blave-api.md` › `broker/*`; workflow and examples: `references/twse-bsr-reference.md`**
 
 **步驟 1 — 查 broker_id（若不知道代碼）：**
 
@@ -465,14 +236,14 @@ GET /studio/market/twstock/broker/search?name=松山
 → [{"broker_id": "9217", "broker_name": "凱基-松山"}, ...]
 ```
 
-**步驟 2 — 查分點資料（擇一，單日）：**
+**步驟 2 — 查分點資料（擇一，單日或區間）：**
 
 ```
 GET /studio/market/twstock/broker/stock/<stock_id>?date=YYYY-MM-DD
 GET /studio/market/twstock/broker/trader/<trader_id>?date=YYYY-MM-DD
 ```
 
-`date` 預設今天。多日查詢請逐日呼叫（server 有 parquet 快取，重複日期不重新抓取）。
+`date` 預設今天。多日可改用 `start=YYYY-MM-DD&end=YYYY-MM-DD` 一次查區間，區間最多 366 天（超過回 400），更長請分段。資料起始 2021-06-30；當日資料台灣時間約 21:30 後才有，之前查當日回空陣列。回 503 代表資料暫不可用，稍後重試，不要當成沒有交易。
 
 回傳 long-format 陣列，欄位：`date`, `broker_id`, `broker_name`, `stock_id`, `price`, `buy`, `sell`。
 

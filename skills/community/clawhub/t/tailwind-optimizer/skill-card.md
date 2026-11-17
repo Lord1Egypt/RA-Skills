@@ -1,37 +1,53 @@
-## Description: <br>
-Optimize Tailwind CSS usage by detecting unused classes, identifying @apply extraction opportunities, auditing responsive design, and reducing bundle size. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Tailwind CSS usage by detecting unused classes, identifying opportunities for @apply extraction, auditing responsive design, and reducing bundle size.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to audit Tailwind CSS projects for unused utilities, repeated class combinations, configuration issues, responsive design gaps, and bundle-size improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to read local frontend configuration and source files and propose shell commands or optimization changes. <br>
-Mitigation: Review proposed commands and recommendations before execution or implementation, especially in production projects. <br>
+## Use Case:
 
+Frontend developers use this skill to inspect Tailwind CSS configuration and class usage, identify dead or repeated utilities, and receive optimization recommendations for bundle size and design-system consistency.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include findings about Tailwind configuration, class usage, responsive coverage, extraction candidates, and bundle optimization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent may inspect local frontend source files, Tailwind configuration, and class usage while performing the optimization review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in repositories where reading local source files is acceptable, and review proposed changes before applying them.
+
+Risk: Optimization recommendations can affect styling, responsive behavior, or design-system consistency if applied without review.
+
+Mitigation: Validate recommendations in the target application and test affected breakpoints, components, and generated CSS before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/tailwind-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional inline shell commands and CSS examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analysis and recommendations; the artifact does not claim to modify files automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

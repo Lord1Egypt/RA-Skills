@@ -1,44 +1,55 @@
-## Description: <br>
-Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, research-ready outputs, and structured retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an AIsa-backed CoinGecko command-line client for cryptocurrency prices, markets, coins, exchanges, news, and trending data.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve and synthesize recent web and crypto market data through AIsa-backed APIs, including CoinGecko-style price, market, category, exchange, trending, and news queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes research and API requests through AIsa using AISA_API_KEY. <br>
-Mitigation: Install only when that routing is approved, provide only the AISA_API_KEY required for this skill, and avoid sharing unrelated secrets. <br>
-Risk: External provider responses can be incomplete, delayed, or unavailable. <br>
-Mitigation: Report queried sources, provider errors, and timeouts clearly instead of implying unsupported coverage. <br>
-Risk: Evidence security guidance references Twitter/X research and posting workflows even though this artifact is a crypto market data package. <br>
-Mitigation: Require explicit confirmation before any public posting workflow and do not provide Twitter passwords, browser cookies, or unrelated credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve cryptocurrency market data, including prices, markets, coin details, exchange data, news, and trending searches through the AIsa API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/baofeng-tech/aisa-crypto-market-data) <br>
-- [AIsa](https://aisa.one) <br>
-- [AIsa API endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON API responses from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; external AIsa API requests may return provider errors or timeouts that should be reported honestly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Users may expect broad web research because the skill text says web, multi-source, and last-30-days research, but the security summary identifies the shipped implementation as a read-only crypto market-data client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for crypto market-data queries unless the publisher clarifies broader retrieval support; do not claim sources that were not queried and report provider timeouts honestly.
+
+Risk: Crypto market queries and AISA_API_KEY are sent to the AIsa API endpoint.
+
+Mitigation: Install only where sending those queries and that credential to AIsa is acceptable, and scope or rotate the API key according to local policy.
+
+## Reference(s):
+
+- [AIsa homepage](https://aisa.one)
+- [AIsa API endpoint](https://api.aisa.one/apis/v1)
+- [ClawHub release page](https://clawhub.ai/baofeng-tech/skills/aisa-crypto-market-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return pretty-printed JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; API requests are sent to AIsa.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

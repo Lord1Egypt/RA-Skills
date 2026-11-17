@@ -1,105 +1,137 @@
-# Strategy Consultant Skill
+# Product DevOps Team - 产品研发运营协作体系
 
-> 战略顾问技能 - 外部洞察、战略分析、商业文档、专家库
+一套完整的AI团队协作体系，让产品、研发、运营高效协作，从需求到上线全流程覆盖。
 
-## 一句话定位
+## 🎯 核心理念
 
-**产品的"外部大脑"**，提供外部视角和战略高度，确保做正确的事。
+- **产品经理守护 Why**，不控制 How
+- **产品研讨会**（Why 冻结前四角色对齐）
+- **开发自治**（不改变 Why 的前提下修改需求）
+- **文档分层**（核心文档 vs 工作文档）
+- **运营早期介入**（Phase 1 就参与）
 
-## 核心能力
+## 👥 团队角色（五角色）
 
-| 能力 | 说明 | 输出 |
+| 角色 | 职责 | 特点 |
 |------|------|------|
-| **外部洞察** | 客户访谈、市场研究、竞争分析 | 洞察报告 |
-| **战略分析** | Benchmark、商业模式验证、战略规划 | 战略分析报告 |
-| **商业文档** | BP撰写、财务预测、路演材料 | BP + PPT + 财务模型 |
-| **专家支持** | 50+专家库，6大领域 | 专家意见 |
+| 👤 **产品经理（王校长）** | 需求访谈、守护Why、版本归档 | 批判性思维，问对问题 |
+| 🎯 **战略顾问** | 外部访谈、战略对齐、市场洞察、Benchmark、BP、财务预测 | 外部视角，战略高度 |
+| 🏗️ **架构师** | 架构设计、API契约、团队协调 | API先行，检查点机制 |
+| 💻 **开发助手** | 代码实现、需求自治、自己测试 | 自治开发，低保真原型 |
+| 📊 **运营经理** | 运营策略、工作流、权限 | 早期介入，持续更新 |
 
-## 使用方式
+## 🚀 快速开始
 
-### 方式一：独立使用
+### 安装
 
 ```bash
-# 外部客户访谈
-/strategy-consultant/interview
+# 通过 OpenClaw CLI 安装
+openclaw skills install product-dev-ops-team
 
-# 行业Benchmark分析
-/strategy-consultant/benchmark
-
-# 撰写商业计划书
-/strategy-consultant/bp
-
-# 财务预测
-/strategy-consultant/finance
-
-# 调用专家库
-/strategy-consultant/expert list [领域]
-/strategy-consultant/expert call [ID]
-/strategy-consultant/expert topic [话题]
+# 或手动复制到 skills 目录
+cp -r product-dev-ops-team ~/.openclaw/skills/
 ```
 
-### 方式二：与 product-dev-ops 集成
+### 启动项目
 
-**使用场景**：为产品研发运营体系的研讨会提供战略输入
+在任意聊天窗口发送：
 
-**输出位置**：`00-work/interview/workshop/`
-
-**标准输出文件**：
 ```
-00-work/interview/workshop/
-├── insights.md                    # 外部洞察汇总（必须）
-├── benchmark-report.md            # 行业Benchmark报告（推荐）
-├── business-model-canvas.md       # 商业模式画布（推荐）
-├── financial-summary.md           # 财务预测摘要（推荐）
-├── strategic-recommendations.md   # 战略建议（必须）
-└── workshop-agenda.md             # 研讨会议程建议（可选）
+/开工 我的项目名
 ```
 
-**集成流程**：
+系统会自动：
+1. 初始化项目目录
+2. 选择协作模式
+3. 开始结构化访谈
+4. 启动完整开发流程
+
+## 📁 项目结构
+
 ```
-product-dev-ops: /开工 项目名
-    ↓
-product-dev-ops: 产品经理访谈
-    ↓
-strategy-consultant: 外部访谈 + 战略分析
-    ├── interview
-    ├── benchmark
-    └── bp
-    ↓
-输出到 00-work/interview/workshop/
-    ↓
-product-dev-ops: /研讨（自动检测并加载战略输入）
-    ↓
-product-dev-ops: /freeze
+projects/[name]/
+├── WHY.md                    # ⭐ 核心：为什么要做
+├── 01-product/               # ⭐ 核心：产品需求
+├── 03-architecture/          # ⭐ 核心：技术架构  
+├── 05-operations/            # ⭐ 核心：运营策略
+├── 00-work/                  # 工作文档（过程存档）
+│   ├── interview/            # ⭐ 访谈记录
+│   │   ├── external/         # 外部客户访谈（研讨会输入）
+│   │   └── workshop/         # ⭐ 研讨会过程和结论
+│   ├── daily/                # 站会记录
+│   └── discussion/           # 临时讨论
+├── 02-design/wireframes/     # 工作文档：低保真原型
+├── 04-development/           # 工作文档：开发过程
+└── 07-archive/               # 版本归档
 ```
 
-**自动检测机制**：
-当 product-dev-ops 执行 `/研讨` 时，自动检测 `00-work/interview/workshop/` 目录：
-- 如有战略顾问输入 → 自动加载到研讨会
-- 如缺少必需文件 → 提示建议启用 strategy-consultant
+## 🔄 工作流程
 
-详见：[product-dev-ops 战略顾问集成指南](https://github.com/openclaw/skills/product-dev-ops/docs/strategy-integration-guide.md)
+```
+/开工 → 结构化访谈（王校长）
+            ↓
+    外部客户访谈（战略顾问）
+            ↓
+    产品研讨会（五角色对齐）
+            ↓
+        /冻结 Why
+            ↓
+        开发自治
+            ↓
+        架构检查
+            ↓
+        /归档
+            ↓
+        运营启动
+```
 
-## 何时使用？
+### 关键机制
 
-| 场景 | 建议 |
+| 机制 | 说明 |
 |------|------|
-| 全新业务方向 | ✅ 强烈建议 |
-| 需要融资 | ✅ 强烈建议 |
-| 复杂商业模式 | ✅ 强烈建议 |
-| 高度竞争市场 | ✅ 强烈建议 |
-| 内部工具/系统 | ⚠️ 可选 |
-| 快速迭代试错 | ⚠️ 可选 |
-| 技术重构 | ❌ 通常不需要 |
+| **外部客户访谈** | 研讨会前访谈内部干系人、资源方、真实客户 |
+| **产品研讨会** | Why 冻结前四角色对齐 Why、Scope、Timeline |
+| **Why 冻结** | Why 确定后不再改变，除非业务目标变化 |
+| **开发自治** | 开发可在不改变 Why 的前提下修改 What/How |
+| **文档同步检查点** | 每3天检查一次文档同步情况 |
+| **API 变更通知** | 开发改 API 必须立即通知架构师 |
+| **低保真原型** | 开发自己画原型，理清思路 |
 
-## 快速导航
+## 🎮 可用指令
 
-| 文档 | 说明 |
+| 指令 | 功能 |
 |------|------|
-| [SKILL.md](./SKILL.md) | 技能主文档 |
-| [agents/strategy-consultant.md](./agents/strategy-consultant.md) | 角色完整定义 |
-| [expert-library.md](./expert-library.md) | 专家库（50+专家） |
+| `/开工 [项目名]` | 启动新项目 |
+| `/研讨` | 发起产品研讨会（访谈后、冻结前）|
+| `/冻结` | Why 冻结（需研讨会确认后）|
+| `/继续` | 继续中断的流程 |
+| `/模式` | 查看/切换协作模式 |
+| `/状态` | 查看项目状态 |
+| `/归档 [版本]` | 版本归档 |
 
-## 版本
+## 📊 版本对比
 
-v1.0.0 - 独立战略顾问技能包
+| 维度 | v2.0 审批模式 | v3.1 自治模式 | v3.2 研讨会模式 |
+|------|--------------|---------------|-----------------|
+| 开发周期 | 3-4周 | 2周 | 2周 |
+| 决策速度 | 慢（层层审批） | 快（自治+检查） | 快（一次对齐+自治）|
+| 需求返工率 | 高 | 中 | 低 |
+| 产品经理负担 | 重（控制一切） | 轻（守护Why） | 轻（主持研讨会）|
+| 文档数量 | 18个（全部重要） | 分层管理 | 分层管理 |
+| 变更灵活性 | 低 | 高（48h窗口） | 高（研讨会对齐后）|
+| 关键新增 | - | 开发自治 | 产品研讨会 |
+
+## 📚 文档
+
+- [SKILL.md](SKILL.md) - Skill 说明
+- [agents/](agents/) - 角色人设
+- [commands/](commands/) - 指令说明
+- [templates/](templates/) - 文档模板
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 PR，共同完善这套协作体系。
+
+## 📄 许可证
+
+MIT License

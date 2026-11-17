@@ -1,43 +1,60 @@
-## Description: <br>
-Searches and aggregates travel news, destination information, and hotel or attraction reviews from Tavily, optional Brave Search, and optional browser scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and aggregate travel news, destination information, and reviews from multiple sources for travel planning workflows.
 
-## Publisher: <br>
-[NHZallen](https://clawhub.ai/user/NHZallen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhzallen](https://clawhub.ai/user/nhzallen)
 
-## Use Case: <br>
-Travel planning professionals, travel agents, tour operators, and travel content creators use this skill to collect current destination information, tourism news, visa or policy updates, travel tips, and review summaries for planning and content preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel queries may be sent to Tavily and, when enabled, Brave Search or browser-visited sites. <br>
-Mitigation: Avoid confidential client, visa, health, booking, or account details unless those providers are approved for that data. <br>
-Risk: Optional browser scraping can interact with third-party sites that may have their own rules and session risks. <br>
-Mitigation: Keep browser scraping disabled unless needed, avoid logged-in sessions, review target-site rules, and run the browser stack in a contained environment. <br>
+## Use Case:
 
+Travel planning professionals, travel agents, tour operators, and travel content creators use this skill to gather current destination information, tourism news, reviews, travel tips, and visa or policy updates.
 
-## Reference(s): <br>
-- [Travel Information and News on ClawHub](https://clawhub.ai/NHZallen/travel-information-and-news) <br>
-- [Tavily](https://tavily.com) <br>
-- [Brave Search API](https://brave.com/search/api) <br>
-- [Desktop Control skill](https://clawhub.com/skills/desktop-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Plain text, DOCX, or PDF travel report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include detected-language metadata; output language should match the user's query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional browser scraping uses Chromium, Xvfb, and Puppeteer and may interact with third-party travel, social, or review sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run browser scraping only in an isolated environment with no unrelated secrets or active personal sessions.
+
+Risk: Search queries and review lookups may disclose sensitive travel plans or account-related details to external services.
+
+Mitigation: Avoid submitting sensitive travel, identity, or account information in queries and use the minimum query detail needed.
+
+Risk: Optional dependencies and desktop automation guidance increase the installation and execution surface.
+
+Mitigation: Pin dependencies, review packages before installation, and install desktop-control only when the workflow requires simulated interaction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nhzallen/skills/travel-information-and-news)
+- [Tavily](https://tavily.com)
+- [Brave Search API](https://brave.com/search/api)
+- [Desktop Control skill](https://clawhub.com/skills/desktop-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, Markdown guidance, JSON search data, DOCX, or PDF depending on selected options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include source URLs, detected language metadata, review summaries, and generated report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

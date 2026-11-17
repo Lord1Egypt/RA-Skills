@@ -1,41 +1,59 @@
-## Description: <br>
-Guide users to VideoAny Face Swap tool to create AI face swap videos from a source video and face image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to the VideoAny Face Swap tool to create AI face swap videos from a source video and face image.
 
-## Publisher: <br>
-[GaoQ1](https://clawhub.ai/user/GaoQ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoq1](https://clawhub.ai/user/gaoq1)
 
-## Use Case: <br>
-External users and agents use this skill to guide a face-swap video workflow on VideoAny, including source media requirements, aspect ratio and duration choices, and responsible-use reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Face-swap workflows can involve sensitive personal media and potential non-consensual impersonation. <br>
-Mitigation: Use only media the user owns or is authorized to edit, confirm consent, avoid highly sensitive personal media, and follow applicable laws and platform policy. <br>
-Risk: The skill directs users to an external web service for actual generation. <br>
-Mitigation: Review VideoAny's privacy and usage terms before uploading video or face images. <br>
+## Use Case:
 
+External users and developers use this skill for concise guidance on preparing source videos and face images for the VideoAny Face Swap web workflow. The local script prints recommendations, accepted formats, selected options, and responsible-use reminders; actual generation happens on the external VideoAny site.
 
-## Reference(s): <br>
-- [VideoAny Face Swap](https://videoany.io/face-swap) <br>
-- [ClawHub Skill Page](https://clawhub.ai/GaoQ1/face-swap-videoany) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Plain text guidance with optional CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local helper scripts print guidance; actual face-swap generation is performed on the linked VideoAny web tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Face images and videos uploaded to the external VideoAny site may contain sensitive personal or biometric data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider's privacy and deletion terms before upload, and use only media you own or are authorized to edit.
+
+Risk: Face-swap outputs can be misused for deceptive impersonation or non-consensual deepfakes.
+
+Mitigation: Require consent or clear authorization for all media, avoid deceptive impersonation, and follow applicable laws and platform policies.
+
+Risk: The skill depends on a third-party web workflow whose terms, availability, credits, and model behavior may change.
+
+Mitigation: Confirm the current VideoAny page details and terms before use, and test with short clips before producing longer outputs.
+
+## Reference(s):
+
+- [VideoAny Face Swap](https://videoany.io/face-swap)
+- [ClawHub Skill Page](https://clawhub.ai/gaoq1/skills/face-swap-videoany)
+- [Publisher Profile](https://clawhub.ai/user/gaoq1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not upload files or generate media locally; directs users to an external web workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

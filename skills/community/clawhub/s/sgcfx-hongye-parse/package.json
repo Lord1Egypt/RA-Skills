@@ -1,0 +1,21 @@
+{
+  "name": "sgcfx-hongye-parse",
+  "version": "2.0.2",
+  "description": "宏业 SGCFX 计价文件本地解析：免软件授权导出分部分项清单、材料工料机汇总、费用六段式汇总，送审/审核核减对比，三层勾稽验算",
+  "author": "Lxb",
+  "license": "MIT",
+  "keywords": [
+    "造价",
+    "工程计价",
+    "宏业",
+    "SGCFX",
+    "工程量清单",
+    "核减",
+    "审计",
+    "Excel导出"
+  ],
+  "engines": {
+    "python": ">=3.9"
+  },
+  "category": "data-analysis"
+}

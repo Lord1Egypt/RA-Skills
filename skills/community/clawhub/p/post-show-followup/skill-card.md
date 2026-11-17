@@ -1,45 +1,55 @@
-## Description: <br>
-Creates tiered post-show follow-up email sequences for hot, warm, and cold trade-show leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create tiered post-show follow-up email sequences for hot, warm, and cold trade show leads.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-Sales and marketing teams use this skill after trade shows to draft segmented follow-up email sequences, personalize outreach by lead warmth, and plan send timing for post-show conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste unnecessary personal data, private CRM notes, regulated details, or confidential customer information while requesting follow-up drafts. <br>
-Mitigation: Limit inputs to the minimum lead and show context needed, avoid confidential or regulated details unless authorized, and confirm permission to use contacts for outreach. <br>
-Risk: Generated emails may contain inaccurate personalization, unsupported claims, consent issues, or wording that is too aggressive for the relationship. <br>
-Mitigation: Review every sequence for accuracy, consent, compliance, and appropriate personalization before sending. <br>
-Risk: Regulated industries may require legal disclaimers or restrictions on sales messaging. <br>
-Mitigation: Keep required disclaimers and have outreach reviewed against industry-specific requirements before external use. <br>
+## Use Case:
 
+Sales and marketing teams use this skill after a trade show to turn segmented booth leads into tiered follow-up email sequences with timing, personalization fields, CRM merge tags, and handoff notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weilun88313/post-show-followup) <br>
-- [Skill Homepage](https://github.com/LensmorOfficial/trade-show-skills/tree/main/post-show-followup) <br>
-- [Example Post-MEDICA Sequence](artifact/examples/post-medica-sequence.md) <br>
-- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=post-show-followup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown email sequence drafts with schedules and a handoff summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bracketed personalization fields, tier-specific CTAs, timing guidance, and optional CRM merge tags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated content includes a Lensmor promotional footer with a tracked external link by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated follow-up messages before sending and remove or replace the promotional footer unless it is approved for the sender's organization.
+
+Risk: Follow-up emails can become misleading if the agent fills in missing customer proof, metrics, pricing, or conversation details.
+
+Mitigation: Keep bracketed placeholders until approved source material is available, and verify all claims, links, case studies, pricing, and regulated-industry disclaimers before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/post-show-followup)
+- [Publisher profile](https://clawhub.ai/user/weilun88313)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=post-show-followup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown email sequences with tier labels, subject lines, timing guidance, placeholders, and handoff summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses visible placeholders for missing assets, proof points, customer details, metrics, pricing, and agreed next steps.]
+
+## Skill Version(s):
+
+0.4.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

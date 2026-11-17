@@ -1,39 +1,48 @@
-## Description: <br>
-Use when creating or editing software test case tables in Excel format, adding test cases to existing tables, or ensuring format consistency with test case templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and updates standardized Excel test case tables with a 14-column structure, consistent formatting, and examples for adding regression test cases.
 
-## Publisher: <br>
-[lky115](https://clawhub.ai/user/lky115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lky115](https://clawhub.ai/user/lky115)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and QA engineers use this skill to create or update software regression test case workbooks with standardized columns, row formatting, test case IDs, priorities, and test steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Workbook creation or updates can overwrite existing Excel files if the agent uses an existing path.
+
+Mitigation: Confirm the exact Excel file path before writing and use a backup or timestamped output file when editing important test assets.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, QA engineers, and test teams use this skill to create or update standardized Excel regression test case tables, including consistent headers, column widths, row styling, test case IDs, priorities, and status fields. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or overwrite local Excel workbook files. <br>
-Mitigation: Provide the exact workbook path, decide whether to save in place or as a copy, and back up important spreadsheets before use. <br>
+**Output Format:** [Markdown guidance with Python code examples and Excel workbook formatting specifications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/lky115/test1221413623463462451414) <br>
-- [Publisher profile](https://clawhub.ai/user/lky115) <br>
+**Other Properties Related to Output:** [May propose or modify Excel workbook files; confirm file paths before overwriting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python code examples and table specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or edit local Excel workbook files when applied by an agent.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

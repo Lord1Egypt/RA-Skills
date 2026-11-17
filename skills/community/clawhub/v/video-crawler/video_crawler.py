@@ -13,7 +13,7 @@ import requests
 from playwright.async_api import async_playwright
 
 # ===== 配置 =====
-DASHSCOPE_API_KEY = "sk-c0f66bb7aeff4b94810691214a1477fd"
+DASHSCOPE_API_KEY = "REDACTED-SECRET"
 
 def extract_douyin_id(url):
     """从抖音链接提取视频ID"""

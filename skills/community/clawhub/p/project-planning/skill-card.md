@@ -1,37 +1,50 @@
-## Description: <br>
-Deep project planning workflow-goals and non-goals, work breakdown, dependencies, critical path, risks and buffers, milestones, and communication rhythm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep project planning workflow-goals and non-goals, work breakdown, dependencies, critical path, risks and buffers, milestones, and communication rhythm.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Project managers, engineering leads, and delivery teams use this skill to frame outcomes, decompose work, identify dependencies, plan schedules and buffers, track risks, and set an operating rhythm for cross-team initiatives or replanning after slips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project plans or stakeholder recommendations may be incomplete, stale, or based on incorrect assumptions. <br>
-Mitigation: Review generated plans with accountable stakeholders, confirm dependencies and constraints, and update the plan as facts change. <br>
+## Use Case:
 
+Employees, external collaborators, developers, and project leads use this skill to structure project planning conversations for cross-team initiatives, timeline resets, scope control, dependency mapping, scheduling, risk management, and operating cadence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning guidance, checklists, dependency tables, risk lists, and cadence recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow; no executable code, tool calls, or sensitive permissions are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Project planning guidance can influence scope, dates, dependencies, and risk decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated plan with accountable stakeholders before using it to commit delivery dates or trade-offs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/project-planning)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown planning guidance with checklists and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, or persistence is requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

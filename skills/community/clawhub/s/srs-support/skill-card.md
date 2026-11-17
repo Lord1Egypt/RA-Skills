@@ -1,42 +1,56 @@
-## Description: <br>
-Answer SRS (Simple Realtime Server) questions for users and operators about protocols, configuration, codecs, ecosystem tools, deployment, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SRS Support helps users, operators, and DevOps teams answer practical questions about Simple Realtime Server protocols, configuration, codecs, deployment, monitoring, and troubleshooting.
 
-## Publisher: <br>
-[winlinvip](https://clawhub.ai/user/winlinvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winlinvip](https://clawhub.ai/user/winlinvip)
 
-## Use Case: <br>
-External users, operators, DevOps teams, and developers use this skill to get practical SRS deployment, configuration, monitoring, protocol, codec, and troubleshooting guidance grounded in a trusted local SRS checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest build, firewall, curl, nc, FFmpeg, or configuration commands for SRS operations. <br>
-Mitigation: Review suggested commands and configuration changes before running them, especially on production systems. <br>
-Risk: Answers depend on the local SRS documentation, memory files, and source checkout being trustworthy and current. <br>
-Mitigation: Use the skill with a trusted SRS checkout and keep referenced documentation and memory files under review. <br>
+## Use Case:
 
+External users, operators, DevOps teams, and developers use this skill to deploy, configure, operate, monitor, and troubleshoot SRS media-server workflows. It provides practical protocol, codec, configuration, scaling, and troubleshooting guidance rather than SRS source-code modification support.
 
-## Reference(s): <br>
-- [SRS Support release page](https://clawhub.ai/winlinvip/srs-support) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [evals.json](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, URLs, configuration snippets, and concise troubleshooting steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounds answers in local SRS docs and source context; may ask for logs, configuration, network details, or version information before troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server-resolved release metadata) <br>
+Risk: The trigger wording is broad enough that non-SRS streaming questions could be routed to this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For ambiguous streaming questions, confirm SRS relevance or explicitly name the intended technology before applying the skill guidance.
+
+Risk: Oryx-specific questions are outside the skill's supported scope.
+
+Mitigation: State that Oryx support is planned but not available yet, and do not provide Oryx-specific operational guidance.
+
+## Reference(s):
+
+- [SRS Support Skill Page](https://clawhub.ai/winlinvip/skills/srs-support)
+- [SRS overview knowledge base](memory/srs-overview.md)
+- [SRS documentation set](trunk/3rdparty/srs-docs/doc/)
+- [SRS full configuration reference](trunk/conf/full.conf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, URLs, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounded in SRS knowledge files and relevant documentation; no generated files are described by the skill.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

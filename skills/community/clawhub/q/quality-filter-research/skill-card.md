@@ -1,38 +1,52 @@
-## Description: <br>
-Academic paper quality filtering agent with a scoring system and audit trail for research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic paper quality filtering agent with rigorous scoring system and comprehensive audit trail. Filters papers based on relevance and quality criteria for research workflows.
 
-## Publisher: <br>
-[nomorecoding](https://clawhub.ai/user/nomorecoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nomorecoding](https://clawhub.ai/user/nomorecoding)
 
-## Use Case: <br>
-Researchers and research workflow agents use this skill to score arXiv paper candidates for relevance and quality, separate passed and filtered papers, and keep a reviewable audit trail. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local audit logs may retain paper lists, search parameters, scores, and filtering decisions. <br>
-Mitigation: Use a normal project directory, avoid sensitive research inputs, and review or manage the log before sharing the workspace. <br>
-Risk: The documented scoring criteria are tuned toward music or song generation and may under-rank papers from other research domains. <br>
-Mitigation: Review the threshold and relevance criteria for the target domain and manually inspect filtered papers when recall matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Researchers and research workflow agents use this skill to score academic papers for relevance and technical quality, categorize papers as passed or filtered, and preserve an audit trail for manual recall.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit log with scoring rationale and optional shell-style usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends session records to research/{domain}/quality_filtering/quality_filtering_log.md when used as documented.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Filtering decisions are written to a persistent local research log that may contain sensitive paper notes or private review data.
+
+Mitigation: Review the domain and workspace path before use, and avoid submitting sensitive notes unless local storage in that workspace is acceptable.
+
+Risk: The domain value determines the output path for the append-mode audit log.
+
+Mitigation: Choose a clear, expected domain value before running the skill so logs are stored in the intended research directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nomorecoding/skills/quality-filter-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit log with scoring rationale and summary statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends filtering sessions to research/{domain}/quality_filtering/quality_filtering_log.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

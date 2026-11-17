@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-runway-gen-4-5
 description: Runway Gen-4.5 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `runway-gen-4.5`, text-to-video, optional single-image guidance, 5 or 10 second clips, aspect ratio control, seeded output, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/runway-gen-4-5","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/runway-gen-4-5","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Runway Gen-4.5 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/runway-gen-4-5>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/runway-gen-4-5>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Runway Gen-4.5 video jobs on PoYo. It helps agents prepare text-to-video and optional single-image guided video payloads, submit async tasks, and explain polling or webhook follow-up.
 

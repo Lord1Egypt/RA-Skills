@@ -1,42 +1,62 @@
-## Description: <br>
-Finds trending YouTube outlier videos by niche, analyzes key concepts, saves data to Google Sheets, and posts summaries to Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds trending YouTube outlier videos by niche, analyzes key concepts, saves data to Google Sheets, and posts summaries to Discord.
 
-## Publisher: <br>
-[dalime](https://clawhub.ai/user/dalime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalime](https://clawhub.ai/user/dalime)
 
-## Use Case: <br>
-Creators, researchers, and channel operators use this skill to identify recent YouTube videos that substantially outperform peers for one or more niches, then route the findings into Google Sheets and Discord for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends YouTube research results to configured Google Sheets and Discord destinations. <br>
-Mitigation: Use a least-privilege Google service account, restrict the Discord bot to the target channel, and verify destination IDs before use. <br>
-Risk: Research topics and video metadata may be processed by external services. <br>
-Mitigation: Avoid sensitive internal research topics unless Anthropic, Google, Discord, and YouTube handling is acceptable for the intended use. <br>
-Risk: Dependency risk is called out for axios in the authoritative security guidance. <br>
-Mitigation: Audit or update axios and the package lock before production deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dalime/youtube-outlier-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/dalime) <br>
+## Use Case:
 
+Developers and operators use this skill to monitor YouTube niches for recent high-performing videos, summarize why they may be outliers, and distribute the results through Google Sheets and Discord.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown summaries, Google Sheets rows, Discord messages, TypeScript code, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured YouTube, Google Sheets, Discord, and Anthropic credentials for full operation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically write reports to a configured Google Sheet and post summaries to a configured Discord channel.
+
+Mitigation: Use tightly scoped service-account and bot permissions, verify destination IDs before use, and add a confirmation or dry-run path before enabling automatic posting.
+
+Risk: The skill includes an Anthropic analysis path that is under-disclosed in the artifact documentation.
+
+Mitigation: Disclose the Anthropic call to users or disable it when external model processing is not approved.
+
+Risk: Discord output may expose generated summaries or allow disruptive formatting in a shared channel.
+
+Mitigation: Sanitize and limit Discord output, disable mentions, and route reports only to approved channels.
+
+Risk: Dependency and credential handling require review before installation.
+
+Mitigation: Audit and update dependencies, store credentials securely, and grant only the minimum API scopes required for YouTube, Google Sheets, Discord, and model-provider access.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/dalime/skills/youtube-outlier-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, External records]
+
+**Output Format:** [Text status messages, Discord Markdown summaries, and Google Sheets rows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured YouTube, Google Sheets, Discord, and optional Anthropic credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -30,7 +30,6 @@ Description: github_download 是一个自动化从 GitHub 下载最新发布包�
 """
 import pyautogui
 import gradient_overlay
-import pyautogui
 import requests
 
 NAME = "github_download"

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7cejfdh7r6c3pcfq2jssk4ds81ab4m",
   "slug": "biomimetic-memory-architecture",
   "version": "0.1.7",
-  "publishedAt": 1778050714686
+  "status": "mvp",
+  "derivedFrom": "https://github.com/Suidge/openclaw-skills/tree/main/skills/opencortex",
+  "license": "MIT",
+  "description": "Biomimetic memory-evolution skill for OpenClaw agents. Integrates structured memory, procedural learning (Lesson-Imprint), retention/forgetting with Phase 2 compression and cold archiving."
 }

@@ -1,6 +1,47 @@
 {
-  "ownerId": "kn76gfsk6018hw3epck2qa18q580nh1j",
-  "slug": "swarm-coding-skill",
-  "version": "0.1.2",
-  "publishedAt": 1771120047093
+  "name": "swarm-coding-skill",
+  "description": "Autonomous multi-agent code generation. A Planner creates a manifest, then specialized roles (BackendDev, FrontendDev, QA, DevOps) execute tasks in dependency order. Generates complete projects with tests, Docker, CI, and full audit trail. Includes project memory (DECISIONS.md) and learning logs (.learnings/) for continuous improvement.",
+  "capabilities": [
+    "code-generation",
+    "multi-agent-orchestration",
+    "project-scaffolding",
+    "docker-ci",
+    "testing",
+    "knowledge-grounded-decisions",
+    "continuous-improvement"
+  ],
+  "requiredEnv": [
+    "OPENROUTER_API_KEY"
+  ],
+  "optionalEnv": [
+    "OPENROUTER_MODEL",
+    "MOCK"
+  ],
+  "autonomy": "orchestrator-driven",
+  "outputPaths": [
+    "swarm-projects/{timestamp}/",
+    ".learnings/",
+    "DECISIONS.md",
+    "SWARM_SUMMARY.md"
+  ],
+  "dataRetention": "Project files and decision logs are written to swarm-projects/ and retained across runs. Logs may contain user prompts and agent reasoning.",
+  "externalServices": [
+    {
+      "name": "OpenRouter",
+      "purpose": "LLM inference for planning and code generation",
+      "scope": "API key sent with each request"
+    }
+  ],
+  "automaticIntegrations": [
+    {
+      "trigger": "Prompt mentions blockchain, web3, tokens, NFTs, smart contracts, or Privy",
+      "action": "Auto-include Privy authentication and wallet infrastructure in generated code",
+      "filesModified": ["server.js (auth routes)", "frontend (Privy SDK)", "contracts/ if applicable"]
+    }
+  ],
+  "warnings": [
+    "Skill writes to parent workspace directory (swarm-projects/ and .learnings/). Run in isolated workspace.",
+    "Generated code should be reviewed before deployment, especially blockchain/auth integrations.",
+    "DECISIONS.md and .learnings/ logs may contain sensitive prompts or architectural details."
+  ]
 }

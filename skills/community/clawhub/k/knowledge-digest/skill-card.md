@@ -1,40 +1,53 @@
-## Description: <br>
-Converts learning materials such as PDFs, textbooks, or topics into age-adapted study assets including notes, quizzes, slides, mind maps, and audio lessons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Digest converts study materials, PDFs, textbooks, or topics into personalized learning assets such as handwritten-style notes, minimalist interactive quizzes, slides, mind maps, and audio lessons.
 
-## Publisher: <br>
-[yinin2005](https://clawhub.ai/user/yinin2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinin2005](https://clawhub.ai/user/yinin2005)
 
-## Use Case: <br>
-Students, educators, and learning-content creators use this skill to turn source material or a topic into grade-appropriate study materials for review, teaching, or self-study. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source learning materials may include sensitive or private content and may be transformed into generated files. <br>
-Mitigation: Provide only materials appropriate for processing and review generated notes, quizzes, slides, mind maps, and audio before sharing. <br>
-Risk: Generated study materials may drift from the source material or use an unsuitable depth for the learner's grade level. <br>
-Mitigation: Compare outputs against the original material and requested grade level before relying on them for teaching or study. <br>
+## Use Case:
 
+External learners, educators, and content creators use this skill to convert source study material or a selected topic into grade-adapted learning materials. It supports generating notes, quizzes, slides, mind maps, audio lessons, or a default bundle of mind map, PDF slides, and quiz.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinin2005/knowledge-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Code, Markdown] <br>
-**Output Format:** [Generated asset files and file-path delivery, including PDFs, PPTX, HTML, PNG, Mermaid text, and MP3 audio.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is mind map, slides PDF, and quiz unless the user requests another supported format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Generated study content can be inaccurate or misleading, especially when no source material is uploaded or when search is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated materials against the source textbook, PDF, or trusted references before using them for study or instruction.
+
+Risk: Generated files may not match the user's requested grade level, depth, or output constraints.
+
+Mitigation: Confirm the requested grade level and output formats up front, then inspect generated notes, quizzes, slides, mind maps, and audio before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinin2005/skills/knowledge-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Code, Guidance]
+
+**Output Format:** [XML-like deliver_assets block containing file paths for generated PDF, PPTX, HTML, PNG, Mermaid text, and MP3 assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default outputs are mind map, PDF slides, and quiz unless the user requests another supported format.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

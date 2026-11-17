@@ -1,47 +1,59 @@
-## Description: <br>
-Short Video Parser extracts metadata from short-video and image-gallery links across supported platforms and can transcribe video speech into text with SiliconFlow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short Video Parser extracts metadata from short-video and image-gallery share links across major platforms and can transcribe video speech into text.
 
-## Publisher: <br>
-[yangbuyiya](https://clawhub.ai/user/yangbuyiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangbuyiya](https://clawhub.ai/user/yangbuyiya)
 
-## Use Case: <br>
-Developers, analysts, and content operations teams use this skill to parse shared video links, collect video metadata, and generate speech transcripts or Markdown notes from processed videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video-derived audio is sent to SiliconFlow for transcription. <br>
-Mitigation: Use only media that is authorized for external processing, and avoid private, confidential, or copyrighted content unless its handling has been approved. <br>
-Risk: The skill fetches user-supplied video URLs from supported platforms and can use a configured external parsing API. <br>
-Mitigation: Run it in an environment where outbound network access is acceptable, and provide only trusted video links and trusted parser API endpoints. <br>
-Risk: Downloaded video and extracted audio may be retained locally by default. <br>
-Mitigation: Enable auto_cleanup when local retention of temporary video or audio files is not desired. <br>
-Risk: Credentials are needed for transcription. <br>
-Mitigation: Provide API keys through runtime configuration and do not paste account cookies or secrets into source code. <br>
+## Use Case:
 
+Developers and agents use this skill to parse shared short-video URLs into structured metadata and to convert video speech into text for content review, notes, subtitles, or summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangbuyiya/yby6-video-parser-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yangbuyiya) <br>
-- [SiliconFlow audio API documentation](https://docs.siliconflow.cn/api-reference/audio) <br>
-- [SiliconFlow](https://siliconflow.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files] <br>
-**Output Format:** [JSON parsing results, text transcription, and generated Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and ffmpeg for transcription; transcription requires a SiliconFlow API key and may write temporary media files under tmp/ and Markdown reports under demos/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: URL parsing and media handling can make unintended network requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted video links, prefer the local parser, and run the skill with restricted network egress where possible.
+
+Risk: Downloaded video and extracted audio files are retained by default.
+
+Mitigation: Set auto_cleanup_temp_files=true or pass --auto_cleanup true unless retained media files are explicitly needed.
+
+Risk: Supplying untrusted parsed-result JSON can bypass normal parsing assumptions.
+
+Mitigation: Avoid untrusted --parse_result input and review parsed metadata before using it in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangbuyiya/skills/yby6-video-parser-skill)
+- [SiliconFlow audio transcription API documentation](https://docs.siliconflow.cn/api-reference/audio)
+- [SiliconFlow](https://siliconflow.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON parsing results, transcription text, and Markdown transcription reports with command-line and environment configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcription can write Markdown reports under demos/ and temporary video or audio files under tmp/.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

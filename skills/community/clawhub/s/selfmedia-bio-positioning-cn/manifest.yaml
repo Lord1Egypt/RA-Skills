@@ -1,0 +1,32 @@
+name: selfmedia-bio-positioning-cn
+slug: selfmedia-bio-positioning-cn
+display_name: "账号主页定位文案"
+description: "基于创作者提供的真实资历、内容方向和目标受众，交付可直接使用的中文主页简介、栏目定位与置顶内容建议，帮助小店经营者、小说作者和自媒体创作者讲清价值；资料不足时会明确缺失字段，不编造经历、成果或受众结论。"
+version: "1.0.1"
+repository: "https://github.com/xxjrq/selfmedia-bio-positioning-cn"
+license: MIT-0
+tags:
+  - "自媒体"
+  - "账号定位"
+  - "主页文案"
+  - "中文写作"
+  - "内容策略"
+trigger_words:
+  - "账号主页怎么写"
+  - "帮我定位自媒体账号"
+  - "主页简介文案"
+triggers:
+  - "根据我的经历写账号简介"
+  - "规划账号栏目和置顶内容"
+  - "为小店或小说作者做主页定位"
+interface:
+  display_name: "账号主页定位文案"
+  short_description: "用真实经历写清账号价值、内容栏目与三条置顶建议文案"
+self_test: "python3 scripts/self_test.py"
+seo:
+  title: "账号主页定位文案"
+  keywords:
+    - "账号主页定位"
+    - "自媒体简介"
+    - "栏目定位"
+icon: icon-512.png

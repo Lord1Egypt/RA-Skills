@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7a1ej0c80wcetdm25rytgec183ekwh",
-  "slug": "prd-to-prototype",
+  "id": 378623320145994,
   "version": "1.0.0",
-  "publishedAt": 1774244605925
+  "name": "prd-to-prototype",
+  "updated_at": 1773990754313,
+  "platform": "minimax"
 }

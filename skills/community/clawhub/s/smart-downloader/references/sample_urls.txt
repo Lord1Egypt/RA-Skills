@@ -1,0 +1,5 @@
+https://example.com/file1.jpg
+https://example.com/file2.jpg
+https://example.com/file3.mp4
+https://example.com/file4.pdf
+https://example.com/file5.png

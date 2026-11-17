@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mu-pyramid-principle · 金字塔原理逻辑教练</title>
+<meta name="description" content="金字塔原理逻辑教练：7类逻辑病诊断、MECE校验、SCQA 4变体自动选型、自上而下/自下而上双路径构建、4种逻辑训练题型。贴一段文字就能跑诊断+重建。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔺</text></svg>">
+<style>
+:root{
+  --bg:#faf9f7;--bg-warm:#f5f0eb;--bg-card:#fff;--bg-code:#f7f5f2;
+  --border:#e8e2db;--border-light:#f0ebe5;
+  --text:#2d2a26;--text-secondary:#6b6560;--text-muted:#9e9690;
+  --accent:#c96442;--accent-light:#e8a07a;--accent-bg:rgba(201,100,66,0.06);
+  --green:#5a8a6a;--blue:#5a7a9a;--purple:#7a6a9a;--red:#c0705a;
+  --radius:12px;--radius-sm:8px;
+  --transition:0.25s ease;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-serif:'Georgia','Noto Serif SC','Source Han Serif SC',serif;
+  --font-mono:'SF Mono','Fira Code','JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;font-size:15px}
+a{text-decoration:none;color:inherit}
+em{font-style:normal;color:var(--accent)}
+.container{max-width:960px;margin:0 auto;padding:0 28px}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,249,247,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);transition:all var(--transition)}
+.nav-inner{max-width:960px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-size:1.02rem;font-weight:700;color:var(--text);letter-spacing:-0.02em;white-space:nowrap}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:color var(--transition)}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-switch{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:0.78rem;cursor:pointer;user-select:none}
+.lang-switch span{padding:5px 11px;transition:all var(--transition);color:var(--text-muted)}
+.lang-switch span.active{background:var(--accent);color:#fff}
+.lang-switch span:hover:not(.active){color:var(--text);background:var(--bg-warm)}
+.nav-cta{padding:7px 18px;border-radius:7px;font-size:0.82rem;font-weight:600;background:var(--text);color:var(--bg);transition:all var(--transition);white-space:nowrap}
+.theme-toggle{width:34px;height:34px;border-radius:7px;border:1px solid var(--border);background:var(--bg-card);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all var(--transition);line-height:1}
+.theme-toggle:hover{border-color:var(--accent);transform:translateY(-1px)}
+.nav-cta:hover{background:var(--accent);color:#fff;transform:translateY(-1px)}
+
+/* Hero */
+.hero{padding:150px 0 78px;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-warm) 100%)}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:100px;background:var(--bg-card);border:1px solid var(--border);font-size:0.76rem;font-weight:600;color:var(--text-secondary);margin-bottom:26px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+.hero h1{font-family:var(--font-serif);font-size:3.1rem;line-height:1.22;font-weight:700;letter-spacing:-0.03em;margin-bottom:20px}
+.hero-sub{font-size:1.04rem;color:var(--text-secondary);max-width:640px;margin:0 auto 34px;line-height:1.8}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 30px;border-radius:9px;font-size:0.9rem;font-weight:600;transition:all var(--transition);border:1px solid transparent}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(201,100,66,0.18)}
+.btn-primary:hover{background:#b5583a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,100,66,0.26)}
+.btn-secondary{background:var(--bg-card);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-light);border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;margin-top:52px}
+.stat{background:var(--bg-card);padding:22px 14px;text-align:center}
+.stat-num{font-family:var(--font-serif);font-size:2.6rem;font-weight:800;color:var(--accent);line-height:1.1;letter-spacing:-0.03em}
+.stat-num .stat-emoji{font-size:inherit;line-height:inherit;font-family:var(--font)}
+.stat-label{font-size:0.82rem;color:var(--text-secondary);margin-top:8px;font-weight:600}
+
+/* Sections */
+section.block{padding:78px 0}
+.bg-warm{background:var(--bg-warm)}
+.section-label{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);padding:4px 12px;border-radius:5px;margin-bottom:14px}
+.section-title{font-family:var(--font-serif);font-size:2rem;font-weight:700;letter-spacing:-0.025em;margin-bottom:10px;line-height:1.3;text-align:center}
+.section-desc{font-size:0.94rem;color:var(--text-secondary);max-width:860px;margin:0 auto 36px;line-height:1.8;text-align:center}
+section.block>.container{text-align:center}
+section.block>.container>.cards-grid,section.block>.container>.hl-grid,section.block>.container>.table-wrap,section.block>.container>.wf-head,section.block>.container>.wf-row,section.block>.container>.wf-modes{text-align:left}
+
+/* Cards */
+.cards-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{padding:18px 24px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);transition:all var(--transition);display:flex;flex-direction:row;align-items:center;gap:16px}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.card-icon{display:none}
+.card h3{font-size:0.95rem;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;flex-shrink:0;min-width:140px}
+.card p{display:none}
+.card-say{padding:6px 12px;border-radius:var(--radius-sm);background:var(--bg-code);border-left:3px solid var(--accent-light);font-size:0.82rem;color:var(--text-secondary);font-family:var(--font);line-height:1.6;flex:1}
+.card-tag{display:inline-block;flex-shrink:0;padding:4px 12px;border-radius:4px;font-size:0.72rem;font-weight:600;background:var(--accent-bg);color:var(--accent);white-space:nowrap}
+
+/* Highlight cards */
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.hl{padding:24px 22px;border-radius:var(--radius);background:var(--bg-card);border:1px solid var(--border-light);border-top:3px solid var(--accent-light);transition:all var(--transition);display:flex;flex-direction:column}
+.hl:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,0.04);border-top-color:var(--accent)}
+.hl h3{font-size:0.95rem;font-weight:700;margin-bottom:8px;text-align:center}
+.hl p{font-size:0.84rem;color:var(--text-secondary);line-height:1.75;text-align:center}
+.hl-detail{margin-top:auto;padding:12px 14px;border-radius:var(--radius-sm);background:var(--bg-code);border:1px solid var(--border-light);font-size:0.78rem;color:var(--text-secondary);line-height:1.7}
+.hl-detail b{color:var(--text);font-weight:600}
+
+/* Comparison table */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparison-table{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-light);background:var(--bg-card)}
+.comparison-table th,.comparison-table td{padding:14px 18px;text-align:left;font-size:0.845rem;border-bottom:1px solid var(--border-light);vertical-align:top;line-height:1.7}
+.comparison-table thead th{background:var(--bg-warm);font-weight:700;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);white-space:nowrap}
+.comparison-table thead th:nth-child(2){color:var(--accent)}
+.comparison-table tbody tr{background:var(--bg-card);transition:background var(--transition)}
+.comparison-table tbody tr:hover{background:var(--bg-warm)}
+.comparison-table tbody tr:last-child td{border-bottom:none}
+.comparison-table td:first-child{font-weight:700;white-space:nowrap}
+.comparison-table td:nth-child(2){color:var(--text)}
+.check{color:var(--green);font-weight:700}
+.cross{color:var(--red);font-weight:700}
+.partial{color:#c9a44e;font-weight:700}
+
+/* Workflow cards */
+.wf-head{display:none}
+.wf-row{padding:14px 20px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);margin-bottom:10px;transition:all var(--transition);display:flex;align-items:center;gap:16px}
+.wf-row:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.wf-name{font-size:0.9rem;font-weight:700;letter-spacing:-0.01em;white-space:nowrap;flex-shrink:0}
+.wf-scene{font-size:0.83rem;color:var(--text-secondary);line-height:1.6;flex:1;min-width:0;text-align:center}
+.wf-trigger{font-size:0.78rem;color:var(--accent);background:var(--accent-bg);padding:5px 12px;border-radius:6px;line-height:1.5;white-space:nowrap;flex-shrink:0}
+.wf-modes{margin-top:28px;padding-top:24px;border-top:1px dashed var(--border)}
+.wf-modes-title{font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:14px;letter-spacing:-0.01em}
+
+/* CTA */
+.cta-section{padding:92px 0;text-align:center;background:var(--bg-warm);border-top:1px solid var(--border-light)}
+.cta-section h2{font-family:var(--font-serif);font-size:2.5rem;font-weight:700;letter-spacing:-0.03em;line-height:1.3;margin-bottom:16px}
+.cta-section p{font-size:1rem;color:var(--text-secondary);max-width:560px;margin:0 auto 32px;line-height:1.8}
+
+/* Footer */
+footer{padding:44px 0 52px;background:var(--bg);border-top:1px solid var(--border-light);text-align:center}
+.footer-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.footer-badges img{height:20px;display:block}
+
+/* Dark mode (toggled via html.dark class) */
+html.dark{
+  --bg:#1a1918;--bg-warm:#211f1d;--bg-card:#262422;--bg-code:#2a2826;
+  --border:#3d3832;--border-light:#332f2a;
+  --text:#e8e2db;--text-secondary:#a09890;--text-muted:#706860;
+  --accent:#e8a07a;--accent-light:#c96442;--accent-bg:rgba(232,160,122,0.1);
+  --green:#7aaa8a;--blue:#7a9aba;--purple:#9a8aba;--red:#e0907a;
+}
+html.dark nav{background:rgba(26,25,24,0.9)}
+html.dark .comparison-table thead th{background:var(--bg-warm)}
+html.dark .comparison-table{background:var(--bg-card)}
+html.dark .comparison-table tbody tr:hover{background:var(--bg-warm)}
+html.dark .btn-secondary{background:var(--bg-card);color:var(--text);border-color:var(--border)}
+html.dark .btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+html.dark .hero-badge{background:var(--bg-card);border-color:var(--border)}
+html.dark .lang-switch{border-color:var(--border)}
+html.dark .lang-switch span:hover:not(.active){background:var(--bg-warm)}
+html.dark .nav-cta{background:var(--text);color:var(--bg)}
+html.dark footer{background:var(--bg)}
+html.dark .theme-toggle{border-color:var(--border);background:var(--bg-card)}
+
+@media(max-width:768px){
+  .hero{padding:118px 0 62px}
+  .hero h1{font-size:2.05rem}
+  .hero-sub{font-size:0.95rem}
+  .nav-links{display:none}
+  .nav-logo{font-size:0.86rem;white-space:normal;line-height:1.25}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards-grid,.hl-grid{grid-template-columns:1fr}
+  .wf-row{flex-wrap:wrap;padding:12px 14px;gap:8px}
+  .wf-name{font-size:0.82rem}
+  .wf-scene{font-size:0.75rem}
+  .wf-trigger{font-size:0.7rem;padding:4px 8px}
+  .section-title{font-size:1.55rem}
+  .cta-section h2{font-size:1.8rem}
+  section.block{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="nav-inner">
+<div class="nav-logo">🔺 mu-pyramid-principle · 金字塔原理逻辑教练</div>
+<ul class="nav-links">
+<li><a href="#scenarios"><span data-en="Scenarios" data-zh="使用场景">使用场景</span></a></li>
+<li><a href="#highlights"><span data-en="Highlights" data-zh="核心亮点">核心亮点</span></a></li>
+<li><a href="#comparison"><span data-en="Compare" data-zh="对比">对比</span></a></li>
+<li><a href="#workflows"><span data-en="Workflows" data-zh="工作流">工作流</span></a></li>
+</ul>
+<div class="nav-right">
+<div class="lang-switch" id="langSwitch"><span data-lang="zh" class="active">中文</span><span data-lang="en">EN</span></div>
+<div class="theme-toggle" id="themeToggle" title="Toggle dark mode">☀️</div>
+<a href="https://muippt.github.io/mu-skill-hub/" class="nav-cta" target="_blank"><span data-en="Skill Hub" data-zh="Skill合集">Skill合集</span></a>
+</div>
+</div></nav>
+
+<!-- Hero -->
+<section class="hero"><div class="container">
+<div class="hero-badge"><span class="dot"></span><span data-en="v1.2.0 · Open Source · Based on《The Pyramid Principle》by Barbara Minto" data-zh="v1.2.0 · 开源发布 · 基于 Barbara Minto《金字塔原理》">v1.2.0 · 开源发布 · 基于 Barbara Minto《金字塔原理》</span></div>
+<h1><span data-en="Pyramid Principle Logic Coach:<br>No theory — just <em>diagnose &amp; rebuild</em>." data-zh="金字塔原理逻辑教练：<br>不教理论，只管<em>诊断和重建</em>。">金字塔原理逻辑教练：<br>不教理论，只管<em>诊断和重建</em>。</span></h1>
+<p class="hero-sub"><span data-en="Paste any text and get a 7-type logic disease scan, MECE check, SCQA variant selection, and a rebuilt pyramid structure with a polished rewrite — all preserving your original key information." data-zh="贴一段文字，直接拿到 7 类逻辑病诊断、MECE 校验、SCQA 变体自动选型，以及重组后的金字塔结构和优化文稿——全程保留你的核心信息不丢失。">贴一段文字，直接拿到 7 类逻辑病诊断、MECE 校验、SCQA 变体自动选型，以及重组后的金字塔结构和优化文稿——全程保留你的核心信息不丢失。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-pyramid-principle" class="btn btn-primary" target="_blank"><span data-en="🔺 Get the Skill on GitHub" data-zh="🔺 在 GitHub 上获取">🔺 在 GitHub 上获取</span></a>
+<a href="https://github.com/muippt/mu-pyramid-principle/archive/refs/tags/v1.2.0.zip" class="btn btn-secondary" target="_blank"><span data-en="📦 Download Skill ZIP" data-zh="📦 下载 Skill">📦 下载 Skill</span></a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-num"><span class="stat-emoji">🔍</span> 7</div><div class="stat-label"><span data-en="Logic diseases diagnosed" data-zh="类逻辑病诊断">类逻辑病诊断</span></div></div>
+<div class="stat"><div class="stat-num"><span class="stat-emoji">📐</span> 4</div><div class="stat-label"><span data-en="SCQA variants auto-selected" data-zh="SCQA 变体自动选型">SCQA 变体自动选型</span></div></div>
+<div class="stat"><div class="stat-num"><span class="stat-emoji">🏗️</span> 2</div><div class="stat-label"><span data-en="Construction paths" data-zh="条构建路径">条构建路径</span></div></div>
+<div class="stat"><div class="stat-num"><span class="stat-emoji">🏋️</span> 4</div><div class="stat-label"><span data-en="Training drill types" data-zh="种训练题型">种训练题型</span></div></div>
+</div>
+</div></section>
+
+<!-- Scenarios -->
+<section class="block" id="scenarios"><div class="container">
+<div class="section-label">💡 <span data-en="Use Cases" data-zh="使用场景示例">使用场景示例</span></div>
+<h2 class="section-title"><span data-en="Six moments where structure falls apart" data-zh="六个最容易结构散掉的时刻">六个最容易结构散掉的时刻</span></h2>
+<p class="section-desc"><span data-en="Every scenario starts from text you paste in — no abstract theory. Diagnosis always quotes the original, rates severity, and gives a concrete fix before rebuilding." data-zh="每个场景都从你贴进来的文字出发，不做空对空分析。诊断一定引用原文、标注严重度、给出修复建议，然后才动手重建。">每个场景都从你贴进来的文字出发，不做空对空分析。诊断一定引用原文、标注严重度、给出修复建议，然后才动手重建。</span></p>
+<div class="cards-grid">
+<div class="card">
+<div class="card-icon">📄</div>
+<h3>📄 <span data-en="Report Logic Check" data-zh="报告逻辑检查">报告逻辑检查</span></h3>
+<p><span data-en="Paste a quarterly report or proposal and get a full 7-type logic disease scan: missing conclusion, sub-points that don't support the main argument, overlapping categories, logic jumps, MECE gaps, broken syllogisms, and fact-vs-judgment confusion — each quoting the original line with severity rating and fix suggestion." data-zh="把季度报告或方案贴进来，直接跑 7 类逻辑病诊断：结论缺失、以下不统上、分类交叉、逻辑跳跃、MECE 不全、演绎断链、事实判断混淆——每一处都引用原文、标注严重度、给出修复建议。">把季度报告或方案贴进来，直接跑 7 类逻辑病诊断：结论缺失、以下不统上、分类交叉、逻辑跳跃、MECE 不全、演绎断链、事实判断混淆——每一处都引用原文、标注严重度、给出修复建议。</span></p>
+<div class="card-say"><span data-en="&quot;Check the logic of my quarterly report.&quot;" data-zh="「这份季度报告帮我看看逻辑对不对」">「这份季度报告帮我看看逻辑对不对」</span></div>
+<div class="card-tag"><span data-en="7-type diagnosis report" data-zh="7 类诊断报告">7 类诊断报告</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🔺</div>
+<h3>🔺 <span data-en="Pyramid Rebuild" data-zh="金字塔重组">金字塔重组</span></h3>
+<p><span data-en="After diagnosis, the skill picks top-down or bottom-up construction, restructures your points into a MECE-checked pyramid, and outputs a polished rewrite with SCQA preamble — all preserving your original key information." data-zh="诊断完毕后自动选择自上而下或自下而上的构建路径，把你的要点重组为经过 MECE 校验的金字塔结构，输出带 SCQA 序言的完整优化文稿——全程保留核心信息不丢失。">诊断完毕后自动选择自上而下或自下而上的构建路径，把你的要点重组为经过 MECE 校验的金字塔结构，输出带 SCQA 序言的完整优化文稿——全程保留核心信息不丢失。</span></p>
+<div class="card-say"><span data-en="&quot;Rebuild this into a pyramid.&quot;" data-zh="「帮我用金字塔结构重新组织」">「帮我用金字塔结构重新组织」</span></div>
+<div class="card-tag"><span data-en="Tree viz + polished rewrite" data-zh="树状可视化 + 优化文稿">树状可视化 + 优化文稿</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3>🎯 <span data-en="Thought Organization" data-zh="想法组织">想法组织</span></h3>
+<p><span data-en="Guided mode walks you through: What do you want the audience to do? What do they already know? What's blocking them? — then distills a one-sentence thesis, breaks down 3-5 MECE sub-arguments, and generates the full document." data-zh="引导模式带你走完：你想让读者做什么？他们已经知道什么？什么阻碍了他们接受你的观点？——然后提炼一句话结论，拆解 3-5 个 MECE 子论点，生成完整文稿。">引导模式带你走完：你想让读者做什么？他们已经知道什么？什么阻碍了他们接受你的观点？——然后提炼一句话结论，拆解 3-5 个 MECE 子论点，生成完整文稿。</span></p>
+<div class="card-say"><span data-en="&quot;I have ideas but can't organize them.&quot;" data-zh="「我有些想法，但不知道怎么组织」">「我有些想法，但不知道怎么组织」</span></div>
+<div class="card-tag"><span data-en="Guided mode · top-down" data-zh="引导模式 · 自上而下">引导模式 · 自上而下</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🔍</div>
+<h3>🔍 <span data-en="Four-Character Checklist" data-zh="四字诀排查">四字诀排查</span></h3>
+<p><span data-en="The &quot;论证类比&quot; four-character checklist catches it in seconds: Is the first sentence a complete judgment? Does every point have supporting evidence? Is the grouping non-overlapping and exhaustive? Is there a logical ordering within each group?" data-zh="&amp;ldquo;论证类比&amp;rdquo;四字诀一秒排查：第一句是不是完整判断句？每个论点有没有理由支撑？分组不重不漏吗？组内有排序吗？">&ldquo;论证类比&rdquo;四字诀一秒排查：第一句是不是完整判断句？每个论点有没有理由支撑？分组不重不漏吗？组内有排序吗？</span></p>
+<div class="card-say"><span data-en="&quot;My proposal feels off but I can't pinpoint why.&quot;" data-zh="「方案写完总觉得哪里不对」">「方案写完总觉得哪里不对」</span></div>
+<div class="card-tag"><span data-en="论证类比 · 4-second check" data-zh="论证类比 · 4 秒排查">论证类比 · 4 秒排查</span></div>
+</div>
+<div class="card">
+<div class="card-icon">📝</div>
+<h3>📝 <span data-en="SCQA Opening" data-zh="SCQA 开头">SCQA 开头</span></h3>
+<p><span data-en="Four SCQA variants — Standard, Action, Conflict, Proposal — auto-selected based on your audience and context. A decision tree picks the right one so your opening hits the right note every time." data-zh="四种 SCQA 变体——标准式、行动式、冲突式、提议式——根据你的听众和场景自动选型。一棵决策树帮你判断，不用猜。">四种 SCQA 变体——标准式、行动式、冲突式、提议式——根据你的听众和场景自动选型。一棵决策树帮你判断，不用猜。</span></p>
+<div class="card-say"><span data-en="&quot;Help me write an opening for this report.&quot;" data-zh="「帮我写个开头，这份报告该怎么起笔」">「帮我写个开头，这份报告该怎么起笔」</span></div>
+<div class="card-tag"><span data-en="4 variants · auto-selected" data-zh="4 变体 · 自动选型">4 变体 · 自动选型</span></div>
+</div>
+<div class="card">
+<div class="card-icon">🏋️</div>
+<h3>🏋️ <span data-en="Logic Training" data-zh="逻辑训练">逻辑训练</span></h3>
+<p><span data-en="Four training drills: Fact vs Judgment, Deduction vs Induction, MECE Gap-Finding, and Pyramid Reassembly — each with instant feedback that praises what you got right before explaining what you missed." data-zh="四种训练题型：事实 vs 判断、演绎 vs 归纳、MECE 找漏洞、金字塔重组——每次反馈都先肯定做对的部分，再解释哪里需要改。">四种训练题型：事实 vs 判断、演绎 vs 归纳、MECE 找漏洞、金字塔重组——每次反馈都先肯定做对的部分，再解释哪里需要改。</span></p>
+<div class="card-say"><span data-en="&quot;Train me on logical thinking.&quot;" data-zh="「逻辑训练，练一下」">「逻辑训练，练一下」</span></div>
+<div class="card-tag"><span data-en="4 drills · instant feedback" data-zh="4 题型 · 即时反馈">4 题型 · 即时反馈</span></div>
+</div>
+</div>
+</div></section>
+
+<!-- Core Highlights -->
+<section class="block bg-warm" id="highlights"><div class="container">
+<div class="section-label">✨ <span data-en="Core Highlights" data-zh="核心亮点">核心亮点</span></div>
+<h2 class="section-title"><span data-en="Six capabilities that turn messy drafts into airtight pyramids" data-zh="六项能力，把散乱草稿变成密不透风的金字塔">六项能力，把散乱草稿变成密不透风的金字塔</span></h2>
+<p class="section-desc"><span data-en="Each capability is derived from Barbara Minto's methodology and battle-tested on real documents — not theory, but operational rules you can run right now." data-zh="每项能力都源自 Barbara Minto 方法论，并在真实文档上反复验证——不是理论，而是现在就能跑起来的操作规则。">每项能力都源自 Barbara Minto 方法论，并在真实文档上反复验证——不是理论，而是现在就能跑起来的操作规则。</span></p>
+<div class="hl-grid">
+<div class="hl">
+<h3>🔍 <span data-en="7-Type Logic Disease Diagnosis" data-zh="7 类逻辑病诊断">7 类逻辑病诊断</span></h3>
+<p><span data-en="Every diagnosis scans all 7 disease types, quotes the exact original text, assigns a severity level, and provides a concrete fix for each hit." data-zh="每次诊断扫全部 7 类，逐条引用原文原话，标注严重程度，并给出具体修复建议。">每次诊断扫全部 7 类，逐条引用原文原话，标注严重程度，并给出具体修复建议。</span></p>
+<div class="hl-detail">
+<b>🔴 Fatal:</b> <span data-en="Missing Conclusion · Sub≠Super" data-zh="结论缺失 · 以下不统上">结论缺失 · 以下不统上</span><br>
+<b>🟡 Moderate:</b> <span data-en="Overlapping · Logic Jump · MECE Gap" data-zh="分类交叉 · 逻辑跳跃 · MECE 不全">分类交叉 · 逻辑跳跃 · MECE 不全</span><br>
+<b>🟢 Minor:</b> <span data-en="Broken Syllogism · Fact-Judgment Confusion" data-zh="演绎断链 · 事实判断混淆">演绎断链 · 事实判断混淆</span>
+</div>
+</div>
+<div class="hl">
+<h3>🧩 <span data-en="&amp;ldquo;论证类比&amp;rdquo; Four-Character Checklist" data-zh="&amp;ldquo;论证类比&amp;rdquo;四字诀">&ldquo;论证类比&rdquo;四字诀</span></h3>
+<p><span data-en="A 4-second mental check borrowed from classical Chinese rhetoric, adapted for pyramid validation at every layer." data-zh="借鉴中文古典修辞的 4 秒快速校验法，用来验证金字塔结构的每一层。">借鉴中文古典修辞的 4 秒快速校验法，用来验证金字塔结构的每一层。</span></p>
+<div class="hl-detail">
+<b>论</b> <span data-en="Conclusion first — is the first sentence a complete judgment?" data-zh="结论先行——第一句是完整判断句？">结论先行——第一句是完整判断句？</span><br>
+<b>证</b> <span data-en="Evidence supported — does every point have a reason?" data-zh="以上统下——每个论点有理由支撑？">以上统下——每个论点有理由支撑？</span><br>
+<b>类</b> <span data-en="MECE grouping — non-overlapping, exhaustive?" data-zh="归类分组——不重不漏？">归类分组——不重不漏？</span><br>
+<b>比</b> <span data-en="Logical ordering — ordered within each group?" data-zh="逻辑递进——组内有排序？">逻辑递进——组内有排序？</span>
+</div>
+</div>
+<div class="hl">
+<h3>📐 <span data-en="SCQA 4 Variants — Auto-Selected" data-zh="SCQA 四变体 · 自动选型">SCQA 四变体 · 自动选型</span></h3>
+<p><span data-en="The preamble variant is chosen automatically based on audience awareness, decision urgency, and emotional resistance — not guessed." data-zh="序言变体的选择不靠猜，而是根据听众认知、决策紧迫度、情感抵抗程度自动判断。">序言变体的选择不靠猜，而是根据听众认知、决策紧迫度、情感抵抗程度自动判断。</span></p>
+<div class="hl-detail">
+<b>Standard</b> <span data-en="S→C→Q→A — formal reports" data-zh="S→C→Q→A — 正式汇报">S→C→Q→A — 正式汇报</span><br>
+<b>Action</b> <span data-en="S→A→C→Q — urgent decisions" data-zh="S→A→C→Q — 紧急决策">S→A→C→Q — 紧急决策</span><br>
+<b>Conflict</b> <span data-en="C→S→Q→A — persuasion" data-zh="C→S→Q→A — 说服对方">C→S→Q→A — 说服对方</span><br>
+<b>Proposal</b> <span data-en="Q→S→C→A — recommendation" data-zh="Q→S→C→A — 方案推荐">Q→S→C→A — 方案推荐</span>
+</div>
+</div>
+<div class="hl">
+<h3>🔺 <span data-en="Dual-Mode Interaction — Quick &amp; Guided" data-zh="双模式交互 — 快捷 &amp; 引导">双模式交互 — 快捷 &amp; 引导</span></h3>
+<p><span data-en="Quick mode fires when you paste text with trigger words. Guided mode activates when you say you need help organizing — two paths, one skill." data-zh="快捷模式在你贴文字加触发词时启动。引导模式在你说&amp;ldquo;帮我理清思路&amp;rdquo;时激活——两条路径，一个 Skill。">快捷模式在你贴文字加触发词时启动。引导模式在你说&ldquo;帮我理清思路&rdquo;时激活——两条路径，一个 Skill。</span></p>
+<div class="hl-detail">
+<b>🚀 Quick</b> <span data-en="Paste → 7-type diagnosis → pyramid rebuild → polished rewrite" data-zh="贴文本 → 7 类诊断 → 金字塔重组 → 优化文稿">贴文本 → 7 类诊断 → 金字塔重组 → 优化文稿</span><br>
+<b>💬 Guided</b> <span data-en="Dialogue-driven pyramid construction from fuzzy ideas" data-zh="对话引导，从模糊想法构建金字塔">对话引导，从模糊想法构建金字塔</span>
+</div>
+</div>
+<div class="hl">
+<h3>🏗️ <span data-en="Top-Down &amp; Bottom-Up Construction" data-zh="自上而下 &amp; 自下而上双路径">自上而下 &amp; 自下而上双路径</span></h3>
+<p><span data-en="Two construction paths, auto-selected based on what you bring: a clear opinion triggers top-down; scattered material triggers bottom-up." data-zh="两条构建路径，根据你手头的素材自动选择：有明确观点走自上而下；有散乱素材走自下而上。">两条构建路径，根据你手头的素材自动选择：有明确观点走自上而下；有散乱素材走自下而上。</span></p>
+<div class="hl-detail">
+<b>Top-Down:</b> <span data-en="Thesis → anticipate questions → 3-5 MECE sub-arguments → evidence → SCQA → output" data-zh="论点 → 预判疑问 → 3-5 MECE 子论点 → 论据 → SCQA → 输出">论点 → 预判疑问 → 3-5 MECE 子论点 → 论据 → SCQA → 输出</span><br>
+<b>Bottom-Up:</b> <span data-en="List points → cluster by MECE → summarize each → distill thesis → validate → SCQA → output" data-zh="罗列要点 → 归类分组 → 每组一句话 → 提炼总论点 → 验证 → SCQA → 输出">罗列要点 → 归类分组 → 每组一句话 → 提炼总论点 → 验证 → SCQA → 输出</span>
+</div>
+</div>
+<div class="hl">
+<h3>🏋️ <span data-en="Logic Training Mode — 4 Drill Types" data-zh="逻辑训练模式 — 4 种题型">逻辑训练模式 — 4 种题型</span></h3>
+<p><span data-en="When you say &quot;train me,&quot; the skill switches to coaching mode with four drill types and instant feedback." data-zh="说&amp;ldquo;逻辑训练&amp;rdquo;或&amp;ldquo;练一下&amp;rdquo;就能进入教练模式，四种题型配即时反馈。">说&ldquo;逻辑训练&rdquo;或&ldquo;练一下&rdquo;就能进入教练模式，四种题型配即时反馈。</span></p>
+<div class="hl-detail">
+<b>A.</b> <span data-en="Fact vs Judgment — distinguish objective from subjective" data-zh="事实 vs 判断 — 区分客观与主观">事实 vs 判断 — 区分客观与主观</span><br>
+<b>B.</b> <span data-en="Deduction vs Induction — spot when premises don't guarantee conclusions" data-zh="演绎 vs 归纳 — 发现前提不保证结论">演绎 vs 归纳 — 发现前提不保证结论</span><br>
+<b>C.</b> <span data-en="MECE Gap-Finding — build the reflex for clean grouping" data-zh="MECE 找漏洞 — 练出干净分组的直觉">MECE 找漏洞 — 练出干净分组的直觉</span><br>
+<b>D.</b> <span data-en="Pyramid Reassembly — practice full structural reconstruction" data-zh="金字塔重组 — 练完整结构重建">金字塔重组 — 练完整结构重建</span>
+</div>
+</div>
+</div>
+</div></section>
+
+<!-- Comparison -->
+<section class="block" id="comparison"><div class="container">
+<div class="section-label">📌 <span data-en="Comparison" data-zh="与同类工具对比">与同类工具对比</span></div>
+<h2 class="section-title"><span data-en="What makes this different from ChatGPT prompts, mind maps, and writing courses" data-zh="和通用提示词、思维导图、写作培训有什么不一样">和通用提示词、思维导图、写作培训有什么不一样</span></h2>
+<p class="section-desc"><span data-en="Every dimension is backed by an operational rule the skill enforces — not a vague claim." data-zh="每个维度背后都有 Skill 强制执行的硬规则——不是空话。">每个维度背后都有 Skill 强制执行的硬规则——不是空话。</span></p>
+<div class="table-wrap">
+<table class="comparison-table">
+<thead><tr>
+<th><span data-en="Dimension" data-zh="维度">维度</span></th>
+<th>mu-pyramid-principle</th>
+<th><span data-en="Generic ChatGPT" data-zh="通用 ChatGPT">通用 ChatGPT</span></th>
+<th><span data-en="Mind Map Tools" data-zh="思维导图工具">思维导图工具</span></th>
+<th><span data-en="Writing Courses" data-zh="传统写作培训">传统写作培训</span></th>
+</tr></thead>
+<tbody>
+<tr>
+<td><span data-en="Diagnostic framework" data-zh="诊断框架">诊断框架</span></td>
+<td><span class="check" data-en="✅ 7 diseases, full scan" data-zh="✅ 7 类逻辑病，全覆盖">✅ 7 类逻辑病，全覆盖</span></td>
+<td><span class="partial" data-en="⚠️ Varies every run" data-zh="⚠️ 每次结果不一样">⚠️ 每次结果不一样</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial" data-en="⚠️ Partial" data-zh="⚠️ 部分覆盖">⚠️ 部分覆盖</span></td>
+</tr>
+<tr>
+<td><span data-en="MECE enforcement" data-zh="MECE 校验">MECE 校验</span></td>
+<td><span class="check" data-en="✅ Every grouping checked" data-zh="✅ 每层分组都检查">✅ 每层分组都检查</span></td>
+<td><span class="partial" data-en="⚠️ Occasional, unnamed" data-zh="⚠️ 偶尔提到，不点名">⚠️ 偶尔提到，不点名</span></td>
+<td><span class="partial" data-en="⚠️ Manual" data-zh="⚠️ 手动">⚠️ 手动</span></td>
+<td><span class="partial" data-en="⚠️ Theory only" data-zh="⚠️ 有，但只讲理论">⚠️ 有，但只讲理论</span></td>
+</tr>
+<tr>
+<td><span data-en="SCQA variant selection" data-zh="SCQA 变体选择">SCQA 变体选择</span></td>
+<td><span class="check" data-en="✅ Auto-selected by context" data-zh="✅ 根据场景自动选型">✅ 根据场景自动选型</span></td>
+<td><span class="cross" data-en="❌ You choose manually" data-zh="❌ 需要自己选">❌ 需要自己选</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial" data-en="⚠️ Static examples" data-zh="⚠️ 固定案例">⚠️ 固定案例</span></td>
+</tr>
+<tr>
+<td><span data-en="Construction paths" data-zh="构建路径">构建路径</span></td>
+<td><span class="check" data-en="✅ Top-down + bottom-up, auto" data-zh="✅ 自上而下 + 自下而上，自动">✅ 自上而下 + 自下而上，自动</span></td>
+<td><span class="partial" data-en="⚠️ One path, ad hoc" data-zh="⚠️ 单一路径，随机应变">⚠️ 单一路径，随机应变</span></td>
+<td><span class="partial" data-en="⚠️ Free-form tree" data-zh="⚠️ 自由发散">⚠️ 自由发散</span></td>
+<td><span class="cross" data-en="❌ Top-down only" data-zh="❌ 只有自上而下">❌ 只有自上而下</span></td>
+</tr>
+<tr>
+<td><span data-en="Output format" data-zh="输出格式">输出格式</span></td>
+<td><span class="check" data-en="✅ Diagnosis + tree viz + rewrite" data-zh="✅ 诊断报告 + 树状可视化 + 优化文稿">✅ 诊断报告 + 树状可视化 + 优化文稿</span></td>
+<td><span class="partial" data-en="⚠️ Free text" data-zh="⚠️ 自由文本">⚠️ 自由文本</span></td>
+<td><span class="partial" data-en="⚠️ Visual map" data-zh="⚠️ 视觉地图">⚠️ 视觉地图</span></td>
+<td><span class="partial" data-en="⚠️ Hand-written drafts" data-zh="⚠️ 手写稿">⚠️ 手写稿</span></td>
+</tr>
+<tr>
+<td><span data-en="Logic training drills" data-zh="逻辑训练">逻辑训练</span></td>
+<td><span class="check" data-en="✅ 4 types + instant feedback" data-zh="✅ 4 种题型 + 即时反馈">✅ 4 种题型 + 即时反馈</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial" data-en="⚠️ Homework, delayed" data-zh="⚠️ 作业制，反馈慢">⚠️ 作业制，反馈慢</span></td>
+</tr>
+<tr>
+<td><span data-en="Information preservation" data-zh="信息保全">信息保全</span></td>
+<td><span class="check" data-en="✅ Explicit rule: no over-deletion" data-zh="✅ 明确规则：不可过度删减">✅ 明确规则：不可过度删减</span></td>
+<td><span class="cross" data-en="❌ Often loses key points" data-zh="❌ 经常丢失要点">❌ 经常丢失要点</span></td>
+<td><span class="partial">—</span></td>
+<td><span class="partial">—</span></td>
+</tr>
+<tr>
+<td><span data-en="Severity rating" data-zh="严重度分级">严重度分级</span></td>
+<td><span class="check" data-en="✅ 🔴🟡🟢 per disease" data-zh="✅ 🔴🟡🟢 逐病标注">✅ 🔴🟡🟢 逐病标注</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial" data-en="⚠️ Red marks on paper" data-zh="⚠️ 红笔批改">⚠️ 红笔批改</span></td>
+</tr>
+<tr>
+<td><span data-en="IRON LAW guardrails" data-zh="IRON LAW 护栏">IRON LAW 护栏</span></td>
+<td><span class="check" data-en="✅ 8 non-negotiable rules" data-zh="✅ 8 条不可违反的硬规则">✅ 8 条不可违反的硬规则</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="partial" data-en="⚠️ Implicit" data-zh="⚠️ 隐性规范">⚠️ 隐性规范</span></td>
+</tr>
+<tr>
+<td><span data-en="Setup cost" data-zh="上手成本">上手成本</span></td>
+<td><span class="check" data-en="✅ Drop in a folder" data-zh="✅ 放进一个文件夹">✅ 放进一个文件夹</span></td>
+<td><span class="partial" data-en="⚠️ Rewrite prompt each time" data-zh="⚠️ 每次重写提示词">⚠️ 每次重写提示词</span></td>
+<td><span class="partial" data-en="⚠️ Learn the tool" data-zh="⚠️ 学工具">⚠️ 学工具</span></td>
+<td><span class="cross" data-en="❌ Attend a course" data-zh="❌ 报名上课">❌ 报名上课</span></td>
+</tr>
+<tr>
+<td><span data-en="Cross-skill linkage" data-zh="跨 Skill 联动">跨 Skill 联动</span></td>
+<td><span class="check" data-en="✅ critical-thinking → diagnose → restructure" data-zh="✅ critical-thinking → 拆解 → 重构">✅ critical-thinking → 拆解 → 重构</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+<td><span class="cross">❌</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></section>
+
+<!-- Workflows -->
+<section class="block bg-warm" id="workflows"><div class="container">
+<div class="section-label">🚀 <span data-en="Workflows" data-zh="工作流">工作流</span></div>
+<h2 class="section-title"><span data-en="Six scenarios, each with a recommended flow" data-zh="六大场景，每个都有推荐流程">六大场景，每个都有推荐流程</span></h2>
+<p class="section-desc"><span data-en="Pick your scenario, follow the recommended flow, and get a structured output — no guessing which mode or path to use." data-zh="选你的场景，跟着推荐流程走，拿到结构化输出——不用猜该用哪个模式或路径。">选你的场景，跟着推荐流程走，拿到结构化输出——不用猜该用哪个模式或路径。</span></p>
+<div class="wf-head">
+<div><span data-en="Scenario" data-zh="场景">场景</span></div>
+<div><span data-en="Recommended Flow" data-zh="推荐流程">推荐流程</span></div>
+<div><span data-en="Key Output" data-zh="关键输出">关键输出</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">💼 <span data-en="Quarterly Review" data-zh="季度述职">季度述职</span></div>
+<div class="wf-scene"><span data-en="Guided → Top-down → Action SCQA" data-zh="引导模式 → 自上而下 → 行动式 SCQA">引导模式 → 自上而下 → 行动式 SCQA</span></div>
+<div class="wf-trigger"><span data-en="Conclusion-first review narrative" data-zh="结论先行的述职稿">结论先行的述职稿</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">📋 <span data-en="Project Proposal" data-zh="项目方案">项目方案</span></div>
+<div class="wf-scene"><span data-en="Quick → Diagnose → Restructure" data-zh="快捷模式 → 诊断 → 重组">快捷模式 → 诊断 → 重组</span></div>
+<div class="wf-trigger"><span data-en="Diagnosis report + optimized proposal" data-zh="诊断报告 + 优化方案">诊断报告 + 优化方案</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">📧 <span data-en="Weekly Email" data-zh="周报邮件">周报邮件</span></div>
+<div class="wf-scene"><span data-en="Quick → Top-down" data-zh="快捷模式 → 自上而下">快捷模式 → 自上而下</span></div>
+<div class="wf-trigger"><span data-en="Lean pyramid structure" data-zh="精简版金字塔结构">精简版金字塔结构</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">📊 <span data-en="Competitive Analysis" data-zh="竞品分析">竞品分析</span></div>
+<div class="wf-scene"><span data-en="Guided → Bottom-up" data-zh="引导模式 → 自下而上">引导模式 → 自下而上</span></div>
+<div class="wf-trigger"><span data-en="MECE classification + logic tree" data-zh="MECE 分类 + 逻辑树">MECE 分类 + 逻辑树</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">📈 <span data-en="Upward Reporting" data-zh="向上汇报">向上汇报</span></div>
+<div class="wf-scene"><span data-en="Quick → Conflict SCQA" data-zh="快捷模式 → 冲突式 SCQA">快捷模式 → 冲突式 SCQA</span></div>
+<div class="wf-trigger"><span data-en="Problem-oriented report" data-zh="问题导向的汇报稿">问题导向的汇报稿</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">🎤 <span data-en="Interview Response" data-zh="面试答题">面试答题</span></div>
+<div class="wf-scene"><span data-en="Guided → STAR → Pyramid" data-zh="引导模式 → STAR → 金字塔">引导模式 → STAR → 金字塔</span></div>
+<div class="wf-trigger"><span data-en="Conclusion-first answer structure" data-zh="结论先行的回答结构">结论先行的回答结构</span></div>
+</div>
+
+<div class="wf-modes">
+<div class="wf-modes-title">⚙️ <span data-en="Two Interaction Modes" data-zh="两种交互模式">两种交互模式</span></div>
+<div class="wf-row">
+<div class="wf-name">🚀 <span data-en="Quick (default)" data-zh="快捷模式（默认）">快捷模式（默认）</span></div>
+<div class="wf-scene"><span data-en="Paste → diagnose → restructure → polished output" data-zh="贴文本 → 诊断 → 重组 → 优化输出">贴文本 → 诊断 → 重组 → 优化输出</span></div>
+<div class="wf-trigger"><span data-en="Text pasted + trigger words like &quot;fix the logic&quot;" data-zh="贴了文本 + 触发词如&amp;ldquo;帮我理清逻辑&amp;rdquo;">贴了文本 + 触发词如&ldquo;帮我理清逻辑&rdquo;</span></div>
+</div>
+<div class="wf-row">
+<div class="wf-name">💬 <span data-en="Guided" data-zh="引导模式">引导模式</span></div>
+<div class="wf-scene"><span data-en="Dialogue-driven pyramid construction from fuzzy ideas" data-zh="对话引导，从模糊想法构建金字塔">对话引导，从模糊想法构建金字塔</span></div>
+<div class="wf-trigger"><span data-en="&quot;Help me organize my thoughts&quot; / &quot;I don't know how to structure this&quot;" data-zh="说&amp;ldquo;帮我理清思路&amp;rdquo;&amp;ldquo;不知道怎么组织&amp;rdquo;">说&ldquo;帮我理清思路&rdquo;&ldquo;不知道怎么组织&rdquo;</span></div>
+</div>
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-section"><div class="container">
+<h2><span data-en="Stop <em>fumbling for structure</em>.<br><em>Conclusion first, airtight logic.</em>" data-zh="别再<em>组织不起语言</em>。<br><em>结论先行，逻辑密不透风。</em>">别再<em>组织不起语言</em>。<br><em>结论先行，逻辑密不透风。</em></span></h2>
+<p><span data-en="7 logic diseases, 4 SCQA variants, 1 pyramid &mdash; turning &quot;I know what I want to say but can't organize it&quot; into structured, airtight expression." data-zh="7 类逻辑病、4 种 SCQA 变体、一座金字塔——把&amp;ldquo;我知道想说什么但组织不起来&amp;rdquo;变成结论先行、论据在下、逻辑密不透风。">7 类逻辑病、4 种 SCQA 变体、一座金字塔——把&ldquo;我知道想说什么但组织不起来&rdquo;变成结论先行、论据在下、逻辑密不透风。</span></p>
+<div class="hero-actions">
+<a href="https://github.com/muippt/mu-pyramid-principle/archive/refs/tags/v1.2.0.zip" class="btn btn-primary" target="_blank"><span data-en="📦 Download Skill" data-zh="📦 下载 Skill">📦 下载 Skill</span></a>
+<a href="https://muippt.github.io/mu-skill-hub/" class="btn btn-secondary" target="_blank"><span data-en="📚 Browse Skill Hub" data-zh="📚 浏览 Skill合集">📚 浏览 Skill合集</span></a>
+</div></div></section>
+
+<!-- Footer -->
+<footer><div class="container">
+<div class="footer-badges">
+<a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-07C160?logo=wechat&logoColor=white" alt="WeChat" height="20"></a>
+<a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img data-en-src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" data-zh-src="https://img.shields.io/badge/木先生iPPT-FF2442?logo=xiaohongshu&logoColor=white" alt="Xiaohongshu" height="20"></a>
+<a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img data-en-src="https://img.shields.io/badge/Book-Visual%20Team%20Management-BBDDE5?logo=bookstack&logoColor=white" data-zh-src="https://img.shields.io/badge/著作-《图解团队管理》-BBDDE5?logo=bookstack&logoColor=white" alt="Book" height="20"></a>
+<a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a>
+<a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a>
+</div>
+</div></footer>
+
+<script>
+(function(){
+  var sw=document.getElementById('langSwitch');
+  var spans=sw.querySelectorAll('span');
+  function applyLang(lang){
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      el.innerHTML=el.getAttribute('data-'+lang);
+    });
+    document.querySelectorAll('img[data-'+lang+'-src]').forEach(function(img){
+      var s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;
+    });
+    spans.forEach(function(s){s.classList.toggle('active',s.getAttribute('data-lang')===lang)});
+    document.documentElement.lang=lang==='zh'?'zh':'en';
+  }
+  spans.forEach(function(s){s.addEventListener('click',function(){applyLang(s.getAttribute('data-lang'))})});
+  applyLang('zh');
+
+  /* Theme toggle */
+  var tb=document.getElementById('themeToggle');
+  var html=document.documentElement;
+  function setTheme(dark){
+    html.classList.toggle('dark',dark);
+    tb.textContent=dark?'🌙':'☀️';
+  }
+  /* Init: follow system preference */
+  if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){setTheme(true)}
+  tb.addEventListener('click',function(){setTheme(!html.classList.contains('dark'))});
+})();
+</script>
+</body>
+</html>

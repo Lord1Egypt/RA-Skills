@@ -1,43 +1,59 @@
-## Description: <br>
-Bitstamp Trader helps agents use a local Bitstamp CLI to inspect crypto markets and account data, simulate trades by default, and place explicit live spot orders with safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safety-first Bitcoin and crypto trading on Bitstamp via CLI for checking crypto prices, viewing account balances, placing buy or sell orders, managing open orders, checking trade history, and monitoring Bitstamp markets.
 
-## Publisher: <br>
-[zhen08](https://clawhub.ai/user/zhen08) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhen08](https://clawhub.ai/user/zhen08)
 
-## Use Case: <br>
-External users and developers use this skill to operate a local Bitstamp trading helper for market checks, balance review, order management, dry-run trade review, and explicitly approved live spot trades. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CLI can place real Bitstamp trades when API keys are present and the user deliberately runs live commands. <br>
-Mitigation: Use a dedicated Bitstamp API key with no withdrawal permission, enable IP whitelisting, keep dry-run as the normal workflow, and review every dry-run before any --live command. <br>
-Risk: Local audit and configuration files may expose trading activity, safety limits, or operational history. <br>
-Mitigation: Protect local config directories and periodically clear or rotate audit and configuration files when appropriate. <br>
-Risk: Unexpected market movement, stale inputs, or an incorrect market pair could lead to an unintended trade. <br>
-Mitigation: Keep order-size, daily-volume, price-deviation, allowed-market, confirmation, and kill-switch guardrails enabled and review command output before proceeding. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Safety Architecture](references/safety.md) <br>
-- [Bitstamp API Reference](references/api-reference.md) <br>
-- [Bitstamp Trader on ClawHub](https://clawhub.ai/zhen08/bitstamp-trader) <br>
+## Use Case:
 
+External users and developers use this skill to operate a Bitstamp trading CLI that retrieves market and account data, simulates trades by default, and can place live spot orders only when explicitly requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration, audit, daily-volume, and kill-switch files under BITSTAMP_CONFIG_DIR or ~/.config/bitstamp-trader.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live mode can place real Bitstamp trades with the user's API key.
+
+Mitigation: Run dry-run commands first, require explicit live execution and confirmation, and use trade-only API keys with withdrawals disabled and IP allowlisting enabled.
+
+Risk: The security review reports material weaknesses in the daily cap, kill switch, cancellation reporting, and numeric validation controls.
+
+Mitigation: Do not rely on the built-in guardrails alone; keep conservative limits, monitor account state directly, and fix or review those controls before using live trading.
+
+Risk: The skill depends on CCXT and external Bitstamp API behavior for account and order operations.
+
+Mitigation: Pin and review the ccxt dependency, test public and account-read commands before live trading, and verify Bitstamp responses before acting on them.
+
+## Reference(s):
+
+- [Bitstamp Trader Skill Page](https://clawhub.ai/zhen08/skills/bitstamp-trader)
+- [Bitstamp API Reference](references/api-reference.md)
+- [Safety Architecture](references/safety.md)
+- [Bitstamp API Settings](https://www.bitstamp.net/settings/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live exchange actions require Bitstamp API credentials and an explicit live execution flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Access global ocean tides model. Functions include tide height at a given date/time/location, tide extrema, and grid weather data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access global ocean tides model. Functions include tide height at a given date/time/location, tide extrema, and grid weather data.
 
-## Publisher: <br>
-[hamandmore](https://clawhub.ai/user/hamandmore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hamandmore](https://clawhub.ai/user/hamandmore)
 
-## Use Case: <br>
-Developers and agents use this skill to query tide heights, tide extrema, and weather-grid variables for specified locations and times through a documented JSON-RPC API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tide and weather lookups send requested coordinates, times, and weather variables to the external API. <br>
-Mitigation: Avoid sending sensitive locations or schedules unless that disclosure is acceptable for the intended use. <br>
-Risk: Authenticated access uses bearer or opaque basic tokens. <br>
-Mitigation: Use a dedicated revocable token and avoid embedding it in shared prompts, logs, or public examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hamandmore/tides) <br>
-- [Tides JSON-RPC API endpoint](https://hamandmore.net/api/harmonics/mcp) <br>
+## Use Case:
 
+External developers and agents use this skill to call the hamandmore.net JSON-RPC API for tide heights, tide extrema, and grid weather variables by location and time.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, API calls] <br>
-**Output Format:** [Markdown guidance with JSON-RPC payloads and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are returned as JSON-RPC results with structured content when the external API call succeeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries may send coordinates, times, requested weather variables, and optional hamandmore.net API tokens to the disclosed service endpoint.
+
+Mitigation: Use service-specific tokens only, avoid reusing unrelated secrets, and send only coordinates and time ranges appropriate for the intended request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hamandmore/skills/tides)
+- [Disclosed JSON-RPC API endpoint](https://hamandmore.net/api/harmonics/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API returns JSON-RPC responses with stringified JSON text and preferred structured JSON content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

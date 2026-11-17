@@ -1,40 +1,57 @@
-## Description: <br>
-Firm A2a Bridge provides an Agent-to-Agent Protocol RC v1.0 bridge for OpenClaw agents, covering agent cards, task lifecycle management, push notifications, cancellation, discovery, and SSE subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-to-Agent (A2A) Protocol RC v1.0 bridge for OpenClaw agents that enables agent discovery, identity cards, task lifecycle management, push notification configuration, task cancellation, and SSE subscriptions.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and agent engineers use this skill to connect OpenClaw agents with A2A-compatible agents, generate and validate agent cards, send and monitor tasks, configure push notifications, cancel tasks, and subscribe to task updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill involves network, webhook, local file, and token-related behavior as part of A2A interoperability. <br>
-Mitigation: Install only when the referenced MCP extension is trusted, use trusted agent, webhook, and callback URLs, and avoid sending sensitive task content to unknown agents. <br>
-Risk: Authentication tokens or signing keys may be used for push delivery or agent card signing. <br>
-Mitigation: Provide only scoped tokens or signing keys and rotate them if they are exposed. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose OpenClaw agents through the A2A Protocol RC v1.0, including agent card generation and validation, task lifecycle operations, discovery, push notification configuration, cancellation, and SSE subscriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-a2a-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce agent-card JSON files, task records, webhook configuration, and SSE subscription outputs through the referenced MCP extension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The skill can contact remote agent URLs, configure task webhooks, and subscribe to task events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target URLs and webhook destinations before use, approve only trusted endpoints, and keep remote task subscriptions scoped to the intended agent workflow.
+
+Risk: The skill may read local SOUL.md files provided to it while generating or discovering Agent Cards.
+
+Mitigation: Provide only intended SOUL.md paths and review generated Agent Card JSON before publishing or sharing it.
+
+Risk: Most operating documentation is in French, which can reduce review quality for non-French users.
+
+Mitigation: Translate and human-review the documentation and operating details before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-a2a-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and MCP tool-call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or validate Agent Card JSON, task and webhook configuration details, and status or event subscription guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

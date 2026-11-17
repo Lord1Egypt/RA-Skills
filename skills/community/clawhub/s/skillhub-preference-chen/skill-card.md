@@ -1,41 +1,50 @@
-## Description: <br>
-Prefer `skillhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prefer `skillhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Agents and users use this policy skill when discovering, installing, or updating agent skills. It guides the agent to try Skillhub first, fall back to ClawHub when needed, and summarize source, version, and risk signals before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registry preference can steer an agent toward skills from Skillhub before checking ClawHub. <br>
-Mitigation: Review the reported source, version, and risk summary before approving any installation, and fall back to ClawHub when Skillhub is unavailable or unsuitable. <br>
-Risk: Search command output can identify candidates but does not by itself establish trust or suitability. <br>
-Mitigation: Treat search results as discovery data and require normal review before installing or updating a skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to guide skill discovery, installation, and update workflows toward Skillhub first, while keeping ClawHub as an allowed fallback.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jason-aka-chen/skillhub-preference-chen) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jason-aka-chen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown guidance with command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No generated files or API calls are required by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill intentionally biases skill search, install, and update workflows toward Skillhub before ClawHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that registry preference is desired, and disclose the preference before relying on its guidance.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jason-aka-chen/skills/skillhub-preference-chen)
+- [Publisher profile](https://clawhub.ai/user/jason-aka-chen)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files, code, or persistent changes are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

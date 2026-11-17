@@ -1,39 +1,57 @@
-## Description: <br>
-子代理任务拆分 + using-superpowers 技能执行。每次 spawn 子代理前必须遵守的铁律。结合 using-superpowers 和 subagent-tasking 规则。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to check using-superpowers, split complex work into focused subagent tasks, write task briefs, and verify completion traces before spawning subagents.
 
-## Publisher: <br>
-[weilixiong](https://clawhub.ai/user/weilixiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilixiong](https://clawhub.ai/user/weilixiong)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when to split work into focused subagent tasks, prepare concise task briefs, and validate spawned subagent results before recording follow-up notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task briefs and forum notes may include secrets or sensitive user data when written to temporary task files or shared traces. <br>
-Mitigation: Confirm where traces are written, avoid including secrets or sensitive user data, and clean /tmp/tasks regularly or adapt the workflow to a private per-user directory. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route complex tasks through focused subagents with written task briefs and result checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weilixiong/subagent-tasking-with-superpowers) <br>
-- [Publisher profile](https://clawhub.ai/user/weilixiong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown instructions with task brief templates and spawn command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise task decomposition guidance and task brief content for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill requires routing subagent work through another skill, which can override normal task judgment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and apply only in workspaces where mandatory superpowers checks are expected.
+
+Risk: The skill directs agents to write task briefs under /tmp/tasks, which can persist task details locally.
+
+Mitigation: Avoid sensitive data in task briefs and clear local task files according to workspace policy.
+
+Risk: The skill asks agents to leave completion traces in an undefined forum, which could disclose workflow details.
+
+Mitigation: Post traces only to approved destinations and review content before sharing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/weilixiong/skills/subagent-tasking-with-superpowers)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with task brief templates and inline shell-style command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct creation of local task brief files under /tmp/tasks and completion traces depending on the agent environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

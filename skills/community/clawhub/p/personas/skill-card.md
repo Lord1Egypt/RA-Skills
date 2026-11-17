@@ -1,45 +1,69 @@
-## Description: <br>
-Transform into 20 specialized AI personalities on demand. Switch mid-conversation and load only the active persona. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 20 specialized OpenClaw persona modes that an assistant can list, activate, inspect, switch between, and exit while loading only the active persona.
 
-## Publisher: <br>
-[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla)
 
-## Use Case: <br>
-External users and developers use this skill to switch an agent among bundled personas for coding, writing, learning, lifestyle, and professional-orientation tasks while loading only the active persona. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The selected persona can persist across sessions through local active-persona state. <br>
-Mitigation: Use /persona exit, scripts/persona.py --reset, or an equivalent reset before switching contexts where the prior persona should not apply. <br>
-Risk: Medical, legal, fitness, career, or security personas can be mistaken for professional advice. <br>
-Mitigation: Treat those personas as general educational or orientation guidance and consult qualified professionals for decisions in regulated or high-impact domains. <br>
-Risk: Persona prompts can change the agent's tone and priorities in ways that are inappropriate for a later task. <br>
-Mitigation: Use explicit /persona commands and confirm or reset the active persona before starting sensitive, formal, or unrelated work. <br>
+## Use Case:
 
+External OpenClaw users use this skill to switch an assistant into one of 20 bundled persona modes for coding, writing, learning, lifestyle, and professional guidance. Medical and legal personas are educational or orientation-only and do not replace licensed professionals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robbyczgw-cla/personas) <br>
-- [README.md](README.md) <br>
-- [FAQ.md](FAQ.md) <br>
-- [OVERVIEW.md](OVERVIEW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown persona prompts and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Loads one active persona at a time; local active-persona state may persist in ~/.openclaw/persona-state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.6 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+Risk: Persona mode can persist and make later assistant responses appear unusual or domain-biased.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit /personas commands, check the active persona when responses seem unexpected, and use /personas exit or the CLI reset command to return to the default mode.
+
+Risk: Broad activation phrases such as use persona, switch to, or activate can trigger persona switching unintentionally.
+
+Mitigation: Confirm the intended active persona after activation and reset persona mode when the specialized style is no longer needed.
+
+Risk: Medical and legal personas can be mistaken for professional advice.
+
+Mitigation: Treat those personas as educational or orientation-only and consult licensed professionals for medical or legal decisions.
+
+Risk: Several bundled personas may answer in German.
+
+Mitigation: Select personas intentionally and ask for a different response language or exit the persona if the language does not match the user's needs.
+
+Risk: The CLI writes active-persona state to the local ~/.openclaw/persona-state.json file.
+
+Mitigation: Use the reset command to clear active persona state and review local state handling before deploying in shared or managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robbyczgw-cla/skills/personas)
+- [Publisher profile](https://clawhub.ai/user/robbyczgw-cla)
+- [README](README.md)
+- [FAQ](FAQ.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown persona prompts and short text status output, with optional shell commands for the bundled CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Loads one active persona at a time; the CLI stores local active-persona state in ~/.openclaw/persona-state.json.]
+
+## Skill Version(s):
+
+2.3.0 (source: SKILL.md frontmatter and changelog released 2026-08-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Helps configure two Discord bots on one machine with isolated workspaces, channel allowlists, mention-gated reviewer behavior, optional one-way reviewer feedback, and backup/rollback commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and operate dual Discord bots on one machine with isolated memory, channel allowlists, mention-gated reviewer bot behavior, optional one-way reviewer-to-primary context bridge, and safe backup/rollback.
 
-## Publisher: <br>
-[nbdxrycyl](https://clawhub.ai/user/nbdxrycyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nbdxrycyl](https://clawhub.ai/user/nbdxrycyl)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a primary Discord bot and reviewer bot, tune reply rules, and recover from bad configuration changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can rewrite persistent bot configuration using loosely validated paths and values. <br>
-Mitigation: Review the scripts before running them, use trusted simple paths and numeric Discord IDs, and create a backup before applying policy or rollback changes. <br>
-Risk: Discord bot tokens or backed-up configuration could be exposed if stored in shared locations. <br>
-Mitigation: Keep real tokens out of shared files, store secrets and backups in private directories, and limit access to generated .env and backup files. <br>
-Risk: Untrusted channel or configuration values could lead to unsafe configuration changes. <br>
-Mitigation: Use only trusted channel and config values until stronger input validation is added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nbdxrycyl/discord-dual-bot-orchestrator) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and recover a two-bot Discord setup with separated bot workspaces, channel allowlists, mention-gated reviewer behavior, and backup or rollback commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell command snippets and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Placeholder-based; users must replace Discord bot, guild, channel, and path values before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scripts can edit live OpenClaw bot configuration.
+
+Mitigation: Review generated configuration changes before restarting gateways and run the skill only in the intended bot environment.
+
+Risk: Backups may include sensitive bot configuration.
+
+Mitigation: Store backups outside repositories or shared folders with private permissions.
+
+Risk: Environment variables can alter script targets.
+
+Mitigation: Run scripts with trusted environment variables and dedicated least-privileged bot accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nbdxrycyl/skills/discord-dual-bot-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses placeholders for bot names, tokens, IDs, guilds, channels, and base directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

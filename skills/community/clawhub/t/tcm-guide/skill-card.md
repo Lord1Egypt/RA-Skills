@@ -1,39 +1,52 @@
-## Description: <br>
-Traditional Chinese Medicine (TCM) wellness guidance including constitution analysis, seasonal health tips, herbal tea recommendations, acupressure points, and dietary advice based on TCM principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Traditional Chinese Medicine (TCM) wellness guidance including constitution analysis, seasonal health tips, herbal tea recommendations, acupressure points, and dietary advice based on TCM principles.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill for cultural and wellness-oriented TCM guidance, including constitution-oriented lifestyle suggestions, seasonal dietary ideas, herbal tea suggestions, and acupressure points. It is complementary wellness information and not a substitute for medical diagnosis or treatment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake broad TCM wellness guidance for medical diagnosis or treatment advice.
+
+Mitigation: Present the skill as complementary cultural and wellness information, and direct users to qualified medical care for serious, worsening, chronic, pregnancy-related, medication-related, or urgent symptoms.
+
+Risk: Herbal tea, dietary, or acupressure suggestions may be inappropriate for medication use, pregnancy, chronic illness, or urgent symptoms.
+
+Mitigation: Include clear medical-care escalation guidance and avoid positioning recommendations as replacements for professional care.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to explore complementary TCM wellness guidance for constitution analysis, seasonal diet, herbal teas, acupressure points, and lifestyle suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat complementary TCM wellness suggestions as diagnosis or treatment for medical conditions. <br>
-Mitigation: Frame outputs as wellness guidance only and direct users to qualified medical professionals for diagnosis, urgent or severe symptoms, or serious medical conditions. <br>
-Risk: Herbal, dietary, or acupressure suggestions may be inappropriate for pregnancy, child care, medication use, or possible herb-drug interactions. <br>
-Mitigation: Avoid medication-change and interaction advice; advise professional consultation for pregnancy, children, medications, and complex health situations. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include wellness caveats and recommendations to consult qualified medical care for serious, worsening, chronic, pregnancy-related, medication-related, or urgent symptoms.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with lists and practical wellness suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance should include a complementary-care note and avoid diagnosis, urgent-care triage, medication changes, and serious-condition treatment advice.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

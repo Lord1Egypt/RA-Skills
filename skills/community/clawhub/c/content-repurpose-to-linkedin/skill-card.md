@@ -1,46 +1,57 @@
-## Description: <br>
-Turn source content into polished LinkedIn posts and publish them with confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns source content into polished LinkedIn posts and publishes them through ClawLink only after user approval.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users, marketers, founders, and professional teams use this skill to turn articles, notes, transcripts, or product updates into LinkedIn-ready drafts and publish them through ClawLink after explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help publish content to LinkedIn through a connected ClawLink account. <br>
-Mitigation: Review the exact post text and target personal profile or organization before approving any publishing action. <br>
-Risk: The workflow requires LinkedIn OAuth access and enables the ClawLink plugin in OpenClaw. <br>
-Mitigation: Install only if comfortable connecting LinkedIn through ClawLink, and verify the LinkedIn connection before use. <br>
-Risk: Drafted social content can include unsupported claims if source material is ambiguous. <br>
-Mitigation: Preserve claims from the provided source material and revise drafts before publishing. <br>
+## Use Case:
 
+External users and teams use this skill to turn articles, notes, transcripts, or launch material into LinkedIn-ready post drafts, compare variants, and publish only after explicit confirmation.
 
-## Reference(s): <br>
-- [Content Repurpose to LinkedIn on ClawHub](https://clawhub.ai/hith3sh/content-repurpose-to-linkedin) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=content-repurpose-to-linkedin) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [LinkedIn API Documentation](https://developer.linkedin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with draft post text, setup commands, confirmation prompts, and publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawLink setup, a connected LinkedIn account, and explicit user confirmation before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Installing and allowlisting an unpinned third-party ClawLink plugin can grant persistent mediation of LinkedIn account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin provenance, prefer a pinned and verified version, confirm LinkedIn OAuth scopes, and proceed only if the user accepts that access.
+
+Risk: A LinkedIn draft could be published to the wrong profile or organization page if the target or approval is unclear.
+
+Mitigation: Preview the exact post and target, use ClawLink preview tooling when available, and call publish tools only after explicit confirmation.
+
+## Reference(s):
+
+- [Content Repurpose to LinkedIn release page](https://clawhub.ai/hith3sh/skills/content-repurpose-to-linkedin)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=content-repurpose-to-linkedin)
+- [ClawLink OpenClaw docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink verification](https://claw-link.dev/verify)
+- [LinkedIn API documentation](https://developer.linkedin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with draft post text, confirmation prompts, and inline bash setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live ClawLink tool discovery and explicit user confirmation before publishing.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

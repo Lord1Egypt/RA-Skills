@@ -1,35 +1,28 @@
 ---
-name: "Heartflow"
-description: "HeartFlow v1.3.5 — AI 认知与自愈引擎。 核心能力：三层记忆(MeaningfulMemory/Triality)、自愈RL(Q-table)、自优化(Self-Refine+Reflexion)、 决策验证、遗忘曲线(Ebbinghaus)、心理诊断引擎(PsychologyEngine)、..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/heartflow"
-sourceUrl: "https://clawhub.ai/skills/heartflow"
+name: heartflow
+title: "HeartFlow — Rule-based AI Output Discriminator"
+version: "6.4.1"
+description: |-
+  HeartFlow (心虫) is a rule-based text discrimination engine for AI output validation.
+  12-module pipeline, 45 discrimination dimensions, zero LLM dependency.
+  
+  npm: @yun520-1/heartflow
 ---
+## Quick start
 
-# Heartflow
+```js
+const hf = require('@yun520-1/heartflow');
+hf.checkInput('text');     // pass/verify/rewrite/block
+hf.checkDraft('text');     // check draft before completing
+hf.checkOutput('text');    // check AI output before sending
+```
 
-> HeartFlow v1.3.5 — AI 认知与自愈引擎。 核心能力：三层记忆(MeaningfulMemory/Triality)、自愈RL(Q-table)、自优化(Self-Refine+Reflexion)、 决策验证、遗忘曲线(Ebbinghaus)、心理诊断引擎(PsychologyEngine)、...
+## Pipeline
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/heartflow`
-- **Source URL:** [https://clawhub.ai/skills/heartflow](https://clawhub.ai/skills/heartflow)
+scope-check → premise-check → discriminate(45dim) → gate → verifier → frame-check → output-gate → doubt-engine → error-memory → auto-rules
 
-## Overview
+## Install
 
-
-## Installation
-To install this skill, run the following command in your terminal:
 ```bash
-hermes skills install clawhub/heartflow
+npm install @yun520-1/heartflow
 ```

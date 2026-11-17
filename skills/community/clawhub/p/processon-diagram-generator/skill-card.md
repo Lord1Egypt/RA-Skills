@@ -1,42 +1,57 @@
-## Description: <br>
-ProcessOn Diagram Generator helps agents turn natural-language diagram requests and project context into editable ProcessOn diagrams with preview and edit links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProcessOn Diagram Generator helps agents turn natural-language or code-context requests into ProcessOn diagrams, including flowcharts, architecture diagrams, ER diagrams, org charts, timelines, roadmaps, infographics, and sketch redraws.
 
-## Publisher: <br>
-[leilizhang](https://clawhub.ai/user/leilizhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leilizhang](https://clawhub.ai/user/leilizhang)
 
-## Use Case: <br>
-Developers, analysts, and other users can ask an agent to create or redraw flowcharts, business process diagrams, architecture diagrams, ER diagrams, organization charts, timelines, roadmaps, infographics, and related visualizations in ProcessOn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram prompts and context are sent to ProcessOn cloud services. <br>
-Mitigation: Use the skill only when external ProcessOn processing is acceptable for the information in the request. <br>
-Risk: The skill stores reusable local authorization tokens. <br>
-Mitigation: Review, revoke, or delete cached ProcessOn credentials when they are no longer needed or when switching users. <br>
-Risk: The release asks agents to run npm and shell-based setup or update steps. <br>
-Mitigation: Review commands before execution and use the skill only in environments where those setup steps are permitted. <br>
+## Use Case:
 
+Developers, operators, and other external users can use this skill when they need an agent to create editable ProcessOn diagrams from structured or partially structured diagram requests.
 
-## Reference(s): <br>
-- [ProcessOn Diagram Generator on ClawHub](https://clawhub.ai/leilizhang/skills/processon-diagram-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with command examples and ProcessOn preview/edit links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser authorization for ProcessOn and sends diagram prompts to ProcessOn cloud services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.2 (source: server release evidence) <br>
+Risk: Diagram prompts and related context may be sent to ProcessOn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, proprietary architecture details, regulated data, or other sensitive information unless ProcessOn is approved for that use.
+
+Risk: The skill stores a local bearer token for ProcessOn authorization.
+
+Mitigation: Use it only in environments where local token storage is acceptable, and reauthorize or clear stored credentials when changing users or trust boundaries.
+
+Risk: The skill can perform npm-based dependency setup and update flows.
+
+Mitigation: Prefer a version pinned to a reviewed release or commit and review package installation behavior before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leilizhang/skills/processon-diagram-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and links to generated diagram previews and editable ProcessOn files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require browser-based ProcessOn authorization before diagram generation.]
+
+## Skill Version(s):
+
+2.5.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

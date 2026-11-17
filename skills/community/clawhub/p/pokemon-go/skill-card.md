@@ -1,41 +1,54 @@
-## Description: <br>
-Organizes and summarizes public Pokemon GO information about events, updates, contests, rules, and help resources without enabling cheats or account services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes and summarizes public Pokemon GO information on events, updates, contests, rules, and help resources without enabling cheats or account services.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to organize public Pokemon GO official-page information into summaries, tables, and checklists for events, version updates, tournaments, community rules, account safety, and help resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pokemon GO events and rules change frequently, so outdated dates, rewards, or rule summaries could mislead users. <br>
-Mitigation: Preserve source links and dates in outputs, and verify current official pages before acting on event or rule information. <br>
-Risk: Requests for cheats, account trading, payment bypasses, or private account data would exceed the skill boundary. <br>
-Mitigation: Decline those requests and keep outputs limited to public, official Pokemon GO information. <br>
+## Use Case:
 
+External users and agents use this skill to organize public Pokemon GO event, update, tournament, rules, and help content into summaries, tables, and checklists with dates and source links.
 
-## Reference(s): <br>
-- [Pokemon GO Official Website](https://pokemongolive.com/) <br>
-- [ClawHub Pokemon Go Skill Page](https://clawhub.ai/mike47512/pokemon-go) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and checklists with source links and dates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should retain dates and source links when summarizing events, rules, rewards, or help information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Pokemon GO events and versions change frequently, so summaries may become stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify dates, event details, and source links against current official Pokemon GO pages before relying on outputs.
+
+Risk: User requests could ask for cheating, account trading, payment bypass, private data, or other out-of-scope support.
+
+Mitigation: Keep outputs limited to public official information and refuse guidance that enables cheating, bypasses, account services, or private data handling.
+
+## Reference(s):
+
+- [Pokemon GO Official Website](https://pokemongolive.com/)
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/pokemon-go)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and checklists with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public information only; outputs should preserve relevant dates and links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

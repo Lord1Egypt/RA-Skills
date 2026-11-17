@@ -31,9 +31,7 @@ pip install httpx cryptography python-dotenv
 Create `.env` in the skill directory:
 ```env
 KALSHI_API_KEY_ID=your_key_id
-KALSHI_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-...
------END RSA PRIVATE KEY-----"
+KALSHI_PRIVATE_KEY="REDACTED-SECRET"
 ```
 Get credentials: https://kalshi.com/profile/api
 

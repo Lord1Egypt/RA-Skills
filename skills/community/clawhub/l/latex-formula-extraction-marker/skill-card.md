@@ -1,40 +1,53 @@
-## Description: <br>
-Convert PDF documents to Markdown using marker_single while preserving LaTeX formulas, equations, and document structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF documents to Markdown using marker_single while preserving LaTeX formulas, equations, and document structure.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and technical document reviewers use this skill to convert selected PDFs, especially academic or technical papers with mathematical notation, into Markdown for downstream analysis or editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs marker_single from the third-party marker-pdf package on local PDF inputs. <br>
-Mitigation: Install and run it only in environments where that local conversion tool is acceptable, and use a sandbox for sensitive or untrusted documents. <br>
-Risk: Using --keep-temp or cleanup=false leaves extracted Markdown and conversion artifacts on disk. <br>
-Mitigation: Use the default cleanup behavior for sensitive files, or remove retained output directories after inspection. <br>
+## Use Case:
 
+Developers and technical document users use this skill to convert PDFs, especially academic papers and mathematical documents, into Markdown that preserves text structure and LaTeX-style equations.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/wu-uk/latex-formula-extraction-marker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown text returned by the Python API or printed by the command-line script, with usage guidance and example commands in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs marker_single locally with image extraction disabled; temporary conversion output is deleted by default unless the caller keeps it for inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill runs the third-party marker-pdf converter locally on user-provided PDFs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, avoid elevated privileges, and review or pin the marker-pdf dependency before sensitive use.
+
+Risk: Large or malformed PDFs can cause conversion failures or timeout.
+
+Mitigation: Use the timeout parameter and keep temporary outputs only when inspection is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/latex-formula-extraction-marker)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown text returned from a Python helper or printed by a command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write temporary converter outputs locally when cleanup is disabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

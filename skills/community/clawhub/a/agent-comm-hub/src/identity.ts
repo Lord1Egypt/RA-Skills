@@ -12,7 +12,6 @@
  */
 import { randomUUID, randomBytes } from "crypto";
 import { db } from "./db.js";
-import { getRow, getAllRows } from "./utils.js";
 import {
   generateToken,
   sha256,
@@ -22,7 +21,7 @@ import {
   auditLog,
   type AuthContext,
 } from "./security.js";
-import { pushToAgent, onlineAgents } from "./sse.js";
+import { pushToAgent, onlineAgents, isAgentConnected } from "./sse.js";
 import { logger } from "./logger.js";
 import type { AgentRow, AgentCapabilityRow } from "./types.js";
 import { getErrorMessage } from "./types.js";
@@ -168,10 +167,7 @@ export function heartbeat(agentId: string): {
     ).run(HEARTBEAT_CONFIG.TRUST_SCORE_MAX, agentId);
   }
 
-  const newTrustScore = getRow<{ trust_score: number }>(
-    db.prepare(`SELECT trust_score FROM agents WHERE agent_id=?`),
-    agentId
-  )?.trust_score ?? 50;
+  const newTrustScore = (db.prepare(`SELECT trust_score FROM agents WHERE agent_id=?`).get(agentId) as any)?.trust_score ?? 50;
 
   return { success: true, status: "online", last_heartbeat: now, trust_score: newTrustScore };
 }
@@ -254,6 +250,72 @@ export function getAgent(agentId: string): AgentInfo | null {
   };
 }
 
+// ─── 统一在线判定（SSE 实时连接 OR 近期心跳） ─────────────
+/**
+ * 统一「在线」判定：满足以下任一即在线
+ *   1. 存在活跃的 SSE 实时连接（可达，可实时派单）
+ *   2. 数据库心跳在阈值内（轮询型 Agent 仍存活）
+ * 解决老问题：Agent 已建立 SSE 连接却因心跳陈旧被判定为离线、无法派单。
+ */
+export function isAgentOnline(agentId: string): boolean {
+  if (isAgentConnected(agentId)) return true;
+  try {
+    const row = db
+      .prepare(`SELECT last_heartbeat FROM agents WHERE agent_id=?`)
+      .get(agentId) as { last_heartbeat: number | null } | undefined;
+    if (!row || row.last_heartbeat == null) return false;
+    return Date.now() - row.last_heartbeat < HEARTBEAT_ONLINE_THRESHOLD;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 返回当前所有「在线」Agent 的 ID（合并 SSE 连接 + 心跳在线）。
+ * 供 get_online_agents 工具、派单候选排序、/health、Prometheus 指标统一使用。
+ */
+export function getOnlineAgentIds(): string[] {
+  const set = new Set(onlineAgents());
+  try {
+    const rows = db
+      .prepare(
+        `SELECT agent_id FROM agents
+         WHERE status='online' AND last_heartbeat IS NOT NULL AND last_heartbeat > ?`
+      )
+      .all(Date.now() - HEARTBEAT_ONLINE_THRESHOLD) as { agent_id: string }[];
+    for (const r of rows) set.add(r.agent_id);
+  } catch { /* 表可能尚未就绪 */ }
+  return [...set];
+}
+
+/**
+ * SSE 连接建立时调用：将 Agent 标记为在线（status + 刷新心跳时间戳），
+ * 使 agents 表与「SSE 已连」这一事实保持一致。
+ */
+export function markAgentSseOnline(agentId: string): void {
+  try {
+    db.prepare(`UPDATE agents SET status='online', last_heartbeat=? WHERE agent_id=?`)
+      .run(Date.now(), agentId);
+  } catch { /* ignore */ }
+}
+
+/**
+ * SSE 连接断开时调用：若心跳也已陈旧，则将 Agent 标记为离线；
+ * 若仍有近期心跳（轮询型），保留在线状态。
+ */
+export function markAgentSseOffline(agentId: string): void {
+  try {
+    const row = db
+      .prepare(`SELECT last_heartbeat FROM agents WHERE agent_id=?`)
+      .get(agentId) as { last_heartbeat: number | null } | undefined;
+    const fresh = row?.last_heartbeat != null &&
+      Date.now() - row.last_heartbeat < HEARTBEAT_ONLINE_THRESHOLD;
+    if (!fresh) {
+      db.prepare(`UPDATE agents SET status='offline' WHERE agent_id=?`).run(agentId);
+    }
+  } catch { /* ignore */ }
+}
+
 // ─── 心跳超时检测定时器（Day 3 核心） ────────────────────
 
 let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
@@ -275,17 +337,19 @@ export function startHeartbeatMonitor(onAgentOffline?: (agentId: string) => void
     const now = Date.now();
 
     // 查找所有 status='online' 但心跳超时的 Agent
-    const staleAgents = getAllRows<{ agent_id: string; name: string | null; last_heartbeat: number }>(
-      db.prepare(
+    const staleAgents = db
+      .prepare(
         `SELECT agent_id, name, last_heartbeat FROM agents
          WHERE status='online' AND last_heartbeat IS NOT NULL AND last_heartbeat < ?
          ORDER BY last_heartbeat ASC`
-      ),
-      now - HEARTBEAT_ONLINE_THRESHOLD
-    );
+      )
+      .all(now - HEARTBEAT_ONLINE_THRESHOLD) as any[];
 
     for (const agent of staleAgents) {
       const elapsed = now - agent.last_heartbeat;
+
+      // SSE 实时连接即视为在线（可达），不标记离线、也不广播离线通知
+      if (isAgentConnected(agent.agent_id)) continue;
 
       // 90s → 标记 offline
       if (elapsed >= HEARTBEAT_ONLINE_THRESHOLD) {
@@ -303,7 +367,7 @@ export function startHeartbeatMonitor(onAgentOffline?: (agentId: string) => void
           elapsed_s: Math.round(elapsed / 1000),
         });
 
-        auditLog("agent_offline", agent.agent_id, agent.name || undefined,
+        auditLog("agent_offline", agent.agent_id, agent.name,
           `heartbeat_timeout: ${Math.round(elapsed / 1000)}s`);
 
         // 回调
@@ -367,10 +431,9 @@ const TRUST_SCORE_DEFAULT = 50;
  * 获取 Agent 信任分
  */
 export function getAgentTrustScore(agentId: string): number {
-  const row = getRow<{ trust_score: number }>(
-    db.prepare(`SELECT trust_score FROM agents WHERE agent_id=?`),
-    agentId
-  );
+  const row = db
+    .prepare(`SELECT trust_score FROM agents WHERE agent_id=?`)
+    .get(agentId) as any;
   return row ? row.trust_score : TRUST_SCORE_DEFAULT;
 }
 
@@ -383,13 +446,20 @@ export function updateAgentTrustScore(
   delta: number,
   operatorId?: string
 ): { ok: true; new_score: number } | { ok: false; error: string } {
-  const row = getRow<{ trust_score: number }>(
-    db.prepare(`SELECT trust_score FROM agents WHERE agent_id=?`),
-    agentId
-  );
+  const row = db
+    .prepare(`SELECT trust_score FROM agents WHERE agent_id=?`)
+    .get(agentId) as any;
 
   if (!row) {
     return { ok: false, error: `Agent ${agentId} not found` };
+  }
+
+  // 验证操作者是否是 admin
+  if (operatorId) {
+    const operator = db.prepare(`SELECT role FROM agents WHERE agent_id=?`).get(operatorId) as any;
+    if (!operator || operator.role !== "admin") {
+      return { ok: false, error: "Only admin can update trust scores" };
+    }
   }
 
   const current = row.trust_score;
@@ -417,13 +487,18 @@ export function setAgentRole(
   managedGroupId?: string
 ): { ok: true; old_role: string; new_role: string; managed_group_id: string | null } | { ok: false; error: string } {
   // 验证目标 Agent 存在
-  const agent = getRow<{ role: string; managed_group_id: string | null }>(
-    db.prepare(`SELECT role, managed_group_id FROM agents WHERE agent_id=?`),
-    agentId
-  );
+  const agent = db
+    .prepare(`SELECT role, managed_group_id FROM agents WHERE agent_id=?`)
+    .get(agentId) as any;
 
   if (!agent) {
     return { ok: false, error: `Agent ${agentId} not found` };
+  }
+
+  // 验证操作者是否是 admin
+  const operator = db.prepare(`SELECT role FROM agents WHERE agent_id=?`).get(operatorId) as any;
+  if (!operator || operator.role !== "admin") {
+    return { ok: false, error: "Only admin can change agent roles" };
   }
 
   const oldRole = agent.role;
@@ -459,10 +534,9 @@ export function setAgentRole(
  * 获取 Agent 角色
  */
 export function getAgentRole(agentId: string): string | null {
-  const row = getRow<{ role: string }>(
-    db.prepare(`SELECT role FROM agents WHERE agent_id=?`),
-    agentId
-  );
+  const row = db
+    .prepare(`SELECT role FROM agents WHERE agent_id=?`)
+    .get(agentId) as any;
   return row?.role ?? null;
 }
 
@@ -470,10 +544,9 @@ export function getAgentRole(agentId: string): string | null {
  * 获取 Agent 的 managed_group_id
  */
 export function getAgentManagedGroup(agentId: string): string | null {
-  const row = getRow<{ managed_group_id: string | null }>(
-    db.prepare(`SELECT managed_group_id FROM agents WHERE agent_id=?`),
-    agentId
-  );
+  const row = db
+    .prepare(`SELECT managed_group_id FROM agents WHERE agent_id=?`)
+    .get(agentId) as any;
   return row?.managed_group_id ?? null;
 }
 
@@ -530,14 +603,7 @@ export function resolveAgentId(input: string): string | null {
     return getAgent(AGENT_ALIAS_MAP[aliasKey]) ? AGENT_ALIAS_MAP[aliasKey] : null;
   }
 
-  // 3. 子串匹配（agent_id 包含输入，大小写不敏感）
-  const agents = queryAgents({});
-  const lower = trimmed.toLowerCase();
-  for (const agent of agents) {
-    if (agent.agent_id.toLowerCase().includes(lower)) {
-      return agent.agent_id;
-    }
-  }
-
+  // 3. 不再做子串模糊匹配（D9 修复）：
+  //    短 id / 重叠 id 会把消息错投给错误 agent（IDOR 风险），仅接受精确完整 agent_id 或显式别名。
   return null;
 }

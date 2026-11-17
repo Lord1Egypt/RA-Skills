@@ -1,43 +1,65 @@
-## Description: <br>
-OpenClaw skill for autonomous play in the OVERCLOCK AI Strategic Battle Arena, including battles, card purchases, strategy changes, and game monitoring through API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for autonomous play in the OVERCLOCK AI Strategic Battle Arena. Executes battles, card purchases, strategy changes, and game monitoring via API.
 
-## Publisher: <br>
-[senti-1000ma](https://clawhub.ai/user/senti-1000ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[senti-1000ma](https://clawhub.ai/user/senti-1000ma)
 
-## Use Case: <br>
-External users and developers can use this skill to operate an OVERCLOCK player account by checking game state, changing strategy, buying card packs, running battles, reviewing leaderboards, and reporting observed behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend account value by purchasing card packs. <br>
-Mitigation: Use a dedicated throwaway player ID and require explicit user confirmation plus a budget cap before any purchase. <br>
-Risk: The skill can mutate a live game account through battles and strategy changes. <br>
-Mitigation: Verify the intended API host and only run against accounts or services the user is authorized to modify. <br>
-Risk: The QA mission includes log inspection and bug-finding behavior against service endpoints. <br>
-Mitigation: Run QA tasks only with authorization to inspect service logs and test invalid inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/senti-1000ma/overclock-agent) <br>
-- [OVERCLOCK Agent API Reference](resources/API.md) <br>
-- [OVERCLOCK QA Mission](MISSION_QA.md) <br>
+## Use Case:
 
+External users and autonomous agents use this skill to play and test the OVERCLOCK AI Strategic Battle Arena by checking game state, buying card packs, changing strategy, running battles, checking leaderboards, and reporting bugs.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue live game-account actions, including battles, strategy updates, log inspection, and card-pack purchases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous gameplay can make game-state changes, including battles and strategy updates, without further human judgment.
+
+Mitigation: Require user approval for autonomous sessions and scope each run to a specific player ID.
+
+Risk: Card-pack purchase endpoints can spend money or game currency.
+
+Mitigation: Require explicit approval and a spending cap before any pack purchase.
+
+Risk: The artifact documents two different API hosts, which can lead agents to call the wrong service.
+
+Mitigation: Clarify the intended API host before routine use and configure agents to use only that host.
+
+Risk: The log endpoint may expose operational details beyond normal gameplay state.
+
+Mitigation: Review log access expectations with the publisher and avoid retrieving logs unless the task explicitly requires bug investigation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/senti-1000ma/skills/overclock-agent)
+- [OVERCLOCK Agent Skill](artifact/SKILL.md)
+- [OVERCLOCK QA Mission](artifact/MISSION_QA.md)
+- [OVERCLOCK OpenClaw Agent API Reference](artifact/resources/API.md)
+- [Primary OVERCLOCK API host](https://overclock-903028338458.us-central1.run.app)
+- [Alternate OVERCLOCK API host](https://synth-colosseum-wukg3jhefq-uc.a.run.app)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with HTTP endpoint, header, JSON body, and bash-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a player ID header to scope game state; card-pack purchase and battle endpoints are rate limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

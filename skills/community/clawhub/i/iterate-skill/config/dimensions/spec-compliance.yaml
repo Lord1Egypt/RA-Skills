@@ -1,0 +1,8 @@
+# Spec Compliance review dimension
+name: "规范一致性"
+name_en: "Spec Compliance"
+priority: high
+focus: |
+  Cross-reference specs/ directory with actual code.
+  Unimplemented features, spec deviations, missing handlers.
+  Incorrect data models compared to spec.

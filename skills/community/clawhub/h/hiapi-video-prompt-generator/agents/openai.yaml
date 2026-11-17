@@ -1,0 +1,8 @@
+interface:
+  display_name: "HiAPI Video Prompt Generator"
+  short_description: "Direct controlled video prompts for HiAPI Seedance 2.0 and HappyHorse 1.0"
+  brand_color: "#10A37F"
+  default_prompt: "Use $hiapi-video-prompt-generator to turn this brief into a source-grounded video prompt for HiAPI Seedance 2.0 or HappyHorse 1.0."
+
+policy:
+  allow_implicit_invocation: true

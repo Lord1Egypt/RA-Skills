@@ -1,43 +1,56 @@
-## Description: <br>
-Reference installer for agent-native software that scans a repository, detects which interfaces it exposes, and installs them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference installer for agent-native software that scans a repository, detects which interfaces it exposes, and installs them all.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect repositories that follow the Universal Interface conventions and install supported CLI, module, MCP, OpenClaw plugin, skill, and Claude Code hook interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can make broad persistent changes to local agent and npm configuration. <br>
-Mitigation: Install only repositories and publishers you trust, run --dry-run first, and review the planned npm, MCP, OpenClaw, LDM, and Claude Code configuration changes before applying them. <br>
-Risk: Installed repositories can include package scripts, MCP servers, hooks, and plugin files that change local behavior. <br>
-Mitigation: Inspect package.json scripts, MCP server files, hook definitions, and plugin manifests before installation. <br>
+## Use Case:
 
+Developers and agents use this skill to detect agent-native interfaces in a repository and install supported CLI, module, MCP, OpenClaw plugin, skill, and Claude Code hook surfaces when the repository follows the Universal Interface conventions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/wip-universal-installer) <br>
-- [Project Homepage](https://github.com/wipcomputer/wip-universal-installer) <br>
-- [Universal Interface Specification](https://github.com/wipcomputer/wip-universal-installer/blob/main/SPEC.md) <br>
-- [npm Package](https://www.npmjs.com/package/@wipcomputer/universal-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, and git for normal use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: ClawHub release evidence) <br>
+Risk: The installer can make persistent global and agent-configuration changes based on repository contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target repository, package metadata, scripts, MCP registrations, and Claude Code hook metadata before installation; prefer an isolated environment over automatic execution on a main machine.
+
+Risk: Remote repository targets and broad installation behavior can produce unintended CLI, MCP, OpenClaw, or hook registrations.
+
+Mitigation: Use dry-run or JSON inspection first, then approve installation actions manually for trusted repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/wip-universal-installer)
+- [Project homepage](https://github.com/wipcomputer/wip-universal-installer)
+- [Universal Interface Specification](https://github.com/wipcomputer/wip-universal-installer/blob/main/SPEC.md)
+- [npm package](https://www.npmjs.com/package/@wipcomputer/universal-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the installer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, and git; installation behavior depends on the target repository interfaces.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata; artifact files also report 2.1.5 in SKILL.md metadata and CHANGELOG.md, and 1.9.68 in package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

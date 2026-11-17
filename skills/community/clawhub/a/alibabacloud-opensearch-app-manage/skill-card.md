@@ -1,51 +1,72 @@
-## Description: <br>
-Alibaba Cloud OpenSearch instance management skill for creating, listing, and describing OpenSearch instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud OpenSearch instance management skill for creating, listing, and describing OpenSearch instances, also referred to as app groups.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud OpenSearch instances through Aliyun CLI workflows, including instance creation, listing, and detail lookup. It is intended for accounts with appropriate OpenSearch RAM permissions and configured Alibaba Cloud credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Create operations can provision persistent billable Alibaba Cloud OpenSearch resources. <br>
-Mitigation: Prefer dryRun first, require explicit approval before create commands, use idempotency tokens, and clean up test instances promptly in the OpenSearch console. <br>
-Risk: The skill requires sensitive Alibaba Cloud credentials or an authorized profile to manage OpenSearch. <br>
-Mitigation: Use a dedicated least-privilege RAM user or temporary role, verify the active Aliyun profile before commands run, and avoid exposing AccessKey values in conversation or logs. <br>
-Risk: Installation and plugin update steps can change local CLI tooling. <br>
-Mitigation: Use an official package manager or a downloaded installer that can be verified, and review CLI/plugin updates before use. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Alibaba Cloud OpenSearch app groups through Aliyun CLI workflows. It helps generate commands and guidance for creation, listing, description, permission checks, and verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-opensearch-app-manage) <br>
-- [CLI installation guide](references/cli-installation-guide.md) <br>
-- [RAM policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Verification method](references/verification-method.md) <br>
-- [Acceptance criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI documentation](https://help.aliyun.com/zh/cli/) <br>
-- [RAM policy overview](https://help.aliyun.com/document_detail/93732.html) <br>
-- [OpenSearch authorization rules](https://help.aliyun.com/zh/open-search/industry-algorithm-edition/authorization-rules-of-applications) <br>
-- [OpenSearch console](https://opensearch.console.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Aliyun CLI command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require Aliyun CLI 3.3.3 or later, configured Alibaba Cloud credentials, OpenSearch RAM permissions, and explicit user confirmation for customizable parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: Setup instructions may run mutable remote installers or latest archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify the installer source and integrity before running curl-to-bash or latest-archive installation steps.
+
+Risk: Automatic plugin installation and plugin updates can change local Aliyun CLI state globally.
+
+Mitigation: Review plugin changes before enabling auto installation or running global plugin updates, especially on shared or production workstations.
+
+Risk: Create operations can provision billable Alibaba Cloud OpenSearch resources.
+
+Mitigation: Use dry-run first, confirm all cost-related parameters with the user, and require least-privilege RAM permissions before executing create commands.
+
+Risk: Cloud credentials could be exposed or over-privileged.
+
+Mitigation: Use environment variables or preconfigured profiles, avoid printing secrets, and prefer RAM users or roles with only the required OpenSearch permissions.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-opensearch-app-manage)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md)
+- [RAM Policies](references/ram-policies.md)
+- [Related APIs](references/related-apis.md)
+- [Verification Method](references/verification-method.md)
+- [Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/)
+- [OpenSearch CreateAppGroup API](https://api.aliyun.com/document/OpenSearch/2017-12-25/CreateAppGroup)
+- [OpenSearch ListAppGroups API](https://api.aliyun.com/document/OpenSearch/2017-12-25/ListAppGroups)
+- [OpenSearch DescribeAppGroup API](https://api.aliyun.com/document/OpenSearch/2017-12-25/DescribeAppGroup)
+- [Alibaba Cloud RAM Policy Overview](https://help.aliyun.com/document_detail/93732.html)
+- [OpenSearch Authorization Rules](https://help.aliyun.com/zh/open-search/industry-algorithm-edition/authorization-rules-of-applications)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers Aliyun CLI setup, credential posture, RAM checks, parameter confirmation, dry-run, idempotency tokens, and OpenSearch create/list/describe workflows.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

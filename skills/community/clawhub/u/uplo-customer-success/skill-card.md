@@ -1,43 +1,59 @@
-## Description: <br>
-AI-powered customer success knowledge management for searching account health data, onboarding records, renewal tracking, and support escalation documentation with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered customer success knowledge management. Search account health data, onboarding records, renewal tracking, and support escalation documentation with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Customer success teams and account leaders use this skill to search customer health, onboarding, renewal, stakeholder, and support-escalation knowledge. It helps prepare portfolio reviews, account handoffs, churn-risk assessments, renewal checks, and targeted knowledge updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad organizational customer-success context can include sensitive account, financial, relationship, renewal, and escalation data. <br>
-Mitigation: Install only for authorized organizations and confirm authorization, audit logging, redaction, and approval controls before enabling bulk exports. <br>
-Risk: A configured API key is used with a remote MCP service. <br>
-Mitigation: Use a scoped, revocable API key, prefer HTTPS-only endpoints, and rotate or revoke the key if access changes. <br>
+## Use Case:
 
+Customer success teams and CSMs use this skill to search organization-specific account health, onboarding, renewal, stakeholder, and support escalation knowledge. It supports risk reviews, CSM handoffs, knowledge-gap reporting, outdated-information flagging, and proposed updates grounded in the connected UPLO knowledge base.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RooJenkins/uplo-customer-success) <br>
-- [Publisher Profile](https://clawhub.ai/user/RooJenkins) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO Schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline tool commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retrieve and export organizational customer-success context through the configured UPLO MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill uses an external MCP package with an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted publishers, pin or otherwise control the MCP server version, and use a narrowly scoped UPLO token.
+
+Risk: The export_org_context workflow can expose broad organization-wide customer-success context.
+
+Mitigation: Restrict bulk export use to authorized roles, confirm scope before running it, and prefer account-scoped searches for routine account reviews or handoffs.
+
+Risk: Customer success records may include confidential contract values, expansion pricing, and restricted account data.
+
+Mitigation: Respect classification tiers and avoid surfacing restricted financial or account details to unauthorized users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-customer-success)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with inline tool calls, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include account-health summaries, retrieval results, handoff context, knowledge-gap reports, stale-information flags, and proposed knowledge-base updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

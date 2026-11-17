@@ -1,46 +1,57 @@
-## Description: <br>
-Bilibili 视频自动上传 skill。当用户需要登录 Bilibili、校验账号或上传视频时使用。基于 social-auto-upload 项目，OPclaw 自动准备运行环境，无需用户手动安装。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilibili 视频自动上传 skill。当用户需要登录 Bilibili、校验账号或上传视频时使用。基于 social-auto-upload 项目，OPclaw 自动准备运行环境，无需用户手动安装。
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-External creators and operators use this skill to prepare a local social-auto-upload environment, log in to Bilibili, validate account state, and upload videos with title, description, category, tags, and optional schedule settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can clone and run the external social-auto-upload project and download dependencies. <br>
-Mitigation: Install only after reviewing and trusting the external project and dependency source; avoid third-party mirror fallback unless those sources are trusted. <br>
-Risk: The skill operates a Bilibili account using local login state. <br>
-Mitigation: Confirm the exact account before login, account checks, or upload commands, and keep login actions in a local interactive terminal. <br>
-Risk: The skill can publish or schedule videos without a clearly required final confirmation step. <br>
-Mitigation: Before upload, verify the video file, title, description, tags, category, schedule, and whether the action will publish or save as a draft. <br>
+## Use Case:
 
+External creators and operators use this skill to have an agent prepare Bilibili upload tooling, check account status, guide local QR-code login, and upload selected videos with title, description, category, tags, and optional schedule metadata.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/kukuoai/deepsop-bilibili-ai) <br>
-- [social-auto-upload project](https://github.com/dreammis/social-auto-upload) <br>
-- [Runtime requirements](references/runtime-requirements.md) <br>
-- [CLI contract](references/cli-contract.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local setup, login, account check, and upload command sequences for a user-selected Bilibili account and video file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may automatically download and run external third-party upload software and fallback mirror sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external project before use, prefer pinned reviewed commits or releases, verify checksums or signatures where available, and require approval before setup actions.
+
+Risk: The workflow stores Bilibili login state locally and uploads selected files and metadata to Bilibili.
+
+Mitigation: Use only intended account names and video files, inspect upload metadata before execution, protect local credential files, and require approval before upload actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuoai/skills/deepsop-bilibili-ai)
+- [social-auto-upload project](https://github.com/dreammis/social-auto-upload)
+- [Runtime requirements](artifact/references/runtime-requirements.md)
+- [CLI contract](artifact/references/cli-contract.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and example script snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing workflow guidance and command invocations for Bilibili login, account validation, and video upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

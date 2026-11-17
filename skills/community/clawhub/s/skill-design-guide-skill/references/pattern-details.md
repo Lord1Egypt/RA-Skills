@@ -1,4 +1,3 @@
-# Workflow Pattern Details
 
 > Load this when you need in-depth comparison of the 5 workflow patterns.
 

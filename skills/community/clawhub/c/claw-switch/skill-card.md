@@ -1,43 +1,54 @@
-## Description: <br>
-Simple model router for OpenClaw. Switch between available models based on task type. No manual config needed - just use natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple model router for OpenClaw. Switch between available models based on task type. No manual config needed - just use natural language.
 
-## Publisher: <br>
-[SiliconYahaha](https://clawhub.ai/user/SiliconYahaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[siliconyahaha](https://clawhub.ai/user/siliconyahaha)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to switch between validated OpenClaw models with natural-language commands or task descriptions, especially when routing image, file, PDF, screenshot, or multimodal work to Gemini 3 Flash and other work to OpenRouter Auto. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change OpenClaw's active model and restart the gateway from broad natural-language triggers, which may interrupt active work. <br>
-Mitigation: Install only when always-available model routing is desired, and avoid enabling it during active work unless session interruption is acceptable. <br>
-Risk: Model switches can affect provider cost and privacy expectations. <br>
-Mitigation: Review approved providers, costs, and data-handling expectations before use. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to switch between supported models, check the active model, and route image, file, PDF, screenshot, and fallback tasks to the configured OpenClaw model.
 
-## Reference(s): <br>
-- [Claw Switch package page](https://clawhub.ai/SiliconYahaha/claw-switch) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [catalog.json](artifact/catalog.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Plain text responses with OpenClaw shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May switch OpenClaw's active model and restart the gateway when routing or switching is triggered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Always-on natural-language routing can change the active OpenClaw model on broad task descriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit switch command or confirmation before mutating model configuration.
+
+Risk: Model switching restarts the OpenClaw gateway, which can interrupt active local workflows.
+
+Mitigation: Notify the user before restart and run the restart only after the requested model is validated as available.
+
+## Reference(s):
+
+- [Claw Switch ClawHub Skill Page](https://clawhub.ai/siliconyahaha/skills/claw-switch)
+- [siliconyahaha Publisher Profile](https://clawhub.ai/user/siliconyahaha)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text responses with shell commands for OpenClaw model changes and gateway restart steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes only to configured available models and returns concise confirmation or help text.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact documentation also mentions v2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

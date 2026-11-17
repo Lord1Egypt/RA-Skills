@@ -1,40 +1,60 @@
-## Description: <br>
-Gmail: Forward a message to new recipients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail: Forward a message to new recipients.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and workspace administrators use this skill to prepare Gmail forwarding actions through the gws CLI, including recipient selection, optional notes, attachments, drafts, and dry runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forwarded messages and attachments can expose private email when recipients or options are chosen carelessly. <br>
-Mitigation: Confirm the authenticated Gmail account, message ID, recipients, and attachment handling before sending; use --dry-run or --draft when review is needed. <br>
-Risk: The skill depends on the locally installed gws CLI to perform Gmail actions. <br>
-Mitigation: Install and use the skill only when the local gws CLI is already trusted and configured for the intended Gmail account. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to have an agent draft or run Gmail forwarding commands for a selected message, including recipients, optional body text, CC/BCC fields, drafts, and attachment handling.
 
-## Reference(s): <br>
-- [Gws Gmail Forward on ClawHub](https://clawhub.ai/googleworkspace-bot/gws-gmail-forward) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recipient, attachment, draft, dry-run, and HTML-body options for the gws Gmail forwarding command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Messages may be forwarded to unintended recipients if address lists are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all --to, --cc, and --bcc values before sending, and use --draft or --dry-run for sensitive messages.
+
+Risk: Original attachments are included by default and may expose sensitive files.
+
+Mitigation: Review attachment handling before forwarding and use --no-original-attachments when original files should not be included.
+
+Risk: The command may use a different Gmail sender account or alias than intended.
+
+Mitigation: Confirm the configured gws Gmail account and set --from explicitly when a send-as address is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-gmail-forward)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+- [gws shared auth and global flags](../gws-shared/SKILL.md)
+- [gws Gmail commands](../gws-gmail/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command-option guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws binary and a Gmail account configured for the intended sender.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

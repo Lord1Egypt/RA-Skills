@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn73nf9cbxhwxz28k6chxqnadx82za69",
-  "slug": "multi-model-router",
+  "name": "multi-model-router",
   "version": "1.0.0",
-  "publishedAt": 1773701098814
+  "description": "智能多模型动态路由系统，根据任务需求自动选择最佳AI模型",
+  "author": "OpenClawAssistant",
+  "license": "MIT",
+  "keywords": ["multi-model", "routing", "ai-router", "context-management", "privacy"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/multi-model-router-skill"
+  },
+  "skills": {
+    "activation": {
+      "triggers": [
+        "multi model",
+        "dynamic routing",
+        "model switching",
+        "智能路由",
+        "多模型切换"
+      ],
+      "contexts": [
+        "when user mentions multiple AI models",
+        "when context length exceeds local model limits",
+        "when privacy-sensitive content is detected"
+      ]
+    },
+    "integration": {
+      "memory_files": true,
+      "workspace_files": true,
+      "system_commands": false
+    }
+  }
 }

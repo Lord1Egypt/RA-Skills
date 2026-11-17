@@ -1,42 +1,59 @@
-## Description: <br>
-Generates bilingual legal templates, reference checklists, dispute guidance, and contract review aids for labor, consumer, rental, traffic, NDA, terms, privacy, clause, and glossary workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate legal templates for labor, consumer, rental, and traffic disputes, with bilingual support for legal-reference summaries and document templates.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use this skill to draft legal document templates, generate dispute reference material, and review common contract clauses. Outputs should be treated as starting drafts and checked against the user's facts, deadlines, jurisdiction, and current law. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; legal applicability must be verified for the relevant jurisdiction. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated legal templates or reference analysis as legal advice. <br>
-Mitigation: Treat outputs as drafts, verify jurisdiction, facts, deadlines, and current law, and have important contracts, filings, or dispute letters reviewed by a qualified lawyer. <br>
-Risk: Running the helper scripts executes local Bash/Python and creates a small user-profile data directory. <br>
-Mitigation: Review the scripts before use and run them only in an environment where local script execution and local history/data writes are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to draft legal templates, review common contract issues, and generate labor, consumer, rental, traffic, rights, and letter-reference material. Outputs are legal-information templates and should be reviewed by a qualified professional for jurisdiction and matter-specific accuracy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/legal-advisor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese legal templates, checklists, reference summaries, and draft letters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated legal material may be inaccurate, outdated, or unsuitable for the user's jurisdiction or facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as legal information and templates only; require qualified legal review before use in real matters.
+
+Risk: The shipped scripts do not fully match the advertised bilingual dispute-assistance scope.
+
+Mitigation: Review the actual commands and sample outputs before deployment, especially when English output or broad dispute coverage is required.
+
+Risk: Generated documents may include publisher branding in legal output.
+
+Mitigation: Inspect and remove branding where neutral or client-specific documents are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/legal-advisor)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style legal templates, checklists, summaries, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content may include publisher branding and legal disclaimers.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

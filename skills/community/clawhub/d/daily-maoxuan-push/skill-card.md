@@ -1,46 +1,64 @@
-## Description: <br>
-每日毛选语录硬核推送：生成每日《毛泽东选集》语录 Markdown 文档，调用 AI 生成六章结构的深度解读，并可推送到 Obsidian 和 Telegram。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日毛选语录硬核推送。AI深度解读（六章结构/2000+字），拒绝鸡汤、直击本质，配图+语音，Obsidian+Telegram多渠道推送。思想操作系统，每天强制认知重启。v5.0升级：硬核解读协议，阶级分析+组织策略+当代丛林生存指南。
 
-## Publisher: <br>
-[wudi488](https://clawhub.ai/user/wudi488) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wudi488](https://clawhub.ai/user/wudi488)
 
-## Use Case: <br>
-External users and developers use this skill to automate a daily Mao-selected-works quote workflow: select a quote, generate a Markdown note with AI-assisted analysis, save it to a local Obsidian-style directory, and optionally send a Telegram update. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive DeepSeek and Telegram credentials for normal operation. <br>
-Mitigation: Use dedicated, rotatable credentials and provide them through environment variables rather than editing source files. <br>
-Risk: The skill can create local Markdown files and send Telegram messages automatically when scheduled. <br>
-Mitigation: Run `python3 scripts/generate_daily.py --test` or `--no-send` before enabling delivery, verify the configured output directory, and create the cron job only when daily automation is intended. <br>
-Risk: README claims about image and voice generation may be stale for this release. <br>
-Mitigation: Treat image and voice behavior as unverified unless separately tested in the target environment. <br>
+## Use Case:
 
+External users configure this skill to generate a daily Mao Selected Works quote note, produce optional long-form AI commentary, save the result as Markdown, and push the daily message to configured channels such as Telegram or Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wudi488/daily-maoxuan-push) <br>
-- [README.md](artifact/README.md) <br>
-- [references/config.json](artifact/references/config.json) <br>
-- [references/maoxuan_quotes.json](artifact/references/maoxuan_quotes.json) <br>
-- [references/template.md](artifact/references/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and messaging text with optional shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write dated Markdown notes to a configured local output directory and may send Telegram messages when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles messaging credentials and can send generated content to Telegram or Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bot or app credential, scope the destination chat carefully, keep tokens in environment variables, and rotate credentials if logs may have exposed failed request details.
+
+Risk: The skill can run as unattended daily automation and write Markdown files to a configured local directory.
+
+Mitigation: Run with --no-send or --dry-run first, restrict MAOXUAN_OUTPUT_DIR or the configured output directory, and avoid running install.sh with elevated privileges.
+
+Risk: Generated historical or political commentary may be inaccurate, misleading, or unsuitable for a target audience.
+
+Mitigation: Review generated Markdown before broad distribution and treat AI commentary as draft content rather than a verified historical source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wudi488/skills/daily-maoxuan-push)
+- [Publisher profile](https://clawhub.ai/user/wudi488)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Quote reference data](artifact/references/maoxuan_quotes.json)
+- [Runtime configuration](artifact/references/config.json)
+- [Output template](artifact/references/template.md)
+- [DeepSeek API endpoint](https://api.deepseek.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, messaging text, and concise command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write dated Markdown files to a configured local output directory and may send generated content through user-configured messaging credentials.]
+
+## Skill Version(s):
+
+5.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

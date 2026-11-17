@@ -1,46 +1,61 @@
-## Description: <br>
-Plan Bali trips with real-time flyai CLI results for flights, hotels, attractions, itineraries, visa information, travel insurance, car rental, and booking links powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan your Bali dream trip - Ubud rice terraces, Seminyak beach clubs, Uluwatu temple sunsets, Nusa Penida cliffs, and spiritual yoga retreats; also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more through Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to search Bali flights, lodging, attractions, and related travel services through flyai CLI commands, then present concise Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install or require a global @fly-ai/flyai-cli package before use. <br>
-Mitigation: Review the CLI package and installation policy before deployment; install it in a controlled environment when possible. <br>
-Risk: The skill sends travel searches to the provider and can produce booking links based on those outbound requests. <br>
-Mitigation: Avoid entering passport numbers, payment data, or highly sensitive trip details; review provider terms before booking. <br>
-Risk: The runbook describes optional local persistence of raw execution requests in .flyai-execution-log.json. <br>
-Mitigation: Disable, delete, or rotate local execution logs when raw request retention is not desired. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to plan Bali trips by collecting travel parameters, running flyai CLI searches for flights, hotels, attractions, and related services, and returning Markdown results with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/explore-bali) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, concise guidance, and inline shell commands when troubleshooting is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel facts; successful result entries must include booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install an unpinned global npm CLI before running travel searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install @fly-ai/flyai-cli manually from a reviewed, pinned version and verify flyai --version before use.
+
+Risk: The skill may contact third-party travel services and produce booking links.
+
+Mitigation: Review generated links and provider terms before booking; do not treat results as confirmed reservations until provider checkout is complete.
+
+Risk: The skill can persist raw travel requests in a local execution log.
+
+Mitigation: Disable or remove the execution log before using the skill with personal travel details.
+
+## Reference(s):
+
+- [Explore Bali ClawHub listing](https://clawhub.ai/dingtom336-gif/skills/explore-bali)
+- [Templates SOP](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Execution runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or retry steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel data; booking links use detailUrl when available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+# Auto Repair Invoice Explainer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+shop_name: ""
+customer_name: ""
+invoice_number: ""
+date: ""
+line_items:
+  - description: ""
+    type: "parts|labor|fees|taxes"
+    amount: 0.00
+    quantity: 1
+notes: ""

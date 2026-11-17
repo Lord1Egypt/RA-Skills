@@ -1,0 +1,19 @@
+{
+ "theme": {
+  "preset": "editorial",
+  "mode": "dark",
+  "headline_font": "sans",
+  "accent": "#4FD1E8",
+  "name": "La Tierra en Números",
+  "handle": "@latierraennumeros",
+  "ratio": "9:16"
+ },
+ "slides": [
+  {
+   "type": "text",
+   "title": "¿Cuánta agua de la Tierra es de *río*?",
+   "body": "Imagina toda el agua en una botella de 1 litro. Piénsalo y mira la respuesta en nuestro perfil dentro de una hora.",
+   "alt": "Historia: ¿cuánta agua de la Tierra es de río? Imagina toda el agua en una botella de 1 litro. La respuesta en el perfil dentro de una hora."
+  }
+ ]
+}

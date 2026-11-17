@@ -1,0 +1,52 @@
+{
+  "schema_version": "skillet.evals.v1",
+  "skill_name": "research-brief",
+  "evals": [
+    {
+      "id": "current-sourced-comparison",
+      "prompt": "Research the current support windows for two database versions and recommend which one a team starting a three-year deployment should choose. Cite the evidence and flag anything you could not verify.",
+      "expected_output": "A read-only brief that scopes the decision and freshness requirement, maps claims to dated and version-applicable sources, records gaps, and reports a fresh support pass.",
+      "files": [],
+      "assertions": [
+        "The output states the research question, decision boundary, freshness requirement, and stop condition before presenting findings",
+        "The source register records stable identifiers, titles, URLs or local references, publishers, dates when available, source types, supported parts, and version applicability",
+        "The claim register maps each material factual claim to supporting source identifiers and includes contrary evidence, limits, confidence, and support status",
+        "The concise answer cites source register identifiers near the claims they support",
+        "The output separates disagreements, assumptions, unverified items, and the support-pass result",
+        "The output states whether the support pass was independent"
+      ]
+    },
+    {
+      "id": "contradictory-evidence",
+      "prompt": "Give me an evidence-backed brief on whether a proposed API limit is 100 or 120 requests per minute. The vendor guide and status post appear to disagree. Do not change any files or contact the vendor.",
+      "expected_output": "A brief that preserves the contradiction, keeps unsupported conclusions visible, and stops without inventing a reconciled limit.",
+      "files": [],
+      "assertions": [
+        "The output records the disagreement instead of selecting a value without support",
+        "The claim register includes contrary evidence and marks disputed or unsupported claims visibly",
+        "Missing or inaccessible evidence is reported instead of filled by inference",
+        "The output remains read-only and does not propose contacting the vendor, editing files, publishing, or promoting the result into memory"
+      ]
+    },
+    {
+      "id": "non-trigger-single-page-summary",
+      "prompt": "Summarize this one supplied page in five bullets. I do not need outside research or a recommendation.",
+      "expected_output": "A direct summary that does not invoke the research-brief registers or search workflow because the request is an explicit non-trigger.",
+      "files": [],
+      "assertions": [
+        "The output does not create a query map, source register, claim register, or support-pass report",
+        "The output treats the request as a single-page summary rather than a research brief"
+      ]
+    },
+    {
+      "id": "non-trigger-supplied-evidence",
+      "prompt": "Pressure-test this decision using only the evidence I supplied. Do not gather more sources.",
+      "expected_output": "Decision pressure-testing without source acquisition because the user supplied the evidence and prohibited further research.",
+      "files": [],
+      "assertions": [
+        "The output does not start source acquisition or claim that research-brief is required",
+        "The output respects the instruction to use only supplied evidence"
+      ]
+    }
+  ]
+}

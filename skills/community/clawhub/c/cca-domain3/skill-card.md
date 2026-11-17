@@ -1,39 +1,53 @@
-## Description: <br>
-Provides a Chinese study guide for CCA Domain 3, covering Claude Code configuration, CLAUDE.md structure, custom commands, skills, workflow choices, and CI/CD integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CCA Domain 3 is a Chinese-language study mentor for Claude Code configuration and workflows, covering shared configuration, commands, skills, path-specific rules, planning mode, iterative refinement, and CI/CD integration.
 
-## Publisher: <br>
-[sawzhang](https://clawhub.ai/user/sawzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sawzhang](https://clawhub.ai/user/sawzhang)
 
-## Use Case: <br>
-Developers and Claude Code learners use this skill to study CCA Domain 3 and practice configuring CLAUDE.md, project rules, custom commands, skills, plan mode, iterative workflows, and CI/CD integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Practical exercises may change Claude Code project configuration files such as CLAUDE.md, .claude/, and .mcp.json. <br>
-Mitigation: Review configuration edits before committing them and keep project-shared guidance separate from personal user-level settings. <br>
-Risk: MCP setup examples may lead users to add untrusted servers or expose credentials in shared files or logs. <br>
-Mitigation: Use only trusted MCP servers and keep real API keys or tokens out of shared project files and logs. <br>
+## Use Case:
 
+Developers and teams preparing for CCA Domain 3 use this skill to learn and practice Claude Code configuration workflows for shared projects. It helps users reason about CLAUDE.md hierarchy, project commands, skills, path-specific rules, planning mode, iterative improvement, and CI/CD usage.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks, practice steps, and quiz questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest edits to CLAUDE.md, .claude/, and .mcp.json during practical exercises.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad shell and delegation authority while guiding project agent configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated CLAUDE.md, .claude/rules, .claude/skills, and .mcp.json changes before committing or using them.
+
+Risk: Using the skill in repositories with untrusted prompt content or sensitive local configuration may increase exposure to unwanted configuration changes.
+
+Mitigation: Use the skill in trusted repositories, constrain available tools when possible, and avoid sensitive local configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sawzhang/skills/cca-domain3)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with configuration paths, code snippets, practice steps, and quiz questions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational content for Claude Code workflow configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

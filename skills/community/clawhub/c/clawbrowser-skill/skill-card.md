@@ -1,44 +1,63 @@
-## Description: <br>
-ClawBrowser provides browser automation and web scraping utilities for agents using agent-browser, ARIA references, natural-language commands, snapshots, and content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBrowser provides headless browser automation for AI agents with ARIA reference targeting, natural-language actions, OpenClaw integration, and page scraping.
 
-## Publisher: <br>
-[yesimagine-oss](https://clawhub.ai/user/yesimagine-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesimagine-oss](https://clawhub.ai/user/yesimagine-oss)
 
-## Use Case: <br>
-Developers and automation agents use this skill to open pages, inspect accessibility snapshots, interact with elements, extract page text, images, and links, and save scraped results for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation and scraping may capture sensitive content from logged-in, internal, or confidential pages. <br>
-Mitigation: Use isolated browser sessions, avoid entering secrets through this wrapper, and review the skill before using it on sensitive pages. <br>
-Risk: The scraper can upload captured page content to Feishu by default in CLI scrape, batch, and scheduled modes. <br>
-Mitigation: Change or wrap web_scraper.py so Feishu upload requires an explicit per-run choice, and confirm the destination before running CLI modes. <br>
-Risk: Extracted web content and browser actions depend on live third-party pages and may be incomplete, stale, or misleading. <br>
-Mitigation: Review extracted content and planned actions before using them in downstream decisions or workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to automate browser sessions, interact with pages by ARIA refs or natural-language commands, and scrape page content, images, and links for agent and RPA workflows.
 
-## Reference(s): <br>
-- [ClawBrowser Skill on ClawHub](https://clawhub.ai/yesimagine-oss/clawbrowser-skill) <br>
-- [agent-browser documentation](https://agent-browser.dev) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python API results, CLI output, JSON scrape records, Markdown scrape exports, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, agent-browser, and Chrome or Chromium. The scraper can save page content locally and CLI modes can upload captured content to Feishu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can scrape arbitrary pages, including authenticated, internal, localhost, private-network, file://, or sensitive pages if pointed at them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run browser automation in a sandbox and restrict target URLs to approved public pages unless sensitive-page scraping has been explicitly reviewed.
+
+Risk: Scraped page data and browser results can be persisted to cache and output directories.
+
+Mitigation: Control cache and output paths, review retention needs, and disable caching when scraped content should not be stored.
+
+Risk: CLI scraping modes can upload scraped content to Feishu.
+
+Mitigation: Disable or review Feishu export before use and verify that exported content is approved for that destination.
+
+Risk: The runtime depends on npm-installed browser automation components.
+
+Mitigation: Pin and review npm dependency versions, including agent-browser, before deployment.
+
+## Reference(s):
+
+- [Clawbrowser Skill on ClawHub](https://clawhub.ai/yesimagine-oss/skills/clawbrowser-skill)
+- [agent-browser documentation](https://agent-browser.dev)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python API results, CLI stdout, JSON scraped-content files, and Markdown scraped-content files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist browser cache and scraped output to local directories; CLI scraping modes can optionally export scraped content to Feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

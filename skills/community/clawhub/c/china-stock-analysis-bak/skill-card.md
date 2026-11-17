@@ -1,48 +1,58 @@
-## Description: <br>
-Analyze Chinese stock prices, Hong Kong stocks, and US stocks by researching market data, recent context, and structured buy, hold, or sell considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Chinese stock prices (A-shares, HK stocks) and provide investment recommendations.
 
-## Publisher: <br>
-[make453](https://clawhub.ai/user/make453) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[make453](https://clawhub.ai/user/make453)
 
-## Use Case: <br>
-External users and analysts use this skill to request structured, informational stock analysis for A-shares, Hong Kong stocks, US stocks, and Chinese concept stocks. It helps gather current price context, recent news, technical signals, and risk disclaimers for non-binding market commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incorrect or outdated stock prices, news context, or market interpretation. <br>
-Mitigation: Confirm prices, news, and financial data with reliable market sources before relying on the output. <br>
-Risk: The skill provides stock commentary that could be mistaken for authoritative financial advice. <br>
-Mitigation: Treat outputs as informational analysis only and keep the included risk disclaimer with each recommendation. <br>
-Risk: Internal artifact metadata and registry metadata do not fully match. <br>
-Mitigation: Verify the publisher handle, package identity, and target slug before installation or release. <br>
+## Use Case:
 
+External users and agents use this skill to gather public market data, summarize price movement, technical context, recent news, and produce structured buy, hold, or sell commentary for Chinese A-shares, Hong Kong stocks, and supported US stocks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/make453/china-stock-analysis-bak) <br>
-- [Publisher profile](https://clawhub.ai/user/make453) <br>
-- [Popular Chinese Stocks Reference](references/china-stocks.md) <br>
-- [Eastmoney](https://www.eastmoney.com) <br>
-- [Xueqiu](https://xueqiu.com) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Google Finance](https://www.google.com/finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown stock analysis with tables, bullet points, recommendations, and risk disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current market data and news when available; outputs informational analysis only, not authoritative financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can produce explicit buy, hold, or sell suggestions that may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the output as educational market commentary, include the required risk disclaimer, and have users consult qualified financial professionals before making investment decisions.
+
+Risk: Market prices and news can change quickly, making stale or incomplete public data misleading.
+
+Mitigation: Use current market data sources during analysis and state when data is unavailable, delayed, or uncertain.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/make453/skills/china-stock-analysis-bak)
+- [Popular Chinese Stocks Reference](references/china-stocks.md)
+- [Eastmoney](https://www.eastmoney.com)
+- [Xueqiu](https://xueqiu.com)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Google Finance](https://www.google.com/finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown stock-analysis report with tables, bullets, and a risk disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public market data and news context when available; outputs should be treated as educational analysis, not personalized financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

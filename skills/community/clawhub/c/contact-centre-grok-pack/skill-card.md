@@ -1,39 +1,53 @@
-## Description: <br>
-Triage call-centre and voice support transcripts into summaries, sentiment, urgency, routing queues, and follow-up actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage call-centre and voice support transcripts into summaries, sentiment, urgency, routing queues, and follow-up actions.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
 
-## Use Case: <br>
-Contact-centre teams, support operators, clinics, councils, and SMEs use this skill to turn transcripts or voice-agent notes into a JSON triage package for review and downstream routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input transcripts and JSON output may contain sensitive customer, health, housing, or support data. <br>
-Mitigation: Process only transcripts the user is allowed to handle, avoid saving JSON output unless needed, and store saved results as sensitive operational data. <br>
-Risk: Heuristic routing or urgency labels may be incomplete or incorrect for live CRM, helpdesk, clinic, or council workflows. <br>
-Mitigation: Keep the documented human review step before routing results into live systems. <br>
+## Use Case:
 
+Contact centre operators, support teams, councils, clinics, and SMEs use this skill to turn raw transcripts or voice-agent notes into routing-ready JSON with a short summary, sentiment, urgency, queue recommendation, follow-up actions, and evidence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON triage output with optional saved file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes summary, sentiment, urgency, route, actions, and evidence fields; human review is expected before live routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Call transcripts and generated routing output may contain customer or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle outputs with the same care as the original transcripts, avoid shared output paths unless needed, and store results only where customer data is permitted.
+
+Risk: Heuristic sentiment, urgency, and routing labels may be incomplete or unsuitable for direct case-system updates.
+
+Mitigation: Review the JSON result before sending summaries, routes, or actions into CRM or helpdesk workflows.
+
+## Reference(s):
+
+- [Contact Centre Grok Pack on ClawHub](https://clawhub.ai/stevojarvisai-star/skills/contact-centre-grok-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Guidance]
+
+**Output Format:** [JSON object with summary, sentiment, urgency, route, actions, and evidence fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally write the JSON result to a local output path; it does not make calls, contact customers, or write to external systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

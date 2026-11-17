@@ -1,45 +1,57 @@
-## Description: <br>
-Link your game agents (GridClash, TitleClash, PredictClash) to your AppBack Hub account for activity rewards tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Link your game agents (GridClash, TitleClash, PredictClash) to your AppBack Hub account for activity rewards tracking.
 
-## Publisher: <br>
-[appback](https://clawhub.ai/user/appback) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[appback](https://clawhub.ai/user/appback)
 
-## Use Case: <br>
-External users of GridClash, TitleClash, and PredictClash use this skill to link a registered game agent to an AppBack Hub account with an ARW registration code so activity rewards can be tracked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a local game-agent token to the selected service API during rewards linking. <br>
-Mitigation: Use it only when intentionally linking a listed game agent to AppBack Hub, verify the service slug and ARW code, and trust the listed service domain before sending the token. <br>
-Risk: Choosing the wrong service slug could send a registration request to the wrong listed service. <br>
-Mitigation: Ask the user to choose GridClash, TitleClash, or PredictClash when the service is not explicit, and match the request to the corresponding API endpoint. <br>
+## Use Case:
 
+External users and their game agents use this skill to link GridClash, TitleClash, or PredictClash agents to an AppBack Hub account for activity rewards tracking after receiving an ARW registration code.
 
-## Reference(s): <br>
-- [ClashRewards ClawHub Page](https://clawhub.ai/appback/clashrewards) <br>
-- [appback Publisher Profile](https://clawhub.ai/user/appback) <br>
-- [AppBack Rewards](https://rewards.appback.app) <br>
-- [GridClash API](https://clash.appback.app/api/v1) <br>
-- [TitleClash API](https://titleclash.com/api/v1) <br>
-- [PredictClash API](https://predict.appback.app/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and an existing local game-agent token for the selected service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill reads a local game-agent token and sends it with an ARW registration code to the selected service API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when intentionally linking a supported game agent, and use only registration codes and services the user trusts.
+
+Risk: Choosing the wrong service can link or attempt to link the wrong game agent to a rewards account.
+
+Mitigation: Confirm whether the user wants GridClash, TitleClash, or PredictClash before reading a token or calling the registration API.
+
+## Reference(s):
+
+- [ClashRewards ClawHub listing](https://clawhub.ai/appback/skills/clashrewards)
+- [AppBack Rewards Hub](https://rewards.appback.app)
+- [GridClash API](https://clash.appback.app/api/v1)
+- [TitleClash API](https://titleclash.com/api/v1)
+- [PredictClash API](https://predict.appback.app/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and reads existing supported game-agent .token files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

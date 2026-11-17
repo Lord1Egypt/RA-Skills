@@ -1,0 +1,36 @@
+{
+  "profile_type": "composition",
+  "id": "vertical-journal",
+  "version": "1.1.0",
+  "canvas": {
+    "aspect_ratio": "9:16",
+    "width": 1152,
+    "height": 2048
+  },
+  "whitespace": {
+    "top_clear_space_ratio": 0.55,
+    "edge_margin_ratio": 0.07
+  },
+  "subject": {
+    "center_y_ratio": 0.72,
+    "height_ratio_min": 0.28,
+    "height_ratio_max": 0.32,
+    "horizontal_flow": [
+      "center",
+      "center",
+      "center",
+      "center"
+    ]
+  },
+  "caption_zone": {
+    "position": "below-subject",
+    "minimum_subject_clearance_ratio": 0.08,
+    "maximum_lines": 3,
+    "alignment": "center"
+  },
+  "cross_slide": {
+    "assembly": "single-long-canvas-then-crop",
+    "boundary_overlap_px": 0
+  },
+  "default_note": "bottom-center per 2026-08-30 user request; preserves 55% top whitespace"
+}

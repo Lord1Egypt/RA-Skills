@@ -1,6 +1,12 @@
-{
-  "ownerId": "kn7f5gtk7twvcw8bvhenbr0q5x83yqth",
-  "slug": "islamic-prayer-times-skill",
-  "version": "1.0.2",
-  "publishedAt": 1774936620488
-}
+---
+name: prayer-times
+version: 1.0.2
+description: Islamic prayer times with reminders, todo list, and journal integration. Provides prayer schedules, spiritual task management, and daily reflection tracking.
+homepage: https://github.com/jrrqd/prayer-times-skill
+metadata:
+  {
+    "openclaw": { "emoji": "🕌" },
+    "tags": ["prayer", "islamic", "productivity", "reminder", "spiritual"],
+    "author": "suluhadi",
+    "license": "MIT"
+  }

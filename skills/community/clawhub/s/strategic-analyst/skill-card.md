@@ -1,37 +1,52 @@
-## Description: <br>
-Strategic Analyst helps analyze industry dynamics, market opportunities, competitive landscapes, market outlooks, and investment or growth recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategic Analyst is a Chinese-language agent skill for analyzing industry trends, market opportunities, investment recommendations, competitive landscapes, and market outlooks.
 
-## Publisher: <br>
-[qq719528161](https://clawhub.ai/user/qq719528161) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[qq719528161](https://clawhub.ai/user/qq719528161)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, analysts, and developers can use this skill to produce structured market analysis reports covering industry trends, market opportunities, competitive dynamics, forecasts, and investment or development recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Investment recommendations may be mistaken for personalized financial advice.
+
+Mitigation: Treat recommendations as analytical input only, verify conclusions independently, and include clear investment risk disclosures.
+
+Risk: Market analysis can become inaccurate when current data, assumptions, or sources are stale or incomplete.
+
+Mitigation: Verify current data from authoritative sources and state the assumptions behind forecasts and scenarios.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, analysts, and business teams use this skill to structure industry trend analysis, opportunity sizing, competitive assessment, market forecasting, and investment recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Investment or market recommendations may rely on incomplete, stale, or uncertain market data. <br>
-Mitigation: Treat outputs as analysis rather than guaranteed financial advice, request current sources, and verify market data and risks before acting. <br>
+**Output Format:** [Markdown market analysis report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses authoritative sources where available, separates facts from opinions, states assumptions, quantifies expected risks and returns when possible, and includes investment risk disclosures.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market analysis report with recommendations and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require current web or market data supplied by the agent environment.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

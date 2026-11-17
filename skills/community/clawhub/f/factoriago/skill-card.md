@@ -1,47 +1,62 @@
-## Description: <br>
-FactoriaGo helps agents support academic paper revision and resubmission by analyzing reviewer feedback, generating response letters, managing FactoriaGo projects and files, and guiding LaTeX compilation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FactoriaGo helps agents support academic paper revision and resubmission by onboarding users, managing FactoriaGo projects and files, analyzing reviewer feedback, and drafting reviewer response letters.
 
-## Publisher: <br>
-[gyh2556406](https://clawhub.ai/user/gyh2556406) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyh2556406](https://clawhub.ai/user/gyh2556406)
 
-## Use Case: <br>
-External researchers, PhD students, postdocs, and their agents use this skill to plan journal revisions, draft point-by-point reviewer responses, manage FactoriaGo projects and files, and compile LaTeX manuscripts through the FactoriaGo platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles account sessions and LLM API key setup, which can expose credentials if users paste secrets into chat or command-line history. <br>
-Mitigation: Use secure web settings or scoped, revocable tokens where possible; keep session cookies in environment variables; avoid sharing API keys, passwords, or cookies in chat or command arguments. <br>
-Risk: The skill can access manuscript content and reviewer feedback through authenticated FactoriaGo project APIs. <br>
-Mitigation: Confirm the intended account, project, and file before each operation, and share only manuscript or review content needed for the requested revision task. <br>
-Risk: File update workflows may alter LaTeX manuscript files or project tasks. <br>
-Mitigation: Require a diff or preview before saving changes, keep manuscript backups or version history, and compile after edits to check for LaTeX errors. <br>
+## Use Case:
 
+External researchers, PhD students, postdocs, and academic authors use this skill to revise LaTeX manuscripts after peer review, organize reviewer concerns, manage FactoriaGo revision projects, compile manuscripts, and draft point-by-point response letters.
 
-## Reference(s): <br>
-- [FactoriaGo API Reference](references/api.md) <br>
-- [FactoriaGo Revise & Resubmit Workflow](references/revision-workflow.md) <br>
-- [Reviewer Response Letter Templates](references/reviewer-response.md) <br>
-- [FactoriaGo Product Website](https://factoriago.com) <br>
-- [FactoriaGo API Base](https://editor.factoriago.com/api) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/gyh2556406/factoriago) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON/API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated FactoriaGo API operations that read or update project metadata, manuscript files, revision tasks, LLM settings, and compilation status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.7 (source: server release evidence) <br>
+Risk: The skill can access FactoriaGo account data, manuscripts, reviewer comments, and project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, use the minimum necessary account context, and review project/file actions before allowing them.
+
+Risk: Passwords, session cookies, and provider API keys may be exposed if pasted into chat or stored in shell history.
+
+Mitigation: Prefer FactoriaGo web settings for API-key setup, keep session cookies in environment variables only for the active session, and rotate any credentials that were exposed.
+
+Risk: Automated edits or reviewer-response drafts could introduce incorrect manuscript changes or misleading responses.
+
+Mitigation: Preview proposed edits, keep backups or version history, compile after LaTeX changes, and have the author review all response-letter content before submission.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/gyh2556406/skills/factoriago)
+- [FactoriaGo Product Website](https://factoriago.com)
+- [FactoriaGo API Reference](references/api.md)
+- [FactoriaGo Revision Workflow](references/revision-workflow.md)
+- [Reviewer Response Letter Templates](references/reviewer-response.md)
+- [FactoriaGo Skill Guide](FactoriaGo-Skill-Guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and text or JSON results from FactoriaGo operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a FactoriaGo account, session cookie, project identifiers, manuscript files, reviewer comments, and a configured AI provider API key for AI-assisted features.]
+
+## Skill Version(s):
+
+2.9.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

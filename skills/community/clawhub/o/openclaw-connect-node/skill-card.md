@@ -1,47 +1,60 @@
-## Description: <br>
-Deploys and manages an OpenClaw Connect Enterprise worker node that registers with a Hub, syncs tasks, reports system status, and exposes a local management UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Connect Node helps deploy and operate an OpenClaw Enterprise sub-node that registers with a Hub, maintains heartbeat connectivity, syncs tasks and memory, exposes local monitoring, and can execute assigned work.
 
-## Publisher: <br>
-[ai-scarlett](https://clawhub.ai/user/ai-scarlett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-scarlett](https://clawhub.ai/user/ai-scarlett)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run a managed OpenClaw worker node that connects to a remote Hub for task execution, monitoring, memory synchronization, and node administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The node can run as a persistent managed worker with high local authority and execute tasks from a remote Hub. <br>
-Mitigation: Install only when the Hub operator is trusted, prefer a dedicated non-root account, and disable or gate task execution when remote execution is not required. <br>
-Risk: The local management UI and API may be exposed without authentication. <br>
-Mitigation: Bind access behind a firewall or authenticated reverse proxy and require HTTPS for Hub and administrative traffic. <br>
-Risk: Credentials and session data are stored in local configuration files. <br>
-Mitigation: Restrict permissions on .env and ~/.openclaw-node/node.json, avoid printing secrets, and redact configuration output before sharing logs. <br>
-Risk: The node can upload local OpenClaw workspace memory and persona data to the Hub. <br>
-Mitigation: Review what workspace data may sync and disable or gate memory/persona synchronization unless it is needed for the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an OpenClaw instance as a managed Hub sub-node, including installation, credential configuration, service setup, monitoring, and task or memory synchronization. It is intended for environments where the operator controls the node host and trusts the configured Hub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-scarlett/openclaw-connect-node) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ai-scarlett) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, API descriptions, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation, operation, management, and troubleshooting guidance for an OpenClaw worker node.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: The node has broad persistent authority for remote task execution and data synchronization when connected to a Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only on an isolated host you control, connect it only to a trusted Hub, and disable automatic task execution or memory sync unless those capabilities are explicitly required.
+
+Risk: Local administrative APIs and the management interface can expose operational data or allow node actions if reachable without adequate controls.
+
+Mitigation: Bind administrative endpoints to localhost or place them behind authentication, restrict network access, require HTTPS for Hub communication, and protect persisted credentials.
+
+Risk: The install flow can run with high privileges, install dependencies, create systemd services, and persist secrets on disk.
+
+Mitigation: Run under a dedicated unprivileged service account where possible, review install commands before execution, regenerate dependencies from trusted HTTPS registries, and rotate credentials after testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-scarlett/skills/openclaw-connect-node)
+- [Publisher profile](https://clawhub.ai/user/ai-scarlett)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment variables, API endpoint descriptions, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include install, uninstall, systemd, health-check, troubleshooting, and OpenClaw node operation instructions.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

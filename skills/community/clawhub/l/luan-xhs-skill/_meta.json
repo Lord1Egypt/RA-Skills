@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn742yag5xqareh9f81b6gxqvh82m87w",
+  "ownerId": "kn792a0n827gdddkgqegwayma581c75g",
   "slug": "luan-xhs-skill",
   "version": "0.2.5",
-  "publishedAt": 1775183129704
+  "publishedAt": 1771853804092,
+  "config": {
+    "useProxy": false
+  }
 }

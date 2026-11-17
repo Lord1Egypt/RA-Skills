@@ -1,6 +1,6 @@
 {
   "name": "zl-clawpay",
-  "version": "1.0.9",
+  "version": "1.0.8",
   "description": "ZL-ClawPay Node.js — SM2/SM3/SM4 加密支付技能",
   "main": "scripts/skill.js",
   "bin": {

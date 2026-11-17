@@ -1,40 +1,54 @@
-## Description: <br>
-Audit an ecommerce landing page to identify the biggest conversion blockers across message clarity, proof, offer structure, friction, and CTA flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit an ecommerce landing page to identify the biggest conversion blockers across message clarity, proof, offer structure, friction, and CTA flow. Use when teams need a practical CRO review that leads to clear fixes.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce, marketing, and growth teams use this skill to audit landing page URLs or pasted page copy and turn conversion blockers into prioritized fixes for messaging, proof, offer clarity, friction, and CTA flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may inspect live URLs, attached browser tabs, campaign copy, offer details, or analytics context. <br>
-Mitigation: Provide only information you are comfortable letting the agent inspect, and avoid private staging pages or sensitive unpublished campaigns unless that access is intentional. <br>
-Risk: Partial page access can lead to incomplete or overbroad conversion recommendations. <br>
-Mitigation: Label partial observations clearly and review suggested fixes against the full page, campaign intent, and compliance constraints before applying them. <br>
+## Use Case:
 
+External ecommerce teams and conversion-focused marketers use this skill to audit landing page copy and structure, then prioritize fixes for clarity, proof, offer framing, friction, and CTA flow.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit with prioritized recommendations and copy or structure notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use browser-observed page evidence or user-provided page copy; partial observations should be labeled clearly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live page review can expose page content or current browser-tab context if the wrong browsing mode is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a managed browser for live URLs and use Browser Relay only when the user explicitly wants the attached Chrome tab inspected.
+
+Risk: Recommendations may be incomplete when the observed landing-page surface is partial.
+
+Mitigation: Label partial observations clearly and verify suggested copy or structural changes against the brand's business and compliance constraints.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/ecommerce-landing-page-conversion-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritized CRO audit covering conversion blockers, fixes, copy and structure recommendations, CTA and proof notes, and quick wins.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Design and test cognitive systems to gracefully recover from errors and overloads using chaos engineering principles and resilience metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and test cognitive systems to gracefully recover from errors and overloads using chaos engineering principles and resilience metrics.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and AI system evaluators use this skill to plan cognitive resilience testing for systems exposed to noisy inputs, attention overload, memory conflicts, and reasoning failures. It provides a framework for enumerating cognitive failure modes, injecting controlled faults, measuring recovery with a Cognitive Resilience Index, and designing safeguards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: If users implement the described chaos experiments directly in production, experiments could disrupt systems or degrade outputs. <br>
-Mitigation: Run any concrete experiments in isolated test environments with clear stop controls and review scripts or harnesses separately before production use. <br>
-Risk: Implemented experiments that use real user data could expose sensitive context or create unintended data handling issues. <br>
-Mitigation: Avoid real user data when testing resilience scenarios and use representative synthetic or sanitized inputs instead. <br>
+## Use Case:
 
+Developers, AI evaluators, and human-AI collaboration teams use this skill to design cognitive resilience tests, inject controlled cognitive faults, and assess recovery quality under noisy, overloaded, or adversarial conditions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/chaos-cognitive-resilience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prose-only conceptual framework; no commands or files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Adversarial cognitive test ideas could be misapplied against live users or systems without consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the techniques only in controlled, authorized evaluations with scoped fault injections and review before operational use.
+
+Risk: The source guidance is Chinese-language, which can lead to misunderstanding if the workflow requires another language.
+
+Mitigation: Use this skill only when Chinese-language guidance is acceptable or have the guidance translated and reviewed before use.
+
+## Reference(s):
+
+- [Chaos Cognitive Resilience on ClawHub](https://clawhub.ai/kingofzhao/skills/chaos-cognitive-resilience)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured frameworks, metrics, and evaluation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces non-executable Chinese-language guidance for cognitive resilience evaluation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

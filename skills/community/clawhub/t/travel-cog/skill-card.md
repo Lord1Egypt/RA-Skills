@@ -1,41 +1,54 @@
-## Description: <br>
-Travel Cog provides CellCog-powered travel planning, travel research, logistics guidance, and itinerary generation with PDF, interactive HTML, or Markdown deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI travel planning and itinerary generation powered by CellCog. Vacation planning, travel research, flight planning, hotel recommendations, visa requirements, weather patterns, local events. Complete itineraries as PDFs or interactive dashboards.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to research destinations, compare logistics, and generate tailored trip itineraries with practical travel details. It is intended for CellCog-backed planning that may produce PDFs, interactive HTML dashboards, or Markdown itineraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel queries and generated plans may be sent to the external CellCog service. <br>
-Mitigation: Avoid including sensitive personal details unless they are needed for the travel-planning task, and install only if external CellCog processing is acceptable. <br>
-Risk: The skill requires a CellCog API key. <br>
-Mitigation: Provide the key through the CELLCOG_API_KEY environment variable and handle it as a sensitive credential. <br>
+## Use Case:
 
+Travelers use this skill to research destinations and build tailored trip itineraries, including transportation, accommodation, visa, weather, event, and budget guidance.
 
-## Reference(s): <br>
-- [Travel Cog on ClawHub](https://clawhub.ai/nitishgargiitd/travel-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Travel guidance and itinerary content with optional PDF, interactive HTML, or Markdown deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and CELLCOG_API_KEY; uses the CellCog service for travel research and itinerary generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: Travel details in prompts are sent to CellCog; its data-retention practices were outside the supplied artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details needed for planning, especially for accessibility or other personal constraints.
+
+Risk: Setup uses a separate CellCog dependency.
+
+Mitigation: Prefer reviewed package versions before setup.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Travel Planning on ClawHub](https://clawhub.ai/cellcog/skills/travel-planning-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, PDF, Interactive HTML, Travel guidance]
+
+**Output Format:** [Destination research and trip itineraries as text, Markdown, PDF, or interactive HTML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Itineraries can include day-by-day plans, logistics, and estimated costs.]
+
+## Skill Version(s):
+
+1.0.18 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

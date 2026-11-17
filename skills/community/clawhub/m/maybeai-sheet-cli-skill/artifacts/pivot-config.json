@@ -1,0 +1,20 @@
+{
+  "worksheet_name": "SourceData",
+  "range_address": "A1:E1001",
+  "row_fields": ["period", "dimension_type"],
+  "column_fields": [],
+  "metrics": [
+    {
+      "aggregate": "sum",
+      "value_field": "settled_amount_reporting",
+      "label": "settled_revenue_reporting"
+    }
+  ],
+  "row_sort": {
+    "by": "label",
+    "order": "asc"
+  },
+  "show_row_totals": false,
+  "show_column_totals": false,
+  "blank_label": "(blank)"
+}

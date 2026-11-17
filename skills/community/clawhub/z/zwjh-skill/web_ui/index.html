@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长期记忆 / 知识图谱 — 可视化</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- ECharts CDN（可离线缓存） -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 顶部工具栏 -->
+    <header class="toolbar">
+        <div class="logo">🧠 长期记忆 / 知识图谱</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索实体（如：张三、项目A）..." />
+            <button id="searchBtn">搜索</button>
+        </div>
+        <div class="actions">
+            <button id="btnStats">📊 统计</button>
+            <button id="btnRefresh">🔄 刷新</button>
+            <button id="btnExport">💾 导出</button>
+        </div>
+    </header>
+
+    <!-- 主体区域 -->
+    <div class="main">
+        <!-- 左侧：过滤面板 -->
+        <aside class="sidebar">
+            <h3>🔍 过滤</h3>
+            <div class="filter-group">
+                <label>实体类型</label>
+                <select id="filterType">
+                    <option value="">全部</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>关系类型</label>
+                <select id="filterRelation">
+                    <option value="">全部</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>最小重要度</label>
+                <input type="range" id="filterImportance" min="0" max="1" step="0.1" value="0" />
+                <span id="importanceValue">0</span>
+            </div>
+            <button id="btnApplyFilter">应用过滤</button>
+            <hr />
+            <h3>🛤️ 路径探索</h3>
+            <div class="filter-group">
+                <label>起点实体</label>
+                <input type="text" id="pathFrom" placeholder="输入实体名或ID" />
+            </div>
+            <div class="filter-group">
+                <label>终点实体</label>
+                <input type="text" id="pathTo" placeholder="输入实体名或ID" />
+            </div>
+            <button id="btnFindPath">查找最短路径</button>
+            <hr />
+            <h3>📈 统计概览</h3>
+            <div id="statsPanel" class="stats-panel">
+                <p>加载中...</p>
+            </div>
+        </aside>
+
+        <!-- 中间：图谱可视化 -->
+        <main class="graph-container">
+            <div id="graphChart"></div>
+            <div id="emptyState" class="empty-state" style="display:none;">
+                <p>暂无数据</p>
+                <p>请先使用 <code>python scripts/cli.py deposit --text "..."</code> 沉淀一些知识</p>
+            </div>
+        </main>
+
+    <!-- 右侧：详情面板 -->
+    <aside class="detail-panel" id="detailPanel">
+        <div class="detail-header">
+            <h3 id="detailTitle">实体详情</h3>
+            <button id="btnCloseDetail">✕</button>
+        </div>
+        <div class="detail-content" id="detailContent">
+            <p class="placeholder">点击图谱中的节点查看详情</p>
+        </div>
+    </aside>
+
+    <!-- 任务状态面板（可折叠） -->
+    <div class="task-status-panel" id="taskStatusPanel">
+        <div class="task-status-header">
+            <h3>📋 任务状态</h3>
+            <button id="btnToggleTaskStatus">收起</button>
+        </div>
+        <div class="task-status-content" id="taskStatusContent">
+            <div class="task-status-section">
+                <h4>⏰ 定时任务</h4>
+                <div id="setupStatus">加载中...</div>
+            </div>
+            <div class="task-status-section">
+                <h4>🩺 健康度</h4>
+                <div id="healthStatus">加载中...</div>
+            </div>
+            <div class="task-status-section">
+                <h4>📦 归档统计</h4>
+                <div id="archiveStatus">加载中...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 时间线模态框 -->
+    <div class="modal" id="timelineModal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="timelineTitle">时间线</h3>
+                <button id="btnCloseTimeline">✕</button>
+            </div>
+            <div class="modal-body" id="timelineBody"></div>
+        </div>
+    </div>
+
+    <!-- 路径结果模态框 -->
+    <div class="modal" id="pathModal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>最短路径</h3>
+                <button id="btnClosePath">✕</button>
+            </div>
+            <div class="modal-body" id="pathBody"></div>
+        </div>
+    </div>
+
+    <!-- 统计模态框 -->
+    <div class="modal" id="statsModal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>图谱统计</h3>
+                <button id="btnCloseStats">✕</button>
+            </div>
+            <div class="modal-body" id="statsBody"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "doc-legacy-extract",
+  "normalizedName": "doc-legacy-extract",
+  "description": "提取老版 Word .doc（OLE 复合文档）正文文本的可靠方法。当需要读 NMPA 等官网发布的法规附件 .doc（如 GMP 2025 版 107 号公告附件）、旧文档时使用。markitdown/pdf 类工具不支持老 .doc，此法零第三方依赖（olefile）即可提取全文，并可进一步按中文条款结构切分。触发：提取 doc 全文 / 法规 doc 附件 / olefile / 老版 word 文档解析。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

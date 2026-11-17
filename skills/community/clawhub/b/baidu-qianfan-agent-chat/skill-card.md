@@ -1,42 +1,59 @@
-## Description: <br>
-Calls the Baidu Qianfan AI application chat API for streaming or non-streaming conversations, function-call tool use, file references, and session-based interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the Baidu Qianfan application conversation API for agent chat interactions, including streaming or non-streaming responses, function-call tool reporting, file IDs, and multi-turn sessions.
 
-## Publisher: <br>
-[lilitong9607](https://clawhub.ai/user/lilitong9607) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilitong9607](https://clawhub.ai/user/lilitong9607)
 
-## Use Case: <br>
-Developers and agents use this skill to call a Baidu Qianfan application, pass prompts and optional file or tool-call context, and manage multi-turn chat sessions from a Python command-line helper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, file references, metadata, and conversation context are sent to Baidu Qianfan. <br>
-Mitigation: Use the skill only for approved Qianfan workflows, verify the app_id, use a scoped API key, and avoid sensitive or regulated data unless approved. <br>
-Risk: Local session reuse can carry conversation context between runs. <br>
-Mitigation: Use --new-session or remove state/session.json when switching contexts. <br>
+## Use Case:
 
+Developers and agents use this skill to send chat prompts to Baidu Qianfan applications, manage conversation IDs, and pass optional function-call, file, metadata, and action parameters.
 
-## Reference(s): <br>
-- [Baidu Qianfan API documentation](https://cloud.baidu.com/doc/qianfan-api/s/7m7wqq361) <br>
-- [Baidu Wenxin Workshop](https://cloud.baidu.com/product/wenxinworkshop) <br>
-- [Local Qianfan API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; runtime output is streamed text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QIANFAN_API_KEY and can persist conversation_id in state/session.json for session reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Chat prompts and selected request metadata are sent to Baidu Qianfan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized data and avoid sending sensitive information unless the deployment permits it.
+
+Risk: QIANFAN_API_KEY is required for API access.
+
+Mitigation: Keep the key in a private environment variable and do not commit or log it.
+
+Risk: The wrapper may save a conversation ID locally for follow-up calls.
+
+Mitigation: Delete or protect artifact/state/session.json when conversation linkage should not persist on the machine.
+
+## Reference(s):
+
+- [Qianfan API reference](artifact/references/api.md)
+- [Baidu Qianfan conversation API documentation](https://cloud.baidu.com/doc/qianfan-api/s/7m7wqq361)
+- [Baidu Qianfan developer center](https://cloud.baidu.com/product/wenxinworkshop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance, shell command examples, and Baidu Qianfan text or JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QIANFAN_API_KEY; may store a conversation ID in artifact/state/session.json for follow-up calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

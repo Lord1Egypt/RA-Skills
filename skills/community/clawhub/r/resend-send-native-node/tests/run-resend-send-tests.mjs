@@ -3,13 +3,15 @@ import { spawnSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'node:fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const script = path.resolve(__dirname, '..', 'scripts', 'send.mjs');
 
-function run(args, env = {}) {
+function run(args, env = {}, options = {}) {
   return spawnSync(process.execPath, [script, ...args], {
     encoding: 'utf8',
+    input: options.input,
     env: {
       PATH: process.env.PATH || '',
       SystemRoot: process.env.SystemRoot || '',
@@ -22,6 +24,12 @@ function run(args, env = {}) {
 }
 
 function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
+function syntheticResendKey() { return ['re', 'SECRET', 'SENTINEL'].join('_'); }
+
+{
+  const source = readFileSync(script, 'utf8');
+  assert.match(source, /redirect:\s*["']error["']/);
+}
 
 {
   const r = run(['--to', 'you@example.com', '--subject', 'Hello', '--body', 'Hi']);
@@ -43,8 +51,8 @@ function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
 }
 
 {
-  const subject = 'Tavily Basic — AI agent governance radar';
-  const r = run(['--json', '--to', 'you@example.com', '--subject', subject, '--body', 'Hi'], { RESEND_ALLOWED_TO: 'you@example.com', RESEND_API_KEY: 're_SECRET_SENTINEL' });
+  const subject = 'Weekly reviewed report digest';
+  const r = run(['--json', '--to', 'you@example.com', '--subject', subject, '--body', 'Hi'], { RESEND_ALLOWED_TO: 'you@example.com', RESEND_API_KEY: syntheticResendKey() });
   assert.equal(r.status, 0);
   const receipt = JSON.parse(r.stdout);
   assert.equal(receipt.mode, 'dry-run');
@@ -57,7 +65,7 @@ function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
   assert.equal(receipt.allowlist.configured, true);
   assert.deepEqual(receipt.allowlist.blocked, []);
   assert.equal(receipt.payload.text, 'Hi');
-  assert.doesNotMatch(combined(r), /re_SECRET_SENTINEL/);
+  assert.doesNotMatch(combined(r), new RegExp(syntheticResendKey()));
 }
 
 {
@@ -67,6 +75,92 @@ function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
   assert.equal(receipt.mode, 'dry-run');
   assert.equal(receipt.allowlist.configured, false);
   assert.deepEqual(receipt.allowlist.blocked, ['you@example.com']);
+}
+
+{
+  const r = run(['--json', '--dry-run', '--send', '--to', 'you@example.com', '--subject', 'Dry run wins', '--body', 'Hi'], {
+    RESEND_ALLOWED_TO: 'you@example.com',
+    RESEND_API_KEY: syntheticResendKey(),
+  });
+  assert.equal(r.status, 0);
+  const receipt = JSON.parse(r.stdout);
+  assert.equal(receipt.mode, 'dry-run');
+  assert.equal(receipt.sent, false);
+  assert.equal(receipt.subject, 'Dry run wins');
+  assert.deepEqual(receipt.allowlist.blocked, []);
+  assert.equal(receipt.payload.text, 'Hi');
+  assert.doesNotMatch(combined(r), /resend-id:/i);
+  assert.doesNotMatch(combined(r), new RegExp(syntheticResendKey()));
+}
+
+{
+  const hostileSubject = 'Reviewed subject " ; ` $() | & < >\nnext line';
+  const hostileBody = 'Approved body with quotes " and semicolon ; and backtick ` and $(calc) and newline\nsecond line';
+  const r = run(['--json', '--dry-run', '--input-json-stdin'], {
+    RESEND_ALLOWED_TO: 'you@example.com,copy@example.com,blind@example.com',
+    RESEND_API_KEY: syntheticResendKey(),
+  }, {
+    input: JSON.stringify({
+      to: ['you@example.com'],
+      cc: ['copy@example.com'],
+      bcc: ['blind@example.com'],
+      from: 'Reports <onboarding@resend.dev>',
+      replyTo: 'reply@example.com',
+      subject: hostileSubject,
+      body: hostileBody,
+      html: false,
+    }),
+  });
+  assert.equal(r.status, 0);
+  const receipt = JSON.parse(r.stdout);
+  assert.equal(receipt.mode, 'dry-run');
+  assert.equal(receipt.sent, false);
+  assert.equal(receipt.subject, hostileSubject);
+  assert.equal(receipt.payload.text, hostileBody);
+  assert.deepEqual(receipt.cc, ['copy@example.com']);
+  assert.deepEqual(receipt.bcc, ['blind@example.com']);
+  assert.equal(receipt.from, 'Reports <onboarding@resend.dev>');
+  assert.equal(receipt.replyTo, 'reply@example.com');
+  assert.deepEqual(receipt.allowlist.blocked, []);
+  assert.doesNotMatch(combined(r), new RegExp(syntheticResendKey()));
+}
+
+{
+  const r = run(['--json', '--dry-run', '--input-json-stdin', '--body', 'inline'], {}, {
+    input: JSON.stringify({ to: 'you@example.com', subject: 'Hello', body: 'Hi' }),
+  });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /cannot be combined with inline message flags/);
+}
+
+{
+  const r = run(['--json', '--dry-run', '--input-json-stdin'], {}, {
+    input: JSON.stringify({ to: 'you@example.com', subject: 'Hello', body: 'Hi', send: true }),
+  });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /unsupported field\(s\): send/);
+}
+
+{
+  const r = run(['--send', '--to', 'allowed@example.com', '--cc', 'blocked-cc@example.com', '--subject', 'CC blocked', '--body', 'Hi'], {
+    RESEND_ALLOWED_TO: 'allowed@example.com',
+    RESEND_API_KEY: syntheticResendKey(),
+  });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /recipient not in RESEND_ALLOWED_TO allowlist: blocked-cc@example.com/);
+  assert.doesNotMatch(combined(r), /POST https:\/\/api\.resend\.com\/emails/);
+  assert.doesNotMatch(combined(r), new RegExp(syntheticResendKey()));
+}
+
+{
+  const r = run(['--send', '--to', 'allowed@example.com', '--bcc', 'blocked-bcc@example.com', '--subject', 'BCC blocked', '--body', 'Hi'], {
+    RESEND_ALLOWED_TO: 'allowed@example.com',
+    RESEND_API_KEY: syntheticResendKey(),
+  });
+  assert.equal(r.status, 1);
+  assert.match(r.stderr, /recipient not in RESEND_ALLOWED_TO allowlist: blocked-bcc@example.com/);
+  assert.doesNotMatch(combined(r), /POST https:\/\/api\.resend\.com\/emails/);
+  assert.doesNotMatch(combined(r), new RegExp(syntheticResendKey()));
 }
 
 {
@@ -112,6 +206,7 @@ function combined(r) { return `${r.stdout || ''}\n${r.stderr || ''}`; }
   const r = run(['--help']);
   assert.equal(r.status, 0);
   assert.match(r.stdout, /Usage: send\.mjs/);
+  assert.match(r.stdout, /Required message fields \(inline flags or --input-json-stdin\)/);
   assert.match(r.stdout, /RESEND_ALLOWED_TO/);
 }
 

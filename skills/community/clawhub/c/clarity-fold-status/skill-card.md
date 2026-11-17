@@ -1,42 +1,54 @@
-## Description: <br>
-Gets overview and status information from Clarity Protocol, including API capabilities, variant counts, endpoint availability, rate limits, and data freshness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get overview and status information from Clarity Protocol, including API info, variant counts, and endpoint availability.
 
-## Publisher: <br>
-[clarityprotocol](https://clawhub.ai/user/clarityprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clarityprotocol](https://clawhub.ai/user/clarityprotocol)
 
-## Use Case: <br>
-External users, developers, and researchers use this skill to check Clarity Protocol service status and understand available protein-folding research data before querying or integrating with the API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to clarityprotocol.io. <br>
-Mitigation: Install and run it only in environments where outbound access to clarityprotocol.io is acceptable. <br>
-Risk: The optional CLARITY_API_KEY is a secret if configured. <br>
-Mitigation: Use a scoped or revocable key where possible and keep it in the environment rather than in prompts, logs, or shared files. <br>
+## Use Case:
 
+Developers, researchers, and integrators use this skill to check Clarity Protocol API availability, understand available protein-folding research data, inspect endpoint coverage, and plan API integrations.
 
-## Reference(s): <br>
-- [Clarity Fold Status on ClawHub](https://clawhub.ai/clarityprotocol/clarity-fold-status) <br>
-- [Clarity Protocol](https://clarityprotocol.io) <br>
-- [Clarity Protocol API v1](https://clarityprotocol.io/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text status summary or JSON, with shell command examples in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only HTTP GET requests to Clarity Protocol; optional CLARITY_API_KEY increases the documented rate limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill contacts clarityprotocol.io and may send CLARITY_API_KEY if the user sets that environment variable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the Clarity Protocol service is trusted, and set CLARITY_API_KEY only when the higher authenticated rate limit is needed.
+
+Risk: Live status output depends on Clarity Protocol API availability and rate limits.
+
+Mitigation: Treat results as current API responses, retry after the service-provided delay when rate limited, and avoid relying on the output as an offline snapshot.
+
+## Reference(s):
+
+- [Clarity Protocol](https://clarityprotocol.io)
+- [Clarity Protocol API v1](https://clarityprotocol.io/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The status script emits either a human-readable summary or JSON containing API information and a variant count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

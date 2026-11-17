@@ -6,13 +6,84 @@ Product slug: `speech-to-text-with-speakers`
 
 x402 availability: not enabled for this product.
 
+## `get_task`
+
+Action slug: `get-task`
+
+Price: `1` credits
+
+Check a transcription task's progress and retrieve its result. Completed tasks carry the full transcription payload in outputs[0].
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `task_id` | `string` | yes | Task ID returned by a transcribe action. |
+
+Sample parameters:
+
+```json
+{
+  "task_id": "example task id"
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "task_id": {
+    "description": "Task ID returned by a transcribe action.",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `list_tasks`
+
+Action slug: `list-tasks`
+
+Price: `1` credits
+
+List recent transcription tasks with status and progress.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `limit` | `integer` | no | Maximum number of tasks to return. |
+
+Sample parameters:
+
+```json
+{
+  "limit": 20
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "limit": {
+    "default": 20,
+    "description": "Maximum number of tasks to return.",
+    "maximum": 100,
+    "minimum": 1,
+    "required": false,
+    "type": "integer"
+  }
+}
+```
+
 ## `transcribe_extended`
 
 Action slug: `transcribe-extended`
 
 Price: `200` credits
 
-Transcribe audio up to 60 minutes.
+Start an asynchronous transcription of audio up to 60 minutes. Returns a task_id immediately (short clips complete inline in the same response); poll get_task for the completed transcript and File Manager artifact.
 
 Parameters:
 
@@ -24,7 +95,7 @@ Parameters:
 | `file_id` | `string` | no | File ID from a prior upload. Provide either file_id or public_url. |
 | `language_code` | `string` | no | Optional BCP-47 language code such as en-US; defaults to en-US if omitted. |
 | `max_alternatives` | `integer` | no | Maximum number of alternative transcripts to return. Must be 1 when remove_filler_words is false. |
-| `output_format` | `string` | no | Output format for the transcription result. |
+| `output_format` | `string` | no | Output format for the transcription result. The completed task's outputs include the selected content inline plus result_file_id and result_signed_url for the File Manager artifact. |
 | `public_url` | `string` | no | HTTPS URL to a downloadable audio file. Provide either public_url or file_id. |
 | `remove_filler_words` | `boolean` | no | When true (default), return a cleaned transcript with disfluencies removed. When false, preserve filler words and disfluencies; this path does not support diarization or max_alternatives greater than 1. |
 
@@ -85,7 +156,7 @@ Generated JSON parameter schema:
   },
   "output_format": {
     "default": "text",
-    "description": "Output format for the transcription result.",
+    "description": "Output format for the transcription result. The completed task's outputs include the selected content inline plus result_file_id and result_signed_url for the File Manager artifact.",
     "enum": [
       "text",
       "srt",
@@ -115,7 +186,7 @@ Action slug: `transcribe-quick`
 
 Price: `100` credits
 
-Transcribe audio up to 15 minutes.
+Start an asynchronous transcription of audio up to 15 minutes. Returns a task_id immediately (short clips complete inline in the same response); poll get_task for the completed transcript and File Manager artifact.
 
 Parameters:
 
@@ -127,7 +198,7 @@ Parameters:
 | `file_id` | `string` | no | File ID from a prior upload. Provide either file_id or public_url. |
 | `language_code` | `string` | no | Optional BCP-47 language code such as en-US; defaults to en-US if omitted. |
 | `max_alternatives` | `integer` | no | Maximum number of alternative transcripts to return. Must be 1 when remove_filler_words is false. |
-| `output_format` | `string` | no | Output format for the transcription result. |
+| `output_format` | `string` | no | Output format for the transcription result. The completed task's outputs include the selected content inline plus result_file_id and result_signed_url for the File Manager artifact. |
 | `public_url` | `string` | no | HTTPS URL to a downloadable audio file. Provide either public_url or file_id. |
 | `remove_filler_words` | `boolean` | no | When true (default), return a cleaned transcript with disfluencies removed. When false, preserve filler words and disfluencies; this path does not support diarization or max_alternatives greater than 1. |
 
@@ -188,7 +259,7 @@ Generated JSON parameter schema:
   },
   "output_format": {
     "default": "text",
-    "description": "Output format for the transcription result.",
+    "description": "Output format for the transcription result. The completed task's outputs include the selected content inline plus result_file_id and result_signed_url for the File Manager artifact.",
     "enum": [
       "text",
       "srt",
@@ -218,7 +289,7 @@ Action slug: `transcribe-standard`
 
 Price: `150` credits
 
-Transcribe audio up to 30 minutes.
+Start an asynchronous transcription of audio up to 30 minutes. Returns a task_id immediately (short clips complete inline in the same response); poll get_task for the completed transcript and File Manager artifact.
 
 Parameters:
 
@@ -230,7 +301,7 @@ Parameters:
 | `file_id` | `string` | no | File ID from a prior upload. Provide either file_id or public_url. |
 | `language_code` | `string` | no | Optional BCP-47 language code such as en-US; defaults to en-US if omitted. |
 | `max_alternatives` | `integer` | no | Maximum number of alternative transcripts to return. Must be 1 when remove_filler_words is false. |
-| `output_format` | `string` | no | Output format for the transcription result. |
+| `output_format` | `string` | no | Output format for the transcription result. The completed task's outputs include the selected content inline plus result_file_id and result_signed_url for the File Manager artifact. |
 | `public_url` | `string` | no | HTTPS URL to a downloadable audio file. Provide either public_url or file_id. |
 | `remove_filler_words` | `boolean` | no | When true (default), return a cleaned transcript with disfluencies removed. When false, preserve filler words and disfluencies; this path does not support diarization or max_alternatives greater than 1. |
 
@@ -291,7 +362,7 @@ Generated JSON parameter schema:
   },
   "output_format": {
     "default": "text",
-    "description": "Output format for the transcription result.",
+    "description": "Output format for the transcription result. The completed task's outputs include the selected content inline plus result_file_id and result_signed_url for the File Manager artifact.",
     "enum": [
       "text",
       "srt",

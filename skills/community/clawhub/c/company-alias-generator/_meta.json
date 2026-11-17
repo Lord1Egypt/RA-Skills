@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76nq41ma07c1bcewnm98ryf982mnkg",
-  "slug": "company-alias-generator",
+  "name": "company-alias-generator",
   "version": "1.0.0",
-  "publishedAt": 1774349088893
+  "description": "企业别名智能生成器 - 为 686 家企业生成精准别名",
+  "author": "hyqdq888",
+  "license": "MIT"
 }

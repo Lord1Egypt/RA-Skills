@@ -1,47 +1,58 @@
-## Description: <br>
-Local CLI tool for B.Fun (BSC) market inspection, quotes, token details, tax info, and explicitly user-confirmed token operations, with structured JSON outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local CLI tool for B.Fun (BSC) market inspection, quotes, token details, tax info, and explicitly user-confirmed token operations, with structured JSON outputs.
 
-## Publisher: <br>
-[bfun-ai](https://clawhub.ai/user/bfun-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bfun-ai](https://clawhub.ai/user/bfun-ai)
 
-## Use Case: <br>
-Developers and external users use this skill to inspect B.Fun markets on BSC, retrieve quotes and token details, and run explicitly confirmed token, wallet, and identity operations through the local B.Fun CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a disclosed crypto wallet helper and can use a private key for irreversible BSC transactions. <br>
-Mitigation: Use a dedicated low-balance wallet, never paste private keys or seed phrases into chat, and confirm address, amount, slippage, network, and token details before signing. <br>
-Risk: The installation instructions use an unpinned external npm CLI package when installed with @latest. <br>
-Mitigation: Verify the npm package and source before installation and prefer a pinned package version. <br>
-Risk: Token creation can upload images and metadata to external services. <br>
-Mitigation: Treat token images and metadata as externally shared data and review them before running creation commands. <br>
+## Use Case:
 
+Developers and external users use this skill to inspect B.Fun markets on BSC, obtain quotes and token details, troubleshoot setup, and prepare explicitly confirmed token operations through the local bfun CLI.
 
-## Reference(s): <br>
-- [B.Fun AI Skill Page](https://clawhub.ai/bfun-ai/bfun-agentic) <br>
-- [Contract Addresses](references/contract-addresses.md) <br>
-- [Create Flow](references/create-flow.md) <br>
-- [Errors](references/errors.md) <br>
-- [Token Phases](references/token-phases.md) <br>
-- [Trade Flow](references/trade-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and summarized JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [State-changing operations require transaction-specific user confirmation and local signing configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.4 (source: server release evidence and skill metadata) <br>
+Risk: The skill can run mutable external CLI code with wallet signing access for on-chain actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-value dedicated wallet, avoid npx for secret-bearing workflows, prefer an exact reviewed package version or pinned commit, and provide PRIVATE_KEY only for intentional state-changing actions.
+
+Risk: State-changing blockchain operations can cause irreversible asset loss if the token, amount, recipient, slippage, or chain is wrong.
+
+Mitigation: Verify transaction details independently, require transaction-specific confirmation, and re-check BSC mainnet, token addresses, recipient addresses, amounts, and slippage before execution.
+
+## Reference(s):
+
+- [Token Phases](references/token-phases.md)
+- [Trade Flow](references/trade-flow.md)
+- [Create Flow](references/create-flow.md)
+- [Contract Addresses](references/contract-addresses.md)
+- [Common Errors](references/errors.md)
+- [ClawHub Skill Page](https://clawhub.ai/bfun-ai/skills/bfun-agentic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only outputs can summarize CLI JSON; state-changing operations require transaction-specific user confirmation and local signing configuration.]
+
+## Skill Version(s):
+
+0.5.4 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

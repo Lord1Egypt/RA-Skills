@@ -1,40 +1,52 @@
-## Description: <br>
-Analyzes A/B test data, calculates statistical significance, generates visual reports, and recommends optimization actions for product and growth teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes A/B test data, calculates statistical significance, produces reports, and provides optimization recommendations for product, operations, and growth workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, operations teams, growth teams, and developers use this skill to evaluate experiment results, compare variants, and turn statistically reviewed A/B test outcomes into reporting and optimization guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated experiment recommendations could be misleading if sample size, confidence, or stopping rules are not reviewed.
+
+Mitigation: Require sufficient sample size, review confidence thresholds such as greater than 95%, avoid early stopping, and use the output as decision support.
+
+Risk: The Chinese-language artifact instructions may not match every team's analytics workflow.
+
+Mitigation: Review the instructions before use and adapt command examples, reporting expectations, and approval steps to the local workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, operations teams, growth teams, and developers use this skill to analyze A/B and multivariate tests, compare conversion metrics, and prepare decision-ready optimization recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A/B test conclusions can be misleading when sample size is too small, confidence is below the chosen threshold, or a test is stopped early. <br>
-Mitigation: Confirm sample size, confidence threshold, and test duration before acting on the generated recommendation. <br>
-Risk: Suggested commands or workflow actions may affect local files or authenticated services. <br>
-Mitigation: Review exact commands before execution and use only the intended account permissions for any write or moderation workflow. <br>
+**Output Format:** [Markdown reports with tables, statistical summaries, recommendations, and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ab-test-analyzer) <br>
+**Other Properties Related to Output:** [Outputs should be treated as analysis support and reviewed before business decisions are made.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with tables, statistical summaries, command examples, and recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence levels, uplift calculations, visual-report descriptions, and optimization recommendations.] <br>
+1.0.52 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.52 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

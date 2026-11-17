@@ -1,41 +1,52 @@
-## Description: <br>
-When the user wants to reduce churn, improve customer retention, or plan lifecycle marketing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides customer retention, churn prevention, lifecycle marketing, and planning for at-risk customer interventions.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business teams use this skill to analyze churn type, retention signals, lifecycle stage, and practical retention interventions. It helps structure churn analysis, retention tactics, health scoring, and at-risk customer playbooks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad retention or churn discussions and influence customer strategy with generalized guidance.
+
+Mitigation: Review recommendations against current customer data, business constraints, and applicable policy before acting on them.
+
+Risk: The skill may read limited project-context sections from .claude/project-context.md or .cursor/project-context.md when those files exist.
+
+Mitigation: Keep project-context files scoped to relevant audience and documentation details, and avoid placing secrets or sensitive customer data in them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, customer success teams, growth teams, and product operators use this skill to analyze churn signals, plan retention tactics, build health score frameworks, and define intervention playbooks for at-risk customers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace metadata declares crypto and purchase capabilities that do not match the retention strategy content. <br>
-Mitigation: Review capability tags before installing and confirm whether the platform treats those labels as permissions or authority. <br>
-Risk: Retention and churn recommendations may be applied too broadly without business-specific validation. <br>
-Mitigation: Review proposed tactics against current customer data, lifecycle stage, legal requirements, and internal customer communication policies before deployment. <br>
+**Output Format:** [Markdown guidance with tables and structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/retention-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+**Other Properties Related to Output:** [May include churn analysis, retention tactics by lifecycle stage, health score frameworks, and intervention playbooks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces churn analysis, staged retention tactics, health score frameworks, and at-risk intervention playbooks when applicable.] <br>
+1.1.1 (source: artifact frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

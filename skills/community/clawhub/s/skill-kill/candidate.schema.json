@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skill Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "description",
+    "matchScore",
+    "trustLevel",
+    "riskLevel",
+    "recommendation",
+    "sourceType",
+    "sourceUrl",
+    "repositoryUrl",
+    "version",
+    "lastUpdated",
+    "permissions",
+    "evidence",
+    "limitations",
+    "installCommand"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "matchScore": { "type": "number", "minimum": 0, "maximum": 100 },
+    "trustLevel": { "enum": ["高", "中", "低", "未知"] },
+    "riskLevel": { "enum": ["低", "中", "高", "未知"] },
+    "recommendation": { "enum": ["推荐", "谨慎", "不推荐"] },
+    "sourceType": { "type": "string" },
+    "sourceUrl": { "type": "string" },
+    "repositoryUrl": { "type": "string" },
+    "version": { "type": "string" },
+    "lastUpdated": { "type": "string" },
+    "permissions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "evidence": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "limitations": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "installCommand": { "type": "string" }
+  }
+}

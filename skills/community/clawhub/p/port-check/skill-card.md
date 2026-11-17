@@ -1,37 +1,53 @@
-## Description: <br>
-Check if services are responding on given host:port pairs. Supports TCP and HTTP checks with configurable timeout. Use for service monitoring, health checks, and network debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check if services are responding on given host:port pairs. Supports TCP and HTTP checks with configurable timeout. Use for service monitoring, health checks, and network debugging.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers and engineers use this skill to check whether TCP or HTTP services are reachable on specified host:port targets for service monitoring, health checks, and network debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs nc and curl against user-specified network targets, which can probe private or third-party systems from the execution environment. <br>
-Mitigation: Use it only against hosts and ports you own, administer, or have explicit permission to check. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Port Check ClawHub Release](https://clawhub.ai/rogue-agent1/port-check) <br>
+## Use Case:
 
+Developers and operators use this skill to check whether TCP or HTTP services respond on specific host:port targets during service monitoring, health checks, and network debugging.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and terminal-style status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires nc and curl; exits 0 when all targets are up and 1 when one or more targets are down.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make TCP and HTTP connection attempts to user-specified hosts and ports.
+
+Mitigation: Use explicit host:port targets only for systems you own or administer, and avoid broad or unauthorized network scanning.
+
+Risk: Invalid or unusual host, port, or timeout values are unsupported.
+
+Mitigation: Validate inputs before execution and keep timeout values within expected operational ranges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/port-check)
+- [ClawHub publisher profile](https://clawhub.ai/user/rogue-agent1)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces exit-code-aware checks for user-supplied targets; requires nc and curl.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

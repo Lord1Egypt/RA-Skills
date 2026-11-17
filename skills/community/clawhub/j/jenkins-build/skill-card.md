@@ -1,43 +1,58 @@
-## Description: <br>
-Automates triggering Jenkins build jobs for worker and user application packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Jenkins build triggers for configured worker and user projects.
 
-## Publisher: <br>
-[chengzongxin](https://clawhub.ai/user/chengzongxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengzongxin](https://clawhub.ai/user/chengzongxin)
 
-## Use Case: <br>
-Developers and release operators use this skill to open or trigger local Jenkins jobs for configured worker and user projects and report the build status link back to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documented admin-style Jenkins credentials may be valid and could allow excessive access. <br>
-Mitigation: Remove the documented admin/admin credential if it is valid, rotate it, and use a least-privilege Jenkins token or account. <br>
-Risk: The skill can start Jenkins CI jobs through an authenticated browser session without a clear confirmation step. <br>
-Mitigation: Require explicit user confirmation of the target Jenkins job before triggering any build. <br>
-Risk: The skill is intended for a local Jenkins instance and may trigger the wrong environment if reused broadly. <br>
-Mitigation: Install and run it only for the intended local Jenkins instance and confirm the Jenkins URL before use. <br>
+## Use Case:
 
+Developers and release engineers use this skill to trigger Jenkins builds for configured worker and user projects and report build status details back to the requester.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chengzongxin/jenkins-build) <br>
-- [Publisher profile](https://clawhub.ai/user/chengzongxin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with Jenkins build status details and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include build number, queue or execution status, estimated time when available, and a Jenkins page link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can trigger Jenkins CI builds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an intended Jenkins instance and require explicit confirmation before triggering any build.
+
+Risk: The artifact includes plaintext administrator credentials.
+
+Mitigation: Remove or rotate the published credentials and prefer a least-privilege Jenkins user or token.
+
+Risk: Browser automation may act through an existing logged-in Jenkins session.
+
+Mitigation: Confirm the target Jenkins job and session before clicking Build Now or using an equivalent API call.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chengzongxin/skills/jenkins-build)
+- [Publisher profile](https://clawhub.ai/user/chengzongxin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports build number, current status, estimated time when available, and a Jenkins page link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

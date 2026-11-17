@@ -1,40 +1,50 @@
-## Description: <br>
-Counts file types in a specified directory and returns a Markdown report with the path, timestamp, file-type table, and total count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+统计指定目录的文件类型和数量，生成Markdown格式报表
 
-## Publisher: <br>
-[xujiangdong](https://clawhub.ai/user/xujiangdong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujiangdong](https://clawhub.ai/user/xujiangdong)
 
-## Use Case: <br>
-Developers and other ClawHub users use this skill when they want an agent to inspect a chosen directory, count files by extension without recursing into subdirectories, and return a concise Markdown summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to inspect local directory contents, which can expose file names and file types from directories the user selects. <br>
-Mitigation: Install only when this directory inspection is desired, and grant read-only filesystem access when the host environment supports it. <br>
-Risk: The artifact declares filesystem.write even though the stated behavior returns the Markdown report in chat. <br>
-Mitigation: Prefer read-only access for normal use and avoid granting write access unless a deployment adds a separate file-writing workflow. <br>
+## Use Case:
 
+External users and developers use this skill to summarize the files in a selected directory by extension and receive a concise Markdown report with counts and totals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xujiangdong/file-report-skill-xjd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report includes the inspected directory path, timestamp, file-type counts, files without extensions, and total file count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requests local filesystem write access even though its documented workflow returns the Markdown report in conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and remove or reject filesystem.write unless the skill is updated to clearly document confirmed, user-chosen file output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xujiangdong/skills/file-report-skill-xjd)
+- [Publisher profile](https://clawhub.ai/user/xujiangdong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the selected directory path, statistics timestamp, a table of file types and counts, and total file count; documented behavior excludes files in subdirectories.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

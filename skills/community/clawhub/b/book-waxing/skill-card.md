@@ -1,37 +1,53 @@
-## Description: <br>
-Book waxing services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Waxing helps agents search for waxing providers, check availability, and create bookings through Lokuli's MCP service.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for waxing providers near a ZIP code, check availability, and create bookings through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking may send the user's name, email, phone number, ZIP code, and appointment details to Lokuli's external service. <br>
-Mitigation: Confirm the provider, appointment time, and contact details with the user before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to find waxing services, compare appointment availability, and create bookings through Lokuli. The agent should confirm booking details and contact information before submitting a booking.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Text guidance with JSON-RPC MCP call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include appointment details and user-provided contact information needed to create a booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad waxing requests can enter an external booking flow that may send the user's contact details.
+
+Mitigation: Before creating a booking, confirm the provider, service, date and time, and that the user's name, email, and phone may be sent to Lokuli.
+
+Risk: The skill depends on Lokuli's external service for waxing searches and bookings.
+
+Mitigation: Install and use this skill only when the user is comfortable relying on Lokuli for booking availability and data handling.
+
+## Reference(s):
+
+- [Book Waxing on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-waxing)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON examples and booking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route waxing search, availability, and booking requests to Lokuli's external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

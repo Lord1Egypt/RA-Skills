@@ -1,47 +1,69 @@
-## Description: <br>
-Autonomous research framework that orchestrates AI agents (Claude Code, Codex, Gemini) to design, execute, analyze, and document scientific experiments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous research framework that orchestrates AI agents (Claude Code, Codex, Gemini) to design, execute, analyze, and document scientific experiments from a structured YAML research idea.
 
-## Publisher: <br>
-[laoliu5280](https://clawhub.ai/user/laoliu5280) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[laoliu5280](https://clawhub.ai/user/laoliu5280)
 
-## Use Case: <br>
-Developers and researchers use this skill to install, configure, and run NeuriCo for autonomous research workflows that turn structured YAML ideas into experiments, code, results, LaTeX papers, and GitHub repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of an external autonomous research framework that runs generated code and can publish results to GitHub with broad account permissions. <br>
-Mitigation: Prefer Docker, inspect or pin the external repository and container image, and review generated code and outputs before relying on them. <br>
-Risk: GitHub tokens and research inputs may expose account permissions, confidential ideas, datasets, or credentials if configured incautiously. <br>
-Mitigation: Start with --no-github or --private, use a temporary least-privilege GitHub token where possible, and avoid confidential material unless the provider and repository settings are acceptable. <br>
+## Use Case:
 
+Developers and researchers use this skill to run an autonomous research workflow that turns a YAML research idea into experiment code, results, plots, a LaTeX paper draft, and optional GitHub repository output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laoliu5280/neurico) <br>
-- [NeuriCo repository](https://github.com/ChicagoHAI/neurico) <br>
-- [ChicagoHAI profile](https://github.com/ChicagoHAI) <br>
-- [NeuriCo idea schema](https://github.com/ChicagoHAI/neurico/blob/main/ideas/schema.yaml) <br>
-- [NeuriCo configuration docs](https://github.com/ChicagoHAI/neurico#configuration) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Codex CLI repository](https://github.com/openai/codex) <br>
-- [Gemini CLI repository](https://github.com/google-gemini/gemini-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers setup, provider selection, YAML idea input, run options, and expected generated research artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: Autonomous research execution can generate and run code that may produce incorrect results or unsafe changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans, code, and experiment outputs before relying on them or publishing results.
+
+Risk: Installation instructions include unpinned Docker images and a curl-based native installer path.
+
+Mitigation: Pin container image digests and inspect install scripts before execution.
+
+Risk: GitHub publishing requires a token and may expose generated work if repository visibility is not controlled.
+
+Mitigation: Use the narrowest GitHub token scope possible and run with --no-github or --private unless public publishing is intended.
+
+Risk: Research workflows may handle sensitive datasets, API keys, or model credentials.
+
+Mitigation: Audit upstream runtime behavior and avoid providing sensitive data or credentials until the workflow is approved for the target environment.
+
+## Reference(s):
+
+- [NeuriCo ClawHub Skill Page](https://clawhub.ai/laoliu5280/skills/neurico)
+- [NeuriCo Repository](https://github.com/ChicagoHAI/neurico)
+- [NeuriCo Issues](https://github.com/ChicagoHAI/neurico/issues)
+- [Idea Schema](https://github.com/ChicagoHAI/neurico/blob/main/ideas/schema.yaml)
+- [Dockerfile](https://github.com/ChicagoHAI/neurico/blob/main/docker/Dockerfile)
+- [Security Filtering Code](https://github.com/ChicagoHAI/neurico/blob/main/src/core/security.py)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Codex Repository](https://github.com/openai/codex)
+- [Gemini CLI Repository](https://github.com/google-gemini/gemini-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown]
+
+**Output Format:** [Markdown with YAML examples, bash commands, and file tree output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of experiment files, result artifacts, LaTeX paper drafts, and GitHub repository content.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

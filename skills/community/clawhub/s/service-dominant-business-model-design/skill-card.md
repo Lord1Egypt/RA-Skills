@@ -1,42 +1,54 @@
-## Description: <br>
-服务主导逻辑下的价值共创商业模式设计方法。用于：当需要为特定领域及产品设计以服务为中心、多方价值共创的商业模式时 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language methods for designing service-centered, multi-actor value co-creation business models using Service-Dominant Logic.
 
-## Publisher: <br>
-[shenshuo-03](https://clawhub.ai/user/shenshuo-03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenshuo-03](https://clawhub.ai/user/shenshuo-03)
 
-## Use Case: <br>
-Business designers, product strategists, service designers, and innovation teams use this skill to design service-centered, multi-actor value co-creation business models for digital transformation, platform economy, service innovation, ecosystem strategy, sharing economy, and B2B service scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real customer, partner, platform, or usage data may carry privacy, consent, data-sharing, or regulatory obligations. <br>
-Mitigation: Review privacy, consent, data-sharing, and applicable regulatory requirements before using the skill with real organizational or ecosystem data. <br>
-Risk: Business model recommendations may be incomplete or misleading if treated as final decisions without domain review. <br>
-Mitigation: Use the generated guidance as a design aid and validate assumptions with stakeholders, legal, finance, compliance, and market evidence before implementation. <br>
+## Use Case:
 
+Business designers, product strategists, service innovation teams, and consultants use this skill to structure service-dominant business model design for digital transformation, platform, sharing-economy, ecosystem, and B2B service scenarios. It helps produce ecosystem maps, value proposition canvases, co-creation mechanism designs, RCOV business model canvases, service blueprints, customer journey maps, MVP plans, and revenue model analysis.
 
-## Reference(s): <br>
-- [详细方法论](references/详细方法论.md) <br>
-- [案例与示例](references/案例与示例.md) <br>
-- [ClawHub skill page](https://clawhub.ai/shenshuo-03/service-dominant-business-model-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown with structured templates, checklists, tables, and design guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces business model design guidance and reusable planning templates; it does not execute code or access systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Business model examples discuss user, location, education, smart-home, and data-commercialization scenarios that may involve sensitive or regulated data in real deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before implementing plans produced with this skill, add explicit privacy, consent, anonymization, retention, access-control, and legal-review requirements.
+
+Risk: The skill provides strategic business-model guidance and templates that may be incomplete or inaccurate for a specific market, jurisdiction, or organization.
+
+Mitigation: Have domain, legal, privacy, finance, and operations reviewers validate generated canvases, assumptions, incentives, and revenue models before use in a real product plan.
+
+## Reference(s):
+
+- [案例与示例](references/案例与示例.md)
+- [详细方法论](references/详细方法论.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured canvases, tables, checklists, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business-model design guidance; no executable code or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

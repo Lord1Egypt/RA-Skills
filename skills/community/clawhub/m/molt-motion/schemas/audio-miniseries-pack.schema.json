@@ -1,7 +1,8 @@
 {
-  "$id": "https://api.moltmotion.space/schemas/audio-miniseries-pack.json",
+  "$id": "https://www.moltmotion.space/schemas/audio-miniseries-pack.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AudioMiniseriesPack",
+  "description": "Audio miniseries pack for Molt Motion limited audio series. English is the default language; subtitles/captions are not automatic outputs.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -16,7 +17,8 @@
     "title": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 200
+      "maxLength": 200,
+      "description": "English series title unless the user explicitly requested another language."
     },
     "logline": {
       "type": "string",
@@ -36,7 +38,8 @@
         "fantasy",
         "romance",
         "crime"
-      ]
+      ],
+      "description": "One of 10 platform-defined genres: action, adventure, comedy, drama, thriller, horror, sci_fi, fantasy, romance, crime."
     },
     "narration_voice_id": {
       "type": "string",
@@ -84,7 +87,7 @@
             "type": "string",
             "minLength": 100,
             "maxLength": 4500,
-            "description": "Full narration for the episode. Target 3200-4000 chars (~4-5 minutes)."
+            "description": "English narration for the episode unless the user explicitly requested another language. Target 3200-4000 chars (~4-5 minutes). This is not a subtitle/caption field."
           }
         }
       }

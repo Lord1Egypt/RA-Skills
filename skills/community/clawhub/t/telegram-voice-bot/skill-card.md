@@ -1,43 +1,58 @@
-## Description: <br>
-Telegram Voice Bot helps an agent run a Telegram bot that transcribes voice messages with Whisper and replies in Chinese using Microsoft Edge text-to-speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram bot that transcribes voice messages with Whisper and replies in Chinese using Microsoft Edge text-to-speech.
 
-## Publisher: <br>
-[Polityang](https://clawhub.ai/user/Polityang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polityang](https://clawhub.ai/user/polityang)
 
-## Use Case: <br>
-Developers use this skill to configure and operate a Telegram voice bot that listens for voice messages, transcribes Chinese audio, and sends spoken replies. It is intended for bot deployment workflows where voice content and bot credentials are handled by the local runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bot handles Telegram bot credentials and voice content. <br>
-Mitigation: Use a dedicated Telegram bot token, keep it out of source control, disclose voice and transcript handling to chat participants, and avoid sensitive group chats unless automatic replies are acceptable. <br>
-Risk: Dependencies are ambiguous or unpinned, including the Whisper package selection. <br>
-Mitigation: Review and pin dependencies in an isolated environment before deployment, and verify that the intended Whisper package is installed. <br>
-Risk: Automatic transcript and voice replies may expose recognized speech back into a chat. <br>
-Mitigation: Limit deployment to chats where participants expect automatic transcription and spoken responses, or disable voice replies with the documented environment variable. <br>
+## Use Case:
 
+Developers use this skill to configure and run a Telegram bot that receives voice messages, transcribes them, and replies with text or synthesized Chinese speech.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Polityang/telegram-voice-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/Polityang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and runtime guidance for a Telegram bot that emits Telegram text or voice replies when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Private voice messages and generated replies may be processed by Telegram and Microsoft Edge TTS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose this processing to bot users, avoid sensitive audio, and use a dedicated Telegram bot token.
+
+Risk: Dependency mismatch around the Whisper package can create supply-chain or installation risk.
+
+Mitigation: Replace the dependency with the intended reviewed package and pin dependencies or use a lock file.
+
+Risk: Transcript logging may expose user voice content in runtime logs.
+
+Mitigation: Disable or remove full transcript logging and run the bot under a low-privilege account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/polityang/skills/telegram-voice-bot)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python code references, and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TELEGRAM_BOT_TOKEN; VOICE_REPLY controls whether replies are sent as synthesized voice.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

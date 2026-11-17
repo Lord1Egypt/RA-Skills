@@ -1,38 +1,58 @@
-## Description: <br>
-Fetch real-time AI news briefings powered by SkillBoss API Hub (Hacker News, TechCrunch, The Verge). Uses SkillBoss search and chat capabilities for news aggregation and summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches real-time AI news briefings from Hacker News, TechCrunch, and The Verge using SkillBoss API Hub search and chat capabilities.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External agents, developers, and teams use this skill to fetch concise AI news briefings with timestamps and source links. It is intended for current-awareness workflows that rely on SkillBoss search and chat processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alv-ai-news-oracle) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+Developers and external agent users use this skill to fetch current AI news briefings and source-linked summaries through SkillBoss API Hub.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, source links] <br>
-**Output Format:** [Structured news briefing with timestamped bullet summaries and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY. User queries and retrieved content are sent to SkillBoss for processing; avoid secrets, private customer data, regulated content, or internal documents unless approved.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill sends news-search and summarization requests to a third-party API service.
+
+Mitigation: Confirm the SkillBoss API service is trusted before installation and review what data the agent sends through the API.
+
+Risk: The skill requires a SkillBoss API key for authentication.
+
+Mitigation: Use a scoped API key, store it as SKILLBOSS_API_KEY, and avoid embedding credentials in prompts, code, or shared logs.
+
+Risk: Installing from a moving repository branch can change behavior after review.
+
+Mitigation: Prefer a reviewed commit or release when installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alv-ai-news-oracle)
+- [SkillBoss API Hub pilot endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON briefing with concise bullet-point text and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and calls the SkillBoss API Hub.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

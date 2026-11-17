@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ SEO Research"
+  short_description: "Collect and analyze public SEO data"
+  default_prompt: "Use $socq-seo-research to collect and analyze this public SEO research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ SEO data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=seo"

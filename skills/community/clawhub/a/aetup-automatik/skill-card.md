@@ -1,44 +1,62 @@
-## Description: <br>
-Facilitates installation and management of VPS tools such as Traefik, Portainer, Chatwoot, N8N, and other open-source applications on Linux VPSs using the Setup Automatik engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facilitate the installation and management of VPS solutions using the Setup Automatik engine (powered by Orion Design). Use when the user wants to install, configure, or manage tools like Traefik, Portainer, Chatwoot, N8N, and other open-source applications on a Linux VPS.
 
-## Publisher: <br>
-[alltomatos](https://clawhub.ai/user/alltomatos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alltomatos](https://clawhub.ai/user/alltomatos)
 
-## Use Case: <br>
-Developers and VPS administrators use this skill to install, configure, and verify open-source infrastructure, automation, AI, communication, and business application stacks on Linux VPS hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to administer a VPS with powerful server access. <br>
-Mitigation: Use a fresh or snapshotted server and temporary SSH keys rather than passwords or long-lived private keys. <br>
-Risk: The bundled installer under-discloses telemetry and credential-handling behavior. <br>
-Mitigation: Review or restrict the installer before execution, block or remove Orion telemetry if unacceptable, and rotate SSH, Portainer, SMTP, and application credentials after use. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare a Linux VPS and install or manage open-source infrastructure, automation, CRM, AI, and utility stacks through the Setup Automatik and SetupOrion workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alltomatos/aetup-automatik) <br>
-- [tools.md](references/tools.md) <br>
-- [SetupOrion.sh](assets/SetupOrion.sh) <br>
-- [Mundo Automatik](https://mundoautomatik.com/) <br>
-- [Orion Design setup](https://oriondesign.art.br/setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require VPS access, domain names, service credentials, SMTP details, and post-installation verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for broad VPS access and can run an installer that changes server configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privilege access and run it only on a disposable or well-backed-up VPS after reviewing the planned commands.
+
+Risk: SSH secrets and administrator credentials could be exposed or persist after setup.
+
+Mitigation: Prefer OpenClaw pairing, do not paste SSH passwords or private keys into chat, and rotate Portainer or other administrator credentials created or stored during installation.
+
+Risk: The installer may use telemetry, remote installers, container images, or scripts that require additional trust decisions.
+
+Mitigation: Review the installer first, explicitly accept or disable telemetry, and verify remote installers and container images before deployment.
+
+## Reference(s):
+
+- [Setup Automatik on ClawHub](https://clawhub.ai/alltomatos/skills/aetup-automatik)
+- [Orion Design VPS Solutions](references/tools.md)
+- [SetupOrion.sh installer script](assets/SetupOrion.sh)
+- [Mundo Automatik](https://mundoautomatik.com/)
+- [Orion Design setup](https://oriondesign.art.br/setup)
+- [OpenClaw node pairing installer](https://get.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and deployment steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include VPS access setup, domain and service configuration, credential handling guidance, and post-installation verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

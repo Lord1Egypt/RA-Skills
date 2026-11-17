@@ -1,0 +1,10 @@
+{
+  "id": "vision.camera.stub",
+  "name": "Vision Sensor Stub",
+  "version": "0.1.0",
+  "capabilities": ["vision", "motion_detection", "object_detection", "ocr"],
+  "permission_class": 2,
+  "enabled_by_default": false,
+  "poll_interval_seconds": 2,
+  "entrypoint": "sensor.py:VisionSensor"
+}

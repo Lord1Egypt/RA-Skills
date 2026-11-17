@@ -27,9 +27,7 @@ your-api-key-here
 
 Create a `.coinbase-api-secret` file with your private key (PEM format):
 ```
------BEGIN PRIVATE KEY-----
-your-private-key-here
------END PRIVATE KEY-----
+REDACTED-SECRET
 ```
 
 ### 3. Get API Keys

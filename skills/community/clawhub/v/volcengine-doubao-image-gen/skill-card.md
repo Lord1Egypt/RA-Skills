@@ -1,42 +1,59 @@
-## Description: <br>
-Generates images and short videos through Volcengine Doubao APIs, including Seedream image workflows and Seedance video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images and short videos with Volcengine Doubao APIs, including Seedream text-to-image, image-to-image, sequential image generation, and Seedance text-to-video workflows.
 
-## Publisher: <br>
-[goodgooddayhi](https://clawhub.ai/user/goodgooddayhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goodgooddayhi](https://clawhub.ai/user/goodgooddayhi)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate Doubao images, image variations from reference URLs, multi-image sequences, and short Seedance videos from prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The video workflow reads /root/.openclaw/workspace/.env, which can expose unrelated environment secrets to the runtime context. <br>
-Mitigation: Use a dedicated ARK_API_KEY and avoid storing unrelated secrets in that shared .env file. <br>
-Risk: The scripts write generated media to user-supplied output paths. <br>
-Mitigation: Use simple relative filenames in a dedicated output directory and review files before sharing or overwriting existing assets. <br>
+## Use Case:
 
+Developers and external users can use this skill to call Volcengine Doubao services from an agent workflow for prompt-driven image generation, reference-image editing, multi-image generation, and short video creation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goodgooddayhi/volcengine-doubao-image-gen) <br>
-- [Volcengine Ark console](https://console.volcengine.com/ark) <br>
-- [Volcengine image generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARK_API_KEY and may write generated image or video files to user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: External Volcengine API calls require ARK_API_KEY and may incur usage costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only with an intended Volcengine key, and review prompts, model choices, and generation parameters before execution.
+
+Risk: The video workflow reads a shared workspace .env file and may import unrelated secrets into the runtime environment.
+
+Mitigation: Use a workspace .env containing only the credentials needed for this skill, or run in an isolated workspace without unrelated secrets.
+
+Risk: Returned media URLs are downloaded without host allowlisting or size limits.
+
+Mitigation: Prefer explicit filenames in a controlled output directory and review generated media downloads in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/goodgooddayhi/skills/volcengine-doubao-image-gen)
+- [Volcengine Ark Console](https://console.volcengine.com/ark)
+- [Volcengine Ark Images Generations API](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated local media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARK_API_KEY; outputs generated image or video files to user-selected filenames or generated local paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

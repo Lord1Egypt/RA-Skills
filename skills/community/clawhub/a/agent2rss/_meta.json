@@ -2,5 +2,7 @@
   "ownerId": "kn78d1nx35s22tr6aey7ercjth7zyv00",
   "slug": "agent2rss",
   "version": "0.2.1",
-  "publishedAt": 1772086692506
+  "publishedAt": 1772077088934,
+  "homepage": "https://github.com/yaotutu/agent2rss",
+  "source": "https://github.com/yaotutu/agent2rss"
 }

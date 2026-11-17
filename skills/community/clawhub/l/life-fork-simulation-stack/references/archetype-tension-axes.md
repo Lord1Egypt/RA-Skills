@@ -1,5 +1,7 @@
 # Archetype Tension Axes / 原型张力轴
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：在 `life-fork-grammar.md` 之后、`life-archetype-library.md` 之前使用。张力轴负责泛化，人生原型负责命中感。新增主题时优先组合张力轴，少扩充新原型。
 
 ## 使用方式

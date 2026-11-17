@@ -415,7 +415,7 @@ else:
 2. 验证格式：`python3 -m json.tool config.json > /dev/null`
 3. 测试加载：`python3 scripts/test_config.py`
 
-**详细配置指南**: `workspace/docs/wecom-task-manager-config-guide.md`
+**详细配置指南**: `workspace/docs/wecom-taREDACTED-SECRET.md`
 
 ---
 
@@ -996,7 +996,7 @@ print_statistics()
 
 ## 📚 相关文档
 
-- **详细字段说明**: `workspace/docs/wecom-task-manager-fields-detail.md`
+- **详细字段说明**: `workspace/docs/wecom-taREDACTED-SECRET.md`
 - **调用流程**: `workspace/docs/wecom-task-manager-call-flow.md`
 - **测试报告**: `workspace/docs/wecom-task-manager-test-report.md`
 - [企业微信智能表格 API](https://open.work.weixin.qq.com/devtool/query?e=2022034)

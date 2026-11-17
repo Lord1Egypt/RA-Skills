@@ -1,41 +1,54 @@
-## Description: <br>
-Automate e-commerce operations: price monitoring, inventory tracking, order management, competitor analysis, and stock alerts for online sellers across Shopify, WooCommerce, Amazon, and eBay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates e-commerce operations including price monitoring, inventory tracking, order management, competitor analysis, stock alerts, and marketplace integrations.
 
-## Publisher: <br>
-[Fuczy](https://clawhub.ai/user/Fuczy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuczy](https://clawhub.ai/user/fuczy)
 
-## Use Case: <br>
-Online sellers and ecommerce operations teams use this skill to monitor competitor prices, track and synchronize inventory, manage orders, analyze competitors, and receive stock alerts across storefront and marketplace platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may affect live store data, including inventory, listings, pricing, and order state. <br>
-Mitigation: Start read-only or sandboxed, require confirmation before any store-changing action, and roll out write access only after reviewing behavior. <br>
-Risk: Ecommerce automation can expose store credentials or sensitive alert content to external channels. <br>
-Mitigation: Limit credentials to the minimum needed and review email, Slack, SMS, or similar alert contents before enabling delivery. <br>
+## Use Case:
 
+Online sellers and operations teams use this skill to monitor prices, synchronize inventory, process orders, analyze competitors, and configure alerts across e-commerce platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fuczy/clawd-ecommerce-automation) <br>
-- [Skill homepage](https://clawhub.com/skills/ecommerce-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown with YAML configuration examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow configuration patterns and operational recommendations for ecommerce automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Store credentials and commerce API tokens may be exposed through local configuration or source control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API tokens, keep secrets out of YAML files and source control, and rotate credentials if exposure is suspected.
+
+Risk: Automated price, listing, inventory, order, or fulfillment actions can affect live commerce systems.
+
+Mitigation: Begin in monitoring or dry-run mode, require approval for write actions, verify audit logs and rollback, and enable automation gradually.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuczy/skills/clawd-ecommerce-automation)
+- [Skill homepage](https://clawhub.com/skills/ecommerce-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires openclaw and curl; may produce e-commerce workflow configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

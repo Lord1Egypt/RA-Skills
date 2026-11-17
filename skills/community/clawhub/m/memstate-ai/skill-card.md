@@ -1,45 +1,60 @@
-## Description: <br>
-Versioned, structured memory for AI agents that tracks facts, logs changes, and helps agents retrieve current context; requires MEMSTATE_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Versioned, structured memory for AI agents that stores current facts and preserves change history using the Memstate API.
 
-## Publisher: <br>
-[yepthatsjason](https://clawhub.ai/user/yepthatsjason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yepthatsjason](https://clawhub.ai/user/yepthatsjason)
 
-## Use Case: <br>
-Developers and agents use this skill to store, recall, search, version, and clean up structured project memory in Memstate. It supports persistent task context, fact tracking, semantic lookup, history review, and soft deletion through bundled Python scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored content is sent to an external persistent memory service. <br>
-Mitigation: Do not store secrets, credentials, regulated data, or confidential project details unless the organization approves that data leaving the local environment. <br>
-Risk: MEMSTATE_API_KEY grants access to Memstate operations. <br>
-Mitigation: Protect the API key as a secret and avoid exposing it in logs, prompts, repository files, or shared terminal output. <br>
-Risk: Recursive and project-level delete commands can remove large sets of active memories. <br>
-Mitigation: Confirm the target project and keypath before running recursive or project-level delete commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to recall, store, search, update, inspect, and soft-delete structured project memory through Memstate AI. It is useful when an agent needs persistent versioned context across tasks.
 
-## Reference(s): <br>
-- [Memstate AI Homepage](https://memstate.ai) <br>
-- [Memstate AI Documentation](https://memstate.ai/docs) <br>
-- [Memstate MCP Plugin](https://github.com/memstate-ai/memstate-mcp) <br>
-- [Memstate Benchmark](https://github.com/memstate-ai/memstate-benchmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from Memstate scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and MEMSTATE_API_KEY; scripts can read, write, search, view history, and soft-delete Memstate memories or projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: Persistent external memory may expose sensitive project details if agents store secrets, regulated data, customer data, or private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for approved Memstate data and avoid storing secrets, regulated data, customer data, or private project details unless explicitly approved.
+
+Risk: Recalled memories may be stale, incomplete, or untrusted reference material.
+
+Mitigation: Treat retrieved memory as context to review, and verify important facts before using them for decisions or code changes.
+
+Risk: Delete, recursive delete, and project delete commands can remove active memory entries or whole projects.
+
+Mitigation: Require explicit human review before running destructive memory commands, especially recursive or project-level deletes.
+
+## Reference(s):
+
+- [Memstate AI](https://memstate.ai)
+- [Memstate Documentation](https://memstate.ai/docs)
+- [ClawHub Skill Page](https://clawhub.ai/yepthatsjason/skills/memstate-ai)
+- [Publisher Profile](https://clawhub.ai/user/yepthatsjason)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and MEMSTATE_API_KEY; helper scripts communicate with the Memstate AI API.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Helps an agent find, shortlist, vet, and enrich US management consulting firms across strategy, operations, executive coaching, leadership development, organizational change, PMO, and sales or revenue operations using the ServiceGraph pro_services dataset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find, shortlist, vet, and enrich U.S. management consulting firms through ServiceGraph's pro_services catalog.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to search for US management consulting firms, validate filter intent, compare brief firm cards, and optionally enrich selected company records after confirming unlock costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ServiceGraph bearer token for API calls. <br>
-Mitigation: Keep SERVICEGRAPH_API_KEY in the shell environment or local env file and avoid pasting secrets into chat or model context. <br>
-Risk: Detailed firm enrichment can spend credits when records are unlocked. <br>
-Mitigation: Present the number of firms and credit cost before unlock requests, and proceed only after user confirmation. <br>
-Risk: Overbroad filters can return firms outside the intended management consulting scope. <br>
-Mitigation: Pin industry:management_consulting and validate filters before search or enrichment. <br>
+## Use Case:
 
+External users and developers use this skill to discover U.S. management consulting firms, build shortlists, validate filters, and unlock paid contact or enrichment details when appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nostrband/find-management-consultant) <br>
-- [ServiceGraph API base](https://api.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+Global, for U.S. management-consulting firm searches.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline API requests and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return brief firm summaries for free searches and enriched firm details after user-approved credit unlocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Fallback authentication instructions source .env.local as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the MCP flow or provide SERVICEGRAPH_API_KEY through a trusted environment; review .env.local before any shell sourcing.
+
+Risk: Full firm enrichment spends ServiceGraph credits.
+
+Mitigation: Use free search and validation first, then ask the user to confirm the exact firms and credit cost before unlocks.
+
+Risk: Search results can drift if the management-consulting industry filter is omitted.
+
+Mitigation: Always include industry:management_consulting and validate filters before search.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nostrband/skills/find-management-consultant)
+- [ServiceGraph API](https://api.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose paid ServiceGraph unlocks for selected firms; users should confirm credit spend before enrichment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

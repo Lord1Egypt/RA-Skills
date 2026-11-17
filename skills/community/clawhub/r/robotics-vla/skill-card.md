@@ -1,44 +1,53 @@
-## Description: <br>
-Expert guidance for Vision-Language-Action robot foundation models, including architecture design, training pipelines, data strategy, deployment, and evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance for Vision-Language-Action robot foundation models, covering architecture design, training pipelines, data strategy, deployment, and evaluation.
 
-## Publisher: <br>
-[arden2010](https://clawhub.ai/user/arden2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arden2010](https://clawhub.ai/user/arden2010)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to reason about VLA robot policy architecture, training data mixtures, action representations, multi-embodiment support, deployment patterns, and evaluation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides robotics architecture, training, deployment, and evaluation guidance that could be incorrect, incomplete, or unsuitable for a specific robot platform or safety case. <br>
-Mitigation: Treat outputs as design guidance, verify recommendations against primary sources and platform documentation, and validate changes in simulation and controlled tests before physical deployment. <br>
-Risk: Granting broad credentials, filesystem access, or automatic mutation authority could increase operational risk beyond what this guidance-focused skill needs. <br>
-Mitigation: Follow the security guidance in the release evidence: review instructions before use and avoid broad privileges unless a specific task clearly requires them. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to reason about VLA robot policy architecture, data mixtures, training and fine-tuning strategy, multi-embodiment design, and evaluation for robot manipulation systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arden2010/robotics-vla) <br>
-- [Architecture reference](references/architecture.md) <br>
-- [Robot embodiment reference](references/embodiments.md) <br>
-- [Related and complementary research reference](references/related-work.md) <br>
-- [Training pipeline reference](references/training.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Robotics claims or recommendations may be inaccurate, incomplete, or stale when applied to real robot systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify guidance against primary research and perform safety, quality, and task-specific validation before deploying on physical robots.
+
+## Reference(s):
+
+- [Robotics VLA ClawHub Release](https://clawhub.ai/arden2010/skills/robotics-vla)
+- [pi0 Architecture Reference](references/architecture.md)
+- [Robot Embodiment Reference](references/embodiments.md)
+- [pi0 Related and Complementary Research](references/related-work.md)
+- [Training Pipeline Reference](references/training.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with technical recommendations and optional code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no executable behavior or sensitive access is present in the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

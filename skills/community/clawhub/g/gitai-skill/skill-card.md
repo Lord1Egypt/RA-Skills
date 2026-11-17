@@ -1,43 +1,58 @@
-## Description: <br>
-Boost developer productivity with Gitai: An AI-powered Git automation tool that analyzes code changes and generates semantic Conventional Commits instantly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boost developer productivity with Gitai: An AI-powered Git automation tool that analyzes code changes and generates semantic Conventional Commits instantly.
 
-## Publisher: <br>
-[leandrosilvaferreira](https://clawhub.ai/user/leandrosilvaferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leandrosilvaferreira](https://clawhub.ai/user/leandrosilvaferreira)
 
-## Use Case: <br>
-Developers and engineers use this skill to invoke Gitai for analyzing repository changes, generating Conventional Commit messages, and optionally committing or pushing Git changes after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can invoke an external Git automation CLI that may commit or push repository changes. <br>
-Mitigation: Review diffs and generated commit messages before committing, and use `--push` only after explicitly confirming the target branch and remote. <br>
-Risk: The configured AI provider may receive repository change context while generating commit messages. <br>
-Mitigation: Use only approved providers for the repository and avoid sensitive codebases unless the provider and configuration are approved for that code. <br>
-Risk: The skill depends on a preinstalled and configured `gitai` CLI. <br>
-Mitigation: Confirm `gitai` is available and `~/.gitai` exists before operation; stop and ask the user to configure the tool if either prerequisite is missing. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect repository changes, generate Conventional Commits-style messages, and run the Gitai CLI to commit selected changes. It can optionally push committed changes when the user explicitly requests that workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leandrosilvaferreira/gitai-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/leandrosilvaferreira) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run the external gitai CLI after prerequisite checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can commit and push repository changes through Gitai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review staged changes and generated commit messages before running Gitai, and use --push only when publication to the configured remote is intended.
+
+Risk: Repository diffs may be sent to external AI providers configured in Gitai.
+
+Mitigation: Do not use the skill on repositories containing secrets or sensitive proprietary code unless that use is approved.
+
+Risk: The Gitai CLI and API-key configuration are external dependencies.
+
+Mitigation: Install the CLI only from a trusted and pinned source, verify the local configuration, and protect or rotate API keys stored in ~/.gitai.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leandrosilvaferreira/skills/gitai-skill)
+- [Publisher profile](https://clawhub.ai/user/leandrosilvaferreira)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to check prerequisite CLI installation and configuration before running Gitai.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

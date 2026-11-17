@@ -1,42 +1,63 @@
-## Description: <br>
-MakeX lets agents discover and execute actions in third-party services through the OpenClaw Integrations API with organization-level authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MakeX helps agents discover connected third-party service actions and execute them through OpenClaw Integrations API endpoints using organization-level authentication.
 
-## Publisher: <br>
-[tkejr](https://clawhub.ai/user/tkejr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tkejr](https://clawhub.ai/user/tkejr)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an agent search available MakeX integrations, inspect action schemas, check connected accounts, and execute actions against connected third-party services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run real actions in connected third-party services using an organization token. <br>
-Mitigation: Use the narrowest token and connected accounts available, and require explicit approval before actions that send, post, delete, or change data. <br>
-Risk: Organization-level integration access may expose sensitive connected-service data or perform high-impact operations. <br>
-Mitigation: Install only when the publisher, MakeX, and Composio are trusted with that access, and avoid giving the token to broadly autonomous agents. <br>
-Risk: Execution tracing may retain operational details beyond what is needed for a task. <br>
-Mitigation: Keep tracing disabled unless it is specifically needed for debugging or review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tkejr/makex) <br>
-- [MakeX app](https://www.makex.app/) <br>
+## Use Case:
 
+Developers and agents use this skill to discover available third-party integration actions, inspect account and action schemas, execute selected actions on connected accounts, and preview response structures for MakeX/OpenClaw workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include raw third-party action results whose shape varies by selected integration and action.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An organization token can authorize server-to-server access to connected integrations.
+
+Mitigation: Install or enable the skill only for trusted server-side callers, protect the org token like a production secret, and rotate or revoke it if exposed.
+
+Risk: The run-action endpoint can execute live actions on connected third-party accounts, including actions that send messages or modify external systems.
+
+Mitigation: Restrict which Composio actions and connected accounts may be used, and require explicit user confirmation before mutating external systems or sending messages.
+
+Risk: The output-structure endpoint executes an action to inspect its response shape, which can cause side effects for some actions.
+
+Mitigation: Avoid using output-structure on side-effecting actions; prefer read-only actions, sandbox accounts, or test data when previewing output shapes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tkejr/skills/makex)
+- [MakeX](https://www.makex.app/)
+- [OpenClaw Integrations API](artifact/SKILL.md)
+- [Search Actions Endpoint](artifact/search-actions.txt)
+- [Connected Account Endpoint](artifact/connected-account.txt)
+- [Action Details Endpoint](artifact/action-details.txt)
+- [Run Action Endpoint](artifact/run-action.txt)
+- [Output Structure Endpoint](artifact/output-structure.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown documentation with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint descriptions, authentication requirements, request fields, response examples, and error cases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

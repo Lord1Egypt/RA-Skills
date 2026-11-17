@@ -1,42 +1,55 @@
-## Description: <br>
-A human-agent collaboration protocol skill that helps a user prepare for meetings or one-to-one communications, share a concise Context Card with participants, and follow up on Feishu meeting notes with decisions, open questions, task assignments, and document updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps a user prepare and follow up on meetings or one-to-one conversations by asking clarifying questions, drafting a shared Context Card, creating a private collaboration prompt, and summarizing meeting output.
 
-## Publisher: <br>
-[nonvnet-ux](https://clawhub.ai/user/nonvnet-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nonvnet-ux](https://clawhub.ai/user/nonvnet-ux)
 
-## Use Case: <br>
-Employees and external collaborators use this skill to prepare shared meeting context, clarify decision goals, and turn Feishu meeting records into confirmed follow-up outputs. It is intended for communication workflows where the user remains responsible for confirming shared documents, task owners, deadlines, and final decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting context, transcript links, task assignments, deadlines, and document updates may expose private or organization-sensitive information if shared too broadly. <br>
-Mitigation: Review Context Card content, transcript access, task assignees, deadlines, document updates, and memory storage before confirming actions; notify participants and follow local law and organization policy before recording meetings or sharing transcript links. <br>
-Risk: Incorrectly extracted decisions or unclear meeting notes could create misleading follow-up tasks or document changes. <br>
-Mitigation: Require user confirmation of Context Card content and follow-up Output before creating Feishu tasks, updating documents, or recording meeting output. <br>
+## Use Case:
 
+Employees and external collaborators use this skill to prepare shared meeting context, clarify intended decisions, and turn Feishu meeting notes into confirmed outputs, task assignments, Context Card updates, and local meeting memory.
 
-## Reference(s): <br>
-- [Human-Agent Collaboration Protocol on ClawHub](https://clawhub.ai/nonvnet-ux/human-collab-protocol) <br>
-- [Human-Agent Collaboration Protocol v1.0](https://www.feishu.cn/docx/JSFIdBEVeoo6mYxdlCNcmnxHnxb) <br>
-- [Implementation Manual v1.0](https://www.feishu.cn/docx/VG9qdaLwroC2kMx027Sc6X12nrb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text templates for Context Cards, collaboration prompts, and meeting follow-up outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Context Card and follow-up Output content require user confirmation before Feishu document, task, or memory updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated Context Cards or post-meeting Outputs may omit nuance or misstate decisions, owners, or deadlines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and confirm generated Context Cards and Outputs before allowing Feishu document updates, task creation, or local memory writes.
+
+Risk: Confirmed follow-up actions can create or update Feishu documents and assigned tasks.
+
+Mitigation: Install only for workflows where Feishu meeting preparation and follow-up are intended, and keep user confirmation as the gate before external changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nonvnet-ux/skills/human-collab-protocol)
+- [人机协作协议 v1.0](https://www.feishu.cn/docx/JSFIdBEVeoo6mYxdlCNcmnxHnxb)
+- [落地操作手册 v1.0](https://www.feishu.cn/docx/VG9qdaLwroC2kMx027Sc6X12nrb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Plain text meeting artifacts and follow-up summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are separated into a participant-facing Context Card, a user-private collaboration prompt, and a confirmed post-meeting output with decisions, open questions, updates, and task follow-up.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

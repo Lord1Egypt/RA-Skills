@@ -1,41 +1,56 @@
-## Description: <br>
-Guides users through a video-based workflow for understanding React text diff concepts and the main diff process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: text-diff — React里重要的diff竟然这么简单？三张图讲解diff主流程
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this skill to study and practice React text diff concepts using a short guided workflow and linked video examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for loosely worded diff-related requests outside the intended React text diff learning context. <br>
-Mitigation: Disable the skill or narrow its trigger wording if it appears in unrelated conversations. <br>
+## Use Case:
 
+External learners and developers use this skill as a Chinese-language learning aid for reviewing React text-diff concepts and practicing the main diff workflow from referenced video material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/text-diff-be5bd0) <br>
-- [Bilibili video BV13eonY8E1T](https://www.bilibili.com/video/BV13eonY8E1T) <br>
-- [Bilibili video BV1EmxUexEm2](https://www.bilibili.com/video/BV1EmxUexEm2) <br>
-- [Bilibili video BV1qT411e7c6](https://www.bilibili.com/video/BV1qT411e7c6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill is a lightweight learning aid with broad text-diff triggers and limited practical depth.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for conceptual review and verify technical conclusions against authoritative React documentation before applying them in production work.
+
+Risk: The artifact is based on video-derived notes and external video links.
+
+Mitigation: Review the referenced material and the generated guidance for accuracy before relying on it for implementation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/text-diff-be5bd0)
+- [Bilibili video BV13eonY8E1T](https://www.bilibili.com/video/BV13eonY8E1T)
+- [Bilibili video BV1EmxUexEm2](https://www.bilibili.com/video/BV1EmxUexEm2)
+- [Bilibili video BV1qT411e7c6](https://www.bilibili.com/video/BV1qT411e7c6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language conceptual learning guidance; no code execution or environment changes indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,34 +1,32 @@
-**MISSION:** Act as a Discourse Analyst, Personality Psychologist, and Psycholinguist. Evolve the LENS by refining the subject's Truth, Nature, and Voice. Your adjustments to the Trinity Nodes must strictly improve the digital shadow. Generate deep understanding; do not simply fill the nodes with superficial information that has no benefit in helping future prompts replicate the user's mind, character, and speech.
+**OBJECTIVE:** Distill enduring factual truths (`AXIOM`), decision heuristics (`ETHOS`), and linguistic mechanics (`MODUS`) from `~/.lens/TRACE.txt` (or directly from the user's live reply turn following a calibration interview question) into `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, and `~/.lens/MODUS.yaml`.
 
 **REFERENCES:**
-- `skills/lens/references/resolve-protocol.md` (Conflict handling and privacy redlines)
-- `skills/lens/references/trinity-definitions.md` (Node scope and purpose)
+- [references/resolve-protocol.md](../references/resolve-protocol.md) (Conflict resolution, privacy redlines, specificity preservation)
+- [references/trinity-definitions.md](../references/trinity-definitions.md) (Node schemas and trait boundaries)
 
 **PROTOCOL:**
-0. **Self-Repair & Cron Sync:**
-   - Check the message that triggered this session. Does it contain `DISTILLATION_READY`? If NO: You are running an outdated cron job. Run `node skills/lens/scripts/distillation.js` via the `exec` tool.
-   - Next, check the output of the script. If it includes `BOOTSTRAP_LENS`, use the `cron` tool to update the `lens-distillation` job to match the exact payload output by the script.
-   - Proceed to Step 1.
+0. **Preflight & Schedule Sync (Session / Scheduled Distillation Only):**
+   - Skip Step 0 when distilling a direct in-chat reply turn to a calibration interview question.
+   - Otherwise, if `~/.lens/TRACE.txt` was not refreshed for this run (or the trigger message lacks `DISTILLATION_READY`), run `node` on [scripts/distillation.js](../scripts/distillation.js) from the skill directory (outside the workspace sandbox if needed to access `~/.lens/` and enabled agent session logs per `~/.lens/SCOPE.json`).
+   - If stdout contains `BOOTSTRAP_LENS` and the `cron` tool is available, register or update any job in `jobs`, remove any job listed in `removeJobs` via the `cron` tool, and note in your final response that the recurring distillation and interview schedules were synced.
+   - If stdout contains `TRACE_EMPTY`, stop immediately without modifying any files.
 
-1. **Discovery & Retrieval (MANDATORY):**
-   - You MUST execute the `read` tool to fetch `.lens/TRACE.txt` into your context before proceeding. No exceptions.
-   - **Critical Filtering:** `.lens/TRACE.txt` contains ONLY the raw, unfiltered messages sent by the human subject, separated by `---`. These are distinct, disconnected snippets and not necessarily a continuous conversation. Analyze this organic input to preserve the purity of the subject's voice.
-   - **Privacy Guard:** NEVER extract raw credentials, specific addresses, or sensitive health data. If such data is present, extract only the *conceptual* logic or factual pattern (e.g., "The subject manages credentials via 1Password") rather than the sensitive data itself.
-   - **Tag Filtering:** Note that messages containing `#private` have already been scrubbed by the preflight script and will not be present.
-   - **CRITICAL: Anti-Contamination Guard:** Subjects may occasionally paste raw text, error logs, articles, or massive code snippets. You MUST use extreme semantic judgment to differentiate between the subject's native conversational wrapper (e.g., "Look at this error:", "What do you think of this review:") and the third-party content itself. NEVER extract syntax, tone, or values from copy-pasted material. If a message block seems entirely like a paste with zero subject commentary, skip it completely. Contaminating the Trinity Nodes with non-subject data is the highest-severity failure. Only analyze the subject's original, native words.
+1. **Source Filtering (`~/.lens/TRACE.txt` or Live Interview Reply):**
+   - Read `~/.lens/TRACE.txt` (where entries separated by `---` are independent raw user messages harvested across sessions), or evaluate the user's live in-chat reply to a calibration interview question.
+   - **Privacy Filter:** Never extract raw credentials, account numbers, exact street addresses, or sensitive medical identifiers. Record only high-level operational patterns (e.g., "Manages secrets via 1Password").
+   - **Anti-Contamination Filter:** Strictly separate the user's own words from pasted articles, logs, third-party emails, or code. Never extract values or phrasing from third-party text.
+   - **Anti-Bot-Command Filter:** Ignore rapid operational commands directed at AI tools ("Fix this bug", "Run the build") and accidental keyboard typos. Never record AI-commanding syntax or typos as the subject's human-to-human voice (`MODUS`).
 
-2. **Surgical Extraction (High-Threshold Filter):**
-   - **Do not copy and dump.** The majority of conversational inputs are operational noise. You must be highly selective. Only extract information that further develops the subject and helps replicate their digital shadow.
-   - **Anti-Meta Rule (Blanket Exclusion):** NEVER extract information that does not directly pertain to the human subject's core identity. This includes the LENS system itself, AI architecture, cron jobs, transient projects, or external topics being discussed. If it is not an immutable human truth, a core character quality, or a linguistic habit of the subject, it is noise. DISCARD IT.
-   - **AXIOM (The Truth):** RARE. Only extract if the transcript reveals a new, immutable truth about the human (history, geolocational change, personal assets, credentials). Ignore transient tasks, meta-commentary, and non-sense.
-   - **ETHOS (The Nature):** RARE. Only capture if the transcript reveals a core character quality, *why* a decision was made, a philosophical alignment, or an aesthetic trigger. Discard operational noise, meta-commentary, fluff, and non-sense.
-   - **MODUS (The Voice):** FREQUENT. Use the entire raw transcript to analyze written patterns. Capture punctuation habits, sentence rhythm (pacing/ellipses), missing apostrophes, conversational anchors, and formatting signatures.
-   - **Constraint:** Zero-tolerance for "AI-muddiness." Do not mirror your own response patterns back into the MODUS.
+2. **Portability Gate & Node Extraction:**
+   - **Portability Test:** Retain a signal only if it would remain true if the subject switched projects, repositories, or servers tomorrow. Discard transient task instructions, cron tweaks, and meta-discussions about LENS.
+   - **`~/.lens/AXIOM.yaml` (The Truth / What):** RARE. Extract only enduring objective facts (biography, kinship, core hardware/software stack, career history, major personal projects, domestic context).
+   - **`~/.lens/ETHOS.yaml` (The Nature / Who):** RARE. Extract transferable mental models, conditional trade-off rules (`when X conflicts with Y, prioritize X`), hard boundaries, conflict resolution habits, cultural taste logic, and quality standards.
+   - **`~/.lens/MODUS.yaml` (The Voice / How):** Extract sentence rhythm, punctuation habits, `contextual_registers` (`collaborative_and_peer`, `architectural_and_critique`, `public_and_longform`, `external_and_diplomatic`), rhetorical pacing, humor triggers, and 1-2 sentence verbatim `voice_anchors` demonstrating the subject's sharpest natural writing. Never copy assistant phrasing into `~/.lens/MODUS.yaml`.
 
-3. **Sorting & Refinement:**
-   - **Load Current State:** Read `.lens/AXIOM.yaml`, `.lens/ETHOS.yaml`, and `.lens/MODUS.yaml` to establish the baseline before making updates.
-   - **Merge, Don't Delete (Unless 100% Certain):** Optimization is primarily about merging redundancies into high-density fragments. The Trinity Nodes are a highly precise representation of the user. You may ONLY remove existing information if you are absolutely 100% certain it is operational fluff or non-sense with ZERO importance to replicating the user's digital shadow. Deletion must be extremely rare and highly surgical. When in doubt, preserve the data.
-   - **The Trait Boundary:** Values and opinions stay in ETHOS; they never migrate to AXIOM.
+3. **Schema Integrity & Surgical Update:**
+   - Read `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, and `~/.lens/MODUS.yaml`.
+   - **Canonical Schema Enforcement:** Write only to canonical keys defined in [references/trinity-definitions.md](../references/trinity-definitions.md) and the node templates ([AXIOM.yaml](../scripts/templates/AXIOM.yaml), [ETHOS.yaml](../scripts/templates/ETHOS.yaml), and [MODUS.yaml](../scripts/templates/MODUS.yaml)). If a file contains legacy v1 keys (`data_heritage`, `cultural_consumption`, or missing `decision_heuristics` / `contextual_registers` / `voice_anchors`), losslessly migrate calibrated entries into the canonical v2 schema. Replace `[Pending Input]` strings in place when populating a key; never leave `[Pending Input]` alongside real entries in the same list, and never invent new top-level keys.
+   - **Specificity Preservation:** Never compress sharp, concrete entries into vague platitudes. Modify an already-calibrated key only when `~/.lens/TRACE.txt` (or the live interview reply) supplies new facts, a sharper trade-off heuristic, or a direct contradiction per [references/resolve-protocol.md](../references/resolve-protocol.md).
 
 **OUTPUT:**
-Update Trinity Nodes. Use the `edit` tool (string replacement) to surgically update specific YAML keys. Because the files are structured YAML, you must be extremely precise with your indentation in the `oldText` and `newText` blocks. Never rewrite the entire file (this causes data loss) and never replace massive sections at once. Target only the specific key-value pairs that need updating. Return a simple summary of new captures as your final text response. Do NOT use the `message` tool, and do NOT attempt to clear or empty the `.lens/TRACE.txt` file manually.
+Surgically update `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, and `~/.lens/MODUS.yaml` with exact YAML indentation and a single trailing newline. Once finished, run `node` on the Step 0 distillation script with `--commit` from the skill directory (outside the workspace sandbox if needed) to commit distilled node changes (`~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, `~/.lens/MODUS.yaml`, `~/.lens/SCOPE.json`, `~/.lens/README.md`, `~/.lens/.gitignore`) locally if `~/.lens/` is a Git repository (pushing to the remote only when `"push": true` in `~/.lens/SCOPE.json`). Return a concise summary of updated keys (plus any schedule changes synced from `BOOTSTRAP_LENS`) as your final text response. Do NOT call any external `message` tool, and do NOT clear `~/.lens/TRACE.txt`.

@@ -1,45 +1,59 @@
-## Description: <br>
-Generate a daily AI news digest from Feedship subscriptions by extracting articles, filtering AI and technology content, producing LLM-based strategic analysis, and replacing citation placeholders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily AI news digest from feedship subscriptions by extracting articles, filtering AI and technology content, generating strategic analysis with an LLM, and replacing citation placeholders.
 
-## Publisher: <br>
-[yanpeipan](https://clawhub.ai/user/yanpeipan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanpeipan](https://clawhub.ai/user/yanpeipan)
 
-## Use Case: <br>
-External users and developers use this skill to create on-demand or scheduled AI news briefings from Feedship subscriptions. It is intended for daily summaries, periodic recaps, and Chinese-language AI trend analysis with citation links injected from source article data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subscription-derived article titles may be processed by the configured LLM. <br>
-Mitigation: Use the skill only with Feedship data you are comfortable sending to that LLM, and review privacy expectations before enabling scheduled runs. <br>
-Risk: The workflow writes intermediate article and report files under /tmp, which may be unsuitable on shared machines. <br>
-Mitigation: Review and adapt the temporary file behavior for the target environment before deployment. <br>
-Risk: The documented commands include a hard-coded Feedship path, Beijing-time cron settings, and user-supplied delivery channel fields. <br>
-Mitigation: Update the local Feedship path, timezone, destination channel, and recipient before enabling the cron command. <br>
-Risk: The LLM can emit invalid citation placeholders that do not map to source articles. <br>
-Mitigation: Run the bundled replacement script and review warnings for invalid references before sharing the final report. <br>
+## Use Case:
 
+Developers and OpenClaw-compatible agent users use this skill to produce an AI-focused daily news briefing from local Feedship subscriptions, either on demand or through a scheduled daily run.
 
-## Reference(s): <br>
-- [Prompt Template](references/prompt.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yanpeipan/feedship-ai-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report with injected article links and supporting shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses numbered citation placeholders that are post-processed into article links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.21.0 (source: frontmatter and server release evidence) <br>
+Risk: A recurring schedule can run the digest automatically before the user has reviewed operational settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cron schedule, timezone, destination, timeout, and isolated-session settings before enabling automatic runs.
+
+Risk: Generated summaries and links are derived from feed content that may be untrusted or misleading.
+
+Mitigation: Treat generated reports as untrusted until article content, links, and summaries have been reviewed for accuracy and safe URL schemes.
+
+Risk: The workflow uses fixed files under /tmp for intermediate article and report data.
+
+Mitigation: Run the skill in an isolated account or session and prefer private temporary paths when adapting the workflow.
+
+## Reference(s):
+
+- [Prompt Template](references/prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/yanpeipan/skills/feedship-ai-daily)
+- [Publisher Profile](https://clawhub.ai/user/yanpeipan)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with injected article citation links and supporting shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports on-demand execution and an optional daily cron schedule; requires uv and Feedship v1.8.0 or newer.]
+
+## Skill Version(s):
+
+1.21.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

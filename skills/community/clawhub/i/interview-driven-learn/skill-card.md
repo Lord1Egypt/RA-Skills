@@ -1,42 +1,54 @@
-## Description: <br>
-Transforms study notes, project summaries, and technical concept explanations into interview-ready explanations, questions, STAR stories, analogies, and weakness diagnoses for computer science interview preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms study notes, project summaries, and technical concept explanations into interview-ready learning output with Feynman explanations, interview questions, STAR stories, analogies, weakness diagnosis, and local knowledge and question-bank updates.
 
-## Publisher: <br>
-[depictlightning](https://clawhub.ai/user/depictlightning) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[depictlightning](https://clawhub.ai/user/depictlightning)
 
-## Use Case: <br>
-Students and developers use this skill to turn learning notes, technical concepts, and project summaries into structured interview preparation material for backend, algorithm, and system design interviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted notes and generated interview-prep output may be retained in local reference files. <br>
-Mitigation: Avoid including secrets, proprietary project details, personal data, or confidential interview material unless that content can be stored and later reviewed or deleted. <br>
-Risk: Generated interview questions, answer points, and weakness diagnoses may be incomplete or misleading. <br>
-Mitigation: Review the generated material against trusted course, project, or interview-prep sources before relying on it. <br>
+## Use Case:
 
+Computer science students and interview candidates use this skill to convert learning notes, project descriptions, and technical concepts into structured interview-preparation material for backend, algorithm, and system design interviews.
 
-## Reference(s): <br>
-- [Knowledge Base](references/knowledge-base.md) <br>
-- [Question Bank](references/question-bank.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/depictlightning/interview-driven-learn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with explanations, tables, bullet lists, STAR narratives, and archive-ready study entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append generated study material to local Knowledge Base and Question Bank markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: User-provided notes, project details, interview questions, and weakness summaries may be retained in local reference files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential employer or project details unless retention is acceptable, and review or disable local file updates before use when privacy matters.
+
+Risk: Generated interview guidance may be incomplete, misleading, or overconfident.
+
+Mitigation: Review outputs before relying on them for preparation, and cross-check important technical claims against trusted sources.
+
+## Reference(s):
+
+- [Knowledge Base](references/knowledge-base.md)
+- [Question Bank](references/question-bank.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local reference files with generated learning summaries, interview questions, and weakness notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Batch-convert Hancom HWP/HWPX documents on Windows into PDF and other export formats with planning, mock runs, JSON reporting, and optional whitelisted approval of known Hancom security prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-convert Hancom HWP and HWPX documents on Windows into PDF and other export formats with plan-only, mock, real conversion, and machine-readable report workflows.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-Developers and document operations users use this skill to batch-convert folders or sets of Hancom HWP/HWPX files on Windows, usually to PDF or other office/export formats, while previewing planned work and collecting machine-readable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real conversion can fail or behave unexpectedly outside the intended Windows environment with Hancom HWP and pywin32 available. <br>
-Mitigation: Preview work with --plan-only --json or validate paths with --mode mock before running real conversion. <br>
-Risk: --auto-allow-dialogs can bypass repeated Hancom security prompts for trusted files. <br>
-Mitigation: Use it only for trusted inputs; the skill limits clicks to the documented title, body text, and button whitelist and records auto_dialog_* fields for review. <br>
-Risk: --overwrite can replace existing output files. <br>
-Mitigation: Avoid --overwrite unless replacement is intended and confirm input and output folders during the plan-only preview. <br>
+## Use Case:
 
+Developers, operations teams, and Korean document workflow users use this skill to plan and run batch conversion of HWP/HWPX files on Windows systems with Hancom HWP installed. It is suited for folder-level or multi-file exports to PDF and common document or image formats, with optional JSON reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twbeatles/hwp-batch-convert) <br>
-- [Auto-allow dialog safety notes](references/auto-allow-dialogs.md) <br>
-- [HwpMate reuse notes](references/hwpmate-reuse-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown guidance with command examples; optional JSON stdout and report JSON from the conversion script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write converted document files and a report JSON; real conversion depends on Windows, Hancom HWP, and pywin32.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Optional security-dialog auto-approval may click a matching Hancom or spoofed dialog outside the intended conversion flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use plan-only first, prefer running without --auto-allow-dialogs, and enable auto-approval only in a controlled desktop session with trusted documents.
+
+Risk: Real conversion depends on a Windows desktop environment with Hancom HWP and pywin32 available.
+
+Mitigation: Use mock mode to validate paths and output structure before running real conversion on the target Windows host.
+
+## Reference(s):
+
+- [Hwp Batch Convert README](README.md)
+- [Auto-Allow Dialogs](references/auto-allow-dialogs.md)
+- [HwpMate Reuse Notes](references/hwpmate-reuse-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files, JSON]
+
+**Output Format:** [Markdown guidance with shell commands; converter output may include converted files and JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports plan-only and mock modes before real Windows Hancom HWP conversion.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

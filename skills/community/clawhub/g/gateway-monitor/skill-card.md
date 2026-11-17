@@ -1,41 +1,55 @@
-## Description: <br>
-Provides real-time monitoring, log search, service status, alerts, and one-click config restore for OpenClaw Gateway and related services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time monitoring, log search, service status, alerts, and configuration restore guidance for OpenClaw Gateway and related services.
 
-## Publisher: <br>
-[yes999zc](https://clawhub.ai/user/yes999zc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yes999zc](https://clawhub.ai/user/yes999zc)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor local OpenClaw Gateway health, search logs, inspect related service status, manage alerts, and recover configuration from backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on external gateway-monitor server code that can control local Gateway services and configuration. <br>
-Mitigation: Review and pin the external repository code before installation, especially server.js and the launchd plist. <br>
-Risk: Exposing the monitoring dashboard or service-control endpoints could allow local service changes or interruptions. <br>
-Mitigation: Keep the dashboard bound to 127.0.0.1, do not expose its port, and require confirmation before restore, restart, stop, or wake actions. <br>
-Risk: API keys and service credentials may be used by the local monitoring workflow. <br>
-Mitigation: Use least-privileged API keys and treat displayed or configured credentials as sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to install or operate a local monitoring dashboard for OpenClaw Gateway, inspect logs and service status, manage LiteLLM and oMLX-related checks, and restore configuration from backups when needed.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, environment variables, endpoint lists, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local dashboard URLs, service-control endpoints, and configuration details for OpenClaw Gateway, LiteLLM, oMLX, and related services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The release tells users to run and optionally persist unreviewed code fetched from a mutable GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing; prefer a release that packages server.js, the LaunchAgent plist, and all runtime files in the skill artifact, or pins and verifies a specific commit.
+
+Risk: The dashboard is a local service with authority to read logs and control Gateway, LiteLLM, and related operations.
+
+Mitigation: Inspect exactly what the service runs before enabling the LaunchAgent, and avoid enabling persistence until the local service behavior and access are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yes999zc/skills/gateway-monitor)
+- [Gateway Monitor repository referenced by artifact](https://github.com/yes999zc/gateway-monitor)
+- [Dashboard screenshot referenced by artifact](https://raw.githubusercontent.com/yes999zc/gateway-monitor/main/screenshots/dashboard.png)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, environment variables, endpoint lists, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include local service control and configuration restore steps that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.json release.version and artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

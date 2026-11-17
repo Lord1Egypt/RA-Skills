@@ -1,47 +1,62 @@
-## Description: <br>
-This skill guides agents through direct Feishu Open Platform API usage for OAuth authorization, Bitable batch operations, Drive permissions, and cloud document management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书开放平台 API helps agents use Feishu Open APIs for OAuth authorization, Bitable batch operations, Drive permission and file management, and batch data processing.
 
-## Publisher: <br>
-[noir-hedgehog](https://clawhub.ai/user/noir-hedgehog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noir-hedgehog](https://clawhub.ai/user/noir-hedgehog)
 
-## Use Case: <br>
-Developers and automation agents use this skill when plugin tools are insufficient for Feishu workflows, including OAuth user authorization, Bitable batch record changes, Drive permission updates, and file or folder management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make high-impact Feishu changes, including deletes and permission updates. <br>
-Mitigation: Use a least-privilege Feishu app, require explicit confirmation before deletes or permission changes, and verify target IDs and affected counts before execution. <br>
-Risk: The skill handles sensitive credentials and OAuth tokens. <br>
-Mitigation: Read credentials only from an approved credential source, avoid printing secrets or tokens, and request only the minimum required scopes. <br>
-Risk: Artifact examples disable TLS certificate verification while handling secrets and tokens. <br>
-Mitigation: Replace unverified TLS contexts with normal certificate verification before using real secrets or tokens. <br>
+## Use Case:
 
+Developers and automation agents use this skill to plan and produce Feishu Open API requests, helper code, and operational guidance for tasks outside the standard Feishu plugin surface, including OAuth token workflows, bulk Bitable changes, and Drive permission management.
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [OAuth 用户授权流程](references/oauth.md) <br>
-- [多维表格（Bitable）API](references/bitable.md) <br>
-- [云文档（Drive）API](references/drive.md) <br>
-- [创建飞书应用](references/app-creation.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/noir-hedgehog/feishu-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python code examples and API endpoint references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OAuth setup steps, Feishu API payload examples, and batch-operation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Helper code and examples disable TLS certificate verification while handling Feishu credentials and access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove all ssl._create_unverified_context() usage and keep certificate verification enabled for Feishu HTTPS calls.
+
+Risk: The skill can guide batch deletes, file uploads, file moves, and collaborator permission changes.
+
+Mitigation: Require explicit user confirmation before destructive or permission-changing operations and limit requests to trusted Feishu HTTPS endpoints.
+
+Risk: Feishu app secrets, access tokens, and refresh tokens may be exposed through hardcoding, logging, or overly broad scopes.
+
+Mitigation: Read credentials from secured configuration, avoid printing secrets or tokens, and request only the minimum required Feishu API scopes.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [OAuth 用户授权流程](references/oauth.md)
+- [多维表格（Bitable）API](references/bitable.md)
+- [云文档（Drive）API](references/drive.md)
+- [创建飞书应用](references/app-creation.md)
+- [ClawHub skill page](https://clawhub.ai/noir-hedgehog/skills/feishu-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, API calls, Configuration]
+
+**Output Format:** [Markdown with inline Python and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated Feishu requests before execution, especially token handling, batch deletion, file upload, move, and permission-change operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

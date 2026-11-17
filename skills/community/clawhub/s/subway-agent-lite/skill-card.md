@@ -1,38 +1,49 @@
-## Description: <br>
-FREE VERSION: Basic WhatsApp ordering agent for sandwich shops. Demonstrates ThumbGate safety logic for 5 core order items. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+FREE VERSION: Basic WhatsApp ordering agent for sandwich shops. Demonstrates ThumbGate safety logic for 5 core order items.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-External operators or developers for sandwich shops can use this demonstration agent to handle basic WhatsApp orders, apply ThumbGate checks for nonexistent items, and log accepted orders to Google Sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Google Sheets order logging may store customer order or contact details without clear access controls, retention limits, or customer notice. <br>
-Mitigation: Confirm the logged fields, spreadsheet access, record retention, and notice or consent requirements before use; use a dedicated limited-permission Google account or spreadsheet. <br>
+## Use Case:
 
+External sandwich shop operators and agent builders use this skill to demonstrate a basic WhatsApp ordering flow for five core menu items, with ThumbGate safety checks and Google Sheets order logging.
 
-## Reference(s): <br>
-- [Subway Agent Lite on ClawHub](https://clawhub.ai/igorganapolsky/subway-agent-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, text] <br>
-**Output Format:** [Markdown skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lite demonstration scope is limited to 5 core order items and Google Sheets order logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Order logs may write customer or order fields to Google Sheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm which fields are logged, restrict sheet access, and avoid storing unnecessary personal details.
+
+## Reference(s):
+
+- [Subway Agent Lite ClawHub listing](https://clawhub.ai/igorganapolsky/skills/subway-agent-lite)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown or plain text guidance for an ordering agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers a limited demonstration flow for five core order items.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

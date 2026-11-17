@@ -15,7 +15,7 @@ import requests
 import websockets.sync.client as ws_client
 
 from .errors import CDPError, ElementNotFoundError
-from .stealth import STEALTH_JS, build_ua_override
+from .stealth import REALISTIC_UA, STEALTH_JS
 
 logger = logging.getLogger(__name__)
 
@@ -514,53 +514,6 @@ class Page:
             """
         )
 
-    def screenshot_element(self, selector: str, padding: int = 0) -> bytes:
-        """对指定 CSS 选择器的元素截图，返回 PNG 字节。
-
-        通过 CDP Page.captureScreenshot 截取元素所在区域，比 Python 层 PNG
-        解码/重编码快很多，且图片直接来自浏览器渲染结果。
-
-        Args:
-            selector: CSS 选择器。
-            padding:  在元素四周额外保留的像素数（背景色填充，相当于白边）。
-
-        Returns:
-            PNG 字节；元素不存在时返回 b""。
-        """
-        import base64 as _b64
-
-        # 用 DOM.getBoxModel 获取元素坐标，返回的是 page 坐标系（CSS px，相对于文档左上角）。
-        # getBoundingClientRect 返回的是 viewport 坐标系，对 position:fixed 遮罩层内的元素
-        # 加 pageXOffset 后依然会截到遮罩背后的内容。DOM.getBoxModel 则始终正确。
-        try:
-            doc = self._send_session("DOM.getDocument", {"depth": 0})
-            root_id = doc["root"]["nodeId"]
-            query = self._send_session("DOM.querySelector", {"nodeId": root_id, "selector": selector})
-            node_id = query.get("nodeId", 0)
-            if not node_id:
-                return b""
-            box_model = self._send_session("DOM.getBoxModel", {"nodeId": node_id})
-            model = box_model["model"]
-            content = model["content"]  # [x1,y1, x2,y2, x3,y3, x4,y4] 顺时针四角
-            x, y = content[0], content[1]
-            width, height = float(model["width"]), float(model["height"])
-        except Exception:
-            return b""
-
-        result = self._send_session(
-            "Page.captureScreenshot",
-            {
-                "format": "png",
-                "clip": {
-                    "x": max(0.0, x - padding),
-                    "y": max(0.0, y - padding),
-                    "width": width + padding * 2,
-                    "height": height + padding * 2,
-                    "scale": 1.0,
-                },
-            },
-        )
-        return _b64.b64decode(result.get("data", ""))
 
 
 class Browser:
@@ -571,7 +524,6 @@ class Browser:
         self.port = port
         self.base_url = f"http://{host}:{port}"
         self._cdp: CDPClient | None = None
-        self._chrome_version: str | None = None
 
     def connect(self) -> None:
         """连接到 Chrome DevTools。"""
@@ -579,13 +531,7 @@ class Browser:
         resp.raise_for_status()
         info = resp.json()
         ws_url = info["webSocketDebuggerUrl"]
-
-        # 从 "Chrome/134.0.6998.88" 提取真实版本号，用于动态构建 UA
-        browser_str = info.get("Browser", "")
-        if "/" in browser_str:
-            self._chrome_version = browser_str.split("/", 1)[1]
-
-        logger.info("连接到 Chrome: %s (version=%s)", ws_url, self._chrome_version)
+        logger.info("连接到 Chrome: %s", ws_url)
         self._cdp = CDPClient(ws_url)
 
     def _setup_page(self, page: Page) -> Page:
@@ -593,10 +539,7 @@ class Browser:
         import contextlib
 
         page.inject_stealth()
-        page._send_session(
-            "Emulation.setUserAgentOverride",
-            build_ua_override(self._chrome_version),
-        )
+        page._send_session("Emulation.setUserAgentOverride", {"userAgent": REALISTIC_UA})
         page._send_session(
             "Emulation.setDeviceMetricsOverride",
             {

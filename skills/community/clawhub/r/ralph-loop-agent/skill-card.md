@@ -1,42 +1,61 @@
-## Description: <br>
-Guide OpenClaw agents to execute Ralph Wiggum loops using exec and process tools, orchestrating coding agents such as Codex, Claude Code, OpenCode, and Goose with TTY support, planning/building modes, backpressure, sandboxing, and completion checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents to orchestrate Ralph Loop planning and building workflows with exec and process tools, TTY-backed coding-agent sessions, completion checks, and operational safeguards.
 
-## Publisher: <br>
-[addozhang](https://clawhub.ai/user/addozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[addozhang](https://clawhub.ai/user/addozhang)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan, launch, monitor, and complete Ralph Loop workflows for software projects with supported coding CLIs. It helps structure requirements, implementation planning, iterative builds, test backpressure, and completion detection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to run coding tools that edit, commit, or reset files in a project. <br>
-Mitigation: Use a disposable branch or sandbox, set a narrow working directory, and require explicit approval before commits, resets, rollback commands, or credential use. <br>
-Risk: Permission-skipping or broad auto-approval flags can reduce user oversight during agent execution. <br>
-Mitigation: Avoid --yolo and permission-skipping flags unless the project is isolated and the operator has reviewed the command plan. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to plan, launch, monitor, and complete multi-iteration coding-agent workflows across tools such as OpenCode, Codex, Claude Code, Goose, Pi, and aider.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/addozhang/ralph-loop-agent) <br>
-- [Original Ralph Loop concept](https://github.com/openclaw/skills/blob/main/skills/jordyvandomselaar/ralph-loop/SKILL.md) <br>
-- [Coding Agent inspiration](https://github.com/openclaw/skills/blob/main/skills/steipete/coding-agent/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline command examples and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to create or update PROMPT.md, AGENTS.md, specs, and IMPLEMENTATION_PLAN.md in the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release, frontmatter, package.json) <br>
+Risk: The skill guides agents to run and monitor other coding agents through broad command-execution workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended coding-agent automation, run loops in a sandbox or isolated worktree, validate CLI/model/flag values before execution, and monitor process logs.
+
+Risk: Auto-approval flags can reduce safeguards around tool execution.
+
+Mitigation: Avoid --yolo and --dangerously-skip-permissions; prefer sandboxed execution and limited credentials when automation is needed.
+
+Risk: Rollback guidance can include destructive repository commands.
+
+Mitigation: Do not approve git reset --hard unless repository state has been backed up or reviewed.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/addozhang/skills/ralph-loop-agent)
+- [OpenClaw documentation](https://openclaw.com/docs)
+- [Original Ralph Loop](https://github.com/openclaw/skills/blob/main/skills/jordyvandomselaar/ralph-loop/SKILL.md)
+- [Coding Agent](https://github.com/openclaw/skills/blob/main/skills/steipete/coding-agent/SKILL.md)
+- [Ralph Wiggum Playbook](https://ralphwiggum.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command templates and tool-call patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update PROMPT.md, AGENTS.md, IMPLEMENTATION_PLAN.md, and specs files during a Ralph Loop workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

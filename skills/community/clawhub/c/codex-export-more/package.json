@@ -1,0 +1,22 @@
+{
+  "name": "codex-export-more",
+  "version": "0.1.0",
+  "description": "Export Codex CLI or Codex Desktop sessions to Markdown/HTML/Obsidian",
+  "bin": {
+    "codex-export-more": "bin/codex-export-more.js"
+  },
+  "files": [
+    "bin/codex-export-more.js",
+    "scripts/export.py",
+    "scripts/__init__.py",
+    "README.md",
+    "SKILL.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "python -m unittest discover -s tests -v"
+  },
+  "license": "MIT"
+}

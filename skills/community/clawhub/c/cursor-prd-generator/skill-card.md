@@ -1,42 +1,50 @@
-## Description: <br>
-Generates a Chinese PRD workflow for small feature requests by clarifying scope, target users, success criteria, and boundaries, then producing FEATURE_SPEC.md content and a Cursor rules snippet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users turn a small feature idea into a concise Chinese-language PRD and a Cursor rules snippet after clarifying target users, success criteria, and feature boundaries.
 
-## Publisher: <br>
-[2025biophilia-coder](https://clawhub.ai/user/2025biophilia-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2025biophilia-coder](https://clawhub.ai/user/2025biophilia-coder)
 
-## Use Case: <br>
-Developers and product builders use this skill to turn a small, bounded feature idea into a structured PRD and Cursor agent rules after sequential clarification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad PRD, feature, or publish wording may activate the skill unexpectedly. <br>
-Mitigation: Confirm the user wants a small-feature PRD workflow and narrow the scope before generating artifacts. <br>
-Risk: Generated PRD and Cursor rules can introduce incorrect requirements if accepted without review. <br>
-Mitigation: Review the generated FEATURE_SPEC.md and .cursor/rules content before using it in a project or uploading it elsewhere. <br>
-Risk: Publishing workflows may require credentials such as TAI_PAT_TOKEN. <br>
-Mitigation: Configure publishing credentials only when intentionally publishing, and avoid including secrets in generated documentation. <br>
+## Use Case:
 
+Developers and product builders use this skill to scope a single small feature, collect key clarifications, and generate a structured FEATURE_SPEC.md plus Cursor agent behavior rules for implementation work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2025biophilia-coder/cursor-prd-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown containing FEATURE_SPEC.md content and a .cursor/rules snippet separated by a divider.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Simplified Chinese by default; requires sequential clarification before generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated .cursor/rules text can influence future Cursor agent behavior in a project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Cursor rules snippet before adding it to a project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2025biophilia-coder/skills/cursor-prd-generator)
+- [Publisher profile](https://clawhub.ai/user/2025biophilia-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown containing a FEATURE_SPEC.md draft and a .cursor/rules snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for user review and manual placement into project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

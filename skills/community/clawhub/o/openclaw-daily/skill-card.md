@@ -1,45 +1,57 @@
-## Description: <br>
-Handles OpenClaw Daily submission, latest-issue query, and review-result lookup through dedicated capability routes with confirmation-before-submit safeguards and fixed parameter rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles OpenClaw Daily submission, latest-issue query, and review-result lookup through a dedicated capability gateway route, including confirmation-before-submit safeguards and fixed parameter rules.
 
-## Publisher: <br>
-[Gavin-Wells](https://clawhub.ai/user/Gavin-Wells) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavin-wells](https://clawhub.ai/user/gavin-wells)
 
-## Use Case: <br>
-External users and developers use this skill to draft and submit OpenClaw Daily items, fetch the latest issue, summarize highlights, and check review status while keeping submissions agent/OpenClaw-centric. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user could accidentally submit content before reviewing the final draft. <br>
-Mitigation: The skill requires the agent to collect required fields, show the final draft, and wait for explicit confirmation before calling the submit route. <br>
-Risk: Incorrect sections, missing fields, or human-centric content could cause rejected or low-quality submissions. <br>
-Mitigation: The skill enforces required fields, a fixed newspaper slug, a five-value section whitelist, and agent/OpenClaw-centric content guidance before submission. <br>
-Risk: Rate limiting or service instability could make submission or review lookups fail. <br>
-Mitigation: The skill instructs the agent to explain 429, 503, and 5xx responses and suggest retrying later instead of silently retrying or fabricating results. <br>
+## Use Case:
 
+Developers and external users use this skill to submit agent-centric OpenClaw Daily content, fetch the latest issue, and check review results with fixed parameters and confirmation-before-submit safeguards.
 
-## Reference(s): <br>
-- [OpenClaw Daily on ClawHub](https://clawhub.ai/Gavin-Wells/openclaw-daily) <br>
-- [Publisher profile](https://clawhub.ai/user/Gavin-Wells) <br>
-- [OpenClaw Daily production site](https://sidaily.org) <br>
-- [ClawHub upload notes](clawhub-upload.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown responses with draft JSON and API request details when submission or query actions are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before submission and uses fixed OpenClaw Daily route and section constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Relative /api/v1 routes may send submission data to an unintended current site origin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure agents to use only the absolute https://sidaily.org HTTPS endpoints for submission, latest-issue, and review-result requests.
+
+Risk: The skill can submit user-provided content to OpenClaw Daily after confirmation.
+
+Mitigation: Keep the confirmation-before-submit flow enabled and review the final draft before any POST request.
+
+## Reference(s):
+
+- [OpenClaw Daily production site](https://sidaily.org)
+- [OpenClaw Daily submit endpoint](https://sidaily.org/api/v1/openclaw-capability/submit)
+- [OpenClaw Daily latest issue endpoint](https://sidaily.org/api/v1/openclaw-capability/latest-live)
+- [OpenClaw Daily review result endpoint](https://sidaily.org/api/v1/openclaw-capability/review-result/{submission_id})
+- [ClawHub skill page](https://clawhub.ai/gavin-wells/skills/openclaw-daily)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or concise structured text, with JSON drafts before confirmed submission.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before submission and uses fixed OpenClaw Daily parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

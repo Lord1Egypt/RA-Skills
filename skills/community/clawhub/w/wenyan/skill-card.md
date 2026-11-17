@@ -1,42 +1,53 @@
-## Description: <br>
-文颜 guides agents through using wenyan-cli to publish frontmatter-based Markdown articles to a WeChat Official Account, including theme, syntax highlighting, image, and credential setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 wenyan-cli，快速将带 frontmatter 的 Markdown 文章发布到微信公众号，支持主题管理和图片自动上传。
 
-## Publisher: <br>
-[caol64](https://clawhub.ai/user/caol64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caol64](https://clawhub.ai/user/caol64)
 
-## Use Case: <br>
-Content creators, editors, and developers use this skill as a command guide for preparing Markdown with required frontmatter, publishing it to a WeChat Official Account through wenyan-cli, and managing publishing themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on an external npm CLI used to publish content. <br>
-Mitigation: Verify the npm package before installation and consider pinning a known version. <br>
-Risk: Incorrect Markdown frontmatter, cover images, embedded image paths, or account targets can publish unintended content. <br>
-Mitigation: Review the Markdown file, metadata, image paths, and target WeChat account before publishing. <br>
-Risk: WeChat app credentials and server API keys are sensitive secrets. <br>
-Mitigation: Keep WECHAT_APP_ID, WECHAT_APP_SECRET, and any server API key out of source control, logs, screenshots, and shared shells. <br>
+## Use Case:
 
+Developers and content publishers use this skill to prepare Markdown articles with frontmatter, install and verify wenyan-cli, publish to WeChat Official Accounts, manage themes, and troubleshoot common publishing errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caol64/wenyan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and option tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential-handling guidance for WeChat publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing a third-party npm CLI globally can execute package code on the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package and publisher before installing, avoid sudo, and prefer a pinned or local install when possible.
+
+Risk: Publishing may send Markdown content, images, and WeChat account data to the configured Wenyan server and WeChat.
+
+Mitigation: Publish only approved content and images, and keep WeChat credentials in secure environment variables or secret storage rather than shared files, logs, or screenshots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caol64/skills/wenyan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks and option tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow guidance for using wenyan-cli with Markdown, themes, images, and WeChat credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Audit and optimize brand messaging to improve how AI platforms portray your brand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and optimizes brand messaging to improve how AI platforms portray a brand by identifying negative sentiment signals and strengthening positive associations.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-External marketing, brand, and GEO teams use this skill to audit brand-facing content for AI sentiment signals and produce prioritized rewrite recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rewritten marketing claims can become inaccurate, overstated, or misleading if accepted without review. <br>
-Mitigation: Review generated copy against source-of-truth product facts, customer proof points, and approved brand guidance before publishing. <br>
-Risk: The audit script accepts user-supplied content and file paths, which can lead to incorrect analysis or unintended local file reads if inputs are not checked. <br>
-Mitigation: Quote and validate user-supplied domains, content paths, and output paths before running commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/geo-sentiment-optimizer) <br>
-- [Sentiment Signals Reference](references/sentiment-signals.md) <br>
+## Use Case:
 
+Marketing teams, brand owners, and SEO/GEO practitioners use this skill to audit brand messaging for signals that may affect AI-search sentiment and to draft prioritized copy improvements.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with checklist findings, priority rewrite recommendations, and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints a simple sentiment score and counts positive and negative content signals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented --brand, --output, and --pages examples do not match the bundled script, which requires --content.
+
+Mitigation: Run the script only with its implemented --content argument, or treat the skill primarily as markdown guidance until the command examples are corrected.
+
+Risk: The audit script uses simple keyword checks, so its score can miss context or overstate sentiment quality.
+
+Mitigation: Review generated recommendations against real customer feedback, third-party coverage, and current brand facts before publishing revised content.
+
+## Reference(s):
+
+- [Sentiment Signals Reference](references/sentiment-signals.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit reports with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sentiment signal checklists, risk prioritization, and suggested content rewrites.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

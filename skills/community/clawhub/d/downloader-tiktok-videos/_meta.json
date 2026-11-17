@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7ctpetgezq8bhgkhh79v538s81xd1w",
+  "ownerId": "downloader-tiktok-contributors",
   "slug": "downloader-tiktok-videos",
   "version": "1.0.4",
-  "publishedAt": 1772190962002
+  "publishedAt": 1740571200000,
+  "dependencies": {
+    "required": ["yt-dlp"],
+    "optional": ["ffmpeg"],
+    "notes": "ffmpeg is required when merging separate video+audio streams (bestvideo+bestaudio format). Without it, yt-dlp will fall back to a single-stream format."
+  }
 }

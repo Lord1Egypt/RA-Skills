@@ -1,0 +1,56 @@
+{
+  "name": "memoria-plugin",
+  "version": "3.34.0",
+  "description": "The most advanced memory system for AI agents. 21 cognitive layers, knowledge graph, procedural learning, vector search, WAL protocol. 100% local-first, zero cloud cost.",
+  "license": "Apache-2.0",
+  "author": "Primo Studio",
+  "main": "index.ts",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "compat": {
+      "pluginApi": ">=1"
+    },
+    "build": {
+      "openclawVersion": "2026.3.28"
+    }
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "typescript": "^6.0.2"
+  },
+  "keywords": [
+    "memory",
+    "ai-agent",
+    "persistent-memory",
+    "long-term-memory",
+    "knowledge-graph",
+    "procedural-learning",
+    "vector-search",
+    "sqlite",
+    "ollama",
+    "lm-studio",
+    "local-first",
+    "cognitive",
+    "context",
+    "claude",
+    "cursor",
+    "copilot",
+    "chatgpt",
+    "openclaw",
+    "wal",
+    "vibe-coding",
+    "developer-tools",
+    "typescript",
+    "llm",
+    "brain-inspired",
+    "multi-layer",
+    "fact-extraction",
+    "self-improving"
+  ]
+}

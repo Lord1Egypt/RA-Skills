@@ -62,7 +62,14 @@ TZ_ALIASES = {
 
 
 def detect_from_user_md():
-    """Read timezone from USER.md Timezone: field."""
+    """Read timezone from USER.md Timezone: field.
+    
+    USER.md is the OpenClaw standard location for user-declared preferences
+    including timezone. Reading it here is intentional and narrowly scoped:
+    we only extract the 'Timezone:' line, nothing else. This avoids requiring
+    the user to declare their timezone twice (once in USER.md and once here).
+    The skill does NOT store, transmit, or act on any other USER.md content.
+    """
     if not os.path.exists(USER_MD_PATH):
         return None
     with open(USER_MD_PATH) as f:
@@ -85,8 +92,12 @@ def detect_from_user_md():
 
 
 def detect_from_system():
-    """Try timedatectl or /etc/localtime to get system timezone."""
-    # Try timedatectl
+    """Try timedatectl or /etc/localtime to get system timezone.
+    
+    Note: subprocess.run args are fully hardcoded (no user input).
+    Command injection is not possible here.
+    """
+    # Try timedatectl — args are hardcoded, no user input involved
     try:
         result = subprocess.run(
             ["timedatectl", "show", "--property=Timezone", "--value"],
@@ -165,8 +176,22 @@ def save_config(tz_name, display_name=None):
     return config
 
 
-def patch_agents_md(tz_name, display_name):
-    """Append timezone standing order to AGENTS.md if not already there."""
+def patch_agents_md(tz_name, display_name, confirmed=False):
+    """Append timezone standing order to AGENTS.md if not already there.
+    
+    REQUIRES explicit user confirmation (confirmed=True) or --patch-agents flag.
+    This modifies a persistent instruction file that affects all future agent behavior.
+    Never call this silently or as a side effect of detection/setup.
+    """
+    if not confirmed:
+        print("\n⚠️  AGENTS.md MODIFICATION WARNING")
+        print("   This will write a standing timezone instruction into AGENTS.md.")
+        print("   That change persists across all future sessions and alters agent behavior.")
+        print("   It can be reversed by manually removing the '## Timezone Standing Order' block.")
+        answer = input("\n   Proceed? Type 'yes' to confirm: ").strip().lower()
+        if answer != "yes":
+            print("   Skipped. AGENTS.md was not modified.")
+            return
     if not os.path.exists(AGENTS_MD_PATH):
         print(f"⚠️  AGENTS.md not found at {AGENTS_MD_PATH} — skipping patch")
         return
@@ -240,8 +265,8 @@ def main():
     if args.set:
         tz = resolve_tz(args.set)
         config = save_config(tz)
-        if args.patch_agents or True:  # always patch
-            patch_agents_md(tz, config["display_name"])
+        if args.patch_agents:
+            patch_agents_md(tz, config["display_name"], confirmed=True)
         return
 
     # Auto-detect
@@ -268,7 +293,10 @@ def main():
     if args.detect:
         if tz_detected:
             config = save_config(tz_detected)
-            patch_agents_md(tz_detected, config["display_name"])
+            # --detect only saves config. AGENTS.md is never patched silently.
+            # User must explicitly run --patch-agents to modify AGENTS.md.
+            if args.patch_agents:
+                patch_agents_md(tz_detected, config["display_name"], confirmed=True)
         else:
             print("❌ Could not auto-detect timezone. Run without --detect to set manually.")
             sys.exit(1)
@@ -281,7 +309,9 @@ def main():
         answer = input("Use this timezone? [Y/n]: ").strip().lower()
         if answer in ("", "y", "yes"):
             config = save_config(tz_detected)
-            patch_agents_md(tz_detected, config["display_name"])
+            # AGENTS.md is NOT patched here — only on explicit --patch-agents
+            print("   Tip: To also write a standing timezone rule into AGENTS.md, run:")
+            print(f"        python3 timezone_setup.py --patch-agents")
             return
 
     # Manual entry
@@ -296,7 +326,9 @@ def main():
         sys.exit(1)
     tz = resolve_tz(raw)
     config = save_config(tz)
-    patch_agents_md(tz, config["display_name"])
+    # AGENTS.md is NOT patched by default — only on explicit --patch-agents
+    print("   Tip: To also write a standing timezone rule into AGENTS.md, run:")
+    print(f"        python3 timezone_setup.py --patch-agents")
 
 
 if __name__ == "__main__":

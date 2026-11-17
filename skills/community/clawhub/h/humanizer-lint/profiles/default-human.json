@@ -1,0 +1,36 @@
+{
+  "name": "default-human",
+  "version": 1,
+  "thresholds": {
+    "minimumWords": 20,
+    "minimumSentences": 3,
+    "burstinessCVLong": 0.45,
+    "burstinessCVShort": 0.4,
+    "adjacentDelta": 4,
+    "shortSentenceRatio": 0.15,
+    "longSentenceRatio": 0.1,
+    "mattr": {
+      "id": 0.72,
+      "en": 0.74
+    },
+    "compressionRatio": 0.42,
+    "compressionMinimumWords": 150,
+    "passScore": 80
+  },
+  "targets": {
+    "meanSentenceLength": 16,
+    "burstinessCV": 0.55,
+    "adjacentDelta": 8,
+    "mattr": 0.78,
+    "averageParagraphSentenceCount": 2.5,
+    "punctuationRates": {
+      "comma": 0.035,
+      "semicolon": 0.002,
+      "colon": 0.004,
+      "question": 0.004,
+      "exclamation": 0.002,
+      "parentheses": 0.003,
+      "dash": 0.002
+    }
+  }
+}

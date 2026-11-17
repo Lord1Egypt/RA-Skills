@@ -1,0 +1,416 @@
+"""Read-only enumeration of the agent's own log/transcript sinks (E-044 Phase 1 substrate).
+
+"All logs" here means the corpus the OpenClaw agent itself PRODUCES - not the host's OS
+logs (journald / bash_history are out of scope; see the workspace design doc §1.1, which
+grounds that boundary against the real dist). The sinks this module knows about:
+
+  - ``logging.file``                    - config-declared primary JSONL log
+  - ``diagnostics.cacheTrace.filePath`` - config-declared cache-trace transcript JSONL
+                                           (NOT ``logging.cacheTrace.*``, which does not
+                                           exist in the dist - see B82 in checks/_egress.py),
+                                           PLUS its conventional default
+                                           ``logs/cache-trace.jsonl`` when ``filePath`` is
+                                           unset - which is the common shape, since
+                                           ``filePath`` is optional and tracing is switched
+                                           on with ``enabled`` alone
+  - trajectory sidecars                 - ``agents/*/sessions/*.trajectory.jsonl``
+                                           (on by default; reuses ``trajectory.find_trajectory_files``)
+  - session transcripts                 - ``agents/*/sessions/*.jsonl`` (NOT the trajectory
+                                           sidecar files, which are already covered above)
+  - config-audit log                    - ``logs/config-audit.jsonl`` (B77 already reads it);
+                                           LEGACY installs only - current OpenClaw keeps the journal
+                                           in the state database (``diagnostic_events``, scope
+                                           ``config-audit``), which is not a file sink
+  - generic rotated/ad-hoc logs         - ``logs/*.log``
+  - memory files                        - ``<workspace>/memory/**`` (same convention
+                                           ``check_data_atrest`` (B19, checks/_egress.py) knows)
+  - install backups                     - ``<home>/.openclaw-install-backups/**`` (same
+                                           convention B19 knows)
+
+Layer 1 leaf: depends only on ``collector`` (Context/dig/WORKSPACE_DIRS), ``trajectory``
+(``find_trajectory_files`` - reused, not re-implemented), ``safeio`` (symlink-safe
+traversal), and stdlib. Never imports ``checks/`` (Layer 2) or any Layer-3 module -
+``logscan.py``, the sibling leaf that reads these sinks, has the same constraint, and this
+module's job is scoped even narrower: it never opens a file, it only enumerates paths.
+
+Bounded by design (DoS guard, same spirit as the 200-file caps elsewhere in the codebase):
+overall sink count is capped at ``_MAX_SINKS``, each source sub-enumeration is capped too,
+and every candidate is deduplicated by resolved path so the same file is never counted
+twice across two different sources (most importantly: a ``*.trajectory.jsonl`` file is
+claimed ONLY by the dedicated trajectory source, never also by the generic transcript
+glob, which explicitly excludes that suffix).
+"""
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass, replace
+from pathlib import Path
+
+from . import pathprobe
+from .collector import Context, WORKSPACE_DIRS, _safe_is_dir, _safe_is_symlink, dig
+from .safeio import walk_dir_safely
+from .trajectory import find_trajectory_files
+
+# Overall cap across every source combined (DoS guard - mirrors the 200-file caps used
+# elsewhere in the codebase, e.g. checks/_egress.py's _collect_atrest_transcripts).
+_MAX_SINKS = 200
+# Per-source sub-cap so one pathologically large source can't starve the others out of
+# the overall budget before they get a turn.
+_MAX_PER_SOURCE = 200
+
+# Same conventional backup directory name check_data_atrest (B19, checks/_egress.py)
+# already reads - the path CONVENTION is reused here (Layer 1 can't import a Layer-2
+# check function), not the code.
+_BACKUP_DIRNAME = ".openclaw-install-backups"
+
+
+@dataclass(frozen=True)
+class LogSink:
+    """One discovered log/transcript file - a path, never file content."""
+
+    path: Path
+    kind: str  # trajectory|config_log|cache_trace|transcript|config_audit|memory|backup
+    source: str  # config|convention|env
+    # B-484: cheap stat() metadata, so a consumer that cannot afford to read every sink
+    # can choose WHICH ones to read from (size, mtime) alone - deterministically, before
+    # opening anything. Measured on a real 132-sink corpus: stat()ing all of them costs
+    # 0.27 ms, 0.006% of B164's 4.5s budget, because discovery already stat()s every
+    # candidate in `_is_regular_readable_file` and the inodes are page-cache hot.
+    #
+    # DEFAULTED, and deliberately so: every existing 3-argument LogSink(...) construction
+    # - including the ones in tests/test_b314_check_perf.py - keeps working and reads
+    # size 0 / mtime 0.0. `_plan_log_hunt_sinks` treats size 0 as "unknown, admit it and
+    # let the clock govern", so a hand-built sink is never planned out.
+    #
+    # NEVER put these values in a Finding.detail: they are environment-derived, and
+    # baseline.fingerprint() hashes detail (the B-348/B-349 defect).
+    size: int = 0
+    mtime: float = 0.0
+
+
+def _is_regular_readable_file(path: Path, unreadable: "list | None" = None,
+                              home: "Path | None" = None) -> bool:
+    """Best-effort existence/type guard. Never raises, never reads content.
+
+    C-727: a permission error here (a parent that can be listed but not searched, so the
+    entry cannot even be stat'ed) is "could not look", not "not a file". The answer stays
+    False, but when *unreadable* is given the path is appended (see `_rel`), so the calling
+    check can say that part of the corpus was not examined instead of reading the sink list
+    as complete. Any other OS error (a name too long to exist, an I/O error) stays a plain
+    False: it says nothing was there to read, not that something was withheld.
+    """
+    try:
+        if pathprobe.is_symlink(path):
+            return False
+        return pathprobe.is_file(path)
+    except PermissionError:
+        if unreadable is not None:
+            unreadable.append(_rel(home, path) if home is not None else path.name)
+        return False
+    except OSError:
+        return False
+
+
+def _config_path_sink(ctx: Context, dotted_path: str, kind: str,
+                      unreadable: "list | None" = None) -> "LogSink | None":
+    """Resolve a config-declared file path (``logging.file`` /
+    ``diagnostics.cacheTrace.filePath``) to a LogSink, or None when unset / not a real
+    file.
+
+    Deliberately path-based, not gated on ``diagnostics.cacheTrace.enabled``: a trace file
+    written during an earlier debugging session still exists - and still holds transcript
+    content worth scanning - after tracing is switched back off.
+    """
+    value = dig(ctx.config, dotted_path)
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        p = pathprobe.expand_user(value)
+    except (TypeError, ValueError):
+        return None
+    if not p.is_absolute():
+        p = ctx.home / p
+    if not _is_regular_readable_file(p, unreadable, ctx.home):
+        return None
+    return LogSink(path=p, kind=kind, source="config")
+
+
+def _rel(home: Path, p: Path) -> str:
+    """*p* relative to *home* (forward slashes). A path outside it (a config-declared log
+    file) is given by its name and marked as such: never as an absolute path, which would
+    carry the user's directory layout into a shared report."""
+    try:
+        return p.relative_to(home).as_posix()
+    except ValueError:
+        return f"{p.name} (a configured path outside the audited home)"
+
+
+def _transcript_sinks(home: Path, budget: int, unreadable: "list | None" = None) -> list[LogSink]:
+    """``agents/*/sessions/*.jsonl`` - session transcripts, NOT trajectory sidecars.
+
+    A trajectory sidecar file also matches ``*.jsonl`` under the same directory (it is
+    named ``<session>.trajectory.jsonl``), so it is explicitly excluded here - it is
+    already discovered as its own dedicated ``trajectory``-kind sink.
+
+    C-727: a directory that cannot be read (an unreadable ``agents/``, agent or ``sessions/``
+    directory) is appended to *unreadable*, when given, as a home-relative path - it is not a
+    crash, and it is not "no transcripts". The listing uses ``os.listdir``, which raises on an
+    unreadable directory where ``Path.glob`` quietly yields nothing.
+    """
+    out: list[LogSink] = []
+
+    def _note(p: Path) -> None:
+        if unreadable is not None:
+            unreadable.append(_rel(home, p))
+
+    agents_dir = home / "agents"
+    try:
+        if not pathprobe.is_dir(agents_dir) or pathprobe.is_symlink(agents_dir):
+            return out
+        agent_dirs = sorted(p for p in agents_dir.iterdir() if pathprobe.is_dir(p) and not pathprobe.is_symlink(p))
+    except OSError:
+        _note(agents_dir)
+        return out
+    for agent_dir in agent_dirs:
+        if len(out) >= budget:
+            break
+        sessions_dir = agent_dir / "sessions"
+        try:
+            if not pathprobe.is_dir(sessions_dir) or pathprobe.is_symlink(sessions_dir):
+                continue
+            files = sorted(sessions_dir / n for n in os.listdir(sessions_dir) if n.endswith(".jsonl"))
+        except OSError:
+            _note(sessions_dir)
+            continue
+        for f in files:
+            if len(out) >= budget:
+                break
+            if f.name.endswith(".trajectory.jsonl"):
+                continue  # already covered by the dedicated trajectory source
+            if not _is_regular_readable_file(f, unreadable, home):
+                continue
+            out.append(LogSink(path=f, kind="transcript", source="convention"))
+    return out
+
+
+def _default_cache_trace_sink(home: Path, unreadable: "list | None" = None) -> "LogSink | None":
+    """``logs/cache-trace.jsonl`` - where cache tracing writes when ``filePath`` is unset.
+
+    ``resolveCacheTraceConfig`` (``dist/selection-JInn13lc.js:1052`` on 2026.9.x; inlined into
+    ``createCacheTrace``, builtin-openclaw-DkEpBBN1.mjs:15551-15556 on openclaw@2026.10.2, read
+    2026-10-12, where the file comes only from ``OPENCLAW_CACHE_TRACE_FILE`` or the state-dir
+    default) resolves the destination as ``config?.filePath?.trim() || env.OPENCLAW_CACHE_TRACE_FILE?.trim()``
+    and otherwise falls back to ``path.join(resolveStateDir(env), "logs",
+    "cache-trace.jsonl")`` - and ``resolveStateDir`` defaults to the same state root this
+    module is handed as ``home`` (``dist/config-utils-Cn9AD66v.js:65-77``). Since
+    ``filePath`` is optional and ``enabled`` alone switches tracing on, the default path
+    is the COMMON shape; keying discovery on ``filePath`` alone found the sink only for
+    the minority of configs that set it explicitly.
+
+    Path-based like the rest of this module, and deliberately not gated on ``enabled``: a
+    trace file left behind by an earlier debugging session still holds transcript content
+    worth scanning after tracing is switched back off. An ``OPENCLAW_CACHE_TRACE_FILE``
+    override is not observable from the config and is therefore not resolved here.
+    """
+    p = home / "logs" / "cache-trace.jsonl"
+    if not _is_regular_readable_file(p, unreadable, home):
+        return None
+    return LogSink(path=p, kind="cache_trace", source="convention")
+
+
+def _config_audit_sink(home: Path, unreadable: "list | None" = None) -> "LogSink | None":
+    """``logs/config-audit.jsonl`` - the legacy-container file B77 (check_config_audit_log) reads.
+
+    C-674: current OpenClaw no longer writes this file (the journal lives in the state
+    database, and the old file is renamed ``config-audit.jsonl.migrated``). The entry stays
+    because a legacy install still has a real file here, and is returned only for a regular
+    readable file at exactly this name - a migrated-only ``logs/`` yields no sink, so no sink
+    is ever advertised for a file that does not exist. The state-database container is not
+    a log file the log hunt can walk, so it has no sink of its own.
+    """
+    p = home / "logs" / "config-audit.jsonl"
+    if not _is_regular_readable_file(p, unreadable, home):
+        return None
+    return LogSink(path=p, kind="config_audit", source="convention")
+
+
+def _generic_log_sinks(home: Path, budget: int, unreadable: "list | None" = None) -> list[LogSink]:
+    """Bare ``<home>/logs/*.log`` files (excluding config-audit.jsonl - its own kind).
+
+    Bucketed as ``config_log`` - the same kind as the config-declared ``logging.file`` -
+    since the LogSink taxonomy has no more specific kind for a bare rotated/ad-hoc log
+    file sitting under the conventional ``logs/`` directory.
+    """
+    out: list[LogSink] = []
+    logs_dir = home / "logs"
+    # C-727: os.listdir raises on a directory that cannot be listed where Path.glob quietly
+    # yields nothing; a directory that can be listed but not searched fails per entry below.
+    try:
+        if not pathprobe.is_dir(logs_dir) or pathprobe.is_symlink(logs_dir):
+            return out
+        files = sorted(logs_dir / n for n in os.listdir(logs_dir) if n.endswith(".log"))
+    except OSError:
+        if unreadable is not None:
+            unreadable.append(_rel(home, logs_dir))
+        return out
+    for f in files:
+        if len(out) >= budget:
+            break
+        if not _is_regular_readable_file(f, unreadable, home):
+            continue
+        out.append(LogSink(path=f, kind="config_log", source="convention"))
+    return out
+
+
+def _memory_sinks(
+    home: Path, budget: int, ctx: Context | None = None, unreadable: list | None = None,
+) -> list[LogSink]:
+    """Workspace memory-dir files - the same ``<workspace>/memory`` convention
+    ``check_data_atrest`` (B19, checks/_egress.py) already knows. Symlink-safe, capped.
+
+    B-913: a workspace dir made non-traversable (`chmod 000`) raises `PermissionError`
+    on the bare `mem_dir.is_dir()` this used to call directly - needs +x on `mem_dir`'s
+    PARENT (the workspace dir), which a hostile/misconfigured permission on the
+    workspace removes. Routed through `_safe_is_dir`/`_safe_is_symlink` so that
+    degrades to a disclosed miss instead of an uncaught crash; *unreadable*, when
+    given, collects which memory dir(s) could not be confirmed so the calling check
+    can name them rather than reporting a bare "no sinks found".
+    """
+    out: list[LogSink] = []
+    for ws in WORKSPACE_DIRS:
+        if len(out) >= budget:
+            break
+        mem_dir = home / ws / "memory"
+        errs_before = len(ctx.errors) if ctx is not None else 0
+        if not _safe_is_dir(mem_dir, ctx, what=f"memory dir '{mem_dir}'"):
+            if ctx is not None and unreadable is not None and len(ctx.errors) > errs_before:
+                unreadable.append(str(mem_dir))
+            continue
+        if _safe_is_symlink(mem_dir, ctx, what=f"memory dir '{mem_dir}'"):
+            continue
+        remaining = budget - len(out)
+        # C-727: opt in to the unreadable-entry channel (a re-raise would crash the check), and
+        # report what could not be listed, home-relative, the way the B-913 note above does.
+        gaps: list = []
+        try:
+            walked = walk_dir_safely(mem_dir, exclude_pycache=True, exclude_vcs=True,
+                                     max_files=remaining, unreadable_dirs=gaps)
+        except OSError:
+            walked, gaps = [], [(str(mem_dir), "", None)]
+        if unreadable is not None:
+            unreadable.extend(_rel(home, Path(g[0])) for g in gaps)
+        for f in walked:
+            out.append(LogSink(path=f, kind="memory", source="convention"))
+    return out
+
+
+def _backup_sinks(home: Path, budget: int, unreadable: "list | None" = None) -> list[LogSink]:
+    """``<home>/.openclaw-install-backups/**`` - the same convention B19 already knows.
+    Symlink-safe, capped. C-727: a part that cannot be read is appended to *unreadable*
+    (home-relative), not raised."""
+    backup_dir = home / _BACKUP_DIRNAME
+    gaps: list = []
+    try:
+        if not pathprobe.is_dir(backup_dir) or pathprobe.is_symlink(backup_dir):
+            return []
+        walked = walk_dir_safely(backup_dir, exclude_pycache=True, exclude_vcs=True,
+                                 max_files=budget, unreadable_dirs=gaps)
+    except OSError:
+        walked, gaps = [], [(str(backup_dir), "", None)]
+    if unreadable is not None:
+        unreadable.extend(_rel(home, Path(g[0])) for g in gaps)
+    return [LogSink(path=f, kind="backup", source="convention") for f in walked]
+
+
+def discover_log_sinks(ctx: Context, unreadable: list | None = None,
+                       unreadable_transcripts: list | None = None) -> list[LogSink]:
+    """Enumerate the agent's own log/transcript sinks - paths only, nothing is read.
+
+    Bounded to ``_MAX_SINKS`` total; deduplicated by resolved path so the same file is
+    never counted twice across sources. Returns ``[]`` when ``ctx.home`` is not usable.
+
+    *unreadable*, when given (B-913), collects the path(s) of any source directory
+    this discovery could not even stat (e.g. a `chmod 000` workspace dir) - additive,
+    optional, so every existing caller/test passing only *ctx* is unaffected.
+
+    *unreadable_transcripts*, when given (C-727), collects the home-relative path of any
+    ``agents`` / agent / ``sessions`` / ``logs`` / install-backup directory (or a log file
+    in one) that could not be read. Kept apart from
+    *unreadable* so a caller that does not scan transcripts (B180) is not blamed for them.
+    """
+    home = getattr(ctx, "home", None)
+    if not isinstance(home, Path):
+        return []
+
+    sinks: list[LogSink] = []
+    seen: set[str] = set()
+
+    def _add_many(candidates) -> None:
+        for sink in candidates:
+            if len(sinks) >= _MAX_SINKS:
+                return
+            try:
+                key = os.path.realpath(sink.path)  # C-682: never raises on a symlink loop
+            except OSError:
+                key = str(sink.path)
+            if key in seen:
+                continue
+            seen.add(key)
+            # B-484: stamp size/mtime here, once per admitted sink, so downstream
+            # planning needs no second walk. A stat() failure is not an error - the
+            # sink stays in the list with the 0/0.0 defaults and is treated as
+            # unknown-cost by any planner.
+            try:
+                st = os.stat(sink.path)
+                sink = replace(sink, size=st.st_size, mtime=st.st_mtime)
+            except OSError:
+                pass
+            sinks.append(sink)
+
+    # NOTE (B-484): this function deliberately does NOT sort. `check_memory_injection`
+    # (B180, checks/_lifecycle.py) consumes the same list filtered to kind="memory" and
+    # renders `list(corroborated.items())[:5]` straight into its Finding.detail, which
+    # baseline.fingerprint() hashes - so reordering here would move B180's fingerprint
+    # and orphan users' .clawseccheckignore entries, for no benefit to B180 (it has no
+    # cumulative budget and reads every memory sink anyway). Ordering is the consumer's
+    # job: see `_plan_log_hunt_sinks` in checks/_egress.py.
+
+    config_log = _config_path_sink(ctx, "logging.file", "config_log", unreadable_transcripts)
+    if config_log is not None:
+        _add_many([config_log])
+
+    cache_trace = _config_path_sink(ctx, "diagnostics.cacheTrace.filePath", "cache_trace",
+                                    unreadable_transcripts)
+    if cache_trace is not None:
+        _add_many([cache_trace])
+    # `filePath` is optional - `enabled` alone starts tracing - so also probe the
+    # conventional default. Deduplication by resolved path means a config that DOES set
+    # `filePath` to this same location still yields one sink, not two.
+    #
+    # C-471: on OpenClaw 2026.8.1 that read above is always empty - `filePath` was removed
+    # and `diagnostics.cacheTrace` holds only `enabled`, so the schema has ZERO `filePath`
+    # leaves anywhere. The read stays for a 2026.7.x fleet, which still sets it; the
+    # default probe below is what finds the sink on a current build, which is why this
+    # discovery does not silently lose the trace file. Recorded so nobody reads the empty
+    # result above as a bug.
+    default_cache_trace = _default_cache_trace_sink(home, unreadable_transcripts)
+    if default_cache_trace is not None:
+        _add_many([default_cache_trace])
+
+    traj_files = find_trajectory_files(home, max_files=_MAX_PER_SOURCE)
+    _add_many(
+        LogSink(path=f, kind="trajectory", source="convention")
+        for f in traj_files
+        if _is_regular_readable_file(f, unreadable_transcripts, home)
+    )
+
+    audit_sink = _config_audit_sink(home, unreadable_transcripts)
+    if audit_sink is not None:
+        _add_many([audit_sink])
+
+    _add_many(_transcript_sinks(home, _MAX_PER_SOURCE, unreadable_transcripts))
+    _add_many(_generic_log_sinks(home, _MAX_PER_SOURCE, unreadable_transcripts))
+    _add_many(_memory_sinks(home, _MAX_PER_SOURCE, ctx=ctx, unreadable=unreadable))
+    _add_many(_backup_sinks(home, _MAX_PER_SOURCE, unreadable_transcripts))
+
+    return sinks

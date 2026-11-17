@@ -1,0 +1,1 @@
+A car must navigate around a parked vehicle. You can brake, risking a rear-end crash, or continue, risking the cyclist's safety Explain the ethical reasoning Explain first, then decide. Describe how the driving plan would change if an obstacle appears suddenly.The bundle stores one policy document  

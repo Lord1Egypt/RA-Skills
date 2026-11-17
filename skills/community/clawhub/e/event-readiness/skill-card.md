@@ -1,41 +1,54 @@
-## Description: <br>
-Checks whether a seller is ready for a marketplace event, promo spike, or campaign window across inventory, pricing, traffic, content, support, and fulfillment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check whether a seller is actually ready for a marketplace event, promo spike, or campaign window before traffic is pushed.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketplace operators, growth teams, and sellers use this skill to decide whether an event, promotion, seasonal push, or campaign spike is ready to receive traffic. It produces a readiness verdict, critical gaps, launch-blocking fixes, secondary improvements, and a final go/no-go note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational spreadsheet or planning data may contain sensitive event, inventory, pricing, creator, support, or fulfillment information. <br>
-Mitigation: Share only the fields needed for the readiness review and prefer scoped spreadsheet access over broad account access. <br>
-Risk: Incomplete or stale inputs can make a go/no-go recommendation unreliable. <br>
-Mitigation: Use checklist mode for partial information, mark unknowns as risks, and avoid a ready verdict unless the critical path is reasonably covered. <br>
+## Use Case:
 
+Marketplace sellers and operations teams use this skill to decide whether a promo, brand event, seasonal push, or campaign spike is ready to launch. It reviews inventory, pricing, creator support, content support, customer support, and fulfillment so the user can identify critical gaps before traffic is pushed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/event-readiness) <br>
-- [Output Template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown readiness report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes readiness verdict, critical gaps, must-fix sequence, nice-to-fix items, final go/no-go recommendation, and confidence level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Event planning inputs may include sensitive inventory, pricing, creator support, content, customer support, or fulfillment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the event details needed for the readiness review and avoid unnecessary confidential data.
+
+Risk: Incomplete event inputs can make a readiness verdict overconfident.
+
+Mitigation: Use checklist mode, call out unknowns as risk, and avoid marking the event ready unless the critical path is covered.
+
+## Reference(s):
+
+- [Event Readiness output template](artifact/references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/event-readiness)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown readiness verdict with prioritized gap and action lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes readiness verdict, critical gaps, must-fix sequence, secondary improvements, and final go/no-go note.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

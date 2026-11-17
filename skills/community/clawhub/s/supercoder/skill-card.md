@@ -1,45 +1,58 @@
-## Description: <br>
-Supercoder guides an agent through a six-phase workflow for analyzing a requirement, exploring the codebase, clarifying implementation choices, designing an approach, implementing code, and verifying the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supercoder guides an agent through a six-phase requirement-to-code workflow for analyzing feature requests, designing an implementation, editing project files, and verifying the result.
 
-## Publisher: <br>
-[unfallenwill](https://clawhub.ai/user/unfallenwill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unfallenwill](https://clawhub.ai/user/unfallenwill)
 
-## Use Case: <br>
-Developers and engineers use this skill when a user provides a requirement, PRD, specification, or feature request and expects end-to-end delivery against an existing codebase. It structures the work from discovery through verification, with user checkpoints for clarification, design selection, and final confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to edit files and run local commands during implementation work. <br>
-Mitigation: Use version control, review diffs, and give explicit limits before allowing broad edits, destructive commands, or commands derived from untrusted requirements or URLs. <br>
-Risk: The workflow may fetch requirement content from a URL when the user provides one. <br>
-Mitigation: Treat fetched requirements as untrusted input and confirm scope, design choices, and command execution before implementation. <br>
+## Use Case:
 
+Developers and engineers use Supercoder when they have a requirement, PRD, specification, or feature request and want an agent to move through discovery, codebase exploration, clarification, design, implementation, and verification with user checkpoints.
 
-## Reference(s): <br>
-- [Discover phase](references/discover-phase.md) <br>
-- [Explore phase](references/explore-phase.md) <br>
-- [Clarify phase](references/clarify-phase.md) <br>
-- [Design phase](references/design-phase.md) <br>
-- [Implement phase](references/implement-phase.md) <br>
-- [Verify phase](references/verify-phase.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with code, shell commands, file changes, task updates, questions, and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit files, run local commands, fetch requirement URLs, and delegate exploration or design work to subagents when the host agent supports those tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can direct an agent to edit project files and run repository-defined tests during implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended feature delivery, review the design checkpoint before implementation, and monitor command execution in sensitive repositories.
+
+Risk: Repository-defined test or build steps may execute risky or sensitive operations.
+
+Mitigation: Review planned verification commands before they run, especially in repositories with untrusted scripts or sensitive build steps.
+
+## Reference(s):
+
+- [Phase 1: Discover](references/discover-phase.md)
+- [Phase 2: Explore](references/explore-phase.md)
+- [Phase 3: Clarify](references/clarify-phase.md)
+- [Phase 4: Design](references/design-phase.md)
+- [Phase 5: Implement](references/implement-phase.md)
+- [Phase 6: Verify](references/verify-phase.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with code changes, implementation plans, verification summaries, and inline shell commands as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit project files and run repository-defined tests as part of user-directed feature delivery.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

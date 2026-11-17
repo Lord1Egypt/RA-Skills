@@ -1,39 +1,52 @@
-## Description: <br>
-Build cross-channel attribution analysis and decision guidance for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build cross-channel attribution analysis and decision guidance for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, Shopify Ads, and DSP/programmatic campaigns.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing operators, analysts, and growth teams use this skill to diagnose attribution discrepancies, compare attribution windows, and produce decision-safe budget allocation guidance across paid media channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Budget recommendations may be incorrect or misleading if attribution data is incomplete, inconsistent, or not validated. <br>
-Mitigation: Treat recommendations as advisory and validate major spend changes with experiments, incrementality evidence, or trusted business reporting. <br>
-Risk: Campaign and conversion data can include confidential business information. <br>
-Mitigation: Share only the campaign data needed for the analysis and avoid unnecessary confidential or sensitive business details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/attribution-ads-helper) <br>
+## Use Case:
 
+Marketing, growth, and analytics teams use this skill to compare attribution windows, diagnose ROAS/CAC discrepancies across advertising channels, and produce decision-safe budget allocation guidance with validation plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with structured analysis sections, tables, recommendations, and validation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory attribution analyses, mismatch maps, sensitivity views, budget recommendations, and experiment plans from user-provided campaign data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may be invoked by broad marketing or analytics wording when the user does not actually need advertising attribution analysis.
+
+Mitigation: Apply it only when the task involves attribution analysis, attribution-window comparison, advertising KPI reconciliation, or budget allocation under attribution uncertainty.
+
+Risk: Budget allocation guidance can be misleading when conversion definitions, attribution windows, or offline conversion coverage are inconsistent.
+
+Mitigation: Normalize event definitions first, label uncertainty, use conservative allocation limits when variance is high, and require experiment-backed confirmation for high-stakes budget decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/attribution-ads-helper)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured attribution maps, sensitivity analyses, KPI views, budget recommendations, and validation plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or data movement was found in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

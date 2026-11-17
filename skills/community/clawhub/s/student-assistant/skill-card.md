@@ -1,39 +1,53 @@
-## Description: <br>
-轻量化大学生个人效率管家，帮助学生管理课表、查询空教室、生成复习计划、安排运动计划并汇总今日日程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight Chinese-language student productivity assistant that imports class schedules, finds free study time, and generates review, exercise, and daily schedule plans around class commitments.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Students use this skill to turn course schedules, exam dates, study needs, and exercise preferences into concise daily plans that avoid class-time conflicts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores course times, locations, exams, study plans, and exercise plans in local files under memory/student. <br>
-Mitigation: Avoid entering sensitive information, restrict local filesystem access, and clear the stored files when the planner is no longer needed. <br>
+## Use Case:
 
+Students use this skill to manage course schedules, identify free self-study periods or likely study spaces, and generate study, exercise, and daily-summary plans around class time.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/student-assistant) <br>
-- [Planning Algorithms Reference](references/planning-algorithms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Concise Markdown with schedule summaries and JSON-backed planning data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single responses are intended to stay under 20 lines; generated plans may be persisted under memory/student.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores class schedules, exam details, preferences, and generated plans in local memory/student JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local retention of this student data is acceptable, use clear fixed commands for write actions, and remove the stored files when the data is no longer needed.
+
+Risk: Classroom and weather-dependent suggestions may be generic or based on defaults when live campus or weather data is unavailable.
+
+Mitigation: Verify classroom availability, weather, and time-sensitive recommendations before relying on them for real-world planning.
+
+## Reference(s):
+
+- [Planning Algorithms Reference](references/planning-algorithms.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Concise Chinese Markdown/text summaries plus local JSON schedule and plan files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes student schedule, exam, review-plan, sport-plan, and optional preference data under local memory/student files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

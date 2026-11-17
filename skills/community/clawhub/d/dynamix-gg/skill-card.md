@@ -1,44 +1,59 @@
-## Description: <br>
-Operate the Dynamix Solana trading dashboard, purchase access, sign in, manage wallets, configure automated trading strategies, monitor live trades, and manage account settings at dynamix.gg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the Dynamix Solana trading dashboard, purchase access, sign in, manage wallets, configure automated trading strategies, monitor live trades, and manage account settings at dynamix.gg.
 
-## Publisher: <br>
-[dynamixgg](https://clawhub.ai/user/dynamixgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dynamixgg](https://clawhub.ai/user/dynamixgg)
 
-## Use Case: <br>
-External users use this skill for guidance on purchasing access, signing in, managing Solana wallets, configuring automated Dynamix trading parameters, monitoring live trades, and managing account settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live automated Solana trading can spend real funds without ongoing user attention. <br>
-Mitigation: Use the skill only when intentionally managing Dynamix trading; review buy limits, stop-loss settings, and how to stop the bot before funding or starting it. <br>
-Risk: Wallet import and private-key exposure can put primary funds at risk. <br>
-Mitigation: Prefer a new low-balance wallet and avoid importing a primary wallet. <br>
-Risk: On-chain payment or funding steps can send SOL to an incorrect or expired address. <br>
-Mitigation: Verify the platform and deposit address yourself before sending funds, and restart the purchase flow if the payment window expires. <br>
+## Use Case:
 
+External users use this skill for step-by-step guidance operating the Dynamix web dashboard, including purchase, authentication, wallet setup, automated Solana trading configuration, live trade monitoring, and account settings.
 
-## Reference(s): <br>
-- [Dynamix on ClawHub](https://clawhub.ai/dynamixgg/dynamix-gg) <br>
-- [Dynamix homepage](https://dynamix.gg) <br>
-- [Dynamix documentation](https://dynamix.gg/documentation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and step-by-step instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; user-facing operational guidance for the Dynamix web dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill guides users into high-risk crypto wallet custody and unattended automated trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate low-balance wallet dedicated to trading, avoid importing a primary wallet, and confirm stop or revocation controls before enabling automation.
+
+Risk: Server-side automation can continue spending funds while the browser is closed or after sign-out.
+
+Mitigation: Stop the bot before signing out when ongoing trading is not intended, and review wallet authority and balances after each session.
+
+Risk: The artifact includes repeated commercial steering through a promo code.
+
+Mitigation: Treat promo or referral codes as optional and evaluate costs, terms, and trading risk independently before purchase.
+
+## Reference(s):
+
+- [Dynamix homepage](https://dynamix.gg)
+- [Dynamix documentation](https://dynamix.gg/documentation)
+- [ClawHub skill listing](https://clawhub.ai/dynamixgg/skills/dynamix-gg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with links, checklists, and parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for using a third-party trading dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

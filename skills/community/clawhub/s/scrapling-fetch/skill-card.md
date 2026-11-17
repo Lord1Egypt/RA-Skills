@@ -1,45 +1,64 @@
-## Description: <br>
-Scrapling Fetch retrieves public webpage content with Scrapling or Jina Reader and returns extracted article text as JSON or plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapling Fetch helps agents retrieve webpage content, including pages protected by common anti-bot checks, and return cleaned JSON, Markdown, or plain text.
 
-## Publisher: <br>
-[imgolye](https://clawhub.ai/user/imgolye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[imgolye](https://clawhub.ai/user/imgolye)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch article content from public webpages, including pages where a normal lightweight fetch may fail. It is intended for authorized scraping workflows that need JSON, Markdown-like content, or plain text output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to bypass site protections while scraping webpages. <br>
-Mitigation: Use it only for authorized access to public pages, respect site terms and rate limits, and avoid private or token-bearing URLs. <br>
-Risk: Fast mode forwards requested URLs to a third-party reader service. <br>
-Mitigation: Do not use fast mode for private, internal, sensitive, or untrusted URLs. <br>
-Risk: The paid script can charge a billing account and the security evidence flags a hardcoded API key and crafted-URL code execution bug. <br>
-Mitigation: Avoid the paid script until the key is removed, charges require explicit confirmation, and URL handling is fixed. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch article or webpage content from WeChat Official Accounts, Medium, Substack, Cloudflare-protected pages, and ordinary web pages for research, summarization, and content workflows.
 
-## Reference(s): <br>
-- [Supported anti-bot sites](references/antibot-sites.md) <br>
-- [Skill metadata](references/skill.json) <br>
-- [Scrapling GitHub](https://github.com/D4Vinci/Scrapling) <br>
-- [Jina Reader](https://jina.ai/reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON by default, or plain text when requested; fetched content may include Markdown-style article text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The fetch scripts support a maximum character limit, defaulting to 50000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: A crafted URL could cause unsafe Python execution in the fetch path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass the URL as a safe subprocess argument, validate and escape URL input, and avoid interpolating user input into python -c code.
+
+Risk: The paid fetch script includes live-format billing behavior and a hardcoded SkillPay API key.
+
+Mitigation: Remove the embedded key, rotate the exposed credential, load credentials from user-controlled secret storage, and require explicit billing consent before any charge.
+
+Risk: Fetching private, tokenized, internal, or sensitive URLs could expose confidential content or enable internal network access.
+
+Mitigation: Block internal network targets and avoid using the skill on sensitive URLs unless the publisher adds clear allowlists and data-handling controls.
+
+Risk: Fast mode sends target URLs through a third-party reader service.
+
+Mitigation: Make third-party proxying opt-in and disclose the data path before sending URLs to external services.
+
+## Reference(s):
+
+- [Known anti-bot site guidance](references/antibot-sites.md)
+- [Scrapling project](https://github.com/D4Vinci/Scrapling)
+- [Jina Reader](https://jina.ai/reader)
+- [Scrapling Fetch on ClawHub](https://clawhub.ai/imgolye/skills/scrapling-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON by default, plain text with --text, and Markdown content in extracted page fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content length is bounded by --max-chars; the default maximum is 50000 characters.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

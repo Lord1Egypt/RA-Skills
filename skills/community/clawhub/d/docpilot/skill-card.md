@@ -1,41 +1,62 @@
-## Description: <br>
-DocPilot parses documents, extracts schema-based fields with source evidence, and classifies or splits mixed documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能文档处理专家，支持文档解析、信息抽取、文档分类。
 
-## Publisher: <br>
-[ankylala](https://clawhub.ai/user/ankylala) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ankylala](https://clawhub.ai/user/ankylala)
 
-## Use Case: <br>
-External users and developers use this skill to process PDFs, images, Word, Excel, and CSV files for contract review, financial audit, archive organization, form processing, and compliance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads user documents to a configurable remote API and may include sensitive credentials in configuration. <br>
-Mitigation: Use only documents authorized for the configured endpoint, verify base URL and environment settings before use, replace or remove bundled API key values, and avoid confidential or regulated documents unless the endpoint satisfies data-handling requirements. <br>
+## Use Case:
 
+External users and developers use this skill to parse PDFs, images, Word, Excel, and CSV files, extract structured fields with source evidence, and classify or split mixed document sets. Typical workflows include contract review, finance audits, archive organization, form processing, and compliance checks.
 
-## Reference(s): <br>
-- [DocPilot ClawHub Skill Page](https://clawhub.ai/ankylala/docpilot) <br>
-- [DocPilot Publisher Profile](https://clawhub.ai/user/ankylala) <br>
-- [DocPilot API Endpoint](https://docpilot.token-ai.com.cn) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [JSON responses, Markdown text, and generated local JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include document IDs, page counts, extracted fields with evidence, classifications, segments, metadata, and error codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Risk: The skill uploads selected documents to the DocPilot/TokenAI service or another configured endpoint, and privacy controls are under-documented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for that external service until the publisher documents retention, deletion, jurisdiction, and privacy terms.
+
+Risk: The bundled configuration includes credential-like data and can override environment variables.
+
+Mitigation: Remove bundled secrets, rotate any exposed credentials, and require deployers to provide API keys through approved secret management.
+
+Risk: The service destination is configurable, which can send document contents to an unexpected endpoint.
+
+Mitigation: Restrict deployment to approved HTTPS destinations and review endpoint configuration before each release.
+
+Risk: Dependencies are not pinned.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ankylala/skills/docpilot)
+- [DocPilot Service Endpoint](https://docpilot.token-ai.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON, Markdown, or plain text document-processing results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parse outputs may include document IDs, page counts, layout elements, tables, seals, bounding boxes, and markdown; extraction and classification outputs include structured fields, evidence, segments, confidence, and metadata.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence; source files report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

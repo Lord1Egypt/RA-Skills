@@ -1,45 +1,58 @@
-## Description: <br>
-Set up, diagnose, repair, and quality-test private local OpenClaw semantic memory search using Ollama embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up, diagnose, repair, and quality-test private local OpenClaw semantic memory search using Ollama embeddings.
 
-## Publisher: <br>
-[brasco05](https://clawhub.ai/user/brasco05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brasco05](https://clawhub.ai/user/brasco05)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure, diagnose, and validate local OpenClaw semantic memory search with Ollama embeddings instead of hosted embedding APIs or native node-llama-cpp builds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can install software, start services, download an embedding model, and change OpenClaw memory configuration when side-effect flags are used. <br>
-Mitigation: Run diagnostic mode first and approve --install and --apply-config only when those changes are intended. <br>
-Risk: Exposing Ollama outside trusted local or private networks can create network security risk. <br>
-Mitigation: Keep Ollama on localhost when possible and review any custom base URL before applying configuration. <br>
-Risk: Quality-test queries and excerpts may appear in terminal output, logs, or agent transcripts. <br>
-Mitigation: Avoid sensitive quality-test queries when logs may be captured. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose and configure private local OpenClaw memory search with Ollama embeddings, then validate semantic retrieval quality before relying on memory_search results.
 
-## Reference(s): <br>
-- [Ollama Memory Setup README](README.md) <br>
-- [Troubleshooting - Ollama Memory Setup](references/troubleshooting.md) <br>
-- [Ollama](https://ollama.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/brasco05/ollama-memory-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic steps, installation commands, OpenClaw configuration commands, and quality-test guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release evidence and package.json) <br>
+Risk: The installer path can run Ollama installation commands, including a Linux curl-to-shell vendor installer, when --install is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use and run default diagnostic mode first; use --install only after explicit approval or replace it with a verified manual install.
+
+Risk: Changing the Ollama base URL can direct memory-search traffic away from the default local endpoint.
+
+Mitigation: Keep the base URL on localhost unless the destination has been independently validated and is on a trusted private network.
+
+Risk: Applying configuration persists the memory-search endpoint and model settings.
+
+Mitigation: Use --apply-config only after confirming the intended OpenClaw configuration changes and validating the selected model and endpoint.
+
+## Reference(s):
+
+- [Troubleshooting - Ollama Memory Setup](references/troubleshooting.md)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend diagnostic checks, optional installation, OpenClaw memory configuration, reindexing, and quality-test commands.]
+
+## Skill Version(s):
+
+1.2.3 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

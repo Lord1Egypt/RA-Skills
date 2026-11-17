@@ -1,39 +1,53 @@
-## Description: <br>
-A Chinese-language tutor that explains A-share stock-market concepts and indicators for beginners and turns scattered questions into reviewable glossary notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股/炒股新手概念与指标的结构化讲解与笔记沉淀，用于解释PE、PB、ROE、现金流、财报口径、板块题材和政策术语，并把零散问题整理成可复习的中文知识体系。
 
-## Publisher: <br>
-[JoiFG](https://clawhub.ai/user/JoiFG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joifg](https://clawhub.ai/user/joifg)
 
-## Use Case: <br>
-External users learning A-share terminology use this skill to get structured explanations of concepts such as PE, PB, ROE, cash flow, reporting terms, sectors, themes, and policy terms. It can also save explanations as local Markdown glossary notes for later review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may add or update local study notes in notes/stocks/glossary.md. <br>
-Mitigation: Review that file before and after use, and ask the agent not to save notes when you only want a one-off explanation. <br>
-Risk: Stock-market terminology explanations can be mistaken for trading advice or current financial facts. <br>
-Mitigation: Use the output for education only, verify data sources and reporting periods, and do not treat the explanations as buy/sell recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JoiFG/a-share-glossary-tutor) <br>
+## Use Case:
 
+External learners and retail-investing newcomers use this skill to get structured Chinese explanations of A-share market concepts, common metric pitfalls, related indicators, and simple examples. The skill is educational and explicitly avoids specific buy, sell, return, or investment recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown glossary explanations and appended local Markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends or updates grouped entries in notes/stocks/glossary.md; does not provide buy/sell recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may store user-provided financial context in notes/stocks/glossary.md.
+
+Mitigation: Avoid entering private account details or sensitive financial context unless you are comfortable having it included in local notes.
+
+Risk: Educational explanations of market concepts can be mistaken for investment advice.
+
+Mitigation: Use the skill for glossary learning only and keep the stated boundary that it does not provide buy, sell, return, or investment recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joifg/skills/a-share-glossary-tutor)
+- [Publisher profile](https://clawhub.ai/user/joifg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown-style structured glossary explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append or update local glossary notes at notes/stocks/glossary.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

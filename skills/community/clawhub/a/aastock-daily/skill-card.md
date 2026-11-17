@@ -1,47 +1,59 @@
-## Description: <br>
-A股日报 + 持仓管家，自动推送盘前/收盘/夜间简报，监控持仓股动态及股吧舆情，支持周末资讯。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aastock Daily generates scheduled A-share market briefs and portfolio-tracking reports using Eastmoney market and news data, including pre-market, close, night, weekend, announcements, research headlines, and community sentiment.
 
-## Publisher: <br>
-[torchesfrms](https://clawhub.ai/user/torchesfrms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[torchesfrms](https://clawhub.ai/user/torchesfrms)
 
-## Use Case: <br>
-External users and agents use this skill to generate scheduled A-share market briefings, portfolio tracking reports, announcements, research/news summaries, and stock-forum sentiment snapshots from configured holdings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured holdings and API credentials may be sent to external market-data APIs. <br>
-Mitigation: Review configured holdings before use, use explicit environment-managed credentials, and document or disable vault credential access. <br>
-Risk: Reports may include hard-coded or simulated financial figures that can mislead readers. <br>
-Mitigation: Verify market data against authoritative sources and replace simulated values before using the reports for investment decisions. <br>
-Risk: The artifact includes an unrelated parser that reads and writes fixed /tmp paths. <br>
-Mitigation: Remove the parser or isolate it from normal skill execution before installation. <br>
-Risk: A fallback API key is embedded in the scripts. <br>
-Mitigation: Remove the embedded key and require user-provided credentials through a controlled secret mechanism. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run A-share market briefing scripts for daily market summaries and portfolio monitoring. It is intended for informational reporting workflows around configured holdings, schedules, announcements, research headlines, and community sentiment.
 
-## Reference(s): <br>
-- [Aastock Daily ClawHub release](https://clawhub.ai/torchesfrms/aastock-daily) <br>
-- [Publisher profile: torchesfrms](https://clawhub.ai/user/torchesfrms) <br>
-- [Eastmoney market data endpoint](http://push2.eastmoney.com) <br>
-- [Eastmoney authenticated API endpoint](https://mkapi2.dfcfs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Plain text and Markdown-style market reports emitted by shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports depend on configured holdings and external Eastmoney API responses; scripts may also write local log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.1.0) <br>
+Risk: Credential handling is unclear and the release may use embedded or silently loaded API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher removes embedded keys and documents required credentials and network access; test with disposable credentials first.
+
+Risk: Financial reports may contain simulated, stale, or unsourced values that could mislead users.
+
+Mitigation: Treat output as informational until API responses and timestamps are validated; compare market-sensitive values against trusted data before acting.
+
+Risk: Portfolio configuration can reveal sensitive holdings.
+
+Mitigation: Test in a sandbox with non-sensitive holdings and avoid storing real portfolios until the publisher addresses the security guidance.
+
+## Reference(s):
+
+- [Aastock Daily ClawHub listing](https://clawhub.ai/torchesfrms/skills/aastock-daily)
+- [Eastmoney authenticated API host](https://mkapi2.dfcfs.com)
+- [Eastmoney quote API host](http://push2.eastmoney.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese text reports with Markdown-like sections and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured holdings and network access to Eastmoney data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and changelog report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

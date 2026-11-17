@@ -1,38 +1,54 @@
-## Description: <br>
-Chart Designer Zh helps users choose appropriate chart types, generate ECharts or Chart.js configuration code, and improve data visualizations with color and layout guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chart Designer Zh helps Chinese-language users choose suitable chart types, generate ECharts and Chart.js configuration code, and improve visualization color and layout choices.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Data analysts, product managers, operations, finance, and HR users use this skill to select effective chart formats, produce chart configuration snippets, and design dashboards or report visuals from business data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart recommendations or code can be misleading if source data is incomplete, malformed, or interpreted incorrectly. <br>
-Mitigation: Review input data, validate generated ECharts or Chart.js configuration, and independently check important business, financial, HR, or operational conclusions before use. <br>
+## Use Case:
 
+Business analysts, product managers, operations teams, finance teams, and HR teams use this skill to turn spreadsheet-style data into chart recommendations, dashboard layouts, report visuals, and reusable chart configuration code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/chart-designer-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON chart configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference chart or spreadsheet tools when available; users should verify generated chart code and conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Spreadsheet or chart requests may contain more business data than needed for visualization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the data required for the requested chart and omit unnecessary sensitive fields.
+
+Risk: Generated chart configurations or visualization recommendations may be misleading if the underlying data or chart choice is not reviewed.
+
+Mitigation: Review generated configurations and chart recommendations before using them in reports, dashboards, or applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/chart-designer-zh)
+- [ClawHub publisher profile](https://clawhub.ai/user/olina1ye)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON chart configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference spreadsheet input and generate chart configuration snippets for ECharts or Chart.js.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

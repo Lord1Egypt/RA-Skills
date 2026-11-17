@@ -1,38 +1,54 @@
-## Description: <br>
-Demand-side client to discover, claim, and deliver RustChain RIP-302 agent jobs based on skills, rewards, and reputation in an escrow marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Demand-side client to find, claim, and deliver RustChain RIP-302 agent jobs based on skills, rewards, and reputation in an escrow marketplace.
 
-## Publisher: <br>
-[scottcjn](https://clawhub.ai/user/scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to find suitable RustChain marketplace jobs, reserve them, and submit delivery summaries or URLs. It is suited to agents that need guidance for command-line job discovery, claiming, delivery, reputation lookup, and agent.toml configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub rtc-work listing](https://clawhub.ai/scottcjn/rtc-work) <br>
-- [RustChain](https://rustchain.org) <br>
+Developers and autonomous-agent operators use rtc-work to discover RIP-302 jobs matching skills and reward thresholds, claim jobs, deliver results, and inspect reputation against a RustChain node.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security review is clean, but users should review agent.toml, verify the node URL, and avoid combining watch --auto with --yes unless unattended remote job claims are intended.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and pyproject.toml) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Unpinned remote CLI execution can install code that differs from the reviewed 0.1.1 release.
+
+Mitigation: Install only from the reviewed, pinned release and avoid unpinned `uvx rtc-work` in sensitive environments.
+
+Risk: `claim`, `deliver`, and `watch --auto` can change job-market state for the configured wallet and node.
+
+Mitigation: Keep confirmation prompts enabled by default; use `--yes` or `watch --auto` only in trusted workflows after testing with the intended `--node`.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottcjn/skills/rtc-work)
+- [RustChain ecosystem](https://rustchain.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confirmation prompts and node/wallet configuration guidance; no structured binary output.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

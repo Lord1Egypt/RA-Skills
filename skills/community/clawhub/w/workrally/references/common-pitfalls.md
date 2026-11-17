@@ -50,6 +50,7 @@ workrally generate image --prompt "..." --model <从返回结果中获取的mode
 ```
 
 > 模型列表是**动态下发**的，不同环境的可用模型可能完全不同。
+> 生视频用 `generate video-models`；生音频/音乐用 `generate audio-models`；提示词优化用 `generate content-models`（不要硬编码 MiniMax H3）。混元 3D 用 `generate 3d --asset-id`，不要查 3d-models。
 
 ---
 
@@ -219,6 +220,91 @@ workrally role get "abc" -o json
 
 ---
 
+## ❌ 错误 11：生图 `--resolution 1/2` 当成视频枚举
+
+### 问题
+
+```bash
+# ❌ 错误：以为和 generate video 一样，2=540P
+workrally generate image --prompt "..." --model <id> --resolution 2
+# 生图里 2 仍是旧档位 4K，不是 540P
+```
+
+### 正确做法
+
+```bash
+workrally generate image-models -o json
+# 用该模型 resolution_options[].value（常见 4=1080P、5=1440P、6=2160P）
+workrally generate image --prompt "..." --model <id> --resolution 5
+```
+
+旧脚本继续传 `0/1/2` 仍然有效（映射为 1080P/1440P/2160P），新调用不要混用两套数字。
+
+---
+
+## ❌ 错误 12：提示词优化任务去找 output_assets
+
+### 问题
+
+```bash
+workrally generate optimize-prompt --prompt "延长5秒" --model <id> --poll
+# ❌ 在结果里找 output_assets / output_products —— 文本任务没有媒资产物
+```
+
+### 正确做法
+
+```bash
+# ✅ 先拿模型
+workrally generate content-models -o json
+# ✅ 轮询成功后读 output_text（output_type="text"）
+workrally generate optimize-prompt --prompt "将视频从尾帧延长5秒" --model <model_id> \
+  --video-url <url> --first-frame-url <url> --last-frame-url <url> \
+  --reference-image-urls "url1,url2" --audio-url <url> --poll
+```
+
+| 任务 | output_type | 产物字段 |
+|------|-------------|----------|
+| 生图 / 生视频 | `assets` | `output_assets` |
+| 提示词优化 | `text` | `output_text` |
+
+---
+
+## ❌ 错误 13：视频编辑的参考图没进 ref_images
+
+### 问题
+
+VideoEdit 只传了 `--origin-video`，参考图写在提示词里，或把图片/视频塞进和参考生视频一样的 `ref_videos`。SmartEdit 选了 Rally-Video-Edit-2.0 后仍按梦宝协议提交，参考图任务会被网关直接拒绝。
+
+### 正确做法
+
+- VideoEdit：`--origin-video` 放源视频，`--reference-assets` 只放 `type=image`。服务端写入 `graph_input.ref_images`。
+- SmartEdit 且模型是 `6cdvjhqm6e`：同样只传图片参考。服务端把源片改写到 `origin_video`，模板用 `video_edit`，不写 `ref_videos` / `duration` / `resolution`。提示词必填。
+- 梦宝等其他 SmartEdit 模型继续用 `reference_to_video`，源片在 `ref_videos[0]`。
+
+## ❌ 错误 14：样片分辨率或模型用错
+
+### 问题
+
+给不支持样片的模型传了 `--draft`，或样片和正片共用同一个分辨率。转正片时还换了模型。
+
+### 正确做法
+
+先看 `generate video-models` 或 `shotlist models` 的 `support_draft`。只有 `true` 才能传 `--draft`。
+
+- 生成样片：`--draft '{"enable":true}'`，分辨率 `1`（480P）
+- 转正片：`--draft '{"draft_id":"<样片素材ID>"}'`，分辨率 `4`（1080P），模型与样片相同
+- 画布用 `generate video --draft`。场次用 `shotlist set-model --draft`，写入 `gen_config.video.draft`
+
+## ❌ 错误 15：知识库写入没让用户逐级确认
+
+### 问题
+
+一次列出所有库的卡片让用户挑选，或把现成 PDF / Word 读进 `--content`。目录不存在时直接写入，服务端会自动建目录。
+
+### 正确做法
+
+`kb list` 只展示 `writable=true` → 等用户选一个库 → 只用这个 `kb_id` 调 `kb card-list` → 再确认目录和文件名。现成文件用 `kb upload` 再 `asset create --status 3 --channel kb`，把素材 ID 交给 `--asset-id`。不要用 `workrally upload`。细则见 `references/knowledge-guide.md`。
+
 ## 常见判断速查表
 
 | 场景 | 需要什么 |
@@ -229,6 +315,7 @@ workrally role get "abc" -o json
 | "把已有图片放到画布上" | `asset search` → `canvas build-draft` |
 | "生成4张图片" | `generate image --count 4 --poll` |
 | "查看生成进度" | `generate task <task_id> --poll` |
+| "优化视频提示词" | `generate content-models` → `generate optimize-prompt --poll`（读 `output_text`） |
 | "创建一个画板放三张图" | `canvas build-draft` (一次传画板+3个子节点) |
 | "删除画布上的某个节点" | `canvas build-draft --delete-node-ids "node_id"` |
 | "清空整个画布" | `canvas build-draft --nodes '[]' --mode overwrite` |
@@ -237,19 +324,13 @@ workrally role get "abc" -o json
 
 ---
 
-## 通用工具透传
+## 查看白名单工具
 
-当高级封装命令无法满足需求时，使用通用透传直接调用任何 MCP 工具：
+只能使用 `tools list` / `tools describe` 和已封装的 CLI 子命令。**不要**透传调用未列出的 MCP 工具（`tools call` 已移除）。
 
 ```bash
-# 列出所有可用工具
 workrally tools list -o json
-
-# 查看某个工具的参数 schema
 workrally tools describe <tool_name>
-
-# 直接调用（适合复杂参数场景）
-workrally tools call <tool_name> --json-args '{"key":"value"}'
 ```
 
 ---

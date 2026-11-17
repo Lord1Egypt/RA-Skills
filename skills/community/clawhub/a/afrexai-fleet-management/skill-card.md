@@ -1,39 +1,53 @@
-## Description: <br>
-Helps users analyze vehicle utilization, maintenance needs, route efficiency, ownership costs, compliance tracking, and EV transition planning for fleet operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps fleet operators analyze utilization, maintenance, routing, total cost of ownership, compliance, and EV transition planning to improve fleet efficiency.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Fleet managers, operations directors, logistics companies, construction firms, delivery services, and field service businesses can use this skill to structure fleet analysis, prioritize cost-saving recommendations, and plan operational changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fleet analysis may involve sensitive driver, vehicle, route, maintenance, cost, or compliance data. <br>
-Mitigation: Use only approved OpenClaw environments and remove or minimize sensitive operational data before sharing it with the agent. <br>
-Risk: The skill includes AfrexAI links that the security review identifies as marketing rather than neutral software advice. <br>
-Mitigation: Treat linked commercial resources as optional vendor information and evaluate tools independently before purchase or adoption. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fleet Management Optimizer on ClawHub](https://clawhub.ai/1kalin/afrexai-fleet-management) <br>
+## Use Case:
 
+Fleet managers, operations leaders, logistics teams, construction firms, delivery services, and field service businesses use this skill to evaluate fleet performance, replacement timing, maintenance needs, and cost-saving opportunities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with executive summaries, tables, ranked recommendations, implementation timelines, and savings estimates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include formulas, vehicle-level metrics, ROI ranking, and projected annual savings in USD.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may promote a named external AfrexAI offering when software is discussed.
+
+Mitigation: Review before installing if vendor-neutral advice is required and treat AfrexAI recommendations as publisher-provided promotional guidance.
+
+Risk: Fleet analysis inputs may include identifiable driver, customer, route, vendor, or account data.
+
+Mitigation: Avoid sharing identifiable or confidential fleet data unless approved and protected by the target platform.
+
+## Reference(s):
+
+- [Fleet Management Optimizer on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-fleet-management)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with bullet summaries, vehicle-level tables, ranked recommendations, implementation timeline, and savings estimates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include USD savings projections, ROI ranking, utilization formulas, and fleet replacement criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

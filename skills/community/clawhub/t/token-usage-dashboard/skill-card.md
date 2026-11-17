@@ -1,48 +1,67 @@
-## Description: <br>
-Use CodexBar CLI local cost usage to summarize per-model usage for Codex or Claude, including the current model or a full model breakdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Usage Dashboard helps agents summarize local CodexBar usage and cost data, generate per-model views, detect spikes, and produce local dashboard or report artifacts for Codex and Claude usage.
 
-## Publisher: <br>
-[bkes994408-cmd](https://clawhub.ai/user/bkes994408-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bkes994408-cmd](https://clawhub.ai/user/bkes994408-cmd)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to summarize local CodexBar usage and cost data by provider, model, and time range. It can produce a local HTML dashboard, JSON summaries, custom reports, scheduled exports, and tenant-scoped views for LLM usage monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write dashboard summaries, reports, report history, and tenant-specific outputs that may contain usage, cost, prompt-derived, or identity-linked data. <br>
-Mitigation: Write outputs only to private local directories, review generated JSON/CSV/HTML before sharing, and avoid using raw prompt or user-identifying payloads unless local export is acceptable. <br>
-Risk: Tenant and user-management flags can persistently change or delete access configuration. <br>
-Mitigation: Treat tenant-management commands as administrative operations, keep backups of tenant configuration files, and review role, group, and dashboard-view changes before running them. <br>
-Risk: The release includes broader dashboard, reporting, and policy-evaluation behavior than a simple per-model usage summary. <br>
-Mitigation: Install it only when the full local dashboard and reporting workflow is desired, and test commands with pre-exported sample JSON before pointing the skill at operational data. <br>
+## Use Case:
 
+Developers, FinOps users, and team administrators use this skill to inspect local CodexBar cost logs, identify model usage and spending spikes, and generate local dashboards or scheduled reports for budgeting and governance.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/bkes994408-cmd/token-usage-dashboard) <br>
-- [Publisher Profile](https://clawhub.ai/user/bkes994408-cmd) <br>
-- [CodexBar CLI Quick Reference](references/codexbar-cli.md) <br>
-- [Tenant Config Example](docs/TENANT_CONFIG_EXAMPLE.json) <br>
-- [Alert Config Example](docs/ALERT_CONFIG_EXAMPLE.json) <br>
-- [Cost Control Config Example](docs/COST_CONTROL_CONFIG_EXAMPLE.json) <br>
-- [Report Scheduler Example](docs/REPORT_SCHEDULER_EXAMPLE.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus generated HTML, JSON, and CSV files when the bundled scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dashboard and report output paths are configurable; live mode requires the local codexbar CLI on macOS, while pre-exported JSON can be provided as input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose or persist detailed local prompt, user, project, and usage data through dashboard and report outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid feeding logs that contain prompts, secrets, customer data, or sensitive identifiers unless you control the generated files and their storage location.
+
+Risk: Default output examples use temporary paths that may be less private on shared machines.
+
+Mitigation: Use private output directories for HTML, JSON, CSV, and report history files, and restrict operating-system access to those files.
+
+Risk: Viewer and RBAC settings in generated dashboards should not be treated as a strong security boundary.
+
+Mitigation: Apply external access controls before sharing dashboards or reports, and review outputs before distributing them.
+
+Risk: The artifact includes broader dashboard and reporting behavior than a simple model-cost summary.
+
+Mitigation: Install and run it only when the broader local dashboard, reporting, tenant, alert, or cost-control features are intended.
+
+## Reference(s):
+
+- [CodexBar CLI quick ref](references/codexbar-cli.md)
+- [Token Usage Dashboard README](README.md)
+- [Tenant configuration example](docs/TENANT_CONFIG_EXAMPLE.json)
+- [Alert configuration example](docs/ALERT_CONFIG_EXAMPLE.json)
+- [Cost control configuration example](docs/COST_CONTROL_CONFIG_EXAMPLE.json)
+- [Report scheduler configuration example](docs/REPORT_SCHEDULER_EXAMPLE.json)
+- [ClawHub skill page](https://clawhub.ai/bkes994408-cmd/skills/token-usage-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts may include HTML dashboards, JSON summaries, and CSV reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports local CodexBar cost input, optional pre-exported JSON, configurable alert and tenant settings, and scheduled report output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

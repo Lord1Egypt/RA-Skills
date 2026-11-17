@@ -1,46 +1,61 @@
-## Description: <br>
-Connects OpenClaw agents to a configured yacli MCP server for Yandex Mail, Disk, and Calendar workflows, including mail triage, file sharing, and calendar lookup or scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yacli Yandex helps agents work with Yandex Mail, Disk, and Calendar through a configured yacli MCP server.
 
-## Publisher: <br>
-[qoderone](https://clawhub.ai/user/qoderone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qoderone](https://clawhub.ai/user/qoderone)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to operate Yandex Mail, Disk, and Calendar through a trusted local yacli MCP server. It supports account discovery, email read and reply flows, Disk upload and sharing, and calendar lookup or scheduling with explicit approval for externally visible actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to send email, publish files, or create and delete calendar events through the configured Yandex account. <br>
-Mitigation: Require explicit user approval for recipients, message content, file visibility, and calendar IDs before any write, publish, send, create, or delete action. <br>
-Risk: A misconfigured or untrusted yacli MCP server could expose account data or execute actions against the wrong account. <br>
-Mitigation: Verify that mcporter points to a trusted yacli-mcp-server and check account and authentication status before use. <br>
-Risk: Local Yandex tokens or account snapshots could be exposed if configuration directories or generated logs are published or left unprotected. <br>
-Mitigation: Protect the yacli configuration directory and do not publish real tokens, cookies, account snapshots, or logs containing personal data. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to triage, search, read, reply to, and send Yandex Mail; upload, share, publish, and download Yandex Disk files; and view, create, or delete Yandex Calendar events through an authenticated yacli MCP setup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qoderone/yacli-yandex) <br>
-- [yacli upstream project](https://github.com/NextStat/yacli) <br>
-- [Installation](references/install.md) <br>
-- [Example mcporter wiring](references/mcporter-config.md) <br>
-- [yacli Yandex Setup](references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands, MCP tool names, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to call yacli MCP tools that read or modify mail, files, and calendar events after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can operate a configured Yandex account through yacli, including email, file sharing, and calendar changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended account operation, review confirmations carefully, and require explicit approval before sends, public links, uploads, downloads, or calendar changes.
+
+Risk: Local tokens, cookies, account snapshots, or generated logs could expose personal data if bundled or published.
+
+Mitigation: Keep real credentials and account data out of the skill bundle and use host-side secret storage for yacli configuration.
+
+Risk: Incorrect mcporter selector syntax can call the wrong tool or fail against dotted yacli tool names.
+
+Mitigation: Use explicit mcporter server and tool arguments, such as --server yacli and --tool yacli.mail.list, when invoking yacli MCP tools.
+
+## Reference(s):
+
+- [Yacli upstream project](https://github.com/NextStat/yacli)
+- [Installation](artifact/references/install.md)
+- [Example mcporter wiring](artifact/references/mcporter-config.md)
+- [yacli Yandex Setup](artifact/references/setup.md)
+- [ClawHub skill page](https://clawhub.ai/qoderone/skills/yacli-yandex)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured yacli MCP server, mcporter, and at least one authenticated Yandex account.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Automates content creation, post scheduling, and engagement tracking for PawArtis, trading signals, and freelance services across TikTok, Instagram, Telegram, and a website. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatisiert Content erstellen, posten und Engagement tracken für PawArtis, Trading Signale und Freelance Services auf TikTok, Instagram, Telegram und Website.
 
-## Publisher: <br>
-[bwtomekk-bit](https://clawhub.ai/user/bwtomekk-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bwtomekk-bit](https://clawhub.ai/user/bwtomekk-bit)
 
-## Use Case: <br>
-Marketing creators and small teams use this skill to plan weekly content, draft channel-specific posts, prepare publishing schedules, and track engagement for app demos, trading-signal updates, and freelance lead generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-signal posts or financial claims may be misleading, incomplete, or unsuitable for publication without review. <br>
-Mitigation: Require human approval before publishing trading-signal content, financial claims, or market commentary. <br>
-Risk: Promotional offers or automated posts may create compliance, brand, or accuracy issues on social media, Telegram, or the website. <br>
-Mitigation: Review promotional copy, offers, links, and channel-specific posts before they are published. <br>
+## Use Case:
 
+Marketing operators and creators use this skill to plan weekly content, draft short-form social posts, prepare Telegram trading-signal updates, and track engagement for PawArtis, trading signals, and freelance services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bwtomekk-bit/marketing-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with content plans, short-form scripts, captions, post schedules, hashtag notes, and engagement tracking summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; publishing and financial or promotional claims should remain human-approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Marketing or trading-signal posts may contain promotional claims, financial implications, or audience-specific language that requires review before publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, make sure the German-language workflow matches your intended audience and require explicit review before publishing social posts, Telegram trading-signal content, or promotional claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bwtomekk-bit/skills/marketing-agent)
+- [Publisher profile](https://clawhub.ai/user/bwtomekk-bit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown or structured text marketing plans, captions, schedules, and engagement notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German-language marketing workflow; requires human review before publishing promotional or trading-signal content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-工作日日报与周记录整理工具，自动生成工作日报，梳理计划、完成、反思；当用户需要生成工作日报、管理周记录或查看总结时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A weekly planning assistant that records plans, completions, and reflections, then generates daily work reports and weekly summaries from local weekly JSON data.
 
-## Publisher: <br>
-[ludiansheng](https://clawhub.ai/user/ludiansheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ludiansheng](https://clawhub.ai/user/ludiansheng)
 
-## Use Case: <br>
-Employees and individual contributors use this skill to record plans, completions, and reflections, then generate daily work reports and weekly summaries. It helps an agent organize local weekly planner data, query progress by day or category, and produce concise planning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planner entries, completion notes, and reflections are stored locally in ./weekly-plans JSON files and may contain sensitive work context. <br>
-Mitigation: Avoid recording secrets or highly sensitive reflections, and review local planner files before sharing or committing the workspace. <br>
-Risk: Deleting a plan uses a soft-delete behavior, so some deleted task data may remain in the weekly JSON file. <br>
-Mitigation: Manually remove sensitive deleted entries from the JSON file when permanent removal is required. <br>
+## Use Case:
 
+Employees and individual users can use this skill to organize weekly plans, completion notes, and reflections. Agents use it to invoke the bundled planner script, persist weekly records, query progress, and draft daily or weekly reports.
 
-## Reference(s): <br>
-- [Data Format](references/data-format.md) <br>
-- [Query Templates](references/query-templates.md) <br>
-- [Daily Report Template](references/daily-report-template.md) <br>
-- [Weekly Report Template](references/weekly-report-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ludiansheng/weekly-planner-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/ludiansheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summaries and JSON-backed planner records with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores planner data in local ./weekly-plans JSON files] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Command templates include user-controlled task text and could be unsafe if an agent runs shell-interpolated command strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the Python script with structured arguments, avoid shell interpolation, and review command previews before execution.
+
+Risk: The skill persists planning data under ./weekly-plans.
+
+Mitigation: Use it only where local persistence is expected and review stored records for sensitive personal or work information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ludiansheng/skills/weekly-planner-skill)
+- [Data format](artifact/references/data-format.md)
+- [Query templates](artifact/references/query-templates.md)
+- [Daily report template](artifact/references/daily-report-template.md)
+- [Weekly report template](artifact/references/weekly-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and JSON script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists weekly planning records under ./weekly-plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

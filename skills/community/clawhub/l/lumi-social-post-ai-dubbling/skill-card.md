@@ -1,48 +1,66 @@
-## Description: <br>
-This skill helps agents use the Lumi API to upload, repurpose, localize, analyze, and publish social videos across TikTok, YouTube, and Instagram with curl-based API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents use the Lumi API to repurpose Chinese social videos for TikTok, YouTube, and Instagram with upload, translation, AI dubbing, subtitling, publishing, account, and analytics workflows.
 
-## Publisher: <br>
-[jeffery1995](https://clawhub.ai/user/jeffery1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffery1995](https://clawhub.ai/user/jeffery1995)
 
-## Use Case: <br>
-External creators, marketers, and operators use this skill to collect publishing parameters, call Lumi APIs, translate or dub Chinese social videos, and publish or review localized output for international channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish videos through connected Lumi social accounts after the user selects target platforms. <br>
-Mitigation: Use a dedicated Lumi API key and verify the selected account, platform, caption or title, and visibility before posting. <br>
-Risk: Repurposed or localized content may be published before human review when auto-publish targets are provided. <br>
-Mitigation: Use the localization-only workflow when the processed video should be reviewed before publication. <br>
+## Use Case:
 
+External users and developers use this skill to prepare Lumi API requests for uploading, localizing, dubbing, subtitling, publishing, and monitoring short-form video content across connected social accounts.
 
-## Reference(s): <br>
-- [Lumi homepage](https://lumipath.cn) <br>
-- [Lumi voice catalog](https://lumipath.cn/voices) <br>
-- [connections.openapi.json](references/connections.openapi.json) <br>
-- [videos.openapi.json](references/videos.openapi.json) <br>
-- [social-posts.openapi.json](references/social-posts.openapi.json) <br>
-- [localization.openapi.json](references/localization.openapi.json) <br>
-- [tts.openapi.json](references/tts.openapi.json) <br>
-- [repurpose.openapi.json](references/repurpose.openapi.json) <br>
-- [insights.openapi.json](references/insights.openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and API request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LUMI_API_KEY and user-confirmed publishing parameters before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically publish repurposed videos to linked TikTok, YouTube, and Instagram accounts after processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source video, generated localization, caption text, target accounts, and platform visibility before allowing auto-publishing.
+
+Risk: The Lumi API key can allow video upload and processing, connected-account retrieval, analytics access, and publishing actions.
+
+Mitigation: Store LUMI_API_KEY only in the environment, limit access to trusted users, and rotate or revoke the key if account access changes.
+
+Risk: Repurposing third-party videos may create rights, attribution, or platform-policy issues.
+
+Mitigation: Confirm that the user owns or has permission to reuse each source video before starting repurpose or localization workflows.
+
+## Reference(s):
+
+- [Lumi homepage](https://lumipath.cn)
+- [Lumi voice catalog](https://lumipath.cn/voices)
+- [README.md](artifact/README.md)
+- [connections.openapi.json](artifact/references/connections.openapi.json)
+- [insights.openapi.json](artifact/references/insights.openapi.json)
+- [localization.openapi.json](artifact/references/localization.openapi.json)
+- [repurpose.openapi.json](artifact/references/repurpose.openapi.json)
+- [social-posts.openapi.json](artifact/references/social-posts.openapi.json)
+- [tts.openapi.json](artifact/references/tts.openapi.json)
+- [videos.openapi.json](artifact/references/videos.openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, API request parameters, and status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LUMI_API_KEY; workflows may initiate Lumi API calls that upload, process, localize, publish, or inspect social media account data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

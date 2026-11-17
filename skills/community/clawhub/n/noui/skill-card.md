@@ -1,41 +1,58 @@
-## Description: <br>
-Use this skill when the user wants to install NoUI skills, get started with NoUI, see which NoUI skills are available, or add NoUI to their agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NoUI helps agents install and start using NoUI skills that record browser workflows and export them as FastMCP servers or Claude Code Skills.
 
-## Publisher: <br>
-[gabriel-adopt](https://clawhub.ai/user/gabriel-adopt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gabriel-adopt](https://clawhub.ai/user/gabriel-adopt)
 
-## Use Case: <br>
-Developers and agent users use NoUI to discover, install, and set up browser automation skills that record workflows and export them as FastMCP servers or Claude Code Skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downstream NoUI components may operate with live browser cookies and session context. <br>
-Mitigation: Use a disposable browser profile or sandbox for authenticated workflows. <br>
-Risk: Installing all referenced NoUI sub-skills may add more browser automation capability than a user needs. <br>
-Mitigation: Install only the NoUI sub-skills intended for the workflow and review the referenced GitHub repository before running npx commands. <br>
+## Use Case:
 
+Developers and agents use NoUI to discover and install the NoUI workflow skills, then set up browser workflow recording and export paths for MCP servers or Claude Code Skills.
 
-## Reference(s): <br>
-- [NoUI ClawHub Release](https://clawhub.ai/gabriel-adopt/noui) <br>
-- [NoUI GitHub Repository](https://github.com/adoptai/noui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides installation commands and setup guidance; it does not install components on its own.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install commands fetch mutable remote components that may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the skills package version and the NoUI repository commit or signed release before installation.
+
+Risk: Downstream NoUI components can operate with authenticated browser sessions, cookies, MCP servers, and agent skill directories.
+
+Mitigation: Run setup in a least-privilege or disposable environment and review generated tools before granting access to sensitive sessions or directories.
+
+Risk: The interactive bulk installer can block an agent on stdin.
+
+Mitigation: Use the per-skill install commands with explicit --skill names when an agent performs installation.
+
+## Reference(s):
+
+- [NoUI ClawHub skill page](https://clawhub.ai/gabriel-adopt/skills/noui)
+- [NoUI upstream repository referenced by artifact install commands](https://github.com/adoptai/noui)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown]
+
+**Output Format:** [Markdown with bash command blocks and a skill-selection table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends per-skill install commands and warns agents not to use the interactive selector.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

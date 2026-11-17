@@ -60,7 +60,7 @@
 - [ ] BTS/MRT proximity (actual walking time)
 - [ ] Working A/C (check all units)
 - [ ] Hot water
-- [ ] Reasonable electricity rate (฿5-7/unit, not ฿8-10)
+- [ ] Electricity rate at the norm (condos ฿7-8/unit vs government ~฿4-5), not above
 - [ ] Security (guards, key cards)
 - [ ] Building condition
 
@@ -72,7 +72,7 @@
 - Rooftop access
 
 ### Red Flags
-- Electricity over ฿8/unit (standard is ฿4, condos charge ฿6-8)
+- Electricity over ฿8/unit (condos normally ฿7-8, government ~฿4-5)
 - Water damage or mold
 - Thin walls (visit during day AND night)
 - Poor building management
@@ -202,10 +202,9 @@ See `visas.md` for full details.
 - Takes 1-2 months
 
 **For Digital Nomads**:
-- Legal gray area (technically need work permit)
-- Most use tourist visa + extensions
-- New LTR visa option for high earners
-- Thailand Elite for long-term
+- DTV (since Jul 2024) is the default: 5-year multi-entry, 180 days/entry — see `visas.md`
+- LTR for high earners (~$80K+): legal remote work
+- Working for Thai clients still needs a work permit regardless of visa
 
 ---
 

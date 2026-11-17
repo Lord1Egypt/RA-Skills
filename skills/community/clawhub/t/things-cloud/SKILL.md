@@ -1,7 +1,7 @@
 ---
 name: things-cloud
 description: Manage Things 3 tasks through Things Cloud using the maintained things-cloud-sdk CLI and MCP server, with dry-run safety for agent writes.
-version: 0.1.1
+version: 0.1.2
 metadata:
   openclaw:
     requires:
@@ -27,11 +27,11 @@ metadata:
         description: Optional path to the CLI read-state cache.
     install:
       - kind: go
-        package: github.com/pdurlej/things-cloud-sdk/cmd/things-cloud-cli@v0.2.3
+        package: github.com/pdurlej/things-cloud-sdk/cmd/things-cloud-cli@v0.2.4
         bins:
           - things-cloud-cli
       - kind: go
-        package: github.com/pdurlej/things-cloud-sdk/cmd/things-mcp@v0.2.3
+        package: github.com/pdurlej/things-cloud-sdk/cmd/things-mcp@v0.2.4
         bins:
           - things-mcp
     homepage: https://github.com/pdurlej/things-cloud-sdk
@@ -53,8 +53,8 @@ when the user asks for explicit shell commands.
 Install the maintained CLI and MCP server:
 
 ```bash
-go install github.com/pdurlej/things-cloud-sdk/cmd/things-cloud-cli@v0.2.3
-go install github.com/pdurlej/things-cloud-sdk/cmd/things-mcp@v0.2.3
+go install github.com/pdurlej/things-cloud-sdk/cmd/things-cloud-cli@v0.2.4
+go install github.com/pdurlej/things-cloud-sdk/cmd/things-mcp@v0.2.4
 ```
 
 Set credentials:

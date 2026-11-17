@@ -1,0 +1,100 @@
+---
+name: oo-modjo-ai
+description: "Modjo AI (modjo.ai). Use this skill for ANY Modjo AI request — searching and reading data. Whenever a task involves Modjo AI, use this skill instead of calling the API directly."
+allowed-tools: [Bash(oo *)]
+metadata:
+  title: "Modjo AI"
+  author: "OOMOL"
+  version: "1.0.5"
+  services: ["modjo_ai"]
+  icon: "https://static.oomol.com/logo/third-party/modjo_ai.png"
+---
+
+# Modjo AI
+
+Operate **Modjo AI** through your OOMOL-connected account. This skill calls the `modjo_ai` connector with the [oo CLI](https://github.com/oomol-lab/oo-cli); OOMOL injects credentials server-side, so you never handle raw tokens.
+
+## Running an action
+
+Assume the user has already installed the oo CLI, signed in, and connected Modjo AI. **Do not run `oo auth login` or open the connection URL proactively — just run the action.** Fall back to [First-time setup](#first-time-setup) only when a command actually fails with an auth or connection error.
+
+**1. Inspect the contract** to get the authoritative input/output schema before building a payload:
+
+```bash
+oo connector schema "modjo_ai" --action "<action_name>"
+```
+
+**2. Run the action** with a JSON payload that matches the input schema:
+
+```bash
+oo connector run "modjo_ai" --action "<action_name>" --data '<json>' --json
+```
+
+- `--data` takes a JSON object string or `@path/to/file.json`; omit it to send `{}`.
+- The response is `{ "data": ..., "meta": { "executionId": "..." } }`; the execution id lives under `meta.executionId`.
+
+Each action is listed below with a one-line description; actions that change state carry a `[write]` or `[destructive]` tag. Before constructing `--data`, fetch the action's live schema with `oo connector schema` to get its authoritative input fields.
+
+## Available actions
+
+- `get_account` — Get one Modjo account by ID.
+- `get_call` — Get one Modjo call by integer ID or UUID with optional relation expansion.
+- `get_call_next_steps` — Get AI-extracted next steps for a Modjo call.
+- `get_call_transcript` — Get the transcript for a Modjo call by integer ID or UUID.
+- `get_contact` — Get one Modjo contact by ID.
+- `get_deal_summary` — Get the AI-generated summary for a Modjo deal.
+- `get_team` — Get one Modjo team by ID.
+- `get_user` — Get one Modjo user by ID.
+- `list_accounts` — List Modjo accounts with optional pagination and name filtering.
+- `list_call_notes` — List published notes for a Modjo call.
+- `list_call_summaries` — List AI-generated summaries for a Modjo call.
+- `list_call_tags` — List tags associated with a Modjo call.
+- `list_calls` — List Modjo calls with optional pagination, relation expansion, and filters.
+- `list_contacts` — List Modjo contacts with optional pagination and name filtering.
+- `list_deals` — List Modjo deals with optional pagination and CRM filters.
+- `list_tags` — List Modjo tags with optional pagination.
+- `list_team_members` — List Modjo users that belong to a team.
+- `list_teams` — List Modjo teams with optional pagination and name filtering.
+- `list_topics` — List Modjo topics with optional pagination.
+- `list_users` — List Modjo users with optional pagination and exact email filtering.
+
+## Safety
+
+- Untagged actions are reads (get / list / search) — safe to run directly.
+- **Actions tagged `[write]` change Modjo AI state — confirm the exact payload and effect with the user before running.**
+- **Actions tagged `[destructive]` remove or overwrite data — always confirm the target and get explicit approval first.**
+
+## First-time setup
+
+These are **one-time** steps — do not repeat them on every call. Run a step only when a command fails for the matching reason.
+
+- **`oo: command not found`** — install the oo CLI (other platforms: <https://cli.oomol.com/install-guide.md>):
+
+  ```bash
+  curl -fsSL https://cli.oomol.com/install.sh | bash    # macOS / Linux
+  ```
+
+  ```powershell
+  irm https://cli.oomol.com/install.ps1 | iex           # Windows PowerShell
+  ```
+
+- **Not signed in / authentication error** — sign in to your OOMOL account once:
+
+  ```bash
+  oo auth login
+  ```
+
+- **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Modjo AI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
+
+  ```text
+  https://console.oomol.com/connections/modjo_ai
+  ```
+
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
+
+## Resources
+
+- Modjo AI homepage: https://www.modjo.ai
+- API documentation: https://api.modjo.ai/v2/docs

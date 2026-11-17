@@ -1,37 +1,52 @@
-## Description: <br>
-清空 macOS、Linux 和 Windows 的系统废纸篓或回收站，并通过 /clean-rubbish 触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Empties the system Trash or Recycle Bin on macOS, Linux, or Windows using OS-specific shell commands.
 
-## Publisher: <br>
-[lhyhy123](https://clawhub.ai/user/lhyhy123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lhyhy123](https://clawhub.ai/user/lhyhy123)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Users invoke this skill to have an agent empty the local system Trash or Recycle Bin across macOS, Linux, and Windows. It is intended for deliberate cleanup requests where permanent deletion is acceptable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill permanently empties Trash or Recycle Bin without a second confirmation.
+
+Mitigation: Install only where this irreversible action is acceptable, invoke it deliberately, and prefer a version that asks for explicit confirmation before deletion.
+
+Risk: The skill requests broad destructive shell authority for trash-emptying commands.
+
+Mitigation: Review commands before execution and narrow allowed tool arguments to the specific trash-emptying commands required by each operating system.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users invoke this skill when they want an agent to empty the local system trash or recycle bin on macOS, Linux, or Windows. It is intended only when permanent deletion is acceptable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can permanently empty the trash or recycle bin and explicitly skips a final confirmation. <br>
-Mitigation: Inspect trash contents first and require an explicit final confirmation before running any rm, osascript, or PowerShell deletion command. <br>
+**Output Format:** [Markdown with shell command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Commands are selected according to the detected operating system.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash or PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are operating-system specific and may delete files permanently.] <br>
+1.1.1 (source: server release metadata; artifact frontmatter reports 1.1.0)
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

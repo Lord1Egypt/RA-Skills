@@ -1,47 +1,58 @@
-## Description: <br>
-Provides Chinese-language primary-market industrial investment analysis for China-focused industrial funds, covering founder, industry, government fit, financial, industrial capability, comparison, sensitivity, and investment memo workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-market industrial fund and private-market investment analysis using founder, industry, government, financial, industrial capability, comparison, sensitivity, and investment memo workflows.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Investment professionals, fund analysts, and industrial capital teams use this skill to structure public-data due diligence, compare candidate projects, identify deal killers and missing information, and draft investment memos for China-focused industrial fund decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Analysis history and memory behavior may retain confidential deal information. <br>
-Mitigation: Disable or modify automatic memory/history saving, and use the skill with confidential materials only when storage has been explicitly approved. <br>
-Risk: External searches, exported reports, and Tencent Docs collaboration can disclose sensitive investment context. <br>
-Mitigation: Require user confirmation before external searches, exports, or Tencent Docs sharing, and avoid sending non-public deal materials to external tools. <br>
-Risk: The skill relies on public data and estimates when verified financial or company data is unavailable. <br>
-Mitigation: Treat outputs as decision support, require source review and human investment committee validation, and label estimates or unknowns in final analysis. <br>
+## Use Case:
 
+Investment professionals and external users use this skill to analyze primary-market industrial investment opportunities, especially Chinese industrial funds, strategic investment, and government-guided fund scenarios. It supports deal screening, founder and sector assessment, government-fit analysis, financial return estimates, comparable-project review, sensitivity analysis, and investment memo generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/industrial-fund-investment-advisor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [AGENTS.md](artifact/references/agents.md) <br>
-- [IDENTITY.md](artifact/references/identity.md) <br>
-- [SOUL.md](artifact/references/soul.md) <br>
-- [TOOLS.md](artifact/references/tools.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, files] <br>
-**Output Format:** [Chinese-language Markdown investment memos, comparison matrices, sensitivity tables, due-diligence checklists, and optional exported report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs distinguish known facts from estimates, cite source types, and may save analysis history or export reports when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive investment analysis may be written to local or global memory without clear consent or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or manually control memory writes for confidential deals, avoid sending non-public details to search or Tencent Docs, and review or delete memory files after use.
+
+Risk: Investment conclusions may rely on public data gaps or estimates where private-company financials are unavailable.
+
+Mitigation: Require source attribution, mark estimates explicitly, review confidence scores, and route final investment decisions to a human investment committee.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/industrial-fund-investment-advisor)
+- [SKILL.md](artifact/SKILL.md)
+- [Investment analyst workspace](artifact/references/agents.md)
+- [Industrial investment analyst identity](artifact/references/identity.md)
+- [Investment analyst tools](artifact/references/tools.md)
+- [Industrial investment analyst architecture](artifact/references/soul.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown investment memos, structured scoring tables, JSON-like analysis blocks, and optional exported report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs distinguish sourced facts from estimates, include confidence scoring, and may trigger docx, PDF, or Tencent Docs export workflows when requested.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

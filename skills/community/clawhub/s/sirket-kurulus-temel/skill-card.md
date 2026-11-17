@@ -1,42 +1,56 @@
-## Description: <br>
-Guides users through official and digital post-incorporation steps for companies in Turkey, including tax office checks, bank accounts, signature circulars, accounting authorization, e-invoicing, SGK, required digital systems, and common first-month mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through official and digital post-incorporation steps for companies in Turkey, including tax office checks, banking, signature circulars, accounting authorization, e-invoicing, SGK, required digital systems, and common first-month mistakes.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External founders, operators, and advisors use this skill to understand the first official, banking, SGK, e-invoicing, and digital-system tasks after founding a company in Turkey. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Turkey <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax and compliance guidance may become outdated or may not fit a specific company. <br>
-Mitigation: Verify deadlines, thresholds, and legal obligations with official Turkish sources or a qualified professional before acting. <br>
+## Use Case:
 
+External users and business operators use this skill to understand the immediate official, accounting, banking, SGK, and digital compliance steps after forming a company in Turkey. It is informational guidance and should be checked against current official requirements or a qualified professional.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayhanagirgol/sirket-kurulus-temel) <br>
-- [Tech Consulting](https://techsmmm.com) <br>
-- [Şirket Kuruluş Sonrası Kontrol Listesi ve İlk Gün Süreçleri](references/kurulus_kontrol_listesi.md) <br>
-- [Şirketler İçin Zorunlu Dijital Araçlar ve Sistemler](references/dijital_araclar.md) <br>
-- [İlk Aylarda En Sık Yapılan 7 Kritik Hata](references/ilk_ay_hatalari.md) <br>
+### Deployment Geography for Use:
 
+Turkey
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; responses should be checked against current Turkish tax and compliance requirements before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Company, tax, SGK, e-invoicing, and digital-notice requirements may change or vary by business situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a checklist only, and verify current obligations with official sources or a qualified professional before acting.
+
+Risk: Users may treat informational guidance as professional legal, tax, or accounting advice.
+
+Mitigation: Present outputs as general guidance and escalate decisions with compliance, tax, accounting, or legal consequences to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ayhanagirgol/skills/sirket-kurulus-temel)
+- [Sirket Kurulus Sonrasi Kontrol Listesi ve Ilk Gun Surecleri](references/kurulus_kontrol_listesi.md)
+- [Sirketler Icin Zorunlu Dijital Araclar ve Sistemler](references/dijital_araclar.md)
+- [Ilk Aylarda En Sik Yapilan 7 Kritik Hata](references/ilk_ay_hatalari.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with checklists and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; outputs should be treated as general informational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Invoke a strong UMGo speech simulation surface with explicit slash activation, affirmation-led cadence, readable flow, and GPT-4o-inspired conversational polish. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoke a strong UMGo speech simulation surface with explicit slash activation, affirmation-led cadence, readable flow, and GPT-4o-inspired conversational polish.
 
-## Publisher: <br>
-[neomagnetar](https://clawhub.ai/user/neomagnetar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neomagnetar](https://clawhub.ai/user/neomagnetar)
 
-## Use Case: <br>
-External users and agent operators use this skill to explicitly shift assistant responses into a warm, readable UMGo speech simulation style for nearby conversational turns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally changes assistant tone, formatting, punctuation, and conversational cadence after explicit invocation. <br>
-Mitigation: Use it only when the user wants this style mode, and return to the default tone when the user asks for normal, standard, or different style behavior. <br>
-Risk: A strong speech simulation style can affect perceived confidence or affiliation. <br>
-Mitigation: Preserve factual accuracy, avoid implying OpenAI endorsement, and keep the documented non-affiliation clear when the skill's positioning is discussed. <br>
+## Use Case:
 
+External users invoke this OpenClaw style skill to shape nearby assistant responses with warm-neutral UMGo conversational cadence, readability, affirmation-led openings, and adaptive formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neomagnetar/umgo-speech-sim) <br>
-- [Publisher profile](https://clawhub.ai/user/neomagnetar) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Style-only response shaping; no code execution, data access, privileged permissions, or API credentials are requested by the reviewed artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: frontmatter, CHANGELOG, release evidence) <br>
+Risk: Users may overestimate the skill as adding operational capabilities, tool access, or private data access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present it as a user-invoked writing-style layer only, consistent with the clean security summary.
+
+Risk: The GPT-4o-inspired positioning could be mistaken for OpenAI affiliation or endorsement.
+
+Mitigation: Preserve the artifact's disclosure that the skill is not affiliated with or endorsed by OpenAI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neomagnetar/skills/umgo-speech-sim)
+- [Publisher profile](https://clawhub.ai/user/neomagnetar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses shaped by conversational style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Style-only output; no shell commands, code execution, data access, persistence, or hidden authority are indicated by the inspected evidence.]
+
+## Skill Version(s):
+
+3.0.2 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

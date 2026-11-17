@@ -1,38 +1,51 @@
-## Description: <br>
-Achievement Unlocked provides a gaming-style achievement system for real coding work by tracking milestones, badges, levels, and rare achievements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaming-style achievement system for coding work that tracks milestones, unlocks badges, levels up a developer profile, and awards rare achievements for notable coding feats.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers use this skill to turn normal coding activity into XP, achievements, developer profiles, and leaderboards. It supports lightweight motivation and recognition for routine engineering work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may summarize commit history, test activity, file changes, and progress over time in private repositories. <br>
-Mitigation: Invoke it only in repositories where that development activity can be summarized for achievements or leaderboards. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/achievement-unlocked) <br>
-- [Publisher profile](https://clawhub.ai/user/jcools1977) <br>
+## Use Case:
+
+Developers and engineering teams use this skill to turn coding activity into achievement notifications, progress profiles, XP milestones, and team leaderboard summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic activity monitoring may surprise users or read git or review activity beyond expectations.
+
+Mitigation: Review and document what development data is read, when background tracking starts, and how users can disable or limit tracking before work or team deployment.
+
+Risk: Developer profiles and leaderboards can expose individual productivity patterns or achievement history to a team audience.
+
+Mitigation: Define who can see profiles and leaderboards, how long data is retained, and whether participation is opt-in before enabling team-visible summaries.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with achievement tables, profile summaries, notifications, and leaderboards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or bundled executable code are indicated by the evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and plain text status summaries with optional ASCII-style profile, achievement, and leaderboard blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API requirement is indicated; output may summarize git-history-derived activity and team-visible achievement data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

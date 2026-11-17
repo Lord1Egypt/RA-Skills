@@ -1,39 +1,55 @@
-## Description: <br>
-Error handling reference covering error types, exception patterns, HTTP status codes, retry strategies, and observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Error handling reference — error types, exception patterns, HTTP status codes, retry strategies, and observability.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for designing error handling, debugging failures, choosing HTTP status codes, and implementing retry and resilience patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This is a third-party skill that includes a local shell script. <br>
-Mitigation: Review the script before installation and treat it like any third-party script; the security evidence reports no network access, credential handling, local data access, destructive actions, or background persistence. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for designing error handling, selecting HTTP status codes, implementing retry and circuit-breaker strategies, logging failures, and debugging production issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/error) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text guidance with Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no API keys or network access indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill includes an ERROR_DIR configuration note even though the inspected artifact does not use that directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configuration note during publication and either document the intended behavior or remove the unused setting to avoid misleading installers.
+
+Risk: The skill provides static implementation guidance that may not match every production system or regulatory requirement.
+
+Mitigation: Treat the output as reference material and have engineers review recommendations before applying them to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/error)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference material and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance printed by a local bash helper; evidence.security reports no file, credential, or network access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

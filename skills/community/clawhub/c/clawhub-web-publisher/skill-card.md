@@ -1,37 +1,54 @@
-## Description: <br>
-Publish OpenClaw skills to ClawHub using the web dashboard only (no CLI login). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish OpenClaw skills to ClawHub using the web dashboard only (no CLI login). Use when an agent must reliably upload a local skill folder, avoid auth-loop failures, and enforce privacy-safe publishing with verification evidence.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and agents use this skill to publish a local OpenClaw skill folder through the ClawHub web dashboard, avoid CLI authentication loops, and capture verification evidence after publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub Web Publisher listing](https://clawhub.ai/Dalomeve/clawhub-web-publisher) <br>
-- [Privacy Checklist for Skill Publishing](references/privacy-checklist.md) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions and structured publish-result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes privacy preflight checks, web-only publishing steps, failure recovery guidance, and a PUBLISH_RESULT evidence template.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Developers and agents use this skill to publish local OpenClaw skill folders through the ClawHub web dashboard while checking required metadata, avoiding CLI authentication flows, and collecting verification evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow publishes a selected local skill folder through the ClawHub dashboard, so choosing the wrong account or folder could publish unintended content.
+
+Mitigation: Confirm the browser is signed into the intended ClawHub account and verify the selected skill folder before submitting the publish flow.
+
+Risk: Skill files may contain secrets, private identifiers, or machine-specific paths if they are not reviewed before upload.
+
+Mitigation: Run the preflight privacy checks and use the included privacy checklist to search for credential-like strings and private information before publishing.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/dalomeve/skills/clawhub-web-publisher)
+- [ClawHub dashboard](https://clawhub.ai/dashboard)
+- [Privacy Checklist](references/privacy-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown instructions with a structured text completion report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes publish result fields for skill name, version, URL, skill ID, verification status, privacy scan, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

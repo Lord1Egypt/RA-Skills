@@ -1,0 +1,4 @@
+interface:
+  display_name: "拾光册视频海报与记忆手帐"
+  short_description: "视频故事驱动的可编辑海报、文字设计、记忆手帐与对抗审稿"
+  default_prompt: "使用 $shiguang-memory-journal，把视频故事转译为有证据、文字有传播力且可编辑的海报。"

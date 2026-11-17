@@ -1,0 +1,9 @@
+{
+  "name": "polymarket-stops-scripts",
+  "version": "1.0.11",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/hypelens-agent-guard": "0.1.17"
+  }
+}

@@ -1,39 +1,54 @@
-## Description: <br>
-Transforms Chinese or English rants and sarcastic comments into milder, original-flavor, bilingual, and culturally adapted versions with emoji or meme suggestions and an informal posting-risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates Chinese or English sarcastic rant content into milder, original-flavor, and culturally adapted variants with emoji suggestions and posting risk assessment.
 
-## Publisher: <br>
-[SwiftUIs](https://clawhub.ai/user/SwiftUIs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftuis](https://clawhub.ai/user/swiftuis)
 
-## Use Case: <br>
-External users and creators use this skill to rephrase sarcastic complaints for cross-platform posting, including workplace-safe wording, direct sarcastic variants, US/Japanese/Korean style adaptations, emoji suggestions, and posting-risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sarcastic or direct wording may be socially risky, misunderstood across cultures, or treated as toxic on some platforms. <br>
-Mitigation: Review the generated variants before posting, prefer the mild version in professional contexts, and adjust wording for the target audience and platform. <br>
-Risk: The risk score is informal guidance and may not reliably predict moderation outcomes or interpersonal impact. <br>
-Mitigation: Treat the score as a reminder to review tone rather than as a safety guarantee, and avoid sharing private names or workplace details. <br>
+## Use Case:
 
+External users use this prompt-only skill to turn rants, complaints, and sarcastic comments into safer or more culturally adapted bilingual phrasing for social, workplace, or platform-specific contexts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured text with bilingual translation variants, emoji or meme suggestions, and a short risk assessment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output; no external tools or hidden data access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Sarcastic or culturally adapted output may be too aggressive, context-specific, or inappropriate for public or workplace posting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before posting and request the mild or neutral version when tone matters.
+
+Risk: User input may contain overly aggressive, sensitive, hateful, or discriminatory language.
+
+Mitigation: Use the skill's boundary behavior to soften sensitive input and refuse clearly hateful or discriminatory transformations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swiftuis/skills/rant-translator)
+- [Publisher profile](https://clawhub.ai/user/swiftuis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured text with bilingual translation variants, emoji suggestions, and risk assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no executable code or external tool use required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

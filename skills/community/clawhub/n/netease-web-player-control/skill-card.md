@@ -1,41 +1,53 @@
-## Description: <br>
-Control NetEase Cloud Music Web in a browser to search and play songs by keyword or open My Music and play one of the user's own created playlists by keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control NetEase Cloud Music Web in a browser. Use to (1) search and play a song by keyword, preferably artist + title, or (2) open My Music and play one of the user's own created playlists by keyword.
 
-## Publisher: <br>
-[yangyunzhao](https://clawhub.ai/user/yangyunzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangyunzhao](https://clawhub.ai/user/yangyunzhao)
 
-## Use Case: <br>
-External users and music listeners use this skill to have an agent operate NetEase Cloud Music Web for song search playback or playback from their own created playlists in My Music. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may interact with a logged-in NetEase Cloud Music Web account and view playlist names while playing My Music playlists. <br>
-Mitigation: Install only if browser control in that account is acceptable; supervise first runs and keep use limited to song or playlist playback. <br>
-Risk: Ambiguous short song searches may select the wrong track. <br>
-Mitigation: Prefer artist plus song title and ask for confirmation when multiple matches are plausible. <br>
-Risk: Browser clicks near playback controls may hit adjacent options such as MV playback or client prompts. <br>
-Mitigation: Avoid MV and client-playback controls, wait briefly after clicking play, and verify that the bottom player switched to the target before reporting success. <br>
+## Use Case:
 
+External users use this skill to guide an agent in controlling the NetEase Cloud Music web player for song search playback and logged-in My Music playlist playback.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Natural-language browser-control guidance and status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-driven browser interaction; no executable helper code in the current release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Risk: The agent may operate an already logged-in NetEase Cloud Music web session and view playlist names needed to choose what to play.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, and keep the browser session limited to the account context intended for playback.
+
+Risk: Ambiguous short song names or similar playlist names may lead to unintended playback.
+
+Mitigation: Confirm ambiguous matches before playback and verify that the bottom player switched to the intended song before reporting success.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangyunzhao/skills/netease-web-player-control)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance for browser-control actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an already logged-in NetEase Cloud Music web session for My Music playlist playback.]
+
+## Skill Version(s):
+
+0.1.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

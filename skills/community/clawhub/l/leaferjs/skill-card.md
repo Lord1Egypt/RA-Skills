@@ -1,45 +1,60 @@
-## Description: <br>
-LeaferJS — Canvas 2D Engine. Lightweight and high-performance Canvas 2D graphics engine, supporting multiple platforms such as Web, Worker, Node.js, and Mini Programs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LeaferJS — Canvas 2D Engine. Lightweight and high-performance Canvas 2D graphics engine, supporting multiple platforms such as Web, Worker, Node.js, and Mini Programs.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise LeaferJS setup and API guidance when building Canvas 2D user interfaces, graphic editors, data visualizations, games, and multi-platform rendering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Canvas export and screenshot examples can capture canvas content, including private user data if present. <br>
-Mitigation: Review export calls before use, avoid exporting canvases containing sensitive data, and gate downloads or base64/blob handling behind user intent. <br>
+## Use Case:
 
+Developers and engineers use this skill for LeaferJS setup and implementation guidance across UI rendering, graphic editing, data visualization, and game development workflows.
 
-## Reference(s): <br>
-- [LeaferJS Skill Page](https://clawhub.ai/openlark/leaferjs) <br>
-- [LeaferJS Web CDN](https://unpkg.com/leafer-ui@2.1.2/dist/web.min.js) <br>
-- [LeaferJS Worker CDN](https://unpkg.com/@leafer-ui/worker@2.1.2/dist/worker.min.js) <br>
-- [Leafer Engine, Viewport & Framework Integration](references/quick-start.md) <br>
-- [Graphic Elements](references/elements.md) <br>
-- [Group / Box / Frame / App](references/groups.md) <br>
-- [Events & Debugging](references/events.md) <br>
-- [Installation & FAQ](references/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, JavaScript, HTML, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools or external APIs are invoked by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dependency or CDN package provenance may change after publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only the LeaferJS packages needed, prefer pinned versions and lockfiles, and review npm or CDN package provenance before use.
+
+Risk: Generated implementation snippets may be unsuitable for a specific runtime such as SSR, Node.js, Worker, or mini-program environments.
+
+Mitigation: Review the relevant platform guidance and test snippets in the target runtime before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/leaferjs)
+- [Quick Start](artifact/references/quick-start.md)
+- [Graphic Elements](artifact/references/elements.md)
+- [Group / Box / Frame / App](artifact/references/groups.md)
+- [Events & Debugging](artifact/references/events.md)
+- [Installation & FAQ](artifact/references/install.md)
+- [LeaferUI CDN bundle](https://unpkg.com/leafer-ui@2.1.2/dist/web.min.js)
+- [LeaferUI worker CDN bundle](https://unpkg.com/@leafer-ui/worker@2.1.2/dist/worker.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JavaScript, HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden automation; package installation guidance should use pinned versions and lockfiles where practical.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

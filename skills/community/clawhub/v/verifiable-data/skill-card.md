@@ -1,42 +1,59 @@
-## Description: <br>
-Use Cryptowerk via curl to obtain service credentials, register hashes, fetch seals, and verify proofs for files or append-only records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifiable Data helps agents use Cryptowerk curl workflows to issue service credentials, register SHA-256 hashes, retrieve seals, and verify file or append-only record proofs while storing local sidecar artifacts.
 
-## Publisher: <br>
-[i001962](https://clawhub.ai/user/i001962) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[i001962](https://clawhub.ai/user/i001962)
 
-## Use Case: <br>
-Developers and operators use this skill to run Cryptowerk-backed proof workflows for verifiable logs, file-existence proofs, and deterministic local audit artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and stores sensitive Cryptowerk service credentials. <br>
-Mitigation: Store issued apiKey/apiCredential tokens only in a private secret location, keep them out of committed or watched trees, and avoid logging them. <br>
-Risk: The credential-issuance flow can involve an x402 paid retry. <br>
-Mitigation: Do not allow an agent to complete any paid retry unless the user has explicitly approved the payment. <br>
+## Use Case:
 
+Developers and engineers use this skill to create proof-carrying data workflows for verifiable logs, file existence proofs, Cryptowerk sealing, retrieval IDs, and later audit verification.
 
-## Reference(s): <br>
-- [Cryptowerk API Notes](references/cryptowerk-api-notes.md) <br>
-- [Storage and State](references/storage-and-state.md) <br>
-- [ClawHub skill page](https://clawhub.ai/i001962/verifiable-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON sidecar files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local retrieval id, seal, metadata, and verification response sidecar files for audited workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill issues and stores Cryptowerk service credentials without strong overwrite or symlink safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private non-repository secret path, avoid reusing existing file paths for issued keys, and review credential paths before running credential scripts.
+
+Risk: Lookup values and sidecar files may expose sensitive filenames, identifiers, or workflow metadata.
+
+Mitigation: Use deterministic but non-sensitive lookupInfo values and keep generated .rid, .seal, .cw.json, and .verify.json files out of committed or watched trees when they are sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/i001962/skills/verifiable-data)
+- [Cryptowerk API Notes](references/cryptowerk-api-notes.md)
+- [Storage and State](references/storage-and-state.md)
+- [Cryptowerk issue-key API](https://www.cryptowerk.com/api/issue-key)
+- [Cryptowerk register API](https://aiagent.cryptowerk.com/platform/API/v8/register)
+- [Cryptowerk getseal API](https://aiagent.cryptowerk.com/platform/API/v8/getseal)
+- [Cryptowerk verifyseal API](https://aiagent.cryptowerk.com/platform/API/v8/verifyseal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON sidecar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local .rid, .seal, .cw.json, and .verify.json sidecar artifacts when workflows are executed.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

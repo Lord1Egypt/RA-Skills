@@ -1,39 +1,54 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[baotangyin](https://clawhub.ai/user/baotangyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baotangyin](https://clawhub.ai/user/baotangyin)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for installable skills, compare relevant options, and receive install commands or fallback guidance when no suitable skill is found. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recommended global install command can install a skill for future sessions and skip the CLI confirmation prompt. <br>
-Mitigation: Review the recommended skill source first, approve global installs intentionally, and remove `-y` when a confirmation prompt is preferred. <br>
+## Use Case:
 
+Developers and agent users use this skill to search for installable skills, compare relevant options, and install skills that extend an agent for a requested task.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baotangyin/find-skills-from-jimliuxinghai) <br>
-- [Skills ecosystem browser](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested skill names, links, install commands, and direct-help fallback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can lead an agent to search for and install external skills, including global installs that persistently change the user's agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user explicitly wants skill discovery or installation, inspect target skills before installation, and avoid global unattended installs unless persistent environment changes are intended.
+
+Risk: Recommended installation commands may be unpinned or not source-verified.
+
+Mitigation: Prefer pinned package references and source-verified commands before running installation steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baotangyin/skills/find-skills-from-jimliuxinghai)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested skill names, installation commands, and links to skill listings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

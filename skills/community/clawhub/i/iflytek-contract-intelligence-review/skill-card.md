@@ -1,46 +1,66 @@
-## Description: <br>
-Reviews contracts from PDFs, images, Word documents, Markdown, or text using OCR/text extraction, clause analysis, risk detection, compliance checks, bilingual consistency checks, and Markdown or JSON reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews contracts by coordinating document extraction, clause analysis, risk detection, compliance checks, bilingual consistency checks, and Markdown or JSON report generation.
 
-## Publisher: <br>
-[iflytek.skills](https://clawhub.ai/user/iflytek.skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflytek.skills](https://clawhub.ai/user/iflytek.skills)
 
-## Use Case: <br>
-Legal, procurement, and operations teams use this skill to review scanned, image, bilingual, or editable contracts for clause-level risks and compliance issues. The output is a review aid and not a formal legal opinion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential contract content may be sent to the configured OCR, translation, or LLM providers. <br>
-Mitigation: Use approved private or on-prem endpoints for confidential documents and confirm provider data-handling terms before use. <br>
-Risk: Generated reports and optional intermediate files may contain sensitive contract text or extracted clauses. <br>
-Mitigation: Write outputs only to protected directories, avoid --save-intermediate unless needed, and redact reports before sharing. <br>
-Risk: Risk findings and compliance suggestions are review aids, not formal legal advice. <br>
-Mitigation: Require qualified human review before relying on the output for legal or commercial decisions. <br>
+## Use Case:
 
+Legal, procurement, and compliance teams use this skill to review scanned, image, text, Word, and bilingual contracts for clause structure, common risk categories, consistency issues, and human review needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iflytek.skills/iflytek-contract-intelligence-review) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Sample review report](artifact/examples/sample_review_report.md) <br>
-- [Review output JSON template](artifact/templates/review_output.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON contract review reports, with CLI commands and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit Markdown, JSON, or both; optional intermediate files may be saved under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Sensitive contracts may be processed by OCR, translation, or LLM providers configured through environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved providers and credentials for confidential contracts, and confirm data handling terms before sending contract content to external services.
+
+Risk: Generated Markdown reports may contain sensitive contract text and could be unsafe in viewers that permit raw HTML or remote resources.
+
+Mitigation: Review generated reports before sharing and open them in Markdown viewers that disable raw HTML and remote image loading.
+
+Risk: The packaged OCR, image, translation, and LLM clients are abstract interfaces that require injected implementations.
+
+Mitigation: Configure and test the required provider backends before relying on end-to-end contract review results.
+
+Risk: Contract risk findings are review aids and may not reflect enforceable legal advice for a specific jurisdiction.
+
+Mitigation: Route high-risk items, low-confidence extraction results, and jurisdiction-specific questions to qualified human reviewers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iflytek.skills/skills/iflytek-contract-intelligence-review)
+- [Publisher Profile](https://clawhub.ai/user/iflytek.skills)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Review Output Template](artifact/templates/review_output.json)
+- [Sample Review Report](artifact/examples/sample_review_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Text, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown and JSON contract review reports, plus command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include extracted document metadata, extraction quality, clauses, risks, compliance issues, bilingual issues, translation summary, uncertain items, human review flags, and a final summary.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

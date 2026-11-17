@@ -1,46 +1,60 @@
-## Description: <br>
-Weather Plus Cn queries China city weather information from China Weather Network and returns temperature, conditions, clothing advice, and lifestyle indices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weather Plus Cn helps agents query Chinese city weather from China Weather Network and provide temperature, weather-condition, clothing-advice, and lifestyle-index guidance.
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer Chinese city weather questions, prepare for travel, and generate clothing advice from current forecast data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on network access to weather.com.cn or wttr.in, so requests can fail or return stale data. <br>
-Mitigation: Check connectivity, retry later, and treat results as current weather guidance rather than authoritative emergency or safety advice. <br>
-Risk: City-code lookup or HTML parsing can fail when the requested city code is wrong or the source page structure changes. <br>
-Mitigation: Verify city codes against the bundled city-code reference and review page content manually when parsing fails. <br>
-Risk: The bundled security evidence is clean, but the skill can propose network fetches and shell commands. <br>
-Mitigation: Review commands before execution and run only the weather-query actions needed for the requested city. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to answer China city weather, temperature, forecast, travel-preparation, and clothing-advice requests.
 
-## Reference(s): <br>
-- [China Weather Network](http://www.weather.com.cn) <br>
-- [China Weather Network City List](http://www.weather.com.cn/citylist/) <br>
-- [China Weather Network City Codes](references/city_codes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenchaoqun/weather-plus-cn) <br>
-- [Publisher Profile](https://clawhub.ai/user/chenchaoqun) <br>
+### Deployment Geography for Use:
 
+Global; primarily supports China city weather queries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style weather summary with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes city, current conditions, temperature, wind, clothing advice, and lifestyle indices when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Weather data is fetched over unencrypted HTTP from weather.com.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using this skill for safety-critical severe-weather decisions unless the data source is moved to HTTPS and fetched content is treated as untrusted.
+
+Risk: Weather pages may change format or become unavailable, causing failed or incomplete parsing.
+
+Mitigation: Check the returned source data before relying on the summary and fall back to direct page review or another weather source when parsing fails.
+
+Risk: The skill is scoped mainly to Chinese cities and may not handle overseas weather requests well.
+
+Mitigation: Use the documented fallback source for overseas cities or route those requests to a broader weather skill.
+
+## Reference(s):
+
+- [China Weather Network](http://www.weather.com.cn)
+- [China Weather Network City List](http://www.weather.com.cn/citylist/)
+- [City Codes Reference](references/city_codes.md)
+- [ClawHub Skill Page](https://clawhub.ai/chenchaoqun/skills/weather-plus-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown or plain text with weather summaries, clothing advice, lifestyle indices, and optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language weather output; network access is required for live weather data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,61 @@
-## Description: <br>
-Connects agents to self-hosted Immich instances to manage photos, albums, users, search media, upload and download files, and handle jobs through the Immich REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to self-hosted Immich instances for managing photos, albums, users, search, uploads, downloads, libraries, and jobs through the REST API.
 
-## Publisher: <br>
-[ninjazan420](https://clawhub.ai/user/ninjazan420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ninjazan420](https://clawhub.ai/user/ninjazan420)
 
-## Use Case: <br>
-External developers and automation maintainers use this skill to connect an agent to a self-hosted Immich instance for photo library operations, including asset uploads and downloads, album management, user queries, search, library scans, and job triggers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent access to an Immich API key can expose or modify private photo library data. <br>
-Mitigation: Use a dedicated least-privilege Immich API key, avoid passing the key directly on the command line, and require explicit confirmation before uploads, deletes, shared-link creation, user management, scans, or job triggers. <br>
-Risk: The album downloader may write files outside the selected output directory if an Immich server returns unsafe album or file names. <br>
-Mitigation: Avoid or patch download_album.py until it sanitizes album and file names and confines writes to the selected output directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Immich API Endpoints Reference](references/api-endpoints.md) <br>
-- [ClawHub release page](https://clawhub.ai/ninjazan420/immich-api) <br>
+## Use Case:
 
+Developers and operators use this skill to automate photo-management workflows against self-hosted Immich deployments, including album management, media upload and download, user lookups, search, library scans, and job operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, Python script usage, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Immich base URL and API key; bundled scripts may read local media files and write downloaded media files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Helper scripts accept Immich API keys and may expose credentials through command history or process listings when --api-key is used.
+
+Mitigation: Use narrowly scoped Immich API keys and prefer environment variables or an interactive secret prompt over passing secrets as command-line arguments.
+
+Risk: API calls can upload, download, modify, or delete media and account-related data on the target Immich instance.
+
+Mitigation: Review generated requests before execution, use least-privilege credentials where available, and confirm destructive operations with the user.
+
+Risk: The album download helper writes filenames from server responses into the selected output directory.
+
+Mitigation: Avoid the download helper until album and filename path handling is sanitized and contained to the chosen output directory.
+
+Risk: Connections to an Immich server may transmit private media metadata or files over the network.
+
+Mitigation: Require HTTPS except for explicitly trusted local testing environments.
+
+## Reference(s):
+
+- [Immich API Endpoints Reference](references/api-endpoints.md)
+- [ClawHub skill page](https://clawhub.ai/ninjazan420/skills/immich-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python script usage examples, and REST API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run helper scripts that call a user-supplied Immich server and read or write local media files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

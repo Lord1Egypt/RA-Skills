@@ -1,0 +1,44 @@
+---
+name: Documentation
+about: Missing, unclear or stale documentation
+title: '[docs] '
+labels: ['documentation']
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - SKILL.md (index / quick reference)
+        - references/ (templates and method patterns)
+        - references/subproject-playbook.md
+        - prompts/ (human copy-paste templates)
+        - scripts/README.md
+        - CONTRIBUTING.md / GOVERNANCE.md / SUPPORT.md
+        - README.md
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: File or section
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing or unclear
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should say
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open and closed issues
+        - label: I checked whether the playbook already covers this

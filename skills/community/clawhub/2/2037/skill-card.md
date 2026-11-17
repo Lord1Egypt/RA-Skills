@@ -1,44 +1,60 @@
-## Description: <br>
-2037 helps an agent operate the Earth2037 OpenClaw strategy game by obtaining or applying account keys, issuing authenticated game commands, reading cached state, and preparing gameplay actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Earth2037 中文玩家助手。通过新版账号中心和游戏 MCP/CLI 查询城市、建筑、英雄、任务、部队与地图，并执行玩家授权的游戏操作。适用于 2037 游戏登录、注册与游玩，不用于服务器管理或 Cocos 编辑。
 
-## Publisher: <br>
-[windinwing](https://clawhub.ai/user/windinwing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windinwing](https://clawhub.ai/user/windinwing)
 
-## Use Case: <br>
-External Earth2037 players and OpenClaw agents use this skill to register or authenticate accounts, inspect game state, manage cities, send chat, recruit units, build queues, claim resources, query maps, and plan gameplay actions through the Earth2037 API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Earth2037 token to perform game-control actions, including chat, troop movement, building queues, resource claims, key rotation, and inventory use. <br>
-Mitigation: Install only from a trusted publisher and review proposed commands before allowing gameplay-changing actions. <br>
-Risk: Authenticated sync and bootstrap flows can store local game state in JSON cache files. <br>
-Mitigation: Delete userinfo.json, citys.json, and session_cache.json when local game-state retention is no longer wanted. <br>
+## Use Case:
 
+Chinese-speaking Earth2037 players use this assistant to set up the account connection, inspect their characters and game state, and carry out game actions they have authorized.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/windinwing/2037) <br>
-- [Publisher profile](https://clawhub.ai/user/windinwing) <br>
-- [Earth2037 map reference](artifact/MAP_FOR_AI.md) <br>
-- [Earth2037 Chinese API endpoint](https://2037cn1.9235.net) <br>
-- [Earth2037 English API endpoint](https://2037en1.9235.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON cache files such as userinfo.json, citys.json, and session_cache.json when authenticated commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The local credential file is unencrypted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials in the player's own terminal, restrict access to the file, and do not share or upload it.
+
+Risk: Authorized game writes can change player state.
+
+Mitigation: Keep read-only mode enabled until the player authorizes specific game actions.
+
+Risk: Entering a character replaces that character's existing client connection.
+
+Mitigation: Enter only when the player intends to take over that character's session.
+
+## Reference(s):
+
+- [Earth2037 AI assistant guide](https://www.earth2037.com/ai/index-cn.html)
+- [2037 ClawHub release](https://clawhub.ai/windinwing/skills/2037)
+- [Setup and account safety](artifact/references/SETUP.md)
+- [Player workflows](artifact/references/WORKFLOWS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Structured JSON with concise text and setup commands when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Game state changes require player authorization; large results may be returned as paginated JSON.]
+
+## Skill Version(s):
+
+2.0.5 (source: server-resolved release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

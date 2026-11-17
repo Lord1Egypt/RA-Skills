@@ -1,42 +1,56 @@
-## Description: <br>
-Evidence-based, approval-gated self-improvement workflow for OpenClaw. Use when the user asks to make OpenClaw or any project more reliable, faster, cheaper, safer, or higher quality with measurable before/after evidence. Ships helpers to scaffold a run directory, list and summarize past runs, compare two runs side-by-side, set artifact statuses, validate completeness, and export machine-readable JSON for CI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Self-Improve provides an evidence-based, approval-gated workflow and helper scripts for improving OpenClaw or other projects with measurable before-and-after validation.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a metrics-first improvement loop for OpenClaw or another project, including baseline capture, hypotheses, approval packages, validation, outcome reporting, and CI-readable exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: UX feedback or usability-testing activities may collect participant information without enough privacy notice. <br>
-Mitigation: Tell participants what is collected, why it is collected, where it will be stored, and how long it will be kept; avoid sensitive personal data unless strictly necessary. <br>
-Risk: An improvement proposal or implementation run may produce incorrect guidance or regress project behavior. <br>
-Mitigation: Use the skill's approval-gated modes, dry-run scaffolding, explicit validation gate, rollback plan, and run validation before treating a run as complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to run audit, proposal, and approved implementation loops that baseline a repository, prepare an approval package, validate changes, summarize outcomes, and export run data for CI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gopendrasharma89-tech/openclaw-self-improve) <br>
-- [Improvement Playbooks](references/playbooks.md) <br>
-- [Output Contract for OpenClaw Self-Improve](references/output-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, json, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Markdown/JSON run artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured improvement-run artifacts and optional CI-readable JSON summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md and server-resolved release metadata) <br>
+Risk: Repository-mutating rollback workflows can revert more files than intended if broad rollback targets are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposal.md before rollback, avoid broad rollback targets such as . or whole directories, and keep a separate commit, stash, or backup for uncommitted work.
+
+Risk: UX feedback examples can involve real user data when adapted for live studies.
+
+Mitigation: Add privacy and consent handling before using the UX feedback examples with real users.
+
+## Reference(s):
+
+- [Output Contract](references/output-contract.md)
+- [Improvement Playbooks](references/playbooks.md)
+- [ClawHub Listing](https://clawhub.ai/gopendrasharma89-tech/openclaw-self-improve)
+- [ClawHub Skill Page](https://clawhub.ai/gopendrasharma89-tech/skills/openclaw-self-improve)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown artifacts, JSON summaries, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Run artifacts follow references/output-contract.md; helper scripts require bash, git, python3, and zip.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence and skill body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

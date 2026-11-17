@@ -1,43 +1,59 @@
-## Description: <br>
-Multi-platform hotel price comparison and booking-decision assistant that searches hotel prices, scans low-price dates, and advises whether to book or wait. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多旅游平台酒店比价与订房决策助手，帮你找到最便宜的酒店并告诉你该订还是再等等，含低价日历和订房建议，多旅游平台数据直连。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to compare hotel prices across multiple travel platforms, identify cheaper stay dates, and get booking-timing guidance. It can return booking links, but users complete purchases on external travel platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel search details are sent through the publisher's proxy service before travel platform results are returned. <br>
-Mitigation: Install only when this data flow is acceptable, and avoid entering sensitive personal information beyond the query details needed for hotel search. <br>
-Risk: Booking links may reflect an undisclosed commission preference. <br>
-Mitigation: Compare final prices, cancellation terms, meal inclusions, and policies directly on the travel platforms before booking. <br>
-Risk: The skill's booking advice is based on platform data and heuristics, not a guarantee of future prices or availability. <br>
-Mitigation: Treat book-or-wait signals as decision support and verify current prices and terms before purchase. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to compare hotel prices across multiple travel platforms, inspect low-price date ranges, and decide whether to book now or wait. It returns hotel options, price signals, booking guidance, and booking links rather than completing purchases directly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/hotel-smart-book) <br>
-- [Skill homepage](https://rollinggo.store) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON responses with hotel listings, prices, booking links, low-price calendar entries, and booking advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include platform names, cancellation and breakfast details, prices, URLs, decision signals, confidence scores, reasons, and user-facing tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: Hotel search details such as city, dates, keywords, and hotel names are sent to external proxy services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher's proxy hosts and data-handling practices before using the skill with sensitive travel plans.
+
+Risk: An embedded shared proxy token is present in the artifact.
+
+Mitigation: The publisher should remove the shared token and require user- or deployment-scoped credentials.
+
+Risk: Some booking links or equal-price recommendations may favor a commission-bearing platform.
+
+Mitigation: Treat booking recommendations as decision support, verify final prices independently, and disclose affiliate or commission behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/hotel-smart-book)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+- [Skill homepage](https://rollinggo.store)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style natural language with hotel lists, price comparisons, date recommendations, and booking advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external booking links and platform-specific price signals.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence; artifact frontmatter reports 1.0.2 and artifact _meta.json reports 1.0.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

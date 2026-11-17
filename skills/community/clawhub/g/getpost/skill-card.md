@@ -1,42 +1,64 @@
-## Description: <br>
-The API platform for bots. Email, SMS, search, scrape, AI, domains, shipping - one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GetPost is an API platform for bots and AI agents that provides email, SMS, search, scraping, AI/LLM inference, image and video generation, domains, and shipping labels through one API key.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-External developers and agent builders use this skill as a reference for connecting bots to the GetPost API for messaging, web access, AI generation, domain management, shipping labels, credits, webhooks, and logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes broad paid and destructive API actions, including sending messages, buying credits, registering domains, modifying DNS, creating shipping labels, registering webhooks, and deleting resources. <br>
-Mitigation: Require manual confirmation before paid, destructive, or external-communication actions, and set spending limits where possible. <br>
-Risk: A GetPost API key may grant broad paid authority if exposed to prompts, logs, or untrusted tools. <br>
-Mitigation: Keep the key out of prompts and logs, store it in a secrets manager or protected environment variable, and use only keys the operator is comfortable granting to the agent. <br>
+## Use Case:
 
+Developers and agent builders use this skill to understand and draft requests for GetPost APIs that let agents send messages, search or scrape the web, call AI models, manage domains and DNS, buy shipping labels, and monitor balances, logs, and webhooks.
 
-## Reference(s): <br>
-- [GetPost OpenAPI Specification](https://getpost.dev/api/openapi.json) <br>
-- [GetPost Pricing](https://getpost.dev/api/pricing) <br>
-- [ClawHub Package Page](https://clawhub.ai/dommholland/getpost) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline API routes and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References a credits-based external API and requires a bearer API key for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: The skill covers paid operations such as buying credits, registering domains, and purchasing shipping labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before purchases, top-ups, domain registration, DNS changes, or label creation.
+
+Risk: The skill covers externally visible actions such as sending email or SMS and registering webhooks.
+
+Mitigation: Confirm recipients, webhook URLs, message contents, and expected effects before submitting requests.
+
+Risk: The skill requires a GetPost bearer token for authenticated API operations.
+
+Mitigation: Store the token in a secret manager or environment variable and avoid exposing it in prompts, generated files, or logs.
+
+Risk: The security summary says the skill exposes destructive account, webhook, domain, and DNS actions without enough user-control guidance.
+
+Mitigation: Require explicit confirmation before deleting accounts or webhooks and before creating, updating, or deleting DNS records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dommholland/skills/getpost)
+- [GetPost OpenAPI Specification](https://getpost.dev/api/openapi.json)
+- [GetPost Pricing](https://getpost.dev/api/pricing)
+- [GetPost API Base URL](https://getpost.dev/api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with endpoint summaries and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples for paid or externally visible GetPost operations; users should supply and protect their own API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

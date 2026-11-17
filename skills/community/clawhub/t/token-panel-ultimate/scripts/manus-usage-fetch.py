@@ -9,8 +9,12 @@ Usage:
     python3 manus-usage-fetch.py --update     # Update JSON file
     python3 manus-usage-fetch.py --json       # Raw JSON output
 
-Env:
-    MANUS_API_KEY  - Required. Manus API key.
+Credential:
+    Stored by you, in your OS keychain:  python3 secretstore.py --login manus
+    Remove it with:                      python3 secretstore.py --logout manus
+
+What it records: per-task CREDIT COUNTS and timestamps. Task titles and prompts are not
+read from the API response and never reach the output file.
 
 Credit structure (Pro plan):
     - Monthly: 4,000 credits (resets on renewal date)
@@ -26,6 +30,11 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import secretstore
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _secure_write import write_private_json  # owner-only JSON writes
 
 API_BASE = "https://api.manus.ai/v1"
 DEFAULT_OUTPUT = Path.home() / ".openclaw/workspace/memory/manus-usage.json"
@@ -79,8 +88,10 @@ def compute_usage(tasks: list, existing_data: dict) -> dict:
         # Daily (since last reset at 01:00)
         if ts >= today_start:
             daily_used += credits
+            # The task TITLE is user-authored text describing what was asked. A credit
+            # ledger needs the id and the number, not the subject line.
             today_tasks.append({
-                "task": t.get("metadata", {}).get("task_title", "untitled")[:80],
+                "task_id": t.get("task_id", "unknown"),
                 "credits": credits,
                 "time": ts.strftime("%H:%M"),
             })
@@ -147,19 +158,15 @@ def main():
     parser.add_argument("--output", type=str, default=str(DEFAULT_OUTPUT), help="Output file path")
     args = parser.parse_args()
 
-    api_key = os.environ.get("MANUS_API_KEY")
+    api_key, _source = secretstore.get_secret("manus")
     if not api_key:
-        # Fallback: Try to read from ~/.openclaw/openclaw.json
-        try:
-            config_path = Path.home() / ".openclaw/openclaw.json"
-            if config_path.exists():
-                data = json.loads(config_path.read_text())
-                api_key = data.get("env", {}).get("MANUS_API_KEY")
-        except Exception:
-            pass
-
-    if not api_key:
-        print("Error: MANUS_API_KEY not set", file=sys.stderr)
+        store = Path(secretstore.__file__).resolve()
+        print(
+            "Error: no Manus credential is configured for this tool.\n"
+            f"  Store one:  python3 {store} --login manus\n"
+            f"  Remove it:  python3 {store} --logout manus",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     # Load existing data for addon credits & renewal date
@@ -177,8 +184,9 @@ def main():
     if args.json:
         print(json.dumps(usage, indent=2))
     elif args.update:
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(json.dumps(usage, indent=2) + "\n")
+        # Owner-only: this file reports your plan and remaining credits. Do not let it
+        # inherit a loose umask from whatever shell or daemon happened to run us.
+        write_private_json(output_path, usage)
         print(f"✔ Updated {output_path}")
         # Print summary
         c = usage["credits"]
@@ -199,7 +207,7 @@ def main():
         print(f"  All-time: {c['total_all_time']} credits across {usage['notes']['total_tasks_fetched']} tasks")
         print(f"\n  Today: {usage['today']['tasks']} tasks, {usage['today']['credits_used']} credits")
         for t in usage["today"]["breakdown"]:
-            print(f"    {t['time']} | {t['credits']:>4} cr | {t['task']}")
+            print(f"    {t['time']} | {t['credits']:>4} cr | {t['task_id']}")
         print(f"\n  Last updated: {usage['last_updated']}")
 
 

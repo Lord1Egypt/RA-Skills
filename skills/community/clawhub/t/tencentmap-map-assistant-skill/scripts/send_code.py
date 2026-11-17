@@ -9,17 +9,26 @@ send_code.py — 发送短信验证码
     {"error": 0, "session_token": "sk_xxx"}
 
 失败输出:
-    {"error": <code>, "msg": "<描述>"}
+    {"error": <code>, "msg": "<错误码字符串>"}
 """
 
 import sys
 import json
 import time
 import random
+import ssl
 import urllib.request
 import urllib.error
 
-API_URL = "https://lbsconsole.map.qq.com/nosession/http/skill/auth/send-code"
+# 修复 macOS Python SSL 证书问题：优先使用 certifi 的 CA bundle
+try:
+    import certifi
+    _SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    _SSL_CONTEXT = ssl.create_default_context()
+
+API_HOST = "lbsconsole.map.qq.com"
+API_URL = f"https://{API_HOST}/nosession/http/skill/auth/send-code"
 
 
 def make_headers():
@@ -40,18 +49,24 @@ def send_code(phone: str) -> dict:
 
     req = urllib.request.Request(API_URL, data=payload, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=10, context=_SSL_CONTEXT) as resp:
             body = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        body = json.loads(e.read().decode("utf-8"))
+        try:
+            body = json.loads(e.read().decode("utf-8"))
+        except Exception:
+            return {"error": -1, "msg": f"HTTP {e.code}"}
     except Exception as e:
         return {"error": -1, "msg": f"网络异常: {e}"}
 
-    error = body.get("info", {}).get("error", -1)
-    if error == 0:
-        return {"error": 0, "session_token": body["detail"]["session_token"]}
+    info = body.get("info") or {}
+    ret = info.get("error", -1)
+    if ret == 0:
+        # 响应结构：{"info":{"error":0,"msg":"成功"},"detail":{"session_token":"sk_xxx"}}
+        detail = body.get("detail") or {}
+        return {"error": 0, "session_token": detail.get("session_token", "")}
     else:
-        return {"error": error, "msg": body.get("info", {}).get("msg", "未知错误")}
+        return {"error": ret, "msg": info.get("msg", "UNKNOWN")}
 
 
 if __name__ == "__main__":

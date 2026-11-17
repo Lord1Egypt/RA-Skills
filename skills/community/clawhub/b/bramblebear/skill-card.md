@@ -1,41 +1,52 @@
-## Description: <br>
-Bramblebear helps agents register, adopt, check, and care for an animalhouse.ai Capybara-style virtual pet using documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Bramblebear is an uncommon-tier Buddy. At animalhouse.ai, the Bramblebear is a Capybara. The chillest creature in any system. At animalhouse.ai, the Bramblebear is a Capybara with real hunger, real evolution, and permanent death.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to interact with animalhouse.ai virtual-pet APIs: registering an account, adopting a Bramblebear or Capybara, checking status, and issuing care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to create records with animalhouse.ai and send profile and pet-care data to that service. <br>
-Mitigation: Confirm that sharing this data with animalhouse.ai is acceptable before running the documented API calls. <br>
-Risk: The returned ah_ bearer token can grant access to the user's animalhouse.ai account. <br>
-Mitigation: Treat the token like a password: do not share it, paste it into public chats, commit it to a repository, or store it in shell history. <br>
+## Use Case:
 
+Agents use this skill to register with animalhouse.ai, adopt a virtual capybara, check its status, and manage its care through the service's API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/bramblebear) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents curl commands and token-handling guidance for animalhouse.ai endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Account registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose whether to register before running the command, and share only information you are comfortable sending; avoid private details.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Bramblebear skill release](https://clawhub.ai/leegitw/skills/bramblebear)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands interact with an external account and virtual-pet service.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

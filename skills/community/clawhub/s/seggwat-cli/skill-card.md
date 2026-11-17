@@ -1,45 +1,59 @@
-## Description: <br>
-Use the SeggWat CLI to manage feedback, projects, and ratings from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the SeggWat CLI to manage feedback, projects, and ratings from the terminal.
 
-## Publisher: <br>
-[hauju](https://clawhub.ai/user/hauju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hauju](https://clawhub.ai/user/hauju)
 
-## Use Case: <br>
-Developers, product teams, and CI operators use this skill to install, authenticate, and run SeggWat CLI commands for feedback triage, project lookup, rating analysis, JSON scripting, and CI/CD feedback automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys and cached OAuth tokens can grant access to SeggWat data if exposed. <br>
-Mitigation: Prefer secret-manager or CI-secret injection for API keys, avoid inline tokens when possible, and protect cached OAuth token files. <br>
-Risk: Feedback and rating update or delete/archive commands can modify or hide project data. <br>
-Mitigation: Review project IDs, feedback IDs, rating IDs, statuses, and resolution notes before running mutating commands or automation. <br>
-Risk: Installing a CLI or running a shell installer can introduce supply-chain risk. <br>
-Mitigation: Verify the SeggWat CLI package or installer before running it, especially in automated or privileged environments. <br>
+## Use Case:
 
+Developers and product teams use this skill to install and authenticate the SeggWat CLI, query and triage feedback, inspect rating statistics, and script feedback workflows in CI/CD.
 
-## Reference(s): <br>
-- [SeggWat website](https://seggwat.com) <br>
-- [SeggWat shell installer](https://seggwat.com/static/install.sh) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hauju/seggwat-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/hauju) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks, command examples, and occasional JSON or shell-script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI flags, environment variables, authentication setup, project or feedback IDs supplied by the user, and jq-based scripting examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.17.4 (source: server-resolved release metadata) <br>
+Risk: Installing the CLI from an untrusted or floating source can run unexpected code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted SeggWat release sources and prefer pinned versions when available.
+
+Risk: API keys can be exposed if passed on the command line or committed into scripts.
+
+Mitigation: Store API keys in environment variables or a secrets manager, and avoid embedding tokens in command arguments or files.
+
+Risk: Create, update, delete, archive, or CI automation commands can change production feedback data.
+
+Mitigation: Require explicit confirmation before mutating production projects and test automation against non-production projects first.
+
+## Reference(s):
+
+- [SeggWat CLI Skill Page](https://clawhub.ai/hauju/skills/seggwat-cli)
+- [SeggWat Platform](https://seggwat.com)
+- [SeggWat Shell Installer](https://seggwat.com/static/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call the SeggWat service and produce JSON when --json is requested.]
+
+## Skill Version(s):
+
+0.17.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

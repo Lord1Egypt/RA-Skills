@@ -1,41 +1,49 @@
-## Description: <br>
-Provides bilingual Chinese and English reference guidance on cultural meanings of the number 4 in Chinese and East Asian contexts, including a Chen Lang profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English guidance about the cultural meanings of the number 4, including East Asian number taboos and a Chen Lang profile.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-Users and agents can use this skill as reference content when answering questions about the number 4, Chinese number taboos, East Asian number symbolism, or the included Chen Lang profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad mentions of four-related cultural topics and add cultural or biographical reference content. <br>
-Mitigation: Review responses for relevance before using them in user-facing or decision-support contexts. <br>
-Risk: The skill includes cultural and biographical claims that may be incomplete or outdated. <br>
-Mitigation: Verify cultural or biographical claims against authoritative sources before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about the cultural meaning of the number 4, Chinese number taboos, East Asian number symbolism, and the included Chen Lang profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/four) <br>
-- [Publisher profile](https://clawhub.ai/user/LeoCryptoFlow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English cultural reference content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may over-activate on generic mentions of the number 4.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke or route it only for cultural, numerology, East Asian number-symbolism, or Chen Lang profile questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/four)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese and English]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational output with no executable behavior, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

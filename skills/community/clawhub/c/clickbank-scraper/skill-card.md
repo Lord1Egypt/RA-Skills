@@ -1,43 +1,56 @@
-## Description: <br>
-Scrape top ClickBank products by category with gravity scores, commission rates, and estimated monthly sales for affiliate marketing automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape top ClickBank products by category with gravity scores, commission rates, and estimated monthly sales for affiliate marketing automation pipelines.
 
-## Publisher: <br>
-[marlowne12](https://clawhub.ai/user/marlowne12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlowne12](https://clawhub.ai/user/marlowne12)
 
-## Use Case: <br>
-External developers and affiliate marketing operators use this skill to run a Node.js scraper that collects ClickBank Health & Fitness product metrics from CBTrends and prepares JSON outputs for downstream automation such as Pinterest content, comparison pages, and performance tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scraper contacts CBTrends and writes local output files during execution. <br>
-Mitigation: Run it only in an environment where that network access and local file writes are expected, and review scheduled cron or n8n use before enabling it. <br>
-Risk: A configured CB_AFFILIATE_ID appears in generated hoplinks and may appear in console output or saved JSON. <br>
-Mitigation: Use only the intended affiliate nickname and avoid sharing generated output where that identifier should remain private. <br>
-Risk: The product metrics are scraped public marketplace data and the artifact notes that gravity data may lag live marketplace values. <br>
-Mitigation: Treat generated product rankings as automation inputs and verify important business decisions against current marketplace data. <br>
+## Use Case:
 
+Developers and affiliate marketers use this skill to scrape public CBTrends ClickBank product rankings and produce JSON feeds for product comparison, Pinterest automation, affiliate performance tracking, or landing-page personalization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marlowne12/clickbank-scraper) <br>
-- [CBTrends Health & Fitness Marketplace Source](https://www.cbtrends.com/browse-clickbank-marketplace/-1/94/Health%2B%2526%2BFitness/1/gravity/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; scraper execution writes JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/latest.json, output/products-YYYY-MM-DD.json, and output/top10-YYYY-MM-DD.json; optional CB_AFFILIATE_ID is embedded in generated hoplinks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The scraper writes local JSON files that may include a user's ClickBank affiliate nickname in generated hoplinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output files before sharing, avoid committing generated output with a real affiliate nickname, and clean archived output periodically.
+
+Risk: Automated scraping can become stale or fail if the public CBTrends page structure changes or if dependency versions drift.
+
+Mitigation: Audit and pin npm dependencies before scheduled use, monitor scraper runs for empty or malformed results, and update parsing logic when source pages change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marlowne12/skills/clickbank-scraper)
+- [Publisher profile](https://clawhub.ai/user/marlowne12)
+- [CBTrends Health & Fitness source](https://www.cbtrends.com/browse-clickbank-marketplace/-1/94/Health%2B%2526%2BFitness/1/gravity/)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON files and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes latest and dated product snapshots under the local output directory; hoplinks may include the configured ClickBank affiliate nickname.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

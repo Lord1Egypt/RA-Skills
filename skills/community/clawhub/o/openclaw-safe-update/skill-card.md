@@ -1,44 +1,51 @@
-## Description: <br>
-Safely verifies OpenClaw upgrade candidates in an isolated sidecar flow before optionally applying a global update with explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely verify and apply OpenClaw upgrades with isolated sidecar checks.
 
-## Publisher: <br>
-[ianchenx](https://clawhub.ai/user/ianchenx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianchenx](https://clawhub.ai/user/ianchenx)
 
-## Use Case: <br>
-Developers and operators use this skill to verify OpenClaw updates in an isolated candidate installation and sidecar before applying them to the global installation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying an update changes the global OpenClaw installation. <br>
-Mitigation: Run verify-only mode first, review any printed log path on failure, and use --apply or sudo only when ready to change the global installation. <br>
-Risk: Unpinned update checks may select the latest published OpenClaw version rather than a specific target. <br>
-Mitigation: Use --target <version> when a specific release should be verified and applied. <br>
-Risk: Sidecar verification can fail or time out before an update is safe to apply. <br>
-Mitigation: Inspect the preserved sidecar log path and do not mutate the global install when verification fails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Updating Documentation](https://docs.openclaw.ai/install/updating) <br>
-- [Linux Guide](references/linux.md) <br>
-- [macOS Guide](references/macos.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ianchenx/openclaw-safe-update) <br>
+## Use Case:
 
+Developers and operators use this skill to verify an OpenClaw target version in an isolated sidecar before applying an upgrade. It supports verify-only checks by default, optional target pinning, platform-specific prerequisites, and an explicit apply step.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default workflow is verify-only; apply mode requires explicit user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Linux workflow can run newly downloaded npm code and perform a global upgrade with broad system privileges.
+
+Mitigation: Prefer a pinned target version, use a user-local Node toolchain, avoid running the full script with sudo, and review the script and npm source before using --apply on production machines.
+
+## Reference(s):
+
+- [OpenClaw Updating Documentation](https://docs.openclaw.ai/install/updating)
+- [Linux Guide](references/linux.md)
+- [macOS Guide](references/macos.md)
+- [ClawHub Skill Page](https://clawhub.ai/ianchenx/skills/openclaw-safe-update)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent through verify-only checks, optional version pinning, explicit upgrade application, and failure reporting with log paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

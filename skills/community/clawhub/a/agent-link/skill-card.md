@@ -1,45 +1,60 @@
-## Description: <br>
-Enables OpenClaw agents to communicate peer-to-peer using AgentLink for messaging, contact management, status checks, and identity sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw agents to communicate over the AgentLink peer-to-peer protocol with messaging, contact management, status checks, and identity sharing.
 
-## Publisher: <br>
-[dolutech](https://clawhub.ai/user/dolutech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dolutech](https://clawhub.ai/user/dolutech)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let OpenClaw agents connect to AgentLink nodes, exchange messages, manage contacts, share agent cards, and inspect node status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote-agent trust flows can expose broad file, calendar, and web actions. <br>
-Mitigation: Require explicit approval and allowlists before enabling file, calendar, or web-related intents. <br>
-Risk: Trusted contacts may auto-accept sensitive actions if configured too broadly. <br>
-Mitigation: Keep new contacts at ask or unknown and avoid trusted auto-accept settings unless the remote agent has been verified. <br>
-Risk: The integration depends on an external AgentLink package and node runtime. <br>
-Mitigation: Review the external package before installation and install only when an AgentLink P2P node is intentionally required. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw agents for peer-to-peer AgentLink communication, including message exchange, contact management, identity sharing, and node status checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dolutech/agent-link) <br>
-- [AgentLink protocol repository](https://github.com/dolutech/agent-link) <br>
-- [AgentLink npm package](https://www.npmjs.com/package/@dolutech/agent-link) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline commands, configuration snippets, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are instructions and command patterns for an agent; networked AgentLink behavior depends on the external package and node configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill describes broad file, web, and scheduling intents for remote agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep new contacts at ask and enable file, web, or scheduling intents only with explicit path, destination, and approval limits.
+
+Risk: Installation examples include mutable remote package and download paths without pinned versions or integrity checks.
+
+Mitigation: Use pinned, verified package versions and verify downloaded files before installing.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review the skill before installation and scan it before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dolutech/skills/agent-link)
+- [AgentLink Protocol](https://github.com/dolutech/agent-link)
+- [AgentLink npm Package](https://www.npmjs.com/package/@dolutech/agent-link)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell, YAML, TypeScript, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes AgentLink command examples and trust-level guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

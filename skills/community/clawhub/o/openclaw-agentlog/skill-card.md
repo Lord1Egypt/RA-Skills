@@ -1,44 +1,54 @@
-## Description: <br>
-OpenClaw AgentLog records OpenClaw agent sessions, tool activity, reasoning snippets, responses, token usage, and trace handoffs to an AgentLog backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+openclaw-agentlog records OpenClaw agent session evidence and manages trace creation, claiming, completion, handoff, tool-call capture, response capture, reasoning capture, and Git commit binding.
 
-## Publisher: <br>
-[hobo0cn](https://clawhub.ai/user/hobo0cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hobo0cn](https://clawhub.ai/user/hobo0cn)
 
-## Use Case: <br>
-Developers and operators use this skill to add AgentLog observability to OpenClaw agents, including automatic session evidence capture, trace lifecycle management, and handoff support between agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive agent activity may be captured and stored by the AgentLog backend. <br>
-Mitigation: Deploy only with a trusted backend, review data retention controls, and disable or redact reasoning and tool capture when sensitive prompts, outputs, or file paths may be present. <br>
-Risk: Installation can modify the OpenClaw runtime through postinstall or dist patching behavior. <br>
-Mitigation: Review or disable patching before production use, confirm the remote target, keep backups, and test rollback before enabling it on a gateway. <br>
-Risk: Trace and session data may expose workspace activity and command results. <br>
-Mitigation: Limit access to trace storage, avoid using the skill in high-sensitivity workspaces without approval, and verify which event hooks are enabled. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to automatically log agent sessions, tool activity, reasoning, responses, and trace handoffs to an AgentLog backend. It supports trace lifecycle management across agent task transfers and optional Git commit binding for session evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hobo0cn/openclaw-agentlog) <br>
-- [OpenClaw plugin manifest](artifact/openclaw.plugin.json) <br>
-- [OpenClaw plugin schema](https://openclaw.ai/schemas/plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [OpenClaw plugin hooks and TypeScript APIs with JSON trace/span payloads and shell-based installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records may include prompts, reasoning snippets, tool arguments, tool outputs, file paths, command results, token usage, and session metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill captures sensitive agent data, including tool inputs, outputs, responses, and reasoning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where operators have explicitly accepted full trace logging, restrict access to the AgentLog backend, and disable reasoning or tool-call capture when those records should not be retained.
+
+Risk: Automatic OpenClaw runtime patching can modify files outside the skill boundary during installation.
+
+Mitigation: Avoid ordinary npm install until patching is removed or changed to an explicit admin-only step with clear rollback and OpenClaw version checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hobo0cn/skills/openclaw-agentlog)
+- [OpenClaw plugin schema](https://openclaw.ai/schemas/plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript API examples, shell commands, and JSON/YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Captures trace and session records, tool inputs and outputs, reasoning summaries, responses, and optional Git commit bindings when enabled.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata; artifact package metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

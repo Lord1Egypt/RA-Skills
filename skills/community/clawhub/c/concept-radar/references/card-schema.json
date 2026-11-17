@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/concept-radar/card-schema.json",
+  "title": "Concept Radar Selection",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_key",
+          "revision",
+          "canonical_url",
+          "concept_name",
+          "what",
+          "why_important",
+          "problem_solved",
+          "compared_with",
+          "similarities",
+          "differences",
+          "use_when",
+          "not_replacement",
+          "maturity",
+          "confidence",
+          "action_recommendation",
+          "comparison_sources",
+          "evidence",
+          "scores"
+        ],
+        "properties": {
+          "source_key": {"type": "string", "minLength": 1},
+          "revision": {"type": "string", "minLength": 1},
+          "canonical_url": {"type": "string", "format": "uri"},
+          "concept_name": {"type": "string", "minLength": 1},
+          "what": {"type": "string", "minLength": 1},
+          "why_important": {"type": "string", "minLength": 1},
+          "problem_solved": {"type": "string", "minLength": 1},
+          "compared_with": {"type": "string", "minLength": 1},
+          "similarities": {"type": "string", "minLength": 1},
+          "differences": {"type": "string", "minLength": 1},
+          "use_when": {"type": "string", "minLength": 1},
+          "not_replacement": {"type": "string", "minLength": 1},
+          "maturity": {
+            "type": "string",
+            "enum": ["hypothesis", "emerging", "growing", "established"]
+          },
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "action_recommendation": {"type": "string", "minLength": 1},
+          "comparison_sources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title", "url"],
+              "properties": {
+                "title": {"type": "string", "minLength": 1},
+                "url": {"type": "string", "format": "uri"}
+              }
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["field", "quote", "source_url"],
+              "properties": {
+                "field": {
+                  "enum": [
+                    "concept_name",
+                    "what",
+                    "why_important",
+                    "problem_solved",
+                    "compared_with",
+                    "similarities",
+                    "differences",
+                    "use_when",
+                    "not_replacement",
+                    "maturity",
+                    "action_recommendation"
+                  ]
+                },
+                "quote": {"type": "string", "minLength": 1},
+                "source_url": {"type": "string", "format": "uri"}
+              }
+            }
+          },
+          "scores": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "novelty",
+              "problem_clarity",
+              "mechanism_clarity",
+              "evidence_quality",
+              "source_authority",
+              "promotional_penalty"
+            ],
+            "properties": {
+              "novelty": {"type": "integer", "minimum": 0, "maximum": 3},
+              "problem_clarity": {"type": "integer", "minimum": 0, "maximum": 2},
+              "mechanism_clarity": {"type": "integer", "minimum": 0, "maximum": 2},
+              "evidence_quality": {"type": "integer", "minimum": 0, "maximum": 2},
+              "source_authority": {"type": "integer", "minimum": 0, "maximum": 1},
+              "promotional_penalty": {"type": "integer", "minimum": -3, "maximum": 0}
+            }
+          }
+        }
+      }
+    }
+  }
+}

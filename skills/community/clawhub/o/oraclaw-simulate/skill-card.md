@@ -1,44 +1,55 @@
-## Description: <br>
-Oraclaw Simulate runs Monte Carlo simulations for AI agents to model risk, forecast revenue, estimate project timelines, and quantify uncertainty across six distribution types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monte Carlo simulation for AI agents to run thousands of probabilistic scenarios, model risk, forecast revenue, estimate project timelines, and quantify uncertainty across six distribution types.
 
-## Publisher: <br>
-[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind)
 
-## Use Case: <br>
-External developers and agents use this skill to run Monte Carlo simulations for revenue targets, project timelines, portfolio Value at Risk, sensitivity analysis, and probabilistic forecasts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an ORACLAW_API_KEY for a paid simulation service. <br>
-Mitigation: Use a dedicated API key where possible and monitor charges. <br>
-Risk: Simulation requests may include confidential financial, trading, or business formulas. <br>
-Mitigation: Avoid submitting confidential inputs unless the user is comfortable with OraClaw processing them. <br>
-Risk: Monte Carlo results are probabilistic estimates and may be misread as guaranteed outcomes. <br>
-Mitigation: Present results as uncertainty estimates with assumptions, percentiles, and scenario context. <br>
+## Use Case:
 
+Developers and external agents use this skill to run Monte Carlo simulations for risk, revenue, project timeline, portfolio, sensitivity, and probabilistic forecasting scenarios.
 
-## Reference(s): <br>
-- [OraClaw Simulate homepage](https://oraclaw.dev/simulate) <br>
-- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/oraclaw-simulate) <br>
-- [Publisher profile](https://clawhub.ai/user/whatsonyourmind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown or JSON simulation summaries with mean, standard deviation, percentile results, and histogram data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ORACLAW_API_KEY and uses a paid OraClaw simulation service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Simulation formulas or assumptions may be sent to the OraClaw service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential financial or business data unless the provider's terms and data handling meet the user's requirements.
+
+Risk: Using the paid API can incur per-simulation charges.
+
+Mitigation: Confirm the OraClaw API key, pricing, and iteration count before running simulations.
+
+## Reference(s):
+
+- [OraClaw Simulate homepage](https://oraclaw.dev/simulate)
+- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/skills/oraclaw-simulate)
+- [Publisher profile](https://clawhub.ai/user/whatsonyourmind)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and simulation result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORACLAW_API_KEY; simulation results include mean, standard deviation, percentiles, and histograms.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

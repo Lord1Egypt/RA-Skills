@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn750ephf1749nsjn4djytcjr182z1k3",
-  "slug": "writing-tone-clone",
+  "name": "writing-tone-clone",
   "version": "1.0.1",
-  "publishedAt": 1773823377542
+  "author": "Chris Couriard",
+  "description": "Clone someone's writing tone from samples using 8 linguistic dimensions (sentence structure, register, humour, rhythm, vocabulary, emotional register, habits, negative space). Produces a documented voice profile and deployable skill that replicates their exact writing style.",
+  "tags": ["writing", "voice", "style", "copywriting", "linguistics", "personal-voice", "content", "diary", "analysis"],
+  "license": "MIT"
 }

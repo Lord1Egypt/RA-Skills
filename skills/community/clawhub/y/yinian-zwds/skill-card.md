@@ -1,48 +1,65 @@
-## Description: <br>
-Yinian Zi Wei Dou Shu provides AI-assisted chart generation and cultural-reference readings for Zi Wei Dou Shu using Sanhe, Feixing, and Zhan Yan analysis styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yinian Zi Wei Dou Shu is an AI-assisted Zi Wei Dou Shu charting and interpretation skill that combines Sanhe, Flying Star, and Zhan Yan approaches for cultural-reference astrology readings.
 
-## Publisher: <br>
-[vincent-vstudios](https://clawhub.ai/user/vincent-vstudios) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincent-vstudios](https://clawhub.ai/user/vincent-vstudios)
 
-## Use Case: <br>
-External users and developers use this skill to collect birth details, generate Zi Wei Dou Shu charts, and produce cultural-reference readings across palace, star, four-transformation, and timing views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth details and generated chart content can be sent to a remote LLM provider when AI readings are used. <br>
-Mitigation: Tell users before AI readings are requested, avoid submitting data they do not want transmitted externally, and use local chart-only commands when external transmission is not acceptable. <br>
-Risk: The skill can automatically use local API credentials for DeepSeek or OpenAI-compatible providers. <br>
-Mitigation: Use a dedicated DeepSeek key with limited blast radius instead of a broad shared key, and keep credentials out of prompts, logs, and public configuration. <br>
-Risk: The included FastAPI service is risky if exposed publicly with permissive CORS and prompt-facing fields. <br>
-Mitigation: Do not expose the API publicly without tightening CORS, removing unnecessary prompt fields, and adding normal service controls such as authentication, logging review, and rate limits. <br>
-Risk: Astrology readings may be mistaken for medical, legal, financial, relationship, or other life-decision advice. <br>
-Mitigation: Keep the skill's cultural-reference disclaimer, avoid absolute predictions, and direct users to qualified professionals for high-stakes decisions. <br>
+## Use Case:
 
+External users and agents use this skill to collect birth details, generate Zi Wei Dou Shu charts, and produce cultural-reference interpretations across palace, star, mutagen, relationship, and timing views. The skill is intended for reflective astrology-style analysis, not medical, financial, legal, relationship, or other consequential decision-making advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincent-vstudios/yinian-zwds) <br>
-- [Four Transformations reference](references/mutagen.md) <br>
-- [Twelve Palaces reference](references/palaces.md) <br>
-- [Sanhe, Feixing, and Zhan Yan reference](references/sanhe.md) <br>
-- [Stars reference](references/stars.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON or API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local chart generation or remote LLM-backed readings when configured with API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release metadata) <br>
+Risk: The skill can send sensitive birth-chart data to DeepSeek for remote AI interpretation without clear user consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use AI interpretation paths only after the user understands the remote processing, limit input to necessary birth details, and avoid those paths when sensitive-data handling is unacceptable.
+
+Risk: The skill can silently use shared API credentials or an unintended OpenClaw/OpenAI key.
+
+Mitigation: Configure a dedicated DeepSeek API key for this skill and verify provider and credential selection before running AI paths.
+
+Risk: The bundled web app dependencies require patching before public exposure.
+
+Mitigation: Update and scan the web dependencies before deploying or exposing the web app publicly.
+
+Risk: Astrology readings could be mistaken for consequential advice.
+
+Mitigation: Keep the documented cultural-reference framing, avoid absolute predictions, and do not provide medical, financial, legal, relationship, or major life-decision guidance.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/vincent-vstudios/skills/yinian-zwds)
+- [Stars reference](references/stars.md)
+- [Palaces reference](references/palaces.md)
+- [Mutagen reference](references/mutagen.md)
+- [Sanhe reference](references/sanhe.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured text, with optional JSON-like chart data and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request birth date, birth hour, gender, calendar type, reading school, target year, and optional model/API configuration.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Scaffold the standard ai/ directory structure in any repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold the standard ai/ directory structure in any repo.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to initialize a standard ai/ working directory with plans, notes, product docs, dev updates, todos, and holding areas for sorting or archiving existing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The tool creates and reorganizes files in the target repository, including moving an existing ai/ directory into ai/_sort/ai_old/. <br>
-Mitigation: Run with --dry-run first, inspect the target path, and use --yes only when the planned changes are understood. <br>
-Risk: The generated ai/ content may contain private planning notes or working context that should not be published. <br>
-Mitigation: Do not rely on generated privacy wording alone; confirm repository ignore rules, release scripts, and deployment packaging exclude ai/ when needed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create or normalize an ai/ workspace for plans, notes, development updates, todos, and product documentation inside a repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/wip-repo-init) <br>
-- [Project homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and generated repository files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or reorganizes a local ai/ directory; supports dry-run and confirmation controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release evidence) <br>
+Risk: Running the tool on a repository with an existing ai/ folder reorganizes that folder by moving current contents under ai/_sort/ai_old/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run first on existing repositories, and avoid --yes unless you are comfortable with the planned move.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/wip-repo-init)
+- [AI DevOps Toolbox](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+- [Skill definition](SKILL.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Generated repository files and Markdown templates, with CLI guidance for command-line use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+; supports dry-run preview and confirmation controls for existing ai/ folders.]
+
+## Skill Version(s):
+
+1.9.72 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

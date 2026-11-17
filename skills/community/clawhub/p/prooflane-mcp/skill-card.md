@@ -1,49 +1,59 @@
-## Description: <br>
-Clone, install, configure, verify, and run Prooflane's repo-native stdio MCP server locally without claiming unavailable hosted or package-registry distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent clone, install, configure, verify, and use Prooflane's repo-native stdio MCP server and local product surfaces.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and evaluators use this skill to attach an MCP-capable agent to a local Prooflane checkout, verify the repo-native stdio server, and inspect run, report, and proof surfaces through a truthful first-success path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to clone a third-party repository and run local setup or start commands. <br>
-Mitigation: Review the cloned repository scripts first and run them in a trusted or sandboxed workspace. <br>
-Risk: Token-protected HTTP/API automation surfaces may require an automation token. <br>
-Mitigation: Provide tokens through secure environment handling, avoid committing them to files, and avoid logging them. <br>
-Risk: Users may overstate current distribution by treating publish-ready package shapes or hosted service paths as live. <br>
-Mitigation: Keep claims limited to the repo-native stdio MCP server unless fresh evidence proves package publication or hosted availability. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate Prooflane locally, attach a repo-native MCP server to an MCP-capable host, and run verification commands before relying on proof or run-review surfaces.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaojiou176/prooflane-mcp) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiaojiou176) <br>
-- [Canonical Prooflane Repository](https://github.com/xiaojiou176-open/ui-automation-control-plane) <br>
-- [OpenHands Extension Pull Request](https://github.com/OpenHands/extensions/pull/161) <br>
-- [Install And Attach Prooflane MCP](artifact/references/INSTALL.md) <br>
-- [Prooflane MCP Capabilities](artifact/references/CAPABILITIES.md) <br>
-- [First-Success Path](artifact/references/DEMO.md) <br>
-- [Troubleshooting](artifact/references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command blocks and JSON MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps output scoped to local repo-native stdio MCP setup, verification, and proof-oriented first-use guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact manifest.yaml) <br>
+Risk: The install path can run mutable external repository code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or least-privilege environment, inspect setup scripts before execution, and pin the cloned repository to a trusted commit.
+
+Risk: The documented future package command is unpinned and not currently published.
+
+Mitigation: Use the repo-native MCP start path for current evaluation and avoid unpinned package execution unless a reviewed version is available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaojiou176/skills/prooflane-mcp)
+- [Install And Attach Prooflane MCP](references/INSTALL.md)
+- [Prooflane MCP Capabilities](references/CAPABILITIES.md)
+- [First-Success Path](references/DEMO.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [OpenHands MCP Config](references/OPENHANDS_MCP_CONFIG.json)
+- [OpenClaw MCP Config](references/OPENCLAW_MCP_CONFIG.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

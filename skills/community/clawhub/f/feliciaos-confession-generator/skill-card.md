@@ -1,40 +1,54 @@
-## Description: <br>
-Generates raw, anonymous first-person crypto win/loss confession stories with real numbers and zero moralizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates raw, anonymous first-person crypto win/loss confession stories with real numbers and zero moralizing.
 
-## Publisher: <br>
-[leodera](https://clawhub.ai/user/leodera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leodera](https://clawhub.ai/user/leodera)
 
-## Use Case: <br>
-External creators and social media operators use this skill to draft anonymous, first-person crypto win/loss confession posts with specific token names, dollar amounts, and emotional detail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content may be sent to Groq for model inference. <br>
-Mitigation: Install only if you are comfortable using Groq, and avoid entering real secrets, wallet credentials, private account details, or sensitive financial information. <br>
-Risk: The skill requires a GROQ_API_KEY credential. <br>
-Mitigation: Manage the GROQ_API_KEY like any other API credential. <br>
+## Use Case:
 
+External users and content creators use this skill to draft short, anonymous crypto confession stories about gains, losses, crashes, rugs, or selling too early.
 
-## Reference(s): <br>
-- [FeliciaOS GitHub Homepage](https://github.com/leodera-creator/feliciaos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text confession story] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 200-250 word first-person crypto confession narratives when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requires a Groq API key and may send generation prompts to that provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that provider use is acceptable, and avoid including sensitive or private details in prompts.
+
+Risk: Generated crypto confessions can be mistaken for real financial experiences.
+
+Mitigation: Treat generated confessions as synthetic content unless independently verified, especially before public publishing.
+
+## Reference(s):
+
+- [FeliciaOS homepage](https://github.com/leodera-creator/feliciaos)
+- [ClawHub skill page](https://clawhub.ai/leodera/skills/feliciaos-confession-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text story prompts and generated prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated stories are typically 200-250 words and require GROQ_API_KEY for Groq-hosted LLaMA 3.3 70B inference.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

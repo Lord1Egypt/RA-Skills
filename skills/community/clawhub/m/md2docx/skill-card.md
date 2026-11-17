@@ -1,44 +1,57 @@
-## Description: <br>
-Converts Markdown files to Word .docx documents with Pandoc, then applies Chinese font settings and table borders with python-docx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown files into Word .docx documents with Chinese font optimization, table borders, and Pandoc-based formatting.
 
-## Publisher: <br>
-[sukimgit](https://clawhub.ai/user/sukimgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sukimgit](https://clawhub.ai/user/sukimgit)
 
-## Use Case: <br>
-Developers, documentation authors, and agents use this skill to convert Markdown documents or directories of Markdown files into Word documents for sharing, reports, academic drafts, meeting notes, and Chinese-language official-document workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter reads input Markdown files, writes output .docx files, creates parent output directories, and can recursively process a directory. <br>
-Mitigation: Use explicit input and output paths, review directories before batch conversion, and avoid running recursive conversion over untrusted or overly broad paths. <br>
-Risk: Conversion depends on executing the local Pandoc binary and importing python-docx. <br>
-Mitigation: Install Pandoc and python-docx from trusted sources and keep them updated according to local package-management policy. <br>
-Risk: The template helper writes to a hard-coded Windows path. <br>
-Mitigation: Run the helper only when that exact template output location is intended, or adjust the path before use. <br>
+## Use Case:
 
+Developers, technical writers, and document authors use this skill to convert Markdown drafts, reports, meeting notes, and project documentation into Word documents formatted for Chinese-language workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sukimgit/md2docx) <br>
-- [Publisher profile](https://clawhub.ai/user/sukimgit) <br>
-- [Pandoc installation guide](https://pandoc.org/installing.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python examples; runtime output is Word .docx files and conversion status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Pandoc and python-docx; accepts Markdown input paths, Word output paths, optional template or reference document paths, and optional recursive directory conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The converter writes a temporary Markdown file next to the source file during conversion, which can expose content or collide with other activity in shared writable directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run conversions in trusted private directories and avoid source files stored in shared or untrusted writable locations.
+
+Risk: Generated Word documents include an automatically appended date line that may be inappropriate for some deliverables.
+
+Mitigation: Review generated documents before distribution and remove or adjust the date line when it does not match the intended document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sukimgit/skills/md2docx)
+- [Publisher profile](https://clawhub.ai/user/sukimgit)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Pandoc installation documentation](https://pandoc.org/installing.html)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance and Python or shell invocations that produce Word .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Pandoc and python-docx; converted documents are post-processed for Chinese fonts and table borders and currently include an appended date line.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release, README.md, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

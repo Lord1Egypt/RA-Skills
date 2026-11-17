@@ -1,38 +1,56 @@
-## Description: <br>
-Automates the process of extracting reusable skill code from arXiv papers to turn paper insights into actual OpenClaw skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the process of extracting reusable skill code from arXiv papers.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to fetch arXiv paper metadata, extract research ideas, and scaffold reusable OpenClaw skills from those papers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can create or overwrite agent-loadable skills using untrusted paper metadata.
+
+Mitigation: Review pending_skill_task.json, paper metadata, and generated SKILL.md content before loading or installing generated skills.
+
+Risk: Generated skill content may contain misleading instructions or prompt-injection text copied from paper metadata.
+
+Mitigation: Scan and manually review generated skill files before deployment, especially SKILL.md and generated runner code.
+
+Risk: Running the skill in an important workspace can overwrite generated arXiv skill directories.
+
+Mitigation: Run it only in a workspace where replacing generated arXiv skill directories will not destroy important work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn arXiv paper content into reusable OpenClaw skill scaffolds. It fetches paper data, extracts key algorithms, and generates skill templates for further review and implementation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent new OpenClaw skills from externally sourced paper content without a clear sanitization or approval step. <br>
-Mitigation: Review each generated SKILL.md, scripts/run.js, and paper.json before enabling or relying on the generated skill, and verify the arxiv-paper-reviews helper it depends on. <br>
+**Output Format:** [Generated skill files plus JSON status output and command-line logs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/arxiv-skill-extractor) <br>
+**Other Properties Related to Output:** [Creates or updates an agent-loadable skill directory from paper metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Generated OpenClaw skill directory containing SKILL.md, Node.js runner code, paper.json, and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent local skill files and depends on the arxiv-paper-reviews helper for paper retrieval.] <br>
+1.0.0 (source: release metadata, package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

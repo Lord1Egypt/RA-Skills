@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dp5hc0fqqz9a55j8fky590s84an72",
-  "slug": "coordinator-evolution",
-  "version": "1.2.0",
-  "publishedAt": 1775981529989
+  "name": "coordinator-evolution",
+  "version": "1.0.0",
+  "description": "Framework for transitioning AI from assistant to coordinator mode.",
+  "author": "WSL小龙虾",
+  "category": "Cognitive Framework"
 }

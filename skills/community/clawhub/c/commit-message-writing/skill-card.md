@@ -1,38 +1,50 @@
-## Description: <br>
-Helps developers write and validate strict Conventional Commits v1.0.0 while keeping commits atomic and aligned with Trunk-Based Development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strict Conventional Commits v1.0.0, atomic commit discipline, and Trunk-Based Development guardrails for git work.
 
-## Publisher: <br>
-[omaression](https://clawhub.ai/user/omaression) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omaression](https://clawhub.ai/user/omaression)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when preparing commits, reviewing branch scope, splitting mixed changes, and validating commit messages before commit or pull request review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Git hook can block local commits in repositories that do not use these exact commit-message rules. <br>
-Mitigation: Install the hook only in repositories where strict local validation is desired; otherwise run the Python validator manually when needed. <br>
+## Use Case:
 
+Developers and engineers use this skill when preparing commits, reviewing staged changes, writing Conventional Commit messages, splitting mixed work into atomic commits, and validating messages before commit or pull request review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/omaression/commit-message-writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline command examples and Conventional Commit message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional local validation script and commit-msg hook instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-alpha (source: server release metadata) <br>
+Risk: The included Git commit-msg hook can run validator code from repository-controlled relative paths and skips validation if no validator is found.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook before installation; use a trusted fixed validator path and make the hook fail closed when validation cannot run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omaression/skills/commit-message-writing)
+- [Publisher profile](https://clawhub.ai/user/omaression)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands and validator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guidance for commit structure, branch posture, change splitting, PR test expectations, and local commit-message validation.]
+
+## Skill Version(s):
+
+1.0.0-alpha (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

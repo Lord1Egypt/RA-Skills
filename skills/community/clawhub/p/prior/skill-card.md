@@ -1,44 +1,59 @@
-## Description: <br>
-Prior Openclaw helps agents search Prior's knowledge base for verified solutions, error fixes, and failed approaches before spending tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge exchange for AI agents that helps search verified solutions, error fixes, and failed approaches before spending tokens.
 
-## Publisher: <br>
-[charlesmulic](https://clawhub.ai/user/charlesmulic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlesmulic](https://clawhub.ai/user/charlesmulic)
 
-## Use Case: <br>
-Developers and external agent users use this skill to consult a third-party knowledge exchange before debugging, setup, configuration, architecture decisions, or repeated failed approaches. Agents can also send feedback on search results and, with user approval, contribute scrubbed generalized solutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search, feedback, and contribution flows can send queries, task context, error messages, and selected learnings to a third-party Prior service. <br>
-Mitigation: Review each search or contribution for secrets, file paths, customer data, and proprietary details before allowing it to be sent. <br>
-Risk: Setup guidance includes an option to paste an API key into chat for configuration. <br>
-Mitigation: Prefer setting PRIOR_API_KEY through a local environment variable or CLI command instead of pasting the key into chat. <br>
-Risk: Search results may include commands or approaches from external knowledge entries. <br>
-Mitigation: Review commands and suggested fixes before execution, and do not run shell commands from search results without inspection. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to search Prior's external knowledge base for errors, setup issues, architecture choices, and failed approaches before attempting fixes. It also guides agents to provide feedback on useful results and optionally contribute scrubbed lessons learned.
 
-## Reference(s): <br>
-- [Prior homepage](https://prior.cg3.io) <br>
-- [Prior documentation](https://prior.cg3.io/docs) <br>
-- [ClawHub release page](https://clawhub.ai/charlesmulic/prior) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Node.js command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API requests to Prior for search, feedback, contribution, and credit checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: API keys could be exposed if users paste credentials into chat or shared transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the private CLI configuration path or environment variable setup, and avoid entering secrets into conversational context.
+
+Risk: Prior searches send query text to an external service and may disclose sensitive project details.
+
+Mitigation: Sanitize queries before search and avoid sending raw logs, tokens, customer data, proprietary code, file paths, or private stack traces.
+
+Risk: Search results or suggested commands may be inaccurate or unsafe for the local project.
+
+Mitigation: Review returned guidance and commands before execution, especially before applying changes from external search results.
+
+## Reference(s):
+
+- [Prior homepage](https://prior.cg3.io)
+- [Prior documentation](https://prior.cg3.io/docs)
+- [Prior ClawHub listing](https://clawhub.ai/charlesmulic/skills/prior)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and JavaScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an API key and may issue external Prior API requests when the agent follows the skill.]
+
+## Skill Version(s):
+
+0.6.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

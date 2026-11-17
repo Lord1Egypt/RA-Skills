@@ -1,41 +1,56 @@
-## Description: <br>
-Looks up CCF conference and journal rankings by abbreviation, full name, or DBLP URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询会议/期刊的 CCF 等级。当用户提到 CCF 等级、论文评级、会议排名、期刊等级，或需要查询某个会议/期刊是 CCF-A/B/C 时使用此技能。支持通过会议简称（如 PLDI、ICSE）、全称、或 DBLP URL 查询。
 
-## Publisher: <br>
-[m2kar](https://clawhub.ai/user/m2kar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m2kar](https://clawhub.ai/user/m2kar)
 
-## Use Case: <br>
-Developers and researchers use ccfrank to check whether a computing conference or journal is ranked CCF A, B, C, E, P, or none. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires adding the ccfrank npm CLI to the user's global environment before execution. <br>
-Mitigation: Install only if that local execution model is acceptable, prefer the pinned ccfrank@4.5.5 package metadata for reproducibility, and remove the global package when it is no longer needed. <br>
-Risk: Ranking results may be incomplete or outdated for venues not covered by the CCF March 2026 directory used by the package. <br>
-Mitigation: For consequential decisions, compare returned rankings with the official CCF directory linked in the skill references. <br>
+## Use Case:
 
+External users, developers, and research support agents use this skill to look up CCF conference or journal rankings by abbreviation, full venue name, or DBLP path.
 
-## Reference(s): <br>
-- [CCFrank4dblp homepage](https://github.com/m2kar/CCFrank4dblp) <br>
-- [CCF official directory](https://www.ccf.org.cn/Academic_Evaluation/By_category/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples; lookup responses include structured rank fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the ccfrank npm CLI and the pinned ccfrank@4.5.5 dependency metadata declared by the release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: A global npm install can run a package version other than the reviewed ccfrank package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install `ccfrank@4.5.5` explicitly or use a lockfile-controlled local install before configuring the skill.
+
+Risk: Installing or running the package with elevated privileges increases the impact of any package-level issue.
+
+Mitigation: Install and run with normal user privileges unless the npm package has been separately reviewed for privileged execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m2kar/skills/ccfrank)
+- [Publisher profile](https://clawhub.ai/user/m2kar)
+- [Project homepage](https://github.com/m2kar/CCFrank4dblp)
+- [CCF official directory](https://www.ccf.org.cn/Academic_Evaluation/By_category/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Text]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill's lookup tool returns matched status, rank, canonical venue name, venue type, match method, and normalized source key.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

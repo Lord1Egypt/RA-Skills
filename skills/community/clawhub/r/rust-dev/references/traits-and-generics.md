@@ -2,6 +2,26 @@
 
 Traits are how Rust does polymorphism. Generics give you static dispatch (zero runtime cost). Trait objects (`dyn Trait`) give you dynamic dispatch (one vtable lookup). Traits are not Java/C# interfaces in the way that matters most: there is no runtime cost by default.
 
+## Methods and Constructors: Inherent `impl`
+
+Before traits: a type's own methods live in an `impl` block with no trait name. Methods take `self` in one of its forms; functions without a `self` are *associated functions*, called with `Type::name(...)`, and the conventional constructor is one of them.
+
+```rust
+pub struct Account { id: u64, balance: i64 }
+
+impl Account {
+    pub fn new(id: u64) -> Self {             // associated function: Account::new(1)
+        Self { id, balance: 0 }
+    }
+    pub fn deposit(&mut self, amount: i64) {  // method: account.deposit(5)
+        self.balance += amount;
+    }
+    pub fn balance(&self) -> i64 { self.balance }
+}
+```
+
+The Book is explicit that "`new` isn't a special name and isn't built into the language" - it is convention, so add other constructors freely (`with_capacity`, `from_file`). Rust has no constructor overloading; when a type has many optional settings, use a builder or `Default` plus struct-update syntax (`Config { verbose: true, ..Default::default() }`).
+
 ## Defining and Implementing a Trait
 
 ```rust
@@ -47,6 +67,22 @@ fn greet3(x: &dyn Greet) {
 | `<T: Trait>` | Static (monomorphized) | Larger (one copy per type) | The default for library code |
 | `impl Trait` | Static (monomorphized) | Larger | Same as above; cleaner for one trait bound |
 | `&dyn Trait` / `Box<dyn Trait>` | Dynamic (vtable) | Smaller, one copy | Heterogeneous collections, plugin-like APIs, when you need to store mixed types |
+
+### `impl Trait` in return position
+
+As a *return* type, `impl Trait` means something different: the function picks one concrete type and hides its name. That is how you return an iterator chain or a closure, whose real types you cannot write:
+
+```rust
+fn evens(xs: &[i32]) -> impl Iterator<Item = i32> {
+    xs.iter().copied().filter(|n| n % 2 == 0)
+}
+
+fn make_adder(n: i32) -> impl Fn(i32) -> i32 {
+    move |x| x + n
+}
+```
+
+It is still exactly one type: returning a `Vec` iterator from one branch and a `HashSet` iterator from another does not compile - that is a job for `Box<dyn Iterator>`. Edition 2024 changed what the hidden type may borrow: "all in-scope generic parameters, including lifetime parameters, are implicitly captured", which is why `evens` needs no `+ '_`. When that over-captures (the returned value does not actually borrow the input, but callers cannot drop the input while holding it), narrow it with a precise capture list: `-> impl Iterator<Item = usize> + use<>`.
 
 ### When you actually need `dyn Trait`
 
@@ -248,6 +284,20 @@ impl Iterator for Counter {
 }
 ```
 
+The adapters that replace most hand-written index loops:
+
+```rust
+let v = vec![3, 1, 4, 1, 5];
+for (i, x) in v.iter().enumerate() {}            // instead of for i in 0..v.len()
+let pairs: Vec<_> = v.iter().zip(&v[1..]).collect(); // walk two sequences together
+let has_big = v.iter().any(|&x| x > 4);           // also: all
+let first_one = v.iter().position(|&x| x == 1);   // Option<usize>; find gives the item
+let total = v.iter().fold(0, |acc, x| acc + x);   // general reduce
+for x in v.iter().rev() {}                        // backwards
+```
+
+**Sorting.** `v.sort()` needs `Ord`; `sort_by_key(|u| u.age)` sorts by a derived key, and `sort_unstable` is faster when equal elements may swap. Floats are not `Ord` - `NaN` makes `partial_cmp` return `None` - so `vec_of_f64.sort()` fails with "the trait `Ord` is not implemented for `f64`". Use `v.sort_by(|a, b| a.total_cmp(b))`, which gives every float, including `NaN`, a fixed place.
+
 `for x in collection` desugars to `let mut iter = collection.into_iter(); while let Some(x) = iter.next()`. Three iter methods you must distinguish:
 
 | Method | Yields | When |
@@ -255,6 +305,37 @@ impl Iterator for Counter {
 | `iter()` | `&T` | Read-only iteration |
 | `iter_mut()` | `&mut T` | Modify in place |
 | `into_iter()` | `T` (consumes the collection) | Move items out |
+
+## Closures and the `Fn` Traits
+
+A closure is an anonymous function that can capture its environment. You write them constantly - every `.map(|x| ...)` is one - and they are ordinary values with ordinary trait bounds. There are three traits, and which one a closure implements is decided by what it *does* with what it captured, not by how you wrote it:
+
+| Bound | The closure... | Callable |
+|---|---|---|
+| `Fn` | only reads its captures | many times, from a `&self` |
+| `FnMut` | mutates its captures | many times, needs `&mut` access |
+| `FnOnce` | consumes its captures (moves something out) | exactly once |
+
+They nest: every `Fn` is also an `FnMut` and an `FnOnce`. So take the loosest bound your function actually needs - `FnOnce` for something you call one time, `Fn` when you will call it repeatedly from shared state.
+
+```rust
+fn call_twice(f: impl Fn(i32) -> i32) -> i32 { f(1) + f(2) }
+fn consume(f: impl FnOnce() -> String) -> String { f() }
+
+let factor = 3;
+call_twice(|x| x * factor);          // Fn: only reads `factor`
+
+let mut log = Vec::new();
+let mut record = |x| log.push(x);    // FnMut: mutates `log`
+record(1);
+
+let owned = String::from("hi");
+consume(move || owned);              // FnOnce: moves `owned` out
+```
+
+`move` forces the closure to take ownership of everything it captures rather than borrowing. You need it whenever the closure outlives the current scope - `thread::spawn`, `tokio::spawn`, anything stored in a struct - which is why those signatures also demand `'static`. Note `move` and `FnOnce` are unrelated: a `move` closure that only reads its captures is still `Fn`.
+
+When a trait has one method and no state, a closure is usually the better abstraction than the trait - see the anti-patterns below.
 
 ## Common Standard Library Traits to Know
 

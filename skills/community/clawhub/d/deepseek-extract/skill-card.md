@@ -1,44 +1,58 @@
-## Description: <br>
-Extract full conversation content from DeepSeek shared chat links and export the conversation as Markdown or JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract full conversation content from DeepSeek shared chat links and export the conversation as Markdown or JSON.
 
-## Publisher: <br>
-[zz0116](https://clawhub.ai/user/zz0116) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zz0116](https://clawhub.ai/user/zz0116)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to extract authorized DeepSeek shared-chat conversations into local Markdown or JSON transcripts for review, archiving, or downstream formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Markdown or JSON transcripts may contain sensitive conversation content. <br>
-Mitigation: Store outputs only in approved local paths and avoid shared or synced locations unless the content is approved for that use. <br>
-Risk: The skill exports DeepSeek shared chats and could be misused on content the user is not authorized to access. <br>
-Mitigation: Run it only for DeepSeek share links the user is authorized to view and export. <br>
-Risk: The Playwright dependency installs and runs a local Chromium browser. <br>
-Mitigation: Use a virtual environment for installation and review browser automation commands before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to extract conversations from DeepSeek share URLs they are authorized to access and save the results locally for review or reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zz0116/deepseek-extract) <br>
-- [Publisher profile](https://clawhub.ai/user/zz0116) <br>
-- [Project homepage](https://github.com/zz0116/deepseek-extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown transcript by default, or structured JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local transcript file from an authorized DeepSeek share URL; default output path is ./deepseek_conversation.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server-resolved release metadata) <br>
+Risk: DeepSeek shared conversations may contain sensitive or private content saved to local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only share links the user is allowed to access, choose the output path deliberately, and delete or protect exported transcript files after use.
+
+Risk: Browser automation and Playwright dependencies expand the local execution environment.
+
+Mitigation: Install Playwright and Chromium in an isolated virtual environment or container and pin reviewed dependency versions in stricter environments.
+
+Risk: Automated extraction can fail or return incomplete content when a page is slow, lazy-loaded, or protected by anti-bot controls.
+
+Mitigation: Verify the exported file before relying on it, retry with a longer timeout or headed mode when needed, and fall back to manual copying if automated access is blocked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zz0116/skills/deepseek-extract)
+- [Project homepage](https://github.com/zz0116/deepseek-extract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON files with command-line status messages and agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output path is ./deepseek_conversation.md; JSON output is available with the --format json option.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

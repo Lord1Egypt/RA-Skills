@@ -1,0 +1,13 @@
+{
+  "id":       {"_type": "Value", "dtype": "string"},
+  "title":    {"_type": "Value", "dtype": "string"},
+  "context":  {"_type": "Value", "dtype": "string"},
+  "question": {"_type": "Value", "dtype": "string"},
+  "answers":  {
+    "_type": "struct",
+    "fields": {
+      "text":         {"_type": "Sequence", "feature": {"_type": "Value", "dtype": "string"}},
+      "answer_start": {"_type": "Sequence", "feature": {"_type": "Value", "dtype": "int32"}}
+    }
+  }
+}

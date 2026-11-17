@@ -1,45 +1,59 @@
-## Description: <br>
-OpenClaw infrastructure heartbeat monitoring and automatic recovery for deploying or removing a heartbeat daemon, configuring host and Gateway checks, setting Feishu alerts, and restarting a failed Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Auto Recovery helps agents install, configure, and operate an OpenClaw heartbeat daemon that monitors Gateway connectivity and host resources, sends Feishu alerts, and attempts automatic Gateway recovery.
 
-## Publisher: <br>
-[u0003-yxuan](https://clawhub.ai/user/u0003-yxuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[u0003-yxuan](https://clawhub.ai/user/u0003-yxuan)
 
-## Use Case: <br>
-Developers and operators use this skill to install and manage an OpenClaw heartbeat daemon that monitors Gateway availability, host resources, and process health, sends Feishu alerts, and attempts automatic Gateway recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installed heartbeat service runs continuously and can restart OpenClaw Gateway automatically. <br>
-Mitigation: Install it only on systems where automatic Gateway recovery is intended, and review the systemd service and recovery behavior before enabling it. <br>
-Risk: The configuration file contains Feishu credentials, Gateway tokens, and notification targets. <br>
-Mitigation: Use only a configuration file you created and trust, keep config.env permission-restricted, and rotate credentials if the file is exposed. <br>
-Risk: The daemon sources shell configuration and can edit or roll back OpenClaw configuration files. <br>
-Mitigation: Avoid --config paths from other users or downloads, inspect configuration values before use, and keep separate backups of important OpenClaw settings. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and manage OpenClaw heartbeat monitoring, Feishu alerting, and automatic Gateway recovery on hosts running OpenClaw.
 
-## Reference(s): <br>
-- [Configuration Reference](artifact/references/configure.md) <br>
-- [Release Notes](artifact/RELEASE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/u0003-yxuan/openclaw-auto-recovery) <br>
-- [Publisher Profile](https://clawhub.ai/user/u0003-yxuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and configuration file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for installing, configuring, monitoring, restarting, and uninstalling the heartbeat daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter, release evidence) <br>
+Risk: The daemon uses persistent automation that can restart OpenClaw Gateway and overwrite OpenClaw configuration during recovery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before deployment, test recovery behavior in a controlled environment, and keep independent backups of OpenClaw configuration.
+
+Risk: The configuration file is sourced by shell scripts, so untrusted config values can execute code.
+
+Mitigation: Create config.env from trusted input only, restrict file permissions, and review changes before restarting the daemon.
+
+Risk: Feishu and Gateway secrets are required for alerting and health checks.
+
+Mitigation: Protect config.env, rotate exposed credentials, and limit access to the host account running the user systemd service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/u0003-yxuan/skills/openclaw-auto-recovery)
+- [Configuration Reference](references/configure.md)
+- [Release Notes](RELEASE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent systemd user services, local configuration files, and recovery actions that affect an OpenClaw Gateway installation.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

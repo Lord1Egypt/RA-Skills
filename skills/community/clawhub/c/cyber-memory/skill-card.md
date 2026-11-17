@@ -1,41 +1,58 @@
-## Description: <br>
-Five-layer memory system with automatic fact extraction via local LLM (Ollama) that processes session transcripts locally with no external API required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Five-layer memory system with automatic fact extraction via local LLM (Ollama) that processes session transcripts locally with no external API required by default.
 
-## Publisher: <br>
-[witnesssun](https://clawhub.ai/user/witnesssun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[witnesssun](https://clawhub.ai/user/witnesssun)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve long-term agent memory, extract structured facts from recent sessions, and configure searchable local memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically reads private session transcripts and stores extracted facts and snapshots in local memory files. <br>
-Mitigation: Review before installation when sessions may contain secrets, personal data, or proprietary work, and periodically inspect or delete files written under workspace/memory. <br>
-Risk: A configurable OpenAI-compatible endpoint and API key path can send transcript-derived content outside the local machine if changed from the default. <br>
-Mitigation: Keep baseUrl on localhost for private use and remove or isolate OPENAI_API_KEY unless external processing is intentional. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add local-first persistent memory, fact extraction, session snapshots, and searchable session continuity to an agent workspace.
 
-## Reference(s): <br>
-- [Cyber Memory on ClawHub](https://clawhub.ai/witnesssun/cyber-memory) <br>
-- [Ollama](https://ollama.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON5 configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes extracted facts, pre-compaction snapshots, and session reset logs as local Markdown files under workspace/memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The hook reads recent session transcripts and writes memory files automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where automatic transcript summarization and local memory writes are acceptable.
+
+Risk: Recent transcript content and an API key can be sent to a configurable OpenAI-compatible endpoint.
+
+Mitigation: Keep baseUrl pointed at localhost for local Ollama processing unless remote processing is intentional and trusted.
+
+Risk: A global OpenAI provider key or OPENAI_API_KEY could be forwarded to an untrusted endpoint if configuration is changed.
+
+Mitigation: Review hook configuration before enabling it and avoid exposing global provider keys in environments that use untrusted endpoints.
+
+## Reference(s):
+
+- [Cyber Memory on ClawHub](https://clawhub.ai/witnesssun/skills/cyber-memory)
+- [Ollama](https://ollama.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON5 configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local Markdown memory files, extracted facts, compaction snapshots, and session reset logs when the hook runs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

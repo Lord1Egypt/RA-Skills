@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn72jdejc8themqrpfh54cbt1n82mb1y",
+  "ownerId": "zhouyi531",
   "slug": "openclaw-role-builder",
   "version": "1.0.2",
-  "publishedAt": 1774701138992
+  "publishedAt": "2026-03-28T00:00:00Z",
+  "requiredEnvVars": [],
+  "requiredConfigPaths": [
+    "~/.openclaw/ROLES.json",
+    "~/.openclaw/workspace"
+  ],
+  "credentialSetup": {
+    "type": "manual",
+    "description": "TuQu service key obtained from https://billing.tuqu.ai/dream-weaver/dashboard — passed at runtime via --service-key, never stored to disk."
+  },
+  "requires": {
+    "anyBinaries": ["python3"],
+    "os": ["linux", "macos", "windows"]
+  }
 }

@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "video_id": {
+      "type": "string",
+      "minLength": 11,
+      "maxLength": 11,
+      "pattern": "^[A-Za-z0-9_-]{11}$"
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 35,
+      "pattern": "^[A-Za-z0-9-]+$",
+      "default": "en"
+    },
+    "auto": {
+      "type": "boolean",
+      "default": true,
+      "description": "true selects automatically generated captions; false selects manually provided captions. Does not fall back between the two."
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "realtime",
+        "async"
+      ],
+      "default": "realtime"
+    }
+  },
+  "required": [
+    "video_id"
+  ]
+}

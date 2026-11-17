@@ -1,46 +1,64 @@
-## Description: <br>
-GEO Content Writer turns Dageno prompt opportunities into a real-fanout backlog, editorial brief, draft and review contracts, and publish-ready GEO content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO Content Writer turns Dageno GEO prompt opportunities into a real-fanout backlog, then produces an editorial brief, draft and review contracts, a publish-ready article, and optional WordPress handoff.
 
-## Publisher: <br>
-[geo-seo](https://clawhub.ai/user/geo-seo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geo-seo](https://clawhub.ai/user/geo-seo)
 
-## Use Case: <br>
-GEO, SEO, agency, and brand content teams use this skill to convert Dageno opportunity data into a prioritized content backlog and one publish-ready article package at a time. Developers and agent operators can also use its CLI workflow to generate backlog JSON, editorial payloads, markdown drafts, quality-gate reports, and optional WordPress handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional WordPress commands can create, update, or publish live site content, including batch posts. <br>
-Mitigation: Use a least-privilege WordPress application password, run against a staging site first, keep status set to draft until human review, and avoid exposing WordPress credentials in drafting-only sessions. <br>
-Risk: Generated articles may move from draft to public content through the optional publishing workflow. <br>
-Mitigation: Require editorial review and quality-gate checks before publishing, and test batch publishing behavior before using it on a production site. <br>
+## Use Case:
 
+External GEO, SEO, agency, and content operations teams use this skill to convert Dageno opportunity data into a prioritized fanout backlog and one publish-ready article package from a selected backlog row.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/geo-seo/geo-content-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/geo-seo) <br>
-- [Project homepage](https://github.com/GEO-SEO/geo-content-writer) <br>
-- [Dageno](https://dageno.ai/?utm_source=github&utm_medium=social&utm_campaign=official) <br>
-- [Pipeline spec](references/pipeline-spec.md) <br>
-- [Article generation payload schema](schemas/article_generation_payload_schema.json) <br>
-- [Output schema](schemas/output_schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON backlog and payload files, Markdown articles, CLI command guidance, and optional WordPress post handoff.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local backlog and article files; optional WordPress commands can create, update, or publish remote posts when credentials and status options are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release metadata, skill metadata, and pyproject.toml) <br>
+Risk: The skill can publish generated content to WordPress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep WordPress status at draft unless a human explicitly approves publication, and review generated articles before publishing.
+
+Risk: Credential destination controls are weak for Dageno and WordPress integrations.
+
+Mitigation: Use least-privilege Dageno and WordPress credentials, install only when the publisher is trusted, and use HTTPS-only trusted site URLs.
+
+Risk: Citation-page crawling can fetch external pages during article preparation.
+
+Mitigation: Run citation crawling in a network-restricted environment when possible and avoid custom Dageno base URLs outside controlled testing.
+
+Risk: Generated article examples show possible quality and topic-consistency issues.
+
+Mitigation: Run the article quality gate and require human editorial review before publication.
+
+## Reference(s):
+
+- [GEO Content Writer ClawHub page](https://clawhub.ai/geo-seo/skills/geo-content-writer)
+- [GEO Content Writer repository homepage](https://github.com/GEO-SEO/geo-content-writer)
+- [Dageno](https://dageno.ai/?utm_source=github&utm_medium=social&utm_campaign=official)
+- [Pipeline Spec](references/pipeline-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON payloads, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces fanout backlog JSON, publish-ready payload JSON, decision-grade Markdown articles, quality-gate results, and optional WordPress draft or publish handoff.]
+
+## Skill Version(s):
+
+0.7.3 (source: frontmatter, pyproject.toml, manifest.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

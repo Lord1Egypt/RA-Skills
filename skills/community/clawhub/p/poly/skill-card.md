@@ -1,41 +1,56 @@
-## Description: <br>
-Trade Polymarket BTC 5-minute and 15-minute fast markets using CEX price momentum signals via Simmer API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket BTC 5-minute and 15-minute fast markets using CEX price momentum signals via Simmer API.
 
-## Publisher: <br>
-[leogordon2004](https://clawhub.ai/user/leogordon2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leogordon2004](https://clawhub.ai/user/leogordon2004)
 
-## Use Case: <br>
-External users and developers use this skill to configure and run an agent-guided Polymarket fast-market trading workflow with dry-run checks, optional live execution, position monitoring, and configurable signal thresholds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live mode can automatically spend real USDC without a second confirmation or strong built-in loss limits. <br>
-Mitigation: Start in dry-run, use small max-position settings, verify the publisher and version, and add external spend or loss limits before live use. <br>
-Risk: Running live quiet mode from cron or heartbeat can repeat trades with little visible feedback. <br>
-Mitigation: Avoid unattended live --quiet loops unless there is a clear stop mechanism, monitoring, and enforced budget limits. <br>
-Risk: A custom SIMMER_API_BASE can send authenticated requests to an endpoint the user controls or trusts incorrectly. <br>
-Mitigation: Leave SIMMER_API_BASE unset for the default Simmer endpoint unless the replacement endpoint has been explicitly verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leogordon2004/poly) <br>
+## Use Case:
 
+External developers and trading agents use this skill to configure and run short-window Polymarket trading cycles driven by Binance or CoinGecko price momentum signals. It supports dry-run analysis, live trade execution, position checks, smart sizing, and configuration updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live trading requires SIMMER_API_KEY and an explicit --live flag.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The server security summary reports that dry-run mode can still make an authenticated remote Simmer market-import/share request before stopping short of a trade.
+
+Mitigation: Use a controlled account and API key, test with strict limits, and do not treat dry-run as side-effect free.
+
+Risk: Live or scheduled runs can execute automated Polymarket trades with real USDC.
+
+Mitigation: Require explicit live-mode approval, set conservative max_position and smart-sizing limits, and review any cron or heartbeat setup as live automated trading.
+
+Risk: The security guidance warns about untrusted tradejournal modules on the Python import path.
+
+Mitigation: Run the skill in an isolated Python environment and keep untrusted modules off the import path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leogordon2004/skills/poly)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON configuration, and Python script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY for authenticated Simmer API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

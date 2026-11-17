@@ -1,41 +1,54 @@
-## Description: <br>
-AI-powered tool that summarizes meetings, extracts prioritized action items, and drafts clear follow-up emails with owners and deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered tool that summarizes meetings, extracts prioritized action items, and drafts clear follow-up emails with owners and deadlines.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Teams and knowledge workers use this skill to turn meeting transcripts or notes into concise summaries, decisions, open questions, action items, and follow-up email drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries or follow-up emails may expose confidential meeting content, personal data, HR or legal topics, secrets, or client-sensitive details if shared without review. <br>
-Mitigation: Review and redact sensitive details before sharing generated notes or email drafts. <br>
-Risk: Action items may incorrectly infer owners, deadlines, priorities, or decisions from ambiguous transcripts. <br>
-Mitigation: Have meeting participants confirm owners, deadlines, priorities, and decisions before relying on the output. <br>
+## Use Case:
 
+Employees, managers, and teams use this skill to turn meeting transcripts or notes into concise summaries, prioritized action items, decisions, open questions, and follow-up email drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/the-director-meeting-intelligence) <br>
-- [Source skill file](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting summaries, action-item tables, and follow-up email drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided transcript or meeting notes; best with speaker labels and clear dates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and artifact metadata) <br>
+Risk: Meeting transcripts or notes may contain confidential, regulated, or highly personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content your organization permits you to share with an agent, and redact sensitive details when appropriate.
+
+Risk: Broad meeting-related triggers may activate the skill for adjacent requests such as action item extraction or follow-up email drafting.
+
+Mitigation: For ambiguous requests, confirm that the user wants meeting-summary or meeting-follow-up behavior before applying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/the-director-meeting-intelligence)
+- [Publisher profile](https://clawhub.ai/user/di5cip1e)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and email drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces meeting summaries, action item tables with owners and deadlines, and follow-up email drafts from user-provided meeting content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 # ILIB\_DeviceExtendPropertyItem interface
 
-器件扩展属性
+Device extension property
 
 ## Signature
 
 ```typescript
-interface ILIB_DeviceExtendPropertyItem 
+interface ILIB_DeviceExtendPropertyItem
 ```
 
 ## Properties
@@ -14,211 +14,167 @@ interface ILIB_DeviceExtendPropertyItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [addIntoBom?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 加入 BOM
-
+_(Optional)_ Add to BOM
 
 </td></tr>
 <tr><td>
 
 [addIntoPcb?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 转到 PCB
-
+_(Optional)_ Transfer to PCB
 
 </td></tr>
 <tr><td>
 
 [designator?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 位号
-
+_(Optional)_ Designator
 
 </td></tr>
 <tr><td>
 
 [manufacturer?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 制造商
-
+_(Optional)_ Manufacturer
 
 </td></tr>
 <tr><td>
 
 [manufacturerId?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 制造商编号
-
+_(Optional)_ Manufacturer ID
 
 </td></tr>
 <tr><td>
 
 [name?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 名称
-
+_(Optional)_ Name
 
 </td></tr>
 <tr><td>
 
 [net?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 网络
-
+_(Optional)_ Net
 
 </td></tr>
 <tr><td>
 
 [otherProperty?](./ILIB_DeviceExtendPropertyItem.md)
 
+</td><td>
 
 </td><td>
 
+Record&lt;string, boolean \| number \| string \| undefined&gt;
 
 </td><td>
 
-\{ \[key: string\]: boolean \| number \| string \| undefined; \}
-
-
-</td><td>
-
-_(Optional)_ 其它属性
-
+_(Optional)_ Other property
 
 </td></tr>
 <tr><td>
 
 [supplier?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 供应商
-
+_(Optional)_ Supplier
 
 </td></tr>
 <tr><td>
 
 [supplierId?](./ILIB_DeviceExtendPropertyItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 供应商编号
-
+_(Optional)_ Supplier ID
 
 </td></tr>
 </tbody></table>
@@ -231,7 +187,7 @@ _(Optional)_ 供应商编号
 
 # ILIB\_DeviceExtendPropertyItem.addIntoBom property
 
-加入 BOM
+Add to BOM
 
 ## Signature
 
@@ -243,7 +199,7 @@ addIntoBom?: boolean;
 
 # ILIB\_DeviceExtendPropertyItem.addIntoPcb property
 
-转到 PCB
+Transfer to PCB
 
 ## Signature
 
@@ -255,7 +211,7 @@ addIntoPcb?: boolean;
 
 # ILIB\_DeviceExtendPropertyItem.designator property
 
-位号
+Designator
 
 ## Signature
 
@@ -267,7 +223,7 @@ designator?: string;
 
 # ILIB\_DeviceExtendPropertyItem.manufacturer property
 
-制造商
+Manufacturer
 
 ## Signature
 
@@ -279,7 +235,7 @@ manufacturer?: string;
 
 # ILIB\_DeviceExtendPropertyItem.manufacturerId property
 
-制造商编号
+Manufacturer ID
 
 ## Signature
 
@@ -291,7 +247,7 @@ manufacturerId?: string;
 
 # ILIB\_DeviceExtendPropertyItem.name property
 
-名称
+Name
 
 ## Signature
 
@@ -303,7 +259,7 @@ name?: string;
 
 # ILIB\_DeviceExtendPropertyItem.net property
 
-网络
+Net
 
 ## Signature
 
@@ -315,21 +271,19 @@ net?: string;
 
 # ILIB\_DeviceExtendPropertyItem.otherProperty property
 
-其它属性
+Other property
 
 ## Signature
 
 ```typescript
-otherProperty?: {
-        [key: string]: boolean | number | string | undefined;
-    };
+otherProperty?: Record<string, boolean | number | string | undefined>;
 ```
 
 ### supplier
 
 # ILIB\_DeviceExtendPropertyItem.supplier property
 
-供应商
+Supplier
 
 ## Signature
 
@@ -341,7 +295,7 @@ supplier?: string;
 
 # ILIB\_DeviceExtendPropertyItem.supplierId property
 
-供应商编号
+Supplier ID
 
 ## Signature
 

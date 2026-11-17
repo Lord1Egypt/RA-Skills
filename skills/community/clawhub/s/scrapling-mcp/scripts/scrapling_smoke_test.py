@@ -1,165 +1,135 @@
 #!/usr/bin/env python3
-"""Scrapling smoke test / mini-extractor.
+"""Check fetching and optional Next.js JSON extraction with Scrapling 0.5.x.
 
 Usage:
-  python scrapling_smoke_test.py URL [URL ...] --fetcher fetcher|stealthy|dynamic [--extract next_data]
+  python scrapling_smoke_test.py URL [URL ...] --fetcher fetcher|stealthy
+  python scrapling_smoke_test.py URL --extract next_data
+  python scrapling_smoke_test.py URL --fetcher stealthy --no-headless
 
-Notes:
-- Dynamic fetcher requires Playwright browsers: `playwright install chromium`.
+Install: python -m pip install "scrapling[fetchers]>=0.5,<0.6"
+Browser mode also needs: scrapling install
+Exit 1 means a fetch/HTTP error, failed requested extraction, or a heuristic
+indicator when --fail-on-indicator is set. Indicators otherwise warn only;
+ordinary pages can legitimately mention CAPTCHA or include Turnstile scripts.
+Exit 2 means invalid arguments or unavailable dependencies.
 """
 
 from __future__ import annotations
 
 import argparse
+from html.parser import HTMLParser
 import json
-import re
 import sys
-from typing import Any, Iterable
+from typing import Any
+
+
+BLOCK_INDICATORS = (
+    "something went wrong", "enable javascript", "turnstile", "captcha",
+    "access denied", "verify you are human", "cf-chl-",
+)
 
 
 def _pick_fetcher(kind: str):
-    kind = kind.lower().strip()
     if kind == "fetcher":
         from scrapling.fetchers import Fetcher
 
-        return ("Fetcher", lambda url, **kw: Fetcher.get(url, **kw))
+        return "Fetcher", Fetcher.get
     if kind == "stealthy":
         from scrapling.fetchers import StealthyFetcher
 
-        return (
-            "StealthyFetcher",
-            lambda url, **kw: StealthyFetcher.fetch(url, **kw),
-        )
-    if kind == "dynamic":
-        from scrapling.fetchers import DynamicFetcher
-
-        return (
-            "DynamicFetcher",
-            lambda url, **kw: DynamicFetcher.fetch(url, **kw),
-        )
-    raise SystemExit(f"Unknown --fetcher kind: {kind}")
+        return "StealthyFetcher", StealthyFetcher.fetch
+    raise ValueError(f"Unknown fetcher: {kind}")
 
 
-def _extract_next_data(html: str) -> dict[str, Any] | None:
-    m = re.search(
-        r'__NEXT_DATA__" type="application/json">(.*?)</script>', html, re.S
+class _NextDataParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=False)
+        self.active = False
+        self.parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "script" and dict(attrs).get("id") == "__NEXT_DATA__":
+            self.active = True
+
+    def handle_data(self, data: str) -> None:
+        if self.active:
+            self.parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "script":
+            self.active = False
+
+
+def _extract_next_data(html: str) -> Any:
+    parser = _NextDataParser()
+    parser.feed(html)
+    parser.close()
+    if not parser.parts:
+        raise ValueError("__NEXT_DATA__ script not found or empty")
+    return json.loads("".join(parser.parts))
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("urls", nargs="+", help="One or more URLs")
+    parser.add_argument("--fetcher", choices=["fetcher", "stealthy"], default="fetcher")
+    parser.add_argument("--extract", choices=["none", "next_data"], default="none")
+    parser.add_argument("--timeout", type=float, default=60, help="Timeout in seconds")
+    parser.add_argument("--headless", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--solve-cloudflare", action="store_true", help="Browser mode only")
+    parser.add_argument(
+        "--fail-on-indicator", action="store_true",
+        help="Fail on heuristic block keywords (default: warn only)",
     )
-    if not m:
-        return None
+    args = parser.parse_args(argv)
+    if args.timeout <= 0:
+        parser.error("--timeout must be positive")
+    if args.fetcher == "fetcher" and args.solve_cloudflare:
+        parser.error("--solve-cloudflare requires --fetcher stealthy")
+
     try:
-        return json.loads(m.group(1))
-    except json.JSONDecodeError:
-        return None
+        fetcher_name, fetch = _pick_fetcher(args.fetcher)
+    except ImportError as exc:
+        print(
+            f"Dependency import failed: {exc}. Install with this Python: "
+            'python -m pip install "scrapling[fetchers]>=0.5,<0.6"',
+            file=sys.stderr,
+        )
+        return 2
 
-
-def _find_strings(obj: Any, needles: Iterable[str]) -> list[tuple[str, str]]:
-    needles = list(needles)
-    out: list[tuple[str, str]] = []
-
-    def walk(x: Any, path: str):
-        if isinstance(x, dict):
-            for k, v in x.items():
-                walk(v, f"{path}/{k}")
-        elif isinstance(x, list):
-            for i, v in enumerate(x):
-                walk(v, f"{path}[{i}]")
-        else:
-            if isinstance(x, str) and any(n in x for n in needles):
-                out.append((path, x))
-
-    walk(obj, "")
-    return out
-
-
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("urls", nargs="+", help="One or more URLs")
-    ap.add_argument(
-        "--fetcher",
-        default="fetcher",
-        choices=["fetcher", "stealthy", "dynamic"],
-        help="Which Scrapling fetcher to use",
-    )
-    ap.add_argument(
-        "--extract",
-        default="none",
-        choices=["none", "next_data"],
-        help="Optional specialized extraction",
-    )
-    ap.add_argument("--timeout", type=int, default=60, help="Timeout seconds")
-    ap.add_argument(
-        "--headless",
-        action="store_true",
-        default=True,
-        help="(Dynamic/Stealthy) headless browser",
-    )
-
-    args = ap.parse_args()
-
-    fetcher_name, fetch = _pick_fetcher(args.fetcher)
-
+    failed = False
     for url in args.urls:
-        print(f"\n=== {url}")
-        print(f"fetcher: {fetcher_name}")
-
-        kw = {}
-        if args.fetcher in ("stealthy", "dynamic"):
-            kw.update(
-                {
-                    "headless": bool(args.headless),
-                    "network_idle": True,
-                }
+        print(f"\n=== {url}\nfetcher: {fetcher_name}")
+        options: dict[str, Any] = {"timeout": args.timeout}
+        if args.fetcher == "stealthy":
+            options.update(
+                timeout=args.timeout * 1000, headless=args.headless,
+                network_idle=True, solve_cloudflare=args.solve_cloudflare,
+                google_search=False,
             )
-        if args.fetcher == "fetcher":
-            kw.update({"timeout": args.timeout})
-        else:
-            # milliseconds for Playwright-based fetchers
-            kw.update({"timeout": args.timeout * 1000})
-
         try:
-            resp = fetch(url, **kw)
-        except Exception as e:
-            print(f"ERROR: {type(e).__name__}: {e}")
-            continue
+            response = fetch(url, **options)
+            html = response.html_content or ""
+            print("status:", response.status)
+            print("html_len:", len(html))
+            if not 200 <= response.status < 400:
+                failed = True
+            for indicator in BLOCK_INDICATORS:
+                if indicator in html.lower():
+                    print("possible_block_indicator:", indicator)
+                    if args.fail_on_indicator:
+                        failed = True
+            title = response.css("title::text").get()
+            if title:
+                print("title:", title[:240])
+            if args.extract == "next_data":
+                data = _extract_next_data(html)
+                print("next_data:", json.dumps(data, ensure_ascii=False))
+        except Exception as exc:
+            print(f"ERROR: {type(exc).__name__}: {exc}", file=sys.stderr)
+            failed = True
 
-        status = getattr(resp, "status", None)
-        html = getattr(resp, "html_content", None) or ""
-
-        print("status:", status)
-        print("html_len:", len(html))
-
-        # quick indicators
-        low = html.lower()
-        for needle in [
-            "something went wrong",
-            "enable javascript",
-            "turnstile",
-            "captcha",
-            "access denied",
-        ]:
-            if needle in low:
-                print("indicator:", needle)
-
-        # meta/title
-        try:
-            title = resp.css("title::text").get()
-        except Exception:
-            title = None
-        if title:
-            print("title:", title[:240])
-
-        if args.extract == "next_data":
-            nd = _extract_next_data(html)
-            if not nd:
-                print("next_data: not found")
-            else:
-                hits = _find_strings(nd, ["Yapay", "Üretken", "Atölye", "Atolye"])
-                print("next_data: found, hits:", len(hits))
-                for p, s in hits[:25]:
-                    s1 = s.replace("\n", " ").strip()
-                    print(" ", p, "=>", s1[:240])
-
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

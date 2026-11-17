@@ -1,43 +1,56 @@
-## Description: <br>
-Retrieve and summarize trending public playlists, songs, and artist metrics from Kuwo Music for analysis and lightweight reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves and summarizes trending public playlists, songs, and artist metrics from Kuwo Music for lightweight analysis and reporting.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Users use this skill to inspect public Kuwo Music playlists, charts, song pages, and artist pages, then produce lightweight trend summaries and comparison reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logged-in Kuwo pages may expose personal information visible in the active session. <br>
-Mitigation: Use the skill intentionally on logged-in pages and review summaries before sharing them. <br>
-Risk: Automating music pages can drift into bulk scraping, downloads, account actions, or attempts to bypass platform controls. <br>
-Mitigation: Limit use to public-page summaries, control request frequency, and avoid downloads, bulk collection, account actions, and bypass techniques. <br>
+## Use Case:
 
+Developers and analysts use this skill to inspect public Kuwo Music playlists, charts, songs, and artist pages, then summarize engagement metrics and style or language distributions for internal analysis and notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/kuwo) <br>
-- [Kuwo Music homepage](https://www.kuwo.cn/) <br>
-- [Kuwo Music rank list](https://www.kuwo.cn/rankList) <br>
-- [Kuwo Music search](https://www.kuwo.cn/search/list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with extracted public-page metrics and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No downloads, platform-bypass steps, bulk scraping, or account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to browse and summarize Kuwo Music pages that are dynamically rendered or protected by platform controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep activity limited to public pages or explicitly requested personal-page organization, open dynamic pages manually when needed, and do not bypass platform controls.
+
+Risk: Music-platform analysis can drift into downloads, bulk scraping, account actions, or use of non-public data.
+
+Mitigation: Avoid downloads, bulk collection, automated account interactions, and non-public content; use results only for lightweight internal analysis and notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/kuwo)
+- [Kuwo Music homepage](https://www.kuwo.cn/)
+- [Kuwo Music ranking page](https://www.kuwo.cn/rankList)
+- [Kuwo Music search page](https://www.kuwo.cn/search/list)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and structured metric descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include links, public engagement counts, time-window comparisons, and style or language distribution summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

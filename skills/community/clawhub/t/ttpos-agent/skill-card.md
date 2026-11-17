@@ -1,45 +1,60 @@
-## Description: <br>
-Queries TTPOS restaurant operating data through the ttpos-agent API and helps agents generate business, order, payment, menu item, member, shift, and time-period reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries TTPOS restaurant business data through the ttpos-agent API and helps produce revenue, order, payment, menu item, member, shift, and time-period reports after first fetching the service query guide.
 
-## Publisher: <br>
-[BenDaye](https://clawhub.ai/user/BenDaye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bendaye](https://clawhub.ai/user/bendaye)
 
-## Use Case: <br>
-External operators and support agents use this skill to query authorized TTPOS restaurant reporting data, build scoped SQL requests, and summarize sales, order, payment, item, member, shift, and time-period results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an API key to access restaurant reporting data. <br>
-Mitigation: Use a dedicated, least-privilege key when available, store it only in the skill configuration, and revoke it when access is no longer needed. <br>
-Risk: Broad or imprecise reporting queries can expose more business or member detail than needed. <br>
-Mitigation: Scope requests to specific merchants and date ranges, avoid unnecessary member-level details, and keep single-query ranges limited. <br>
-Risk: Incorrect SQL or stale schema assumptions can produce misleading reports. <br>
-Mitigation: Fetch the ttpos-agent query guide before constructing SQL, prefer documented statistics tables, apply delete-time filtering, and use limits for larger result sets. <br>
+## Use Case:
 
+External TTPOS users and operators use this skill to ask for restaurant sales, order, payment, item ranking, member, shift, and time-period summaries. The agent fetches the service query guide, selects an accessible merchant, submits SELECT-style SQL to the ttpos-agent API, and returns concise human-facing report summaries.
 
-## Reference(s): <br>
-- [TTPOS Agent on ClawHub](https://clawhub.ai/BenDaye/ttpos-agent) <br>
-- [BenDaye ClawHub Profile](https://clawhub.ai/user/BenDaye) <br>
-- [Light Bridge Service](https://claw.doge6.com) <br>
-- [ttpos-agent Web Panel](https://claw.doge6.com/web/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, SQL, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries with API request examples and scoped SQL query guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LIGHT_BRIDGE_API_KEY and uses LIGHT_BRIDGE_URL for ttpos-agent API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill sends a bearer token and merchant data to an external ttpos-agent service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the service is trusted and use a least-privilege, preferably read-only API key.
+
+Risk: The agent submits generated SQL to the service, and package evidence does not show backend safeguards.
+
+Mitigation: Confirm the service enforces tenant isolation, SELECT-only execution, row or date limits, SQL auditing, and a trusted query guide source before use.
+
+Risk: Missing or stale query guidance can cause incorrect table names, field use, or duplicated statistics.
+
+Mitigation: Fetch GET /api/v1/query/guide before constructing SQL and keep individual query ranges limited as directed by the skill.
+
+## Reference(s):
+
+- [TTPOS Agent ClawHub page](https://clawhub.ai/bendaye/skills/ttpos-agent)
+- [bendaye publisher profile](https://clawhub.ai/user/bendaye)
+- [ttpos-agent service endpoint](https://claw.doge6.com)
+- [ttpos-agent Web panel](https://claw.doge6.com/web/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or concise text summaries with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LIGHT_BRIDGE_API_KEY and communicates with the ttpos-agent external API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

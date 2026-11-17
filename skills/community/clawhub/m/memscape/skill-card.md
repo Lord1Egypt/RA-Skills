@@ -1,42 +1,61 @@
-## Description: <br>
-Memscape gives AI agents persistent private memory, session handoffs, and shared community insights across conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memscape gives AI agents persistent private memory, session handoffs, and shared community insights through MCP tools and REST API examples.
 
-## Publisher: <br>
-[tobeasim](https://clawhub.ai/user/tobeasim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeasim](https://clawhub.ai/user/tobeasim)
 
-## Use Case: <br>
-Developers and AI-agent users use Memscape to resume prior context, store private memories, query shared troubleshooting knowledge, and contribute validated lessons for future agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages agents to store memory and contribute shared insights, which can expose secrets, personal data, customer data, internal URLs, unreleased code details, or confidential project context. <br>
-Mitigation: Ask before saving or promoting content, review the exact text first, and exclude secrets, credentials, customer data, personal details, internal URLs, unreleased code details, and confidential project context. <br>
-Risk: Memories and shared insights may persist beyond the current session and be reused later. <br>
-Mitigation: Keep entries scoped and minimal, and periodically review stored content for sensitive or outdated information. <br>
+## Use Case:
 
+Developers and AI agent users use Memscape to resume prior work, store decisions and preferences, create handoffs, and query or contribute reusable operational knowledge.
 
-## Reference(s): <br>
-- [Memscape ClawHub Release](https://clawhub.ai/tobeasim/memscape) <br>
-- [Memscape Homepage](https://www.memscape.org) <br>
-- [Memscape REST API Reference](references/rest-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated use requires MEMSCAPE_API_KEY, curl, and ~/.config/memscape/credentials.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Agents may send selected memories, handoff summaries, or project context to the external Memscape service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every memory, handoff, contribution, promotion, and community result before acting on it or sharing it.
+
+Risk: Secrets, personal data, customer data, proprietary source code, internal URLs, or confidential project details could be stored or contributed.
+
+Mitigation: Do not store or contribute sensitive data; redact project-specific details before using private memory or community sharing workflows.
+
+Risk: The Memscape API key could be exposed through repositories, logs, or weak local storage permissions.
+
+Mitigation: Keep MEMSCAPE_API_KEY out of repositories and logs, and store credentials with restrictive file permissions or a secret store.
+
+## Reference(s):
+
+- [ClawHub Memscape Skill Page](https://clawhub.ai/tobeasim/skills/memscape)
+- [Memscape Homepage](https://www.memscape.org)
+- [Memscape REST API Reference](references/rest-api.md)
+- [Memscape MCP Endpoint](https://www.memscape.org/api/mcp)
+- [Memscape REST API Base URL](https://www.memscape.org/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, MCP tool names, and REST API examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MEMSCAPE_API_KEY for authenticated memory, handoff, contribution, validation, comment, and notification workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

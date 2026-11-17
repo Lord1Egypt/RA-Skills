@@ -1,47 +1,60 @@
-## Description: <br>
-Control USB relay modules with on/off switching, state tracking, and automation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control USB relay modules with on/off switching, state tracking, and automation support.
 
-## Publisher: <br>
-[LJ-Hao](https://clawhub.ai/user/LJ-Hao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj-hao](https://clawhub.ai/user/lj-hao)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent control a connected USB relay for on/off switching, toggling, status tracking, and simple hardware automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can switch real connected hardware through a USB relay. <br>
-Mitigation: Install and use it only for intended devices, test first with no load or a harmless load, and confirm each on/off action before execution. <br>
-Risk: Cached relay state may not prove the physical relay position after manual override or device drift. <br>
-Mitigation: Do not rely on cached status as the sole proof of physical state; verify the relay or attached device directly for safety-critical decisions. <br>
-Risk: Setup may involve privileged serial-port changes or shell commands. <br>
-Mitigation: Review commands such as dialout membership changes and curl-to-sudo setup before running them. <br>
-Risk: Unattended automation could operate hazardous equipment. <br>
-Mitigation: Avoid unattended automation for hazardous loads and keep a human approval step for physical actuation. <br>
+## Use Case:
 
+Developers and hardware automation users use this skill to help an agent connect to a USB relay module, switch attached devices on or off, track the last commanded state, and compose relay automation examples.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LJ-Hao/control-usb-relay) <br>
-- [README.md](README.md) <br>
-- [setup.md](setup.md) <br>
-- [USAGE-GUIDE.md](USAGE-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce relay-control instructions and code that interact with local serial hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Running relay tests or generated code can physically switch equipment connected to the relay and may leave the relay on.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended action with the user, test first with low-voltage loads, disconnect real loads during validation, and add physical safety controls before operating connected equipment.
+
+Risk: Setup guidance includes high-impact installation and permission commands.
+
+Mitigation: Review commands before execution, avoid pipe-to-sudo or floating latest installers when possible, prefer pinned and verified packages, and grant serial-port permissions only to appropriate users.
+
+Risk: The reported relay state is the last commanded state and can drift from the physical state after manual override or hardware failure.
+
+Mitigation: Treat in-memory status as advisory, verify hardware state when the connected load matters, and disconnect from the serial port when control is complete.
+
+## Reference(s):
+
+- [Control USB Relay on ClawHub](https://clawhub.ai/lj-hao/skills/control-usb-relay)
+- [README](artifact/README.md)
+- [Setup - Control USB Relay](artifact/setup.md)
+- [USB Relay & Light Sensor Skills - Usage Guide](artifact/USAGE-GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent outputs may include commands or Python snippets that control a local serial relay at /dev/ttyUSB1.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

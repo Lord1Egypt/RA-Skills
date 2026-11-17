@@ -1,41 +1,54 @@
-## Description: <br>
-Plan campaign visuals and hooks for education promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans campaign visuals and creative hooks for education-focused paid campaign briefs.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Marketing and education teams use this skill to draft creative briefs for paid campaigns targeting teachers, tutors, and educational institutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce ad copy or image direction that may be inaccurate, misleading, or unsuitable for publication. <br>
-Mitigation: Review generated briefs and visual concepts for accuracy, policy fit, and audience appropriateness before external use. <br>
-Risk: The skill declares Bash and Read permissions even though the evidence says it does not need them for its creative-planning behavior. <br>
-Mitigation: Keep host tool permissions scoped to the current task and avoid granting unnecessary file or shell access. <br>
+## Use Case:
 
+External campaign planners, education marketers, teachers, tutors, and educational institutions use this skill to draft education ad creative briefs with audience constraints, visuals, hooks, and review-ready messaging.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/toby-generate-education-ad-creative-brief) <br>
-- [SkillBoss Skill Page](https://www.skillboss.co/skills/generate-education-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign brief structure, creative hooks, visual direction, and review guidance for chat or image-generation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated education advertising briefs could include inaccurate, misleading, or unsuitable campaign claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated campaign outputs for accuracy, audience fit, and publication policy compliance before external use.
+
+Risk: Campaign planning inputs may include sensitive business or learner-related information.
+
+Mitigation: Provide only the details needed for the brief and avoid confidential or personal data unless it is required and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-education-ad-creative-brief)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-education-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include visual concepts, creative hooks, audience constraints, and review notes for education advertising campaigns.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

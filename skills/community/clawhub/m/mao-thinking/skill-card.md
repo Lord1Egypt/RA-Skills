@@ -1,45 +1,58 @@
-## Description: <br>
-A Python command-line and module toolkit that applies Mao Zedong Thought-inspired methods for contradiction analysis, situation assessment, decision support, and principle lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+maothinking provides a Mao Zedong Thought-themed Python toolkit for contradiction analysis, situation assessment, mass-line decision support, and principle lookup.
 
-## Publisher: <br>
-[amitabhama](https://clawhub.ai/user/amitabhama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amitabhama](https://clawhub.ai/user/amitabhama)
 
-## Use Case: <br>
-Developers, operators, and end users can use this skill to run local heuristic analyses for prioritization, competitive situation review, group decision support, and quick reference to core principles. Its outputs should be treated as structured decision prompts rather than authoritative advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's recommendations may be mistaken, oversimplified, or ideologically framed. <br>
-Mitigation: Treat outputs as heuristic prompts and review them with appropriate domain judgment before acting. <br>
-Risk: Installing packages from a third-party publisher can expose the environment to untrusted code. <br>
-Mitigation: Install only if the publisher is trusted, preferably in a virtual environment. <br>
-Risk: Optional development dependencies may introduce unreviewed package risk. <br>
-Mitigation: Avoid optional development requirements unless they are pinned or audited first. <br>
+## Use Case:
 
+Developers and agent users can use this skill for low-stakes brainstorming, problem analysis, option scoring, situation framing, and quick lookup of Mao-themed methodological principles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amitabhama/mao-thinking) <br>
-- [Publisher profile](https://clawhub.ai/user/amitabhama) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact manifest](artifact/manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with Python examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local command-line and Python module outputs; no network activity indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The toolkit's scores, strategic labels, and recommendations could be mistaken for authoritative advice in high-stakes decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for brainstorming only, and require qualified human review for legal, medical, financial, business, or consequential personal decisions.
+
+Risk: The skill is mostly Chinese-language and Mao-themed, which may be unsuitable or misunderstood in some deployment contexts.
+
+Mitigation: Have a reviewer check language, framing, and audience fit before exposing it to end users.
+
+Risk: Optional development dependencies can affect CI or packaging environments if installed without review.
+
+Mitigation: Pin and audit optional development dependencies before using them in CI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amitabhama/skills/mao-thinking)
+- [Publisher profile](https://clawhub.ai/user/amitabhama)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime functions return printed console text and Python dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mostly Chinese-language outputs; command-line paths include contradiction analysis, situation analysis, interactive decision support, scenario recommendation, and principle summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, manifest.json, setup.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

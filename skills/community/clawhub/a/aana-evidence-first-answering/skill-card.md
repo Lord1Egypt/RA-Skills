@@ -1,45 +1,61 @@
-## Description: <br>
-Guides agents to separate known facts, assumptions, missing evidence, and retrieval steps before answering evidence-sensitive tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to separate known facts, assumptions, missing evidence, and retrieval steps before presenting evidence-sensitive answers or recommendations.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agents use this instruction-only skill to review draft answers, recommendations, summaries, and high-impact claims before presenting them. It helps the agent identify known facts, assumptions, unsupported claims, missing evidence, and next retrieval or deferral steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat an evidence review as proof that an answer is correct. <br>
-Mitigation: Use the skill as a process aid and verify blocking claims with user-approved tools, records, sources, or human review before relying on the answer. <br>
-Risk: Review payloads may include secrets, private records, full logs, private messages, or unrelated private data. <br>
-Mitigation: Send only minimal redacted summaries and exclude raw sensitive records whenever a summary is sufficient. <br>
-Risk: High-impact decisions may be made from assumptions or unsupported claims. <br>
-Mitigation: Ask, retrieve, defer, or refuse unsafe certainty when missing evidence controls legal, medical, financial, purchase, policy, or other high-impact conclusions. <br>
+## Use Case:
 
+Developers and agent builders use this instruction-only skill to make answer drafting more transparent in fact-sensitive, evidence-sensitive, or high-impact contexts. It helps agents identify known facts, assumptions, unsupported claims, missing evidence, and the next retrieval or clarification step before answering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-evidence-first-answering) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Review payload schema](artifact/schemas/evidence-first-review.schema.json) <br>
-- [Redacted review example](artifact/examples/redacted-evidence-first-review.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not execute commands, install dependencies, call services, persist memory, or retrieve evidence by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Sensitive records could be over-shared when preparing an optional evidence review payload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimal redacted summaries and exclude secrets, raw records, full logs, full transcripts, and unrelated private data.
+
+Risk: An agent may still overstate unsupported conclusions if it treats assumptions as facts.
+
+Mitigation: Classify important claims before answering and ask, retrieve, defer, revise, or refuse when missing evidence controls the conclusion.
+
+Risk: External checkers could expose data if connected without approval.
+
+Mitigation: Use only approved host tools or connectors and send redacted summaries, as reflected in the security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-evidence-first-answering)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Evidence-first review schema](artifact/schemas/evidence-first-review.schema.json)
+- [Redacted review payload example](artifact/examples/redacted-evidence-first-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown or text evidence map with optional JSON review payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; may use redacted review payloads matching the bundled schema when an approved checker is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

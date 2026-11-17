@@ -1,36 +1,47 @@
-## Description: <br>
-Blackjack Helper provides action recommendations for blackjack hands based on the player's hand and the dealer's upcard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blackjack Helper provides blackjack decision recommendations for player hands and dealer upcards, including hit, stand, double, split, and surrender.
 
-## Publisher: <br>
-[Yukin1218](https://clawhub.ai/user/Yukin1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yukin1218](https://clawhub.ai/user/yukin1218)
 
-## Use Case: <br>
-Players or agents use this skill to answer blackjack decision prompts by mapping a player's total, soft hand, or pair and the dealer's upcard to a recommended action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks this release suspicious and review-required because the scanned bundle may involve authenticated maintainer workflows and external reviewer tools. <br>
-Mitigation: Install only after reviewing the release evidence and keep automated review helpers in non-yolo mode with fallback reviewers disabled when private code or secrets may appear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users can ask for informational blackjack strategy guidance by providing a player hand and dealer upcard. The skill helps an agent return concise table-based recommendations across supported blackjack terms and languages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Betting-related recommendations could be mistaken for guaranteed outcomes or legal advice.
+
+Mitigation: Present recommendations as informational blackjack strategy guidance and remind users to consider game rules and local gambling laws.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown or natural-language recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+**Output Type(s):** [guidance, text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are informational and depend on the strategy tables provided in the skill artifact.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Applies a Chinese ruler-subject reply style, addressing the user as "陛下" and the assistant as "臣" when the user explicitly requests that mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emperor Reply applies a Chinese emperor-and-minister response style when the user explicitly asks to be treated as a ruler, including courtly address terms and an immediate return to normal assistant tone when requested.
 
-## Publisher: <br>
-[Millihous](https://clawhub.ai/user/Millihous) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[millihous](https://clawhub.ai/user/millihous)
 
-## Use Case: <br>
-External users can use this skill to have an assistant answer in a concise Chinese court-minister style when the conversation explicitly asks for ruler-subject roleplay. It preserves normal safety and exact-format requirements while allowing the user to exit the style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The roleplay style may be applied when the user's intent is ambiguous. <br>
-Mitigation: Use only the explicit trigger cues and ask a brief clarification when "用皇帝语气" could mean either minister-style replies or drafting text in an emperor's voice. <br>
-Risk: Ceremonial wording could interfere with strict output formats. <br>
-Mitigation: Follow the strict-format exception for JSON, code, SQL, CSV, regex, translation-only output, titles, and one-line rewrites. <br>
-Risk: The style may persist after the user wants normal assistant behavior. <br>
-Mitigation: Exit immediately when the user asks to speak normally, stop the mode, or stop being addressed as "陛下". <br>
+## Use Case:
 
+External ClawHub users can use this skill to give an assistant a concise Chinese ruler-subject roleplay style for compatible conversations while preserving higher-priority safety, system, and exact-format requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Millihous/emperor-reply) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Millihous) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese conversational text, or the exact requested structured format when strict output is required.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden install behavior was found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Roleplay style could interfere with strict output formats such as JSON, code, SQL, CSV, regular expressions, translation-only output, or one-line rewrites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The artifact requires exact-format requests to stay exact and adds role tone only when it does not change the required output.
+
+Risk: A conversational style mode could persist longer than the user intends.
+
+Mitigation: The artifact requires the assistant to exit immediately when the user asks to speak normally or not use the mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/millihous/skills/emperor-reply)
+- [Publisher profile](https://clawhub.ai/user/millihous)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language responses, with exact requested formats preserved when required]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies are normally in Chinese and use the requested courtly address style only while the mode remains active.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Veritier MCP Integration Test (v2)
+Veritier MCP Integration Test (v2.2)
 ====================================
 Verifies that your Veritier MCP stdio proxy is correctly configured
 and can communicate with the Veritier API.
 
 Supports two modes:
   - Production mode (default): uses real LLM, consumes quota
-  - Zero-quota test mode:      uses mock_claims / mock_verdict, no quota consumed
+  - Zero-quota test mode:      uses mock_claims / mock_verdict /
+                               mock_validation / mock_decision, no quota consumed
 
 Usage:
   1. Install dependencies:
@@ -24,6 +25,9 @@ Usage:
   4. Run the test (test mode auto-detected from key prefix):
      python veritier_mcp_test.py
 
+Reconstruct, JWKS, and issuer revoke are REST (not stdio tools). See
+https://veritier.ai/docs#attestation and the proxy module docstring.
+
 More info: https://veritier.ai/docs#testing
 """
 
@@ -33,7 +37,7 @@ import os
 import sys
 from pathlib import Path
 
-EXPECTED_TOOLS = ["extract_text", "extract_document", "verify_text", "verify_document"]
+EXPECTED_TOOLS = ["extract_text", "extract_document", "verify_text", "verify_document", "validate", "attest_action"]
 
 
 def _is_test_key(api_key: str) -> bool:
@@ -88,7 +92,7 @@ async def test_mcp_proxy():
             "params": {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {},
-                "clientInfo": {"name": "veritier-mcp-test", "version": "2.0"}
+                "clientInfo": {"name": "veritier-mcp-test", "version": "2.2"}
             }
         })
         init = await recv(timeout=15)
@@ -109,10 +113,14 @@ async def test_mcp_proxy():
             print(f"✗ Error: Missing expected tools: {missing}")
             sys.exit(1)
 
-        # Verify mock_claims / mock_verdict are in tool schemas
+        # Verify mock_* / action_id are in tool schemas
         tool_map = {t["name"]: t for t in tools["result"]["tools"]}
         extract_props = tool_map["extract_text"].get("inputSchema", {}).get("properties", {})
         verify_props = tool_map["verify_text"].get("inputSchema", {}).get("properties", {})
+        verify_doc_props = tool_map["verify_document"].get("inputSchema", {}).get("properties", {})
+        validate_props = tool_map["validate"].get("inputSchema", {}).get("properties", {})
+        attest_props = tool_map["attest_action"].get("inputSchema", {}).get("properties", {})
+        attest_desc = tool_map["attest_action"].get("description", "")
         if "mock_claims" in extract_props:
             print("✓ mock_claims parameter present in extract_text schema")
         else:
@@ -121,6 +129,22 @@ async def test_mcp_proxy():
             print("✓ mock_verdict parameter present in verify_text schema")
         else:
             print("⚠ mock_verdict not found in verify_text schema (update your proxy)")
+        if "action_id" in verify_props and "action_id" in verify_doc_props:
+            print("✓ action_id parameter present in verify_text and verify_document schemas")
+        else:
+            print("⚠ action_id not found in verify schemas (update your proxy)")
+        if "mock_validation" in validate_props:
+            print("✓ mock_validation parameter present in validate schema")
+        else:
+            print("⚠ mock_validation not found in validate schema (update your proxy)")
+        if "mock_decision" in attest_props:
+            print("✓ mock_decision parameter present in attest_action schema")
+        else:
+            print("⚠ mock_decision not found in attest_action schema (update your proxy)")
+        if "quoted passages" in attest_desc.lower():
+            print("✓ citation_exists quote-in-opinion documented on attest_action")
+        else:
+            print("⚠ attest_action description missing quoted passages (update your proxy)")
 
         # [4] Action: Extract claims
         extract_text = "The Eiffel Tower is located in Paris, France. It stands 330 metres tall."
@@ -150,7 +174,8 @@ async def test_mcp_proxy():
         verify_args: dict = {"text": test_claim}
         if is_test:
             verify_args["mock_verdict"] = False  # test error-handling path
-            print(f"\n⏳ [TEST] Verifying with mock_verdict=false: \"{test_claim}\"")
+            verify_args["action_id"] = "mcp_test_verify"
+            print(f"\n⏳ [TEST] Verifying with mock_verdict=false and action_id: \"{test_claim}\"")
         else:
             print(f"\n⏳ Verifying: \"{test_claim}\"")
 
@@ -167,6 +192,59 @@ async def test_mcp_proxy():
 
         if is_test and "[TEST MODE]" in content:
             print("✓ is_test flag confirmed in verify response")
+        if is_test:
+            if "Informational credential:" in content and "not fail-closed" in content.lower():
+                print("✓ verify_text action_id minted an informational credential")
+            else:
+                print("⚠ verify_text action_id did not return an informational credential")
+
+        # [6] Action: Validate document
+        test_url = "https://example.com/doc.pdf"
+        validate_args: dict = {"url": test_url}
+        if is_test:
+            validate_args["mock_validation"] = True  # test authentic document
+            print(f"\n⏳ [TEST] Validating with mock_validation=true: \"{test_url}\"")
+        else:
+            print(f"\n⏳ Validating: \"{test_url}\"")
+
+        await send({
+            "jsonrpc": "2.0", "id": 5, "method": "tools/call",
+            "params": {"name": "validate", "arguments": validate_args}
+        })
+        result = await recv(timeout=120)
+        content = result["result"]["content"][0]["text"]
+
+        print(f"✓ validate result:\n")
+        for line in content.split("\n"):
+            print(f"  {line}")
+
+        if is_test and "[TEST MODE]" in content:
+            print("✓ is_test flag confirmed in validate response")
+
+        # [7] Action: Attest (test mode only - live attest hits npm)
+        if is_test:
+            print('\n⏳ [TEST] Attesting with mock_decision=allow: "npm install lodash"')
+            await send({
+                "jsonrpc": "2.0", "id": 6, "method": "tools/call",
+                "params": {
+                    "name": "attest_action",
+                    "arguments": {
+                        "action_id": "mcp_test_attest",
+                        "text": "npm install lodash",
+                        "procedure": "package_exists",
+                        "mock_decision": "allow",
+                    },
+                },
+            })
+            result = await recv(timeout=60)
+            content = result["result"]["content"][0]["text"]
+            print(f"✓ attest_action result:\n")
+            for line in content.split("\n")[:20]:
+                print(f"  {line}")
+            if '"decision"' in content and "crc_" in content:
+                print("✓ attest_action returned a decision and credential id")
+            if "[TEST MODE]" in content or '"is_test": true' in content:
+                print("✓ is_test flag confirmed in attest response")
 
         print("\n✓ All checks passed! Your MCP integration is working correctly.")
         if is_test:
@@ -186,6 +264,6 @@ async def test_mcp_proxy():
 
 if __name__ == "__main__":
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("  Veritier MCP Integration Test v2")
+    print("  Veritier MCP Integration Test v2.2")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
     asyncio.run(test_mcp_proxy())

@@ -1,0 +1,8 @@
+[
+  {"who": "本人", "type": "重疾", "amount": 300000, "premium": 6800, "pay_years": "20年",
+   "until": "终身", "due": "05-18", "phone": "95XXX", "beneficiary": "法定", "paid_last_year": true},
+  {"who": "本人", "type": "百万医疗", "amount": 2000000, "premium": 890, "pay_years": "1年",
+   "until": "1年", "due": "05-18", "phone": "95XXX", "beneficiary": "", "paid_last_year": true},
+  {"who": "孩子", "type": "重疾", "amount": 500000, "premium": 2400, "pay_years": "20年",
+   "until": "终身", "due": "09-02", "phone": "95XXX", "beneficiary": "法定", "paid_last_year": false}
+]

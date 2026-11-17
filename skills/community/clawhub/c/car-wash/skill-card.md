@@ -1,40 +1,52 @@
-## Description: <br>
-Helps agents find nearby car wash and auto-detailing services, including waxing, ceramic coating, interior cleaning, and discount package guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供周边洗车房查找、打蜡镀晶、内饰精洗及优惠套餐指引。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to find nearby car-wash and automotive-detailing services, compare distance, social popularity, and price tier, and request queue, booking, parking, navigation, discount, photo, and review information.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Nearby car-wash discovery may require precise location or live local results.
+
+Mitigation: Ask before using precise location details and avoid retaining location data beyond the immediate request.
+
+Risk: Queue status, opening hours, prices, deals, parking, and navigation details can become stale.
+
+Mitigation: Verify time-sensitive details with the merchant, booking channel, or map provider before travel, purchase, or appointment booking.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Drivers and consumer-facing agents use this skill to compare nearby car wash and auto-detailing options by distance, social popularity, and price tier. It can surface queue, booking, navigation, parking, service, promotion, and community review details for a selected area. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Location-based recommendations can expose precise location details if the user shares more information than needed. <br>
-Mitigation: Ask only for the location granularity needed for the recommendation and avoid retaining precise location details. <br>
-Risk: Queue, booking, payment, discount, and merchant details may be stale or inaccurate. <br>
-Mitigation: Verify booking, payment, discount, and availability information through the merchant or a trusted app before acting. <br>
+**Output Format:** [Markdown or plain text recommendations with nearby service details and practical next steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/car-wash) <br>
+**Other Properties Related to Output:** [May depend on user-provided location context and current local availability, queue, pricing, or deal information.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on current location, merchant availability, community review data, and real-time queue or booking information.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

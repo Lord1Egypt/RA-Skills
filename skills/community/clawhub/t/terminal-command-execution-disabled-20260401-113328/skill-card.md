@@ -1,39 +1,53 @@
-## Description: <br>
-Execute terminal commands safely and reliably with clear pre-checks, output validation, and recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute terminal commands safely and reliably with clear pre-checks, output validation, and recovery steps.
 
-## Publisher: <br>
-[tmundi3210](https://clawhub.ai/user/tmundi3210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmundi3210](https://clawhub.ai/user/tmundi3210)
 
-## Use Case: <br>
-Developers and engineers use this skill when an agent needs to inspect system state, run shell or CLI commands, manage files, install dependencies, start services, debug command failures, or automate command-line workflows with explicit safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Terminal commands can change files, install software, start services, or expose sensitive output when used in an untrusted workspace. <br>
-Mitigation: Review commands before state-changing operations, use a trusted workspace or sandbox for risky command-line tasks, and avoid destructive or privileged actions unless explicitly approved. <br>
+## Use Case:
 
+Developers and agents use this skill to plan, execute, validate, and recover from shell or CLI commands with explicit pre-checks and post-run verification.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tmundi3210/terminal-command-execution-disabled-20260401-113328) <br>
-- [Publisher Profile](https://clawhub.ai/user/tmundi3210) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts command review before destructive, privileged, or otherwise risky operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and artifact metadata) <br>
+Risk: Shell command guidance can include package installs, service changes, privileged actions, or destructive filesystem operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review risky commands before execution, prefer scoped non-destructive probes first, and require explicit approval for privileged or destructive actions.
+
+Risk: Terminal output and logs can expose secrets or sensitive environment details.
+
+Mitigation: Keep secrets out of command output and logs, and summarize sensitive diagnostics without reproducing secret values.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tmundi3210/skills/terminal-command-execution-disabled-20260401-113328)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise command plans, diagnostic interpretations, recovery steps, and verification checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

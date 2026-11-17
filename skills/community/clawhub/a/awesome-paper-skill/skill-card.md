@@ -1,39 +1,56 @@
-## Description: <br>
-End-to-end pipeline for topic-driven literature research: collect papers from multiple sources, generate an Awesome-style README, and update/push to user GitHub repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end pipeline for topic-driven literature research: collect papers from multiple sources, generate an Awesome-style README, and update/push to user GitHub repo.
 
-## Publisher: <br>
-[YoujunZhao](https://clawhub.ai/user/YoujunZhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youjunzhao](https://clawhub.ai/user/youjunzhao)
 
-## Use Case: <br>
-Developers and researchers use this skill to scout papers for a topic, organize them into an Awesome-style README, and publish or update that README in a GitHub repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or change GitHub repositories using the user's account without a clear final confirmation step. <br>
-Mitigation: Use an explicit repository owner, repository name, and visibility; verify the active GitHub CLI account; inspect the generated README; and require manual confirmation before repository creation, pushes, or visibility changes. <br>
+## Use Case:
 
+Developers and researchers use this skill to gather papers for a topic, organize them into an Awesome-style README, and publish or update a GitHub repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YoujunZhao/awesome-paper-skill) <br>
-- [Awesome list format reference](https://github.com/sindresorhus/awesome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown README, JSON paper list, shell commands, and brief text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses topic, repository owner/name, visibility, and source result limits; may create or update a GitHub repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; artifact _meta.json reports 1.0.0) <br>
+Risk: The publish step can create or update a GitHub repository and change repository visibility through an authenticated GitHub CLI session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an explicit repository owner and name, inspect the generated README before publishing, and run the publish step only when those repository changes are acceptable.
+
+Risk: Paper retrieval depends on third-party research indexes and may have partial source failures or incomplete coverage.
+
+Mitigation: Review coverage warnings and verify important papers before relying on or publishing the generated README.
+
+## Reference(s):
+
+- [arXiv API](https://export.arxiv.org/api/query)
+- [Crossref Works API](https://api.crossref.org/works)
+- [Semantic Scholar Paper Search API](https://api.semanticscholar.org/graph/v1/paper/search)
+- [Awesome List Guidelines](https://github.com/sindresorhus/awesome)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown README, JSON paper list, and concise text summary with repository URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a GitHub repository and change its visibility through the authenticated gh session.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

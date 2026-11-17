@@ -1,5 +1,5 @@
 ---
-name: code-cog
+name: coding-agent-cellcog
 description: "AI coding agent powered by CellCog Co-work. Code generation, debugging, refactoring, codebase exploration, terminal operations — executed directly on your machine. Lightweight with multimedia tools loaded on demand."
 author: CellCog
 homepage: https://cellcog.ai
@@ -12,7 +12,7 @@ metadata:
       env: [CELLCOG_API_KEY]
 dependencies: [cellcog]
 ---
-# Code Cog — The First Coding Agent Built for Agents
+# Coding Agent — The First Coding Agent Built for Agents
 
 When your AI needs to code, it delegates to CodeCog. Direct codebase access, terminal operations, and file editing — executed on the user's machine via CellCog Co-work.
 
@@ -26,7 +26,8 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/path/to/project",
 )
@@ -39,7 +40,8 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/path/to/project",
 )
@@ -54,7 +56,11 @@ print(result["message"])
 This skill requires the `cellcog` skill for SDK setup and API calls.
 
 ```bash
-clawhub install cellcog
+# Claude Code, Cursor, Codex + 70 more agents
+npx skills add cellcog/skills --skill cellcog
+
+# OpenClaw
+openclaw skills install @cellcog/cellcog
 ```
 
 **Read the cellcog skill first** for SDK setup. This skill shows you how to use CellCog as a coding agent.
@@ -73,7 +79,8 @@ client = CellCogClient(agent_provider="openclaw")
 result = client.create_chat(
     prompt="Refactor the authentication module to use JWT tokens",
     notify_session_key="agent:main:main",  # OpenClaw only
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/Users/me/projects/myapp",
     task_label="auth-refactor",
@@ -87,7 +94,8 @@ client = CellCogClient(agent_provider="openclaw")
 
 result = client.create_chat(
     prompt="Refactor the authentication module to use JWT tokens",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/Users/me/projects/myapp",
     task_label="auth-refactor",
@@ -95,7 +103,7 @@ result = client.create_chat(
 ```
 
 **Key parameters:**
-- `chat_mode="agent core"` — Lightweight coding agent (vs `"agent"` for full multimedia)
+- `chat_mode="agent", chat_tier="max"` — coding needs the deepest reasoning tier (pass it explicitly; the default tier is `"core"`, co-work included)
 - `enable_cowork=True` — Enables Co-work (direct machine access)
 - `cowork_working_directory` — The repo/directory to work in
 
@@ -137,7 +145,7 @@ Every other coding tool (Cursor, Claude Code, Codex, Windsurf) is designed for h
 
 ### Starts Lean, Scales to Multimodal
 
-CodeCog uses CellCog's Agent Core mode — a lightweight context focused on coding. But if your task unexpectedly needs images, PDFs, videos, or other capabilities, the agent loads those tools on demand. No other coding agent does this.
+CodeCog runs CellCog's agent mode at the max tier with a lean, coding-focused context. But if your task unexpectedly needs images, PDFs, videos, or other capabilities, the agent loads those tools on demand. No other coding agent does this.
 
 Example: Your agent asks CodeCog to set up a new project. CodeCog writes the code, then realizes it needs to generate a logo for the README — it loads image tools, generates the logo, and continues. Seamless.
 
@@ -151,15 +159,13 @@ Via CellCog Co-work, CodeCog operates directly on the user's filesystem:
 
 ---
 
-## Chat Mode
+## Choosing Mode & Tier
 
-**Always use `"agent core"` for CodeCog.** This is the dedicated lightweight mode optimized for coding.
+**Use `chat_mode="agent", chat_tier="max"` for all coding work** — code needs the deepest reasoning tier. Pass it explicitly: the default tier is `"core"`, co-work included.
 
-| Mode | Use Case |
-|------|----------|
-| `"agent core"` | **CodeCog default** — coding, co-work, terminal ops (50 credits min) |
-| `"agent"` | Full multimedia agent — use when you need images/video/audio alongside code (100 credits min) |
-| `"agent team"` | Deep research + coding — use for architecture decisions or complex refactors needing research (500 credits min) |
+`"agent core"` is a legacy name that still works forever (the server maps it to Agent max), but new code should pass `chat_mode="agent", chat_tier="max"`.
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — use it only when the task IS research that happens to involve code.
 
 ---
 
@@ -170,7 +176,8 @@ Via CellCog Co-work, CodeCog operates directly on the user's filesystem:
 ```python
 result = client.create_chat(
     prompt="Add a REST API endpoint for user profile updates with validation and tests",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/Users/me/projects/myapp",
     task_label="add-profile-api",
@@ -186,7 +193,8 @@ TypeError: Cannot read properties of undefined (reading 'map')
 at UserList.render (src/components/UserList.tsx:42)
 
 The component crashes when the API returns an empty response.""",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/Users/me/projects/myapp",
     task_label="fix-userlist-crash",
@@ -198,7 +206,8 @@ The component crashes when the API returns an empty response.""",
 ```python
 result = client.create_chat(
     prompt="Refactor the authentication module from session-based to JWT tokens. Update all middleware, tests, and API routes.",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/Users/me/projects/myapp",
     task_label="auth-refactor",
@@ -210,7 +219,8 @@ result = client.create_chat(
 ```python
 result = client.create_chat(
     prompt="Generate comprehensive unit tests for src/services/billing.py. Cover edge cases for proration, currency conversion, and failed payments.",
-    chat_mode="agent core",
+    chat_mode="agent",
+    chat_tier="max",
     enable_cowork=True,
     cowork_working_directory="/Users/me/projects/myapp",
     task_label="billing-tests",
@@ -257,4 +267,3 @@ See https://cellcog.ai for complete SDK API reference — delivery modes, `send_
 - **macOS and Linux only** — CellCog Desktop (Co-work) is not yet available on Windows
 - **CellCog Desktop required** — Without Co-work, CodeCog can still write code in its Docker workspace, but cannot access the user's machine directly
 - **User approval for writes** — Write operations pause for user approval (configurable auto-approve available)
-

@@ -1,45 +1,60 @@
-## Description: <br>
-中文OCR双引擎 — PaddleOCR(主力文档OCR) + RapidOCR(手写体特化)，按需灵活切换 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Handwriting OCR helps agents run PaddleOCR and RapidOCR workflows for Chinese document OCR, handwritten date extraction, batch processing, and OCR model-training support.
 
-## Publisher: <br>
-[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator)
 
-## Use Case: <br>
-Developers and document-automation teams use this skill to run Chinese OCR workflows for scanned PDFs, printed documents, handwritten dates, signatures, employee IDs, and batch extraction tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR source PDFs and derived outputs can contain sensitive document data. <br>
-Mitigation: Run in a trusted local environment, preferably a virtualenv, and handle generated PDFs, annotations, text files, logs, training data, and temporary images as sensitive when source PDFs are sensitive. <br>
-Risk: README examples and installed OCR engines may differ from the available script interfaces or local environment. <br>
-Mitigation: Verify each script's --help output and installed dependencies before relying on documented engine examples. <br>
-Risk: Broad process-kill commands used for OCR cleanup can stop unrelated Python work. <br>
-Mitigation: Use process cleanup only after confirming the target process belongs to the intended OCR task. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to extract Chinese text, handwritten dates, signatures, and employee IDs from PDFs, select OCR engines by document type, and run batch OCR or training utilities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/meta-evo-creator/chinese-handwriting-ocr) <br>
-- [OCR tips](references/ocr_tips.md) <br>
-- [Lessons learned](references/lessons.md) <br>
-- [Tesseract installation reference](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus local OCR outputs such as text, JSON, annotated PDFs, training data, and model artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and may create temporary images, logs, OCR text, annotations, generated PDFs, training datasets, and model checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release security summary says the documentation does not accurately match the actual OCR engines and that documented commands or engine choices may fail or behave differently than advertised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target scripts and test the selected OCR engine commands in an isolated environment before relying on results in a production document workflow.
+
+Risk: The security guidance says the skill may install mutable ML dependencies and render PDFs to temporary image files.
+
+Mitigation: Pin and review dependencies, run the skill in controlled directories, and clean temporary files after processing sensitive PDFs.
+
+Risk: The security summary says extracted document text can be persisted without clear enough disclosure.
+
+Mitigation: Treat OCR outputs, generated PDFs, annotations, logs, TXT files, JSON results, and training outputs as sensitive derived data and route them through the same retention controls as source documents.
+
+## Reference(s):
+
+- [Chinese Handwriting OCR release page](https://clawhub.ai/meta-evo-creator/skills/chinese-handwriting-ocr)
+- [OCR parameters and tips](references/ocr_tips.md)
+- [Handwriting OCR lessons learned](references/lessons.md)
+- [Tesseract installation reference](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python script usage, JSON-capable OCR output, generated PDF/TXT artifacts, and training data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install OCR and ML dependencies, render PDF pages to temporary images, and write extracted text to PDFs, TXT files, annotations, logs, JSON results, or training outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

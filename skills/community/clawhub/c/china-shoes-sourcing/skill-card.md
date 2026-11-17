@@ -1,38 +1,53 @@
-## Description: <br>
-Comprehensive footwear industry sourcing guide for international buyers - provides detailed information about China's athletic, leather, women's, children's, and casual shoe manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive footwear industry sourcing guide for international buyers - provides detailed information about China's athletic, leather, women's, children's, and casual shoe manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's footwear manufacturing regions, subsectors, supply chain structure, and supplier-evaluation considerations before making sourcing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market figures, supplier examples, and sourcing recommendations may be incomplete or outdated for a specific purchasing decision. <br>
-Mitigation: Treat outputs as reference material and verify commercial terms, supplier credentials, certifications, and current market data before committing to purchases. <br>
+## Use Case:
 
+External buyers, sourcing teams, and agents use this skill to explore China footwear manufacturing clusters, supply chain structure, subsector fit, and practical supplier evaluation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/china-shoes-sourcing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown, plain text, and Python dictionary data from local helper functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled cluster-level footwear sourcing data; no individual factory contacts are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Bundled footwear sourcing data may be outdated or incomplete for live purchasing decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify sourcing claims, supplier details, certifications, and current regulations with independent current sources before committing spend.
+
+Risk: The skill provides reference guidance rather than verified market intelligence.
+
+Mitigation: Use the output as an initial research aid and require human review before supplier selection or negotiation.
+
+## Reference(s):
+
+- [China Shoes Sourcing on ClawHub](https://clawhub.ai/1970168137/skills/china-shoes-sourcing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured Python dictionary/list results derived from bundled JSON reference data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns cluster-level footwear sourcing intelligence; no individual factory contacts are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

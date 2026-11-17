@@ -1,40 +1,58 @@
-## Description: <br>
-Ragtop Agent helps an AI manage RAGTOP knowledge bases and perform agentic RAG retrieval, deep analysis, and cited summaries through RAGTOP API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ragtop Agent helps agents manage RAGTOP knowledge bases, list documents, and perform multi-step semantic retrieval for document-grounded analysis.
 
-## Publisher: <br>
-[qbs784](https://clawhub.ai/user/qbs784) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qbs784](https://clawhub.ai/user/qbs784)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to inspect RAGTOP knowledge bases, narrow retrieval to relevant documents, and synthesize cited answers from retrieved chunks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to an unencrypted private API URL if RAGTOP_API_URL is not set, which could send tokens and queries to an unintended internal host. <br>
-Mitigation: Set RAGTOP_API_URL explicitly to the approved trusted endpoint, preferably HTTPS, before using the skill. <br>
-Risk: The skill sends user queries and retrieved context to the configured RAGTOP backend. <br>
-Mitigation: Use a scoped RAGTOP_API_TOKEN and avoid sending secrets, regulated data, or broad internal corpora unless the backend is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agentic RAG Workflow Guidelines](references/workflow.md) <br>
-- [ClawHub release page](https://clawhub.ai/qbs784/ragtop-agent) <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to query RAGTOP knowledge bases, narrow retrieval to relevant documents, and synthesize answers with source-document citations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl command blocks, readable lists or tables, and cited synthesis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RAGTOP_API_TOKEN and an optional RAGTOP_API_URL to call list and retrieval endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bearer tokens and user queries may be sent to a RAGTOP endpoint over unencrypted HTTP.
+
+Mitigation: Use a trusted HTTPS RAGTOP endpoint instead of the default HTTP endpoint before sending sensitive prompts or credentials.
+
+Risk: The skill requires a RAGTOP API token for backend API calls.
+
+Mitigation: Use a narrowly scoped token, store it in RAGTOP_API_TOKEN, and rotate it if exposure is suspected.
+
+Risk: Retrieved knowledge-base content may be incomplete or insufficient for a deep research answer.
+
+Mitigation: Require source-document citations and explicitly state when retrieval results are insufficient.
+
+## Reference(s):
+
+- [Agentic RAG Workflow Guidelines](references/workflow.md)
+- [ClawHub skill page](https://clawhub.ai/qbs784/skills/ragtop-agent)
+- [Publisher profile](https://clawhub.ai/user/qbs784)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl commands and source-cited analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAGTOP_API_TOKEN and a trusted RAGTOP endpoint; default endpoint evidence uses unencrypted HTTP.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

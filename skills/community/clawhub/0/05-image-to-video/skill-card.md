@@ -1,40 +1,53 @@
-## Description: <br>
-Converts a static image URL into a generated video clip using a configured image-to-video API provider. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a static image URL into a short generated video clip by calling a configured image-to-video API.
 
-## Publisher: <br>
-[ghwyever](https://clawhub.ai/user/ghwyever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghwyever](https://clawhub.ai/user/ghwyever)
 
-## Use Case: <br>
-Developers and content-production agents use this skill to turn static image URLs into short generated video clips for visual media workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provided image URL is sent to the configured external API provider. <br>
-Mitigation: Use only providers whose privacy, retention, and usage terms are acceptable for the image content. <br>
-Risk: A broadly scoped API key could increase impact if the configured provider or runtime is misused. <br>
-Mitigation: Prefer a limited-scope API key and rotate it according to the provider's credential-management guidance. <br>
+## Use Case:
 
+Developers and content production teams use this skill to turn static image assets into short video clips for video material creation and short-drama style motion shots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghwyever/05-image-to-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, JSON] <br>
-**Output Format:** [JSON object containing a video_url string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY, API_BASE, and MODEL_NAME environment configuration; sends the provided image URL to the configured external provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill sends the supplied image URL and API key to the configured external endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an HTTPS API_BASE from the intended provider, scope the API key to this use case, and apply spending or quota limits where possible.
+
+Risk: Image URLs may contain reusable tokens, signed private parameters, or other sensitive access details.
+
+Mitigation: Avoid passing private signed URLs or URLs with reusable tokens unless the endpoint is trusted and the exposure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghwyever/skills/05-image-to-video)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text]
+
+**Output Format:** [JSON object containing a video_url string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API_KEY, API_BASE, and MODEL_NAME environment variables; sends the supplied image URL to the configured provider endpoint.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

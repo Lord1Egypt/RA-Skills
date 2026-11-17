@@ -1,11 +1,11 @@
 ---
 name: oo-sunoapi
-description: "SunoAPI (sunoapi.org). Use this skill for ANY SunoAPI request — reading, creating, and updating data. Whenever a task involves SunoAPI, use this skill instead of calling the API directly."
+description: "SunoAPI (sunoapi.org). Use this skill for ANY SunoAPI request — reading, creating, updating, and deleting data. Whenever a task involves SunoAPI, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "SunoAPI"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["sunoapi"]
   icon: "https://static.oomol.com/logo/third-party/sunoapi.png"
 ---
@@ -40,16 +40,16 @@ Each action is listed below with a one-line description; actions that change sta
 - `add_instrumental` — Submit a SunoAPI add instrumental task and return the task identifier. [write]
 - `add_vocals` — Submit a SunoAPI add vocals task and return the task identifier. [write]
 - `boost_music_style` — Boost a SunoAPI style prompt and return the generated style text.
-- `convert_to_wav_format` — Submit a SunoAPI WAV conversion task and return the task identifier.
+- `convert_to_wav_format` — Submit a SunoAPI WAV conversion task and return the task identifier. [write]
 - `create_music_video` — Submit a SunoAPI music video task and return the task identifier. [write]
-- `extend_music` — Submit a SunoAPI music extension task and return the task identifier.
-- `generate_lyrics` — Submit a SunoAPI lyrics generation task and return the task identifier.
-- `generate_mashup` — Submit a SunoAPI mashup task and return the task identifier.
-- `generate_midi` — Submit a SunoAPI MIDI task and return the task identifier.
-- `generate_music` — Submit a SunoAPI music generation task and return the task identifier.
-- `generate_music_cover` — Submit a SunoAPI music cover task and return the task identifier.
-- `generate_persona` — Submit a SunoAPI persona generation task and return the generated persona details.
-- `generate_sounds` — Submit a SunoAPI sounds task and return the task identifier.
+- `extend_music` — Submit a SunoAPI music extension task and return the task identifier. [write]
+- `generate_lyrics` — Submit a SunoAPI lyrics generation task and return the task identifier. [write]
+- `generate_mashup` — Submit a SunoAPI mashup task and return the task identifier. [write]
+- `generate_midi` — Submit a SunoAPI MIDI task and return the task identifier. [write]
+- `generate_music` — Submit a SunoAPI music generation task and return the task identifier. [write]
+- `generate_music_cover` — Submit a SunoAPI music cover task and return the task identifier. [write]
+- `generate_persona` — Submit a SunoAPI persona generation task and return the generated persona details. [write]
+- `generate_sounds` — Submit a SunoAPI sounds task and return the task identifier. [write]
 - `get_lyrics_generation_details` — Fetch SunoAPI lyrics generation details for a task.
 - `get_midi_generation_details` — Fetch SunoAPI MIDI generation details for a task.
 - `get_music_cover_details` — Fetch SunoAPI music cover details for a task.
@@ -59,7 +59,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_timestamped_lyrics` — Fetch SunoAPI timestamped lyrics for a track.
 - `get_vocal_separation_details` — Fetch SunoAPI vocal separation details for a task.
 - `get_wav_conversion_details` — Fetch SunoAPI WAV conversion details for a task.
-- `replace_music_section` — Submit a SunoAPI section replacement task and return the task identifier. [write]
+- `replace_music_section` — Submit a SunoAPI section replacement task and return the task identifier. [destructive]
 - `separate_vocals_from_music` — Separate vocals from music and return the submitted SunoAPI task identifier.
 - `upload_and_cover_audio` — Submit a SunoAPI upload and cover task and return the task identifier. [write]
 - `upload_and_extend_audio` — Submit a SunoAPI upload and extend task and return the task identifier. [write]
@@ -93,11 +93,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — SunoAPI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=sunoapi
+  https://console.oomol.com/connections/sunoapi
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - SunoAPI homepage: https://sunoapi.org
+- API documentation: https://docs.sunoapi.org/

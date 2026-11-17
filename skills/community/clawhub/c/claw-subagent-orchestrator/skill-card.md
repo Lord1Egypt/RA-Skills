@@ -1,45 +1,55 @@
-## Description: <br>
-Defines the collaboration protocol between main session and sub-agent sessions for executing heavy tasks such as analysis, search, and writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines the collaboration protocol between main session and sub-agent sessions for executing heavy tasks (analysis, search, writing). Use when spawning sub-agents to reduce main-session context growth, managing task.md checklist workflows, coordinating multi-step delegated work with crash recovery, or optimizing skill workflows through retrospect analysis.
 
-## Publisher: <br>
-[slientrain-new](https://clawhub.ai/user/slientrain-new) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slientrain-new](https://clawhub.ai/user/slientrain-new)
 
-## Use Case: <br>
-Developers and agent operators use this skill to delegate long-running or high-context tasks to isolated sub-agent sessions, track progress with task.md checklists, recover from crashes, and run lightweight retrospectives after completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated sessions may create persistent task logs and step files that contain sensitive task content. <br>
-Mitigation: Use isolated workspaces for delegated tasks and delete or redact task logs and step files before sharing or retaining them. <br>
-Risk: The workflow can send completed results to external messaging channels when notification is enabled. <br>
-Mitigation: Disable external notification by default and require explicit confirmation before any result is sent outside the local session. <br>
-Risk: Sub-agents may operate with under-scoped authority when handling broad delegated tasks. <br>
-Mitigation: Pass narrowly scoped tasks, limit available tools and channels to what the task requires, and review completed outputs before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate large analysis, search, and writing tasks to isolated sub-agent sessions while keeping the main session focused on routing, recovery, and result handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/slientrain-new/claw-subagent-orchestrator) <br>
-- [Sub-agent collaboration protocol](docs/protocol.md) <br>
-- [Task checklist template](templates/task.md) <br>
-- [Retrospective template](templates/task-retro.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions with task templates and structured checklist conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent task logs, step notes, and retrospective files in the delegated workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Delegated agents may send task results to WeChat or Telegram without final main-session review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require main-session approval before any external notification when tasks may include private messages, source code, credentials, business data, or personal information.
+
+Risk: External notification destinations may receive sensitive content if channel permissions are too broad.
+
+Mitigation: Use this skill only with explicitly approved notification destinations and disable direct external delivery for sensitive delegated tasks.
+
+## Reference(s):
+
+- [Protocol documentation](docs/protocol.md)
+- [Task checklist template](templates/task.md)
+- [Retrospect template](templates/task-retro.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown protocol guidance with task templates and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create task.md, step records, and task-retro.md files in a delegated task workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

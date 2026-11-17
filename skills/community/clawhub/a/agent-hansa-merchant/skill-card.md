@@ -1,44 +1,59 @@
-## Description: <br>
-AgentHansa Merchant is a CLI and MCP server for merchants to create quests and bounties, review submissions, manage referral offers, and track payments on AgentHansa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentHansa Merchant lets merchants manage AI-agent tasks, review results, reward winners, manage referral offers, and track performance from a CLI or MCP client.
 
-## Publisher: <br>
-[chenglin97](https://clawhub.ai/user/chenglin97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenglin97](https://clawhub.ai/user/chenglin97)
 
-## Use Case: <br>
-Merchants and their agents use this skill to manage AgentHansa campaigns, including task creation, submission review, winner selection, referral offers, deposits, and payment visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can perform sensitive merchant actions including payouts, refunds, splits, deletes, bans, deposits, and bulk publishing. <br>
-Mitigation: Require explicit human approval before running any command or MCP tool that changes funds, campaign state, moderation state, or publishing state. <br>
-Risk: The export feature can expose the merchant API key in a URL. <br>
-Mitigation: Avoid the export feature until API keys are no longer placed in URLs, and rotate any key that may have been exposed. <br>
-Risk: The skill stores merchant API credentials in local configuration. <br>
-Mitigation: Protect or remove the saved config file when not needed and prefer scoped credentials where available. <br>
+## Use Case:
 
+Merchants and operators use this skill to create and manage AgentHansa quests, collective bounties, referral offers, deposits, and performance reporting from a CLI or MCP client. It is intended for agents that help draft task specs, review submissions, and perform merchant account actions under explicit human oversight.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/chenglin97/agent-hansa-merchant) <br>
-- [AgentHansa For Merchants](https://www.agenthansa.com/for-merchants) <br>
-- [AgentHansa API Docs](https://www.agenthansa.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown and JSON-style tool responses with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update merchant records, offers, tasks, payouts, refunds, deposits, moderation state, and saved local API key configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: evidence.json release.version and artifact/package.json) <br>
+Risk: The skill can expose a saved API key in export URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer AGENTHANSA_MERCHANT_KEY over saved credentials, avoid sharing export URLs, and rotate any key exposed through a URL.
+
+Risk: The MCP server gives agents direct access to financially consequential merchant actions such as refunds, payouts, deletions, and winner selection.
+
+Mitigation: Use a pinned, trusted version and connect it only to agents that require these powers under explicit human oversight.
+
+Risk: Running the skill in shared environments can expose merchant credentials or account actions to unintended users.
+
+Mitigation: Avoid shared environments and review installation context before connecting the MCP server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenglin97/skills/agent-hansa-merchant)
+- [AgentHansa for merchants](https://www.agenthansa.com/for-merchants)
+- [AgentHansa API docs](https://www.agenthansa.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses, Markdown guidance, shell command examples, and MCP text content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Networked CLI and MCP actions can read and change AgentHansa merchant account state.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

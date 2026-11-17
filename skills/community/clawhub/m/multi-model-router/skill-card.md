@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically routes tasks to a local or cloud AI model based on privacy, context length, cost, and performance requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically routes tasks to a suitable local or cloud AI model based on privacy, context length, cost, and performance requirements.
 
-## Publisher: <br>
-[keven0706](https://clawhub.ai/user/keven0706) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keven0706](https://clawhub.ai/user/keven0706)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose between configured local and cloud models for each request, balancing privacy, long-context needs, cost, and performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic fallback may route non-sensitive, misclassified, long-context, or failed requests to cloud models despite privacy-oriented claims. <br>
-Mitigation: Review routing rules before installation, disable cloud fallback when local-only handling is required, and test privacy-sensitive examples against the configured models. <br>
-Risk: Routing audit logs record model choices, reasons, context length, privacy level, and task type. <br>
-Mitigation: Set retention and access controls for audit logs, and confirm that the logged metadata is acceptable for the deployment environment. <br>
+## Use Case:
 
+Developers and operators use this skill to automate model selection across local and cloud models for long-context, privacy-sensitive, cost-sensitive, or performance-critical agent tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keven0706/multi-model-router) <br>
-- [Publisher profile](https://clawhub.ai/user/keven0706) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, code] <br>
-**Output Format:** [JavaScript routing result objects and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the selected model alias, migrated context, routing reason, and task analysis; writes routing audit records when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive or private context may be routed to cloud models despite stated privacy protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, require explicit consent for cloud routing of sensitive content, or change fallback behavior to fail closed to a local model.
+
+Risk: Routing decisions rely on pattern-based privacy detection and may miss sensitive data that does not match configured patterns.
+
+Mitigation: Treat privacy detection as advisory, review configured patterns and thresholds, and avoid sending secrets, credentials, private documents, or sensitive workspace context through automatic routing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keven0706/skills/multi-model-router)
+- [ClawHub publisher profile](https://clawhub.ai/user/keven0706)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON-compatible routing result with selected model, context, reason, and analysis fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also write local audit-log entries for routing decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

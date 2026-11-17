@@ -1,11 +1,11 @@
 # IPCB\_PrimitiveAttribute class
 
-属性图元
+Property primitive
 
 ## Signature
 
 ```typescript
-declare class IPCB_PrimitiveAttribute implements IPCB_Primitive 
+class IPCB_PrimitiveAttribute implements IPCB_Primitive
 ```
 **Implements:** [IPCB\_Primitive](../interfaces/IPCB_Primitive.md)
 
@@ -15,30 +15,24 @@ declare class IPCB_PrimitiveAttribute implements IPCB_Primitive
 
 Constructor
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [(constructor)(layer, x, y, key, value, keyVisible, valueVisible, fontFamily, fontSize, lineWidth, alignMode, rotation, reverse, expansion, mirror, primitiveLock, primitiveId, parentPrimitiveId)](./IPCB_PrimitiveAttribute.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Constructs a new instance of the `IPCB_PrimitiveAttribute` class
-
 
 </td></tr>
 </tbody></table>
@@ -49,548 +43,453 @@ Constructs a new instance of the `IPCB_PrimitiveAttribute` class
 
 Method
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Description
 
-
 </th></tr></thead>
 <tbody><tr><td>
 
+[done()](./IPCB_PrimitiveAttribute.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Apply the changes to the primitives to the canvas
+
+</td></tr>
+<tr><td>
+
 [getState\_AlignMode()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：对齐模式
-
+Get the property state: alignment mode
 
 </td></tr>
 <tr><td>
 
 [getState\_Expansion()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：反相扩展
-
+Get the property state: inverted expansion
 
 </td></tr>
 <tr><td>
 
 [getState\_FontFamily()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：字体
-
+Get the property state: font
 
 </td></tr>
 <tr><td>
 
 [getState\_FontSize()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：字号
-
+Get the property state: font size
 
 </td></tr>
 <tr><td>
 
 [getState\_Key()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：Key
-
+Get the property state: Key
 
 </td></tr>
 <tr><td>
 
 [getState\_KeyVisible()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：Key 是否可见
-
+Get the property state: Key whether it is visible
 
 </td></tr>
 <tr><td>
 
 [getState\_Layer()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：层
-
+Get the property state: Layer
 
 </td></tr>
 <tr><td>
 
 [getState\_LineWidth()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：线宽
-
+Get the property state: Line width
 
 </td></tr>
 <tr><td>
 
 [getState\_Mirror()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：是否镜像
-
+Get the property state: whether it is mirrored
 
 </td></tr>
 <tr><td>
 
 [getState\_ParentPrimitiveId()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：关联的父图元 ID
-
+Get the property state: associated parent primitive ID
 
 </td></tr>
 <tr><td>
 
 [getState\_PrimitiveId()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：图元 ID
-
+Get the property state: primitive ID
 
 </td></tr>
 <tr><td>
 
 [getState\_PrimitiveLock()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：是否锁定
-
+Get the property state: whether it is locked
 
 </td></tr>
 <tr><td>
 
 [getState\_PrimitiveType()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：图元类型
-
+Get the property state: primitive type
 
 </td></tr>
 <tr><td>
 
 [getState\_Reverse()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：是否反相
-
+Get the property state: whether it is inverted
 
 </td></tr>
 <tr><td>
 
 [getState\_Rotation()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：旋转角度
-
+Get the property state: rotation angle
 
 </td></tr>
 <tr><td>
 
 [getState\_Value()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：Value
-
+Get the property state: Value
 
 </td></tr>
 <tr><td>
 
 [getState\_ValueVisible()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：Value 是否可见
-
+Get the property state: Value whether it is visible
 
 </td></tr>
 <tr><td>
 
 [getState\_X()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：坐标 X
-
+Get the property state: X coordinate
 
 </td></tr>
 <tr><td>
 
 [getState\_Y()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取属性状态：坐标 Y
-
+Get the property state: Y coordinate
 
 </td></tr>
 <tr><td>
 
 [isAsync()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
+Query whether the primitive is an async primitive
+
+</td></tr>
+<tr><td>
+
+[reset()](./IPCB_PrimitiveAttribute.md)
 
 </td><td>
 
-查询图元是否为异步图元
+</td><td>
 
+**_(BETA)_** Reset the async primitive to the current canvas state
 
 </td></tr>
 <tr><td>
 
 [setState\_AlignMode(alignMode)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：对齐模式
-
+**_(BETA)_** Set the property state: alignment mode
 
 </td></tr>
 <tr><td>
 
 [setState\_Expansion(expansion)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：反相扩展
-
+**_(BETA)_** Set the property state: inverted expansion
 
 </td></tr>
 <tr><td>
 
 [setState\_FontFamily(fontFamily)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：字体
-
+**_(BETA)_** Set the property state: font
 
 </td></tr>
 <tr><td>
 
 [setState\_FontSize(fontSize)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：字号
-
+**_(BETA)_** Set the property state: font size
 
 </td></tr>
 <tr><td>
 
 [setState\_Key(key)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：Key
-
+**_(BETA)_** Set the property state: Key
 
 </td></tr>
 <tr><td>
 
 [setState\_KeyVisible(keyVisible)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：Key 是否可见
-
+**_(BETA)_** Set the property state: Key whether it is visible
 
 </td></tr>
 <tr><td>
 
 [setState\_Layer(layer)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：层
-
+**_(BETA)_** Set the property state: Layer
 
 </td></tr>
 <tr><td>
 
 [setState\_LineWidth(lineWidth)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：线宽
-
+**_(BETA)_** Set the property state: Line width
 
 </td></tr>
 <tr><td>
 
 [setState\_Mirror(mirror)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：是否镜像
-
+**_(BETA)_** Set the property state: whether it is mirrored
 
 </td></tr>
 <tr><td>
 
 [setState\_PrimitiveLock(primitiveLock)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：是否锁定
-
+**_(BETA)_** Set the property state: whether it is locked
 
 </td></tr>
 <tr><td>
 
 [setState\_Reverse(reverse)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：是否反相
-
+**_(BETA)_** Set the property state: whether it is inverted
 
 </td></tr>
 <tr><td>
 
 [setState\_Rotation(rotation)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：旋转角度
-
+**_(BETA)_** Set the property state: rotation angle
 
 </td></tr>
 <tr><td>
 
 [setState\_Value(value)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：Value
-
+**_(BETA)_** Set the property state: Value
 
 </td></tr>
 <tr><td>
 
 [setState\_ValueVisible(valueVisible)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：Value 是否可见
-
+**_(BETA)_** Set the property state: Value whether it is visible
 
 </td></tr>
 <tr><td>
 
 [setState\_X(x)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：坐标 X
-
+**_(BETA)_** Set the property state: X coordinate
 
 </td></tr>
 <tr><td>
 
 [setState\_Y(y)](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 设置属性状态：坐标 Y
-
+**_(BETA)_** Set the property state: Y coordinate
 
 </td></tr>
 <tr><td>
 
 [toAsync()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-将图元转换为异步图元
-
+Convert Primitive to Async primitive
 
 </td></tr>
 <tr><td>
 
 [toSync()](./IPCB_PrimitiveAttribute.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-将图元转换为同步图元
-
+Convert Primitive to Sync primitive
 
 </td></tr>
 </tbody></table>
@@ -608,7 +507,26 @@ Constructs a new instance of the `IPCB_PrimitiveAttribute` class
 ## Signature
 
 ```typescript
-constructor(layer: TPCB_LayersOfImage, x: number | null, y: number | null, key: string, value: string, keyVisible: boolean, valueVisible: boolean, fontFamily: string, fontSize: number, lineWidth: number, alignMode: EPCB_PrimitiveStringAlignMode, rotation: number, reverse: boolean, expansion: number, mirror: boolean, primitiveLock: boolean, primitiveId: string, parentPrimitiveId: string);
+function constructor(
+	layer: TPCB_LayersOfImage,
+	x: number | null,
+	y: number | null,
+	key: string,
+	value: string,
+	keyVisible: boolean,
+	valueVisible: boolean,
+	fontFamily: string,
+	fontSize: number,
+	lineWidth: number,
+	alignMode: EPCB_PrimitiveStringAlignMode,
+	rotation: number,
+	reverse: boolean,
+	expansion: number,
+	mirror: boolean,
+	primitiveLock: boolean,
+	primitiveId: string,
+	parentPrimitiveId: string,
+);
 ```
 
 ## Parameters
@@ -617,268 +535,211 @@ constructor(layer: TPCB_LayersOfImage, x: number | null, y: number | null, key: 
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 layer
 
-
 </td><td>
 
 [TPCB\_LayersOfImage](../types/TPCB_LayersOfImage.md)
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 x
 
-
 </td><td>
 
 number \| null
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 y
 
-
 </td><td>
 
 number \| null
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 key
 
-
 </td><td>
 
 string
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 value
 
-
 </td><td>
 
 string
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 keyVisible
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 valueVisible
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 fontFamily
 
-
 </td><td>
 
 string
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 fontSize
 
-
 </td><td>
 
 number
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 lineWidth
 
-
 </td><td>
 
 number
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 alignMode
 
-
 </td><td>
 
 [EPCB\_PrimitiveStringAlignMode](../enums/EPCB_PrimitiveStringAlignMode.md)
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 rotation
 
-
 </td><td>
 
 number
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 reverse
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 expansion
 
-
 </td><td>
 
 number
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 mirror
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 primitiveLock
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 primitiveId
 
-
 </td><td>
 
 string
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 parentPrimitiveId
 
-
 </td><td>
 
 string
 
-
 </td><td>
-
 
 </td></tr>
 </tbody></table>
@@ -888,94 +749,228 @@ string
 
 ## 方法详情
 
-### getstate_alignmode
+### done
 
-# IPCB\_PrimitiveAttribute.getState\_AlignMode() method
+# IPCB\_PrimitiveAttribute.done() method
 
-获取属性状态：对齐模式
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Apply the changes to the primitives to the canvas
 
 ## Signature
 
 ```typescript
-getState_AlignMode(): EPCB_PrimitiveStringAlignMode;
+function done(): Promise<IPCB_PrimitiveAttribute>;
 ```
 
+## Returns
+
+Promise&lt;[IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)<!-- -->&gt;
+
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 记录修改前的字号和旋转角度
+const fontSizeBefore = designator.getState_FontSize();
+const rotationBefore = designator.getState_Rotation();
+
+// 4. 批量修改两个属性，一次 done() 提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_FontSize(60);
+asyncAttr.setState_Rotation(90);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认批量修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('fontSize:', fontSizeBefore, '→', refetched.getState_FontSize());
+console.log('rotation:', rotationBefore, '→', refetched.getState_Rotation());
+```
+
+### getstate_alignmode
+
+# IPCB\_PrimitiveAttribute.getState\_AlignMode() method
+
+Get the property state: alignment mode
+
+## Signature
+
+```typescript
+function getState_AlignMode(): EPCB_PrimitiveStringAlignMode;
+```
 
 ## Returns
 
 [EPCB\_PrimitiveStringAlignMode](../enums/EPCB_PrimitiveStringAlignMode.md)
 
-对齐模式
+Alignment mode
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取文本对齐模式
+const alignMode = designator.getState_AlignMode();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('alignMode:', alignMode);
+```
 
 ### getstate_expansion
 
 # IPCB\_PrimitiveAttribute.getState\_Expansion() method
 
-获取属性状态：反相扩展
+Get the property state: inverted expansion
 
 ## Signature
 
 ```typescript
-getState_Expansion(): number;
+function getState_Expansion(): number;
 ```
-
 
 ## Returns
 
 number
 
-反相扩展
+Inverted expansion
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取反相扩展值
+const expansion = designator.getState_Expansion();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('expansion:', expansion);
+```
 
 ### getstate_fontfamily
 
 # IPCB\_PrimitiveAttribute.getState\_FontFamily() method
 
-获取属性状态：字体
+Get the property state: font
 
 ## Signature
 
 ```typescript
-getState_FontFamily(): string;
+function getState_FontFamily(): string;
 ```
-
 
 ## Returns
 
 string
 
-字体
+Font
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取字体名
+const fontFamily = designator.getState_FontFamily();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('fontFamily:', fontFamily);
+```
 
 ### getstate_fontsize
 
 # IPCB\_PrimitiveAttribute.getState\_FontSize() method
 
-获取属性状态：字号
+Get the property state: font size
 
 ## Signature
 
 ```typescript
-getState_FontSize(): number;
+function getState_FontSize(): number;
 ```
-
 
 ## Returns
 
 number
 
-字号
+Font size
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取字号
+const fontSize = designator.getState_FontSize();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('fontSize:', fontSize);
+```
 
 ### getstate_key
 
 # IPCB\_PrimitiveAttribute.getState\_Key() method
 
-获取属性状态：Key
+Get the property state: Key
 
 ## Signature
 
 ```typescript
-getState_Key(): string;
+function getState_Key(): string;
 ```
-
 
 ## Returns
 
@@ -983,208 +978,439 @@ string
 
 Key
 
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的全部属性图元
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+
+// 3. 读取每个属性的 Key（属性名）
+const keys = attrs.map(a => a.getState_Key());
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('keys:', keys.join(', '));
+```
+
 ### getstate_keyvisible
 
 # IPCB\_PrimitiveAttribute.getState\_KeyVisible() method
 
-获取属性状态：Key 是否可见
+Get the property state: Key whether it is visible
 
 ## Signature
 
 ```typescript
-getState_KeyVisible(): boolean;
+function getState_KeyVisible(): boolean;
 ```
-
 
 ## Returns
 
 boolean
 
-Key 是否可见
+Key whether it is visible
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取 Key 可见性
+const keyVisible = designator.getState_KeyVisible();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('keyVisible:', keyVisible);
+```
 
 ### getstate_layer
 
 # IPCB\_PrimitiveAttribute.getState\_Layer() method
 
-获取属性状态：层
+Get the property state: Layer
 
 ## Signature
 
 ```typescript
-getState_Layer(): TPCB_LayersOfImage;
+function getState_Layer(): TPCB_LayersOfImage;
 ```
-
 
 ## Returns
 
 [TPCB\_LayersOfImage](../types/TPCB_LayersOfImage.md)
 
-层
+Layer
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取所在层
+const layer = designator.getState_Layer();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('layer:', layer);
+```
 
 ### getstate_linewidth
 
 # IPCB\_PrimitiveAttribute.getState\_LineWidth() method
 
-获取属性状态：线宽
+Get the property state: Line width
 
 ## Signature
 
 ```typescript
-getState_LineWidth(): number;
+function getState_LineWidth(): number;
 ```
-
 
 ## Returns
 
 number
 
-线宽
+Line width
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取线宽
+const lineWidth = designator.getState_LineWidth();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('lineWidth:', lineWidth);
+```
 
 ### getstate_mirror
 
 # IPCB\_PrimitiveAttribute.getState\_Mirror() method
 
-获取属性状态：是否镜像
+Get the property state: whether it is mirrored
 
 ## Signature
 
 ```typescript
-getState_Mirror(): boolean;
+function getState_Mirror(): boolean;
 ```
-
 
 ## Returns
 
 boolean
 
-是否镜像
+Whether it is mirrored
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取镜像状态
+const mirror = designator.getState_Mirror();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('mirror:', mirror);
+```
 
 ### getstate_parentprimitiveid
 
 # IPCB\_PrimitiveAttribute.getState\_ParentPrimitiveId() method
 
-获取属性状态：关联的父图元 ID
+Get the property state: associated parent primitive ID
 
 ## Signature
 
 ```typescript
-getState_ParentPrimitiveId(): string;
+function getState_ParentPrimitiveId(): string;
 ```
-
 
 ## Returns
 
 string
 
-关联的父图元 ID
+Associated parent primitive ID
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取父图元 ID
+const parentPrimitiveId = designator.getState_ParentPrimitiveId();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('parentPrimitiveId:', parentPrimitiveId);
+console.log('belongs to component:', parentPrimitiveId === compId);
+```
 
 ### getstate_primitiveid
 
 # IPCB\_PrimitiveAttribute.getState\_PrimitiveId() method
 
-获取属性状态：图元 ID
+Get the property state: primitive ID
 
 ## Signature
 
 ```typescript
-getState_PrimitiveId(): string;
+function getState_PrimitiveId(): string;
 ```
-
 
 ## Returns
 
 string
 
-图元 ID
+Primitive ID
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取属性图元 ID
+const primitiveId = designator.getState_PrimitiveId();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('primitiveId:', primitiveId);
+```
 
 ### getstate_primitivelock
 
 # IPCB\_PrimitiveAttribute.getState\_PrimitiveLock() method
 
-获取属性状态：是否锁定
+Get the property state: whether it is locked
 
 ## Signature
 
 ```typescript
-getState_PrimitiveLock(): boolean;
+function getState_PrimitiveLock(): boolean;
 ```
-
 
 ## Returns
 
 boolean
 
-是否锁定
+Whether it is locked
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取锁定状态
+const primitiveLock = designator.getState_PrimitiveLock();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('primitiveLock:', primitiveLock);
+```
 
 ### getstate_primitivetype
 
 # IPCB\_PrimitiveAttribute.getState\_PrimitiveType() method
 
-获取属性状态：图元类型
+Get the property state: primitive type
 
 ## Signature
 
 ```typescript
-getState_PrimitiveType(): EPCB_PrimitiveType;
+function getState_PrimitiveType(): EPCB_PrimitiveType;
 ```
-
 
 ## Returns
 
 [EPCB\_PrimitiveType](../enums/EPCB_PrimitiveType.md)
 
-图元类型
+Primitive type
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取图元类型
+const primitiveType = designator.getState_PrimitiveType();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('primitiveType:', primitiveType);
+```
 
 ### getstate_reverse
 
 # IPCB\_PrimitiveAttribute.getState\_Reverse() method
 
-获取属性状态：是否反相
+Get the property state: whether it is inverted
 
 ## Signature
 
 ```typescript
-getState_Reverse(): boolean;
+function getState_Reverse(): boolean;
 ```
-
 
 ## Returns
 
 boolean
 
-是否反相
+Whether it is inverted
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取反相状态
+const reverse = designator.getState_Reverse();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('reverse:', reverse);
+```
 
 ### getstate_rotation
 
 # IPCB\_PrimitiveAttribute.getState\_Rotation() method
 
-获取属性状态：旋转角度
+Get the property state: rotation angle
 
 ## Signature
 
 ```typescript
-getState_Rotation(): number;
+function getState_Rotation(): number;
 ```
-
 
 ## Returns
 
 number
 
-旋转角度
+Rotation angle
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取旋转角度
+const rotation = designator.getState_Rotation();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('rotation:', rotation);
+```
 
 ### getstate_value
 
 # IPCB\_PrimitiveAttribute.getState\_Value() method
 
-获取属性状态：Value
+Get the property state: Value
 
 ## Signature
 
 ```typescript
-getState_Value(): string;
+function getState_Value(): string;
 ```
-
 
 ## Returns
 
@@ -1192,81 +1418,235 @@ string
 
 Value
 
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取属性值
+const value = designator.getState_Value();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('value:', value);
+```
+
 ### getstate_valuevisible
 
 # IPCB\_PrimitiveAttribute.getState\_ValueVisible() method
 
-获取属性状态：Value 是否可见
+Get the property state: Value whether it is visible
 
 ## Signature
 
 ```typescript
-getState_ValueVisible(): boolean;
+function getState_ValueVisible(): boolean;
 ```
-
 
 ## Returns
 
 boolean
 
-Value 是否可见
+Value whether it is visible
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取 Value 可见性
+const valueVisible = designator.getState_ValueVisible();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('valueVisible:', valueVisible);
+```
 
 ### getstate_x
 
 # IPCB\_PrimitiveAttribute.getState\_X() method
 
-获取属性状态：坐标 X
+Get the property state: X coordinate
 
 ## Signature
 
 ```typescript
-getState_X(): number | null;
+function getState_X(): number | null;
 ```
-
 
 ## Returns
 
 number \| null
 
-坐标 X
+X coordinate
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取锚点 X 坐标
+const x = designator.getState_X();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('x:', x);
+```
 
 ### getstate_y
 
 # IPCB\_PrimitiveAttribute.getState\_Y() method
 
-获取属性状态：坐标 Y
+Get the property state: Y coordinate
 
 ## Signature
 
 ```typescript
-getState_Y(): number | null;
+function getState_Y(): number | null;
 ```
-
 
 ## Returns
 
 number \| null
 
-坐标 Y
+Y coordinate
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取锚点 Y 坐标
+const y = designator.getState_Y();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('y:', y);
+```
 
 ### isasync
 
 # IPCB\_PrimitiveAttribute.isAsync() method
 
-查询图元是否为异步图元
+Query whether the primitive is an async primitive
 
 ## Signature
 
 ```typescript
-isAsync(): boolean;
+function isAsync(): boolean;
 ```
-
 
 ## Returns
 
 boolean
 
-是否为异步图元
+Whether Is async primitive
+
+## Example
+
+```javascript
+// 1. 放置一个测试器件（属性图元随器件生成，无法单独创建）
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, 5000, 5000);
+const compId = comp.getState_PrimitiveId();
+
+// 2. 取出器件的属性图元，定位 Designator（编号）属性
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(compId);
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 查询异步状态
+const isAsync = designator.isAsync();
+
+// 4. 清理测试器件（属性图元随器件一起删除）
+await eda.pcb_PrimitiveComponent.delete([compId]);
+
+console.log('isAsync:', isAsync);
+```
+
+### reset
+
+# IPCB\_PrimitiveAttribute.reset() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Reset the async primitive to the current canvas state
+
+## Signature
+
+```typescript
+function reset(): Promise<IPCB_PrimitiveAttribute>;
+```
+
+## Returns
+
+Promise&lt;[IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)<!-- -->&gt;
+
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 记录画布上的原始值
+const original = designator.getState_Value();
+
+// 4. 异步模式下改一个错误值，但不提交，直接 reset() 丢弃
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Value('SHOULD-DISCARD');
+await asyncAttr.reset();
+
+// 5. 从画布重新读取，确认值仍是原始值（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('value:', original, '→', refetched.getState_Value(), '(修改已丢弃)');
+```
 
 ### setstate_alignmode
 
@@ -1274,12 +1654,12 @@ boolean
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：对齐模式
+Set the property state: alignment mode
 
 ## Signature
 
 ```typescript
-setState_AlignMode(alignMode: EPCB_PrimitiveStringAlignMode): IPCB_PrimitiveAttribute;
+function setState_AlignMode(alignMode: EPCB_PrimitiveStringAlignMode): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1288,43 +1668,63 @@ setState_AlignMode(alignMode: EPCB_PrimitiveStringAlignMode): IPCB_PrimitiveAttr
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 alignMode
 
-
 </td><td>
 
 [EPCB\_PrimitiveStringAlignMode](../enums/EPCB_PrimitiveStringAlignMode.md)
 
-
 </td><td>
 
-对齐模式
-
+Alignment mode
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的对齐模式
+const before = designator.getState_AlignMode();
+
+// 4. 切换异步模式改为居中对齐并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_AlignMode(5);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('alignMode:', before, '→', refetched.getState_AlignMode());
+```
 
 ### setstate_expansion
 
@@ -1332,12 +1732,12 @@ alignMode
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：反相扩展
+Set the property state: inverted expansion
 
 ## Signature
 
 ```typescript
-setState_Expansion(expansion: number): IPCB_PrimitiveAttribute;
+function setState_Expansion(expansion: number): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1346,43 +1746,63 @@ setState_Expansion(expansion: number): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 expansion
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-反相扩展
-
+Inverted expansion
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的反相扩展
+const before = designator.getState_Expansion();
+
+// 4. 切换异步模式加大衬底扩展并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Expansion(8);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('expansion:', before, '→', refetched.getState_Expansion());
+```
 
 ### setstate_fontfamily
 
@@ -1390,12 +1810,12 @@ number
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：字体
+Set the property state: font
 
 ## Signature
 
 ```typescript
-setState_FontFamily(fontFamily: string): IPCB_PrimitiveAttribute;
+function setState_FontFamily(fontFamily: string): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1404,43 +1824,63 @@ setState_FontFamily(fontFamily: string): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fontFamily
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-字体
-
+Font
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的字体
+const before = designator.getState_FontFamily();
+
+// 4. 切换异步模式换成 Arial 并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_FontFamily('Arial');
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('fontFamily:', before, '→', refetched.getState_FontFamily());
+```
 
 ### setstate_fontsize
 
@@ -1448,12 +1888,12 @@ string
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：字号
+Set the property state: font size
 
 ## Signature
 
 ```typescript
-setState_FontSize(fontSize: number): IPCB_PrimitiveAttribute;
+function setState_FontSize(fontSize: number): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1462,43 +1902,63 @@ setState_FontSize(fontSize: number): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 fontSize
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-字号
-
+Font size
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的字号
+const before = designator.getState_FontSize();
+
+// 4. 切换异步模式加大字号并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_FontSize(60);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('fontSize:', before, '→', refetched.getState_FontSize());
+```
 
 ### setstate_key
 
@@ -1506,12 +1966,12 @@ number
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：Key
+Set the property state: Key
 
 ## Signature
 
 ```typescript
-setState_Key(key: string): IPCB_PrimitiveAttribute;
+function setState_Key(key: string): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1520,43 +1980,63 @@ setState_Key(key: string): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 key
 
-
 </td><td>
 
 string
-
 
 </td><td>
 
 Key
 
-
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的属性名
+const before = designator.getState_Key();
+
+// 4. 切换异步模式重命名属性并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Key('Ref');
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('key:', before, '→', refetched.getState_Key());
+```
 
 ### setstate_keyvisible
 
@@ -1564,12 +2044,12 @@ Key
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：Key 是否可见
+Set the property state: Key whether it is visible
 
 ## Signature
 
 ```typescript
-setState_KeyVisible(keyVisible: boolean): IPCB_PrimitiveAttribute;
+function setState_KeyVisible(keyVisible: boolean): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1578,43 +2058,63 @@ setState_KeyVisible(keyVisible: boolean): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 keyVisible
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-Key 是否可见
-
+Key whether it is visible
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的 Key 可见性
+const before = designator.getState_KeyVisible();
+
+// 4. 切换异步模式打开 Key 显示并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_KeyVisible(true);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('keyVisible:', before, '→', refetched.getState_KeyVisible());
+```
 
 ### setstate_layer
 
@@ -1622,12 +2122,12 @@ Key 是否可见
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：层
+Set the property state: Layer
 
 ## Signature
 
 ```typescript
-setState_Layer(layer: TPCB_LayersOfImage): IPCB_PrimitiveAttribute;
+function setState_Layer(layer: TPCB_LayersOfImage): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1636,43 +2136,63 @@ setState_Layer(layer: TPCB_LayersOfImage): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 layer
 
-
 </td><td>
 
 [TPCB\_LayersOfImage](../types/TPCB_LayersOfImage.md)
 
-
 </td><td>
 
-层
-
+Layer
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的层
+const before = designator.getState_Layer();
+
+// 4. 切换异步模式挪到底层丝印（4）并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Layer(4);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('layer:', before, '→', refetched.getState_Layer());
+```
 
 ### setstate_linewidth
 
@@ -1680,12 +2200,12 @@ layer
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：线宽
+Set the property state: Line width
 
 ## Signature
 
 ```typescript
-setState_LineWidth(lineWidth: number): IPCB_PrimitiveAttribute;
+function setState_LineWidth(lineWidth: number): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1694,43 +2214,63 @@ setState_LineWidth(lineWidth: number): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 lineWidth
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-线宽
-
+Line width
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的线宽
+const before = designator.getState_LineWidth();
+
+// 4. 切换异步模式加粗笔画并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_LineWidth(10);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('lineWidth:', before, '→', refetched.getState_LineWidth());
+```
 
 ### setstate_mirror
 
@@ -1738,12 +2278,12 @@ number
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：是否镜像
+Set the property state: whether it is mirrored
 
 ## Signature
 
 ```typescript
-setState_Mirror(mirror: boolean): IPCB_PrimitiveAttribute;
+function setState_Mirror(mirror: boolean): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1752,43 +2292,63 @@ setState_Mirror(mirror: boolean): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 mirror
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否镜像
-
+Whether it is mirrored
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的镜像状态
+const before = designator.getState_Mirror();
+
+// 4. 切换异步模式打开镜像并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Mirror(true);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('mirror:', before, '→', refetched.getState_Mirror());
+```
 
 ### setstate_primitivelock
 
@@ -1796,12 +2356,12 @@ boolean
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：是否锁定
+Set the property state: whether it is locked
 
 ## Signature
 
 ```typescript
-setState_PrimitiveLock(primitiveLock: boolean): IPCB_PrimitiveAttribute;
+function setState_PrimitiveLock(primitiveLock: boolean): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1810,43 +2370,63 @@ setState_PrimitiveLock(primitiveLock: boolean): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 primitiveLock
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否锁定
-
+Whether it is locked
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的锁定状态
+const before = designator.getState_PrimitiveLock();
+
+// 4. 切换异步模式锁定属性并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_PrimitiveLock(true);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('primitiveLock:', before, '→', refetched.getState_PrimitiveLock());
+```
 
 ### setstate_reverse
 
@@ -1854,12 +2434,12 @@ boolean
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：是否反相
+Set the property state: whether it is inverted
 
 ## Signature
 
 ```typescript
-setState_Reverse(reverse: boolean): IPCB_PrimitiveAttribute;
+function setState_Reverse(reverse: boolean): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1868,43 +2448,68 @@ setState_Reverse(reverse: boolean): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 reverse
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否反相
-
+Whether it is inverted
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Remarks
+
+The default font does not support inversion
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的反相状态
+const before = designator.getState_Reverse();
+
+// 4. 切换异步模式：先换 Arial 字体（default 不支持反相），再开反相并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_FontFamily('Arial');
+asyncAttr.setState_Reverse(true);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('reverse:', before, '→', refetched.getState_Reverse());
+```
 
 ### setstate_rotation
 
@@ -1912,12 +2517,12 @@ boolean
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：旋转角度
+Set the property state: rotation angle
 
 ## Signature
 
 ```typescript
-setState_Rotation(rotation: number): IPCB_PrimitiveAttribute;
+function setState_Rotation(rotation: number): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1926,43 +2531,63 @@ setState_Rotation(rotation: number): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 rotation
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-旋转角度
-
+Rotation angle
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的旋转角度
+const before = designator.getState_Rotation();
+
+// 4. 切换异步模式旋转 90° 并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Rotation(90);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('rotation:', before, '→', refetched.getState_Rotation());
+```
 
 ### setstate_value
 
@@ -1970,12 +2595,12 @@ number
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：Value
+Set the property state: Value
 
 ## Signature
 
 ```typescript
-setState_Value(value: string): IPCB_PrimitiveAttribute;
+function setState_Value(value: string): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -1984,43 +2609,63 @@ setState_Value(value: string): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 value
 
-
 </td><td>
 
 string
-
 
 </td><td>
 
 Value
 
-
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的属性值
+const before = designator.getState_Value();
+
+// 4. 切换异步模式修改属性值并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Value(`${before}-MOD`);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('value:', before, '→', refetched.getState_Value());
+```
 
 ### setstate_valuevisible
 
@@ -2028,12 +2673,12 @@ Value
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：Value 是否可见
+Set the property state: Value whether it is visible
 
 ## Signature
 
 ```typescript
-setState_ValueVisible(valueVisible: boolean): IPCB_PrimitiveAttribute;
+function setState_ValueVisible(valueVisible: boolean): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -2042,43 +2687,63 @@ setState_ValueVisible(valueVisible: boolean): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 valueVisible
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-Value 是否可见
-
+Value whether it is visible
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的 Value 可见性
+const before = designator.getState_ValueVisible();
+
+// 4. 切换异步模式隐藏编号文本并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_ValueVisible(false);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('valueVisible:', before, '→', refetched.getState_ValueVisible());
+```
 
 ### setstate_x
 
@@ -2086,12 +2751,12 @@ Value 是否可见
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：坐标 X
+Set the property state: X coordinate
 
 ## Signature
 
 ```typescript
-setState_X(x: number): IPCB_PrimitiveAttribute;
+function setState_X(x: number): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -2100,43 +2765,63 @@ setState_X(x: number): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 x
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-坐标 X
-
+X coordinate
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的锚点 X 坐标
+const before = designator.getState_X();
+
+// 4. 切换异步模式向右移动 300mil 并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_X(before + 300);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('x:', before, '→', refetched.getState_X());
+```
 
 ### setstate_y
 
@@ -2144,12 +2829,12 @@ number
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-设置属性状态：坐标 Y
+Set the property state: Y coordinate
 
 ## Signature
 
 ```typescript
-setState_Y(y: number): IPCB_PrimitiveAttribute;
+function setState_Y(y: number): IPCB_PrimitiveAttribute;
 ```
 
 ## Parameters
@@ -2158,78 +2843,151 @@ setState_Y(y: number): IPCB_PrimitiveAttribute;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 y
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-坐标 Y
-
+Y coordinate
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的锚点 Y 坐标
+const before = designator.getState_Y();
+
+// 4. 切换异步模式向上移动 300mil 并提交
+const asyncAttr = designator.toAsync();
+asyncAttr.setState_Y(before + 300);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('y:', before, '→', refetched.getState_Y());
+```
 
 ### toasync
 
 # IPCB\_PrimitiveAttribute.toAsync() method
 
-将图元转换为异步图元
+Convert Primitive to Async primitive
 
 ## Signature
 
 ```typescript
-toAsync(): IPCB_PrimitiveAttribute;
+function toAsync(): IPCB_PrimitiveAttribute;
 ```
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 转换为异步句柄并确认其异步状态
+const asyncAttr = designator.toAsync();
+
+// 4. 通过异步句柄修改字号并提交
+asyncAttr.setState_FontSize(60);
+await asyncAttr.done();
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('isAsync:', asyncAttr.isAsync());
+console.log('fontSize:', refetched.getState_FontSize());
+```
 
 ### tosync
 
 # IPCB\_PrimitiveAttribute.toSync() method
 
-将图元转换为同步图元
+Convert Primitive to Sync primitive
 
 ## Signature
 
 ```typescript
-toSync(): IPCB_PrimitiveAttribute;
+function toSync(): IPCB_PrimitiveAttribute;
 ```
-
 
 ## Returns
 
 [IPCB\_PrimitiveAttribute](./IPCB_PrimitiveAttribute.md)
 
-属性图元对象
+Attribute primitive object
+
+## Example
+
+```javascript
+// 1. 生成本次运行专用的坐标，避免与之前保留的测试器件重合
+const x = 20000 + Math.floor(Math.random() * 80000);
+const y = 20000 + Math.floor(Math.random() * 80000);
+
+// 2. 放置测试器件并取出 Designator（编号）属性
+const devices = await eda.lib_Device.search('C0402');
+const comp = await eda.pcb_PrimitiveComponent.create(devices[0], 1, x, y);
+const attrIds = await eda.pcb_PrimitiveAttribute.getAllPrimitiveId(comp.getState_PrimitiveId());
+const attrs = await eda.pcb_PrimitiveAttribute.get(attrIds);
+const designator = attrs.find(a => a.getState_Key() === 'Designator');
+
+// 3. 读取修改前的属性值
+const before = designator.getState_Value();
+
+// 4. 转换为同步图元后直接修改，立即生效（无需 done()）
+const syncAttr = designator.toSync();
+syncAttr.setState_Value(`${before}-SYNC`);
+
+// 5. 从画布重新读取，确认修改已生效（保留现场供观察）
+const refetched = await eda.pcb_PrimitiveAttribute.get(designator.getState_PrimitiveId());
+
+console.log('value:', before, '→', refetched.getState_Value());
+```

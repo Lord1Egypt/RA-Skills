@@ -1,42 +1,52 @@
-## Description: <br>
-Validates 15- and 18-digit Chinese ID numbers and extracts region code, birth date, and gender when the format checks pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates Chinese ID numbers and extracts region code, birth date, and gender information.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill as a local reference utility to check Chinese ID number format, checksum, birth date, gender, and region-code fields.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive Chinese ID numbers, creating privacy risk if real identifiers are logged, submitted, or retained unnecessarily.
+
+Mitigation: Use it locally, mask raw IDs where possible, collect only with lawful need and consent, and retain identifiers minimally.
+
+Risk: Validation gaps could mislead identity or age-verification workflows because the evidence reports numeric and region validation issues.
+
+Mitigation: Do not rely on this skill as the sole identity or age-verification control until numeric and region validation are fixed and independently reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to run a local Python validator for Chinese ID number format checks, checksum checks, and basic demographic extraction. It is suitable for form validation or data-quality workflows, not authoritative identity verification. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: ID numbers are personal data; sample or production inputs may expose sensitive information in terminal output. <br>
-Mitigation: Use synthetic or consented values, avoid logging outputs unnecessarily, and handle results under the same controls as source ID data. <br>
-Risk: The artifact states it validates format and checksum only and does not query government databases. <br>
-Mitigation: Use results as a local format and data-quality signal, not as proof of legal identity. <br>
+**Output Format:** [Markdown with inline shell commands and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-id-validator) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact validator script](artifact/scripts/id_validator.py) <br>
+**Other Properties Related to Output:** [No external dependencies; the included script emits JSON for validation results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the script itself emits JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python 3 script with no external dependencies; outputs valid/invalid status and extracted fields when validation succeeds.] <br>
+1.1.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

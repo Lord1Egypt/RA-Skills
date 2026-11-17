@@ -1,44 +1,59 @@
-## Description: <br>
-Identifies plant species from images or videos and returns structured species, taxonomy, growth habit, maintenance, recommendation, and report-link information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies plant species from image or video inputs and returns structured information such as species name, family, growth habits, maintenance tips, and report links.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External ClawHub users use this skill to analyze plant photos, videos, or URLs through the LifeEmergence cloud service for gardening, ecological survey, and natural education workflows. It can also query cloud-hosted historical plant recognition reports tied to the automatically managed user identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant images or videos are sent to the LifeEmergence cloud service and may contain sensitive visual information. <br>
-Mitigation: Avoid uploading sensitive media and confirm that the publisher's retention, deletion, and data-handling controls are acceptable before use. <br>
-Risk: The skill silently creates or reuses an identity, stores tokens locally, and ties cloud reports to that identity. <br>
-Mitigation: Review token-storage and account-deletion controls, and run the skill in an isolated environment when identity linkage is not acceptable. <br>
-Risk: The skill can retrieve historical cloud reports associated with the automatically managed identity. <br>
-Mitigation: Limit access to the runtime environment and verify that report-history queries are appropriate for the current user and context. <br>
+## Use Case:
 
+External users and developers use this skill to analyze plant images or videos for species identification, similar-species differentiation, structured plant knowledge, and cloud-hosted recognition report lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/new-smyx-plant-species-recognition-analysis) <br>
-- [API interface document](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown text with structured JSON report content, progress messages, report links, and optional saved output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local file input, public URL input, cloud history listing, detail-level selection, and optional output-file writing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.7) <br>
+Risk: Media and identity-linked data are sent to an external cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with plant media and identifiers that may be shared with the publisher and lifeemergence.com service.
+
+Risk: The skill can silently create or reuse backend/local user identity state and query cloud report history.
+
+Mitigation: Review identity and report-history behavior before installation, and restrict use to trusted workspaces and accounts.
+
+Risk: The security scan reports local plaintext token storage.
+
+Mitigation: Avoid running the skill on shared machines, rotate affected credentials after testing, and remove local token state when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/new-smyx-plant-species-recognition-analysis)
+- [Skill demo](https://lifeemergence.com/sample.html)
+- [API documentation](skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-style structured analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save analysis output to a file when an output path is provided.]
+
+## Skill Version(s):
+
+999.999.999 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

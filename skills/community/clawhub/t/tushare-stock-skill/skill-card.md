@@ -1,47 +1,69 @@
-## Description: <br>
-面向中国 A 股的 Tushare 专用技能，提供股票数据获取、个股分析与交易观察能力。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TuShare Stock Skill helps agents query Tushare data for China A-share equities and produce stock research, valuation, risk, and trading-observation analysis.
 
-## Publisher: <br>
-[Magica-Chen](https://clawhub.ai/user/Magica-Chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magica-chen](https://clawhub.ai/user/magica-chen)
 
-## Use Case: <br>
-External users and developers use this skill to query and analyze China A-share stock data through Tushare. It supports stock data retrieval, individual-stock fundamentals and valuation analysis, risk signals, funds-flow review, leaderboard data, and technical trading observations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Tushare token and can optionally read it from a file path. <br>
-Mitigation: Provide only the intended TUSHARE_TOKEN, and set TUSHARE_STOCK_ENV_FILE only to a small file containing that token. <br>
-Risk: Runtime commands access external Tushare endpoints, and realtime crawler data may have compliance or reliability limits. <br>
-Mitigation: Treat returned market data as external-source data, verify important results against authoritative sources, and confirm that use of realtime endpoints fits the deployment context. <br>
-Risk: Unpinned Python dependencies can change behavior over time in production or automated workflows. <br>
-Mitigation: Install in a virtual environment and pin dependencies for production or automated trading workflows. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to retrieve China A-share market data through Tushare and generate concise stock research, financial-quality analysis, risk notes, and technical trading observations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Magica-Chen/tushare-stock-skill) <br>
-- [Project homepage](https://github.com/Magica-Chen/tushare-stock-skill) <br>
-- [Tushare official stock-data index](https://tushare.pro/document/2?doc_id=14) <br>
-- [Machine-readable stock endpoint catalog](references/stock_endpoints.json) <br>
-- [Human-readable stock endpoint summary](references/stock_endpoints.md) <br>
-- [Technical indicator registry](scripts/trading_analysis.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON with Simplified Chinese text and occasional shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include raw Tushare rows, analysis summaries, called endpoint names, and access-limit notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and release evidence) <br>
+Risk: The skill uses a user-provided Tushare token for market-data queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the token through TUSHARE_TOKEN when possible and avoid broad env files; if TUSHARE_STOCK_ENV_FILE is used, point it to a minimal file containing only that token.
+
+Risk: Live queries and catalog refreshes make network requests to Tushare services.
+
+Mitigation: Run the skill in an environment where outbound access to api.waditu.com and tushare.pro is expected and review returned data before relying on analysis.
+
+Risk: Cached stock metadata may be written to a shared temporary directory by default.
+
+Mitigation: Set TUSHARE_STOCK_CACHE_DIR to a private per-user cache directory when cache contents or local multi-user isolation matter.
+
+Risk: The dependency set is installed from Python packages and includes market-data and web-request libraries.
+
+Mitigation: Install the skill in a virtual environment and manage dependency versions according to local security policy.
+
+Risk: Some catalog entries can reach adjacent non-A-share or cross-market Tushare endpoints.
+
+Mitigation: Keep prompts and explicit endpoint calls scoped to China A-share workflows and review the reported endpoint before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magica-chen/skills/tushare-stock-skill)
+- [Project homepage](https://github.com/Magica-Chen/tushare-stock-skill)
+- [Tushare official stock-data index](https://tushare.pro/document/2?doc_id=14)
+- [Stock endpoint catalog](references/stock_endpoints.md)
+- [Machine-readable stock endpoint catalog](references/stock_endpoints.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Simplified Chinese text and structured JSON, with Markdown documentation and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided TUSHARE_TOKEN for live Tushare queries; query results may reflect Tushare point thresholds and endpoint permissions.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

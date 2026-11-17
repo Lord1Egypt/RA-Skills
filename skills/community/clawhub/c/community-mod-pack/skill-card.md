@@ -1,51 +1,63 @@
-## Description: <br>
-Assist community moderation with summaries, spam detection suggestions, rule reminders, and draft replies for Discord or Telegram without automatic enforcement actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist community moderation with summaries, spam detection suggestions, and draft replies for Discord or Telegram. Use when a user wants moderation help, rule reminders, or daily summaries without automatic enforcement actions.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-External community managers and moderators use this skill to summarize Discord or Telegram activity, surface possible spam or rule violations, and draft moderator responses for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Community message exports or platform access may expose private user data. <br>
-Mitigation: Use read-only access, restrict exports to the necessary channels and time range, keep identifiers minimal, and avoid retaining full message bodies beyond the analysis window. <br>
-Risk: Spam or rule-violation suggestions may be false positives or may reflect biased labeling. <br>
-Mitigation: Require moderator review, include rule citations and confidence levels, and adjust keyword lists or thresholds when false positives occur. <br>
-Risk: Draft replies could be mistaken for final enforcement decisions. <br>
-Mitigation: Keep outputs in draft form and do not use the skill to mute, ban, delete messages, modify roles, or call moderation actions. <br>
-Risk: Bot tokens or webhook inputs may be over-scoped or mishandled. <br>
-Mitigation: Restrict bot tokens to read-only scopes, do not store tokens in files, validate webhook payloads, and rate limit processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codedao12/community-mod-pack) <br>
-- [Publisher Profile](https://clawhub.ai/user/codedao12) <br>
-- [Overview](references/overview.md) <br>
-- [Auth](references/auth.md) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [UX](references/ux.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Safety](references/safety.md) <br>
+## Use Case:
 
+External community moderators use this skill to summarize Discord or Telegram activity, surface possible spam or rule violations, and draft rule reminders or moderator replies. It supports human-reviewed moderation workflows and does not perform enforcement actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, flagged-message lists, confidence notes, draft replies, and suggested follow-up actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft-only and require human moderator review before action.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Community message analysis can expose personal data or exceed a community's privacy rules if moderators provide broad logs or credentials.
+
+Mitigation: Use only approved channels, time windows, rules, and read-only access; minimize identifiers and avoid storing tokens or full message bodies beyond the analysis window.
+
+Risk: Spam or rule-violation flags may be incorrect, biased, or missing context.
+
+Mitigation: Keep outputs as drafts with rule citations and confidence levels, and require human moderator review before any action.
+
+Risk: Suggested actions could be mistaken for automated enforcement.
+
+Mitigation: Do not call moderation endpoints or modify roles, messages, mutes, bans, or kicks; provide only summaries, flags, and draft responses.
+
+## Reference(s):
+
+- [Overview](artifact/references/overview.md)
+- [Auth](artifact/references/auth.md)
+- [Endpoints](artifact/references/endpoints.md)
+- [Safety](artifact/references/safety.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [UX](artifact/references/ux.md)
+- [Webhooks](artifact/references/webhooks.md)
+- [ClawHub skill page](https://clawhub.ai/codedao12/skills/community-mod-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, flagged-message lists, confidence labels, and draft replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs remain advisory drafts for human moderators and should cite the triggered rule where applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

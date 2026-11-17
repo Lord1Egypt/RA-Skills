@@ -1,43 +1,53 @@
-## Description: <br>
-Query public open data from Umeå kommun on locations, facilities, demographics, environment, infrastructure, and building permits with geospatial support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query public open data from Umeå kommun on locations, facilities, demographics, environment, infrastructure, and building permits with geospatial support.
 
-## Publisher: <br>
-[Simskii](https://clawhub.ai/user/Simskii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simskii](https://clawhub.ai/user/simskii)
 
-## Use Case: <br>
-External users and developers use this skill to query Umeå municipal open datasets, retrieve records, and answer location, facility, statistics, planning, and nearest-place questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Nearest-location lookups may fail because the nearby helper references a distance.jq filter that is not packaged in the artifact. <br>
-Mitigation: Confirm the distance.jq helper is supplied or avoid nearby.sh until the package is fixed. <br>
-Risk: The bundled shell helpers depend on local curl and jq binaries. <br>
-Mitigation: Verify both tools are installed before using the scripts. <br>
-Risk: Public municipal datasets may change, be incomplete, or require source review before operational decisions. <br>
-Mitigation: Check current API responses and source context before relying on results for planning, safety, or compliance decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Simskii/umea-data) <br>
-- [Umeå Open Data API](https://opendata.umea.se/api/v2/) <br>
-- [Publisher Profile](https://clawhub.ai/user/Simskii) <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to query Umeå kommun public open data for facilities, infrastructure, planning, demographics, and environmental questions, including nearby-location lookups when geospatial data is available.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for the bundled shell helpers; nearest-location queries also require the packaged distance.jq filter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on Umeå municipality's public open-data API, so availability, rate limits, schema changes, or data freshness can affect answers.
+
+Mitigation: Check important results against the source API and handle empty, stale, or failed responses before relying on outputs.
+
+Risk: The nearest-location helper references a missing distance.jq file, which can cause nearby-location examples to fail.
+
+Mitigation: Repair the package by adding the required distance.jq helper or avoid the nearby helper until packaging is corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simskii/skills/umea-data)
+- [Umeå Open Data API](https://opendata.umea.se/api/v2/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with Bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries public Umeå kommun open-data endpoints; nearest-location examples depend on the packaged distance.jq helper.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Claws Daily generates personalized twice-daily news briefs from public hot topics and news search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小龙虾日报，将你最关心的资讯主动送到你眼前。
 
-## Publisher: <br>
-[chenhui7au](https://clawhub.ai/user/chenhui7au) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenhui7au](https://clawhub.ai/user/chenhui7au)
 
-## Use Case: <br>
-External users use Claws Daily to receive scheduled morning and evening news briefs filtered by selected topic labels, profile preferences, and output language. The skill supports Chinese or English Markdown briefs and uses Asia/Shanghai scheduling windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personalization setup stores user preference profile data in metadata.json. <br>
-Mitigation: Keep the saved profile high-level, avoid sensitive personal or political details, and review metadata.json after initialization. <br>
-Risk: Heartbeat scheduling can continue producing twice-daily runs after the user no longer wants briefs. <br>
-Mitigation: Disable the Heartbeat when scheduled morning and evening generation is no longer desired. <br>
-Risk: News retrieval can fail, be rate-limited, or return no matching items for a time window. <br>
-Mitigation: Use the documented retry and fallback behavior, continue with available sections, and do not fabricate news or missing fields. <br>
+## Use Case:
 
+External users and agents use this skill to create twice-daily personalized news briefs from public hot topics and configured news labels. The skill initializes user preferences, fetches matching news, filters by the current Asia/Shanghai batch window, and formats a concise Markdown brief.
 
-## Reference(s): <br>
-- [Claws Daily on ClawHub](https://clawhub.ai/chenhui7au/claws-daily) <br>
-- [Install and Initialization](artifact/install.md) <br>
-- [Daily Brief Examples](artifact/daily_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown brief with setup commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefs include major events and up to five personalized items; output language is controlled by LANGUAGE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill runs on a scheduled heartbeat twice daily using Asia/Shanghai time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the scheduled cadence is acceptable, and verify the heartbeat configuration during initialization.
+
+Risk: User news preferences are stored in skill metadata.
+
+Mitigation: Keep preference text limited to information appropriate for local skill configuration.
+
+Risk: Brief generation depends on the configured news service and public web-fetching tools for hot topics.
+
+Mitigation: Use the documented retry and fallback behavior, and do not fabricate news when sources fail or no items match the time window.
+
+## Reference(s):
+
+- [Claws Daily on ClawHub](https://clawhub.ai/chenhui7au/skills/claws-daily)
+- [Install & Initialization](artifact/install.md)
+- [Daily Brief Examples](artifact/daily_example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown brief with setup guidance and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The brief uses fixed sections, supports zh-CN or en-US output, and limits the personalized news section to five items on initial output.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

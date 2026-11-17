@@ -1,53 +1,74 @@
-## Description: <br>
-Create, produce, and publish UGC-style short-form video reels at scale using DanSUGC for UGC clips, analytics, and posting; Gemini for video analysis; and ffmpeg for video assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, produce, and publish UGC-style short-form video reels by sourcing DanSUGC reaction hooks, analyzing demos with Gemini, assembling videos with FFmpeg, publishing to TikTok and Instagram, and tracking performance.
 
-## Publisher: <br>
-[danielhangan](https://clawhub.ai/user/danielhangan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielhangan](https://clawhub.ai/user/danielhangan)
 
-## Use Case: <br>
-Developers, creators, and growth teams use this skill to guide an agent through short-form UGC reel production, including finding reaction hooks, analyzing demo videos, assembling vertical clips, scoring virality, publishing to connected TikTok and Instagram accounts, and reviewing analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can spend DanSUGC credits when purchasing clips or using analytics. <br>
-Mitigation: Use limited-balance or test accounts where possible and require manual confirmation before purchase or paid analytics actions. <br>
-Risk: The workflow can upload unpublished demos or final videos to third-party services for Gemini processing and temporary public hosting. <br>
-Mitigation: Avoid sensitive recordings, review media before upload, and remove temporary hosted files when they are no longer needed. <br>
-Risk: The workflow can publish or manage real TikTok and Instagram posts through connected accounts. <br>
-Mitigation: Use limited or staging social accounts where possible and manually confirm each upload, schedule, publish, or delete action. <br>
-Risk: The preflight behavior includes package installation commands that may request elevated privileges. <br>
-Mitigation: Do not run sudo or package-install preflight steps automatically; review and execute dependency installation separately. <br>
+## Use Case:
 
+External creators, marketers, and developers use ReelClaw to generate short-form UGC reel concepts, produce 1080x1920 videos, score virality, and publish or schedule them to connected TikTok or Instagram accounts.
 
-## Reference(s): <br>
-- [ReelClaw homepage](https://github.com/dansugc/reelclaw) <br>
-- [DanSUGC API docs](https://dansugc.com/llms.txt) <br>
-- [DanSUGC interactive docs](https://dansugc.com/docs) <br>
-- [DanSUGC dashboard](https://dansugc.com/dashboard) <br>
-- [Gemini API key setup](https://aistudio.google.com/apikey) <br>
-- [Tool setup reference](artifact/tools-setup.md) <br>
-- [FFmpeg patterns reference](artifact/ffmpeg-patterns.md) <br>
-- [Green zone reference](artifact/green-zone.md) <br>
-- [Virality scoring reference](artifact/virality-scoring.md) <br>
-- [Virality reference](artifact/virality.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API calls, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce video-editing command plans, publishing instructions, virality analysis, and social caption guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make persistent system changes through package installation or font download steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before installing packages, running sudo, downloading fonts, or changing user font directories.
+
+Risk: The skill can upload local video files to Gemini, DanSUGC, and a public temporary file host.
+
+Mitigation: Use non-sensitive demo footage where possible and require approval before any media upload or public URL creation.
+
+Risk: The skill can spend DanSUGC credits when purchasing clips or using analytics.
+
+Mitigation: Check balances and require explicit approval before credit-spending purchase or analytics actions.
+
+Risk: The skill can publish, schedule, update, or delete posts on real TikTok and Instagram accounts.
+
+Mitigation: Use test social accounts where possible and require approval before publish, schedule, update, or delete operations.
+
+Risk: The workflow depends on API keys for Gemini and DanSUGC.
+
+Mitigation: Use restricted keys, avoid printing full secrets, and redact credentials in logs and generated output.
+
+## Reference(s):
+
+- [ReelClaw Source Homepage](https://github.com/dansugc/reelclaw)
+- [ReelClaw ClawHub Listing](https://clawhub.ai/danielhangan/skills/reelclaw-dansugc)
+- [DanSUGC LLM-Friendly API Docs](https://dansugc.com/llms.txt)
+- [DanSUGC Interactive Docs](https://dansugc.com/docs)
+- [ReelClaw README](artifact/README.md)
+- [Tool Setup Guide](artifact/tools-setup.md)
+- [Green Zone Reference](artifact/green-zone.md)
+- [FFmpeg Patterns](artifact/ffmpeg-patterns.md)
+- [Virality Rules and Best Practices](artifact/virality.md)
+- [Virality Scoring](artifact/virality-scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands, MCP tool calls, JSON scoring outputs, captions, and generated video file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local MP4 reel files, public media URLs, scheduled social posts, analytics summaries, and ranked virality scorecards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

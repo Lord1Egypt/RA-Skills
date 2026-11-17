@@ -1,40 +1,57 @@
-## Description: <br>
-Chrome DevTools MCP gives agents browser automation and testing capabilities through Puppeteer and the Chrome DevTools Protocol, including navigation, form input, screenshots, performance traces, network inspection, and console debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chrome DevTools MCP gives agents browser automation and testing capabilities through Puppeteer and the Chrome DevTools Protocol, including navigation, input automation, screenshots, performance traces, network inspection, and console debugging.
 
-## Publisher: <br>
-[banalit](https://clawhub.ai/user/banalit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[banalit](https://clawhub.ai/user/banalit)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to connect an agent to Chrome for browser automation, UI testing, visual checks, performance analysis, debugging, and network inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server can control and inspect Chrome, including pages where sensitive accounts or data may be present. <br>
-Mitigation: Use a fresh or disposable browser profile, avoid sensitive logged-in sessions unless intended, and review actions before submissions or file uploads. <br>
-Risk: The upstream Chrome DevTools MCP package may collect usage statistics by default and performance tools may use CrUX-related behavior. <br>
-Mitigation: Use the documented privacy flags such as --no-usage-statistics and --no-performance-crux when that data sharing is not appropriate. <br>
+## Use Case:
 
+Developers and testing agents use this skill to automate Chrome sessions for browser testing, web automation, performance analysis, UI testing, form filling, visual regression, and debugging workflows.
 
-## Reference(s): <br>
-- [Chrome DevTools MCP homepage](https://github.com/ChromeDevTools/chrome-devtools-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw MCP server configuration and setup, status, or test commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill gives an agent powerful control over a Chrome browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile or container and avoid logged-in or sensitive browsing sessions.
+
+Risk: The setup and examples repeatedly use an unpinned npm package version.
+
+Mitigation: Prefer a pinned, reviewed chrome-devtools-mcp version instead of @latest before installation.
+
+Risk: Usage statistics and performance CrUX features can share telemetry or trace-related data.
+
+Mitigation: Disable telemetry and CrUX features when privacy matters.
+
+## Reference(s):
+
+- [Chrome DevTools MCP homepage](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup commands, MCP configuration snippets, browser automation workflow guidance, and security guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

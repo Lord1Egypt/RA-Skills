@@ -1,37 +1,53 @@
-## Description: <br>
-Implement WebAuthn passkeys avoiding critical security and compatibility pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement WebAuthn passkeys avoiding critical security and compatibility pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a WebAuthn passkey implementation checklist covering server storage, registration, authentication, user experience, platform sync behavior, and testing pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Passkey guidance may be applied incorrectly for challenge uniqueness, origin validation, sign-count checks, or authenticator compatibility. <br>
-Mitigation: Review implementation choices against a vetted WebAuthn library and the application's security requirements before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/passkey) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement passkey authentication with WebAuthn while avoiding common security, compatibility, storage, registration, authentication, user experience, and testing pitfalls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code or sensitive access requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Passkey authentication affects account security, and framework-specific details can change over time.
+
+Mitigation: Validate recommendations against the target framework, current WebAuthn library documentation, and the application's recovery and risk requirements before deployment.
+
+Risk: Incorrect passkey ceremony configuration can create replay, phishing, cloned-authenticator, compatibility, or account recovery risks.
+
+Mitigation: Review challenge uniqueness and expiry, origin validation, sign-count handling, trusted library usage, fallback access, and cross-browser testing before production use.
+
+## Reference(s):
+
+- [Passkey skill page](https://clawhub.ai/ivangdavila/skills/passkey)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with implementation notes and code or configuration recommendations when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable skill code; recommendations should be reviewed against the target framework and current WebAuthn library documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

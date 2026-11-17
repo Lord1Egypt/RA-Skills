@@ -1,41 +1,56 @@
-## Description: <br>
-GA4 Analytics Toolkit helps agents analyze Google Analytics 4 traffic, Search Console SEO performance, real-time visitors, and indexing workflows for verified websites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GA4 Analytics Toolkit helps agents analyze Google Analytics 4, Search Console, and Indexing API data for site traffic, page performance, real-time visitors, SEO metrics, URL indexing, conversions, and revenue.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers, site operators, and analytics teams use this skill to retrieve GA4 and Search Console data, compare date ranges, inspect SEO performance, and prepare markdown summaries from saved analytics results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Google Indexing API actions can request re-indexing or removal for URLs. <br>
-Mitigation: Grant Indexing API access only when needed, require manual approval for every request, and restrict URLs to owned verified properties. <br>
-Risk: Saved analytics results may contain sensitive business analytics. <br>
-Mitigation: Regularly review or delete the local results directory and limit sharing of generated outputs. <br>
-Risk: The skill requires Google service account credentials. <br>
-Mitigation: Use a dedicated least-privilege service account and keep private keys out of committed files and shared outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference](references/api-reference.md) <br>
+## Use Case:
 
+Developers and analytics or SEO teams use this skill to connect an agent to GA4, Search Console, and Google Indexing APIs, retrieve structured website metrics, and summarize performance trends. It supports traffic analysis, search-query analysis, URL inspection, re-indexing workflows, period comparisons, and saved reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, TypeScript usage examples, shell commands, and JSON result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are saved as timestamped JSON files under results/ and may be summarized as markdown.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Google service account credentials and saved analytics reports can expose sensitive site, search, and performance data.
+
+Mitigation: Use least-privilege credentials scoped only to required GA4 and Search Console properties, protect private keys, and treat saved results as sensitive files.
+
+Risk: Indexing API functions can request URL removals from Google indexing.
+
+Mitigation: Require manual review for URL removal requests and avoid granting indexing permissions unless that workflow is necessary.
+
+Risk: Exported storage helpers can read or write outside the intended results folder when used with untrusted paths or arguments.
+
+Mitigation: Avoid exposing those helpers to untrusted inputs, or constrain and validate paths before broader agent use.
+
+## Reference(s):
+
+- [API Reference](artifact/references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with TypeScript examples and saved JSON report artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are saved by default under results/ by category; summaries may be written as Markdown.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

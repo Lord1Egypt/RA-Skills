@@ -1,43 +1,57 @@
-## Description: <br>
-Gmail automation: summarize, labels, spam purge, filing, deletion, permanent delete <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Gmail inbox summaries, label management, spam and trash cleanup, message filing, and message deletion workflows.
 
-## Publisher: <br>
-[r39132](https://clawhub.ai/user/r39132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[r39132](https://clawhub.ai/user/r39132)
 
-## Use Case: <br>
-Users and agents use this skill to inspect Gmail inbox state, summarize unread mail, manage labels, move messages, and run spam, trash, and old-message cleanup tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run persistent mailbox-changing jobs that continue outside the agent session. <br>
-Mitigation: Review each requested background job before launch, verify the Gmail account and WhatsApp notification target, and monitor job status until completion. <br>
-Risk: Some workflows can trash or permanently delete Gmail messages. <br>
-Mitigation: Use destructive actions only after explicit confirmation, avoid full-scope authorization unless permanent deletion is required, and prefer trash-based deletion when possible. <br>
-Risk: Raw Gmail task status and results may be sent to a configured WhatsApp recipient. <br>
-Mitigation: Confirm the recipient before execution and avoid sending sensitive mailbox contents through notification channels. <br>
-Risk: The background command wrapper executes a constructed command string. <br>
-Mitigation: Use only the documented Gmail helper commands and avoid untrusted labels, dates, or command text in background jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/r39132/gmail-skill) <br>
+## Use Case:
 
+External users and agents use this skill to inspect and manage a Gmail mailbox, including unread-message summaries, label organization, spam and trash cleanup, filing messages into labels, and confirmed deletion tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch background Gmail maintenance jobs and report status or results through configured WhatsApp notifications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can perform destructive Gmail actions, including label deletion, message trashing, and permanent deletion when full-scope authorization is present.
+
+Mitigation: Confirm the target account, labels, dates, and exact command before running destructive actions; avoid full-scope permanent deletion unless it is specifically required.
+
+Risk: The skill can run detached background jobs and deliver task output through WhatsApp, which may expose mailbox-derived information outside the local agent session.
+
+Mitigation: Use background jobs only after confirming the WhatsApp recipient and task scope, and review local job logs and status before relying on the result.
+
+Risk: The skill stores OAuth and job state locally, including a full-scope token file when permanent deletion is enabled.
+
+Mitigation: Protect local token and job directories, remove unneeded full-scope tokens, and install the skill only in environments where local credential storage is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/r39132/skills/gmail-skill)
+- [Gmail full access OAuth scope](https://mail.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some helper commands can emit TSV or JSON status output; background tasks can send progress and final results through WhatsApp.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

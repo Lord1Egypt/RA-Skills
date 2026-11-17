@@ -1,45 +1,59 @@
-## Description: <br>
-Help Scout Docs (helpscout.com). Use this skill for ANY Help Scout Docs request - searching and reading data. Whenever a task involves Help Scout Docs, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Help Scout Docs content using the connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent read, list, and search Help Scout Docs content through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and search Help Scout Docs through an OOMOL-connected account. <br>
-Mitigation: Install and use it only when the user intends to expose Help Scout Docs content to the agent through that connected account. <br>
-Risk: First-time CLI installation or account-connection setup can affect the user's local environment or connected services. <br>
-Mitigation: Treat CLI installation, sign-in, billing recovery, and Help Scout connection steps as user-approved setup actions rather than automatic background actions. <br>
-Risk: Connector responses may include Help Scout Docs content that is sensitive or internal. <br>
-Mitigation: Review retrieved article, collection, category, and site data before sharing it outside the intended audience. <br>
+## Use Case:
 
+Support and documentation teams use this skill to search and read Help Scout Docs articles, collections, categories, and sites through an already connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-helpscout-docs) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Help Scout](https://www.helpscout.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Help Scout Docs connector actions return JSON data and execution metadata through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Setup directs users to run a downloaded CLI installer without an approval or integrity check; the installer and hosted connector implementation are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the installer, and approve CLI installation separately before running it.
+
+Risk: Automatic agent-skill synchronization settings may affect local skills.
+
+Mitigation: Review and verify the synchronization settings before enabling automatic setup.
+
+Risk: The connected Help Scout account may expose data beyond the intended account context.
+
+Mitigation: Connect only the Help Scout account intended for this work.
+
+## Reference(s):
+
+- [Help Scout](https://www.helpscout.com)
+- [Help Scout Docs API documentation](https://developer.helpscout.com/docs-api/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON results presented or summarized as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns Help Scout Docs content from search, list, and article retrieval actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

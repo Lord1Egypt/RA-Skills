@@ -1,50 +1,61 @@
-## Description: <br>
-Deterministic-first portfolio analyzer for holdings, performance, Sharpe and Sortino ratios, FRED yield curves, bond duration, sector breakdowns, and scenario rebalancing via MCP-HTTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic-first portfolio analyzer for holdings, performance, Sharpe and Sortino, FRED yield curves, bond duration, sector breakdowns, and scenario rebalancing over MCP-HTTP.
 
-## Publisher: <br>
-[perlowja](https://clawhub.ai/user/perlowja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perlowja](https://clawhub.ai/user/perlowja)
 
-## Use Case: <br>
-External users and developers use InvestorClaw to connect an agent to a local portfolio-analysis service, load broker-export portfolio files, and ask for educational portfolio snapshots, performance windows, allocation analysis, and scenario rebalancing. Agents should source market figures from same-turn InvestorClaw tool results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service persists financial context and provider keys through local web and MCP surfaces. <br>
-Mitigation: Install on a personal machine or tightly controlled localhost environment, review the Docker Compose file, and keep ports 18090 and 18092 bound to loopback. <br>
-Risk: Remote dashboard exposure could disclose sensitive financial data if deployed without suitable controls. <br>
-Mitigation: Avoid exposing the dashboard remotely without authentication; use a VPN, mTLS, or equivalent access control for any remote access. <br>
-Risk: LLM narration can send portfolio-derived summaries to configured providers. <br>
-Mitigation: Configure model providers intentionally, disclose this data flow to users, and prefer local model endpoints when portfolio privacy requirements demand it. <br>
-Risk: Stored memory and response history may contain sensitive financial information. <br>
-Mitigation: Treat memory and response history as sensitive data, and provide deletion or opt-out practices where the deployment requires them. <br>
+## Use Case:
 
+Portfolio owners, advisors, and developers use this skill to connect an MCP-capable agent to a local InvestorClaw container for read-only portfolio analysis, market snapshots, performance reporting, and educational rebalancing scenarios. Agents should use same-turn InvestorClaw tool results as the source of truth and avoid personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/perlowja/investorclaw) <br>
-- [Homepage from ClawHub Metadata](https://github.com/argonautsystems/InvestorClaw) <br>
-- [MCP Tools Reference](artifact/docs/MCP_TOOLS_REFERENCE.md) <br>
-- [Input Contract](artifact/docs/references/contract-input.md) <br>
-- [Output Contract](artifact/docs/references/contract-output.md) <br>
-- [Agent-Side Presentation Rules](artifact/docs/references/presentation-rules.md) <br>
-- [Holdings Schema Field Reference](artifact/docs/references/schema-holdings-fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP or REST tool calls and JSON result envelopes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial figures should come from same-turn InvestorClaw tool results; outputs are educational and not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.10.0 (source: server release metadata, SKILL.md frontmatter) <br>
+Risk: Sensitive unauthenticated management surfaces may expose portfolio data if the local MCP or dashboard ports are reachable by another user, browser page, container, or remote host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install on a personal machine, keep ports bound to loopback, and place an auth proxy or VPN in front of the service before any remote or shared deployment.
+
+Risk: Provider keys and uploaded portfolio files are sensitive local assets.
+
+Mitigation: Treat keys and portfolio files as sensitive, store only what is needed, and rotate keys if any local endpoint may have been reachable outside the intended user context.
+
+Risk: Install and runtime weaknesses require review before use.
+
+Mitigation: Prefer the bundled compose.yml, review deployment settings before install or upgrade, and avoid leaving the service running while browsing untrusted sites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perlowja/skills/investorclaw)
+- [InvestorClaw homepage](https://github.com/argonautsystems/InvestorClaw)
+- [MCP tools reference](artifact/docs/MCP_TOOLS_REFERENCE.md)
+- [Privacy policy](artifact/PRIVACY.md)
+- [Security policy](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with MCP tool calls, shell commands, configuration snippets, and JSON-derived portfolio analysis responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only educational analysis; numerical claims should come from same-turn InvestorClaw tool results.]
+
+## Skill Version(s):
+
+4.10.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

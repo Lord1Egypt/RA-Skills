@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-sora-2-pro-official-api
 description: Sora 2 Pro Official video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `sora-2-pro-official`, text-to-video, optional single-image guidance, aspect ratio control, 4 to 20 second clips, 720p, 1024p, or 1080p output, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/sora-2-pro-official","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/sora-2-official","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Sora 2 Pro Official Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/sora-2-official>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/sora-2-pro-official>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Sora 2 Pro Official video jobs on PoYo. It helps agents prepare text-to-video and optional single-image guided video payloads, submit async tasks, and explain polling or webhook follow-up.
 

@@ -1,42 +1,54 @@
-## Description: <br>
-Query system information including OS, CPU, memory, and disk usage for basic configuration checks, resource usage review, and performance diagnostics across Windows, Linux, and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query local system information including OS, CPU, memory, and disk usage for basic diagnostics and configuration checks.
 
-## Publisher: <br>
-[liujintao-2021](https://clawhub.ai/user/liujintao-2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liujintao-2021](https://clawhub.ai/user/liujintao-2021)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local operating system, CPU, memory, and disk details from an agent session. It is useful for lightweight environment checks and troubleshooting before or during local work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The README installation command and skill metadata use different package names, which could lead users to install the wrong package. <br>
-Mitigation: Confirm the package name before installing; the server-resolved release target is system-info-skill. <br>
-Risk: Local OS, CPU, memory, and disk details may be printed into an agent session or logs. <br>
-Mitigation: Use the skill only when sharing local system details in the current session and logs is acceptable. <br>
+## Use Case:
 
+Developers, operators, and support users use this skill to inspect basic local machine configuration and resource usage during troubleshooting or environment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujintao-2021/system-info-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text table or JSON from a local Python script, with shell commands for invocation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can filter output to OS, CPU, memory, or disk details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The documented installer names differ across files, which could cause users to install the wrong package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended package name before installation and prefer a pinned or reviewed installer command in sensitive environments.
+
+Risk: Running the script prints basic local machine details such as OS version, CPU count, memory, and disk usage.
+
+Mitigation: Run it only in contexts where displaying these local system details in terminal output is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujintao-2021/skills/system-info-skill)
+- [Publisher profile](https://clawhub.ai/user/liujintao-2021)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is table text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime output may include OS version, CPU count, memory usage, and disk usage from the local machine.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

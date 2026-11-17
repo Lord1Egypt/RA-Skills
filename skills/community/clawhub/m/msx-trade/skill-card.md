@@ -1,48 +1,63 @@
-## Description: <br>
-Trade security tokens on the MSX platform by checking balances, placing and canceling orders, viewing market data, and reviewing trade history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade security tokens on the MSX platform by checking balances, placing orders, viewing market data, and reviewing trade history.
 
-## Publisher: <br>
-[seineruo](https://clawhub.ai/user/seineruo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seineruo](https://clawhub.ai/user/seineruo)
 
-## Use Case: <br>
-External users can use this skill to let an agent interact with MSX account, market, order, and history APIs for security-token trading workflows. It supports account and portfolio checks, quote and order-book lookup, order placement and cancellation, and historical trade or transaction reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an MSX API key that can expose sensitive account, balance, position, order, trade, and transaction data. <br>
-Mitigation: Use the narrowest available key scope, prefer read-only credentials for reporting workflows, and never expose, log, or repeat the API key in agent responses. <br>
-Risk: The skill can place and cancel security-token orders through the MSX API. <br>
-Mitigation: Require explicit user confirmation before order placement or cancellation, repeat symbol, side, type, quantity, and price before execution, and add extra review for large orders. <br>
-Risk: Ambiguous trading requests can result in unintended order parameters. <br>
-Mitigation: Ask for missing quantity, price, side, symbol, or order type before using order-changing endpoints. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve MSX account, portfolio, market, order, and trade-history information. It can also guide live order placement and cancellation when the user provides explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seineruo/msx-trade) <br>
-- [Publisher profile](https://clawhub.ai/user/seineruo) <br>
-- [MSX API key application page](https://msx.com/api) <br>
-- [Account and portfolio module](artifact/api-account.md) <br>
-- [Market data module](artifact/api-market.md) <br>
-- [Order execution module](artifact/api-orders.md) <br>
-- [Trade history and reports module](artifact/api-history.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown responses with API request details, JSON-shaped examples, and tables for portfolio or history data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MSX_API_KEY; market data responses should include timestamps and trade-changing actions should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can use an MSX API key to retrieve sensitive balances, holdings, orders, and transaction history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, use a restricted API key where possible, and avoid exposing account data in shared conversations or logs.
+
+Risk: The skill can place or cancel live MSX orders.
+
+Mitigation: Require manual confirmation for every order and cancellation, including symbol, side, order type, quantity, and price when applicable.
+
+Risk: Broad or ambiguous trading requests could trigger unintended order workflows.
+
+Mitigation: Ask clarifying questions for vague requests and proceed only when the user clearly intends an MSX trading action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seineruo/skills/msx-trade)
+- [MSX API access](https://msx.com/api)
+- [MSX API base endpoint](https://api.msx.com/v1)
+- [Account and portfolio module](artifact/api-account.md)
+- [Market data module](artifact/api-market.md)
+- [Order execution module](artifact/api-orders.md)
+- [Trade history module](artifact/api-history.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown responses with API request details, tables, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive account, position, order, and transaction details returned by the MSX API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

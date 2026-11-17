@@ -1,0 +1,33 @@
+{
+  "slug": "chatgpt-image-handoff",
+  "title": "ChatGPT Image Handoff",
+  "category": "content",
+  "summary": "Route image jobs across ordinary ChatGPT with Computer Use, optional ZIP batches, built-in generation, manual handoff, or local rendering with readable-text fact boundaries, resumable import, and visual QA.",
+  "keywords": [
+    "ChatGPT image generation",
+    "Computer Use",
+    "optional ChatGPT ZIP",
+    "batch image archive",
+    "manual image handoff",
+    "backend auto routing",
+    "download import",
+    "visual QA",
+    "text allowlist",
+    "mixed deterministic overlay",
+    "fact-safe image generation"
+  ],
+  "user_needs": [
+    "continue an image batch when built-in ImageGen is unavailable or flaky",
+    "use ChatGPT image generation through Computer Use when the capability exists",
+    "test a checked multi-image ZIP archive when the active ChatGPT surface supports native archive delivery",
+    "fall back to a manual prompt pack when browser automation is unavailable",
+    "import external image results under stable names and resume local QA",
+    "prevent generated cards from inventing hashes, identifiers, filenames, or metrics",
+    "finish a visible generated background locally with exact allowlisted text while preserving its series style"
+  ],
+  "source_dir": "skills/content/chatgpt-image-handoff",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

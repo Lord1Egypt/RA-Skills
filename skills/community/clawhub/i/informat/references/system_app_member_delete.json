@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_member_delete",
+    "description": "Remove a member from the current application. (Dangerous operation, only allowed when user explicitly requests to remove a specific member)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "The account ID of the member to remove from the application (must exist)."
+        }
+      },
+      "required": ["accountId"],
+      "additionalProperties": false
+    }
+  }
+}

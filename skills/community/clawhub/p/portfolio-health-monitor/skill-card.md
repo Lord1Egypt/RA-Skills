@@ -1,40 +1,52 @@
-## Description: <br>
-Full portfolio monitoring across crypto, US stocks, and Chinese A-shares. P&L tracking, drawdown alerts, rebalancing signals. Supports OKX, Yahoo Finance, Sina. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full portfolio monitoring across crypto, US stocks, and Chinese A-shares. P&L tracking, drawdown alerts, rebalancing signals. Supports OKX, Yahoo Finance, Sina.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to monitor multi-asset trading portfolios, calculate P&L, surface drawdown and take-profit alerts, and identify position-size drift for rebalancing review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Portfolio positions and API keys are sensitive financial information.
+
+Mitigation: Provide only the minimum data needed and avoid sharing trading authority unless the workflow has been separately reviewed.
+
+Risk: Rebalancing and add/reduce signals could be mistaken for automatic financial advice.
+
+Mitigation: Treat outputs as informational alerts and review them before making any trading decision.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to monitor multi-asset trading portfolios, track realized and unrealized P&L, review drawdown and profit alerts, and identify rebalancing signals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio monitoring may involve sensitive financial holdings or exchange account information if the user provides it. <br>
-Mitigation: Share only the portfolio details needed for analysis and review data handling before providing account-specific information. <br>
-Risk: Add, reduce, stop-loss, take-profit, or rebalancing guidance may be incorrect or unsuitable for a user's financial situation. <br>
-Mitigation: Verify every recommendation independently before trading; the evidence does not show automatic trading or credential handling. <br>
+**Output Format:** [Markdown or plain text portfolio monitoring guidance with alert and rebalancing signals]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/portfolio-health-monitor) <br>
+**Other Properties Related to Output:** [Outputs should be treated as informational and reviewed before any trading action.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown portfolio health summary with alerts and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided portfolio data and market data sources.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

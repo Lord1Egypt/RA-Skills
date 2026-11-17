@@ -1,45 +1,64 @@
-## Description: <br>
-AI-native GRC (Governance, Risk, and Compliance) for OpenClaw that manages controls, evidence, risks, policies, vendors, incidents, assets, access reviews, questionnaires, reports, dashboards, trust center pages, and local security scans across 13 frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native GRC (Governance, Risk, and Compliance) for OpenClaw that manages controls, evidence, risks, policies, vendors, incidents, assets, training, vulnerabilities, access reviews, questionnaires, compliance scoring, reports, dashboards, trust center pages, and security scans across 13 frameworks.
 
-## Publisher: <br>
-[mailnike](https://clawhub.ai/user/mailnike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mailnike](https://clawhub.ai/user/mailnike)
 
-## Use Case: <br>
-Compliance, security, and engineering teams use this skill to manage GRC workflows in OpenClaw, including framework activation, gap analysis, evidence tracking, risk and incident workflows, reporting, dashboards, and trust center generation. Developers and operators can also run local security header, SSL/TLS, and GDPR checks against systems they are authorized to assess. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request high-value cloud, identity, or source-control credentials for optional integrations. <br>
-Mitigation: Use least-privilege read-only roles, prefer local environment variables or a secret manager, and do not paste service-account JSON, client secrets, or API tokens into chat. <br>
-Risk: Companion integration scripts can connect to external cloud, GitHub, or identity-provider accounts. <br>
-Mitigation: Verify companion skills before connection tests and confirm the exact permissions and target account before running integration checks. <br>
-Risk: Security scans can assess live URLs and domains. <br>
-Mitigation: Run scans only against systems the user owns or is authorized to assess. <br>
+## Use Case:
 
+Compliance, security, and audit teams use this skill to manage GRC workflows in OpenClaw, including framework activation, evidence tracking, gap analysis, risk management, reporting, and local security checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mailnike/auditclaw-grc) <br>
-- [AuditClaw Homepage](https://www.auditclaw.ai) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Declared Source Repository](https://github.com/avansaber/auditclaw-grc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown summaries and guidance, shell commands for local scripts, JSON parsed into human-readable responses, and generated local files such as HTML reports, dashboards, trust center pages, and ZIP evidence exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local SQLite state and optional browser, cloud, GitHub, and identity-provider integrations when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter declares 1.0.0) <br>
+Risk: The skill can work with cloud and identity-provider credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste secrets into chat; prefer short-lived, read-only, provider-native authentication and verify the active account before running integrations.
+
+Risk: The skill stores a local GRC database and local credential files under ~/.openclaw/grc.
+
+Mitigation: Install only in environments where local storage of this compliance and credential material is acceptable.
+
+Risk: Security scanners operate against user-provided URLs and domains.
+
+Mitigation: Run URL scanners only against domains you control or are authorized to assess.
+
+Risk: Evidence exports may contain sensitive compliance material.
+
+Mitigation: Review generated evidence ZIP contents before sharing them with auditors or third parties.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/mailnike/skills/auditclaw-grc)
+- [AuditClaw Homepage](https://www.auditclaw.ai)
+- [OpenClaw](https://openclaw.ai)
+- [Source Repository Declared by Skill](https://github.com/avansaber/auditclaw-grc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and generated local files such as HTML reports, dashboards, trust center pages, and evidence ZIP exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses are intended to be concise human-facing summaries; local scanners and exports operate on user-provided targets and files.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

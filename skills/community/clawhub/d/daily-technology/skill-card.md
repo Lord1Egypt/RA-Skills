@@ -1,37 +1,57 @@
-## Description: <br>
-Generate daily technology news content and TikTok scripts using free tech news sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 60-90 second TikTok scripts about technology news, AI developments, product launches, and tech industry trends using free tech news sources.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-Content creators, marketers, and social media teams use this skill to draft short-form technology news content about recent product launches, startups, AI developments, software updates, cybersecurity, and industry trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts containing sensitive internal information, credentials, unpublished plans, or private links could be exposed while drafting public-facing content. <br>
-Mitigation: Use only public technology news inputs and review generated scripts before publishing. <br>
+## Use Case:
 
+External content creators and social media teams use this skill to generate short daily technology-news scripts and social copy covering AI, product launches, startups, software updates, cybersecurity, and related trends.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style social media scripts and content outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 60-90 second TikTok script structures with hooks, context, news, impact, next steps, and hashtags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release metadata and clawhub.json) <br>
+Risk: Generated technology news scripts may summarize current public reporting inaccurately or omit needed context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify claims against trusted sources and review scripts before publishing.
+
+Risk: The skill references configuration, template, and reference files that are not present in the artifact.
+
+Mitigation: Confirm the missing files are not required for the intended workflow or provide equivalent configuration before relying on those customization paths.
+
+Risk: Broad activation wording can route general technology writing requests to a recent-news social-script workflow.
+
+Mitigation: Invoke the skill only for daily technology news or social script generation tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahmed181283/skills/daily-technology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text social content with short script sections and hashtags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include 60-90 second TikTok script structure, hashtags, category focus, impact scoring, and daily news summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

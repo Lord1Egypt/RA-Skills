@@ -1,37 +1,55 @@
-## Description: <br>
-Repair Evolver restart storms caused by singleton lock/PID false positives and service restart policy mismatch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repair Evolver restart storms caused by singleton lock/PID false positives and service restart policy mismatch.
 
-## Publisher: <br>
-[xyezir](https://clawhub.ai/user/xyezir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xyezir](https://clawhub.ai/user/xyezir)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to diagnose and repair Evolver service restart loops caused by stale singleton locks, PID reuse, or restart policy mismatch. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Service patching, lock cleanup, or restart may briefly interrupt availability or remove a lock that still belongs to an active process. <br>
-Mitigation: Confirm the target service and process identity, capture current service state and configuration, avoid deleting active locks, and keep a rollback path ready before applying changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xyezir/oc-evolver-restart-loop-fix) <br>
+## Use Case:
+
+Developers and operations engineers use this skill to diagnose and repair Evolver service restart loops caused by stale singleton locks, PID reuse, or restart policy mismatch.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Restarting the affected Evolver service or changing its lock guard can disrupt active workloads.
+
+Mitigation: Confirm the service can be restarted, take normal backup or rollback precautions, and obtain operator approval before running during active workloads.
+
+Risk: A broad or unreviewed singleton-lock patch could alter process ownership checks incorrectly.
+
+Mitigation: Keep the patch minimal and reversible, verify the real Evolver process identity, and re-check service status plus restart counter stability after the fix.
+
+Risk: Operational artifacts may expose infrastructure or identity details.
+
+Mitigation: Redact infrastructure and identity details before sharing external artifacts.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with root cause analysis, patch summary, shell commands, and stability proof] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on minimal reversible service changes and post-fix restart-counter stability.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with root cause analysis, patch summary, commands, and stability verification notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service-state checks, a minimal lock-guard patch, restart steps, and post-fix stability proof.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

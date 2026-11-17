@@ -1,45 +1,60 @@
-## Description: <br>
-Sends Feishu/Lark interactive card messages with reusable templates, validation, token handling, and single-recipient or group delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Feishu/Lark interactive card sending helpers with templates, validation, token handling, and group or direct message delivery.
 
-## Publisher: <br>
-[calmTime](https://clawhub.ai/user/calmTime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calmtime](https://clawhub.ai/user/calmtime)
 
-## Use Case: <br>
-Developers and operators use this skill to build and send Feishu/Lark interactive card notifications for news, travel deals, tasks, status updates, and workflow messages to approved users or chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends live Feishu/Lark messages and can reach users or groups when configured with valid credentials. <br>
-Mitigation: Use only credentials you control, apply least-privilege app scopes, test with approved recipients first, and confirm the recipient list before production sends. <br>
-Risk: The server security summary flags restriction-bypass framing around direct Feishu/Lark messaging. <br>
-Mitigation: Review organizational messaging policy before installation and use approved Feishu/Lark APIs, scopes, and recipient workflows. <br>
-Risk: Message payloads and targets may be exposed through logs or demo/test harness output. <br>
-Mitigation: Disable verbose logging in production, redact message content and identifiers, and avoid sending sensitive content unless organizational policy allows it. <br>
+## Use Case:
 
+Developers and automation builders use this skill to create and send Feishu/Lark interactive card messages for notifications, summaries, tasks, system status, and similar workflow updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calmTime/lark-card-sender) <br>
-- [Feishu/Lark message create API](https://open.larkoffice.com/document/server-docs/im-v1/message/create) <br>
-- [Feishu/Lark interactive card message format](https://open.larkoffice.com/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json) <br>
-- [Artifact integration guide](artifact/feishu_card_integration_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and JavaScript code examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate live Feishu/Lark message delivery when used with valid credentials and recipients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, artifact changelog) <br>
+Risk: Python examples and test paths can send live Feishu/Lark messages to fixed recipient IDs when real credentials are present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace or remove hard-coded recipient IDs and test only with approved staging users or groups before using production credentials.
+
+Risk: Card content, recipient identifiers, and message payloads may be sent to Feishu/Lark or printed in logs.
+
+Mitigation: Treat card inputs as external message data, avoid secrets or sensitive content, and keep FEISHU_APP_SECRET in a secrets manager or private environment.
+
+Risk: The JavaScript sender reports delivery success without a real authenticated transport and logs full payloads.
+
+Mitigation: Do not rely on the JavaScript sender for production delivery until it uses a verified Feishu/Lark transport and redacts payload logging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calmtime/skills/lark-card-sender)
+- [Feishu message create API](https://open.larkoffice.com/document/server-docs/im-v1/message/create)
+- [Feishu interactive card JSON format](https://open.larkoffice.com/document/uAjLw4CM/ukTMukTMukTM/im-v1/message/create_json)
+- [OpenClaw Feishu extension](https://github.com/openclaw/openclaw/tree/main/extensions/feishu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and JavaScript code examples and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce runnable examples that send card content and recipient identifiers to Feishu/Lark.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

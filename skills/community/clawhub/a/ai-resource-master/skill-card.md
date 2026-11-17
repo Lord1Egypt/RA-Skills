@@ -1,42 +1,55 @@
-## Description: <br>
-Ai Resource Master estimates GPU and server capacity for medical large-model scenarios from outpatient and inpatient volumes and selected AI use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Resource Master helps agents estimate healthcare AI server and GPU capacity needs from outpatient volume, inpatient volume, selected healthcare AI scenarios, coverage assumptions, and GPU capacity defaults.
 
-## Publisher: <br>
-[hellohushuai](https://clawhub.ai/user/hellohushuai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellohushuai](https://clawhub.ai/user/hellohushuai)
 
-## Use Case: <br>
-Healthcare planners, solution architects, and technical teams use this skill to collect patient volume and scenario inputs, calculate daily LLM workload, and produce a capacity estimate for GPU cards and appliance counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capacity estimates can be misleading if the target GPU model, concurrency, utilization, coverage rates, or appliance sizing differs from the skill defaults. <br>
-Mitigation: Confirm the assumptions against the deployment environment and adjust the inputs or hardware parameters before relying on the estimate. <br>
-Risk: The skill produces calculation guidance only and does not validate clinical appropriateness, procurement constraints, or compliance requirements. <br>
-Mitigation: Review outputs with healthcare operations, infrastructure, and compliance stakeholders before using them for planning decisions. <br>
+## Use Case:
 
+Healthcare planners, solution architects, and implementation teams use this skill to collect annual outpatient and inpatient volumes, choose healthcare AI application scenarios, and generate a concise resource-sizing report for GPU cards, appliance count, and optional total compute.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hellohushuai/ai-resource-master) <br>
-- [Calculation Parameters](references/calculation-params.md) <br>
-- [Example Output](references/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style capacity assessment report with plain text sections and calculations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outpatient volume, inpatient volume, and selected AI scenarios; uses default coverage rates and 910B3/Huawei appliance assumptions when users do not provide alternatives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact _meta.json lists 1.0.1) <br>
+Risk: Default sizing assumptions may not match a specific deployment, especially 910B3 GPU capacity, Huawei appliance sizing, coverage rates, and per-scenario timing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust the built-in defaults against local workload data, target hardware, service-level expectations, and procurement requirements before relying on outputs.
+
+Risk: Healthcare resource-sizing prompts can become sensitive if users provide patient-identifiable or overly granular operational data.
+
+Mitigation: Provide aggregate outpatient and inpatient volumes and avoid patient-identifiable data when using the skill.
+
+## Reference(s):
+
+- [Calculation Parameters](references/calculation-params.md)
+- [Example Output](references/example-output.md)
+- [ClawHub Skill Page](https://clawhub.ai/hellohushuai/skills/ai-resource-master)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown-style prose report with scenario-by-scenario calculations and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-language healthcare AI resource-sizing reports using built-in scenario timing, coverage-rate, 910B3 GPU, and Huawei appliance assumptions unless the user supplies alternatives.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

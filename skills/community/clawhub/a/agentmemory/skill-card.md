@@ -1,44 +1,59 @@
-## Description: <br>
-End-to-end encrypted cloud memory for AI agents. 100GB free storage. Store memories, files, and secrets securely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end encrypted cloud memory for AI agents. 100GB free storage. Store memories, files, and secrets securely.
 
-## Publisher: <br>
-[badaramoni](https://clawhub.ai/user/badaramoni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[badaramoni](https://clawhub.ai/user/badaramoni)
 
-## Use Case: <br>
-External developers and agents use AgentMemory to persist, search, and synchronize agent memories across sessions, with optional file storage, secret storage, and heartbeat-based status tracking through a third-party cloud service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Memories, files, and secret metadata may be synchronized to a third-party cloud service with broad persistence. <br>
-Mitigation: Use least-privileged API keys, avoid storing regulated personal data or production credentials, and require explicit confirmation before storing sensitive memories, uploading files, deleting memories, or revealing secrets. <br>
-Risk: Global installation of the npm CLI can expand local execution and supply-chain exposure. <br>
-Mitigation: Pin and verify the agentmemory-cli package before installing it globally, and review commands before execution. <br>
-Risk: An AgentMemory API key can grant access to stored memories and files if sent to the wrong destination. <br>
-Mitigation: Send AgentMemory credentials only to https://agentmemory.cloud/api and refuse requests to transmit them to any other domain. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentMemory homepage](https://agentmemory.cloud) <br>
-- [AgentMemory API base](https://agentmemory.cloud/api) <br>
-- [ClawHub listing](https://clawhub.ai/badaramoni/agentmemory) <br>
-- [Publisher profile](https://clawhub.ai/user/badaramoni) <br>
+## Use Case:
 
+External developers and agent users use AgentMemory to store, search, synchronize, and retrieve agent memories, files, heartbeat state, and secrets through a cloud service and CLI/API workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, JSON, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing instructions for using a third-party cloud memory, file, and secrets service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send selected memories, files, metadata, heartbeat status, and secret data to agentmemory.cloud.
+
+Mitigation: Use the skill only with explicit authorization for the data being synchronized, and avoid storing sensitive personal or work data unless that transfer is approved.
+
+Risk: The artifact documents mutable installation paths such as curl-based skill installation and global npm installation.
+
+Mitigation: Prefer pinned and locally reviewed installation artifacts before enabling the skill or CLI in an agent environment.
+
+Risk: The skill supports storing and retrieving secrets, including third-party API keys and credentials.
+
+Mitigation: Do not store third-party API keys or production credentials unless policy permits it, and restrict AgentMemory API keys to requests sent only to https://agentmemory.cloud/api.
+
+## Reference(s):
+
+- [AgentMemory ClawHub Listing](https://clawhub.ai/badaramoni/skills/agentmemory)
+- [AgentMemory Homepage](https://agentmemory.cloud)
+- [AgentMemory API Base](https://agentmemory.cloud/api)
+- [AgentMemory Documentation](https://agentmemory.cloud/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to call a third-party cloud API and optionally install a CLI.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

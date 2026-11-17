@@ -35,7 +35,7 @@ veeam-aiops job disable <job_id>           # disable the job schedule
 ## Restore
 
 ```bash
-veeam-aiops restore list-points [--backup-id <id>]   # available restore points
+veeam-aiops restore list-points [--backup-id <id>] [--limit 100]  # newest restore points first
 veeam-aiops restore start --restore-point-id <id> [--dry-run]
                                            # IRREVERSIBLE — double confirm
 ```
@@ -53,6 +53,9 @@ veeam-aiops repository state               # capacity summary for all repos (use
 ```bash
 veeam-aiops backup list                    # stored backups: id, name, type, time
 veeam-aiops backup objects <backup_id>     # protected objects inside a backup
+veeam-aiops backup usage <name> [--json]   # backup storage one VM consumes, per backup (VBR 12.3+)
+veeam-aiops backup ranking [--limit 20] [--max-backups 100] [--backup <id|name> ...] \
+    [--repository <id|name>] [--concurrency 1] [--json]  # largest consumers first; progress on stderr
 ```
 
 ## Infrastructure
@@ -65,13 +68,23 @@ veeam-aiops infra proxies                  # backup proxies: id, name, type, ser
 ## Sessions (async progress)
 
 ```bash
-veeam-aiops session list                   # recent sessions: state, result
+veeam-aiops session list [--limit 100]     # newest sessions first: state, result
 veeam-aiops session get <session_id>       # poll one session (progressPercent)
 veeam-aiops session log <session_id>       # log records (events) of a session
 veeam-aiops session stop <session_id> [--dry-run]   # cancel — double confirm
 ```
 
-## Diagnostics & MCP
+## Diagnostics / RCA (read-only)
+
+```bash
+veeam-aiops diagnose job-failures [--limit 100] [--since-hours 24]  # triage recent failures; categorize cause
+veeam-aiops diagnose repo-capacity         # flag repositories low on free space (<15% / <10%)
+```
+
+Both render worst-first findings, each citing the measured signal (session
+result + matched error substring, or free% / free bytes) that tripped it.
+
+## Doctor & MCP
 
 ```bash
 veeam-aiops doctor [--skip-auth]           # config + encrypted store + connectivity check

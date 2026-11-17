@@ -1,16 +1,16 @@
 # PNL\_Document class
 
-面板 / 文档操作类
+Panel / document operation class
 
 ## Signature
 
 ```typescript
-declare class PNL_Document 
+class PNL_Document
 ```
 
 ## Remarks
 
-对设计文档总体进行的操作
+Operations performed on the design document as a whole
 
 ## Methods
 
@@ -18,30 +18,24 @@ declare class PNL_Document
 
 Method
 
-
 </th><th>
 
 Modifiers
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [save()](./PNL_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 保存文档
-
+**_(BETA)_** Save Document
 
 </td></tr>
 </tbody></table>
@@ -56,17 +50,34 @@ Description
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-保存文档
+Save Document
 
 ## Signature
 
 ```typescript
-save(): Promise<boolean>;
+function save(): Promise<boolean>;
 ```
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-保存操作是否成功，保存失败、上传失败等错误均返回 `false`
+Whether the save operation was successful. Errors such as save failure and upload failure all return `false`
+
+## Example
+
+```javascript
+// 1. 创建测试面板并打开（save 只对已打开的面板生效）
+const panelUuid = await eda.dmt_Panel.createPanel();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(panelUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 保存面板文档
+const saved = await eda.pnl_Document.save();
+console.log('saved:', saved);
+
+// 3. 删除本例创建的测试面板，保持工程整洁
+const deleted = await eda.dmt_Panel.deletePanel(panelUuid);
+console.log('deleted:', deleted);
+```

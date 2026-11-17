@@ -1,38 +1,51 @@
-## Description: <br>
-Finds DST-aware cross-timezone meeting windows across two or more cities or time zones and ranks them as Optimal, Stretch, or Avoid with Telegram-friendly local-time output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the best cross-timezone meeting windows with DST-safe conversion and ranked output (Optimal, Stretch, Avoid). Use when users ask for overlap windows across 2+ cities/timezones, want results anchored to one timezone, or need Telegram-friendly scheduling output with 24h + 12h time formats and +1 day markers.
 
-## Publisher: <br>
-[jeadland](https://clawhub.ai/user/jeadland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeadland](https://clawhub.ai/user/jeadland)
 
-## Use Case: <br>
-Employees, external collaborators, and scheduling-focused agents use this skill to compare cross-timezone availability and choose meeting windows for groups spanning two or more cities or IANA time zones. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved local preferences may reveal a user's timezone, preferred meeting hours, and flexibility setting on shared machines. <br>
-Mitigation: Review saved settings with --show-settings or delete ~/.openclaw/skills/world-meeting-coordination-skill/config.json when preference retention is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jeadland/world-meeting-coordination-skill) <br>
+## Use Case:
+
+External users and developers use this skill to find ranked meeting windows across two or more cities or IANA timezones, with results anchored to a chosen timezone. It is suited for producing decision-ready scheduling output with local times, next-day markers, and reasons for less comfortable windows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Invalid numeric values for meeting duration, slot step, or result count can hang the local meeting-window script.
+
+Mitigation: Use positive values for --duration, --step, and --top until input validation is added.
+
+Risk: The skill can save a user's timezone, preferred meeting hours, and flexibility settings in its disclosed local OpenClaw config file.
+
+Mitigation: Confirm setup or update requests before changing settings, and install only when this local settings storage is acceptable.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown-style ranked sections with local time lines and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses 24h and 12h time formats, +1 day markers for date rollover, and ranked Optimal, Stretch, and Avoid sections.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.2.2 (source: ClawHub release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-style scheduling recommendations with optional shell commands and local JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs ranked Optimal, Stretch, and Avoid sections with 24-hour and 12-hour times, participant local times, +1 day markers, and reasons for Stretch or Avoid windows.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Routes each request to the best execution path: direct answer, installed skill, new skill, or a multi-skill workflow, with explicit reasoning about friction, value, and fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route each request to the best execution path: direct answer, installed skill, new skill, or a multi-skill workflow, with explicit reasoning about friction, value, and fit.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and agent users use this skill to decide whether a request should be handled directly, by an installed skill, by a new skill, or by a multi-skill workflow. It is useful when the best execution path is uncertain and the agent should weigh value, friction, fit, and safety before recommending extra tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend using or adding other skills, which can introduce separate security, privacy, or permission risks. <br>
-Mitigation: Review any recommended skill separately before use, especially when it requests credentials, local data access, automation, or account permissions. <br>
-Risk: Routing guidance could send a user toward unnecessary or unsuitable tooling if the request context is misunderstood. <br>
-Mitigation: Check the stated route, confidence, and comparison against alternatives before acting on the recommendation. <br>
+## Use Case:
 
+Agents and developers use this skill to decide whether a request should be handled directly, with an installed skill, with a new skill, or through a multi-skill workflow. It is intended for routing decisions where friction, value, fit, and route alternatives need to be stated clearly.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown route recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes one primary route, confidence, next step, route comparison, and optional skill path when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and metadata.json) <br>
+Risk: The skill may cause agents to discuss routing more often than users expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow activation wording and prefer a direct answer when the best path is already clear.
+
+Risk: A routing recommendation could add unnecessary complexity for a simple request.
+
+Mitigation: Apply the skill's friction-versus-value check and choose the lowest-friction route that can produce a good result.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/tobewin/skills/prompt-to-skill-router)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown route assessment with a best route, next step, comparison against alternatives, and optional skill path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces decision-support prose only; it does not execute code, call external systems, or access data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

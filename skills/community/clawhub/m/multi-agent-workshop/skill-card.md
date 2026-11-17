@@ -1,50 +1,66 @@
-## Description: <br>
-七阶段多角色工作坊技能：先澄清任务、再选角讨论、最后产出并执行 plan，附带可执行 orchestrator。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language seven-stage multi-role workshop skill that helps agents clarify a task, choose role perspectives, discuss tradeoffs, produce a plan, and execute after user approval.
 
-## Publisher: <br>
-[349840432m-dev](https://clawhub.ai/user/349840432m-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[349840432m-dev](https://clawhub.ai/user/349840432m-dev)
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this skill to run a structured multi-role workshop for complex requirements: clarify the deliverable, choose task-specific roles, capture discussion, draft a plan, and execute only after approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow writes local workshop state and may use subagents, which can capture sensitive task context in generated files. <br>
-Mitigation: Use the skill only in an approved workspace, review generated state and plan files before sharing, and avoid placing confidential requirements in workshop artifacts unless that storage is acceptable. <br>
-Risk: The optional JD search feature can send role, industry, and task query terms to Serper. <br>
-Mitigation: Use JD search only for non-confidential tasks, redact sensitive terms before searching, and configure SERPER_API_KEY only when this external lookup is acceptable. <br>
-Risk: The JD search script has an unsafe TLS fallback when certificate support is unavailable. <br>
-Mitigation: Install and use proper certificate validation support, or avoid the JD search feature until the TLS fallback is fixed. <br>
-Risk: The cleanup and configuration utilities can edit OpenClaw session state or configuration outside the workshop directory. <br>
-Mitigation: Review target paths and backups before running cleanup or configuration commands, and avoid these utilities when the broader OpenClaw state must remain untouched. <br>
+## Use Case:
 
+Developers and teams use this skill to run structured multi-agent requirements, review, or planning workshops in Chinese. It creates workspace state, role cards, discussion transcripts, plan files, and deliverables under a session directory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/349840432m-dev/multi-agent-workshop) <br>
-- [README](README.md) <br>
-- [Role card from JD guide](references/role-card-from-jd.md) <br>
-- [Role card skeleton](references/role-card-skeleton.md) <br>
-- [Anti-drift rules](references/anti-drift.md) <br>
-- [Debate protocol](references/debate-protocol.md) <br>
-- [Subagent closure guide](references/subagent-closure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans and workshop state, role-card drafts, Python and shell command invocations, configuration edits, and final deliverable files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes workshop artifacts under workshops/<session_id>/; optional JD search uses SERPER_API_KEY; execution is gated on user approval of plan.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and claw.json) <br>
+Risk: Workshop files may contain sensitive project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep workshop directories local or redact them before sharing, publishing, or committing them.
+
+Risk: The JD role-card helper can send role, industry, and task terms plus a Serper API key to a third-party search API.
+
+Mitigation: Use JD search only for terms approved for external search and confirm SERPER_API_KEY handling before running the helper.
+
+Risk: Cleanup and OpenClaw parallelism helpers can modify OpenClaw session or configuration state outside a single workshop directory.
+
+Mitigation: Review target paths, avoid absolute or ../ role-card paths, and run these helpers only after confirming backups and intended files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/349840432m-dev/skills/multi-agent-workshop)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Anti-drift guidance](references/anti-drift.md)
+- [Director forcing questions](references/director-forcing-questions.md)
+- [Director supplementary rules](references/director-supplementary.md)
+- [Role card from JD](references/role-card-from-jd.md)
+- [Skill composition](references/skill-composition.md)
+- [Subagent closure](references/subagent-closure.md)
+- [gstack reference](https://github.com/garrytan/gstack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans and session files with optional shell commands and JSON/configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workshop state, role cards, transcripts, plan files, and deliverables under workshops/<session_id>/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and claw.json; artifact SKILL.md frontmatter reports 2.2.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

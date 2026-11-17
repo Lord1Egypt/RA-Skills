@@ -1,41 +1,56 @@
-## Description: <br>
-Analyzes public Polymarket markets, simulates paper trades, tracks LLM costs, and produces concise Italian reports for controlled experimental use. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Experimental skill for automated analysis of public Polymarket markets with paper-trading simulation, LLM cost controls, and Italian-language reports with a mini-summary.
 
-## Publisher: <br>
-[mauonga](https://clawhub.ai/user/mauonga) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mauonga](https://clawhub.ai/user/mauonga)
 
-## Use Case: <br>
-Developers, market analysts, and non-expert users use this skill to run controlled, read-only analysis of public Polymarket markets, simulate paper-trading decisions, and compare simulated outcomes against LLM costs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes prediction markets and could be mistaken for real trading guidance. <br>
-Mitigation: Use it only for read-only public market analysis and paper trading; do not add wallet access, authenticated trading access, real-money execution, or private data. <br>
-Risk: Budget limits are behavioral instructions rather than an enforceable sandbox. <br>
-Mitigation: Set external OpenAI and Anthropic spending limits and monitor token usage outside the skill. <br>
-Risk: Automated market filtering and LLM ranking can be incomplete or misleading. <br>
-Mitigation: Treat reports as experimental analysis, require human review before decisions, and keep the configured cadence and low-budget constraints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/mauonga/polymarket-autopilot-experimental) <br>
+## Use Case:
 
+External users and developers use this skill to evaluate public Polymarket markets in a read-only, paper-trading workflow, producing a short Italian report that compares simulated outcomes with LLM costs. It is intended for controlled low-budget experimentation, not wallet-based trading.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Italian Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes observed market count, simulated percentage and EUR result, detailed LLM costs, simulated net result, cautious agent commentary, and a final two-line summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users could misread simulated prediction-market analysis as authorization to place real-money trades.
+
+Mitigation: Keep the workflow read-only, do not provide wallet access, and treat outputs as simulated informational reports rather than trading instructions.
+
+Risk: LLM usage costs could exceed the intended low-budget operating envelope.
+
+Mitigation: Enforce the documented execution frequency, weekly budget cap, token tracking, and automatic stop behavior when budget is exceeded.
+
+Risk: The report language is fixed to Italian by default.
+
+Mitigation: Use the skill where Italian output is appropriate, or explicitly modify the reporting language before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mauonga/skills/polymarket-autopilot-experimental)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Italian-language Markdown report with a two-line mini-summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes observed market count, simulated result, detailed LLM costs, simulated net result, and a prudent agent comment.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

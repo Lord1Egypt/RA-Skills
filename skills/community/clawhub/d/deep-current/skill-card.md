@@ -1,43 +1,54 @@
-## Description: <br>
-Deep Current is a persistent research thread manager with a local Python CLI for tracking topics, notes, sources, and findings while relying on the host agent's web tools for research and digest generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Current helps agents maintain long-running research threads with a local Python CLI for topics, notes, sources, findings, and dated markdown reports.
 
-## Publisher: <br>
-[madebydia](https://clawhub.ai/user/madebydia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[madebydia](https://clawhub.ai/user/madebydia)
 
-## Use Case: <br>
-Developers, researchers, and agent users use Deep Current to maintain long-running research threads, store notes, sources, and findings, and guide scheduled agent research digests over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the reviewed release as suspicious and calls for manual review before installation. <br>
-Mitigation: Review the skill and its requested local file writes before installing or scheduling automated runs. <br>
-Risk: The workflow can direct an agent to perform recurring web research and write reports, which may preserve inaccurate or stale findings if sources are not checked. <br>
-Mitigation: Require source links in reports, cross-reference claims, and review generated findings before acting on them. <br>
+## Use Case:
 
+External users and developers use this skill to track ongoing research topics, keep local research state, and guide an agent through scheduled or manual research digest workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/madebydia/deep-current) <br>
-- [Project homepage](https://github.com/madebydia/deep-current) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands emit plain text and update local JSON data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores thread state in deep-current/currents.json and expects reports in deep-current-reports/ as dated Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill maintains local research state and report files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a workspace where deep-current/currents.json and deep-current-reports/ are acceptable write targets, and review generated reports before relying on them.
+
+Risk: The optional nightly workflow can cause the agent to search the web and write reports on a schedule.
+
+Mitigation: Review the cron prompt, selected model, timeout, and scheduling policy before enabling unattended runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/madebydia/skills/deep-current)
+- [Project homepage](https://github.com/madebydia/deep-current)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output, JSON state files, and markdown research reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local research state under deep-current/ and dated reports under deep-current-reports/ when configured by the user.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

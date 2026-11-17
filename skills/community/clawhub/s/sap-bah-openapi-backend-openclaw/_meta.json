@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn79fhm5hapahkbapfmg1y1ra982myqx",
-  "slug": "sap-bah-openapi-backend-openclaw",
-  "version": "1.0.2",
-  "publishedAt": 1773480269414
+  "slug": "sap-bah-openapi-backend",
+  "version": "1.1.0",
+  "entrypoint": "SKILL.md",
+  "notes": "OpenClaw upload package for reliable SAP API specification download to /usr/download",
+  "requiredEnv": [
+    "SAP_HUB_USERNAME",
+    "SAP_HUB_PASSWORD"
+  ],
+  "defaultOutputDir": "/usr/download",
+  "defaultAuthMode": "env",
+  "defaultBrowser": "chromium"
 }

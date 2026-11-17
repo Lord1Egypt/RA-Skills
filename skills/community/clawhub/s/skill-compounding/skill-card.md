@@ -1,40 +1,53 @@
-## Description: <br>
-Helps an agent identify repeated or reusable work patterns and turn them into durable team skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent identify reusable solutions, extract them into skill documentation, register them in a skill index, and iterate them over time.
 
-## Publisher: <br>
-[sipoon](https://clawhub.ai/user/sipoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipoon](https://clawhub.ai/user/sipoon)
 
-## Use Case: <br>
-Developers and team agents use this skill after solving non-trivial or repeated problems to decide whether the workflow should be captured as a reusable local skill. It guides extraction, registration, and iteration of skill documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage durable workspace or agent-behavior changes by creating or registering reusable skills. <br>
-Mitigation: Require explicit user confirmation before creating, modifying, or registering a skill. <br>
-Risk: Reusable skill documentation could capture secrets, proprietary workflows, client data, or other sensitive project details. <br>
-Mitigation: Review proposed skill content before saving it and exclude sensitive or confidential information. <br>
+## Use Case:
 
+Developers and team agents use this skill after solving a non-trivial or repeated problem to decide whether the workflow should become a reusable skill. It guides them through documenting the skill, registering it in local skill indexes, and improving it from future use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sipoon/skill-compounding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with directory structure and skill documentation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local skill files or index updates for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can lead an agent to create or rewrite persistent skill instructions too broadly or without explicit approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before creating or modifying skill files, avoid automatic SOUL.md updates, and review full diffs before accepting changes.
+
+Risk: Untrusted task content or sensitive project details could be preserved as reusable guidance.
+
+Mitigation: Sanitize source material before adding it to a skill and exclude commercial-sensitive, one-off, personal-preference, or untrusted instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sipoon/skills/skill-compounding)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown skill documentation, directory structure guidance, and concise maintenance instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or modify skill files such as SKILL.md, optional examples or templates, and local skill index entries.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

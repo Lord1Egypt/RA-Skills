@@ -1,42 +1,57 @@
-## Description: <br>
-Enriches leads by finding contact emails through contact pages, Instagram, Hunter.io, and email patterns, then formats deduplicated records for Notion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enriches leads by finding contact emails from websites, Instagram, Hunter.io, and email patterns, then formats deduplicated batches for Notion.
 
-## Publisher: <br>
-[visualdeptcreative](https://clawhub.ai/user/visualdeptcreative) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[visualdeptcreative](https://clawhub.ai/user/visualdeptcreative)
 
-## Use Case: <br>
-Sales, growth, and operations teams use this skill to enrich lead records with candidate contact emails and prepare clean, deduplicated lead data for Notion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lead domains are sent to Hunter.io and enriched results may contain contact information. <br>
-Mitigation: Use a scoped Hunter.io API key, process only authorized leads, and delete retained workspace data when it is no longer needed. <br>
-Risk: Notion sync can expose or duplicate lead data if access is too broad or deduplication is skipped. <br>
-Mitigation: Grant Notion access only to the intended lead pipeline and normalize domain_key before checking for existing records. <br>
-Risk: Email pattern guessing can produce incorrect contacts. <br>
-Mitigation: Prefer direct sources and Hunter.io results above 70% confidence, retain email source and confidence fields, and review records before outreach. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/visualdeptcreative/data-enricher) <br>
-- [Hunter.io domain search endpoint](https://api.hunter.io/v2/domain-search) <br>
+## Use Case:
 
+Developers, operators, and sales workflow users can use this skill to enrich lead records with prioritized contact emails, confidence labels, and Notion-ready JSON batches.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JSON lead records with concise status text and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batches 10 leads at a time, limits Hunter.io lookups to 10 per session with 5 seconds between API calls, and saves formatted batches as workspace/leads-enriched-YYYY-MM-DD.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Lead domains are sent to Hunter.io using the user's API key.
+
+Mitigation: Confirm this third-party lookup is acceptable for the lead data before running enrichment, and protect the Hunter.io API key.
+
+Risk: Enriched contact emails are stored in a local JSON batch file.
+
+Mitigation: Keep the output file in a protected workspace and delete it when it is no longer needed.
+
+Risk: A Notion sync could write enriched leads to the wrong database.
+
+Mitigation: Verify the intended Notion lead database before syncing deduplicated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/visualdeptcreative/skills/data-enricher)
+- [Hunter.io domain search API](https://api.hunter.io/v2/domain-search)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, files]
+
+**Output Format:** [JSON lead records with concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batches up to 10 leads and saves enriched output to a local leads-enriched-YYYY-MM-DD.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

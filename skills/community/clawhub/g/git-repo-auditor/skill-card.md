@@ -1,44 +1,54 @@
-## Description: <br>
-Audit Git repositories for security issues, large files, sensitive data, and repository health metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Git repositories for security issues, large files, sensitive data, and repository health metrics.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers, security reviewers, and repository maintainers use this skill to audit local Git repositories for committed secrets, large files, sensitive data, and repository health issues. It can produce human-readable or machine-readable reports for local review, compliance checks, and CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports can reveal snippets of secrets or sensitive repository metadata. <br>
-Mitigation: Run the tool only on repositories you are allowed to inspect, keep terminal output and report artifacts private, avoid publishing CI logs that contain scan results, and rotate any real credentials it reports. <br>
-Risk: Regex-based secret detection can produce false positives or miss some credentials. <br>
-Mitigation: Treat findings as review prompts, verify results before remediation, and use custom patterns for repository-specific secret formats. <br>
-Risk: Full-history scans can be slow on large repositories. <br>
-Mitigation: Use branch, date range, threshold, or check-specific options to narrow scans when working with large histories. <br>
+## Use Case:
 
+Developers and security engineers use this skill to audit local Git repositories for secrets, large files, and repository health before release, compliance review, or CI/CD integration.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Derick001/git-repo-auditor) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, csv, guidance] <br>
-**Output Format:** [Human-readable terminal reports, JSON reports, CSV reports, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include repository paths, commit identifiers, filenames, matched secret patterns, issue severity, and suggested remediation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Terminal or JSON reports may include discovered secret values or snippets, which can spread credentials if reports are shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as sensitive artifacts, avoid publishing or broadly sharing them, rotate any credentials found, and prefer redacting matched values by default.
+
+Risk: The skill audits Git repository history and may expose sensitive project information.
+
+Mitigation: Run it only on repositories the operator is authorized to audit and keep generated reports within the approved security workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derick001/skills/git-repo-auditor)
+- [Publisher profile](https://clawhub.ai/user/derick001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with optional JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Git repository and git/python3 in PATH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

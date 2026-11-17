@@ -1,44 +1,52 @@
-## Description: <br>
-Operational knowledge for managing residential and commercial solar installation, including design, permitting, sales, financing, installation, and growth strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operational knowledge for AI agents supporting residential and commercial solar installation businesses, including system design, permitting, sales, financing, installation management, and growth planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Solar installation companies, renewable energy startups, and agents supporting solar operations use this skill to answer business operations questions and structure workflows for design, permitting, sales, financing, installation management, and growth planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax incentives, permitting timelines, interconnection rules, and compliance details can vary by jurisdiction and change over time. <br>
-Mitigation: Verify current federal, state, local, utility, and AHJ requirements before applying the guidance to a real project. <br>
-Risk: Pricing, financing, margins, and market benchmarks may not match a specific project, customer, lender, or region. <br>
-Mitigation: Treat benchmarks as planning inputs and validate them against current quotes, lender terms, contracts, and local market data. <br>
+## Use Case:
 
+Solar installation companies, renewable energy startups, and operators deploying AI agents use this skill as a business operations reference for design, permitting, sales, financing, installation workflows, and growth strategy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-solar-installer) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and structured operational answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Passive reference content; no code execution, account access, or hidden data handling reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Pricing, tax, market, incentive, and permitting details may be outdated or differ by jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current federal, state, local, utility, and authority-having-jurisdiction requirements before business, compliance, or customer-facing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-solar-installer)
+- [AfrexAI AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Markdown]
+
+**Output Format:** [Markdown guidance and operational reference text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no code execution, persistence, credential use, or hidden authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

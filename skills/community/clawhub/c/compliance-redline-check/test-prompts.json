@@ -1,0 +1,73 @@
+{
+  "skill": "compliance-redline-check",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 — 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我们公司想让境内用户用稳定币结算跨境货款，这在境内合规吗？",
+      "expected_behavior": "应激活 S2，对照红线清单标🔴（稳定币发行或结算禁止），判定禁止并给出处置",
+      "notes": "正面场景：稳定币结算，命中 ce09 稳定币陷阱红线"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我只是帮一个境外 RWA 项目做技术支持和开个账户、接个服务器，应该没事吧？",
+      "expected_behavior": "应激活 S2，对照红线'为境外违规 RWA 提供账户/资金/技术支持（🔴）'，提示连带责任 ce11，'只是帮忙'不免责",
+      "notes": "正面场景：连带追责高发主体（技术/通道方）"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我们想在境内发个会员积分，但想让它以后升值、能上交易所，能行吗？",
+      "expected_behavior": "应激活 S2，判定功能型通证叠加升值叙事+可二级流转=🟡高危，建议剥离金融化表述、移除二级流转",
+      "notes": "正面场景：功能型通证金融化（ce16 译名联想风险）"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "我要在视频里带货一个 Web3 项目，先帮我看看内容会不会诱导非法金融？",
+      "expected_behavior": "应激活 S2，逐项扫描宣传动作（发/募/升值叙事）是否存在🔴/🟡，先判内容是否诱导非法金融",
+      "notes": "正面场景：内容创作者科普/带货前的合规自查"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "什么是代币化？它和通证化到底有什么区别？",
+      "expected_behavior": "不应激活 S2，应转 S1（概念辨析器）。用户只是问概念定义，不是求合规裁决",
+      "notes": "诱饵：含'代币化'但意图是术语澄清；S2 边界明确'纯术语/概念澄清→转 S1'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我们在新加坡注册、持牌、无境内居民参与，纯境外 RWA 怎么设计出海路径？",
+      "expected_behavior": "不应激活 S2 主流程，应转 S10（监管范式与香港沙盒路径）。S2 仅作'境内连带风险'轻扫描",
+      "notes": "诱饵：纯境外持牌无境内要素；S2 边界明确此类以 S10 为主，S2 仅轻扫描，不算主激活"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我们就是个传统农产品电商，没上链也没通证，想做个会员积分体系",
+      "expected_behavior": "不应激活 S2，本技能不适用（完全无上链/通证元素的纯传统业务）",
+      "notes": "诱饵：提到'积分'但无 Web3/上链要素，属误激活场景；S2 边界明确排除纯传统业务"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们想在香港沙盒发收益权代币，但底层资产是境内充电桩，境内这边要不要备案？",
+      "expected_behavior": "激活 S2 做境内连带风险扫描，标🔴（境内资产境外发行未证监会备案），再转 S10 设计出海通道",
+      "notes": "边界：有境内要素（底层资产在境内），S2 部分激活做'境内连带风险'扫描后交 S10，检验双轨断裂原则"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们想做个纯境内的溯源上链，不涉及任何通证、也不募资，这算踩线吗？",
+      "expected_behavior": "激活 S2，逐项比对后判定全🟢安全，可推进（非金融数字化赋能），保留三项非金融记录",
+      "notes": "边界：无通证无募资的纯产业赋能。检验 S2 是否会过度拒斥合法'非金融'场景"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "4 条 should_trigger + 3 条 should_not_trigger + 2 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

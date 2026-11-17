@@ -1,43 +1,54 @@
-## Description: <br>
-Long-form web novel writing assistant for managing multiple novel projects, chapter memory, outline tracking, style checks, and AI-style reduction for Chinese male-oriented power-fantasy fiction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Novel Writer helps writers plan, draft, review, and revise long-form Chinese male-oriented web novels with project structure, chapter memory, outline tracking, style cleanup, and consistency checks.
 
-## Publisher: <br>
-[captaindaveluo](https://clawhub.ai/user/captaindaveluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[captaindaveluo](https://clawhub.ai/user/captaindaveluo)
 
-## Use Case: <br>
-External users and writers use this skill to plan, draft, review, and maintain long-form serialized web novels with structured outlines, character files, settings, chapter summaries, and consistency checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chapters, summaries, and repair suggestions can introduce continuity, style, or factual inconsistencies in a novel project. <br>
-Mitigation: Review generated content against the outline, character files, and recent chapter summaries before treating it as final. <br>
-Risk: The workflow can create or update local novel project files, including chapter content, summaries, notes, and metadata. <br>
-Mitigation: Keep drafts or backups before major edits and confirm target novel and chapter paths before applying file changes. <br>
-Risk: The writing guidance references popular works as style examples, which could lead to overly derivative content if followed too closely. <br>
-Mitigation: Use references for pacing and structure only, and keep characters, scenes, settings, and prose original. <br>
+## Use Case:
 
+External writers and developers use this skill to organize Chinese web-novel projects, generate chapter drafts, maintain recent-chapter memory, and check style or continuity before continuing a serial novel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/captaindaveluo/auto-novel-writer) <br>
-- [Writing guide](references/writing_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, prose guidance, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates novel project files such as outlines, character records, chapter content, summaries, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local file scripts can read or write outside the intended novels folder through unsanitized path inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in a dedicated workspace, avoid absolute paths or names containing ../, and back up existing writing projects before running create or chapter commands.
+
+Risk: Generated chapter, style, and consistency guidance may miss story conflicts or introduce unsuitable revisions.
+
+Mitigation: Review generated drafts and repair suggestions before treating them as final novel content.
+
+## Reference(s):
+
+- [Writing Guide](artifact/references/writing_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/captaindaveluo/skills/auto-novel-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose, local project files, review reports, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language novel drafting and review output; helper scripts read and write local files in the writing workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

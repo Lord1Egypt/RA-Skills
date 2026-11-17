@@ -1,44 +1,61 @@
-## Description: <br>
-Manage Koji build system tasks, packages, tags, repositories, users, archives, buildroots, SRPMs, and RPMs with broad command guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Koji helps agents provide guidance, commands, and configuration for managing Koji build system tasks, packages, tags, repositories, users, SRPM/RPMs, buildroots, and build operations.
 
-## Publisher: <br>
-[weidongkl](https://clawhub.ai/user/weidongkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weidongkl](https://clawhub.ai/user/weidongkl)
 
-## Use Case: <br>
-Developers and build-system administrators use this skill to operate Koji build infrastructure, including builds, tasks, packages, tags, repositories, users, permissions, and buildroots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact Koji operations such as deletions, cancellations, permission changes, uploads, repository changes, and cleanup actions. <br>
-Mitigation: Use a least-privileged Koji account and require explicit human approval before executing those operations. <br>
-Risk: Commands may target the wrong Koji instance, package, tag, repository, task, buildroot, or user if inputs are not verified. <br>
-Mitigation: Verify the configured Koji instance and all object names or IDs before running generated commands. <br>
+## Use Case:
 
+Developers and build system administrators use this skill to get Koji CLI/API guidance for builds, package ownership, tags, repositories, users, authentication, troubleshooting, and CI/CD-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub Koji skill page](https://clawhub.ai/weidongkl/koji) <br>
-- [Koji official documentation](https://koji.fedoraproject.org/docs/) <br>
-- [Koji API documentation](https://koji.fedoraproject.org/docs/developer/) <br>
-- [Fedora packaging guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/) <br>
-- [Fedora DistGit](https://src.fedoraproject.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output for Koji administration workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact changelog) <br>
+Risk: High-impact administrative Koji operations could delete, cancel, or change builds, users, permissions, repositories, or tags.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before delete, cancel-all, ownership, permission, user, repository, or tag changes.
+
+Risk: Disabling TLS verification can weaken the safety of Koji server connections.
+
+Mitigation: Keep TLS verification enabled and confirm certificate settings before using generated configuration guidance.
+
+Risk: Koji authentication material such as keytabs, private keys, certificates, tickets, or config contents may be sensitive.
+
+Mitigation: Avoid exposing credentials or configuration secrets in chat, command output, logs, or generated documentation.
+
+## Reference(s):
+
+- [Koji Documentation](https://koji.fedoraproject.org/docs/)
+- [Koji API Documentation](https://koji.fedoraproject.org/docs/developer/)
+- [Fedora Packaging Guidelines](https://docs.fedoraproject.org/en-US/packaging-guidelines/)
+- [Fedora DistGit](https://src.fedoraproject.org/)
+- [Fedora Build System](https://fedoraproject.org/wiki/Build_System)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory Koji commands and configuration examples for review before execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

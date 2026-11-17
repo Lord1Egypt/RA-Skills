@@ -1,6 +1,4 @@
 {
-  "ownerId": "kn73566m7vdfbt8gxv6rghgmax80zrg4",
-  "slug": "qbittorrent-skill",
   "version": "1.0.0",
-  "publishedAt": 1775606641996
+  "description": "Manage torrents with qBittorrent WebUI API. List, add, pause, resume, delete torrents. Monitor download progress and speed limits."
 }

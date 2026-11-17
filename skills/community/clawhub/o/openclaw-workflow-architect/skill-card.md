@@ -1,51 +1,66 @@
-## Description: <br>
-OpenClaw Workflow Architect helps developers design, review, and generate OpenClaw workflows using Lobster and OpenProse, including approval gates, layered architecture decisions, and .prose/.lobster files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers design, review, and generate OpenClaw workflows by choosing the right boundary between Lobster deterministic execution and OpenProse AI orchestration.
 
-## Publisher: <br>
-[thanh01pmt](https://clawhub.ai/user/thanh01pmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thanh01pmt](https://clawhub.ai/user/thanh01pmt)
 
-## Use Case: <br>
-Developers and workflow engineers use this skill to choose the right OpenClaw layer, review existing .lobster/.prose designs, and generate workflow file structures with approval and compatibility guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated .lobster and .prose workflows can automate file writes, CLI calls, and other side effects. <br>
-Mitigation: Review generated workflow files before running them, confirm output paths, and keep approval gates before side effects. <br>
-Risk: Remote .prose URLs or untrusted workflow sources can introduce unsafe automation. <br>
-Mitigation: Avoid running remote .prose URLs from untrusted sources and inspect imported workflow content before use. <br>
-Risk: OpenProse workflows may not run correctly on systems that are not Prose Complete. <br>
-Mitigation: Use the skill's compatibility checks, test .prose workflows before relying on them, and prefer Lobster-only or mixed fallback modes when compatibility is uncertain. <br>
+## Use Case:
 
+Developers and engineers use this skill to decide whether workflow steps belong in Lobster or OpenProse, review existing workflow files for layering anti-patterns, and generate .lobster or .prose workflow structures with approval and compatibility guidance.
 
-## Reference(s): <br>
-- [OpenClaw Workflow Architect ClawHub page](https://clawhub.ai/thanh01pmt/openclaw-workflow-architect) <br>
-- [Layering Guide](references/layering-guide.md) <br>
-- [Lobster Technical Specification](references/lobster-spec.md) <br>
-- [OpenProse Technical Specification](references/openprose-spec.md) <br>
-- [OpenClaw Lobster documentation](https://docs.openclaw.ai/tools/lobster) <br>
-- [OpenClaw Prose documentation](https://docs.openclaw.ai/prose) <br>
-- [Prose documentation](https://www.prose.md) <br>
-- [Curriculum Pipeline Example](references/examples/curriculum-pipeline.md) <br>
-- [Gate Approval Example](references/examples/gate-approval.md) <br>
-- [Lesson Worker Example](references/examples/lesson-worker.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with .prose/.lobster code and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow folder structures, compatibility notes, approval checklists, and recommended commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Approval-gate examples can read a caller-supplied local file path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain approval-gate file inputs to approved workspace or artifact directories and reject absolute paths or traversal before execution.
+
+Risk: Setup guidance may use mutable npm or npx package installs.
+
+Mitigation: Pin package versions and review resolved package metadata before installing in shared or production environments.
+
+Risk: Workflow templates may send lesson or business content to llm-task.
+
+Mitigation: Do not process confidential content through llm-task unless the selected external model path is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thanh01pmt/skills/openclaw-workflow-architect)
+- [Layering guide](artifact/references/layering-guide.md)
+- [Lobster specification](artifact/references/lobster-spec.md)
+- [OpenProse specification](artifact/references/openprose-spec.md)
+- [Curriculum pipeline example](artifact/references/examples/curriculum-pipeline.md)
+- [Approval gate example](artifact/references/examples/gate-approval.md)
+- [Lesson worker example](artifact/references/examples/lesson-worker.md)
+- [OpenClaw Lobster documentation](https://docs.openclaw.ai/tools/lobster)
+- [OpenClaw Prose documentation](https://docs.openclaw.ai/prose)
+- [Prose](https://www.prose.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks and generated workflow files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .lobster and .prose workflow files, compatibility notes, review findings, and approval-gate checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

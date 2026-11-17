@@ -1,44 +1,58 @@
-## Description: <br>
-Scan, audit, and clean up Python virtual environments, conda environments, node_modules directories, and development artifacts that consume disk space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan, audit, and clean up Python virtual environments, conda environments, node_modules, and development artifacts that consume disk space.
 
-## Publisher: <br>
-[mahimairaja](https://clawhub.ai/user/mahimairaja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSD-3-Clause <br>
+## Publisher:
 
+[mahimairaja](https://clawhub.ai/user/mahimairaja)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit workspace disk usage, identify stale or broken Python and JavaScript environments, and prepare safe cleanup plans before deleting generated artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+BSD-3-Clause
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup commands can delete development environments or generated artifacts if run against the wrong path or without review. <br>
-Mitigation: Start with a narrow folder, scan first, run dry-runs before deletion, inspect proposed deletions, and require explicit confirmation for non-dry-run cleanup. <br>
-Risk: Using automatic yes flags or remote install scripts can bypass review of actions or source trust. <br>
-Mitigation: Avoid --yes unless the listed items are safe to recreate, and do not pipe remote install scripts into a shell unless the source has been trusted and verified. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect workspace environment sprawl, identify stale or broken Python and JavaScript environments, and prepare dry-run cleanup plans before deleting disk-heavy development artifacts.
 
-## Reference(s): <br>
-- [envoic Commands Reference](references/commands.md) <br>
-- [envoic Safety Guide](references/safety.md) <br>
-- [envoic Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mahimairaja/envoic) <br>
-- [Repository](https://github.com/mahimailabs/envoic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON report commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cleanup guidance should start with scan and dry-run steps, require explicit confirmation before deletion, and preserve lock files and project manifests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.9 (source: ClawHub release metadata) <br>
+Risk: Unverified package installation examples and broad cleanup commands can affect local development environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned package versions, confirm the package source before installation, and start scans on narrow project paths.
+
+Risk: Non-dry-run cleanup or --yes deletion can remove environments or generated artifacts the user still needs.
+
+Mitigation: Run scan and dry-run modes first, review the exact deletion list, and require explicit confirmation before destructive cleanup.
+
+## Reference(s):
+
+- [Commands Reference](references/commands.md)
+- [Safety Guide](references/safety.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/mahimairaja/skills/envoic)
+- [Publisher Profile](https://clawhub.ai/user/mahimairaja)
+- [Repository Metadata Link](https://github.com/mahimailabs/envoic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and cleanup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-report commands when requested; destructive cleanup should be presented as a reviewed dry run before execution.]
+
+## Skill Version(s):
+
+0.0.9 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

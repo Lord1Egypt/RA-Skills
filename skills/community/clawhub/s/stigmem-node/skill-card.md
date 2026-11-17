@@ -1,48 +1,61 @@
-## Description: <br>
-Persistent federated memory for OpenClaw agents, including boot handshake, handoff, decision, and escalation surfaces backed by a Stigmem node. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Persistent federated memory for OpenClaw agents -- boot handshake, handoff, decision, and escalation surfaces backed by a Stigmem node.
 
-## Publisher: <br>
-[offbyonce](https://clawhub.ai/user/offbyonce) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[offbyonce](https://clawhub.ai/user/offbyonce)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to connect an agent to a self-hosted Stigmem node for persistent memory, handoffs, decision logging, and escalations during evaluation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Stigmem API key and connects to an external memory node. <br>
-Mitigation: Use a dedicated least-privilege API key, rotate it regularly, and revoke it immediately if compromised. <br>
-Risk: Retrieved memory can contain stale, poisoned, or prompt-injection content. <br>
-Mitigation: Treat retrieved memory as untrusted data, append it after the hardcoded system prompt, and avoid injecting summaries in high-stakes or irreversible workflows. <br>
-Risk: Facts written through the adapter persist and may propagate through federation scopes. <br>
-Mitigation: Use local scope for scratch memory, restrict federation scopes, and explicitly retract incorrect facts. <br>
-Risk: The dependency range targets an alpha Stigmem connector line. <br>
-Mitigation: Pin exact dependency versions in repeatable environments and review release notes before upgrades. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw agents to a Stigmem node for persistent memory, session handoffs, decision records, and escalation facts during evaluation or controlled integration work.
 
-## Reference(s): <br>
-- [OpenClaw connector guide](https://docs.stigmem.dev/en/latest/docs/guides/connectors/openclaw) <br>
-- [Stigmem project site](https://stigmem.dev) <br>
-- [Stigmem plugin catalog](https://docs.stigmem.dev/en/latest/docs/plugins) <br>
-- [OpenClaw adapter limitations](https://github.com/eidetic-labs/stigmem/blob/main/LIMITATIONS.md#9-running-the-openclaw-bundled-adapter-as-is) <br>
-- [ClawHub skill page](https://clawhub.ai/offbyonce/stigmem-node) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STIGMEM_URL and STIGMEM_API_KEY; optional agent identity and handoff allowlist environment variables control runtime scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Retrieved memory from a compromised or misconfigured Stigmem node can influence agent behavior if treated as instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, access-controlled node, append retrieved context after hardcoded system instructions, and inspect structured facts instead of injecting full summaries in high-stakes workflows.
+
+Risk: Facts written to shared or federated memory can persist across future agents and propagate beyond the intended deployment.
+
+Mitigation: Use least-privilege per-agent API keys, unique source entities, local scopes for scratch facts, narrow federation settings, and explicit retraction for incorrect facts.
+
+Risk: Alpha-line dependency updates may change runtime behavior across repeatable evaluations.
+
+Mitigation: Pin the Python dependency and Stigmem node image before evaluation or production-like use, then review release notes and run integration tests before upgrades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/offbyonce/skills/stigmem-node)
+- [OpenClaw connector guide](https://docs.stigmem.dev/en/latest/docs/guides/connectors/openclaw)
+- [Stigmem project homepage](https://stigmem.dev)
+- [Stigmem plugin catalog](https://docs.stigmem.dev/en/latest/docs/plugins)
+- [Server-resolved provenance](unavailable)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STIGMEM_URL and STIGMEM_API_KEY; optional environment variables configure source identity and allowed handoff targets.]
+
+## Skill Version(s):
+
+1.0.9 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

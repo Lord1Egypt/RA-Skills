@@ -1,0 +1,4 @@
+interface:
+  display_name: "Effector FSD"
+  short_description: "Feature-Sliced Design structure for Effector ecosystem projects"
+  default_prompt: "Use $effector-fsd to decide and audit FSD layers, slice ownership, public APIs, imports, and placement for Effector/Farfetched/Next.js code."

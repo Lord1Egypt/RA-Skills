@@ -1,40 +1,50 @@
-## Description: <br>
-Implement Chatbot Personality Set using OrbCafe UI (CustomizeAgent). Enterprise-grade React component with built-in best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers implement a chatbot personality configuration UI using OrbCafe UI's CustomizeAgent React component.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers and product teams use this skill to add an OrbCafe UI CustomizeAgent component for configuring chatbot personality in React or Next.js applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install and use the third-party orbcafe-ui package. <br>
-Mitigation: Confirm orbcafe-ui is the intended package, review it as a third-party dependency, and pin an approved version before production use. <br>
+## Use Case:
 
+Developers use this skill to add a standardized chatbot personality configuration interface to React or Next.js applications with OrbCafe UI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SHENRUIYANG/chatbot-personality-set) <br>
-- [Publisher profile](https://clawhub.ai/user/SHENRUIYANG) <br>
-- [orbcafe-ui npm package](https://www.npmjs.com/package/orbcafe-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with npm or pnpm installation commands and a TypeScript React component example.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; directs installation of orbcafe-ui and use of CustomizeAgent, with no sensitive access or persistent execution requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing the referenced orbcafe-ui package may introduce third-party dependency or lifecycle-script risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin an exact package version, commit a lockfile, review the package and lifecycle scripts, and install without unnecessary secrets in the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenruiyang/skills/chatbot-personality-set)
+- [orbcafe-ui npm package](https://www.npmjs.com/package/orbcafe-ui)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown with bash and TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides package installation commands and a minimal React usage example.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

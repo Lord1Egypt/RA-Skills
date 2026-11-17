@@ -1,41 +1,53 @@
-## Description: <br>
-Control the user's real Safari browser on macOS using AppleScript and screencapture to read pages, click elements, type text, take screenshots, and navigate tabs through the user's actual browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls the user's real Safari browser on macOS with AppleScript, JavaScript execution, and screenshots for reading pages, navigating tabs, clicking elements, and filling forms.
 
-## Publisher: <br>
-[SDLLL](https://clawhub.ai/user/SDLLL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sdlll](https://clawhub.ai/user/sdlll)
 
-## Use Case: <br>
-Developers and agent users on macOS use this skill to operate an existing Safari session for browsing, page inspection, screenshots, form entry, and tab navigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a real logged-in Safari browser session, including authenticated pages, cookies, open tabs, clicks, forms, and screenshots. <br>
-Mitigation: Install it only when this broad browser authority is intended, supervise actions, and require explicit confirmation before reading authenticated pages, taking screenshots, executing JavaScript, clicking, filling forms, making purchases, sending messages, or changing accounts. <br>
-Risk: Browser automation may expose sensitive personal or business data from the user's active Safari profile. <br>
-Mitigation: Use a dedicated or non-sensitive browser profile where possible and avoid granting access to sessions that contain data outside the task scope. <br>
-Risk: macOS Automation and Screen Recording permissions can continue to grant browser control after the immediate task is finished. <br>
-Mitigation: Revoke Automation or Screen Recording permissions when the skill is no longer needed. <br>
+## Use Case:
 
+Developers and agent users on macOS use this skill to operate an existing Safari session for browser tasks that require real cookies, logins, tabs, screenshots, or page interaction.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, AppleScript, JavaScript, and Swift code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser page text and screenshots when its commands are executed against Safari.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad control over the user's logged-in Safari session, including visible page data, cookies, open tabs, form input, navigation, and clicks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when intentional, preferably in a dedicated low-risk Safari profile or browser session, and avoid banking, admin consoles, private accounts, or sensitive open tabs.
+
+Risk: The skill uses an unsafe temporary helper pattern for its screenshot window-id helper.
+
+Mitigation: Fix the temporary helper pattern before routine use, and review generated helper files and commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdlll/skills/safari-browser-control)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with AppleScript, JavaScript, Swift, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and guidance for local Safari automation; does not create a standalone service.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

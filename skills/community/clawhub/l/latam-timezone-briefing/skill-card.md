@@ -1,43 +1,56 @@
-## Description: <br>
-Generates concise morning briefings for Argentina and LATAM with local date formatting, workweek context, Argentine holidays, optional agenda items, and fiscal due dates when a related calendar skill is installed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily morning briefing for Argentina and LATAM with ART timezone handling, Spanish dates, workweek context, Argentine holidays, and optional ARCA tax due dates when the related fiscal calendar skill is installed.
 
-## Publisher: <br>
-[centriqs](https://clawhub.ai/user/centriqs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[centriqs](https://clawhub.ai/user/centriqs)
 
-## Use Case: <br>
-Employees, operators, and small-business users in Argentina and LATAM use this skill to start the day with a short briefing that combines calendar context, holidays, personal agenda entries, and optional fiscal reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Argentina and LATAM <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local briefing configuration and agenda files, which can contain sensitive meeting or client details. <br>
-Mitigation: Keep confidential details and full tax identifiers out of local briefing files, and use the briefing only in private one-to-one contexts. <br>
-Risk: Casual aliases such as morning greetings may activate the skill and reveal local agenda details. <br>
-Mitigation: Use explicit commands such as "briefing hoy" when accidental activation would be a concern. <br>
+## Use Case:
 
+External users and teams in Argentina or LATAM use this skill to get concise daily or weekly briefings with local date, timezone, holiday, agenda, and optional fiscal-deadline context. It is suited for private operational planning rather than public broadcast of sensitive agenda details.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/centriqs/latam-timezone-briefing) <br>
-- [Publisher profile](https://clawhub.ai/user/centriqs) <br>
-- [Centriqs homepage](https://centriqs.io) <br>
-- [argentina-fiscal-calendar related skill](https://clawhub.ai/centriqs/argentina-fiscal-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style briefing text with optional shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline output; may include local agenda details when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Broad natural-language aliases can activate the briefing during casual greetings or daily check-ins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the aliases before installation and adjust local usage if greetings are often used outside briefing intent.
+
+Risk: Local agenda or configuration files may contain sensitive meetings, client names, or tax details.
+
+Mitigation: Use agenda and tax configuration data only in private one-to-one briefings and avoid placing sensitive details in shared channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/centriqs/skills/latam-timezone-briefing)
+- [Centriqs homepage](https://centriqs.io)
+- [OpenClaw](https://openclaw.ai)
+- [argentina-fiscal-calendar related skill](https://clawhub.ai/centriqs/argentina-fiscal-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style briefing text with optional inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spanish-language briefings use DD/MM/YYYY dates and local LATAM timezone context, defaulting to ART.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

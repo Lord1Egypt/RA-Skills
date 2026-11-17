@@ -1,42 +1,51 @@
-## Description: <br>
-Remove signs of AI-generated writing from text by rewriting inflated, promotional, formulaic, vague, or overly mechanical phrasing into more natural prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes signs of AI-generated writing by rewriting text in a more natural, human-written style.
 
-## Publisher: <br>
-[xbmchina](https://clawhub.ai/user/xbmchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbmchina](https://clawhub.ai/user/xbmchina)
 
-## Use Case: <br>
-External users and writers use this skill to rewrite AI-generated or AI-sounding text into more natural prose while reducing common AI writing patterns. Reviewers should check that the rewrite preserves facts, meaning, and acceptable disclosure practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The rewrite can alter facts, nuance, attribution, or the intended meaning of the source text. <br>
-Mitigation: Review the rewritten output against the original text before publishing or relying on it. <br>
-Risk: The skill is intended to make AI-like writing appear more human, which may be inappropriate for academic, legal, compliance, or sensitive contexts. <br>
-Mitigation: Use only when rewriting provenance is acceptable, and follow the relevant disclosure, policy, and integrity requirements. <br>
+## Use Case:
 
+External users and developers use this skill to revise AI-generated passages so they read more naturally and avoid common AI-writing patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbmchina/humanizer-text) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language rewritten text, optionally in Markdown when the input uses Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, or external tool use is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Rewriting can alter factual meaning, citations, source preservation, or tone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the rewritten text for factual accuracy, source preservation, and unintended language or tone changes before publishing or submitting it.
+
+## Reference(s):
+
+- [README.md](README.md)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown rewrite]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review rewritten text for factual accuracy, source preservation, and unintended tone changes.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

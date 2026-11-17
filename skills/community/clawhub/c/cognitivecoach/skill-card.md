@@ -1,42 +1,57 @@
-## Description: <br>
-Cognitive Coach ingests exported chat history, filters for high-value knowledge, creates private Feynman review prompts, and schedules a next-morning recall challenge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive Coach helps an agent ingest chat-history exports, extract high-value knowledge, create Feynman-style review cards, and prompt the user for next-day recall.
 
-## Publisher: <br>
-[DearChenzj](https://clawhub.ai/user/DearChenzj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dearchenzj](https://clawhub.ai/user/dearchenzj)
 
-## Use Case: <br>
-Developers and technically curious users use this skill to turn prior AI chat sessions into concise self-explanation prompts and follow-up feedback that support long-term retention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes exported chat records that may contain secrets, personal information, or confidential work material. <br>
-Mitigation: Review and minimize chat exports before use, and avoid providing sensitive conversations unless the deployment is approved for that data. <br>
-Risk: The skill keeps hidden review prompts and schedules a later review, which can create stored content or reminders the user may not expect. <br>
-Mitigation: Confirm the OpenClaw environment allows users to view, cancel, or delete scheduled reviews and stored cards before relying on the workflow. <br>
-Risk: Silent value filtering may omit context or produce a review prompt that does not match what the user intended to retain. <br>
-Mitigation: Use the review flow to inspect the selected topic and revise or clear cards that are off-target. <br>
+## Use Case:
 
+Developers and technically curious users use this skill to turn dense AI chat histories into short Feynman-style review prompts and feedback that test whether they can explain important ideas in their own words.
 
-## Reference(s): <br>
-- [Cognitive Coach on ClawHub](https://clawhub.ai/DearChenzj/cognitivecoach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Concise chat messages and stored review-card fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May schedule a next-day 9:00 review trigger and keep reference answers hidden until feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill processes chat-history exports that may contain secrets, private third-party information, or content the user does not want retained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for consent before ingestion and instruct users to remove secrets and private third-party information before providing exports.
+
+Risk: The skill silently extracts and stores review-card material, which can make it hard for users to see or control what was retained.
+
+Mitigation: Show extracted topics or cards before storage and provide clear options to cancel ingestion or delete stored review cards.
+
+Risk: The skill sets persistent next-morning review reminders without clear controls.
+
+Mitigation: Confirm scheduled reminders with the user and provide a direct way to cancel or change the reminder.
+
+## Reference(s):
+
+- [Cognitive Coach ClawHub Skill Page](https://clawhub.ai/dearchenzj/skills/cognitivecoach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Concise natural-language prompts and feedback, with internal review-card fields represented as structured text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create hidden review-card content and a next-morning reminder; proactive prompts should not reveal reference answers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

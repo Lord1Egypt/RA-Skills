@@ -1,44 +1,64 @@
-## Description: <br>
-Writes Markdown content from provided PDF or DOCX documents and user requirements using the ZhiPu GLM-V multimodal model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes Markdown content from user-provided documents and requirements using the ZhiPu GLM-V multimodal model.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-External users and teams use this skill to draft articles, reports, briefs, proposals, reviews, and similar Markdown content from selected documents and writing requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected document URLs or local PDF page contents and writing requirements are sent to Zhipu for processing. <br>
-Mitigation: Use only documents approved for that provider and avoid confidential, regulated, or customer content unless policy permits. <br>
-Risk: The skill requires a Zhipu API key. <br>
-Mitigation: Prefer revocable or scoped API keys where available, keep the key out of shared logs and files, and rotate it if exposed. <br>
-Risk: Generated drafts may contain mistakes or misleading statements. <br>
-Mitigation: Review the generated Markdown before publishing, submitting, or relying on it for decisions. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to draft articles, reports, briefs, reviews, proposals, plans, translations, and summaries after the agent reads supplied documents and writing requirements.
 
-## Reference(s): <br>
-- [GLM-V Doc-Based-Writing homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-doc-based-writing) <br>
-- [Zhipu Chat Completions API docs](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E5%AF%B9%E8%AF%9D%E8%A1%A5%E5%85%A8) <br>
-- [Zhipu API key management](https://bigmodel.cn/usercenter/proj-mgmt/apikeys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown text by default, with optional Markdown or JSON file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; supports up to 50 remote documents or 50 local PDF pages, subject to model token limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Selected documents and writing requirements are sent to Zhipu's API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key and avoid sensitive or regulated documents unless the use has been approved.
+
+Risk: Local PDF handling depends on PyMuPDF.
+
+Mitigation: Install PyMuPDF in a virtual environment with a pinned version.
+
+Risk: The --output option writes to the chosen local path and may overwrite an existing file.
+
+Mitigation: Choose output paths deliberately and review existing files before writing results.
+
+Risk: Generated writing may be inaccurate, incomplete, or inappropriate for the target context.
+
+Mitigation: Review generated content against the source documents and intended audience before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaredforreal/skills/glmv-doc-based-writing)
+- [Project Homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-doc-based-writing)
+- [Zhipu Chat Completions API Documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E5%AF%B9%E8%AF%9D%E8%A1%A5%E5%85%A8)
+- [Zhipu API Key Management](https://bigmodel.cn/usercenter/proj-mgmt/apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text, with optional Markdown or JSON file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; supports up to 50 remote documents or 50 local PDF pages; sends selected documents and writing requirements to Zhipu API.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

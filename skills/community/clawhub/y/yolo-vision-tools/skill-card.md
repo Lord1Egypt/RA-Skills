@@ -1,55 +1,67 @@
-## Description: <br>
-Use Ultralytics YOLO to perform computer vision tasks, such as detecting people or objects in images and videos, classifying images, estimating human poses, and tracking cars, people, or animals in videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Ultralytics YOLO to perform computer vision tasks, such as detecting people or objects in images and videos, classifying images, estimating human poses, and tracking cars, people, or animals in videos.
 
-## Publisher: <br>
-[Ruoyu05](https://clawhub.ai/user/Ruoyu05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruoyu05](https://clawhub.ai/user/ruoyu05)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose, configure, run, troubleshoot, and train Ultralytics YOLO models for image and video analysis tasks including detection, segmentation, classification, pose estimation, and object tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model and package setup can download dependencies or model files. <br>
-Mitigation: Install in a virtual environment and use preloaded local models when downloads are not intended. <br>
-Risk: Image, video, webcam, dataset, and generated output files may contain sensitive content and can be saved locally. <br>
-Mitigation: Avoid private media unless local copies and generated outputs are acceptable; set an explicit output directory and review saved files. <br>
-Risk: Environment diagnostics can expose local paths, hardware details, and package information. <br>
-Mitigation: Redact environment reports before sharing them outside the local workspace. <br>
-Risk: Cache cleanup or dataset upload actions can change local state or move data when used unintentionally. <br>
-Mitigation: Run cleanup or upload options only after confirming that the operation is intended. <br>
+## Use Case:
 
+Developers and vision practitioners use this skill to select, install, configure, and run Ultralytics YOLO models for image and video detection, segmentation, classification, pose estimation, object tracking, and custom training workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Ruoyu05/yolo-vision-tools) <br>
-- [Ultralytics Documentation](https://docs.ultralytics.com) <br>
-- [Ultralytics Configuration Reference](https://docs.ultralytics.com/usage/cfg/) <br>
-- [YOLO Configuration Examples](references/configuration_samples.md) <br>
-- [YOLO Dataset Preparation Guide](references/dataset_preparation.md) <br>
-- [Ultralytics YOLO Environment Check Guide](references/environment_check.md) <br>
-- [Ultralytics YOLO Installation Guide](references/installation_guide.md) <br>
-- [YOLO Model Names Reference](references/model_names.md) <br>
-- [YOLO Model Selection Guide](references/model_selection.md) <br>
-- [YOLO Parameter Reference](references/parameter_reference.md) <br>
-- [YOLO Task Types Explained](references/task_types.md) <br>
-- [YOLO Model Training Guide](references/training_basics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file outputs under a yolo-vision workspace folder and local model/cache operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata) <br>
+Risk: The release evidence reports a runnable diagnostics script with a shell-injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution and do not run scripts/check_environment.py until the shell=True path handling is fixed.
+
+Risk: Installation examples may use mutable remote packages, GitHub @main installs, or container images.
+
+Mitigation: Use a virtual environment, pin package versions and container digests, and avoid mutable install targets for managed deployments.
+
+Risk: Generated YOLO outputs and environment reports can contain sensitive source media, model details, or system information.
+
+Mitigation: Store outputs in approved locations, review reports before sharing, and keep third-party upload integrations disabled unless intentionally enabled.
+
+## Reference(s):
+
+- [Environment Check](references/environment_check.md)
+- [Installation Guide](references/installation_guide.md)
+- [Task Types](references/task_types.md)
+- [Model Names](references/model_names.md)
+- [Model Selection](references/model_selection.md)
+- [Configuration Samples](references/configuration_samples.md)
+- [Dataset Preparation](references/dataset_preparation.md)
+- [Training Basics](references/training_basics.md)
+- [Parameter Reference](references/parameter_reference.md)
+- [Ultralytics Documentation](https://docs.ultralytics.com)
+- [Ultralytics Configuration Reference](https://docs.ultralytics.com/usage/cfg/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose workspace files, YOLO output folders, reports, model-selection guidance, and environment diagnostics.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

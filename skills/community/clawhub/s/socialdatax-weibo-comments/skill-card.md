@@ -1,41 +1,50 @@
-## Description: <br>
-用于微博评论分析、微博评论回复、微博评论洞察、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Weibo comments and comment replies，来自 SocialDataX 社媒数据助手。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Weibo comments and replies to surface audience feedback, sentiment themes, objections, pain points, FAQs, and discussion summaries.
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-External users and analysts use this skill to retrieve Weibo first-level comments and replies through SocialDataX, then summarize sentiment themes, pain points, objections, FAQs, and discussion patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the socialdatax-skills npm package with SOCIALDATAX_API_KEY, which may expose sensitive API access if run in an untrusted or sensitive environment. <br>
-Mitigation: Install only when SocialDataX Weibo comment analysis is intended, protect the API key, and review the npm package or source before use in sensitive environments. <br>
-Risk: The skill retrieves external Weibo comment data for analysis, so conclusions may be incomplete when only one page is fetched or when comments are empty. <br>
-Mitigation: State whether results cover one page or multiple pages, preserve pagination tokens unchanged, and treat empty comments as a possible successful result. <br>
+## Use Case:
 
+Social media analysts and content teams use this skill to review Weibo post comments and replies, identify recurring audience themes, objections, pain points, and FAQs, and prepare discussion summaries.
 
-## Reference(s): <br>
-- [SocialDataX](https://socialdatax.com/?from=clawhub) <br>
-- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-comments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON data from CLI or MCP calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOCIALDATAX_API_KEY, node, and npm; comment pagination uses opaque page tokens that should be passed back unchanged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The security summary marks the release suspicious because its CLI examples use a changeable latest package; the scan was partial, and a changed or compromised package could run with local permissions and access credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and release before execution, use a reviewed fixed version where possible, and provide only the permissions and credentials needed for the task.
+
+## Reference(s):
+
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-weibo-comments)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Text]
+
+**Output Format:** [Structured comment and reply data with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pagination may return one or multiple pages; an empty comment set can be a valid result.]
+
+## Skill Version(s):
+
+0.1.24 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

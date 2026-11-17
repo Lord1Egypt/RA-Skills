@@ -1,44 +1,55 @@
-## Description: <br>
-Automated deep research that performs comprehensive multi-source investigation and produces detailed reports with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated deep research that performs comprehensive multi-source investigation and produces detailed reports with citations.
 
-## Publisher: <br>
-[bird-frank](https://clawhub.ai/user/bird-frank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bird-frank](https://clawhub.ai/user/bird-frank)
 
-## Use Case: <br>
-External users and developers use this skill to plan and execute in-depth research on a user-approved topic, then produce a structured report with citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Final research behavior depends on the companion deep-research-executor skill or tool. <br>
-Mitigation: Confirm the companion executor is trusted before installing or using this skill. <br>
-Risk: Research plans can contain confidential business data, private documents, credentials, or personal information. <br>
-Mitigation: Exclude sensitive data unless the user is comfortable passing that context to a spawned research agent. <br>
-Risk: A broad or ambiguous plan can lead to irrelevant or misleading research output. <br>
-Mitigation: Review and approve the research plan before execution, including scope, research questions, and report requirements. <br>
+## Use Case:
 
+External users and developers use this skill to plan and execute in-depth research workflows, including collaborative scope definition, structured research plans, and cited final reports.
 
-## Reference(s): <br>
-- [Research Plan Examples](references/plan-examples.md) <br>
-- [Deep Research on ClawHub](https://clawhub.ai/bird-frank/deep-research-plan) <br>
-- [bird-frank Publisher Profile](https://clawhub.ai/user/bird-frank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [JSON research plan files and Markdown reports with citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user approval before executing the research plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill delegates execution to a sub-agent that can choose and expand searches within the approved plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated plan carefully before approving execution, especially topic boundaries, research questions, and source expectations.
+
+Risk: Broad trigger wording may cause the skill to be used for open-ended research requests with unclear scope.
+
+Mitigation: Require explicit user confirmation of the research plan before launching the execution phase.
+
+## Reference(s):
+
+- [Research Plan Examples](references/plan-examples.md)
+- [ClawHub skill page](https://clawhub.ai/bird-frank/skills/deep-research-plan)
+- [Publisher profile](https://clawhub.ai/user/bird-frank)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown reports and structured JSON research plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research plans are saved as JSON files under plans/research-plan-{timestamp}.json after user approval.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

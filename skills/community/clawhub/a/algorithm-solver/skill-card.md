@@ -1,42 +1,57 @@
-## Description: <br>
-系统性地解析和解决算法题。覆盖题目理解、暴力解到优化解的推导、算法模板讲解、测试用例设计、生产级代码实践。适用于 LeetCode、面试题、竞赛题等场景。当用户提出算法题、数据结构问题、或要求解题时自动触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users solve algorithm and data-structure problems through structured problem restatement, baseline and optimized solution design, code implementation, testing, and production-practice discussion.
 
-## Publisher: <br>
-[WD1993](https://clawhub.ai/user/WD1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wd1993](https://clawhub.ai/user/wd1993)
 
-## Use Case: <br>
-Developers, interview candidates, and programming learners use this skill to work through algorithm and data-structure problems with structured reasoning, implementation, testing, and production-practice discussion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may run generated code for tests. <br>
-Mitigation: Review generated code and run tests in a sandboxed environment before using results in important workflows. <br>
-Risk: Problem statements may be sent to web search during industry-application lookups. <br>
-Mitigation: Avoid sharing private, proprietary, or sensitive problem statements when web search may be used. <br>
-Risk: The skill may activate broadly on algorithm-related prompts. <br>
-Mitigation: Use it when structured algorithm coaching is desired and disable or avoid it for unrelated programming tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WD1993/algorithm-solver) <br>
-- [Publisher profile](https://clawhub.ai/user/WD1993) <br>
+## Use Case:
 
+Developers, learners, and interview candidates use this skill to reason through LeetCode-style, interview, and competitive-programming problems before implementing and testing a solution. It is designed to teach the derivation from brute force to optimized algorithms rather than only returning a final answer.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with code blocks and test results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Chinese explanatory text with semantic English variable names in code.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may run generated solution tests with Bash when the execution environment allows it.
+
+Mitigation: Review generated code and test commands before execution, especially when problem statements or sample data are untrusted.
+
+Risk: The skill instructs the agent to perform web searches for industry applications of algorithms.
+
+Mitigation: Avoid including proprietary or sensitive problem statements when external search could reveal related context.
+
+Risk: Algorithm explanations and optimized solutions can be incorrect or incomplete for ambiguous problem statements.
+
+Mitigation: Confirm assumptions, inspect edge-case coverage, and run the proposed tests before using generated code in production or interviews.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd1993/skills/algorithm-solver)
+- [Publisher profile](https://clawhub.ai/user/wd1993)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with explanatory sections, code blocks, test cases, and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally executed test commands and cited web-search findings for real-world algorithm applications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

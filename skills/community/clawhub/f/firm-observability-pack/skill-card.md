@@ -1,41 +1,48 @@
-## Description: <br>
-Observability pipeline and CI audit pack for JSONL-to-SQLite trace ingestion and CI workflow validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Observability pipeline and CI audit pack for JSONL-to-SQLite trace ingestion and CI workflow validation.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and operations engineers use this skill to ingest JSONL traces into SQLite for analysis and check CI workflow configurations for security gates and test steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Trace ingestion may store sensitive operational trace data in a SQLite database.
+
+Mitigation: Confirm trust in the required mcp-openclaw-extensions package and review the database write location and access controls before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to ingest JSONL traces into SQLite for analysis and to check CI workflow configurations for security gates and test steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Using an untrusted or unexpected mcp-openclaw-extensions package version could expose the agent to unsafe tool behavior. <br>
-Mitigation: Install only trusted mcp-openclaw-extensions versions that satisfy the declared requirement and review the package before deployment. <br>
-Risk: Trace logs and generated SQLite databases may contain sensitive operational data or secrets. <br>
-Mitigation: Use scoped trace inputs, avoid logs containing secrets where possible, and store generated SQLite databases in protected locations. <br>
+**Output Format:** [Markdown guidance with tool invocation examples and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Firm Observability Pack on ClawHub](https://clawhub.ai/romainsantoli-web/firm-observability-pack) <br>
-- [romainsantoli-web publisher profile](https://clawhub.ai/user/romainsantoli-web) <br>
+**Other Properties Related to Output:** [May reference local trace and CI configuration paths supplied by the user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline tool commands, analysis summaries, and validation findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reference a SQLite database from scoped JSONL trace input; requires mcp-openclaw-extensions >= 3.0.0.] <br>
+1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

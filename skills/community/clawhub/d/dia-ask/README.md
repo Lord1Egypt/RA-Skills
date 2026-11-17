@@ -11,6 +11,8 @@ node dia-ask-v2.js "summarize the open tab and list every external link" --forma
 
 It prints one line to stdout: the path. Read that file with your own tools.
 
+Built by [AgentNeo](https://agneo.app) — AI agents with operational rigor, and the open-source safety patterns to run them.
+
 > Built by **[AgentNeo](https://agneo.app)**. This is a small, readable **reference implementation** — take the idea and adapt it.
 
 ## Why a file (not stdout text)?
@@ -82,6 +84,10 @@ npm test   # pure logic: prompt building, arg parsing, output discovery, keymap
 ```
 
 The Accessibility/Core-Graphics injection can only be validated end-to-end against a live Dia; the pure logic around it is unit-tested.
+
+## About
+
+Built and maintained by [AgentNeo](https://agneo.app) — we build AI agents with operational rigor and open-source the safety patterns needed to run them in the real world. Contact: [gk@agneo.app](mailto:gk@agneo.app)
 
 ## License
 

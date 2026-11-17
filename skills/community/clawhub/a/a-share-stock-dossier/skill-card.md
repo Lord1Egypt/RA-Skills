@@ -1,47 +1,61 @@
-## Description: <br>
-Analyze A-share stocks and portfolios with analyst-grade, evidence-first reports. Use when the user asks for 个股分析、持仓复盘、逻辑是否还在、行业龙头、盘前/盘后策略、情绪+技术综合判断, especially when they want deep web verification and full process transparency (检索过程摘要 + 证据逐条分析) via web_search/web_fetch/browser plus Eastmoney/Tencent quote data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes A-share stocks and portfolios through evidence-first analyst reports that combine structured quote data, web research, source ranking, and explicit portfolio actions.
 
-## Publisher: <br>
-[T-Atlas](https://clawhub.ai/user/T-Atlas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[t-atlas](https://clawhub.ai/user/t-atlas)
 
-## Use Case: <br>
-External users and analysts use this skill to produce process-transparent A-share stock and portfolio dossiers with structured quote data, multi-source verification, evidence-bound conclusions, and portfolio action guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce portfolio actions or trading guidance from web-heavy market research. <br>
-Mitigation: Treat recommendations as analysis, not automatic trading instructions, and independently verify important facts before acting. <br>
-Risk: Prompts may include personal financial details or portfolio holdings. <br>
-Mitigation: Avoid sharing unnecessary personal financial information and limit inputs to the minimum needed for the analysis. <br>
-Risk: Market data and web evidence can change quickly during active trading sessions. <br>
-Mitigation: Use fresh quote data, preserve timestamps in the retrieval log, and resolve conflicts with official or preferred sources first. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [A Share Stock Dossier on ClawHub](https://clawhub.ai/T-Atlas/a-share-stock-dossier) <br>
-- [Eastmoney Core Fields](references/eastmoney-fields.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Search Depth Protocol](references/search-depth-protocol.md) <br>
-- [Source Checklist](references/source-checklist.md) <br>
-- [Eastmoney Quote API](https://push2.eastmoney.com/api/qt/ulist.np/get) <br>
-- [Tencent Kline API](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get) <br>
+## Use Case:
 
+Traders, analysts, and portfolio reviewers use this skill to assemble traceable A-share stock or portfolio dossiers with a retrieval log, structured market baseline, stock-by-stock evidence cards, and scenario-based actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with retrieval log, structured market baseline, evidence cards, stock-by-stock analysis, and portfolio guidance; helper script output is JSON when used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web and market-data retrieval; conclusions should be reviewed before any investment or trading decision.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce trading-style action suggestions that may be mistaken for financial advice.
+
+Mitigation: Treat outputs as research support, verify conclusions against current official disclosures and market data, and preserve uncertainty notes in the report.
+
+Risk: Requested stock symbols, searches, and related context may be sent to public web, Eastmoney, or Tencent market-data services.
+
+Mitigation: Avoid submitting sensitive portfolio details unless external data sharing is acceptable for the intended use.
+
+Risk: A-share quote snapshots and intraday market conditions can change quickly.
+
+Mitigation: Refresh structured quote and kline data near the time of use and keep timestamps visible in the retrieval log.
+
+## Reference(s):
+
+- [Eastmoney Core Fields](references/eastmoney-fields.md)
+- [Report Template](references/report-template.md)
+- [Search Depth Protocol](references/search-depth-protocol.md)
+- [Source Checklist](references/source-checklist.md)
+- [Eastmoney quote API](https://push2.eastmoney.com/api/qt/ulist.np/get)
+- [Tencent fqkline API](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with retrieval log, structured market-data summary, evidence cards, portfolio tiers, and scenario-based action guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is a long-form analyst report unless the user asks for a shorter summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

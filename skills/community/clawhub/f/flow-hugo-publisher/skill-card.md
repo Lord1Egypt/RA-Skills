@@ -1,48 +1,63 @@
-## Description: <br>
-Flow Hugo Publisher manages Hugo publishing workflows by checking Hugo and Git setup, managing workspaces, initializing Git repositories, previewing sites, committing changes, and deploying to GitHub Pages with GitHub Actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Hugo publishing workflows by checking Hugo and Git, managing a workspace, initializing a Hugo site and Git repository, previewing locally, committing changes, and guiding GitHub Pages deployment through GitHub Actions.
 
-## Publisher: <br>
-[ZampoRen](https://clawhub.ai/user/ZampoRen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zamporen](https://clawhub.ai/user/zamporen)
 
-## Use Case: <br>
-Developers and content maintainers use this skill to initialize or manage Hugo workspaces, preview site changes, commit updates, and publish to GitHub Pages while preserving per-workspace state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change and publish a Hugo repository as part of its stated purpose. <br>
-Mitigation: Before approving publish steps, verify the workspace, Git remote, branch, staged files, generated workflow, and deployment target. <br>
-Risk: Saved workspace and deployment history may be reused across later runs. <br>
-Mitigation: Review, edit, or remove ~/.openclaw/state/hugo-publisher-state.json if prior workspace state should not be reused. <br>
-Risk: Custom Hugo theme repositories and generated GitHub Actions workflows affect the site build and published output. <br>
-Mitigation: Review any custom theme repository and generated .github/workflows/hugo-pages.yml before committing or pushing changes. <br>
+## Use Case:
 
+Developers and content maintainers use this skill to prepare, preview, commit, and publish Hugo sites or articles to GitHub Pages while preserving workflow state across workspaces. It focuses on the publishing pipeline and does not create article content.
 
-## Reference(s): <br>
-- [Workflow and Command Templates](references/workflow.md) <br>
-- [State File Schema](references/state-schema.md) <br>
-- [Human Intervention Points](references/interaction-points.md) <br>
-- [Validation and Recovery Checklist](references/validation-checklist.md) <br>
-- [Hugo Template Catalog](references/template-catalog.md) <br>
-- [GitHub Actions Deployment Guide](references/github-actions.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ZampoRen/flow-hugo-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, GitHub Actions YAML, and JSON state guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Hugo project files, Git state, GitHub Actions workflow files, deployment guide Markdown, and local state JSON when the user approves those steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Automated Git staging and publishing may include files the user did not intend to commit or push.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact staged files before commits or pushes, avoid broad staging such as git add ., and check for credentials, private drafts, local configuration, and unrelated files.
+
+Risk: The skill writes persistent local workspace metadata.
+
+Mitigation: Treat the state file as local metadata and review it before sharing logs, workspaces, or machine snapshots.
+
+Risk: Generated GitHub Actions workflows introduce third-party action dependencies and can publish site content publicly.
+
+Mitigation: Review the generated workflow dependencies and GitHub Pages settings before enabling deployment or pushing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zamporen/skills/flow-hugo-publisher)
+- [Workflow and command templates](references/workflow.md)
+- [State file schema](references/state-schema.md)
+- [User interaction points](references/interaction-points.md)
+- [Validation and recovery checklist](references/validation-checklist.md)
+- [Template catalog](references/template-catalog.md)
+- [GitHub Actions deployment guide](references/github-actions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration snippets, workflow files, progress messages, and recovery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Hugo workspace files, GitHub Actions workflow configuration, deployment guidance, Git commits, and persistent local workspace state when the user approves those steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

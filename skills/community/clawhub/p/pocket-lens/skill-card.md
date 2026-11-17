@@ -1,42 +1,59 @@
-## Description: <br>
-PocketLens helps OpenClaw users scan receipts and card payment screenshots, record transactions, list categories, and view spending or card billing summaries through PocketLens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants to track expenses, scan receipts, upload card payment screenshots, categorize spending, record transactions, check spending summaries, view card billing amounts, or query monthly expense breakdowns via PocketLens.
 
-## Publisher: <br>
-[edenjw](https://clawhub.ai/user/edenjw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edenjw](https://clawhub.ai/user/edenjw)
 
-## Use Case: <br>
-External users use this skill to connect OpenClaw with PocketLens for personal expense tracking, receipt or card statement extraction, transaction entry, category lookup, spending summaries, and card bill checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive receipt, card statement, and spending data to PocketLens and create account records. <br>
-Mitigation: Use a revocable PocketLens API key with the narrowest permission available, redact unnecessary card or account details from images, and review extracted transactions before creation. <br>
-Risk: A custom POCKET_LENS_API_URL can direct PocketLens API requests away from the default service. <br>
-Mitigation: Keep POCKET_LENS_API_URL unset or pointed at the official PocketLens service unless deliberately using a trusted endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PocketLens Skill README](README.md) <br>
-- [PocketLens](https://pocketlens.app) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+## Use Case:
 
+External PocketLens users use this skill in OpenClaw to turn receipt images, card statements, and natural-language expense descriptions into PocketLens transactions, then review categories, monthly spending summaries, and card billing details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with shell commands and JSON helper-script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in Korean or English to match the user; requires POCKET_LENS_API_KEY and can use an optional POCKET_LENS_API_URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive financial data from receipts, card statements, and payment screenshots.
+
+Mitigation: Redact unnecessary card, account, and statement details before upload, and confirm extracted transactions before recording them.
+
+Risk: The skill uses a write-capable PocketLens API key to create transactions.
+
+Mitigation: Use a write-only key rather than full access, rotate it if exposed, and avoid sharing command output that may reveal account details.
+
+Risk: The security summary flags unsafe command and endpoint handling, including optional custom API URLs.
+
+Mitigation: Avoid setting a custom API URL unless the server is fully trusted, and review command arguments before execution.
+
+## Reference(s):
+
+- [PocketLens homepage](https://pocketlens.app)
+- [OpenClaw](https://openclaw.ai)
+- [PocketLens ClawHub skill page](https://clawhub.ai/edenjw/skills/pocket-lens)
+- [edenjw ClawHub publisher profile](https://clawhub.ai/user/edenjw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with JSON helper-script results and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and POCKET_LENS_API_KEY; can use POCKET_LENS_API_URL to target a custom API base URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@
 # Post summary to Slack channel
 
 # Configuration
-SLACK_TOKEN="xoxb-12345678901-1234567890"
+SLACK_TOKEN="REDACTED-SECRET"
 CHANNEL="#standup"
 TIME="09:00"
 

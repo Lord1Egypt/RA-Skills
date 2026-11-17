@@ -1,45 +1,61 @@
-## Description: <br>
-Automate WhatsApp at scale with AI lead discovery, channel broadcasts, bulk messaging, scheduled campaigns, AI replies, review collection, delivery tracking, REST endpoints, MCP tools, and a Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate WhatsApp outreach workflows for lead mining, bulk messaging, scheduled campaigns, AI-assisted replies, review collection, CRM pipeline tracking, and delivery analytics.
 
-## Publisher: <br>
-[alex-tradequo](https://clawhub.ai/user/alex-tradequo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alex-tradequo](https://clawhub.ai/user/alex-tradequo)
 
-## Use Case: <br>
-External business users, agencies, campaign managers, and developers use this skill to plan and operate WhatsApp outreach, lead capture, CRM pipeline updates, AI-assisted replies, review collection, and agent integrations through the MoltFlow API. It is suited for agents that draft or execute user-approved API calls and setup guidance for WhatsApp automation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable live WhatsApp messaging, contact extraction, monitoring, exports, scheduled actions, and admin operations against business data. <br>
-Mitigation: Use a dedicated least-privilege API key, enable approval mode and phone whitelisting, and review recipients, message text, exports, schedules, webhooks, A2A endpoints, API keys, AI profiles, document indexes, and review collectors before use. <br>
-Risk: Bulk or scheduled outreach can send messages to many recipients or run later without immediate operator attention. <br>
-Mitigation: Preview campaign audiences and content before starting jobs, keep rate and recipient safeguards enabled, and audit active schedules regularly. <br>
-Risk: Group member imports, exports, and review collection may involve personal or customer data. <br>
-Mitigation: Import or export group members only with appropriate consent, use scoped credentials, and keep data handling aligned with the organization's privacy requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alex-tradequo/whatsapp-automation-a2a) <br>
-- [MoltFlow homepage](https://molt.waiflow.app) <br>
-- [AI Agent Integrations](integrations.md) <br>
-- [MoltFlow A2A discovery](https://apiv2.waiflow.app/.well-known/agent.json) <br>
-- [MoltFlow ERC-8004 agent card](https://molt.waiflow.app/.well-known/erc8004-agent.json) <br>
+## Use Case:
 
+External business users, agencies, and developers use this skill to connect agents to MoltFlow's WhatsApp automation service for prospecting, campaign operations, customer follow-up, review capture, and CRM workflows. It is also useful for configuring Claude, ChatGPT, and MCP-based assistants to call MoltFlow APIs with user-controlled authentication.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline curl commands, JSON request bodies, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MoltFlow API key or OAuth setup; user review is expected before live WhatsApp messaging, exports, schedules, or admin actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.16.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documents messaging, scheduling, contact and group management, data export, document upload, and billing-affecting capabilities.
+
+Mitigation: Use OAuth or short-lived least-privilege API keys, enable approval mode, and review any bulk, scheduled, AI-generated, or channel outbound messaging before execution.
+
+Risk: Read-only onboarding workflows could be over-permissioned if paired with send or manage scopes.
+
+Mitigation: Use read-only scopes for analysis workflows and reserve send, manage, export, and billing scopes for separately approved operational workflows.
+
+Risk: Bulk or automated WhatsApp outreach can affect recipients at scale.
+
+Mitigation: Configure phone whitelisting, require human approval for AI-generated content, and test campaigns with limited audiences before wider use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alex-tradequo/skills/whatsapp-automation-a2a)
+- [MoltFlow homepage](https://molt.waiflow.app)
+- [AI Agent Integrations](artifact/integrations.md)
+- [Connect Claude to MoltFlow](https://molt.waiflow.app/guides/connect-claude-to-moltflow)
+- [Connect ChatGPT to MoltFlow](https://molt.waiflow.app/guides/connect-chatgpt-to-moltflow)
+- [MoltFlow Python SDK](https://github.com/moltflow/moltflow-python)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples, JSON configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce outbound API call plans and setup instructions that require user-controlled credentials and approvals.]
+
+## Skill Version(s):
+
+2.16.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

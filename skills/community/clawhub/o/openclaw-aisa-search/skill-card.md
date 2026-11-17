@@ -1,48 +1,65 @@
-## Description: <br>
-Intelligent search for agents with multi-source retrieval across web, scholar, Tavily, and Perplexity Sonar models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent search for agents. Multi-source retrieval across web, scholar, Tavily, and Perplexity Sonar models.
 
-## Publisher: <br>
-[chaimengphp](https://clawhub.ai/user/chaimengphp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaimengphp](https://clawhub.ai/user/chaimengphp)
 
-## Use Case: <br>
-Developers and agents use this skill to run web, academic, Tavily, and Perplexity Sonar searches, then collect structured search results, citation-rich answers, deep research responses, or confidence-scored multi-source retrieval output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, prompts, optional system instructions, URLs, and the AIsa API key are sent to an external API and upstream providers. <br>
-Mitigation: Use a dedicated revocable API key, avoid secrets or confidential internal URLs, and review prompts before submitting them. <br>
-Risk: Tavily crawl/map and Sonar Deep Research can process broader or more detailed content than a single search query. <br>
-Mitigation: Limit crawl targets and deep research prompts to content that is approved for external processing. <br>
+## Use Case:
 
+Developers and external agents use this skill to run structured web, academic, Tavily, and Perplexity Sonar searches, then generate citation-oriented answers or deep research reports. It supports fast lookup, scholar-backed research, multi-source retrieval, URL extraction, and confidence-scored result aggregation.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/chaimengphp/openclaw-aisa-search) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [AIsa Documentation](https://docs.aisa.one) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [Perplexity Sonar](https://docs.aisa.one/reference/post_perplexity-sonar) <br>
-- [Perplexity Sonar Pro](https://docs.aisa.one/reference/post_perplexity-sonar-pro) <br>
-- [Perplexity Sonar Reasoning Pro](https://docs.aisa.one/reference/post_perplexity-sonar-reasoning-pro) <br>
-- [Perplexity Sonar Deep Research](https://docs.aisa.one/reference/post_perplexity-sonar-deep-research) <br>
-- [AIsa Verity Reference Implementation](https://github.com/AIsa-team/verity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to AIsa API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search terms, research prompts, and submitted URLs are sent to AIsa-backed third-party APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or internal URLs, secrets, regulated data, and confidential business context in queries, extraction requests, or Sonar prompts.
+
+Risk: The skill requires an AISA_API_KEY for authenticated API calls.
+
+Mitigation: Provide the key through the environment, rotate it if exposed, and do not paste it into prompts, docs, command history, or shared artifacts.
+
+Risk: Long-form deep research requests may take longer or time out.
+
+Mitigation: Use narrower prompts, retry later, or switch to Sonar Pro or Sonar Reasoning Pro for shorter answer-generation tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaimengphp/skills/openclaw-aisa-search)
+- [OpenClaw homepage](https://openclaw.ai)
+- [AIsa API documentation](https://docs.aisa.one)
+- [AIsa API reference](https://docs.aisa.one/reference/)
+- [AIsa Sonar endpoint](https://docs.aisa.one/reference/post_perplexity-sonar)
+- [AIsa Sonar Pro endpoint](https://docs.aisa.one/reference/post_perplexity-sonar-pro)
+- [AIsa Sonar Reasoning Pro endpoint](https://docs.aisa.one/reference/post_perplexity-sonar-reasoning-pro)
+- [AIsa Sonar Deep Research endpoint](https://docs.aisa.one/reference/post_perplexity-sonar-deep-research)
+- [AIsa Verity reference implementation](https://github.com/AIsa-team/verity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses, markdown/text answers, and inline shell or Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to AIsa-backed search, Tavily, and Perplexity Sonar endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

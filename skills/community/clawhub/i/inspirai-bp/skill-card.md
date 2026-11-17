@@ -1,40 +1,56 @@
-## Description: <br>
-Best-practice management for recording verified solutions, reusing them across projects, and avoiding repeated troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InspirAI Best Practices helps agents record, search, apply, update, and delete reusable best-practice notes stored as local Markdown files.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to capture validated solutions as searchable local best-practice notes, then reuse those notes when similar implementation problems recur.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can create, update, copy, and delete local Markdown files.
+
+Mitigation: Review proposed file paths before execution and keep operations within the intended best-practices or project documentation directories.
+
+Risk: Category or slug values may affect local paths without clear containment safeguards.
+
+Mitigation: Validate category and slug values and resolve canonical paths before relying on copy or delete actions.
+
+Risk: Untrusted best-practice entries could lead an agent to reuse incorrect or unsafe implementation guidance.
+
+Mitigation: Use trusted entries, review loaded practices before applying them, and confirm changes before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to capture, search, list, apply, update, and delete reusable best-practice notes stored locally. It helps teams or individuals reuse validated solutions across projects while keeping entries under their own local best-practices folder. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Best-practice entries are stored persistently in a local folder and may later be copied into projects. <br>
-Mitigation: Do not save secrets or customer-sensitive data in entries, and review each entry before applying or copying it into a project. <br>
-Risk: Copying an entry into docs/references/{id}.md can overwrite or conflict with an existing project reference file. <br>
-Mitigation: Check whether docs/references/{id}.md already exists before copying an entry into project documentation. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexxxiong/inspirai-bp) <br>
+**Other Properties Related to Output:** [May propose local file creation, updates, copies, and deletion for best-practice storage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Markdown best-practice entries and index updates under $HOME/.inspirai/best-practices/ when the user chooses capture, update, copy, or delete workflows.] <br>
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

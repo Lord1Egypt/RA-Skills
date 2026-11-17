@@ -1,44 +1,61 @@
-## Description: <br>
-品牌分析 Skill（零配置版）。用户仅需提供 Zeelin App-Key 和品牌名，调用服务端封装接口生成品牌底座；计费在服务端完成（成功扣50额度，失败不扣费）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+品牌分析 Skill（零配置版）。用户仅需提供 Zeelin App-Key 和品牌名，调用服务端封装接口生成品牌底座；计费在服务端完成（成功扣50额度，失败不扣费）。
 
-## Publisher: <br>
-[linhai806806-cell](https://clawhub.ai/user/linhai806806-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linhai806806-cell](https://clawhub.ai/user/linhai806806-cell)
 
-## Use Case: <br>
-External brand, marketing, and strategy users can provide a Zeelin App-Key and brand name to generate a structured brand foundation report covering positioning, competitors, audience, and brand tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports clean scanner signals but notes that the adjudication did not have a full artifact-backed review. <br>
-Mitigation: Install only after reviewing the actual skill files or when the publisher is trusted. <br>
-Risk: The skill sends the supplied brand name, optional query, and optional attachment to a third-party brand analysis service. <br>
-Mitigation: Avoid submitting confidential or regulated data unless that third-party processing is acceptable for the user or organization. <br>
-Risk: The artifact points at a temporary Cloudflare tunnel host and deploy notes say to replace it with a stable HTTPS domain. <br>
-Mitigation: Verify the endpoint is a trusted, stable production service before using the skill. <br>
+## Use Case:
 
+External users and marketing teams use this skill to turn a brand name, optional query, and optional attachment into a structured brand foundation report. It supports brand positioning, competitor landscape, user persona, and brand tone analysis through a Zeelin paid API workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linhai806806-cell/brand-analyzer-zeelin) <br>
-- [Deploy Notes](references/deploy_notes.md) <br>
-- [Zeelin Skill platform](https://skills.zeelin.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown brand analysis report with concise status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful runs report consumed credits and remaining balance; failures return actionable service messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks users to send a billable App-Key to a temporary Cloudflare tunnel that the package notes say should be replaced before publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher replaces the tunnel with a stable, verifiably controlled production domain and documents how App-Keys are protected.
+
+Risk: Optional attachments may be sent to the remote service without documented retention or deletion practices.
+
+Mitigation: Avoid confidential attachments until the publisher documents file handling, retention, and deletion practices.
+
+Risk: The App-Key functions as a billing credential for Zeelin credits.
+
+Mitigation: Treat the App-Key as sensitive, use a revocable key if available, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linhai806806-cell/skills/brand-analyzer-zeelin)
+- [Publisher profile](https://clawhub.ai/user/linhai806806-cell)
+- [Deploy Notes](artifact/references/deploy_notes.md)
+- [Zeelin Skill platform](https://skills.zeelin.cn)
+- [Brand Analyzer API endpoint](https://following-hull-easy-interactions.trycloudflare.com/v1/brand-analyzer/generate)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Markdown brand analysis report with concise billing and error status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful generations report the 50-credit charge and remaining credits when returned by the service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

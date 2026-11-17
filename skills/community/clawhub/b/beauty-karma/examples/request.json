@@ -1,0 +1,8 @@
+{
+  "imageBase64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFgwJ/lcY6WQAAAABJRU5ErkJggg==",
+  "imageMime": "image/png",
+  "imageNotes": "示例图片用于本地 mock 演示。",
+  "userLabel": "人像上镜助手体验用户",
+  "outputDir": "/tmp/kanlian-assistant-example",
+  "mock": true
+}

@@ -1,44 +1,60 @@
-## Description: <br>
-Ingests invoices, receipts, and bank statements, then reconciles payments to invoices and writes Pocket-Claw accounting JSON outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests invoices, receipts, PDFs, and bank statements, then reconciles payments to invoices and writes Pocket-Claw company.json and rapprochement.json outputs.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trendex](https://clawhub.ai/user/trendex)
 
-## Use Case: <br>
-Accounting teams and finance operators use this skill to process client invoice folders, extract unresolved receipt or PDF data, reconcile bank transactions, and review unpaid invoices, orphan payments, excluded lines, and records requiring human validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive invoices, receipts, and bank statements. <br>
-Mitigation: Run it only on intended accounting folders, start in the default sandbox, and use --real only after reviewing the output. <br>
-Risk: Low-confidence or high-value LLM extractions can affect reconciliation accuracy. <br>
-Mitigation: Verify documents flagged for human review before relying on generated reconciliation files. <br>
+## Use Case:
 
+Accounting teams and agents use this skill to ingest electronic invoices, receipts, PDFs, and bank statement exports, reconcile payments against invoices, and report paid, pending, overdue, orphan, and missing items for each client.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/trendex/e-facture-rapprochement) <br>
-- [Invoice extraction reference](references/invoice-extraction.md) <br>
-- [Bank formats reference](references/bank-formats.md) <br>
-- [Matching rules reference](references/matching-rules.md) <br>
-- [Output contract reference](references/output-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes company.json and rapprochement.json through scripts/main.py; sidecar JSON may be required for unstructured documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes sensitive financial files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled workspace, prefer the default sandbox before --real, and avoid untrusted XML or PDF inputs unless the run is isolated.
+
+Risk: The release depends on a sibling reconciliation engine that the security evidence says should be verified.
+
+Mitigation: Verify that the sibling rapprochement-paiements skill is trusted and unchanged before installing or running this skill.
+
+Risk: Low-confidence or high-value extraction can affect accounting results.
+
+Mitigation: Review the generated human-validation list and confirm flagged invoices before relying on the reconciliation output.
+
+## Reference(s):
+
+- [Invoice extraction](references/invoice-extraction.md)
+- [Bank formats](references/bank-formats.md)
+- [Matching rules](references/matching-rules.md)
+- [Output contract](references/output-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON sidecar, company.json, and rapprochement.json files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes human-review flags for high-value or low-confidence invoice extraction.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

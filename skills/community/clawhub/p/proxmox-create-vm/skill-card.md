@@ -1,46 +1,65 @@
-## Description: <br>
-Create Ubuntu 24.04 LXC containers or full VMs on Proxmox VE. Docker-ready with Compose v2. Handles nesting for Docker-in-LXC, auto-picks next available CTID, and includes post-boot Docker setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Ubuntu 24.04 LXC containers or full VMs on Proxmox VE. Docker-ready with Compose v2. Handles nesting for Docker-in-LXC, auto-picks next available CTID, and includes post-boot Docker setup.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to create Docker-ready Ubuntu 24.04 LXC containers or full VMs on Proxmox VE for downstream application deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent powerful infrastructure control over a Proxmox host. <br>
-Mitigation: Install and use it only for explicitly approved Proxmox hosts, and review generated commands before execution. <br>
-Risk: The teardown helper can permanently delete containers or VMs. <br>
-Mitigation: Do not run destroy commands unless the host, resource ID, resource name, and backups have been independently verified. <br>
-Risk: VM creation can expose passwords passed on the command line. <br>
-Mitigation: Prefer SSH keys or throwaway credentials, and avoid passing real passwords as command-line arguments. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to provision Docker-ready Ubuntu hosts on Proxmox VE as LXC containers or full VMs. It is suited for creating base infrastructure that other deployment skills can use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/proxmox-create-vm) <br>
-- [Defaults: Proxmox VM/Container Creation](references/defaults.md) <br>
-- [Gotchas: Proxmox VM/Container Creation](references/gotchas.md) <br>
-- [Docker Compose v2 release download](https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64) <br>
-- [Ubuntu 24.04 cloud image](https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Proxmox creation, setup, verification, IP discovery, and teardown guidance for agent review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can provision and delete Proxmox containers or VMs over privileged SSH, including destructive teardown commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on non-production or tightly controlled Proxmox systems, require explicit human confirmation before deletion, and prefer a restricted Proxmox account or API token.
+
+Risk: VM creation accepts a password argument and may expose secrets through command history or process listings.
+
+Mitigation: Prefer SSH keys or secret-manager input and avoid passing reusable passwords directly on the command line.
+
+Risk: The setup downloads Docker Compose and Ubuntu cloud images at runtime without pinning or verification.
+
+Mitigation: Pin versions where practical and verify downloaded binaries or images before use.
+
+Risk: Incorrect IDs, names, or host targets could affect the wrong Proxmox resource.
+
+Mitigation: Validate hostnames, CTIDs, VMIDs, and generated names before executing provisioning or teardown commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/proxmox-create-vm)
+- [Defaults: Proxmox VM/Container Creation](references/defaults.md)
+- [Gotchas: Proxmox VM/Container Creation](references/gotchas.md)
+- [Docker Compose v2 download](https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64)
+- [Ubuntu 24.04 cloud image](https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns container or VM name, CTID or VMID, type, IP address, SSH access details, and Docker setup status when provisioning completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

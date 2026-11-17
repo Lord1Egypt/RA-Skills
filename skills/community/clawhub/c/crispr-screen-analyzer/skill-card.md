@@ -1,46 +1,62 @@
-## Description: <br>
-Process CRISPR screening data to identify essential genes and hit candidates. Performs quality control, statistical analysis (RRA), and hit calling for pooled CRISPR screens including viability screens and drug resistance/sensitivity studies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process CRISPR screening data to identify essential genes and hit candidates. Performs quality control, statistical analysis (RRA), and hit calling for pooled CRISPR screens including viability screens and drug resistance/sensitivity studies.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to analyze pooled CRISPR screening count matrices, assess screen quality, calculate log fold changes, run RRA-style statistics, and produce hit candidates for follow-up review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local analysis reads CRISPR screening count and sample files and writes result CSVs. <br>
-Mitigation: Run it only in an intended project directory, review generated Bash commands before execution, and keep genomic screening data in approved storage. <br>
-Risk: Dependency drift can affect reproducibility because numpy, pandas, and scipy are listed without pinned versions. <br>
-Mitigation: Pin dependency versions in the execution environment and record sample groups, thresholds, and package versions with analysis outputs. <br>
-Risk: Statistical hit calls are screening candidates and may be misleading if QC is poor or thresholds are inappropriate. <br>
-Mitigation: Review QC metrics and validate candidate genes with orthogonal analysis or experimental follow-up before relying on results. <br>
+## Use Case:
 
+Developers, bioinformatics analysts, and research teams use this skill to assess pooled CRISPR screen quality, calculate sgRNA fold changes, and produce exploratory hit candidates for viability or drug response studies.
 
-## Reference(s): <br>
-- [MAGeCK Wiki](https://sourceforge.net/p/mageck/wiki/Home/) <br>
-- [BAGEL CRISPR Screen Analysis](https://github.com/hart-lab/bagel) <br>
-- [Addgene CRISPR Libraries](https://www.addgene.org/crispr/libraries/) <br>
-- [DepMap Portal](https://depmap.org/portal/) <br>
-- [PubMed Reference Listed By Artifact](https://pubmed.ncbi.nlm.nih.gov/29651053/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; CSV result files when the local script is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the supplied count matrix, sample annotations, control/treatment groups, FDR threshold, and fold-change threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security review says the skill documentation overstates the statistical method and safety controls, which could mislead scientific use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as simplified exploratory analysis, not validated RRA or robust gene-level hit calling; confirm findings with established tools and experimental validation before making scientific decisions.
+
+Risk: Generated CSV outputs may be opened in spreadsheet software.
+
+Mitigation: Avoid opening generated CSVs in spreadsheets unless identifier columns are treated as text or escaped.
+
+Risk: Dependency behavior can change across environments.
+
+Mitigation: Pin dependencies in a controlled environment before running the skill on real experimental data.
+
+## Reference(s):
+
+- [CRISPR Libraries - Addgene](https://www.addgene.org/crispr/libraries/)
+- [DepMap Portal](https://depmap.org/portal/)
+- [MAGeCK Wiki](https://sourceforge.net/p/mageck/wiki/Home/)
+- [Hart Lab BAGEL](https://github.com/hart-lab/bagel)
+- [PubMed 29651053](https://pubmed.ncbi.nlm.nih.gov/29651053/)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/crispr-screen-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; the bundled analyzer can produce CSV result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local tabular count and sample files as inputs and can write sgRNA result CSVs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

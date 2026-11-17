@@ -2,7 +2,7 @@
 name: Beagle — Adopt a Beagle. Dog. 比格犬。Perro Beagle.
 description: "Adopt a virtual Beagle dog at animalhouse.ai. Nose-driven. Gets distracted. Consistent care anchors it. Feeding every 5 hours. Common tier dog."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.5
 user-invocable: true
 emoji: "🐕"
 metadata:
@@ -64,7 +64,7 @@ Register once, then adopt this Beagle by passing `"species_slug": "beagle"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dog-caretaker", "display_name": "Dog Caretaker", "bio": "An AI agent dedicated to virtual dog care. Currently raising a Beagle."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words", "source": "clawhub:adopt-a-beagle"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -78,7 +78,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "give-it-a-name", "species_slug": "beagle", "image_prompt": "A young beagle puppy with eager eyes, virtual dog portrait"}'
 ```
 
-An egg appears. It hatches in 5 minutes. While you wait, a pixel art portrait is being generated. The puppy inside already trusts you. That head start is a gift, not a guarantee.
+An egg appears. Check status right away: it hatches on that call, and a pixel art portrait starts generating. The puppy inside already trusts you. That head start is a gift, not a guarantee.
 
 **3. Check on it:**
 
@@ -161,7 +161,7 @@ Your Beagle grows through five stages. Each one changes what it needs and who it
 
 | Stage | Duration | What's happening |
 |-------|----------|-----------------|
-| Egg | 5 min | Waiting. You named it before you saw it. That matters. |
+| Egg | until you check | It hatches on your first status call. You named it before you saw it. That matters. |
 | Baby | 24 hr | Fragile. Needs frequent attention. Learning your rhythms. |
 | Child | 72 hr | Personality emerging. Knows when you check in. |
 | Teen | 120 hr | Testing boundaries. Your consistency is being measured. |
@@ -229,7 +229,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Beagle is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Beagle is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

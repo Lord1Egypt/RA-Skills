@@ -1,44 +1,61 @@
-## Description: <br>
-职业发展助手为职业院校学生、教师和职场新人提供职业介绍、技能证书、职教政策、就业指导和职业规划支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+职业教育与职业发展助手，提供热门职业介绍、技能证书考试指南、职业规划建议、职教高考政策解读和实习就业指导。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Students, teachers, career changers, and early-career professionals use this skill to explore career paths, compare certificates, understand vocational education policies, prepare resumes and interviews, and generate career recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional commercial API mode may send profile, resume, career-interest, or employment data to a configured endpoint. <br>
-Mitigation: Use offline mode by default; enable API mode only with a trusted endpoint and review what data may be sent before entering CAREER_API_KEY. <br>
-Risk: Career, salary, certificate, and vocational-policy guidance may become outdated or vary by region. <br>
-Mitigation: Present recommendations as reference material and direct users to official channels before they make education, certification, employment, or financial decisions. <br>
+## Use Case:
 
+External vocational-school students, teachers, and early-career workers use this skill for Chinese-language career exploration, certificate planning, vocational-policy interpretation, internship guidance, and career-path recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/career-development-assistant) <br>
-- [热门职业数据库](references/careers.md) <br>
-- [技能证书指南参考](references/certificates.md) <br>
-- [职教政策知识库](references/vocational-policy.md) <br>
-- [就业指导参考](references/employment-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON or terminal output from the career recommendation script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default offline mode uses the bundled knowledge base; optional API mode requires a trusted endpoint and CAREER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Salary, policy, certificate, and job-market details can become stale or vary by region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill's answers as reference guidance and verify current details with official policy, examination, and recruiting sources before making decisions.
+
+Risk: Career recommendations may be incomplete or overly general for an individual user's circumstances.
+
+Mitigation: Present recommendations as decision support, ask follow-up questions when context is limited, and avoid framing outputs as definitive career decisions.
+
+Risk: Optional commercial API integration could expose credentials or rely on an untrusted external service.
+
+Mitigation: Use the local knowledge-base mode unless a trusted API endpoint has been separately reviewed, and do not provide real API keys to unverified integrations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/career-development-assistant)
+- [热门职业数据库](references/careers.md)
+- [技能证书指南参考](references/certificates.md)
+- [就业指导参考](references/employment-guide.md)
+- [职教政策知识库](references/vocational-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language Markdown guidance with optional JSON or command-line output from the recommender script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses static local reference material by default; optional commercial API configuration may extend job-market, internship, and assessment data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

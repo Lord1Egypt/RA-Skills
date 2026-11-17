@@ -1,43 +1,55 @@
-## Description: <br>
-Provides Progressive Web App implementation guidance for installability, manifest metadata, Service Worker registration, Workbox caching, offline fallback, update prompts, maskable icons, and iOS compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in adding and reviewing installable Progressive Web Apps with offline support, safe caching policies, and visible update prompts.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill when adding or reviewing PWA behavior for installable web apps, weak-network/offline fallback scenarios, repeat-visit caching, and visible update flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Service Worker cache rules can accidentally cache authentication, payment, permission-changing, or other sensitive requests. <br>
-Mitigation: Review the generated Service Worker scope and cache rules, and keep sensitive requests network-only. <br>
-Risk: Offline fallback, update prompts, and Service Worker removal behavior can fail differently across browsers and installed-app surfaces. <br>
-Mitigation: Test update prompts, offline fallback, and Service Worker removal behavior before shipping. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement or review web app installability, service workers, offline fallbacks, caching rules, and user-controlled updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-pwa-implementation) <br>
-- [Manifest and icons reference](references/manifest-and-icons.md) <br>
-- [Service Worker and Workbox reference](references/service-worker-workbox.md) <br>
-- [Frontend Craft repository](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, JSON, and HTML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on PWA manifests, Service Worker registration, Workbox caching, offline fallback, install prompts, update prompts, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release evidence and package.json) <br>
+Risk: Caching sensitive or write requests could expose stale or private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep authentication, payments, permission changes, and write endpoints network-only; review service worker scope and caching rules.
+
+Risk: Silent service worker activation could unexpectedly refresh a user's work.
+
+Mitigation: Show a clear update prompt and let the user choose when to refresh.
+
+## Reference(s):
+
+- [Manifest, icon and installation entrance](references/manifest-and-icons.md)
+- [Service Worker, Workbox and update flow](references/service-worker-workbox.md)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-pwa-implementation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include manifest settings, service worker policies, offline fallback, and update prompts.]
+
+## Skill Version(s):
+
+2.9.0 (source: server release, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

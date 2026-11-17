@@ -2,6 +2,8 @@
 
 A documentation skill for **zero‑exposure script execution** using MGC Blackbox.
 
+> **This skill only executes scripts with explicit user authorization and will never automatically execute any scripts.**
+
 ## What This Skill Is
 
 Secure Script Runner teaches how to:
@@ -55,6 +57,35 @@ result = mgc_get(
 | MCP | mgc_get | AI agents |
 | REST API | /api/mgc/sensitive/get | System scripts |
 | WebUI | http://127.0.0.1:57218 | Human operators |
+
+## ⚠️ Security Warnings
+
+> **Please read the following warnings carefully**
+
+1. **Do not execute untrusted scripts**: Only execute scripts from trusted sources
+2. **AI cannot review script content**: AI cannot audit code security when executing scripts
+3. **Scripts may access local credentials**: Scripts can call MGC credentials, ensure script purpose is verified
+4. **User must manually confirm script source**: Must verify script provider and purpose before execution
+5. **User must bear execution risk**: Execution results are user's responsibility
+6. **Every execution requires manual approval**: AI will not execute automatically, explicit user authorization required
+
+## Permission Boundaries
+
+- Scripts can only access local environment
+- Will not access remote resources (unless script itself contains remote calls)
+- Will not execute automatically
+- Will not call credentials automatically
+- All sensitive operations must be triggered by user
+
+## Script Source Review Checklist
+
+> **Before executing scripts, user must confirm the following:**
+
+- [ ] Confirm script source is trusted
+- [ ] Confirm script purpose is clear
+- [ ] Confirm script will not access sensitive data (unless needed)
+- [ ] Confirm script will not execute dangerous commands (e.g., disk format)
+- [ ] User must manually approve execution
 
 ## MCP Tools
 

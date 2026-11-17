@@ -1,43 +1,57 @@
-## Description: <br>
-Automates browser-based publishing of self-media articles to Zhihu, Bilibili, Baijiahao, Toutiao, and Xiaohongshu with QR login and local cookie persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-platform article publishing skill for Zhihu, Bilibili, Baijiahao, Toutiao, and Xiaohongshu that uses Playwright browser automation, QR-code login, and persistent cookies.
 
-## Publisher: <br>
-[phoenix1630](https://clawhub.ai/user/phoenix1630) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phoenix1630](https://clawhub.ai/user/phoenix1630)
 
-## Use Case: <br>
-External creators, operators, and publishing teams use this skill to log in to supported content platforms, check login status, and publish prepared articles to one or more logged-in accounts through browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish real content to logged-in public accounts. <br>
-Mitigation: Use testMode first, name exact target platforms, avoid publish_to_all unless intended, and review generated content before live posting. <br>
-Risk: The skill stores login cookies locally. <br>
-Mitigation: Use dedicated accounts where practical, keep local cookie data private, and clear stored data when access is no longer needed. <br>
-Risk: Browser automation depends on Playwright and downloaded Chromium binaries. <br>
-Mitigation: Update and pin Playwright deliberately, and use trusted browser download sources before use. <br>
+## Use Case:
 
+External users and content teams use this skill to log in to supported creator platforms, check account status, and publish prepared article content to one or more platforms from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phoenix1630/article-publisher) <br>
-- [Publisher Profile](https://clawhub.ai/user/phoenix1630) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Text status messages with optional structured data from tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open browser sessions, save local cookies, and publish live posts when not run in test mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release evidence) <br>
+Risk: The skill can publish content publicly across logged-in accounts, including through publish_to_all.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testMode first, manually confirm every target platform and article, and avoid publish_to_all for sensitive or brand accounts.
+
+Risk: Reusable login cookies are stored locally and can act as bearer credentials if exposed.
+
+Mitigation: Keep the working directory private, do not sync or commit cookie files, and use logout to clear saved cookies when finished.
+
+Risk: Dependency and browser setup guidance may use mirror or npx install commands.
+
+Mitigation: Prefer official registries, trusted download sources, and pinned dependency installs where possible.
+
+## Reference(s):
+
+- [ClawHub Article Publisher skill page](https://clawhub.ai/phoenix1630/skills/article-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with structured result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open a browser session, save local cookies, and return platform status, publish results, URLs, errors, or test-mode confirmations.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

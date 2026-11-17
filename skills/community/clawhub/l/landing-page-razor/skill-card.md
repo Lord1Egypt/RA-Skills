@@ -1,41 +1,50 @@
-## Description: <br>
-Build or critique minimal high-converting landing pages using the landing-page razor from the reference video: clear outcome headline, clarifying subheadline, proof-focused hero visual, specific CTA, qualified-lead form, three objection bullets, optional social proof, mobile speed, legal, and ruthless removal of anything that does not increase qualified conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or critique minimal high-converting landing pages using the landing-page razor from the reference video: clear outcome headline, clarifying subheadline, proof-focused hero visual, specific CTA, qualified-lead form, three objection bullets, optional social proof, mobile speed, legal, and ruthless removal of anything that does not increase qualified conversions.
 
-## Publisher: <br>
-[olliewazza](https://clawhub.ai/user/olliewazza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olliewazza](https://clawhub.ai/user/olliewazza)
 
-## Use Case: <br>
-Marketing teams, founders, designers, and developers use this skill to create, rewrite, audit, or simplify landing pages for SaaS offers, courses, lead magnets, opt-in flows, and waitlists. It focuses the page on qualified conversions through clear copy, proof-oriented visuals, specific CTAs, appropriate form fields, objection handling, performance basics, and legal/footer coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated landing pages may include inaccurate marketing claims or unsupported promises. <br>
-Mitigation: Review claims, proof points, and CTA language against the actual offer before publishing. <br>
-Risk: Lead forms and footer language may omit privacy, legal, or compliance details required for a specific business. <br>
-Mitigation: Validate form fields, privacy notices, legal links, and consent language with the business owner or legal reviewer before launch. <br>
+## Use Case:
 
+Developers, marketers, and creators use this skill to create, rewrite, audit, or simplify landing pages, SaaS landing pages, course landing pages, lead magnet pages, opt-in pages, and waitlist pages. It helps focus the page on a clear outcome, proof-oriented hero content, specific CTA copy, qualified-lead capture, objection handling, performance, and legal basics.
 
-## Reference(s): <br>
-- [Source video transcript](references/source-video-transcript.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/olliewazza/landing-page-razor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with optional HTML/CSS or implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include headline, subheadline, hero visual direction, CTA copy, form fields, objection bullets, optional proof block, legal/footer notes, and final implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may steer outputs toward minimal conversion-focused landing pages when broader brand, content strategy, or multi-page website guidance is needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for focused landing-page drafting or critique, and provide explicit direction or another skill for broader website or strategy work.
+
+## Reference(s):
+
+- [Source video transcript](artifact/references/source-video-transcript.txt)
+- [ClawHub skill page](https://clawhub.ai/olliewazza/skills/landing-page-razor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with optional implementation code or steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include landing-page copy, hero visual direction, CTA copy, form fields, objection bullets, proof guidance, legal/footer notes, final HTML/CSS, or implementation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

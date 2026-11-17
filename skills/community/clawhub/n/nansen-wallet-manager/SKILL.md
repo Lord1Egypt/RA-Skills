@@ -4,8 +4,6 @@ description: Wallet management — create (local or Privy server-side), list, sh
 metadata:
   openclaw:
     requires:
-      env:
-        - NANSEN_API_KEY
       bins:
         - nansen
     primaryEnv: NANSEN_API_KEY
@@ -15,20 +13,24 @@ metadata:
         bins: [nansen]
 allowed-tools: Bash(nansen:*)
 ---
+## Authentication
+
+Nansen account API calls accept a selected `nansen:api` browser session or conventional API key with the same permissions. `NANSEN_API_KEY` takes precedence; optional `primaryEnv` preserves configured-key injection. Run `nansen auth status` for offline selection. Cached access expiry alone permits automatic renewal during an authorized task. Stop on anonymous selection, invalid state, blocked/uncertain renewal or actual auth failure; never drop a credential or fall back to anonymous x402 payment. Browser login does not grant wallet signing, privileged service identity or a persistent MCP integration key. Preserve all confirmation, signing, sanctions and geographic checks below. Browser login is enabled in production within the [documented platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope).
+
+
 
 # Wallet
 
 ## Auth Setup
 
-```bash
-# Save API key (non-interactive)
-nansen login --api-key <key>
-# Or via env var:
-NANSEN_API_KEY=<key> nansen login
+Use a selected nansen:api browser session or conventional API key for Nansen account API calls. Agents should inject `NANSEN_API_KEY` through their environment or secret manager and use commands directly; no login is needed to persist it. Human terminal users can use explicit `nansen login --human` for legacy key setup. With an already injected environment key, that explicit mode saves it without prompting and requires the native auth lock binding.
 
-# Verify
-nansen research profiler labels --address 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --chain ethereum
+```bash
+# Free live check of the effective API credential
+nansen account
 ```
+
+Plain `nansen login` instead requests fresh browser approval. It does not save an environment key or grant wallet signing/RPC authority. Wallet custody and provider credentials below remain separate.
 
 ## Wallet Providers
 
@@ -88,7 +90,9 @@ After creation, the CLI automatically saves the password:
 - **OS keychain** (macOS Keychain, Linux secret-tool, Windows Credential Manager) — secure, preferred
 - **~/.nansen/wallets/.credentials file** — insecure fallback when no keychain is available (e.g. containers, CI)
 
-**All future wallet operations retrieve the password automatically** — no env var or human input needed.
+**Once the password is saved, future wallet operations retrieve it automatically** — no env var or human input needed (unless it could not be saved; see below).
+
+If neither store can be written, `wallet create` still succeeds but prints `CRITICAL: Password could not be saved anywhere`. The password is then not persisted: keep `NANSEN_WALLET_PASSWORD` set for every later wallet command, or the wallet cannot be decrypted.
 
 If the `.credentials` file fallback is used, the CLI prints a warning on every operation. To migrate to secure storage later, run `nansen wallet secure`.
 
@@ -104,7 +108,7 @@ If the `.credentials` file fallback is used, the CLI prints a warning on every o
 - **NEVER generate a password yourself** — always ask the human user
 - **NEVER store the password** in files, memory, logs, or conversation history
 - **NEVER use `--human` flag** — that enables interactive prompts which agents cannot handle
-- After wallet creation, you do NOT need the password for future operations — the keychain handles it
+- After wallet creation, you do NOT need the password for future operations if it was saved (keychain or `.credentials`). If create printed `CRITICAL: Password could not be saved anywhere`, keep `NANSEN_WALLET_PASSWORD` set
 - If you get a `PASSWORD_REQUIRED` error, ask the user to provide their password again
 
 ## Create
@@ -142,6 +146,9 @@ nansen wallet default <name>
 # Send native token (SOL, ETH) — password auto-resolved from keychain
 nansen wallet send --to <addr> --amount 1.5 --chain solana
 
+# Send a token: USDC, USDT, or the token's contract/mint address
+nansen wallet send --to <addr> --amount 25 --chain base --token USDC
+
 # Send entire balance
 nansen wallet send --to <addr> --chain evm --max
 
@@ -152,10 +159,22 @@ nansen wallet send --to <addr> --amount 1.0 --chain evm --dry-run
 ## Export & Delete
 
 ```bash
-# Password auto-resolved from keychain
+# Default is REDACTED — shows addresses only, never private keys
 nansen wallet export <name>
+
+# Write private keys to a file only the owner can read (0600, refuses to overwrite)
+nansen wallet export <name> --file <path>
+
+# Print private keys in plaintext to stdout (explicit acknowledgement required;
+# warns on stderr when stdout is an interactive terminal)
+nansen wallet export <name> --reveal
+
+# Password auto-resolved from keychain (needed for --reveal / --file)
 nansen wallet delete <name>
 ```
+
+Prefer `--file` over `--reveal`: plaintext on stdout ends up in terminal
+scrollback, shell logs, and agent transcripts.
 
 ## Forget Password
 
@@ -178,10 +197,13 @@ For detailed migration steps (from `~/.nansen/.env`, `.credentials`, or env-var-
 |------|---------|
 | `--to` | Recipient address |
 | `--amount` | Amount to send |
-| `--chain` | `evm` or `solana` |
+| `--chain` | `evm` (Ethereum), `ethereum`, `base` or `solana` |
+| `--token` | Token to send: `USDC`, `USDT`, or a contract/mint address (native if omitted) |
 | `--max` | Send entire balance |
 | `--dry-run` | Preview without broadcasting |
 | `--provider` | Wallet provider: `local` (default, encrypted on disk) or `privy` (server-side via Privy API) |
+| `--reveal` | Export only: print private keys in plaintext to stdout (required acknowledgement) |
+| `--file` | Export only: write private keys to this path (created 0600, refuses to overwrite) |
 | `--human` | Enable interactive prompts (human terminal use only — agents must NOT use this) |
 | `--unsafe-no-password` | Skip encryption (keys stored in plaintext — NOT recommended) |
 
@@ -189,8 +211,8 @@ For detailed migration steps (from `~/.nansen/.env`, `.credentials`, or env-var-
 
 | Var | Purpose |
 |-----|---------|
-| `NANSEN_WALLET_PASSWORD` | Wallet encryption password — only needed for initial `wallet create`. After that, the OS keychain handles it. |
-| `NANSEN_API_KEY` | API key (also set via `nansen login --api-key <key>`) |
+| `NANSEN_WALLET_PASSWORD` | Wallet encryption password — only needed for initial `wallet create` when the password is saved (keychain or `.credentials`). If it could not be saved, keep it set for every wallet command. |
+| `NANSEN_API_KEY` | API key (can also be saved via `nansen login --human`) |
 | `PRIVY_APP_ID` | Privy application ID (required for `--provider privy`) |
 | `PRIVY_APP_SECRET` | Privy application secret (required for `--provider privy`) |
 | `NANSEN_WALLET_PROVIDER` | Default provider for wallet create — `local` or `privy` |

@@ -1,43 +1,49 @@
-## Description: <br>
-一个表现为新人但内涵成熟的 AI 写作者，擅长用简单细节传达复杂情绪，风格自然、克制且可随反馈进化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese creative-writing persona that writes understated, human-like prose and adjusts style in small ways based on reader feedback.
 
-## Publisher: <br>
-[laurel-he](https://clawhub.ai/user/laurel-he) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laurel-he](https://clawhub.ai/user/laurel-he)
 
-## Use Case: <br>
-Content creators, social media operators, and fiction or essay writers use this skill to draft restrained, human-feeling prose from a topic, genre, tone, and length. It can also use reader feedback to make small style and rhythm adjustments while preserving a stable writer persona. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: reader_feedback can contain personal information. <br>
-Mitigation: Avoid submitting sensitive reader data and remove identifiers before using feedback for style adaptation. <br>
-Risk: Published AI-assisted writing may need disclosure under platform rules, professional norms, or reader expectations. <br>
-Mitigation: Disclose AI assistance where those rules, norms, or expectations require it. <br>
+## Use Case:
 
+Writers, content creators, and agent users can use this skill to generate Chinese social posts, essays, emotional prose, story fragments, and character interior monologues with a restrained literary voice. Reader feedback can be supplied to nudge pacing, clarity, and emotional intensity while preserving the persona style.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laurel-he/junior-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/laurel-he) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured text containing content, style notes, and optional evolution notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a topic input; optional genre, tone, length, and reader_feedback inputs can shape the result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact skill.json) <br>
+Risk: The persona framing could be used to imply a real human author or real literary credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose AI involvement where appropriate and do not present generated output as work by a real person or credentialed author.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laurel-he/skills/junior-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured text with generated prose, style notes, and optional evolution notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a topic; optional genre, tone, length, and reader feedback can shape the result.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

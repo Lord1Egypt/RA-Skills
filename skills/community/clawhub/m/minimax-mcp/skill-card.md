@@ -1,46 +1,59 @@
-## Description: <br>
-MiniMax MCP server for web search and image understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax MCP helps agents run web searches, analyze images, and extract URL content through the MiniMax API.
 
-## Publisher: <br>
-[TangUsers](https://clawhub.ai/user/TangUsers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tangusers](https://clawhub.ai/user/tangusers)
 
-## Use Case: <br>
-Developers and agent users use this skill to call MiniMax-backed MCP tools for web search, URL-oriented information lookup, and image understanding workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends searches, URLs, prompts, or images to MiniMax services. <br>
-Mitigation: Only submit content that is appropriate to share with MiniMax and follow the user's data-handling requirements. <br>
-Risk: Using MiniMax tools may incur API usage costs. <br>
-Mitigation: Use a dedicated MiniMax API key where possible and monitor account usage. <br>
-Risk: The MCP server depends on uvx and external installer paths. <br>
-Mitigation: Prefer the Homebrew uv installation path or verify the uv installer before use. <br>
-Risk: MiniMax API keys must match the selected regional API host. <br>
-Mitigation: Configure MINIMAX_API_KEY and MINIMAX_API_HOST together for the same MiniMax region before testing the server. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TangUsers/minimax-mcp) <br>
-- [MiniMax MCP usage examples](references/examples.md) <br>
-- [MiniMax platform](https://www.minimax.io) <br>
-- [MiniMax platform (China)](https://platform.minimaxi.com) <br>
+## Use Case:
 
+Developers and agent users use this skill to add MiniMax-backed web search, URL content extraction, and image understanding to MCP-capable coding workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require MiniMax API credentials and region-matched API host configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation and runtime guidance can execute mutable third-party MCP package code or installer scripts.
+
+Mitigation: Prefer a pinned, reviewed minimax-coding-plan-mcp package version and avoid curl-piped shell installers.
+
+Risk: MiniMax API keys may be exposed through shell history or shared MCP configuration.
+
+Mitigation: Use a dedicated minimally scoped MiniMax API key and keep credentials out of shell history and shared config files.
+
+Risk: Search, image analysis, and URL extraction can send sensitive content to MiniMax services.
+
+Mitigation: Do not submit confidential images, screenshots, internal URLs, or regulated data unless MiniMax processing is approved for that data.
+
+## Reference(s):
+
+- [MiniMax MCP Usage Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/tangusers/skills/minimax-mcp)
+- [MiniMax Platform (China)](https://platform.minimaxi.com)
+- [MiniMax Platform (Global)](https://www.minimax.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples; MCP tool calls return structured search results or image-analysis text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uvx plus MINIMAX_API_KEY and MINIMAX_API_HOST; MiniMax API usage may incur fees.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

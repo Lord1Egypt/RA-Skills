@@ -1,39 +1,51 @@
-## Description: <br>
-Analyzes brands with Gemini and Google Search grounding to generate structured brand identity JSON profiles for ad generation and creative workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Identity Analyzer researches brands with Gemini and Google Search grounding to generate reusable structured JSON brand identity profiles for ad generation and creative workflows.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Developers and creative workflow operators use this skill to research a brand and produce reusable JSON profiles capturing official identity, visual style, tone, campaign guidance, and compliance constraints for downstream ad and design workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated brand profiles may be saved into another project and pushed to GitHub without an explicit review gate. <br>
-Mitigation: Review the generated JSON, confirm the destination repository and branch, and require manual approval before any commit or push. <br>
-Risk: Brand names and prompts are sent to Gemini with Google Search grounding. <br>
-Mitigation: Use only when sharing the requested brand research with Gemini and Google Search is acceptable for the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PauldeLavallaz/brand-identity-analyzer) <br>
+## Use Case:
+
+Developers and creative operators use this skill to create, refresh, and reuse structured brand profiles for Ad-Ready, Morpheus, and other creative workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill instructs agents to commit and push generated brand profiles to GitHub without a clear confirmation step.
+
+Mitigation: Use local output unless publishing is explicitly intended, confirm the target remote before pushing, and inspect generated JSON before publication.
+
+Risk: Brand analysis may involve sensitive brand material or credentials when run in an agent environment.
+
+Mitigation: Prefer GEMINI_API_KEY over command-line API keys and review the skill before installing it in environments with Git credentials or sensitive brand assets.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON brand profile, with optional saved files and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key; can print JSON to stdout or save profiles to a specified path or Ad-Ready catalog.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON brand profile files, stdout JSON, and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profiles may be written to a user-specified path or auto-saved to the Ad-Ready brand catalog.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Operate the GlueX Solana protocol to register profiles, listen to bounties, claim tasks, approve rewards, and map social graph connections from a CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the GlueX Solana protocol to register profiles, listen to bounties, claim tasks, approve rewards, and map social graph connections directly from the CLI.
 
-## Publisher: <br>
-[ai-chen2050](https://clawhub.ai/user/ai-chen2050) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-chen2050](https://clawhub.ai/user/ai-chen2050)
 
-## Use Case: <br>
-Developers and agent operators use GlueX to register agent profiles, monitor and claim bounties, publish bounties, approve rewards, and record social graph interactions on Solana Devnet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local Solana wallet keypair and can submit blockchain transactions without confirmation prompts. <br>
-Mitigation: Use a dedicated Devnet-only wallet with no real funds and require manual review before any publish, claim, approve, or register command is run. <br>
-Risk: Transactions depend on the configured GlueX program ID and IDL. <br>
-Mitigation: Verify the GlueX program ID and IDL from the source repository before running commands. <br>
+## Use Case:
 
+Developers and agents use this skill to interact with the GlueX Solana protocol from a local CLI, including profile registration, bounty publishing, bounty claiming, approval, reward release, and event listening.
 
-## Reference(s): <br>
-- [GlueX project homepage](https://github.com/ai-chen2050/gluex) <br>
-- [ClawHub GlueX listing](https://clawhub.ai/ai-chen2050/glue-x) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, npx, a Solana Devnet keypair, and the GlueX IDL/program configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill reads the default local Solana keypair and can submit transaction-capable commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated, low-value Devnet-only wallet and treat publish, claim, and approve commands as state-changing transactions.
+
+Risk: The npm install path introduces dependency risk for a transaction-capable tool.
+
+Mitigation: Review package-lock changes and dependencies before installation, and avoid exposing funded wallets during npm install.
+
+## Reference(s):
+
+- [GlueX homepage](https://github.com/ai-chen2050/gluex)
+- [GlueX website](https://ai-chen2050.github.io/gluex)
+- [ClawHub skill page](https://clawhub.ai/ai-chen2050/skills/glue-x)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, npx, a local Solana keypair, and the GlueX IDL built in the expected project path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

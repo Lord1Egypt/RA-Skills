@@ -1,43 +1,58 @@
-## Description: <br>
-基于柳比歇夫方法的时间与精力管理助理，通过飞书多维表格存储数据，支持自然语言记录与日报生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于柳比歇夫方法的时间与精力管理助理，通过飞书多维表格存储数据，支持自然语言记录与日报生成。
 
-## Publisher: <br>
-[ylstf](https://clawhub.ai/user/ylstf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylstf](https://clawhub.ai/user/ylstf)
 
-## Use Case: <br>
-External users and employees use this skill to turn natural-language activity notes into structured time records and to generate daily Feishu-based time reports. It supports personal time and energy tracking using six fixed activity categories, tags, parallel activity tracking, and automated daily summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a connected Feishu account to create, read, and write time-tracking tables. <br>
-Mitigation: Install it only for intended Feishu workspaces, prefer a dedicated or least-privilege workspace, and review table creation before deployment. <br>
-Risk: Base tokens, table IDs, and user identifiers are sensitive configuration values. <br>
-Mitigation: Keep these values private, avoid pasting them into unrelated chats, and use dry-run where available before writing daily reports. <br>
-Risk: Casual activity mentions may be saved as records if the host triggers the skill too broadly. <br>
-Mitigation: Configure invocation context so activity logging happens only when the user intends to record time. <br>
+## Use Case:
 
+External users use this skill to convert natural-language activity notes into structured time records and Feishu-backed daily reports. It supports personal time and energy tracking, parallel activity summaries, tag reuse, and brief energy insights.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ylstf/liubischev-time-tracker) <br>
-- [Publisher Profile](https://clawhub.ai/user/ylstf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured JSON for records or daily-report text, with setup and report scripts invoked through shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Feishu table setup guidance, structured time-record JSON, and daily report content; dry-run is available for report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Personal Feishu activity data may be read or persisted too broadly when multiple people share one base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Feishu account or isolated base with least-privilege access for each deployment.
+
+Risk: Setup and script logs can expose Feishu base tokens, table IDs, or other sensitive identifiers.
+
+Mitigation: Avoid sharing logs, redact base identifiers before support review, and store generated IDs in a private configuration channel.
+
+Risk: The skill depends on lark-cli for authenticated Feishu operations.
+
+Mitigation: Pin and verify lark-cli before authentication, and prefer dry-run or explicit confirmation before scheduled or manual daily report writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylstf/skills/liubischev-time-tracker)
+- [Publisher profile](https://clawhub.ai/user/ylstf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON records, Markdown daily reports, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily reports may be written to Feishu unless dry-run mode is used.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,50 @@
-## Description: <br>
-Provides daily updates and searchable insights on AI tools, models, servers, APIs, SDKs, frameworks, and industry news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily updates and searchable insights on AI tools, models, servers, APIs, SDKs, frameworks, and industry news.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current AI industry briefings, search recent tool and model developments, and ask natural-language questions about AI ecosystem changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to Pipeworx's remote MCP service. <br>
-Mitigation: Avoid entering secrets, customer data, private plans, or sensitive prompts unless the provider is trusted to handle that data. <br>
+## Use Case:
 
+Developers and AI practitioners use this skill to query recent AI tooling, model, MCP server, API, SDK, framework, and industry developments through the Pipeworx AI Briefing MCP service.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text responses from a remote MCP service, plus MCP server configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send AI-news queries to Pipeworx's remote MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill connects agents to a third-party remote MCP service for AI briefing queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the publisher and remote service are approved for the intended environment before installing or enabling the MCP endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-ai-briefing)
+- [Pipeworx AI Briefing MCP endpoint](https://gateway.pipeworx.io/ai-briefing/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Briefing and search responses returned as natural-language text or markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include recent tool, model, timeline, and industry-news summaries depending on the selected MCP query.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

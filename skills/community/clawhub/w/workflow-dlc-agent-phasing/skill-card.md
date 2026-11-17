@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a Chinese-language workflow for planning Agent product roadmaps across P0-P3 phases using the One Click methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-first planning skill that helps agents create P0-P3 roadmaps for Agent products, covering MVP scope, phase gates, architecture baselines, and common planning pitfalls.
 
-## Publisher: <br>
-[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art)
 
-## Use Case: <br>
-Product managers and developers use this skill to create phased Agent product plans with MVP scope, architecture baselines, gate criteria, and completion signals from P0 through P3. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic Agent planning phrases may activate the skill in broad planning conversations. <br>
-Mitigation: Confirm the request is about Agent product roadmap phasing before applying the P0-P3 workflow. <br>
-Risk: The skill produces planning guidance rather than validated product, architecture, operations, or compliance decisions. <br>
-Mitigation: Have the appropriate product, engineering, legal, and operations owners review phase scope, architecture baselines, and gate criteria before execution. <br>
+## Use Case:
 
+Product managers, developers, and planning agents use this skill to break Agent product work into P0, P1, P2, and P3 phases with clear MVP boundaries, gate criteria, and architecture dependencies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mistyhuqwq-art/workflow-dlc-agent-phasing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning guidance with phase tables and an optional JSON log record] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only output; no executable code, credential use, network access, or external tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad Agent planning requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a P0-P3 phased roadmap is desired, and confirm that the requested planning task fits this framing before applying its guidance.
+
+Risk: The artifact references a lessons file that was not included in the inspected release.
+
+Mitigation: Review plans against the included SKILL.md content and treat the missing lessons reference as unavailable unless separately supplied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mistyhuqwq-art/skills/workflow-dlc-agent-phasing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown planning guidance with structured JSON log examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first output focused on P0-P3 phase plans, MVP scope, architecture baselines, and completion criteria.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

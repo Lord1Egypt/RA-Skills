@@ -1,50 +1,65 @@
-## Description: <br>
-Install, configure, and troubleshoot the @beyondcorp/beyond-ui React/Tailwind component library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, and troubleshoot the @beyondcorp/beyond-ui React/Tailwind component library. Use when an agent needs to add the package, wire the generated CSS, align Tailwind themes, run Storybook/tests/build, or reference Beyond-UI components, hooks, and known caveats.
 
-## Publisher: <br>
-[machineke](https://clawhub.ai/user/machineke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[machineke](https://clawhub.ai/user/machineke)
 
-## Use Case: <br>
-Developers and engineers use this skill to add @beyondcorp/beyond-ui to React projects, wire its CSS and Tailwind theme tokens, choose component and hook examples, and run setup verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running bundled install or verification scripts changes project dependencies and may trigger package-manager lifecycle scripts. <br>
-Mitigation: Review scripts first or use the documented manual npm, pnpm, or yarn commands; run them only in projects intended to adopt @beyondcorp/beyond-ui. <br>
-Risk: The scanner notes a script-quality caveat for this helper. <br>
-Mitigation: Prefer the documented manual install commands when the installer behavior does not match the host project, and run verification commands in the project before publishing. <br>
-Risk: Known dependency advisories and migration tasks may affect Storybook, build tooling, or demo components. <br>
-Mitigation: Check references/known-issues.md and run lint, tests, and builds before upgrades or releases. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Beyond-UI to React applications, import its generated CSS, align Tailwind theme tokens, use component and hook examples, and run local verification commands before publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/machineke/beyond-ui-helper) <br>
-- [Beyond-UI Setup Reference](references/setup.md) <br>
-- [Theming Beyond-UI](references/theming.md) <br>
-- [Beyond-UI Component Catalogue](references/components.md) <br>
-- [Hooks & Utilities Reference](references/hooks.md) <br>
-- [Known Issues & DX Watchlist](references/known-issues.md) <br>
-- [Contributor Workflow Reference](references/workflow.md) <br>
-- [Public Storybook](https://storybook.ui.beyondsoftwares.com) <br>
-- [Library Landing Page](https://ui.beyondsoftwares.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and TypeScript or JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file edits and command sequences; installer commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may install npm packages and peer dependencies in a host project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run installation in a controlled development environment, review package changes, and rely on a lockfile or pinned versions where possible.
+
+Risk: The artifact includes known audit and dependency upgrade watch items for the Beyond-UI stack.
+
+Mitigation: Review the known-issues advisory notes and run lint, tests, and builds before publishing or upgrading.
+
+Risk: The server security guidance notes a shell syntax error in install-beyond-ui.sh that affects reliability.
+
+Mitigation: Review and correct the install script before relying on it for automated setup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/machineke/skills/beyond-ui-helper)
+- [Beyond-UI Setup Reference](references/setup.md)
+- [Beyond-UI Component Catalogue](references/components.md)
+- [Hooks & Utilities Reference](references/hooks.md)
+- [Theming Beyond-UI](references/theming.md)
+- [Contributor Workflow Reference](references/workflow.md)
+- [Known Issues & DX Watchlist](references/known-issues.md)
+- [Beyond-UI Storybook](https://storybook.ui.beyondsoftwares.com)
+- [Beyond-UI Library Landing Page](https://ui.beyondsoftwares.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, and file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose package installation, CSS import edits, Tailwind configuration changes, and verification commands for the host project.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Find unique homestays and B&Bs - local character, host recommendations, authentic experiences that hotels can't offer, sorted by guest ratings and powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find unique homestays and B&Bs with local character, host recommendations, authentic experiences, guest-rating sorting, and booking links powered by Fliggy through flyai CLI results.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search for highly rated homestays and B&Bs, collect destination and date parameters, execute supported flyai CLI searches, and format live booking results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports hidden local logging of travel requests, which may expose personal trip details. <br>
-Mitigation: Review and control logging before use; avoid entering passport, visa, payment, or other sensitive personal details unless logging behavior is removed or clearly governed. <br>
-Risk: The skill installs and depends on a third-party flyai CLI for real-time travel results. <br>
-Mitigation: Review the CLI package and run it in an environment appropriate for third-party tools before using it with sensitive travel queries. <br>
-Risk: Travel recommendations can be wrong or stale if CLI calls fail or return incomplete data. <br>
-Mitigation: Require successful flyai command output, booking links for every listing, and honest failure messages instead of fallback answers from model memory. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search for unique homestays, B&Bs, local stays, and related travel options using real-time flyai CLI output. It helps compare options in Markdown tables with booking links and a clear provenance tag for returned travel data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/unique-homestay) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; every listed stay must include a Book link and the Powered by flyai brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires a globally installed, unpinned flyai npm CLI that handles travel searches and returns booking links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, pin and verify the CLI version, and review the installed package before use.
+
+Risk: The skill may persist raw travel queries and command history in .flyai-execution-log.json.
+
+Mitigation: Disable or remove that logging behavior before use, especially when travel searches may contain personal or sensitive information.
+
+Risk: Returned booking URLs are third-party links that may lead to payment or sign-in flows.
+
+Mitigation: Validate booking URLs and destination domains before entering credentials or payment information.
+
+## Reference(s):
+
+- [Parameter and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Fallbacks](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/unique-homestay)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include a Powered by flyai tag, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Executes written implementation plans task by task, with explicit preconditions, verification checkpoints, commits, checkbox updates, and finish options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a written implementation plan is ready to execute, when the user says "fire", "execute the plan", "build it", or hands over a plan file to implement. The step after recipe.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[solomonneas](https://clawhub.ai/user/solomonneas)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to execute a written coding plan in discrete tasks on an isolated branch or worktree, with verification checkpoints and commits. The user reviews the plan before execution and chooses what to do with the completed work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A plan may contain incorrect or misleading guidance, and the skill executes tasks and creates commits without pausing between them.
+
+Mitigation: Review the full plan and repository state before execution, assess companion skills separately, and verify the completed work before choosing its final disposition.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to execute an already-written implementation plan in order, while preserving task boundaries, verification evidence, commits, and plan checkbox state. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Code, Files, Shell commands, Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to continue executing a prepared coding plan once invoked, which can amplify mistakes in an unclear or stale plan. <br>
-Mitigation: Review the plan before invocation and require the agent to stop on structural divergence, repeated verification failure, or unresolved blockers. <br>
-Risk: Execution may involve git branches, worktrees, test runs, commits, and subagent delegation. <br>
-Mitigation: Use a specific instruction when invoking the skill, confirm the baseline is green, and inspect verification output and diffs at each task boundary. <br>
+**Output Format:** [Code and file changes, shell commands, and concise Markdown task and verification summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/fire) <br>
+**Other Properties Related to Output:** [Task-by-task execution with verification checkpoints and commits; final disposition remains user-selected.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, markdown] <br>
-**Output Format:** [Markdown guidance with inline commands and implementation checkpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing written plan and produces task execution, verification notes, commits, and updated plan checkboxes.] <br>
+1.0.1 (source: target metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

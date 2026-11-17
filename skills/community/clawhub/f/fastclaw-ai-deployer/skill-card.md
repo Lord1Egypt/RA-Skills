@@ -1,46 +1,67 @@
-## Description: <br>
-FastClaw是一款轻量级AI Agent运行时工具，支持通过OpenClaw Skills生态安装，提供内置Web界面、SOUL.md兼容、多模型支持等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastClaw is a lightweight AI Agent runtime deployment skill for installing and configuring a web-managed, SOUL.md-compatible multi-model agent environment through the OpenClaw Skills ecosystem.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Developers and teams use this skill to install and configure a lightweight FastClaw AI agent runtime with a local web interface, SOUL.md-compatible agent templates, and multi-provider model setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote installer commands can execute downloaded shell or PowerShell content. <br>
-Mitigation: Review the installer source and verify trust in the FastClaw GitHub source before running one-line install commands. <br>
-Risk: FastClaw configuration may store API keys and provider settings under ~/.fastclaw. <br>
-Mitigation: Treat ~/.fastclaw as sensitive, restrict local access, and avoid committing or sharing files from that directory. <br>
-Risk: Saved agent memory may retain personal, project, or confidential information. <br>
-Mitigation: Review MEMORY.md periodically, remove entries that should not be retained, and avoid sending confidential data to hosted LLM providers unless their policies meet your needs. <br>
+## Use Case:
 
+Developers and teams use this skill to deploy a lightweight FastClaw AI assistant runtime with a local web UI, SOUL.md-compatible agent configuration, and connections to OpenRouter, OpenAI, Anthropic, Ollama, or custom OpenAI-compatible APIs.
 
-## Reference(s): <br>
-- [ClawHub FastClaw AI部署工具 Release Page](https://clawhub.ai/yesong-hue/fastclaw-ai-deployer) <br>
-- [FastClaw GitHub Project](https://github.com/fastclaw-ai/fastclaw) <br>
-- [OpenClaw GitHub Project](https://github.com/openclaw/openclaw) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [Ollama](https://ollama.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands, configuration paths, and JSON templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide users through installing FastClaw, configuring API keys, editing SOUL.md, and managing local agent files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: Installer guidance includes pipe-to-shell commands from mutable remote branches and may be run with elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual, version-pinned downloads; inspect installer contents before execution; avoid running curl | bash or irm | iex in an Administrator or root shell.
+
+Risk: Downloaded binaries are described without published checksums or signatures in the supplied evidence.
+
+Mitigation: Use releases with published checksums or signatures when available, and verify artifacts before adding them to PATH.
+
+Risk: FastClaw API keys and local agent data are stored under the user's .fastclaw directory.
+
+Mitigation: Restrict local file access, avoid sharing the directory, and rotate API keys if the directory is exposed.
+
+Risk: The documented cleanup command permanently removes local FastClaw data.
+
+Mitigation: Back up required agent configuration and conversation data before deleting ~/.fastclaw.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/yesong-hue/skills/fastclaw-ai-deployer)
+- [ClawHub Package Homepage](https://clawhub.ai/yesong-Hue/fastclaw-ai-deployer)
+- [Publisher Profile](https://clawhub.ai/user/yesong-hue)
+- [FastClaw Project Reference](https://github.com/fastclaw-ai/fastclaw)
+- [OpenClaw Project Reference](https://github.com/openclaw/openclaw)
+- [OpenRouter](https://openrouter.ai)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell, PowerShell, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific install steps, FastClaw agent configuration templates, and local data path guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

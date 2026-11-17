@@ -1,40 +1,57 @@
-## Description: <br>
-Control a robotic arm through the OpenClaw SOARM API for reading joint state, moving by joint angles, moving by XYZ coordinates, and handling SOARM robot-control requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the robotic arm through the OpenClaw SOARM API for reading current joint state, moving by joint angles, moving by XYZ coordinates, and handling SOARM robot-control requests.
 
-## Publisher: <br>
-[yuyoujiang](https://clawhub.ai/user/yuyoujiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyoujiang](https://clawhub.ai/user/yuyoujiang)
 
-## Use Case: <br>
-Developers and robot operators use this skill to read SOARM joint and end-effector state, issue joint-angle or XYZ movement commands, start the local SOARM API, and trigger a pick task for a connected robotic arm. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent direct physical movement and pick authority over a connected SOARM robotic arm. <br>
-Mitigation: Keep the API bound to localhost or a protected network, clear the workspace, supervise all runs, and require explicit human confirmation before any move or pick command. <br>
-Risk: Robot motion may be unsafe if calibration, workspace setup, or motion targets are wrong. <br>
-Mitigation: Verify calibration before motion, inspect and pin the external URDF/model files, and test movement commands cautiously before normal operation. <br>
+## Use Case:
 
+Developers and operators use this skill to read SOARM robot state, send supervised joint or XYZ movement commands, and trigger local pick tasks through the OpenClaw SOARM API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyoujiang/soarm-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, JSON API payload examples, and Python or shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce curl commands and local script invocations that control a connected SOARM robotic arm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill controls a physical robot and can issue safety-critical movement and pick actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a supervised SOARM setup, a clear workspace, a physical emergency stop, and explicit operator approval before movement or pick commands.
+
+Risk: The local service exposes motion, detection, and pick endpoints without visible authentication or safety gating.
+
+Mitigation: Keep the service bound to loopback or place it behind access controls; do not expose it to untrusted networks.
+
+Risk: Camera-based detection and autonomous picking can choose or track the wrong object.
+
+Mitigation: Treat detection-driven pick tasks as supervised actions and verify the target and workspace before starting `/pick`.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyoujiang/skills/soarm-control)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that call local robot-control endpoints and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

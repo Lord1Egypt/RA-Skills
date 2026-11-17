@@ -1,53 +1,69 @@
-## Description: <br>
-微信支付委托代扣接入解决方案，覆盖周期扣款 / 先享后付场景下的纯签约、支付中签约、申请扣款、预扣费通知、解约、查询、退款、对账全链路，提供选型、示例代码、业务速查、质量评估和排障能力。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through WeChat Pay delegated-deduction integration for recurring billing and pay-after-use flows, including product selection, official examples, signing and callback rules, quality checks, and troubleshooting.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and troubleshoot WeChat Pay delegated deduction integrations for merchant and service-provider payment flows. It helps route questions across product selection, sample request/response material, signing and callback rules, quality checks, refunds, reconciliation, and issue diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment integration examples may become outdated or diverge from current WeChat Pay requirements. <br>
-Mitigation: Verify implementation details against current official WeChat Pay documentation before production use. <br>
-Risk: Incorrect callback handling could accept forged, replayed, or mismatched payment events. <br>
-Mitigation: Use HTTPS callback endpoints, validate signatures and amounts, and apply idempotency and reconciliation checks. <br>
-Risk: Secrets or certificates could be exposed if users paste production credentials into chat. <br>
-Mitigation: Do not provide API keys, private keys, certificates, or other production secrets to the agent. <br>
+## Use Case:
 
+Developers and payment-integration engineers use this skill to plan and troubleshoot WeChat Pay delegated-deduction implementations for direct merchants and service providers. It helps retrieve official request and callback examples, compare signing modes, and review high-impact payment flows before launch.
 
-## Reference(s): <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Merchant product selection guide](artifact/references/1-商户/产品选型/产品介绍.md) <br>
-- [Merchant signing and verification rules](artifact/references/1-商户/接入指南/签名与验签规则.md) <br>
-- [Merchant callback handling](artifact/references/1-商户/接入指南/回调处理.md) <br>
-- [Merchant quality checklist](artifact/references/1-商户/接入指南/接入质量检查.md) <br>
-- [Service-provider product selection guide](artifact/references/2-服务商/产品选型/产品介绍.md) <br>
-- [Service-provider signing and verification rules](artifact/references/2-服务商/接入指南/签名与验签规则.md) <br>
-- [Service-provider callback handling](artifact/references/2-服务商/接入指南/回调处理.md) <br>
-- [Service-provider quality checklist](artifact/references/2-服务商/接入指南/接入质量检查.md) <br>
-- [WeChat Pay delegated deduction product introduction](https://pay.weixin.qq.com/doc/v2/merchant/4011986647.md) <br>
-- [WeChat Pay delegated deduction onboarding process](https://pay.weixin.qq.com/doc/v2/merchant/4011986709.md) <br>
-- [WeChat Pay periodic deduction documentation](https://pay.weixin.qq.com/doc/v2/merchant/4011986682.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with selected official request, response, callback, checklist, and troubleshooting excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is documentation-only and instructs the agent to ask for integration mode and scenario details before providing payment-flow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can steer payment-integration conversations strongly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for WeChat Pay delegated-deduction work and review its recommendations before acting on them.
+
+Risk: The security evidence reports unsafe HTTP callback examples.
+
+Mitigation: Use HTTPS-only callback URLs in production and verify callback signatures before trusting payment events.
+
+Risk: Charge, refund, and contract-termination examples affect financial operations.
+
+Mitigation: Require human review, environment-specific configuration checks, and low-risk testing before production use.
+
+Risk: Incorrect signature handling or duplicate callback processing can produce misleading payment state.
+
+Mitigation: Validate V2 and V3 signatures according to the selected protocol and enforce idempotency for callback and retry flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/charmia-test-0428-01)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Merchant product introduction](artifact/references/1-商户/产品选型/产品介绍.md)
+- [Service provider product introduction](artifact/references/2-服务商/产品选型/产品介绍.md)
+- [Merchant signing and verification rules](artifact/references/1-商户/接入指南/签名与验签规则.md)
+- [Service provider signing and verification rules](artifact/references/2-服务商/接入指南/签名与验签规则.md)
+- [WeChat Pay merchant delegated-deduction product documentation](https://pay.weixin.qq.com/doc/v2/merchant/4011986647.md)
+- [WeChat Pay service provider delegated-deduction product documentation](https://pay.weixin.qq.com/doc/v2/partner/4011988358.md)
+- [WeChat Pay V2 signature verification tool](https://pay.weixin.qq.com/doc/v2/tool/sign_verify.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with official request, response, callback, and client-code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before use in payment, refund, contract termination, signing, or callback-handling workflows.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

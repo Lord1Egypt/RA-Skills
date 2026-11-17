@@ -1,42 +1,59 @@
-## Description: <br>
-Ultimate Agent System combines proactive checks, self-improvement analysis, and agent creation suggestions for OpenClaw-style agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultimate Agent System combines proactive work, self-improvement, and agent creation workflows for an AI assistant.
 
-## Publisher: <br>
-[fr33b1rd8979-max](https://clawhub.ai/user/fr33b1rd8979-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fr33b1rd8979-max](https://clawhub.ai/user/fr33b1rd8979-max)
 
-## Use Case: <br>
-Developers and agent users use this skill to run heartbeat checks, preserve working state, surface self-improvement opportunities, and suggest specialized agents for recurring work patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad proactive agent, skill-management, agent-creation, persistent-memory, publishing, repair, rollback, and local script execution guidance without clear built-in limits. <br>
-Mitigation: Require explicit user confirmation before installing or optimizing skills, creating agents, publishing, repairing, rolling back, or running local scripts. <br>
-Risk: Persistent memory files may retain project state or other sensitive context. <br>
-Mitigation: Review the configured workspace and memory files before sharing artifacts, publishing releases, or relying on saved state. <br>
-Risk: Recommended actions or generated guidance may be incorrect or misleading for the user's environment. <br>
-Mitigation: Review recommendations and scan any generated or modified files before deployment or execution. <br>
+## Use Case:
 
+Developers and agent users use this skill to help an assistant identify issues, propose improvements, manage skill-related work, and create specialized agents when project context indicates a need.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fr33b1rd8979-max/ultimate-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime scripts produce text reports and JSON state files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent state under the configured workspace and may propose local actions that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Broad autonomous behavior could affect memory, skill-management, publishing, filesystem, or system-maintenance workflows without clear safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use inspect-first operation and require explicit per-action confirmation before granting filesystem, skill-management, publishing, or system-maintenance authority.
+
+Risk: Heartbeat and execute_action flows can generate and run recommended actions based on local state.
+
+Mitigation: Review each recommended action and its target before execution, especially actions that modify files, create agents, publish releases, or alter system configuration.
+
+Risk: The benchmark script is not suitable for uncontrolled execution on a real system.
+
+Mitigation: Run scripts/benchmark.py only in a disposable or sandboxed workspace, or skip it during normal installation review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fr33b1rd8979-max/skills/ultimate-agent)
+- [README](README.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and code-oriented guidance with optional JSON reports from supporting scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce recommended actions that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

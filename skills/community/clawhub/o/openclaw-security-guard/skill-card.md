@@ -1,47 +1,63 @@
-## Description: <br>
-Security audit CLI + live dashboard for OpenClaw. Scans for secrets, config issues, prompt injections, vulnerable dependencies, and unverified MCP servers. Zero telemetry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security audit CLI + live dashboard for OpenClaw. Scans for secrets, config issues, prompt injections, vulnerable dependencies, and unverified MCP servers. Zero telemetry.
 
-## Publisher: <br>
-[miloudbelarebia](https://clawhub.ai/user/miloudbelarebia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[miloudbelarebia](https://clawhub.ai/user/miloudbelarebia)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw installations for exposed secrets, unsafe configuration, prompt-injection patterns, vulnerable dependencies, and unverified MCP servers. It can also provide hardening guidance, report generation, dashboard monitoring, and optional local fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can read OpenClaw or workspace files and may modify OpenClaw configuration or Git hooks when fix commands are used. <br>
-Mitigation: Run audit and dry-run modes first, keep backups enabled, and manually review diffs before accepting changes. <br>
-Risk: The dashboard uses third-party CDN scripts even though the release claims zero network activity. <br>
-Mitigation: Use the dashboard only where loading those external scripts is acceptable, or rely on CLI audit/report workflows in restricted environments. <br>
-Risk: The bundled dependency scanner should not be treated as a complete CVE audit. <br>
-Mitigation: Run npm audit or an approved software composition analysis tool before relying on dependency risk results. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw installations, review security posture, apply configuration hardening, monitor activity through a local dashboard, and generate reports.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/miloudbelarebia/openclaw-security-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/miloudbelarebia) <br>
-- [Project homepage](https://github.com/2pidata/openclaw-security-guard) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-security-guard) <br>
-- [CLI reference](docs/api/cli.md) <br>
-- [Programmatic API reference](docs/api/programmatic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal output with optional JSON, HTML, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local OpenClaw and workspace files; fix modes can modify local configuration or Git hooks when explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: Automatic fixes can change OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run audit and dry-run modes first, review the proposed changes, and confirm backups before using fix --auto on important configurations.
+
+Risk: The dashboard loads scripts from external CDNs.
+
+Mitigation: Avoid using the dashboard in sensitive environments unless those scripts are removed, vendored, or pinned and reviewed.
+
+Risk: Installing hooks can replace an existing Git pre-commit hook.
+
+Mitigation: Use hooks install only in repositories where replacing or managing the existing pre-commit hook is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miloudbelarebia/skills/openclaw-security-guard)
+- [Publisher Profile](https://clawhub.ai/user/miloudbelarebia)
+- [Project Homepage](https://github.com/2pidata/openclaw-security-guard)
+- [Getting Started Guide](docs/guides/getting-started.md)
+- [CLI Reference](docs/api/cli.md)
+- [Programmatic API Reference](docs/api/programmatic.md)
+- [npm Package](https://www.npmjs.com/package/openclaw-security-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [CLI output, Markdown or JSON reports, shell commands, and configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local OpenClaw audits and may write reports, update OpenClaw configuration, or install a Git pre-commit hook when those commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

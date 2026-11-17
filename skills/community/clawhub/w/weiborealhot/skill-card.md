@@ -1,42 +1,59 @@
-## Description: <br>
-Fetches current Weibo hot-search topics across realtime, lifestyle, entertainment, and social-event categories and returns structured trend data. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Retrieves current Weibo hot-search topics across real-time, lifestyle, entertainment, and social categories using browser automation.
 
-## Publisher: <br>
-[miaoxingjun](https://clawhub.ai/user/miaoxingjun) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miaoxingjun](https://clawhub.ai/user/miaoxingjun)
 
-## Use Case: <br>
-Developers and analysts can use this skill to retrieve public Weibo trend lists for monitoring current topics, entertainment trends, social events, and lifestyle discussion themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Custom URLs cause the local browser to visit a user-specified page. <br>
-Mitigation: Prefer the built-in Weibo category options and use custom URLs only when that destination is intentional. <br>
-Risk: High-frequency scraping may violate site terms, trigger blocking, or conflict with local policy. <br>
-Mitigation: Keep scraping frequency reasonable and confirm use complies with Weibo's terms and applicable policy. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve Weibo hot-search entries for non-production trend monitoring, public-opinion review, and lightweight topic discovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miaoxingjun/weiborealhot) <br>
-- [Weibo Hot Search](https://s.weibo.com/top/summary) <br>
-- [Selenium Documentation](https://www.selenium.dev/documentation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON data, shell commands, guidance] <br>
-**Output Format:** [JSON object or human-readable text listing Weibo hot-search titles and heat values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns status code, message, and a list of title and hot-value pairs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can navigate a browser to an arbitrary URL through its custom URL option.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only fixed Weibo category URLs and restrict navigation to approved Weibo hosts before deployment.
+
+Risk: The browser configuration disables sandboxing in some environments.
+
+Mitigation: Run the skill in an isolated environment and avoid disabling browser sandboxing during normal use.
+
+Risk: The artifact includes anti-detection and proxy guidance that can increase misuse and compliance risk.
+
+Mitigation: Remove anti-detection and proxy guidance, and review acceptable-use requirements before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miaoxingjun/skills/weiborealhot)
+- [Weibo hot-search page](https://s.weibo.com/top/summary)
+- [Selenium documentation](https://www.selenium.dev/documentation/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [JSON data or human-readable text, with optional Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a status code, message, and a list of hot-search entries with title and heat value when successful.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

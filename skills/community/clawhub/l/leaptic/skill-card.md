@@ -1,42 +1,58 @@
-## Description: <br>
-Leaptic captures every movement and highlight in front of the lens, making every moment you capture shine instantly. OpenClaw skill for Leaptic device snapshot and status access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leaptic captures every movement and highlight in front of the lens, making every moment shine instantly, and this OpenClaw skill supports Leaptic device snapshot and status access.
 
-## Publisher: <br>
-[leaptic-tech](https://clawhub.ai/user/leaptic-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leaptic-tech](https://clawhub.ai/user/leaptic-tech)
 
-## Use Case: <br>
-Developers and agents use this skill to configure authenticated Leaptic device snapshot reads and report bound-device battery, charging state, storage, media counts, and capture timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive Leaptic App-Key to read device status. <br>
-Mitigation: Prefer an environment variable or secret store; if credentials are stored in ~/.config/leaptic/credentials.json, restrict file permissions. <br>
-Risk: Sending the App-Key to an untrusted endpoint could expose account or device access. <br>
-Mitigation: Use only official Leaptic regional Photon endpoints or a user-configured endpoint that is explicitly trusted before making requests. <br>
+## Use Case:
 
+Developers and agents use this skill to configure authenticated Leaptic device snapshot access and retrieve read-only device status such as battery, charging state, storage, media counts, and latest capture time.
 
-## Reference(s): <br>
-- [Leaptic homepage](https://www.leaptic.tech/) <br>
-- [ClawHub skill page](https://clawhub.ai/leaptic-tech/leaptic) <br>
-- [Leaptic publisher profile](https://clawhub.ai/user/leaptic-tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes credential setup, regional endpoint selection, App-Key request headers, and response-field interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The Leaptic App-Key can expose read-only device snapshot metadata if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use platform secret injection, an OS secret store, or a session-only environment variable; if a plaintext credentials file is used, restrict its permissions.
+
+Risk: Sending the App-Key to an untrusted endpoint could disclose credentials.
+
+Mitigation: Use only the official regional HTTPS endpoint or a custom endpoint the user explicitly trusts, and ask for the region when the base URL is missing.
+
+Risk: Device snapshots can include serial numbers, battery state, storage details, media counts, and timestamps.
+
+Mitigation: Treat snapshot responses as device metadata, avoid unnecessary logging or sharing, and surface only the fields needed for the user's task.
+
+## Reference(s):
+
+- [Leaptic Homepage](https://www.leaptic.tech/)
+- [ClawHub Leaptic Skill Page](https://clawhub.ai/leaptic-tech/skills/leaptic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTTP, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to request missing App-Key or region information before API use and to interpret Leaptic device snapshot JSON responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

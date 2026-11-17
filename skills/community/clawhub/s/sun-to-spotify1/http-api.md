@@ -54,8 +54,8 @@ Response — `201 Created`:
 {
   "id": "...",
   "name": "laptop",
-  "prefix": "sk_live_aaaaaaaaaaaaaaaaaaaaaa",
-  "token": "sk_live_aaaaaaaaaaaaaaaaaaaaaa_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "prefix": "REDACTED-SECRET",
+  "token": "REDACTED-SECRET_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
   "created_at": "..."
 }
 ```
@@ -78,7 +78,7 @@ Response — `200 OK`:
     {
       "id": "...",
       "name": "laptop",
-      "prefix": "sk_live_aaaaaaaaaaaaaaaaaaaaaa",
+      "prefix": "REDACTED-SECRET",
       "created_at": "...",
       "last_used_at": "...",
       "revoked_at": null

@@ -1,43 +1,55 @@
-## Description: <br>
-Real-time web dashboard for OpenClaw sessions and background tasks. Mobile-responsive with auto-refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time web dashboard for OpenClaw sessions and background tasks. Mobile-responsive with auto-refresh.
 
-## Publisher: <br>
-[jorgermp](https://clawhub.ai/user/jorgermp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jorgermp](https://clawhub.ai/user/jorgermp)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw sessions, sub-agents, Discord activity, and cron jobs through a local web dashboard and status API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: An unauthenticated local or LAN-accessible dashboard can expose OpenClaw session metadata and prompt-derived task descriptions. <br>
-Mitigation: Run the dashboard on localhost only, behind authentication, or on a trusted isolated network. <br>
-Risk: Session prompts may contain secrets, customer data, internal instructions, or other sensitive content. <br>
-Mitigation: Avoid using this skill with sensitive sessions, or redact sensitive task descriptions before exposing the dashboard. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw sessions, Discord activity, sub-agents, and cron jobs from a local web dashboard or JSON status endpoint.
 
-## Reference(s): <br>
-- [Task Monitor ClawHub Page](https://clawhub.ai/jorgermp/task-monitor) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Web dashboard HTML, JSON API responses, Markdown dashboard files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dashboard refreshes periodically and may return cached status data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter, package.json, and changelog report 0.1.0) <br>
+Risk: The dashboard can expose OpenClaw activity metadata and prompt-derived task descriptions over an unauthenticated LAN web server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the server to localhost, add authentication or firewall restrictions, and avoid using the LAN URL on shared or untrusted networks.
+
+Risk: Transcript-derived task descriptions may reveal sensitive user prompts or operational context.
+
+Mitigation: Disable transcript-derived descriptions or review/redact displayed task descriptions before exposing the dashboard.
+
+## Reference(s):
+
+- [Task Monitor on ClawHub](https://clawhub.ai/jorgermp/skills/task-monitor)
+- [Publisher profile](https://clawhub.ai/user/jorgermp)
+- [OpenClaw Documentation](https://openclaw.org/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus JSON from the status API and generated dashboard files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts an Express web dashboard on port 3030, polls every 60 seconds, caches session data for 30 seconds, and can generate DASHBOARD.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

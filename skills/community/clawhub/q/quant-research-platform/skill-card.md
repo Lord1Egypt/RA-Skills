@@ -1,46 +1,58 @@
-## Description: <br>
-Advanced quantitative research platform for multi-factor analysis, factor mining, backtesting, portfolio optimization, IC/IR analysis, factor correlation, and intelligent factor combination. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Advanced quantitative research platform for multi-factor analysis, factor mining, backtesting, and portfolio optimization. Includes 100+ alpha factors, IC/IR analysis, factor correlation, and intelligent factor combination.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Quant developers and researchers use this skill to build and evaluate factor research workflows, backtests, portfolio optimizers, and risk analysis helpers for market data experiments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a Python data-science stack and optional market data packages that may change behavior across versions. <br>
-Mitigation: Install dependencies in a dedicated virtual environment and pin versions before using the generated research workflow for serious analysis. <br>
-Risk: Backtests, factor metrics, portfolio weights, and risk statistics can be misleading if trading logic, assumptions, or input data are wrong. <br>
-Mitigation: Validate strategies, costs, constraints, and metrics independently before relying on any output for trading or investment decisions. <br>
-Risk: Market, sentiment, or alternative data may carry licensing, consent, or compliance restrictions. <br>
-Mitigation: Use only data sources that the user is authorized to access and document the compliance basis for any market or alternative data inputs. <br>
+## Use Case:
 
+Professional quant developers and researchers use this skill to build multi-factor research workflows, evaluate factors, backtest strategies, optimize portfolios, and review risk metrics.
 
-## Reference(s): <br>
-- [ClawHub Quant Research Platform Skill Page](https://clawhub.ai/jason-aka-chen/quant-research-platform) <br>
-- [QuantConnect](https://www.quantconnect.com) <br>
-- [Zipline](https://zipline.io) <br>
-- [Alphalens](https://quantopian.github.io/alphalens) <br>
-- [TA-Lib](https://ta-lib.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, and quantitative analysis outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce factor metrics, backtest performance summaries, portfolio weights, trade logs, and risk statistics; trading logic and data assumptions require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may overstate finance capabilities or return mocked random fundamental factor data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before relying on them, require clear labeling for mocked data, and replace mocked factors with validated financial data sources before production use.
+
+Risk: Market and alternative-data integrations may have undocumented data-source, privacy, licensing, or dependency controls.
+
+Mitigation: Document each data source, pin dependencies, and confirm data licensing and privacy requirements before installing or using the skill in a trading workflow.
+
+## Reference(s):
+
+- [Quant Research Platform on ClawHub](https://clawhub.ai/jason-aka-chen/skills/quant-research-platform)
+- [Publisher profile](https://clawhub.ai/user/jason-aka-chen)
+- [QuantConnect](https://www.quantconnect.com)
+- [Zipline](https://zipline.io)
+- [Alphalens](https://quantopian.github.io/alphalens)
+- [TA-Lib](https://ta-lib.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quantitative analysis workflows, dependency installation commands, and portfolio or backtesting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Alibaba Bailian qwen-image-2.0-pro general image generation for complex text rendering, multi-line layouts, photorealistic detail, semantic adherence, and mixed text/image designs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with Alibaba Bailian’s Qwen Image 2.0 Pro model, including designs with detailed scenes and mixed text and imagery.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and external users use this skill to generate images through the dLazy CLI with Alibaba Bailian qwen-image-2.0-pro, including designs that need detailed prompt following and mixed text rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key, which may be saved in local CLI configuration. <br>
-Mitigation: Use per-invocation DLAZY_API_KEY when a saved credential is not desired, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: Prompts and selected local files are sent to dLazy services for inference and media handling. <br>
-Mitigation: Avoid submitting sensitive prompts or files unless the user intends them to be processed by dLazy. <br>
-Risk: The skill depends on the external @dlazy/cli package and dLazy hosted service. <br>
-Mitigation: Install only when the user trusts the external package and service; use the pinned package version declared by the skill. <br>
+## Use Case:
 
+External users and developers can generate images from text prompts, with optional reference images, for layouts that combine text and imagery. The skill sends requests to dLazy’s hosted service and returns generated image URLs or saved image files.
 
-## Reference(s): <br>
-- [dLazy CLI repository](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON responses containing generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outputs are hosted image URLs; asynchronous calls may return a generateId for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security summary notes that the reported command performs login while the documented purpose is image generation; the scan was partial and did not establish the command’s destination or relationship to the service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI help and verify the command and service destination before use; avoid sending prompts or files until those data flows are understood.
+
+Risk: Prompts and supplied reference images are sent to dLazy-hosted services, and generated assets are hosted there.
+
+Mitigation: Avoid sending sensitive prompts or images, and review the service’s terms and data handling before use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/dlazyai/skills/dlazy-qwen-image-2-pro)
+- [dLazy service](https://dlazy.com)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI repository link listed in skill metadata](https://github.com/dlazy-ai/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Image files, JSON]
+
+**Output Format:** [JSON response containing generated image URLs; optionally saved image files (PNG shown in the documented example)]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image size can be selected from supported presets; asynchronous mode can return a task identifier.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

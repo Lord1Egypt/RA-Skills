@@ -1,45 +1,60 @@
-## Description: <br>
-Evolution Toolkit provides portable agent self-improvement tooling to capture session handoffs, analyze reasoning style, scan guidance for contradictions, log predictions, optimize playbooks, run Socratic questioning, and analyze cross-session coherence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evolution Toolkit provides portable agent self-improvement tooling for session handoffs, reasoning-style measurement, guidance contradiction scanning, prediction logging, playbook optimization, Socratic questioning, and cross-session coherence analysis.
 
-## Publisher: <br>
-[ergopitrez](https://clawhub.ai/user/ergopitrez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ergopitrez](https://clawhub.ai/user/ergopitrez)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve session continuity, analyze reasoning and guidance drift, run prediction and calibration workflows, and improve agent playbooks across workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolkit can retain private workspace-derived profiles, session imprints, prediction logs, and coherence reports. <br>
-Mitigation: Use a dedicated workspace, avoid storing secrets or sensitive customer/internal content in memory logs, and review files written under memory/. <br>
-Risk: Configured playbook optimization can send playbook or test-case data to Gemini or Google services. <br>
-Mitigation: Use a limited API key and run the optimizer only after confirming the configured inputs are safe to send externally. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add portable self-improvement workflows to agent workspaces, including session continuity, reasoning audits, guidance consistency checks, prediction calibration, playbook optimization, and structured thinking-partner behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ergopitrez/evolution-toolkit-build) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Session Continuity Protocol](artifact/protocols/session-continuity.md) <br>
-- [Thinking Partner Protocol](artifact/protocols/thinking-partner.md) <br>
-- [Example configuration](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Markdown reports, optional JSON output, shell command examples, and configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some tools write local memory or report files under the configured workspace; the playbook optimizer can use Gemini or Google API keys when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The toolkit can read and persist sensitive workspace memory, identity or guidance files, task context, and personal reasoning notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces approved for that analysis, set EVOLUTION_TOOLKIT_WORKSPACE explicitly, review generated files under memory/, and avoid shared or synced directories for sensitive reports or imprints.
+
+Risk: The playbook optimizer can send playbooks and test cases to Gemini.
+
+Mitigation: Use the optimizer only when the selected playbooks, test cases, and configuration are safe to send to Google-hosted model services.
+
+Risk: The README's unpinned npx install command can resolve to a changing package version.
+
+Mitigation: Prefer a pinned installer version for reproducible installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ergopitrez/skills/evolution-toolkit-build)
+- [Session Continuity Protocol](artifact/protocols/session-continuity.md)
+- [Thinking Partner Protocol](artifact/protocols/thinking-partner.md)
+- [Configuration Example](artifact/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown files, with optional JSON output from selected scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts write workspace memory files or reports under EVOLUTION_TOOLKIT_WORKSPACE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

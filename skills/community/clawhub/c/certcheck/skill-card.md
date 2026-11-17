@@ -1,43 +1,58 @@
-## Description: <br>
-Reference tool for devtools \u2014 covers intro, quickstart, patterns and more. Quick lookup for Certcheck concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Certcheck concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and security practitioners use this skill as a quick reference for Certcheck concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags a nested review helper that may bypass sandbox and approval controls. <br>
-Mitigation: Review the helper before installation and run with `--no-yolo` or `AUTOREVIEW_YOLO=0` when sandbox and approval controls should remain active. <br>
-Risk: Security evidence notes that code diffs may be sent to fallback local AI CLIs. <br>
-Mitigation: Set fallback reviewers to `none` when code diffs should not be shared with other local AI tools. <br>
-Risk: Security evidence warns that moderation actions require appropriate ClawHub staff authorization. <br>
-Mitigation: Use any moderation capability only from an account authorized to perform ClawHub staff actions. <br>
+## Use Case:
 
+Developers and security practitioners use Certcheck as an offline quick-reference helper for Certcheck concepts, setup, patterns, debugging, performance, security, migration, and cheat-sheet guidance.
 
-## Reference(s): <br>
-- [Certcheck on ClawHub](https://clawhub.ai/bytesagain-lab/certcheck) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: server release metadata) <br>
+Risk: Certcheck content is generic reference guidance rather than authoritative product documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify operational decisions against authoritative Certcheck or organizational documentation before applying changes.
+
+Risk: Release metadata, skill frontmatter, and script version values do not match.
+
+Mitigation: Confirm the intended release version before deployment and use the server release version as the package identifier.
+
+Risk: Static security guidance mentions credentials as a documentation topic.
+
+Mitigation: Do not place real credentials in the skill files or command inputs; treat credential references as instructional text only.
+
+## Reference(s):
+
+- [Certcheck on ClawHub](https://clawhub.ai/bytesagain-lab/skills/certcheck)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline static reference output; no API keys, credentials, or network access are required.]
+
+## Skill Version(s):
+
+4.0.2 (source: server release metadata; artifact frontmatter lists 4.0.1 and script lists 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

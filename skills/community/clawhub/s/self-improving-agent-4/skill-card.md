@@ -1,40 +1,58 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, feature requests, and corrections in project learning files so coding agents can improve future work.
 
-## Publisher: <br>
-[marveldcdad-eng](https://clawhub.ai/user/marveldcdad-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marveldcdad-eng](https://clawhub.ai/user/marveldcdad-eng)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture corrections, command failures, missing capabilities, outdated assumptions, and recurring best practices as project learning records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to persist conversation and error details into project memory files, which may capture sensitive data. <br>
-Mitigation: Keep learning records local or reviewed before committing, and redact tokens, credentials, personal data, customer content, private prompts, and raw command output. <br>
-Risk: Promoting unreviewed learnings into agent instruction files can introduce incorrect or misleading guidance. <br>
-Mitigation: Require human approval before promoting entries into CLAUDE.md, AGENTS.md, .github/copilot-instructions.md, SOUL.md, or TOOLS.md. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to log command failures, user corrections, missing capabilities, API issues, and reusable best practices. The logged entries can later be reviewed, resolved, or promoted into project memory and agent instruction files.
 
-## Reference(s): <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces learning, error, and feature-request entries intended for project memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Conversation-derived logs may persist secrets, credentials, customer data, private transcripts, or other sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive data before writing learning entries and avoid logging raw request bodies or private transcripts.
+
+Risk: Promoting learnings into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions can affect future agent behavior too broadly.
+
+Mitigation: Require human review before updating persistent instruction files and promote only concise, broadly applicable guidance.
+
+Risk: Optional hooks can add broad automatic reminders or error-detection behavior across sessions.
+
+Mitigation: Keep hooks disabled unless the user explicitly wants automatic reminders and has reviewed the hook behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marveldcdad-eng/skills/self-improving-agent-4)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands, markdown templates, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent learning files and agent instruction files when the user or workflow chooses to apply the guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

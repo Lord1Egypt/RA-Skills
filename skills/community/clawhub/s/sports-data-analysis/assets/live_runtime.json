@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-07",
+  "title": "今日体育赛事总览（自动源样本·待联网补齐）",
+  "updated_at": "2026-10-07 20:41",
+  "_is_live": true,
+  "_source": "thesportsdb-free",
+  "_auto_thin": true,
+  "_live_error": null,
+  "_sports_live": [
+    "american_football"
+  ],
+  "_thin_hint": "自动源仅返回稀薄样本（无 key 时为常态）。出报告前请由智能体用 WebSearch 联网补齐当日真实全量赛事（中超/日职/韩K/荷甲/葡超/英冠/西甲/沙职/美职/篮球等），以保证「信息全」。详见 SKILL.md Live 模式第 5 条。",
+  "matches": [
+    {
+      "sport": "american_football",
+      "sport_cn": "美式足球",
+      "match": "Troy vs Southern Miss",
+      "league": "NCAA Division 1 Football",
+      "country": "United States",
+      "kickoff_local": "",
+      "kickoff_actual": "2026-10-07 08:00",
+      "teams": [
+        {
+          "name": "Troy"
+        },
+        {
+          "name": "Southern Miss"
+        }
+      ],
+      "info_points": [
+        "赛程来自 TheSportsDB 公开数据（实时当日对阵·免费样本）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度待补充公开情报后完善。"
+      ],
+      "live": true
+    },
+    {
+      "sport": "american_football",
+      "sport_cn": "美式足球",
+      "match": "Kennesaw State vs Jacksonville State",
+      "league": "NCAA Division 1 Football",
+      "country": "United States",
+      "kickoff_local": "",
+      "kickoff_actual": "2026-10-08 07:00",
+      "teams": [
+        {
+          "name": "Kennesaw State"
+        },
+        {
+          "name": "Jacksonville State"
+        }
+      ],
+      "info_points": [
+        "赛程来自 TheSportsDB 公开数据（实时当日对阵·免费样本）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度待补充公开情报后完善。"
+      ],
+      "live": true
+    },
+    {
+      "sport": "american_football",
+      "sport_cn": "美式足球",
+      "match": "FIU vs New Mexico State",
+      "league": "NCAA Division 1 Football",
+      "country": "United States",
+      "kickoff_local": "",
+      "kickoff_actual": "2026-10-08 07:30",
+      "teams": [
+        {
+          "name": "FIU"
+        },
+        {
+          "name": "New Mexico State"
+        }
+      ],
+      "info_points": [
+        "赛程来自 TheSportsDB 公开数据（实时当日对阵·免费样本）。",
+        "本场为真实当日对阵；战术 / 状态 / 专家维度待补充公开情报后完善。"
+      ],
+      "live": true
+    }
+  ]
+}

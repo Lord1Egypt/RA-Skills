@@ -1,37 +1,49 @@
-## Description: <br>
-Build a personal event system for tracking concerts, conferences, parties, appointments, and everything in between. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal event system for tracking concerts, conferences, parties, appointments, and everything in between.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-People use this skill to have an agent help record, organize, and surface personal events such as concerts, conferences, parties, appointments, recurring dates, and hosted gatherings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Event notes may include sensitive personal details, ticket confirmations, locations, schedules, or guest information stored on the user's machine. <br>
-Mitigation: Review ~/events/ before sharing the machine or backups, and avoid asking the agent to save sensitive events unless they should be recorded locally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/events) <br>
+## Use Case:
 
+External users use this skill to create and maintain a local Markdown-based event tracking system for upcoming events, hosted events, recurring dates, and past event notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown event notes and concise text reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores event details as markdown files under ~/events/ when the agent follows the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Event plans, birthdays, guest lists, and ticket or reservation identifiers may be stored as ordinary local Markdown files.
+
+Mitigation: Avoid unnecessary sensitive details, limit third-party personal data, and keep ~/events/ in a protected folder with restrictive permissions on shared or synced machines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/events)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown event plans, calendar entries, checklists, and local file organization guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates ordinary local Markdown files under ~/events/ when the agent applies the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

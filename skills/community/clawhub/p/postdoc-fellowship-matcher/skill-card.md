@@ -1,46 +1,59 @@
-## Description: <br>
-Filter and match postdoctoral fellowship opportunities based on applicant nationality, years since PhD, and research field from a curated database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Filter and match postdoctoral fellowship opportunities based on applicant nationality, years since PhD, and research field from a curated database.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External postdoctoral applicants, advisors, and research administrators use this skill to screen fellowship options against nationality, years since PhD, and research area. It helps compare likely matches, deadlines, requirements, and caveats before checking official program sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fellowship deadlines, eligibility rules, and requirements may be stale or incomplete. <br>
-Mitigation: Treat matches as preliminary and verify deadlines, nationality rules, years-since-PhD limits, and requirements on the official fellowship sites before relying on the output. <br>
-Risk: Research-field filtering is limited and may not fully determine field fit. <br>
-Mitigation: Manually confirm field fit against each fellowship's official scope and use the output as a shortlist rather than an eligibility determination. <br>
+## Use Case:
 
+External postdoctoral applicants and advisors use this skill to identify fellowship opportunities that appear to match nationality, career stage, and research field criteria. It supports comparison of requirements and deadlines, but does not provide official eligibility determinations or application drafting.
 
-## Reference(s): <br>
-- [Fellowship Database Reference](references/fellowships.md) <br>
-- [NIH F32 Funding Opportunity](https://grants.nih.gov/grants/guide/pa-files/PA-23-271.html) <br>
-- [NSF Postdoctoral Research Fellowships in Biology](https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=503622) <br>
-- [HFSP Postdoctoral Fellowships](https://www.hfsp.org/funding/hfsp-funding/postdoctoral-fellowships) <br>
-- [EMBO Postdoctoral Fellowships](https://www.embo.org/funding/fellowships-awards-and-grants/postdoctoral-fellowships/) <br>
-- [MSCA Postdoctoral Fellowships](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships) <br>
-- [Schmidt Science Fellows](https://schmidtsciencefellows.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance or terminal text with matched fellowship names, deadlines, requirements, caveats, and next checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a built-in fellowship database and does not access live fellowship databases or real-time deadline updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fellowship matches may be incomplete or misleading because the included matching logic is incomplete and does not actually filter by research field.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat matches as a starting point and verify fellowship eligibility, research-field fit, deadlines, and nationality rules on official program websites before applying.
+
+Risk: Built-in fellowship deadlines and requirements may be stale.
+
+Mitigation: Use the skill's caveats and verification steps, then confirm current program rules with the official fellowship sources listed in the references.
+
+## Reference(s):
+
+- [Fellowship Database Reference](references/fellowships.md)
+- [NIH Ruth L. Kirschstein NRSA Individual Postdoctoral Fellowship (F32)](https://grants.nih.gov/grants/guide/pa-files/PA-23-271.html)
+- [NSF Postdoctoral Research Fellowships in Biology](https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=503622)
+- [Human Frontier Science Program Postdoctoral Fellowships](https://www.hfsp.org/funding/hfsp-funding/postdoctoral-fellowships)
+- [EMBO Postdoctoral Fellowships](https://www.embo.org/funding/fellowships-awards-and-grants/postdoctoral-fellowships/)
+- [Marie Curie Actions Postdoctoral Fellowships](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships)
+- [Schmidt Science Fellows](https://schmidtsciencefellows.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text report with match rationale, deadlines, requirements, notes, assumptions, limits, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are based on a built-in fellowship database and should be checked against official program sources before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

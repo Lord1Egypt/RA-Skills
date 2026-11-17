@@ -1,46 +1,56 @@
-## Description: <br>
-Stop your AI agent from forgetting everything between sessions with a file-based memory workspace, session handoff, daily logs, owner namespace templates, and a setup script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop your AI agent from forgetting everything between sessions. Three-tier memory architecture (long-term owner namespace / daily logs / session handoff), cross-channel isolation so group chats never contaminate private sessions, and MASTER_MAP navigation. One command sets up the complete structure.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent operators use this skill to initialize a persistent Markdown memory structure that an AI agent can read and maintain across sessions. It is intended for file-based agents that need continuity, user preferences, project context, and handoff notes in a workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace memory files are plaintext and may contain personal, project, or relationship context. <br>
-Mitigation: Use the skill only where plaintext persistent memory is acceptable, avoid storing secrets or regulated data, and add memory files to .gitignore when the workspace is version controlled. <br>
-Risk: Agents may load broader personal or relationship context than a task requires. <br>
-Mitigation: Keep owner namespace files focused, load sensitive files only when relevant, and periodically review and prune memory content. <br>
-Risk: Parallel sessions can update local memory files out of order. <br>
-Mitigation: Use this memory structure for one primary agent session per workspace or manually reconcile memory files after concurrent work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to initialize a file-based persistent memory workspace for agents, including user profile, session handoff, daily logs, long-term memory, and navigation files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/agent-memory-sr) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README](artifact/README.md) <br>
-- [QUICKSTART](artifact/QUICKSTART.md) <br>
-- [LIMITATIONS](artifact/LIMITATIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates plaintext Markdown memory files in the selected workspace; no external dependencies are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Editable workspace memory files can become persistent agent instructions and may contain personal or project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the startup protocol before use, treat HANDOFF.md, daily logs, and MEMORY.md as untrusted notes, and avoid storing secrets or sensitive personal data.
+
+Risk: Remembered instructions could cause an agent to run commands, change files, access credentials, delete data, or contact external services.
+
+Mitigation: Require explicit confirmation before acting on remembered instructions that perform sensitive actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/agent-memory-sr)
+- [README](README.md)
+- [QUICKSTART](QUICKSTART.md)
+- [LIMITATIONS](LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and a Python setup script that creates Markdown workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates plain Markdown memory files and directories in the selected workspace; no external dependencies are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

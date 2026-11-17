@@ -1,39 +1,53 @@
-## Description: <br>
-Designs identity authentication and trust verification systems for autonomous AI agents so they can prove who they are, what they are authorized to do, and what they actually did. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for designing AI-agent identity, authorization, trust scoring, delegation, and tamper-resistant audit systems.
 
-## Publisher: <br>
-[lihangmissu](https://clawhub.ai/user/lihangmissu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihangmissu](https://clawhub.ai/user/lihangmissu)
 
-## Use Case: <br>
-Developers and security architects use this skill to design identity, authorization, delegation, trust scoring, and tamper-resistant audit workflows for autonomous agents that execute real operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated identity, delegation, or authorization implementations may affect security-critical agent actions. <br>
-Mitigation: Review implementations carefully, test failure cases, and use mature cryptography with appropriate secret-management or signing infrastructure before production use. <br>
-Risk: Design work for identity systems can expose private keys, credentials, or production identity material if copied into chat or logs. <br>
-Mitigation: Use placeholders for sensitive material and keep private keys, signing keys, and production credentials in approved secret-management systems. <br>
+## Use Case:
 
+Developers and security architects use this skill to design identity, authorization, delegation, trust scoring, and audit evidence workflows for autonomous AI agents that perform real actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with structured guidance and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated implementation code should be reviewed as security-sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill provides architectural guidance and examples for security-sensitive identity and authorization systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed designs with qualified security owners and validate them against the deployment threat model before production use.
+
+Risk: The inspected skill content is primarily Chinese-language, which may reduce clarity for non-Chinese users.
+
+Mitigation: Ask the agent to respond in the user's preferred language and verify key security requirements before applying the guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lihangmissu/skills/agentic-identity-trust)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no bundled executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

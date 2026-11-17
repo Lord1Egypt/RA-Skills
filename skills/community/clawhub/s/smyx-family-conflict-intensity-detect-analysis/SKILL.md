@@ -1,7 +1,7 @@
 ---
 name: "smyx-family-conflict-intensity-detect-analysis"
 description: "Using a fixed camera with microphone in the living room, the system analyzes audio and video in real time, detecting sound intensity (dB) and the intensity of body movements (e.g., rapid hand waving, finger pointing, pushing, throwing objects). It comprehensively evaluates the family conflict intensity level (low / medium / high). | 通过客厅固定摄像头（含麦克风），实时分析音频和视频，检测声音强度（分贝）和肢体动作激烈程度（如快速挥手、戳指、推搡、摔物等）。综合评估家庭争吵的冲突强度等级（低/中/高），当强度达到中或高时，通过手机APP推送提醒（如'检测到高强度冲突，建议冷静沟通或暂时分开'）。"
-version: "1.0.3"
+version: "1.0.11"
 license: "MIT-0"
 ---
 

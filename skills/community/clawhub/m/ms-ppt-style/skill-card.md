@@ -1,40 +1,57 @@
-## Description: <br>
-Morgan Stanley classic PPT style generator for OpenClaw, WorkBuddy, and QClaw that creates professional financial-report-style presentations with bilingual content, gradient covers, and chart templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Morgan Stanley-inspired financial report presentation decks with bilingual content, gradient covers, and chart templates using pptxgenjs.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-External users and developers use this skill to generate PowerPoint templates and JavaScript presentation code for financial report decks with bilingual text, branded colors, covers, metric cards, and charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decks may include Morgan Stanley-style branding or document metadata that could imply affiliation. <br>
-Mitigation: Review visible branding and deck metadata before sharing externally; change the author and branding unless authorized to imply that affiliation. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to create professional financial report decks with bilingual slides, Morgan Stanley-inspired color styling, and common chart layouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/ms-ppt-style) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets and local PowerPoint-generation files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local pptxgenjs-based presentation assets; evidence indicates no credential access, exfiltration, persistence, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated deck metadata or styling could be mistaken for official Morgan Stanley authorship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Morgan Stanley-inspired language, remove or adjust unauthorized branding and metadata, and confirm permission before representing any deck as official.
+
+Risk: The skill depends on pptxgenjs and includes a packaging utility that archives skill folders.
+
+Mitigation: Install reviewed dependencies from trusted sources, run packaging only on trusted skill folders, and inspect generated archives before sharing them.
+
+Risk: Chart support may be broader in the description than the implemented templates demonstrate.
+
+Mitigation: Review generated slides and chart coverage before using outputs in client-facing or decision-support materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/ms-ppt-style)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples and PPTX-generation code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pptxgenjs; generated decks should be reviewed before external or client-facing use.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

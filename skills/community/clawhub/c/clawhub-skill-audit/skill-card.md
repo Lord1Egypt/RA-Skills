@@ -1,41 +1,57 @@
-## Description: <br>
-Audit locally installed skills against ClawHub: detect version drift, find new publish candidates, review security flags, and triage ownership conflicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits locally installed skills against ClawHub to detect version drift, identify publish candidates, review security flags, and triage ownership conflicts.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and maintainers use this skill to audit locally installed ClawHub skills, compare local and published versions, identify publish candidates, review security status, and handle ownership conflicts before publishing or updating skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawHub registry lookups may send local skill names over the network. <br>
-Mitigation: Install only if you are comfortable with ClawHub registry queries using local skill names. <br>
-Risk: Publish, update, or republish commands can change public registry state or local installed skill versions. <br>
-Mitigation: Review commands before running publish, update, or republish steps. <br>
+## Use Case:
 
+Developers and maintainers use this skill to run ClawHub lifecycle checks for local and published skills, including drift detection, publish readiness, security review, and ownership-conflict triage.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nissan/clawhub-skill-audit) <br>
-- [Publisher Profile](https://clawhub.ai/user/nissan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the clawhub CLI and python3; may perform outbound ClawHub registry lookups using local skill names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and release evidence) <br>
+Risk: Publish and update commands can change public ClawHub registry state or local installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat publish and update steps as manual approval points and review the target skill, version, and changelog before execution.
+
+Risk: The playbook includes hardcoded local paths, owner names, and an AEST lifecycle schedule that may not match another environment.
+
+Mitigation: Adapt paths, publisher handles, and schedule details before using the workflow outside the evidenced environment.
+
+Risk: The skill fetches registry metadata through the ClawHub CLI.
+
+Mitigation: Run it only in environments approved for outbound ClawHub registry access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nissan/skills/clawhub-skill-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clawhub CLI and python3; uses outbound network access to fetch ClawHub registry metadata.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

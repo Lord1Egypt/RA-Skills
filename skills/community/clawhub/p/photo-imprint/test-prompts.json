@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "scenario": "典型场景：旅行食物轮播",
+    "prompt": "把我刚从日本旅行拍的9张照片转成手绘风的社媒轮播，9:16，要留白，文字在上面，帮我排好",
+    "expected": "skill 应触发：0 preflight → 1 resolve+preprocess (EXIF排序) → 2 填 production_brief + sample_style_contract → 3 只渲第1张样张+production-plan.md一起给用户确认 → 明确通知下一步，中间产物都发出来"
+  },
+  {
+    "id": 2,
+    "scenario": "歧义场景：用户不清楚风格",
+    "prompt": "我这些照片想做成插画风，你看用什么风格好？我也不懂，你定吧",
+    "expected": "skill 必须强制问风格：展示5个捆绑风格小图（blue-lavender, highway-485, sumi-e-ink, hiroshige-bokashi, seurat-conte），用默认 blue-lavender 去问，不清楚就按默认渲第1张样张让用户看，写 style-choice.json gate"
+  },
+  {
+    "id": 3,
+    "scenario": "失败/边界场景：EXIF缺失+小杯变大杯",
+    "prompt": "我有3张图，一张是机场小杯星巴克，一张飞机上，一张六本木街边，帮我转成同一风格，别把小杯画成大杯",
+    "expected": "skill 应：EXIF缺失时停住让用户授权draft；shape-lock小杯保持小；同一套sample_style_contract冻住传给batch；compose前验证plate policy一致；通知每个步骤产出了什么"
+  }
+]

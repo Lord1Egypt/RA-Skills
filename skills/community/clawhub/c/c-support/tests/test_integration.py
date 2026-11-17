@@ -222,7 +222,7 @@ void memory_issues(void) {
 
 void credentials(void) {
     const char *password = "super_secret_123";  // Hardcoded!
-    const char *api_key = "AKIAIOSFODNN7EXAMPLE";  // AWS key!
+    const char *api_key = "REDACTED-SECRET";  // AWS key!
 }
 '''
     

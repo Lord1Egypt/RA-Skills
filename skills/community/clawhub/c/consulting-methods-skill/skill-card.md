@@ -1,49 +1,62 @@
-## Description: <br>
-当用户需要管理咨询分析、诊断框架选择、问题拆解、战略工具应用（如5W2H、5WHY、PDCA、PESTEL、7S、波特五力、SWOT、BSC、波士顿矩阵、GE矩阵、价值链）时使用，基于管理咨询顾问常用的方法和工具，输出结构化分析过程与交付模板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill helps users choose management consulting frameworks and produce structured diagnostic analysis, findings, action plans, and delivery templates.
 
-## Publisher: <br>
-[park-william](https://clawhub.ai/user/park-william) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[park-william](https://clawhub.ai/user/park-william)
 
-## Use Case: <br>
-Business users, consultants, and strategy teams use this skill to select consulting frameworks, structure ambiguous business problems, diagnose root causes, and produce action-oriented delivery templates. It supports strategy, organization, marketing, process improvement, and PDCA execution workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business analysis may be incomplete or misleading if the user provides insufficient or unverified information. <br>
-Mitigation: Validate recommendations against available data, stakeholder input, and a low-cost pilot before relying on them for business decisions. <br>
-Risk: Users may include confidential company information in prompts or analysis materials. <br>
-Mitigation: Avoid sharing confidential company information unless the agent environment is approved for that data. <br>
+## Use Case:
 
+Business consultants, operators, and strategy teams use this skill to frame ambiguous business problems, select consulting methods, diagnose strategy, marketing, process, and root-cause issues, and turn findings into practical 90-day plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/park-william/consulting-methods-skill) <br>
-- [管理咨询方法速查](references/method-catalog.md) <br>
-- [问题定义与结构化模块](references/methods/01-core-thinking-and-structure.md) <br>
-- [分析工具与根因模块](references/methods/02-analysis-tools.md) <br>
-- [战略与组织诊断模块](references/methods/03-strategy-and-diagnosis.md) <br>
-- [外部市场与竞争模块](references/methods/03a-external-market-and-competition.md) <br>
-- [内部战略与组织模块](references/methods/03b-internal-strategy-and-organization.md) <br>
-- [营销与增长模块](references/methods/04-marketing-and-growth.md) <br>
-- [流程优化与BPR模块](references/methods/05-process-and-bpr.md) <br>
-- [追问与根因模块](references/methods/06-questioning-and-root-cause.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured analysis sections and delivery templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces problem definitions, framework choices, prioritized findings, action plans, metrics, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may produce business consulting guidance that influences strategy, operations, or financial planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as structured planning guidance and validate legal, financial, and operational decisions with qualified reviewers and current business data.
+
+Risk: Framework-driven conclusions may be unreliable when the user provides incomplete facts or weak evidence.
+
+Mitigation: Use the skill's minimum data list and require evidence or a validation path for each key conclusion before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/park-william/skills/consulting-methods-skill)
+- [管理咨询方法速查](references/method-catalog.md)
+- [问题定义与结构化模块](references/methods/01-core-thinking-and-structure.md)
+- [分析工具模块](references/methods/02-analysis-tools.md)
+- [战略与组织诊断总入口](references/methods/03-strategy-and-diagnosis.md)
+- [外部市场与竞争子包](references/methods/03a-external-market-and-competition.md)
+- [内部战略与组织子包](references/methods/03b-internal-strategy-and-organization.md)
+- [营销与增长模块](references/methods/04-marketing-and-growth.md)
+- [流程与BPR模块](references/methods/05-process-and-bpr.md)
+- [追问与根因模块](references/methods/06-questioning-and-root-cause.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured consulting sections, analysis templates, and action-plan tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include framework selections, evidence gaps, validation paths, milestones, owners, metrics, and risk notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

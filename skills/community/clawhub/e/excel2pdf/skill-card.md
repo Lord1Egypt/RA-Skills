@@ -1,38 +1,57 @@
-## Description: <br>
-Converts Excel .xlsx sign-in sheets and rosters into print-ready A4 PDFs with table formatting and Chinese font support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Excel (.xlsx) sign-in sheets and rosters to print-ready A4 PDFs with Chinese font support.
 
-## Publisher: <br>
-[ncepuee](https://clawhub.ai/user/ncepuee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncepuee](https://clawhub.ai/user/ncepuee)
 
-## Use Case: <br>
-Developers, operators, and office users can use this skill to convert local Excel sign-in sheets, rosters, and tables into printable PDFs while preserving Chinese text and table layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local conversion script reads user-selected Excel files and may overwrite an existing PDF when the default or chosen output path already exists. <br>
-Mitigation: Run it only on intended local files and review or set the --out path before execution. <br>
+## Use Case:
 
+Developers, operators, and administrative users can use this skill to convert Excel rosters, sign-in sheets, and tabular spreadsheets into printable A4 PDFs while preserving Chinese column text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncepuee/skills/excel2pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with command examples and PDF file output from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local .xlsx input file, openpyxl, reportlab, and a Chinese-capable font; by default, the PDF is written beside the input file with a .pdf extension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The converter creates or overwrites a PDF at the default or user-specified output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output path before running the script, especially when using --out.
+
+Risk: Dependency versions are not pinned in the artifact instructions.
+
+Mitigation: Install dependencies in a virtual environment and pin openpyxl and reportlab versions for reproducible deployments.
+
+Risk: The converter requires a Chinese-capable system font or an explicit font path.
+
+Mitigation: Confirm an appropriate font is installed or pass --font with a known .ttf or .ttc file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncepuee/skills/excel2pdf)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, files]
+
+**Output Format:** [Markdown guidance with command examples; generated output is a PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script reads a selected .xlsx workbook and writes a formatted A4 PDF to the default or specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

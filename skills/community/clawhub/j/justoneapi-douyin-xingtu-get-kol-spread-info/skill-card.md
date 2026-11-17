@@ -1,43 +1,52 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/get-kol-spread-info/v1 for Douyin Creator Marketplace (Xingtu) Spread Metrics through JustOneAPI with kolId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/get-kol-spread-info/v1 for Douyin Creator Marketplace (Xingtu) Spread Metrics through JustOneAPI with kolId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Douyin Creator Marketplace (Xingtu) spread metrics endpoint for a specified KOL ID and summarize audience, content performance, and commercial indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a URL query parameter and could be exposed through copied URLs, shell history, proxy logs, or request logging. <br>
-Mitigation: Use a limited, rotatable JUST_ONE_API_TOKEN and avoid logging full request URLs or sharing command invocations that include token values. <br>
-Risk: The skill sends KOL IDs and selected filters to JustOneAPI's hosted API. <br>
-Mitigation: Install only when you trust JustOneAPI and the requested Douyin/Xingtu lookup data is appropriate to send to that service. <br>
+## Use Case:
 
+Developers and external agents use this skill to query JustOneAPI for Douyin Creator Marketplace (Xingtu) spread metrics for a specified KOL ID, including audience, content performance, and commercial indicators for evaluation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-get-kol-spread-info) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_spread_info&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_spread_info&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; calls getKolSpreadInfoV1 with kolId and optional query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token and query parameters are sent to api.justoneapi.com and may be exposed through command arguments, URL query logs, process listings, or shared debugging output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or short-lived token when available, avoid shell tracing and command logging, do not paste token values into chat or screenshots, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_spread_info&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_spread_info&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-get-kol-spread-info)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown summary with endpoint details followed by raw JSON response data when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a kolId query parameter; optional query parameters include type, range, flowType, onlyAssign, and acceptCache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

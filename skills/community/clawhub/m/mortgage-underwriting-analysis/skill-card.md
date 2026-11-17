@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes residential mortgage borrower files against CFPB ATR/QM rules and agency guidelines, computes DTI, LTV, CLTV, QM eligibility, and produces a draft underwriting analysis memo for licensed-underwriter review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes residential mortgage borrower files against CFPB ATR/QM rules and agency guidelines, computes DTI, LTV/CLTV, and QM safe-harbor eligibility, and produces a draft underwriting analysis memo for licensed-underwriter review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Loan officers, processors, and underwriters use this skill to structure a preliminary residential mortgage underwriting analysis, identify missing file data, compare borrower metrics with agency guidelines, and draft an Approve, Refer, or Suspend memo for licensed-underwriter review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive mortgage files may contain unnecessary SSNs, account numbers, or other private borrower data. <br>
-Mitigation: Avoid entering unnecessary sensitive identifiers, mask borrower identifiers in outputs, and follow the skill's draft-flags checklist before sharing a memo. <br>
-Risk: Draft calculations or guideline comparisons may be incomplete, stale, or wrong for a lender's current overlays. <br>
-Mitigation: Verify all calculations, current agency and lender rules, AUS findings, and conditions before relying on the memo. <br>
-Risk: A draft memo could be mistaken for a credit decision or commitment to lend. <br>
-Mitigation: Keep the output labeled as a draft analysis aid and require licensed-underwriter review before any lending action. <br>
-Risk: Use of protected-class or other discriminatory factors would create fair-lending risk. <br>
-Mitigation: Base analysis only on financial, property, and program eligibility criteria, and exclude protected-class attributes from the underwriting memo. <br>
+## Use Case:
 
+Loan officers, underwriters, processors, and mortgage teams use this skill to draft pre-underwrite analyses, calculate borrower and property ratios, compare results with applicable agency guidelines, and prepare an Approve, Refer, or Suspend memo for licensed-underwriter review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/mortgage-underwriting-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown draft memo with calculation tables, agency guideline comparison, conditions list, recommendation, and draft flags checklist.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or live system access; outputs require calculation verification and licensed-underwriter review before use in lending actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release and changelog, released 2026-05-28) <br>
+Risk: Mortgage underwriting is high-impact and regulated, and draft analysis could be mistaken for a final credit decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as a drafting and checklist aid, verify current agency and CFPB rules, and require licensed-underwriter review before taking action.
+
+Risk: Borrower files may contain sensitive personal and financial information.
+
+Mitigation: Minimize borrower PII and avoid entering full Social Security numbers or account numbers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/mortgage-underwriting-analysis)
+- [Publisher Profile](https://clawhub.ai/user/archlab-space)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Structured Markdown draft memo with calculation tables, agency guideline comparison, conditions list, recommendation, and draft flags checklist.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied borrower and loan-file inputs; does not access live AUS systems, credit bureaus, or pricing engines.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

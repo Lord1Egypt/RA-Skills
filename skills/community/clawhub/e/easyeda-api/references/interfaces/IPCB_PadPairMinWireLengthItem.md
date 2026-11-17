@@ -1,11 +1,11 @@
 # IPCB\_PadPairMinWireLengthItem interface
 
-焊盘对最短导线长度属性
+Pad pair minimum wire length properties
 
 ## Signature
 
 ```typescript
-interface IPCB_PadPairMinWireLengthItem 
+interface IPCB_PadPairMinWireLengthItem
 ```
 
 ## Properties
@@ -14,59 +14,47 @@ interface IPCB_PadPairMinWireLengthItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [minWireLength](./IPCB_PadPairMinWireLengthItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-最短导线长度
-
+Minimum wire length
 
 </td></tr>
 <tr><td>
 
 [padPair](./IPCB_PadPairMinWireLengthItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 \[string, string\]
 
-
 </td><td>
 
-焊盘对数组
-
+Pad for array
 
 </td></tr>
 </tbody></table>
@@ -79,7 +67,7 @@ number
 
 # IPCB\_PadPairMinWireLengthItem.minWireLength property
 
-最短导线长度
+Minimum wire length
 
 ## Signature
 
@@ -91,7 +79,7 @@ minWireLength: number;
 
 # IPCB\_PadPairMinWireLengthItem.padPair property
 
-焊盘对数组
+Pad for array
 
 ## Signature
 

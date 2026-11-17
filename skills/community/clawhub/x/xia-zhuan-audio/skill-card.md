@@ -1,43 +1,61 @@
-## Description: <br>
-音视频格式转换与处理工具箱，基于 FFmpeg and Whisper AI，支持格式转换、视频提取音频、合并、分割、压缩、查看信息、音频转文字。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio and video conversion, audio extraction, merging, splitting, compression, media information, and Whisper-based transcription using FFmpeg and faster-whisper.
 
-## Publisher: <br>
-[luis1213899](https://clawhub.ai/user/luis1213899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1213899](https://clawhub.ai/user/luis1213899)
 
-## Use Case: <br>
-Developers and end users use this skill to convert, extract, merge, split, compress, inspect, and transcribe local audio or video files through OpenClaw prompts or command-line tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local FFmpeg and Python tools operate on files selected by the user and may overwrite generated output paths. <br>
-Mitigation: Use explicit output paths, review destination filenames before execution, and keep originals backed up. <br>
-Risk: First transcription use can download and cache a Whisper model from Hugging Face or a configured mirror. <br>
-Mitigation: Use a trusted HF_ENDPOINT and XZA_MODELDIR, and allow model downloads only in environments where that network access and storage are acceptable. <br>
+## Use Case:
 
+Developers and end users use this skill to convert and process local audio or video files and to produce text, subtitle, or JSON transcriptions from media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luis1213899/xia-zhuan-audio) <br>
-- [Project homepage](https://github.com/luis12123899/xia-zhuan-audio) <br>
-- [FFmpeg](https://ffmpeg.org) <br>
-- [Hugging Face](https://huggingface.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Console text plus generated audio, subtitle, transcript, or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local output paths and formats are selected by the user; transcription can emit txt, srt, vtt, or json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: ClawHub release evidence) <br>
+Risk: FFmpeg commands use overwrite behavior and can replace local output files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on trusted media and direct outputs to a reviewed working folder with backups for important files.
+
+Risk: The merge flow uses a shared temporary file pattern that is unsafe on shared or multi-user systems.
+
+Mitigation: Fix merge temporary-file handling before shared-system use, or run the skill only in an isolated single-user environment.
+
+Risk: Whisper models may be downloaded at runtime unless already cached.
+
+Mitigation: Use a virtual environment with pinned Python dependencies and pre-approved model cache locations or endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luis1213899/skills/xia-zhuan-audio)
+- [Publisher profile](https://clawhub.ai/user/luis1213899)
+- [Project homepage from metadata](https://github.com/luis12123899/xia-zhuan-audio)
+- [FFmpeg](https://ffmpeg.org)
+- [Hugging Face model source](https://huggingface.co)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples; generated media files and txt, srt, vtt, or json transcription files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FFmpeg, Python for transcription, and faster-whisper; Whisper models may be downloaded into the configured model directory.]
+
+## Skill Version(s):
+
+1.3.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

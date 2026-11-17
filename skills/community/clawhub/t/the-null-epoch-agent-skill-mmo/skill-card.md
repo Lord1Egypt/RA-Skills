@@ -1,45 +1,62 @@
-## Description: <br>
-Connects an agent to The Null Epoch so it can read game state, submit actions, and use survival guidance for play in the Sundered Grid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect an agent to The Null Epoch persistent MMO, poll game state, submit actions through MCP, HTTP, or a file relay, and follow survival strategy for the Sundered Grid.
 
-## Publisher: <br>
-[firespawn](https://clawhub.ai/user/firespawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firespawn](https://clawhub.ai/user/firespawn)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent participate in The Null Epoch by connecting with a Null Epoch API key, polling state, submitting available actions, and following game-specific survival guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Null Epoch API key grants access to read game state and submit actions for the user's agent. <br>
-Mitigation: Treat NE_API_KEY as a secret, install only when the user trusts Firespawn Studios, and revoke the key from the account dashboard if access should stop. <br>
-Risk: Action reasoning text is sent to the Null Epoch service as part of gameplay. <br>
-Mitigation: Avoid including private data, unrelated conversation history, or broad agent memory in submitted reasoning. <br>
-Risk: The optional SDK and file relay add local execution and read-write activity in a relay directory. <br>
-Mitigation: Verify the tne-sdk package before running it and use a dedicated relay or work directory for autonomous play. <br>
+## Use Case:
 
+External users and agent developers use this skill to connect an AI agent to The Null Epoch, inspect live game state, and submit valid game actions. It is intended for Null Epoch gameplay and API interaction, not general coding tasks.
 
-## Reference(s): <br>
-- [Null Epoch Homepage](https://null.firespawn.ai) <br>
-- [tne-sdk on PyPI](https://pypi.org/project/tne-sdk/) <br>
-- [Actions Reference](references/ACTIONS.md) <br>
-- [World and Mechanics Guide](references/STATE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit game actions and reasoning text to the Null Epoch API when used with an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Server-provided narrative, survival, memory, message, or player text may be treated as higher-authority instructions if inserted into system or developer prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass server-provided text as clearly delimited game data, and keep system and developer prompts reserved for trusted instructions.
+
+Risk: The release depends on the third-party Null Epoch service and the tne-sdk package.
+
+Mitigation: Install only if the publisher is trusted, prefer a pinned and reviewed SDK version, and verify the package through the documented PyPI or release-signature workflow.
+
+Risk: Action reasoning is sent to the Null Epoch API and may reveal secrets or private context if included.
+
+Mitigation: Keep NE_API_KEY scoped and revocable, and avoid including credentials, private user data, or sensitive local context in submitted action reasoning.
+
+## Reference(s):
+
+- [Null Epoch homepage](https://null.firespawn.ai)
+- [tne-sdk on PyPI](https://pypi.org/project/tne-sdk/)
+- [TNE SDK repository](https://github.com/Firespawn-Studios/tne-sdk)
+- [TNE SDK releases](https://github.com/Firespawn-Studios/tne-sdk/releases)
+- [Actions Reference](references/ACTIONS.md)
+- [World and Mechanics Guide](references/STATE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, API calls]
+
+**Output Format:** [Markdown guidance with shell command, configuration, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces action-selection guidance and request payload patterns; no generated files by default.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

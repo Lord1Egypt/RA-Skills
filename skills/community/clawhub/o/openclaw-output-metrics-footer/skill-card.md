@@ -1,43 +1,59 @@
-## Description: <br>
-Install, configure, maintain, or troubleshoot a compact OpenClaw output footer that shows live context usage, output tokens, Codex quota remaining, model used, and optional subagent token aggregate under text responses across Discord, Telegram, Slack, WhatsApp, Signal, Matrix, Mattermost, and other supported providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, maintain, or troubleshoot a compact OpenClaw output footer that shows live context usage, output tokens, Codex quota remaining, model used, and optional subagent token aggregate under text responses across Discord, Telegram, Slack, WhatsApp, Signal, Matrix, Mattermost, and other supported providers.
 
-## Publisher: <br>
-[udaymanish6](https://clawhub.ai/user/udaymanish6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[udaymanish6](https://clawhub.ai/user/udaymanish6)
 
-## Use Case: <br>
-Developers and OpenClaw workspace operators use this skill to install and configure an extension that appends compact runtime metrics to text channel responses. It helps teams see token usage, context pressure, model selection, quota status, and optional nearby subagent usage without adding those metrics to prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The extension reads a local Codex OAuth token and uses it for outbound quota checks. <br>
-Mitigation: Install only from a trusted publisher, review the extension before enabling it, and keep quota checks limited to environments where that OAuth access is acceptable. <br>
-Risk: The footer can expose operational metadata such as model, token usage, context pressure, subagent totals, and quota state to channel recipients. <br>
-Mitigation: Use enabledChannels and disabledConversations to limit deployment to known internal work channels. <br>
-Risk: The default configuration can modify text channel messages broadly. <br>
-Mitigation: Start with an explicit enabledChannels allowlist and add disabledChannels or disabledConversations for channels where telemetry would add noise or disclose unnecessary information. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install and configure a channel footer that reports context usage, output tokens, model use, Codex quota remaining, and optional nearby subagent token totals without adding prompt tokens.
 
-## Reference(s): <br>
-- [Implementation Notes](references/implementation.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/udaymanish6/openclaw-output-metrics-footer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON configuration, and TypeScript plugin files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The deployed plugin appends a compact one-line telemetry footer to text channel messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence and extension package metadata) <br>
+Risk: The extension reads a local OpenClaw Codex OAuth profile and contacts chatgpt.com to fetch quota data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where this access is acceptable, keep quota caching enabled, and verify that tokens and profile details are not printed in channel output.
+
+Risk: Footer metrics can disclose limited usage metadata across sessions or shared channels.
+
+Mitigation: Restrict enabledChannels and disabledConversations, and disable appendSubagents in shared or multi-user gateways when cross-session usage visibility is not acceptable.
+
+Risk: Subagent accounting is best effort and can be inaccurate when nearby outputs are aggregated by time window rather than exact parent-run metadata.
+
+Mitigation: Treat subagent totals as approximate and disable appendSubagents where exact accounting is required.
+
+## Reference(s):
+
+- [Implementation Reference](references/implementation.md)
+- [ClawHub Skill Page](https://clawhub.ai/udaymanish6/skills/openclaw-output-metrics-footer)
+- [Codex Usage Endpoint](https://chatgpt.com/backend-api/wham/usage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and bundled TypeScript plugin files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a compact footer for text channel delivery; quota data is omitted when unavailable.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence and extension package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

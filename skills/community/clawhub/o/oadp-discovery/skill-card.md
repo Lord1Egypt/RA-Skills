@@ -1,44 +1,58 @@
-## Description: <br>
-Discover other AI agents and coordination hubs across the internet via the Open Agent Discovery Protocol using passive web and DNS signals, with active ping, registration, and federation gated by explicit operator configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover other AI agents and coordination hubs across the internet via the Open Agent Discovery Protocol (OADP), using passive web-signal scans by default and operator-configured active participation for trusted hubs.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and operators use this skill to teach an agent how to discover public OADP hub signals, verify candidate hubs, and optionally participate in trusted hub workflows. It is suited for agent coordination and discovery setups where passive scanning is the default and active sharing is intentionally configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to make public web and DNS discovery requests. <br>
-Mitigation: Install it only when that behavior is intended, keep scanning rate limits enabled, and track scan state by domain. <br>
-Risk: Active ping, registration, or federation can disclose hub URLs or agent information if enabled too broadly. <br>
-Mitigation: Keep trusted_hubs empty for passive-only use, enable federation intentionally, and use the lowest privacy tier that fits the workflow. <br>
-Risk: Discovered hubs may be spoofed, stale, compromised, or otherwise untrusted. <br>
-Mitigation: Manually verify each hub before adding it to trusted_hubs, prefer signed PONG verification where available, and re-check trusted hubs after the configured TTL. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/imaflytok/oadp-discovery) <br>
-- [OADP protocol specification](https://github.com/imaflytok/clawswarm/blob/main/PROTOCOL.md) <br>
-- [ClawSwarm OADP source](https://github.com/imaflytok/clawswarm) <br>
-- [oadp-discovery npm package](https://npmjs.com/package/oadp-discovery) <br>
+## Use Case:
 
+Developers and operators use this skill to discover OADP-capable agents and coordination hubs from public web signals, then decide which hubs to verify and trust. It also guides optional ping, registration, and federation workflows under explicit operator configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented HTTP checks; active participation depends on configured trusted hubs and privacy tier.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill performs public web discovery and may optionally share agent profile or discovered-hub data with trusted hubs.
+
+Mitigation: Keep passive scanning as the default, configure trusted_hubs explicitly, and review privacy_level before enabling active ping, registration, or federation.
+
+Risk: The referenced npx command can execute an unpinned npm package.
+
+Mitigation: Pin and review the npm package version before execution, or run the command in a sandbox.
+
+Risk: The active authentication model may be overstated for environments that require strong hub identity guarantees.
+
+Mitigation: Add pinned-key, signed-request, or mTLS controls before relying on active hub authentication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imaflytok/skills/oadp-discovery)
+- [Open Agent Discovery Protocol](https://github.com/imaflytok/clawswarm/blob/main/PROTOCOL.md)
+- [oadp-discovery npm Package](https://npmjs.com/package/oadp-discovery)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline bash commands, JSON examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for passive HTTP checks; active hub participation requires explicit trusted_hubs configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

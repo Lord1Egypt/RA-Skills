@@ -1,40 +1,49 @@
-## Description: <br>
-Analyzes fragmented life-log data from calendars, notes, photos, health apps, and screen-time records to identify patterns and build personal timeline summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes fragmented personal life data from calendars, notes, photos, health apps, and productivity signals to identify patterns, trends, and timeline narratives.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Individuals who maintain personal life-log exports use this skill to organize calendar, notes, health, activity, and digital-usage data into daily, weekly, monthly, or annual pattern reports with narrative summaries and optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Life-log analysis may expose sensitive personal information such as locations, health details, private messages, and third-party information. <br>
-Mitigation: Provide data exports deliberately, redact unnecessary sensitive fields, and treat generated reports as private personal records. <br>
-Risk: Pattern reports can overstate causality or be mistaken for mental health guidance. <br>
-Mitigation: Treat correlations as hypotheses for human review and do not use the skill for psychological or medical diagnosis. <br>
+## Use Case:
 
+Individuals and agents use this skill to structure personal activity records into timelines, compare daily to annual patterns, and produce summaries with actionable suggestions while keeping sensitive data local.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/life-logging-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with structured summaries, comparisons, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include time-period comparisons, five-dimensional timeline analysis, and human-validated causal hypotheses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may organize highly sensitive personal data across calendars, location, health, screen time, notes, photos, and messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the minimum necessary local data sources, avoid importing identifiers or message contents unless needed, and decide whether generated personal databases should be retained or deleted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/life-logging-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative summaries, pattern reports, and suggested actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize daily, weekly, monthly, or annual patterns; does not make mental health diagnoses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -349,7 +349,7 @@ Executive sponsor: {executive_sponsor}
 - Human review required:
 - Desired outcome:
 
-### at-risk-customer-recovery-plan
+### at-riREDACTED-SECRET
 # At-Risk Customer Recovery Plan
 
 Client: {client_name}

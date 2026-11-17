@@ -1,43 +1,56 @@
-## Description: <br>
-Get today's NBA game schedule, live scores, final results, and current season standings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets today's NBA schedule, live scores, final results, team records, and current season standings.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and developers use this skill to answer current NBA schedule, score, result, and standings questions with live public sports data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Results depend on live outbound requests to NBA and StatMuse, so responses can fail or become stale when those services are unavailable. <br>
-Mitigation: Tell users when live data cannot be fetched and direct them to the NBA schedule or StatMuse pages as fallbacks. <br>
-Risk: The StatMuse standings parser may break if StatMuse changes its page layout. <br>
-Mitigation: Verify standings output before presenting it and fall back to direct StatMuse or NBA standings links when parsing fails. <br>
+## Use Case:
 
+External users and agents use this skill to answer NBA schedule, live score, final result, and standings questions with current basketball data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/nba) <br>
-- [NBA live scoreboard data](https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json) <br>
-- [NBA schedule](https://www.nba.com/schedule) <br>
-- [StatMuse NBA](https://www.statmuse.com/nba) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands and plain-text score or standings output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public NBA and StatMuse web data; no API key or external dependency installation is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill makes outbound requests to NBA and StatMuse public endpoints when live scores or standings are requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where those public network requests are acceptable.
+
+Risk: Live sports data can be delayed, temporarily unavailable, or affected by upstream page and endpoint changes.
+
+Mitigation: Present results with source context and fall back to the linked NBA or StatMuse pages when fetching fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/nba)
+- [NBA live scoreboard JSON](https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json)
+- [NBA schedule](https://www.nba.com/schedule)
+- [StatMuse NBA](https://www.statmuse.com/nba)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current game status, scores, records, standings, leaders, and source links.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

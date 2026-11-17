@@ -1,45 +1,63 @@
-## Description: <br>
-Pixiv Skill helps agents retrieve Pixiv rankings, search artworks, cache metadata, download selected images, monitor artists, and perform like, bookmark, or follow actions using user-provided Pixiv authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pixiv Skill helps an agent retrieve Pixiv rankings, search illustrations, cache artwork metadata, download selected works, and perform authenticated Pixiv interactions such as like, follow, and artist monitoring.
 
-## Publisher: <br>
-[firstmeet1108](https://clawhub.ai/user/firstmeet1108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firstmeet1108](https://clawhub.ai/user/firstmeet1108)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate Pixiv discovery workflows, including ranking lookup, keyword search, metadata review, selective artwork download, artist monitoring, and account interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live Pixiv credentials and authentication material. <br>
-Mitigation: Treat config.yaml as a secrets file, keep it out of source control and shared logs, and review the configuration before running commands. <br>
-Risk: The skill can change a user's Pixiv account state through like, bookmark, follow, download, or monitoring commands. <br>
-Mitigation: Require explicit user approval before running account-changing or long-running monitoring commands. <br>
-Risk: Proxy settings can route authenticated Pixiv traffic through an untrusted network path. <br>
-Mitigation: Use only trusted proxies and leave the proxy setting empty when one is not required. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through Pixiv ranking lookup, keyword search, metadata caching, cache review, and explicit artwork download workflows. The skill can also support authenticated Pixiv account actions when the user intends to like, follow, or monitor artists.
 
-## Reference(s): <br>
-- [Pixiv](https://www.pixiv.net/) <br>
-- [Pixiv ranking endpoint](https://www.pixiv.net/ranking.php) <br>
-- [Pixiv artwork pages](https://www.pixiv.net/artworks/{illust_id}) <br>
-- [ClawHub skill page](https://clawhub.ai/firstmeet1108/pixiv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML configuration, JSON metadata, and downloaded image files when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include cached artwork metadata, Pixiv artwork URLs, local image files, and status text from Pixiv API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Pixiv cookies or OAuth tokens could be exposed if config.yaml is stored in a shared repository or broad workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat config.yaml as a secret file, keep it out of shared repositories, and use restrictive local file permissions.
+
+Risk: OAuth bearer tokens may be exposed during image download requests.
+
+Mitigation: Review the authentication and download flow before use, and avoid sending bearer tokens to image hosts unless the behavior has been corrected.
+
+Risk: Like, follow, download, and monitor commands can perform authenticated Pixiv account actions.
+
+Mitigation: Run these commands only after explicit user confirmation and only with an account intended for those actions.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin and review dependencies before deploying this skill in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Pixiv Skill Release Page](https://clawhub.ai/firstmeet1108/skills/pixiv)
+- [Pixiv](https://www.pixiv.net/)
+- [Pixiv Ranking Endpoint](https://www.pixiv.net/ranking.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus JSON cache files and downloaded image files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default workflows cache metadata before downloading; authenticated actions depend on local Pixiv credentials in config.yaml.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

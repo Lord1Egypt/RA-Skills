@@ -1,41 +1,51 @@
-## Description: <br>
-A/B testing and feature optimization for AI agents. Pick the best option automatically using Multi-Armed Bandits and Contextual Bandits (LinUCB). No data warehouse needed; works from request #1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A/B testing and feature optimization for AI agents that picks the best option automatically using Multi-Armed Bandits and Contextual Bandits (LinUCB), with no data warehouse needed.
 
-## Publisher: <br>
-[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind)
 
-## Use Case: <br>
-Developers and agents use this skill to choose among variants, run A/B tests without fixed sample sizes, optimize prompts or feature choices, and make context-aware selections using OraClaw bandit tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a separately configured OraClaw MCP server and external API key. <br>
-Mitigation: Verify the OraClaw MCP server before installation and use an API key with appropriate limits. <br>
-Risk: Optimization calls may incur paid usage and may include contextual business or user data. <br>
-Mitigation: Monitor paid usage and avoid sending sensitive personal, regulated, or proprietary context unless OraClaw data handling and compliance terms have been confirmed. <br>
+## Use Case:
 
+Developers and agents use this skill to choose the best variant from multiple options, run A/B tests without fixed sample sizes, and make context-aware selections for prompts, feature flags, email subjects, or similar choices.
 
-## Reference(s): <br>
-- [OraClaw Bandit homepage](https://oraclaw.dev/bandit) <br>
-- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/oraclaw-bandit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, text] <br>
-**Output Format:** [Markdown guidance with JSON configuration and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ORACLAW_API_KEY and an OraClaw MCP server; paid optimization calls may apply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The setup uses an unpinned MCP command, and the actual MCP server code is not included in the artifact for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified OraClaw MCP server source, pin dependencies or disable runtime npx installation, and run the MCP process with the minimum environment and file access needed.
+
+## Reference(s):
+
+- [OraClaw Bandit homepage](https://oraclaw.dev/bandit)
+- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/skills/oraclaw-bandit)
+- [ClawHub publisher profile](https://clawhub.ai/user/whatsonyourmind)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API calls]
+
+**Output Format:** [Markdown with JSON configuration and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORACLAW_API_KEY and an OraClaw MCP server connection; optimization calls may incur usage-based pricing.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Generate chibi character generator ai images with AI via the Neta AI image generation API (free trial at neta.art/open). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate chibi character images from text prompts through the Neta AI image generation API.
 
-## Publisher: <br>
-[tomcarranzaem](https://clawhub.ai/user/tomcarranzaem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomcarranzaem](https://clawhub.ai/user/tomcarranzaem)
 
-## Use Case: <br>
-External users and developers use this skill to generate chibi-style character images from text prompts through the Neta/TalesOfAI image API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and the Neta/TalesOfAI API token are sent to api.talesofai.com. <br>
-Mitigation: Use a dedicated or low-privilege token and avoid sending confidential prompt content. <br>
-Risk: Passing tokens directly on the command line can expose secrets through shell history or CI logs. <br>
-Mitigation: Provide tokens through a controlled secret workflow and avoid logging command invocations that include credentials. <br>
-Risk: Image generation depends on an external API and may fail, time out, or be moderated by that service. <br>
-Mitigation: Handle nonzero exits and timeouts in downstream workflows, and review generated image URLs before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to generate chibi character images from text descriptions, optionally controlling image size or reusing a previous picture UUID as a style reference.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomcarranzaem/chibi-gen-skill) <br>
-- [Neta API Access](https://www.neta.art/open/) <br>
-- [TalesOfAI Image Generation API Endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Plain text image URL printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta/TalesOfAI API token and accepts a text prompt, size option, and optional reference picture UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata, package.json) <br>
+Risk: Prompts, reference IDs, and Neta/Tales of AI tokens are sent to an external image generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential prompts, use a low-scope or disposable token, and review the external service terms before use.
+
+Risk: Passing literal tokens on the command line can expose credentials through shell history or process listings.
+
+Mitigation: Prefer environment variables or another secure secret handling method instead of command-line token literals.
+
+## Reference(s):
+
+- [Neta AI Open](https://www.neta.art/open/)
+- [ClawHub Skill Page](https://clawhub.ai/tomcarranzaem/skills/chibi-gen-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; generated image dimensions depend on the selected size option.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

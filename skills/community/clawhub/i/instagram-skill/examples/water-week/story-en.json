@@ -1,0 +1,19 @@
+{
+ "theme": {
+  "preset": "editorial",
+  "mode": "dark",
+  "headline_font": "sans",
+  "accent": "#4FD1E8",
+  "name": "Earth in Numbers",
+  "handle": "@earthinnumbers",
+  "ratio": "9:16"
+ },
+ "slides": [
+  {
+   "type": "text",
+   "title": "How much of Earth's water is *river*?",
+   "body": "Picture all of it in a 1-liter bottle. Guess, then see the answer on our feed in an hour.",
+   "alt": "Story: how much of Earth's water is river? Picture all of it in a 1-liter bottle. Answer on our feed in an hour."
+  }
+ ]
+}

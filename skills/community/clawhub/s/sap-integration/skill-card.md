@@ -1,43 +1,58 @@
-## Description: <br>
-SAP system integration, data extraction, and automation for ABAP, HANA, and S/4HANA environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SAP Integration Suite supports SAP ABAP, HANA, and S/4HANA integration through data extraction, RFC/BAPI calls, API integration, ABAP generation, table analysis, workflow automation, and migration guidance.
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Developers and SAP integration engineers use this skill to extract SAP data, call RFC/BAPI functions, generate ABAP and integration code, analyze SAP tables, automate workflows, and plan S/4HANA migration tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad SAP read and RFC/BAPI execution capability. <br>
-Mitigation: Use a dedicated least-privilege SAP account, prefer read-only roles, and restrict allowed RFC/BAPI functions and tables before deployment. <br>
-Risk: Extracted JSON, CSV, or Excel outputs may expose sensitive business data. <br>
-Mitigation: Treat exported data as sensitive, store it only in approved locations, and apply normal enterprise access controls and retention rules. <br>
-Risk: The security verdict recommends caution before production use. <br>
-Mitigation: Avoid production deployment until the skill has been reviewed and configured for the target SAP environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SAP HANA Integration Guide](artifact/references/hana-integration.md) <br>
-- [S/4HANA Migration Guide](artifact/references/s4hana-migration.md) <br>
-- [SAP Enhancement Framework Guide](artifact/references/enhancement-framework.md) <br>
+## Use Case:
 
+Developers, SAP administrators, and integration engineers use this skill to plan and perform SAP data extraction, RFC/BAPI calls, API integration, ABAP development support, workflow automation, and S/4HANA migration tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with ABAP, Python, SQL, and shell code blocks; bundled scripts may produce JSON, CSV, or Excel data exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script outputs may contain sensitive SAP business data and should be handled under enterprise data controls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad SAP RFC and table-access capabilities can expose or change sensitive enterprise data if installed for broad users.
+
+Mitigation: Install only for authorized SAP administrators or developers, use least-privilege SAP accounts, and restrict which tables and functions can be used.
+
+Risk: Local JSON or Excel exports can contain sensitive SAP business data.
+
+Mitigation: Protect credential and configuration files, and treat exported files as sensitive enterprise data with controlled storage and sharing.
+
+Risk: Production SAP use can affect business systems without proper approval.
+
+Mitigation: Use controlled SAP environments and require change approval before production operations.
+
+## Reference(s):
+
+- [SAP HANA Integration Guide](references/hana-integration.md)
+- [S/4HANA Migration Guide](references/s4hana-migration.md)
+- [SAP Enhancement Framework Guide](references/enhancement-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets, JSON examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local JSON or Excel export guidance when using the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

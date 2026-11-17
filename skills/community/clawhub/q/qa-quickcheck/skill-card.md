@@ -1,49 +1,66 @@
-## Description: <br>
-QA QuickCheck helps agents run PR-oriented static review, dynamic HTTP checks, regression planning, and structured QA reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven daily QA assistant for PR static review, dynamic functional testing, regression strategy, and structured test reports.
 
-## Publisher: <br>
-[houyang995](https://clawhub.ai/user/houyang995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houyang995](https://clawhub.ai/user/houyang995)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to run quick static checks or standard pre-merge QA flows and produce a structured test report with defects, security observations, regression scope, and gate conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Standard mode and helper scripts can perform active project and network testing that may affect services if pointed at the wrong target. <br>
-Mitigation: Run only in an isolated test environment, avoid production services, and review base_url, HTTP test configuration, and any post URL before execution. <br>
-Risk: The data factory supports custom JavaScript expressions from templates. <br>
-Mitigation: Do not use untrusted template files or the $custom data-factory feature unless the expression has been reviewed. <br>
-Risk: Generated or configured HTTP tests can create test data or leave residual records if cleanup is incomplete. <br>
-Mitigation: Use dedicated test data, require rollback or cleanup records for writes, and verify cleanup results in the final report. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to run quick static checks or standard PR checks that combine static audit, dynamic HTTP testing, Git diff regression scope, and structured defect reporting.
 
-## Reference(s): <br>
-- [QA QuickCheck ClawHub Page](https://clawhub.ai/houyang995/skills/qa-quickcheck) <br>
-- [Scheduler and Global Constraints](references/00-调度器.md) <br>
-- [Static Code Audit](references/01-静态代码审计.md) <br>
-- [Dynamic Functional Testing](references/02-动态功能测试.md) <br>
-- [Report Template and Traceability Mapping](references/00-B-报告模板与追溯映射.md) <br>
-- [Regression Test Strategy](references/00-D-回归测试策略.md) <br>
-- [Test Data Management Strategy](references/00-F-测试数据管理策略.md) <br>
-- [QA Pro Suite](https://clawhub.ai/skills/qa-pro-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown test report with structured defect lists, traceability tables, gate conclusions, and inline command/config guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Quick and Standard modes; Standard may run dynamic HTTP checks and regression-focused test planning when the target project environment is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill gives an agent broad automatic testing power that can run project code, probe endpoints, and execute test templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on repositories and services you control, preferably in an isolated test environment with minimal environment variables.
+
+Risk: Standard mode may start a project and send dynamic HTTP checks to the configured target URL.
+
+Mitigation: Review and approve startup commands, target URLs, generated configs, and template files before running Standard mode; avoid production targets.
+
+Risk: Untrusted templates or unpinned package downloads can make automated test execution unsafe.
+
+Mitigation: Avoid untrusted templates and unpinned downloads, and review the exact files and commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/houyang995/skills/qa-quickcheck)
+- [Scheduler and global constraints](references/00-调度器.md)
+- [Defect severity and numbering rules](references/00-A-缺陷定级与编号规则.md)
+- [Report template and traceability mapping](references/00-B-报告模板与追溯映射.md)
+- [Regression testing strategy](references/00-D-回归测试策略.md)
+- [Time budget and timeout handling](references/00-E-时间预算与超时处理.md)
+- [Test data management strategy](references/00-F-测试数据管理策略.md)
+- [Static code audit](references/01-静态代码审计.md)
+- [Test design methodology](references/02-0-测试设计方法论.md)
+- [Dynamic functional testing](references/02-动态功能测试.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown test report with structured summary, conclusions, defects, and report path fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create test-report.md and temporary test files when the agent follows Standard mode.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, manifest, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

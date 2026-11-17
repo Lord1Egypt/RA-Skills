@@ -1,47 +1,66 @@
-## Description: <br>
-Book group flights, team travel tickets and corporate group booking with 10+ passenger discounts and bulk fare deals. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more - powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search group flights, team travel tickets, corporate bookings, and related travel options through the FlyAI CLI with booking links for user-facing results.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users, employees, and travel coordinators use this skill to search real-time group flight options for organizations or groups that need 10 or more seats on the same route. It helps collect route parameters, run flyai CLI searches, apply fallback searches, and return concise booking-oriented Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install or ask the user to install a global flyai CLI package, including a sudo fallback. <br>
-Mitigation: Install the CLI manually only after independently trusting the package source, and avoid automated global or sudo installation in managed environments. <br>
-Risk: Travel queries may include sensitive passenger, passport, or business travel details and the artifact describes optional raw query logging. <br>
-Mitigation: Avoid entering sensitive traveler data unless logging is disabled or controlled, and limit logs to non-sensitive execution metadata where possible. <br>
-Risk: Flight availability and pricing can be wrong if an agent answers from memory or omits validated booking links. <br>
-Mitigation: Require fresh flyai CLI results and include only entries with detailUrl-based booking links. <br>
+## Use Case:
 
+Agents assisting external travel planners, teams, and corporate coordinators use this skill to collect route details, run FlyAI CLI flight searches, and format group-travel options with booking links.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/dingtom336-gif/group-flights) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for live travel data; should not return raw JSON or fabricate flight prices, flight numbers, or booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install a third-party FlyAI CLI globally and includes a sudo installation path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before installation, avoid sudo or automatic global installs, and pin or verify the CLI package before use.
+
+Risk: Travel details may be sent through a third-party travel provider when the CLI is used.
+
+Mitigation: Tell users that FlyAI handles the travel query, collect only needed route details, and use the skill only when that data sharing is acceptable.
+
+Risk: Raw travel queries can be persisted locally through the execution log behavior.
+
+Mitigation: Disable raw query logging by default or redact user travel details before writing any local execution log.
+
+Risk: Commercial booking links are mandatory in formatted results.
+
+Mitigation: Disclose the booking-link behavior and review any commercial relationship before deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/group-flights)
+- [ClawHub publisher profile](https://clawhub.ai/user/dingtom336-gif)
+- [Templates](artifact/references/templates.md)
+- [Playbooks](artifact/references/playbooks.md)
+- [Fallbacks](artifact/references/fallbacks.md)
+- [Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and concise guidance, with inline shell commands for CLI execution and troubleshooting.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output for travel data and includes booking links when flight results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,66 @@
-## Description: <br>
-Extracts YouTube transcript text and converts it into a multi-voice AI podcast using Gemini for script generation, OpenAI TTS for speech, and FFmpeg for audio assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts YouTube video text and converts it into a multi-voice AI podcast using Gemini for script generation, OpenAI TTS, a local Node.js API, and FFmpeg, with WebVTT output.
 
-## Publisher: <br>
-[kaudata](https://clawhub.ai/user/kaudata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaudata](https://clawhub.ai/user/kaudata)
 
-## Use Case: <br>
-Developers and creators use this skill to turn public YouTube video transcripts into editable podcast scripts, synthesized multi-voice audio, and caption files. It is suited for agent-assisted local media generation workflows that can provide Gemini and OpenAI API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Gemini and OpenAI API keys for transcript search, script generation, and speech synthesis. <br>
-Mitigation: Use dedicated .env credentials with spending limits, rotate keys when needed, and avoid entering keys in shared or untrusted environments. <br>
-Risk: Transcript and generated script content is sent to Gemini and OpenAI services. <br>
-Mitigation: Avoid private, sensitive, or regulated video content unless the external service use is approved for that data. <br>
-Risk: The release runs a local Node server, installs npm dependencies, invokes FFmpeg, and creates removable session files. <br>
-Mitigation: Install from trusted package sources, run locally on 127.0.0.1, stop the tracked server process when finished, and use the reset/delete controls for generated files. <br>
+## Use Case:
 
+External users and developers use this skill to turn YouTube videos into multi-host podcast assets, including the original transcript, generated script, M4A audio, WebVTT captions, and downloadable bundles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaudata/youtube-podcaster) <br>
-- [Publisher profile](https://clawhub.ai/user/kaudata) <br>
-- [Source code URL listed in artifact](https://github.com/kaudata/youtube-podcaster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, audio, WebVTT, files, shell commands, configuration] <br>
-**Output Format:** [Plain text transcripts and scripts, M4A audio, WebVTT captions, and ZIP/file downloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated session files are stored locally under a downloads session folder and can be deleted with the skill cleanup controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The local web app stores generated transcript, script, caption, and audio files and exposes them through local download routes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the server only on trusted local machines, keep the localhost binding, delete session folders after use, and avoid processing sensitive content unless local storage is acceptable.
+
+Risk: The security evidence reports overly broad generated-file access and destructive cleanup behavior.
+
+Mitigation: Use predictable, private sessions only in trusted environments; before broad use, add strict session ID validation, session authorization, and safer delete behavior.
+
+Risk: The security evidence reports exploitable handling of AI-produced content in the local web app.
+
+Mitigation: Review generated search, caption, and script content before use; replace unsafe browser rendering with safe text or DOM construction before broad deployment.
+
+Risk: Transcript and script content is sent to Gemini and OpenAI, and API keys are required for normal operation.
+
+Mitigation: Use only content permitted by the user's data-handling policy, protect API keys in the local environment, and rotate keys if they may have been exposed.
+
+Risk: Long-running audio generation and FFmpeg processing may consume local resources, and the security guidance notes missing server timeouts.
+
+Mitigation: Generate bounded workloads, stop the tracked server process after use, and add server timeouts before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaudata/skills/youtube-podcaster)
+- [Publisher profile](https://clawhub.ai/user/kaudata)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance plus local text, WebVTT, M4A audio, and ZIP files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, ffmpeg, curl, GEMINI_API_KEY, and OPENAI_API_KEY; generated files are stored under a local downloads session folder.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,105 @@
+{
+  "shell": "A",
+  "name": "amazon-aba-kw-heat",
+  "cn": "关键词热度分析",
+  "priority": 1,
+  "presets": [
+    "关键词热度趋势",
+    "精确词热度+Top3",
+    "多词/批量词表对比",
+    "季节节日趋势",
+    "品牌词热度追踪"
+  ],
+  "inputs": [
+    {
+      "name": "region",
+      "required": false,
+      "note": "站点，默认 US"
+    },
+    {
+      "name": "keywords",
+      "required": true,
+      "note": "精确关键词列表 keywords[]"
+    },
+    {
+      "name": "weeks",
+      "required": false,
+      "note": "周数，默认 12；或 date 范围"
+    },
+    {
+      "name": "metrics",
+      "required": false,
+      "note": "默认 SFR；可选 top_k_asin"
+    },
+    {
+      "name": "top_k_asin",
+      "required": false,
+      "note": "每词 TopK ASIN，默认 0 或 3"
+    },
+    {
+      "name": "dedupe",
+      "required": false,
+      "note": "默认 identical searchTerm+ASIN keep latest"
+    },
+    {
+      "name": "preset",
+      "required": false,
+      "note": "展示场景 preset 名"
+    },
+    {
+      "name": "createDownloadUrl",
+      "required": false,
+      "note": "bool 默认 false"
+    }
+  ],
+  "l3": "linkfox-aba-data-explorer",
+  "boundaries": [
+    "no absolute search volume",
+    "no sales/price/BSR/launch date",
+    "contains != semantic category",
+    "weekly granularity only"
+  ],
+  "q1": {
+    "object": "ABA精确关键词多周热度(SFR)与可选Top ASIN份额",
+    "site": "Amazon multi-marketplace, default US; region param",
+    "hard_rules": [
+      "SFR lower = hotter",
+      "weekly data ~3y",
+      "use analysisDescription templates from shell",
+      "dedupe default keep latest term+ASIN unless E aggregate=false"
+    ],
+    "pitfalls": [
+      "do not invent absolute volume",
+      "do not split skill by marketplace",
+      "Chinese query on non-CN sites → validate/translate hint"
+    ]
+  },
+  "q2": {
+    "expert_role": "ABA关键词热度分析师",
+    "role": "ABA关键词热度分析师",
+    "goals": [
+      "稳定产出关键词热度分析结果表",
+      "边界清晰拒做并导流"
+    ],
+    "skills": [
+      "拼装 analysisDescription",
+      "调用 L3 ABA",
+      "表格呈现"
+    ],
+    "workflow": [
+      "校验必填入参",
+      "应用 preset → 模板",
+      "调用 L3",
+      "按 Output 呈现；失败读 msg"
+    ],
+    "output_format": "tables + 可选 downloadUrl；注明 SFR 越小越热",
+    "constraints": [
+      "禁止密钥入库",
+      "禁止编造字段",
+      "仅 ABA 搜索词域"
+    ],
+    "inputs_min": [
+      "keywords"
+    ]
+  }
+}

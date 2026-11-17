@@ -1,44 +1,55 @@
-## Description: <br>
-Generate short-lived, mobile-friendly ngrok preview links for local artifacts and share them in Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short-lived, mobile-friendly ngrok preview links for local artifacts and optionally shares them in Telegram so users can view OpenClaw outputs remotely without manual file transfer.
 
-## Publisher: <br>
-[wynnsu](https://clawhub.ai/user/wynnsu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wynnsu](https://clawhub.ai/user/wynnsu)
 
-## Use Case: <br>
-Developers and agents use this skill to expose selected local task outputs through a temporary ngrok preview link for remote viewing, especially on mobile devices. It is intended for narrow, per-task artifacts rather than broad directories or persistent hosting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected local files or directories can be published to a public ngrok URL. <br>
-Mitigation: Verify each --source path before use and include only narrow, non-sensitive task outputs. <br>
-Risk: The advertised expiry is not enforced automatically for a running tunnel. <br>
-Mitigation: Use short TTLs and run the down command with --delete-session-dir or cleanup when the preview is no longer needed. <br>
-Risk: Broad paths can expose credentials, logs, configuration, or unrelated workspace files. <br>
-Mitigation: Avoid home directories, workspace roots, credential folders, logs, and config files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ngrok download documentation](https://ngrok.com/download) <br>
-- [ngrok-preview Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wynnsu/ngrok-preview) <br>
-- [Publisher profile](https://clawhub.ai/user/wynnsu) <br>
+## Use Case:
 
+Developers and agents use this skill to publish task-specific generated files through a temporary ngrok preview link, especially when the user needs to inspect outputs on a phone or remote device.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The up command returns a public URL, expiry timestamp, session ID, stop command, and status command.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public ngrok preview links can expose selected artifacts to anyone with the URL and may remain reachable beyond the advertised expiry if not stopped.
+
+Mitigation: Publish only narrow, non-sensitive task artifacts; use a short TTL; run the provided down command with --delete-session-dir when the preview is no longer needed; and run cleanup for expired sessions.
+
+Risk: Unsafe session identifiers or broad directory sources can expand the amount of local data copied into the preview cache or affect cleanup behavior.
+
+Mitigation: Use simple task-bound session IDs without path characters, avoid workspace-root or broad directory sources, and verify status before deleting session data.
+
+## Reference(s):
+
+- [Ngrok Preview Troubleshooting](references/troubleshooting.md)
+- [ngrok download](https://ngrok.com/download)
+- [ClawHub skill page](https://clawhub.ai/wynnsu/skills/ngrok-preview)
+- [Publisher profile](https://clawhub.ai/user/wynnsu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The preview command returns public_url, expires_at, session_id, stop_command, and status_command.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

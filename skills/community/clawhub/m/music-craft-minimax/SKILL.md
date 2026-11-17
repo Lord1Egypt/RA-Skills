@@ -1,43 +1,92 @@
 ---
 name: music-craft-minimax
-version: 1.5.0
-description: Advanced music generation for OpenClaw, using the MiniMax Music 2.6 token plan. Use for cover and style transfer, two-song mashup, lyrics generation API, emotion-driven prompt engineering, and fine control via the `mmx` CLI. Extends `music-craft` with MiniMax-specific features.
+version: 1.7.1
+description: END OF LIFE — MiniMax music generation no longer works (API closed 2026-08-20, paying accounts get HTTP 410, mmx has no music command); use music-craft with local ACE-Step instead. Kept for reference: former MiniMax-native music generation for OpenClaw — cover and style transfer that preserves melody, two-song mashups, AI lyrics generation and edit, emotion-driven prompt engineering, and per-flag mmx CLI control over BPM, key, structure, and avoid lists. Extends music-craft with MiniMax Music 2.6 features.
 metadata: '{"openclaw":{"requires":{"env":["MINIMAX_API_KEY"],"bins":["python3","ffmpeg","mmx"]},"primaryEnv":"MINIMAX_API_KEY","emoji":"\ud83c\udfb6","homepage":"https://github.com/LuisCharro/skills/tree/main/publish/music-craft-minimax","envVars":[{"name":"MINIMAX_API_KEY","required":true,"description":"API key for the MiniMax Music 2.6 token plan. Required for cover, mashup, lyrics generation, and mmx flag control."}]}}'
 ---
-
 # Music Craft — MiniMax
 
-**Cloud duration is approximate.** Verified field run (2026-06-12): 18/18
-cloud jobs saved an MP3, but output length ranged from 57-135% of requested
-duration (12 truncated, 3 close, 3 extended). Use `music-craft` with local
-ACE-Step when exact duration matters; use this skill when speed, MiniMax cover
-workflows, lyrics API, emotion analysis, or `mmx` flag control matter more.
+> ## ⛔ End of life — MiniMax music generation no longer works (checked 2026-11-08)
+>
+> - MiniMax closed its paid **Music Generation** and **Lyrics Generation** APIs to new users on **2026-08-20**. In practice existing subscribers are cut off too: a request from a paying Token Plan Plus account returned **HTTP 410** ("no longer available") in September 2026.
+> - The free music models (`music-3.0-free`, `music-2.6-free`, `music-cover-free`) are being discontinued.
+> - The current `mmx` CLI (1.0.28) **no longer has a `music` command**, so the `mmx music generate` / `mmx music cover` calls in this skill fail with a current `mmx`.
+> - MiniMax now points to the MiniMax Audio web app and to its open-weights **MiniMax Music 3** model on Hugging Face (`MiniMaxAI/MiniMax-Music3`, custom license). This skill does not support that model.
+>
+> **What to do instead:** use [`music-craft`](../music-craft/) with local ACE-Step for songs, exact-duration vocals, and cover/repaint experiments.
+>
+> **What still works here without MiniMax:** the local analysis and lint scripts (`analyze_audio.py`, `analysis_orchestrator.py`, `emotion_to_prompt.py`, `extract_stems.py`, `lint_music_request.py`, `lint_lyrics.py`, and similar). They need `python3` and `ffmpeg`, not a MiniMax account.
+>
+> **Do not attempt MiniMax generation.** There is no working MiniMax music path, paid or free. Tell the user, and do not retry, ask for a new API key, or suggest a different subscription. This skill is no longer maintained; the cover, mashup, lyrics API and `mmx` flag sections below are kept for reference only.
 
-This is the **power-user upgrade** of [`music-craft`](../music-craft/). It does everything that skill does, plus the features that require the MiniMax Music 2.6 token plan:
 
-- **Cover and style transfer** from a reference audio file (preserves melody)
-- **Two-song mashup** (Song A's content and emotion + Song B's style)
-- **Lyrics generation** via the MiniMax API endpoint (with edit mode for iteration)
-- **Emotion analysis** on input audio to drive prompt construction (vocal speed, intensity curve, pitch bends)
-- **Fine control** over generation parameters (BPM, key, structure, avoid list as separate flags via `mmx`)
+## What is Music Craft — MiniMax?
 
-For everything else (standard song generation, instrumentation, anti-sparse prompt engineering, structure tags, user preference flow), this skill uses the same workflow as `music-craft`. Read that skill first to understand the base, then come back here for the MiniMax-specific extensions.
+Music Craft — MiniMax is the **MiniMax-native power-user upgrade** of [`music-craft`](../music-craft/). It unlocks the features that need the MiniMax Music 2.6 token plan: cover and style transfer that preserves melody, two-song mashups, AI lyrics generation with edit-iter, emotion analysis on input audio, and precise per-flag control over BPM, key, structure, and avoid lists via the `mmx` CLI.
 
-## Data, Consent, and Local Side Effects
+## MiniMax-specific features
 
-This skill is allowed to process music media, but it should not surprise the user:
+- **Cover and style transfer** — preserve the melody of Song X, apply the style of Song Y.
+- **Two-song mashup** — Song A's lyrics and emotion + Song B's style, in one output.
+- **Lyrics generation API** — `write_full_song` for blank-page or `edit` for revisions, with structure tags.
+- **Emotion analysis** — intensity, vocal speed, pitch bends, and 25+ emotion classes drive your prompt.
+- **`mmx` per-flag control** — `--bpm`, `--key`, `--structure`, `--vocals`, `--genre`, `--mood`, `--instruments`, `--avoid` as separate flags; prompt and flags lint-checked before generation.
+- **Quota-aware batch runs** — 5-hour rolling window check before any cloud batch.
 
-- **Cloud generation:** prompts, lyrics, reference audio, and cover/mashup inputs may be sent to MiniMax through `mmx` or MiniMax API calls. Confirm consent before sending sensitive, private, or third-party-owned audio.
-- **Local files only:** audio input must be a local file path. URLs are not accepted in v1.5.0+; use the private `music-source-fetch` skill to fetch audio by title first.
-- **Lyrics:** Whisper transcription of the local audio file is the only lyrics source in this skill. LRCLib web lookup moved to `music-source-fetch`.
-- **Local outputs:** analysis JSON, lyrics, prompts, temporary media, and generated audio are written to user-selected paths or temporary directories.
-- **Overwrites:** helper scripts refuse to replace existing user-visible outputs unless the operator passes an explicit `--overwrite` flag.
+## Why use this instead of music-craft?
 
-There is no image, face, OCR, or VLM pipeline in this skill. Album art, video frames, and similar visual inputs are not analyzed.
+Use **music-craft** when you want a structured default that picks the backend for you, or when exact-duration vocal tracks matter. Use **music-craft-minimax** when you need a MiniMax-only feature — cover, mashup, lyrics API, emotion-driven prompting — or when you specifically want `mmx` flag-level control over BPM, key, structure, or an avoid list.
+
+## Quick Start
+
+1. Decide which MiniMax-only feature you need (cover, mashup, lyrics API, emotion analysis).
+2. Provide one or two source audio files / lyrics / emotion inputs as the skill requests.
+3. The skill picks the right `mmx` flag combination and calls the API.
+4. It lints flags + prompt for conflicts, then runs sequentially (one job at a time, never parallel).
+5. It verifies duration, file size, and quota headroom before delivering.
+
+## When To Use
+
+Use this skill when the task involves:
+
+- generating a cover of an existing song with a different style (chanson version of a rock track, reggaeton version of a pop hit, and so on). Source must be a local file.
+- style transfer from a local audio file to a target genre
+- two-song mashup where Song A's lyrics and emotional arc are kept, but Song B's style is applied
+- emotion analysis on input audio to extract intensity curves, vocal speed, pitch bends, and emotion classifications
+- generating lyrics in a specific language and theme via the MiniMax `lyrics_generation` API
+- editing existing lyrics to match a target style or emotional arc (MiniMax `lyrics_generation` edit mode)
+- using `mmx` CLI directly for fine control over `--avoid`, `--bpm`, `--key`, `--structure`, `--vocals`, `--instruments` as separate flags
+- accessing MiniMax's `music-cover` or `music-cover-free` models for melody preservation
+
+## When NOT To Use
+
+Do not use this skill when:
+
+- the user only needs standard song generation without cover, mashup, or analysis — use `music-craft` instead (lighter, no MiniMax dependency)
+- the runtime does not expose a `music_generate` tool and there is no `MINIMAX_API_KEY` configured — both skills need the runtime
+- the user wants deterministic, single-shot generation with no iteration — overkill
+- the user wants to mutate a specific existing audio file (pitch shift, time stretch, stem split) — that is post-production, not generation
+- the user is not on a MiniMax Token Plan — the advanced features (cover, mmx per-flag control, lyrics API, emotion-driven prompts) require the plan
+- the user needs a reliable full-length 3:00+ song with exact duration — prefer `music-craft` with ACE-Step instead; MiniMax is the right tool when speed, convenience, cover workflows, mashups, or mmx flag control matter more than exact output length
+
+## Decision Tree
+
+Use the base skill unless one of these MiniMax-specific needs is present:
+
+- melody-preserving cover or style transfer from a local audio file
+- two-song mashup
+- lyrics API preview/edit flow
+- emotion analysis that feeds the prompt
+- exact `mmx` control for BPM, key, structure, or avoid lists
+
+If the user wants a new song that only borrows a style, stay in `music-craft` unless they also need exact flag control or lyrics API iteration.
+
+If the user provides a URL, do not attempt to download it. Tell them this skill accepts only local files, and suggest `music-source-fetch` if they need to fetch audio by title.
 
 ## Required MiniMax Workflow
 
 > **Operator rules for MiniMax generations:**
+>
 > - Run MiniMax generations sequentially, not in parallel.
 > - Do not assume the CLI will honor a requested output path — pass `--out` to `mmx` and verify the file exists after each run.
 > - Treat requested duration as a target, not a guarantee. Verified range: 57-135% of requested duration.
@@ -78,6 +127,14 @@ before any multi-output, long-duration, or quota-sensitive cloud run.
 
 Short cloud prompt recipes: [`references/short-prompt-recipes.md`](references/short-prompt-recipes.md).
 
+## Cloud Workflows
+
+For sequential, reproducible, quota-aware `mmx` runs use the typed `mmx_recipe` wrapper pattern: a frozen `MMXReceipt` (argv, output, stdout/stderr, rc, elapsed, optional quota snapshot) plus a `--dry` knob and `check_quota=True` pre-spend snapshot. The skill's [`scripts/generate_with_retry.py`](scripts/generate_with_retry.py) already covers the mmx-music operational contract (transient retry, `--timeout 600`, signal recovery, file move); roadmap v1.1.5 item 17 plans to fold the typed-receipt shape and `--dry` into that wrapper. Reference implementation, contract, and composition recipe: [`references/mmx-recipe-pattern.md`](references/mmx-recipe-pattern.md).
+
+## Quota
+
+The 5-hour rolling window on the MiniMax Token Plan is the real ceiling on this skill, not the documented 120 RPM API limit. Check before any multi-output, quota-sensitive, or batch cloud run with `mmx quota show --output json` (or the HTTP `/v1/token_plan/remains` endpoint), and short-circuit the batch when headroom is low. **For pre-flight gates, use the shipped [`scripts/check-quota.py`](scripts/check-quota.py)** (verified against `mmx` CLI v1.0.16; supports `--quiet` / `--budget N` / `--json`). Coverage, cost-per-call estimates, and the live-check commands: [`references/quota-checking.md`](references/quota-checking.md).
+
 ## Routing and Blocker Checks
 
 Classify the request before analysis or generation:
@@ -92,7 +149,7 @@ Classify the request before analysis or generation:
 The [`scripts/lint_music_request.py`](scripts/lint_music_request.py) helper emits one of these routes:
 
 | Route | When |
-|---|---|
+| --- | --- |
 | `base_prompt` | Standard generation, no MiniMax-specific feature needed. |
 | `minimax_cover` | Melody-preserving cover from a local audio file. |
 | `minimax_mashup` | Two-song mashup (A + B, both identified). |
@@ -122,116 +179,6 @@ After you have prompt text and `mmx` flags, lint them together before generation
 - stop when prompt text exceeds 2000 UTF-8 bytes (observed API rejection at 2079 bytes)
 
 If the user only has a text reference, route to the free-tool path in `references/free-tool-inputs.md` first. If the user has audio, analyze first and only then build the prompt. The linter returns a `retry_guidance` array with one hint per conflict so the operator can re-align prompt and flags on the next attempt.
-
-## When To Use
-
-Use this skill when the task involves:
-
-- generating a cover of an existing song with a different style (chanson version of a rock track, reggaeton version of a pop hit, and so on). Source must be a local file.
-- style transfer from a local audio file to a target genre
-- two-song mashup where Song A's lyrics and emotional arc are kept, but Song B's style is applied
-- emotion analysis on input audio to extract intensity curves, vocal speed, pitch bends, and emotion classifications
-- generating lyrics in a specific language and theme via the MiniMax `lyrics_generation` API
-- editing existing lyrics to match a target style or emotional arc (MiniMax `lyrics_generation` edit mode)
-- using `mmx` CLI directly for fine control over `--avoid`, `--bpm`, `--key`, `--structure`, `--vocals`, `--instruments` as separate flags
-- accessing MiniMax's `music-cover` or `music-cover-free` models for melody preservation
-
-## Request Intake (adapted for MiniMax features)
-
-After the Routing and Blocker Checks classify the request, run this 2-pass intake to extract the full set of fields the user cares about. Label each field's confidence: **clear** (user said it), **inferred** (sensible default), **missing** (need to ask), or **conflicting** (user said two incompatible things — pause to resolve).
-
-### Fields checklist (MiniMax-specific)
-
-| # | Field | What to look for | MiniMax-specific notes |
-|---|---|---|---|
-| 1 | Route | Cover / style transfer / mashup / standard / emotion prompt | From the Routing and Blocker Checks section. Determines which MiniMax features to use. |
-| 2 | Source audio | Local file path | Required for cover, mashup, style transfer. For standard, optional (text-only style reference is also fine). |
-| 3 | Song A identity | Name, artist, audio | For mashup: needed. For cover: this is the source. |
-| 4 | Song B identity | Name, artist, audio | For mashup only. |
-| 5 | Target style | Genre / mood / reference | The destination of the cover or style transfer. If user says "like Rosalía", that's clear. If user says "something good", that's missing. |
-| 6 | Lyrics decision | Original / translated / new / instrumental | For cover, default to original (translated if user requests it). For standard, default to new (or user-provided). |
-| 7 | Vocal mode | Solo / duet / choir / instrumental | Drives `--vocals` and `--language` flags. |
-| 8 | Language | BCP-47 code (en, fr, es, etc.) | For lyrics language AND vocal language. |
-| 9 | Duration | Approximate length (jingle ~30s, standard ~3min, epic ~6min) | `--length` is a hint in milliseconds, not a guarantee. Length is still driven mainly by lyrics + structure. |
-| 10 | BPM, key, structure | Exact values if user wants `--bpm`/`--key`/`--structure` | Optional. If provided, the prompt AND flags must agree (lint them). |
-| 11 | Emotion arc | For emotion-prompt workflows: which emotions to emphasize | Drives the analysis-to-prompt translation. |
-| 12 | **Output location** | Where the audio and analysis files go | Same as the base skill — per-song subfolder in `~/Music mix/<project>/<song-slug>/`. |
-
-Confidence map example: [`references/examples.md`](references/examples.md).
-
-If any field is **missing** or **conflicting**, that's a question to ask. The `Ambiguity Questions` section below has specific patterns for each route. If everything is **clear** or **inferred**, the request is ready to translate.
-
-## User Preference Flow (message patterns → action)
-
-The skill does not start with a questionnaire. It starts by reading and inferring from the user's natural-language request.
-
-| User says... | Skill does... |
-|---|---|
-| "Haz un cover de X en Y" | Route: `minimax_cover`. Ask: local source audio file path, target language for lyrics, vocal register. |
-| "Make this song sound like Rosalía" | Route: `minimax_style_transfer`. Ask: source audio, which album/era of Rosalía. |
-| "I have audio of A, mash with B, keep A's melody" | Route: `minimax_mashup`. Ask: A vs B confirmation, source audio for A, B can be name or audio. |
-| "Analyze the emotion curve of this track" | Route: `minimax_emotion_prompt` (analysis-only). Run `analysis_orchestrator.py --audio` first, then read the JSON. |
-| "I want the lyrics to be about X, in French, melancholic" | Route: `base_prompt` (standard). Use the lyrics API to generate, then pass to `mmx music generate --lyrics-file`. Ask: target BPM/key/structure or derive from analysis. |
-| "Recreate the song but in 90 BPM D minor" | Route: `base_prompt` with `mmx` flags. Lint prompt vs flags before generation. Verify BPM/key consistency. |
-| "I don't know, surprise me" | Pick a coherent default (e.g. upbeat indie pop, EN, ~3min, auto-lyrics, standard generation) and confirm with the user before generating. |
-| "Same song again but as a reggaeton version" | Route: `minimax_cover` with the existing song as source. Use the same project/song subfolder, suffix the MP3 (`M1_original.mp3` + `M2_reggaeton.mp3`). |
-
-This table is the **abstract** of `references/user-preference-flow.md` (which lives in the base skill). If you want a more detailed case, defer to the base skill's table and combine with this skill's route mapping.
-
-## Output File Layout (Per-Song Subfolders)
-
-**MiniMax-specific additions** (drop these into the per-song subfolder alongside the base items):
-
-| File | Source | Notes |
-|---|---|---|
-| `<song-slug>_analysis.json` | `analysis_orchestrator.py --output` | MiniMax-specific analysis results (emotion, BPM, key, segments) |
-| `<song-slug>_lyrics.txt` | `mmx music generate --lyrics-file` | Optional if user provided lyrics inline |
-| `<song-slug>_<style>_prompt.txt` | The exact text passed to `--prompt` | For reproducibility |
-
-The LLM should aim for the base skill's layout by default. The MiniMax-specific files are added on top when MiniMax features are used (cover workflow, mashup, analysis, etc.).
-
-If the runtime needs a `MEDIA:` delivery path, use a path without spaces or
-copy the final file into a workspace media folder first. Keep the archival copy
-in the per-song output folder.
-
-## Quick Start with the Orchestrator
-
-One entry point for all input analysis:
-
-```bash
-python3 scripts/analysis_orchestrator.py --audio /tmp/song.wav
-```
-
-It routes local audio files and two-song pairs to the right extractors.
-URLs, video, and images are no longer supported as input to this skill.
-Full per-input commands, extraction guidance, and the per-song output
-layout:
-[`references/orchestrator-quickstart.md`](references/orchestrator-quickstart.md).
-
-## When NOT To Use
-
-Do not use this skill when:
-
-- the user only needs standard song generation without cover, mashup, or analysis — use `music-craft` instead (lighter, no MiniMax dependency)
-- the runtime does not expose a `music_generate` tool and there is no `MINIMAX_API_KEY` configured — both skills need the runtime
-- the user wants deterministic, single-shot generation with no iteration — overkill
-- the user wants to mutate a specific existing audio file (pitch shift, time stretch, stem split) — that is post-production, not generation
-- the user is not on a MiniMax Token Plan — the advanced features (cover, mmx per-flag control, lyrics API, emotion-driven prompts) require the plan
-- the user needs a reliable full-length 3:00+ song with exact duration — prefer `music-craft` with ACE-Step instead; MiniMax is the right tool when speed, convenience, cover workflows, mashups, or mmx flag control matter more than exact output length
-
-## Decision Tree
-
-Use the base skill unless one of these MiniMax-specific needs is present:
-
-- melody-preserving cover or style transfer from a local audio file
-- two-song mashup
-- lyrics API preview/edit flow
-- emotion analysis that feeds the prompt
-- exact `mmx` control for BPM, key, structure, or avoid lists
-
-If the user wants a new song that only borrows a style, stay in `music-craft` unless they also need exact flag control or lyrics API iteration.
-
-If the user provides a URL, do not attempt to download it. Tell them this skill accepts only local files, and suggest `music-source-fetch` if they need to fetch audio by title.
 
 ## Audio Source (Local Only)
 
@@ -266,12 +213,70 @@ Use these exact patterns when clarification is needed:
 - **Emotion prompt**: "Do you want cover, mashup, or standard generation?" "What language should the output use?" "Should I prioritize tenderness, energy, or structure?"
 - **mmx precision**: "Which values are mandatory: BPM, key, structure, or avoid list?" "Any instruments or vocals that must stay in or stay out?"
 
+## Request Intake (adapted for MiniMax features)
+
+After the Routing and Blocker Checks classify the request, run this 2-pass intake to extract the full set of fields the user cares about. Label each field's confidence: **clear** (user said it), **inferred** (sensible default), **missing** (need to ask), or **conflicting** (user said two incompatible things — pause to resolve).
+
+### Fields checklist (MiniMax-specific)
+
+| # | Field | What to look for | MiniMax-specific notes |
+| --- | --- | --- | --- |
+| 1 | Route | Cover / style transfer / mashup / standard / emotion prompt | From the Routing and Blocker Checks section. Determines which MiniMax features to use. |
+| 2 | Source audio | Local file path | Required for cover, mashup, style transfer. For standard, optional (text-only style reference is also fine). |
+| 3 | Song A identity | Name, artist, audio | For mashup: needed. For cover: this is the source. |
+| 4 | Song B identity | Name, artist, audio | For mashup only. |
+| 5 | Target style | Genre / mood / reference | The destination of the cover or style transfer. If user says "like Rosalía", that's clear. If user says "something good", that's missing. |
+| 6 | Lyrics decision | Original / translated / new / instrumental | For cover, default to original (translated if user requests it). For standard, default to new (or user-provided). |
+| 7 | Vocal mode | Solo / duet / choir / instrumental | Drives `--vocals` and `--language` flags. |
+| 8 | Language | BCP-47 code (en, fr, es, etc.) | For lyrics language AND vocal language. |
+| 9 | Duration | Approximate length (jingle ~30s, standard ~3min, epic ~6min) | `--length` is a hint in milliseconds, not a guarantee. Length is still driven mainly by lyrics + structure. |
+| 10 | BPM, key, structure | Exact values if user wants `--bpm`/`--key`/`--structure` | Optional. If provided, the prompt AND flags must agree (lint them). |
+| 11 | Emotion arc | For emotion-prompt workflows: which emotions to emphasize | Drives the analysis-to-prompt translation. |
+| 12 | **Output location** | Where the audio and analysis files go | Same as the base skill — per-song subfolder in `~/Music mix/<project>/<song-slug>/`. |
+
+Confidence map example: [`references/examples.md`](references/examples.md).
+
+If any field is **missing** or **conflicting**, that's a question to ask. The `Ambiguity Questions` section below has specific patterns for each route. If everything is **clear** or **inferred**, the request is ready to translate.
+
+## User Preference Flow (message patterns → action)
+
+The skill does not start with a questionnaire. It starts by reading and inferring from the user's natural-language request.
+
+| User says... | Skill does... |
+| --- | --- |
+| "Haz un cover de X en Y" | Route: `minimax_cover`. Ask: local source audio file path, target language for lyrics, vocal register. |
+| "Make this song sound like Rosalía" | Route: `minimax_style_transfer`. Ask: source audio, which album/era of Rosalía. |
+| "I have audio of A, mash with B, keep A's melody" | Route: `minimax_mashup`. Ask: A vs B confirmation, source audio for A, B can be name or audio. |
+| "Analyze the emotion curve of this track" | Route: `minimax_emotion_prompt` (analysis-only). Run `analysis_orchestrator.py --audio` first, then read the JSON. |
+| "I want the lyrics to be about X, in French, melancholic" | Route: `base_prompt` (standard). Use the lyrics API to generate, then pass to `mmx music generate --lyrics-file`. Ask: target BPM/key/structure or derive from analysis. |
+| "Recreate the song but in 90 BPM D minor" | Route: `base_prompt` with `mmx` flags. Lint prompt vs flags before generation. Verify BPM/key consistency. |
+| "I don't know, surprise me" | Pick a coherent default (e.g. upbeat indie pop, EN, ~3min, auto-lyrics, standard generation) and confirm with the user before generating. |
+| "Same song again but as a reggaeton version" | Route: `minimax_cover` with the existing song as source. Use the same project/song subfolder, suffix the MP3 (`M1_original.mp3` + `M2_reggaeton.mp3`). |
+
+This table is the **abstract** of `references/user-preference-flow.md` (which lives in the base skill). If you want a more detailed case, defer to the base skill's table and combine with this skill's route mapping.
+
+## Output File Layout (Per-Song Subfolders)
+
+**MiniMax-specific additions** (drop these into the per-song subfolder alongside the base items):
+
+| File | Source | Notes |
+| --- | --- | --- |
+| `<song-slug>_analysis.json` | `analysis_orchestrator.py --output` | MiniMax-specific analysis results (emotion, BPM, key, segments) |
+| `<song-slug>_lyrics.txt` | `mmx music generate --lyrics-file` | Optional if user provided lyrics inline |
+| `<song-slug>_<style>_prompt.txt` | The exact text passed to `--prompt` | For reproducibility |
+
+The LLM should aim for the base skill's layout by default. The MiniMax-specific files are added on top when MiniMax features are used (cover workflow, mashup, analysis, etc.).
+
+If the runtime needs a `MEDIA:` delivery path, use a path without spaces or
+copy the final file into a workspace media folder first. Keep the archival copy
+in the per-song output folder.
+
 ## Relationship to `music-craft`
 
 This skill **extends** the base skill, it does not replace it. The shared concepts are:
 
 | Concept | Where it lives |
-|---|---|
+| --- | --- |
 | Pre-Flight Check (platform detection) | This skill (extended required list) |
 | Anti-sparse rules (canonical text) | Base skill, referenced from here |
 | Prompt formula (production sheet) | Base skill, referenced from here |
@@ -285,7 +290,7 @@ This skill **extends** the base skill, it does not replace it. The shared concep
 The MiniMax-specific additions are:
 
 | MiniMax concept | Where it lives |
-|---|---|
+| --- | --- |
 | `mmx` CLI quick reference | This skill |
 | `mmx` full flag reference | This skill, [`references/mmx-flags-reference.md`](references/mmx-flags-reference.md) |
 | Cover workflow (one-step, two-step) | This skill, [`references/cover-workflow.md`](references/cover-workflow.md) |
@@ -413,7 +418,7 @@ Analysis scripts in `scripts/` produce different views (emotion, beats, melody, 
 Every analysis result should include a `summary` object with these keys:
 
 | Key | Type | Meaning |
-|---|---|---|
+| --- | --- | --- |
 | `tempo` | string | BPM value with confidence, e.g. `120 BPM (confidence 0.92)` |
 | `key` | string | Detected key, e.g. `E minor (confidence 0.71)` |
 | `sections` | list | Section labels with timing, e.g. `[{"label": "verse", "start": 0.0, "end": 28.5}, ...]` |
@@ -450,10 +455,10 @@ Full deep-dive with observed failure modes, mitigation steps, and the canonical 
 
 Same 8-point checklist as the base skill, plus 4 MiniMax-specific items:
 
-9. **Cover preserves melody recognisably.** If the user said "make it sound like Song X", the new version should be recognisable as Song X's melody with Song Y's style.
-10. **Emotion curve matches Song A** (for mashups). The dynamic arc of the output should follow the original's intensity, not flatten to a single energy.
-11. **`--avoid` flags are respected.** If the user said "no electronic sounds", the output should not have synths.
-12. **Per-flag control worked** (BPM, key, structure). If the user asked for 80 BPM in E minor, the output should be in that range, not "close enough".
+1. **Cover preserves melody recognisably.** If the user said "make it sound like Song X", the new version should be recognisable as Song X's melody with Song Y's style.
+2. **Emotion curve matches Song A** (for mashups). The dynamic arc of the output should follow the original's intensity, not flatten to a single energy.
+3. **`--avoid` flags are respected.** If the user said "no electronic sounds", the output should not have synths.
+4. **Per-flag control worked** (BPM, key, structure). If the user asked for 80 BPM in E minor, the output should be in that range, not "close enough".
 
 ## Output Verification (Covers, Mashups, Style Transfer)
 
@@ -477,13 +482,18 @@ If the user wants specific words, the `lyrics_generation` API's `edit` mode lets
 - [`references/mashup-workflow.md`](references/mashup-workflow.md) — two-song mashup workflow, emotion-to-prompt conversion, decision tree
 - [`references/emotion-analysis.md`](references/emotion-analysis.md) — 25+ emotion classifications + per-emotion detection cookbook + emotion combinations + the analysis pipeline
 - [`references/emotion-delivery.md`](references/emotion-delivery.md) — 21 emotion recipes for the OUTPUT + iteration loop + common mistakes
+- [`references/vocal-workflow.md`](references/vocal-workflow.md) — end-to-end vocal workflow (preflight → generation → post-processing → validation → delivery); Gate 5 lessons from the youtube-studio vocal pilot
 - [`references/orchestrator-quickstart.md`](references/orchestrator-quickstart.md) — per-input orchestrator commands (audio, two-song pairs), extraction guidance, per-song output layout
 - [`references/minimax-generation-caveats.md`](references/minimax-generation-caveats.md) — sequential-run rules, output-file verification, duration-is-a-target caveats, and delivery copy templates
 - [`references/short-prompt-recipes.md`](references/short-prompt-recipes.md) — short prompt recipes for reliable cloud iterations under about 500 characters
 - [`references/advanced-audio-analysis.md`](references/advanced-audio-analysis.md) — advanced free tools (Essentia, Demucs, Basic Pitch, Music21, CREPE) for deeper analysis when basic librosa/parselmouth is not enough
 - [`references/error-handling.md`](references/error-handling.md) — MiniMax-specific error table, recovery patterns, anti-sparse failure recovery
+- [`references/mmx-recipe-pattern.md`](references/mmx-recipe-pattern.md) — typed `MMXReceipt` wrapper pattern around `mmx` (argv, dry-run, quota snapshot, audit trail); the roadmap target for `generate_with_retry.py`
+- [`references/quota-checking.md`](references/quota-checking.md) — Token Plan Plus 5h rolling quota fundamentals, subcommand coverage, cost-per-call estimates, and live-check commands
+- [`references/music-3-migration.md`](references/music-3-migration.md) — Music 3.0 migration path (BLOCKED: `music-3.0` exists in API but `mmx` CLI v1.0.16 does not expose it; checklist for when mmx adds the model)
 - [`references/free-tool-inputs.md`](references/free-tool-inputs.md) — MiniMax layer: free-tool routing, blocker checks, and prompt/flag conflict lint before analysis
 - [`scripts/check_environment.py`](scripts/check_environment.py) — lightweight preflight diagnostic for Python, env vars, CLI tools, and optional packages
+- [`scripts/check-quota.py`](scripts/check-quota.py) — Token Plan Plus quota checker: prints summary, supports `--quiet` / `--budget N` / `--json`; verified against `mmx` CLI v1.0.16
 - [`scripts/lint_music_request.py`](scripts/lint_music_request.py) — standard-library helper for routing, blocker, missing-field, prompt, lyrics-tag, duration-density, and `mmx` flag conflict checks
 - [`scripts/lint_lyrics.py`](scripts/lint_lyrics.py) — standard-library lyrics preflight for section-tag whitelist checks and syllable/BPM duration estimates
 - [`scripts/verify_lyrics_alignment.py`](scripts/verify_lyrics_alignment.py) — standard-library post-generation transcript-vs-lyrics overlap check for semantic delivery
@@ -497,3 +507,54 @@ If the user wants specific words, the `lyrics_generation` API's `edit` mode lets
 - [`music-craft`](../music-craft/) — base skill with shared concepts (Pre-Flight, anti-sparse, prompt formula, structure tags, Request Intake, User Preference Flow)
 - [`music-craft` → references/free-tool-inputs.md](../music-craft/references/free-tool-inputs.md) — base layer for free tool inputs (web_fetch, web_search, image, memory)
 - [`references/changelog.md`](references/changelog.md) — release history (v1.4.1, v1.4.0, v1.3.0, v1.1.0, v1.0.0, v0.3.0); operating guidance lives in the topic references
+
+## Data, Consent, and Local Side Effects
+
+This skill is allowed to process music media, but it should not surprise the user:
+
+- **Cloud generation:** prompts, lyrics, reference audio, and cover/mashup inputs may be sent to MiniMax through `mmx` or MiniMax API calls. Confirm consent before sending sensitive, private, or third-party-owned audio.
+- **Local files only:** audio input must be a local file path. URLs are not accepted in v1.5.0+; use the private `music-source-fetch` skill to fetch audio by title first.
+- **Lyrics:** Whisper transcription of the local audio file is the only lyrics source in this skill. LRCLib web lookup moved to `music-source-fetch`.
+- **Local outputs:** analysis JSON, lyrics, prompts, temporary media, and generated audio are written to user-selected paths or temporary directories.
+- **Overwrites:** helper scripts refuse to replace existing user-visible outputs unless the operator passes an explicit `--overwrite` flag.
+
+There is no image, face, OCR, or VLM pipeline in this skill. Album art, video frames, and similar visual inputs are not analyzed.
+
+## Licensing and commercial-use gate
+
+ClawHub publishes this skill bundle under MIT-0, so these instructions and
+bundled helper code may be used, modified, and redistributed commercially
+without attribution. MIT-0 does not grant a MiniMax license or transfer
+rights to any input or output. Each operator must use their own MiniMax account/API key, accept the
+current applicable MiniMax terms, and verify that their specific Token Plan,
+API product, and region allow the intended commercial use. Do not share an
+API key through the skill or use the maintainer's account.
+
+The MiniMax Open Platform terms and the consumer MiniMax app/web terms are
+different products and can impose different restrictions. This skill uses the
+API/CLI path; do not infer API commercial rights from a web-app subscription
+or from third-party marketing claims. If the applicable product terms are
+unclear, do not release the generated track commercially until MiniMax
+confirms the rights in writing.
+
+Before cloud generation, the operator must own or have permission to upload
+reference audio, lyrics, samples, and voices. A paid plan does not legalize a
+copyrighted cover, unauthorized voice, or unlicensed lyrics. AI-generated
+audio may also lack copyright protection or exclusivity under local law.
+
+**Cloud duration is approximate.** Verified field run (2026-06-12): 18/18
+cloud jobs saved an MP3, but output length ranged from 57-135% of requested
+duration (12 truncated, 3 close, 3 extended). Use `music-craft` with local
+ACE-Step when exact duration matters; use this skill when speed, MiniMax cover
+workflows, lyrics API, emotion analysis, or `mmx` flag control matter more.
+
+This is the **power-user upgrade** of [`music-craft`](../music-craft/). It does everything that skill does, plus the features that require the MiniMax Music 2.6 token plan:
+
+- **Cover and style transfer** from a reference audio file (preserves melody)
+- **Two-song mashup** (Song A's content and emotion + Song B's style)
+- **Lyrics generation** via the MiniMax API endpoint (with edit mode for iteration)
+- **Emotion analysis** on input audio to drive prompt construction (vocal speed, intensity curve, pitch bends)
+- **Fine control** over generation parameters (BPM, key, structure, avoid list as separate flags via `mmx`)
+
+For everything else (standard song generation, instrumentation, anti-sparse prompt engineering, structure tags, user preference flow), this skill uses the same workflow as `music-craft`. Read that skill first to understand the base, then come back here for the MiniMax-specific extensions.
+

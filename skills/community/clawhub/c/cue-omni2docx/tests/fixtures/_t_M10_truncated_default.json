@@ -1,0 +1,1 @@
+{"markdown": "# 示例截断文档（合成语料）\n（本文件为回归测试合成语料，与任何真实机构、个人及数据无关）\n\n## 第一节\n示例内容正常，段落完整。\n\n## 第二节\n本段故意截断，用于测试容错：后续分析应当包括市场结构、流动性与\n", "grounding": null, "outline": null, "source": "synthetic-fixture", "detail": "text"}

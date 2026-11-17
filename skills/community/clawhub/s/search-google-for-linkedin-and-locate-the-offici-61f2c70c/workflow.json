@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "oyster-workflow-graph-v2",
+  "workflowId": "workflow.a15dcc0297b3fc2c",
+  "name": "Find official LinkedIn result via Google",
+  "goal": "Find the official LinkedIn entry point from Google search results.",
+  "entryNodeId": "search-linkedin",
+  "nodes": [
+    {
+      "id": "search-linkedin",
+      "title": "Search Google for LinkedIn",
+      "hints": [
+        "Use Google search rather than typing a potentially incomplete or unverified URL directly."
+      ],
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "action",
+      "objective": "Start from Chrome and submit a Google web search for the query “linkedin.”",
+      "act": [
+        "Open Google Chrome to a new tab or another Google search entry point.",
+        "Enter “linkedin” in the address bar or Google search box and submit the search."
+      ],
+      "operationApp": "Google Chrome"
+    },
+    {
+      "id": "wait-for-results",
+      "title": "Wait for Google results",
+      "hints": [],
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "wait",
+      "waitFor": "Google search results page for the submitted query to load.",
+      "resumeCondition": "The results page is visible and shows the query “linkedin.”"
+    },
+    {
+      "id": "locate-official-result",
+      "title": "Locate official LinkedIn entry point",
+      "hints": [
+        "The official result indicator may appear as “LinkedIn: Log In or Sign Up” from linkedin.com."
+      ],
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "action",
+      "objective": "Identify the official LinkedIn result on the Google results page.",
+      "act": [
+        "Confirm the results are for “linkedin.”",
+        "Find the official linkedin.com result, such as “LinkedIn: Log In or Sign Up.”"
+      ],
+      "operationApp": "Google Chrome"
+    },
+    {
+      "id": "official-result-located",
+      "title": "Official LinkedIn result located",
+      "hints": [],
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "terminal",
+      "outcome": "completed",
+      "summary": "The Google results page for “linkedin” is loaded and the official LinkedIn log in or sign up result from linkedin.com is visible."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "search-to-wait",
+      "from": "search-linkedin",
+      "to": "wait-for-results",
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "default"
+    },
+    {
+      "id": "results-loaded",
+      "from": "wait-for-results",
+      "to": "locate-official-result",
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "resume",
+      "when": "Google results page for “linkedin” has loaded."
+    },
+    {
+      "id": "located-to-complete",
+      "from": "locate-official-result",
+      "to": "official-result-located",
+      "sourceRefs": [
+        {
+          "kind": "skill",
+          "ref": "skill:a15dcc0297b3fc2c",
+          "label": "Search Google for LinkedIn and locate the official sign-in result"
+        },
+        {
+          "kind": "episode",
+          "ref": "episode:20260717T022346Z-g5ybl8:20260717T022346Z-g5ybl8-ep-0001",
+          "label": "20260717T022346Z-g5ybl8-ep-0001"
+        }
+      ],
+      "type": "default"
+    }
+  ],
+  "source": {
+    "skillId": "a15dcc0297b3fc2c",
+    "skillSchemaVersion": "openclaw-skill-v1",
+    "skillGeneratedAt": "2026-07-17T02:24:50.896Z",
+    "promptSet": "specific-v32",
+    "runId": "20260717T022346Z-g5ybl8",
+    "runDir": "/Users/luckill/Library/Application Support/oysterworkflow/runs/ui-recording-codex-20260716-192309-m84sds/ingest/runs/20260717T022346Z-g5ybl8",
+    "episodeId": "20260717T022346Z-g5ybl8-ep-0001"
+  },
+  "revision": {
+    "number": 1,
+    "revisionId": "workflow.a15dcc0297b3fc2c:rev-1:ebb729b57019",
+    "previousRevisionId": null,
+    "contentHash": "ebb729b570190ec3e0b84c5ff53a9f4ff35142589e13a44471af76aad11f45df",
+    "createdAt": "2026-07-17T02:25:19.556Z"
+  }
+}

@@ -1,40 +1,52 @@
-## Description: <br>
-Call 2 get-user-note-list versions for Xiaohongshu (RedNote) User Published Notes through JustOneAPI with userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the JustOneAPI Xiaohongshu get-user-note-list v2 or v4 endpoint to retrieve a user's published RedNote notes by userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external agents use this skill to call JustOneAPI for Xiaohongshu (RedNote) account monitoring, retrieving a user's published-note metadata, covers, and publish times by userId. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token and submitted Xiaohongshu user IDs may be exposed through command arguments, request URLs, chat, screenshots, logs, or monitoring systems. <br>
-Mitigation: Keep JUST_ONE_API_TOKEN out of chat, screenshots, shell history, shared logs, and monitoring systems; rotate the token if a command line or request URL may have been exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to retrieve and summarize Xiaohongshu (RedNote) published-note metadata, covers, publish times, and pagination state for account monitoring through JustOneAPI.
 
-## Reference(s): <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_get_user_note_list&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_get_user_note_list&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summary with endpoint details and optional raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; uses userId and optional lastCursor query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The API token may be exposed through command-line process listings or URL/query logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, scoped JustOneAPI tokens when available, avoid broad permissions, rotate tokens after use, and keep token values out of chat messages, screenshots, and logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-get-user-note-list)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_get_user_note_list&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_get_user_note_list&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes the endpoint response before returning raw JSON and includes backend error payloads when calls fail.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

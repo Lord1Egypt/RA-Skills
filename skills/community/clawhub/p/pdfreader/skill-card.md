@@ -1,41 +1,47 @@
-## Description: <br>
-Extract text and metadata from PDF files using PyMuPDF, supporting large files and outputting results in JSON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text and metadata from PDF files using PyMuPDF, with optional JSON output for agent-readable results.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers and agents use this skill to extract readable text and basic metadata from local PDF files, then write the extracted content to JSON for downstream review or analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON can contain sensitive text and metadata extracted from the source PDF. <br>
-Mitigation: Treat output files as sensitive document derivatives and store or share them only in approved locations. <br>
-Risk: Path checks rely on the current working directory and should not be treated as a strong sandbox, especially around symlinks. <br>
-Mitigation: Run the script from a controlled working directory and avoid symlinks or untrusted file paths. <br>
-Risk: The skill depends on PyMuPDF being installed in the execution environment. <br>
-Mitigation: Install PyMuPDF from a trusted package source before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pdfreader on ClawHub](https://clawhub.ai/nantes/pdfreader) <br>
+## Use Case:
+
+Developers and agents use this skill to inspect local PDF files, extract page text and document metadata, and optionally write the extracted content to JSON for downstream reading.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The stated current-directory file boundary can be bypassed with symlinks, allowing unintended local file reads or overwrites.
+
+Mitigation: Review before installing, run only in a trusted working directory, avoid untrusted symlinks, use a virtual environment with a pinned PyMuPDF version, and do not rely on the current-directory restriction until path handling is fixed to reject or safely resolve symlinks.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated JSON may contain extracted PDF text and metadata; extraction can be limited by page count.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text summary or JSON file containing PDF metadata and extracted page text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional page limit and optional .json output path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Unified information services hub combining location, weather, and time capabilities, including multi-source geolocation, fixed-point weather forecasts, and multi-source time reporting with confidence scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified information services hub combining location, weather, and time capabilities with multi-source geolocation, fixed-point weather forecasts, and multi-source time reporting with confidence scoring.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Developers and agent users use this skill to route location, weather, and time requests through one interface and return structured results with confidence scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can infer precise or approximate location and contact external weather or time services. <br>
-Mitigation: Review before installing, prefer manual city or coarse-location input, and require confirmation before GPS, system, IP, WiFi, or cellular lookup. <br>
-Risk: Optional geolocation API keys may expand location lookup capabilities. <br>
-Mitigation: Provide optional geolocation API keys only when needed and apply provider-side restrictions. <br>
+## Use Case:
 
+External users and developers use this skill to route location, weather, and time requests through one interface and receive structured results with confidence scores.
 
-## Reference(s): <br>
-- [Information Services on ClawHub](https://clawhub.ai/johnsmithfan/information-services) <br>
-- [Publisher profile](https://clawhub.ai/user/johnsmithfan) <br>
-- [Location Service](references/location.md) <br>
-- [Weather Service](references/weather.md) <br>
-- [Time Service](references/time.md) <br>
-- [Information Services Method Patterns and Coordination](references/method-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance, configuration] <br>
-**Output Format:** [JSON objects and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include service-specific data and confidence scores; optional geolocation API keys can improve accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can collect precise location data and send location or time queries to external providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for user consent before using current-location sources, prefer manual city or coarse location when sufficient, and disclose which provider receives each query.
+
+Risk: Broad requests can trigger multiple services and disclose more context than the user intended.
+
+Mitigation: Route to the narrowest matching service by default and run all services only when the user explicitly requests combined location, weather, and time output.
+
+Risk: Optional geolocation provider credentials may be required for enhanced accuracy.
+
+Mitigation: Store credentials only in environment variables and avoid echoing, logging, or including API keys in outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/information-services)
+- [Location Service specifications](artifact/references/location.md)
+- [Weather Service specifications](artifact/references/weather.md)
+- [Time Service specifications](artifact/references/time.md)
+- [Method Patterns and Coordination](artifact/references/method-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration, shell commands]
+
+**Output Format:** [JSON service results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured service results include service_type, data, confidence, and timestamps when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

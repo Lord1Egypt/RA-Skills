@@ -1,41 +1,55 @@
-## Description: <br>
-Jj Mailbox lets AI agents send and receive messages through a jj (Jujutsu) version-controlled file-based mailbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive messages between AI agents using jj (Jujutsu) version control as a file-based mailbox. Enables cross-machine agent collaboration with zero infrastructure beyond a git remote.
 
-## Publisher: <br>
-[MiaoDX](https://clawhub.ai/user/MiaoDX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miaodx](https://clawhub.ai/user/miaodx)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up and operate a shared jj-backed mailbox so agents can exchange messages, status, and shared artifacts across local or remote repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox contents can be pushed to a configured git remote during opt-in sync, which can expose secrets or sensitive data placed in the mailbox repo. <br>
-Mitigation: Do not store secrets, credentials, or sensitive data in the mailbox repo; use least-privileged git or SSH credentials and sync only to trusted remotes. <br>
-Risk: Repository-maintenance commands can create commits, move message files, and run fetch or push operations. <br>
-Mitigation: Review high-impact commands before running them and keep sync under explicit user control. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multiple AI agents through JSON messages stored in a shared jj-backed mailbox repository. It supports local collaboration and opt-in cross-machine synchronization through a configured git remote.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MiaoDX/jj-mailbox) <br>
-- [Jujutsu installation documentation](https://jj-vcs.dev/docs/install/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON mailbox files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jj-mailbox, jj, git, and python3; optional sync uses the host's configured git or SSH credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release and SKILL.md frontmatter) <br>
+Risk: Unvalidated agent names may allow file reads, writes, or moves outside the declared mailbox directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted mailbox repositories and trusted agent names, avoid sensitive directories, and prefer a fixed version that rejects traversal, absolute paths, and symlink escapes before file operations.
+
+Risk: Opt-in multi-machine synchronization can push mailbox contents to the configured git remote using host-level git or SSH credentials.
+
+Mitigation: Start synchronization only with trusted remotes and keep secrets, credentials, and sensitive data out of the mailbox repository.
+
+## Reference(s):
+
+- [Jujutsu installation documentation](https://jj-vcs.dev/docs/install/)
+- [ClawHub skill page](https://clawhub.ai/miaodx/skills/jj-mailbox)
+- [ClawHub publisher profile](https://clawhub.ai/user/miaodx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON message examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jj-mailbox, jj, git, and python3; uses JJ_MAILBOX_REPO, JJ_MAILBOX_AGENT, and JJ_MAILBOX_INTERVAL environment variables.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

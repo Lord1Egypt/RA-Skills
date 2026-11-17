@@ -1,38 +1,53 @@
-## Description: <br>
-Lists available audio input devices and helps diagnose whether microphones and other input devices are working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio device diagnostic skill that lists available audio input devices and checks whether devices are working.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and operators use this skill to list available microphone devices, confirm valid input device IDs, and troubleshoot common PyAudio audio input failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to propose or run local diagnostic commands for audio device enumeration. <br>
-Mitigation: Review proposed commands before execution and do not grant credentials or write access unless it is required for the intended diagnostic task. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose audio input problems, list available microphones, confirm PyAudio device IDs, and choose a working input device.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/audio-device-diagnostic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example diagnostic output and troubleshooting guidance for selecting an audio input device.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing PyAudio can introduce dependency risk if the package version or environment is not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install PyAudio in a normal, isolated Python environment and consider pinning a reviewed version.
+
+Risk: The skill's troubleshooting guidance is primarily in Chinese, which may lead to misunderstanding for non-Chinese users.
+
+Mitigation: Review a translation before relying on the troubleshooting guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/audio-device-diagnostic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audio input device listings, troubleshooting guidance, and dependency installation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

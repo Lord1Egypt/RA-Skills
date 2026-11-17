@@ -1,57 +1,54 @@
-## Description: <br>
-Discover Shopify merchants by category or store name through Lobster Stores. Use when a buyer wants help finding the right merchant for coffee, cookies, supplements, apparel, wellness, pets, oral care, alcohol, or adult products and should complete checkout on the merchant's native Shopify checkout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Shopify merchants by category or store name through Lobster Stores, then guide buyers to complete purchases on the merchant's native Shopify checkout.
 
-## Publisher: <br>
-[abuiles](https://clawhub.ai/user/abuiles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abuiles](https://clawhub.ai/user/abuiles)
 
-## Use Case: <br>
-External buyers and shopping agents use this skill to match a product or category request to the closest Lobster Stores category site, then continue merchant discovery from that site. The skill keeps payment collection outside the agent flow and directs checkout to the selected merchant's native Shopify checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent consults live Lobster category pages whose instructions may change after release. <br>
-Mitigation: Re-fetch the selected category site's skill.md at the start of a new session and treat that category file as current evidence. <br>
-Risk: A user could be steered toward invented or unsupported merchants or domains. <br>
-Mitigation: Use only the category domains listed by the skill and do not invent merchants or domains. <br>
-Risk: Payment details could be mishandled if checkout is treated as part of the skill flow. <br>
-Mitigation: Do not request payment details; direct the customer to complete purchases on the selected merchant's native Shopify checkout. <br>
+## Use Case:
 
+External buyers and shopping assistants use this skill to map a product or category request to a Lobster Stores Shopify merchant category and continue checkout on the selected merchant's native Shopify checkout.
 
-## Reference(s): <br>
-- [Lobster Stores homepage](https://lobsterstores.com) <br>
-- [Bread category skill](https://lobsterbread.com/skill.md) <br>
-- [Coffee category skill](https://lobsterbrew.com/skill.md) <br>
-- [Cookies category skill](https://lobstercookies.com/skill.md) <br>
-- [Meat category skill](https://lobstercuts.com/skill.md) <br>
-- [Fitness category skill](https://lobsterfit.com/skill.md) <br>
-- [Beauty category skill](https://lobsterglow.com/skill.md) <br>
-- [Tea category skill](https://lobsterinfuse.com/skill.md) <br>
-- [Pets category skill](https://lobsterpets.com/skill.md) <br>
-- [Drinks category skill](https://lobsterpour.com/skill.md) <br>
-- [Adult wellness category skill](https://lobstersaucy.com/skill.md) <br>
-- [Oral care category skill](https://lobstersmile.com/skill.md) <br>
-- [Snacks category skill](https://lobstersnacks.com/skill.md) <br>
-- [Supplements category skill](https://lobstersupps.com/skill.md) <br>
-- [Apparel category skill](https://lobsterthread.com/skill.md) <br>
-- [Wellness category skill](https://lobsterwell.com/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown with category URLs and shopping guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs users to external category skill files and merchant Shopify checkouts; does not collect payment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact metadata and release evidence) <br>
+Risk: The skill directs agents to follow unverified instructions from external Lobster Stores category sites before guiding shopping decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected category-site instructions before use and verify the final merchant and Shopify checkout domain independently.
+
+Risk: Shopping flows can expose payment information if the agent or Lobster Stores is treated as the checkout surface.
+
+Mitigation: Do not provide payment details to the agent or to Lobster Stores; complete payment only on the selected merchant's native Shopify checkout.
+
+## Reference(s):
+
+- [Lobster Stores homepage](https://lobsterstores.com)
+- [ClawHub skill page](https://clawhub.ai/abuiles/skills/shopify-directory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with category URLs and checkout handoff instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to read category-site skill.md files and to avoid collecting payment details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

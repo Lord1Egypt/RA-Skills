@@ -1,41 +1,55 @@
-## Description: <br>
-Tracks quotas, monitors thresholds, and degrades gracefully for rate-limited APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks quotas, monitors thresholds, and degrades gracefully for rate-limited APIs.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to design quota-aware integrations for rate-limited APIs, including pre-flight estimation, usage recording, threshold alerts, and graceful degradation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quota guidance can cause an agent to defer, batch, or reroute work incorrectly if service limits, priorities, or reset windows are wrong. <br>
-Mitigation: Confirm service-specific quotas, thresholds, and reset behavior before applying the patterns to production workflows. <br>
-Risk: Cost and token estimates are approximations and may understate actual resource use for large or unusual tasks. <br>
-Mitigation: Treat estimates as pre-flight checks, monitor real usage after execution, and adjust thresholds from observed results. <br>
+## Use Case:
 
+Developers and engineers use this skill to design quota-aware integrations for rate-limited services, including threshold checks, usage recording, graceful degradation, and pre-flight token or cost estimation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-quota-management) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers quota status checks, usage recording, threshold handling, token and cost estimation, and graceful degradation patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The skill may activate during generic quota or threshold discussions where its leyline-specific patterns are not appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target system has rate, token, cost, or quota-management needs before applying its guidance.
+
+Risk: The related leyline or Claude plugin may include agents, hooks, commands, or persistent quota storage outside this documentation-only artifact.
+
+Mitigation: Review the separate plugin package before installing or enabling behavior beyond this skill.
+
+## Reference(s):
+
+- [Threshold Strategies](modules/threshold-strategies.md)
+- [Estimation Patterns](modules/estimation-patterns.md)
+- [Clawdis Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with Python and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no bundled executable behavior.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

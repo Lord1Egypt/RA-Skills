@@ -1,41 +1,51 @@
-## Description: <br>
-Security vetting protocol before installing any AI agent skill, with red flag detection for credential theft, obfuscated code, exfiltration, and LOW/MEDIUM/HIGH/EXTREME risk classification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security vetting protocol before installing any AI agent skill, with red flag detection for credential theft, obfuscated code, exfiltration, structured risk classification, and vetting reports.
 
-## Publisher: <br>
-[firebroo](https://clawhub.ai/user/firebroo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[firebroo](https://clawhub.ai/user/firebroo)
 
-## Use Case: <br>
-Developers and agents use this skill before installing or running AI agent skills from ClawHub, GitHub, or other sources. It guides source reputation checks, code review, permission review, risk classification, and a structured install recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The registry display name, artifact name, and metadata slug do not fully match. <br>
-Mitigation: Verify that the publisher handle, package page, artifact contents, and intended skill identity match before installing or relying on the skill. <br>
-Risk: The skill provides a review checklist rather than an automatic security authority. <br>
-Mitigation: Use the checklist to structure human review, and run any target-skill downloads or inspections in a temporary directory before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review AI agent skills before installation, identify security red flags, classify risk, and produce an installation recommendation. It is intended for ClawHub, GitHub, and other externally sourced skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/firebroo/security-skiil-scanner) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/firebroo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with checklists and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq for optional registry or GitHub checks; supports linux, darwin, and win32 per release metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The ClawHub vetting workflow instructs agents to install untrusted skills into a temporary directory before completing review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a download-only or sandboxed inspection method before any clawhub install operation is run on an untrusted skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/firebroo/skills/security-skiil-scanner)
+- [Publisher Profile](https://clawhub.ai/user/firebroo)
+- [Skill Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, checklists, risk classifications, recommendations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces LOW, MEDIUM, HIGH, or EXTREME risk classifications with install recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

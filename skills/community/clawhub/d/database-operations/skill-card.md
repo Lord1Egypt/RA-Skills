@@ -1,41 +1,52 @@
-## Description: <br>
-Use when designing database schemas, writing migrations, optimizing SQL queries, fixing N+1 problems, creating indexes, setting up PostgreSQL, configuring EF Core, implementing caching, partitioning tables, or any database performance question. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing database schemas, writing migrations, optimizing SQL queries, fixing N+1 problems, creating indexes, setting up PostgreSQL, configuring EF Core, implementing caching, partitioning tables, or any database performance question.
 
-## Publisher: <br>
-[jgarrison929](https://clawhub.ai/user/jgarrison929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jgarrison929](https://clawhub.ai/user/jgarrison929)
 
-## Use Case: <br>
-Developers and engineers use this skill for database schema design, PostgreSQL query optimization, migration planning, EF Core migration workflows, caching strategies, partitioning, and performance troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL or migration guidance could change or remove production data if applied without review. <br>
-Mitigation: Review generated SQL, test migrations in a non-production environment, and confirm rollback procedures before applying changes. <br>
-Risk: Audit logging examples may copy sensitive fields into audit tables. <br>
-Mitigation: Filter or redact sensitive fields before enabling audit triggers or storing old and new row values. <br>
-Risk: Caching and materialized-view guidance can serve stale data if invalidation or refresh timing is wrong. <br>
-Mitigation: Define cache invalidation rules, refresh schedules, and monitoring before using generated caching or materialized-view patterns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jgarrison929/database-operations) <br>
+## Use Case:
 
+Developers and engineers use this skill to design database schemas, plan migrations, tune PostgreSQL queries, address N+1 problems, choose indexes, configure EF Core migrations, and apply caching or partitioning patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with SQL, shell, C#, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; generated database changes should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sample audit trigger can copy password hashes, tokens, secrets, MFA data, or personal data into audit logs.
+
+Mitigation: Use explicit allowlists or field exclusions before adapting audit logging patterns to sensitive tables.
+
+Risk: Migration and EF database update examples can change production databases if used without environment checks.
+
+Mitigation: Confirm the target environment, backups, generated SQL, staging results, and rollback plan before applying database-changing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jgarrison929/skills/database-operations)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with SQL, C#, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory patterns and command templates that should be reviewed before use against production databases.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

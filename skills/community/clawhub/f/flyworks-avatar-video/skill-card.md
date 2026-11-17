@@ -1,47 +1,64 @@
-## Description: <br>
-Generate videos using Flyworks (a.k.a HiFly) Digital Humans. Create talking photo videos from images, use public avatars with TTS, or clone voices for custom audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos using Flyworks (a.k.a HiFly) Digital Humans by creating talking photo videos from images, using public avatars with TTS, or cloning voices for custom audio.
 
-## Publisher: <br>
-[linhui99](https://clawhub.ai/user/linhui99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[linhui99](https://clawhub.ai/user/linhui99)
 
-## Use Case: <br>
-Developers and content creators use this skill to guide an agent through creating avatar videos, talking-photo videos, and cloned-voice TTS videos with Flyworks/HiFly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process face and voice media through a remote Flyworks/HiFly service. <br>
-Mitigation: Only upload portraits and voice samples that the user owns or has explicit permission to use, and review the provider's retention, deletion, and acceptable-use terms before processing sensitive media. <br>
-Risk: Generated avatar or cloned-voice media can be misused for impersonation or misleading content. <br>
-Mitigation: Confirm consent for custom likeness and voice use, keep generated media aligned with the user's stated purpose, and review outputs before sharing. <br>
-Risk: Flyworks/HiFly API tokens are sensitive credentials. <br>
-Mitigation: Use a user-owned token when needed, store it in HIFLY_API_TOKEN, and avoid logging or committing tokens. <br>
+## Use Case:
 
+Developers, creators, and external agent users use this skill to generate avatar videos from text, audio, or portrait images with Flyworks/HiFly, including public avatars and cloned voices.
 
-## Reference(s): <br>
-- [Authentication](references/authentication.md) <br>
-- [Avatars](references/avatars.md) <br>
-- [Voices](references/voices.md) <br>
-- [Video Generation](references/video-generation.md) <br>
-- [Flyworks](https://flyworks.ai) <br>
-- [HiFly User Settings](https://hifly.cc/setting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and CLI output such as avatar IDs, voice IDs, task status, and video URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, requests, network access to hfw-api.hifly.cc, and a Flyworks/HiFly token for unrestricted use] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Face images, voice samples, prompts, and generated media may be sent to Flyworks/HiFly infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media the user owns or has explicit permission to use, disclose the third-party upload, and avoid sensitive content unless account terms and privacy handling are approved.
+
+Risk: Voice cloning can be used to imitate real people.
+
+Mitigation: Require explicit consent for cloned voices and avoid generating content that misleads viewers about identity or authorization.
+
+Risk: The shared demo token has watermark and duration limits and may have unclear quota or account impact.
+
+Mitigation: Prefer a user-owned HIFLY_API_TOKEN in an isolated project environment after reviewing account, quota, and billing implications.
+
+## Reference(s):
+
+- [Authentication](artifact/references/authentication.md)
+- [Avatars](artifact/references/avatars.md)
+- [Video Generation](artifact/references/video-generation.md)
+- [Voices](artifact/references/voices.md)
+- [Flyworks](https://flyworks.ai)
+- [HiFly](https://hifly.cc)
+- [Flyworks/HiFly API Base URL](https://hfw-api.hifly.cc/api/v2/hifly)
+- [ClawHub Skill Page](https://clawhub.ai/linhui99/skills/flyworks-avatar-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return task IDs, avatar or voice IDs, and video URLs after asynchronous polling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-NousResearch Hermes Agent CLI integration for running Hermes commands, using context files, delegating sub-agent tasks, searching or adding memory notes, managing Hermes skills, and checking status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Agent Skill integrates the NousResearch Hermes Agent CLI for agent workflows including persistent memory, sub-agent delegation, MCP integration, browser automation, and code execution.
 
-## Publisher: <br>
-[wihy](https://clawhub.ai/user/wihy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wihy](https://clawhub.ai/user/wihy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to invoke the Hermes CLI from an agent workflow for question answering, contextual runs, delegation, memory operations, skill management, and health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer a high-capability agent runtime through the Hermes CLI, including delegation, browser automation, code execution, and persistent memory features when enabled in Hermes. <br>
-Mitigation: Install it only for intended Hermes administration, review Hermes configuration changes before applying them, and enable delegation, browser automation, public endpoints, or persistent memory only when those capabilities are required. <br>
-Risk: Hermes provider keys may be exposed if copied into chat, committed to source control, or stored with overly broad local file permissions. <br>
-Mitigation: Keep provider keys out of chat and repositories, store them only in the local Hermes environment file, and restrict permissions on that file. <br>
+## Use Case:
 
+Developers and agent operators use this skill to call Hermes CLI from an agent session for Q&A, context-aware runs, delegation, memory operations, skill management, status checks, and configuration guidance.
 
-## Reference(s): <br>
-- [Hermes Agent GitHub repository](https://github.com/NousResearch/hermes-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/wihy/hermes-agent-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces Hermes CLI invocations and operator guidance; command effects depend on the local Hermes installation and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Hermes CLI and its configured model provider may process prompts, context files, and delegated tasks outside this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only with a trusted Hermes CLI installation and trusted model provider configuration; avoid passing sensitive files with --context-file unless that processing is intended.
+
+Risk: Memory notes, created skills, and ~/.hermes configuration changes can persist beyond a single run.
+
+Mitigation: Periodically review Hermes memory notes, created skills, and ~/.hermes configuration for stale, sensitive, or unexpected state.
+
+Risk: Broad Hermes agent capabilities, including delegation, browser automation, code execution, and MCP integration, may operate without clear approval boundaries.
+
+Mitigation: Run Hermes in controlled workspaces, review commands before execution, and apply local sandbox or approval policies where available.
+
+## Reference(s):
+
+- [ClawHub Hermes Agent Skill](https://clawhub.ai/wihy/skills/hermes-agent-v2)
+- [NousResearch Hermes Agent documentation](https://github.com/NousResearch/hermes-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local Hermes configuration and persistent Hermes memory state.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata; artifact frontmatter and _meta.json list 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

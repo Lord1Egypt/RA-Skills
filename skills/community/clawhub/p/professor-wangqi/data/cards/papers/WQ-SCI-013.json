@@ -1,0 +1,215 @@
+{
+  "card_id": "WQ-SCI-013",
+  "source_type": "paper",
+  "source_file": "9 Development and evaluation of short-form version of the Constitution in Chinese Medicine Questionnaire study a new and best brief instrument of Chinese medicine for health management.pdf",
+  "title": "Development and evaluation of short form version of the Constitution in Chinese Medicine Questionnaire study a new and best brief instrument of Chinese medicine for health management",
+  "authors": [
+    "Ming-Hua Bai"
+  ],
+  "year": 2023,
+  "journal": "Chinese Medicine",
+  "language": "en",
+  "abstract": "Background More efficient instruments for body constitution identification are needed for clinical practice. We aimed to develop the short-form version of the Constitution in Chinese Medicine Questionnaire (CCMQ) and evaluate for health management. Methods First, the short forms were developed through expert survey, classical test theory (CTT), and modern item response (IRT) based on the CCMQ. A combination of e-mail and manual methods was used in expert survey. Then, five indexes of CTT including criteria value-critical ratio, correlation coefficient, discrete tendency, internal consistency, and factor loading were used. And, IRT method was used through analyzing the discrimination and difficulty param‑ eters of items. Second, the three top-ranked items of each constitution scale were selected for the simplified CCMQ, based on the three combined methods of different conditions and weights. Third, The psychometric properties such as completion time, validity (Construct, criterion, and divergent validity), and reliability (test–retest and internal consistency reliability) were evaluated. Finally, the diagnostic validity of the best short-form used receiver operating characteristic (ROC) curve. Results Three short-form editions were developed, and retained items 27, 23 and 27, which are named as WangQi nine body constitution questionnaire of Traditional Chinese Medicine (short-form) (SF-WQ9CCMQ)- A, B, and C, respectively. SF-WQ9CCMQ- A is showed the best psychometric property on Construct validity, Criterion validity, test–retest reliability and internal consistency reliability. The diagnostic validity indicated that the area under the ROC curve was 0.928 (95%CI: 0.924–0.932) for the Gentleness constitution scale, and were 0.895–0.969 and 0.911–0.981 †Ming-Hua Bai and Zhu-Qing Li contributed equally to this work and share the first authorship. *Correspondence: Ji Wang doctorwang2009@126.com Qi Wang wangqi710@126.com Full list of author information is available at the end of the article Page 2 of 29 Bai et al. Chinese Medicine (2023) 18:140 for unbalance constitution scales using the cut-off value of the original CCMQ as 40 (“yes” standard) and 30 (“ten‑ dency” standard), respectively. Conclusions Our study successfully developed a well short-form which has good psychometric property, and excel‑ lent diagnostic validity consistent with the original. New and simplified instrument and opportunity are provided for body constitution identification, health management and primary care implementation.",
+  "keywords": [
+    "Constitution in Chinese Medicine Questionnaire",
+    "Body constitution",
+    "Short-form",
+    "Psychometric property evaluation",
+    "Diagnostic validity"
+  ],
+  "doi": "10.1186/s13020-023-00844-3",
+  "research_focus": {
+    "constitution_type": [
+      "气虚质",
+      "阳虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "血瘀质",
+      "气郁质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 632
+  },
+  "results": {},
+  "conclusions": "The present study developed and evaluated a short- form CCMQ with 27 items named SF-WQ9CCMQ- A, It suc- cessfully retained the 9 BC type scale structures origi- nally included in CCMQ. SF-WQ9CCMQ- A is the best psychometric property such as reliability and validity among 3 short forms, and has excellent diagnostic valid- ity consistent with the original CCMQ. This study provides a new reference and choice meth- ods for individual and public health management ques- tionnaire and scale development based on TCM, and offers new experience for the application and develop- ment of psychometric measurement in TCM. The results also provide an alternative instrument for rapid BC iden- tification and large-scale screening of TCM, and a simpli- fied questionnaire instrument for the health management of TCM in primary care.",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "Suggestion and analysis on revise of standard of classifica‑ tion and determination of constitution in TCM",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Methods First, the short forms were developed through expert survey, classical test theory (CTT), and modern item response (IRT) based on the CCMQ",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "A combination of e-mail and manual methods was used in expert survey",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The present study developed and evaluated a short- form CCMQ with 27 items named SF-WQ9CCMQ- A, It suc- cessfully retained the 9 BC type scale structures origi- nally included in CCMQ",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "SF-WQ9CCMQ- A is the best psychometric property such as reliability and validity among 3 short forms, and has excellent diagnostic valid- ity consistent with the original CCMQ",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "This study provides a new reference and choice meth- ods for individual and public health management ques- tionnaire and scale development based on TCM, and offers new experience for the application and develop- ment of psychometric measurement in TCM",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "method",
+      "content": "The results also provide an alternative instrument for rapid BC iden- tification and large-scale screening of TCM, and a simpli- fied questionnaire instrument for the health management of TCM in primary care",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Background More efficient instruments for body constitution identification are needed for clinical practice",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "气虚质",
+    "阳虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "血瘀质",
+    "气郁质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "Suggestion and analysis on revise of standard of classifica‑ tion and determination of constitution in TCM",
+      "section": "conclusions",
+      "claim_type": "finding",
+      "page_num": 29
+    },
+    {
+      "sentence": "Methods First, the short forms were developed through expert survey, classical test theory (CTT), and modern item response (IRT) based on the CCMQ",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "A combination of e-mail and manual methods was used in expert survey",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "page_info": {
+    "total_pages": 29,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 1,
+        "end": 3
+      },
+      "results": {
+        "start": 1,
+        "end": 6
+      },
+      "discussion": {
+        "start": 18,
+        "end": 29
+      },
+      "conclusion": {
+        "start": 2,
+        "end": 27
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:12.795317",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.463121",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.463128"
+  }
+}

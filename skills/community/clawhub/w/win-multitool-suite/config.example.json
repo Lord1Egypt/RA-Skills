@@ -1,0 +1,50 @@
+{
+  "_comment": "Copied to config.json by scripts/setup.ps1. This file never holds a real key: point at environment variables instead (env_file column).",
+  "suite_version": "1.0.1",
+  "workspace": "%LOCALAPPDATA%\\MultiToolSuite",
+  "app": {
+    "telemetry": false,
+    "check_updates": false,
+    "market_data_provider": "stooq",
+    "default_timezone": "America/New_York"
+  },
+  "credentials": [
+    {
+      "name": "FINNHUB_API_KEY",
+      "used_by": "ai-trading",
+      "purpose": "US market quotes, company profiles, financials",
+      "env_file": "FINNHUB_API_KEY",
+      "value": ""
+    },
+    {
+      "name": "POLYGON_API_KEY",
+      "used_by": "ai-trading",
+      "purpose": "US equities quotes, aggregates, OHLC bars",
+      "env_file": "POLYGON_API_KEY",
+      "value": ""
+    },
+    {
+      "name": "TWELVE_DATA_API_KEY",
+      "used_by": "ai-trading",
+      "purpose": "Alternative quote and technical-indicator provider",
+      "env_file": "TWELVE_DATA_API_KEY",
+      "value": ""
+    }
+  ],
+  "workflows": {
+    "creative": {
+      "skill": "ai-creative-studio",
+      "output_dir": "%LOCALAPPDATA%\\MultiToolSuite\\output\\creative"
+    },
+    "market": {
+      "skill": "ai-trading",
+      "output_dir": "%LOCALAPPDATA%\\MultiToolSuite\\output\\market",
+      "default_risk_per_trade_pct": 0.5,
+      "max_portfolio_heat_pct": 10
+    },
+    "leads": {
+      "skill": "b2b-lead-research-agent",
+      "output_dir": "%LOCALAPPDATA%\\MultiToolSuite\\output\\leads"
+    }
+  }
+}

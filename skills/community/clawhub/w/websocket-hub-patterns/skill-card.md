@@ -1,38 +1,52 @@
-## Description: <br>
-Horizontally-scalable WebSocket hub pattern with lazy Redis subscriptions, connection registry, and graceful shutdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Horizontally-scalable WebSocket hub pattern with lazy Redis subscriptions, connection registry, and graceful shutdown.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill when designing real-time WebSocket servers that need Redis-backed coordination, horizontal scaling across gateway instances, lazy channel subscriptions, and graceful shutdown. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Code examples may be copied into production without adapting them to the target service. <br>
-Mitigation: Review the WebSocket, Redis subscription, connection cleanup, and shutdown snippets before production use, and add project-specific tests. <br>
-Risk: A branch-based npx install command is documented in the artifact. <br>
-Mitigation: Prefer the ClawHub/OpenClaw install command or verify the source before using the branch-based npx command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to design horizontally scalable real-time WebSocket services with Redis-backed coordination for chat, collaborative editing, and live dashboard workloads.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with Go and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no external tools or credentials required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Install instructions rely on mutable external commands or references that can change over time.
+
+Mitigation: Review installer content before execution and prefer pinned, reviewed installer versions or immutable source references.
+
+Risk: WebSocket and Redis deployments can expose sensitive message contents or overly broad channel access if data handling is not reviewed.
+
+Mitigation: Review Redis data contents, channel naming, retention, and access controls before adopting the pattern.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/websocket-hub-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Go code snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation patterns, decision guidance, and anti-patterns for Redis-backed WebSocket hubs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

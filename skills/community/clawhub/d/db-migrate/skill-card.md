@@ -1,37 +1,48 @@
-## Description: <br>
-Deep database migration workflow-expand/contract, backward-compatible deploys, backfills, locking risks, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a deep database migration workflow covering expand/contract changes, backward-compatible deploys, backfills, locking risks, verification, and rollback planning for zero- or low-downtime production schema changes.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and database engineers use this skill to plan production schema migrations with expand/contract sequencing, staged backfills, dual-write transitions, cutover checks, and rollback preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Production schema migration guidance can cause outages or data issues if applied without database-specific review.
+
+Mitigation: Use the skill as planning guidance and require engineer review, backups, environment-specific testing, monitoring, and rollback planning before production execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and database engineers use this skill to plan low-downtime production schema changes, including expand/contract sequencing, backfills, read/write cutovers, verification, and rollback planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Database migration guidance can affect production data availability or integrity if applied without environment-specific review. <br>
-Mitigation: Confirm the database engine, lock behavior, rollback path, credentials, and repository state before executing migrations; use staged rollout, throttled backfills, monitoring, and human review. <br>
+**Output Format:** [Markdown guidance with checklists and inline technical examples when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces planning guidance only; it does not execute migrations or access databases.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and command or configuration examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, credentials, or API keys are declared by the artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

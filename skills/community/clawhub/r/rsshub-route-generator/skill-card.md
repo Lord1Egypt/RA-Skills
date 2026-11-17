@@ -1,42 +1,54 @@
-## Description: <br>
-Analyzes website structure and generates RSSHub-compatible TypeScript route code, selector configuration, optional full-text RSS handling, and RSSHub Radar rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes website structure and generates RSSHub-compatible TypeScript route code, selector configuration, optional full-text RSS support, and Radar rules.
 
-## Publisher: <br>
-[benzking](https://clawhub.ai/user/benzking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benzking](https://clawhub.ai/user/benzking)
 
-## Use Case: <br>
-Developers and RSSHub maintainers use this skill to inspect public website pages and draft RSSHub route files, including selectors, route metadata, and article extraction logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-specified website pages, which can expose private or sensitive URLs if used carelessly. <br>
-Mitigation: Use it only with public websites and avoid submitting private, internal, authenticated, or sensitive URLs. <br>
-Risk: Generated TypeScript routes and selectors may be inaccurate for complex or changing websites. <br>
-Mitigation: Review and test the generated RSSHub route code before adding it to an RSSHub project. <br>
-Risk: The skill may write generated route files to the workspace. <br>
-Mitigation: Confirm the output path before allowing files to be written. <br>
+## Use Case:
 
+Developers and maintainers use this skill to inspect a target website and produce RSSHub route implementation files, selector notes, and routing metadata for a new RSS feed.
 
-## Reference(s): <br>
-- [RSSHub Route Development Reference](references/dev-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown report with TypeScript code and RSSHub route file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose route files under rsshub-routes/{domain}/ and selector configuration for article lists, dates, categories, and optional full-text content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated RSSHub routes may perform server-side requests to article links derived from untrusted websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated routes before deployment and add URL validation, explicit host allowlists, redirect checks, private-network blocking, timeouts, and response-size limits.
+
+Risk: Full-text fetching can expand the number of outbound requests made by deployed route code.
+
+Mitigation: Keep full-text fetching opt-in and use bounded concurrency before enabling generated code on an RSSHub server.
+
+## Reference(s):
+
+- [RSSHub Route Development Reference](artifact/references/dev-guide.md)
+- [ClawHub Skill Release Page](https://clawhub.ai/benzking/skills/rsshub-route-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown analysis report with TypeScript route code and RSSHub configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated route files under rsshub-routes, namespace files, selector mappings, and optional full-text fetching logic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

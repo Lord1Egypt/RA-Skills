@@ -1,44 +1,56 @@
-## Description: <br>
-Guides agents through the Ansoff product-market matrix to classify growth options, compare feasibility and risk, and prioritize a focused growth direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides teams in using the Ansoff Matrix to prioritize growth options across existing and new products and markets.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Business leaders, product teams, founders, and strategy advisors use this skill to decide where to grow next. It produces a growth direction analysis with mapped options, feasibility scores, a primary direction, entry criteria, and a 90-day agenda. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may discuss sensitive growth plans, market strategy, or competitive priorities while using the skill. <br>
-Mitigation: Use it only in an agent environment approved for that information and avoid sharing confidential business details unless appropriate. <br>
-Risk: Strategic recommendations can be misleading if the product-market baseline, penetration rate, or feasibility scores are speculative. <br>
-Mitigation: Validate inputs with current business and market data, then review the growth direction analysis before committing resources. <br>
+## Use Case:
 
+Leadership teams, founders, and product strategists use this skill to compare growth options across the Ansoff Matrix quadrants, assess feasibility and risk, and prioritize a growth direction. It also helps define entry criteria and a 90-day agenda for the selected option.
 
-## Reference(s): <br>
-- [Sources - ansoff-matrix](references/sources.md) <br>
-- [Amazon's Sequenced Growth (1994-2006)](examples/amazon-sequenced-growth-1994-2006.md) <br>
-- [Ansoff, H.I. (1957), Strategies for Diversification](https://hbr.org/1957/09/strategies-for-diversification) <br>
-- [Amazon Annual Reports and Shareholder Letters](https://ir.aboutamazon.com/annual-reports-proxies-and-shareholder-letters/default.aspx) <br>
-- [Hopkins, H.D. (1987), Acquisition Strategy and Market Position](https://doi.org/10.1002/smj.4250080604) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown growth direction analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product-market quadrants, feasibility scores, risk multipliers, prioritized direction, entry criteria, and a 90-day agenda.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Directional risk multipliers or planning scores could be mistaken for precise forecasts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate assumptions with current business evidence and treat the multipliers as directional estimates before committing resources.
+
+Risk: Confidential business details could be recorded in reusable examples or lessons.
+
+Mitigation: Omit or anonymize confidential details in examples and reusable notes.
+
+## Reference(s):
+
+- [Primary sources and further reading](references/sources.md)
+- [Strategies for Diversification (Ansoff, 1957)](https://hbr.org/1957/09/strategies-for-diversification)
+- [Amazon annual reports and shareholder letters](https://ir.aboutamazon.com/annual-reports-proxies-and-shareholder-letters/default.aspx)
+- [OpenAI news and product announcements](https://openai.com/news/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis]
+
+**Output Format:** [Markdown growth direction analysis with a completed matrix, feasibility scores, and a prioritized growth agenda.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quadrant options, directional risk multipliers, entry criteria, and a 90-day agenda.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

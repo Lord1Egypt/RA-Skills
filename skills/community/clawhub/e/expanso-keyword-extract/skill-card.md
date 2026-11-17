@@ -1,41 +1,55 @@
-## Description: <br>
-Extract keywords and key phrases from text using Expanso Edge for SEO, tagging, and indexing purposes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts keywords, key phrases, and main topics from text for SEO, content tagging, and indexing.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers, content teams, and SEO workflows use this skill to extract keywords, key phrases, and topics from supplied text for tagging, indexing, and content analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted text may be forwarded to OpenAI when the OpenAI backend is used. <br>
-Mitigation: Avoid sending secrets, regulated data, or proprietary documents without review, and apply limits to the OpenAI API key. <br>
-Risk: MCP/server mode exposes an unauthenticated HTTP endpoint on all interfaces. <br>
-Mitigation: Prefer CLI mode for controlled local use; if server mode is needed, bind it to localhost or another protected interface and add authentication before exposing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-keyword-extract) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill metadata](artifact/skill.yaml) <br>
+## Use Case:
 
+Developers and content teams use this skill to analyze supplied text and generate keyword, phrase, and topic metadata for SEO, tagging, indexing, and content workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [JSON containing keywords, phrases, topics, keyword count, and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use the OPENAI_API_KEY credential and a max_keywords setting; CLI mode reads text from stdin and MCP mode accepts POST requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The MCP mode can expose an unauthenticated OpenAI-backed HTTP endpoint using the operator's API key.
+
+Mitigation: Bind HTTP mode to localhost or put it behind authentication, and use a restricted OpenAI key with spending limits.
+
+Risk: Input text may be sent to OpenAI when the remote backend is used.
+
+Mitigation: Use only non-sensitive text unless organizational policy permits sending that content to OpenAI, or run an approved local backend.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-keyword-extract)
+- [Publisher profile](https://clawhub.ai/user/aronchick)
+- [Artifact README](artifact/README.md)
+- [Artifact skill metadata](artifact/skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands]
+
+**Output Format:** [JSON object containing keywords, phrases, topics, keyword_count, and metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts text input and an optional max_keywords value; CLI mode writes JSON to stdout and MCP mode returns a synchronous response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

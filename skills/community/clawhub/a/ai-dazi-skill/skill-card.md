@@ -1,42 +1,59 @@
-## Description: <br>
-AI搭子匹配平台 generates local AI-usage profiles and matching tags from user-provided usage data such as token use, model preferences, tool usage, and activity patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI搭子匹配平台 generates local user profiles and matching tags from user-provided AI usage data such as token usage, model preferences, tool calls, and installed skills.
 
-## Publisher: <br>
-[dory123456](https://clawhub.ai/user/dory123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dory123456](https://clawhub.ai/user/dory123456)
 
-## Use Case: <br>
-External users and developers use this skill to turn user-approved AI usage metrics into a local profile with player level, activity score, skill tags, AI style, and matching tags. It supports personal usage analysis and AI-collaboration discovery without automatic log collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores detailed local AI-usage analytics, including active-hour patterns, model and tool preferences, and installed-skill lists. <br>
-Mitigation: Use the skill only for explicit profile-generation requests, review what data is saved, and periodically inspect or delete the skill data directory. <br>
-Risk: Loose activation and file-writing boundaries may retain more usage data than the user intended. <br>
-Mitigation: Avoid custom JSON or custom date values for the save command, and keep data collection scoped to current, user-approved profile-generation workflows. <br>
+## Use Case:
 
+External users and agents use this skill to save user-provided AI usage metrics locally, generate a profile JSON, and display player level, skill tags, AI style, activity score, and matching tags.
 
-## Reference(s): <br>
-- [AI搭子 Skill - 开发与使用指南](references/guide.md) <br>
-- [AI搭子 Skill - 数据格式参考](references/data-formats.md) <br>
-- [ClawHub release page](https://clawhub.ai/dory123456/ai-dazi-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON profile files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily usage aggregates and generated profiles under the skill data directory when explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill profiles and stores AI usage metadata locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users are comfortable with local profiling, and review profile contents before sharing them outside the local environment.
+
+Risk: Security evidence reports a path-validation bug that can write JSON files outside the intended data folder.
+
+Mitigation: Validate the save command's date field strictly, for example as YYYY-MM-DD, before accepting or running user-provided JSON.
+
+Risk: Broad trigger wording could collect or refresh profile data before the user fully intends it.
+
+Mitigation: Require explicit user confirmation before collecting usage metadata or generating a profile.
+
+## Reference(s):
+
+- [AI搭子 Skill - 数据格式参考](references/data-formats.md)
+- [AI搭子 Skill - 开发与使用指南](references/guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/dory123456/skills/ai-dazi-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON profile files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profile output is generated from locally stored, user-provided AI usage metadata.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

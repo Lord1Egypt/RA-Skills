@@ -1,40 +1,58 @@
-## Description: <br>
-基于传播激活的联想神经记忆系统，帮助代理跨会话保存、检索和关联事实、决策、错误、TODO 与上下文。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An associative memory skill that helps an agent store, recall, and connect persistent conversation memories across sessions using spreading activation, causal links, contradiction checks, and recency-aware context.
 
-## Publisher: <br>
-[skillforge-jojo](https://clawhub.ai/user/skillforge-jojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skillforge-jojo](https://clawhub.ai/user/skillforge-jojo)
 
-## Use Case: <br>
-Agents and developers use this skill to persist project and conversation memory across sessions, recall relevant context before tasks, trace causal chains, and capture decisions, errors, preferences, and TODOs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves and reuses conversation-derived memories across sessions, which can expose secrets, credentials, regulated data, or private client/customer information if used without review. <br>
-Mitigation: Avoid using the skill around sensitive data, verify where nmem_* tools store memories before use, and review saved memories regularly. <br>
-Risk: Auto-capture and persistent recall are described without clear consent, retention, deletion, or sensitive-data limits. <br>
-Mitigation: Confirm whether autoCapture can be disabled, establish retention and deletion practices, and use explicit consent before storing user or organizational information. <br>
+## Use Case:
 
+Developers and agent users can use this skill when an agent should preserve decisions, facts, preferences, errors, todos, and prior context across conversations and retrieve related memories for future tasks or causal questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skillforge-jojo/maske-neural-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with memory-tool call examples and recalled context text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses depth 0-3, priority 0-10, max_tokens 100-10000, contextDepth 0-3, and autoContext/autoCapture boolean settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Persistent memory may capture secrets, regulated data, customer information, or private project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where persistent memory is intended, avoid storing sensitive data, and require explicit confirmation before saving memories.
+
+Risk: Memories may be reused across sessions or transferred across projects without sufficient user control.
+
+Mitigation: Confirm with the user before recalling or transferring memories across project boundaries, and review stored context before using it in a new task.
+
+Risk: Automatically captured memories may become stale, incomplete, or contradictory.
+
+Mitigation: Prefer explicit user confirmation for important memories and review recalled context before relying on it for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skillforge-jojo/skills/maske-neural-memory)
+- [Publisher profile](https://clawhub.ai/user/skillforge-jojo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown and structured tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory recall depth ranges from 0 to 3; examples include priority and token-limit parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

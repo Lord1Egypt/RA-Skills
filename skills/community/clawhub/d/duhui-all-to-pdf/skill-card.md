@@ -1,46 +1,59 @@
-## Description: <br>
-Converts a single local Office, WPS, OFD, image, text, or web document to PDF through Duhui's Alibaba Cloud Marketplace asynchronous API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill converts a single local Office, WPS, OFD, image, text, HTML, or similar document to PDF through Duhui's Alibaba Cloud Marketplace asynchronous API.
 
-## Publisher: <br>
-[duhuitech](https://clawhub.ai/user/duhuitech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duhuitech](https://clawhub.ai/user/duhuitech)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to convert one local document to a PDF by uploading it to Duhui/Alibaba-hosted services, submitting an asynchronous conversion job, polling for completion, and saving the returned PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected source documents are uploaded to Duhui/Alibaba-hosted services for conversion. <br>
-Mitigation: Use the skill only for documents that can be sent to that third-party infrastructure, and avoid confidential files unless the vendor's retention and privacy terms meet the user's requirements. <br>
-Risk: DUHUI_ALI_APPCODE is required for API access and could be exposed if pasted into chat or logs. <br>
-Mitigation: Keep DUHUI_ALI_APPCODE in a secure environment variable or secret store, and do not echo it in chat, logs, or final responses. <br>
-Risk: Remote temporary source-file cleanup is best effort, so failed cleanup may leave the uploaded source file temporarily available on vendor-controlled storage. <br>
-Mitigation: Use non-sensitive source files or confirm vendor retention terms before conversion; treat cleanup failure as a reason to review the uploaded file's sensitivity. <br>
+## Use Case:
 
+Developers and agents use this skill when a user asks to convert one local document into one PDF through the Duhui/Alibaba asynchronous conversion service. It is suited for workflows that can upload the selected file to third-party cloud infrastructure and need a local PDF result plus structured conversion status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duhuitech/duhui-all-to-pdf) <br>
-- [Duhui Alibaba Cloud Marketplace listing](https://market.aliyun.com/detail/cmapi00044564) <br>
-- [Duhui document-to-PDF reference](references/doc_to_pdf_ali.md) <br>
-- [Duhui async conversion endpoint](https://doc2pdf.market.alicloudapi.com/v2/convert_async) <br>
-- [Duhui conversion status endpoint](https://api.duhuitech.com/q) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; script stdout is JSON and successful runs write one PDF file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, DUHUI_ALI_APPCODE, and network access to Duhui/Alibaba endpoints; progress is emitted on stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Selected local documents are uploaded to Duhui/Alibaba-controlled infrastructure in the cn-shanghai OSS flow, and the security summary notes that upload consent may be too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after explicit consent for the selected file, prefer local conversion for confidential documents, and restrict network access to the documented endpoints where possible.
+
+Risk: The required DUHUI_ALI_APPCODE is a secret used to authorize conversion requests.
+
+Mitigation: Provide the AppCode through an environment variable or secret store rather than chat, logs, or final responses.
+
+Risk: Remote source cleanup is best-effort, so uploaded source files may remain temporarily if deletion fails.
+
+Mitigation: Avoid sensitive files unless third-party upload and temporary retention are acceptable for the user's workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duhuitech/skills/duhui-all-to-pdf)
+- [Alibaba Cloud Marketplace product page](https://market.aliyun.com/detail/cmapi00044564)
+- [Duhui document-to-PDF API reference](references/doc_to_pdf_ali.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands; the conversion script writes JSON to stdout and saves a PDF file on success.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, DUHUI_ALI_APPCODE, and network access to the documented Duhui and Alibaba endpoints; progress is written to stderr.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

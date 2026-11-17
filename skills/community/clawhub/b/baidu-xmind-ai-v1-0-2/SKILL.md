@@ -1,7 +1,7 @@
 ---
-name: baidu-xmind-ai
+name: baidu-doc-ai
 version: 1.0.0
-description: 百度智能文档分析平台API调用技能。支持文档抽取、文档解析、文档解析(PaddleOCR-VL)、文档比对、合同审查、文档格式转换等功能。当用户需要：(1) 从文档中提取特定字段信息，(2) 解析文档内容，(3) 比对两份文档差异，(4) 审查合同风险，(5) 转换文档格式时使用此技能。触发词：文档抽取、文档解析、PaddleOCR、文档比对、合同审查、格式转换、智能文档分析、百度文档AI。
+description: 百度智能文档分析（基于百度「智能文档分析」，官网入口：https://ai.baidu.com/tech/nlp/Textanalysis）的 API 调用技能。支持文档抽取、文档解析、文档解析(PaddleOCR-VL)、文档比对、合同审查、文档格式转换等功能。当用户需要：(1) 从文档中提取特定字段信息，(2) 解析文档内容，(3) 比对两份文档差异，(4) 审查合同风险，(5) 转换文档格式时使用此技能。触发词：文档抽取、文档解析、PaddleOCR、文档比对、合同审查、格式转换、智能文档分析、百度智能文档分析、百度文档AI。
 license: MIT
 permissions:
   network:
@@ -13,9 +13,11 @@ permissions:
     read: user-provided files only
 ---
 
-# 百度智能文档分析平台 API 技能
+# 百度智能文档分析
 
-百度智能文档分析平台提供多种文档处理能力，包括文档抽取、文档解析、文档比对、合同审查、文档格式转换等功能。
+> 官网入口：[百度AI开放平台 · 智能文档分析](https://ai.baidu.com/tech/nlp/Textanalysis) ｜ [控制台](https://console.bce.baidu.com/textmind/application/textExtract)
+
+本技能封装百度智能云「智能文档分析平台」的 API 调用能力，包括文档抽取、文档解析、文档比对、合同审查、文档格式转换等功能。
 
 ## 功能概览
 
@@ -184,5 +186,6 @@ result = client.contract_review(
 
 ## 相关链接
 
+- [智能文档分析官网](https://ai.baidu.com/tech/nlp/Textanalysis)
 - [智能文档分析平台控制台](https://console.bce.baidu.com/textmind/application/textExtract)
 - [API文档](https://ai.baidu.com/ai-doc/OCR/klzkwzdch)

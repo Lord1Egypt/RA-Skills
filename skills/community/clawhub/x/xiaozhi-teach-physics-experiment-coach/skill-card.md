@@ -1,45 +1,55 @@
-## Description: <br>
-Helps physics teachers structure experiment instruction across experiment goals, variable control, equipment and steps, data processing, conclusions, lab reports, and student experiment-skill profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides middle and high school physics teachers with guidance for planning and running experiments, including safety, equipment and group planning, data analysis, conclusions, and lab reports.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External physics teachers and tutors use this skill to plan experiment-based instruction, guide students through design and data processing, structure lab reports, and maintain pseudonymized experiment-ability notes. It is a teaching-planning aid and does not replace teacher supervision, lab safety review, or final grading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student experiment profiles or lab reports may contain identifying student information. <br>
-Mitigation: Use pseudonyms, desensitize report content, and confirm before saving or sharing student profile data with other skills. <br>
-Risk: Experiment-planning output could be mistaken for authorization to conduct unsafe or unsupervised activities. <br>
-Mitigation: Treat outputs as teacher-reviewed planning guidance only; avoid household-circuit or unsupervised electrical activity unless replaced with a teacher-approved low-voltage procedure. <br>
-Risk: Rubrics and report suggestions could be treated as final autonomous grades. <br>
-Mitigation: Use assessment frameworks as teacher review aids and keep final scoring or feedback decisions under teacher control. <br>
+## Use Case:
 
+Middle and high school physics teachers use this skill to plan safe experiment lessons, select and allocate equipment, guide students through data processing, and prepare lab reports. It provides teacher-facing drafts and analysis for review before use with students or families.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-teach-physics-experiment-coach) <br>
-- [物理实验类型详解](artifact/references/experiment-types.md) <br>
-- [物理实验数据处理评分](artifact/references/data-processing-rubric.md) <br>
-- [实验报告评分细则](artifact/references/lab-report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Structured Markdown teaching plans, rubrics, tables, report templates, and student experiment-profile notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses pseudonyms for student records; includes safety-level labeling and teacher review boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence; artifact frontmatter states 1.0.0) <br>
+Risk: The security review flags that the workspace schema may accept or expose fields beyond its stated data scope; the review was partial because two referenced paths were missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, review the schema's accepted fields and confirm that access controls enforce the intended data scope. Treat the finding as a caution, not a claim of malicious intent.
+
+## Reference(s):
+
+- [Experiment Types and Safety Levels](references/experiment-types.md)
+- [Data Processing Rubric](references/data-processing-rubric.md)
+- [Lab Report Template](references/lab-report-template.md)
+- [Physics Lab Teaching: High School Year 1](references/physics-hs1-lab-teaching.md)
+- [Physics Lab Teaching: High School Year 2](references/physics-hs2-lab-teaching.md)
+- [Physics Lab Teaching: High School Year 3](references/physics-hs3-lab-teaching.md)
+- [Student Lab Profile Template](references/student-lab-profile-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, JSON]
+
+**Output Format:** [Chinese-language guidance and analysis in Markdown, with structured tables and optional class-teaching workspace JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Teacher-facing drafts and analysis; teacher review is required before use with students or families. The skill does not perform experiments or grade lab reports.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

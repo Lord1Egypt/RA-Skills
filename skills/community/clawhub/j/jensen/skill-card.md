@@ -1,39 +1,50 @@
-## Description: <br>
-Jensen reference tool. Use when working with jensen in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jensen reference tool. Use when working with jensen in finance contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to retrieve static Jensen finance reference material, including formulas, regulations, risks, instruments, strategies, glossary terms, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance, strategy, and compliance content may be mistaken for professional financial, legal, investment, or regulatory advice. <br>
-Mitigation: Treat the output as generic educational reference material and verify decisions with qualified finance, legal, investment, or compliance professionals. <br>
+## Use Case:
 
+Finance practitioners and agents use this skill to retrieve concise Jensen reference material, including formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklist items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/jensen) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reference text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference content; no private data access or file changes reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, target metadata, and SKILL.md frontmatter) <br>
+Risk: Static finance, regulatory, or investment reference text may be outdated, incomplete, or unsuitable for a specific jurisdiction or decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as lightweight reference material and verify compliance, regulation, and investment-related content against current primary sources before use.
+
+## Reference(s):
+
+- [Jensen ClawHub skill page](https://clawhub.ai/ckchzh/skills/jensen)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted static reference text printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command output; no network, credential, or persistent system access is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Anti-SEO deep consumer research tool that helps users make purchase decisions by adapting searches, credibility scoring, and reports to the user's language and region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-SEO deep consumer research tool for purchase decisions that detects user language, adapts to regional platforms and search strategies, and can operate with or without a web_search tool.
 
-## Publisher: <br>
-[AmosHc](https://clawhub.ai/user/AmosHc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amoshc](https://clawhub.ai/user/amoshc)
 
-## Use Case: <br>
-External users and developers use this skill to research consumer purchases across regional search engines, e-commerce review sources, social comments, forums, and safety-event sources. It filters suspected advertising or astroturfing, scores candidate products, resolves conflicting evidence, and produces recommendation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs included Python scripts, performs web searches, fetches third-party pages, writes reports, and may keep a local cache under the scripts directory. <br>
-Mitigation: Install only when this behavior is acceptable, supervise proposed commands before execution, avoid highly sensitive research queries, and clear the local cache after sensitive work. <br>
-Risk: Consumer research can include misleading, sponsored, outdated, or low-quality web content despite filtering and scoring. <br>
-Mitigation: Review source links, quotes, safety findings, and data-transparency sections before relying on recommendations for purchasing decisions. <br>
+## Use Case:
 
+External users and developers use this skill to research consumer-product purchases, filter promotional or astroturfed content, compare candidate products, and generate localized recommend/avoid reports.
 
-## Reference(s): <br>
-- [Anti-SEO Researcher on ClawHub](https://clawhub.ai/AmosHc/anti-seo-researcher) <br>
-- [Anti-SEO Deep Consumer Researcher - Detailed Reference Manual](references/SKILL_REFERENCE.md) <br>
-- [Credibility Scoring Rules](references/credibility_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with JSON task/category configuration and scored JSON intermediate outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated in the user's language; scripts may write local report, scoring, search-result, and cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Fallback search and content-fetching behavior can access arbitrary web pages returned by search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandboxed environment and disable or restrict content fetching unless the task requires full-page evidence.
+
+Risk: Untrusted web page text can influence AI scoring prompts and purchase recommendations.
+
+Mitigation: Treat fetched text only as untrusted evidence, keep AI scoring tool-free, and review high-impact recommendations before relying on them.
+
+## Reference(s):
+
+- [Anti-SEO Researcher Skill Page](https://clawhub.ai/amoshc/skills/anti-seo-researcher)
+- [Anti-SEO Deep Consumer Researcher Reference Manual](artifact/references/SKILL_REFERENCE.md)
+- [Credibility Assessment Rules Reference](artifact/references/credibility_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON task and scoring files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are localized to the user's language and region and may include product scores, source links, evidence summaries, and data transparency notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

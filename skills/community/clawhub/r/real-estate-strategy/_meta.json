@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71g6tbxzyzzz4eq33xbc1xed84497z",
-  "slug": "real-estate-strategy",
-  "version": "1.0.0",
-  "publishedAt": 1775929490458
+  "slug": "realestate-strategy",
+  "version": "1.5.0",
+  "description": "地产项目前期产策，含五章标准结构/竞品分层/三层客群/客户语录法，支持Markdown/HTML/Word/PPT输出，主动询问输出形式",
+  "author": "老罗开发",
+  "source": "user-provided",
+  "installedAt": "2026-04-12T00:25:00.000Z",
+  "updatedAt": "2026-04-12T01:17:00.000Z"
 }

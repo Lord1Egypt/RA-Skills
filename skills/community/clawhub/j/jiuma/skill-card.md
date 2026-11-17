@@ -1,43 +1,54 @@
-## Description: <br>
-Jiuma AI Video Generation (Free) helps agents use Jiuma's media generation service to create videos, images, sounds, action imitation outputs, and character replacement results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiuma AI Video Generation (Free) helps an agent authenticate with Jiuma, upload selected media, submit AI media-generation tasks, and retrieve generated video or image results.
 
-## Publisher: <br>
-[github-gamma](https://clawhub.ai/user/github-gamma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[github-gamma](https://clawhub.ai/user/github-gamma)
 
-## Use Case: <br>
-External users and developers use this skill to authorize with Jiuma, upload media assets, submit AI media generation tasks, and retrieve generated media URLs and task status as JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected photos, videos, audio, prompts, and task data are sent to Jiuma's API. <br>
-Mitigation: Avoid uploading confidential or identity-sensitive media unless the user accepts the provider-side privacy risk. <br>
-Risk: A Jiuma authorization token is stored in the user's system keyring. <br>
-Mitigation: Authorize intentionally, re-authorize only when needed, and remove stored credentials if access should be revoked. <br>
-Risk: The upload helper sends the local file path provided by the user to Jiuma. <br>
-Mitigation: Check file paths carefully before upload and only submit files selected for generation. <br>
+## Use Case:
 
+Developers, creators, and external users use this skill to automate Jiuma media-generation workflows, including text-to-video, image-to-video, action imitation, character replacement, local media upload, and result retrieval.
 
-## Reference(s): <br>
-- [Jiuma website](https://www.jiuma.com) <br>
-- [ClawHub skill page](https://clawhub.ai/github-gamma/jiuma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task results may include generated media URLs, task identifiers, task status, and uploaded file URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The skill stores a Jiuma service token for authenticated API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure OS keychain where available, run the skill in an isolated Python environment, and revoke the Jiuma token when the skill is no longer needed.
+
+Risk: The skill uploads user-selected local media files to api.jiuma.com.
+
+Mitigation: Upload only files intended for Jiuma processing and avoid sensitive documents, private media, or files outside the requested generation workflow.
+
+## Reference(s):
+
+- [Jiuma Website](https://www.jiuma.com)
+- [ClawHub Skill Page](https://clawhub.ai/github-gamma/skills/jiuma)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful generation tasks may return video_url or image_url values; uploads return a file_url for later task submission.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

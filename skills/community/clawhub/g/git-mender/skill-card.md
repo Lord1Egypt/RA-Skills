@@ -1,44 +1,58 @@
-## Description: <br>
-git-mender helps an agent fix GitHub issues end to end by reading the issue, analyzing repository code, implementing a fix, verifying it, and preparing a pull request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+git-mender helps an agent read a GitHub issue, analyze the target repository, implement a fix, verify the change, and prepare a pull request after user approval.
 
-## Publisher: <br>
-[4ydx3906](https://clawhub.ai/user/4ydx3906) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4ydx3906](https://clawhub.ai/user/4ydx3906)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when they want an agent to handle a GitHub issue workflow: inspect the issue, locate or clone the repository, analyze root cause, apply a minimal code fix, run checks, and prepare changes for review. Pull request submission is gated on explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify files in a local checkout and prepare commits or pull requests. <br>
-Mitigation: Review the diff and approve commit, push, fork, or pull request creation only when the changes match the intended issue fix. <br>
-Risk: Tests, linters, and project tooling in an untrusted repository may execute repository code. <br>
-Mitigation: Run the skill only on repositories you trust or in an isolated environment when repository code is not trusted. <br>
-Risk: GitHub operations use the user's existing GitHub CLI authentication and permissions. <br>
-Mitigation: Confirm the target repository, branch, and pull request destination before authorizing any GitHub operation. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to work from a GitHub issue URL through repository analysis, code changes, local verification, and pull request preparation. It is intended for issue-fix workflows where the user can review diffs and approve any push or pull request creation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/4ydx3906/git-mender) <br>
-- [Publisher Profile](https://clawhub.ai/user/4ydx3906) <br>
-- [GitHub CLI](https://cli.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code diffs, commit messages, and pull request text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify local checkout files and prepare GitHub pull request metadata after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The skill can read untrusted GitHub issue content and use it to guide repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with repositories and issue authors you trust, or run it in a disposable or sandboxed development environment.
+
+Risk: The skill can edit repositories and run repository-defined commands such as tests or linters on the user's machine.
+
+Mitigation: Review proposed commands and inspect diffs before accepting changes or allowing follow-up actions.
+
+Risk: The skill can push branches and create pull requests after approval.
+
+Mitigation: Confirm the target repository, branch, pull request text, and final diff before approving any push or pull request creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/4ydx3906/skills/git-mender)
+- [GitHub CLI](https://cli.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command blocks, code diffs, commit messages, and pull request text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitHub issue URL; push and pull request creation are gated on user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

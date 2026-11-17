@@ -1,40 +1,58 @@
-## Description: <br>
-Windows应用控制器让AI通过Python自动化技术控制Windows桌面应用，包括启动和关闭应用、点击按钮、填写表单、截图和窗口操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows应用控制器 helps an agent control Windows desktop applications through Python automation, including launching and closing apps, clicking controls, filling forms, and taking screenshots.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, testers, and automation users can use this skill to guide Windows GUI automation scripts for app control, data entry, screenshots, form submission, and desktop workflow testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad Windows desktop automation, including clicks, typing, screenshots, file saves, app launches, and force-closing processes. <br>
-Mitigation: Use it only when desktop control is intended, preferably in a VM or test account, and require explicit confirmation before sensitive actions such as screenshots, clipboard use, form submission, file creation or overwrite, app launch, or force-closing processes. <br>
-Risk: Automation against live desktop applications can act on the wrong window, button, or account if screen state changes or image matching is inaccurate. <br>
-Mitigation: Keep sensitive windows closed, verify the active target application before execution, prefer image-based checks over fixed coordinates, and review screenshots or logs after each run. <br>
+## Use Case:
 
+Developers and automation operators use this skill to draft and run Windows GUI automation for application testing, data entry, repetitive desktop workflows, and screen-based control tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-windows-controller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Windows automation reports with operation status, execution steps, errors, and screenshot references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can give an agent high-impact control over a Windows desktop, including clicks, text entry, screenshots, app launches, and process termination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled Windows session and require explicit confirmation before clicks, form submissions, application launches, or process termination.
+
+Risk: Screenshots may expose sensitive windows or private information.
+
+Mitigation: Close or hide sensitive windows before enabling screenshot-based workflows and review captured files before sharing them.
+
+Risk: The artifact includes an unsafe taskkill/os.system process termination example.
+
+Mitigation: Replace it with a safer subprocess or psutil implementation that validates process names and uses allowlists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-windows-controller)
+- [ClawHub publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operation reports, dependency installation commands, automation script snippets, and screenshot file references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

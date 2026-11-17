@@ -1,45 +1,58 @@
-## Description: <br>
-Controls an Android phone with visual state analysis, popup handling, simulated taps and text entry, and screen-feedback checks for action verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls an Android phone by using screen observations and a configured vision-language model to plan and execute app launch, tapping, swiping, text input, waiting, and task status actions.
 
-## Publisher: <br>
-[liseng1997](https://clawhub.ai/user/liseng1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liseng1997](https://clawhub.ai/user/liseng1997)
 
-## Use Case: <br>
-External users and agent operators use this skill to inspect and control a connected Android device through VLM-guided commands for app navigation, popup handling, scrolling, tapping, and text entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly control a connected Android phone. <br>
-Mitigation: Install only after review, use a test phone or non-sensitive profile, and personally confirm sends, purchases, or account changes. <br>
-Risk: Screenshots are sent to a configurable VLM endpoint. <br>
-Mitigation: Prefer a trusted local VLM endpoint and avoid displaying banking data, passwords, one-time codes, private chats, or work data. <br>
-Risk: USB debugging and the ATX automation service can remain enabled after use. <br>
-Mitigation: Disable USB debugging or remove ATX when finished. <br>
+## Use Case:
 
+External users, developers, and automation operators use this skill when they want an agent to operate a connected Android phone for cross-app tasks, including opening apps, finding contacts or UI elements, entering text, and confirming task completion from screen feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liseng1997/android-auto-controller) <br>
-- [Publisher profile](https://clawhub.ai/user/liseng1997) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Android automation script](artifact/scripts/android_agent.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with bash command patterns and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, uiautomator2, a connected Android device with USB debugging, and VLM environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can control a real Android phone through taps, swipes, app launches, text entry, and key presses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when intentional phone control is desired, and supervise or gate actions that could affect accounts, messages, purchases, or settings.
+
+Risk: Screenshots and task goals are sent to a configurable VLM service and may include sensitive notifications, apps, messages, or account information.
+
+Mitigation: Use a trusted local or HTTPS VLM endpoint and avoid displaying sensitive content during automation.
+
+Risk: Temporary screenshot files may remain on disk after visual analysis.
+
+Mitigation: Clean up retained screenshot files after use and prefer an isolated environment for installation and execution.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/liseng1997/skills/android-auto-controller)
+- [ClawHub publisher profile](https://clawhub.ai/user/liseng1997)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a USB-connected Android device, Python 3, uiautomator2, OpenAI client configuration, and VLM environment variables; actions may create temporary screenshot files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

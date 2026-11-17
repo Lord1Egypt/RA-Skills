@@ -1,44 +1,64 @@
-## Description: <br>
-Manage Cloudflare Workers, KV, D1, R2, and secrets using the Wrangler CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cloudflare Workers, KV, D1, R2, and secrets using the Wrangler CLI.
 
-## Publisher: <br>
-[Asleep123](https://clawhub.ai/user/Asleep123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asleep123](https://clawhub.ai/user/asleep123)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Cloudflare Workers and related resources with Wrangler, including deployments, secrets, KV namespaces, D1 databases, R2 buckets, queues, and live logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wrangler delete, rollback, bulk, migration, and SQL commands can affect production Cloudflare resources or data. <br>
-Mitigation: Verify the Cloudflare account, environment, resource names, and production impact before execution, and back up data before destructive or database operations. <br>
-Risk: Secret-management commands can expose sensitive values if plaintext secrets enter shell history, logs, or committed files. <br>
-Mitigation: Use interactive or stdin-based secret entry carefully, avoid logging secret values, and keep secret files out of version control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Wrangler skill page](https://clawhub.ai/Asleep123/wrangler) <br>
-- [Wrangler documentation](https://developers.cloudflare.com/workers/wrangler/) <br>
-- [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/) <br>
-- [Cloudflare D1 documentation](https://developers.cloudflare.com/d1/) <br>
-- [Cloudflare R2 documentation](https://developers.cloudflare.com/r2/) <br>
-- [Cloudflare KV documentation](https://developers.cloudflare.com/kv/) <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Cloudflare Workers and related services with Wrangler, including deployments, secrets, KV namespaces, D1 databases, R2 buckets, queues, logs, and configuration files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wrangler commands can change or delete live Cloudflare resources.
+
+Mitigation: Verify the active Cloudflare account and target environment before running deployment, rollback, delete, or data mutation commands.
+
+Risk: D1, R2, and KV operations may affect important application data.
+
+Mitigation: Back up important D1, R2, and KV data before destructive operations.
+
+Risk: Secret files and secret values may expose sensitive material.
+
+Mitigation: Handle secret files as sensitive material and avoid exposing secret values in logs, prompts, or shared files.
+
+Risk: Unexpected Wrangler versions may change CLI behavior.
+
+Mitigation: Prefer a pinned, project-local Wrangler dependency for repeatable command behavior.
+
+## Reference(s):
+
+- [Wrangler Docs](https://developers.cloudflare.com/workers/wrangler/)
+- [Workers Docs](https://developers.cloudflare.com/workers/)
+- [D1 Docs](https://developers.cloudflare.com/d1/)
+- [R2 Docs](https://developers.cloudflare.com/r2/)
+- [KV Docs](https://developers.cloudflare.com/kv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSONC, and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

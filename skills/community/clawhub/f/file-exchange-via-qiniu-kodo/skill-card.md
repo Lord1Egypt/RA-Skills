@@ -1,41 +1,58 @@
-## Description: <br>
-Routes agent file exchange through Qiniu Kodo using qshell commands for authenticated download and upload workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfers files through Qiniu Kodo using qshell commands for download, upload, and file link exchange.
 
-## Publisher: <br>
-[kadbbz](https://clawhub.ai/user/kadbbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadbbz](https://clawhub.ai/user/kadbbz)
 
-## Use Case: <br>
-Agents that exchange files with users use this skill to receive file_input:// links, download the referenced Qiniu Kodo object into the workspace, and upload outbound files to a Qiniu Kodo bucket with timestamped names. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files and Qiniu credentials are involved in normal operation, so broad credentials or unreviewed uploads can expose data. <br>
-Mitigation: Use scoped Qiniu credentials, review each file before upload, and periodically remove objects or buckets that are no longer needed. <br>
-Risk: The workflow depends on qshell binaries downloaded from external links. <br>
-Mitigation: Verify the qshell download source before use and keep the download parameters from the documented Qiniu links. <br>
+## Use Case:
 
+Developers and operators use this skill when an OpenClaw agent must receive or send workspace files through a Qiniu Kodo bucket using qshell.
 
-## Reference(s): <br>
-- [Qiniu qshell documentation](https://developer.qiniu.com/kodo/1302/qshell) <br>
-- [ClawHub skill page](https://clawhub.ai/kadbbz/file-exchange-via-qiniu-kodo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline command examples and file URI messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outbound file transfer completes with a standalone file_output:// URI after upload succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses Qiniu cloud credentials for file transfer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, rotated credentials from environment variables and review access before installing.
+
+Risk: The skill depends on an external qshell binary.
+
+Mitigation: Download and verify qshell through a trusted Qiniu channel before use.
+
+Risk: The skill can upload files to a third-party storage bucket.
+
+Mitigation: Confirm each file before upload and avoid transferring sensitive data unless the destination bucket and access controls are approved.
+
+## Reference(s):
+
+- [Qiniu Kodo qshell documentation](https://developer.qiniu.com/kodo/1302/qshell)
+- [ClawHub skill page](https://clawhub.ai/kadbbz/skills/file-exchange-via-qiniu-kodo)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file URI messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [File output messages use file_output:// links after successful upload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

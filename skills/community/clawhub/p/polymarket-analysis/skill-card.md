@@ -1,47 +1,64 @@
-## Description: <br>
-Analyze Polymarket prediction markets for trading edges. Pair Cost arbitrage, whale tracking, sentiment analysis, momentum signals, user profile tracking. No execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Polymarket prediction markets for trading edges. Pair Cost arbitrage, whale tracking, sentiment analysis, momentum signals, user profile tracking. No execution.
 
-## Publisher: <br>
-[lukebaze](https://clawhub.ai/user/lukebaze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukebaze](https://clawhub.ai/user/lukebaze)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Polymarket prediction markets, monitor selected markets for read-only alerts, and inspect wallet positions, trades, and P&L. It supports opportunity identification only and does not execute trades. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring market monitors may continue sending alerts after the user no longer needs them. <br>
-Mitigation: Enable monitors deliberately, confirm the cron schedule and delivery channel, and remove or disable monitors when monitoring is no longer needed. <br>
-Risk: Prediction-market research outputs may be incomplete, stale, or mistaken for execution-ready financial guidance. <br>
-Mitigation: Treat outputs as research only, verify market data and resolution rules independently, and rely on the skill's no-execution boundary. <br>
-Risk: Monitoring can persist market snapshots in local state files. <br>
-Mitigation: Review generated state files and delete them when they are no longer needed for alert comparisons. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Polymarket Analysis on ClawHub](https://clawhub.ai/lukebaze/polymarket-analysis) <br>
-- [Polymarket API Reference](references/polymarket-api.md) <br>
-- [Market Monitoring Setup](references/market-monitoring-setup.md) <br>
-- [Pair Cost Arbitrage Strategy](references/pair-cost-arbitrage.md) <br>
-- [Momentum Analysis Strategy](references/momentum-analysis.md) <br>
-- [Whale Tracking Strategy](references/whale-tracking.md) <br>
-- [Sentiment Analysis Strategy](references/sentiment-analysis.md) <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to evaluate Polymarket markets for analysis-only trading signals, including arbitrage, momentum, wallet activity, sentiment, and recurring market alerts. It does not execute trades.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown analysis, JSON command output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis; optional monitors can write local state files and send alerts when explicitly enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring Polymarket monitoring can create persistent cron jobs with ongoing alerts and local state without enough scoping or consent controls.
+
+Mitigation: Before enabling monitor mode, confirm the exact market, duration, state-file location, and alert recipient; set an expiration and remove the cron job when monitoring is finished.
+
+Risk: Alert delivery can use the last active channel, which may send market-monitoring updates to an unintended recipient or venue.
+
+Mitigation: Require an explicit alert channel and recipient for each monitoring job instead of relying on the last-used channel.
+
+Risk: Wallet profile lookups and stored monitoring state can reveal sensitive trading interests or wallet activity even when the underlying data is public.
+
+Mitigation: Treat wallet outputs and state files as sensitive, minimize retention, and avoid sharing them outside the intended analysis context.
+
+## Reference(s):
+
+- [Polymarket API Reference](references/polymarket-api.md)
+- [Market Monitoring Setup](references/market-monitoring-setup.md)
+- [Pair Cost Arbitrage Strategy](references/pair-cost-arbitrage.md)
+- [Momentum Analysis Strategy](references/momentum-analysis.md)
+- [Whale Tracking Strategy](references/whale-tracking.md)
+- [Sentiment Analysis Strategy](references/sentiment-analysis.md)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket Data API](https://data-api.polymarket.com)
+- [Polymarket CLOB API](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis-only output; helper scripts may read public Polymarket APIs and maintain local monitoring state.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

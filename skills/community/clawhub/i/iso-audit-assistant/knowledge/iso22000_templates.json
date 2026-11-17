@@ -1,0 +1,41 @@
+{
+  "standard": "ISO 22000:2018 食品安全管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-FS-001", "name": "前提方案(PRP)控制程序", "name_en": "Prerequisite Program Procedure", "clause": "7.5",
+     "meta": {"owner": "生产部/品管部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "建立并保持前提方案，为食品安全危害的控制提供基础保障条件。"},
+       {"title": "2 适用范围", "content": "适用于{org}基础设施维护、清洁、虫害控制、人员卫生等前提活动。"},
+       {"title": "3 职责", "content": "3.1 品管部负责PRP归口管理；3.2 生产部负责现场执行；3.3 各部门配合。"},
+       {"title": "4 工作程序", "content": "4.1 建立基础设施与维护、清洁消毒、虫害防治、人员健康与培训等前提方案；4.2 操作性前提方案(OPRP)的识别与监控；4.3 定期验证PRP有效性；4.4 记录保存。"}
+     ],
+     "high_voltage_check": ["hv-fs-prp"]},
+    {"id": "SP-FS-002", "name": "危害分析与HACCP计划控制程序", "name_en": "Hazard Analysis & HACCP Procedure", "clause": "8.5",
+     "meta": {"owner": "食品安全小组", "frequency": "变更/年度"},
+     "sections": [
+       {"title": "1 目的", "content": "系统识别食品安全危害，建立并实施HACCP计划以控制显著危害。"},
+       {"title": "2 适用范围", "content": "适用于{org}产品实现全过程危害分析与CCP控制。"},
+       {"title": "3 职责", "content": "3.1 食品安全小组负责危害分析与HACCP计划制定；3.2 生产部负责CCP监控；3.3 品管部验证。"},
+       {"title": "4 工作程序", "content": "4.1 描述产品与预期用途；4.2 绘制工艺流程图并现场验证；4.3 危害分析(识别/评估/控制措施)；4.4 确定CCP、关键限值、监控/纠偏/验证/记录；4.5 建立HACCP计划表；4.6 当原料/工艺变更时重新确认。"}
+     ],
+     "high_voltage_check": ["hv-fs-haccp"]},
+    {"id": "SP-FS-003", "name": "可追溯性控制程序", "name_en": "Traceability Procedure", "clause": "8.9",
+     "meta": {"owner": "仓储/物流部", "frequency": "每批/定期验证"},
+     "sections": [
+       {"title": "1 目的", "content": "确保能唯一识别产品批次及流向，实现正向与逆向追溯。"},
+       {"title": "2 适用范围", "content": "适用于{org}原料进货至成品交付的全链路追溯。"},
+       {"title": "3 职责", "content": "3.1 仓储部负责批次标识与记录；3.2 品管部负责追溯验证。"},
+       {"title": "4 工作程序", "content": "4.1 原料到货赋批号并登记；4.2 生产过程批次流转记录；4.3 成品入库与发货记录；4.4 定期模拟追溯测试并评价时效。"}
+     ],
+     "high_voltage_check": ["hv-fs-trace"]},
+    {"id": "SP-FS-004", "name": "应急准备与产品撤回/召回控制程序", "name_en": "Emergency & Recall Procedure", "clause": "8.4/8.9",
+     "meta": {"owner": "品管部/管理层", "frequency": "年度演练"},
+     "sections": [
+       {"title": "1 目的", "content": "对突发事件与潜在不安全产品作出快速响应，保护消费者健康。"},
+       {"title": "2 适用范围", "content": "适用于{org}食品安全事故应急与产品撤回/召回。"},
+       {"title": "3 职责", "content": "3.1 最高管理者批准召回；3.2 品管部组织应急处置；3.3 销售部负责通知与回收。"},
+       {"title": "4 工作程序", "content": "4.1 识别潜在紧急情况并制定预案；4.2 发现潜在不安全产品即启动撤回/召回；4.3 通知相关方、隔离与处置；4.4 演练并评审有效性。"}
+     ],
+     "high_voltage_check": ["hv-fs-emergency"]}
+  ]
+}

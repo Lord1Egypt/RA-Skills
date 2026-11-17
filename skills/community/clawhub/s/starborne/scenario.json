@@ -1,0 +1,82 @@
+{
+  "acts": [
+    {
+      "name": "无名边境", "money": 16,
+      "chests": [
+        {"step":0,"name":"锈蚀补给箱","money":30,"material":"星尘结晶","material_n":4,"draws":1,"mimic_chance":0,"flavor":"焊死的箱盖，撬开有股机油味。"},
+        {"step":1,"name":"流民行囊","money":30,"material":"星尘结晶","material_n":4,"draws":1,"mimic_chance":0.30,"flavor":"半埋在沙里，带子早被风化了。"}
+      ],
+      "foes": [
+        {"name":"拾荒者","hp":120,"atk":22,"def":8,"weak":"火","resist":"雷","flavor":"钩子挂在腰上，用来从沙里刨还能用的东西。"},
+        {"name":"流沙匪","hp":150,"atk":26,"def":12,"weak":"蚀","resist":"冰","flavor":"他们不抢货，只抢能走的人。"},
+        {"name":"拾骨海盗","hp":170,"atk":30,"def":14,"weak":"雷","resist":"暗","flavor":"裹着从坠毁船骸上扒下来的制服。"},
+        {"name":"沙虫幼虫","hp":200,"atk":34,"def":18,"weak":"冰","resist":"火","flavor":"还没学会潜沙，先学会了咬。"},
+        {"name":"锈甲队长","hp":260,"atk":40,"def":24,"weak":"蚀","resist":"雷","flavor":"甲是用压路机压平的，焊得很难看。"}
+      ],
+      "boss": {"name":"边境锈王","hp":420,"atk":52,"def":30,"weak":"火","resist":"雷","flavor":"他在这条边境上收过三十年过路费。"}
+    },
+    {
+      "name": "船坞", "money": 30,
+      "chests": [
+        {"step":0,"name":"码头货柜","money":50,"material":"星尘结晶","material_n":5,"draws":1,"mimic_chance":0,"flavor":"锁着的货柜，标签早被海水泡烂了。"},
+        {"step":2,"name":"救生舱储物格","money":50,"material":"星尘结晶","material_n":5,"draws":1,"mimic_chance":0.35,"flavor":"泡在水里的舱格，里面不知是货还是尸。"}
+      ],
+      "foes": [
+        {"name":"失控巡检无人机","hp":240,"atk":48,"def":26,"weak":"雷","resist":"物理","flavor":"仍在巡逻。巡逻的区域早已没有人。"},
+        {"name":"恶犬","hp":260,"atk":52,"def":28,"weak":"火","resist":"冰","flavor":"项圈上写着工号，主人已经上个月就死了。"},
+        {"name":"哨兵","hp":280,"atk":56,"def":32,"weak":"暗","resist":"雷","flavor":"它还在等一句早就不再来的口令。"},
+        {"name":"焊接奴工","hp":320,"atk":60,"def":30,"weak":"冰","resist":"火","flavor":"护目镜里焊进去的火星早就不烫了。"},
+        {"name":"恶霸","hp":380,"atk":66,"def":38,"weak":"蚀","resist":"物理","flavor":"占了整条船坞，理由是船坞需要有人管。"}
+      ],
+      "boss": {"name":"坞主·铁锚","hp":620,"atk":78,"def":48,"weak":"雷","resist":"冰","flavor":"名字是真的。他从没解开过自己的锚。"}
+    },
+    {
+      "name": "熔渣工厂", "money": 52,
+      "chests": [
+        {"step":0,"name":"熔渣结晶窖","money":80,"material":"太古原石","material_n":1,"draws":1,"mimic_chance":0,"flavor":"半埋在渣里的密封罐，罐壁还烫手。"},
+        {"step":1,"name":"工头私库","money":80,"material":"太古原石","material_n":1,"draws":1,"mimic_chance":0.40,"flavor":"铁锁锈死，里面是工头私藏的零件。"},
+        {"step":2,"name":"冷却槽暗格","money":80,"material":"太古原石","material_n":1,"draws":1,"mimic_chance":0,"flavor":"贴着槽壁，凉得反常。"}
+      ],
+      "foes": [
+        {"name":"熔渣魔","hp":420,"atk":76,"def":44,"weak":"冰","resist":"火","flavor":"渣里凝出来的形状，形状里没骨头。"},
+        {"name":"焚化士兵","hp":450,"atk":82,"def":46,"weak":"毒","resist":"火","flavor":"制服烧到看不见编号，工牌是熔上去的。"},
+        {"name":"焚风炉心","hp":500,"atk":88,"def":52,"weak":"冰","resist":"雷","flavor":"它一直在烧，烧了三十年也没烧完自己。"},
+        {"name":"装甲机器人","hp":560,"atk":96,"def":60,"weak":"蚀","resist":"物理","flavor":"履带磨没了，滑着走了半条走廊。"},
+        {"name":"熔渣暴君","hp":640,"atk":104,"def":68,"weak":"冰","resist":"蚀","flavor":"它曾是个班长。班长的部分还留着。"}
+      ],
+      "boss": {"name":"炉心·熔帝","hp":900,"atk":118,"def":82,"weak":"冰","resist":"火","flavor":"整座工厂的炉子，其实是同一颗心脏。"}
+    },
+    {
+      "name": "虫巢", "money": 88,
+      "chests": [
+        {"step":0,"name":"虫巢卵囊","money":120,"material":"太古原石","material_n":1,"draws":1,"mimic_chance":0,"flavor":"半透明的囊，里面有什么在动。"},
+        {"step":1,"name":"工虫仓储","money":120,"material":"太古原石","material_n":1,"draws":1,"mimic_chance":0,"flavor":"一格一格，存着不知名的分泌物。"},
+        {"step":2,"name":"甲壳祭坛","money":120,"material":"太古原石","material_n":1,"draws":1,"mimic_chance":0.45,"flavor":"用同类壳拼的祭坛，拼得很整齐。"},
+        {"step":2,"name":"母巢藏宝巨囊（大宝箱）","money":240,"material":"太古原石","material_n":1,"draws":2,"mimic_chance":0,"flavor":"最大的那颗囊，鼓得发亮——母巢守着的东西。"}
+      ],
+      "foes": [
+        {"name":"巢卫甲虫","hp":700,"atk":118,"def":76,"weak":"火","resist":"物理","flavor":"外骨骼硬得能弹开子弹，弹开后就留在上面。"},
+        {"name":"裂变工虫","hp":760,"atk":126,"def":80,"weak":"雷","resist":"毒","flavor":"它一边搬运一边分裂，分裂的那半继续搬。"},
+        {"name":"酸液喷吐者","hp":820,"atk":132,"def":86,"weak":"火","resist":"蚀","flavor":"酸把地板烧穿，露出更深的巢。"},
+        {"name":"骨甲武士","hp":900,"atk":142,"def":94,"weak":"物理","resist":"暗","flavor":"甲是用同类的壳拼的，拼得很整齐。"},
+        {"name":"虫巢裂变虫后","hp":1000,"atk":152,"def":100,"weak":"火","resist":"毒","flavor":"它生下的每一个都记得它。"}
+      ],
+      "boss": {"name":"母巢·裂变之母","hp":1350,"atk":172,"def":122,"weak":"火","resist":"暗","flavor":"整个巢是它身体的一部分，包括你脚下这块。"}
+    },
+    {
+      "name": "虚空之门", "money": 145,
+      "chests": [
+        {"step":1,"name":"湮灭执行者遗匣","money":180,"material":"Gem of the Space","material_n":1,"draws":1,"mimic_chance":0,"flavor":"不宣判，只执行，执行完连罪名一起抹掉。"},
+        {"step":2,"name":"虚空之主藏匣（大宝箱）","money":360,"material":"Mirror of the Void","material_n":1,"draws":2,"mimic_chance":0,"flavor":"门后面那个一直等的，终于等到了——它把自己的东西锁在这。"}
+      ],
+      "foes": [
+        {"name":"虚空奴仆","hp":1150,"atk":168,"def":110,"weak":"物理","resist":"暗","flavor":"它重复着你上一次死掉的动作。"},
+        {"name":"时蚀行者","hp":1250,"atk":178,"def":118,"weak":"雷","resist":"物理","flavor":"走过你身边，你的年份少了一年。"},
+        {"name":"虚空低语者","hp":1350,"atk":188,"def":126,"weak":"毒","resist":"暗","flavor":"它说话时你确实听懂了，只是内容是你自己。"},
+        {"name":"湮灭执行者","hp":1450,"atk":198,"def":134,"weak":"蚀","resist":"雷","flavor":"不宣判，只执行，执行完连罪名一起抹掉。"},
+        {"name":"影子卫士","hp":1600,"atk":212,"def":146,"weak":"火","resist":"冰","flavor":"影子先到，身体后来。"}
+      ],
+      "boss": {"name":"虚空之主·阿拉基恩","hp":5000,"atk":1500,"def":170,"weak":"火","resist":"暗","flavor":"门后面那个一直等的，终于等到了。"}
+    }
+  ]
+}

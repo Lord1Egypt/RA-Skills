@@ -1,43 +1,58 @@
-## Description: <br>
-Searches and retrieves local Markdown knowledge bases with qmd using BM25 keyword search, vector semantic search, and hybrid LLM re-ranking modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve markdown documents from local knowledge bases using qmd.
 
-## Publisher: <br>
-[davidsteelerose](https://clawhub.ai/user/davidsteelerose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidsteelerose](https://clawhub.ai/user/davidsteelerose)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search indexed Markdown notes, documentation, meeting transcripts, and other local knowledge bases, then retrieve specific documents or snippets for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed Markdown notes become searchable by the agent. <br>
-Mitigation: Index only Markdown folders you are comfortable making searchable, and avoid collections containing secrets unless that exposure is deliberate. <br>
-Risk: Optional LLM re-ranking may expose query context depending on qmd CLI configuration. <br>
-Mitigation: Verify how qmd handles embeddings and LLM re-ranking before using it with private notes. <br>
-Risk: The skill depends on installing an external qmd CLI. <br>
-Mitigation: Install only if you trust the external qmd CLI and its installation source. <br>
+## Use Case:
 
+Developers, engineers, and knowledge-base users use this skill to search indexed markdown notes, documentation, and transcripts, then retrieve matching documents or passages through qmd CLI commands.
 
-## Reference(s): <br>
-- [QMD Markdown Search on ClawHub](https://clawhub.ai/davidsteelerose/k2ljl-qmd) <br>
-- [qmd GitHub repository](https://github.com/tobi/qmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON-oriented command output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs agents to use qmd commands with --json for structured output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing the global qmd CLI from the upstream repository can expose the user to upstream package trust risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the qmd upstream repository.
+
+Risk: Indexing broad private folders may expose sensitive notes or documents through search, embedding, or retrieval workflows.
+
+Mitigation: Use narrow collections, review indexed content before embedding, and avoid LLM-backed query mode for sensitive material unless the provider path is understood.
+
+Risk: Running the qmd MCP server may expose local markdown search and retrieval tools to connected clients.
+
+Mitigation: Run the MCP server only for trusted local clients.
+
+## Reference(s):
+
+- [QMD upstream repository](https://github.com/tobi/qmd)
+- [ClawHub skill page](https://clawhub.ai/davidsteelerose/skills/k2ljl-qmd)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON]
+
+**Output Format:** [Markdown with inline bash code blocks and qmd JSON output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to use qmd with --json for structured search and retrieval output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

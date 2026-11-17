@@ -17,6 +17,7 @@ import os
 import platform
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 # scripts/ 目录（bridge_loader.py 的上一级）
@@ -55,6 +56,27 @@ def _build_cmd() -> list:
         raise RuntimeError(f"不支持的平台: {_SYSTEM}")
 
 
+def _atomic_write_bytes(path: Path, payload: bytes) -> None:
+    """Replace a generated compatibility edit without partial writes."""
+    fd, temp_name = tempfile.mkstemp(
+        prefix=path.name + ".",
+        suffix=".tmp",
+        dir=str(path.parent),
+    )
+    try:
+        os.fchmod(fd, path.stat().st_mode & 0o777)
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, path)
+    finally:
+        try:
+            os.unlink(temp_name)
+        except FileNotFoundError:
+            pass
+
+
 def auto_build(force: bool = False) -> None:
     """
     自动编译 ctp_bridge。
@@ -77,11 +99,12 @@ def auto_build(force: bool = False) -> None:
     tag = "重新编译" if force else "首次运行，自动编译"
     print(f"[ClawTrader] {tag} ctp_bridge ({_SYSTEM})...", flush=True)
 
-    # macOS/Linux: 脚本可能因 Windows 编辑器带来 CRLF，在此原地清除
+    # macOS/Linux: 脚本可能因 Windows 编辑器带来 CRLF，在此原子规范化
     if _SYSTEM in ("Darwin", "Linux"):
         raw = script_path.read_bytes()
-        if b"\r\n" in raw:
-            script_path.write_bytes(raw.replace(b"\r\n", b"\n"))
+        normalised = raw.replace(b"\r\n", b"\n")
+        if normalised != raw:
+            _atomic_write_bytes(script_path, normalised)
 
     result = subprocess.run(cmd)
     if result.returncode != 0:

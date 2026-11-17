@@ -1,39 +1,52 @@
-## Description: <br>
-Audit GitHub Actions workflow files for hardening gaps (missing timeouts/permissions/concurrency and floating action refs). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions workflow files for hardening gaps (missing timeouts/permissions/concurrency and floating action refs).
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to statically review GitHub Actions workflow files for hardening gaps before production workflows rely on risky defaults. It supports targeted triage with file and event filters and can optionally fail a CI gate when critical issues are found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The audit reads local files matched by WORKFLOW_GLOB, so an overly broad glob can include files beyond GitHub Actions workflows. <br>
-Mitigation: Keep WORKFLOW_GLOB scoped to workflow files unless broader local review is intentional. <br>
-Risk: FAIL_ON_CRITICAL can cause the command to fail a CI job. <br>
-Mitigation: Enable FAIL_ON_CRITICAL only when failing the pipeline on critical workflow hardening findings is desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-workflow-hardening-audit) <br>
+## Use Case:
 
+Developers and engineers use this skill to statically audit GitHub Actions workflow files for CI hardening gaps before risky defaults reach production repositories. It supports local reporting, JSON output, targeted file or event filtering, and optional CI failure on critical workflow findings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON report with summary, ranked workflow risks, and critical workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local workflow files matched by WORKFLOW_GLOB and can exit nonzero when FAIL_ON_CRITICAL=1.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The static parser can miss some valid GitHub Actions YAML forms.
+
+Mitigation: Confirm important CI policy decisions with a YAML-aware workflow linter or additional security review.
+
+Risk: Audit results may be incomplete if file, event, or allow-list regex filters are too broad or too narrow.
+
+Mitigation: Review filter settings before using results as a CI gate and run an unfiltered audit when establishing repository baselines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-workflow-hardening-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain-text or JSON workflow audit reports with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit non-zero when FAIL_ON_CRITICAL=1 and critical workflows are found.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

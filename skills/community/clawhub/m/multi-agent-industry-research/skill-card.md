@@ -1,43 +1,60 @@
-## Description: <br>
-Multi-agent collaborative industry research for OpenClaw that assigns research roles, runs parallel sub-agent research with optional Codex, Gemini, and Claude CLI augmentation, reviews quality iteratively, merges findings, and outputs a structured Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent collaborative industry research for OpenClaw that assigns research roles, runs parallel research with optional Codex, Gemini, or Claude CLI cross-validation, reviews quality, merges findings, and outputs a structured Markdown report.
 
-## Publisher: <br>
-[shineliang](https://clawhub.ai/user/shineliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shineliang](https://clawhub.ai/user/shineliang)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to coordinate multiple sub-agents for industry research, cross-validate findings with optional external AI CLIs, review report quality, and merge results into a structured Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move or delete broad workspace files during cleanup. <br>
-Mitigation: Run it in a dedicated empty workspace and choose archive instead of delete during cleanup. <br>
-Risk: Research content may be sent to external AI CLI tools under local accounts by default. <br>
-Mitigation: Set RESEARCH_CROSS_MODEL=none or restrict RESEARCH_CLI_TOOLS for confidential, regulated, client, or internal topics. <br>
+## Use Case:
 
+Developers and analysts use this skill to coordinate multi-agent industry research in OpenClaw, including role assignment, source-backed findings, quality review, merge convergence, and final Markdown report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shineliang/multi-agent-industry-research) <br>
-- [Project homepage](https://github.com/shineliang/industry-research-skill) <br>
-- [CLI cross-validation protocol](references/cross-validation.md) <br>
-- [OpenClaw tool mapping reference](references/tool-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and status updates with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-topic research folders and may call external AI CLI tools depending on configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: Detailed research findings may be sent to external AI CLIs during cross-validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review topics before use and set RESEARCH_CROSS_MODEL=none unless external validation is acceptable.
+
+Risk: The skill uses shared temporary files during CLI cross-validation.
+
+Mitigation: Avoid confidential, proprietary, regulated, or customer-related topics unless the workspace and external tools are approved for that data.
+
+Risk: The cleanup flow can delete listed historical research paths if the user chooses the delete option.
+
+Mitigation: Prefer archiving or verify every listed path before selecting deletion.
+
+## Reference(s):
+
+- [Industry Research Skill Homepage](https://github.com/shineliang/industry-research-skill)
+- [ClawHub Skill Page](https://clawhub.ai/shineliang/skills/multi-agent-industry-research)
+- [CLI Cross-Validation Protocol](references/cross-validation.md)
+- [Claude Code to OpenClaw Tool Mapping](references/tool-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates per-topic working files for configuration, research briefs, agent findings, reviews, merged drafts, and the final report.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

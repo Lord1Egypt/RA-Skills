@@ -1,0 +1,1 @@
+# Uses only the Python 3 standard library. Platform fetching is delegated to tencent-meeting-skill.

@@ -1,44 +1,63 @@
-## Description: <br>
-Manage Roblox game passes and developer products via Open Cloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Roblox game passes and developer products via Open Cloud API.
 
-## Publisher: <br>
-[TeddyEngel](https://clawhub.ai/user/TeddyEngel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teddyengel](https://clawhub.ai/user/teddyengel)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Roblox experiences through the Open Cloud API, including listing games and creating, updating, listing, or retrieving game passes and developer products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review automation may run nested review commands with broad local authority. <br>
-Mitigation: Review the skill before installation and run review workflows without sandbox bypass unless elevated local authority is explicitly required. <br>
-Risk: Commands can create or update monetized Roblox game passes and developer products through the user's API key. <br>
-Mitigation: Use a scoped Roblox Open Cloud API key, restrict it to the required experiences and permissions, and review command arguments before execution. <br>
+## Use Case:
 
+Developers and Roblox experience operators use this skill to list, create, retrieve, and update game passes and developer products through Roblox Open Cloud with a configured API key.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TeddyEngel/roblox-cli) <br>
-- [Roblox Open Cloud API Documentation](https://create.roblox.com/docs/cloud) <br>
-- [Game Passes API](https://create.roblox.com/docs/cloud/reference/features/game-passes) <br>
-- [Developer Products API](https://create.roblox.com/docs/cloud/reference/features/developer-products) <br>
-- [API Keys Guide](https://create.roblox.com/docs/cloud/auth/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ROBLOX_API_KEY with appropriate Roblox Open Cloud permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The documented launch command downloads and runs an unpinned Bun runtime while a Roblox API key may be present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or preinstalled Bun runtime and review the resolved runtime before running commands with ROBLOX_API_KEY.
+
+Risk: A Roblox API key can grant write access to game passes and developer products.
+
+Mitigation: Use keys scoped to only the needed experiences and permissions, and keep separate read-only and write-capable keys.
+
+Risk: Create and update commands can change monetized Roblox assets.
+
+Mitigation: Confirm the universe ID, item ID, price, and for-sale flag before executing write commands.
+
+## Reference(s):
+
+- [Roblox Open Cloud API Documentation](https://create.roblox.com/docs/cloud)
+- [Roblox API Keys Guide](https://create.roblox.com/docs/cloud/auth/api-keys)
+- [Game Passes API](https://create.roblox.com/docs/cloud/reference/features/game-passes)
+- [Developer Products API](https://create.roblox.com/docs/cloud/reference/features/developer-products)
+- [Roblox Creator Hub Credentials](https://create.roblox.com/dashboard/credentials)
+- [ClawHub Skill Page](https://clawhub.ai/teddyengel/skills/roblox-cli)
+- [Source Link From Skill Metadata](https://github.com/ingalls-ltd/RobloxCliSkillOpenClaw)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON command responses with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ROBLOX_API_KEY and Roblox Open Cloud permissions for the requested operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

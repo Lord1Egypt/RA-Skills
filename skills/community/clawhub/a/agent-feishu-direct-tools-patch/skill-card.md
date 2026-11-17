@@ -1,44 +1,58 @@
-## Description: <br>
-One-time/on-demand patch for openclaw-lark that enables Feishu tool calls from non-webhook agent paths by propagating session identity into the tool runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a one-time patch workflow for openclaw-lark so Feishu tool calls from non-webhook agent paths can preserve the current agent's account and sender identity.
 
-## Publisher: <br>
-[zouxiao7777](https://clawhub.ai/user/zouxiao7777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zouxiao7777](https://clawhub.ai/user/zouxiao7777)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to patch openclaw-lark so Feishu tools invoked through Control UI, sessions_send, or other non-webhook paths use the current executing agent's Feishu account identity. It is intended for short-term patch application, validation, and rollback-aware maintenance rather than permanent always-on loading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill modifies openclaw-lark source files and can affect Feishu tool behavior if applied to the wrong directory or version. <br>
-Mitigation: Use a git branch or backup, confirm the runtime install path before editing, review the final diff, and apply the patch only when intentionally updating openclaw-lark. <br>
-Risk: Patched files do not take effect until the OpenClaw Gateway or the Node process loading the plugin is restarted. <br>
-Mitigation: Restart the Gateway after patching, then run low-impact Feishu DM and Control UI smoke tests before normal use. <br>
-Risk: Leaving this patch skill permanently enabled may expose operational patch instructions during routine agent use. <br>
-Mitigation: Remove or disable the skill after patching and validation are complete. <br>
+## Use Case:
 
+Developers and operators use this skill to patch an OpenClaw openclaw-lark installation when Control UI or sessions_send Feishu tool calls lose the current agent's Feishu identity. It guides code changes, restart requirements, validation, and rollback for that one-time patching workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zouxiao7777/agent-feishu-direct-tools-patch) <br>
-- [Agent Direct Feishu Tool Patch Guide](artifact/doc/OpenClaw-Multi-Agent-Feishu-Direct-Tools-Patch-Guide-(openclaw-lark).en.md) <br>
-- [Agent Direct Tool Invocation Without Feishu Ticket](artifact/SKILL.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit operator confirmation before file edits and a gateway restart after patching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence says the patch changes Feishu authorization and session handling in ways that can confuse identities and expose session keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or run it only in a reviewed development workflow, back up the openclaw-lark plugin, confirm every diff, and smoke test Feishu DM and Control UI behavior before using a shared gateway.
+
+Risk: The security guidance flags the session-key fallback, persistent sessions.json lookup, and full session-key logging as unsuitable for shared gateway deployment.
+
+Mitigation: Fix or remove those behaviors before shared or production deployment, and avoid logging complete session keys.
+
+Risk: The fallback reinstall command can overwrite local plugin edits and is unpinned when written as npx -y @larksuite/openclaw-lark install.
+
+Mitigation: Use rollback first, get explicit operator confirmation before reinstalling, and pin and verify the package before any production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zouxiao7777/skills/agent-feishu-direct-tools-patch)
+- [Agent Direct Feishu Tool Patch guide](artifact/doc/OpenClaw-Multi-Agent-Feishu-Direct-Tools-Patch-Guide-(openclaw-lark).en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks and file-level patch instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit operator confirmation before edits, gateway restart after edits, and Feishu DM plus Control UI smoke tests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

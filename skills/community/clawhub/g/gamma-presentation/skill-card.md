@@ -1,45 +1,65 @@
-## Description: <br>
-Generate professional presentations with Gamma AI. Just describe what you want - topic, outline, or full content - and get a polished deck. No Gamma account needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional presentations with Gamma AI from a topic, outline, or full content brief, with PDF or PPTX output.
 
-## Publisher: <br>
-[lmanchu](https://clawhub.ai/user/lmanchu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lmanchu](https://clawhub.ai/user/lmanchu)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to turn a topic, outline, or content brief into a Gamma-generated presentation and retrieve a PDF, PPTX, or Gamma URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation prompts, outlines, and slide content are sent to Gamma for processing. <br>
-Mitigation: Use only content approved for Gamma processing and avoid confidential or regulated data unless Gamma use is approved for that data. <br>
-Risk: The skill can use local Gamma credentials from GAMMA_API_KEY or ~/.gamma/config.json. <br>
-Mitigation: Use a scoped Gamma API key, review local Gamma configuration before running the skill, and avoid exposing the key in prompts or logs. <br>
-Risk: The requested output path controls where generated PDF or PPTX files are written, and overwrite behavior is not documented. <br>
-Mitigation: Choose explicit output paths in a reviewed directory and check generated files before sharing or relying on them. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to create presentation decks from a topic or prepared content without manually designing slides. It is suited for pitch decks, talks, roadmaps, and other presentation workflows where Gamma generates the slide design.
 
-## Reference(s): <br>
-- [Gamma Presentation Generator on ClawHub](https://clawhub.ai/lmanchu/gamma-presentation) <br>
-- [Gamma](https://gamma.app) <br>
-- [Gamma Public API](https://public-api.gamma.app/v1.0) <br>
-- [Bun Runtime](https://bun.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated presentation files as PDF or PPTX and JSON status from the script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bun and a Gamma API key. The script calls Gamma, polls for completion, and writes the requested output path when export succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Presentation topics and source content are sent to Gamma for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content approved for Gamma processing; avoid confidential, regulated, or sensitive material unless organizational policy allows it.
+
+Risk: The skill requires access to a Gamma API key.
+
+Mitigation: Use a dedicated, scoped key stored in a secure environment variable or managed configuration, and avoid broad shared keys where possible.
+
+Risk: Generated presentations are downloaded from an API-provided Gamma URL.
+
+Mitigation: Review export URL handling and downloaded files before broader deployment, especially in automated or shared environments.
+
+Risk: The README includes an unpinned npx install path.
+
+Mitigation: Pin install sources or verify package provenance before use in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lmanchu/skills/gamma-presentation)
+- [Publisher profile](https://clawhub.ai/user/lmanchu)
+- [Gamma](https://gamma.app)
+- [Gamma public API endpoint](https://public-api.gamma.app/v1.0)
+- [Bun runtime](https://bun.sh)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, shell commands, configuration, guidance]
+
+**Output Format:** [PDF or PPTX deck files, Gamma URLs, JSON status output, and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bun and a Gamma API key; accepts topic or content, optional slide count, output format, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,533 @@
+{
+  "项目": "合成演示项目",
+  "数据性质": "模拟",
+  "账号筛选": [],
+  "范围说明": "文章与AI按项目统计；账号筛选只影响发布和经营；发布为周期内创建记录的状态快照",
+  "本期": {
+    "开始": "2026-10-12",
+    "结束": "2026-10-18",
+    "天数": 7,
+    "来源": {
+      "AI回答": {
+        "路径": "answers.json",
+        "数据截至": "2026-10-18",
+        "覆盖": "完整",
+        "说明": "合成空采集清单",
+        "统计口径": "空样本边界",
+        "选中行数": 0,
+        "排除行数": 0
+      }
+    },
+    "指标": {
+      "articles": {
+        "value": null,
+        "unit": "篇",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供文章数据"
+      },
+      "publications": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "published_articles": {
+        "value": null,
+        "unit": "篇",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "submitted": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "submission_failed": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "not_submitted": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "submission_unknown": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "approved": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "reviewing": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "rejected": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "review_unknown": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "public": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "not_public": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "public_pending": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "public_unknown": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "indexed": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "not_found": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "index_unrun": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "index_failed": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "index_unknown": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供发布数据"
+      },
+      "ai_completed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_failed": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_unrun": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_simulated": {
+        "value": 0,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "模拟",
+        "reason": "按运行状态分别计数"
+      },
+      "ai_mentions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零实际完成回答样本"
+      },
+      "ai_cited": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本；未运行/失败/模拟不计入实际分母"
+      },
+      "ai_mention_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零实际完成回答样本"
+      },
+      "ai_citation_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本，引用率 N/A"
+      },
+      "sim_cited": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本；未运行/失败/模拟不计入实际分母"
+      },
+      "sim_citation_rate": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": 0,
+        "status": "N/A",
+        "reason": "零有效回答样本，引用率 N/A"
+      },
+      "sessions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "conversions": {
+        "value": null,
+        "unit": "条",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "revenue": {
+        "value": null,
+        "unit": "货币单位未提供",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "cost": {
+        "value": null,
+        "unit": "货币单位未提供",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "cvr": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      },
+      "roi": {
+        "value": null,
+        "unit": "%",
+        "numerator": null,
+        "denominator": null,
+        "status": "N/A",
+        "reason": "未提供经营数据"
+      }
+    }
+  },
+  "上期": null,
+  "比较": {
+    "articles": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "publications": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "published_articles": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "submitted": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "submission_failed": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "not_submitted": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "submission_unknown": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "approved": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "reviewing": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "rejected": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "review_unknown": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "public": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "not_public": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "public_pending": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "public_unknown": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "indexed": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "not_found": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "index_unrun": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "index_failed": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "index_unknown": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_completed": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_failed": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_unrun": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_simulated": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_mentions": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_cited": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_mention_rate": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "ai_citation_rate": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "sim_cited": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "sim_citation_rate": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "sessions": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "conversions": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "revenue": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "cost": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "cvr": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    },
+    "roi": {
+      "delta": null,
+      "percent": null,
+      "reason": "未提供上期"
+    }
+  },
+  "指标名称": {
+    "articles": "新增文章数",
+    "publications": "发布记录数",
+    "published_articles": "涉及文章数",
+    "submitted": "已投稿",
+    "submission_failed": "投稿失败",
+    "not_submitted": "未投稿",
+    "submission_unknown": "投稿未知",
+    "approved": "审核通过",
+    "reviewing": "审核中",
+    "rejected": "审核拒绝",
+    "review_unknown": "审核未知",
+    "public": "公开已验证",
+    "not_public": "未公开",
+    "public_pending": "公开待核验",
+    "public_unknown": "公开未知",
+    "indexed": "收录已验证",
+    "not_found": "收录未检出",
+    "index_unrun": "收录未查询",
+    "index_failed": "收录查询失败",
+    "index_unknown": "收录未知",
+    "ai_completed": "实际完成回答",
+    "ai_failed": "AI查询失败",
+    "ai_unrun": "AI未运行",
+    "ai_simulated": "AI模拟回答",
+    "ai_mentions": "实际品牌提及回答",
+    "ai_cited": "实际原生引用回答",
+    "ai_mention_rate": "实际品牌提及率",
+    "ai_citation_rate": "实际原生引用率",
+    "sim_cited": "模拟原生引用回答",
+    "sim_citation_rate": "模拟原生引用率",
+    "sessions": "会话数",
+    "conversions": "转化会话数",
+    "revenue": "归因收入",
+    "cost": "成本",
+    "cvr": "会话转化率",
+    "roi": "ROI"
+  }
+}

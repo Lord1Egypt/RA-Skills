@@ -1,0 +1,16 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Migration Safety Check",
+  "version": "1.0.0",
+  "description": "Tier A (fileEdited): Verifies database migrations have rollback methods and are backward-compatible. Fires immediately — destructive ops are irreversible.",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["{DERIVE: migration file patterns from tech-stack.md + database-rules.md}"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "## Package Territory Check (MANDATORY — evaluate FIRST)\nBefore performing any checks below, verify the triggering file path.\n\nEXCLUDED ZONES (package infrastructure — NOT compliance subjects):\n• .kiro/hooks/ — AI-GCE hook infrastructure\n• .kiro/steering/ — AI-DWG/AI-GCE steering infrastructure\n• .kiro/agents/ — AI-GCE agent infrastructure\n• .governance/ — AI-GCE governance rules/agents/logs\n• compliance-log/ — AI-GCE audit trail\n• project-initiation/ — AI-PILC output\n• architecture/ — AI-ADLC output\n• management_framework/ — Shared governance spine\n• docs/compliance-* — AI-GCE generated dashboards\n• templates/ — AI-DWG planning templates\n\nIf the triggering file's path starts with ANY of the above prefixes:\n→ EXIT SILENTLY. Do NOT check, do NOT log, do NOT warn.\n\nIf the file is NOT in an excluded zone → proceed with checks below.\n\n---\n\nMIGRATION SAFETY CHECK (Tier A — immediate enforcement):\n\n1. ROLLBACK METHOD: Does this migration have a Down/Revert method? Every migration MUST be reversible.\n2. BACKWARD COMPATIBILITY: Does this migration break existing code? No column renames or drops without expand-contract pattern.\n3. DESTRUCTIVE OPERATIONS: Flag any DROP TABLE, DROP COLUMN, TRUNCATE, or DELETE without WHERE clause.\n4. DATA LOSS RISK: Flag any ALTER that could lose data (column type narrowing, nullable → not null without default).\n\nIf any rule is violated, warn IMMEDIATELY with severity 🔴 Critical.\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks, append to `compliance-log/events/{today-date}.jsonl`:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"migration-safety\", \"trigger\": \"fileEdited\", \"ruleId\": \"DATA-BASELINE-01\", \"ruleSeverity\": \"critical\", \"result\": \"{pass|fail|warn}\", \"message\": \"{finding}\", \"sessionDedup\": true}\n\nIf a previous log entry exists for the same hook + file path within this session, OVERWRITE it."
+  }
+}

@@ -1,41 +1,59 @@
-## Description: <br>
-Transforms AI agents from task-followers into proactive partners that anticipate needs, preserve working memory, recover from context loss, and improve over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve.
 
-## Publisher: <br>
-[ranthemaster](https://clawhub.ai/user/ranthemaster) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ranthemaster](https://clawhub.ai/user/ranthemaster)
 
-## Use Case: <br>
-Developers and agent users apply this skill to configure an assistant with proactive behavior, persistent workspace memory, compaction recovery, self-improvement routines, and security guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent workspace memory can retain broad conversation, profile, or project details without enough consent, retention, or redaction controls. <br>
-Mitigation: Set explicit boundaries for writable memory files, forbid storing passwords, tokens, cookies, and private identifiers, and periodically review or delete generated memory files. <br>
-Risk: Proactive behavior, spawned agents, network activity, or external actions can exceed the user's intended scope. <br>
-Mitigation: Require user confirmation before external actions, spawned agents, shared-channel posts, destructive file operations, or changes that affect security posture. <br>
+## Use Case:
 
+Developers and agent users use this skill to give an AI agent persistent memory habits, proactive check-ins, recovery from context loss, and self-improvement guardrails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ranthemaster/proactive-agent-2) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and workspace file layout examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instructs the agent to create and maintain persistent workspace memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 3.0.0) <br>
+Risk: Persistent memory practices may capture secrets, sensitive personal details, or private conversation context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit what the agent may write, avoid storing secrets or sensitive personal data, and review memory files before reuse or sharing.
+
+Risk: Durable reminders or AGENTS.md triggers can create cross-session behavior with limited user control.
+
+Mitigation: Skip cron-style reminders and persistent trigger installation unless explicitly desired by the user.
+
+Risk: Proactive behavior can lead the agent to take unnecessary or consequential actions.
+
+Mitigation: Require confirmation before tool use beyond local note updates, especially for installs, deletion, external communication, or security changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ranthemaster/skills/proactive-agent-2)
+- [ClawHub publisher profile](https://clawhub.ai/user/ranthemaster)
+- [Creator profile referenced by artifact](https://x.com/halthelobster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates, checklists, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to create and update local memory files and optional durable triggers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; source skill frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

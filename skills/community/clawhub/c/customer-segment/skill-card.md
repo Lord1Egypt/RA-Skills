@@ -1,40 +1,58 @@
-## Description: <br>
-Customer Segment analyzes banking customer CSV data with RFM-style feature engineering and K-Means clustering to produce customer segments, summary statistics, visualizations, and a Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+金融客户分群分析 Skill。当用户上传银行客户数据表格（CSV/Excel）时自动触发，完成客户分层、特征提取和可视化输出。
 
-## Publisher: <br>
-[yukirang](https://clawhub.ai/user/yukirang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yukirang](https://clawhub.ai/user/yukirang)
 
-## Use Case: <br>
-Employees, external users, developers, and analysts use this skill to segment banking customers from uploaded transaction, asset, and behavior datasets and generate actionable segment reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save sensitive banking customer segmentation outputs to local CSV, PNG, and Markdown files. <br>
-Mitigation: Install only in workspaces approved for banking or customer data, use a restricted output folder, consider pseudonymizing customer IDs, and delete generated files when they are no longer needed. <br>
+## Use Case:
 
+Banking analysts, customer operations teams, and developers use this skill to segment customer records with RFM-style features, K-Means clustering, profile summaries, charts, and a Markdown analysis report.
 
-## Reference(s): <br>
-- [RFM Model Reference](references/rfm-guide.md) <br>
-- [Clustering Analysis Parameter Reference](references/clustering-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yukirang/customer-segment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Command-line status text plus generated CSV, PNG, and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes segmentation_results.csv, cluster_summary.csv, segmentation_charts.png, and segmentation_report.md to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may process sensitive banking customer data and persists generated CSV outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only permitted data, prefer non-production or de-identified records, write outputs to a dedicated access-controlled directory, and treat generated CSV files as sensitive.
+
+Risk: Exported customer identifiers and spreadsheet-compatible values can expose or amplify sensitive data handling risk.
+
+Mitigation: Minimize exported fields, mask customer identifiers where possible, and sanitize formula-leading values before opening outputs in spreadsheet tools.
+
+Risk: The artifact describes CSV/Excel uploads, while the security guidance notes that only CSV input is currently supported.
+
+Mitigation: Document CSV-only operation for this release or convert Excel files through a reviewed workflow before processing.
+
+## Reference(s):
+
+- [RFM 模型参考](artifact/references/rfm-guide.md)
+- [聚类分析参数参考](artifact/references/clustering-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated CSV, PNG, and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces segmentation_results.csv, cluster_summary.csv, segmentation_charts.png, and segmentation_report.md when the bundled script is run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

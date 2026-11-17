@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze ArgoCD application sync status, detect configuration drift, review manifests for security and best practices, and diagnose sync failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze ArgoCD application sync status, detect configuration drift, review manifests for security and best practices, and diagnose sync failures.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to analyze ArgoCD-managed Kubernetes applications, investigate sync drift or failed syncs, and produce prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose ArgoCD and Kubernetes deployment details available to the user's current credentials. <br>
-Mitigation: Use read-only, least-privilege credentials, verify the active kube context and ARGOCD_TOKEN, and begin with a specific application or project scope. <br>
-Risk: All-application analysis can broaden the amount of cluster and deployment information inspected by the agent. <br>
-Mitigation: Start with a named ArgoCD application or project before using the all-applications scope. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to investigate ArgoCD-managed applications, diagnose sync failures and drift, audit deployment configuration, and produce prioritized remediation guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report with command examples and YAML remediation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured findings include dashboard summary, drift report, failure diagnosis, health issues, configuration findings, security findings, ignoreDifferences recommendations, and prioritized action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Over-broad ArgoCD or Kubernetes access could inspect more applications, namespaces, or clusters than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only permissions scoped to the requested application or project, and avoid all-cluster scans unless that scope is intentional.
+
+Risk: Manifest exports can include sensitive deployment details, and fixed temporary paths may leave data behind.
+
+Mitigation: Use secure temporary files with restrictive permissions and clean them up after analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/argocd-deployment-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dashboard summaries, drift analysis, failure diagnosis, health findings, security findings, and prioritized action items.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

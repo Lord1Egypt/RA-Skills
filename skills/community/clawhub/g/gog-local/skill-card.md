@@ -1,41 +1,54 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[czm448](https://clawhub.ai/user/czm448) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[czm448](https://clawhub.ai/user/czm448)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run the gog command-line tool for common Google Workspace tasks across Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external Homebrew-installed gog package and Google Workspace OAuth access. <br>
-Mitigation: Install only if you trust the gog package source, grant the minimum Google services needed, and review OAuth consent before use. <br>
-Risk: Generated commands can send email, create calendar events, or modify and clear Google Workspace data. <br>
-Mitigation: Review commands before execution, start with read-only operations where possible, and limit targets such as accounts, ranges, and service scopes. <br>
+## Use Case:
 
+Developers and operators use this skill to work with Gmail, Calendar, Drive, Contacts, Sheets, and Docs from an agent-assisted command-line workflow after configuring OAuth access.
 
-## Reference(s): <br>
-- [Gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub release page](https://clawhub.ai/czm448/gog-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Operational guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may use JSON output for scripting when gog is run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to install an unpinned third-party Homebrew CLI that will handle broad Google account permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the gog Homebrew tap and package provenance before installing, and install only from a trusted release path.
+
+Risk: The CLI can perform mutating Google Workspace actions, including sending mail, creating calendar events, and updating or clearing Sheets data.
+
+Mitigation: Use a dedicated or least-privilege Google account where possible, grant only the Google services needed, and confirm mail, calendar, and Sheets changes before running them.
+
+## Reference(s):
+
+- [Gog CLI homepage](https://gogcli.sh)
+- [Gog Local on ClawHub](https://clawhub.ai/czm448/skills/gog-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented command flags such as --json and --no-input for scripting workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

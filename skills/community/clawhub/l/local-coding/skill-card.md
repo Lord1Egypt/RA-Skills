@@ -1,45 +1,57 @@
-## Description: <br>
-Local Coding helps developers run local code-focused models across a device fleet for code generation, review, refactoring, and debugging through OpenAI-compatible tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local coding assistant that routes code generation, review, refactoring, and debugging requests to open-source coding models running across a user's device fleet.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to route coding tasks to local models such as Codestral, DeepSeek-Coder, StarCoder, and Qwen-Coder while keeping prompts and code on their own network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local prompts, code, or traces may remain in logs or configuration under ~/.fleet-manager/. <br>
-Mitigation: Avoid sending secrets in prompts and review local retention, permissions, and cleanup practices before use. <br>
-Risk: The local router is intended for trusted local networks and could expose coding prompts if made broadly reachable. <br>
-Mitigation: Run it only on trusted networks and restrict access to the local API endpoint. <br>
-Risk: Installing or running the underlying local AI router depends on a third-party package. <br>
-Mitigation: Verify the ollama-herd package and publisher before installation. <br>
+## Use Case:
 
+Developers use this skill to configure and operate local coding models for code generation, review, refactoring, debugging, and integration with OpenAI-compatible coding tools while keeping prompts and code on their local network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/local-coding) <br>
-- [PyPI: ollama-herd](https://pypi.org/project/ollama-herd/) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, Python, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl or wget; optionally uses python3 and pip; supports macOS, Linux, and Windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installing and running the local fleet package may expose users to ordinary package-install and local-service risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the ollama-herd package and local devices are trusted, prefer a virtual environment, avoid running pip as root or administrator, and consider pinning a reviewed package version.
+
+Risk: Prompts, code snippets, traces, audio files, and image prompts may be handled by the local router and fleet logs.
+
+Mitigation: Review local logging behavior and avoid submitting sensitive material unless the local fleet and log storage are appropriate for that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/local-coding)
+- [ollama-herd GitHub Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [ollama-herd PyPI Package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local API requests, IDE configuration guidance, and model selection recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

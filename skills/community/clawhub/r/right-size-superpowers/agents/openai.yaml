@@ -1,0 +1,7 @@
+interface:
+  display_name: "Right-Size Superpowers"
+  short_description: "Scale Superpowers workflow depth to task risk"
+  default_prompt: "Use $right-size-superpowers to complete this task with proportionate process and verification."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,43 +1,55 @@
-## Description: <br>
-Official Obsidian CLI (v1.12+) provides a complete command-line interface for Obsidian notes, tasks, search, tags, properties, links, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Obsidian CLI (v1.12+) providing a complete command-line interface for Obsidian notes, tasks, search, tags, properties, links, and related vault operations.
 
-## Publisher: <br>
-[alexanderkinging](https://clawhub.ai/user/alexanderkinging) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexanderkinging](https://clawhub.ai/user/alexanderkinging)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to let an AI assistant operate an Obsidian vault through the official CLI for note creation, reading, search, task management, metadata, links, publishing, plugins, themes, and workspace commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an AI assistant broad ability to read, change, delete, publish, customize, and run code in an Obsidian vault. <br>
-Mitigation: Install only when that level of vault access is intended, limit use to trusted vaults, and require explicit confirmation before delete, restore, publish, plugin install or enable, theme/workspace changes, bulk edits, eval, or developer commands. <br>
-Risk: Vault edits and destructive commands can cause data loss or unwanted publication. <br>
-Mitigation: Keep backups or version history enabled and review assistant-proposed changes before execution. <br>
-Risk: Server-resolved GitHub import provenance is unavailable for this release. <br>
-Mitigation: Use the ClawHub release as the distribution record and verify any optional Homebrew or GitHub source before installing outside ClawHub. <br>
+## Use Case:
 
+External users and developers use this skill to let agents operate Obsidian vaults through the official CLI for note creation, search, task management, metadata, links, publishing, plugin and theme management, and workspace automation.
 
-## Reference(s): <br>
-- [Official Obsidian CLI documentation](https://help.obsidian.md/cli) <br>
-- [ClawHub skill page](https://clawhub.ai/alexanderkinging/obsidian-cli-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reference material with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Obsidian 1.12+ with the CLI enabled and Obsidian running; publish commands require an Obsidian Publish subscription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: ClawHub release metadata) <br>
+Risk: Agents can operate broadly on a user's Obsidian vault and configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit vault and file or path limits, and require confirmation before writes, deletes, restores, publishing, plugin or theme changes, eval, or DevTools commands.
+
+Risk: CLI wrappers or Homebrew taps can affect the command surface used by an agent.
+
+Mitigation: Prefer trusted and pinned installation sources for any CLI wrapper or Homebrew tap.
+
+## Reference(s):
+
+- [Official Obsidian CLI documentation](https://help.obsidian.md/cli)
+- [ClawHub skill page](https://clawhub.ai/alexanderkinging/skills/obsidian-cli-official)
+- [Obsidian download](https://obsidian.md/download)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reference material with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Obsidian 1.12+ running locally with CLI enabled; some commands require an optional Obsidian Publish subscription.]
+
+## Skill Version(s):
+
+4.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

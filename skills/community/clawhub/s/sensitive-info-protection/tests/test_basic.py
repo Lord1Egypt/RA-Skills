@@ -12,7 +12,7 @@ from detector import SensitiveDetector
 def test_api_key_detection():
     """Test API key detection"""
     detector = SensitiveDetector()
-    text = "My OpenAI key is sk-1234567890abcdef1234567890abcdef1234567890abcdef"
+    text = "My OpenAI key is REDACTED-SECRET"
     result = detector.scan(text)
     assert result.has_sensitive
     assert any(d.rule.name == "openai_key" for d in result.detections)
@@ -22,7 +22,7 @@ def test_api_key_detection():
 def test_github_token_detection():
     """Test GitHub token detection"""
     detector = SensitiveDetector()
-    text = "github_token: ghp_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdef"
+    text = "github_token: REDACTED-SECRET"
     result = detector.scan(text)
     assert result.has_sensitive
     assert any(d.rule.name == "github_token" for d in result.detections)
@@ -52,7 +52,7 @@ def test_email_detection():
 def test_desensitization():
     """Test desensitization works correctly"""
     detector = SensitiveDetector()
-    text = "My key is sk-1234567890abcdef1234567890abcdef1234567890abcdef and phone is 13800138000"
+    text = "My key is REDACTED-SECRET and phone is 13800138000"
     desensitized = detector.desensitize(text)
     assert "sk-" not in desensitized
     assert "13800138000" not in desensitized

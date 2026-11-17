@@ -1,45 +1,55 @@
-## Description: <br>
-Search X/Twitter profiles, tweets, trends, and OAuth-gated posting through AIsa for research, monitoring, and approved engagement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X/Twitter profiles, tweets, trends, and OAuth-gated posting through AIsa for Twitter research, monitoring, or approved engagement workflows.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and agents use this skill to research Twitter/X accounts, tweets, trends, lists, communities, and Spaces, then perform OAuth-gated posting or engagement actions after approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured AISA_API_KEY may appear in normal command output. <br>
-Mitigation: Run commands only in private terminals or traces, keep the key out of logs, and rotate the key if it is exposed. <br>
-Risk: The skill can perform real Twitter/X posting, liking, unliking, following, unfollowing, and media upload actions. <br>
-Mitigation: Require explicit user approval immediately before any external account action and confirm success only from the relay response. <br>
-Risk: The skill delegates Twitter/X account actions to AIsa/api.aisa.one. <br>
-Mitigation: Install and run it only when the user trusts that service with the intended account actions and OAuth flow. <br>
+## Use Case:
 
+Developers, agents, and external users use this skill to research X/Twitter profiles, tweets, trends, and conversations, then prepare or run OAuth-gated posting and engagement workflows with user approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bibaofeng/twitter-command-center-search-post-interact) <br>
-- [Twitter Engagement](references/engage_twitter.md) <br>
-- [Twitter OAuth](references/post_twitter.md) <br>
-- [AIsa Twitter API Endpoint](https://api.aisa.one/apis/v1/twitter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and may return authorization links, tweet IDs, tweet links, or relay status payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security summary says normal command output may expose the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege AIsa key, avoid the status command, and treat command output as sensitive until the exposure is patched.
+
+Risk: The security summary says sensitive account actions can run through a relay with weak destination controls.
+
+Mitigation: Do not set TWITTER_RELAY_BASE_URL unless the endpoint is fully trusted, and require confirmation of exact posts and engagement actions before execution.
+
+## Reference(s):
+
+- [Twitter Engagement Workflow](references/engage_twitter.md)
+- [Twitter OAuth Posting Workflow](references/post_twitter.md)
+- [ClawHub Skill Page](https://clawhub.ai/bibaofeng/skills/twitter-command-center-search-post-interact)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON command output with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; posting, follow, unfollow, like, and unlike actions should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

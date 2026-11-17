@@ -1,40 +1,51 @@
-## Description: <br>
-Lord Of Mysteries 诡秘之主 is a Chinese lore knowledge base for the novel's pathways, sequence system, deities, characters, factions, sealed artifacts, places, history, and setting terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language Lord of the Mysteries lore lookup skill covering pathways, sequences, deities, characters, factions, sealed artifacts, magical items, geography, history, and setting terminology.
 
-## Publisher: <br>
-[scaret](https://clawhub.ai/user/scaret) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scaret](https://clawhub.ai/user/scaret)
 
-## Use Case: <br>
-Readers, fan community users, and agents use this skill to answer questions about Lord of the Mysteries lore, including pathways, sequence systems, characters, organizations, artifacts, geography, and history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Several static lore entries contain real-world-style unsafe instructions or hazardous practices. <br>
-Mitigation: Constrain answers as fiction-only, avoid procedural detail, and do not provide actionable guidance involving blood, animal materials, ingestion, candles, broken glass, corpse handling, schools, concealment, or poisoning tactics. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about Lord of the Mysteries lore, including pathways, sequences, deities, characters, factions, artifacts, geography, and history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scaret/lord-of-mysteries) <br>
-- [Lord of the Mysteries Wiki](https://lordofthemysteries.fandom.com/zh/) <br>
-- [Qidian Lord of the Mysteries Research Handbook](https://m.qidian.com/dictionary/shenqiwupin/?bookId=0&_viewmode=0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses grounded in static lore entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should stay within fictional lore context and avoid presenting hazardous practices as real-world instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Lore entries may include fictional potion formulas, rituals, weapons, body horror, mind control, and creature hunting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these passages as fictional reference material only and do not present them as real-world instructions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/scaret/skills/lord-of-mysteries)
+- [Lord of the Mysteries Wiki (Chinese)](https://lordofthemysteries.fandom.com/zh/)
+- [Qidian Lord of the Mysteries encyclopedia](https://m.qidian.com/dictionary/shenqiwupin/?bookId=0&_viewmode=0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses grounded in static Markdown lore entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Chinese-language reference corpus; no code execution or external API calls are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-04-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

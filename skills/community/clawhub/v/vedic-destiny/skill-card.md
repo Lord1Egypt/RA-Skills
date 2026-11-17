@@ -1,45 +1,61 @@
-## Description: <br>
-Vedic Destiny is a Chinese-language Vedic astrology skill for full chart analysis, Rashi and Navamsha cross-reading, event review, birth-time stability checks, career, marriage, timing, and location analysis from Jagannatha Hora PDFs, screenshots, or text chart data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language Vedic astrology workflow for full chart review, Rashi and Navamsha comparison, past-event review, birth-time stability checks, career themes, marriage and relationship themes, timing windows, location analysis, and structured chart breakdowns from Jagannatha Hora PDFs, screenshots, or text chart data.
 
-## Publisher: <br>
-[seanding1998](https://clawhub.ai/user/seanding1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanding1998](https://clawhub.ai/user/seanding1998)
 
-## Use Case: <br>
-External users and agents use this skill to produce structured Chinese Vedic astrology readings for full-chart review, career, marriage and relationship, timing, relocation, and field comparison questions. It also supports local parsing and report-building workflows for Jagannatha Hora exports and chart-derived Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process birth/chart data and save local report files. <br>
-Mitigation: Avoid including unnecessary personal details, review where report folders are created, and remove generated HTML, metadata, and section files when no longer needed. <br>
-Risk: Astrology readings can be incomplete or misleading if chart inputs are missing, imprecise, or interpreted without review. <br>
-Mitigation: Treat outputs as guidance, review key assumptions and input precision, and downgrade conclusions when required chart data is unavailable. <br>
+## Use Case:
 
+Chinese-speaking users and practitioners use this skill to structure Vedic astrology chart analysis, compare divisional charts, review life-event timing, and produce readable Markdown or HTML reports. The workflow emphasizes explicit evidence checks, confidence downgrades when chart data is incomplete, and topic-specific routing for full-chart, career, marriage, and timing/location questions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/seanding1998/vedic-destiny) <br>
-- [Full-chart analysis reference](references/总盘.md) <br>
-- [Career reference](references/事业.md) <br>
-- [Marriage and relationship reference](references/婚姻.md) <br>
-- [Timing and location reference](references/窗口与场域.md) <br>
-- [Terminology framework reference](references/术语框架.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Chinese prose and Markdown tables, with optional shell commands and generated local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process birth/chart data and generate local HTML, metadata, or section files when report-building scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The workflow may process sensitive birth details and life-context information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the chart and background information needed for the requested analysis, and avoid retaining generated report files longer than necessary.
+
+Risk: Report mode can create persistent local HTML reports from sensitive personal data.
+
+Mitigation: Choose a dedicated output folder, confirm report creation before writing files, and review generated files before sharing or archiving them.
+
+Risk: The security evidence reports an unsafe-link issue in generated HTML from untrusted Markdown.
+
+Mitigation: Do not open or click links in generated HTML from untrusted Markdown until link scheme filtering is fixed.
+
+## Reference(s):
+
+- [Total Chart Review Workflow](artifact/references/总盘.md)
+- [Career Topic Workflow](artifact/references/事业.md)
+- [Marriage Topic Workflow](artifact/references/婚姻.md)
+- [Timing and Location Workflow](artifact/references/窗口与场域.md)
+- [Terminology and Eight-Lens Framework](artifact/references/术语框架.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese Markdown analysis with tables, validation summaries, JSON report metadata, shell commands, and optional self-contained HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process sensitive birth and life-context data; report mode can create persistent local HTML files.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

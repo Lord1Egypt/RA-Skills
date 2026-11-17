@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — delete_voucher (v2.voucher.delete_voucher)
+Shopee Store — delete_voucher
+
 官方: https://open.shopee.com/documents/v2/v2.voucher.delete_voucher?module=112&type=1
+
+入参说明见 references/apis/delete-voucher.md。
 """
 
 from __future__ import annotations

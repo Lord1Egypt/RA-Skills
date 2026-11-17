@@ -1,45 +1,59 @@
-## Description: <br>
-Automatic task memory and keep-alive loop for Obsidian-backed agents. Every task gets persistent notes. Arm the loop for long tasks, disarm when done. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic task memory and keep-alive loop for Obsidian-backed agents. Every task gets persistent notes. Arm the loop for long tasks, disarm when done.
 
-## Publisher: <br>
-[techieter](https://clawhub.ai/user/techieter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[techieter](https://clawhub.ai/user/techieter)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep Obsidian-backed task notes current and to run optional scheduled recovery checks for long-running agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring OpenClaw jobs can continue running after installation and may consume resources if they are not wanted. <br>
-Mitigation: Install only when automatic task notes and recurring jobs are desired, keep the loop disarmed unless needed, and remove the five cron jobs when uninstalling. <br>
-Risk: Persistent task notes may retain sensitive task context if users place secrets or confidential material in the Obsidian task folder. <br>
-Mitigation: Use a dedicated Obsidian vault or Tasks folder and avoid putting secrets in task notes. <br>
-Risk: The installer writes skill files, vault templates, and scheduled job configuration. <br>
-Mitigation: Review the install steps before execution and remove retained vault notes during uninstall if they are no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to persist task state in an Obsidian vault and optionally run scheduled keep-alive checks for long-running agent work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/techieter/memory-keep-alive-for-obsidian) <br>
-- [Publisher profile](https://clawhub.ai/user/techieter) <br>
-- [README](artifact/README.md) <br>
-- [Install guide](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown task notes, short status text, shell commands, and cron/job configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates Obsidian vault notes under Tasks/ and configures five scheduled OpenClaw jobs when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill installs always-enabled background jobs that may continue running after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the five cron jobs after install, use /loop-stop when long-task monitoring is not needed, and remove or disable the jobs when background automation is no longer wanted.
+
+Risk: Task details, private file paths, secrets, client data, or sensitive decisions may be persisted to an Obsidian vault.
+
+Mitigation: Use a dedicated vault for agent task memory and review vault contents before using the skill with sensitive work.
+
+Risk: Crafted vault paths may be mishandled by the installer.
+
+Mitigation: Use a trusted, simple absolute vault path and review generated jobs and paths before relying on unattended runs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/techieter/skills/memory-keep-alive-for-obsidian)
+- [README.md](artifact/README.md)
+- [INSTALL.md](artifact/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with command snippets and Obsidian note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates task memory notes, workflow state files, and scheduled job guidance for an Obsidian-backed OpenClaw setup.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: voice-review
 description: Runs parallel prose and craft review agents against a voice profile
-version: 1.9.8
+version: 1.10.3
 triggers:
   - voice
   - review
@@ -9,17 +9,23 @@ triggers:
   - craft
   - quality
   - checking generated content for AI patterns and voice drift before publishing
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\u270d\ufe0f", "requires": {"config": ["night-market.scribe:voice-extract", "night-market.scribe:voice-generate", "night-market.scribe:slop-detector"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\u270d\ufe0f", "requires": {"config": ["night-market.scribe:voice-extract", "night-market.scribe:voice-generate", "night-market.scribe:slop-detector", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Voice Review Skill
 
 Dispatch dual review agents and present unified findings.
+
+## When NOT To Use
+
+- Producing the text (use `scribe:voice-generate`)
+- A generic AI-pattern scan with no voice profile (use
+  `scribe:slop-detector`)
 
 ## Method: Parallel Dual-Gate Review
 
@@ -30,13 +36,14 @@ Two agents run in parallel on the generated text:
 Hard failures (banned phrases, em dashes) are auto-fixed.
 Everything else returns as advisory tables for user decision.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `voice-review:text-loaded` - Generated text read
 2. `voice-review:register-loaded` - Voice register loaded
 3. `voice-review:agents-dispatched` - Both reviewers launched
 4. `voice-review:hard-fails-fixed` - Auto-corrections applied
 5. `voice-review:advisories-presented` - Tables shown to user
+6. `voice-review:findings-verified` - Citations confirmed by verifier
 
 ## Step 1: Load Context
 
@@ -77,8 +84,8 @@ Present both tables to the user:
 
 **Prose Review Advisories:**
 
-| # | Line | Pattern | Current | Proposed fix |
-|---|------|---------|---------|--------------|
+| # | Line | Anchor | Pattern | Current | Proposed fix |
+|---|------|--------|---------|---------|--------------|
 
 **Craft Review:**
 
@@ -130,6 +137,12 @@ Can also be run on any existing text:
 /voice-review path/to/file.md --profile myvoice --register casual
 ```
 
+## Verify Findings Are Grounded (`voice-review:findings-verified`)
+
+Write advisory rows to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
 ## Verification
 
 After the review completes, validate these conditions:
@@ -140,6 +153,17 @@ After the review completes, validate these conditions:
 - User decisions applied to the final text
 - Final text saved to disk
 - Snapshots saved (if learning mode active)
+
+## Exit Criteria
+
+- [ ] Both review agents returned results without timeout
+- [ ] Hard failures auto-fixed and diff shown to user
+- [ ] Advisory tables presented with accept/reject/rewrite options
+- [ ] User decisions applied to the final text
+- [ ] Final text saved to disk
+- [ ] Every advisory row carries a `Line` (file:line) and verbatim `Anchor`;
+  `citation_verifier.py` confirmed all citations (exit `0`) or unverified
+  rows are dropped/labeled `UNVERIFIED`
 
 ## Test Spec
 

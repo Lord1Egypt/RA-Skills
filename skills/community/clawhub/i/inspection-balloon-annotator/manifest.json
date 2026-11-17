@@ -1,0 +1,13 @@
+{
+  "name": "检验气泡标注",
+  "version": "1.0.0",
+  "description": "机械图纸检验气泡标注一体化：红色圆圈+编号标注图(PDF+PNG) + 合并检验表(单一xlsx·5 sheet：检验记录表/气泡图/未注公差基准/汇总/关键特性专项)，一般公差GB/T1804-f/GB/T1184-H套用、覆盖性自检。",
+  "author": "张工 / 旺财",
+  "tags": ["机械图纸", "检验气泡图", "气泡标注", "首件检验", "全尺寸检验", "品质QC", "公差", "GD&T", "OCR", "Excel报表"],
+  "minOpenclawVersion": "0.20.0",
+  "entry": "SKILL.md",
+  "created": "2026-10-15",
+  "license": "MIT",
+  "repository": "",
+  "homepage": ""
+}

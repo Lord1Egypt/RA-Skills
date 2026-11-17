@@ -1,6 +1,31 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "typescript",
-  "version": "1.0.2",
-  "publishedAt": 1771105330227
+  "displayName": "TypeScript",
+  "latest": {
+    "version": "1.0.5",
+    "publishedAt": 1784843996655
+  },
+  "history": [
+    {
+      "version": "1.0.4",
+      "publishedAt": 1784814764255
+    },
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784803242835
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1771105330474
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771005377722
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770679470408
+    }
+  ]
 }

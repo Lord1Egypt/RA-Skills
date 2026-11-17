@@ -1,0 +1,4 @@
+interface:
+  display_name: "PumpView Trading"
+  short_description: "Solana swaps, confirmed receipts and live trade data"
+  default_prompt: "Use $pumpview-trading to connect my agent to PumpView and prepare my requested Solana swap for local wallet review."

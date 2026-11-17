@@ -1,0 +1,7 @@
+{
+  "events": [
+    {"id": "E1", "chapter": "第2章", "time": "09:00", "from": "A地", "to": "B地", "description": "乘车离开A地前往B地"},
+    {"id": "E2", "chapter": "第2章", "time": "09:30", "after": "E1", "from": "A地", "to": "B地", "travel_minutes": 120, "description": "抵达B地，资料注明本段路程需120分钟"},
+    {"id": "E3", "chapter": "第4章", "time": "08:00", "flashback": true, "description": "作者注明的回忆片段"}
+  ]
+}

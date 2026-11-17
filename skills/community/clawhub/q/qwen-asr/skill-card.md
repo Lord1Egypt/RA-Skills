@@ -1,41 +1,54 @@
-## Description: <br>
-Transcribe audio files using Qwen ASR (千问STT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio files using Qwen ASR (千问STT) when users want voice messages converted to text.
 
-## Publisher: <br>
-[al-one](https://clawhub.ai/user/al-one) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[al-one](https://clawhub.ai/user/al-one)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to convert local audio files or piped audio data into transcript text through the Qwen ASR demo service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are sent to an external Qwen demo service. <br>
-Mitigation: Avoid highly sensitive recordings and use the skill only when uploading the chosen audio to that service is acceptable. <br>
-Risk: The script may print a remote audio file URL during processing. <br>
-Mitigation: Treat logs and terminal output as potentially containing links to uploaded audio and avoid sharing them broadly. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe user-provided audio files or stdin audio into plain text through the Qwen ASR demo service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/al-one/qwen-asr) <br>
-- [Qwen ASR demo service](https://qwen-qwen3-asr-demo.ms.show) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; selected audio is uploaded to an external Qwen demo endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Audio files are uploaded to the external qwen-qwen3-asr-demo.ms.show service, and retention or consent handling is not documented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only audio that can be shared with that service; obtain appropriate consent for sensitive speech and review terms before operational use.
+
+Risk: Runtime dependencies are not pinned in the artifact.
+
+Mitigation: Pin and review Python dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/al-one/skills/qwen-asr)
+- [Qwen ASR demo service](https://qwen-qwen3-asr-demo.ms.show)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text transcript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single transcript returned to stdout; no local output file is written unless the caller redirects it.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

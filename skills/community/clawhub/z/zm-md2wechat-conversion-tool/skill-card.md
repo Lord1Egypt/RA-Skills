@@ -1,45 +1,56 @@
-## Description: <br>
-Converts Markdown into WeChat Official Account HTML and helps agents inspect metadata, themes, images, styles, AI-trace handling, and draft or image-post readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZM Markdown 转公众号格式工具。用于将 Markdown 转为微信公众号 HTML，检查主题、图片、样式、AI 痕迹处理和草稿创建能力；正式发布需配合 ZM 公众号草稿发布与核验 Skill。
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare Markdown articles for WeChat Official Account workflows, including HTML conversion, preview and readiness inspection, cover or infographic generation, draft creation, and image-post routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat draft credentials and account-bound upload actions can expose or modify a WeChat Official Account workflow. <br>
-Mitigation: Validate configuration before draft or image-post actions, keep WECHAT_APPID and WECHAT_SECRET private, and run upload or draft creation only after an explicit user request. <br>
-Risk: AI-trace removal, creator-style writing, and aggressive humanizing can obscure authorship or make content-transparency claims misleading. <br>
-Mitigation: Review generated or humanized text for truthful authorship and attribution, and do not use these features to misrepresent who wrote the content. <br>
-Risk: Remote image downloads, external image generation, and media uploads can send content to third-party services or WeChat. <br>
-Mitigation: Use inspect and local preview first, confirm image sources and service configuration, and avoid remote generation or upload unless requested. <br>
-Risk: Draft shortcuts and smoke-test flows may not provide the formal title, author, digest, cover, and content checks needed before release. <br>
-Mitigation: Use the inspect, preview, upload_image, create_draft, and draft verification flow before relying on a WeChat draft for publication. <br>
+## Use Case:
 
+Developers, creators, and publishing operators use this skill to route Markdown content through a WeChat Official Account conversion workflow, inspect metadata and readiness, create local previews, and prepare draft or image-post actions when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-md2wechat-conversion-tool) <br>
-- [Go module install source](https://github.com/geekjourneyx/zm-md2wechat-conversion-tool-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI command examples, JSON configuration references, and workflow status labels.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local HTML previews, draft JSON inputs, uploaded WeChat draft or image-post actions, generated images, and PASS/NEEDS_REVISION/BLOCKED status when the CLI workflow is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill relies on a mutable external CLI that may receive WeChat credentials and perform account-changing uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted maintainer path, prefer a pinned and reviewed CLI version, and provide WeChat credentials only for upload or draft actions.
+
+Risk: Credential-bearing commands could process Markdown or images the user did not intend to submit to WeChat.
+
+Mitigation: Validate configuration before draft or image-post actions and avoid running credential-bearing commands on untrusted or unintended content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-md2wechat-conversion-tool)
+- [Publisher profile](https://clawhub.ai/user/jerryxn)
+- [Skill homepage](https://github.com/geekjourneyx/zm-md2wechat-conversion-tool-skill)
+- [Go install module from ClawHub metadata](https://github.com/geekjourneyx/zm-md2wechat-conversion-tool-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in local HTML previews, draft JSON inputs, uploaded media actions, image post actions, or generated image assets when the user explicitly requests those workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

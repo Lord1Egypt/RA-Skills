@@ -1,41 +1,55 @@
-## Description: <br>
-Send images from Mac to phone via iMessage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send images from Mac to phone via iMessage
 
-## Publisher: <br>
-[Wzyyyyyyyy](https://clawhub.ai/user/Wzyyyyyyyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wzyyyyyyyy](https://clawhub.ai/user/wzyyyyyyyy)
 
-## Use Case: <br>
-OpenClaw users on macOS use this skill to send a local image file to a phone number through the Messages app, either automatically when requested or through the provided command. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically send local images through the user's Mac Messages account. <br>
-Mitigation: Confirm the recipient and image path before each send, and install only when this Messages behavior is intended. <br>
-Risk: Copied images remain in ~/Pictures/openclaw-send/ and may contain sensitive content. <br>
-Mitigation: Periodically clear ~/Pictures/openclaw-send/ when sent images should not be retained. <br>
-Risk: Unusual characters in filenames or phone numbers may affect AppleScript handling. <br>
-Mitigation: Avoid unusual characters in image paths and recipient values until AppleScript escaping is fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Wzyyyyyyyy/imessage-sender) <br>
+## Use Case:
+
+Developers and end users on macOS use this skill to configure a recipient and send local image files through the Messages app.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can transmit local image files through Messages to a configured or supplied recipient.
+
+Mitigation: Require explicit recipient and file confirmation before sending, and avoid using it for sensitive files.
+
+Risk: Unsafe AppleScript construction could allow crafted recipient or path values to alter the generated script.
+
+Mitigation: Validate image paths and recipients, and pass AppleScript values as arguments instead of interpolating strings.
+
+Risk: The script stages copied images under ~/Pictures/openclaw-send/.
+
+Mitigation: Review or clean staged copies after sending.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses macOS Messages through AppleScript and copies images to ~/Pictures/openclaw-send/ before sending.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke a local Python script that copies images before sending them with Messages on macOS.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

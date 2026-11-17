@@ -1,41 +1,49 @@
-## Description: <br>
-Generates Feishu share links in both tenant-specific and root-domain formats for documents, Bitable bases, wikis, and sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides rules for generating Feishu share links with both tenant-specific and default Feishu URLs for documents, Bitable bases, wikis, and sheets.
 
-## Publisher: <br>
-[AndersonHJB](https://clawhub.ai/user/AndersonHJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andersonhjb](https://clawhub.ai/user/andersonhjb)
 
-## Use Case: <br>
-Employees and Feishu users use this skill when an agent needs to return reliable Feishu document, Bitable, wiki, or sheet links with both tenant-domain and fallback root-domain URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read ~/.openclaw/workspace/TOOLS.md to find a Feishu custom domain. <br>
-Mitigation: Before installation, confirm that TOOLS.md contains only intended Feishu configuration or provide the Feishu domain manually when requesting links. <br>
-Risk: A missing or incorrect custom Feishu domain can produce incomplete or unusable tenant-domain links. <br>
-Mitigation: Verify the configured Feishu custom domain and keep the root-domain fallback link in generated responses. <br>
+## Use Case:
 
+Employees and agents that share Feishu documents use this skill to return both tenant-specific and fallback root-domain links for Bitable bases, Docx documents, wikis, and sheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AndersonHJB/feishu-share-link) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/AndersonHJB) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown with Feishu share links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces paired tenant-domain and root-domain links when a custom Feishu domain is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill reads ~/.openclaw/workspace/TOOLS.md to find a Feishu custom domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that this local read is acceptable before installation, keep the file limited to non-sensitive configuration values, or provide the domain manually when asked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andersonhjb/skills/feishu-share-link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown link pairs and concise configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces tenant-specific and fallback Feishu URLs when the required document tokens and custom domain are available.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

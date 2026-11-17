@@ -1,43 +1,54 @@
-## Description: <br>
-End-to-end guide for running MM/GBSA binding free energy calculations using AmberTools/Amber on a pre-existing receptor-ligand complex without molecular dynamics sampling, covering structure preparation, ligand parameterization, topology construction, MMPBSA.py execution, and result interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end guide for running MM/GBSA binding free energy calculations using AmberTools/Amber on a pre-existing receptor-ligand complex without molecular dynamics sampling.
 
-## Publisher: <br>
-[ning-kun](https://clawhub.ai/user/ning-kun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ning-kun](https://clawhub.ai/user/ning-kun)
 
-## Use Case: <br>
-External researchers, computational chemists, and developers use this skill to produce a reproducible single-structure Amber MM/GBSA workflow for rapid pose scoring and mechanistic energy decomposition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes shell commands that create and overwrite files inside project directories. <br>
-Mitigation: Review commands before running them, work in a dedicated project directory, and keep backups of important input structures and outputs. <br>
-Risk: AmberTools commands depend on the local AmberTools installation selected by AMBERHOME. <br>
-Mitigation: Confirm AMBERHOME and PATH point to the intended AmberTools installation before executing the workflow. <br>
-Risk: Single-structure MM/GBSA results can be misleading for quantitative ranking or comparison with experimental binding free energies. <br>
-Mitigation: Use the skill's stated uncertainty boundaries and upgrade to MD-based ensemble MM/GBSA when ranking ligands or making quantitative claims. <br>
+## Use Case:
 
+Developers, computational chemists, and structural biology users use this skill to prepare receptor-ligand systems and run single-structure Amber MM/GBSA calculations for rapid pose scoring and mechanistic energy decomposition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ning-kun/amber-mmgbsa) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ning-kun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, text, and configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a step-by-step local AmberTools workflow and interpretation guidance; it does not execute commands by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Local AmberTools commands create project files, logs, topologies, coordinates, and trajectory files based on user-supplied molecular inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and verify receptor structure, ligand charge, generated parameters, and log output before relying on results.
+
+Risk: Single-structure MM/GBSA estimates can be misleading when used as quantitative affinities or for ranking ligands, especially when electrostatic terms are large and cancel.
+
+Mitigation: Treat results as directional estimates unless validated, and use MD ensemble sampling with appropriate uncertainty analysis for comparative ranking or publication-grade claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ning-kun/skills/amber-mmgbsa)
+- [Publisher profile](https://clawhub.ai/user/ning-kun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, text, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow instructions and interpretation guidance; it does not execute AmberTools commands by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

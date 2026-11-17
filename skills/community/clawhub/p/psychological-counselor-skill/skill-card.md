@@ -1,46 +1,62 @@
-## Description: <br>
-Creates psychological-counselor digital-twin skills from authorized background, training, consultation, interview, and supervision materials for style simulation, professional learning, and bounded emotional support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a psychological counselor AI skill from counselor background and consultation materials to support style simulation, professional learning, and bounded basic emotional support.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users and skill builders use this skill to generate local counselor-style agent files from authorized counselor materials, then use those generated files for learning, style review, or basic listening support. It is not a substitute for professional counseling, psychotherapy, psychiatric diagnosis, or crisis care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive mental-health and counselor materials, including possible session, supervision, or case records. <br>
-Mitigation: Use only authorized materials, redact identifiable records before upload or paste, and avoid client, session, supervision, or case records unless authorization is clear. <br>
-Risk: The skill can enter counselor-style support broadly even though it is not a therapist or medical tool. <br>
-Mitigation: Require explicit confirmation before support-mode interactions, keep responses bounded as emotional support, and direct crisis or serious distress to professional help. <br>
-Risk: Generated counselor files may contain sensitive or misleading material if used or shared without review. <br>
-Mitigation: Review generated counselor files before use or sharing, and delete local counselor/version files when they are no longer needed. <br>
+## Use Case:
 
+Developers and external users use this skill to generate a counselor-style agent from authorized, de-identified source material for learning, training, style simulation, and basic listening support. It is not intended to provide professional counseling, therapy, psychiatric diagnosis, crisis care, or replacement for licensed mental-health professionals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/psychological-counselor-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Quick start guide](artifact/tools/quick_start.md) <br>
-- [Ethical checklist](artifact/tools/ethical_checklist.md) <br>
-- [Counselor profile template](artifact/tools/counselor_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated skill files, JSON metadata, local file paths, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [After user confirmation, the skill can create local counselors/{slug}/ files, including SKILL.md, counselor.md, meta.json, knowledge folders, and version archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill may process sensitive mental-health and counselor source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only fictional, authorized, public, or strongly de-identified material, and avoid entering private consultation records or personal data without clear permission.
+
+Risk: Generated counselor agents could be mistaken for professional mental-health care or crisis support.
+
+Mitigation: Keep the skill limited to learning, training, style simulation, and basic listening; direct users with crisis, diagnosis, therapy, or severe distress needs to qualified professionals or emergency resources.
+
+Risk: Local delete, rollback, and update commands may affect more files than intended when counselor names or slugs are untrusted.
+
+Mitigation: Review generated commands before execution and avoid delete or rollback operations with untrusted counselor names until slug and path validation are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhuqingsonga/skills/psychological-counselor-skill)
+- [README](artifact/README.md)
+- [Ethical Checklist](artifact/tools/ethical_checklist.md)
+- [Quick Start](artifact/tools/quick_start.md)
+- [Counselor Analyzer Prompt](artifact/prompts/counselor_analyzer.md)
+- [Listening Support Prompt](artifact/prompts/listening_support.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON configuration, generated skill files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local counselor skill directories, profile files, metadata, version archives, and prompt guidance after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

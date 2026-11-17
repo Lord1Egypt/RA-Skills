@@ -1,44 +1,58 @@
-## Description: <br>
-Coordinates new meeting creation by requiring OpenClaw to gather meeting details, then preparing Gitea meeting records, attendee email data, logs, and invitation email content after Tencent Meeting details are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill A Create Meeting coordinates new meeting creation requests by taking upstream Tencent Meeting details, creating Gitea meeting records and agendas, resolving repository participants, logging the run, and returning invitation content for email delivery.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Agent builders and meeting coordinators use this skill as the entry point for new meeting requests that need repository-backed agendas, metadata, attendee email lookup, logging, and prepared invitation email content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger rules may cause the workflow to prepare meetings, repository writes, member email lookups, logs, and invitation email content without a clear final confirmation step. <br>
-Mitigation: Require the agent to show a concise meeting summary and obtain explicit user approval before creating meetings, writing repository files, collecting recipient emails, or sending invitations. <br>
-Risk: The skill uses a Gitea bot token and writes meeting metadata, agendas, and logs to configured repositories. <br>
-Mitigation: Use a least-privilege bot token limited to the intended repositories and verify the configured Gitea server and meta repository before installation. <br>
-Risk: The setup flow creates or reads a local .env file containing Gitea connection details and credentials. <br>
-Mitigation: Inspect the .env file before running setup.sh and keep credential files private with restrictive permissions. <br>
+## Use Case:
 
+Developers and team automation users use this skill as the primary entry point for new meeting requests that need repository-backed agenda files, meeting metadata, participant email resolution, and downstream invitation sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/skill-a-create-meeting) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/myd2002) <br>
-- [Configured Gitea server](http://43.156.243.152:3000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, JSON] <br>
-**Output Format:** [JSON response with user-facing text, invitation email fields, repository member data, agenda link, and meeting directory metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates Gitea meta.yaml and agenda.md files, writes JSONL logs, and prepares HTML email content for a separate email-sending skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles Gitea tokens and repository data, and the provided example configuration uses an HTTP Gitea endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an HTTPS Gitea endpoint, rotate any token used with the HTTP default, and scope the bot token to the minimum repositories and actions needed.
+
+Risk: Generated invitation content includes meeting and repository values that should be treated as untrusted until escaping and URL validation are added.
+
+Mitigation: Escape user-controlled HTML fields and validate meeting and agenda URLs before generated invitation content is sent.
+
+Risk: The setup guidance may install dependencies into the system Python environment.
+
+Mitigation: Run setup as a non-root user in an isolated environment such as a virtual environment or disposable container.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/skill-a-create-meeting)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration]
+
+**Output Format:** [JSON containing user-facing text, email invitation fields, repository participant data, meeting directory details, and links to generated agenda content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Gitea meeting metadata, agenda files, and log entries when configured with the required repository access.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

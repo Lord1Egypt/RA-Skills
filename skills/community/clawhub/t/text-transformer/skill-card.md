@@ -1,40 +1,48 @@
-## Description: <br>
-调用 Python 脚本处理文本（当前支持：转换为大写）。 / Python-powered text transformation tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用 Python 脚本处理文本（当前支持：转换为大写）。 / Python-powered text transformation tool.
 
-## Publisher: <br>
-[microshark2024](https://clawhub.ai/user/microshark2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[microshark2024](https://clawhub.ai/user/microshark2024)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this skill to transform supplied text with a Python script, currently by converting text to uppercase and returning the processed result.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can route user-provided text through a shell command in an unsafe way.
+
+Mitigation: Review before installing; avoid untrusted text containing shell syntax, and change execution to pass arguments without a shell or read text from stdin.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to pass text to a local Python script and receive an uppercase transformed result. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: Input text is processed by an included local Python script and displayed back to the user. <br>
-Mitigation: Do not pass secrets or sensitive text unless it is intended to be transformed and shown in the response. <br>
-Risk: Building raw shell commands around user text can mishandle quoted or special characters. <br>
-Mitigation: Prefer clients that pass the text as a structured argument to the script. <br>
+**Output Format:** [Plain text returned from a Python command-line script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/microshark2024/text-transformer) <br>
+**Other Properties Related to Output:** [Returns the processed result or script error message directly to the user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text returned from a local Python script, with error text surfaced when execution fails.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill processes a single extracted text input and echoes the uppercase result.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

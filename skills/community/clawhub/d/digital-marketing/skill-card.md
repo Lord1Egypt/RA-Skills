@@ -1,42 +1,64 @@
-## Description: <br>
-Plan, launch, and optimize digital marketing with growth marketing systems, short-form video, funnel operations, and revenue-focused experimentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, launch, and optimize digital marketing with growth marketing systems, short-form video, funnel operations, and revenue-focused experimentation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and marketing operators use this skill to turn business goals into full-funnel digital marketing plans, coordinated channel campaigns, short-form video tests, lifecycle actions, and performance reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional continuity memory can store business context, channel priorities, campaign plans, experiment logs, and strategy notes. <br>
-Mitigation: Confirm what context will be saved before enabling continuity and avoid storing sensitive strategy unless it is needed. <br>
-Risk: Marketing recommendations may involve publishing content, changing budgets, launching ads, or making regulated or performance claims. <br>
-Mitigation: Require separate human approval before publishing, spending money, changing budgets, launching ads, or using regulated, competitor, testimonial, pricing, or performance claims. <br>
-Risk: Campaign decisions can be distorted if metrics, customer proof, or external platform data are incomplete or unverified. <br>
-Mitigation: Treat external metrics as user-provided unless an approved integration is used, and verify proof, testimonials, and customer language before using them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/digital-marketing) <br>
-- [Skill homepage](https://clawic.com/skills/digital-marketing) <br>
+## Use Case:
 
+Marketing teams, founders, and growth operators use this skill to turn business priorities into coordinated digital marketing plans, campaign assets, experiments, funnel reviews, and measurement decisions. It is best suited for full-funnel orchestration across content, SEO, social, short-form video, lifecycle campaigns, paid acquisition, and revenue-focused reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with structured plans, tables, templates, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create optional local markdown memory, campaign, experiment, and signal files only with user consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional continuity notes may capture sensitive business, campaign, or customer context if the user saves too much detail.
+
+Mitigation: Create or update local continuity files only with user consent, keep notes concise, and avoid storing credentials, account access details, proprietary raw data, or sensitive customer information.
+
+Risk: Marketing recommendations may produce unsupported claims, competitor comparisons, regulated statements, or high-spend decisions that need review.
+
+Mitigation: Escalate pricing claims, competitor comparisons, regulated statements, and high-spend decisions for human approval; do not invent proof, testimonials, performance claims, or customer language.
+
+Risk: Campaign changes based on vanity metrics can waste spend or optimize for low-quality traffic.
+
+Mitigation: Pair attention metrics with downstream quality and economics such as conversion rate, qualified leads, CAC, payback, ROAS, and influenced pipeline before changing channel strategy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/digital-marketing)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Skill Homepage](https://clawic.com/skills/digital-marketing)
+- [Setup and Activation](artifact/setup.md)
+- [Market Model](artifact/market-model.md)
+- [Channel System](artifact/channel-system.md)
+- [Funnels](artifact/funnels.md)
+- [Measurement](artifact/measurement.md)
+- [Experiments](artifact/experiments.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, structured plans, templates, checklists, and optional local markdown notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local ~/digital-marketing/ continuity folder only with user consent; does not post content, buy ads, or access third-party accounts on its own.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

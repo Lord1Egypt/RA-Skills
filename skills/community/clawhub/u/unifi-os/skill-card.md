@@ -1,41 +1,58 @@
-## Description: <br>
-Read-only access to UniFi Network data for device inventory, network configuration, client information, alerts, health status, firmware status, bandwidth summaries, and topology export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only access to UniFi Network data for device inventory, network configuration, client information, alerts, health status, firmware status, and topology export.
 
-## Publisher: <br>
-[mbojer](https://clawhub.ai/user/mbojer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbojer](https://clawhub.ai/user/mbojer)
 
-## Use Case: <br>
-Developers, operators, and infrastructure engineers use this skill to inspect UniFi Network sites, troubleshoot device and client connectivity, and generate concise network documentation from read-only API data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive UniFi infrastructure details through API responses, local cache files, and topology exports. <br>
-Mitigation: Use a dedicated read-only UniFi API key, keep ~/.clawdbot/credentials and ~/.clawdbot/cache private, and avoid writing topology exports into synced or shared folders. <br>
-Risk: Local cache clearing has under-scoped path handling when given untrusted or path-like cache keys. <br>
-Mitigation: Use cache_clear.sh only with --status, --all, or known cache keys until its path handling is fixed. <br>
+## Use Case:
 
+Network administrators and operations engineers use this skill to inspect UniFi Network sites, troubleshoot client and device issues, review alerts and health, and generate topology documentation without making configuration changes.
 
-## Reference(s): <br>
-- [UniFi API Endpoint Reference](artifact/references/endpoints.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mbojer/unifi-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON or Markdown network reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only UniFi API calls, local credential configuration, and cached API responses; topology export can write a Markdown file when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local cache and topology exports can store sensitive UniFi network data such as clients, topology, alerts, IP addresses, MAC addresses, and network configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on trusted administrator machines, protect ~/.clawdbot/cache/unifi, periodically clear cached data when no longer needed, and restrict generated topology documents to trusted recipients.
+
+Risk: UniFi API credentials can expose administrative network data if the key or configuration file is mishandled.
+
+Mitigation: Use a narrowly scoped read-only UniFi API key, configure only an HTTPS UniFi URL, store credentials with restrictive file permissions, and rotate the key if exposure is suspected.
+
+Risk: Raw output and client-history lookups may reveal more network detail than needed for a troubleshooting task.
+
+Mitigation: Prefer the default stripped output, use --json or --raw only when specific fields are required, and avoid sharing client-history or raw API records outside trusted operations workflows.
+
+## Reference(s):
+
+- [UniFi API Endpoint Reference](references/endpoints.md)
+- [ClawHub skill page](https://clawhub.ai/mbojer/skills/unifi-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; script outputs are text, JSON, or topology Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only UniFi API calls and local caching; raw outputs, topology exports, and client history can contain sensitive network records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

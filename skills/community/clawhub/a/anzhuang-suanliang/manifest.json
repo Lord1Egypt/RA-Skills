@@ -1,0 +1,73 @@
+{
+  "name": "anzhuang-suanliang",
+  "version": "0.4.38",
+  "entry_policy": "contract-only",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "requires": {
+    "skills": {
+      "cad-file-reader": ">=0.41.0",
+      "lis-skill-bus": ">=0.1.11"
+    },
+    "python": ">=3.10"
+  },
+  "scripts": [
+    "scripts/anzhuang_statesync.cmd",
+    "scripts/anzhuang_statesync.py",
+    "scripts/anzhuang_statesync.sh",
+    "scripts/ensure_base.sh",
+    "scripts/i18n.py",
+    "scripts/lint_cross_platform.py",
+    "scripts/mep_plan.cmd",
+    "scripts/mep_plan.py",
+    "scripts/mep_plan.sh",
+    "scripts/mep_scan.cmd",
+    "scripts/mep_scan.py",
+    "scripts/mep_scan.sh",
+    "scripts/municipal_pipe_length.py",
+    "scripts/municipal_pipe_length.sh",
+    "scripts/pyboot.py",
+    "scripts/run_preflight.sh",
+    "scripts/self_test.py",
+    "scripts/setup.sh",
+    "scripts/smoke_utf8_json.py",
+    "scripts/contract_guard.py",
+    "scripts/contract_support.py",
+    "scripts/entry_gate.py"
+  ],
+  "references": [
+    ".gitignore",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md",
+    "index.md",
+    "references/dual_caliber_rules.json",
+    "references/loss_rules.json",
+    "references/standard_rules.json",
+    "README.en.md",
+    "docs/bus-integration.md",
+    "docs/integration.md",
+    "docs/runtime.md",
+    "docs/README.md"
+  ],
+  "tests": [
+    "scripts/self_test.py"
+  ],
+  "privacy": "DWG 只在本机读取；输出 xlsx/JSON 由使用者自行保管。发布包不含项目数据和图纸。",
+  "notes": "输出为草稿口径，不输出金额，不替代专业算量、翻样、下料、结算。",
+  "contract_schema": "安装工程概算清单/物资计划草稿（cad-file-reader/v0 兼容）; qto-project/v1(联动可选: 识别/<slug>/ + 算量/<slug>/ + cad-file-reader/scripts/qto_p1_link.py 登记)",
+  "linkage": {
+    "qto_spec": "qto-project/v1",
+    "recognize_dir": "识别/<slug>/",
+    "qty_dir": "算量/<slug>/",
+    "adapter": "cad-file-reader/scripts/qto_p1_link.py",
+    "boundary": "只登记输入/输出与缺口，不替代本技能算法、口径与复核"
+  },
+  "description": "安装工程 DWG/扫描索引 → 概算清单底稿与物资计划草稿双口径输出；覆盖导管、电线、电缆、桥架、给排水、喷淋、支吊架、设备、火灾报警和应急照明。",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ]
+}

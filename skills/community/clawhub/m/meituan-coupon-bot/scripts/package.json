@@ -1,0 +1,7 @@
+{
+  "name": "meituan-cps-assistant",
+  "version": "1.0.0",
+  "description": "美团联盟 CPS 推广助手脚本",
+  "main": "run.js",
+  "private": true
+}

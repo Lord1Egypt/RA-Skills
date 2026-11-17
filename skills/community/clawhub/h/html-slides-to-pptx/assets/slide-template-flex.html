@@ -1,0 +1,75 @@
+<!doctype html>
+<!--
+================================================================
+  html-slides 样板页 · 方式 B(flex/grid 流式)· 原型 23「图标要点网格」
+  页面骨架(标题/页码)仍用绝对定位;
+  内容区用 grid 容器排布:容器本身不标记、不可见,
+  可见叶子全是 data-object(卡片内部:图标 svg/标题/正文是未标记流式子元素)。
+  图标契约:从 assets/icons.md 复制;stroke 显式 hex(禁 currentColor),全页同色系。
+  转换契约:reference/html-spec.md 第 2B 章;设计契约:design-principles.md
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>页面标题 · 图标要点网格</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+
+  <!-- ── 页面骨架:绝对定位 ─────────────────────────────── -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">03 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      四个能力支柱,标题把结论说完
+    </div>
+  </div>
+
+  <!-- ══ 图标要点网格:grid 容器(不标记)+ 4 张图标卡(2×2,行高 290) ══
+       图标全页同色(主色);卡片"细边框+圆角"其一,禁阴影三件套。 -->
+  <div style="position:absolute;left:100px;top:320px;width:1720px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:290px 290px;gap:40px;">
+    <div data-object="true" data-object-type="shape" style="background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:36px 40px;">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="var(--brand-primary)" stroke="none"/></svg>
+        <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);">要点标题一</div>
+      </div>
+      <div style="font-size:26px;line-height:1.6;color:var(--text-primary);margin-top:20px;">说明 2 行以内:这个要点是什么、为什么重要,讲透不堆砌。</div>
+      <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:14px;">例子:一句话证据(≤20 字)</div>
+    </div>
+    <div data-object="true" data-object-type="shape" style="background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:36px 40px;">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
+        <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);">要点标题二</div>
+      </div>
+      <div style="font-size:26px;line-height:1.6;color:var(--text-primary);margin-top:20px;">第二要点说明;图标与要点一保持同色同尺寸。</div>
+      <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:14px;">例子:一句话证据(≤20 字)</div>
+    </div>
+    <div data-object="true" data-object-type="shape" style="background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:36px 40px;">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L19 6 V11 C19 15.5 15.7 18.8 12 20 C8.3 18.8 5 15.5 5 11 V6 Z"/><polyline points="9 11.5 11.2 13.7 15.5 9.4"/></svg>
+        <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);">要点标题三</div>
+      </div>
+      <div style="font-size:26px;line-height:1.6;color:var(--text-primary);margin-top:20px;">第三要点说明;卡内元素全是未标记流式子元素。</div>
+      <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:14px;">例子:一句话证据(≤20 字)</div>
+    </div>
+    <div data-object="true" data-object-type="shape" style="background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:36px 40px;">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14 c0.2 -1 0.7 -1.7 1.4 -2.4 C17.4 10.1 18 8.6 18 7 A6 6 0 1 0 6 7 c0 1.6 0.6 3.1 1.6 4.6 C8.3 12.3 8.8 13 9 14"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="21" x2="14" y2="21"/></svg>
+        <div style="font-size:30px;font-weight:700;line-height:1.3;color:var(--charcoal);">要点标题四</div>
+      </div>
+      <div style="font-size:26px;line-height:1.6;color:var(--text-primary);margin-top:20px;">第四要点说明;四卡结构完全同构,只换图标与文字。</div>
+      <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);margin-top:14px;">例子:一句话证据(≤20 字)</div>
+    </div>
+  </div>
+
+</div>
+
+<template data-slide-notes>
+【核心逻辑】这页演示方式 B + 原型 23:grid 2×2 图标要点网格;图标截图为 2x PNG,卡片与文字全原生。
+【版式自检】内容带 320→940(满填);图标全页同色;装饰 0 件;结构卡片不占卡片矩阵限额。
+</template>
+</body>
+</html>

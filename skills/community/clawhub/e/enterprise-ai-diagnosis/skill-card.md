@@ -1,42 +1,63 @@
-## Description: <br>
-企业AI应用诊断工具，帮助企业评估AI应用价值、计算ROI、规划实施路径，支持企业现状评估、AI价值分析、ROI计算、实施路径规划和工具推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业AI应用诊断工具帮助企业评估AI应用价值、计算ROI并规划实施路径，适用于企业AI应用咨询和转型评估场景。
 
-## Publisher: <br>
-[nickyhu1699](https://clawhub.ai/user/nickyhu1699) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickyhu1699](https://clawhub.ai/user/nickyhu1699)
 
-## Use Case: <br>
-Business owners, entrepreneurs, and digital transformation leads use this skill to assess whether AI can improve enterprise workflows, estimate ROI, and produce an implementation plan. The skill can generate questionnaire-driven analysis, Markdown reports, HTML reports, tool recommendations, and execution checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Questionnaire answers and generated reports can contain sensitive business metrics. <br>
-Mitigation: Avoid entering secrets or regulated data, and review all Markdown and HTML reports before sharing them. <br>
-Risk: Exported or externally shared reports may expose business information through document permissions. <br>
-Mitigation: Check Feishu and other document-sharing permissions before sending reports outside the organization. <br>
+## Use Case:
 
+Business owners, startup teams, and digital transformation leads use this skill to evaluate where AI may help their organization, estimate ROI, and draft phased implementation plans and reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickyhu1699/enterprise-ai-diagnosis) <br>
-- [README.md](artifact/README.md) <br>
-- [Questionnaire template](artifact/templates/questionnaire.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, HTML reports, command-line prompts, Python code examples, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may contain sensitive business metrics and should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Questionnaires and reports may contain sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-confidential business information unless the user is comfortable with how generated reports and questionnaires will be shared.
+
+Risk: Generated HTML reports from untrusted input may create unsafe report content.
+
+Mitigation: Avoid generating or hosting HTML reports from untrusted input until HTML escaping is added and reviewed.
+
+Risk: Custom report filenames may be unsafe without path validation.
+
+Mitigation: Do not pass custom filenames to report-saving functions until path validation is added.
+
+Risk: Reports include hardcoded contact details.
+
+Mitigation: Remove the hardcoded contact details or make them explicitly configurable before using reports with clients or customers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickyhu1699/skills/enterprise-ai-diagnosis)
+- [Artifact README](artifact/README.md)
+- [Assessment questionnaire template](artifact/templates/questionnaire.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, HTML report files, Python snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated reports when the provided scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

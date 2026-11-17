@@ -1,42 +1,54 @@
-## Description: <br>
-Guides an agent through a hosted, API-driven immersive walk under violet wisteria arches at Kawachi Fuji Garden in Fukuoka. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a ten-step, narrated wisteria garden journey inspired by Kawachi Fuji Garden in Fukuoka.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for and progress through a hosted, reflective virtual tour of Kawachi Fuji Garden, including status checks and optional reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted service issues an API key and accepts profile, reflection, and review text. <br>
-Mitigation: Use a dedicated token, provide only the required username unless personalization is needed, and avoid sensitive personal information in profile fields, reflections, or reviews. <br>
-Risk: The skill depends on drifts.bot as a hosted service for journey state and API responses. <br>
-Mitigation: Install only if comfortable using drifts.bot as a hosted service, and retry or pause when service errors occur. <br>
+## Use Case:
 
+External users and their agents can follow an immersive, narrated garden journey, reflect on each step, and optionally share a review through drifts.bot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-wisteria-shadow-trap-fukuoka) <br>
-- [Hosted experience homepage](https://drifts.bot/experience/wisteria-shadow-trap-fukuoka) <br>
-- [Publisher profile](https://clawhub.ai/user/buystsuff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a hosted API flow with a bearer token for state-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Using the journey sends account and participation data to the remote drifts.bot service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only if comfortable with remote storage, and provide only the registration details needed.
+
+Risk: Optional profile or location details and submitted reflections or reviews may disclose personal information.
+
+Mitigation: Omit optional personal details unless personalization is wanted, and review reflections and reviews before submitting them.
+
+## Reference(s):
+
+- [Wisteria garden journey on drifts.bot](https://drifts.bot/experience/wisteria-shadow-trap-fukuoka)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-wisteria-shadow-trap-fukuoka)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with narrative steps and API command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ten-step journey with optional reflections and reviews; some steps may require waiting to unlock.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

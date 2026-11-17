@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 """
 Gemini API Usage Fetcher
-Probes Gemini models via minimal API calls to verify key validity,
-lists available models, and documents free/paid tier rate limits.
+Reports Gemini rate limits, and optionally verifies live access.
 
-Unlike OpenAI, Google does not expose rate-limit headers or usage
-counters via the API. This script:
-  1. Validates the API key
-  2. Lists available models
-  3. Probes key models with 1-token calls to confirm access
-  4. Reports known free-tier rate limits (hardcoded from docs)
+Google exposes neither rate-limit headers nor usage counters, so the limits reported
+here are the PUBLISHED ones from Google's docs. That part is a lookup table and costs
+nothing.
+
+WHAT --probe ADDS, and why it is off by default: it calls Google with your key to (1)
+validate it, (2) enumerate the models your account can see, and (3) send a 1-token
+generateContent request to each model in PROBE_MODELS. Those are real API calls; they
+appear in your account activity and spend a sliver of quota. A dashboard should not
+spend your quota without being asked, so no network call happens unless you pass
+--probe.
 
 Usage:
-    ./gemini-usage-fetch.py              # Print usage
+    ./gemini-usage-fetch.py              # Published limits only — no network calls
+    ./gemini-usage-fetch.py --probe      # Validate key + list models + 1-token probes
     ./gemini-usage-fetch.py --update     # Update gemini-usage.json
     ./gemini-usage-fetch.py --json       # Output raw JSON
 
-Requires: GEMINI_API_KEY env var
+Credential:
+    python3 secretstore.py --login gemini      # sealed in your OS keychain
+    python3 secretstore.py --logout gemini
 """
 
 import json
@@ -26,6 +32,11 @@ import urllib.request
 import urllib.error
 from datetime import datetime
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import secretstore
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _secure_write import write_private_json  # owner-only JSON writes
 
 USAGE_JSON_PATH = Path.home() / '.openclaw/workspace/memory/gemini-usage.json'
 BASE_URL = 'https://generativelanguage.googleapis.com/v1beta'
@@ -75,38 +86,47 @@ PAID_TIER_LIMITS = {
 
 
 def get_api_key():
-    key = os.environ.get('GEMINI_API_KEY')
-    if not key:
-        env_path = Path.home() / '.openclaw/.env'
-        if env_path.exists():
-            for line in env_path.read_text().splitlines():
-                if line.startswith('GEMINI_API_KEY='):
-                    key = line.split('=', 1)[1].strip()
-                    break
+    """Return this tool's Gemini key from the keychain-backed store.
+
+    Not a bare os.environ read: the skill advertises keychain-sealed credentials, so the
+    lookup goes through secretstore (keychain, warned 0600 fallback, or the namespaced
+    TOKEN_PANEL_GEMINI_KEY). A generic GEMINI_API_KEY belonging to another tool is used
+    only with TOKEN_PANEL_ALLOW_PROVIDER_ENV=1.
+    """
+    key, _source = secretstore.get_secret('gemini')
     return key
+
+
+def _redact(text, api_key):
+    """Never let the key reach stdout, a log, or the usage JSON via an error string."""
+    text = str(text)
+    return text.replace(api_key, "[REDACTED]") if api_key else text
 
 
 def list_models(api_key):
     """List available models."""
-    url = f'{BASE_URL}/models?key={api_key}'
+    # The key travels in the x-goog-api-key HEADER, not a ?key= query parameter: a URL
+    # is what proxies, access logs and exception messages record.
+    req = urllib.request.Request(f'{BASE_URL}/models', headers={'x-goog-api-key': api_key})
     try:
-        with urllib.request.urlopen(url, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=10) as resp:
             data = json.loads(resp.read())
             return [m['name'].split('/')[-1] for m in data.get('models', [])]
     except Exception as e:
-        return {"error": str(e)}
+        return {"error": _redact(e, api_key)}
 
 
 def probe_model(api_key, model):
     """Make a 1-token call to verify access and get token counts."""
-    url = f'{BASE_URL}/models/{model}:generateContent?key={api_key}'
+    url = f'{BASE_URL}/models/{model}:generateContent'
     data = json.dumps({
         "contents": [{"parts": [{"text": "x"}]}],
         "generationConfig": {"maxOutputTokens": 1}
     }).encode()
 
     req = urllib.request.Request(url, data=data, headers={
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-goog-api-key': api_key,
     })
 
     try:
@@ -121,17 +141,18 @@ def probe_model(api_key, model):
             }
     except urllib.error.HTTPError as e:
         body = e.read().decode()[:300]
-        return {"status": "error", "code": e.code, "message": body}
+        return {"status": "error", "code": e.code, "message": _redact(body, api_key)}
     except Exception as e:
-        return {"status": "error", "message": str(e)}
+        return {"status": "error", "message": _redact(e, api_key)}
 
 
 def detect_tier(api_key):
     """Try to detect if we're on free or paid tier.
     Free tier keys start with 'AIza' (AI Studio keys).
     Paid tier typically uses service accounts or billing-linked projects.
+    Without a probe there is no key loaded, so the tier is simply unknown.
     """
-    if api_key.startswith('AIza'):
+    if api_key and api_key.startswith('AIza'):
         return "free"
     return "unknown"
 
@@ -160,7 +181,9 @@ def build_output(api_key, probes, available_models):
     return {
         "provider": "google",
         "fetchedAt": datetime.utcnow().isoformat() + 'Z',
-        "api_key_status": "valid",
+        # Only a live call can say a key is valid. Without --probe nothing was checked,
+        # and claiming "valid" would be reporting a test that never ran.
+        "api_key_status": "valid" if probes else "not checked (no --probe)",
         "detected_tier": tier,
         "probe_cost_tokens": total_probe_tokens,
         "available_models_count": len(available_models) if isinstance(available_models, list) else 0,
@@ -179,7 +202,8 @@ def print_usage(output):
     print(f"\n╔══════════════════════════════════════════════╗")
     print(f"║         GEMINI API USAGE                     ║")
     print(f"╠══════════════════════════════════════════════╣")
-    print(f"║ API Key: ✅ valid                             ║")
+    key_status = output.get('api_key_status', 'unknown')
+    print(f"║ API Key: {key_status:<36}║")
     print(f"║ Tier: {tier_icon} {tier:<10}                            ║")
     print(f"║ Probe cost: {output.get('probe_cost_tokens', 0)} tokens                      ║")
     print(f"║ Available models: {output.get('available_models_count', '?'):<4}                       ║")
@@ -207,30 +231,45 @@ def print_usage(output):
     print(f"╚══════════════════════════════════════════════╝\n")
 
 
+PROBE_NOTICE = (
+    "Validating the key, listing models and probing each model are all live calls to\n"
+    "Google using your credential, and they spend a little quota. Re-run with --probe\n"
+    "to allow that; without it, only Google's published rate limits are shown and\n"
+    "nothing leaves this machine."
+)
+
+
 def main():
     args = sys.argv[1:]
-    api_key = get_api_key()
+    probe_enabled = '--probe' in args
 
-    if not api_key:
-        print("❌ No GEMINI_API_KEY found.", file=sys.stderr)
-        sys.exit(1)
-
-    # List available models
-    available = list_models(api_key)
-
-    # Probe key models
+    api_key = None
+    available = []
     probes = {}
-    for model in PROBE_MODELS:
-        probes[model] = probe_model(api_key, model)
+
+    if probe_enabled:
+        api_key = get_api_key()
+        if not api_key:
+            print(
+                "❌ No Gemini credential stored for this tool.\n"
+                "   Store one:  python3 secretstore.py --login gemini",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        available = list_models(api_key)
+        for model in PROBE_MODELS:
+            probes[model] = probe_model(api_key, model)
+    else:
+        print(PROBE_NOTICE, file=sys.stderr)
 
     output = build_output(api_key, probes, available)
+    output["probed"] = probe_enabled
 
     if '--json' in args:
         print(json.dumps(output, indent=2))
     elif '--update' in args:
-        USAGE_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-        with open(USAGE_JSON_PATH, 'w') as f:
-            json.dump(output, f, indent=2)
+        # Reports your plan and rate limits — owner-only, never through a symlink.
+        write_private_json(USAGE_JSON_PATH, output)
         print(f"✓ Updated {USAGE_JSON_PATH}")
         for model, info in output["models"].items():
             status = info.get("status", "?")

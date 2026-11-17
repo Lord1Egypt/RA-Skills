@@ -1,41 +1,54 @@
-## Description: <br>
-将 Markdown 转换为数十种精美主题 HTML，并一键推送到微信公众号草稿箱（支持自动解析文内图片并生成封面）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown articles into themed HTML and helps publish complete WeChat draft posts through the mpa CLI, including embedded image handling and cover support.
 
-## Publisher: <br>
-[shijianzhong](https://clawhub.ai/user/shijianzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shijianzhong](https://clawhub.ai/user/shijianzhong)
 
-## Use Case: <br>
-Developers, content creators, and publishing teams use this skill to format Markdown articles, preview themed HTML output, and create WeChat draft posts through the mpa CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup asks users to run an unpinned remote shell installer for the mpa CLI. <br>
-Mitigation: Review the mpa project and installer before running it, and prefer a pinned release or manually downloaded binary with checksum verification. <br>
-Risk: Publishing workflows require WeChat credentials and allow the CLI to create drafts and upload article media. <br>
-Mitigation: Configure only credentials approved for this use case, and review generated drafts and uploaded media before publication. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to format Markdown articles with reusable themes and prepare or publish WeChat Official Account draft posts through the mpa command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shijianzhong/multi-platform-articles) <br>
-- [mpa installer script](https://raw.githubusercontent.com/shijianzhong/multi-platform-articles/main/scripts/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of mpa to render HTML files and create WeChat draft posts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.18 (source: server release evidence) <br>
+Risk: The dependency installation path asks users to execute mutable remote shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use and prefer a pinned release, checksum-verified download, or package-manager installation for mpa.
+
+Risk: Publishing can upload Markdown content, embedded images, cover images, and configured WeChat credentials to an external platform.
+
+Mitigation: Confirm the intended Markdown file, media assets, cover image, destination account, and credentials before publishing.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/shijianzhong/skills/multi-platform-articles)
+- [mpa installer script](https://raw.githubusercontent.com/shijianzhong/multi-platform-articles/main/scripts/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration guidance, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated HTML output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local HTML files and send article content, embedded images, cover images, and draft metadata to the configured WeChat account through mpa.]
+
+## Skill Version(s):
+
+0.1.18 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

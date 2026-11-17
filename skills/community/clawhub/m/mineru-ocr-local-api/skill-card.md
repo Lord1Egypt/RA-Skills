@@ -1,46 +1,63 @@
-## Description: <br>
-Parses complex PDFs and document images with MinerU through either the hosted MinerU API or a local open-source MinerU runtime. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse complex PDFs and document images with MinerU through either the hosted MinerU API or the local open-source MinerU runtime.
 
-## Publisher: <br>
-[Focusshang](https://clawhub.ai/user/Focusshang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[focusshang](https://clawhub.ai/user/focusshang)
 
-## Use Case: <br>
-Developers and agents use this skill to extract layout-aware Markdown and text from PDFs or document images, choosing hosted MinerU API mode for service-backed parsing or local mode when documents should remain on the user's machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API mode can upload PDFs or images to the hosted MinerU service. <br>
-Mitigation: Use --mode local for confidential documents, and use API mode only when uploading the document to MinerU is acceptable. <br>
-Risk: OCR outputs and downloaded archives may be saved on the local filesystem. <br>
-Mitigation: Review artifact paths returned by the skill and delete saved OCR artifacts when they are no longer needed. <br>
-Risk: API mode depends on trusted MinerU endpoint and token configuration. <br>
-Mitigation: Keep MINERU_API_TOKEN private and only use trusted MINERU_API_BASE_URL values. <br>
+## Use Case:
 
+Developers and agent users use this skill to extract layout-aware Markdown, OCR text, formulas, and artifact paths from PDFs and document images with MinerU. It supports hosted API parsing for MinerU service workflows and local runtime parsing when documents should stay on the local machine.
 
-## Reference(s): <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU API Documentation](https://mineru.net/apiManage/docs#/standard/openapi_v4) <br>
-- [MinerU Output Files Documentation](https://opendatalab.github.io/MinerU/api/output_files/) <br>
-- [MinerU OCR Local API Output Schema](references/output_schema.md) <br>
-- [httpx Python Package](https://pypi.org/project/httpx/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON envelope with extracted Markdown text, artifact paths, and optional command or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save OCR results, downloaded archives, extracted Markdown, and local MinerU artifact paths depending on mode and flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: API mode handles credentials and uploads selected documents to the MinerU API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the MinerU API endpoint, use session-only tokens where possible, and prefer --mode local for sensitive files.
+
+Risk: A custom MINERU_API_BASE_URL can direct documents and credentials to an unexpected endpoint.
+
+Mitigation: Avoid custom MINERU_API_BASE_URL values unless you fully control the endpoint.
+
+Risk: Generated outputs, downloaded archives, and extracted artifacts are written to local paths.
+
+Mitigation: Set an explicit download directory and review generated artifact paths before sharing or retaining outputs.
+
+## Reference(s):
+
+- [MinerU OCR Local & API on ClawHub](https://clawhub.ai/focusshang/skills/mineru-ocr-local-api)
+- [MinerU project homepage](https://github.com/opendatalab/MinerU)
+- [MinerU API docs](https://mineru.net/apiManage/docs#/standard/openapi_v4)
+- [MinerU output files documentation](https://opendatalab.github.io/MinerU/api/output_files/)
+- [Output schema reference](references/output_schema.md)
+- [httpx package](https://pypi.org/project/httpx/)
+- [httpx repository](https://github.com/encode/httpx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON envelope with Markdown document text and saved artifact paths; user-facing responses are Markdown with relevant paths, excerpts, or summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save JSON envelopes, downloaded ZIP archives, extracted Markdown, middle JSON, content lists, and local MinerU artifact paths.]
+
+## Skill Version(s):
+
+1.1.4 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

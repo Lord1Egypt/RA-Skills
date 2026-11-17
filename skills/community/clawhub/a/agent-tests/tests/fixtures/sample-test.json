@@ -1,0 +1,29 @@
+{
+  "greet": {
+    "name": "greet",
+    "prompt": "Say hello to the user",
+    "expected": "Hello",
+    "assertions": [
+      "contains:Hello",
+      "contains:!",
+      "not_contains:error"
+    ],
+    "created": "2026-07-02",
+    "updated": "2026-07-02",
+    "runCount": 0,
+    "passRate": 0
+  },
+  "format_date": {
+    "name": "format_date",
+    "prompt": "Format today's date",
+    "expected": "2026-07-02",
+    "assertions": [
+      "regex:\\d{4}-\\d{2}-\\d{2}",
+      "length:10"
+    ],
+    "created": "2026-07-02",
+    "updated": "2026-07-02",
+    "runCount": 0,
+    "passRate": 0
+  }
+}

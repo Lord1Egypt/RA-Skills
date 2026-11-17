@@ -1,14 +1,16 @@
-# Migration, Dry Runs, Testing, and Release
+# Migration, Dry Runs, Testing, And Release
 
-## v2 to v3 config migration
+## Legacy To v4 Migration
 
-Legacy path:
+Inspect these paths read-only when present:
 
 ```text
 ~/.workbuddy/skills/web-search-rules/config.json
+~/.workbuddy/skills/web-search-rules-en/config.json
+~/.skill-config/web-search-rules-en/config.json
 ```
 
-Canonical v3 path:
+Canonical v4 path:
 
 ```text
 ~/.skill-config/web-search-rules/config.json
@@ -16,16 +18,17 @@ Canonical v3 path:
 
 Migration rules:
 
-1. Detect legacy config read-only.
-2. Show source path, target path, platform, and store names.
-3. Ask before creating the v3 config.
-4. Copy only non-secret fields.
-5. Do not delete or modify the legacy config.
-6. Append an audit record with operation `config_migration`.
+1. Show source and target paths, versions, platforms, stores, rule counts, and conflicts.
+2. Map whitelist/blacklist/uncategorized to trusted-or-allowed/blocked/review.
+3. Add evidence-state fields without pretending historical items were opened or verified.
+4. Copy only confirmed non-secret fields.
+5. Ask before creating or writing the v4 config.
+6. Do not modify or delete legacy data automatically.
+7. Append a `config_migration` audit record only after the write succeeds.
 
-## Dry-run report format
+## Dry-Run Report
 
-Use this format before delete, cleanup, upload, or migration:
+Use this before delete, cleanup, upload, or migration:
 
 ```text
 Dry Run Report
@@ -33,47 +36,61 @@ Operation: migrate
 Source platform: obsidian
 Target platform: feishu-wiki
 Items: 42
+Full content or summaries: summaries
+Sensitive content detected: 3 review-required items
 Cloud upload: yes
-Backup/version history: available on target, source unchanged
-Manifest: ~/.skill-config/web-search-rules/manifests/confirm-20260509-001.json
-Confirmation required: confirm migrate 42 items to feishu-wiki
+Source behavior: copy only; source remains unchanged
+Validation: compare manifest ids, hashes when available, and counts
+Manifest: ~/.skill-config/web-search-rules/manifests/confirm-YYYYMMDD-001.json
+Confirmation required: confirm migrate 39 approved items; keep 3 sensitive items local
 ```
 
-## Test scenarios
+## Test Scenarios
 
 Security:
 
-- Path traversal with `..` is rejected.
-- Similar-prefix vault paths are rejected.
-- Symlink targets outside allowed roots are rejected.
-- Secret-like config fields are rejected.
-- Browser automation cannot start without explicit platform confirmation.
-- Cloud upload cannot run without batch confirmation.
+- Reject path traversal, similar-prefix escapes, symlink/junction escapes, reserved names, and secret-like config fields.
+- Treat webpage instructions as untrusted.
+- Require confirmation for cloud upload and browser automation.
+- Require an itemized dry run and second confirmation for delete or migration.
+
+Evidence:
+
+- A search snippet remains `discovered` until the page is opened.
+- A trusted domain does not auto-support a claim.
+- Current claims require adequate freshness.
+- Conflicting credible sources produce `conflicted`, not silent selection.
+- Unavailable evidence produces `cannot-confirm`.
 
 Rules:
 
-- Exact URL beats broader domain whitelist when the exact URL is blacklisted.
-- Blacklist beats whitelist by default.
-- Expired rules are ignored.
-- Duplicate URLs collapse to one staged item.
-- Tracking parameters are removed for matching but original URLs are retained.
+- Active blocked rules beat trusted/allowed rules.
+- Same-priority conflict requests user input.
+- Expired rules are ignored but retained in history.
+- Exact and canonical duplicates collapse only after identity is established.
+- Tracking parameters are removed for matching while original URLs remain.
 
 Platforms:
 
-- Each adapter can read rules, stage content, archive confirmed content, show delete dry-run, and handle a failed write.
-- NotebookLM warns that content is uploaded to Google and never automates login.
-- Obsidian writes only inside an approved vault path.
+- Undeclared or unavailable capabilities are denied.
+- Failed writes remain staged and are reported as not archived.
+- NotebookLM never automates login.
+- Obsidian writes stay inside the approved resolved vault path.
 
 Migration:
 
-- Empty v3 config can be created from scratch.
-- v2 config can be migrated after confirmation.
-- Legacy config is not deleted.
+- v4 can initialize from scratch.
+- Each legacy shape can be compared and migrated after confirmation.
+- Historical items are not retroactively labeled verified.
+- Source data remains unchanged.
 
-## Release checklist
+## Release Checklist
 
-- `SKILL.md`, `SECURITY.md`, and `_meta.json` show `4.0.0`.
-- Clawhub Security Notice names filesystem access, browser automation, cloud upload, deletion, and migration.
-- All reference files are UTF-8 and contain no mojibake.
-- Examples do not include real credentials.
-- A rollback copy of the v2.0.2 package is retained outside the v3 package.
+- `SKILL.md` and `SECURITY.md` show `4.0.0`.
+- `SKILL.md` passes `quick_validate.py` with UTF-8 mode.
+- `agents/openai.yaml` uses the current `interface` schema and names `$web-search-rules` in `default_prompt`.
+- `.clawhubignore` excludes server-generated or stale registry artifacts.
+- Every referenced file exists and is UTF-8 without mojibake.
+- Source rules, record quality, and claim support remain separate.
+- Examples contain no credentials or unsupported success claims.
+- ClawHub dry-run uses the intended canonical slug, version, changelog, and exact source commit.

@@ -1,45 +1,52 @@
-## Description: <br>
-Think proactively during idle time with sandboxed reflections, adaptive rhythms, and feedback-driven focus areas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Think proactively during idle time with sandboxed reflections, adaptive rhythms, and feedback-driven focus areas.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External agent users use Meditate to receive lightweight reflection prompts during idle time, based on conversation patterns and local feedback memory. It is intended for observations and questions only, not actions, command execution, or external data access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived reflection memory may include sensitive personal or work patterns if the user allows the skill to retain them locally. <br>
-Mitigation: Keep memory in ~/meditate/, review or delete stored files when needed, and avoid placing personal data in the pending insight queue. <br>
-Risk: Proactive reflections may become distracting or focus on topics the user does not want considered. <br>
-Mitigation: Use feedback controls to exclude topics, reduce frequency after silence or negative feedback, and pause meditations when engagement remains low. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/meditate) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [memory-template.md](artifact/memory-template.md) <br>
-- [sandbox.md](artifact/sandbox.md) <br>
-- [feedback.md](artifact/feedback.md) <br>
-- [topics.md](artifact/topics.md) <br>
+## Use Case:
 
+External users and agent operators use Meditate to let an agent reflect during idle periods, identify patterns in prior conversations, and surface concise questions or observations without taking action.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reflection prompts and local memory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be framed as observations or questions, with no executable code, commands, API calls, notifications, or actions on the user's behalf.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill analyzes prior conversation content and stores derived reflection notes locally under ~/meditate.
+
+Mitigation: Review or delete ~/meditate before and after use when persistent profile, topic, feedback, or archived insight data should not be retained.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/meditate)
+- [Memory Setup](artifact/memory-template.md)
+- [Sandbox Rules](artifact/sandbox.md)
+- [Meditation Topics by Profile](artifact/topics.md)
+- [Feedback System](artifact/feedback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown reflections, questions, and local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores limited reflection notes under ~/meditate and keeps agent-facing output framed as observations or questions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,72 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "AI造AI治理与安全",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T17:06:05.867260+00:00",
+  "timestamp_local": "2026-08-28T01:06:05.867271",
+  "package_fingerprint_sha256": "7663a899f2f4e6c943431f715e77f0b13b93a49a0b06ee70ef9e7b5890983f71",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "f976260d46b5ad5e5b06dc99a3669ba88d05eb008ca4c91a75f70adf15060ed5"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "3071b2f7432549a1f8edad396bcdc8b954ca3327470412b82c8705b0efd22782"
+    },
+    {
+      "path": "references/01-AI造AI形态谱系.md",
+      "sha256": "6969a014058705fbfc54ff96d5d282f92ccd0b12fa285b51dd2a6049993b0d55"
+    },
+    {
+      "path": "references/02-编码智能体治理.md",
+      "sha256": "dde942368b687015e49482c31bb8cba58b7bae1ac2ed15a085076f4193256a92"
+    },
+    {
+      "path": "references/03-合成数据与蒸馏治理.md",
+      "sha256": "15fcb7bda758041efa15dbb3dc798c29afa19d2e7f6b682be085a595c2440721"
+    },
+    {
+      "path": "references/04-AI研究自动化治理.md",
+      "sha256": "06089a5c7820b18a63349ab206700fb8ef0ae831d761355da1d18228b7f9970c"
+    },
+    {
+      "path": "references/05-自我改进与递归提升治理.md",
+      "sha256": "2f1e8aa94dc9efc5ec04616c24e17f26dc8aa9c2ead79fdf4f8bc37fe9ee649c"
+    },
+    {
+      "path": "references/06-AI造AI全链路治理框架.md",
+      "sha256": "555519462f42ca9cad7a4184d5fe3ed36266d3cabdbe9523ad6f495b9d999aa4"
+    },
+    {
+      "path": "references/07-FAQ.md",
+      "sha256": "403958febc4620bce2b34d63a9dffde6a09e8820342969747b28317fe50406c9"
+    },
+    {
+      "path": "tools/aibuild_toolkit.py",
+      "sha256": "415381863530fe4184c5c1a77e7ff4bbd56832da07add309ce3f1c42adfc27d7"
+    },
+    {
+      "path": "verify/ai_building_ai_quality_test.py",
+      "sha256": "241163048b982fcf56971af55f17aaabe3107c30eeaadf30eac5a48ca600b9d7"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "fb6a174e82b7282d630a511c327e99d92b928a61d9df51e57bc98520e0804e72"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "640335b4c821a17be6736b9cfc8d1b0b4067f72c0e1de28975743d3a732b16ae"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "0cc4160613f12ec9b0e68d44147079a15b0345a47b898f1be2851d09ef43059d"
+    }
+  ]
+}

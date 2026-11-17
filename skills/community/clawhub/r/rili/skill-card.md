@@ -1,40 +1,53 @@
-## Description: <br>
-rili provides local Gregorian and Chinese lunar calendar lookups, including weekdays, month views, traditional lunar festivals, zodiac information, and Gregorian-to-lunar conversion through a bundled Node script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+rili provides local calendar and Chinese lunar date lookups through a bundled Node script, including weekdays, month views, traditional lunar festivals, and Gregorian-lunar conversion.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-External users and agents use rili to answer Chinese-language date questions, inspect monthly calendars, find traditional lunar festival dates, and convert between Gregorian and lunar dates. It is intended for date lookup and explanation, not calendar event management or shared calendar integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled local Node script, and server-resolved GitHub provenance is unavailable for this version. <br>
-Mitigation: Review the bundled script and file hashes before installing in environments that require strong publisher provenance. <br>
-Risk: Lunar calendar conversion depends on Node Intl Chinese calendar support and is documented for common question-answering rather than astronomical precision or region-specific folk dates. <br>
-Mitigation: Verify high-stakes or specialized calendar results against an authoritative calendar source, and avoid using this skill for event creation, reminders, or shared calendar workflows. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language calendar questions, including Gregorian dates, weekdays, lunar dates, zodiac signs, supported traditional lunar festivals, month views, and lunar-to-Gregorian conversion.
 
-## Reference(s): <br>
-- [ClawHub rili skill page](https://clawhub.ai/jvy/rili) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Chinese-language text or JSON from local Node CLI commands, usually summarized by the agent in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Node; evidence reports no accounts, secrets, network access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Lunar calendar results depend on local Node Intl Chinese calendar support and may not be suitable for high-precision astronomical or regional folk-calendar use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for common calendar questions and verify results against authoritative calendars before relying on them for precision-sensitive, regional, or formal use.
+
+Risk: The skill is scoped to date lookup and conversion, not calendar event management, reminders, shared schedules, or integrations.
+
+Mitigation: Route event creation, reminder, meeting, and shared-calendar requests to an appropriate calendar integration instead of this local lookup skill.
+
+## Reference(s):
+
+- [rili ClawHub skill page](https://clawhub.ai/jvy/skills/rili)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON returned by local Node commands, with concise natural-language guidance for the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Node runtime with Intl Chinese calendar support; no external API calls are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

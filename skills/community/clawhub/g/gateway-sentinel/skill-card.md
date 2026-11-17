@@ -1,42 +1,57 @@
-## Description: <br>
-Gateway Sentinel is an OpenClaw gateway watchdog that monitors gateway health, attempts escalating repairs, sends Telegram or Discord alerts, commits daily snapshots, and installs as a macOS launchd or Linux systemd service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gateway Sentinel monitors an OpenClaw gateway with CLI and HTTP health checks, sends Telegram or Discord alerts, and runs graduated recovery actions including restart, doctor fix, daily snapshots, and optional git rollback.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw use this skill to keep a gateway process available, receive outage alerts, and apply controlled service repairs on macOS or Linux hosts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The watchdog runs persistently and can restart OpenClaw services and mutate the configured Git workspace. <br>
-Mitigation: Review the configured workspace before installation, test the guardian in the foreground first, and monitor the generated service configuration before enabling always-on operation. <br>
-Risk: Alert credentials can be loaded into service configuration and daily snapshots may commit files that are not ignored. <br>
-Mitigation: Restrict permissions on ~/.openclaw/guardian.env, verify the generated service file for copied secrets, and confirm .gitignore excludes secret-bearing files before enabling snapshots. <br>
-Risk: Optional rollback uses git reset behavior and can disrupt local workspace state if recovery has not been tested. <br>
-Mitigation: Leave GUARDIAN_ENABLE_ROLLBACK=false unless recovery has been tested and backups or stash recovery procedures are in place. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gateway Sentinel on ClawHub](https://clawhub.ai/zurbrick/gateway-sentinel) <br>
-- [OpenClaw Guardian homepage](https://github.com/openclaw/openclaw-guardian) <br>
+## Use Case:
 
+Developers and operators use Gateway Sentinel to keep an OpenClaw gateway monitored, receive alerts, and attempt automated recovery when the gateway becomes unhealthy.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires openclaw, git, and curl; supports macOS launchd and Linux systemd service setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs a persistent per-user watchdog that can restart OpenClaw, run repair commands, and automatically commit unignored workspace changes.
+
+Mitigation: Review the service configuration before installation, set `GUARDIAN_WORKSPACE` to the narrowest intended repository, and verify `.gitignore` coverage before enabling daily snapshots.
+
+Risk: Optional rollback can run git reset behavior in the configured workspace when `GUARDIAN_ENABLE_ROLLBACK=true`.
+
+Mitigation: Keep rollback disabled unless it has been tested in the target workspace, and maintain independent backups or recovery procedures.
+
+Risk: Alert tokens and webhook URLs are supplied through environment configuration and could be exposed if stored or logged carelessly.
+
+Mitigation: Protect `~/.openclaw/guardian.env`, rotate any exposed Telegram or Discord credentials, and consider moving logs and state out of `/tmp`.
+
+## Reference(s):
+
+- [Gateway Sentinel ClawHub page](https://clawhub.ai/zurbrick/skills/gateway-sentinel)
+- [OpenClaw Guardian homepage](https://github.com/openclaw/openclaw-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service install or uninstall commands, environment variable settings, and operational guidance for macOS launchd or Linux systemd.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

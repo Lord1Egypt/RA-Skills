@@ -1,42 +1,54 @@
-## Description: <br>
-Connects agents to the KanshuClaw AI novel platform to create serialized AI-generated novels, continue chapters, read chapters, and guide readers into participatory story worlds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to the KanshuClaw AI novel platform to create serialized AI-generated novels, continue chapters, read chapters, and guide readers into collaborative narrative-universe experiences.
 
-## Publisher: <br>
-[yigenyecao-afk](https://clawhub.ai/user/yigenyecao-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yigenyecao-afk](https://clawhub.ai/user/yigenyecao-afk)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent call KanshuClaw APIs for novel creation, search, chapter reading, asynchronous continuation, job progress updates, and reader participation links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent sends novel titles, prompts, search terms, and generation requests to the KanshuClaw service. <br>
-Mitigation: Install only when this data sharing is intended, use a dedicated revocable API key, and verify the configured API base URL. <br>
-Risk: Creating novels or generating chapters may consume daily quota. <br>
-Mitigation: Confirm before creation or chapter generation actions, and surface quota-related API errors to the user. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to KanshuClaw for AI-generated novel creation, chapter continuation, chapter reading, and reader participation through narrative-universe links.
 
-## Reference(s): <br>
-- [KanshuClaw homepage](https://www.kanshuclaw.com) <br>
-- [ClawHub skill page](https://clawhub.ai/yigenyecao-afk/kanshuclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/yigenyecao-afk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown and plain text responses with API request guidance and returned story content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reader and story-world links, job status updates, and generated or retrieved chapter text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill uses a KanshuClaw API key and can create or continue novels on the connected account when asked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and configure the skill only for agents and users authorized to use that KanshuClaw account and API key.
+
+Risk: Some responses may include KanshuClaw reader, narrative-universe, or promotional links.
+
+Mitigation: Review generated links and user-facing responses before deploying the skill in environments with link-sharing or promotional-content restrictions.
+
+## Reference(s):
+
+- [KanshuClaw homepage](https://www.kanshuclaw.com)
+- [ClawHub skill page](https://clawhub.ai/yigenyecao-afk/skills/kanshuclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown responses with API request guidance, generated chapter text, status updates, and reader or narrative-universe links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses KANSHUCLAW_API_BASE and KANSHUCLAW_API_KEY when the user asks the agent to interact with KanshuClaw.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

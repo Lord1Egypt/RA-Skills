@@ -1,45 +1,56 @@
-## Description: <br>
-Especialista em Obsidian com dominio em Zettelkasten, PARA, BASB, MOCs, Dataview, Templater e organizacao estruturada de vaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Especialista em Obsidian com dominio em Zettelkasten, PARA, BASB, MOCs, Dataview, Templater e organizacao estruturada de vaults.
 
-## Publisher: <br>
-[playandogamer150-commits](https://clawhub.ai/user/playandogamer150-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[playandogamer150-commits](https://clawhub.ai/user/playandogamer150-commits)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and Obsidian users can use this skill to manage a personal knowledge vault with note creation, search, frontmatter editing, daily notes, Canvas, Dataview, templates, tasks, and vault health workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read, reorganize, overwrite, and delete content across an Obsidian vault.
+
+Mitigation: Use a dedicated test vault first and keep independent backups or version control before granting access to important notes.
+
+Risk: Delete, folder move, rename, and archive operations may permanently lose or misplace notes if executed without sufficient review.
+
+Mitigation: Require manual review outside the skill before approving destructive or bulk organization actions.
+
+Risk: Sensitive note contents may be exposed through broad vault access.
+
+Mitigation: Avoid connecting vaults that contain sensitive notes until scoped controls are added.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and Obsidian power users use this skill to let an agent organize, search, summarize, and maintain a local Obsidian vault through the Local REST API. It supports note CRUD, folders, Canvas, templates, Dataview-style queries, tasks, backlinks, vault health checks, MOCs, and Zettelkasten workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad read, write, delete, move, merge, and command authority over a private Obsidian vault. <br>
-Mitigation: Install only for vaults where this level of control is acceptable, start with a test or backed-up vault, and require explicit confirmation for destructive or bulk actions. <br>
-Risk: Misconfigured REST API access can expose sensitive vault content or allow unintended local actions. <br>
-Mitigation: Keep the Obsidian Local REST API bound to localhost, restrict the API key, and store credentials in local environment variables. <br>
-Risk: Automated organization, Dataview queries, and vault health actions can create incorrect structure, links, tags, or summaries. <br>
-Mitigation: Review proposed moves, merges, overwrites, generated links, and obsidian-command actions before applying them to a production vault. <br>
+**Output Format:** [Markdown and structured text responses, with configuration guidance for Obsidian Local REST API environment variables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Obsidian Perfect on ClawHub](https://clawhub.ai/playandogamer150-commits/obsidian-master) <br>
-- [Publisher profile](https://clawhub.ai/user/playandogamer150-commits) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Instructions](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Produces and updates Obsidian vault content through local REST API tools when configured with user-provided API credentials.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses, JSON-like tool results, and shell snippets for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Obsidian, the Local REST API plugin, Node.js 18+, OBSIDIAN_API_KEY, and OBSIDIAN_URL.] <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, CHANGELOG) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Helps revise Chinese psychology manuscripts by polishing language, improving logical flow, normalizing formatting, and preserving the author's meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps polish Chinese psychology papers by improving language, logic, terminology consistency, formatting, and academic expression while preserving the author's meaning and structure.
 
-## Publisher: <br>
-[cys723-bot](https://clawhub.ai/user/cys723-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cys723-bot](https://clawhub.ai/user/cys723-bot)
 
-## Use Case: <br>
-Researchers, students, and academic authors use this skill to edit Chinese psychology papers for clearer scholarly language, terminology consistency, grammar, paragraph flow, and journal-style formatting while retaining the original argument and structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential manuscripts, unpublished data, participant information, or other sensitive personal content into the agent. <br>
-Mitigation: Only provide content that is acceptable to share with the agent and model provider; remove or anonymize confidential, unpublished, personal, or sensitive data before use. <br>
-Risk: Generated edits or terminology suggestions may inadvertently alter meaning or introduce inaccurate academic wording. <br>
-Mitigation: Review the revised manuscript, terminology notes, and change explanations against the original paper and target journal requirements before relying on the output. <br>
+## Use Case:
 
+External users, students, researchers, and academic authors use this skill to revise Chinese psychology manuscripts for clearer academic wording, grammar, paragraph flow, terminology consistency, and journal-style formatting. It is intended for SCI papers, core journal papers, and degree theses where the original claims and structure should remain unchanged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cys723-bot/psychology-paper-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown manuscript revision with revision notes, change counts, terminology checks, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces edited manuscript text and explanatory notes for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Manuscript revisions may unintentionally alter nuance, terminology, or the author's intended academic meaning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the revised manuscript and change notes against the original text before submission or publication.
+
+Risk: Academic manuscripts can contain confidential, unpublished, or institutionally restricted content.
+
+Mitigation: Avoid pasting confidential manuscript content unless the workspace and data handling policy allow it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cys723-bot/skills/psychology-paper-editor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown manuscript revision with change notes, modification statistics, terminology checks, and style adjustment explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the original academic meaning and document structure while marking important changes for author review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

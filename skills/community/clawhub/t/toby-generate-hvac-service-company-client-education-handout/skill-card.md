@@ -1,44 +1,55 @@
-## Description: <br>
-Create a clear, polished HVAC service client education handout with visuals, FAQs, and actionable next steps to support client understanding and engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a clear, polished HVAC service client education handout with visuals, FAQs, and actionable next steps to support client understanding and engagement.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-HVAC owners and field service managers use this skill to draft client-facing education handouts that explain service topics with FAQs, visuals, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares Bash and Read even though the security review describes them as unnecessary for a handout-writing workflow. <br>
-Mitigation: Use the skill for drafting and review any requested file reads or shell commands before allowing execution. <br>
-Risk: The artifact includes off-platform setup and repository links that are not backed by server-resolved provenance. <br>
-Mitigation: Install from ClawHub when possible and inspect off-platform links before following manual installation instructions. <br>
-Risk: Generated client education content may include inaccurate or incomplete HVAC guidance. <br>
-Mitigation: Have qualified staff review handouts for accuracy, readability, and business fit before sharing with clients. <br>
+## Use Case:
 
+HVAC service owners, field service managers, and client-facing teams use this skill to draft customer education handouts that explain service topics with FAQs, visuals, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-hvac-service-company-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-hvac-service-company-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual suggestions, and actionable next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated HVAC advice or visuals may be inaccurate or unsuitable for a specific customer situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified reviewer check technical claims, safety guidance, and visuals before publishing or sharing the handout.
+
+Risk: The source manifest is sloppy, which can make installation metadata and intended behavior less clear.
+
+Mitigation: Review the installed skill files and generated customer-facing content before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-hvac-service-company-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-hvac-service-company-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout draft with FAQs, visual guidance, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts or recommendations for generated visuals; customer-facing content should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

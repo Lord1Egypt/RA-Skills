@@ -1,45 +1,63 @@
-## Description: <br>
-Provides multi-timeframe Chan theory stock, index, and XAUUSD market analysis using BARF/CZSC methods, real-time market data fallbacks, and optional chart generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multi-timeframe Chan theory analysis for stocks, indexes, and XAUUSD using market data, CZSC-style structures, MACD, moving averages, Fibonacci levels, and generated charts.
 
-## Publisher: <br>
-[zhouyuzhy](https://clawhub.ai/user/zhouyuzhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouyuzhy](https://clawhub.ai/user/zhouyuzhy)
 
-## Use Case: <br>
-External users and developers use this skill to analyze A-share, Hong Kong, U.S. equity, index, and XAUUSD price action across daily, 30-minute, 5-minute, and 1-minute timeframes. It produces structured Chan theory analysis, scenario classifications, trading posture guidance, and optional visual charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save analysis outputs to local knowledge-base folders and upload reports or charts to Baidu Cloud when bypy is configured. <br>
-Mitigation: Review or disable bypy upload/download behavior before use, and set local Obsidian paths deliberately. <br>
-Risk: Financial-analysis output may be interpreted as trading advice or may rely on incomplete or stale market data. <br>
-Mitigation: Treat generated analysis as informational, verify source data independently, and require human review before making investment decisions. <br>
-Risk: The skill references external data APIs and dependencies that may require credentials or unpinned installation. <br>
-Mitigation: Provide credentials through environment variables, remove unwanted defaults, and pin or pre-review dependencies before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to generate structured Chan theory market analysis, trading scenario classification, strategy guidance, and chart artifacts for equities, indexes, and XAUUSD.
 
-## Reference(s): <br>
-- [CZSC framework](https://github.com/waditu/czsc) <br>
-- [itick.org forex kline API](https://api.itick.org/forex/kline) <br>
-- [ClawHub skill page](https://clawhub.ai/zhouyuzhy/chan-stock-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouyuzhy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis reports with optional PNG chart files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be saved to a configured local Obsidian stock directory and uploaded to Baidu Cloud when bypy is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Generated financial analysis can be incorrect, incomplete, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational analysis only, verify market data and assumptions independently, and review conclusions before acting on them.
+
+Risk: The skill may read market-data credentials and use an existing Baidu Netdisk authorization to upload generated artifacts.
+
+Mitigation: Use scoped credentials, disable or remove cloud upload when not required, and review the destination paths before running the skill.
+
+Risk: The security evidence calls out an exposed Tushare token.
+
+Mitigation: Rotate the exposed token and configure market-data credentials through environment variables or a secrets manager before use.
+
+Risk: Broad routing and persistence behavior may cause the skill to run or update stored analysis in more situations than expected.
+
+Mitigation: Review triggers and persistence instructions before installation, and install only in workspaces where these behaviors are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouyuzhy/skills/chan-stock-analysis)
+- [CZSC Framework](https://github.com/waditu/czsc)
+- [itick Forex Kline API](https://api.itick.org/forex/kline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown analysis report with optional chart files and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save local reports and charts and upload generated analysis artifacts to Baidu Netdisk when configured.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Perform and document Grand Bazaar P2P swaps on Base using deployed AirSwap Swap contracts, including workflows for approvals, EIP-712 signing, cast/deeplink posting, execution, and verification across ERC20, ERC721, and ERC1155 routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform and document Grand Bazaar P2P swaps on Base using deployed AirSwap Swap contracts.
 
-## Publisher: <br>
-[agriimony](https://clawhub.ai/user/agriimony) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agriimony](https://clawhub.ai/user/agriimony)
 
-## Use Case: <br>
-Developers and external agents use this skill to create, publish, take, and verify Grand Bazaar P2P swap orders on Base mainnet. It supports signer and sender workflows for AirSwap-style orders, including pricing parameters, Farcaster order transport, approvals, execution, and transaction verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can approve token spending and execute real Base mainnet trades. <br>
-Mitigation: Use isolated low-value wallets and verify the chain, token addresses, swap contract, recipient, amounts, fees, expiry, and approvals before any transaction. <br>
-Risk: Scripts can operate with raw private keys and do not provide strong built-in confirmation controls before approval, signing, casting, or swap broadcast. <br>
-Mitigation: Require explicit operator confirmation before each approval, EIP-712 signature, Farcaster post, or onchain swap execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Base mainnet deployments](references/base-mainnet-deployments.md) <br>
-- [Size-Aware OTC Pricing Parameters](references/pricing-params.md) <br>
-- [Grand Bazaar Swap scripts](scripts/README.md) <br>
-- [Grand Bazaar Swap on ClawHub](https://clawhub.ai/agriimony/grand-bazaar-swap) <br>
-- [AirSwap Web order route](https://dex.airswap.xyz/#/order/) <br>
-- [Grand Bazaar miniapp](https://the-grand-bazaar.vercel.app/) <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, publish, validate, and execute two-party Grand Bazaar swap orders on Base mainnet across ERC20, ERC721, and ERC1155 routes. It supports signer-side order construction, sender-side execution, Farcaster cast payloads, and verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JavaScript scripts, shell commands, and JSON order or cast payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce compressed GBZ1 order payloads, approval or swap transaction instructions, and Base transaction hashes that require operator review before broadcast.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill targets real Base mainnet swaps and its scripts can approve and move assets when raw private keys are supplied.
+
+Mitigation: Use dedicated low-value wallets, start with tiny amounts, keep production private keys out of shell environments, and review every approval and transaction before broadcast.
+
+Risk: Order metadata can influence the swap contract target and token amounts used by execution scripts.
+
+Mitigation: Only execute orders whose swap contract is allowlisted, independently verify token and contract addresses, and confirm transaction details before running sender execution.
+
+Risk: Dependency and runtime behavior may change over time for wallet, RPC, or transaction tooling.
+
+Mitigation: Pin and review dependencies, apply dependency updates deliberately, and add a dry-run or explicit confirmation gate before production operation.
+
+## Reference(s):
+
+- [Grand Bazaar Swap on ClawHub](https://clawhub.ai/agriimony/skills/grand-bazaar-swap)
+- [Base mainnet deployments](references/base-mainnet-deployments.md)
+- [Size-Aware OTC Pricing Parameters](references/pricing-params.md)
+- [Scripts README](scripts/README.md)
+- [AirSwap Web order URL](https://dex.airswap.xyz/#/order/)
+- [Grand Bazaar Miniapp](https://the-grand-bazaar.vercel.app/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript reference scripts, and JSON order or cast payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Base mainnet transaction preparation and execution guidance; script outputs can include order JSON, compressed order strings, cast payload JSON, transaction hashes, and balance or gas summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

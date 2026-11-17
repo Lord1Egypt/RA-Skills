@@ -1,44 +1,63 @@
-## Description: <br>
-Execute multimodal tasks using Novita AI, including text-to-image, image-to-image, text-to-video, image-to-video, text-to-speech, and speech-to-text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute multimodal tasks using Novita AI for text-to-image, image-to-image, text-to-video, image-to-video, text-to-speech, and speech-to-text workflows.
 
-## Publisher: <br>
-[ximasadila](https://clawhub.ai/user/ximasadila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ximasadila](https://clawhub.ai/user/ximasadila)
 
-## Use Case: <br>
-External users and developers use this skill to configure a Novita API key and run multimodal generation or transcription tasks through Novita AI endpoints. It supports image generation and editing, video generation, text-to-speech, speech-to-text, polling for asynchronous jobs, and returning generated media URLs or transcribed text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ximasadila/novita-multimodal) <br>
-- [Novita API reference](references/api-reference.md) <br>
-- [Usage examples](references/examples.md) <br>
-- [Test cases](references/test-cases.md) <br>
-- [Novita key management](https://novita.ai/settings/key-management) <br>
-- [Novita model catalog](https://novita.ai/models) <br>
-- [Novita pricing](https://novita.ai/pricing) <br>
-- [Novita documentation](https://docs.novita.ai) <br>
+Developers and external users use this skill to call Novita AI endpoints for image generation or editing, video generation, text-to-speech, and speech-to-text tasks. It helps agents prepare API requests, surface progress, poll asynchronous jobs, and return generated media URLs or transcribed text.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON request examples, status updates, generated media URLs, and transcription text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Novita API key and may send prompts, images, audio, or related URLs to Novita AI; video and some audio tasks use asynchronous polling.] <br>
+Global
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: API keys may be exposed if pasted directly into chat or stored in plain text.
+
+Mitigation: Use a scoped Novita API key through managed secrets or the NOVITA_API_KEY environment variable, and avoid sharing credentials in conversation text.
+
+Risk: Private prompts, images, audio recordings, or documents are sent to Novita AI for processing.
+
+Mitigation: Only submit content approved for third-party processing and exclude confidential or sensitive media unless that data handling is accepted.
+
+Risk: Generated media tasks can incur API charges and asynchronous jobs may take time to complete.
+
+Mitigation: Review estimated cost before execution, monitor polling status for async jobs, and handle insufficient balance, rate limit, and failed-task responses.
+
+## Reference(s):
+
+- [Novita AI API Reference](references/api-reference.md)
+- [Usage Examples](references/examples.md)
+- [Test Cases](references/test-cases.md)
+- [Novita AI API Key Management](https://novita.ai/settings/key-management)
+- [Novita AI Model Catalog](https://novita.ai/models)
+- [Novita AI Pricing](https://novita.ai/pricing)
+- [Novita AI Documentation](https://docs.novita.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, text, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, and generated media URLs or transcribed text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return image, video, or audio URLs from Novita AI; video and TTS workflows may require asynchronous task polling.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "analysis-toolkit",
+  "name": "analysis-toolkit",
   "version": "2.0.4",
-  "publishedAt": 1782382829643
+  "description": "检验检测行业质量控制和数据分析工具箱。覆盖室内质控、室间比对、批次间比对、方法验证、趋势监控五大场景。方法通用，跨领域适用。",
+  "author": "wUwproject",
+  "tags": [
+    "qc",
+    "analysis",
+    "statistics",
+    "validation"
+  ],
+  "data_dir": "../.standardization/analysis-toolkit/",
+  "triggers": [
+    "精密度",
+    "室内质控",
+    "室间比对",
+    "方法验证",
+    "标准曲线",
+    "检出限",
+    "趋势监控",
+    "预测",
+    "PCA",
+    "ANOVA",
+    "质控图"
+  ]
 }

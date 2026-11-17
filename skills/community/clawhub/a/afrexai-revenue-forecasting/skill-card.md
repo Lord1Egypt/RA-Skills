@@ -1,42 +1,53 @@
-## Description: <br>
-Generates revenue forecasts using pipeline weighting, cohort analysis, scenario modeling, seasonality adjustments, and leading indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates revenue forecasts using pipeline weighting, cohort analysis, scenario modeling, seasonality, and leading indicators.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, revenue leaders, and finance teams use this skill to build board-ready revenue forecasts from pipeline, retention, expansion, churn, seasonality, and leading-indicator data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Forecasting may require sensitive company financial, sales, pipeline, and customer-retention data. <br>
-Mitigation: Share only data that is appropriate for the agent context and remove confidential details that are not needed for the forecast. <br>
-Risk: Forecast outputs can be misleading if assumptions, stage probabilities, or source metrics are stale or incomplete. <br>
-Mitigation: Review the assumptions, weighted pipeline inputs, and scenario outputs before using results for board, investor, or operating decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-revenue-forecasting) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Founders, revenue leaders, and finance teams use this skill to build board- or investor-facing revenue forecasts from pipeline, retention, churn, seasonality, and scenario inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown forecast with tables, scenario summaries, risk notes, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include revenue projections, weighted pipeline values, leading indicators, and risk mitigations based on user-provided business data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may request confidential revenue, pipeline, churn, and retention data.
+
+Mitigation: Provide only data appropriate for the agent session and avoid sharing sensitive business data unless the environment is approved for it.
+
+Risk: Forecasts can be wrong or misleading if inputs, assumptions, or scenario weights are incomplete or stale.
+
+Mitigation: Review forecast outputs and assumptions before using them for investor, board, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-revenue-forecasting)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style revenue forecast with tables, scenario summaries, risks, leading indicators, and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided revenue, pipeline, churn, retention, and sales-cycle inputs; forecasts should be reviewed before business or financial decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

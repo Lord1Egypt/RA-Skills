@@ -1,0 +1,15 @@
+{
+  "engine": "jin-yong",
+  "files": {
+    "applicability.md": "dc37ac48746168340fbe8d65685c4b5f7be00396c859f52fee8632cd5f4278d4",
+    "cards/models.json": "f7ec86eaa07c38129a1dbbc5444a6d7d13d4a47f2ed326ab226a446462b48e60",
+    "cards/techniques.json": "8c7154ab3c78a1fe696ee14dbb7e0317299c9dd40bfddb2dfa7f89a593a8676b",
+    "engine.json": "42d2a7eb2cbcbd078ea6d51f7ccc31944680e36b6e424bbf10dd72ef376ed517",
+    "limits.md": "b4e6dccdb8460e28defda732a7b6d620987084db4c71e5cc7fda096c12aae553",
+    "research/README.md": "e69ffb54975c780bc86e879780e87f9ed45ba105edf9e625337c5a26a69259b5",
+    "research/craft-principles.md": "cfe5236358128b30d9298724b71f86e00e0a450c7a5b99d239339110b9a89651",
+    "research/limits.md": "d41b0c3d40ab5174d3eb24314e5eae32dfc577bc58def92e3bdccbe9be0c34c6",
+    "research/techniques.md": "1b47f0322279f1f3bacb75abff654f00c9e6af88e533d5c5f3bac4c6895fef68"
+  },
+  "schema": 1
+}

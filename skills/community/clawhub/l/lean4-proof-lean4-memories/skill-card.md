@@ -1,42 +1,58 @@
-## Description: <br>
-This skill helps agents working on Lean 4 formalization projects maintain persistent memory of successful proof patterns, failed approaches, project conventions, and user preferences across sessions using MCP memory server integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when working on Lean 4 formalization projects to maintain persistent memory of successful proof patterns, failed approaches, project conventions, and user preferences across sessions using MCP memory server integration.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and engineers use this skill during Lean 4 formalization work to recall project-specific proof strategies, avoid previously failed tactic paths, and keep reusable conventions across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memories can store project paths, theorem names, proof details, and preferences that may be sensitive. <br>
-Mitigation: Use the skill only with a trusted MCP memory server, avoid storing secrets or confidential project identifiers, and periodically review or clear stored memories. <br>
-Risk: Stored proof memories can become stale as a Lean 4 project evolves. <br>
-Mitigation: Review older memories before relying on them, update records when better approaches are found, and remove memories for deleted or changed theorems. <br>
+## Use Case:
 
+Developers and engineers working on Lean 4 formalization projects use this skill to preserve project-specific proof patterns, failed approaches, conventions, theorem dependencies, and workflow preferences across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/lean4-proof-lean4-memories) <br>
-- [memory-patterns.md](references/memory-patterns.md) <br>
-- [Model Context Protocol documentation](https://modelcontextprotocol.io/docs/getting-started/intro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Lean, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose memory records for proof patterns, failed approaches, project conventions, user preferences, and theorem dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Durable memories may retain repository paths, theorem names, tactics, failed attempts, and user preferences beyond the active session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what is stored, clear stale or sensitive memories regularly, and decide before installation whether persistent proof memories fit the project privacy model.
+
+Risk: The documented MCP configuration launches the memory server with unpinned npx -y package resolution.
+
+Mitigation: Pin the MCP memory server version or install it locally before configuring the skill.
+
+Risk: Stored proof patterns can become stale as a Lean project evolves.
+
+Mitigation: Use confidence scoring and periodic review to update, deprecate, or prune memories that no longer match the current project.
+
+## Reference(s):
+
+- [Memory Patterns and Examples](references/memory-patterns.md)
+- [MCP memory server docs](https://modelcontextprotocol.io/docs/getting-started/intro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project-scoped memory schemas, retrieval suggestions, MCP server configuration snippets, and helper CLI commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -19,6 +19,5 @@ def api_base():
 
 | 分册 | 默认根 |
 |------|--------|
-| **`hifleet-mytonnages/`** 路由 A | `…/openclaw/vessel/charter`（`hifleet_charter_api_base` / `HIFLEET_CHARTER_API_BASE`） |
 | **`hifleet-schedule/`** 班轮船期 | `…/openclaw/vessel/charter/liner`（`hifleet_liner_api_base` / `HIFLEET_LINER_API_BASE`） |
 | **`hifleet-opentonnages/`** 公开船/货盘 | `…/openclaw/vessel/charter`（`vessels/search`、`cargo/search`；同 `hifleet_charter_api_base`） |

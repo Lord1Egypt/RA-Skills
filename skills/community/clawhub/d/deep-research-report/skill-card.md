@@ -1,39 +1,53 @@
-## Description: <br>
-Generates structured Chinese deep research reports from user-provided materials for industry, company, strategy, market, and policy analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese deep research report drafts from user-provided materials for industry, company, strategy, policy, and market analysis.
 
-## Publisher: <br>
-[hayashishungenn](https://clawhub.ai/user/hayashishungenn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hayashishungenn](https://clawhub.ai/user/hayashishungenn)
 
-## Use Case: <br>
-Analysts and researchers use this skill to turn supplied research notes, data, and viewpoints into formal Chinese research reports with sections for background, key facts, drivers, scenarios, risks, conclusions, and recommendations. It is suited to industry, company, strategy, market, and policy analysis where the user provides the source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may be saved automatically in the local Obsidian workspace, retaining sensitive business, financial, or policy material. <br>
-Mitigation: Use the skill only when local retention is acceptable, or edit the script to require confirmation or choose a different output path before saving. <br>
+## Use Case:
 
+External users and analysts use this skill to turn supplied research notes, data, and viewpoints into a standardized Chinese research-report draft with sections for background, analysis framework, facts, drivers, scenarios, risks, and conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hayashishungenn/deep-research-report) <br>
-- [Publisher profile](https://clawhub.ai/user/hayashishungenn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are generated in Chinese and may be saved automatically to a local Obsidian workspace path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may contain placeholders or template language rather than a fully populated analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and complete generated reports before relying on them for decisions or publication.
+
+Risk: The bundled script may create local Markdown files under a configured Obsidian-Vault path.
+
+Mitigation: Install only where local report-file creation is acceptable, and verify the output path before running the script.
+
+## Reference(s):
+
+- [Deep Research Report on ClawHub](https://clawhub.ai/hayashishungenn/skills/deep-research-report)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, guidance]
+
+**Output Format:** [Markdown report draft, with optional Python-generated local Markdown file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language report structure; generated reports may require analyst review and completion before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

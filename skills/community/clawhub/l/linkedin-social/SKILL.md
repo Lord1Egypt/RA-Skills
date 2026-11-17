@@ -5,7 +5,7 @@ description: Manage LinkedIn presence via the LinkedIn API. Create posts and art
 
 # LinkedIn
 
-![LinkedIn](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/brand-logos/linkedin.svg)
+![LinkedIn](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/linkedin.png)
 
 Manage a LinkedIn presence for professional content and social interactions. Create posts and articles, manage comments and engagement, handle media, and search ad targeting options.
 
@@ -15,7 +15,22 @@ This skill uses [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=
 
 | Step 1: Install | Step 2: Pair Account | Step 3: Connect LinkedIn |
 |:---:|:---:|:---:|
-| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/pairing/initialstep_1.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/approve_process.gif) | *App-specific connection GIF coming soon* |
+| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-install.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-pair.gif) | *App-specific connection GIF coming soon* |
+
+## No Account Needed: Public LinkedIn Data
+
+Read any LinkedIn profile, company page or post, search people, companies and jobs, and browse the LinkedIn Ad Library, without connecting a LinkedIn account. These tools work as soon as the plugin is paired: there is nothing to connect, and each call is paid from ClawLink credit (most cost a fraction of a cent; new accounts get $0.50 free).
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `linkedindata_user_profile` | A LinkedIn member's profile by URL: name, headline, location, about, experience, education, skills and follower count | $0.0015 |
+| `linkedindata_company_profile` | Public LinkedIn company page: industry, size, headquarters, follower count, description | $0.00282 |
+| `linkedindata_company_posts` | Recent public posts of a LinkedIn company page | $0.00282 |
+| `linkedindata_search_people` | Search LinkedIn members by name, title, company, school or location | $0.006 |
+| `linkedindata_search_companies` | Search LinkedIn companies by name, location, size or industry | $0.006 |
+| `linkedindata_search_jobs` | Search LinkedIn job listings by title, location, date, experience, workplace, job type and salary, 25 a page | $0.0015 |
+
+Use the connected-account tools above for the user's own LinkedIn; use these for anyone else's public content. More: [LinkedIn Prospector](https://clawhub.ai/hith3sh/skills/linkedin-prospector), [Ad Spy](https://clawhub.ai/hith3sh/skills/ad-spy).
 
 ## How It Works
 
@@ -104,7 +119,8 @@ If LinkedIn tools are missing or the connection shows an error:
 
 ## Security & Permissions
 
-- Access is scoped to the connected LinkedIn account only.
+- Connected-account tools are scoped to the connected LinkedIn account.
+- The public-data tools under "No Account Needed" read other people's public LinkedIn content (profiles, posts, comments) without any connected account. They are read-only, never post or change anything, and each call is paid from the user's ClawLink credit.
 - **All write operations require explicit user confirmation.** Before executing any post, comment, or delete action, confirm the target resource and intended effect with the user.
 - Destructive actions (delete post) are marked as high-impact and must be confirmed.
 - Posting as an organization requires admin role (ADMINISTRATOR, DIRECT_SPONSORED_CONTENT_POSTER, or CONTENT_ADMIN).
@@ -266,6 +282,8 @@ clawlink_call_tool --tool "linkedin_search_ad_targeting_entities" \
 
 ## Related Skills
 
+- [LinkedIn Prospector](https://clawhub.ai/hith3sh/skills/linkedin-prospector)
+- [Ad Spy](https://clawhub.ai/hith3sh/skills/ad-spy)
 - [Instagram Posts](https://clawhub.ai/hith3sh/instagram-posts) — For Instagram social media management
 - [Twitter](https://clawhub.ai/hith3sh/twitter) — For Twitter/X post management and analytics
 - [Facebook Pages](https://clawhub.ai/hith3sh/facebook-pages) — For Facebook Page management
@@ -274,4 +292,4 @@ clawlink_call_tool --tool "linkedin_search_ad_targeting_entities" \
 
 **Powered by [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=linkedin-social)** — an integration hub for OpenClaw
 
-![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/logo/link_logo_black_small.png)
+![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/clawlink.png)

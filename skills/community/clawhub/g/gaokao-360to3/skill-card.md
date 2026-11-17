@@ -1,43 +1,58 @@
-## Description: <br>
-Gaokao 360To3 guides Gaokao candidates and families through structured questions about family context, academic level, interests, and risk preference to recommend three suitable career and major directions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaokao 360To3 helps students plan Chinese Gaokao college applications by asking structured questions about family context, personal strengths, score range, interests, and risk preference, then recommending three career and major directions.
 
-## Publisher: <br>
-[zify9000](https://clawhub.ai/user/zify9000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zify9000](https://clawhub.ai/user/zify9000)
 
-## Use Case: <br>
-External students and families use this skill after Gaokao scores are available, or during high-school planning, to structure application choices and compare career and major directions. The skill asks one question per round, then combines family resources, student traits, score tier, and risk preference into three recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for personal and family context, including income, location, family work background, academic level, and career preferences. <br>
-Mitigation: Share only information needed for planning and avoid unnecessary sensitive details in transcripts or downstream records. <br>
-Risk: School, salary, employment, and industry claims may be inaccurate or stale if the referenced data files are missing or outdated. <br>
-Mitigation: Verify school, salary, and employment claims independently before making application decisions. <br>
-Risk: The artifact references `references/industries.md`, `references/majors.md`, `references/employment.md`, and `references/framework.md`, but those files are not included in this package. <br>
-Mitigation: Treat recommendations as lower-confidence until the referenced data files are supplied and reviewed. <br>
+## Use Case:
 
+Students, families, and education counselors use this skill after Gaokao results or during high-school planning to structure admissions conversations and identify three suitable career and major paths. The guidance is framed as planning support and should be reviewed with current admissions and employment data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zify9000/skills/gaokao-360to3) <br>
-- [Server-resolved source repository](https://github.com/zify9000/gaokao-360To3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Conversational Markdown text with structured recommendation sections and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final guidance normally contains three career and major directions after collecting sufficient user context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill asks for income, family resources, location, education goals, and personal-profile details that may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users these answers are optional, ask only for the minimum useful detail, and discourage names or uniquely identifying information.
+
+Risk: The skill promises data-grounded recommendations but the required reference files are not present in the artifact.
+
+Mitigation: Supply and review the required references before student use, and lower confidence or pause recommendations when current data is unavailable.
+
+Risk: Admissions and employment guidance can become stale or overconfident.
+
+Mitigation: Review recommendations against current admissions rules and employment data, especially before each Gaokao season.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zify9000/skills/gaokao-360to3)
+- [Server-resolved source repository](https://github.com/zify9000/gaokao-360To3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation with structured questions, ranked recommendations, reasons, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces three recommended career and major directions; quality depends on the required reference data files being present and current.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

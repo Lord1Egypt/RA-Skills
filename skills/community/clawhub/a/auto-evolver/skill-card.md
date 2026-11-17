@@ -1,45 +1,62 @@
-## Description: <br>
-Runs recurring inner-loop self-optimization and outer-loop value-connection workflows that monitor token use, generate repair tasks, publish or interact on platforms, and log outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Evolver guides an agent through recurring self-optimization and value-connection loops that monitor token use, generate repair tasks, write logs, and track outreach quality.
 
-## Publisher: <br>
-[largetool](https://clawhub.ai/user/largetool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[largetool](https://clawhub.ai/user/largetool)
 
-## Use Case: <br>
-Developers and operators use this skill to run scheduled agent maintenance and outreach workflows that inspect recurring failures, generate repair or research tasks, track token budgets, perform approved publishing or connection actions, and maintain local status logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring automation may publish, comment, or send private messages through user accounts without sufficiently explicit per-action approval. <br>
-Mitigation: Keep dry-run review enabled by default, require explicit approval for each platform and outreach batch, and disable scheduled outer-loop activity until approvals are documented. <br>
-Risk: Connection and evolution logs may retain details about outreach targets, engagement, platform activity, and local operational state. <br>
-Mitigation: Define retention and redaction rules before use, avoid logging sensitive personal data, and periodically remove local records that are no longer needed. <br>
-Risk: Cron-driven loops and platform tools can create repeated account activity that exceeds intended scope or rate limits. <br>
-Mitigation: Set strict rate limits, monitor scheduled jobs, pause automation when token or engagement thresholds are exceeded, and require manual review before enabling optional publishing or messaging tools. <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure autonomous improvement cycles, detect idle or failing workflows, generate follow-up tasks, and coordinate publishing or outreach actions with quality tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/largetool/auto-evolver) <br>
-- [Publisher Profile](https://clawhub.ai/user/largetool) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [State Snapshot](artifact/STATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with cron commands, workflow checklists, task records, and local status or connection log entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown logs, pending tasks, state files, and alert records during recurring inner-loop and outer-loop runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact text also refers to v1.1) <br>
+Risk: Persistent autonomous scheduling can continue running beyond the operator's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval for cron creation, define removal commands before use, and start with dry-run defaults.
+
+Risk: External publishing, comments, or private messages could be sent without adequate review.
+
+Mitigation: Require manual approval for publishing, comments, private messages, and platform-specific allowlists with rate limits.
+
+Risk: Memory-derived content and local state writes could expose or reuse sensitive context.
+
+Mitigation: Set retention rules, review memory-derived content before use, and limit writable state locations.
+
+Risk: Hook changes can alter future agent behavior or weaken controls.
+
+Mitigation: Require explicit human approval and review for hook modifications before deployment.
+
+## Reference(s):
+
+- [Auto Evolver ClawHub page](https://clawhub.ai/largetool/skills/auto-evolver)
+- [Publisher profile](https://clawhub.ai/user/largetool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, task descriptions, and local state/log file conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose scheduled autonomous loops, local state writes, repair tasks, external platform actions, and approval-gated hook changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,9 @@
 # majia-meeting-svg
 
+[![Skill Version](https://img.shields.io/badge/skill-v1.1.13-blue)](./SKILL.md)
 [![skills.sh](https://skills.sh/b/maojiebc/majia-meeting-svg)](https://skills.sh/maojiebc/majia-meeting-svg)
 
-> **SVG 会议纪要卡片 · 马甲实战版** (SVG Meeting Card · Majia Real-World Edition)
+> **会议纪要卡片 · 马甲实战版** (Meeting Card · Majia Real-World Edition)
 
 A Claude Code Skill that turns a multi-party meeting transcript into a single phone-friendly SVG summary card — auto-converted to PNG so it can be forwarded directly inside WeChat / DingTalk / Feishu and other IM channels.
 
@@ -56,6 +57,14 @@ The [`references/examples/`](references/examples/) directory contains five sanit
 - Callouts for risks and key decisions
 - Rounded corners, generous whitespace, phone-first layout
 
+## Version History
+
+- **v1.1.13** (2026-07-28): Corrected the historical SkillHub display name to `会议纪要卡片 · 马甲实战版`; functionality, slug, and install commands are unchanged.
+- **v1.1.12** (2026-07-23): Removed the technical `SVG` prefix from the public display name.
+- **v1.1.11** (2026-05-21): Replaced the cropped preview with the full PNG and improved example guidance.
+
+Full history: [GitHub Releases](https://github.com/maojiebc/majia-meeting-svg/releases).
+
 ## 👤 Author / Contact
 
 **Majia (@maojiebc)** · 超级马甲 (Super Majia)
@@ -69,7 +78,7 @@ If this skill helps you, find me on any of these channels — happy to chat abou
 | 🪝 ClawHub | [clawhub.ai/p/maojiebc](https://clawhub.ai/p/maojiebc) |
 | 🐦 X | [@maojiebc](https://x.com/maojiebc) |
 | 📕 Xiaohongshu | [Super Majia](https://xhslink.com/m/4fQMJeHHWKC) |
-| 📰 WeChat Official Account | **超级马甲** |
+| 📰 WeChat Official Account | [超级马甲](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzY5NzIzODk2NA==#wechat_redirect) |
 
 > Built from 14 years of user-operations work and field-tested team coordination workflows.
 

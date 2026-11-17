@@ -1,50 +1,64 @@
-## Description: <br>
-Deep Research (Gemini) runs asynchronous Gemini research jobs, grounds answers in explicitly selected local files, estimates costs, and returns reports or structured JSON for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research (Gemini) lets agents run asynchronous Gemini deep research, ground queries on local files, preview costs, and return structured research output without depending on Gemini CLI.
 
-## Publisher: <br>
-[24601](https://clawhub.ai/user/24601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[24601](https://clawhub.ai/user/24601)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to launch Gemini-backed deep research, ground analysis in local documents or code, manage file search stores, and retrieve research reports for downstream work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload explicitly selected local files to Google Gemini for grounded research. <br>
-Mitigation: Use dry-run and narrow context paths, avoid secrets or credential files, and use a scoped API key. <br>
-Risk: Non-interactive agent runs can skip confirmations for deleting stores or clearing local state. <br>
-Mitigation: Require an allowlist or approval step before store deletion, state clearing, or garbage collection commands. <br>
-Risk: Security evidence marks the release for review because uploads and remote store deletion can affect sensitive data or resources. <br>
-Mitigation: Review the selected files, command arguments, and cleanup actions before deployment in autonomous workflows. <br>
+## Use Case:
 
+Developers, analysts, and AI agents use this skill to launch Gemini deep research jobs, optionally ground research in local files, estimate cost before upload, and save reports or JSON outputs for downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/24601/agent-deep-research) <br>
-- [Project homepage](https://github.com/24601/agent-deep-research) <br>
-- [Agent briefing](AGENTS.md) <br>
-- [File Search MIME Type Guide](references/file_search_guide.md) <br>
-- [Online Documentation References](references/online_docs.md) <br>
-- [Gemini Deep Research API](https://ai.google.dev/gemini-api/docs/deep-research) <br>
-- [Gemini File Search API](https://ai.google.dev/gemini-api/docs/file-search) <br>
-- [Google GenAI Python SDK](https://googleapis.github.io/python-genai/) <br>
-- [uv installation docs](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown reports, JSON command responses, and optional HTML or PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Research can run asynchronously; stdout is machine-readable JSON while detailed human progress is written separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: server release metadata; artifact frontmatter reports 2.1.2) <br>
+Risk: Repository context uploads may include sensitive files because the file-upload safeguards do not consistently match the documented exclusion promise.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run before upload, prefer narrow directory context over direct sensitive-looking files, and restrict the agent's filesystem access.
+
+Risk: Gemini file-search stores may remain after failures or non-blocking runs.
+
+Mitigation: Manually check and delete Gemini file-search stores after failures or non-blocking research runs.
+
+Risk: Exported HTML reports may contain untrusted content.
+
+Mitigation: Treat exported HTML as untrusted unless it is sanitized or opened in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/24601/skills/agent-deep-research)
+- [Project Homepage](https://github.com/24601/agent-deep-research)
+- [Online Documentation References](references/online_docs.md)
+- [File Search MIME Type Guide](references/file_search_guide.md)
+- [Gemini Deep Research API](https://ai.google.dev/gemini-api/docs/deep-research)
+- [Gemini File Search API](https://ai.google.dev/gemini-api/docs/file-search)
+- [Google GenAI Python SDK](https://googleapis.github.io/python-genai/)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON status and metadata, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write reports, metadata, interaction records, and extracted source files to an output directory.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release metadata; artifact frontmatter and changelog show 2.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

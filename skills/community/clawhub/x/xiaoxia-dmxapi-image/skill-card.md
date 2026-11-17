@@ -1,39 +1,53 @@
-## Description: <br>
-Generates images with MiniMax image-01 and related models, including text-to-image and basic image editing, when a user configures MINIMAX_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with MiniMax image-01 and related models from text prompts, with basic image editing guidance and MiniMax API key setup requirements.
 
-## Publisher: <br>
-[xiaoliang1319-cloud](https://clawhub.ai/user/xiaoliang1319-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoliang1319-cloud](https://clawhub.ai/user/xiaoliang1319-cloud)
 
-## Use Case: <br>
-Developers and external users can use this skill to guide an agent through MiniMax image generation workflows, including prompt setup, aspect ratio selection, response format selection, and API-key configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or source images sent to MiniMax may contain confidential or sensitive content. <br>
-Mitigation: Avoid confidential prompt content and review provider handling terms before using the API. <br>
-Risk: MiniMax API usage requires an API key and may consume quota or incur billing. <br>
-Mitigation: Store the key in an environment variable, monitor provider quota and billing, and rotate the key if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users use this skill to guide agents in generating images from text prompts through MiniMax-compatible image generation APIs. It is suited for AI drawing workflows that need aspect-ratio selection and API-key based setup.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; API responses can include base64 image data when used with MiniMax.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts or source images sent through this skill may be shared with MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, regulated, or confidential material unless sharing it with MiniMax is intended and approved.
+
+Risk: The skill requires a user-provided MiniMax API key for image generation.
+
+Mitigation: Configure only a MiniMax API key intended for this workflow and rotate or revoke it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoliang1319-cloud/skills/xiaoxia-dmxapi-image)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with JavaScript API examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts may be submitted to MiniMax; generated image responses can use base64 format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

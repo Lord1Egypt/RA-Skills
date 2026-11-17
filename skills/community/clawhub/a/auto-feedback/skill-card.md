@@ -1,46 +1,57 @@
-## Description: <br>
-A self-improving feedback loop skill that works fully standalone OR integrates with intent-engineering and dark-factory when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-improving feedback loop skill that works standalone or with intent-engineering and dark-factory to observe systems or executions, analyze performance, generate improvement suggestions, create regression tests, track goal alignment, and produce signed improvement reports.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze execution logs, plain text observations, or related outcome reports, then generate performance analysis, prioritized improvements, regression tests, alignment checks, and signed improvement reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Custom suggestion rules can run arbitrary Python code. <br>
-Mitigation: Use only trusted suggestion_rules.json files, or replace or sandbox the rule engine before using custom rules. <br>
-Risk: Generated files can carry forward sensitive input data. <br>
-Mitigation: Run the skill on non-sensitive, user-selected inputs and avoid logs or specifications that contain secrets, credentials, private prompts, or confidential business data. <br>
-Risk: Generated observations and specifications may be reused in later work without review. <br>
-Mitigation: Review generated observation, analysis, report, and specification files before reusing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze logs, plain-text observations, or structured outcome reports, then generate prioritized improvement suggestions, regression test data, alignment checks, and repeatable JSON reports for the next improvement cycle.
 
-## Reference(s): <br>
-- [Feedback-Loop-v2 ClawHub release](https://clawhub.ai/danielfoojunwei/auto-feedback) <br>
-- [Operations Guide](references/operations_guide.md) <br>
-- [Alignment Values](references/alignment_values.json) <br>
-- [Scoring Weights](references/scoring_weights.json) <br>
-- [Suggestion Rules](references/suggestion_rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON files and Markdown-formatted reports, with optional shell commands for running the workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces observation, analysis, improvement report, updated observation, and optional updated specification files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Custom suggestion rules can execute Python expressions when the analyzer evaluates rule conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted suggestion_rules files, review rules before installation, and remove or replace Python-evaluable conditions before use in automated or privileged environments.
+
+Risk: The skill writes analysis, report, and update JSON files to the selected output directory.
+
+Mitigation: Run it in a controlled workspace and review generated files before feeding them into another automation cycle.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danielfoojunwei/skills/auto-feedback)
+- [Feedback Loop v2 Operations Guide](references/operations_guide.md)
+- [Alignment Values](references/alignment_values.json)
+- [Scoring Weights](references/scoring_weights.json)
+- [Suggestion Rules](references/suggestion_rules.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [JSON files with optional Markdown report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces observation.json, analysis.json, improvement_report.json, updated_observation.json, and optionally updated_specification.json.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; skill frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

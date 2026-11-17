@@ -1,43 +1,59 @@
-## Description: <br>
-去AI味助手面向中文营销、运营、内容创作和产品场景，帮助用户基于文本、文件或公开链接生成 AI 写作痕迹诊断、自然化改写稿和问题片段说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Chinese content teams diagnose AI-like writing patterns and produce more natural rewrites with notes on problematic passages.
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-External users and content teams use this skill to rewrite Chinese drafts so they read more naturally for channels such as general Chinese content, WeChat articles, Xiaohongshu notes, official blogs, marketing pages, course scripts, and knowledge-base documents. Users provide text, a file, or a public URL plus optional goals, audience, tone, and brand constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service processes user-provided text, files, or URLs through a third-party AI Skills API and requires an API key. <br>
-Mitigation: Install only when external processing is approved, prefer explicit invocation, and avoid confidential or regulated content unless policy allows it. <br>
-Risk: The skill can disguise AI-written or academic text, and the security verdict is suspicious because implicit invocation is broad for that behavior. <br>
-Mitigation: Do not use the skill to bypass academic, workplace, platform, or disclosure rules about AI-generated writing. <br>
+## Use Case:
 
+External users such as Chinese marketers, operators, content creators, and product teams use this skill to turn AI-generated or draft Chinese text into more natural publishing-ready copy. It supports pasted text, uploaded text files, or public text links and can return AI-writing diagnostics, a naturalized rewrite, notes on problem passages, and next-step guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/ai-humanizer-zh) <br>
-- [AI Skills service](https://ai-skills.ai) <br>
-- [Form schema](references/form-schema.json) <br>
-- [Skill metadata](references/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON response envelope containing user-facing text and structured result content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs include AI writing-trace diagnosis, a naturalized rewrite, notes on problematic passages, and next-step suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runner can send the API key and submitted content to an environment-selected service endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted runner environments, keep AISKILLS_API_KEY secret, and pin AISKILLS_BASE_URL to the intended HTTPS service.
+
+Risk: Submitted drafts may contain confidential, regulated, unpublished, or otherwise sensitive content.
+
+Mitigation: Use the skill for sensitive material only after the provider's data handling has been approved for that content.
+
+Risk: Implicit invocation may run the skill when a user did not explicitly request external processing.
+
+Mitigation: Disable implicit invocation when explicit user approval is required before sending content to the provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allinherog-star/skills/ai-humanizer-zh)
+- [Form schema](artifact/references/form-schema.json)
+- [Skill metadata](artifact/references/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON result envelope containing Chinese prose suitable for Markdown rendering]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected result content includes summary, items, and artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

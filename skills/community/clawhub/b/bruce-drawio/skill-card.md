@@ -1,44 +1,60 @@
-## Description: <br>
-Generates draw.io diagrams for flowcharts, architecture diagrams, UML diagrams, ER diagrams, mindmaps, network topologies, and other visual diagrams, then exports them through the draw.io CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates draw.io diagrams from natural-language requirements, writes editable draw.io XML, self-reviews layout, and exports PNG, SVG, or PDF through the local draw.io CLI.
 
-## Publisher: <br>
-[bruc3van](https://clawhub.ai/user/bruc3van) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bruc3van](https://clawhub.ai/user/bruc3van)
 
-## Use Case: <br>
-Developers, engineers, and other agent users use this skill to turn natural-language diagram requests into editable .drawio files and PNG, SVG, or PDF exports for software architecture, workflows, data modeling, mindmaps, and network documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words could cause unexpected local diagram files or exports. <br>
-Mitigation: Ask the agent to confirm output filenames and export format before running, especially for vague requests such as visualize this. <br>
-Risk: Capability tags include crypto and can-make-purchases even though the skill is for diagram generation. <br>
-Mitigation: Do not provide financial credentials or purchase authority when using this skill. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to create flowcharts, architecture diagrams, UML diagrams, ER diagrams, mindmaps, and network topology diagrams as editable draw.io files and exported images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bruc3van/bruce-drawio) <br>
-- [draw.io Desktop releases](https://github.com/jgraph/drawio-desktop/releases) <br>
-- [diagrams.net editor](https://app.diagrams.net) <br>
-- [Best practices reference](references/best-practices.md) <br>
-- [Examples reference](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with draw.io XML, .drawio files, and PNG/SVG/PDF exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local draw.io desktop CLI for image export; if it is unavailable, the skill guides installation instead of installing automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata) <br>
+Risk: The skill can create or overwrite diagram and export files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm output filenames and paths before generation, especially when modifying an existing diagram.
+
+Risk: Exporting diagrams requires running the local draw.io desktop CLI.
+
+Mitigation: Run exports only when draw.io is already trusted in the local environment, and approve any draw.io installation separately.
+
+Risk: Generated diagrams may contain layout, XML, or labeling mistakes.
+
+Mitigation: Review the editable .drawio file and exported image before sharing or using the diagram in documentation.
+
+## Reference(s):
+
+- [Draw.io XML Best Practices](references/best-practices.md)
+- [Draw.io XML Examples](references/examples.md)
+- [Draw.io Desktop Releases](https://github.com/jgraph/drawio-desktop/releases)
+- [Diagrams.net](https://app.diagrams.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with draw.io XML snippets and local .drawio files plus PNG, SVG, or PDF exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local draw.io desktop CLI for exports; generated diagrams should be reviewed before use.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata; artifact skill.json reports 3.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

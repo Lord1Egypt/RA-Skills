@@ -1,43 +1,65 @@
-## Description: <br>
-量子入侵检测系统技能喵～ 基于经典-量子混合神经网络的入侵检测系统，可以分析网络流量数据（PCAP 文件），检测多种攻击类型，并为每种攻击提供置信度喵～ 提供安全防护建议喵。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes PCAP traffic with a classic–quantum intrusion detector, reporting traffic classifications, confidence scores, conversation details, and security suggestions.
 
-## Publisher: <br>
-[tsherryyann](https://clawhub.ai/user/tsherryyann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsherryyann](https://clawhub.ai/user/tsherryyann)
 
-## Use Case: <br>
-Security practitioners, developers, and network operators use this skill to analyze PCAP traffic, classify common attack patterns, review confidence scores, and receive defensive recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill loads model and PCA files that may not be verified by the release evidence. <br>
-Mitigation: Install only from a trusted publisher and verify model artifacts from a trusted source before execution. <br>
-Risk: Extracted public IP indicators may be sent to ip-api.com during geolocation. <br>
-Mitigation: Avoid sensitive PCAPs unless external geolocation is acceptable; disable or replace online geolocation for production or confidential incident-response use. <br>
-Risk: Feature caches may remain on disk after PCAP analysis. <br>
-Mitigation: Run the skill in a contained environment and clean or redirect cache directories according to data-handling requirements. <br>
+## Use Case:
 
+Security analysts and developers use this skill to inspect PCAP captures, investigate suspected attacks such as WebShell activity, and interpret network conversation patterns and detection confidence.
 
-## Reference(s): <br>
-- [MiaoQIDS ClawHub release page](https://clawhub.ai/tsherryyann/miao-qids) <br>
-- [ip-api geolocation service](http://ip-api.com/json/{ip}?la) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, guidance, shell commands, configuration] <br>
-**Output Format:** [JSON API responses and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns attack classification, confidence distribution, reconstruction error, IP analysis, defensive suggestions, processing time, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Public IPs observed in sensitive PCAPs are sent to an external geolocation service by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-ip-query for sensitive captures unless sharing those IPs is acceptable.
+
+Risk: Downloaded model files can execute unsafe code when loaded.
+
+Mitigation: Only load model files from a trusted, verified source.
+
+Risk: Exposing the analysis server could allow unwanted access to local PCAP analysis.
+
+Mitigation: Keep the HTTP service bound to localhost.
+
+Risk: The skill includes an embedded quantum-cloud token.
+
+Mitigation: The publisher should remove and rotate the token before deployment.
+
+## Reference(s):
+
+- [MiaoQIDS on ClawHub](https://clawhub.ai/tsherryyann/skills/miao-qids)
+- [MiaoQIDS skill homepage](https://www.skillhub.cn/skills/user_263cfa82/miao-qids)
+- [Quantum model download referenced by skill](https://gitee.com/TSherry/MiaoQIDS/releases/download/0.2.0/qnn_model.pkl)
+- [Classic model download referenced by skill](https://gitee.com/TSherry/MiaoQIDS/releases/download/0.2.0/cnn_mtd_final.pth)
+- [Feature model archive referenced by skill](https://gitee.com/TSherry/MiaoQIDS/releases/download/0.2.0/特征选择结果.zip)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [JSON analysis results and human-readable security recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes traffic-class confidence scores, IP analysis, and PCAP conversation summaries; model-based analysis requires separately obtained model files.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

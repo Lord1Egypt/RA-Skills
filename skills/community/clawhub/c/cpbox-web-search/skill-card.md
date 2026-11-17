@@ -1,43 +1,57 @@
-## Description: <br>
-Provides a paid x402 web-search proxy that returns ranked web, news, video, discussion, FAQ, infobox, and location results with snippets, URLs, thumbnails, freshness filters, SafeSearch, Goggles, and pagination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a paid web-search endpoint that returns ranked results with snippets, URLs, thumbnails, freshness filters, SafeSearch, custom Goggles ranking, pagination, and rich result types.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-External developers and AI agents use this skill to run paid, structured web searches for search interfaces, data extraction, custom ranking, and retrieval-augmented workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid searches can trigger external requests and automatic x402 payment signing without clear spend controls. <br>
-Mitigation: Use a dedicated low-balance wallet, require confirmation or a fixed budget for paid searches, and verify the external payment helper package before use. <br>
-Risk: Location-aware searches can send precise location headers to the service. <br>
-Mitigation: Send location headers only when the user explicitly needs location-aware results, and omit precise coordinates when they are not required. <br>
+## Use Case:
 
+Developers and agents use this skill to call a paid CPBox web-search API for search interfaces, data extraction, grounding workflows, custom-ranked search, and location-aware or rich-result queries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sprintmint/cpbox-web-search) <br>
-- [x402 payment setup steps](https://github.com/springmint/cpbox-skills#prerequisites) <br>
-- [CPBox API provider](https://www.cpbox.io) <br>
-- [CPPay facilitator](https://www.cppay.finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON search response with ranked result objects, snippets, URLs, thumbnails, and optional rich callback metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a query string and supports optional country, language, count, offset, SafeSearch, freshness, result filters, Goggles, rich callbacks, and location headers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Risk: The documented payment helper is installed without an exact pinned version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the payment helper before use and prefer an exact pinned version or a lockfile-managed install.
+
+Risk: Location-aware searches can send precise latitude and longitude.
+
+Mitigation: Send precise coordinates only when location-specific results are necessary and the user has agreed to share that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sprintmint/skills/cpbox-web-search)
+- [Publisher Profile](https://clawhub.ai/user/sprintmint)
+- [x402 Payment Setup](https://github.com/springmint/cpbox-skills#prerequisites)
+- [CPBox API Provider](https://www.cpbox.io)
+- [CPPay Facilitator](https://www.cppay.finance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, API calls]
+
+**Output Format:** [Markdown with HTTP, bash, TypeScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API returns structured JSON search results and may include web, news, video, discussion, FAQ, infobox, location, schema, and rich callback data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

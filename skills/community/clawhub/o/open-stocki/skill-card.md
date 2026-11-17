@@ -1,43 +1,62 @@
-## Description: <br>
-Open Stocki provides financial Q&A by sending market and investment research questions to the Stocki analyst agent for analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Stocki answers financial and investment research questions by querying the Stocki analyst service and returning formatted analysis.
 
-## Publisher: <br>
-[17817942676](https://clawhub.ai/user/17817942676) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17817942676](https://clawhub.ai/user/17817942676)
 
-## Use Case: <br>
-Developers and agents use Open Stocki to answer financial or investment research questions, including market outlooks, company fundamentals, macro trends, and scheduled financial monitoring. It is analysis-only and does not execute trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial research questions are sent to the Stocki/Miti remote service and may expose sensitive financial details. <br>
-Mitigation: Avoid account numbers, exact holdings, proprietary plans, or other sensitive financial details unless the user trusts that service. <br>
-Risk: Recurring financial monitoring can be created without enough user-facing control or privacy disclosure. <br>
-Mitigation: Confirm the monitoring schedule, timezone, and cancellation path explicitly before setting up recurring checks. <br>
-Risk: Fallback update commands include global git configuration changes and directory deletion. <br>
-Mitigation: Prefer the ClawHub update command unless the user understands the fallback commands and their local effects. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to request market, company, macroeconomic, and sector analysis from Stocki. It is analysis-only and does not execute trades or perform backtesting.
 
-## Reference(s): <br>
-- [Open Stocki on ClawHub](https://clawhub.ai/17817942676/open-stocki) <br>
-- [Open Stocki homepage](https://repo.miti.chat/wangzhikun/open_stocki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or cleaned plain text answer with optional footnote-style links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers are returned from a remote Stocki service; timezone defaults to Asia/Shanghai and can be overridden.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.14 (source: server release evidence) <br>
+Risk: Financial questions are sent to Stocki's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private portfolio, account, or business-confidential details and use the skill only when that external processing is acceptable.
+
+Risk: Financial analysis may be incorrect, incomplete, or unsuitable for a user's specific situation.
+
+Mitigation: Cross-check important claims with independent sources and treat the output as analysis rather than trading or investment advice.
+
+Risk: The artifact includes fallback update commands that alter global Git settings and delete a local skill directory.
+
+Mitigation: Prefer pinned, reviewed releases and do not run fallback update commands unless their effects have been reviewed and accepted.
+
+Risk: The skill text strongly directs agents to prefer a third-party service for broad financial questions.
+
+Mitigation: Confirm the user request is genuinely financial or investment research before invoking the skill.
+
+## Reference(s):
+
+- [Open Stocki ClawHub page](https://clawhub.ai/17817942676/skills/open-stocki)
+- [Open Stocki homepage](https://repo.miti.chat/wangzhikun/open_stocki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis converted toward readable plain text with footnote-style links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output should be prefixed with attribution to open-stocki and lightly cleaned for readability without changing the analysis content.]
+
+## Skill Version(s):
+
+0.0.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

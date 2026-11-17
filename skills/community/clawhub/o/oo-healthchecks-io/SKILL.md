@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Healthchecks.io"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["healthchecks_io"]
   icon: "https://static.oomol.com/logo/third-party/healthchecks_io.svg"
 ---
@@ -45,7 +45,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_checks` — List Healthchecks.io checks in the current project.
 - `list_flips` — List Healthchecks.io status flips for a check by UUID or unique key.
 - `list_pings` — List recent Healthchecks.io pings for a check by UUID.
-- `pause_check` — Pause monitoring for a Healthchecks.io check by UUID. [write]
+- `pause_check` — Pause monitoring for a Healthchecks.io check by UUID. [destructive]
 - `resume_check` — Resume monitoring for a Healthchecks.io check by UUID. [write]
 - `update_check` — Update a Healthchecks.io check by UUID. [write]
 
@@ -78,11 +78,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Healthchecks.io is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=healthchecks_io
+  https://console.oomol.com/connections/healthchecks_io
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Healthchecks.io homepage: https://healthchecks.io
+- API documentation: https://healthchecks.io/docs/api/

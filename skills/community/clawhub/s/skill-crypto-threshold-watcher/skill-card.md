@@ -1,40 +1,57 @@
-## Description: <br>
-Monitors crypto tokens against configurable price and volume thresholds and fires custom alerts when watched entry conditions are met. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Threshold Watcher monitors crypto watchlist tokens against configurable price, volume, and RSI thresholds and helps agents emit alerts when entry conditions are met.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-External users and developers use this skill to configure crypto watchlists and receive proactive alerts when selected tokens cross price, volume, or RSI thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram alerts may expose watchlist or trading strategy details to a third-party messaging service. <br>
-Mitigation: Verify Telegram bot and chat settings, keep alert content non-sensitive, and include private strategy notes only when that disclosure is acceptable. <br>
-Risk: Automated cron checks can repeatedly run the referenced threshold watcher without additional prompts. <br>
-Mitigation: Confirm the hourly cron entry is intended and inspect or provide the referenced threshold-watcher.js script before installing the scheduled task. <br>
+## Use Case:
 
+External developers and trading workflow operators use this skill to monitor crypto watchlists and generate actionable threshold alerts for price breakouts, price breakdowns, volume spikes, and RSI conditions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-crypto-threshold-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes watchlist configuration, threshold-check commands, alert examples, and trading pipeline integration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill relies on an unbundled threshold-watcher.js script, so runtime behavior cannot be verified from the submitted artifact alone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or supply the actual script before use and verify the script path is absolute and trusted.
+
+Risk: Hourly recurring execution can repeatedly run an unverified trading alert workflow.
+
+Mitigation: Do not enable the recurring task until the implementation is reviewed and operators know how to disable the schedule.
+
+Risk: Telegram alerts may disclose trading watchlists, thresholds, notes, and signals to an external messaging service.
+
+Mitigation: Treat Telegram delivery as external sharing and avoid connecting messaging credentials unless the implementation and recipient scope are trusted.
+
+## Reference(s):
+
+- [Crypto Threshold Watcher on ClawHub](https://clawhub.ai/zero2ai-hub/skills/skill-crypto-threshold-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Alerts may include token symbols, prices, volumes, threshold status, timestamps, and watchlist notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

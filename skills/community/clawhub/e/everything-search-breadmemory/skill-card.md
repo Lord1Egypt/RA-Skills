@@ -1,45 +1,70 @@
-## Description: <br>
-Provides a Windows-focused local file search workflow using Everything/es.exe, plus breadcrumb knowledge storage, Ebbinghaus review scheduling, and topology-based knowledge association. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a local Everything/es.exe file-search workflow with breadcrumb knowledge storage, Ebbinghaus review scheduling, and topology-based knowledge association.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to search local Windows files by filename, turn selected results into concise local knowledge entries, review saved notes on an Ebbinghaus schedule, and explore relationships among stored notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill understates local file access, persistent knowledge storage, automation, and runtime executable download behavior. <br>
-Mitigation: Install only when those behaviors are acceptable; prefer a manually verified es.exe, scope searches to explicit directories, and review or delete local data and backup files that may contain sensitive information. <br>
-Risk: Search and knowledge workflows can expose local filenames, read matched files when used for summarization, and retain summaries or review metadata locally. <br>
-Mitigation: Show search results before file parsing, avoid broad or scheduled ingestion until the scope is approved, and keep breadcrumb entries concise with links to original files rather than full sensitive content. <br>
+## Use Case:
 
+Developers and external users can use this skill to search local Windows files, summarize selected findings into persistent breadcrumb notes, review those notes on an Ebbinghaus schedule, and explore related notes through a generated knowledge graph.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ldxs001/skills/everything-search-breadmemory) <br>
-- [Everything by voidtools](https://www.voidtools.com) <br>
-- [Workflow](references/workflow.md) <br>
-- [Script reference](references/script-reference.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Data storage](references/data-storage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include local file paths; knowledge workflows can create local note, review, graph, and backup data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release evidence, SKILL.md frontmatter, references/changelog.md) <br>
+Risk: Local search workflows may lead to matched file contents being read and summarized.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Show search results first and require user confirmation before ingesting or summarizing file contents.
+
+Risk: Breadcrumb notes, source paths, review logs, topology data, and recovery backups are stored persistently.
+
+Mitigation: Review and restrict the data directory and backup files when stored knowledge or source paths may be sensitive.
+
+Risk: The skill can download an Everything CLI executable when es.exe is unavailable.
+
+Mitigation: Prefer a manually installed and verified es.exe, or require explicit approval before any download.
+
+Risk: The workflow describes scheduled task setup for recurring search, review, or graph updates.
+
+Mitigation: Require explicit user approval before creating or modifying scheduled tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/everything-search-breadmemory)
+- [Everything documentation](https://www.voidtools.com)
+- [Workflow](references/workflow.md)
+- [Script reference](references/script-reference.md)
+- [Agent behavior](references/agent-behavior.md)
+- [Permissions](references/permissions.md)
+- [Data storage](references/data-storage.md)
+- [FAQ](references/faq.md)
+- [Antipatterns](references/antipatterns.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and knowledge-management commands may create local JSON data, review logs, topology files, and recovery backups.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata, skill frontmatter, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

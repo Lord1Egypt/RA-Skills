@@ -1,41 +1,53 @@
-## Description: <br>
-Provides O2O marketing consulting guidance for concept explanation, issue diagnosis, and implementation advice based on O2O theory and current trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides O2O marketing advisory guidance for understanding online-to-offline concepts, diagnosing O2O business issues, and planning implementation approaches.
 
-## Publisher: <br>
-[jacobluxj](https://clawhub.ai/user/jacobluxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacobluxj](https://clawhub.ai/user/jacobluxj)
 
-## Use Case: <br>
-Marketing operators, business leaders, and consultants use this skill to understand O2O concepts, diagnose online-to-offline business issues, and plan practical O2O implementation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts that include confidential business plans, customer data, internal metrics, or private partner details could be exposed if the skill uses web search for current examples. <br>
-Mitigation: Use sanitized, non-confidential descriptions when asking for market examples or trend research. <br>
-Risk: The skill may activate on broad O2O-adjacent terms such as QR codes, LBS, or private-domain marketing even when O2O advice is not wanted. <br>
-Mitigation: Ignore the advice or disable the skill for tasks that only need a narrow definition, technical implementation, or unrelated marketing guidance. <br>
+## Use Case:
 
+Business operators, marketers, and consultants use this skill to frame O2O strategy, diagnose omnichannel marketing gaps, and generate practical advisory recommendations for online-to-offline transformation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacobluxj/online-to-offline-o2o-marketing) <br>
-- [Publisher profile](https://clawhub.ai/user/jacobluxj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or structured prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend web search for current O2O examples when timely market cases are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad omnichannel or local-commerce terms where O2O-specific guidance is not the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's business context and desired scope before applying O2O frameworks or recommendations.
+
+Risk: The skill's business recommendations are advisory and may not account for company-specific strategy, market, legal, financial, or technical constraints.
+
+Mitigation: Use the output as a planning aid and validate material decisions with qualified strategy, operational, legal, and technical reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacobluxj/skills/online-to-offline-o2o-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text advisory responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic questions, framework-based analysis, examples, and implementation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

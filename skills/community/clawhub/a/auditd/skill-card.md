@@ -1,41 +1,50 @@
-## Description: <br>
-Auditd is a Linux Audit Framework reference covering auditctl rules, auditd.conf configuration, ausearch queries, aureport reports, audit log formats, compliance examples, and audit tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Audit Framework reference covering auditctl rules, auditd.conf configuration, ausearch log queries, aureport summaries, audit.log format, compliance examples, and audit tools.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, system administrators, and security engineers use this skill as a command reference for configuring and querying Linux auditd rules and logs during security monitoring, compliance, and incident-response work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some auditctl, auditd.conf, audit2allow, and semodule examples require administrator privileges and can weaken or change host auditing if copied without review. <br>
-Mitigation: Check current audit rules first, make changes only during intentional maintenance, and review generated SELinux policy before installing it. <br>
-Risk: Deleting rules, disabling auditing, or applying broad compliance examples can affect monitoring coverage and compliance posture. <br>
-Mitigation: Test changes in a controlled environment and adapt examples to the target system's policy requirements before production use. <br>
+## Use Case:
 
+Developers, security engineers, and system administrators use this skill as a Linux auditd reference for writing audit rules, reviewing audit configuration, searching audit logs, and producing compliance-oriented audit reports.
 
-## Reference(s): <br>
-- [ClawHub Auditd release](https://clawhub.ai/bytesagain3/auditd) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style reference text with shell and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides named reference sections such as intro, rules, config, search, report, logs, compliance, and tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Auditctl, service, semodule, and rules.d examples can change audit coverage or system security if copied directly into a live Linux environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt commands and configuration examples for the target distribution, audit policy, and production change-control process before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/auditd)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reference text with shell command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-oriented reference sections selected by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

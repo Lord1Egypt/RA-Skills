@@ -1,45 +1,56 @@
-## Description: <br>
-A cross-platform Python toolkit for Doubao and Volcengine ARK APIs that supports text-to-image, image-to-image, text-to-video, image/video analysis, and task management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doubao API Toolkit helps agents use Volcengine ARK APIs for text-to-image, image-to-image, text-to-video, image and video analysis, and task status checks.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and automation agents use this skill to configure and invoke Doubao/Volcengine ARK media-generation and vision-analysis workflows from Python or shell commands. It helps generate images and videos, analyze image or video inputs, and check asynchronous video task status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, generated-media requests, and selected local video files may be sent to Volcengine/Doubao APIs. <br>
-Mitigation: Use only media and prompts that are permitted for third-party API processing; avoid confidential, regulated, proprietary, or third-party content unless permission and policy clearance are in place. <br>
-Risk: Local video analysis can encode and transmit a user-selected video file without a separate point-of-use confirmation. <br>
-Mitigation: Confirm the intended file, data classification, and user consent before running video analysis, especially in automated workflows. <br>
-Risk: The toolkit depends on an ARK API key for authenticated calls. <br>
-Mitigation: Store the key in the ARK_API_KEY environment variable, avoid hardcoding it in code or logs, and rotate it regularly. <br>
+## Use Case:
 
+Developers and automation agents use this skill to call Doubao and Volcengine ARK multimodal APIs from Python or the CLI for media generation, visual analysis, and video task management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/systiger/doubao-api-toolkit) <br>
-- [Volcengine ARK Documentation](https://www.volcengine.com/docs/82379) <br>
-- [Volcengine ARK Console](https://console.volcengine.com/ark) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, Python usage, and JSON response examples; runtime commands may return text analysis, task status JSON, or downloaded media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the requests package, an ARK_API_KEY environment variable, network access to Volcengine ARK, and user-provided prompts or media inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, and skill.json) <br>
+Risk: The video-analysis command can upload any readable local file path selected by a prompt or automation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use analyze-vid only with intentional, non-sensitive media from a dedicated folder, and add confirmation plus file type and size checks before automated use.
+
+Risk: Prompts, image URLs, and selected local videos are sent to Volcengine ARK using the configured ARK_API_KEY.
+
+Mitigation: Use a dedicated API key, keep it in the environment rather than source files, rotate it regularly, and avoid sending confidential media or prompts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/systiger/skills/doubao-api-toolkit)
+- [Volcengine ARK Documentation](https://www.volcengine.com/docs/82379)
+- [Doubao Model Pricing](https://console.volcengine.com/ark)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, Python usage examples, JSON response examples, and generated local media file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests library, and ARK_API_KEY. Generated images and videos are saved under ~/.openclaw/workspace/output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Install or refresh the COROS MCP connection inside OpenClaw through the global mcp.coros.com gateway, automatically pinning the connection to the CN, EU, or US cluster selected by the gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install or refresh the COROS MCP connection inside OpenClaw through the global mcp.coros.com gateway, automatically pinning the connection to the CN, EU, or US cluster selected by the gateway.
 
-## Publisher: <br>
-[coros-open](https://clawhub.ai/user/coros-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coros-open](https://clawhub.ai/user/coros-open)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw to the COROS MCP gateway, complete COROS authentication, configure the saved MCP server entry, and inspect or call supported COROS MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with runtime service routing through CN, EU, or US COROS MCP clusters. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves COROS tokens locally and enables authenticated COROS MCP access through OpenClaw. <br>
-Mitigation: Install only when you intend to authorize this access, prefer the browser login flow, and use the logout command to clear saved local login state when finished. <br>
-Risk: Authenticated MCP tool calls can let the agent list and call COROS tools on the user's behalf. <br>
-Mitigation: Review tool schemas before sensitive actions and call only the intended COROS tools. <br>
-Risk: Legacy password mode increases credential-handling exposure. <br>
-Mitigation: Avoid legacy password mode unless necessary. <br>
+## Use Case:
 
+Developers and COROS users use this skill to install or refresh an OpenClaw MCP connection, complete browser-based COROS login, list current MCP tools, inspect tool schemas, and call selected tools through the COROS gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coros-open/skills/coros-mcp) <br>
-- [COROS MCP gateway](https://mcp.coros.com) <br>
+### Deployment Geography for Use:
 
+Global, routed by the COROS gateway to CN, EU, or US clusters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tool or configuration output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit browser login URLs, OpenClaw MCP configuration updates, tool schemas, and MCP tool call results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The helper handles COROS account credentials and bearer tokens, and local OpenClaw MCP config or ~/.coros-mcp-skill-gateway state may contain reusable tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, protect local config and cache files, and clear saved state with logout when access should be removed.
+
+Risk: Custom issuer or MCP URL values can redirect authentication or MCP requests to an untrusted endpoint.
+
+Mitigation: Use the default COROS gateway unless the endpoint is fully trusted.
+
+Risk: The legacy password flow asks for COROS credentials in the terminal.
+
+Mitigation: Use the browser/device login flow and avoid --legacy password login unless explicitly required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coros-open/skills/coros-mcp)
+- [COROS MCP gateway](https://mcp.coros.com)
+- [COROS MCP CN cluster](https://mcpcn.coros.com)
+- [COROS MCP EU cluster](https://mcpeu.coros.com)
+- [COROS MCP US cluster](https://mcpus.coros.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print browser login URLs, JSON tool catalogs, tool descriptions, tool-call results, and OpenClaw MCP setup status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

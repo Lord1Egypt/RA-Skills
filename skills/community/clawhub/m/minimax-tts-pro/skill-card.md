@@ -1,42 +1,53 @@
-## Description: <br>
-MiniMax Text-to-Speech synthesis via the HTTP REST API generates speech audio from text in 40+ languages with selectable voices, models, streaming, and mp3, wav, or pcm outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Text-to-Speech synthesis using the HTTP REST API for creating spoken audio from text with multilingual voices, streaming or non-streaming generation, common audio formats, and voice effects.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to convert text into narrated audio or voiceover files through MiniMax TTS, with controls for model, voice, speed, pitch, volume, format, and streaming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis and the API key are sent to MiniMax for processing, and a custom API URL can redirect that data to another endpoint. <br>
-Mitigation: Use this skill only with text appropriate for MiniMax processing, prefer MINIMAX_API_KEY over command-line secrets, and set --api_url only to endpoints you fully trust. <br>
-Risk: Confidential or regulated text may be included in generated speech requests. <br>
-Mitigation: Review the text before synthesis and confirm MiniMax terms and organizational policy fit the intended use case. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert text into voiceovers, narrated content, and other spoken audio through MiniMax TTS. It is useful when an agent needs to select voices, configure speech parameters, and run the included CLI script to produce audio files.
 
-## Reference(s): <br>
-- [MiniMax TTS Voice Reference](references/voices.md) <br>
-- [MiniMax TTS API endpoint](https://api.minimax.io/v1/t2a_v2) <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/minimax-tts-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Audio files in mp3, wav, or pcm format plus console status text and markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key; supports streaming and non-streaming synthesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can send the MiniMax bearer token and text to a caller-supplied API URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive text, keep MINIMAX_API_KEY scoped and rotatable, and restrict --api_url to approved MiniMax HTTPS endpoints.
+
+## Reference(s):
+
+- [MiniMax TTS Voice Reference](artifact/references/voices.md)
+- [MiniMax TTS API endpoint](https://api.minimax.io/v1/t2a_v2)
+- [MiniMax TTS lower-latency API endpoint](https://api-uw.minimax.io/v1/t2a_v2)
+- [MiniMax Voice Management API](https://platform.minimax.io/docs/api-reference/voice-management-get)
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/minimax-tts-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; generated audio files in mp3, wav, or pcm format]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MiniMax API credentials and may write audio output to a user-specified file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

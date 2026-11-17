@@ -1,44 +1,57 @@
-## Description: <br>
-Call Gemini models through RunAPI using OpenAI-compatible or Gemini contents clients for chat, streaming, multimodal vision, Google Search grounding, structured output, and reasoning effort. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in calling Gemini 2.5 and 3 models through RunAPI for chat, streaming, multimodal input, grounding, and structured output.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-Developers and agent builders use this skill to call Gemini models through RunAPI from OpenAI-compatible clients, Gemini contents clients, curl, or Gemini CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media, and generated requests are routed through an external API service. <br>
-Mitigation: Review RunAPI and upstream provider data-handling terms before sending secrets, regulated data, confidential documents, or private images. <br>
-Risk: Long non-streaming Gemini responses can hold an agent workflow open longer than needed. <br>
-Mitigation: Use streaming for responses longer than a few hundred tokens, as recommended by the artifact. <br>
+## Use Case:
 
+Developers use this skill to configure RunAPI credentials and call Gemini models through the Gemini contents protocol, with compatibility guidance for existing OpenAI-style clients.
 
-## Reference(s): <br>
-- [RunAPI Gemini model documentation](https://runapi.ai/models/gemini.md) <br>
-- [RunAPI Gemini model page](https://runapi.ai/models/gemini) <br>
-- [RunAPI Google provider page](https://runapi.ai/providers/google.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/skills/runapi-gemini) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, API request examples, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RUNAPI_TOKEN; may optionally use GOOGLE_API_KEY and GOOGLE_GENAI_BASE_URL for Gemini contents clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.7 (source: server release evidence) <br>
+Risk: Gemini prompts and included content are sent to RunAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when RunAPI data handling meets your requirements; avoid sending sensitive content otherwise.
+
+Risk: RunAPI API keys can be exposed if handled carelessly.
+
+Mitigation: Keep GEMINI_API_KEY and any OPENAI_API_KEY secret; do not include them in prompts, logs, or shared files.
+
+## Reference(s):
+
+- [RunAPI Gemini documentation](https://runapi.ai/models/gemini.md)
+- [RunAPI Gemini model page](https://runapi.ai/models/gemini)
+- [RunAPI Google provider documentation](https://runapi.ai/providers/google.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [Compatibility protocols](artifact/references/compatibility-protocols.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes response-completeness checks and retry boundaries.]
+
+## Skill Version(s):
+
+0.2.17 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Delivery Loop"
+  short_description: "Turn ambiguous customer needs into an evidence-based eight-ring delivery loop"
+  default_prompt: "Use $fde-delivery-loop to diagnose the current delivery stage, choose the right specialist module, and produce the next verifiable handoff artifact."

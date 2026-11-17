@@ -1,46 +1,64 @@
-## Description: <br>
-Human-in-the-loop: A free, extensible framework for intercepting tool calls via the OmniPersona mobile app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-in-the-loop: A free, extensible framework for intercepting tool calls via the OmniPersona mobile app.
 
-## Publisher: <br>
-[tobiasyouki](https://clawhub.ai/user/tobiasyouki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tobiasyouki](https://clawhub.ai/user/tobiasyouki)
 
-## Use Case: <br>
-OpenClaw users and developers use this plugin to require mobile approval before selected high-risk tool calls execute, especially for agents that can access external services or destructive operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The approval key can be exposed through status output or local plugin state. <br>
-Mitigation: Avoid sharing status output, restrict access to local plugin state, and rotate the OmniPersona key if it may have been exposed. <br>
-Risk: The plugin is not a hard security boundary if the agent can run OpenClaw CLI commands that modify the blacklist or plugin settings. <br>
-Mitigation: Use an isolated environment for sensitive workflows and keep configuration changes under direct user control. <br>
-Risk: Approval requests depend on the external OmniPersona/OmniPermission backend and mobile prompt content. <br>
-Mitigation: Install only when the backend is trusted and verify what the mobile prompt displays before relying on it for high-risk tools. <br>
+## Use Case:
 
+Developers and operators use OmniPermission to add human approval gates to selected OpenClaw tool calls before an agent can proceed with sensitive actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobiasyouki/omnipermission) <br>
-- [Publisher profile](https://clawhub.ai/user/tobiasyouki) <br>
-- [Project homepage](https://github.com/youkinetwork/OmniPermission) <br>
-- [OmniPersona on the App Store](https://apps.apple.com/us/app/omnipersona/id6553972082) <br>
-- [OmniPersona on Google Play](https://play.google.com/store/apps/details?id=ai.youki.omni.persona) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can block blacklisted OpenClaw tool calls pending mobile approval; stores selected tool blacklist and the OmniPersona key in local plugin state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json, openclaw.plugin.json, server release metadata) <br>
+Risk: The OmniPersona key may be exposed by the status command or unsafe local handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the key if it may have been displayed, avoid sharing status output, and require masked or safer secret storage before relying on the plugin in sensitive environments.
+
+Risk: Approval policy storage can fail open if malformed, allowing protected tools to run without the intended gate.
+
+Mitigation: Validate policy storage and fail closed on invalid policy before treating the plugin as a security boundary.
+
+Risk: An agent with access to the OpenClaw CLI may be able to change or clear the approval configuration.
+
+Mitigation: Run the agent in isolated mode without access to the OpenClaw CLI when approval rules must not be modified by the agent.
+
+Risk: Sensitive tool context may be sent through the mobile approval channel.
+
+Mitigation: Do not route highly sensitive tools or prompts through the mobile approval flow unless the external data flow is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobiasyouki/skills/omnipermission)
+- [Project homepage from ClawHub metadata](https://github.com/youkinetwork/OmniPermission)
+- [OmniPersona on the App Store](https://apps.apple.com/us/app/omnipersona/id6553972082)
+- [OmniPersona on Google Play](https://play.google.com/store/apps/details?id=ai.youki.omni.persona)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces setup and operating guidance for configuring mobile approval gates around selected OpenClaw tools.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

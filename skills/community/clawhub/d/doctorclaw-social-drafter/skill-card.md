@@ -1,41 +1,55 @@
-## Description: <br>
-Social media drafter that turns ideas into platform-ready posts for LinkedIn, X, Instagram, and more on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social media drafter: turn ideas into platform-ready posts for LinkedIn, X, Instagram, and more.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-External creators, marketers, and business users use this skill to turn ideas, rough notes, links, or content plans into review-ready social media drafts across LinkedIn, X/Twitter, Instagram, and Facebook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted posts may be scheduled or published to the wrong account if optional social posting tools are connected too broadly. <br>
-Mitigation: Require final user approval before posting or scheduling and restrict connected tools to the intended social accounts. <br>
-Risk: Shared calendars or brand documents may expose more planning or brand information than the drafting task requires. <br>
-Mitigation: Grant the agent access only to the specific content calendar, brand voice document, and post history needed for the current workflow. <br>
+## Use Case:
 
+Marketing teams, founders, and external content creators use this skill to turn a single idea, link, or rough thought into review-ready social posts for LinkedIn, X/Twitter, Instagram, and Facebook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/doctorclaw-social-drafter) <br>
-- [DoctorClaw website](https://www.doctorclaw.ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown social-media drafts with platform sections, variations, hashtags, CTAs, and optional image or carousel ideas.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human review is expected before posting or scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Connected posting tools or content calendars could schedule, publish, or log drafted content before the user has reviewed it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep an explicit approval step before any scheduling, posting, or content-calendar logging.
+
+Risk: Generated social media drafts may be inaccurate, off-brand, or unsuitable for a platform or audience.
+
+Mitigation: Review and revise drafts before publication, especially when posts mention claims, pricing, links, or brand-sensitive topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-social-drafter)
+- [Publisher profile](https://clawhub.ai/user/ceobotson-bot)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown social post drafts grouped by platform]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific variations, hooks, CTAs, hashtag suggestions, and optional image or carousel concepts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

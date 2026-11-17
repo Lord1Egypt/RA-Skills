@@ -1,44 +1,58 @@
-## Description: <br>
-RoboHire is an AI-powered end-to-end recruitment agent platform that automates hiring from role brief to final shortlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RoboHire is an AI-powered recruitment knowledge-base skill that gives agents concise product, pricing, workflow, and usage guidance for the RoboHire hiring platform.
 
-## Publisher: <br>
-[ashley-aihr](https://clawhub.ai/user/ashley-aihr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashley-aihr](https://clawhub.ai/user/ashley-aihr)
 
-## Use Case: <br>
-External HR teams, recruiters, hiring managers, and founders use this skill as a RoboHire product knowledge base for hiring workflows, pricing, feature descriptions, and usage guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RoboHire workflows may involve sensitive candidate resumes, interview recordings, AI scoring, and cheating-detection signals. <br>
-Mitigation: Review privacy, consent, retention, recording, and data-handling practices before using the product with real candidates. <br>
-Risk: Automated screening and interview evaluation can affect hiring decisions and may introduce bias or employment-law concerns. <br>
-Mitigation: Keep human review in the hiring process and validate scoring, fairness, and legal requirements before relying on automated recommendations. <br>
+## Use Case:
 
+HR teams, recruiters, founders, and their agents use this skill as a quick reference for RoboHire capabilities, pricing, hiring workflows, and product links. It helps agents answer operational questions about using RoboHire from role brief through candidate shortlist.
 
-## Reference(s): <br>
-- [RoboHire ClawHub listing](https://clawhub.ai/ashley-aihr/robohire) <br>
-- [RoboHire website](https://robohire.io) <br>
-- [RoboHire application](https://app.robohire.io) <br>
-- [RoboHire pricing](https://robohire.io/pricing) <br>
-- [RoboHire documentation](https://robohire.io/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable reference content; no tools or credential requirements detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Use of the referenced recruiting service may involve candidate resumes, interviews, and other sensitive hiring data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authority to process candidate data, provide required notices or consent, and review privacy and retention obligations before using the service.
+
+Risk: AI-assisted screening and interviews can affect hiring decisions and may raise fairness or local employment-law concerns.
+
+Mitigation: Keep human review in the hiring workflow and evaluate anti-discrimination and local hiring-law requirements before relying on generated evaluations.
+
+## Reference(s):
+
+- [RoboHire Website](https://robohire.io)
+- [RoboHire App](https://app.robohire.io)
+- [RoboHire Pricing](https://robohire.io/pricing)
+- [RoboHire Docs](https://robohire.io/docs)
+- [ClawHub Skill Page](https://clawhub.ai/ashley-aihr/skills/robohire)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ashley-aihr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with product facts, workflow steps, pricing tables, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational reference; no shell commands, code execution, local data access, or installation behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

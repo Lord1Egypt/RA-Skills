@@ -1,40 +1,53 @@
-## Description: <br>
-Read and query Monday.com boards, items, workspaces, and users directly via the Monday.com GraphQL API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and query Monday.com boards, items, workspaces, and users directly via the Monday.com GraphQL API.
 
-## Publisher: <br>
-[codeninja23](https://clawhub.ai/user/codeninja23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeninja23](https://clawhub.ai/user/codeninja23)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Monday.com project data, including account details, boards, board structure, items, workspaces, and users through authenticated GraphQL queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Monday API token can expose board contents, account details, and user emails available to that token. <br>
-Mitigation: Use a least-privileged MONDAY_API_TOKEN and avoid broad listings in sensitive workspaces unless the results are appropriate to share in the agent session. <br>
-Risk: Command output may include sensitive project or user data from Monday.com. <br>
-Mitigation: Review command scope, board IDs, and limits before execution, and avoid pasting or retaining output that should not be visible in the agent session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/codeninja23/native-monday) <br>
-- [Monday.com GraphQL API endpoint](https://api.monday.com/v2) <br>
+## Use Case:
 
+Developers and operations teams use this skill to let an agent inspect Monday.com project and team data, including boards, items, workspaces, users, and account details available to the configured token.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text and JSON emitted by Python CLI commands, with setup guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MONDAY_API_TOKEN and python3; the script pins the Monday API version to 2024-04.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Monday.com API token that can access boards, items, workspaces, users, and account information available to that token.
+
+Mitigation: Use a least-privileged token or account where possible, and provide the token only in trusted agent sessions.
+
+Risk: Command output can print board contents, item fields, user emails, workspace details, and account information into the agent session.
+
+Mitigation: Avoid running commands against workspaces containing data that should not be exposed in the session transcript.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codeninja23/skills/native-monday)
+- [Monday.com GraphQL API endpoint](https://api.monday.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and JSON from command-line Monday.com API queries, with Markdown setup and command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MONDAY_API_TOKEN and python3; query results are limited by command options and token permissions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

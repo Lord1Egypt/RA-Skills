@@ -1,44 +1,55 @@
-## Description: <br>
-Write reliable Go code avoiding goroutine leaks, interface traps, and common concurrency bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes, debugs, and reviews Go code, including goroutine leaks, data races, nil interfaces, slices and maps, Go modules, net/http, testing, performance, deployment, and security guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for Go coding guidance, especially to avoid common concurrency, interface, collection, string, and error-handling pitfalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or revised Go code may still contain incorrect concurrency, interface, collection, or error-handling behavior. <br>
-Mitigation: Review generated Go code and run the project's normal Go tests, race checks, and code review before shipping. <br>
-Risk: Two reference bullets contain minor mixed-language wording that could reduce clarity. <br>
-Mitigation: Review the affected guidance text when using it in public or team-facing documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill for Go implementation, debugging, review, testing, performance tuning, dependency work, and deployment guidance. It is most relevant when diagnosing Go panics, races, hangs, leaks, module conflicts, HTTP behavior, or version-specific language and toolchain issues.
 
-## Reference(s): <br>
-- [Go Skill Page](https://clawhub.ai/ivangdavila/go) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Concurrency Traps](artifact/concurrency.md) <br>
-- [Interface Traps](artifact/interfaces.md) <br>
-- [Slice, Map, String Traps](artifact/collections.md) <br>
-- [Error Handling Traps](artifact/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with inline Go code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no automatic actions, API calls, or sensitive access observed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Suggested commands may update dependencies, build containers, or modify go.mod and go.sum.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and inspect repository changes after running dependency, build, or module-management commands.
+
+Risk: Stated Go preferences may be stored under ~/Clawic/data/go/config.yaml.
+
+Mitigation: Review stored preferences periodically and avoid saving secrets or project-sensitive values in skill preference data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/go)
+- [Clawic Go Skill Page](https://clawic.com/skills/go)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text guidance, Go code snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations to stored Go preferences such as minimum Go version, package layout, test style, HTTP stack, logger, cgo posture, target platform, and timeout defaults.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

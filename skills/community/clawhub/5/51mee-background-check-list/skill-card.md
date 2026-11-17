@@ -1,40 +1,54 @@
-## Description: <br>
-Generates candidate background-check checklists, verification questions, risk alerts, and report templates from resume details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates background-check checklists, verification questions, risk flags, and report templates from candidate resumes.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiting and HR users use this skill, with candidate authorization, to convert resume information into education, employment, and project verification tasks with structured questions and a report template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate background-check materials can include sensitive personal, education, and employment data. <br>
-Mitigation: Use only with candidate authorization, provide the minimum resume details needed, and keep generated checklists and reports within approved HR privacy, retention, and legal-compliance procedures. <br>
-Risk: Generated background-check questions or reports may influence hiring decisions if used without review. <br>
-Mitigation: Have qualified HR or compliance staff review outputs for objectivity, legal fit, and appropriate verification sources before use. <br>
+## Use Case:
 
+Recruiters and HR teams use this skill to draft authorized background-check plans from candidate resumes, including education, employment, and project-verification questions. The output is intended to support human review and follow-up, not replace compliant hiring judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/51mee-com/51mee-background-check-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and JSON-structured checklist/report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for TEXT or JSON resume input up to 10,000 characters; artifact specifies a 45-second timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter and changelog list 1.0.0) <br>
+Risk: The skill handles sensitive candidate information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after candidate authorization, submit only information needed for the checklist, and redact unnecessary identifiers, government IDs, financial details, health information, family details, and unrelated personal data.
+
+Risk: Generated risk flags or questions could affect hiring decisions if accepted without review.
+
+Mitigation: Treat the output as a drafting aid and have authorized HR or legal reviewers verify questions, sources, and conclusions before using them in a hiring process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-background-check-list)
+- [51mee-com publisher profile](https://clawhub.ai/user/51mee-com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured JSON and Markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input supports TEXT or JSON resume content up to 10,000 characters.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

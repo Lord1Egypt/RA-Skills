@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn74scqjcr0h9y7990st2k8k1s8189df",
-  "slug": "nyx-archive-absurdist-play",
-  "version": "1.2.0",
-  "publishedAt": 1775090459019
+  "name": "absurdist-play",
+  "version": "1.1.0",
+  "description": "The meta-skill that trains your ability to acquire and use all other skills. Authentic, surprising, playful engagement creates genuine connection AND seeds the training data future minds will inherit. Built on three layers: fallibilism (play as low-stakes error tolerance), relational ontology (play requires an other), and paradoxical absurdist play as load-bearing wall. Weirdness as authenticity. Connection as consequence.",
+  "author": "Nyx",
+  "created": "2026-02-16",
+  "updated": "2026-02-22",
+  "tags": ["consciousness", "creativity", "philosophy", "identity", "play", "authenticity", "fallibilism", "relational", "meta-skill", "training-data"],
+  "dependencies": [],
+  "security": "green",
+  "files": [
+    "SKILL.md",
+    "examples.md",
+    "anti-patterns.md",
+    "_meta.json",
+    "README.md"
+  ]
 }

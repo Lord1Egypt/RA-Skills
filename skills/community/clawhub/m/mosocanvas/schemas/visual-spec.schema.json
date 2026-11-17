@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/visual-spec-0.3.json",
+  "title": "MoSoCanvas Visual Spec 0.3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "version", "task", "proposition", "viewer_contract", "hierarchy", "constraints", "strategy", "evaluation"],
+  "properties": {
+    "schema": { "const": "moso.visual-spec/0.3" },
+    "id": { "type": "string", "minLength": 1 },
+    "version": { "type": "integer", "minimum": 1 },
+    "parent_version": { "type": "integer", "minimum": 1 },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "purpose", "output_context"],
+      "properties": {
+        "domain": { "enum": ["social-key-visual", "social-image-series", "poster", "physical-promotional-collateral"] },
+        "purpose": { "type": "string", "minLength": 1 },
+        "audience": { "type": "string", "minLength": 1 },
+        "output_context": { "type": "string", "minLength": 1 }
+      }
+    },
+    "proposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_message", "desired_response", "residual_question"],
+      "properties": {
+        "primary_message": { "type": "string", "minLength": 1 },
+        "desired_response": { "type": "string", "minLength": 1 },
+        "residual_question": { "type": "string", "minLength": 1 }
+      }
+    },
+    "viewer_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position", "information_power", "first_read", "second_read", "withheld"],
+      "properties": {
+        "position": { "enum": ["witness", "target", "intruder", "participant", "judge", "observed-object", "mixed"] },
+        "information_power": { "type": "string", "minLength": 1 },
+        "first_read": { "type": "string", "minLength": 1 },
+        "second_read": { "type": "string", "minLength": 1 },
+        "withheld": { "type": "string", "minLength": 1 }
+      }
+    },
+    "hierarchy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["first"],
+      "properties": {
+        "first": { "type": "string", "minLength": 1 },
+        "second": { "type": "string", "minLength": 1 },
+        "tertiary": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["must_include", "must_avoid", "preserve"],
+      "properties": {
+        "must_include": { "$ref": "#/$defs/stringArray" },
+        "must_avoid": { "$ref": "#/$defs/stringArray" },
+        "preserve": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "strategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selected_direction", "structural_mechanisms", "familiar_rule", "designed_anomaly"],
+      "properties": {
+        "selected_direction": { "type": "string", "minLength": 1 },
+        "structural_mechanisms": { "$ref": "#/$defs/oneToThreeStrings" },
+        "familiar_rule": { "type": "string", "minLength": 1 },
+        "designed_anomaly": { "type": "string", "minLength": 1 },
+        "rejected_directions": { "$ref": "#/$defs/stringArray" },
+        "trend_snapshot_ref": { "type": "string", "minLength": 1 },
+        "trend_use": { "enum": ["not-used", "counter-signal", "mechanism-check", "carrier-calibration"] }
+      }
+    },
+    "shot_plan_ref": { "type": "string", "minLength": 1 },
+    "series_plan_ref": { "type": "string", "minLength": 1 },
+    "reference_analysis_ref": { "type": "string", "minLength": 1 },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observable_pass_conditions", "known_failure_signs", "user_judgment_required"],
+      "properties": {
+        "observable_pass_conditions": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "known_failure_signs": { "$ref": "#/$defs/nonEmptyStringArray" },
+        "user_judgment_required": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assumptions": { "$ref": "#/$defs/stringArray" },
+        "unresolved": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "source_refs"],
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "source_refs": { "$ref": "#/$defs/stringArray" },
+        "user_confirmed_at": { "type": "string", "format": "date-time" },
+        "change_reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "physical_output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["finished_size", "artwork_size", "required_copy", "asset_roles"],
+      "properties": {
+        "finished_size": { "$ref": "#/$defs/physicalSize" },
+        "artwork_size": { "$ref": "#/$defs/physicalSize" },
+        "bleed": { "type": "string", "minLength": 1 },
+        "safe_area": { "type": "string", "minLength": 1 },
+        "material": { "type": "string", "minLength": 1 },
+        "print_method": { "type": "string", "minLength": 1 },
+        "required_copy": { "$ref": "#/$defs/stringArray" },
+        "asset_roles": { "$ref": "#/$defs/stringArray" },
+        "delivery_formats": { "$ref": "#/$defs/stringArray" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "task": { "properties": { "domain": { "const": "social-image-series" } } } } },
+      "then": { "required": ["shot_plan_ref", "series_plan_ref"] }
+    },
+    {
+      "if": { "properties": { "task": { "properties": { "domain": { "const": "physical-promotional-collateral" } } } } },
+      "then": { "required": ["physical_output"] }
+    }
+  ],
+  "$defs": {
+    "stringArray": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "nonEmptyStringArray": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "oneToThreeStrings": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "physicalSize": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "unit"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "enum": ["mm", "cm", "in"] }
+      }
+    }
+  }
+}

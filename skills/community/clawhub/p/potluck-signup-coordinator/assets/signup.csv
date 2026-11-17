@@ -1,0 +1,4 @@
+slot_id,category,contribution,capacity,serving_target,claim_id,contributor,dish,portions,status,updated_at
+main-1,Main,Main dish,1,8,,,,,open,
+side-1,Side,Side dish,1,8,,,,,open,
+cleanup-1,Cleanup,Clear and wash up,1,,,,,,open,

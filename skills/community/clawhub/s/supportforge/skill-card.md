@@ -1,42 +1,58 @@
-## Description: <br>
-AI customer support via SupportForge API for ticket creation, auto-replies, routing, and knowledge base search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI customer support via SupportForge API — ticket creation, auto-replies, routing, knowledge base search.
 
-## Publisher: <br>
-[Jbennett111](https://clawhub.ai/user/Jbennett111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jbennett111](https://clawhub.ai/user/jbennett111)
 
-## Use Case: <br>
-Support teams, developers, and agents use this skill to create support tickets, request manual or AI replies, search a support knowledge base, and check SupportForge service health through the SupportForge API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Support data sent through this skill is shared with a third-party SupportForge service. <br>
-Mitigation: Use only with customer and account data approved for third-party processing. <br>
-Risk: Generated or supplied SupportForge API keys may appear in command output or logs. <br>
-Mitigation: Prefer a dedicated SUPPORTFORGE_API_KEY, avoid printing keys in shared logs, and keep logs private. <br>
-Risk: Email-based auto-signup can create API access from SUPPORTFORGE_EMAIL without a pre-provisioned key. <br>
-Mitigation: Use a controlled email account for signup or provide an explicitly managed API key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SupportForge ClawHub release](https://clawhub.ai/Jbennett111/supportforge) <br>
-- [SupportForge API health endpoint](https://anton.vosscg.com/v1/health) <br>
+## Use Case:
 
+Developers and support teams use this skill to create support tickets, generate or send replies, route issues, and search a support knowledge base through the SupportForge API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the SupportForge API and return API responses for ticket, knowledge base, or health-check requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Customer support content, email addresses, and API credentials may be sent to an external SupportForge/Voss endpoint.
+
+Mitigation: Use the skill only after approving that endpoint for the relevant data, and avoid submitting sensitive support content unless your policy permits it.
+
+Risk: Setting SUPPORTFORGE_API_URL to an untrusted host could redirect support data and credentials.
+
+Mitigation: Keep SUPPORTFORGE_API_URL unset or set it only to an approved SupportForge endpoint.
+
+Risk: The email auto-signup path can expose a generated API key in logs or agent transcripts.
+
+Mitigation: Prefer a pre-provisioned SUPPORTFORGE_API_KEY stored in an approved secret manager and avoid the SUPPORTFORGE_EMAIL auto-signup path.
+
+## Reference(s):
+
+- [ClawHub SupportForge skill page](https://clawhub.ai/jbennett111/skills/supportforge)
+- [SupportForge API key endpoint](https://anton.vosscg.com/v1/keys)
+- [SupportForge ticket creation endpoint](https://anton.vosscg.com/v1/tickets/create)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke external SupportForge API endpoints using SUPPORTFORGE_API_KEY, SUPPORTFORGE_EMAIL, and optional SUPPORTFORGE_API_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

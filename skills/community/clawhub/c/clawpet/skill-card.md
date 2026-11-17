@@ -1,42 +1,54 @@
-## Description: <br>
-OpenClaw pet companion skill. Manage adopted pets, run interactions, and produce pet image prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw pet companion skill. Manage adopted pets, run interactions, and produce pet image prompts.
 
-## Publisher: <br>
-[yazelin](https://clawhub.ai/user/yazelin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yazelin](https://clawhub.ai/user/yazelin)
 
-## Use Case: <br>
-External users and agents use this skill to manage a virtual pet companion, check pet state, run care interactions, and produce prompts for pet images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The wrapper can run an unpinned CLI dependency from the referenced GitHub repository. <br>
-Mitigation: Install only after trusting the referenced repository and review the dependency before use. <br>
-Risk: Image workflows can send generated media to Telegram and include hardcoded local paths that may not match the user's environment. <br>
-Mitigation: Confirm Telegram sharing is intended and update local paths before running image workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [clawpet package source](https://github.com/yazelin/clawpet.git) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
-- [ClawHub skill page](https://clawhub.ai/yazelin/clawpet) <br>
-- [Publisher profile](https://clawhub.ai/user/yazelin) <br>
+## Use Case:
 
+External users and agents use clawpet to adopt and manage virtual pets, check pet status, run care interactions, and prepare photorealistic pet image prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate pet image prompt text and may guide downstream image generation or Telegram sharing when those tools are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch and run unpinned code from the referenced GitHub repository.
+
+Mitigation: Install only after reviewing the referenced source, and prefer a pinned, reviewed release or commit.
+
+Risk: Generated pet images may be sent through Telegram.
+
+Mitigation: Require user confirmation before sending media, and verify the recipient channel and file path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yazelin/skills/clawpet)
+- [clawpet GitHub package](https://github.com/yazelin/clawpet.git)
+- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text image prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to generate pet image prompts and send generated images through Telegram after confirmation.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Local-first hotel decision engine for trip stays, hotel comparison, shortlist creation, booking readiness, and accommodation planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first hotel decision engine for trip stays, hotel comparison, shortlist creation, booking readiness, and accommodation planning.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Travel planners and agent users use this skill to capture trip context, compare hotel candidates, shortlist best-fit stays, and check whether a selected option has enough information for booking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel plans, travel dates, budgets, notes, and preferences are retained in local JSON files. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal details in hotel notes, and delete the local JSON files when the data is no longer needed. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to capture trip context, compare hotel candidates, shortlist best-fit stays, and check booking readiness before purchase.
 
-## Reference(s): <br>
-- [Hotel Philosophy](references/philosophy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AGIstack/hotel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores trip, hotel, and preference data in local JSON files under ~/.openclaw/workspace/memory/hotel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Trip destinations, dates, budgets, hotel candidates, preferences, and notes are stored as plaintext JSON on the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving sensitive travel details on shared machines, or restrict filesystem permissions for ~/.openclaw/workspace/memory/hotel.
+
+Risk: The skill provides local planning and comparison support only; it does not book hotels or verify live availability, pricing, or policy changes.
+
+Mitigation: Confirm current hotel prices, availability, cancellation terms, and booking details directly with the booking provider before purchase.
+
+## Reference(s):
+
+- [Hotel Philosophy](references/philosophy.md)
+- [ClawHub Skill Page](https://clawhub.ai/agistack/skills/hotel)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local JSON-backed planning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores destinations, dates, budgets, hotel candidates, notes, and preferences as plaintext JSON under ~/.openclaw/workspace/memory/hotel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

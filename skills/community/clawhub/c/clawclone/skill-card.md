@@ -1,44 +1,55 @@
-## Description: <br>
-ClawClone backs up, uploads, downloads, shares, and restores OpenClaw workspace state across local and cloud locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup, clone, and migrate OpenClaw data across instances, including local and cloud snapshots for workspace state, memory, skills, agents, settings, and shareable configurations.
 
-## Publisher: <br>
-[clawclone-cc](https://clawhub.ai/user/clawclone-cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawclone-cc](https://clawhub.ai/user/clawclone-cc)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create local or cloud backups, migrate an OpenClaw workspace to another instance, share agent configurations, and preview or restore saved OpenClaw state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may contain credentials, tokens, memory, agent files, settings, scripts, cron data, and other sensitive OpenClaw state. <br>
-Mitigation: Use local export for sensitive workspaces, inspect what will be included, and rotate credentials if a sensitive backup was uploaded or shared unintentionally. <br>
-Risk: Cloud uploads and share links can expose secret-bearing backup archives beyond the local environment. <br>
-Mitigation: Avoid share links for backups containing secrets, revoke shares when they are no longer needed, and limit cloud use to data the user intends to store remotely. <br>
-Risk: Restore and clone operations can modify or overwrite OpenClaw workspace state. <br>
-Mitigation: Run clone or import with --test first, review the generated report, and proceed only after confirming the target backup and expected file changes. <br>
+## Use Case:
 
+Developers and operators use this skill to back up, share, migrate, and restore OpenClaw workspaces across machines or environments. It supports local archive workflows and cloud-backed clone management when a ClawClone API key is configured.
 
-## Reference(s): <br>
-- [ClawClone ClawHub listing](https://clawhub.ai/clawclone-cc/clawclone) <br>
-- [ClawClone service](https://clawclone.cc) <br>
-- [ClawClone API key settings](https://clawclone.cc/dashboard/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to create, upload, download, verify, share, revoke, or restore OpenClaw backup archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and artifact/package.json) <br>
+Risk: Backups may contain sensitive OpenClaw state such as memory, skills, credentials, tokens, channel state, identity, scripts, and cron data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat backup archives, clone IDs, share tokens, and cloud copies as sensitive; share only trusted backups and avoid shared backups for secrets.
+
+Risk: Restoring a local, cloud, or shared archive can overwrite persistent OpenClaw workspace state, skills, credentials, scripts, cron data, and configuration.
+
+Mitigation: Use preview mode before restore, restore only archives from trusted sources, and keep the pre-restore backup until the restored instance is verified.
+
+## Reference(s):
+
+- [ClawClone Skill on ClawHub](https://clawhub.ai/clawclone-cc/skills/clawclone)
+- [ClawClone Website](https://clawclone.cc)
+- [ClawClone API Key Settings](https://clawclone.cc/dashboard/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local backup archives, restore previews, status reports, and cloud backup identifiers when commands are run.]
+
+## Skill Version(s):
+
+0.1.5 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

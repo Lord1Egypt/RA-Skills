@@ -1,46 +1,57 @@
-## Description: <br>
-Connects agents to 100+ third-party APIs through Maton-managed OAuth gateway access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to 100+ third-party APIs through Maton's managed OAuth gateway.
 
-## Publisher: <br>
-[xiyuechuimeng](https://clawhub.ai/user/xiyuechuimeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiyuechuimeng](https://clawhub.ai/user/xiyuechuimeng)
 
-## Use Case: <br>
-Developers and agent users use this skill to call native endpoints for connected third-party services and manage Maton OAuth connections from agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call many third-party services through brokered access, so connected OAuth scopes may permit broad read or write operations. <br>
-Mitigation: Install only if you trust Maton and review each service's OAuth scopes before authorizing a connection. <br>
-Risk: Example calls include mutations such as posting messages or creating contacts if placeholders are reused against real services. <br>
-Mitigation: Replace placeholders, test against non-production resources when possible, and review requests before running write operations. <br>
-Risk: Unused or stale connections can continue to grant access through the gateway. <br>
-Mitigation: Delete unused Maton connections and rotate or revoke access when workflows no longer need a service. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make authenticated calls to supported third-party services and manage OAuth-backed connections through Maton.
 
-## Reference(s): <br>
-- [Maton Homepage](https://maton.ai) <br>
-- [Maton API Reference](https://www.maton.ai/docs/api-reference) <br>
-- [Slack Gateway Reference](references/slack/README.md) <br>
-- [Google Mail Gateway Reference](references/google-mail/README.md) <br>
-- [Notion MCP Reference](references/notion-mcp/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python, JavaScript, curl, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and MATON_API_KEY; requests act only through user-authorized Maton connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can let an agent modify, delete, send, or administer data across many connected services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege OAuth scopes, specify the intended connection when multiple exist, and require explicit human confirmation before deletes, sends, financial or admin changes, or public posts.
+
+Risk: The Maton API key can be exposed if printed, pasted, or included in logs or transcripts.
+
+Mitigation: Do not print or paste MATON_API_KEY, keep it in the environment or a secret store, and rotate it if it appears in logs or transcripts.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/xiyuechuimeng/skills/api-gateway-disabled)
+- [Maton homepage](https://maton.ai)
+- [Maton API Reference](https://www.maton.ai/docs/api-reference)
+- [API Gateway skill instructions](SKILL.md)
+- [Supported service reference docs](references/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with endpoint patterns and Python, curl, and shell snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and user-authorized OAuth connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

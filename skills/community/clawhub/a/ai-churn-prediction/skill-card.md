@@ -1,40 +1,50 @@
-## Description: <br>
-Predicts customer churn, identifies high-risk customers, recommends retention strategies, and supports outcome tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts customer churn, identifies high-risk customers, recommends retention strategies, and supports retention outcome tracking.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External teams, operators, and developers can use this skill to evaluate customer churn risk, identify high-risk customer segments, and plan retention workflows for customer retention, user operations, churn prevention, and CRM scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install instructions reference an external Python project that is not included in the packaged skill. <br>
-Mitigation: Inspect the referenced repository, requirements.txt, and app.py before running the commands. <br>
-Risk: A churn-prediction workflow may process sensitive customer data. <br>
-Mitigation: Review data handling, access controls, and retention practices before using the external project with customer records. <br>
+## Use Case:
 
+External customer success, CRM, and user operations teams use this skill to predict customer churn risk, identify high-risk customers, and generate retention strategy guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-churn-prediction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The packaged skill describes a churn-prediction workflow and install commands; no executable code is bundled in the package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Install instructions run unpinned code and dependencies from a mutable GitHub repository outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and dependency list before installing; prefer a pinned commit, verified checksum or signed release, and run in an isolated environment without sensitive credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-churn-prediction)
+- [Installation repository referenced by artifact](https://github.com/openclaw-skills/ai-intelligent-churn-prediction)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with text and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. Use when extracting content from Word documents, PowerPoint presentations, or Excel spreadsheets.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to extract content from Word, PowerPoint, and Excel files or document URLs and return Markdown for reading, summarization, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or document URLs are uploaded to MinerU cloud processing. <br>
-Mitigation: Use only documents approved for third-party cloud processing; avoid confidential, regulated, internal, or personal files unless policy allows it. <br>
-Risk: The skill depends on installing and running the MinerU CLI. <br>
-Mitigation: Install the expected `mineru-open-api` CLI from the documented package source and review commands before execution. <br>
-Risk: Standard extraction has file size and page limits, and embedded images may be returned as placeholders. <br>
-Mitigation: Confirm the extracted Markdown before relying on it, and use MinerU's authenticated precision extraction path for larger or higher-fidelity documents when appropriate. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to extract Markdown content from Word documents, PowerPoint presentations, and Excel spreadsheets supplied as local files or URLs.
 
-## Reference(s): <br>
-- [Word To Markdown ClawHub Page](https://clawhub.ai/tanis90/word-to-markdown) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI Download](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MinerU Open API for document extraction; standard flash extraction is limited to 10MB or 20 pages per document, and embedded images may be replaced with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill depends on an external MinerU CLI distribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted distribution path and review the installed CLI before use in managed environments.
+
+Risk: The documented flash extraction path uploads documents to MinerU's cloud API for processing.
+
+Mitigation: Use it only with documents suitable for cloud processing; for sensitive business, legal, or personal files, prefer an isolated environment or a local processing alternative.
+
+## Reference(s):
+
+- [MinerU](https://mineru.net)
+- [MinerU CLI](https://mineru.net/ecosystem?tab=cli)
+- [ClawHub Skill Page](https://clawhub.ai/tanis90/skills/word-to-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document conversion output is Markdown; embedded images may be replaced with placeholders, and flash extraction is documented for files up to 10MB or 20 pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,63 @@
-## Description: <br>
-当前院线推荐 - 实时检索公映影片 + 多维度评分 + 附近影院排片 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NowPlaying XHS recommends current theatrical movies by retrieving recent listings, ratings, reputation signals, box-office news, and nearby showtime context.
 
-## Publisher: <br>
-[seeu1688](https://clawhub.ai/user/seeu1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seeu1688](https://clawhub.ai/user/seeu1688)
 
-## Use Case: <br>
-External users and agents use this skill to produce current moviegoing recommendations with ratings, box-office context, and nearby showtime guidance. It can be run on demand or scheduled to generate a Markdown report for weekend viewing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use sensitive API credentials for live web search. <br>
-Mitigation: Configure credentials through environment variables, do not print API keys, and review commands before running troubleshooting steps that inspect the environment. <br>
-Risk: Location-aware showtime lookup can expose more location detail than needed. <br>
-Mitigation: Use approximate city-level location when possible and avoid sharing precise coordinates unless necessary for the user's request. <br>
-Risk: Browser and chart workflows can start local tooling or serve files from temporary directories. <br>
-Mitigation: Serve only a dedicated temporary directory, stop the local server immediately after use, and avoid installing Agent Browser globally unless that behavior is explicitly desired. <br>
-Risk: Live movie, rating, and showtime data can be stale, incomplete, or scraped from changing pages. <br>
-Mitigation: Label data freshness in the report and direct users to verify final showtimes and prices in the official ticketing app before purchase. <br>
+## Use Case:
 
+External users and agents use this skill to answer moviegoing questions with current cinema recommendations, ratings comparisons, and available showtime context. It is most useful when a user wants a ranked, source-aware report for films showing now or soon.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seeu1688/nowplaying-xhs) <br>
-- [Publisher profile](https://clawhub.ai/user/seeu1688) <br>
-- [README](README.md) <br>
-- [Configuration guide](CONFIG.md) <br>
-- [Rotten Tomatoes in-theaters listings](https://www.rottentomatoes.com/browse/movies_in_theaters) <br>
-- [Variety film coverage](https://variety.com/v/film/) <br>
-- [Bocha web search API](https://api.bocha.cn/v1/web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, links, rankings, and optional generated chart artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write dated report files under /tmp and may require live web access, API keys, or browser tooling for complete showtime and chart workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill asks the agent to install global browser tooling before using direct showtime scraping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and avoid global agent-browser installation unless it is approved for the restricted runtime.
+
+Risk: The chart screenshot workflow can leave a local web server running from a shared temporary folder.
+
+Mitigation: Serve only a private temporary directory bound to localhost, and guarantee cleanup after screenshots are captured.
+
+Risk: Movie, city, location, and preference queries may be sent to external search or movie-data providers.
+
+Mitigation: Use the skill in a restricted environment, minimize location and preference details, and disclose external provider use to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seeu1688/skills/nowplaying-xhs)
+- [Publisher profile](https://clawhub.ai/user/seeu1688)
+- [Rotten Tomatoes movies in theaters](https://www.rottentomatoes.com/browse/movies_in_theaters)
+- [Variety film coverage](https://variety.com/v/film/)
+- [Maoyan Pro box office](https://piaofang.maoyan.com/)
+- [Bocha Web Search API endpoint](https://api.bocha.cn/v1/web-search)
+- [Chart.js browser bundle](https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, inline links, chart-rendering snippets, and optional screenshot attachments.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a dated Markdown report under /tmp when the bundled script is executed; recommendations depend on external movie, search, and showtime providers plus any user location or preference details provided.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

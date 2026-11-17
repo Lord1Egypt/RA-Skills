@@ -1,42 +1,59 @@
-## Description: <br>
-Convert design images to pixel-perfect HTML/CSS by analyzing layout, colors, and fonts, then iteratively refining code through visual comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts visual design mockups or screenshots into HTML/CSS and iteratively refines the output with visual comparison.
 
-## Publisher: <br>
-[nodermachine](https://clawhub.ai/user/nodermachine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nodermachine](https://clawhub.ai/user/nodermachine)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn static design mockups or screenshots into HTML/CSS and refine the result against rendered image comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled Python helper can install an unpinned Pillow package at runtime. <br>
-Mitigation: Prefer the documented Node workflow, install dependencies explicitly, and avoid scripts/pipeline.py unless automatic package installation is acceptable. <br>
-Risk: Design images and rendered HTML may contain proprietary or untrusted content. <br>
-Mitigation: Run the workflow in a sandboxed environment when processing sensitive design assets or untrusted HTML. <br>
+## Use Case:
 
+Developers and design engineers use this skill to convert static visual designs into HTML/CSS, inspect pixel-level differences, and produce comparison reports for refinement.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Button Example](references/examples/button-example.md) <br>
-- [Card Example](references/examples/card-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated HTML/CSS files, JSON reports, and PNG comparison images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce final.html, comparison_report.md, analysis.json, rendered screenshots, diff images, and iteration timelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated HTML is rendered in a browser environment that the security evidence describes as under-contained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only reviewed inputs in an isolated environment, avoid network access while rendering, and keep browser execution sandboxed from sensitive files and credentials.
+
+Risk: The Python pipeline can install an unpinned package at runtime, which may modify the active Python environment.
+
+Mitigation: Pin dependencies in a lockfile or controlled environment and remove or gate automatic pip install behavior before routine use.
+
+Risk: The provided security verdict is suspicious and recommends review before installing.
+
+Mitigation: Review the skill before installation, run it in an isolated workspace, and follow the provided security guidance for dependency pinning and HTML rendering.
+
+## Reference(s):
+
+- [Design To Html ClawHub Skill Page](https://clawhub.ai/nodermachine/skills/design-to-html)
+- [Button Component Example](references/examples/button-example.md)
+- [Card Component Example](references/examples/card-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [HTML/CSS, Markdown reports, JSON metrics, PNG screenshots, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include final.html, comparison_report.md, rendered and diff PNGs, and per-iteration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

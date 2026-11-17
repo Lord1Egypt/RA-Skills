@@ -1,44 +1,55 @@
-## Description: <br>
-Provides reusable prompt templates for code review, content creation, analysis, education, and problem solving across major LLMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Prompt Templates provides Japanese-language prompt templates for code review, content creation, analysis, education, and problem solving across major LLMs.
 
-## Publisher: <br>
-[HiroFumiko](https://clawhub.ai/user/HiroFumiko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hirofumiko](https://clawhub.ai/user/hirofumiko)
 
-## Use Case: <br>
-Developers, educators, analysts, and content creators use this skill to draft structured prompts for code review, security review, bug fixing, architecture design, market and data analysis, tutorials, lesson plans, blog posts, social posts, and email writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, private customer data, proprietary code, or sensitive business data into an external LLM while using the templates. <br>
-Mitigation: Review prompts before use and remove sensitive information unless the user intends to share it with the selected LLM provider. <br>
-Risk: Prompt-generated analysis, security findings, recommendations, or code may be incomplete or incorrect. <br>
-Mitigation: Treat generated outputs as drafts and review them with qualified human judgment before relying on them. <br>
+## Use Case:
 
+Developers, analysts, educators, and content creators use this skill to select and adapt Japanese-language prompt templates for code review, security review, writing, research, lesson planning, bug fixing, and architecture design.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/HiroFumiko/fumi-ai-prompt-templates) <br>
-- [Publisher profile](https://clawhub.ai/user/HiroFumiko) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown prompt templates with placeholder fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Templates may prompt an LLM to produce analysis, prose, recommendations, or code depending on the selected prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md metadata, evidence release metadata, and CHANGELOG, released 2026-03-19) <br>
+Risk: Manual copy examples can place templates in an unintended destination if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination path before running copy commands and adjust it for the local workspace.
+
+Risk: Prompt outputs for code, security, market analysis, or architecture tasks may be incomplete or inaccurate.
+
+Mitigation: Review generated outputs with appropriate domain expertise before applying them to production work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hirofumiko/skills/fumi-ai-prompt-templates)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown prompt templates with bracketed placeholders and expected-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Templates require users to replace bracketed placeholders before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill frontmatter, and changelog released 2026-03-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

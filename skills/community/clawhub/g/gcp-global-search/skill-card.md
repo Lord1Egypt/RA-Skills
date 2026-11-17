@@ -1,43 +1,62 @@
-## Description: <br>
-Query Google Cloud product information, documentation, parameters, features, and pricing from official sources without login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Google Cloud product information, documentation, parameters, features, and pricing from official sources without login.
 
-## Publisher: <br>
-[wangbingpeng](https://clawhub.ai/user/wangbingpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangbingpeng](https://clawhub.ai/user/wangbingpeng)
 
-## Use Case: <br>
-Developers, cloud engineers, and external users use this skill to look up Google Cloud products, compare specifications or pricing, find official documentation, and draft setup-oriented guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CLI, API, or Terraform snippets may affect a cloud project, permissions, region selection, billing, or cleanup obligations. <br>
-Mitigation: Confirm the target project, permissions, region, billing impact, and cleanup path before using generated commands or configuration. <br>
-Risk: Cloud setup examples can involve OAuth tokens, service accounts, or other sensitive credentials. <br>
-Mitigation: Avoid sharing real service account keys or tokens, and validate final commands against current official Google Cloud documentation. <br>
+## Use Case:
 
+Developers, cloud architects, and operators use this skill to find and compare Google Cloud product documentation, specifications, parameters, features, and pricing in English or Chinese.
 
-## Reference(s): <br>
-- [GCP Global Search release](https://clawhub.ai/wangbingpeng/gcp-global-search) <br>
-- [Google Cloud products](https://cloud.google.com/products) <br>
-- [Google Cloud documentation](https://cloud.google.com/docs) <br>
-- [Google Cloud pricing calculator](https://cloud.google.com/products/calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with links, tables, and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual English and Chinese product explanations and setup examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated or copied cloud provisioning examples can create billable Google Cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all gcloud, SDK, and Terraform snippets for billing impact, region, quota, and cleanup steps before execution.
+
+Risk: Some GKE examples use broad node OAuth scopes.
+
+Mitigation: Prefer least-privilege service accounts and Workload Identity guidance before adapting GKE examples.
+
+Risk: Pricing, specifications, and product limits can change after the skill content was authored.
+
+Mitigation: Verify current values against official Google Cloud documentation and pricing pages before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangbingpeng/skills/gcp-global-search)
+- [Google Cloud products](https://cloud.google.com/products)
+- [Google Cloud documentation](https://cloud.google.com/docs)
+- [Google Cloud pricing calculator](https://cloud.google.com/products/calculator)
+- [Compute Engine documentation](https://cloud.google.com/compute/docs)
+- [GKE documentation](https://cloud.google.com/kubernetes-engine/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, links, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese responses; examples may include gcloud, SDK, and Terraform snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

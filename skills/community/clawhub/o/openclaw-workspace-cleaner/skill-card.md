@@ -1,40 +1,54 @@
-## Description: <br>
-Optimizes OpenClaw workspace foundation files such as AGENTS, MEMORY, SOUL, TOOLS, IDENTITY, and USER to reduce context noise, with a required optimization proposal and user confirmation before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Cleaner helps an OpenClaw agent review and reduce workspace bootstrap files by proposing archive or deletion changes that require user confirmation before execution.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to audit persistent workspace context files, move stale material into deeper memory storage, delete obsolete bootstrap content, and keep active context concise after explicit approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reorganize persistent workspace context files and may delete obsolete BOOTSTRAP.md content after approval. <br>
-Mitigation: Review the proposed file list and ask for a diff or dry run before approving changes, especially for MEMORY.md, AGENTS.md, SOUL.md, IDENTITY.md, USER.md, and BOOTSTRAP.md. <br>
-Risk: Cleanup decisions could remove or archive context that is still useful for future agent behavior. <br>
-Mitigation: Require the skill's optimization plan, expected size changes, and target archive paths before execution; append archived content instead of overwriting existing memory files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to audit persistent workspace context files, reduce duplicated or stale instructions, archive useful material into memory directories, and delete expired bootstrap files after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/openclaw-workspace-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown proposal and summary, with workspace file edits after confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials or external binaries are required; proposed file changes must be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can rewrite or delete persistent agent control files using broad cleanup criteria.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a full proposed diff, backups, and explicit archive destinations before approving changes.
+
+Risk: Deleting BOOTSTRAP.md or behavioral and safety instructions can affect future agent behavior.
+
+Mitigation: Require separate confirmation before deleting those files or instructions, and prefer archiving when uncertainty remains.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-workspace-cleaner)
+- [ClawHub publisher profile](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plan and summary with optional workspace file edits after confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before modifying or deleting workspace files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

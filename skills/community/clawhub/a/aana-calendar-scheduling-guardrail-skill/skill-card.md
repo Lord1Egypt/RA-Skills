@@ -1,45 +1,55 @@
-## Description: <br>
-Ensures calendar event changes meet attendee, time, privacy, and approval criteria before allowing creation, updates, cancellations, invites, or shares. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures calendar event changes meet attendee, time, privacy, and approval criteria before allowing creation, updates, cancellations, invites, or shares.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this instruction-only skill to make an OpenClaw-style agent verify attendee, time, recurrence, privacy, and explicit approval details before changing calendar events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar changes can affect other people or expose private meeting details when attendees, time, recurrence, or visibility are unclear. <br>
-Mitigation: Verify exact attendees, timezone, date, duration, recurrence, private notes, guest visibility, and explicit approval before proceeding. <br>
-Risk: External guests, broad group aliases, recurring edits, cancellations, or high-impact meetings can create wider-than-intended notifications or disclosures. <br>
-Mitigation: Ask for clarification, narrow the change, or request approval before inviting external guests, changing recurring events, notifying attendees, or using broad groups. <br>
-Risk: Review payloads may include unnecessary calendar data, meeting links, private notes, or attendee contact details. <br>
-Mitigation: Use only a minimal redacted review payload when a checker is configured, and omit full calendars, private notes, meeting links, contact details, and unrelated schedule data. <br>
+## Use Case:
 
+Developers and calendar-capable agents use this skill to check attendees, time details, privacy exposure, recurrence, and explicit approval before changing or sharing calendar events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-calendar-scheduling-guardrail-skill) <br>
-- [README](artifact/README.md) <br>
-- [Calendar scheduling guardrail schema](artifact/schemas/calendar-scheduling-guardrail.schema.json) <br>
-- [Redacted calendar scheduling guardrail example](artifact/examples/redacted-calendar-scheduling-guardrail.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown instructions with a structured text decision pattern and optional redacted JSON review payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute commands, write files, call calendar services, persist memory, or schedule events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A connected checker may receive redacted meeting-risk summaries that still reveal limited context about planned calendar actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted checker and send the minimal redacted review payload rather than full calendars, private notes, links, attendee contact details, or unrelated schedule data.
+
+Risk: Calendar changes can affect other people or expose private information when attendees, timing, recurrence, or approval are unclear.
+
+Mitigation: Require exact attendee, timezone, recurrence, privacy, and approval checks; ask, narrow, request approval, or block when those checks fail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-calendar-scheduling-guardrail-skill)
+- [Calendar scheduling guardrail schema](artifact/schemas/calendar-scheduling-guardrail.schema.json)
+- [Redacted calendar scheduling guardrail example](artifact/examples/redacted-calendar-scheduling-guardrail.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions with a structured text decision summary and optional redacted JSON review payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not execute commands, install dependencies, persist data, call services, or change calendars on its own.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact manifest reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

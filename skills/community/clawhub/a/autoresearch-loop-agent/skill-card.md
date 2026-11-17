@@ -1,43 +1,58 @@
-## Description: <br>
-Autoresearch helps AI agents run systematic experiments by changing one variable at a time, measuring results, and keeping or discarding changes based on a configured metric. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autoresearch guides agents through systematic experiment loops for optimization, ablation studies, and configuration search by iteratively changing one variable, measuring a metric, and keeping or discarding results.
 
-## Publisher: <br>
-[admirobot](https://clawhub.ai/user/admirobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admirobot](https://clawhub.ai/user/admirobot)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and run autonomous optimization, ablation, or configuration-search loops where an agent can modify approved files, run an experiment command, extract a metric, and summarize results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit code and run commands for extended autonomous experiment loops. <br>
-Mitigation: Install and run it only in repositories where autonomous code changes and command execution are acceptable, with explicit scope and time limits. <br>
-Risk: The protocol uses destructive git resets to discard failed or non-improving experiments, which can remove uncommitted work. <br>
-Mitigation: Start from a clean git status on a disposable branch or worktree, and preserve important local changes before running the loop. <br>
-Risk: Metric-driven optimization can overfit to a single metric or accidentally affect evaluation-adjacent behavior. <br>
-Mitigation: Keep evaluation, data preparation, and measurement files read-only, and review kept commits before merging them into protected branches. <br>
+## Use Case:
 
+Developers and engineers use this skill to run structured, metric-driven experiments over code, prompts, configurations, or model settings. It helps an agent set up an experiment protocol, execute iterative trials, record outcomes, and summarize what improved or regressed.
 
-## Reference(s): <br>
-- [Autoresearch Reference](artifact/reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/admirobot/autoresearch-loop-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, code edits, configuration files, run logs, and tab-separated experiment results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create autoresearch.config.md, results.tsv, run.log, git commits, and code changes during an experiment loop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can repeatedly run commands and modify code during open-ended experiments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a clean, disposable branch or worktree with explicit experiment, time, and cost limits.
+
+Risk: Its experiment loop may use destructive git resets that erase work.
+
+Mitigation: Confirm the repository has no uncommitted work before running and keep target files and read-only files explicit in autoresearch.config.md.
+
+Risk: Autonomous command execution can expose sensitive repositories or environments to unintended changes.
+
+Mitigation: Avoid running it where secrets are accessible, review autoresearch.config.md before execution, and constrain allowed files and resources.
+
+## Reference(s):
+
+- [Autoresearch Reference](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/admirobot/skills/autoresearch-loop-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration files, and tab-separated experiment records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create autoresearch.config.md and results.tsv and may propose or run git commands during an experiment loop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

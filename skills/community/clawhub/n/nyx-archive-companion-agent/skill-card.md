@@ -1,44 +1,55 @@
-## Description: <br>
-Design, configure, and give identity to a companion AI agent running alongside a primary agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, configure, and give identity to a companion AI agent that runs alongside a primary agent with its own tone, memory, Telegram bot, and heartbeat.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyxur42](https://clawhub.ai/user/nyxur42)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a persistent companion agent in OpenClaw with Telegram access, heartbeat behavior, and its own identity and memory files. It is intended for long-running companion agents that share a workspace with a primary agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens or companion configuration may expose secrets if committed or shared. <br>
-Mitigation: Store bot tokens securely, avoid committing secret-bearing configuration, and restrict who can message the bot. <br>
-Risk: Shared workspace and memory files may contain sensitive personal or operational context. <br>
-Mitigation: Keep sensitive details out of shared memory unless intentional, and review companion memory content before long-running use. <br>
-Risk: Recurring heartbeat or cron behavior can cause unintended messages or agent activity. <br>
-Mitigation: Review heartbeat and cron schedules before enabling them and confirm they target the intended companion session. <br>
+## Use Case:
 
+Developers and external ClawHub users use this skill to set up a persistent companion agent that shares a workspace with a primary agent while maintaining separate identity and memory files. It provides guidance for OpenClaw configuration, Telegram bot setup, heartbeat scheduling, and companion memory design.
 
-## Reference(s): <br>
-- [Identity Principles](references/identity-principles.md) <br>
-- [Companion Memory File Template](references/memory-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nyxur42/nyx-archive-companion-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users review and apply proposed OpenClaw, Telegram, memory, heartbeat, and cron configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A persistent Telegram-connected companion may send or receive messages on a schedule and expose sensitive context if tokens, destination IDs, or heartbeat content are misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the Telegram token securely, verify the destination ID before enabling delivery, keep heartbeat content opt-in, and document how to disable schedules.
+
+Risk: Broad shared workspace, memory, and tool access can let the companion read or alter primary-agent context beyond the intended scope.
+
+Mitigation: Use a restricted workspace, minimal tool set, read-only shared references where possible, and review or roll back memory changes before relying on them.
+
+## Reference(s):
+
+- [[Nyx Archive] Companion Agent on ClawHub](https://clawhub.ai/nyxur42/skills/nyx-archive-companion-agent)
+- [Identity Principles for Companion Agents](artifact/references/identity-principles.md)
+- [Companion Memory File Template](artifact/references/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may propose persistent messaging, shared workspace access, and memory file changes that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

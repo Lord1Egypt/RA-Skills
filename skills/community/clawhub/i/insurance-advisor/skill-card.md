@@ -1,41 +1,59 @@
-## Description: <br>
-Insurance Advisor provides insurance recommendations, product comparisons, premium estimates, claim guidance, and term life or health insurance planning support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insurance Advisor provides insurance education, coverage comparisons, premium estimates, claim guidance, and term life or health insurance planning prompts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can use this skill for general insurance education, CLI-assisted coverage planning, product-type comparison, premium estimation, and claim-process guidance. It should not be treated as licensed financial, insurance, legal, medical, or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security assessment flags under-disclosed finance logging that can store and export sensitive entries in plaintext. <br>
-Mitigation: Review the scripts before installing, avoid entering sensitive health, claim, policy, beneficiary, tax, or detailed financial information, and delete or protect local files under ~/.local/share/insurance-advisor when no longer needed. <br>
-Risk: Insurance and finance guidance may be incomplete, jurisdiction-specific, or unsuitable for a user's personal circumstances. <br>
-Mitigation: Use the output for general education only and confirm coverage decisions, claims steps, and tax implications with qualified professionals and official insurer materials. <br>
+## Use Case:
 
+External users and agents use this skill to generate insurance education, compare common policy categories, estimate premiums, and outline claim preparation steps. Outputs should be treated as general informational guidance, not licensed insurance, legal, medical, or financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/insurance-advisor) <br>
-- [Publisher Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, files] <br>
-**Output Format:** [Plain text CLI output with optional local log and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands write plaintext history, logs, and exports under ~/.local/share/insurance-advisor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence and frontmatter) <br>
+Risk: The release evidence reports a suspicious verdict because the package includes an insurance advisor, an under-disclosed finance logger, and a local command-execution input bug.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the shell scripts before installation, and avoid passing untrusted text into term or calculation commands.
+
+Risk: The bundled scripts can save finance or insurance notes locally in plaintext and export them from ~/.local/share/insurance-advisor.
+
+Mitigation: Do not enter real ID numbers, bank details, diagnoses, policy numbers, full medical records, or other sensitive personal data.
+
+Risk: Insurance, finance, health, and claim outputs may be incomplete or unsuitable for a user's jurisdiction or personal circumstances.
+
+Mitigation: Treat outputs as general education and consult qualified professionals before buying coverage, making claims, or relying on estimates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/insurance-advisor)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Insurance Advisor Tips](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Chinese-language insurance guidance and local plaintext note/export behavior when bundled shell commands are used.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Evaluates sales opportunities using BANT or MEDDICC methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates sales opportunities using BANT or MEDDICC methodology.
 
-## Publisher: <br>
-[jacentyty](https://clawhub.ai/user/jacentyty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacentyty](https://clawhub.ai/user/jacentyty)
 
-## Use Case: <br>
-Sales teams and account representatives use this skill to qualify opportunities with BANT or MEDDICC, score responses, identify risk areas, and produce a final qualification report with next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle confidential sales opportunity details. <br>
-Mitigation: Avoid sharing sensitive deal data unless the operating environment and any linked external site meet the user's privacy and security requirements. <br>
-Risk: The skill links to salestt.com as an external website for graphical testing and PDF reports. <br>
-Mitigation: Treat salestt.com as a separate external service and review its privacy and security practices before entering deal data. <br>
+## Use Case:
 
+Sales teams use this skill to qualify opportunities through BANT or MEDDICC questions, calculate a weighted score, and produce a final qualification report with category-level next steps.
 
-## Reference(s): <br>
-- [sales-qualification on ClawHub](https://clawhub.ai/jacentyty/sales-qualification) <br>
-- [salestt.com](https://salestt.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown qualification report with scores, category analysis, risk areas, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the selected BANT or MEDDICC framework and the provided weighted scoring rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Users may enter confidential deal details while answering sales qualification questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential deal details unless the user is comfortable sharing them with the active agent session.
+
+Risk: Reports include a third-party promotional link and the skill directs the agent to ask questions in English.
+
+Mitigation: Review generated reports before sharing and confirm that the English-only flow and promotional footer are acceptable for the intended audience.
+
+## Reference(s):
+
+- [SalesTT homepage](https://salestt.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown qualification report with score tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive question-and-answer flow; scores BANT or MEDDICC responses out of 50 points.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

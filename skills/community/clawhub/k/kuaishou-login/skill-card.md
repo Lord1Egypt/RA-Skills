@@ -1,41 +1,54 @@
-## Description: <br>
-Automates QR-code login for the Kuaishou Creator Platform, returns a scannable QR screenshot, monitors login status, and reports success or timeout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates QR-code login to the Kuaishou Creator Platform by opening the login page, capturing the QR code, monitoring login state, and returning success or timeout status.
 
-## Publisher: <br>
-[action2227](https://clawhub.ai/user/action2227) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[action2227](https://clawhub.ai/user/action2227)
 
-## Use Case: <br>
-Users who need an agent-assisted browser workflow can use this skill to initiate Kuaishou Creator Platform QR-code login, receive the QR code for scanning, and get a final login status with screenshot evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Returned QR-code images and post-login screenshots may expose sensitive login material or account information. <br>
-Mitigation: Treat screenshots like temporary credentials, avoid sharing or recording them, and use the skill only in trusted workspaces. <br>
-Risk: A login prompt may remain active if the workflow is abandoned or times out. <br>
-Mitigation: Close or expire unused login prompts when finished and retry with a fresh QR code if the login times out. <br>
+## Use Case:
 
+External users and operators can use this skill to guide an agent through QR-code login to the Kuaishou Creator Platform and receive login status updates with screenshots.
 
-## Reference(s): <br>
-- [Kuaishou Creator Platform](https://creator.kuaishou.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/action2227/kuaishou-login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Screenshots, Guidance] <br>
-**Output Format:** [Plain text status messages with browser screenshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns QR-code and post-login screenshots; waits up to about 120 seconds before reporting timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A live login QR code and authenticated page screenshots may be exposed through agent output or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted local environment where screenshots and logs are not shared.
+
+Risk: Anyone who can see the returned QR code during its validity window may be able to initiate the login flow.
+
+Mitigation: Prefer scanning directly in the user's own browser session, then close or log out of the session after use.
+
+## Reference(s):
+
+- [Kuaishou Creator Platform](https://creator.kuaishou.com/)
+- [ClawHub skill page](https://clawhub.ai/action2227/skills/kuaishou-login)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Screenshots]
+
+**Output Format:** [Markdown status text with browser screenshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a QR-code screenshot, then either a login-success screenshot or a timeout message after up to 120 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

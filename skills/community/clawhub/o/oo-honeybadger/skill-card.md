@@ -1,42 +1,59 @@
-## Description: <br>
-Operates Honeybadger through an OOMOL-connected account to report check-ins, deployments, Insights events, and exception notices using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected Honeybadger account to report check-ins, deployments, events, and exceptions.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to submit Honeybadger check-ins, deployment reports, Insights events, and exception notices through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit Honeybadger check-ins, deployments, events, and exception notices. <br>
-Mitigation: Treat every report_* action as a write, inspect the live connector schema, and require explicit user confirmation of the exact payload before execution. <br>
-Risk: The skill relies on connected Honeybadger credentials through OOMOL. <br>
-Mitigation: Install only for users who intend to use OOMOL with Honeybadger, and retry setup only after authentication, connection, scope, app readiness, or billing failures. <br>
+## Use Case:
 
+Developers and operators use this skill to report Honeybadger check-ins, deployments, events, and exceptions through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-honeybadger) <br>
-- [Honeybadger Homepage](https://www.honeybadger.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL account, and a connected Honeybadger credential; report actions can submit data to Honeybadger.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The setup fallback can run a remote CLI installer without clear user approval, and the external installer implementation is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and authorize the CLI installation separately before running the installer.
+
+Risk: OOMOL processes Honeybadger payloads and holds the connected API key.
+
+Mitigation: Confirm that OOMOL may handle the Honeybadger payloads and connected credential before enabling the connection.
+
+Risk: Write actions change Honeybadger state.
+
+Mitigation: Keep the required confirmation and review the exact payload and effect before each write action.
+
+## Reference(s):
+
+- [Honeybadger API documentation](https://docs.honeybadger.io/api/)
+- [Honeybadger](https://www.honeybadger.io)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON]
+
+**Output Format:** [Shell commands with JSON request payloads and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions require confirmation of the exact payload and effect before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: SKILL.md frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

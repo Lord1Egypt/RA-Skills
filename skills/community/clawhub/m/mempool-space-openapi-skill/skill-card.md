@@ -1,46 +1,61 @@
-## Description: <br>
-Operate mempool.space public Bitcoin and Lightning explorer APIs through UXC with a curated OpenAPI schema, no-auth setup, and read-first guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate mempool.space public Bitcoin and Lightning explorer APIs through UXC with a curated OpenAPI schema, no-auth setup, and read-first guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and engineers use this skill to query public mempool.space Bitcoin and Lightning explorer data for fees, mempool state, block height, address and transaction status, and Lightning node or channel reads without authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried Bitcoin addresses, transaction IDs, Lightning public keys, and search terms are sent to mempool.space. <br>
-Mitigation: Use the skill only for data that is appropriate to query through a public explorer service. <br>
-Risk: The setup references an OpenAPI schema from a GitHub main-branch URL. <br>
-Mitigation: For automated or sensitive workflows, verify or pin the schema before use. <br>
-Risk: Mempool state and Lightning rankings can change quickly. <br>
-Mitigation: Re-query current values instead of relying on cached results for time-sensitive decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to query public mempool.space Bitcoin and Lightning explorer data through UXC, including fee estimates, mempool state, block height, address or transaction status, and Lightning node/channel reads. It is intended for read-only exploration and automation that can tolerate public explorer freshness and privacy constraints.
 
-## Reference(s): <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI schema](references/mempool-space-public.openapi.json) <br>
-- [OpenAPI schema URL](https://raw.githubusercontent.com/holon-run/uxc/main/skills/mempool-space-openapi-skill/references/mempool-space-public.openapi.json) <br>
-- [Official mempool repository](https://github.com/mempool/mempool) <br>
-- [ClawHub skill page](https://clawhub.ai/jolestar/mempool-space-openapi-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on read-only public API queries and stable JSON envelope parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The setup path can use a mutable remote OpenAPI schema that may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the bundled local schema or a pinned schema commit with a verified hash before linking the CLI.
+
+Risk: Public explorer queries can disclose addresses, transactions, Lightning public keys, or channel identifiers to the service.
+
+Mitigation: Avoid querying identifiers considered private, and use narrow reads that expose only the data needed for the task.
+
+Risk: Bitcoin mempool data and Lightning rankings change quickly.
+
+Mitigation: Re-query live endpoints before making decisions instead of relying on cached values.
+
+## Reference(s):
+
+- [Usage patterns](references/usage-patterns.md)
+- [Curated OpenAPI schema](references/mempool-space-public.openapi.json)
+- [mempool.space public API endpoint](https://mempool.space/api)
+- [Official mempool repository](https://github.com/mempool/mempool)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/mempool-space-openapi-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented API output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public API operations; responses may reflect live mempool.space state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI schema)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

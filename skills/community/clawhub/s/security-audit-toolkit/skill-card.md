@@ -1,44 +1,57 @@
-## Description: <br>
-Audit codebases and infrastructure for security issues. Use when scanning dependencies for vulnerabilities, detecting hardcoded secrets, checking OWASP top 10 issues, verifying SSL/TLS, auditing file permissions, or reviewing code for injection and auth flaws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit codebases and infrastructure for security issues. Use when scanning dependencies for vulnerabilities, detecting hardcoded secrets, checking OWASP top 10 issues, verifying SSL/TLS, auditing file permissions, or reviewing code for injection and auth flaws.
 
-## Publisher: <br>
-[gitgoodordietrying](https://clawhub.ai/user/gitgoodordietrying) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gitgoodordietrying](https://clawhub.ai/user/gitgoodordietrying)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit projects for vulnerable dependencies, hardcoded secrets, OWASP-style code issues, SSL/TLS configuration problems, risky file permissions, and authentication or authorization gaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Secret-scan results may expose real credentials or sensitive paths. <br>
-Mitigation: Treat scan output as sensitive, rotate confirmed credentials, and avoid sharing raw findings outside trusted review channels. <br>
-Risk: Dependency auto-fix commands can change package versions or application behavior. <br>
-Mitigation: Review dependency changes, run tests, and commit only fixes that are understood. <br>
-Risk: External audit tools and one-off commands can introduce supply-chain or execution risk. <br>
-Mitigation: Trust or pin external tools where practical, inspect generated scripts before running them, and execute audits in workspaces you are comfortable auditing. <br>
-Risk: The optional pre-commit hook can block commits based on pattern matches. <br>
-Mitigation: Install the hook only when ongoing commit blocking is desired, and review false positives before bypassing or changing the hook. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Security Audit Toolkit on ClawHub](https://clawhub.ai/gitgoodordietrying/security-audit-toolkit) <br>
-- [Trivy documentation](https://aquasecurity.github.io/trivy) <br>
+## Use Case:
 
+Developers, engineers, and authorized security reviewers use this skill to run practical audits for dependency vulnerabilities, hardcoded secrets, OWASP code patterns, SSL/TLS configuration, file permissions, and related secure-coding checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and checklist-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that scan dependencies, secrets, TLS settings, permissions, and source patterns; users should review results and proposed fixes before applying changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill suggests broad host inspection, SSH-directory checks, and file-permission audits that can exceed a normal project audit scope.
+
+Mitigation: Use it only for explicitly authorized security work and confirm the target scope before running host-wide or home-directory checks.
+
+Risk: The skill includes unpinned scanner installation and execution commands.
+
+Mitigation: Prefer pinned, trusted scanner versions and review tool provenance before installing or running them.
+
+Risk: Automatic fix commands and persistent Git hooks can modify dependency files, lockfiles, or repository behavior.
+
+Mitigation: Review proposed changes before applying fixes, and install persistent hooks only when they match the repository policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitgoodordietrying/skills/security-audit-toolkit)
+- [Trivy documentation](https://aquasecurity.github.io/trivy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise security guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that inspect dependencies, source files, Git history, TLS endpoints, local permissions, and project configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

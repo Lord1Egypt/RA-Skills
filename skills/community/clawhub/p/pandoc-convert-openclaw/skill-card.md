@@ -1,39 +1,56 @@
-## Description: <br>
-Convert documents between 40+ formats using pandoc CLI. Handles Markdown, Word, PDF, HTML, LaTeX, and EPUB with smart defaults, professional templates, and comprehensive tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert documents between 40+ formats using pandoc CLI, including Markdown, Word, PDF, HTML, LaTeX, and EPUB, with smart defaults, professional templates, and conversion tooling.
 
-## Publisher: <br>
-[TheJorgeSchmidt](https://clawhub.ai/user/TheJorgeSchmidt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thejorgeschmidt](https://clawhub.ai/user/thejorgeschmidt)
 
-## Use Case: <br>
-Developers, writers, and documentation teams use this skill to plan and run pandoc-based document conversions across Markdown, Word, PDF, HTML, LaTeX, EPUB, and related formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package references helper scripts and templates that are not included in the artifact. <br>
-Mitigation: Use the included guidance as pandoc documentation, and separately locate and review any referenced helper script or template before running it. <br>
-Risk: Batch conversion workflows can affect multiple paths and may overwrite outputs. <br>
-Mitigation: Run conversions on backed-up inputs, verify output directories before execution, and inspect generated documents before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheJorgeSchmidt/pandoc-convert-openclaw) <br>
+## Use Case:
 
+Developers, technical writers, and documentation teams use this skill to convert local documents across Pandoc-supported formats, prepare professional PDFs or EPUBs, and generate repeatable conversion commands with validation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides local pandoc workflows and may describe optional validation or batch conversion steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Batch conversions can create or overwrite output files on the local filesystem.
+
+Mitigation: Use an explicit output directory, review target paths before execution, and back up source documents before batch operations.
+
+Risk: The inspected artifact references helper scripts, templates, and documentation that are not included in the artifact.
+
+Mitigation: Confirm required local tooling and files exist before relying on helper-script, template, or extended documentation workflows.
+
+Risk: PDF and EPUB workflows may require external tools such as LaTeX engines, wkhtmltopdf, or epubcheck.
+
+Mitigation: Install and verify optional dependencies before using those output formats, and validate generated files before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thejorgeschmidt/skills/pandoc-convert-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local file conversion outputs when Pandoc commands are executed by the user or agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

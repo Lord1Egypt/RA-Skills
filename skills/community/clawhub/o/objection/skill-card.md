@@ -1,39 +1,53 @@
-## Description: <br>
-Activates an explicitly critical review posture when a user asks the agent to find problems, stress test an artifact, challenge assumptions, or play devil's advocate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activates an adversarial review posture for requests to find problems, poke holes, stress test, play devil's advocate, challenge, or find flaws in artifacts such as plans, code, documents, arguments, data pipelines, and architecture.
 
-## Publisher: <br>
-[long1973m](https://clawhub.ai/user/long1973m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[long1973m](https://clawhub.ai/user/long1973m)
 
-## Use Case: <br>
-Employees, external users, developers, and reviewers use this skill to request adversarial review of plans, code, documents, arguments, data pipelines, architectures, prompts, and other artifacts. It focuses the agent on surfacing concrete flaws, risks, assumptions, edge cases, failure modes, and unverified claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally pushes the agent toward harsh, problem-focused feedback, which may produce overly severe or unbalanced review output if the user expects neutral analysis. <br>
-Mitigation: Use this skill only when explicitly critical feedback is desired, and give clear scope and tone limits when needed. <br>
-Risk: The skill asks the agent to verify claims and test behavior, which could lead to unsafe handling of untrusted code if execution is allowed without boundaries. <br>
-Mitigation: Do not allow the agent to run or test untrusted code unless the user explicitly approves execution in a safe sandbox. <br>
+## Use Case:
 
+Developers, reviewers, and other users invoke this skill when they want an agent to perform aggressive problem discovery on code, plans, documents, arguments, data pipelines, architecture, prompts, or other artifacts. It directs the agent to identify flaws, risks, assumptions, verification gaps, edge cases, and adversarial failure modes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown findings organized by problem category, with unverified claims listed separately] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; produces critical review guidance and does not define tools, credential use, persistence, or external data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad critical-review trigger phrases can make ordinary review requests unexpectedly hostile, one-sided, or hard to scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this aggressive dissent mode is desired, and give explicit limits on scope, tone, and output format.
+
+Risk: Override-style posture may crowd out neutral audit framing or balanced assistance.
+
+Mitigation: Use it as a review-style modifier and require the agent to keep findings concrete, bounded by the requested artifact, and clear about unverified claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/long1973m/skills/objection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown findings with categorized problem statements, impact notes, verification steps, and an unverified claims section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill; no API calls, shell commands, files, MCP tools, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

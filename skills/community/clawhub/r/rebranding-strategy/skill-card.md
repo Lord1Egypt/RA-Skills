@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents plan and execute rebranding work including domain changes, 301 redirects, migration checklists, and announcement plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan or execute a rebrand, including domain changes, 301 redirects, migration checklists, and launch communications.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, SEO, and web teams use this skill to plan rebrands involving domain migrations, redirect mapping, launch communications, and post-launch monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local project context files may contain confidential brand or product information used to shape rebranding plans. <br>
-Mitigation: Review .claude/project-context.md and .cursor/project-context.md before use on confidential projects and avoid exposing sensitive details in generated outputs. <br>
-Risk: DNS, redirect, Search Console, or purchase-related recommendations can affect site availability, search performance, or costs if applied without review. <br>
-Mitigation: Validate operational changes, redirect mappings, and purchase decisions with the responsible web, SEO, or engineering owner before execution. <br>
+## Use Case:
 
+External users, marketers, founders, SEO practitioners, and developers use this skill to plan rebrands that may affect domains, redirects, product surfaces, social channels, and internal communications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/rebranding-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown plans, checklists, and templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include redirect mapping structure, migration checklist, social announcement plan, and internal communication outline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may read local project-context files when present, and those files could contain information unrelated to brand or product context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep project-context files limited to non-secret brand and product context before invoking the skill.
+
+Risk: Applying rebrand or domain-migration guidance without review could cause incorrect redirects, broken pages, or avoidable search visibility loss.
+
+Mitigation: Have SEO and engineering owners review redirect maps, launch checklists, and monitoring plans before production changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/rebranding-strategy)
+- [ClawHub publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with timelines, checklists, redirect planning, announcement planning, and internal communication notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customized rebrand timelines, migration tasks, redirect-mapping approaches, and channel-specific communication plans.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

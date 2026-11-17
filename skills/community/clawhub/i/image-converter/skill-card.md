@@ -1,42 +1,57 @@
-## Description: <br>
-Converts image files between PNG, JPG, WEBP, SVG, GIF, and BMP formats, including batch conversion and quality-controlled lossy outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts image files between PNG, JPG, WEBP, GIF, BMP, and limited SVG-related workflows, with batch conversion and adjustable quality.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and external users use this skill to ask an agent to convert individual image files or batches of image files between common formats. It is most useful when local image conversion, output quality control, or folder-based conversion is needed without a network service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads image files or folders selected by the user and writes converted outputs. <br>
-Mitigation: Run it only on intended image paths and avoid sensitive or system directories. <br>
-Risk: The skill depends on local Python image-processing packages. <br>
-Mitigation: Install the dependencies in a virtual environment when stronger package isolation is needed. <br>
-Risk: Some format conversions can change image properties, such as losing transparency when converting PNG to JPG. <br>
-Mitigation: Keep originals and inspect converted outputs before replacing source files. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent for local image format conversion guidance, Python code, and batch conversion commands. It is suited to raster conversion workflows where users can review dependency setup and output format tradeoffs.
 
-## Reference(s): <br>
-- [ClawHub Image Converter release page](https://clawhub.ai/tobewin/image-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python or shell snippets, plus converted image files when executed by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local file input and output, supports batch conversion over user-selected folders, and may apply a quality setting for lossy formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: SVG support is documented but may not be fully implemented by the included raster conversion helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a raster image converter unless SVG handling is verified or real CairoSVG-based conversion is added.
+
+Risk: Installing image-processing dependencies into a shared Python environment can affect other projects.
+
+Mitigation: Install and run the dependencies in a virtual environment or another limited Python environment.
+
+Risk: Converting PNG images with transparency to JPG removes the alpha channel.
+
+Mitigation: Keep the original file or choose PNG/WEBP output when transparency must be preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/image-converter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file conversion guidance; output quality may be user-configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "kind": "parameterized-local-placement-example",
+  "exam": "260919-at32f415-learning-board",
+  "module": "crystal",
+  "status": "live-verified",
+  "verificationScope": "仅验证 U6/X1/C20/C21 的左右次序、朝向、保存重开与无碰撞；不包含晶振铜、顶层包地或 DRC 通过",
+  "project": "ceshi",
+  "documentUuid": "2e719e9419653c72",
+  "units": "mil",
+  "coordinateSemantic": {
+    "write": "C20/C21 使用 rendered-bbox-center；X1 只改 rotation，anchor 不变",
+    "readback": "同时保存 footprint anchor、rendered bbox center、bbox 与 pad center"
+  },
+  "source": [
+    "考试说明.pdf p4-p5,p8",
+    "原理图.pdf p1",
+    "物料清单.xlsx",
+    "source-connectivity.json",
+    "/tmp/260919-pcb-current.json",
+    "/tmp/260919-crystal-placement-after-reload.json"
+  ],
+  "electricalOwnership": {
+    "OSC_IN": ["U6.2", "X1.1", "C21.1"],
+    "OSC_OUT": ["U6.3", "X1.3", "C20.1"],
+    "GND": ["X1.2", "X1.4", "C20.2", "C21.2"]
+  },
+  "parameters": {
+    "fixedCore": "U6",
+    "movableGroup": ["X1", "C20", "C21"],
+    "preferredLaterRoute": {
+      "layer": "TOP",
+      "widthMil": 8,
+      "viaCount": 0,
+      "basis": "本例的后续推荐策略；题目要求短直、避免底层，没有单列晶振绝对零过孔禁令"
+    },
+    "placementGoal": "U6 与 X1 的 OSC_IN/OSC_OUT 左右次序一致；C21/C20 信号 pad 朝 X1、GND pad 向外",
+    "assemblyGapMil": {
+      "observedMinimum": 17.437,
+      "role": "本轮搜索观测，不是题目数值阈值"
+    }
+  },
+  "before": {
+    "U6": {"anchor": [1771.654, 984.252], "rotationDeg": 0, "locked": true},
+    "X1": {"anchor": [1750, 793], "bboxCenter": [1754.5, 797.495], "rotationDeg": 180},
+    "C20": {"bboxCenter": [1579.9980000614937, 749.9984999999999], "rotationDeg": 180},
+    "C21": {"bboxCenter": [1940.0019999385063, 820.0015000000001], "rotationDeg": 0},
+    "u6ToX1RatlinesCross": true,
+    "layoutLint": {
+      "componentCount": 69,
+      "allTop": true,
+      "overlaps": 0,
+      "outsideOutline": 0,
+      "tightSpacingAt6Mil": 0,
+      "crossings": 58,
+      "ratsnestMil": 27058.07
+    }
+  },
+  "execution": {
+    "reason": "两只同封装同值负载电容复用彼此原有占位；C20 先到临时空位，避免交换过程中产生重叠。X1 只旋转，不用另一个绝对坐标替代题定 U6。",
+    "commands": [
+      "easyeda pcb modify --id 62653f985ffdd4f1 --center --x 2100 --y 800 --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id f1aeb3112ddb5043 --center --x 1580 --y 750 --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id f1aeb3112ddb5043 --patch '{\"rotation\":180}' --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id 62653f985ffdd4f1 --center --x 1940 --y 820 --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id 62653f985ffdd4f1 --patch '{\"rotation\":0}' --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb modify --id 7078bcba12779f84 --patch '{\"rotation\":0}' --doc 2e719e9419653c72 --project ceshi",
+      "easyeda pcb save --doc 2e719e9419653c72 --project ceshi",
+      "easyeda doc reload 2e719e9419653c72 --project ceshi --json"
+    ],
+    "migrationRule": "primitiveId、绝对坐标与临时空位只属于本次现场。迁移时从新鲜 bbox/pads 计算同样的左右次序和无碰撞交换，不复制数值。"
+  },
+  "afterReload": {
+    "placements": [
+      {
+        "ref": "U6",
+        "primitiveId": "fb1f8c9c14089323",
+        "anchor": [1771.654, 984.252],
+        "bboxCenter": [1771.654, 977.216],
+        "rotationDeg": 0,
+        "layer": 1,
+        "locked": true
+      },
+      {
+        "ref": "X1",
+        "primitiveId": "7078bcba12779f84",
+        "anchor": [1750, 793],
+        "bboxCenter": [1745.5, 788.505],
+        "bbox": [1658.134, 714.918, 1832.866, 862.092],
+        "rotationDeg": 0,
+        "layer": 1,
+        "locked": false
+      },
+      {
+        "ref": "C20",
+        "primitiveId": "62653f985ffdd4f1",
+        "anchor": [1940.002, 820.0015],
+        "bboxCenter": [1940.0039999385062, 820.0029999999999],
+        "rotationDeg": 0,
+        "layer": 1,
+        "locked": false
+      },
+      {
+        "ref": "C21",
+        "primitiveId": "f1aeb3112ddb5043",
+        "anchor": [1579.998, 749.9985],
+        "bboxCenter": [1579.9960000614938, 749.9970000000001],
+        "rotationDeg": 180,
+        "layer": 1,
+        "locked": false
+      }
+    ],
+    "signalPads": {
+      "U6.2": [1732.3, 905.5],
+      "U6.3": [1748, 905.5],
+      "X1.1": [1706.7, 759.5],
+      "X1.3": [1793.3, 826.5],
+      "C21.1": [1607.6, 750],
+      "C20.1": [1912.4, 820]
+    },
+    "groundPads": {
+      "X1.2": [1793.3, 759.5],
+      "X1.4": [1706.7, 826.5],
+      "C21.2": [1552.4, 750],
+      "C20.2": [1967.6, 820]
+    },
+    "u6ToX1RatlinesCross": false,
+    "straightDistancesMil": {
+      "U6.2-X1.1": 148.227,
+      "U6.3-X1.3": 91.066,
+      "X1.1-C21.1": 99.554,
+      "X1.3-C20.1": 119.277,
+      "fourSegmentTotalBefore": 470.37,
+      "fourSegmentTotalAfter": 458.13
+    },
+    "bboxGapMil": {
+      "U6-X1": 17.437,
+      "X1-C21": 18.415,
+      "X1-C20": 47.415
+    },
+    "layoutLint": {
+      "componentCount": 69,
+      "allTop": true,
+      "overlaps": 0,
+      "outsideOutline": 0,
+      "tightSpacingAt6Mil": 0,
+      "crossings": 57,
+      "ratsnestMil": 27045.82
+    },
+    "routing": {
+      "OSC_IN": {"tracks": 0, "arcs": 0, "vias": 0},
+      "OSC_OUT": {"tracks": 0, "arcs": 0, "vias": 0}
+    },
+    "officialDrc": {
+      "total": 216,
+      "counts": {"Connection Error": 216},
+      "oscSignalConnectionErrors": 6,
+      "interpretation": "布局批次没有创建铜，OSC_IN/OSC_OUT 的 U6/X1/C20/C21 六个信号端点仍按预期断开；不能把本样例称为布线完成。"
+    },
+    "pcbCheck": {
+      "trackCount": 15,
+      "viaCount": 0,
+      "silkscreenFlipped": 17,
+      "silkOverPad": 164,
+      "note": "整板丝印仍待收尾；本轮没有用布局成功覆盖丝印问题。"
+    }
+  },
+  "independentVerification": {
+    "status": "completed-with-findings",
+    "method": "独立 subagent 仅收到原题目标、source-connectivity 和前后原始回读；未操作 EDA，也未预设执行结论",
+    "conclusion": "U6 未动且仍锁；X1/C20/C21 保存重开后次序一致，U6 到 X1 的两条直连由相交变为不相交，69件仍无重叠/出板/小于6mil间距",
+    "findings": [
+      "OSC_IN 的 U6.2-X1.1 直距由99.81mil增至148.23mil，不能声称两网都缩短；主要改善是消除交叉并纠正负载电容方向",
+      "所给布局回读没有板框到X1的精确边距，只有0 off-board；不把它写成精确板边净距证明",
+      "OSC_IN/OSC_OUT 仍为0 track、0 arc、0 via，必须后续单独完成铜、顶层、回流和DRC验证"
+    ]
+  },
+  "evidence": {
+    "beforeComponentsSha256": "254ba2716f614af4713208ac7b9f5573f34093651cf5e40d8ff8e98979f2d9dc",
+    "beforeLayoutLintSha256": "c14ec68582edb454d4da0b21224ed449f978233ff4c823cb6a2c7d1faef3109c",
+    "afterComponentsSha256": "383397fb305e683f2ffc8007cd2411b659e6d2c7d5f625b6be2dc9bfba359d49",
+    "afterLayoutLintSha256": "f6f245cbfab6e6cb2f643c0715d0c3d8f14b450f98f062319e5355a02019908f",
+    "afterPcbCheckSha256": "6d4baf66512954099375d6b4cfb12b0784eaf6a999327b4015756d15b556f395",
+    "afterOfficialDrcSha256": "a9b82502206f8c539792df152b62b1b851f2382165bc15293655aed016d83683",
+    "oscInTracksSha256": "06bad9c6b05aec6db086f2e8ee7f8022850bf41f36e04a58b9a753096ca8885f",
+    "oscOutTracksSha256": "51a46a16c13b4b27f92e4910ca6faff744b09a6935bb3a25debab6112b4c733f",
+    "oscInViasSha256": "6c75e3918863747e1c4e249221408de8c9ed2049b2f3381e4a73f19099dbc581",
+    "oscOutViasSha256": "f10f5b9ea98067e3a22e42406ba3617c76f57b7463b8e47ed30f309ad8de94bb"
+  },
+  "notClaimed": [
+    "尚未创建 OSC_IN/OSC_OUT 铜，不能声称短直、TOP、0via 或连通已完成",
+    "尚未完成 X1/C20/C21 的顶层 GND 回流、包地净空和铺铜",
+    "官方 DRC 仍有216个 Connection Error，其中晶振两网六个信号端点仍断开",
+    "整板布局、丝印、双面GND、泪滴和最终DRC仍未完成"
+  ]
+}

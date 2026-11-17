@@ -1,45 +1,57 @@
-## Description: <br>
-Book flights for anniversary celebrations and milestone occasions using flyai CLI results powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search and present bookable flights for anniversary celebrations and milestone occasions using the flyai CLI, with related support for travel options such as hotels, train tickets, attractions, itineraries, visas, insurance, and car rentals.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-booking agents use this skill to collect route, date, and cabin preferences, run flyai flight searches, and present anniversary-ready flight options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install the flyai CLI globally with npm and run external searches. <br>
-Mitigation: Approve installation manually, prefer sandboxed or project-local installation, and pin or review the package version before use. <br>
-Risk: Route, date, and cabin preferences are sent to the flyai/Fliggy provider during searches. <br>
-Mitigation: Use the skill only when sharing travel search details with that provider is acceptable. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search anniversary or milestone flight options, compare routes by recommendation, price, duration, or directness, and return bookable Markdown results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/anniversary-flight) <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, inline booking links, and occasional bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight options must be sourced from flyai CLI output and include detailUrl booking links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs and runs the FlyAI npm CLI globally without a pinned package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before use, prefer installing a pinned version manually, and require approval before installation.
+
+Risk: The skill runs a networked booking CLI with user-derived command arguments.
+
+Mitigation: Run it in a restricted environment with no sensitive credentials exposed and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/anniversary-flight)
+- [Parameter Collection & Output Templates](artifact/references/templates.md)
+- [Scenario Playbooks](artifact/references/playbooks.md)
+- [Failure Recovery](artifact/references/fallbacks.md)
+- [Execution Runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with booking links and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output; flight results must include booking links and brand attribution.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

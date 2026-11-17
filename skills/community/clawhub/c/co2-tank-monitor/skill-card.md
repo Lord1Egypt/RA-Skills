@@ -1,45 +1,60 @@
-## Description: <br>
-IoT monitoring simulation to predict CO2 tank depletion and prevent weekend gas outages in cell culture facilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IoT monitoring simulation to predict CO2 tank depletion and prevent weekend gas outages in cell culture facilities.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Lab staff, facility operators, and automation workflows use this skill to estimate remaining CO2 cylinder life, flag weekend depletion risk, and produce replacement guidance for cell culture incubators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated scheduling examples may create persistent cron jobs or write monitoring logs in local paths. <br>
-Mitigation: Review every proposed cron entry, file edit, and log path before use; keep schedules clearly removable and limited to known sensor files. <br>
-Risk: Incorrect pressure readings, cylinder size, or consumption assumptions can produce misleading depletion predictions. <br>
-Mitigation: Calibrate gauges, verify cylinder labels and units, compare predictions against observed usage, and keep manual replacement procedures available. <br>
-Risk: The skill is not designed for emergency CO2 leak detection or life-safety monitoring. <br>
-Mitigation: Use dedicated gas detection safety systems and alarms for leak detection or emergency response. <br>
+## Use Case:
 
+Lab operations staff, researchers, and developers use this skill to estimate CO2 cylinder depletion, flag weekend outage risk, and produce replacement recommendations for cell culture incubator workflows.
 
-## Reference(s): <br>
-- [Co2 Tank Monitor Skill Page](https://clawhub.ai/AIPOCH-AI/co2-tank-monitor) <br>
-- [Cell Culture CO2 Guidelines](https://www.thermofisher.com/cellculture) <br>
-- [Gas Cylinder Safety](https://www.osha.gov/gascylinders) <br>
-- [CO2 Incubator Best Practices](https://www.sigmaaldrich.com/incubators) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the CLI produces plain-text status reports and status exit codes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI status codes indicate normal, warning, or danger states; quiet mode suppresses report text for automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The security review says the CO2 depletion monitor is unreliable for a safety-adjacent lab workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as an advisory training or prototype tool until the calculation model, units, capacity handling, and input validation are fixed and independently validated.
+
+Risk: Unattended monitoring or paging workflows can create false confidence if sensor readings, failures, or backup alarms are not separately validated.
+
+Mitigation: Pair any scheduled use with separate sensor validation, failure alerts, backup alarms, manual checks, and documented replacement procedures.
+
+Risk: Pressure-based depletion estimates can be wrong when gauge readings, cylinder size, units, or consumption assumptions are inaccurate.
+
+Mitigation: Calibrate gauges, verify cylinder capacity and units, establish consumption rates from observed history, and compare predictions against actual depletion events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/co2-tank-monitor)
+- [Thermo Fisher Cell Culture Resources](https://www.thermofisher.com/cellculture)
+- [OSHA Gas Cylinder Safety](https://www.osha.gov/gascylinders)
+- [Sigma-Aldrich Incubator Resources](https://www.sigmaaldrich.com/incubators)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text reports, Markdown guidance, Python snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return process status codes for automation workflows.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

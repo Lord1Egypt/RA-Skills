@@ -1,45 +1,59 @@
-## Description: <br>
-Builds and packages OpenClaw deployments as Docker images or portable clean and full release bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and deploy OpenClaw as Docker images or portable packages.
 
-## Publisher: <br>
-[zfanmy](https://clawhub.ai/user/zfanmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zfanmy](https://clawhub.ai/user/zfanmy)
 
-## Use Case: <br>
-Developers and operators use this skill to build OpenClaw Docker images or portable packages, deploy clean or full variants to servers, and support backup or migration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The full-package workflow can bundle local OpenClaw tokens, configuration, conversation history, workspace data, and other secrets for transfer. <br>
-Mitigation: Use the clean package unless a full migration is intentional; inspect and redact ~/.openclaw before building or transferring full packages, protect archives in transit, and rotate copied credentials as needed. <br>
-Risk: The builder writes to and removes the configured output directory. <br>
-Mitigation: Verify OUTPUT_DIR points to a safe disposable location before running the builder. <br>
-Risk: The Node/NVM installer fetches and executes an external installation script. <br>
-Mitigation: Review the installer before executing it in the target environment. <br>
+## Use Case:
 
+Developers and operators use this skill to build Docker images and portable deployment packages for OpenClaw, then move clean or full variants to target servers.
 
-## Reference(s): <br>
-- [Openclaw Deploy ClawHub Page](https://clawhub.ai/zfanmy/openclaw-deploy) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact README.md](artifact/README.md) <br>
-- [Artifact Templates README.md](artifact/templates/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration examples, and deployment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for building, exporting, importing, and starting OpenClaw deployment packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: Full portable packages can include private configuration, tokens, and conversation history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the clean package for sharing or deployment, audit package contents before transfer, and protect any full archive as sensitive data.
+
+Risk: The Node.js installer uses a remote curl-to-bash installation path.
+
+Mitigation: Use a verified Node.js installation method where possible and do not run the installer as root.
+
+Risk: The build script recursively deletes the configured output directory before rebuilding packages.
+
+Mitigation: Set OUTPUT_DIR to a deliberate disposable location and review it before running the build script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zfanmy/skills/openclaw-deploy)
+- [Artifact README](artifact/README.md)
+- [Portable template README](artifact/templates/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and deployment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference clean and full deployment variants, Docker commands, portable package paths, and environment variables.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

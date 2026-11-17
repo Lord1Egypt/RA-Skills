@@ -1,43 +1,63 @@
-## Description: <br>
-OpenCode AI helps agents use the opencode CLI/TUI for AI-assisted coding, refactoring, pull request work, and multi-file codebase tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCode AI helps agents delegate complex coding, refactoring, pull request review, and multi-file codebase work to the OpenCode CLI/TUI.
 
-## Publisher: <br>
-[csuwl](https://clawhub.ai/user/csuwl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[csuwl](https://clawhub.ai/user/csuwl)
 
-## Use Case: <br>
-Developers and coding agents use this skill to delegate complex OpenCode sessions for codebase exploration, refactoring, feature work, PR review and fixes, and session-based follow-up tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenCode can operate on local codebases and propose or perform code changes and shell commands. <br>
-Mitigation: Review generated plans, diffs, and commands before applying changes or executing commands. <br>
-Risk: The artifact documents privileged install, symlink, chmod/chown, and removal commands that can alter system locations or files. <br>
-Mitigation: Run privileged or destructive commands only after confirming the exact paths, permissions, and rollback plan. <br>
-Risk: Session sharing, provider authentication, plugins, MCP servers, and remote attachments can expose private code or credentials if misused. <br>
-Mitigation: Avoid sharing private sessions, authenticate only with trusted providers, and use plugins, MCP servers, and remote endpoints only from trusted sources. <br>
+## Use Case:
 
+Developers and coding agents use this skill to run OpenCode for AI-assisted coding, codebase exploration, refactoring, pull request work, and session-based implementation tasks.
 
-## Reference(s): <br>
-- [OpenCode AI on ClawHub](https://clawhub.ai/csuwl/opencode) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the opencode binary and may require provider authentication before delegated coding workflows can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Privileged global installation commands can modify system-owned OpenClaw skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation commands before running them and prefer a user-owned skills directory when OpenClaw supports one.
+
+Risk: A symlink-based development workflow can expose OpenClaw to untrusted or changing skill content.
+
+Mitigation: Avoid symlink installation for untrusted content and review the linked directory before loading the skill.
+
+Risk: Web or server mode can expose OpenCode over the network when bound broadly.
+
+Mitigation: Do not bind the web interface to `0.0.0.0` unless authentication, firewalling, and a trusted network are in place.
+
+Risk: Running OpenCode with attached files or project directories may send code or context to configured AI providers.
+
+Mitigation: Review provider settings and attached context before running OpenCode on sensitive repositories.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/csuwl/skills/opencode)
+- [Publisher Profile](https://clawhub.ai/user/csuwl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include commands that run OpenCode against local projects, attach files for context, continue sessions, or start server and web modes.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

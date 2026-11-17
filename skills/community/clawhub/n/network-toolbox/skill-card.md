@@ -1,42 +1,57 @@
-## Description: <br>
-Network diagnostics and analysis toolkit using Python standard library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network diagnostics and analysis toolkit using Python standard library for checking connectivity, resolving DNS, inspecting HTTP responses, scanning ports, and looking up WHOIS and SSL information.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and operators use this skill to run user-directed network diagnostics such as connectivity checks, DNS lookups, HTTP header inspection, port scans, SSL certificate inspection, WHOIS lookups, and public IP checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can probe remote systems through connectivity checks and port scans. <br>
-Mitigation: Use it only on hosts and networks you own or are explicitly authorized to test. <br>
-Risk: Public IP lookup contacts external IP-discovery services and may reveal the caller's source IP. <br>
-Mitigation: Avoid public IP checks in sensitive environments or route them through approved network controls. <br>
-Risk: HTTP and SSL inspection may disable certificate validation, so results can be misleading for trust decisions. <br>
-Mitigation: Do not rely on HTTPS or SSL output for security assurance unless certificate validation is fixed or the limitation is clearly accepted. <br>
+## Use Case:
 
+Developers, operators, and network engineers use this skill to run basic network diagnostics on authorized hosts and networks without installing external Python packages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/network-toolbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with optional JSON output from some scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Python standard-library scripts produce command output for the requested diagnostic task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: HTTPS and SSL checks can produce misleading security conclusions because certificate validation is disabled in important paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat TLS-related output as advisory and confirm security-sensitive results with a validating client or approved security tool before relying on them.
+
+Risk: Port scanning and diagnostic requests can generate noticeable network traffic.
+
+Mitigation: Run the skill only against hosts and networks where testing is authorized, and keep scan ranges and timeouts scoped to the diagnostic need.
+
+Risk: The public IP feature contacts external IP lookup services.
+
+Mitigation: Avoid using the public IP lookup on sensitive networks unless those outbound services are approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/skills/network-toolbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON command output with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network requests may contact target hosts, WHOIS servers, and public IP lookup services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

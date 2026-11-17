@@ -1,48 +1,63 @@
-## Description: <br>
-NewsToday aggregates, deduplicates, and summarizes current news into bilingual morning briefings, evening recaps, RSS-based digests, topic tracking, and optional breaking-news push alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NewsToday aggregates, deduplicates, and summarizes important news into readable bilingual briefings with optional scheduled push alerts and topic preferences.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and agents use NewsToday to generate concise, source-attributed news briefings, track topics, and manage optional scheduled news notifications across supported messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Current-news fetching and broad trigger phrases can produce incomplete, stale, or misleading briefings when sources disagree or breaking events are still developing. <br>
-Mitigation: Review source attribution, cross-check important stories before acting, and treat breaking-news summaries as provisional. <br>
-Risk: Optional push delivery through Telegram, Feishu, Slack, or Discord can expose user IDs, preferred topics, and alert content to third-party messaging channels. <br>
-Mitigation: Use push mode only with channels and user IDs you control, and avoid sensitive tracked topics when third-party retention is a concern. <br>
-Risk: Scheduled morning, evening, and breaking-news notifications can continue after they are no longer wanted. <br>
-Mitigation: Use the provided push status and off commands to audit and disable scheduled notifications. <br>
+## Use Case:
 
+External users use NewsToday to request on-demand daily news, topical tracking, and bilingual morning or evening briefings. Registered users can manage topic preferences and optional scheduled push alerts across supported messaging channels.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiajiaoy/newstoady) <br>
-- [Publisher Profile](https://clawhub.ai/user/jiajiaoy) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Sina News RSS](https://rss.sina.com.cn/news/china/focus15.xml) <br>
-- [The Paper RSS](https://www.thepaper.cn/rss_promotion.jsp) <br>
-- [36Kr RSS](https://36kr.com/feed) <br>
-- [BBC Chinese RSS](https://feeds.bbci.co.uk/zhongwen/simp/rss.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text prompts with optional shell commands and scheduler configuration records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English output; scheduled push mode can emit OpenClaw cron add/remove records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence, _meta.json, package.json) <br>
+Risk: The skill can query public web and RSS sources, so briefings may reflect unavailable, stale, or inconsistent third-party news feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source attribution in generated briefings and replace or disable RSS feeds that are unreliable or only available over HTTP.
+
+Risk: When push is explicitly enabled, the skill creates recurring scheduled jobs that message the selected channel.
+
+Mitigation: Enable push only for intended recipients, check status after setup, and use the provided off command when scheduled briefings are no longer wanted.
+
+Risk: Registered users store local topic preferences and delivery settings.
+
+Mitigation: Store only required preferences, use sanitized user identifiers, and remove the local profile when personalization is no longer needed.
+
+## Reference(s):
+
+- [NewsToday ClawHub skill page](https://clawhub.ai/jiajiaoy/skills/newstoady)
+- [Publisher profile](https://clawhub.ai/user/jiajiaoy)
+- [OpenClaw](https://openclaw.ai)
+- [Sina News RSS](https://rss.sina.com.cn/news/china/focus15.xml)
+- [The Paper RSS](https://www.thepaper.cn/rss_promotion.jsp)
+- [36Kr RSS](https://36kr.com/feed)
+- [BBC Chinese RSS](https://feeds.bbci.co.uk/zhongwen/simp/rss.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and OpenClaw scheduling directives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese or English output; optional scheduled jobs can deliver briefings to Telegram, Feishu, Slack, or Discord.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

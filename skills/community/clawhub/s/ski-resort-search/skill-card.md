@@ -1,40 +1,53 @@
-## Description: <br>
-零配置即装即用，查询全球15+滑雪场含落差雪质票价，覆盖日本北海道欧洲阿尔卑斯北美中国东北，支持按国家和难度筛选对比。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球15+热门滑雪场查询，覆盖日本北海道、欧洲阿尔卑斯、北美、中国东北四大区域，含落差、雪质、票价、雪季和交通信息，支持多雪场对比，零配置即装即用。室内滑雪场查询，暑期滑雪体验推荐
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search, inspect, and compare ski resorts by country, difficulty, budget, resort details, ticket price, season, transport, and snow characteristics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resort prices, season dates, snow conditions, and opening status may be outdated because the skill uses static local data. <br>
-Mitigation: Verify current prices, conditions, operating dates, and travel logistics with official resort sources before booking or traveling. <br>
-Risk: Coverage is limited to selected popular resorts and excludes some regions listed in the artifact limitations. <br>
-Mitigation: Treat recommendations as a curated reference and supplement them with current official sources for unsupported destinations. <br>
+## Use Case:
 
+External users use this Chinese-language skill to search, filter, inspect, and compare a fixed offline set of popular ski resorts by region, difficulty, price, season, snow quality, and transport details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/ski-resort-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local ski resort reference data; no live resort conditions, booking, or external requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact VERSION) <br>
+Risk: The skill uses a fixed offline resort dataset, so resort prices, seasons, transport times, snow conditions, and open status may be outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning guidance and verify current snow, lift, travel, and pricing details with the resort or booking provider before acting.
+
+Risk: The skill does not support ticket purchase, coach booking, real-time availability, or comprehensive regional coverage.
+
+Mitigation: Use it for initial comparison only, then complete booking and availability checks through authoritative travel or resort channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/ski-resort-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown-style text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline fixed resort data; no live snow, booking, pricing, or availability lookup.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

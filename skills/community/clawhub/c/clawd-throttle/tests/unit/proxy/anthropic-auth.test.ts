@@ -56,9 +56,9 @@ describe('buildAnthropicAuthHeaders', () => {
 
   describe('auto mode', () => {
     it('detects sk-ant- prefix as API key', () => {
-      const config = makeConfig({ apiKey: 'sk-ant-api03-abc123def456', authType: 'auto' });
+      const config = makeConfig({ apiKey: 'REDACTED-SECRET', authType: 'auto' });
       const headers = buildAnthropicAuthHeaders(config);
-      expect(headers).toEqual({ 'x-api-key': 'sk-ant-api03-abc123def456' });
+      expect(headers).toEqual({ 'x-api-key': 'REDACTED-SECRET' });
     });
 
     it('detects non-sk-ant token as Bearer', () => {

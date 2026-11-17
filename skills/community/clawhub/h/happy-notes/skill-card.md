@@ -1,44 +1,62 @@
-## Description: <br>
-happy-notes helps agents manage iflow knowledge bases, import files and URLs, search stored or web content, generate reports and media, track generation status, and share notebooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Happy Notes lets agents manage iflow knowledge bases, import files, URLs, and text, search web or academic sources, and generate reports, presentations, podcasts, mind maps, and videos.
 
-## Publisher: <br>
-[iflow-ai-skill](https://clawhub.ai/user/iflow-ai-skill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflow-ai-skill](https://clawhub.ai/user/iflow-ai-skill)
 
-## Use Case: <br>
-External users and developers use this skill with AI agents to organize notes and research in iflow, add local or web sources to notebooks, generate reports, presentations, podcasts, mind maps, or videos, and share read-only notebook links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store, share, generate from, and delete knowledge-base content using the user's iflow API key. <br>
-Mitigation: Install only from a trusted publisher, prefer an environment variable for the API key, and require explicit confirmation before share-link creation, delete actions, bulk imports, or broad generation requests. <br>
-Risk: Broad triggers and automated workflows may act on more notebook content than the user intended. <br>
-Mitigation: Have the agent confirm the target notebook, source files or URLs, and output type before running bulk imports, use-all-files generation, or destructive file-management actions. <br>
+## Use Case:
 
+External users and developers use this skill to organize iflow knowledge bases, save notes or source material, retrieve knowledge-base content, and create downstream content such as reports, presentations, podcasts, mind maps, and videos.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iflow-ai-skill/happy-notes) <br>
-- [iflow API key management](https://iflow.cn/?open=api-key) <br>
-- [API reference](references/api.md) <br>
-- [Pipeline reference](references/pipelines.md) <br>
-- [Knowledge base matching reference](references/kb-matching.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON pipeline outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided IFLOW_API_KEY. Pipeline actions may create, import into, generate from, share, rename, or delete notebook content, and some generation tasks complete asynchronously.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Selected documents, pasted notes, URLs, searches, and generated outputs may be sent to iflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data transfer is acceptable, and avoid submitting sensitive content unless the iflow account and workspace are approved for it.
+
+Risk: Broad triggers and full-knowledge-base defaults could expose or alter more user data than intended.
+
+Mitigation: Verify the target knowledge base and selected files before import, delete, share, search, or generation actions.
+
+Risk: Credential or endpoint misconfiguration could send requests to an untrusted service.
+
+Mitigation: Use IFLOW_API_KEY or a chmod 600 config file for the API key, and avoid IFLOW_BASE_URL unless the endpoint is fully trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iflow-ai-skill/skills/happy-notes)
+- [Publisher profile](https://clawhub.ai/user/iflow-ai-skill)
+- [iflow](https://iflow.cn)
+- [API reference](references/api.md)
+- [Pipeline reference](references/pipelines.md)
+- [Knowledge-base matching reference](references/kb-matching.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status summaries; generated iflow artifacts may include PDF, DOCX, Markdown, PPT, XMIND, podcast audio, or video.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses asynchronous generation flows for longer report, presentation, mind-map, podcast, and video outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Provides e-commerce product research, market competition analysis, and content generation support for platforms such as Taobao, Pinduoduo, Douyin, Xiaohongshu, and 1688. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E-commerce Skills provides OpenClaw workflows for ecommerce product research, market analysis, and content generation, with current Taobao/Tmall support and planned adapters for Pinduoduo, Douyin, Xiaohongshu, and 1688.
 
-## Publisher: <br>
-[chenjiahui11](https://clawhub.ai/user/chenjiahui11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjiahui11](https://clawhub.ai/user/chenjiahui11)
 
-## Use Case: <br>
-E-commerce operators, merchants, and developers use this skill to research product categories, inspect market competition, and produce product-selection guidance from shopping-platform data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries may be sent to a catalog service and results may include merchant links. <br>
-Mitigation: Review query content before use and verify prices, availability, merchant terms, and checkout details independently before making purchasing decisions. <br>
-Risk: The skill is described as a read-only shopping and product-search helper and should not handle purchase completion or payment data. <br>
-Mitigation: Keep payment, checkout, and credential-handling steps outside the skill workflow. <br>
+## Use Case:
 
+Developers, ecommerce merchants, and operators use this skill to research product categories, analyze market competition, and produce selection recommendations from ecommerce keyword queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjiahui11/ecommerce-openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research reports and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize price ranges, sales distribution, competition analysis, and product-selection suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-03-19) <br>
+Risk: Published install guidance uses an unpinned placeholder npx installer that could fetch unreviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source before running it, replace the placeholder owner with the verified publisher, pin the package version or commit, and avoid elevated privileges.
+
+Risk: Ecommerce research workflows may require Taobao API credentials.
+
+Mitigation: Provide only credentials intended for this workflow and keep them in environment variables or a secret store rather than hard-coding them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjiahui11/skills/ecommerce-openclaw-skills)
+- [Publisher profile](https://clawhub.ai/user/chenjiahui11)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown market research report with setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Taobao Open Platform credentials supplied through environment variables or a secret store.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG, released 2026-03-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

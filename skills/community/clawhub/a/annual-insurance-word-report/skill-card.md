@@ -1,46 +1,65 @@
-## Description: <br>
-Generates annual insurance welfare Word reports from the gh_hg_bscyearall_dues MySQL table by extracting a target year, reading column comments, mapping business fields into a bundled template, and writing a .docx report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates annual insurance welfare Word reports from the `gh_hg_bscyearall_dues` MySQL table using a bundled Word template.
 
-## Publisher: <br>
-[lin-shiwu](https://clawhub.ai/user/lin-shiwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lin-shiwu](https://clawhub.ai/user/lin-shiwu)
 
-## Use Case: <br>
-Developers or operations staff use this skill to generate annual insurance welfare .docx reports from a configured MySQL reporting table and a fixed Word template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a MySQL reporting table using provided database credentials. <br>
-Mitigation: Use a dedicated read-only, least-privilege database account and avoid production credentials. <br>
-Risk: The mysql CLI fallback may expose credentials through local process handling. <br>
-Mitigation: Prefer the PyMySQL execution path and provide the CLI fallback only in controlled environments. <br>
-Risk: The generated .docx may overwrite an existing file at the selected output path. <br>
-Mitigation: Choose an output path where replacement is acceptable or write to a new filename. <br>
+## Use Case:
 
+Developers and business operations staff use this skill to generate yearly insurance welfare `.docx` reports from a configured MySQL database and template.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lin-shiwu/annual-insurance-word-report) <br>
-- [Annual insurance configuration](references/annual-insurance-config.json) <br>
-- [Placeholder enums](references/placeholder-enums.json) <br>
-- [Schema comment query](references/schema-comment-query.sql) <br>
-- [Word template mapping](references/word-template-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [Word .docx report with command-line status or error output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to outputs/annual-insurance-report-<year>.docx by default unless an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles live database credentials and ships unsafe default root credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with a dedicated read-only MySQL account and replace the default credentials before installation or execution.
+
+Risk: The security guidance identifies under-scoped SQL and executable-invocation behavior around MySQL access.
+
+Mitigation: Validate year, database, and table inputs, and remove or tightly constrain the `mysql` CLI fallback.
+
+Risk: The configured output path may overwrite an existing file.
+
+Mitigation: Confirm the output location before running and restrict writes to an expected report directory.
+
+Risk: The security guidance recommends dependency pinning for isolated installation.
+
+Mitigation: Install in an isolated environment and pin dependencies before using the skill with production data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lin-shiwu/skills/annual-insurance-word-report)
+- [Annual insurance configuration](artifact/references/annual-insurance-config.json)
+- [Placeholder enums](artifact/references/placeholder-enums.json)
+- [Schema comment query](artifact/references/schema-comment-query.sql)
+- [Word template mapping](artifact/references/word-template-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Configuration]
+
+**Output Format:** [Word .docx report with a JSON run summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes to `outputs/annual-insurance-report-<year>.docx` by default unless an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

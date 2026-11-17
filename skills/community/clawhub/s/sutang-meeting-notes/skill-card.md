@@ -1,40 +1,54 @@
-## Description: <br>
-Formats meeting recordings or text into structured meeting notes, extracting decisions, action items, owners, risks, and follow-up details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+5秒钟把会议录音/文字转成标准纪要，自动提取决议事项、待办任务和负责人
 
-## Publisher: <br>
-[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux)
 
-## Use Case: <br>
-Employees and teams use this skill to convert meeting transcripts, chat or email notes, and agenda notes into structured Markdown minutes with decisions, action items, owners, deadlines, risks, objections, and follow-up items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting content may contain confidential, personal, or otherwise sensitive information. <br>
-Mitigation: Confirm the content is allowed to be submitted, redact unnecessary sensitive details, and disable or clear agent memory when participant or company details should not be retained. <br>
-Risk: Generated minutes may omit or misstate decisions, owners, deadlines, or objections. <br>
-Mitigation: Review the generated notes before sharing them and confirm action owners and deadlines against the original meeting record. <br>
+## Use Case:
 
+Employees and workplace teams use this skill to turn meeting transcripts, chat records, agendas, or notes into structured meeting minutes with decisions, action items, owners, deadlines, risks, and follow-up topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/sutang-meeting-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting-minutes template with tables and task lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or external tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may process confidential meeting transcripts and workplace details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where sharing meeting content with the agent is approved, and avoid sensitive transcripts unless retention and deletion controls are acceptable.
+
+Risk: The skill asks the agent to remember user roles, departments, attendee names, terminology, and meeting styles without explicit retention boundaries.
+
+Mitigation: Prefer deployments with memory disabled or with clear user consent, retention limits, and deletion controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/skills/sutang-meeting-notes)
+- [Publisher profile](https://clawhub.ai/user/miromiraclemiro-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured Markdown meeting minutes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes meeting metadata, discussion points, decisions, task checklists, owners, deadlines, risks, objections, and follow-up items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-MinerU Fast Extract converts PDFs, images, Word documents, and PowerPoint presentations into Markdown using the mineru-open-api CLI, with OCR, table recognition, and formula extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MinerU Fast Extract helps agents run mineru-open-api to convert PDFs, images, DOCX, PPTX, and document URLs into Markdown with OCR, table extraction, and formula extraction.
 
-## Publisher: <br>
-[mineru-extract](https://clawhub.ai/user/mineru-extract) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mineru-extract](https://clawhub.ai/user/mineru-extract)
 
-## Use Case: <br>
-Developers, researchers, students, and document-heavy teams use this skill to extract Markdown from local documents or remote document URLs without configuring API keys or accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send local documents or remote document URLs to an external MinerU API for processing. <br>
-Mitigation: Use it only with documents and URLs approved for external processing, avoid confidential files or token-bearing URLs, and clean up generated output directories when the extracted content should not persist. <br>
+## Use Case:
 
+Developers, researchers, students, and agent users use this skill to extract text, tables, formulas, and images from local or remote documents into Markdown without setting up API credentials.
 
-## Reference(s): <br>
-- [MinerU Fast Extract on ClawHub](https://clawhub.ai/mineru-extract/mineru-fast-extract) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [Source link from skill metadata](https://github.com/MinerU-Extract/mineru-fast-extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown output to stdout or saved files, with extracted images saved alongside Markdown when an output path is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tables are rendered as Markdown tables, formulas as LaTeX, and progress or status messages are sent to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: Submitted documents, remote URLs, and extracted outputs may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when comfortable with the MinerU/OpenDataLab CLI handling the file, and specify an explicit output directory for sensitive documents.
+
+Risk: The skill installs and runs an unpinned third-party CLI.
+
+Mitigation: Prefer a pinned or sandboxed installation and review the CLI before using it in sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mineru-extract/skills/mineru-fast-extract)
+- [MinerU homepage](https://mineru.net)
+- [OpenClaw source metadata](https://github.com/MinerU-Extract/mineru-fast-extract)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and shell command guidance; extraction results may be written to stdout or Markdown files with extracted images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can target local files or document URLs, with optional output directory, language, page range, and timeout settings.]
+
+## Skill Version(s):
+
+0.2.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

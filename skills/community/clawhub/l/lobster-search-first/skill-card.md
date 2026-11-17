@@ -1,39 +1,52 @@
-## Description: <br>
-Research-before-coding workflow. Search for existing tools, libraries, and patterns before writing custom code. Invokes the researcher agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research-before-coding workflow. Search for existing tools, libraries, and patterns before writing custom code. Invokes the researcher agent.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill before implementing features, adding dependencies, or creating utilities to compare existing packages, MCP servers, skills, and reference implementations before deciding whether to adopt, extend, compose, or build.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to inspect user-level Claude configuration and installed skills while researching available tools.
+
+Mitigation: Install and use it only when that local configuration review is acceptable for the workspace.
+
+Risk: The workflow can lead to package installation or MCP configuration decisions based on research results.
+
+Mitigation: Require explicit approval before installs or MCP changes, review package source and publisher, pin versions, and prefer sandboxed installs with lifecycle scripts disabled where possible.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill before starting new features, integrations, utilities, or abstractions to compare existing libraries, MCP servers, skills, and reference implementations before deciding whether to adopt, extend, compose, or build. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed packages, MCP servers, or configuration changes could introduce unsuitable dependencies or operational changes. <br>
-Mitigation: Review each recommendation, license, maintenance signal, and proposed configuration change before accepting it. <br>
-Risk: Research prompts may expose secrets or sensitive private project data. <br>
-Mitigation: Avoid putting secrets or sensitive private data into research prompts or external searches. <br>
+**Output Format:** [Markdown with inline code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt a researcher agent and propose package, MCP, or configuration changes for human review.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

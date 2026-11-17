@@ -1,44 +1,55 @@
-## Description: <br>
-Boxed Fetch is a WebAssembly-based sandboxed web fetcher for retrieving URL content and extracting readable text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boxed Fetch is a WebAssembly-based sandboxed web fetcher that retrieves HTTPS URL content and extracts readable text.
 
-## Publisher: <br>
-[guyoung](https://clawhub.ai/user/guyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyoung](https://clawhub.ai/user/guyoung)
 
-## Use Case: <br>
-Developers and agent users use this skill to fetch HTTPS webpage content, extract readable text from HTML, and make sandboxed HTTP requests through the openclaw-wasm-sandbox plugin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads a WASM component from a mutable GitHub URL before use. <br>
-Mitigation: Install only when the WASM component source and the openclaw-wasm-sandbox plugin are trusted. <br>
-Risk: Sandboxed fetching can contact unintended destinations if outbound hosts are too broad. <br>
-Mitigation: Keep allowedOutboundHosts limited to the exact HTTPS host needed for the request. <br>
-Risk: Custom headers may expose secrets to the requested destination. <br>
-Mitigation: Do not pass secrets in custom headers unless the destination is trusted and authentication is intentional. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch HTTPS web pages, extract readable text from HTML, and run constrained HTTP requests through the openclaw-wasm-sandbox plugin.
 
-## Reference(s): <br>
-- [Boxed Fetch on ClawHub](https://clawhub.ai/guyoung/boxed-fetch) <br>
-- [Usage Guide](references/usage.md) <br>
-- [WASM Component Download](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/boxed-fetch/files/boxed-fetch-component.wasm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and sandbox command examples; fetched content is returned as text or formatted JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit HTTPS outbound host allowlists and a downloaded WASM component.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill instructs users to download and run a mutable remote WASM binary without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer a release that bundles the reviewed WASM file or pins it to an immutable artifact with a published SHA-256 or signature.
+
+Risk: The skill can make outbound web requests to hosts allowed at runtime.
+
+Mitigation: Keep allowedOutboundHosts limited to the exact destination needed for the fetch.
+
+## Reference(s):
+
+- [Usage Guide](references/usage.md)
+- [Boxed Fetch on ClawHub](https://clawhub.ai/guyoung/skills/boxed-fetch)
+- [WASM Component Download](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/boxed-fetch/files/boxed-fetch-component.wasm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Fetched web content, readable text, or pretty-printed JSON returned from WASM sandbox runs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires openclaw-wasm-sandbox, an HTTPS target URL, and explicit allowedOutboundHosts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

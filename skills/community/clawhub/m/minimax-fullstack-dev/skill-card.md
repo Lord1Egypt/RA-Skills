@@ -1,39 +1,58 @@
-## Description: <br>
-Full-stack backend architecture and frontend-backend integration guide for building full-stack apps, REST APIs, backend services, CRUD apps, real-time apps, and production-ready frontend-backend integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-stack backend architecture and frontend-backend integration guidance for building APIs, service layers, authentication flows, real-time features, and production hardening.
 
-## Publisher: <br>
-[daidai8910g](https://clawhub.ai/user/daidai8910g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daidai8910g](https://clawhub.ai/user/daidai8910g)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, scaffold, implement, test, and hand off full-stack applications or backend services with consistent architecture, configuration, error handling, authentication, API client, real-time, and production-hardening practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a markdown-only development guide, but generated application code can still introduce unsafe authentication, file upload, real-time subscription, or production-hardening behavior if copied without review. <br>
-Mitigation: Review generated auth, file upload, and production-hardening code before production use; for real-time or SSE examples, derive subscription identity from the authenticated session or token on the server rather than a userId query parameter. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement full-stack applications, backend services, API integration, authentication, real-time features, and production hardening with structured checklists and patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daidai8910g/minimax-fullstack-dev) <br>
-- [The Twelve-Factor App](https://12factor.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, code examples, shell commands, and handoff summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce framework-specific application code, configuration files, tests, API clients, and run commands depending on the user's requested stack.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: Command examples may rely on unpinned CLI tools or unlocked project dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin CLI tools or run examples through locked project dependencies before use.
+
+Risk: Database migration examples can affect the wrong target if environment configuration is incorrect.
+
+Mitigation: Confirm database targets and review migration output before applying migrations.
+
+Risk: File-upload examples are development guidance rather than a hardened production template.
+
+Mitigation: Add production controls such as validation, size limits, access checks, and storage policy review before deployment.
+
+## Reference(s):
+
+- [MiniMax Fullstack Dev on ClawHub](https://clawhub.ai/daidai8910g/skills/minimax-fullstack-dev)
+- [The Twelve-Factor App](https://12factor.net)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, code snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Framework-agnostic full-stack development patterns and handoff guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

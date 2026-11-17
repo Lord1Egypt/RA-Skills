@@ -1,42 +1,55 @@
-## Description: <br>
-Use this skill when working with Prisma ORM in Node.js/TypeScript projects; it covers schema design, migrations, query optimization, relations, transactions, and best practices for production-ready database interactions with Prisma 5+. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when working with Prisma ORM in Node.js/TypeScript projects, covering schema design, migrations, query optimization, relations, transactions, and production-ready database interactions with Prisma 5+.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Developers and engineers use this skill to design Prisma schemas, plan migrations, write relation-heavy queries, handle transactions and errors, and tune Prisma usage in Node.js and TypeScript applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prisma reset, raw delete, and bulk delete examples can erase data if run against a production or shared database. <br>
-Mitigation: Confirm DATABASE_URL points to a disposable local, development, or isolated test database before running commands; require backups and explicit approval before using destructive examples on shared data. <br>
+## Use Case:
 
+Developers and engineers use this skill for Prisma ORM schema design, migration workflows, production query patterns, transactions, error handling, and testing practices in Node.js and TypeScript projects.
 
-## Reference(s): <br>
-- [Prisma Query Optimization Patterns](references/query-optimization.md) <br>
-- [Prisma Schema Design Reference](references/schema-design.md) <br>
-- [Prisma Testing & Migrations Reference](references/testing-migrations.md) <br>
-- [ClawHub release page](https://clawhub.ai/goldath/prisma-patterns) <br>
-- [Publisher profile](https://clawhub.ai/user/goldath) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Prisma schema, TypeScript, SQL, JSON, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database commands and examples that should be reviewed against the active DATABASE_URL before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Database reset and cleanup examples can cause serious data loss if copied into the wrong environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt migration and testing snippets before use, add explicit warnings around reset commands, and require fail-closed checks that confirm test cleanup targets only a disposable test database.
+
+Risk: Package execution snippets can run locally resolved or downloaded Prisma tooling in an uncontrolled environment.
+
+Mitigation: Use locked local Prisma dependencies, package scripts, or npx --no-install when adapting command examples.
+
+## Reference(s):
+
+- [Prisma Query Optimization Patterns](references/query-optimization.md)
+- [Prisma Schema Design Reference](references/schema-design.md)
+- [Prisma Testing & Migrations Reference](references/testing-migrations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Prisma schema, TypeScript, SQL, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides reusable ORM patterns and command examples that should be reviewed and adapted before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

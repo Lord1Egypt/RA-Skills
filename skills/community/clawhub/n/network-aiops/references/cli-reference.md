@@ -44,8 +44,9 @@ Additional read getters are exposed as MCP tools (no dedicated CLI subcommand):
 ```bash
 network-aiops config backup [-t <device>] [-o <file>]      # running config (save with -o)
 network-aiops config diff <file> [-t <device>] [--replace] # DRY-RUN: show the diff only
-network-aiops config merge <file> [-t <device>] [--dry-run]    # commit; double confirm
-network-aiops config replace <file> [-t <device>] [--dry-run]  # HIGH RISK; double confirm
+network-aiops config merge <file> [-t <device>] [--dry-run] [--revert-in N]   # commit; double confirm
+network-aiops config replace <file> [-t <device>] [--dry-run] [--revert-in N] # HIGH RISK; double confirm
+network-aiops config confirm [-t <device>] [--dry-run]         # confirm a pending commit
 network-aiops config rollback [-t <device>] [--dry-run]        # revert last commit; double confirm
 ```
 
@@ -53,6 +54,14 @@ network-aiops config rollback [-t <device>] [--dry-run]        # revert last com
   nothing is committed. `--replace` diffs as a full-config replacement.
 - `--dry-run` on `merge` / `replace` prints the same diff without committing.
 - `merge` / `replace` capture the pre-change running config for the undo store.
+- `merge` / `replace` commit under a **device-side revert timer**
+  (`--revert-in`, default 300s): the device undoes the change by itself unless
+  `config confirm` follows. Use it for anything that could sever your own
+  management path — it is the only guard that works when you cannot reach the
+  device any more. `--revert-in 0` disables it (undo-only).
+- After committing, re-connect in a **new** session, verify, then
+  `network-aiops config confirm`. If a driver cannot arm a timer the command
+  prints a red `NO COMMIT-CONFIRM SAFETY NET` warning.
 
 ## NetBox (optional source-of-truth)
 

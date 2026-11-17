@@ -1,42 +1,53 @@
-## Description: <br>
-Python package creation and PyPI distribution via pyproject.toml and entry points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python package creation and PyPI distribution via pyproject.toml and entry points
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to create distributable Python libraries and CLI tools, configure pyproject.toml and entry points, and build or publish packages with uv and PyPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing commands or CI workflows could upload unintended artifacts or publish to the wrong registry. <br>
-Mitigation: Confirm the target registry, inspect built artifacts, and use TestPyPI first when possible before publishing. <br>
-Risk: PyPI or release credentials used in copied workflows could be broader than necessary. <br>
-Mitigation: Protect release permissions and scope PyPI tokens narrowly before adopting any workflow. <br>
+## Use Case:
 
+Developers use this skill to create Python libraries and command-line tools, configure projects with pyproject.toml and entry points, manage dependencies with uv, and prepare packages for PyPI distribution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-parseltongue-python-packaging) <br>
-- [OpenClaw Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue) <br>
-- [TestPyPI](https://test.pypi.org/legacy/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline bash, TOML, YAML, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes examples for pyproject.toml, uv workflows, entry points, and GitHub Actions publishing pipelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Publishing steps can make uploaded artifacts public.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package contents and destination before running publishing steps.
+
+Risk: The recursive cleanup command removes the build and distribution directories.
+
+Mitigation: Confirm the working directory and intended directories before running the cleanup command.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-parseltongue-python-packaging)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python, TOML, YAML, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

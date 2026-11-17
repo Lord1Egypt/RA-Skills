@@ -1,39 +1,56 @@
-## Description: <br>
-Manages and uses a local ssh-agentd service for systemd persistence, API calls, connectivity checks, and session or metrics troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and uses a local ssh-agentd setup through systemd service controls, local API calls, and connectivity checks.
 
-## Publisher: <br>
-[offlinecat-dev](https://clawhub.ai/user/offlinecat-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[offlinecat-dev](https://clawhub.ai/user/offlinecat-dev)
 
-## Use Case: <br>
-Developers and operators use this skill to manage a known local ssh-agentd deployment, call its localhost API, and troubleshoot service state, sessions, metrics, and SSH connectivity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent ssh-agentd service control and remote-command execution can affect local and remote systems if used in the wrong environment. <br>
-Mitigation: Install only for the intended local ssh-agentd setup and require explicit approval before enabling autostart, restarting or stopping the service, or calling /run. <br>
-Risk: Incorrect daemon, token, host, or localhost binding configuration can expose or break SSH automation. <br>
-Mitigation: Verify the daemon path, systemd unit, hosts.yaml, token handling, localhost binding, service status, health endpoint, and sessions before operational use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/offlinecat-dev/ssh-agentd-control) <br>
+## Use Case:
 
+Developers and operators use this skill to administer a local ssh-agentd service, check systemd state, call health/session/metrics endpoints, and run configured remote commands through the service API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for a specific local ssh-agentd setup and may require elevated privileges or a bearer token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can enable, restart, stop, and inspect a privileged systemd service.
+
+Mitigation: Require explicit user approval before running service-control commands and verify the service status, health endpoint, and session state after configuration changes.
+
+Risk: The skill includes examples for invoking remote commands through the ssh-agentd /run API.
+
+Mitigation: Confirm the target host, command, timeout, and authorization token before invoking mutating or remote-execution API calls.
+
+Risk: Exposing the API beyond localhost or mishandling SSH_AGENTD_TOKEN could allow unauthorized control.
+
+Mitigation: Keep the API bound to localhost unless intentionally changed, protect SSH_AGENTD_TOKEN, and do not store real tokens, passwords, or hosts.yaml in the skill repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/offlinecat-dev/skills/ssh-agentd-control)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash commands and a shell helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses localhost API calls by default and accepts SSH_AGENTD_URL and SSH_AGENTD_TOKEN environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

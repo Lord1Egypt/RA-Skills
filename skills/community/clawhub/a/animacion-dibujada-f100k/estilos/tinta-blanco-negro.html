@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tinta blanco y negro</title>
+<style>
+  html,body{margin:0;background:#000;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const TITULO = 'todo lo que aprendí antes de vender';   // se tipea en el recuadro de arriba (máx. ~45 letras)
+const TINTA = '#0d0c0b';     // color de la tinta (fondo y libreros)
+const PAPEL_C = '#f3efe4';   // color del papel (piso, lomos y recuadro)
+const DUR = 6;
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30;
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+WOBBLE = 1.3;
+const HZ = 930, VX = W / 2;                 // horizonte y punto de fuga
+const T_TIPEA = [.8, 3.4];
+// el pasillo avanza y frena suave en el último 1,2 s: el cuadro final queda quieto
+const FRENO = 1.2, avance = t => { const t0 = DUR - FRENO; if (t <= t0) return t; const u = Math.min(t - t0, FRENO); return t0 + u - u * u / (2 * FRENO); };
+
+// Un librero a cada lado: filas de estantes que vienen hacia la cámara.
+// profundidad d en 0..1 (0 = al fondo, 1 = pegado a la cámara); avanza con el tiempo.
+function fila(d) { const k = d * d; return { y: lerp(HZ - 40, H + 900, k), esc: lerp(.05, 3.2, k) }; }
+
+function pasillo(t) {
+  // piso: papel claro con rayas de tinta hacia el punto de fuga
+  ctx.fillStyle = PAPEL_C; ctx.beginPath(); ctx.moveTo(VX - 60, HZ); ctx.lineTo(VX + 60, HZ); ctx.lineTo(W + 500, H); ctx.lineTo(-500, H); ctx.closePath(); ctx.fill();
+  for (let i = 0; i < 14; i++) {
+    const d = ((i / 14) + avance(t) * .09) % 1, y = HZ + (H - HZ) * d * d, a = .15 + d * .6;
+    ink(line(VX - 60 - (y - HZ) * .6, y, VX + 60 + (y - HZ) * .6, y), { w: 2 + d * 10, col: TINTA, passes: 1, amp: 2 + d * 4, seed: i, alpha: a * .5 });
+  }
+  // libreros: bloques de lomos (rayas verticales de papel sobre tinta)
+  for (const lado of [-1, 1]) {
+    const N = 22;
+    for (let i = N - 1; i >= 0; i--) {
+      const d = ((i / N) + avance(t) * .09) % 1, d2 = d + 1 / N;
+      const a = fila(d), b = fila(Math.min(1, d2));
+      const xa = VX + lado * (70 + (a.y - HZ + 40) * .62), xb = VX + lado * (70 + (b.y - HZ + 40) * .62);
+      const altoA = (a.y - HZ + 40) * 1.9 + 40, altoB = (b.y - HZ + 40) * 1.9 + 40;
+      // cara del estante
+      ctx.fillStyle = TINTA; ctx.beginPath();
+      ctx.moveTo(xa, a.y); ctx.lineTo(xb, b.y); ctx.lineTo(xb, b.y - altoB); ctx.lineTo(xa, a.y - altoA); ctx.closePath(); ctx.fill();
+      // lomos de libros: 5 repisas, cada una con lomos de ancho y alto al azar (fijos por estante)
+      for (let rep = 0; rep < 5; rep++) {
+        const r = rng(i * 31 + rep * 7 + (lado > 0 ? 500 : 0));
+        let u = .05;
+        while (u < .95) {
+          const ancho = .05 + r() * .09, alto = .55 + r() * .4; if (r() < .18) { u += ancho; continue; }
+          const u0 = u, u1 = Math.min(.95, u + ancho * .7);
+          const px0 = lerp(xa, xb, u0), px1 = lerp(xa, xb, u1), py0 = lerp(a.y, b.y, u0), py1 = lerp(a.y, b.y, u1);
+          const h0 = lerp(altoA, altoB, u0), h1 = lerp(altoA, altoB, u1);
+          const base0 = py0 - h0 * (rep / 5 + .02), base1 = py1 - h1 * (rep / 5 + .02);
+          const top0 = base0 - h0 / 5 * alto * .85, top1 = base1 - h1 / 5 * alto * .85;
+          ctx.fillStyle = PAPEL_C; ctx.globalAlpha = clamp(d * 3);
+          ctx.beginPath(); ctx.moveTo(px0, base0); ctx.lineTo(px1, base1); ctx.lineTo(px1, top1); ctx.lineTo(px0, top0); ctx.closePath(); ctx.fill();
+          ctx.globalAlpha = 1;
+          u += ancho;
+        }
+      }
+    }
+  }
+  // luz al fondo del pasillo
+  glow(VX, HZ - 120, 260, '243,239,228', .55);
+  ctx.fillStyle = PAPEL_C; ctx.fillRect(VX - 55, HZ - 330, 110, 330);
+}
+
+function silueta(t) {
+  // alguien camina hacia la luz: pequeño, al fondo, balanceándose
+  const ta = avance(t), s = 1 - prog(ta, 0, DUR) * .35, x = VX + Math.sin(ta * 5) * 3, y = HZ - 8, paso = Math.sin(ta * 10);   // también frena
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  fill(circle(0, -150, 18), TINTA, { amp: 1, seed: 1 });
+  fill(resample([[-22, -128], [22, -128], [18, -50], [-18, -50]], 8, true), TINTA, { amp: 1.4, seed: 2 });
+  ink(line(-8, -52, -8 + paso * 12, 0), { w: 12, col: TINTA, passes: 1, amp: 1.2, seed: 3 });
+  ink(line(8, -52, 8 - paso * 12, 0), { w: 12, col: TINTA, passes: 1, amp: 1.2, seed: 4 });
+  // la caja que carga
+  fill(rect(20, -118, 46, 40), TINTA, { amp: 1.2, seed: 5 });
+  ctx.restore();
+  // un gato que cruza el piso en primer plano
+  const g = prog(t, 2.2, 4.6); if (g <= 0 || g >= 1) return;
+  const gx = lerp(-150, W + 150, g), gy = 1500, pat = Math.sin(t * 22);
+  ctx.save(); ctx.translate(gx, gy);
+  fill(circle(0, 0, 70, 38), TINTA, { amp: 3, seed: 10 });
+  fill(circle(72, -26, 34, 30), TINTA, { amp: 2.5, seed: 11 });
+  fill(resample([[60, -48], [66, -84], [80, -52]], 5, true), TINTA, { amp: 1 }); fill(resample([[84, -52], [98, -82], [100, -44]], 5, true), TINTA, { amp: 1 });
+  ink(resample([[-66, -6], [-110, -40], [-120, -90]], 8), { w: 14, col: TINTA, passes: 1, amp: 4, seed: 12 });
+  for (let k = 0; k < 4; k++) ink(line(-40 + k * 26, 24, -40 + k * 26 + (k % 2 ? pat : -pat) * 20, 70), { w: 12, col: TINTA, passes: 1, amp: 2, seed: 13 + k });
+  ctx.restore();
+}
+
+function recuadro(t) {
+  // recuadro de papel arriba, dentro de la zona segura; el texto se tipea con cursor
+  const aj = autoajuste(TITULO, '"Courier New", "Courier", monospace', 700, 800, 3, 70, 40);
+  const w = Math.min(860, Math.max(...aj.rs.map(r => medir(r, aj.font))) + aj.size * .5 + 100), x = (W - w) / 2, y = SEGURA.top + 10, h = aj.rs.length * aj.size * 1.3 + 70;
+  const ap = easeOut(prog(t, .2, .6)); if (ap <= 0) return;
+  ctx.save(); ctx.globalAlpha = ap;
+  fill(rect(x, y, w * ap, h), PAPEL_C, { amp: 2, seed: 20 });
+  ink(rect(x, y, w * ap, h), { closed: true, w: 6, col: TINTA, passes: 2, amp: 2, seed: 20 });
+  const total = aj.rs.join('').length, n = Math.floor(total * prog(t, ...T_TIPEA));
+  ctx.font = aj.font; ctx.fillStyle = TINTA; ctx.textBaseline = 'top';
+  let quedan = n, ult = [x + 40, y + 35];
+  aj.rs.forEach((r, i) => { const s = r.slice(0, Math.max(0, quedan)); quedan -= r.length;
+    const yy = y + 35 + i * aj.size * 1.3; ctx.fillText(s, x + 40, yy); if (s.length) ult = [x + 40 + medir(s, aj.font), yy]; });
+  if (t < T_TIPEA[1] || (t < T_TIPEA[1] + 1 && Math.floor(t * 2.5) % 2 === 0)) ctx.fillRect(ult[0] + 6, ult[1], aj.size * .5, aj.size * 1.05);   // cursor
+  ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 3);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.fillStyle = TINTA; ctx.fillRect(0, 0, W, H);
+  pasillo(t); silueta(t); recuadro(t);
+  // grano de impresión encima de todo
+  const r = rng(BOIL);
+  for (let i = 0; i < 2600; i++) { ctx.fillStyle = r() < .5 ? 'rgba(0,0,0,.35)' : 'rgba(243,239,228,.18)'; ctx.fillRect(r() * W, r() * H, 2, 2); }
+});
+</script>
+</body>
+</html>

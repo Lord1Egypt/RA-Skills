@@ -1,38 +1,57 @@
-## Description: <br>
-Git worktree manager for parallel AI agent workflows. Use when the user needs to manage multiple working directories for parallel development, create feature branches with isolated environments, or run multiple AI agents concurrently. Covers `vx worktrunk` and `vx wt` commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Git worktree management for parallel development, including branch creation, agent launches, merging, and cleanup.
 
-## Publisher: <br>
-[loonghao](https://clawhub.ai/user/loonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonghao](https://clawhub.ai/user/loonghao)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to create, switch, list, merge, and clean up isolated Git worktrees for parallel development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Merge and remove workflows can delete local worktrees or branches, including work that has not been preserved elsewhere. <br>
-Mitigation: Check `git status`, confirm needed local work is saved, and use keep or dry-run-style options where available before running merge or remove commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide parallel AI agents in separate Git worktrees and bring their changes back into a shared repository.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loonghao/worktrunk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Git worktree commands, vx command examples, and hook configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill instructs agents to post final outcomes to an issue or task tracker without clear user opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user's approval of the destination and exact comment before posting.
+
+Risk: Merge and cleanup commands can remove worktrees or branches containing local work.
+
+Mitigation: Inspect worktree status and branch state before merging or removing anything.
+
+Risk: Hooks and agent-launch commands can run additional processes in a worktree.
+
+Mitigation: Review configured hooks and launch commands before executing them.
+
+## Reference(s):
+
+- [worktrunk on ClawHub](https://clawhub.ai/loonghao/skills/worktrunk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with bash and TOML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance for worktree creation, agent launches, merges, and cleanup.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

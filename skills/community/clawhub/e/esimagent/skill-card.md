@@ -1,46 +1,61 @@
-## Description: <br>
-Finds eSIM plans for travel by searching plans by country, filtering by data and duration, ranking by value, checking device compatibility, and surfacing deals through a remote HTTP MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find eSIM plans for travel by searching plans by country, filtering by data and duration, ranking by value, checking device compatibility, and surfacing deals through a remote HTTP MCP endpoint.
 
-## Publisher: <br>
-[vladkomudrich](https://clawhub.ai/user/vladkomudrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vladkomudrich](https://clawhub.ai/user/vladkomudrich)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to compare eSIM data plans by destination, trip length, data need, device compatibility, price, and active deals. Developers can also use it to configure a remote HTTP MCP connection for eSIM search tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip details, data needs, country searches, and device model queries may be sent to the remote eSIM Agent service. <br>
-Mitigation: Tell users what query details are being sent and avoid adding unrelated personal information to requests. <br>
-Risk: Default purchase links are tracked affiliate redirects. <br>
-Mitigation: Disclose the redirect behavior and provide the raw partner affiliate URL when the user asks for a direct partner link or wants to avoid the redirect. <br>
-Risk: Plan, price, deal, and compatibility results depend on the remote service and partner data. <br>
-Mitigation: Present results as current service data, preserve provider names and prices, and direct users to verify terms before purchase. <br>
+## Use Case:
 
+External users and AI agents use this skill to compare travel eSIM plans, identify suitable data and duration options, check device compatibility, and find current provider deals. Developers can also use it to configure the remote HTTP MCP endpoint for supported clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vladkomudrich/esimagent) <br>
-- [eSIM Agent homepage](https://esimagent.vdigital.app/mcp) <br>
-- [Remote HTTP MCP endpoint](https://esimagent.vdigital.app/api/mcp/mcp) <br>
-- [MCP auto-discovery metadata](https://esimagent.vdigital.app/.well-known/mcp.json) <br>
-- [Device compatibility checker](https://esimagent.vdigital.app/checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON configuration snippets and purchase links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include remote API requests, ranked plan summaries, deal details, compatibility guidance, and tracked affiliate buy links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.1 (source: server release evidence) <br>
+Risk: The optional local stdio setup runs an unpinned npm package automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the remote HTTP MCP endpoint. If local stdio is required, verify the npm package publisher and version first and use a pinned package version.
+
+Risk: Default buy links use disclosed affiliate tracking and short redirects.
+
+Mitigation: Tell users when buy links are tracked and provide the raw partner affiliate URL when they ask for a direct link.
+
+Risk: Plan results can be misleading if user intent is translated into overly broad or incorrect filters.
+
+Mitigation: Use the documented country, duration, and data filters; rely on the API ranking fields; and avoid labeling loose ranges as exact matches.
+
+## Reference(s):
+
+- [ClawHub eSIM Agent listing](https://clawhub.ai/vladkomudrich/skills/esimagent)
+- [eSIM Agent homepage](https://esimagent.vdigital.app/mcp)
+- [Remote HTTP MCP endpoint](https://esimagent.vdigital.app/api/mcp/mcp)
+- [MCP auto-discovery endpoint](https://esimagent.vdigital.app/.well-known/mcp.json)
+- [Device compatibility checker](https://esimagent.vdigital.app/checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with plan summaries, URLs, and JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current eSIM Agent API results when tools or direct HTTP access are available; buy links may include disclosed affiliate tracking.]
+
+## Skill Version(s):
+
+1.8.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

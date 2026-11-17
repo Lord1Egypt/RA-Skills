@@ -21,7 +21,13 @@ from upsert_obsidian_note import upsert_note
 STAGE = "ingest_photo"
 
 
-def ingest_book_photo(image_path: str, vault_path: str, notes_dir: str, target_note: str | None = None) -> Dict[str, Any]:
+def ingest_book_photo(
+    image_path: str,
+    vault_path: str,
+    notes_dir: str,
+    target_note: str | None = None,
+    shelf: str | None = None,
+) -> Dict[str, Any]:
     warnings: List[str] = []
 
     extract_result = extract_isbn_from_image(image_path)
@@ -57,6 +63,8 @@ def ingest_book_photo(image_path: str, vault_path: str, notes_dir: str, target_n
         "isbn13": metadata_result.get("isbn13"),
         "metadata": metadata_result.get("metadata"),
     }
+    if shelf:
+        upsert_payload["shelf"] = shelf
     upsert_result = upsert_note(
         payload=upsert_payload,
         vault_path=vault_path,
@@ -107,9 +115,10 @@ def _self_check() -> Dict[str, Any]:
 def main(argv: List[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--image", help="Path to book photo")
-    parser.add_argument("--vault-path", default=get_env_str("BOOK_CAPTURE_VAULT_PATH", "."), help="Obsidian vault root")
+    parser.add_argument("--vault-path", default=get_env_str("BOOK_CAPTURE_VAULT_PATH", ""), help="Obsidian vault root (required)")
     parser.add_argument("--notes-dir", default=get_env_str("BOOK_CAPTURE_NOTES_DIR", "Books"), help="Notes directory inside vault")
     parser.add_argument("--target-note", default=get_env_str("BOOK_CAPTURE_TARGET_NOTE", ""), help="Optional explicit note path")
+    parser.add_argument("--shelf", default="", help="Shelf for the new note, for example to-read or read (default: inbox)")
     parser.add_argument("--self-check", action="store_true", help="Run internal quick checks")
     args = parser.parse_args(argv)
 
@@ -120,12 +129,19 @@ def main(argv: List[str] | None = None) -> int:
 
     if not args.image:
         return fail_and_print(STAGE, "--image is required", image_path=None)
+    if not args.vault_path.strip() or not Path(args.vault_path).expanduser().is_dir():
+        return fail_and_print(
+            STAGE,
+            "an existing vault directory is required (--vault-path or BOOK_CAPTURE_VAULT_PATH)",
+            image_path=args.image,
+        )
 
     result = ingest_book_photo(
         image_path=args.image,
         vault_path=args.vault_path,
         notes_dir=args.notes_dir,
         target_note=args.target_note or None,
+        shelf=args.shelf.strip() or None,
     )
     print_json(result)
     return 0 if result.get("ok") else 1

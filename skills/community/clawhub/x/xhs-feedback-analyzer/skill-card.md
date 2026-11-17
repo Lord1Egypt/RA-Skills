@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes Xiaohongshu posts about errand and delivery services by filtering keywords and dates, classifying sentiment and feedback categories, and producing Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Xiaohongshu posts about Meituan errands and related services, filters posts by keyword and date, classifies sentiment and feedback themes, and produces Markdown feedback reports.
 
-## Publisher: <br>
-[qinghuan2000](https://clawhub.ai/user/qinghuan2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinghuan2000](https://clawhub.ai/user/qinghuan2000)
 
-## Use Case: <br>
-Operations, product, and research teams use this skill to monitor Xiaohongshu discussion of errand and delivery services, summarize user sentiment, identify recurring feedback themes, and prepare Markdown reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may collect and retain more raw social-media content than needed for analysis. <br>
-Mitigation: Narrow keywords, date ranges, and result limits before each run, and define retention and redaction rules for raw post data and generated reports. <br>
-Risk: The workflow uses a logged-in Chrome session and can interact with a shared KM document. <br>
-Mitigation: Run it only from an approved browser profile, verify the target KM document, and review generated Markdown before publishing or inserting it. <br>
-Risk: Post text may be sent to the configured internal LLM endpoint. <br>
-Mitigation: Confirm the data flow is approved for the content being processed and remove or protect hardcoded credentials before scheduled or shared use. <br>
+## Use Case:
 
+Developers, analysts, and product teams use this skill to monitor Xiaohongshu discussion of errand and delivery services, summarize sentiment, identify recurring complaints, and prepare Markdown reports for review or knowledge-base publication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qinghuan2000/xhs-feedback-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/qinghuan2000) <br>
-- [KM report destination](https://km.sankuai.com/collabpage/2751219981) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and JSON analysis files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include sentiment, service category, feedback category, source links, and representative posts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can control a logged-in browser session and save scraped social-media content locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated browser profile, restrict CDP to a validated local endpoint, and store or delete scraped files according to the user's data-handling requirements.
+
+Risk: The remote LLM classifier includes hardcoded authentication material and may send post content to a remote service.
+
+Mitigation: Remove hardcoded credentials before use, rotate any exposed credentials, and disclose, approve, or disable remote LLM classification.
+
+Risk: Scheduled runs or KM document edits could publish unreviewed or inaccurate analysis.
+
+Mitigation: Require explicit approval before enabling scheduled execution or writing reports into KM documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qinghuan2000/skills/xhs-feedback-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/qinghuan2000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON scrape/classification data, and command-line workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write scraped social-media data locally and may insert reviewed report text into a KM document when configured with browser CDP access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

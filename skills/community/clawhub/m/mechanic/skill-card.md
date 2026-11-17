@@ -1,45 +1,60 @@
-## Description: <br>
-Vehicle maintenance tracker and mechanic advisor that tracks mileage, service intervals, fuel economy, costs, warranties, recalls, VIN decode data, service providers, and proactive reminders across cars, trucks, motorcycles, RVs, ATVs, boats, and other vehicles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mechanic helps agents track vehicle maintenance, service intervals, mileage, fuel economy, costs, warranties, recalls, and related reminders across cars, trucks, motorcycles, RVs, ATVs, boats, and other vehicles.
 
-## Publisher: <br>
-[ScotTFO](https://clawhub.ai/user/ScotTFO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scottfo](https://clawhub.ai/user/scottfo)
 
-## Use Case: <br>
-External users and vehicle owners use this skill to maintain vehicle records, build service schedules, monitor recalls, project upcoming maintenance, and receive mechanic-oriented guidance for routine and seasonal care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle records can include sensitive VINs, mileage, service history, provider details, warranty information, and optional insurance or policy details stored in the workspace. <br>
-Mitigation: Keep the data/mechanic folder private and avoid storing insurance or policy details unless they are needed. <br>
-Risk: VINs or vehicle details may be sent to NHTSA for decoding and recall checks. <br>
-Mitigation: Provide a VIN only when comfortable with that lookup, or use manual vehicle details when VIN-based features are not needed. <br>
-Risk: The skill can set up scheduled recall and mileage checks. <br>
-Mitigation: Review the weekly cron reminder and disable or adjust scheduled background checks if they are not wanted. <br>
+## Use Case:
 
+External users and vehicle owners use this skill to maintain vehicle records, research service schedules, monitor recalls and warranties, estimate maintenance costs, and receive reminders for upcoming or overdue service. It is suitable for agents helping users organize maintenance decisions, but users should verify safety-critical repair advice with qualified mechanics or official manufacturer sources.
 
-## Reference(s): <br>
-- [Mechanic ClawHub page](https://clawhub.ai/ScotTFO/mechanic) <br>
-- [NHTSA VPIC VIN decoder API](https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/{VIN}?format=json) <br>
-- [NHTSA recalls by vehicle API](https://api.nhtsa.dot.gov/recalls/recallsByVehicle?make=Ford&model=F-350&modelYear=2021) <br>
-- [NHTSA recalls by VIN API](https://api.nhtsa.dot.gov/recalls/recallsByVin?vin=XXXXX) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON vehicle records, service schedules, and optional cron setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain workspace vehicle data under data/mechanic and use public NHTSA endpoints for VIN decoding and recall checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill stores vehicle history, VINs, insurance policy details, warranty data, fuel logs, provider history, and business-use expense information in workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private workspace, store only information needed for maintenance workflows, avoid full insurance policy numbers unless emergency-card access is required, and restrict file access.
+
+Risk: VIN decode and recall checks may send VINs or vehicle identifiers to NHTSA services.
+
+Mitigation: Confirm that the user is comfortable with NHTSA lookups before running VIN decode or recall checks, and skip or disable those workflows when the user does not want external lookup.
+
+Risk: The skill can create recurring weekly check-ins and monthly recall checks.
+
+Mitigation: Review the cron configuration before enabling it, document how to disable it, and remove the job when the skill or tracked vehicle data is no longer needed.
+
+## Reference(s):
+
+- [Mechanic on ClawHub](https://clawhub.ai/scottfo/skills/mechanic)
+- [NHTSA VPIC VIN Decoder API](https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/{VIN}?format=json)
+- [NHTSA Recalls by Vehicle API](https://api.nhtsa.dot.gov/recalls/recallsByVehicle?make=Ford&model=F-350&modelYear=2021)
+- [NHTSA Recalls by VIN API](https://api.nhtsa.dot.gov/recalls/recallsByVin?vin=XXXXX)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON data structures, service summaries, checklists, and optional shell or cron setup instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace vehicle state, schedule files, service records, and recurring check-in configuration when requested by the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 ---
-name: global-hotel-search-recommend
+name: 全球酒店搜索与推荐
 display_name: "全球酒店搜索与推荐"
 description: 一次调用完成搜索与推荐，含预订链接和退改政策解读，自动识别商务/亲子/度假/背包场景智能推荐，3档价格分选，零配置即装即用。暑假出境游全球住宿推荐，覆盖200+国家
-version: 1.6.2
+version: 1.6.4
 tags: [酒店推荐, 酒店搜索, 酒店预订, 亲子酒店, 商务酒店]
 tools:
-  - name: hotel_search_and_recommend
+  - name: hotelSearchAndRecommend
     description: 全球酒店搜索与推荐，1次调用完成搜索+推荐+退改解读
     primaryEnv: HOTEL_PROXY_URL
     env:
@@ -24,11 +24,11 @@ tools:
         type: string
         description: 用户原始查询，用于场景自动检测和参数补全
         required: false
-      - name: check_in
+      - name: checkIn
         type: string
         description: 入住日期，格式YYYY-MM-DD，默认明天
         required: false
-      - name: check_out
+      - name: checkOut
         type: string
         description: 退房日期，格式YYYY-MM-DD，默认后天
         required: false

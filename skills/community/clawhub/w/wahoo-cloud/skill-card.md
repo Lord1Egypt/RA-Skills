@@ -1,43 +1,62 @@
-## Description: <br>
-Access Wahoo Fitness Cloud API to fetch workouts, download FIT files, and analyze training data (power, HR, cadence, GPS). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Wahoo Fitness Cloud API to fetch workouts, download FIT files, and analyze training data (power, HR, cadence, GPS).
 
-## Publisher: <br>
-[tgmerritt](https://clawhub.ai/user/tgmerritt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tgmerritt](https://clawhub.ai/user/tgmerritt)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to a user's Wahoo Fitness Cloud account, synchronize workout metadata, download FIT files, and analyze training data in a local SQLite database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wahoo OAuth tokens, FIT files, workout history, heart-rate and power data, and GPS traces are stored locally. <br>
-Mitigation: Set WAHOO_BASE_DIR to a private, non-synced location, keep it out of source control, and avoid untrusted backups. <br>
-Risk: Interactive OAuth setup can expose redirect URLs or authorization codes in shared terminal output. <br>
-Mitigation: Run OAuth setup in a private terminal and avoid sessions whose output is logged or shared. <br>
-Risk: Installing the Python dependency changes the local environment. <br>
-Mitigation: Review requirements.txt before installing and use an isolated Python environment when practical. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to Wahoo Fitness Cloud, synchronize workout data, parse FIT files, and answer training questions from a local SQLite database.
 
-## Reference(s): <br>
-- [Wahoo Fitness Cloud API](https://cloud-api.wahooligan.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tgmerritt/wahoo-cloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, SQL snippets, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Wahoo OAuth credentials and writes tokens, FIT files, and a SQLite workout database under WAHOO_BASE_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: OAuth tokens and detailed workout or GPS data may be exposed on shared machines, synced folders, or agent workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private WAHOO_BASE_DIR with restrictive permissions and avoid placing the database, FIT files, or token files in shared locations.
+
+Risk: OAuth setup output and logs can reveal sensitive authentication details.
+
+Mitigation: Avoid logging OAuth setup sessions or sharing terminal output from authorization and token setup.
+
+Risk: The default OAuth scopes may be broader than a user's immediate task requires.
+
+Mitigation: Reduce WAHOO_SCOPES where possible before authorizing the skill.
+
+Risk: Dependency installation may be fragile because the dependency name and version are not pinned in requirements.txt.
+
+Mitigation: Fix and pin the FIT parsing dependency before running pip install in a production or shared environment.
+
+## Reference(s):
+
+- [Wahoo Fitness Cloud API](https://cloud-api.wahooligan.com/)
+- [ClawHub Skill Page](https://clawhub.ai/tgmerritt/skills/wahoo-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, SQL examples, configuration guidance, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local OAuth token files, FIT downloads, and a SQLite workout database when the documented commands are run.]
+
+## Skill Version(s):
+
+0.2.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

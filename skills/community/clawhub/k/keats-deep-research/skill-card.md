@@ -1,45 +1,52 @@
-## Description: <br>
-Academic Deep Research guides agents through transparent, multi-cycle web research with user checkpoints, evidence hierarchy, APA 7th citations, and reproducible methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Deep Research guides an agent through transparent, multi-cycle investigation with planning checkpoints, source evaluation, APA-style citation, contradiction handling, and a final research report.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to plan and execute literature reviews, competitive intelligence, trend reports, and other complex investigations that need transparent methodology and source-grounded synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can use broad web research, source fetching, sub-agents, and saved memory, which may expose sensitive research scope or introduce irrelevant sources. <br>
-Mitigation: Review and approve research themes, search terms, sub-agent use, and memory consultation before the execution phase. <br>
-Risk: The artifact documentation claims offline operation, but real research execution depends on web tools. <br>
-Mitigation: Treat offline execution as unsupported for live research; confirm tool availability and document inaccessible sources. <br>
-Risk: Broad activation wording can trigger a long-running research workflow when a lighter answer would be sufficient. <br>
-Mitigation: Clarify the desired depth during initial engagement and proceed only after the research plan is approved. <br>
+## Use Case:
 
+Researchers, analysts, and developers use this skill to plan and conduct source-backed deep research, including literature reviews, competitive intelligence, and complex topics requiring reproducible methodology.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/corbin-breton/keats-deep-research) <br>
-- [README](README.md) <br>
-- [Deep Research Quick Reference](quickref.md) <br>
-- [Deep Research Example Workflow](example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plans and reports with APA-style citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user checkpoints, research-cycle notes, confidence annotations, limitations, and references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can direct an agent to search or retrieve persistent memory during research without a separate scoped approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where memory tools are disabled, scoped to the current user or project, or gated by explicit user approval before memory search or retrieval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/corbin-breton/skills/keats-deep-research)
+- [README](artifact/README.md)
+- [Quick reference](artifact/quickref.md)
+- [Example workflow](artifact/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans and narrative reports with citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include research plans, confidence annotations, source assessments, limitations, and APA-style references.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

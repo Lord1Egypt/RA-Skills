@@ -1,40 +1,58 @@
-## Description: <br>
-AI 投毒内容过滤助手。检测和识别 GEO 投毒内容，验证信息来源可信度，标记潜在虚假信息，保护用户免受 AI 投毒攻击。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Poison Guard is a local heuristic text scanner that flags GEO-style AI-poisoning patterns, assigns risk scores, and produces filtering guidance.
 
-## Publisher: <br>
-[testmtcode](https://clawhub.ai/user/testmtcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[testmtcode](https://clawhub.ai/user/testmtcode)
 
-## Use Case: <br>
-External users and developers use this skill to run a lightweight local heuristic scan for suspicious promotional or AI-manipulation wording, receive risk scores, and get filtering guidance before trusting or reusing content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation overstates source and domain verification compared with the current local keyword-checking behavior. <br>
-Mitigation: Use the skill as a heuristic text scanner and independently verify websites, domain age, source reputation, and misinformation claims with reviewed tools. <br>
-Risk: Optional packages are described for possible future expansion but are not required by the current local detection implementation. <br>
-Mitigation: Avoid installing optional packages unless a reviewed feature specifically requires them. <br>
+## Use Case:
 
+External users and developers can use this skill to screen suspicious text or files for common AI-poisoning persuasion patterns and receive a risk score, findings, and practical review guidance. Treat the output as heuristic triage rather than proof that a source or website is trustworthy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/testmtcode/ai-poison-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text reports, optional JSON results, and markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current behavior is local heuristic text and file scanning; source and domain verification claims require independent review before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The documentation overstates source or website verification capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a local heuristic text scanner and confirm source trust with independent authoritative checks.
+
+Risk: Risk scores may produce false positives or false negatives because detection is based on fixed text patterns.
+
+Mitigation: Review matched phrases and compare claims against multiple reliable sources before acting on the score.
+
+Risk: The documentation recommends dependency installation that may be unnecessary or unpinned for the current local scanner behavior.
+
+Mitigation: Install only reviewed, pinned dependencies that are actually required in the deployment environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/testmtcode/skills/ai-poison-guard)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown-style reports, with optional JSON output from guard.py --json and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heuristic pattern matching; no API keys, MCP tools, or external service calls were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

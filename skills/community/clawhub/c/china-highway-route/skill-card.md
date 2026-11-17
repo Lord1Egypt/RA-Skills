@@ -1,45 +1,56 @@
-## Description: <br>
-Plans driving routes in China and helps drivers reduce highway tolls by considering local ring-road free-passage policies, vehicle plate rules, and Amap navigation links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国高速路线规划助手，智能利用各地绕城高速免费政策为车主省钱
 
-## Publisher: <br>
-[liumeixin](https://clawhub.ai/user/liumeixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumeixin](https://clawhub.ai/user/liumeixin)
 
-## Use Case: <br>
-External drivers or agents assisting them use this skill to plan China highway trips, estimate tolls, check destination driving restrictions, and identify route combinations that may reduce toll costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route planning may send origins, destinations, coordinates, and waypoints to Amap or search services. <br>
-Mitigation: Use the skill only when this location-data sharing is acceptable, and avoid entering sensitive trips or addresses. <br>
-Risk: Hardcoded map API keys can expose credentials. <br>
-Mitigation: Configure the Amap key with the AMAP_WEBSERVICE_KEY environment variable instead of placing it directly in skill text or code. <br>
-Risk: Cached toll-free highway and driving-restriction policies may become stale. <br>
-Mitigation: Refresh policy data when it is older than one month and verify important toll or restriction results against official sources before travel. <br>
+## Use Case:
 
+Drivers and route-planning agents use this skill to plan China highway trips, compare toll costs, account for local plate-region restrictions, and identify toll-saving options from city ring-road free policies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liumeixin/china-highway-route) <br>
-- [Amap Geocoding API](https://restapi.amap.com/v3/geocode/geo?address={address}&key={API_KEY}) <br>
-- [Amap Driving Direction API](https://restapi.amap.com/v3/direction/driving?origin={origin}&destination={destination}&key={API_KEY}) <br>
-- [Amap Driving Direction API with Waypoints](https://restapi.amap.com/v3/direction/driving?origin={origin}&destination={destination}&waypoints={waypoints}&key={API_KEY}) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls] <br>
-**Output Format:** [Markdown route plan with route segments, toll estimates, restriction notices, savings comparisons, and Amap navigation links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on current policy searches and cached highway-policy data; results should be checked against official sources before travel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact frontmatter lists 1.0.5) <br>
+Risk: Route planning may involve addresses or coordinates, vehicle plate region, Amap API requests, and local toll or restriction context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask only for route and plate-region details needed for the request, store the Amap key in an environment variable, and avoid collecting a full plate number unless a specific restriction query requires it.
+
+Risk: Highway toll-free and traffic restriction policies can change after cached or documented values.
+
+Mitigation: Check current policy information before presenting savings or restriction guidance, especially when cached policy data is older than one month.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumeixin/skills/china-highway-route)
+- [Amap geocoding API endpoint](https://restapi.amap.com/v3/geocode/geo?address={address}&key={API_KEY})
+- [Amap driving route API endpoint](https://restapi.amap.com/v3/direction/driving?origin={origin}&destination={destination}&key={API_KEY})
+- [Amap waypoint driving route API endpoint](https://restapi.amap.com/v3/direction/driving?origin={origin}&destination={destination}&waypoints={waypoints}&key={API_KEY})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown route plan with route segments, toll estimates, restriction notices, savings comparison, and navigation links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Amap navigation links and policy-cache-informed toll-free route recommendations.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

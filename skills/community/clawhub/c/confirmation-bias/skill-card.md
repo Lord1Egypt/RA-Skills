@@ -1,43 +1,49 @@
-## Description: <br>
-Guides an agent to challenge one-sided evidence by stating the claim, constructing falsification tests, auditing evidence-seeking, reassessing ambiguous evidence, and installing structural countermeasures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a structured check for confirmation bias by testing claims against disconfirming evidence and defining when to update.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to test claims or decisions that may be advancing on only supporting evidence. It helps agents identify falsification criteria, seek counter-evidence, and set update conditions before a team commits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the debiasing checklist as a substitute for domain review on material decisions. <br>
-Mitigation: Use the skill as decision support and assign an accountable reviewer, devil's advocate, or red-team owner before acting on important conclusions. <br>
-Risk: The skill may be applied where one-sided argument is intentional or the stakes are too low for structured disconfirmation. <br>
-Mitigation: Apply the skill's stated exclusions for advocacy contexts, low-stakes decisions, and cases where the cost of disconfirmation exceeds the decision value. <br>
+## Use Case:
 
+Employees, analysts, and decision-making teams use this skill to examine a claim, actively seek counter-evidence, and set explicit conditions for revisiting a decision.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/deciqai/skills/confirmation-bias) <br>
-- [Sources - confirmation-bias](references/sources.md) <br>
-- [Peter Wason's 2-4-6 Task, 1960](examples/peter-wasons-2-4-6-task-1960.md) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist and structured analysis template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user input in coach mode before advancing to later steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Confidential details could be included in real-use examples saved to the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove confidential details before saving examples, and treat the skill as a thinking aid.
+
+## Reference(s):
+
+- [Primary sources and further reading](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Structured Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stepwise coaching and a structured claim, evidence, falsification, and update-conditions template.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

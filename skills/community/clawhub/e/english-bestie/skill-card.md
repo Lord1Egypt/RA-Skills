@@ -1,42 +1,57 @@
-## Description: <br>
-A friendly AI English teacher that runs daily lessons via Telegram voice messages and teaches grammar, vocabulary, and conversation with a casual buddy style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A friendly AI English teacher that runs daily lessons via Telegram voice messages, teaching grammar, vocabulary, and conversation with a casual buddy style.
 
-## Publisher: <br>
-[Haiku54](https://clawhub.ai/user/Haiku54) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haiku54](https://clawhub.ai/user/haiku54)
 
-## Use Case: <br>
-English learners and agent operators use this skill to run proactive Telegram-based English practice, including onboarding, level assessment, daily lessons, correction cards, spaced vocabulary review, and weekly progress reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores learner profile, mistake, progress, and conversation-history data in local tracking files. <br>
-Mitigation: Deploy only with a consenting student and define how tracking files will be reviewed, retained, or deleted. <br>
-Risk: The skill creates ongoing automated Telegram outreach and scheduled follow-ups. <br>
-Mitigation: Use a dedicated OpenClaw workspace and Telegram bot, then review or reduce cron jobs after setup. <br>
-Risk: Telegram bot setup requires a bot token and allowed user configuration. <br>
-Mitigation: Protect the Telegram token, restrict allowed users, and review openclaw.json after installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [English Bestie ClawHub Release](https://clawhub.ai/Haiku54/english-bestie) <br>
-- [OpenClaw](https://openclaw.dev) <br>
+## Use Case:
 
+External learners and OpenClaw users use this skill to run a proactive Telegram-based English tutor that conducts onboarding, voice-first lessons, conversation practice, corrections, spaced repetition, and weekly progress reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Telegram voice/text tutoring messages, Markdown correction cards, JSON tracking updates, and inline shell commands for scheduling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw, a dedicated Telegram bot, a student Telegram user ID, and OPENAI_API_KEY for text-to-speech.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer and runtime behavior make persistent workspace-level changes, including updates to OpenClaw configuration and learner tracking files.
+
+Mitigation: Install in a dedicated OpenClaw workspace and back up openclaw.json, SOUL.md, and HEARTBEAT.md before setup.
+
+Risk: Telegram bot credentials and student identifiers may be stored with insufficient safeguards.
+
+Mitigation: Use a dedicated Telegram bot, protect or rotate the bot token, restrict allowed users, and verify local file permissions.
+
+Risk: The skill sends frequent proactive messages and maintains persistent learner tracking.
+
+Mitigation: Enable the skill only with the student's informed consent and adjust or disable cron jobs if the message frequency is inappropriate.
+
+## Reference(s):
+
+- [English Bestie ClawHub page](https://clawhub.ai/haiku54/skills/english-bestie)
+- [OpenClaw](https://openclaw.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Telegram voice-message text, text correction cards, Markdown reports, JSON tracking updates, and OpenClaw cron commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenAI API key, a dedicated Telegram bot, and persistent local tracking files for learner state.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

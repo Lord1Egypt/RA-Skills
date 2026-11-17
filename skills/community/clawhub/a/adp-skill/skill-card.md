@@ -1,45 +1,59 @@
-## Description: <br>
-Enterprise-grade agentic document processing API that extracts key fields and line items from invoices, receipts, orders, and other document types across 10+ file formats with confidence scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade agentic document processing API. Accurately extracts key fields and line items from invoices, receipts, orders and more across 10+ file formats, with confidence scoring. Zero-configuration, fast integration. Professionally optimized on massive enterprise documents.
 
-## Publisher: <br>
-[anna4lucky-stack](https://clawhub.ai/user/anna4lucky-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0; commercial ADP service license required <br>
+## Publisher:
 
+[anna4lucky-stack](https://clawhub.ai/user/anna4lucky-stack)
 
-## Use Case: <br>
-Developers, AI agent builders, and enterprise teams use this skill to call Laiye ADP for extracting structured JSON or Excel data from invoices, receipts, purchase orders, financial documents, logistics documents, and multi-table files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Required
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends documents to Laiye's external cloud document-processing API and may involve sensitive business documents or personal data. <br>
-Mitigation: Confirm organizational approval and ADP privacy, retention, and deletion terms before processing regulated or highly sensitive documents. <br>
-Risk: The skill depends on ADP access keys, app keys, and app secrets. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid committing credentials, rotate keys regularly, and monitor API usage. <br>
-Risk: Document extraction can produce incorrect or low-confidence fields. <br>
-Mitigation: Review fields with low confidence scores before using extracted values in financial, compliance, or operational workflows. <br>
+## Use Case:
 
+Developers and enterprise teams use this skill to integrate Laiye ADP document extraction into agent workflows for invoices, receipts, purchase orders, financial documents, logistics documents, and multi-table data extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anna4lucky-stack/adp-skill) <br>
-- [ADP API base URL](https://adp-global.laiye.com/) <br>
-- [ADP Product Manual (SaaS)](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe) <br>
-- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents ADP API calls that return structured extraction results with field-level confidence scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Business documents may be sent to Laiye's external ADP service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm organizational approval, retention terms, deletion terms, and privacy requirements before uploading invoices, receipts, purchase orders, or other sensitive documents.
+
+Risk: API credentials are required for access to the external service.
+
+Mitigation: Use scoped credentials where available, store keys in environment variables or a secret store, avoid committing credentials, and rotate keys regularly.
+
+Risk: Extracted fields can include low-confidence or incorrect values.
+
+Mitigation: Review fields with low confidence before using extracted data in financial, logistics, or business decision workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anna4lucky-stack/skills/adp-skill)
+- [ADP Portal and API Base URL](https://adp-global.laiye.com/)
+- [Complete API Documentation](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API request examples, response schemas, credential environment variables, file handling limits, and operational safeguards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

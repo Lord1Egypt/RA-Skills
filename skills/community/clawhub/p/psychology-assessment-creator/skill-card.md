@@ -1,39 +1,52 @@
-## Description: <br>
-Creates psychology assessment content workflows covering topic planning, question design, scoring rules, result copy, quality checks, and iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+心理测评内容制作技能，帮助从选题策划、题目设计、评分规则编写到结果内容创作的全流程管理。适用于需要创建心理测评类内容的场景。
 
-## Publisher: <br>
-[hackzjl](https://clawhub.ai/user/hackzjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hackzjl](https://clawhub.ai/user/hackzjl)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content creators, product teams, and assessment designers use this skill to plan, write, score, review, and iterate Chinese-language psychological assessment content. It supports self-reflection and product-content workflows, not clinical diagnosis or treatment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake assessment outputs for diagnosis, treatment, or licensed mental-health advice.
+
+Mitigation: Add clear wording that results are for self-reflection only, are not diagnosis or treatment, and are not a substitute for licensed professional help.
+
+Risk: Public-facing assessments may touch high-risk mental-health topics without sufficient escalation guidance.
+
+Mitigation: Include escalation guidance and professional-support resources for high-risk topics before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators and product teams use this skill to design psychology-style assessments, including topics, question structures, scoring logic, result descriptions, quality checks, and iteration plans. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Psychology assessment content may be interpreted as clinical diagnosis or authoritative mental health advice. <br>
-Mitigation: Review generated assessments for scientific accuracy, ethical limits, privacy disclosures, and clear wording that results are not clinical diagnoses. <br>
+**Output Format:** [Markdown or structured prose with assessment topics, question guidance, scoring rules, result descriptions, checklists, and optimization recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hackzjl/psychology-assessment-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/hackzjl) <br>
+**Other Properties Related to Output:** [Chinese-language guidance; public-facing assessments should include clear non-diagnostic disclaimers and escalation guidance for high-risk mental-health topics]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only guidance; no tool calls, credentials, background execution, or data transfer are requested by the skill.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

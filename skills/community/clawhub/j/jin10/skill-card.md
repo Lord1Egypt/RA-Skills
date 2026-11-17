@@ -1,44 +1,57 @@
-## Description: <br>
-金十数据 helps agents query Jin10 financial market quotes, K-line data, flash updates, news, and economic calendar data through a bundled Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+金十数据 enables an agent to query Jin10 financial market quotes, K-line data, flash headlines, news details, and economic calendar events through the bundled Python CLI.
 
-## Publisher: <br>
-[robinspt](https://clawhub.ai/user/robinspt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinspt](https://clawhub.ai/user/robinspt)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Jin10 market quotes, K-line/candlestick data, financial flash updates, news details, and economic calendar events. It is useful when a workflow needs structured or readable financial data from Jin10 using an API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JIN10 API token and sends requests to the Jin10 MCP endpoint. <br>
-Mitigation: Use a limited-purpose token, avoid exposing it in prompts or logs, and revoke it when the skill is no longer needed. <br>
-Risk: The security summary notes a manifest transparency gap despite a clean verdict. <br>
-Mitigation: Review the skill manifest and requested environment variables before installation, and prefer updated releases that tighten manifest permissions. <br>
+## Use Case:
 
+External users and agent developers use this skill to retrieve Jin10 market quotes, K-line/candlestick data, financial news, flash updates, and economic calendar information for finance-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/robinspt/jin10) <br>
-- [Publisher Profile](https://clawhub.ai/user/robinspt) <br>
-- [Jin10 API Token Setup](https://mcp.jin10.com/app) <br>
-- [Jin10 MCP Endpoint](https://mcp.jin10.com/mcp) <br>
-- [Jin10 API Contract](references/api-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or text from CLI calls, with Markdown guidance and shell command examples in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JIN10_API_TOKEN and network access to the Jin10 MCP endpoint] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The skill requires a Jin10 API token and sends financial-data queries to the Jin10 MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store JIN10_API_TOKEN as a scoped environment variable or managed OpenClaw configuration value, and install only when sharing queries with Jin10 is acceptable.
+
+Risk: CLI output and documentation are mostly Chinese, which may lead to misunderstanding of returned financial data.
+
+Mitigation: Review returned fields and translate or summarize results before using them in user-facing decisions.
+
+## Reference(s):
+
+- [Jin10 API Contract](references/api-contract.md)
+- [Jin10 MCP endpoint](https://mcp.jin10.com/mcp)
+- [Jin10 API token setup](https://mcp.jin10.com/app)
+- [ClawHub skill page](https://clawhub.ai/robinspt/skills/jin10)
+- [ClawHub publisher profile](https://clawhub.ai/user/robinspt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, plus JSON or text results from the bundled Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JIN10_API_TOKEN; default command output is JSON, with text output available for user-facing summaries.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

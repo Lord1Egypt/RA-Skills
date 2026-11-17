@@ -1,0 +1,9 @@
+{
+  "name": "multi-screen-wireframe",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "playwright": "1.52.0"
+  }
+}

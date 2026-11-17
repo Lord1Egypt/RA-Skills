@@ -2,23 +2,57 @@
 name: rozo-intents
 description: >
   Cross-chain crypto payments and bridging via Rozo. Send USDC/USDT across
-  Ethereum, Base, BNB Chain, Solana, and Stellar.
-  Use when user says "pay", "send", "transfer", "payout", "check balance",
-  "payment status", or shares a QR code screenshot. Also
-  triggers on wallet addresses (0x, base58, G/C stellar), transaction
-  hashes. Auto-detects wallet type, auto-selects token
-  (USDC preferred), checks balances, gets fees, and confirms before sending.
-  Do NOT use for general blockchain questions or non-payment tasks.
+  Ethereum, Arbitrum, Base, BNB Chain (BSC), Polygon, Solana, and Stellar
+  (Base and Stellar are USDC-only; Solana receives USDC only but can pay in
+  USDT). On Stellar the trustline checker can also verify EURC trustlines;
+  EURC is trustline-verification only, never a payment token here.
+  Use when the user asks to pay, send, transfer, or bridge crypto/USDC/USDT,
+  check a wallet or USDC/USDT balance, check a crypto payment's status, or
+  shares a crypto payment QR code screenshot, a wallet address (0x, base58,
+  G/C stellar), or a transaction hash. Auto-detects wallet type and
+  auto-selects token (USDC preferred).
+  Every payment shows full details and waits for an explicit yes/no by
+  default. Small-amount auto-execute is opt-in: it runs only if the user
+  raises the confirmation thresholds in version.json (shipped 0 = off).
+  Do NOT use for general blockchain questions, non-payment tasks, or
+  ordinary fiat payments, bank transfers, or bank-account balance questions.
 metadata:
   author: rozo
-  version: 1.0.2
+  version: 1.0.9
   runtime: node
+  permissions:
+    network_endpoints:
+      - intentapiv4.rozo.ai (Rozo payment API — create/get/check payments)
+      - api-balance.rozo-deeplink.workers.dev (Rozo balance API)
+    environment_variables: none read by the scripts (CLAUDE_PLUGIN_ROOT is
+      referenced in docs only, to locate the plugin root)
+    filesystem: none — scripts read/write no files; the agent reads
+      version.json for confirmation thresholds
+    spending: creates Rozo payment intents; every payment prompts for an
+      explicit yes/no by default. Auto-execute below user-raised thresholds
+      is opt-in via version.json and ships disabled (0/0).
+    subprocess: none — scripts run via node with no child processes
 ---
 
 # Rozo Cross-Chain Payments / Bridging
 
 Send cross-chain crypto payments and bridging via Rozo. Send USDC/USDT across
-  Ethereum, Base, BNB Chain, Solana, and Stellar.
+Ethereum, Arbitrum, Base, BNB Chain (BSC), Polygon, Solana, and Stellar
+(Base and Stellar are USDC-only; Solana receives USDC only but can pay in USDT).
+
+**Confirmation:** every payment, any amount, shows full details and waits
+for an explicit yes/no. Small-amount auto-execute exists but ships OFF
+(thresholds `0` in `version.json`); it runs only if the user raises them.
+
+## Before any payment
+
+**Crypto transfers are irreversible.** Before funding anything, restate and
+have the user verify the destination address, chain, token, memo (Stellar)
+and amount against a source they trust. A payment to a wrong address, wrong
+chain, or without a required memo is not recoverable by Rozo or anyone else. (If the
+user has deliberately raised the auto-execute thresholds, their standing
+opt-in covers amounts below them — correctness checks still run, but the
+per-payment restatement is not required there.)
 
 ## Routing
 
@@ -45,7 +79,7 @@ Determine the user's intent and load the matching sub-skill:
 |-------|------|------|
 | Ethereum | Yes | Yes |
 | Arbitrum | Yes | Yes |
-| Base | Yes | Yes |
+| Base | Yes | No |
 | BSC | Yes | Yes |
 | Polygon | Yes | Yes |
 | Solana | Yes | No |
@@ -63,6 +97,13 @@ Determine the user's intent and load the matching sub-skill:
 | Solana | Yes | Yes |
 | Stellar | Yes | No |
 
+**Trust the live API over these tables.** Do NOT refuse a user's request
+based purely on the tables above. Tables can be stale or misread — always
+call `create-payment.js --dryrun` first and let the API be the source of
+truth. If dryrun returns `success: true`, the route is supported; if it
+returns an error, report that error to the user. Never tell a user "this
+route isn't supported" without running the dryrun first.
+
 ## Runtime
 
 Requires **Node.js** (ES modules). All scripts in `scripts/dist/` are run with `node`.
@@ -77,6 +118,12 @@ The Rozo APIs are **public and rate-limited** — no API keys or authentication 
 | Balance API (check balance) | `api-balance.rozo-deeplink.workers.dev` | None (rate-limited) | Rozo balance service (Cloudflare Workers) |
 
 Both hosts are operated by Rozo. The balance endpoint uses a separate Cloudflare Workers deployment for performance.
+
+**Data sent to Rozo:** as part of normal operation, wallet addresses,
+chain/token choices, amounts, memos, and payment IDs are transmitted to
+Rozo's public rate-limited APIs (`intentapiv4.rozo.ai`,
+`api-balance.rozo-deeplink.workers.dev`). No API key is involved. Anyone
+who can observe a payment ID can query that payment's status.
 
 ## Quick Reference
 

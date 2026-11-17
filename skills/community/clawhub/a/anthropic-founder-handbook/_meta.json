@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76b71hdvjbaetmpr601b967x82bz18",
-  "slug": "anthropic-founder-handbook",
+  "name": "anthropic-founder-handbook",
   "version": "1.0.0",
-  "publishedAt": 1781015399828
+  "description": "Skill: anthropic-founder-handbook",
+  "author": "perrykono-debug",
+  "license": "MIT"
 }

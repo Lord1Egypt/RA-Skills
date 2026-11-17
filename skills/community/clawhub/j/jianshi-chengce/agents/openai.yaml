@@ -1,0 +1,4 @@
+interface:
+  display_name: "见势成策"
+  short_description: "把行业趋势、证据和经济测算转化为可执行的深度报告与行动方案"
+  default_prompt: "使用 $industry-opportunity-report，围绕我的主题和决策目标研究行业机会，交付有来源、经济测算与行动路径的 HTML 深度报告。"

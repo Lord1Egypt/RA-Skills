@@ -3,17 +3,18 @@
  */
 
 class SkillError extends Error {
-  constructor(code, message) {
+  constructor(code, message, noRetry = false) {
     super(message);
     this.code = code;
     this.name = "SkillError";
+    this.noRetry = noRetry;
     Error.captureStackTrace(this, this.constructor);
   }
 }
 
 class ApiError extends SkillError {
-  constructor(code, message) {
-    super(code, message);
+  constructor(code, message, noRetry = false) {
+    super(code, message, noRetry);
     this.name = "ApiError";
   }
 }
@@ -27,7 +28,7 @@ class NetworkError extends SkillError {
 
 class TimeoutError extends SkillError {
   constructor(message) {
-    super("TIMEOUT_ERROR", message);
+    super("TIMEOUT", message);
     this.name = "TimeoutError";
   }
 }

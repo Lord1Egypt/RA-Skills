@@ -1,50 +1,69 @@
-## Description: <br>
-On-chain yield discovery, transaction building, and portfolio management via the Yield.xyz API across 80+ networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On-chain yield discovery, transaction building, and portfolio management via the Yield.xyz API across 80+ networks.
 
-## Publisher: <br>
-[apurvmishra](https://clawhub.ai/user/apurvmishra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[apurvmishra](https://clawhub.ai/user/apurvmishra)
 
-## Use Case: <br>
-External users and agent developers use this skill to discover on-chain yield opportunities, inspect yield schemas, prepare unsigned transactions for wallet review, and manage yield positions through the Yield.xyz API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can assist with approvals, swaps, deposits, claims, withdrawals, rebalances, broadcasts, and other fund-affecting DeFi workflows. <br>
-Mitigation: Require wallet review and explicit user approval before every fund-affecting step, and treat generated transactions as proposals until the user approves them. <br>
-Risk: Changing an unsigned transaction returned by the API can cause incorrect execution or permanent loss of funds. <br>
-Mitigation: Pass unsigned transactions to the wallet unchanged; if an amount, fee, address, encoding, or other field is wrong, request a new action from the API instead of editing the transaction. <br>
-Risk: Using shared API keys, scheduled checks, or multi-wallet tracking can expose activity to local storage and third-party services. <br>
-Mitigation: Use a dedicated Yield.xyz API key, limit wallet tracking to the minimum needed, and avoid scheduled or multi-wallet automation unless the user accepts the privacy exposure. <br>
+## Use Case:
 
+External users and developers use this skill to discover on-chain yield opportunities, inspect yield requirements, build unsigned transactions, check balances, and manage staking, lending, vault, restaking, or liquidity-pool positions through Yield.xyz.
 
-## Reference(s): <br>
-- [Yield.xyz API Documentation](https://docs.yield.xyz) <br>
-- [Yield.xyz Dashboard](https://dashboard.yield.xyz) <br>
-- [Yield.xyz API Recipes](https://github.com/stakekit/api-recipes) <br>
-- [OpenAPI specification](references/openapi.yaml) <br>
-- [Safety checks and guardrails](references/safety.md) <br>
-- [Chain transaction formats](references/chain-formats.md) <br>
-- [Wallet integration](references/wallet-integration.md) <br>
-- [Agent conversation examples](references/examples.md) <br>
-- [Advanced yield workflows](references/superskill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; fund-affecting actions produce unsigned transactions for separate wallet review and signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and skill manifest) <br>
+Risk: Irreversible DeFi transactions can cause loss of funds if the chain, asset, amount, contract, spender, allowance, or destination is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a wallet that shows decoded transaction details and confirm those values before signing.
+
+Risk: Custom YIELDS_API_URL values can route requests through infrastructure the user does not trust.
+
+Mitigation: Use the default Yield.xyz API endpoint unless a trusted operator explicitly approves another endpoint.
+
+Risk: Position-balance checks may not prove that a wallet has spendable funds or enough gas for a transaction.
+
+Mitigation: Verify spendable wallet balance, network, token amount, and gas in the signing wallet before execution.
+
+Risk: Changing an unsigned transaction returned by the API can produce incorrect execution or permanent fund loss.
+
+Mitigation: Sign freshly returned API transactions exactly as provided; request a new action when transaction details need to change.
+
+## Reference(s):
+
+- [OpenAPI schema](references/openapi.yaml)
+- [Safety checks and guardrails](references/safety.md)
+- [Unsigned transaction formats](references/chain-formats.md)
+- [Wallet integration](references/wallet-integration.md)
+- [Agent conversation examples](references/examples.md)
+- [Advanced capabilities](references/superskill.md)
+- [Yield.xyz API docs](https://docs.yield.xyz)
+- [Yield.xyz dashboard](https://dashboard.yield.xyz)
+- [Yield.xyz](https://yield.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses, including unsigned transaction payloads for wallet signing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; write operations require wallet review and signing, and may require YIELDS_API_KEY or the included shared API key.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

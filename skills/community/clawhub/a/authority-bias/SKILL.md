@@ -1,7 +1,7 @@
 ---
 name: authority-bias
 description: "Activate when: someone says 'should we trust the expert on this?', 'they're a professor/CEO/MD so they must be right', 'I don't want to push back on them', 'we deferred to the board and it blew up', or is evaluating a charismatic founder, assessing due diligence on a high-credential deal, or building a team where senior voices dominate.
-Do NOT activate when: the authority is a verified domain expert on the exact question at hand and the decision is time-critical; or when the user is asking a general persuasion question with no authority dynamic involved."
+Do NOT activate when: the authority is a verified domain expert on the exact question at hand and the decision is time-critical; or when the user is asking a general persuasion question with no authority dynamic involved. More: deciqai.com/c/authority-bias"
 ---
 
 # Authority Bias
@@ -14,7 +14,7 @@ Milgram (1963) showed 65% of ordinary adults administered apparent 450V shocks w
 
 Key distinction: **positional authority** (CEO, board chair, VC partner) vs. **domain expertise** (demonstrated track record on this specific question type). The bias treats them as identical. The skill does not.
 
-Composes with [`social-proof`](../social-proof/SKILL.md), [`reciprocity`](../reciprocity/SKILL.md), [`critical-thinking`](../critical-thinking/SKILL.md), [`signaling-games`](../signaling-games/SKILL.md), [`dunning-kruger`](../dunning-kruger/SKILL.md).
+Composes with `social-proof`, `reciprocity`, `critical-thinking`, `signaling-games`, `dunning-kruger`.
 
 ## When to Use
 
@@ -22,6 +22,7 @@ Composes with [`social-proof`](../social-proof/SKILL.md), [`reciprocity`](../rec
 - Medical or technical decisions where expert opinion dominates discussion
 - Org decisions where senior voices suppress dissent; 360-feedback design
 - Negotiations where counterparty leverages credentials or position
+- Trusting a confident AI/LLM answer or an AI-lab leader's capability/timeline pronouncement because of status rather than verified evidence (AI adoption, AI hype)
 
 **Not when:** authority is verified domain expert on the exact question and speed matters.
 
@@ -64,7 +65,8 @@ Cialdini Q1: Y/N | Q2: Y/N | Calibrated weighting:
 Structural counter: | Decision + documentation:
 ```
 
-*→ Method in Action: [Milgram 1963 + Cialdini Systematization + Theranos/FTX](examples/milgram-1963-cialdini-systematization-theranos-ftx.md)*
+*→ Method in Action: [Milgram 1963 + Cialdini Systematization + Theranos/FTX](examples/milgram-1963-cialdini-systematization-theranos-ftx.md) · [United 173 and the Cockpit Authority Gradient](examples/united-173-1978-cockpit-authority-gradient-and-crm.md)*
+*→ 2026 lens: [Deferring to AI Authority — Confident LLMs and Lab-Leader Pronouncements (2024–2026)](examples/ai-authority-deference-llm-confidence-and-lab-leaders-2024-2026.md)*
 
 ## Pack: Authority-Bias Application Patterns
 
@@ -116,4 +118,6 @@ Structural counter: | Decision + documentation:
 - [ ] If you are the authority: structural dissent-encouragement operational
 - [ ] Decision documented with reasoning, not just authority attribution
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/authority-bias** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/authority-bias.json*

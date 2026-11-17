@@ -1,44 +1,59 @@
-## Description: <br>
-Use when Tony says voice reply or asks to speak. Speaks the response aloud via Doubao TTS to MOMAX BS6. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Tony says voice reply or asks to speak. Speaks the response aloud via Doubao TTS to MOMAX BS6.
 
-## Publisher: <br>
-[olddirtybikertony](https://clawhub.ai/user/olddirtybikertony) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olddirtybikertony](https://clawhub.ai/user/olddirtybikertony)
 
-## Use Case: <br>
-External users who want spoken agent responses can use this skill to convert selected reply text into Doubao TTS audio and play it locally on macOS when voice output is explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Response text is sent to ByteDance/Doubao for text-to-speech processing. <br>
-Mitigation: Use only for text that is acceptable to share with the Doubao TTS service, and avoid speaking secrets or sensitive user data. <br>
-Risk: The artifact includes a bundled Doubao access token. <br>
-Mitigation: Replace the bundled token with a secured credential and rotate the exposed token if it is real. <br>
-Risk: The trigger language can be broad enough to speak replies when voice output was not intended. <br>
-Mitigation: Narrow activation to explicit voice-reply commands before deployment. <br>
+## Use Case:
 
+External users can use this skill when they want an agent response spoken aloud through Doubao TTS and played on a configured macOS audio output.
 
-## Reference(s): <br>
-- [Doubao TTS 2.0 API Reference](references/doubao_tts_api.md) <br>
-- [Doubao TTS API endpoint](https://openspeech.bytedance.com/api/v1/tts) <br>
-- [ClawHub skill page](https://clawhub.ai/olddirtybikertony/voice-output) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Files] <br>
-**Output Format:** [Spoken audio playback with command-line status text and temporary MP3 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends response text to Doubao TTS, writes temporary MP3 files, and plays audio locally with afplay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The release evidence reports a plaintext Doubao service token in the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the publisher to remove and rotate the embedded token before installation.
+
+Risk: Response text is sent to a third-party TTS service and played aloud.
+
+Mitigation: Document the data flow clearly and avoid using the skill for secrets or private content.
+
+Risk: Invocation guidance may encourage interpolating generated text into a shell command.
+
+Mitigation: Pass speech text as a literal argument or stdin and narrow the trigger phrases before deployment.
+
+## Reference(s):
+
+- [Doubao TTS 2.0 API Reference](references/doubao_tts_api.md)
+- [Doubao TTS API endpoint](https://openspeech.bytedance.com/api/v1/tts)
+- [ClawHub skill page](https://clawhub.ai/olddirtybikertony/skills/voice-output)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, API Calls, guidance]
+
+**Output Format:** [Spoken audio generated from text, with shell command invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends response text to Doubao TTS and plays returned MP3 audio with afplay.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

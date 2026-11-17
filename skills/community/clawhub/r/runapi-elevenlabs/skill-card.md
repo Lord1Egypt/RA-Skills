@@ -1,44 +1,61 @@
-## Description: <br>
-Generate speech, dialogue, sound effects, transcriptions, and audio isolation with ElevenLabs through RunAPI, using the CLI for one-off tasks and SDKs for app or backend integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in generating speech, dialogue, and sound or transcribing audio with ElevenLabs through RunAPI.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to create speech, dialogue, and sound effects, transcribe audio, or isolate audio through ElevenLabs on RunAPI. It supports one-off CLI workflows and SDK-based application integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests are sent to cloud services through RunAPI and ElevenLabs and may use sensitive RunAPI credentials. <br>
-Mitigation: Use this skill only for approved cloud audio tasks, review request files before execution, and protect RUNAPI_API_KEY or saved runapi login state as sensitive credentials. <br>
-Risk: Audio prompts or source files could contain secrets, regulated data, or confidential personal or business information. <br>
-Mitigation: Avoid submitting secrets or regulated data unless the use case and provider handling are approved. <br>
+## Use Case:
 
+Creators and developers use this skill to produce or transcribe audio through RunAPI and to integrate ElevenLabs into applications using an SDK.
 
-## Reference(s): <br>
-- [RunAPI ElevenLabs model homepage](https://runapi.ai/models/elevenlabs) <br>
-- [RunAPI ElevenLabs model overview, pricing, and rate limits](https://runapi.ai/models/elevenlabs.md) <br>
-- [RunAPI ElevenLabs provider comparison](https://runapi.ai/providers/elevenlabs.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/runapi-elevenlabs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands, request-file guidance, and SDK package references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference RUNAPI_API_KEY or saved runapi login state for authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: Private prompts, text, or audio may be sent to RunAPI and ElevenLabs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review request contents and confirm that sharing sensitive material is acceptable before submission.
+
+Risk: Audio generation and transcription may incur paid usage.
+
+Mitigation: Confirm the operation and expected cost before submitting a task; avoid duplicate submissions.
+
+Risk: Authentication credentials may be exposed through unsafe handling.
+
+Mitigation: Prefer an environment API key or explicit token import rather than placing credentials in requests.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/runapi-ai/skills/runapi-elevenlabs)
+- [RunAPI ElevenLabs models and pricing](https://runapi.ai/models/elevenlabs.md)
+- [RunAPI ElevenLabs provider](https://runapi.ai/providers/elevenlabs.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [RunAPI ElevenLabs SDK integration](https://github.com/runapi-ai/elevenlabs-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Audio files, Text, Code, Shell commands]
+
+**Output Format:** [Audio files, JSON, text, SRT or VTT; code for app integrations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected operation; downloaded media must be verified.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

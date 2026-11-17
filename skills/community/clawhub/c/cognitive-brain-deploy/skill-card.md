@@ -1,46 +1,63 @@
-## Description: <br>
-Cognitive Brain Deploy helps OpenClaw users deploy a Cognitive Brain semantic memory stack with PostgreSQL, pgvector, Redis, scheduled jobs, hooks, and setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates setup guidance for OpenClaw Cognitive Brain by configuring PostgreSQL with pgvector, Redis, Node.js, scheduled jobs, and OpenClaw hooks.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare an OpenClaw semantic memory deployment, including local services, database schema, configuration, scheduled maintenance jobs, and hook activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment script installs packages, enables services, edits database state, and creates persistent cron jobs on the host. <br>
-Mitigation: Review the script before execution, run it only on an intended host, inspect existing crontab entries first, and confirm PostgreSQL, Redis, cron, and OpenClaw hook persistence are acceptable. <br>
-Risk: The deployment materials include a default database password and can overwrite Cognitive Brain configuration. <br>
-Mitigation: Use a unique database password, update config.json consistently, and avoid reusing the documented default credential outside a disposable test environment. <br>
-Risk: Troubleshooting steps can affect stored memory data, including table rebuilds. <br>
-Mitigation: Back up memory data before running SQL repair or reset steps. <br>
-Risk: The Cognitive Brain repository is referenced as a manual clone target before npm install and hook setup. <br>
-Mitigation: Verify the repository source and review its package and hook contents before installing dependencies or enabling hooks. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and verify an OpenClaw semantic memory system on Ubuntu or Debian hosts. It helps install required services, create the cognitive_brain database schema, configure the Cognitive Brain skill, add cron tasks, and enable the OpenClaw recall hook.
 
-## Reference(s): <br>
-- [Cognitive Brain Deploy release page](https://clawhub.ai/hongjiahao371-pixel/cognitive-brain-deploy) <br>
-- [Deployment guide](references/deploy-guide.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, SQL, JSON, and crontab snippets plus a deployment shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Execution guidance can make persistent local system changes when the deployment script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The deployment flow makes privileged and persistent system changes, including package installation, service enablement, cron jobs, and OpenClaw hook setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the deployment script first and run it only on a non-sensitive test machine or container unless those host changes are acceptable.
+
+Risk: The deployment materials use a plaintext default PostgreSQL password.
+
+Mitigation: Replace the default password before use and update configuration with environment-appropriate credential handling.
+
+Risk: The installation guidance includes pipe-to-sudo-bash setup and an unresolved repository placeholder for the Cognitive Brain skill.
+
+Mitigation: Avoid pipe-to-sudo-bash installation where possible, and pin and verify the Cognitive Brain repository before installing dependencies.
+
+Risk: Troubleshooting guidance includes destructive database recovery steps.
+
+Mitigation: Back up memory data and review the effect of table recreation before following destructive troubleshooting steps.
+
+## Reference(s):
+
+- [Cognitive Brain Deploy on ClawHub](https://clawhub.ai/hongjiahao371-pixel/skills/cognitive-brain-deploy)
+- [Cognitive Brain deployment guide](references/deploy-guide.md)
+- [Cognitive Brain troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, SQL, cron, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment verification and troubleshooting guidance for local OpenClaw environments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

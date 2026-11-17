@@ -1,39 +1,52 @@
-## Description: <br>
-Checks Chinese novel chapter quality across 33 dimensions, including length, Chinese text purity, AI-marker phrases, templated endings, repetition, outline fit, and cross-chapter continuity, while reporting results in a five-layer audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks Chinese novel chapters across 33 quality dimensions, including length, Chinese text purity, AI-marker phrases, templated endings, repetition, outline fit, and cross-chapter continuity.
 
-## Publisher: <br>
-[shine8592](https://clawhub.ai/user/shine8592) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shine8592](https://clawhub.ai/user/shine8592)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Authors, editors, and agent users use this skill to audit individual Chinese novel chapters or chapter folders and receive layered quality reports. It is for review only and does not write or revise story content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Directory mode reads matching Markdown chapter files in the supplied folder for analysis.
+
+Mitigation: Point directory scans only at the chapter folder intended for audit.
+
+Risk: Quality checks are heuristic metrics and can produce findings that need editorial judgment.
+
+Mitigation: Review reported issues before making story or publication decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, editors, and publishing teams use this skill to audit single chapters or batches of Chinese novel chapters for quality, formatting, style, and continuity issues. It is for review and reporting, not for generating or rewriting story content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Batch checks can read every matching chapter file in a selected directory, which may include private drafts the user did not intend to review. <br>
-Mitigation: Invoke the skill with explicit file paths or a carefully scoped directory, and avoid directories that contain unrelated private drafts. <br>
+**Output Format:** [Markdown guidance with shell command examples and text quality reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shine8592/novel-quality-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/shine8592) <br>
+**Other Properties Related to Output:** [Reports quick checks, full 33-dimension checks, optional previous-chapter continuity checks, and batch directory audits.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-style quality audit reports with pass/fail indicators and metric values.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports quick checks, full 33-dimension checks, directory batch checks, and optional previous-chapter continuity checks.] <br>
+1.0.3 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

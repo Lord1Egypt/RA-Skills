@@ -1,41 +1,57 @@
-## Description: <br>
-A browser automation helper that uses Chrome remote debugging to support web operations such as data scraping, form filling, content posting, and screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Automation Helper helps agents prepare and verify a trusted local Chrome remote debugging connection for browser automation tasks such as screenshots, data extraction, and form workflows.
 
-## Publisher: <br>
-[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect to a locally running Chrome remote debugging session and automate browser tasks such as scraping data, filling forms, posting content, and capturing screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chrome remote debugging gives strong control over the running browser, including logged-in sessions. <br>
-Mitigation: Use a separate Chrome profile or test account, keep the debug port local, and close the remote-debugging browser when finished. <br>
-Risk: The helper can print a Chrome WebSocket URL that may allow browser control if shared. <br>
-Mitigation: Do not share the WebSocket URL and supervise sensitive actions such as form submission or content posting. <br>
+## Use Case:
 
+Developers and automation-focused agents use this skill to connect to a trusted local Chrome CDP session and verify browser-control readiness before web automation tasks.
 
-## Reference(s): <br>
-- [Web Automation Helper on ClawHub](https://clawhub.ai/dxie48892-jpg/web-automation-helper) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct use of a local Chrome remote debugging endpoint and report connection status or WebSocket URL details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Chrome remote debugging exposes a powerful browser-control interface if used in an unsafe environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate Chrome profile in a trusted local environment, keep the debug port bound to localhost, and close the debugging session when finished.
+
+Risk: Using a daily logged-in browser profile can expose active sessions and personal data to automation.
+
+Mitigation: Avoid daily logged-in browser profiles and use a dedicated profile for automation work.
+
+Risk: The current helper primarily verifies CDP connectivity rather than delivering full browser automation behavior.
+
+Mitigation: Treat successful output as a connection check and review any additional automation steps before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxie48892-jpg/skills/web-automation-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and console text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a separately launched local Chrome instance with remote debugging enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

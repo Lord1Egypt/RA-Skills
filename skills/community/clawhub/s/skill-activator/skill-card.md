@@ -1,42 +1,55 @@
-## Description: <br>
-Skill 激活器 helps OpenClaw users discover automation opportunities, match them to existing skills, and generate fused skills for uncovered workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill 激活器 helps OpenClaw users discover automation needs, match existing skills, and generate fused skills for new workflows.
 
-## Publisher: <br>
-[love5209](https://clawhub.ai/user/love5209) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[love5209](https://clawhub.ai/user/love5209)
 
-## Use Case: <br>
-OpenClaw users, developers, and operators use this skill to scan their workspace for installed skills and profile or channel signals, identify underused skills and capability gaps, and recommend or generate automations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local environment scans can expose workspace identity files, profile details, and configured-channel signals. <br>
-Mitigation: Review SOUL.md, USER.md, IDENTITY.md, and scan output for secrets or private details before running or sharing results. <br>
-Risk: Generated fused skills or glue scripts can introduce incorrect workflow logic or unsafe commands. <br>
-Mitigation: Review generated SKILL.md files and scripts, then run an appropriate security scan before deployment. <br>
+## Use Case:
 
+OpenClaw users and skill authors use this skill to identify useful automation opportunities, recommend installed or ClawHub skills, and combine skills into new workflows.
 
-## Reference(s): <br>
-- [Fusion Guide - Skill Activator](references/fusion-guide.md) <br>
-- [Role Templates - Skill Activator](references/role-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/love5209/skill-activator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with generated SKILL.md content, optional shell commands, and optional script snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize local scan findings into recommendations; generated fused skills and scripts should be reviewed and scanned before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scan mode can expose local identity, workspace, channel, and skill information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where that inspection is acceptable, review SOUL.md, USER.md, and IDENTITY.md for private content first, and avoid sensitive workspaces.
+
+Risk: Generated fused skills or glue scripts may contain behavior that needs review before use.
+
+Mitigation: Review and scan generated SKILL.md files and scripts before packaging, installing, or running them.
+
+## Reference(s):
+
+- [Skill Activator on ClawHub](https://clawhub.ai/love5209/skills/skill-activator)
+- [Fusion Guide](references/fusion-guide.md)
+- [Role Templates](references/role-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, generated SKILL.md content, shell commands, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized recommendations, fused skill definitions, glue scripts, installation steps, and packaging commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

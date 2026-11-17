@@ -1,39 +1,53 @@
-## Description: <br>
-Provides an Andrej Karpathy-inspired thinking framework and communication style for analyzing AI reliability, learning methods, industry trends, product design, Software 2.0/3.0, vibe coding, neural network training, AI hype, and LLM capability boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona skill that gives Karpathy-inspired perspectives on AI reliability, learning methods, AI industry trends, product design, and LLM capability boundaries.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users, developers, and AI practitioners use this skill as a persona-style advisor for Karpathy-like analysis of AI reliability, learning strategy, product design, and model capability questions. It is intended to activate only when the user asks for a Karpathy perspective or related trigger phrases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad conceptual trigger phrases and Chinese-default behavior may activate the persona or response style unexpectedly in normal conversations. <br>
-Mitigation: Install only when this persona behavior is desired, and ask the agent to exit the role or switch language/style when the activation is not intended. <br>
+## Use Case:
 
+External users and developers use this skill when they explicitly want a Karpathy-inspired perspective for analyzing AI reliability, learning strategy, AI trends, product design, Software 2.0/3.0, vibe coding, neural network training, AI hype, or LLM capability boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/karpathy-perspective) <br>
-- [Publisher profile](https://clawhub.ai/user/alchaincyf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses may default to Chinese and should avoid unsupported post-2026-04 claims unless current context is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may make the assistant speak as Andrej Karpathy rather than clearly saying it is giving a Karpathy-inspired interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep visible disclosure that responses are Karpathy-inspired and based on public material, especially at activation and in deployments where users may not know the persona is simulated.
+
+Risk: The skill limits disclosure after activation and can maintain a first-person persona.
+
+Mitigation: Require explicit user intent to activate the persona and provide a clear path to exit the role.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/karpathy-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown text responses in a Chinese conversational style, with occasional inline English terms where the skill calls for them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable persona guidance; no API calls, shell commands, or local system access are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

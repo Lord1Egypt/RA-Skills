@@ -1,44 +1,61 @@
-## Description: <br>
-Tracks public news about Donald Trump and produces a bilingual, sentiment-based novelty prediction of statement execution probability and market attention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Samples RSS news feeds and produces bilingual sentiment-based commentary framed as Trump-related unreliability, execution-probability, and market-impact output.
 
-## Publisher: <br>
-[kenneychen](https://clawhub.ai/user/kenneychen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneychen](https://clawhub.ai/user/kenneychen)
 
-## Use Case: <br>
-Developers and analysts can use this skill to sample public RSS news about Donald Trump and generate bilingual novelty analysis from keyword and sentiment heuristics. Its predictions should be treated as entertainment or exploratory commentary, not reliable news verification, political forecasting, or market guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer fetches unpinned Python packages and TextBlob corpora. <br>
-Mitigation: Run installation in a controlled environment and review or pin dependencies before use. <br>
-Risk: RSS fetching disables TLS certificate verification. <br>
-Mitigation: Remove verify=False and rely on normal certificate validation before using results operationally. <br>
-Risk: Fallback data and novelty predictions can be stale or misleading as news or market guidance. <br>
-Mitigation: Label the output as entertainment or exploratory analysis, verify current events independently, and remove stale fallback examples before relying on results. <br>
+## Use Case:
 
+External users and developers can use this skill to run a Python-based news monitor and bilingual sentiment commentary workflow about Trump-related topics. Its output should be treated as informal analysis, not reliable live news or financial or political forecasting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kenneychen/trump-tracker) <br>
-- [Al Jazeera RSS Feed](https://www.aljazeera.com/xml/rss/all.xml) <br>
-- [Hindustan Times World RSS Feed](https://www.hindustantimes.com/rss/world/rssfeed.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style bilingual console text with setup and execution commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs an unreliability score, execution probability, market-attention label, and bilingual comments for up to three news items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may overstate live Trump tracking because it uses generic RSS sources and fallback data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as informal commentary and clearly label fallback data as sample or cached data.
+
+Risk: RSS feed integrity is weakened by disabled TLS verification.
+
+Mitigation: Review the code before use and remove disabled TLS verification before relying on fetched feed content.
+
+Risk: The output can be mistaken for reliable live news or financial or political forecasting.
+
+Mitigation: Do not use the generated scores or commentary as financial, political, legal, or safety-critical advice.
+
+Risk: Unpinned dependencies may change behavior or introduce dependency risk.
+
+Mitigation: Install in a virtual environment and review or pin dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kenneychen/skills/trump-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text with bilingual English and Chinese sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses RSS feed samples when available and fallback sample data when fetching fails.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Convert Markdown files into styled, scrollable wide-screen HTML pages with dark/light themes, animations, and rich directive components for web articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files into styled, scrollable wide-screen HTML pages with dark/light themes, animations, and rich directive components for web articles.
 
-## Publisher: <br>
-[LZ-Web3](https://clawhub.ai/user/LZ-Web3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lz-web3](https://clawhub.ai/user/lz-web3)
 
-## Use Case: <br>
-Developers, technical writers, and content maintainers use this skill to turn Markdown notes, outlines, and long-form articles into shareable HTML pages with theme switching, styled tables, image handling, and directive components. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review flagged a helper that can run nested review with sandbox and approval bypass enabled by default. <br>
-Mitigation: Install only in a trusted maintainer environment and run review workflows without bypass mode, such as --no-yolo or AUTOREVIEW_YOLO=0. <br>
-Risk: Private diffs or sensitive content could be exposed if fallback external reviewers are enabled. <br>
-Mitigation: Disable fallback external reviewers for private work and require an explicit target, reason, confirmation, and verification step for moderation or migration commands. <br>
+## Use Case:
 
+Developers, writers, and agents use this skill to convert Markdown notes, outlines, and long-form articles into shareable styled HTML pages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LZ-Web3/md-to-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [HTML file with Markdown and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a standalone HTML page; optional image embedding can read local images and encode them into the output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated HTML may preserve unsafe content from untrusted Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Markdown sources and review generated HTML before publishing or sharing.
+
+Risk: --embed-images can package local files referenced by crafted image paths into the generated output.
+
+Mitigation: Avoid --embed-images for untrusted documents and inspect image paths before conversion.
+
+Risk: Generated HTML is active web content rather than a sanitized document.
+
+Mitigation: Share or host the output with the same review controls used for other web pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lz-web3/skills/md-to-page)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [HTML file with embedded CSS and JavaScript, plus terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional local image embedding, title and footer overrides, theme toggle, scroll animations, Markdown tables, file trees, and directive components.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-This skill provides complete QFPay API integration guidelines, including environment configuration, request formats, signature generation, payment types, supported currencies, and status codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides complete QFPay API integration guidelines including environment configuration, request formats, signature generation, payment types, supported currencies, and status codes.
 
-## Publisher: <br>
-[xingstudy](https://clawhub.ai/user/xingstudy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xingstudy](https://clawhub.ai/user/xingstudy)
 
-## Use Case: <br>
-Developers and payment integration engineers use this skill to configure QFPay environments, generate request signatures, and implement Hong Kong payment, query, and refund flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: QFPay credentials and merchant keys could be exposed through source control, shared terminals, logs, or chat. <br>
-Mitigation: Keep QFPAY_KEY, QFPAY_APPCODE, and merchant credentials in secured environment variables or secret stores, and avoid echoing them in logs or generated examples. <br>
-Risk: Production payment or refund examples could initiate real financial activity if used with live credentials. <br>
-Mitigation: Start with sandbox or test credentials and require explicit user approval before creating, refunding, or querying production transactions. <br>
-Risk: Incorrect environment, merchant ID, amount, or signature handling can cause authorization failures, duplicate transactions, or failed refunds. <br>
-Mitigation: Validate endpoint selection, unique order IDs, amount units, signature inputs, and refund support before submitting payment or refund requests. <br>
+## Use Case:
 
+Developers and payment integration teams use this skill to configure QFPay OpenAPI environments, generate request signatures, understand payment and refund flows, and handle status codes for Hong Kong payment integrations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xingstudy/hongkong-payment-qfpay) <br>
-- [QFPay Developer Center](https://sdk.qfapi.com) <br>
-- [Payment Integration Guides](https://sdk.qfapi.com/docs/category/integration-by-payment-type) <br>
-- [Checkout Integration](https://sdk.qfapi.com/docs/category/checkout-integration) <br>
-- [QFPay Postman Collection](https://sdk.qfapi.com/assets/files/qfpay_openapi_payment_request.postman_collection-c8de8c8fe69f3fcd5a7653d41c289a29.json) <br>
+### Deployment Geography for Use:
 
+Hong Kong
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code examples, shell commands, tables, and API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for QFPay integration; no hidden execution behavior identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Payment credentials, order IDs, logs, and production endpoints are sensitive and may be exposed if examples are copied into shared code or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in environment variables or a secrets manager, avoid logging secrets or full order details, and redact sensitive values before sharing outputs.
+
+Risk: The skill includes live payment and refund flows that could move funds if production credentials and endpoints are used.
+
+Mitigation: Use sandbox or test credentials for examples and require explicit human approval before any live payment or refund request.
+
+Risk: Incorrect environment selection or mixed credentials can cause authorization or signature failures.
+
+Mitigation: Confirm the selected QFPay environment, base URL, merchant ID, app code, and signing key before executing API calls.
+
+## Reference(s):
+
+- [QFPay Developer Center](https://sdk.qfapi.com)
+- [Payment Integration Guides](https://sdk.qfapi.com/docs/category/integration-by-payment-type)
+- [Checkout Integration](https://sdk.qfapi.com/docs/category/checkout-integration)
+- [QFPay OpenAPI Payment Request Postman Collection](https://sdk.qfapi.com/assets/files/qfpay_openapi_payment_request.postman_collection-c8de8c8fe69f3fcd5a7653d41c289a29.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with API examples, tables, environment variable commands, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment and refund examples; requires user-supplied QFPay credentials and explicit environment selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

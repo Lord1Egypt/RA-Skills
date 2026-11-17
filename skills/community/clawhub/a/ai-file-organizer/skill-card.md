@@ -1,42 +1,60 @@
-## Description: <br>
-Provides a Python CLI that categorizes and renames local files, copies them into organized folders, finds duplicate files by hash, and exports JSON reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI File Organizer helps agents organize local files by category, rename copied outputs, find duplicate files, and export run reports through a command-line workflow.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers and external users use this skill to organize folders, classify files by type or configured rules, copy renamed files into target directories, find duplicate files, and generate machine-readable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a user's file layout, including moving duplicate files. <br>
-Mitigation: Review before installing, test only on a disposable folder, and keep backups before using duplicate cleanup. <br>
-Risk: Documentation claims safety, dry-run, interactive, cloud, AI, and recovery behavior that the security evidence says the code does not actually provide. <br>
-Mitigation: Do not rely on documented dry-run or interactive modes unless they are implemented, and avoid cloud or AI credential configs until the maintainer clearly documents what data is uploaded and when. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to organize directories, apply configurable naming and classification rules, move duplicate files into a duplicates folder, and generate JSON reports for file-management tasks.
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON reports] <br>
-**Output Format:** [Markdown guidance with command examples; JSON for exported organize and duplicate reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include file counts, category summaries, duplicate counts, errors, target paths, and elapsed time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: evidence.release.version, SKILL.md frontmatter, _meta.json, and CHANGELOG.md; artifact changelog date 2026-03-16) <br>
+Risk: The security summary flags this release as suspicious because it requests cloud or network credentials and advertises safety features that are not actually implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, test it only on a disposable folder first, and avoid enabling cloud credentials or network permissions unless a reviewed cloud implementation is added.
+
+Risk: Duplicate cleanup performs a real file-moving operation by moving duplicate files into a duplicate folder.
+
+Mitigation: Run duplicate cleanup on test data first, back up important files, and inspect the duplicate folder before deleting or archiving moved files.
+
+Risk: The documentation includes cron examples that could repeatedly organize folders without a human review step.
+
+Mitigation: Do not schedule automated runs until the behavior, target paths, and report output have been verified for the intended directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sxliuyu/skills/ai-file-organizer)
+- [README.md](README.md)
+- [QUICKSTART.md](QUICKSTART.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML or JSON configuration examples, command-line text output, and optional JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May copy files into categorized folders, move duplicate files into a duplicate folder, and write cache, log, or report files depending on the selected command and configuration.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata, SKILL.md frontmatter, _meta.json, and CHANGELOG dated 2026-03-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

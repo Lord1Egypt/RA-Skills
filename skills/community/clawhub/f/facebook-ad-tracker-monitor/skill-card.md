@@ -1,42 +1,60 @@
-## Description: <br>
-Monitor Facebook advertisers, campaigns, products, landing pages, and copy changes using PipiAds monitoring tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Facebook advertisers, campaigns, products, landing pages, and copy changes using PipiAds monitoring tools.
 
-## Publisher: <br>
-[fanyanggod](https://clawhub.ai/user/fanyanggod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyanggod](https://clawhub.ai/user/fanyanggod)
 
-## Use Case: <br>
-External users and developers use this skill to create and review ongoing Facebook advertiser monitoring tasks, including campaign, ad, product, landing page, copy, group, and notification tracking in PipiAds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a PIPIADS_API_KEY for a PipiAds account. <br>
-Mitigation: Install only when PipiAds access is intended, store the API key in the environment, and avoid exposing it in prompts, logs, or shared files. <br>
-Risk: Creating tasks, changing groups, saving notifications, and repeated API calls can affect account monitoring state and credit usage. <br>
-Mitigation: Confirm the advertiser, monitoring scope, notification changes, and expected credit use before asking an agent to perform account-changing actions. <br>
+## Use Case:
 
+External users and developers use this skill to create and manage ongoing Facebook advertiser monitoring tasks, review monitored ads, products, landing pages, and copy trends, and organize monitor groups and notifications.
 
-## Reference(s): <br>
-- [PipiAds](https://www.pipiads.com) <br>
-- [PipiSpy account and API key portal](https://www.pipispy.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/facebook-ad-tracker-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with setup steps, workflow guidance, and tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm and PIPIADS_API_KEY for the PipiAds MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill requires a PIPIADS_API_KEY for PipiAds MCP access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable key with the narrowest account permissions available and rotate it when the integration is removed or no longer trusted.
+
+Risk: PipiAds API calls can consume paid account credits.
+
+Mitigation: Use exact advertiser names before creating monitoring tasks and confirm billing or recharge settings in the PipiAds account.
+
+Risk: The setup installs a third-party npm package for MCP access.
+
+Mitigation: Install only after reviewing and trusting the PipiAds MCP package and its publisher.
+
+## Reference(s):
+
+- [PipiAds](https://www.pipiads.com)
+- [PipiAds Dashboard](https://pipiads.com/)
+- [PipiSpy API and Billing Portal](https://www.pipispy.com/)
+- [ClawHub Skill Page](https://clawhub.ai/fanyanggod/skills/facebook-ad-tracker-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tool names, setup steps, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses PIPIADS_API_KEY for PipiAds MCP access; API calls may consume account credits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,7 +9,7 @@ Template for creating skills extracted from meta-learnings. Meta-skills are spec
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the agent infrastructure pattern, prompt fix, or hook improvement this skill addresses. Include trigger conditions."
+description: "Concise description of the agent infrastructure pattern, prompt fix, or hook improvement this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -114,12 +114,17 @@ For simple meta-skills that don't need all sections:
 ```markdown
 ---
 name: skill-name-here
-description: "What infrastructure pattern this addresses and when to apply it."
+description: "What infrastructure pattern this addresses and when to apply it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Problem
 
@@ -168,7 +173,7 @@ Before creating a skill from a meta-learning:
 - [ ] Propagation scope is understood (which agents/sessions are affected)
 - [ ] Rollback plan exists
 - [ ] Name follows conventions
-- [ ] Description includes trigger conditions
+- [ ] Description includes narrow, testable trigger conditions and explicit exclusions
 
 After creating:
 

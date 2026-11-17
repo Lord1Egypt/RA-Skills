@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import gzip
 import shutil
 import subprocess
 import time
@@ -12,7 +11,7 @@ from typing import Any
 from urllib.error import HTTPError, URLError
 
 from .constants import AUDIBLE_BLOCK_MARKERS, HTTP_USER_AGENT
-from .shared import normalize_space
+from .shared import DEFAULT_HTTP_RESPONSE_LIMIT, normalize_space, read_limited_bytes
 
 
 class AudibleBlockedError(RuntimeError):
@@ -47,6 +46,7 @@ AUDIBLE_FETCH_HEADERS = {
 SUPPORTED_AUDIBLE_FETCH_BACKENDS = {"auto", "python", "curl"}
 CURL_RECOVERABLE_HTTP_STATUSES = {403, 429, 500, 502, 503, 504}
 CURL_META_MARKER = "__AUDIBLE_GOODREADS_DEAL_SCOUT_CURL_META__"
+MAX_SAFE_REDIRECTS = 5
 ALLOWED_AUDIBLE_HOSTS = {
     "www.audible.com",
     "www.audible.co.uk",
@@ -95,7 +95,10 @@ def validate_audible_fetch_url(url: str, *, allow_unsafe_url: bool = False) -> s
             reason_code="error_unsafe_audible_url",
             final_url=normalized_url,
         )
-    if not any(path == prefix.rstrip("/") or path.startswith(prefix) for prefix in ALLOWED_AUDIBLE_PATH_PREFIXES):
+    if not any(
+        path == prefix.rstrip("/") or path.startswith(prefix.rstrip("/") + "/")
+        for prefix in ALLOWED_AUDIBLE_PATH_PREFIXES
+    ):
         raise AudibleFetchError(
             f"Refusing to fetch unsupported Audible path: {normalized_url}",
             reason_code="error_unsupported_audible_path",
@@ -104,15 +107,59 @@ def validate_audible_fetch_url(url: str, *, allow_unsafe_url: bool = False) -> s
     return normalized_url
 
 
+class SafeAudibleRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def __init__(self, *, allow_unsafe_url: bool = False) -> None:
+        super().__init__()
+        self.allow_unsafe_url = allow_unsafe_url
+
+    def redirect_request(
+        self,
+        req: Any,
+        fp: Any,
+        code: int,
+        msg: str,
+        headers: Any,
+        newurl: str,
+    ) -> Any:
+        validate_audible_fetch_url(newurl, allow_unsafe_url=self.allow_unsafe_url)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def open_audible_url(
+    request: urllib.request.Request,
+    *,
+    timeout: int = 30,
+    allow_unsafe_url: bool = False,
+) -> Any:
+    opener = urllib.request.build_opener(SafeAudibleRedirectHandler(allow_unsafe_url=allow_unsafe_url))
+    return opener.open(request, timeout=timeout)
+
+
 def decode_response_bytes(raw: bytes, content_encoding: str) -> str:
+    def bounded_decompress(wbits: int) -> bytes:
+        decompressor = zlib.decompressobj(wbits)
+        decoded = decompressor.decompress(raw, DEFAULT_HTTP_RESPONSE_LIMIT + 1)
+        if len(decoded) > DEFAULT_HTTP_RESPONSE_LIMIT or decompressor.unconsumed_tail:
+            raise AudibleFetchError(
+                f"Decoded Audible response exceeded the {DEFAULT_HTTP_RESPONSE_LIMIT}-byte safety limit.",
+                reason_code="decoded_response_too_large",
+            )
+        decoded += decompressor.flush(DEFAULT_HTTP_RESPONSE_LIMIT + 1 - len(decoded))
+        if len(decoded) > DEFAULT_HTTP_RESPONSE_LIMIT:
+            raise AudibleFetchError(
+                f"Decoded Audible response exceeded the {DEFAULT_HTTP_RESPONSE_LIMIT}-byte safety limit.",
+                reason_code="decoded_response_too_large",
+            )
+        return decoded
+
     encoding = normalize_space(content_encoding).lower()
     if encoding == "gzip":
-        return gzip.decompress(raw).decode("utf-8", "ignore")
+        return bounded_decompress(zlib.MAX_WBITS | 16).decode("utf-8", "ignore")
     if encoding == "deflate":
         try:
-            return zlib.decompress(raw).decode("utf-8", "ignore")
+            return bounded_decompress(zlib.MAX_WBITS).decode("utf-8", "ignore")
         except zlib.error:
-            return zlib.decompress(raw, -zlib.MAX_WBITS).decode("utf-8", "ignore")
+            return bounded_decompress(-zlib.MAX_WBITS).decode("utf-8", "ignore")
     return raw.decode("utf-8", "ignore")
 
 
@@ -189,10 +236,11 @@ def _validate_audible_response(text: str, url: str, *, backend: str, final_url: 
 def _fetch_python_once(url: str) -> AudibleFetchResult:
     request = urllib.request.Request(url, headers=AUDIBLE_FETCH_HEADERS)
     try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            raw = response.read()
+        with open_audible_url(request, timeout=30) as response:
+            raw = read_limited_bytes(response)
             text = decode_response_bytes(raw, str(response.headers.get("Content-Encoding") or ""))
             final_url = str(response.geturl() or url)
+            validate_audible_fetch_url(final_url)
             _validate_audible_response(text, url, backend="python", final_url=final_url)
             return AudibleFetchResult(
                 text,
@@ -210,30 +258,34 @@ def _fetch_python_once(url: str) -> AudibleFetchResult:
             )
     except HTTPError as exc:
         reason_code = _fetch_reason_code("python", exc.code, exc)
-        if exc.code in {403, 429}:
+        http_status = exc.code
+        final_url = str(exc.geturl() or url)
+        error_text = str(exc)
+        exc.close()
+        if http_status in {403, 429}:
             _raise_blocked(
-                f"Audible request blocked with HTTP {exc.code}.",
+                f"Audible request blocked with HTTP {http_status}.",
                 backend="python",
                 url=url,
-                final_url=str(exc.geturl() or url),
-                http_status=exc.code,
+                final_url=final_url,
+                http_status=http_status,
                 reason_code=reason_code,
             )
         raise AudibleFetchError(
-            f"Audible request failed for {url}: {exc}",
+            f"Audible request failed for {url}: {error_text}",
             backend="python",
-            http_status=exc.code,
-            final_url=str(exc.geturl() or url),
+            http_status=http_status,
+            final_url=final_url,
             reason_code=reason_code,
             attempts=[
                 _attempt_payload(
                     backend="python",
                     ok=False,
                     url=url,
-                    final_url=str(exc.geturl() or url),
-                    http_status=exc.code,
+                    final_url=final_url,
+                    http_status=http_status,
                     reason_code=reason_code,
-                    error=str(exc),
+                    error=error_text,
                 )
             ],
         ) from exc
@@ -253,23 +305,40 @@ def _fetch_python_once(url: str) -> AudibleFetchResult:
                 )
             ],
         ) from exc
+    except ValueError as exc:
+        raise AudibleFetchError(
+            f"Audible response failed safety validation for {url}: {exc}",
+            backend="python",
+            reason_code="python_response_too_large",
+        ) from exc
 
 
 def _curl_command(url: str, curl_bin: str) -> list[str]:
     command = [
         curl_bin,
-        "--location",
         "--compressed",
         "--silent",
         "--show-error",
+        "--max-redirs",
+        "0",
+        "--proto",
+        "=https",
         "--max-time",
         "30",
         "--connect-timeout",
         "10",
+        "--max-filesize",
+        str(DEFAULT_HTTP_RESPONSE_LIMIT),
     ]
     for key, value in AUDIBLE_FETCH_HEADERS.items():
         command.extend(["-H", f"{key}: {value}"])
-    command.extend(["-w", f"\n{CURL_META_MARKER}%{{http_code}}\t%{{url_effective}}", url])
+    command.extend(
+        [
+            "-w",
+            f"\n{CURL_META_MARKER}%{{http_code}}\t%{{url_effective}}\t%{{redirect_url}}",
+            url,
+        ]
+    )
     return command
 
 
@@ -308,16 +377,19 @@ def _run_curl(command: list[str], url: str) -> subprocess.CompletedProcess[str]:
         ) from exc
 
 
-def _split_curl_output(stdout: str, url: str) -> tuple[str, str, int | None]:
+def _split_curl_output(stdout: str, url: str) -> tuple[str, str, int | None, str]:
     body, marker, meta = stdout.rpartition(CURL_META_MARKER)
     if not marker:
-        return stdout, url, None
-    raw_status, _, raw_final_url = meta.strip().partition("\t")
+        return stdout, url, None, ""
+    fields = meta.strip().split("\t", 2)
+    raw_status = fields[0] if fields else ""
+    raw_final_url = fields[1] if len(fields) > 1 else ""
+    redirect_url = fields[2] if len(fields) > 2 else ""
     try:
         http_status = int(raw_status)
     except ValueError:
         http_status = None
-    return body, normalize_space(raw_final_url) or url, http_status
+    return body, normalize_space(raw_final_url) or url, http_status, normalize_space(redirect_url)
 
 
 def _fetch_curl_once(url: str, *, curl_bin: str = "curl") -> AudibleFetchResult:
@@ -336,72 +408,116 @@ def _fetch_curl_once(url: str, *, curl_bin: str = "curl") -> AudibleFetchResult:
                 )
             ],
         )
-    proc = _run_curl(_curl_command(url, curl_bin), url)
-    body, final_url, http_status = _split_curl_output(proc.stdout or "", url)
-    if proc.returncode != 0:
-        reason_code = "curl_process_failed"
-        error = (proc.stderr or "").strip() or f"curl exited {proc.returncode}"
-        raise AudibleFetchError(
-            f"Audible curl fallback failed for {url}: {error}",
-            backend="curl",
-            http_status=http_status,
-            final_url=final_url,
-            reason_code=reason_code,
-            attempts=[
-                _attempt_payload(
-                    backend="curl",
-                    ok=False,
-                    url=url,
-                    final_url=final_url,
-                    http_status=http_status,
-                    reason_code=reason_code,
-                    error=error,
-                )
-            ],
-        )
-    if http_status is not None and http_status >= 400:
-        reason_code = _fetch_reason_code("curl", http_status)
-        if http_status in {403, 429}:
-            _raise_blocked(
-                f"Audible curl fallback blocked with HTTP {http_status}.",
+    current_url = validate_audible_fetch_url(url)
+    attempts: list[dict[str, Any]] = []
+    for redirect_count in range(MAX_SAFE_REDIRECTS + 1):
+        proc = _run_curl(_curl_command(current_url, curl_bin), current_url)
+        body, final_url, http_status, redirect_url = _split_curl_output(proc.stdout or "", current_url)
+        if len(body.encode("utf-8")) > DEFAULT_HTTP_RESPONSE_LIMIT:
+            raise AudibleFetchError(
+                f"Audible curl response exceeded the {DEFAULT_HTTP_RESPONSE_LIMIT}-byte safety limit.",
                 backend="curl",
-                url=url,
                 final_url=final_url,
+                reason_code="curl_response_too_large",
+                attempts=attempts,
+            )
+        validate_audible_fetch_url(final_url)
+        if proc.returncode != 0:
+            reason_code = "curl_process_failed"
+            error = (proc.stderr or "").strip() or f"curl exited {proc.returncode}"
+            raise AudibleFetchError(
+                f"Audible curl fallback failed for {current_url}: {error}",
+                backend="curl",
                 http_status=http_status,
+                final_url=final_url,
                 reason_code=reason_code,
+                attempts=[
+                    *attempts,
+                    _attempt_payload(
+                        backend="curl",
+                        ok=False,
+                        url=current_url,
+                        final_url=final_url,
+                        http_status=http_status,
+                        reason_code=reason_code,
+                        error=error,
+                    ),
+                ],
             )
-        raise AudibleFetchError(
-            f"Audible curl fallback failed for {url}: HTTP {http_status}",
-            backend="curl",
-            http_status=http_status,
-            final_url=final_url,
-            reason_code=reason_code,
-            attempts=[
+        if http_status is not None and 300 <= http_status < 400:
+            if redirect_count >= MAX_SAFE_REDIRECTS or not redirect_url:
+                raise AudibleFetchError(
+                    f"Audible curl fallback exceeded or could not resolve its safe redirect limit for {url}.",
+                    backend="curl",
+                    http_status=http_status,
+                    final_url=final_url,
+                    reason_code="curl_redirect_limit",
+                    attempts=attempts,
+                )
+            next_url = validate_audible_fetch_url(urllib.parse.urljoin(current_url, redirect_url))
+            attempts.append(
                 _attempt_payload(
                     backend="curl",
-                    ok=False,
-                    url=url,
+                    ok=True,
+                    url=current_url,
+                    final_url=next_url,
+                    http_status=http_status,
+                    reason_code="safe_redirect_followed",
+                )
+            )
+            current_url = next_url
+            continue
+        if http_status is not None and http_status >= 400:
+            reason_code = _fetch_reason_code("curl", http_status)
+            if http_status in {403, 429}:
+                _raise_blocked(
+                    f"Audible curl fallback blocked with HTTP {http_status}.",
+                    backend="curl",
+                    url=current_url,
                     final_url=final_url,
                     http_status=http_status,
                     reason_code=reason_code,
-                    error=f"HTTP {http_status}",
                 )
+            raise AudibleFetchError(
+                f"Audible curl fallback failed for {current_url}: HTTP {http_status}",
+                backend="curl",
+                http_status=http_status,
+                final_url=final_url,
+                reason_code=reason_code,
+                attempts=[
+                    *attempts,
+                    _attempt_payload(
+                        backend="curl",
+                        ok=False,
+                        url=current_url,
+                        final_url=final_url,
+                        http_status=http_status,
+                        reason_code=reason_code,
+                        error=f"HTTP {http_status}",
+                    ),
+                ],
+            )
+        _validate_audible_response(body, current_url, backend="curl", final_url=final_url)
+        return AudibleFetchResult(
+            body,
+            final_url,
+            backend="curl",
+            attempts=[
+                *attempts,
+                _attempt_payload(
+                    backend="curl",
+                    ok=True,
+                    url=current_url,
+                    final_url=final_url,
+                    http_status=http_status,
+                ),
             ],
         )
-    _validate_audible_response(body, url, backend="curl", final_url=final_url)
-    return AudibleFetchResult(
-        body,
-        final_url,
+    raise AudibleFetchError(
+        f"Audible curl fallback exceeded its safe redirect limit for {url}.",
         backend="curl",
-        attempts=[
-            _attempt_payload(
-                backend="curl",
-                ok=True,
-                url=url,
-                final_url=final_url,
-                http_status=http_status,
-            )
-        ],
+        reason_code="curl_redirect_limit",
+        attempts=attempts,
     )
 
 

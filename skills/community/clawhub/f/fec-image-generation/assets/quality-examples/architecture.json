@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Platform layers and trust boundaries"
+  },
+  "visual": {
+    "style": "minimal"
+  },
+  "groups": [
+    {
+      "id": "private",
+      "label": "Trusted network / business and data services",
+      "x": 360,
+      "y": 70,
+      "width": 920,
+      "height": 470,
+      "type": "security"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "web",
+      "label": "Browser application",
+      "sublabel": "External entry",
+      "type": "browser",
+      "x": 70,
+      "y": 160,
+      "width": 200,
+      "height": 112
+    },
+    {
+      "id": "gateway",
+      "label": "Identity and request routing gateway",
+      "type": "gateway",
+      "x": 420,
+      "y": 150,
+      "width": 220,
+      "height": 112,
+      "group": "private"
+    },
+    {
+      "id": "service",
+      "label": "Order query and approval service",
+      "type": "backend",
+      "x": 760,
+      "y": 150,
+      "width": 220,
+      "height": 112,
+      "group": "private"
+    },
+    {
+      "id": "cache",
+      "label": "Short-lived query cache",
+      "type": "memory",
+      "x": 420,
+      "y": 370,
+      "width": 220,
+      "height": 112,
+      "group": "private"
+    },
+    {
+      "id": "db",
+      "label": "Order and approval database",
+      "type": "database",
+      "x": 760,
+      "y": 370,
+      "width": 220,
+      "height": 112,
+      "group": "private"
+    },
+    {
+      "id": "queue",
+      "label": "Async tasks and notification queue",
+      "type": "queue",
+      "x": 1060,
+      "y": 370,
+      "width": 180,
+      "height": 112,
+      "group": "private"
+    }
+  ],
+  "connections": [
+    {
+      "from": "web",
+      "to": "gateway",
+      "label": "Authentication request",
+      "flow": "control"
+    },
+    {
+      "from": "gateway",
+      "to": "service",
+      "label": "Validated request",
+      "flow": "control"
+    },
+    {
+      "from": "service",
+      "to": "gateway",
+      "label": "Query response",
+      "flow": "data"
+    },
+    {
+      "from": "service",
+      "to": "cache",
+      "label": "Read cache",
+      "flow": "read"
+    },
+    {
+      "from": "service",
+      "to": "db",
+      "label": "Query records",
+      "flow": "read"
+    },
+    {
+      "from": "service",
+      "to": "queue",
+      "label": "Submit notification task",
+      "flow": "async"
+    }
+  ]
+}

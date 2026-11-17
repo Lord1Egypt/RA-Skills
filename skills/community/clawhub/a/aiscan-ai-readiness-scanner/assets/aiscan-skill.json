@@ -1,7 +1,7 @@
 {
   "name": "AIScan — AI Readiness Scanner",
-  "version": "1.0.0",
-  "description": "Scan any website for AI agent readiness. Returns a 0–100 score, letter grade, and a list of failing checks with plain-English fix instructions covering robots.txt, sitemaps, llms.txt, MCP server cards, Agent Skills, OAuth discovery, Markdown content negotiation, and agentic commerce signals. Use it to audit a site before making changes, then re-scan to confirm improvements.",
+  "version": "1.1.0",
+  "description": "Scan any website for AI agent readiness. Returns a 0–100 score, letter grade, detected commerce type (none / transactional / catalogue), and a list of failing checks with plain-English fix instructions covering robots.txt, sitemaps, llms.txt, MCP server cards, Agent Skills, OAuth discovery, Markdown content negotiation, and agentic commerce signals (including machine-readable pricing). Use it to audit a site before making changes, then re-scan to confirm improvements.",
   "homepage": "https://aiscan.site",
   "trigger_phrases": [
     "scan this website for AI",
@@ -11,23 +11,30 @@
     "is this site ready for AI agents"
   ],
   "instructions": [
-    "Step 1 — Call POST https://aiscan.site/api/public/scan with JSON body {\"url\": \"<site-url>\"}. The simpler GET form https://aiscan.site/api/public/scan?url=<site-url> works too.",
-    "Step 2 — Parse the JSON response. Read `overallScore` (0–100), `level` (0–5) and `levelName` for the headline. Read `platform.platform` to know the stack (wordpress, shopify, lovable, nextjs, etc).",
-    "Step 3 — Iterate `checks[]`. Focus on entries where `status` is `fail` or `partial`. Each has a `name`, `dimension`, human `remediation` text, and an optional `fixGuide` array of concrete steps (with `title`, `body`, `code`, `lang`).",
+    "Step 1 — Call POST https://aiscan.site/api/public/v1/scan with JSON body {\"url\": \"<site-url>\"}. The simpler GET form https://aiscan.site/api/public/v1/scan?url=<site-url> works too. (The legacy /api/public/scan endpoint accepts the same parameters.)",
+    "Optional — for a single page instead of the whole site, add \"scope\": \"page\" (requires a Pro API key, sent as 'Authorization: Bearer <key>'). Add \"fresh\": true to bypass the 5-minute result cache. Errors come back as RFC 9457 application/problem+json.",
+    "Step 2 — Parse the JSON response. Read `overallScore` (0–100), `level` (0–5) and `levelName` for the headline, and `rubricVersion` for the scoring rubric used. Read `platform.platform` to know the stack (wordpress, shopify, lovable, nextjs, etc) and `commerce.type` (none | transactional | catalogue) to know whether commerce checks apply.",
+    "Step 3 — Iterate `checks[]`. Focus on entries where `status` is `fail` or `partial`. Each has an `id`, `name`, `dimension`, `tier` (essential | recommended | bonus), human `remediation` text, `specs` citing the standards measured, and an optional `fixGuide` array of concrete steps (with `title`, `body`, `code`, `lang`).",
     "Step 4 — Apply each fix to the user's codebase. Match the platform: for Next.js/TanStack edit `public/robots.txt`, `public/llms.txt`, sitemap routes, `.well-known/*` files. For WordPress recommend a plugin or `functions.php` snippet. Keep changes minimal and idiomatic to the stack.",
-    "Step 5 — After applying fixes, call the scan endpoint again on the same URL and report the new score so the user can see the delta. Do not re-scan more than 5 times per minute (rate limit).",
-    "Important — Never invent check ids or fixes. Use only the `remediation` and `fixGuide` returned by the API. If a check has `status: \"na\"` skip it — it doesn't apply to this site type."
+    "Step 5 — After applying fixes, call the scan endpoint again on the same URL and report the new score so the user can see the delta. Do not re-scan more than 5 times per minute (anonymous rate limit). If the response has `cached: true`, retry with `fresh: true` after the fixes are deployed.",
+    "Important — Never invent check ids or fixes. Use only the `remediation` and `fixGuide` returned by the API. If a check has `status: \"na\"` skip it — it doesn't apply to this site type (read `naReason`). Bonus-tier checks can only add points; essential-tier failures cost the most."
   ],
   "api": {
     "base_url": "https://aiscan.site",
+    "auth": "Optional. Anonymous: 5 scans/minute per IP. Send 'Authorization: Bearer <api-key>' for higher limits and Pro features (page scans). Keys are created at https://aiscan.site/profile",
     "endpoints": [
       {
         "method": "POST",
-        "path": "/api/public/scan",
-        "description": "Run a full agent-readiness scan.",
+        "path": "/api/public/v1/scan",
+        "description": "Run a full agent-readiness scan (stable v1 API, frozen schema).",
         "request": {
           "content_type": "application/json",
-          "body": { "url": "string (required, http/https URL of the site to scan)" }
+          "body": {
+            "url": "string (required, http/https URL of the site to scan)",
+            "scope": "\"site\" (default) | \"page\" — page scans grade one URL and are Pro-only",
+            "fresh": "boolean — bypass the 5-minute cache",
+            "isPublic": "boolean — override the report's public visibility"
+          }
         },
         "response": {
           "content_type": "application/json",
@@ -36,41 +43,72 @@
             "scannedAt": "ISO timestamp",
             "durationMs": "number",
             "platform": {
-              "platform": "wordpress|shopify|lovable|replit|bolt|v0|framer|wix|webflow|nextjs|ghost|squarespace|hubspot|unknown",
+              "platform": "wordpress|shopify|lovable|replit|bolt|v0|framer|wix|webflow|nextjs|nuxt|astro|sveltekit|remix|gatsby|react|vue|angular|ghost|squarespace|hubspot|unknown",
               "confidence": "number 0-100",
               "evidence": "string[]",
               "isEcommerce": "boolean",
-              "isApp": "boolean"
+              "isApp": "boolean",
+              "seoPlugin": "thinkrank|rankmath|yoast|aioseo|seopress|null (WordPress only)"
+            },
+            "commerce": {
+              "type": "none|transactional|catalogue",
+              "confidence": "number 0-100",
+              "evidence": "string[]",
+              "signals": "{ structuredOffers, productSchema, paymentProviders, commerceRoutes, ogProductTags, pricePatterns }"
             },
             "overallScore": "number 0-100",
             "level": "0|1|2|3|4|5",
             "levelName": "string",
+            "scope": "site|page",
             "checks": [
               {
-                "id": "string",
+                "id": "string (e.g. D1, C2, B2, M4)",
                 "name": "string",
                 "dimension": "discoverability|content|bot_access|capabilities|commerce",
                 "status": "pass|partial|fail|na|info",
                 "weight": "number",
                 "earned": "number",
+                "tier": "essential|recommended|bonus",
                 "evidence": "string (optional)",
                 "remediation": "string (plain-English fix, optional)",
+                "naReason": "string (optional, why the check is N/A)",
+                "specs": "[{ name, url }] (optional, standards cited)",
                 "fixGuide": "[{ title, body, code, lang }] (optional, ordered steps)"
               }
             ],
             "dimensions": "Record<dimension, { earned, weight, score, applicable }>",
             "mode": "auto|strict",
-            "rubricVersion": "string"
+            "rubricVersion": "string (e.g. 2026.08.2)",
+            "cached": "boolean (optional, true when served from cache)",
+            "cachedAt": "epoch ms (optional)"
           }
         },
-        "rate_limit": "5 requests per minute per IP"
+        "errors": "RFC 9457 application/problem+json",
+        "rate_limit": "anonymous: 5 requests per minute per IP; API key: no IP limit"
       },
       {
         "method": "GET",
-        "path": "/api/public/scan?url=<url>",
+        "path": "/api/public/v1/scan?url=<url>&scope=<site|page>&fresh=<1>",
         "description": "Same as POST, convenient for browser/agent shorthand.",
-        "rate_limit": "5 requests per minute per IP"
+        "rate_limit": "anonymous: 5 requests per minute per IP; API key: no IP limit"
+      },
+      {
+        "method": "GET",
+        "path": "/api/public/v1/report/{id}",
+        "description": "Fetch the full ScanResult JSON for a previously run scan by its report id."
+      },
+      {
+        "method": "POST",
+        "path": "/api/public/scan",
+        "description": "Legacy v0 endpoint, same parameters as v1. Still supported; prefer v1."
       }
+    ],
+    "content_endpoints": [
+      { "path": "/index.md", "description": "Markdown version of the homepage" },
+      { "path": "/llms.txt", "description": "llms.txt site summary" },
+      { "path": "/blog/{slug}.md", "description": "Markdown version of any blog post" },
+      { "path": "/feed.xml", "description": "RSS 2.0 feed" },
+      { "path": "/openapi.json", "description": "OpenAPI 3.1 description of all public endpoints" }
     ]
   },
   "mcp": {
@@ -83,7 +121,7 @@
       "title": "Scan a site",
       "request": {
         "method": "POST",
-        "url": "https://aiscan.site/api/public/scan",
+        "url": "https://aiscan.site/api/public/v1/scan",
         "headers": { "Content-Type": "application/json" },
         "body": { "url": "https://example.com" }
       },
@@ -92,16 +130,28 @@
         "overallScore": 42,
         "level": 2,
         "levelName": "Basic",
+        "rubricVersion": "2026.08.2",
+        "scope": "site",
         "platform": { "platform": "unknown", "confidence": 0 },
+        "commerce": { "type": "none", "confidence": 10 },
         "checks": [
           {
-            "id": "llms_txt",
-            "name": "llms.txt present",
-            "dimension": "discoverability",
+            "id": "C2",
+            "name": "/llms.txt",
+            "dimension": "content",
+            "tier": "recommended",
             "status": "fail",
-            "remediation": "Add a /llms.txt file at the site root summarising key pages for LLMs."
+            "remediation": "Publish /llms.txt per llmstxt.org with an H1, summary, and ## sections of markdown links."
           }
         ]
+      }
+    },
+    {
+      "title": "Scan a single page (Pro)",
+      "request": {
+        "method": "GET",
+        "url": "https://aiscan.site/api/public/v1/scan?url=https://example.com/pricing&scope=page",
+        "headers": { "Authorization": "Bearer $AISCAN_API_KEY" }
       }
     }
   ]

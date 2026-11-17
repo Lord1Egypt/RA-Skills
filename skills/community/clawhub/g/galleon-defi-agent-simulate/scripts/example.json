@@ -1,0 +1,37 @@
+{
+  "proposal": {
+    "chainId": 8453,
+    "transactions": [
+      {
+        "from": "0x1111111111111111111111111111111111111111",
+        "to": "0x2222222222222222222222222222222222222222",
+        "value": "0",
+        "data": "0x12345678"
+      }
+    ]
+  },
+  "simulation": {
+    "chainId": 8453,
+    "blockNumber": 123,
+    "mode": "sequential",
+    "transactions": [
+      {
+        "from": "0x1111111111111111111111111111111111111111",
+        "to": "0x2222222222222222222222222222222222222222",
+        "value": "0",
+        "data": "0x12345678"
+      }
+    ],
+    "statuses": [
+      "success"
+    ],
+    "overrides": [],
+    "coverage": {
+      "assetChanges": true,
+      "authorityChanges": true,
+      "traces": true
+    },
+    "truncated": false
+  },
+  "asynchronousDestination": false
+}

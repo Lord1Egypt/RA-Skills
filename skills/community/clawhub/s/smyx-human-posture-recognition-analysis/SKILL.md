@@ -1,7 +1,7 @@
 ---
 name: "human-posture-recognition-analysis"
 description: "Recognizes various poses such as standing, sitting, lying down, bending, raising hands, running, and falling. Supports abnormal pose recognition and fall warnings, suitable for security monitoring and elderly care. | 人体姿态识别技能，识别站立、坐姿、躺卧、弯腰、举手、奔跑、摔倒等多种人体姿态，支持肢体异常姿态识别和摔倒预警，适用于安防监测、老人看护等场景"
-version: "1.0.6"
+version: "1.0.15"
 license: "MIT-0"
 ---
 

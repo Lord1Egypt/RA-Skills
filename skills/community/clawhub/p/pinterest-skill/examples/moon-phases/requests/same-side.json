@@ -1,0 +1,26 @@
+{
+ "content": [
+  {
+   "text": "Why do we always see the same side of the Moon? It is tidally locked: it spins once for every trip around Earth, so the same face points our way, give or take a slight wobble called libration. The Moon phases only change how much of that face is lit. Photo: NASA, the full Moon over Kennedy Space Center.",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for same-side.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "PINTEREST",
+   "socialAccountId": "<socialAccountId for main>",
+   "pinterestBoardId": "<board id for 'Space science lessons'>",
+   "title": "Same side of the Moon: why we always see it, and tidal locking",
+   "link": "https://science.nasa.gov/moon/moon-phases/"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-12-01T01:30:00Z"
+ }
+}

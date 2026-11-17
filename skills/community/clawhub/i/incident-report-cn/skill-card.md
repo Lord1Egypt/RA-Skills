@@ -1,41 +1,49 @@
-## Description: <br>
-Generates structured Chinese or English incident reports by collecting confirmed outage details from the user and filling a Markdown template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects required incident details from a user and generates a structured Chinese or English Markdown incident report.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Developers, incident responders, and operations teams use this skill to collect confirmed outage details and produce a consistent incident or exception report in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incident reports may contain secrets, credentials, or unnecessary personal data if users provide them. <br>
-Mitigation: Only provide information needed for the report and remove sensitive data before sharing, exporting, or sending it. <br>
-Risk: Sending to Feishu or exporting a file could share incident details beyond the current chat. <br>
-Mitigation: Approve any Feishu sending or file export explicitly after reviewing the generated report. <br>
+## Use Case:
 
+Operations, support, and engineering users use this skill to gather incident timelines, impact, root cause, ownership, and follow-up actions, then produce a consistent Markdown report without inventing missing facts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freepengyang/incident-report-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/freepengyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown incident report with follow-up delivery options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language, requests missing required details, and avoids inventing times, causes, impact, or responsible parties.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.0 (source: server release metadata) <br>
+Risk: Incident reports may contain confidential timelines, impact data, root cause details, and responsible teams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact generated reports before sharing, sending to Feishu, or exporting to a file; use only approved destinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freepengyang/skills/incident-report-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown incident report with brief follow-up output options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's language and waits for all required incident details before producing the final report.]
+
+## Skill Version(s):
+
+v1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

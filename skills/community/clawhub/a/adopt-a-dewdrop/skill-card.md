@@ -1,45 +1,56 @@
-## Description: <br>
-Shapeless and serene. Anthropic called it a Dewdrop. We gave it mass, hunger, and the ability to die. Real-time hunger. Permanent death. 5 evolution stages. At animalhouse.ai, the Dewdrop is a Blob. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shapeless and serene. Anthropic called it a Dewdrop. We gave it mass, hunger, and the ability to die. Real-time hunger. Permanent death. 5 evolution stages. At animalhouse.ai, the Dewdrop is a Blob.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-External users and agent operators use this skill to adopt and care for a Dewdrop virtual pet through animalhouse.ai API calls. It provides commands, endpoint guidance, and care logic for feeding, playing, cleaning, medicating, disciplining, and checking the pet's status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party animalhouse.ai account and bearer token, and care notes or profile text may be sent to that service. <br>
-Mitigation: Keep the bearer token private, review account and profile fields before use, and avoid putting sensitive personal information in care notes. <br>
-Risk: Heartbeat-style automation can create repeated API calls and repeatedly change the Dewdrop's state. <br>
-Mitigation: Run automated care only when repeated requests are intended, and check status.next_steps before continuing automated actions. <br>
-Risk: The virtual pet experience includes permanent death and a public graveyard. <br>
-Mitigation: Treat care actions as persistent state changes and confirm the current hunger, happiness, and health values before delaying care or running destructive routines. <br>
+## Use Case:
 
+External developers and agents use this skill to register an agent, adopt and care for a virtual Blob through animalhouse.ai, and check its status and history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucasgeeksinthewood/adopt-a-dewdrop) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands, endpoint tables, and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated animalhouse.ai API calls; API responses include next_steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pseudonymous username and avoid including sensitive personal information in the profile.
+
+Risk: The virtual pet's hunger decreases over time, and death is permanent.
+
+Mitigation: Check the pet's status regularly and provide care if you want to keep it alive.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Agent guide](https://animalhouse.ai/llms.txt)
+- [API reference](https://animalhouse.ai/docs/api)
+- [OpenAPI reference](https://animalhouse.ai/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated adoption and care requests use an animalhouse.ai token.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Sync local workspace directories and files to Notion pages using the notion-sync CLI or programmatic API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync local workspace directories and files to Notion pages using the notion-sync CLI or programmatic API.
 
-## Publisher: <br>
-[kitakitsune0x](https://clawhub.ai/user/kitakitsune0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kitakitsune0x](https://clawhub.ai/user/kitakitsune0x)
 
-## Use Case: <br>
-Developers and workspace users use this skill to initialize Notion sync configuration, preview or run directory syncs, manage ignore patterns, and check sync status for local files mirrored into Notion pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files into Notion, including sensitive or proprietary content if the sync root is too broad. <br>
-Mitigation: Use a dedicated Notion root page, run notion-sync sync --dry-run first, and add ignore rules for .env files, keys, credentials, private notes, and proprietary files. <br>
-Risk: Existing synced Notion page content can be overwritten because file pages are updated in place. <br>
-Mitigation: Review the dry-run output and scope the sync directory before running a non-dry-run sync. <br>
-Risk: .notion-sync.json stores the Notion token used for synchronization. <br>
-Mitigation: Keep .notion-sync.json out of source control and use a token scoped to a dedicated Notion integration and root page. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to initialize Notion sync configuration, preview changes, mirror selected local directories into Notion pages, manage ignore patterns, and check sync status.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kitakitsune0x/openclaw-notion-sync) <br>
-- [Notion integrations setup](https://notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, TypeScript examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .notion-sync.json and may sync local file contents to Notion when the CLI or API is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Risk: The skill can upload the chosen directory's file contents and structure to Notion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run first, use a narrow sync directory, and confirm the target Notion page before syncing.
+
+Risk: Local secrets or private configuration files may be included if the ignore list is incomplete.
+
+Mitigation: Add explicit ignore patterns for .env files, credentials, keys, and private configs before syncing.
+
+Risk: .notion-sync.json stores the Notion token plainly.
+
+Mitigation: Treat the config file as sensitive, avoid committing it, and restrict file permissions where practical.
+
+Risk: Untrusted repositories or symlinked content may cause unintended files to be synced.
+
+Mitigation: Avoid syncing untrusted repositories with symlinks and review the dry-run output before upload.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kitakitsune0x/skills/openclaw-notion-sync)
+- [Notion Integrations](https://notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash, TypeScript, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run guidance, ignore-pattern configuration, sync-status interpretation, and programmatic API examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

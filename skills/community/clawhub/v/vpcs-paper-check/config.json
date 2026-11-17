@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "skill": "vpcs-paper-check",
+  "default_domain": "cqccjy",
+  "limits": {
+    "max_file_bytes": 52428800,
+    "max_title_chars": 128,
+    "min_author_chars": 2,
+    "max_author_chars": 20,
+    "max_word_count": 500000,
+    "supported_extensions": [".doc", ".docx", ".txt", ".pdf", ".wps", ".rtf"]
+  },
+  "runtime_snapshot": {
+    "captured_at": "2026-09-27",
+    "source": "GET /api/paper/check/public/pwp/config",
+    "pwp_enabled": true,
+    "max_word_count": 500000,
+    "hint_min_word_count": 200,
+    "hint_max_word_count": 500000,
+    "report_retention_days": 7,
+    "payment_channels": [
+      {"channel": "DETECTION_CARD", "label": "检测卡号支付", "enabled": true},
+      {"channel": "WECHAT", "label": "微信支付", "enabled": true, "mobile_pay_mode": "SCAN"},
+      {"channel": "ALIPAY", "label": "支付宝", "enabled": true, "mobile_pay_mode": "DIRECT"}
+    ]
+  },
+  "security": {
+    "allow_user_supplied_url": false,
+    "allow_user_supplied_provider": false,
+    "auto_pay": false,
+    "auto_submit_detect": false,
+    "allow_report_url_guessing": false
+  }
+}

@@ -1,43 +1,60 @@
-## Description: <br>
-Parse Word documents into structured Markdown using MinerU while preserving headings, lists, tables, paragraphs, and document hierarchy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Parse helps agents parse .doc and .docx Word documents into structured Markdown with preserved headings, lists, tables, and paragraphs using MinerU.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, researchers, and content managers use this skill to extract structured Markdown from Word documents for downstream processing, content analysis, and document migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some parsing workflows may send document data or URLs to MinerU/OpenDataLab services. <br>
-Mitigation: Avoid confidential files, secrets, customer data, or internal-only URLs unless the provider's data handling and retention practices are acceptable for the use case. <br>
-Risk: The skill depends on the external mineru-open-api binary and a MINERU_TOKEN for token-required parsing modes. <br>
-Mitigation: Install mineru-open-api from the declared package source and provide MINERU_TOKEN only in environments approved for document parsing. <br>
+## Use Case:
 
+Developers, researchers, and content managers use this skill to convert Word documents from local files or URLs into structured Markdown for downstream analysis, migration, or content processing.
 
-## Reference(s): <br>
-- [Doc Parse on ClawHub](https://clawhub.ai/mzlzyca/doc-parse) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured Markdown to stdout or save it to an output directory through mineru-open-api.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: Potentially sensitive documents may be processed through third-party MinerU/OpenDataLab tooling without clear privacy disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated documents unless content processing and retention are verified for the intended workflow.
+
+Risk: CLI behavior can change if users install an unpinned latest package.
+
+Mitigation: Pin mineru-open-api to a reviewed version where possible and re-review before upgrading.
+
+Risk: The CLI only needs the source documents and output location, but broad filesystem access can expose unrelated files.
+
+Mitigation: Run the parser with access limited to the input files and output directory needed for the task.
+
+## Reference(s):
+
+- [MinerU](https://mineru.net)
+- [MinerU API token management](https://mineru.net/apiManage/token)
+- [OpenDataLab MinerU](https://github.com/opendatalab/MinerU)
+- [Doc Parse on ClawHub](https://clawhub.ai/mzlzyca/skills/doc-parse)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with bash command examples and CLI output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Markdown to stdout by default or files under an output directory when -o is used; .doc parsing requires MINERU_TOKEN.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

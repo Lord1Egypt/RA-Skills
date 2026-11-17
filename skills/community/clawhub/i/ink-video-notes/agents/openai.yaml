@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video notes"
+  short_description: "Turn a video into timestamped chapter notes"
+  default_prompt: "Use $ink-video-notes to turn this video into chaptered notes with timestamps."

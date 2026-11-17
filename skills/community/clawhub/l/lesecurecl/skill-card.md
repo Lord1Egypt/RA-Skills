@@ -1,44 +1,59 @@
-## Description: <br>
-LESecure Cloud encrypts or decrypts plain text through the LESecure API using layered locks such as PIN, password, MFA, and time windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LeSecure Cloud helps an agent encrypt or decrypt plain text through the LESecure API using layered locks such as PIN, password, MFA, and time-window controls.
 
-## Publisher: <br>
-[spalgorithm](https://clawhub.ai/user/spalgorithm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spalgorithm](https://clawhub.ai/user/spalgorithm)
 
-## Use Case: <br>
-External users and developers use this skill to encrypt or decrypt plain text with the LESecure cloud service while applying one or more access locks. It is intended for text workflows where users are comfortable sending the content, lock values, and API token to the LESecure API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext, ciphertext, lock values, phone numbers, and the API bearer token are sent to a third-party cloud API. <br>
-Mitigation: Use the skill only after acknowledging the remote transmission, avoid highly sensitive data unless the provider's privacy practices have been independently verified, and choose the local LESecure option when data should stay on-device. <br>
-Risk: API keys and lock values can be exposed if pasted into chat, shell history, logs, or process arguments. <br>
-Mitigation: Provide the API key through the LESECURE_API_KEY environment variable, send JSON request bodies through stdin, never print secrets, and rotate the key if it is ever pasted into chat. <br>
-Risk: The cloud skill is limited to plain-text encryption and decryption, not files or folders. <br>
-Mitigation: Redirect file or folder workflows to LESecureLocal instead of sending file content to the cloud API. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to encrypt or decrypt plain text with LESecure Cloud while applying layered access controls. It is not intended for file or folder encryption, which the skill directs to LESecureLocal.
 
-## Reference(s): <br>
-- [LeSecure Cloud listing](https://clawhub.ai/spalgorithm/lesecurecl) <br>
-- [Source code and documentation](https://github.com/SPAlgorithm/LE) <br>
-- [LESecure API endpoint](https://api.lesecure.ai/exec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain-text API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses stdin-fed JSON request bodies and the LESECURE_API_KEY environment variable for authenticated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: Plaintext, ciphertext, lock values, phone numbers, and the API bearer token are sent to a third-party cloud endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when cloud processing is intentional, test with non-sensitive data first, and prefer LESecureLocal for private files or sensitive secrets.
+
+Risk: API keys, plaintext, and lock factors can be exposed through chat history, shell history, process arguments, logs, or insecure local storage.
+
+Mitigation: Read the API key from LESECURE_API_KEY, avoid pasting secrets into chat, send request bodies through stdin, and store long-lived keys in a secret manager.
+
+Risk: File or folder encryption requests could send data to the wrong processing path if the cloud/plaintext boundary is missed.
+
+Mitigation: Use LESecure Cloud only for plain text and route file or folder encryption and decryption to LESecureLocal.
+
+## Reference(s):
+
+- [LESecure source code and documentation](https://github.com/SPAlgorithm/LE)
+- [LESecure Cloud API endpoint](https://api.lesecure.ai/exec)
+- [ClawHub skill page](https://clawhub.ai/spalgorithm/skills/lesecurecl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and plain-text API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, Python 3.9 or later with zoneinfo for time locks, and LESECURE_API_KEY supplied from the environment.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

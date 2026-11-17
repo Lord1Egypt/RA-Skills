@@ -1,42 +1,57 @@
-## Description: <br>
-Project Code Standard helps developers check, enforce, and optionally fix project code standards across Python, JavaScript/TypeScript, and general repository structure conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Code Standard helps agents check, enforce, and repair project coding standards for Python, JavaScript/TypeScript, and general repository conventions.
 
-## Publisher: <br>
-[forestxieCode](https://clawhub.ai/user/forestxieCode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forestxiecode](https://clawhub.ai/user/forestxiecode)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to identify project type, run suitable linting or formatting checks, summarize issues in a Markdown report, and prepare starter code-quality configuration when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional automated fixes can modify repository files or apply formatting changes the user did not intend. <br>
-Mitigation: Require explicit user confirmation before running fix commands, keep changes under version control, and review diffs after changes. <br>
-Risk: The artifact references helper scripts and starter templates that were not included in the reviewed package. <br>
-Mitigation: Verify referenced scripts and templates exist and are trusted before executing them or copying them into a project. <br>
-Risk: Lint or formatting recommendations may conflict with a project's established standards. <br>
-Mitigation: Prefer existing project lint configuration and review the generated Markdown report before adopting changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/forestxieCode/project-code-standard) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/forestxieCode) <br>
+## Use Case:
 
+Developers and engineers use this skill to assess code style, configure linting or formatting standards, summarize quality findings, and optionally apply approved fixes before review or CI integration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional fixes require user confirmation before files are modified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest local linting, formatting, or helper-script commands, while referenced helper scripts and assets are not included in the artifact.
+
+Mitigation: Review each suggested command and confirm the required tools or scripts exist in the target project before running them.
+
+Risk: Automatic fixes can modify project files.
+
+Mitigation: Require explicit user approval before applying fixes, then rerun checks and review the resulting file changes.
+
+Risk: The skill content is primarily Chinese-language, which may be less accessible to some reviewers or operators.
+
+Mitigation: Confirm that the installing team is comfortable reviewing and operating Chinese-language skill guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forestxiecode/skills/project-code-standard)
+- [Publisher profile](https://clawhub.ai/user/forestxiecode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional fix commands or starter configuration recommendations that require user confirmation before file changes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

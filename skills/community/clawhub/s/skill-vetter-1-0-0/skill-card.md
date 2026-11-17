@@ -1,43 +1,53 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents before installing skills from ClawHub, GitHub, or other sources.
 
-## Publisher: <br>
-[fedrov2025](https://clawhub.ai/user/fedrov2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fedrov2025](https://clawhub.ai/user/fedrov2025)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to review unfamiliar agent skills before installation, checking source trust, file behavior, permissions, and security red flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release has no server-resolved GitHub import provenance, so origin cannot be verified from provenance evidence. <br>
-Mitigation: Treat the ClawHub publisher profile as the available ownership signal and verify the publisher before relying on the skill for final security decisions. <br>
-Risk: The skill includes example GitHub curl commands that fetch repository metadata and files. <br>
-Mitigation: Run the example commands only against repositories intentionally selected for review and inspect fetched content before using it in installation decisions. <br>
-Risk: The skill is a checklist and can miss context-specific or newly emerging threats. <br>
-Mitigation: Use the generated vetting report as a review aid and apply human judgment for high-risk skills, credentials, privileged access, or system changes. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to review agent skills before installation, identify security red flags, assess permission scope, and document a vetting verdict.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fedrov2025/skill-vetter-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/fedrov2025) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown checklist and vetting report template with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable security review guidance rather than executable artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may run the example curl commands against unintended repositories or with private credentials in their environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the curl examples as optional and target-specific; fetch only public repositories intended for review and do not paste private tokens or credentials into review commands.
+
+Risk: A checklist-only review can miss subtle malicious behavior or incomplete context in a skill package.
+
+Mitigation: Read all skill files, follow the permission-scope checks, and use scan results or human approval for medium- or high-risk findings before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fedrov2025/skills/skill-vetter-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with checklist guidance, report template, and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a human-readable vetting report covering source, author, version, metrics, red flags, permissions, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

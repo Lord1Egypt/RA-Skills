@@ -1,44 +1,63 @@
-## Description: <br>
-Collects design inspiration entry links from Dribbble and Pinterest, filters to official search, tag, topic, or ideas pages, and writes local Markdown and JSON reports for a requested design topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects design inspiration entry points from Dribbble and Pinterest, filters for official search, tag, and topic pages, and produces a local Markdown report with trend prompts and related design directions.
 
-## Publisher: <br>
-[benson126](https://clawhub.ai/user/benson126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benson126](https://clawhub.ai/user/benson126)
 
-## Use Case: <br>
-Designers, product teams, and agents use this skill to gather starting points for UI, UX, and visual design research from Dribbble and Pinterest. It is intended for design-inspiration collection, trend summarization, and follow-on exploration by topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design topics are sent to Tavily for Dribbble search. <br>
-Mitigation: Avoid confidential client names, unreleased product concepts, regulated data, or sensitive research topics in prompts. <br>
-Risk: The skill writes Markdown and JSON report files under ~/design_inspirations. <br>
-Mitigation: Review generated files before sharing, committing, or using them in client-facing work. <br>
-Risk: Search results and constructed platform URLs may reflect platform availability, ranking, or search-quality limitations. <br>
-Mitigation: Review the returned Dribbble and Pinterest links and refine the topic when the results are too broad or irrelevant. <br>
+## Use Case:
 
+Designers, product teams, and developers use this skill to gather UI, UX, and visual design reference links for a requested topic from Dribbble and Pinterest. It helps create a concise inspiration report while avoiding personal portfolio, board, and individual item URLs where the skill's filters apply.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/benson126/design-inspiration-collector) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/benson126) <br>
-- [Tavily API key setup](https://app.tavily.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, files, shell commands, guidance] <br>
-**Output Format:** [Markdown report plus JSON data file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped topic reports under ~/design_inspirations and prints the generated Markdown and JSON paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact metadata reports 2.1.0) <br>
+Risk: Design search topics are sent to Tavily when Dribbble search is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using confidential product names, customer identifiers, or sensitive design briefs as search topics unless sharing them with Tavily is approved.
+
+Risk: Generated links are collected search results or constructed platform URLs and are not guaranteed to be safe or authoritative.
+
+Mitigation: Review links before opening or sharing them, and treat the report as a starting point for design research rather than a verified source list.
+
+Risk: The script writes Markdown and JSON files under ~/design_inspirations.
+
+Mitigation: Run the skill in an environment where writing reports to that directory is acceptable, and review generated files before distributing them.
+
+Risk: The Tavily dependency is not pinned in the artifact metadata.
+
+Mitigation: Pin and review the tavily-python package version in managed deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/benson126/skills/design-inspiration-collector)
+- [Publisher Profile](https://clawhub.ai/user/benson126)
+- [Tavily API](https://app.tavily.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown report and structured JSON data written as local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are written under ~/design_inspirations with filenames based on the topic and timestamp.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact files report 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

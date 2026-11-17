@@ -1,41 +1,57 @@
-## Description: <br>
-Applies serverless FaaS patterns for event-driven workloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Serverless FaaS patterns. Use for bursty event-driven workloads with pay-per-execution cost and little infrastructure
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and architects use this skill to evaluate serverless architecture for event-driven, bursty workloads and to plan function decomposition, state management, observability, security, and cost controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad architecture triggers may cause the skill to appear in conversations where serverless guidance is not desired. <br>
-Mitigation: Disable the skill or narrow routing if it becomes distracting. <br>
-Risk: Architecture recommendations may be applied without checking provider limits, cold-start tolerance, cost behavior, or state requirements. <br>
-Mitigation: Review proposed designs against workload requirements, platform quotas, observability needs, and cost controls before deployment. <br>
+## Use Case:
 
+Developers and architects use this skill to assess whether serverless functions fit event-driven workloads and to plan function boundaries, state management, deployment, observability, and cost controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-serverless) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with architecture steps, deliverables, and risk mitigations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no executable code or hidden behavior identified by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
+Risk: Provider-specific APIs can make it costly to move the workload between cloud providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Where practical, place provider-specific calls behind interfaces or use portable frameworks.
+
+Risk: Distributed function execution can make failures and latency difficult to trace.
+
+Mitigation: Standardize tracing and structured logging across functions.
+
+Risk: Concurrency, memory, and other provider limits can constrain workload growth.
+
+Mitigation: Monitor provider quotas and design workloads to be shardable or horizontally scalable.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-serverless)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include serverless adoption steps, architecture decision record guidance, and infrastructure, deployment, observability, and cost recommendations.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

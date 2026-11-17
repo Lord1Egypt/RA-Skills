@@ -1,42 +1,57 @@
-## Description: <br>
-Use when creating forest plots for meta-analyses, visualizing effect sizes across studies, or generating publication-ready meta-analysis figures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating forest plots for meta-analyses, visualizing effect sizes across studies, or generating publication-ready meta-analysis figures.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to create forest plots and meta-analysis summaries from structured study data for systematic reviews, manuscripts, presentations, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpinned Python dependencies can make generated plots or calculations difficult to reproduce. <br>
-Mitigation: Install from trusted package sources and pin numpy, scipy, matplotlib, and pandas versions in production environments. <br>
-Risk: CLI examples or entry points may differ from the packaged script path. <br>
-Mitigation: Verify the installed script entry point before execution and prefer the shipped artifact path when invoking the tool. <br>
-Risk: Generated plot files can overwrite existing files at the selected output path. <br>
-Mitigation: Write outputs to a deliberate directory and review file names before running commands. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to generate publication-ready meta-analysis forest plots with confidence intervals, heterogeneity metrics, and fixed-effect or random-effects summaries from CSV or JSON study data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/meta-analysis-forest-plotter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; generated plot files may be PDF, PNG, SVG, or TIFF when the script is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Console summaries include fixed-effect and random-effects estimates, confidence intervals, p-values, and heterogeneity statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact metadata lists 1.0) <br>
+Risk: Unpinned scientific Python dependencies may change behavior across installations or introduce dependency risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a locked dependency set for numpy, scipy, matplotlib, and pandas before operational use.
+
+Risk: README-style examples reference a script or module name that differs from the shipped artifact.
+
+Mitigation: Run artifact/scripts/main.py directly or update imports and command examples to match the installed file layout.
+
+Risk: Statistical conclusions depend on user-provided study data and the script's model assumptions.
+
+Mitigation: Review input data, confidence intervals, and fixed-effect or random-effects model selection before using generated plots in publications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/meta-analysis-forest-plotter)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated artifacts may include PNG, PDF, SVG, or TIFF forest plots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads CSV or JSON study data and can emit console summaries alongside plot files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

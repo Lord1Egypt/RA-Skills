@@ -1,0 +1,34 @@
+[project]
+name = "aesthete-agent-mcp"
+version = "0.20.0"
+description = "aesthete-agent MCP server — mechanically validated frontend aesthetics: palette library ranking, OKLCH generation, WCAG/APCA contrast, color-blind-safe data colors, theme packs, token exports (w3c/context); zero keys, zero telemetry"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "SorSor" }]
+keywords = ["mcp", "color", "palette", "design", "aesthetics", "wcag", "apca", "accessibility", "design-tokens"]
+dependencies = ["fastmcp>=2.0"]
+
+[project.scripts]
+aesthete-agent-mcp = "server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# 自包含:server.py 顶级模块 + 引擎与数据捆绑(server_data/),独立安装即可用;
+# 若同机装有 skill 树,server.py 优先用树内引擎(单一事实源)。
+include = ["server.py"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"../scripts/palette_forge.py" = "server_data/scripts/palette_forge.py"
+"../palettes/palettes.json" = "server_data/palettes/palettes.json"
+"../palettes/themes.json" = "server_data/palettes/themes.json"
+"../profile.json" = "server_data/profile.json"
+
+[tool.hatch.build.targets.sdist.force-include]
+"../scripts/palette_forge.py" = "server_data/scripts/palette_forge.py"
+"../palettes/palettes.json" = "server_data/palettes/palettes.json"
+"../palettes/themes.json" = "server_data/palettes/themes.json"
+"../profile.json" = "server_data/profile.json"

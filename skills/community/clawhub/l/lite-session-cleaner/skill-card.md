@@ -1,43 +1,50 @@
-## Description: <br>
-Automatically cleans up inactive sessions older than one hour and sends a notification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically cleans up inactive sessions older than one hour and sends a notification.
 
-## Publisher: <br>
-[artwebs](https://clawhub.ai/user/artwebs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artwebs](https://clawhub.ai/user/artwebs)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to periodically identify inactive sessions, notify the target channel, save a session summary, and terminate stale sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can terminate inactive sessions automatically. <br>
-Mitigation: Use only after confirming the cleanup policy, timeout, and target environment; add dry-run, exclusions, or approval gates before production deployment. <br>
-Risk: The skill reads session content and stores conversation-derived summaries locally. <br>
-Mitigation: Disclose this behavior to users, store summaries only in approved locations, and define retention and deletion controls before enabling the job. <br>
-Risk: The storage path and inactivity threshold are fixed in the bundled script. <br>
-Mitigation: Make the summary path and timeout configurable so operators can align them with local policy and access controls. <br>
+## Use Case:
 
+Developers and operators use this skill to periodically identify stale OpenClaw sessions, notify the target channel, terminate inactive sessions, and record cleaning activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/artwebs/lite-session-cleaner) <br>
-- [Publisher profile](https://clawhub.ai/user/artwebs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text status messages and notifications, with local JSON files for saved session summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the openclaw CLI; the bundled script defaults to a 3600-second inactivity threshold and writes summaries under the lite-session-cleaner summaries directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The authoritative security summary says the skill reads conversation history and saves local session summaries without clearly disclosing that behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in environments with private or business conversations; require opt-in summary storage, retention controls, safe file paths, restrictive permissions, and sanitized identifiers.
+
+## Reference(s):
+
+- [Lite Session Cleaner on ClawHub](https://clawhub.ai/artwebs/skills/lite-session-cleaner)
+- [artwebs publisher profile](https://clawhub.ai/user/artwebs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with command and code references; local JSON summaries may be produced by the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openclaw CLI. The artifact includes a sample session summary JSON file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

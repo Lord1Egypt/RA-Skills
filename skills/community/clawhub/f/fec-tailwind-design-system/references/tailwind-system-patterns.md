@@ -1,28 +1,28 @@
-# Tailwind 系统模式
+# Tailwind system mode
 
-## Token 映射
+## Token mapping
 
-优先使用语义化名称：
+Prefer using semantic names:
 
-| 需求 | 推荐 | 避免 |
+| Need | Recommend | Avoid |
 | ---- | ---- | ---- |
-| 品牌色 | `brand.600`, `--color-brand-primary` | 到处复制 `blue-600` |
-| 表面层级 | `surface.canvas`, `surface.panel` | 一次性灰色值 |
-| 圆角 | `radius.control`, `radius.panel` | 随意重复的具体值 |
-| 阴影 | `shadow.floating`, `shadow.focus` | 没有状态含义的装饰阴影 |
+| Brand color | `brand.600`, `--color-brand-primary` | Copy everywhere `blue-600` |
+| Surface level | `surface.canvas`, `surface.panel` | One-time gray value |
+| rounded corners | `radius.control`, `radius.panel` | optionally repeated specific values |
+| Shadow | `shadow.floating`, `shadow.focus` | Decorative shadow with no state meaning |
 
-如果项目已有 CSS 变量，把 Tailwind token 映射到这些变量，而不是重复维护字面量。
+If the project already has CSS variables, map Tailwind tokens to these variables instead of repeatedly maintaining literals.
 
-## Variant 归属
+## Variant Attribution
 
-长 class 组合应收敛到以下位置之一：
+Long class combinations should converge to one of the following locations:
 
-- 带 `variant`、`size`、`tone`、`density`、`state` props 的共享组件。
-- 复合组件的 slot 映射表。
-- CVA、tailwind-variants 或本地 `classNames` 映射等类型化 helper。
-- 只在一个模块内复用时，使用局部常量。
+- Shared components with `variant`, `size`, `tone`, `density`, `state` props.
+- Slot mapping table of composite components.
+- Typed helpers such as CVA, tailwind-variants or local `classNames` mappings.
+- Use local constants when reusing them within only one module.
 
-不要根据不受控的用户输入拼接 class 名。使用显式映射：
+Don't splice class names based on uncontrolled user input. Use explicit mapping:
 
 ```ts
 const toneClass = {
@@ -32,24 +32,28 @@ const toneClass = {
 } as const;
 ```
 
-## 暗色模式
+## Dark mode
 
-- 优先选择单一的项目级策略：`class`、`data-theme` 或 CSS 变量。
-- 如果应用支持手动切换主题，在 body 绘制前初始化已选主题。
-- 在亮色和暗色主题下都测试 disabled、focus、selected、invalid、chart 和 skeleton 状态。
-- 不要把降低透明度作为 disabled 的唯一提示；要保留对比度和可感知性。
+- Prefer a single project-level strategy: `class`, `data-theme` or CSS variables.
+- If the application supports manual theme switching, initialize the selected theme before the body is drawn to avoid flickering of the first screen that first lights up and then darkens or first darkens and then lights up.
+- Test disabled, focus, selected, invalid, chart and skeleton states in both light and dark themes.
+- Don't use lowering transparency as the only hint of disabled; preserve contrast and perceptibility.
+- When the Tailwind project uses `darkMode: "class"` or equivalent configuration, the theme switching logic should maintain the root node class / data attribute and persist user preferences.
+- In the CSS variable scheme, Tailwind token should refer to semantic variables; do not scatter two sets of utility literals for light and dark colors.
+- When placing a minimal synchronization initialization script in `<head>` or a framework equivalent entry, only local theme preferences and system preferences are read, no business logic is executed, and no server-side data is accessed.
+- In dark mode, you need to review the image brightness, shadow level, form controls, third-party components, chart color palette and focus ring; don't just add the background color.
 
-## 响应式工具类
+## Responsive tool class
 
-- 默认 class 列表从移动端布局开始。
-- 只有信息架构变化时，才增加更大断点前缀。
-- 重复出现的响应式区块应沉淀为布局组件或 CSS 容器查询，不要反复复制同一串断点。
-- 控件、标签页、看板和数据单元格使用稳定尺寸，避免 hover 和 loading 状态造成布局跳动。
+- The default class list starts with mobile layout.
+- Only add larger breakpoint prefixes when the information architecture changes.
+- Recurring responsive blocks should be precipitated into layout components or CSS container queries, and do not duplicate the same string of breakpoints repeatedly.
+- Controls, tabs, dashboards and data cells use stable sizes to avoid layout jumps caused by hover and loading states.
 
-## 评审清单
+## Review Checklist
 
-- Token 值有语义角色，并且没有分叉既有设计规则。
-- 组件 variants 覆盖 loading、disabled、selected、invalid、focus-visible 和暗色模式。
-- 动态 class 可被静态扫描识别，或已安全加入 safelist。
-- Tailwind 工具类没有破坏可访问性、点击目标或 reduced-motion 要求。
-- 最终 UI 已在移动端、平板和桌面宽度检查过。
+- Token values have semantic roles and do not fork existing design rules.
+- Component variants cover loading, disabled, selected, invalid, focus-visible and dark mode.
+- Dynamic classes can be recognized by static scans, or have been safely added to the safelist.
+- Tailwind utility classes have no accessibility-breaking, click-targeting, or reduced-motion requirements.
+- Final UI checked in mobile, tablet and desktop widths.

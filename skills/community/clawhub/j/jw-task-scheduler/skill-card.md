@@ -1,39 +1,58 @@
-## Description: <br>
-智能任务调度技能 - 定时任务、周期任务、一次性提醒的创建与管理。适用于自动化运维、定时报告、提醒通知。觸發詞：定時、排程、排程任務、自動化、提醒、周期任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Scheduler helps agents create and manage recurring, one-time, and reminder tasks for operations automation, scheduled reports, and notifications.
 
-## Publisher: <br>
-[a85012712](https://clawhub.ai/user/a85012712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a85012712](https://clawhub.ai/user/a85012712)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to create and manage scheduled tasks, recurring jobs, one-time reminders, notifications, retries, and execution logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent tasks that read local files, write logs, retry automatically, and send reports to Feishu. <br>
-Mitigation: Require explicit confirmation before create, modify, delete, and external-send actions; define task names, schedules, end dates, allowed files, Feishu recipients, and log retention. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to define scheduled tasks, reminders, recurring reports, and notification workflows for automation contexts.
 
-## Reference(s): <br>
-- [Task Scheduler release page](https://clawhub.ai/a85012712/jw-task-scheduler) <br>
-- [Publisher profile: a85012712](https://clawhub.ai/user/a85012712) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with task names, schedules, execution instructions, notification settings, and log guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe persistent schedules, retries, file reads, log writes, and Feishu notification behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent scheduled jobs may keep running without clearly documented approval or deletion safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before creating jobs, expose review and deletion controls, and periodically audit active schedules.
+
+Risk: Scheduled tasks may read local memory files and send reports to Feishu destinations without clearly defined data limits.
+
+Mitigation: Restrict file reads to approved allowlists, redact sensitive content, and send notifications only to approved Feishu recipients or channels.
+
+Risk: Automatic retries can repeat incorrect notifications or repeated data access when a task fails.
+
+Mitigation: Use bounded retries, record failure logs, alert the user on repeated failures, and pause jobs that continue to fail.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/a85012712/skills/jw-task-scheduler)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/a85012712)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Markdown task descriptions with cron-style schedules and notification settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task names, execution times, task content, retry expectations, and notification channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

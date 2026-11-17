@@ -1,43 +1,55 @@
-## Description: <br>
-Validate knowledge graph schemas and data against defined ontology, RDF/OWL, or property graph schema constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate knowledge graph schemas and data against defined ontology, RDF/OWL, or property graph schema constraints.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data engineers use this skill to validate RDF/OWL and property graph schemas, check graph data before ingestion or deployment, and review violations with suggested corrections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested remediation queries or fixes could change graph records if applied directly to a live database. <br>
-Mitigation: Review suggested fixes, test them in a staging environment, and back up graph data before applying changes. <br>
-Risk: Validation results depend on the completeness and correctness of the schema rules supplied by the user. <br>
-Mitigation: Review ontology, SHACL, property graph, and cardinality rules for domain coverage before relying on conformance status. <br>
+## Use Case:
 
+Developers and data engineers use this skill to validate RDF/OWL and property graph schemas before ingestion, deployment, or migration. It helps identify missing properties, duplicate identifiers, invalid relationships, cardinality problems, and graph integrity issues, then produces reports and correction suggestions.
 
-## Reference(s): <br>
-- [Graph Schema Validation skill page](https://clawhub.ai/fisa712/graph-schema-validation) <br>
-- [Validation Patterns](references/validation-patterns.md) <br>
-- [Graph Validation Examples](examples/example-validations.md) <br>
-- [Schema Validator Script](scripts/schema_validator.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with code examples and validation report structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include detected violations, suggested corrections, conformance status, and example validation logic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated Cypher, SHACL, or correction suggestions could alter constraints or data if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated validation logic and fixes before running them against production graph databases or authoritative datasets.
+
+Risk: Validation reports can flag issues that require domain judgment, such as whether an orphan node should be connected, removed, or retained.
+
+Mitigation: Confirm reported violations with schema owners or data stewards before making destructive changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fisa712/skills/graph-schema-validation)
+- [Graph Schema Validation Patterns](references/validation-patterns.md)
+- [Graph Validation Examples](examples/example-validations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with validation reports, Cypher or SHACL snippets, Python code examples, and suggested corrections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include conformance status, violation counts, severity labels, affected node identifiers, and recommended fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Run GitHub Copilot CLI through OpenClaw exec workflows to generate code, edit files, and automate shell tasks with advanced AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs GitHub Copilot CLI from an agent shell to generate code, edit files, and automate shell tasks.
 
-## Publisher: <br>
-[binotaliu](https://clawhub.ai/user/binotaliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[binotaliu](https://clawhub.ai/user/binotaliu)
 
-## Use Case: <br>
-Developers and automation agents use this skill to invoke GitHub Copilot CLI for code generation, file edits, and shell task automation from OpenClaw exec workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage broad autonomous local file, tool, and URL access through Copilot CLI options such as --allow-all or --yolo. <br>
-Mitigation: Prefer narrower --allow-tool, --allow-url, and path-scoped permissions, and avoid broad access on sensitive repositories. <br>
-Risk: Generated code, file edits, or shell commands may be incorrect, unsafe, or broader than intended. <br>
-Mitigation: Review Copilot output, proposed edits, and commands before execution or commit. <br>
-Risk: Copilot logs or shared session files may contain sensitive repository or prompt data. <br>
-Mitigation: Inspect and redact logs or session files before sharing, storing, or publishing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binotaliu/openclaw-copilot-cli) <br>
+## Use Case:
 
+Developers and coding agents use this skill to invoke GitHub Copilot CLI for one-shot prompts, interactive coding assistance, file edits, and shell automation from an OpenClaw exec environment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and generated code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable commands and file modifications depending on the prompt and granted Copilot CLI permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill demonstrates Copilot CLI usage with unrestricted access flags that may allow broad file, command, and network operations.
+
+Mitigation: Run it in a limited workspace or container, avoid `--allow-all` unless required, and keep command output visible during file edits or shell tasks.
+
+Risk: Copilot may receive prompts and repository context during use.
+
+Mitigation: Use only with repositories and prompts that are appropriate to share with the configured Copilot service, and review AGENTS.md before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binotaliu/skills/openclaw-copilot-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Copilot CLI prompts, command examples, generated code, file edit guidance, and automation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

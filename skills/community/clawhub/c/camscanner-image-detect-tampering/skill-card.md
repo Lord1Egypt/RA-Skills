@@ -1,43 +1,52 @@
-## Description: <br>
-CamScanner Detect Tampering helps an agent check whether a selected image appears edited, manipulated, or tampered with and report the returned conclusion to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects whether an image appears to have been photoshopped, manipulated, retouched, or otherwise tampered with using CamScanner's manipulation-detection service.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-External users and agents use this skill to assess whether a photo or scanned image shows signs of editing or tampering. The agent uploads the selected image to CamScanner, reads the JSON result, and presents the boolean result and human-readable conclusion in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are sent to CamScanner's servers for tampering analysis. <br>
-Mitigation: Use the skill only when third-party image processing is acceptable, and avoid confidential documents, personal photos, or regulated data unless that processing has been approved. <br>
-Risk: The service returns an automated tampering signal that may be incomplete or unsuitable as sole evidence. <br>
-Mitigation: Present the result as the service's analysis and use additional review for high-impact authenticity decisions. <br>
+## Use Case:
 
+External users and agents use this skill to check a user-selected image or scanned document for signs of tampering and report the returned `is_tampered` and `result_text` fields in the user's language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/camscanner-ai/camscanner-image-detect-tampering) <br>
-- [CamScanner homepage](https://www.camscanner.com) <br>
-- [CamScanner AI tools service](https://ai-tools.camscanner.com) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/camscanner-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill expects the agent to report is_tampered and result_text, translating the result text when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends user-selected images to CamScanner's servers for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when third-party image processing is acceptable, and avoid highly sensitive, regulated, or confidential images unless policy permits that data flow.
+
+## Reference(s):
+
+- [CamScanner homepage](https://www.camscanner.com)
+- [CamScanner AI tools API base](https://ai-tools.camscanner.com)
+- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image-detect-tampering)
+- [ClawHub publisher profile](https://clawhub.ai/user/camscanner-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain-language response with JSON result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports `is_tampered` and `result_text`; does not download an output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

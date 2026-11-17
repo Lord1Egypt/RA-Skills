@@ -1,46 +1,67 @@
-## Description: <br>
-Guides agents in using the NotebookLM `nlm` CLI and MCP server to manage notebooks, add sources, generate NotebookLM artifacts, conduct research, and query source-backed content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guide for the NotebookLM CLI (`nlm`) and MCP server, helping agents interact with Google NotebookLM programmatically to manage notebooks, add sources, generate content, research, chat with sources, and automate NotebookLM workflows.
 
-## Publisher: <br>
-[hewenqiang](https://clawhub.ai/user/hewenqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hewenqiang](https://clawhub.ai/user/hewenqiang)
 
-## Use Case: <br>
-Developers and agents use this skill to operate NotebookLM programmatically through the `nlm` CLI or NotebookLM MCP tools, including notebook management, source ingestion, research, studio artifact generation, and source-grounded Q&A. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Notebook and source content may be exposed through NotebookLM operations, public sharing, or collaborator invites. <br>
-Mitigation: Use a dedicated Google profile where possible and require explicit user confirmation before enabling public links or inviting collaborators. <br>
-Risk: Authentication flows may handle Google session access, including cookie-based fallback paths. <br>
-Mitigation: Prefer the normal `nlm login` flow and avoid manually pasting raw cookies unless the user understands and accepts the credential exposure risk. <br>
-Risk: Troubleshooting guidance includes broad local execution workarounds such as full-access sandbox mode and browser process termination. <br>
-Mitigation: Use the least-permissive sandbox and targeted process management that will work; reserve broad access or broad kill commands for explicit, informed user approval. <br>
-Risk: Delete operations for notebooks, sources, artifacts, and authentication profiles can be irreversible. <br>
-Mitigation: Show exactly what will be deleted and obtain explicit user confirmation before running delete commands with confirmation flags. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hewenqiang/nlm-notebooklm) <br>
-- [NotebookLM CLI - Complete Command Reference](artifact/references/command_reference.md) <br>
-- [NotebookLM CLI - Troubleshooting Guide](artifact/references/troubleshooting.md) <br>
-- [NotebookLM CLI - Complete Workflow Sequences](artifact/references/workflows.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to choose between NotebookLM MCP tools and the `nlm` CLI, authenticate, manage notebooks and sources, generate NotebookLM artifacts, run research workflows, and troubleshoot automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include explicit confirmation prompts for destructive or public-sharing actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 0.3.19) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: NotebookLM automation may access a user's Google or NotebookLM session.
+
+Mitigation: Install only when that account access is acceptable for the intended environment and account.
+
+Risk: Raw browser cookie headers can expose account session material if pasted into chats, logs, or shared transcripts.
+
+Mitigation: Do not paste raw cookie headers into chats or logs; use safer authentication flows where available.
+
+Risk: Weakening sandbox protections can broaden command and file-system access during automation.
+
+Mitigation: Avoid danger-full-access unless the command, environment, and skill publisher are trusted.
+
+Risk: Public notebook sharing can expose notebook contents through enabled links.
+
+Mitigation: Review public-sharing effects before enabling links and disable public access when it is no longer needed.
+
+Risk: Skill install, update, and uninstall commands change the local agent environment.
+
+Mitigation: Treat skill management commands as administrative changes and review them separately before execution.
+
+## Reference(s):
+
+- [NotebookLM Skill on ClawHub](https://clawhub.ai/hewenqiang/skills/nlm-notebooklm)
+- [NotebookLM CLI Command Reference](references/command_reference.md)
+- [NotebookLM CLI Troubleshooting Guide](references/troubleshooting.md)
+- [NotebookLM CLI Workflow Sequences](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command sequences for authentication, notebook management, source ingestion, generation, export, sharing, and troubleshooting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version: 0.3.19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

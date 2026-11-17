@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Render a Life Fork markdown report to mobile-friendly HTML."""
+"""Render one explicitly selected report to a Simplified Chinese HTML layout.
+
+No directory discovery, network access, dependencies, or other program execution.
+"""
 
 from __future__ import annotations
 
@@ -2912,7 +2915,7 @@ def render_folded_details(markdown_text: str) -> str:
         ),
     ]
     details = [render_detail(title, content, intro) for title, content, intro in items]
-    return '<section class="folded" id="details">' + "\n".join(item for item in details if item) + "<!-- developer quality record kept in source markdown -->" + "</section>"
+    return '<section class="folded" id="details">' + "\n".join(item for item in details if item) + "</section>"
 
 
 def build_html(markdown_text: str, title: str) -> str:
@@ -2962,16 +2965,30 @@ def infer_title(markdown_text: str, fallback: str) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Render an HTML-first Life Fork report.")
-    parser.add_argument("input", type=Path, help="Markdown report path")
-    parser.add_argument("--html", type=Path, required=True, help="Output HTML path")
+    parser = argparse.ArgumentParser(description="Render one selected Markdown report to Chinese HTML; reads only the input and writes only the selected output.")
+    parser.add_argument("input", type=Path, help="Explicitly selected Markdown report path")
+    parser.add_argument("--html", type=Path, required=True, help="Explicitly selected output HTML path")
     parser.add_argument("--title", help="Override report title")
+    parser.add_argument("--overwrite", action="store_true", help="Replace the selected output only when the user requested replacement")
     args = parser.parse_args()
+
+    if args.input.is_symlink() or not args.input.is_file():
+        parser.error("input must be a selected regular file, not a symbolic link")
+    if args.html.is_symlink():
+        parser.error("output must not be a symbolic link")
+    if args.input.resolve() == args.html.resolve() or (args.html.exists() and args.input.samefile(args.html)):
+        parser.error("input and output must be different files")
+    if args.html.exists() and not args.overwrite:
+        parser.error("output already exists; choose a new filename or explicitly request replacement with --overwrite")
 
     markdown_text = args.input.read_text(encoding="utf-8")
     title = args.title or infer_title(markdown_text, args.input.stem)
     args.html.parent.mkdir(parents=True, exist_ok=True)
-    args.html.write_text(build_html(markdown_text, title), encoding="utf-8")
+    try:
+        with args.html.open("w" if args.overwrite else "x", encoding="utf-8") as output:
+            output.write(build_html(markdown_text, title))
+    except FileExistsError:
+        parser.error("output already exists; no file was replaced")
 
     print(f"HTML: {args.html}")
     return 0

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "spacesuit.pipeline",
+  "version": "1.0.0",
+  "contractVersion": 1,
+  "inputs": ["intel/*PIPELINE*.md", "intel/*QUEUE*.md"],
+  "locales": ["en", "zh-CN"],
+  "collection": "explicit-reviewed-cli"
+}

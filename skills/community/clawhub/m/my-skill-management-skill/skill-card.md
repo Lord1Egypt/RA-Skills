@@ -1,43 +1,57 @@
-## Description: <br>
-管理和发布用户自定义技能的统一接口。强制执行“my_”前缀、统一存放目录（~/.openclaw/skills）、基于配置文件（skills.json）的智能体绑定规则，并要求本地技能变更后必须立即通过clawhub上传备份。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A ClawHub wrapper that standardizes publishing, installation, governance, and backup workflows for custom user-created agent skills.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canonxu](https://clawhub.ai/user/canonxu)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to standardize publishing, installing, and governing custom OpenClaw skills through ClawHub. It is intended for user-created skills that follow the `my_` naming convention and are stored under `~/.openclaw/skills/`. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish local skill contents to ClawHub, which may expose secrets, private prompts, or unintended files. <br>
-Mitigation: Manually review and scan skill files before publishing, and confirm the destination account, slug, version, changelog, and visibility. <br>
-Risk: The helper can install remote skills and search arbitrary slugs without strong trust controls. <br>
-Mitigation: Install only trusted ClawHub skills and avoid using the helper with untrusted remote skill slugs. <br>
-Risk: Using paths outside the intended local skill directory may publish or manage unintended content. <br>
-Mitigation: Restrict use to user-created skills under ~/.openclaw/skills and keep the `my_` naming convention for managed skills. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage personal my_ skills for OpenClaw and ClawHub. It helps publish backups, install skills, and keep agent skill bindings in configuration files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canonxu/my-skill-management-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/canonxu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ClawHub publish, search, and install commands for local skill management workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Publishing can upload local skill contents, including accidental secrets or unintended files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Publish only intended my_ skill directories under ~/.openclaw/skills and inspect contents for secrets before upload.
+
+Risk: Installing an unpinned or unknown third-party skill can add untrusted instructions or code.
+
+Mitigation: Install only trusted publishers and versions; pin the version when reproducibility matters.
+
+Risk: Agent skill binding changes can enable capabilities for the wrong agent.
+
+Mitigation: Review skills.json changes and enable only the expected my_ skill for the intended agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canonxu/skills/my-skill-management-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose ClawHub publish/install commands and skills.json configuration changes for review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

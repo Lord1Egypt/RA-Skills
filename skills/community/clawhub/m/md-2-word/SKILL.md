@@ -29,6 +29,8 @@ python scripts/md_to_word.py report.md report.docx
 | Headers (#, ##, ###) | 18pt/14pt/12pt bold, 微软雅黑 |
 | Bold (**text**) | Bold formatting |
 | Tables | Bordered tables with blue header background |
+| Code blocks (```) | Monospace font (Consolas), gray background, indented |
+| Inline code (`code`) | Monospace font (Consolas) within paragraph |
 | Bullet lists (-, *) | Bullet points |
 | Numbered lists (1., 2.) | Numbered items |
 | Blockquotes (>) | Italic, indented text |

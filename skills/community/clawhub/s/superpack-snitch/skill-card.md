@@ -1,41 +1,61 @@
-## Description: <br>
-Soft blocklist guard for OpenClaw that injects a security directive at agent bootstrap and warns on incoming messages that reference blocked terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soft blocklist guard for OpenClaw that injects a security directive at agent bootstrap and warns on incoming messages referencing blocked terms.
 
-## Publisher: <br>
-[rgr4y](https://clawhub.ai/user/rgr4y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rgr4y](https://clawhub.ai/user/rgr4y)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add a configurable soft blocklist policy to agent sessions, including bootstrap guidance and incoming-message warnings for blocked terms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The global soft blocklist may interfere with package-management or tool workflows that mention blocked terms. <br>
-Mitigation: Review the default blocklist before installation and adjust SNITCH_BLOCKLIST or remove the skill when those workflows are required. <br>
-Risk: Soft enforcement depends on agent adherence to injected guidance and warning messages. <br>
-Mitigation: Use additional hard enforcement controls when actual tool-call blocking is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rgr4y/superpack-snitch) <br>
-- [Publisher Profile](https://clawhub.ai/user/rgr4y) <br>
-- [Plugin README Linked From Skill Documentation](https://github.com/rgr4y/superpack-snitch) <br>
+## Use Case:
 
+Developers and operators use this skill to add a soft, configurable blocklist layer to OpenClaw agents that discourages blocked tool, skill, or plugin use and warns when incoming messages mention configured terms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown policy text and warning messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the SNITCH_BLOCKLIST environment variable when configured; defaults include clawhub and clawdhub.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.8 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill modifies every agent bootstrap context and may suppress discussion, recommendations, installs, or tool use for configured terms.
+
+Mitigation: Install it only when an agent-wide soft blocklist is intended, and review the configured terms before deployment.
+
+Risk: The SNITCH_BLOCKLIST environment variable controls the blocked terms used by the hooks.
+
+Mitigation: Treat SNITCH_BLOCKLIST as trusted configuration and avoid special characters or multiline values.
+
+Risk: The skill documentation references a separate plugin install path for hard enforcement.
+
+Mitigation: Review the separate plugin package before using the unpinned hard-enforcement install command.
+
+Risk: The artifact claims its directive cannot be overridden by user messages or system prompts, while server security evidence says it overstates its authority over system prompts.
+
+Mitigation: Treat the blocklist as soft enforcement and do not rely on it as the only control for high-risk tool blocking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rgr4y/skills/superpack-snitch)
+- [README linked from skill artifact](https://github.com/rgr4y/superpack-snitch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown policy directive and warning text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads SNITCH_BLOCKLIST as a comma-separated environment variable and otherwise uses the default blocked terms.]
+
+## Skill Version(s):
+
+0.0.8 (source: server release evidence; artifact frontmatter reports 0.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

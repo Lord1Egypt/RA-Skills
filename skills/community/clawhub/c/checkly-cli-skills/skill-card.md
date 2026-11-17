@@ -1,48 +1,59 @@
-## Description: <br>
-Comprehensive Checkly CLI command reference and Monitoring as Code workflows for authentication, configuration, checks, testing, deployment, imports, constructs, and advanced Checkly patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Checkly CLI command reference and Monitoring as Code workflows for authoring, testing, deploying, importing, and operating synthetic checks.
 
-## Publisher: <br>
-[vince-winkintel](https://clawhub.ai/user/vince-winkintel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vince-winkintel](https://clawhub.ai/user/vince-winkintel)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, test, deploy, import, and troubleshoot Checkly Monitoring as Code projects through the Checkly CLI. It also helps agents generate Checkly configuration, checks, monitors, Playwright checks, and operational shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-proposed Checkly commands can deploy monitoring changes or target the wrong Checkly account. <br>
-Mitigation: Confirm CHECKLY_ACCOUNT_ID and the target environment before execution, and prefer validation, dry-run, or preview steps before deployment. <br>
-Risk: CHECKLY_API_KEY, CHECKLY_ACCOUNT_ID, and downloaded result assets can expose sensitive account or application data. <br>
-Mitigation: Protect credentials, avoid printing or committing secrets, and download only the assets needed for diagnosis. <br>
-Risk: Force deploys, member role changes, member deletes, imports, and check deletes can change production monitoring or account access. <br>
-Mitigation: Require explicit review for destructive or access-changing commands, use dry-run where available, and verify target identities before applying changes. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to plan and execute Checkly CLI workflows for Monitoring as Code, including authentication, configuration, check creation, local testing, imports, deployment, account usage, and troubleshooting.
 
-## Reference(s): <br>
-- [Checkly CLI Documentation](https://www.checklyhq.com/docs/cli/) <br>
-- [Monitoring as Code Guide](https://www.checklyhq.com/docs/monitoring-as-code/) <br>
-- [Checkly Runtimes](https://www.checklyhq.com/docs/runtimes/) <br>
-- [Playwright Documentation](https://playwright.dev/) <br>
-- [Checkly CLI GitHub Repository](https://github.com/checkly/checkly-cli) <br>
-- [best-practices.md](references/best-practices.md) <br>
-- [troubleshooting.md](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Checkly CLI commands, TypeScript templates, configuration snippets, troubleshooting steps, and account-operation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Checkly credentials and account identifiers may allow cloud account changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Checkly API key and account for agent-assisted workflows.
+
+Risk: Deployment, destroy, import commit or cancel, check delete or run, and member changes can affect live Checkly resources.
+
+Mitigation: Review previews and dry-runs before approving cloud-changing commands.
+
+Risk: Floating npx or npm resolution can change the Checkly CLI version used in automation.
+
+Mitigation: Pin the Checkly CLI version in CI when repeatable behavior is required.
+
+## Reference(s):
+
+- [Checkly CLI Skills on ClawHub](https://clawhub.ai/vince-winkintel/skills/checkly-cli-skills)
+- [Best Practices](references/best-practices.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, TypeScript snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command previews, dry-run guidance, and confirmation steps for Checkly cloud changes.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release metadata and VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

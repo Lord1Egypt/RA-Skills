@@ -2,24 +2,21 @@
 """
 Webhook Receiver with HMAC-SHA256 Verification - Veritier Example (Python)
 ===========================================================================
-A minimal Flask server that receives async webhook deliveries from Veritier
-and verifies their HMAC-SHA256 signatures before processing.
+Verifies X-Veritier-Signature against the raw body bytes, then processes
+extract / verify / validate / attestation deliveries.
 
-When you enable webhooks in your Veritier dashboard and set `use_webhook: true`
-in API requests, results are delivered asynchronously to this endpoint.
+Retries send the same Idempotency-Key / X-Veritier-Idempotency-Key
+(attest: attestation:{action_id}:{transaction_id}). HMAC is over the body only.
 
 Setup:
   1. pip install flask python-dotenv
-  2. Set VERITIER_WEBHOOK_SECRET in your .env (the vtsec_... value from the dashboard)
+  2. Set VERITIER_WEBHOOK_SECRET in your .env (vtsec_... from the dashboard)
   3. python webhook_receiver.py
-  4. The server listens on http://localhost:5050/webhooks/veritier
+  4. Listen on http://localhost:5050/webhooks/veritier
 
-For production:
-  - Use HTTPS (required by Veritier for non-localhost URLs)
-  - Deploy behind a reverse proxy (nginx, Caddy, etc.)
-  - Use a WSGI server (gunicorn, waitress)
+Dashboard allows http://localhost for test webhooks. Production URLs need HTTPS.
 
-Full webhook docs: https://veritier.ai/docs
+Full webhook docs: https://veritier.ai/docs#webhooks
 """
 
 import hmac
@@ -33,62 +30,66 @@ load_dotenv()
 app = Flask(__name__)
 
 WEBHOOK_SECRET = os.getenv("VERITIER_WEBHOOK_SECRET", "")
+_seen_idem = set()
 
 if not WEBHOOK_SECRET:
-    print("⚠ Warning: VERITIER_WEBHOOK_SECRET is not set.")
+    print("Warning: VERITIER_WEBHOOK_SECRET is not set.")
     print("  Configure a webhook at https://veritier.ai/dashboard to get your secret.")
 
 
 @app.route("/webhooks/veritier", methods=["POST"])
 def veritier_webhook():
-    """
-    Receive and verify a Veritier webhook delivery.
-
-    Security flow:
-      1. Read the raw request body BEFORE any JSON parsing
-      2. Compute HMAC-SHA256 of the raw bytes using your webhook secret
-      3. Compare against the X-Veritier-Signature header (timing-safe)
-      4. Only then parse and process the payload
-    """
     signature = request.headers.get("X-Veritier-Signature", "")
+    idem = request.headers.get("Idempotency-Key") or request.headers.get(
+        "X-Veritier-Idempotency-Key", ""
+    )
+    action_id = request.headers.get("X-Veritier-Action-Id", "")
 
     if not WEBHOOK_SECRET:
-        print("✗ Webhook secret not configured - rejecting request")
+        print("Webhook secret not configured - rejecting request")
         abort(500)
 
-    # ── Step 1: Verify the signature ────────────────────────────────────
-    # IMPORTANT: Use request.data (raw bytes), NOT request.get_json()
-    # Re-serializing JSON may change whitespace/key order and break the HMAC
     raw_body = request.data
-
     expected_signature = "vtsec_" + hmac.new(
         key=WEBHOOK_SECRET.encode("utf-8"),
         msg=raw_body,
         digestmod=hashlib.sha256,
     ).hexdigest()
 
-    # Timing-safe comparison prevents signature oracle attacks
     if not hmac.compare_digest(signature, expected_signature):
-        print("✗ Invalid webhook signature - rejecting request")
+        print("Invalid webhook signature - rejecting request")
         abort(401)
 
-    # ── Step 2: Parse and process the payload ───────────────────────────
-    payload = request.get_json()
+    if idem:
+        if idem in _seen_idem:
+            print(f"Duplicate Idempotency-Key {idem} - ignoring retry")
+            return jsonify({"status": "ok", "duplicate": True}), 200
+        _seen_idem.add(idem)
 
+    payload = request.get_json(force=True)
     transaction_id = payload.get("transaction_id", "unknown")
-    results = payload.get("results", [])
+    kind = payload.get("type", "event")
+    is_test = payload.get("is_test", False)
+    results = payload.get("results")
 
     print(f"\n{'─' * 50}")
-    print(f"✓ Webhook received - Transaction: {transaction_id}")
-    print(f"  Claims verified: {len(results)}")
+    if is_test:
+        print("[TEST MODE] No quota was consumed.")
+    print(f"type={kind}  tx={transaction_id}  idem={idem or '(none)'}")
+    if action_id:
+        print(f"X-Veritier-Action-Id={action_id}")
 
-    for res in results:
-        verdict = res.get("verdict")
-        icon = {True: "✅", False: "❌", None: "❓"}.get(verdict, "❓")
-        print(f"  {icon} {res.get('claim')} → {verdict}")
+    if kind == "attestation" and isinstance(results, dict):
+        print(f"  decision={results.get('decision')}  credential_id={results.get('credential_id')}")
+        print(f"  action_id={payload.get('action_id') or results.get('action_id')}")
+    elif isinstance(results, list):
+        print(f"  claims: {len(results)}")
+        for res in results:
+            print(f"    {res.get('claim')} -> {res.get('verdict')}")
+    else:
+        print(f"  results: {str(results)[:200]}")
 
     print(f"{'─' * 50}\n")
-
     return jsonify({"status": "ok"}), 200
 
 
@@ -98,8 +99,6 @@ def health():
 
 
 if __name__ == "__main__":
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("  Veritier Webhook Receiver")
+    print("Veritier Webhook Receiver")
     print("  Listening on http://localhost:5050/webhooks/veritier")
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
     app.run(host="0.0.0.0", port=5050, debug=True)

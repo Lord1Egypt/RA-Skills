@@ -1,41 +1,58 @@
-## Description: <br>
-Use when the user wants to synthesise speech or text-to-speech (TTS) audio with Gemini through yummycli, including single-speaker narration, multi-speaker dialogue (up to 2 speakers), and listing available voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to synthesise speech or text-to-speech (TTS) audio with Gemini through yummycli, including single-speaker narration, multi-speaker dialogue (up to 2 speakers), and listing available voices.
 
-## Publisher: <br>
-[yummysource](https://clawhub.ai/user/yummysource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yummysource](https://clawhub.ai/user/yummysource)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate Gemini text-to-speech WAV audio through yummycli, including narration, two-speaker dialogue, and voice discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external @yummysource/yummycli package. <br>
-Mitigation: Confirm the package is trusted before installing or running commands. <br>
-Risk: Speech synthesis requires a Gemini API key and sends submitted text to Gemini through the CLI. <br>
-Mitigation: Use an appropriately scoped Gemini API key and avoid submitting text that should not be processed by the provider. <br>
-Risk: Generated WAV files are written to the local filesystem. <br>
-Mitigation: Review or specify output paths so generated audio is stored in an expected location. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to synthesize Gemini text-to-speech audio through yummycli for narration, voiceovers, and two-speaker dialogue. The skill helps map user intent to model, voice, language, speaker, and output-path parameters.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is written locally as WAV files by yummycli; speak commands return JSON containing the output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: User-provided text, speaker names, voices, or output paths could be mishandled if interpolated into shell strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass these values as literal process arguments and avoid constructing shell command strings from user input.
+
+Risk: The skill installs and invokes an unpinned yummycli executable dependency.
+
+Mitigation: Install only after trusting the @yummysource/yummycli package, and pin or verify the package version where deployment policy requires it.
+
+Risk: Gemini credentials and generated audio may contain sensitive material.
+
+Mitigation: Use approved Gemini credential handling and choose explicit output paths for sensitive audio files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yummysource/skills/yummy-gen-voice)
+- [ClawHub publisher profile](https://clawhub.ai/user/yummysource)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated speech commands return JSON that includes the output .wav file path.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

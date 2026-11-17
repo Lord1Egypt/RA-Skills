@@ -1,45 +1,64 @@
-## Description: <br>
-Parses academic drafts, extracts topics and keywords, searches for relevant papers through academic-search, asks the user to confirm candidates, and formats or inserts citations for Markdown, LaTeX, and Word documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动为学术文章添加参考文献，解析 Markdown、LaTeX 和 Word 文档以提取主题、关键词和现有引用，调用 academic-search 检索相关论文，并在用户确认后输出或插入 BibTeX、GB/T 7714 或 APA 格式引用。
 
-## Publisher: <br>
-[vigorouspp](https://clawhub.ai/user/vigorouspp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vigorouspp](https://clawhub.ai/user/vigorouspp)
 
-## Use Case: <br>
-External users, developers, and researchers use this skill to add, format, and insert academic references into drafts after reviewing recommended citation candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The citation insertion workflow can modify selected Markdown, LaTeX, or Word documents. <br>
-Mitigation: Use an explicit output path or work on a copy of important documents before accepting inserted references. <br>
-Risk: Document topics and keywords may be sent to external academic search providers through the academic-search dependency. <br>
-Mitigation: Avoid confidential or unpublished drafts when external search disclosure is not acceptable. <br>
-Risk: Recommended papers may be irrelevant or unsuitable for the user's argument. <br>
-Mitigation: Confirm candidate references before formatting or insertion. <br>
+## Use Case:
 
+Developers, researchers, students, and technical writers use this skill to add academic citations to drafts, papers, blog posts, and reports. It helps parse the source document, propose paper-search queries, present candidate references for confirmation, and format or insert the selected citations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vigorouspp/auto-citation) <br>
-- [academic-search dependency](https://github.com/ustc-ai4science/academic-search) <br>
-- [Citation style reference](references/citation-styles.md) <br>
-- [Workflow examples](references/workflow-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON parser output, formatted citation files, and document updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports BibTeX, GB/T 7714, and APA citation formats for Markdown, LaTeX, and Word workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install steps run an unpinned remote academic-search dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the academic-search revision and Python package versions, install in a virtual environment, and review dependency setup before running scripts.
+
+Risk: Document-editing scripts can modify input files or nearby bibliography files.
+
+Mitigation: Keep backups, prefer explicit --output paths, and review diffs before accepting generated citation changes.
+
+Risk: Generated or recommended references may be irrelevant, duplicated, or formatted incorrectly.
+
+Mitigation: Require user confirmation of candidate papers and review the final bibliography against the target citation style.
+
+Risk: Generated LaTeX bibliography content may be unsafe if compiled with permissive shell execution.
+
+Mitigation: Do not compile generated LaTeX with shell escape enabled unless the bibliography content has been reviewed.
+
+## Reference(s):
+
+- [Citation Style Reference](artifact/references/citation-styles.md)
+- [Workflow Examples](artifact/references/workflow-examples.md)
+- [academic-search dependency](https://github.com/ustc-ai4science/academic-search)
+- [ClawHub skill page](https://clawhub.ai/vigorouspp/skills/auto-citation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON document analysis, BibTeX entries, GB/T 7714 or APA reference text, and updated Markdown, LaTeX, Word, or bibliography files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write user-provided document files; citation insertion should use explicit output paths and human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

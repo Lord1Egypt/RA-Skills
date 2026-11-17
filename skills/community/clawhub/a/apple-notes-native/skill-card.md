@@ -1,39 +1,54 @@
-## Description: <br>
-Use this skill when the task involves reading, searching, creating, editing, organizing, or moving Apple Notes on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the task involves reading, searching, creating, editing, organizing, or moving Apple Notes on macOS.
 
-## Publisher: <br>
-[lishix520](https://clawhub.ai/user/lishix520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lishix520](https://clawhub.ai/user/lishix520)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to let a macOS agent find, create, update, organize, and move Apple Notes while preserving existing note content and requiring caution for ambiguous or bulk operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Apple Notes content and can perform broad edits, moves, or deletes on macOS notes. <br>
-Mitigation: Install only when agent access to Apple Notes is intended; review bulk organization plans, folder names, and destination mappings before execution, and require explicit confirmation before broad edits, moves, or deletes. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent work with Apple Notes on macOS, including searching, reading, creating, updating, organizing, moving, and carefully deleting notes.
 
-## Reference(s): <br>
-- [Apple Notes Skill Homepage](https://github.com/lishix520/apple-notes-skill) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lishix520/apple-notes-native) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash and AppleScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS only; requires osascript and Apple Notes Automation permission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can expose private Apple Notes content when an agent searches or reads notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve note access only for the intended task, review proposed searches and target notes, and avoid invoking it for sensitive notes unless access is necessary.
+
+Risk: The skill can change, move, or delete important notes when invoked through macOS Automation.
+
+Mitigation: Review proposed edits, folder creation, moves, bulk actions, and deletions before execution; require clarification when the target note or destination is ambiguous.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lishix520/skills/apple-notes-native)
+- [Skill Homepage](https://github.com/lishix520/apple-notes-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and AppleScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Apple Notes, osascript, and user-approved Automation access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

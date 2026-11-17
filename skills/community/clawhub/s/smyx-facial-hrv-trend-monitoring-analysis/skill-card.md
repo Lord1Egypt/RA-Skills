@@ -1,45 +1,63 @@
-## Description: <br>
-Analyzes 30-60 second adult facial videos or video URLs with cloud rPPG processing to estimate HRV metrics, trend signals, stress/fatigue indicators, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes short adult facial videos for heart-rate variability (HRV) metrics and trends using remote photoplethysmography (rPPG), and retrieves prior reports from the cloud service.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and developers use this skill to submit adult still-face video files or URLs for HRV trend monitoring, historical report lookup, and structured health-trend summaries. The output is intended for personal wellness trend awareness and should not be treated as a medical diagnosis or clinical cardiovascular assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive face video and HRV-related data are sent to the publisher's cloud service. <br>
-Mitigation: Use only with informed consent and avoid highly sensitive videos unless the publisher provides clear retention, deletion, encryption, and account-scoping guarantees. <br>
-Risk: The skill may create or reuse local identity and authentication state without direct user interaction. <br>
-Mitigation: Review local identity and token handling before deployment, and run the skill only in environments where persistent account state is expected and controlled. <br>
-Risk: HRV trend outputs could be mistaken for medical diagnosis or clinical cardiovascular assessment. <br>
-Mitigation: Present outputs as wellness trend indicators only and route medical concerns to qualified clinical evaluation. <br>
+## Use Case:
 
+Adults and health-monitoring teams use this skill to review HRV metrics and trends from short facial videos, including previous cloud reports. Results are wellness trends, not medical diagnoses or clinical cardiovascular assessments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-facial-hrv-trend-monitoring-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [Adult facial HRV API documentation](artifact/references/api_doc.md) <br>
-- [SMYX analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON structured report with HRV metrics, trend summaries, risk prompts, recommendations, and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud-generated report export links and historical report lists; local or URL video input is accepted by the skill scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Facial video and HRV-related data are processed by the Life Emergence cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain explicit consent and confirm cloud data retention and deletion terms before analysis.
+
+Risk: The skill silently creates or reuses a local identity and stores authentication tokens in SQLite.
+
+Mitigation: Review access to the local identity and token store, and protect the workspace from unauthorized access.
+
+Risk: Historical cloud report queries are tied to that identity and may be triggered by report requests.
+
+Mitigation: Confirm with the user before retrieving historical reports from the cloud.
+
+Risk: Short camera-based HRV measurements may be misleading if used for clinical decisions.
+
+Mitigation: Present results as personal trends only, not a diagnosis or substitute for medical-grade assessment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-facial-hrv-trend-monitoring-analysis)
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON]
+
+**Output Format:** [Structured report or JSON; Markdown table for historical reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HRV metrics, trends, signal quality, guidance, and report links.]
+
+## Skill Version(s):
+
+1.0.14 (source: server-resolved ClawHub release; bundled skill frontmatter says 1.0.19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

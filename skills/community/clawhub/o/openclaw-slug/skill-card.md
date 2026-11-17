@@ -1,44 +1,70 @@
-## Description: <br>
-Connects to the WHOOP Developer Platform through official OAuth, stores and refreshes tokens, fetches WHOOP v2 health and activity data, and renders daily or weekly summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to the WHOOP Developer Platform with official OAuth to fetch, normalize, and render recovery, sleep, strain, workout, profile, and body measurement data.
 
-## Publisher: <br>
-[gavinchengcool](https://clawhub.ai/user/gavinchengcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinchengcool](https://clawhub.ai/user/gavinchengcool)
 
-## Use Case: <br>
-Users and developers use this skill to authorize WHOOP access, fetch recovery, sleep, strain, workout, profile, and body measurement data, and produce concise summaries for chat or scheduled reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes unrelated trusted-partner healthcare API operations alongside WHOOP metric functionality. <br>
-Mitigation: Review before installing and remove those partner endpoints or split them into a separate, tightly scoped partner-only skill. <br>
-Risk: WHOOP credentials, client secrets, token files, and generated health summaries may expose sensitive personal data. <br>
-Mitigation: Use the minimum WHOOP read scopes, keep secrets and token files private, and confirm before sending summaries to public or shared channels. <br>
+## Use Case:
 
+Developers and agents use this skill to authorize WHOOP access, fetch daily or weekly WHOOP metrics, normalize them into a stable schema, and prepare concise text or Markdown health reports for a selected chat channel.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gavinchengcool/openclaw-slug) <br>
-- [WHOOP API Quick Reference](references/whoop_api.md) <br>
-- [Normalized Output Schema](references/output_schemas.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [WHOOP OpenAPI Specification](references/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or plain text summaries, JSON data files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Channel-aware rendering presets for generic, Discord, Slack, WhatsApp, and Telegram output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores WHOOP OAuth tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private token directory with restrictive permissions and avoid sharing token files or paths.
+
+Risk: The skill can fetch and persist sensitive health, profile, and body measurement data.
+
+Mitigation: Write outputs to private locations, avoid shared /tmp paths for retained data, and delete raw exports when no longer needed.
+
+Risk: WHOOP summaries can be sent to chat channels or scheduled for repeated delivery.
+
+Mitigation: Confirm the destination before sending, keep scheduled pushes channel-specific in their payload, and use duplicate-send state for recurring jobs.
+
+Risk: The artifact includes a partner API surface with privileged write operations.
+
+Mitigation: Do not use or expose partner operations unless the operator explicitly needs them and controls the required credentials.
+
+Risk: Broad WHOOP OAuth scopes may expose more data than a task requires.
+
+Mitigation: Request the minimum WHOOP scopes needed for the intended report before starting OAuth authorization.
+
+## Reference(s):
+
+- [WHOOP Skill Instructions](artifact/SKILL.md)
+- [WHOOP API Quick Reference](artifact/references/whoop_api.md)
+- [Normalized Output Schema](artifact/references/output_schemas.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [WHOOP OpenAPI Specification](artifact/references/openapi.json)
+- [WHOOP API Server](https://api.prod.whoop.com/developer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or plain text reports, JSON data files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Channel-aware report formatting for generic, Discord, Slack, WhatsApp, and Telegram outputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

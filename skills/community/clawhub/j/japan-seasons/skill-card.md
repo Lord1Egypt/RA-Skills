@@ -1,42 +1,51 @@
-## Description: <br>
-Query Japanese seasonal data - cherry blossom forecasts, autumn foliage tracking, and festival search - when a user asks about sakura bloom dates, best time to visit Japan, autumn leaves, Japanese festivals, or Japan travel timing questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Japanese seasonal travel data, including cherry blossom forecasts, autumn foliage tracking, and festival search, using the Japan Seasons API.
 
-## Publisher: <br>
-[ko-syun](https://clawhub.ai/user/ko-syun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ko-syun](https://clawhub.ai/user/ko-syun)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to query Japan-specific seasonal timing, including sakura forecasts, autumn foliage status, historical records, and festival search results. It is intended for natural-language answers backed by calls to the Japan Seasons API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires use of an external seasonal-data API and an API key. <br>
-Mitigation: Use a dedicated low-sensitivity API key and avoid sharing unrelated personal travel details in API queries. <br>
-Risk: The API is scoped to sakura, autumn foliage, and festival timing rather than general Japan travel planning. <br>
-Mitigation: Use the skill for seasonal and festival timing questions, and rely on other sources for broader itinerary, lodging, or transportation planning. <br>
+## Use Case:
 
+Developers and agents use this skill to answer Japan travel timing questions by calling the Japan Seasons API for sakura, kouyou, and matsuri data, then summarizing the results for users.
 
-## Reference(s): <br>
-- [Japan Seasons API dashboard](https://jpseasons.dokos.dev/dashboard) <br>
-- [Japan Seasons API base URL](https://jpseasons.dokos.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/ko-syun/japan-seasons) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline curl examples and natural-language summaries of JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an X-API-Key header for Japan Seasons API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends an API key and Japan travel queries to jpseasons.dokos.dev.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the deployment trusts jpseasons.dokos.dev before installing or using the skill, and keep the API key in an environment variable or request header rather than user-visible text.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ko-syun/skills/japan-seasons)
+- [Japan Seasons API](https://jpseasons.dokos.dev)
+- [Japan Seasons API dashboard](https://jpseasons.dokos.dev/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and summarized JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an X-API-Key header for API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

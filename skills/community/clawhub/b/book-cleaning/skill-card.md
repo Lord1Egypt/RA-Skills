@@ -1,40 +1,53 @@
-## Description: <br>
-Book cleaning services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Cleaning helps agents search for cleaning services, check availability, and create bookings through the Lokuli MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users ask an agent to search for cleaning services through Lokuli, check availability, and create bookings after confirming booking details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send customer contact details to a third-party booking service. <br>
-Mitigation: Before creating a booking, have the agent confirm which contact details will be sent and that the user accepts sharing them with Lokuli. <br>
-Risk: The skill can create a real cleaning booking without clear confirmation guidance in the artifact. <br>
-Mitigation: Require explicit user confirmation of provider, service, date, time, price, and cancellation terms before calling create_booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Cleaning ClawHub Page](https://clawhub.ai/edwardrodriguez703-design/book-cleaning) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and their agents use this skill to find cleaning providers, check available time slots, and book a selected cleaning service through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, text] <br>
-**Output Format:** [Markdown instructions with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools to search services, check availability, and create bookings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details to an external booking service.
+
+Mitigation: Confirm the selected provider, booking time, customer name, email address, and phone number before submitting a booking request.
+
+Risk: The skill can create bookings without explicit confirmation guidance in the artifact.
+
+Mitigation: Require clear user approval before calling the booking tool or sending contact details.
+
+## Reference(s):
+
+- [Book Cleaning on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-cleaning)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve MCP tool calls that search services, check availability, and create bookings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

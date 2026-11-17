@@ -1,41 +1,54 @@
-## Description: <br>
-Guanxi drafts WeChat messages, Moments posts, holiday greetings, group-chat responses, and cross-cultural communication tailored to Chinese etiquette and relationship hierarchy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guanxi helps agents draft WeChat-ready messages, Moments posts, holiday greetings, and cross-cultural communications calibrated for Chinese business etiquette, relationship hierarchy, and recipient context.
 
-## Publisher: <br>
-[AGIsearch](https://clawhub.ai/user/AGIsearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agisearch](https://clawhub.ai/user/agisearch)
 
-## Use Case: <br>
-External professionals, sales teams, business developers, Chinese professionals working internationally, and WeChat users use this skill to draft relationship-aware messages and public WeChat content for business, social, holiday, and group-chat contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated messages may make tone, hierarchy, cultural, or relationship assumptions that do not match the user's real situation. <br>
-Mitigation: Review and edit each draft before sending, especially for business contacts, public Moments posts, group chats, and red-packet guidance. <br>
-Risk: Ready-to-send wording can affect professional or personal relationships if context is incomplete or inaccurate. <br>
-Mitigation: Provide accurate recipient, relationship, occasion, and intent details, then confirm that the final message fits the specific context. <br>
+## Use Case:
 
+External professionals, sales and business development teams, Chinese professionals working internationally, and WeChat personal-brand builders use this skill to produce ready-to-send messages that fit Chinese communication norms and relationship context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIsearch/guanxi) <br>
-- [Publisher profile](https://clawhub.ai/user/AGIsearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text and Markdown message drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese, English, or bilingual drafts for WeChat messages, Moments posts, holiday greetings, red-packet context, and group-chat responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated WeChat messages may contain incorrect names, roles, dates, holiday details, red packet amounts, or tone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct each draft before sending, especially in sensitive business or personal contexts.
+
+Risk: The skill is specialized for China and WeChat-specific communication norms and may be unsuitable for unrelated communication channels or cultures.
+
+Mitigation: Use it only when China or WeChat-specific communication help is desired, and provide clear relationship and situational context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agisearch/skills/guanxi)
+- [Publisher profile](https://clawhub.ai/user/agisearch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text drafts for WeChat messages, Moments posts, holiday greetings, and bilingual communication support]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as drafts and reviewed for names, roles, dates, holiday details, red packet amounts, and tone before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

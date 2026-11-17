@@ -20,11 +20,11 @@ def examples_dir():
 @pytest.fixture
 def dirty_log():
     return """2024-03-25T14:02:10.123Z INFO User john@example.com logged in from 192.168.1.100
-2024-03-25T14:02:11.456Z ERROR Authentication failed for user admin, api_key=sk-abc123def456ghi789jkl012
+2024-03-25T14:02:11.456Z ERROR Authentication failed for user admin, api_key=REDACTED-SECRET
 2024-03-25T14:02:12.789Z WARN Rate limit exceeded for IP 10.0.0.55, Bearer tok.fake.demotokenfortest
 2024-03-25T14:02:13.012Z INFO Phone verification sent to +1-415-555-0198
 2024-03-25T14:02:14.345Z INFO Payment processed for card 4111111111111111
-2024-03-25T14:02:15.678Z DEBUG AWS credentials: AKIAFAKEKEY00EXAMPLE
+2024-03-25T14:02:15.678Z DEBUG AWS credentials: REDACTED-SECRET
 2024-03-25T14:02:16.901Z INFO User 张三 (ID: 110105199003071234) logged in, password=SuperSecret123!
 2024-03-25T14:02:17.234Z INFO Cookie: session=abc123def456; user_id=12345; auth_token=xyz789
 2024-03-25T14:02:18.567Z INFO Connected to db://admin:dbpassword@db.internal:5432/prod

@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "1-2-3-magic",
+  "name": "1-2-3-magic",
+  "title": "1-2-3 Magic: Effective Discipline for Children 2-12",
+  "author": "Thomas W. Phelan",
   "version": "1.0.0",
-  "publishedAt": 1780960929491
+  "license": "MIT",
+  "tags": ["parenting", "discipline", "child-development", "family", "education"],
+  "description": "Thomas W. Phelan's \"1-2-3 Magic\" — the simple, evidence-based 3-step parenting program for children 2-12. Covers the counting method for Stop behavior (whining, fighting, arguing), 7 Start strategies (morning routines, chores, homework), strengthening parent-child relationships, handling the 6 types of testing and manipulation. Trigger when users say: \"discipline\" \"parenting help\" \"toddler discipline\" \"child behavior\" \"stop whining\" \"tantrums.\"",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/1-2-3-magic",
+  "clawhub": {
+    "slug": "1-2-3-magic",
+    "owner": "jaysonmeng"
+  }
 }

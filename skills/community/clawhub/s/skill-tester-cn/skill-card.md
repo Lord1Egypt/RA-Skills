@@ -1,43 +1,55 @@
-## Description: <br>
-Claude Code skill testing framework that analyzes skill definitions, generates test cases, executes functional tests, and produces scored Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+skill-tester-cn helps Claude Code users evaluate skills by analyzing skill definitions, generating test cases, running or simulating tests, scoring results, and producing Markdown test reports.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to evaluate Claude Code skills by locating a target skill, parsing its definition, generating trigger, functional, and resource tests, and producing a scored test report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Active testing can run target-skill behavior against unknown skill content. <br>
-Mitigation: Use simulated or static-only testing first for untrusted skills, and run active tests only in a controlled workspace. <br>
-Risk: The skill can inspect other local skill definitions and bundled assets. <br>
-Mitigation: Point it only at skills intended for review, and avoid directories that contain unrelated sensitive material. <br>
-Risk: The skill can write timestamped Markdown reports to the current working directory. <br>
-Mitigation: Confirm the report destination before testing, and review generated reports before sharing them. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to test Claude Code skills against their documented triggers, workflows, resources, and expected behavior. It supports structured evaluation by generating test plans, recording observed behavior, assigning scores, and writing a Markdown report.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Test report template](assets/test-report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown test report with scored tables, findings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a timestamped report file in the current working directory when active testing is performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Actual execution of tests against powerful target skills may trigger the target skill's normal side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer simulated tests or review prompts first, and confirm the target skill scope before allowing actual execution.
+
+Risk: Generated evaluations can be incomplete or misleading if the tested skill's behavior differs from its documentation.
+
+Mitigation: Review the generated test cases, scores, observations, and recommendations before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/skill-tester-cn)
+- [README](README.md)
+- [Test report template](assets/test-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown test report with scoring tables and concise evaluation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a timestamped Markdown test report in the current working directory when report generation is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

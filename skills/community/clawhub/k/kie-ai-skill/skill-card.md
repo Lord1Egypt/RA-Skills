@@ -1,46 +1,57 @@
-## Description: <br>
-Kie Ai Skill gives agents unified API access to kie.ai image-generation models with local storage, optional Google Drive upload, usage tracking, and task resume support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kie Ai Skill gives OpenClaw agents unified kie.ai access for image generation across models such as Nano Banana Pro, Flux, and 4o-image, with local storage, optional Google Drive upload, usage tracking, and task resume.
 
-## Publisher: <br>
-[jon-xo](https://clawhub.ai/user/jon-xo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jon-xo](https://clawhub.ai/user/jon-xo)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate images through kie.ai, inspect model pricing and balance information, resume tasks, and optionally upload completed files to Google Drive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to kie.ai for generation, and generated files are sent to Maton only when Drive upload is enabled. <br>
-Mitigation: Use a limited KIE API key, keep Drive upload disabled unless needed, and review the third-party services before using sensitive prompts or outputs. <br>
-Risk: Generated images and task history may remain in local storage after use. <br>
-Mitigation: Delete the images directory and .task-state.json when prompts or outputs are sensitive. <br>
-Risk: The security review flags unsafe input handling and API-key forwarding as review-worthy risks before installation. <br>
-Mitigation: Avoid untrusted text for the models category option and prefer a release that validates download hosts before forwarding Authorization headers. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate and retrieve images through kie.ai from agent prompts, inspect model pricing and balance information, resume tasks, and optionally upload generated files to Google Drive.
 
-## Reference(s): <br>
-- [Publisher profile](https://clawhub.ai/user/jon-xo) <br>
-- [ClawHub skill page](https://clawhub.ai/jon-xo/kie-ai-skill) <br>
-- [Skill homepage](https://github.com/jon-xo/kie-ai-skill) <br>
-- [kie.ai documentation](https://docs.kie.ai) <br>
-- [kie.ai pricing](https://docs.kie.ai/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Terminal text with generated image files and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KIE_API_KEY; optional Drive upload requires MATON_API_KEY and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: A credential-handling flaw could send the kie.ai API key to an untrusted image-download URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-value or scoped KIE_API_KEY, treat keys used with untrusted task results as potentially exposed, and remove the Authorization header from image downloads or enforce a strict HTTPS host allowlist with redirect validation before broad use.
+
+Risk: Image prompts are sent to kie.ai, and generated image files are stored locally or sent to Maton only when Drive upload is enabled.
+
+Mitigation: Avoid sensitive prompt content unless kie.ai and Maton handling is acceptable for the use case; leave Drive upload disabled unless Google Drive export is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jon-xo/skills/kie-ai-skill)
+- [Kie Ai Skill repository](https://github.com/jon-xo/kie-ai-skill)
+- [kie.ai documentation](https://docs.kie.ai)
+- [kie.ai pricing](https://docs.kie.ai/pricing)
+- [Maton Drive upload service](https://maton.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Terminal text, local image files, optional JSON responses, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KIE_API_KEY for kie.ai requests; MATON_API_KEY is optional for Google Drive upload; generated files and task state are stored locally.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

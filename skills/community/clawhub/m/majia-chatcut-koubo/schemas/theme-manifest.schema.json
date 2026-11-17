@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/theme-manifest.schema.json",
+  "title": "Portrait theme kit manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "displayName", "version", "entrypoints", "assets", "generatedAssets", "themes"],
+  "properties": {
+    "name": {"const": "portrait-talk-theme-kit"},
+    "displayName": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "entrypoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "preview",
+        "interactiveDemo",
+        "themeTokens",
+        "layoutTokens",
+        "themeCss",
+        "componentCss",
+        "componentJs",
+        "codexInstructions"
+      ],
+      "properties": {
+        "preview": {"$ref": "#/$defs/relativePath"},
+        "interactiveDemo": {"$ref": "#/$defs/relativePath"},
+        "themeTokens": {"$ref": "#/$defs/relativePath"},
+        "layoutTokens": {"$ref": "#/$defs/relativePath"},
+        "themeCss": {"$ref": "#/$defs/relativePath"},
+        "componentCss": {"$ref": "#/$defs/relativePath"},
+        "componentJs": {"$ref": "#/$defs/relativePath"},
+        "codexInstructions": {"$ref": "#/$defs/relativePath"}
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "backgroundSvgDirectory",
+        "safeAreaOverlay",
+        "speakerMask"
+      ],
+      "properties": {
+        "backgroundSvgDirectory": {"$ref": "#/$defs/relativePath"},
+        "safeAreaOverlay": {"$ref": "#/$defs/relativePath"},
+        "speakerMask": {"$ref": "#/$defs/relativePath"}
+      }
+    },
+    "generatedAssets": {
+      "description": "Optional local render outputs. Paths are reserved but their targets are not required in a source checkout.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "backgroundPngDirectory",
+        "demoPosterDirectory",
+        "contactSheet"
+      ],
+      "properties": {
+        "backgroundPngDirectory": {"$ref": "#/$defs/relativePath"},
+        "demoPosterDirectory": {"$ref": "#/$defs/relativePath"},
+        "contactSheet": {"$ref": "#/$defs/relativePath"}
+      }
+    },
+    "themes": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "layout", "backgroundAsset"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+          "name": {"type": "string", "minLength": 1},
+          "layout": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+          "backgroundAsset": {"$ref": "#/$defs/relativePath"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+    }
+  }
+}

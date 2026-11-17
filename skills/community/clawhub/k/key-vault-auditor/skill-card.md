@@ -1,39 +1,52 @@
-## Description: <br>
-Audit Azure Key Vault configuration, access policies, and secret hygiene for credential exposure risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Azure Key Vault configuration, access policies, and secret hygiene for credential exposure risks.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Security engineers and cloud platform teams use this skill to audit exported Azure Key Vault configuration, access policies, RBAC assignments, and secret hygiene for exposure risks. It helps produce findings, hardening guidance, secret rotation recommendations, and managed identity migration steps from user-provided read-only data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive Azure Key Vault configuration metadata or accidentally include secret values, tokens, connection strings, or unrelated confidential data. <br>
-Mitigation: Run Azure CLI commands yourself with read-only permissions and remove secret values, tokens, connection strings, and unrelated confidential data before sharing outputs with the agent. <br>
-Risk: Generated hardening templates, rotation plans, or migration guidance could be applied without environment-specific review. <br>
-Mitigation: Treat generated remediation content as a proposal and review it with cloud and security owners before applying changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/key-vault-auditor) <br>
+## Use Case:
 
+Developers, cloud engineers, and security teams use this skill to review user-provided Azure Key Vault exports for configuration, access, and secret-hygiene risks and to generate remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with findings tables, Bicep code blocks, rotation plans, and migration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; analyzes user-provided read-only Azure CLI or console exports and does not request credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided Azure exports may accidentally include secret values, connection strings, or credentials.
+
+Mitigation: Review and redact exports before using the skill, and provide only read-only configuration, policy, and expiry data.
+
+Risk: Findings and shared outputs may reveal sensitive details about the Azure environment and access model.
+
+Mitigation: Treat generated findings, vault names, RBAC details, and remediation plans as sensitive operational security material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmolnagpal/skills/key-vault-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with findings tables, Azure CLI examples, Bicep snippets, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; analyzes user-provided read-only Azure exports and does not directly access Azure accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

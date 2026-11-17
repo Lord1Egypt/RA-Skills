@@ -1,42 +1,60 @@
-## Description: <br>
-Automates Xiaohongshu note publishing from topic or news search through copywriting, cover generation, and posting through a local xiaohongshu-mcp service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a Xiaohongshu posting workflow from news or topic search through copywriting, text-cover generation, and MCP-based note publishing.
 
-## Publisher: <br>
-[shaohaojie1](https://clawhub.ai/user/shaohaojie1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaohaojie1](https://clawhub.ai/user/shaohaojie1)
 
-## Use Case: <br>
-Creators, marketers, and operators use this skill to draft Xiaohongshu-style posts, generate text-based cover images, and publish notes after reviewing the content and account state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish to a logged-in Xiaohongshu account through a local service without a clearly required final approval step. <br>
-Mitigation: Review the generated title, content, tags, and images, and require explicit final confirmation before every publish action. <br>
-Risk: The local xiaohongshu-mcp service depends on a trusted account session and cookie file. <br>
-Mitigation: Install only if the service is trusted, keep it stopped except while publishing, and protect or delete the cookie/session file after use. <br>
+## Use Case:
 
+Developers and social media operators use this skill to draft Xiaohongshu note content, generate a 3:4 text cover image, and publish through a local xiaohongshu-mcp service after reviewing login and publishing readiness.
 
-## Reference(s): <br>
-- [Xiaohongshu content template](references/content-template.md) <br>
-- [xiaohongshu-mcp configuration](references/mcp-config.md) <br>
-- [xiaohongshu-mcp project](https://github.com/xpzouying/xiaohongshu-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts, configuration notes, and JSON publish responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local PNG cover files and submit reviewed content through the configured local Xiaohongshu service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The workflow relies on third-party Xiaohongshu login and publishing executables that can access the user's account session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the upstream source and release artifacts before use, and run the MCP service in a constrained environment where possible.
+
+Risk: Stored session cookies may expose or prolong access to the Xiaohongshu account.
+
+Mitigation: Protect the cookie storage location, delete temporary cookies after use, and avoid sharing the runtime environment.
+
+Risk: Automated publishing can post incorrect, misleading, or unintended title, body, tags, or images.
+
+Mitigation: Require the agent to show the exact title, body, tags, and image paths for explicit approval before any publish call.
+
+## Reference(s):
+
+- [Xiaohongshu content template](references/content-template.md)
+- [xiaohongshu-mcp configuration](references/mcp-config.md)
+- [xiaohongshu-mcp project](https://github.com/xpzouying/xiaohongshu-mcp)
+- [ClawHub skill page](https://clawhub.ai/shaohaojie1/skills/xiaohongshu-mcp-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python helper scripts and JSON API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate PNG cover files and make local HTTP API calls to a Xiaohongshu MCP service when helper scripts are run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "name": "cite-check",
+  "tagline": "Prove every citation is real before you publish.",
+  "description": "Extracts every URL and arXiv ID from a draft and fetches each to confirm it resolves (phase 1 — catches dead links and fabricated arXiv IDs against the official arXiv API). Phase 2 optionally checks whether each source actually backs the claim beside it, scoring claim-vs-source with a local NLI cross-encoder (SUPPORTED / PARTLY / UNSUPPORTED / UNVERIFIABLE). Exit non-zero on any failure so it drops into a publish pipeline as a blocking gate. Phase 1 needs only httpx; phase 2 adds beautifulsoup4, pymupdf and an NLI model.",
+  "category": "writing",
+  "tags": ["citations", "fact-checking", "verification", "arxiv", "nli", "agents", "python"],
+  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://workloft.ai/labs",
+  "support_url": "https://workloft.ai"
+}

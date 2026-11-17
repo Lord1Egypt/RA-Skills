@@ -1,42 +1,60 @@
-## Description: <br>
-Monitors Alibaba DataWorks task runs, analyzes failures and runtime anomalies, classifies alerts by severity, and prepares daily operational reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors DataWorks task status, analyzes failures, classifies alerts by severity, and generates daily reports.
 
-## Publisher: <br>
-[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Data engineers and operations teams use this skill to check DataWorks task runs, summarize success and failure counts, analyze error logs, classify P0/P1/P2 alerts, and prepare daily monitoring reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read DataWorks task metadata and failure logs that contain sensitive operational details.
+
+Mitigation: Use a least-privilege read-only DataWorks identity and limit the monitored projects to the intended scope.
+
+Risk: Failure logs may be sent to an LLM or Feishu destination without strong safeguards.
+
+Mitigation: Redact and truncate logs before analysis or notification, and approve the Feishu channel and membership before enabling delivery.
+
+Risk: Cloud credentials could be exposed if stored in TOOLS.md or source files.
+
+Mitigation: Store secrets in environment variables or a secret manager and rotate any credentials that were committed or shared.
+
+Risk: Scheduled monitoring could repeatedly process or distribute sensitive task data before the data flow is reviewed.
+
+Mitigation: Review the data flow and notification destinations before enabling cron or other unattended execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Data platform operators and engineers use this skill to check DataWorks task status, review failures and runtime anomalies, classify alerts, and generate daily operational reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: DataWorks credentials and project configuration may be exposed or granted broader access than the monitoring task requires. <br>
-Mitigation: Confirm the DataWorks project scope, use a dedicated read-only access key, and store secrets outside source files. <br>
-Risk: Task logs and failure details may contain sensitive identifiers, SQL fragments, tokens, or internal URLs before LLM analysis or external posting. <br>
-Mitigation: Redact sensitive values from logs and reports before sending them to an LLM or Feishu. <br>
-Risk: Recurring cron runs, sub-agent execution, or Feishu notifications can create autonomous monitoring and message delivery without the intended audience or cadence. <br>
-Mitigation: Approve the exact Feishu webhook or channel and enable cron or sub-agent runs only when recurring autonomous monitoring is intended. <br>
+**Output Format:** [Markdown and text reports with JSON report references, shell command examples, configuration snippets, and operational guidance.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alexmayanjun-collab/dataworks-smart-monitor) <br>
+**Other Properties Related to Output:** [May include alert severity labels, task status summaries, failure-analysis details, retry suggestions, and Feishu notification text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text reports with JSON report artifacts and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DataWorks task summaries, severity levels, Feishu notification text, and cron configuration guidance.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

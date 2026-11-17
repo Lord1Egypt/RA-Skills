@@ -1,39 +1,54 @@
-## Description: <br>
-Helps users rewrite Chinese text in a specified tone or writer-inspired style while preserving the source message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+内容改写与风格模仿。当用户要求将文本改写成不同语气/风格时使用。
 
-## Publisher: <br>
-[wuyiz51](https://clawhub.ai/user/wuyiz51) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyiz51](https://clawhub.ai/user/wuyiz51)
 
-## Use Case: <br>
-External users and content creators use this skill to transform Chinese text into requested styles such as Lu Xun, Mu Xin, Qian Zhongshu, official document, Zhihu, or Xiaohongshu style. The skill can explain the target style, rewrite the text, and summarize the main changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to trigger for unrelated file organization or summarization requests. <br>
-Mitigation: Review and narrow trigger phrases before deployment so the skill activates primarily for text rewriting and style imitation tasks. <br>
+## Use Case:
 
+External users and writing-focused agents use this skill to rewrite Chinese text into requested tones or named writing styles while preserving the original core information.
 
-## Reference(s): <br>
-- [Writing Styles Reference](references/writing-styles.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wuyiz51/content-style-rewriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sections containing the source text, selected style, rewritten text, and main changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user to choose a target style when none is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Broad trigger phrases such as organizing files or categorizing summaries may activate the skill for unrelated writing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants style rewriting when the request is ambiguous before applying the skill workflow.
+
+Risk: Named-style rewriting can change tone and presentation enough to reduce information density or distort emphasis.
+
+Mitigation: Preserve core facts and call out major changes after the rewrite, as the artifact's workflow requires.
+
+## Reference(s):
+
+- [Writing Styles Reference](references/writing-styles.md)
+- [ClawHub skill page](https://clawhub.ai/wuyiz51/skills/content-style-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with rewritten text, style summary, and change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user to choose a target style when none is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

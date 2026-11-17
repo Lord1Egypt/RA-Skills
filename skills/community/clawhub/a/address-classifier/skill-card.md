@@ -1,43 +1,61 @@
-## Description: <br>
-将中国地址按行政区划智能分类为本省本市、本省外市、外省或地址不全，支持不完整地址补全和多格式输入。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies China address records into local city, in-province other city, out-of-province, or incomplete categories, with configurable Guizhou and Guiyang mappings and limited search completion for partial addresses.
 
-## Publisher: <br>
-[zhh8896416](https://clawhub.ai/user/zhh8896416) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhh8896416](https://clawhub.ai/user/zhh8896416)
 
-## Use Case: <br>
-Developers, data analysts, and operations teams use this skill to classify Chinese address records by administrative region, especially for Guizhou and Guiyang workflows. It supports batch file processing, configurable target regions, and incomplete-address completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input files, output files, and DEBUG logs may contain full personal addresses. <br>
-Mitigation: Treat these files and logs as sensitive, restrict access, and avoid sharing raw address data outside approved workflows. <br>
-Risk: The PyYAML dependency may drift if installed without pinning, and server evidence notes it may be unused. <br>
-Mitigation: Install in a virtual environment and pin or remove PyYAML after confirming whether configuration loading requires it. <br>
+## Use Case:
 
+Developers and data-processing agents use this skill to classify tabular China address datasets for administrative-region cleanup, regional statistics, routing, and data management workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhh8896416/address-classifier) <br>
-- [README](artifact/README.md) <br>
-- [Manifest](artifact/MANIFEST.md) <br>
-- [Configuration](artifact/config/config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, plus TSV, CSV, or JSON classification output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads UTF-8 address files and writes classified records containing the original address, category, province, city, district, and remarks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-03-09) <br>
+Risk: Address datasets, output files, and debug logs may contain sensitive personal or location information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only datasets the user is authorized to handle, limit retention of generated files and logs, and avoid sharing raw records beyond the intended workflow.
+
+Risk: Untrusted CSV or TSV outputs can be unsafe when opened in spreadsheet software if cells contain formula-like content.
+
+Mitigation: Neutralize formula-like cells before spreadsheet use or review outputs in plain-text tooling.
+
+Risk: The dependency list includes PyYAML without a strict pin, while the core artifact does not require it for the shown classifier flow.
+
+Mitigation: Remove the unused dependency or pin it to an approved version before installation in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhh8896416/skills/address-classifier)
+- [README](artifact/README.md)
+- [Skill document](artifact/SKILL.md)
+- [Configuration](artifact/config/config.yaml)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, configuration files, and TXT/CSV/JSON address-classification outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes UTF-8 tab-separated input files containing an ID column and address column; default output is tab-separated text with configurable CSV or JSON output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-03-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

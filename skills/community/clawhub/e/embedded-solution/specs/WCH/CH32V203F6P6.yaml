@@ -1,0 +1,66 @@
+part: CH32V203F6P6
+link_status: verified_2026-07-02 (datasheet-pdf-mirror-extracted)
+expected_family: "WCH CH32V203 \u2014 industrial-grade RISC-V MCU (QingKe V4B)"
+main_page: https://www.wch-ic.com/products/CH32V203.html
+datasheet_path_expected: ../../datasheets/ch32v203.pdf
+datasheet_source_note: 'CH32V203 family datasheet (CH32V203DS0.PDF) is available at wch-ic.com/downloads/CH32V203DS0_PDF.html.
+  Family-level representative: F6P6 is the LQFP32 package variant; the family covers TSSOP20/QFN28/QFN48X7/ LQFP32/LQFP48
+  with shared peripheral set.'
+related_parts:
+  CH32V203 family: TSSOP20, QFN28, QFN48X7, LQFP32, LQFP48 packages
+specs:
+  cores:
+  - QingKe V4B RISC-V @ up to 144 MHz (single-cycle mul, hardware div)
+  memory:
+    sram: 20 KB
+    flash: 64 KB (CodeFlash)
+  peripherals:
+    usb: 2x USB 2.0 FS (1 host/device + 1 device)
+    can: 1x CAN 2.0B active
+    opamps: 2x OPA
+    uart: 4x USART
+    i2c: 2x I2C
+    spi: 2x SPI
+    adc: 10-channel 12-bit ADC + 10-channel TouchKey
+    timers: 4 sets
+    dma: 1x 8-channel DMA
+    io_pins: 37
+    external_interrupts: 16 (mappable)
+  power:
+    active_mode_current_ua_per_mhz: 49.3
+    sleep_mode_current_ua_per_mhz: 19.4
+    supply_voltage_v: 2.5/3.3
+    modes:
+    - Sleep
+    - Stop
+    - Standby
+  features:
+  - POR/PDR + Programmable Voltage Detector (PVD)
+  - 96-bit unique ID
+  - CRC calculation unit
+  - 2-wire serial debug
+unverified:
+- exact_package_pin_count_per_variant
+- exact_flash_size_per_package_variant
+- exact_active_mode_current_per_mhz_at_max_freq
+- operating_temperature_c
+- usb_otg_full_speed_or_high_speed
+- max_gpio_count_per_package
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from wch-ic.com CH32V203 family page via Firecrawl\
+  \ (8.8KB raw \u2192 5.5KB clean markdown). CH32V203F6P6 is the LQFP32 representative of the CH32V203 family. Note that the\
+  \ user-facing datasheet file embedded_dev/wch/datasheet/CH32V203_datasheet.pdf is not yet in the catalog \u2014 needs manual\
+  \ download from wch-ic.com."
+- 'Use case: industrial-grade cost-sensitive RISC-V MCU with dual USB (host+device) + CAN. Replaces STM32F103 in modern designs.'
+- 'Family differentiator vs CH32V003: V203 has dual USB, CAN, FPU-less, but RISC-V vs V003 also RISC-V. The big jump is peripherals
+  (USB host+ device, CAN, OPA, TouchKey).'
+- 'Family differentiator vs CH32V303: V203 is lower-end (64KB Flash, 20KB SRAM); V303 is high-end (256KB Flash, 64KB SRAM,
+  FPU, SDIO, FSMC).'
+- 'Re-labeled verified_2026-07-02 via Tavily-found mirror PDF: 21/24 spec fields matched (88%). Source: https://akizukidenshi.com/goodsaffix/CH32V203.pdf
+  . Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-30T00:48:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of wch-ic.com product page markdown
+extraction_source: references/semiconductor-vendor/WCH/firecrawl-snapshots/CH32V203_clean.md
+extraction_credits_used: 0 (cache hit from 2026-06-29 run)
+datasheet_source_url: https://akizukidenshi.com/goodsaffix/CH32V203.pdf

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    UML 组合结构图模板
+    展示部件(part)+端口(port)+连接器(connector)
+  -->
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- 外部类边界框 -->
+  <rect x="40" y="55" width="820" height="370" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="60" y="78" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{CLASS_NAME}}</text>
+  <text x="60" y="95" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">«structured classifier»</text>
+
+  <!-- 部件1: Engine -->
+  <rect x="80" y="120" width="200" height="100" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <text x="180" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{PART_1}}</text>
+  <text x="180" y="165" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">: {{PART_1_TYPE}}</text>
+  <text x="180" y="200" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">[1]</text>
+  <!-- 端口（小方块在边界上） -->
+  <rect x="274" y="150" width="14" height="14" rx="2"
+        fill="{{ACCENT_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+
+  <!-- 部件2: Transmission -->
+  <rect x="350" y="120" width="200" height="100" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <text x="450" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{PART_2}}</text>
+  <text x="450" y="165" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">: {{PART_2_TYPE}}</text>
+  <text x="450" y="200" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT2_COLOR}}">[1]</text>
+  <!-- 端口 -->
+  <rect x="344" y="150" width="14" height="14" rx="2"
+        fill="{{ACCENT2_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+  <rect x="544" y="150" width="14" height="14" rx="2"
+        fill="{{ACCENT2_COLOR}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"/>
+
+  <!-- 部件3: Wheel[4] -->
+  <rect x="620" y="120" width="200" height="100" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2"/>
+  <text x="720" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{PART_3}}</text>
+  <text x="720" y="165" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">: {{PART_3_TYPE}}</text>
+  <text x="720" y="200" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT3_COLOR}}">[4]</text>
+  <!-- 端口 -->
+  <rect x="614" y="150" width="14" height="14" rx="2"
+        fill="{{ACCENT3_COLOR}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+
+  <!-- 部件4: FuelTank -->
+  <rect x="80" y="280" width="200" height="100" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <text x="180" y="310" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{PART_4}}</text>
+  <text x="180" y="327" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">: {{PART_4_TYPE}}</text>
+  <text x="180" y="362" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">[1]</text>
+  <!-- 端口 -->
+  <rect x="274" y="310" width="14" height="14" rx="2"
+        fill="{{ACCENT_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+
+  <!-- 连接器（端口到端口） -->
+  <!-- Engine.port → Transmission.port -->
+  <line x1="288" y1="157" x2="344" y2="157" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="316" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">torque</text>
+
+  <!-- Transmission.port → Wheel.port -->
+  <line x1="558" y1="157" x2="614" y2="157" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="586" y="148" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">drive</text>
+
+  <!-- FuelTank.port → Engine (through boundary) -->
+  <line x1="288" y1="317" x2="330" y2="317" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="330" y1="317" x2="330" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="330" y1="200" x2="270" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="1.5"
+        marker-end="url(#arrow)"/>
+  <text x="340" y="262" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">fuel supply</text>
+
+  <!-- 外部端口（类边界上） -->
+  <rect x="33" y="155" width="14" height="14" rx="2"
+        fill="{{NODE_STROKE}}" stroke="{{NODE_STROKE}}" stroke-width="1.5"/>
+  <text x="20" y="183" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">refuel</text>
+  <line x1="47" y1="162" x2="80" y2="320" stroke="{{ARROW_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="5,3"/>
+
+  <!-- 图例 -->
+  <rect x="550" y="290" width="280" height="120" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="565" y="310" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+  <rect x="565" y="320" width="40" height="20" rx="3" fill="{{BG_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="615" y="335" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">部件 Part</text>
+  <rect x="565" y="348" width="10" height="10" rx="1.5" fill="{{ACCENT_COLOR}}" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="585" y="358" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">端口 Port</text>
+  <line x1="565" y1="375" x2="605" y2="375" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="615" y="379" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">连接器 Connector</text>
+  <line x1="565" y1="395" x2="605" y2="395" stroke="{{ARROW_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="615" y="399" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">委托 Delegation</text>
+</svg>

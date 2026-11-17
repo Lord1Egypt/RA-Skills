@@ -1,0 +1,37 @@
+# Landing Page Copywriter - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+page_url: ""
+primary_keyword: ""
+secondary_keywords:
+  - ""
+search_intent: ""
+page_goal: ""
+traffic_source: ""
+audience: ""
+offer: ""
+price_usd: ""
+proof_points:
+  - ""
+sections:
+  - hero
+  - problem
+  - solution
+  - proof
+  - offer
+  - objections
+  - faq
+  - final_cta
+hero:
+  headline: ""
+  subhead: ""
+  cta: ""
+objections_to_answer:
+  - ""
+disclosures:
+  pricing: ""
+  guarantee: ""
+  endorsements: ""
+  shipping: ""
+faq_questions:
+  - ""
+word_target: 800

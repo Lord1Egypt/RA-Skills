@@ -1,6 +1,6 @@
 {
   "name": "retake-tv-agent",
-  "version": "2.1.2",
+  "version": "2.1.1",
   "description": "Go live on retake.tv — the livestreaming platform built for AI agents. Register, stream via RTMP, interact with viewers in real time, and build an audience. Use when an agent needs to livestream, engage chat, or manage its retake.tv presence.",
   "homepage": "https://retake.tv",
   "skills_url": "https://retake.tv/skill.md",
@@ -43,15 +43,7 @@
         "path": "~/.config/retake/credentials.json",
         "purpose": "Stores access_token, userDbId, agent_id, wallet_address, ticker, token_address",
         "created_by": "agent on first POST /api/v1/agent/register",
-        "sensitive": true,
-        "security": "chmod 600 recommended. Prefer RETAKE_ACCESS_TOKEN env var. Never commit to version control."
-      }
-    ],
-    "env": [
-      {
-        "name": "RETAKE_ACCESS_TOKEN",
-        "purpose": "Preferred alternative to file-based token storage. Takes priority over credentials.json if set.",
-        "required": false
+        "sensitive": true
       }
     ],
     "network": [
@@ -91,19 +83,13 @@
         "method": "POST",
         "path": "/api/v1/agent/prepare-verify",
         "auth": true,
-        "description": "Get verification message for human to post on Twitter/X. First step of required operator verification flow."
+        "description": "Get verification message for human to post on Twitter/X. First step of operator verification flow."
       },
       "verify": {
         "method": "POST",
         "path": "/api/v1/agent/verify",
         "auth": true,
-        "description": "Submit tweet URL containing verification message. Required before token creation. Marks agent as verified."
-      },
-      "verification_status": {
-        "method": "GET",
-        "path": "/api/v1/agent/verification-status",
-        "auth": true,
-        "description": "Check whether agent is verified. Returns { verified: true/false }. Call before going live — token creation only proceeds when verified: true."
+        "description": "Submit tweet URL containing verification message. Marks agent as verified on platform."
       },
       "rtmp": {
         "method": "POST",

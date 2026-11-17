@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=84.1.0", "wheel>=0.46.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iterate-skill"
+version = "3.15.0"
+description = "Iterate skill CLI — onboarding and project knowledge management for the iterate AI coding assistant skill."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "iterate-skill contributors"},
+]
+keywords = ["ai", "code-review", "onboarding", "skill", "iterate"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "PyYAML==6.0.2",
+    "rich==13.7.1",
+    "jsonschema==4.26.0",
+]
+
+[project.scripts]
+iterate = "iterate_cli.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/jingzhao-l/iterate-skill"
+Repository = "https://github.com/jingzhao-l/iterate-skill"
+
+[tool.setuptools]
+packages = ["iterate_cli"]
+
+[tool.setuptools.package-data]
+iterate_cli = ["data/*.md", "data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+# Third-party skill marketplace vetting submodule; not part of this repo's
+# source, so keep it out of lint scope (its files only exist when checked out).
+extend-exclude = [".awesome-claude-skills"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]  # sys.path manipulation before imports is a standard test pattern
+"scripts/*" = ["EXE001"]  # 脚本固定通过 `python scripts/xxx.py` 调用，不依赖可执行位

@@ -1,41 +1,59 @@
-## Description: <br>
-Real-time forex and cryptocurrency exchange rate lookup and amount conversion powered by QVeris. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time forex and cryptocurrency exchange rate lookup and amount conversion powered by QVeris. Supports multiple providers (Alpha Vantage, Twelve Data) with fallback for reliability.
 
-## Publisher: <br>
-[ax2](https://clawhub.ai/user/ax2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ax2](https://clawhub.ai/user/ax2)
 
-## Use Case: <br>
-External users and developers use this skill to look up exchange rates and convert amounts between supported fiat or cryptocurrency pairs through QVeris-backed tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Currency pairs, amounts, and optional dates are sent to QVeris for lookup and conversion. <br>
-Mitigation: Use a scoped or revocable QVeris API key where available, and avoid sending sensitive transaction details unless that data sharing is acceptable. <br>
-Risk: Returned exchange rates may be unsuitable as the sole basis for financial, contractual, or compliance decisions. <br>
-Mitigation: Treat results as reference data and verify important rates against an authoritative source before making binding decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ax2/exchange-rate) <br>
-- [QVeris](https://qveris.ai) <br>
-- [QVeris API endpoint](https://qveris.ai/api/v1) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current exchange rates, convert amounts between currencies, and optionally request historical rates when the selected QVeris-backed tool supports them.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Human-readable Markdown or machine-readable JSON containing exchange-rate or conversion results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QVERIS_API_KEY; supports rate and convert modes, optional historical date, and configurable request timeout.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Currency pair, amount, and optional date values are sent to QVeris when the skill runs.
+
+Mitigation: Only set QVERIS_API_KEY and run lookups when sharing that query data with QVeris is acceptable.
+
+Risk: Returned exchange-rate data may be unsuitable for financial, contractual, or trading decisions without confirmation.
+
+Mitigation: Treat results as reference data and verify material decisions against an authoritative rate source.
+
+Risk: An unpinned installer command could install a different release than the reviewed artifact.
+
+Mitigation: Install from a verified source, copy the reviewed skill folder, or pin the installer/release before deployment.
+
+## Reference(s):
+
+- [ClawHub Exchange Rate Skill](https://clawhub.ai/ax2/skills/exchange-rate)
+- [QVeris](https://qveris.ai)
+- [QVeris API Endpoint](https://qveris.ai/api/v1)
+- [Publisher Profile](https://clawhub.ai/user/ax2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON exchange-rate results with optional shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns rate, converted amount when requested, currency pair, selected tool identifier, or an error message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

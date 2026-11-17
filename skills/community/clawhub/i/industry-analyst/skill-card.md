@@ -1,42 +1,56 @@
-## Description: <br>
-帮助用户快速分析行业生命周期、市场空间、竞争格局和投资价值。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language industry analysis skill for quickly assessing industry lifecycle, market space, competitive landscape, and investment value.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Investors, analysts, and business researchers use this skill to quickly assess an industry before deeper research. It structures the analysis around lifecycle stage, market size and growth, competitive concentration, leading players, investment score, recommendation, and key risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Industry analysis and investment recommendations can be incomplete, stale, or misleading if users rely on unverified assumptions or outdated market data. <br>
-Mitigation: Review generated analysis against current primary data, company-specific research, and qualified financial judgment before making decisions. <br>
-Risk: The security scan did not identify malicious behavior, but the evidence notes that artifact-backed review depth was limited. <br>
-Mitigation: Review the skill contents before installation and grant only the permissions needed for the intended analysis task. <br>
+## Use Case:
 
+External users and analysts use this skill to structure quick industry research, compare lifecycle stages and competitive dynamics, and produce investment-oriented scoring that should be independently verified.
 
-## Reference(s): <br>
-- [行业分析框架参考](references/industry-analysis-framework.md) <br>
-- [行业分析模板](templates/industry-analysis-template.md) <br>
-- [新能源汽车行业分析示例](examples/ev-industry-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown analysis with tables, scores, recommendations, and risk notes; the skill also documents a JSON-shaped output schema.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include lifecycle classification, market analysis, competition analysis, investment score, recommendation, and risk considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Investment-oriented scores or recommendation labels could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as research support only; verify market data, risks, and suitability independently before making investment decisions.
+
+Risk: Lifecycle, market-size, growth-rate, policy, and competitive-position assessments can become stale.
+
+Mitigation: Validate industry inputs against current sources before relying on lifecycle stage, concentration metrics, scoring, or recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/industry-analyst)
+- [Industry analysis framework](references/industry-analysis-framework.md)
+- [Industry analysis template](templates/industry-analysis-template.md)
+- [EV industry example](examples/ev-industry-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tables and JSON-shaped analysis fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language lifecycle, market-space, competitive-landscape, investment-score, recommendation, and risk sections.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, server release, README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Convert LaTeX math formulas in Markdown to styled docx or HTML documents with Unicode symbol support for academic use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert LaTeX math formulas in Markdown to styled DOCX or HTML documents with Unicode symbol support for academic writing.
 
-## Publisher: <br>
-[KhimYoung](https://clawhub.ai/user/KhimYoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[khimyoung](https://clawhub.ai/user/khimyoung)
 
-## Use Case: <br>
-Developers, researchers, and students use this skill to convert Markdown documents with LaTeX-style academic formulas into Word or styled HTML output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Untrusted Markdown may include local image links or raw HTML that is carried into generated output. <br>
-Mitigation: Convert trusted Markdown or review image links and raw HTML before generating Word or HTML files. <br>
-Risk: The converter depends on local Python packages. <br>
-Mitigation: Install dependencies only in an environment where the requested packages are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KhimYoung/academic-formula-converter) <br>
-- [Publisher profile](https://clawhub.ai/user/KhimYoung) <br>
+## Use Case:
 
+Developers, researchers, and academic writers use this skill to convert Markdown documents containing LaTeX-style math into DOCX or styled HTML outputs for easier sharing and review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and generated docx or HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on local Python dependencies and trusted Markdown input.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Converting untrusted Markdown can carry local image references or raw HTML into generated outputs.
+
+Mitigation: Inspect source Markdown before conversion, avoid untrusted files, and review generated DOCX or HTML before sharing.
+
+Risk: Image handling is under-scoped and may embed files outside the intended image directory.
+
+Mitigation: Use trusted image paths only and prefer a hardened version that restricts images to the selected image directory.
+
+Risk: HTML output may preserve unsafe content from the input document.
+
+Mitigation: Sanitize HTML inputs or outputs and pin reviewed dependencies before deploying in shared workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/khimyoung/skills/academic-formula-converter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and generated DOCX or HTML document outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converts inline and block math formulas and can include referenced images when generating documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

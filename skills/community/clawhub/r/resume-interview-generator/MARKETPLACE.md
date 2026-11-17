@@ -122,5 +122,10 @@ openclaw skills install resume-interview-generator
 ## Skills Hub Install
 
 ```bash
-npx @skills-hub-ai/cli install resume-interview-generator
+npx @skills-hub-ai/cli install resume-interview-generator-2
 ```
+
+## Published URLs
+
+- ClawHub: `resume-interview-generator`
+- Skills Hub: https://skills-hub.ai/skills/resume-interview-generator-2

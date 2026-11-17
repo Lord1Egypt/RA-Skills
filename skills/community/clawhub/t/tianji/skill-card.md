@@ -1,43 +1,56 @@
-## Description: <br>
-Query website analytics, monitor uptime, survey results, telemetry data, feed events, application stats, and related Tianji platform data through read-only OpenAPI endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query website analytics, monitor uptime, survey results, telemetry data, feed events, application stats, and more from the Tianji platform via its read-only OpenAPI.
 
-## Publisher: <br>
-[moonrailgun](https://clawhub.ai/user/moonrailgun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moonrailgun](https://clawhub.ai/user/moonrailgun)
 
-## Use Case: <br>
-Developers and operators use this skill to query and summarize Tianji workspace analytics, uptime monitoring, survey, telemetry, feed, billing, worker, and audit-log data without using write endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Read-only Tianji API access can still expose sensitive workspace data, including survey respondent details, member information, webhook signatures, audit records, worker source code, billing data, feed channel configuration, and AI gateway settings. <br>
-Mitigation: Use the narrowest read-only API key available, avoid broad prompts, and review outputs for secrets or personal data before sharing. <br>
-Risk: Some API responses may include secrets or credentials such as API keys, tokens, passwords, credential fields, model API keys, or custom model base URLs. <br>
-Mitigation: Redact or omit sensitive fields when presenting results, and surface only non-sensitive metadata for member lists and audit logs unless full detail is explicitly required. <br>
+## Use Case:
 
+Developers, operators, and analytics teams use this skill to query Tianji workspace data such as website traffic, uptime monitor status, survey feedback, telemetry, feed events, billing usage, and audit activity through read-only API calls.
 
-## Reference(s): <br>
-- [Tianji API Endpoints (GET-only)](references/api-endpoints.md) <br>
-- [Tianji OpenAPI (Read-Only)](references/openapi-readonly.json) <br>
-- [Tianji Repository](https://github.com/msgbyte/tianji) <br>
-- [ClawHub Skill Page](https://clawhub.ai/moonrailgun/tianji) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with optional curl commands and JSON-derived analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only GET requests; responses should be summarized with sensitive fields redacted or omitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can expose broad read-only Tianji workspace data, including audit logs, member information, billing details, worker code, survey responses, and AI gateway records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for authorized Tianji workspaces, use a trusted HTTPS base URL, and provide the narrowest read-only API key that supports the intended task.
+
+Risk: Some API responses may include secrets or personal information, including API keys, tokens, passwords, credentials, member emails, or raw survey details.
+
+Mitigation: Redact or omit sensitive fields before presenting results, and avoid querying high-sensitivity domains unless the user has explicitly authorized that access.
+
+## Reference(s):
+
+- [Tianji API Endpoints](references/api-endpoints.md)
+- [Tianji OpenAPI Read-Only Specification](references/openapi-readonly.json)
+- [ClawHub Skill Page](https://clawhub.ai/moonrailgun/skills/tianji)
+- [Tianji Repository](https://github.com/msgbyte/tianji)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with optional shell command examples and JSON-derived results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses should be summarized with sensitive fields redacted or omitted.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

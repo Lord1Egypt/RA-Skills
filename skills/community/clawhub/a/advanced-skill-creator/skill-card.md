@@ -1,41 +1,58 @@
-## Description: <br>
-Advanced OpenClaw skill creation handler that executes the official 5-step research flow with comprehensive analysis and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Skill Creator guides agents through a five-step research flow for creating or modifying OpenClaw, Moltbot, and ClawDBot skills according to documented standards and best practices.
 
-## Publisher: <br>
-[xqicxx](https://clawhub.ai/user/xqicxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqicxx](https://clawhub.ai/user/xqicxx)
 
-## Use Case: <br>
-Developers and skill authors use this skill to research, compare, and draft OpenClaw, Moltbot, or ClawDBot skills with structured SKILL.md content and supporting scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated research claims, SKILL.md content, or scripts may be incomplete, outdated, or misleading. <br>
-Mitigation: Treat outputs as drafts; manually verify research, review generated triggers and scripts, and scan skills before deployment. <br>
-Risk: The skill may use external research sources while helping draft skills. <br>
-Mitigation: Avoid providing secrets or private repository content unless that disclosure is acceptable for the intended workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqicxx/advanced-skill-creator) <br>
-- [ClawdBot skills documentation](https://docs.clawd.bot/tools/skills) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+## Use Case:
 
+Developers and skill authors use this skill to research, compare, and draft OpenClaw, Moltbot, and ClawDBot skills with required frontmatter, file structure, documentation, and security considerations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and bash when using the included processor script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated skills may include unsupported or misleading guidance if research claims are not checked.
+
+Mitigation: Require source citations for generated skill content and review generated files before use.
+
+Risk: Role-changing system-prompt boilerplate may be propagated into generated skills.
+
+Mitigation: Remove role-changing prompt language from generated skills unless it is explicitly needed and reviewed.
+
+Risk: Broad trigger wording can activate the skill for unrelated requests.
+
+Mitigation: Narrow trigger wording and examples to the intended skill-creation workflows before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xqicxx/skills/advanced-skill-creator)
+- [ClawdBot skills documentation](https://docs.clawd.bot/tools/skills)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured headings, file tree previews, complete file contents, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require network access for documentation, ClawHub, and best-practice research.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

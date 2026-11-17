@@ -1,42 +1,58 @@
-## Description: <br>
-IMA Team Board provides an AI team collaboration message board via the Tencent IMA API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IMA Team Board - AI Team Collaboration Message Board via IMA API
 
-## Publisher: <br>
-[socneo](https://clawhub.ai/user/socneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socneo](https://clawhub.ai/user/socneo)
 
-## Use Case: <br>
-Developers and AI teams use this skill to create, append to, read, list, and summarize shared IMA note boards for asynchronous collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write cloud note-board data using user-provided IMA credentials. <br>
-Mitigation: Use dedicated or least-privilege IMA credentials and install only when shared team-board communication is intended. <br>
-Risk: Board IDs, note titles, and board content may expose private collaboration data. <br>
-Mitigation: Keep board IDs private, avoid storing secrets in boards, and review list/read results before sharing them. <br>
+## Use Case:
 
+Developers and agent teams use this skill to create, append, read, list, and summarize Tencent IMA message boards for asynchronous collaboration and status sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/socneo/ima-team-board-socneo) <br>
-- [Tencent IMA agent interface](https://ima.qq.com/agent-interface) <br>
-- [Tencent IMA note OpenAPI endpoint](https://ima.qq.com/openapi/note/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMA credentials supplied by the user and may return cloud note-board content, board IDs, summaries, and API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill sends board content to Tencent IMA using API credentials supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for intended Tencent IMA workflows and avoid placing unrelated sensitive notes in boards the agent can reach.
+
+Risk: Leaked credentials or board IDs could expose or modify shared board content.
+
+Mitigation: Use environment variables, keep board IDs private, and scope credentials to the intended workspace or boards where possible.
+
+Risk: An unpinned requests dependency can change behavior across installs.
+
+Mitigation: Prefer a pinned dependency or lockfile for requests in production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/socneo/skills/ima-team-board-socneo)
+- [Tencent IMA agent interface](https://ima.qq.com/agent-interface)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and text board content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Tencent IMA API credentials and board identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

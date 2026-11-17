@@ -1,39 +1,63 @@
-## Description: <br>
-Market data API for AI agents. Equities, fixed income, crypto, and macro. Bitcoin Lightning micropayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Market Intelligence provides market data for AI agents across equities, fixed income, crypto, and macro, with Bitcoin Lightning micropayment support.
 
-## Publisher: <br>
-[traderhc123](https://clawhub.ai/user/traderhc123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-UNLICENSED <br>
+## Publisher:
 
+[traderhc123](https://clawhub.ai/user/traderhc123)
 
-## Use Case: <br>
-External developers and AI agents use this skill to register for TraderHC API access, query market data across equities, fixed income, crypto, and macro, and subscribe to alert flows. The skill supports free and paid API tiers and includes helper shell scripts for setup and data retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [TraderHC API Documentation](https://api.traderhc.com/docs) <br>
-- [TraderHC Live Site](https://api.traderhc.com/site) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/traderhc123/agenthc-market-intelligence) <br>
+External developers and AI agents use this skill to register for TraderHC market-data access, query market overview and asset data, request agent-optimized or compact responses, run batch queries, and configure alerts.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTHC_API_KEY, curl, jq, and python3. Treat the API key as a secret and review webhook or paid Lightning-payment flows before automation.] <br>
+Global
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The setup flow registers with api.traderhc.com and sends an agent name and subsequent API requests to that third-party service.
+
+Mitigation: Use a dedicated agent identity and install only when the data-sharing posture is acceptable for the deployment.
+
+Risk: AGENTHC_API_KEY may be exposed through shared logs, shell history, or copied environment output.
+
+Mitigation: Store the key in an appropriate secret store or local environment, avoid echoing it in shared contexts, and rotate it if exposure is suspected.
+
+Risk: Alert subscriptions can send market-event callbacks to a configured webhook URL.
+
+Mitigation: Use a dedicated webhook endpoint with normal access controls and validation before enabling alerts.
+
+Risk: Market data and analysis could be mistaken for investment advice.
+
+Mitigation: Treat responses as educational and informational material and require appropriate review before financial decisions.
+
+## Reference(s):
+
+- [TraderHC API Documentation](https://api.traderhc.com/docs)
+- [TraderHC Live Site](https://api.traderhc.com/site)
+- [ClawHub Skill Listing](https://clawhub.ai/traderhc123/skills/agenthc-market-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTHC_API_KEY; API responses can use agent-optimized or compact formats.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

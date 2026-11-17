@@ -1,46 +1,62 @@
-## Description: <br>
-Collects disclosure notices from 30 licensed consumer finance company websites, downloads related documents, extracts cooperation institution data, and writes the results into a local ontology graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects public disclosure announcements from 30 licensed consumer finance company websites, downloads supporting PDFs or attachments, extracts cooperation entities, and writes structured disclosure knowledge-graph data.
 
-## Publisher: <br>
-[linwumeng](https://clawhub.ai/user/linwumeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linwumeng](https://clawhub.ai/user/linwumeng)
 
-## Use Case: <br>
-Developers and analysts use this skill to monitor public consumer finance disclosures, collect announcement text and attachments, extract named cooperation institutions and phone numbers, and query the resulting relationship graph. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded MiniMax/GLM credentials may be exposed or reused unintentionally. <br>
-Mitigation: Remove bundled keys, rotate any exposed credentials, and provide fresh credentials through environment variables only when OCR or LLM features are intentionally enabled. <br>
-Risk: OCR and LLM paths can upload disclosure documents, images, extracted phone numbers, or related text to third-party services. <br>
-Mitigation: Review data handling requirements before enabling those paths and keep sensitive or unnecessary local data out of OCR/LLM queues. <br>
-Risk: Downloaded documents, extracted phone numbers, and ontology entries persist in the local workspace. <br>
-Mitigation: Run in an isolated workspace, apply retention controls, and delete generated raw data and ontology files when they are no longer needed. <br>
-Risk: Browser diagnostic scripts use weakened browser settings and could be unsafe against untrusted pages. <br>
-Mitigation: Limit runs to the intended public disclosure websites and avoid using diagnostic scripts on arbitrary URLs. <br>
+## Use Case:
 
+Compliance, risk, and data operations teams use this skill to monitor Chinese consumer finance company disclosure pages, collect announcement text and attachments, and query extracted cooperation relationships.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linwumeng/cfc-disclosure-monitor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [companies.json](artifact/companies.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local announcement JSON files, downloaded attachments, extracted entity JSON files, VLM/OCR result JSON, and ontology graph JSONL when its scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.5.0 (source: server release metadata) <br>
+Risk: The security review reports hardcoded API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded credentials from the release, rotate any exposed keys, and require users to provide secrets through their own environment or secret manager.
+
+Risk: The security review reports that document contents or images may be sent to third-party AI services.
+
+Mitigation: Require explicit opt-in for external AI processing and document what data is transmitted before use.
+
+Risk: The security review reports weakened browser security and unsafe download handling.
+
+Mitigation: Run the crawler in an isolated environment, restore normal browser security settings where possible, and harden URL and filename validation before broad use.
+
+Risk: The skill mutates persistent ontology data.
+
+Mitigation: Back up ontology files before running collection or parsing jobs and review generated updates before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linwumeng/skills/cfc-disclosure-monitor)
+- [Publisher profile](https://clawhub.ai/user/linwumeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime artifacts are JSON disclosure records, PDF or image attachments, and ontology data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run crawlers against external company websites, download public disclosure files, and update persistent ontology data.]
+
+## Skill Version(s):
+
+4.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

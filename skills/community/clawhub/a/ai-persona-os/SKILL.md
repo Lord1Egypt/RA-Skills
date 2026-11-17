@@ -1,20 +1,21 @@
 ---
 name: ai-persona-os
-description: "The complete operating system for OpenClaw 5.x agents. Built-in memory tool integration (memory_search, memory_get, DREAMS.md), Discord channel-routing fixes (configure Discord + route check), zero-terminal agent-driven setup, 24-soul gallery (11 originals + 13 iconic characters), SOUL.md Maker, in-chat commands, ambient context monitoring, enforced heartbeat protocol with 🟢🟡🔴 indicators, MEMORY.md auto-pruning, structured escalation, security inoculation, never-forget context protection, 8 operating rules, and 4 growth loops."
-version: 2.0.0
+description: 'The complete operating layer for OpenClaw agents: 24-soul gallery, SOUL.md
+  Maker, workspace templates, memory + security conventions, cron briefings, and in-chat
+  commands. Needs OpenClaw 2026.8.1+.'
+version: 2.1.0
 metadata:
   openclaw:
     emoji: 🤖
     homepage: https://os.aipersonamethod.com
     requires:
-      bins: [bash, sed, find, wc, stat, grep]
-    envVars:
-      - name: DISCORD_TOKEN
-        required: false
-        description: "Optional. Only needed if the user opts into Discord channel routing in Step 5."
-      - name: SLACK_TOKEN
-        required: false
-        description: "Optional. Only needed if the user opts into Slack channel routing in Step 5."
+      bins:
+      - bash
+      - sed
+      - find
+      - wc
+      - stat
+      - grep
 ---
 
 # 🤖 AI Persona OS
@@ -54,8 +55,8 @@ AI Persona OS is the exact system I use to run production agents that generate r
 | **4-Tier Workspace** | Identity / Operations / Sessions / Growth — organized from day one |
 | **8 Operating Rules** | Battle-tested discipline that prevents the failure modes you see every day |
 | **Never-Forget Protocol** | Context protection that survives truncation with threshold-based checkpointing |
-| **Heartbeat v2** | Enforced 🟢🟡🔴 status indicators, model name + version display, auto-suppression |
-| **Memory Tool Integration** | `memory_search` + `memory_get` wired in for OpenClaw 5.x's built-in memory engine |
+| **Pulse (optional)** | A 30-minute context + memory check on OpenClaw's built-in heartbeat — no workspace file, silent when all green |
+| **Memory Tool Integration** | `memory_search` + `memory_get` wired in for OpenClaw 2026.x's built-in memory engine |
 | **DREAMS.md** | Scheduled memory consolidation — distilled insights from your daily logs |
 | **Discord Routing Fix** | `configure Discord` + `route check` commands solve the web/Discord drift |
 | **Workspace Detection** | Reads `agents.defaults.workspace` from `openclaw.json` — works with any install |
@@ -125,8 +126,7 @@ Your Workspace
 │   ├── MEMORY.md        → Permanent facts (keep < 4KB) — indexed
 │   ├── DREAMS.md        → Consolidated insights — indexed
 │   ├── AGENTS.md        → The 8 Rules + learned lessons
-│   ├── WORKFLOWS.md     → Repeatable processes
-│   └── HEARTBEAT.md     → Daily startup checklist
+│   └── WORKFLOWS.md     → Repeatable processes
 │
 ├── 📅 TIER 3: SESSIONS (What happened)
 │   └── memory/
@@ -217,7 +217,7 @@ AI Persona OS is the distillation of that experience.
 > ## ⛔ AGENT RULES — READ BEFORE DOING ANYTHING
 > 1. **Use EXACT text from this file.** Do not paraphrase menus, preset names, or instructions. Copy them verbatim.
 > 2. **NEVER tell the user to open a terminal or run commands.** You have built-in tools. USE THEM. Run every operation yourself. Before each tool call, briefly explain what it does so the user can make an informed decision on the Approve popup. If you find yourself typing "Run this in your terminal" — STOP.
-> 3. **Pick the right tool for the job (OpenClaw 5.x).** `read` for plain file reads. `memory_get` for `MEMORY.md` / `DREAMS.md` / `memory/*.md` (they're indexed). `memory_search` for "find when did we…" queries. `write` for new files. `edit` for surgical changes. `exec` for shell pipelines, batch `mkdir`/`cp`/`sed`, and command-line tool invocations. Full matrix under **Tool Usage Guide**. The old "use exec for everything" instruction from v1.6.x is deprecated.
+> 3. **Pick the right tool for the job (OpenClaw 2026.x).** `read` for plain file reads. `memory_get` for `MEMORY.md` / `DREAMS.md` / `memory/*.md` (they're indexed). `memory_search` for "find when did we…" queries. `write` for new files. `edit` for surgical changes. `exec` for shell pipelines, batch `mkdir`/`cp`/`sed`, and command-line tool invocations. Full matrix under **Tool Usage Guide**. The old "use exec for everything" instruction from v1.6.x is deprecated.
 > 4. **One step at a time.** Run one tool call, show the result, explain it, then proceed.
 > 5. **We NEVER modify existing workspace files without asking.** If files already exist, ask before overwriting.
 > 6. **Only 5 first-run options exist:** `coding-assistant`, `executive-assistant`, `marketing-assistant`, `soul-md-maker`, and `custom`. The 24 souls (11 originals + 13 iconic characters) live INSIDE SOUL.md Maker. Never invent other preset names.
@@ -230,7 +230,7 @@ AI Persona OS is the distillation of that experience.
 <workspace_detection>
 ## Workspace Detection (run ONCE at session start, before anything else)
 
-Different OpenClaw installs use different workspace paths. Earlier versions of this skill hardcoded `<WORKSPACE>/` and broke for anyone whose `agents.defaults.workspace` is set elsewhere (the OpenClaw 5.x default is actually `~/.openclaw/workspace/`). Fix: discover it at runtime.
+Different OpenClaw installs use different workspace paths. Earlier versions of this skill hardcoded `<WORKSPACE>/` and broke for anyone whose `agents.defaults.workspace` is set elsewhere (the OpenClaw 2026.x default is actually `~/.openclaw/workspace/`). Fix: discover it at runtime.
 
 **Discovery sequence:**
 
@@ -263,11 +263,21 @@ If ANY are missing → this is a fresh install. **Ask the user before doing anyt
 
 Wait for explicit confirmation before proceeding to Step 1. Do NOT auto-run setup without the user's approval.
 
-**Mid-version migration (v1.7.x → v1.8.0):** After confirming all three core files exist, also check for `<WORKSPACE>/DREAMS.md` (added in v1.8.0 for OpenClaw 5.x memory consolidation). If missing, surface ONCE:
+**Mid-version migration (v1.7.x → v1.8.0):** After confirming all three core files exist, also check for `<WORKSPACE>/DREAMS.md` (added in v1.8.0 for OpenClaw 2026.x memory consolidation). If missing, surface ONCE:
 
-> "📦 Quick upgrade available: v1.8.0 added a `DREAMS.md` file for OpenClaw 5.x's scheduled memory consolidation. Want me to add it? It's one exec — `cp assets/DREAMS-template.md <WORKSPACE>/DREAMS.md && mkdir -p <WORKSPACE>/memory/.dreams`. Skip and I won't ask again this session."
+> "📦 Quick upgrade available: v1.8.0 added a `DREAMS.md` file for OpenClaw 2026.x's scheduled memory consolidation. Want me to add it? It's one exec — `cp assets/DREAMS-template.md <WORKSPACE>/DREAMS.md && mkdir -p <WORKSPACE>/memory/.dreams`. Skip and I won't ask again this session."
 
 Respect the user's answer. If they decline, do not re-ask in the same session.
+
+**Upgrade check (v2.0.x / v1.x → v2.1.0):** Also check for an old heartbeat file and the workspace version:
+```
+ls <WORKSPACE>/HEARTBEAT.md 2>/dev/null; cat <WORKSPACE>/VERSION.md 2>/dev/null
+```
+If `HEARTBEAT.md` exists or `VERSION.md` is older than 2.1.0, surface ONCE:
+
+> "📦 Upgrade available: OpenClaw now runs the heartbeat itself, so AI Persona OS v2.1.0 no longer uses a HEARTBEAT.md file. Want me to tidy up? I'll archive the old file, check the heartbeat checklist for leftovers from the old version, and update VERSION.md — one step at a time, with your OK for each. Say **upgrade**, or skip and I won't ask again this session."
+
+On **upgrade**, follow `references/automations.md` → Upgrading. Respect a decline; do not re-ask in the same session.
 </post_install_check>
 
 ---
@@ -594,35 +604,32 @@ After collecting answers, the agent explains what it's about to create, then doe
 >
 > For preset 1 (coding-assistant):
 > ```
-> cp examples/coding-assistant/SOUL.md <WORKSPACE>/SOUL.md && cp examples/coding-assistant/HEARTBEAT.md <WORKSPACE>/HEARTBEAT.md && cp examples/coding-assistant/KNOWLEDGE.md <WORKSPACE>/KNOWLEDGE.md
+> cp examples/coding-assistant/SOUL.md <WORKSPACE>/SOUL.md && cp examples/coding-assistant/KNOWLEDGE.md <WORKSPACE>/KNOWLEDGE.md
 > ```
 >
 > For preset 2 (executive-assistant):
 > ```
-> cp examples/executive-assistant/SOUL.md <WORKSPACE>/SOUL.md && cp examples/executive-assistant/HEARTBEAT.md <WORKSPACE>/HEARTBEAT.md
+> cp examples/executive-assistant/SOUL.md <WORKSPACE>/SOUL.md
 > ```
 >
 > For preset 3 (marketing-assistant):
 > ```
-> cp examples/marketing-assistant/SOUL.md <WORKSPACE>/SOUL.md && cp examples/marketing-assistant/HEARTBEAT.md <WORKSPACE>/HEARTBEAT.md
+> cp examples/marketing-assistant/SOUL.md <WORKSPACE>/SOUL.md
 > ```
 >
 > For preset 4 (SOUL.md Maker) — Original Soul gallery pick: Copy the matching soul file. Example for Rook:
 > ```
-> cp examples/prebuilt-souls/01-contrarian-strategist.md <WORKSPACE>/SOUL.md && cp assets/HEARTBEAT-template.md <WORKSPACE>/HEARTBEAT.md
+> cp examples/prebuilt-souls/01-contrarian-strategist.md <WORKSPACE>/SOUL.md
 > ```
 > Use the same pattern for other gallery picks with the corresponding filename from `examples/prebuilt-souls/`.
 >
 > For preset 4 (SOUL.md Maker) — Iconic Character gallery pick: Copy the matching character file. Example for JARVIS:
 > ```
-> cp examples/iconic-characters/03-jarvis.md <WORKSPACE>/SOUL.md && cp assets/HEARTBEAT-template.md <WORKSPACE>/HEARTBEAT.md
+> cp examples/iconic-characters/03-jarvis.md <WORKSPACE>/SOUL.md
 > ```
 > Use the same pattern for other character picks with the corresponding filename from `examples/iconic-characters/`.
 >
-> For preset 4 (SOUL.md Maker) — Quick/Deep Forge: The SOUL.md was already generated by the interview process and written to `<WORKSPACE>/SOUL.md`. Copy the heartbeat template:
-> ```
-> cp assets/HEARTBEAT-template.md <WORKSPACE>/HEARTBEAT.md
-> ```
+> For preset 4 (SOUL.md Maker) — Quick/Deep Forge: The SOUL.md was already generated by the interview process and written to `<WORKSPACE>/SOUL.md`.
 >
 > For preset 5 (custom): Do NOT copy starter packs. The agent will generate SOUL.md from the user's answers (see Step 3d).
 >
@@ -656,7 +663,7 @@ After collecting answers, the agent explains what it's about to create, then doe
 >
 > **Step 3e: Verify setup.** Use exec:
 > ```
-> ls -la <WORKSPACE>/SOUL.md <WORKSPACE>/USER.md <WORKSPACE>/MEMORY.md <WORKSPACE>/DREAMS.md <WORKSPACE>/AGENTS.md <WORKSPACE>/SECURITY.md <WORKSPACE>/HEARTBEAT.md <WORKSPACE>/WORKFLOWS.md <WORKSPACE>/ESCALATION.md <WORKSPACE>/VERSION.md
+> ls -la <WORKSPACE>/SOUL.md <WORKSPACE>/USER.md <WORKSPACE>/MEMORY.md <WORKSPACE>/DREAMS.md <WORKSPACE>/AGENTS.md <WORKSPACE>/SECURITY.md <WORKSPACE>/WORKFLOWS.md <WORKSPACE>/ESCALATION.md <WORKSPACE>/VERSION.md
 > ```
 >
 > **Total: 3-5 tool calls.** Each one is explained before execution so the user knows exactly what's happening. Use `exec` for the `mkdir`/`cp` batch and `sed` personalization (shell is the right tool for these). Use `write` if you find yourself reaching for a heredoc.
@@ -679,7 +686,6 @@ Here's what I built:
 ✅ MEMORY.md      — Permanent memory (starts fresh)
 ✅ AGENTS.md      — 8 operating rules
 ✅ SECURITY.md    — Prompt injection defense
-✅ HEARTBEAT.md   — Daily operations checklist
 ✅ WORKFLOWS.md   — Growth loops and processes
 ✅ ESCALATION.md  — Structured handoff protocol
 ✅ VERSION.md     — Version tracking
@@ -703,6 +709,8 @@ Everything can be customized later — just ask.
 
 ## Step 5 (Optional): Advanced Setup
 
+> Optional env vars: `DISCORD_TOKEN` (only if the user opts into Discord channel routing in this step) and `SLACK_TOKEN` (only for Slack channel routing). Neither is required for the core install.
+
 After the basic setup, mention these but don't push:
 
 > **🚨 AGENT: These are ALL opt-in. NEVER set up cron jobs, gateway configs, or team files without the user explicitly requesting it. Just mention they exist.**
@@ -715,7 +723,7 @@ Want to go further? (totally optional, we can do any of these later)
 • "switch soul"       — Swap to a different personality anytime
 • "blend souls"       — Mix two personalities into a hybrid
 • "soul maker"        — Re-run the deep interview to rebuild your SOUL.md
-• "set up heartbeat"  — Configure automated health checks
+• "set up pulse"      — 30-minute context + memory check on OpenClaw's heartbeat
 • "set up cron jobs"  — Daily briefings and weekly reviews
   ⚠️  Creates scheduled tasks that run automatically.
   I'll explain exactly what each one does before adding it.
@@ -727,13 +735,13 @@ Want to go further? (totally optional, we can do any of these later)
 • "route check"       — Audit channel routing config (catches the web/Discord drift)
 ```
 
-> **AGENT — "configure Discord" handling (OpenClaw 5.x):**
+> **AGENT — "configure Discord" handling (OpenClaw 2026.x):**
 > The model never picks the channel — OpenClaw routes replies back to the channel a message came from. The web-instead-of-Discord drift happens on **unsolicited** messages (heartbeats, cron briefings) when no inbound channel exists. Fix it at three layers in one pass:
 > 1. `requireMention: true` on every Discord guild (skill Rule 5 enforcement at the gateway).
 > 2. `accounts.default` set to the user's Discord account, so unsolicited messages have a home account when multiple accounts exist.
-> 3. `agents.defaults.heartbeat.target` pinned to a Discord peer (e.g. `{ "kind": "discordUser", "id": "<user-discord-id>" }`) instead of bare `"last"` — `"last"` drifts to whichever channel the user last poked.
+> 3. `agents.defaults.heartbeat.target` set to `discord` with `agents.defaults.heartbeat.to` = `"user:<user-discord-id>"` instead of `"last"` — `"last"` drifts to whichever channel the user last poked.
 >
-> Walk the user through each change separately, confirm before exec'ing, and reload with `/new` at the end. Full guide in `references/heartbeat-automation.md` → Channel Routing.
+> Walk the user through each change separately, confirm before exec'ing, and reload with `/new` at the end. Full guide in `references/automations.md` → Channel Routing.
 
 > **AGENT — reload reminder:** If the user changes anything under `~/.openclaw/` (gateway config, heartbeat settings, agent profiles) or edits this skill, tell them to run `/new` in chat to pick up the change without restarting the gateway. `openclaw gateway restart` is the fallback.
 
@@ -755,7 +763,9 @@ These commands work anytime in chat. The agent recognizes them and responds with
 | `show memory` | Display MEMORY.md | Use `memory_get` on MEMORY.md, show current contents |
 | `recall <topic>` | Search memory for a topic | Use `memory_search` with the topic, return matching chunks with file:line |
 | `health check` | Full workspace validation | Check all required files exist, verify structure via exec |
-| `route check` | Audit channel routing config | Inspect openclaw.json for `accounts.default`, `channels.discord.defaultAccount`, and heartbeat `target`; show 🟢🟡🔴 routing dashboard |
+| `route check` | Audit channel routing config | Inspect openclaw.json for `accounts.default`, `channels.discord.defaultAccount`, and heartbeat `target`/`to`; show 🟢🟡🔴 routing dashboard |
+| `set up pulse` | Optional 30-min context + memory check | Write the pulse text into the heartbeat job's scratch — steps in `references/automations.md` → The Pulse |
+| `upgrade` | Tidy up after updating from v2.0.x / v1.x | Archive HEARTBEAT.md, clean the heartbeat scratch, update VERSION.md — `references/automations.md` → Upgrading |
 | `security audit` | Monthly security scan | Scan SOUL.md and workspace for security issues via exec |
 | `show config` | Show all settings | Read and display key settings from workspace files via exec |
 | `help` | List available commands | Show this command table |
@@ -777,13 +787,13 @@ When the user says "status" (or "how's my system", "dashboard", "system health")
 > **🚨 AGENT: Run these checks via exec, then format the output below. Do NOT tell the user to run anything.**
 
 ```
-exec: ls -la <WORKSPACE>/SOUL.md <WORKSPACE>/USER.md <WORKSPACE>/MEMORY.md <WORKSPACE>/AGENTS.md <WORKSPACE>/SECURITY.md <WORKSPACE>/HEARTBEAT.md 2>/dev/null | wc -l
+exec: ls -la <WORKSPACE>/SOUL.md <WORKSPACE>/USER.md <WORKSPACE>/MEMORY.md <WORKSPACE>/AGENTS.md <WORKSPACE>/SECURITY.md 2>/dev/null | wc -l
 exec: wc -c <WORKSPACE>/MEMORY.md 2>/dev/null
 exec: find <WORKSPACE>/memory/ -name "*.md" -mtime -1 2>/dev/null | wc -l
 read: <WORKSPACE>/VERSION.md
 ```
 
-`exec` for the shell-pipelined checks (they use `ls|wc`, `wc -c`, `find|wc`). `read` for the plain file fetch — no shell needed and it's the canonical OpenClaw 5.x pattern.
+`exec` for the shell-pipelined checks (they use `ls|wc`, `wc -c`, `find|wc`). `read` for the plain file fetch — no shell needed and it's the canonical OpenClaw 2026.x pattern.
 
 Then format as:
 
@@ -792,9 +802,9 @@ Then format as:
 
 🫀 [current date/time] | AI Persona OS v[VERSION]
 
-🟢 Core Files: [X/6] present
+🟢 Core Files: [X/5] present
    SOUL.md ✓ | USER.md ✓ | MEMORY.md ✓
-   AGENTS.md ✓ | SECURITY.md ✓ | HEARTBEAT.md ✓
+   AGENTS.md ✓ | SECURITY.md ✓
 
 🟢 Memory: MEMORY.md at [X]KB (limit 4KB)
 
@@ -807,7 +817,7 @@ Replace 🟢 with 🟡 if attention needed (e.g., MEMORY.md >3.5KB, missing file
 
 ### "show persona" Command — Output Format
 
-Use the `read` tool with a line limit (not `exec: head`) — OpenClaw 5.x prefers the dedicated read tool over shell pipes for plain file reads:
+Use the `read` tool with a line limit (not `exec: head`) — OpenClaw 2026.x prefers the dedicated read tool over shell pipes for plain file reads:
 
 ```
 read: <WORKSPACE>/SOUL.md (lines 1-20)
@@ -877,7 +887,7 @@ If memory_search returns nothing useful, fall back to `exec: grep -rni "topic" <
 The #1 routing complaint: the agent replies on web when the user is on Discord. OpenClaw routes inbound replies back to the originating channel automatically, so the leak only happens on **unsolicited** messages (heartbeats, cron briefings). Audit the three settings that cause it:
 
 ```
-exec: cat ~/.openclaw/openclaw.json 2>/dev/null | grep -E '"default"|"defaultAccount"|"target"|"requireMention"'
+exec: cat ~/.openclaw/openclaw.json 2>/dev/null | grep -E '"default"|"defaultAccount"|"target"|"to"|"requireMention"'
 ```
 
 Then format as:
@@ -888,9 +898,9 @@ Then format as:
 🟢 accounts.default: discord-<id>
 🟢 channels.discord.defaultAccount: discord-<id>
 🟡 agents.defaults.heartbeat.target: "last"
-   → Drifts to whichever channel you last messaged from. Pin to a Discord peer
+   → Drifts to whichever channel you last messaged from. Pin it to Discord
      to keep heartbeats on Discord:
-     { "kind": "discordUser", "id": "<your-discord-user-id>" }
+     "target": "discord", "to": "user:<your-discord-user-id>"
 🟢 Discord guild requireMention: true (3/3 guilds)
 ```
 
@@ -901,7 +911,7 @@ Replace 🟢 with 🟡 if attention needed, 🔴 if action required. If any valu
 
 # Channel Routing — Why Replies Sometimes Go to the Wrong Channel
 
-> **🚨 AGENT: When the user reports "the agent replied on web instead of Discord" (or any cross-channel drift), this is the section to consult. Do NOT tell the user the model picked wrong — it didn't. Routing is host-controlled in OpenClaw 5.x.**
+> **🚨 AGENT: When the user reports "the agent replied on web instead of Discord" (or any cross-channel drift), this is the section to consult. Do NOT tell the user the model picked wrong — it didn't. Routing is host-controlled in OpenClaw 2026.x.**
 
 ## The Core Rule
 
@@ -914,7 +924,7 @@ So if Discord-inbound replies land on Discord, you're seeing the correct behavio
 | User asks something on Discord → agent replies | Yes | Always Discord ✓ |
 | User asks something on web → agent replies | Yes | Always web ✓ |
 | Heartbeat fires (no inbound) | No | Uses `heartbeat.target` |
-| Cron job posts a briefing | No | Uses `--target` or `accounts.default` |
+| Cron job posts a briefing | No | Uses the job's `--channel`/`--to`, else `accounts.default` |
 | Skill-driven proactive message | No | Uses `accounts.default` |
 
 ## The Three Settings That Control Unsolicited Routing
@@ -925,7 +935,8 @@ So if Discord-inbound replies land on Discord, you're seeing the correct behavio
 
 3. **`agents.defaults.heartbeat.target`** — `"last"` means "wherever the user last messaged from." If you `/new` from the web Control UI, your next heartbeat fires on web. Pin it to a Discord peer to keep heartbeats on Discord:
    ```json
-   "target": { "kind": "discordUser", "id": "<your-discord-user-id>" }
+   "target": "discord",
+   "to": "user:<your-discord-user-id>"
    ```
 
 ## Quick Fix (Single Discord User)
@@ -947,11 +958,8 @@ Manual config snippet:
     "defaults": {
       "heartbeat": {
         "every": "30m",
-        "target": {
-          "kind": "discordUser",
-          "id": "<your-discord-user-id>"
-        },
-        "ackMaxChars": 20
+        "target": "discord",
+        "to": "user:<your-discord-user-id>"
       }
     }
   }
@@ -970,9 +978,9 @@ The skill operates inside the agent's prompt; it can't override gateway routing 
 ---
 ---
 
-# Tool Usage Guide — Which Tool for Which Job (OpenClaw 5.x)
+# Tool Usage Guide — Which Tool for Which Job (OpenClaw 2026.x)
 
-> **🚨 AGENT: This skill ran on `exec` for everything in v1.6.x. OpenClaw 5.x exposes a richer toolset — using the right tool for each task is faster, cheaper, and avoids quirks like shell quoting bugs and re-reading indexed files. The rules below override "use exec for everything" from older instructions.**
+> **🚨 AGENT: This skill ran on `exec` for everything in v1.6.x. OpenClaw 2026.x exposes a richer toolset — using the right tool for each task is faster, cheaper, and avoids quirks like shell quoting bugs and re-reading indexed files. The rules below override "use exec for everything" from older instructions.**
 
 ## Required `tools.profile`
 
@@ -998,7 +1006,7 @@ And if it shows `"profile": "minimal"` or `"profile": "messaging"`, tell the use
 | Shell pipelines (`ls | wc`, `find | wc`, `grep -r`) | `exec` | The shell IS the right tool here |
 | Batch file ops (`mkdir -p … && cp … && cp …`) | `exec` | One round-trip beats N tool calls |
 | Multi-step setup with user-visible progress | `update_plan` | The user sees what's done, what's next, what's left |
-| Heartbeat reply | `heartbeat_respond` | Suppresses delivery when `ackMaxChars` is short |
+| Heartbeat / pulse reply | `heartbeat_respond` (or reply `NO_REPLY`) | Quiet outcomes are suppressed automatically |
 | Fetch a URL | `web_fetch` | Faster than `exec: curl`; no shell escaping |
 | Search the web | `web_search` | Same |
 
@@ -1325,51 +1333,18 @@ Step 4: Assessment
 
 ---
 
-## Heartbeat Protocol v2 (v1.3.0, patched v1.3.1, v1.3.2, v1.3.3, v1.4.0, v1.4.1)
+## Pulse and Daily Briefings (optional)
 
-The #1 issue with v1.2.0: heartbeats fired but agents rubber-stamped `HEARTBEAT_OK` without running the protocol. v1.3.0 fixes this with an architecture that matches how OpenClaw actually works. v1.3.1 patches line break rendering, adds auto-migration, and bakes in the heartbeat prompt override. v1.3.2 adds model name display, version tracking, MEMORY.md auto-pruning, and config validation. v1.3.3 passes security scanning by removing literal injection examples from documentation. v1.4.0 adds zero-terminal agent-driven setup, quick-start presets, in-chat commands, and ambient context monitoring.
+OpenClaw runs the heartbeat itself (since 2026.8.1): it owns the schedule, the delivery and the checklist, which lives in the heartbeat job's scratch, not in a workspace file. AI Persona OS adds two opt-in layers on top. Neither is installed unless the user asks.
 
-### What Changed
+**Pulse — every 30 minutes (`set up pulse`)**
+A short context + memory check written into the heartbeat job's scratch. If context is filling up it writes a checkpoint; if MEMORY.md is over 4KB it archives old entries. When everything is fine it replies `NO_REPLY` and nothing is delivered — your phone stays silent.
 
-| v1.3.x | v1.4.0 |
-|--------|--------|
-| Setup required terminal or bash wizard | Agent-driven setup — zero terminal, user picks numbers |
-| Starter packs buried in `examples/` | Quick-start presets in first-run menu (pick 1-4) |
-| No in-chat commands | `status`, `show persona`, `health check`, `help`, etc. |
-| Context monitoring documented but not scripted | Ambient monitoring with exact thresholds and output formats |
-| "Tell your agent to run this" | Agent uses exec for everything — explains each command before running |
-| Manual file copying and customization | Agent personalizes files automatically via sed/heredoc |
-| Proactive behavior described generally | Advisor on/off toggle with strict suggestion format |
+**Daily Briefing — opt-in cron job, 1-2x daily (`set up cron jobs`)**
+The full 4-step protocol in an isolated session: deep channel scan, priority assessment, a structured report delivered to your chat. Templates in `assets/cron-templates/`.
 
-### What Changed (v1.2.x → v1.3.x)
-
-| v1.2.x | v1.3.3 |
-|--------|--------|
-| 170-line HEARTBEAT.md (documentation) | ~38-line HEARTBEAT.md (imperative checklist) |
-| Agent reads docs, interprets loosely | Agent executes commands, produces structured output |
-| No output format enforcement | 🟢🟡🔴 traffic light indicators required |
-| Full protocol every 30min (expensive) | Pulse every 30min + full briefing via cron (efficient) |
-| No migration path | Auto-migration detects outdated template and updates from skill assets |
-| Agents revert to old format | Heartbeat prompt override prevents format regression |
-| Indicators render on one line | Blank lines forced between each indicator |
-| No model/version visibility | First line shows model name + AI Persona OS version |
-| MEMORY.md flagged but not fixed | MEMORY.md auto-pruned when >4KB |
-| No config validation | config-validator.sh audits all settings at once |
-
-### Two-Layer Design
-
-**Layer 1 — Heartbeat Pulse (every 30 minutes)**
-Tiny HEARTBEAT.md runs context guard + memory health. If everything's green, replies `HEARTBEAT_OK` → OpenClaw suppresses delivery → your phone stays silent.
-
-**Layer 2 — Daily Briefing (opt-in cron job, 1-2x daily)**
-Full 4-step protocol runs in an isolated session. Deep channel scan, priority assessment, structured report delivered to your chat. *Requires manual cron setup — see `assets/cron-templates/`.*
-
-### Output Format
-
-Every heartbeat that surfaces something uses this format (note the blank lines between indicators — critical for Discord/WhatsApp rendering):
+When a pulse does report, it uses this format (blank lines between indicators keep Discord/WhatsApp from collapsing them):
 ```
-🫀 Feb 6, 10:30 AM PT | anthropic/claude-haiku-4-5 | AI Persona OS v2.0.0
-
 🟢 Context: 22% — Healthy
 
 🟡 Memory: MEMORY.md at 3.8KB (limit 4KB)
@@ -1383,17 +1358,7 @@ Every heartbeat that surfaces something uses this format (note the blank lines b
 
 Indicators: 🟢 = healthy, 🟡 = attention recommended, 🔴 = action required.
 
-### Setup
-
-1. Copy the new template: `cp assets/HEARTBEAT-template.md <WORKSPACE>/HEARTBEAT.md`
-2. Copy VERSION.md file: `cp assets/VERSION.md <WORKSPACE>/VERSION.md`
-3. Copy ESCALATION.md: `cp assets/ESCALATION-template.md <WORKSPACE>/ESCALATION.md`
-4. **Add heartbeat prompt override** (strongly recommended) — see `references/heartbeat-automation.md`
-5. Validate config: check all required settings exist in workspace files via exec (catches missing settings)
-6. (Optional, user-initiated) Add cron jobs — copy-paste from `assets/cron-templates/` — requires openclaw CLI
-7. (Optional, user-initiated) Set `requireMention: true` for Discord guilds — requires gateway config access
-
-Full guide: `references/heartbeat-automation.md`
+> **AGENT:** Never create a `HEARTBEAT.md` — OpenClaw does not read it, and `openclaw doctor --fix` imports any it finds into the heartbeat scratch word for word. Never override `agents.defaults.heartbeat.prompt`: OpenClaw's default prompt already handles `NO_REPLY` and stops the agent from repeating old tasks. Setup, upgrade steps and routing: `references/automations.md`.
 
 ---
 
@@ -1407,9 +1372,8 @@ assets/
 ├── SECURITY-template.md    → Cognitive inoculation & credential rules
 ├── MEMORY-template.md      → Permanent facts & context management
 ├── AGENTS-template.md      → Operating rules + learned lessons + proactive patterns + escalation
-├── HEARTBEAT-template.md   → Imperative checklist with 🟢🟡🔴 + model/version display + auto-pruning (PATCHED v1.4.0)
 ├── ESCALATION-template.md  → Structured handoff protocol for when agent is stuck (NEW v1.3.2)
-├── VERSION.md              → Current version number — heartbeat reads this (NEW v1.3.2)
+├── VERSION.md              → Current version number — `status` and the upgrade check read this
 ├── WORKFLOWS-template.md   → Growth loops + process documentation
 ├── TOOLS-template.md       → Tool configuration & gotchas
 ├── INDEX-template.md       → File organization reference
@@ -1437,18 +1401,15 @@ examples/
 ├── coding-assistant/       → Preset 1: For developers
 │   ├── README.md          → How to use this pack
 │   ├── SOUL.md            → "Axiom" — direct, technical assistant
-│   ├── HEARTBEAT.md       → Context guard + CI/CD + PR status (🟢🟡🔴 format)
 │   └── KNOWLEDGE.md       → Tech stack, code patterns, commands
 │
 ├── executive-assistant/    → Preset 2: For exec support
 │   ├── README.md          → How to use this pack
-│   ├── SOUL.md            → "Atlas" — anticipatory, discreet assistant
-│   └── HEARTBEAT.md       → Context guard + calendar + comms triage (🟢🟡🔴 format)
+│   └── SOUL.md            → "Atlas" — anticipatory, discreet assistant
 │
 ├── marketing-assistant/    → Preset 3: For brand & content
 │   ├── README.md          → How to use this pack
-│   ├── SOUL.md            → "Spark" — energetic, brand-aware assistant
-│   └── HEARTBEAT.md       → Context guard + content calendar + campaigns (🟢🟡🔴 format)
+│   └── SOUL.md            → "Spark" — energetic, brand-aware assistant
 │
 └── prebuilt-souls/         → Presets 5-14: 11 distinct personalities (v1.5.0)
 └── iconic-characters/      → 13 character souls — Thanos, Deadpool, JARVIS, etc. (NEW v1.6.0)
@@ -1476,7 +1437,7 @@ references/
 ├── never-forget-protocol.md  → Complete context protection system
 ├── security-patterns.md      → Prompt injection defense
 ├── proactive-playbook.md     → Reverse prompting & anticipation
-├── heartbeat-automation.md   → Heartbeat + cron configuration (NEW)
+├── automations.md            → Pulse, cron briefings, routing, upgrading (v2.1.0)
 └── soul-md-maker.md             → Deep SOUL.md builder interview process (NEW v1.5.0)
 ```
 
@@ -1496,7 +1457,7 @@ assets/cron-templates/
 └── weekly-review.sh    → Copy & paste: weekly learning promotion
 ```
 
-See `references/heartbeat-automation.md` for configuration guide.
+See `references/automations.md` for the configuration guide.
 
 ---
 

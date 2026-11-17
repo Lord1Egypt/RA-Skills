@@ -1,44 +1,61 @@
-## Description: <br>
-短剧-公众号信息源 helps short drama creators and content operators track trending WeChat official-account articles, cluster them by genre, and generate daily HTML reports with creative trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily WeChat official account short-drama trend reports by querying RedFoxHub data, ranking articles by read count, clustering genres, and producing creative insights plus a local HTML report.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Short drama scriptwriters, content operators, MCN teams, and official-account owners use this skill to query RedFoxHub data, find popular WeChat short drama articles, review genre trends, and produce local daily reports for content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports may include unescaped external data and are automatically opened locally. <br>
-Mitigation: Treat reports as untrusted web content, avoid opening reports from unexpected data sources, and review generated HTML before sharing or using it in sensitive environments. <br>
-Risk: The skill requires a RedFoxHub API key and writes report and cache files on the local machine. <br>
-Mitigation: Use a scoped, revocable API key, keep it in environment variables, and review local report/cache paths before installation. <br>
+## Use Case:
 
+External short-drama writers, content operators, MCN teams, and WeChat official account owners use this skill to request trend reports, investigate genres or time ranges, and get data-backed topic and title guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/playlet-gzh-feed) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?souce=github) <br>
-- [RedFoxHub](https://redfox.hk?souce=github) <br>
-- [core_workflow.md](references/core_workflow.md) <br>
-- [examples.md](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown summaries and local HTML report files, with Python command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RedFoxHub API key; writes cache data under ~/.workbuddy/cache and reports under ~/Downloads/QoderReports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Report HTML is built from remote article metadata and may include unescaped upstream values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before sharing or deploying them, and sanitize or escape remote metadata before broader use.
+
+Risk: The skill needs a RedFoxHub API key and includes an --api-key option that could expose credentials through command history or process listings.
+
+Mitigation: Use a scoped, revocable REDFOX_API_KEY environment variable and avoid passing secrets on the command line.
+
+Risk: The script contacts redfox.hk, writes local report and cache files, and opens generated HTML in the browser.
+
+Mitigation: Run it in a controlled environment, review the configured output locations, and only open reports from trusted runs.
+
+## Reference(s):
+
+- [Core workflow](references/core_workflow.md)
+- [Usage examples](references/examples.md)
+- [RedFoxHub](https://redfox.hk/)
+- [RedFoxHub playlet message API endpoint](https://redfox.hk/story/api/parseWork/queryPlayletMsgs)
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/playlet-gzh-feed)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report text with a generated local HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; writes HTML reports to ~/Downloads/QoderReports and cache data to ~/.workbuddy/cache.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

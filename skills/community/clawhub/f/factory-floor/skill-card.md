@@ -1,50 +1,67 @@
-## Description: <br>
-Factory Floor is a startup coaching skill that helps founders and early-stage teams diagnose constraints, route to stage-specific guidance, and choose focused weekly experiments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Startup coach for founders and early-stage teams that diagnoses the current startup constraint and assigns a focused weekly experiment.
 
-## Publisher: <br>
-[mmichelli](https://clawhub.ai/user/mmichelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmichelli](https://clawhub.ai/user/mmichelli)
 
-## Use Case: <br>
-External founders and early-stage teams use this skill with agent platforms to diagnose the current business bottleneck, avoid premature prescriptions, and select one concrete experiment for the week. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer writes files into an agent skills directory and runs npm to fetch renderer dependencies. <br>
-Mitigation: Review the installer before running it, install in an isolated environment when possible, and proceed only if those filesystem and network actions are acceptable. <br>
-Risk: The diagram renderer dependency installation is not backed by a lockfile or exact dependency pinning in the evidence. <br>
-Mitigation: Pin and review dependency versions, or make the diagram renderer dependency explicit and optional before broad deployment. <br>
+## Use Case:
 
+External founders and early-stage teams use this skill to clarify what to focus on, identify bottlenecks in growth or execution, and turn the diagnosis into a one-week experiment.
 
-## Reference(s): <br>
-- [Factory Floor README](README.md) <br>
-- [ClawHub listing](https://clawhub.ai/mmichelli/factory-floor) <br>
-- [Publisher profile](https://clawhub.ai/user/mmichelli) <br>
-- [npm package](https://www.npmjs.com/package/@swiftner/factory-floor) <br>
-- [Open agent skills standard](https://agentskills.io) <br>
-- [Jobs To Be Done](references/jtbd.md) <br>
-- [Theory of Constraints](references/pillar-goldratt.md) <br>
-- [Customer Factory](references/pillar-maurya.md) <br>
-- [How Brands Grow](references/pillar-sharp.md) <br>
-- [Marketing Strategy Discipline](references/pillar-ritson.md) <br>
-- [Strategic Thinking](references/pillar-strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown conversational coaching with focused questions, constraint statements, and experiment assignments; installation guidance may include shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes to stage and reference files based on startup context; no API keys or MCP tools were detected in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.1 (source: ClawHub release evidence) <br>
+Risk: The installer automatically runs an npm dependency install for diagram rendering, creating avoidable supply-chain execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a controlled ClawHub install flow, pin package versions when using npx, and review the diagram renderer dependency before setup.
+
+Risk: Startup coaching guidance can be misapplied when the founder provides incomplete or inaccurate business context.
+
+Mitigation: Use the skill's intake and funnel-break scan to establish context before acting on diagnoses or weekly experiments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mmichelli/skills/factory-floor)
+- [npm package](https://www.npmjs.com/package/@swiftner/factory-floor)
+- [Open Agent Skills standard](https://agentskills.io)
+- [Intake](references/intake.md)
+- [Common Misdiagnoses](references/misdiagnoses.md)
+- [Coaching Patterns](references/coaching-patterns.md)
+- [Theory of Constraints reference](references/pillar-goldratt.md)
+- [Customer Factory reference](references/pillar-maurya.md)
+- [Mental and Physical Availability reference](references/pillar-sharp.md)
+- [Marketing Strategy Discipline reference](references/pillar-ritson.md)
+- [Jobs To Be Done reference](references/jtbd.md)
+- [Strategic Thinking reference](references/pillar-strategy.md)
+- [Estimation reference](references/estimation.md)
+- [Weekly Review](references/weekly-review.md)
+- [Weekly Review Diagram](references/weekly-diagrams.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown responses with diagnostic questions, constraint statements, weekly experiments, and occasional shell commands for installation or diagram rendering]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route to stage-specific or reference material based on startup context]
+
+## Skill Version(s):
+
+3.5.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

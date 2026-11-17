@@ -1,42 +1,58 @@
-## Description: <br>
-Create, read, edit, merge, and split PDF files, with support for text extraction, table extraction, form filling, watermarks, OCR, and HTML-to-PDF conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, read, edit, merge, split PDF files. Supports text extraction, table extraction, form filling, watermarks, OCR, and HTML-to-PDF conversion.
 
-## Publisher: <br>
-[weaglewang](https://clawhub.ai/user/weaglewang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weaglewang](https://clawhub.ai/user/weaglewang)
 
-## Use Case: <br>
-Developers and document automation engineers use this skill to generate, inspect, transform, combine, split, OCR, and extract structured content from PDF documents using Python libraries and supporting command-line tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports no artifact-backed concern, but notes that installation should still be reviewed against the actual manifest and instructions. <br>
-Mitigation: Review the skill instructions and dependency installation steps before deployment, and scan the release artifact in the target environment. <br>
-Risk: PDF workflows may process sensitive document contents or metadata. <br>
-Mitigation: Use approved storage locations, avoid unnecessary retention of extracted text or generated files, and review outputs before sharing. <br>
-Risk: OCR and HTML-to-PDF examples rely on optional third-party and system dependencies. <br>
-Mitigation: Install dependencies from approved package sources and pin versions where reproducibility or supply-chain control is required. <br>
+## Use Case:
 
+Developers and document-processing agents use this skill to install PDF tooling and generate, inspect, transform, extract data from, and secure PDF files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weaglewang/pdf-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include dependency installation steps and file-processing code for local PDF workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF-writing examples can overwrite or create files in the current working directory if paths are left unchanged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit safe input and output filenames, and run examples in a working directory that does not contain important PDFs.
+
+Risk: HTML-to-PDF examples can include untrusted data in generated HTML.
+
+Mitigation: Escape or validate untrusted data before passing it into HTML-based PDF generation.
+
+Risk: Optional PDF, OCR, and conversion packages expand the local dependency footprint.
+
+Mitigation: Install only the packages needed for the intended workflow in a virtual environment with reviewed pinned versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weaglewang/skills/pdf-skill)
+- [Publisher profile](https://clawhub.ai/user/weaglewang)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PDF processing instructions and examples for local files; users choose paths, packages, and optional OCR or conversion tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

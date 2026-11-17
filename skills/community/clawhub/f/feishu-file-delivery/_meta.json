@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7e68xzm01gpx37rcmqtms3gs82t6vt",
-  "slug": "feishu-file-delivery",
+  "name": "feishu-file-delivery",
   "version": "2.0.0",
-  "publishedAt": 1773476053121
+  "updatedAt": "2026-03-14T16:09:00+08:00",
+  "homepage": "https://github.com/wd041216-bit/openclaw-feishu-file-delivery",
+  "changelog": "Added streaming mode support, enhanced documentation, multi-language support (EN/CN)",
+  "author": "Dawei",
+  "license": "MIT"
 }

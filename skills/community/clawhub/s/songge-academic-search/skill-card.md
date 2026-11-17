@@ -1,46 +1,62 @@
-## Description: <br>
-学术论文检索小助手（松哥版）。支持多源检索（OpenAlex/Semantic Scholar/Crossref/arXiv/PubMed），自动补全论文元数据，输出 BibTeX/RIS/JSON/Markdown 引用格式。当用户搜索学术论文、查找文献、生成参考文献列表时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language academic search assistant that queries OpenAlex, Semantic Scholar, Crossref, arXiv, and PubMed, enriches paper metadata, and exports citations in text, JSON, BibTeX, RIS, or Markdown.
 
-## Publisher: <br>
-[kingsunzhang2026-oss](https://clawhub.ai/user/kingsunzhang2026-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingsunzhang2026-oss](https://clawhub.ai/user/kingsunzhang2026-oss)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to search academic literature across OpenAlex, Semantic Scholar, Crossref, arXiv, and PubMed, enrich paper metadata, and export references for writing or review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency versions are specified with lower bounds, so later package releases could change behavior or introduce dependency risk. <br>
-Mitigation: Install in a virtual environment and pin reviewed dependency versions before operational use. <br>
-Risk: Semantic Scholar API keys can appear in shell history or transcripts when passed as command-line arguments. <br>
-Mitigation: Pass a dedicated key only when needed and avoid shared shells, saved transcripts, or command history exposure. <br>
-Risk: Search exports and PDF downloads write files to user-selected paths. <br>
-Mitigation: Use a dedicated output folder for citation files and PDFs, then review generated files before sharing or ingesting them. <br>
+## Use Case:
 
+External users, students, researchers, and developers use this skill to search academic literature across OpenAlex, Semantic Scholar, Crossref, arXiv, and PubMed, enrich paper metadata, and export citations or result files for literature review and writing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingsunzhang2026-oss/songge-academic-search) <br>
-- [学术论文检索小助手 - 使用说明](references/readme.md) <br>
-- [Semantic Scholar API](https://www.semanticscholar.org/product/api) <br>
-- [OpenAlex API](https://api.openalex.org) <br>
-- [Crossref API](https://api.crossref.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Plain text, JSON, BibTeX, RIS, Markdown, and downloaded PDF files when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write citation exports to a requested output path and download arXiv PDFs to a user-selected directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles an optional Semantic Scholar API key in a way that server security guidance flags as unsafe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run without the API key for normal use; if a key is required, treat it as a secret and avoid shared shells, shell history, logs, and process listings until credential handling is fixed.
+
+Risk: The skill installs Python dependencies with broad version ranges rather than pinned or locked versions.
+
+Mitigation: Install in an isolated virtual environment and pin or lock dependencies before shared, repeatable, or production use.
+
+Risk: The skill can write citation outputs and download PDFs to user-specified paths.
+
+Mitigation: Use only output files and PDF download directories that are explicitly intended for the run, and review paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingsunzhang2026-oss/skills/songge-academic-search)
+- [Publisher profile](https://clawhub.ai/user/kingsunzhang2026-oss)
+- [Usage guide](references/readme.md)
+- [Semantic Scholar API](https://www.semanticscholar.org/product/api)
+- [OpenAlex API](https://api.openalex.org)
+- [DOI resolver](https://doi.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, BibTeX, RIS, files, shell commands, configuration guidance]
+
+**Output Format:** [CLI output, Markdown, JSON, BibTeX, RIS, and optional written result or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can be filtered by source, result count, year, date range, author, citation count, arXiv category, publication type, and output path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

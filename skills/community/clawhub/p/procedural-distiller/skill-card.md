@@ -1,41 +1,55 @@
-## Description: <br>
-Distill successful multi-step OpenClaw sessions into reusable learned skills before compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill successful multi-step OpenClaw sessions into reusable learned skills before compaction.
 
-## Publisher: <br>
-[xiaocaijic](https://clawhub.ai/user/xiaocaijic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaocaijic](https://clawhub.ai/user/xiaocaijic)
 
-## Use Case: <br>
-Developers and agents use this skill after successful multi-step OpenClaw sessions to convert useful traces into reusable learned skills. It is intended for preserving concrete commands, file paths, failure triggers, and snippets when the same workflow may be useful later. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session traces may contain secrets, private source code, customer data, paths, or commands that should not be preserved in a reusable skill. <br>
-Mitigation: Review and redact traces before distillation, use a controlled output directory, and inspect generated learned skills before reuse. <br>
-Risk: Preserved commands or edits may be unsafe if replayed automatically in a different project, account, or environment. <br>
-Mitigation: Treat generated workflows as guidance, not automatic execution plans, and confirm commands and file edits against the current context before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill after successful multi-step OpenClaw work to preserve reusable procedures, commands, file paths, snippets, and failure triggers as learned skills.
 
-## Reference(s): <br>
-- [Trace Format](references/trace-format.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaocaijic/procedural-distiller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Generated skill directory containing SKILL.md, agents/openai.yaml, and memory.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local CLI reads JSON traces and writes learned skills under the configured output root when success and minimum tool-call criteria are met.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Past session traces may contain secrets, private code, internal paths, unsafe commands, or instruction-like content that would become persistent future guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review traces and generated learned skills before reuse, and remove sensitive or unsafe content before enabling long-term memory.
+
+Risk: Generated procedures may preserve obsolete commands or failed assumptions from a specific environment.
+
+Mitigation: Constrain the output directory, prefer traces explicitly approved for long-term memory, and validate generated skills in the target environment before relying on them.
+
+## Reference(s):
+
+- [Trace Format](artifact/references/trace-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiaocaijic/skills/procedural-distiller)
+- [Publisher Profile](https://clawhub.ai/user/xiaocaijic)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Generated learned skill directory containing SKILL.md, agents/openai.yaml, and memory.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May skip output when the trace is unsuccessful, has fewer than the configured minimum tool calls, or lacks enough detail to reconstruct a reusable procedure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

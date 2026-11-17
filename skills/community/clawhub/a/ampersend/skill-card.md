@@ -1,44 +1,61 @@
-## Description: <br>
-Ampersend CLI for agent payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ampersend CLI for agent payments
 
-## Publisher: <br>
-[matiasedgeandnode](https://clawhub.ai/user/matiasedgeandnode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matiasedgeandnode](https://clawhub.ai/user/matiasedgeandnode)
 
-## Use Case: <br>
-Developers and external agents use this skill to configure Ampersend and make x402-enabled HTTP requests that can complete stablecoin payments within user-defined spending limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables delegated stablecoin payments by an agent. <br>
-Mitigation: Use a dedicated low-balance account and set strict per-transaction, daily, and monthly spending limits. <br>
-Risk: Automatic top-up can increase financial exposure. <br>
-Mitigation: Avoid auto-topup unless it is intentionally required for the deployment. <br>
-Risk: A paid request can spend funds if payment requirements are accepted. <br>
-Mitigation: Use the inspect flow to review payment requirements and costs before making a payment. <br>
-Risk: The installation depends on a globally installed npm package. <br>
-Mitigation: Verify the npm package source and required version before installation or update. <br>
+## Use Case:
 
+Developers and agents use this skill to set up Ampersend CLI access, configure spending limits, and make x402 payment-enabled HTTP requests with JSON responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matiasedgeandnode/ampersend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ampersend CLI v0.0.14 and a configured agent account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server-resolved release metadata) <br>
+Risk: The skill can enable real autonomous payments through the Ampersend CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for payment tasks the user explicitly intends, run inspect mode before paid fetches, and set tight daily, monthly, and per-transaction limits.
+
+Risk: Payment keys or account details could be exposed through shell commands or agent-visible chat.
+
+Mitigation: Avoid pasting real payment keys into shell commands or chats the agent can read; prefer user-controlled setup and review any configuration before activation.
+
+Risk: The external CLI package receives payment authority after installation and configuration.
+
+Mitigation: Verify npm package provenance before granting funds or credentials, and run the CLI in a constrained environment where practical.
+
+Risk: Automatic top-up can increase financial exposure if enabled unnecessarily.
+
+Mitigation: Avoid auto-topup unless required for the task and pair it with explicit spending limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matiasedgeandnode/skills/ampersend)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return JSON and should be checked for ok status before using returned data.]
+
+## Skill Version(s):
+
+1.0.14 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Operate Blocknative gas intelligence APIs through UXC with a curated OpenAPI schema, API-key auth, and read-first guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Blocknative gas intelligence APIs through UXC with a curated OpenAPI schema, API-key auth, and read-first guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure authenticated, read-only Blocknative gas intelligence calls and inspect supported chains, gas price estimates, base fee and blob fee predictions, and pending gas distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Blocknative API key is required for the full v1 gas API surface. <br>
-Mitigation: Configure the key through UXC using the BLOCKNATIVE_API_KEY environment variable and bind it only to api.blocknative.com. <br>
-Risk: Using an unpinned remote OpenAPI schema can reduce reproducibility if the schema changes. <br>
-Mitigation: Use the bundled schema or a pinned schema URL when repeatable behavior matters. <br>
-Risk: Polling gas endpoints too frequently can create unstable or plan-inappropriate automation. <br>
-Mitigation: Start around one request every 5 to 10 seconds and only reduce the interval when the plan and workflow require fresher data. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover supported chains and read Blocknative gas price, base fee, blob fee, and pending gas distribution data through UXC. It supports authenticated, read-only gas intelligence workflows and excludes transaction submission, write operations, and mempool event streaming.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI Schema](references/blocknative-gas.openapi.json) <br>
-- [Blocknative Gas Price API Docs](https://docs.blocknative.com/gas-prediction/gas-platform) <br>
-- [Blocknative Base Fee and Blob Fee API Docs](https://docs.blocknative.com/gas-prediction/prediction-api-base-fee-and-blob-fee) <br>
-- [Blocknative Gas Distribution API Docs](https://docs.blocknative.com/gas-prediction/gas-distribution-api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jolestar/blocknative-openapi-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only API guidance; automation should parse JSON response envelopes and avoid transaction submission claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Some Blocknative gas endpoints require API-key authentication, and reused or overly broad secrets could expose unrelated access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Blocknative-specific API key through the documented Authorization header credential binding and review or remove the UXC binding when access is no longer needed.
+
+Risk: The linked CLI setup references a remote OpenAPI schema URL that can change over time.
+
+Mitigation: Use a pinned or packaged schema for stable automation and review schema changes before relying on newly exposed operations.
+
+Risk: Gas data freshness and endpoint availability can vary by plan and endpoint.
+
+Mitigation: Poll conservatively, keep confidence levels narrow, and inspect the UXC JSON envelope fields such as ok, data, and error before acting on results.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Curated OpenAPI Schema](references/blocknative-gas.openapi.json)
+- [Blocknative Gas Price API docs](https://docs.blocknative.com/gas-prediction/gas-platform)
+- [Blocknative Base Fee API docs](https://docs.blocknative.com/gas-prediction/prediction-api-base-fee-and-blob-fee)
+- [Blocknative Gas Distribution API docs](https://docs.blocknative.com/gas-prediction/gas-distribution-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only workflows using the UXC JSON output envelope; operations may require a Blocknative API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

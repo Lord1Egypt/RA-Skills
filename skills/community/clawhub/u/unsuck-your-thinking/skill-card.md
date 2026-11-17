@@ -1,39 +1,52 @@
-## Description: <br>
-Helps an agent turn vague confusion or indecision into a clearer conclusion by asking one concrete follow-up question at a time and identifying the real sticking point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-speaking users turn vague confusion, indecision, or uncertainty into a clearer conclusion through focused follow-up questions.
 
-## Publisher: <br>
-[RoninDT](https://clawhub.ai/user/RoninDT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ronindt](https://clawhub.ai/user/ronindt)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill when a user expresses confusion, hesitation, or difficulty making a decision and needs structured questions that uncover the real blocker before giving a concise conclusion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad conversational triggers may activate the coaching style when a user casually mentions confusion without intending to enter a structured decision process.
+
+Mitigation: Use narrower trigger guidance or have the agent confirm that the user wants help unpacking the decision before applying the full workflow.
+
+Risk: The skill encourages firm conclusions, which can overstate confidence in sensitive or high-stakes personal decisions.
+
+Mitigation: Keep conclusions grounded in the user's stated facts, avoid professional legal, medical, or financial determinations, and ask for human expert review when stakes are high.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users can use this skill when they feel stuck, conflicted, or unable to explain a decision clearly. The agent responds as a direct Chinese-language thinking coach that narrows the issue through layered questions before giving a clear position. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may give firm advice for high-stakes medical, legal, financial, employment, or safety decisions. <br>
-Mitigation: Ask the agent to state assumptions, alternatives, and uncertainty, and seek qualified professional input before acting on high-stakes guidance. <br>
-Risk: Broad phrases such as 'help me think' may activate the skill when the user only wants lightweight brainstorming. <br>
-Mitigation: Confirm the user's immediate goal and ask one concrete clarifying question before moving toward a conclusion. <br>
+**Output Format:** [Conversational text or Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language coaching style; normal replies are constrained to short responses, with longer structure used for final conclusions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short iterative responses, with longer responses only when giving a final conclusion.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

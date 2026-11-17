@@ -1,44 +1,57 @@
-## Description: <br>
-Scans Polymarket markets for YES and NO price combinations below $1.00 and can optionally submit live buy orders for detected opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Polymarket markets for YES/NO price gaps and can optionally execute paired Fill-or-Kill trades using a configured wallet.
 
-## Publisher: <br>
-[themsquared](https://clawhub.ai/user/themsquared) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[themsquared](https://clawhub.ai/user/themsquared)
 
-## Use Case: <br>
-Developers and trading operators use this skill to scan Polymarket markets for apparent two-sided arbitrage opportunities and, when explicitly enabled, attempt live execution using a configured wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can spend wallet funds and may create unintended financial exposure. <br>
-Mitigation: Use scan-only mode by default, enable --buy only after review, and run with a dedicated low-balance wallet. <br>
-Risk: The artifact claims no leg risk, but execution may not provide true atomic handling or explicit partial-fill recovery. <br>
-Mitigation: Do not rely on risk-free or no-position-taken claims unless the execution logic is changed and independently tested for partial-fill recovery. <br>
-Risk: Private keys and wallet addresses are read from environment variables or a local .env file. <br>
-Mitigation: Keep secrets out of source control and use a dedicated wallet with limited funds. <br>
+## Use Case:
 
+Developers and trading tool operators use this skill to scan Polymarket markets for potential YES/NO arbitrage and review or execute paired orders with configured risk controls. Live execution should be treated as financially sensitive because the server security summary warns that the order handling may leave unexpected exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/themsquared/polymarket-arb-scanner-pro) <br>
-- [Polymarket Gamma API endpoint](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLOB API endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live trading commands that require wallet environment variables and user-controlled execution flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary states that sequential order execution can leave a user with unexpected financial exposure despite no-position claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scan-only by default, use a dedicated low-balance wallet, and avoid live --buy execution until order handling detects, reports, and manages partial execution.
+
+Risk: Live trading requires private-key and wallet access.
+
+Mitigation: Pin and review dependencies before running with private-key access, and keep credentials limited to a dedicated wallet with minimal funds.
+
+Risk: The artifact presents arbitrage as risk-free, while the authoritative security guidance says not to rely on those guarantees.
+
+Mitigation: Treat opportunities as proposals, manually verify price, liquidity, fees, and execution assumptions, and use conservative --min-edge and --max-deploy settings.
+
+## Reference(s):
+
+- [Polymarket Arb Scanner Pro on ClawHub](https://clawhub.ai/themsquared/skills/polymarket-arb-scanner-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report market-scan results, arbitrage candidates, balance checks, and order execution status when live trading is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

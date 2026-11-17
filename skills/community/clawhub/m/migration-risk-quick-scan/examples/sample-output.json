@@ -1,0 +1,51 @@
+{
+  "dialect": "postgres",
+  "files": [
+    {
+      "findings": [
+        {
+          "category": "data-loss",
+          "line": 4,
+          "message": "DROP COLUMN permanently deletes the column's data and breaks still-deployed code that reads it.",
+          "recommendation": "Expand-contract: stop reading/writing the column in code first, drop it in a later migration.",
+          "rule_id": "PG02-DROP-COLUMN",
+          "severity": "BLOCKER",
+          "snippet": "ALTER TABLE users DROP COLUMN name;"
+        },
+        {
+          "category": "lock",
+          "line": 6,
+          "message": "Adding a NOT NULL column without a DEFAULT fails on non-empty tables (and rewrites/locks on older engines).",
+          "recommendation": "Add nullable (or constant DEFAULT on PG 11+), backfill in batches, then SET NOT NULL separately.",
+          "rule_id": "PG08-NOT-NULL-NO-DEFAULT",
+          "severity": "HIGH",
+          "snippet": "ALTER TABLE users ADD COLUMN email TEXT NOT NULL;"
+        },
+        {
+          "category": "lock",
+          "line": 7,
+          "message": "CREATE INDEX without CONCURRENTLY blocks writes to the table while it builds.",
+          "recommendation": "Use CREATE INDEX CONCURRENTLY (outside a transaction) for production tables.",
+          "rule_id": "PG09-CREATE-INDEX-NONCONCURRENT",
+          "severity": "MEDIUM",
+          "snippet": "CREATE INDEX idx_users_email ON users (email);"
+        }
+      ],
+      "framework": "raw-sql-postgresql",
+      "path": "examples/sample-input.sql"
+    }
+  ],
+  "summary": {
+    "by_severity": {
+      "BLOCKER": 1,
+      "HIGH": 1,
+      "LOW": 0,
+      "MEDIUM": 1
+    },
+    "files_scanned": 1,
+    "findings": 3,
+    "verdict": "NO-GO"
+  },
+  "tool": "migration-risk-quick-scan",
+  "version": "1.0.0"
+}

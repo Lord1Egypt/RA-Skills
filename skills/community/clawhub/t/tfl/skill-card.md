@@ -1,43 +1,56 @@
-## Description: <br>
-Provides London TfL transit lookups for real-time Tube arrivals, bus predictions, line status, disruptions, journey planning, and route information across London public transport. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+London TfL transit - real-time Tube arrivals, bus predictions, line status, service disruptions, journey planning, and route info for the London Underground, DLR, Overground, Elizabeth line, and buses.
 
-## Publisher: <br>
-[brianleach](https://clawhub.ai/user/brianleach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brianleach](https://clawhub.ai/user/brianleach)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer London public transport questions, including arrivals, service status, disruptions, route details, and journey planning for TfL modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for London TfL transit data. <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Journey searches, station names, coordinates, and the optional TFL_API_KEY may be sent to TfL. <br>
-Mitigation: Use a TfL-specific API key, query only necessary travel details, and avoid placing unrelated secrets in the skill-local .env file. <br>
-Risk: Live TfL lookups depend on TfL API availability and rate limits. <br>
-Mitigation: Configure TFL_API_KEY for higher TfL API limits and verify critical travel decisions against an official TfL source when availability matters. <br>
+## Use Case:
 
+External users and developers use this skill to answer London public transport questions with live TfL status, arrivals, disruptions, route, stop, and journey-planning data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brianleach/tfl) <br>
-- [Publisher Profile](https://clawhub.ai/user/brianleach) <br>
-- [TfL Unified API](https://api.tfl.gov.uk/) <br>
-- [TfL API Portal](https://api-portal.tfl.gov.uk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands and TfL result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live TfL API results, route or stop identifiers, service status, arrival times, disruptions, journey steps, and fare estimates when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: London transit searches, journey origins and destinations, precise coordinates, and the optional TfL API key may be sent to TfL's official API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated TfL API key, avoid placing unrelated secrets in the skill's .env file, and avoid entering precise coordinates unless needed.
+
+Risk: The TfL API key is passed in URL query parameters and may appear in request logs.
+
+Mitigation: Treat the key as potentially visible in URL logs and rotate it if exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brianleach/skills/tfl)
+- [TfL Unified API](https://api.tfl.gov.uk/)
+- [TfL API Portal](https://api-portal.tfl.gov.uk/)
+- [Declared Skill Homepage](https://github.com/brianleach/tfl-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with concise transit summaries and inline shell commands when invoking the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live JSON responses from TfL's API and may include line status, arrival predictions, disruptions, journey steps, fares when available, or route and stop information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

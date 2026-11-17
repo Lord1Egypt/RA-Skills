@@ -1,0 +1,14 @@
+# CRM Hygiene Cleanup - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+email,first_name,last_name,company,title,phone,state,source,consent_date
+info@acmecorp.com,Sam,Diaz,Acme Corp,Buyer,2125550143,NY,web_form,2026-01-12
+sam.diaz@acmecorp.com,Sam,Diaz,Acme Corp,Director of Operations,2125550143,NY,web_form,2026-01-12
+info@acmecorp.com,Sam,Diaz,Acme Corp,Director of Operations,2125550143,NY,conference,2026-02-03
+,Chris,Lee,Northwind Supply,IT Manager,3125550188,IL,referral,2026-02-19
+ops@northwindsupply.com,Chris,Lee,Northwind Supply,IT Manager,3125550188,IL,referral,2026-02-19
+Chris.Lee@NorthwindSupply.com,Chris,Lee,Northwind Supply,Manager of IT,3125550188,IL,linkedin,2026-03-04
+procurement@steeIworks.example,Robin,Patel,Steelworks Inc,Category Manager,2155550129,PA,web_form,2026-03-09
+robin.patel@steelworks.example,Robin,Patel,Steelworks Inc,Category Manager,2155550129,PA,web_form,2026-03-09
+sales@harborlogistics.example,Alex,Nguyen,Harbor Logistics,Account Exec,3055550117,FL,trade_show,2025-11-20
+,Jamie,Ross,Blue Ridge Equipment,Operations Lead,7045550155,NC,web_form,2026-04-02
+j.ross@blueridgeequipment.example,Jamie,Ross,Blue Ridge Equipment,Director of Operations,7045550155,NC,web_form,2026-04-02

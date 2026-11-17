@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Solana and Polygon wallets, run Polymarket weather arbitrage, post to X/Twitter, and execute Raydium swaps from natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Solana and Polygon wallets, run Polymarket weather arbitrage, post to X/Twitter, and execute Raydium swaps from natural language.
 
-## Publisher: <br>
-[inspi-writer001](https://clawhub.ai/user/inspi-writer001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[inspi-writer001](https://clawhub.ai/user/inspi-writer001)
 
-## Use Case: <br>
-External users and developers use this skill to operate crypto wallets, Polymarket weather-arbitrage workflows, X/Twitter posting, and Raydium swaps through natural-language agent tools or CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can expose the master wallet password in terminal output or logs. <br>
-Mitigation: Run setup only in a private local terminal, avoid shared shells and CI, and rotate the master password if it has already appeared in logs. <br>
-Risk: Live trading, transfers, and swaps can spend wallet funds or place Polymarket orders. <br>
-Mitigation: Use wallets funded only with amounts you are willing to risk, begin scanners in dry-run mode, and verify each live trade or transfer before execution. <br>
-Risk: X/Twitter actions can publish posts or replies from the configured account. <br>
-Mitigation: Start X workflows in dry-run mode, keep rate limits enabled, and verify live posting requests before allowing execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inspi-writer001/raphael-solana) <br>
-- [Source code link declared by skill](https://github.com/inspi-writer001/raphael-solana) <br>
-- [Plugin tools source link declared by skill](https://github.com/inspi-writer001/raphael-solana/blob/main/src/plugin.ts) <br>
-- [X developer portal](https://developer.x.com) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage Solana and Polygon wallets, check balances, prepare transfers, run Polymarket weather-arbitrage scans, and operate X/Twitter posting workflows. It is intended for users who can review and approve high-impact wallet, trading, and social-media actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text tool responses and Markdown command/configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction URLs, wallet addresses, balances, scanner status, tweet URLs, and error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: SKILL.md frontmatter and server release metadata; package.json reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control funded Solana and Polygon wallets, including swaps, transfers, and Polymarket orders.
+
+Mitigation: Start with empty or low-balance wallets, use dry-run mode first, and require explicit user approval before live swaps, transfers, or orders.
+
+Risk: The skill can post or reply from an X/Twitter account.
+
+Mitigation: Verify account permissions, keep posting strategies in dry-run during setup, and enable live posting only when public-account impact is acceptable.
+
+Risk: Credential setup can expose wallet and X/Twitter secrets if run in logged terminals or CI.
+
+Mitigation: Avoid running setup in shared logs or CI, protect MASTER_ENCRYPTION_PASSWORD_CRYPTO and X credentials, and verify custom RPC and wallet storage paths.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/inspi-writer001/skills/raphael-solana)
+- [Publisher Profile](https://clawhub.ai/user/inspi-writer001)
+- [X Developer Platform](https://developer.x.com)
+- [DexScreener API Endpoint](https://api.dexscreener.com/latest/dex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, JSON-like tool parameters, and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger plugin tool calls or local CLI commands when an agent follows the skill.]
+
+## Skill Version(s):
+
+1.1.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

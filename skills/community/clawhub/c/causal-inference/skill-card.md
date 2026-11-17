@@ -1,44 +1,63 @@
-## Description: <br>
-Adds causal reasoning to agent actions by logging interventions and outcomes, estimating treatment effects, planning counterfactuals, debugging failures, and backfilling activity history for analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add causal reasoning to agent actions by modeling interventions, counterfactuals, outcomes, and uncertainty for planning, debugging, backfilling historical data, and reviewing past actions.
 
-## Publisher: <br>
-[oswalpalash](https://clawhub.ai/user/oswalpalash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oswalpalash](https://clawhub.ai/user/oswalpalash)
 
-## Use Case: <br>
-Developers and agent users use this skill to add causal logging, counterfactual reasoning, and treatment-effect estimation to high-level actions such as communication, scheduling, files, deployments, purchases, and task workflows. It supports planning interventions, debugging failed outcomes, and backfilling historical activity into local causal logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can import sensitive email, calendar, and message history into persistent local causal logs. <br>
-Mitigation: Use narrow time ranges and allowed domains, review what will be imported before backfilling, and delete temporary exports after use. <br>
-Risk: Backfill scripts may use local provider CLIs such as gog or wacli, which could access whichever accounts are configured on the machine. <br>
-Mitigation: Confirm the configured provider accounts before running backfills and avoid broad imports unless the user explicitly approved them. <br>
-Risk: The skill applies to high-impact actions such as purchases, deployments, permission changes, and communication-history imports. <br>
-Mitigation: Require explicit approval before executing those actions and treat causal estimates as advisory rather than automatic authorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Causal Inference on ClawHub](https://clawhub.ai/oswalpalash/causal-inference) <br>
-- [Do-Calculus Reference](references/do-calculus.md) <br>
-- [Treatment Effect Estimation](references/estimation.md) <br>
-- [Introduction to Causal Inference](https://www.bradyneal.com/causal-inference-course) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add causal reasoning around high-level actions, including planning interventions, estimating likely outcomes, debugging failures, and reconstructing historical action logs for analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, YAML, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local causal logs, graph definitions, estimates, and configuration files when the agent follows the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server evidence release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create a persistent behavioral log from actions and historical communications.
+
+Mitigation: Require explicit user approval for logging scope, storage location, retention period, and deletion process before enabling action logs or backfills.
+
+Risk: Backfill workflows can ingest private email, calendar, and message history.
+
+Mitigation: Limit backfills to the minimum date range and data sources needed, review exported data before processing, and avoid broad history imports unless the user has approved them.
+
+Risk: Example workflows use fixed temporary export paths under /tmp.
+
+Mitigation: Replace fixed paths with secure temporary files or in-memory processing, and remove intermediate exports after use.
+
+Risk: Causal estimates may be uncertain or misleading when data is sparse, confounded, or not representative.
+
+Mitigation: Report uncertainty, require enough observations before acting on estimates, and escalate high-uncertainty or high-impact decisions for human review.
+
+## Reference(s):
+
+- [Do-Calculus Reference](references/do-calculus.md)
+- [Treatment Effect Estimation](references/estimation.md)
+- [Introduction to Causal Inference](https://www.bradyneal.com/causal-inference-course)
+- [Causal Inference on ClawHub](https://clawhub.ai/oswalpalash/skills/causal-inference)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks, JSON examples, YAML examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local JSONL action logs, causal graph files, effect estimates, and configuration under memory/causal/.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

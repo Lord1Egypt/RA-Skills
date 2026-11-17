@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7f0k7f32d8btc97d968rhrfs8732ck",
-  "slug": "prd-generator-from-prototype",
-  "version": "1.0.0",
-  "publishedAt": 1779268776873
-}
+{"name": "prd-generator-from-prototype", "version": "1.0.0", "description": "读取产品原型图/页面描述，按预设模板自动生成标准PRD文档，完成后自检一致性，不扩展需求范围", "author": "Claude", "tags": ["prd", "product", "documentation", "prototype", "requirements"], "languages": ["markdown"], "dependencies": {}}

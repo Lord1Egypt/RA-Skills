@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "event_status": "active",
+  "event_revision": 2,
+  "job_revision": 1,
+  "task_complete": false,
+  "already_sent": false,
+  "now": "2026-12-20T19:00:00-08:00",
+  "due": "2026-12-20T17:00:00-08:00",
+  "cutoff": "2026-12-20T18:00:00-08:00"
+}

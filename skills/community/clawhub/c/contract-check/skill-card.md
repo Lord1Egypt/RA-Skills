@@ -1,41 +1,55 @@
-## Description: <br>
-Contract Check guides users through company-specific contract review settings, then reviews business contracts for veto-level risks, warnings, required clauses, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contract Check helps businesses configure company-specific contract review rules, check PDF, Word, or text contracts against commercial redlines, and produce a structured risk report.
 
-## Publisher: <br>
-[chartgen-ai](https://clawhub.ai/user/chartgen-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chartgen-ai](https://clawhub.ai/user/chartgen-ai)
 
-## Use Case: <br>
-Business users and legal or commercial teams use this skill to initialize company contract review thresholds and assess PDF, Word, or text contracts against those thresholds. It produces a structured review report with veto items, warnings, required-clause checks, and suggested revisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved contract-review settings may contain sensitive business thresholds or negotiation preferences. <br>
-Mitigation: Use the skill only in a trusted workspace, avoid storing confidential thresholds unless needed, and remove the local configuration when it should no longer be reused. <br>
+## Use Case:
 
+Legal, procurement, sales, and business operations teams use this skill to set company-specific contract review thresholds and screen commercial contracts for veto conditions, warnings, missing required terms, and suggested revisions.
 
-## Reference(s): <br>
-- [Contract Check ClawHub release page](https://clawhub.ai/chartgen-ai/contract-check) <br>
-- [Configuration questions reference](references/config-questions.md) <br>
-- [Contract redlines reference](references/redlines.md) <br>
-- [Contract keyword reference](references/keywords.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown-style contract review report with JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only behavior; may write a reusable contract-review configuration file in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks for shell command execution even though its declared permissions only cover file access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shell use before installation in restricted environments; the publisher should replace the exec check with a native file read or existence check.
+
+Risk: The skill stores company contract redlines locally.
+
+Mitigation: Use the skill only when local storage of those redlines is acceptable for the target environment.
+
+## Reference(s):
+
+- [商业底线配置问答模板](references/config-questions.md)
+- [合同审核关键词速查表](references/keywords.md)
+- [商务合同审核红线标准](references/redlines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance, Shell commands]
+
+**Output Format:** [Markdown contract review report with structured sections and JSON configuration during initialization]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local contract-review configuration file under the agent workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

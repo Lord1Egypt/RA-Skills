@@ -1,41 +1,58 @@
-## Description: <br>
-Provides personalized camera purchase recommendations based on budget, usage scenarios, skill level, and brand preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides personalized camera purchase recommendations based on budget, usage scenarios, skill level, and brand preferences.
 
-## Publisher: <br>
-[zhang3feng](https://clawhub.ai/user/zhang3feng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhang3feng](https://clawhub.ai/user/zhang3feng)
 
-## Use Case: <br>
-Shoppers and photography learners use this skill to choose camera bodies, lenses, and accessories for a stated budget, skill level, and scenario. It is oriented toward China Mainland pricing and purchase channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China Mainland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera prices, inventory, seller quality, and warranty terms can change after the recommendation is generated. <br>
-Mitigation: Verify prices, availability, seller authorization, return policies, and warranty coverage with official or authorized retailers before purchasing. <br>
-Risk: Broad camera-shopping phrases may trigger the skill automatically in platforms with loose trigger matching. <br>
-Mitigation: Review the generated recommendation for relevance before relying on it, especially when the user did not explicitly ask for camera buying advice. <br>
+## Use Case:
 
+External users and agents use this skill to collect camera-shopping requirements and generate structured camera, lens, accessory, pricing, and buying recommendations. Its guidance is localized to Mainland China and Chinese Yuan pricing.
 
-## Reference(s): <br>
-- [Camera Recommendation Skill on ClawHub](https://clawhub.ai/zhang3feng/camera-recommendation) <br>
-- [Publisher profile](https://clawhub.ai/user/zhang3feng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendation with needs analysis, camera and lens options, estimated costs, rationale, and buying advice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations use CNY price estimates and should be checked against current retailer listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad camera-shopping phrases may trigger the skill automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before deployment and make trigger scope clear to users.
+
+Risk: Price and shopping guidance is localized to Mainland China and CNY and may become stale.
+
+Mitigation: Ask users for their region when relevant and verify current prices before purchasing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhang3feng/skills/camera-recommendation)
+- [Publisher Profile](https://clawhub.ai/user/zhang3feng)
+- [README.md](artifact/README.md)
+- [skill.md](artifact/skill.md)
+- [skill-config.json](artifact/skill-config.json)
+- [INSTALLATION.md](artifact/INSTALLATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with structured recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs needs analysis, two to three camera setup options, estimated CNY costs, rationale, and buying advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill-config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

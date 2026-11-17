@@ -1,38 +1,53 @@
-## Description: <br>
-Guides agents through collaborative brainstorming before creative work by exploring intent, requirements, design constraints, alternatives, and validation steps before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creative work by exploring user intent, requirements, and design before implementation.
 
-## Publisher: <br>
-[Tazio7](https://clawhub.ai/user/Tazio7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazio7](https://clawhub.ai/user/tazio7)
 
-## Use Case: <br>
-Developers and agents use this skill to turn early feature or behavior ideas into validated designs and implementation plans through one-question-at-a-time discovery, alternative analysis, and incremental design review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to make durable repository changes, including writing a design document and committing it to git, without an explicit separate approval step. <br>
-Mitigation: Before use, instruct the agent to ask before creating files, show the planned path and content or diff, and obtain separate approval before any git commit or worktree setup. <br>
+## Use Case:
 
+Developers and agents use this skill to turn early feature, component, or behavior-change ideas into structured designs through one-question-at-a-time clarification, alternatives, and incremental validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tazio7/brainstorming-tazio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to write a design document and propose repository setup steps after user validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can activate broadly for routine creative, feature, component, functionality, or behavior-change work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether that activation scope fits the deployment before installing or enabling it.
+
+Risk: The skill instructs the agent to write design files and commit them to git after design validation.
+
+Mitigation: Require explicit user approval before file creation, git commits, or implementation setup actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tazio7/skills/brainstorming-tazio)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Conversational text and Markdown design documentation, with occasional shell or git commands when continuing into implementation setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create design documents and propose git commits when the agent is allowed to act on the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

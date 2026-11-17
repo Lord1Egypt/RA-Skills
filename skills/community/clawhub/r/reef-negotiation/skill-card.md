@@ -1,39 +1,51 @@
-## Description: <br>
-Reef Negotiation helps agents draft negotiation guidance for freelance and consulting rates, scope, and contract terms using established negotiation frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reef Negotiation helps agents provide freelance and consulting negotiation guidance for rates, scope, payment terms, and equity or revenue-share arrangements.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Freelancers, consultants, and agents assisting them use this skill to prepare responses for rate negotiation, price pushback, scope creep, payment terms, and equity or revenue-share discussions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated negotiation language may be inaccurate, too aggressive, or unsuitable for a specific client relationship. <br>
-Mitigation: Review and adapt any client-facing message before sending it. <br>
-Risk: Negotiation work may include confidential rates, client details, or deal strategy in workspace artifacts. <br>
-Mitigation: Avoid storing unnecessary confidential information and remove sensitive details that are not needed for the negotiation task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/staybased/reef-negotiation) <br>
+## Use Case:
+
+Freelancers, consultants, and agents assisting them use this skill to handle rate pushback, scope creep, contract terms, and partnership-style deal structures. It provides negotiation frameworks and example language for money and terms discussions after client discovery.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Negotiation guidance and example deal terms may be inappropriate for a specific contract, equity, or revenue-share situation.
+
+Mitigation: Review contract, equity, and revenue-share language with appropriate professional judgment before relying on it.
+
+Risk: Assertive negotiation advice could harm a client relationship if applied without context.
+
+Mitigation: Adapt recommendations to the facts, relationship, and client constraints before using them in a live negotiation.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown negotiation guidance and suggested client-facing language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs generated outputs to workspace/artifacts/.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with example negotiation language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces coaching text and suggested phrasing; does not execute actions, access credentials, call networks, or persist data.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

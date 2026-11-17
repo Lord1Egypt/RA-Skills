@@ -219,7 +219,7 @@ receivers:
 
   - name: 'slack'
     slack_configs:
-      - api_url: 'https://hooks.slack.com/services/xxx'
+      - api_url: 'REDACTED-SECRET'
         channel: '#alerts'
         title: '{{ .GroupLabels.alertname }}'
         text: '{{ .CommonAnnotations.description }}'

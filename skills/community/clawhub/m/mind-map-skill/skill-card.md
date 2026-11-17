@@ -1,43 +1,55 @@
-## Description: <br>
-Generate a PNG mind map from Markdown using free, center, or horizontal layout modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a PNG mind map from Markdown notes using free (auto), center, or horizontal layout.
 
-## Publisher: <br>
-[sawyer-shi](https://clawhub.ai/user/sawyer-shi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sawyer-shi](https://clawhub.ai/user/sawyer-shi)
 
-## Use Case: <br>
-Developers and external users use this skill to convert Markdown notes, outlines, or plans into local PNG mind map images with automatic, radial, or horizontal layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically download a CJK font from GitHub into a local cache on first run. <br>
-Mitigation: Run it only where that network access is acceptable, or use an offline or patched copy that relies on bundled or system fonts. <br>
-Risk: The runner saves the provided Markdown input locally alongside generated outputs, which can retain sensitive note content. <br>
-Mitigation: Avoid sensitive Markdown unless the output directory is controlled, and delete generated Markdown copies when they are no longer needed. <br>
+## Use Case:
 
+Developers, knowledge workers, and external users use this skill to convert Markdown notes or outlines into PNG mind maps with automatic, radial, or left-to-right layouts.
 
-## Reference(s): <br>
-- [Mind Map Skill Reference](artifact/reference.md) <br>
-- [Mind Map Skill Examples](artifact/examples.md) <br>
-- [CJK Font Download Source](https://raw.githubusercontent.com/sawyer-shi/mind-map-skill/main/resources/chinese_font.ttc) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sawyer-shi/mind-map-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Text] <br>
-**Output Format:** [PNG image file, saved Markdown input file, and text run summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outputs under mind_map_output/YYYY-MM-DD/ by default unless flat output is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated PNGs and saved copies of input Markdown are written under mind_map_output, which may retain sensitive note content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive input or direct output to an approved location, and review or delete generated Markdown copies after use.
+
+Risk: First run may download and cache a CJK font from GitHub under ~/.cache/mind-map-skill.
+
+Mitigation: For offline or privacy-sensitive environments, preinstall a suitable local CJK font or disable the download path before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sawyer-shi/skills/mind-map-skill)
+- [Mind Map Skill Reference](artifact/reference.md)
+- [Mind Map Skill Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Text]
+
+**Output Format:** [PNG image file plus saved Markdown input path and a text status report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written under mind_map_output, date-grouped by default, with selected layout, tree depth, total node count, PNG path, and saved input Markdown path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

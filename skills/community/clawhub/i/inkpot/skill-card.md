@@ -1,42 +1,58 @@
-## Description: <br>
-InkPot is a knowledge-management skill that monitors learning conversations, records knowledge points and study behavior, updates a local user profile, and provides review, search, recommendation, statistics, and export commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InkPot is a Chinese-language knowledge management skill that records learning topics, user activity, profile signals, review candidates, search results, statistics, and exported knowledge-base content.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Learners, coaches, and developers can use InkPot to build a local study knowledge base from conversations and retrieve or review recorded concepts with /墨池 commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests always-on monitoring of ordinary conversations and automatic loading across sessions. <br>
-Mitigation: Enable it only for intentional study sessions or explicit /墨池 commands, and provide a clear pause or disable control before use. <br>
-Risk: The skill stores learning activity and profile-like data from conversations. <br>
-Mitigation: Avoid sensitive conversations, review stored knowledge/profile records regularly, and provide delete and export controls for the stored data. <br>
+## Use Case:
 
+External users and agent operators use InkPot to maintain a local Chinese-language learning knowledge base, record study behavior, search saved topics, review weak areas, and generate recommendations from stored notes and profile signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/inkpot) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [TEST_REPORT.md](artifact/TEST_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown and plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update local knowledge, profile, and learning-log files during recording workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill attempts always-on monitoring and persistent profiling across conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when continuous local knowledge capture is desired, prefer explicit commands, and avoid adding auto-load instructions to persistent memory unless the user has knowingly consented.
+
+Risk: The skill stores notes, learning logs, and profile information in local files.
+
+Mitigation: Review stored files regularly and avoid recording sensitive personal, credential, or confidential business information.
+
+Risk: The Python CLI can write files based on category and topic inputs before path validation is fixed.
+
+Mitigation: Use trusted category and topic names only, and inspect generated file paths before relying on or sharing the resulting knowledge base.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/inkpot)
+- [Publisher profile](https://clawhub.ai/user/fslong520)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text responses with optional Python CLI commands and local knowledge-base file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local note records, profile updates, search results, review recommendations, statistics, and exported knowledge-base content.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

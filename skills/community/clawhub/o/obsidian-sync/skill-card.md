@@ -1,43 +1,58 @@
-## Description: <br>
-Sync files between a Clawdbot workspace and Obsidian through a local server for two-way synchronization with the OpenClaw Obsidian plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync files between Clawdbot workspace and Obsidian. Run the sync server to enable two-way file synchronization with the OpenClaw Obsidian plugin.
 
-## Publisher: <br>
-[AndyBold](https://clawhub.ai/user/AndyBold) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andybold](https://clawhub.ai/user/andybold)
 
-## Use Case: <br>
-Developers and Obsidian/OpenClaw users use this skill to run an authenticated sync server that lets markdown notes be listed, read, and written between an Obsidian vault and a Clawdbot workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The sync server can read and overwrite files in configured workspace folders. <br>
-Mitigation: Install it only when that file access is intended, narrow SYNC_ALLOWED_PATHS to the minimum needed, and use backups or versioning for important notes. <br>
-Risk: Exposing the server beyond localhost can make the sync API reachable from other systems. <br>
-Mitigation: Keep SYNC_BIND set to localhost unless remote access is intentional, and expose it only through a controlled channel such as the documented Tailscale setup. <br>
-Risk: Anyone with the sync token can call the read and write endpoints. <br>
-Mitigation: Protect SYNC_TOKEN or CLAWDBOT_TOKEN, rotate it if exposed, and avoid storing it in shared files or logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Obsidian Sync on ClawHub](https://clawhub.ai/AndyBold/obsidian-sync) <br>
-- [obsidian-openclaw](https://github.com/AndyBold/obsidian-openclaw) <br>
-- [Obsidian42 BRAT](https://github.com/TfTHacker/obsidian42-brat) <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to run a local sync server that lets OpenClaw synchronize markdown notes between an Obsidian vault and a Clawdbot workspace.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes markdown files under configured workspace subdirectories when the sync server is running.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sync server has a file-containment flaw and can read or write workspace files reachable through configured sync paths.
+
+Mitigation: Use only trusted clients, keep backups of notes, avoid syncing directories containing symlinks, and run the service under a dedicated low-privilege account.
+
+Risk: Changing the bind address or exposing the service can make the sync API reachable beyond the local machine.
+
+Mitigation: Keep the bind address on localhost unless the exposure is intentional, and protect access with a strong token.
+
+Risk: The optional systemd linger service can keep the sync server running after logout and at boot.
+
+Mitigation: Enable linger only when persistent background operation is required and has been reviewed.
+
+## Reference(s):
+
+- [Obsidian OpenClaw plugin](https://github.com/AndyBold/obsidian-openclaw)
+- [BRAT plugin installer](https://github.com/TfTHacker/obsidian42-brat)
+- [ClawHub skill page](https://clawhub.ai/andybold/skills/obsidian-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Code, JSON]
+
+**Output Format:** [Markdown instructions with shell commands and JSON HTTP responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a Node.js HTTP sync server that lists, reads, writes, and reports status for markdown files under configured workspace paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

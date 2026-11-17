@@ -1,43 +1,55 @@
-## Description: <br>
-Generate visual status cards for your OpenClaw agent as PNG, SVG, or JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate visual status cards for an OpenClaw agent as PNG, SVG, or JSON for sharing operational status and extracting metrics.
 
-## Publisher: <br>
-[LucaL6](https://clawhub.ai/user/LucaL6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucal6](https://clawhub.ai/user/lucal6)
 
-## Use Case: <br>
-Developers and operators use this skill to generate OpenClaw status snapshots for chat sharing, daily reports, scheduled updates, and programmatic metrics extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated status cards can expose operational metrics if shared in public channels. <br>
-Mitigation: Preview snapshots before posting externally and prefer compact output for chat sharing. <br>
-Risk: The skill depends on a separate Claw Insights service and may use bearer tokens or no-auth mode. <br>
-Mitigation: Use the service only when trusted, keep bearer tokens private, and enable no-auth mode only on a trusted local machine. <br>
-Risk: Detailed reports may include session activity, error counts, and gateway health information. <br>
-Mitigation: Avoid posting full-detail reports in public channels or other broadly visible destinations. <br>
+## Use Case:
 
+Developers and operators use this skill to create compact OpenClaw status snapshots for chat sharing, scheduled reports, and JSON metrics extraction.
 
-## Reference(s): <br>
-- [Snapshot JSON Schema](references/json-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/LucaL6/claw-insights-snapshot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides generation of PNG, SVG, or JSON snapshot files through the Claw Insights REST API or CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated cards and JSON may expose operational telemetry such as token usage, session activity, errors, gateway health, hostnames, or channel status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated snapshots before sharing them and avoid posting sensitive telemetry to public or third-party channels.
+
+Risk: No-auth mode can expose snapshot data if used beyond a strictly local service.
+
+Mitigation: Keep authentication enabled for network-accessible deployments and use no-auth mode only for local, trusted workflows.
+
+## Reference(s):
+
+- [Snapshot JSON Schema](references/json-schema.md)
+- [Claw Insights Snapshot on ClawHub](https://clawhub.ai/lucal6/skills/claw-insights-snapshot)
+- [Publisher Profile: lucal6](https://clawhub.ai/user/lucal6)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with REST API and CLI commands that produce PNG, SVG, or JSON snapshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports detail level, format, time range, theme, language, output path, token, port, quick mode, and dry-run options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

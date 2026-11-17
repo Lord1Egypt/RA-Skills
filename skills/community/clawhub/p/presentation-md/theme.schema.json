@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presentation-md.dev/theme.schema.json",
+  "title": "Presentation Skill Pack Theme Manifest",
+  "type": "object",
+  "required": ["name", "version"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "kebab-case theme identifier; the package suffix" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[A-Za-z0-9.-]+)?$" },
+    "extends": { "type": "string", "description": "Parent theme name." },
+    "description": { "type": "string" },
+    "vibe": { "type": "string", "description": "Plain-language description of the aesthetic." },
+    "preview": { "type": "string" },
+    "homepage": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "author": { "type": ["string", "object"] },
+    "roles": {
+      "type": "object",
+      "description": "Semantic color roles. Injected as CSS variables and remapped by apply_theme.",
+      "additionalProperties": false,
+      "properties": {
+        "bg": { "type": "string", "description": "slide background base" },
+        "bg2": { "type": "string", "description": "slide background gradient stop" },
+        "text": { "type": "string", "description": "primary text" },
+        "muted": { "type": "string", "description": "secondary text" },
+        "accent": { "type": "string", "description": "primary accent" },
+        "accent2": { "type": "string", "description": "secondary accent / eyebrow" },
+        "cardBg": { "type": "string", "description": "card surface" },
+        "border": { "type": "string", "description": "hairline borders" }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "headingFont": { "type": "string", "description": "CSS font-family stack for headings" },
+        "bodyFont": { "type": "string", "description": "CSS font-family stack for body" },
+        "headingWeight": { "type": ["string", "integer"] },
+        "googleFonts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Google Fonts family specs, e.g. 'Montserrat:wght@700;800'"
+        }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "radius": { "type": "string", "description": "slide corner radius, e.g. 18px" },
+        "slideWidth": { "type": "string", "description": "max slide width, e.g. 1280px" }
+      }
+    }
+  }
+}

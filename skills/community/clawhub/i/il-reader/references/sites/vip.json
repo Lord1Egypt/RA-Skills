@@ -1,0 +1,999 @@
+{
+  "version": "2.4.0",
+  "source_id": "vip",
+  "status": "query_verified",
+  "checked_at": "2026-10-09T08:59:18.054Z",
+  "entry": {
+    "url": "https://www.cqvip.com/",
+    "final_url": "https://www.cqvip.com/advancesearch",
+    "title": "高级检索-文献检索-维普官网",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T08:59:18.054Z",
+    "identity": {
+      "declared_name": "维普资讯",
+      "hostname": "www.cqvip.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "使用帮助",
+        "href": "https://www.cqvip.com/helpcenter/detail",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "登录",
+        "exact": true
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "注册",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "注册",
+        "exact": true
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "任意字段",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "模糊",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "AND",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "主题词",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "模糊",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "AND",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "作者",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "模糊",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请选择",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "开始日期",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "开始日期",
+      "name": "",
+      "id": "",
+      "css": "input[placeholder=\"开始日期\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"开始日期\"]"
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "结束日期",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "结束日期",
+      "name": "",
+      "id": "",
+      "css": "input[placeholder=\"结束日期\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"结束日期\"]"
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "检索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "检索",
+        "exact": true
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "委托科技查新",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "委托科技查新",
+        "exact": true
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "委托查收查引",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "委托查收查引",
+        "exact": true
+      },
+      "observed_url": "https://www.cqvip.com/advancesearch",
+      "observed_at": "2026-10-09T08:59:18.004Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "vip:statistics-ranking",
+      "source_id": "vip",
+      "task_kind": "statistics-ranking",
+      "status": "query_verified",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "维普本次专业检索在原高级页面下方显示结果；详情链接开新标签。点击前监听，按本题记录题名和ID确认。",
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {
+        "results": {
+          "mode": "same-page",
+          "container": {
+            "css": "div.s-list, div.empty-img"
+          },
+          "ready": {
+            "css": "div.s-list, div.empty-img"
+          },
+          "match": {
+            "css": "div.tab-item",
+            "match": "contains"
+          },
+          "empty": {
+            "css": "div.empty-img"
+          }
+        },
+        "detail": {
+          "mode": "popup",
+          "container": {
+            "css": "#pdf-details"
+          },
+          "ready": {
+            "css": "div.topContent"
+          },
+          "match": {
+            "css": "div.topContent",
+            "match": "contains"
+          }
+        }
+      },
+      "entry_url": "https://www.cqvip.com/advancesearch",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "登录",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "登录",
+            "exact": true
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "注册",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "注册",
+            "exact": true
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "开始日期",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "开始日期",
+          "name": "",
+          "id": "",
+          "css": "input[placeholder=\"开始日期\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"开始日期\"]"
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        },
+        {
+          "tag": "input",
+          "type": null,
+          "text": "结束日期",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "结束日期",
+          "name": "",
+          "id": "",
+          "css": "input[placeholder=\"结束日期\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"结束日期\"]"
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "检索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "检索",
+            "exact": true
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "委托科技查新",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "委托科技查新",
+            "exact": true
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "委托查收查引",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "委托查收查引",
+            "exact": true
+          },
+          "observed_url": "https://www.cqvip.com/advancesearch",
+          "observed_at": "2026-10-09T08:59:18.004Z"
+        }
+      ],
+      "pending": [
+        "本题参数、资源类型、年份与匹配方式仍需按题核查；未验证的筛选控件变化时重新观察"
+      ],
+      "search_mode": "professional",
+      "mode_switch": {
+        "text": "专业检索",
+        "exact": true
+      },
+      "query_input": {
+        "css": "textarea[placeholder=\"请输入检索式\"]"
+      },
+      "submit": {
+        "role": "button",
+        "name": "检索",
+        "exact": true
+      },
+      "syntax": {
+        "fields": {
+          "U": "任意字段",
+          "SU": "主题词",
+          "M": "篇关摘",
+          "T": "篇名",
+          "K": "关键词",
+          "R": "摘要",
+          "A": "作者",
+          "F": "第一作者",
+          "S": "作者单位",
+          "J": "刊名",
+          "C": "中图分类号",
+          "E": "学科分类号",
+          "D": "DOI",
+          "FU": "基金"
+        },
+        "phrase": "T=\"<本题词>\"",
+        "fuzzy": "T=<本题词>",
+        "operators": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "precedence": "NOT > AND > OR；半角括号优先；运算符前后空格"
+      },
+      "condition_check": "session.transition 的 expected 传本题词或当前完整回显（如篇名=<本题词>），不能直接传专业式T=<本题词>；回显字段名不同于检索字段代码。核对当前textarea.inputValue()和当前条件文本，不沿用示例词。",
+      "result_items": {
+        "status": "observed",
+        "locator": {
+          "role": "link",
+          "scope": {
+            "css": "div.s-list"
+          }
+        },
+        "notes": "列表内链接按本题题名精确匹配，并检查实际href中的resourceId；不要取第一条或同名的推荐链接"
+      },
+      "record_identity": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "文献题名",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "资源类型",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "作者",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "期刊",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "年份",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "机构",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "被引量",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "resourceId",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "题名",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "作者",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "机构",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "摘要",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "关键词",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "期刊",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "ISSN",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "CN号",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "所属期次",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "被引量",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "div.s-list, div.empty-img"
+        },
+        "empty": {
+          "css": "div.empty-img"
+        },
+        "loading": null,
+        "rule": "本题条件div.tab-item回显匹配，且实际列表或已验证的暂无数据出现；暂无数据与所有资源计数0才支持零结果",
+        "snapshot": "validation/site-audit-v24/vip-query-positive-results.json"
+      },
+      "execution": {
+        "version": 1,
+        "queryMode": "professional",
+        "resetEntry": true,
+        "parameters": {
+          "query": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "guards": [
+          {
+            "locator": {
+              "css": "input[placeholder=\"开始日期\"]"
+            },
+            "property": "value",
+            "equals": ""
+          },
+          {
+            "locator": {
+              "css": "input[placeholder=\"结束日期\"]"
+            },
+            "property": "value",
+            "equals": ""
+          }
+        ],
+        "prepare": [
+          {
+            "action": "click",
+            "locator": {
+              "text": "专业检索",
+              "exact": true
+            },
+            "ifHidden": {
+              "css": "textarea[placeholder=\"请输入检索式\"]"
+            }
+          },
+          {
+            "action": "fill",
+            "locator": {
+              "css": "textarea[placeholder=\"请输入检索式\"]"
+            },
+            "parameter": "query"
+          }
+        ],
+        "submit": {
+          "action": "click",
+          "locator": {
+            "role": "button",
+            "name": "检索",
+            "exact": true
+          }
+        },
+        "scope": "本库已观察专业字段表达式；未实现页面筛选与指定排序时须回退观察，不静默省略题目限制。"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "vip-current-search-guide",
+          "kind": "official-help",
+          "url": "https://www.cqvip.com/helpcenter/advancesearch",
+          "use_when": "新版维普网 www.cqvip.com 的基本、高级、专业和作者发文检索，含多文献类型；不能自动外推至旧 qikan.cqvip.com 中文期刊服务平台或智立方。",
+          "verification": {
+            "status": "content_observed",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 实际读取的官方当前网页；页面未标明发布日期或产品版本号。图片 CDN 路径中的 1.8.23 未被证实为产品版本。"
+          },
+          "supported_questions": [
+            "基本检索是否支持布尔运算",
+            "基本检索默认精确还是模糊",
+            "高级检索的布尔运算优先级与括号",
+            "包含运算符或括号的字面检索词如何处理",
+            "专业检索中的引号精确匹配与字段大小写",
+            "专业表达式中的 AND/OR/NOT 与 +/* 别名示例",
+            "作者字段在不同文献类型的含义",
+            "不同文献类型的时间筛选对应字段",
+            "同义词及中英文检索扩展"
+          ],
+          "not_covered": [
+            "当前检索结果数量",
+            "当前排名或被引次数",
+            "具体题目对应记录",
+            "馆藏及全文授权",
+            "其他维普产品或历史版本"
+          ],
+          "limitations": [
+            "完整字段表及精确/模糊定义表为图片，本轮未读取图片具体细项；本文件不声称核验了完整字段全集。",
+            "帮助中心 /helpcenter/detail 仅返回框架与导航，不用它代替规则正文。"
+          ],
+          "fallback": "规则、匹配或专业语法题直接打开 docs_url 并读取相关节，无需先打开帮助中心或操作查询表单。只有具体记录或实时统计仍有缺口时才进入数据库查询。"
+        }
+      ]
+    },
+    {
+      "id": "vip:search-syntax",
+      "source_id": "vip",
+      "task_kind": "search-syntax",
+      "status": "not_observed",
+      "status_scope": "browser",
+      "parameters": [
+        "product_or_version",
+        "target_rule"
+      ],
+      "instructions": [
+        "按当前产品和检索模式读官方规则相关段落；无需运行统计检索，指南未覆盖的字段表再读官方图表。"
+      ],
+      "retrieval_channels": [
+        {
+          "id": "vip-current-search-guide",
+          "kind": "official-help",
+          "url": "https://www.cqvip.com/helpcenter/advancesearch",
+          "use_when": "新版维普网 www.cqvip.com 的基本、高级、专业和作者发文检索，含多文献类型；不能自动外推至旧 qikan.cqvip.com 中文期刊服务平台或智立方。",
+          "verification": {
+            "status": "content_observed",
+            "checked_at": "2026-10-10",
+            "time_precision": "date",
+            "scope": "2026-10-10 实际读取的官方当前网页；页面未标明发布日期或产品版本号。图片 CDN 路径中的 1.8.23 未被证实为产品版本。"
+          },
+          "supported_questions": [
+            "基本检索是否支持布尔运算",
+            "基本检索默认精确还是模糊",
+            "高级检索的布尔运算优先级与括号",
+            "包含运算符或括号的字面检索词如何处理",
+            "专业检索中的引号精确匹配与字段大小写",
+            "专业表达式中的 AND/OR/NOT 与 +/* 别名示例",
+            "作者字段在不同文献类型的含义",
+            "不同文献类型的时间筛选对应字段",
+            "同义词及中英文检索扩展"
+          ],
+          "not_covered": [
+            "当前检索结果数量",
+            "当前排名或被引次数",
+            "具体题目对应记录",
+            "馆藏及全文授权",
+            "其他维普产品或历史版本"
+          ],
+          "limitations": [
+            "完整字段表及精确/模糊定义表为图片，本轮未读取图片具体细项；本文件不声称核验了完整字段全集。",
+            "帮助中心 /helpcenter/detail 仅返回框架与导航，不用它代替规则正文。"
+          ],
+          "fallback": "规则、匹配或专业语法题直接打开 docs_url 并读取相关节，无需先打开帮助中心或操作查询表单。只有具体记录或实时统计仍有缺口时才进入数据库查询。"
+        }
+      ]
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "vip",
+    "quiz_entries": [
+      "quiz-entry-086"
+    ],
+    "example_ids": [
+      "PT1-Q46",
+      "KH-Q054"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:18.054Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/vip-query-before.json",
+      "original_entry_snapshot": "validation/site-audit-v24/vip-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。",
+      "query_snapshot": "validation/site-audit-v24/vip-query-positive-results.json",
+      "detail_snapshot": "validation/site-audit-v24/vip-query-detail.json"
+    }
+  },
+  "query_validation": {
+    "checked_at": "2026-10-09T09:25:20.805Z",
+    "scope": "仅确认检索提交、真实结果容器与页面打开方式；本题条件、排序、筛选和答案必须重新核验",
+    "snapshot": "validation/site-audit-v24/vip-query-positive-results.json",
+    "empty_verified": true,
+    "empty_snapshot": "validation/site-audit-v24/vip-query-results.json"
+  },
+  "result_items": {
+    "status": "observed",
+    "locator": {
+      "role": "link",
+      "scope": {
+        "css": "div.s-list"
+      }
+    },
+    "notes": "列表内链接按本题题名精确匹配，并检查实际href中的resourceId；不要取第一条或同名的推荐链接"
+  },
+  "record_identity": {
+    "status": "partial",
+    "fields": [
+      {
+        "name": "文献题名",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "资源类型",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "作者",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "期刊",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "年份",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "机构",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "被引量",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "resourceId",
+        "locator": null,
+        "status": "text_observed"
+      }
+    ]
+  },
+  "detail_fields": {
+    "status": "partial",
+    "fields": [
+      {
+        "name": "题名",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "作者",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "机构",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "摘要",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "关键词",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "期刊",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "ISSN",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "CN号",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "所属期次",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "被引量",
+        "locator": null,
+        "status": "text_observed"
+      }
+    ]
+  },
+  "completion": {
+    "status": "observed",
+    "ready": {
+      "css": "div.s-list, div.empty-img"
+    },
+    "empty": {
+      "css": "div.empty-img"
+    },
+    "loading": null,
+    "rule": "本题条件div.tab-item回显匹配，且实际列表或已验证的暂无数据出现；暂无数据与所有资源计数0才支持零结果",
+    "snapshot": "validation/site-audit-v24/vip-query-positive-results.json"
+  },
+  "status_scope": "browser"
+}

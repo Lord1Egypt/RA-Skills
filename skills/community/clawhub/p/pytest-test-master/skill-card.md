@@ -1,39 +1,54 @@
-## Description: <br>
-Pytest Test Master is a local pytest reference and CLI that provides practical guidance for fixtures, mocking, parameterization, coverage, and test data generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pytest Test Master is a Chinese-language pytest guidance CLI that helps developers work with fixtures, mocking, parameterization, coverage, and test data patterns.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and engineers use this skill to learn and apply pytest patterns when writing, organizing, and improving Python test suites. It helps users choose fixture scopes, structure mocks, combine parameterized cases, read coverage reports, and generate reusable test data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script executes local tests and demo CLI commands in the current environment. <br>
-Mitigation: Review setup.sh before running it and use a normal project workspace or virtual environment. <br>
+## Use Case:
 
+Developers and test engineers use this skill as a pytest reference for writing clearer tests, selecting fixture and mock patterns, configuring coverage, and generating test data. It is best suited for teams that can use Chinese-language guidance and examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/pytest-test-master) <br>
-- [Publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and terminal text with inline Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI topics can be requested by pytest area and subtopic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: The skill includes CI and Codecov examples that users may copy into repositories with secrets or write permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt any copied GitHub Actions or Codecov configuration before using it in privileged CI jobs.
+
+Risk: Python dependency drift can change pytest behavior or examples over time.
+
+Mitigation: Use a virtual environment and pin Python dependencies when installing or validating the examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shenghoo123-png/skills/pytest-test-master)
+- [Publisher Profile](https://clawhub.ai/user/shenghoo123-png)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-like terminal text with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational pytest content organized by CLI subcommand and topic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

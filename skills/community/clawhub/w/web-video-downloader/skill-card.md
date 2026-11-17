@@ -1,39 +1,59 @@
-## Description: <br>
-A web video downloader skill that helps an agent detect direct MP4, M3U8/HLS, segmented MP4, and blob-backed video sources from webpages and save them as complete MP4 files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Video Downloader guides agents through detecting direct MP4, M3U8/HLS, segmented MP4, and blob-backed video sources from webpages and downloading or merging them into complete MP4 files.
 
-## Publisher: <br>
-[xieliuzhu888](https://clawhub.ai/user/xieliuzhu888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xieliuzhu888](https://clawhub.ai/user/xieliuzhu888)
 
-## Use Case: <br>
-Developers and technically capable users use this skill to inspect webpages for video media sources, capture browser network requests when needed, and run the appropriate download or merge workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill captures browser request headers and signed media URLs during CDP network capture. <br>
-Mitigation: Run capture in an isolated browser profile logged into only the minimum required sites, avoid unrelated tabs, and delete captured URL files after use. <br>
-Risk: The shell scripts may download and execute a static ffmpeg binary when ffmpeg is not already installed. <br>
-Mitigation: Prefer installing ffmpeg from a trusted package manager before using the skill, or review the download step before allowing it to run. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect pages with embedded video, choose an appropriate download strategy, capture network media URLs when needed, and run curl, CDP, and FFmpeg workflows to produce MP4 output.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and local JSON or MP4 file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write captured URL JSON to /tmp and downloaded or merged MP4 files to user-specified output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: CDP capture can collect browser request headers, including cookies or other sensitive session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run capture only in a dedicated browser profile or while signed out of sensitive accounts, treat /tmp/captured_video_urls.json as secret, and delete it after use.
+
+Risk: Downloader and merge scripts may fetch and execute an FFmpeg binary from the internet when FFmpeg is not already installed.
+
+Mitigation: Install and verify FFmpeg from a trusted source before running the scripts so they use the trusted local binary.
+
+Risk: Download and merge commands can overwrite user-selected output files.
+
+Mitigation: Choose output paths deliberately and review existing files before executing generated commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xieliuzhu888/skills/web-video-downloader)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with bash, JavaScript, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may write MP4 outputs and /tmp/captured_video_urls.json when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

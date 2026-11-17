@@ -1,44 +1,61 @@
-## Description: <br>
-AI-powered booking manager that connects to existing booking systems so business owners can monitor appointments, respond through phone channels, send customer emails, and generate calendar invites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Booking Manager helps an agent connect to booking systems, monitor appointments, notify business owners, manage confirmations, reschedules, cancellations, customer emails, calendar invites, and schedule summaries.
 
-## Publisher: <br>
-[cskar10](https://clawhub.ai/user/cskar10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cskar10](https://clawhub.ai/user/cskar10)
 
-## Use Case: <br>
-Business owners and operations staff use this skill to manage appointment enquiries, confirmations, reschedules, cancellations, reminders, and schedule summaries through supported phone or chat channels. Developers and administrators use it to connect booking data sources, SMTP email, and calendar-invite workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access booking data and customer contact details while operating real appointments. <br>
-Mitigation: Use dedicated least-privilege booking-system credentials, keep secrets out of chat and workspace notes, and review data-use expectations with staff and customers. <br>
-Risk: Email, SMS, WhatsApp, Telegram, or call-routing workflows may contact customers with incorrect or unintended appointment information. <br>
-Mitigation: Review TOOLS.md and HEARTBEAT.md changes before relying on automation, validate business policies during onboarding, and test notification templates before production use. <br>
+## Use Case:
 
+Business owners and staff use this skill to let an agent monitor booking data, surface new appointment requests, confirm or modify bookings, send customer emails with calendar invites, and summarize schedules.
 
-## Reference(s): <br>
-- [Booking Manager on ClawHub](https://clawhub.ai/cskar10/booking-manager) <br>
-- [Data Source Connection Patterns](references/data-sources.md) <br>
-- [Email Templates](references/email-templates.md) <br>
-- [ICS Calendar Invite Format](references/ics-format.md) <br>
-- [Booking Manager Customer Onboarding Form](references/onboarding-form.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with configuration snippets, SQL examples, email templates, and calendar invite content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces appointment-management instructions and customer-facing message content; execution depends on configured booking data source and SMTP credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses booking-system and SMTP authority while handling customer and business-provided booking text in outbound emails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege booking and SMTP credentials, review generated email behavior before deployment, and HTML-escape or sanitize booking fields and policy text before sending.
+
+Risk: Free-form onboarding text can be persisted into agent instruction files and influence later behavior.
+
+Mitigation: Collect business setup data only, reject pasted credentials, review onboarding content before saving, and store configuration as data where possible.
+
+Risk: Incorrect booking updates, lock cleanup, or reminder timing can affect customer appointments.
+
+Mitigation: Require owner confirmation for confirm, reschedule, and delete actions, use parameterized queries, release booking locks after changes, and track reminder sends to prevent duplicates.
+
+## Reference(s):
+
+- [Booking Manager ClawHub listing](https://clawhub.ai/cskar10/skills/booking-manager)
+- [Data Source Connection Patterns](references/data-sources.md)
+- [Email Templates](references/email-templates.md)
+- [ICS Calendar Invite Format](references/ics-format.md)
+- [Customer Onboarding Form](references/onboarding-form.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration snippets, SQL examples, HTML email templates, and iCalendar content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce setup changes, booking data actions, outbound email content, and calendar invites when used with configured credentials.]
+
+## Skill Version(s):
+
+1.3.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

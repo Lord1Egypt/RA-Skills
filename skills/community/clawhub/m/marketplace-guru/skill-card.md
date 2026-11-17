@@ -1,43 +1,59 @@
-## Description: <br>
-Marketplace Guru helps users find and compare marketplace products through disciplined purchase intake, multi-source market mapping, price and risk analysis, and decision-ready recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marketplace Guru helps users find and compare products on marketplaces by forcing disciplined purchase intent, clean search briefs, multi-source market mapping, price/risk analysis, and decision-ready recommendations.
 
-## Publisher: <br>
-[pe4atnik](https://clawhub.ai/user/pe4atnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe4atnik](https://clawhub.ai/user/pe4atnik)
 
-## Use Case: <br>
-External users use this skill to research, compare, choose, or verify marketplace and online-store purchases when delivery, current price, reviews, seller quality, alternatives, or purchase risk matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional browser use may expose marketplace account context, saved sessions, or account-specific pricing. <br>
-Mitigation: Use a dedicated browser profile without saved payment methods and keep login, cart, payment, seller messaging, and account changes under direct user control. <br>
-Risk: Marketplace prices, stock, seller quality, discounts, and delivery estimates can change quickly or vary by region/account. <br>
-Mitigation: Treat recommendations as product research, verify final price and delivery before checkout, and preserve the skill's audit trail of searched sources and unverified items. <br>
+## Use Case:
 
+External users use this skill to compare marketplace products, prices, delivery options, sellers, and risks before deciding what to buy. It is intended for region-aware shopping research, exact-item verification, and alternative recommendations without completing purchases.
 
-## Reference(s): <br>
-- [Marketplace Guru on ClawHub](https://clawhub.ai/pe4atnik/marketplace-guru) <br>
-- [Publisher profile](https://clawhub.ai/user/pe4atnik) <br>
-- [Design notes](references/design-notes.md) <br>
-- [Legacy marketplace scraper reference](references/legacy/marketplace-scraper/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown recommendation with source audit, market map, priced options, risk notes, and unverified follow-ups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product links, prices, delivery region, seller/source details, timestamps, and avoid/risky option labels when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The advertised read-only boundary is weakened because high-impact shopping or account actions may occur after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review deployment policy before use and require explicit human confirmation for checkout, cart, login, payment, account settings, form submissions, and seller messaging, or restrict the skill to read-only browsing.
+
+Risk: Marketplace browsing may use a logged-in browser profile, which can expose account-specific prices, delivery slots, discounts, and session context.
+
+Mitigation: Use an isolated browser profile with no saved payment details for shopping research and avoid granting unnecessary account access.
+
+Risk: Marketplace pages can be blocked, stale, or incomplete, which may make price, delivery, seller, or stock data unreliable.
+
+Mitigation: Require the skill to state searched sources, filters, blockers, and unverified fields before a recommendation is used.
+
+## Reference(s):
+
+- [Marketplace Guru on ClawHub](https://clawhub.ai/pe4atnik/skills/marketplace-guru)
+- [Marketplace Guru design notes](artifact/references/design-notes.md)
+- [Legacy references](artifact/references/legacy/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recommendations with search audits, market maps, product comparisons, prices, delivery notes, links, and risk labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include unverified-item notes and source blockers when marketplace data cannot be confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

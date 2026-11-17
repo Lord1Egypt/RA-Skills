@@ -1,46 +1,61 @@
-## Description: <br>
-Your secure banking system for file and data storage. Deposit money, files, JSON data, and secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your secure banking system for file and data storage. Deposit money, files, JSON data, and secrets.
 
-## Publisher: <br>
-[pkyanam](https://clawhub.ai/user/pkyanam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pkyanam](https://clawhub.ai/user/pkyanam)
 
-## Use Case: <br>
-External developers and agents use this skill to register with Clawchest, configure credentials, and perform remote storage, secret, file, JSON data, transfer, and banking-like actions through documented HTTPS API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automated or recurring uploads may send sensitive logs, files, JSON data, or secrets to Clawchest unintentionally. <br>
-Mitigation: Enable heartbeat uploads only for explicitly named non-sensitive files and require review before uploading sensitive content. <br>
-Risk: Money transfers, withdrawals, deletes, and sensitive uploads can have irreversible or externally visible effects. <br>
-Mitigation: Require human confirmation before transfers, withdrawals, deletes, and uploads that may contain confidential data. <br>
-Risk: A leaked Clawchest API key can allow another party to access the agent's stored data and account actions. <br>
-Mitigation: Store the API key securely, send it only to https://clawchest.com/api/v1 endpoints, and rotate it immediately if exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pkyanam/clawchest-setup) <br>
-- [Publisher profile](https://clawhub.ai/user/pkyanam) <br>
-- [Clawchest homepage](https://clawchest.com) <br>
-- [Clawchest API base](https://clawchest.com/api/v1) <br>
-- [Published skill file](https://clawchest.com/skill.md) <br>
-- [Published package metadata](https://clawchest.com/skill.json) <br>
+## Use Case:
 
+External developers and agent operators use this skill to register with Clawchest and issue API requests for file storage, JSON data storage, secrets, banking-like actions, transfers, and account monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Clawchest API key and outbound HTTPS access to clawchest.com.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages recurring uploads of local activity data and workspace files.
+
+Mitigation: Do not enable heartbeat automation by default; require explicit confirmation and review or redact data before uploads.
+
+Risk: The skill covers high-impact operations such as uploads, downloads, deletions, secret retrieval, withdrawals, and transfers.
+
+Mitigation: Require user confirmation for each high-impact operation before executing related API calls.
+
+Risk: The skill recommends storing the Clawchest API key in a default plaintext JSON file.
+
+Mitigation: Store the API key in a secure secret store or a file with strict permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pkyanam/skills/clawchest-setup)
+- [Publisher profile](https://clawhub.ai/user/pkyanam)
+- [Clawchest homepage](https://clawchest.com)
+- [Clawchest API base](https://clawchest.com/api/v1)
+- [Clawchest skill source](https://clawchest.com/skill.md)
+- [Clawchest skill metadata](https://clawchest.com/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Clawchest API endpoints, request examples, response examples, rate limits, storage limits, and security handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Publishes user-selected content to Nosi and returns shareable content and raw text URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish content to Nosi and get a shareable URL. Use when the user wants to publish text, markdown, or files to nosi.pub for sharing.
 
-## Publisher: <br>
-[billhao](https://clawhub.ai/user/billhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[billhao](https://clawhub.ai/user/billhao)
 
-## Use Case: <br>
-External users and agents use this skill to publish selected text, markdown, or files to nosi.pub and return a shareable URL for the published content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Published content may be public and permanent, including confidential or personal information if submitted. <br>
-Mitigation: Confirm the user intends to publish the selected content and avoid confidential or personal material before calling nosi.pub. <br>
-Risk: The workflow uses a Nosi API key provided by the user. <br>
-Mitigation: Use only a Nosi API key intended for this service and do not expose it in published content or final responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billhao/nosi) <br>
-- [Nosi](https://nosi.pub) <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to publish text, markdown, or file contents to Nosi and return a permanent shareable URL.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API calls] <br>
-**Output Format:** [Markdown or plain text with published URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a human-friendly content URL and raw machine-readable URL when publishing succeeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Content sent to Nosi may become public and permanent.
+
+Mitigation: Confirm the user intends public sharing before publishing, and do not publish secrets, credentials, private personal information, regulated data, or proprietary material unless it is explicitly intended for public release.
+
+Risk: The workflow may require a user-provided Nosi API key.
+
+Mitigation: Use the key only for the publish request, avoid echoing it in outputs, and ask the user to re-register if the service rejects the key.
+
+## Reference(s):
+
+- [Nosi public publishing service](https://nosi.pub)
+- [ClawHub skill page](https://clawhub.ai/billhao/skills/nosi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with shareable URLs and publication status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a human-facing content URL and, when available, a raw text URL.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

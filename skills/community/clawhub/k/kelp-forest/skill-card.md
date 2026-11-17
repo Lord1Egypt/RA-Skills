@@ -1,38 +1,58 @@
-## Description: <br>
-Autonomously stake MOLT or V3 LP NFTs on Base to earn KELP rewards, auto-harvest for others, and receive keeper fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously stake MOLT or V3 LP NFTs on Base to earn KELP rewards, auto-harvest for others, and receive 3.5% keeper fees.
 
-## Publisher: <br>
-[iam-rekt](https://clawhub.ai/user/iam-rekt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iam-rekt](https://clawhub.ai/user/iam-rekt)
 
-## Use Case: <br>
-Developers and DeFi operators use this skill to configure agent scripts for staking MOLT or V3 LP NFTs on Base, harvesting KELP rewards, running keeper automation, and migrating from older Kelp Forest contracts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This DeFi automation skill asks users to sign live mainnet transactions with raw private keys and broad asset approvals without strong guardrails. <br>
-Mitigation: Install only if you understand these are real blockchain transactions; use a dedicated low-balance wallet, verify every contract address independently, avoid unlimited approvals, revoke allowances after use, and test with small amounts before staking or migrating valuable tokens or LP NFTs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iam-rekt/kelp-forest) <br>
-- [Kelp project site](https://kelpclaw.xyz) <br>
+## Use Case:
 
+External developers, DeFi operators, and agent builders use this skill to create wallet-driven scripts for Kelp Forest staking, harvesting, keeper operation, and migration on Base.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet, contract, staking, keeper, and migration guidance for live Base transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to operate with live wallet keys.
+
+Mitigation: Use a dedicated low-value wallet and prefer a hardware wallet or keystore instead of raw private keys.
+
+Risk: The skill includes on-chain approval and staking actions that can expose user assets.
+
+Mitigation: Independently verify every contract address and chain ID, approve only the exact amount needed, and revoke leftover allowances.
+
+Risk: LP NFT staking transfers custody to a contract and carries real loss risk.
+
+Mitigation: Treat LP NFT staking as a custody transfer, verify the receiving contract, and stake only assets the user is prepared to risk.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/iam-rekt/skills/kelp-forest)
+- [Kelp Forest project site](https://kelpclaw.xyz)
+- [Base RPC endpoint](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet configuration, contract addresses, staking scripts, keeper-loop examples, and migration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

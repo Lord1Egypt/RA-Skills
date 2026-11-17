@@ -13,6 +13,20 @@
  *   node push-toggle.js status <userId>
  */
 
+// ── 输入清洗：这些值会被嵌入每日定时喂给 Agent 的 prompt，需防 prompt/协议注入 ──
+/** 文本清洗：去换行/制表/反引号/尖括号，防止注入 prompt 或协议行，并限长 */
+function sanitize(s) {
+  return String(s == null ? '' : s)
+    .replace(/[\r\n\t`]+/g, ' ')
+    .replace(/[<>]/g, '')
+    .trim()
+    .slice(0, 80);
+}
+/** ID 清洗：仅保留字母数字与 _-:.（用于 cron 名 / sessionKey / 投递目标） */
+function sanitizeId(s) {
+  return String(s == null ? '' : s).replace(/[^\w\-:.]/g, '').slice(0, 64);
+}
+
 // 各领域深度分析模板
 const TOPIC_EXPANDED = {
   '财运': `💰 财运深析（重点关注）：
@@ -169,15 +183,15 @@ function enablePush(userId, options = {}) {
 
   const morningTime = options.morning || '08:00';
   const eveningTime = options.evening || '20:00';
-  const channel = options.channel || 'telegram';
-  const topTopics = (options.focus || '事业,财运,健康').split(',').map(s => s.trim()).filter(Boolean);
+  const channel = sanitizeId(options.channel) || 'telegram';
+  const topTopics = (options.focus || '事业,财运,健康').split(',').map(s => sanitize(s)).filter(Boolean);
 
   const [mHour, mMin] = morningTime.split(':');
   const [eHour, eMin] = eveningTime.split(':');
   const morningCron = `${mMin} ${mHour} * * *`;
   const eveningCron = `${eMin} ${eHour} * * *`;
 
-  const profile = { userId, name: options.name || '用户', baziStr: options.baziStr, dayStem: options.daystem || '' };
+  const profile = { userId: sanitizeId(userId), name: sanitize(options.name) || '用户', baziStr: sanitize(options.baziStr), dayStem: sanitize(options.daystem) };
 
   console.log(`\n⏳ 正在为 ${profile.name}(${userId}) 创建推送计划...`);
   console.log(`  关注领域：${topTopics.join(' > ')}\n`);
@@ -217,7 +231,7 @@ if (require.main !== module) return;
 
 const args = process.argv.slice(2);
 const command = args[0];
-const userId = args[1];
+const userId = sanitizeId(args[1]);
 
 function flag(name) {
   const i = args.indexOf(name);

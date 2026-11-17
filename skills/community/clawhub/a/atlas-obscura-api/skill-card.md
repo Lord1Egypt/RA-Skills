@@ -1,43 +1,53 @@
-## Description: <br>
-Query Atlas Obscura places for weird/obscure location inspiration. Use when you need nearby curiosities by coordinates, place lookup by ID, or global place coordinates for creative prompt spice and worldbuilding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Atlas Obscura places for unusual location inspiration by coordinates, place ID, or global place coordinates.
 
-## Publisher: <br>
-[dougbtv](https://clawhub.ai/user/dougbtv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougbtv](https://clawhub.ai/user/dougbtv)
 
-## Use Case: <br>
-Developers, creative technologists, and agents use this skill to fetch Atlas Obscura place data for nearby curiosities, place lookups, and location-inspired worldbuilding context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper installs third-party npm packages. <br>
-Mitigation: Install in a disposable project or container when operating under stricter dependency controls. <br>
-Risk: User-supplied coordinates or place IDs are sent through the Atlas Obscura API library. <br>
-Mitigation: Avoid submitting sensitive locations or identifiers unless that sharing is acceptable for the workflow. <br>
-Risk: Atlas Obscura site or library behavior may drift and return partial or missing fields. <br>
-Mitigation: Return partial data with clear notes about field gaps and rerun with broader or alternate inputs when needed. <br>
+## Use Case:
 
+Developers, writers, and creative agents use this skill to retrieve nearby Atlas Obscura places, look up place details, and add unusual location context to travel inspiration, prompts, or worldbuilding.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dougbtv/atlas-obscura-api) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/dougbtv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper returns JSON for search results, place details, and place coordinate samples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Risk: Installing the skill fetches the Atlas Obscura client and transitive npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package-lock.json and install only in environments where npm dependency fetching is acceptable.
+
+Risk: Search coordinates may be sent to the underlying Atlas Obscura data source.
+
+Mitigation: Use approximate coordinates instead of sensitive exact locations when privacy matters.
+
+## Reference(s):
+
+- [Atlas Obscura API Skill on ClawHub](https://clawhub.ai/dougbtv/skills/atlas-obscura-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are limited by command arguments; field availability may vary if the underlying Atlas Obscura data source or client library changes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

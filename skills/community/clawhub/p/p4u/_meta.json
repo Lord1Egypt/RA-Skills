@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7ez86e9j2dj1ndt5qyq0ckc982qg2h",
+  "owner": "m9rco",
   "slug": "p4u",
-  "version": "0.0.0-nightly.e055304",
-  "publishedAt": 1773315174438
+  "displayName": "p4u",
+  "description": "Cross-platform Perforce CLI enhancement tool. Query and manipulate changelists, shelves, clients, and file annotations.",
+  "homepage": "https://github.com/m9rco/p4u-skill",
+  "latest": {
+    "version": "sha-e055304",
+    "publishedAt": 1773315165953,
+    "commit": "https://github.com/m9rco/p4u-skill/commit/e0553046eed10c9a6dc2df1a5e5ce07b16340ca7"
+  },
+  "history": []
 }

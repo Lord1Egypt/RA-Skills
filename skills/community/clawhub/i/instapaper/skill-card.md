@@ -1,42 +1,58 @@
-## Description: <br>
-Use when operating the instapaper-cli (ip) tool or troubleshooting it: authenticating, listing/exporting/importing bookmarks, bulk mutations, folders/highlights/text, choosing output formats (ndjson/json/plain), cursor-based sync, and interpreting stderr-json/exit codes for automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when operating the instapaper-cli (ip) tool or troubleshooting it: authenticating, listing/exporting/importing bookmarks, bulk mutations, folders/highlights/text, choosing output formats (ndjson/json/plain), cursor-based sync, and interpreting stderr-json/exit codes for automation.
 
-## Publisher: <br>
-[vburojevic](https://clawhub.ai/user/vburojevic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vburojevic](https://clawhub.ai/user/vburojevic)
 
-## Use Case: <br>
-Developers and automation-focused users use this skill to operate the Instapaper CLI reliably, including authentication, bookmark import and export, bulk bookmark changes, folders, highlights, text extraction, cursor-based sync, and structured error handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external Instapaper CLI that can access credentials and change bookmark data. <br>
-Mitigation: Install the external ip CLI only from a trusted source, consider pinning or reviewing a specific release, and protect Instapaper credentials. <br>
-Risk: Bulk import, export, folder, highlight, and delete operations can modify or remove user data. <br>
-Mitigation: Require explicit approval before running bulk or destructive commands and use dry-run, idempotent, or confirmation flags where available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Instapaper Skill Page](https://clawhub.ai/vburojevic/instapaper) <br>
-- [commands.md](references/commands.md) <br>
-- [output-and-sync.md](references/output-and-sync.md) <br>
-- [errors.md](references/errors.md) <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate and troubleshoot the Instapaper CLI with reliable authentication, bookmark sync, import/export, bulk mutation, folders, highlights, article text retrieval, structured output, and error handling guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and structured-output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe NDJSON, JSON, plain text, structured stderr, progress events, cursor files, and output files produced by the external ip CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.9 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the CLI without pinning or verification can introduce supply-chain uncertainty.
+
+Mitigation: Pin and verify the Instapaper CLI version before installing when possible.
+
+Risk: Authentication examples can expose credentials if users paste real passwords directly into shell commands.
+
+Mitigation: Use an interactive prompt, protected secret manager, or another method that avoids shell history and logs.
+
+Risk: Delete, folder delete, import, and bulk mutation commands can make destructive or large-scale account changes.
+
+Mitigation: Review destructive commands before execution and use dry-run, idempotent, batch, and explicit confirmation options where supported.
+
+## Reference(s):
+
+- [Commands](references/commands.md)
+- [Errors and exit codes](references/errors.md)
+- [Output, progress, and sync](references/output-and-sync.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON/NDJSON output-format guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may guide use of structured stderr JSON, progress JSON, cursor files, dry runs, and explicit confirmation flags for destructive operations.]
+
+## Skill Version(s):
+
+0.2.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

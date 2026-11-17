@@ -1,45 +1,62 @@
-## Description: <br>
-fitconverter helps agents submit fitness activity exports to the FitConverter service for conversion between supported source platforms and FIT, TCX, GPX, KML, or connected destination platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FitConverter helps agents guide users through converting exported fitness and workout records from Huawei, Zepp, Xiaomi, vivo, Samsung, Keep, GPX, TCX, FIT, KML, and other sources into formats or destinations such as COROS, Garmin, Strava, RQrun, FIT, TCX, GPX, and KML.
 
-## Publisher: <br>
-[daozhao](https://clawhub.ai/user/daozhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daozhao](https://clawhub.ai/user/daozhao)
 
-## Use Case: <br>
-Developers and external users can use this skill to configure a FitConverter MCP connection, upload workout export ZIPs, submit conversion jobs, and check conversion or payment status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workout exports and email addresses may be sent to FitConverter during conversion. <br>
-Mitigation: Use the service only when comfortable sharing those data, confirm the selected files before upload, and avoid including unrelated files in ZIP archives. <br>
-Risk: Some sync modes may require API keys or platform account passwords. <br>
-Mitigation: Prefer manual secure API-key configuration, avoid pasting secrets in chat when possible, and use credentials that can be rotated or revoked. <br>
-Risk: Conversion flows may return payment QR codes or payment links. <br>
-Mitigation: Confirm the destination, amount, order details, and payment recipient before paying. <br>
+## Use Case:
 
+External users and their agents use this skill to configure FitConverter access, collect conversion parameters, upload fitness export files, submit trial or paid conversion jobs, and check status until results are delivered by email.
 
-## Reference(s): <br>
-- [ClawHub fitconverter listing](https://clawhub.ai/daozhao/fitconverter) <br>
-- [FitConverter homepage](https://www.fitconverter.com) <br>
-- [FitConverter MCP API](https://api.fitconverter.com/mcp) <br>
-- [OpenClaw integration guide](openclaw-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON, bash, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP calls, HTTP multipart upload examples, status handling, and payment QR-code handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Fitness exports can contain location history and sensitive workout data sent to an external FitConverter service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user consent before upload, explain the destination service, and avoid submitting files that are not required for the requested conversion.
+
+Risk: Sync modes may require third-party account credentials and the skill asks for a FitConverter API key.
+
+Mitigation: Prefer manual secret configuration through mcporter and avoid pasting API keys or account passwords into chat unless the user explicitly accepts that handling.
+
+Risk: Payment flows can return QR-code or off-channel payment links.
+
+Mitigation: Show payment links only when the user requested a conversion and make clear that payment is handled by FitConverter.
+
+## Reference(s):
+
+- [FitConverter homepage](https://www.fitconverter.com)
+- [FitConverter API key generation](https://api.fitconverter.com/mcp/generate-api-key)
+- [FitConverter MCP endpoint](https://api.fitconverter.com/mcp)
+- [FitConverter conversion submission endpoint](https://api.fitconverter.com/mcp/submit_conversion)
+- [ClawHub skill page](https://clawhub.ai/daozhao/skills/fitconverter)
+- [Daozhao publisher profile](https://clawhub.ai/user/daozhao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline JSON, bash, JavaScript, and status-response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and a FitConverter API key; conversion submissions use multipart/form-data and may return payment status or QR payment links.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

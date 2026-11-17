@@ -1,39 +1,48 @@
-## Description: <br>
-Validate event tracking and attribution readiness for Meta Pixel, Google Ads tags, TikTok Pixel, and cross-channel optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate event tracking and attribution readiness for Meta Pixel, Google Ads tags, TikTok Pixel, and cross-channel optimization.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing, growth, and media-ops teams use this skill to assess ad pixel install health, event integrity, and attribution readiness across Meta, Google Ads, TikTok Ads, YouTube Ads, and related ad channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recommended pauses, rollbacks, or tracking changes could affect live ad spend or attribution data if applied without review. <br>
-Mitigation: Manually review any recommended platform changes before applying them in live ad accounts. <br>
-Risk: Audit inputs may contain account IDs, campaign IDs, logs, or owner contacts. <br>
-Mitigation: Share only the minimum account, campaign, log, and contact details needed for the specific audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/pixel-attribution-readiness-checker) <br>
+## Use Case:
 
+Marketing operations, growth, and analytics teams use this skill to audit advertising pixel installation, event integrity, attribution readiness, and spend-risk response across Meta, Google Ads, TikTok Ads, YouTube Ads, and related channels.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with operational summaries, ranked findings, mitigation actions, escalation payloads, and monitoring checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include readiness scoring, anomaly triage, rollback or stop-loss conditions, and owner-ready ticket payloads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad advertising and marketing triggers may cause the skill to activate for requests outside a scoped pixel or attribution audit.
+
+Mitigation: Provide current campaign, pixel, account, incident scope, and time-window data before relying on spend containment, readiness, or escalation recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/pixel-attribution-readiness-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with operational summaries, severity-ranked findings, mitigation actions, escalation ticket payloads, and monitoring checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request scoped campaign, account, event, policy, threshold, and owner-contact inputs before making readiness or escalation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

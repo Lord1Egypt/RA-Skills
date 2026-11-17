@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 不对称分栏</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<!-- 原型 9:不对称分栏 7:5(方式 C;主栏裸排+辅栏深色证据面) -->
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">07 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      保质期机制为什么能见效:它改的是激励
+    </div>
+  </div>
+
+  <div data-layout="columns" data-layout-gap="60" style="position:absolute;left:100px;top:340px;width:1720px;height:560px;">
+    <div data-object="true" data-layout-w="7fr">
+      <div style="font-size:26px;font-weight:700;line-height:1.35;color:var(--charcoal);">旧机制下,写好文档的人没有回报</div>
+      <div style="font-size:22px;line-height:1.65;color:var(--text-primary);margin-top:24px;">
+        过去考核的是"文档数量":写得越多越好看,没人对"过期"负责。于是理性选择是多写、不管、不删——知识库自然膨胀成档案馆。
+        <br><br>
+        保质期机制把责任反过来:owner 对名下文档的"新鲜度"负责,过期文档的清理率进了部门月报。激励一变,行为立刻变。
+      </div>
+    </div>
+    <div data-object="true" data-layout-w="5fr" style="background:var(--deep-navy);border-radius:10px;padding:40px;">
+      <div style="font-size:20px;font-weight:600;letter-spacing:2px;color:var(--accent-orange);">关键证据</div>
+      <div class="num" style="font-size:72px;font-weight:800;line-height:1.1;color:var(--on-navy-text);margin-top:16px;">2.4<span style="font-size:36px;">倍</span></div>
+      <div style="font-size:22px;line-height:1.55;color:var(--on-navy-sub);margin-top:16px;">
+        过期文档月清理率:owner 制上线前后对比
+      </div>
+      <div style="height:1px;background:var(--deep-navy-light);margin-top:32px;"></div>
+      <div style="font-size:20px;line-height:1.55;color:var(--on-navy-dim);margin-top:24px;">
+        口径:试点部门 A/B 抽检
+      </div>
+    </div>
+  </div>
+</div>
+
+<template data-slide-notes>【核心逻辑】机制的机制:不是流程胜利,是激励胜利。</template>
+</body>
+</html>

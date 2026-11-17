@@ -1,0 +1,10 @@
+{
+  "name": "xhs-short-url",
+  "version": "2.0.1",
+  "private": true,
+  "description": "小红书长链转短链 Skill CLI (长链转换为 xhslink.com 短链; 与其他平台 skill 同框架单凭证)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

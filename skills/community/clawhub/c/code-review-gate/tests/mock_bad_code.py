@@ -41,7 +41,7 @@ def get_user_by_percent(user_id):
 # 2. 硬编码敏感信息
 # ============================================================
 
-API_KEY = "sk-abcdef1234567890ghijklmn"
+API_KEY = "REDACTED-SECRET"
 PASSWORD = "super_secret_password_2024"
 DATABASE_URL = "postgresql://admin:secret123@localhost/production"
 

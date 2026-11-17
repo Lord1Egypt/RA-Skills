@@ -1,43 +1,60 @@
-## Description: <br>
-Invest Analyzer guides an agent through public-equity screening, FCF valuation, investment-style classification, and decision reporting using public filings and financial data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invest Analyzer helps agents screen equities, analyze financial statements, calculate FCF-based valuation metrics, and draft position guidance for human review.
 
-## Publisher: <br>
-[litousteven](https://clawhub.ai/user/litousteven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litousteven](https://clawhub.ai/user/litousteven)
 
-## Use Case: <br>
-External users and agents use this skill to screen A-share and Hong Kong public equities, structure FCF and owner-earnings calculations, classify investment styles, and produce human-reviewable investment research reports. It is intended to support research workflows, not replace verification against official filings or professional judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rely on web search, downloaded filings, PDF parsing, and an optional Baidu search key to gather financial data. <br>
-Mitigation: Review and configure the referenced search, browser, and PDF skills separately; protect any key file with restrictive permissions. <br>
-Risk: Investment conclusions can be wrong if public data is stale, parsed incorrectly, or taken from lower-authority sources. <br>
-Mitigation: Verify key figures against official filings or investor-relations documents before acting, and treat generated conclusions as research support rather than investment advice. <br>
+## Use Case:
 
+External users and finance-oriented analysts use this skill to gather public financial data, screen A-share and Hong Kong equities, calculate FCF and owner earnings, and draft buy/hold/sell style reports. The reports are research support and require independent verification against official filings before any investment decision.
 
-## Reference(s): <br>
-- [Invest Analyzer ClawHub Page](https://clawhub.ai/litousteven/invest-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/litousteven) <br>
-- [Invest Analyzer README](README.md) <br>
-- [investTemplate V5.5.6](https://github.com/sunheyi6/investTemplate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with tables, formulas, risk notes, and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite data source tiers, preserve calculation assumptions, and state that investment conclusions require human verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Baidu search credentials can be exposed if pasted into shell commands or stored in broadly readable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure keys through a secure secret mechanism where possible; if a file is unavoidable, restrict permissions and avoid pasting real keys into commands.
+
+Risk: Financial figures or extracted PDF data can be stale, incomplete, or incorrectly parsed, leading to misleading valuation conclusions.
+
+Mitigation: Verify key figures against official filings, prefer text-layer annual reports from official disclosure channels, and restart the analysis when a core data error is found.
+
+Risk: The skill produces investment-oriented recommendations and position references that could be mistaken for automated trading advice.
+
+Mitigation: Treat reports as research support only and do not grant the skill brokerage access or authority to place trades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litousteven/skills/invest-analyzer)
+- [investTemplate V5.5.6](https://github.com/sunheyi6/investTemplate)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with tables, checklists, calculations, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include valuation assumptions, source-quality labels, risk notes, and position-sizing guidance for human review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

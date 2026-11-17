@@ -1,40 +1,53 @@
-## Description: <br>
-Renders structured data into dark-themed SVG/HTML bar charts and Pillow-based PNG long-form reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Info Visualize turns structured data into dark-themed SVG/HTML bar charts and PNG long-form reports for dashboards, monitoring summaries, daily reports, and rankings.
 
-## Publisher: <br>
-[TODD-9527](https://clawhub.ai/user/TODD-9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[todd-9527](https://clawhub.ai/user/todd-9527)
 
-## Use Case: <br>
-Developers and data/reporting users use this skill to turn JSON data into browser-viewable bar charts or PNG long-form reports for rankings, daily reports, monitoring summaries, and dashboard-style briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser-based HTML/SVG chart output can embed untrusted input without escaping. <br>
-Mitigation: Use trusted or sanitized data for SVG/HTML chart generation; prefer PNG output for untrusted text. <br>
-Risk: Archived PNG reports can persist in a long-lived local folder. <br>
-Mitigation: Use the archive option only for reports that are appropriate to retain, and review the archive location before running automated jobs. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to convert structured JSON data into shareable visual outputs such as ranking charts, monitoring reports, KPI summaries, and long-form information graphics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TODD-9527/info-visualize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell/Python commands; generated artifacts are HTML/SVG and PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SVG/HTML output is browser-viewable; PNG report output requires Pillow; optional archiving can copy reports to a local folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: HTML/SVG chart output can include unescaped input data when rendering untrusted JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render trusted data only, or review and sanitize JSON before publishing generated HTML/SVG; prefer PNG output for untrusted data.
+
+Risk: The PNG report path depends on Pillow and can optionally copy reports to an archive directory.
+
+Mitigation: Pin Pillow in a virtual environment and use the archive option only for destinations where generated reports are intentionally retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/todd-9527/skills/info-visualize)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [HTML/SVG chart files and PNG report files, with Markdown guidance and Python or shell invocation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts structured JSON input; SVG/HTML output is browser-viewable and PNG output requires Pillow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

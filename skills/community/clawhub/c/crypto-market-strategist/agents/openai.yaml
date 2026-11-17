@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crypto Market Strategist"
+  short_description: "BTC or ETH market strategy analysis"
+  default_prompt: "Use $crypto-market-strategist to analyze BTC strategies with the full fitted market read."

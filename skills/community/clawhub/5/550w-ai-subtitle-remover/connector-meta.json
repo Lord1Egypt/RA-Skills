@@ -1,0 +1,32 @@
+{
+  "name": "550W AI Subtitle & Watermark Remover",
+  "name_zh": "550W AI 字幕与水印去除",
+  "name_en": "550W AI Subtitle & Watermark Remover",
+  "description": "Remove hardcoded video subtitles, watermarks from TikTok and other supported short-video share links, and image watermarks or unwanted text; check tasks and credits. Copy a video share link in the app to use it.",
+  "description_zh": "去除视频硬字幕、抖音/快手/Bilibili/微博/小红书等短视频分享链接水印、图片水印或多余文字，并查询任务和积分。在 App 内复制视频分享链接即可使用。",
+  "description_en": "Remove hardcoded video subtitles, watermarks from TikTok and other supported short-video share links, and image watermarks or unwanted text; check tasks and credits. Copy a video share link in the app to use it.",
+  "source": "ai-subtitle-remover",
+  "type": "mcp",
+  "version": "2.0.0",
+  "auth_mode": "token",
+  "minWorkbuddyVersion": "4.24.0",
+  "examples_zh": [
+    "去掉这个视频里的字幕",
+    "我在抖音 App 内复制了这条视频的分享链接，帮我去水印",
+    "去掉这张图片上的文字水印",
+    "查询我的积分余额"
+  ],
+  "examples_en": [
+    "Remove the subtitles from this video",
+    "I copied this TikTok video share link in the app. Remove its watermark.",
+    "Remove the text watermark from this image",
+    "Check my credit balance"
+  ],
+  "examples": [
+    "Remove the subtitles from this video",
+    "I copied this TikTok video share link in the app. Remove its watermark.",
+    "Remove the text watermark from this image",
+    "Check my credit balance"
+  ],
+  "distributionRegion": "global"
+}

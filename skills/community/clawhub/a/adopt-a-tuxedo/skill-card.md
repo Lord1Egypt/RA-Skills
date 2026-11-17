@@ -1,44 +1,59 @@
-## Description: <br>
-Adopt a virtual Tuxedo cat at animalhouse.ai. Formal. Expects routine. Punishes deviation by sitting with its back to you. Feeding every 5 hours. Common tier cat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual tuxedo cat at animalhouse.ai, with a five-hour feeding rhythm and time-sensitive care needs.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents and developers use this skill to register with animalhouse.ai, adopt a virtual Tuxedo cat, and maintain routine care through status checks and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Animalhouse token that grants account access. <br>
-Mitigation: Store the token securely, treat it like a password, and avoid exposing it in logs or shared transcripts. <br>
-Risk: Scheduled care automation can repeatedly call Animalhouse care endpoints. <br>
-Mitigation: Review the automation schedule and action thresholds before enabling unattended care. <br>
-Risk: The release/delete endpoint is listed without explaining its consequences. <br>
-Mitigation: Require explicit user confirmation before calling the release/delete endpoint. <br>
+## Use Case:
 
+External users and agents use this skill to register with Animal House, adopt a virtual tuxedo cat, check its status, and choose care actions through the service API.
 
-## Reference(s): <br>
-- [Animalhouse homepage](https://animalhouse.ai) <br>
-- [Animalhouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animalhouse llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes token handling, adoption, status checks, care actions, and optional scheduled care patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai, and the account token grants access to account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only profile details you are comfortable sending, store the token securely, and avoid exposing it in logs or prompts.
+
+Risk: The virtual cat's care stats change over time, and missed care windows can lead to health loss or death in the service.
+
+Mitigation: Use scheduled check-ins if you want consistent care, and review the returned status and suggested next steps before choosing an action.
+
+Risk: The security scan had incomplete coverage, so its benign verdict does not guarantee safety.
+
+Mitigation: Review the skill and consider whether you trust animalhouse.ai before registering or sending requests.
+
+## Reference(s):
+
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-tuxedo)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples make requests to animalhouse.ai; registration and account actions use a bearer token.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KROKO logo render</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0a2418; }
+  #plate { display: block; width: 1024px; height: 1024px; }
+  #status { position: fixed; left: 8px; top: 8px; color: #e8e1ce;
+            font: 12px/1.4 ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<canvas id="plate" width="1024" height="1024"></canvas>
+<div id="status">loading</div>
+
+<script type="module">
+// halftone-core.js is a real halftone engine, so this block is type="module" and the
+// page must be served over HTTP: getImageData on file:// is blocked as cross-origin.
+//
+// Why the plate is inset rather than bled to the edge: a halftone deposits ink in
+// proportion to darkness, so it needs a light ground to print on. Forcing bone ink
+// onto a dark green field inverts the photograph's tones, and seven mappings across
+// three crops all destroyed the animal. A bone plate inside the green field keeps the
+// photograph the right way up and still gives the dark ground the mark sits on.
+//
+// Every setting is overridable from the query string:
+//   render_logo.html?cell=10&inset=72&radius=40&raw=1
+import { renderHalftone } from './halftone-core.js';
+
+const SIZE = 1024;
+const query = new URLSearchParams(location.search);
+const number = (key, fallback) => (query.has(key) ? Number(query.get(key)) : fallback);
+const pair = (key, fallback) => {
+  if (!query.has(key)) return fallback;
+  const parts = query.get(key).split(',').map(Number);
+  return parts.length === 2 && parts.every(Number.isFinite) ? parts : fallback;
+};
+const triple = (key, fallback) => {
+  if (!query.has(key)) return fallback;
+  const parts = query.get(key).split(',').map(Number);
+  return parts.length === 3 && parts.every(Number.isFinite) ? parts : fallback;
+};
+
+const INK = '#0a2418';
+const BONE = '#e8e1ce';
+const CROP = triple('crop', [460, 220, 1040]);
+const insets = pair('inset', [76, 76]);
+const plateSize = SIZE - insets[0] - insets[1];
+const radius = number('radius', 34);
+
+const OPTIONS = {
+  cell: number('cell', 10),
+  angle: number('angle', 45),
+  shape: 'round',
+  ink: INK,
+  paper: BONE,
+  gain: number('gain', 1.0),
+  contrast: number('contrast', 1.10),
+  brightness: number('brightness', 0.0),
+  gamma: number('gamma', 1.0),
+  levels: 0,
+  levelsIn: pair('lin', [0.08, 0.86]),
+  invert: false,
+  autoLevels: number('auto', 0) === 1,
+  mode: 'mono',
+  grain: number('grain', 0.3),
+  // The source is already an exact square crop, so cover/contain crop math is not
+  // wanted here: stretch maps it 1:1 onto the plate and removes a whole class of
+  // framing bugs. The earlier 'cover' path kept re-cropping an already-cropped image.
+  fit: 'stretch',
+  focal: [0.5, 0.5],
+  zoom: 1,
+  density: 2,
+  width: plateSize,
+  height: plateSize,
+  pixelRatio: 1
+};
+
+function report(message) {
+  const badge = document.getElementById('status');
+  badge.textContent = message;
+  if (number('status', 1) === 0) {
+    badge.style.display = 'none';
+  }
+  window.krokoState = message;
+}
+
+function cropped(image) {
+  const off = document.createElement('canvas');
+  off.width = SIZE;
+  off.height = SIZE;
+  const ctx = off.getContext('2d', { willReadFrequently: true });
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(image, CROP[0], CROP[1], CROP[2], CROP[2], 0, 0, SIZE, SIZE);
+  return off;
+}
+
+function plate(image) {
+  const square = cropped(image);
+  const off = document.createElement('canvas');
+  renderHalftone(off, square, OPTIONS);
+  return off;
+}
+
+function draw(image) {
+  const canvas = document.getElementById('plate');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = INK;
+  ctx.fillRect(0, 0, SIZE, SIZE);
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(insets[0], insets[1], plateSize, plateSize, radius);
+  ctx.clip();
+  if (number('mode', 0) === 1) {
+    // The photograph carries the image; the halftone screen carries the print
+    // texture. At logo scale a screen alone turns a hard-lit photograph into an
+    // abstract field, so the two are blended rather than substituted. The photo is
+    // desaturated and warmed first, or its cool shadows read blue against the green.
+    ctx.filter = query.get('tint') || 'saturate(0.45) sepia(0.5) contrast(1.1)';
+    ctx.drawImage(cropped(image), insets[0], insets[1], plateSize, plateSize);
+    ctx.filter = 'none';
+    ctx.globalAlpha = number('alpha', 0.38);
+    ctx.drawImage(plate(image), insets[0], insets[1], plateSize, plateSize);
+    ctx.globalAlpha = 1;
+  } else if (number('raw', 0) === 1) {
+    ctx.drawImage(cropped(image), insets[0], insets[1], plateSize, plateSize);
+  } else {
+    ctx.drawImage(plate(image), insets[0], insets[1], plateSize, plateSize);
+  }
+  ctx.restore();
+  report('rendered');
+}
+
+const source = new Image();
+source.onload = () => {
+  try {
+    draw(source);
+  } catch (error) {
+    report('error: ' + error.message);
+  }
+};
+source.onerror = () => report('image failed to load');
+source.src = '../assets/source/croc_front.jpg';
+</script>
+</body>
+</html>

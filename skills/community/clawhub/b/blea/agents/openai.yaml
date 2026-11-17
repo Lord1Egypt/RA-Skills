@@ -1,0 +1,4 @@
+interface:
+  display_name: "BLEA"
+  short_description: "Diagnose, capture, compare, and replay Bluetooth Low Energy"
+  default_prompt: "Use $ble to safely inspect a BLE device, capture read-only evidence, compare changes, and replay behavior offline."

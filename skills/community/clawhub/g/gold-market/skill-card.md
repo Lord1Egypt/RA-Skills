@@ -1,42 +1,49 @@
-## Description: <br>
-A Chinese gold price query skill for retrieving real-time domestic gold prices, bank gold bar prices, retail jewelry store prices, international gold prices, and gold trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domestic gold price lookup tool for real-time gold prices, bank gold bar prices, retail gold shop prices, international gold prices, and gold trend analysis.
 
-## Publisher: <br>
-[FMouseBoy](https://clawhub.ai/user/FMouseBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmouseboy](https://clawhub.ai/user/fmouseboy)
 
-## Use Case: <br>
-External users and agents use this skill to gather and summarize gold market data from jinjia.com.cn, including domestic exchange quotes, international spot prices, bank gold bars, retail jewelry store prices, recycling prices, and cautious trend context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market prices and trend context may be stale, incomplete, or unsuitable for financial decision-making. <br>
-Mitigation: Treat outputs as reference information, verify prices against current primary sources, and avoid using the skill as investment advice. <br>
-Risk: Installing a third-party ClawHub skill requires trusting the publisher and local execution context. <br>
-Mitigation: Confirm the publisher before installation and protect local authentication files, configuration, and service credentials. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and summarize current domestic and international gold-price information, including exchange prices, bank gold bars, retail jewelry prices, recycling reference prices, and trend context.
 
-## Reference(s): <br>
-- [Gold Market ClawHub listing](https://clawhub.ai/FMouseBoy/gold-market) <br>
-- [Publisher profile](https://clawhub.ai/user/FMouseBoy) <br>
-- [Jinjia gold price data source](https://www.jinjia.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown summaries with inline extracted price data and cautious trend notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are reference information only and should not be treated as investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: Gold-price data from public websites and search results may be incomplete, delayed, or inaccurate, and trend summaries may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reference information, verify prices against authoritative market or institution sources before acting, and avoid presenting trend analysis as investment advice.
+
+## Reference(s):
+
+- [Gold price data source](https://www.jinjia.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries with extracted market data and trend-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs rely on public market websites and search results and should be treated as reference data rather than financial advice.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-role-configurator helps OpenClaw users configure or reconfigure an AI assistant role with guided prompts, preset templates, SOUL.md generation, and skill recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Role Configurator helps users configure an OpenClaw AI assistant role with guided setup, preset templates, local SOUL.md generation, and related skill recommendations.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-OpenClaw users use this skill to set up or revise an assistant role through conversation, choose from preset role templates, write a local SOUL.md role configuration, and receive suggested follow-on skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may update the local SOUL.md assistant role configuration file. <br>
-Mitigation: Before applying a generated role, review the exact workspace path and full SOUL.md content, and keep the generated backup. <br>
-Risk: Some presets cover mental-health and finance topics where users could over-rely on general assistant guidance. <br>
-Mitigation: Treat those presets as general support or education, not as professional medical, mental-health, financial, or investment advice. <br>
+## Use Case:
 
+External OpenClaw users use this skill to set up or reconfigure an AI assistant role through conversation, apply one of 15 preset role templates, and receive relevant skill recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/role-configurator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhuqingsonga) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated SOUL.md configuration text and recommended skill names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a proposed SOUL.md path and backup note when applying configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and artifact _meta.json) <br>
+Risk: The skill can change the local OpenClaw role configuration by writing SOUL.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated SOUL.md before confirming changes and keep or verify the backup when replacing an existing file.
+
+Risk: Mental health and financial role templates may be mistaken for professional advice.
+
+Mitigation: Treat those templates as general support and consult qualified professionals for health, mental health, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/role-configurator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown configuration content and concise text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or replace a local SOUL.md file after user confirmation; backs up an existing file as SOUL.md.backup.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, README.md, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

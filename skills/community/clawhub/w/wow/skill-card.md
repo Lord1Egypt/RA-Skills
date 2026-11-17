@@ -1,42 +1,54 @@
-## Description: <br>
-Look up World of Warcraft characters, including Mythic+ scores, best runs, raid progression, gear, and more, using Raider.io with optional Blizzard API and Warcraft Logs integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up World of Warcraft characters, Mythic+ scores, best runs, raid progression, gear, current affixes, and top runs using Raider.io, with optional Blizzard API and Warcraft Logs integrations.
 
-## Publisher: <br>
-[tag-assistant](https://clawhub.ai/user/tag-assistant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tag-assistant](https://clawhub.ai/user/tag-assistant)
 
-## Use Case: <br>
-External users and agents use this skill to look up World of Warcraft character profiles, Mythic+ scores, current affixes, top runs, raid summaries, gear information, and optional armory or parse data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The install metadata symlinks a separate wow CLI that was not included in the reviewed artifact. <br>
-Mitigation: Install only if the local wow executable is trusted, and review the executable and destination path before creating the symlink. <br>
-Risk: Optional Blizzard and Warcraft Logs credentials may be provided through environment variables or a local config file. <br>
-Mitigation: Prefer environment variables or a protected config file with restrictive permissions, and avoid exposing credentials in shared logs or outputs. <br>
-Risk: Character names, realms, regions, and optional API credentials may be sent to third-party game-data services. <br>
-Mitigation: Use the skill only when sharing that lookup data with Raider.io, Blizzard, or Warcraft Logs is acceptable for the user and environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Blizzard API Client Management](https://develop.battle.net/access/clients) <br>
-- [Warcraft Logs API Clients](https://www.warcraftlogs.com/api/clients) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve World of Warcraft character summaries, Mythic+ information, raid progression, gear details, affixes, and top run information from documented game-data sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq, relies on third-party game-data services, and may use optional Blizzard or Warcraft Logs credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install step creates a global CLI symlink, and the reviewed artifact did not include the referenced wow executable.
+
+Mitigation: Before installing, verify the local target that /usr/local/bin/wow will point to.
+
+Risk: Optional Blizzard API and Warcraft Logs credentials may be stored in a plaintext config file.
+
+Mitigation: Prefer environment variables when practical; if using ~/.config/wow/config.env, keep it out of backups and dotfile sync and restrict permissions such as chmod 600.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tag-assistant/skills/wow)
+- [Blizzard API client registration](https://develop.battle.net/access/clients)
+- [Warcraft Logs API client registration](https://www.warcraftlogs.com/api/clients)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and optional raw JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live game-profile data from Raider.io and optional Blizzard API or Warcraft Logs calls when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

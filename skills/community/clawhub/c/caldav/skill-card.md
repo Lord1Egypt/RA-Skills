@@ -1,44 +1,62 @@
-## Description: <br>
-Sync, inspect, and modify CalDAV calendars with vdirsyncer and khal using deterministic windows, verified writes, and recurrence-aware workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync, inspect, and modify CalDAV calendars with vdirsyncer and khal using deterministic windows, verified writes, and recurrence-aware workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and calendar power users use this skill to operate existing CalDAV calendars through a local vdirsyncer and khal setup. It supports bounded calendar reads, verified event creation or edits, stale-sync troubleshooting, and cautious handling of ambiguous or recurring events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can operate on already-configured CalDAV calendars, including real calendar data. <br>
-Mitigation: Use explicit calendar names and bounded date ranges, and require confirmation before deletes, bulk changes, recurring-event edits, or conflict-resolution changes. <br>
-Risk: Stale sync state or ambiguous event matches can lead to incorrect scheduling decisions or changes to the wrong event. <br>
-Mitigation: Run vdirsyncer sync before freshness-sensitive reads, verify writes with a read-back pass, and stop when matching remains ambiguous. <br>
-Risk: Recurring events, timezone-sensitive edits, and one-sided conflict policies can cause calendar data loss or series drift. <br>
-Mitigation: Inspect before editing, prefer recreate-only-with-approval for fragile series, and review configured conflict policy before resolving sync conflicts. <br>
+## Use Case:
 
+Developers and calendar power users use this skill to operate existing CalDAV calendars through local vdirsyncer and khal tooling. It supports local-first querying, event creation, safer edits, sync troubleshooting, and conflict-aware handling of ambiguous or recurring events.
 
-## Reference(s): <br>
-- [CalDAV Skill Page](https://clawhub.ai/ivangdavila/caldav) <br>
-- [CalDAV Skill Homepage](https://clawic.com/skills/caldav) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires existing vdirsyncer and khal configuration; prompts confirmation for destructive or ambiguous calendar changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide agents to modify real calendar events, including recurring events and deletes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed writes carefully, prefer bounded windows and explicit calendar scope, and require read-back verification after create, update, or delete operations.
+
+Risk: Ambiguous event matches or stale local sync state can lead to wrong scheduling decisions or edits to the wrong event.
+
+Mitigation: Sync before freshness-sensitive reads, resolve exact dates and time zones before writing, and stop when verification is ambiguous.
+
+Risk: Existing vdirsyncer conflict policy can overwrite local or remote calendar data.
+
+Mitigation: Inspect conflict behavior before risky operations and avoid manual filesystem edits, cache resets, or storage path changes unless they are deliberate and reversible.
+
+Risk: Calendar connection details, collection URLs, certificates, and sync configuration may expose private account information.
+
+Mitigation: Avoid including private connection details in summaries unless requested, and treat certificate or TLS failures as blockers until the trust issue is fixed.
+
+## Reference(s):
+
+- [CalDAV Skill Page](https://clawhub.ai/ivangdavila/skills/caldav)
+- [CalDAV Homepage](https://clawic.com/skills/caldav)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calendar scope, time window, action taken or proposed, verification status, and whether another sync is needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

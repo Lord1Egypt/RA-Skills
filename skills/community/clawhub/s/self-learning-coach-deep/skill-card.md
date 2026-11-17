@@ -1,42 +1,52 @@
-## Description: <br>
-Self Learning Coach Deep guides AI agents through quick, standard, or deep learning paths, generating source-grounded HTML lessons, business-context analysis, practice tasks, progress tracking, and source records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep self-learning coach for agents that helps users choose a learning mode and produces source-grounded lessons, learning paths, business scenario mapping, case analysis, practice tasks, progress tracking, and source records.
 
-## Publisher: <br>
-[zzj997](https://clawhub.ai/user/zzj997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zzj997](https://clawhub.ai/user/zzj997)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external learners, and developers use this skill to turn a topic, business problem, or provided material into a guided learning path with source-grounded HTML lessons, business-context mapping, case walkthroughs, and practice tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Private or sensitive learning materials may be summarized into generated lesson files and stored in the workspace.
+
+Mitigation: Use only authorized source materials, confirm read-only access is appropriate, and review generated files before sharing them outside the intended audience.
+
+Risk: Generated lessons, case analysis, or business mapping may be incomplete or misleading if source access fails or the available material is weak.
+
+Mitigation: Check the lesson source overview, inline source markers, and bottom references before relying on the output for business decisions or training.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external learners, and developers use this skill with capable agents to turn user-provided materials, web sources, or Feishu/internal documents into structured lessons that connect concepts to business scenarios and practice. It is especially suited to guided self-learning, case diagnosis, and training-material style lesson generation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Lesson files and source records may include sensitive content from user-provided Feishu or local materials. <br>
-Mitigation: Use approved materials only, review generated lesson and source files before sharing, and avoid exposing private links, local paths, or permission-sensitive metadata. <br>
-Risk: Generated learning content may contain incorrect or misleading explanations, citations, or business recommendations. <br>
-Mitigation: Review source grounding, inline markers, and case analysis before relying on the lesson for training or operational decisions. <br>
-Risk: When used in Feishu-capable environments, generated HTML may be sent to a chat or recipient selected by the agent workflow. <br>
-Mitigation: Confirm the intended channel or recipient and inspect generated HTML before delivery when sensitive material is involved. <br>
+**Output Format:** [Markdown chat responses, self-contained HTML lesson files, and Markdown progress/source records]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzj997/skills/self-learning-coach-deep) <br>
+**Other Properties Related to Output:** [Produces mode choices, lesson plans, lesson files, progress tracking, source records, and concise fallback guidance when source access or delivery fails.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown chat responses, self-contained HTML lesson files, and Markdown tracking tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates lesson files under lessons/, updates LEARNING_STATUS.md and LEARNING_SOURCES.md, and may use Feishu file delivery when available.] <br>
+0.1.2 (source: server release metadata and skill title)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

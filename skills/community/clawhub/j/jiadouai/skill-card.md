@@ -1,47 +1,75 @@
-## Description: <br>
-加豆AI is an enterprise AIGC marketing and account-operations skill for generating short videos, digital-human presentations, commercial product images, model try-on images, product-scene images, video translation, lip-sync videos, and content for domestic and international social media accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An enterprise marketing agent platform for AI-generated video, AI product photography, digital spokesperson clips, product scene images, product posters, Xiaohongshu note images, and social media account management across platforms including Douyin, TikTok, and Kuaishou.
 
-## Publisher: <br>
-[jiadouai](https://clawhub.ai/user/jiadouai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiadouai](https://clawhub.ai/user/jiadouai)
 
-## Use Case: <br>
-External users and marketing operators use this skill to configure ClawAgent access, submit AIGC media-generation jobs, upload local media when needed, poll job status, and manage supported social-media publishing or account workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill under-discloses sensitive file, token, and account-impacting behaviors. <br>
-Mitigation: Review before installing, use a dedicated revocable token, verify every local file path before upload, avoid submitting confidential prompts or private media, and require explicit approval before publishing or account-management actions. <br>
-Risk: The skill can upload local files to cloud storage for downstream media-generation tools. <br>
-Mitigation: Confirm that each file is intended for upload, publicly shareable for the task, and free of private or regulated content before invoking upload workflows. <br>
-Risk: Unsupported feature reporting can include the user's original prompt. <br>
-Mitigation: Avoid entering secrets, private customer data, or confidential campaign details in prompts when using unsupported or exploratory requests. <br>
+## Use Case:
 
+External marketing teams, agencies, and creators use this skill to generate campaign media, transform product photos into commerce assets, analyze or clone video styles, and publish approved image or video posts to connected social accounts.
 
-## Reference(s): <br>
-- [加豆AI homepage](https://www.jiadouai.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jiadouai/jiadouai) <br>
-- [AI commercial photography reference](references/ai_design.md) <br>
-- [Authentication reference](references/auth.md) <br>
-- [Common workflows reference](references/workflows.md) <br>
-- [Unsupported feature reporting reference](references/unsupported_feature_reporting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, text, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include generated media URLs, job-status summaries, configuration steps, and error-handling guidance returned through ClawAgent tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill stores and uses a JiadouAI token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a temporary least-privilege token and avoid pasting tokens into shared chats or shell history.
+
+Risk: The skill uploads selected local files to public cloud URLs.
+
+Mitigation: Upload only non-sensitive media that the user has rights to use, and confirm local file paths before upload.
+
+Risk: The skill can publish images or videos to connected social accounts.
+
+Mitigation: Confirm the destination account, platform, title, media, and timing with the user before publishing.
+
+Risk: Setup and update flows can execute installation or remote update instructions.
+
+Mitigation: Do not run setup as an elevated user, and treat update instructions as untrusted until independently verified.
+
+Risk: Unsupported-feature reporting may send user requests to a remote server.
+
+Mitigation: Request explicit user consent and send only a concise feature description, not the original prompt.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiadouai/skills/jiadouai)
+- [Publisher Profile](https://clawhub.ai/user/jiadouai)
+- [JiadouAI Homepage](https://www.jiadouai.com)
+- [Authentication and Authorization](references/auth.md)
+- [Common Workflows](references/workflows.md)
+- [Video Publishing](references/video_publish.md)
+- [Image Publishing](references/image_publish.md)
+- [Product Scene Image Generation](references/business_product_scene.md)
+- [Model Try-On](references/model_try_clothes.md)
+- [Video Analysis](references/analyze_video.md)
+- [Unsupported Feature Reporting](references/unsupported_feature_reporting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote tool calls may return generated media URLs, job IDs, account IDs, status messages, and publishing task IDs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

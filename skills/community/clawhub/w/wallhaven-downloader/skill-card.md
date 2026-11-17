@@ -1,43 +1,58 @@
-## Description: <br>
-Download wallpapers in batch from wallhaven.cc via API v1 with flexible query parameters for search, category, purity, sorting, resolution, ratio, color, seed, and pagination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download wallpapers in batch from wallhaven.cc via API v1 with flexible query parameters for query, category, purity, sorting, resolution, ratio, color, page, and seed.
 
-## Publisher: <br>
-[jingyuan9527](https://clawhub.ai/user/jingyuan9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jingyuan9527](https://clawhub.ai/user/jingyuan9527)
 
-## Use Case: <br>
-Developers and external users can use this skill when an agent needs to download one or more Wallhaven wallpapers into a target folder using explicit search filters or a Wallhaven search URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Wallhaven and saves wallpaper files locally. <br>
-Mitigation: Install only for workflows that need Wallhaven downloads, use a dedicated output folder, and set a reasonable --count. <br>
-Risk: A Wallhaven API key may be needed for gated results. <br>
-Mitigation: Pass the key only through --apikey or WALLHAVEN_API_KEY; the script redacts the key in the generated manifest. <br>
-Risk: Changing network targets could broaden where the agent sends requests. <br>
-Mitigation: Keep the default HTTPS Wallhaven API endpoint and rely on the script's host allowlist and private-address checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wallhaven API Search Endpoint](https://wallhaven.cc/api/v1/search) <br>
-- [Wallhaven](https://wallhaven.cc) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jingyuan9527/wallhaven-downloader) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate Wallhaven wallpaper download commands and run a bundled downloader for filtered wallpaper collections. It is suited for batch downloads into a chosen output folder with a manifest of downloaded items.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled script writes image files and a JSON manifest.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and curl. May use WALLHAVEN_API_KEY or --apikey for gated Wallhaven results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Wallhaven API key can be exposed in local process arguments.
+
+Mitigation: Avoid passing the API key on the command line; use a low-risk Wallhaven key and rotate it if exposure is suspected.
+
+Risk: Downloads may follow redirects outside the stated host limits.
+
+Mitigation: Run the skill in a controlled environment and use a dedicated output directory until redirect handling is reviewed.
+
+Risk: The skill downloads remote image files to a user-selected folder.
+
+Mitigation: Choose a dedicated destination directory and review the generated manifest before using the downloaded files elsewhere.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jingyuan9527/skills/wallhaven-downloader)
+- [Wallhaven API Search Endpoint](https://wallhaven.cc/api/v1/search)
+- [Wallhaven Search](https://wallhaven.cc/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples and JSON manifest output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The downloader writes image files and a manifest.json file in the selected output directory.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

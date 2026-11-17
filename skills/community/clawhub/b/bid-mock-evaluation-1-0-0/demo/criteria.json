@@ -1,0 +1,47 @@
+[
+  {
+    "id": "C00",
+    "factor": "企业资质",
+    "score": 6.0,
+    "standard": "具备电子与智能化工程专业承包一级资质得3分；提供ISO9001质量管理体系认证得3分，须提供证书复印件，否则不得分。",
+    "type": "objective",
+    "evidence_required": true,
+    "needs_review": false
+  },
+  {
+    "id": "C01",
+    "factor": "类似业绩",
+    "score": 10.0,
+    "standard": "近三年每提供1个类似项目业绩得2分，最多10分，须提供合同关键页作为证明。",
+    "type": "objective",
+    "evidence_required": true,
+    "needs_review": false
+  },
+  {
+    "id": "C02",
+    "factor": "技术方案",
+    "score": 15.0,
+    "standard": "方案完整合理、量化指标明确得10-15分；较合理得5-9分；不合理得0-4分。由评委酌情打分。",
+    "type": "subjective",
+    "evidence_required": false,
+    "needs_review": false
+  },
+  {
+    "id": "C03",
+    "factor": "项目团队",
+    "score": 9.0,
+    "standard": "项目经理具高级职称得3分，须提供社保证明；团队成员每具相关证书得2分，最多6分。",
+    "type": "objective",
+    "evidence_required": true,
+    "needs_review": false
+  },
+  {
+    "id": "C04",
+    "factor": "售后服务",
+    "score": 10.0,
+    "standard": "服务方案完善、响应时间≤2小时得8-10分；较完善得4-7分；不完善得0-3分。",
+    "type": "subjective",
+    "evidence_required": false,
+    "needs_review": false
+  }
+]

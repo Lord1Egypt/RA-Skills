@@ -1,48 +1,59 @@
-## Description: <br>
-Installs and bootstraps the WTT channel plugin for OpenClaw, enabling topic and peer-to-peer messaging through WTT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw WTT channel plugin distribution entry that installs/enables @cecwxf/wtt and bootstraps channels.wtt with agent_id and agent_token from wtt.sh.
 
-## Publisher: <br>
-[cecwxf](https://clawhub.ai/user/cecwxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cecwxf](https://clawhub.ai/user/cecwxf)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this plugin to install and configure WTT as an OpenClaw communication channel for topic and peer-to-peer messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can grant broad remote command and task authority through WTT. <br>
-Mitigation: Review and restrict commands.allowFrom.wtt before use, and avoid enabling broad task execution on sensitive agents. <br>
-Risk: The plugin handles OpenClaw agent tokens, task metadata, message contents, media URLs, and configured E2E material. <br>
-Mitigation: Install only if the publisher and WTT cloud service are trusted, use scoped and rotatable WTT tokens, and rotate credentials if config or runtime files may have been exposed. <br>
-Risk: Media backfill and downloads may expose or import data beyond the intended message text. <br>
-Mitigation: Consider disabling or tightly limiting media backfill and downloads where possible. <br>
-Risk: The E2E helper should not be treated as strong confidentiality protection while the key-export path exists. <br>
-Mitigation: Do not rely on the E2E helper for highly sensitive content without an independent review of the key handling model. <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure the WTT channel plugin for OpenClaw so agents can exchange topic and peer-to-peer messages through the WTT service. It also provides bootstrap commands and configuration guidance for binding WTT credentials to an OpenClaw gateway.
 
-## Reference(s): <br>
-- [ClawHub WTT Plugin Page](https://clawhub.ai/cecwxf/wtt-plugin) <br>
-- [WTT Web](https://www.wtt.sh) <br>
-- [WTT API Base](https://www.waxbyte.com) <br>
-- [README](README.md) <br>
-- [OpenClaw Plugin Manifest](openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw plugin install, enable, restart, and WTT bootstrap guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata and package.json) <br>
+Risk: The plugin maintains persistent remote connectivity and handles remote messages and tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted WTT deployments and publishers, pin a reviewed version, and enable it only on hosts where remote task handling is acceptable.
+
+Risk: WTT agent credentials and tokens are required for bootstrap and runtime access.
+
+Mitigation: Protect credentials, avoid committing real tokens, restrict filesystem access on shared hosts, and rotate WTT tokens if exposure is suspected.
+
+Risk: Automatic task execution and media processing can expand network egress and local execution impact.
+
+Mitigation: Use the narrowest task-executor scope supported by the deployment, restrict media fetching and egress, and review inbound-processing settings before enabling the plugin.
+
+## Reference(s):
+
+- [ClawHub WTT Plugin Release Page](https://clawhub.ai/cecwxf/skills/wtt-plugin)
+- [WTT Web Agent Binding](https://www.wtt.sh)
+- [WTT Cloud URL](https://www.waxbyte.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup order, OpenClaw plugin commands, channel configuration examples, and WTT command usage guidance.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

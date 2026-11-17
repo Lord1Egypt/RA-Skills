@@ -77,6 +77,8 @@ export HT_SKILL_TOKEN="你的个人Token"
 
 **请求体**：`{"name": "...", "description": "...", "brief": "...", "get_if_exists": bool}`
 
+新建成功时 API 返回 `cover_notice`（封面半小时内自动生成、暂不支持自定义、改名可能不一致），请转告用户。
+
 ---
 
 ### list_collections.py — 查询文集列表
@@ -114,6 +116,8 @@ export HT_SKILL_TOKEN="你的个人Token"
 
 **路径参数**：`{id}`  
 **请求体**：`{"name": "...", "description": "...", "brief": "..."}`（均为可选）
+
+更新 `--name` 时 API 返回 `cover_notice`（改名可能导致封面与名称不一致）。
 
 ---
 
@@ -190,10 +194,11 @@ export HT_SKILL_TOKEN="你的个人Token"
 |------|------|------|------|
 | `--id` | int | 是 | 文档 ID |
 | `--collection-id` | int | 是 | 目标文集 ID |
-| `--from-collection-id` | int | 否 | 原文集 ID（若文档属于多个文集则必填） |
 
 **路径参数**：`{id}`（文档 ID）  
-**请求体**：`{"collection_id": int, "from_collection_id": int?}`
+**请求体**：`{"collection_id": int}`  
+
+说明：一篇文档只属于一个文集；移动即改归属，无需原文集参数。
 
 ---
 
@@ -308,9 +313,8 @@ python scripts/update_document.py --id 10 --content-file ./new_content.md
 # 设置文档层级
 python scripts/set_document_parent.py --collection-id 1 --document-id 5 --parent 3 --sort 1
 
-# 修改文档归属（移动到另一文集）
+# 修改文档归属（移动到另一文集；一篇文档只属于一个文集）
 python scripts/move_document.py --id 10 --collection-id 2
-python scripts/move_document.py --id 10 --collection-id 2 --from-collection-id 1  # 文档属于多文集时
 
 # 查询当前用户个人花园限制与用量
 python scripts/get_garden_limits_usage.py

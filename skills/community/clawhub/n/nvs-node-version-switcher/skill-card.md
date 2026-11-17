@@ -1,45 +1,55 @@
-## Description: <br>
-Manage Node.js versions using NVS (Node Version Switcher). Use when switching Node.js versions, installing new versions, managing version aliases, or when the user mentions NVS, node version management, or needs to change the active Node.js version in the current environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Node.js versions using NVS (Node Version Switcher). Use when switching Node.js versions, installing new versions, managing version aliases, or when the user mentions NVS, node version management, or needs to change the active Node.js version in the current environment.
 
-## Publisher: <br>
-[zhuzeyu22](https://clawhub.ai/user/zhuzeyu22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuzeyu22](https://clawhub.ai/user/zhuzeyu22)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, switch, list, remove, and troubleshoot Node.js versions with NVS across project environments. It also helps configure aliases, automatic version switching, global package migration, custom remotes, and VS Code integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose commands that clone from GitHub, source shell scripts, or download Node.js builds. <br>
-Mitigation: Review each command before execution and confirm the source, path, and target version are appropriate for the environment. <br>
-Risk: The skill may propose persistent environment changes such as aliases, default links, or NVS auto-switching. <br>
-Mitigation: Require explicit confirmation before applying persistent changes and verify the active Node.js version after the change. <br>
-Risk: The skill may propose removing Node.js versions or migrating global npm packages. <br>
-Mitigation: Confirm the affected versions and package scope before removal or migration commands are run. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, switch, and troubleshoot Node.js versions with NVS across local development environments and project workflows.
 
-## Reference(s): <br>
-- [NVS project repository referenced by the skill](https://github.com/jasongin/nvs) <br>
-- [NVS command reference](artifact/REFERENCE.md) <br>
-- [NVS usage examples](artifact/EXAMPLES.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhuzeyu22/nvs-node-version-switcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that install NVS, download Node.js versions, change shell environment variables, or set persistent Node.js defaults.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled installer can fetch and immediately run unpinned remote shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer a trusted package manager or pinned verified NVS release, and run the bundled install script only after accepting the remote-code execution and shell-configuration changes.
+
+Risk: Automatic switching and persistent defaults can change the active Node.js version for future shell sessions or directories.
+
+Mitigation: Confirm the intended project version before enabling auto-switching or setting persistent defaults, and verify the active version with NVS status commands.
+
+## Reference(s):
+
+- [NVS upstream repository](https://github.com/jasongin/nvs)
+- [Node.js nightly downloads](https://nodejs.org/download/nightly/)
+- [io.js distributions](https://iojs.org/dist/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration snippets, and short explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OS-specific install commands, Node.js version selections, alias names, and troubleshooting checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

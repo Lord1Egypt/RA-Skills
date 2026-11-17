@@ -1,43 +1,55 @@
-## Description: <br>
-Explains the role, requirements, costs, and privacy implications of LLC registered agents and whether someone can serve as their own registered agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains the role, requirements, costs, and privacy implications of LLC registered agents and whether someone can serve as their own agent.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-External users and business-formation advisors use this skill to answer common LLC registered-agent questions about legal role, service-of-process availability, privacy, costs, and state-specific considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational registered-agent information as legal advice. <br>
-Mitigation: State that the content is general education and recommend official state sources or a qualified professional for lawsuits, subpoenas, complex compliance, or formation decisions. <br>
-Risk: Promotional LLCClass links may be mistaken for neutral legal or compliance authority. <br>
-Mitigation: Present linked LLCClass material as publisher-provided educational content and encourage verification against official state requirements. <br>
+## Use Case:
 
+Business owners, founders, and agents use this skill to answer common questions about LLC registered agents, including legal role, address and availability requirements, cost, privacy, and when an in-state service may be needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zlc000190/llc-registered-agent-guide) <br>
-- [LLCClass Registered Agent Guide](https://llcclass.com/what-is-llc-registered-agent) <br>
-- [LLCClass Formation Guide](https://llcclass.com/get-started) <br>
-- [LLCClass Wyoming Guide](https://llcclass.com/wyoming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text response guidance with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a legal-advice limitation and recommends professional support for lawsuits, subpoenas, or complex compliance questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Responses may include a specific LLCClass link and should not be treated as neutral legal advice or an official government source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the branded informational nature of the guidance and verify legal or compliance decisions against official state sources or qualified professionals.
+
+Risk: Users may ask about lawsuits, subpoenas, or complex compliance matters that require professional legal judgment.
+
+Mitigation: Limit answers to general information and recommend qualified professional support for lawsuits, subpoenas, or complex compliance questions.
+
+## Reference(s):
+
+- [LLCClass registered agent guide](https://llcclass.com/what-is-llc-registered-agent)
+- [LLCClass formation guide](https://llcclass.com/get-started)
+- [LLCClass Wyoming guide](https://llcclass.com/wyoming)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with relevant links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Branded informational guidance; not legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

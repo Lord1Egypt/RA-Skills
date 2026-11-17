@@ -1,41 +1,52 @@
-## Description: <br>
-Overlay text on photos for Instagram posts by generating portrait (4:5) images with gradient overlays, titles, and optional numbered lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Instagram-ready portrait images by overlaying titles, gradient treatments, optional numbered lists, quotes, and watermark text on a source photo.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-External creators, social media managers, and developers use this skill to turn selected photos into Instagram-ready portrait images with readable titles, list items, quotes, watermarks, and accent colors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing or running dependencies from an untrusted source could introduce supply-chain risk. <br>
-Mitigation: Install Pillow only from a trusted package source and run the script from the skill directory. <br>
-Risk: The output path may overwrite an existing file. <br>
-Mitigation: Choose a deliberate output filename that does not point to an important existing file. <br>
-Risk: Input photos may contain private or sensitive content. <br>
-Mitigation: Use photos that are intended for local processing and sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/psyduckler/instagram-photo-text-overlay) <br>
+## Use Case:
 
+Developers and content-producing agents use this skill to turn user-supplied photos and post copy into 4:5 Instagram carousel, list, cover, or quote images.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [JPEG image files plus Markdown or plain-text command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates 4:5 portrait images; requires local Python 3 and Pillow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated images include the default tabiji.ai watermark unless the agent disables or replaces it.
+
+Mitigation: Review the watermark setting before publishing and pass an empty or approved --watermark value when required.
+
+Risk: The documented Pillow install command is unpinned, which can affect reproducibility across environments.
+
+Mitigation: Use a virtual environment and pin the Pillow version for controlled or repeatable deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/instagram-photo-text-overlay)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, files, text]
+
+**Output Format:** [JPEG image file with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a cropped 4:5 portrait image; style options are list, clean, and quote.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

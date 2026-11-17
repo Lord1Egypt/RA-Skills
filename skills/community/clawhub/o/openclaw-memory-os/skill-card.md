@@ -1,43 +1,65 @@
-## Description: <br>
-OpenClaw Memory-OS provides a local conversation and file memory workflow for saving, searching, and recalling personal knowledge through CLI and agent usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Memory OS helps agents capture, store, search, and recall local personal memories through a Node.js CLI and API.
 
-## Publisher: <br>
-[zhenstaff](https://clawhub.ai/user/zhenstaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to install and operate a local memory system that stores selected conversations, notes, files, and searchable personal knowledge under the user's control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversations and files into local memory storage, and the security summary notes inconsistent privacy safeguards. <br>
-Mitigation: Keep AUTO-TRIGGER disabled until tested, prefer manual save commands, and review saved memory files regularly. <br>
-Risk: Release provenance is unavailable and artifact documentation contains inconsistent version and source references. <br>
-Mitigation: Verify the exact npm package and matching source commit before installation or use. <br>
-Risk: Stored memories may be readable as plaintext under ~/.memory-os. <br>
-Mitigation: Restrict file permissions, collect only specific non-sensitive folders, and add encryption or encrypted storage where confidentiality is required. <br>
+## Use Case:
 
+Developers and external users can use this skill to add local conversation memory, note collection, keyword search, and recall workflows to an agent. It is most appropriate when users want explicit local storage under their control and can review what is saved.
 
-## Reference(s): <br>
-- [OpenClaw Memory-OS homepage](https://github.com/ZhenRobotics/openclaw-memory-os) <br>
-- [OpenClaw Memory-OS README](https://github.com/ZhenRobotics/openclaw-memory-os/blob/main/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install and operate an external npm CLI that writes local JSON memory files under ~/.memory-os/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.21 (source: server release metadata) <br>
+Risk: The package is installed from npm and security evidence recommends verifying the exact package version, tarball integrity, and matching source commit before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the npm package before installing, compare it with the intended source, and test installation in a sandbox or isolated environment first.
+
+Risk: Stored memories are local JSON files and should be treated as unencrypted local data.
+
+Mitigation: Avoid storing secrets or regulated data, restrict file permissions on the memory directory, and place the memory directory on encrypted storage if confidentiality is required.
+
+Risk: Broad collection paths or auto-trigger behavior can capture more information than intended.
+
+Mitigation: Keep auto-trigger disabled unless reviewed, collect only narrow non-sensitive paths, and regularly inspect and delete unwanted memory files.
+
+Risk: Artifact documentation contains inconsistent claims about versions and security behavior.
+
+Mitigation: Use the ClawHub release metadata as the release version for this card and verify runtime behavior against the installed package before deployment.
+
+## Reference(s):
+
+- [OpenClaw Memory OS Homepage](https://github.com/ZhenRobotics/openclaw-memory-os)
+- [OpenClaw Memory OS README](https://github.com/ZhenRobotics/openclaw-memory-os/blob/main/README.md)
+- [OpenClaw Memory OS Security](https://github.com/ZhenRobotics/openclaw-memory-os/blob/main/SECURITY.md)
+- [OpenClaw Memory OS npm Package](https://www.npmjs.com/package/openclaw-memory-os)
+- [OpenClaw Memory OS ClawHub Page](https://clawhub.ai/zhenstaff/skills/openclaw-memory-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or query local JSON memory files through the OpenClaw Memory OS CLI when installed and invoked by the user or agent.]
+
+## Skill Version(s):
+
+0.1.21 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

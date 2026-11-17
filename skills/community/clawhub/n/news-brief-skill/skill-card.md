@@ -1,44 +1,59 @@
-## Description: <br>
-News Brief Skill creates personalized daily news summaries from configured topics and sources, then delivers them through user-selected channels with feedback-based preference updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates personalized news briefs from configured interests, summarizes matching stories, delivers them through user-selected channels, and supports feedback-driven adjustments.
 
-## Publisher: <br>
-[17oko](https://clawhub.ai/user/17oko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[17oko](https://clawhub.ai/user/17oko)
 
-## Use Case: <br>
-External users and agent operators use this skill to receive recurring, interest-based news briefs across configured topics such as technology, finance, politics, and general news. It also supports feedback-driven adjustments to content, format, delivery channel, and schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores user identifiers, preferences, logs, backups, and delivery credentials. <br>
-Mitigation: Use revocable webhook or bot tokens, avoid reusing sensitive email passwords, and delete stored configs, logs, backups, and feedback history when no longer needed. <br>
-Risk: Scheduled outbound delivery can send content to configured channels without a manual action each time. <br>
-Mitigation: Confirm delivery channels, schedule, and frequency before enabling recurring briefs, and ensure operators can pause or disable delivery. <br>
-Risk: Privacy and secret-handling disclosures are incomplete in the available evidence. <br>
-Mitigation: Review local storage, credential handling, and retention behavior before deployment, especially for shared or managed environments. <br>
+## Use Case:
 
+External users and operators use this skill to collect news from configured APIs, RSS feeds, and crawlers, then receive concise topic-focused briefs through channels such as chat, email, DingTalk, or Telegram. Developers may also adapt the configuration and scripts to add sources, delivery channels, or summarization behavior.
 
-## Reference(s): <br>
-- [News Brief Skill documentation](references/documentation.md) <br>
-- [ClawHub release page](https://clawhub.ai/17oko/news-brief-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/17oko) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Plain text or Markdown news brief with structured news items, credibility labels, and feedback prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local user preferences and delivery settings based on feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User IDs and backup paths can affect local file locations used for configuration, logs, and recovery data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate and normalize user_id values before filesystem use, isolate each user directory, and enforce bounded backup retention before multi-user deployment.
+
+Risk: The skill sends requests to news sources and delivery endpoints, including user-configured webhooks and messaging APIs.
+
+Mitigation: Run with restricted outbound network access and allowlist only intended news and delivery providers.
+
+Risk: SMTP, bot, and webhook credentials may be stored for delivery integrations.
+
+Mitigation: Use a contained non-privileged account, avoid high-value credentials, and improve secret storage before production use.
+
+## Reference(s):
+
+- [News Brief Skill Detailed Documentation](references/documentation.md)
+- [ClawHub Skill Page](https://clawhub.ai/17oko/skills/news-brief-skill)
+- [Publisher Profile](https://clawhub.ai/user/17oko)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown-style news brief text with configuration guidance and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source labels, credibility notes, delivery status, feedback prompts, and preview briefs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

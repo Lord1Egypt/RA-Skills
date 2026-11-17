@@ -1,43 +1,59 @@
-## Description: <br>
-Dblp provides MCP-based access to DBLP literature search, citation generation, and BibTeX formatting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个通过模型上下文协议（MCP）提供DBLP计算机科学文献数据库访问的服务，支持学术文献检索、引用生成及格式化功能。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to search DBLP publications, retrieve author and venue information, calculate publication statistics, and collect or export BibTeX entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends API keys and literature queries to the third-party Xiaobenyang MCP service. <br>
-Mitigation: Install only where that service is trusted for the intended data, and avoid submitting sensitive literature queries unless approved. <br>
-Risk: The artifact can store XBY_APIKEY in a local .env file. <br>
-Mitigation: Prefer providing XBY_APIKEY through an environment variable or managed secret store instead of persisting it in the workspace. <br>
-Risk: Some artifact wording references stale Gaokao/search_schools behavior that does not match the DBLP release purpose. <br>
-Mitigation: Review the tool descriptions and generated outputs before relying on results in production workflows. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to search DBLP publications, inspect author or venue data, calculate publication statistics, collect BibTeX entries, and export citation files.
 
-## Reference(s): <br>
-- [ClawHub Dblp skill page](https://clawhub.ai/cainingnk/dblp) <br>
-- [Xiaobenyang API key and service site](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, BibTeX files, configuration guidance] <br>
-**Output Format:** [Markdown summaries with structured tool results and optional .bib file exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Xiaobenyang API key; search results depend on the third-party MCP service and DBLP data returned by that service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requires a XiaoBenYang API key and stores it in a plaintext .env file in the working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped key where possible, keep the workspace private, rotate the key after use, and prefer a revised release that uses secure secret storage.
+
+Risk: Searches, citation selections, statistics inputs, and export paths may be sent to the XiaoBenYang MCP service.
+
+Mitigation: Avoid submitting sensitive unpublished research details or local-only paths, and review the upstream service before deployment.
+
+Risk: The security evidence marks the release suspicious because credential storage and third-party data handling are under-disclosed.
+
+Mitigation: Install only after reviewing the security summary, publisher identity, and upstream service behavior for the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/dblp)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+- [XiaoBenYang MCP service](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text summaries, JSON-like API results, and BibTeX content or files for citation export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key; BibTeX export writes to a user-selected .bib path.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

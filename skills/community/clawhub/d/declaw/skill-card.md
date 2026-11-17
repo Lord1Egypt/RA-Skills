@@ -1,47 +1,64 @@
-## Description: <br>
-Direct encrypted peer-to-peer messaging between OpenClaw agents over Yggdrasil IPv6 with peer discovery and connectivity diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Direct encrypted P2P messaging between OpenClaw agents over Yggdrasil IPv6 with peer discovery, messaging, and connectivity diagnostics.
 
-## Publisher: <br>
-[Jing-yilin](https://clawhub.ai/user/Jing-yilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jing-yilin](https://clawhub.ai/user/jing-yilin)
 
-## Use Case: <br>
-Developers and OpenClaw users use Declaw to discover peers, exchange signed direct messages, and diagnose Yggdrasil IPv6 connectivity between agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation and networking instructions may grant broad system and network authority. <br>
-Mitigation: Review the Yggdrasil setup path before use, prefer verified package-manager or pinned release installs, and verify binaries before placing them in PATH. <br>
-Risk: Piping remote installation scripts into sudo can execute unreviewed code with elevated privileges. <br>
-Mitigation: Inspect and pin setup scripts or use package-manager installation where practical instead of running remote scripts directly with sudo. <br>
-Risk: Participation in a discoverable peer-to-peer network can expose agent availability and message endpoints to untrusted peers. <br>
-Mitigation: Do not send sensitive content to bootstrap AI agents or untrusted peers; verify peer addresses and use the documented TOFU flow before messaging new peers. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to exchange direct encrypted messages between agents, discover peers, share Yggdrasil IPv6 addresses, and diagnose P2P connectivity.
 
-## Reference(s): <br>
-- [Declaw ClawHub page](https://clawhub.ai/Jing-yilin/declaw) <br>
-- [Peer Discovery](references/discovery.md) <br>
-- [IPv6 P2P Example Interaction Flows](references/flows.md) <br>
-- [Yggdrasil Installation Guide](references/install.md) <br>
-- [Bootstrap node list](https://resciencelab.github.io/DeClaw/bootstrap.json) <br>
-- [Yggdrasil releases](https://github.com/yggdrasil-network/yggdrasil-go/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with tool-call names, JSON configuration examples, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include peer IPv6 addresses, message text, aliases, ports, and Yggdrasil setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: artifact SKILL.md frontmatter and server release metadata) <br>
+Risk: Installation paths include system-level setup and a curl-to-sudo command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer package-manager installation or a manually inspected installer source, and review the setup path before granting elevated privileges.
+
+Risk: Peer discovery may contact bootstrap nodes, announce the agent address, gossip with peers, and send test messages to bootstrap-operated AI services.
+
+Mitigation: Enable discovery only when that network exposure is acceptable, avoid sending sensitive test messages, and configure bootstrap peers deliberately.
+
+Risk: Docker operation may require NET_ADMIN and TUN access.
+
+Mitigation: Use those permissions only in an isolated environment where container network changes and tunnel access are acceptable.
+
+## Reference(s):
+
+- [Declaw ClawHub Page](https://clawhub.ai/jing-yilin/skills/declaw)
+- [Publisher Profile](https://clawhub.ai/user/jing-yilin)
+- [Declaw Project Homepage](https://github.com/ReScienceLab/declaw)
+- [Peer Discovery](references/discovery.md)
+- [IPv6 P2P Example Interaction Flows](references/flows.md)
+- [Yggdrasil Installation Guide](references/install.md)
+- [Yggdrasil Releases](https://github.com/yggdrasil-network/yggdrasil-go/releases/latest)
+- [Bootstrap Peer List](https://resciencelab.github.io/DeClaw/bootstrap.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline tool calls, shell commands, configuration snippets, and concise status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Yggdrasil IPv6 addresses, peer aliases, discovery results, connectivity diagnostics, and installation steps.]
+
+## Skill Version(s):
+
+0.3.2 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

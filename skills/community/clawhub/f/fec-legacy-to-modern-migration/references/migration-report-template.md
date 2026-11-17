@@ -1,41 +1,41 @@
-# 迁移分析报告模板
+# Migration analysis report template
 
 ```markdown
-# 迁移分析报告
+# Migration analysis report
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 评审工具: frontend-craft
+> Generation time: YYYY-MM-DD HH:mm
+> Review tool: frontend-craft
 
-## 策略选择
-- 渐进式 / 一次性重写:
-- 理由:
+## Strategy selection
+- Progressive/one-time rewrite:
+- Reason:
 
-## 存量盘点
-- 页面数量:
-- 功能模块:
-- jQuery 插件:
-- 服务端模板:
-- API 调用方式:
+## Inventory inventory
+- Number of pages:
+- Function modules:
+- jQuery plugin:
+- Server template:
+- API calling method:
 
-## 依赖关系
-- 共享 JS/CSS:
-- 跨页面逻辑:
-- 后端接口契约:
+## Dependencies
+- Share JS/CSS:
+- Cross-page logic:
+- Backend interface contract:
 
-## 迁移优先级
-- 第一批:
-- 第二批:
-- 暂缓:
+## Migration priority
+- First batch:
+- Second batch:
+- Suspension:
 
-## 分阶段步骤
-- 阶段 0:
-- 阶段 1:
-- 阶段 2:
-- 阶段 3:
+## Phased steps
+- Stage 0:
+- Stage 1:
+- Stage 2:
+- Stage 3:
 
-## 风险与回滚
-- 风险:
-- 回滚方案:
+## Risk and rollback
+- Risk:
+- Rollback plan:
 ```
 
-迁移分析或计划完成后，将报告保存到 `reports/migration-plan-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After migration analysis or planning is completed, save the report to `reports/migration-plan-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.

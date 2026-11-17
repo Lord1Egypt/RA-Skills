@@ -1,37 +1,53 @@
-## Description: <br>
-Provides AI-assisted code handling, multilingual support, workflow automation, and batch operations for developers, teams, freelancers, and content creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Code Assistant provides AI-assisted code handling, multilingual support, batch operations, and workflow automation for development productivity.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, enterprise teams, freelancers, and content creators use this skill for AI-assisted code processing, multilingual development support, workflow automation, and batch coding tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The current artifact is sparse and mostly promotional, so it does not document operational boundaries for future code, install steps, file access, credentials, network integrations, or automated bulk actions. <br>
-Mitigation: Review future release diffs and security findings before deployment, especially if a version adds executable code, install hooks, credential handling, network integrations, or automated bulk actions. <br>
+## Use Case:
 
+Developers, teams, freelancers, and content creators use this skill for AI-assisted code work, multilingual code-related tasks, batch operations, and workflow automation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text with code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No structured output contract is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: release evidence) <br>
+Risk: The skill description is minimal and makes broad productivity and ROI claims without explaining exact workflows or controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm expected behavior, controls, and fit for the intended coding workflow before installation or deployment.
+
+Risk: Generated code, commands, or configuration guidance may be incomplete or incorrect for a specific project.
+
+Mitigation: Review outputs against project requirements and test changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-code-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, code snippets, command snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the user's coding task; the inspected artifact contains no executable code.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

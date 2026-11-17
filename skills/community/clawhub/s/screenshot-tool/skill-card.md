@@ -1,40 +1,53 @@
-## Description: <br>
-Screenshot Tool captures webpages and converts PPT, Word, Excel, and PDF documents into high-resolution PNG images while preserving layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures full-page webpages and converts PPT, Word, Excel, and PDF documents into high-resolution PNG images while preserving layout.
 
-## Publisher: <br>
-[834948655](https://clawhub.ai/user/834948655) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[834948655](https://clawhub.ai/user/834948655)
 
-## Use Case: <br>
-Developers, documentation authors, and operations teams use this skill to capture full or partial webpages and turn office documents or PDFs into PNG images for review, presentation, or publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted URLs or filenames may cause unintended local shell commands when the bundled scripts invoke subprocesses through the shell. <br>
-Mitigation: Use only trusted URLs and filenames, run the skill in a sandbox or disposable environment, and update scripts to call subprocess.run with argument lists and shell=False before broader deployment. <br>
-Risk: Screenshots and converted document images may expose sensitive content from logged-in pages or private files. <br>
-Mitigation: Review inputs before capture, store outputs in access-controlled locations, and delete generated images when they are no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to capture webpages or convert presentation, document, spreadsheet, and PDF files into PNG screenshots for review, sharing, or downstream visual workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/834948655/screenshot-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files with Markdown-style command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document conversion defaults to 300 DPI PNG output; webpage screenshots use agent-browser and may be full-page or viewport captures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Crafted URLs, filenames, or output paths could cause unintended local commands to run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained environment and avoid untrusted URLs, filenames, and output paths until command inputs are validated and safely executed.
+
+Risk: The documented setup uses global npm and pip installs plus sudo package installation.
+
+Mitigation: Review installation commands before use and prefer a disposable container or managed environment instead of a primary workstation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/834948655/skills/screenshot-tool)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifacts are PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses agent-browser for webpage screenshots and LibreOffice, poppler-utils, pdf2image, and Pillow for document conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

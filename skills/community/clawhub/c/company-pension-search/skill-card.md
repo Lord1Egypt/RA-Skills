@@ -1,46 +1,63 @@
-## Description: <br>
-智能查询企业年金及职业年金，自动识别单位性质和年金类型，多渠道验证并输出带来源链接的标准调查报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业年金/职业年金智能查询技能，可帮助代理识别单位性质、选择查询渠道、交叉验证企业年金或职业年金信息，并生成带来源链接和错误检查的调查报告。
 
-## Publisher: <br>
-[yanwenzhe](https://clawhub.ai/user/yanwenzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanwenzhe](https://clawhub.ai/user/yanwenzhe)
 
-## Use Case: <br>
-Employees, job candidates, benefits researchers, and analysts use this skill to investigate whether Chinese companies or public institutions offer enterprise annuities or occupational annuities, including likely annuity type, pension account bank roles, confidence, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Report and log file paths may include unsanitized company names. <br>
-Mitigation: Do not run the skill with company names or batch entries containing slashes, '..', or other path-like characters; review generated paths before keeping or sharing files. <br>
-Risk: Queries may disclose sensitive or confidential target names to the configured search provider. <br>
-Mitigation: Use the skill only for public-source company pension research and avoid sensitive target names unless the configured search provider is trusted. <br>
-Risk: Generated reports may contain incomplete or unverified conclusions. <br>
-Mitigation: Treat reports as templates requiring manual verification of source links, confidence levels, and final conclusions. <br>
-Risk: Saved reports, logs, or cache can persist investigation details locally. <br>
-Mitigation: Clear saved reports, logs, and cache when the investigation should not persist. <br>
+## Use Case:
 
+Employees, job candidates, benefits researchers, and agents use this skill to investigate whether Chinese companies or public institutions disclose enterprise annuity or occupational pension benefits. It guides search-channel selection, source reliability checks, pension-bank lookup, confidence scoring, and report generation.
 
-## Reference(s): <br>
-- [企业年金调查方法全指南](artifact/references/search-methods.md) <br>
-- [企业年金信息查询渠道拓展分析](artifact/references/advanced-search-channels.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yanwenzhe/company-pension-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, text summaries, JSON search output, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local report and log files; uses curl and jq, with optional Tavily API or SearXNG search configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata; artifact frontmatter reports 3.2.0) <br>
+Risk: Company names and investigation queries may be sent to external search services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive investigation targets, review search-provider settings before use, and prefer a controlled SearXNG endpoint when confidentiality matters.
+
+Risk: Batch and report scripts derive output paths from company names and use shell templating.
+
+Mitigation: Run scripts only in an isolated workspace, use trusted company-list files, and review or sanitize filenames before batch execution.
+
+Risk: Search scripts can call external skill scripts while inheriting configured credentials.
+
+Mitigation: Review, verify, or vendor search dependencies before installing, and avoid exporting sensitive API keys until that path has been checked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanwenzhe/skills/company-pension-search)
+- [Search methods reference](references/search-methods.md)
+- [Advanced search channels reference](references/advanced-search-channels.md)
+- [CNINFO annual reports](http://www.cninfo.com.cn/)
+- [Shanghai Stock Exchange disclosures](http://www.sse.com.cn/)
+- [Shenzhen Stock Exchange disclosures](http://www.szse.cn/)
+- [Eastmoney fund information](http://fund.eastmoney.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, text search summaries, shell command examples, and JSON configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, source links, pension-bank roles, raw investigation notes, and saved report files.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release evidence; artifact frontmatter and _meta.json list 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

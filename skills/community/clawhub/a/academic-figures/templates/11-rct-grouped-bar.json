@@ -1,0 +1,42 @@
+{
+ "_scene": "RCT 两组×多时点疗效对比（分组柱状图）",
+ "_description": "RCT 两组×多时点疗效对比（分组柱状图）（grouped_bar）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "grouped_bar",
+ "_command": "python3 scripts/gen_figure.py -t grouped_bar -d templates/11-rct-grouped-bar.json -o grouped_bar.pdf --theme nejm --verify",
+ "_caption_template": "图X | 试验组在各随访时点评分均低于对照组（Wk 24：3.8 vs 5.7，P<0.001）。",
+ "_note": "示例数字仅示意，请替换为你的真实数据（误差棒/显著性为 JSON 专属，CSV 不支持）",
+ "labels": [
+  "Wk 4",
+  "Wk 12",
+  "Wk 24"
+ ],
+ "series": {
+  "Control": [
+   6.2,
+   5.9,
+   5.7
+  ],
+  "Treatment": [
+   5.1,
+   4.2,
+   3.8
+  ]
+ },
+ "errors": {
+  "Control": [
+   0.6,
+   0.5,
+   0.6
+  ],
+  "Treatment": [
+   0.5,
+   0.6,
+   0.5
+  ]
+ },
+ "significance": {
+  "Treatment:0": "*",
+  "Treatment:1": "**",
+  "Treatment:2": "***"
+ }
+}

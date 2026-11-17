@@ -1,43 +1,58 @@
-## Description: <br>
-Deploys an automated three-agent translation pipeline for extracting source content, translating it between languages, and reviewing translations before publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an automated three-agent translation pipeline for extracting source content, translating it, reviewing quality, and publishing approved translations.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and localization operators use this skill to configure three coordinated agents that extract source material, translate it, and route approved translations to downstream systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup depends on local pilotctl and clawhub binaries and installs additional pilot skills. <br>
-Mitigation: Confirm the binaries and each pilot skill are trusted before installation or execution. <br>
-Risk: Incorrect or untrusted handshakes could route translation content to unintended peers. <br>
-Mitigation: Use trusted handshakes only and verify peer hostnames before subscribing or publishing. <br>
-Risk: External webhook publication can expose confidential or regulated translation content. <br>
-Mitigation: Configure webhook destinations carefully and use privacy, redaction, and audit controls before processing sensitive content. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a coordinated extractor, translator, and reviewer workflow for multilingual content pipelines. It provides role-specific setup guidance, required skills, hostnames, manifests, handshakes, and example data-flow commands.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-translation-pipeline-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON manifest examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup instructions for extractor, translator, and reviewer agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Setup commands use user-provided prefixes and role names when setting hostnames and writing manifests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a hostname-safe prefix containing only lowercase letters, numbers, and hyphens before running setup commands.
+
+Risk: The pipeline installs and links multiple dependent skills across agents.
+
+Mitigation: Review and pin dependent skills before installation, and verify each peer before completing handshakes.
+
+Risk: Approved translations may be published to an external webhook destination.
+
+Mitigation: Confirm that the destination is approved for the translated content before publishing.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-translation-pipeline-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON manifest examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific setup output for extractor, translator, or reviewer agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

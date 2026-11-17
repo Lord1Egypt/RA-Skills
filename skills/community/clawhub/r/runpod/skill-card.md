@@ -1,40 +1,57 @@
-## Description: <br>
-Manage RunPod GPU cloud instances - create, start, stop, connect to pods via SSH and API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage RunPod GPU cloud instances - create, start, stop, connect to pods via SSH and API.
 
-## Publisher: <br>
-[andrewharp](https://clawhub.ai/user/andrewharp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andrewharp](https://clawhub.ai/user/andrewharp)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage RunPod GPU instances, connect over SSH, mount pod filesystems with SSHFS, and access common web service ports during remote GPU work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a RunPod account, including pod lifecycle actions that may affect cost or availability. <br>
-Mitigation: Use limited credentials where possible and review state-changing or costly pod actions before running them. <br>
-Risk: The skill can mount remote pod filesystems over SSHFS, exposing local access to pod files. <br>
-Mitigation: Mount only selected pods and unmount SSHFS mounts when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [RunPod pod management on ClawHub](https://clawhub.ai/andrewharp/runpod) <br>
-- [RunPod user settings](https://console.runpod.io/user/settings) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage RunPod GPU pods, connect to them over SSH, mount pod filesystems with SSHFS, and find common service proxy URLs while working with remote GPU infrastructure.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides commands and filesystem paths for RunPod CLI, SSH, SSHFS mounts, and proxy URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use RunPod API configuration and SSH keys to access cloud GPU pods.
+
+Mitigation: Install and use it only when you trust RunPod and intend to give the agent access to the configured RunPod account and SSH credentials.
+
+Risk: Mounting a pod exposes that remote filesystem locally and may allow the agent to inspect or modify pod files.
+
+Mitigation: Mount only pods you intend to work with, verify the pod ID before mounting, and unmount the filesystem when finished.
+
+Risk: First-time SSH connections to newly created pods require host-key acceptance.
+
+Mitigation: Use the script's isolated RunPod known_hosts file and investigate unexpected host-key changes on reconnect.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andrewharp/skills/runpod)
+- [RunPod user settings](https://console.runpod.io/user/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include RunPod API, SSH, and SSHFS commands that operate on remote GPU pods.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

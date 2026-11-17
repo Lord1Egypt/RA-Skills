@@ -1,45 +1,58 @@
-## Description: <br>
-Prepares Dataify builder curl requests for selected X.com scraper tools, including twitter_profile_by-profileurl, using saved tool parameters and a DATAIFY_API_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects an X/Twitter profile from a known profile URL via Dataify; it is not intended for posts, keyword search, or arbitrary X URLs.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and operators use this skill to collect scraper parameters, normalize selected values, and generate a Dataify builder request for X.com profile or post scraping workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curl commands can expose the Dataify API token if copied into logs, chat, tickets, or shared terminals. <br>
-Mitigation: Use a secret manager or session-only environment variable, avoid sharing authenticated commands, and redact bearer tokens before saving or sending output. <br>
-Risk: The skill sends profile URLs, usernames, and other user-provided scraper parameters to Dataify's third-party API. <br>
-Mitigation: Submit only data intended for Dataify processing, and avoid private profile data, internal URLs, cookies, or regulated information unless that disclosure is approved. <br>
-Risk: A broad API token could allow more access than the request requires. <br>
-Mitigation: Use a least-privilege Dataify token where available and rotate tokens if an authenticated command may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to prepare and run Dataify Builder requests for X/Twitter profile collection, then wait for the asynchronous task and return the collected JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-twitter-profile-by-profileurl) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify builder endpoint](https://scraperapi.dataify.com/builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a curl command containing an authorization bearer token supplied from DATAIFY_API_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The package exposes broader X collection modes than the profile-URL-only skill name suggests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the intended twitter_profile_by-profileurl workflow unless a reviewer explicitly approves another bundled Dataify collection mode for the task.
+
+Risk: The skill requires a Dataify API token and includes shell-profile setup examples that could make credential exposure persistent.
+
+Mitigation: Use a limited Dataify token, prefer session-scoped or managed secret storage where possible, never paste the token into chat or logs, and rotate it if exposed.
+
+Risk: Asynchronous task polling and broader collection settings can increase credit usage or encourage duplicate paid submissions after a timeout.
+
+Mitigation: Confirm high-volume, multi-page, or media-download scopes before execution, retain task IDs, and resume polling existing tasks instead of resubmitting them.
+
+## Reference(s):
+
+- [Tool parameter catalog](artifact/references/tool-params.json)
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-twitter-profile-by-profileurl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with shell command examples and JSON task or result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [By default the skill waits for task completion and returns the final collected JSON result; no-wait mode returns a submitted task_id.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

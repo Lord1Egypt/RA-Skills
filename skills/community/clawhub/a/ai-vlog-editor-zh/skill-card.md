@@ -1,41 +1,59 @@
-## Description: <br>
-面向 Vlog 场景的 Sparki skill 变体，帮助用户把日常、旅行和生活方式素材剪成更有节奏的创作者风格视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向 Vlog 场景的 Sparki skill 变体，沿用最新版官方 Sparki 安装、API key、上传和命令说明，同时保留 Vlog 场景定位。
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External creators and agents use this Chinese-language skill to upload local Vlog footage to Sparki, request prompt-driven or style-guided edits, poll processing status, and download the finished video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video files are uploaded to Sparki for processing. <br>
-Mitigation: Use this skill only for videos you are comfortable sending to Sparki, and ask for local-only editing when remote processing is not acceptable. <br>
-Risk: The Sparki API key may be stored in the local OpenClaw config directory. <br>
-Mitigation: Prefer the SPARKI_API_KEY environment variable on shared systems and protect access to $HOME/.openclaw/config. <br>
+## Use Case:
 
+External creators and agents use this skill to turn raw daily-life, travel, lifestyle, and creator-style footage into Vlog-oriented edits through Sparki commands and prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/ai-vlog-editor-zh) <br>
-- [Sparki homepage](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI may return task IDs, asset metadata, result URLs, local output paths, and delivery hints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Selected videos and prompts are uploaded to Sparki for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sending that media to Sparki, avoid private footage, and offer local video-processing options before upload when privacy matters.
+
+Risk: Credential handling includes a saved config file and an environment variable.
+
+Mitigation: Prefer SPARKI_API_KEY for temporary use, inspect permissions on ~/.openclaw/config/sparki.json, and avoid storing keys when not needed.
+
+Risk: A custom --base-url can redirect API key validation and media requests away from the declared Sparki service.
+
+Mitigation: Use the default Sparki endpoint unless the alternate endpoint is fully trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fischerlam/skills/ai-vlog-editor-zh)
+- [Publisher profile](https://clawhub.ai/user/fischerlam)
+- [Sparki homepage](https://sparki.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; Sparki CLI commands return JSON and may download MP4 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and SPARKI_API_KEY; reads local video paths, uploads selected MP4 or MOV files to Sparki, and writes configuration or output videos under OpenClaw paths.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-360disk-cli helps agents operate 360 AI Cloud Disk from the command line, including browsing, searching, uploading, downloading, moving, deleting, sharing, saving content, reading and writing configs, and returning structured JSON for jq pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+360disk-cli helps an agent manage 360 AI Cloud Disk files through shell commands for browsing, search, upload, download, move, rename, delete, sharing, backups, restores, and JSON-based automation.
 
-## Publisher: <br>
-[jsoncm](https://clawhub.ai/user/jsoncm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jsoncm](https://clawhub.ai/user/jsoncm)
 
-## Use Case: <br>
-Developers, engineers, and automation-focused agents use this skill to manage 360 AI Cloud Disk files from scripts, CI workflows, and command-line sessions. It is suited for file management, cloud backup and restore, structured JSON output, and command composition with tools such as jq. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad cloud-file control, including deletes, overwrites, shares, restores, backups, and syncs. <br>
-Mitigation: Require the agent to show exact local and cloud paths before destructive, sharing, restore, backup, or sync operations. <br>
-Risk: The skill requires sensitive credentials for cloud-drive access. <br>
-Mitigation: Use a least-privilege API key and avoid placing real keys in command histories, prompts, or shared logs. <br>
-Risk: Auto-backup can persistently move local content to cloud storage. <br>
-Mitigation: Enable auto-backup only for a narrow non-sensitive directory, verify status after enabling it, and keep the disable command available. <br>
+## Use Case:
 
+Developers, operators, and automation agents use this skill to manage 360 AI Cloud Disk files from scripts, CI jobs, and command-line workflows. It is intended for cloud file operations that need structured JSON output and shell pipeline integration.
 
-## Reference(s): <br>
-- [360disk CLI Command Reference](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jsoncm/360disk-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI defaults to structured JSON and supports quiet output for downstream parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill runs an external npm CLI that is unpinned by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed CLI version for repeatable or sensitive workflows.
+
+Risk: The skill handles cloud credentials for 360 AI Cloud Disk.
+
+Mitigation: Use safer secret handling such as environment variables or stored configuration, and do not paste API keys into chat or shell commands when avoidable.
+
+Risk: Delete, clear-dir, restore, share, and auto-backup actions can expose, overwrite, or remove local and cloud files.
+
+Mitigation: Require explicit confirmation before running destructive, sharing, restore, or background auto-backup commands.
+
+Risk: The README includes an HTTP ZIP download path.
+
+Mitigation: Avoid the HTTP ZIP install path and use a reviewed distribution source.
+
+## Reference(s):
+
+- [360disk CLI command reference](references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/jsoncm/skills/360disk-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses API keys and local/cloud filesystem paths; default execution uses an external npm CLI unless a pinned reviewed version is selected.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

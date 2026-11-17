@@ -1,43 +1,54 @@
-## Description: <br>
-Debug Root Cause guides agents through systematic root-cause analysis for tool errors, unexpected results, repeated failures, and user-requested debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through systematic root-cause analysis for tool errors, unexpected results, repeated failures, and explicit debugging requests using a catalog of RCA methods.
 
-## Publisher: <br>
-[maochen1980](https://clawhub.ai/user/maochen1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maochen1980](https://clawhub.ai/user/maochen1980)
 
-## Use Case: <br>
-Developers and coding agents use this skill to define debugging problems, select appropriate root-cause analysis methods, record investigation notes, and verify whether a fix resolved the issue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly on failure language or unexpected results. <br>
-Mitigation: Confirm the debugging problem and skip the workflow when the error already points to a clear fix. <br>
-Risk: The workflow writes local scratch notes that could capture sensitive debugging context. <br>
-Mitigation: Avoid placing secrets or production data in debug notes, and review or remove notes after use. <br>
-Risk: The workflow can direct the agent toward skill self-repair after multiple unresolved approaches. <br>
-Mitigation: Require explicit user confirmation before using skill-manager or modifying any skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure debugging work, select root-cause analysis methods, record a focused investigation plan, and verify whether a reported error or unexpected behavior has been resolved.
 
-## Reference(s): <br>
-- [RCA Methods Reference](references/rca-methods.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maochen1980/debug-root-cause) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown notes and step-by-step debugging guidance, often with shell commands for investigation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local scratch notes during debugging; review notes before retaining or sharing them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Diagnostic plans and findings may be written to a predictable temporary file in shared or sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid writing secrets or sensitive data into debugging notes, review the temporary file contents, and clear the file after the investigation when appropriate.
+
+Risk: Unresolved investigations may direct the agent toward loading an external skill manager for self-updates.
+
+Mitigation: Require explicit user approval before invoking any external manager or modifying installed skills.
+
+## Reference(s):
+
+- [RCA Methods Reference](references/rca-methods.md)
+- [Debug Root Cause on ClawHub](https://clawhub.ai/maochen1980/skills/debug-root-cause)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with investigation steps and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the problem definition, selected method, plan, and findings to a temporary Markdown file during use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

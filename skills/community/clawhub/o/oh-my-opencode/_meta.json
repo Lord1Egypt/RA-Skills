@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77w078yh6rk5m42j8vpnyrtn80fw2x",
+  "owner": "osobot-ai",
   "slug": "oh-my-opencode",
-  "version": "1.0.0",
-  "publishedAt": 1770138419499
+  "displayName": "Oh My OpenCode — Multi-Agent Orchestration",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1738540648000,
+    "commit": ""
+  },
+  "history": []
 }

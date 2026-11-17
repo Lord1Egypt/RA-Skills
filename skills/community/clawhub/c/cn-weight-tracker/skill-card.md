@@ -1,41 +1,51 @@
-## Description: <br>
-Cn Weight Tracker helps users record Chinese-language weight entries, calculate BMI, review recent trends, and set a target weight using local JSON storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Weight Tracker helps Chinese-speaking users record weight entries, calculate BMI, set goals, and view short-term weight trends from local records.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-People using Chinese-language prompts can have an agent record local weight measurements, calculate BMI from saved height, show recent trends, and track progress toward a weight target. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weight, height, BMI-related values, and targets are personal health-related data stored locally on disk. <br>
-Mitigation: Use the skill only on trusted devices and protect, back up, or delete the local JSON data file according to privacy needs. <br>
-Risk: BMI and trend summaries can be mistaken for medical guidance. <br>
-Mitigation: Use the output for personal tracking only and rely on qualified health professionals for medical decisions. <br>
+## Use Case:
 
+Chinese-speaking users use this skill to track personal weight, height, target weight, BMI, and recent trend summaries through simple natural-language commands. It is intended for local personal recordkeeping, not medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-weight-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Chinese plain text with command-line examples and occasional ASCII trend charts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores height, target, and weight records in a local JSON file under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+Risk: The skill stores weight, height, target, and dated weight records as plaintext JSON on the local account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on a trusted personal device, avoid shared accounts, tighten file permissions when needed, and delete the data file when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-weight-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/freedompixels)
+- [AISoBrand website](https://aisobrand.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown-style conversational text with occasional ASCII trend charts and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and reads local plaintext JSON records under the user's home directory.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

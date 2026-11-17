@@ -1,51 +1,67 @@
-## Description: <br>
-孕期搭子 is an AI pregnancy companion for expectant mothers that supports prenatal report interpretation, food safety checks, nutrition and meal guidance, fetal development visualization, timeline reminders, emotional support, and monthly baby-letter drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+孕期搭子 Pregnancy Buddy is a pregnancy companion agent for expectant mothers that explains prenatal reports, answers food-safety questions, suggests nutrition and preparation plans, tracks milestones, creates baby-development visuals, drafts monthly letters, and offers emotional support.
 
-## Publisher: <br>
-[iriswong31](https://clawhub.ai/user/iriswong31) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iriswong31](https://clawhub.ai/user/iriswong31)
 
-## Use Case: <br>
-External users, especially first-time expectant mothers, use this skill for pregnancy companionship, prenatal-checkup preparation, report explanation, food and nutrition guidance, fetal development updates, and supportive letter drafting. It is informational support and does not replace obstetric care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain sensitive pregnancy details for proactive reminders and monthly baby-letter generation. <br>
-Mitigation: Make memory-based features opt-in, disclose what details are stored, and provide clear review and deletion controls before using reminders or baby-letter drafting. <br>
-Risk: Prenatal report images, PDFs, URLs, or local files may be processed by Tencent Cloud OCR. <br>
-Mitigation: Ask for explicit consent before OCR use, advise users to remove identifiers when possible, and avoid OCR for users who are not comfortable with external processing. <br>
-Risk: Pregnancy and medical guidance may be mistaken for clinical diagnosis or care instructions. <br>
-Mitigation: Present guidance as informational support, preserve the skill's medical disclaimers, and direct users to obstetric care for abnormal results, urgent symptoms, medication questions, or diagnosis. <br>
+## Use Case:
 
+External users, especially expectant mothers, use this skill for conversational pregnancy support, prenatal-checkup preparation, report explanation, food-safety guidance, meal planning, milestone tracking, preparation checklists, and emotionally supportive pregnancy journaling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iriswong31/pregnancy-buddy) <br>
-- [Online Demo](https://iriswong31.github.io/work-analysis/digital-care/pregnancy-buddy/) <br>
-- [Pregnancy Weekly Guide](references/pregnancy-weekly-guide.md) <br>
-- [Prenatal Checkup Guide](references/prenatal-checkup-guide.md) <br>
-- [Meal Nutrition Guide](references/meal-nutrition-guide.md) <br>
-- [Timeline Milestones](references/timeline-milestones.md) <br>
-- [Preparation Checklist](references/preparation-checklist.md) <br>
-- [Baby Visualization Prompts](references/baby-visualization-prompts.md) <br>
-- [Letter Templates](references/letter-templates.md) <br>
-- [Conversation Examples](references/conversation-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, generated prose, optional image-generation prompts, OCR text summaries, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask users for pregnancy week, due date, symptoms, food questions, checkup timing, or report images before producing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The skill may handle sensitive pregnancy and prenatal-report details, and its reminder and letter workflows may rely on cross-session remembering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for clear consent before retaining pregnancy details, explain what is remembered and for how long, and avoid storing identifying information unless it is necessary.
+
+Risk: Prenatal report OCR may process uploaded documents through Tencent Cloud.
+
+Mitigation: Disclose third-party OCR processing before upload, encourage users to redact names and identifiers, and offer a manual text-entry path.
+
+Risk: Pregnancy guidance can be mistaken for diagnosis or treatment advice.
+
+Mitigation: Keep medical disclaimers visible, avoid diagnosis and medication dosing, and direct urgent symptoms or abnormal findings to the user's clinician or emergency care.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iriswong31/skills/pregnancy-buddy)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/iriswong31)
+- [Online Demo](https://iriswong31.github.io/work-analysis/digital-care/pregnancy-buddy/)
+- [Pregnancy Weekly Guide](references/pregnancy-weekly-guide.md)
+- [Prenatal Checkup Guide](references/prenatal-checkup-guide.md)
+- [Meal Nutrition Guide](references/meal-nutrition-guide.md)
+- [Preparation Checklist](references/preparation-checklist.md)
+- [Timeline Milestones](references/timeline-milestones.md)
+- [Baby Visualization Prompts](references/baby-visualization-prompts.md)
+- [Letter Templates](references/letter-templates.md)
+- [Conversation Examples](references/conversation-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional generated prompts, letters, checklists, OCR text summaries, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Tencent Cloud OCR for prenatal report images and image-generation prompts when platform tools are available.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

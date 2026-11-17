@@ -1,40 +1,50 @@
-## Description: <br>
-Guides product-market fit validation and measurement, including the Sean Ellis test, vitamin-versus-painkiller diagnosis, retention signals, and next steps before scaling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides product-market fit strategy guidance for validating PMF, measuring PMF signals, diagnosing traction problems, and planning before scaling.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Founders, product leaders, and startup operators use this skill to assess whether a product has product-market fit, diagnose weak demand signals, and decide whether to iterate or scale acquisition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger in adjacent startup strategy discussions where product-market fit guidance is not the user's intended focus. <br>
-Mitigation: Confirm that the user is asking about PMF validation, PMF measurement, or validate-before-scale planning before applying the framework. <br>
-Risk: Visible crypto and purchase capability tags do not match the inspected advisory-only skill content. <br>
-Mitigation: Review and correct release metadata before relying on those tags for catalog filtering or deployment policy. <br>
+## Use Case:
 
+Developers, founders, product teams, and growth teams use this skill to assess whether a product has product-market fit, identify weak PMF signals, and choose validation steps before scaling acquisition or go-to-market work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/pmf-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown with structured assessment sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory product strategy guidance; no executable code or hidden data access was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence and skill metadata) <br>
+Risk: PMF recommendations can be misleading if treated as guaranteed business outcomes or applied without current customer evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the skill's recommendations against customer interviews, retention data, activation metrics, and segment-specific PMF signals before making scaling decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/pmf-strategy)
+- [ClawHub publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown strategy guidance with structured assessments and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute code, request sensitive access, or persist changes.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

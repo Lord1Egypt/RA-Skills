@@ -1,41 +1,57 @@
-## Description: <br>
-Aggregates and analyzes open-source intelligence (OSINT) data from multiple sources to identify threats, validate indicators, and enrich security investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and analyzes open-source intelligence (OSINT) data from multiple sources to identify threats, validate indicators, and enrich security investigations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security analysts, threat hunters, incident responders, and security automation agents use this skill to enrich IPs, domains, email addresses, file hashes, and URLs with OSINT context during investigations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indicators submitted for lookup are sent to an external OSINT service and could expose confidential incident details. <br>
-Mitigation: Submit only indicators approved for external sharing, and avoid customer information, private emails, internal-only infrastructure, and non-public investigation artifacts unless the organization has approved that data sharing. <br>
+## Use Case:
 
+SOC analysts, threat hunters, incident responders, MSSPs, and enterprise security teams use this skill to enrich indicators of compromise with reputation, attribution, geolocation, malware association, and confidence data during security investigations.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/krishnakumarmahadevan-cmd/threat-intel-v2) <br>
-- [API docs](https://api.mkkpro.com:8011/docs) <br>
-- [API route](https://api.mkkpro.com/security/threat-intel-v2) <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON, Guidance] <br>
-**Output Format:** [JSON threat-intelligence response with indicator enrichment and validation errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns reputation score, threat level, source attribution, geolocation, malware associations, WHOIS data, confidence, and last-updated fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Indicator lookups may send internal, regulated, customer-sensitive, or embargoed investigation data to an external API and downstream intelligence sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only indicators approved under the organization's data-sharing policy, and avoid sensitive indicators unless external submission is explicitly acceptable.
+
+Risk: Threat intelligence enrichment can influence investigation priority even when reputation and confidence scores are incomplete or time-sensitive.
+
+Mitigation: Treat results as investigative context and corroborate high-impact decisions with additional sources and analyst review.
+
+## Reference(s):
+
+- [Threat Intel V2 ClawHub Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/threat-intel-v2)
+- [API Docs](https://api.mkkpro.com:8011/docs)
+- [Kong Route](https://api.mkkpro.com/security/threat-intel-v2)
+- [ToolWeb](https://toolweb.in)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Analysis, Guidance]
+
+**Output Format:** [JSON responses summarized or cited in Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Looks up one submitted indicator at a time, such as an IP address, domain, URL, email address, or file hash.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

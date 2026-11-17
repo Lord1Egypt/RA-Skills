@@ -1,0 +1,26 @@
+{
+  "name": "europass-cv",
+  "version": "0.1.0",
+  "description": "Schema, reference, tools and an agent skill for the Europass Candidate XML format, the CV format the europass.europa.eu editor imports and exports.",
+  "license": "CC-BY-4.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "sh tools/validate.sh examples/*.xml",
+    "check": "node tools/check-import.mjs",
+    "build": "node tools/build-cv.mjs",
+    "extract": "node tools/extract-xml.mjs"
+  },
+  "keywords": [
+    "europass",
+    "cv",
+    "resume",
+    "xml",
+    "xsd",
+    "hr-xml",
+    "eures"
+  ],
+  "author": "Stefano Zeppieri"
+}

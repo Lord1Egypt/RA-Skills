@@ -1,0 +1,18 @@
+{
+  "cache_id": "a1b2c3d4e5f6",
+  "plan": "plan-20260818T093000Z.json",
+  "result_dir": "result-20260818T093500Z",
+  "manifest_file": "result-20260818T093500Z/manifest.json",
+  "catalog": {
+    "tables": [
+      {"id": "key_financials", "file": "tables/key_financials.json", "group": "A_key_financials", "method": "record_map", "row_count": 18},
+      {"id": "variance_reasons", "file": "tables/variance_reasons.json", "group": "D_mda", "method": "record_map", "row_count": 26}
+    ],
+    "narratives": [
+      {"id": "mda_outlook", "file": "narratives/mda_outlook.json", "group": "D_mda", "method": "text_scan", "anchor": "mda_outlook", "status": "pending"}
+    ],
+    "derived": []
+  },
+  "gaps_file": "result-20260818T093500Z/gaps.json",
+  "quality_file": "result-20260818T093500Z/quality.json"
+}

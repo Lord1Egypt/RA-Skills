@@ -1,42 +1,57 @@
-## Description: <br>
-A Chinese-language CET-4/CET-6 English exam practice assistant for vocabulary drills, grammar tense exercises, short sentence translation, and wrong-answer review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+四六级英语备考助手 helps learners practice CET-4 and CET-6 vocabulary, Chinese-to-English spelling, tense grammar drills, short translation exercises, and wrong-answer review.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Students preparing for China's College English Test Band 4 or Band 6 use this skill for focused practice with vocabulary recall, spelling from Chinese definitions, tense fill-in questions, translation drills, and review of previous mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wrong-answer review may keep local study history that includes learner responses. <br>
-Mitigation: Use non-sensitive prompts and periodically inspect or delete the local wrong-answer record when privacy matters. <br>
+## Use Case:
 
+External learners and study assistants use this skill to run structured Chinese-language CET-4 and CET-6 practice sessions for vocabulary recall, spelling, grammar tense completion, translation, and review of missed questions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/cet-exam-trainer) <br>
-- [四六级核心词汇](references/四六级核心词汇.md) <br>
-- [语法时态题库](references/语法时态题库.md) <br>
-- [短句翻译题库](references/短句翻译题库.md) <br>
-- [错题本](references/错题本.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational prompts, answer checks, short explanations, and wrong-answer records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise Chinese-language study prompts and feedback; may update a local wrong-answer review file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Practice answers may be retained in the local wrong-answer review file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering private personal information in practice answers and periodically review or clear the wrong-answer log.
+
+Risk: Study feedback and standard answers may be imperfect for exam preparation.
+
+Mitigation: Use the corrections as study guidance and verify important grammar or translation points against trusted CET preparation materials.
+
+## Reference(s):
+
+- [四六级核心词汇（高频）](artifact/references/四六级核心词汇.md)
+- [短句翻译题库](artifact/references/短句翻译题库.md)
+- [语法时态题库](artifact/references/语法时态题库.md)
+- [错题本](artifact/references/错题本.md)
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/cet-exam-trainer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational prompts, corrections, explanations, and review summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language CET study interactions; may update a local wrong-answer review file when the agent environment permits file edits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

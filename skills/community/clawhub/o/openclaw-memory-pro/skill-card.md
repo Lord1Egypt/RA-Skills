@@ -1,46 +1,59 @@
-## Description: <br>
-Memory Pro System helps agents store, retrieve, reason over, and evolve long-term memory using vector search, document storage, knowledge graph signals, scheduled briefings, and skill feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced AI memory system with vector storage, document-level MSA, a knowledge graph, collision workflows, executable skills, and closed-loop skill evolution.
 
-## Publisher: <br>
-[fluffyaicode](https://clawhub.ai/user/fluffyaicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fluffyaicode](https://clawhub.ai/user/fluffyaicode)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate a personal long-term memory service for storing notes, recalling evidence, surfacing contradictions and blind spots, generating briefings, and feeding skill feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently stores user content in long-term memory and daily log files. <br>
-Mitigation: Do not store secrets, regulated data, confidential business notes, or sensitive personal information unless local retention, review, and deletion behavior are deliberately configured. <br>
-Risk: Advanced recall, collision, distillation, and multi-hop features may process memory content with third-party LLM providers. <br>
-Mitigation: Configure OpenRouter or xAI keys intentionally, review provider handling policies, and avoid sending sensitive content to LLM-backed features. <br>
-Risk: Background scheduling and optional Telegram push can surface stored memory content outside the immediate command session. <br>
-Mitigation: Enable scheduled tasks and Telegram only after reviewing channel configuration, notification content, and operational retention expectations. <br>
-Risk: Generated or executable skills, tool calls, and webhooks can turn remembered patterns into actions. <br>
-Mitigation: Review generated skills and action bindings before activation or execution, and scan the cloned repository before installing. <br>
+## Use Case:
 
+Developers and individual users use this skill to install and operate a persistent AI memory system for storing notes, recalling evidence, surfacing knowledge-graph relationships, generating briefings, and evolving local skills.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/fluffyaicode/openclaw-memory-pro) <br>
-- [Setup guide](setup.md) <br>
-- [Skill documentation](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include memory recall summaries, assembled evidence, skill feedback commands, operational status, and setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.7 (source: server release evidence and skill frontmatter) <br>
+Risk: Persistent memory may store sensitive conversations, notes, and high-importance content over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, avoid storing secrets or regulated data unless explicitly approved, and review retention/export behavior before use.
+
+Risk: The skill can access LLM credentials through environment variables or shared OpenClaw auth profiles.
+
+Mitigation: Use dedicated low-quota API keys, restrict credential scope, and avoid shared credential fallback until the implementation has been reviewed.
+
+Risk: Mutable source installs and scheduled background work can change or run behavior outside an immediate interactive request.
+
+Mitigation: Pin the repository to a reviewed commit, inspect scheduled tasks before enabling the server, and monitor generated briefings, collision rounds, and exports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fluffyaicode/skills/openclaw-memory-pro)
+- [Source repository listed by artifact](https://github.com/FluffyAIcode/openclaw-memory-pro-system)
+- [Setup guide](setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include memory recall results, knowledge-graph relationships, evidence snippets, briefing content, skill utility information, and setup guidance.]
+
+## Skill Version(s):
+
+0.0.7 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

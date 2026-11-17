@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn74xsbj9h8322dkysxfgrtwyn83sg8b",
-  "slug": "stiff-sec",
+  "name": "stiff-sec",
   "version": "1.0.0",
-  "publishedAt": 1774734178418
+  "description": "OpenClaw Security Hardener — audit and harden your OpenClaw config. Backup-first, schema-verified, tamper-detecting.",
+  "author": "Oni Technologies LLC",
+  "license": "MIT",
+  "tags": ["security", "hardening", "audit", "openclaw", "config"],
+  "entrypoint": "SKILL.md"
 }

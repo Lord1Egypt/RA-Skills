@@ -1,0 +1,62 @@
+[
+  {
+    "id": "generation_failed",
+    "fault": "IMAGE_GENERATION_FAILED",
+    "expected": "generation_failed",
+    "recorded_slide_status": "generation_failed",
+    "agy_action": "retry_allowed",
+    "final_slide_status": "generation_failed",
+    "keeps_blocker_error_code": true,
+    "expects_final_image": false,
+    "expects_candidates": false,
+    "recovers_by": "regenerate"
+  },
+  {
+    "id": "codex_timeout",
+    "fault": "CODEX_TIMEOUT",
+    "expected": "generation_failed",
+    "recorded_slide_status": "generation_failed",
+    "agy_action": "retry_allowed",
+    "final_slide_status": "generation_failed",
+    "keeps_blocker_error_code": true,
+    "expects_final_image": false,
+    "expects_candidates": false,
+    "recovers_by": "regenerate"
+  },
+  {
+    "id": "backend_unavailable",
+    "fault": "IMAGE_BACKEND_UNAVAILABLE",
+    "expected": "blocked",
+    "recorded_slide_status": "generation_failed",
+    "agy_action": "block",
+    "final_slide_status": "blocked",
+    "keeps_blocker_error_code": true,
+    "expects_final_image": false,
+    "expects_candidates": false,
+    "recovers_by": "resume_then_regenerate"
+  },
+  {
+    "id": "artifact_ambiguous",
+    "fault": "IMAGE_ARTIFACT_AMBIGUOUS",
+    "expected": "not_generated",
+    "recorded_slide_status": "generation_failed",
+    "agy_action": "retry_allowed",
+    "final_slide_status": "generation_failed",
+    "keeps_blocker_error_code": true,
+    "expects_final_image": false,
+    "expects_candidates": true,
+    "recovers_by": "regenerate"
+  },
+  {
+    "id": "output_invalid",
+    "fault": "IMAGE_OUTPUT_INVALID",
+    "expected": "not_generated",
+    "recorded_slide_status": "generation_failed",
+    "agy_action": "retry_allowed",
+    "final_slide_status": "generation_failed",
+    "keeps_blocker_error_code": true,
+    "expects_final_image": false,
+    "expects_candidates": false,
+    "recovers_by": "regenerate"
+  }
+]

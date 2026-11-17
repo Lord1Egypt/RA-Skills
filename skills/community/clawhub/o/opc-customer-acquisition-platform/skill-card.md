@@ -1,52 +1,72 @@
-## Description: <br>
-获客分包平台运营工具，构建OPC生态内的获客任务分发与能力匹配机制。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language OPC customer-acquisition subcontracting workflow support for project posting, bidding, subcontract matching, contracts, delivery milestones, settlement, and reputation updates.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-OPC mentors, OPC entrepreneurs, and community operators use this skill to post customer acquisition projects, evaluate bids, split work into subcontracted modules, manage agreements and milestones, settle revenue, and update community credit records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with customer records, credit ratings, identity information, bank or payout details, and settlement decisions. <br>
-Mitigation: Require informed consent, restrict record access and modification rights, keep audit logs, and make settlement, deduction, credit-change, and data-sync actions reviewable before use with real parties. <br>
-Risk: Generated contracts, bid evaluations, and settlement documents can affect commercial obligations. <br>
-Mitigation: Have qualified reviewers verify legal, tax, payment, and dispute-resolution terms before using generated documents with customers or subcontractors. <br>
+## Use Case:
 
+External OPC mentors, entrepreneurs, community operators, and project leads use this skill to structure customer-acquisition subcontracting workflows from demand intake through bidding, modular subcontracting, agreement generation, milestone acceptance, settlement, and mutual evaluation.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/golngod/opc-customer-acquisition-platform) <br>
-- [README](README.md) <br>
-- [项目挂榜指南](references/01-项目挂榜指南.md) <br>
-- [接榜挂帅竞标规则](references/02-接榜挂帅竞标规则.md) <br>
-- [项目分包机制](references/03-项目分包机制.md) <br>
-- [签约流程与协议体系](references/04-签约流程与协议体系.md) <br>
-- [执行交付与里程碑管理](references/05-执行交付与里程碑管理.md) <br>
-- [分账结算与纠纷处理](references/06-分账结算与纠纷处理.md) <br>
-- [评价沉淀与信用更新](references/07-评价沉淀与信用更新.md) <br>
-- [Skill矩阵整合接口](references/08-Skill矩阵整合接口.md) <br>
-- [冷启动运营手册](references/09-冷启动运营手册.md) <br>
-- [Coze platform](https://coze.cn) <br>
-- [OPC platform](https://opc.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown templates, operational guidance, and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project workflow guidance, contract templates, scoring reports, and document-generation helpers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The workflow covers bid awards, credit changes, public postings, account freezes, document writes, and settlement or payment steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before any of those actions are executed or treated as final.
+
+Risk: Generated contracts and settlement documents may include customer, contact, banking, invoice, tax, and reputation data.
+
+Mitigation: Apply privacy rules, minimize sensitive fields, and keep generated outputs in a dedicated restricted folder.
+
+Risk: Scoring and matching helpers influence bid ranking, subcontract allocation, and reputation outcomes.
+
+Mitigation: Validate inputs and review scoring results before using them for awards, payouts, or credit updates.
+
+Risk: The artifact is designed for a Chinese-language OPC subcontracting process and may not match other legal or business contexts.
+
+Mitigation: Use it only for the intended workflow and have contracts, settlement rules, and dispute handling reviewed by qualified operators before live deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-customer-acquisition-platform)
+- [项目挂榜指南](artifact/references/01-项目挂榜指南.md)
+- [接榜挂帅竞标规则](artifact/references/02-接榜挂帅竞标规则.md)
+- [项目分包机制](artifact/references/03-项目分包机制.md)
+- [签约流程与协议体系](artifact/references/04-签约流程与协议体系.md)
+- [执行交付与里程碑管理](artifact/references/05-执行交付与里程碑管理.md)
+- [分账结算与纠纷处理](artifact/references/06-分账结算与纠纷处理.md)
+- [评价沉淀与信用更新](artifact/references/07-评价沉淀与信用更新.md)
+- [Skill矩阵整合接口](artifact/references/08-Skill矩阵整合接口.md)
+- [冷启动运营手册](artifact/references/09-冷启动运营手册.md)
+- [OPC platform](https://opc.cn)
+- [Coze platform](https://coze.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates, structured text, Python-generated reports, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include contract templates, scoring reports, project workflow checklists, generated files, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

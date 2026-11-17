@@ -1,41 +1,49 @@
-## Description: <br>
-Generates Chrome extension starter projects with manifest, popup, background script, README, and related template files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chrome extension project templates, including popup, background script, content script, and options page variants.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers use this skill to quickly scaffold Chrome extension projects for common extension patterns before adding application-specific logic and permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generator writes files into the selected output directory based on user-provided names and paths. <br>
-Mitigation: Run it from the intended workspace, choose an explicit output path, and review generated files before committing or publishing. <br>
-Risk: Generated Chrome extension templates are starting points and may need permission, privacy, and store-listing review before release. <br>
-Mitigation: Review manifest permissions, extension behavior, and generated README guidance before loading the extension into Chrome or submitting it to a store. <br>
+## Use Case:
 
+Developers and extension authors use this skill to scaffold Chrome extension projects with manifests, browser scripts, UI files, README content, and publishing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/chrome-extension-generator) <br>
-- [Chrome Web Store Developer Console](https://chrome.google.com/webstore/devconsole) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, markdown, shell commands, guidance] <br>
-**Output Format:** [Generated project files plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Chrome extension directory containing manifest.json, HTML, JavaScript, README, and locale folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The generator can overwrite existing files or create output outside the intended folder if given crafted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or explicitly chosen output folder, avoid untrusted extension names or descriptions, and check for existing files before generation.
+
+## Reference(s):
+
+- [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+
+## Skill Output:
+
+**Output Type(s):** [code, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Generated project files plus terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a Chrome extension directory under the selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/_meta.json and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

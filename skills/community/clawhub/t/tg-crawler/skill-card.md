@@ -1,49 +1,65 @@
-## Description: <br>
-Telegram 频道/群组舆情采集工具 v3.12，支持 hybrid、discover、backfill 和 monitor 四种模式，并内置数据保留策略以清理过期数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TG-Crawler helps agents discover Telegram channels or groups, backfill or monitor messages, and export collected Telegram public-opinion data with retention cleanup.
 
-## Publisher: <br>
-[zhappy](https://clawhub.ai/user/zhappy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhappy](https://clawhub.ai/user/zhappy)
 
-## Use Case: <br>
-Developers, threat-intelligence analysts, brand-protection teams, and compliance teams use this skill for authorized Telegram channel discovery, historical message collection, monitoring, and export. It is intended for scoped public-channel collection where targets, credentials, proxies, retention, and exports are reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a powerful Telegram collection tool with broad preset targets and monitoring behavior. <br>
-Mitigation: Install and run it only for authorized threat-intelligence, brand-protection, or compliance work, and remove unrelated preset targets before collection. <br>
-Risk: Bot-based discovery can send search keywords to third-party Telegram bots. <br>
-Mitigation: Disable bot discovery with the skill's no-bot option unless the operator accepts that disclosure. <br>
-Risk: Proxy-pool guidance can affect network posture and traffic routing. <br>
-Mitigation: Use the proxy-pool setup only after review by a network or security owner. <br>
-Risk: Telegram credentials, session files, databases, media, and export files can contain sensitive data. <br>
-Mitigation: Protect .env, session, database, media, and export files, and confirm retention or purge settings before running collection. <br>
+## Use Case:
 
+Developers and analysts use this skill to configure and run Telegram channel discovery, historical message backfill, continuous monitoring, and export workflows for industry-specific public-opinion collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhappy/tg-crawler) <br>
-- [Industry playbook](references/industry-playbook.md) <br>
-- [Proxy pool setup](references/proxy-pool-setup.md) <br>
-- [Targets format](references/targets-format.md) <br>
-- [TG-Crawler architecture](references/tg-crawler-architecture.md) <br>
-- [Telegram API application portal](https://my.telegram.org/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command snippets, Python scripts, YAML configuration, and CSV/JSON/Markdown export data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces collection workflows that may create SQLite databases, session files, media files, and export files when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.12.0 (source: server release evidence, SKILL.md changelog) <br>
+Risk: Telegram credentials, session files, and 2FA secrets can expose an account if handled casually.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram account with scoped credentials, keep session files private, and avoid passing 2FA passwords on the command line.
+
+Risk: Search terms and targets may be disclosed to Telegram search bots or unauthorized private channels.
+
+Mitigation: Disable third-party bots for sensitive searches and use private invite-link targets only when authorization is clear.
+
+Risk: Retention cleanup and purge options can remove collected data or media unexpectedly.
+
+Mitigation: Review the configured database and media directory before enabling purge behavior or confirming cleanup operations.
+
+Risk: Proxy setup guidance can create exposed infrastructure if reused without changes.
+
+Mitigation: Use unique proxy credentials, restrict access with firewall rules, and review the proxy setup before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhappy/skills/tg-crawler)
+- [Industry playbook](references/industry-playbook.md)
+- [Proxy pool setup](references/proxy-pool-setup.md)
+- [Targets format](references/targets-format.md)
+- [TG crawler architecture](references/tg-crawler-architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus CSV, JSON, or Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local SQLite data, media files, Telethon session files, and exported reports depending on the selected mode.]
+
+## Skill Version(s):
+
+3.12.0 (source: ClawHub release metadata; artifact changelog v3.12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

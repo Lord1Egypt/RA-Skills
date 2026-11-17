@@ -1,45 +1,60 @@
-## Description: <br>
-PowerShell skill for calling Kakao Local API to normalize addresses and search places with keyword, location, radius, and category filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PowerShell skill for calling Kakao Local API to normalize addresses and search places with keyword, location, radius, and category filters.
 
-## Publisher: <br>
-[MunInJun](https://clawhub.ai/user/MunInJun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[muninjun](https://clawhub.ai/user/muninjun)
 
-## Use Case: <br>
-Developers and agents use this skill on Windows to normalize Korean addresses and search Kakao places through a PowerShell interface. It returns structured JSON that can feed place recommendations, favorites, caches, and downstream location workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Kakao API keys can be exposed if stored in committed config files or passed through visible command channels. <br>
-Mitigation: Prefer the KAKAO_REST_API_KEY environment variable, do not pass keys as skill parameters, and do not commit data/config.json. <br>
-Risk: Address, coordinate, place-search, favorites, and cache data can reveal private location history. <br>
-Mitigation: Treat generated places.json and cache.json files as private, restrict access to them, and delete them when no longer needed. <br>
-Risk: Address, keyword, and optional coordinate queries are sent to Kakao's Local API. <br>
-Mitigation: Use the skill only when sending those queries to Kakao is acceptable for the user and deployment context. <br>
+## Use Case:
 
+Developers and agents use this skill to normalize Korean addresses and search Kakao Local places from PowerShell workflows. It is suited for address lookup, place discovery, and location-filtered search tasks that can send queries to Kakao's API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MunInJun/mij-kakao-local) <br>
-- [Kakao Developers](https://developers.kakao.com/) <br>
-- [Packaged PowerShell script source](references/kakao_local.ps1.md) <br>
-- [Packaged config template](references/config.json.template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with PowerShell and JSON examples; runtime script output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, PowerShell 5.0 or later, curl.exe, and a Kakao Developers REST API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms, addresses, keywords, and optional coordinates may be sent to Kakao Local API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending that location data to Kakao is acceptable for the workflow and users involved.
+
+Risk: A plaintext data/config.json API key file can be created, and the promised gitignore protection is not present in the packaged artifact.
+
+Mitigation: Prefer the KAKAO_REST_API_KEY environment variable and avoid creating data/config.json inside a source-controlled directory.
+
+Risk: Cache and favorites examples can store local location history.
+
+Mitigation: Do not copy those examples unless local history storage is intended and the files can be protected or deleted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/muninjun/skills/mij-kakao-local)
+- [Kakao Developers](https://developers.kakao.com/)
+- [Embedded PowerShell Script](references/kakao_local.ps1.md)
+- [Config Template](references/config.json.template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with PowerShell examples and JSON response structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for invoking a PowerShell wrapper around Kakao Local API calls; runtime responses are JSON objects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

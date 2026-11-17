@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7cfgqtq1167ctj7rfp8cg3yn840js9",
-  "slug": "robohire",
+  "name": "robohire",
+  "displayName": "RoboHire",
   "version": "1.0.0",
-  "publishedAt": 1775064042698
+  "description": "AI-powered end-to-end recruitment agent platform. Automates hiring from role brief to final shortlist.",
+  "publish": true,
+  "author": "RoboHire",
+  "homepage": "https://robohire.io",
+  "tags": ["recruiting", "hr", "ai", "hiring", "hiring-automation", "recruitment"]
 }

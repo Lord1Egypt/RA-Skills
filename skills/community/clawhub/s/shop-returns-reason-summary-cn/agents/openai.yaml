@@ -1,0 +1,8 @@
+interface:
+  display_name: "售后原因汇总与商品改进"
+  short_description: "汇总脱敏售后原因，核算计数并给出可验证的商品页改进建议"
+  default_prompt: "使用 $shop-returns-reason-summary-cn 整理我提供的脱敏退款或退货记录及商品信息，保留逐条原始字段并输出可追溯分类、计数和商品页改进建议；缺少关键字段时明确指出。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

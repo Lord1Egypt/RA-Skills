@@ -1,40 +1,57 @@
-## Description: <br>
-Calculates China individual income tax for monthly salary, annual bonus, special additional deductions, annual settlement, and multiple income sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates China individual income tax for monthly salary, annual bonus, special deductions, annual settlement, and multi-income scenarios.
 
-## Publisher: <br>
-[jarLiao](https://clawhub.ai/user/jarLiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jarliao](https://clawhub.ai/user/jarliao)
 
-## Use Case: <br>
-External users, HR teams, and finance practitioners use this skill to estimate China personal income tax, compare annual-bonus treatments, plan salary or offer scenarios, and generate tax reports from salary inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes salary, family deduction, and employee payroll details that may be confidential. <br>
-Mitigation: Only process data the user is authorized to use, minimize names or identifiers in batch mode, and store generated CSV or Markdown reports in approved locations. <br>
-Risk: Tax calculations and optimization suggestions may become inaccurate when laws, thresholds, or local social-insurance rules change. <br>
-Mitigation: Review results against current official tax rules or a qualified advisor before using them for payroll, filing, or compensation decisions. <br>
+## Use Case:
 
+External users, payroll and HR teams, and compensation planners use this skill to estimate China individual income tax, compare annual bonus taxation methods, model deductions and social insurance, generate salary reports, and export batch payroll calculations.
 
-## Reference(s): <br>
-- [China Tax Calculator on ClawHub](https://clawhub.ai/jarLiao/china-tax-calculator) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, CSV, guidance] <br>
-**Output Format:** [Plain text, Markdown reports, CSV-formatted tables, ASCII charts, and structured calculation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles sensitive salary, family deduction, and employee payroll details; generated reports and CSV data should be stored or shared only in approved locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Generated reports and batch exports can expose payroll, tax, employee name, salary, bonus, and deduction data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with payroll or tax data the user is authorized to process, avoid unnecessary real names, and check sharing permissions before placing reports in collaboration tools.
+
+Risk: Batch CSV export data may be opened in spreadsheet software where untrusted employee fields can create CSV handling risk.
+
+Mitigation: Sanitize or quote CSV fields before opening batch exports in spreadsheet software when employee-provided data may be untrusted.
+
+Risk: Tax and social insurance calculations can become inaccurate when laws, deduction standards, city rates, or local interpretations change.
+
+Mitigation: Verify calculation assumptions against current official tax and social insurance rules before using outputs for payroll, legal, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarliao/skills/china-tax-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, CSV, structured data, guidance]
+
+**Output Format:** [Plain text calculation summaries, Markdown reports, CSV export strings, and structured dictionary data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive payroll, tax, employee name, salary, bonus, deduction, and report-sharing data.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence; artifact metadata lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

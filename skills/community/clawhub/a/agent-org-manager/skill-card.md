@@ -1,44 +1,55 @@
-## Description: <br>
-Multi-department AI agent organization setup: hierarchy design, triple-channel communication, daily reporting, autonomous learning, and audit routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Org Manager helps teams structure multi-agent organizations with rosters, three-channel communication, daily reporting, autonomous learning, and audit routines.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-Developers and operators of multi-agent systems use this skill to define agent rosters, communication routes, daily reports, learning schedules, audit checks, and repair delegation rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A monthly maintenance cron template can publish skills and create GitHub releases. <br>
-Mitigation: Do not deploy that cron until repository credentials, branch protections, dry-run behavior, rollback steps, and explicit human approval are in place. <br>
-Risk: Cron templates can run recurring agent actions across departments. <br>
-Mitigation: Review schedules, models, alert destinations, output paths, and first-run behavior before enabling any recurring job. <br>
-Risk: Agent governance guidance may affect communication, audit, and escalation behavior across a multi-agent system. <br>
-Mitigation: Adapt the roster, communication routes, and audit checks to the local operating model and review generated changes before deployment. <br>
+## Use Case:
 
+Developers and operators managing three or more agents use this skill to define departmental roles, communication routes, scheduled learning and reporting, and inspection workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/agent-org-manager) <br>
-- [Communication Patterns](references/communication-patterns.md) <br>
-- [Cron Templates](references/cron-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with roster examples, communication protocols, audit checklists, and JSON cron configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployable cron templates and operational file paths that should be reviewed and adapted before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter lists 1.5.0) <br>
+Risk: Ready-to-deploy scheduled jobs can automatically publish skills and modify GitHub releases without clear human approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Gate publishing and release-modification jobs behind human approval, repository allowlists, diff review, and least-privilege credentials.
+
+Risk: Repair-task error text can be treated as instructions by repair agents.
+
+Mitigation: Treat error text as untrusted data and limit repair agents to the specific job and fields being fixed.
+
+## Reference(s):
+
+- [Communication Patterns](references/communication-patterns.md)
+- [Cron Templates](references/cron-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/ygq19901001/skills/agent-org-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON cron templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes replaceable placeholders for department names, schedules, models, alert channels, and output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata and server release metadata; artifact frontmatter lists 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

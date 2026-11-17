@@ -39,11 +39,14 @@
     "raw": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["submit", "poll"],
       "properties": {
         "submit": { "type": "object", "additionalProperties": true },
         "poll": { "type": "object", "additionalProperties": true }
       }
+    },
+    "download": {
+      "type": "object",
+      "additionalProperties": true
     }
   }
 }

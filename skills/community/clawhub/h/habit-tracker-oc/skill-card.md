@@ -1,40 +1,53 @@
-## Description: <br>
-习惯养成追踪和进度统计工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+习惯养成追踪和进度统计工具.
 
-## Publisher: <br>
-[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huangjingzhi07](https://clawhub.ai/user/huangjingzhi07)
 
-## Use Case: <br>
-External users can use this skill to ask an agent for help adding habits, recording daily check-ins, reviewing streaks and completion rates, and configuring reminders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Habit and check-in records may contain personal routine data. <br>
-Mitigation: Store habits.json and checkins.json only in trusted workspaces and review their contents before sharing logs or artifacts. <br>
-Risk: Habit schedules, reminder settings, and completion status can be recorded incorrectly if user intent is ambiguous. <br>
-Mitigation: Confirm the habit, date, frequency, and completion status with the user before updating records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/habit-tracker-oc) <br>
-- [Publisher profile](https://clawhub.ai/user/huangjingzhi07) <br>
+## Use Case:
 
+External users use this skill to define habits, record daily check-ins, review streaks and completion rates, and configure reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, files] <br>
-**Output Format:** [Markdown or plain text responses, with JSON files for stored habits and check-ins when local storage is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses habits.json and checkins.json for habit and check-in records when local storage is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Habit names and check-in history may be written to local JSON files.
+
+Mitigation: Avoid storing sensitive habit details when privacy matters, and review local files before sharing or deploying the skill.
+
+Risk: Casual wording may be interpreted as a request to create a habit, change a reminder, or record a check-in.
+
+Mitigation: Ask for confirmation before changing habit data when the user's intent is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjingzhi07/skills/habit-tracker-oc)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangjingzhi07)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text habit updates, reminder settings, and progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local habits.json and checkins.json records when the agent applies habit tracking actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

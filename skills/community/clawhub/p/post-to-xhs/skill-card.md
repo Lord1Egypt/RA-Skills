@@ -1,41 +1,52 @@
-## Description: <br>
-Publishes or schedules image and video notes to Xiaohongshu by collecting required content, validating title and media constraints, showing a preview, and publishing only after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post To Xhs helps an agent prepare and publish Xiaohongshu image-text or video posts by validating required fields, previewing the post, and waiting for user confirmation before publishing.
 
-## Publisher: <br>
-[xmznini](https://clawhub.ai/user/xmznini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xmznini](https://clawhub.ai/user/xmznini)
 
-## Use Case: <br>
-External creators, marketers, and operators use this skill to prepare Xiaohongshu posts, validate required fields and media, preview the final note, and publish or schedule it through the configured publishing integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The publishing integration can publish or schedule content under the user's Xiaohongshu account. <br>
-Mitigation: Before confirmation, review the logged-in account, title, body, tags, visibility, schedule time, and every image or video path. <br>
-Risk: Invalid or unintended media paths can cause failed posts or publish the wrong asset. <br>
-Mitigation: Use only the intended image URLs or absolute local video path and verify the previewed media list before approving publication. <br>
-Risk: Platform constraints can truncate titles or reject unsupported post formats. <br>
-Mitigation: Keep titles within the documented 20-character limit, provide at least one image for image notes, and do not mix image and video media in the same post. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xmznini/post-to-xhs) <br>
+## Use Case:
 
+External users and content operators use this skill to turn provided text and local media into Xiaohongshu posts. It is intended for publishing image-text notes or video notes after required fields, media constraints, visibility, scheduling, and user confirmation are checked.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Conversational text with structured publication parameters and tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before publishing and reports the note ID and publication status after success.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish content to Xiaohongshu from the user's account.
+
+Mitigation: Require the agent to show a complete preview and wait for explicit user confirmation before publishing.
+
+Risk: Incorrect media paths, visibility, scheduling, or account state could result in an unintended post.
+
+Mitigation: Check media paths, visibility, scheduling details, and the logged-in Xiaohongshu integration before confirming.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xmznini/skills/post-to-xhs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown previews and concise status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user preview and confirmation before publishing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors public website pages for content changes, compares snapshots, and reports meaningful updates for prices, regulations, job postings, news, and technical documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors public website pages for content changes such as prices, regulations, job posts, news, or technical documentation and helps notify users when relevant changes occur.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users and developers use this skill to define public website monitoring tasks, run periodic checks, compare stored snapshots, and export change data for downstream analysis or notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes anti-bot evasion guidance, proxy rotation, CAPTCHA handling, and cookie-based scraping beyond normal public-page monitoring. <br>
-Mitigation: Use it only for sites the user is authorized to monitor; avoid proxy rotation, CAPTCHA bypass, and session-cookie scraping; honor robots.txt and applicable site terms. <br>
-Risk: Periodic website checks can create excessive request load or trigger blocking when frequency and target scope are not controlled. <br>
-Mitigation: Set explicit monitoring frequency limits, use backoff after 403 or 429 responses, and document approved targets and notification destinations before deployment. <br>
-Risk: Local snapshots may retain sensitive or regulated page content in $HOME/.web-monitor. <br>
-Mitigation: Set retention limits, restrict local file permissions, scrub unnecessary sensitive data, and periodically delete stale snapshots and logs. <br>
+## Use Case:
 
+Teams and agents use this skill to define website monitoring tasks, capture baseline snapshots, compare later page fetches, and report meaningful changes in public web content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/web-data-monitor-claw) <br>
-- [Monitoring rules](references/monitoring-rules.md) <br>
-- [Extraction templates](references/extraction-templates.md) <br>
-- [Anti-detection strategies](references/anti-detection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash examples; script commands return JSON status objects and local snapshot files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores tasks, logs, and snapshots under WEB_MONITOR_DATA_DIR or $HOME/.web-monitor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can fetch any URL reachable from the user's machine, including private-network targets if not constrained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized public sites, and add URL allowlists plus private-network blocking before deployment.
+
+Risk: The artifact includes anti-bot and CAPTCHA-related guidance that may conflict with site terms or acceptable-use expectations.
+
+Mitigation: Follow target site terms and robots.txt, keep request rates low, and avoid CAPTCHA or anti-bot bypass tactics.
+
+Risk: Page snapshots and logs may store sensitive or regulated content locally.
+
+Mitigation: Do not monitor authenticated or sensitive pages, and protect or delete local snapshot data according to organizational policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/web-data-monitor-claw)
+- [Monitoring rules](references/monitoring-rules.md)
+- [Extraction templates](references/extraction-templates.md)
+- [Anti-detection guidance](references/anti-detection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local task records, snapshots, logs, and diff reports under the configured web monitor data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

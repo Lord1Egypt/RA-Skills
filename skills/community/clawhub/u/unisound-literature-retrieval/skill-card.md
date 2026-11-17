@@ -1,41 +1,58 @@
-## Description: <br>
-Helps clinician-facing research workflows restructure clinical questions into PICO, summarize user-provided literature snippets, and suggest next searches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports clinical literature question answering and retrieval planning by aligning user-provided citation or abstract excerpts to PICO and summarizing evidence narratives.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinicians and clinical research staff use this skill to turn a clinical or research question plus optional pasted abstracts into a PICO-aligned evidence narrative and follow-up search plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical questions and pasted literature excerpts are sent to the disclosed Hivoice medical model endpoint. <br>
-Mitigation: Use only with organizational approval, treat the app key as a credential, and avoid sending patient identifiers, regulated health information, or confidential research text. <br>
-Risk: The skill produces draft evidence narratives and search suggestions rather than a real-time database search or systematic review. <br>
-Mitigation: Verify claims against source literature and distinguish unanchored search strategy advice from evidence grounded in supplied passages. <br>
+## Use Case:
 
+Clinicians and clinical researchers use this skill to turn clinical questions and optional literature excerpts into PICO framing, evidence narrative, and next-step search suggestions for study planning, review outlines, or briefing drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-literature-retrieval) <br>
-- [Disclosed Hivoice medical model endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON object containing status metadata and Markdown narrative text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an app key and accepts a clinical question, optional literature passages, and optional constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Clinical questions, constraints, and provided literature excerpts are sent to the documented Hivoice API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid patient identifiers and confidential clinical details in inputs unless the deployment has approved that data flow.
+
+Risk: The app key is accepted as a command-line argument, which may expose credentials through shell or process history.
+
+Mitigation: Use a safer secret-injection path when deploying, such as an approved secret manager or environment-controlled wrapper.
+
+Risk: The skill is not a real-time literature index and may produce strategy-level guidance when no passages are provided.
+
+Mitigation: Distinguish unanchored retrieval suggestions from evidence grounded in supplied excerpts, and require human review before clinical or research decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-literature-retrieval)
+- [Hivoice chat completions API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Guidance]
+
+**Output Format:** [JSON object with Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes PICO framing, evidence notes, retrieval-extension suggestions, and limitation notes based on the provided question and optional passages.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

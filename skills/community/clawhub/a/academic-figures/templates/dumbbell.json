@@ -1,0 +1,12 @@
+{
+  "_chart_type": "dumbbell",
+  "_command": "python3 scripts/gen_figure.py -t dumbbell -d templates/dumbbell.json -o dumbbell.png --cjk",
+  "_note": "场景：六家中心某结局指标的基线 vs 12 周随访（模拟数据）。经典哑铃形态=每行两点（空心=起点，实心=终点）+连接线，按差距降序排列使最大改善行居顶；show_gap 在连接线中点标 Δ 差值。严格限两时点：>2 时点用 slope/line，需配对检验用 paired。--audit/--repro 可加数字对账/复跑包。",
+  "labels": ["中心A", "中心B", "中心C", "中心D", "中心E", "中心F"],
+  "from": [32, 41, 28, 45, 38, 24],
+  "to": [58, 63, 49, 66, 60, 47],
+  "from_label": "基线",
+  "to_label": "12周",
+  "sort": "gap",
+  "show_gap": true
+}

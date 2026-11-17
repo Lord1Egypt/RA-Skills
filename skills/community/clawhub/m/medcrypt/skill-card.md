@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents work with a local Python prototype for AES-256-GCM encryption, decryption, audit logging, key rotation, and emergency key recovery for medical messaging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Demonstrates client-side encryption and decryption for medical message content using AES-256-GCM, PBKDF2-derived keys, encrypted audit logging, key rotation, and emergency key shares.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-Healthcare developers, security reviewers, and agent operators can use this skill to inspect and run a local encryption prototype for protecting message payloads before they are copied into consumer messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release overstates regulatory compliance and safety for sending patient medical data through Telegram, WhatsApp, or similar consumer messaging apps. <br>
-Mitigation: Treat the artifact as a local encryption prototype and require legal, security, and organizational review before using it with protected health information. <br>
-Risk: Client-side encryption does not by itself address metadata exposure, device compromise, backups, recipient identity, retention, auditing, or consent. <br>
-Mitigation: Approve the full workflow, including endpoint security, platform policy, identity checks, retention controls, audit requirements, and patient consent, before deployment. <br>
+## Use Case:
 
+Developers and healthcare security reviewers can inspect a compact Python demo for encrypting patient-physician messages before sending over consumer messaging channels. It is suitable for evaluating cryptography concepts, not for production medical messaging or compliance assurance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CryptoReuMD/medcrypt) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact medcrypt.py](artifact/medcrypt.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local command examples and healthcare security caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security and compliance claims may exceed what the demo implementation proves.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the artifact as a cryptography demo and require independent security, privacy, and compliance review before any patient-data use.
+
+Risk: Production medical messaging, audit logging, and emergency recovery require operational controls beyond the included script.
+
+Mitigation: Do not deploy for clinical workflows until key management, logging durability, access recovery, and regulatory controls are redesigned and validated.
+
+Risk: The demo includes local sample execution behavior that is not a complete secure messaging system.
+
+Mitigation: Review the Python script before running it, use synthetic data during evaluation, and replace demo flows before integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptoreumd/skills/medcrypt)
+- [ClawHub publisher profile](https://clawhub.ai/user/cryptoreumd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and the cryptography package; outputs should be reviewed before use with patient data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

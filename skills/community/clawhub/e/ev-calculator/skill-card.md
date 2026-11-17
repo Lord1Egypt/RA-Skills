@@ -1,42 +1,62 @@
-## Description: <br>
-EV Calculator helps agents calculate expected value, Polymarket edge, win/loss ratios, and related trading decision metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates expected value for trading or betting decisions, including basic EV, Polymarket edge, odds conversion, arbitrage boundary checks, and optional Kelly sizing guidance.
 
-## Publisher: <br>
-[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog)
 
-## Use Case: <br>
-External users and developers use this skill to compute expected value for trading, betting, and Polymarket-style probability decisions. It can return local command-line calculations or JSON-formatted analysis for downstream agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an optional paid external API path using x402 payment details. <br>
-Mitigation: Confirm the payment destination, price, chain, and endpoint before invoking the API path. <br>
-Risk: Trading assumptions and probability estimates may be sensitive if sent to an external endpoint. <br>
-Mitigation: Use local calculations for confidential scenarios or avoid submitting sensitive trading assumptions unless sharing them is acceptable. <br>
-Risk: Expected value outputs are estimates and may be misleading if fees, slippage, funding costs, or weak probability inputs are omitted. <br>
-Mitigation: Review inputs and account for market friction before using results in trading or betting decisions. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to calculate expected value from probability, win/loss, and market-price assumptions. It supports quick decision analysis for EV-positive or EV-negative scenarios, including Polymarket-style probability comparisons.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jinboh68-prog/ev-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and optional JSON calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports basic EV, Polymarket edge, and half-Kelly position suggestions when the relevant inputs are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Calculator inputs may be sent to the declared remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input sensitivity and submit only scenarios that are appropriate for the remote calculator.
+
+Risk: Use may require a 0.01 USDC x402 payment.
+
+Mitigation: Confirm the cost, chain, wallet, and payment policy before enabling payment-capable execution.
+
+Risk: Expected-value output could be mistaken for financial advice or used directly in automated trading.
+
+Mitigation: Treat results as decision support, independently validate assumptions, and account for fees, slippage, funding costs, and sample-size limits.
+
+Risk: Mutable source references can change after review.
+
+Mitigation: Prefer a pinned release or reviewed package before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jinboh68-prog/skills/ev-calculator)
+- [Python](https://www.python.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON numeric EV calculations with brief verdicts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a paid x402 remote API endpoint; local Python examples are also documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

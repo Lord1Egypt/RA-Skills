@@ -1,39 +1,58 @@
-## Description: <br>
-Period-over-period variance analysis on the Balance Sheet pulled from QuickBooks Online, producing a four-tab Excel workbook with Summary, Detail, Flags, and CDC Log tabs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Period-over-period variance analysis on the Balance Sheet pulled from QuickBooks Online, producing a 4-tab Excel workbook with Summary, Detail, Flags, and CDC Log sheets.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Accounting and finance operators use this skill to compare QuickBooks Online balance sheet periods during close, lender review, investor analysis, or investigation of material changes in assets, liabilities, and equity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workbooks and CDC cache can contain sensitive client financial data. <br>
-Mitigation: Run only with a trusted local QuickBooks client, confirm the company slug before execution, and protect or delete generated reports and cache files when no longer needed. <br>
+## Use Case:
 
+Finance and accounting operators use this skill to compare QuickBooks Online balance sheets across periods, investigate material changes in assets, liabilities, and equity, and prepare month-end, YTD, loan, or investor reporting support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/bs-quick-compare) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands and a generated Excel workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces BS_QuickCompare_{slug}_{as-of-date}.xlsx with Summary, Detail, Flags, and CDC Log tabs; CDC cache may be written under .cache/bs-quick-compare.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: QuickBooks Online credentials and client financial data may be exposed if the skill is installed or run in an inappropriate environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments authorized for the reporting task and keep QBO credentials out of dependency installation contexts.
+
+Risk: The disclosed local cache can contain sensitive balance sheet values.
+
+Mitigation: Protect the `.cache/bs-quick-compare/{slug}.json` file with the same access controls as financial reports and clear it when retention is not needed.
+
+Risk: Dependency installation can introduce ordinary supply-chain risk.
+
+Mitigation: Use a pinned and reviewed `openpyxl` dependency before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/bs-quick-compare)
+- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to run a QuickBooks Online balance sheet comparison pipeline that produces an Excel workbook.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

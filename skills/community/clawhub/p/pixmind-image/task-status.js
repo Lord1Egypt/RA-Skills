@@ -38,7 +38,7 @@ if (!opts.taskId) {
 
 const apiKey = process.env.PIXMIND_API_KEY;
 if (!apiKey) {
-  console.error('Error: PIXMIND_API_KEY not set. Get one at https://www.pixmind.io/api-keys');
+  console.error('Error: PIXMIND_API_KEY not set. Get one at https://www.pixmind.io/api-platform/dashboard/keys');
   process.exit(1);
 }
 
@@ -46,8 +46,8 @@ const poll = opts.poll;
 const interval = parseInt(opts.interval) || 3000;
 
 async function checkStatus() {
-  const res = await fetch(`${API_BASE}/open-api/v1/task/${opts.taskId}`, {
-    headers: { 'X-API-Key': apiKey },
+  const res = await fetch(`${API_BASE}/api-platform/v1/tasks/${opts.taskId}`, {
+    headers: { 'Authorization': `Bearer ${apiKey}` },
   });
   return res.json();
 }

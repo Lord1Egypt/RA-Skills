@@ -1,46 +1,63 @@
-## Description: <br>
-Order food delivery via browser automation from trusted calendar events, with Direct and Discovery modes for DoorDash, Uber Eats, and Grubhub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Order food delivery via browser automation from calendar events, supporting Direct mode for a specific service and restaurant and Discovery mode for criteria-based search across DoorDash, Uber Eats, and Grubhub.
 
-## Publisher: <br>
-[ThisIsJeron](https://clawhub.ai/user/ThisIsJeron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thisisjeron](https://clawhub.ai/user/thisisjeron)
 
-## Use Case: <br>
-External users with logged-in delivery accounts use this skill to turn trusted calendar events into direct restaurant orders or criteria-based restaurant discovery, then review a pre-checkout summary before any live purchase is placed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a logged-in Chrome profile with saved delivery accounts, payment methods, and addresses to place real food orders. <br>
-Mitigation: Use it only when comfortable granting that account access, and require review of restaurant, items, address, fees, tip, total, ETA, and payment method before confirming. <br>
-Risk: Calendar events from shared calendars or external invites may not reflect the user's intent. <br>
-Mitigation: Trigger ordering only from calendar events the user created, and call out externally modified events in the pre-confirmation summary. <br>
-Risk: Incorrect allergy or dietary handling could create unsafe food choices. <br>
-Mitigation: Treat allergy and dietary constraints as mandatory, skip ambiguous items, and do not proceed when allergen safety cannot be confirmed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DoorDash Browser Flow](references/doordash.md) <br>
-- [Grubhub Browser Flow](references/grubhub.md) <br>
-- [Uber Eats Browser Flow](references/ubereats.md) <br>
-- [DoorDash](https://www.doordash.com) <br>
-- [Grubhub](https://www.grubhub.com) <br>
-- [Uber Eats](https://www.ubereats.com) <br>
+## Use Case:
 
+External users use this skill to turn self-created calendar events into browser-assisted food delivery orders. It supports direct restaurant ordering and comparison-based discovery while requiring explicit confirmation before a live purchase.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline browser-automation tasks, confirmation prompts, and JSON state-tracking examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces live ordering guidance and requires user confirmation before checkout.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real food orders through a logged-in browser profile with saved payment and delivery information.
+
+Mitigation: Use a dedicated browser profile with limited saved data and require a fresh explicit confirmation before any final order click.
+
+Risk: Calendar events from shared calendars or external invites may not represent the user's intent.
+
+Mitigation: Only trigger the skill from calendar events the user created and controls, and verify event origin before proceeding.
+
+Risk: Calendar descriptions may contain sensitive delivery details such as gate codes.
+
+Mitigation: Avoid putting gate codes or other sensitive access details in calendar descriptions; provide them only at confirmation time when needed.
+
+Risk: Food allergy or dietary constraints may be unsafe if menu information is ambiguous.
+
+Mitigation: Skip items when allergen safety cannot be confirmed and choose clearly safe alternatives before presenting the checkout summary.
+
+## Reference(s):
+
+- [Food Calendar Order on ClawHub](https://clawhub.ai/thisisjeron/skills/food-cal-order)
+- [DoorDash Browser Flow](references/doordash.md)
+- [Uber Eats Browser Flow](references/ubereats.md)
+- [Grubhub Browser Flow](references/grubhub.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status reports with browser-action instructions and confirmation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce order summaries, restaurant comparisons, failure reports, and final order confirmation details.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

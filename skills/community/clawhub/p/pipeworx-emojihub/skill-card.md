@@ -1,41 +1,59 @@
-## Description: <br>
-Browse and fetch emojis by category or group, including random picks, smileys, animals, food, flags, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and fetch emojis by category or group - random picks, smileys, animals, food, flags, and more.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve random or categorized emoji data for chatbot reactions, emoji picker components, games, creative prompts, and social media tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security scan marks the release suspicious and warns that some workflows may have production impact. <br>
-Mitigation: Install only in a trusted maintainer environment and confirm exact targets and reasons before running production-impacting actions. <br>
-Risk: The security guidance warns against unrestricted nested agent access and fallback reviewers when private diffs must remain local. <br>
-Mitigation: Prefer restricted execution options when unrestricted nested access is not necessary, and avoid fallback reviewers for private diffs. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch random emojis, browse emojis by category, or filter them by group for chat responses, picker components, games, creative prompts, and social media tooling.
 
-## Reference(s): <br>
-- [Pipeworx EmojiHub homepage](https://pipeworx.io/packs/emojihub) <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-emojihub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON configuration and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns emoji names, unicode characters, and HTML entities through remote EmojiHub tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Setup executes mcp-remote from npm with an unpinned latest version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version before installation and review the package update path before enabling the skill.
+
+Risk: The skill connects an agent to the Pipeworx remote MCP service.
+
+Mitigation: Enable it only in environments where the Pipeworx service is acceptable, and run the MCP process with minimal filesystem and environment access.
+
+Risk: Private data or credentials could be exposed to the MCP process if granted broad access.
+
+Mitigation: Avoid passing secrets or private workspace data to the skill and scope agent permissions narrowly.
+
+## Reference(s):
+
+- [Pipeworx EmojiHub homepage](https://pipeworx.io/packs/emojihub)
+- [Pipeworx EmojiHub MCP endpoint](https://gateway.pipeworx.io/emojihub/mcp)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-emojihub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Shell commands]
+
+**Output Format:** [Markdown with JSON and bash examples; MCP tool calls return emoji names, unicode characters, and HTML entities.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for direct examples and configures an MCP server through npx mcp-remote.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

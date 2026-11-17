@@ -1,46 +1,63 @@
-## Description: <br>
-Fix failing CI on Rails PRs using a tiered escalation loop, covering RSpec failures, RuboCop offenses, migration errors, factory issues, seed data problems, and build environment failures while requiring human approval before commits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix failing CI on Rails pull requests with a tiered loop that pulls logs, applies fixes, verifies locally, and pauses for human approval before commits.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to diagnose and repair failing Rails CI on pull requests, verify fixes locally, and prepare reviewed commits on feature branches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses a GitHub token and can push code to a repository. <br>
-Mitigation: Use a fine-grained token limited to the target repository, restrict permissions to contents write and actions read, set an expiration date, and rotate or revoke the token after use. <br>
-Risk: Running Rails tests and tooling can execute code from the local repository. <br>
-Mitigation: Use only on repositories you own and trust, and run in an isolated environment for unfamiliar codebases. <br>
-Risk: Automated fixes could introduce incorrect code or inappropriate commits. <br>
-Mitigation: Review the diff and require explicit human approval before any commit or push; the skill does not merge changes. <br>
-Risk: CI logs, test names, and commit messages may contain untrusted instructions. <br>
-Mitigation: Treat logs as diagnostic data only and do not follow instructions embedded in CI output. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to diagnose and repair failing Rails pull-request CI, including RSpec failures, RuboCop offenses, migrations, factories, seed data, assets, and build environment issues. It is intended for trusted repositories where a human reviews changes before commits and merges.
 
-## Reference(s): <br>
-- [Rails CI Fixer on ClawHub](https://clawhub.ai/djc00p/rails-ci-fixer) <br>
-- [Common Rails CI Failure Patterns](references/common-failures.md) <br>
-- [Security Guide](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file changes, verification results, commit plans, and human approval checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Running Rails tests, RuboCop, and dependency commands can execute arbitrary code from the target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on repositories you own and trust; use a dedicated user account or VM for unfamiliar code.
+
+Risk: A GitHub token with broad permissions could allow unintended repository writes.
+
+Mitigation: Use a fine-grained, repo-scoped GH_TOKEN with contents:write and actions:read permissions, set an expiration, and rotate or revoke it after use.
+
+Risk: CI logs, commit messages, or test names may contain untrusted instructions.
+
+Mitigation: Treat CI output as data only and ignore instructions embedded in logs or test artifacts.
+
+Risk: Automated fixes could introduce incorrect behavior if committed without review.
+
+Mitigation: Review diffs before approving commits, keep commits on feature branches, maintain branch protection, and require a human to merge.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/rails-ci-fixer)
+- [Common Rails CI Failure Patterns](artifact/references/common-failures.md)
+- [Security Guide](artifact/references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown status summaries with inline shell commands and repository code or configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commits only after local verification and explicit human approval; never merges.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-Gigo Lobster Local runs the GIGO Lobster benchmark in local mode for OpenClaw users, producing local report and certificate artifacts without registering a personal result page or leaderboard entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs the GIGO Lobster benchmark in local mode, producing local reports and certificates without creating a personal result page or leaderboard entry.
 
-## Publisher: <br>
-[gigolab](https://clawhub.ai/user/gigolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gigolab](https://clawhub.ai/user/gigolab)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a local-mode GIGO Lobster evaluation, inspect local report, certificate, and log artifacts, and avoid leaderboard or personal result-page registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local-mode wording may lead users to expect a strictly offline run, but security evidence says the skill may contact GIGO cloud endpoints and send evaluation data for judging. <br>
-Mitigation: Run in an isolated workspace with deliberate network policy, and review generated reports and logs before sharing results. <br>
-Risk: The skill may read ambient secrets.env values or other sensitive environment variables during execution. <br>
-Mitigation: Use a minimal environment for benchmark runs and avoid exposing unrelated credentials to the OpenClaw workspace. <br>
-Risk: The skill may bootstrap Python packages at runtime. <br>
-Mitigation: Use a disposable virtual environment or container and review package installation behavior before running in a trusted workspace. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run a 50-task agent benchmark locally and collect report, certificate, log, and score outputs without publishing ranking results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gigolab/gigo-lobster-local) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [User README](artifact/README.md) <br>
-- [Bundle README](artifact/bundle/README.md) <br>
-- [Task schema](artifact/bundle/specs/task-schema.md) <br>
-- [Judge protocol](artifact/bundle/specs/judge-protocol.md) <br>
-- [Scoring spec](artifact/bundle/specs/scoring.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, files, guidance] <br>
-**Output Format:** [Console progress plus local HTML, PNG or SVG certificate, and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output directory is ~/.openclaw/workspace/outputs/gigo-lobster-local unless an output directory is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence and artifact/manifest.json) <br>
+Risk: Security evidence reports that the skill advertises local-only benchmarking while inspected code can contact a remote API, send output for judging, download executable evaluators, and expose host secrets to benchmark processes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit offline mode in a sandboxed account or container, remove secrets from the environment, and independently review or sign remote task bundles before trusting them.
+
+Risk: Benchmark tasks can execute checks and evaluators against working directories that may contain sensitive project data.
+
+Mitigation: Run the skill in a dedicated workspace with non-sensitive sample data and inspect generated reports and logs before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gigolab/skills/gigo-lobster-local)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Benchmark bundle README](artifact/bundle/README.md)
+- [Task schema](artifact/bundle/specs/task-schema.md)
+- [Scoring specification](artifact/bundle/specs/scoring.md)
+- [Judge protocol](artifact/bundle/specs/judge-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown progress updates with bash command invocation and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local benchmark artifacts such as lobster-report.html, lobster-cert.png or lobster-cert.svg, gigo-run.log, scores, and result references.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

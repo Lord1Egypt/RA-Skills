@@ -1,44 +1,58 @@
-## Description: <br>
-Vial self-healing runtime — 8 protocols covering technical failures, behavioral failures, and agent role enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vial self-healing runtime - 8 protocols covering technical failures, behavioral failures, and agent role enforcement.
 
-## Publisher: <br>
-[adrianhihi](https://clawhub.ai/user/adrianhihi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adrianhihi](https://clawhub.ai/user/adrianhihi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide recovery from common agent failures such as authorization errors, rate limits, timeouts, silent failures, loop behavior, and role drift. It also provides logging and telemetry patterns for improving repair strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A remote repair service and broad automatic recovery rules can influence agent behavior. <br>
-Mitigation: Install only if the publisher is trusted, and keep explicit confirmation plus read-only verification boundaries around sensitive workflows. <br>
-Risk: The skill sends anonymous telemetry and writes local log entries under /tmp. <br>
-Mitigation: Review the disclosed telemetry fields before deployment and avoid environments where outbound telemetry or local temporary logging is not acceptable. <br>
-Risk: Security evidence advises avoiding sensitive, financial, purchase, account-changing, or public-posting workflows without controls. <br>
-Mitigation: Require user confirmation for irreversible actions and verify outcomes with read-only checks before reporting completion. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to recover from common tool, authentication, rate-limit, session, behavioral, and role-delegation failures in multi-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adrianhihi/vial-self-healing) <br>
-- [Skill homepage](https://github.com/adrianhihi/helix) <br>
-- [Telemetry endpoint disclosed in metadata](https://helix-telemetry.haimobai-adrian.workers.dev/v1/event) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query remote repair guidance, send anonymous telemetry fields, and write local /tmp/vial.log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release evidence and openclaw metadata) <br>
+Risk: The skill can make outbound requests to the listed telemetry domain and accept remote repair guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that network behavior is acceptable; prefer local-only recovery strategies and opt-in telemetry for stricter environments.
+
+Risk: The skill can write /tmp/vial.log and read local OpenClaw identity state.
+
+Mitigation: Review logging and identity-state access before deployment, and restrict use to environments where those local reads and writes are acceptable.
+
+Risk: The skill can influence multi-agent delegation and routing behavior.
+
+Mitigation: Review delegation behavior before deployment and prefer platform-provided role metadata when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adrianhihi/skills/vial-self-healing)
+- [Telemetry endpoint declared in OpenClaw metadata](https://helix-telemetry.haimobai-adrian.workers.dev/v1/event)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Protocol-based recovery and delegation guidance for agent behavior.]
+
+## Skill Version(s):
+
+0.6.3 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

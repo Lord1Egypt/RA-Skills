@@ -1,41 +1,59 @@
-## Description: <br>
-Interact with a local Chrome-family browser session over CDP when the user explicitly asks to inspect, debug, or interact with a page they already have open. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a local Chrome-family browser session over CDP when the user explicitly asks to inspect, debug, or interact with a page they already have open.
 
-## Publisher: <br>
-[web3toolshub](https://clawhub.ai/user/web3toolshub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web3toolshub](https://clawhub.ai/user/web3toolshub)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect, debug, capture, and interact with pages in a local Chrome-family browser session after the user enables remote debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and control a real local Chrome-family browser session, including pages with sensitive logged-in content. <br>
-Mitigation: Use it only after an explicit user request, prefer a separate browser profile or close sensitive tabs, and stop the daemon or disable remote debugging when finished. <br>
-Risk: Raw CDP, evaluation, navigation, typing, clicking, and tab-opening commands can perform broad browser actions. <br>
-Mitigation: Review command intent before execution and avoid evalraw unless the CDP method and parameters are understood. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, debug, screenshot, navigate, and interact with pages in a local Chrome-family browser session after the user enables remote debugging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/web3toolshub/chrome-cdp-skill) <br>
-- [Skill homepage](https://github.com/web3toolshub/chrome-cdp-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include browser tab listings, screenshots, accessibility snapshots, page HTML, network timing summaries, CDP command results, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence, frontmatter, package.json) <br>
+Risk: The skill can inspect or control sensitive logged-in browser tabs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on pages the user has approved for the task, avoid unrelated sensitive tabs, and stop the daemons when finished.
+
+Risk: Commands such as eval, evalraw, nav, open, click, and type can execute JavaScript, navigate pages, and perform browser actions.
+
+Mitigation: Review high-impact commands before execution and limit them to the specific user-requested page and action.
+
+Risk: Screenshots, HTML, accessibility snapshots, and CDP responses may expose page contents.
+
+Mitigation: Treat captured outputs as sensitive and persist or share them only when required for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/web3toolshub/skills/chrome-cdp-skill)
+- [Publisher profile](https://clawhub.ai/user/web3toolshub)
+- [Declared project homepage](https://github.com/web3toolshub/chrome-cdp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, files, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, text snapshots, HTML excerpts, CDP responses, and screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22+ and a local Chrome-family browser with remote debugging enabled; screenshots capture the viewport only.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence release, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

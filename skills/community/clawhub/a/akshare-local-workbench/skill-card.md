@@ -1,48 +1,73 @@
-## Description: <br>
-Installs, runs, maintains, and troubleshoots a bundled local single-user AKShare financial data workbench for setup, tests, cache management, catalog edits, and responsible public-data access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, run, maintain, and troubleshoot a bundled local single-user AKShare financial data workbench, including project setup, FastAPI and React service control, cache management, YAML indicator catalog maintenance, and request-limit guidance.
 
-## Publisher: <br>
-[tianyedavid](https://clawhub.ai/user/tianyedavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyedavid](https://clawhub.ai/user/tianyedavid)
 
-## Use Case: <br>
-Developers and data analysts use this skill to create and operate a local AKShare workbench from bundled assets, start or stop its FastAPI and React services, run tests, clear cache, and maintain the indicator catalog. It is intended for local single-user financial data workflows rather than high-frequency, bulk, or trading-advice use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workbench installs Python and npm dependencies and runs local services. <br>
-Mitigation: Run setup in an isolated local environment, review dependency files before installation, and use the controller's doctor and test commands before routine use. <br>
-Risk: The workbench contacts AKShare and upstream public financial data providers that may enforce terms, rate limits, or availability restrictions. <br>
-Mitigation: Use local caching, conservative request pacing, targeted indicators, and licensed data feeds for production, bulk, commercial, or high-frequency workflows. <br>
-Risk: Optional AI configuration stores provider credentials locally in plaintext. <br>
-Mitigation: Use only trusted AI providers, avoid entering sensitive financial or account information into chat, and keep ai_config.json, .env files, API keys, proxy credentials, logs, and cache files private. <br>
-Risk: Financial data returned by public interfaces can be delayed, incomplete, unavailable, or inaccurate. <br>
-Mitigation: Verify important financial data with official or licensed sources and do not treat workbench output as investment, trading, or portfolio advice. <br>
+## Use Case:
 
+Developers and external users use this skill to create and operate a local AKShare workbench, manage its local services and cache, maintain the indicator catalog, and troubleshoot conservative public-data request pacing.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/tianyedavid/akshare-local-workbench) <br>
-- [Project Homepage](https://github.com/TianYeDavid/akshare-local-workbench) <br>
-- [Maintenance Guide](references/maintenance.md) <br>
-- [Bundled Workbench README](assets/akshare-workbench/README.md) <br>
-- [Bundled Workbench Disclaimer](assets/akshare-workbench/DISCLAIMER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration values, and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local setup, maintenance, troubleshooting, catalog-editing, and cache-management instructions for the bundled workbench.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The local AI assistant can store model-provider configuration and may send entered credentials to the configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS or a trusted local model endpoint, avoid high-value API keys, and rotate or delete keys saved in ai_config.json when finished.
+
+Risk: Exposing the workbench services beyond localhost can increase access and data-leakage risk.
+
+Mitigation: Keep the backend and frontend bound to localhost unless a reviewer has approved a hardened deployment.
+
+Risk: Local caches may contain financial query results or sensitive workflow data.
+
+Mitigation: Keep cache directories private and clear cached results when they are no longer needed.
+
+Risk: The release has frontend development dependency risk noted by the security scan.
+
+Mitigation: Update flagged frontend development dependencies before routine use on sensitive machines.
+
+Risk: Public financial data providers can rate-limit, disconnect, or restrict bulk access.
+
+Mitigation: Use the skill's slow pacing and cache defaults, avoid repeated forced refreshes, and use official or licensed data feeds for production, commercial, high-frequency, or bulk usage.
+
+Risk: Financial data returned by the workbench may be inaccurate, delayed, incomplete, or unsuitable for decisions.
+
+Mitigation: Verify important financial data with official or licensed sources and do not treat skill output as financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianyedavid/skills/akshare-local-workbench)
+- [Project homepage](https://github.com/TianYeDavid/akshare-local-workbench)
+- [Maintenance guide](references/maintenance.md)
+- [Bundled workbench README](assets/akshare-workbench/README.md)
+- [Bundled workbench disclaimer](assets/akshare-workbench/DISCLAIMER.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local project file creation, service control, cache cleanup, tests, and environment variable settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

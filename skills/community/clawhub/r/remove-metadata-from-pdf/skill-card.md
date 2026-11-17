@@ -1,43 +1,59 @@
-## Description: <br>
-Remove metadata from one or multiple PDFs by uploading them to the Solutions API, polling until completion, then returning download URLs for cleaned PDFs or a ZIP archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove metadata from one or multiple PDFs by uploading them to the Solutions API, polling until completion, then returning download URL(s) for the cleaned PDF(s) or a ZIP if multiple files are processed.
 
-## Publisher: <br>
-[CrossServiceSolutions](https://clawhub.ai/user/CrossServiceSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[crossservicesolutions](https://clawhub.ai/user/crossservicesolutions)
 
-## Use Case: <br>
-External users and document workflows can use this skill to remove metadata from PDFs through Cross-Service-Solutions and retrieve cleaned PDF or ZIP download links. It is suited for documents the user is allowed to upload to that provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents are uploaded to an external service for processing. <br>
-Mitigation: Use only documents that may be shared with Cross-Service-Solutions, and confirm the provider's privacy, retention, and access controls before uploading confidential or regulated files. <br>
-Risk: The skill requires a bearer API key. <br>
-Mitigation: Keep the API key private, avoid echoing or logging it, and verify the upload URL before use. <br>
+## Use Case:
 
+Developers and document-processing agents use this skill to remove metadata from one or more PDF files through the Cross-Service-Solutions API and return cleaned file download links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CrossServiceSolutions/remove-metadata-from-pdf) <br>
-- [Publisher profile](https://clawhub.ai/user/CrossServiceSolutions) <br>
-- [Solutions API registration](https://login.cross-service-solutions.com/register) <br>
-- [Solutions API endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result with job status, output file metadata, and download URLs; Markdown guidance may include shell commands for CLI use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one or more PDF files and a Solutions API key; multiple inputs may return multiple PDFs or a ZIP archive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: PDF contents are uploaded to a remote service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for PDFs that are acceptable to share with Cross-Service-Solutions under the provider's retention and access policies.
+
+Risk: The base URL override can redirect PDFs and the API key away from the documented HTTPS endpoint.
+
+Mitigation: Remove or tightly control base URL override support and verify the destination host before execution.
+
+Risk: Passing an API key on the command line can expose it through shell history or process inspection.
+
+Mitigation: Prefer the SOLUTIONS_API_KEY environment variable or a managed secret store, and avoid echoing or logging credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crossservicesolutions/skills/remove-metadata-from-pdf)
+- [Cross-Service-Solutions registration](https://login.cross-service-solutions.com/register)
+- [Solutions API base endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [JSON result with job status, output file names, download URL or URLs, and input file names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a single cleaned PDF URL, multiple cleaned PDF URLs, or a ZIP download URL for batch processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+# uibc-team-gov
+
+> UIBC（国际自治之物挑战赛）政务域参赛队。以 TH-GOV-001 判据为底座，参加「迁移的判定与问责」赛题——给定一次记忆迁移，证明「迁移后仍是同一个 Agent」并为判定负责。三层交付：判定规则（L1 有籍）／证据包（L2 有证）／失败处置与责任归属（L3 有门禁），并须声明判据可形式化等级 L0–L4。触发词：UIBC、政务、迁移判定、记忆迁移、证据包、责任归属、参赛队。
+
+- 版本：1.1.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：README.md, SKILL.md, cover.png, 判据_GOV.md, scripts/check_judge_GOV.py
+- 判定检查器：`python scripts/check_judge_GOV.py --selftest`（PASS 即判据结构完整，可引用作真源）
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/[REDACTED]）

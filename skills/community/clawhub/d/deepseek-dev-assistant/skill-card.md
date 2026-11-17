@@ -1,44 +1,59 @@
-## Description: <br>
-Read DeepSeek chat share links and continue development from extracted code and docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read DeepSeek chat share links and continue development from extracted code and docs.
 
-## Publisher: <br>
-[fhekg](https://clawhub.ai/user/fhekg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fhekg](https://clawhub.ai/user/fhekg)
 
-## Use Case: <br>
-Developers use this skill to turn DeepSeek chat share links into local project files, README notes, fragment tracking, and next-step implementation guidance. It is aimed at continuing work from code and design decisions already produced in DeepSeek conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may open DeepSeek links in a headless browser and install Puppeteer to render external pages. <br>
-Mitigation: Use it only with chats you own or trust, and prefer running it from a fresh or sandboxed project directory. <br>
-Risk: The skill can create or modify project files and persist extracted context across sessions. <br>
-Mitigation: Review planned file writes before allowing overwrites and inspect generated README, TODO, and extracted files. <br>
-Risk: Code extracted from chat output can be incomplete, stale, or unsafe to run as-is. <br>
-Mitigation: Review, test, and security-scan extracted code before executing, deploying, or relying on it. <br>
+## Use Case:
 
+Developers use this skill to turn DeepSeek shared chats into local project files, README/TODO summaries, and follow-on implementation work. It is intended for workflows where chat-generated code and project structure need to be extracted, reviewed, and continued in an agent workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fhekg/deepseek-dev-assistant) <br>
-- [DeepSeek share page structure](references/deepseek-page-structure.md) <br>
-- [Example extraction workflow](references/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with extracted files, TODO notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write project files, README.md, FRAGMENTS_TODO.md, and session memory based on the DeepSeek chat content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Remote DeepSeek chat content can influence local file creation and modification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace and review proposed paths, overwrites, and generated files before allowing writes.
+
+Risk: Extracted chats may contain untrusted code or sensitive material.
+
+Mitigation: Avoid chats containing secrets and review extracted code, dependencies, and commands before execution.
+
+Risk: The workflow may request dependency installation, command execution, or persistent memory updates.
+
+Mitigation: Approve dependency installation, command execution, overwrites, and memory persistence only when they are expected for the task.
+
+## Reference(s):
+
+- [DeepSeek Share Page Structure](artifact/references/deepseek-page-structure.md)
+- [Example: Extracting and continuing from a DeepSeek chat](artifact/references/example.md)
+- [ClawHub skill page](https://clawhub.ai/fhekg/skills/deepseek-dev-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status summaries, local project files, code fragments, README/TODO files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node for the browser-based extraction workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

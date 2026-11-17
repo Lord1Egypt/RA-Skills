@@ -1,0 +1,402 @@
+#!/usr/bin/env python3
+"""
+urlgo - 浏览器控制 CLI（CDP 协议）
+
+用法:
+  urlgo status                   # 检查 CDP 状态
+  urlgo start                    # 查找并启动浏览器（Edge/Chrome/Chromium）
+  urlgo list                     # 查看所有页面
+  urlgo open <url>               # 打开新页面
+  urlgo activate <page_id>       # 激活页面
+  urlgo close <page_id>          # 关闭页面
+  urlgo screenshot <page_id> <file.png>   # 截图
+  urlgo snapshot <page_id>       # 读取页面内容（纯文本）
+  urlgo source <page_id>         # 获取页面 HTML 源码
+  urlgo eval <page_id> "<js>"    # 执行 JS
+  urlgo click <page_id> "<selector>"      # 点击
+  urlgo type <page_id> "<selector>" "<text>"  # 输入
+
+示例:
+  urlgo start                    # 自动查找并启动浏览器
+  urlgo open https://www.baidu.com
+  urlgo list
+  urlgo screenshot xxx /tmp/test.png
+"""
+import sys
+import json
+import subprocess
+import os
+import platform
+
+CDP_PORT = 9022
+CDP_URL = f"http://localhost:{CDP_PORT}"
+
+# 专用浏览器账户目录，与 Default/ 同级
+URLGO_DATA_DIR = os.path.expanduser("~/.config/microsoft-edge/urlgo")
+
+# 浏览器配置
+BROWSERS = {
+    "Linux": {
+        "edge": ["microsoft-edge", "microsoft-edge-stable", "/opt/microsoft/msedge/msedge"],
+        "chrome": ["google-chrome", "google-chrome-stable"],
+        "chromium": ["chromium", "chromium-browser"],
+    },
+    "Darwin": {
+        "edge": ["/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"],
+        "chrome": ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"],
+        "chromium": ["/Applications/Chromium.app/Contents/MacOS/Chromium"],
+    },
+    "Windows": {
+        "edge": [
+            "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+            "C:/Program Files/Microsoft/Edge/Application/msedge.exe",
+        ],
+        "chrome": [
+            "C:/Program Files/Google/Chrome/Application/chrome.exe",
+            "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+        ],
+        "chromium": [
+            "C:/Program Files/Chromium/Application/chrome.exe",
+        ],
+    }
+}
+
+def run_cmd(cmd, capture=True):
+    """执行命令"""
+    if capture:
+        return subprocess.run(cmd, capture_output=True, text=True, shell=isinstance(cmd, str))
+    else:
+        return subprocess.run(cmd, shell=isinstance(cmd, str))
+
+def check_cdp(port=CDP_PORT):
+    """检查 CDP 是否可用"""
+    try:
+        r = run_cmd(["curl", "-s", f"http://localhost:{port}/json/version"])
+        if r.returncode == 0 and "Browser" in r.stdout:
+            return True
+    except:
+        pass
+    return False
+
+def get_browser_info(port=CDP_PORT):
+    """获取当前浏览器信息"""
+    try:
+        r = run_cmd(["curl", "-s", f"http://localhost:{port}/json/version"])
+        if r.returncode == 0:
+            data = json.loads(r.stdout)
+            return data.get("Browser", "Unknown")
+    except:
+        pass
+    return None
+
+def find_browser():
+    """查找可用的浏览器"""
+    system = platform.system()
+    browsers = BROWSERS.get(system, {})
+
+    for browser_type, paths in browsers.items():
+        for path in paths:
+            # 检查是否是绝对路径
+            if path.startswith("/") or (system == "Windows" and ":" in path):
+                if os.path.exists(path):
+                    return browser_type, path
+            else:
+                # 用 which/where 查找
+                if system == "Windows":
+                    r = run_cmd(f"where {path}")
+                else:
+                    r = run_cmd(f"which {path}")
+                if r.returncode == 0 and r.stdout.strip():
+                    return browser_type, r.stdout.strip().split('\n')[0]
+
+    return None, None
+
+
+# 各浏览器可能出现的实际进程名（有的发行版用 wrapper 脚本，实际二进制名不同）
+BROWSER_PROCESS_NAMES = {
+    "edge":   ["microsoft-edge", "microsoft-edge-stable", "msedge", "msedge-stable"],
+    "chrome": ["google-chrome", "google-chrome-stable", "chrome", "chromium"],
+    "chromium": ["chromium", "chromium-browser", "chrome"],
+}
+
+
+def check_browser_already_running():
+    """检查系统中是否已有浏览器进程在运行（但不一定开启了 CDP）
+
+    返回值: (bool, str) — (是否正在运行, 浏览器名称)
+    """
+    system = platform.system()
+    names = BROWSER_PROCESS_NAMES
+
+    for browser_type, bin_names in names.items():
+        for bin_name in bin_names:
+            if system == "Windows":
+                r = run_cmd(f"tasklist /FI \"IMAGENAME eq {bin_name}.exe\" 2>NUL")
+                if r.returncode == 0 and bin_name.lower() in r.stdout.lower():
+                    return True, browser_type
+            else:
+                r = run_cmd(f"pgrep -x {bin_name} 2>/dev/null")
+                if r.returncode == 0 and r.stdout.strip():
+                    return True, browser_type
+
+    return False, None
+
+def find_available_port(start_port=CDP_PORT, max_attempts=10):
+    """查找可用的CDP端口"""
+    for port in range(start_port, start_port + max_attempts):
+        if not check_cdp(port):
+            return port
+    return None
+
+def cmd_status():
+    """检查 CDP 状态"""
+    print(f"🔍 检查 CDP 端口 {CDP_PORT}...")
+
+    if check_cdp():
+        browser = get_browser_info()
+        print(f"✅ CDP 已开启")
+        print(f"   浏览器: {browser}")
+        print(f"   端口: {CDP_PORT}")
+
+        # 显示页面数量
+        r = run_cmd(["curl", "-s", f"{CDP_URL}/json/list"])
+        if r.returncode == 0:
+            pages = json.loads(r.stdout)
+            page_count = len([p for p in pages if p.get("type") == "page"])
+            print(f"   页面数: {page_count}")
+    else:
+        print(f"❌ CDP 未开启")
+        print()
+        print("启动方式:")
+        print("  运行: urlgo start")
+
+def cmd_start():
+    """查找并启动浏览器"""
+    global CDP_PORT, CDP_URL
+    print("🔍 查找可用浏览器...")
+
+    # 先检查是否已经开启（CDP 端口已通）
+    if check_cdp():
+        browser = get_browser_info()
+        print(f"✅ CDP 已开启: {browser}")
+        print("   如需重启，请先关闭浏览器")
+        return
+
+    # 检查是否有浏览器进程在运行
+    running, bn = check_browser_already_running()
+    if running:
+        print(f"⚠️  检测到 {bn} 已在运行。")
+        print("   将启动新的浏览器进程（使用urlgo专用账户目录）。")
+        # 不退出，继续启动新进程
+
+    # 查找浏览器
+    browser_type, browser_path = find_browser()
+
+    if not browser_path:
+        print("❌ 未找到可用浏览器")
+        print("   请安装 Edge、Chrome 或 Chromium")
+        sys.exit(1)
+
+    print(f"✅ 找到浏览器: {browser_type}")
+    print(f"   路径: {browser_path}")
+
+    # 查找可用端口
+    available_port = find_available_port()
+    if not available_port:
+        print(f"❌ 无法找到可用的CDP端口（尝试了 {CDP_PORT}-{CDP_PORT+9}）")
+        sys.exit(1)
+    
+    print(f"🚀 启动中... (使用端口 {available_port})")
+
+    # 使用 Popen + start_new_session 彻底脱离父进程，
+    # 确保 urlgo 脚本退出后浏览器仍然存活
+    system = platform.system()
+    if system == "Windows":
+        # Windows 上使用 DETACHED_PROCESS 标记
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        proc = subprocess.Popen(
+            [browser_path, f"--remote-debugging-port={available_port}", "--no-first-run",
+             f"--user-data-dir={URLGO_DATA_DIR}"],
+            startupinfo=startupinfo,
+            creationflags=subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    else:
+        # Unix 上使用 start_new_session 脱离进程组
+        proc = subprocess.Popen(
+            [browser_path, f"--remote-debugging-port={available_port}", "--no-first-run",
+             f"--user-data-dir={URLGO_DATA_DIR}"],
+            start_new_session=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+
+    print(f"   浏览器进程 PID: {proc.pid}")
+
+    # 等待启动
+    import time
+    for i in range(30):
+        time.sleep(0.5)
+        if check_cdp(available_port):
+            print(f"✅ 浏览器已启动 (CDP 端口 {available_port})")
+            # 更新全局变量，以便后续命令使用正确的端口
+            CDP_PORT = available_port
+            CDP_URL = f"http://localhost:{available_port}"
+            return
+
+    print("❌ 启动超时，请检查浏览器是否正常")
+
+def cmd_list():
+    """列出所有页面"""
+    if not check_cdp():
+        print("❌ CDP 未开启，请先运行: urlgo start")
+        sys.exit(1)
+
+    r = run_cmd(["curl", "-s", f"{CDP_URL}/json/list"])
+    pages = json.loads(r.stdout)
+    for p in pages:
+        if p.get("type") == "page":
+            print(f"{p['id'][:8]} | {p.get('title', '')[:40]:<40} | {p.get('url', '')[:60]}")
+
+def cmd_open(url):
+    """打开新页面"""
+    if not check_cdp():
+        print("❌ CDP 未开启，请先运行: urlgo start")
+        sys.exit(1)
+
+    from urllib.parse import quote
+    r = run_cmd(["curl", "-s", "-X", "PUT", f"{CDP_URL}/json/new?{quote(url, safe='')}"])
+    data = json.loads(r.stdout)
+    print(f"✅ 已打开: {url}")
+    print(f"   ID: {data['id']}")
+
+def cmd_activate(page_id):
+    """激活页面"""
+    full_id = get_full_id(page_id)
+    run_cmd(["curl", "-s", f"{CDP_URL}/json/activate/{full_id}"])
+    print(f"✅ 已激活: {page_id}")
+
+def cmd_close(page_id):
+    """关闭页面"""
+    full_id = get_full_id(page_id)
+    run_cmd(["curl", "-s", "-X", "PUT", f"{CDP_URL}/json/close/{full_id}"])
+    print(f"✅ 已关闭: {page_id}")
+
+def get_full_id(short_id):
+    """获取完整页面 ID"""
+    r = run_cmd(["curl", "-s", f"{CDP_URL}/json/list"])
+    pages = json.loads(r.stdout)
+    for p in pages:
+        if p['id'].startswith(short_id) or p['id'] == short_id:
+            return p['id']
+    return short_id
+
+# WebSocket 操作（需要 websockets）
+def ws_command(page_id, method, params=None):
+    """通过 WebSocket 执行 CDP 命令"""
+    try:
+        import websockets
+    except ImportError:
+        print("❌ 缺少依赖: websockets")
+        print("   pip install websockets")
+        sys.exit(1)
+
+    import asyncio
+    full_id = get_full_id(page_id)
+
+    async def run():
+        ws_url = f"ws://localhost:{CDP_PORT}/devtools/page/{full_id}"
+        async with websockets.connect(ws_url, max_size=10*1024*1024) as ws:
+            cmd = {"id": 1, "method": method}
+            if params:
+                cmd["params"] = params
+            await ws.send(json.dumps(cmd))
+            return json.loads(await ws.recv())
+
+    return asyncio.run(run())
+
+def cmd_screenshot(page_id, output):
+    """截图"""
+    result = ws_command(page_id, "Page.captureScreenshot", {"format": "png"})
+    if "result" in result and "data" in result["result"]:
+        import base64
+        with open(output, "wb") as f:
+            f.write(base64.b64decode(result["result"]["data"]))
+        print(f"✅ 截图已保存: {output}")
+    else:
+        print(f"❌ 截图失败: {result}")
+
+def cmd_snapshot(page_id):
+    """读取页面内容（纯文本）"""
+    js = "document.body.innerText"
+    cmd_eval(page_id, js)
+
+def cmd_source(page_id):
+    """获取页面 HTML 源码"""
+    result = ws_command(page_id, "Runtime.evaluate", {
+        "expression": "document.documentElement.outerHTML",
+        "returnByValue": True
+    })
+    if "result" in result and "result" in result["result"]:
+        value = result["result"]["result"].get("value")
+        if value is not None:
+            print(value)
+
+def cmd_eval(page_id, js):
+    """执行 JS"""
+    result = ws_command(page_id, "Runtime.evaluate", {"expression": js, "returnByValue": True})
+    if "result" in result and "result" in result["result"]:
+        value = result["result"]["result"].get("value")
+        if value is not None:
+            if isinstance(value, (dict, list)):
+                print(json.dumps(value, ensure_ascii=False, indent=2))
+            else:
+                print(json.dumps(value, ensure_ascii=False))
+
+def cmd_click(page_id, selector):
+    """点击元素"""
+    import json
+    js = f'document.querySelector({json.dumps(selector)}).click(); "已点击"'
+    cmd_eval(page_id, js)
+
+def cmd_type(page_id, selector, text):
+    """输入文字"""
+    import json
+    js = f'document.querySelector({json.dumps(selector)}).value = {json.dumps(text)}; "已输入"'
+    cmd_eval(page_id, js)
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print(__doc__)
+        sys.exit(1)
+
+    cmd = sys.argv[1]
+
+    if cmd == "status":
+        cmd_status()
+    elif cmd == "start":
+        cmd_start()
+    elif cmd == "list":
+        cmd_list()
+    elif cmd == "open" and len(sys.argv) >= 3:
+        cmd_open(sys.argv[2])
+    elif cmd == "activate" and len(sys.argv) >= 3:
+        cmd_activate(sys.argv[2])
+    elif cmd == "close" and len(sys.argv) >= 3:
+        cmd_close(sys.argv[2])
+    elif cmd == "screenshot" and len(sys.argv) >= 4:
+        cmd_screenshot(sys.argv[2], sys.argv[3])
+    elif cmd == "snapshot" and len(sys.argv) >= 3:
+        cmd_snapshot(sys.argv[2])
+    elif cmd == "source" and len(sys.argv) >= 3:
+        cmd_source(sys.argv[2])
+    elif cmd == "eval" and len(sys.argv) >= 4:
+        cmd_eval(sys.argv[2], sys.argv[3])
+    elif cmd == "click" and len(sys.argv) >= 4:
+        cmd_click(sys.argv[2], sys.argv[3])
+    elif cmd == "type" and len(sys.argv) >= 5:
+        cmd_type(sys.argv[2], sys.argv[3], sys.argv[4])
+    else:
+        print(__doc__)

@@ -1,41 +1,56 @@
-## Description: <br>
-Implements structured usage logging and audit trails for cost and session tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements structured usage logging and audit trails for cost and session tracking.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and operators use this skill to add structured JSONL usage logs, session grouping, audit trails, token and cost summaries, and debugging queries to agent or plugin workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local usage logs may retain sensitive metadata, token counts, cost details, error messages, or session history. <br>
-Mitigation: Before using the skill on sensitive projects, confirm log storage location, retained fields, redaction behavior, retention policy, and deletion or disablement process. <br>
+## Use Case:
 
+Developers and engineers use this skill to add session-aware JSONL usage logs, audit trails, cost tracking, and basic usage analytics to agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-leyline-usage-logging) <br>
-- [Leyline Source Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Session Patterns](modules/session-patterns.md) <br>
-- [Log Formats](modules/log-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON, Python, YAML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes JSONL schemas, session management patterns, query commands, and integration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Persistent local usage logs can retain sensitive metadata if secrets or personal data are recorded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting secrets or sensitive personal data in log metadata, and periodically review or delete files under ~/.claude/leyline/usage.
+
+Risk: Shared session IDs can make cross-service activity easier to correlate.
+
+Mitigation: Use shared session IDs only when cross-service correlation is intended and appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-usage-logging)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+- [Session Patterns](modules/session-patterns.md)
+- [Log Formats](modules/log-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, Python, YAML, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local logging patterns for JSONL records, session IDs, query snippets, and integration guidance.]
+
+## Skill Version(s):
+
+1.9.19 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

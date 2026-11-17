@@ -1,42 +1,65 @@
-## Description: <br>
-Converts OpenMAIC course JSON files into PPTX presentations with optional speaker notes using a local Node.js exporter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts OpenMAIC course JSON into PPTX presentations, with optional speaker notes and basic slide styling.
 
-## Publisher: <br>
-[taizhouchen](https://clawhub.ai/user/taizhouchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taizhouchen](https://clawhub.ai/user/taizhouchen)
 
-## Use Case: <br>
-Developers and agents use this skill to export existing OpenMAIC course content as shareable PowerPoint files, optionally preserving speaker notes for presentation delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup instructions can remove unrelated PPTX files from the user's workspace. <br>
-Mitigation: Delete only the exact generated PPTX file after confirming it is no longer needed; avoid wildcard cleanup commands. <br>
-Risk: Generated presentations can include speaker notes that may contain sensitive course content. <br>
-Mitigation: Review the PPTX before sharing, or run the exporter with --no-notes when notes should be excluded. <br>
-Risk: The exporter runs local Node.js code against a local OpenMAIC installation. <br>
-Mitigation: Use it only with a trusted OpenMAIC directory and expected course files. <br>
+## Use Case:
 
+Developers and OpenMAIC users use this skill to export existing OpenMAIC course content as shareable PPTX files, optionally including speaker notes for presentation delivery or offline review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taizhouchen/openmaic-convert-pptx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime script generates PPTX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated PPTX files may include speaker notes unless the --no-notes option is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The exporter loads dependencies from the selected OpenMAIC installation path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted and verified OpenMAIC installation path, and avoid --openmaic-path values that point to untrusted directories.
+
+Risk: The test script can install npm dependencies inside an external OpenMAIC project.
+
+Mitigation: Do not run the automatic test dependency installation in a real OpenMAIC project unless dependency changes have been reviewed.
+
+Risk: Speaker notes may include sensitive course content.
+
+Mitigation: Use --no-notes before sharing exported PPTX files externally when notes should not be disclosed.
+
+Risk: Wildcard PPTX cleanup guidance can remove unrelated presentation files.
+
+Mitigation: Delete only the exact generated PPTX file instead of running wildcard cleanup commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taizhouchen/skills/openmaic-convert-pptx)
+- [Publisher profile](https://clawhub.ai/user/taizhouchen)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Usage examples](artifact/USAGE_EXAMPLE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PPTX files may include speaker notes unless disabled with --no-notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

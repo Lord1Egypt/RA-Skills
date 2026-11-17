@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-cqrs-es
-description: Applies CQRS and Event Sourcing for read/write separation and audit trails
-version: 1.9.8
+description: CQRS and Event Sourcing
+version: 1.10.3
 triggers:
   - architecture
   - CQRS
@@ -9,13 +9,13 @@ triggers:
   - distributed-systems
   - audit-trail
   - scalability
-  - designing systems with complex domain logic or full state-change history
+  - reads and writes need separate models or every state change needs an audit trail
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The CQRS and Event Sourcing Paradigm
@@ -58,13 +58,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``event-store`` -- append-only log of domain events; the system of record from which projections are built
-- ``message-broker`` -- carries commands and integration events between bounded contexts
-- ``projection-builder`` -- rebuilds read-side views by replaying the event store
+- ``event-store``: append-only log of domain events; the system of record from which projections are built
+- ``message-broker``: carries commands and integration events between bounded contexts
+- ``projection-builder``: rebuilds read-side views by replaying the event store
+
+## Exit Criteria
+
+- [ ] An ADR is produced naming the aggregates, the chosen event store technology, the projection
+  strategy, and the eventual-consistency SLA for each read model.
+- [ ] Command handler tests use in-memory event streams and pass before any persistence adapter
+  is wired.
+- [ ] A schema registry or versioning policy for event schemas is documented, and a CI gate
+  prevents emission of event versions not registered in that policy.
+- [ ] Operational tooling for event replay and state snapshots is identified (not just mentioned)
+  before the write-side is declared production-ready.

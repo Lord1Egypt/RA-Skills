@@ -1,45 +1,49 @@
-## Description: <br>
-Orchestrates modular story development by diagnosing the current phase and routing to the right story skill for foundations, worldbuilding, scene writing, or revision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates modular story development by diagnosing the current phase and routing to the right story skill for foundations, worldbuilding, scene writing, or revision.
 
-## Publisher: <br>
-[jackterror](https://clawhub.ai/user/jackterror) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackterror](https://clawhub.ai/user/jackterror)
 
-## Use Case: <br>
-External users and creative teams use this skill to guide an agent through staged story development, including premise creation, character and plot structure, story-supportive worldbuilding, scene drafting, and structural revision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The staged story workflow can be too heavyweight when the user wants a quick standalone rewrite or scene. <br>
-Mitigation: Tell the agent to skip or compress planning when a direct output is desired. <br>
-Risk: Generated story plans, scenes, or revisions may not match the user's audience, brand, rights, or publication standards. <br>
-Mitigation: Have a human editor review premise, source influences, themes, and final prose before publication. <br>
+## Use Case:
 
+Writers, creative teams, and agents use this skill to develop standalone fiction, scripts, narrative concepts, or weak drafts through staged story diagnosis, foundations, worldbuilding, scene drafting, and revision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackterror/writers-room-story-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/jackterror) <br>
-- [README](artifact/README.md) <br>
-- [Package description](artifact/PACKAGE-DESCRIPTION.md) <br>
-- [Source notes](artifact/SOURCES.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative guidance, outlines, diagnostics, scene drafts, and revision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill favors a staged workflow before drafting, unless the user asks to skip or compress planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and artifact/CHANGELOG.md) <br>
+Risk: The skill intentionally routes story requests through staged planning and diagnosis before prose, which can conflict with users seeking immediate drafting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow explicit user direction when direct prose or a faster path is preferred, and review staged outputs before continuing to later phases.
+
+## Reference(s):
+
+- [Writers Room Story Engine ClawHub page](https://clawhub.ai/jackterror/skills/writers-room-story-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown and prose for story foundations, outlines, scene drafts, and revision notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stage-based outputs route story work through foundation, worldbuilding, scene writing, and revision phases.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,68 @@
-## Description: <br>
-Adds Auth0.swift authentication to native Apple platform apps, including Web Auth, CredentialsManager, and optional biometric protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds Auth0 authentication to Apple-platform Swift apps using Auth0.swift Web Auth, CredentialsManager, Keychain-backed credential storage, callback configuration, and optional biometric protection.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers use this skill to add Auth0 authentication to iOS, macOS, tvOS, watchOS, or visionOS apps, configure callback URLs and tenant settings, and integrate login and logout flows with SwiftUI or UIKit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a local Xcode project and live Auth0 tenant configuration. <br>
-Mitigation: Confirm the active tenant and target application, review callback and logout URL changes, and preserve any existing allowed URLs that are still required. <br>
-Risk: The skill handles sensitive Auth0 credentials and includes examples that can print access tokens. <br>
-Mitigation: Do not expose tokens in logs or copied examples, store credentials with CredentialsManager, and redact sensitive values before sharing output. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to add native Auth0 login, logout, token renewal, and credential storage to Apple-platform Swift apps. It also supports Xcode project configuration and Auth0 tenant callback setup.
 
-## Reference(s): <br>
-- [Setup Guide](./references/setup.md) <br>
-- [Integration Patterns](./references/integration.md) <br>
-- [API Reference & Testing](./references/api.md) <br>
-- [Auth0 Agent Skills](https://github.com/auth0/agent-skills) <br>
-- [Auth0.swift GitHub](https://github.com/auth0/Auth0.swift) <br>
-- [Auth0 iOS/macOS Quickstart](https://auth0.com/docs/quickstart/native/ios-swift) <br>
-- [Auth0.swift API Documentation](https://auth0.github.io/Auth0.swift/documentation/auth0/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Swift, shell, JSON, and plist snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local Xcode project changes and Auth0 tenant configuration steps; review proposed changes before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: The security review flagged unsafe installation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid curl-to-shell installation paths; use a reviewed package manager or verify installer contents before running them.
+
+Risk: The security review flagged examples that can leak tokens into logs.
+
+Mitigation: Remove logging of access tokens, refresh tokens, ID tokens, passwords, MFA tokens, and authorization headers before use.
+
+Risk: The bootstrap flow can change an Auth0 tenant and local Xcode project files.
+
+Mitigation: Run the bootstrap only against the intended Auth0 tenant and Xcode project, and review the change plan before applying it.
+
+Risk: The security guidance recommends dependency review.
+
+Mitigation: Prefer pinned dependencies or a reviewed lockfile before running the Node bootstrap tooling.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Integration Patterns](references/integration.md)
+- [API Reference and Testing](references/api.md)
+- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills)
+- [Auth0.swift GitHub](https://github.com/auth0/Auth0.swift)
+- [Auth0 iOS/macOS Quickstart](https://auth0.com/docs/quickstart/native/ios-swift)
+- [Auth0.swift API Documentation](https://auth0.github.io/Auth0.swift/documentation/auth0/)
+- [Auth0.swift Examples](https://github.com/auth0/Auth0.swift/blob/master/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Swift, XML, Ruby, JavaScript, and shell command snippets; may also create Auth0.plist and entitlements files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update an Xcode project, package manager files, Auth0.plist, entitlements, and Auth0 tenant settings when used with tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

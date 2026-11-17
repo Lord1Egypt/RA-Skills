@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{COMPANY_NAME}} — 企业调查报告</title>
+    <style>
+        :root {
+            --bg: #f5f6f8;
+            --card-bg: #fff;
+            --text: #1a1a2e;
+            --text-secondary: #555;
+            --border: #e8ecf1;
+            --accent: #1e5fb4;
+            --accent-light: #e8f0fe;
+            --red: #d32f2f;
+            --red-bg: #fff5f5;
+            --orange: #e67e22;
+            --orange-bg: #fffaf5;
+            --green: #27ae60;
+            --green-bg: #f0faf5;
+            --gray-bg: #f9fafb;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 24px 20px 60px; }
+        .report-header {
+            background: linear-gradient(135deg, #0d253f 0%, #1a3a5c 50%, #1e5fb4 100%);
+            color: #fff;
+            border-radius: 12px;
+            padding: 40px 36px;
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .report-header::after {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+        }
+        .report-header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        .report-header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .report-header .subtitle { font-size: 14px; opacity: 0.75; }
+        .report-meta { display: flex; gap: 32px; margin-top: 20px; flex-wrap: wrap; }
+        .report-meta .meta-item { font-size: 13px; opacity: 0.8; }
+        .report-meta .meta-item strong { opacity: 1; }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+        }
+        .section h2 {
+            font-size: 18px; font-weight: 700;
+            margin-bottom: 18px; padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .section h2 .icon { font-size: 20px; }
+        .info-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .info-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .info-table td.label { width: 160px; color: var(--text-secondary); font-weight: 500; white-space: nowrap; }
+        .info-table tr:last-child td { border-bottom: none; }
+
+        .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+        .data-table th {
+            background: var(--gray-bg); padding: 10px 14px;
+            text-align: left; font-weight: 600;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-secondary); font-size: 12px;
+        }
+        .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .alert { padding: 16px 20px; border-radius: 8px; margin: 12px 0; font-size: 14px; }
+        .alert-danger { background: var(--red-bg); border-left: 4px solid var(--red); color: #a71d2a; }
+        .alert-warning { background: var(--orange-bg); border-left: 4px solid var(--orange); color: #8a5d1a; }
+        .alert-info { background: var(--accent-light); border-left: 4px solid var(--accent); color: #1a3a5c; }
+
+        .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+        .risk-card { background: var(--gray-bg); border-radius: 8px; padding: 16px; text-align: center; }
+        .risk-card .number { font-size: 28px; font-weight: 700; color: var(--red); line-height: 1.2; }
+        .risk-card .number.warn { color: var(--orange); }
+        .risk-card .label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+        .equity-chain { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 20px 0; font-size: 13px; }
+        .equity-node { background: var(--accent-light); border: 1px solid var(--accent); border-radius: 8px; padding: 12px 18px; text-align: center; min-width: 140px; }
+        .equity-node .name { font-weight: 600; color: var(--accent); }
+        .equity-node .ratio { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+        .equity-arrow { font-size: 18px; color: var(--text-secondary); }
+
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; margin: 2px; background: var(--border); color: var(--text-secondary); }
+        .tag.red { background: #fce4e4; color: #a71d2a; }
+        .tag.orange { background: #fef3e2; color: #8a5d1a; }
+        .tag.green { background: #e6f7ee; color: #1e7b41; }
+
+        .score-bar { height: 8px; border-radius: 4px; background: var(--border); margin: 8px 0 4px; overflow: hidden; }
+        .score-fill { height: 100%; border-radius: 4px; }
+        .score-fill.danger { background: var(--red); }
+        .score-fill.warning { background: var(--orange); }
+        .score-fill.success { background: var(--green); }
+
+        .report-footer { margin-top: 32px; padding: 20px 0; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-secondary); text-align: center; }
+        .report-footer p { margin: 4px 0; }
+
+        @media print {
+            body { background: #fff; }
+            .section { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+            .report-header { -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <div class="report-header">
+        <div class="badge">企业尽职调查报告</div>
+        <h1>{{COMPANY_NAME}}</h1>
+        <div class="subtitle">{{COMPANY_NAME_EN}}</div>
+        <div class="report-meta">
+            <div class="meta-item">报告日期：<strong>{{REPORT_DATE}}</strong></div>
+            <div class="meta-item">数据来源：<strong>国家企业信用信息公示系统 / 企查查 / 爱企查 / 天眼查 / 启信宝</strong></div>
+            <div class="meta-item">报告性质：<strong>公开信息整理 · 仅供参考</strong></div>
+        </div>
+    </div>
+
+    <!-- ===== 一、工商登记基本信息 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F4CB;</span> 一、工商登记基本信息</h2>
+        <table class="info-table">
+            {{REGISTRATION_ROWS}}
+        </table>
+    </div>
+
+    <!-- ===== 二、经营范围 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F4DC;</span> 二、经营范围</h2>
+        {{BUSINESS_SCOPE}}
+    </div>
+
+    <!-- ===== 三、股权结构 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F465;</span> 三、股东及股权结构</h2>
+        {{EQUITY_STRUCTURE}}
+    </div>
+
+    <!-- ===== 四、实际控制人 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F464;</span> 四、实际控制人与最终受益人</h2>
+        {{ACTUAL_CONTROLLER}}
+    </div>
+
+    <!-- ===== 五、主要管理人员 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F465;</span> 五、主要管理人员</h2>
+        {{MANAGEMENT}}
+    </div>
+
+    <!-- ===== 六、联系方式 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F4DE;</span> 六、联系方式与公开信息</h2>
+        {{CONTACT_INFO}}
+    </div>
+
+    <!-- ===== 七、风险全景分析 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x26A0;</span> 七、风险全景分析</h2>
+        {{RISK_ANALYSIS}}
+    </div>
+
+    <!-- ===== 八、变更记录 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F504;</span> 八、历史变更记录</h2>
+        {{CHANGE_RECORDS}}
+    </div>
+
+    <!-- ===== 九、分支与投资 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F3E2;</span> 九、分支机构与对外投资</h2>
+        {{BRANCHES_INVESTMENTS}}
+    </div>
+
+    <!-- ===== 十、行政许可与年报 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F4C5;</span> 十、行政许可与年报信息</h2>
+        {{PERMITS_ANNUAL}}
+    </div>
+
+    <!-- ===== 十一、综合评价 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x1F4CA;</span> 十一、综合评价与建议</h2>
+        {{ASSESSMENT}}
+    </div>
+
+    <!-- ===== 十二、数据来源 ===== -->
+    <div class="section">
+        <h2><span class="icon">&#x2139;</span> 十二、数据来源与声明</h2>
+        {{SOURCES_DISCLAIMER}}
+    </div>
+
+    <div class="report-footer">
+        <p>{{COMPANY_NAME}} · 企业尽职调查报告</p>
+        <p>报告生成时间：{{REPORT_DATE}} | 数据来源：公开渠道综合整理</p>
+    </div>
+
+</div>
+</body>
+</html>

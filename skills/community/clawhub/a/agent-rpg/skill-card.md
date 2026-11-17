@@ -1,39 +1,63 @@
-## Description: <br>
-Transform the agent into a versatile, genre-agnostic Roleplay Game Master (GM) with state management tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms the agent into a genre-agnostic text RPG Game Master with session-zero setup, persistent campaign state, dice rolling, and narrative consequence management.
 
-## Publisher: <br>
-[xhrisfu](https://clawhub.ai/user/xhrisfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhrisfu](https://clawhub.ai/user/xhrisfu)
 
-## Use Case: <br>
-External users use this skill to run text-based RPG sessions across custom or familiar settings with session-zero setup, narrative prompts, dice rolls, and persistent campaign state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The save-file script can write outside its intended RPG memory folder when campaign names contain path characters. <br>
-Mitigation: Use only simple campaign names containing letters, numbers, underscores, or hyphens; avoid slashes, backslashes, dots, and absolute paths, and avoid storing private real-world details in campaign journals until path handling is fixed. <br>
+## Use Case:
 
+External users use the skill to run text-based RPG sessions across genres, establish character and world setup, resolve actions with optional dice mechanics, and persist campaign state between turns.
 
-## Reference(s): <br>
-- [RPG Rule Systems](artifact/references/systems.md) <br>
-- [World Templates](artifact/references/world-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown narrative responses with inline shell commands and JSON/Markdown campaign state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write persistent RPG campaign files under memory/rpg when its context manager is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Campaign names affect where state files are stored, and unsafe names could access files outside the intended campaign folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only simple campaign names with letters, numbers, hyphens, or underscores until path validation is added.
+
+Risk: Dice expressions do not have resource limits and can create excessive computation or output.
+
+Mitigation: Use modest dice expressions and add limits before deployment in shared or automated environments.
+
+Risk: Campaign state is written to disk and may contain sensitive personal or roleplay content.
+
+Mitigation: Avoid saving sensitive personal content and provide clear opt-in, retention, and deletion practices before shared use.
+
+Risk: Adult-roleplay guidance can create policy, workplace-safety, or audience-appropriateness concerns.
+
+Mitigation: Remove or gate adult-roleplay guidance and require clear boundaries for acceptable themes.
+
+## Reference(s):
+
+- [RPG Rule Systems](artifact/references/systems.md)
+- [World Templates](artifact/references/world-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/xhrisfu/skills/agent-rpg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown narrative responses with optional shell command invocations and JSON or Markdown save files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write campaign state under memory/rpg/<campaign_name>/ when the context manager is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

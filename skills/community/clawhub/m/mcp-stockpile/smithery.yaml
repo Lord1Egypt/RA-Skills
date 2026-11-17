@@ -1,0 +1,23 @@
+# Smithery MCP Server Configuration
+# https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      stockpileApiKey:
+        type: string
+        description: Stockpile Market Store API key (sk_live_...)
+        secret: true
+      stockpileApiUrl:
+        type: string
+        description: Stockpile Market API endpoint URL
+        default: https://stockpile.market/api
+    required: []
+  commandFunction:
+    python:
+      module: mcp_stockpile
+      env:
+        STOCKPILE_API_KEY: "{{stockpileApiKey}}"
+        STOCKPILE_API_URL: "{{stockpileApiUrl}}"

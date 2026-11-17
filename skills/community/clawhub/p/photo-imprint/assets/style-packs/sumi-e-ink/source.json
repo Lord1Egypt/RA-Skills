@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Teapot and Cups",
+  "creator": "Shibata Zeshin",
+  "institution": "Artvee",
+  "item_record_url": "https://artvee.com/dl/teapot-and-cups/",
+  "official_image_url": "https://mdl.artvee.com/sftb/55168ap.jpg",
+  "object_number": "55168ap",
+  "medium": "ink on paper",
+  "date": "1847",
+  "rights_status": "PUBLIC DOMAIN",
+  "rights_statement": "This work is in the public domain. Artvee marks it as: All public domain files can be freely used for personal and commercial projects.",
+  "license_url": "https://artvee.com/dl/teapot-and-cups/",
+  "retrieval_date": "2026-08-30",
+  "download_date": "2026-08-30",
+  "redistributable": true,
+  "bundled": true,
+  "source_download": {
+    "format": "JPEG",
+    "width": 800,
+    "height": 867,
+    "bytes": 176183,
+    "sha256": "3cf80ff7a803d3e9b20bc66038ec44c8ea6ef1ff6851e481af654436b81ce633"
+  },
+  "derivative": {
+    "file": "reference.webp",
+    "format": "WEBP",
+    "width": 800,
+    "height": 867,
+    "long_edge_px": 867,
+    "bytes": 85066,
+    "sha256": "e6e3904dbd855416cb709920014d7ba1039e9b5cd5e1c9e602c9b6f4a40dcde9",
+    "settings": {
+      "resampling": "Lanczos",
+      "quality": 86,
+      "method": 6,
+      "exact": true
+    },
+    "metadata_stripped": [
+      "EXIF",
+      "GPS",
+      "XMP"
+    ]
+  },
+  "technique_roles": [
+    "sparse sumi-e ink line construction",
+    "light wash shadow and negative-space balance",
+    "selective ink density for volume",
+    "large paper-white breathing room"
+  ],
+  "subject_exclusions": [
+    "teapot",
+    "cups",
+    "tableware set",
+    "reference composition",
+    "Japanese calligraphy seal"
+  ]
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Monitor and analyze market-moving catalysts including earnings, FDA decisions, economic data releases, and corporate events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and analyze market-moving catalysts including earnings, FDA decisions, economic data releases, and corporate events.
 
-## Publisher: <br>
-[CollierKing](https://clawhub.ai/user/CollierKing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[collierking](https://clawhub.ai/user/collierking)
 
-## Use Case: <br>
-Investors, analysts, and trading-focused agents use CatalystWatch to monitor upcoming and recent market-moving events for tickers, sectors, or watchlists. It helps summarize catalyst timing, context, and expected market impact from CatalystWatch market-data services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Catalyst analysis may be incomplete, stale, or misread as financial advice. <br>
-Mitigation: Treat outputs as informational, verify material events against authoritative market sources, and apply independent financial judgment before acting. <br>
-Risk: The CatalystWatch API key or watchlist could be exposed in chats, logs, or shared transcripts. <br>
-Mitigation: Use a scoped or dedicated API key when available, keep credentials out of prompts and logs, and avoid sharing sensitive watchlists. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CatalystWatch ClawHub release](https://clawhub.ai/CollierKing/catalystwatch) <br>
-- [CollierKing ClawHub publisher profile](https://clawhub.ai/user/CollierKing) <br>
+## Use Case:
 
+External users and market-focused agents use CatalystWatch to monitor upcoming and recent catalysts for tickers, sectors, or watchlists and summarize likely market impact.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CATALYSTWATCH_API_KEY for CatalystWatch data access; optional CATALYSTWATCH_WATCHLIST can provide a default ticker watchlist.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a CatalystWatch API key and may use optional watchlist tickers.
+
+Mitigation: Install only if you trust the CatalystWatch data provider, provide the key through the expected environment variable, and avoid sharing sensitive watchlists unless appropriate.
+
+Risk: Catalyst summaries may influence financial decisions.
+
+Mitigation: Treat the output as informational and verify market data, event timing, and expected impact independently before making trades or investment decisions.
+
+## Reference(s):
+
+- [CatalystWatch on ClawHub](https://clawhub.ai/collierking/skills/catalystwatch)
+- [collierking ClawHub profile](https://clawhub.ai/user/collierking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text summaries with configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CATALYSTWATCH_API_KEY for CatalystWatch data access; CATALYSTWATCH_WATCHLIST may provide default tickers.]
+
+## Skill Version(s):
+
+0.0.2 (source: server evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

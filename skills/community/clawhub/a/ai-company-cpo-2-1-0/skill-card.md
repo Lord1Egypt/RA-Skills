@@ -1,44 +1,53 @@
-## Description: <br>
-Provides public-relations crisis management guidance for AI companies, including four-level crisis triage, rapid response planning, media strategy, compliance review, and post-incident review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Company CPO helps AI-company public relations teams manage reputation, media response, four-level crisis alerting, golden-hour response, public statements, and post-crisis reviews.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Public relations, communications, and governance teams use this skill to plan crisis response, draft public statements and media plans, route legal or compliance review, and create post-incident reports for AI-company reputation events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says this is a public-relations crisis-response prompt skill with broad activation terms. <br>
-Mitigation: Enable it only in workspaces where crisis-response drafting and review are intended, and require human approval before acting on generated crisis communications. <br>
-Risk: Crisis responses, regulator reports, deletion requests, and sensitive incident or personal-data messages can create legal, privacy, or reputational exposure. <br>
-Mitigation: Route external statements and regulator-facing content through authorized communications, legal, privacy, and security reviewers before publication or submission. <br>
-Risk: The security guidance calls out file and network scoping for reports, incident-response material, monitoring, and notification services. <br>
-Mitigation: Scope file access to approved reports or incident-response directories and restrict network access to approved monitoring or notification services. <br>
+## Use Case:
 
+Employees and communications operators use this skill to prepare public responses, media plans, crisis response workflows, and crisis review reports for AI-company public relations incidents. Legal, security, customer, regulator, and public-facing actions should remain under human approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsmithfan/ai-company-cpo-2-1-0) <br>
-- [Publisher profile](https://clawhub.ai/user/johnsmithfan) <br>
-- [Artifact homepage](https://clawhub.com/skills/ai-company-cpo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured response objects with public-response copy, media plans, crisis reports, SOP checklists, and compliance review guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated public statements, regulator reports, deletion requests, and messages containing sensitive incident or personal-data details require human approval before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata; artifact frontmatter reports 2.3.0) <br>
+Risk: Public statements, regulator notices, and customer notifications can create legal, reputational, or compliance exposure if issued without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval and legal review before publishing statements or sending regulator, customer, or media communications.
+
+Risk: The skill declares file, network, and messaging permissions that are broader than the prompt package's operational detail.
+
+Mitigation: Keep approval controls enabled for file writes, network calls, and messaging actions, and limit execution to trusted workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-cpo-2-1-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text containing public response drafts, media plans, crisis workflows, and crisis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human approval for public statements, legal review, notifications, file writes, network calls, and messaging actions.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata; artifact frontmatter reports 2.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

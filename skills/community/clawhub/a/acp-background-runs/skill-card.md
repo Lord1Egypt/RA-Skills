@@ -1,40 +1,52 @@
-## Description: <br>
-Routes requests for ACP or external coding agents into non-blocking OpenClaw background ACP runs so the current conversation can continue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user requests for ACP or external coding agents such as Codex, Claude Code, Gemini CLI, and OpenCode into non-blocking OpenClaw background ACP runs.
 
-## Publisher: <br>
-[ambition0802](https://clawhub.ai/user/ambition0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ambition0802](https://clawhub.ai/user/ambition0802)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding-assistant users use this skill to delegate ACP, Codex, Claude Code, Gemini CLI, or OpenCode work to background runs while keeping the current conversation available.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A background run may act on the wrong project if the cwd or target agent is selected incorrectly.
+
+Mitigation: Confirm the intended repository path and requested external agent before submitting the background run.
+
+Risk: Falling back from ACP to another runtime could change how the delegated work is executed.
+
+Mitigation: Use ACP when available and tell the user explicitly before using a subagent fallback.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to dispatch ACP, Codex, Claude Code, Gemini CLI, or OpenCode work as background runs while keeping the current chat responsive. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Configuration, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Background delegation can send task context, repository paths, or sensitive instructions to an external coding agent. <br>
-Mitigation: Confirm the target agent and repository path before submission, and avoid including secrets unless the selected background agent is trusted. <br>
-Risk: Imprecise requests can start background work in the wrong directory or with the wrong execution mode. <br>
-Mitigation: Use explicit task instructions, set a known absolute working directory when available, and reserve persistent sessions or progress streaming for explicit user requests. <br>
+**Output Format:** [Markdown guidance with JSON parameter examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ACP Background Runs on ClawHub](https://clawhub.ai/ambition0802/acp-background-runs) <br>
+**Other Properties Related to Output:** [Background runs are submitted asynchronously and are expected to report results through completion notifications.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown with JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; outputs routing guidance and background-run parameter choices.] <br>
+0.1.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.2 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

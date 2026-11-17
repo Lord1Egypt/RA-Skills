@@ -1,41 +1,54 @@
-## Description: <br>
-Track Weibo hot search trends in real time, including live trending topics, categories, and historical trend data with no required configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Weibo hot search trends in real time, including live hot-search topics, category filtering for entertainment, society, technology, and sports, and historical trend comparison.
 
-## Publisher: <br>
-[dzxiatian-crypto](https://clawhub.ai/user/dzxiatian-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzxiatian-crypto](https://clawhub.ai/user/dzxiatian-crypto)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch public Weibo hot-search topics, filter broad trend categories, and compare saved trend snapshots over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests to weibo.com may expose request metadata such as IP address and user agent. <br>
-Mitigation: Use the skill only where access to Weibo public endpoints is acceptable, and avoid excessive polling. <br>
-Risk: Saved trend snapshots are collected data that may reflect time-sensitive public social-media activity. <br>
-Mitigation: Handle stored snapshots according to applicable data-retention and sharing policies. <br>
+## Use Case:
 
+External users and developers use this skill to fetch current Weibo hot-search topics, inspect category-specific trends, and compare saved trend snapshots to identify newly ranked or dropped topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dzxiatian-crypto/weibo-trending-topics) <br>
-- [Weibo hot search endpoint](https://weibo.com/ajax/side/hotSearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code examples and trend comparison guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API request examples and summaries derived from public Weibo trend data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The usage example makes outbound network requests to Weibo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where access to Weibo public endpoints is permitted and expected.
+
+Risk: The historical comparison example reads local JSON files selected by the user.
+
+Mitigation: Use trusted snapshot files and review file paths before running comparison code.
+
+## Reference(s):
+
+- [Weibo Hot Search Endpoint](https://weibo.com/ajax/side/hotSearch)
+- [ClawHub Skill Page](https://clawhub.ai/dzxiatian-crypto/skills/weibo-trending-topics)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python examples and concise procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; examples make network requests to Weibo and may read user-provided local JSON files for comparison.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

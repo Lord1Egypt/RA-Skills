@@ -1,44 +1,53 @@
-## Description: <br>
-Access Pilt fundraising data -- investor matches, campaign stats, outreach events, and deck analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Pilt fundraising data -- investor matches, campaign stats, outreach events, and deck analysis.
 
-## Publisher: <br>
-[babpilt](https://clawhub.ai/user/babpilt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[babpilt](https://clawhub.ai/user/babpilt)
 
-## Use Case: <br>
-Developers and fundraising teams use this skill to let an agent retrieve account-scoped Pilt fundraising data, including investor matches, campaign statistics, outreach events, and deck analysis summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a personal Pilt API key to access account-scoped fundraising data. <br>
-Mitigation: Keep PILT_API_KEY out of logs and chat transcripts, store it only in the agent's secret configuration, and revoke it from the Pilt dashboard if exposure is suspected. <br>
-Risk: Returned investor matches, campaign statistics, outreach events, and deck analysis can contain sensitive fundraising information. <br>
-Mitigation: Share outputs only with authorized users and avoid pasting full responses into public or untrusted workspaces. <br>
-Risk: An agent could be prompted to send the API key or requests to an endpoint outside Pilt. <br>
-Mitigation: Verify requests use only https://pilt.ai/api/v1/gateway before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pilt homepage](https://pilt.ai) <br>
-- [Pilt API gateway endpoint](https://pilt.ai/api/v1/gateway) <br>
-- [ClawHub skill page](https://clawhub.ai/babpilt/pilt) <br>
-- [Publisher profile](https://clawhub.ai/user/babpilt) <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to their Pilt account and retrieve fundraising data, including investor matches, campaign statistics, outreach events, and deck analysis summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown with curl examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a PILT_API_KEY environment variable; API responses are account-scoped fundraising data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a Pilt API key that grants access to account-scoped fundraising data.
+
+Mitigation: Store the key only through the intended OpenClaw secret mapping, expose it as PILT_API_KEY at runtime, and rotate or revoke it if it may have been disclosed.
+
+Risk: The skill can retrieve fundraising and outreach information from the user's Pilt account.
+
+Mitigation: Install it only for agents that should access Pilt data, and review returned investor, campaign, and deck analysis data before using it in external workflows.
+
+## Reference(s):
+
+- [Pilt homepage](https://pilt.ai)
+- [Pilt API gateway endpoint](https://pilt.ai/api/v1/gateway)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a PILT_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

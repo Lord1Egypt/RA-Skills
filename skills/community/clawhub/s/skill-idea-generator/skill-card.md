@@ -1,39 +1,54 @@
-## Description: <br>
-Generate high-potential skill ideas for ClawHub by analyzing trends, identifying gaps, and suggesting profitable niches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ClawHub skill ideas by identifying high-demand categories, market gaps, underserved niches, and practical publication frameworks.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and ClawHub publishers use this skill to brainstorm new skill concepts, identify underserved categories, and shape concise SKILL.md drafts with practical examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill ideas or draft structures may include generic triggers, placeholders, or guidance that is not ready for publication. <br>
-Mitigation: Replace placeholders with specific activation criteria, review the resulting skill carefully, and scan it before publishing. <br>
-Risk: Ideas involving credentials, external services, or account-changing actions can create higher operational risk if implemented without safeguards. <br>
-Mitigation: Add explicit permission boundaries, credential-handling guidance, and user confirmation steps before publishing skills in those categories. <br>
+## Use Case:
 
+Developers and skill authors use this skill to brainstorm ClawHub skill concepts, compare likely demand areas, and shape concise first-version skill drafts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with lists, examples, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only reference content; no code execution or external service calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market-performance and demand claims may be unsourced or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the suggestions as directional guidance and validate current demand, competition, and user needs before publishing a derived skill.
+
+Risk: Template trigger placeholders could lead to broad activation wording in derived skills.
+
+Mitigation: Replace placeholders with narrow, task-specific trigger language and clear scope boundaries before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/skill-idea-generator)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with lists and example skill templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

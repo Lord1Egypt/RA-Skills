@@ -1,45 +1,56 @@
-## Description: <br>
-Set up, automate, secure, and troubleshoot smart home devices with protocol selection, network isolation, and ecosystem-agnostic automation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up, automate, secure, and troubleshoot smart home devices with protocol selection, network isolation, and ecosystem-agnostic automation patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users planning or maintaining a smart home use this skill to choose protocols and hubs, plan automations, isolate IoT networks, take over existing devices, and troubleshoot common failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying reset, lock, alarm, water-control, or network-change advice can disrupt access or device operation. <br>
-Mitigation: Confirm ownership and permission, document current device settings, and keep physical or manual fallbacks before making changes. <br>
-Risk: Camera and doorbell changes can affect privacy, lease obligations, or recording-law compliance. <br>
-Mitigation: Check lease terms and local recording-law constraints, preserve needed recordings or evidence, and review camera placement before changing settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Smart Home ClawHub page](https://clawhub.ai/ivangdavila/smart-home) <br>
-- [Setup guide](setup.md) <br>
-- [Automation patterns](automations.md) <br>
-- [Security and privacy](security.md) <br>
-- [Taking over devices](takeover.md) <br>
-- [Troubleshooting](troubleshooting.md) <br>
-- [Smart home for renters](renters.md) <br>
+## Use Case:
 
+External users and smart-home operators use this skill to choose device protocols, set up hubs, plan renter-friendly deployments, create automations, and troubleshoot or secure smart-home systems.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no commands, code, tool calls, or external service calls are produced by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Presence-based automation could weaken alarm safety if geofencing, phone presence, or motion timeout alone is allowed to disarm alarms.
+
+Mitigation: Require explicit confirmation or an authenticated local action before disarming alarms, and test automations with realistic household scenarios.
+
+Risk: Device reset or takeover workflows could erase camera or doorbell history needed for disputes, incidents, warranty support, or law enforcement.
+
+Mitigation: Review and export needed footage or history before clearing recordings, removing accounts, or factory resetting devices.
+
+## Reference(s):
+
+- [Smart Home skill page](https://clawhub.ai/ivangdavila/skills/smart-home)
+- [setup.md](artifact/setup.md)
+- [automations.md](artifact/automations.md)
+- [security.md](artifact/security.md)
+- [troubleshooting.md](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with tables and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

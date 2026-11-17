@@ -1,44 +1,57 @@
-## Description: <br>
-Uses xAI Grok-compatible Responses API endpoints to run web search, X/Twitter search, chat, image chat, and model listing commands through official xAI or configured third-party proxy services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Custom Grok Search lets an agent use xAI-compatible Responses API search tools for web search, X/Twitter search, text chat, image chat, model listing, and lightweight self-tests.
 
-## Publisher: <br>
-[zhangjiongjie](https://clawhub.ai/user/zhangjiongjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangjiongjie](https://clawhub.ai/user/zhangjiongjie)
 
-## Use Case: <br>
-Developers and agents use this skill to perform Grok-powered web research, X/Twitter research, chat, image analysis prompts, and model discovery from a command-line workflow. It is most useful when an environment needs either official xAI credentials or a trusted Grok-compatible proxy endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local xAI or custom Grok API credentials and sends prompts, search queries, or images to the configured endpoint. <br>
-Mitigation: Use a dedicated low-scope API key, verify CUSTOM_GROK_* and XAI_* configuration before running commands, and avoid sending sensitive prompts or private images. <br>
-Risk: When CUSTOM_GROK_APIKEY is present, traffic can be routed through a third-party Grok-compatible proxy. <br>
-Mitigation: Prefer the official xAI base URL or a trusted self-hosted proxy, and install only when the configured endpoint is trusted. <br>
+## Use Case:
 
+Developers and external agents use this skill to route web and X/Twitter research, Grok-compatible chat, image prompts, and model discovery through official xAI endpoints or trusted compatible proxies.
 
-## Reference(s): <br>
-- [Configuration reference](references/config.md) <br>
-- [xAI tools documentation links](references/xai-tools-links.md) <br>
-- [xAI Search Tools](https://docs.x.ai/docs/guides/tools/search-tools) <br>
-- [xAI Tools Overview](https://docs.x.ai/docs/guides/tools/overview) <br>
-- [xAI API Reference](https://docs.x.ai/docs/api-reference) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Links, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON search results with citations, plain text chat responses, URL lists, and command-line diagnostics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output can include query, mode, result records, citations, author metadata, timestamps, or raw API responses when debug flags are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Workspace-controlled environment files can redirect API calls to a third-party Grok-compatible endpoint while user-level API credentials are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, prefer official xAI endpoints, and do not let untrusted projects supply .env values such as XAI_BASE_URL or CUSTOM_GROK_BASE_URL.
+
+Risk: Sensitive prompts or images may be sent to a configured third-party proxy.
+
+Mitigation: Avoid sending sensitive prompts or images through third-party proxies; use explicitly trusted endpoints and keys.
+
+## Reference(s):
+
+- [Configuration Reference](references/config.md)
+- [xAI Tools Quick Links](references/xai-tools-links.md)
+- [xAI Search Tools Guide](https://docs.x.ai/docs/guides/tools/search-tools)
+- [xAI Tools Overview](https://docs.x.ai/docs/guides/tools/overview)
+- [xAI API Reference](https://docs.x.ai/docs/api-reference)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search result objects, plain text answers, link lists, and Markdown guidance with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results can include titles, URLs, snippets, authors, timestamps, and citations; chat supports optional local image inputs for JPEG, PNG, WEBP, and GIF files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

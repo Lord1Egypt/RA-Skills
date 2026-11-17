@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "stock-data-export",
+  "name": "stock-data-export",
+  "displayName": "A 股数据导出工具",
   "version": "1.0.0",
-  "publishedAt": 1774690165474
+  "slug": "stock-data-export",
+  "description": "基于 Tushare 的 A 股数据批量导出工具，支持 Excel/CSV 格式",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["stock", "data", "export", "tushare", "excel", "csv", "a-share"],
+  "pricing": {
+    "type": "paid",
+    "amount": 15,
+    "currency": "CNY"
+  },
+  "requirements": ["tushare"],
+  "category": "finance"
 }

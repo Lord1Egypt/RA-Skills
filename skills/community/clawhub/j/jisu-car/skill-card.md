@@ -1,39 +1,55 @@
-## Description: <br>
-查品牌、车系、车型详情、搜索与热门/销量榜等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查品牌、车系、车型详情、搜索与热门/销量榜等。当用户说：比亚迪汉有什么配置？十万左右 SUV 推荐车型数据，或类似车型库问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to answer vehicle catalog questions such as brand lineups, series details, model searches, popular vehicles, and sales rankings through JisuAPI car data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle lookup terms, IDs, price filters, ranking parameters, and the API key are sent to JisuAPI and may consume provider quota. <br>
-Mitigation: Use a JisuAPI account key intended for this integration, avoid sensitive personal information in search keywords, and monitor provider quota usage. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to look up Chinese vehicle brands, series, model details, search results, popular models, and sales rankings through JisuAPI-backed car catalog data.
 
-## Reference(s): <br>
-- [JisuAPI Car Models API documentation](https://www.jisuapi.com/api/car) <br>
-- [JisuAPI provider homepage](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses and markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable; search terms, IDs, price filters, ranking parameters, and the API key are sent to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill sends the user's JisuAPI AppKey and car lookup parameters to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, limited-quota API key where possible and rotate it if it may have been logged or exposed.
+
+Risk: Returned vehicle data may depend on JisuAPI availability, permissions, quotas, and current catalog coverage.
+
+Mitigation: Check returned error JSON and API status before relying on results in downstream recommendations or reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-car)
+- [JisuAPI](https://www.jisuapi.com/)
+- [JisuAPI Car API documentation](https://www.jisuapi.com/api/car)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; API calls return JisuAPI car data or structured error JSON.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

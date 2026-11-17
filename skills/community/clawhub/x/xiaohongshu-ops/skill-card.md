@@ -1,54 +1,70 @@
-## Description: <br>
-小红书相关操作，覆盖账号定位、选题研究、内容生产、发布执行与复盘修复的小红书全链路运营技能。凡是小红书的浏览/搜索/发布/评论任务，默认必须使用 OpenClaw 内置浏览器流程并指定 profile="openclaw"；除非用户明确要求，否则不要使用系统 open 或外部浏览器。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书相关操作，覆盖账号定位、选题研究、内容生产、发布执行与复盘修复的小红书全链路运营技能。
 
-## Publisher: <br>
-[xiangyu-cas](https://clawhub.ai/user/xiangyu-cas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiangyu-cas](https://clawhub.ai/user/xiangyu-cas)
 
-## Use Case: <br>
-External creators, operators, and agent users use this skill to support Xiaohongshu account operations, including account positioning, feed and competitor research, topic ideation, copy drafting, publish-page preparation, comment handling, and local knowledge-base capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a logged-in Xiaohongshu browser profile. <br>
-Mitigation: Use a dedicated account or browser profile, keep publish and reply actions user-confirmed, and stop at the publish button unless the user explicitly approves. <br>
-Risk: The skill may persist account, feed, comment, or operational observations into a local knowledge base. <br>
-Mitigation: Review knowledge-base entries before retaining or sharing them, and ask the agent not to write the knowledge base unless storage is approved. <br>
-Risk: The skill may share screenshots or page data through Feishu when confirmation workflows use attachments. <br>
-Mitigation: Only allow screenshot sharing after choosing the recipient and confirming that the page data is appropriate to send. <br>
+## Use Case:
 
+External creators, social media operators, and agent users use this skill to plan, draft, browse, publish-prep, reply to comments, and review Xiaohongshu operations through OpenClaw browser workflows. It supports reusable SOPs for account analysis, home-feed analysis, topic ideation, viral-copy drafting, publishing handoff, comment handling, and local knowledge-base capture.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiangyu-cas/xiaohongshu-ops) <br>
-- [OpenClaw browser tool documentation](https://docs.openclaw.ai/tools/browser) <br>
-- [XHS runtime rules](references/xhs-runtime-rules.md) <br>
-- [XHS account analysis](references/xhs-account-analysis.md) <br>
-- [XHS home feed analysis](references/xhs-home-feed-analysis.md) <br>
-- [XHS topic ideation](references/xhs-topic-ideation.md) <br>
-- [XHS publish flows](references/xhs-publish-flows.md) <br>
-- [XHS comment ops](references/xhs-comment-ops.md) <br>
-- [XHS viral copy flow](references/xhs-viral-copy-flow.md) <br>
-- [XHS knowledge base](references/xhs-knowledge-base.md) <br>
-- [XHS evaluation patterns](references/xhs-eval-patterns.md) <br>
-- [Knowledge base overview](knowledge-base/README.md) <br>
-- [Skill smoke test](testcase.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured prose, with occasional code-like snippets or shell commands for browser and tool steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can prepare publish-ready social copy, reply drafts, analysis summaries, and local knowledge-base entries; public posts, replies, and external sharing should remain user-confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill can guide public Xiaohongshu posts and comment replies, where inaccurate, misleading, or poorly timed content could create reputational risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated posts and replies before publication, use the skill's publish-before-confirmation stop point, and keep one-send-per-turn supervision for replies.
+
+Risk: Browser workflows and local knowledge-base notes may expose or retain sensitive account context.
+
+Mitigation: Use the OpenClaw browser profile intentionally, keep sensitive account details out of persistent notes when possible, and stop automation when account or browser state is uncertain.
+
+Risk: Viral-copy workflows can overfit source content or assets and create copyright, plagiarism, or platform-policy issues.
+
+Mitigation: Prefer style-only adaptation, avoid reusing source text or images, and review generated content for claims, privacy, and infringement risk.
+
+Risk: Optional third-party skills or tools used for image generation may add unreviewed dependencies.
+
+Mitigation: Verify any optional third-party skill, such as nano-banana-pro, before installing or using it in the workflow.
+
+## Reference(s):
+
+- [XHS runtime rules](references/xhs-runtime-rules.md)
+- [XHS account analysis](references/xhs-account-analysis.md)
+- [XHS home feed analysis](references/xhs-home-feed-analysis.md)
+- [XHS topic ideation](references/xhs-topic-ideation.md)
+- [XHS publish flows](references/xhs-publish-flows.md)
+- [XHS comment ops](references/xhs-comment-ops.md)
+- [XHS viral copy flow](references/xhs-viral-copy-flow.md)
+- [XHS knowledge base](references/xhs-knowledge-base.md)
+- [OpenClaw browser documentation](https://docs.openclaw.ai/tools/browser)
+- [Xiaohongshu website](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with structured SOPs, analysis summaries, draft post copy, reply text, browser-action guidance, and local knowledge-base records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include publish-ready drafts, comment replies, topic lists, risk notes, and knowledge-base markdown entries; public posting and replies should remain supervised.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

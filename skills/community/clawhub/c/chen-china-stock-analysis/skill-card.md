@@ -1,43 +1,58 @@
-## Description: <br>
-Analyze Chinese stock prices (A-shares, HK stocks) and provide investment recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Chinese stock prices (A-shares, HK stocks) and provide investment recommendations when users ask about Chinese companies, buying or selling considerations, and market trends.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Chinese company stocks across A-shares, Hong Kong listings, and US tickers, including current price context, technical trends, and buy, hold, or sell recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock prices, market news, and buy, hold, or sell recommendations may be inaccurate, outdated, or unsuitable for a user's financial situation. <br>
-Mitigation: Verify prices and news with trusted financial sources, keep the required risk disclaimer, and treat outputs as informational analysis rather than professional financial advice. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for structured stock analysis across Mainland China A-shares, Hong Kong listings, and related market examples. The skill guides the agent to gather current market data, summarize technical context, and present buy, hold, or sell considerations with a risk disclaimer.
 
-## Reference(s): <br>
-- [Chen China Stock Analysis on ClawHub](https://clawhub.ai/cs995279497-byte/chen-china-stock-analysis) <br>
-- [Popular Chinese Stocks Reference](references/china-stocks.md) <br>
-- [Eastmoney](https://www.eastmoney.com) <br>
-- [Xueqiu](https://xueqiu.com) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Google Finance](https://www.google.com/finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown stock-analysis report with tables and recommendation bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current market data, technical trend commentary, investment recommendation, and risk disclaimer when evidence is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Market data or recommendations may be inaccurate, stale, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify live prices, news, and fundamentals independently, and treat buy, hold, or sell output as informational rather than professional financial advice.
+
+Risk: The skill can respond outside its primary China-stock focus and may default to Chinese-language formatting.
+
+Mitigation: Confirm the target market, ticker, and desired language before relying on the analysis.
+
+## Reference(s):
+
+- [Common Chinese Stocks Reference](references/china-stocks.md)
+- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/skills/chen-china-stock-analysis)
+- [East Money](https://www.eastmoney.com)
+- [Xueqiu](https://xueqiu.com)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Google Finance](https://www.google.com/finance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown stock analysis with tables, trend commentary, recommendation rationale, and a risk disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires independent verification of live market data; the skill directs the agent to include a standard investment-risk disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

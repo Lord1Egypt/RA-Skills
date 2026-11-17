@@ -1,40 +1,54 @@
-## Description: <br>
-Google Sheets: Append a row to a spreadsheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Sheets: Append a row to a spreadsheet.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to append one or more rows to a Google Sheets spreadsheet through the gws CLI after confirming the target spreadsheet, range, and values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports a write operation that can append incorrect or unintended data to a Google Sheets spreadsheet. <br>
-Mitigation: Confirm the target spreadsheet, sheet range, and row values with the user before execution. <br>
-Risk: The skill depends on shared gws authentication guidance that is not included in this artifact. <br>
-Mitigation: Install and review the referenced gws-shared authentication guidance before using the command. <br>
+## Use Case:
 
+Developers and agents use this skill to append single or multiple rows to an intended Google Sheets spreadsheet through the gws CLI after confirming the spreadsheet ID, target range, and row values with the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-sheets-append) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for appending rows with the gws CLI; execution should be confirmed before any write.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata) <br>
+Risk: The skill can append data to a Google Sheets spreadsheet and may modify the wrong spreadsheet, tab, or range if inputs are incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user for confirmation before execution and verify the spreadsheet ID, target range, and row values.
+
+Risk: The skill depends on the local gws CLI and the user's Google Workspace authentication context.
+
+Mitigation: Install only a trusted gws CLI and use the shared gws authentication guidance before running append commands.
+
+## Reference(s):
+
+- [Gws Sheets Append on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/gws-sheets-append)
+- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with bash command examples and CLI flag guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace authentication context from the shared gws skill.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

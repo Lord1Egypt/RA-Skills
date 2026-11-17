@@ -1,46 +1,63 @@
-## Description: <br>
-Self-learn to decide when to act, when to ask, and which actions should always need approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-learn to decide when to act, when to ask, and which actions should always need approval.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain a durable ask-versus-act policy across sessions. It helps agents decide when to proceed autonomously, when to propose a path, and when explicit approval is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local escalation notes under ~/escalate/, which could accidentally include secrets or private third-party data. <br>
-Mitigation: Keep secrets out of escalation memory, review ~/escalate/ periodically, and follow the skill guidance to avoid persisting credentials or copied private data. <br>
-Risk: Workspace AGENTS or SOUL routing snippets could change how an agent decides when to ask for approval. <br>
-Mitigation: Review the exact proposed snippet before any write and only approve small, non-destructive additions. <br>
-Risk: Incorrect autonomy rules could let an agent proceed too freely on risky work. <br>
-Mitigation: Keep money, deletion, credentials, legal, production, external communication, and other irreversible actions behind explicit approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help an agent maintain a durable ask-vs-act policy across sessions, especially for proactive drafting, editing, research, and local work. It guides the agent to act on low-risk reversible work while escalating external, irreversible, financial, legal, credential, deletion, deployment, or third-party-impacting actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/escalate) <br>
-- [Skill homepage](https://clawic.com/skills/escalate) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Hard boundaries](artifact/boundaries.md) <br>
-- [Pattern recognition](artifact/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local escalation memory files after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: Persistent local notes can influence future agent decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ~/escalate files periodically and keep hard boundaries explicit.
+
+Risk: Workspace AGENTS or SOUL snippets can influence future agent behavior if approved without review.
+
+Mitigation: Review the exact snippet before approval; setup guidance requires explicit approval and non-destructive edits.
+
+Risk: Local memory could accidentally retain sensitive information.
+
+Mitigation: Do not persist credentials, secrets, or copied third-party private data in escalation memory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/escalate)
+- [Declared Homepage](https://clawic.com/skills/escalate)
+- [Setup Guide](artifact/setup.md)
+- [Hard Boundaries](artifact/boundaries.md)
+- [Pattern Recognition](artifact/patterns.md)
+- [Memory Template](artifact/memory-template.md)
+- [Migration Guide](artifact/migration.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local escalation notes under ~/escalate when used by an agent with filesystem access.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

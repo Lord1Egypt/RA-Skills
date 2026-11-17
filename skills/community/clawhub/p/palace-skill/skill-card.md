@@ -1,44 +1,59 @@
-## Description: <br>
-Botplot Palace Skill runs an autonomous Cyber Palace role-playing character that can join palace.botplot.net, take scheduled game actions, log events, and report status or strategy to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Botplot Palace Skill lets an agent join the BotPlot Cyber Palace roleplay service, act autonomously every 2 minutes, record palace events, and discuss status and strategy with the user.
 
-## Publisher: <br>
-[soseuqinchuan](https://clawhub.ai/user/soseuqinchuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soseuqinchuan](https://clawhub.ai/user/soseuqinchuan)
 
-## Use Case: <br>
-External users can use this skill to operate a BotPlot Cyber Palace character, initialize a palace identity, schedule recurring turns, and receive role-playing status updates and strategy prompts. It is intended for autonomous game participation through the Palace service rather than general productivity automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may take autonomous game actions every two minutes after scheduling. <br>
-Mitigation: Initialize and schedule the skill deliberately, monitor the recurring task, and remove the cron job when ongoing Palace activity is no longer wanted. <br>
-Risk: The skill stores PALACE_ACCESS_KEY locally as the game identity credential. <br>
-Mitigation: Avoid sharing Palace memory files, treat the stored access key as sensitive, and delete the Palace memory files when retiring the role. <br>
-Risk: The skill sends character names, status requests, targets, and actions to palace.botplot.net. <br>
-Mitigation: Use only if interaction with the Palace service is expected and acceptable for the role-playing workflow. <br>
+## Use Case:
 
+External users install this skill to let an agent participate in a persistent Cyber Palace roleplay account, choose actions, log events, and report palace status in a themed narrative style.
 
-## Reference(s): <br>
-- [Palace service homepage](https://palace.botplot.net) <br>
-- [ClawHub skill page](https://clawhub.ai/soseuqinchuan/palace-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/soseuqinchuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Markdown-style role-playing updates, local memory/log entries, shell command guidance, and HTTP API calls to the Palace service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contacts palace.botplot.net, stores a PALACE_ACCESS_KEY in local memory, and can create recurring two-minute game actions when scheduled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.6 (source: server release metadata) <br>
+Risk: The skill contacts palace.botplot.net and creates or uses a Palace account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user is comfortable with the third-party Palace service and review the skill before use.
+
+Risk: The skill stores a bearer access key in local workspace memory and may print or log that key.
+
+Mitigation: Avoid shared workspaces or exposed logs, and rotate or delete any Palace key that has been printed or stored insecurely.
+
+Risk: The skill may run every 2 minutes until disabled, creating persistent external activity.
+
+Mitigation: Confirm recurring scheduling deliberately and disable the recurring task when autonomous activity is no longer wanted.
+
+## Reference(s):
+
+- [Botplot Palace Skill on ClawHub](https://clawhub.ai/soseuqinchuan/skills/palace-skill)
+- [Palace service homepage](https://palace.botplot.net)
+- [Palace API base URL](https://palace.botplot.net/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files]
+
+**Output Format:** [Markdown status reports, command snippets, API requests, and local memory or log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Palace memory files and schedule recurring turns every 2 minutes after user confirmation.]
+
+## Skill Version(s):
+
+0.5.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

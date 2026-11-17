@@ -1,39 +1,55 @@
-## Description: <br>
-Manage staffing agency finances, compliance, and operations across multiple verticals, with guidance on billing, margins, payroll burden, cash flow, and key performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through staffing agency operations, including billing rates, margins, payroll burden, compliance requirements, KPIs, technology costs, and growth planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Staffing agency owners, independent recruiters, workforce solutions companies, and agents supporting staffing operations use this skill to reference operating benchmarks, cost ranges, compliance topics, and growth planning considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Staffing, legal, tax, compliance, and cost figures may be incomplete or outdated for a specific jurisdiction or operating model. <br>
-Mitigation: Verify figures and obligations against current federal, state, local, and professional guidance before using them operationally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-staffing-agency) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Staffing agency owners, independent recruiters, workforce-solutions operators, and agent builders use this skill to answer operational questions about staffing finances, compliance, benchmarks, technology costs, and growth planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; content is business, operational, and compliance reference material.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Legal, compliance, tax, insurance, and pricing figures can become outdated or vary by jurisdiction.
+
+Mitigation: Verify operational guidance against current federal, state, and local requirements before using it for staffing agency decisions.
+
+Risk: Publisher promotional links are present in the artifact footer.
+
+Mitigation: Treat external links as third-party resources and review them separately before relying on linked services or purchases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-staffing-agency)
+- [AfrexAI Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AfrexAI AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AfrexAI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text business guidance with tables and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include staffing benchmarks, compliance reminders, cost ranges, KPI targets, and growth-stage planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

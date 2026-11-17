@@ -17,21 +17,20 @@
 // (family, body) → rotation MUST equal the table derived from orientation.json's
 // four facts (mirrored below — keep in sync). A real correctly-oriented flag
 // whose rotation disagrees with the table is a RULE BUG signal (报给人看).
-const CYCLE = ['up', 'left', 'down', 'right'];                 // == orientation.json rotationCycle
-const ANCHOR = { power: 'up', ground: 'down', port: 'right' }; // == orientation.json bodyAnchorAtRot0
+const CYCLE = ['up', 'right', 'down', 'left'];                 // == orientation.json rotationCycle
+const ANCHOR = { power: 'down', ground: 'up', port: 'right' }; // == orientation.json bodyAnchorAtRot0
 function tableRot(family, dir) {
   const ai = CYCLE.indexOf(ANCHOR[family]);
   return ((((CYCLE.indexOf(dir) - ai) % 4) + 4) % 4) * 90;
 }
 
 const opp = { up: 'down', down: 'up', left: 'right', right: 'left' };
-function dir(f, t) {                                            // y-DOWN build: +y renders LOWER
+function dir(f, t) {                                            // y-UP: +y renders HIGHER
   const dx = t[0] - f[0], dy = t[1] - f[1];
   if (dx === 0 && dy === 0) return null;
-  // FIX 2026-06-29: schematic coords are y-DOWN (larger y = lower on canvas), so
-  // +dy is visually 'down'. The old y-UP reading inverted the vertical body
-  // direction and masked the connect_pin up/down flip now fixed in orientation.json.
-  return Math.abs(dx) >= Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+  // Schematic coordinates are y-UP: +dy is visually up. Keep this geometric
+  // interpretation separate from the stored-rotation truth table below.
+  return Math.abs(dx) >= Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'up' : 'down');
 }
 function family(type, net) {
   if (type === 'netport') return 'port';

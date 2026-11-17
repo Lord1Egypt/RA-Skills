@@ -109,7 +109,7 @@
 | [pathology-core-framework](pathology-core-framework/SKILL.md) | 提供病理学的双重学科属性、总论与各论结构及其在疾病诊疗和医学研究中的应用逻辑 | 当需要系统理解疾病本质、制定临床诊疗方案或开展基础医学研究时使用 |
 | [diabetes-insipidus-classification-and-etiology](diabetes-insipidus-classification-and-etiology/SKILL.md) | 对符合多尿、低比重尿、口渴和多饮等核心临床特征的患者进行尿崩症的病因分类 | 当患者出现上述症状并需明确尿崩症类型以指导进一步检查和治疗时使用 |
 | [regulated-cell-death-pathways](regulated-cell-death-pathways/SKILL.md) | 区分细胞焦亡、铁死亡与自噬依赖性死亡的分子机制、形态特征及特异性抑制条件 | 当病理或实验中观察到非典型细胞死亡需明确类型时使用 |
-| [primary-hypertension-risk-and-pathogenesis-analysis](primary-hypertension-risk-and-pathogenesis-analysis/SKILL.md) | 分析个体是否具有原发性高血压的遗传或环境危险因素，并评估其高血压风险状态 | 当用户描述中老年人、有家族史者、超重/肥胖、高盐饮食或长期精神紧张等特征，且需排除继发性病因时使用 |
+| [primary-hypertension-riREDACTED-SECRET](primary-hypertension-riREDACTED-SECRET/SKILL.md) | 分析个体是否具有原发性高血压的遗传或环境危险因素，并评估其高血压风险状态 | 当用户描述中老年人、有家族史者、超重/肥胖、高盐饮食或长期精神紧张等特征，且需排除继发性病因时使用 |
 | [cellular-adaptation-and-injury-mechanisms](cellular-adaptation-and-injury-mechanisms/SKILL.md) | 分析细胞在刺激下的适应性反应类型及膜损伤的分子机制与后果 | 当评估组织病理变化、判断损伤可逆性或解释细胞死亡形态时使用 |
 | [inflammatory-mediation-systems](inflammatory-mediation-systems/SKILL.md) | 解析血管内皮损伤后激肽、补体、凝血/纤溶三大系统的激活路径及相互作用，并对急性炎症进行病理分类 | 当组织出现红肿热痛或渗出性病变时使用 |
 | [immune-disorders-classification](immune-disorders-classification/SKILL.md) | 对原发性免疫缺陷、移植排斥反应及免疫耐受丧失进行分类与机制解析 | 当患者表现为反复感染、移植后功能异常或自身免疫病征象时使用 |
@@ -122,7 +122,7 @@
 | [chemical-carcinogen-risk-assessment](chemical-carcinogen-risk-assessment/SKILL.md) | 分类化学致癌物类型并解析其作用机制，同时评估吸烟相关的多系统疾病风险 | 当个体暴露于可疑化学物质或有吸烟史时使用 |
 | [pitnet-histological-classification-and-immunomarkers](pitnet-histological-classification-and-immunomarkers/SKILL.md) | 根据免疫组化结果结合核心转录因子和激素表达谱对垂体神经内分泌瘤进行标准化组织学亚型分类 | 在病理确诊为PitNET、已完成免疫组化染色、且需明确亚型以指导预后评估或靶向治疗时使用 |
 | [rheumatic-disease-pathological-staging](rheumatic-disease-pathological-staging/SKILL.md) | 根据组织学表现判断风湿病所处的变质渗出期、增生期或纤维化期 | 当结缔组织出现黏液样变性或纤维蛋白样坏死时使用 |
-| [low-risk-follicular-thyroid-tumor-classification](low-risk-follicular-thyroid-tumor-classification/SKILL.md) | 根据第5版WHO标准对交界性甲状腺结节进行分类诊断，明确是否属于NIFTP、UMP或HTT | 当病理检查显示甲状腺肿瘤为滤泡细胞来源、生物学行为介于良恶性之间、且满足完整包膜评估与充分取材条件时使用 |
+| [low-riREDACTED-SECRET](low-riREDACTED-SECRET/SKILL.md) | 根据第5版WHO标准对交界性甲状腺结节进行分类诊断，明确是否属于NIFTP、UMP或HTT | 当病理检查显示甲状腺肿瘤为滤泡细胞来源、生物学行为介于良恶性之间、且满足完整包膜评估与充分取材条件时使用 |
 | [diabetic-nephropathy-pathological-staging](diabetic-nephropathy-pathological-staging/SKILL.md) | 基于肾活检或尸检组织的显微镜下特征识别并分期糖尿病肾病的病理改变 | 在糖尿病患者出现蛋白尿或肾功能下降、需排除其他肾病并结合长期高血糖病史时使用 |
 | [ewing-sarcoma-molecular-diagnosis](ewing-sarcoma-molecular-diagnosis/SKILL.md) | 执行尤因肉瘤的系统性分子诊断流程，确认EWSR1::FLI1融合基因状态并排除其他小圆细胞肉瘤亚型 | 当儿童或青年患者出现长骨、骨盆或肋骨溶骨性病变，X线显示洋葱皮样骨膜反应，且组织学表现为小圆细胞形态时使用 |
 | [ordinary-osteosarcoma-diagnosis-and-subtyping](ordinary-osteosarcoma-diagnosis-and-subtyping/SKILL.md) | 进行普通型骨肉瘤的确诊及组织学亚型判定（骨母细胞型、软骨母细胞型、成纤维细胞型） | 当面对10～20岁青少年或40岁以上继发性病例，且影像学显示干骺端云雾状致密阴影伴Codman三角、日光放射状或葱皮样骨膜反应时使用 |
@@ -235,7 +235,7 @@
 - ewing-sarcoma-molecular-diagnosis
 - ordinary-osteosarcoma-diagnosis-and-subtyping
 - zhong-shu-shen-jing-xi-tong-yuan-fa-xing-zhong-liu-te-xing-ping-gu
-- low-risk-follicular-thyroid-tumor-classification
+- low-riREDACTED-SECRET
 - diffuse-nontoxic-goiter-pathological-staging
 - pitnet-histological-classification-and-immunomarkers
 - lch-classification-and-prognosis
@@ -249,7 +249,7 @@
 - infarction-risk-assessment
 - benign-hypertension-pathological-staging
 - hypertension-diagnosis-and-staging
-- primary-hypertension-risk-and-pathogenesis-analysis
+- primary-hypertension-riREDACTED-SECRET
 - diagnose-and-classify-coronary-heart-disease
 - arrhythmogenic-right-ventricular-cardiomyopathy-etiology-assessment
 - keshan-disease-diagnosis

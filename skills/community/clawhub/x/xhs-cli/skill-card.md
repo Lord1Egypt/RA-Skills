@@ -1,45 +1,65 @@
-## Description: <br>
-Searches Xiaohongshu, reads notes and user profiles, and harvests selected content through agent-browser using user-provided login cookies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and harvests Xiaohongshu content, including topic search results, notes, user profiles, comments, and saved reports through an authenticated agent-browser session.
 
-## Publisher: <br>
-[excalibursssooo](https://clawhub.ai/user/excalibursssooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[excalibursssooo](https://clawhub.ai/user/excalibursssooo)
 
-## Use Case: <br>
-Developers and agents use this skill to collect Xiaohongshu search results, note details, comments, and user-profile content into local JSON and Markdown reports. It is intended for logged-in, read-only collection workflows that require Xiaohongshu session cookies and agent-browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Xiaohongshu session cookies and can store those credentials locally. <br>
-Mitigation: Keep cookie files private, use secure local or explicitly configured paths, and avoid sharing cookie or state files. <br>
-Risk: Harvested Xiaohongshu content may include user-generated personal or sensitive information. <br>
-Mitigation: Review harvested JSON and Markdown reports before sharing or publishing them, and follow applicable privacy expectations. <br>
-Risk: Scraping activity may conflict with Xiaohongshu rules or trigger platform rate limits and account/IP controls. <br>
-Mitigation: Use the documented rate limits and no-retry behavior, and confirm that planned scraping complies with Xiaohongshu rules and applicable policy. <br>
+## Use Case:
 
+Developers and agents use this skill to collect Xiaohongshu search results, note details, comments, and user-profile content into local JSON data and Markdown reports. It is intended for workflows where the operator can provide and manage an authenticated Xiaohongshu browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/excalibursssooo/xhs-cli) <br>
-- [README](README.md) <br>
-- [Anti-scraping pitfalls](docs/pitfalls.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime scripts produce JSON files and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under the configured data directory, including harvest reports, candidate lists, result status JSON, note detail JSON, user metadata JSON, and cookie/state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter, CHANGELOG, server release metadata) <br>
+Risk: The skill requires live Xiaohongshu login cookies and can persist session-related data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private data directory, restrict cookie-file permissions, rotate or revoke cookies after use, and avoid installing on shared, CI, or heavily monitored machines.
+
+Risk: Harvested notes, comments, user data, and reports may contain sensitive or policy-relevant content.
+
+Mitigation: Review outputs before sharing, avoid publishing raw harvest data, and delete local artifacts that are no longer needed.
+
+Risk: Bulk scraping, comment collection, proxy or IP changes, and captcha-related workflows may create compliance risk.
+
+Mitigation: Confirm the workflow complies with applicable obligations and Xiaohongshu rules before use, and stop when captcha or IP-risk signals appear.
+
+Risk: Repeated browser opens or retries can increase captcha and IP-risk lockouts.
+
+Mitigation: Prefer the provided scripts with their rate limits, avoid manual high-frequency agent-browser calls, and do not retry automatically after captcha or IP-risk failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/excalibursssooo/skills/xhs-cli)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Anti-scraping pitfalls](docs/pitfalls.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime scripts write JSON files and Markdown reports to disk.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, agent-browser, and authenticated Xiaohongshu cookies; cookie and data paths can be configured with XHS_COOKIE_FILE and XHS_DATA_DIR.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -34,15 +34,15 @@ A：检查 `pre_order_type` 是否正确设置（1=H5/PC、2=支付宝小程序�
 ## SDK 使用问题
 
 **Q：Java 初始化时产品号 setter 应该用哪个？**
-A：以最新 `dg-java-sdk 3.0.38` 源码为准，`MerConfig` 使用 `setProductId(...)`。不要再生成旧文档中的 `setProcutId(...)`。
+A：以最新 `dg-java-sdk 3.0.41` 源码为准，`MerConfig` 使用 `setProductId(...)`。不要再生成旧文档中的 `setProcutId(...)`。
 
 ```java
-// ✓ dg-java-sdk 3.0.38
+// ✓ dg-java-sdk 3.0.41
 config.setProductId("YYZY");
 ```
 
 **Q：Spring Boot 3.x 启动报错 javax 相关异常？**
-A：先核对项目实际安装的 `dg-java-sdk` 版本和依赖树。当前 `3.0.38` 源码未检出 `javax.validation` 注解；如果项目仍因历史版本或传递依赖报 `javax.validation` 缺失，再补兼容依赖：
+A：先核对项目实际安装的 `dg-java-sdk` 版本和依赖树。当前 `3.0.41` 源码未检出 `javax.validation` 注解；如果项目仍因历史版本或传递依赖报 `javax.validation` 缺失，再补兼容依赖：
 
 ```xml
 <dependency>
@@ -78,7 +78,7 @@ A：排查步骤：
 5. **POST 请求** — 汇付以 POST 方式发送通知，确认接口支持 POST
 
 **Q：异步通知重复收到？**
-A：汇付会在未收到正确响应时重试。以 `hf_seq_id` 为幂等键，收到重复通知时跳过已处理的交易。确保返回格式正确：`RECV_ORD_ID_` + req_seq_id（注意下划线）。
+A：汇付会在未收到正确响应时重试。以 `hf_seq_id` 为最简幂等键，收到重复通知时跳过已处理的交易（完整幂等键口径以 `references/shared-async-notify.md` 为准，建议复合键含 `huifu_id`、`req_seq_id`/`hf_seq_id`、`notify_type`/`trans_type`、`trans_stat`/`event_type`）。确保返回格式正确：`RECV_ORD_ID_` + req_seq_id（注意下划线）。
 
 ## 对账单问题
 

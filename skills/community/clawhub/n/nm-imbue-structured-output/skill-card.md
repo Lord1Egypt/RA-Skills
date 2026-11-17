@@ -1,38 +1,53 @@
-## Description: <br>
-Formats review deliverables with consistent structure for comparable findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats review deliverables with consistent structure for comparable findings
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, reviewers, and technical stakeholders use this skill to turn analysis into consistent review reports, PR descriptions, release notes, incident reports, findings, action items, and appendices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-structured-output) <br>
-- [Imbue homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
+Reviewers and analysts use this skill when finalizing reviews or analyses to turn findings into consistent, actionable deliverables for stakeholders or documentation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formatting-only output; security evidence reports no code, persistence, credential handling, or hidden data access.] <br>
+Global
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; packaged SKILL.md frontmatter lists 1.9.8) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Report appendices may include credentials, personal information, or confidential material from evidence and raw data.
+
+Mitigation: Review and redact sensitive content before attaching commands, evidence logs, or raw data.
+
+Risk: The security scan was partial because a referenced local script was missing, leaving the review incomplete.
+
+Mitigation: Confirm that all referenced local components are present and review them before installing or using the skill.
+
+## Reference(s):
+
+- [ClawHub-listed plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Structured Markdown deliverable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sections depend on the deliverable template and may include findings, recommendations, action items, and appendices.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

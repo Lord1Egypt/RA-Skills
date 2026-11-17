@@ -1,43 +1,63 @@
-## Description: <br>
-Verifies external factual claims in draft content before publishing or sending and produces a structured claim verification report with evidence links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify external factual claims in draft content before publishing or sending, and produce a structured claim verification report with evidence links.
 
-## Publisher: <br>
-[jernejcicorbin-hub](https://clawhub.ai/user/jernejcicorbin-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jernejcicorbin-hub](https://clawhub.ai/user/jernejcicorbin-hub)
 
-## Use Case: <br>
-Writers, marketers, and agents use this skill to check drafts that contain external factual claims before publication or sending. It highlights wrong, weak, conflicting, or unsupported claims and can produce a machine-readable verification report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft claims are sent to Prismfy for verification using the user's API key. <br>
-Mitigation: Use the skill only with content suitable for Prismfy processing, and prefer a revocable or scoped API key. <br>
-Risk: API keys can be exposed if copied into shared shell startup files or logs. <br>
-Mitigation: Store PRISMFY_API_KEY in a local secret manager or private environment configuration and avoid committing or sharing dotfiles that contain it. <br>
-Risk: The optional hook adds claim-checking reminders to future agent sessions. <br>
-Mitigation: Enable the hook only when persistent fact-checking reminders are desired, and disable it for workflows where the reminder is unnecessary. <br>
+## Use Case:
 
+Developers, editors, marketers, and publishing teams use this skill to check factual claims in drafts before publication or sending. It helps identify wrong, weak, conflicting, or unsupported claims and can produce a structured JSON report when requested.
 
-## Reference(s): <br>
-- [Prismfy](https://prismfy.io) <br>
-- [ClawHub skill page](https://clawhub.ai/jernejcicorbin-hub/claim-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown response with optional claim_verification_report.json artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PRISMFY_API_KEY, curl, and jq; batch output preserves claim order and caps evidence URLs per claim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release; artifact frontmatter remains 1.0.0) <br>
+Risk: Draft claim text and the Prismfy API key may be sent to Prismfy or another configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted endpoints and approved draft content, keep PRISMFY_BASE_URL unset unless the alternate endpoint is explicitly trusted, and scope the API key appropriately.
+
+Risk: The setup guidance suggests persisting PRISMFY_API_KEY in ~/.bashrc.
+
+Mitigation: Store the API key in a safer secret store or session-scoped environment instead of a long-lived shell startup file.
+
+Risk: The bootstrap hook can add persistent reminders in future agent sessions.
+
+Mitigation: Enable the hook only when ongoing claim-verification reminders are desired, and review hook behavior before installing it into the hooks registry.
+
+Risk: The batch helper uses preliminary heuristics and may return weak or not_found results that still require judgment.
+
+Mitigation: Require human review of evidence before publishing and keep claims non-verified unless supporting evidence meets the skill's stated source policy.
+
+## Reference(s):
+
+- [Pre-Publish Fact Checker on ClawHub](https://clawhub.ai/jernejcicorbin-hub/skills/claim-verifier)
+- [Publisher profile](https://clawhub.ai/user/jernejcicorbin-hub)
+- [Prismfy](https://prismfy.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Concise Markdown summary in chat, optional claim_verification_report.json artifact, and shell command examples for Prismfy-backed checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report items include claim, status, confidence, evidence_urls, failure_code, and notes; statuses are verified, weak, conflicting, or not_found.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

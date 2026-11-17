@@ -1,0 +1,6 @@
+interface:
+  display_name: "World Cup and Football Predictor"
+  short_description: "Bilingual football forecasts, post-match review, and controlled evolution."
+  default_prompt: "Use $world-cup-2026-predictor to forecast or review a football match from multi-book odds, Asian handicap, totals, BTTS, news, and verified results. Match the user's language."
+policy:
+  allow_implicit_invocation: true

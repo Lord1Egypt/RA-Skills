@@ -1,39 +1,55 @@
-## Description: <br>
-Use this skill when a .pptx file is involved in creating, reading, editing, updating, combining, or extracting content from slide decks and presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a .pptx file needs to be created, read, edited, parsed, combined, split, summarized, or otherwise handled as input or output.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Content teams, creators, and growth marketers use this skill to create, edit, parse, and automate PowerPoint presentation workflows. It helps refine slide-deck outputs for accuracy, readability, and actionability before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad presentation wording or incorporate email, social, or web-derived material into decks. <br>
-Mitigation: Review generated or extracted presentation content for accuracy, rights, privacy, and publication suitability before sharing or publishing. <br>
+## Use Case:
 
+Content teams, creators, growth marketers, and agents use this skill to automate PowerPoint workflows such as drafting slide decks, extracting or editing presentation content, working with templates, and preparing deck-related summaries or supporting material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-pptx) <br>
-- [SkillBoss homepage](https://www.skillboss.co/skills/pptx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or text guidance with optional code snippets for presentation workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; review outputs before publication or automated execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad email, social-media, and web-scraping capabilities without tight limits or clear approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before web scraping, social-media access, email access, sending, or external publication.
+
+Risk: PowerPoint decks may contain confidential business material, customer data, speaker notes, comments, or unpublished strategy.
+
+Mitigation: Confirm the deck's sensitivity before using external enrichment or publication-related capabilities, and review all outputs before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-pptx)
+- [Publisher Profile](https://clawhub.ai/user/tobeyrebecca)
+- [SkillBoss Pptx Homepage](https://www.skillboss.co/skills/pptx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown or text instructions, with code or configuration snippets when needed for presentation automation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before external publication, automated execution, or use with confidential presentation content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

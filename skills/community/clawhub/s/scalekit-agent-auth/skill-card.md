@@ -1,45 +1,61 @@
-## Description: <br>
-Scalekit Agent Auth helps OpenClaw agents discover, authorize, and execute actions against connected third-party services through Scalekit Connect. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scalekit Agent Auth helps OpenClaw agents discover, authorize, and execute tools across connected third-party services through Scalekit Connect.
 
-## Publisher: <br>
-[avinash-kamath](https://clawhub.ai/user/avinash-kamath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avinash-kamath](https://clawhub.ai/user/avinash-kamath)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to external SaaS tools, discover available provider actions, authorize accounts, execute tool calls, and fall back to proxied API requests when a catalog tool is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act across connected third-party services using configured Scalekit credentials. <br>
-Mitigation: Use least-privilege Scalekit credentials, connect only required providers, and require explicit approval before mutating actions. <br>
-Risk: The authorization inspection command can print raw OAuth tokens. <br>
-Mitigation: Do not use --get-authorization in agent workflows and avoid logging command output. <br>
-Risk: Proxy requests and file transfers may bypass curated tool schemas and can send, delete, upload, or download data. <br>
-Mitigation: Require explicit approval before proxy requests, file transfers, sends, deletes, or other mutating actions. <br>
+## Use Case:
 
+Developers and operators use this skill to let OpenClaw agents connect to SaaS services, verify authorization, inspect tool schemas, execute available tools, and fall back to proxied API calls when no catalog tool is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/avinash-kamath/scalekit-agent-auth) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Scalekit Connect](https://scalekit.com) <br>
-- [Scalekit Notion connector setup guide](https://docs.scalekit.com/reference/agent-connectors/notion/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return provider data, authorization links, tool schemas, execution results, or setup guidance depending on the requested connected service action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.2 (source: server release metadata and target metadata) <br>
+Risk: The skill can expose raw OAuth access and refresh tokens through the authorization inspection command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use --get-authorization in agent workflows, and prefer a release that removes raw token printing.
+
+Risk: Proxied API calls and upload/download flows can perform high-impact actions against connected services.
+
+Mitigation: Review proxy upload, download, write, and broad-scope requests before execution and grant only the minimum OAuth scopes needed.
+
+Risk: The skill depends on a trusted Scalekit environment and operator-controlled credentials.
+
+Mitigation: Install only in trusted environments and protect TOOL_CLIENT_ID, TOOL_CLIENT_SECRET, TOOL_ENV_URL, and TOOL_IDENTIFIER as sensitive configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/avinash-kamath/skills/scalekit-agent-auth)
+- [OpenClaw](https://openclaw.ai)
+- [Scalekit Connect](https://scalekit.com)
+- [Scalekit Dashboard](https://app.scalekit.com)
+- [Scalekit Notion Connector Setup Guide](https://docs.scalekit.com/reference/agent-connectors/notion/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger connected-service API calls and proxied upload/download workflows through configured Scalekit connections.]
+
+## Skill Version(s):
+
+2.4.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

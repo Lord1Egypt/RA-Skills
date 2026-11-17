@@ -1,45 +1,62 @@
-## Description: <br>
-Tracks Nova skill versions, monitors selected expert information sources, generates skill-evolution reports, and suggests updates for human approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Nova skill version history, monitors configured expert information sources, and prepares update reports and recommendations.
 
-## Publisher: <br>
-[catplus-eric](https://clawhub.ai/user/catplus-eric) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catplus-eric](https://clawhub.ai/user/catplus-eric)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to track skill version history, monitor selected expert sources on a schedule, and generate Markdown reports that recommend whether a skill update needs human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags recurring monitoring, persistent local writes, broad activation, external notifications, and automatic patch updates without clear user controls. <br>
-Mitigation: Require explicit confirmation for each run, skill update, outbound notification, and persistent write before enabling or executing the workflow. <br>
-Risk: The security evidence notes that current source-checking results should be treated cautiously because the included script records URLs as checked without fetching or analyzing them. <br>
-Mitigation: Treat generated reports as review prompts, not verified source analysis, and require human review before changing tracked skills. <br>
+## Use Case:
 
+Developers and skill maintainers use this agent skill to track skill versions, review monitored source updates, and generate Markdown update reports before approving skill changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/catplus-eric/skill-evolution-tracker) <br>
-- [Server-resolved provenance unavailable](unavailable) <br>
-- [Rau LinkedIn posts](https://www.linkedin.com/posts/rauchg) <br>
-- [The Vercel Journey with Guillermo Rauch](https://refactoring.fm/p/the-vercel-journey-with-guillermo) <br>
-- [Addy Osmani blog](https://addyosmani.com/blog/) <br>
-- [Navalmanack](https://navalmanack.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, JSON version records, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent local version records and reports under the skill workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Broad activation phrases could invoke the skill during unrelated skill-management conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation phrases before deployment if accidental invocation would disrupt normal workflows.
+
+Risk: The skill maintains local version history and generates local report files.
+
+Mitigation: Install it only where local skill history and generated reports are expected, and review the target paths before running the monitoring script.
+
+Risk: The source describes monthly web monitoring, LLM diffing, and enterprise WeChat notifications that the security guidance says should not be relied on unless implemented and approved.
+
+Mitigation: Treat those capabilities as requiring environment-specific implementation review and explicit approval before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/catplus-eric/skills/skill-evolution-tracker)
+- [Publisher profile](https://clawhub.ai/user/catplus-eric)
+- [Navalmanack](https://navalmanack.com/)
+- [Rau source profile](https://www.linkedin.com/posts/rauchg)
+- [The Vercel Journey with Guillermo Rauch](https://refactoring.fm/p/the-vercel-journey-with-guillermo)
+- [Addy Osmani blog](https://addyosmani.com/blog/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON-compatible status data, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local version history and report files when its monitoring script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

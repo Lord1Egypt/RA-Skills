@@ -1,40 +1,57 @@
-## Description: <br>
-OCR text recognition using DeepSeek-OCR model. Use when user asks for OCR, text recognition, image text extraction, screenshot recognition, or converting images to text/markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OCR text recognition using DeepSeek-OCR model. Use when user asks for OCR, text recognition, image text extraction, screenshot recognition, or converting images to text/markdown.
 
-## Publisher: <br>
-[qianjunye](https://clawhub.ai/user/qianjunye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qianjunye](https://clawhub.ai/user/qianjunye)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text, markdown, or structured content from local image files and screenshots through a configured DeepSeek-OCR-compatible API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image content is uploaded to the configured OCR API and may expose sensitive visual data. <br>
-Mitigation: Process only images approved for that provider, avoid sensitive images unless the provider is approved for them, and confirm DEEPSEEK_OCR_API_URL before use. <br>
-Risk: The script sources ~/.openclaw-env before execution. <br>
-Mitigation: Use a trusted ~/.openclaw-env file and keep DEEPSEEK_OCR_API_KEY private. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qianjunye/ucloud-deepseek-ocr) <br>
-- [Default OCR API endpoint](https://api.modelverse.cn/v1/chat/completions) <br>
+## Use Case:
 
+Developers and external users use this skill to extract text from local image files, screenshots, and document or table images through DeepSeek-OCR. It supports markdown, plain text, JSON, and similar OCR output requests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Plain text, markdown, or JSON returned by the OCR API through shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, base64, DEEPSEEK_OCR_API_KEY, and a local image file; optional output format defaults to markdown.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected images are uploaded to the configured remote OCR API and may contain sensitive documents, screenshots, IDs, invoices, secrets, or regulated data.
+
+Mitigation: Use the skill only with an approved OCR provider and avoid sending sensitive or regulated images unless that provider and use case have been approved.
+
+Risk: The OCR API endpoint is configurable, so requests and the API key could be sent to an unexpected endpoint.
+
+Mitigation: Review DEEPSEEK_OCR_API_URL before use and keep DEEPSEEK_OCR_API_KEY narrowly scoped.
+
+Risk: The script sources ~/.openclaw-env as executable shell code.
+
+Mitigation: Review and control writes to ~/.openclaw-env before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qianjunye/skills/ucloud-deepseek-ocr)
+- [Default ModelVerse chat completions endpoint](https://api.modelverse.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
+
+**Output Format:** [Markdown, plain text, or JSON OCR content emitted as terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local image path, DEEPSEEK_OCR_API_KEY, curl, jq, and base64; the script configures a maximum response length of 8192 tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

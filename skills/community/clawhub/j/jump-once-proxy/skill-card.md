@@ -1,41 +1,62 @@
-## Description: <br>
-Access overseas or external URLs through the JumpOnce proxy service for HTTP forwarding and WebSocket relay using the documented jumptox.top API and a required API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access overseas or external URLs through the JumpOnce proxy service, including HTTP forwarding and WebSocket relay support through an Oracle Cloud Phoenix, USA exit server.
 
-## Publisher: <br>
-[men459](https://clawhub.ai/user/men459) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[men459](https://clawhub.ai/user/men459)
 
-## Use Case: <br>
-Developers and agents use this skill to route approved HTTP or WebSocket requests through JumpOnce when the current network cannot directly reach an external API or website. It is intended for intentional proxying of authorized targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; documented proxy exit is Oracle Cloud Phoenix, USA. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests, headers, cookies, personal data, internal URLs, or WebSocket streams may be routed through a third-party proxy provider. <br>
-Mitigation: Use the skill only for intentional proxying through JumpOnce, inspect requests before sending, and avoid forwarding sensitive traffic unless the provider is trusted and the use is authorized. <br>
-Risk: The artifact includes plain-HTTP examples for JumpOnce API endpoints. <br>
-Mitigation: Prefer HTTPS-only endpoints where supported and treat plain-HTTP examples as unsafe for sensitive credentials or data. <br>
+## Use Case:
 
+Developers and agents use this skill to route HTTP or WebSocket requests through JumpOnce when target websites or APIs are blocked or unreachable from the current network. It is suited to external API access workflows that can tolerate a third-party proxy handling request metadata and response data.
 
-## Reference(s): <br>
-- [JumpOnce API Reference](references/api-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/men459/jump-once-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell and Python examples; forwarded HTTP calls can return JSON or raw responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUMPONCE_API_KEY or an --api-key argument; structured responses may include status code, headers, body, elapsed time, and final URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Requests send target URLs, request metadata, API keys, and response data through the JumpOnce third-party proxy service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for approved external requests, avoid proxying secrets, cookies, internal systems, or confidential data, and review target URLs before forwarding.
+
+Risk: The documented JumpOnce API endpoint uses plain HTTP, which can expose proxied data and credentials in transit.
+
+Mitigation: Avoid using the proxy until an HTTPS endpoint is available, or restrict use to non-sensitive data in controlled environments.
+
+Risk: The artifact includes examples that pass API keys on the command line or suggest storing keys in workspace Markdown.
+
+Mitigation: Prefer environment variables or an approved secret manager, and do not place live API keys in shell history, command arguments, or workspace documentation.
+
+Risk: The Python SDK package is installed from an external package source.
+
+Mitigation: Pin and independently review the SDK package before installation in managed environments.
+
+## Reference(s):
+
+- [JumpOnce API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/men459/skills/jump-once-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce proxied HTTP responses or raw passthrough response bytes when using the bundled forwarding script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

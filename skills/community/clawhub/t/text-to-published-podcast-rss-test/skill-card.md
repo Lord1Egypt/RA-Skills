@@ -1,42 +1,55 @@
-## Description: <br>
-Helps an agent or app turn text into audio podcast episodes, using TTS to create an episode and publish it to an RSS feed subscribable in podcast apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent or app turn text into audio podcast episodes; one API call creates an episode using TTS and auto-publishes it to an RSS feed subscribable in podcast apps.
 
-## Publisher: <br>
-[cast0](https://clawhub.ai/user/cast0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cast0](https://clawhub.ai/user/cast0)
 
-## Use Case: <br>
-Developers, agents, and app builders use this skill to create podcast episodes from supplied text, poll generation status, list episodes, and publish generated audio through a Cast0 RSS feed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted text can be turned into publicly accessible podcast episodes without a clear private review step. <br>
-Mitigation: Ask for explicit user confirmation before creating or publishing an episode, and avoid secrets, private notes, internal documents, customer data, or personal material unless a separate private or draft workflow is available. <br>
-Risk: The skill requires a Cast0 API key tied to a podcast. <br>
-Mitigation: Store the API key in an environment variable or secret manager, avoid committing it to source control, and rotate it if it is exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to create podcast episodes from supplied text, poll generation status, list episodes, and publish completed audio through a public RSS feed.
 
-## Reference(s): <br>
-- [Cast0 API Documentation](https://api.cast0.ai/docs) <br>
-- [Cast0 Dashboard](https://cast0.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cast0/text-to-published-podcast-rss-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with bash and curl examples plus an endpoint table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Cast0 API key; submitted text can become a public podcast episode through the RSS feed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: Supplied text is sent to cast0.ai and auto-published as podcast audio through a public RSS feed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the episode text is intended for public publication before creating an episode.
+
+Risk: The skill uses CAST0_API_KEY credentials to create and manage episodes.
+
+Mitigation: Store the API key securely and avoid committing it to source control.
+
+## Reference(s):
+
+- [cast0 API Documentation](https://api.cast0.ai/docs)
+- [cast0 Dashboard](https://cast0.ai)
+- [ClawHub Skill Page](https://clawhub.ai/cast0/skills/text-to-published-podcast-rss-test)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with API examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a cast0 API key tied to one podcast; episode generation is asynchronous.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

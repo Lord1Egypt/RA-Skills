@@ -1,38 +1,57 @@
-## Description: <br>
-AutoGen multi-agent conversation framework assistant for agent orchestration, code execution, and group chat patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autogen helps developers work with AutoGen multi-agent conversation orchestration, code execution, and group chat patterns.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical AutoGen guidance when building multi-agent conversational systems, including installation, two-agent chats, group chats, code execution settings, tool registration, and framework comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AutoGen workflows can execute generated code, and the examples include local execution and unattended agent settings that can be risky with untrusted tasks or sensitive projects. <br>
-Mitigation: Install in a virtual environment, keep API keys out of code, prefer Docker or another restricted sandbox, and avoid unattended or non-sandboxed execution for untrusted tasks. <br>
+## Use Case:
 
+Developers and engineers use this skill to design AutoGen-based multi-agent workflows, configure assistant and user-proxy agents, set up group chat managers, register tools, and reason about code execution options.
 
-## Reference(s): <br>
-- [ClawHub Autogen skill page](https://clawhub.ai/zhangifonly/autogen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation commands, AutoGen code examples, code execution configuration, tool registration examples, and framework comparison guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The skill's examples may lead users to run agent-generated code directly on the host machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Docker or another sandbox, require human approval before execution, and use disposable work directories.
+
+Risk: Runtime environments may expose credentials or other sensitive data to generated code.
+
+Mitigation: Remove secrets from the execution environment before running agent-generated code.
+
+Risk: Unpinned package installation commands may produce different behavior over time.
+
+Mitigation: Pin package versions for production use.
+
+## Reference(s):
+
+- [ClawHub Autogen Skill Page](https://clawhub.ai/zhangifonly/skills/autogen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AutoGen installation commands, agent configuration snippets, and orchestration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

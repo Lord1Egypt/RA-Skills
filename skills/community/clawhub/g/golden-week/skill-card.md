@@ -1,46 +1,61 @@
-## Description: <br>
-Plan Golden Week (National Day) or Spring Festival trips by using flyai CLI data to find flights, hotels, train tickets, attractions, itinerary options, visa information, travel insurance, car rental, and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Golden Week, National Day, and Spring Festival trips using flyai CLI results for travel options, real-time pricing, and booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to answer Golden Week, National Day, Spring Festival, and holiday travel requests with real-time flyai CLI results and booking links. It is intended for peak-season travel planning, price comparison, crowd avoidance, and fallback handling when live travel data is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and relies on a global third-party npm CLI. <br>
-Mitigation: Review the CLI package before installation and run it only in environments where global npm tools are allowed. <br>
-Risk: Travel queries or command details may be stored locally through execution logging. <br>
-Mitigation: Avoid passport, payment, and highly sensitive itinerary details unless logging is disabled, isolated, or redacted. <br>
-Risk: The security evidence marks the release as suspicious because raw travel queries and command logs can persist without clear notice or retention controls. <br>
-Mitigation: Use the skill only after reviewing the logging behavior and retention expectations for the deployment environment. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search peak-season China holiday travel options, compare flights, hotels, activities, and routes, and return booking-ready Markdown based on flyai CLI output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/golden-week) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, concise guidance, and inline shell commands when setup or retry steps are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include booking links when results are shown, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.3 (source: server release evidence; artifact frontmatter reports 3.2.0) <br>
+Risk: The skill may install or depend on a global third-party flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before npm install and prefer a pinned @fly-ai/flyai-cli version.
+
+Risk: Travel searches are sent to external services and booking links are surfaced to users.
+
+Mitigation: Disclose the external FlyAI/Fliggy dependency and require users to verify prices, availability, and booking destinations before purchase.
+
+Risk: Local execution logs may contain raw travel prompts.
+
+Mitigation: Disable, redact, or set a retention policy for .flyai-execution-log.json before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/golden-week)
+- [Templates - golden-week](artifact/references/templates.md)
+- [Playbooks - golden-week](artifact/references/playbooks.md)
+- [Fallbacks - Seasonal/Special Category](artifact/references/fallbacks.md)
+- [Runbook - Execution Log Schema](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown travel recommendations with comparison tables, booking links, and inline shell commands for setup or recovery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI execution for real-time travel data; successful result rows must include booking links.]
+
+## Skill Version(s):
+
+v3.2.3 (source: server release metadata; artifact frontmatter says 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

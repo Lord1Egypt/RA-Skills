@@ -1,32 +1,21 @@
 ---
 name: architecture-paradigm-layered
-description: Applies layered n-tier architecture with enforced boundaries
-version: 1.9.8
+description: |
+  Layered n-tier architecture. Use for moderate systems needing presentation, domain, and persistence layers
+version: 1.10.3
 triggers:
   - architecture
   - layered
   - n-tier
   - separation-of-concerns
   - monolith
-  - designing moderate systems needing clear presentation
-  - domain
-  - and persistence layers
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [When to Employ This Paradigm](#when-to-employ-this-paradigm)
-- [When NOT to Use This Paradigm](#when-not-to-use-this-paradigm)
-- [Adoption Steps](#adoption-steps)
-- [Key Deliverables](#key-deliverables)
-- [Technology Guidance](#technology-guidance)
-- [Risks & Mitigations](#risks-mitigations)
 
 # The Layered (N-Tier) Architecture Paradigm
 
@@ -75,7 +64,7 @@ source_plugin: archetypes
 
 ## Real-World Examples
 
-**Enterprise ERP Systems**: SAP and Oracle ERP use layered architecture to separate user interfaces from business logic and database operations, enabling different frontend applications to share the same business rules.
+**Enterprise ERP Systems**: SAP and Oracle ERP use layered architecture to separate user interfaces from business logic and database operations. Different frontend applications then share the same business rules.
 
 **Banking Applications**: Financial institutions employ layered architecture to maintain strict separation between customer-facing interfaces, transaction processing, and secure data storage for regulatory compliance.
 
@@ -89,13 +78,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``dependency-validator`` -- fails the build when a layer imports above its allowed depth
-- ``layer-enforcer`` -- static-analysis gate that checks namespaces match layer rules
-- ``architecture-compliance-checker`` -- diffs the implemented layer graph against the documented one
+- ``dependency-validator``: fails the build when a layer imports above its allowed depth
+- ``layer-enforcer``: static-analysis gate that checks namespaces match layer rules
+- ``architecture-compliance-checker``: diffs the implemented layer graph against the documented one
+
+## Exit Criteria
+
+- [ ] An ADR captures the chosen layer stack (3-layer, 4-layer, or 5-layer), responsibilities
+  per layer, allowed dependency direction, and the policy for cross-layer exceptions.
+- [ ] A formal dependency diagram is committed to project documentation and matches the ADR's
+  stated layer boundaries.
+- [ ] Automated architectural checks (ArchUnit, dep-cruise, or equivalent) are wired into CI
+  and fail the build on any upward dependency.
+- [ ] Cross-cutting concerns (logging, auth, validation) are implemented once as middleware or
+  policy and are not duplicated across layer implementations.

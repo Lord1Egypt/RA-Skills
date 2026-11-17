@@ -1,41 +1,54 @@
-## Description: <br>
-Coordinates a three-agent bug-fix workflow in which a SubAgent reports bugs, the main agent fixes code, and a ReviewAgent confirms the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIDLC Bug Killer is a Chinese-language multi-agent workflow for discovering, fixing, tracking, and confirming software bugs through file-based bug reports.
 
-## Publisher: <br>
-[sydpz](https://clawhub.ai/user/sydpz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sydpz](https://clawhub.ai/user/sydpz)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate bug discovery, repair, verification, and changelog updates across multiple agents. It is intended for repositories that track bug state through Markdown files under aidlc-docs/bug-reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may create and move bug-tracking Markdown files and update aidlc-docs/aidlc-state.md. <br>
-Mitigation: Install it only in repositories where these file changes are acceptable, and review branch changes before merge. <br>
-Risk: Agent-proposed fixes or test results may be incomplete or incorrect. <br>
-Mitigation: Keep normal code review, test verification, and merge controls in place. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to coordinate bug discovery, implementation, review, and status tracking across SubAgent, main-agent, and ReviewAgent roles. It is suited to projects that want persistent Markdown bug reports and changelog updates as the coordination record.
 
-## Reference(s): <br>
-- [Bug Report Template](references/bug-template.md) <br>
-- [AIDLC Bug Killer on ClawHub](https://clawhub.ai/sydpz/aidlc-bug-killer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown bug reports with code changes, test-verification notes, and changelog entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and move bug-tracking Markdown files across pending, waiting_confirm, and confirmed directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The workflow can create or move bug-report Markdown files and update a project changelog, which can leave project state misleading if changes are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated bug reports, directory status moves, and changelog updates before merge or release.
+
+Risk: Bug-fix guidance or proposed code changes may be incomplete or incorrect for the target project.
+
+Mitigation: Review code diffs as normal engineering changes and run the relevant test suite before accepting the fix.
+
+## Reference(s):
+
+- [Bug report template](artifact/references/bug-template.md)
+- [AIDLC Bug Killer ClawHub release page](https://clawhub.ai/sydpz/skills/aidlc-bug-killer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown bug reports, changelog entries, implementation notes, and optional code or test command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses file-based status movement across pending, waiting_confirm, and confirmed bug-report directories.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,58 @@
-## Description: <br>
-Generate a daily priority leaderboard for 5 crypto tokens, with per-token fundamentals, liquidity, and risk summaries plus ready-to-publish drafts for X posts, group updates, and quick briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily priority leaderboard for 5 crypto tokens, with per-token fundamentals, liquidity, and risk summaries plus ready-to-publish drafts for X posts, group updates, and quick briefs.
 
-## Publisher: <br>
-[2663629531](https://clawhub.ai/user/2663629531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2663629531](https://clawhub.ai/user/2663629531)
 
-## Use Case: <br>
-External crypto research operators use this skill to generate a daily top-token watchlist from Binance Web3 market signals, with fundamentals, liquidity, risk summaries, and publish-ready drafts. It supports JSON or Markdown output and includes a SkillPay billing hook for successful ranking runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Successful rank runs may trigger the disclosed SkillPay billing hook. <br>
-Mitigation: Use --skip-billing or SKILLPAY_BILLING_MODE=noop for testing, and provide SKILLPAY_APIKEY only for intended paid runs. <br>
-Risk: Proxy-check output can include proxy configuration details that may expose sensitive network information. <br>
-Mitigation: Do not share proxy-check output externally unless proxy URLs and related network details have been removed. <br>
-Risk: Crypto rankings and generated drafts could be misread as investment advice. <br>
-Mitigation: Keep the report disclaimer, review generated content before publication, and do not use the skill for automated trading decisions. <br>
-Risk: Upstream market, metadata, or audit enrichment can be unavailable or incomplete. <br>
-Mitigation: Run proxy-check when connectivity fails and review unavailable audit or metadata fields before relying on the report. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/2663629531/alpha-copilot-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/2663629531) <br>
-- [Binance Web3 market data source](https://web3.binance.com) <br>
-- [SkillPay billing endpoint base](https://skillpay.me) <br>
+## Use Case:
 
+External operators and agents use this skill to generate a daily crypto research pack from Binance Web3 market signals. It ranks five tokens, summarizes fundamentals, liquidity, and risk, and drafts publish-ready social and brief copy without providing investment advice.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON or Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a top-token leaderboard, per-token summaries, publish-ready draft copy, UTC generation time, and billing status for rank runs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Paid rank runs can create SkillPay charges when billing is enabled.
+
+Mitigation: Only run rank when billing is intended, and use --skip-billing or SKILLPAY_BILLING_MODE=noop for testing.
+
+Risk: Proxy diagnostics and custom proxy inputs can expose credential-bearing proxy URLs in output.
+
+Mitigation: Avoid credential-bearing proxy URLs for proxy-check, or keep diagnostic output private.
+
+Risk: Overridable SkillPay endpoints can route billing calls to unintended services.
+
+Mitigation: Lock SkillPay endpoint configuration to the real HTTPS service in paid or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2663629531/skills/alpha-copilot-skill)
+- [Binance Web3](https://web3.binance.com)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON or Markdown research report with ranked token summaries, risk notes, and publish-ready drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes billing status for rank runs and proxy diagnostics when requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

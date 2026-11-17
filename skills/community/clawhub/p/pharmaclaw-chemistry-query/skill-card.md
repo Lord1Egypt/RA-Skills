@@ -1,47 +1,68 @@
-## Description: <br>
-Chemistry agent skill for public compound lookups, RDKit cheminformatics, molecule visualization, reaction simulation, retrosynthesis, synthesis route planning, and advanced descriptor and scaffold analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chemistry agent skill for PubChem API queries, RDKit cheminformatics, molecular visualization, retrosynthesis, reaction simulation, ADMET-style screening, and public biomedical chemistry lookups.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers, researchers, and chemistry-focused agents use this skill to query public chemistry and literature databases, calculate molecular properties, generate molecule visualizations, and produce structured outputs for downstream drug-discovery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External lookup features can send compound names, structures, or research terms to public chemistry and literature services. <br>
-Mitigation: Avoid external lookups for proprietary or unpublished research inputs; prefer local RDKit-only actions when sensitive compounds are involved. <br>
-Risk: The skill can create local output files and may optionally download and run the OPSIN Java helper. <br>
-Mitigation: Run it in a controlled local environment, keep file outputs in expected project directories, and rely on the provided checksum verification before using OPSIN. <br>
-Risk: Computed descriptors, retrosynthesis fragments, reaction products, and ADMET rule checks are decision-support outputs, not validated experimental conclusions. <br>
-Mitigation: Review results with qualified chemistry expertise and corroborate important findings against trusted literature or experimental data. <br>
+## Use Case:
 
+Developers and chemistry-focused agents use this skill to retrieve compound data, compute molecular descriptors, visualize structures, plan retrosynthesis routes, run reaction templates, and query public chemistry or biomedical APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Cheminem/pharmaclaw-chemistry-query) <br>
-- [PubChem API Endpoints](references/api_endpoints.md) <br>
-- [PubChem PUG REST Documentation](https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest) <br>
-- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data) <br>
-- [NCBI E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [OPSIN CLI Release](https://github.com/dan2097/opsin/releases/download/2.8.0/opsin-cli-2.8.0-jar-with-dependencies.jar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [JSON responses, Markdown guidance, shell command examples, and generated PNG, SVG, XYZ, CSV, or text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include public API query results, RDKit descriptors, molecule drawings, retrosynthesis fragments, reaction products, and agent-chain JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact changelog top entry is v2.0.0) <br>
+Risk: The skill can contact public chemistry and biomedical APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with network access appropriate for the workspace and avoid sending sensitive or regulated compound data to public services.
+
+Risk: The skill can read input files and write generated outputs.
+
+Mitigation: Run it in a restricted workspace and constrain input and output paths before using file-based options.
+
+Risk: IUPAC name conversion downloads and executes an OPSIN Java JAR on first use.
+
+Mitigation: Review the dependency, rely on the pinned checksum verification, and disable or pre-stage OPSIN where executable downloads are not allowed.
+
+Risk: The Gradio interface could expose chemistry tooling to unintended users if hosted broadly.
+
+Mitigation: Keep the UI local or place it behind trusted access controls; do not expose it to untrusted users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cheminem/skills/pharmaclaw-chemistry-query)
+- [PubChem API Endpoints](references/api_endpoints.md)
+- [PubChem PUG REST Documentation](https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest)
+- [PubChem PUG REST API](https://pubchem.ncbi.nlm.nih.gov/rest/pug)
+- [PubChem PUG View API](https://pubchem.ncbi.nlm.nih.gov/rest/pug_view)
+- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data)
+- [NCBI E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [OPSIN CLI Release](https://github.com/dan2097/opsin/releases/download/2.8.0/opsin-cli-2.8.0-jar-with-dependencies.jar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [JSON reports, Markdown guidance with shell commands, and generated PNG/SVG/CSV/XYZ files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact public chemistry and biomedical APIs, write local output files, and download a checksum-pinned OPSIN Java JAR on first IUPAC name conversion.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

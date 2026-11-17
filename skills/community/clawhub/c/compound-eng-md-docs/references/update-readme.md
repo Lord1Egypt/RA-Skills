@@ -6,7 +6,7 @@ Generate or refresh README.md based on codebase analysis.
 
 - Balanced, not bloated: 200-400 lines for most projects
 - Show, don't tell: code examples over prose
-- Every section must add value -- skip empty or trivial sections
+- Every section must add value; skip empty or trivial sections
 - Readers should find what they need in under 30 seconds
 
 Target length: `--minimal` 100-200 lines, default 200-400, `--thorough` 400-600.
@@ -23,14 +23,16 @@ Target length: `--minimal` 100-200 lines, default 200-400, `--thorough` 400-600.
 
 **Extract from config files:** name, version, description, license, dependencies, scripts, repo URL.
 
-**Detect package manager from lock files:**
+**Prefer verified `packageManager` configuration, then detect from lock files:**
 - `package-lock.json` → npm
 - `pnpm-lock.yaml` → pnpm
 - `yarn.lock` → yarn
-- `bun.lockb` → bun
+- `bun.lock` or legacy `bun.lockb` → bun
 - `composer.lock` → composer
 - `uv.lock` → uv
 - `poetry.lock` → poetry
+
+If configuration and lock files disagree, inspect repository scripts and CI to establish the active package manager before writing commands.
 
 ## Section Order
 
@@ -67,7 +69,7 @@ Target length: `--minimal` 100-200 lines, default 200-400, `--thorough` 400-600.
 
 ## Section Guidelines
 
-**Title + Badges:** Project name from config or repo name. Add badges for CI (if `.github/workflows/` exists), license, version. Skip badges for private repos.
+**Title + Badges:** Project name from config or repo name. Add badges for CI (if `.github/workflows/` exists), license, version. Skip badges for private repos. Every badge must resolve dynamically (`shields.io/npm/v/PKG`, `github/v/release/OWNER/REPO`, `github/license/OWNER/REPO`, `github/actions/workflow/status/...?branch=<default>`) using the repo's actual workflow filename and default branch. Never hardcode a version into an `img.shields.io/badge/...` URL; a badge that can go stale is a bug. Static `badge/...` is acceptable only for facts that change with a commit (supported platforms, language version, minimum OS). Confirm each badge renders rather than returning the shields "invalid" card.
 
 **Description:** 1-3 sentences. Answer "what does this do?" Extract from config file description field when available.
 
@@ -87,17 +89,17 @@ Target length: `--minimal` 100-200 lines, default 200-400, `--thorough` 400-600.
 
 When `--preserve` is set and README.md exists:
 
-**Keep** (user-written): About, Features, Why X, Background, custom sections.
+- Correct only verified inaccuracies in place, including commands, paths, examples, badges, and configuration values.
+- Retain all sections, their order, and accurate user-written content.
+- Do not regenerate sections, add missing sections, or reorder content. Report those opportunities separately.
 
-**Regenerate** (likely outdated): Install, Usage, Scripts, Structure, Badges, Configuration.
-
-Merge preserved sections with regenerated ones in standard order.
+Apply the section-order and generation guidelines only when creating or regenerating a README. Length targets do not authorize cuts in preserve mode.
 
 ## Formatting
 
-- Sentence case headings, no emoji headers
+- Sentence case headings; at most one conventional emoji per header is allowed (see ia-writing's README rules), never inline in prose
 - `##` for main sections, `###` for subsections
 - Code blocks with language tags
 - Tables for commands if 5+ items
 - Admonitions for important notes: `> [!NOTE]` and `> [!WARNING]`
-- No git operations -- user reviews and commits manually
+- No git operations; user reviews and commits manually

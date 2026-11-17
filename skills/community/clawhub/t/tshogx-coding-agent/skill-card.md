@@ -1,42 +1,53 @@
-## Description: <br>
-Delegates coding tasks to Codex, Claude Code, Pi, or OpenCode agents through foreground or background shell sessions with guidance for PTY use, workdirs, monitoring, and cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Codex, Claude Code, Pi, or OpenCode agents via background processes for feature work, PR review, refactoring, and iterative codebase changes.
 
-## Publisher: <br>
-[TSHOGX](https://clawhub.ai/user/TSHOGX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tshogx](https://clawhub.ai/user/tshogx)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate implementation, refactoring, PR review, and multi-worktree coding tasks to local coding-agent CLIs while monitoring and controlling sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes unsandboxed or approval-bypassing agent runs that may read or modify repositories and use local CLI credentials. <br>
-Mitigation: Install only when intentional, prefer sandboxed modes, avoid --yolo and bypassPermissions unless the repository and provider are trusted, and run work in temp clones or git worktrees. <br>
-Risk: Delegated agents can produce external side effects such as GitHub comments, pushes, or pull requests. <br>
-Mitigation: Manually review diffs, comments, pushes, and pull requests before publishing or merging agent output. <br>
-Risk: Long-running background jobs can continue modifying a workspace after launch. <br>
-Mitigation: Set timeouts, monitor session logs, and terminate sessions that no longer match the requested task. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate substantial coding tasks to external coding agents while keeping execution mode, workspace choice, session monitoring, and cleanup procedures explicit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TSHOGX/tshogx-coding-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for foreground or background execution, session monitoring, input, cleanup, and PR workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill normalizes workflows that disable approvals or sandboxing for delegated coding agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer disposable clones or containers, limited credentials, normal approval prompts, and manual review before enabling bypass or yolo-style execution modes.
+
+Risk: Delegated agents may install dependencies, create commits, push branches, comment on PRs, or emit system events with unintended effects.
+
+Mitigation: Review proposed commands and outputs before dependency installation, commits, pushes, PR comments, or OpenClaw system events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tshogx/skills/tshogx-coding-agent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with shell command examples and operational tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; no structured machine output is produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

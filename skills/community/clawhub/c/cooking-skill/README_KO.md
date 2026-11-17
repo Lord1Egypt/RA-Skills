@@ -1,15 +1,15 @@
 <div align="center">
 
-# 요리.skill
+# BrainHarness · 요리
 
 > 뭘 해 먹을지 모르겠으면, 냉장고 상태랑 입맛부터 솔직하게 말하면 된다.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![Agent Skill](https://img.shields.io/badge/Skill-Cooking-green)](#)
-[![Status](https://img.shields.io/badge/status-v0.1.0-orange)](#)
+[![Status](https://img.shields.io/badge/status-v0.2.0-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`cooking.skill` 은 필요한 것만 조금 물어보고, 실제로 따라 할 수 있는 레시피를 주는 요리 Skill 입니다.
+`brainharness-cooking` 은 필요한 것만 조금 물어보고, 실제로 따라 할 수 있는 레시피를 주는 요리 Skill 입니다.
 
 </div>
 
@@ -54,22 +54,22 @@
 공통 설치:
 
 ```bash
-npx skills add zning1994/cooking-skill
+npx skills add zning1994/brainharness-cooking
 ```
 
 OpenClaw / ClawHub:
 
 ```bash
-openclaw skills install cooking-skill
+npx clawhub@0.23.3 install brainharness-cooking
 ```
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/zning1994/cooking-skill .claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking .claude/skills/brainharness-cooking
 ```
 
 전역 설치:
 
 ```bash
-git clone https://github.com/zning1994/cooking-skill ~/.claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking ~/.claude/skills/brainharness-cooking
 ```

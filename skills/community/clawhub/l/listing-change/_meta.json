@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "listing-change",
+  "version": "1.5.3",
+  "workflow": "watch",
+  "focus": "listing",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots"
+  ],
+  "releaseWave": 5
+}

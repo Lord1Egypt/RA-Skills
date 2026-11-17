@@ -1,5 +1,8 @@
 ---
 name: skill-release-audit
+version: 1.2.0
+python_optional: [yaml]
+metadata: {"openclaw": {"requires": {"env": ["SKILL_AUDIT_LANG"]}}}
 description: >
   Pre-publish quality and safety auditor for AI agent skills (SKILL.md +
   scripts/ + references/ format used by Claude Code, Cursor, OpenAI Codex,
@@ -19,7 +22,7 @@ description: >
 
 # skill-release-audit
 
-- **Version**: 1.0.4
+- **Version**: 1.2.0
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/build-better-skills
@@ -87,6 +90,7 @@ python scripts/healthcheck.py <path/to/skill-dir> --auto-install --install-timeo
 
 # Validate against a specific publishing target (tunes checks, does NOT publish)
 python scripts/healthcheck.py <path/to/skill-dir> --target clawhub
+python scripts/healthcheck.py <path/to/skill-dir> --format json
 
 # Report output language: zh or en (default: auto-detected from $LC_ALL / $LANG)
 python scripts/healthcheck.py <path/to/skill-dir> --lang en
@@ -114,8 +118,34 @@ and at what severity — it **does not publish**.
 | `skillhub` | Private SkillHub (vendor-compatibility layers) | Same as clawhub but version required (WARN) |
 
 Profiles live in [`profiles/`](profiles/) as JSON; add your own by dropping a new
-`<name>.json` there. See [`references/hub-specs.md`](references/hub-specs.md)
+`<name>.json` there.
+
+Env-var check severity is configured **per finding code** via each profile's
+`env_severity` key (v1.1 governance): `ENV_REQUIRED_UNDECLARED` /
+`ENV_OPTIONAL_OVERRIDE` / `ENV_RUNTIME_INJECTED` / `ENV_AMBIENT` /
+`ENV_TEST_ONLY` / `ENV_REVIEW_REQUIRED` — each maps to `WARN` / `INFO` / `OFF`.
+Platform env contracts (runtime-injected / ambient lists) live in
+[`config/env_contracts.json`](config/env_contracts.json). See [`references/hub-specs.md`](references/hub-specs.md)
 for per-registry specifications encoded by these profiles.
+
+**JS env data-flow tracking (v1.2)**: for JS/TS scripts the auditor tracks
+environment-object alias propagation — `const environment = process.env`,
+`fn(process.env)` parameter binding, Zod `schema.parse(environment)` /
+`safeParse({...environment})` results, and config-loader return values
+(`const config = loadConfig(process.env)`). Member accesses on those aliases /
+parse results count as **indirect uses**: they only affect the reverse check
+(a declared var is no longer misjudged `ENV_DECLARED_UNUSED`) and are filed
+under the `ENV_DECLARED_INDIRECT` class — silent in the console report by
+default, with hit paths preserved in JSON evidence. Indirect uses never
+soften the forward classification (required / optional). Vars whose
+propagation cannot be confirmed still report `ENV_DECLARED_UNUSED`.
+
+**Module-1 ref classification (v1.2.1)**: paths referenced in SKILL.md are
+split into package-internal refs (validated as before) and runtime-external
+refs (`~/...`, `$HOME/...`, absolute paths incl. Windows drive letters) —
+the latter resolve in the *user's* environment at runtime, so existence is
+not a package-completeness problem: resolvable paths are skipped silently,
+unresolvable ones emit INFO (never WARN).
 
 ## Report language
 
@@ -136,11 +166,11 @@ Exit codes: `0` = no errors (may have warnings), `1` = errors found,
 
 | Module | Checks | Script |
 |--------|--------|--------|
-| 1. Syntax & logic | Python AST parse, Bash `-n` syntax check, internal reference paths, leftover TODO/FIXME | `scripts/check_logic.py` |
+| 1. Syntax & logic | Python AST parse, Bash `-n` syntax check, internal reference paths (**package-internal vs runtime-external classification**: `~/`, `$HOME/`, absolute paths are user-environment paths — existence not enforced, INFO at most) | `scripts/check_logic.py` |
 | 2. Feature coverage | scripts / references mentioned in SKILL.md, stub-file detection | `scripts/check_features.py` |
 | 3. Edge cases | try/except coverage, HTTP timeout, response-status handling, Bash `set -e` | `scripts/check_edges.py` |
 | 4. Data safety | Files written *inside* the skill dir (lost on update) | `scripts/check_data_safety.py` |
-| 5. Dependencies | Python / Node / Bash deps, optional `--auto-install`, **declaration-vs-code env check** | `scripts/check_deps.py` |
+| 5. Dependencies | Python / Node / Bash deps, optional `--auto-install`, **env-var classification check** (false-positive governance v1.1 + v1.2 JS data-flow: classifies required / optional-override / runtime-injected / ambient / test-only / review / declared-indirect before demanding metadata — no more "reads == must declare", and alias/parse-flow accesses no longer false-positive as unused) | `scripts/check_deps.py` + `scripts/_env_check.py` |
 | 6. Documentation | description quality, frontmatter discipline, slug rules, target-specific required files (README / LICENSE) | `scripts/check_docs.py` |
 
 ## Data safety hint

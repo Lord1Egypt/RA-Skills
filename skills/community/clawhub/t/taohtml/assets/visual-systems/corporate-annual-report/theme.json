@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "corporate-annual-report",
+  "display_name": "稳重企业年报",
+  "description": "稳重配色、图文平衡、品牌化版面、适度留白",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "深海军蓝与暖白品牌画布，图像区域和文本区保持稳定比例，以横向带和大留白组织节奏。",
+    "hierarchy": "品牌章标题建立语境，核心结论稳居主轴，指标和说明以成组卡片支撑。",
+    "image_treatment": "使用宽幅或纵向品牌影像，保留自然色，统一深蓝蒙版与金色细线标记。",
+    "module_language": "克制圆角、细金线、暖灰纸张感、品牌色页签与稳定比例卡片。",
+    "chart_evidence": "品牌色阶、水平基线和年度式指标组；来源放在页脚或证据带中。",
+    "motion": "轻柔淡入与短距离横移；保持庄重节奏，避免快速连续切换。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#f5f1e8", "ink": "#17263b", "navy": "#15324b", "blue": "#315a73", "gold": "#b89a5b", "sage": "#81928a", "paper": "#fffdf8", "muted": "#68717a"},
+    "font_stacks": {"display": "Georgia, Source Han Serif SC, serif", "body": "Arial, PingFang SC, sans-serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(48px, 5vw, 80px)", "heading": "clamp(36px, 3.5vw, 58px)", "body": "19px", "caption": "13px"},
+    "spacing": {"canvas_x": "72px", "canvas_y": "54px", "module": "26px", "gap": "24px"},
+    "borders": {"hairline": "1px solid #c9c0ad", "module": "1px solid #d6cebe", "radius": "10px", "shadow": "0 14px 36px rgba(21,50,75,.10)"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "72px 72px 58px", "grid": "12 columns with 5/7 image-text balance", "density": "medium-low, generous whitespace around one brand statement"},
+  "layout_variants": [
+    {"id": "brand-hero", "use": "cover or annual chapter opening"},
+    {"id": "narrative-balance", "use": "challenge, context, and stakeholder story"},
+    {"id": "operating-ribbon", "use": "process, strategy pillars, or value chain"},
+    {"id": "performance-spread", "use": "metrics with evidence and trend"},
+    {"id": "commitment-page", "use": "priorities, commitments, and closing"}
+  ],
+  "components": {
+    "chart": "Use navy, blue, sage, and gold in a single hierarchy; keep baselines and values visible; avoid rainbow series.",
+    "table": "Use warm-white rows, generous vertical padding, navy headers, and gold key-row rules.",
+    "evidence_card": "Place source and interpretation in a wide branded band; keep provenance visible but quiet.",
+    "image": "Use one high-quality hero crop or paired documentary image, natural color, navy overlay, and restrained gold locator."
+  },
+  "motion": {"enter": "opacity with 14-18px horizontal or vertical movement over 460-620ms", "stagger": "reveal grouped narrative modules, never every word", "disabled": ["bounce", "flash", "rapid card cascade", "cross-page morph"]},
+  "forbidden": ["neon accents", "comic outlines", "dense wall of cards", "aggressive diagonal collage", "rainbow charts", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

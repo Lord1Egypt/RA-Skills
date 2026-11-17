@@ -1,38 +1,48 @@
-## Description: <br>
-Generate a concise daily standup report summarizing completed tasks, today's plan, and blockers from provided data or user input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily standup report from task lists, chat logs, or project management tools.
 
-## Publisher: <br>
-[Guaiyu11](https://clawhub.ai/user/Guaiyu11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guaiyu11](https://clawhub.ai/user/guaiyu11)
 
-## Use Case: <br>
-Employees and team contributors use this skill to prepare brief daily standup updates from recent tasks, chat context, project-management notes, or direct user input. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated standup may include private details from recent memory or conversation context. <br>
-Mitigation: Review the generated report before sharing it and remove sensitive project or personal information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Guaiyu11/daily-standup-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Guaiyu11) <br>
+## Use Case:
 
+Employees and team contributors use this skill to prepare concise daily standup updates from task lists, recent work context, or direct input before team meetings.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise sections for completed work, today's plan, and blockers; asks for user-provided tasks when context is unclear.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may read memory files and conversation history while preparing a standup report, which can expose unrelated private information.
+
+Mitigation: Limit the project, date range, and source list before use, and review the generated report before sharing it with a team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guaiyu11/skills/daily-standup-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown standup report with sections for completed work, today's plan, and blockers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise report, typically 3-5 bullets per section when enough source data is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Covers six core writing techniques, including dual narrative, character biography, foreshadowing, poetic language, morally gray character development, and intellectual duel design, to help writers improve the depth, logic, and literary quality of novels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Covers six core writing techniques: dual narrative and mirroring, character biography method, foreshadowing, poetic language style, morally gray character development, and intellectual duel design.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Writers, editors, and writing assistants use this skill to diagnose and improve novel drafts, outlines, characters, foreshadowing, prose style, and intellectually driven conflict scenes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad writing-related trigger language may activate the skill for general literary or character requests where novel-technique guidance is not intended. <br>
-Mitigation: Confirm the user's writing goal and keep responses scoped to the requested novel-writing technique. <br>
+## Use Case:
 
+Writers and writing agents use this skill to diagnose and improve novel craft across character design, narrative structure, foreshadowing, prose style, morally gray characterization, and intellectual duel scenes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/novel-writing-techniques) <br>
-- [Character Biography Method](references/character-building.md) <br>
-- [Dual Narrative / Mirror Narrative](references/dual-narrative.md) <br>
-- [Foreshadowing: The Gray Thread Technique](references/foreshadowing.md) <br>
-- [Developing Morally Gray Characters](references/gray-characters.md) <br>
-- [Hardcore Intellectual Duel Design](references/intellectual-duel.md) <br>
-- [Poetic Language Style](references/poetic-language.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with diagnosis, solution, example, and optional extension sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor guidance by technique depth for beginner, intermediate, or professional writing stages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad writing or character-design requests when multiple writing skills are installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for explicit novel-writing technique work or narrow routing to character, narrative, foreshadowing, prose style, gray-character, and intellectual-duel requests.
+
+## Reference(s):
+
+- [Character Biography Method](references/character-building.md)
+- [Dual Narrative / Mirror Narrative](references/dual-narrative.md)
+- [Foreshadowing: The Gray Thread Technique](references/foreshadowing.md)
+- [Developing Morally Gray Characters](references/gray-characters.md)
+- [Hardcore Intellectual Duel Design](references/intellectual-duel.md)
+- [Poetic Language Style](references/poetic-language.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured diagnosis, solution, example, and extension sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include before-and-after writing examples, prioritized revision plans, and technique recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

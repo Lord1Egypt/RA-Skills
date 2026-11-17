@@ -1,43 +1,55 @@
-## Description: <br>
-自动生成并执行 Python 数据分析代码，输出可视化图表和有数据支撑的中文分析结论。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python数据分析 helps users load, clean, analyze, visualize, model, and report on CSV, Excel, JSON, URL/API, clipboard, or simulated datasets using Python.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Data analysts, researchers, business analysts, and Python learners use this skill to inspect CSV, Excel, JSON, clipboard, URL, or simulated data; generate Python analysis code; run statistical, regression, clustering, time-series, cleaning, and visualization workflows; and receive Chinese reports with chart outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates and runs local Python against user-provided data, which can expose sensitive files or secrets if the user supplies them. <br>
-Mitigation: Use only data needed for the analysis, review requests involving sensitive files, internal URLs, authenticated API links, or secrets, and rely on the documented local-processing boundary. <br>
-Risk: Optional URL or API data loading can reach internal or authenticated resources when a user provides those inputs. <br>
-Mitigation: Confirm that each URL or API source is intended for analysis before execution and avoid providing credentials unless they are genuinely required. <br>
-Risk: Large or poor-quality datasets can produce unreliable results or excessive local resource use. <br>
-Mitigation: Apply the documented data checks: warn on very small samples, report missing values and outliers, sample 100MB-1GB inputs, and refuse inputs over 1GB with batching guidance. <br>
+## Use Case:
 
+External users, data analysts, researchers, business analysts, and Python learners use this skill to request Chinese-language data analysis workflows, Python analysis code, visualizations, and data-supported conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-python-data-analysis) <br>
-- [Detailed analysis reference](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Chinese Markdown reports with Python code blocks and generated PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may create timestamped analysis scripts and output directories, retry failed code up to three times, sample 100MB-1GB datasets, and refuse datasets over 1GB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: URL or API data fetching may reach untrusted sources or internal network resources if the agent runtime does not enforce network controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted user-provided URLs and run the skill in an environment with URL validation, private-network blocking, timeouts, and file-size limits.
+
+Risk: Generated local Python analysis code may behave unexpectedly when run against sensitive or malformed datasets.
+
+Mitigation: Review generated code before execution, use least-privilege local workspaces, and keep analysis data isolated from unrelated credentials or internal files.
+
+## Reference(s):
+
+- [Python数据分析 detailed reference](artifact/references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-python-data-analysis)
+- [Publisher profile](https://clawhub.ai/user/qqyougitcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, guidance]
+
+**Output Format:** [Chinese Markdown or text reports with Python code blocks and generated PNG chart file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include data quality reports, executable Python analysis scripts, statistical tables, visualizations, and data-supported recommendations.]
+
+## Skill Version(s):
+
+1.4.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

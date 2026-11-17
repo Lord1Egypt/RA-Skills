@@ -1,24 +1,24 @@
 ---
 name: fec-route-protection
-description: Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include 路由保护, 权限路由, 登录态.
+description: Use when implementing or reviewing frontend route protection, auth guards, RBAC, permission routes, login state handling, redirects, middleware, React Router, Next.js, Vue Router, or Nuxt route middleware; Chinese triggers include route protection, permission routing, login state.
 ---
 
-# 路由保护
+#Route protection
 
 ## Purpose
 
-为前端应用建立清晰的认证、授权和重定向边界，避免越权访问与闪烁渲染。
+Establish clear authentication, authorization and redirection boundaries for front-end applications to avoid unauthorized access and flickering rendering.
 
 ## When to Use
 
-- 页面需要登录后访问，或不同角色看到不同路由。
-- 需要实现 React Router、Next.js、Nuxt 或 Vue Router 的路由守卫。
-- 登录过期、权限不足、组织/租户切换需要统一处理。
-- 不用于替代服务端授权；前端路由保护只能改善体验，不能作为唯一安全边界。
+- The page needs to be logged in to access, or different roles can see different routes.
+- Requires implementing route guards for React Router, Next.js, Nuxt or Vue Router.
+- Login expiration, insufficient permissions, and organization/tenant switching need to be handled uniformly.
+- Not used to replace server-side authorization; front-end routing protection can only improve the experience and cannot be used as the only security boundary.
 
 ## Procedure
 
-### 1. 定义认证与授权状态
+### 1. Define authentication and authorization status
 
 ```ts
 export type AuthStatus = "loading" | "anonymous" | "authenticated";
@@ -34,7 +34,7 @@ export function canAccess(user: CurrentUser, required: string[]) {
 }
 ```
 
-### 2. React Router 使用布局守卫
+### 2. React Router uses layout guards
 
 ```tsx
 import { Navigate, Outlet, useLocation } from "react-router-dom";
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-### 3. Next.js 优先在服务端边界处理
+### 3. Next.js prioritizes processing at the server boundary
 
 ```ts
 // middleware.ts
@@ -92,9 +92,9 @@ export const config = {
 };
 ```
 
-对需要精细权限的 App Router 页面，在 server component 或 server action 中重新校验权限，不依赖客户端状态。
+For App Router pages that require fine-grained permissions, re-verify permissions in the server component or server action, regardless of client status.
 
-### 4. Vue Router / Nuxt 使用导航守卫
+### 4. Vue Router / Nuxt uses navigation guards
 
 ```ts
 router.beforeEach(async (to) => {
@@ -112,24 +112,24 @@ router.beforeEach(async (to) => {
 });
 ```
 
-### 5. 统一失败与跳转体验
+### 5. Unify failure and jump experience
 
-- `401`：清理过期会话，跳转登录页并保留 `redirect`。
-- `403`：进入无权限页，不反复重试。
-- `loading`：渲染稳定骨架屏，避免先显示私有内容再跳转。
-- 登录成功：只跳转到同源且允许的路径，防止 open redirect。
-- RBAC：权限矩阵来自可信会话或后端返回；前端只用于路由体验和 UI 裁剪，不能替代接口授权。
-- 会话刷新：401 刷新失败后统一清理状态；避免多个并发请求各自触发跳转或刷新风暴。
+- `401`: Clean up expired sessions, jump to the login page and keep `redirect`.
+- `403`: Enter the unauthorized page, do not try again.
+- `loading`: Render a stable skeleton screen to avoid displaying private content first and then jumping.
+- Successful login: only jump to the same origin and allowed path to prevent open redirect.
+- RBAC: The permission matrix is returned from the trusted session or backend; the frontend is only used for routing experience and UI tailoring, and cannot replace interface authorization.
+- Session refresh: Uniformly clean up status after 401 refresh failure; avoid multiple concurrent requests from triggering jumps or refresh storms.
 
 ## Constraints
 
-- 前端路由保护不是安全边界；API、SSR loader、server action 必须重复做授权校验。
-- 不要在组件渲染后用 `useEffect` 才跳转私有页面，否则会出现敏感内容闪烁。
-- redirect 参数必须限制为站内路径，不能直接信任 URL 输入。
-- 权限信息应来自可信会话或后端响应，不要只依赖 localStorage 中的角色字段。
-- 多租户应用必须把 tenant/org 上下文纳入权限判断。
-- 不把菜单隐藏视为授权完成；用户直接访问 URL、刷新页面、篡改 localStorage 和替换 tenant 都必须验证。
+- Front-end routing protection is not a security boundary; API, SSR loader, and server actions must undergo repeated authorization verification.
+- Do not use `useEffect` to jump to the private page after the component is rendered, otherwise sensitive content will flicker.
+- The redirect parameter must be restricted to within-site paths and URL input cannot be trusted directly.
+- Permission information should come from a trusted session or backend response, don't rely solely on role fields in localStorage.
+- Multi-tenant applications must incorporate the tenant/org context into permission determinations.
+- Menu hiding is not considered authorization completion; users must authenticate when accessing the URL directly, refreshing the page, tampering with localStorage, and replacing tenants.
 
 ## Expected Output
 
-产出一套路由守卫实现，覆盖 loading、未登录、权限不足、登录后回跳和会话过期。验证时直接访问私有 URL、刷新页面、切换角色、篡改 redirect 参数，确认行为稳定且 API 仍有服务端授权。
+Produce a set of routing guard implementations, covering loading, not logged in, insufficient permissions, bounce after login and session expiration. During verification, directly access the private URL, refresh the page, switch roles, and tamper with redirect parameters to confirm that the behavior is stable and the API still has server authorization.

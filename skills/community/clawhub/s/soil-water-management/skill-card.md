@@ -1,40 +1,60 @@
-## Description: <br>
-Provides soil science, composting, irrigation, and rainwater-harvesting guidance for improving garden soil and scaling food production beyond containers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soil science, composting, and water management for food production. Use when someone wants to improve their garden soil, start composting, set up irrigation, harvest rainwater, or scale up food growing beyond containers.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Gardeners, homesteaders, and food-growing agents use this skill to test soil, choose composting methods, plan irrigation, harvest rainwater, and adapt guidance to local rules and climate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares filesystem access even though the reviewed artifact is guidance-only. <br>
-Mitigation: Grant only the local file access required by the OpenClaw setup, and avoid broader filesystem permissions when using this skill. <br>
+## Use Case:
 
+External users and agents use this skill to guide garden soil testing, composting, fertility building, irrigation setup, rainwater harvesting, and drainage decisions for food-growing areas.
 
-## Reference(s): <br>
-- [USDA Cooperative Extension System](https://www.nifa.usda.gov/about-nifa/how-we-work/extension/cooperative-extension-system) <br>
-- [Irrigation Association](https://www.irrigation.org/) <br>
-- [American Rainwater Catchment Systems Association](https://www.arcsa.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists and YAML-like agent state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; guidance includes jurisdiction checks for rainwater collection and unit localization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release declares filesystem access without a clear need for ordinary gardening guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an environment where filesystem permissions can be reviewed or scoped before use.
+
+Risk: The install path uses an unpinned npx command.
+
+Mitigation: Review the package source and run installation from a non-privileged shell with sensitive environment variables minimized.
+
+Risk: Rainwater harvesting rules and composting programs vary by jurisdiction.
+
+Mitigation: Check local regulations and extension or municipal programs before recommending collection systems or location-specific practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/soil-water-management)
+- [USDA Cooperative Extension System](https://www.nifa.usda.gov/about-nifa/how-we-work/extension/cooperative-extension-system)
+- [Irrigation Association](https://www.irrigation.org/)
+- [American Rainwater Catchment Systems Association](https://www.arcsa.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with structured checklists, code-fenced state snippets, and action triggers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor advice by jurisdiction, measurement system, climate zone, soil test result, garden scale, and budget.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

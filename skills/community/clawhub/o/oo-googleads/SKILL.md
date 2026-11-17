@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google Ads"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["googleads"]
   icon: "https://static.oomol.com/logo/third-party/Google%20Ads.svg"
 ---
@@ -43,8 +43,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_campaign_by_name` — Retrieve all Google Ads campaigns that exactly match a campaign name.
 - `list_accessible_customers` — List Google Ads customer resource names accessible to the current OAuth credential.
 - `list_customer_lists` — List Google Ads customer lists available under the specified customer account.
-- `mutate_ad_groups` — Create, update, or remove Google Ads ad groups in a single mutate request. [write]
-- `mutate_campaigns` — Create, update, or remove Google Ads campaigns in a single mutate request. [write]
+- `mutate_ad_groups` — Create, update, or remove Google Ads ad groups in a single mutate request. [destructive]
+- `mutate_campaigns` — Create, update, or remove Google Ads campaigns in a single mutate request. [destructive]
 - `search_stream_gaql` — Execute a GAQL streaming query and return the aggregated result rows in one response.
 
 ## Safety
@@ -76,11 +76,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google Ads is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=googleads
+  https://console.oomol.com/connections/googleads
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google Ads homepage: https://ads.google.com
+- API documentation: https://developers.google.com/google-ads/api/docs/start

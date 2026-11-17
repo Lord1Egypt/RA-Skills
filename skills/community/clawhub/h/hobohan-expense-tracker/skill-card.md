@@ -1,39 +1,54 @@
-## Description: <br>
-Log daily expenses via check-in prompts; dedup, categorize, sync to local ledger and Google Sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log daily expenses via check-in prompts; dedup, categorize, sync to local ledger and Google Sheets.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hohobohan](https://clawhub.ai/user/hohobohan)
 
-## Use Case: <br>
-Individuals and agents use this skill to collect daily spending check-ins, maintain a local markdown expense ledger, categorize entries, avoid duplicate records, and sync expense rows to Google Sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records private spending details and notes in persistent local ledger files and a Google Sheet. <br>
-Mitigation: Use it only with ledgers and sheets you control, review entries before sync, and avoid recording unnecessary sensitive notes. <br>
-Risk: The sync behavior depends on a service-account credential path and a specific Google Sheet destination. <br>
-Mitigation: Confirm the sheet ID and credential belong to the intended account, limit the service account's permissions, and disable sync for local-only tracking. <br>
+## Use Case:
 
+External users and personal finance operators use this skill to capture daily spending through recurring check-ins, maintain local markdown ledger files, and sync expense rows to Google Sheets.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown ledger entries and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local ledger files and Google Sheets sync guidance for expense tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Recurring automation may continue collecting expense information after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cron jobs are desired before enabling the skill and document how to disable them.
+
+Risk: Financial records are synced to a hardcoded Google Sheet using a local service-account credential.
+
+Mitigation: Use the skill only with a Google Sheet and credential you control, and verify the destination before syncing any ledger data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hohobohan/skills/hobohan-expense-tracker)
+- [Publisher Profile](https://clawhub.ai/user/hohobohan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown ledger entries, prompts, configuration guidance, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recurring check-in behavior and sync guidance for local ledger files and Google Sheets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

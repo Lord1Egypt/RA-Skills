@@ -1,44 +1,61 @@
-## Description: <br>
-Executes common Windows system commands and aliases from OpenClaw, returning formatted system, network, process, and diagnostic output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes common Windows system commands such as ipconfig, tasklist, netstat, systeminfo, and configured aliases, then returns formatted command output for system inspection and troubleshooting.
 
-## Publisher: <br>
-[ljr287404428](https://clawhub.ai/user/ljr287404428) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljr287404428](https://clawhub.ai/user/ljr287404428)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Windows host state, troubleshoot networking, list processes, and run configured diagnostic commands from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run Windows shell commands with the privileges of the hosting process. <br>
-Mitigation: Install only where agent shell access is intended, review configured aliases, and restrict use to trusted users and hosts. <br>
-Risk: Command output can expose sensitive host, network, process, account, or service information. <br>
-Mitigation: Treat results as sensitive operational data and avoid sharing logs or transcripts outside the intended security boundary. <br>
-Risk: High-impact commands may write files, terminate processes, change services, or otherwise affect system state when confirmed. <br>
-Mitigation: Avoid `--yes`, redirection, and destructive commands unless the operator has reviewed the exact command and accepted the system impact. <br>
+## Use Case:
 
+Developers, system administrators, and support operators use this skill to inspect Windows host state, collect network and process information, and run troubleshooting commands from an OpenClaw session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljr287404428/system-cmd) <br>
-- [Command reference](references/commands.md) <br>
-- [Usage examples](references/usage_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text command output with status, errors, and formatted Windows command results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive host, network, process, account, or service details and may be truncated for length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can run Windows shell commands with the same permissions as the hosting agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when host command execution is intended, restrict who can invoke it, and run the agent under a low-privilege account.
+
+Risk: Command output can expose host, network, process, account, and system details.
+
+Mitigation: Use it only in trusted sessions and review output before sharing logs or transcripts.
+
+Risk: Custom and confirmed high-risk commands may change system state despite blacklist and confirmation checks.
+
+Mitigation: Prefer predefined read-only commands, inspect custom command strings carefully, and require explicit confirmation before high-risk execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljr287404428/skills/system-cmd)
+- [Command reference](artifact/references/commands.md)
+- [Usage examples](artifact/references/usage_examples.md)
+- [Quick start](artifact/QUICK_START.md)
+- [Windows command reference](https://docs.microsoft.com/windows-server/administration/windows-commands/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted text and Markdown-style help with command output, status messages, and warnings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is truncated for long command results; custom commands use shorter timeouts than confirmed high-risk commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

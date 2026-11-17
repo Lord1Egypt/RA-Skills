@@ -1,38 +1,52 @@
-## Description: <br>
-Build or update the BlueBubbles external channel plugin for Clawdbot (extension package, REST send/probe, webhook inbound). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or update the BlueBubbles external channel plugin for Clawdbot (extension package, REST send/probe, webhook inbound).
 
-## Publisher: <br>
-[kevin19830331](https://clawhub.ai/user/kevin19830331) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevin19830331](https://clawhub.ai/user/kevin19830331)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or update a Clawdbot BlueBubbles external channel plugin, including extension layout, REST send and probe helpers, webhook ingestion, reactions, typing/read actions, and media handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: BlueBubbles password or webhook endpoint exposure could allow unauthorized message bridge access. <br>
-Mitigation: Protect the BlueBubbles password, restrict the webhook endpoint, and review generated configuration before enabling the plugin. <br>
-Risk: Message, reaction, read/typing, and media handling changes can affect real conversations when deployed. <br>
-Mitigation: Review message routing, reaction targets, read/typing behavior, and attachment handling before using the plugin in a real deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to build or update a BlueBubbles channel plugin for Clawdbot, including REST send and probe flows, webhook inbound handling, runtime integration, and plugin catalog onboarding.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated plugin work may affect message content, attachments, webhook traffic, and a BlueBubbles server password.
+
+Mitigation: Review the eventual plugin implementation separately before deployment, with attention to credential handling, webhook exposure, and media processing.
+
+Risk: BlueBubbles payloads may vary by version, which can lead to incorrect sender or chat routing if handled too narrowly.
+
+Mitigation: Normalize sender and chat identifiers defensively and test webhook payloads from the deployed BlueBubbles version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevin19830331/skills/bluebubbles)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code paths, helper names, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide edits to a BlueBubbles channel plugin that handles message content, attachments, webhook traffic, and server credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

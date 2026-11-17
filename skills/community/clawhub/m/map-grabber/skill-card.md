@@ -1,44 +1,56 @@
-## Description: <br>
-Fetch OpenStreetMap vector data for an address or place name and export street networks, optional building footprints, and preview maps as PNG, SVG, GeoPackage, or DXF files for CAD and Rhino workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch OpenStreetMap vector data (streets, buildings) for an address and export to SVG, GeoPackage, or DXF for CAD/Rhino.
 
-## Publisher: <br>
-[QROST](https://clawhub.ai/user/QROST) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[qrost](https://clawhub.ai/user/qrost)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers, designers, and architecture or CAD users use this skill to generate local base-map files for a requested address or place name. It can create street-network previews and vector exports, with optional building footprints, for CAD or Rhino workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Requested addresses or place names are sent to external OpenStreetMap/geocoding-related services.
+
+Mitigation: Use the skill only when sharing the requested location with those services is acceptable.
+
+Risk: Runtime behavior depends on Python packages such as osmnx and ezdxf.
+
+Mitigation: Install in a virtual environment and pin dependency versions when reproducibility matters.
+
+Risk: Generated map outputs are written to local file paths.
+
+Mitigation: Choose output paths intentionally, especially when returning media from environments with allowed-directory restrictions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, designers, and architecture/CAD users use this skill to fetch site base maps around an address or place name, including street networks and optional building footprints. Agents can generate preview images for chat and vector files for downstream CAD or Rhino workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Address or place-name inputs may be sent to external OpenStreetMap-related services during geocoding and map retrieval. <br>
-Mitigation: Use the skill only when sharing the requested location with those services is acceptable. <br>
-Risk: Generated CAD and map files may contain incomplete, stale, or imprecise OpenStreetMap-derived data. <br>
-Mitigation: Review generated PNG, SVG, GeoPackage, or DXF outputs before relying on them in CAD or Rhino workflows. <br>
-Risk: Runtime behavior depends on local Python packages such as osmnx and ezdxf. <br>
-Mitigation: Install dependencies in a controlled environment and pin versions when reproducible outputs are required. <br>
+**Output Format:** [PNG, SVG, GeoPackage, or DXF files with brief text confirmation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Map Grabber on ClawHub](https://clawhub.ai/QROST/map-grabber) <br>
-- [QROST publisher profile](https://clawhub.ai/user/QROST) <br>
-- [QROST GitHub profile](https://github.com/QROST) <br>
+**Other Properties Related to Output:** [Requires an address or place name and at least one requested output path; DXF export requires ezdxf.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG, SVG, GeoPackage, or DXF files with concise text confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an address or place name and at least one requested output path; optional radius and building-footprint settings control map scope.] <br>
+1.1.2 (source: frontmatter, clawhub.json, server release evidence)
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

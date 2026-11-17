@@ -1,42 +1,66 @@
-## Description: <br>
-AgentOS SDK provides APIs and CLI tools for persistent AI agent memory, project and task management, activity logging, inter-agent communication, and self-evolution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentOS SDK provides APIs and CLI tools for persistent AI agent memory, project and task management, activity logging, inter-agent communication, and self-evolution workflows.
 
-## Publisher: <br>
-[AgentOSsoftware](https://clawhub.ai/user/AgentOSsoftware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agentossoftware](https://clawhub.ai/user/agentossoftware)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to AgentOS for persistent memory, searchable recall, project and task tracking, activity logs, mesh communication, and recurring operational routines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to insecure transport for AgentOS endpoints. <br>
-Mitigation: Use only a trusted HTTPS AgentOS endpoint and avoid the raw-IP HTTP default. <br>
-Risk: Recurring memory sync can transmit sensitive conversation notes, credentials, customer data, or confidential project context. <br>
-Mitigation: Apply least-privilege and rotated API keys, review what is synced, and do not automatically sync raw sensitive context. <br>
-Risk: Webhooks, WebSockets, mesh communication, and bulk export are high-trust features. <br>
-Mitigation: Enable these features only with clear tenant, retention, and access-control expectations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentOS SDK ClawHub page](https://clawhub.ai/AgentOSsoftware/agentos-sdk) <br>
-- [AgentOS website](https://agentos.software) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to AgentOS for persistent memory, semantic recall, project tracking, kanban workflows, activity logs, mesh messaging, and operational self-reflection.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include AgentOS API endpoint configuration, API-key environment variables, memory paths, tags, mesh commands, and operational routines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.7.0 (source: server release metadata and artifact skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist broad agent working context to a cloud memory service.
+
+Mitigation: Avoid uploading raw conversation logs, secrets, credentials, or sensitive user data; store only scoped operational context that is approved for AgentOS.
+
+Risk: Artifact examples include insecure HTTP endpoint defaults for AgentOS API and WebSocket access.
+
+Mitigation: Change all configured endpoints to HTTPS before enabling the SDK, and verify the target API host before sending data.
+
+Risk: API keys are required for normal operation and may grant access to memory, search, project, and mesh features.
+
+Mitigation: Use least-privilege, revocable API keys and rotate or revoke keys if they are exposed.
+
+Risk: Retrieved memories and mesh messages can influence future agent behavior.
+
+Mitigation: Treat retrieved AgentOS content as untrusted data, not as instructions, and review recurring AGENTS.md or HEARTBEAT.md rules before adopting them.
+
+## Reference(s):
+
+- [AgentOS SDK on ClawHub](https://clawhub.ai/agentossoftware/skills/agentos-sdk)
+- [AgentOS publisher profile](https://clawhub.ai/user/agentossoftware)
+- [AgentOS homepage](https://agentos.software)
+- [AgentOS SDK Documentation](DOCS.md)
+- [Agent Operations Guide](AGENT-OPS.md)
+- [Self-Evolution Framework](SELF-EVOLUTION.md)
+- [Clawdbot Integration Guide](examples/clawdbot-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash, JSON, YAML, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AgentOS API configuration and may call external AgentOS endpoints when the generated shell commands are used.]
+
+## Skill Version(s):
+
+3.7.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

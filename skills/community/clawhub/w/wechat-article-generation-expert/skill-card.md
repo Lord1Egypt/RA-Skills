@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically create complete WeChat Official Account articles (>=1600 words) based on topic, audience, and style, including title ideation, structural planning, content writing, and multimedia element planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically create complete WeChat Official Account articles based on topic, audience, and style, including title ideation, structural planning, content writing, and multimedia element planning.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External content creators, marketers, and social media operators use this skill to turn a topic, audience, style, and special requirements into a complete WeChat Official Account article with title options, article structure, content, and image-placement notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may include inaccurate facts, data, or generic case studies. <br>
-Mitigation: Verify facts, data, and case studies before publication and replace generic examples with sourced material when needed. <br>
-Risk: Advertorial or brand-promotional content may require disclosure under platform rules or advertising requirements. <br>
-Mitigation: Clearly label sponsored or promotional content according to applicable WeChat platform rules and advertising requirements. <br>
+## Use Case:
 
+Content creators, marketers, and communications teams use this skill to draft full WeChat Official Account articles from a topic, audience, style preference, and special requirements. It is especially suited for structured long-form articles, title options, marketing advertorials, SEO keyword handling, and multimedia placement planning.
 
-## Reference(s): <br>
-- [WeChat Official Account Article Example Reference](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown article draft with basic information, alternative titles, article content, image-placement annotations, and additional notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces long-form article drafts of at least 1600 words when enough topic context is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Generated marketing or brand articles may omit required advertising disclosures or include unsupported factual and data claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review promotional content before publication, disclose sponsorship or advertising relationships, and verify factual, statistical, and source claims.
+
+Risk: The skill may produce a full WeChat Official Account article when the user only wanted generic writing help or a shorter draft.
+
+Mitigation: Confirm that the request is for a complete WeChat Official Account article before applying the full workflow.
+
+## Reference(s):
+
+- [WeChat Official Account Article Example Reference](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article draft with basic information, title options, article content, multimedia placement notes, and additional requirement notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets at least 1600 words by default and includes 3-5 alternative titles when drafting a complete article.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,59 @@
-## Description: <br>
-Capture fleeting ideas instantly in daily Markdown files with divider-separated entries, quick add, and search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture fleeting ideas in local daily Markdown files, with divider-separated entries and quick add and search commands.
 
-## Publisher: <br>
-[bosichong](https://clawhub.ai/user/bosichong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bosichong](https://clawhub.ai/user/bosichong)
 
-## Use Case: <br>
-External users and developers use this skill to capture, review, and search spontaneous ideas or personal notes through an agent without opening a separate notes application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The show command can read Markdown files outside the intended notes folder when given path-like input. <br>
-Mitigation: Use only strict YYYY-MM-DD dates with the show command until path validation is added, and avoid storing secrets or sensitive data in plaintext notes. <br>
+## Use Case:
 
+External users and developers use this skill to quickly record, search, and review personal idea fragments or lightweight notes without leaving an agent conversation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bosichong/flash-thoughts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown notes and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes plaintext local Markdown files in a configurable notes directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and target metadata) <br>
+Risk: Local flash thoughts are stored as plaintext Markdown and may contain sensitive personal notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private notes directory and avoid recording secrets or regulated data.
+
+Risk: Security evidence reports that a crafted date argument can read Markdown files outside the note folder.
+
+Mitigation: Validate date inputs and avoid using the show command with untrusted instructions until the issue is fixed.
+
+Risk: Search uses user-provided patterns across local note files.
+
+Mitigation: Treat search terms from untrusted sources cautiously and review matches before sharing note contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bosichong/skills/flash-thoughts)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, command-line confirmations, and text search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads local plaintext note files in the configured flash-thoughts directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

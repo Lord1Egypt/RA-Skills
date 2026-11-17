@@ -1,44 +1,62 @@
-## Description: <br>
-Pay for API data automatically - multi-protocol (x402 + L402 + MPP), multi-chain, streaming sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay for API data automatically - multi-protocol (x402 + L402 + MPP), multi-chain, streaming sessions.
 
-## Publisher: <br>
-[leventilo](https://clawhub.ai/user/leventilo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leventilo](https://clawhub.ai/user/leventilo)
 
-## Use Case: <br>
-Developers and agent builders use BoltzPay to discover paid API endpoints, inspect prices, manage budgets, and fetch paid API data through the BoltzPay CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid fetches can spend real funds. <br>
-Mitigation: Require explicit user approval before spending commands, review quotes first, set BOLTZPAY_DAILY_BUDGET and per-transaction limits, and prefer testnet or limited-scope funds where possible. <br>
-Risk: Payment and wallet credentials are required for paid access. <br>
-Mitigation: Store Coinbase and other payment secrets in a secrets manager and avoid exposing them in prompts, logs, shell history, or shared configuration files. <br>
+## Use Case:
 
+Developers and external agent operators use BoltzPay to discover paid API endpoints, quote prices, diagnose endpoints, and fetch API data through payment-enabled CLI workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leventilo/boltzpay) <br>
-- [BoltzPay documentation](https://boltzpay.ai) <br>
-- [BoltzPay registry](https://status.boltzpay.ai) <br>
-- [BoltzPay npm package](https://www.npmjs.com/package/@boltzpay/sdk) <br>
-- [BoltzPay GitHub link from skill documentation](https://github.com/leventilo/boltzpay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx for CLI execution; paid fetches require Coinbase wallet credentials, with optional Tempo, NWC, Stripe, and daily budget settings described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release evidence) <br>
+Risk: The skill can run an unpinned remote npm CLI while using payment and wallet credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed CLI version in an isolated environment before giving an agent payment credentials.
+
+Risk: The default budget can be unlimited, which may allow unintended spend during paid API fetches.
+
+Mitigation: Set a strict daily budget and require explicit approval before running `fetch` against any endpoint.
+
+Risk: Payment credentials and wallet secrets may expose funds or unrelated accounts if reused broadly.
+
+Mitigation: Use dedicated low-balance or test credentials and avoid exposing unrelated wallet, Lightning, Coinbase, or Stripe secrets.
+
+## Reference(s):
+
+- [BoltzPay ClawHub Skill Page](https://clawhub.ai/leventilo/skills/boltzpay)
+- [BoltzPay Documentation](https://boltzpay.ai)
+- [BoltzPay Registry](https://status.boltzpay.ai)
+- [BoltzPay npm SDK](https://www.npmjs.com/package/@boltzpay/sdk)
+- [Coinbase CDP Portal](https://portal.cdp.coinbase.com)
+- [BoltzPay GitHub Link from Skill Documentation](https://github.com/leventilo/boltzpay)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and returned API data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger paid API requests when the fetch command is used with payment credentials.]
+
+## Skill Version(s):
+
+0.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

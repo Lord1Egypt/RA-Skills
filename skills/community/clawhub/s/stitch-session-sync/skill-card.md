@@ -1,40 +1,54 @@
-## Description: <br>
-Cross-session memory sync protocol. Ensures memory consistency across Feishu, webchat, and any other channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-session memory sync protocol. Ensures memory consistency across Feishu, webchat, and any other channels.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep task context, recent decisions, and long-term memory synchronized across Feishu, webchat, and new sessions by reading and updating shared memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy recent conversation history into shared long-term memory files, which may expose sensitive or channel-specific information. <br>
-Mitigation: Use explicit opt-in commands, review memory changes before writing, and define rules that prevent secrets, personal data, or confidential channel content from being persisted. <br>
-Risk: The cleanup script archives daily memory logs older than seven days, which can move records before useful details have been summarized. <br>
-Mitigation: Review daily logs and extract durable information into MEMORY.md before running cleanup or enabling startup cleanup behavior. <br>
+## Use Case:
 
+Agent users and developers use this skill to keep conversation memory and active task state consistent across Feishu, webchat, and other agent sessions by reading and updating shared Markdown memory files.
 
-## Reference(s): <br>
-- [Session Sync on ClawHub](https://clawhub.ai/sdt328606/stitch-session-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline file paths and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read recent session history and write or archive shared memory files when used as directed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill broadly persists and reuses cross-session conversation context, which can retain sensitive or irrelevant information without enough scoping or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted single-user workspace, review and redact memory entries before long-term retention, and avoid using it for credentials, private personal data, confidential business material, or untrusted participant input.
+
+Risk: The cleanup helper archives daily memory logs, which can affect retained records if run without review.
+
+Mitigation: Require explicit confirmation before cleanup and verify that valuable entries have been summarized into long-term memory before archiving logs.
+
+## Reference(s):
+
+- [Session Sync ClawHub skill page](https://clawhub.ai/sdt328606/skills/stitch-session-sync)
+- [sdt328606 publisher profile](https://clawhub.ai/user/sdt328606)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown memory updates with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, append, or archive workspace memory files when the agent follows the skill instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

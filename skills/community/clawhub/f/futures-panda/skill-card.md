@@ -1,40 +1,56 @@
-## Description: <br>
-Provides AKShare-based command-line access to futures and options market data, including live quotes, historical bars, contract details, fees, calendars, positions, and basis data. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Provides AKShare-based access to Chinese futures and options market data, including live quotes, historical bars, contract details, positions, basis data, fees, and trading calendars.
 
-## Publisher: <br>
-[mabtush13](https://clawhub.ai/user/mabtush13) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mabtush13](https://clawhub.ai/user/mabtush13)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve Chinese futures and options market data from AKShare for research, learning, and offline analysis. It is intended for data access and exploration, not investment advice or automated trading decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mabtush13/futures-panda) <br>
-- [AKShare futures data skill README](references/README.md) <br>
-- [AKShare documentation](https://akshare.akfamily.xyz/) <br>
-- [AKShare GitHub repository](https://github.com/akfamily/akshare) <br>
+Developers and analysts use this skill to retrieve futures-market data through AKShare-backed Python commands for research, learning, integration, and data analysis workflows. It is not a source of investment advice.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, guidance] <br>
-**Output Format:** [JSON arrays or JSON error objects from Python CLI commands, with Markdown usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+ with akshare>=1.12 and pandas>=1.5; market data may be delayed or affected by upstream API changes.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Returned market data may be delayed, incomplete, or affected by upstream AKShare and public financial website changes.
+
+Mitigation: Cross-check important results against additional data sources, handle JSON error responses, and do not use the output as investment advice or for high-frequency trading.
+
+Risk: Documented commands or capabilities may be inaccurate for some AKShare versions.
+
+Mitigation: Install in an isolated Python environment, pin reviewed dependency versions, and verify commands against the AKShare documentation before relying on them.
+
+## Reference(s):
+
+- [AKShare Futures Data Skill README](references/README.md)
+- [AKShare Official Documentation](https://akshare.akfamily.xyz/)
+- [AKShare GitHub Repository](https://github.com/akfamily/akshare)
+- [ClawHub Skill Page](https://clawhub.ai/mabtush13/skills/futures-panda)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; the bundled script returns JSON arrays or JSON error objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python dependencies akshare>=1.12 and pandas>=1.5.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

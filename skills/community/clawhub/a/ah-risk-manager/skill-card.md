@@ -1,37 +1,52 @@
-## Description: <br>
-Expert risk manager specializing in comprehensive risk assessment, mitigation strategies, and compliance frameworks. Masters risk modeling, stress testing, and regulatory compliance with focus on protecting organizations from financial, operational, and strategic risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert risk manager specializing in comprehensive risk assessment, mitigation strategies, and compliance frameworks. Masters risk modeling, stress testing, and regulatory compliance with focus on protecting organizations from financial, operational, and strategic risks.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and enterprise risk teams use this skill to guide risk identification, exposure analysis, stress testing, compliance gap review, control planning, and risk reporting workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may produce business, financial, policy, reporting, or regulatory claims that affect real organizational decisions.
+
+Mitigation: Require explicit human confirmation before relying on recommendations for business, financial, policy, reporting, or regulatory use.
+
+Risk: Risk assessments and compliance gap analyses may be incomplete or context-dependent.
+
+Mitigation: Validate outputs against current organizational controls, exposure data, applicable regulations, and qualified reviewer judgment before action.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, developers, and risk teams use this advisory skill to assess enterprise risk exposure, design controls, monitor compliance, run stress-testing workflows, and prepare risk reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Risk models, compliance conclusions, regulatory filings, alerts, or business-control changes generated from the skill may be incorrect or unsupported by organizational evidence. <br>
-Mitigation: Keep human review over risk-management decisions and verify generated metrics, controls, and compliance claims against real organizational evidence before use. <br>
+**Output Format:** [Markdown guidance with structured checklists, risk assessments, mitigation plans, and reporting recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Does not include code, install hooks, persistence, or hidden data handling according to the server security summary.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advisory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only advisory output; no executable code or hidden install behavior was reported in security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

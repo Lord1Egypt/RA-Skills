@@ -1,43 +1,54 @@
-## Description: <br>
-Generates structured storyboard plans, style constraints, and high-quality prompts for publication-style biomedical materials figures, including tissue engineering, bone repair, angiogenesis, scaffold mechanisms, and graphical abstracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create stable storyboard structures, style constraints, and high-quality prompts for publication-style biomedical materials figures, including tissue engineering, bone repair, angiogenesis, scaffold mechanisms, and graphical abstracts.
 
-## Publisher: <br>
-[chenxi-hub](https://clawhub.ai/user/chenxi-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxi-hub](https://clawhub.ai/user/chenxi-hub)
 
-## Use Case: <br>
-Researchers, authors, and biomedical illustrators use this skill to turn medical-materials concepts into clean journal-figure storyboards, prompts, negative prompts, and refinement guidance. It is intended for biomaterials, tissue repair, scaffold architecture, mechanism diagrams, and graphical abstracts where scientific layout and visual constraints matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or figure plans may contain inaccurate biomedical relationships or misleading visual emphasis. <br>
-Mitigation: Have a qualified reviewer verify scientific accuracy and publication suitability before using outputs in manuscripts, posters, or submissions. <br>
-Risk: User prompts could include patient-identifying or confidential clinical data. <br>
-Mitigation: Remove patient identifiers and confidential clinical details before using the skill or sending prompts to any image-generation provider. <br>
-Risk: Generated-image providers may impose privacy, rights, or reuse terms that affect figure publication. <br>
-Mitigation: Check the provider's privacy and rights terms before generating or publishing derived images. <br>
+## Use Case:
 
+External users and developers use this skill to plan clean, publication-style biomedical material figures, graphical abstracts, scaffold schematics, and image-generation prompts for medical materials manuscripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenxi-hub/medical-material-drawing) <br>
-- [examples.md](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured figure concepts, panel plans, English prompts, negative prompts, and optional revision instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May advise SVG or layered redraw workflows when editable publication figures are needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Biomedical figure prompts may produce visually polished but scientifically inaccurate or misleading diagrams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated storyboards, labels, mechanisms, and images against the source manuscript or domain expert input before publication.
+
+Risk: The skill defaults to Chinese-language planning patterns, which may be unsuitable for non-Chinese users or journals without manual adjustment.
+
+Mitigation: Adjust language, labels, and prompt text for the target audience, journal, and image-generation workflow.
+
+## Reference(s):
+
+- [Examples](examples.md)
+- [ClawHub skill page](https://clawhub.ai/chenxi-hub/skills/medical-material-drawing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured prompts, storyboard suggestions, and negative constraints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend SVG or layered redraw workflows when the user needs editable publication figures.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

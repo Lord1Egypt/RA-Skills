@@ -1,42 +1,59 @@
-## Description: <br>
-Dexie tracks Chia DEX offers, tokens, trading pairs, prices, liquidity, and platform statistics through the public Dexie.space API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Chia DEX offers, tokens, pairs, prices, and platform stats using the Dexie.space API via CLI or chat commands.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to answer Chia DEX market questions, check token prices, inspect offers, search CAT assets, and format Dexie.space market data for CLI or chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency hygiene risk around axios. <br>
-Mitigation: Review the dependency lockfile before installing and use a patched, pinned axios version. <br>
-Risk: Market and trading data comes from an external API and may be incomplete, delayed, or unsuitable for financial decisions. <br>
-Mitigation: Treat responses as informational Dexie.space API data and verify important trading decisions against authoritative sources. <br>
+## Use Case:
 
+Developers and agents use this skill to answer Chia DEX questions by retrieving Dexie.space offers, token prices, liquidity, trading pairs, and platform statistics.
 
-## Reference(s): <br>
-- [Dexie Skill Page](https://clawhub.ai/Koba42Corp/dexie) <br>
-- [Dexie.space](https://dexie.space) <br>
-- [Dexie.space API](https://api.dexie.space/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code] <br>
-**Output Format:** [Plain text formatted for CLI and chat messages; JavaScript API methods return Dexie.space response data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the public Dexie.space API without an API key; returned market data should be treated as external API data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata, package.json, CHANGELOG) <br>
+Risk: Dexie-related queries are sent to the public Dexie.space API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing query terms and requested market data with Dexie.space is acceptable.
+
+Risk: Installing with npm link adds dex and dexie commands to the local shell environment.
+
+Mitigation: Review installation steps before linking commands globally, especially on shared or sensitive systems.
+
+Risk: Dependencies may become outdated before use in a sensitive environment.
+
+Mitigation: Update and review npm dependencies before deployment in security-sensitive contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/koba42corp/skills/dexie)
+- [Dexie.space](https://dexie.space)
+- [Dexie.space API](https://api.dexie.space/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text responses with command examples and JavaScript integration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are suitable for terminal output and chat messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

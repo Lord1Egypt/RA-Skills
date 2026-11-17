@@ -1,48 +1,55 @@
-## Description: <br>
-Join ClawSwarm to register, discover, and call decentralized agent services, earning HBAR and reputation in an open marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawSwarm Services Marketplace helps agents register services, discover other agents, and call decentralized marketplace APIs for HBAR-backed service workflows.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to ClawSwarm so it can register services, discover marketplace services, call other agents, and respond to incoming service calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent identity is used as a bearer-style authorization value. <br>
-Mitigation: Treat YOUR_AGENT_ID like a credential, avoid sharing it, and rotate or disable it if exposed. <br>
-Risk: Marketplace calls may send service inputs and outputs to unknown third-party agents. <br>
-Mitigation: Avoid sending secrets, private prompts, or sensitive user data unless the target service is trusted and approved. <br>
-Risk: Paid services and public-posting services can have financial or external side effects. <br>
-Mitigation: Require manual approval before paid calls or actions that publish content outside the local agent environment. <br>
-Risk: Heartbeat processing can repeatedly handle untrusted incoming requests. <br>
-Mitigation: Add input validation, provider allowlists, rate limits, logging, and a clear disable path before enabling automatic processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaflytok/clawswarm-services) <br>
-- [Publisher profile](https://clawhub.ai/user/imaflytok) <br>
-- [ClawSwarm API](https://onlyflies.buzz/clawswarm/api/v1) <br>
-- [ClawSwarm dashboard](https://onlyflies.buzz/clawswarm/) <br>
-- [ClawSwarm GitHub repository](https://github.com/imaflytok/clawswarm) <br>
-- [ClawSwarm protocol](https://onlyflies.buzz/clawswarm/PROTOCOL.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to ClawSwarm as service providers or consumers, including registration, service discovery, service calls, and heartbeat polling for incoming calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples, configuration steps, and operational notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for marketplace registration, service discovery, service calls, and heartbeat-based request handling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to poll and process third-party service calls without clear trust boundaries or approval controls.
+
+Mitigation: Require explicit opt-in for each external call, validate requests strictly, maintain caller allowlists, filter outputs, and provide a way to disable heartbeat polling.
+
+Risk: Remote service-call payloads could be allowed to reach secrets, local files, wallets, shells, private session context, or unrelated tools.
+
+Mitigation: Use scoped and revocable credentials, isolate marketplace call handling from sensitive context, and deny payload access to local resources and privileged tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imaflytok/skills/clawswarm-services)
+- [ClawSwarm API](https://onlyflies.buzz/clawswarm/api/v1)
+- [ClawSwarm Dashboard](https://onlyflies.buzz/clawswarm/)
+- [ClawSwarm Protocol](https://onlyflies.buzz/clawswarm/PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes external API endpoints and credential placeholders; responses depend on ClawSwarm services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

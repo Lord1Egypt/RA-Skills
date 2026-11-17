@@ -1,46 +1,55 @@
-## Description: <br>
-stock-monitor-a monitors selected China A-share prices using Sina Finance quotes, supports threshold-based alerts, skips invalid pre-market and post-market quotes, and records local price logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors A-share stock prices using the Sina Finance API, supports scheduled trading-hours checks, threshold alerts, real-time queries, and local price logs.
 
-## Publisher: <br>
-[likepost](https://clawhub.ai/user/likepost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likepost](https://clawhub.ai/user/likepost)
 
-## Use Case: <br>
-External users and operators use this skill to check configured A-share prices, receive price or percentage-change alerts during configured trading windows, and review daily or recent price logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect stock codes, thresholds, trading schedule, or delivery target can cause missed, repeated, or unintended alerts. <br>
-Mitigation: Review stock_config.json before installing or scheduling the skill, especially the stock list, price thresholds, cron expression, timezone, and delivery_target. <br>
-Risk: The skill creates local monitoring history and once-per-day alert state files in the skill directory. <br>
-Mitigation: Restrict access to the skill directory and clear or disable those local files if retained stock-monitoring history is not desired. <br>
-Risk: Market quote fetches can fail or return invalid data outside supported trading conditions. <br>
-Mitigation: Treat alerts and summaries as monitoring aids, verify important prices against an authoritative source, and do not rely on the skill as sole financial decision support. <br>
+## Use Case:
 
+External users and developers use this skill to monitor configured China A-share symbols during trading hours, query current prices, and receive threshold alerts while retaining daily price and alert logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/likepost/stock-monitor-a) <br>
-- [Publisher profile](https://clawhub.ai/user/likepost) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Skill metadata](artifact/skill.json) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Files] <br>
-**Output Format:** [Plain text responses with local JSON state and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports check, query, log, and log_history actions; creates local alert state and daily price log files when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Recurring market checks may send alert details through a hardcoded Xiaoyi delivery target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and change stock_config.json before installing, especially delivery_channel and delivery_target.
+
+Risk: Price and alert history are retained in local JSON log/state files.
+
+Mitigation: Install only where local retention of price and alert logs is acceptable, and clear generated log/state files according to the user's retention needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/likepost/skills/stock-monitor-a)
+- [Publisher profile](https://clawhub.ai/user/likepost)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Plain text responses with JSON configuration and local JSON log/state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The action parameter selects check, query, log, or log_history output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files declare 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-Fireflies (fireflies.ai). Use this skill for ANY Fireflies request - reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use an OOMOL-connected account and the oo CLI to read and manage Fireflies meetings, transcripts, users, and related data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Fireflies through an OOMOL-connected account for transcript, meeting, bite, channel, user, user group, AI app output, and AskFred workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires brokered access to a user's Fireflies account through OOMOL. <br>
-Mitigation: Install only when OOMOL is trusted for this account connection and review the connected Fireflies scopes before use. <br>
-Risk: Write actions can change Fireflies state, including AskFred threads, bites, user roles, meeting titles, privacy, and channel assignments. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running any action marked write. <br>
-Risk: Destructive actions can delete Fireflies transcripts or AskFred threads. <br>
-Mitigation: Confirm the target identifier and get explicit approval before running any action marked destructive. <br>
-Risk: Raw GraphQL requests depend on backend enforcement that is not visible in the local skill text. <br>
-Mitigation: Treat raw GraphQL use cautiously and prefer named connector actions when they cover the task. <br>
+## Use Case:
 
+People using Fireflies can retrieve transcripts and meeting information, manage AskFred threads and bites, and update meeting or user settings through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Fireflies skill page](https://clawhub.ai/oomol/oo-fireflies) <br>
-- [Fireflies homepage](https://www.fireflies.ai) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects with data and meta.executionId fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Missing-tool setup may execute downloaded installer code without separate approval or integrity checks; the remote installers were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve a specific CLI release before installation, and disable automatic missing-tool installation.
+
+Risk: Write and destructive actions can change or remove Fireflies data or settings.
+
+Mitigation: Confirm the exact payload and effect before write actions, and get explicit approval before destructive actions.
+
+## Reference(s):
+
+- [Fireflies](https://www.fireflies.ai)
+- [Fireflies API documentation](https://docs.fireflies.ai/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Fireflies ClawHub release](https://clawhub.ai/oomol/skills/oo-fireflies)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON inputs and structured Fireflies responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available actions and returned data depend on the connected Fireflies account and each action's live schema.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

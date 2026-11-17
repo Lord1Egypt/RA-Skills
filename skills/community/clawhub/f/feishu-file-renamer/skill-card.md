@@ -1,43 +1,59 @@
-## Description: <br>
-Restores readable filenames for Feishu-downloaded files by mapping hashed local names to original names and reporting batch rename results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restores Feishu-downloaded hash filenames to original names using message or table mappings, with batch renaming, conflict handling, and rename logs.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers, operators, and Feishu users use this skill to restore meaningful names for locally downloaded Feishu files, including batch workflows for chat, document, and table-derived file mappings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rename local files in place from broad chat triggers without a preview or confirmation. <br>
-Mitigation: Use it only on copied or backed-up Feishu downloads and require the agent to show the exact old and new filenames before allowing any rename. <br>
-Risk: Broad natural-language triggers could cause unintended rename attempts. <br>
-Mitigation: Prefer explicit slash commands such as /rename-file or /feishu-rename for operational use. <br>
-Risk: The server security guidance warns not to rely on output-directory, Bitable/message-ID support, or the generated log as a full rollback mechanism unless implementation gaps are fixed. <br>
-Mitigation: Treat the log as an audit aid, keep a separate backup, and validate those features in a test directory before using them on working files. <br>
+## Use Case:
 
+Operations, design, ecommerce, and document-management users use this skill to restore readable filenames for Feishu-downloaded files and batch-organize local downloads from chats, cloud documents, or Bitable mappings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/feishu-file-renamer) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status messages, rename logs, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local rename log and rename files in place unless run against copied files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill can rename arbitrary accessible local files based on parsed message mappings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a tightly scoped working directory or sandbox, preview planned renames, and require confirmation before batch operations.
+
+Risk: Untrusted Feishu messages may provide unsafe mappings because message text is loosely parsed.
+
+Mitigation: Avoid untrusted Feishu messages until path validation and explicit command triggers are enforced.
+
+Risk: Rename logs are written to a predictable shared temporary path.
+
+Mitigation: Write logs to a unique private location with restrictive permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/feishu-file-renamer)
+- [ClawHub publisher profile](https://clawhub.ai/user/rfdiosuao)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown responses with command examples, rename statistics, error summaries, and rename log paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rename local files and write a rename log when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

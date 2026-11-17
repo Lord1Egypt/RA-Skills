@@ -1,44 +1,59 @@
-## Description: <br>
-Queries the registered influencer list for a XingTu recruitment task, validates cookie-based access, paginates through the task author API, and exports the results to a formatted Excel workbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the registered author and influencer list for a XingTu recruitment task, paginates through the XingTu author-list API, and exports the results to a formatted Excel file.
 
-## Publisher: <br>
-[juanjuan2538](https://clawhub.ai/user/juanjuan2538) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanjuan2538](https://clawhub.ai/user/juanjuan2538)
 
-## Use Case: <br>
-Marketing and e-commerce operators use this skill to retrieve all registered influencers for a XingTu recruitment task and package the results for review. It is intended for workflows where the user can provide an authorized XingTu task ID and session cookie. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide an active XingTu browser cookie and stores it in plaintext for reuse. <br>
-Mitigation: Use only with authorized accounts, prefer a browser-mediated or secure credential flow, remove the local cookie file after use, and avoid sharing long-lived session cookies in chat. <br>
-Risk: The exported workbook can contain creator and contact data such as WeChat IDs and recruitment notes. <br>
-Mitigation: Confirm that the data export is permitted, mask or exclude contact fields when they are not needed, and store or share the workbook only in approved locations. <br>
-Risk: The workflow records task metadata, including task ID, author count, and output path, in memory. <br>
-Mitigation: Ask before retaining task metadata and avoid keeping sensitive task identifiers or output paths longer than necessary. <br>
+## Use Case:
 
+External users and operators use this skill to collect registered XingTu task authors for recruitment review, creator outreach, and campaign operations. It handles cookie-based access, paginated retrieval, and Excel export of author profile, pricing, status, and contact fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juanjuan2538/xingtutaskauthor) <br>
-- [XingTu login](https://sso.oceanengine.com/xingtu/login?role=7) <br>
-- [XingTu task author list API](https://www.xingtu.cn/gw/api/challenge/provider_get_task_author_list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, terminal progress text, a JSON summary, and an Excel workbook (.xlsx) file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workbook includes author profile, pricing, recruitment status, contact, and task response fields when returned by the XingTu API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A live XingTu session cookie is provided to the agent and stored in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow session when possible, provide the cookie only in an environment where agent access is acceptable, and delete ~/.xingtuCookie.txt after the export is complete.
+
+Risk: The generated Excel workbook may contain third-party contact and business information.
+
+Mitigation: Treat the workbook as sensitive, limit distribution, and store or delete it according to the user's data-handling requirements.
+
+Risk: An expired or invalid cookie can cause failed or partial retrieval.
+
+Mitigation: Validate the cookie before export and require re-login when validation fails or the API reports an authentication error.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juanjuan2538/skills/xingtutaskauthor)
+- [XingTu login](https://sso.oceanengine.com/xingtu/login?role=7)
+- [XingTu task author list API](https://www.xingtu.cn/gw/api/challenge/provider_get_task_author_list)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Markdown, JSON]
+
+**Output Format:** [Formatted Excel workbook with progress text and a JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The default file name is xingtu_authors_<task_id>_<timestamp>.xlsx; output may include sensitive author contact and business information.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

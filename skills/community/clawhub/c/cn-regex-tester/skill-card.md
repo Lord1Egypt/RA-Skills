@@ -1,39 +1,49 @@
-## Description: <br>
-Cn Regex Tester helps agents test regular expressions against supplied text and return structured match counts or replacement results using Python's standard regex engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Regex Tester tests regular expressions against text and returns match counts, matched values, or deletion-style replacement results using Python's standard library.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to check regex patterns, count matches, and remove matched text while preparing or validating text-processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freedompixels/cn-regex-tester) <br>
-- [Publisher Profile](https://clawhub.ai/user/freedompixels) <br>
-- [AISoBrand Website](https://aisobrand.com) <br>
+Developers and agents can use this skill to run local regex checks and inspect structured JSON results for matches, counts, and simple removal-style substitutions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security evidence is clean; normal caution applies before allowing shell commands, credentials, or writes to important data.] <br>
+Global
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: User-provided regex patterns can consume excessive time on large inputs or complex expressions.
+
+Mitigation: Use input limits, execution timeouts, or isolation when running untrusted patterns in shared or long-running environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-regex-tester)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python execution and does not require an API key.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

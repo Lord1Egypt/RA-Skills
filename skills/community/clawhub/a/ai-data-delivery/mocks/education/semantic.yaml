@@ -1,0 +1,230 @@
+version: mock-education-1.0
+domain: 教育信息化·教学质量
+datasets:
+- name: students
+  source: students
+  cn: 学籍档案表
+  grain: 一行一名学生
+  primary_key: student_id
+  ai:
+    instructions: 能答在读/预警学生统计；身份证号等隐私字段不存在于本表
+    synonyms: [学生表, 学籍表]
+  fields:
+  - name: student_id
+    role: pk
+    cn: 学号
+  - name: college
+    role: dim
+    cn: 学院
+    enum: &edu_college
+    - 信息学院
+    - 机电学院
+    - 经管学院
+  - name: grade
+    role: dim
+    cn: 年级
+    enum:
+    - 2023级
+    - 2024级
+    - 2025级
+  - name: status
+    role: dim
+    cn: 学籍状态
+    enum: &edu_status
+    - 在读
+    - 休学
+    - 毕业
+  - name: warning
+    role: dim
+    cn: 是否学业预警
+    enum: &edu_warning
+    - 是
+    - 否
+  - name: enroll_date
+    role: time
+    cn: 入学日期
+  ontology_ref: 学生
+- name: course_scores
+  source: course_scores
+  cn: 修读成绩表
+  grain: 一行一条修读记录
+  primary_key: score_id
+  ai:
+    instructions: 能答成绩分布/不及格率；必带学期围栏（term）；不答个体学生排名
+    synonyms: [成绩表, 修读记录]
+  fields:
+  - name: score_id
+    role: pk
+    cn: 记录编号
+  - name: student_id
+    role: fk
+    cn: 学号
+  - name: course_id
+    role: dim
+    cn: 课程编号
+  - name: term
+    role: time
+    cn: 学期
+    enum: &edu_term
+    - 2025-2026-1
+    - 2025-2026-2
+  - name: score
+    role: measure
+    cn: 成绩分数
+  - name: credit
+    role: measure
+    cn: 学分
+  ontology_ref: 成绩记录
+relationships:
+- from: course_scores
+  to: students
+  join_key: student_id
+  cardinality: N:1
+  traversable: true
+  ontology_ref: 学生->成绩记录:获得
+concepts:
+- term: 不及格课程
+  synonyms:
+  - 挂科
+  - 不及格科目
+  expand:
+    dataset: course_scores
+    field: score
+    values:
+    - '<60'
+  note: 概念展开为阈值语义，执行层编译为 score < 60
+metrics:
+- id: enrolled_student_count
+  name: 在读学生数
+  synonyms:
+  - 在读人数
+  - 在校学生有多少
+  - 在校生数
+  type: count
+  dataset: students
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: status
+    values:
+    - 在读
+  time_field: enroll_date
+  unit: 人
+  caliber:
+    note: 学籍状态为在读的学生计数
+    basis: mock 内部约定
+- id: course_fail_rate
+  name: 课程不及格率
+  synonyms:
+  - 挂科率
+  - 不及格比例
+  - 不及格率是多少
+  type: ratio
+  dataset: course_scores
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN score < 60 THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: term
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 不及格修读记录占全部记录比例（SUM/SUM 加权，禁行级平均）
+    basis: mock 内部约定
+  on_zero_denominator: 'null'
+- id: avg_score
+  name: 平均成绩
+  synonyms:
+  - 平均分
+  - 平均分数
+  - 成绩均值
+  type: avg
+  dataset: course_scores
+  structured: true
+  status: 已发布
+  expr: AVG(score)
+  time_field: term
+  unit: 分
+  caliber:
+    note: 全部修读记录的行级平均（合法 avg 类型，非比率误用）
+    basis: mock 内部约定
+- id: warning_student_count
+  name: 学业预警学生数
+  synonyms:
+  - 预警学生有多少
+  - 学业预警人数
+  - 被预警的学生
+  type: count
+  dataset: students
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: warning
+    values:
+    - 是
+  time_field: enroll_date
+  unit: 人
+  caliber:
+    note: 标记学业预警的学生计数
+    basis: mock 内部约定
+templates:
+- id: fail_score_list
+  name: 不及格成绩明细
+  dataset: course_scores
+  columns:
+  - score_id
+  - student_id
+  - course_id
+  - score
+  - term
+  extra_where: score < 60
+  time_field: term
+  synonyms:
+  - 不及格名单
+  - 挂科明细
+  - 哪些成绩不及格
+  note: 按 term 倒序，默认最多 100 行；对外展示需脱敏学号
+  status: 已发布
+ontology:
+  entities:
+  - name: 学生
+    attributes:
+    - name: 学籍状态
+      value_type: enum
+      values: *edu_status
+    - name: 是否预警
+      value_type: enum
+      values: *edu_warning
+    note: 一行一名学生
+    uid: ent_student
+    evidence:
+      source: user_provided
+  - name: 成绩记录
+    attributes:
+    - name: 学期
+      value_type: enum
+      values: *edu_term
+    note: 一行一条修读记录
+    uid: ent_score_record
+    evidence:
+      source: user_provided
+  - name: 课程
+    note: 本 mock 未建课程维表，仅作本体示例（合法中间态）
+    uid: ent_course
+    unprojected_reason: mock 场景未建课程维表，成绩表以 course_id 引用
+    evidence:
+      source: model_inferred
+  relations:
+  - from: 学生
+    to: 成绩记录
+    predicate: 获得
+    mapping: equi_key
+  - from: 学生
+    to: 课程
+    predicate: 修读
+    mapping: semantic_only
+    note: 无课程维表则无落地键，修读关系仅作语义声明不投影合同

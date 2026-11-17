@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pathway-atlas/schemas/decision-policy.schema.json",
+  "title": "Versioned PathwayAtlas project planning rules",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "policy_id", "policy_kind", "reviewed_at", "basis", "source_policy", "scenario", "pathway_reason_order", "action_priority_order"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "policy_id": {"$ref": "#/$defs/safeId"},
+    "policy_kind": {"const": "project_planning_rule"},
+    "reviewed_at": {"type": "string", "format": "date", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "basis": {"$ref": "#/$defs/basis"},
+    "source_policy": {"$ref": "#/$defs/sourcePolicyReference"},
+    "scenario": {"$ref": "#/$defs/scenario"},
+    "pathway_reason_order": {
+      "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true,
+      "items": {"enum": ["eligibility", "academic_fit", "interest_fit", "readiness", "urgency", "burden", "strategic_value", "evidence_quality"]}
+    },
+    "action_priority_order": {
+      "type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true,
+      "items": {"enum": ["known_deadline", "blocking_dependency", "long_lead_strategic_value", "uncertainty_reduction", "phase_effort_stable_id"]}
+    }
+  },
+  "$defs": {
+    "safeId": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"},
+    "basis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["basis_id", "source_id", "source_version"],
+      "properties": {"basis_id": {"$ref": "#/$defs/safeId"}, "source_id": {"$ref": "#/$defs/safeId"}, "source_version": {"$ref": "#/$defs/version"}}
+    },
+    "sourcePolicyReference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["policy_id", "version"],
+      "properties": {"policy_id": {"const": "pathway-atlas-source-policy"}, "version": {"const": "1.0"}}
+    },
+    "scenario": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tier_caps", "min_supporting_years_for_medium_confidence", "required_year_majority"],
+      "properties": {
+        "tier_caps": {
+          "type": "object", "additionalProperties": false,
+          "required": ["冲", "稳", "保"],
+          "properties": {"冲": {"type": "integer", "minimum": 1}, "稳": {"type": "integer", "minimum": 1}, "保": {"type": "integer", "minimum": 1}}
+        },
+        "min_supporting_years_for_medium_confidence": {"type": "integer", "minimum": 1},
+        "required_year_majority": {"const": "strict_majority"}
+      }
+    }
+  }
+}

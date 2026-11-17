@@ -1,38 +1,50 @@
-## Description: <br>
-Guides agents in setting up, optimizing, and managing TikTok Ads campaigns, including ad formats, creative strategy, targeting, tracking, budget, bidding, and pre-launch checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to set up, optimize, or manage TikTok Ads. Also use when the user mentions "TikTok Ads," "TikTok for Business," "TikTok Pixel," "Events API," "TikTok Spark Ads," or "TikTok video ads." For organic TikTok, use tiktok-captions.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing teams and agents use this skill to plan TikTok Ads campaigns, select ad formats, develop short-form video creative, configure tracking, and prepare launch checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tracking recommendations for TikTok Pixel or Events API could be applied without confirming consent, privacy disclosures, or platform-policy requirements. <br>
-Mitigation: Confirm consent, privacy disclosures, and TikTok policy requirements before implementing Pixel or Events API changes. <br>
+## Use Case:
 
+External advertisers, marketers, and agents use this skill to plan TikTok Ads setup, creative strategy, targeting, tracking, budget, bidding, and pre-launch checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/tiktok-ads-paid-ads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; recommendations should be reviewed before campaign or tracking changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill metadata) <br>
+Risk: The skill may advise on real ad spend, tracking setup, or campaign changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations in the relevant TikTok business account before making changes or spending budget.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/tiktok-ads-paid-ads)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; campaign changes, ad spend, Pixel setup, and Events API work require user review in the relevant TikTok business account before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence and frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

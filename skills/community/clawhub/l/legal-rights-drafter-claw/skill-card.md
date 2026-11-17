@@ -1,45 +1,56 @@
-## Description: <br>
-法律维权草拟虾 helps users identify breach, payment, infringement, and related rights-protection scenarios and draft standardized legal notice letters from natural-language or structured case details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+法律维权草拟虾。识别违约行为并自动起草维权通知函。当用户提到违约、维权、发函、催告、索赔、侵权、律师函、催款函、警告函、追责等场景时使用。输入可以是自然语言描述或结构化数据（Excel/CSV），输出标准化法律函件（Markdown/PDF/Word）。
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users, legal operations teams, and business staff use this skill to turn dispute facts into draft notice letters such as demand letters, payment reminders, termination notices, quality objection letters, intellectual-property warnings, and confidentiality-breach notices. Outputs are drafts for legal review before formal use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal letters may misstate facts, omit required evidence, or apply legal provisions incorrectly. <br>
-Mitigation: Treat every output as a draft and have legal counsel or an appropriate legal reviewer check it before sending. <br>
-Risk: Case descriptions can include sensitive contract, personal, or dispute information. <br>
-Mitigation: Provide only the details needed to draft the letter and avoid unnecessary sensitive information. <br>
-Risk: The optional document export script runs local file conversion tools on Markdown input. <br>
-Mitigation: Run conversion only on trusted Markdown files and with trusted local converter binaries. <br>
+## Use Case:
 
+External users, business teams, and legal reviewers use this skill to turn Chinese dispute facts into draft rights-enforcement letters, demand letters, breach notices, IP warning letters, and related documents for review before sending.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tujinsama/legal-rights-drafter-claw) <br>
-- [legal-clauses.md](references/legal-clauses.md) <br>
-- [letter-templates.md](references/letter-templates.md) <br>
-- [case-references.md](references/case-references.md) <br>
+### Deployment Geography for Use:
 
+China (PRC-law-oriented content)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown legal-letter drafts with optional shell-command guidance for local PDF or Word conversion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is Markdown in the agent response; optional local conversion can produce PDF or DOCX when trusted converter tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Legal-letter drafts may contain incorrect facts, amounts, dates, contract clauses, legal citations, or jurisdictional assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all user-supplied facts and legal references, and have legal counsel or a qualified reviewer approve any letter before it is sent.
+
+Risk: PDF or DOCX conversion can process unsafe Markdown content such as embedded HTML, images, stylesheets, or external links.
+
+Mitigation: Convert only trusted or sanitized Markdown and review generated documents before distribution.
+
+## Reference(s):
+
+- [Legal Clauses](references/legal-clauses.md)
+- [Letter Templates](references/letter-templates.md)
+- [Case References](references/case-references.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/legal-rights-drafter-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown legal-letter drafts with optional shell command snippets for PDF or DOCX conversion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PDF or DOCX files when the user requests conversion and required local tools are installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

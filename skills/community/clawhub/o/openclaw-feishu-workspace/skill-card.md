@@ -1,39 +1,54 @@
-## Description: <br>
-Use when the user wants to work with Feishu Docs, Wiki, or Bitable for practical team workflows such as meeting notes, knowledge lookup, and project tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to work with Feishu Docs, Wiki, or Bitable for practical team workflows such as meeting notes, knowledge lookup, and project tracking.
 
-## Publisher: <br>
-[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto)
 
-## Use Case: <br>
-Teams, PMs, operators, founders, and chiefs of staff use this skill to work with Feishu Docs, Wiki, and Bitable from an agent chat. It supports meeting notes, internal knowledge lookup, project tracking, action item capture, standup updates, and structured planning briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Writes or updates may change shared Feishu Docs, Wiki, or Bitable content. <br>
-Mitigation: Use least-privilege Feishu scopes, specify exact target documents, wiki spaces, and Bitables, and review important changes before they affect shared team content. <br>
-Risk: Operations may fail when app scopes, document access, target types, URLs, table selections, or field mappings are incorrect. <br>
-Mitigation: Confirm permissions and inspect Bitable metadata and fields before writing or updating records. <br>
+## Use Case:
 
+Teams that use Feishu or Lark use this skill to turn chat context into Feishu Docs, Wiki summaries, and Bitable records for meeting notes, knowledge lookup, action items, and project tracking.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or structured text for Feishu Docs, Wiki summaries, and Bitable records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, write, append, search, create, or update Feishu workspace content depending on available app scopes and document permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to write or update shared Feishu Docs and Bitable records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it with only the Feishu permissions needed for the intended workflow, verify target resources, and review generated content before shared writes.
+
+Risk: Chat content may contain confidential, unverified, or sensitive team information.
+
+Mitigation: Review source material and generated summaries before publishing them to docs, wikis, or tables.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaonizhou-crypto/skills/openclaw-feishu-workspace)
+- [Example Prompts](artifact/examples/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown or concise plain text for Feishu Docs, Wiki summaries, and Bitable planning]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include human-readable document sections, summaries, action-item fields, or failure explanations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

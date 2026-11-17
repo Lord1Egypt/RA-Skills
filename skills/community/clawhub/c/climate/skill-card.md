@@ -1,42 +1,54 @@
-## Description: <br>
-Climate is a command-line utility skill for everyday climate-related workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Climate is a command-line utility that records local command inputs and provides status, search, statistics, and export functions.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers can use this skill to invoke a simple local CLI for status, activity logging, search, and export workflows presented as a climate utility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain command arguments and activity records locally. <br>
-Mitigation: Avoid entering secrets, tokens, private prompts, or sensitive file paths, and review or delete ~/.local/share/climate when retained records are no longer wanted. <br>
-Risk: The skill is described as a climate toolkit, while the security summary says it mostly behaves like a local history/logging utility. <br>
-Mitigation: Review the skill before installation and use it only where local logging behavior is acceptable. <br>
+## Use Case:
 
+External users and developers can use this skill as a local CLI logging utility for simple entries, status checks, search, statistics, and data export. Reviewed evidence indicates it should not be treated as a climate data analysis toolkit.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/climate) <br>
-- [Publisher Profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output with optional JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read local files under ~/.local/share/climate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The artifact presents itself as a climate toolkit, but the included script mainly logs arbitrary local command inputs and can replay or export them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you intentionally want a local command-input logging utility, and evaluate the behavior against the intended climate use case before deployment.
+
+Risk: Locally retained command entries may include secrets, credentials, private notes, or sensitive business data if users enter them.
+
+Mitigation: Do not enter sensitive data, review ~/.local/share/climate after testing, and clear retained logs and exports when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/climate)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with optional JSON, CSV, or text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores command entries and exports under ~/.local/share/climate by default.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: mece
 description: "Activate when: user says 'decompose this', 'structure this thinking', 'MECE', 'issue tree', 'Minto Pyramid', 'how do we cover all the cases without double-counting', a problem feels too big to think about cleanly, a list of options is messy or overlapping, an analysis keeps going in circles, or a presentation needs to survive hard scrutiny.
-  Do NOT activate when: the problem is trivially small (lunch decisions), or the user is in purely creative/generative mode where premature structure would constrain exploration."
+  Do NOT activate when: the problem is trivially small (lunch decisions), or the user is in purely creative/generative mode where premature structure would constrain exploration. More: deciqai.com/c/mece"
 ---
 
 # MECE (Mutually Exclusive, Collectively Exhaustive)
@@ -10,7 +10,7 @@ description: "Activate when: user says 'decompose this', 'structure this thinkin
 
 **MECE** is a decomposition principle: break a problem, set of options, or population into sub-groups that are **Mutually Exclusive** (no overlap) and **Collectively Exhaustive** (no gaps) — every relevant item covered exactly once. Operationalized by **Barbara Minto** at McKinsey (1963–1973) in *The Pyramid Principle* (1973; 3rd ed. 2002). The test: sum the pieces back to the whole; if they don't sum cleanly, the decomposition is broken.
 
-**Compose:** use [first-principles](../first-principles/SKILL.md) to reach root variables; [pareto-principle](../pareto-principle/SKILL.md) to find load-bearing branches; [critical-thinking](../critical-thinking/SKILL.md) to test whether categories are the *right* ones; [occams-razor](../occams-razor/SKILL.md) when multiple MECE structures fit — pick the simplest.
+**Compose:** use first-principles to reach root variables; pareto-principle to find load-bearing branches; critical-thinking to test whether categories are the *right* ones; occams-razor when multiple MECE structures fit — pick the simplest.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ description: "Activate when: user says 'decompose this', 'structure this thinkin
 - Analysis is **going in circles** — same issues reappear because they're not separated
 - **Presentation** must convince hard-to-convince listeners
 - Team converging on a hypothesis **without considering the full space** of alternatives
+- Structuring an **AI strategy / AI-stack / AI-adoption** discussion so the layers (chips / cloud / models / apps) or use cases have no overlaps and no gaps — cutting through AI hype to a complete, non-redundant map
 - Someone says: *"MECE," "decompose this," "issue tree," "structure this thinking"*
 
 **When NOT to use:** trivially small problem; purely creative/generative mode; genuinely non-decomposable question (some ethical/aesthetic problems resist this); decomposition already known and well-trodden.
@@ -46,7 +47,7 @@ Run the **MECE Decomposition**: define the whole → propose top split → check
 4. **Test Collective Exhaustiveness.** What case is *not* covered? Add an explicit "other" or "future" branch if needed.
 4a. **Sum-to-whole test.** Do the branches add up to the whole? If not, identify what's missing or double-counted.
 5. **Recurse if needed.** Apply MECE to each branch. Stop when each leaf is actionable.
-6. **Identify the load-bearing branch.** Per [pareto-principle](../pareto-principle/SKILL.md), one or two branches carry disproportionate weight.
+6. **Identify the load-bearing branch.** Per pareto-principle, one or two branches carry disproportionate weight.
 7. **Document the structure.** The issue tree / Minto pyramid diagram is the standard shareable artifact.
 
 ### Output: the MECE Decomposition
@@ -64,10 +65,11 @@ Run the **MECE Decomposition**: define the whole → propose top split → check
 ```
 
 *→ Method in Action: [Lou Gerstner's IBM Turnaround Decomposition (1993)](examples/lou-gerstner-ibm-turnaround-decomposition-1993.md)*
+*→ 2026 lens: [Structuring an AI-Stack Market Strategy MECE (2024–2026)](examples/ai-stack-market-strategy-decomposition-2024-2026.md)*
 
 ## Decomposition Packs
 
-Canonical MECE dimensions by domain: **Profit/margin** — Revenue = Price × Volume; Cost = Fixed + Variable. **Customer segmentation** — industry / size / use case / buying mode. **Strategy options** — axis of competition; build/buy/partner; time horizon. **Failure-mode** (see [inversion](../inversion/SKILL.md)) — technical / human / process / environmental.
+Canonical MECE dimensions by domain: **Profit/margin** — Revenue = Price × Volume; Cost = Fixed + Variable. **Customer segmentation** — industry / size / use case / buying mode. **Strategy options** — axis of competition; build/buy/partner; time horizon. **Failure-mode** (see inversion) — technical / human / process / environmental.
 
 *→ Primary sources: [references/sources.md](references/sources.md)*
 
@@ -117,4 +119,6 @@ Canonical MECE dimensions by domain: **Profit/margin** — Revenue = Price × Vo
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/mece** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/mece.json*

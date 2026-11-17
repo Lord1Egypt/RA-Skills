@@ -1,42 +1,53 @@
-## Description: <br>
-IceCube ZSXQ Community guides AI agent community operators through content planning, member conversion, service monetization, and paid-community operations on 知识星球/ZSXQ. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent plan and operate a paid Knowledge Planet (ZSXQ) community for AI agent technical content, member conversion, and service monetization.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-External community operators, developers, and creators use this skill to plan and operate a 知识星球/ZSXQ paid technical community around AI agent workflows, including content schedules, membership tiers, conversion paths, and operations tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can point agents toward workflows involving real ZSXQ, WeChat, posting, or payment-related accounts when paired with separate browser or API tools. <br>
-Mitigation: Review any separate browser or API tools before granting login sessions, posting authority, or payment-related access. <br>
-Risk: Revenue estimates, conversion paths, and monetization examples could be mistaken for guaranteed outcomes. <br>
-Mitigation: Present financial projections as planning assumptions, avoid income promises, and keep the service scope explicit. <br>
-Risk: Broad paid-community trigger wording may activate the skill outside its intended Chinese-market ZSXQ context. <br>
-Mitigation: Use the skill when the request explicitly concerns 知识星球, ZSXQ, membership communities, or paid-community operations. <br>
+## Use Case:
 
+External creators and community operators use this skill to draft content calendars, membership tiers, conversion paths, operational checklists, and risk controls for a paid ZSXQ technical community.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ares521521-design/icecube-zsxq-community) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, templates, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no required environment variables or installed code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing, payment, or publishing actions could affect a live paid community if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated marketing, payment, and publishing actions before use, and do not allow publishing through a logged-in browser or API unless explicitly requested.
+
+Risk: Community growth and monetization guidance can create misleading expectations if presented as guaranteed results.
+
+Mitigation: Keep generated copy clear that revenue examples are plans or projections, and avoid promises of specific income.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ares521521-design/skills/icecube-zsxq-community)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with planning tables, checklists, templates, and occasional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language community operations guidance focused on ZSXQ, WeChat payments, and related content channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

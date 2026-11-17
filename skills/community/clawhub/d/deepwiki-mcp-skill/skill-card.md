@@ -1,40 +1,55 @@
-## Description: <br>
-Ask questions and read documentation about GitHub repositories using DeepWiki MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask questions and read documentation about any GitHub repository using DeepWiki MCP.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and engineers use this skill to query indexed GitHub repositories, understand codebase structure, find APIs, and gather code review context through DeepWiki MCP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Repository names and natural-language questions are sent to the external DeepWiki MCP service. <br>
-Mitigation: Use the skill only for repositories and questions that are approved for sharing with DeepWiki; avoid secrets, access tokens, proprietary private-code details, and sensitive internal context. <br>
-Risk: The skill depends on uxc, a local deepwiki-mcp-cli link, network access to mcp.deepwiki.com/mcp, and prior DeepWiki indexing. <br>
-Mitigation: Confirm uxc is installed, review installation scripts before running them, verify the fixed command link, and index the target repository on DeepWiki before relying on results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DeepWiki Usage Patterns](references/usage-patterns.md) <br>
-- [DeepWiki](https://deepwiki.com) <br>
+## Use Case:
 
+Developers and engineers use this skill to query DeepWiki for repository documentation, codebase context, APIs, architecture explanations, and code review background.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and MCP JSON response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are read from MCP JSON envelopes under .data.content[].text; DeepWiki supports up to 10 repositories per question.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup may involve running an unpinned third-party shell installer.
+
+Mitigation: Review the installer before running it, prefer a pinned and verified package distribution, and avoid sudo unless required and understood.
+
+Risk: Repository names, proprietary code context, or confidential questions may be sent to DeepWiki.
+
+Mitigation: Do not send secrets, private repository names, proprietary code, or confidential questions unless that sharing is approved.
+
+## Reference(s):
+
+- [DeepWiki](https://deepwiki.com)
+- [usage-patterns.md](references/usage-patterns.md)
+- [uxc install script](https://raw.githubusercontent.com/holon-run/uxc/main/scripts/install.sh)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/deepwiki-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP JSON response handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DeepWiki responses are returned in an MCP JSON envelope; extract answer text from .data.content[].text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

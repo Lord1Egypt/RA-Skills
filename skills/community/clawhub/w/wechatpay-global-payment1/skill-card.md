@@ -1,54 +1,70 @@
-## Description: <br>
-Provides multilingual guidance for WeChat Pay Global product selection, integration setup, API references, launch quality checks, and troubleshooting for overseas acquirer-mode payment deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信跨境支付接入Skill helps agents guide WeChat Pay Global product selection, integration, quality checks, troubleshooting, and multilingual terminology for overseas payment scenarios.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and integration teams use this skill to choose WeChat Pay Global payment products, locate official API guidance, prepare acquirer-mode integration details, check launch quality, and troubleshoot cross-border payment issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with artifact guidance noting direct merchant access only for Hong Kong and acquirer-mode access elsewhere. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment integration guidance may be incorrect or outdated for regulated production decisions. <br>
-Mitigation: Verify direct-connection eligibility, auto-debit consent requirements, API details, and compliance obligations against current official WeChat Pay Global documentation before production use. <br>
-Risk: The skill may be mistaken for an authority on production payment behavior even though the security review classifies it as documentation-only guidance. <br>
-Mitigation: Treat outputs as reference guidance, require qualified payment engineering review, and use official WeChat Pay documentation as the production source of truth. <br>
-Risk: Content-quality issues or ambiguous integration wording could lead to wrong merchant-mode, routing, or parameter choices. <br>
-Mitigation: Cross-check merchant access mode, acquirer/sub-merchant identifiers, callback handling, and launch quality checks with the linked official documentation and internal review. <br>
+## Use Case:
 
+Developers, payment engineers, and support teams use this skill to plan and review overseas WeChat Pay integrations, including product selection, API version choices, callback handling, signing, quality checks, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/skills/wechatpay-global-payment1) <br>
-- [WeChat Pay Global documentation (English)](https://pay.weixin.qq.com/doc/global/v3/en/) <br>
-- [WeChat Pay Global documentation (Chinese)](https://pay.weixin.qq.com/doc/global/v3/zh/) <br>
-- [WeChat Pay Global llms.txt](https://pay.weixin.qq.com/doc/global/v3/zh/llms.txt) <br>
-- [机构模式 产品选型与产品介绍](references/1-机构/产品选型/产品介绍.md) <br>
-- [微信支付境外（跨境）业务世界观](references/1-机构/产品选型/跨境支付通用知识.md) <br>
-- [机构模式 开发参数获取](references/1-机构/接入指南/开发参数获取.md) <br>
-- [机构模式 签名与验签规则（境外）](references/1-机构/接入指南/签名与验签规则.md) <br>
-- [机构模式 回调处理（境外）](references/1-机构/接入指南/回调处理.md) <br>
-- [机构上线前接入质量检查（境外）](references/1-机构/接入指南/接入质量检查.md) <br>
-- [机构模式 接口索引](references/1-机构/示例代码/接口索引.md) <br>
-- [机构模式 排障手册（境外）](references/1-机构/问题排查/排障手册.md) <br>
-- [多语言术语表](references/glossary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with references, checklists, API paths, and official documentation links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multilingual terminology, routing decisions, integration checklists, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Payment work may expose raw logs, screenshots, Authorization headers, APIv3 keys, private keys, callback payloads, OpenIDs, identity data, or customer and payment records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive values, use test data where possible, and avoid sending sensitive payment material through email or chat.
+
+Risk: Incorrect direct-connection eligibility or network choices could create unsafe or nonfunctional payment deployments.
+
+Mitigation: Verify direct-connection eligibility, callback firewall rules, and network configuration against current official WeChat Pay documentation before implementation.
+
+Risk: Weak retry, idempotency, or callback handling can lead to incorrect payment state decisions.
+
+Mitigation: Review order retry behavior, idempotency design, asynchronous callback processing, and query-order fallback before production use.
+
+Risk: Auto-debit flows can continue incorrectly if notices or cancellation events are mishandled.
+
+Mitigation: Validate auto-debit notice and cancellation handling against official documentation and stop subsequent debits when cancellation is confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tencent-adm/skills/wechatpay-global-payment1)
+- [WeChat Pay Global documentation](https://pay.weixin.qq.com/doc/global/v3/en/)
+- [WeChat Pay Global documentation (Chinese)](https://pay.weixin.qq.com/doc/global/v3/zh/)
+- [机构模式 产品选型与产品介绍（境外微信支付）](references/1-机构/产品选型/产品介绍.md)
+- [微信支付境外（跨境）业务世界观](references/1-机构/产品选型/跨境支付通用知识.md)
+- [机构模式 签名与验签规则（境外）](references/1-机构/接入指南/签名与验签规则.md)
+- [境外网络接入指引](references/1-机构/接入指南/网络问题指引.md)
+- [接入质量检查](references/1-机构/接入指南/接入质量检查.md)
+- [排障手册](references/1-机构/问题排查/排障手册.md)
+- [多语言术语表（Glossary）](references/glossary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with links, checklists, tables, and official-example navigation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Multilingual replies in Chinese, English, Japanese, Korean, French, Spanish, Portuguese, Russian, and Arabic.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

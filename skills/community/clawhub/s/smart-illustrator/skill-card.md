@@ -1,50 +1,68 @@
-## Description: <br>
-Smart Illustrator helps Claude Code generate article illustrations, slide infographics, and cover images using Gemini, Excalidraw, or Mermaid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Illustrator helps an agent analyze articles, slide scripts, or cover topics and produce contextual illustration prompts, diagram source, image-generation commands, and markdown outputs for article images, presentation infographics, and social cover images.
 
-## Publisher: <br>
-[axtonliu](https://clawhub.ai/user/axtonliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axtonliu](https://clawhub.ai/user/axtonliu)
 
-## Use Case: <br>
-External creators, newsletter writers, technical bloggers, course instructors, and developers use this skill to turn existing article or slide content into contextual illustrations, diagrams, thumbnails, and Markdown-ready image outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected document content or reference images may be sent to external image-generation services. <br>
-Mitigation: Avoid using confidential or regulated source material unless external API processing is acceptable for that data. <br>
-Risk: Prompt-only and generation flows may copy prompts to the clipboard and leave prompt, configuration, learning, image, or diagram files on disk. <br>
-Mitigation: Review generated local artifacts and clipboard contents, and remove sensitive files after use. <br>
-Risk: Output quality can vary because the skill depends on model behavior, input structure, and local helper tools. <br>
-Mitigation: Review generated images, diagrams, and Markdown before publication, and keep editable Mermaid or Excalidraw sources for correction. <br>
+## Use Case:
 
+External creators, technical writers, course instructors, and developers use this skill to turn article or lesson content into illustration plans, batch infographic prompts, cover concepts, and markdown files with image references. It is suited to blog posts, newsletters, presentation B-roll, course visuals, and platform-specific thumbnails.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/axtonliu/smart-illustrator) <br>
-- [Cover Best Practices](artifact/references/cover-best-practices.md) <br>
-- [Excalidraw Guide](artifact/references/excalidraw-guide.md) <br>
-- [Excalidraw Export Selectors](artifact/references/excalidraw-export-selectors.md) <br>
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Gemini API Key Setup](https://aistudio.google.com/apikey) <br>
-- [Gemini](https://gemini.google.com/) <br>
-- [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) <br>
-- [Bun Runtime](https://bun.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown instructions, JSON prompts, Mermaid or Excalidraw source, shell commands, PNG image files, and Markdown documents with inserted image links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in prompt-only mode, generate or reference image assets, preserve editable diagram source files, and write generated artifacts beside the input document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Article text, prompts, and reference material may be sent to Gemini or pasted into Gemini Web during image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive content unless the user has approved sharing it with the external image-generation service.
+
+Risk: The evidence security review flags unpinned external scripts and dependencies, plus shell and temporary-file patterns that should not be executed blindly.
+
+Mitigation: Inspect and pin external scripts and dependencies before use, review generated commands, and adapt temporary-file handling to the local environment.
+
+Risk: Generated outputs may carry Axton branding or watermark assumptions from the bundled style guidance.
+
+Mitigation: Remove or customize the branding before using generated images in commercial materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axtonliu/skills/smart-illustrator)
+- [Smart Illustrator README](artifact/README.md)
+- [Cover Best Practices](artifact/references/cover-best-practices.md)
+- [Excalidraw JSON Guide](artifact/references/excalidraw-guide.md)
+- [Excalidraw Export Selectors](artifact/references/excalidraw-export-selectors.md)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Mermaid documentation](https://mermaid.js.org/)
+- [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli)
+- [Excalidraw](https://excalidraw.com/)
+- [Gemini API](https://ai.google.dev/)
+- [Bun](https://bun.sh/)
+- [Playwright](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON prompts, Mermaid or Excalidraw source snippets, shell commands, configuration examples, and image file references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or reference PNG images, editable diagram source files, copied JSON prompts, and article markdown with inserted image links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

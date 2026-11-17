@@ -1,41 +1,54 @@
-## Description: <br>
-Evaluates agent skill files against SKILL-STANDARD-v3 guidance and provides quality checks and optimization suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates agent skill files against a Chinese-language SKILL-STANDARD-v3 checklist and returns quality scores, missing-file checks, and prioritized optimization guidance.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to check SKILL.md metadata, structure, referenced files, and scoring criteria before publishing or updating skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to run in more contexts than intended. <br>
-Mitigation: Use the skill on clearly specified skill paths and narrow activation text when maintaining or republishing it. <br>
-Risk: Suggested edits or commands could change skill behavior if accepted without review. <br>
-Mitigation: Review proposed edits and shell commands before allowing writes or execution. <br>
+## Use Case:
 
+Developers and skill authors use this skill to inspect new or modified agent skills for metadata completeness, structure, referenced-file integrity, quality score, and concrete improvement recommendations.
 
-## Reference(s): <br>
-- [Skill Optimizer release page](https://clawhub.ai/lj22503/lj22503-skill-optimizer) <br>
-- [Skill evaluation checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and structured quality findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file or skill improvements; users should review changes before allowing writes or command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The skill requests broader tool access than its current local audit scripts need, including Write permission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Withhold or remove Write permission unless the user explicitly asks the agent to edit a skill, and run the scripts only on skill folders intended for inspection.
+
+Risk: Missing referenced documentation can reduce the completeness of skill-audit guidance.
+
+Mitigation: Review the included checklist and available scripts before relying on the report, and confirm any missing-reference findings against the target skill directory.
+
+## Reference(s):
+
+- [Skill Optimizer checklist](artifact/references/checklist.md)
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-skill-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text containing checklists, scores, missing-file findings, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language audit output; scripts run locally against skill folders selected by the user]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Extract frames or short clips from videos using ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract frames or short clips from videos using ffmpeg.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and content reviewers use this skill to extract representative frames from local video files for inspection, sharing, or documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper writes to the requested output path and can overwrite an existing file. <br>
-Mitigation: Choose an output path that is safe to create or replace before running the command. <br>
-Risk: The skill processes local video files with ffmpeg. <br>
-Mitigation: Use videos you intend to process and keep ffmpeg installed from a trusted source. <br>
+## Use Case:
 
+Developers, analysts, and content reviewers use this skill to extract a first frame, a timestamped frame, or an indexed frame from a local video file for inspection, thumbnails, or sharing.
 
-## Reference(s): <br>
-- [FFmpeg](https://ffmpeg.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and writes image files to the user-provided output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The helper invokes ffmpeg with overwrite enabled for the requested output image path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the --out path before running the command and avoid pointing it at files that should be preserved.
+
+Risk: The skill depends on a local ffmpeg installation.
+
+Mitigation: Install ffmpeg from a trusted package source and confirm the ffmpeg binary is available before use.
+
+## Reference(s):
+
+- [FFmpeg](https://ffmpeg.org)
+- [Video Frames on ClawHub](https://clawhub.ai/utromaya-code/skills/video-clip-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg; the helper writes a single frame image to the requested output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

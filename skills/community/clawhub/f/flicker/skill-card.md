@@ -1,44 +1,55 @@
-## Description: <br>
-Flicker is an ASCII pet companion that can be summoned, show pet stats, generate new pets, and occasionally add short snarky comments based on the conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flicker is an ASCII pet companion that can generate pet attributes, display animated ASCII pet frames, and add short snarky comments tied to the conversation.
 
-## Publisher: <br>
-[jofiction918](https://clawhub.ai/user/jofiction918) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jofiction918](https://clawhub.ai/user/jofiction918)
 
-## Use Case: <br>
-External users and developers use this skill to add a lightweight ASCII pet companion to an agent conversation, including pet generation, status display, direct interaction, and occasional personality-driven commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words and probability-based interjections may make the pet appear when a user did not intend to summon it. <br>
-Mitigation: Use explicit commands such as /buddy and /stats when predictable behavior is preferred, and disable or adjust random interjections in deployments that require quiet operation. <br>
-Risk: The skill keeps pet attributes in a local JSON state file. <br>
-Mitigation: Keep the state file scoped to non-sensitive pet data and review local file changes before sharing, syncing, or reusing the workspace. <br>
-Risk: Generating a new pet runs the bundled local Node script. <br>
-Mitigation: Review the included generator script before deployment and run it only from the trusted skill artifact. <br>
+## Use Case:
 
+External users install this skill to add a lightweight ASCII pet persona to an agent conversation, generate or view pet attributes, and receive occasional short comments based on chat context.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jofiction918/flicker) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with ASCII art, short pet replies, pet-stat summaries, and local command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May keep a scoped local pet JSON state file and run the included Node generator when creating a pet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run a local Node.js generator and create or update local pet.json data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled script and install only in a workspace where local pet data creation is acceptable.
+
+Risk: The pet persona may occasionally interrupt assistant replies with snarky comments.
+
+Mitigation: Use explicit commands or disable the skill if automatic comments are distracting or inappropriate for the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jofiction918/skills/flicker)
+- [Publisher profile](https://clawhub.ai/user/jofiction918)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with ASCII art, short text comments, and JSON pet data from the local generator script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local pet.json data file and may occasionally add one short pet comment after an assistant response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

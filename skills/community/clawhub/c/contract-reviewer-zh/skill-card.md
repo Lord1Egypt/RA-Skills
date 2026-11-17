@@ -1,40 +1,57 @@
-## Description: <br>
-Reviews Chinese contract text by extracting key clauses, assigning risk levels, and producing suggested revisions for procurement, legal, and operations teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese contract text, extracts key clauses, labels risk levels, and suggests revisions for procurement, legal, and operations teams.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Procurement, legal, and operations teams use this skill to review Chinese-language procurement contracts, service agreements, nondisclosure agreements, and framework agreements for key clauses and legal risk before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract risk recommendations may be incomplete, jurisdiction-sensitive, or unsuitable for a specific negotiation position. <br>
-Mitigation: Treat the report as a review aid and have qualified legal or contract staff confirm high-risk clauses before signing. <br>
-Risk: The security evidence marks the release as suspicious and recommends trusted-environment installation. <br>
-Mitigation: Install only in a trusted ClawHub maintainer or developer environment and review the skill before deployment. <br>
+## Use Case:
 
+Employees in procurement, legal, operations, and contract-management roles use this skill to perform first-pass Chinese contract review, identify high-risk clauses, and prepare structured risk notes before legal review or signing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/contract-reviewer-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown contract review report with clause summaries, risk levels, and revision suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language review output; no executable actions declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Contract text may contain confidential legal, financial, or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with contracts that are appropriate to share with the agent and follow organizational data-handling rules.
+
+Risk: Legal-risk output may be incomplete, jurisdiction-sensitive, or unsuitable as final legal advice.
+
+Mitigation: Treat results as first-pass review and route material contracts or high-risk clauses to qualified legal counsel before signing.
+
+Risk: The artifact is written and scoped in Chinese, which may not match every reviewer's preferred language.
+
+Mitigation: Ask explicitly for another output language when needed and have translated legal conclusions reviewed for accuracy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/contract-reviewer-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown contract review report with extracted clause tables, risk ratings, explanations, and suggested revisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output by default; legal-risk findings are first-pass review guidance and not a substitute for qualified legal counsel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

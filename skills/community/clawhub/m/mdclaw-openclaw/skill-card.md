@@ -1,41 +1,58 @@
-## Description: <br>
-MDClaw OpenClaw API 技能，支持文字转语音(TTS)、文生图(Text to Image)、文生视频(Text to Video)、图生视频(Image to Video)等多模态 AI 能力。通过网关服务统一调用，支持账号注册、图片上传、任务轮询等完整功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MDClaw OpenClaw provides a Python client and agent-facing guidance for text-to-speech, text-to-image, text-to-video, image-to-video, image upload, search, weather, and webpage-summary calls through the MDClaw gateway.
 
-## Publisher: <br>
-[cnskycn](https://clawhub.ai/user/cnskycn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnskycn](https://clawhub.ai/user/cnskycn)
 
-## Use Case: <br>
-Developers and external users use this skill to call the MDClaw OpenClaw gateway for text-to-speech, image generation, video generation, image upload, search, weather, and web-summary workflows from an agent or Python client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, URLs, and account credentials are sent to the external MDClaw/appmiaoda service. <br>
-Mitigation: Use a dedicated API key and password, and submit confidential images, private URLs, or sensitive text only when external processing is acceptable. <br>
-Risk: Generated images, videos, audio, search answers, weather results, and web summaries depend on remote service responses. <br>
-Mitigation: Review returned content and URLs before relying on them or sharing downloaded outputs. <br>
+## Use Case:
 
+External developers and agents use this skill to call the MDClaw OpenClaw gateway for multimodal media generation and utility tasks, including API-key registration, image uploads, asynchronous video polling, and downloading generated media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnskycn/mdclaw-openclaw) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and API call descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can guide agents to submit remote MDClaw API requests and handle returned URLs, task identifiers, status responses, downloaded files, or error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Prompts, webpage URLs, uploaded image files, registration details, and API-authenticated requests are sent to an external MDClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with approved data, avoid sensitive files or private URLs, and confirm users are comfortable sending requests to the documented gateway.
+
+Risk: Example scripts may print API-key prefixes and generated media URLs to logs.
+
+Mitigation: Avoid sharing logs from example runs and treat generated media URLs and API-key snippets as sensitive operational data.
+
+Risk: Download helpers write generated image or video content to caller-provided output paths.
+
+Mitigation: Choose output paths deliberately and review generated media before distributing or using it in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnskycn/skills/mdclaw-openclaw)
+- [MDClaw OpenClaw gateway endpoint](https://backend.appmiaoda.com/projects/supabase287606411725160448/functions/v1/openclaw-skill-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, and JSON-like API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce URLs for generated audio, images, videos, uploaded files, task identifiers, and downloaded local files.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

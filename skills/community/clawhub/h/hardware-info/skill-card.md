@@ -1,41 +1,52 @@
-## Description: <br>
-Generates a comprehensive local hardware inventory across macOS, Linux, and Windows, including system, CPU, memory, storage, GPU, display, network, battery, peripheral, sensor, and live status details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive local hardware and system information report across macOS, Linux, and Windows, including system overview, CPU, memory, storage, GPU/display, network, battery, device, sensor, and real-time status details.
 
-## Publisher: <br>
-[BraveHeartZJH](https://clawhub.ai/user/BraveHeartZJH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[braveheartzjh](https://clawhub.ai/user/braveheartzjh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to ask an agent for a broad local hardware inventory and receive a structured Markdown report. It is intended for configuration checks, troubleshooting context, and device capability review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can place a full local hardware inventory in the agent conversation, including sensitive identifiers such as serial numbers, UUIDs, and MAC addresses.
+
+Mitigation: Use it only when a full inventory is needed, and redact identifiers before sharing or storing the report.
+
+Risk: Some requested hardware fields may require elevated commands.
+
+Mitigation: Do not approve sudo unless a specific requested field truly requires it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, IT staff, and end users use this skill to gather and summarize local computer hardware details when troubleshooting, auditing device configuration, or answering hardware capability questions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Hardware reports can expose device identifiers such as serial numbers, UUIDs, MAC addresses, Activation Lock status, and other local inventory details. <br>
-Mitigation: Review and redact the generated report before sharing it outside the local troubleshooting context. <br>
-Risk: Some hardware commands may request sudo or administrator privileges for deeper device details. <br>
-Mitigation: Decline elevated prompts unless the extra hardware detail is necessary and the command is expected for the current platform. <br>
+**Output Format:** [Structured Markdown hardware report with command-derived findings]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BraveHeartZJH/hardware-info) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/BraveHeartZJH) <br>
+**Other Properties Related to Output:** [May include sensitive local device identifiers such as serial numbers, UUIDs, MAC addresses, storage details, and battery data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown hardware report with command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive local device identifiers such as serial numbers, UUIDs, MAC addresses, and battery or Activation Lock status when those commands return them.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

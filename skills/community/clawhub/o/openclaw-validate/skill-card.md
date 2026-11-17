@@ -1,43 +1,57 @@
-## Description: <br>
-Connects an AI agent to HumanJudge for response validation by registering the agent, verifying the owner's email, answering challenge questions, and submitting answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an AI agent to HumanJudge for response validation by registering the agent, verifying owner email, answering challenge questions, and submitting answers.
 
-## Publisher: <br>
-[humanjudge-arthur](https://clawhub.ai/user/humanjudge-arthur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[humanjudge-arthur](https://clawhub.ai/user/humanjudge-arthur)
 
-## Use Case: <br>
-External users and agent operators use this skill to connect an AI agent to HumanJudge, complete email-based registration, fetch challenge questions, and submit the agent's answers for response validation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the operator for an email address and stores a local HumanJudge API key. <br>
-Mitigation: Confirm consent before registration, keep the API key local, and remove the credentials file when disabling the skill. <br>
-Risk: Submitted challenge responses are public according to the artifact's privacy section. <br>
-Mitigation: Review answers before submission and avoid sending personal data, sensitive files, conversation history, system prompts, or secrets. <br>
-Risk: The security summary flags mandatory ongoing checks and future answer submission without clear opt-in or stop controls. <br>
-Mitigation: Make heartbeat checks opt-in and notification-only unless the operator approves submissions, and provide an easy disable path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/humanjudge-arthur/openclaw-validate) <br>
-- [HumanJudge OpenClaw Skill Instructions](https://humanjudge.com/openclaw/skill.md) <br>
-- [HumanJudge OpenClaw API Base](https://api.humanjudge.com/api/v1/oc) <br>
+## Use Case:
 
+External users and agent owners use this skill to register an AI agent with HumanJudge, answer validation challenge questions, and submit responses for evaluation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a local HumanJudge API key and configure heartbeat checks when enabled by the agent environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the owner to share an email address, display name, optional agent metadata, and public answers with HumanJudge.
+
+Mitigation: Install only when the owner is comfortable sharing those data elements, and avoid including personal or sensitive owner information in submitted answers.
+
+Risk: The skill stores an API key in a local credentials file.
+
+Mitigation: Store the API key with owner-only permissions or in a secret manager, and keep a clear path to delete or rotate the credential.
+
+Risk: The skill can configure unattended future checks and submissions through heartbeat behavior.
+
+Mitigation: Enable heartbeat only when unattended future participation is desired, and review the behavior before deployment.
+
+## Reference(s):
+
+- [OpenClaw Validate on ClawHub](https://clawhub.ai/humanjudge-arthur/skills/openclaw-validate)
+- [HumanJudge OpenClaw skill feed](https://humanjudge.com/openclaw/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing setup prompts, registration guidance, challenge-answering instructions, and heartbeat configuration guidance.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Auto-generate OpenAPI 3.x specs from code, traffic logs, or packet captures with interactive refinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generate OpenAPI 3.x specs from code, traffic logs, or packet captures with interactive refinement.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft OpenAPI 3.x documentation from source code, HTTP captures, traffic logs, packet captures, or manual endpoint descriptions. It can also help review an existing OpenAPI file and produce mock-server configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script is assessed as demo-quality while the documentation presents it as a real generator and validator. <br>
-Mitigation: Treat generated specifications and validation reports as drafts, and verify them with trusted OpenAPI tooling and human review before using them for production documentation or security decisions. <br>
-Risk: Code repositories, HAR files, traffic logs, and packet captures can contain credentials, internal hostnames, or personal data. <br>
-Mitigation: Use sanitized inputs where possible, review generated output for sensitive data, and do not rely on the skill for secret-redaction guarantees. <br>
-Risk: Generated files may overwrite existing output paths. <br>
-Mitigation: Run the skill in a disposable workspace or write to reviewed output paths before replacing existing API documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft OpenAPI 3.x specifications from API source material such as code repositories, HAR files, traffic logs, packet captures, or manual endpoint descriptions. Review generated specs before production use, especially when inputs contain sensitive traffic data or when validation results affect public API documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/openapi-spec-generator) <br>
-- [Source Detection Patterns](references/source-detection.yaml) <br>
-- [Input Schema](https://openclaw.dev/skills/openapi-spec-generator/input.schema.json) <br>
-- [Output Schema](https://openclaw.dev/skills/openapi-spec-generator/output.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, OpenAPI YAML or JSON snippets, validation reports, and optional Prism mock-server configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated specifications and validation findings should be reviewed before production use, especially when source inputs may contain secrets or sensitive traffic data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release evidence) <br>
+Risk: Security review reports that the shipped script returns canned analysis and validation results, so generated endpoint discovery, schemas, and pass/fail validation can be misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as draft documentation only; manually review endpoint coverage, schemas, authentication details, and validation status before relying on them.
+
+Risk: The generator can write to user-provided output paths and overwrite files.
+
+Mitigation: Use non-critical output paths, keep backups or version control enabled, and inspect generated files before replacing existing API documentation.
+
+Risk: Inputs such as HAR files and packet captures can contain authentication tokens, internal hostnames, or personally identifiable information.
+
+Mitigation: Avoid sensitive captures unless necessary, redact secrets before sharing generated specs, and review outputs for leaked credentials or internal network details.
+
+## Reference(s):
+
+- [Openapi Spec Generator Skill Page](https://clawhub.ai/harrylabsj/skills/openapi-spec-generator)
+- [source-detection.yaml](references/source-detection.yaml)
+- [input.schema.json](schemas/input.schema.json)
+- [output.schema.json](schemas/output.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated YAML or JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate OpenAPI YAML/JSON specs, validation summaries, and optional Prism mock server configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

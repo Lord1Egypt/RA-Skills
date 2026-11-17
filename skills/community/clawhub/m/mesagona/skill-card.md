@@ -1,41 +1,55 @@
-## Description: <br>
-Mesagona provides brand and feature information for the Netsnek e.U. event and conference management platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mesagona namespace for Netsnek e.U. event and conference management platform, providing brand identity, feature information, and structured metadata.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Agent users can ask for a Mesagona brand summary, feature list, or structured JSON metadata. The skill is informational and should not be treated as an operational event-management integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect the skill to manage registrations, agendas, check-ins, or analytics even though the release only provides informational brand and feature output. <br>
-Mitigation: Treat the skill as informational and verify any operational workflow against a real Mesagona integration before relying on it. <br>
-Risk: The packaged shell script may need line-ending or byte-order-mark cleanup before it runs reliably in some Linux shells. <br>
-Mitigation: Inspect and normalize the script file before execution if the shell reports parsing or interpreter errors. <br>
+## Use Case:
 
+Developers and agents use this skill to answer questions about the Mesagona event-management brand, list its advertised capabilities, or return machine-readable brand metadata.
 
-## Reference(s): <br>
-- [Mesagona ClawHub page](https://clawhub.ai/kleberbaum/mesagona) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands] <br>
-**Output Format:** [Markdown responses with optional JSON metadata from the packaged shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports default, --features, and --json script modes] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence release metadata and artifact frontmatter) <br>
+Risk: The bundled shell script may not run correctly because of a UTF-8 BOM and CRLF line endings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Normalize the script to UTF-8 without BOM and Unix line endings before relying on executable behavior.
+
+Risk: The skill requires local script execution.
+
+Mitigation: Review the small bundled script before deployment and run it in the expected Linux environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/skills/mesagona)
+- [Publisher Profile](https://clawhub.ai/user/kleberbaum)
+- [Netsnek Website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Plain text, Markdown summaries, or JSON metadata from the bundled shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports default, --features, and --json modes; output is static brand and feature information.]
+
+## Skill Version(s):
+
+0.1.0 (source: artifact frontmatter, claw.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

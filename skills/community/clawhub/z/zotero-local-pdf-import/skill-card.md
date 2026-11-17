@@ -1,42 +1,53 @@
-## Description: <br>
-通过 Zotero 本地连接器将用户指定的本地 PDF 文件或文件夹导入 Zotero 文库，并支持选择已有分类、列出分类和检查最近导入附件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 Zotero 本地连接器将用户提供的本地 PDF 文件导入 Zotero 文库，并支持单文件导入、文件夹批量导入、导入到已有分类、分类列表查看和最近附件检查。
 
-## Publisher: <br>
-[mxingchtongaelofficial2568](https://clawhub.ai/user/mxingchtongaelofficial2568) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mxingchtongaelofficial2568](https://clawhub.ai/user/mxingchtongaelofficial2568)
 
-## Use Case: <br>
-External researchers, students, and knowledge workers use this skill to ask an agent to import local PDFs into Zotero through the local connector. It is useful for single-file imports, folder imports, imports into an existing Zotero collection, collection listing, and recent-attachment checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes a user's Zotero library by importing selected PDFs. <br>
-Mitigation: Confirm the Zotero port, target collection, PDF paths, folder path, and recursive setting before running imports. <br>
-Risk: The doctor command may install the Python requests dependency automatically. <br>
-Mitigation: Use a virtual environment or preinstall requests manually when tighter dependency control is required. <br>
-Risk: Diagnostic and check output can expose document titles or local filesystem paths. <br>
-Mitigation: Avoid sharing command output when local paths or document titles are sensitive. <br>
+## Use Case:
 
+External users and agents use this skill to import local PDF files into a running Zotero desktop library through Zotero's local connector. It is intended for workflows where the user provides local PDF paths, a Zotero connector port, and optionally an existing Zotero collection name.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mxingchtongaelofficial2568/zotero-local-pdf-import) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured command parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require a user-provided Zotero local connector port and explicit PDF file or folder paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The security summary notes that the skill tells agents to automatically install a Python dependency before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install reviewed dependencies manually in a virtual environment and avoid the automatic dependency-install path unless the user explicitly accepts that behavior.
+
+Risk: The security guidance notes that the skill acts on PDF paths and Zotero ports supplied during use.
+
+Mitigation: Use only PDF paths, folders, and Zotero ports that the user intentionally provides for the current import task.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/mxingchtongaelofficial2568/skills/zotero-local-pdf-import)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report dependency checks, Zotero connector status, selected collections, per-PDF import results, summary counts, collection listings, and recent attachment records.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

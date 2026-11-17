@@ -1,45 +1,63 @@
-## Description: <br>
-Micro Memory helps agents create, search, tag, link, review, compress, archive, and report on local plaintext memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Micro Memory is a local agent memory tool for adding, searching, linking, reviewing, exporting, compressing, and reporting on persistent personal memories.
 
-## Publisher: <br>
-[payne-openclaw](https://clawhub.ai/user/payne-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[payne-openclaw](https://clawhub.ai/user/payne-openclaw)
 
-## Use Case: <br>
-Agents and users use Micro Memory to maintain a local memory store for notes, reminders, review scheduling, associative links, search, health summaries, compression, archiving, and export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently stores user memories as plaintext local files. <br>
-Mitigation: Avoid storing secrets or sensitive work data, and review stored memory files before sharing or exporting. <br>
-Risk: Compression, consolidation, archive, export, delete, and edit behavior can mutate or move memory data. <br>
-Mitigation: Back up the store directory before running destructive or full-data actions and review command output after execution. <br>
-Risk: Server security evidence reports broad auto-triggers, weak confirmations, an unsafe helper script, and a malformed package manifest. <br>
-Mitigation: Review before installing, prefer a version with narrower triggers and stronger confirmations, and verify package metadata before building or running. <br>
+## Use Case:
 
+Developers and ClawHub users use Micro Memory to persist personal notes as local memories, search and link them, track strength decay, schedule reviews, and generate health reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/payne-openclaw/micro-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [Validation Plan](artifact/VALIDATION_PLAN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON files, CSV files, shell commands, guidance] <br>
-**Output Format:** [CLI text and Markdown, with optional JSON or CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and mutates plaintext local memory files under the skill store directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: server release metadata) <br>
+Risk: The skill persistently stores personal memory data in local plaintext files, Markdown backups, archives, and exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or highly sensitive personal data, restrict access to the store directory, and review exported or archived files before sharing.
+
+Risk: Broad automatic triggers may persist content more often than intended.
+
+Mitigation: Prefer explicit memory commands for sensitive workflows and review new memories before relying on them.
+
+Risk: The artifact ships a broken package manifest and an unsafe alternate command launcher.
+
+Mitigation: Fix the package manifest before installation and use only the declared dist/index.js entry point; avoid bin/memory.js.
+
+Risk: CSV exports can be unsafe when memory content comes from other people.
+
+Mitigation: Treat CSV exports as untrusted, review or sanitize them before opening in spreadsheet software, and prefer JSON for interchange when possible.
+
+## Reference(s):
+
+- [Micro Memory ClawHub Skill Page](https://clawhub.ai/payne-openclaw/skills/micro-memory)
+- [Artifact README](artifact/README.md)
+- [Validation Plan](artifact/VALIDATION_PLAN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Terminal text and Markdown, with JSON or CSV file output for stored memories and exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists local memory data in JSON and Markdown under store/ and may write archive or export files.]
+
+## Skill Version(s):
+
+4.0.2 (source: server release metadata; package.json text agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

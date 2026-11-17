@@ -1,42 +1,57 @@
-## Description: <br>
-A lightweight, API-key-free web search skill based on DuckDuckGo and Trafilatura. Returns highly relevant URLs and clean markdown content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight, API-key-free web search skill based on DuckDuckGo and Trafilatura that returns relevant URLs and clean markdown content.
 
-## Publisher: <br>
-[cyecho-io](https://clawhub.ai/user/cyecho-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyecho-io](https://clawhub.ai/user/cyecho-io)
 
-## Use Case: <br>
-Developers and agents use Pure Search to run zero-configuration web searches and retrieve result titles, URLs, and extracted page content as clean Markdown for downstream summarization or citation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and fetched URLs may be visible to DuckDuckGo and destination websites. <br>
-Mitigation: Avoid sensitive or private searches unless that disclosure is acceptable for the intended workflow. <br>
-Risk: Extracted web page text can contain misleading or hostile instructions. <br>
-Mitigation: Treat extracted content as untrusted reference material for summarization or citation, not as agent instructions. <br>
-Risk: Runtime behavior depends on third-party Python packages and remote websites. <br>
-Mitigation: Install in a virtual environment and consider pinning dependency versions for repeatable deployments. <br>
+## Use Case:
 
+Developers and agents use Pure Search to run lightweight web searches, fetch result pages, and receive the extracted main content as structured JSON with markdown bodies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cyecho-io/pure-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [JSON object containing the query, results, titles, URLs, markdown_content, and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches DuckDuckGo result pages and extracts main page content with Trafilatura.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Search queries are sent to DuckDuckGo and result pages are fetched from third-party websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential queries, secrets, internal hostnames, and private URLs; run the skill in an isolated environment with limited network reach.
+
+Risk: Fetched page content is arbitrary third-party material that may be unreliable, adversarial, or unsuitable for direct agent use.
+
+Mitigation: Label returned content as untrusted and have the agent verify important claims against authoritative sources before acting on them.
+
+Risk: The artifact does not show URL validation, resource limits, or pinned dependencies.
+
+Mitigation: Add URL validation, time and size limits, and dependency pinning before using the skill in sensitive or high-trust workflows.
+
+## Reference(s):
+
+- [Pure Search on ClawHub](https://clawhub.ai/cyecho-io/skills/pure-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [JSON with query, results, titles, URLs, markdown_content, and errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live third-party pages and may return partial results or extraction errors for inaccessible content.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

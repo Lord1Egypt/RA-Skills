@@ -1,47 +1,61 @@
-## Description: <br>
-Searches connecting flights, layover options, transit hubs, and multi-leg transfer routes using flyai CLI results powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search connecting flights, layover options and transit hub routes with transfer flight booking and multi-leg connections, with additional support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more, powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel users and agents use this skill to search connecting flights, compare layover routes, and format real-time booking options from flyai CLI output. It is intended for travel-planning workflows where results must come from live tool output rather than model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install a global CLI automatically. <br>
-Mitigation: Review before installing and prefer manually installing and verifying the flyai CLI. <br>
-Risk: The skill may persist raw travel-query logs, which can include sensitive travel or identity details. <br>
-Mitigation: Avoid sensitive travel or identity details unless logging is disabled or redacted. <br>
-Risk: Via-city and fallback results may not enforce every routing constraint documented by the skill. <br>
-Mitigation: Review routing details carefully before relying on via-city or fallback results. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to search live connecting-flight options, compare cheaper or faster multi-leg routes, and produce booking-ready Markdown results from flyai CLI output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/connecting) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejinsong) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel results and should include booking links when presenting flight options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks agents to install and run an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval for npm installation and prefer a pinned or isolated CLI install before use.
+
+Risk: Travel searches may include personal itinerary details that the skill can persist in a local execution log.
+
+Mitigation: Disable, limit, or sanitize local logging before using the skill with personal travel details.
+
+Risk: Shell execution of generated command strings can introduce avoidable command-injection risk.
+
+Mitigation: Pass validated parameters directly to the CLI and avoid executing assembled command strings through a shell.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/connecting)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables and summaries with booking links, plus inline bash commands when setup or retry guidance is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output and booking detailUrl links; raw JSON should not be shown to users.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

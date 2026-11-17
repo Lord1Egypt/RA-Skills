@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-nano-banana
 description: Use PoYo AI Nano Banana for general image generation and image editing across many aspect ratios through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants prompt-based images, reference-image edits, wide or tall canvases, or PoYo payloads for `nano-banana` and `nano-banana-edit`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/nano-banana", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/nano-banana-api", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Nano Banana Image Generation and Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/nano-banana-api>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/nano-banana>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill to submit and track PoYo jobs for the Nano Banana family.
 
@@ -52,4 +58,3 @@ When helping with this model family, include:
 Notes:
 
 Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

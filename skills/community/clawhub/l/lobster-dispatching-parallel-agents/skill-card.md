@@ -1,38 +1,54 @@
-## Description: <br>
-This skill helps developers dispatch specialized agents for independent tasks that can be worked on without shared state or sequential dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and engineers use this skill to split unrelated debugging, testing, or subsystem work across focused parallel agents, then review and integrate the returned changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parallel agents can interfere with each other when work is not truly independent or when they edit shared files or resources. <br>
-Mitigation: Use narrow, independent scopes, avoid shared state, review returned changes for conflicts, and run the full relevant test suite before merging. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to decide when independent coding or debugging work can be delegated to multiple focused agents in parallel, and how to review and integrate their results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/lobster-dispatching-parallel-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with example agent prompts and task dispatch calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces coordination guidance only; no executable payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sub-agents may receive broader context or authority than needed for their assigned task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review delegated prompts so each sub-agent receives only the context, files, constraints, and authority required for its independent problem domain.
+
+Risk: Parallel agents may interfere when tasks are not truly independent or when they edit shared files.
+
+Mitigation: Use the skill only after grouping work into independent domains, then review summaries, check for file conflicts, and run the full test suite before integrating results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-dispatching-parallel-agents)
+- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with prompt examples and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning and delegation guidance for agent workflows; it does not execute tools or spawn agents by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

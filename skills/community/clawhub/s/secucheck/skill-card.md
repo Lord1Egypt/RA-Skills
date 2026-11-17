@@ -1,47 +1,64 @@
-## Description: <br>
-Secucheck performs read-only OpenClaw security audits across runtime, channels, agents, cron, skills, sessions, and network posture with localized reports, context-aware guidance, and an optional dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secucheck audits OpenClaw configurations, permissions, runtime exposure, sessions, skills, cron jobs, agents, channels, and network posture with localized reports and a dashboard.
 
-## Publisher: <br>
-[jooneyp](https://clawhub.ai/user/jooneyp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jooneyp](https://clawhub.ai/user/jooneyp)
 
-## Use Case: <br>
-Developers and operators use Secucheck to audit OpenClaw deployments for configuration, permission, runtime, session, skill, channel, cron, and network risks. It produces localized findings, context-aware recommendations, and a visual dashboard without automatically modifying configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect sensitive local details about OpenClaw configuration, agents, skills, runtime state, and network posture. <br>
-Mitigation: Treat generated reports as sensitive and review them before sharing or storing them outside the audited environment. <br>
-Risk: The dashboard may publish the generated security report on the local network. <br>
-Mitigation: Use the dashboard only on trusted networks, or change it to bind to localhost before serving reports in shared or untrusted environments. <br>
-Risk: Remediation advice may involve gateway, cron, or configuration changes that affect system behavior. <br>
-Mitigation: Review each requested change and approve it explicitly only after considering functional impact. <br>
+## Use Case:
 
+Developers, operators, and OpenClaw administrators use this skill to review an OpenClaw deployment's security posture, identify configuration and runtime risks, and receive prioritized remediation guidance. It supports routine reviews after skill installation, agent changes, cron changes, or a requested full audit.
 
-## Reference(s): <br>
-- [Secucheck ClawHub listing](https://clawhub.ai/jooneyp/secucheck) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Runtime security checks](artifact/checks/runtime.md) <br>
-- [Network security checks](artifact/checks/network.md) <br>
-- [Agent security checks](artifact/checks/agents.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with JSON audit data, shell command suggestions, and optional HTML dashboard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final reports are localized to the user's language and adjust explanation depth for beginner, intermediate, or expert audiences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release metadata and skill.json) <br>
+Risk: Dashboard serving can expose the OpenClaw workspace over the local network and leave a background web server running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid dashboard mode on shared, office, VPN, or untrusted networks unless it binds to localhost, serves only the report file, and stops automatically.
+
+Risk: Declared gateway and cron capabilities increase the permission surface when they are not needed for normal audit output.
+
+Mitigation: Remove unused gateway and cron capabilities before release, or document why each capability is required.
+
+Risk: Public-IP checks can contact external services during runtime audits.
+
+Mitigation: Make public-IP checks opt-in and explain the external request before running them.
+
+Risk: Dashboard report data may be rendered into HTML.
+
+Mitigation: HTML-escape report data before inserting it into dashboard templates.
+
+## Reference(s):
+
+- [Secucheck ClawHub Listing](https://clawhub.ai/jooneyp/skills/secucheck)
+- [Secucheck README](artifact/README.md)
+- [Runtime Security Checks](artifact/checks/runtime.md)
+- [Network Security Checks](artifact/checks/network.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with JSON audit data and optional HTML dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Localized to the user's language; dashboard mode writes an HTML report and can start a background HTTP server.]
+
+## Skill Version(s):
+
+2.8.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

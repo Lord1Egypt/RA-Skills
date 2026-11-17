@@ -1,38 +1,53 @@
-## Description: <br>
-Applies a Buffett-inspired value-investing lens to investment analysis, stock valuation, moat assessment, acquisition thinking, and owner-minded business review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Buffett-style value-investing perspective for investment analysis, stock valuation, business moat assessment, acquisition thinking, and owner-oriented company review.
 
-## Publisher: <br>
-[kironima](https://clawhub.ai/user/kironima) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kironima](https://clawhub.ai/user/kironima)
 
-## Use Case: <br>
-External users and investment analysts use this skill to frame company and stock questions through Buffett-style value investing, including moat durability, intrinsic value, management quality, and long-term holding fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment outputs could be mistaken for personalized financial advice or current market recommendations. <br>
-Mitigation: Use the skill as an analysis framework only; verify current company data and prices independently before acting. <br>
+## Use Case:
 
+External users and investment-focused analysts use this skill to frame company or stock questions through Buffett-style value-investing concepts such as moats, margin of safety, management integrity, and long-term ownership. The skill is for structured investment reasoning and should not be treated as professional financial advice or a direction to trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kironima/buffett-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown investment-analysis response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checklist-style ratings and a one-sentence Buffett-style judgment; users should independently verify current company data and market prices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake Buffett-style investment analysis for professional financial advice or an instruction to trade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as analytical framing only and require users to consult qualified financial professionals before making investment decisions.
+
+Risk: Broad value-investing triggers may activate the persona when the user did not explicitly request it.
+
+Mitigation: Confirm the desired analysis perspective when prompts are ambiguous or when the conversation could affect financial decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kironima/skills/buffett-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Buffett-style template covering business diagnosis, valuation judgment, management review, time horizon, and a one-sentence conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

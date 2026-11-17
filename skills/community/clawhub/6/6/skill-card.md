@@ -1,41 +1,53 @@
-## Description: <br>
-Explore and compare multiple parallel solution designs ("universes") before coding, then converge on a single, well-justified approach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore and compare multiple parallel solution designs ("universes") before coding, then converge on a single, well-justified approach.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare multiple plausible designs for ambiguous or high-tradeoff coding tasks, evaluate risks and trade-offs, and converge on an implementation plan before making broad changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence the agent's implementation direction before code changes are made. <br>
-Mitigation: Review the selected design, scope, and safety checklist before allowing broad code modifications. <br>
-Risk: The added planning step can increase time spent on tasks that already have an obvious solution. <br>
-Mitigation: Use the skill for ambiguous or high-tradeoff work and skip it for trivial fixes or mechanical edits. <br>
+## Use Case:
 
+Developers and engineers use this skill to explore several distinct implementation or architecture options for ambiguous, trade-off-heavy tasks before selecting a final approach and implementation plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/6) <br>
-- [openlang-cn publisher profile](https://clawhub.ai/user/openlang-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured comparison tables, decision notes, and implementation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include problem snapshots, alternative architecture sketches, trade-off analysis, and safety checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The structured exploration workflow may add planning time on ambiguous tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the lightweight mode for medium-sized decisions and skip the full workflow for trivial or mechanical changes.
+
+Risk: Generated design options and trade-off analysis may be incomplete or misleading if the task context is sparse.
+
+Mitigation: Review the proposed options against the actual codebase constraints before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured problem snapshots, option sketches, comparison tables, decisions, and implementation plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, credentials, persistence, or hidden execution behavior are introduced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Measure and display AI model response latency when the user types /ping or /ping followed by a model name, with formatted timing output and optional model comparison. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Displays formatted ping and comparison output for current or named AI models, with latency values that the security evidence identifies as simulated.
 
-## Publisher: <br>
-[dofbi](https://clawhub.ai/user/dofbi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dofbi](https://clawhub.ai/user/dofbi)
 
-## Use Case: <br>
-Developers and agent users can run this skill to display ping-style timing output for the current or named model. Based on the security evidence, its current latency results should be treated as demonstration formatting rather than real benchmark data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can present simulated latency numbers as if they were real model measurements. <br>
-Mitigation: Treat the output as demo formatting only; do not use it for model selection, routing, incident diagnosis, or performance claims until actual model-call timing is implemented and clearly labeled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dofbi/ping-model) <br>
+## Use Case:
 
+Developers and agent users use this skill to run a formatted ping command for the current or named model and compare displayed response timings across model names.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with fixed ping and comparison layouts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node; prints timestamps, formatted duration, and optional comparison ranking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may present simulated latency numbers as real model measurements.
+
+Mitigation: Treat the output as a formatting utility unless the implementation is changed to make real requests and clearly disclose the measurement method.
+
+Risk: Users may rely on model rankings or timing output for operational decisions.
+
+Mitigation: Do not use the displayed rankings or timing values for operational decisions without independent benchmarking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dofbi/skills/ping-model)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js. The security evidence states that the displayed timings are simulated and should not be treated as operational benchmarks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

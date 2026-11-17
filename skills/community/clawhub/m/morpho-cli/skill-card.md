@@ -1,45 +1,58 @@
-## Description: <br>
-Interact with the Morpho lending protocol using the CLI to query vaults, markets, positions, balances, and protocol stats, and to prepare or simulate unsigned Morpho transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Morpho lending protocol via CLI to query vaults, markets, positions, balances, and health, and to prepare or simulate unsigned transactions.
 
-## Publisher: <br>
-[jinmel](https://clawhub.ai/user/jinmel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinmel](https://clawhub.ai/user/jinmel)
 
-## Use Case: <br>
-External users, developers, and crypto operators use this skill to query Morpho lending data on Base and Ethereum and prepare unsigned transaction payloads for deposits, withdrawals, supply, borrow, collateral, and repayment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive financial workflows and wallet addresses through an external Morpho npm CLI. <br>
-Mitigation: Install only if comfortable with that CLI, treat outputs as sensitive financial data, and avoid sharing wallet information beyond the intended command use. <br>
-Risk: Incorrect chain IDs, contract addresses, amounts, approvals, borrow terms, or simulation results could lead to unwanted on-chain effects if signed later. <br>
-Mitigation: Verify all transaction details and simulation results before signing anything in a wallet. <br>
-Risk: Prepared transaction payloads may be misunderstood as ready to execute. <br>
-Mitigation: Use the skill's unsigned-transaction posture: present summaries, warnings, and simulations, but do not sign or broadcast transactions. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect Morpho protocol state on Base and Ethereum and prepare unsigned DeFi transaction payloads with simulation results for user review.
 
-## Reference(s): <br>
-- [Read Command Response Schemas](references/read.md) <br>
-- [Write Command Response Schemas](references/write.md) <br>
-- [ClawHub release page](https://clawhub.ai/jinmel/morpho-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/jinmel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to return JSON and prepare unsigned transactions only; the skill instructs agents not to sign or broadcast transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill runs an unpinned npm CLI while preparing DeFi transaction payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a pinned, reviewed version of the Morpho CLI or a locked local install, and run it with minimal filesystem and environment access.
+
+Risk: Prepared transactions may contain incorrect chain IDs, contract addresses, approval spenders, amounts, warnings, or simulation results.
+
+Mitigation: Independently verify chain IDs, contract addresses, approval spenders, amounts, warnings, and simulation results before signing anything in a wallet.
+
+Risk: Sensitive wallet material or unrelated credentials could be exposed to the agent environment.
+
+Mitigation: Do not expose private keys or unnecessary credentials to the agent environment.
+
+## Reference(s):
+
+- [Read Command Response Schemas](artifact/references/read.md)
+- [Write Command Response Schemas](artifact/references/write.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands output JSON to stdout; transaction payloads are unsigned and should be independently verified before signing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

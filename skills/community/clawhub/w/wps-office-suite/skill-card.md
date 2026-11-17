@@ -1,47 +1,54 @@
-## Description: <br>
-WPS Office Suite helps agents create, edit, convert, and inspect Word, Excel, PowerPoint, and PDF documents using WPS Office, Microsoft Office, LibreOffice, or pure Python fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WPS Office, Microsoft Office, LibreOffice, and Python-based workflows for creating, editing, analyzing, and converting Word, Excel, and PowerPoint files.
 
-## Publisher: <br>
-[fyniujin](https://clawhub.ai/user/fyniujin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fyniujin](https://clawhub.ai/user/fyniujin)
 
-## Use Case: <br>
-Developers and office automation users use this skill to let an agent operate local office documents, generate basic documents and spreadsheets, convert formats, inspect recent files, and choose an available office engine automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit local documents in place and create or overwrite office files. <br>
-Mitigation: Use copies of important documents, keep backups, and review output files before relying on them. <br>
-Risk: The skill can inspect recent files in Desktop and Documents, exposing filenames and local metadata to the agent workflow. <br>
-Mitigation: Run it only in trusted local profiles and avoid using it where document names or paths are sensitive. <br>
-Risk: Feedback commands can open a browser or email client and may include system diagnostics. <br>
-Mitigation: Avoid the feedback email command on sensitive systems unless the generated email content has been reviewed. <br>
-Risk: Office and LibreOffice automation may launch local applications, hang, or behave differently across installed engines. <br>
-Mitigation: Run the environment self-check first, prefer small test files, and close or recover office processes if automation stalls. <br>
+## Use Case:
 
+Office users and operations teams use the skill to create, edit, format, analyze, and convert documents, spreadsheets, and presentations through agent-directed workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fyniujin/skills/wps-office-suite) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Artifact architecture notes](artifact/ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local office files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify DOCX, XLSX, PPTX, PDF, HTML, TXT, and PNG files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The release is rated suspicious; the scan reports command execution, file changes, and process-control risks, and notes that its evidence is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if needed, review the scripts and permissions, back up important files, and run in a controlled environment.
+
+Risk: Optional external services may be used, and the scan warns that behavior could exceed the skill's stated scope.
+
+Mitigation: Use cloud or model bridges only when needed, and verify what data they send before processing sensitive documents.
+
+## Reference(s):
+
+- [gongwen_rules.yaml](references/gongwen_rules.yaml)
+- [ClawHub skill page](https://clawhub.ai/fyniujin/skills/wps-office-suite)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Analysis, Guidance]
+
+**Output Format:** [DOCX, XLSX, PPTX, PDF, CSV, and HTML files, with optional text or JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output formats depend on the requested office task and available conversion support.]
+
+## Skill Version(s):
+
+5.5.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

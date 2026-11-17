@@ -1,42 +1,58 @@
-## Description: <br>
-Boss Cli helps agents use the BOSS Zhipin CLI to search jobs, manage applications, export results, and contact recruiters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boss Cli helps agents guide users through BOSS Zhipin job search, application management, job detail review, exports, and HR greeting workflows using the boss command-line tool.
 
-## Publisher: <br>
-[aitowerofbabel-lang](https://clawhub.ai/user/aitowerofbabel-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aitowerofbabel-lang](https://clawhub.ai/user/aitowerofbabel-lang)
 
-## Use Case: <br>
-Job seekers and agents assisting them use this skill to run BOSS Zhipin CLI workflows for job discovery, filtering, application tracking, interviews, history, profile checks, exports, and recruiter greetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rely on browser-cookie login or other account session access. <br>
-Mitigation: Install only if the user trusts `kabi-boss-cli`; prefer QR login or a separate browser profile instead of automatic cookie import. <br>
-Risk: Greeting and batch-greeting commands can send real messages from the user's recruiting account. <br>
-Mitigation: Use dry-run or preview mode before batch greetings and manually confirm message content and recipients before sending. <br>
-Risk: Search results, application history, interviews, profile data, and exports may contain private job-search information. <br>
-Mitigation: Review CSV or JSON exports and message-related outputs before storing, sharing, or integrating them with other systems. <br>
+## Use Case:
 
+External job seekers and developers use this skill to install and operate the boss CLI for searching BOSS Zhipin jobs, filtering results, exporting listings, reviewing applications and interviews, and contacting recruiters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aitowerofbabel-lang/boss-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide CSV or JSON exports and dry-run command use where supported by the CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install an unaudited third-party CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source or pinned version and review the package before use.
+
+Risk: Authentication can involve browser-cookie detection, which may expose account credentials if mishandled.
+
+Mitigation: Prefer QR-code login over browser-cookie detection when possible.
+
+Risk: Greeting and batch-greeting commands can send account-linked messages to recruiters.
+
+Mitigation: Require explicit confirmation before recruiter-contact commands and use dry-run previews for batch actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aitowerofbabel-lang/skills/boss-cli)
+- [Publisher profile](https://clawhub.ai/user/aitowerofbabel-lang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI can emit structured JSON with schema_version 1 when commands are run with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

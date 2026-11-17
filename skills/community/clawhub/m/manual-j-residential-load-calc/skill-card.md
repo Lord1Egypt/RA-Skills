@@ -1,40 +1,57 @@
-## Description: <br>
-Use this skill when a residential HVAC contractor, energy rater, home-performance auditor, or code official needs an ACCA Manual J 8th Edition block and room-by-room load calculation for a new install, replacement, or retrofit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides residential HVAC contractors, energy raters, home-performance auditors, and code officials through a draft ACCA Manual J 8th Edition block and room-by-room load calculation with Manual D CFM targets and a Manual S handoff for licensed-designer review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External HVAC contractors, energy raters, home-performance auditors, code officials, and design-build teams use this skill to draft ACCA Manual J 8th Edition residential load calculations. It produces block and room-by-room load reports with Manual S equipment-sizing handoff data and Manual D CFM targets for qualified professional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat draft HVAC load calculations as final permit, rebate, equipment-purchase, or code-compliance decisions. <br>
-Mitigation: Keep outputs labeled as draft material and require review by a qualified HVAC designer or responsible professional before use. <br>
-Risk: The workflow may collect detailed home, occupancy, envelope, and system information. <br>
-Mitigation: Share only project details needed for the calculation and avoid including unnecessary personal or sensitive household information. <br>
+## Use Case:
 
+External HVAC contractors, energy raters, home-performance auditors, code officials, and design-build teams use this skill to draft or review residential Manual J load calculations before equipment selection, duct design, permits, rebates, or equipment purchases.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/archlab-space/manual-j-residential-load-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft load-calculation report with tables, assumption logs, audit flags, and review blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied project, geometry, envelope, infiltration, ventilation, internal-gain, and duct inputs; output is draft material for professional review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: A draft load report could be mistaken for a stamped or permit-ready HVAC design deliverable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the draft status and responsible-designer review block in outputs, and require review before permit submission, rebate filing, or equipment purchase.
+
+Risk: Incorrect U-values, infiltration rates, leakage rates, or design conditions can produce misleading heating and cooling loads.
+
+Mitigation: Require a source for every key input, log unknowns as measurement or assumption required, and avoid fabricating missing values.
+
+Risk: Downstream equipment or duct choices could be made from advisory calculations without qualified sizing review.
+
+Mitigation: Emit Manual S and Manual D handoff information only; do not select equipment, size ducts, pick register types, or stamp drawings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/manual-j-residential-load-calc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured draft Markdown load-calculation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumption logs, unresolved-information lists, Manual S and Manual D handoff blocks, and responsible-designer review language.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

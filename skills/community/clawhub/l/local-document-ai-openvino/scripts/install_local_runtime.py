@@ -6,9 +6,36 @@ Install runtime dependencies into the skill-local .vendor directory.
 from __future__ import annotations
 
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+
+def choose_install_command(requirements: Path, vendor_dir: Path) -> list[str]:
+    uv_exe = shutil.which("uv")
+    if uv_exe:
+        return [
+            uv_exe,
+            "pip",
+            "install",
+            "--upgrade",
+            "--target",
+            str(vendor_dir),
+            "-r",
+            str(requirements),
+        ]
+    return [
+        sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "--upgrade",
+        "--target",
+        str(vendor_dir),
+        "-r",
+        str(requirements),
+    ]
 
 
 def run_install() -> int:
@@ -26,17 +53,8 @@ def run_install() -> int:
     env.setdefault("PYTHONUTF8", "1")
     env.setdefault("PYTHONIOENCODING", "utf-8")
 
-    cmd = [
-        sys.executable,
-        "-m",
-        "pip",
-        "install",
-        "--upgrade",
-        "--target",
-        str(vendor_dir),
-        "-r",
-        str(requirements),
-    ]
+    cmd = choose_install_command(requirements, vendor_dir)
+    print(f"Installing local runtime with: {' '.join(cmd)}")
     proc = subprocess.run(cmd, env=env)
     if proc.returncode != 0:
         return proc.returncode

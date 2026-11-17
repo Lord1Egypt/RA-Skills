@@ -1,40 +1,54 @@
-## Description: <br>
-Conduct comprehensive market research including competitive analysis, industry trends, customer profiling, and opportunity identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct comprehensive market research including competitive analysis, industry trends, customer profiling, and opportunity identification.
 
-## Publisher: <br>
-[btizzy](https://clawhub.ai/user/btizzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[btizzy](https://clawhub.ai/user/btizzy)
 
-## Use Case: <br>
-Business, strategy, product, marketing, and sales users use this skill to structure market research for evaluating markets, competitors, customer pain points, pricing, opportunities, and next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market research outputs may contain outdated, incomplete, or unverified market data. <br>
-Mitigation: Verify market size, growth, competitor, pricing, and trend claims against reputable current sources before using them for business decisions. <br>
-Risk: Research prompts may include confidential customer, business, or paid-report information. <br>
-Mitigation: Avoid sharing private customer data, confidential business information, paid reports, or licensed third-party content unless the agent is authorized to use it. <br>
+## Use Case:
 
+External users, business analysts, founders, and go-to-market teams use this skill to structure market research for new markets, competitors, customer pain points, and business opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/btizzy/owl-market-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown market research report with structured sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Web-based market and competitor research can involve third-party review, social, financial, and research sources that handle submitted data under their own terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing private customer data, confidential business plans, or sensitive company information to third-party sites unless their terms and privacy handling are acceptable.
+
+Risk: Market data, reviews, social posts, and financial sources may be outdated, biased, incomplete, or misleading.
+
+Mitigation: Cross-check important findings against multiple reputable sources and document source names, publication dates, and confidence levels in the final report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/btizzy/skills/owl-market-research)
+- [ClawHub publisher profile](https://clawhub.ai/user/btizzy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market research report with headings, bullet lists, and a competitor comparison table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an executive summary, market overview, competitive landscape, customer profile, opportunities, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

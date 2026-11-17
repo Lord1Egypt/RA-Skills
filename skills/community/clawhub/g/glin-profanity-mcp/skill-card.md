@@ -1,40 +1,54 @@
-## Description: <br>
-MCP server providing profanity detection tools for AI assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Glin Profanity MCP provides profanity detection tools for AI assistants reviewing user content, moderation reports, and pre-publishing validation.
 
-## Publisher: <br>
-[thegdsks](https://clawhub.ai/user/thegdsks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thegdsks](https://clawhub.ai/user/thegdsks)
 
-## Use Case: <br>
-Developers, moderators, and content teams use this MCP server to review batches of user content, audit comments, validate content before publishing, and support human-in-the-loop moderation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User tracking tools can build moderation profiles without documented storage, deletion, or access controls. <br>
-Mitigation: Before enabling tracking tools, confirm data storage location, retention period, access permissions, and deletion or correction workflows for moderation history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/thegdsks/glin-profanity-mcp) <br>
-- [npm package: glin-profanity-mcp](https://www.npmjs.com/package/glin-profanity-mcp) <br>
-- [GitHub package source](https://github.com/GLINCKER/glin-profanity/tree/release/packages/mcp) <br>
-- [npm package: glin-profanity](https://www.npmjs.com/package/glin-profanity) <br>
+## Use Case:
 
+Developers and content moderation teams use this skill to add profanity detection and content review tools to AI assistant workflows for batch checks, audit reports, pre-publishing validation, and human-in-the-loop moderation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration snippets, shell commands, and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce moderation findings, censored text, safety scores, corpus summaries, language lists, regex patterns, and user-tracking summaries depending on the selected MCP tool.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installation guidance asks users to run a mutable npm MCP server.
+
+Mitigation: Review the npm package and pin a specific trusted version before installing.
+
+Risk: User tracking features can create user-level moderation history without clear data-handling guardrails.
+
+Mitigation: Use tracking features only where moderation policy permits storing user-level history, and confirm storage location, access controls, retention, and deletion procedures.
+
+## Reference(s):
+
+- [glin-profanity-mcp npm package](https://www.npmjs.com/package/glin-profanity-mcp)
+- [glin-profanity MCP source package](https://github.com/GLINCKER/glin-profanity/tree/release/packages/mcp)
+- [glin-profanity core library](https://www.npmjs.com/package/glin-profanity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Text or Markdown moderation results with optional JSON configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include profanity flags, censored text, safety scores, action recommendations, corpus statistics, regex patterns, and user moderation history when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

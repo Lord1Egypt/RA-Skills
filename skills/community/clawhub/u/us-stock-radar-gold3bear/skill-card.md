@@ -1,47 +1,62 @@
-## Description: <br>
-美股行情与舆情监控工具，支持 Yahoo Finance 行情查询、Google News RSS 新闻检索和 X/Twitter 舆情监控。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors U.S. stock indices, futures, major technology stocks, macro rates, and market news and social signals using public finance and news sources.
 
-## Publisher: <br>
-[gold3bear](https://clawhub.ai/user/gold3bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gold3bear](https://clawhub.ai/user/gold3bear)
 
-## Use Case: <br>
-External users and agents use this skill to check U.S. stock indices, futures, major technology stocks, macro rates, and recent market sentiment when answering market-monitoring questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and market questions may be sent to public finance, news, and social-search services. <br>
-Mitigation: Use the skill only when that external sharing is acceptable, and avoid submitting confidential trading plans or private portfolio details. <br>
-Risk: Market outputs can be delayed, incomplete, or unsuitable as financial advice. <br>
-Mitigation: Treat results as informational market data and verify important figures with authoritative sources before acting. <br>
-Risk: Running the scripts depends on local Python packages and public web endpoints. <br>
-Mitigation: Review and verify dependencies before execution, and expect graceful degradation when external services are unavailable. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve U.S. market snapshots, macro-rate context, and manual news and social lookup links for market monitoring and short-form commentary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gold3bear/us-stock-radar-gold3bear) <br>
-- [NY Fed latest reference rates API](https://markets.newyorkfed.org/api/rates/all/latest.json) <br>
-- [Yahoo Finance quote endpoint](https://query1.finance.yahoo.com/v7/finance/quote) <br>
-- [FRED graph CSV endpoint](https://fred.stlouisfed.org/graph/fredgraph.csv) <br>
-- [Google News RSS search](https://news.google.com/rss/search) <br>
-- [X search](https://x.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with market quotes, headlines, sentiment prompts, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market prices, percentage changes, macro-rate values, links to public data sources, and informational market commentary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Scheduled use can create repeated outbound requests to public finance, news, and social sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill on demand or schedule checks conservatively, and review the relevant data-source terms and operational limits before recurring use.
+
+Risk: News and X/Twitter links are manual lookup aids, not a complete sentiment-analysis system.
+
+Mitigation: Treat headlines and social posts as unverified signals and corroborate market-moving claims with reliable sources before acting on them.
+
+Risk: Market data can be delayed, unavailable, or incomplete during source outages or rate limits.
+
+Mitigation: Use the output as monitoring context rather than financial advice, and confirm critical values with authoritative market-data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gold3bear/skills/us-stock-radar-gold3bear)
+- [NY Fed latest reference rates API](https://markets.newyorkfed.org/api/rates/all/latest.json)
+- [FRED graph CSV endpoint](https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}&vintage_date={date})
+- [Yahoo Finance chart endpoint](https://query2.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=1d)
+- [Google News RSS market search](https://news.google.com/rss/search?q=US+stock+market+when:1h)
+- [X live market search](https://x.com/search?q=%24NVDA+%24TSLA+stock&f=live)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Chinese-language terminal text and concise market-monitoring guidance with runnable Python commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public outbound requests to finance, news, and social sites; no credential inputs are described.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

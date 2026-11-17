@@ -1,43 +1,60 @@
-## Description: <br>
-Provides a Taleb-style analytical lens for reasoning about black swans, antifragility, skin in the game, barbell strategy, precaution, Lindy effects, via negativa, convex experimentation, IYI patterns, and fat-tail risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language Taleb-inspired analysis using mental models such as black swan theory, antifragility, skin in the game, barbell strategy, precautionary principle, Lindy effect, Via Negativa, convex experimentation, IYI identification, and fat-tail reasoning.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and knowledge workers use this skill to examine risk management, investment decisions, strategic resilience, and uncertainty decisions through concepts associated with Nassim Taleb. It is best invoked explicitly when that analytical posture is desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms such as black swan or antifragile may activate the skill during ordinary risk, investing, or strategy conversations. <br>
-Mitigation: Prefer explicit invocation and disable or narrow the skill if it interrupts unrelated discussions. <br>
-Risk: The skill provides a stylized Taleb-inspired perspective and may produce overconfident or provocative analysis if treated as authoritative advice. <br>
-Mitigation: Use the output as one analytical lens, and review conclusions before applying them to financial, strategic, or risk decisions. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Chinese-language risk, strategy, investing, resilience, and uncertainty analysis through a Taleb-inspired perspective.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/taleb-perspective-v2) <br>
-- [Classic works matrix](artifact/CLASSIC_WORKS.md) <br>
-- [Connection matrix](artifact/CONNECTIONS.md) <br>
-- [Verification tests](artifact/VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code execution, shell commands, persistence, or data access are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Risk: Common Taleb-related terms may trigger this perspective when the user did not explicitly request it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope activation to explicit user intent or review responses for relevance when those terms appear in unrelated tasks.
+
+Risk: The skill may answer in Chinese even when the surrounding interaction expects another language.
+
+Mitigation: Set or enforce the host agent's language preference when responses need to be in a different language.
+
+Risk: The skill is an analytical lens based on public information and cannot represent Taleb's actual response to new questions.
+
+Mitigation: Treat outputs as perspective-based analysis, not as authentic statements by Taleb or as a substitute for current domain research.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/taleb-perspective-v2)
+- [Classic works knowledge matrix](artifact/CLASSIC_WORKS.md)
+- [Connections matrix](artifact/CONNECTIONS.md)
+- [Verification tests](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese unless the host agent applies a different language preference]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden install behavior is identified in the security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

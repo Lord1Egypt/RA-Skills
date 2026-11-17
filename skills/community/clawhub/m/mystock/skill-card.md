@@ -1,44 +1,60 @@
-## Description: <br>
-MyStock is a stock analysis assistant for quotes, market analysis, limit-up tracking, shareholder activity, investment research, portfolio management, and AI-assisted stock questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mystock is a stock analysis assistant for quotes, limit-up tracking, shareholder activity, portfolio notes, and AI-assisted investment research.
 
-## Publisher: <br>
-[wangz](https://clawhub.ai/user/wangz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangz](https://clawhub.ai/user/wangz)
 
-## Use Case: <br>
-Investors, analysts, and agent users use this skill to query Chinese stock data, review watchlists and portfolio notes, inspect limit-up and shareholder activity signals, and draft AI-assisted market analysis. It supports local web UI workflows and API-backed responses for stock research, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local finance API is unauthenticated and may expose portfolio, watchlist, memo, stock-search, or chat data if reachable beyond the intended host. <br>
-Mitigation: Bind the backend to localhost, add authentication before shared deployment, and review network exposure before use. <br>
-Risk: Stock searches, chat messages, and portfolio or watchlist context may be shared with configured market-data or AI providers. <br>
-Mitigation: Use the default non-AI mode or explicit opt-in for AI chat, and avoid sending sensitive portfolio context to external providers unless acceptable. <br>
-Risk: The security review flags broader exposure of sensitive portfolio-related data than users are clearly told. <br>
-Mitigation: Present clear user notice about data sharing and review the implementation before installation. <br>
+## Use Case:
 
+External users and developers use Mystock to run a local stock analysis assistant that retrieves market data, tracks watchlists and memos, reviews limit-up and shareholder activity, and asks optional AI providers for investment research support.
 
-## Reference(s): <br>
-- [Mystock ClawHub page](https://clawhub.ai/wangz/mystock) <br>
-- [Usage examples](references/usage_examples.md) <br>
-- [AI service configuration](backend/AI_CONFIG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, local API examples, and stock-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local portfolio, watchlist, memo, market-data, and configured AI-provider context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata and skill frontmatter) <br>
+Risk: The local service can expose and mutate portfolio and memo data without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted local machine or network, avoid exposing port 8000, and remove bundled portfolio or memo data before use or redistribution.
+
+Risk: Financial context and API keys may be sent to configured external AI providers.
+
+Mitigation: Do not configure AI keys until provider destinations and transmitted data are clear; rotate any real key used with the zhipu option.
+
+Risk: Stock data and AI-generated analysis can be delayed, incomplete, or misleading for investment decisions.
+
+Mitigation: Treat outputs as research support, verify critical information through official sources, and avoid relying on the skill as financial advice.
+
+## Reference(s):
+
+- [ClawHub Mystock Skill Page](https://clawhub.ai/wangz/skills/mystock)
+- [README](artifact/README.md)
+- [Usage Examples](artifact/references/usage_examples.md)
+- [AI Service Configuration Guide](artifact/backend/AI_CONFIG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text responses with API examples, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local API calls, portfolio and memo updates, and stock-analysis guidance; financial outputs should be verified before use.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

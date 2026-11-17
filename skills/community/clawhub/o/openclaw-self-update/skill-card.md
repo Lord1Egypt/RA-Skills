@@ -1,41 +1,55 @@
-## Description: <br>
-Update OpenClaw to the latest version for npm-installed OpenClaw instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Update npm-installed OpenClaw instances to the latest version with version checks, global npm install commands, gateway restart, and verification.
 
-## Publisher: <br>
-[jchen0824](https://clawhub.ai/user/jchen0824) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jchen0824](https://clawhub.ai/user/jchen0824)
 
-## Use Case: <br>
-Developers and operators use this skill to check for OpenClaw updates, upgrade npm-installed OpenClaw, restart the gateway, and verify the installed version. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace a global OpenClaw installation. <br>
-Mitigation: Confirm the intended OpenClaw version and review the npm release source before running update commands. <br>
-Risk: The skill restarts the OpenClaw gateway and may cause downtime. <br>
-Mitigation: Run it during an acceptable maintenance window and verify gateway health after restart. <br>
-Risk: Troubleshooting guidance mentions sudo for global npm installation. <br>
-Mitigation: Avoid sudo unless the package, environment, and permission model are fully trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Self-Update ClawHub listing](https://clawhub.ai/jchen0824/openclaw-self-update) <br>
+## Use Case:
+
+Developers and operators use this skill to check, update, restart, and verify npm-installed OpenClaw deployments. It provides manual update commands and an automated shell script for routine OpenClaw maintenance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The update path installs the unpinned latest OpenClaw npm release, so the exact package version can change between review and execution.
+
+Mitigation: Prefer an exact OpenClaw version and verify the npm release source before running the script or copied commands.
+
+Risk: Restarting the OpenClaw gateway can interrupt active work or services.
+
+Mitigation: Run during a maintenance window, verify gateway health afterward, and keep a rollback plan available.
+
+Risk: Using elevated permissions for a global npm install expands the impact of a compromised or incorrect package.
+
+Mitigation: Avoid sudo npm install where possible and use a controlled Node.js or package-management environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash commands and an optional shell script workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute npm global installation and OpenClaw gateway restart commands when followed by an agent or operator.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [markdown, shell commands, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash command blocks and a shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands update the global OpenClaw npm package, restart the gateway, and verify the resulting version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

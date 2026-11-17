@@ -1,43 +1,60 @@
-## Description: <br>
-Fail-closed security auditing for OpenClaw/ClawHub skills and repos: trufflehog secrets scanning, semgrep SAST, prompt-injection and persistence signals, and supply-chain hygiene checks before enabling or installing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fail-closed security auditing for OpenClaw/ClawHub skills and repositories: trufflehog secrets scanning, semgrep SAST, prompt-injection and persistence signals, and supply-chain hygiene checks before enabling or installing.
 
-## Publisher: <br>
-[virtaava](https://clawhub.ai/user/virtaava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[virtaava](https://clawhub.ai/user/virtaava)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to run fail-closed audits of OpenClaw/ClawHub skills or codebases before enabling, installing, or promoting them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A bundled convenience wrapper may run from a hard-coded local workspace and report success even when the audit fails. <br>
-Mitigation: Use the main command, bash scripts/run_audit_json.sh <path>, and check the JSON .ok result; avoid using scripts/security_audit.sh for CI or install gates unless it is patched to use the bundled runner by relative path, require an explicit target, and propagate failure status. <br>
-Risk: The audit depends on local scanner tools, so missing jq, trufflehog, semgrep, or python3 can prevent a complete result. <br>
-Mitigation: Install the required tools before use and treat missing-tool results as failed audits until the environment is fixed. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit codebases and OpenClaw/ClawHub skill bundles for secrets, static-analysis findings, prompt-injection signals, persistence mechanisms, and supply-chain hygiene issues before enabling or installing them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/virtaava/sona-security-audit) <br>
-- [OpenClaw Skill Manifest Schema](docs/OPENCLAW_SKILL_MANIFEST_SCHEMA.md) <br>
-- [Zero-trust install workflow](docs/README_ZERO_TRUST_INSTALL.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audit results are emitted as JSON; shell examples expect jq, trufflehog, semgrep, and python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: openclaw-skill.json and server release metadata) <br>
+Risk: The convenience wrapper can run an unreviewed hard-coded external audit script instead of the packaged runner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke artifact/scripts/run_audit_json.sh directly from the skill directory until the wrapper is fixed to call the packaged runner.
+
+Risk: The advertised fail-closed behavior is not reliably enforced when callers rely only on the wrapper's shell exit status.
+
+Mitigation: Parse the JSON .ok field and scanner error state, and treat scanner errors or ok=false as audit failure.
+
+Risk: The audit processes untrusted repositories and skill bundles using subprocess-based scanners.
+
+Mitigation: Run audits in a read-only, network-denied sandbox against an explicit target path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/virtaava/skills/sona-security-audit)
+- [OpenClaw Skill Manifest Schema](artifact/docs/OPENCLAW_SKILL_MANIFEST_SCHEMA.md)
+- [Zero-Trust Install Workflow](artifact/docs/README_ZERO_TRUST_INSTALL.md)
+- [OpenClaw Skill Manifest](artifact/openclaw-skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Analysis, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit strictness is configurable with OPENCLAW_AUDIT_LEVEL=standard|strict|paranoid; callers should parse the JSON ok field and scanner error state.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata and openclaw-skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

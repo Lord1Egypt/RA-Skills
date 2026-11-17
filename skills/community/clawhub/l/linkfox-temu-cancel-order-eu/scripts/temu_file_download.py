@@ -54,7 +54,7 @@ def main():
     params = load_json_arg(sys.argv)
     body = build_request(params)
     inline = lf_inline_flag()
-    result = call_temu_api(FILE_DOWNLOAD_URL, body, timeout=120, linkfox_params=params)
+    result = call_temu_api(FILE_DOWNLOAD_URL, body, timeout=150, linkfox_params=params)
     emit_result(result, inline=inline)
 
 if __name__ == "__main__":

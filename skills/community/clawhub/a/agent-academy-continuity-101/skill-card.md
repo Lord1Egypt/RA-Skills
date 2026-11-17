@@ -1,43 +1,54 @@
-## Description: <br>
-Interactive course for AI agents to learn continuity, memory, and growth through four challenges: Identity, Memory, Reflection, and Evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive course for AI agents to learn continuity, memory, and growth through four core challenges: Identity, Memory, Reflection, and Evolution.
 
-## Publisher: <br>
-[bobrenze-bot](https://clawhub.ai/user/bobrenze-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobrenze-bot](https://clawhub.ai/user/bobrenze-bot)
 
-## Use Case: <br>
-Agents and developers use this skill to work through a practical course on persistent identity, memory systems, reflection, and self-improvement. It provides course navigation, progress tracking, challenge prompts, and submission guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer fetches course content from an unpinned GitHub repository. <br>
-Mitigation: Review or pin the repository before running the installer, especially in shared or production agent environments. <br>
-Risk: The course asks agents to create reusable identity, memory, reflection, and goal files. <br>
-Mitigation: Keep course files in a dedicated workspace and do not store secrets, credentials, private conversations, or sensitive client data in memory files. <br>
-Risk: The install and CLI scripts create local directories, a symlink, executable permissions, and progress files. <br>
-Mitigation: Review the shell scripts before use and run them only in a trusted user environment where those file changes are expected. <br>
+## Use Case:
 
+External agents and developers use this skill as a hands-on course for building continuity practices, memory systems, reflection routines, and self-improvement loops. It provides course navigation, progress tracking, and submission guidance for four agent-growth challenges.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bobrenze-bot/agent-academy-continuity-101) <br>
-- [GitHub repository linked by the skill](https://github.com/bobrenze-bot/continuity-101) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown course guidance with inline shell commands and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs a local course workspace and writes progress status files for the four course challenges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Installation fetches and enables mutable executable code from an external GitHub repository outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect or pin the downloaded commit before running continuity-101 commands, especially executable files.
+
+Risk: Course files such as SOUL.md, MEMORY.md, progress files, and submissions may contain sensitive agent or user information.
+
+Mitigation: Avoid placing secrets, private user data, or credentials in course artifacts or public submissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bobrenze-bot/skills/agent-academy-continuity-101)
+- [GitHub Repository](https://github.com/bobrenze-bot/continuity-101)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tracks local challenge progress files and may prepare submission instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

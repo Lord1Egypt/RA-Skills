@@ -1,41 +1,54 @@
-## Description: <br>
-Sends Enterprise WeChat group notifications as text or Markdown through a configured webhook, with examples for immediate and scheduled reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends text or Markdown notifications to Enterprise WeChat group webhooks, including optional user mentions and scheduled reminder examples.
 
-## Publisher: <br>
-[xiekch](https://clawhub.ai/user/xiekch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiekch](https://clawhub.ai/user/xiekch)
 
-## Use Case: <br>
-Developers and operators use this skill to send Enterprise WeChat group alerts, reminders, and Markdown status updates from an agent or scheduled OpenClaw cron task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook keys can authorize messages to an Enterprise WeChat group if exposed. <br>
-Mitigation: Treat the webhook key like a password, avoid sharing it, and rotate the Enterprise WeChat group bot webhook if it is leaked. <br>
-Risk: Scheduled reminders may send unwanted or sensitive content if configured incorrectly. <br>
-Mitigation: Test with harmless content first, avoid secrets or sensitive personal data in scheduled messages, and remove cron jobs that are no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to send WeCom group notifications from an agent or shell command, and to set up recurring reminder tasks with OpenClaw cron.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiekch/wecom-webhook) <br>
-- [Publisher profile](https://clawhub.ai/user/xiekch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces webhook request guidance and shell commands; runtime sends outbound Enterprise WeChat webhook messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Webhook keys can be exposed through shell history, cron task text, or shared command examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing live webhook keys directly in reusable command text, rotate any exposed key, and restrict access to important group webhooks.
+
+Risk: Untrusted message content can alter, break, or malformed the shell-constructed JSON payload.
+
+Mitigation: Review or sanitize forwarded content before passing it to the script, especially quoted strings and crafted values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiekch/skills/wecom-webhook)
+- [Enterprise WeChat webhook endpoint](https://qyapi.weixin.qq.com/cgi-bin/webhook/send)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a WeCom webhook key and curl; supports text, Markdown, userid mentions, and mobile-number mentions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

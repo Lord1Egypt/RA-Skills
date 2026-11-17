@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Ayrshare"
   author: "OOMOL"
-  version: "1.0.3"
+  version: "1.0.8"
   services: ["ayrshare"]
   icon: "https://static.oomol.com/logo/third-party/ayrshare.png"
 ---
@@ -37,16 +37,16 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `check_post_length` — Check weighted social post length and platform validity using Ayrshare's post length validator. [write]
+- `check_post_length` — Check weighted social post length and platform validity using Ayrshare's post length validator.
 - `delete_post` — Delete one or more Ayrshare posts, delete all pending scheduled posts, or mark a post as manually deleted. [destructive]
-- `get_post` — Get one Ayrshare post by top-level Ayrshare post ID, including status and per-platform results. [write]
-- `get_post_analytics` — Get real-time analytics for an Ayrshare post, optionally limited to selected social platforms. [write]
+- `get_post` — Get one Ayrshare post by top-level Ayrshare post ID, including status and per-platform results.
+- `get_post_analytics` — Get real-time analytics for an Ayrshare post, optionally limited to selected social platforms.
 - `get_user_profile` — Get Ayrshare account or user profile details, including linked social accounts and usage metadata.
-- `list_post_history` — List Ayrshare post history with optional filters for date range, status, type, and social platforms. [write]
+- `list_post_history` — List Ayrshare post history with optional filters for date range, status, type, and social platforms.
 - `publish_post` — Publish or schedule a social media post through Ayrshare using a JSON-friendly first-pass field set. [write]
 - `retry_post` — Retry an Ayrshare post whose previous publish attempt failed, returning the new pending post status. [write]
-- `update_post` — Update mutable Ayrshare post metadata such as scheduleDate, approval status, notes, pause state, comments, or YouTube visibility. [write]
-- `validate_post` — Validate an Ayrshare post payload before publishing, including platform and media URL checks. [write]
+- `update_post` — Update mutable Ayrshare post metadata such as scheduleDate, approval status, notes, pause state, comments, or YouTube visibility. [destructive]
+- `validate_post` — Validate an Ayrshare post payload before publishing, including platform and media URL checks.
 - `verify_media_url` — Verify that a media URL exists and is accessible to Ayrshare.
 
 ## Safety
@@ -78,11 +78,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Ayrshare is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=ayrshare
+  https://console.oomol.com/connections/ayrshare
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Ayrshare homepage: https://www.ayrshare.com/
+- API documentation: https://www.ayrshare.com/docs/apis/overview

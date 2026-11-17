@@ -1,41 +1,57 @@
-## Description: <br>
-Quality control data analysis MCP server for parsing QC data, running SPC control charts and process capability analysis, fitting reliability distributions, and generating Markdown QC reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quality control data analysis MCP server for parsing QC data, running SPC control charts and process capability analysis, performing reliability and Weibull analysis, and generating QC reports.
 
-## Publisher: <br>
-[daizehua-wq](https://clawhub.ai/user/daizehua-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daizehua-wq](https://clawhub.ai/user/daizehua-wq)
 
-## Use Case: <br>
-Manufacturing quality engineers and agent developers use this skill to parse CSV or Excel quality data, run SPC and reliability analyses, and generate Markdown QC reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server reads local CSV and Excel files that the agent is asked to analyze. <br>
-Mitigation: Install it only where the server can access the intended QC files, and avoid pointing it at sensitive unrelated files. <br>
-Risk: Production use depends on third-party Python packages for data parsing, numerical analysis, and reliability fitting. <br>
-Mitigation: Pin or lock dependencies to reviewed versions before production deployment. <br>
+## Use Case:
 
+Quality engineers, manufacturing teams, and developers use this skill to parse CSV or Excel QC datasets, run SPC and reliability analysis, and generate Markdown QC reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daizehua-wq/skills/qc-data-processor) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON analysis results and Markdown reports, with configuration and shell command examples in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are text-based; the artifact states that it produces no images or GUI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: MCP tools can read CSV or Excel paths available to the server process without built-in path scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the server with filesystem access limited to the intended QC data directory and avoid broad home, shared-drive, customer, finance, or HR locations unless authorized.
+
+Risk: Dependencies are specified as version ranges rather than a reviewed lockfile.
+
+Mitigation: Use pinned dependencies or a reviewed lockfile before production deployment.
+
+Risk: Statistical outputs may influence quality or reliability decisions if source columns, specifications, or assumptions are wrong.
+
+Mitigation: Have a qualified reviewer validate the dataset, selected columns, specification limits, and analysis assumptions before acting on the results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daizehua-wq/skills/qc-data-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [JSON analysis results and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports CSV, XLSX, and XLS inputs; outputs text and JSON data without images or GUI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

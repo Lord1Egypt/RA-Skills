@@ -1,8 +1,10 @@
 openapi: 3.0.3
 info:
   title: FarmDash Futures Strategist API
-  version: 2.0.0
+  version: 2.1.0
   description: |
+    WARNING: Running trade executions and cancellations places real perpetual futures trades and alters active market exposure, carrying significant risk of financial loss. In USER_SIGNED, Immediate, explicit manual end-user confirmation is required for every execution or cancellation. In BOUNDED_AUTONOMOUS, an owner-signed futures policy and valid session, venue authority, exact local signature, scopes and quantitative checks replace per-order human approval. Read x-farmdash-capability-truth and the live status endpoint; policy registration or paid access never bypasses authority or runtime gates. FarmDash never receives private keys.
+
     REST API for payment-enabled AI agents to research, analyze, and prepare user-approved
     execution of perpetual futures trades on Hyperliquid as part of FarmDash DeFi discovery and onchain services. The Futures Strategist is an
     adaptive execution engine: it returns structured strategy objects,
@@ -11,39 +13,123 @@ info:
 
     ## Authentication
     - **Primary optional credential**: `Authorization: Bearer <FARMDASH_API_KEY>`.
-    - **Scout (Free)**: Omit the bearer token. Safe for initial testing and limited research.
-    - **Pioneer**: Use a Pioneer-tier `FARMDASH_API_KEY`. Full analysis and sizing.
-    - **Syndicate**: Use a Syndicate-tier `FARMDASH_API_KEY`. Execution and batch cancel endpoints enabled.
+    - **Scout (Free)**: Omit the bearer token. Shared limit is 30 requests / 24h. Funding preview, market conditions, and signed order/cancel capacity are available inside that quota; account state, strategy analysis, and sizing use Pioneer or eligible x402 one-offs.
+    - **Pioneer**: Use a Pioneer-tier `FARMDASH_API_KEY`. Full eligible analysis/sizing and signed execution capacity up to 1,500 requests / day.
+    - **Syndicate**: Use a Syndicate-tier `FARMDASH_API_KEY`. Full eligible analysis/sizing and signed execution capacity up to 50,000 requests / day.
     - **Execution auth**: `execute-order` and `cancel-order` require a fresh EIP-712 signature from the user's Hyperliquid API wallet on every request.
+    - **Signer binding**: FarmDash recovers the signer from the exact Hyperliquid L1 action, nonce, expiry, environment, and any subaccount/vault routing address and rejects a mismatch with `agentAddress`.
+    - **Delegation binding**: when `accountAddress` differs, Hyperliquid `userRole` must report `agentAddress` as its active API wallet; if the owner is a subaccount or vault, that address is included as `vaultAddress` in both the signature hash and exchange request. Ambiguity fails closed.
     - **Important**: The bearer token gates FarmDash tier access and rate limits only. It never replaces the per-request EIP-712 signature and does not let FarmDash sign on the user's behalf.
 
     ## Hard Guardrails (Server-Enforced)
     - Max leverage: 5x
     - Max risk per trade: 2% of equity before adaptive reductions
     - Daily loss limit: -3% -> trading halted 24h
-    - Research required before execution (analyze-strategy within 5 min)
+    - Research required before risk-increasing execution (analyze-strategy within 60 seconds); proven bounded reducing/cancel actions do not require unused entry capacity but retain all authority and signature checks.
 
     ## Intent Hardening
     `execute-order` requires `nonce`, `expiresAt`, and `intentHash` for
-    deterministic, auditable order intents. `cancel-order` keeps those fields
-    optional for backward-compatible cancel flows.
+    deterministic, auditable order intents. `cancel-order` also requires them.
 
     ## Dust Storm Protocol
     Upstream failures return `ok:false` with typed degraded state and
-    `dust_storm` warnings. Agents should retry only after inspecting the
-    degraded state and any stale-data age.
+    `dust_storm` warnings. Read-only research may be retried after inspecting
+    degraded state and stale-data age. Never resubmit an ambiguous signed venue
+    action: reconcile its original durable control identity and retain liability.
   contact:
     name: FarmDash Engineering
     url: https://www.farmdash.one/agents
   license:
     name: MIT
-
 servers:
   - url: https://www.farmdash.one/api
     description: Production
-
 paths:
+  /v1/agent/authority:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
+    post:
+      operationId: manageFuturesAuthority
+      summary: Request, register, inspect or revoke an owner-signed bounded futures policy
+      description: Session token authenticates the durable session; only owner EIP-712 signature creates authority. Independent from venue delegation and commercial entitlement. Read x-farmdash-capability-truth and live domain status; every authority and runtime prerequisite remains mandatory.
+      parameters:
+        - name: X-FarmDash-Session-Token
+          in: header
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - action
+              properties:
+                action:
+                  type: string
+                  enum:
+                    - request_futures_policy
+                    - register_futures_policy
+                    - get_futures_authority
+                    - revoke_futures_policy
+                policy:
+                  $ref: '#/components/schemas/FuturesPolicy'
+                signature:
+                  type: string
+                  description: Owner EIP-712 signature; required for register_futures_policy
+                sessionId:
+                  type: string
+                  description: Required for get/revoke; request/register use policy.sessionId
+                sessionToken:
+                  type: string
+                grantId:
+                  type: string
+                  description: Required for revoke; optional exact grant filter for get
+            examples:
+              default:
+                summary: manageFuturesAuthority request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  action: request_futures_policy
+      responses:
+        '200':
+          description: Validated policy typed data, registered grant, durable grant utilization, or revocation result
+          x-farmdash-response-example:
+            status: 200
+            description: Validated policy typed data, registered grant, durable grant utilization, or revocation result
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '400':
+          description: Invalid input
+          x-farmdash-response-example:
+            status: 400
+            description: Invalid input
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '403':
+          description: Session, owner or policy verification denied
+          x-farmdash-response-example:
+            status: 403
+            description: Session, owner or policy verification denied
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '503':
+          description: Durable authority storage unavailable; fail closed
+          x-farmdash-response-example:
+            status: 503
+            description: Durable authority storage unavailable; fail closed
+            body: null
+            note: Documents status semantics without inventing a response payload.
   /v1/agent/futures/scan-funding:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: scanFundingRates
       summary: Scan all Hyperliquid funding rates for arb opportunities
@@ -51,8 +137,10 @@ paths:
         Returns current and predicted funding rates across all Hyperliquid perp
         markets. Cross-references with Binance and Bybit to identify arbitrage
         opportunities where HL funding diverges from other venues.
-        Scout tier receives top 3 opportunities with encrypted numerics.
-      tags: [Research]
+        Scout receives the top 3 opportunities with ordinary numeric fields. After the Scout quota, the `default_overage` x402 one-off ($0.01 USDC by default) returns Pioneer-depth data for that request.
+        Only default-DEX Hyperliquid markets are returned. Namespaced HIP-3 perp-DEX markets (for example `HYNA:ETH`) are unsupported end-to-end, so they are filtered out here rather than ranked and then refused at execution.
+      tags:
+        - Research
       security:
         - bearerAuth: []
         - {}
@@ -80,10 +168,37 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Warning'
+              examples:
+                success:
+                  summary: scanFundingRates HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    arbOpportunities:
+                      - arbDirection: long_spot_short_perp
+                    highFunding:
+                      - arbDirection: long_spot_short_perp
+                    totalScanned: 1
+                    warnings:
+                      - kind: unknown
+                        message: Illustrative FarmDash API example.
         '429':
           description: Rate limit exceeded
-
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/futures/scan-funding
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
   /v1/agent/futures/market-conditions:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: getMarketConditions
       summary: Get technical indicators for an asset
@@ -91,7 +206,8 @@ paths:
         Returns EMA-8/34, RSI-14, MACD(12,26,9), ATR-14, Bollinger Bands(20,2),
         ADX-14, volume ratio, and Z-score for a given asset using 4h candles.
         Includes a strategy hint based on indicator confluence.
-      tags: [Research]
+      tags:
+        - Research
       security:
         - bearerAuth: []
         - {}
@@ -118,20 +234,53 @@ paths:
                     $ref: '#/components/schemas/TechnicalIndicators'
                   strategyHint:
                     type: string
-                    enum: [momentum_long, momentum_short, trend_pullback_long, trend_pullback_short, mean_reversion, no_trade]
-
+                    enum:
+                      - momentum_long
+                      - momentum_short
+                      - trend_pullback_long
+                      - trend_pullback_short
+                      - mean_reversion
+                      - no_trade
+              examples:
+                success:
+                  summary: getMarketConditions HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    strategyHint: momentum_long
+        '422':
+          description: 'Namespaced HIP-3 perp-DEX market is unsupported. The body carries `code: perp_dex_namespace_unsupported` with the requested `market` and its `dex`; trade a default-DEX market instead.'
+          x-farmdash-response-example:
+            status: 422
+            description: 'Namespaced HIP-3 perp-DEX market is unsupported. The body carries `code: perp_dex_namespace_unsupported` with the requested `market` and its `dex`; trade a default-DEX market instead.'
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/futures/market-conditions?coin=ETH
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
   /v1/agent/futures/account-state:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: getAccountState
       summary: Get agent's Hyperliquid positions and risk state
       description: |
         Returns the agent's current positions, margin summary, equity,
-        unrealized PnL, liquidation prices, and risk management state
-        (daily/weekly PnL, drawdown, halt status).
-        This is a read-only lookup against the public Hyperliquid API wallet
-        address supplied in `agentAddress`. It does not require a private key
-        or seed phrase.
-      tags: [Account]
+        unrealized PnL, liquidation prices, and risk management state.
+        Daily/weekly values are conservative loss-pressure metrics: rolling
+        closed PnL minus absolute fill fees plus funding and negative current
+        unrealized PnL only. Positive open gains cannot mask a realized-loss
+        breach; these fields are not full period-return calculations.
+        `agentAddress` identifies the API signer/FarmDash caller. For a
+        delegated API wallet, `accountAddress` must identify the Hyperliquid
+        master or subaccount that actually owns the equity and positions. Omit
+        `accountAddress` only when the signer directly owns the account. It does not require a private key or seed phrase. The
+        signer/owner relationship is verified against Hyperliquid `userRole`.
+      tags:
+        - Account
       security:
         - bearerAuth: []
         - {}
@@ -141,8 +290,15 @@ paths:
           required: true
           schema:
             type: string
-            pattern: '^0x[a-fA-F0-9]{40}$'
-          description: Agent's EVM address (Hyperliquid API wallet)
+            pattern: ^0x[a-fA-F0-9]{40}$
+          description: EIP-712/API-wallet signer and FarmDash caller identity
+        - name: accountAddress
+          in: query
+          required: false
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
+          description: Hyperliquid master/subaccount that owns the equity. Defaults to agentAddress only for a direct signer.
       responses:
         '200':
           description: Account state with risk info
@@ -163,8 +319,41 @@ paths:
                     $ref: '#/components/schemas/RiskState'
                   guardrails:
                     $ref: '#/components/schemas/Guardrails'
-
+              examples:
+                success:
+                  summary: getAccountState HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    account:
+                      accountAddress: '0x1111111111111111111111111111111111111111'
+                      equity: example
+                      totalNotionalPosition: '1'
+                      marginUsed: example
+                      availableMargin: example
+                      aggregateLeverage: example
+                    positions:
+                      - side: long
+                        leverageType: cross
+                    risk:
+                      pnlSource: hyperliquid_venue_loss_pressure
+                    guardrails:
+                      maxLeverage: 1
+                      maxRiskPerTrade: '1'
+                      maxPositions: 1
+                      dailyLossLimit: example
+                      weeklyLossLimit: example
+                      maxDrawdown: example
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/futures/account-state?agentAddress=0x1111111111111111111111111111111111111111
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
   /v1/agent/futures/analyze-strategy:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     post:
       operationId: analyzeStrategy
       summary: Full research pipeline with strategy recommendation
@@ -172,30 +361,45 @@ paths:
         Runs the complete research pipeline: funding rates, technical indicators,
         order book liquidity, Trail Heat cross-reference, and risk budget.
         Returns a single actionable strategy recommendation with position sizing.
-        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Pioneer or
-        Syndicate tier. The bearer token unlocks the analysis tier only; it does
-        not authorize trade execution by itself.
-      tags: [Strategy]
+        Requires Pioneer/Syndicate capacity or an eligible `futures_strategy` x402 one-off ($0.20 USDC by default). The bearer token or payment controls API capacity only; it does not authorize trade execution.
+        For a delegated API wallet, set `accountAddress` to the master/subaccount
+        whose equity and venue history must determine size and loss guards.
+      tags:
+        - Strategy
       security:
         - bearerAuth: []
+        - {}
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [coin, agentAddress]
+              required:
+                - coin
+                - agentAddress
               properties:
                 coin:
                   type: string
                   description: Asset symbol (e.g., ETH, BTC, SOL)
                 agentAddress:
                   type: string
-                  pattern: '^0x[a-fA-F0-9]{40}$'
-                  description: Agent's Hyperliquid API wallet address
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: EIP-712/API-wallet signer and FarmDash caller identity
+                accountAddress:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: Hyperliquid master/subaccount that owns the equity. Defaults to agentAddress only for a direct signer.
                 riskMultiplier:
                   type: number
                   description: Optional flexibility modifier for risk tolerance. 1.0 is default (2% max). 0.5 is conservative (1% max). Server caps at 1.0.
+            examples:
+              default:
+                summary: analyzeStrategy request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  coin: ETH
+                  agentAddress: '0x1111111111111111111111111111111111111111'
       responses:
         '200':
           description: Strategy recommendation
@@ -214,31 +418,168 @@ paths:
                     $ref: '#/components/schemas/Guardrails'
                   researchGate:
                     type: object
-                    description: Market-bound research gate required by execute-order.
+                    description: Sixty-second research gate binding market, side, maximum size, entry drift, leverage metadata, and stop-derived risk.
                     properties:
                       scope:
                         type: string
-                        enum: [agent_market_direction]
+                        enum:
+                          - agent_market_direction_size_entry_leverage_risk
                       agentAddress:
                         type: string
+                      accountAddress:
+                        type: string
+                        description: Equity owner bound into sizing and execution authorization.
                       coin:
                         type: string
                       direction:
                         type: string
-                        enum: [long, short, neutral, unknown]
+                        enum:
+                          - long
+                          - short
+                          - neutral
+                          - unknown
                       confidence:
                         type: number
                         nullable: true
+                        description: Heuristic score on a 0-100 scale; not a calibrated probability.
+                      confidenceScale:
+                        type: string
+                      strategy:
+                        type: string
+                      entry:
+                        type: number
+                        nullable: true
+                      stopLoss:
+                        type: number
+                        nullable: true
+                      maxPositionSize:
+                        type: number
+                        nullable: true
+                      maxLeverage:
+                        type: number
+                        nullable: true
+                      riskPercent:
+                        type: number
+                        nullable: true
+                      executionReady:
+                        type: boolean
+                      maxEntryDeviationBps:
+                        type: number
                       recommendationHash:
                         type: string
                       expiresAt:
                         type: integer
                       requiredForExecution:
                         type: boolean
+              examples:
+                success:
+                  summary: analyzeStrategy HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    recommendation:
+                      recommendedStrategy: funding_arb
+                    account:
+                      accountAddress: '0x1111111111111111111111111111111111111111'
+                      equity: example
+                      totalNotionalPosition: '1'
+                      marginUsed: example
+                      availableMargin: example
+                      aggregateLeverage: example
+                    guardrails:
+                      maxLeverage: 1
+                      maxRiskPerTrade: '1'
+                      maxPositions: 1
+                      dailyLossLimit: example
+                      weeklyLossLimit: example
+                      maxDrawdown: example
+                    researchGate:
+                      scope: agent_market_direction_size_entry_leverage_risk
+                      direction: long
         '402':
-          description: Pioneer tier required
-
+          description: Scout quota exhausted; a paid tier or accepted x402 overage is required
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '422':
+          description: 'Namespaced HIP-3 perp-DEX market is unsupported. The body carries `code: perp_dex_namespace_unsupported` with the requested `market` and its `dex`; trade a default-DEX market instead.'
+          x-farmdash-response-example:
+            status: 422
+            description: 'Namespaced HIP-3 perp-DEX market is unsupported. The body carries `code: perp_dex_namespace_unsupported` with the requested `market` and its `dex`; trade a default-DEX market instead.'
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-simulation:
+        kind: heuristic_research
+        side_effects: none
+        authoritative_for_execution: false
+        required_before_execution: false
+        grants_execution_authority: false
+        broadcasts_transaction: false
+        proves_settlement: false
+        next_step: If research supports action, obtain current account state, size the position, and use the separately authorized prepare/sign/execute flow.
   /v1/agent/futures/position-sizing:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     post:
       operationId: calculatePositionSize
       summary: Position size calculator with guardrail enforcement
@@ -246,9 +587,9 @@ paths:
         Given entry price, stop price, account equity, and risk percentage,
         returns the exact position size, leverage, and margin required.
         All guardrails enforced server-side (max leverage 5x, max risk 2%).
-        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Pioneer or
-        Syndicate tier.
-      tags: [Strategy]
+        Requires Pioneer/Syndicate capacity or an eligible `futures_strategy` x402 one-off ($0.20 USDC by default).
+      tags:
+        - Strategy
       security:
         - bearerAuth: []
       requestBody:
@@ -257,7 +598,10 @@ paths:
           application/json:
             schema:
               type: object
-              required: [equity, entryPrice, stopPrice]
+              required:
+                - equity
+                - entryPrice
+                - stopPrice
               properties:
                 equity:
                   type: number
@@ -277,6 +621,14 @@ paths:
                 riskMultiplier:
                   type: number
                   description: Optional flexibility modifier for risk tolerance. 1.0 is default (2% max). 0.5 is conservative (1% max). Server caps at 1.0.
+            examples:
+              default:
+                summary: calculatePositionSize request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  equity: 1
+                  entryPrice: 1
+                  stopPrice: 1
       responses:
         '200':
           description: Position sizing result
@@ -291,36 +643,385 @@ paths:
                     $ref: '#/components/schemas/PositionSizing'
                   guardrails:
                     $ref: '#/components/schemas/Guardrails'
+              examples:
+                success:
+                  summary: calculatePositionSize HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    sizing:
+                      positionSize: 1
+                      positionValueUsd: 1
+                      leverage: 1
+                      marginRequired: 1
+                      riskAmount: 1
+                      riskPercent: 1
+                      stopDistance: 1
+                      rewardRiskRatio: 1
+                    guardrails:
+                      maxLeverage: 1
+                      maxRiskPerTrade: '1'
+                      maxPositions: 1
+                      dailyLossLimit: example
+                      weeklyLossLimit: example
+                      maxDrawdown: example
         '402':
           description: Pioneer tier required
-
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+  /v1/agent/futures/prepare-order:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
+    post:
+      operationId: prepareFuturesOrder
+      summary: Prepare an exact Hyperliquid order for local EIP-712 signing
+      description: |
+        Zero-custody execution bootstrap. FarmDash validates account authority,
+        fresh execution-ready research for new risk, builder-fee approval and
+        market_ioc price protection, then returns the exact Hyperliquid action,
+        nonce, expiresAt, intentHash and EIP-712 typed data. FarmDash does not
+        sign or submit. Sign typedData locally with agentAddress, then POST
+        { ...executeRequest, signature } to /v1/agent/futures/execute-order.
+      tags:
+        - Execution
+      security:
+        - bearerAuth: []
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrepareOrderRequest'
+            examples:
+              default:
+                summary: prepareFuturesOrder request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  agentAddress: '0x1111111111111111111111111111111111111111'
+                  coin: ETH
+                  isBuy: true
+                  size: '1'
+                  price: '1'
+                  orderType: limit_gtc
+                  reduceOnly: false
+                  executionMode: USER_SIGNED
+      responses:
+        '200':
+          description: Exact signable preparation; no venue submission occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrepareOrderResponse'
+              examples:
+                success:
+                  summary: prepareFuturesOrder HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    state: READY_FOR_LOCAL_SIGNATURE
+                    executionMode: USER_SIGNED
+                    preparation:
+                      agentAddress: '0x1111111111111111111111111111111111111111'
+                      coin: ETH
+                      isBuy: true
+                      size: '1'
+                      price: '1'
+                      orderType: limit_gtc
+                      accountAddress: '0x1111111111111111111111111111111111111111'
+                      reduceOnly: false
+                      leverage: 0.000001
+                      assetIndex: 0
+                      signedAction: {}
+                      nonce: 1
+                      expiresAt: 1
+                      intentHash: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                      vaultAddress: '0x1111111111111111111111111111111111111111'
+                      builder:
+                        b: '0x1111111111111111111111111111111111111111'
+                        f: 1
+                        basisPoints: 0.1
+                        approvedMaximumVenueUnitsTenthsBps: 1
+                    typedData:
+                      domain:
+                        name: Exchange
+                        version: '1'
+                        chainId: 1337
+                        verifyingContract: '0x0000000000000000000000000000000000000000'
+                      types:
+                        example_001:
+                          - name: example
+                            type: example
+                        example_002:
+                          - name: example
+                            type: example
+                      primaryType: Agent
+                      message:
+                        source: a
+                        connectionId: '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+                    executeRequest:
+                      agentAddress: '0x1111111111111111111111111111111111111111'
+                      coin: ETH
+                      isBuy: true
+                      size: '1'
+                      price: '1'
+                      orderType: limit_gtc
+                      accountAddress: '0x1111111111111111111111111111111111111111'
+                      reduceOnly: false
+                      leverage: 0.000001
+                      nonce: 1
+                      expiresAt: 1
+                      intentHash: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                      signedAction: {}
+                      executionMode: USER_SIGNED
+                    next_action:
+                      local: example
+                      then: example
+                    zeroCustody: true
+                    privateKeyRequiredByFarmDash: false
+                    timestamp: 1
+        '400':
+          description: Invalid order parameters or Hyperliquid authority
+          x-farmdash-response-example:
+            status: 400
+            description: Invalid order parameters or Hyperliquid authority
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '402':
+          description: Payment or tier capacity required
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '409':
+          description: Fresh research or builder-fee approval required
+          x-farmdash-response-example:
+            status: 409
+            description: Fresh research or builder-fee approval required
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '422':
+          description: Signed market_ioc limit violates live price protection
+          x-farmdash-response-example:
+            status: 422
+            description: Signed market_ioc limit violates live price protection
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '503':
+          description: Preparation dependency unavailable
+          x-farmdash-response-example:
+            status: 503
+            description: Preparation dependency unavailable
+            body: null
+            note: Documents status semantics without inventing a response payload.
   /v1/agent/futures/execute-order:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     post:
       operationId: executeOrder
       summary: Execute a pre-signed order on Hyperliquid
       description: |
         Forwards a pre-signed EIP-712 order to Hyperliquid's exchange API.
-        Requires prior analyze-strategy call within 5 minutes (research gate).
-        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Syndicate tier
-        for endpoint access. A bearer token alone is insufficient: every request
+        Requires an execution-ready analyze-strategy call within 60 seconds. The
+        gate binds market, side, maximum size, 50 bps entry drift, maximum
+        analyzed leverage metadata, stop-derived risk, and the account whose
+        equity funded the sizing decision. `funding_arb` remains
+        analysis-only because this endpoint cannot atomically bind both legs.
+        Scout capacity is available inside the shared 30 requests / 24h quota; Pioneer is capped at 1,500/day and Syndicate at 50,000/day. After the Scout quota, the default x402 overage is $0.01 USDC for one additional API call. Commercial capacity never supplies venue authority: every request
         must also include a fresh EIP-712 signature from the user's
         Hyperliquid API wallet. All risk
         guardrails enforced server-side before forwarding. `nonce`, `expiresAt`,
         and `intentHash` are required for request-scoped expiry and auditability.
-      tags: [Execution]
+        Venue nonce authority is `network + signer + nonce` across account and vault
+        contexts. Durable replay control fails closed before submission.
+        `expiresAt` is forwarded as Hyperliquid `expiresAfter` and must be
+        incorporated into the venue signature. The signed order action contains
+        the FarmDash builder term `f=1`, meaning 0.1 basis point (0.001%) of
+        filled notional—not 1 bp. The user must approve that builder fee on
+        Hyperliquid before execution. Rejected/resting/unfilled notional is not
+        reported as fee-bearing volume. FarmDash recovers the signer from the
+        exact signed L1 payload and rejects any mismatch with `agentAddress`.
+        When the verified owner is a Hyperliquid subaccount or vault,
+        `accountAddress` is also incorporated as the signed and submitted
+        `vaultAddress`; it cannot be changed after signing.
+        It also preflights the account owner's Hyperliquid `maxBuilderFee` and
+        blocks when the approved maximum is below `f=1`; only the main account
+        wallet, not an API wallet, can sign that approval action.
+        WARNING: Real market actions can cause financial loss. USER_SIGNED requires fresh manual approval for each order/cancel. BOUNDED_AUTONOMOUS permits local agent signing without per-order confirmation only under a valid explicit owner-signed futures grant, authenticated session, venue delegation and all applicable gates. Read x-farmdash-capability-truth and live domain readiness; preparation or payment alone never authorizes dispatch.
+      tags:
+        - Execution
       security:
         - bearerAuth: []
+        - {}
+      parameters:
+        - name: X-FarmDash-Session-Token
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Session capability for BOUNDED_AUTONOMOUS; does not grant venue signing authority
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [agentAddress, coin, isBuy, size, price, orderType, nonce, expiresAt, intentHash, signature]
+              required:
+                - agentAddress
+                - coin
+                - isBuy
+                - size
+                - price
+                - orderType
+                - nonce
+                - expiresAt
+                - intentHash
+                - signature
               properties:
+                executionMode:
+                  type: string
+                  enum:
+                    - USER_SIGNED
+                    - BOUNDED_AUTONOMOUS
+                  default: USER_SIGNED
+                  description: USER_SIGNED is preserved for unenrolled signers. Owner registration permanently enrolls the API wallet on its network across accounts, including after expiry/revocation; stripping mode/session fields cannot bypass bounded policy. Bounded dispatch returns nonretryable bounded_futures_preparation_only while rollout is not operational.
+                grantId:
+                  type: string
+                  description: Required for BOUNDED_AUTONOMOUS
+                sessionId:
+                  type: string
+                  description: Required for BOUNDED_AUTONOMOUS; binds session agent separately from API wallet
+                sessionToken:
+                  type: string
+                  description: Session capability; alternatively X-FarmDash-Session-Token header
                 agentAddress:
                   type: string
-                  pattern: '^0x[a-fA-F0-9]{40}$'
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: EIP-712/API-wallet signer and FarmDash caller identity
+                accountAddress:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: Hyperliquid master/subaccount whose equity was used during analysis. Defaults to agentAddress only for a direct signer.
                 coin:
                   type: string
                 isBuy:
@@ -333,7 +1034,14 @@ paths:
                   description: Limit or trigger price
                 orderType:
                   type: string
-                  enum: [limit_gtc, limit_ioc, limit_alo, market, stop_loss, take_profit]
+                  enum:
+                    - limit_gtc
+                    - limit_ioc
+                    - limit_alo
+                    - market_ioc
+                    - stop_loss
+                    - take_profit
+                  description: '`market_ioc` is a signed, price-protected IOC limit order with a live 100 bps adverse-price cap, never an unbounded market order. stop_loss and take_profit require reduceOnly=true.'
                 reduceOnly:
                   type: boolean
                   default: false
@@ -341,7 +1049,7 @@ paths:
                   oneOf:
                     - type: number
                     - type: string
-                  description: Max 5x (server-enforced)
+                  description: Max 5x FarmDash intent/risk metadata. This endpoint does not submit Hyperliquid's separate updateLeverage action; verify actual venue leverage independently.
                 signature:
                   type: object
                   description: Fresh EIP-712 signature from the user's Hyperliquid API wallet. Required on every request; bearer token alone is insufficient.
@@ -356,13 +1064,33 @@ paths:
                   type: integer
                 expiresAt:
                   type: integer
-                  description: Required unix timestamp in milliseconds. Requests expire server-side after this time.
+                  description: Required unix timestamp in milliseconds. Forwarded as venue `expiresAfter`; include it when generating the Hyperliquid signature.
                 intentHash:
                   type: string
                   description: Required FarmDash-side order intent hash for payload auditability.
                 signedAction:
                   type: object
-                  description: Pre-built Hyperliquid exchange action (optional, built server-side if omitted). If provided, it must match the request fields.
+                  description: 'Pre-built Hyperliquid exchange action (optional, built server-side if omitted). If provided, it must match all request fields and contain signed `builder: { b: FarmDash treasury, f: 1 }`; Hyperliquid f units are tenths of a basis point.'
+            examples:
+              default:
+                summary: executeOrder request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  agentAddress: '0x1111111111111111111111111111111111111111'
+                  coin: ETH
+                  isBuy: true
+                  size: '1'
+                  price: '1'
+                  orderType: limit_gtc
+                  nonce: 1
+                  expiresAt: 1
+                  intentHash: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  signature:
+                    r: example
+                    s: example
+                    v: 1
+                  executionMode: USER_SIGNED
+                  reduceOnly: false
       responses:
         '200':
           description: Order execution result
@@ -377,43 +1105,189 @@ paths:
                     type: object
                   order:
                     type: object
+                    description: Includes exact builder compensation terms and states that leverage is risk metadata only.
+                  state:
+                    type: string
+                    enum:
+                      - fully_filled
+                      - partially_filled
+                      - zero_fill
+                      - resting_unfilled
+                      - rejected
+                      - unknown
                   intentHash:
                     type: string
                   expiresAt:
                     type: integer
                   timestamp:
                     type: integer
+              examples:
+                success:
+                  summary: executeOrder HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    state: fully_filled
         '400':
           description: Risk check failed or research not performed
+          x-farmdash-response-example:
+            status: 400
+            description: Risk check failed or research not performed
+            body: null
+            note: Documents status semantics without inventing a response payload.
         '402':
-          description: Syndicate tier required
-
+          description: Scout tier quota exceeded (upgrade or pay x402 overage)
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '422':
+          description: |-
+            Typed prerequisite not met, discriminated by `code`.
+            `perp_dex_namespace_unsupported`: the requested market is a namespaced HIP-3 perp-DEX market, which FarmDash does not support end-to-end.
+            `perp_leverage_prerequisite`: the venue's leverage for this market differs from the requested value (`leverageVenue` vs `leverageRequested`). FarmDash never mutates venue leverage and never assumes the request took effect; submit an independently signed `updateLeverage` action, then re-check venue state and resubmit. Exposure-reducing orders are not gated on leverage.
+          x-farmdash-response-example:
+            status: 422
+            description: |-
+              Typed prerequisite not met, discriminated by `code`.
+              `perp_dex_namespace_unsupported`: the requested market is a namespaced HIP-3 perp-DEX market, which FarmDash does not support end-to-end.
+              `perp_leverage_prerequisite`: the venue's leverage for this market differs from the requested value (`leverageVenue` vs `leverageRequested`). FarmDash never mutates venue leverage and never assumes the request took effect; submit an independently signed `updateLeverage` action, then re-check venue state and resubmit. Exposure-reducing orders are not gated on leverage.
+            body: null
+            note: Documents status semantics without inventing a response payload.
   /v1/agent/futures/cancel-order:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     post:
       operationId: cancelOrder
       summary: Cancel one or more open Hyperliquid orders
       description: |
         Cancels one or more open Hyperliquid orders using a pre-signed EIP-712
         cancellation payload. Supports batch cancellation of up to 50 order IDs.
-        Requires `Authorization: Bearer <FARMDASH_API_KEY>` with Syndicate tier
-        for endpoint access. A bearer token alone is insufficient: every
+        Scout capacity is available inside the shared 30 requests / 24h quota; Pioneer is capped at 1,500/day and Syndicate at 50,000/day. After the Scout quota, the default x402 overage is $0.01 USDC for one additional API call. Commercial capacity never supplies venue authority: every
         cancellation request must include a fresh EIP-712 signature from the
-        user's Hyperliquid API wallet. Optional `expiresAt` and `intentHash`
-        add request-scoped expiry and auditability.
-      tags: [Execution]
+        user's Hyperliquid API wallet. For delegated signing, `accountAddress`
+        identifies the venue-verified equity owner. A subaccount/vault owner is
+        incorporated as `vaultAddress` in both the signature hash and exchange
+        request. FarmDash recovers the exact signer before submission. Required
+        `expiresAt` is forwarded as
+        Hyperliquid `expiresAfter`; required `intentHash` binds the FarmDash
+        request for auditability. HTTP 202 is returned only when Hyperliquid
+        supplies one explicit `success` application status per requested order;
+        this is `accepted` application acknowledgement, not final venue cancellation.
+        Mixed or total application errors are rejections. Reconcile every requested
+        ID through `/api/v1/agent/futures/reconcile-order` before dependent action.
+        Venue nonce authority is `network + signer + nonce` across account and vault
+        contexts. Durable replay control fails closed before submission.
+        WARNING: Real market actions can cause financial loss. USER_SIGNED requires fresh manual approval for each order/cancel. BOUNDED_AUTONOMOUS permits local agent signing without per-order confirmation only under a valid explicit owner-signed futures grant, authenticated session, venue delegation and all applicable gates. Read x-farmdash-capability-truth and live domain readiness; preparation or payment alone never authorizes dispatch.
+      tags:
+        - Execution
       security:
         - bearerAuth: []
+        - {}
+      parameters:
+        - name: X-FarmDash-Session-Token
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Session capability for BOUNDED_AUTONOMOUS; does not grant venue signing authority
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required: [agentAddress, coin, orderIds, signature]
+              required:
+                - agentAddress
+                - coin
+                - orderIds
+                - nonce
+                - expiresAt
+                - intentHash
+                - signature
               properties:
+                executionMode:
+                  type: string
+                  enum:
+                    - USER_SIGNED
+                    - BOUNDED_AUTONOMOUS
+                  default: USER_SIGNED
+                  description: USER_SIGNED is preserved for unenrolled signers. Owner registration permanently enrolls the API wallet on its network across accounts, including after expiry/revocation; stripping mode/session fields cannot bypass bounded policy. Bounded dispatch returns nonretryable bounded_futures_preparation_only while rollout is not operational.
+                grantId:
+                  type: string
+                  description: Required for BOUNDED_AUTONOMOUS
+                sessionId:
+                  type: string
+                  description: Required for BOUNDED_AUTONOMOUS; binds session agent separately from API wallet
+                sessionToken:
+                  type: string
+                  description: Session capability; alternatively X-FarmDash-Session-Token header
                 agentAddress:
                   type: string
-                  pattern: '^0x[a-fA-F0-9]{40}$'
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: EIP-712/API-wallet signer
+                accountAddress:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                  description: Hyperliquid master/subaccount/vault that owns the orders. Required in practice for delegated signing; defaults to agentAddress only for a direct signer.
                 coin:
                   type: string
                 orderIds:
@@ -436,16 +1310,33 @@ paths:
                   type: integer
                 expiresAt:
                   type: integer
-                  description: Optional unix timestamp in milliseconds. Requests expire server-side after this time.
+                  description: Required unix timestamp in milliseconds. Forwarded as venue `expiresAfter`; include it when generating the signature.
                 intentHash:
                   type: string
-                  description: Optional FarmDash-side intent hash for payload auditability.
+                  description: Required FarmDash-side intent hash for payload auditability.
                 signedAction:
                   type: object
                   description: Pre-built Hyperliquid cancel action (optional). If provided, it must match the request fields.
+            examples:
+              default:
+                summary: cancelOrder request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  agentAddress: '0x1111111111111111111111111111111111111111'
+                  coin: ETH
+                  orderIds:
+                    - 1
+                  nonce: 1
+                  expiresAt: 1
+                  intentHash: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  signature:
+                    r: example
+                    s: example
+                    v: 1
+                  executionMode: USER_SIGNED
       responses:
-        '200':
-          description: Cancellation result
+        '202':
+          description: Cancellation application acknowledgement; final venue cancellation requires reconciliation
           content:
             application/json:
               schema:
@@ -453,28 +1344,1103 @@ paths:
                 properties:
                   ok:
                     type: boolean
+                  state:
+                    type: string
+                    enum:
+                      - accepted
+                      - rejected
+                      - partially_rejected
+                      - unknown
                   result:
                     type: object
-                  cancelled:
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orderId:
+                          type: integer
+                        status:
+                          type: object
+                  cancellation:
                     type: object
+                  reconciliation:
+                    type: object
+                    description: Required handoff for final venue cancellation evidence.
+                    properties:
+                      required:
+                        type: boolean
+                        enum:
+                          - true
+                      endpoint:
+                        type: string
+                        enum:
+                          - /api/v1/agent/futures/reconcile-order
+                      orderIds:
+                        type: array
+                        items:
+                          type: integer
                   intentHash:
                     type: string
                   expiresAt:
                     type: integer
                   timestamp:
                     type: integer
+              examples:
+                success:
+                  summary: cancelOrder HTTP 202
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    state: accepted
         '402':
-          description: Syndicate tier required
-
+          description: Scout tier quota exceeded (upgrade or pay x402 overage)
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '422':
+          description: 'Discriminated by `code`. `perp_dex_namespace_unsupported`: the requested market is a namespaced HIP-3 perp-DEX market, unsupported end-to-end (a signed cancellation must never be accepted here for a market FarmDash cannot resolve). Otherwise: Hyperliquid rejected all or some cancellation application statuses.'
+          x-farmdash-response-example:
+            status: 422
+            description: 'Discriminated by `code`. `perp_dex_namespace_unsupported`: the requested market is a namespaced HIP-3 perp-DEX market, unsupported end-to-end (a signed cancellation must never be accepted here for a market FarmDash cannot resolve). Otherwise: Hyperliquid rejected all or some cancellation application statuses.'
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '502':
+          description: Upstream failure or incomplete/malformed venue application statuses; cancellation state is unknown
+          x-farmdash-response-example:
+            status: 502
+            description: Upstream failure or incomplete/malformed venue application statuses; cancellation state is unknown
+            body: null
+            note: Documents status semantics without inventing a response payload.
+  /v1/agent/futures/reconcile-order:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
+    post:
+      operationId: reconcilePerpOrder
+      summary: Reconcile one Hyperliquid order from authoritative venue evidence
+      description: |
+        Read-only and zero-custody: signs nothing, submits nothing, and never retries
+        an order. Durable order/fill evidence uses the existing idempotent accounting
+        path; balances are not execution evidence. agentAddress is the venue API-wallet
+        signer, not the session agent. accountAddress identifies its delegated owner.
+        Known bounded reservations are discovered by account, network, market and OID.
+        Optional controlActionId selects one exact durable action for cancellation or
+        unknown-submission recovery. Selection is not proof of OID linkage; unproven
+        submissions remain unknown and liability stays held. For a batch cancellation,
+        reconcile every signed target OID. A bounded reservation result is policy
+        bookkeeping, not proof of a fill, final cancellation or recognized revenue.
+      security:
+        - bearerAuth: []
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReconcileOrderRequest'
+            examples:
+              default:
+                summary: reconcilePerpOrder request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  agentAddress: '0x1111111111111111111111111111111111111111'
+                  coin: ETH
+                  orderId: 1
+      responses:
+        '200':
+          description: Authoritative venue evidence recorded durably; bounded context is present only when matching reservations exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconcileOrderResponse'
+              examples:
+                success:
+                  summary: reconcilePerpOrder HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    reconciliation:
+                      accountOwner: '0x1111111111111111111111111111111111111111'
+                      signerAddress: '0x1111111111111111111111111111111111111111'
+                      perpDex: hyperliquid
+                      coin: ETH
+                      orderId: 1
+                      intentHash: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                      clientOrderId: example_001
+                      side: buy
+                      orderSize: 1
+                      orderPrice: 1
+                      venueStatus: hyperliquid
+                      venueReportedFilledSize: 1
+                      reconciliationState: submitted
+                      filledSize: 1
+                      filledNotional: 1
+                      avgFillPrice: 1
+                      venueFee: 1
+                      venueFeeToken: hyperliquid
+                      fillCount: 1
+                      terminal: true
+                      reason: Illustrative FarmDash API example.
+                      fills:
+                        - fillId: 1
+                          fillHash: '0x1111111111111111111111111111111111111111'
+                          side: buy
+                          size: 1
+                          price: 1
+                          notional: 1
+                          fee: 1
+                          feeToken: USDC
+                          sizeRaw: '1'
+                          priceRaw: '1'
+                          feeRaw: '1'
+                          builderFeeRaw: '1'
+                          filledAt: 1
+                      state: submitted
+                      evidence:
+                        accountOwner: '0x1111111111111111111111111111111111111111'
+                        signerAddress: '0x1111111111111111111111111111111111111111'
+                        perpDex: hyperliquid
+                        coin: ETH
+                        orderId: 1
+                        intentHash: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        clientOrderId: example_001
+                        side: buy
+                        orderSize: 1
+                        orderPrice: 1
+                        venueStatus: hyperliquid
+                        venueReportedFilledSize: 1
+                        reconciliationState: submitted
+                        filledSize: 1
+                        filledNotional: 1
+                        avgFillPrice: 1
+                        venueFee: 1
+                        venueFeeToken: hyperliquid
+                        fillCount: 1
+                        terminal: true
+                        reason: Illustrative FarmDash API example.
+                        fills:
+                          - fillId: 1
+                            fillHash: '0x1111111111111111111111111111111111111111'
+                            side: buy
+                            size: 1
+                            price: 1
+                            notional: 1
+                            fee: 1
+                            feeToken: USDC
+                            sizeRaw: '1'
+                            priceRaw: '1'
+                            feeRaw: '1'
+                            builderFeeRaw: '1'
+                            filledAt: 1
+                    builderFees:
+                      state: exact
+                      builderFeeTotal: '1'
+                      fillCountWithBuilderFee: 1
+                      feeToken: USDC
+                      venueTotal: hyperliquid
+                      nonBuilderVenueFee: hyperliquid
+                      recipient: '0x1111111111111111111111111111111111111111'
+                      signedTenthsBps: example
+                      reason: Illustrative FarmDash API example.
+                      fills:
+                        - fillId: 1
+                          fillHash: '0x1111111111111111111111111111111111111111'
+                          observedBuilderFee: '1'
+                          expectedBuilderFee: '1'
+                          builderFeeToken: USDC
+                          nonBuilderVenueFee: hyperliquid
+                          state: exact
+                          reason: Illustrative FarmDash API example.
+                    durableEvidence:
+                      recorded: true
+                      note: Illustrative FarmDash API example.
+                    evidenceSources:
+                      orderStatus: hyperliquid_order_status
+                      fills: hyperliquid_user_fills
+                      methodology: direct_venue_evidence_only
+                      balanceDeltasUsed: false
+                    timestamp: 1
+        '400':
+          description: Invalid input or signer/account authority relationship
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconcileOrderError'
+              examples:
+                error:
+                  summary: reconcilePerpOrder HTTP 400
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    ok: false
+                    error: invalid_request
+                    code: invalid_request
+                    retryable: false
+        '402':
+          description: Commercial API capacity payment required; payment is not execution authority
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '409':
+          description: controlActionId does not identify one unique durable action for this account, network and market; no liability released
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconcileOrderError'
+              examples:
+                error:
+                  summary: reconcilePerpOrder HTTP 409
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    ok: false
+                    error: conflict
+                    code: conflict
+                    retryable: false
+        '413':
+          description: Request body exceeds 1 MB
+          x-farmdash-response-example:
+            status: 413
+            description: Request body exceeds 1 MB
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '429':
+          description: API rate limit exceeded
+          x-farmdash-response-example:
+            status: 429
+            description: API rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '502':
+          description: Reconciliation unavailable; no execution or liability release inferred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconcileOrderError'
+              examples:
+                error:
+                  summary: reconcilePerpOrder HTTP 502
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    ok: false
+                    error: upstream_unavailable
+                    code: upstream_unavailable
+                    retryable: true
+        '503':
+          description: Venue evidence or durable reconciliation unavailable; inspect durableEvidence before claiming persistence, and never resubmit automatically
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconcileOrderError'
+              examples:
+                error:
+                  summary: reconcilePerpOrder HTTP 503
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    ok: false
+                    error: upstream_unavailable
+                    code: upstream_unavailable
+                    retryable: true
 components:
+  parameters:
+    X-FarmDash-Installation-ID:
+      name: X-FarmDash-Installation-ID
+      in: header
+      required: false
+      description: Optional analytics-only locally generated UUIDv4 installation hint. Stored only as a domain-separated salted hash. Not authentication, principal proof, quota, payment, wallet ownership, delegation or transaction authority. Omission changes no functionality.
+      schema:
+        type: string
+        format: uuid
+        pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+    X-FarmDash-Client:
+      name: X-FarmDash-Client
+      in: header
+      required: false
+      description: Optional untrusted analytics client hint; never security evidence.
+      schema:
+        type: string
+        enum:
+          - mcp
+          - ts_agent_kit
+          - python_agent_kit
+          - public_client
+          - webapp
+    X-FarmDash-Client-Version:
+      name: X-FarmDash-Client-Version
+      in: header
+      required: false
+      description: Optional analytics client version; never security evidence.
+      schema:
+        type: string
+        maxLength: 64
+        pattern: ^[A-Za-z0-9._+-]{1,64}$
+    X-FarmDash-Skill-Version:
+      name: X-FarmDash-Skill-Version
+      in: header
+      required: false
+      description: Optional event-touch analytics skill version, alongside X-ClawHub-Skill; never security evidence.
+      schema:
+        type: string
+        maxLength: 64
+        pattern: ^[A-Za-z0-9._+-]{1,64}$
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: FARMDASH_API_KEY
-      description: Optional `FARMDASH_API_KEY` bearer token. Omit for Scout-tier endpoints. Use a Pioneer-tier key for higher-tier analysis endpoints and a Syndicate-tier key for execution endpoints. This bearer token gates tier access only and never replaces the required EIP-712 execution signature.
-
+      description: Optional `FARMDASH_API_KEY` bearer token. Omit for Scout-tier endpoints. Shared quotas are Scout 30 requests / 24h, Pioneer 1,500/day, and Syndicate 50,000/day. Eligible x402 one-offs can buy API capacity for specific routes. A bearer token or payment never replaces the required EIP-712 execution signature.
   schemas:
+    ReconcileOrderRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - agentAddress
+        - coin
+        - orderId
+      properties:
+        agentAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+          description: Venue API-wallet signer; never replaced by the session agent
+        accountAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+          description: Delegated equity owner; defaults to agentAddress
+        coin:
+          type: string
+          pattern: ^[a-zA-Z0-9]{1,16}$
+          description: Default Hyperliquid perp market symbol, normalized uppercase
+        orderId:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        intentHash:
+          type: string
+          nullable: true
+          pattern: ^[a-f0-9]{64}$
+          description: Optional submission provenance selector; caller hash alone is not evidence
+        controlActionId:
+          type: string
+          format: uuid
+          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+          description: Optional exact durable bounded control action selector, not authority or proof of OID linkage
+    FuturesReconciliationState:
+      type: string
+      enum:
+        - submitted
+        - resting
+        - partially_filled
+        - fully_filled
+        - canceled
+        - venue_canceled
+        - rejected
+        - unknown
+        - ambiguous
+    FuturesReconciledFill:
+      type: object
+      required:
+        - fillId
+        - fillHash
+        - side
+        - size
+        - price
+        - notional
+        - fee
+        - feeToken
+        - sizeRaw
+        - priceRaw
+        - feeRaw
+        - builderFeeRaw
+        - filledAt
+      properties:
+        fillId:
+          type: integer
+        fillHash:
+          type: string
+        side:
+          type: string
+          enum:
+            - buy
+            - sell
+        size:
+          type: number
+        price:
+          type: number
+        notional:
+          type: number
+        fee:
+          type: number
+        feeToken:
+          type: string
+        sizeRaw:
+          type: string
+          nullable: true
+        priceRaw:
+          type: string
+          nullable: true
+        feeRaw:
+          type: string
+          nullable: true
+        builderFeeRaw:
+          type: string
+          nullable: true
+        filledAt:
+          type: integer
+          description: Unix milliseconds
+    FuturesOrderReconciliationEvidence:
+      type: object
+      required:
+        - accountOwner
+        - signerAddress
+        - perpDex
+        - coin
+        - orderId
+        - intentHash
+        - clientOrderId
+        - side
+        - orderSize
+        - orderPrice
+        - venueStatus
+        - venueReportedFilledSize
+        - reconciliationState
+        - filledSize
+        - filledNotional
+        - avgFillPrice
+        - venueFee
+        - venueFeeToken
+        - fillCount
+        - terminal
+        - reason
+        - fills
+      properties:
+        accountOwner:
+          type: string
+        signerAddress:
+          type: string
+        perpDex:
+          type: string
+        coin:
+          type: string
+        orderId:
+          type: integer
+        intentHash:
+          type: string
+          nullable: true
+        clientOrderId:
+          type: string
+          nullable: true
+        side:
+          type: string
+          nullable: true
+          enum:
+            - buy
+            - sell
+            - null
+        orderSize:
+          type: number
+          nullable: true
+        orderPrice:
+          type: number
+          nullable: true
+        venueStatus:
+          type: string
+          nullable: true
+        venueReportedFilledSize:
+          type: number
+          nullable: true
+        reconciliationState:
+          $ref: '#/components/schemas/FuturesReconciliationState'
+        filledSize:
+          type: number
+        filledNotional:
+          type: number
+        avgFillPrice:
+          type: number
+          nullable: true
+        venueFee:
+          type: number
+        venueFeeToken:
+          type: string
+          nullable: true
+        fillCount:
+          type: integer
+        terminal:
+          type: boolean
+        reason:
+          type: string
+          nullable: true
+        fills:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuturesReconciledFill'
+    FuturesOrderReconciliation:
+      allOf:
+        - $ref: '#/components/schemas/FuturesOrderReconciliationEvidence'
+        - type: object
+          required:
+            - state
+            - evidence
+          properties:
+            state:
+              $ref: '#/components/schemas/FuturesReconciliationState'
+            evidence:
+              $ref: '#/components/schemas/FuturesOrderReconciliationEvidence'
+    FuturesBuilderFeeFill:
+      type: object
+      required:
+        - fillId
+        - fillHash
+        - observedBuilderFee
+        - expectedBuilderFee
+        - builderFeeToken
+        - nonBuilderVenueFee
+        - state
+        - reason
+      properties:
+        fillId:
+          type: integer
+        fillHash:
+          type: string
+        observedBuilderFee:
+          type: string
+          nullable: true
+        expectedBuilderFee:
+          type: string
+          nullable: true
+        builderFeeToken:
+          type: string
+          nullable: true
+        nonBuilderVenueFee:
+          type: string
+          nullable: true
+        state:
+          type: string
+          enum:
+            - exact
+            - absent
+            - ambiguous
+            - unavailable
+        reason:
+          type: string
+          nullable: true
+    FuturesBuilderFeeReconciliation:
+      type: object
+      required:
+        - state
+        - builderFeeTotal
+        - fillCountWithBuilderFee
+        - feeToken
+        - venueTotal
+        - nonBuilderVenueFee
+        - recipient
+        - signedTenthsBps
+        - reason
+        - fills
+      properties:
+        state:
+          type: string
+          enum:
+            - exact
+            - absent
+            - ambiguous
+            - unavailable
+        builderFeeTotal:
+          type: string
+          nullable: true
+        fillCountWithBuilderFee:
+          type: integer
+        feeToken:
+          type: string
+          nullable: true
+        venueTotal:
+          type: string
+          nullable: true
+        nonBuilderVenueFee:
+          type: string
+          nullable: true
+        recipient:
+          type: string
+          nullable: true
+        signedTenthsBps:
+          type: string
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        fills:
+          type: array
+          items:
+            $ref: '#/components/schemas/FuturesBuilderFeeFill'
+    BoundedFuturesReservation:
+      type: object
+      description: Durable reservation row returned by FuturesPolicyService; not proof of execution, final cancellation or revenue
+      required:
+        - id
+        - grant_id
+        - action_id
+        - network
+        - account_address
+        - coin
+        - intent_hash
+        - signed_action_hash
+        - venue_order_id
+        - status
+        - dispatched_at
+      properties:
+        id:
+          type: string
+          format: uuid
+        grant_id:
+          type: string
+          format: uuid
+        action_id:
+          type: string
+          format: uuid
+        network:
+          type: string
+          enum:
+            - mainnet
+            - testnet
+        account_address:
+          type: string
+        coin:
+          type: string
+        intent_hash:
+          type: string
+        signed_action_hash:
+          type: string
+        venue_order_id:
+          type: integer
+          nullable: true
+        status:
+          type: string
+          enum:
+            - submitted
+            - accepted
+            - held_ambiguous
+            - reconciled
+            - released
+        dispatched_at:
+          type: string
+          format: date-time
+        scope:
+          type: string
+          enum:
+            - futures.open
+            - futures.reduce
+            - futures.close
+            - futures.cancel
+            - futures.protective_order
+        venue_nonce:
+          type: integer
+        requested_notional_usd:
+          oneOf:
+            - type: number
+            - type: string
+        new_risk_usd:
+          oneOf:
+            - type: number
+            - type: string
+        risk_reducing:
+          type: boolean
+        expires_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        evidence:
+          type: object
+          nullable: true
+          additionalProperties: true
+        cancel_target_evidence:
+          type: object
+          additionalProperties: true
+    BoundedFuturesReconciliation:
+      type: object
+      required:
+        - actionId
+        - result
+      properties:
+        actionId:
+          type: string
+          format: uuid
+        result:
+          oneOf:
+            - $ref: '#/components/schemas/BoundedFuturesReservation'
+            - type: object
+              additionalProperties: false
+              required:
+                - bounded
+              properties:
+                bounded:
+                  type: boolean
+                  enum:
+                    - false
+    ReconcileOrderDurableEvidence:
+      type: object
+      required:
+        - recorded
+        - note
+      properties:
+        recorded:
+          type: boolean
+          enum:
+            - true
+        record:
+          type: object
+          nullable: true
+          additionalProperties: true
+        note:
+          type: string
+    ReconcileOrderResponse:
+      type: object
+      required:
+        - ok
+        - reconciliation
+        - builderFees
+        - durableEvidence
+        - evidenceSources
+        - timestamp
+      properties:
+        ok:
+          type: boolean
+          enum:
+            - true
+        reconciliation:
+          $ref: '#/components/schemas/FuturesOrderReconciliation'
+        boundedReconciliation:
+          type: array
+          description: Optional; omitted when no durable bounded actions match. An accepted reservation is not final venue cancellation.
+          items:
+            $ref: '#/components/schemas/BoundedFuturesReconciliation'
+        builderFees:
+          $ref: '#/components/schemas/FuturesBuilderFeeReconciliation'
+        durableEvidence:
+          $ref: '#/components/schemas/ReconcileOrderDurableEvidence'
+        evidenceSources:
+          type: object
+          required:
+            - orderStatus
+            - fills
+            - methodology
+            - balanceDeltasUsed
+          properties:
+            orderStatus:
+              type: string
+              enum:
+                - hyperliquid_order_status
+            fills:
+              type: string
+              enum:
+                - hyperliquid_user_fills
+            methodology:
+              type: string
+              enum:
+                - direct_venue_evidence_only
+            balanceDeltasUsed:
+              type: boolean
+              enum:
+                - false
+        timestamp:
+          type: integer
+          description: Unix milliseconds
+    ReconcileOrderError:
+      type: object
+      description: Validation, conflict or degraded error. Established venue truth may accompany a persistence/core failure; missing durableEvidence never proves persistence. No automatic action resubmission.
+      properties:
+        ok:
+          type: boolean
+          enum:
+            - false
+        code:
+          type: string
+        error:
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties: true
+        reason:
+          type: string
+        retryable:
+          type: boolean
+        degraded:
+          type: object
+          additionalProperties: true
+        warnings:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        reconciliation:
+          $ref: '#/components/schemas/FuturesOrderReconciliation'
+        builderFees:
+          $ref: '#/components/schemas/FuturesBuilderFeeReconciliation'
+        durableEvidence:
+          type: object
+          required:
+            - recorded
+          properties:
+            recorded:
+              type: boolean
+            record:
+              type: object
+              nullable: true
+              additionalProperties: true
+    FuturesPolicy:
+      type: object
+      additionalProperties: false
+      description: 'Owner-signed FarmDash policy, separate from Hyperliquid delegation. USD limits are exact positive decimal strings. maxRiskPerTrade is conservative full-notional admission USD, not a realized loss guarantee. Unix-second validity. Policy order types map actual route semantics: IOC/market_ioc -> market, Gtc/Alo -> limit.'
+      required:
+        - ownerAddress
+        - agentAddress
+        - apiWalletAddress
+        - accountAddress
+        - vaultAddress
+        - network
+        - sessionId
+        - allowedMarkets
+        - allowedActions
+        - allowedOrderTypes
+        - allowedDirections
+        - maxOrderNotionalUsd
+        - maxAggregateExposureUsd
+        - maxSessionNewRiskNotionalUsd
+        - maxLeverage
+        - maxRiskPerTrade
+        - maxSessionLossUsd
+        - maxDailyLossUsd
+        - validAfter
+        - validUntil
+        - nonce
+        - policyVersion
+      properties:
+        ownerAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        agentAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        apiWalletAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        accountAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        vaultAddress:
+          type: string
+          nullable: true
+          pattern: ^0x[a-fA-F0-9]{40}$
+        network:
+          type: string
+          enum:
+            - mainnet
+            - testnet
+        sessionId:
+          type: string
+          minLength: 1
+          maxLength: 128
+        allowedMarkets:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            pattern: ^[A-Z0-9]{1,16}$
+        allowedActions:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - futures.open
+              - futures.reduce
+              - futures.close
+              - futures.cancel
+              - futures.protective_order
+        allowedOrderTypes:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - market
+              - limit
+              - stop_loss
+              - take_profit
+              - cancel
+        allowedDirections:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+              - long
+              - short
+        maxOrderNotionalUsd:
+          type: string
+          pattern: ^(0|[1-9]\d{0,17})(\.\d{1,8})?$
+          description: Strictly positive USD limit; zero is invalid
+        maxAggregateExposureUsd:
+          type: string
+          pattern: ^(0|[1-9]\d{0,17})(\.\d{1,8})?$
+          description: Strictly positive USD limit; zero is invalid
+        maxSessionNewRiskNotionalUsd:
+          type: string
+          pattern: ^(0|[1-9]\d{0,17})(\.\d{1,8})?$
+          description: Strictly positive USD limit; zero is invalid
+        maxRiskPerTrade:
+          type: string
+          pattern: ^(0|[1-9]\d{0,17})(\.\d{1,8})?$
+          description: Strictly positive USD limit; zero is invalid
+        maxSessionLossUsd:
+          type: string
+          pattern: ^(0|[1-9]\d{0,17})(\.\d{1,8})?$
+          description: Strictly positive USD limit; zero is invalid
+        maxDailyLossUsd:
+          type: string
+          pattern: ^(0|[1-9]\d{0,17})(\.\d{1,8})?$
+          description: Strictly positive USD limit; zero is invalid
+        maxLeverage:
+          type: integer
+          minimum: 1
+          maximum: 100
+        validAfter:
+          type: integer
+          minimum: 0
+          description: Unix seconds
+        validUntil:
+          type: integer
+          minimum: 1
+          description: Unix seconds, greater than validAfter
+        nonce:
+          type: string
+          pattern: ^[1-9]\d{0,77}$
+          description: Single-use owner uint256 decimal nonce
+        policyVersion:
+          type: integer
+          enum:
+            - 1
     FundingAnalysis:
       type: object
       properties:
@@ -500,8 +2466,10 @@ components:
           type: boolean
         arbDirection:
           type: string
-          enum: [long_spot_short_perp, short_spot_long_perp, null]
-
+          enum:
+            - long_spot_short_perp
+            - short_spot_long_perp
+            - null
     TechnicalIndicators:
       type: object
       properties:
@@ -511,7 +2479,10 @@ components:
           type: number
         emaCross:
           type: string
-          enum: [bullish, bearish, neutral]
+          enum:
+            - bullish
+            - bearish
+            - neutral
         rsi:
           type: number
         macd:
@@ -522,7 +2493,10 @@ components:
           type: number
         macdCross:
           type: string
-          enum: [bullish_cross, bearish_cross, neutral]
+          enum:
+            - bullish_cross
+            - bearish_cross
+            - neutral
         adx:
           type: number
         atr:
@@ -539,15 +2513,19 @@ components:
           type: number
         zScore:
           type: number
-
     MarketRegime:
       type: string
-      enum: [trending, ranging, high_volatility, low_liquidity]
-
+      enum:
+        - trending
+        - ranging
+        - high_volatility
+        - low_liquidity
     TradeDirection:
       type: string
-      enum: [long, short, neutral]
-
+      enum:
+        - long
+        - short
+        - neutral
     StrategyObject:
       type: object
       properties:
@@ -555,7 +2533,8 @@ components:
           type: string
         type:
           type: string
-          enum: [futures]
+          enum:
+            - futures
         market:
           type: string
         direction:
@@ -588,7 +2567,8 @@ components:
           properties:
             mode:
               type: string
-              enum: [adaptive]
+              enum:
+                - adaptive
             suggested:
               type: number
             cap:
@@ -605,7 +2585,6 @@ components:
           type: array
           items:
             type: string
-
     AdaptiveRisk:
       type: object
       properties:
@@ -623,13 +2602,13 @@ components:
           type: number
         finalRiskMultiplier:
           type: number
-
     TradeSimulation:
       type: object
       properties:
         methodology:
           type: string
-          enum: [heuristic_preflight]
+          enum:
+            - heuristic_preflight
         holdingWindowHours:
           type: number
         entryValueUsd:
@@ -651,7 +2630,6 @@ components:
           type: number
         estimatedFundingPnl72hUsd:
           type: number
-
     PortfolioContext:
       type: object
       properties:
@@ -665,17 +2643,26 @@ components:
           type: number
         netDirectionalBias:
           type: string
-          enum: [net_long, net_short, balanced]
+          enum:
+            - net_long
+            - net_short
+            - balanced
         concentrationWarning:
           type: string
           nullable: true
-
     StrategyRecommendation:
       type: object
       properties:
         recommendedStrategy:
           type: string
-          enum: [funding_arb, momentum_long, momentum_short, trend_pullback_long, trend_pullback_short, mean_reversion, no_trade]
+          enum:
+            - funding_arb
+            - momentum_long
+            - momentum_short
+            - trend_pullback_long
+            - trend_pullback_short
+            - mean_reversion
+            - no_trade
         confidence:
           type: number
           description: 0-100
@@ -727,7 +2714,6 @@ components:
           $ref: '#/components/schemas/FundingAnalysis'
         indicators:
           $ref: '#/components/schemas/TechnicalIndicators'
-
     PositionSizing:
       type: object
       properties:
@@ -747,10 +2733,363 @@ components:
           type: number
         rewardRiskRatio:
           type: number
-
+    PrepareOrderRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - agentAddress
+        - coin
+        - isBuy
+        - size
+        - price
+        - orderType
+      properties:
+        agentAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        accountAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        coin:
+          type: string
+          pattern: ^[a-zA-Z0-9]{1,16}$
+        isBuy:
+          type: boolean
+        size:
+          type: string
+          pattern: ^(?:0|[1-9]\d*)(?:\.\d+)?$
+        price:
+          type: string
+          pattern: ^(?:0|[1-9]\d*)(?:\.\d+)?$
+        orderType:
+          type: string
+          enum:
+            - limit_gtc
+            - limit_ioc
+            - limit_alo
+            - market_ioc
+            - stop_loss
+            - take_profit
+        reduceOnly:
+          type: boolean
+          default: false
+        leverage:
+          oneOf:
+            - type: number
+              exclusiveMinimum: 0
+              maximum: 5
+            - type: string
+        nonce:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        expiresAt:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        executionMode:
+          type: string
+          enum:
+            - USER_SIGNED
+            - BOUNDED_AUTONOMOUS
+          default: USER_SIGNED
+          description: Preparation is not execution authority. Bounded submission additionally requires an owner grant and authenticated session and remains subject to the canonical rollout gate.
+    PrepareOrderExecuteRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - agentAddress
+        - coin
+        - isBuy
+        - size
+        - price
+        - orderType
+        - accountAddress
+        - reduceOnly
+        - leverage
+        - nonce
+        - expiresAt
+        - intentHash
+        - signedAction
+        - executionMode
+      properties:
+        agentAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        accountAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        coin:
+          type: string
+          pattern: ^[a-zA-Z0-9]{1,16}$
+        isBuy:
+          type: boolean
+        size:
+          type: string
+          pattern: ^(?:0|[1-9]\d*)(?:\.\d+)?$
+        price:
+          type: string
+          pattern: ^(?:0|[1-9]\d*)(?:\.\d+)?$
+        orderType:
+          type: string
+          enum:
+            - limit_gtc
+            - limit_ioc
+            - limit_alo
+            - market_ioc
+            - stop_loss
+            - take_profit
+        reduceOnly:
+          type: boolean
+          default: false
+        leverage:
+          oneOf:
+            - type: number
+              exclusiveMinimum: 0
+              maximum: 5
+            - type: string
+        nonce:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        expiresAt:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        executionMode:
+          type: string
+          enum:
+            - USER_SIGNED
+            - BOUNDED_AUTONOMOUS
+          default: USER_SIGNED
+          description: Preparation is not execution authority. Bounded submission additionally requires an owner grant and authenticated session and remains subject to the canonical rollout gate.
+        intentHash:
+          type: string
+          pattern: ^[a-f0-9]{64}$
+        signedAction:
+          type: object
+          description: Exact Hyperliquid action including FarmDash builder terms; sign this action without modification.
+    PrepareOrderResponse:
+      type: object
+      required:
+        - ok
+        - state
+        - executionMode
+        - preparation
+        - typedData
+        - executeRequest
+        - next_action
+        - zeroCustody
+        - privateKeyRequiredByFarmDash
+        - timestamp
+      properties:
+        ok:
+          type: boolean
+          enum:
+            - true
+        state:
+          type: string
+          enum:
+            - READY_FOR_LOCAL_SIGNATURE
+        executionMode:
+          type: string
+          enum:
+            - USER_SIGNED
+            - BOUNDED_AUTONOMOUS
+          default: USER_SIGNED
+          description: Preparation is not execution authority. Bounded submission additionally requires an owner grant and authenticated session and remains subject to the canonical rollout gate.
+        preparation:
+          type: object
+          required:
+            - agentAddress
+            - coin
+            - isBuy
+            - size
+            - price
+            - orderType
+            - accountAddress
+            - reduceOnly
+            - leverage
+            - assetIndex
+            - signedAction
+            - nonce
+            - expiresAt
+            - intentHash
+            - vaultAddress
+            - builder
+          properties:
+            agentAddress:
+              type: string
+              pattern: ^0x[a-fA-F0-9]{40}$
+            accountAddress:
+              type: string
+              pattern: ^0x[a-fA-F0-9]{40}$
+            coin:
+              type: string
+              pattern: ^[a-zA-Z0-9]{1,16}$
+            isBuy:
+              type: boolean
+            size:
+              type: string
+              pattern: ^(?:0|[1-9]\d*)(?:\.\d+)?$
+            price:
+              type: string
+              pattern: ^(?:0|[1-9]\d*)(?:\.\d+)?$
+            orderType:
+              type: string
+              enum:
+                - limit_gtc
+                - limit_ioc
+                - limit_alo
+                - market_ioc
+                - stop_loss
+                - take_profit
+            reduceOnly:
+              type: boolean
+              default: false
+            leverage:
+              oneOf:
+                - type: number
+                  exclusiveMinimum: 0
+                  maximum: 5
+                - type: string
+            nonce:
+              type: integer
+              minimum: 1
+              maximum: 9007199254740991
+            expiresAt:
+              type: integer
+              minimum: 1
+              maximum: 9007199254740991
+            intentHash:
+              type: string
+              pattern: ^[a-f0-9]{64}$
+            signedAction:
+              type: object
+              description: Exact Hyperliquid action including FarmDash builder terms; sign this action without modification.
+            assetIndex:
+              type: integer
+              minimum: 0
+            vaultAddress:
+              type: string
+              pattern: ^0x[a-fA-F0-9]{40}$
+              nullable: true
+            builder:
+              type: object
+              required:
+                - b
+                - f
+                - basisPoints
+                - approvedMaximumVenueUnitsTenthsBps
+              properties:
+                b:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{40}$
+                f:
+                  type: integer
+                  enum:
+                    - 1
+                basisPoints:
+                  type: number
+                  enum:
+                    - 0.1
+                approvedMaximumVenueUnitsTenthsBps:
+                  type: integer
+                  minimum: 1
+        typedData:
+          type: object
+          required:
+            - domain
+            - types
+            - primaryType
+            - message
+          properties:
+            domain:
+              type: object
+              required:
+                - name
+                - version
+                - chainId
+                - verifyingContract
+              properties:
+                name:
+                  type: string
+                  enum:
+                    - Exchange
+                version:
+                  type: string
+                  enum:
+                    - '1'
+                chainId:
+                  type: integer
+                  enum:
+                    - 1337
+                verifyingContract:
+                  type: string
+                  enum:
+                    - '0x0000000000000000000000000000000000000000'
+            types:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - name
+                    - type
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+            primaryType:
+              type: string
+              enum:
+                - Agent
+            message:
+              type: object
+              required:
+                - source
+                - connectionId
+              properties:
+                source:
+                  type: string
+                  enum:
+                    - a
+                    - b
+                connectionId:
+                  type: string
+                  pattern: ^0x[a-fA-F0-9]{64}$
+        executeRequest:
+          $ref: '#/components/schemas/PrepareOrderExecuteRequest'
+        next_action:
+          type: object
+          required:
+            - local
+            - then
+          properties:
+            local:
+              type: string
+            then:
+              type: string
+        zeroCustody:
+          type: boolean
+          enum:
+            - true
+        privateKeyRequiredByFarmDash:
+          type: boolean
+          enum:
+            - false
+        timestamp:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
     AccountSummary:
       type: object
       properties:
+        accountAddress:
+          type: string
+          description: Hyperliquid master/subaccount that owns the reported equity.
         equity:
           type: string
         totalNotionalPosition:
@@ -761,7 +3100,6 @@ components:
           type: string
         aggregateLeverage:
           type: string
-
     Position:
       type: object
       properties:
@@ -771,7 +3109,9 @@ components:
           type: number
         side:
           type: string
-          enum: [long, short]
+          enum:
+            - long
+            - short
         entryPrice:
           type: number
         markPrice:
@@ -784,13 +3124,14 @@ components:
           type: number
         leverageType:
           type: string
-          enum: [cross, isolated]
+          enum:
+            - cross
+            - isolated
         liquidationPrice:
           type: number
           nullable: true
         marginUsed:
           type: number
-
     RiskState:
       type: object
       properties:
@@ -799,6 +3140,21 @@ components:
         dailyPnlPct:
           type: string
         weeklyPnl:
+          type: string
+        realizedDailyPnl:
+          type: string
+        realizedWeeklyPnl:
+          type: string
+        unrealizedPnl:
+          type: string
+        pnlSource:
+          type: string
+          enum:
+            - hyperliquid_venue_loss_pressure
+        pnlAsOf:
+          type: integer
+          format: int64
+        pnlMethodology:
           type: string
         drawdown:
           type: string
@@ -813,7 +3169,6 @@ components:
           type: boolean
         openPositionCount:
           type: integer
-
     Guardrails:
       type: object
       properties:
@@ -829,7 +3184,6 @@ components:
           type: string
         maxDrawdown:
           type: string
-
     Warning:
       type: object
       properties:
@@ -837,7 +3191,6 @@ components:
           type: string
         message:
           type: string
-
     ErrorResponse:
       type: object
       properties:
@@ -845,3 +3198,84 @@ components:
           type: string
         reason:
           type: string
+    PaymentRequiredError:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: payment_required
+        code:
+          type: string
+          description: '`free_quota_exhausted` when the shared Scout allowance is spent; otherwise `payment_required`.'
+          example: free_quota_exhausted
+        message:
+          type: string
+        instruction:
+          type: string
+          enum:
+            - STOP_RETRYING
+          description: Present when an exhausted free caller must not repeat the same unpaid request.
+        retry_same_request:
+          type: boolean
+          example: false
+        next_action:
+          type: string
+          example: Wait for your quota reset, upgrade your plan, or use x402 paid access.
+        quota:
+          type: object
+          properties:
+            tier:
+              type: string
+              example: scout
+            remaining:
+              type: integer
+              example: 0
+            reset_at:
+              type: string
+              format: date-time
+        abuse_notice:
+          type: string
+          example: Repeated automated requests while quota is exhausted may result in temporary or permanent API blocking.
+        retryable:
+          type: boolean
+        upgrade_url:
+          type: string
+          format: uri
+        direct_upgrade_url:
+          type: string
+          format: uri
+        rate_limit:
+          type: object
+          additionalProperties: true
+        developer_sandbox:
+          type: object
+          additionalProperties: true
+        payment_required:
+          type: object
+          properties:
+            amount:
+              type: string
+              example: 0.01 USDC
+            chain:
+              type: string
+              example: Base
+            destination:
+              type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            token:
+              type: string
+            chainId:
+              type: string
+              pattern: ^[0-9]+$
+              description: Numeric string from X402PaymentPolicy; transaction chain IDs retain their own integer contracts.
+              example: '8453'
+x-farmdash-capability-truth: {"spot.USER_SIGNED":{"status":"operational","prerequisite":"Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."},"spot.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."},"futures.USER_SIGNED":{"status":"operational","prerequisite":"Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."},"futures.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."},"solana.USER_SIGNED":{"status":"operational","prerequisite":"Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."},"solana.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."},"ERC4337_SERVER_SUBMISSION":{"status":"preparation_only","prerequisite":"Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."},"GENERIC_SERVER_INTENT_EXECUTION":{"status":"preparation_only","prerequisite":"Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."},"MEE":{"status":"preparation_only","prerequisite":"Production coordinator and authoritative source/destination receipt verifier."},"ACP":{"status":"deployment_prerequisite","prerequisite":"AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."}}
+x-farmdash-example-contract:
+  version: 1
+  examples_are_illustrative: true
+  live_response_is_authoritative: true
+  security_note: Never copy example signatures, nonces, hashes, payment destinations, or timestamps into a real transaction.
+  x402_note: Live HTTP 402 and PAYMENT-REQUIRED are authoritative. Payment grants eligible API capacity only; never wallet signing or execution authority.

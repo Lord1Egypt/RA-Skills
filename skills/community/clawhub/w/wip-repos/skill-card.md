@@ -1,46 +1,60 @@
-## Description: <br>
-Repo manifest reconciler. Makes repos-manifest.json the single source of truth for repo organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repo manifest reconciler. Makes repos-manifest.json the single source of truth for repo organization.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to check repository layout drift, plan or perform manifest-based repo moves, add or move manifest entries, and generate a markdown tree from repos-manifest.json. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can make broad local repository changes, including moving folders and editing manifest, legal, package, or CLAUDE.md files. <br>
-Mitigation: Install only from the trusted publisher profile, review manifest paths for unexpected destinations, and run dry-run or planning commands before executing live sync or fix operations. <br>
-Risk: Bulk compliance fixes may change legal and package files across local repositories. <br>
-Mitigation: Use compliance fix operations only when bulk edits are intended, and review the resulting file changes before committing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to check repository layout drift against repos-manifest.json, plan or apply local repo moves, edit manifest entries, and generate manifest-based repository trees.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/wip-repos) <br>
-- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks) <br>
-- [Project homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
-- [npm package](https://www.npmjs.com/package/@wipcomputer/wip-repos) <br>
-- [CLI source reference](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-repos/cli.mjs) <br>
-- [MCP server source reference](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-repos/mcp-server.mjs) <br>
-- [Skill source reference](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-repos/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown, plain text, JSON, and CLI or MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or perform local manifest updates and repository folder moves when invoked through the CLI, module, or MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server release metadata; artifact package.json reports 1.9.68) <br>
+Risk: Sync and compliance workflows can move folders or write files beyond what a user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run check and sync --dry-run before applying changes, review planned moves and diffs, and operate only on trusted manifests and repositories.
+
+Risk: Path containment and CLAUDE.md metadata handling are not fully resolved for third-party or mixed-ownership repo sets.
+
+Mitigation: Avoid compliance --fix and claude workflows on those repo sets until the boundary and metadata handling issues are fixed and reviewed.
+
+Risk: The security scan verdict is suspicious despite the skill's coherent repo-organization purpose.
+
+Mitigation: Treat installation as trust-sensitive, review the artifact before deployment, and restrict use to repository sets the operator controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/wip-repos)
+- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks)
+- [Project homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+- [npm package](https://www.npmjs.com/package/@wipcomputer/wip-repos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Plain text, JSON, and Markdown tree output; CLI and MCP calls may also update manifest and repository files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and git. Commands that change files should be previewed with dry-run or planning modes first.]
+
+## Skill Version(s):
+
+1.9.72 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

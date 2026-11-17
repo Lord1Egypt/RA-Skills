@@ -1,40 +1,54 @@
-## Description: <br>
-Identify root causes of errors and failures in code, APIs, workflows, and systems, then provide structured explanations and fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify root causes of errors and failures in code, APIs, workflows, and systems.
 
-## Publisher: <br>
-[mededdahby](https://clawhub.ai/user/mededdahby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mededdahby](https://clawhub.ai/user/mededdahby)
 
-## Use Case: <br>
-Developers, engineers, and operators use this skill to turn error messages, logs, code snippets, API responses, workflow steps, and observed failures into a concise debug report with root cause, fix options, verification steps, and prevention guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad debugging triggers can produce guidance from incomplete or vague problem reports. <br>
-Mitigation: Provide precise errors, logs, expected behavior, and recent changes; treat assumptions and open questions as items to resolve before acting. <br>
-Risk: Suggested fixes can be incorrect if the provided evidence is incomplete or the environment differs from the report. <br>
-Mitigation: Review proposed fixes, apply them in a controlled environment, and use the included verification steps before relying on the result. <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill to structure troubleshooting, identify likely root causes, propose concrete fixes, and define verification and prevention steps for failures in code, APIs, workflows, and systems.
 
-## Reference(s): <br>
-- [Debug System on ClawHub](https://clawhub.ai/mededdahby/debug-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown debug report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes problem summary, root cause, evidence, recommended fix, alternative fix, verification steps, prevention guidance, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may be invoked for a broad range of troubleshooting requests where the user has not provided enough evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for missing logs, error messages, steps, and expected behavior; state assumptions clearly before proposing a root cause.
+
+Risk: Debugging guidance can be mistaken for a completed fix without validation.
+
+Mitigation: Require concrete verification steps and avoid claiming resolution until the user confirms the fix was tested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mededdahby/skills/debug-system)
+- [Publisher Profile](https://clawhub.ai/user/mededdahby)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown debug report with problem summary, root cause, evidence, fixes, verification steps, prevention, and open questions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; the skill does not execute code or access external systems unless the user provides data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

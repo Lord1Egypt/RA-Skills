@@ -1,45 +1,60 @@
-## Description: <br>
-Generate, validate, export, and manage MOCI, the identity system for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, validate, export, and manage MOCI identities for OpenClaw agents, including memory-bound identity verification, identity portability, trust scoring, and gateway configuration guidance.
 
-## Publisher: <br>
-[mociforge](https://clawhub.ai/user/mociforge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mociforge](https://clawhub.ai/user/mociforge)
 
-## Use Case: <br>
-Developers and operators of OpenClaw agents use this skill to create and manage local agent identities, verify memory-chain continuity, export and import identities, configure gateway integration, and assess trust posture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local identity and authentication state under ~/.openclaw. <br>
-Mitigation: Review before installing, protect local identity files and backups, and inspect or obtain the actual implementation before relying on it for authentication. <br>
-Risk: Memory-chain logs, key pins, gateway hooks, and trust-score effects can affect agent authentication and authorization posture. <br>
-Mitigation: Review gateway configuration and key-pinning behavior before deployment, and test trust-score handling in a controlled environment. <br>
-Risk: Export, import, and recovery flows can involve sensitive passphrases or recovery phrases. <br>
-Mitigation: Protect exports and backups, prefer keychains or secret managers over environment variables for passphrases, and verify that any recovery phrase prompt is part of a local import/export flow. <br>
+## Use Case:
 
+Developers and engineers use this skill to create and assess memory-bound OpenClaw agent identities, verify agent continuity, plan secure identity export and import, and configure MOCI-related gateway workflows.
 
-## Reference(s): <br>
-- [MOCI ClawHub Skill Page](https://clawhub.ai/mociforge/moci) <br>
-- [Memory Chain Security](references/memory-security.md) <br>
-- [MOCI Reference Implementation](references/moci.ts) <br>
-- [MOCI Threat Matrix](references/threat-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe persistent local identity files, memory-chain logs, key pins, gateway hooks, trust scores, and export/import flows under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill creates long-lived local identity and memory files under ~/.openclaw, which can become sensitive persistent state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where local file access is controlled, use file systems that enforce owner-only permissions, restrict tools from reading identity files, and keep encrypted backups outside chats, logs, and shared diagnostics.
+
+Risk: Server security evidence says the release needs review because key security promises are contradicted by the reference implementation.
+
+Mitigation: Do not rely on this version for production trust, provenance, or identity recovery until caller-token authentication, encrypted export, import validation, nonce replay handling, and recovery-phrase guidance have been reviewed and fixed.
+
+Risk: Passphrases and recovery phrases can cause identity compromise if exposed through chat, logs, shared files, or diagnostics.
+
+Mitigation: Keep passphrases and recovery phrases out of agent conversations and logs, retrieve them through secure local secret mechanisms, and rotate or regenerate affected identities if secrets are exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mociforge/skills/moci)
+- [Memory Chain Security](references/memory-security.md)
+- [MOCI Reference Implementation](references/moci.ts)
+- [MOCI Threat Matrix](references/threat-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration examples, and TypeScript reference material]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce identity lifecycle guidance, validation steps, threat-model notes, and OpenClaw Gateway configuration recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

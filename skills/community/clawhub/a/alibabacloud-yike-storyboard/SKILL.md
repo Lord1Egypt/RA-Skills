@@ -116,7 +116,7 @@ For complete permission policies, see [references/ram-policies.md](references/ra
 | ratio | Optional | `16:9`, `9:16`, `4:3`, `3:4` | `9:16` |
 | resolution | Optional | `720P`, `1K`, `2K`, `4K` | `720P` |
 
-See [Task 0: Parameter Confirmation](#task-0-parameter-confirmation) for recommendation guide.
+See [Task 0: Parameter Confirmation](#taREDACTED-SECRET) for recommendation guide.
 
 ---
 

@@ -1,40 +1,58 @@
-## Description: <br>
-Curate external information into personalized updates. Auto-learns format, timing, sources, and depth preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates news, feeds, and industry sources into personalized recurring digests with sourcing, filtering, ranking, delivery, preference learning, and verification guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use Digest to curate news, industry updates, trends, competitors, and other external information into personalized updates that adapt to their preferred sources, timing, format, and depth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unapproved sources or delivery channels could expose personalized interests or send digests to unintended recipients. <br>
-Mitigation: Confirm allowed sources and delivery channels before installation, especially for group chats or email. <br>
-Risk: The preference file can accumulate inferred interests, schedules, source trust, and format preferences over time. <br>
-Mitigation: Periodically review preferences.md and remove or correct preferences that should not be retained. <br>
+## Use Case:
 
+External users and agents use this skill to build personalized daily, weekly, or scheduled news digests for topics, competitors, people, industries, and markets. It is intended for recurring digest curation and tuning, not for summarizing user-provided documents or internal business reporting.
 
-## Reference(s): <br>
-- [Digest Dimensions](dimensions.md) <br>
-- [Digest Preferences](preferences.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Personalized digest in Markdown or the user's learned preferred delivery format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update preference guidance after observing user feedback and delivery signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can retain local personalization history, learned preferences, and sent-item logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete ~/Clawic/data/digest/ when long-term personalization history should not be retained.
+
+Risk: Scheduled sends or external delivery channels can send digest content to the wrong place or at an unwanted time.
+
+Mitigation: Confirm timezone, schedule, and selected channels such as email, Slack, or Telegram before enabling recurring or external delivery.
+
+Risk: Single-source, stale, or weakly sourced news items can mislead readers if promoted as settled facts.
+
+Mitigation: Require named sources, check original dates, deduplicate syndicated coverage, and hold or clearly hedge single-source surprising claims.
+
+## Reference(s):
+
+- [Digest ClawHub release](https://clawhub.ai/ivangdavila/skills/digest)
+- [Digest Clawic skill page](https://clawic.com/skills/digest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown digest guidance with structured sections, source notes, preference updates, and channel-specific delivery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local personalization state, preferences, and sent-item history under ~/Clawic/data/digest/.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

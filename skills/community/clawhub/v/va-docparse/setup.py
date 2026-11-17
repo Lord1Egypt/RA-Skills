@@ -317,7 +317,7 @@ def main():
     if not api_key and interactive_mode and not args.dry_run:
         key_input = input(
             "\n请输入 API Key（可选，直接回车跳过）:\n"
-            "  格式示例: sk-xxxxxxxxxxxxxxxxxxxxxxxx\n"
+            "  格式示例: REDACTED-SECRET\n"
             "  格式示例: your-secret-key-here\n"
             "> ").strip()
         api_key = key_input if key_input else ""

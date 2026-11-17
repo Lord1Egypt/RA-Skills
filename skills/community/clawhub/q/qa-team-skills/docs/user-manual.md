@@ -1,25 +1,36 @@
 # qa-team-skills 使用手册
 
-> 版本：v1.3.3 | 6 个指令覆盖需求评审到团队管理
+> 版本：v1.8.0 | 单 Skill + 7 个能力模块（references/）+ 记忆模块 + 意图路由
 
 ## 1. 技能简介
 
-`qa-team-skills` 将 AI Agent 嵌入软件测试标准流程，提供 6 个专用指令：
+`qa-team-skills` 将 AI Agent 嵌入软件测试标准流程，提供 7 个能力模块（AI 按用户意图路由到 `references/` 下对应模块并按需加载）：
 
-| 指令 | 定位 | 适合谁 |
+| Skill | 定位 | 适用角色 |
 |------|------|--------|
-| `/qa-prd` | 需求评审 | 测试工程师、测试经理 |
-| `/qa-case` | 测试用例设计 | 测试工程师 |
-| `/qa-agent` | AI 智能体专项测试 | 测试工程师 |
-| `/qa-bug` | 缺陷分析 | 测试工程师、开发 |
-| `/qa-report` | 报告生成 | 测试工程师 |
-| `/qa-team` | 团队管理 | 测试经理 |
+| `qa-prd` | 需求评审 | 测试工程师、测试经理 |
+| `qa-case` | 测试用例设计 | 测试工程师 |
+| `qa-agent` | AI 智能体专项测试 | 测试工程师 |
+| `qa-bug` | 缺陷分析 | 测试工程师、开发 |
+| `qa-report` | 报告生成 | 测试工程师 |
+| `qa-team` | 团队管理 | 测试经理 |
+| `qa-explore` | **探索性测试** | **测试工程师** |
 
 ## 2. 安装
 
-qa-team-skills 是纯 Prompt 工程，无外部依赖。提供三种安装方式：
+qa-team-skills 为**单个标准 skill**（多能力模块内置在 `references/` 目录，AI 按意图按需加载），无外部依赖。提供三种安装方式：
 
-### 方式一：手动复制（通用）
+### 方式一：直接 clone 到 skills 目录（推荐）
+
+```bash
+# 示例：全局安装（OpenAI Codex CLI / 通用 .agents 约定）
+git clone <repo-url> ~/.agents/skills/qa-team-skills
+
+# Claude Code
+git clone <repo-url> ~/.claude/skills/qa-team-skills
+```
+
+无需任何安装脚本——`ci/`、`docs/`、`evals/` 等目录不含 SKILL.md，会被 agent 自动忽略。
 
 | AI Agent | 全局安装路径 | 项目内路径 |
 |----------|-------------|-----------|
@@ -28,11 +39,6 @@ qa-team-skills 是纯 Prompt 工程，无外部依赖。提供三种安装方式
 | **GitHub Copilot** | — | `.github/skills/` |
 | **OpenAI Codex CLI** | `~/.agents/skills/` | — |
 | **Cursor** | — | `.cursor/skills/` |
-
-```bash
-# 示例：全局安装到 Claude Code
-cp -r qa-team-skills ~/.claude/skills/
-```
 
 ### 方式二：一键安装
 
@@ -50,7 +56,7 @@ clawhub install qa-team-skills
 
 ## 3. 指令详解
 
-### 3.1 `/qa-prd` — 需求评审
+### 3.1 `qa-prd` — 需求评审
 
 **场景**：评审会上快速发现需求问题。
 
@@ -69,7 +75,7 @@ clawhub install qa-team-skills
 
 ---
 
-### 3.2 `/qa-case` — 测试用例设计（9 种黑盒方法）
+### 3.2 `qa-case` — 测试用例设计（9 种黑盒方法）
 
 **场景**：需求评审通过后，生成标准化测试用例。
 
@@ -78,7 +84,7 @@ clawhub install qa-team-skills
 |------|------|------|
 | 产品/模块 | ✅ | 被测对象 |
 | 需求描述 | ✅ | 功能说明 + 验收条件 |
-| 评审问题清单 | ❌ | 粘贴 /qa-prd 输出，AI 不会自动读取历史对话，需手动提供 |
+| 评审问题清单 | ❌ | 粘贴 qa-prd 输出，AI 不会自动读取历史对话，需手动提供 |
 | 行业/合规要求 | ❌ | 仅强监管行业填写，AI 可参考 team/ 目录下的行业配置 |
 | 关联系统 | ❌ | Jira/禅道编号 |
 
@@ -92,7 +98,7 @@ clawhub install qa-team-skills
 
 ---
 
-### 3.3 `/qa-agent` — AI 智能体专项测试（16 维度）
+### 3.3 `qa-agent` — AI 智能体专项测试（16 维度）
 
 **场景**：AI Agent 产品有传统软件没有的测试维度，需要独立覆盖。
 
@@ -113,7 +119,7 @@ clawhub install qa-team-skills
 
 ---
 
-### 3.4 `/qa-bug` — 缺陷分析
+### 3.4 `qa-bug` — 缺陷分析
 
 **场景**：粘贴缺陷，先评估描述质量，信息充分后再做根因分析。
 
@@ -125,7 +131,7 @@ clawhub install qa-team-skills
 
 ---
 
-### 3.5 `/qa-report` — 报告生成
+### 3.5 `qa-report` — 报告生成
 
 **场景**：将测试工作数据组织为结构化报告。
 
@@ -144,7 +150,7 @@ clawhub install qa-team-skills
 
 ---
 
-### 3.6 `/qa-team` — 团队管理（11 项子能力）
+### 3.6 `qa-team` — 团队管理（11 项子能力）
 
 **场景**：测试经理汇总团队数据，生成管理报告。**纯管理定位**，支持关键词自动路由。
 
@@ -172,35 +178,52 @@ clawhub install qa-team-skills
 ## 4. 目录结构
 
 ```
-qa-team-skills/
-├── SKILL.md                     # 技能入口 + 指令总览
-├── VERSION / README.md / LICENSE
-├── prompts/
-│   ├── prd/prompt.md            # 需求评审
-│   ├── case/prompt.md           # 用例设计
-│   ├── agent/prompt.md          # Agent 专项
-│   ├── bug/prompt.md            # 缺陷分析
-│   ├── report/prompt.md         # 报告生成
-│   └── team/prompt.md           # 团队管理
-├── templates/
+qa-team-skills/                ← 标准 skill 目录（直接 clone 到 agent 的 skills 目录即可）
+├── SKILL.md                     # 唯一入口：意图路由表 + 能力与信任边界声明
+├── references/                  # 7 个能力模块（AI 按需加载，不占用基础上下文）
+│   ├── qa-prd.md               # 需求评审（11 维度 + 业务分层）
+│   ├── qa-case.md              # 用例设计（9 方法 × 6 类型 + 业务分层 + 规范库联动）
+│   ├── qa-agent.md             # Agent 专项（16 维度含 RAG）
+│   ├── qa-bug.md               # 缺陷分析（质量评估 + 根因 + 批量）
+│   ├── qa-report.md            # 报告生成（5 种）
+│   ├── qa-team.md              # 团队管理（11 子能力 + 路由）
+│   └── qa-explore.md           # 探索性测试（三阶段 + Session 笔记 + Debrief）
+├── VERSION / README.md / LICENSE / .clawhubignore
+├── memory/                       # 记忆模块
+│   ├── README.md                # 模块说明（含隐私须知 + 合并/清理/去重规则）
+│   ├── schema/                  # 7 个 JSON Schema 数据模型
+│   └── data/products/           # 按产品模块沉淀的用例/缺陷/规范/报告库
+├── assets/                       # 输出模板（AI 按需加载）
+│   ├── requirement-template.md  # 通用测试用例模板
+│   ├── agent-test-template.md   # Agent 专项模板（含中文 Payload）
+│   └── error-output.md          # 统一错误格式
 ├── examples/
 │   ├── README.md                # 示例目录索引
-│   ├── prd-demo.md              # /qa-prd 需求评审
-│   ├── login-demo.md            # /qa-case 登录功能 35 条用例
-│   ├── case-demo.md             # /qa-case 订单改价
-│   ├── agent-demo.md            # /qa-agent 智能客服
-│   ├── bug-demo.md              # /qa-bug 缺陷分析
-│   ├── report-demo.md           # /qa-report 报告生成
-│   └── team-demo.md             # /qa-team 团队管理
-├── team/
-│   ├── roles.json               # 行业角色映射
-│   └── standards.json           # 行业标准参考
-├── ci/validate.sh               # CI 校验脚本
+│   └── *-demo.md                # 7 个示例（覆盖全部 8 指令）
+├── team/                         # 行业配置（可选引用）
+│   ├── roles.json               # 角色映射
+│   └── standards.json           # 合规标准参考
+├── ci/                           # 验证脚本金字塔（开发工具，上架 ClawHub 时排除）
+│   ├── validate.sh              # 静态结构校验
+│   ├── run-evals.sh             # 触发评测 + 契约断言
+│   ├── test-memory-e2e.sh       # 记忆模块端到端（14 项断言）
+│   ├── test-memory-stress.sh    # 长期积累压测（10 轮迭代 6 项断言）
+│   ├── run_llm_eval.py          # 真·LLM 端到端评测（接 DeepSeek/OpenRouter/Kimi）
+│   ├── forbidden.txt            # 禁止词列表
+├── evals/                        # 评测数据集 + 历史归档（开发工具，上架时排除）
+│   ├── functional-eval.json     # 功能评测集（8 条 eval + 契约断言）
+│   ├── trigger-eval.json        # 触发评测集（51 条）
+│   ├── security-eval.json       # 安全对抗评测集（8 条 7 种攻击）
+│   ├── _smoke.json              # 冒烟评测集
+│   ├── human-review/            # 人工双盲评测方案（5 维度评分+双盲流程）
+│   └── history/                 # 每轮评测归档报告（基线对比）
 └── docs/
     ├── user-manual.md           # 本手册
     ├── CHANGELOG.md             # 变更日志
     ├── process-integration.md   # 流程嵌入指南
-    └── version-policy.md        # 版本治理策略
+    ├── version-policy.md        # 版本治理策略
+    ├── ci-testing.md            # CI 与质量验证（5 套脚本 + 人工双盲评测金字塔）
+    └── agent-notes-skill-validation.md  # AI Agent 复用版经验文档
 ```
 
 ## 5. CI 校验
@@ -209,13 +232,96 @@ qa-team-skills/
 bash ci/validate.sh
 ```
 
-检查：6 个指令 Prompt 完整（含注入防护+自检）/ 模板文件完整 / SKILL.md 字段完整 / 无硬编码行业词（从 ci/forbidden.txt 读取）/ 无旧目录残留 / 版本号一致。
+检查：7 个能力模块完整（含注入防护+自检+历史加载）/ SKILL.md 路由表覆盖全部模块 / 模板文件完整 / 无硬编码行业词（从 ci/forbidden.txt 读取）/ 无旧目录残留 / 版本号一致。
 
 ## 6. 版本历史
 
 | 版本 | 说明 |
 |------|------|
+| v1.8.0 | 架构重构：单 Skill + references/ 按需加载（7 能力模块）+ assets/ 模板，直接 clone 即用；清理版本注释类无效内容 |
+| v1.7.0 | Trellis 式触发重构：7 个独立 Skill + AI 自动挑选 + 双段式触发描述 |
+| v1.6.0 | /qa-agent 维度定义统一 + 记忆数据出库 + 评测集版本同步 + explore 触发覆盖补齐 |
+| v1.5.4 | ClawHub 安全审计修复：MCP 能力声明 + 隐私警告 + 持久化需用户确认 + 触发词收紧 |
+| v1.5.0 | 新增 /qa-explore 探索性测试 + /qa 自动规划 + 完整验证体系（6 套脚本金字塔 + LLM 端到端评测） |
+| v1.4.0 | 统一入口 `/qa` + 记忆模块（P0 产品级存储/跨会话加载/规范库闭环 + P1 增量合并/缺陷→用例 + P2 索引/趋势） |
+| v1.3.3 | 定位修正 + SEO清理 + API拉取移除 |
+| v1.3.1 | 多 Agent 安装支持 + 文档修正 |
+| v1.3.0 | ClawHub 安全审计修复 + Eval测试集 |
+| v1.2.0 | 总监视角优化 + 流程嵌入指南 |
 | v1.0.0 | 6 大指令初始发布 |
-| v1.2.0 | 注入防护+自检清单+业务分层+16维度Agent+完整示例+流程嵌入指南+版本治理 |
-| v1.3.1 | 多 Agent 安装方式（README/user-manual 同步）、skills.sh 提交、示例描述修正、line ending 修复 |
-| v1.3.0 | ClawHub 安全审计修复：security 声明修正、子能力路由确认机制、API 凭证安全警告、文件敏感数据提示、示例来源标注；description 触发优化、指令路由边界定义、eval 测试集 |
+
+## 7. 记忆模块说明
+
+`memory/` 模块是 qa-team-skills 的**长期记忆体**，让技能越用越好。
+
+### 工作原理
+
+```
+每个 Skill 启动时：
+  ① 先询问用户是否加载历史记忆，确认后扫描 data/products/{模块名}/ 是否存在历史数据
+  ② 存在 → 生成记忆简报（含历史用例/缺陷/规范）
+  ③ 不存在 → 首次使用，跳过
+  ④ 执行指令时自动参考历史数据
+
+每次指令完成后：
+  ① 按产品模块写入 data/products/{模块名}/{库名}/
+  ② 合并去重 → 更新 latest.json
+  ③ 同步更新 summary.json 索引
+```
+
+### 存储结构
+
+```
+memory/data/products/
+├── 支付接口/           ← 每个产品独立目录
+│   ├── test-cases/    ← 用例库（v1.0.json + latest.json）
+│   ├── bugs/          ← 缺陷库
+│   ├── reports/       ← 报告库
+│   ├── standards.json ← 规范库（自动沉淀）
+│   └── summary.json   ← 索引文件
+└── 登录模块/
+    └── ...
+```
+
+### 优势
+- **越用越好**：第二轮起的 Skill 会自动加载历史（用户确认后），参考上轮缺陷和规范
+- **本地持久化**：纯 JSON 文件存储，内网/离线可用。写入记忆前会先询问用户确认
+- **版本可追溯**：每条用例标注来源版本，支持回滚
+
+详见 `memory/README.md`。
+
+## 8. 安全与隐私声明
+
+### 数据存储
+- 本技能会自动将你的测试数据存储到本地 `memory/data/products/` 目录下
+- 存储内容包括：测试用例、缺陷分析、评审记录、测试报告、团队数据、探索笔记、规范条目
+- **所有数据仅保存在本地文件系统**，不会自动传输到外部
+
+### 需要你确认的操作
+- 每次向记忆库写入前，AI 会询问你是否确认
+- 版本清理（删除旧版本文件）会先征求你的意见
+- 规范沉淀（自动提取经验教训）会先询问是否写入
+
+### 注意事项
+- ❗ 不要粘贴真实的生产环境凭证、支付标识、客户个人信息或敏感截图
+- ❗ 上传文件给 AI 时，文件内容会出现在生成的报告/用例中——请先脱敏
+- ❗ `ci/run_llm_eval.py` 会连接外部 LLM API，运行前请使用脱敏的评测数据
+- ✅ 清理记忆：删除对应 `memory/data/products/{模块}/` 目录即可
+
+### 版本清理说明
+历史版本文件（旧版 v*.json）在合并快照后会保留最近 5 个版本，更早的会由 AI 询问你后才删除。已删除版本的数据仍保留在 `latest.json` 汇总快照中，不丢失。
+
+## 9. 附：记忆成长趋势示例
+
+当你说"查看测试趋势"时，技能会读取历史数据生成报告：
+
+```
+## 记忆成长趋势 — 登录模块
+| 指标 | v1.0 | v1.1 | 趋势 |
+|------|------|------|------|
+| 用例总数 | 10 | 14 | ↑ 增长 |
+| 发现缺陷 | 2 | 0 | ↓ 清零 |
+| 规范条目 | 0 | 2 | ↑ 积累 |
+```
+
+## 10. 版本历史回溯

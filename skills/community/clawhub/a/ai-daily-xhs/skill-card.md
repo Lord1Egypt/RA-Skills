@@ -1,43 +1,63 @@
-## Description: <br>
-AI 每日简报 - 全球 AI 行业新闻（公司/产品/论文） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Chinese daily brief of global AI industry news, executive statements, technical product releases, and selected research papers.
 
-## Publisher: <br>
-[seeu1688](https://clawhub.ai/user/seeu1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seeu1688](https://clawhub.ai/user/seeu1688)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to generate a concise Chinese-language daily brief of major AI company news, leader statements, product launches, and selected research papers from the prior 24 hours. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Tavily and Bocha search API credentials. <br>
-Mitigation: Use dedicated, least-privilege API keys and rotate them according to the user's credential policy. <br>
-Risk: The skill searches public sources and summarizes current news, which can include outdated, duplicate, or inaccurate items. <br>
-Mitigation: Review generated briefs before relying on or redistributing them, and confirm important claims against the linked source material. <br>
-Risk: The skill can save or post a daily brief to the configured destination. <br>
-Mitigation: Confirm the Feishu or current-session delivery target before enabling scheduled delivery. <br>
+## Use Case:
 
+External users and operators use this skill to gather recent AI news and produce a concise Chinese daily briefing organized by company news, leader comments, product releases, and research papers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seeu1688/ai-daily-xhs) <br>
-- [Bocha Web Search API endpoint](https://api.bocha.cn/v1/web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown brief with source links and category summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language daily brief covering company news, leader statements, product launches, selected papers, and a category count table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill depends on a hardcoded local Tavily search script that is outside this release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that local dependency is trusted, pinned, and reviewed.
+
+Risk: External search providers receive the generated AI news and research queries.
+
+Mitigation: Use approved search providers and avoid adding sensitive internal topics to the scheduled brief queries.
+
+Risk: Scheduled delivery can push generated briefs automatically to a Feishu-style channel.
+
+Mitigation: Review the schedule, destination, and audience before enabling automated delivery.
+
+Risk: The bundled script writes generated Markdown output to a temporary local path.
+
+Mitigation: Redirect output to an approved private location when retaining briefs matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seeu1688/skills/ai-daily-xhs)
+- [Publisher profile](https://clawhub.ai/user/seeu1688)
+- [Bocha Web Search API endpoint](https://api.bocha.cn/v1/web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown daily brief with source links and category counts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated brief is Chinese-language text and may also be saved as a local Markdown file by the bundled script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

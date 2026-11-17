@@ -1,42 +1,55 @@
-## Description: <br>
-Extracts text from OFD files while preserving page, template, coordinate, and optional character-level position data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from OFD files and preserves page, template, boundary, coordinate, and optional character-level position data.
 
-## Publisher: <br>
-[liuwei19820201](https://clawhub.ai/user/liuwei19820201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwei19820201](https://clawhub.ai/user/liuwei19820201)
 
-## Use Case: <br>
-Developers, document-processing engineers, and analysts use this skill to extract text, page/template source, coordinates, and optional character-level positions from OFD invoices or documents for downstream review or structured data processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted OFD content may include sensitive invoice or document text. <br>
-Mitigation: Run the skill only on OFD files intended for analysis and handle optional JSON output according to the data sensitivity of the source document. <br>
-Risk: Output paths selected by the user can persist extracted text and position data on disk. <br>
-Mitigation: Choose the output location deliberately and restrict access to generated JSON files when documents contain confidential information. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to inspect OFD files, extract page and template text, and capture coordinates for invoices or other fixed-layout documents.
 
-## Reference(s): <br>
-- [OFD Structure Reference](references/ofd-structure.md) <br>
-- [OFD Specification](http://www.ofdspec.org/) <br>
-- [OFD XML Namespace](http://www.ofdspec.org/2016) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text and optional JSON file with page, text, coordinate, template, and character-position fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include character-level positions when --show-chars is used; no network output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Untrusted or very large OFD files can create avoidable local parsing and resource-exhaustion risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the extractor only on trusted or size-checked OFD files, and apply resource limits before automated bulk processing.
+
+Risk: The optional JSON output path can overwrite an existing file if chosen carelessly.
+
+Mitigation: Choose an explicit output location and check whether the target file already exists before running extraction.
+
+## Reference(s):
+
+- [OFD Structure Reference](references/ofd-structure.md)
+- [OFD Specification Namespace](http://www.ofdspec.org/2016)
+- [OFD Specification Site](http://www.ofdspec.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON extraction output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The Python script can print extracted text to stdout or write structured JSON to a chosen output path; character-level positions are included only when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

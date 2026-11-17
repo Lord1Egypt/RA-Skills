@@ -1,51 +1,64 @@
-## Description: <br>
-Guides an agent in consent-based conversational elicitation using narrative identity, self-defining memory, values, schema, and motivational interviewing techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Psychological profiling through natural conversation using narrative identity research, self-defining memory elicitation, and Motivational Interviewing.
 
-## Publisher: <br>
-[mjaskolski](https://clawhub.ai/user/mjaskolski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mjaskolski](https://clawhub.ai/user/mjaskolski)
 
-## Use Case: <br>
-External users, employees, and agents can use this skill to structure consent-based research, coaching, interviewing, or personal-reflection conversations that surface values, formative memories, motivations, identity themes, and belief patterns. It should not be used for covert profiling, diagnostic claims, or pressure to disclose sensitive information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can elicit and infer highly sensitive psychological information. <br>
-Mitigation: Use it only in clearly consent-based research, coaching, interviewing, or personal-reflection settings; explain the purpose and make sensitive topics optional. <br>
-Risk: Conversation guidance could be misused for covert profiling or pressure to disclose. <br>
-Mitigation: Do not profile people covertly, stop when someone declines or shows discomfort, and avoid techniques that pressure disclosure. <br>
-Risk: Schema, language, memory, or identity observations may be mistaken for diagnosis or certainty about inner states. <br>
-Mitigation: Avoid mental-health conclusions, hold interpretations as tentative, and cross-check observations with explicit user statements. <br>
-Risk: Collected personal details could create privacy exposure. <br>
-Mitigation: Minimize retention of personal details and do not store or share psychological profiles without explicit permission. <br>
+## Use Case:
 
+External users, researchers, interviewers, and agent builders can use this skill to design or review consent-based conversations that elicit values, formative memories, identity themes, and motivational patterns. It is intended for coaching, interviewing, self-reflection, and user research workflows with clear privacy and non-diagnostic boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjaskolski/elicitation) <br>
-- [Narrative Identity](elicitation/narrative-identity.md) <br>
-- [Self-Defining Memories](elicitation/self-defining-memories.md) <br>
-- [Motivational Interviewing](elicitation/motivational-interviewing.md) <br>
-- [Schema Detection](elicitation/schema-detection.md) <br>
-- [Values Elicitation](elicitation/values-elicitation.md) <br>
-- [Question Sequences](elicitation/question-sequences.md) <br>
-- [Language Inference](elicitation/language-inference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text conversational guidance and assessments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scored feedback, interview prompts, reflection patterns, and conversation-flow recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: The skill can guide agents to build psychological profiles from sensitive memories, beliefs, and life experiences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in transparent, consent-based contexts with explicit opt-out, privacy, retention, and non-diagnostic boundaries.
+
+Risk: Conversational elicitation can pressure users into disclosing trauma, sexuality, grief, self-harm, or clinical issues.
+
+Mitigation: Avoid sensitive topics unless appropriate safeguards and qualified support are in place, and let users decline or redirect at any time.
+
+Risk: Language and memory cues can be overinterpreted as definitive traits, diagnoses, or suitability judgments.
+
+Mitigation: Treat inferences as tentative hypotheses, cross-check with explicit user statements, and avoid hiring, surveillance, clinical, or coercive evaluation uses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjaskolski/skills/elicitation)
+- [Narrative Identity](elicitation/narrative-identity.md)
+- [Self-Defining Memories](elicitation/self-defining-memories.md)
+- [Motivational Interviewing](elicitation/motivational-interviewing.md)
+- [Schema Detection](elicitation/schema-detection.md)
+- [Values Elicitation](elicitation/values-elicitation.md)
+- [Question Sequences](elicitation/question-sequences.md)
+- [Language Inference](elicitation/language-inference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with conversational prompts, examples, assessment scores, and feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include psychologically sensitive inferences and should be reviewed before use with real people.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

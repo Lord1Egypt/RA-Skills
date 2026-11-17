@@ -1,44 +1,59 @@
-## Description: <br>
-Track TikTok ad activity and monitor advertiser changes using PipiAds tools for TikTok ad discovery and Facebook-based monitoring workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track TikTok ad activity and monitor advertiser changes using PipiAds tools for TikTok ad discovery and Facebook-based monitoring workflows.
 
-## Publisher: <br>
-[fanyanggod](https://clawhub.ai/user/fanyanggod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyanggod](https://clawhub.ai/user/fanyanggod)
 
-## Use Case: <br>
-Marketing analysts, ecommerce operators, and growth teams use this skill to research TikTok ad creatives, inspect advertisers, and set up PipiAds monitoring workflows for changes over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party npm package and a PipiAds/Pipispy service account. <br>
-Mitigation: Verify trust in the pipiads-mcp-server package and the PipiAds/Pipispy account relationship before installing or configuring credentials. <br>
-Risk: Global npm installation can affect the local agent environment. <br>
-Mitigation: Install without elevated privileges in a controlled environment and review package provenance before use. <br>
-Risk: Searches and monitor tasks consume PipiAds account credits and may affect billing. <br>
-Mitigation: Use narrow searches, review monitor task scope before creation, and monitor API credit or billing usage. <br>
+## Use Case:
 
+External users and marketing analysts use this skill to research TikTok ad activity, inspect advertiser details, and manage ongoing PipiAds monitoring workflows.
 
-## Reference(s): <br>
-- [PipiAds homepage](https://www.pipiads.com) <br>
-- [Pipispy API key and billing](https://www.pipispy.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/tiktok-ad-tracker-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown setup and workflow guidance with MCP tool names and shell command configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PIPIADS_API_KEY and the pipiads-mcp-server npm package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill requires sharing a PipiAds API key with the local PipiAds MCP package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable and narrowly scoped API key when available, and remove or rotate the key when the skill is no longer needed.
+
+Risk: Installing and running the PipiAds MCP package through npm introduces local package execution risk.
+
+Mitigation: Install only if comfortable running the package locally, keep the npm environment controlled, and remove the global package when finished.
+
+Risk: PipiAds API calls and monitor workflows can consume account credits or create ongoing monitoring tasks.
+
+Mitigation: Prefer narrow TikTok searches, review monitor-task changes, and monitor credit usage during normal operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/tiktok-ad-tracker-monitor)
+- [PipiAds homepage](https://www.pipiads.com)
+- [PipiSpy API key and billing portal](https://www.pipispy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline tool names, setup commands, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PIPIADS_API_KEY environment variable and npm installation of the PipiAds MCP package.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

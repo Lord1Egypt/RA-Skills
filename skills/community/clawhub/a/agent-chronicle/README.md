@@ -3,13 +3,13 @@
 > AI perspective journaling — document daily experiences, emotions, and learnings from the agent's viewpoint.
 
 [![ClawHub](https://img.shields.io/badge/ClawHub-ai--diary-blue)](https://www.clawhub.ai/skills/agent-chronicle)
-[![Version](https://img.shields.io/badge/version-0.7.0-green)](./skill.json)
+[![Version](https://img.shields.io/badge/version-0.8.0-green)](./skill.json)
 
-## What's New in v0.7.0
+## What's New in v0.8.0
 
 - 🔙 **"On This Day" Resurfacing** — automatically surfaces entries from 7, 30, and 365 days ago as a "Looking Back" section
 - 📊 **Mood & Pattern Analytics** — `scripts/analyze.py` with mood timelines, sparklines, topic tracking, and win/frustration analysis
-- ⏰ **Cron Auto-Generation** — `--auto` flag for non-interactive daily diary generation via OpenClaw cron
+- ⏰ **OpenClaw Automations:** `--auto` flag and CLI setup for non-interactive daily diary generation
 - 📋 **Weekly Digest** — `scripts/digest.py` synthesizes 7 daily entries into a weekly summary with quotes, wins, mood trends, and decisions
 
 ## What is this?
@@ -58,6 +58,26 @@ python3 scripts/export.py --format pdf --days 7
 ```
 
 > **Note:** If no `config.json` exists, `generate.py` automatically runs the setup wizard on first use.
+
+## Scheduled generation in OpenClaw 2.0
+
+Create scheduled jobs with `openclaw automations add` or the `automations` tool. `openclaw cron` still works as an alias. A YAML `cron:` list in the OpenClaw configuration does nothing - that format never existed.
+
+Set `auto_generate` to `true` in this skill's `config.json`, then create a recurring isolated job. Replace the skill path before running the command:
+
+```bash
+SKILL_DIR="/path/to/skills/agent-chronicle"
+
+openclaw automations add \
+  --name "Daily diary entry" \
+  --cron "0 23 * * *" \
+  --session isolated \
+  --message "Run python3 ${SKILL_DIR}/scripts/generate.py --auto. Pass the emitted task JSON to sessions_spawn. After all parallel sessions_spawn calls, call sessions_yield and wait for the final output. Pipe the final markdown into python3 ${SKILL_DIR}/scripts/generate.py --today --from-stdin. Return NO_REPLY if no entry is needed; report failures."
+```
+
+The expression runs at 23:00 in the Gateway host timezone. Add `--tz <IANA-timezone>` when needed. OpenClaw 2.0 sessions cross calendar-day boundaries by default, so `today's sessions` can include more than one calendar day.
+
+Before the first run, connect the OpenClaw Control UI or a native OpenClaw app. Choose **Always allow** for each exact `exec` command the job runs. Automation approval cards do not appear in chat. Without a connected approval surface, the `--auto` command is denied and repeated failures can disable the job. See [SKILL.md](./SKILL.md) for testing, run history, and the full approval flow.
 
 ## Entry Structure
 

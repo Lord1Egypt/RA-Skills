@@ -1,40 +1,54 @@
-## Description: <br>
-Look up wallet address to Twitter/X and Farcaster identity mappings via Bluepages.fyi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up wallet address <> Twitter/Farcaster identity mappings via Bluepages.fyi for wallet ownership, social handle address discovery, 0x address lookups, and wallet identity attribution queries.
 
-## Publisher: <br>
-[jesse-pallok](https://clawhub.ai/user/jesse-pallok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jesse-pallok](https://clawhub.ai/user/jesse-pallok)
 
-## Use Case: <br>
-External users and developers use Bluepages to attribute Ethereum wallet addresses to Twitter/X or Farcaster identities and to find wallet addresses for social handles. It supports single and batch lookups through the Bluepages MCP server or direct HTTP API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an Ethereum private key and paid x402 wallet operations for lookups or credit purchases. <br>
-Mitigation: Prefer BLUEPAGES_API_KEY. If PRIVATE_KEY is necessary, use only a dedicated low-balance wallet and require explicit approval for every paid lookup or credit purchase. <br>
-Risk: The skill depends on an external MCP package for wallet-identity lookups. <br>
-Mitigation: Review or pin the external MCP package before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bluepages API documentation](https://bluepages.fyi/docs.html) <br>
-- [Bluepages API keys](https://bluepages.fyi/api-keys.html) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to resolve Ethereum wallet addresses to Twitter/X or Farcaster identities, find wallet addresses for social handles, and plan cost-conscious Bluepages API or MCP lookups.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BLUEPAGES_API_KEY or a dedicated low-balance PRIVATE_KEY; paid lookups should be explicitly approved.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run an unpinned remote MCP server that may receive authentication material and payment authority.
+
+Mitigation: Prefer BLUEPAGES_API_KEY over PRIVATE_KEY, run only a pinned or audited MCP version, and use a constrained environment.
+
+Risk: Providing PRIVATE_KEY enables x402 payments and credit purchases.
+
+Mitigation: Use a dedicated wallet with only necessary funds and approvals, and require explicit user confirmation before financial actions.
+
+## Reference(s):
+
+- [Bluepages Documentation](https://bluepages.fyi/docs.html)
+- [Bluepages API Keys](https://bluepages.fyi/api-keys.html)
+- [ClawHub Bluepages Skill](https://clawhub.ai/jesse-pallok/skills/bluepages)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text responses with optional shell and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require BLUEPAGES_API_KEY or PRIVATE_KEY authentication; x402 payments and credit purchases should remain under explicit user control.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

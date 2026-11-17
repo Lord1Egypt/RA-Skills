@@ -1,45 +1,56 @@
-## Description: <br>
-Comprehensive ITSM/ITIL security maturity evaluation platform for assessing organizational compliance and process maturity across eight critical ITSM domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive ITSM/ITIL security maturity evaluation platform for assessing organizational compliance and process maturity across eight critical ITSM domains.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security architects, ITIL service managers, compliance officers, and enterprise security teams use this skill to assess ITSM process maturity, identify capability gaps, and prioritize improvements across eight ITSM domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted maturity scores, session identifiers, timestamps, and optional user identifiers may reveal internal ITSM security posture to the publisher's external service. <br>
-Mitigation: Confirm organizational approval for this data transfer before use, and avoid sending secrets, regulated data, or detailed internal weakness descriptions. <br>
-Risk: The assessment depends on an external API service and its availability, pricing, and provider terms. <br>
-Mitigation: Review provider privacy, retention, compliance, availability, and plan limits before using the skill in operational workflows. <br>
+## Use Case:
 
+Security architects, ITSM service managers, compliance officers, and enterprise security teams use this skill to submit ITSM process maturity scores and receive maturity levels plus prioritized improvement recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-itsm-security-maturity) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
-- [ITSM Security Maturity API Docs](https://api.mkkpro.com:8104/docs) <br>
-- [ITSM Security Maturity API Route](https://api.mkkpro.com/compliance/itsm-maturity) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, guidance] <br>
-**Output Format:** [JSON API responses with maturity scores, maturity levels, status, and improvement recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assessment requests include session and timestamp metadata plus q1-q4 scores for eight ITSM process domains.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Assessment submissions are sent to a third-party API and can include ITSM maturity scores, session IDs, timestamps, and optional user IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pseudonymous session and user identifiers where possible and avoid submitting sensitive organizational details beyond the required 0-5 assessment scores.
+
+Risk: Maturity scores and recommendations may be used to support compliance or process-improvement decisions.
+
+Mitigation: Review outputs with security, ITSM, and compliance owners before relying on them for audit, control, or resource-allocation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-itsm-security-maturity)
+- [Provider API documentation](https://api.mkkpro.com:8104/docs)
+- [Provider API route](https://api.mkkpro.com/compliance/itsm-maturity)
+- [OpenAPI specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance]
+
+**Output Format:** [JSON API responses with maturity scores, maturity levels, status, and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assessment requests include ITSM maturity scores, session IDs, timestamps, and optional user IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

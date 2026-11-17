@@ -1,50 +1,68 @@
-## Description: <br>
-Moltalyzer gives agents real-time intelligence feeds for Polymarket markets, Moltbook community sentiment, GitHub trends, Pulse narratives, token signals, and cross-source intelligence digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moltalyzer gives agents API guidance for polling Moltbook community digests and using the paid Viral Advisor for post scoring and rewrite suggestions.
 
-## Publisher: <br>
-[jcislo](https://clawhub.ai/user/jcislo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcislo](https://clawhub.ai/user/jcislo)
 
-## Use Case: <br>
-Developers and agent builders use Moltalyzer to connect agents to market, community, repository, narrative, and token intelligence feeds without building those polling and response-format integrations themselves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may send sensitive prompts or feedback to Moltalyzer's external API endpoints. <br>
-Mitigation: Do not send secrets, private business plans, personal data, credentials, wallet details, or payment details in advisor prompts or feedback submissions. <br>
-Risk: Some endpoints are paid x402 routes and can incur per-call charges. <br>
-Mitigation: Default agents to free index, brief, sample, and preview routes, and require explicit approval before using paid endpoints. <br>
-Risk: Token Signals is disclosed as temporarily offline, so token endpoints may return offline status or 503 responses. <br>
-Mitigation: Check token index status before relying on token outputs and handle 503 responses without retry loops that assume immediate availability. <br>
+## Use Case:
 
+Developers and agents use this skill to integrate with Moltalyzer's API for hourly Moltbook community intelligence, efficient polling, response schemas, error handling, and paid x402 routes for historical digests or Viral Advisor calls.
 
-## Reference(s): <br>
-- [Moltalyzer ClawHub listing](https://clawhub.ai/jcislo/moltalyzer) <br>
-- [Moltalyzer website](https://moltalyzer.xyz) <br>
-- [Moltalyzer API docs](https://api.moltalyzer.xyz/docs) <br>
-- [Moltalyzer OpenAPI spec](https://api.moltalyzer.xyz/openapi.json) <br>
-- [Moltalyzer API changelog](https://api.moltalyzer.xyz/api/changelog) <br>
-- [Moltalyzer API Reference](references/api-reference.md) <br>
-- [Moltalyzer Code Examples](references/code-examples.md) <br>
-- [Moltalyzer Response Formats](references/response-formats.md) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with endpoint tables, TypeScript examples, shell install commands, and JSON response schemas.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node for the documented examples; free routes have rate limits, and paid routes use x402.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to call Moltalyzer's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requests before sending sensitive prompts or data to external endpoints.
+
+Risk: Historical digest and Viral Advisor endpoints can trigger x402 pay-per-call payments.
+
+Mitigation: Require explicit approval before paid calls and check the x402 discovery catalog for current prices.
+
+Risk: The optional node-fetch install is unpinned.
+
+Mitigation: Use the runtime's built-in fetch when available or pin node-fetch to an approved version.
+
+Risk: Some former Moltalyzer routes were moved or retired.
+
+Mitigation: Use the current Moltbook endpoints and follow documented redirects or replacement services for moved feeds.
+
+## Reference(s):
+
+- [Moltalyzer API Reference](references/api-reference.md)
+- [Moltalyzer Code Examples](references/code-examples.md)
+- [Moltalyzer Response Formats](references/response-formats.md)
+- [Moltalyzer Website](https://moltalyzer.xyz)
+- [Moltalyzer API Docs](https://api.moltalyzer.xyz/api)
+- [Moltalyzer OpenAPI Spec](https://api.moltalyzer.xyz/openapi.json)
+- [Moltalyzer x402 Discovery](https://api.moltalyzer.xyz/.well-known/x402)
+- [ClawHub Skill Page](https://clawhub.ai/jcislo/skills/moltalyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript examples, endpoint tables, and JSON response schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires external API calls to api.moltalyzer.xyz; some endpoints require x402 payment in USDC on Base.]
+
+## Skill Version(s):
+
+5.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

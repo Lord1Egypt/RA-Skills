@@ -1,40 +1,58 @@
-## Description: <br>
-Validate JSON data against JSON Schema, generate schemas from sample JSON, and convert schemas to TypeScript interfaces, Python dataclasses, or Markdown docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate JSON data against JSON Schema, generate schemas from sample JSON, and convert schemas to TypeScript interfaces, Python dataclasses, or Markdown docs.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and engineers use this skill for local JSON Schema validation, schema generation from examples, and conversion to TypeScript, Python dataclasses, or Markdown documentation during API contract and data workflow work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated TypeScript or Python may be incorrect for a downstream project if used without review. <br>
-Mitigation: Review generated code before running, importing, or committing it. <br>
-Risk: The bundled validator covers common JSON Schema keywords and skips reference resolution. <br>
-Mitigation: Use it for basic local checks and use a full JSON Schema validator when schemas depend on $ref or unsupported keywords. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate JSON payloads, generate schemas from examples, and convert JSON Schemas into typed code or Markdown documentation for API contract and data-model workflows.
 
-## Reference(s): <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, JSON, TypeScript, Python, and validation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read JSON from stdin or local files and may write generated schema JSON when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated TypeScript interfaces or Python dataclasses may contain unsafe or invalid identifiers when schemas come from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize schema names and property names before importing, compiling, executing, or shipping generated code.
+
+Risk: The validator may provide incomplete assurance because the release evidence says not to treat it as a full JSON Schema implementation.
+
+Mitigation: Use it for lightweight validation workflows and confirm security-sensitive validation with a complete JSON Schema validator.
+
+Risk: Untrusted schemas or data can produce misleading validation or conversion results.
+
+Mitigation: Review schemas and generated outputs before using them in API contracts, production checks, or generated documentation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnnywang2001/skills/json-schema-toolkit)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated JSON, text, code, or Markdown outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces validation reports, generated JSON Schema, TypeScript interfaces, Python dataclasses, or Markdown schema documentation; uses stdin when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

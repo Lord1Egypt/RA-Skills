@@ -1,12 +1,12 @@
 ---
 name: sailing-skill
-description: "赛灵体育(sailing sports)实时赛事数据助手，专注乒乓球和足球领域。提供实时比赛数据、赛程安排、赛事日程、最新比分、球员动态、世界排名。涵盖球员(乒乓球球员:樊振东/孙颖莎/王楚钦/马龙/陈梦等，足球球员:梅西/C罗/罗纳尔多等)、赛事(乒乓球赛事:WTT/ITTF，足球赛事:世界杯/欧冠/中超/德甲/意甲/英超/西甲/法甲等)、交手记录、历史战绩、赛事日程。支持自然语言查询。"
+description: "赛灵体育(sailing sports)实时赛事数据助手，覆盖乒乓球、足球和赛车领域。提供实时比赛数据、赛程安排、赛事日程、最新比分、球员/车手动态、世界排名和赛季积分榜。涵盖球员(乒乓球球员:樊振东/孙颖莎/王楚钦/马龙/陈梦等，足球球员:梅西/C罗/罗纳尔多等)、乒乓球赛事(WTT/ITTF)、足球赛事(世界杯/欧冠/中超/德甲/意甲/英超/西甲/法甲等)以及赛车赛事(F1)。支持自然语言查询。"
 metadata: {"openclaw": {"category": "sports", "type": "mcp", "mcp_url": "https://sailing.sports.qq.com/api/tteagent/sport_pub/mcp"}, "required_env_vars": ["SAILING_TAI_IT_TOKEN"]}
 ---
 
 # sailing-skill
 
-赛灵体育乒乓球和足球赛事数据 MCP 服务
+赛灵体育乒乓球、足球和赛车赛事数据 MCP 服务
 
 ## ⚙️ 配置要求
 
@@ -67,10 +67,16 @@ mcporter list | grep sailing-sports-mcp
 - 在用户询问**联赛积分榜、球队排名**时，使用 `tteagt(query:'...', project:'FBL')` 查询积分榜数据
 - 在用户询问**射手榜、助攻榜**时，使用 `tteagt(query:'...', project:'FBL')` 查询个人数据榜单
 
+### 赛车赛事查询场景（project: CAR）
+- 在用户询问 **F1、Formula E、WEC、WRC、TCR** 等赛车赛事的赛程、比赛时间、近期比赛或下一场比赛时，使用 `tteagt(query:'...', project:'CAR')`
+- 在用户询问**大奖赛、正赛、排位赛、冲刺赛的结果或逐场数据**时，使用 `tteagt(query:'...', project:'CAR')`
+- 在用户询问**车手、车队、积分榜、胜场、领奖台、发车位或逐场表现**时，使用 `tteagt(query:'...', project:'CAR')`
+- 在用户询问**旗语、轮胎、赛制、规则或赛车术语**时，使用 `tteagt(query:'...', project:'CAR')`
+
 ### 不触发边界
 
 不要在以下场景使用此技能：
-- 用户询问的是**非乒乓球和足球的运动**（如篮球、网球等）
+- 用户询问的是**非乒乓球、足球和赛车的运动**（如篮球、网球等）
 - 用户需要**体育赛事投注或博彩**相关信息
 - 用户进行**非赛事数据相关的体育训练指导**
 - 用户询问的是**其他体育数据平台**的数据
@@ -84,11 +90,11 @@ mcporter list | grep sailing-sports-mcp
 
 ### 1. `tteagt` — 体育智能问答
 
-**功能**：接受自然语言查询，返回乒乓球和足球的赛事、球员、排名等信息。这是唯一的工具，所有查询都通过此工具完成。
+**功能**：接受自然语言查询，返回乒乓球、足球和赛车的赛事、球员、车手、车队及排名等信息。这是唯一的工具，所有查询都通过此工具完成。
 
 **参数**:
 - `query`(必填) - 自然语言查询问题，如"今天有什么乒乓球比赛"、"孙颖莎最近的比赛结果"、"今天英超比赛结果"等
-- `project`(必填) - 运动大项，取值为 `TTE`（乒乓球）或 `FBL`（足球）
+- `project`(必填) - 运动大项，取值为 `TTE`（乒乓球）、`FBL`（足球）或 `CAR`（赛车）
 
 **支持的查询类型**：
 
@@ -105,6 +111,11 @@ mcporter list | grep sailing-sports-mcp
 | 足球联赛积分榜 | 2026赛季中超积分榜 | FBL |
 | 足球赛程安排 | 欧冠淘汰赛赛程 | FBL |
 | 足球球队信息 | 皇家马德里最近的比赛 | FBL |
+| F1近期赛程 | F1下一场比赛是什么时候 | CAR |
+| 大奖赛结果 | 2026年英国大奖赛正赛结果 | CAR |
+| 车手表现 | 某车手本赛季获得了多少胜场 | CAR |
+| 车队积分榜 | 2026F1车队积分榜 | CAR |
+| 赛车规则 | F1蓝旗是什么意思 | CAR |
 
 ---
 
@@ -132,6 +143,17 @@ mcporter call sailing-sports-mcp tteagt --args '{"query": "2026赛季中超积�
 
 # 示例：查询赛程安排
 mcporter call sailing-sports-mcp tteagt --args '{"query": "欧冠淘汰赛赛程", "project": "FBL"}'
+
+# === 赛车示例（project: CAR）===
+
+# 示例：查询下一场比赛
+mcporter call sailing-sports-mcp tteagt --args '{"query": "F1下一场比赛是什么时候", "project": "CAR"}'
+
+# 示例：查询大奖赛结果
+mcporter call sailing-sports-mcp tteagt --args '{"query": "2026年英国大奖赛正赛结果", "project": "CAR"}'
+
+# 示例：查询车队积分榜
+mcporter call sailing-sports-mcp tteagt --args '{"query": "2026F1车队积分榜", "project": "CAR"}'
 ```
 
 ## 数据结构
@@ -139,23 +161,29 @@ mcporter call sailing-sports-mcp tteagt --args '{"query": "欧冠淘汰赛赛程
 API 返回 JSON 格式数据，包含以下主要类型：
 
 ### 赛程数据
-- 赛事名称、项目类型（乒乓球/足球）
-- 选手A VS 选手B / 球队A VS 球队B
+- 赛事名称、项目类型（乒乓球/足球/赛车）
+- 选手A VS 选手B / 球队A VS 球队B / 赛车逐车手成绩
 - 开始/结束时间
 - 对阵描述、比分
 
-### 球员数据
-- 球员ID、球员名称
-- 所属运动（乒乓球/足球）
+### 人员数据
+- 选手、球员或车手的 ID 与名称
+- 所属运动（乒乓球/足球/赛车）
 
 ### 赛季数据
-- 赛季名称（乒乓球：WTT、ITTF；足球：世界杯、欧冠、中超、英超等）
+- 赛季名称（乒乓球：WTT、ITTF；足球：世界杯、欧冠、中超、英超等；赛车：F1、Formula E、WEC、WRC、TCR 等）
 - 开始/结束时间
 
 ### 榜单数据
 - 排名、分数/积分
 - 小项名称 / 联赛名称
 - 年、周/轮次
+
+### 赛车数据
+- 大奖赛及赛段名称
+- 车手、车队、名次和积分
+- 发车位、圈数、圈速及比赛状态
+- 赛季车手榜和车队榜
 
 ## 呈现结果
 

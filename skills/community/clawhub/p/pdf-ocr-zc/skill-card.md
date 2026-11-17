@@ -1,43 +1,59 @@
-## Description: <br>
-Batch OCR for scanned PDFs that creates searchable PDFs and can support downstream text or Markdown extraction for teacher-agent document workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch OCR for scanned PDFs that creates searchable PDF outputs and can support downstream Markdown or plain-text extraction.
 
-## Publisher: <br>
-[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong)
 
-## Use Case: <br>
-Educators, developers, and automation agents use this skill to OCR scanned PDF collections before ingestion, vectorization, search, or review. It is especially suited to teacher-agent workflows that need searchable text from scanned teaching materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch or scheduled OCR runs can process unintended PDFs or create repeated output files when pointed at broad directories. <br>
-Mitigation: Run the script on copies of important PDFs first, restrict batch and scheduled runs to intended OCR directories, and monitor output folders. <br>
-Risk: OCR execution depends on local Tesseract and ocrmypdf installations from the host environment. <br>
-Mitigation: Install OCR dependencies from trusted sources and verify the tools before processing documents. <br>
+## Use Case:
 
+Developers, educators, and agent builders use this skill to OCR scanned PDF collections before indexing, retrieval, or document-ingestion workflows. It supports single-file processing and recursive batch processing with a configurable OCR language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/pdf-ocr-zc) <br>
-- [Install Tesseract and ocrmypdf](references/install_ocr.md) <br>
-- [OCR parameters and tips](references/ocr_tips.md) <br>
-- [UB Mannheim Tesseract Windows builds](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a Python helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local PDF processing; produces searchable PDF files and may be followed by text or Markdown extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recursive batch processing can create many local *_ocr.pdf outputs and logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test on a small folder first, verify generated outputs, and avoid unattended scheduled use until the workflow is reviewed.
+
+Risk: The installation guidance depends on unpinned third-party OCR components.
+
+Mitigation: Use a virtual environment and verify or pin dependency versions before production use.
+
+Risk: Incorrect OCR language settings can reduce text quality for scanned documents.
+
+Mitigation: Select the correct OCR language with --lang and validate sample results before bulk processing.
+
+## Reference(s):
+
+- [OCR Installation Guide](references/install_ocr.md)
+- [OCR Parameters and Tips](references/ocr_tips.md)
+- [UB Mannheim Tesseract for Windows](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated local PDF or text artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local PDF paths supplied by the user and may create *_ocr.pdf files plus logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

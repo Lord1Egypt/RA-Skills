@@ -1,53 +1,67 @@
-## Description: <br>
-Knowledge compiler: teaches agents to incrementally compile source files into persistent wikis for cross-session knowledge accumulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge compiler that teaches agents to incrementally compile source files into persistent local wikis for cross-session knowledge accumulation.
 
-## Publisher: <br>
-[hanlinlibham](https://clawhub.ai/user/hanlinlibham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanlinlibham](https://clawhub.ai/user/hanlinlibham)
 
-## Use Case: <br>
-Developers, researchers, and analysts use auto-wiki to compile supplied source material into a persistent local `.wiki/` knowledge base, then recall, query, lint, and optionally fill gaps in that accumulated wiki. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local wiki writes can create or modify Markdown pages, SQLite data, and Obsidian configuration under `.wiki/`. <br>
-Mitigation: Confirm the target wiki location before first creation, keep `.wiki/` out of project commits unless intentionally versioned, and review created or updated pages after ingest. <br>
-Risk: Lint repairs and deep-dive ingestion can introduce incorrect or outdated knowledge into the persistent wiki. <br>
-Mitigation: Review lint repairs and gap-fill sources before accepting them, require confirmation for deep-dive gap filling, and label contested or unverified claims. <br>
-Risk: Optional WebSearch, WebFetch, domain data MCPs, and external validators may expose sensitive topics or source material outside the local environment. <br>
-Mitigation: Use passive file-based mode for sensitive domains and avoid optional external validators or search tools unless that disclosure is acceptable. <br>
-Risk: Generated `_report.html` loads third-party JavaScript from a CDN. <br>
-Mitigation: Open reports only in trusted contexts or avoid report generation when third-party CDN loading is not acceptable. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to let an agent build and maintain a local topic wiki from supplied source materials, then recall, query, lint, or fill gaps in accumulated knowledge.
 
-## Reference(s): <br>
-- [auto-wiki ClawHub release](https://clawhub.ai/hanlinlibham/auto-wiki) <br>
-- [Storage Specification](references/storage-spec.md) <br>
-- [Wiki Page Format](references/wiki-format.md) <br>
-- [Ingest Protocol](references/ingest-protocol.md) <br>
-- [Query Protocol](references/query-protocol.md) <br>
-- [Lint Protocol](references/lint-protocol.md) <br>
-- [Information Source Validation](references/source-validation.md) <br>
-- [FIBO MCP Validator](validators/fibo-mcp.md) <br>
-- [Financial Industry Business Ontology](https://spec.edmcouncil.org/fibo/) <br>
-- [NeuroFusionAI fibo-mcp](https://github.com/NeuroFusionAI/fibo-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown wiki pages, SQLite-backed local data files, shell command snippets, configuration updates, and health or gap reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local `.wiki/` content; optional active search and external validation depend on the user's configured tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 0.2.0) <br>
+Risk: The skill persistently modifies a local .wiki knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the wiki location before first creation and review proposed ingest, lint, and deep-dive writes before allowing changes.
+
+Risk: Generated _report.html output can run remote browser JavaScript over private wiki content.
+
+Mitigation: Avoid generating or opening reports for sensitive wikis until report output is sanitized and the remote dependency is removed or pinned with integrity controls.
+
+Risk: Optional network features and external validators can expose project context to approved destinations.
+
+Mitigation: Keep WebSearch, domain MCP, and external validator use disabled for confidential projects unless the destination and data being sent are explicitly approved.
+
+## Reference(s):
+
+- [Auto Wiki ClawHub Skill Page](https://clawhub.ai/hanlinlibham/skills/auto-wiki)
+- [Ingest Protocol](references/ingest-protocol.md)
+- [Query Protocol](references/query-protocol.md)
+- [Lint Protocol](references/lint-protocol.md)
+- [Storage Specification](references/storage-spec.md)
+- [Information Source Validation](references/source-validation.md)
+- [Wiki Page Format](references/wiki-format.md)
+- [FIBO Pensions Seed Vocabulary](seeds/fibo-pensions.md)
+- [FIBO Specification](https://spec.edmcouncil.org/fibo/)
+- [FIBO MCP Runtime Logic Validator](validators/fibo-mcp.md)
+- [NeuroFusionAI/fibo-mcp](https://github.com/NeuroFusionAI/fibo-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional shell commands and local wiki file updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .wiki/{topic}/ Markdown pages, SQLite data, and generated reports after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

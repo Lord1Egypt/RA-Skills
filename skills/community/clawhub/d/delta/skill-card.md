@@ -1,41 +1,50 @@
-## Description: <br>
-Delta reference tool. Use when working with delta in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delta reference tool. Use when working with delta in finance contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and finance practitioners use this skill for quick reference material about delta-related finance concepts, formulas, risks, regulations, strategies, instruments, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance reference output could be mistaken for decision-ready financial advice. <br>
-Mitigation: Treat the material as educational reference and verify important financial decisions independently. <br>
-Risk: The skill may activate on ambiguous uses of the word delta outside finance contexts. <br>
-Mitigation: Invoke it only for finance-related tasks or tighten the activation wording before broad deployment. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve quick finance-oriented delta reference material, including formulas, risks, regulatory considerations, strategies, terms, and checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/delta) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text returned by command-line subcommands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes finance reference sections for formulas, regulations, risks, instruments, strategies, glossary terms, and checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Finance, regulatory, and compliance content may be mistaken for authoritative financial, legal, or regulatory advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as lightweight generic reference material and verify decisions with qualified sources before use.
+
+## Reference(s):
+
+- [Delta on ClawHub](https://clawhub.ai/xueyetianya/skills/delta)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reference text emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no sensitive-data access or file changes reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

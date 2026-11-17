@@ -1,41 +1,56 @@
-## Description: <br>
-Plan, launch, and operate a LinkedIn employee advocacy program for a marketing team, including launch planning, authentic posting workflows, brand governance, cadence targets, and ROI measurement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stand up and run a LinkedIn employee advocacy program for a marketing or sales team, including launch planning, brand-guideline governance, cadence benchmarks, and ROI measurement.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Marketing leaders and teams use this skill to launch or improve a LinkedIn employee advocacy program, coordinate authentic employee posting, apply brand-safety review, and measure reach, engagement, and pipeline impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Employee advocacy content may expose confidential information, unsupported claims, or regulated-industry issues when adapted for public LinkedIn posts. <br>
-Mitigation: Apply the skill's brand, legal, confidentiality, and factual-claim review guidance before employees publish public posts. <br>
-Risk: The skill is focused on LinkedIn employee advocacy and may be inappropriate for unrelated social media or communications requests. <br>
-Mitigation: Confirm the user request is specifically about LinkedIn employee advocacy before applying its workflow. <br>
+## Use Case:
 
+Marketing and sales leaders use this skill to launch and operate a LinkedIn employee advocacy program, set realistic team posting cadence, define review governance, and measure reach, engagement, and pipeline impact.
 
-## Reference(s): <br>
-- [Employee Advocacy - Four Operating Principles](references/advocacy-principles.md) <br>
-- [Co:Actor marketing teams use case](https://co.actor/use-cases/marketing-teams) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with structured plans, operating models, KPI specifications, and governance checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, API calls, credential requests, or shell commands are produced by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Employee advocacy recommendations may affect public LinkedIn posting, brand claims, auto-publish tiers, and silent approval workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt the governance rules to the organization's legal, HR, brand, consent, and regulated-industry requirements before rollout.
+
+Risk: Posts can expose customer names, internal metrics, product roadmap claims, financial guidance, competitor allegations, or legal matters.
+
+Mitigation: Route higher-risk posts through explicit review and approval before publishing, especially for regulated or brand-sensitive organizations.
+
+## Reference(s):
+
+- [Employee Advocacy - Four Operating Principles](references/advocacy-principles.md)
+- [Governance Playbook - What to review, what not to, SLA](references/governance-playbook.md)
+- [Team Cadence Matrix - Realistic posting & comment volume by role and seniority](references/team-cadence-matrix.md)
+- [Co:Actor marketing teams use case](https://co.actor/use-cases/marketing-teams)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with plans, operating models, governance checklists, cadence targets, and KPI dashboard specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential use, or hidden system changes indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

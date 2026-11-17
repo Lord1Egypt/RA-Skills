@@ -1,46 +1,57 @@
-## Description: <br>
-Design and launch ecommerce affiliate, influencer, and referral commission structures that attract quality partners, drive incremental revenue, and stay profitable without overpaying for sales that would have happened anyway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and launch ecommerce affiliate, influencer, and referral commission structures that attract quality partners, drive incremental revenue, and stay profitable without overpaying for sales you'd have gotten anyway.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, DTC brand teams, marketplace sellers, and partner program managers use this skill to design affiliate, influencer, and referral commission programs. It helps them set rates, tiers, attribution rules, onboarding materials, and launch checks for profitable partner programs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commission benchmarks may not fit a merchant's actual margins, costs, average order value, or target acquisition costs. <br>
-Mitigation: Treat rates as planning guidance and validate proposed payouts against current unit economics before launching a live program. <br>
-Risk: Affiliate terms, creator claims, disclosure rules, and partner data handling can create legal or compliance obligations. <br>
-Mitigation: Have legal or compliance reviewers check affiliate agreements, FTC disclosures, prohibited claims, and privacy requirements before launch. <br>
-Risk: Loose attribution or coupon policies can overpay partners for sales that were not incremental. <br>
-Mitigation: Define attribution windows, coupon rules, commissionable customers, returns treatment, and monthly performance reviews before paying commissions. <br>
+## Use Case:
 
+External ecommerce sellers, DTC brand operators, and marketplace merchants use this skill to design tiered affiliate, influencer, and referral commission programs, including payout rates, attribution rules, partner onboarding, launch checklists, and ongoing management.
 
-## Reference(s): <br>
-- [Commission Builder on ClawHub](https://clawhub.ai/leooooooow/commission-builder) <br>
-- [Commission Program Design Template](artifact/output-template.md) <br>
-- [Commission Rate Benchmarks Guide](artifact/rate-benchmarks-guide.md) <br>
-- [Partner Onboarding Kit](artifact/partner-onboarding-kit.md) <br>
-- [Commission Builder Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable business-planning output; commission benchmarks and program terms should be reviewed against actual margins and compliance requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Users may treat commission templates or benchmark rates as legal or financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commission rates, attribution rules, FTC disclosure obligations, privacy handling, and affiliate agreement terms with qualified business, legal, and compliance reviewers before operational use.
+
+Risk: Poor attribution, coupon, or excluded-sale rules can overpay partners for sales that are not incremental.
+
+Mitigation: Document attribution windows, coupon code rules, commissionable customers, return handling, and partner tiers before launch, then review performance monthly.
+
+## Reference(s):
+
+- [Commission Program Design Template](artifact/output-template.md)
+- [Commission Rate Benchmarks Guide](artifact/rate-benchmarks-guide.md)
+- [Partner Onboarding Kit](artifact/partner-onboarding-kit.md)
+- [Commission Builder Quality Checklist](artifact/quality-checklist.md)
+- [Commission Builder on ClawHub](https://clawhub.ai/leooooooow/skills/commission-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and fill-in templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; outputs should be reviewed as business planning material, not legal or financial advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

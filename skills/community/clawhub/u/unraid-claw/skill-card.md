@@ -1,47 +1,63 @@
-## Description: <br>
-Query an Unraid server via GraphQL for system, array, and Docker status in read-only mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query an Unraid server via GraphQL for system, array, and Docker status in read-only mode.
 
-## Publisher: <br>
-[Yoshiofthewire](https://clawhub.ai/user/Yoshiofthewire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoshiofthewire](https://clawhub.ai/user/yoshiofthewire)
 
-## Use Case: <br>
-External operators and developers use this skill to let an agent check Unraid system health, array and parity status, Docker status, API connectivity, and recurring monitoring results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries a configured Unraid API using an API key. <br>
-Mitigation: Use a least-privilege API key where possible, keep credentials in environment variables, and do not commit secrets. <br>
-Risk: The skill stores local monitoring snapshots, alert state, and logs. <br>
-Mitigation: Protect .state or UNRAID_STATE_DIR with appropriate local filesystem permissions. <br>
-Risk: Cron setup and certificate-trust commands can affect the host environment. <br>
-Mitigation: Review crontab changes and any sudo certificate-trust commands before running them. <br>
-Risk: A wrong or untrusted UNRAID_BASE_URL can send requests to the wrong endpoint. <br>
-Mitigation: Verify UNRAID_BASE_URL before use and avoid session cookies unless they are required. <br>
+## Use Case:
 
+External users, developers, and homelab operators use this skill to check Unraid system health, array/parity state, Docker status, and API connectivity from an OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Yoshiofthewire/unraid-claw) <br>
-- [Yoshiofthewire publisher profile](https://clawhub.ai/user/Yoshiofthewire) <br>
-- [Unraid API documentation](https://docs.unraid.net/API/) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/creating-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Operator-facing Markdown or plain text summaries, with optional JSON report output from bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq; stores snapshots, alert state, and logs under .state or UNRAID_STATE_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill requires an Unraid API key and may load optional session credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials in environment variables or a private .env file, avoid optional session cookies unless required, and do not print or commit secrets.
+
+Risk: Recurring monitoring can modify cron configuration and write logs or snapshots.
+
+Mitigation: Review cron entries before installing them, use a safe temporary file workflow, and keep .state contents private.
+
+Risk: Self-signed TLS certificates can weaken trust decisions if accepted without verification.
+
+Mitigation: Use HTTPS, verify self-signed certificate fingerprints out of band, and do not install unverified certificates system-wide.
+
+Risk: Unraid API schema differences can produce partial monitoring results.
+
+Mitigation: Treat partial output warnings as operational signals and confirm critical status directly on the Unraid server when fields are unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoshiofthewire/skills/unraid-claw)
+- [OpenClaw skills docs](https://docs.openclaw.ai/tools/creating-skills)
+- [Unraid API docs](https://docs.unraid.net/API/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or plain text summaries with optional JSON reports and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include read-only health status, timestamps, system metrics, array/parity details, Docker counts, alerts, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

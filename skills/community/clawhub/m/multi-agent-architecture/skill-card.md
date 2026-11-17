@@ -1,41 +1,55 @@
-## Description: <br>
-Architecture guide for running multiple specialized AI agents on a single OpenClaw server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture guide for running multiple specialized AI agents on a single OpenClaw server, covering workspace isolation, agent roles, shared memory, Telegram routing, rate limit management, monitoring, and self-healing.
 
-## Publisher: <br>
-[mosoonpi-ai](https://clawhub.ai/user/mosoonpi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mosoonpi-ai](https://clawhub.ai/user/mosoonpi-ai)
 
-## Use Case: <br>
-Developers and operators use this skill to plan and operate multiple specialized OpenClaw agents with isolated workspaces, Telegram routing, shared memory, monitoring, and backup practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent, provider, and Telegram credentials may be exposed if copied into chat, source control, shared memory, or backups. <br>
-Mitigation: Keep tokens out of chat and git, restrict Telegram bots with allowedChatIds, and exclude secrets from shared memory and backups. <br>
-Risk: Automatic restart or cron examples may affect running services if enabled without review. <br>
-Mitigation: Review restart scripts and cron entries before enabling them, and limit automation to agents and services that require it. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and run multiple specialized OpenClaw agents on one server with isolated workspaces, role-specific configuration, Telegram routing, shared memory, monitoring, and backups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mosoonpi-ai/multi-agent-architecture) <br>
-- [Publisher profile](https://clawhub.ai/user/mosoonpi-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational checklists, configuration examples, and monitoring guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: Cron jobs, backup automation, shared memory, and symlinked skills can affect running services or expose data across agents if applied too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply automation only to intended workspaces, review shared paths before deployment, and scope shared memory and symlinks to utilities that are safe for multiple agents.
+
+Risk: Bot and API tokens used for Telegram routing and multi-token rate-limit management can expose agent access if mishandled.
+
+Mitigation: Protect tokens, avoid storing them in git or chat logs, and configure allowed chat IDs for all bots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mosoonpi-ai/skills/multi-agent-architecture)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill that provides architecture patterns, setup steps, operational checklists, and example commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

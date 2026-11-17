@@ -1,44 +1,60 @@
-## Description: <br>
-Manages an OpenClaw agent avatar by accepting an image or URL, or by searching Freepik for candidate vector avatars, then saving the selected image and updating the avatar reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages OpenClaw agent avatars by accepting an image or URL, or by using Freepik vector search to help select and apply a new avatar.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to replace an agent avatar from a supplied image, image URL, or Freepik search candidate while keeping the OpenClaw workspace avatar path and IDENTITY.md in sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist a Freepik API key in TOOLS.md. <br>
-Mitigation: Prefer an environment variable or dedicated secret store; delete or rotate any key written to TOOLS.md if it may have been exposed. <br>
-Risk: The skill makes lasting OpenClaw avatar and identity changes. <br>
-Mitigation: Review the selected image and target agent before applying the change, and keep the previous IDENTITY.md avatar path available for rollback. <br>
-Risk: The skill sends search requests to Freepik and downloads third-party image assets. <br>
-Mitigation: Avoid sensitive details in search prompts and review the selected asset and applicable Freepik terms before use. <br>
+## Use Case:
 
+External OpenClaw users use this skill to update an agent avatar from a supplied image, a URL, or Freepik search candidates. It helps place the selected avatar in the OpenClaw workspace and update the agent identity configuration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/songhonglei/agent-avatar-manager) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Freepik API key dashboard](https://www.freepik.com/developers/dashboard/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Freepik API, download avatar images, persist a Freepik API key, and update OpenClaw identity files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses unsafe shell templates and unrestricted URL downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate agent names, agent IDs, filenames, and URLs before running curl or openclaw commands; prefer direct local images when possible.
+
+Risk: The skill can persist a Freepik API key in plaintext TOOLS.md.
+
+Mitigation: Avoid storing valuable API keys in TOOLS.md unless plaintext storage is acceptable, and do not echo full keys in chat.
+
+Risk: The skill may receive sensitive descriptions or private image URLs during avatar selection.
+
+Mitigation: Avoid pasting sensitive descriptions or private URLs, and review the skill before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songhonglei/skills/agent-avatar-manager)
+- [Publisher profile](https://clawhub.ai/user/songhonglei)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Freepik API key dashboard](https://www.freepik.com/developers/dashboard/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update avatar image files and IDENTITY.md entries in an OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

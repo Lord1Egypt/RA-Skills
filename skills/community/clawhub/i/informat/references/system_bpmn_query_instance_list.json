@@ -1,0 +1,34 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_bpmn_query_instance_list",
+		"description": "Query the list of workflow process instances started by the current user.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "The workflow module ID."
+				},
+				"status": {
+					"type": "string",
+					"enum": ["doing", "done"],
+					"description": "Filter by instance status. 'doing' for in-progress, 'done' for completed."
+				},
+				"processDefineName": {
+					"type": "string",
+					"description": "Filter by process definition name (fuzzy match)."
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page index, starting from 1. Default is 1."
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Page size. Maximum 50, default is 20."
+				}
+			},
+			"required": ["moduleId"]
+		}
+	}
+}

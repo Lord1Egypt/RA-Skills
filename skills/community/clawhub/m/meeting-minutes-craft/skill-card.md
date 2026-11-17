@@ -1,41 +1,54 @@
-## Description: <br>
-将杂乱会议记录转化为结构化、可搜索、带7种模板的格式化HTML纪要。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将杂乱会议记录转化为结构化、可搜索、带7种模板的格式化HTML纪要。
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-Teams and knowledge workers use this skill to turn raw meeting notes into structured, searchable, and shareable HTML minutes with templates for standard meetings, decisions, action tracking, retrospectives, standups, workshops, and board meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting records can contain confidential business information. <br>
-Mitigation: Only provide content that is appropriate for the agent environment and your organization's data handling rules. <br>
-Risk: Generated minutes may need review before being shared outside the team. <br>
-Mitigation: Review the generated HTML for accuracy, sensitive content, and intended audience before distribution. <br>
+## Use Case:
 
+Employees and team facilitators use this skill to turn raw Chinese or mixed-language meeting notes into structured, searchable meeting minutes. It supports standard, decision-focused, action-tracking, retrospective, standup, workshop, and board-style minutes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/meeting-minutes-craft) <br>
-- [Publisher homepage](https://github.com/wwbwin/clawhub-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Single-file HTML with inline CSS and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports selectable meeting patterns and color themes; generated HTML is intended to be self-contained with no external dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Meeting notes and generated minutes may contain sensitive business records, including board, finance, or personnel discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the workflow is appropriate before installation, limit pasted notes to intended use, and share generated HTML only with intended recipients.
+
+Risk: Generated summaries, decisions, owners, or action items may be inaccurate if source notes are incomplete or ambiguous.
+
+Mitigation: Review the generated minutes against the source notes before archiving, distributing, or using them for follow-up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/meeting-minutes-craft)
+- [Publisher homepage](https://github.com/wwbwin/clawhub-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Single-file HTML minutes or Markdown/plain-text exports generated from meeting notes and selected templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local pattern definitions and inline HTML/CSS/JavaScript; no external CDN resources are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

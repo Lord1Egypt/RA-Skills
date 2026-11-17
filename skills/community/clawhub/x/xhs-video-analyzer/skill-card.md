@@ -1,42 +1,54 @@
-## Description: <br>
-Downloads Xiaohongshu video content, extracts audio, transcribes speech through Poe/Gemini, and guides the agent to produce a detailed Chinese summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Xiaohongshu videos, extracts audio, sends audio chunks to Poe/Gemini for transcription, and helps an agent produce a detailed Chinese content summary.
 
-## Publisher: <br>
-[HViktorTsoi](https://clawhub.ai/user/HViktorTsoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hviktortsoi](https://clawhub.ai/user/hviktortsoi)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Xiaohongshu video links by downloading media, transcribing audio, and producing a detailed Chinese content summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded video/audio and extracted speech are stored locally. <br>
-Mitigation: Run only on content you are permitted to process and remove the work directory when the files are no longer needed. <br>
-Risk: Audio chunks are uploaded to Poe/Gemini using the user's Poe API key. <br>
-Mitigation: Avoid private, confidential, copyrighted, or legally sensitive videos unless that third-party processing is acceptable, and protect POE_API_KEY as a credential. <br>
+## Use Case:
 
+External users and agents use this skill to process a Xiaohongshu video URL into a local video, extracted audio, transcript, and structured Chinese analysis summary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HViktorTsoi/xhs-video-analyzer) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com/) <br>
-- [Poe API Endpoint](https://api.poe.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with shell commands and generated transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local video, audio, transcript, and chunk files in a working directory; requires POE_API_KEY for cloud transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The downloader can fetch arbitrary non-Xiaohongshu URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with intended Xiaohongshu URLs, avoid elevated privileges, and prefer a private trusted working directory until URL validation is tightened.
+
+Risk: Video audio is sent to Poe/Gemini for transcription and video, audio, chunks, and transcript files are stored locally.
+
+Mitigation: Use the skill only when the user is comfortable uploading the video's audio to Poe/Gemini and storing derived files locally; remove local artifacts when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hviktortsoi/skills/xhs-video-analyzer)
+- [Poe API endpoint used for transcription](https://api.poe.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown analysis summary plus transcript text and local media/transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates video.mp4, audio.mp3, audio.txt, and chunked audio files in a local working directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

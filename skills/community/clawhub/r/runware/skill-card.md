@@ -1,44 +1,59 @@
-## Description: <br>
-Generate images and videos via Runware API. Access to FLUX, Stable Diffusion, Kling AI, and other top models. Supports text-to-image, image-to-image, upscaling, text-to-video, and image-to-video. Use when generating images, creating videos from prompts or images, upscaling images, or doing AI image transformation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos through the Runware API, including text-to-image, image-to-image, upscaling, text-to-video, and image-to-video workflows.
 
-## Publisher: <br>
-[26medias](https://clawhub.ai/user/26medias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[26medias](https://clawhub.ai/user/26medias)
 
-## Use Case: <br>
-Developers and creators use this skill to generate, transform, upscale, and animate images and videos through Runware models from agent-generated shell commands and configuration guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to Runware for generation, transformation, upscaling, or video creation. <br>
-Mitigation: Avoid sensitive or regulated content unless Runware's terms and data handling meet the user's requirements. <br>
-Risk: Runware API calls may consume paid credits. <br>
-Mitigation: Review model choice, dimensions, count, duration, and pricing before running generation commands. <br>
-Risk: Passing the API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Prefer the RUNWARE_API_KEY environment variable over command-line API key arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Runware](https://runware.ai) <br>
-- [Runware Models](https://runware.ai/models) <br>
-- [Runware Pricing](https://runware.ai/pricing) <br>
-- [Runware API Endpoint](https://api.runware.ai/v1) <br>
+## Use Case:
 
+Developers and creative teams use this skill to generate, transform, upscale, and animate visual media from prompts or selected source images using Runware-hosted models.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated media file paths from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded image or video files when the helper scripts are executed with a Runware API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, selected image files, and generation parameters are sent to Runware.
+
+Mitigation: Avoid sending sensitive prompts or local images unless they are intended for Runware processing.
+
+Risk: API keys can be exposed through command-line history when passed as arguments.
+
+Mitigation: Use the RUNWARE_API_KEY environment variable instead of the --api-key command-line option.
+
+Risk: Generation cost varies by model and request settings.
+
+Mitigation: Review Runware pricing, monitor reported costs, and choose model, count, duration, and resolution settings deliberately.
+
+## Reference(s):
+
+- [Runware](https://runware.ai)
+- [Runware Models](https://runware.ai/models)
+- [Runware Pricing](https://runware.ai/pricing)
+- [ClawHub Skill Page](https://clawhub.ai/26medias/skills/runware)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Generated image or video files with command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Runware API key; video generation is asynchronous and may incur model-dependent costs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

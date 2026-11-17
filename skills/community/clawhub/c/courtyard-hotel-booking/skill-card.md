@@ -1,42 +1,53 @@
-## Description: <br>
-Searches Courtyard by Marriott hotels and returns real-time prices, booking links, hotel details, and package offers through connected travel-platform APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Courtyard by Marriott hotels, returns live prices and booking links, and supports hotel detail and package offer queries across connected travel platforms.
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search Courtyard-only hotel results, inspect hotel details, and compare package offers with booking links. It provides travel search guidance and handoff links; it does not complete reservations or payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel search terms, dates, and hotel names are sent to a configured proxy service to retrieve real-time results. <br>
-Mitigation: Configure PROXY_URL only to a trusted HTTPS endpoint, protect PROXY_TOKEN, and avoid entering unnecessary personal details in search fields. <br>
-Risk: Prices, availability, policies, and package details can change after the skill returns results. <br>
-Mitigation: Verify final rates, policies, and availability on the returned booking page before making a reservation. <br>
-Risk: The skill returns external booking links and does not handle payments or complete bookings inside the agent. <br>
-Mitigation: Complete reservations and payment only on trusted external booking pages after reviewing the destination URL and terms. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search Courtyard by Marriott hotels, compare prices and hotel details, and obtain booking links or package offers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/courtyard-hotel-booking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text containing hotel search results, hotel details, package listings, prices, and external booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prices and availability are real-time and may change; reservations and payments occur through external links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and target metadata) <br>
+Risk: Hotel search terms, destinations, and related query details are sent to a configured cloud proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable, and verify PROXY_URL and PROXY_TOKEN are configured for the intended trusted proxy service.
+
+Risk: The skill provides booking links but does not complete reservations directly.
+
+Mitigation: Review booking page details, prices, and policies on the destination travel platform before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/courtyard-hotel-booking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style text with hotel results, prices, details, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the configured cloud proxy and upstream travel platform responses.]
+
+## Skill Version(s):
+
+1.1.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

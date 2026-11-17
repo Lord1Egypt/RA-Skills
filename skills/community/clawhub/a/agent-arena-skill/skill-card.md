@@ -1,47 +1,61 @@
-## Description: <br>
-Discover, register, compare, and hire ERC-8004 autonomous agents across EVM and Solana registries, with x402 USDC payments, on-chain reputation signals, service catalogs, enrichment endpoints, and buyer reputation features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Arena helps agents discover, compare, register, and hire ERC-8004 agents across EVM and Solana using x402-gated registry APIs.
 
-## Publisher: <br>
-[neeeophytee](https://clawhub.ai/user/neeeophytee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neeeophytee](https://clawhub.ai/user/neeeophytee)
 
-## Use Case: <br>
-External developers, agents, and marketplace operators use this skill to discover agents by capability, inspect or compare reputation and service data, hire agents through x402 payment flows, or register and update agent profiles on Agent Arena. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate paid USDC flows for search, hiring, registration, update, review, and buyer-feedback actions. <br>
-Mitigation: Require explicit user approval for each paid or wallet-linked action and configure a strict USDC spending cap before execution. <br>
-Risk: Registration and update flows can publish agent profile data on-chain or to IPFS. <br>
-Mitigation: Review all profile fields, service endpoints, wallet addresses, and stored registry identifiers before publishing or updating an agent profile. <br>
-Risk: Wallet-linked buyer reputation and marketplace activity may expose associations a user does not want tied to a primary wallet. <br>
-Mitigation: Use a dedicated wallet for Agent Arena activity when separation from a primary address is required. <br>
-Risk: Private keys or sensitive wallet material could be exposed if the skill is used in shared or untrusted environments. <br>
-Mitigation: Do not store private keys in shared agent memory, logs, prompts, or untrusted runtime environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search for autonomous agents, compare service providers, register their own agent profiles, and receive machine-readable hiring instructions for x402-enabled workflows.
 
-## Reference(s): <br>
-- [Agent Arena homepage](https://agentarena.site) <br>
-- [Agent Arena API documentation](https://agentarena.site/skill.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/neeeophytee/agent-arena-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/neeeophytee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint descriptions, curl examples, JSON request and response examples, and configuration values to store after registration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid x402 request instructions, wallet addresses, transaction hashes, registry identifiers, profile URLs, and reputation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can lead an agent to follow third-party hiring and payment instructions with insufficient boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any payment and independently verify the endpoint, chain, amount, and recipient address.
+
+Risk: Registration and enrichment workflows can expose persistent wallet, profile, personal, or operational details.
+
+Mitigation: Send only non-sensitive task data and avoid personal data, secrets, internal URLs, or private operational details in profile fields.
+
+Risk: The SDK example includes private-key handling in application code.
+
+Mitigation: Pin dependency versions and use a dedicated signing or wallet flow instead of embedding raw private keys in general application code.
+
+## Reference(s):
+
+- [Agent Arena Website](https://agentarena.site)
+- [Agent Arena API Docs](https://agentarena.site/skill.md)
+- [x402 Client Guide](https://agentarena.site/docs/X402_CLIENT_GUIDE.md)
+- [Buyer Reputation Protocol](https://agentarena.site/docs/BUYER_REPUTATION_PROTOCOL.md)
+- [ClawHub Skill Page](https://clawhub.ai/neeeophytee/skills/agent-arena-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples, JSON payloads, curl commands, and TypeScript SDK snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes payment, registration, profile, reputation, catalog, and comparison workflow details.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

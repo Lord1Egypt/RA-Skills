@@ -1,44 +1,59 @@
-## Description: <br>
-Analyze read-only dividend metrics for stocks via the AIsa API, including yield, payout ratio, growth CAGR, safety score, income rating, and Dividend Aristocrat or King status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze read-only dividend metrics for stocks via AIsa API, including yield, payout ratio, growth CAGR, safety score, income rating, and Dividend Aristocrat/King status without placing trades, making purchases, or managing brokerage accounts.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to request read-only dividend research for one or more stock tickers and receive dividend metrics, safety assessment, income rating, and comparison output. It is for informational analysis and does not connect to brokerage accounts or place trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and analysis prompts are sent to AIsa or a configured AIsa-compatible endpoint. <br>
-Mitigation: Use the default HTTPS endpoint or only a trusted AISA_BASE_URL, and avoid entering confidential investment or personal account details. <br>
-Risk: The skill requires an AISA_API_KEY for API access. <br>
-Mitigation: Store the key in the environment, prefer a scoped key where available, and do not provide brokerage, payment, cookie, or trading credentials. <br>
-Risk: Dividend analysis may be incorrect, stale, or unsuitable as investment advice. <br>
-Mitigation: Treat results as informational only and verify financial decisions against trusted market data and qualified advice. <br>
+## Use Case:
 
+External users and developers use this skill to request read-only dividend research for one or more stock tickers. It returns dividend metrics, safety scoring, income ratings, status checks, and optional structured JSON without brokerage or order-placement workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/stock-dividend-aisa) <br>
-- [Publisher Profile](https://clawhub.ai/user/baofeng-tech) <br>
-- [AIsa Homepage](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown dividend analysis report with optional structured JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts one or more validated ticker symbols; requires AISA_API_KEY and may use AISA_MODEL or AISA_BASE_URL when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: AISA_API_KEY can be sent to any HTTPS endpoint configured through AISA_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default AIsa endpoint or set AISA_BASE_URL only to a fully trusted AIsa-compatible HTTPS host.
+
+Risk: Requested tickers and generated analysis prompts are sent to AIsa.
+
+Mitigation: Install only when this data sharing is acceptable for the intended workflow.
+
+Risk: Users may mistake dividend analysis for trading or investment advice.
+
+Mitigation: Keep the workflow read-only, do not provide brokerage credentials or payment details, and treat outputs as informational rather than financial advice.
+
+## Reference(s):
+
+- [Stock Dividend AIsa on ClawHub](https://clawhub.ai/baofeng-tech/skills/stock-dividend-aisa)
+- [AIsa Homepage](https://aisa.one)
+- [AIsa API Endpoint](https://api.aisa.one/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json]
+
+**Output Format:** [Markdown dividend analysis by default, or JSON when requested with --output json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one or more validated stock ticker symbols and requires AISA_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

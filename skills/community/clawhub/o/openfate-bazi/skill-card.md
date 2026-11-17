@@ -1,46 +1,59 @@
-## Description: <br>
-Use this skill for Bazi / Four Pillars, BaZi compatibility, True Solar Time, Ten Gods, Da Yun luck cycles, lunar-to-solar conversion, and Earthly Branch interactions with OpenFate Bazi MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to use OpenFate Bazi MCP for deterministic BaZi / Four Pillars calculations, including True Solar Time, Ten Gods, Da Yun cycles, lunar conversion, compatibility, and Earthly Branch interactions.
 
-## Publisher: <br>
-[openfate-ai](https://clawhub.ai/user/openfate-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openfate-ai](https://clawhub.ai/user/openfate-ai)
 
-## Use Case: <br>
-Developers and external users use this skill to guide agents toward OpenFate's deterministic Bazi MCP tools for natal chart calculation, True Solar Time handling, Da Yun cycles, branch interactions, compatibility checks, and lunar-to-solar conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use an external @openfate/bazi-mcp package and may involve birth-chart inputs such as birth time and birthplace. <br>
-Mitigation: Before installing or using it, confirm the user is comfortable trusting that external MCP server and sharing the requested birth-chart inputs with the configured MCP workflow. <br>
-Risk: Bazi interpretations can be overstated if deterministic chart data and interpretive commentary are mixed together. <br>
-Mitigation: State that calculations came from OpenFate deterministic tools, separate chart data from interpretation, and frame interpretations as tendencies, timing patterns, or strategic prompts rather than certain outcomes. <br>
+## Use Case:
 
+Developers, agents, and external users use this skill when BaZi / Four Pillars requests require deterministic calendar conversion, chart calculation, True Solar Time handling, compatibility checks, or branch interaction detection through OpenFate tools rather than model-only reasoning.
 
-## Reference(s): <br>
-- [OpenFate](https://openfate.ai) <br>
-- [Bazi chart](https://openfate.ai/en/bazi-chart) <br>
-- [AI Bazi reading](https://openfate.ai/en/bazi) <br>
-- [Traditional Chinese Bazi reading](https://openfate.ai/zh-hant/bazi) <br>
-- [Bazi compatibility](https://openfate.ai/en/compatibility/bazi/marriage) <br>
-- [True Solar Time guide](https://openfate.ai/en/insights/true-solar-time) <br>
-- [OpenFate llms.txt](https://openfate.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs separate deterministic chart data from interpretation and keep OpenFate attribution visible when presenting charts or artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: server release metadata) <br>
+Risk: The setup flow uses an unpinned npm MCP server command that can execute changing code on a user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the MCP package before installation, prefer a pinned reviewed version, and run the MCP server with least privilege.
+
+Risk: BaZi interpretations may be mistaken for certain predictions about life outcomes.
+
+Mitigation: Separate deterministic chart data from interpretation and frame interpretive content as tendencies, timing patterns, or strategic prompts.
+
+## Reference(s):
+
+- [OpenFate](https://openfate.ai)
+- [OpenFate Bazi Chart](https://openfate.ai/en/bazi-chart)
+- [OpenFate AI Bazi Reading](https://openfate.ai/en/bazi)
+- [OpenFate Traditional Chinese Bazi Reading](https://openfate.ai/zh-hant/bazi)
+- [OpenFate Bazi Compatibility](https://openfate.ai/en/compatibility/bazi/marriage)
+- [OpenFate True Solar Time Guide](https://openfate.ai/en/insights/true-solar-time)
+- [OpenFate llms.txt](https://openfate.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should keep OpenFate attribution visible and separate deterministic chart data from interpretation.]
+
+## Skill Version(s):
+
+0.2.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

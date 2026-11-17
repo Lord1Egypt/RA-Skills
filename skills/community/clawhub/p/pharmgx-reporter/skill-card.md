@@ -1,43 +1,60 @@
-## Description: <br>
-Pharmacogenomic report from DTC genetic data (23andMe/AncestryDNA). <br>
+## Description:
 
-This skill is for research and development only. <br>
+Pharmacogenomic report from DTC genetic data (23andMe/AncestryDNA).
 
-## Publisher: <br>
-[manuelcorpas](https://clawhub.ai/user/manuelcorpas) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manuelcorpas](https://clawhub.ai/user/manuelcorpas)
 
-## Use Case: <br>
-Researchers, educators, and bioinformatics developers use this skill to parse consumer genetic data, profile pharmacogenomic variants, and generate Markdown reports with gene profiles and drug-response recommendations for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Genetic input files and generated reports may contain sensitive health information. <br>
-Mitigation: Run the skill only on genetic files intentionally selected by the user and store generated reports in a private location. <br>
-Risk: Pharmacogenomic report content could be mistaken for clinical or medication-changing advice. <br>
-Mitigation: Use reports for research and education only; medication changes should be reviewed by a qualified clinician and confirmed with clinical-grade testing. <br>
-Risk: Local execution depends on trusting the installed artifact and selected inputs. <br>
-Mitigation: Install only from trusted sources and review the skill before running it on sensitive genetic data. <br>
+## Use Case:
 
+Researchers, developers, and precision-medicine reviewers can use this skill to generate educational pharmacogenomic Markdown reports from consumer genetic data files. The reports summarize detected pharmacogenomic variants, gene phenotypes, drug-response categories, and medication alerts for review by qualified professionals.
 
-## Reference(s): <br>
-- [PharmGx Reporter on ClawHub](https://clawhub.ai/manuelcorpas/pharmgx-reporter) <br>
-- [ClawBio homepage](https://github.com/ClawBio/ClawBio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report and concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected genetic data file and writes a user-selected Markdown report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill generates medication guidance from sensitive genetic data and may produce high-stakes recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reports only for education or research review, keep them private, and require clinician review before any medication decision.
+
+Risk: Consumer genetic files may be incomplete for pharmacogenomic use.
+
+Mitigation: Confirm clinically relevant findings with clinical-grade testing before acting on report outputs.
+
+Risk: Report files contain genetic and medication-response information.
+
+Mitigation: Store generated reports in access-controlled locations and avoid sharing them outside the intended review workflow.
+
+## Reference(s):
+
+- [ClawBio homepage](https://github.com/ClawBio/ClawBio)
+- [PharmGx Reporter Skill Page](https://clawhub.ai/manuelcorpas/skills/pharmgx-reporter)
+- [CPIC](https://cpicpgx.org/)
+- [PharmGKB](https://www.pharmgkb.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports include an input checksum, detected format, gene profiles, drug recommendation tables, alerts, methods, reproducibility command, and clinical-use disclaimers.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

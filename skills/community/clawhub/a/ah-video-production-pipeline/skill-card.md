@@ -1,43 +1,57 @@
-## Description: <br>
-Specialist workflow for video production pipeline tasks across pre-production, asset generation, and video assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Specialist in video production pipeline. Use when: stage 1: pre-production, stage 2: asset generation, stage 3: video assembly.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Content teams, creators, and developers use this workflow to coordinate scripting, visual generation, audio synthesis, editing, quality review, and platform export tasks for video deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private scripts, unpublished media, private URLs, or production social account content may be sent to downstream agents or service providers during use. <br>
-Mitigation: Confirm which agents and providers will receive content before use, and avoid sending sensitive material without approval. <br>
-Risk: Publishing or scheduling generated media can affect production social channels. <br>
-Mitigation: Require explicit human approval before publishing or scheduling any generated deliverable. <br>
-Risk: Generated assets, logs, or caches may persist after the workflow completes. <br>
-Mitigation: Decide where generated assets, logs, and caches will be stored and when they should be deleted before using the workflow. <br>
+## Use Case:
 
+External users and content-production teams use this skill to coordinate a multi-agent video workflow from ideas, scripts, URLs, audio, or other inputs through scripting, asset generation, video assembly, post-production, and export.
 
-## Reference(s): <br>
-- [Video Production Pipeline examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-video-production-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript-oriented examples and workflow checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no executable files are present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated media, metadata, and platform packages may include licensing, factual, brand, or platform-compliance issues before publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated assets, source licenses, scripts, metadata, captions, thumbnails, and platform-specific exports before approving final use.
+
+Risk: Configured publishing or scheduling actions could affect live channels or campaigns.
+
+Mitigation: Require human approval before any real publish, schedule, or external platform action.
+
+Risk: External media, voice, research, and publishing services may be used if the environment is configured for them.
+
+Mitigation: Review service configuration, data-sharing expectations, and generated outputs before enabling connected services.
+
+## Reference(s):
+
+- [Video Production Pipeline Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript-style workflow examples and configuration patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance, staged pipeline structures, quality gates, human approval checkpoints, and platform-oriented deliverable specifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

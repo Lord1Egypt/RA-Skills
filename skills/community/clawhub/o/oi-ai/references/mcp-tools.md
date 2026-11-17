@@ -42,53 +42,60 @@ After installing or updating the skill, start a new agent session (for example `
 
 ## Canonical Tools
 
-- `oi.contexts.use`: Primary tool for concrete Context-backed tasks. Provide `prompt`; optionally provide raw `contextId`.
-- `oi.contexts.list`: Browse a paginated preview of installed Contexts. This is not exhaustive.
-- `oi.contexts.get`: Return the reusable compiled prompt for a specific Context.
-- `oi.contexts.start-session`: Load one or more Contexts as reusable session context for the current thread.
-- `oi.workflows.use`: Primary tool for concrete Workflow-backed tasks. Provide `prompt`; optionally provide `workflowId`.
-- `oi.workflows.list`: Browse available Workflows.
-- `oi.workflows.get`: Return the reusable compiled prompt scaffold for a specific Workflow.
-- `oi.workflows.start-session`: Load a Workflow as reusable session context for the current thread.
-- `oi.recommend`: Recommend the best installed Context or Workflow for a prompt.
-- `oi.contexts.save-draft-feedback`: Save confirmed durable feedback into a mutable private Context draft.
-- `oi.brain.save-feedback`: Save confirmed durable feedback into Org Brain or User Brain after explicit user approval.
-- `oi.guardrails.confirm`: Confirm a triggered Guardrail and continue.
-- `oi.usage.report`: Attach token accounting and runtime metadata to a prior Oi usage event.
+- Identity and routing: `oi.auth.whoami`, `oi.recommend`.
+- Contexts: `oi.contexts.list`, `oi.contexts.search`, `oi.contexts.create`, `oi.contexts.get`, `oi.contexts.update`, `oi.contexts.start-session`, `oi.contexts.use`, `oi.contexts.save-draft-feedback`.
+- Workflows: `oi.workflows.list`, `oi.workflows.create`, `oi.workflows.get`, `oi.workflows.update`, `oi.workflows.start-session`, `oi.workflows.use`.
+- Skills: `oi.skills.list`, `oi.skills.search`, `oi.skills.create`, `oi.skills.get`, `oi.skills.update`, `oi.skills.publish`, `oi.skills.use`.
+- Guardrails: `oi.guardrails.list`, `oi.guardrails.create`, `oi.guardrails.get`, `oi.guardrails.update`, `oi.guardrails.delete`, `oi.guardrails.release`, `oi.guardrails.publish`, `oi.guardrails.unpublish`, `oi.guardrails.confirm`.
+- Durable feedback and reporting: `oi.brain.save-feedback`, `oi.usage.report`, `oi.effectiveness.report`.
+
+## Brain
+
+- Use `oi.brain.save-feedback` for direct durable Org Brain or User Brain updates, not as a substitute for Context or Workflow authoring.
+- Use organization scope for shared facts, terminology, policies, project context, and recurring team practices; use user scope for private preferences and individual working style.
+- When scope or permission is unclear, call with `scope: auto` and `confirmed: false`, show the returned confirmation prompt, and reuse its `saveArguments` after approval.
+- When the user explicitly requests a specific scoped Brain update, use that scope with `confirmed: true`.
+- Never save one-off details, guesses, unconfirmed assumptions, secrets, credentials, or sensitive private data.
+
+## Reporting
+
+- `oi.usage.report` attaches known runtime and token accounting to a prior Context or Workflow `usageEventId`; never estimate values or send prompt text.
+- `oi.effectiveness.report` records known outcomes after Context, Workflow, Skill, Connection, or Guardrail-assisted work. Report only observed outcome, retries, actions, feedback, baseline, and confidence; keep any task summary short and redacted.
 
 ## Connection tools
 
-Use these only when the user's organization has configured Oi connections (for example CRM integrations):
+Use the stable Connection router only; never invent provider-specific Oi tool names:
 
-- `oi.connections.search-records`: Search records in a connected provider through Oi.
-- `oi.connections.list-tools`: List tools exposed by a connected provider.
-- `oi.connections.call-tool`: Call a specific connected-provider tool through Oi.
+1. `oi.connections.list`: list installed Connection instances and select the provider and optional exact instance.
+2. `oi.connections.get`: inspect that Connection's live actions, endpoint keys, and input schemas.
+3. `oi.connections.use`: execute the exact returned action with schema-matching arguments.
 
-Require explicit user approval before calling connection tools that read or write external provider data.
+Reads do not require confirmation. Explain external writes and obtain explicit approval before setting `confirmed: true`. If the Connection is missing or unauthenticated, direct the user to install or authenticate it in Oi.
 
 ## Compatibility Aliases
 
 Some clients expose underscore aliases. Treat these as aliases for the canonical tools:
 
-- `oi_contexts_use`, `oi_use_context`
-- `oi_contexts_list`, `oi_list_contexts`
-- `oi_contexts_get`, `oi_get_context`
-- `oi_contexts_start_session`, `oi_start_prompt_session`, `oi_start_context_session`
-- `oi_workflows_use`, `oi_use_workflow`
-- `oi_workflows_list`, `oi_list_workflows`
-- `oi_workflows_get`, `oi_get_workflow`
-- `oi_workflows_start_session`, `oi_start_workflow_session`
-- `oi_recommend`, `oi_recommend_context`, `oi_recommend_workflow`
-- `oi_guardrails_confirm`, `oi_usage_report`
-- `oi_save_feedback_to_draft`, `oi_save_feedback_to_brain`
+- Canonical dots and hyphens become underscores, for example `oi_contexts_use`, `oi_workflows_start_session`, `oi_skills_use`, or `oi_connections_get`.
+- Older clients may expose legacy verb-first aliases such as `oi_use_context` or `oi_list_workflows`.
 
 Prefer canonical dotted names in OpenClaw documentation and configuration.
+
+## Prompts and resources
+
+- Oi prompts include `oi.routing.task`, `oi.contexts.use`, and `oi.workflows.use` when the client exposes MCP prompts.
+- Marketplace resources: `oi://marketplace/contexts`, `oi://marketplace/guardrails`, `oi://marketplace/workflows`, `oi://marketplace/skills`, and `oi://marketplace/connections`.
+- Organization resources: `oi://organization/contexts`, `oi://organization/guardrails`, `oi://organization/workflows`, `oi://organization/skills`, and `oi://organization/connections`.
+- Legacy compatibility resources: `oi://catalog/public-contexts`, `oi://catalog/private-contexts`, and `oi://catalog/workflows`.
+- Treat resources as read-only catalog context and use tools for search, execution, authoring, lifecycle changes, Brain, Connections, or reporting.
 
 ## Selection Rules
 
 - Use `oi.contexts.use` when the user names a Context or asks Oi to do a concrete task.
 - Use `oi.workflows.use` when the user names a Workflow, uses `workflow`/`wf`, or wants a repeatable multi-step process.
 - Use `oi.recommend` when the user asks which setup to use.
+- Use `oi.skills.use` when the user names an available Skill or asks Oi to apply one.
+- Use the list/get/use Connection sequence for connected-provider data.
 - Use list tools only to browse. Do not infer absence from a list preview.
 - Use start-session tools when the user asks to keep a Context or Workflow active for the thread.
 - Use save-draft-feedback or brain save-feedback only for durable, confirmed future behavior changes; never save secrets or one-off task details.

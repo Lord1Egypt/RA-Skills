@@ -1,42 +1,57 @@
-## Description: <br>
-中文自媒体内容工厂 generates Chinese social-media content adapted for Xiaohongshu, WeChat Official Accounts, Douyin, and Zhihu, with topic ideation, title generation, de-AI polishing, and SEO guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文自媒体内容工厂 generates Chinese self-media content for 小红书, 公众号, 抖音, and 知乎, including topic ideas, viral titles, multi-platform drafts, human-style rewrites, and SEO suggestions.
 
-## Publisher: <br>
-[l1379703917-del](https://clawhub.ai/user/l1379703917-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l1379703917-del](https://clawhub.ai/user/l1379703917-del)
 
-## Use Case: <br>
-Content creators, e-commerce sellers, MCN teams, enterprise social-media operators, and freelance writers use this skill to draft Chinese platform-specific posts, short-video scripts, topic lists, titles, polishing suggestions, and SEO improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated content may include factual errors, copyright issues, platform-rule violations, or unsupported marketing claims. <br>
-Mitigation: Review generated drafts for factual accuracy, copyright, platform policies, and advertising claims before publishing. <br>
-Risk: Broad writing-task triggers can activate the skill for generic copywriting prompts where it may not be the intended assistant behavior. <br>
-Mitigation: Confirm the skill is appropriate for the writing task before relying on its output. <br>
-Risk: User prompts may include private customer or business information for content generation. <br>
-Mitigation: Avoid pasting sensitive customer or business information unless it is appropriate to use in generated content. <br>
+## Use Case:
 
+External creators, e-commerce sellers, MCN teams, business social-media operators, and freelance writers use this skill to draft and adapt Chinese content across major self-media platforms. It supports topic ideation, title generation, platform-specific copy, rewriting, and SEO-oriented revisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/l1379703917-del/cn-content-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only content generation guidance; no code execution, account access, credentials, or publishing authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may activate on broad content-writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended platform, audience, and content goal before applying platform-specific drafting guidance.
+
+Risk: Generated facts, platform-compliance claims, examples, or data may be inaccurate or unsuitable for publication.
+
+Mitigation: Review and fact-check claims, examples, SEO guidance, and platform-rule assumptions before publishing.
+
+Risk: Human-style rewrites can make generated text sound more personally experienced than the evidence supports.
+
+Mitigation: Edit rewrites so personal claims, experiences, endorsements, and disclosures remain truthful.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l1379703917-del/skills/cn-content-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese plain text or Markdown content drafts with platform-specific sections and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated facts, examples, compliance claims, and human-style rewrites should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

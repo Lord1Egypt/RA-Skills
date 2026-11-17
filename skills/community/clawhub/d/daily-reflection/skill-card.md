@@ -1,41 +1,57 @@
-## Description: <br>
-Daily Reflection is a nightly OpenClaw routine for isolated cron jobs that analyzes the day, extracts concrete learnings, updates solution memory, detects recurring patterns, and writes a morning briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nightly OpenClaw reflection routine for isolated cron jobs. Analyzes the day, extracts concrete learnings, updates solution memory, detects recurring patterns, and writes a morning briefing. Use for automated end-of-day memory consolidation, not routine chat replies.
 
-## Publisher: <br>
-[brasco05](https://clawhub.ai/user/brasco05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brasco05](https://clawhub.ai/user/brasco05)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill as an end-of-day cron routine to turn agent work into durable memory, reusable solution records, recurring-pattern notes, and a next-session briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent reflection memory can retain sensitive information if credentials, raw private chats, transcripts, or production data are included. <br>
-Mitigation: Run the skill only in the intended isolated cron context, review generated memory files periodically, and exclude credentials, raw private chats, transcripts, and production data from memory. <br>
-Risk: Automated daily reflection can produce stale or incorrect operational guidance if generated briefings and pattern notes are never reviewed. <br>
-Mitigation: Review morning briefings, solution memory, and pattern updates periodically, and require explicit user approval before changing cron prompts or automation behavior. <br>
+## Use Case:
 
+Developers and operators use this skill in isolated OpenClaw cron jobs to consolidate daily agent work into durable memory, solution records, recurring-pattern notes, and a next-day briefing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brasco05/daily-reflection) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown and JSON memory files with minimal chat output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent memory files and keeps routine user-facing output minimal unless a critical issue needs attention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: Persistent memory updates may include sensitive or unrelated history if the skill runs against broad agent memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated memory/workspace context and avoid memories containing credentials, private chat content, production data, or unrelated project history.
+
+Risk: Generated solution memory and pattern notes can influence future sessions with incorrect or stale guidance.
+
+Mitigation: Review generated solution_memory entries, pattern files, and briefings before allowing future sessions to rely on them.
+
+Risk: Scheduled reflection can rewrite persistent memory with limited runtime visibility.
+
+Mitigation: Use explicit operator setup for cron execution and require approval before updating cron jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brasco05/skills/daily-reflection)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown and JSON memory files with minimal user-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent memory files including daily summaries, briefings, pattern notes, session-quality logs, and solution-memory JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,63 @@
-## Description: <br>
-VetClaw Bundle provides 52 AI automation skills for pet hospitals and veterinary clinics, covering scheduling, medical record workflows, customer follow-up, operations, and business reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VetClaw Bundle provides veterinary clinic automation skills for front desk intake, appointment scheduling, records, follow-up, client communication, reporting, and operations workflows.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-Veterinary clinic owners, doctors, assistants, and operations staff use this skill bundle to automate front-desk intake, appointment reminders, record workflows, client communications, inventory, finance, marketing, and reporting. Clinical diagnosis and treatment decisions remain with licensed veterinary staff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle stores and exposes sensitive clinic, client, and pet records. <br>
-Mitigation: Put the system behind authentication, restrict access to records and reports by role, and define retention and deletion practices before deployment. <br>
-Risk: Some workflows can mutate records or create appointments. <br>
-Mitigation: Require human confirmation before writes to records, appointments, financial entries, or customer communications. <br>
-Risk: External AI, SMS, and WeChat integrations may send customer or staff data outside the clinic environment. <br>
-Mitigation: Do not configure DeepSeek, SMS, or WeChat keys until affected customers and staff have been told what data may be sent and appropriate consent or opt-out controls are in place. <br>
+## Use Case:
 
+Veterinary clinic operators, clinicians, assistants, and operations teams use this bundle to automate clinic conversations and workflows such as intake, booking, reminders, triage routing, records lookup, pricing, reports, inventory, and client follow-up. Clinical decisions and medical actions should remain under licensed veterinary review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daimingvip-a11y/vetclaw-bundle) <br>
-- [VetClaw Wiki](https://github.com/DMNO1/vetclaw-bundle/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON-like records, configuration snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce clinic workflow content, customer-facing messages, structured records, schedules, reminders, reports, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The bundle handles sensitive clinic, customer, pet, medical, and business data through unauthenticated network APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on private localhost or behind real authentication until authorization, session ownership, XSS protection, retention controls, and privacy notices are fixed; do not use real records before those controls are in place.
+
+Risk: Configured third-party LLM integration can share clinic or customer data outside the deployment boundary.
+
+Mitigation: Use explicit consent, data minimization, and an approved provider configuration before sending production conversations or records to an external LLM.
+
+Risk: Veterinary triage and medical guidance can be mistaken for diagnosis or treatment direction.
+
+Mitigation: Keep clinical decisions and medical actions under licensed veterinary review and use the automation for routing, reminders, documentation, and support workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daimingvip-a11y/skills/vetclaw-bundle)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Workflow examples](artifact/examples/workflow_flows.md)
+- [Sample conversations](artifact/examples/sample_conversations.md)
+- [Clinic configuration template](artifact/config/vet-config.yaml)
+- [Veterinary knowledge base](artifact/config/vet-knowledge-base.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with JSON-like records, reports, Python handlers, configuration snippets, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local clinic records and may call configured third-party LLM, SMS, WeChat, phone, payment, or database services when deployed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

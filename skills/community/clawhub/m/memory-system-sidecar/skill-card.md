@@ -1,40 +1,54 @@
-## Description: <br>
-Operate, verify, rebuild, and debug the actual MemoryLab long-term memory sidecar that feeds `memory/ACTIVE_TASK_STATE.md` and `memory/LIVE_CONTEXT_PACKET.md`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates, verifies, rebuilds, and debugs the implemented MemoryLab long-term memory sidecar that feeds active task and live context files.
 
-## Publisher: <br>
-[sjingh](https://clawhub.ai/user/sjingh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjingh](https://clawhub.ai/user/sjingh)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate a repo-local MemoryLab memory sidecar, including refreshing live context from session history, rebuilding retrieval indexes, verifying tests and evals, and inspecting memory artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refresh and rebuild commands may replace generated memory or context artifacts as part of normal operation. <br>
-Mitigation: Review local generated state and context files before running refresh or rebuild commands, and back up locally modified files when needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate a repository's implemented MemoryLab sidecar, including refreshing live context from session history, rebuilding memory indexes, running verification checks, and inspecting memory artifacts.
 
-## Reference(s): <br>
-- [Commands](references/commands.md) <br>
-- [Docs Map](references/docs-map.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sjingh/memory-system-sidecar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with inline bash commands and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run local refresh, verify, or rebuild scripts that update generated memory and context artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Refresh and rebuild workflows can regenerate local memory, context, index, and phase-log artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in the intended MemoryLab-style repository and review the planned refresh or rebuild command before execution.
+
+Risk: Running the sidecar from a vague request may update working context files when the user only wanted inspection.
+
+Mitigation: Confirm whether the task is inspection, verification, refresh, or rebuild before invoking commands that modify local artifacts.
+
+## Reference(s):
+
+- [Commands](artifact/references/commands.md)
+- [Docs Map](artifact/references/docs-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may direct agents to run local refresh, rebuild, verification, and inspection commands for the MemoryLab memory sidecar.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

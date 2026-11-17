@@ -1,6 +1,6 @@
-# Battlecard: Competitive Intelligence for OpenClaw
+# Battlecard for OpenClaw: Competitive Intelligence and Sales Practice
 
-Know your competitor's weaknesses before the call starts. Practice your pitch against an AI buyer who fights back. Capture what you learn after every deal.
+Battlecard is conversation readiness for B2B sales teams: score every call, rehearse every gap. This skill brings the competitive part into your OpenClaw agent: a battle card for any competitor, then a practice call against an AI buyer who uses it, scored when you finish. Capture what you learn after every deal. Real-call scoring and the team view live in the [Battlecard app](https://battlecard.northr.ai).
 
 ## Try it now
 

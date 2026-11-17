@@ -4,6 +4,14 @@ End-of-shift knowledge capture for restaurant operators. Three fast questions at
 
 **v1.1 update:** urgent handoffs now automatically resurface at the next relevant shift check-in until acknowledged.
 
+## Building with AI agents? Get started with Observa
+
+Observa shows supported OpenClaw and n8n runtime activity, what governance WOULD have done in SHADOW mode, and the evidence behind it.
+
+[**Get started with Observa →**](https://mcphersonai.com/observa/getting-started?utm_source=github&utm_medium=skill-readme&utm_campaign=observa-getting-started&utm_content=qsr-shift-reflection)
+
+*SHADOW ONLY · AUTHORITY NONE · ENFORCEMENT OFF. This publisher notice does not change the QSR skill itself.*
+
 ## Overview
 
 QSR Shift Reflection is a lightweight operational memory skill for restaurant and franchise teams. At the end of each shift, it captures:

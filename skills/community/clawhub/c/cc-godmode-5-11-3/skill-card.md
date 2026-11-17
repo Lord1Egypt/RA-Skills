@@ -1,51 +1,65 @@
-## Description: <br>
-Self-orchestrating multi-agent development workflows. You say WHAT, the AI decides HOW. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-orchestrating multi-agent development workflows. You say WHAT, the AI decides HOW.
 
-## Publisher: <br>
-[kongbai233](https://clawhub.ai/user/kongbai233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongbai233](https://clawhub.ai/user/kongbai233)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multi-agent development workflows for features, bug fixes, API changes, research tasks, issue processing, and releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward broad file, shell, browser, web, and GitHub release actions at runtime. <br>
-Mitigation: Install only in repositories where that authority is acceptable, limit GitHub and MCP access unless needed, and require explicit human approval before merges, branch deletion, tags, releases, CI/CD changes, or other remote repository mutations. <br>
-Risk: Runtime workflows may require credentials, network access, and local binaries. <br>
-Mitigation: Use least-privilege tokens, avoid production credentials, and verify the available tools before starting workflows that depend on shell, browser, or GitHub operations. <br>
-Risk: Generated reports and screenshots may expose sensitive repository or application data. <br>
-Mitigation: Review generated artifacts before sharing them outside the working environment. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multi-agent software development workflows for features, bug fixes, API changes, research, refactoring, and releases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongbai233/cc-godmode-5-11-3) <br>
-- [Publisher profile](https://clawhub.ai/user/kongbai233) <br>
-- [Project repository listed in artifact metadata](https://github.com/cubetribe/openclaw-godmode-skill) <br>
-- [Related original GodMode repository listed in README](https://github.com/cubetribe/ClawdBot-GodMode) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Claude Code](https://claude.ai/code) <br>
-- [Workflow documentation](docs/WORKFLOWS.md) <br>
-- [Agent documentation](docs/AGENTS.md) <br>
-- [Troubleshooting documentation](docs/TROUBLESHOOTING.md) <br>
-- [Migration documentation](docs/MIGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, workflow reports, checklists, and implementation handoffs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only package; runtime behavior depends on the host agent tools, configured MCP servers, credentials, and local binaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata version 5.11.3) <br>
+Risk: The skill directs agents through broad file, shell, GitHub, and release workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it first in a sandbox or protected branch and require explicit approval before local writes, pull requests, merges, tags, releases, CI/CD actions, or credentialed GitHub operations.
+
+Risk: Full workflow usage may require network access, local binaries, credentials, and MCP packages.
+
+Mitigation: Review and pin MCP packages before use, provide only the credentials required for the current task, and confirm installed binaries before starting a workflow.
+
+Risk: The security verdict is suspicious because approval gates are not consistently defined for autonomous runtime actions.
+
+Mitigation: Keep human review gates around code changes, shell commands, repository operations, and generated release artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongbai233/skills/cc-godmode-5-11-3)
+- [OpenClaw GodMode repository](https://github.com/cubetribe/openclaw-godmode-skill)
+- [Original GodMode repository](https://github.com/cubetribe/ClawdBot-GodMode)
+- [OpenClaw](https://openclaw.ai)
+- [Claude Code](https://claude.ai/code)
+- [Workflow documentation](docs/WORKFLOWS.md)
+- [Agent specifications](docs/AGENTS.md)
+- [Migration guide](docs/MIGRATION.md)
+- [Troubleshooting guide](docs/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands, workflow reports, and code or configuration changes when invoked by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only package; runtime outputs depend on the agent tools and workflow selected by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); packaged skill metadata reports 5.11.3
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Compares revised outline or script PDFs against older DOCX, PDF, TXT, or Markdown baselines and produces a structural-change report plus visible annotated PDF markup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares revised outline, script, treatment, beat sheet, season map, or character-bio PDFs against older DOCX/PDF baselines and produces a structural-change report plus visible PDF markup.
 
-## Publisher: <br>
-[hshgogogo](https://clawhub.ai/user/hshgogogo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hshgogogo](https://clawhub.ai/user/hshgogogo)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to compare revised story outlines, scripts, treatments, beat sheets, season maps, or character bios against older versions. It focuses review on structural additions and rewrites, then helps produce a report, DOCX, annotated PDF, and normalized manifest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports, extracted text, and annotated PDFs may contain sensitive draft content. <br>
-Mitigation: Use the skill in a dedicated project folder, review generated files before sharing, and avoid running it on content that should not be written into comparison outputs. <br>
-Risk: The automatic follow-up workflow can create extra comparison files after an agent edits a draft. <br>
-Mitigation: Opt out of the auto-follow workflow or avoid it when additional comparison artifacts are not wanted. <br>
-Risk: Structural-change judgments can be incomplete or misclassified because the agent decides which edits matter. <br>
-Mitigation: Review the markdown report, annotation manifest, and annotated PDF before relying on the comparison. <br>
+## Use Case:
 
+Writers, story editors, and agents use this skill to compare revised story documents against older baselines and mark only structural additions or rewrites. It is suited for bilingual workflows where visible PDF margin notes and companion Markdown/DOCX reports are needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hshgogogo/outline-revision-annotator) <br>
-- [macOS workflow](references/macos.md) <br>
-- [Windows workflow](references/windows.md) <br>
-- [Manifest schema](references/manifest-schema.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated deliverables include PDF, DOCX, Markdown, and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent chooses structural changes and annotation text; the bundled script deterministically extracts sources and renders outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence) <br>
+Risk: Draft content is extracted and duplicated into local plaintext, JSON, PDF, Markdown, and DOCX outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on drafts that are approved for local duplication and handle generated outputs according to the user's data policy.
+
+Risk: The auto-follow workflow can overwrite prior comparison files when output paths are reused.
+
+Mitigation: Review output directories and filenames before rendering, and preserve prior comparison outputs when needed.
+
+Risk: Dependency drift can affect local extraction or rendering behavior.
+
+Mitigation: Install the skill in a dedicated virtual environment and pin dependencies when repeatability matters.
+
+## Reference(s):
+
+- [macOS Workflow](references/macos.md)
+- [Windows Workflow](references/windows.md)
+- [Manifest Schema](references/manifest-schema.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report, DOCX report, JSON annotation manifest, and annotated PDF with visible margin notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local comparison artifacts and a normalized annotation manifest; no API calls or external services are required by the artifact evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

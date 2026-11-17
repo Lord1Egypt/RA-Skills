@@ -1,40 +1,56 @@
-## Description: <br>
-Code formatting best practices and quick references for Python, JavaScript, JSON, Markdown, and common languages with Prettier, Black, ESLint, and other formatters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code formatting best practices and quick references for Python, JavaScript, JSON, Markdown, and common languages with Prettier, Black, ESLint, and other formatters.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for choosing formatter commands, linting commands, editor settings, and formatting configuration across common programming and documentation formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formatter install, write, or fix commands can change project files or add tooling when copied and run. <br>
-Mitigation: Confirm target files and directories first, prefer check modes when available, review diffs after write or fix commands, and install only the formatter packages the project needs from trusted registries. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose and run common formatting, linting, editor, and pre-commit commands for Python, JavaScript, TypeScript, JSON, Markdown, shell, Go, and Rust projects.
 
-## Reference(s): <br>
-- [Black formatter](https://github.com/psf/black) <br>
-- [isort import sorter](https://github.com/pycqa/isort) <br>
-- [Prettier pre-commit mirror](https://github.com/pre-commit/mirrors-prettier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides formatter command examples and configuration snippets; users choose whether to run commands that install tools or modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Formatter and linter commands can modify many files when run with write or fix options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer project-pinned dependencies and committed lockfiles, and run broad formatting changes in a controlled workspace.
+
+Risk: Installing unpinned formatter packages can introduce dependency drift across environments.
+
+Mitigation: Use project package scripts, pinned dependency versions, and existing repository configuration where available.
+
+## Reference(s):
+
+- [Code Formatter ClawHub Release](https://clawhub.ai/terrycarter1985/skills/code-formatter)
+- [Black Formatter](https://github.com/psf/black)
+- [isort](https://github.com/pycqa/isort)
+- [Prettier Pre-commit Mirror](https://github.com/pre-commit/mirrors-prettier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include formatter, linter, editor, and pre-commit configuration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

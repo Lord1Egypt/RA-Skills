@@ -1,40 +1,54 @@
-## Description: <br>
-Expert guidance for querying, writing, and managing emails using the Himalaya CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance for querying, writing, and managing emails using the `himalaya` CLI.
 
-## Publisher: <br>
-[bird-frank](https://clawhub.ai/user/bird-frank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bird-frank](https://clawhub.ai/user/bird-frank)
 
-## Use Case: <br>
-Developers, engineers, and email power users use this skill to construct and review Himalaya CLI commands for listing, searching, composing, flagging, folder management, attachments, templates, and query DSL usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested Himalaya commands may operate on a user's real mailbox, including sending, forwarding, deleting, purging, expunging, exporting, or downloading attachments. <br>
-Mitigation: Preview command targets, verify recipients and folders, and review destructive or data-exporting commands before running them. <br>
+## Use Case:
 
+Developers and email users use this skill to construct and review Himalaya CLI commands for listing and searching email, composing messages, and managing flags, folders, templates, and attachments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bird-frank/himalaya-skill) <br>
-- [Himalaya Repository](https://github.com/pimalaya/himalaya) <br>
-- [Query DSL Reference](references/query_dsl.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and email template examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that operate on a real mailbox and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated guidance may include send, reply, forward, delete, purge, or expunge email actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review account, folder, message IDs, recipients, and all send or destructive actions before allowing any generated command to run.
+
+Risk: Broad email search and management commands may target the wrong account, folder, message, or recipient if parameters are incorrect.
+
+Mitigation: Validate generated Himalaya query strings, account flags, folder flags, message IDs, and recipients against the intended mailbox before execution.
+
+## Reference(s):
+
+- [Bundled Query DSL Reference](references/query_dsl.md)
+- [Himalaya Repository](https://github.com/pimalaya/himalaya)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-response guidance with commands for a user to review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

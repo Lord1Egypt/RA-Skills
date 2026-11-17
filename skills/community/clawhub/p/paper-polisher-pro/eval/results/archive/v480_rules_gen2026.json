@@ -1,0 +1,75 @@
+{
+  "n": 769,
+  "n_base": 443,
+  "model_fp": "2631df3d388b:nosup",
+  "auroc": 0.7149,
+  "tpr@fpr1%": 0.0609,
+  "thr@fpr1%": 78.2,
+  "tpr@fpr5%": 0.141,
+  "thr@fpr5%": 71.3,
+  "thresholds": {
+    "medium": 63.7,
+    "high": 74.9
+  },
+  "human_fpr@med": 0.1527,
+  "human_fpr@high": 0.0305,
+  "human_med_fpr@med": 0.4444,
+  "per_model": {
+    "deepseek-v4": {
+      "n": 40,
+      "mean": 55.2,
+      "tpr@thr5%": 0.125
+    },
+    "deepseek-v4.1": {
+      "n": 28,
+      "mean": 55.3,
+      "tpr@thr5%": 0.0357
+    },
+    "glm-5.3": {
+      "n": 36,
+      "mean": 55.1,
+      "tpr@thr5%": 0.1667
+    },
+    "kimi-k2.7": {
+      "n": 34,
+      "mean": 60.4,
+      "tpr@thr5%": 0.1765
+    },
+    "kimi-k3": {
+      "n": 40,
+      "mean": 56.3,
+      "tpr@thr5%": 0.15
+    },
+    "kimi-k3-p4": {
+      "n": 35,
+      "mean": 54.7,
+      "tpr@thr5%": 0.1714
+    },
+    "minimax-m3": {
+      "n": 37,
+      "mean": 54.7,
+      "tpr@thr5%": 0.1622
+    },
+    "qwen3.7-max-p4": {
+      "n": 27,
+      "mean": 53.6,
+      "tpr@thr5%": 0.1481
+    },
+    "qwen3.8": {
+      "n": 35,
+      "mean": 54.6,
+      "tpr@thr5%": 0.1143
+    }
+  },
+  "auroc_paraphrase": 0.8706,
+  "decay_paraphrase": -0.2178,
+  "auroc_mixed": 0.4709,
+  "decay_mixed": 0.3413,
+  "auroc_by_len": {
+    "short<300": 0.786,
+    "mid300-800": 0.7466,
+    "long>800": 0.5
+  },
+  "engine": "current",
+  "tag": "v480_rules_gen2026"
+}

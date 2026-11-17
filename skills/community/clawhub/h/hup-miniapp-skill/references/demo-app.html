@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hup Mini App Demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --fg: #111827;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --surface: #f9fafb;
+        --primary: #0d6efd;
+        --ok: #16a34a;
+        --bad: #dc2626;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0f19;
+          --fg: #e5e7eb;
+          --muted: #9ca3af;
+          --border: #1f2937;
+          --surface: #111827;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 1rem;
+        font: 14px/1.5 system-ui, -apple-system, Segoe UI, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      h1 {
+        font-size: 1rem;
+        margin: 0 0 0.25rem;
+      }
+      p.sub {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+      .panel {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--surface);
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.2rem 0;
+        font-size: 0.8rem;
+      }
+      .row span:first-child {
+        color: var(--muted);
+      }
+      .row span:last-child {
+        font-family: ui-monospace, Menlo, monospace;
+        overflow-wrap: anywhere;
+        text-align: right;
+      }
+      button {
+        width: 100%;
+        padding: 0.6rem;
+        margin-bottom: 0.5rem;
+        border: none;
+        border-radius: 8px;
+        background: var(--primary);
+        color: #fff;
+        font: inherit;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      button.secondary {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--fg);
+      }
+      #log {
+        margin: 0;
+        padding: 0.6rem;
+        max-height: 9rem;
+        overflow: auto;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--bg);
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.7rem;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .ok {
+        color: var(--ok);
+      }
+      .bad {
+        color: var(--bad);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hup Mini App Demo</h1>
+    <p class="sub">Reference implementation of the mini app bridge.</p>
+
+    <div class="panel">
+      <div class="row"><span>SDK</span><span id="s-sdk">waiting…</span></div>
+      <div class="row"><span>Account</span><span id="s-account">—</span></div>
+      <div class="row"><span>Chain</span><span id="s-chain">—</span></div>
+      <div class="row"><span>Storage</span><span id="s-storage">—</span></div>
+      <div class="row"><span>crypto.subtle</span><span id="s-crypto">—</span></div>
+    </div>
+
+    <button id="b-connect">Connect</button>
+    <button id="b-sign" class="secondary" disabled>Sign a message</button>
+    <button id="b-send" class="secondary" disabled>Send 0-value transaction</button>
+    <button id="b-refused" class="secondary">Try eth_sign (must be refused)</button>
+
+    <pre id="log"></pre>
+
+    <!-- Real mini apps load the SDK from the host: https://hup.social/miniapp-sdk.js
+         This demo gets served from arbitrary places during development (Next's public/ root,
+         Live Server from the repo root, a copied folder), so it tries each path in turn —
+         a plain absolute /miniapp-sdk.js only works when public/ IS the server root. -->
+    <script>
+      const SDK_SOURCES = ['/miniapp-sdk.js', '../../public/miniapp-sdk.js', 'https://hup.social/miniapp-sdk.js']
+
+      function loadSdk(index) {
+        if (index >= SDK_SOURCES.length) {
+          document.getElementById('s-sdk').textContent = 'SDK failed to load'
+          document.getElementById('s-sdk').className = 'bad'
+          return
+        }
+        const script = document.createElement('script')
+        script.src = SDK_SOURCES[index]
+        script.onload = () => window.startDemo()
+        script.onerror = () => {
+          script.remove()
+          loadSdk(index + 1)
+        }
+        document.head.appendChild(script)
+      }
+    </script>
+    <script>
+      const $ = (id) => document.getElementById(id)
+      const log = (msg, cls) => {
+        const line = document.createElement('div')
+        if (cls) line.className = cls
+        line.textContent = `${new Date().toLocaleTimeString()}  ${msg}`
+        $('log').appendChild(line)
+        $('log').scrollTop = $('log').scrollHeight
+      }
+
+      let provider = null
+      let account = null
+
+      // The sandbox grants allow-same-origin, so an app keeps its own origin and these work.
+      // Both were unavailable while the frame ran with an opaque origin — a common reason a
+      // dapp fails to boot inside a frame.
+      try {
+        localStorage.setItem('hup-demo', '1')
+        $('s-storage').textContent = 'available'
+        $('s-storage').className = 'ok'
+      } catch (err) {
+        $('s-storage').textContent = err.name
+        $('s-storage').className = 'bad'
+      }
+      $('s-crypto').textContent = typeof crypto !== 'undefined' && crypto.subtle ? 'available' : 'undefined'
+      $('s-crypto').className = typeof crypto !== 'undefined' && crypto.subtle ? 'ok' : 'bad'
+
+      function render(ctx) {
+        account = ctx?.user?.address || null
+        $('s-account').textContent = account ? `${account.slice(0, 6)}…${account.slice(-4)}` : 'not connected'
+        $('s-chain').textContent = ctx?.chainId ?? '—'
+        $('b-sign').disabled = !account
+        $('b-send').disabled = !account
+        $('b-connect').textContent = account ? 'Connected' : 'Connect'
+        $('b-connect').disabled = Boolean(account)
+      }
+
+      async function boot() {
+        // ready() resolves once the host answers the handshake with the viewer's context
+        const ctx = await sdk.actions.ready()
+        $('s-sdk').textContent = 'connected'
+        $('s-sdk').className = 'ok'
+        log('handshake complete — host: ' + (ctx.host || 'hup'), 'ok')
+
+        provider = await sdk.wallet.getEthereumProvider()
+        render(ctx)
+
+        // The host pushes updates when the viewer connects, disconnects, or switches network
+        hup.on('session', (session) => {
+          log('session changed: ' + JSON.stringify(session))
+          render({ user: session.address ? { address: session.address } : null, chainId: session.chainId })
+        })
+      }
+
+      $('b-connect').onclick = async () => {
+        try {
+          const accounts = await provider.request({ method: 'eth_requestAccounts' })
+          if (!accounts.length) return log('no account — viewer is not connected to Hup', 'bad')
+          account = accounts[0]
+          const chainId = await provider.request({ method: 'eth_chainId' })
+          render({ user: { address: account }, chainId: parseInt(chainId, 16) })
+          log('connected ' + account, 'ok')
+        } catch (err) {
+          log('connect failed: ' + err.message, 'bad')
+        }
+      }
+
+      $('b-sign').onclick = async () => {
+        try {
+          // params order for personal_sign is [message, address]
+          const signature = await provider.request({
+            method: 'personal_sign',
+            params: ['0x' + Array.from(new TextEncoder().encode('Hello from a Hup mini app')).map((b) => b.toString(16).padStart(2, '0')).join(''), account],
+          })
+          log('signature: ' + signature.slice(0, 24) + '…', 'ok')
+        } catch (err) {
+          log('signature rejected: ' + err.message, 'bad')
+        }
+      }
+
+      $('b-send').onclick = async () => {
+        try {
+          // Sends nothing to yourself — enough to prove the confirm-and-sign path end to end
+          const hash = await provider.request({
+            method: 'eth_sendTransaction',
+            params: [{ from: account, to: account, value: '0x0' }],
+          })
+          log('tx hash: ' + hash, 'ok')
+        } catch (err) {
+          log('tx rejected: ' + err.message, 'bad')
+        }
+      }
+
+      $('b-refused').onclick = async () => {
+        try {
+          await provider.request({ method: 'eth_sign', params: [account, '0xdeadbeef'] })
+          log('eth_sign SUCCEEDED — the host is not enforcing its policy', 'bad')
+        } catch (err) {
+          log(`eth_sign refused as expected (code ${err.code})`, 'ok')
+        }
+      }
+
+      // Called by the loader once a SDK source has actually loaded
+      window.startDemo = () =>
+        boot().catch((err) => {
+          $('s-sdk').textContent = 'no host'
+          $('s-sdk').className = 'bad'
+          log('SDK loaded but no host answered — open this app inside a Hup post, not standalone: ' + err.message, 'bad')
+        })
+
+      loadSdk(0)
+    </script>
+  </body>
+</html>

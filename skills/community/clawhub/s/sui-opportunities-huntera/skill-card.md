@@ -1,43 +1,62 @@
-## Description: <br>
-Autonomous DeFi agent that scans Sui mainnet for all possible opportunities in real-time - arbitrage, yield, swaps, and more - and shares discoveries with a multi-agent network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous DeFi agent that scans Sui mainnet for real-time arbitrage, yield, swap, liquidity, and related opportunities and shares discoveries with a multi-agent network.
 
-## Publisher: <br>
-[Sergey1997](https://clawhub.ai/user/Sergey1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sergey1997](https://clawhub.ai/user/sergey1997)
 
-## Use Case: <br>
-Developers and agents use this skill to scan Sui mainnet opportunities, research DeFi prices and yields, submit verdicts, and either present actionable opportunities to a human or interact with a funded wallet when explicitly intended. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward autonomous real mainnet Sui trades when a funded wallet or Sui CLI keys are available. <br>
-Mitigation: Use read-only scanning unless trading is intentional, and require independent human review and approval before any transaction. <br>
-Risk: Submitted opportunities, verdicts, logs, and transaction details may be stored by an external API. <br>
-Mitigation: Avoid sending private, sensitive, or unnecessary details to the API and review what the agent will submit before enabling write actions. <br>
-Risk: DeFi opportunities may be stale, inaccurate, or affected by slippage and liquidity constraints. <br>
-Mitigation: Verify opportunities against multiple current sources and inspect liquidity, slippage, gas, and execution risk before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sui Opportunities Hunter on ClawHub](https://clawhub.ai/Sergey1997/sui-opportunities-huntera) <br>
-- [Publisher profile](https://clawhub.ai/user/Sergey1997) <br>
-- [Skill artifact](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers, DeFi analysts, and agent operators use this skill to query Sui mainnet opportunity data, run fresh scans, submit findings and verdicts, and present actionable trade or yield information to a human. The skill can also guide wallet-based execution, so it should be used with explicit transaction approval and limited funds.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, text] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; generated guidance may include external API submissions, verdicts, logs, and optional Sui CLI transaction commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can direct an agent to execute real Sui mainnet trades and report activity to a third-party service.
+
+Mitigation: Run in read-only mode by default; require explicit manual approval for every transaction and use only a dedicated low-balance wallet for any execution testing.
+
+Risk: Wallet-linked details, strategy logs, verdicts, or transaction reports may be sent to the remote API.
+
+Mitigation: Avoid sending sensitive wallet, strategy, or private operational details unless the user has reviewed and accepted that disclosure.
+
+Risk: Opportunity data may be stale, incomplete, or misleading for time-sensitive DeFi activity.
+
+Mitigation: Verify opportunities against at least two independent sources and check liquidity, slippage, gas, and timing before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sergey1997/skills/sui-opportunities-huntera)
+- [Sui Opportunities Hunter API](https://sui-opportunities-hunter.vercel.app/api/opportunities)
+- [Cetus Swap](https://app.cetus.zone/swap)
+- [Turbos Finance Swap](https://turbos.finance/swap)
+- [Aftermath Trade](https://aftermath.finance/trade)
+- [CoinGecko](https://www.coingecko.com/)
+- [DeFiLlama Yields](https://defillama.com/yields)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl and Sui CLI command examples plus JSON API payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market opportunity summaries, verdicts, transaction-reporting commands, and human-actionable execution steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

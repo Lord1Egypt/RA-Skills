@@ -1,0 +1,18 @@
+[
+  {"report": "report-<ticker>-deep-dive-<yyyy-mm>", "series": "<TICKER>", "tier": null,
+   "claim": "Core judgment from the summary page, verbatim",
+   "falsifier": "Falsifier, verbatim, with an observable date",
+   "horizon": 12, "benchmark": "S&P 500 total return", "issued": "<publication date>"},
+  {"report": "report-<ticker>-deep-dive-<yyyy-mm>", "series": "<TICKER>", "tier": "annual",
+   "claim": "The rating as written: rating, target price, three scenarios and weights",
+   "falsifier": "The settlement basis and early-settlement conditions as written",
+   "horizon": 12, "benchmark": "S&P 500 total return", "issued": "<publication date>"},
+  {"report": "report-<ticker>-deep-dive-<yyyy-mm>", "series": "<TICKER>", "tier": "quarterly",
+   "claim": "Text of the 'Outlook' cell, quarterly row of the three-horizon table",
+   "falsifier": "The 'Timing' cell. The 'Settlement' cell",
+   "horizon": 3, "benchmark": "The 'Observation' cell (verification source)", "issued": "<publication date>"},
+  {"report": "report-<ticker>-deep-dive-<yyyy-mm>", "series": "<TICKER>", "tier": "monthly",
+   "claim": "Text of the 'Outlook' cell, monthly row of the three-horizon table",
+   "falsifier": "The 'Timing' cell. The 'Settlement' cell",
+   "horizon": 1, "benchmark": "The 'Observation' cell (verification source)", "issued": "<publication date>"}
+]

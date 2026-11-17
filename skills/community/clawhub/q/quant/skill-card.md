@@ -1,42 +1,57 @@
-## Description: <br>
-Quant is a quantitative investing assistant for market data retrieval, factor calculations, backtesting, risk monitoring, and trading signal guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quant is an intelligent quantitative investing assistant for multi-source market data retrieval, factor calculation, backtesting, real-time risk checks, and trading signal notifications.
 
-## Publisher: <br>
-[77Spongebob](https://clawhub.ai/user/77Spongebob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[77spongebob](https://clawhub.ai/user/77spongebob)
 
-## Use Case: <br>
-Developers, investors, and analysts can use this skill to fetch market data, calculate quantitative factors, run strategy backtests, monitor risk, and produce trading signal guidance. Outputs should be reviewed before being used for financial decisions or account-changing actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Third-party financial data services and local configuration can expose credentials if tokens are stored or shared carelessly. <br>
-Mitigation: Keep provider tokens in private local settings or environment variables, avoid committing config files with secrets, and review provider terms before use. <br>
-Risk: Dependency installation wording may be incomplete and could hide package installation commands. <br>
-Mitigation: Ask to see the exact dependency-install commands before running `quant install`, then approve only commands you understand. <br>
-Risk: Backtests, risk metrics, and trading signals can be misleading or unsuitable for live trading. <br>
-Mitigation: Treat outputs as informational, validate assumptions against independent data, and require explicit approval before any account-changing action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/77Spongebob/quant) <br>
-- [Tushare token registration](https://tushare.pro) <br>
+## Use Case:
 
+Developers and quantitative-investing practitioners use this skill to configure market data access, retrieve stock and index data, calculate factors, run backtests, monitor portfolio risk, and generate trading signals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, Python code, and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local configuration, third-party market data services, and user-approved trading signal workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts third-party market data providers and uses a Tushare token while also claiming data is handled locally.
+
+Mitigation: Use a limited-purpose Tushare token, review provider network behavior and terms before use, and do not rely on the local-only privacy statement without verification.
+
+Risk: Dependency installation commands may install market-data and backtesting packages into the agent environment.
+
+Mitigation: Review dependency installation commands before running them and prefer an isolated environment for evaluation.
+
+Risk: Live trading or order-related use could create financial impact if confirmation behavior is unclear.
+
+Mitigation: Avoid connecting the skill to live trading unless the order-confirmation path is explicit, auditable, and tested.
+
+## Reference(s):
+
+- [Quant ClawHub skill page](https://clawhub.ai/77spongebob/skills/quant)
+- [Tushare](https://tushare.pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python code, and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local configuration values, market-data retrieval guidance, backtesting instructions, risk-review guidance, and trading signal descriptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-03-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-Instantly publish a single self-contained HTML page to htmlcode.fun for fast live URLs. Alias of html-deploy, updated for the current versioned htmlcode.fun API and safer agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instantly publish a single self-contained HTML page to htmlcode.fun for fast live URLs. Alias of html-deploy, updated for the current versioned htmlcode.fun API and safer agent workflows.
 
-## Publisher: <br>
-[520xiaomumu](https://clawhub.ai/user/520xiaomumu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[520xiaomumu](https://clawhub.ai/user/520xiaomumu)
 
-## Use Case: <br>
-Developers and agents use this skill to publish, inspect, update, and manage single-file HTML pages on htmlcode.fun when fast sharing is more important than full project hosting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing selected HTML can expose secrets or private information embedded in the page. <br>
-Mitigation: Review HTML content for secrets and sensitive data before upload. <br>
-Risk: Overwriting, unpublishing, switching the current version, fetching existing content, or deleting a version can affect public content. <br>
-Mitigation: Require explicit user intent for these operations and inspect version history before modifying a release. <br>
-Risk: Liked versions are preserved snapshots and should not be overwritten or deleted. <br>
-Mitigation: Check likeCount before edits or deletion; append a new version when the target version has likes. <br>
-Risk: htmlcode.fun is a fast single-file publication channel, not full production hosting. <br>
-Mitigation: Use a dedicated app or static-site host when the project needs multi-file assets, build steps, backend services, secrets, or custom domains. <br>
+## Use Case:
 
+Developers and agents use this skill to publish, update, inspect, and manage single-file HTML pages on htmlcode.fun when fast sharing is more important than full project hosting.
 
-## Reference(s): <br>
-- [htmlcode.fun guide](https://www.htmlcode.fun/s/htmlcode-fun-guide) <br>
-- [html-deploy-easy ClawHub page](https://clawhub.ai/520xiaomumu/html-deploy-easy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write fetched HTML content to files when explicitly requested; deployment responses include URL and version metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Overwriting, unpublishing, deleting, or switching versions can affect a live shared HTML page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact short code and version before these actions, inspect version history first, and append a new version when there is uncertainty.
+
+Risk: A liked htmlcode.fun version is intended to be preserved as an immutable snapshot.
+
+Mitigation: Do not overwrite or delete versions with likeCount greater than zero; append a new version instead.
+
+## Reference(s):
+
+- [htmlcode.fun live guide](https://www.htmlcode.fun/s/htmlcode-fun-guide)
+- [ClawHub skill page](https://clawhub.ai/520xiaomumu/skills/html-deploy-easy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment URLs, version details, preserve hints, troubleshooting fields, and local HTML output when fetching content.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

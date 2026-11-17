@@ -1,0 +1,7 @@
+interface:
+  display_name: "Leadership Influence Planner"
+  short_description: "Choose ethical influence moves"
+  default_prompt: "Use $leadership-influence-planner to plan an ethical leadership influence strategy for this situation."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,37 +1,47 @@
-## Description: <br>
-Write Bengali that sounds human, casual, and native rather than overly formal or robotic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Bengali that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to draft or revise Bengali text so it sounds more natural, casual, regionally consistent, and appropriate for the intended level of formality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Bengali may use a mismatched audience, regional register, or formality level. <br>
-Mitigation: Review outputs for the intended audience, region, and formality level before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/bengali) <br>
+## Use Case:
+
+External users and content creators use this skill to produce Bengali writing that defaults to casual, native-sounding phrasing while preserving region and formality choices when specified.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Casual defaults may be inappropriate when a formal tone or specific Bengali region is required.
+
+Mitigation: Ask explicitly for formal tone or a specific region when the output context requires it.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bengali writing-style guidance; no code, shell commands, data access, or persistent behavior.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text Bengali prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or hidden behavior according to server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

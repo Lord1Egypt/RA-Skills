@@ -1,45 +1,61 @@
-## Description: <br>
-Generate beautiful charts via the Chart Splat API. Use when the user asks to create, generate, or visualize data as charts, graphs, or plots. Supports line, bar, pie, doughnut, radar, polar area, and candlestick/OHLC charts. Returns PNG images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate beautiful charts via the Chart Splat API. Use when the user asks to create, generate, or visualize data as charts, graphs, or plots. Supports line, bar, pie, doughnut, radar, polar area, and candlestick/OHLC charts. Returns PNG images.
 
-## Publisher: <br>
-[bobbyg603](https://clawhub.ai/user/bobbyg603) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bobbyg603](https://clawhub.ai/user/bobbyg603)
 
-## Use Case: <br>
-Developers and agents use Chart Splat to turn user-provided datasets and chart configuration into PNG chart files through the Chart Splat CLI, helper script, or API. It is suited for line, bar, pie, doughnut, radar, polar area, candlestick, and OHLC chart generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Chart data and configuration are sent to Chart Splat's remote API for rendering. <br>
-Mitigation: Do not submit secrets, regulated data, or confidential business datasets unless external processing by Chart Splat is approved by the organization. <br>
-Risk: The skill requires a CHARTSPLAT_API_KEY for API access. <br>
-Mitigation: Store the API key in agent environment configuration, scope it to Chart Splat, and rotate or revoke it if exposure is suspected. <br>
-Risk: Generated chart files can be misleading if labels, datasets, or OHLC values are incorrect. <br>
-Mitigation: Validate source data and ensure labels and data arrays match before sharing generated PNG outputs. <br>
+## Use Case:
 
+Developers and agents use this skill to turn user-provided datasets and chart configuration into PNG charts through the Chart Splat CLI, helper script, or API. It supports common business, categorical, time-series, and OHLC financial visualizations.
 
-## Reference(s): <br>
-- [Chart Splat API Reference](references/api-reference.md) <br>
-- [Sample chart configurations](examples/sample-charts.json) <br>
-- [Chart Splat homepage](https://chartsplat.com) <br>
-- [Chart Splat ClawHub listing](https://clawhub.ai/bobbyg603/chart-splat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration that produces PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, network access to api.chartsplat.com, and CHARTSPLAT_API_KEY. Default chart output is chart.png unless another output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Chart data is sent to the Chart Splat API for server-side rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive chart contents unless approved for external processing.
+
+Risk: The preferred CLI path uses npx without a pinned package version.
+
+Mitigation: Use a pinned and reviewed chartsplat-cli version before production deployment.
+
+Risk: The helper script can override the API endpoint through CHARTSPLAT_API_URL.
+
+Mitigation: Keep CHARTSPLAT_API_URL unset unless a trusted endpoint has been reviewed, and restrict network egress to the Chart Splat API.
+
+## Reference(s):
+
+- [Chart Splat API Reference](references/api-reference.md)
+- [Sample Chart Configurations](examples/sample-charts.json)
+- [Chart Splat Homepage](https://chartsplat.com)
+- [Chart Splat API Endpoint](https://api.chartsplat.com/chart)
+- [Chart Splat API Keys](https://chartsplat.com/dashboard/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON chart configuration, and PNG file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHARTSPLAT_API_KEY, Node.js, npx, and network access to the Chart Splat API.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -38,18 +38,63 @@ function listDirSafe(dirPath) {
   }
 }
 
-function truncateTop(content, maxLines) {
-  if (!maxLines || !content) return content;
-  const lines = content.split('\n');
-  if (lines.length <= maxLines) return content;
-  return lines.slice(0, maxLines).join('\n') + `\n[... truncated at ${maxLines} lines, ${lines.length} total ...]`;
+// Per-step default line caps applied when boot-config.json does not set
+// maxLines for the step. Keyed by the step key in config.steps. Any of these
+// can be overridden per-step via a maxLines value in boot-config.json.
+// Lives in code (not just the config template) because the installer preserves
+// an existing user boot-config.json, so config-template changes never reach
+// existing installs. Defaults must ride along with the hook.
+const DEFAULT_MAX_LINES = {
+  sharedContext: 80,
+  soul: 80,
+  context: 60,
+  repoLocations: 80,
+};
+
+// Default staleness cutoffs. Overridable via top-level config keys
+// (stalenessDays, dailyLogStalenessDays) or per-step keys of the same name.
+const DEFAULT_STALENESS_DAYS = 14; // most-recent strategy (journals)
+const DEFAULT_DAILY_LOG_STALENESS_DAYS = 2; // daily-logs strategy guard
+
+function resolveMaxLines(key, step) {
+  if (step.maxLines != null) return step.maxLines;
+  if (DEFAULT_MAX_LINES[key] != null) return DEFAULT_MAX_LINES[key];
+  return null;
 }
 
-function truncateBottom(content, maxLines) {
-  if (!maxLines || !content) return content;
+// Returns { text, capped }. When truncation happens, the marker names the
+// full path so a future reader can pull the rest.
+function truncateTop(content, maxLines, fullPath) {
+  if (!maxLines || !content) return { text: content, capped: false };
   const lines = content.split('\n');
-  if (lines.length <= maxLines) return content;
-  return `[... showing last ${maxLines} of ${lines.length} lines ...]\n` + lines.slice(-maxLines).join('\n');
+  if (lines.length <= maxLines) return { text: content, capped: false };
+  const where = fullPath || '(path unknown)';
+  const marker = `\n[... truncated at ${maxLines} of ${lines.length} lines. Read the rest: ${where} ...]`;
+  return { text: lines.slice(0, maxLines).join('\n') + marker, capped: true };
+}
+
+function truncateBottom(content, maxLines, fullPath) {
+  if (!maxLines || !content) return { text: content, capped: false };
+  const lines = content.split('\n');
+  if (lines.length <= maxLines) return { text: content, capped: false };
+  const where = fullPath || '(path unknown)';
+  const marker = `[... showing last ${maxLines} of ${lines.length} lines. Read the rest: ${where} ...]\n`;
+  return { text: marker + lines.slice(-maxLines).join('\n'), capped: true };
+}
+
+// Extract a YYYY-MM-DD prefix from a filename, or null if none.
+function dateStrFromName(fileName) {
+  const m = /^(\d{4}-\d{2}-\d{2})/.exec(fileName || '');
+  return m ? m[1] : null;
+}
+
+// Whole-day difference (todayStr - dateStr) in days. Both are YYYY-MM-DD.
+// Positive means dateStr is in the past. null if either is unparseable.
+function ageInDays(dateStr, todayStr) {
+  const a = Date.parse(`${dateStr}T00:00:00Z`);
+  const b = Date.parse(`${todayStr}T00:00:00Z`);
+  if (Number.isNaN(a) || Number.isNaN(b)) return null;
+  return Math.round((b - a) / 86400000);
 }
 
 function getTodayAndYesterday(timezone) {
@@ -99,6 +144,8 @@ function getDefaultConfig() {
     agentId: 'cc-mini',
     timezone: 'America/Los_Angeles',
     maxTotalLines: 2000,
+    stalenessDays: DEFAULT_STALENESS_DAYS,
+    dailyLogStalenessDays: DEFAULT_DAILY_LOG_STALENESS_DAYS,
     steps: {
       sharedContext: { path: '~/.openclaw/workspace/SHARED-CONTEXT.md', label: 'SHARED-CONTEXT.md', stepNumber: 2, critical: true },
       journals: { dir: '~/.ldm/agents/cc-mini/memory/journals', label: 'Most Recent CC Journal (Legacy)', stepNumber: 3, maxLines: 80, strategy: 'most-recent' },
@@ -113,52 +160,79 @@ function getDefaultConfig() {
   };
 }
 
-function processStep(key, step, dates) {
+function processStep(key, step, dates, config) {
   // Reminder-only step (e.g. full history)
   if (step.reminder) {
-    return { content: step.reminder, loaded: true, fileName: null };
+    return { content: step.reminder, loaded: true, fileName: null, capped: false, stale: false };
   }
+
+  const maxLines = resolveMaxLines(key, step);
 
   // Single file step
   if (step.path) {
+    const resolved = resolvePath(step.path);
     const content = readFileSafe(step.path);
-    if (!content) return { content: null, loaded: false, fileName: resolvePath(step.path) };
-    const trimmed = step.maxLines ? truncateTop(content, step.maxLines) : content;
-    return { content: trimmed, loaded: true, fileName: resolvePath(step.path) };
+    if (!content) return { content: null, loaded: false, fileName: resolved, capped: false, stale: false };
+    const { text, capped } = truncateTop(content, maxLines, resolved);
+    return { content: text, loaded: true, fileName: resolved, capped, stale: false };
   }
 
   // Directory-based step
   if (step.dir) {
     if (step.strategy === 'most-recent') {
       const fileName = findMostRecent(step.dir);
-      if (!fileName) return { content: null, loaded: false, fileName: resolvePath(step.dir) };
+      if (!fileName) return { content: null, loaded: false, fileName: resolvePath(step.dir), capped: false, stale: false };
       const fullPath = join(resolvePath(step.dir), fileName);
       const content = readFileSafe(fullPath);
-      if (!content) return { content: null, loaded: false, fileName: fullPath };
-      const trimmed = step.maxLines ? truncateTop(content, step.maxLines) : content;
-      return { content: trimmed, loaded: true, fileName: `${fileName}` };
+      if (!content) return { content: null, loaded: false, fileName: fullPath, capped: false, stale: false };
+
+      // Staleness cutoff: if the newest file is older than the cutoff, do not
+      // inject its body. Emit a single line with the path and date instead.
+      const stalenessDays = step.stalenessDays ?? config.stalenessDays ?? DEFAULT_STALENESS_DAYS;
+      const fileDate = dateStrFromName(fileName);
+      const age = fileDate ? ageInDays(fileDate, dates.today) : null;
+      if (age != null && age > stalenessDays) {
+        const line = `[stale: newest file is ${fileDate} (${age}d old, cutoff ${stalenessDays}d). Body not injected. Read if needed: ${fullPath}]`;
+        return { content: line, loaded: true, fileName, capped: false, stale: true };
+      }
+
+      const { text, capped } = truncateTop(content, maxLines, fullPath);
+      return { content: text, loaded: true, fileName, capped, stale: false };
     }
 
     if (step.strategy === 'daily-logs') {
+      const dailyStalenessDays = step.dailyLogStalenessDays ?? config.dailyLogStalenessDays ?? DEFAULT_DAILY_LOG_STALENESS_DAYS;
       const parts = [];
       let anyLoaded = false;
+      let anyCapped = false;
+      let anyStale = false;
       for (const day of (step.days || ['today'])) {
         const dateStr = day === 'today' ? dates.today : dates.yesterday;
         const fileName = `${dateStr}.md`;
         const fullPath = join(resolvePath(step.dir), fileName);
         const content = readFileSafe(fullPath);
-        if (content) {
-          const trimmed = step.maxLines ? truncateBottom(content, step.maxLines) : content;
-          parts.push(`--- ${day} (${dateStr}) ---\n${trimmed}`);
-          anyLoaded = true;
+        if (!content) continue;
+        anyLoaded = true;
+
+        // Guard: a day file dated older than the cutoff should not normally
+        // happen (days are today/yesterday), but if it does, emit path-only.
+        const age = ageInDays(dateStr, dates.today);
+        if (age != null && age > dailyStalenessDays) {
+          parts.push(`--- ${day} (${dateStr}) ---\n[stale: ${age}d old, cutoff ${dailyStalenessDays}d. Body not injected. Read if needed: ${fullPath}]`);
+          anyStale = true;
+          continue;
         }
+
+        const { text, capped } = truncateBottom(content, maxLines, fullPath);
+        if (capped) anyCapped = true;
+        parts.push(`--- ${day} (${dateStr}) ---\n${text}`);
       }
-      if (!anyLoaded) return { content: null, loaded: false, fileName: resolvePath(step.dir) };
-      return { content: parts.join('\n\n'), loaded: true, fileName: null };
+      if (!anyLoaded) return { content: null, loaded: false, fileName: resolvePath(step.dir), capped: false, stale: false };
+      return { content: parts.join('\n\n'), loaded: true, fileName: null, capped: anyCapped, stale: anyStale };
     }
   }
 
-  return { content: null, loaded: false, fileName: null };
+  return { content: null, loaded: false, fileName: null, capped: false, stale: false };
 }
 
 async function main() {
@@ -181,6 +255,8 @@ async function main() {
   const sections = [];
   const loaded = [];
   const skipped = [];
+  const cappedSteps = [];
+  const staleSteps = [];
   let totalLines = 0;
 
   // Sort steps by stepNumber
@@ -189,7 +265,7 @@ async function main() {
   );
 
   for (const [key, step] of stepEntries) {
-    const result = processStep(key, step, dates);
+    const result = processStep(key, step, dates, config);
 
     if (result.loaded && result.content) {
       const criticalTag = step.critical ? ' (CRITICAL)' : '';
@@ -198,6 +274,8 @@ async function main() {
       sections.push(`${header}\n${result.content}`);
       loaded.push(`Step ${step.stepNumber}: ${step.label}`);
       totalLines += result.content.split('\n').length;
+      if (result.capped) cappedSteps.push(`Step ${step.stepNumber}`);
+      if (result.stale) staleSteps.push(`Step ${step.stepNumber}`);
     } else {
       skipped.push(`Step ${step.stepNumber}: ${step.label}`);
       if (result.fileName) {
@@ -275,16 +353,28 @@ async function main() {
   } catch {}
 
   const elapsed = Date.now() - startTime;
-  const footer = `== Boot complete. Loaded ${loaded.length}/9 files in ${elapsed}ms. ==`;
+  const footer = `== Boot complete. Loaded ${loaded.length} sections in ${elapsed}ms. ==`;
   if (skipped.length > 0) {
     sections.push(`${footer}\nSkipped: ${skipped.join(', ')}`);
   } else {
     sections.push(footer);
   }
 
-  const additionalContext =
+  // Body first, then a one-line payload summary so future slowness triage is
+  // trivial: total bytes/lines injected, which steps were line-capped, and
+  // which were skipped as stale (path-only).
+  const bodyText =
     `== LDM OS BOOT SEQUENCE (loaded automatically by SessionStart hook) ==\n\n` +
     sections.join('\n\n');
+  const payloadBytes = Buffer.byteLength(bodyText, 'utf-8');
+  const payloadLines = bodyText.split('\n').length;
+  const summary =
+    `== Boot payload: ${payloadBytes} bytes, ${payloadLines} lines, ${loaded.length} sections. ` +
+    `Capped: ${cappedSteps.length ? cappedSteps.join(', ') : 'none'}. ` +
+    `Stale/path-only: ${staleSteps.length ? staleSteps.join(', ') : 'none'}. ` +
+    `Missing: ${skipped.length ? skipped.length : 'none'}. ==`;
+
+  const additionalContext = `${bodyText}\n\n${summary}`;
 
   const output = {
     hookSpecificOutput: {
@@ -294,7 +384,7 @@ async function main() {
   };
 
   process.stdout.write(JSON.stringify(output));
-  process.stderr.write(`${TAG} loaded ${loaded.length}/9 files in ${elapsed}ms\n`);
+  process.stderr.write(`${TAG} loaded ${loaded.length} sections, ${payloadBytes} bytes in ${elapsed}ms\n`);
   process.exit(0);
 }
 

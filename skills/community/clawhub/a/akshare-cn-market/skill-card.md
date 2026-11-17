@@ -1,43 +1,64 @@
-## Description: <br>
-Provides AKShare-based access to Chinese A-share market data, index data, financial summaries, macroeconomic indicators, bond yields, and trading-calendar utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese A-share market, index, financial-summary, macroeconomic, bond-yield, and trading-calendar data through AKShare-backed Python scripts.
 
-## Publisher: <br>
-[geoion](https://clawhub.ai/user/geoion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geoion](https://clawhub.ai/user/geoion)
 
-## Use Case: <br>
-Developers, analysts, and agent builders use this skill to retrieve public Chinese equity-market and macroeconomic datasets through AKShare scripts for research, reporting, and workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves market and macroeconomic data from public financial data providers, so availability, latency, or provider-side field quality can affect results. <br>
-Mitigation: Confirm that AKShare and pandas are installed, allow expected outbound access, and validate important results against source-provider data before relying on them. <br>
-Risk: Financial data returned by the skill can be mistaken for investment advice. <br>
-Mitigation: Use outputs as research material only and require independent human judgment for investment decisions. <br>
+## Use Case:
 
+Developers and market-analysis agents use this skill to retrieve Chinese A-share historical prices, index data, company financial summaries, macroeconomic indicators, bond yields, and A-share trading-calendar information. Outputs are research data and should not be used as standalone investment advice.
 
-## Reference(s): <br>
-- [AKShare reference notes](references/README.md) <br>
-- [AKShare official documentation](https://akshare.akfamily.xyz/) <br>
-- [AKShare GitHub repository](https://github.com/akfamily/akshare) <br>
-- [ClawHub skill page](https://clawhub.ai/geoion/akshare-cn-market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON data, Shell commands, Python code, Guidance] <br>
-**Output Format:** [JSON arrays from command-line scripts, with Markdown guidance and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may contact public financial data providers through AKShare and require akshare and pandas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: AKShare contacts public finance data providers, so use may disclose requests to external services and depend on their availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an approved network environment and handle provider timeouts or missing fields in agent workflows.
+
+Risk: Installing unpinned dependencies can resolve newer AKShare or pandas versions than the release was written against.
+
+Mitigation: Use a virtual environment, avoid elevated privileges, and pin reviewed dependency versions before deployment.
+
+Risk: Market and macroeconomic outputs can be delayed, incomplete, or unsuitable for direct investment decisions.
+
+Mitigation: Treat the data as research input, verify important values against authoritative sources, and require human review for investment decisions.
+
+Risk: Some real-time or push-style endpoints may fail in proxied or sandboxed environments.
+
+Mitigation: Prefer the documented stable historical, Sina index, macroeconomic, and calendar endpoints, and include fallback behavior for blocked endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geoion/skills/akshare-cn-market)
+- [AKShare reference README](references/README.md)
+- [AKShare official documentation](https://akshare.akfamily.xyz/)
+- [AKShare GitHub repository](https://github.com/akfamily/akshare)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-producing Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included scripts print JSON arrays or error objects for market, macroeconomic, bond-yield, and trading-calendar requests.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Provide stake freeze and release rules for participants during negotiation and order execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide stake freeze and release rules for participants during negotiation and order execution.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
 
-## Use Case: <br>
-Developers and engineers use this skill to define stake locking, release, slashing, timeout, and audit rules for A2A market negotiation and order execution workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stake locking, release, or slashing policy could affect real funds or collateral if implemented without additional controls. <br>
-Mitigation: Review any runtime implementation before use with real funds, require clear authorization for slashing, validate evidence inputs, keep audit logs, and define rollback or dispute handling. <br>
-Risk: Slashing decisions may be incorrect or disputed if evidence and policy versioning are incomplete. <br>
-Mitigation: Require an evidence payload and policy version for slashing, and preserve incident logs for audit and dispute resolution. <br>
+## Use Case:
 
+Developers and engineers use this skill to define stake locking, release, slashing, timeout, and audit rules for A2A market transactions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with interface contracts and implementation paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only artifact; no executable code, credentials, network access, or hidden behavior were present in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence) <br>
+Risk: Stake slashing and automatic timeout decisions can have financial impact if implemented without required evidence, audit logs, policy versions, or safe defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation or use, confirm the runtime implementation enforces evidence requirements, audit logging, policy versioning, and release-by-default timeout behavior unless an explicit breach condition is met.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luoqianchenguni-max/skills/a2a-market-stake-freeze)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with code path and policy contract recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on stake lifecycle rules, auditability, timeout defaults, and slashing evidence requirements.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Super Calculator helps an agent answer natural-language arithmetic, finance, date, unit conversion, statistics, health metric, and equation-solving requests with calculation steps and units. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual local calculator skill that helps an agent answer natural-language requests for arithmetic, finance, statistics, unit conversion, date, health, and equation calculations with calculation steps.
 
-## Publisher: <br>
-[xiaozhao111596](https://clawhub.ai/user/xiaozhao111596) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaozhao111596](https://clawhub.ai/user/xiaozhao111596)
 
-## Use Case: <br>
-External users and developers can use this skill to have an agent calculate everyday math, finance, date, statistics, health, equation, and unit-conversion questions from natural-language prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the calculator on prompts that merely contain numbers. <br>
-Mitigation: Confirm the user's calculation intent when a prompt is ambiguous or when number-related text appears incidentally. <br>
-Risk: Finance, health, and exchange-rate results are reference calculations and may be unsuitable for important decisions without verification. <br>
-Mitigation: Verify important outputs against authoritative sources or qualified professionals before relying on them. <br>
+## Use Case:
 
+External users and developers use this OpenClaw skill to route everyday calculation requests to a local calculator assistant. It is suited for reference calculations involving finance, statistics, unit conversion, dates, health metrics, and equations where the agent should show formulas and steps.
 
-## Reference(s): <br>
-- [Formula reference guide](references/formulas.md) <br>
-- [Skill README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaozhao111596/super-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language calculation explanations with formulas, numeric results, and units] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and uses standard-library calculation helpers; finance, health, and exchange-rate outputs are reference calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Finance, exchange-rate, BMI, BMR, and calorie calculations may be estimates or based on user-provided assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important financial or health decisions with authoritative sources before relying on the result.
+
+Risk: Broad trigger language may route ambiguous numeric requests to the calculator skill before the user intent is clear.
+
+Mitigation: Clarify ambiguous requests and required units, rates, dates, or formulas before calculating.
+
+## Reference(s):
+
+- [Formula Reference Guide](references/formulas.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiaozhao111596/skills/super-calculator)
+- [Publisher Profile](https://clawhub.ai/user/xiaozhao111596)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with formulas, calculation steps, numeric results, and optional Python function outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with Python standard-library calculation helpers; no API key requirement is described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

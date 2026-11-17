@@ -1,0 +1,13 @@
+{
+  "present": true,
+  "present_method": "multimodal",
+  "emotion": "happy",
+  "emotion_confidence": 0.92,
+  "colors": [
+    {"name": "蓝色", "hex": "#1E6EDC", "ratio": 0.42},
+    {"name": "白色", "hex": "#F5F5F5", "ratio": 0.31},
+    {"name": "粉色", "hex": "#FF69B4", "ratio": 0.12}
+  ],
+  "image_path": "captures/20260831_134700.jpg",
+  "timestamp": "2026-08-31T13:47:00+0800"
+}

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.impact_shadow.v1.schema.json",
+  "title": "OpenClaw Safe Update Non-Authoritative Impact Shadow",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "authoritative",
+    "status",
+    "shadow_digest",
+    "affected_components",
+    "affected_capabilities",
+    "affected_contracts",
+    "would_add_checks",
+    "would_flag_risks",
+    "would_block",
+    "would_omit_checks",
+    "unmapped_members",
+    "unmapped_packages",
+    "errors"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.impact_shadow.v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "const": "read_only_openclaw_update_rehearsal"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "npm_registry_read_only"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "authoritative": {
+      "const": false
+    },
+    "status": {
+      "enum": [
+        "success",
+        "failed"
+      ]
+    },
+    "shadow_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "affected_components": {
+      "$ref": "#/$defs/sortedStrings"
+    },
+    "affected_capabilities": {
+      "$ref": "#/$defs/sortedStrings"
+    },
+    "affected_contracts": {
+      "$ref": "#/$defs/sortedStrings"
+    },
+    "would_add_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "capability_id",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^shadow:"
+          },
+          "capability_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "would_flag_risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "count"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^shadow:"
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "would_block": {
+      "type": "boolean"
+    },
+    "would_omit_checks": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "unmapped_members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "package",
+          "change",
+          "member"
+        ],
+        "properties": {
+          "package": {
+            "type": "string",
+            "minLength": 1
+          },
+          "change": {
+            "enum": [
+              "added",
+              "removed",
+              "changed"
+            ]
+          },
+          "member": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unmapped_packages": {
+      "$ref": "#/$defs/sortedStrings"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "sortedStrings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

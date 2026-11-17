@@ -1,44 +1,59 @@
-## Description: <br>
-Generates images in Google Flow (labs.google/fx) through browser UI automation. Supports Nano Banana 2 and Nano Banana Pro with landscape/portrait aspect ratios. Use when the user requests Flow-based image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images in Google Flow (labs.google/fx) through browser UI automation, supporting Nano Banana 2 and Nano Banana Pro with landscape and portrait aspect ratios.
 
-## Publisher: <br>
-[liujuntao123](https://clawhub.ai/user/liujuntao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujuntao123](https://clawhub.ai/user/liujuntao123)
 
-## Use Case: <br>
-Developers and external users can use this skill to submit image-generation prompts to Google Flow through Chrome browser automation, including model, aspect ratio, image count, login, existing-project, and batch options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can open or attach to a Chrome debugging session and read Google Flow and Google account cookies. <br>
-Mitigation: Run it only with explicit user consent, preferably using a dedicated Chrome profile and Google account for Flow generation. <br>
-Risk: The skill stores a reusable OAuth token and cookies in a local plaintext cookies.json file. <br>
-Mitigation: Review or override the cookie path before use, restrict local file access, and remove the cached cookies.json file after the task is complete. <br>
-Risk: The skill calls Google Flow session endpoints and drives browser UI automation for prompt submission. <br>
-Mitigation: Confirm the account, proxy, Chrome profile, and target Flow project before running generation commands. <br>
+## Use Case:
 
+Developers and agents use this skill to submit image generation prompts to Google Flow through browser UI automation, including single prompt and batch workflows. It is intended for Flow-based image generation where the user has completed the required consent, runtime, network, and login checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liujuntao123/auto-free-banana) <br>
-- [Metadata Homepage](https://github.com/JimLiu/baoyu-skills#auto-free-banana) <br>
-- [Google Flow](https://labs.google/fx/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and browser-visible generation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submits prompts through Chrome UI automation; generated images remain visible in the browser rather than being downloaded by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Reusable Google authentication data may be extracted and stored locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile or test Google account, keep the cookie path out of shared or synced folders, and delete cached credentials after use.
+
+Risk: The npx -y bun fallback can run an unpinned runtime from the package ecosystem.
+
+Mitigation: Prefer a trusted, pinned Bun installation before running the skill.
+
+Risk: Browser UI automation depends on the current Google Flow interface and authenticated session state.
+
+Mitigation: Complete the documented pre-flight checks and verify completion with browser screenshots before treating a generation as finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujuntao123/skills/auto-free-banana)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#auto-free-banana)
+- [Google Flow](https://labs.google/fx/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits prompts through the browser UI and relies on browser screenshots to confirm completed image generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

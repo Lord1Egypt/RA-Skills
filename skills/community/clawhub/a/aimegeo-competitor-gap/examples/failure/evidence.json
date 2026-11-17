@@ -1,0 +1,218 @@
+{
+  "version": "1.0.0",
+  "question": "离线失败边界示例：青禾页面可读，杉木获取超时；AI 查询失败不记作零引用。",
+  "page_slots": [
+    "product"
+  ],
+  "sites": [
+    {
+      "id": "qinghe",
+      "name": "青禾",
+      "role": "brand",
+      "pages": [
+        {
+          "slot": "product",
+          "acquisition": {
+            "url": "https://qinghe.example/products/crm",
+            "final_url": "https://qinghe.example/products/crm",
+            "status": "ok",
+            "http_status": 200,
+            "kind": "simulated",
+            "captured_at": "2026-10-19T12:00:00+08:00",
+            "source_ref": "pages/qinghe.html",
+            "sha256": "49e2c11a758bcf1f83fa84314218a55cb59ec8c21d664bfe7d772c3cdc18d7d1",
+            "reason": null,
+            "acquisition_status": "ok"
+          },
+          "analysis_status": "observed",
+          "signals": {
+            "metrics": {
+              "faq_visible_pairs": 0,
+              "brand_organizations": 1,
+              "brand_entity_fields": [
+                "name",
+                "url"
+              ],
+              "brand_entity_field_count": 2,
+              "explicit_source_links": 0,
+              "external_link_candidates": 1,
+              "schema_types": [
+                "Organization",
+                "WebPage"
+              ],
+              "jsonld_parsed_blocks": 1,
+              "jsonld_invalid_blocks": 0,
+              "h1_count": 1,
+              "h2_count": 2
+            },
+            "faq_evidence": [],
+            "organizations": [
+              {
+                "name": "青禾",
+                "url": "https://qinghe.example/"
+              }
+            ],
+            "external_links": [
+              {
+                "url": "https://social.example/qinghe",
+                "text": "社交账号",
+                "explicit_source": false
+              }
+            ],
+            "first_paragraph": "青禾帮助小型销售团队整理客户资料和跟进记录。",
+            "brand_in_first_paragraph": true,
+            "jsonld_errors": [],
+            "visible_blocks": [
+              {
+                "tag": "h1",
+                "text": "青禾客户资料管理"
+              },
+              {
+                "tag": "p",
+                "text": "青禾帮助小型销售团队整理客户资料和跟进记录。"
+              },
+              {
+                "tag": "h2",
+                "text": "数据导入"
+              },
+              {
+                "tag": "p",
+                "text": "支持 CSV 导入。具体字段要求由客户支持提供。"
+              },
+              {
+                "tag": "h2",
+                "text": "FAQ"
+              },
+              {
+                "tag": "p",
+                "text": "如有问题，请联系支持团队。"
+              }
+            ],
+            "warnings": [
+              "JSON-LD parsed as JSON; this is not complete Schema.org validation"
+            ]
+          },
+          "robots": {
+            "GPTBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "ClaudeBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "PerplexityBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "Google-Extended": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            }
+          }
+        }
+      ],
+      "robots_acquisition": null
+    },
+    {
+      "id": "cedar",
+      "name": "杉木",
+      "role": "competitor",
+      "pages": [
+        {
+          "slot": "product",
+          "acquisition": {
+            "url": "https://cedar.example/products/crm",
+            "final_url": "https://cedar.example/products/crm",
+            "status": "unverified",
+            "http_status": null,
+            "kind": "simulated",
+            "captured_at": "2026-10-19T12:00:00+08:00",
+            "source_ref": null,
+            "sha256": null,
+            "reason": "simulated_timeout",
+            "acquisition_status": "failed"
+          },
+          "analysis_status": "unverified",
+          "signals": null,
+          "robots": {
+            "GPTBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "ClaudeBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "PerplexityBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "Google-Extended": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            }
+          }
+        }
+      ],
+      "robots_acquisition": null
+    }
+  ],
+  "comparisons": [
+    {
+      "competitor": "cedar",
+      "slot": "product",
+      "status": "unverified",
+      "kind": null,
+      "competitor_minus_brand": null
+    }
+  ],
+  "ai_observations": {
+    "status": "no_observed_samples",
+    "samples": [
+      {
+        "id": "query-failed-demo",
+        "status": "query_failed",
+        "platform": "offline-fixture",
+        "query": "小团队如何选客户资料管理工具？",
+        "reason": "模拟查询失败，未取得回答及原生引用",
+        "mentions": null,
+        "native_citation_count": null
+      },
+      {
+        "id": "not-run-demo",
+        "status": "not_run",
+        "platform": "offline-fixture",
+        "query": "支持 CSV 的客户资料工具有哪些？",
+        "reason": "未运行",
+        "mentions": null,
+        "native_citation_count": null
+      },
+      {
+        "id": "simulated-demo",
+        "status": "simulated",
+        "platform": "offline-fixture",
+        "query": "有哪些客户资料管理工具？",
+        "captured_at": "2026-10-19T12:00:00+08:00",
+        "answer": "模拟回答：青禾提供客户资料整理功能。",
+        "evidence": "failure-input.json#ai_samples/simulated-demo（构造数据）",
+        "native_citations": [],
+        "mentions": {
+          "qinghe": true,
+          "cedar": false
+        },
+        "native_citation_count": null
+      }
+    ],
+    "observed_answer_denominator": 0,
+    "native_citation_denominator": 0,
+    "native_citation_total": null,
+    "note": "Mentions are literal text matches, native citations are imported source entries; no AI ranking is inferred."
+  },
+  "cache": {
+    "unique_urls": 2,
+    "cache_hits": 0,
+    "unique_snapshot_reads": 1,
+    "network_requests": 0
+  }
+}

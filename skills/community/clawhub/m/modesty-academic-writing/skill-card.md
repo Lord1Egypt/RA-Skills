@@ -1,40 +1,48 @@
-## Description: <br>
-Assists with scholarly papers, literature reviews, research methodology, and thesis writing while enforcing academic tone, Markdown output, verified academic citations, and formatted references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides academic writing guidance for scholarly papers, literature reviews, research methodology, and thesis writing with formal structure and citation standards.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students, researchers, and academic writers use this skill to draft, revise, and structure scholarly writing with academic tone, source constraints, sequential citations, references, tables, and optional Mermaid diagrams.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Academic outputs may contain incorrect, unverifiable, or mismatched citations if the agent's source lookup is incomplete.
+
+Mitigation: Verify every cited source, URL, and reference entry against legitimate academic sources before submission or publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, students, researchers, and academic writers use this skill to draft or refine scholarly content with formal structure, academic tone, verified citations, and reference lists. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Academic citations, references, URLs, or factual claims may be incorrect or unverifiable. <br>
-Mitigation: Manually verify citations, references, and specialized claims against academic sources before relying on the output. <br>
-Risk: The skill can shape academic writing style and formatting but does not independently validate research quality. <br>
-Mitigation: Review methodology, evidence, and conclusions with appropriate subject-matter expertise before submission or publication. <br>
+**Output Format:** [Markdown wrapped in ama-doc tags, with numbered citations, references, tables, and optional Mermaid diagrams]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-academic-writing) <br>
+**Other Properties Related to Output:** [Requires real academic sources and sequential citation numbering; users should verify citation accuracy before relying on outputs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown wrapped in <ama-doc> tags, with numbered citations and reference lists when sources are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Markdown tables and Mermaid diagrams; citations should be real, verifiable academic sources.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

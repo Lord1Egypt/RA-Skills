@@ -55,14 +55,19 @@ $validEvents = @("progress", "phase_complete", "error", "gate_block", "attest", 
 function Resolve-PlanDir {
     $planRoot = Join-Path (Get-Location) ".planning"
 
+    # A set PLAN_ID is a BINDING, not a hint (issue #237). This script WRITES
+    # ledger rows into the directory it picks, so falling through to
+    # .active_plan, newest-by-mtime and finally the cwd after a mistyped pin
+    # files another plan's run history.
     if ($env:PLAN_ID) {
         $candidate = Join-Path $planRoot $env:PLAN_ID
         if (Test-Path -LiteralPath $candidate -PathType Container) { return $candidate }
+        return $null
     }
 
     $activePointer = Join-Path $planRoot ".active_plan"
     if (Test-Path -LiteralPath $activePointer) {
-        $planId = (Get-Content -LiteralPath $activePointer -Raw).Trim()
+        $planId = "$(Get-Content -LiteralPath $activePointer -Raw -ErrorAction SilentlyContinue)".Trim()
         if ($planId) {
             $candidate = Join-Path $planRoot $planId
             if (Test-Path -LiteralPath $candidate -PathType Container) { return $candidate }
@@ -130,10 +135,16 @@ if ($validEvents -notcontains $Event) {
 $agentClean = ($Agent -replace '[^A-Za-z0-9_-]', '')
 if (-not $agentClean) { $agentClean = "main" }
 
-# Truncate summary to 200 chars before escaping.
+# Truncate summary to the 200-character budget before escaping, matching the
+# sh twin. .NET Substring counts characters, never bytes, so multibyte input
+# cannot be clipped mid-codepoint here and no UTF-8 tail repair is needed.
 if ($Summary.Length -gt 200) { $Summary = $Summary.Substring(0, 200) }
 
 $planDir    = Resolve-PlanDir
+if (-not $planDir) {
+    Write-Error "[ledger-append] An explicit PLAN_ID did not resolve to a plan directory; nothing was written and no other plan was substituted."
+    exit 1
+}
 $ledgerFile = Join-Path $planDir ("ledger-" + $agentClean + ".jsonl")
 $lockFile   = Join-Path $planDir ".ledger_lock"
 

@@ -1,42 +1,54 @@
-## Description: <br>
-Guides an agent through WeChat Official Account publishing from an existing Markdown draft, including visual formatting, editorial review, API-assisted publishing after explicit confirmation, and post-publication data review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号发布流水线：视觉排版、主编审核、API发布和数据复盘，在已有 Markdown 定稿基础上执行微信格式化和发布。
 
-## Publisher: <br>
-[little-ke](https://clawhub.ai/user/little-ke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-ke](https://clawhub.ai/user/little-ke)
 
-## Use Case: <br>
-Content operators, editors, and publishing agents use this skill to convert an approved Markdown article into WeChat-ready assets, create a draft, publish only after explicit user approval, and review 24-hour and 48-hour performance data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing to the wrong WeChat account, draft, media item, or time could release unintended content. <br>
-Mitigation: Review the generated draft, target account, media_id, timing, and preview before approving any publish action. <br>
-Risk: The workflow relies on a separate wechat_publish.cjs helper and configured WeChat API credentials that were not included as executable code in the reviewed package. <br>
-Mitigation: Confirm the helper source and credential configuration are trusted before installation or use. <br>
-Risk: Formatted article assets or factual corrections may need editorial review before release. <br>
-Mitigation: Use the stated editorial review gate and return to content creation if factual errors are found. <br>
+## Use Case:
 
+External creators and publishing teams use this skill to prepare Markdown drafts for WeChat official account publishing, coordinate editorial review, publish after explicit user approval, and review post-publish performance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/little-ke/wechat-publish-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON draft instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before executing any publish action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The agent may prepare or submit content to the wrong WeChat official account or publish the wrong draft.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the preview, target account, and draft details carefully, and only approve publishing after explicit confirmation.
+
+Risk: Publishing depends on local WeChat API credentials and a companion publishing script.
+
+Mitigation: Use the skill only with credentials and scripts from a trusted setup, and verify API connectivity before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-ke/skills/wechat-publish-workflow)
+- [Publisher profile](https://clawhub.ai/user/little-ke)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user review and explicit confirmation before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

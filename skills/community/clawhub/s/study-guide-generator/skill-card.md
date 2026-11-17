@@ -1,43 +1,56 @@
-## Description: <br>
-The skill turns study notes, exam material, and teaching content into single-file interactive HTML study-guide pages for instructor demonstrations and student self-tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+制作高度互动、排版疏朗、适合讲师演示与学生自测的单文件 HTML 学习指南网页。
 
-## Publisher: <br>
-[duzhilei951](https://clawhub.ai/user/duzhilei951) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhilei951](https://clawhub.ai/user/duzhilei951)
 
-## Use Case: <br>
-Educators, tutors, and students use this skill to convert review notes, exam-prep content, question banks, and teaching outlines into interactive HTML pages with tabs, reveal cards, scenario highlighting, and guided self-test sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for a broad range of requests about turning notes, exam material, or teaching content into webpages. <br>
-Mitigation: Confirm the user wants an interactive study-guide page before applying the template to ambiguous education or content-formatting requests. <br>
-Risk: Generated HTML may include public CDN links and subject-matter content that should be checked before publishing. <br>
-Mitigation: Review the final HTML, external resource links, and educational content for accuracy and publishing suitability before sharing it. <br>
+## Use Case:
 
+Educators, students, and agent users use this skill to transform study notes, exam review material, question analysis, or teaching outlines into interactive single-file HTML learning guides for presentation and self-testing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/duzhilei951/study-guide-generator) <br>
-- [Example Interactive Study Guide](examples/example-guide.html) <br>
-- [Tailwind CSS CDN](https://cdn.tailwindcss.com) <br>
-- [Font Awesome CDN](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with single-file HTML, CSS, and JavaScript code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages may reference Tailwind CSS and Font Awesome from public CDNs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill strongly favors Chinese-oriented study-guide output and may activate broadly for educational webpage tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated pages for audience, language, and scope before sharing them with learners or instructors.
+
+Risk: Generated HTML may load Tailwind CSS and FontAwesome from live CDNs.
+
+Mitigation: For private or sensitive notes, bundle assets locally or use pinned, integrity-checked assets before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhilei951/skills/study-guide-generator)
+- [Publisher profile](https://clawhub.ai/user/duzhilei951)
+- [Tailwind CSS CDN](https://cdn.tailwindcss.com)
+- [FontAwesome CSS CDN](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Single-file HTML, often delivered in Markdown or code block form]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated pages use Tailwind CSS and FontAwesome CDN links plus Vanilla JavaScript for interactive study components.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

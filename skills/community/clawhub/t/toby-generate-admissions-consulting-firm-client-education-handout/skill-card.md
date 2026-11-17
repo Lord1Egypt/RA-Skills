@@ -1,41 +1,54 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a college admissions consulting firm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a college admissions consulting firm.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Education consultants and student advisors use this skill to draft client education handouts for college admissions consulting, including FAQs, visual concepts, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated admissions advice or visuals may be inaccurate, incomplete, or unsuitable for a specific client. <br>
-Mitigation: Review all generated content before sharing and do not treat it as authoritative legal or admissions guidance. <br>
-Risk: Prompts or drafts could include unnecessary student PII or confidential client details. <br>
-Mitigation: Avoid entering unnecessary personal or confidential information when using the skill. <br>
+## Use Case:
 
+Education consultants and student advisors use this skill to draft client-facing college admissions consulting handouts with explanations, FAQs, visuals, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-admissions-consulting-firm-client-education-handout) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-admissions-consulting-firm-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQ-style guidance and visual direction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested visuals generated through image generation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated admissions guidance, factual claims, visuals, or client-facing language may be inaccurate, misleading, or unsuitable for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims, admissions advice, visuals, and client-facing language before using the handout externally.
+
+Risk: The skill is a drafting aid and does not provide authoritative admissions, legal, or compliance advice.
+
+Mitigation: Use qualified human review for admissions, legal, compliance, and institutional-policy decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-admissions-consulting-firm-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-admissions-consulting-firm-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text with optional image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include FAQ sections, explanatory copy, visual directions, and next-step language for client education.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

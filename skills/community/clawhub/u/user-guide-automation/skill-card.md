@@ -1,39 +1,53 @@
-## Description: <br>
-Reusable workflow for generating formal, detailed Markdown user guides from web applications using browser exploration or user-provided flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reusable workflow for generating formal, detailed Markdown user guides from web applications using browser exploration or user-provided flows.
 
-## Publisher: <br>
-[naylaherfiana](https://clawhub.ai/user/naylaherfiana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naylaherfiana](https://clawhub.ai/user/naylaherfiana)
 
-## Use Case: <br>
-Developers, documentation writers, and operations teams use this skill to explore a web application or follow a supplied flow and produce a formal Markdown user guide with screenshots for each step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated guides and screenshots may include sensitive application data or protected screen contents. <br>
-Mitigation: Use a test or least-privilege account where possible, limit the workflow to the requested scope, and review Markdown and screenshots before sharing. <br>
-Risk: Browser exploration may require credentials for the target application. <br>
-Mitigation: Prefer manual login or temporary credentials and use any provided credentials only for the requested application and flow. <br>
+## Use Case:
 
+Developers, documentation writers, and product teams use this skill to explore a web application or follow a supplied flow, then produce a formal, screenshot-heavy Markdown user guide that can later be converted to DOCX.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, guidance, configuration, files] <br>
-**Output Format:** [Markdown guide with screenshot asset references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a guide.md file and organized screenshots directory when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Credentials or private app data may appear during browser exploration or in captured screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts or pre-authenticated sessions, limit the requested scope, and review screenshots before sharing the guide.
+
+Risk: A guide may cover unintended workflows if the requested role, feature scope, or user flow is ambiguous.
+
+Mitigation: Confirm the target URL, role, scope, and flow before exploration, and stay within the requested feature unless related navigation is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/naylaherfiana/skills/user-guide-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown guide with screenshot asset references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a guide.md file and organized screenshots directory when the user requests saved output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

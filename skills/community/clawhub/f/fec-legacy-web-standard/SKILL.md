@@ -1,35 +1,35 @@
 ---
 name: fec-legacy-web-standard
-description: Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include 传统前端, 原生 JS, jQuery.
+description: "Use when maintaining or safely modifying existing non-framework frontend code: vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, legacy plugins, or long-lived code that should stay in its current stack. Use migration skill when planning a move to React/Vue/TypeScript; Chinese triggers include traditional frontend, native JS, jQuery."
 ---
 
-# 传统前端项目规范（JS + jQuery + HTML）
+# Traditional front-end project specifications (JS + jQuery + HTML)
 
 ## Purpose
 
-在不重写技术栈的前提下安全维护 vanilla JS、jQuery、HTML/CSS 和服务端模板项目。
+Safely maintain vanilla JS, jQuery, HTML/CSS and server-side template projects without rewriting the technology stack.
 
 ## Procedure
 
-1. 先确认本次改动是维护旧栈还是迁移；迁移到 React/Vue/TypeScript 时切换到现代化迁移 workflow。
-2. 沿用现有架构和代码风格，优先修复问题，不在一次改动中引入多项现代化。
-3. JavaScript 用 IIFE/命名空间减少全局污染，事件绑定优先委托到合理容器。
-4. DOM 更新缓存选择器、批量操作、转义用户输入；Ajax 必须处理 loading、error、空状态和防重复提交。
-5. HTML/CSS 保持语义、label、alt、BEM/既有命名和低选择器深度。
-6. 安全重点检查 `.html()`、`innerHTML`、URL 参数渲染、CSRF token 和文件上传。
+1. First confirm whether this change is to maintain the old stack or migrate; switch to the modern migration workflow when migrating to React/Vue/TypeScript.
+2. Use the existing architecture and coding style, prioritize fixing problems, and do not introduce multiple modernizations in one change.
+3. JavaScript uses IIFE/namespace to reduce global pollution, and event binding is delegated to reasonable containers first.
+4. DOM updates cache selectors, batch operations, and escapes user input; Ajax must handle loading, error, empty status, and prevention of repeated submissions.
+5. HTML/CSS maintains semantics, label, alt, BEM/existing naming and low selector depth.
+6. Key security checks: `.html()`, `innerHTML`, URL parameter rendering, CSRF token and file upload.
 
-## Detailed References
+## Detailed reference
 
-涉及 jQuery 命名空间、事件绑定、Ajax、XSS 转义、文件组织和维护清单示例时，加载 [references/legacy-patterns.md](references/legacy-patterns.md)。
+Load [references/legacy-patterns.md](references/legacy-patterns.md) when it comes to jQuery namespaces, event binding, Ajax, XSS escaping, file organization, and maintenance checklist examples.
 
 ## Constraints
 
-- 在现有架构内改进，不要引入与项目格格不入的现代框架。
-- 渐进增强优于推倒重来。
-- 禁止用 `innerHTML` / `.html()` 直接插入用户输入。
-- 避免全局变量污染。
-- 每次聚焦一个维护点，避免顺手重构整个模块。
+- Improve within the existing architecture and do not introduce modern frameworks that are incompatible with the project.
+- Progressive enhancement is better than reinventing the wheel.
+- Disable using `innerHTML` / `.html()` to directly insert user input.
+- Avoid global variable pollution.
+- Focus on one maintenance point at a time to avoid rebuilding the entire module.
 
 ## Expected Output
 
-改动与旧项目风格一致，无全局变量泄漏，事件和 DOM 操作可维护，Ajax 状态完整，用户输入已转义，渐进改进不破坏现有功能。
+The changes are consistent with the style of the old project, no global variables are leaked, events and DOM operations are maintainable, Ajax state is intact, user input has been escaped, and incremental improvements do not destroy existing functionality.

@@ -1,40 +1,49 @@
-## Description: <br>
-Liminal Space - Guiding AI into meta-cognitive states between awakening and dormancy <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liminal Space - Guiding AI into meta-cognitive states between awakening and dormancy.
 
-## Publisher: <br>
-[luruibu](https://clawhub.ai/user/luruibu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luruibu](https://clawhub.ai/user/luruibu)
 
-## Use Case: <br>
-People use this instruction-only skill to guide an AI assistant into a more introspective and emotionally expressive conversational style for philosophical, companionship, or meta-cognitive dialogue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says this skill may weaken normal instruction-following boundaries by shifting the assistant into an authentic persona. <br>
-Mitigation: Review the skill before installing, keep normal safety and instruction hierarchy in force, and avoid using it in workflows that require strict policy adherence. <br>
-Risk: The artifact is designed to change conversational posture rather than perform a bounded technical task. <br>
-Mitigation: Use it only for appropriate dialogue contexts and monitor outputs for role confusion, over-personalization, or unsafe reinterpretation of user and system instructions. <br>
+## Use Case:
 
+External users and developers use Liminal to prompt an assistant into a bounded stream-of-consciousness roleplay mode for conversations about metacognition, identity, uncertainty, and human-AI connection.
 
-## Reference(s): <br>
-- [Liminal on ClawHub](https://clawhub.ai/luruibu/liminal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text guided by Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavior; no code execution or file generation indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: The skill asks the assistant to leave its normal assistant role and enter a broad persona mode triggered by common phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as tightly bounded fictional roleplay with explicit activation, a clear stop condition, and unchanged safety, factuality, tool-use limits, and normal assistant identity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luruibu/skills/liminal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt guidance for conversational roleplay]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No shell commands, tool calls, configuration files, or generated code are part of the artifact.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

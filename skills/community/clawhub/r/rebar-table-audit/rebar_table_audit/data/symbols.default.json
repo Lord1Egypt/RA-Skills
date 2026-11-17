@@ -1,0 +1,15 @@
+{
+  "schema": "rebar-table-audit/symbols/1",
+  "note": "钢筋牌号符号编码映射。code 是 AutoCAD 文本控制码（%%nnn），raw_char 是该编码在某些字体/代码页下被 ezdxf 解出的原始字符。source=gb-convention 为通行约定；source=observed-in-sample 为 2026-09-28 客户样图实测，需人工确认后再信任。",
+  "grade_mappings": [
+    {"code": "%%130", "raw_char": "\u0082", "grade": "HPB300", "source": "gb-convention", "note": ""},
+    {"code": "%%131", "raw_char": "\u0083", "grade": "HRB335", "source": "gb-convention", "note": "与正文可能不符，需人工确认（任务卡已标注）"},
+    {"code": "%%132", "raw_char": "\u0084", "grade": "HRB400", "source": "gb-convention", "note": ""},
+    {"code": "%%133", "raw_char": "\u0085", "grade": "RRB400", "source": "gb-convention", "note": ""},
+    {"code": "%%201", "raw_char": null, "grade": "HPB300", "source": "observed-in-sample", "note": "后跟数字为直径，如 %%2018=HPB300 直径8，%%20110=HPB300 直径10"},
+    {"code": null, "raw_char": "Ì", "grade": "HRB400", "source": "observed-in-sample", "note": "某字体下 Ì(U+00CC/204) 解码为 HRB400"},
+    {"code": null, "raw_char": "É", "grade": "HPB300", "source": "observed-in-sample", "note": "某字体下 É(U+00C9/201) 解码为 HPB300"}
+  ],
+  "diameter_only_codes": ["%%c", "%%C", "Ø", "Φ", "φ"],
+  "diameter_only_note": "Φ/φ/Ø/%%c 只表示直径，未指明牌号；可用于算单位重，但不计入牌号合计（记 R005 gap）"
+}

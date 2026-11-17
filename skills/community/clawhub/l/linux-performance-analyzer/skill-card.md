@@ -1,51 +1,67 @@
-## Description: <br>
-Linux Performance Analyzer helps agents diagnose and tune Linux CPU, memory, disk I/O, network, kernel parameter, compiler optimization, and container/Kubernetes performance issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Performance Analyzer helps agents diagnose and tune Linux CPU, memory, disk I/O, network, kernel parameter, compiler optimization, and container/Kubernetes performance issues.
 
-## Publisher: <br>
-[husttsq](https://clawhub.ai/user/husttsq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[husttsq](https://clawhub.ai/user/husttsq)
 
-## Use Case: <br>
-Developers, operators, and site reliability engineers use this skill to collect Linux performance evidence, identify bottlenecks, draft incident reports, and plan tested tuning changes with validation and rollback steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admin-level Linux tuning examples can disrupt production systems if copied directly or run with broad privileges. <br>
-Mitigation: Do not give the agent root access by default; record current values, test temporary changes first, use maintenance windows for persistent changes, and keep rollback steps. <br>
-Risk: Performance snapshots, process lists, network details, kernel logs, and heap dumps can contain sensitive operational data. <br>
-Mitigation: Treat collected diagnostics as sensitive and redact or restrict them before sharing outside the intended operations team. <br>
+## Use Case:
 
+Developers, SREs, and Linux administrators use this skill to collect Linux performance snapshots, interpret system metrics, identify bottlenecks, and produce tuning plans with validation and rollback steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/husttsq/linux-performance-analyzer) <br>
-- [CPU tuning reference](references/cpu.md) <br>
-- [Memory tuning reference](references/memory.md) <br>
-- [Disk I/O tuning reference](references/disk_io.md) <br>
-- [Network tuning reference](references/network.md) <br>
-- [Kernel parameter reference](references/kernel_params.md) <br>
-- [Compiler optimization reference](references/compile_optimization.md) <br>
-- [Linux performance case studies](references/case_studies.md) <br>
-- [Brendan Gregg Linux Performance](http://www.brendangregg.com/linuxperf.html) <br>
-- [Brendan Gregg perf Examples](http://www.brendangregg.com/perf.html) <br>
-- [ESnet Linux TCP Tuning](https://fasterdata.es.net/host-tuning/linux/) <br>
-- [sysctl Explorer](https://sysctl-explorer.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with diagnostic tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analysis reports, command recommendations, tuning snippets, validation checks, and rollback steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide broad root-level or persistent Linux system changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit administrator approval before any root or persistent command, test changes outside production first, and record original values for rollback.
+
+Risk: Performance snapshots and heap-dump outputs may contain sensitive system, process, or application data.
+
+Mitigation: Treat collected outputs as sensitive, limit sharing and retention, and redact secrets or host-specific details before external review.
+
+Risk: Changes touching /etc, systemd, crontab, /proc, or /sys can affect system stability.
+
+Mitigation: Review each proposed change before execution and prefer read-only diagnostics until the target system, workload, and rollback path are clear.
+
+## Reference(s):
+
+- [CPU tuning reference](references/cpu.md)
+- [Memory tuning reference](references/memory.md)
+- [Disk I/O tuning reference](references/disk_io.md)
+- [Network tuning reference](references/network.md)
+- [Kernel parameter reference](references/kernel_params.md)
+- [Compiler optimization reference](references/compile_optimization.md)
+- [Linux performance case studies](references/case_studies.md)
+- [Linux Performance](http://www.brendangregg.com/linuxperf.html)
+- [perf Examples](http://www.brendangregg.com/perf.html)
+- [Linux TCP Tuning](https://fasterdata.es.net/host-tuning/linux/)
+- [sysctl Explorer](https://sysctl-explorer.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and structured analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed Linux tuning commands, configuration changes, verification checks, and rollback commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

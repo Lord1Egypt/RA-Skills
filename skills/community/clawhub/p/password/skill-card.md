@@ -1,41 +1,58 @@
-## Description: <br>
-Manage passwords with generation, strength checks, and storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage passwords with generation, strength checks, and storage. Use when creating credentials, auditing strength, rotating secrets, checking breaches.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, engineers, and security-minded users use this skill to generate passwords and PINs, estimate password strength and entropy, create diceware-style passphrases, and optionally check whether a password appears in known breach data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live passwords may be exposed when entered as command-line arguments. <br>
-Mitigation: Prefer generated or test passwords, and avoid passing production or reusable secrets through command-line arguments. <br>
-Risk: The optional breach-check feature contacts Have I Been Pwned with a password-derived SHA-1 prefix. <br>
-Mitigation: Use breach checking only when the user accepts sending that SHA-1 prefix to the external service. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to generate passwords and PINs, produce diceware-style passphrases, and analyze password strength or entropy. It can also check candidate passwords against breach data when network access and curl are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/password) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated passwords, passphrases, PINs, strength ratings, entropy estimates, breach-check status, and usage guidance may be emitted depending on the selected command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Real passwords supplied as command-line arguments can be exposed through shell history, process listings, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generated test values only unless the tool is changed to read secrets through a hidden prompt or standard input.
+
+Risk: Breach checking performs an external network request to Have I Been Pwned.
+
+Mitigation: Treat breach checks as network operations and review whether that external service is acceptable for the deployment environment.
+
+Risk: The release advertises storage and rotation behavior that is not implemented in the inspected artifact.
+
+Mitigation: Do not rely on password storage or rotation unless those features are implemented and reviewed in a later artifact.
+
+## Reference(s):
+
+- [ClawHub Password Skill](https://clawhub.ai/bytesagain3/skills/password)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated passwords, strength ratings, entropy estimates, breach-check status, diceware-style passphrases, and PINs.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

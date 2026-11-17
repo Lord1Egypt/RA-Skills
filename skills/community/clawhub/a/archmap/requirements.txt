@@ -1,0 +1,13 @@
+# ArchMap 技能依赖清单
+# 安装：pip3 install -r requirements.txt
+#
+# 必需依赖（diff / lite / sync 等纯算法模式也依赖，必须安装）
+PyYAML>=6.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# 可选依赖（仅向量召回增强）
+# 缺失时 VectorRecognizer 自动回退到本地确定性哈希向量化：
+# 功能完整可用，向量匹配精度略降；增量影响面分析仍可通过
+# 关键词硬匹配与路由闭包等确定性信号召回受影响模块。
+sentence-transformers>=2.2.0

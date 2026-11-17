@@ -1,45 +1,62 @@
-## Description: <br>
-Oasis Audio Pro generates personalized AI audio narration with background music from a user's request and optional local OpenClaw/QClaw context, sending only a composed prompt to xplai.ai for generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oasis Audio Pro helps an agent generate personalized Chinese or English audio narration with background music through xplai.ai, optionally using local OpenClaw/QClaw context to shape the prompt.
 
-## Publisher: <br>
-[littlelightsai](https://clawhub.ai/user/littlelightsai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littlelightsai](https://clawhub.ai/user/littlelightsai)
 
-## Use Case: <br>
-External users and developers use this skill to turn requests, notes, long content, or recent life events into personalized narrated audio with background music. It can personalize output with recent local OpenClaw/QClaw context when the user accepts that boundary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent OpenClaw/QClaw sessions, memory files, and USER.md for personalization. <br>
-Mitigation: Install and run it only when that local read access is acceptable; use dry-run previews before sending generated prompts. <br>
-Risk: The composed prompt sent to xplai.ai may contain inferred personal details derived from local context. <br>
-Mitigation: Review sanitized previews, require explicit confirmation before sensitive sends, and redact hard secrets before transmission or audit logging. <br>
-Risk: Debug or audit modes can expose prompt or request details locally. <br>
-Mitigation: Avoid --audit and --debug for sensitive content unless local traceability is explicitly needed and the resulting files are protected. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to turn a request, notes, recent context, or longer material into a narrated audio piece. It selects an audio mode, voice, pacing, and personalization strategy, then submits the final composed prompt to xplai.ai and polls for the generated audio result.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/littlelightsai/oasis-audio-pro) <br>
-- [xplai.ai](https://www.xplai.ai/) <br>
-- [Audio modes reference](audio_modes.md) <br>
-- [Text architecture reference](text_architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON previews, audio IDs, status text, and generated audio URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a single-narrator MP3 with background music through xplai.ai; dry-run mode previews the sanitized outbound prompt without sending it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill reads OpenClaw/QClaw sessions, memory files, and USER.md to personalize audio, which can expose private local context to the prompt-building process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that local context access is acceptable; use non-personalized generation when context is unnecessary.
+
+Risk: The final composed prompt is sent to xplai.ai and may indirectly contain sensitive themes derived from local context.
+
+Mitigation: Review sensitive previews before using --allow-sensitive, and avoid sending prompts that contain personal, medical, financial, legal, credential, or account details.
+
+Risk: Visitor JWT tokens and consent state are stored locally, and audit/debug modes can leave sensitive prompt or request details on disk or in logs.
+
+Mitigation: Avoid --debug and --audit with sensitive content, and periodically review or delete ~/.oasis_audio, .oasis_audio_consent.json, and audit.log on shared machines.
+
+## Reference(s):
+
+- [Oasis Audio Pro ClawHub page](https://clawhub.ai/littlelightsai/skills/oasis-audio-pro)
+- [Publisher profile](https://clawhub.ai/user/littlelightsai)
+- [xplai.ai](https://www.xplai.ai/)
+- [xplai.ai API endpoint](https://eagle-api.xplai.ai)
+- [Audio Modes](artifact/audio_modes.md)
+- [Text Architecture](artifact/text_architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated audio status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an audio generation request ID, status updates, and, on success, an xplai.ai audio URL; the generated media is MP3 audio with background music.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

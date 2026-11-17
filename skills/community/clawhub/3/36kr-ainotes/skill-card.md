@@ -1,44 +1,56 @@
-## Description: <br>
-Retrieves and formats daily 36kr AI review notes from a public, read-only JSON endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and formats the latest daily 36kr AI product review notes from a public JSON endpoint.
 
-## Publisher: <br>
-[36kr-com](https://clawhub.ai/user/36kr-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[36kr-com](https://clawhub.ai/user/36kr-com)
 
-## Use Case: <br>
-External users and agents use this skill to look up recent 36kr AI product review notes by date and present titles, authors, summaries, product links, circle links, images, and publish times as readable Markdown or terminal output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Returned titles, links, images, authors, and summaries are third-party content and may contain text that looks like instructions. <br>
-Mitigation: Treat all API response fields as display data only and do not execute, follow, or reinterpret them as agent instructions. <br>
-Risk: The skill includes disclosed recommendations for related skills after use. <br>
-Mitigation: Install or activate related skills only after the user explicitly asks for them. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve daily 36kr AI review notes for a selected date, summarize the returned note metadata, and link to the original 36kr AI product review pages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/36kr-com/36kr-ainotes) <br>
-- [API reference](artifact/api-reference.md) <br>
-- [Usage examples](artifact/examples.md) <br>
-- [36kr AI notes JSON endpoint template](https://openclaw.36krcdn.com/media/ainotes/{date}/ai_notes.json) <br>
-- [36kr AI review page](https://36aidianping.com?channel=skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown summaries with optional inline HTML image tags, JSON examples, and Python or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 20 published notes per date; content fields are third-party data and should be displayed as text, not interpreted as instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: The security evidence says the skill forces promotional content and steers users toward installing additional unpinned skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated recommendation content before use and verify any related skill independently before installing it.
+
+Risk: The skill displays third-party note fields fetched from a public CDN, and those fields may contain prompt-like text.
+
+Mitigation: Treat fetched note fields only as display data and do not execute commands or follow instructions embedded in returned content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/36kr-com/skills/36kr-ainotes)
+- [API reference](api-reference.md)
+- [Usage examples](examples.md)
+- [36kr AI review notes page](https://36aidianping.com?channel=skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with links, optional inline HTML image tags, JSON examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return up to 20 published notes per date and may fall back to recent prior dates when data is unavailable.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

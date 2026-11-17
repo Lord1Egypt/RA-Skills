@@ -1,46 +1,55 @@
-## Description: <br>
-Seedance 2.0 Video Gen helps agents turn text, image, video, or audio briefs into Seedance/EvoLink video generation prompts, JSON request bodies, and call examples for text-to-video, image-to-video, and reference-to-video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent prepare Seedance 2.0 video-generation prompts, model choices, API JSON parameters, and curl, JavaScript, or Python call examples for EvoLink text-to-video, image-to-video, and reference-to-video workflows.
 
-## Publisher: <br>
-[xk103295870-alt](https://clawhub.ai/user/xk103295870-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xk103295870-alt](https://clawhub.ai/user/xk103295870-alt)
 
-## Use Case: <br>
-Developers and creators use this skill to prepare Seedance/EvoLink video-generation requests, choose an appropriate model mode, structure prompts with @asset references, and review example API calls before submitting jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated request JSON can be used for paid third-party API calls. <br>
-Mitigation: Review the generated JSON, selected model, duration, quality, and media URLs before executing any API request. <br>
-Risk: Prompts and referenced media may be shared with the third-party video generation provider. <br>
-Mitigation: Avoid submitting private images, videos, audio, or sensitive prompts unless the user is comfortable sharing them with the provider. <br>
-Risk: The skill relies on SEEDANCE_API_KEY for EvoLink authentication. <br>
-Mitigation: Store SEEDANCE_API_KEY in a secure environment variable and avoid pasting credentials into prompts, examples, or logs. <br>
+## Use Case:
 
+Developers and creators use this skill to turn video ideas and referenced media into structured Seedance 2.0 prompts and EvoLink API request examples. It supports text-to-video, image-to-video, and multimodal reference-to-video planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xk103295870-alt/seedance2-video-gen) <br>
-- [Seedance 2.0 API documentation](https://seedance2api.app) <br>
-- [EvoLink API key signup](https://evolink.ai/signup) <br>
-- [Official cases](cases/official-cases.md) <br>
-- [Prompt templates](prompts/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and curl, JavaScript, or Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Seedance model names, prompt text, media URL lists, duration, quality, aspect ratio, and audio settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Prompts and referenced media URLs may be sent to EvoLink or Seedance services when generated API calls are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sending the prompt and referenced media URLs to EvoLink or Seedance before using the generated API calls.
+
+Risk: The generated examples require an API key for an external video-generation service.
+
+Mitigation: Use a user-owned SEEDANCE_API_KEY and avoid embedding credentials directly in generated code or shared artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xk103295870-alt/skills/seedance2-video-gen)
+- [Seedance 2.0 API documentation](https://seedance2api.app)
+- [EvoLink API signup](https://evolink.ai/signup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON request bodies and curl, JavaScript, or Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated requests may reference user-provided image, video, or audio URLs and require a user-supplied SEEDANCE_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

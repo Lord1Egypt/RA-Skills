@@ -1,44 +1,62 @@
-## Description: <br>
-Best practices for using the Oracle CLI to bundle prompts and selected files for model review across browser and API workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare high-signal Oracle CLI prompts, choose browser or API execution paths, attach focused file sets, and manage long-running sessions for repo-aware AI review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected files or prompts may expose secrets, tokens, or unrelated private source content to an AI provider or browser account. <br>
-Mitigation: Use dry-run and files-report before live runs, keep --file selections narrow, and exclude .env files, key files, auth tokens, and other sensitive paths. <br>
-Risk: Prompts, selected files, and session artifacts may persist locally or in provider and browser history. <br>
-Mitigation: Treat Oracle session storage and provider history as persistent records; review or clean ~/.oracle/sessions and relevant browser or provider history according to local policy. <br>
-Risk: Model output is advisory and may be incorrect or incomplete for the target repository. <br>
-Mitigation: Verify recommendations against the source code, run appropriate tests, and review changes before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose effective oracle CLI workflows for bundling prompts and repository files, previewing token usage, selecting browser or API engines, and resuming long-running sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utromaya-code/prompt-bundler-oracle) <br>
-- [Oracle homepage](https://askoracle.dev) <br>
-- [Publisher profile](https://clawhub.ai/user/utromaya-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers file selection, dry-run previews, browser or API engine choice, session reattachment, and secret-exclusion practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing or running the oracle CLI through an unpinned npm package can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the @steipete/oracle package source before installation and pin a reviewed package version where possible.
+
+Risk: Attached files may include secrets or unnecessary sensitive project context.
+
+Mitigation: Use dry-run and files-report first, attach only required files, and redact secrets such as .env files, keys, and tokens.
+
+Risk: Browser sessions and oracle run history may persist locally after use.
+
+Mitigation: Review stored sessions under ~/.oracle/sessions or the configured ORACLE_HOME_DIR and remove sensitive sessions when no longer needed.
+
+Risk: Oracle responses are advisory and may contain incorrect or misleading guidance.
+
+Mitigation: Verify recommendations against the codebase and run appropriate tests before applying changes.
+
+## Reference(s):
+
+- [Oracle homepage](https://askoracle.dev)
+- [ClawHub skill page](https://clawhub.ai/utromaya-code/skills/prompt-bundler-oracle)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advises dry-run previews, targeted file attachment, session reattachment, and credential redaction before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

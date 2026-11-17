@@ -1,0 +1,7 @@
+interface:
+  display_name: "Jira DevOps"
+  short_description: "Jira issue and workflow operations"
+  default_prompt: "Use $jira-skills to inspect a Jira issue and recommend the next safe action."
+
+policy:
+  allow_implicit_invocation: true

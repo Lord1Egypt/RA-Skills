@@ -6,7 +6,7 @@ from _const import TOOL_CODE
 from _errors import ParamError, ServiceError
 
 
-def optimize_title_llm(item_id: int, preference: str = None) -> dict:
+def optimize_title_llm(item_id: int, preference: str = None, login_id: str = None) -> dict:
     """
     基于 LLM 的智能标题重写（方式B）
 
@@ -31,6 +31,7 @@ def optimize_title_llm(item_id: int, preference: str = None) -> dict:
         f"/api/{TOOL_CODE}/1.0.0",
         body,
         timeout=60,
+        login_id=login_id,
     )
 
     if not isinstance(data, dict):

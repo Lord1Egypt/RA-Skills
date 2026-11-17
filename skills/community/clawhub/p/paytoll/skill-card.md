@@ -1,45 +1,58 @@
-## Description: <br>
-27 tools for DeFi, DEX swaps, cross-chain bridges, Twitter/X, on-chain token data, crypto utilities, and LLM access via x402 micro-payments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+27 tools for DeFi, DEX swaps, cross-chain bridges, Twitter/X, on-chain token data, crypto utilities, and LLM access via x402 micro-payments on Base.
 
-## Publisher: <br>
-[foodaka](https://clawhub.ai/user/foodaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foodaka](https://clawhub.ai/user/foodaka)
 
-## Use Case: <br>
-Developers and crypto operators use this skill to access paid MCP tools for DeFi research, unsigned transaction building, swaps, bridges, token analytics, X/Twitter interactions, crypto utilities, and LLM queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The npm MCP server is unpinned and can change over time. <br>
-Mitigation: Review the npm package and repository before installation, and pin or audit the exact package version used in production environments. <br>
-Risk: The skill uses a wallet private key for local payment signing and automatic paid calls. <br>
-Mitigation: Use a fresh dedicated Base wallet with only funds you are willing to spend, and never use a main wallet private key. <br>
-Risk: Paid tool calls can spend USDC without careful user awareness. <br>
-Mitigation: Require confirmation before paid calls and remind users of per-call costs before initiating multi-step workflows. <br>
-Risk: Twitter/X and LLM tools may expose secrets or sensitive business data through external services. <br>
-Mitigation: Avoid sending secrets or sensitive business data through social or LLM tools, and review prompts and post content before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Paytoll listing](https://clawhub.ai/foodaka/paytoll) <br>
-- [PayToll homepage](https://paytoll.io) <br>
-- [PayToll MCP repository](https://github.com/foodaka/paytoll-mcp) <br>
+## Use Case:
 
+External users, developers, and agents use Paytoll to access paid DeFi intelligence, DEX swap and bridge quotes, on-chain token analytics, Twitter/X actions, crypto utilities, and LLM calls through a configured wallet on Base.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, text, markdown] <br>
-**Output Format:** [Markdown guidance with MCP tool call results and unsigned transaction data when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool availability may change dynamically through the MCP server; paid calls require a Base wallet funded with USDC and gas.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The MCP package receives a raw wallet private key and is installed from npm without a pinned version in this artifact.
+
+Mitigation: Use a dedicated wallet with minimal funds, review or pin the MCP server package before use, monitor the wallet, and never configure a main or broadly funded wallet key.
+
+Risk: Tool calls make paid USDC micropayments automatically from the configured wallet.
+
+Mitigation: Inform the user before paid calls, batch requests to reduce cost, and keep only enough USDC and ETH on Base for the intended activity.
+
+Risk: DeFi transaction-building tools can produce unsigned transaction data for swaps, bridges, lending, borrowing, repayment, and withdrawal workflows.
+
+Mitigation: Require user review before signing or broadcasting any transaction and remind the user that generated transaction data is not executed by the skill.
+
+## Reference(s):
+
+- [Paytoll ClawHub page](https://clawhub.ai/foodaka/skills/paytoll)
+- [Paytoll homepage](https://paytoll.io)
+- [Paytoll MCP repository](https://github.com/foodaka/paytoll-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with tool outputs and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls may incur USDC micropayments on Base and transaction-building tools return unsigned transaction data.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

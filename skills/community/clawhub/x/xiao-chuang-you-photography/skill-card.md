@@ -1,38 +1,53 @@
-## Description: <br>
-Provides Chinese-language photography coaching for composition, lighting, seasonal shooting themes, mobile photography, and new Chinese-style visual aesthetics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Chuang You Photography activates for Chinese-language photography topics and provides composition, lighting, seasonal theme, mobile photography, and new Chinese style photography guidance.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-External users can use this skill for practical photography guidance, including shooting themes, composition suggestions, color grading direction, and simple technique details. It is best suited for Chinese-language creative coaching around phone photography and new Chinese-style imagery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad camera and photo-related trigger words may activate the skill when another skill or a general assistant response would be more appropriate. <br>
-Mitigation: Review the trigger list during deployment and narrow or remove triggers if they conflict with other skills. <br>
+## Use Case:
 
+External users can use this skill for Chinese-language photography coaching, including shooting themes, composition advice, lighting guidance, color direction, and mobile photography tips. It is suited to casual and creative photography conversations rather than code or tool automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zcr3344/xiao-chuang-you-photography) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are expected to include a shooting theme, composition advice, color grading direction, and one practical technique detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on common photo-related words in Chinese-language conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger behavior during deployment and scope activation to conversations where photography coaching is intended.
+
+Risk: The skill gives creative photography guidance rather than verified professional, legal, or safety advice.
+
+Mitigation: Use it for composition, lighting, shooting themes, and styling suggestions, and route specialized safety or commercial-use questions to appropriate review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-photography)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown or plain text photography coaching response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to include a shooting theme, composition advice, color direction, one technique detail, and a conversational follow-up prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

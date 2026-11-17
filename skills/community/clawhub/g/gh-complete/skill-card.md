@@ -1,44 +1,56 @@
-## Description: <br>
-Complete skill for operating GitHub CLI (gh) on cli-trunk: full command map, subcommands, usage patterns, JSON output, and practical workflows for Issues, PRs, Actions, Repos, Releases, Projects, Secrets, Variables, Codespaces, Extensions, and API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete skill for operating GitHub CLI (gh) on cli-trunk: full command map, subcommands, usage patterns, JSON output, and practical workflows for Issues, PRs, Actions, Repos, Releases, Projects, Secrets, Variables, Codespaces, Extensions, and API.
 
-## Publisher: <br>
-[iiroak](https://clawhub.ai/user/iiroak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iiroak](https://clawhub.ai/user/iiroak)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose and run practical GitHub CLI commands for repository, issue, pull request, Actions, release, project, secret, codespace, extension, and API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-manager installation commands can run with elevated privileges. <br>
-Mitigation: Verify the GitHub CLI package source before installation and review sudo package-manager commands before running them. <br>
-Risk: Authentication tokens and secrets can be exposed through logs, command history, or overly broad scopes. <br>
-Mitigation: Use least-privilege tokens and avoid placing secrets in logs, shell history, or shared command transcripts. <br>
-Risk: Delete, archive, transfer, key, secret, workflow, extension, and raw API operations can change or remove GitHub resources. <br>
-Mitigation: Manually confirm the target repository, scope, and intended effect before running destructive or administrative gh commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to select and run practical GitHub CLI commands for repository, issue, pull request, Actions, release, project, secret, Codespaces, extension, and API workflows.
 
-## Reference(s): <br>
-- [GitHub CLI official site](https://cli.github.com/) <br>
-- [GitHub CLI Linux packages](https://cli.github.com/packages) <br>
-- [GitHub CLI releases](https://github.com/cli/cli/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash commands and structured-output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include gh command examples using --json and --jq for automation-friendly output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide agents to make real authenticated GitHub changes, including deleting resources, changing secrets, running workflows, installing extensions, and using raw API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use minimally scoped credentials and require explicit confirmation before destructive, secret, workflow, repository administration, extension execution, or gh api operations.
+
+Risk: The security review notes broad authenticated GitHub operations without clear guardrails for destructive or secret-related actions.
+
+Mitigation: Review proposed commands before execution and scan the skill before deployment.
+
+## Reference(s):
+
+- [GitHub CLI official site](https://cli.github.com/)
+- [GitHub CLI Linux package repository](https://cli.github.com/packages)
+- [GitHub CLI releases](https://github.com/cli/cli/releases/latest)
+- [ClawHub skill page](https://clawhub.ai/iiroak/skills/gh-complete)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes structured-output patterns using gh --json and --jq for automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

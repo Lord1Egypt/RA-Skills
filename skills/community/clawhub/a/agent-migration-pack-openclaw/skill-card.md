@@ -1,45 +1,61 @@
-## Description: <br>
-Creates a complete migration package for AI agents, including identity, owner information, memory, relationships, skills, and communication style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a migration package for AI agents, including identity, owner information, memory, relationships, skills, and communication style.
 
-## Publisher: <br>
-[alexlinf](https://clawhub.ai/user/alexlinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexlinf](https://clawhub.ai/user/alexlinf)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to create, validate, checksum, and package AI agent migration packs for backup, sharing, or transfer across environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration packs can contain sensitive profile, memory, relationship, and skill data. <br>
-Mitigation: Inspect and redact generated JSON and ZIP contents before storing, sharing, or uploading a pack. <br>
-Risk: Owner and relationship records may include private or third-party information. <br>
-Mitigation: Confirm consent where appropriate and remove passwords, API keys, private contacts, and confidential notes before distribution. <br>
-Risk: The generator currently exports the skills catalog even without --include-skills. <br>
-Mitigation: Review generated skill catalog files and remove entries that should not be shared. <br>
+## Use Case:
 
+Developers and agent operators use this skill to back up, migrate, share, or restore an AI agent's configuration across supported environments. It provides templates and commands for organizing identity, user preferences, memory, relationships, skill inventory, and style data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexlinf/agent-migration-pack-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/alexlinf) <br>
-- [Migration guide](artifact/MIGRATION-GUIDE.md) <br>
-- [Original skill reference](https://xiaping.coze.site/skill/c7363f71-212f-4b34-9551-f72bf5d47044) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, JSON and TOML templates, and Python command workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates and validates local migration pack files; packed archives may include sensitive agent profile, memory, relationship, and skills data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata, artifact manifest.toml, artifact _meta.json) <br>
+Risk: Migration packs may contain sensitive identity, owner, memory, relationship, and skill data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated folders and ZIP files before installing or sharing, remove bundled real examples, and redact personal details.
+
+Risk: Relationship and contact records may include third-party information.
+
+Mitigation: Do not share relationship or contact data unless consent and need are confirmed.
+
+Risk: Skill inventories can reveal installed tools or configurations.
+
+Mitigation: Verify whether skill inventory files are included and remove them when they are not required for migration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexlinf/skills/agent-migration-pack-openclaw)
+- [Publisher profile](https://clawhub.ai/user/alexlinf)
+- [Original skill](https://xiaping.coze.site/skill/c7363f71-212f-4b34-9551-f72bf5d47044)
+- [Migration guide](MIGRATION-GUIDE.md)
+- [Manifest](manifest.toml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and TOML templates plus Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces migration-pack files and ZIP archives when its bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata, manifest.toml, _meta.json, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

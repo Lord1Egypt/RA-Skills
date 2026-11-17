@@ -1,45 +1,60 @@
-## Description: <br>
-Generates professional PPT presentations with 课件帮 (Kejian365), including outline confirmation, theme selection, AI content creation, layout generation, and delivery of a preview link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates AI-generated presentations with 课件帮 (Kejian365), from a user-approved outline and selected theme to a finished online preview.
 
-## Publisher: <br>
-[good0007](https://clawhub.ai/user/good0007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[good0007](https://clawhub.ai/user/good0007)
 
-## Use Case: <br>
-External users and employees use this skill to turn a topic and presentation requirements into a slide deck for business reports, product pitches, academic presentations, or training materials through Kejian365. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kejian365 authentication tokens may be exposed through chat, parameter files, or persisted task state. <br>
-Mitigation: Use a dedicated revocable token, prefer environment-variable injection, avoid pasting secrets into chat, and remove token persistence from task state before installation. <br>
-Risk: Presentation topics, outlines, requirements, and supporting material are sent to the external Kejian365 service. <br>
-Mitigation: Confirm the content is appropriate to share with Kejian365 before running the skill, especially for confidential business, academic, or training material. <br>
-Risk: Task creation can trigger billing on the external service. <br>
-Mitigation: Review the generated outline and selected template before creating the task, and use a stable work directory to prevent duplicate submissions. <br>
+## Use Case:
 
+People preparing business reports, product pitches, academic presentations, or training materials use this skill to create and track a presentation, then receive a link to the finished slides.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/good0007/kejian365-aippt) <br>
-- [Kejian365 platform](https://kejian365.com) <br>
-- [Kejian365 Open API portal](https://kejian365.com/oapi-portal) <br>
-- [AIPPT Skill API Reference](api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with generated outline text, progress updates, shell command guidance, and a final preview link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and polls a remote PPT-generation task; final output is an online preview link rather than a local presentation file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Creating a presentation task can deduct from the user's account balance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the outline and expected cost before creating a task; avoid duplicate submissions.
+
+Risk: Presentation topics, outlines, requirements, and optional research material are sent to Kejian365.
+
+Mitigation: Avoid including sensitive information unless the user accepts sharing it with the service.
+
+Risk: An account token may be exposed in chat or saved in local task files.
+
+Mitigation: Use a scoped environment secret instead of sharing the token in chat; remove credential-bearing files after use and rotate exposed tokens.
+
+## Reference(s):
+
+- [Kejian365](https://kejian365.com)
+- [Kejian365 Open Platform](https://kejian365.com/oapi-portal)
+- [Skill API reference](api-reference.md)
+- [ClawHub skill listing](https://clawhub.ai/good0007/skills/kejian365-aippt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Presentation links]
+
+**Output Format:** [Markdown with an outline, progress updates, and an online presentation link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Slides are generated on Kejian365 and viewed through an online preview link.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

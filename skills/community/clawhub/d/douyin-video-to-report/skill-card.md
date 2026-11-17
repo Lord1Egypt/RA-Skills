@@ -1,44 +1,65 @@
-## Description: <br>
-Converts Douyin video links into HTML reports by fetching video, extracting audio and frames, transcribing Chinese speech, analyzing visuals, and preparing report content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Douyin video links into readable HTML reports by retrieving video content, extracting audio and frames, transcribing Chinese speech, analyzing visuals, and assembling a report for delivery.
 
-## Publisher: <br>
-[wahtungl](https://clawhub.ai/user/wahtungl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahtungl](https://clawhub.ai/user/wahtungl)
 
-## Use Case: <br>
-External users and developers use this skill to summarize permitted Douyin videos into shareable HTML reports with transcript and visual-analysis inputs. It is suited to workflows where local media processing and external CLI services are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow bypasses platform checks and processes media that may require permission. <br>
-Mitigation: Use only with videos the user has permission to process and require explicit consent before fetching or downloading media. <br>
-Risk: URL-influenced shell commands may be unsafe when inputs are not constrained. <br>
-Mitigation: Validate Douyin URLs and prefer safe subprocess argument lists over shell command strings. <br>
-Risk: Downloaded video, extracted audio, screenshots, transcripts, and reports may persist on disk or be handled by external CLI services. <br>
-Mitigation: Run in an isolated environment with scoped permissions and cleanup controls, and review external service handling before use. <br>
+## Use Case:
 
+External users and developers use this skill to summarize Douyin videos into reports that combine transcript and visual observations. Review consent, URL validation, command safety, and external processing before deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wahtungl/douyin-video-to-report) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Pipeline script](artifact/douyin_pipeline.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets; runtime script produces text transcripts, frame analysis, and report-ready files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes a user-supplied Douyin URL and may leave downloaded media, extracted audio, screenshots, transcripts, and reports on disk or with external CLI services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Shell command construction can expose users to command-injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the publisher to replace shell-string execution with argument-vector subprocess calls and validate all user-supplied paths and URLs before release.
+
+Risk: Network requests may fetch untrusted or unintended URLs.
+
+Mitigation: Restrict inputs to validated Douyin hosts and run the skill with minimal network permissions until URL scoping is fixed.
+
+Risk: The workflow processes downloaded media, audio, image frames, and delivery artifacts through external services without clearly scoped consent.
+
+Mitigation: Require explicit user consent before downloading media, transcribing audio, analyzing images, or sending report artifacts to external services.
+
+Risk: Broad trigger phrases may invoke the skill for ambiguous requests.
+
+Mitigation: Narrow triggers and require confirmation when a request does not include a clear Douyin URL and reporting intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wahtungl/skills/douyin-video-to-report)
+- [Publisher profile](https://clawhub.ai/user/wahtungl)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact pipeline script](artifact/douyin_pipeline.py)
+- [Douyin website](https://www.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML report artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local video, audio, frame, transcript, analysis, and report files during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

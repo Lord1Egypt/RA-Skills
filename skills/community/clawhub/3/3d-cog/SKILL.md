@@ -1,5 +1,5 @@
 ---
-name: 3d-cog
+name: 3d-model-generation-cellcog
 description: "AI 3D model generation powered by CellCog. Text-to-3D, image-to-3D — production-ready GLB files for games, AR/VR, e-commerce, and 3D printing. Game assets, product visualization, characters, props, environments, and batch generation."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# 3D Cog - Turn Ideas Into 3D Models
+# 3D Model Generation - Turn Ideas Into 3D Models
 
 3D model generation from text descriptions or reference images.
 
@@ -123,17 +123,16 @@ All 3D models are delivered as **GLB files** (binary glTF) — the universal web
 
 ---
 
-## Chat Mode for 3D
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single 3D object from a clear description or image | `"agent"` |
-| Batch generation (5-20 objects from a list) | `"agent"` |
-| Complex game asset pipeline with style consistency | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Single models and props | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Cross-asset consistency across a full set | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most 3D work.** It handles everything from single objects to batch generation.
+**The core tier is the default and handles most 3D generation well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
 
-**Use `"agent team"` when you need cross-asset consistency** — like generating a full set of fantasy weapons that all share the same art style, or building a complete room of furniture that matches a design language.
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for 3D generation.
 
 ---
 
@@ -195,6 +194,7 @@ All 3D models are delivered as **GLB files** (binary glTF) — the universal web
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

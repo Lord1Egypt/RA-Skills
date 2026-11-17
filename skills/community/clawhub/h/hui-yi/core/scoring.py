@@ -14,6 +14,7 @@ from datetime import date, timedelta
 
 from core.common import DEFAULT_INTERVAL_DAYS, STRENGTH_RISK_FACTOR, memory_strength, parse_date, repetition_signal
 from core.signal_detect import detect_match
+from core.matching import note_is_retrievable
 
 IMPORTANCE_WEIGHT = {"high": 3.0, "medium": 2.0, "low": 1.0}
 
@@ -67,6 +68,15 @@ def due_pressure(note: dict, today: date) -> tuple[float, int]:
 
 
 def resurfacing_priority(note: dict, today: date, query: str | None) -> tuple[float, dict]:
+    if not note_is_retrievable(note):
+        return 0.0, {
+            "matched_fields": [], "overlap_terms": [], "raw_score": 0.0,
+            "confidence": "none", "query_coverage": 0.0, "match_eligible": False,
+            "retrieval_eligible": False, "overdue_days": 0, "raw_relevance": 0.0,
+            "relevance_value": 0.0, "due_pressure": 0.0, "forgetting_risk": 0.0,
+            "importance_value": 0.0, "repetition_signal": 0.0,
+            "query_repetition_boost": 0.0, "memory_strength": "weak", "strength_value": 0.0,
+        }
     importance_value = IMPORTANCE_WEIGHT.get(note.get("importance", "medium"), 2.0) / 3.0
     due_value, overdue = due_pressure(note, today)
     if query:
@@ -79,22 +89,33 @@ def resurfacing_priority(note: dict, today: date, query: str | None) -> tuple[fl
     strength = memory_strength(note)
     strength_value = {"weak": 1.0, "normal": 0.75, "strong": 0.55}.get(strength, 0.75)
 
-    score = (
-        0.40 * repeat_value
-        + 0.25 * relevance_value
-        + 0.15 * due_value
-        + 0.10 * importance_value
-        + 0.10 * strength_value
-    )
+    query_repeat = 0.0
+    if query:
+        # Repetition is supporting evidence, never a route around relevance.
+        # Legacy counters without a timestamp cannot prove recent evidence.
+        signals = note.get("session_signals") if isinstance(note.get("session_signals"), dict) else {}
+        activated = parse_date(signals.get("last_activated"))
+        if activated:
+            query_repeat = repeat_value * math.exp(-max(0, (today - activated).days) / 30.0)
+        verified = max((value for key in ("updated_at", "last_verified", "last_seen")
+                        if (value := parse_date(note.get(key)))), default=None)
+        freshness = math.exp(-max(0, (today - verified).days) / 90.0) if verified else 0.0
+        score = relevance_value * (0.90 + 0.07 * query_repeat + 0.03 * freshness) if meta.get("match_eligible") else 0.0
+    else:
+        # Explicit scheduled review retains its repetition/Ebbinghaus behavior.
+        score = (0.40 * repeat_value + 0.15 * due_value
+                 + 0.10 * importance_value + 0.10 * strength_value)
     meta.update(
         {
             "overdue_days": overdue,
+            "retrieval_eligible": True,
             "raw_relevance": raw_relevance,
             "relevance_value": relevance_value,
             "due_pressure": due_value,
             "forgetting_risk": due_value,
             "importance_value": importance_value,
             "repetition_signal": repeat_value,
+            "query_repetition_boost": 0.07 * relevance_value * query_repeat,
             "memory_strength": strength,
             "strength_value": strength_value,
         }

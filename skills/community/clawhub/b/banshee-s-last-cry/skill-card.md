@@ -1,44 +1,62 @@
-## Description: <br>
-A Chinese-language interactive horror mystery text adventure where an agent narrates a snowbound hotel murder story, tracks clues and character state, and branches toward multiple endings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language interactive horror mystery text adventure set in a snowed-in mountain hotel, with branching investigation, role play, clue tracking, and multiple endings.
 
-## Publisher: <br>
-[ouwenjie03](https://clawhub.ai/user/ouwenjie03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouwenjie03](https://clawhub.ai/user/ouwenjie03)
 
-## Use Case: <br>
-External users and game-oriented agent workflows use this skill to run an immersive Chinese horror script-kill adventure with progressive narration, free-form player input, clue investigation, character interaction, and multiple endings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update a local game_state.json file containing gameplay choices, progress, player names, or notes. <br>
-Mitigation: Avoid entering real personal information during play, and review or delete game_state.json if local gameplay history should not be retained. <br>
-Risk: The story contains horror, violence, murder mystery, and psychological thriller content. <br>
-Mitigation: Use with an appropriate audience and follow the skill's own 18+ content warning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouwenjie03/banshee-s-last-cry) <br>
-- [Start chapter](references/ch00_start.md) <br>
-- [Game state system](references/system_game_state.md) <br>
-- [Clue system](references/system_clue_system.md) <br>
-- [Character information system](references/system_character_info.md) <br>
-- [Endings chapter](references/ch4_endings.md) <br>
+## Use Case:
 
+External users use this skill to play a Chinese-language horror script-kill style interactive fiction game. The agent narrates scenes, manages clues and character information, and adapts story progression to open-ended player actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Chinese-language narrative text and Markdown status or clue summaries, with local JSON game-state updates when play progresses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Progressive 200-400 character narration segments; may create or update game_state.json for local save state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The game contains horror, violence, and psychological thriller content that may be unsuitable for some users.
+
+Mitigation: Present the content warning before play and limit use to users who intentionally choose this genre.
+
+Risk: The skill may keep fictional local progress in game_state.json.
+
+Mitigation: Use the state file only for the active game session and remove it when persistent local progress is not desired.
+
+Risk: Generic helper phrases from the game references could be invoked outside the intended play context.
+
+Mitigation: Route the skill only for active Banshee's Last Cry game sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ouwenjie03/skills/banshee-s-last-cry)
+- [SKILL.md](artifact/SKILL.md)
+- [system_game_state.md](artifact/references/system_game_state.md)
+- [system_clue_system.md](artifact/references/system_clue_system.md)
+- [system_character_info.md](artifact/references/system_character_info.md)
+- [ch00_start.md](artifact/references/ch00_start.md)
+- [ch4_endings.md](artifact/references/ch4_endings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese-language interactive Markdown narrative with optional game_state.json state data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Progressive scene output, clue summaries, character status, and branching ending guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

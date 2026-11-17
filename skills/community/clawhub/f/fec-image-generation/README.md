@@ -6,7 +6,7 @@ Image and diagram generation workflow for deterministic diagrams, themed HTML/SV
 
 - ID: `fec-image-generation`
 - Category: `design-ui`
-- Version: `2.8.0`
+- Version: `2.9.0`
 - Source: `skills/fec-image-generation/SKILL.md`
 
 ## Description
@@ -20,12 +20,23 @@ Install or import this package with any skill runtime that understands the stand
 ## Packaged Files
 
 - [assets/interactive-diagram.html](assets/interactive-diagram.html)
+- [assets/quality-examples/README.md](assets/quality-examples/README.md)
+- [assets/quality-examples/architecture.json](assets/quality-examples/architecture.json)
+- [assets/quality-examples/invalid-explicit.json](assets/quality-examples/invalid-explicit.json)
+- [assets/quality-examples/sequence.json](assets/quality-examples/sequence.json)
+- [assets/quality-examples/sequence.mmd](assets/quality-examples/sequence.mmd)
+- [assets/quality-examples/workflow.json](assets/quality-examples/workflow.json)
+- [assets/quality-examples/workflow.mmd](assets/quality-examples/workflow.mmd)
 - [references/artifact-routing.md](references/artifact-routing.md)
 - [references/diagram-workflows.md](references/diagram-workflows.md)
 - [references/html-technical-diagrams.md](references/html-technical-diagrams.md)
 - [references/png-qa-autofix.md](references/png-qa-autofix.md)
+- [scripts/diagram-browser.mjs](scripts/diagram-browser.mjs)
+- [scripts/diagram-layout.mjs](scripts/diagram-layout.mjs)
 - [scripts/export-diagram.mjs](scripts/export-diagram.mjs)
 - [scripts/interactive-diagram-server.mjs](scripts/interactive-diagram-server.mjs)
+- [scripts/mermaid-render.mjs](scripts/mermaid-render.mjs)
+- [scripts/png-qa.mjs](scripts/png-qa.mjs)
 - [scripts/tech-diagram-render.mjs](scripts/tech-diagram-render.mjs)
 
 ## Optional Related Packages

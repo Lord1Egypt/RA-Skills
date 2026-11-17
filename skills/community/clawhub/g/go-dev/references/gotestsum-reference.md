@@ -1,16 +1,16 @@
 # gotestsum Reference
 
-Latest: **v1.13.0** (September 2025). Module: `gotest.tools/gotestsum`. Requires Go 1.24+.
+Latest: **v1.13.0** (September 2025; still current as of 2026-11; last commit 2026-04-14). Module: `gotest.tools/gotestsum`. Requires Go 1.24+.
 
 A test runner that wraps `go test -json` with readable output, watch mode, JUnit XML, and rerun capabilities.
 
 ## Installation
 
 ```bash
-go install gotest.tools/gotestsum@latest
+go install gotest.tools/gotestsum@v1.13.0
 
 # Or run without installing
-go run gotest.tools/gotestsum@latest
+go run gotest.tools/gotestsum@v1.13.0
 
 # Homebrew
 brew install gotestsum
@@ -125,7 +125,12 @@ gotestsum --rerun-fails --rerun-fails-run-root-test --packages="./..."
 
 # Abort rerun on data race (v1.12.3+)
 gotestsum --rerun-fails --rerun-fails-abort-on-data-race --packages="./..."
+
+# Flags for the test binary (not go test) go after -args
+gotestsum --rerun-fails --packages="./..." -- -count=2 -args -update-golden
 ```
+
+With `--rerun-fails`, "if any of the `go test` args should be passed to the test binary, instead of `go test` itself, the `-args` flag must be used to separate the two groups of arguments."
 
 ## Tools
 
@@ -147,14 +152,31 @@ go test -json -short ./... | gotestsum tool slowest --skip-stmt "testing.Short" 
 ```bash
 # Partition tests across CI jobs based on timing data
 echo -n "matrix=" >> $GITHUB_OUTPUT
-go list ./... | gotestsum tool matrix --timing-files ./*.log --partitions 4 >> $GITHUB_OUTPUT
+go list ./... | gotestsum tool ci-matrix --timing-files ./*.log --partitions 4 >> $GITHUB_OUTPUT
 ```
+
+## Custom Commands with `--raw-command`
+
+`--raw-command` tells gotestsum to run your command verbatim instead of prepending `go test -json`. The contract is strict on both streams:
+
+- stdout: "The stdout produced by the script must only contain the `test2json` output, or `gotestsum` will fail." If the script cannot avoid it, "you can use `--ignore-non-json-output-lines` (added in version 1.7.0) to ignore non-JSON lines and write them to `gotestsum`'s stderr instead."
+- stderr: "Any stderr produced by the script will be considered an error (this behaviour is necessary because package build errors are only reported by writing to stderr, not the `test2json` stdout)." Stderr written by the tests themselves is fine - it arrives inside the `test2json` stdout.
+
+So script chatter must be silenced or printed to stdout under `--ignore-non-json-output-lines` - never sent to stderr.
+
+This is how you run an already-compiled test binary - useful for cross-compiled or long-lived test binaries you do not want to rebuild:
+
+```bash
+gotestsum --raw-command -- go tool test2json -t -p pkgname ./binary.test -test.v
+```
+
+`-p` supplies the package name that `test2json` cannot infer from a bare binary, and `-t` adds timestamps.
 
 ## Post-Run Commands
 
 ```bash
 # Desktop notifications
-go install gotest.tools/gotestsum/contrib/notify@latest
+go install gotest.tools/gotestsum/contrib/notify@v1.13.0
 gotestsum --post-run-command notify
 
 # Print slowest tests after run
@@ -176,7 +198,7 @@ Post-run environment variables:
 --no-color                   Disable color (auto-detected in CI)
 --max-fails int              Stop after N failures
 --jsonfile string            Write all TestEvents to file
---jsonfile-timing-events     Write only pass/skip/fail events
+--jsonfile-timing-events string  Write only pass/skip/fail events to the file
 --junitfile string           Write JUnit XML
 --junitfile-testsuite-name   Name format: full|relative|short
 --junitfile-testcase-classname  Classname format: full|relative|short
@@ -188,6 +210,8 @@ Post-run environment variables:
 --rerun-fails-max-failures   Skip rerun if initial failures > N (default 10)
 --rerun-fails-run-root-test  Rerun root test case for subtest failures
 --rerun-fails-abort-on-data-race  Stop rerun on data race
+--rerun-fails-report string  Write a report of the reruns to the file
+--ignore-non-json-output-lines  Send non-JSON stdout lines to stderr
 --watch                      Watch .go files and rerun
 --watch-chdir                cd to modified file's dir
 --watch-clear                Clear screen on rerun
@@ -206,7 +230,11 @@ Post-run environment variables:
 | `GOTESTSUM_JUNITFILE` | JUnit output path |
 | `GOTESTSUM_JUNITFILE_PROJECT_NAME` | Project name in JUnit |
 | `GOTESTSUM_JSONFILE` | JSON output path |
+| `GOTESTSUM_JSONFILE_TIMING_EVENTS` | Path for the timing-events-only JSON file (`--jsonfile-timing-events`) |
+| `GOTESTSUM_JUNIT_HIDE_EMPTY_PKG` | Omit packages with no tests from JUnit (`--junitfile-hide-empty-pkg`) |
+| `GOTESTSUM_JUNIT_HIDE_SKIPPED_TESTS` | Omit skipped tests from JUnit (`--junitfile-hide-skipped-tests`) |
 | `TEST_DIRECTORY` | Default test directory (instead of `./...`) |
+| `GOVERSION` | Go version for JUnit XML when `go` is not on PATH |
 
 ## Justfile Recipes
 
@@ -243,7 +271,7 @@ test-flaky:
 
 | Version | Date | Key Changes |
 |---------|------|-------------|
-| v1.13.0 | Sep 2025 | `--watch-clear` flag, Go test attributes support (Go 1.24+) |
+| v1.13.0 | Sep 2025 | `--watch-clear` flag, Go test attributes support (`t.Attr`, Go 1.25+) |
 | v1.12.3 | Jun 2025 | `--rerun-fails-abort-on-data-race` flag |
 | v1.12.2 | May 2025 | `--junitfile-hide-skipped-tests` flag |
 | v1.12.1 | Mar 2025 | Go 1.24 compatibility, JUnit `skipped` attribute |

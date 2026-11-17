@@ -1,43 +1,57 @@
-## Description: <br>
-PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown. Use when converting PDF documents, extracting PDF content, parsing PDF text, or summarizing PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF to Markdown converter - extract text, tables and formulas from PDF files to clean Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert local or URL-based PDF documents into Markdown for reading, extraction, parsing, analysis, or summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs are sent to MinerU's remote API for processing. <br>
-Mitigation: Use only with documents that are acceptable for external processing; avoid confidential or regulated documents unless that data flow is approved. <br>
-Risk: Installing the wrong CLI package could expose users to an untrusted implementation. <br>
-Mitigation: Install the MinerU Open API CLI only from the expected MinerU/OpenDataLab sources listed by the release metadata. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to convert local or URL-based PDFs into Markdown for reading, extraction, parsing, summarization, and follow-on analysis.
 
-## Reference(s): <br>
-- [Summarize Pdf on ClawHub](https://clawhub.ai/tanis90/summarize-pdf) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU Open Source Project](https://github.com/opendatalab/MinerU) <br>
-- [MinerU CLI](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MinerU Open API flash extraction; basic usage is limited to 10MB or 20 pages per document, with Markdown output only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: PDF contents are uploaded to MinerU's API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for sensitive documents unless the data-sharing terms are acceptable for the intended use.
+
+Risk: The required CLI can be installed from mutable third-party package sources.
+
+Mitigation: Prefer pinned or reviewed CLI versions and scan the installed dependency before deployment.
+
+## Reference(s):
+
+- [Summarize Pdf on ClawHub](https://clawhub.ai/tanis90/skills/summarize-pdf)
+- [MinerU homepage](https://mineru.net)
+- [MinerU CLI ecosystem page](https://mineru.net/ecosystem?tab=cli)
+- [MinerU project](https://github.com/opendatalab/MinerU)
+- [mineru-open-api Go install package](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The main extraction command returns Markdown; tables, formulas, and images may be represented with placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

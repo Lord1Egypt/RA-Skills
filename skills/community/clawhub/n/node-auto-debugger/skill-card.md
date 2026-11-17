@@ -1,43 +1,53 @@
-## Description: <br>
-Scans Node.js, Express, Next.js, and React projects for backend, frontend, configuration, and optional build issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Node.js, Express, Next.js, and React projects for bugs, security issues, frontend hydration problems, configuration gaps, and optional build failures.
 
-## Publisher: <br>
-[jengajojo](https://clawhub.ai/user/jengajojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jengajojo](https://clawhub.ai/user/jengajojo)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Node.js web applications for common runtime, security, hydration, SSR, configuration, and build issues before release or while debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source files under the selected Node.js project. <br>
-Mitigation: Run it only on projects you intend to scan, and avoid exposing unrelated or sensitive directories as the target path. <br>
-Risk: The skill creates or overwrites AUTO-DEBUG-REPORT.md in the scanned project. <br>
-Mitigation: Review or back up any existing report file before running the scanner in a working tree. <br>
-Risk: The optional --build mode executes the target project's npm build script. <br>
-Mitigation: Use --build only after reviewing package.json scripts, preferably in a sandbox with minimal secrets available. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan Node.js web applications for backend, frontend, and configuration issues during debugging, audits, or production preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jengajojo/node-auto-debugger) <br>
-- [Publisher profile](https://clawhub.ai/user/jengajojo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes AUTO-DEBUG-REPORT.md in the scanned project and exits with code 1 when critical issues are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optional build verification can run the target project's npm build script with the user's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --build only for trusted projects, or run it in a disposable sandbox with secrets and network access removed.
+
+Risk: The scanner writes or overwrites AUTO-DEBUG-REPORT.md in the scanned project.
+
+Mitigation: Run it in a working tree where that report path is acceptable, or preserve any existing report before scanning.
+
+## Reference(s):
+
+- [Node Auto Debugger ClawHub Page](https://clawhub.ai/jengajojo/skills/node-auto-debugger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with severity-grouped findings and inline file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes AUTO-DEBUG-REPORT.md in the scanned project and exits with code 1 when critical findings are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

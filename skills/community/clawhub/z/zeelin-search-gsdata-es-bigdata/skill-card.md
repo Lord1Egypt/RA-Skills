@@ -1,45 +1,58 @@
-## Description: <br>
-This skill helps an agent convert Chinese natural-language search requests into structured JSON, call the Zeelin search API, and present search results or errors in a user-friendly format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智灵大数据搜索 turns Chinese natural-language search requests into JSON parameters, calls the configured Zeelin natural-language search API, and returns human-readable results plus a full JSON result file.
 
-## Publisher: <br>
-[urhd528](https://clawhub.ai/user/urhd528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urhd528](https://clawhub.ai/user/urhd528)
 
-## Use Case: <br>
-External users and agents use this skill to query Zeelin search for public-opinion, news, review, trend, and related media data from Chinese natural-language prompts. It guides API key setup, builds the required request, calls the configured API endpoint, shows summarized results, and saves the full JSON response locally. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys and search queries may be sent to a plain-HTTP Zeelin endpoint. <br>
-Mitigation: Use the skill only with a trusted Zeelin endpoint, switch the configured API URL to HTTPS if supported, and verify the endpoint before entering an API key. <br>
-Risk: Full search results are automatically saved as local JSON files and may contain sensitive topics or identifiers. <br>
-Mitigation: Review saved result files after use and delete them when searches include sensitive or regulated information. <br>
-Risk: Broad trigger phrases can cause the skill to run for general public-opinion, news, review, or trend requests. <br>
-Mitigation: Confirm that the user intends to use Zeelin search before sending queries outside the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/urhd528/zeelin-search-gsdata-es-bigdata) <br>
-- [Natural language to JSON module](references/nl2json.md) <br>
-- [Zeelin search API module](references/zenlin_search_api.md) <br>
-- [Configured Zeelin website](http://search-skill.zeelin.cn) <br>
-- [Configured Zeelin search API endpoint](http://search-skill.zeelin.cn:5000/api/es/search/natural) <br>
+## Use Case:
 
+External users and analysts use this skill to query Zeelin for public-opinion, news, comments, hotspot, trend, and related reporting data from Chinese-language prompts. It helps convert a request into the required API payload, call the configured service, summarize returned records, and save complete results as JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, API calls, configuration guidance] <br>
-**Output Format:** [Markdown summary with structured JSON files for saved search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows the first search results in the conversation and saves the complete API response as zeelin_search_results_YYYYMMDD_HHMMSS.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default configuration sends API credentials and search queries to Zeelin endpoints over HTTP.
+
+Mitigation: Verify the destination host before use and switch the API and website URLs to HTTPS if the Zeelin service supports it.
+
+Risk: Broad trigger phrases can cause the skill to run on generic public-opinion, news, or trend requests.
+
+Mitigation: Review the prompt before execution and avoid including sensitive search terms in broad or follow-up prompts.
+
+Risk: Successful searches save full result JSON files in the user directory.
+
+Mitigation: Treat saved result files as potentially sensitive and remove or protect them according to the user's data-handling needs.
+
+## Reference(s):
+
+- [Natural language to JSON reference](artifact/references/nl2json.md)
+- [Zeelin search API reference](artifact/references/zenlin_search_api.md)
+- [Zeelin service website](http://search-skill.zeelin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration guidance, API calls]
+
+**Output Format:** [Markdown-style conversational summaries with JSON payloads and saved JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows a concise subset of successful results in chat and saves the complete API response to a timestamped JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

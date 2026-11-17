@@ -1,38 +1,54 @@
-## Description: <br>
-Identify and reduce high bounce rates by segmenting traffic, fixing message mismatch, improving page speed, adding scroll cues, and analyzing bounce quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and reduce high bounce rates by segmenting traffic, fixing message mismatch, improving page speed, adding scroll cues, and analyzing bounce quality.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Marketing, growth, and conversion-rate optimization teams use this skill to diagnose high-bounce landing pages by segmenting analytics data, checking message match, improving page speed, adding scroll cues, and separating dissatisfied bounces from satisfied exits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill links to an external waitlist that may collect website, analytics, or business data. <br>
-Mitigation: Review the third-party service and its data-sharing terms before submitting sensitive site, analytics, or business information. <br>
+## Use Case:
 
+Marketing, growth, and conversion optimization practitioners use this skill to diagnose high bounce rates by segment, prioritize fixes, and decide whether a bounce indicates dissatisfaction or a satisfied exit.
 
-## Reference(s): <br>
-- [Racoonn waitlist](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Checklist-style CRO recommendations; no code execution or automatic actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Users may share website or analytics data with an external product link referenced by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only share data with third-party services that the user trusts and that meet their privacy, security, and contractual requirements.
+
+Risk: Marketing recommendations can be misapplied when aggregate bounce rate is treated as the sole signal.
+
+Mitigation: Segment by traffic source, device type, and landing page, then validate changes against analytics and scroll-depth data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wellyxy/skills/cro-bounce-rate)
+- [Racoonn waitlist](https://racoonn.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklist-style recommendations and quick-reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or credentials requested. Guidance should be adapted to the user's analytics setup and validated against observed traffic segments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

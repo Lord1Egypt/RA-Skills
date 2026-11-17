@@ -1,47 +1,61 @@
-## Description: <br>
-Munger Decision helps agents analyze decision scenarios, recommend relevant mental models, guide structured questions, and produce a decision report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Munger Decision helps agents analyze decision scenarios with Charlie Munger-style mental models, recommend relevant models, guide structured dialogue, and generate Markdown decision reports.
 
-## Publisher: <br>
-[cdz0451](https://clawhub.ai/user/cdz0451) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdz0451](https://clawhub.ai/user/cdz0451)
 
-## Use Case: <br>
-External users and agents use this skill to structure investment, product, hiring, and strategy decisions with Munger-style mental models. It is best used as a brainstorming and reflection aid, not as authoritative financial, legal, compliance, hiring, or business advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision-support content may be mislabeled or may recommend a framework that is not appropriate for a high-stakes business or investment decision. <br>
-Mitigation: Treat recommendations as brainstorming prompts and verify the model definitions, references, and assumptions before relying on the output. <br>
-Risk: Users may over-rely on generated recommendations for investing, compliance, hiring, or business-launch choices. <br>
-Mitigation: Use independent subject-matter review and decision-specific due diligence before taking action. <br>
-Risk: Rule-based scenario recognition can miss important context or alternatives. <br>
-Mitigation: Review whether the selected scenario and recommended models match the actual decision, and compare against alternative models when stakes are material. <br>
+## Use Case:
 
+Developers and decision-support users use this skill to frame investment, product, hiring, and strategy questions through structured mental-model prompts and receive a concise Markdown analysis report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cdz0451/munger-decision) <br>
-- [Publisher Profile](https://clawhub.ai/user/cdz0451) <br>
-- [Munger Model Reference Index](references/INDEX.md) <br>
-- [Munger Model Definitions](references/models.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [Skill Documentation](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown decision analysis with structured questions, model recommendations, and a concise report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided decision context and a rule-based mental-model library.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Decision sessions may be stored without clear retention bounds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential investment, hiring, or strategy details until retention, cleanup, and input handling limits are documented or fixed.
+
+Risk: Mislabeled decision-model data can mislead analysis.
+
+Mitigation: Treat recommendations as decision-framing prompts and validate model labels and content before relying on the output.
+
+Risk: Users may mistake the generated report for authoritative advice.
+
+Mitigation: Require human review for investment, hiring, and strategy decisions, and present outputs as draft guidance.
+
+## Reference(s):
+
+- [Munger Decision ClawHub page](https://clawhub.ai/cdz0451/skills/munger-decision)
+- [Artifact README](artifact/README.md)
+- [Mental model reference index](artifact/references/INDEX.md)
+- [Mental model definitions](artifact/references/models.md)
+- [Usage examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision report with structured questions and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session-based decision framing; outputs should not be treated as authoritative financial, hiring, or strategy advice.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

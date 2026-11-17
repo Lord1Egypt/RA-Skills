@@ -1,42 +1,56 @@
-## Description: <br>
-京东精选 helps agents search six JD shopping channels for JD self-operated products, with filtering by channel, keyword, price, quality threshold, sort order, and page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+京东精选帮助用户按频道、关键词、价格、好评率和排序条件查询京东自营精选商品，并返回商品信息与购买链接。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External users use this skill to discover JD self-operated products by shopping channel, category keyword, budget, quality threshold, sort order, and page. The skill returns product information, purchase links, and concise browsing guidance; it does not place orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches and selected filters are sent through the skill's disclosed cloud proxy. <br>
-Mitigation: Avoid entering sensitive personal information in shopping queries, and review the query and filters before relying on results. <br>
-Risk: Short follow-up phrases such as "next page" may continue the shopping flow in some agents. <br>
-Mitigation: Confirm the intended channel, query, and page before using follow-up results. <br>
-Risk: Product prices, inventory, and purchase conditions can change after results are returned. <br>
-Mitigation: Verify the final price, stock status, and seller details on JD before making a purchase decision. <br>
+## Use Case:
 
+External shoppers use this skill to browse JD shopping channels, compare filtered self-operated products, and narrow recommendations by category, price, quality threshold, sorting mode, and page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-shopping/jd-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON envelope containing a product-list JSON string and a summary string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 50 product entries per page, including names, prices, discount data, shop and brand details, product links, and browsing hints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Shopping queries are sent to the publisher's Tencent Cloud proxy, and the release ships with a hard-coded shared proxy authentication token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that routing is acceptable; the publisher should remove and rotate the embedded token and require a runtime token.
+
+Risk: Broad shopping activation phrasing may route commercial shopping queries unintentionally.
+
+Mitigation: Narrow activation phrasing and review tool invocation behavior before deployment.
+
+## Reference(s):
+
+- [京东精选 ClawHub page](https://clawhub.ai/cn-shopping/skills/jd-selection)
+- [淘宝精选](https://clawhub.ai/cn-shopping/taobao-selection)
+- [拼多多精选](https://clawhub.ai/cn-shopping/pdd-selection)
+- [购物比价助手](https://clawhub.ai/cn-shopping/best-price)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [JSON string with product result objects and a natural-language Chinese summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product names, prices, discounts, shop details, tags, image URLs, and purchase URLs; the skill does not place orders.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

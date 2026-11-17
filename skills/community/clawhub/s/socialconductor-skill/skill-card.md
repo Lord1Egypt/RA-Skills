@@ -1,42 +1,57 @@
-## Description: <br>
-Manage SocialConductor AI comment automation bots for Facebook, Instagram, YouTube, and TikTok from chat, including status checks, bot controls, comment logs, analytics, drafts, replies, blocking, prompts, approvals, and setup links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage SocialConductor AI comment automation bots from chat apps across Facebook, Instagram, YouTube, and TikTok, including bot status, reply control, comment logs, leads, analytics, prompts, drafts, approvals, and account safety controls.
 
-## Publisher: <br>
-[dcecchino](https://clawhub.ai/user/dcecchino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dcecchino](https://clawhub.ai/user/dcecchino)
 
-## Use Case: <br>
-Social media operators, creators, and marketing teams use this skill to control SocialConductor automation from chat while managing comments, replies, analytics, prompts, drafts, leads, and platform-specific account setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can immediately affect live social media accounts by posting replies, enabling or disabling bots, changing simulation mode, approving drafts, or blocking users. <br>
-Mitigation: Install only for accounts the user owns or administers, keep simulation mode on during testing, and use explicit platform-prefixed commands for sensitive actions. <br>
-Risk: The skill requires sensitive SocialConductor-issued API keys and OAuth-linked platform access. <br>
-Mitigation: Provide keys only for intended platforms, protect them as credentials, and review account permissions before connecting Facebook, Instagram, YouTube, or TikTok accounts. <br>
+## Use Case:
 
+External social media account owners and administrators use this skill to manage SocialConductor automation bots from chat apps for Facebook, Instagram, YouTube, and TikTok. It supports setup, pausing or resuming automation, reviewing logs and leads, posting or regenerating replies, blocking users, analytics, prompts, drafts, approvals, and platform settings.
 
-## Reference(s): <br>
-- [SocialConductor Homepage](https://podium.socialconductor.ai) <br>
-- [Socialconductor Skill on ClawHub](https://clawhub.ai/dcecchino/socialconductor-skill) <br>
-- [SocialConductor on the App Store](https://apps.apple.com/us/app/socialconductor/id6764723628) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API Calls, Configuration] <br>
-**Output Format:** [Chat responses with platform-prefixed commands and status, analytics, setup, moderation, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SocialConductor-issued API keys for each connected platform and can trigger live account actions when commands are confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.4 (source: server release metadata) <br>
+Risk: Sensitive commands can post replies, block or unblock users, enable automation, turn off simulation mode, approve drafts in bulk, or change settings on live social media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts you own or administer, keep simulation mode enabled during setup, review sensitive changes before execution, and use explicit platform-prefixed commands.
+
+Risk: Ambiguous cross-platform commands may affect the wrong connected social account.
+
+Mitigation: Use platform-prefixed commands for Facebook, YouTube, or TikTok when posting replies, blocking users, changing live settings, or approving content.
+
+## Reference(s):
+
+- [SocialConductor homepage](https://podium.socialconductor.ai)
+- [Facebook and Instagram OpenClaw API base](https://podium.socialconductor.ai/api/openclaw/)
+- [YouTube OpenClaw API base](https://studio.socialconductor.ai/api/openclaw/)
+- [TikTok OpenClaw API base](https://violin.socialconductor.ai/api/openclaw/)
+- [SocialConductor on the App Store](https://apps.apple.com/us/app/socialconductor/id6764723628)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with chat commands and API route references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may affect live social media accounts and should use explicit platform prefixes.]
+
+## Skill Version(s):
+
+1.7.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

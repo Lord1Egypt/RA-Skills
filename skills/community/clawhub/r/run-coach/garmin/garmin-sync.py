@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""Garmin Connect data sync for run-coach bot.
-Reads credentials from environment variables GARMIN_EMAIL and GARMIN_PASSWORD.
-Writes JSON activity data to the garmin/ directory for the bot to query.
+"""Garmin Connect data sync for marathon bot.
+Runs on NAS host, writes JSON to marathon workspace for bot to read.
 """
 
 import json
@@ -17,28 +16,55 @@ from garminconnect import (
     GarminConnectTooManyRequestsError,
 )
 
-# Workspace is always the directory containing this script's parent
-_WORKSPACE = Path(__file__).parent.parent
-
-GARTH_HOME = str(_WORKSPACE / "garmin" / ".garth")
-GARMIN_DIR = _WORKSPACE / "garmin"
+# All data lives next to this script (skill's garmin/ directory);
+# override with GARMIN_DATA_DIR if you keep data elsewhere.
+GARMIN_DIR = Path(os.environ.get("GARMIN_DATA_DIR", Path(__file__).resolve().parent))
+GARTH_HOME = str(GARMIN_DIR / ".garth")
 ACTIVITIES_DIR = GARMIN_DIR / "activities"
 SUMMARY_FILE = GARMIN_DIR / "summary.json"
+CREDENTIALS_FILE = GARMIN_DIR / ".credentials"
+
+
+def write_private_json(path, obj):
+    """Write JSON that only the owning user can read (health records)."""
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2, default=str)
+    os.chmod(path, 0o600)  # also tightens files created before this version
+
+
+def harden_private_dir(path, recursive=False):
+    """Create a directory (if missing) and make it owner-only (0700).
+
+    With recursive=True every file/dir inside is tightened too — used for the
+    data directories (activity snapshots, token cache), never for the skill
+    directory itself.
+    """
+    p = Path(path)
+    p.mkdir(parents=True, exist_ok=True)
+    os.chmod(p, 0o700)
+    if recursive:
+        for child in p.rglob("*"):
+            os.chmod(child, 0o700 if child.is_dir() else 0o600)
 
 
 def load_credentials():
-    """Load Garmin credentials from environment variables."""
-    email = os.environ.get("GARMIN_EMAIL", "").strip()
-    password = os.environ.get("GARMIN_PASSWORD", "").strip()
-
-    if not email or not password:
-        print("Error: GARMIN_EMAIL and GARMIN_PASSWORD environment variables must be set.")
-        print("Add them to your OpenClaw config or .env file:")
-        print("  GARMIN_EMAIL=your@email.com")
-        print("  GARMIN_PASSWORD=your_password")
+    """Load Garmin credentials from secure dotfile."""
+    if not CREDENTIALS_FILE.exists():
+        print(f"Error: {CREDENTIALS_FILE} not found.")
+        print("Create it with:")
+        print(f'  echo \'{{"email": "your@email.com", "password": "your_password"}}\' > {CREDENTIALS_FILE}')
+        print(f"  chmod 600 {CREDENTIALS_FILE}")
         sys.exit(1)
 
-    return email, password
+    with open(CREDENTIALS_FILE) as f:
+        creds = json.load(f)
+
+    if "email" not in creds or "password" not in creds:
+        print(f"Error: {CREDENTIALS_FILE} must contain 'email' and 'password' fields.")
+        sys.exit(1)
+
+    return creds["email"], creds["password"]
 
 
 def get_client():
@@ -106,8 +132,7 @@ def sync_activities(client, days=7):
         # Save individual activity file
         filename = f"{activity_date}_{activity_id}.json"
         filepath = ACTIVITIES_DIR / filename
-        with open(filepath, "w", encoding="utf-8") as f:
-            json.dump(detail, f, ensure_ascii=False, indent=2, default=str)
+        write_private_json(filepath, detail)
 
         saved.append({
             "date": activity_date,
@@ -223,8 +248,9 @@ def main():
         except ValueError:
             pass
 
-    # Ensure directories exist
-    ACTIVITIES_DIR.mkdir(parents=True, exist_ok=True)
+    # Ensure directories exist and are readable only by this user
+    harden_private_dir(GARMIN_DIR)
+    harden_private_dir(ACTIVITIES_DIR, recursive=True)
 
     print(f"=== Garmin Sync ({date.today().isoformat()}) ===")
 
@@ -235,13 +261,13 @@ def main():
     daily = sync_daily_stats(client)
     training = sync_training_metrics(client)
 
-    # Persist token
+    # Persist token (session tokens: owner-only)
     client.garth.dump(GARTH_HOME)
+    harden_private_dir(GARTH_HOME, recursive=True)
 
-    # Write summary
+    # Write summary (health records: owner-only)
     summary = build_summary(recent, daily, training)
-    with open(SUMMARY_FILE, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2, default=str)
+    write_private_json(SUMMARY_FILE, summary)
 
     print(f"\nSummary written to {SUMMARY_FILE}")
     print(f"Activities: {len(recent)}")

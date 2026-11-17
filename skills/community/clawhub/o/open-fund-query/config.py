@@ -1,19 +1,28 @@
-"""场外指数基金信息查询 — 统一配置（对外版本）.
+"""Index Hub v3.0.0 统一配置（对外版本）.
 
 鉴权方式（优先级从高到低）：
-  1. 环境变量 ETF_API_KEY（推荐）
-  2. 修改本文件的 _FALLBACK_KEY（fallback）
-
-安装时两处同时写入，确保任一方式均可独立生效。
+  1. 环境变量 INDEX_HUB_API_KEY（可选临时覆盖）
+  2. 用户凭据文件 ~/.config/index-hub/api_key（安装默认）
+  3. 环境变量 ETF_API_KEY（兼容旧版本）
 """
 
 import os
+from pathlib import Path
 
 BASE_URL = "https://www.etf.com.cn/api/etf-api-service"
-_FALLBACK_KEY = ""  # 无环境变量时使用，可直接在此填入 key
-API_KEY = os.environ.get("ETF_API_KEY") or _FALLBACK_KEY
+CREDENTIALS_FILE = Path.home() / ".config" / "index-hub" / "api_key"
 
-CALLER_TYPE = "external"  
+
+def _read_credentials_file() -> str:
+    try:
+        return CREDENTIALS_FILE.read_text(encoding="utf-8").strip()
+    except (FileNotFoundError, OSError):
+        return ""
+
+
+API_KEY = os.environ.get("INDEX_HUB_API_KEY") or _read_credentials_file() or os.environ.get("ETF_API_KEY") or ""
+
+CALLER_TYPE = "external"
 
 # 请求头固定配置
 # 认证格式：Authorization: Bearer <API_KEY>
@@ -21,7 +30,6 @@ CALLER_TYPE = "external"
 
 if not API_KEY:
     raise RuntimeError(
-        "未找到 API Key。请访问以下链接获取：\n"
-        "https://cdn.efunds.com.cn/eda/h5/itcenter/pd/ai-skills-doc/readme.pdf\n"
-        "请输入获取到的 key："
+        "未找到 API Key。\n"
+        "如需获取API Key，请在微信搜索“指数直通车”小程序，在「AI Skills」页面申请。更多说明可访问帮助文档：https://cdn.efunds.com.cn/eda/h5/itcenter/pd/ai-skills-doc/help.pdf"
     )

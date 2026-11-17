@@ -1,0 +1,587 @@
+---
+name: self-improving-agent
+description: "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks."
+version: "4.0.0"
+metadata:
+---
+
+# Self-Improvement Skill
+
+Log learnings and errors to markdown files for continuous improvement. Agents can later process these into fixes, and important learnings get promoted to workspace memory. This version of the skill is built for OpenClaw only — for other agents, see the original multi-agent version at https://github.com/pskoett/pskoett-ai-skills.
+
+## First-Use Initialisation
+
+Before logging anything, ensure the `.learnings/` directory and files exist in the project or workspace root. If any are missing, create them:
+
+```bash
+mkdir -p .learnings
+[ -f .learnings/LEARNINGS.md ] || printf "# Learnings\n\nCorrections, insights, and knowledge gaps captured during development.\n\n**Categories**: correction | insight | knowledge_gap | best_practice\n\n---\n" > .learnings/LEARNINGS.md
+[ -f .learnings/ERRORS.md ] || printf "# Errors\n\nCommand failures and integration errors.\n\n---\n" > .learnings/ERRORS.md
+[ -f .learnings/FEATURE_REQUESTS.md ] || printf "# Feature Requests\n\nCapabilities requested by the user.\n\n---\n" > .learnings/FEATURE_REQUESTS.md
+```
+
+Never overwrite existing files. This is a no-op if `.learnings/` is already initialised.
+
+Do not log secrets, tokens, private keys, environment variables, or full source/config files unless the user explicitly asks for that level of detail. Prefer short summaries or redacted excerpts over raw command output or full transcripts.
+
+If you want automatic reminders and session-end error detection, enable the opt-in hook described in [Optional: Enable Hook](#optional-enable-hook).
+
+## Quick Reference
+
+| Situation | Action |
+|-----------|--------|
+| Command/operation fails | Log to `.learnings/ERRORS.md` |
+| User corrects you | Log to `.learnings/LEARNINGS.md` with category `correction` |
+| User wants missing feature | Log to `.learnings/FEATURE_REQUESTS.md` |
+| API/external tool fails | Log to `.learnings/ERRORS.md` with integration details |
+| Knowledge was outdated | Log to `.learnings/LEARNINGS.md` with category `knowledge_gap` |
+| Found better approach | Log to `.learnings/LEARNINGS.md` with category `best_practice` |
+| Simplify/Harden recurring patterns | Log/update `.learnings/LEARNINGS.md` with `Source: simplify-and-harden` and a stable `Pattern-Key` |
+| Similar to existing entry | Grep by `Pattern-Key` first, link with `**See Also**`, bump `Recurrence-Count` |
+| Workflow improvements | Promote to `AGENTS.md` (workspace) |
+| Tool gotchas | Promote to `TOOLS.md` (workspace) |
+| Behavioral patterns | Promote to `SOUL.md` (workspace) |
+
+## OpenClaw Setup
+
+OpenClaw uses workspace-based prompt injection with automatic skill loading.
+
+### Installation
+
+**Via ClawdHub (recommended):**
+```bash
+clawdhub install self-improving-agent
+```
+
+**Manual** (the skill lives in the repo's `self-improving-agent/` subfolder;
+copy that folder, not the repo root):
+```bash
+git clone https://github.com/peterskoett/self-improving-agent.git /tmp/self-improving-agent-repo
+cp -r /tmp/self-improving-agent-repo/self-improving-agent ~/.openclaw/skills/self-improving-agent
+```
+
+Remade for openclaw from original repo : https://github.com/pskoett/pskoett-ai-skills - https://github.com/pskoett/pskoett-ai-skills/tree/main/skills/self-improvement
+
+### Workspace Structure
+
+OpenClaw injects these files into every session:
+
+```
+~/.openclaw/workspace/
+├── AGENTS.md          # Multi-agent workflows, delegation patterns
+├── SOUL.md            # Behavioral guidelines, personality, principles
+├── TOOLS.md           # Tool capabilities, integration gotchas
+├── MEMORY.md          # Long-term memory (main session only)
+├── memory/            # Daily memory files
+│   └── YYYY-MM-DD.md
+└── .learnings/        # This skill's log files
+    ├── LEARNINGS.md
+    ├── ERRORS.md
+    └── FEATURE_REQUESTS.md
+```
+
+### Create Learning Files
+
+```bash
+mkdir -p ~/.openclaw/workspace/.learnings
+```
+
+Then create the log files (or copy from `assets/`):
+- `LEARNINGS.md` — corrections, knowledge gaps, best practices
+- `ERRORS.md` — command failures, exceptions
+- `FEATURE_REQUESTS.md` — user-requested capabilities
+
+### Promotion Targets
+
+When learnings prove broadly applicable, promote them to workspace files:
+
+| Learning Type | Promote To | Example |
+|---------------|------------|---------|
+| Behavioral patterns | `SOUL.md` | "Be concise, avoid disclaimers" |
+| Workflow improvements | `AGENTS.md` | "Spawn sub-agents for long tasks" |
+| Tool gotchas | `TOOLS.md` | "Git push needs auth configured first" |
+
+### Inter-Session Communication
+
+OpenClaw provides tools to share learnings across sessions:
+
+- **sessions_list** — View active/recent sessions
+- **sessions_history** — Read another session's transcript  
+- **sessions_send** — Send a learning to another session
+- **sessions_spawn** — Spawn a sub-agent for background work
+
+Use these only in trusted environments and only when the user explicitly wants cross-session sharing. Prefer sending a short sanitized summary and relevant file paths, not raw transcripts, secrets, or full command output.
+
+### Optional: Enable Hook
+
+For automatic reminders at session start and error detection at session end:
+
+```bash
+cp -r ~/.openclaw/skills/self-improving-agent/hooks/openclaw ~/.openclaw/hooks/self-improvement
+openclaw hooks enable self-improvement
+```
+
+Fires on `agent:bootstrap` (injects the reminder, plus a pending-triage note
+when auto-detected errors await review) and on `command:new`/`command:reset`
+(sweeps the ended session's transcript for error patterns into
+`<workspace>/.learnings/ERRORS.md`; opt-in — runs only when `.learnings/`
+exists). OpenClaw has no per-tool-call hook event, so error detection happens
+at session end. See `references/openclaw-integration.md` for details and
+sweep limitations.
+
+## Logging Format
+
+### Learning Entry
+
+Append to `.learnings/LEARNINGS.md`:
+
+```markdown
+## [LRN-YYYYMMDD-XXX] category
+
+**Logged**: ISO-8601 timestamp
+**Priority**: low | medium | high | critical
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Summary
+One-line description of what was learned
+
+### Details
+Full context: what happened, what was wrong, what's correct
+
+### Suggested Action
+Specific fix or improvement to make
+
+### Metadata
+- Source: conversation | error | user_feedback
+- Related Files: path/to/file.ext
+- Tags: tag1, tag2
+- See Also: LRN-20250110-001 (if related to existing entry)
+- Pattern-Key: area.symptom (recommended; e.g. deps.module-not-found, simplify.dead_code — see Pattern-Key Taxonomy)
+- Recurrence-Count: 1 (optional)
+- First-Seen: 2025-01-15 (optional)
+- Last-Seen: 2025-01-15 (optional)
+
+---
+```
+
+### Error Entry
+
+Append to `.learnings/ERRORS.md`:
+
+```markdown
+## [ERR-YYYYMMDD-XXX] skill_or_command_name
+
+**Logged**: ISO-8601 timestamp
+**Priority**: high
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Summary
+Brief description of what failed
+
+### Error
+```
+Actual error message or output
+```
+
+### Context
+- Command/operation attempted
+- Input or parameters used
+- Environment details if relevant
+- Summary or redacted excerpt of relevant output (avoid full transcripts and secret-bearing data by default)
+
+### Suggested Fix
+If identifiable, what might resolve this
+
+### Metadata
+- Reproducible: yes | no | unknown
+- Related Files: path/to/file.ext
+- See Also: ERR-20250110-001 (if recurring)
+- Pattern-Key: area.symptom (recommended; e.g. net.connection-refused — see Pattern-Key Taxonomy)
+- Recurrence-Count: 1 (optional)
+- First-Seen: 2025-01-15 (optional)
+- Last-Seen: 2025-01-15 (optional)
+
+---
+```
+
+### Feature Request Entry
+
+Append to `.learnings/FEATURE_REQUESTS.md`:
+
+```markdown
+## [FEAT-YYYYMMDD-XXX] capability_name
+
+**Logged**: ISO-8601 timestamp
+**Priority**: medium
+**Status**: pending
+**Area**: frontend | backend | infra | tests | docs | config
+
+### Requested Capability
+What the user wanted to do
+
+### User Context
+Why they needed it, what problem they're solving
+
+### Complexity Estimate
+simple | medium | complex
+
+### Suggested Implementation
+How this could be built, what it might extend
+
+### Metadata
+- Frequency: first_time | recurring
+- Related Features: existing_feature_name
+- Pattern-Key: area.symptom (optional — features usually dedupe by capability name; use a key only for recurring themes, e.g. api.missing-endpoint)
+
+---
+```
+
+## ID Generation
+
+Format: `TYPE-YYYYMMDD-XXX`
+- TYPE: `LRN` (learning), `ERR` (error), `FEAT` (feature)
+- YYYYMMDD: Current date
+- XXX: Sequential number or random 3 chars (e.g., `001`, `A7B`)
+
+Examples: `LRN-20250115-001`, `ERR-20250115-A3F`, `FEAT-20250115-002`
+
+## Resolving Entries
+
+When an issue is fixed, update the entry:
+
+1. Change `**Status**: pending` → `**Status**: resolved`
+2. Add resolution block after Metadata:
+
+```markdown
+### Resolution
+- **Resolved**: 2025-01-16T09:00:00Z
+- **Commit/PR**: abc123 or #42
+- **Notes**: Brief description of what was done
+```
+
+Other status values:
+- `in_progress` - Actively being worked on
+- `wont_fix` - Decided not to address (add reason in Resolution notes)
+- `promoted` - Elevated to a workspace file (`SOUL.md`, `TOOLS.md`, `AGENTS.md`)
+
+## Promoting to Workspace Memory
+
+When a learning is broadly applicable (not a one-off fix), promote it to a workspace file so every session inherits it.
+
+### When to Promote
+
+- Learning applies across multiple files/features
+- Knowledge any contributor (human or AI) should know
+- Prevents recurring mistakes
+- Documents project-specific conventions
+
+### Promotion Targets
+
+| Target | What Belongs There |
+|--------|-------------------|
+| `SOUL.md` | Behavioral guidelines, communication style, principles |
+| `TOOLS.md` | Tool capabilities, usage patterns, integration gotchas |
+| `AGENTS.md` | Workflows, delegation patterns, automation rules |
+
+When the learning is specific to a project repo you work in (not the
+workspace), promote to that project's own agent file (e.g. its `AGENTS.md`)
+instead.
+
+### How to Promote
+
+1. **Distill** the learning into a concise rule or fact
+2. **Add** to appropriate section in target file (create file if needed)
+3. **Update** original entry:
+   - Change `**Status**: pending` → `**Status**: promoted`
+   - Add `**Promoted**: SOUL.md`, `TOOLS.md`, or `AGENTS.md`
+
+### Promotion Examples
+
+**Learning** (verbose):
+> Project uses pnpm workspaces. Attempted `npm install` but failed. 
+> Lock file is `pnpm-lock.yaml`. Must use `pnpm install`.
+
+**In TOOLS.md** (concise):
+```markdown
+## Build & Dependencies
+- Package manager: pnpm (not npm) - use `pnpm install`
+```
+
+**Learning** (verbose):
+> When modifying API endpoints, must regenerate TypeScript client.
+> Forgetting this causes type mismatches at runtime.
+
+**In AGENTS.md** (actionable):
+```markdown
+## After API Changes
+1. Regenerate client: `pnpm run generate:api`
+2. Check for type errors: `pnpm tsc --noEmit`
+```
+
+## Pattern-Key Taxonomy
+
+`Pattern-Key` is the stable dedup and recurrence key for entries in all three
+log files: keyword grep misses semantically identical but differently-worded
+entries, a shared key does not — and reliable keys are what make
+`Recurrence-Count` and the promotion rule work.
+
+**Format**: `area.symptom` — exactly two levels, lowercase, hyphenated
+(e.g. `deps.module-not-found`). Keep symptoms generic enough to recur: no
+file names, versions, or hostnames in keys.
+
+| Area | Scope | Example Keys |
+|------|-------|--------------|
+| `api` | External API/service behavior | `api.rate-limit`, `api.schema-mismatch`, `api.missing-endpoint` |
+| `auth` | Credentials, tokens, scopes | `auth.token-expired`, `auth.missing-scope` |
+| `build` | Compilation, bundling, CI | `build.type-error`, `build.missing-artifact` |
+| `config` | Config files, env vars, settings | `config.missing-env`, `config.invalid-json` |
+| `deps` | Package managers, dependencies | `deps.module-not-found`, `deps.npm-error`, `deps.version-conflict` |
+| `fs` | Filesystem | `fs.no-such-file`, `fs.permission-denied` |
+| `net` | Network connectivity | `net.connection-refused`, `net.timeout` |
+| `runtime` | Language/runtime errors not covered above | `runtime.type-error`, `runtime.python-exception` |
+| `shell` | Shell/CLI mechanics | `shell.command-not-found`, `shell.nonzero-exit` |
+| `vcs` | Git and other version control | `vcs.fatal-error`, `vcs.merge-conflict` |
+| `simplify` / `harden` | Code-quality patterns from the simplify-and-harden feed | `simplify.dead_code`, `harden.input_validation` |
+
+**Rules:**
+
+1. **Reuse before minting**: `grep -rh "Pattern-Key:" .learnings/ | sort -u` —
+   a near-match beats a new key.
+2. **One key per manual entry**; auto-swept OpenClaw entries may carry
+   several — reduce to one when triaging.
+3. **Mint new areas sparingly** — only when several entries would share one.
+4. **Generic sweep keys** (`runtime.error`, `runtime.failure`) mean
+   "unclassified" — replace with a specific key during triage.
+
+## Recurring Pattern Detection
+
+If logging something similar to an existing entry:
+
+1. **Search by key first**: `grep -n "Pattern-Key: area.symptom" .learnings/*.md`
+   — this is the default dedup check and catches rewordings that keyword
+   search misses
+2. **Fallback keyword search**: `grep -ri "keyword" .learnings/` for entries
+   logged without a key
+3. **Fold, don't duplicate**: on a hit, update the existing entry — bump
+   `Recurrence-Count`, set `Last-Seen`, add `**See Also**` — instead of
+   creating a new one
+4. **Bump priority** if issue keeps recurring
+5. **Consider systemic fix**: Recurring issues often indicate:
+   - Missing knowledge (→ promote to `TOOLS.md` or `SOUL.md`)
+   - Missing automation (→ add to `AGENTS.md`)
+   - Architectural problem (→ create tech debt ticket)
+
+## Simplify & Harden Feed
+
+Use this workflow to ingest recurring patterns from the `simplify-and-harden`
+skill and turn them into durable prompt guidance.
+
+### Ingestion Workflow
+
+1. Read `simplify_and_harden.learning_loop.candidates` from the task summary.
+2. For each candidate, use `pattern_key` as the stable dedupe key.
+3. Search `.learnings/LEARNINGS.md` for an existing entry with that key:
+   - `grep -n "Pattern-Key: <pattern_key>" .learnings/LEARNINGS.md`
+4. If found:
+   - Increment `Recurrence-Count`
+   - Update `Last-Seen`
+   - Add `See Also` links to related entries/tasks
+5. If not found:
+   - Create a new `LRN-...` entry
+   - Set `Source: simplify-and-harden`
+   - Set `Pattern-Key`, `Recurrence-Count: 1`, and `First-Seen`/`Last-Seen`
+
+### Promotion Rule (System Prompt Feedback)
+
+Promote recurring patterns into agent context/system prompt files when all are true:
+
+- `Recurrence-Count >= 3`
+- Seen across at least 2 distinct tasks
+- Occurred within a 30-day window
+
+Promotion targets: `SOUL.md`, `TOOLS.md`, or `AGENTS.md` (workspace), or the
+project's own agent file when the pattern is project-specific.
+
+Write promoted rules as short prevention rules (what to do before/while coding),
+not long incident write-ups.
+
+## Periodic Review
+
+Review `.learnings/` at natural breakpoints:
+
+### When to Review
+- Before starting a new major task
+- After completing a feature
+- When working in an area with past learnings
+- Weekly during active development
+
+### Quick Status Check
+```bash
+# Count pending items
+grep -h "Status\*\*: pending" .learnings/*.md | wc -l
+
+# List pending high-priority items
+grep -B5 "Priority\*\*: high" .learnings/*.md | grep "^## \["
+
+# Find learnings for a specific area
+grep -l "Area\*\*: backend" .learnings/*.md
+```
+
+### Review Actions
+- Resolve fixed items
+- Promote applicable learnings
+- Link related entries
+- Escalate recurring issues
+
+## Detection Triggers
+
+Automatically log when you notice:
+
+**Corrections** (→ learning with `correction` category):
+- "No, that's not right..."
+- "Actually, it should be..."
+- "You're wrong about..."
+- "That's outdated..."
+
+**Feature Requests** (→ feature request):
+- "Can you also..."
+- "I wish you could..."
+- "Is there a way to..."
+- "Why can't you..."
+
+**Knowledge Gaps** (→ learning with `knowledge_gap` category):
+- User provides information you didn't know
+- Documentation you referenced is outdated
+- API behavior differs from your understanding
+
+**Errors** (→ error entry):
+- Command returns non-zero exit code
+- Exception or stack trace
+- Unexpected output or behavior
+- Timeout or connection failure
+
+## Priority Guidelines
+
+| Priority | When to Use |
+|----------|-------------|
+| `critical` | Blocks core functionality, data loss risk, security issue |
+| `high` | Significant impact, affects common workflows, recurring issue |
+| `medium` | Moderate impact, workaround exists |
+| `low` | Minor inconvenience, edge case, nice-to-have |
+
+## Area Tags
+
+Use to filter learnings by codebase region:
+
+| Area | Scope |
+|------|-------|
+| `frontend` | UI, components, client-side code |
+| `backend` | API, services, server-side code |
+| `infra` | CI/CD, deployment, Docker, cloud |
+| `tests` | Test files, testing utilities, coverage |
+| `docs` | Documentation, comments, READMEs |
+| `config` | Configuration files, environment, settings |
+
+## Best Practices
+
+1. **Log immediately** - context is freshest right after the issue
+2. **Be specific** - future agents need to understand quickly
+3. **Include reproduction steps** - especially for errors
+4. **Link related files** - makes fixes easier
+5. **Suggest concrete fixes** - not just "investigate"
+6. **Use consistent categories** - enables filtering
+7. **Promote aggressively** - if in doubt, add to `TOOLS.md` or `SOUL.md`
+8. **Review regularly** - stale learnings lose value
+
+## Gitignore Options
+
+**Keep learnings local** (per-developer):
+```gitignore
+.learnings/
+```
+
+This repo uses that default to avoid committing sensitive or noisy local logs by accident.
+
+**Track learnings in repo** (team-wide):
+Don't add to .gitignore - learnings become shared knowledge.
+
+**Hybrid** (track templates, ignore entries):
+```gitignore
+.learnings/*.md
+!.learnings/.gitkeep
+```
+
+## Upgrading & Uninstalling
+
+Read `CHANGELOG.md` before upgrading — it carries per-version notes, and
+hook changes require re-copying the hook and restarting the gateway.
+To disable or remove the skill, follow `references/uninstall.md`:
+`.learnings/` is user data (review before deleting), and content promoted to
+`SOUL.md`/`TOOLS.md`/`AGENTS.md` stays until removed manually.
+
+## Automatic Skill Extraction
+
+When a learning is valuable enough to become a reusable skill, extract it using the provided helper.
+
+### Skill Extraction Criteria
+
+A learning qualifies for skill extraction when ANY of these apply:
+
+| Criterion | Description |
+|-----------|-------------|
+| **Recurring** | Has `See Also` links to 2+ similar issues |
+| **Verified** | Status is `resolved` with working fix |
+| **Non-obvious** | Required actual debugging/investigation to discover |
+| **Broadly applicable** | Not project-specific; useful across codebases |
+| **User-flagged** | User says "save this as a skill" or similar |
+
+### Extraction Workflow
+
+1. **Identify candidate**: Learning meets extraction criteria
+2. **Run helper** (or create manually):
+   ```bash
+   ~/.openclaw/skills/self-improving-agent/scripts/extract-skill.sh skill-name --dry-run
+   ~/.openclaw/skills/self-improving-agent/scripts/extract-skill.sh skill-name
+   ```
+3. **Customize SKILL.md**: Fill in template with learning content
+4. **Update learning**: Set status to `promoted_to_skill`, add `Skill-Path`
+5. **Verify**: Read skill in fresh session to ensure it's self-contained
+
+### Manual Extraction
+
+If you prefer manual creation:
+
+1. Create `skills/<skill-name>/SKILL.md`
+2. Use template from `assets/SKILL-TEMPLATE.md`
+3. Follow [Agent Skills spec](https://agentskills.io/specification):
+   - YAML frontmatter with `name` and `description`
+   - Name must match folder name
+   - No README.md inside skill folder
+
+### Extraction Detection Triggers
+
+Watch for these signals that a learning should become a skill:
+
+**In conversation:**
+- "Save this as a skill"
+- "I keep running into this"
+- "This would be useful for other projects"
+- "Remember this pattern"
+
+**In learning entries:**
+- Multiple `See Also` links (recurring issue)
+- High priority + resolved status
+- Category: `best_practice` with broad applicability
+- User feedback praising the solution
+
+### Skill Quality Gates
+
+Before extraction, verify:
+
+- [ ] Solution is tested and working
+- [ ] Description is clear without original context
+- [ ] Code examples are self-contained
+- [ ] No project-specific hardcoded values
+- [ ] Follows skill naming conventions (lowercase, hyphens)

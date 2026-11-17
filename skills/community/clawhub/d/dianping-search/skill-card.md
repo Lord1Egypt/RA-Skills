@@ -1,39 +1,54 @@
-## Description: <br>
-Dianping API skill for searching restaurants and local businesses, viewing shop details, checking deals and coupons, and reading recommended dishes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dianping (大众点评) API skill for searching restaurants and businesses, viewing shop details, deals/coupons, and reading recommended dishes.
 
-## Publisher: <br>
-[FJSAND](https://clawhub.ai/user/FJSAND) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fjsand](https://clawhub.ai/user/fjsand)
 
-## Use Case: <br>
-Developers and external users can use this skill to query Dianping for Chinese-city restaurant and local-business search results, shop details, recommended dishes, prices, ratings, addresses, and deal information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Dianping session cookies in ~/.dianping/cookies.json and can print cookie values through login helper commands. <br>
-Mitigation: Treat the cookie file and terminal output as sensitive account material, avoid using --export, avoid sharing logs or screenshots, and delete the cookie file when finished. <br>
+## Use Case:
 
+External users and agents use this skill to look up Dianping restaurant and local-business information for Chinese cities, including ratings, addresses, recommended dishes, and deals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/FJSAND/dianping-search) <br>
-- [Dianping website](https://www.dianping.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [JSON responses and Markdown usage guidance with shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Dianping session cookies and uses curl-based HTTP requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Dianping session cookies, which can expose account access if printed, logged, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before use, avoid passing real cookies through logged command lines, avoid exporting cookies in logged terminals, and rotate the Dianping session if values are exposed.
+
+Risk: The release promotes a curl-to-bash installation pattern.
+
+Mitigation: Inspect the installer and scripts before running them, and prefer a reviewed local install path over piping remote content directly to a shell.
+
+## Reference(s):
+
+- [Dianping](https://www.dianping.com/)
+- [ClawHub Skill Page](https://clawhub.ai/fjsand/skills/dianping-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses with Markdown usage guidance and bash/Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use Dianping session cookies and may return error JSON when login renewal is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

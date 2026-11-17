@@ -9,7 +9,7 @@
 | Public / platform **open vessels** | **V** |
 | Public / platform **cargo** | **G** |
 
-**Not this skill**: my mail → **hifleet-mytonnages**; liner schedule → **hifleet-schedule**; pre-arrival → **hifleet-mytonnages**.
+**Not this skill**: liner schedule → **hifleet-schedule**.
 
 ## Config
 

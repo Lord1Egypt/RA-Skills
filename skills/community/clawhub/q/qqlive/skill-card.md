@@ -1,40 +1,53 @@
-## Description: <br>
-Tencent Video content assistant for video recommendations, content analysis, viewing guidance, and creator advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qqlive guides agents on Tencent Video membership tiers, platform content availability, viewing recommendations, creator guidance, and device-limit troubleshooting.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users use this skill to get Tencent Video viewing recommendations, spoiler-conscious content analysis, membership guidance, and creator-side advice for platform content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Time-sensitive Tencent Video availability, VIP pricing, trending rankings, and creator monetization rules may become outdated. <br>
-Mitigation: Verify current Tencent Video platform details before relying on recommendations, pricing guidance, rankings, or creator revenue advice. <br>
-Risk: Viewing guidance and content analysis may include subjective opinions or spoilers. <br>
-Mitigation: Ask for user preferences and spoiler tolerance, label spoilers before detailed analysis, and present recommendations as guidance rather than factual quality judgments. <br>
+## Use Case:
 
+External users and agents use this skill to answer Tencent Video subscription, content availability, viewing, and creator questions while keeping recommendations legal and spoiler-aware.
 
-## Reference(s): <br>
-- [Qqlive on ClawHub](https://clawhub.ai/zhangifonly/qqlive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text recommendations, analyses, and guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, hidden actions, or persistence are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can provide broader content and creator guidance than its short description emphasizes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full prompt scope before installation, especially if the intended use is limited to membership and device-limit troubleshooting.
+
+Risk: Tencent Video prices, membership rights, content availability, and device rules change frequently.
+
+Mitigation: Verify purchase terms and content rights on official Tencent Video pages before acting on subscription or access guidance.
+
+## Reference(s):
+
+- [Qqlive ClawHub skill page](https://clawhub.ai/zhangifonly/skills/qqlive)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with recommendations, analysis, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or external tool access required by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

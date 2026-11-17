@@ -1,41 +1,53 @@
-## Description: <br>
-Feishu permission management for documents and files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu permission management for documents and files.
 
-## Publisher: <br>
-[sumuzhi4843-a](https://clawhub.ai/user/sumuzhi4843-a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumuzhi4843-a](https://clawhub.ai/user/sumuzhi4843-a)
 
-## Use Case: <br>
-Developers and operators use this skill to help list, add, and remove collaborators on Feishu documents, files, folders, spreadsheets, wikis, and related drive assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change access to Feishu documents, files, folders, spreadsheets, wikis, and related drive assets. <br>
-Mitigation: Enable the skill only when document-permission management is intended, and verify the target token, recipient identity, member type, and permission level before add, remove, or full_access operations. <br>
-Risk: The full_access permission level delegates the ability to manage permissions. <br>
-Mitigation: Treat full_access as administrative delegation and reserve it for recipients who are authorized to manage access. <br>
+## Use Case:
 
+Teams using Feishu documents and files can use this skill to have an agent list collaborators and add or remove access. It is suited for controlled permission administration on documents, sheets, folders, wiki nodes, and related Feishu assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sumuzhi4843-a/feishu-perm) <br>
-- [Publisher profile](https://clawhub.ai/user/sumuzhi4843-a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API Calls] <br>
-**Output Format:** [Markdown with JSON and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit Feishu tool configuration and the drive:permission scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change document and folder access, including granting full_access permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the tool disabled by default and require explicit user confirmation before adding, removing, or granting full_access permissions.
+
+Risk: Broad activation wording could cause the agent to handle sensitive sharing or collaborator requests without enough context.
+
+Mitigation: Confirm the target Feishu asset, member identifier, member type, and requested permission level before executing any permission-changing action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumuzhi4843-a/skills/feishu-perm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu permission-management guidance and command payload examples for listing, adding, and removing collaborators.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

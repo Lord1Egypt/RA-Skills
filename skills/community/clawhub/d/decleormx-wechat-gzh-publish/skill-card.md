@@ -1,46 +1,62 @@
-## Description: <br>
-Automates WeChat Official Account article publishing, including login reuse, title and body entry, AI-generated cover imagery, draft saving, and direct publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates WeChat Official Account article drafting or publishing with title and body entry, AI-generated cover imagery, optional summaries, comment settings, reward settings, and cookie-based login reuse.
 
-## Publisher: <br>
-[XIEBBS](https://clawhub.ai/user/XIEBBS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiebbs](https://clawhub.ai/user/xiebbs)
 
-## Use Case: <br>
-Content operators and agents managing WeChat Official Accounts use this skill to prepare drafts or publish posts from text or files, with optional AI imagery, summary, comment, and reward settings. Operators should review drafts before live publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live WeChat Official Account posts using saved account cookies with limited safety gates. <br>
-Mitigation: Use --draft first, manually review the article and generated cover, and only run direct publishing when intended. <br>
-Risk: Saved cookies in ~/.wechat_mp/cookies.json can grant account access if exposed. <br>
-Mitigation: Protect or delete the cookie file when it is not needed, and re-authenticate deliberately. <br>
-Risk: Untrusted content files or generated images may be inserted into public posts. <br>
-Mitigation: Use trusted content files and manually review generated imagery before publication. <br>
-Risk: Unpinned Playwright dependency updates may change browser automation behavior. <br>
-Mitigation: Consider pinning the Playwright dependency for reproducible operation. <br>
+## Use Case:
 
+External content publishers, operators, and developers use this skill to automate WeChat Official Account article preparation, save drafts, or publish posts with generated imagery and common publication settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/XIEBBS/decleormx-wechat-gzh-publish) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with shell command examples and CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update ~/.wechat_mp/cookies.json and /tmp/mp_debug_*.png while operating the publishing workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can publish content publicly to a connected WeChat Official Account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the draft mode first, review the generated article and cover image, and only run direct publishing from a controlled account and machine.
+
+Risk: The skill stores and reuses login cookies for the WeChat Official Account.
+
+Mitigation: Protect the cookie file as a sensitive login session, restrict local access to it, and delete it when the session should no longer be reused.
+
+Risk: Article content loaded from files is inserted into the editor as formatted HTML.
+
+Mitigation: Use trusted article files only until the insertion path is escaped or sanitized.
+
+Risk: Unattended scheduled publishing can amplify account or content mistakes.
+
+Mitigation: Avoid cron or unattended publishing unless the machine, account, and source content are fully controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiebbs/skills/decleormx-wechat-gzh-publish)
+- [Publisher profile](https://clawhub.ai/user/xiebbs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, command-line arguments, and console status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local browser cookies and debug screenshots, and may save drafts or publish posts in the connected WeChat Official Account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

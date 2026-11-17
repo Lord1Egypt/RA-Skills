@@ -1,43 +1,70 @@
-## Description: <br>
-Fortune Daily generates personalized daily, weekly, monthly, or date-specific horoscope readings by combining Western zodiac signs and Chinese zodiac attributes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fortune Daily generates personalized Chinese horoscope readings by combining Western zodiac signs and Chinese zodiac attributes for daily, weekly, monthly, or specified-date forecasts.
 
-## Publisher: <br>
-[vccv2rndrv-cyber](https://clawhub.ai/user/vccv2rndrv-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vccv2rndrv-cyber](https://clawhub.ai/user/vccv2rndrv-cyber)
 
-## Use Case: <br>
-External users and assistant operators use this skill to generate personalized Chinese-language horoscope readings and optional scheduled daily push messages based on birthday, zodiac sign, Chinese zodiac animal, and preferred detail level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores birthday, zodiac, Chinese zodiac, and push preference data in MEMORY.md for personalization. <br>
-Mitigation: Confirm the user is comfortable with that stored profile data, clear bundled sample data before real use, and provide a way to delete or reset stored profile data. <br>
-Risk: Daily push delivery may send personal horoscope content through the configured OpenClaw channel. <br>
-Mitigation: Enable scheduled push only after explicit opt-in and verify how the runtime handles message delivery and stored preferences. <br>
+## Use Case:
 
+External users and personal-assistant operators use this skill to request or schedule personalized horoscope readings across overall, love, career, finance, and health dimensions. It supports one-off queries and opt-in daily push workflows using stored zodiac profile preferences.
 
-## Reference(s): <br>
-- [Fortune Daily on ClawHub](https://clawhub.ai/vccv2rndrv-cyber/fortune-daily) <br>
-- [Publisher profile: vccv2rndrv-cyber](https://clawhub.ai/user/vccv2rndrv-cyber) <br>
-- [Zodiac index reference](references/zodiac-index.md) <br>
-- [Zodiac sign reference files](references/signs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown horoscope readings with optional scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include five reading dimensions, lucky guidance, a daily tip, and push-ready message content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.0.0) <br>
+Risk: The skill may retain exact birthdays and horoscope profile data in MEMORY.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Installers should remove the bundled populated MEMORY.md record, store only the minimum profile data needed, and honor deletion or retention preferences.
+
+Risk: The skill can use stored profile data for scheduled pushes to external channels.
+
+Mitigation: Require explicit user opt-in before scheduled delivery and confirm the destination channel before enabling any recurring push.
+
+Risk: Relationship or wellness horoscope content could be mistaken for professional advice.
+
+Mitigation: Keep readings framed as entertainment and avoid substituting horoscope output for professional mental-health, medical, financial, or relationship support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vccv2rndrv-cyber/skills/fortune-daily)
+- [Zodiac Index](references/zodiac-index.md)
+- [Aquarius Reference](references/signs/aquarius.md)
+- [Aries Reference](references/signs/aries.md)
+- [Cancer Reference](references/signs/cancer.md)
+- [Capricorn Reference](references/signs/capricorn.md)
+- [Gemini Reference](references/signs/gemini.md)
+- [Leo Reference](references/signs/leo.md)
+- [Libra Reference](references/signs/libra.md)
+- [Pisces Reference](references/signs/pisces.md)
+- [Sagittarius Reference](references/signs/sagittarius.md)
+- [Scorpio Reference](references/signs/scorpio.md)
+- [Taurus Reference](references/signs/taurus.md)
+- [Virgo Reference](references/signs/virgo.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown horoscope reading with optional scheduling configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Personalized by birthday, Western zodiac sign, Chinese zodiac attribute, target date or time period, and push preferences when provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package.json state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

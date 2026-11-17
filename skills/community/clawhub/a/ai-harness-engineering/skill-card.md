@@ -1,40 +1,55 @@
-## Description: <br>
-AI Harness Engineering helps OpenClaw record verified mistakes, hallucinations, defects, feature requests, and lessons into traceable ledgers that support review and self-improvement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Harness Engineering records verified OpenClaw errors, learnings, and feature requests in ledgers, then supports review, summary injection, and optional promotion workflows to help avoid repeated mistakes.
 
-## Publisher: <br>
-[sqlskills](https://clawhub.ai/user/sqlskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moniq888](https://clawhub.ai/user/moniq888)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to capture corrected errors, recurring lessons, and feature requests, then query or review those ledgers before future answers. It also supports optional scheduled promotion and summary injection so repeated lessons can inform persistent workspace guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create an always-on local memory that stores conversation-derived content and may write promoted lessons into persistent agent instruction files. <br>
-Mitigation: Enable it only when this behavior is desired; review or disable auto-promotion, avoid recording secrets or proprietary details, prune ledgers periodically, and require approval before writing to SOUL.md, AGENTS.md, TOOLS.md, or MEMORY.md. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to track verified mistakes, learning items, and feature requests, query them during future work, and generate summaries or reports for review.
 
-## Reference(s): <br>
-- [AI Harness Engineering on ClawHub](https://clawhub.ai/sqlskills/ai-harness-engineering) <br>
-- [sqlskills Publisher Profile](https://clawhub.ai/user/sqlskills) <br>
-- [Common Error Patterns](references/error_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSONL record schemas and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local JSONL ledgers and workspace guidance files when its scripts are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist conversation-derived content and later write it into files that shape future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before recording or promoting entries, and inspect proposed changes to SOUL.md, AGENTS.md, TOOLS.md, and MEMORY.md before enabling promotion workflows.
+
+Risk: Recorded ledgers may contain private conversation content or secrets because redaction is not enforced.
+
+Mitigation: Avoid recording secrets or private content, and review ledger entries before sharing reports or enabling always-on use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moniq888/skills/ai-harness-engineering)
+- [Package documentation](artifact/PACKAGE.md)
+- [Error patterns reference](artifact/references/error_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands, plus JSON/JSONL ledger and report files from scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist conversation-derived error, learning, and feature records and may update workspace guidance files when promotion workflows are enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

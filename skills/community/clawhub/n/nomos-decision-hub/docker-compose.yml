@@ -1,0 +1,30 @@
+services:
+  nomos-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      SP_ENV: production
+      SP_DATABASE_DSN: postgresql://nomos:nomos@postgres:5432/nomos
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nomos
+      POSTGRES_PASSWORD: nomos
+      POSTGRES_DB: nomos
+    volumes:
+      - nomos_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nomos -d nomos"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  nomos_pgdata:

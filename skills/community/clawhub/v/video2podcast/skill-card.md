@@ -1,45 +1,61 @@
-## Description: <br>
-Convert bookmarked videos from YouTube, X, and other supported sites into a podcast RSS feed hosted on Cloudflare R2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts bookmarked videos from YouTube, X (Twitter), and other yt-dlp-supported sites into a podcast RSS feed hosted on Cloudflare R2.
 
-## Publisher: <br>
-[ryandeathridge](https://clawhub.ai/user/ryandeathridge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryandeathridge](https://clawhub.ai/user/ryandeathridge)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn saved or bookmarked video URLs into podcast episodes, maintain a local episode list, and publish the generated audio files and RSS feed to Cloudflare R2. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use browser login cookies when downloading protected videos. <br>
-Mitigation: Set VIDPOD_COOKIE_BROWSER=none unless cookie-backed downloads are intentional, and review each add or sync action before it runs. <br>
-Risk: Cloud storage credentials are stored in a plaintext local env file. <br>
-Mitigation: Scope the R2 token to one bucket, grant only required permissions, and restrict file permissions on ~/.openclaw/.env. <br>
-Risk: The skill publishes generated podcast audio and feed data to a public R2 endpoint. <br>
-Mitigation: Install only when public podcast publishing is intended and review source URLs before adding or syncing episodes. <br>
+## Use Case:
 
+External users and developers use this skill to add individual video URLs or YouTube playlists to a personal podcast feed, manage episodes, and publish audio files plus feed.xml to Cloudflare R2.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryandeathridge/video2podcast) <br>
-- [yt-dlp project](https://github.com/yt-dlp/yt-dlp) <br>
-- [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) <br>
-- [Cloudflare](https://cloudflare.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown or plain text with command output, feed URLs, and generated podcast artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local state, MP3 audio objects, and feed.xml when configured with Cloudflare R2 credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: The skill reads browser cookies by default for age-restricted or protected video downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set VIDPOD_COOKIE_BROWSER=none unless authenticated downloads are explicitly needed, and review any cookie use before running the skill.
+
+Risk: The skill handles Cloudflare R2 credentials and writes them to ~/.openclaw/.env during setup.
+
+Mitigation: Use a bucket-scoped R2 token and restrict ~/.openclaw/.env to owner-only permissions such as 0600.
+
+Risk: Uploaded audio files and feed.xml may become publicly accessible through the configured R2 public URL.
+
+Mitigation: Make the R2 bucket public only if the feed and uploaded audio are intended to be public.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryandeathridge/skills/video2podcast)
+- [ClawHub publisher profile](https://clawhub.ai/user/ryandeathridge)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
+- [Cloudflare R2 get started](https://developers.cloudflare.com/r2/get-started/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands; generated podcast artifacts are MP3 audio files and RSS XML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg, yt-dlp, boto3, Cloudflare R2 credentials, and optional browser-cookie access for restricted downloads.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

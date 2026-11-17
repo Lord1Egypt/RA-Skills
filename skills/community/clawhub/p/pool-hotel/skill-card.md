@@ -1,46 +1,62 @@
-## Description: <br>
-Find hotels with swimming pools, including indoor heated pools, outdoor infinity pools, rooftop pools, and kid-friendly splash areas, using Fliggy-powered flyai CLI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hotels with swimming pools, including indoor heated pools, outdoor infinity pools, rooftop pools, and kid-friendly splash areas, with related travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel agents use this skill to find pool-equipped hotels and format real-time booking options from flyai CLI output. It is intended for travel search and booking assistance where responses must include current results and booking links rather than model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a global flyai CLI package. <br>
-Mitigation: Install only when the CLI package is trusted, verify the installed CLI before use, and consider running it in an isolated environment. <br>
-Risk: The skill may keep raw travel queries in a local execution log. <br>
-Mitigation: Avoid entering sensitive personal travel details unless local logging is acceptable, and disable or delete .flyai-execution-log.json after use when appropriate. <br>
-Risk: Travel results depend on external CLI output and may fail or become unavailable. <br>
-Mitigation: Use the documented fallback flow, report failures honestly, and only present hotel options that include valid booking links from CLI output. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to search for pool hotels and related travel options through the flyai CLI, then present concise Markdown results with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/pool-hotel) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, inline shell commands, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs must be based on flyai CLI results, include Book links when results are shown, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires installing and running the flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a version-pinned, user-approved, locally sandboxed CLI installation before running travel searches.
+
+Risk: Travel searches are sent to a third-party service and booking links are selected by that service.
+
+Mitigation: Tell users when third-party services are used and validate booking links before presenting or opening them.
+
+Risk: Local logging may expose travel queries or booking-related details.
+
+Mitigation: Disable logging where possible or redact sensitive query details before persistence.
+
+## Reference(s):
+
+- [Pool Hotel skill page](https://clawhub.ai/xiejinsong/skills/pool-hotel)
+- [xiejinsong publisher profile](https://clawhub.ai/user/xiejinsong)
+- [Fallbacks - Hotel Category](references/fallbacks.md)
+- [Playbooks - pool-hotel](references/playbooks.md)
+- [Runbook - Execution Log Schema](references/runbook.md)
+- [Templates - pool-hotel](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include comparison tables, troubleshooting steps, and a flyai-powered brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

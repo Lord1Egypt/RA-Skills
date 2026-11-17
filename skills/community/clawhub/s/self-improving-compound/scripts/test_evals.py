@@ -361,7 +361,7 @@ class OutputEvalTests(EvalTestCase):
         """Secrets should be redacted from logged entries (appended [REDACTED] marker)."""
         r = self._log_correction(
             summary="Test secret redaction",
-            correct="API key is sk-MYSECRETKEY1234567890 not something-else",
+            correct="API key is REDACTED-SECRET not something-else",
         )
         self.assertEqual(r.returncode, 0)
         ex = self._export()
@@ -372,7 +372,7 @@ class OutputEvalTests(EvalTestCase):
         """Checklist 7: Secrets must be marked [REDACTED] in entry content."""
         r = self._log_correction(
             summary="Checklist: secret redaction",
-            correct="token was sk-ABCDEFGHIJKLMNOPQRST should not appear raw",
+            correct="token was REDACTED-SECRET should not appear raw",
         )
         ex = self._export()
         self.assertIn("[REDACTED]", ex.stdout)

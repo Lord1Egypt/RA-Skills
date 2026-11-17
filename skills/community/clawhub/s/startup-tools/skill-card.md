@@ -1,41 +1,55 @@
-## Description: <br>
-Startup Tools provides startup checklists, company registration guidance, MVP planning, fundraising preparation, legal compliance prompts, and growth strategy guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Startup toolkit with checklists, company registration, MVP planning, fundraising preparation, legal compliance, and growth strategy guidance.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Founders, startup operators, and advisors use this skill to generate stage-specific startup planning guidance, including checklists, registration steps, MVP plans, fundraising preparation, legal compliance topics, and growth strategy ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included local shell helper may write small logs under a startup-tools data directory. <br>
-Mitigation: Review the shell scripts before running them, invoke only documented commands, and choose a controlled local data directory when needed. <br>
-Risk: Startup, registration, legal, fundraising, and growth guidance can be jurisdiction-specific and may not fit every business context. <br>
-Mitigation: Treat outputs as planning guidance and have qualified legal, tax, financial, or business advisors verify decisions before acting. <br>
+## Use Case:
 
+External founders, startup operators, and advisors use this skill to generate stage-aware startup checklists and guidance for company registration, MVP planning, fundraising, legal compliance, and growth. The included templates are especially oriented toward China-specific startup operations where relevant.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/startup-tools) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell command invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The startup helper accepts a command plus optional stage and industry arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled local note/log utility can store user-provided entries on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets, credentials, private fundraising details, or confidential business data unless local disk storage is intended.
+
+Risk: Startup, legal, compliance, and fundraising guidance can be jurisdiction-specific and may be incomplete for a user's situation.
+
+Mitigation: Treat generated guidance as planning support and review important business, legal, and compliance decisions with qualified local professionals.
+
+## Reference(s):
+
+- [Startup Tools ClawHub page](https://clawhub.ai/ckchzh/skills/startup-tools)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Startup Tools prompt tips](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with checklist sections, tables, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Startup guidance commands accept stage and industry arguments; a separate local note/log utility can store user-provided entries under the user's data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

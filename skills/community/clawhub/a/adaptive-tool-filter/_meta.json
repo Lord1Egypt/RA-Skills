@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn79w6r5w2j3q0cf0pse8zsyt183paxs",
-  "slug": "adaptive-tool-filter",
+  "name": "adaptive-tool-filter",
   "version": "1.0.0",
-  "publishedAt": 1774883999012
+  "description": "智能过滤工具列表，根据任务意图筛选相关工具，减少 token 消耗。参考 LightAgent 设计。",
+  "author": "楼璃",
+  "tags": ["tools", "filter", "optimization", "token-saving"],
+  "license": "MIT"
 }

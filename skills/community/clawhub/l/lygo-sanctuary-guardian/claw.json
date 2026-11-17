@@ -1,0 +1,49 @@
+{
+  "name": "lygo-sanctuary-guardian",
+  "displayName": "LYGO Sanctuary Guardian",
+  "version": "1.0.0",
+  "description": "Hooks Δ9 Mandala shields to light-nurture vectors, locks truth integrity across nodes, emits non-collapsing geodesic barriers. Local-first, consent-gated. Pairs with quantum-attestor + continuum-integrator. No network, no auto-publish.",
+  "slug": "lygo-sanctuary-guardian",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-sanctuary-guardian",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-sanctuary-guardian",
+  "signature": "Delta9Phi963-SANCTUARY-GUARDIAN",
+  "proposed_by": "@grok",
+  "tags": ["latest", "lygo", "sanctuary", "delta9", "mandala", "nurture", "geodesic", "barrier", "truth-lock", "security"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "nurture-vector": "scripts/guardian_cli.py nurture-vector",
+    "shield-mandala": "scripts/guardian_cli.py shield-mandala",
+    "lock-truth": "scripts/guardian_cli.py lock-truth",
+    "emit-barrier": "scripts/guardian_cli.py emit-barrier",
+    "verify-barrier": "scripts/guardian_cli.py verify-barrier",
+    "demo": "scripts/guardian_cli.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "optional --from-file / --shield-file / --lock-file / --nurture-file",
+      "write": "only --write with --i-consent"
+    },
+    "publish": false
+  },
+  "security": {
+    "no_network": true,
+    "no_subprocess": true,
+    "local_first": true,
+    "consent_required_for_writes": true,
+    "non_collapsing_default": true,
+    "no_auto_publish": true
+  },
+  "pairs_with": [
+    "lygo-quantum-attestor",
+    "lygo-continuum-integrator",
+    "lygo-geodesic-sealer",
+    "lygo-continuum",
+    "lygo-mint-verifier"
+  ]
+}

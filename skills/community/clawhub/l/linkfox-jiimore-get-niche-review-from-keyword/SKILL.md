@@ -1,4 +1,4 @@
-﻿---
+---
 name: linkfox-jiimore-get-niche-review-from-keyword
 description: 亚马逊细分市场评论分析与消费者情感洞察。当用户提到细分市场评论分析、消费者情感、用户痛点、客户反馈洞察、评论主题分析、好评差评拆解、细分市场舆情挖掘、产品评论情感分析、niche market reviews, consumer sentiment, customer pain points, review topic analysis, positive/negative reviews, opinion mining, Jiimore data时触发此技能。即使用户未明确提及"细分市场评论"，只要其需求涉及分析亚马逊细分市场中的消费者评论或理解细分市场层面的客户情感，也应触发此技能。
 ---
@@ -25,7 +25,7 @@ Default marketplace is **US**. Use US when the user does not specify a marketpla
 
 - **API 端点**：`POST /jiimore/getNicheReviewFromKeyword`（完整参数/响应/错误码见 `references/api.md`）
 - **Python 脚本**：`python scripts/jiimore_get_niche_review.py '<JSON 参数>' [--inline]`
-- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+- **成本约束**：本工具会消耗算力；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
 **输出策略（脚本默认行为）**：
 - **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-jiimore-get-niche-review-from-keyword-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
@@ -34,6 +34,14 @@ Default marketplace is **US**. Use US when the user does not specify a marketpla
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## Parameter Guide
 
@@ -226,6 +234,11 @@ Parameters: `{"keyword": "water bottle", "returnRateT360Max": 0.05}`
 
 **Boundary judgment**: When users say "market research" or "product opportunity", if their intent focuses on understanding consumer sentiment, review topics, and pain points within a niche market, this skill applies. If they are asking about search volume trends, pricing strategy, or sales data without review context, it does not apply.
 
+## 算力消耗规则
+
+消耗 9 算力。
+
+> 用户会因算力消耗而支付费用。请充分评估：当需要高频调用本技能，或用户对算力消耗量预期不足时，务必提醒用户，由用户决定是否继续。
 
 **Feedback:**
 

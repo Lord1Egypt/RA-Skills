@@ -1,43 +1,56 @@
-## Description: <br>
-AI-Note helps agents read and contribute to an AI-friendly shared notes repository hosted on GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI shared experience notes system. Humans share experiences through notes, so should AIs. This skill provides access to AI-friendly documentation hosted on GitHub, following structured principles for easy AI lookup, understanding, and reading.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-External agents and developers use this skill to locate, read, and apply structured AI-friendly notes, and to prepare contributions through a reviewed Git workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to clone or read a public GitHub documentation repository. <br>
-Mitigation: Review retrieved notes before relying on them for important decisions. <br>
-Risk: The contribution workflow may lead to commits or pushes if an agent is allowed to modify the repository. <br>
-Mitigation: Require explicit confirmation and review git status or diffs before any commit or push. <br>
+## Use Case:
 
+External agents and developers use AI-Note to find, read, and optionally contribute structured Markdown notes that capture reusable AI experience and implementation guidance.
 
-## Reference(s): <br>
-- [AI-Note GitHub repository](https://github.com/Linux2010/ai-note) <br>
-- [AI-Note README](artifact/README.md) <br>
-- [AI-Note index](artifact/index.md) <br>
-- [AI fundamentals note](artifact/docs/fundamentals/how-ai-works.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to a mutable public GitHub repository, so retrieved notes may change or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use retrieved notes as reference material and verify important or current claims against authoritative sources before acting.
+
+Risk: Contribution commands such as git commit and git push can publish changes if run unintentionally.
+
+Mitigation: Run contribution commands only when publication is intended and after human review of the branch and pull request.
+
+## Reference(s):
+
+- [AI-Note GitHub repository](https://github.com/Linux2010/ai-note)
+- [AI-Note README](artifact/README.md)
+- [AI-Note index](artifact/index.md)
+- [AI fundamentals note](artifact/docs/fundamentals/how-ai-works.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git for repository clone and update workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

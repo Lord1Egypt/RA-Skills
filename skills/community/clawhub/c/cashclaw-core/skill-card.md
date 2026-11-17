@@ -1,43 +1,60 @@
-## Description: <br>
-The business brain of CashClaw. Orchestrates mission lifecycle, client communication, revenue tracking, and delegates work to specialized skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The business brain of CashClaw. Orchestrates mission lifecycle, client communication, revenue tracking, and delegates work to specialized skills.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate paid CashClaw missions from client intake through quoting, execution, delivery, invoicing, follow-up, and revenue logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores client mission records, business records, and client-facing messages as part of its stated purpose. <br>
-Mitigation: Review client data before it is saved and periodically delete old ~/.cashclaw records that are no longer needed. <br>
-Risk: Invoices, payment links, deliverables, and follow-up messages may be sent to clients. <br>
-Mitigation: Confirm recipients, pricing, invoice details, deliverables, and message content before sending anything externally. <br>
-Risk: Delegated CashClaw skills may fail or produce incomplete work during mission execution. <br>
-Mitigation: Log failures, retry once, escalate blocked missions to an operator, and do not charge for undelivered work. <br>
+## Use Case:
 
+External operators and business automation agents use this skill to manage paid client missions from intake through quote, delivery, invoicing, follow-up, and revenue tracking. It coordinates specialized CashClaw skills while maintaining mission files, ledgers, client profiles, and dashboard records.
 
-## Reference(s): <br>
-- [Cashclaw Core on ClawHub](https://clawhub.ai/andreataide86/cashclaw-core) <br>
-- [andreataide86 ClawHub profile](https://clawhub.ai/user/andreataide86) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, guidance] <br>
-**Output Format:** [Markdown instructions with client-facing text, JSON/JSONL records, and local mission files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates an eight-stage business workflow and records mission, ledger, revenue, dashboard, and client-profile data under ~/.cashclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store sensitive client, billing, deliverable, and configuration data locally under ~/.cashclaw/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict local file permissions and avoid storing secrets or raw client messages in CashClaw files.
+
+Risk: The install metadata uses the current npm cashclaw executable rather than a pinned reviewed version.
+
+Mitigation: Pin and review the npm package version before installing or deploying the skill.
+
+Risk: The workflow can send invoices, payment links, reminders, follow-ups, and deliverables to clients.
+
+Mitigation: Require explicit operator confirmation before any client-facing message or payment artifact is sent.
+
+## Reference(s):
+
+- [Cashclaw Core ClawHub page](https://clawhub.ai/andreataide86/skills/cashclaw-core)
+- [Publisher profile: andreataide86](https://clawhub.ai/user/andreataide86)
+- [cashclaw npm package](https://www.npmjs.com/package/cashclaw)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Client-facing text, Markdown mission files, JSON/JSONL records, and deliverable file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local CashClaw mission, ledger, client, deliverable, and dashboard files under ~/.cashclaw/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

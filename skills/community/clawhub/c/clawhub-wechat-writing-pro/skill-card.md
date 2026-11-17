@@ -1,46 +1,65 @@
-## Description: <br>
-Provides WeChat Official Account article writing, Markdown formatting, theme selection, image handling, draft creation, and publishing guidance for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助 Agent 为微信公众号撰写 Markdown 内容、应用爆款写作方法和排版主题，并通过微信接口创建草稿或发布文章。
 
-## Publisher: <br>
-[gongdinghuan](https://clawhub.ai/user/gongdinghuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gongdinghuan](https://clawhub.ai/user/gongdinghuan)
 
-## Use Case: <br>
-Content creators, operators, and agents use this skill to plan, write, format, preview, and prepare WeChat Official Account articles, including optional draft creation and publishing workflows. It is most useful when an agent needs platform-specific Markdown guidance, layout theme selection, image handling, and WeChat publishing checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat App ID, App Secret, or access tokens could be exposed during publishing setup. <br>
-Mitigation: Store credentials in environment variables or a managed secret store, avoid committing them, and rotate them if exposure is suspected. <br>
-Risk: An agent could publish public WeChat content before a human has reviewed the article, images, and target account. <br>
-Mitigation: Use draft creation and preview as the default workflow, and require explicit human approval before any publish_draft, publish_now, or full_auto_publish action. <br>
-Risk: Generated article content may violate platform policy, include sensitive material, or contain inaccurate claims. <br>
-Mitigation: Review the final article against WeChat policies and the account's editorial standards before publication. <br>
+## Use Case:
 
+Content creators, operators, and agents managing WeChat Official Accounts use this skill to draft Chinese articles, choose WeChat-ready layouts, prepare images, create drafts, and optionally publish through WeChat APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gongdinghuan/clawhub-wechat-writing-pro) <br>
-- [WeChat publishing guide](knowledge/wechat-publishing-guide.md) <br>
-- [WeChat Official Account developer documentation](https://developers.weixin.qq.com/doc/offiaccount) <br>
-- [Markdown syntax reference](https://blog.axiaoxin.com/post/markdown-guide/) <br>
-- [Theme catalog source](https://md.axiaoxin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with article drafts, checklists, command examples, API examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include formatted WeChat article content, publishing action plans, WeChat API request examples, and human-review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence, artifact package.json, and artifact README) <br>
+Risk: WeChat App Secret or access tokens could be exposed during setup or API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials outside source files, avoid logging secrets, and rotate App Secret or access tokens if exposure is suspected.
+
+Risk: A publish action can affect a live WeChat Official Account audience.
+
+Mitigation: Default to draft creation, preview on mobile, and require explicit human approval before calling live publish flows.
+
+Risk: Generated article content, links, images, or formatting may violate platform constraints or editorial requirements.
+
+Mitigation: Review content manually before release, verify source and image rights, and check WeChat limits for title length, body length, image size, external links, and mobile rendering.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/gongdinghuan/skills/clawhub-wechat-writing-pro)
+- [Artifact README](artifact/README.md)
+- [Markdown syntax guide](artifact/knowledge/markdown-syntax-guide.md)
+- [Viral writing methodology](artifact/knowledge/viral-writing-methodology.md)
+- [WeChat layout theme catalog](artifact/knowledge/theme-catalog.md)
+- [WeChat publishing guide](artifact/knowledge/wechat-publishing-guide.md)
+- [WeChat Official Account developer documentation](https://developers.weixin.qq.com/doc/offiaccount)
+- [Renyandui Markdown theme library](https://md.axiaoxin.com)
+- [Markdown reference source](https://blog.axiaoxin.com/post/markdown-guide/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with API examples, JSON payloads, Python and curl snippets, platform constraints, and publication checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft and live publish guidance for WeChat Official Account workflows; final live publishing should require human approval.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Superfluid streams"
+  short_description: "Superfluid streams workflow and evidence"
+  default_prompt: "Use $galleon-superfluid-streams to complete the requested protocol workflow and return the observed decision record."

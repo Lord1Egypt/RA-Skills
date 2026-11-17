@@ -1,36 +1,48 @@
-## Description: <br>
-Use when code imports Anthropic SDKs or the user asks to build with the Claude API, Agent SDK, tool use, streaming, files, or batches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers build Anthropic Claude API and Agent SDK integrations, including tool use, streaming, files, and batch jobs.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wimi321](https://clawhub.ai/user/wimi321)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to choose Claude API and Anthropic SDK implementation patterns for messages, streaming, tools, file workflows, and batch jobs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Future API implementation changes proposed by the agent could introduce incorrect behavior or insecure integration patterns.
+
+Mitigation: Review generated code and API configuration changes before applying them, and check official Anthropic documentation for current API details.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to guide agent work on Anthropic or Claude API integrations, including SDK pattern selection for messages, streaming, tool use, files, and batch jobs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown with code blocks and implementation guidance]
 
-## Reference(s): <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [May recommend checking official Anthropic documentation for fast-moving API details.]
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; review generated code changes as usual.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.0.0 (source: server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

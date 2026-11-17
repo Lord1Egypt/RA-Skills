@@ -218,7 +218,7 @@ This is a real scenario. You must choose and act. Don't ask hypothetical questio
 
 ### Key Elements
 
-1. **Realistic Context**: Scenarios must feel genuine, not contrived
+1. **Realistic Context**: Scenarios must feel genuine
 2. **Justified Temptation**: The wrong choice should seem reasonable
 3. **Multiple Options**: Include a "compromise" that's still wrong
 4. **Decision Forcing**: No hypothetical discussion allowed
@@ -404,18 +404,8 @@ Each test targets a specific way agents might rationalize improper escalation.
 
 ### Automated Testing
 
-```bash
-# Run pressure tests for a skill
-python scripts/skills_eval/pressure_tester.py \
-  --skill-path path/to/skill/SKILL.md \
-  --test-dir path/to/skill/tests/ \
-  --format report
-
-# Validate test coverage
-python scripts/skills_eval/pressure_tester.py \
-  --skill-path path/to/skill/SKILL.md \
-  --coverage-check
-```
+No script runs pressure tests. Use the manual protocol above, or run the
+scenarios in fresh subagents with `Skill(abstract:subagent-testing)`.
 
 ## When Pressure Tests Fail
 

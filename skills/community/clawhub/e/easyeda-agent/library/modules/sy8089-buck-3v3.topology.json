@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.sy8089_buck_3v3_live",
+    "title": "SY8089 5V 转 3.3V 降压",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "REG",
+        "lcsc": "C78988",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "8cfd65b3cdf844cdadfefd57318dcba1",
+          "name": "SY8089AAAC"
+        },
+        "footprint": "SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+        "pins": [
+          {
+            "number": "1",
+            "name": "EN",
+            "net": "internal.01"
+          },
+          {
+            "number": "2",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "3",
+            "name": "LX",
+            "net": "internal.03"
+          },
+          {
+            "number": "4",
+            "name": "IN",
+            "net": "port.POWER_IN"
+          },
+          {
+            "number": "5",
+            "name": "FB",
+            "net": "internal.02"
+          }
+        ]
+      },
+      {
+        "role": "IN_BULK",
+        "lcsc": "C45783",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "footprint": "C0805",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_IN"
+          }
+        ]
+      },
+      {
+        "role": "IN_DECOUP",
+        "lcsc": "C14663",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "96b39256cc3f4d80bd3b503deb4f3328",
+          "name": "CC0603KRX7R9BB104"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_IN"
+          }
+        ]
+      },
+      {
+        "role": "IND",
+        "lcsc": "C167206",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "235fe1411dd644e688b4fc00afdc5c09",
+          "name": "FXL0420-2R2-M"
+        },
+        "footprint": "IND-SMD_L4.4-W4.2",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_OUT"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.03"
+          }
+        ]
+      },
+      {
+        "role": "OUT_BULK",
+        "lcsc": "C45783",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "footprint": "C0805",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_OUT"
+          }
+        ]
+      },
+      {
+        "role": "OUT_DECOUP",
+        "lcsc": "C14663",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "96b39256cc3f4d80bd3b503deb4f3328",
+          "name": "CC0603KRX7R9BB104"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_OUT"
+          }
+        ]
+      },
+      {
+        "role": "FB_CAP",
+        "lcsc": "C1653",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "ad1b2fdc99ef4ce998dd40fce460c2d4",
+          "name": "CL10C220JB8NNNC"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_OUT"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.02"
+          }
+        ]
+      },
+      {
+        "role": "FB_TOP",
+        "lcsc": "C25803",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "40ff282b3d594c33b798d1707d8406cb",
+          "name": "0603WAF1003T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_OUT"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.02"
+          }
+        ]
+      },
+      {
+        "role": "FB_BOTTOM",
+        "lcsc": "C2960862",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b5144eb014ce41d7a72a460b56c18b84",
+          "name": "FRC0603F2212TS"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "internal.02"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "EN_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER_IN"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.01"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "internal.01",
+        "members": [
+          "EN_PULLUP.1",
+          "REG.1"
+        ]
+      },
+      {
+        "id": "internal.02",
+        "members": [
+          "FB_BOTTOM.2",
+          "FB_CAP.1",
+          "FB_TOP.1",
+          "REG.5"
+        ]
+      },
+      {
+        "id": "internal.03",
+        "members": [
+          "IND.1",
+          "REG.3"
+        ]
+      },
+      {
+        "id": "port.POWER_OUT",
+        "members": [
+          "FB_CAP.2",
+          "FB_TOP.2",
+          "IND.2",
+          "OUT_BULK.2",
+          "OUT_DECOUP.2"
+        ],
+        "port": "POWER_OUT"
+      },
+      {
+        "id": "port.POWER_IN",
+        "members": [
+          "EN_PULLUP.2",
+          "IN_BULK.2",
+          "IN_DECOUP.2",
+          "REG.4"
+        ],
+        "port": "POWER_IN"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "FB_BOTTOM.1",
+          "IN_BULK.1",
+          "IN_DECOUP.1",
+          "OUT_BULK.1",
+          "OUT_DECOUP.1",
+          "REG.2"
+        ],
+        "port": "GND"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

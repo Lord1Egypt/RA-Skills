@@ -285,7 +285,7 @@ grvt trade cancel-on-disconnect --countdown 0
 
 ## `grvt trade derisk`
 
-Set the derisk-to-maintenance-margin ratio. Requires a private key for EIP-712 signing.
+Set the deriREDACTED-SECRET ratio. Requires a private key for EIP-712 signing.
 
 | Option | Required | Description |
 |--------|----------|-------------|

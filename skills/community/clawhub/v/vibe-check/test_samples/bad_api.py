@@ -68,7 +68,7 @@ def send_email(data):
     server.login("admin@example.com", "secretpass123")
     server.sendmail("admin@example.com", data["to"], data["body"])
     
-token = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+token = "REDACTED-SECRET"
 
 def calculate_score(x):
     if x > 90:

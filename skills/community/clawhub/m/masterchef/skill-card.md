@@ -1,45 +1,61 @@
-## Description: <br>
-MasterChef helps agents answer recipe and ingredient questions by querying the api.yummy.chat recipe knowledge base and translating between English and Chinese when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MasterChef helps agents answer recipe and ingredient questions by querying api.yummy.chat for dish suggestions and recipes, translating between English and Chinese when needed.
 
-## Publisher: <br>
-[yummy-chat](https://clawhub.ai/user/yummy-chat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yummy-chat](https://clawhub.ai/user/yummy-chat)
 
-## Use Case: <br>
-External users and developers use this skill to look up recipes by dish name or discover dishes from one to three ingredients. The skill sends translated Chinese dish or ingredient terms to api.yummy.chat and returns formatted recipe or dish results in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dish names or ingredient lists are sent to the disclosed api.yummy.chat external service. <br>
-Mitigation: Avoid entering sensitive personal context and use clear recipe requests so the skill is invoked only when recipe lookup is intended. <br>
-Risk: The API only accepts Chinese input and returns Chinese output, so translation errors can affect recipe or ingredient results. <br>
-Mitigation: Review translated dish names, ingredient lists, cooking steps, and tips before relying on the returned recipe. <br>
-Risk: Network or service errors can prevent recipe lookup or ingredient search. <br>
-Mitigation: Handle unavailable API responses by asking the user to try again later or refine the dish or ingredient request. <br>
+## Use Case:
 
+External users ask an agent for recipe lookup or ingredient-based meal ideas, including English or Chinese requests. The skill guides the agent to query the Yummy recipe service, translate when needed, and return formatted cooking guidance.
 
-## Reference(s): <br>
-- [MasterChef ClawHub page](https://clawhub.ai/yummy-chat/masterchef) <br>
-- [api.yummy.chat base API](https://api.yummy.chat) <br>
-- [Ingredient search endpoint](https://api.yummy.chat/ingredients) <br>
-- [Recipe lookup endpoint](https://api.yummy.chat/howtocook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown recipe or dish results with JSON API calls executed through curl] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May translate user input to Chinese for the API and translate Chinese API responses back to the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill pre-authorizes unrestricted Bash for API lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Bash use before deployment and prefer a scoped HTTP/JSON mechanism or tightly limited commands for the required API calls.
+
+Risk: Broad activation rules can trigger the skill on general cooking mentions.
+
+Mitigation: Narrow activation to explicit recipe or ingredient-search requests and confirm ambiguous user intent before making API calls.
+
+Risk: Recipe queries are sent to api.yummy.chat.
+
+Mitigation: Avoid sending sensitive personal, dietary, or location information unless appropriate for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yummy-chat/skills/masterchef)
+- [ClawHub publisher profile](https://clawhub.ai/user/yummy-chat)
+- [Yummy recipe API](https://api.yummy.chat)
+- [Ingredient search endpoint](https://api.yummy.chat/ingredients)
+- [Recipe lookup endpoint](https://api.yummy.chat/howtocook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text recipe guidance, with shell commands used by the agent for API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May translate user inputs to Chinese before API calls and translate Chinese recipe responses back to the user's language.]
+
+## Skill Version(s):
+
+0.6.2 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

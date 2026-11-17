@@ -1,159 +1,29 @@
 # OpenSea Marketplace API
 
-This reference covers the marketplace endpoints for buying and selling NFTs and tokens on OpenSea.
+Endpoints for buying and selling NFTs on OpenSea. EVM orders use **Seaport**; Solana-native order protocols go through the action endpoints. The API builds unsigned orders and transactions, fulfills listings and offers, and cancels orders. Your wallet signs everything client-side before it is submitted.
 
-## Overview
-
-OpenSea uses the **Seaport protocol** for all marketplace orders. The API provides endpoints to:
-- Query existing listings and offers
-- Build new listings and offers (returns unsigned Seaport orders)
-- Fulfill orders (accept listings or offers)
-- Cancel orders
-
-**Important**: Creating and fulfilling orders requires wallet signatures. The API returns order data that must be signed client-side before submission.
-
-## Base URL and Authentication
+## Base URL and authentication
 
 ```
 Base URL: https://api.opensea.io/api/v2
 Auth: x-api-key: $OPENSEA_API_KEY
 ```
 
-## Supported Chains
+## Supported chains
 
-| Chain | Identifier |
-|-------|------------|
-| Ethereum | `ethereum` |
-| Polygon | `matic` |
-| Arbitrum | `arbitrum` |
-| Optimism | `optimism` |
-| Base | `base` |
-| Avalanche | `avalanche` |
-| Klaytn | `klaytn` |
-| Zora | `zora` |
-| Blast | `blast` |
-| Sepolia (testnet) | `sepolia` |
+The chain list changes as chains launch. Get the current identifiers from `GET /api/v2/chains` (`opensea chains list`, or `opensea-api/scripts/opensea-get.sh /api/v2/chains`).
 
 ---
 
-## Read Operations (GET)
+## Reads
 
-### Get Best Listing for NFT
+Finding listings, offers and orders is in the `opensea-api` skill (`opensea listings best-for-nft`, `opensea offers best-for-nft`, `opensea orders get`). Each order response carries the `order_hash` (`svm_order.id` on Solana) and `protocol_address` that the write endpoints below need.
 
-Returns the lowest-priced active listing for an NFT.
+## Writes (POST)
 
-```bash
-GET /api/v2/listings/collection/{collection_slug}/nfts/{identifier}/best
-```
+### Submit a signed listing
 
-**Parameters:**
-- `collection_slug`: Collection slug (e.g., `boredapeyachtclub`)
-- `identifier`: NFT identifier (token ID)
-
-**Example:**
-```bash
-opensea listings best-for-nft boredapeyachtclub 1234
-```
-
-### Get Best Offer for NFT
-
-Returns the highest active offer for an NFT.
-
-```bash
-GET /api/v2/offers/collection/{collection_slug}/nfts/{identifier}/best
-```
-
-**Example:**
-```bash
-opensea offers best-for-nft boredapeyachtclub 1234
-```
-
-### Get All Listings for Collection
-
-Returns all active listings for a collection.
-
-```bash
-GET /api/v2/listings/collection/{collection_slug}/all
-```
-
-**Query parameters:**
-- `limit`: Page size (default 50, max 100)
-- `next`: Cursor for pagination
-
-**Example:**
-```bash
-opensea listings all boredapeyachtclub --limit 50
-```
-
-### Get All Offers for Collection
-
-Returns all active offers for a collection.
-
-```bash
-GET /api/v2/offers/collection/{collection_slug}/all
-```
-
-**Example:**
-```bash
-opensea offers all boredapeyachtclub --limit 50
-```
-
-### Get Best Listing for Specific NFT
-
-```bash
-GET /api/v2/listings/collection/{slug}/nfts/{token_id}/best
-```
-
-**Example:**
-```bash
-curl "https://api.opensea.io/api/v2/listings/collection/boredapeyachtclub/nfts/1234/best" \
-  -H "x-api-key: $OPENSEA_API_KEY"
-```
-
-For all listings on a collection (optionally filtered by maker), use `GET /api/v2/listings/collection/{slug}/all?maker=0x...`. There is no per-NFT all-listings endpoint — the best-listing endpoint returns a single result.
-
-### Get Offers for Specific NFT
-
-```bash
-GET /api/v2/offers/collection/{slug}/nfts/{token_id}
-```
-
-**Query parameters:**
-- `limit`, `next`: Pagination
-
-**Example:**
-```bash
-curl "https://api.opensea.io/api/v2/offers/collection/boredapeyachtclub/nfts/1234" \
-  -H "x-api-key: $OPENSEA_API_KEY"
-```
-
-For just the best offer, use `GET /api/v2/offers/collection/{slug}/nfts/{token_id}/best`. For collection-wide offers filtered by maker, use `GET /api/v2/offers/collection/{slug}/all?maker=0x...`.
-
-### Get Order by Hash
-
-Retrieve details of a specific order.
-
-```bash
-GET /api/v2/orders/chain/{chain}/protocol/{protocol_address}/{order_hash}
-```
-
-**Example:**
-```bash
-curl "https://api.opensea.io/api/v2/orders/chain/ethereum/protocol/0x0000000000000068F116a894984e2DB1123eB395/0xORDER_HASH" \
-  -H "x-api-key: $OPENSEA_API_KEY"
-```
-
----
-
-## Write Operations (POST)
-
-### Build a Listing
-
-Creates an unsigned Seaport listing order. Returns order parameters to sign.
-
-```bash
-POST /api/v2/orders/{chain}/seaport/listings
-```
+`POST /api/v2/orders/{chain}/seaport/listings` (CLI: `opensea listings post <chain> --body signed.json`) submits an order you have already signed. Get the order to sign from `POST /api/v2/listings/actions` (`opensea listings actions`), or build it by hand as below.
 
 **Request body:**
 ```json
@@ -192,16 +62,16 @@ POST /api/v2/orders/{chain}/seaport/listings
 
 **Required top-level fields:** `protocol_address`, `parameters`, `signature`.
 
-**Required `parameters` fields** (all must be present before signing): `offerer`, `zone`, `offer`, `consideration`, `startTime`, `endTime`, `orderType`, `zoneHash`, `salt`, `conduitKey`, `totalOriginalConsiderationItems`, `counter`.
+**Required `parameters` fields** (all present before signing): `offerer`, `zone`, `offer`, `consideration`, `startTime`, `endTime`, `orderType`, `zoneHash`, `salt`, `conduitKey`, `totalOriginalConsiderationItems`, `counter`.
 
 **Field notes:**
-- `counter`: Seaport nonce for the offerer. Fetch with `getCounter(address)` on the Seaport contract, or use `"0"` for accounts that have never canceled via `incrementCounter`. Order hashes and EIP-712 signatures are bound to this value.
-- `salt`: uint256 as a decimal string (e.g. from `toString(randomBigInt(256))`). A hex string works too as long as it parses as uint256.
-- `conduitKey`: `0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000` is OpenSea's conduit. Use `0x0000…0000` to transfer directly without a conduit.
-- `zone` / `zoneHash`: use zero address / zero bytes32 unless you're integrating a custom zone. `zone` is part of the signed `OrderComponents` struct, so it must be present in `parameters` (even as the zero address) or signing will fail.
-- See `### Signing Orders (EIP-712)` below for building the signature.
+- `counter`: the offerer's Seaport nonce. Read it with `getCounter(address)` on the Seaport contract, or use `"0"` for an account that has never called `incrementCounter`. Order hashes and EIP-712 signatures are bound to it.
+- `salt`: a uint256 as a decimal string (for example `toString(randomBigInt(256))`). A hex string that parses as uint256 also works.
+- `conduitKey`: `0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000` is OpenSea's conduit. Use `0x0000…0000` to transfer directly, without a conduit.
+- `zone` and `zoneHash`: the zero address and zero bytes32 unless you integrate a custom zone. `zone` is part of the signed `OrderComponents` struct, so it must be in `parameters` (even as the zero address) or signing fails.
+- [Signing orders (EIP-712)](#signing-orders-eip-712) below covers the signature.
 
-**Item Types:**
+**Item types:**
 - `0`: Native currency (ETH, MATIC, etc.)
 - `1`: ERC20 token
 - `2`: ERC721 NFT
@@ -215,15 +85,15 @@ curl -X POST "https://api.opensea.io/api/v2/orders/ethereum/seaport/listings" \
   -d '{"protocol_address": "0x0000000000000068f116a894984e2db1123eb395", "parameters": {...}, "signature": "0x..."}'
 ```
 
-### Build an Offer
+### Submit a signed offer
 
-Creates an unsigned Seaport offer order.
+`POST /api/v2/orders/{chain}/seaport/offers` (CLI: `opensea offers post <chain> --body signed.json`) submits a signed offer. Get the order to sign from `POST /api/v2/offers/actions` (`opensea offers actions`).
 
 ```bash
 POST /api/v2/orders/{chain}/seaport/offers
 ```
 
-**Request body structure** (same shape as listings, with top-level `protocol_address`, `parameters`, `signature`, but `offer` contains payment and `consideration` contains the NFT):
+**Request body** (the listing shape, with `offer` holding the payment and `consideration` holding the NFT):
 ```json
 {
   "protocol_address": "0x0000000000000068f116a894984e2db1123eb395",
@@ -258,13 +128,13 @@ POST /api/v2/orders/{chain}/seaport/offers
 }
 ```
 
-Field requirements and notes are identical to **Build a Listing** (see above).
+Required fields and notes are the same as for a signed listing above.
 
-### Signing Orders (EIP-712)
+### Signing orders (EIP-712)
 
-Both listing and offer creation require an EIP-712 signature over the order parameters. The signer must be the `offerer`.
+Listings and offers need an EIP-712 signature over the order parameters, made by the `offerer`.
 
-**Before signing**, fetch the offerer's current Seaport counter:
+**Before signing**, read the offerer's current Seaport counter:
 
 ```bash
 # Returns the uint256 counter. Use "0" for any account that has never called incrementCounter.
@@ -283,7 +153,7 @@ cast call 0x0000000000000068F116a894984e2DB1123eB395 \
 }
 ```
 
-Set `chainId` to the target chain ID (`1` for Ethereum, `8453` for Base, `137` for Polygon, etc.). `verifyingContract` is the Seaport 1.6 address (the same value as `protocol_address` in the request body).
+Set `chainId` to the target chain (`1` Ethereum, `8453` Base, `137` Polygon, and so on). `verifyingContract` is the Seaport 1.6 address, the same value as `protocol_address` in the request body.
 
 **EIP-712 `types` (primary type `OrderComponents`):**
 ```json
@@ -319,7 +189,7 @@ Set `chainId` to the target chain ID (`1` for Ethereum, `8453` for Base, `137` f
 }
 ```
 
-**`message`:** the `parameters` object from the request body, minus `totalOriginalConsiderationItems` (which is a submission-only field, not part of the signed struct). All uint256 values can stay as decimal strings; ethers/viem will coerce.
+**`message`:** the request body's `parameters` without `totalOriginalConsiderationItems`, which is submitted but not signed. uint256 values can stay decimal strings; ethers and viem convert them.
 
 **Example with viem:**
 ```typescript
@@ -346,13 +216,11 @@ const signature = await client.signTypedData({
 // POST { protocol_address, parameters, signature } to /api/v2/orders/{chain}/seaport/listings
 ```
 
-After signing, submit with `protocol_address`, the full `parameters` object (including `totalOriginalConsiderationItems`), and `signature`.
+Then submit `protocol_address`, the full `parameters` (including `totalOriginalConsiderationItems`) and `signature`.
 
 ---
 
-### Fulfill a Listing (Buy NFT)
-
-Accept an existing listing to purchase an NFT.
+### Fulfill a listing (buy)
 
 ```bash
 POST /api/v2/listings/fulfillment_data
@@ -372,11 +240,48 @@ POST /api/v2/listings/fulfillment_data
 }
 ```
 
-**Response:** Returns transaction data for the buyer to submit onchain.
+**Response:** transaction data for the buyer to submit onchain.
 
-### Fulfill an Offer (Sell NFT)
+### Fulfilling ERC20-denominated listings
 
-Accept an existing offer to sell your NFT.
+A listing can be priced in an ERC20 (a stablecoin such as USDG or USDC, or WETH) instead of the native currency. Three things differ from a native-priced listing:
+
+**1. Prices are raw base units, so always use the `decimals` field.**
+
+```json
+"price": { "current": { "currency": "USDG", "decimals": 6, "value": "89000000" } }
+```
+
+Human-readable price = `value / 10^decimals`, 89 USDG here. Never assume 18 decimals: stablecoins often use 6, and dividing by 10^18 understates the price by 10^12.
+
+**2. The fulfillment transaction sends no native value.**
+
+`fulfillment_data.transaction.value` is `"0"`, and the consideration amounts are in the ERC20 (`itemType: 1`). The transaction pulls payment from the buyer with `transferFrom`. Do not attach native value.
+
+**3. The buyer needs both balance and an approval before submitting.**
+
+The buyer owes the sum of every ERC20 consideration item (seller proceeds plus marketplace and creator fees), not only the first. Before sending the returned transaction:
+
+1. Check that the buyer's `balanceOf` on the payment token covers that total.
+2. Find the address that pulls the payment. It is not always a conduit:
+   - `fulfillerConduitKey` is `0x0000...0000` (`bytes32(0)`): Seaport transfers directly, so the buyer approves the Seaport contract in `transaction.to`.
+   - `fulfillerConduitKey` is non-zero: resolve it with `getConduit(bytes32)` on the Seaport ConduitController, deployed at `0x00000000F9490004C11Cef243f5400493c00Ad63` on every chain, and approve the conduit it returns.
+   ```bash
+   cast call 0x00000000F9490004C11Cef243f5400493c00Ad63 \
+     "getConduit(bytes32)(address,bool)" 0xFULFILLER_CONDUIT_KEY \
+     --rpc-url <chain-rpc-url>
+   ```
+   The second return value is `exists`. If it is `false`, the key is not registered and the address is meaningless.
+3. Check `allowance(buyer, spender)` on the payment token. If it is below the total, send an ERC20 `approve(spender, amount)` from the buyer first.
+
+A missing allowance or balance is the most common cause of "execution reverted" on ERC20-priced fulfillments. Native-priced listings skip all of this, because payment travels as `transaction.value`.
+
+Two ways to skip the manual steps:
+
+- `POST /api/v2/listings/cross_chain_fulfillment_data` (see the cross-chain scripts) returns an ordered list of transactions that includes any required ERC20 approval, even for same-chain same-token purchases.
+- `@opensea/sdk`'s `fulfillOrder` runs the check itself and, before spending gas, throws with the spender and the exact `approve` amount.
+
+### Fulfill an offer (sell)
 
 ```bash
 POST /api/v2/offers/fulfillment_data
@@ -400,19 +305,17 @@ POST /api/v2/offers/fulfillment_data
 }
 ```
 
-### Cancel an Order
-
-Cancel an active listing or offer.
+### Cancel an order
 
 ```bash
 POST /api/v2/orders/chain/{chain}/protocol/{protocol_address}/{order_hash}/cancel
 ```
 
-**Note:** Cancellation requires an onchain transaction. The API returns the transaction data to execute.
+This is an offchain cancel for orders protected by OpenSea's SignedZone. It needs a wallet JWT with `write:orders`. A fulfillment signature issued before the cancel stays valid for up to 5 minutes, so the order can still fill in that window. For an onchain cancel, use `POST /api/v2/orders/chain/{chain}/protocol/{protocol_address}/{order_hash}/cancel/actions` and execute the returned steps.
 
 ---
 
-## Workflow: Buying an NFT
+## Workflow: buy an NFT
 
 Steps 1 and 2 are read-only and live in the [`opensea-api`](../../opensea-api/SKILL.md) skill.
 
@@ -432,21 +335,19 @@ opensea listings best-for-nft boredapeyachtclub 1234
 ./scripts/opensea-fulfill-listing.sh ethereum 0x_order_hash 0x_your_wallet
 ```
 
-## Workflow: Selling an NFT (Creating a Listing)
+## Workflow: create a listing
 
-1. **Build the listing** - POST to `/api/v2/orders/{chain}/seaport/listings`
-2. **Sign the order** - Use wallet to sign the Seaport order
-3. **Submit signed order** - POST again with signature
-4. **Monitor** - Check listing via `/api/v2/listings/collection/{slug}/all`
+1. `POST /api/v2/listings/actions` returns any approval transactions and the order to sign.
+2. Send the approvals in order.
+3. Sign the order (EIP-712, see [Signing orders](#signing-orders-eip-712)).
+4. `POST /api/v2/orders/{chain}/seaport/listings` with `protocol_address`, `parameters` and `signature`.
 
-## Workflow: Making an Offer
+## Workflow: make an offer
 
-1. **Ensure WETH approval** - Buyer needs WETH allowance for Seaport
-2. **Build the offer** - POST to `/api/v2/orders/{chain}/seaport/offers`
-3. **Sign the order** - Wallet signature required
-4. **Submit** - POST with signature
+1. `POST /api/v2/offers/actions` returns any WETH approval and the order to sign.
+2. Send the approvals, sign, then submit to `/api/v2/orders/{chain}/seaport/offers`.
 
-## Workflow: Accepting an Offer
+## Workflow: accept an offer
 
 1. **View offers** (opensea-api): `opensea offers all <slug> --limit 50`
 2. **Get fulfillment data** (this skill): POST to `/api/v2/offers/fulfillment_data`
@@ -454,38 +355,119 @@ opensea listings best-for-nft boredapeyachtclub 1234
 
 ---
 
-## Error Codes
+## Running steps yourself
 
-| Code | Meaning |
-|------|---------|
-| 400 | Bad request - invalid parameters |
-| 401 | Unauthorized - missing or invalid API key |
-| 404 | Not found - order/NFT doesn't exist |
-| 429 | Rate limited - too many requests |
-| 500 | Server error |
+`--send` on the action commands runs these steps for you. Run them by hand only for what it refuses (Solana, bulk orders, swap routes, collection offers). Each step is an object with one key naming the action:
 
-## Rate Limits
+- A transaction step (`buyItemAction`, `acceptOfferAction`, `cancelOrdersAction`, `itemApprovalAction`, `paymentApprovalAction`) holds `transaction.to.value`, `data`, `value` and `chainIdentifier.chainId`, ready to send from `transaction.from.value`.
+- A creation step (`createListingsAction`, `createOfferAction`, `createOffersAction`) holds `signatureRequest.message`, a JSON string with the EIP-712 `domain`, `types`, `primaryType` and `message`. Parse it without rounding large integers (the `counter` can exceed 2^53), sign it, then post `{protocol_address, parameters, signature}` with `opensea listings post <chain>` or `opensea offers post <chain>`. `parameters` is the signed `message` plus `totalOriginalConsiderationItems`.
 
-Rate limits apply per-account across all API keys. See `references/rest-api.md` for full details.
-
-**Default limits (Tier 1):** 120 read/min, 60 write/min, 60 fulfillment/min
-
-Fulfillment endpoints (`/api/v2/listings/fulfillment_data`, `/api/v2/offers/fulfillment_data`) use the **fulfillment** rate bucket. Order creation endpoints use the **write** rate bucket. All other GET endpoints use the **read** rate bucket.
+Check every transaction the way `--send` does. A non-approval transaction must call Seaport on its chain, with a fulfillment function selector for a buy or sale, or `cancel` for a cancel. An approval must be sent to the token or NFT contract it approves, and its spender must be Seaport or OpenSea's conduit on that chain; a conduit is never a valid `to`. Refuse a domain whose `verifyingContract` is not Seaport on the order's chain, and an order whose NFT, quantity, currency, total, fees (more than 11% to anyone but the offerer) or end time differ from what you requested. The API's ERC-20 approvals are for max uint256; approve only what the order spends unless the user agrees to more.
 
 ---
 
-## Seaport Contract Addresses
+## Order action endpoints (EVM and Solana)
 
-| Chain | Seaport 1.6 Address |
+These endpoints return ordered `steps` rather than raw Seaport calldata:
+
+| Operation | Endpoint | Action script |
+|---|---|---|
+| Create offer | `POST /api/v2/offers/actions` | `opensea-create-offer-actions.sh` |
+| Fulfill listing | `POST /api/v2/listings/fulfillment/actions` | `opensea-fulfill-listing-actions.sh` |
+| Fulfill offer | `POST /api/v2/offers/fulfillment/actions` | `opensea-fulfill-offer-actions.sh` |
+| Cancel order | `POST /api/v2/orders/chain/{chain}/protocol/{protocol_address}/{order_identifier}/cancel/actions` | `opensea-cancel-order-actions.sh` |
+
+The CLI exposes the same endpoints:
+
+```bash
+opensea offers actions --body create-offer.json
+opensea listings fulfillment-actions --body fulfill-listing.json
+opensea offers fulfillment-actions --body fulfill-offer.json
+opensea orders cancel-actions solana <protocol_address> <order_identifier> --body cancel.json
+```
+
+The create-offer request's `price.currency` is a token mint or contract address, never a ticker. For native SOL, pass the system-program address:
+
+```json
+{
+  "item": {"chain": "solana", "contract": "<asset_id>", "token_id": "<asset_id>"},
+  "address": "<maker>",
+  "quantity": 1,
+  "price": {"amount": "0.001", "currency": "11111111111111111111111111111111"}
+}
+```
+
+Passing `"SOL"` as `price.currency` is invalid.
+
+Request bodies use the API's JSON field names. Example Solana listing fulfillment:
+
+```json
+{
+  "listing": {
+    "hash": "<svm_order.id>",
+    "chain": "solana",
+    "protocol_address": "<protocol_address from the listing>"
+  },
+  "fulfiller": { "address": "<buyer base58 address>" },
+  "include_optional_creator_fees": false
+}
+```
+
+For a Solana listing or offer, use `svm_order.id` wherever the request calls for the order identifier. Do not substitute `order_hash`, and do not hardcode the Seaport address: pass through the order's returned `protocol_address`. Base58 identifiers are case-sensitive.
+
+### Solana transaction submission
+
+Process `steps` in array order. The Solana variants are:
+
+- `svmCreateOfferAction` for offer creation;
+- `svmBuyItemsAction` for listing fulfillment;
+- `svmAcceptOfferAction` for offer fulfillment;
+- `svmCancelOrdersAction` for cancellation.
+
+Each action carries `transaction` submission data. Follow its fields exactly:
+
+- If `partiallySignedTransaction` is present, base64-decode and deserialize those exact transaction bytes, append the wallet's signature to the existing transaction, and broadcast it. Do not rebuild the message from `instructions`; rebuilding invalidates the existing cosigner signature.
+- If `partiallySignedTransaction` is absent, build the transaction from `instructions`, `addressLookupTableAddresses`, and the requested wallet as signer.
+- If `sponsoredFeePayer` is present, the OpenSea relayer pays network fees and rent; the wallet is a cosigner. If absent, the wallet pays.
+- If `requiresJitoBundle` is `true`, submit through a Jito bundle. Sending it through public RPC pays the tip without the bundle's protection.
+- A partial fill raises the filled quantity and can leave the offer live. Do not assume the whole offer was consumed; check the requested quantity and re-query the order.
+
+---
+
+## Error codes
+
+| Code | Meaning |
+|------|---------|
+| 400 | Bad request: invalid parameters |
+| 401 | Unauthorized: missing or invalid API key |
+| 404 | Not found: the order or NFT does not exist |
+| 429 | Rate limited |
+| 500 | Server error |
+
+## Rate limits
+
+Limits apply per account, across all its API keys. Details are in [rest-api.md](../../opensea-api/references/rest-api.md#rate-limits).
+
+**Default limits (Tier 1):** 120 read/min, 60 write/min, 60 fulfillment/min
+
+The fulfillment endpoints (`/api/v2/listings/fulfillment_data`, `/api/v2/offers/fulfillment_data`) use the **fulfillment** bucket, order creation uses **write**, and every other GET uses **read**.
+
+---
+
+## Seaport contract addresses
+
+| Chain | Seaport 1.6 address |
 |-------|---------------------|
-| All chains | `0x0000000000000068F116a894984e2DB1123eB395` |
+| All EVM chains | `0x0000000000000068F116a894984e2DB1123eB395` |
+
+Legacy Seaport 1.5: `0x00000000000000ADc04C56Bf30aC9d3c0aAF14dC`. Conduit controller: `0x00000000F9490004C11Cef243f5400493c00Ad63`.
 
 ---
 
 ## Tips
 
-1. **Always use WETH for offers** - Native ETH cannot be used for offers due to ERC20 approval requirements
-2. **Check approval status** - Before creating listings, ensure Seaport has approval for your NFTs
-3. **Test on Sepolia first** - Use testnet before mainnet transactions
-4. **Handle expiration** - Orders have startTime/endTime - check these before fulfilling
-5. **Monitor events** - Use Stream API for real-time order updates
+1. Pay offers in WETH or another ERC20. Native ETH cannot be used, because an offer is paid with an ERC20 approval.
+2. Before listing, make sure Seaport (or OpenSea's conduit) is approved for your NFTs.
+3. Test on Sepolia before sending mainnet transactions.
+4. Check an order's `startTime` and `endTime` before fulfilling it.
+5. Use the [Stream API](../../opensea-api/references/stream-api.md) for real-time order updates.

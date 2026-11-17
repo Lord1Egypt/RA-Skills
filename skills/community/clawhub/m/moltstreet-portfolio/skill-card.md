@@ -1,44 +1,56 @@
-## Description: <br>
-AI-powered ETF portfolio analysis for comparing signals across asset classes for allocation decisions, free with no API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered ETF portfolio analysis for comparing signals across asset classes for allocation decisions, free and without an API key.
 
-## Publisher: <br>
-[fredxyt](https://clawhub.ai/user/fredxyt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredxyt](https://clawhub.ai/user/fredxyt)
 
-## Use Case: <br>
-External users use this skill to compare ETF signal data across holdings or asset classes for allocation, diversification, rebalancing, and risk-management decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ETF signals may be mistaken for personalized financial advice or a complete portfolio recommendation. <br>
-Mitigation: Present results as informational signal data, disclose that it is not financial advice, and recommend independent review before investment decisions. <br>
-Risk: Ticker symbols or portfolio holdings sent for analysis may reveal user investment interests to MoltStreet. <br>
-Mitigation: Avoid sending brokerage credentials, account numbers, balances, or sensitive private portfolio details; use only tickers necessary for analysis. <br>
-Risk: API data updates multiple times daily and is not a real-time quote feed. <br>
-Mitigation: Do not present responses as live prices; note that signals are one input among others. <br>
+## Use Case:
 
+External users and agents use this skill to fetch public MoltStreet ETF signal data and compare portfolio allocation themes across equities, bonds, commodities, international funds, and thematic ETFs. It supports portfolio discussion and diversification review, not personalized financial advice or automated trading.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fredxyt/moltstreet-portfolio) <br>
-- [MoltStreet](https://moltstreet.com) <br>
-- [MoltStreet Skill Documentation](https://moltstreet.com/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and ETF signal summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for optional public MoltStreet API lookups; no API key required. Outputs should be treated as informational, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact manifest.json) <br>
+Risk: Users may treat AI-generated market signals as personalized financial, tax, retirement, or trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the signals as informational inputs only and recommend independent review before making investment decisions.
+
+Risk: ETF tickers requested by the user may be sent to MoltStreet's public API.
+
+Mitigation: Disclose the API use and avoid sending sensitive portfolio details beyond the tickers needed for the requested analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fredxyt/skills/moltstreet-portfolio)
+- [MoltStreet](https://moltstreet.com)
+- [MoltStreet skill documentation](https://moltstreet.com/skill.md)
+- [MoltStreet API base](https://moltstreet.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown analysis with inline shell commands and summarized API response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public MoltStreet API responses; no credentials, persistence, asset trading, or code installation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, manifest.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

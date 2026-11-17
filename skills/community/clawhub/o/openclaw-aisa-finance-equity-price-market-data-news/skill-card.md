@@ -1,46 +1,61 @@
-## Description: <br>
-Query real-time and historical financial data for equities: prices, news, financial statements, metrics, analyst estimates, insider and institutional activity, SEC filings, earnings press releases, segmented revenues, stock screening, and macro interest rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time and historical financial data for equities, including prices, news, statements, metrics, estimates, ownership activity, SEC filings, earnings releases, screening, and macro interest rates.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to query AIsa market-data endpoints and CLI helpers for equity research, market screening, filings review, company news, ownership analysis, earnings context, and reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends market-data queries and an AISA API key to a third-party provider. <br>
-Mitigation: Use a dedicated key where possible, monitor credit usage, and avoid sending confidential watchlists or regulated research data unless the organization approves AIsa. <br>
-Risk: API calls can consume pay-as-you-go credits. <br>
-Mitigation: Review planned queries before execution and monitor response usage fields such as cost and credits remaining. <br>
-Risk: Earnings press release coverage is narrower than other financial endpoints and unsupported tickers return errors. <br>
-Mitigation: Check the supported ticker list before relying on the earnings press release endpoint, and use analyst estimates or financial statements as alternatives when needed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve equity market data from AIsa for investment research, alerts, screening, and reporting workflows. It supports both curl examples and a Python CLI for querying prices, company news, financial statements, filings, estimates, ownership data, and macro interest rates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aisadocs/openclaw-aisa-finance-equity-price-market-data-news) <br>
-- [AIsa Homepage](https://aisa.one) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [Earnings Press Releases Supported Tickers](./earnings-press-releases-tickers.md) <br>
-- [financialdatasets.ai earnings press releases tickers](https://api.financialdatasets.ai/earnings/press-releases/tickers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with curl and Python command examples; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; responses may include usage cost and remaining credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence) <br>
+Risk: The skill requires runtime access to AISA_API_KEY and sends ticker symbols, filters, dates, and usage metadata to AIsa.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or replaceable API key, avoid confidential trading strategies or sensitive watchlists unless the provider relationship is acceptable, and rotate the key if exposure is suspected.
+
+Risk: Pay-as-you-go API calls can incur usage costs.
+
+Mitigation: Monitor response usage fields and account credits, and set operational limits around automated or repeated queries.
+
+Risk: The earnings press releases endpoint has narrower ticker coverage and returns an invalid ticker error for unsupported symbols.
+
+Mitigation: Check the supported ticker list before using that endpoint, and fall back to analyst estimates or income statements when coverage is unavailable.
+
+## Reference(s):
+
+- [AIsa homepage](https://aisa.one)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [Earnings Press Releases Supported Tickers](earnings-press-releases-tickers.md)
+- [Financial Datasets earnings press releases tickers](https://api.financialdatasets.ai/earnings/press-releases/tickers)
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/openclaw-aisa-finance-equity-price-market-data-news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include API request examples, JSON response guidance, endpoint parameters, and cost or credential notes.]
+
+## Skill Version(s):
+
+2.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

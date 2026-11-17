@@ -1,42 +1,54 @@
-## Description: <br>
-Turns customer-support and pre-sales conversations into PDP FAQ, objection-handling, and trust-building copy grounded in recurring shopper doubts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns recent support and pre-sales conversations into product-detail-page FAQ copy, objection-handling blocks, bullets, and trust modules grounded in customer doubts.
 
-## Publisher: <br>
-[rijoyai](https://clawhub.ai/user/rijoyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Ecommerce, merchandising, and customer support teams use this skill to convert recurring pre-purchase support questions into product detail page FAQs, bullets, spec callouts, and trust modules. It is intended for support-driven PDP optimization where generated copy must stay grounded in available proof and claim guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Support tickets or chat logs may contain customer names, emails, addresses, order details, or other PII. <br>
-Mitigation: De-identify source material before using the skill and keep only product, channel, locale, and objection text needed for theme extraction. <br>
-Risk: Generated PDP copy may overstate warranty, safety, certification, medical, or other regulated product claims. <br>
-Mitigation: Verify each claim against approved proof assets and route sensitive claims through the appropriate legal, quality, or compliance review before publishing. <br>
+## Use Case:
 
+E-commerce, support, and merchandising teams use this skill to convert recurring pre-purchase support questions into PDP FAQs and copy updates with evidence, placement guidance, and claims guardrails.
 
-## Reference(s): <br>
-- [Support insights to PDP FAQ playbook](artifact/references/support_to_pdp_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rijoyai/pdq-faq-from-support) <br>
-- [Publisher profile](https://clawhub.ai/user/rijoyai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with structured tables, short report sections, and publish-ready PDP copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ingestion notes, theme extraction, PDP placement mapping, claims guardrails, rollout checklist, and an empty template when source data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Real support exports may contain customer personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or anonymize personal customer data before using support exports with the skill.
+
+Risk: Generated PDP copy may include product, warranty, safety, or regulated claims that require verification.
+
+Mitigation: Review claims against authoritative product proof, warranty terms, and compliance requirements before publishing.
+
+## Reference(s):
+
+- [Support insights to PDP FAQ playbook](artifact/references/support_to_pdp_playbook.md)
+- [FAQ Support ClawHub release page](https://clawhub.ai/rijoyai/skills/pdq-faq-from-support)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tables, concise prose, checklists, and publish-ready PDP copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on user-provided support data or, when data is missing, a methodology and empty template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

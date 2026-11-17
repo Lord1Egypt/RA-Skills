@@ -1,42 +1,59 @@
-## Description: <br>
-基于TIA Openness API的完整PLC自动化技能，支持项目创建、硬件配置、SCL编程、编译下载 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Siemens TIA Portal Openness workflows for PLC project creation, hardware configuration, SCL block generation, compilation, and download.
 
-## Publisher: <br>
-[jiansiting](https://clawhub.ai/user/jiansiting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiansiting](https://clawhub.ai/user/jiansiting)
 
-## Use Case: <br>
-Developers and industrial automation engineers use this skill to automate Siemens TIA Portal PLC engineering tasks, including project creation, S7-1200/1500 hardware setup, SCL block generation, compilation, and controller download workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can compile and download PLC changes without built-in safety gates or confirmations. <br>
-Mitigation: Run it only in a controlled engineering or lab environment unless additional safety controls are added, and verify project contents, backups, maintenance window, and operator approval before download or full_automation. <br>
-Risk: Download actions can target the wrong controller or network interface if sample or incorrect values are used. <br>
-Mitigation: Confirm the PLC identity, IP address, PG/PC interface, and target environment before execution; do not reuse bundled sample IP or password values as production configuration. <br>
-Risk: Unpinned dependencies may change execution behavior over time. <br>
-Mitigation: Pin and review dependencies before installation in controlled environments. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create TIA Portal projects, configure S7-1200/1500 PLC hardware, generate SCL program blocks, compile PLC software, and optionally download changes to a target PLC.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiansiting/tia-openness-complete-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [JSON results, generated SCL code, TIA Portal project changes, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions return success status, messages, and operation-specific fields; workflows may create, compile, save, close, or download PLC project changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Download and full_automation actions can make production-impacting changes to real PLC controllers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in authorized engineering environments and require explicit approval before running PLC download workflows.
+
+Risk: Generated SCL, compile diagnostics, project target, interface, or IP address may be incorrect for the intended controller.
+
+Mitigation: Review generated SCL, compile results, target PLC name, interface, IP address, and change authorization before execution.
+
+Risk: The artifact does not include a pinned dependency lockfile.
+
+Mitigation: Pin and review dependencies before using the skill near real equipment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiansiting/skills/tia-openness-complete-skill)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact readme](artifact/readme.txt)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Configuration, Guidance]
+
+**Output Format:** [JSON status objects plus generated SCL and TIA Portal project changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, Siemens TIA Portal Openness, pythonnet, and jinja2; download and full automation actions may affect real PLC targets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

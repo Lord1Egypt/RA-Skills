@@ -1,40 +1,50 @@
-## Description: <br>
-Daily English Vocab delivers scheduled daily English vocabulary and conversation lessons with small-talk practice, themed word lists, pronunciation, examples, and Chinese explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily English Vocab provides scheduled English vocabulary and conversation practice, delivering daily small-talk phrases and themed word lessons with pronunciation, examples, and learning tips.
 
-## Publisher: <br>
-[forkercat](https://clawhub.ai/user/forkercat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forkercat](https://clawhub.ai/user/forkercat)
 
-## Use Case: <br>
-External learners and agents supporting them use this skill to set up recurring bite-sized English lessons for everyday vocabulary, small talk, and Chinese-language explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring scheduled delivery can continue after the user no longer wants daily lessons or can target the wrong channel or recipient. <br>
-Mitigation: Confirm the cron schedule, timezone, channel, and recipient chat ID before enabling it, and remove or disable the cron when daily lessons are no longer wanted. <br>
-Risk: The skill keeps a local progress file to track lesson rotation and previously used words. <br>
-Mitigation: Keep memory/english-vocab-state.json free of sensitive information and delete or reset it when clearing learning history. <br>
+## Use Case:
 
+External English learners, especially Chinese speakers in English-speaking countries, use this skill to schedule daily bite-sized American English lessons with small-talk practice and rotating vocabulary categories.
 
-## Reference(s): <br>
-- [Vocabulary Categories](artifact/references/categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown lesson text with an optional shell command for cron setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use memory/english-vocab-state.json to rotate categories and avoid repeated vocabulary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cron delivery can send lessons to the wrong channel or at the wrong time if schedule, timezone, channel, or recipient settings are incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cron time, timezone, channel, recipient chat ID, and explanation language before enabling delivery.
+
+## Reference(s):
+
+- [Vocabulary Categories](references/categories.md)
+- [ClawHub Skill Page](https://clawhub.ai/forkercat/skills/daily-english-vocab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown lesson content with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use memory/english-vocab-state.json to track category rotation and avoid repeated words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

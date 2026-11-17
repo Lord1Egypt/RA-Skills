@@ -1,40 +1,58 @@
-## Description: <br>
-Fetch DMM/FANZA public rankings (daily/weekly/monthly) without API keys and output top 10 in numbered text format with Japanese title, Chinese translation, and cover image URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch DMM/FANZA public rankings (daily/weekly/monthly) without API keys and output top 10 in numbered text format with Japanese title, Chinese translation, and cover image URL.
 
-## Publisher: <br>
-[leeeroyjoy-pixel](https://clawhub.ai/user/leeeroyjoy-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leeeroyjoy-pixel](https://clawhub.ai/user/leeeroyjoy-pixel)
 
-## Use Case: <br>
-External users and developers use this skill to collect DMM/FANZA daily, weekly, or monthly ranking entries from public pages and present a compact Top N result with original Japanese titles, Chinese translations, and cover image URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Public page structure changes or age confirmation failures can cause incomplete or missing ranking data. <br>
-Mitigation: Check the page snapshot, adjust selectors, and report the actual number of entries retrieved when fewer than requested are available. <br>
-Risk: The release security guidance recommends use only in trusted ClawHub development or maintainer environments. <br>
-Mitigation: Review any proposed browser actions or commands before allowing workflows that publish, deploy, moderate, or use local credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leeeroyjoy-pixel/dmm-ranking-lite) <br>
-- [DMM/FANZA ranking page](https://video.dmm.co.jp/av/ranking/) <br>
+## Use Case:
 
+External users use this skill to collect public DMM/FANZA daily, weekly, or monthly ranking entries and receive a numbered Top N summary with Japanese titles, Chinese translations, and cover image URLs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Numbered Markdown text with Japanese title, Chinese translation, and cover URL fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default Top10 output; may return fewer entries when the public page yields fewer results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill opens and extracts entries from DMM/FANZA adult-content ranking pages.
+
+Mitigation: Install and use only in environments where adult-content browsing is permitted and appropriate.
+
+Risk: Ranking page structure can change, causing incomplete or failed extraction.
+
+Mitigation: Inspect the page snapshot and update selectors before relying on results when extraction returns too few entries.
+
+Risk: Chinese title translations may be imprecise or over-literal.
+
+Mitigation: Review translated titles before publishing or reusing them in user-facing material.
+
+## Reference(s):
+
+- [DMM/FANZA Ranking Page](https://video.dmm.co.jp/av/ranking/?term=<term>)
+- [ClawHub Skill Page](https://clawhub.ai/leeeroyjoy-pixel/skills/dmm-ranking-lite)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/leeeroyjoy-pixel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Numbered text or Markdown list with fixed title, translation, and cover URL fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output language is zh-CN while preserving the original Japanese title.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

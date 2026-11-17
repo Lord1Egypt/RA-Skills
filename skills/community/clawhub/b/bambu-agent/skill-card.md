@@ -1,40 +1,68 @@
-## Description: <br>
-Monitors and manages Bambu Lab 3D printers on a local network with real-time status, error decoding, voice summaries, and a web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and manage Bambu Lab 3D printers in your local network with real-time status, error decoding, and a web dashboard interface.
 
-## Publisher: <br>
-[Zhouzia](https://clawhub.ai/user/Zhouzia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouzia](https://clawhub.ai/user/zhouzia)
 
-## Use Case: <br>
-Operators and agents use this skill to monitor a local Bambu Lab printer farm, answer progress and material questions, summarize active jobs, and surface printer errors without exposing full serial numbers in normal responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated config.json stores printer access codes and serial numbers. <br>
-Mitigation: Keep config.json on a trusted local machine, do not commit or share it, and avoid pasting logs or screenshots that contain printer credentials. <br>
-Risk: The skill continuously monitors printers on the local network when auto-start is enabled. <br>
-Mitigation: Install it only on trusted networks and disable auto-start or stop the service when continuous monitoring is not wanted. <br>
+## Use Case:
 
+Developers and operators who run local Bambu Lab printer farms use this skill to monitor printer status, inspect progress and errors, and provide concise agent summaries for voice or chat workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Zhouzia/bambu-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses grounded in local API status data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can expose local printer status summaries and web dashboard access after the user configures printer IP addresses, access codes, and serial numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Printer access codes are stored locally in plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect config.json with restrictive local file permissions or move printer credentials to a secret store before operational use.
+
+Risk: Printer connections disable certificate verification.
+
+Mitigation: Require certificate verification or certificate pinning before using this skill on networks you do not fully control.
+
+Risk: The local dashboard and APIs do not include authentication.
+
+Mitigation: Keep the service bound to localhost, restrict network access, and add authentication before exposing it beyond the local machine.
+
+Risk: Printer identifiers and telemetry may appear in API or dashboard responses.
+
+Mitigation: Avoid exposing serial numbers in agent responses and sanitize shared dashboard or API output.
+
+Risk: Dashboard rendering may include printer-provided fields.
+
+Mitigation: Escape or sanitize printer, task, and material fields before using live data in shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouzia/skills/bambu-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouzia)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance, API data]
+
+**Output Format:** [JSON API responses, brief speech text, and an HTML dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local network access to configured Bambu Lab printers and a local printer configuration file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

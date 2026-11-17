@@ -1,47 +1,62 @@
-## Description: <br>
-Create and send interactive cards to Feishu (Lark) with buttons, forms, polls, and rich UI elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and send interactive cards to Feishu (Lark) with buttons, forms, polls, and rich UI elements, with long-polling callback handling for user interactions.
 
-## Publisher: <br>
-[leecyang](https://clawhub.ai/user/leecyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leecyang](https://clawhub.ai/user/leecyang)
 
-## Use Case: <br>
-Developers and agent builders use this skill to send Feishu interactive cards for confirmations, choices, forms, todo lists, polls, and callback-driven workflows through OpenClaw Gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Feishu messages and forward card interaction details through OpenClaw Gateway. <br>
-Mitigation: Install only for workflows that require Feishu interactive cards, verify Feishu credentials and Gateway token settings, and restrict callback handling for destructive actions. <br>
-Risk: Cards and callbacks may include unnecessary personal data or sensitive workflow details. <br>
-Mitigation: Keep card content minimal, avoid placing secrets in card payloads, and review callback data before forwarding or storing it. <br>
-Risk: The skill guidance encourages cards for broad uncertainty, which can be excessive for routine or sensitive replies. <br>
-Mitigation: Use cards for explicit confirmations, choices, forms, polls, and similar user-interaction workflows instead of applying the broad pattern automatically. <br>
+## Use Case:
 
+Developers and agents use this skill to send Feishu interactive cards for confirmations, choices, forms, todos, polls, and other user-interaction flows instead of relying on free-form text replies. It is intended for Feishu workspaces connected to OpenClaw Gateway callback handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leecyang/feishu-interactive-cards) <br>
-- [Card Design Guide](references/card-design-guide.md) <br>
-- [Gateway Integration Guide](references/gateway-integration.md) <br>
-- [Security Best Practices](references/security-best-practices.md) <br>
-- [Feishu Card Documentation](https://open.feishu.cn/document/ukTMukTMukTM/uczM3QjL3MzN04yNzcDN) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON card templates, JavaScript examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Feishu card payloads and callback-handling guidance that rely on configured Feishu app credentials and OpenClaw Gateway settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, package.json, CHANGELOG released 2026-02-06) <br>
+Risk: The callback service reads Feishu and OpenClaw Gateway credentials and forwards interaction payloads to a configured Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with trusted workspace configuration, protect Gateway tokens, and verify that the Gateway destination is expected before enabling callback forwarding.
+
+Risk: File-deletion or other destructive callback examples can affect local data if copied without permission checks and path validation.
+
+Mitigation: Require explicit user confirmation, validate and normalize file paths inside the intended workspace, and enforce operation-specific permissions before acting on callback values.
+
+Risk: Custom card templates can create file-handling exposure if template paths are broadened or validation is weakened.
+
+Mitigation: Keep templates in trusted allowlisted directories, accept only JSON card templates, and review any template path handling changes before use with sensitive files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leecyang/skills/feishu-interactive-cards)
+- [Security Best Practices](references/security-best-practices.md)
+- [Gateway Integration](references/gateway-integration.md)
+- [Card Design Guide](references/card-design-guide.md)
+- [Feishu Card Documentation](https://open.feishu.cn/document/ukTMukTMukTM/uczM3QjL3MzN04yNzcDN)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples plus JSON card templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Node.js helper scripts that read Feishu and OpenClaw Gateway configuration from local configuration or environment variables.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, package.json, CHANGELOG, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

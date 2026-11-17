@@ -1,39 +1,52 @@
-## Description: <br>
-Helps check advertising filing requirements, prepare documents, verify compliance, track regulations, and guide submission status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks advertising filing requirements, prepares filing documents, tracks regional regulations, and guides compliance and submission status for ads.
 
-## Publisher: <br>
-[eric060](https://clawhub.ai/user/eric060) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[eric060](https://clawhub.ai/user/eric060)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams, compliance staff, and external users use this skill to check advertising filing requirements, prepare documentation checklists, verify compliance status, and guide regional submission tracking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Advertising filing guidance may be incomplete, outdated, or jurisdiction-specific.
+
+Mitigation: Have qualified counsel or compliance staff review the guidance for the relevant region before relying on it.
+
+Risk: This release contains a skill description but no bundled implementation.
+
+Mitigation: Confirm that any implementation used with the skill is supplied from a trusted source before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External teams and compliance reviewers use this skill to organize advertising filing checks, required documentation, submission guidance, and regional compliance status. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance guidance can affect regulated advertising filing decisions. <br>
-Mitigation: Confirm requirements with qualified compliance or legal reviewers before relying on the output for real submissions. <br>
-Risk: The artifact includes an example command for a check.py script that is not included in the release. <br>
-Mitigation: Review any added implementation before execution and verify that future code matches the documented compliance workflow. <br>
+**Output Format:** [Markdown checklist, required-document summary, compliance status, and submission guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Regional guidance may vary and should be reviewed by qualified compliance or legal staff before reliance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with checklist-style guidance and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference regional filing requirements supplied by the user or environment.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

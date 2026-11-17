@@ -1,46 +1,61 @@
-## Description: <br>
-语雀 Skill lets agents manage Yuque documents and knowledge bases through the Yuque API, including document CRUD, TOC changes, Markdown formatting, search, and batch import/export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Yuque document and knowledge-base workflows through the Yuque Open API, including document CRUD, TOC management, Markdown formatting, search, and batch import/export.
 
-## Publisher: <br>
-[feixuelingcloud](https://clawhub.ai/user/feixuelingcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[feixuelingcloud](https://clawhub.ai/user/feixuelingcloud)
 
-## Use Case: <br>
-Developers and knowledge-base maintainers use this skill to let an agent publish, update, search, export, import, and reorganize Yuque documentation with authenticated API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live authenticated changes to Yuque documents and knowledge-base structure. <br>
-Mitigation: Use a dedicated least-privilege Yuque token and explicitly confirm write operations before running scripts that create, update, move, import, or replace content. <br>
-Risk: Delete and TOC remove operations can remove documents or detach them from the knowledge-base structure. <br>
-Mitigation: Require explicit confirmation for delete and TOC remove operations, and use `--keep-doc` when removing TOC nodes unless the underlying document should also be deleted. <br>
-Risk: Bulk import and non-dry-run replacement can affect many documents at once. <br>
-Mitigation: Run bulk replacements with `--dry-run` first, review the affected count and examples, and keep a local export before applying broad changes. <br>
+## Use Case:
 
+Developers and knowledge-base maintainers use this skill to operate Yuque workspaces from an agent, including publishing Markdown, reorganizing document tables of contents, searching content, and running batch import or export tasks.
 
-## Reference(s): <br>
-- [语雀 Skill on ClawHub](https://clawhub.ai/feixuelingcloud/yuque-skill) <br>
-- [API Reference](references/api_reference.md) <br>
-- [Markdown Format Guide](references/markdown_format.md) <br>
-- [TOC Operations Guide](references/toc_operations.md) <br>
-- [Yuque API Documentation](https://www.yuque.com/yuque/developer/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON results from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce live Yuque API changes when valid credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: Broad Yuque account-level document access can expose tokens or private content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Yuque token and keep the default official API URL unless a private deployment is trusted.
+
+Risk: Batch, TOC, delete, import, replace, or raw API operations can unintentionally modify or remove Yuque content.
+
+Mitigation: Back up important repositories and require explicit user approval before these actions.
+
+Risk: The server security verdict is suspicious because the skill combines document automation with unsafe defaults.
+
+Mitigation: Review the skill carefully before installing and scan it before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feixuelingcloud/skills/yuque-skill)
+- [Yuque API Reference](references/api_reference.md)
+- [Yuque Markdown Format Guide](references/markdown_format.md)
+- [Yuque TOC Operations Guide](references/toc_operations.md)
+- [Official Yuque Developer API](https://www.yuque.com/yuque/developer/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scripts return JSON to stdout for agent post-processing and user-facing summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-Comprehensive garden planning: track plants, get planting recommendations, watering schedules, and frost alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive garden planning - track plants, get planting recommendations, watering schedules, and frost alerts.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-External users and gardening-focused agents use this skill to track plants, watering schedules, planting windows, harvest readiness, and frost alerts for a local garden. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update a local garden.json file containing plant, watering, and location records. <br>
-Mitigation: Use --data-dir to store the garden file in an intended location and review the file before sharing or committing it. <br>
-Risk: Weather checks can send ZIP code or latitude/longitude to Open-Meteo. <br>
-Mitigation: Run weather checks only when sharing that location data with Open-Meteo is acceptable. <br>
-Risk: Planting and frost guidance depends on reference calendars, zone estimates, forecast data, and local microclimates. <br>
-Mitigation: Treat recommendations as planning support and confirm time-sensitive garden actions against local observations or trusted local sources. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local garden log, plan planting by USDA hardiness zone, track watering schedules, and check short-range frost risk.
 
-## Reference(s): <br>
-- [Garden Planner skill instructions](SKILL.md) <br>
-- [Planting Calendar by USDA Hardiness Zone](references/planting-calendar.md) <br>
-- [USDA Plant Hardiness Zones](references/zones.md) <br>
-- [Example garden data file](assets/garden.example.json) <br>
-- [USDA Plant Hardiness Zone Map](https://planthardiness.ars.usda.gov/) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [Open-Meteo geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local garden.json file and may query Open-Meteo when weather checks are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather and ZIP-based frost checks send coordinates or location-derived data to Open-Meteo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the location precision needed for frost checks and avoid running weather commands when location sharing is not acceptable.
+
+Risk: Plant records, watering schedules, notes, and configured coordinates are stored in a local garden JSON file.
+
+Mitigation: Use the data-directory override for controlled storage and avoid putting sensitive personal details in garden notes.
+
+Risk: Planting recommendations rely on average USDA zone and frost-date references, which may not reflect local microclimates.
+
+Mitigation: Treat recommendations as planning guidance and compare them with local conditions before planting or frost-protection decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/skills/garden-planner)
+- [Planting Calendar by USDA Hardiness Zone](references/planting-calendar.md)
+- [USDA Plant Hardiness Zones](references/zones.md)
+- [Example garden data file](assets/garden.example.json)
+- [USDA Plant Hardiness Zone Map](https://planthardiness.ars.usda.gov/)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast)
+- [Open-Meteo geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, local JSON data, and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores garden records locally in a configurable data directory and can call Open-Meteo for weather and ZIP geocoding checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

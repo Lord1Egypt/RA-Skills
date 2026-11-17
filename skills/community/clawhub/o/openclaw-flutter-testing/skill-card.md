@@ -1,48 +1,59 @@
-## Description: <br>
-Provides comprehensive guidance for testing Flutter applications with unit, widget, integration, plugin, mocking, and common-error workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides comprehensive guidance for testing Flutter applications with unit, widget, integration, mocking, plugin, and common-error workflows.
 
-## Publisher: <br>
-[ThomasChangX](https://clawhub.ai/user/ThomasChangX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[thomaschangx](https://clawhub.ai/user/thomaschangx)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose Flutter test strategies, write unit/widget/integration tests, mock dependencies, handle plugin testing, and run common Flutter test commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Flutter test, coverage, and CI commands execute code from the current project and may create local test or coverage output. <br>
-Mitigation: Review commands before execution, run them only in intended Flutter project worktrees, and inspect generated test or coverage output before reuse. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose, write, debug, and run Flutter tests across unit, widget, integration, plugin, and mocked dependency scenarios.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ThomasChangX/openclaw-flutter-testing) <br>
-- [Unit Testing Guide](references/unit-testing.md) <br>
-- [Widget Testing Guide](references/widget-testing.md) <br>
-- [Integration Testing Guide](references/integration-testing.md) <br>
-- [Mocking Guide](references/mocking.md) <br>
-- [Common Errors](references/common-errors.md) <br>
-- [Plugin Testing](references/plugin-testing.md) <br>
-- [Flutter testing documentation](https://docs.flutter.dev/cookbook/testing) <br>
-- [flutter_test package](https://pub.dev/packages/flutter_test) <br>
-- [Mockito package](https://pub.dev/packages/mockito) <br>
-- [integration_test package](https://pub.dev/packages/integration_test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Dart code examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Flutter SDK command-line tool for the documented test commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Suggested Flutter test commands may run project code, coverage tooling, or platform-specific test runners locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them and execute them only in the intended Flutter project with trusted dependencies and devices.
+
+## Reference(s):
+
+- [Unit Testing Guide](references/unit-testing.md)
+- [Widget Testing Guide](references/widget-testing.md)
+- [Integration Testing Guide](references/integration-testing.md)
+- [Mocking Guide](references/mocking.md)
+- [Common Testing Errors](references/common-errors.md)
+- [Plugin Testing Guide](references/plugin-testing.md)
+- [Flutter Testing Documentation](https://docs.flutter.dev/cookbook/testing)
+- [flutter_test package](https://pub.dev/packages/flutter_test)
+- [Mockito package](https://pub.dev/packages/mockito)
+- [Integration Test package](https://pub.dev/packages/integration_test)
+- [ClawHub Skill Page](https://clawhub.ai/thomaschangx/skills/openclaw-flutter-testing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Dart, YAML, Swift, Kotlin, and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Flutter SDK for suggested local test commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

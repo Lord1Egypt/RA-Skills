@@ -1,17 +1,17 @@
-# Vue 3 项目规范
+# Vue 3 project specifications
 
-Frontend Craft skill for Vue 3 项目规范.
+Organize Vue 3 and TypeScript SFCs, composables, routes, Pinia, and project boundaries.
 
 ## Skill
 
 - ID: `fec-vue3-project-standard`
 - Category: `project-standard`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-vue3-project-standard/SKILL.md`
 
 ## Description
 
-Use when designing or reviewing Vue 3 + TypeScript project structure, SFC/component boundaries, composables organization, route composition, Pinia ownership, API/error/styling defaults, directives, or repository-wide Vue conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include Vue 3 项目规范, Vue 组件架构.
+Use when designing or reviewing Vue 3 + TypeScript project structure, SFC/component boundaries, composables organization, route composition, Pinia ownership, API/error/styling defaults, directives, or repository-wide Vue conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include Vue 3 project specification, Vue component architecture.
 
 ## Usage
 

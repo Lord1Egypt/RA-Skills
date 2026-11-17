@@ -1,5 +1,6 @@
 ---
 name: basicops-mcp-operator
+version: 0.1.2
 description: Operate BasicOps through an available BasicOps MCP server. Use when the user wants to read from or update BasicOps tasks, projects, notes, messages, assignments, statuses, subtasks, reviews, or related work in an MCP-capable environment. Trigger on requests like "update this BasicOps task", "assign this in BasicOps", "summarize this BasicOps thread", "request review", "create subtasks", or "mark this complete". Prefer safe context gathering before writes, ask one concise clarifying question when the target is ambiguous, and summarize completed changes briefly.
 ---
 
@@ -8,6 +9,8 @@ description: Operate BasicOps through an available BasicOps MCP server. Use when
 Use BasicOps safely through an existing BasicOps MCP connection.
 
 This skill is the work half of the BasicOps MCP pair. It handles everyday task, project, note, message, and review operations once setup is complete.
+
+To learn more about using agents with [BasicOps](https://basicops.com), visit [basicops.com/agent-users](https://basicops.com/agent-users).
 
 ## Best for
 

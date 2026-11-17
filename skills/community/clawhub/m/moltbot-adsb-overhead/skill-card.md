@@ -1,43 +1,54 @@
-## Description: <br>
-ADS-B Overhead helps configure and operate aircraft-overhead alerts using a local ADS-B SBS/BaseStation feed, optional aircraft enrichment, and WhatsApp notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notify when aircraft are overhead within a configurable radius using a local ADS-B SBS/BaseStation feed, with support for Clawdbot cron watchers and WhatsApp notifications.
 
-## Publisher: <br>
-[davestarling](https://clawhub.ai/user/davestarling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[davestarling](https://clawhub.ai/user/davestarling)
 
-## Use Case: <br>
-Developers and operators use this skill to set up, tune, and troubleshoot a periodic Clawdbot watcher that detects nearby aircraft from a local readsb SBS/BaseStation feed and sends WhatsApp notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime configuration can reveal a home location, ADS-B feed host, and WhatsApp target. <br>
-Mitigation: Keep the config file private, restrict file permissions, and confirm home coordinates, radius, photo settings, and notification target before enabling the watcher. <br>
-Risk: Continuous cron or timer execution can keep sending aircraft notifications after the user no longer wants monitoring. <br>
-Mitigation: Remove the cron entry, disable the config, or stop the timer when continuous monitoring is no longer desired. <br>
-Risk: Incorrect SBS host, radius, cooldown, or quiet-hours settings can cause missed alerts or excessive notifications. <br>
-Mitigation: Run a short manual checker test and review cooldown, listen time, radius, and quiet-hours settings before scheduled operation. <br>
+## Use Case:
 
+Developers and operators use this skill to set up or troubleshoot ADS-B aircraft-overhead alerts from a local SBS/BaseStation feed, tune home coordinates, radius, cooldowns, and listen windows, and run a Clawdbot watcher that sends WhatsApp notifications.
 
-## Reference(s): <br>
-- [SBS/BaseStation MSG fields](references/sbs-fields.md) <br>
-- [ADS-B Overhead ClawHub release](https://clawhub.ai/davestarling/moltbot-adsb-overhead) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime checker can emit plain text alerts or JSONL records; the notifier sends one WhatsApp message per aircraft alert.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill uses local ADS-B host settings, home coordinates, WhatsApp targets, cron timing, local state, logs, and optional cached photos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, confirm the ADS-B feed host, home coordinates, WhatsApp target, and cron interval are yours, and periodically review the local adsb-overhead directory for state, logs, and cached photos.
+
+Risk: Optional photo lookup can send aircraft hex identifiers to Planespotters and store thumbnails locally.
+
+Mitigation: Disable photo lookup if you do not want aircraft hex identifiers sent to Planespotters or thumbnails stored locally.
+
+## Reference(s):
+
+- [SBS/BaseStation MSG fields](references/sbs-fields.md)
+- [Skill release page](https://clawhub.ai/davestarling/skills/moltbot-adsb-overhead)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSONL]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime scripts emit text alerts or JSONL alert records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime behavior can send WhatsApp messages through Clawdbot and may cache alert state and optional aircraft photos locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Tracks AI visibility by scanning target prompts to measure whether AI assistants mention and cite a brand, then reports mention and citation trends and content opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks AI visibility by scanning target prompts to measure whether a brand is mentioned and cited by AI assistants, storing scan history, trend data, competitor mentions, and recommended next actions.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-External marketers, SEO/AEO teams, and developers use this skill to monitor brand visibility in AI-generated answers, compare mention and citation rates over time, and prioritize content improvements. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, brand names, and domain information may be sent to Gemini or search providers during scans. <br>
-Mitigation: Use non-confidential prompts and brand data unless sharing that information with the selected provider is acceptable. <br>
-Risk: The skill stores scan history locally, which may include response excerpts, citation URLs, competitors, and trend data. <br>
-Mitigation: Store the history file in an approved location and review or delete it when it is no longer needed. <br>
-Risk: A Gemini API key may be used for grounded scans. <br>
-Mitigation: Store GEMINI_API_KEY in an environment variable or keychain instead of writing it into prompts, files, or reports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AEO Analytics Data Schema](references/data-schema.md) <br>
-- [Using Gemini API with Grounding for AEO Analytics](references/gemini-grounding.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/psyduckler/aeo-analytics-free) <br>
+## Use Case:
 
+External users, marketers, and SEO/AEO practitioners use this skill to track whether AI assistants mention or cite a brand for target prompts, analyze visibility trends, and identify content opportunities.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, API calls, guidance] <br>
-**Output Format:** [Markdown reports and JSON scan-history files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target domain, brand names, and tracked prompts; may use GEMINI_API_KEY for grounded Gemini scans or web search as a fallback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tracked prompts and brand queries may be sent to Gemini or web search providers.
+
+Mitigation: Avoid scanning secrets, personal data, regulated data, or confidential client material.
+
+Risk: API keys can be exposed when placed directly in command-line URLs or shell history.
+
+Mitigation: Use safer credential handling such as environment variables, keychains, or secret managers, and avoid logging full request URLs.
+
+Risk: Local scan history can accumulate brand prompts, response excerpts, cited URLs, and competitor analysis.
+
+Mitigation: Store the analytics JSON where only intended users can access it and review retained data before sharing reports.
+
+## Reference(s):
+
+- [AEO Analytics Data Schema](references/data-schema.md)
+- [Using Gemini API with Grounding for AEO Analytics](references/gemini-grounding.md)
+- [ClawHub Skill Page](https://clawhub.ai/psyduckler/skills/aeo-analytics-free)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, JSON scan history, and shell or API call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends scan results to a local per-domain JSON history file and may query Gemini API or web search providers with user-supplied brand prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

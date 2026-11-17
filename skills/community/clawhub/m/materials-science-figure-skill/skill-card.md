@@ -1,45 +1,63 @@
-## Description: <br>
-Use when the user wants to generate or edit images with Google's Nanobanana/Gemini image models using the official Gemini API shape, or when they need publication-style scientific figures rendered exactly from data with the bundled Python plotting tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to generate or edit images with Google's Nanobanana/Gemini image models using the official Gemini API shape, or when they need publication-style scientific figures rendered exactly from data with the bundled Python plotting tool.
 
-## Publisher: <br>
-[Grenzlinie](https://clawhub.ai/user/Grenzlinie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grenzlinie](https://clawhub.ai/user/grenzlinie)
 
-## Use Case: <br>
-Developers, researchers, and technical authors use this skill to create materials-science schematics, graphical abstracts, device architecture figures, and publication-style plots. It supports prompt-built Gemini-compatible image workflows and deterministic local plotting from numeric data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image generation mode sends prompts, API credentials, and selected input images to the configured Gemini-compatible endpoint. <br>
-Mitigation: Prefer the official Google endpoint, use an API key file where possible, and enable third-party endpoints only after explicitly trusting the provider. <br>
+## Use Case:
 
+Developers, researchers, and technical authors use this skill to create publication-style materials-science schematics, graphical abstracts, image edits, and exact matplotlib-based plots from numeric data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Grenzlinie/materials-science-figure-skill) <br>
-- [Project homepage](https://github.com/siyuliu/materials-science-figure-skill) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Materials Science Figure Template](references/materials-science-figure-template.md) <br>
-- [Publication Plot API](references/publication-plot-api.md) <br>
-- [Natural Language Plot Workflow](references/natural-language-plot-workflow.md) <br>
-- [Publication Figure Design](references/publication-figure-design.md) <br>
-- [Publication Chart Patterns](references/publication-chart-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON plotting specifications, and generated figure files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image mode may produce generated or edited image files through a Gemini-compatible endpoint; plot mode can produce exact PNG, PDF, or SVG figures from numeric data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Image generation can send prompt text, selected image files, and the configured API key to Google or another allowed endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the official Google endpoint by default, confirm any third-party endpoint before use, and avoid sending sensitive inputs unless the endpoint is trusted.
+
+Risk: API keys may be exposed if passed directly on the command line.
+
+Mitigation: Store credentials in an API-key file or environment variable and avoid inline command-line secrets.
+
+Risk: The plotting script uses a fixed temporary cache path, which can matter on shared machines.
+
+Mitigation: Run plotting workflows in a trusted workspace and review local file handling before shared or multi-user deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/grenzlinie/skills/materials-science-figure-skill)
+- [Project Homepage](https://github.com/siyuliu/materials-science-figure-skill)
+- [API Reference](references/api-reference.md)
+- [Materials Science Figure Template](references/materials-science-figure-template.md)
+- [Natural-Language Plot Workflow](references/natural-language-plot-workflow.md)
+- [Publication Figure Design](references/publication-figure-design.md)
+- [Publication Plot API](references/publication-plot-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON plot specifications, and generated image or plot files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image mode can send prompts, selected image files, and credentials to the configured Gemini-compatible endpoint; plot mode produces local PNG, PDF, or SVG files.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

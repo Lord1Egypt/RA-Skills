@@ -1,44 +1,56 @@
-## Description: <br>
-Analyzes Binance USDT-margined perpetual futures using public market data and returns structured BUY, SELL, or HOLD strategy commentary without placing orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Binance USDT-margined perpetual futures symbols with public futures market data only and return a structured market analysis report with a clear BUY, SELL, or HOLD recommendation without placing orders.
 
-## Publisher: <br>
-[wqyblue3316](https://clawhub.ai/user/wqyblue3316) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wqyblue3316](https://clawhub.ai/user/wqyblue3316)
 
-## Use Case: <br>
-External users and developers use this skill to review Binance USDT perpetual futures setups, support and resistance, trend context, and risk plans. It is intended for analysis-only trading commentary and does not access private account APIs or place orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Leveraged futures recommendations may be mistaken for automated trading instructions. <br>
-Mitigation: Treat outputs as informational analysis only; review recommendations independently before taking any trading action. <br>
-Risk: Providing real balances or positions exposes sensitive financial context to the agent. <br>
-Mitigation: Use default analysis assumptions unless real account context is intentionally needed for the analysis. <br>
-Risk: The helper script contacts Binance public futures APIs and depends on external market data availability. <br>
-Mitigation: Run it only in environments where outbound access to Binance public endpoints is acceptable, and prefer HOLD when data is incomplete or inconsistent. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Binance USDT-margined perpetual futures setups from public market data and receive structured BUY, SELL, or HOLD strategy commentary. It is analysis-only and does not execute trades or use private exchange APIs.
 
-## Reference(s): <br>
-- [Analysis Mode](references/analysis-mode.md) <br>
-- [System Prompt Coverage](references/system-prompt-coverage.md) <br>
-- [Binance USD-M Futures Public API Endpoint](https://fapi.binance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured Chinese Markdown report by default; canonical JSON array when explicitly requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One report or decision object per requested symbol; recommendations are analysis-only and do not execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on parent-directory strategy files that are outside this package and can change the effective analysis rules after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with trusted repository context, and review or scan the external strategy files before relying on the skill.
+
+Risk: If users provide balances or positions, the output can become personalized high-risk trading commentary.
+
+Mitigation: Do not provide exchange credentials, API keys, or sensitive account details; treat outputs as analysis-only commentary, not automated trading actions.
+
+## Reference(s):
+
+- [Analysis Mode](references/analysis-mode.md)
+- [System Prompt Coverage](references/system-prompt-coverage.md)
+- [Binance Futures Public API](https://fapi.binance.com)
+- [ClawHub Skill Page](https://clawhub.ai/wqyblue3316/skills/binance-futures-alpha-radar)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured Chinese Markdown report by default; canonical JSON array when explicitly requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One report or decision object per requested symbol; uses public Binance futures data and default account assumptions unless the user supplies account context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

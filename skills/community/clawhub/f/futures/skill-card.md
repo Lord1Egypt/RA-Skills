@@ -1,44 +1,56 @@
-## Description: <br>
-查询上期所、大商所、郑商所、中金所、广期所期货实时行情及历史 K 线。当用户说：螺纹钢主力什么价？豆粕期货涨了吗？SC 原油最近一周走势？或类似期货行情问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time and historical futures market data for Shanghai, Dalian, Zhengzhou, China Financial Futures, and Guangzhou futures exchanges using JisuAPI.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve real-time and historical futures market data from JisuAPI for Shanghai, Dalian, Zhengzhou, China Financial Futures Exchange, and Guangzhou futures markets. It is intended for informational market-data lookup and summary, including single-contract queries and date-range historical K-line analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured JISU_API_KEY is sent to JisuAPI during futures data requests. <br>
-Mitigation: Use a dedicated JisuAPI key with appropriate scope and rotate it if exposure is suspected. <br>
-Risk: Market prices returned by the skill may be delayed, unavailable, or unsuitable as the sole basis for trading decisions. <br>
-Mitigation: Use the data for informational lookup and verify important prices with an official source before acting. <br>
-Risk: The script depends on python3 and the Python requests package being available in the runtime. <br>
-Mitigation: Confirm the runtime includes python3 and requests before relying on the skill. <br>
+## Use Case:
 
+External users and agents use this skill to answer futures price, contract movement, exchange listing, and historical K-line questions for supported Chinese futures exchanges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/futures) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI futures API documentation](https://www.jisuapi.com/api/futures/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the Python requests package, and JISU_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill sends JISU_API_KEY and requested exchange, contract, and date-range parameters to JisuAPI over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when JisuAPI is an acceptable data provider, provide the key through the JISU_API_KEY environment variable, and rotate or revoke the key if exposure is suspected.
+
+Risk: Futures responses depend on third-party API availability, permissions, rate limits, and data freshness.
+
+Mitigation: Surface returned timestamps and error objects to users, and verify consequential trading or compliance decisions against authoritative market sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/futures)
+- [JisuAPI Website](https://www.jisuapi.com/)
+- [JisuAPI Futures API Documentation](https://www.jisuapi.com/api/futures/)
+- [JisuAPI Futures API Endpoint](https://api.jisuapi.com/futures)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; returns JSON-formatted futures data or structured error objects.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

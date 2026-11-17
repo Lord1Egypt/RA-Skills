@@ -1,41 +1,49 @@
-## Description: <br>
-Manage multiple independent to-do lists with commands to add, list, complete, remove, clear tasks, and manage task lists by name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tasktodolist manages multiple independent local to-do lists with commands to add, list, complete, remove, clear, and delete named lists.
 
-## Publisher: <br>
-[guiguihao](https://clawhub.ai/user/guiguihao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guiguihao](https://clawhub.ai/user/guiguihao)
 
-## Use Case: <br>
-Agents and developers use this skill to manage local named to-do lists from the command line, including adding, listing, completing, removing, clearing, and deleting task lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted task-list names can create or delete files outside the documented ~/.tasktodolist folder. <br>
-Mitigation: Use simple task names containing only letters, numbers, dashes, and underscores; avoid names with .., /, or backslashes. <br>
-Risk: Todo items are saved in local files and may expose sensitive content to local users or backups. <br>
-Mitigation: Do not store secrets, credentials, or other sensitive values in todo items. <br>
+## Use Case:
 
+Developers and agent users can use this skill to maintain simple local task lists from a terminal, with separate lists selected by task name.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guiguihao/tasktodolist) <br>
-- [Publisher profile](https://clawhub.ai/user/guiguihao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text CLI output with local JSON task-list files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task lists under ~/.tasktodolist; task names are used in local file names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Task names containing path separators or '..' may let file operations escape the documented ~/.tasktodolist data folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid untrusted or unusual task names, and require task-name validation that confines reads, writes, and deletes to ~/.tasktodolist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guiguihao/skills/tasktodolist)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Terminal text output from CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local todo data under ~/.tasktodolist using named JSON files.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

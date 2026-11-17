@@ -1,41 +1,57 @@
-## Description: <br>
-Generate a Cartesian verification artifact before trusting a plan, claim, implementation, or release. Turn confidence into explicit checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a Cartesian verification artifact before trusting a plan, claim, implementation, or release. Turn confidence into explicit checks.
 
-## Publisher: <br>
-[malleus35](https://clawhub.ai/user/malleus35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malleus35](https://clawhub.ai/user/malleus35)
 
-## Use Case: <br>
-Developers, reviewers, and release stakeholders use this skill to classify important claims and turn doubts about plans, implementations, decisions, or releases into concrete verification checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the generated doubt list as an automatic approval decision or release blocker. <br>
-Mitigation: Treat the output as a checklist for human verification and decision-making, consistent with the security guidance. <br>
-Risk: A review can remain too vague to test if claims are not classified or doubts are not mapped to actions. <br>
-Mitigation: Require each important claim to be classified and each serious doubt to include a concrete verification action. <br>
+## Use Case:
 
+Teams, reviewers, and developers use this skill to turn plans, claims, implementations, or releases into classified claims, doubt categories, verification actions, and a release posture.
 
-## Reference(s): <br>
-- [Agora Doubt List on ClawHub](https://clawhub.ai/malleus35/agora-doubt-list) <br>
-- [Publisher profile: malleus35](https://clawhub.ai/user/malleus35) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist with claim classifications, doubts, verification actions, clarity gate, and release posture] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a human-review artifact; it does not approve or block a release automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: The skill can produce doubts that are too abstract to guide action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require each serious doubt to map to a concrete verification action before completion.
+
+Risk: The skill may slow or block decisions if used as general disagreement instead of evidence-based review.
+
+Mitigation: Use the claim classification and release posture sections to separate facts, inferences, preferences, and guesses, then name the conditions needed to proceed.
+
+Risk: High-consequence claims may be accepted without enough supporting evidence.
+
+Mitigation: Escalate when key claims cannot be verified with currently available evidence or when release pressure overrides clarity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/malleus35/skills/agora-doubt-list)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown checklist with claim classifications, doubts, verification actions, clarity gate, and release posture.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution; output is a review artifact for human verification.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata; artifact frontmatter: 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Provides Zhouyi and I Ching-style divination analysis by combining traditional Chinese metaphysics methods with a user's birth-chart data and producing an eight-perspective reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhouyi Divination guides an agent to perform I Ching and related Chinese metaphysics readings using multiple divination methods, birth-chart context, and an eight-expert consultation format.
 
-## Publisher: <br>
-[hahacatlsq](https://clawhub.ai/user/hahacatlsq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hahacatlsq](https://clawhub.ai/user/hahacatlsq)
 
-## Use Case: <br>
-External users ask the agent for Zhouyi or I Ching-style readings about decisions, timing, fortune, or people and events. The skill guides the agent to read a local birth-chart profile, cross-check several traditional methods, and return practical advice with uncertainty framing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to read local birth-chart and profile files before a reading. <br>
-Mitigation: Use only with profile data the user is comfortable sharing with the agent, or edit the skill so local file reads require explicit confirmation. <br>
-Risk: The skill automatically saves each consultation, including the question and full analysis, into an iCloud-synced folder. <br>
-Mitigation: Make saving opt-in or change the archive path to a user-selected non-synced location before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hahacatlsq/zhouyi-divination) <br>
+## Use Case:
 
+External users invoke this agent skill for structured Zhouyi-style divination, timing, decision, fortune, and interpersonal readings. The skill asks the agent to combine traditional methods with practical reasoning and return a clear Markdown analysis with recommendations and cautions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown divination report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the question, reading time, hexagram analysis, eight expert-style judgments, recommendations, cautions, and saved consultation records when the skill is followed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads a hard-coded personal birth-chart file before performing readings.
+
+Mitigation: Review the file path and profile data before use; prefer a version that asks before reading profile data and lets the user choose the source file.
+
+Risk: The skill automatically saves every divination result, including personal questions and analysis, into an iCloud-synced folder.
+
+Mitigation: Use only when automatic cloud-synced retention is acceptable; prefer a version with opt-in saving and clear retention and deletion controls.
+
+## Reference(s):
+
+- [Zhouyi Divination on ClawHub](https://clawhub.ai/hahacatlsq/skills/zhouyi-divination)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown divination report with sections for the question, timing, hexagram interpretation, eight-expert consultation, final judgment, advice, and cautions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact directs the agent to save each completed reading as a Markdown file in an iCloud-synced archive.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

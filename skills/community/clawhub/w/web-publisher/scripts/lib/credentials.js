@@ -14,6 +14,8 @@
 // can clearly tell that credentials never flow directly into a network sink
 // from this file.
 
+const { baseUrl } = require('./endpoints');
+const { remember } = require('./redaction');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -51,14 +53,17 @@ function readCredentialsFile() {
     const data = JSON.parse(raw);
     if (!data || typeof data !== 'object') return null;
     if (!data.userId || !data.apiKey) return null;
+    remember(data.apiKey);
     return data;
   } catch (err) {
-    process.stderr.write(`[warn] 读取本地凭证失败: ${err.message}\n`);
+    process.stderr.write(`[warn] 读取本地凭证失败: 操作失败，请检查文件格式和权限\n`);
     return null;
   }
 }
 
 function writeCredentialsFile(creds) {
+  remember(creds.apiKey);
+  creds = { ...creds, apiUrl: creds.apiUrl ? baseUrl(creds.apiUrl, 'pipeline') : '', toolsUrl: baseUrl(creds.toolsUrl || DEFAULT_TOOLS_URL, 'tools') };
   fs.mkdirSync(CREDENTIALS_DIR, { recursive: true, mode: 0o700 });
   try {
     fs.chmodSync(CREDENTIALS_DIR, 0o700);
@@ -78,7 +83,7 @@ function deleteCredentialsFile() {
   try {
     if (fs.existsSync(CREDENTIALS_PATH)) fs.unlinkSync(CREDENTIALS_PATH);
   } catch (err) {
-    process.stderr.write(`[warn] 删除本地凭证失败: ${err.message}\n`);
+    process.stderr.write(`[warn] 删除本地凭证失败: 操作失败，请检查文件格式和权限\n`);
   }
 }
 
@@ -102,6 +107,7 @@ function readLoginPending() {
 }
 
 function writeLoginPending(record) {
+  record = { ...record, toolsUrl: baseUrl(record.toolsUrl || DEFAULT_TOOLS_URL, 'tools') };
   ensureCredentialsDir();
   fs.writeFileSync(LOGIN_PENDING_PATH, JSON.stringify(record, null, 2), { mode: 0o600 });
   try { fs.chmodSync(LOGIN_PENDING_PATH, 0o600); } catch (_) {}
@@ -115,7 +121,7 @@ function deleteLoginPending() {
 
 function resolveToolsUrl() {
   const fromEnv = process.env.WEB_PUBLISHER_TOOLS_URL;
-  return fromEnv && fromEnv.length > 0 ? fromEnv : DEFAULT_TOOLS_URL;
+  return baseUrl(fromEnv && fromEnv.length > 0 ? fromEnv : DEFAULT_TOOLS_URL, 'tools');
 }
 
 // Stderr warning is rate-limited to one print per process so callers that
@@ -131,6 +137,7 @@ function loadCredentials() {
     apiKey: process.env.WEB_PUBLISHER_API_KEY,
     apiUrl: process.env.WEB_PUBLISHER_API_URL
   };
+  remember(env.apiKey);
   const envHasLogin = Boolean(env.userId && env.apiKey);
 
   // Precedence: on-disk credentials.json wins over env vars.
@@ -163,8 +170,8 @@ function loadCredentials() {
     return {
       ...rest,
       source: 'file',
-      apiUrl: rest.apiUrl || env.apiUrl || '',
-      toolsUrl: rest.toolsUrl || resolveToolsUrl()
+      apiUrl: (rest.apiUrl || env.apiUrl) ? baseUrl(rest.apiUrl || env.apiUrl, 'pipeline') : '',
+      toolsUrl: baseUrl(rest.toolsUrl || resolveToolsUrl(), 'tools')
     };
   }
 
@@ -172,7 +179,7 @@ function loadCredentials() {
     return {
       ...env,
       source: 'env',
-      apiUrl: env.apiUrl || '',
+      apiUrl: env.apiUrl ? baseUrl(env.apiUrl, 'pipeline') : '',
       toolsUrl: resolveToolsUrl()
     };
   }
@@ -182,6 +189,7 @@ function loadCredentials() {
 
 function maskApiKey(key) {
   if (!key) return '';
+  if (typeof key !== 'string') return '****';
   if (key.length <= 8) return '****';
   return `${key.slice(0, 4)}****${key.slice(-4)}`;
 }

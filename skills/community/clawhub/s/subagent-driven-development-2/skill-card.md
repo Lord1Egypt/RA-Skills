@@ -1,39 +1,52 @@
-## Description: <br>
-Execute implementation plans by dispatching a fresh subagent per task with two-stage review for spec compliance and code quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute implementation plans by dispatching a fresh subagent per task with two-stage review for mostly independent tasks that need high-quality, fast iteration within a single session.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to execute a prewritten implementation plan by assigning each discrete task to a fresh subagent and requiring review before moving on. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Subagents may produce changes that do not fully match the plan or project conventions. <br>
-Mitigation: Keep tasks well scoped, enforce the spec and code-quality review gates, and review resulting commits before merging or deploying. <br>
-Risk: Sensitive information can be exposed if secrets are included in task context. <br>
-Mitigation: Avoid including secrets or credentials in plans, prompts, or subagent context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/subagent-driven-development-2) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to execute an existing implementation plan by delegating each task to fresh subagents and enforcing spec and code-quality reviews before moving on.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no API keys or external services are required by the evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented installation command uses npx clawhub@latest, which may install an unpinned package version.
+
+Mitigation: Prefer a pinned or otherwise verified installer version before installing.
+
+Risk: The workflow can make code changes, run tests, create commits, and proceed without human review between tasks.
+
+Mitigation: Review the implementation plan carefully and keep the spec-compliance and code-quality review gates in place before completing each task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/subagent-driven-development-2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands and review findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the implementation plan and repository tasks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

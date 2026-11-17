@@ -1,40 +1,57 @@
-## Description: <br>
-代码评审帮助代理在开发完成后对照功能点文档、需求/澄清文档和概要设计文档审查代码实现，评估需求完成度、设计一致性并识别未完成项、BUG 和偏离设计的问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts post-development code reviews against feature, requirement or clarification, and high-level design documents to assess delivery completeness, design alignment, bugs, and implementation gaps.
 
-## Publisher: <br>
-[wed840313](https://clawhub.ai/user/wed840313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wed840313](https://clawhub.ai/user/wed840313)
 
-## Use Case: <br>
-开发者和评审人员在功能开发完成后使用此技能，对照功能点文档、需求/澄清文档和概要设计文档验收代码实现。它用于确认需求是否完整交付、代码是否按设计落地，并输出通过或未通过的结构化评审结论。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to read project code and review materials, which may include sensitive implementation details. <br>
-Mitigation: Share only the repository files, requirements, clarifications, and design documents that are relevant to the review. <br>
-Risk: A review based on missing feature, requirement, or design materials may produce incomplete or misleading conclusions. <br>
-Mitigation: Use the skill's material-confirmation gate and either provide the missing materials or explicitly accept the limits before continuing. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill after implementation to compare code against feature documentation, requirements or clarification notes, and high-level design documents. It helps produce pass/fail review outcomes with concrete findings for incomplete requirements, bugs, and design deviations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wed840313/wenwei-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown code review report with requirement coverage, design-consistency findings, bug findings, and a pass or fail conclusion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause to request missing feature, requirement, clarification, or design materials before performing the review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The review can be incomplete or less accurate if feature, requirement, clarification, or design materials are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's materials confirmation gate and continue only after missing inputs are supplied or the user explicitly accepts the reduced confidence.
+
+Risk: Review findings may be incorrect or misleading if treated as final without human validation.
+
+Mitigation: Have developers or reviewers verify cited code locations, requirement coverage, and suggested fixes before making release decisions.
+
+Risk: The skill is written for Chinese-language review workflows, which may not match every user's preferred response language.
+
+Mitigation: Ask for the desired review language explicitly when a non-Chinese report is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wed840313/skills/wenwei-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown code review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a materials confirmation gate, requirement and design coverage analysis, categorized findings, and a clear pass or fail conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

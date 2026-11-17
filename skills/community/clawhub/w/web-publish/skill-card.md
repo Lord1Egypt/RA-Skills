@@ -1,39 +1,52 @@
-## Description: <br>
-Publishes local Markdown or HTML files as temporary online links that can be opened on mobile devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes local Markdown or HTML files as temporary shareable web links.
 
-## Publisher: <br>
-[amlyx](https://clawhub.ai/user/amlyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amlyx](https://clawhub.ai/user/amlyx)
 
-## Use Case: <br>
-External users and developers use this skill to publish Markdown or HTML documents, such as speeches, meeting notes, courseware, or temporary handoffs, as shareable expiring web links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installation instructions use an unreviewed Pastebin shell script. <br>
-Mitigation: Review the exact installer script before running it, or wait for a packaged or pinned installer from the publisher. <br>
-Risk: Published documents are sent to a third-party paste service and may be accessible to anyone with the URL until expiry. <br>
-Mitigation: Only publish files that are safe to share externally, and treat generated dpaste.com links as public while they remain active. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amlyx/web-publish) <br>
+## Use Case:
 
+External users and developers can use this skill to publish local Markdown or HTML documents as temporary online links for speeches, meeting notes, presentations, or short-lived document sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and example URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces shareable temporary links for uploaded Markdown or HTML content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path asks users to run an unverified remote Pastebin script.
+
+Mitigation: Review the installer before execution and prefer a trusted, versioned installer with verifiable source or checksums.
+
+Risk: Published files are uploaded to an external paste service.
+
+Mitigation: Avoid confidential, private, customer, or internal documents unless the user has reviewed the service visibility and retention behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amlyx/skills/web-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and returned URL text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces temporary dpaste.com links with selectable 1-7 day expiry.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
